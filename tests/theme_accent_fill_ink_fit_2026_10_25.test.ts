@@ -13,7 +13,7 @@ const CALLERS: ReadonlyArray<[string, string]> = [
   ['components/account/AccountRestoreSummaryDialog.tsx', '<ThemeAccentFill glass={glass} radius={25} ink={glass.ctaFillInk} />'],
   ['components/v2/GlassAlertDialog.tsx', '<ThemeAccentFill glass={glass} radius={22} ink={glass.ctaFillInk} />'],
   ['app/flashcards/CardsSessionResultV2.tsx', '<ThemeAccentFill glass={g} radius={24} ink={g.ctaFillInk} />'],
-  ['components/learning-v2/LearningV2Glass.tsx', '<ThemeAccentFill glass={g} radius={26} ink={g.ctaFillInk} />'],
+  ['components/practice/PracticeGlass.tsx', '<ThemeAccentFill glass={g} radius={26} ink={g.ctaFillInk} />'],
 ];
 
 describe('фактура главной кнопки не прячет подпись ctaFillInk (25.10)', () => {

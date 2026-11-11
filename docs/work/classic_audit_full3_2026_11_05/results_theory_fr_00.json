@@ -1,0 +1,118 @@
+[
+ {
+  "id": "lesson-1/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "Инфинитив «Не додавати» вместо повелительного (в ru «Не добавляй», дальше везде на «ти»)",
+  "fix": "Не перед кожним місцем ставиться однакове слово. `Ici` вже позначає місце саме. Вирази `à la maison` і `au bureau` запам'ятай цілком. Не додавай `à` перед `ici`."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "Ошибка рода: «один і той же дієслово» (дієслово — ср. род)",
+  "fix": "Після дієслова можна назвати стан. Прикметник може змінювати письмову форму: `prêt` – про чоловіка, `prête` – про жінку. Це окремий вибір від `est`: у Поля і в Леа одне й те саме дієслово."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Имя искажено: Leah вместо Léa из фраз курса",
+  "fix": "A state can be named after the verb. An adjective can change its written form: `prêt` refers to a man, `prête` refers to a woman. This is a separate choice from `est`: Paul and Léa share the same verb."
+ },
+ {
+  "id": "lesson-1/table",
+  "type": "T1",
+  "field": "theory.table",
+  "problem": "Таблица спряжения непоследовательна: в первой строке слева инфинитив `être` вместо местоимения `je`, первые две строки дают местоимение+форму, остальные только форму",
+  "fix": [
+   [
+    "je",
+    "suis"
+   ],
+   [
+    "tu",
+    "es"
+   ],
+   [
+    "il / elle / on",
+    "est"
+   ],
+   [
+    "nous",
+    "sommes"
+   ],
+   [
+    "vous",
+    "êtes"
+   ],
+   [
+    "ils / elles",
+    "sont"
+   ]
+  ]
+ },
+ {
+  "id": "lesson-2/title",
+  "type": "T2",
+  "field": "theory.title.uk",
+  "problem": "«ні» = «нет», а речь об отрицательной частице «не» (ru «не»)",
+  "fix": "Як сказати «не»: `ne … pas`"
+ },
+ {
+  "id": "lesson-2/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«особисту форму дієслова» — калька; термин «особова форма»; «Уклади … в дві частини» неестественно",
+  "fix": "Учень уже вміє повідомляти, що він тут. Щоб спростувати це, не міняй «я» та «тут». Постав особову форму дієслова між двома частинами заперечення. Зручно уявити дві дужки навколо дії."
+ },
+ {
+  "id": "lesson-2/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«обличчя» (лицо = часть тела) вместо грамматической «особа»",
+  "fix": "У запереченні особа не зникає: для «ми», як і раніше, потрібно `sommes`. Для ввічливого звернення — `êtes`. Вибери форму, яку вибрав би у твердженні, і тільки потім додай заперечення."
+ },
+ {
+  "id": "lesson-2/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.ru",
+  "problem": "Бессмыслица «У предмета тоже есть подлежащее»: имеется в виду, что предмет может быть подлежащим",
+  "fix": "Подлежащим может быть и предмет. `La porte` остаётся перед отрицанием. Сначала выясни, одна это дверь или несколько, затем выбирай `n’est` или `ne sont`."
+ },
+ {
+  "id": "lesson-2/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "То же: «У предмета теж є підмет» — неверная формулировка",
+  "fix": "Підметом може бути і предмет. `La porte` залишається перед запереченням. Спочатку з'ясуй, одні це двері чи кілька, потім вибирай `n’est` або `ne sont`."
+ },
+ {
+  "id": "lesson-2/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "То же: «An object also has a subject» — неверно",
+  "fix": "A thing can be the subject too. `La porte` stays before the negation. First, determine whether it's one door or several, then choose `n’est` or `ne sont`."
+ },
+ {
+  "id": "lesson-2/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«особистої форми» — калька; нужно «особової форми»",
+  "fix": "`Pas` зазвичай стоїть не в кінці всієї фрази, а відразу після простої особової форми. У `n’est pas dans le sac` слова про сумку йдуть уже після заперечення."
+ },
+ {
+  "id": "lesson-2/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "`pas encore` переведено «поки що» (без отрицания) — смысл неверен, в ru «пока не»",
+  "fix": "Очікуваний результат ще не настав: `pas encore` — «ще не». Не плутай з `encore` без заперечення: у фрази змінюється сенс, а не лише довжина."
+ },
+ {
+  "id": "lesson-2/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "Невидимые символы U+200B (zero-width space) перед «повне»",
+  "fix": "У розмові можна почути заперечення без першої частини. Тут зразком є повне нейтральне написання. Перевіряй дві опори: де форма дієслова та де стоїть `pas`."
+ }
+]

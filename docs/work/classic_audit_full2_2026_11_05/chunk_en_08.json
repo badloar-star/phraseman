@@ -1,0 +1,6151 @@
+[
+{
+"lesson": 17,
+"id": "en-classic-r1:17.01",
+"target": "I am waiting.",
+"ru": "Я жду.",
+"uk": "Я чекаю.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"Him",
+"You",
+"She"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"have"
+]
+},
+{
+"correct": "waiting",
+"distractors": [
+"wait",
+"waited",
+"is",
+"are",
+"starts"
+]
+}
+],
+"alternatives": [
+"I'm waiting."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.02",
+"target": "She is waiting.",
+"ru": "Она ждёт.",
+"uk": "Вона чекає.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"They",
+"He",
+"You"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"saw",
+"am",
+"be"
+]
+},
+{
+"correct": "waiting",
+"distractors": [
+"wait",
+"waited",
+"pay",
+"have",
+"do"
+]
+}
+],
+"alternatives": [
+"She's waiting."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.03",
+"target": "We are leaving.",
+"ru": "Мы уходим.",
+"uk": "Ми йдемо.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"I'm",
+"They",
+"You"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "leaving",
+"distractors": [
+"leave",
+"left",
+"is",
+"cooking",
+"was"
+]
+}
+],
+"alternatives": [
+"We're leaving."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.04",
+"target": "They are leaving.",
+"ru": "Они уходят.",
+"uk": "Вони йдуть.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"You",
+"He",
+"We"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"do",
+"am"
+]
+},
+{
+"correct": "leaving",
+"distractors": [
+"leave",
+"left",
+"leaves",
+"have",
+"is"
+]
+}
+],
+"alternatives": [
+"They're leaving."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.05",
+"target": "He is cooking.",
+"ru": "Он готовит.",
+"uk": "Він готує.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"We",
+"They",
+"She"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"swim",
+"left",
+"bring"
+]
+},
+{
+"correct": "cooking",
+"distractors": [
+"cook",
+"have",
+"take",
+"do",
+"has"
+]
+}
+],
+"alternatives": [
+"He's cooking."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.06",
+"target": "I am listening.",
+"ru": "Я слушаю.",
+"uk": "Я слухаю.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"You",
+"We're",
+"She",
+"He"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"bag"
+]
+},
+{
+"correct": "listening",
+"distractors": [
+"printed",
+"help",
+"lock",
+"is",
+"do"
+]
+}
+],
+"alternatives": [
+"I'm listening."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.07",
+"target": "The phone is ringing.",
+"ru": "Звонит телефон.",
+"uk": "Телефон дзвонить.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Those",
+"And",
+"But"
+]
+},
+{
+"correct": "phone",
+"distractors": [
+"go",
+"keep",
+"want",
+"cleaned",
+"take"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "ringing",
+"distractors": [
+"ring",
+"rings",
+"do",
+"does",
+"did"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.08",
+"target": "The doors are closing.",
+"ru": "Двери закрываются.",
+"uk": "Двері зачиняються.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"Both",
+"And"
+]
+},
+{
+"correct": "doors",
+"distractors": [
+"keys",
+"bags",
+"stairs",
+"buses",
+"boxes"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"have",
+"do"
+]
+},
+{
+"correct": "closing",
+"distractors": [
+"close",
+"closer",
+"closes",
+"closed",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.09",
+"target": "The bus is coming.",
+"ru": "Приезжает автобус.",
+"uk": "Автобус наближається.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"No",
+"And"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"taxi",
+"train",
+"birthday",
+"bike",
+"car"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"be",
+"am",
+"have"
+]
+},
+{
+"correct": "coming",
+"distractors": [
+"come",
+"came",
+"take",
+"have",
+"takes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.10",
+"target": "Your tea is getting cold.",
+"ru": "Твой чай остывает.",
+"uk": "Твій чай холоне.",
+"tiles": [
+{
+"correct": "Your",
+"distractors": [
+"My",
+"Her",
+"Ours",
+"Our",
+"Theirs"
+]
+},
+{
+"correct": "tea",
+"distractors": [
+"milk",
+"coffee",
+"bread",
+"rain",
+"water"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"read",
+"am",
+"be"
+]
+},
+{
+"correct": "getting",
+"distractors": [
+"got",
+"get",
+"gets",
+"have",
+"do"
+]
+},
+{
+"correct": "cold",
+"distractors": [
+"open",
+"glasses",
+"hot",
+"new",
+"late"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.11",
+"target": "I am looking for my keys.",
+"ru": "Я ищу свои ключи.",
+"uk": "Я шукаю свої ключі.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"You",
+"Me",
+"They",
+"He"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"starts"
+]
+},
+{
+"correct": "looking",
+"distractors": [
+"looked",
+"look",
+"is",
+"use",
+"turn"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"in",
+"at",
+"by"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"her",
+"hers",
+"our",
+"yours"
+]
+},
+{
+"correct": "keys",
+"distractors": [
+"seats",
+"doors",
+"headphones",
+"boxes",
+"stairs"
+]
+}
+],
+"alternatives": [
+"I'm looking for my keys."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.12",
+"target": "She is putting her coat on.",
+"ru": "Она надевает пальто.",
+"uk": "Вона одягає пальто.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"I'm",
+"Me",
+"He"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"be",
+"have",
+"am"
+]
+},
+{
+"correct": "putting",
+"distractors": [
+"put",
+"use",
+"have",
+"cooking",
+"do"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"we",
+"you",
+"he",
+"they",
+"me"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"parcel",
+"shoes",
+"helmet",
+"scarf"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"of",
+"near",
+"for",
+"by"
+]
+}
+],
+"alternatives": [
+"She's putting her coat on."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.13",
+"target": "He is washing his hands.",
+"ru": "Он моет руки.",
+"uk": "Він миє руки.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"She",
+"They"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"be",
+"leave",
+"am"
+]
+},
+{
+"correct": "washing",
+"distractors": [
+"washed",
+"send",
+"sent",
+"have",
+"do"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"her",
+"our",
+"yours"
+]
+},
+{
+"correct": "hands",
+"distractors": [
+"handed",
+"call",
+"arrived",
+"want",
+"have"
+]
+}
+],
+"alternatives": [
+"He's washing his hands."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.14",
+"target": "We are packing our suitcases.",
+"ru": "Мы собираем чемоданы.",
+"uk": "Ми пакуємо валізи.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"They",
+"She",
+"He",
+"You"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"fixed",
+"have",
+"am"
+]
+},
+{
+"correct": "packing",
+"distractors": [
+"packed",
+"reading",
+"keep",
+"do",
+"walking"
+]
+},
+{
+"correct": "our",
+"distractors": [
+"my",
+"your",
+"her",
+"mine",
+"his"
+]
+},
+{
+"correct": "suitcases",
+"distractors": [
+"keys",
+"doors",
+"people",
+"towels",
+"buses"
+]
+}
+],
+"alternatives": [
+"We're packing our suitcases."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.15",
+"target": "They are carrying a mattress upstairs.",
+"ru": "Они несут матрас наверх.",
+"uk": "Вони несуть матрац нагору.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"You",
+"He",
+"We"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"bag",
+"reading"
+]
+},
+{
+"correct": "carrying",
+"distractors": [
+"carry",
+"booking",
+"borrow",
+"is",
+"book"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "mattress",
+"distractors": [
+"keys",
+"trains",
+"route",
+"umbrella",
+"flight"
+]
+},
+{
+"correct": "upstairs",
+"distractors": [
+"there",
+"home",
+"outside",
+"downstairs",
+"cash"
+]
+}
+],
+"alternatives": [
+"They're carrying a mattress upstairs."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.16",
+"target": "You are standing on my scarf.",
+"ru": "Ты наступаешь на мой шарф.",
+"uk": "Ти стоїш на моєму шарфі.",
+"tiles": [
+{
+"correct": "You",
+"distractors": [
+"I",
+"We",
+"They",
+"She",
+"He"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"need",
+"be",
+"stop"
+]
+},
+{
+"correct": "standing",
+"distractors": [
+"stand",
+"stood",
+"is",
+"left",
+"was"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"with",
+"of",
+"for",
+"at",
+"by"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"his",
+"our",
+"her",
+"their"
+]
+},
+{
+"correct": "scarf",
+"distractors": [
+"jacket",
+"gloves",
+"question",
+"end",
+"shoes"
+]
+}
+],
+"alternatives": [
+"You're standing on my scarf."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.17",
+"target": "I am writing down the address.",
+"ru": "Я записываю адрес.",
+"uk": "Я записую адресу.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"He",
+"You",
+"They"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"have"
+]
+},
+{
+"correct": "writing",
+"distractors": [
+"write",
+"wrote",
+"written",
+"is",
+"has"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"off",
+"left",
+"not",
+"up",
+"here"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"many",
+"much",
+"and"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"doors",
+"seats",
+"ring",
+"block",
+"weather"
+]
+}
+],
+"alternatives": [
+"I'm writing down the address."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.18",
+"target": "The driver is checking the tickets.",
+"ru": "Водитель проверяет билеты.",
+"uk": "Водій перевіряє квитки.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "driver",
+"distractors": [
+"neighbour",
+"day",
+"crack",
+"end",
+"manager"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"have",
+"am",
+"be"
+]
+},
+{
+"correct": "checking",
+"distractors": [
+"check",
+"checked",
+"booking",
+"carrying",
+"checks"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "tickets",
+"distractors": [
+"bags",
+"keys",
+"children",
+"nights",
+"windows"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.19",
+"target": "My neighbour is fixing his bike.",
+"ru": "Мой сосед чинит свой велосипед.",
+"uk": "Мій сусід ремонтує свій велосипед.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Her",
+"Our",
+"Their",
+"Yours"
+]
+},
+{
+"correct": "neighbour",
+"distractors": [
+"driver",
+"manager",
+"landlord",
+"bus",
+"phone"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"went",
+"start",
+"am"
+]
+},
+{
+"correct": "fixing",
+"distractors": [
+"fixed",
+"sign",
+"has",
+"walk",
+"have"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"your",
+"our",
+"mine",
+"ours",
+"her"
+]
+},
+{
+"correct": "bike",
+"distractors": [
+"taxi",
+"bus",
+"appointment",
+"train",
+"car"
+]
+}
+],
+"alternatives": [
+"My neighbor is fixing his bike."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.20",
+"target": "The baby is sleeping in the cot.",
+"ru": "Ребенок спит в кроватке.",
+"uk": "Малюк спить у ліжечку.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "baby",
+"distractors": [
+"key",
+"kitchen",
+"garden",
+"door",
+"room"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"put"
+]
+},
+{
+"correct": "sleeping",
+"distractors": [
+"leave",
+"heard",
+"break",
+"saw",
+"left"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"for",
+"with",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "cot",
+"distractors": [
+"table",
+"chair",
+"shelf",
+"seat",
+"check"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.21",
+"target": "Are you listening?",
+"ru": "Ты слушаешь?",
+"uk": "Ти слухаєш?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Be",
+"Am",
+"Have"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"me",
+"he",
+"she",
+"they"
+]
+},
+{
+"correct": "listening",
+"distractors": [
+"is",
+"do",
+"need",
+"was",
+"have"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.22",
+"target": "Is she coming with us?",
+"ru": "Она идет с нами?",
+"uk": "Вона йде з нами?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Find",
+"Am",
+"Be"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"they",
+"me",
+"you",
+"he"
+]
+},
+{
+"correct": "coming",
+"distractors": [
+"come",
+"came",
+"send",
+"sent",
+"have"
+]
+},
+{
+"correct": "with",
+"distractors": [
+"to",
+"on",
+"in",
+"by",
+"at"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"you",
+"he",
+"it",
+"we",
+"they"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.23",
+"target": "Are they waiting outside?",
+"ru": "Они ждут снаружи?",
+"uk": "Вони чекають надворі?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Bag",
+"Know",
+"Am"
+]
+},
+{
+"correct": "they",
+"distractors": [
+"we",
+"you",
+"she",
+"he",
+"me"
+]
+},
+{
+"correct": "waiting",
+"distractors": [
+"wait",
+"waited",
+"speak",
+"send",
+"has"
+]
+},
+{
+"correct": "outside",
+"distractors": [
+"home",
+"here",
+"there",
+"upstairs",
+"not"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.24",
+"target": "What are you cooking?",
+"ru": "Что ты готовишь?",
+"uk": "Що ти готуєш?",
+"tiles": [
+{
+"correct": "What",
+"distractors": [
+"Who",
+"Where",
+"Whose",
+"How",
+"Why"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"they",
+"she'll",
+"me",
+"she"
+]
+},
+{
+"correct": "cooking",
+"distractors": [
+"cook",
+"is",
+"filled",
+"was",
+"am"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.25",
+"target": "Who is calling you?",
+"ru": "Кто тебе звонит?",
+"uk": "Хто тобі телефонує?",
+"tiles": [
+{
+"correct": "Who",
+"distractors": [
+"Which",
+"Whose",
+"Didn't",
+"What",
+"Where"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"bag",
+"be"
+]
+},
+{
+"correct": "calling",
+"distractors": [
+"call",
+"called",
+"feel",
+"listening",
+"have"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"he",
+"she",
+"they",
+"it",
+"we"
+]
+}
+],
+"alternatives": [
+"Who's calling you?"
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.26",
+"target": "Where are we going?",
+"ru": "Куда мы идём?",
+"uk": "Куди ми йдемо?",
+"tiles": [
+{
+"correct": "Where",
+"distractors": [
+"Who",
+"What",
+"Why",
+"Whose",
+"Which"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"am",
+"have"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"he",
+"she's",
+"you",
+"they"
+]
+},
+{
+"correct": "going",
+"distractors": [
+"went",
+"go",
+"goes",
+"is",
+"have"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.27",
+"target": "Why is the light flashing?",
+"ru": "Почему мигает свет?",
+"uk": "Чому блимає світло?",
+"tiles": [
+{
+"correct": "Why",
+"distractors": [
+"Whose",
+"Who",
+"Where",
+"What",
+"Which"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"do",
+"need",
+"missing"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"each",
+"and"
+]
+},
+{
+"correct": "light",
+"distractors": [
+"lights",
+"lighter",
+"lift",
+"heavy",
+"dry"
+]
+},
+{
+"correct": "flashing",
+"distractors": [
+"waiting",
+"working",
+"moving",
+"looking",
+"work"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.28",
+"target": "Is the kettle boiling?",
+"ru": "Чайник кипит?",
+"uk": "Чайник кипить?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Bag",
+"Fit",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "kettle",
+"distractors": [
+"box",
+"locker",
+"shelf",
+"fridge",
+"bag"
+]
+},
+{
+"correct": "boiling",
+"distractors": [
+"waiting",
+"looking",
+"waited",
+"wait",
+"use"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.29",
+"target": "What are they looking for?",
+"ru": "Что они ищут?",
+"uk": "Що вони шукають?",
+"tiles": [
+{
+"correct": "What",
+"distractors": [
+"Where",
+"Why",
+"How",
+"Who",
+"Whose"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"heard",
+"be"
+]
+},
+{
+"correct": "they",
+"distractors": [
+"we",
+"she",
+"you",
+"me",
+"he"
+]
+},
+{
+"correct": "looking",
+"distractors": [
+"looked",
+"look",
+"looks",
+"use",
+"have"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"in",
+"at",
+"by"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.30",
+"target": "Are you using this chair?",
+"ru": "Вы пользуетесь этим стулом?",
+"uk": "Ви користуєтеся цим стільцем?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Be",
+"Bag",
+"Do"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"he",
+"they",
+"him",
+"she"
+]
+},
+{
+"correct": "using",
+"distractors": [
+"use",
+"is",
+"got",
+"was",
+"am"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"some",
+"an",
+"no"
+]
+},
+{
+"correct": "chair",
+"distractors": [
+"cot",
+"table",
+"heating",
+"address",
+"road"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.31",
+"target": "I am not ignoring you.",
+"ru": "Я вас не игнорирую.",
+"uk": "Я вас не ігнорую.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"He",
+"We",
+"They",
+"It"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"have",
+"be"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"just",
+"alone",
+"now",
+"back"
+]
+},
+{
+"correct": "ignoring",
+"distractors": [
+"keep",
+"take",
+"is",
+"broke",
+"are"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"he",
+"she",
+"me",
+"they"
+]
+}
+],
+"alternatives": [
+"I'm not ignoring you."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.32",
+"target": "She is not feeling well.",
+"ru": "Она плохо себя чувствует.",
+"uk": "Вона погано почувається.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"You",
+"We",
+"They"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"haven't",
+"don't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"just",
+"again",
+"far",
+"slowly"
+]
+},
+{
+"correct": "feeling",
+"distractors": [
+"feel",
+"has",
+"fixed",
+"have",
+"do"
+]
+},
+{
+"correct": "well",
+"distractors": [
+"ticket",
+"here",
+"phone",
+"home",
+"now"
+]
+}
+],
+"alternatives": [
+"She isn't feeling well.",
+"She's not feeling well."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.33",
+"target": "We are not staying overnight.",
+"ru": "Мы не остаёмся на ночь.",
+"uk": "Ми не залишаємося на ніч.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"He",
+"He's",
+"You"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"don't",
+"didn't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"alone",
+"faster",
+"back"
+]
+},
+{
+"correct": "staying",
+"distractors": [
+"stay",
+"is",
+"fit",
+"carry",
+"was"
+]
+},
+{
+"correct": "overnight",
+"distractors": [
+"key",
+"bus",
+"wrong",
+"own",
+"new"
+]
+}
+],
+"alternatives": [
+"We aren't staying overnight.",
+"We're not staying overnight."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.34",
+"target": "He is not wearing his glasses.",
+"ru": "Он без очков.",
+"uk": "Він без окулярів.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"It",
+"She"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"doesn't",
+"won't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"yes",
+"usually",
+"always"
+]
+},
+{
+"correct": "wearing",
+"distractors": [
+"wear",
+"cooking",
+"stops",
+"stop",
+"stopped"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"hers"
+]
+},
+{
+"correct": "glasses",
+"distractors": [
+"throat",
+"cold",
+"shoes",
+"cups",
+"pockets"
+]
+}
+],
+"alternatives": [
+"He isn't wearing his glasses.",
+"He's not wearing his glasses."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.35",
+"target": "The printer is not responding.",
+"ru": "Принтер не отвечает.",
+"uk": "Принтер не відповідає.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"These",
+"And",
+"But"
+]
+},
+{
+"correct": "printer",
+"distractors": [
+"station",
+"key",
+"passport",
+"shift",
+"door"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"hasn't",
+"didn't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"back",
+"twice",
+"yes"
+]
+},
+{
+"correct": "responding",
+"distractors": [
+"keep",
+"go",
+"meet",
+"driving",
+"learning"
+]
+}
+],
+"alternatives": [
+"The printer isn't responding."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.36",
+"target": "They are not working today.",
+"ru": "Сегодня они не работают.",
+"uk": "Вони сьогодні не працюють.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"We",
+"He",
+"You"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"don't",
+"am",
+"be"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"alone",
+"back",
+"home"
+]
+},
+{
+"correct": "working",
+"distractors": [
+"work",
+"worked",
+"is",
+"works",
+"break"
+]
+},
+{
+"correct": "today",
+"distractors": [
+"early",
+"yesterday",
+"late",
+"tomorrow",
+"week"
+]
+}
+],
+"alternatives": [
+"They aren't working today.",
+"They're not working today."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.37",
+"target": "The battery is not charging.",
+"ru": "Батарея не заряжается.",
+"uk": "Акумулятор не заряджається.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"Both",
+"And"
+]
+},
+{
+"correct": "battery",
+"distractors": [
+"room",
+"station",
+"coat",
+"water",
+"gate"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"doesn't",
+"don't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"twice",
+"alone",
+"now",
+"back"
+]
+},
+{
+"correct": "charging",
+"distractors": [
+"charge",
+"fit",
+"give",
+"reading",
+"cost"
+]
+}
+],
+"alternatives": [
+"The battery isn't charging."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.38",
+"target": "It is not raining now.",
+"ru": "Сейчас не идёт дождь.",
+"uk": "Зараз дощу немає.",
+"tiles": [
+{
+"correct": "It",
+"distractors": [
+"I",
+"You",
+"We're",
+"Them",
+"He"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"doesn't",
+"didn't",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"enough",
+"down",
+"home",
+"there"
+]
+},
+{
+"correct": "raining",
+"distractors": [
+"rain",
+"need",
+"come",
+"milk",
+"needs"
+]
+},
+{
+"correct": "now",
+"distractors": [
+"early",
+"late",
+"yesterday",
+"today",
+"tomorrow"
+]
+}
+],
+"alternatives": [
+"It isn't raining now.",
+"It's not raining now."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.39",
+"target": "I am not taking the car.",
+"ru": "Я не поеду на машине.",
+"uk": "Я не поїду машиною.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"They",
+"She",
+"You",
+"He"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"have"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"now",
+"just",
+"still"
+]
+},
+{
+"correct": "taking",
+"distractors": [
+"takes",
+"took",
+"take",
+"taken",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"many",
+"and"
+]
+},
+{
+"correct": "car",
+"distractors": [
+"bus",
+"taxi",
+"heater",
+"need",
+"bike"
+]
+}
+],
+"alternatives": [
+"I'm not taking the car."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.40",
+"target": "The bus is not moving.",
+"ru": "Автобус не едет.",
+"uk": "Автобус не рухається.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"bike",
+"car",
+"driver",
+"taxi",
+"train"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"doesn't",
+"am",
+"be"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"back",
+"twice",
+"still"
+]
+},
+{
+"correct": "moving",
+"distractors": [
+"move",
+"have",
+"has",
+"do",
+"does"
+]
+}
+],
+"alternatives": [
+"The bus isn't moving."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.41",
+"target": "I usually drive, but today I am walking.",
+"ru": "Обычно я езжу на машине, но сегодня иду пешком.",
+"uk": "Зазвичай я їду за кермом, але сьогодні я йду пішки.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"I'm",
+"They",
+"I'll",
+"She's"
+]
+},
+{
+"correct": "usually",
+"distractors": [
+"not",
+"yet",
+"earlier",
+"here",
+"now"
+]
+},
+{
+"correct": "drive",
+"distractors": [
+"driving",
+"is",
+"wear",
+"fit",
+"was"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"and",
+"when",
+"unless",
+"because"
+]
+},
+{
+"correct": "today",
+"distractors": [
+"early",
+"yesterday",
+"breakfast",
+"route",
+"appointment"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"It",
+"He",
+"You"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"have",
+"be"
+]
+},
+{
+"correct": "walking",
+"distractors": [
+"walk",
+"walked",
+"walks",
+"have",
+"want"
+]
+}
+],
+"alternatives": [
+"I usually drive, but today I'm walking."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.42",
+"target": "She normally works upstairs, but today she is helping us.",
+"ru": "Обычно она работает наверху, но сегодня помогает нам.",
+"uk": "Зазвичай вона працює нагорі, але сьогодні вона нам допомагає.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"Them",
+"They",
+"You"
+]
+},
+{
+"correct": "normally",
+"distractors": [
+"bag",
+"not",
+"here",
+"away",
+"now"
+]
+},
+{
+"correct": "works",
+"distractors": [
+"work",
+"worked",
+"working",
+"door",
+"bus"
+]
+},
+{
+"correct": "upstairs",
+"distractors": [
+"there",
+"home",
+"away",
+"luggage",
+"friend"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"because",
+"unless",
+"and"
+]
+},
+{
+"correct": "today",
+"distractors": [
+"early",
+"late",
+"yesterday",
+"tomorrow",
+"bill"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"you",
+"they're",
+"they",
+"he",
+"we"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"quieter",
+"be"
+]
+},
+{
+"correct": "helping",
+"distractors": [
+"help",
+"helped",
+"have",
+"share",
+"do"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"they",
+"he",
+"we",
+"you",
+"me"
+]
+}
+],
+"alternatives": [
+"She normally works upstairs, but today she's helping us."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.43",
+"target": "We are staying with friends this week.",
+"ru": "На этой неделе мы гостим у друзей.",
+"uk": "Цього тижня ми зупинимося у друзів.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"He",
+"She's",
+"She"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"turn",
+"be"
+]
+},
+{
+"correct": "staying",
+"distractors": [
+"stay",
+"have",
+"sent",
+"is",
+"do"
+]
+},
+{
+"correct": "with",
+"distractors": [
+"to",
+"on",
+"for",
+"in",
+"at"
+]
+},
+{
+"correct": "friends",
+"distractors": [
+"doors",
+"keys",
+"tickets",
+"minutes",
+"buses"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"no",
+"any",
+"an"
+]
+},
+{
+"correct": "week",
+"distractors": [
+"room",
+"key",
+"end",
+"printer",
+"size"
+]
+}
+],
+"alternatives": [
+"We're staying with friends this week."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.44",
+"target": "I am learning to swim this summer.",
+"ru": "Этим летом я учусь плавать.",
+"uk": "Цього літа я вчуся плавати.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"Us",
+"They",
+"You"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"like",
+"be"
+]
+},
+{
+"correct": "learning",
+"distractors": [
+"is",
+"was",
+"are",
+"have",
+"be"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"in",
+"under",
+"into",
+"for"
+]
+},
+{
+"correct": "swim",
+"distractors": [
+"has",
+"drop",
+"print",
+"have",
+"do"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"all",
+"no"
+]
+},
+{
+"correct": "summer",
+"distractors": [
+"morning",
+"bus",
+"evening",
+"winter",
+"autumn"
+]
+}
+],
+"alternatives": [
+"I'm learning to swim this summer."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.45",
+"target": "They are painting the front door today.",
+"ru": "Сегодня красят входную дверь.",
+"uk": "Сьогодні фарбують вхідні двері.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"He",
+"You",
+"We",
+"She"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"help",
+"be"
+]
+},
+{
+"correct": "painting",
+"distractors": [
+"stop",
+"keep",
+"have",
+"is",
+"do"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "front",
+"distractors": [
+"gate",
+"ticket",
+"road",
+"lift",
+"bus"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"gate",
+"heater",
+"cup",
+"window"
+]
+},
+{
+"correct": "today",
+"distractors": [
+"early",
+"yesterday",
+"late",
+"tomorrow",
+"bill"
+]
+}
+],
+"alternatives": [
+"They're painting the front door today."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.46",
+"target": "The shop is getting busier.",
+"ru": "В магазине становится всё больше покупателей.",
+"uk": "У магазині стає людніше.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "shop",
+"distractors": [
+"flat",
+"hotel",
+"can't",
+"won't",
+"room"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"be",
+"do",
+"am"
+]
+},
+{
+"correct": "getting",
+"distractors": [
+"got",
+"get",
+"gets",
+"have",
+"do"
+]
+},
+{
+"correct": "busier",
+"distractors": [
+"bus",
+"ticket",
+"available",
+"smaller",
+"phone"
+]
+}
+],
+"alternatives": [
+"The store is getting busier."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.47",
+"target": "My English is getting better.",
+"ru": "Мой английский улучшается.",
+"uk": "Моя англійська покращується.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Our",
+"Her",
+"His",
+"Mine"
+]
+},
+{
+"correct": "English",
+"distractors": [
+"French",
+"Spanish",
+"German",
+"Italian",
+"Russian"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "getting",
+"distractors": [
+"got",
+"get",
+"gets",
+"has",
+"do"
+]
+},
+{
+"correct": "better",
+"distractors": [
+"less",
+"more",
+"useful",
+"last",
+"old"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.48",
+"target": "He is taking a less crowded bus this week.",
+"ru": "На этой неделе он едет на менее переполненном автобусе.",
+"uk": "Цього тижня він їздить менш переповненим автобусом.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"We'll",
+"I've",
+"You"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"bag",
+"told",
+"am"
+]
+},
+{
+"correct": "taking",
+"distractors": [
+"takes",
+"take",
+"took",
+"taken",
+"do"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"these",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "less",
+"distractors": [
+"more",
+"better",
+"worse",
+"cheaper",
+"new"
+]
+},
+{
+"correct": "crowded",
+"distractors": [
+"called",
+"sent",
+"blocked",
+"call",
+"calling"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"taxi",
+"bike",
+"queue",
+"bill",
+"car"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"no",
+"an",
+"much",
+"any"
+]
+},
+{
+"correct": "week",
+"distractors": [
+"key",
+"shift",
+"lamp",
+"door",
+"work"
+]
+}
+],
+"alternatives": [
+"He's taking a less crowded bus this week."
+]
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.49",
+"target": "Are you still reading that book?",
+"ru": "Ты всё ещё читаешь эту книгу?",
+"uk": "Ти все ще читаєш ту книгу?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Am",
+"Have",
+"Stop"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"he",
+"they're",
+"we'll",
+"we're",
+"we"
+]
+},
+{
+"correct": "still",
+"distractors": [
+"not",
+"here",
+"twice",
+"now",
+"back"
+]
+},
+{
+"correct": "reading",
+"distractors": [
+"read",
+"use",
+"sit",
+"call",
+"quiet"
+]
+},
+{
+"correct": "that",
+"distractors": [
+"the",
+"who",
+"which",
+"where",
+"a"
+]
+},
+{
+"correct": "book",
+"distractors": [
+"booked",
+"booking",
+"package",
+"parcel",
+"towel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "en-classic-r1:17.50",
+"target": "I am just finishing the report on my tablet.",
+"ru": "Я как раз заканчиваю отчет на планшете.",
+"uk": "Я якраз закінчую звіт на своєму планшеті.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"We've",
+"I've",
+"You"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"is",
+"are",
+"was",
+"be",
+"have"
+]
+},
+{
+"correct": "just",
+"distractors": [
+"not",
+"yet",
+"later",
+"here",
+"now"
+]
+},
+{
+"correct": "finishing",
+"distractors": [
+"finish",
+"finishes",
+"is",
+"have",
+"made"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"these",
+"and"
+]
+},
+{
+"correct": "report",
+"distractors": [
+"take",
+"go",
+"is",
+"heard",
+"have"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"our",
+"his",
+"her",
+"their"
+]
+},
+{
+"correct": "tablet",
+"distractors": [
+"work",
+"answer",
+"worked",
+"working",
+"works"
+]
+}
+],
+"alternatives": [
+"I'm just finishing the report on my tablet."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.01",
+"target": "Come this way.",
+"ru": "Пройдите сюда.",
+"uk": "Проходьте сюди.",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Came",
+"Coming",
+"Is",
+"Report",
+"Was"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"no",
+"much"
+]
+},
+{
+"correct": "way",
+"distractors": [
+"desk",
+"key",
+"line",
+"time",
+"shop"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.02",
+"target": "Wait by the gate.",
+"ru": "Подождите у ворот.",
+"uk": "Зачекайте біля воріт.",
+"tiles": [
+{
+"correct": "Wait",
+"distractors": [
+"Waiting",
+"Waited",
+"Have",
+"Break",
+"Is"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"on",
+"behind",
+"into",
+"across"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "gate",
+"distractors": [
+"lift",
+"entrance",
+"exit",
+"window",
+"light"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.03",
+"target": "Close the window, please.",
+"ru": "Закройте окно, пожалуйста.",
+"uk": "Будь ласка, зачиніть вікно.",
+"tiles": [
+{
+"correct": "Close",
+"distractors": [
+"Closes",
+"Closing",
+"Closed",
+"Closer",
+"Go"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "window",
+"distractors": [
+"lift",
+"light",
+"handle",
+"door",
+"gate"
+]
+},
+{
+"correct": "please",
+"distractors": [
+"desk",
+"ticket",
+"lift",
+"leave",
+"price"
+]
+}
+],
+"alternatives": [
+"Please close the window."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.04",
+"target": "Sit down here.",
+"ru": "Сядьте здесь.",
+"uk": "Сядьте сюди.",
+"tiles": [
+{
+"correct": "Sit",
+"distractors": [
+"Do",
+"Got",
+"Stop",
+"Does",
+"Did"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"off",
+"not",
+"up",
+"left",
+"back"
+]
+},
+{
+"correct": "here",
+"distractors": [
+"not",
+"there",
+"home",
+"nearby",
+"inside"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.05",
+"target": "Stand behind the line.",
+"ru": "Встаньте за линию.",
+"uk": "Станьте за лінією.",
+"tiles": [
+{
+"correct": "Stand",
+"distractors": [
+"Stood",
+"Standing",
+"Is",
+"Has",
+"Told"
+]
+},
+{
+"correct": "behind",
+"distractors": [
+"to",
+"at",
+"on",
+"in",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"those",
+"these",
+"and"
+]
+},
+{
+"correct": "line",
+"distractors": [
+"work",
+"room",
+"bus",
+"cork",
+"team"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.06",
+"target": "Hold the handrail.",
+"ru": "Держитесь за поручень.",
+"uk": "Тримайтеся за поручень.",
+"tiles": [
+{
+"correct": "Hold",
+"distractors": [
+"Held",
+"Is",
+"Sent",
+"Walking",
+"Have"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"much",
+"and"
+]
+},
+{
+"correct": "handrail",
+"distractors": [
+"gate",
+"desk",
+"path",
+"quarter",
+"door"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.07",
+"target": "Watch your step.",
+"ru": "Смотрите под ноги.",
+"uk": "Дивіться під ноги.",
+"tiles": [
+{
+"correct": "Watch",
+"distractors": [
+"Is",
+"Include",
+"Has",
+"Smoke",
+"Are"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"his",
+"yours",
+"mine"
+]
+},
+{
+"correct": "step",
+"distractors": [
+"time",
+"lunch",
+"noise",
+"check",
+"shift"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.08",
+"target": "Keep the door closed.",
+"ru": "Держите дверь закрытой.",
+"uk": "Тримайте двері зачиненими.",
+"tiles": [
+{
+"correct": "Keep",
+"distractors": [
+"Is",
+"Use",
+"Live",
+"Was",
+"Are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"road",
+"gate",
+"window",
+"work"
+]
+},
+{
+"correct": "closed",
+"distractors": [
+"close",
+"closes",
+"closing",
+"closer",
+"ready"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.09",
+"target": "Leave the key on the desk.",
+"ru": "Оставьте ключ на столе.",
+"uk": "Залиште ключ на столі.",
+"tiles": [
+{
+"correct": "Leave",
+"distractors": [
+"Left",
+"Leaves",
+"Is",
+"Have",
+"Set"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"those",
+"and"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"door",
+"station",
+"fresh",
+"second",
+"old"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"of",
+"by",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "desk",
+"distractors": [
+"chair",
+"noise",
+"sundays",
+"shelf",
+"seat"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.10",
+"target": "Put your bag under the seat.",
+"ru": "Положите сумку под сиденье.",
+"uk": "Покладіть сумку під сидіння.",
+"tiles": [
+{
+"correct": "Put",
+"distractors": [
+"Putting",
+"Use",
+"Is",
+"Take",
+"Was"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"her",
+"yours",
+"his"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"fridge",
+"kettle",
+"clock",
+"road",
+"was"
+]
+},
+{
+"correct": "under",
+"distractors": [
+"to",
+"at",
+"on",
+"for",
+"onto"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "seat",
+"distractors": [
+"desk",
+"bench",
+"delivery",
+"machine",
+"side"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.11",
+"target": "Do not touch the oven.",
+"ru": "Не прикасайтесь к духовке.",
+"uk": "Не торкайтеся духовки.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Paid",
+"Are",
+"Is"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"usually",
+"soon",
+"later"
+]
+},
+{
+"correct": "touch",
+"distractors": [
+"ticket",
+"train",
+"breakfast",
+"card",
+"bus"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"each",
+"and"
+]
+},
+{
+"correct": "oven",
+"distractors": [
+"bus",
+"room",
+"gate",
+"lunch",
+"train"
+]
+}
+],
+"alternatives": [
+"Don't touch the oven."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.12",
+"target": "Do not block the stairs.",
+"ru": "Не загораживайте лестницу.",
+"uk": "Не блокуйте сходи.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Did",
+"Does",
+"Hold",
+"Are",
+"Is"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"together",
+"back",
+"just"
+]
+},
+{
+"correct": "block",
+"distractors": [
+"kitchen",
+"train",
+"friday",
+"april",
+"oven"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"these",
+"and"
+]
+},
+{
+"correct": "stairs",
+"distractors": [
+"keys",
+"shops",
+"queues",
+"ones",
+"seats"
+]
+}
+],
+"alternatives": [
+"Don't block the stairs."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.13",
+"target": "Do not leave the tap running.",
+"ru": "Не оставляйте кран открытым.",
+"uk": "Не залишайте кран відкритим.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Need",
+"Went",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"back",
+"still",
+"twice"
+]
+},
+{
+"correct": "leave",
+"distractors": [
+"left",
+"leaves",
+"saw",
+"run",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"no",
+"and"
+]
+},
+{
+"correct": "tap",
+"distractors": [
+"coat",
+"train",
+"please",
+"lift",
+"miss"
+]
+},
+{
+"correct": "running",
+"distractors": [
+"run",
+"ran",
+"is",
+"does",
+"are"
+]
+}
+],
+"alternatives": [
+"Don't leave the tap running."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.14",
+"target": "Do not press the red button.",
+"ru": "Не нажимайте красную кнопку.",
+"uk": "Не натискайте червону кнопку.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Didn't",
+"Leave",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"faster",
+"yet",
+"back"
+]
+},
+{
+"correct": "press",
+"distractors": [
+"keep",
+"look",
+"is",
+"have",
+"spell"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "red",
+"distractors": [
+"found",
+"made",
+"sent",
+"left",
+"checked"
+]
+},
+{
+"correct": "button",
+"distractors": [
+"room",
+"train",
+"colleague",
+"hook",
+"bus"
+]
+}
+],
+"alternatives": [
+"Don't press the red button."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.15",
+"target": "Do not forget your badge.",
+"ru": "Не забудьте свой пропуск.",
+"uk": "Не забудьте свій бейдж.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Can",
+"Are",
+"Is"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"even",
+"back",
+"home"
+]
+},
+{
+"correct": "forget",
+"distractors": [
+"forgot",
+"is",
+"turn",
+"does",
+"got"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"her",
+"his",
+"theirs"
+]
+},
+{
+"correct": "badge",
+"distractors": [
+"bus",
+"shop",
+"friend",
+"mistake",
+"train"
+]
+}
+],
+"alternatives": [
+"Don't forget your badge."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.16",
+"target": "Do not share the code.",
+"ru": "Не сообщайте код.",
+"uk": "Не повідомляйте код.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Did",
+"Does",
+"Can",
+"Bring",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"yet",
+"soon",
+"yes"
+]
+},
+{
+"correct": "share",
+"distractors": [
+"shares",
+"want",
+"left",
+"rings",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "code",
+"distractors": [
+"receipt",
+"number",
+"timetable",
+"postcode",
+"address"
+]
+}
+],
+"alternatives": [
+"Don't share the code."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.17",
+"target": "Do not lift that box alone.",
+"ru": "Не поднимайте эту коробку в одиночку.",
+"uk": "Не піднімайте цю коробку самостійно.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Did",
+"Does",
+"Can",
+"Are",
+"Is"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"still",
+"twice",
+"earlier",
+"now"
+]
+},
+{
+"correct": "lift",
+"distractors": [
+"door",
+"gate",
+"please",
+"bell",
+"handle"
+]
+},
+{
+"correct": "that",
+"distractors": [
+"the",
+"which",
+"how",
+"where",
+"a"
+]
+},
+{
+"correct": "box",
+"distractors": [
+"kettle",
+"locker",
+"card",
+"half",
+"flight"
+]
+},
+{
+"correct": "alone",
+"distractors": [
+"seat",
+"shop",
+"time",
+"ticket",
+"bus"
+]
+}
+],
+"alternatives": [
+"Don't lift that box alone."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.18",
+"target": "Do not feed the dog.",
+"ru": "Не кормите собаку.",
+"uk": "Не годуйте собаку.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Can",
+"Cancel",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"just",
+"back",
+"yes"
+]
+},
+{
+"correct": "feed",
+"distractors": [
+"keep",
+"take",
+"found",
+"is",
+"are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"each",
+"and"
+]
+},
+{
+"correct": "dog",
+"distractors": [
+"bus",
+"train",
+"wallet",
+"taxi",
+"bike"
+]
+}
+],
+"alternatives": [
+"Don't feed the dog."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.19",
+"target": "Do not open the parcel yet.",
+"ru": "Пока не открывайте посылку.",
+"uk": "Поки що не відкривайте посилку.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Did",
+"Does",
+"Know",
+"Lock",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yes",
+"once",
+"still",
+"just"
+]
+},
+{
+"correct": "open",
+"distractors": [
+"opens",
+"opened",
+"busy",
+"ready",
+"closed"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "parcel",
+"distractors": [
+"envelope",
+"coat",
+"anybody",
+"doesn't",
+"book"
+]
+},
+{
+"correct": "yet",
+"distractors": [
+"still",
+"twice",
+"together",
+"just",
+"here"
+]
+}
+],
+"alternatives": [
+"Don't open the package yet.",
+"Don't open the parcel yet.",
+"Do not open the package yet."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.20",
+"target": "Do not park in front of the gate.",
+"ru": "Не паркуйтесь перед воротами.",
+"uk": "Не паркуйтеся перед воротами.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Change",
+"Meet",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"just",
+"tonight",
+"faster",
+"now"
+]
+},
+{
+"correct": "park",
+"distractors": [
+"parking",
+"parked",
+"is",
+"was",
+"are"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"with",
+"for",
+"by"
+]
+},
+{
+"correct": "front",
+"distractors": [
+"train",
+"room",
+"mirror",
+"brother",
+"bus"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"at",
+"on",
+"before",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"every",
+"and"
+]
+},
+{
+"correct": "gate",
+"distractors": [
+"lift",
+"exit",
+"entrance",
+"handle",
+"switch"
+]
+}
+],
+"alternatives": [
+"Don't park in front of the gate."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.21",
+"target": "Please pass the towel.",
+"ru": "Пожалуйста, передайте полотенце.",
+"uk": "Будь ласка, передайте рушник.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Receipt",
+"Room",
+"Form",
+"Price",
+"Number"
+]
+},
+{
+"correct": "pass",
+"distractors": [
+"message",
+"receipt",
+"lift",
+"tap",
+"number"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "towel",
+"distractors": [
+"package",
+"parcel",
+"suitcase",
+"letter",
+"address"
+]
+}
+],
+"alternatives": [
+"Pass the towel, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.22",
+"target": "Please sign on this line.",
+"ru": "Пожалуйста, распишитесь на этой строке.",
+"uk": "Будь ласка, розпишіться на цій лінії.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Signed",
+"Signs",
+"Time",
+"Permit",
+"Price"
+]
+},
+{
+"correct": "sign",
+"distractors": [
+"signed",
+"signs",
+"saw",
+"forget",
+"is"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"no",
+"much"
+]
+},
+{
+"correct": "line",
+"distractors": [
+"bus",
+"gate",
+"room",
+"driver",
+"ticket"
+]
+}
+],
+"alternatives": [
+"Sign on this line, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.23",
+"target": "Please return the key at reception.",
+"ru": "Пожалуйста, верните ключ на ресепшен.",
+"uk": "Будь ласка, поверніть ключ на рецепції.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Returned",
+"Is",
+"Live",
+"Price",
+"Was"
+]
+},
+{
+"correct": "return",
+"distractors": [
+"returned",
+"turn",
+"leave",
+"do",
+"does"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"every",
+"and"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"water",
+"station",
+"last",
+"overnight",
+"new"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"of",
+"on",
+"under",
+"after",
+"in"
+]
+},
+{
+"correct": "reception",
+"distractors": [
+"work",
+"bus",
+"coat",
+"garden",
+"train"
+]
+}
+],
+"alternatives": [
+"Return the key at reception, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.24",
+"target": "Please switch your phone off.",
+"ru": "Пожалуйста, выключите телефон.",
+"uk": "Будь ласка, вимкніть телефон.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Is",
+"Room",
+"Price",
+"Was",
+"Are"
+]
+},
+{
+"correct": "switch",
+"distractors": [
+"lift",
+"window",
+"gate",
+"door",
+"entrance"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"her",
+"his",
+"our",
+"theirs"
+]
+},
+{
+"correct": "phone",
+"distractors": [
+"go",
+"take",
+"is",
+"leave",
+"are"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"down",
+"not",
+"left",
+"back"
+]
+}
+],
+"alternatives": [
+"Switch your phone off, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.25",
+"target": "Please keep your ticket.",
+"ru": "Пожалуйста, сохраните билет.",
+"uk": "Будь ласка, збережіть свій квиток.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Room",
+"Price",
+"Flat",
+"Bus",
+"Shop"
+]
+},
+{
+"correct": "keep",
+"distractors": [
+"use",
+"is",
+"reading",
+"was",
+"are"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"their",
+"ours",
+"her"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"receipt",
+"number",
+"pass",
+"timetable",
+"label"
+]
+}
+],
+"alternatives": [
+"Keep your ticket, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.26",
+"target": "Please spell your surname.",
+"ru": "Пожалуйста, напишите свою фамилию по буквам.",
+"uk": "Будь ласка, продиктуйте своє прізвище по літерах.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Room",
+"Desk",
+"Tap",
+"Run",
+"Price"
+]
+},
+{
+"correct": "spell",
+"distractors": [
+"take",
+"is",
+"sleeping",
+"was",
+"are"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"his",
+"her",
+"hers"
+]
+},
+{
+"correct": "surname",
+"distractors": [
+"room",
+"seat",
+"class",
+"space",
+"baby"
+]
+}
+],
+"alternatives": [
+"Spell your surname, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.27",
+"target": "Please tell me your postcode.",
+"ru": "Пожалуйста, сообщите мне свой почтовый индекс.",
+"uk": "Будь ласка, скажіть мені свій поштовий індекс.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Told",
+"Tap",
+"Time",
+"Ticket",
+"Price"
+]
+},
+{
+"correct": "tell",
+"distractors": [
+"told",
+"have",
+"take",
+"put",
+"is"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"she",
+"we",
+"he",
+"they",
+"you"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"her",
+"hers",
+"ours"
+]
+},
+{
+"correct": "postcode",
+"distractors": [
+"receipt",
+"number",
+"isn't",
+"driver's",
+"map"
+]
+}
+],
+"alternatives": [
+"Tell me your postcode, please.",
+"Please tell me your postal code.",
+"Tell me your postal code, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.28",
+"target": "Please speak a little louder.",
+"ru": "Пожалуйста, говорите немного громче.",
+"uk": "Будь ласка, говоріть трохи голосніше.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Speaks",
+"Price",
+"Ticket",
+"Room",
+"Key"
+]
+},
+{
+"correct": "speak",
+"distractors": [
+"speaks",
+"is",
+"has",
+"are",
+"was"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "little",
+"distractors": [
+"kitchen",
+"water",
+"last",
+"work",
+"door"
+]
+},
+{
+"correct": "louder",
+"distractors": [
+"map",
+"bus",
+"old",
+"easier",
+"new"
+]
+}
+],
+"alternatives": [
+"Speak a little louder, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.29",
+"target": "Please save me a seat.",
+"ru": "Пожалуйста, оставьте мне место.",
+"uk": "Будь ласка, зарезервуйте мені місце.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Saved",
+"Ticket",
+"Coat",
+"Price",
+"Bus"
+]
+},
+{
+"correct": "save",
+"distractors": [
+"saved",
+"crossed",
+"thought",
+"is",
+"crossing"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"we",
+"she",
+"they're",
+"you",
+"he"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "seat",
+"distractors": [
+"table",
+"chair",
+"licence",
+"ladder",
+"shelf"
+]
+}
+],
+"alternatives": [
+"Save me a seat, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.30",
+"target": "Please bring a copy of the receipt.",
+"ru": "Пожалуйста, возьмите с собой копию чека.",
+"uk": "Будь ласка, візьміть копію чека.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Brought",
+"Time",
+"Is",
+"Ticket",
+"Price"
+]
+},
+{
+"correct": "bring",
+"distractors": [
+"brought",
+"is",
+"need",
+"share",
+"waiting"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"those",
+"and",
+"but"
+]
+},
+{
+"correct": "copy",
+"distractors": [
+"train",
+"desk",
+"map",
+"dog",
+"address"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"on",
+"at",
+"in",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "receipt",
+"distractors": [
+"message",
+"number",
+"pass",
+"label",
+"envelope"
+]
+}
+],
+"alternatives": [
+"Bring a copy of the receipt, please."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.31",
+"target": "Turn left at the lights.",
+"ru": "Поверните налево на светофоре.",
+"uk": "Поверніть ліворуч на світлофорі.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Buy",
+"Told",
+"Read",
+"Is",
+"Do"
+]
+},
+{
+"correct": "left",
+"distractors": [
+"leave",
+"leaves",
+"down",
+"up",
+"is"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"into",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"any",
+"and"
+]
+},
+{
+"correct": "lights",
+"distractors": [
+"lit",
+"lighter",
+"is",
+"are",
+"do"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.32",
+"target": "Take the second exit.",
+"ru": "Воспользуйтесь вторым выездом.",
+"uk": "З'їдьте на другому виїзді.",
+"tiles": [
+{
+"correct": "Take",
+"distractors": [
+"Took",
+"Takes",
+"Waiting",
+"Have",
+"Put"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"much",
+"and"
+]
+},
+{
+"correct": "second",
+"distractors": [
+"last",
+"next",
+"first",
+"wrong",
+"useful"
+]
+},
+{
+"correct": "exit",
+"distractors": [
+"entrance",
+"bridge",
+"gate",
+"driver",
+"email"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.33",
+"target": "Cross at the crossing.",
+"ru": "Перейдите дорогу на пешеходном переходе.",
+"uk": "Перейдіть дорогу на переході.",
+"tiles": [
+{
+"correct": "Cross",
+"distractors": [
+"Crossed",
+"Is",
+"Do",
+"Are",
+"Was"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"after",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "crossing",
+"distractors": [
+"crossed",
+"meet",
+"got",
+"left",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.34",
+"target": "Go past the pharmacy.",
+"ru": "Пройдите мимо аптеки.",
+"uk": "Пройдіть повз аптеку.",
+"tiles": [
+{
+"correct": "Go",
+"distractors": [
+"Went",
+"Going",
+"Send",
+"Driving",
+"Is"
+]
+},
+{
+"correct": "past",
+"distractors": [
+"work",
+"gate",
+"long",
+"small",
+"train"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "pharmacy",
+"distractors": [
+"hotel",
+"bank",
+"bakery",
+"paper",
+"front"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.35",
+"target": "Follow the blue signs.",
+"ru": "Следуйте синим указателям.",
+"uk": "Слідкуйте за синіми знаками.",
+"tiles": [
+{
+"correct": "Follow",
+"distractors": [
+"Keep",
+"Look",
+"Went",
+"Return",
+"Do"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "blue",
+"distractors": [
+"gate",
+"phone",
+"long",
+"next",
+"hot"
+]
+},
+{
+"correct": "signs",
+"distractors": [
+"signed",
+"sign",
+"is",
+"put",
+"are"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.36",
+"target": "Walk to the end of the road.",
+"ru": "Пройдите до конца улицы.",
+"uk": "Йдіть до кінця дороги.",
+"tiles": [
+{
+"correct": "Walk",
+"distractors": [
+"Walking",
+"Walked",
+"Walks",
+"Is",
+"Check"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"for",
+"in",
+"under",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"no",
+"and"
+]
+},
+{
+"correct": "end",
+"distractors": [
+"key",
+"price",
+"pocket",
+"door",
+"bus"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"on",
+"at",
+"in",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "road",
+"distractors": [
+"cafe",
+"seat",
+"card",
+"afternoon",
+"bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.37",
+"target": "Use the entrance on the right.",
+"ru": "Воспользуйтесь входом справа.",
+"uk": "Скористайтеся входом праворуч.",
+"tiles": [
+{
+"correct": "Use",
+"distractors": [
+"Using",
+"Is",
+"Speak",
+"Take",
+"Was"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "entrance",
+"distractors": [
+"bridge",
+"gate",
+"platform",
+"address",
+"harbour"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"much",
+"and"
+]
+},
+{
+"correct": "right",
+"distractors": [
+"left",
+"up",
+"down",
+"leave",
+"off"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.38",
+"target": "Push the door gently.",
+"ru": "Осторожно толкните дверь.",
+"uk": "Обережно натисніть на двері.",
+"tiles": [
+{
+"correct": "Push",
+"distractors": [
+"Take",
+"Look",
+"Is",
+"Pay",
+"Are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"any",
+"and"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"light",
+"window",
+"switch",
+"gate"
+]
+},
+{
+"correct": "gently",
+"distractors": [
+"early",
+"late",
+"not",
+"slowly",
+"book"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.39",
+"target": "Pull the handle towards you.",
+"ru": "Потяните ручку на себя.",
+"uk": "Потягніть ручку на себе.",
+"tiles": [
+{
+"correct": "Pull",
+"distractors": [
+"Time",
+"Bus",
+"Please",
+"Lift",
+"Sink"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"those",
+"and",
+"but"
+]
+},
+{
+"correct": "handle",
+"distractors": [
+"lift",
+"window",
+"please",
+"tap",
+"door"
+]
+},
+{
+"correct": "towards",
+"distractors": [
+"keys",
+"seats",
+"bags",
+"doors",
+"tickets"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"she",
+"we",
+"they",
+"he",
+"me"
+]
+}
+],
+"alternatives": [
+"Pull the handle toward you."
+]
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.40",
+"target": "Ring the bell once.",
+"ru": "Позвоните в звонок один раз.",
+"uk": "Подзвоніть у дзвінок один раз.",
+"tiles": [
+{
+"correct": "Ring",
+"distractors": [
+"Ringing",
+"Rings",
+"Take",
+"Is",
+"Takes"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "bell",
+"distractors": [
+"lift",
+"window",
+"gate",
+"hook",
+"door"
+]
+},
+{
+"correct": "once",
+"distractors": [
+"bus",
+"ticket",
+"not",
+"key",
+"water"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.41",
+"target": "Let's take the early train.",
+"ru": "Поедем на ранний поезд.",
+"uk": "Давайте поїдемо раннім поїздом.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Trains",
+"Seats",
+"That's",
+"Don't",
+"There's"
+]
+},
+{
+"correct": "take",
+"distractors": [
+"takes",
+"took",
+"taking",
+"is",
+"taken"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "early",
+"distractors": [
+"today",
+"yesterday",
+"late",
+"tomorrow",
+"different"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"taxi",
+"car",
+"autumn",
+"shower",
+"sleeve"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.42",
+"target": "Let's wait for the others.",
+"ru": "Подождем остальных.",
+"uk": "Давайте почекаємо на інших.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Keys",
+"Seats",
+"There's",
+"Elevator",
+"Bags"
+]
+},
+{
+"correct": "wait",
+"distractors": [
+"waiting",
+"waited",
+"has",
+"booked",
+"reading"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"by",
+"at",
+"in"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"some",
+"and"
+]
+},
+{
+"correct": "others",
+"distractors": [
+"keys",
+"seats",
+"cups",
+"children",
+"tickets"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.43",
+"target": "Let's share a taxi.",
+"ru": "Давай возьмём одно такси на двоих.",
+"uk": "Давай візьмемо одне таксі на двох.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Keys",
+"Shops",
+"There's",
+"Can't",
+"Seats"
+]
+},
+{
+"correct": "share",
+"distractors": [
+"shares",
+"gave",
+"has",
+"have",
+"do"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"train",
+"dog",
+"name",
+"bus",
+"bike"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.44",
+"target": "Let's check the address first.",
+"ru": "Сначала проверим адрес.",
+"uk": "Давайте спочатку перевіримо адресу.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Doors",
+"Keys",
+"Won't",
+"Store",
+"Stores"
+]
+},
+{
+"correct": "check",
+"distractors": [
+"checked",
+"checking",
+"checks",
+"bring",
+"need"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"each",
+"and"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"seats",
+"keys",
+"charger",
+"email",
+"tickets"
+]
+},
+{
+"correct": "first",
+"distractors": [
+"next",
+"last",
+"nearest",
+"busiest",
+"spare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.45",
+"target": "Let's sit near the window.",
+"ru": "Сядем у окна.",
+"uk": "Давайте сядемо біля вікна.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Seats",
+"Doors",
+"Don't",
+"Won't",
+"Store"
+]
+},
+{
+"correct": "sit",
+"distractors": [
+"learning",
+"heard",
+"is",
+"hear",
+"have"
+]
+},
+{
+"correct": "near",
+"distractors": [
+"to",
+"on",
+"after",
+"of",
+"behind"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "window",
+"distractors": [
+"lift",
+"bell",
+"light",
+"handle",
+"door"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.46",
+"target": "Let's not rush.",
+"ru": "Не будем спешить.",
+"uk": "Давайте не поспішатимемо.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Bags",
+"Keys",
+"Didn't",
+"There's",
+"Haven't"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"tonight",
+"usually",
+"back"
+]
+},
+{
+"correct": "rush",
+"distractors": [
+"bus",
+"shop",
+"floor",
+"map",
+"noise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.47",
+"target": "Let's not leave the bags here.",
+"ru": "Не будем оставлять здесь сумки.",
+"uk": "Давайте не залишатимемо тут сумки.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Keys",
+"Seats",
+"Apartment",
+"Mustn't",
+"Tickets"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"just",
+"back",
+"soon",
+"faster",
+"now"
+]
+},
+{
+"correct": "leave",
+"distractors": [
+"left",
+"leaves",
+"is",
+"stop",
+"hear"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"some",
+"and"
+]
+},
+{
+"correct": "bags",
+"distractors": [
+"rooms",
+"doors",
+"children",
+"stairs",
+"keys"
+]
+},
+{
+"correct": "here",
+"distractors": [
+"there",
+"upstairs",
+"home",
+"nearby",
+"outside"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.48",
+"target": "Let's ask the driver.",
+"ru": "Давайте спросим водителя.",
+"uk": "Запитаємо водія.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Bags",
+"Keys",
+"Doesn't",
+"Elevator",
+"Didn't"
+]
+},
+{
+"correct": "ask",
+"distractors": [
+"is",
+"looked",
+"are",
+"was",
+"am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"any",
+"and"
+]
+},
+{
+"correct": "driver",
+"distractors": [
+"neighbour",
+"manager",
+"winter",
+"club",
+"landlord"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.49",
+"target": "Let's try the side door.",
+"ru": "Давайте попробуем открыть боковую дверь.",
+"uk": "Спробуємо через бічні двері.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Keys",
+"Rooms",
+"There's",
+"Haven't",
+"Store"
+]
+},
+{
+"correct": "try",
+"distractors": [
+"tried",
+"bought",
+"turn",
+"is",
+"buy"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"many",
+"any",
+"and"
+]
+},
+{
+"correct": "side",
+"distractors": [
+"room",
+"phone",
+"space",
+"address",
+"cash"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"bell",
+"light",
+"window",
+"tablet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "en-classic-r1:18.50",
+"target": "Let's call before we leave.",
+"ru": "Давайте позвоним перед отъездом.",
+"uk": "Зателефонуємо перед виїздом.",
+"tiles": [
+{
+"correct": "Let's",
+"distractors": [
+"Keys",
+"Shops",
+"There's",
+"Doesn't",
+"Aren't"
+]
+},
+{
+"correct": "call",
+"distractors": [
+"called",
+"calling",
+"have",
+"is",
+"heard"
+]
+},
+{
+"correct": "before",
+"distractors": [
+"to",
+"at",
+"on",
+"of",
+"by"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"it",
+"he's",
+"she'll",
+"you"
+]
+},
+{
+"correct": "leave",
+"distractors": [
+"left",
+"leaves",
+"leaving",
+"send",
+"is"
+]
+}
+],
+"alternatives": []
+}
+]

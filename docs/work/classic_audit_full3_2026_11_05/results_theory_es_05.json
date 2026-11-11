@@ -1,0 +1,149 @@
+[
+ {
+  "id": "lesson-11/wrong",
+  "type": "T1",
+  "field": "localized.ru.wrong",
+  "problem": "«Неверный» пример Tiene una pregunta грамматически правилен (он/она/usted имеет вопрос) — ошибки не видно",
+  "fix": "Yo tiene una pregunta."
+ },
+ {
+  "id": "lesson-11/wrong",
+  "type": "T1",
+  "field": "localized.uk.wrong",
+  "problem": "«Неверный» пример Tiene una pregunta грамматически правилен (он/она/usted имеет вопрос) — ошибки не видно",
+  "fix": "Yo tiene una pregunta."
+ },
+ {
+  "id": "lesson-11/wrong",
+  "type": "T1",
+  "field": "localized.en.wrong",
+  "problem": "«Неверный» пример Tiene una pregunta грамматически правилен (он/она/usted имеет вопрос) — ошибки не видно",
+  "fix": "Yo tiene una pregunta."
+ },
+ {
+  "id": "lesson-11/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].body",
+  "problem": "en: «Don't translate \"y\"» — транслит русского предлога «у», для англоязычного бессмыслица",
+  "fix": "In \"I have a question,\" the speaker is the owner and becomes the subject of the Spanish sentence. Tengo already means \"I have\", so no extra word is needed."
+ },
+ {
+  "id": "lesson-11/choose",
+  "type": "T2",
+  "field": "localized.en.choose",
+  "problem": "en: «faces yo» (лица → faces), «correct model comer» (правильный → regular) — калька",
+  "fix": "Learn tengo, tienes, tiene together with yo, tú, él. Don't copy the regular pattern of comer: tengo has a g, while tienes and tiene have ie."
+ },
+ {
+  "id": "lesson-11/chapters[1]",
+  "type": "T2",
+  "field": "localized.en.chapters[1].body",
+  "problem": "en: «faces yo», «correct model comer» — калька",
+  "fix": "Learn tengo, tienes, tiene together with yo, tú, él. Don't copy the regular pattern of comer: tengo has a g, while tienes and tiene have ie."
+ },
+ {
+  "id": "lesson-11/nuance",
+  "type": "T2",
+  "field": "localized.en.nuance",
+  "problem": "en: «Tell me who has…» — неверный перевод «Сообщи»",
+  "fix": "Say who has a thing or opportunity. First, find the owner, then choose the form tener. The verb agrees with the owner, not with the thing they own."
+ },
+ {
+  "id": "lesson-11/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: имя Luis переведено как «Louis» (в курсе Luis)",
+  "fix": "Compare the two tasks: \"Luis has my number.\" / \"My sisters have the keys to the house.\" The verb agrees with the owner, not with what they own. Say who has the thing or opportunity. First, find the owner, then choose the form tener."
+ },
+ {
+  "id": "lesson-11/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: битые кавычки «Semantic supports: \" idea \"» — неграмотный английский",
+  "fix": "Compare the two tasks: \"We have an idea.\" / \"I don't have any change.\" The verb agrees with the owner, not with what they own. Key word: idea — idea."
+ },
+ {
+  "id": "lesson-11/chapters[5]",
+  "type": "T2",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «У нас есть идея.» / «У меня нет мелочи». Глагол согласуется с владельцем, не с тем, чем он владеет. Смысловые опоры: «idea» — идея."
+ },
+ {
+  "id": "lesson-11/chapters[5]",
+  "type": "T2",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «У нас є ідея.» / «У мене немає дрібних грошей». Дієслово узгоджується з власником, не з річчю. Смислові опори: «idea» — ідея."
+ },
+ {
+  "id": "lesson-11/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «У Луиса есть мой номер.» / «У моих сестёр ключи от дома». Глагол согласуется с владельцем, не с тем, чем он владеет. Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener."
+ },
+ {
+  "id": "lesson-11/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «У Луїса є мій номер.» / «У моїх сестер ключі від дому». Дієслово узгоджується з власником, не з річчю. Скажи, у кого є річ або можливість. Спочатку визнач власника, потім обери форму tener."
+ },
+ {
+  "id": "lesson-12/use",
+  "type": "T2",
+  "field": "localized.en.use",
+  "problem": "en: «not to its gender» искажает правило (ru: не по роду перевода)",
+  "fix": "Match the adjective to the Spanish noun, not to the gender of its translation."
+ },
+ {
+  "id": "lesson-12/nuance",
+  "type": "T2",
+  "field": "localized.en.nuance",
+  "problem": "en: «not to its gender» искажает правило (ru: не по роду перевода)",
+  "fix": "Match the adjective to the Spanish noun, not to the gender of its translation. Check the gender and number of the Spanish noun."
+ },
+ {
+  "id": "lesson-12/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "en: «The linking and ending change immediately» — «сразу» = оба, а не immediately; нет слова verb",
+  "fix": "Agreement is also maintained through the verb: la mochila es nueva, las mochilas son nuevas. Both the linking verb and the adjective ending change, because the subject has changed."
+ },
+ {
+  "id": "lesson-12/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты; глоссы не совпадают по числу: ventanas — «окна», pequeñas — «маленькие», а не «окно/маленький»",
+  "fix": "Сравни два задания: «Окна маленькие.» / «Моя машина красная». Проверь род и число испанского названия предмета. Смысловые опоры: «ventanas» — окна; «pequeñas» — маленькие."
+ },
+ {
+  "id": "lesson-12/chapters[5]",
+  "type": "T1",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "Подвійна крапка після цитати; глоси не збігаються за числом: ventanas — «вікна», pequeñas — «маленькі»",
+  "fix": "Порівняй два завдання: «Вікна маленькі.» / «Моя машина червона». Перевір рід та число іспанської назви речі. Смислові опори: «ventanas» — вікна; «pequeñas» — маленькі."
+ },
+ {
+  "id": "lesson-12/chapters[5]",
+  "type": "T1",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: глоссы по числу неверны (ventanas — window), битые кавычки",
+  "fix": "Compare the two tasks: \"The windows are small.\" / \"My car is red.\" Check the gender and number of the Spanish noun. Key words: ventanas — windows; pequeñas — small (feminine plural)."
+ },
+ {
+  "id": "lesson-12/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Я ищу новую книгу.» / «Здесь есть большое окно». Проверь род и число испанского названия предмета. Подбери форму прилагательного по испанскому существительному, а не по роду его перевода."
+ },
+ {
+  "id": "lesson-12/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Я шукаю нову книжку.» / «Тут є велике вікно». Перевір рід та число іспанської назви речі. Узгодь прикметник з іспанським іменником, а не з родом його перекладу."
+ }
+]

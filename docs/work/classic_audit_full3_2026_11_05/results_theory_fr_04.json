@@ -1,0 +1,107 @@
+[
+ {
+  "id": "lesson-9/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.ru",
+  "problem": "Калька «Это число ключей изменило слово перед ними» — неестественно.",
+  "fix": "Сравни один ключ `ma clé` и несколько `mes clés`. Владелец остался тем же. Изменилось только число ключей — и вместе с ним слово перед ними. Род во множественном числе уже не различается."
+ },
+ {
+  "id": "lesson-9/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "Калька «Це число ключів змінило слово перед ними».",
+  "fix": "Порівняй один ключ `ma clé` і кілька `mes clés`. Власник залишився тим самим. Змінилася лише кількість ключів — і разом із нею слово перед ними. Рід у множині вже не розрізняється."
+ },
+ {
+  "id": "lesson-9/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«This number of keys has changed the word» — неграмотная калька.",
+  "fix": "Compare one key `ma clé` and several keys `mes clés`. The owner is the same. Only the number of keys has changed, and the word before them changed with it. Gender is no longer distinguished in the plural."
+ },
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "Машинные ошибки: «може означати його сумку, і її» (нет первого «і»), «обчислити стать», «а чи не інша» вместо «а не інша».",
+  "fix": "`Son sac` може означати і його сумку, і її сумку. З форми `son` не можна визначити стать людини. Прояснити, чия це річ, може контекст, а не інша французька плитка."
+ },
+ {
+  "id": "lesson-9/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.ru",
+  "problem": "`le mon sac` не «ненейтрально», а грамматически невозможно; правило смягчено до неверного.",
+  "fix": "Как и артикль, слово принадлежности стоит перед существительным. Сочетание `le mon sac` невозможно: «моя сумка» — это просто `mon sac`. Оставь только одно определяющее слово."
+ },
+ {
+  "id": "lesson-9/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "Та же неточность про `le mon sac`; потеряны кавычки вокруг «моя сумка».",
+  "fix": "Як і артикль, слово приналежності стоїть перед іменником. Сполучення `le mon sac` неможливе: «моя сумка» — це просто `mon sac`. Залиш лише одне визначальне слово."
+ },
+ {
+  "id": "lesson-9/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Same inaccuracy: `le mon sac` is ungrammatical, not merely «not neutral»; «before the name» вместо «before the noun».",
+  "fix": "Like the article, the possessive word comes before the noun. The combination `le mon sac` is impossible: \"my bag\" is simply `mon sac`. Keep only one determiner."
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "`mon/ton/son` перед женским словом на гласную не «возможны», а обязательны.",
+  "fix": "Перед словом женского рода, начинающимся с гласной или немого `h`, вместо `ma`, `ta`, `sa` обязательно ставят `mon`, `ton`, `son` — так удобнее произносить. Именно поэтому `mon adresse`, хотя `adresse` женского рода."
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«are possible» — неверно, форма обязательна; ru/uk говорят о правиле.",
+  "fix": "Before a feminine word beginning with a vowel or mute `h`, `mon`, `ton`, and `son` are required instead of `ma`, `ta`, `sa` for smoother pronunciation. That is why we say `mon adresse`, even though `adresse` is feminine."
+ },
+ {
+  "id": "lesson-10/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.ru",
+  "problem": "«где лежит конкретная скамейка» — скамейка не лежит.",
+  "fix": "До этого ты говорил, где находится знакомая вещь. Теперь вводишь новую: «здесь есть скамейка». Конструкция `il y a` сообщает о наличии, а не отвечает, где находится конкретная скамейка."
+ },
+ {
+  "id": "lesson-10/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«де лежить конкретна лава» — лава не лежить; потеряны кавычки вокруг «тут є лава».",
+  "fix": "До цього ти казав, де знаходиться знайома річ. Тепер вводиш нову: «тут є лава». Конструкція `il y a` повідомляє про наявність, а не відповідає, де стоїть конкретна лава."
+ },
+ {
+  "id": "lesson-10/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "Пропущено тире перед «що залишилося» и запятая после деепричастного оборота.",
+  "fix": "`Il n’y a plus` означає, що чогось більше немає, а `il y a encore` — що щось залишилося. Коли купуєш останні квитки, ці схожі за довжиною фрази передають протилежні новини."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«introduces a premise / known premise» — ошибка перевода: речь о посылке (parcel), en не соответствует ru.",
+  "fix": "Compare two sentences about the same place: `Il y a un colis à la réception` introduces a parcel, while `Le colis est à la réception` gives the location of a parcel we already know about. Choose based on the purpose of the message."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.ru",
+  "problem": "«Сравни на одном месте» — калька, неестественно.",
+  "fix": "Сравни две фразы про одно и то же место: `Il y a un colis à la réception` вводит посылку, `Le colis est à la réception` сообщает, где находится уже известная посылка. Выбирай по цели сообщения."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«Порівняй на одному місці» — калька.",
+  "fix": "Порівняй дві фрази про одне й те саме місце: `Il y a un colis à la réception` вводить посилку, `Le colis est à la réception` повідомляє, де вже відома посилка. Вибирай за метою повідомлення."
+ }
+]

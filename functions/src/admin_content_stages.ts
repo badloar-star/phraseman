@@ -23,29 +23,23 @@ import { flashcardRegistryDocumentId } from './content_factory/flashcard_semanti
 import { assertStageCapabilityRequest, generationStageCapabilities, stageCapability, stageLanguagePolicy } from './content_factory/stage_capabilities';
 import { dependencyCatalogItems, parseDependencyCatalogRequest } from './content_factory/dependency_catalog';
 import { contentStageReviewFingerprint } from './content_factory/review_fingerprint';
-import { LEARNING_V2_GENERATION_STAGE_KINDS, type LearningV2GenerationStageKind } from './content_factory/learning_v2_generation_artifacts';
-import { buildLearningV2OwnerApprovalTrail } from './content_factory/learning_v2_prerequisite_grounding';
-import { buildLearningV2CourseWorkspaceProjectionV1 } from './content_factory/learning_v2_course_workspace_projection';
-import { handleV2OwnerEpisodePreviewV1 } from './content_factory/v2_owner_episode_preview_v1';
 
 const REGION = 'us-central1';
 const CONTENT_STUDIO_CALLABLE_OPTIONS = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN } as const;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
-const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course', 'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release'];
+const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement'];
 const CREATE_FIELDS = new Set(['requestId', 'kind', 'studyTarget', 'sourceLocale', 'cefr', 'objective', 'scopeId', 'count', 'revision', 'prerequisiteStageIds', 'replacementForQuestionId', 'replacementForCardId']);
 const DERIVED_LESSON_KINDS = new Set<GenerationStageKind>(['lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory']);
 
-export function learningV2DownstreamStageIdsToSupersede(changed: Readonly<Record<string, unknown>>, related: readonly Readonly<{ id: string; data: Record<string, unknown> }>[]): readonly string[] {
-  if (related.length > 100) throw new Error('learning_v2_review_chain_too_many_stages');
-  const changedKind = String(changed.kind ?? '') as LearningV2GenerationStageKind;
-  const changedIndex = LEARNING_V2_GENERATION_STAGE_KINDS.indexOf(changedKind);
-  if (changedIndex < 0) return Object.freeze([]);
-  return Object.freeze(related.filter(({ id, data }) => {
-    const relatedIndex = LEARNING_V2_GENERATION_STAGE_KINDS.indexOf(String(data.kind ?? '') as LearningV2GenerationStageKind);
-    return id !== changed.id && relatedIndex > changedIndex && data.requestId === changed.requestId && data.scopeId === changed.scopeId && data.studyTarget === changed.studyTarget && data.sourceLocale === changed.sourceLocale && ['queued', 'running', 'paused', 'failed', 'needs_review', 'approved', 'rejected'].includes(String(data.state));
-  }).map(({ id }) => id));
+// зачем: генератор курса занятий удалён. Этапы его видов могли остаться в Firestore —
+// их нельзя ни просматривать, ни ревьюить через поток карточек/уроков.
+function assertContentStageKindActive(kind: unknown): void {
+  if (!KINDS.includes(String(kind ?? '') as GenerationStageKind)) {
+    console.warn('[CONTENT-STAGE] retired kind rejected', { kind: String(kind ?? '') });
+    throw new HttpsError('failed-precondition', 'content_stage_kind_retired');
+  }
 }
 
 function stageIdFromArtifactId(artifactId: string): string {
@@ -248,24 +242,13 @@ export const adminCreateContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, a
     const existing = await tx.get(stageRef);
     const prerequisiteSnapshots = await Promise.all(input.prerequisiteStageIds.map((stageId) => tx.get(db.collection('content_factory_stages').doc(stageId))));
     const plan = stagePlanFromStoredPrerequisites(input, prerequisiteSnapshots.filter((snapshot) => snapshot.exists).map((snapshot) => ({ stageId: snapshot.id, ...(snapshot.data() ?? {}) })));
-    let ownerApprovalTrail: readonly unknown[] | undefined;
-    if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(input.kind as LearningV2GenerationStageKind)) {
-      const prerequisiteSnapshot = prerequisiteSnapshots[0];
-      const prerequisiteData = prerequisiteSnapshot?.exists ? prerequisiteSnapshot.data() ?? {} : null;
-      ownerApprovalTrail = buildLearningV2OwnerApprovalTrail(input.kind as LearningV2GenerationStageKind, prerequisiteData ? {
-        stageId: prerequisiteSnapshot.id, artifactId: String(prerequisiteData.artifactId ?? ''), kind: String(prerequisiteData.kind ?? ''), state: String(prerequisiteData.state ?? ''),
-        requestId: String(prerequisiteData.requestId ?? ''), studyTarget: String(prerequisiteData.studyTarget ?? ''), sourceLocale: String(prerequisiteData.sourceLocale ?? ''), scopeId: String(prerequisiteData.scopeId ?? ''),
-        objectPath: String(prerequisiteData.objectPath ?? ''), contentHash: String(prerequisiteData.contentHash ?? ''), objectGeneration: String(prerequisiteData.objectGeneration ?? ''),
-        ownerApprovalTrail: prerequisiteData.ownerApprovalTrail, reviewedBy: prerequisiteData.reviewedBy, reviewReason: prerequisiteData.reviewReason,
-      } : null);
-    }
     const planFingerprint = contentStagePlanFingerprint(input, plan.unit.prerequisiteArtifactIds);
     if (existing.exists) {
       const current = existing.data() ?? {};
       if (current.planFingerprint !== planFingerprint) throw new HttpsError('already-exists', 'content_stage_idempotency_conflict');
       return { ok: true, stageId: expectedStageId, state: current.state ?? 'queued', replayed: true };
     }
-    tx.create(stageRef, { ...plan.unit, cefr: input.cefr, objective: input.objective, prerequisiteStageIds: input.prerequisiteStageIds, ...(ownerApprovalTrail ? { ownerApprovalTrail } : {}), ...(input.replacementForQuestionId ? { replacementForQuestionId: input.replacementForQuestionId } : {}), ...(input.replacementForCardId ? { replacementForCardId: input.replacementForCardId } : {}), ...(input.kind.startsWith('lesson_') ? { blueprintVersion: 'english-core-32:v1' } : {}), ...(input.kind.startsWith('challenge_') || input.kind === 'flashcard_pack_idea' ? { publicationPolicy: 'draft_only_no_consumer' } : {}), ...(input.kind === 'flashcard_items' || input.kind === 'flashcard_item_replacement' ? { publicationPolicy: 'standard' } : {}), planFingerprint, createdBy: request.auth!.uid, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+    tx.create(stageRef, { ...plan.unit, cefr: input.cefr, objective: input.objective, prerequisiteStageIds: input.prerequisiteStageIds, ...(input.replacementForQuestionId ? { replacementForQuestionId: input.replacementForQuestionId } : {}), ...(input.replacementForCardId ? { replacementForCardId: input.replacementForCardId } : {}), ...(input.kind.startsWith('lesson_') ? { blueprintVersion: 'english-core-32:v1' } : {}), ...(input.kind.startsWith('challenge_') || input.kind === 'flashcard_pack_idea' ? { publicationPolicy: 'draft_only_no_consumer' } : {}), ...(input.kind === 'flashcard_items' || input.kind === 'flashcard_item_replacement' ? { publicationPolicy: 'standard' } : {}), planFingerprint, createdBy: request.auth!.uid, createdAt: admin.firestore.FieldValue.serverTimestamp() });
     tx.create(db.collection('admin_log').doc(), { action: 'content_factory.stage.create', actorUid: request.auth!.uid, role, entity: { collection: 'content_factory_stages', id: plan.unit.stageId }, operationId: plan.unit.idempotencyKey, reason: 'Content generation stage created', before: null, after: { state: plan.unit.state, artifactId: plan.unit.artifactId }, timestamp: new Date().toISOString() });
     return { ok: true, stageId: plan.unit.stageId, state: plan.unit.state, replayed: false };
   });
@@ -292,28 +275,6 @@ export const adminListContentStages = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, as
   return { ok: true, stages: docs.map((doc) => ({ id: doc.id, ...doc.data() })), nextCursor: snapshot.size > input.limit ? docs.at(-1)?.id ?? null : null, isPartial: snapshot.size > input.limit };
 });
 
-export const adminGetLearningV2CourseWorkspaceProjection = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
-  requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
-  const record = isRecord(request.data) ? request.data : {};
-  const expectedKeys = ['requestId', 'studyTarget', 'sourceLocale', 'scopeId'];
-  if (Object.keys(record).length !== expectedKeys.length || expectedKeys.some((key) => !Object.prototype.hasOwnProperty.call(record, key))) {
-    throw new HttpsError('invalid-argument', 'learning_v2_workspace_projection_request_invalid');
-  }
-  const input = parseContentStageListRequest({ ...record, limit: 100 });
-  const snapshot = await buildContentStageListQuery(admin.firestore(), input).get();
-  const docs = snapshot.docs.slice(0, input.limit);
-  const stages = docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  const projection = buildLearningV2CourseWorkspaceProjectionV1({
-    requestId: input.requestId,
-    studyTarget: input.studyTarget,
-    sourceLocale: input.sourceLocale,
-    scopeId: input.scopeId,
-    stageDocuments: stages,
-    historyIncomplete: snapshot.size > input.limit,
-  });
-  return { ok: true, stages, projection };
-});
-
 export const adminListContentStageDependencies = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, async (request) => {
   requireContentStagePermission(request as { auth?: { uid?: string; token?: Record<string, unknown> } }, 'content.read');
   let input: ReturnType<typeof parseDependencyCatalogRequest>;
@@ -334,21 +295,7 @@ export const adminPreviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, 
   const snapshot = await admin.firestore().collection('content_factory_stages').doc(stageId).get();
   if (!snapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
   const stage = snapshot.data() ?? {};
-  if (stage.schemaVersion === 'v2-owner-authored-episode-stage.v1') {
-    return handleV2OwnerEpisodePreviewV1(request, {
-      async readStage() { return Object.freeze({ exists: true, id: snapshot.id, data: Object.freeze(stage) }); },
-      async readObject(input) {
-        const file = admin.storage().bucket().file(input.objectPath);
-        const [metadata] = await file.getMetadata();
-        const byteSize = Number(metadata.size);
-        if (!Number.isSafeInteger(byteSize) || byteSize < 1 || byteSize > input.maximumBytes) throw new HttpsError('data-loss', 'content_stage_object_metadata_mismatch');
-        let bytes: Buffer;
-        try { [bytes] = await admin.storage().bucket().file(input.objectPath, { generation: input.objectGeneration }).download({ validation: 'crc32c' }); }
-        catch { throw new HttpsError('data-loss', 'content_stage_generation_mismatch'); }
-        return Object.freeze({ objectGeneration: String(metadata.generation ?? ''), byteSize, contentType: String(metadata.contentType ?? ''), bytes: new Uint8Array(bytes) });
-      },
-    });
-  }
+  assertContentStageKindActive(stage.kind);
   const revision = Number(stage.revision);
   const objectPath = String(stage.objectPath ?? '');
   const contentHash = String(stage.contentHash ?? '');
@@ -373,7 +320,7 @@ export const adminReviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, a
   const preliminarySnapshot = await stageRef.get();
   if (!preliminarySnapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
   const preliminary = preliminarySnapshot.data() ?? {};
-  if (preliminary.schemaVersion === 'v2-owner-authored-episode-stage.v1') throw new HttpsError('failed-precondition', 'v2_owner_episode_confirmation_required');
+  assertContentStageKindActive(preliminary.kind);
   assertContentStageReviewerDifferentFromCreator(preliminary.createdBy, request.auth!.uid);
   let phraseGrounding: Awaited<ReturnType<typeof loadApprovedLessonGrounding>> | null = null;
   let questionBatch: Awaited<ReturnType<typeof loadQuestionBatchForReview>> | null = null;
@@ -544,12 +491,6 @@ export const adminReviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, a
           updates.flashcardLedgerRevision = restored.ledger.revision; updates.activeReplacementArtifactId = restored.restoredReplacementArtifactId;
         } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'flashcard_replacement_rollback_invalid'); }
       }
-    }
-    if (LEARNING_V2_GENERATION_STAGE_KINDS.includes(stage.kind as LearningV2GenerationStageKind)) {
-      const related = await tx.get(db.collection('content_factory_stages').where('requestId', '==', stage.requestId).limit(101));
-      const byId = new Map(related.docs.map((doc) => [doc.id, doc]));
-      const staleIds = learningV2DownstreamStageIdsToSupersede({ id: input.stageId, ...stage }, related.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
-      for (const staleId of staleIds) tx.update(byId.get(staleId)!.ref, { state: 'superseded', staleReason: 'learning_v2_owner_review_chain_changed', staleAt: admin.firestore.FieldValue.serverTimestamp(), updatedAt: admin.firestore.FieldValue.serverTimestamp() });
     }
     tx.update(stageRef, updates);
     if (correctionEventRef) tx.update(correctionEventRef, { status: input.status === 'approved' ? 'accepted' : 'rejected', reviewedBy: request.auth!.uid, reviewReason: input.reason, reviewedAt: admin.firestore.FieldValue.serverTimestamp() });

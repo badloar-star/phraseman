@@ -220,12 +220,11 @@ export default function CoinRankScreen() {
     balance: triLang(lang, { ru: 'Твой баланс', uk: 'Твій баланс', en: 'Your balance', es: 'Tu saldo', 'pt-BR': 'Seu saldo', vi: 'Số dư của bạn', id: 'Saldo kamu', tr: 'Bakiyen', pl: 'Twoje saldo' }),
     coins: triLang(lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' }),
     cost: triLang(lang, { ru: 'Стоимость повышения', uk: 'Вартість підвищення', en: 'Upgrade cost', es: 'Coste de la mejora', 'pt-BR': 'Custo da promoção', vi: 'Chi phí nâng hạng', id: 'Biaya naik peringkat', tr: 'Yükseltme bedeli', pl: 'Koszt awansu' }),
-    costNote: tl('Монеты списываются один раз', 'Монети списуються один раз', 'Coins are charged once', 'Las monedas se descuentan una vez', 'As moedas são descontadas uma vez', 'Xu chỉ bị trừ một lần', 'Koin dipotong sekali', 'Jetonlar bir kez düşülür', 'Monety są pobierane jednorazowo'),
     upgrade: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
     upgradeFor: tl('Повысить за', 'Підвищити за', 'Upgrade for', 'Subir por', 'Subir por', 'Nâng hạng với', 'Naik dengan', 'Yükselt:', 'Awansuj za'),
     ceremonyNote: tl('Церемония начнётся только после подтверждённого повышения.', 'Церемонія почнеться лише після підтвердженого підвищення.', 'The ceremony starts only after the upgrade is confirmed.', 'La ceremonia empieza solo tras confirmar la mejora.', 'A celebração começa só depois da promoção confirmada.', 'Lễ mừng chỉ bắt đầu sau khi nâng hạng được xác nhận.', 'Perayaan dimulai setelah kenaikan dikonfirmasi.', 'Kutlama ancak yükseltme onaylanınca başlar.', 'Świętowanie zacznie się dopiero po potwierdzeniu awansu.'),
     shortTitle: tl('Не хватает', 'Не вистачає', 'Missing', 'Faltan', 'Faltam', 'Còn thiếu', 'Kurang', 'Eksik:', 'Brakuje'),
-    shortNote: tl('Продолжай практику. Покупка монет за деньги не предлагается.', 'Продовжуй практику. Купівля монет за гроші не пропонується.', 'Keep practicing. Buying coins for money is not offered.', 'Sigue practicando. No se ofrece comprar monedas con dinero.', 'Continue praticando. Não vendemos moedas por dinheiro.', 'Hãy tiếp tục luyện tập. Không bán xu bằng tiền.', 'Terus berlatih. Koin tidak dijual dengan uang.', 'Pratiğe devam et. Jeton parayla satılmaz.', 'Ćwicz dalej. Monet nie da się kupić za pieniądze.'),
+    shortNote: tl('Продолжай практику.', 'Продовжуй практику.', 'Keep practicing.', 'Sigue practicando.', 'Continue praticando.', 'Hãy tiếp tục luyện tập.', 'Terus berlatih.', 'Pratiğe devam et.', 'Ćwicz dalej.'),
     pendingTitle: tl('Проверяем повышение', 'Перевіряємо підвищення', 'Checking the upgrade', 'Comprobando la mejora', 'Verificando a promoção', 'Đang kiểm tra nâng hạng', 'Memeriksa kenaikan', 'Yükseltme kontrol ediliyor', 'Sprawdzamy awans'),
     pendingNote: tl('Не закрывай приложение. Повторный тап не создаёт новое списание.', 'Не закривай застосунок. Повторний дотик не створює нового списання.', 'Do not close the app. Tapping again will not charge twice.', 'No cierres la app. Volver a tocar no genera otro cargo.', 'Não feche o app. Tocar de novo não cobra outra vez.', 'Đừng đóng ứng dụng. Chạm lại sẽ không bị trừ lần nữa.', 'Jangan tutup aplikasi. Mengetuk lagi tidak memotong dua kali.', 'Uygulamayı kapatma. Tekrar dokunmak ikinci kez düşmez.', 'Nie zamykaj aplikacji. Ponowne dotknięcie nie pobierze drugi raz.'),
     pendingCta: tl('Повышение проверяется…', 'Підвищення перевіряється…', 'Upgrade is being checked…', 'Comprobando la mejora…', 'Verificando a promoção…', 'Đang kiểm tra nâng hạng…', 'Memeriksa kenaikan…', 'Yükseltme kontrol ediliyor…', 'Sprawdzamy awans…'),
@@ -428,10 +427,7 @@ export default function CoinRankScreen() {
             <V2GlassSheen seed={1} />
             <GlassRim radius={V2.radius.card} />
             <View style={styles.costRow}>
-              <View style={styles.costCopy}>
-                <Text style={[styles.costTitle, { color: p.text }]}>{copy.cost}</Text>
-                <Text style={[styles.costNote, { color: p.textSecondary }]}>{copy.costNote}</Text>
-              </View>
+              <Text style={[styles.costTitle, styles.costTitleGrow, { color: p.text }]}>{copy.cost}</Text>
               <View style={[styles.pricePill, { backgroundColor: p.control }]}>
                 <Image source={current.source} contentFit="contain" style={styles.priceCoin} accessible={false} />
                 <Text testID="coin-rank-next-title" style={[styles.priceText, { color: p.text }]}>{formatCoins(next.priceToReach, lang)}</Text>
@@ -555,10 +551,8 @@ const styles = StyleSheet.create({
   rankMeta: { ...V2_TYPE.body, marginTop: 2, textAlign: 'center' },
   card: { borderRadius: V2.radius.card, padding: 18 },
   costRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  costCopy: { flex: 1, minWidth: 0 },
   costTitle: { ...V2_TYPE.headline },
   costTitleGrow: { flex: 1, minWidth: 0 },
-  costNote: { ...V2_TYPE.subtitle, marginTop: 4 },
   pricePill: { flexDirection: 'row', alignItems: 'center', gap: 9, height: 35, paddingHorizontal: 14, borderRadius: 18 },
   priceCoin: { width: 20, height: 20 },
   priceText: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },

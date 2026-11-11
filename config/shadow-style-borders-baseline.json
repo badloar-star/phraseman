@@ -1,5 +1,5 @@
 {
-  "total": 79,
+  "total": 72,
   "files": {
     "app/(tabs)/settings.tsx": 1,
     "app/combined_lesson_pick.tsx": 2,
@@ -13,14 +13,9 @@
     "components/ExamResultPreviewAdminModal.tsx": 12,
     "components/ExplainReportButton.tsx": 6,
     "components/GlassSurface.tsx": 1,
-    "components/learning-v2/horizons/HorizonMistakeReview.tsx": 1,
-    "components/learning-v2/horizons/HorizonResultGlass.tsx": 1,
-    "components/learning-v2/horizons/LearningV2Horizons.tsx": 1,
-    "components/LearningV2SessionOutcomeSheet.tsx": 4,
     "components/lessons/LessonIntroGlass.tsx": 1,
     "components/lesson_help_theory_data.tsx": 6,
     "components/lesson_help_theory_ui.tsx": 6,
-    "components/MistakeEli5Modal.tsx": 1,
     "components/PlusBadge.tsx": 1,
     "components/premium_celebration/CelebrationSceneViews.tsx": 1,
     "components/RankChangeBanner.tsx": 1,

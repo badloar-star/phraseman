@@ -48,6 +48,8 @@ export type ManageSubscriptionDuoViewProps = Readonly<{
   /** Переход к отмене в магазине; null — у разовой покупки отмены нет. */
   cancel: Readonly<{ label: string; onPress: () => void }> | null;
   storeNote: string;
+  /** Название на карточке вместо «уровень · период» (разовая покупка называется «Phraseman Pro»). */
+  passNameOverride?: string;
 }>;
 
 const INCLUDED_TITLE = LP('Что включено', 'Що включено', 'What’s included', 'Qué incluye', 'O que inclui', 'Bao gồm', 'Yang termasuk', 'Neler dahil', 'Co zawiera');
@@ -73,8 +75,15 @@ const UltraHex = memo(function UltraHex() {
   );
 });
 
+/** Свечение цвета уровня под шапкой экрана: кладётся на корень экрана, чтобы шло от самого верха (макет), а не от начала прокрутки. */
+export const ManageSubscriptionDuoGlow = memo(function ManageSubscriptionDuoGlow({ tier, isLight }: { tier: SubscriptionTier; isLight: boolean }) {
+  const mix = useDuoTierMix(tier);
+  return <PaywallDuoGlow mix={mix} isLight={isLight} height={420} />;
+});
+
+// зачем: вибрацию дают сами обработчики экрана (смена плана, восстановление, отмена) — у кнопок она выключена, иначе была бы двойной
 export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView({
-  lang, g, tier, period, title, status, nextDate, nextDateLabel, lifetimeNote, loading, loadingSlot, benefits, upgrade, restore, cancel, storeNote,
+  lang, g, tier, period, title, status, nextDate, nextDateLabel, lifetimeNote, loading, loadingSlot, benefits, upgrade, restore, cancel, storeNote, passNameOverride,
 }: ManageSubscriptionDuoViewProps) {
   const { width: windowWidth } = useWindowDimensions();
   const mix = useDuoTierMix(tier);
@@ -85,12 +94,11 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
   const tierName = SUBSCRIPTION_TIER_NAME[tier];
   const isLifetime = period === 'lifetime';
   const periodWord = period === 'year' ? pick(lang, COPY.year).toLowerCase() : period === 'month' ? pick(lang, COPY.month).toLowerCase() : isLifetime ? pick(lang, FOREVER) : '';
-  const passName = `${tier === 'ultra' ? '✦' : '◆'} ${tierName}${periodWord ? ` · ${periodWord}` : ''}`;
+  const passName = passNameOverride || `${tier === 'ultra' ? '✦' : '◆'} ${tierName}${periodWord ? ` · ${periodWord}` : ''}`;
   const passValue = isLifetime ? pick(lang, FOREVER) : nextDate;
   const passLabel = isLifetime ? lifetimeNote : nextDateLabel;
   return (
     <View testID="manage-subscription-duo">
-      <PaywallDuoGlow mix={mix} isLight={g.isLight} height={420} />
       <View style={S.top}>
         <View style={S.mark}><PaywallDuoHero mix={mix} /></View>
         <View style={S.live}>
@@ -134,7 +142,7 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
             <V2Pressable
               testID="manage-subscription-change-plan" accessibilityRole="button" accessibilityLabel={`${upgrade.title}. ${upgrade.sub}`}
               accessibilityState={{ disabled: upgrade.busy, busy: upgrade.busy }} disabled={upgrade.busy} onPress={upgrade.onPress}
-              withHaptic scaleTo={0.97} style={[S.up, { backgroundColor: g.opaqueControl }]}
+              withHaptic={false} scaleTo={0.97} style={[S.up, { backgroundColor: g.opaqueControl }]}
             >
               <LinearGradient pointerEvents="none" colors={[...UP_GLOW]} locations={[0, 0.62]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
               <UltraHex />
@@ -157,7 +165,7 @@ export const ManageSubscriptionDuoView = memo(function ManageSubscriptionDuoView
           </V2Pressable>
 
           {cancel ? (
-            <V2Pressable testID="manage-subscription-cancel" accessibilityRole="button" accessibilityLabel={cancel.label} onPress={cancel.onPress} withHaptic scaleTo={0.97} style={S.leave}>
+            <V2Pressable testID="manage-subscription-cancel" accessibilityRole="button" accessibilityLabel={cancel.label} onPress={cancel.onPress} withHaptic={false} scaleTo={0.97} style={S.leave}>
               <Text style={[S.leaveText, { color: g.mutedText }]}>{cancel.label}</Text>
             </V2Pressable>
           ) : null}

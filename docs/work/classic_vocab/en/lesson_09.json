@@ -3,10 +3,15 @@
  "lesson": 9,
  "words": {
   "there": {
-   "ru": "в таких фразах «есть»; по-русски нет",
-   "uk": "у таких фразах «є»; українською немає",
-   "en": "word that begins \"there is\"",
-   "es": "hay"
+   "ru": "Здесь есть лифт (___ is a lift)",
+   "uk": "Тут є ліфт (___ is a lift)",
+   "en": "This place has a lift (___ is a lift)",
+   "es": "Aquí hay ascensor (___ is a lift)",
+   "pt-BR": "Aqui tem elevador (___ is a lift)",
+   "vi": "Ở đây có thang máy (___ is a lift)",
+   "id": "Di sini ada lift (___ is a lift)",
+   "tr": "Burada asansör var (___ is a lift)",
+   "pl": "Jest tu winda (___ is a lift)"
   },
   "queue": {
    "ru": "очередь",

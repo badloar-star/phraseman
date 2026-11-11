@@ -10,8 +10,8 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useLang } from '../../LangContext';
-import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
-import { lv2Mix } from '../../learning-v2/learning_v2_task_theme_tokens';
+import { useLv2Glass } from '../../practice/PracticeGlass';
+import { lv2Mix } from '../../practice/practice_theme_tokens';
 import V2Pressable from '../../v2/V2Pressable';
 import { dialogueWorldIcon } from '../dialogue_scenario_icons';
 import { dialogsHubTokens } from '../scene/dialogs_hub_tokens';

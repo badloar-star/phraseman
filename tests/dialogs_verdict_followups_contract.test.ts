@@ -15,15 +15,6 @@ describe('Диалоги: значки и пилюля энергии (dialogs-0
     const worldFn = src.slice(src.indexOf('export function dialogueWorldIcon'), src.indexOf('export function dialogueScenarioAvatarIcon'));
     expect(worldFn).not.toContain("'briefcase'");
   });
-  it('молния пилюли заливная только у экранов Диалогов (solidBolt); Learning V2 и уроки не тронуты', () => {
-    const bar = read('components/EnergyBar.tsx');
-    expect(bar).toContain('solidBolt?: boolean;');
-    expect(bar).toMatch(/<EnergyIcon\n\s+filled\n\s+solid=\{solidBolt\}/);
-    expect(read('components/dialogs/DialogueV2BriefingScreen.tsx')).toContain('{showEnergy ? <EnergyBar glass solidBolt /> : null}');
-    expect(read('components/dialogs/DialogueV2SessionScreen.tsx')).toContain('{showEnergy ? <EnergyBar glass solidBolt /> : null}');
-    expect(read('app/ai_dialog_home.tsx')).toContain('<EnergyBar size={30} glass solidBolt />');
-    expect(read('app/learning_v2_direct_session_player_v1.tsx')).not.toContain('solidBolt');
-  });
   it('брифинг: за экраном статичные пятна темы (V2Backdrop), как у хаба Карточек', () => {
     const src = read('components/dialogs/DialogueV2BriefingScreen.tsx');
     expect(src).toContain("import V2Backdrop from '../v2/V2Backdrop';");

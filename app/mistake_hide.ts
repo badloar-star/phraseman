@@ -5,7 +5,7 @@
  * Скрытая ошибка выходит из «ждут» и из отработки, но остаётся в журнале (можно вернуть событием 'restored'): ничего не стирается.
  * Журнал локальный, запись — одно событие; в облако оно уходит обычной синхронизацией журнала.
  */
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import { appendMistakeEvent, loadMistakeEventJournal, type MistakePracticeStorage } from './mistake_practice_store';

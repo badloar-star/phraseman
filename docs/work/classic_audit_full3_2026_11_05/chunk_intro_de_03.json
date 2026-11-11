@@ -1,0 +1,682 @@
+[
+{
+"lesson": 13,
+"blocks": [
+{
+"textEN": "Your alarm rings. You get up; you aren’t just standing. The dictionary word is «aufstehen». Its opening part «auf» separates in this statement: «ich stehe … auf». Put the word for “early” between the two parts.\n\nIch stehe früh auf.\n\nI get up early.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"textES": "Suena el despertador. Te levantas, no estás simplemente de pie. El verbo es «aufstehen». Su inicio «auf» se separa en esta afirmación: «ich stehe … auf». «Temprano» va entre las dos partes.\n\nIch stehe früh auf.\n\nMe levanto temprano.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"textId": "Alarm berbunyi dan kamu bangun, bukan sekadar berdiri. Kata kerjanya «aufstehen». Bagian awal «auf» terpisah dalam pernyataan ini: «ich stehe … auf». Kata untuk “pagi-pagi” masuk di antaranya.\n\nIch stehe früh auf.\n\nSaya bangun pagi.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"textPl": "Dzwoni budzik. Wstajesz, a nie tylko stoisz. W słowniku znajdziesz «aufstehen». Początek «auf» oddziela się w tym zdaniu: «ich stehe … auf». Między obie części wstaw słowo „wcześnie”.\n\nIch stehe früh auf.\n\nWstaję wcześnie.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"textPtBr": "O despertador toca. Você se levanta, não está apenas de pé. O verbo é «aufstehen». A parte inicial «auf» se separa nessa afirmação: «ich stehe … auf». Coloque “cedo” entre as duas partes.\n\nIch stehe früh auf.\n\nEu acordo cedo.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"textRU": "Прозвенел будильник. Ты именно встаёшь, а не просто стоишь. Слово для этого действия — «aufstehen». У него есть отделяемое начало «auf»: в коротком сообщении про себя получается «ich stehe … auf». Слово «рано» помещается между этими частями.\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"textTr": "Alarm çaldı; ayakta durmaktan değil, yataktan kalkmaktan söz ediyorsun. Fiil «aufstehen». Baştaki «auf» bu cümlede ayrılır: «ich stehe … auf». “Erken” anlamındaki kelime araya girer.\n\nIch stehe früh auf.\n\nErken kalkıyorum.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"textUK": "Продзвенів будильник. Ти встаєш, а не просто стоїш. Це дія «aufstehen». Її початок «auf» може відокремлюватися: у короткому повідомленні про себе виходить «ich stehe … auf». Слово «рано» стає між цими частинами.\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"textVi": "Chuông báo thức reo. Bạn thức dậy, chứ không chỉ đứng yên. Động từ là «aufstehen». Phần đầu «auf» tách ra trong câu kể này: «ich stehe … auf». Đặt từ chỉ “sớm” vào giữa.\n\nIch stehe früh auf.\n\nTôi dậy sớm.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Your alarm rings. You get up; you aren’t just standing. The dictionary word is «aufstehen». Its opening part «auf» separates in this statement: «ich stehe … auf». Put the word for “early” between the two parts.\n\nIch stehe früh auf.\n\nI get up early.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"es": "Suena el despertador. Te levantas, no estás simplemente de pie. El verbo es «aufstehen». Su inicio «auf» se separa en esta afirmación: «ich stehe … auf». «Temprano» va entre las dos partes.\n\nIch stehe früh auf.\n\nMe levanto temprano.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"id": "Alarm berbunyi dan kamu bangun, bukan sekadar berdiri. Kata kerjanya «aufstehen». Bagian awal «auf» terpisah dalam pernyataan ini: «ich stehe … auf». Kata untuk “pagi-pagi” masuk di antaranya.\n\nIch stehe früh auf.\n\nSaya bangun pagi.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"pl": "Dzwoni budzik. Wstajesz, a nie tylko stoisz. W słowniku znajdziesz «aufstehen». Początek «auf» oddziela się w tym zdaniu: «ich stehe … auf». Między obie części wstaw słowo „wcześnie”.\n\nIch stehe früh auf.\n\nWstaję wcześnie.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"pt-BR": "O despertador toca. Você se levanta, não está apenas de pé. O verbo é «aufstehen». A parte inicial «auf» se separa nessa afirmação: «ich stehe … auf». Coloque “cedo” entre as duas partes.\n\nIch stehe früh auf.\n\nEu acordo cedo.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"ru": "Прозвенел будильник. Ты именно встаёшь, а не просто стоишь. Слово для этого действия — «aufstehen». У него есть отделяемое начало «auf»: в коротком сообщении про себя получается «ich stehe … auf». Слово «рано» помещается между этими частями.\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"tr": "Alarm çaldı; ayakta durmaktan değil, yataktan kalkmaktan söz ediyorsun. Fiil «aufstehen». Baştaki «auf» bu cümlede ayrılır: «ich stehe … auf». “Erken” anlamındaki kelime araya girer.\n\nIch stehe früh auf.\n\nErken kalkıyorum.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"uk": "Продзвенів будильник. Ти встаєш, а не просто стоїш. Це дія «aufstehen». Її початок «auf» може відокремлюватися: у короткому повідомленні про себе виходить «ich stehe … auf». Слово «рано» стає між цими частинами.\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"vi": "Chuông báo thức reo. Bạn thức dậy, chứ không chỉ đứng yên. Động từ là «aufstehen». Phần đầu «auf» tách ra trong câu kể này: «ich stehe … auf». Đặt từ chỉ “sớm” vào giữa.\n\nIch stehe früh auf.\n\nTôi dậy sớm.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này."
+},
+"kind": "concept",
+"exampleIds": [
+"de:13:01"
+]
+},
+{
+"textEN": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nI get up early.\n\nDu stehst um sieben auf.\n\nYou get up at seven.\n\nIn both examples final «auf» completes “get up”. «stehe» becomes «stehst»; “early” or “at seven” fits between the parts. Don’t leave off the last tile.",
+"textES": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nMe levanto temprano.\n\nDu stehst um sieben auf.\n\nTe levantas a las siete.\n\nEn ambas, el «auf» final completa «levantarse». «stehe» cambia a «stehst»; «temprano» o «a las siete» cabe en medio. No olvides la última ficha.",
+"textId": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nSaya bangun pagi.\n\nDu stehst um sieben auf.\n\nKamu bangun jam tujuh.\n\nPada keduanya, «auf» di akhir melengkapi arti bangun. «stehe» menjadi «stehst»; “pagi-pagi” atau “pukul tujuh” berada di tengah. Jangan lewatkan kata terakhir.",
+"textPl": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nWstaję wcześnie.\n\nDu stehst um sieben auf.\n\nTy wstajesz o siódmej.\n\nW obu przykładach końcowe «auf» dopełnia „wstawać”. «stehe» zmienia się na «stehst»; pomiędzy mieści się „wcześnie” lub „o siódmej”. Nie pomijaj ostatniego kafelka.",
+"textPtBr": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nEu acordo cedo.\n\nDu stehst um sieben auf.\n\nVocê acorda às sete.\n\nNas duas, «auf» no fim completa “levantar-se”. «stehe» vira «stehst»; “cedo” ou “às sete” cabe no meio. Não esqueça a última peça.",
+"textRU": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nDu stehst um sieben auf.\n\nТы встаёшь в семь.\n\nВ обоих примерах последнее слово «auf» завершает «вставать». Меняются «stehe» и «stehst», а между частями можно сказать «рано» или «в семь». Не теряй последнюю плитку.",
+"textTr": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nErken kalkıyorum.\n\nDu stehst um sieben auf.\n\nYedide kalkıyorsun.\n\nİkisinde de sondaki «auf» kalkma anlamını tamamlar. «stehe», «stehst» olur; araya “erken” ya da “yedide” girer. Son kutuyu unutma.",
+"textUK": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nDu stehst um sieben auf.\n\nТи встаєш у сім.\n\nВ обох прикладах останнє «auf» завершує «вставати». Змінюються «stehe» й «stehst», а всередині можна вказати «рано» чи «о сьомій». Не загуби останню плитку.",
+"textVi": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nTôi dậy sớm.\n\nDu stehst um sieben auf.\n\nBạn dậy lúc bảy giờ.\n\nỞ cả hai câu, «auf» cuối cùng hoàn tất nghĩa thức dậy. «stehe» đổi thành «stehst»; “sớm” hoặc “lúc bảy giờ” nằm giữa hai phần. Nhớ ô cuối.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nI get up early.\n\nDu stehst um sieben auf.\n\nYou get up at seven.\n\nIn both examples final «auf» completes “get up”. «stehe» becomes «stehst»; “early” or “at seven” fits between the parts. Don’t leave off the last tile.",
+"es": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nMe levanto temprano.\n\nDu stehst um sieben auf.\n\nTe levantas a las siete.\n\nEn ambas, el «auf» final completa «levantarse». «stehe» cambia a «stehst»; «temprano» o «a las siete» cabe en medio. No olvides la última ficha.",
+"id": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nSaya bangun pagi.\n\nDu stehst um sieben auf.\n\nKamu bangun jam tujuh.\n\nPada keduanya, «auf» di akhir melengkapi arti bangun. «stehe» menjadi «stehst»; “pagi-pagi” atau “pukul tujuh” berada di tengah. Jangan lewatkan kata terakhir.",
+"pl": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nWstaję wcześnie.\n\nDu stehst um sieben auf.\n\nTy wstajesz o siódmej.\n\nW obu przykładach końcowe «auf» dopełnia „wstawać”. «stehe» zmienia się na «stehst»; pomiędzy mieści się „wcześnie” lub „o siódmej”. Nie pomijaj ostatniego kafelka.",
+"pt-BR": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nEu acordo cedo.\n\nDu stehst um sieben auf.\n\nVocê acorda às sete.\n\nNas duas, «auf» no fim completa “levantar-se”. «stehe» vira «stehst»; “cedo” ou “às sete” cabe no meio. Não esqueça a última peça.",
+"ru": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nDu stehst um sieben auf.\n\nТы встаёшь в семь.\n\nВ обоих примерах последнее слово «auf» завершает «вставать». Меняются «stehe» и «stehst», а между частями можно сказать «рано» или «в семь». Не теряй последнюю плитку.",
+"tr": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nErken kalkıyorum.\n\nDu stehst um sieben auf.\n\nYedide kalkıyorsun.\n\nİkisinde de sondaki «auf» kalkma anlamını tamamlar. «stehe», «stehst» olur; araya “erken” ya da “yedide” girer. Son kutuyu unutma.",
+"uk": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nЯ рано встаю.\n\nDu stehst um sieben auf.\n\nТи встаєш у сім.\n\nВ обох прикладах останнє «auf» завершує «вставати». Змінюються «stehe» й «stehst», а всередині можна вказати «рано» чи «о сьомій». Не загуби останню плитку.",
+"vi": "«Ich rufe» + … + «an»\n\nIch stehe früh auf.\n\nTôi dậy sớm.\n\nDu stehst um sieben auf.\n\nBạn dậy lúc bảy giờ.\n\nỞ cả hai câu, «auf» cuối cùng hoàn tất nghĩa thức dậy. «stehe» đổi thành «stehst»; “sớm” hoặc “lúc bảy giờ” nằm giữa hai phần. Nhớ ô cuối."
+},
+"kind": "formula",
+"exampleIds": [
+"de:13:01",
+"de:13:02"
+]
+},
+{
+"textEN": "I get up early.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «stehe» — First part of stehe … auf: it matches ich; wait for auf to complete “get up”.\n\n3. «früh» — Early: when I get up.\n\n4. «auf» — Completes aufstehen: stehe … auf together means “get up”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textES": "Me levanto temprano.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «stehe» — Primera parte de stehe … auf: concuerda con ich; falta auf para «levantarse».\n\n3. «früh» — Temprano: cuándo me levanto.\n\n4. «auf» — Completa aufstehen: stehe … auf significa «me levanto».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textId": "Saya bangun pagi.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «stehe» — Bagian pertama stehe … auf: sesuai dengan ich; perlu auf untuk arti “bangun”.\n\n3. «früh» — Pagi-pagi: kapan aku bangun.\n\n4. «auf» — Melengkapi aufstehen: stehe … auf berarti “bangun”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textPl": "Wstaję wcześnie.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «stehe» — Pierwsza część stehe … auf; pasuje do ich, a sens „wstaję” dopełni auf.\n\n3. «früh» — Wcześnie: kiedy wstaję.\n\n4. «auf» — Dopełnia aufstehen; stehe … auf znaczy „wstaję”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textPtBr": "Eu acordo cedo.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «stehe» — Primeira parte de stehe … auf: combina com ich; falta auf para “levantar-se”.\n\n3. «früh» — Cedo: quando me levanto.\n\n4. «auf» — Completa aufstehen: stehe … auf significa “me levanto”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textRU": "Я рано встаю.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «stehe» — Первая часть stehe … auf: меняется под ich, но без auf смысл «встаю» не закончен.\n\n3. «früh» — Рано: когда я встаю.\n\n4. «auf» — Завершает aufstehen: вместе stehe … auf означает «встаю».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textTr": "Erken kalkıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «stehe» — stehe … auf ifadesinin ilk kısmı; ich ile uyumlu, “kalkıyorum” için auf da gerekli.\n\n3. «früh» — Erken: ne zaman kalktığım.\n\n4. «auf» — aufstehen fiilini tamamlar; stehe … auf birlikte “kalkıyorum” demektir.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textUK": "Я рано встаю.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «stehe» — Перша частина stehe … auf: узгоджується з ich, але без auf значення «встаю» не завершене.\n\n3. «früh» — Рано: коли я встаю.\n\n4. «auf» — Завершує aufstehen: разом stehe … auf означає «встаю».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"textVi": "Tôi dậy sớm.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «stehe» — Phần đầu của stehe … auf: ứng với ich; cần auf để đủ nghĩa “thức dậy”.\n\n3. «früh» — Sớm: thời điểm tôi dậy.\n\n4. «auf» — Hoàn tất aufstehen: stehe … auf nghĩa là “thức dậy”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I get up early.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «stehe» — First part of stehe … auf: it matches ich; wait for auf to complete “get up”.\n\n3. «früh» — Early: when I get up.\n\n4. «auf» — Completes aufstehen: stehe … auf together means “get up”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"es": "Me levanto temprano.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «stehe» — Primera parte de stehe … auf: concuerda con ich; falta auf para «levantarse».\n\n3. «früh» — Temprano: cuándo me levanto.\n\n4. «auf» — Completa aufstehen: stehe … auf significa «me levanto».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"id": "Saya bangun pagi.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «stehe» — Bagian pertama stehe … auf: sesuai dengan ich; perlu auf untuk arti “bangun”.\n\n3. «früh» — Pagi-pagi: kapan aku bangun.\n\n4. «auf» — Melengkapi aufstehen: stehe … auf berarti “bangun”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"pl": "Wstaję wcześnie.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «stehe» — Pierwsza część stehe … auf; pasuje do ich, a sens „wstaję” dopełni auf.\n\n3. «früh» — Wcześnie: kiedy wstaję.\n\n4. «auf» — Dopełnia aufstehen; stehe … auf znaczy „wstaję”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"pt-BR": "Eu acordo cedo.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «stehe» — Primeira parte de stehe … auf: combina com ich; falta auf para “levantar-se”.\n\n3. «früh» — Cedo: quando me levanto.\n\n4. «auf» — Completa aufstehen: stehe … auf significa “me levanto”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"ru": "Я рано встаю.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «stehe» — Первая часть stehe … auf: меняется под ich, но без auf смысл «встаю» не закончен.\n\n3. «früh» — Рано: когда я встаю.\n\n4. «auf» — Завершает aufstehen: вместе stehe … auf означает «встаю».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"tr": "Erken kalkıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «stehe» — stehe … auf ifadesinin ilk kısmı; ich ile uyumlu, “kalkıyorum” için auf da gerekli.\n\n3. «früh» — Erken: ne zaman kalktığım.\n\n4. «auf» — aufstehen fiilini tamamlar; stehe … auf birlikte “kalkıyorum” demektir.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"uk": "Я рано встаю.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «stehe» — Перша частина stehe … auf: узгоджується з ich, але без auf значення «встаю» не завершене.\n\n3. «früh» — Рано: коли я встаю.\n\n4. «auf» — Завершує aufstehen: разом stehe … auf означає «встаю».\n\nIch → stehe → früh → auf\n\nIch stehe früh auf.",
+"vi": "Tôi dậy sớm.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «stehe» — Phần đầu của stehe … auf: ứng với ich; cần auf để đủ nghĩa “thức dậy”.\n\n3. «früh» — Sớm: thời điểm tôi dậy.\n\n4. «auf» — Hoàn tất aufstehen: stehe … auf nghĩa là “thức dậy”.\n\nIch → stehe → früh → auf\n\nIch stehe früh auf."
+},
+"kind": "practice",
+"exampleIds": [
+"de:13:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:13:01",
+"target": "Ich stehe früh auf.",
+"ru": "Я рано встаю.",
+"uk": "Я рано встаю."
+},
+{
+"id": "de:13:01",
+"target": "Ich stehe früh auf.",
+"ru": "Я рано встаю.",
+"uk": "Я рано встаю."
+},
+{
+"id": "de:13:02",
+"target": "Du stehst um sieben auf.",
+"ru": "Ты встаёшь в семь.",
+"uk": "Ти встаєш у сім."
+},
+{
+"id": "de:13:01",
+"target": "Ich stehe früh auf.",
+"ru": "Я рано встаю.",
+"uk": "Я рано встаю."
+}
+]
+},
+{
+"lesson": 14,
+"blocks": [
+{
+"textEN": "You’re offered a place to wait by the door. “I can wait” contains two jobs: «kann» says it’s possible; «warten» names the action. Only the first changes with the person: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nI can wait here.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"textES": "Te ofrecen esperar junto a la puerta. «Puedo esperar» tiene dos piezas: «kann» expresa posibilidad; «warten» nombra la acción. Solo la primera cambia con la persona: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nPuedo esperar aquí.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"textId": "Kamu ditawari tempat menunggu dekat pintu. Dalam “aku bisa menunggu”, «kann» menunjukkan kemungkinan, sedangkan «warten» menyebut kegiatan. Hanya yang pertama berubah menurut pelaku: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nSaya bisa menunggu di sini.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"textPl": "Możesz zaczekać przy drzwiach. W zdaniu „mogę poczekać” słowo «kann» mówi o możliwości, «warten» nazywa czynność. Tylko pierwsze zmienia się z osobą: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nMogę tu poczekać.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"textPtBr": "Oferecem um lugar para esperar perto da porta. Em “posso esperar”, «kann» mostra a possibilidade e «warten» nomeia a ação. Só a primeira parte muda com a pessoa: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nPosso esperar aqui.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"textRU": "Тебе предлагают подождать у двери. Чтобы сказать не «жду», а «могу подождать», нужны два слова действия. «kann» показывает возможность, «warten» называет само действие. Только первое меняется вместе с человеком: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nЯ могу подождать здесь.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"textTr": "Kapının yanında bekleyebilirsin. “Bekleyebilirim” derken «kann» imkânı, «warten» asıl eylemi anlatır. Kişiye göre yalnız ilki değişir: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nBurada bekleyebilirim.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"textUK": "Тобі пропонують зачекати біля дверей. Щоб сказати не «чекаю», а «можу зачекати», потрібні два дієслова. «kann» передає можливість, «warten» — саму дію. Лише перше змінюється разом з особою: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nЯ можу зачекати тут.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"textVi": "Có chỗ chờ cạnh cửa. Để nói “tôi có thể đợi”, «kann» diễn tả khả năng, «warten» gọi tên hành động chờ. Chỉ từ đầu thay đổi theo người: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nTôi có thể đợi ở đây.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’re offered a place to wait by the door. “I can wait” contains two jobs: «kann» says it’s possible; «warten» names the action. Only the first changes with the person: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nI can wait here.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"es": "Te ofrecen esperar junto a la puerta. «Puedo esperar» tiene dos piezas: «kann» expresa posibilidad; «warten» nombra la acción. Solo la primera cambia con la persona: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nPuedo esperar aquí.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"id": "Kamu ditawari tempat menunggu dekat pintu. Dalam “aku bisa menunggu”, «kann» menunjukkan kemungkinan, sedangkan «warten» menyebut kegiatan. Hanya yang pertama berubah menurut pelaku: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nSaya bisa menunggu di sini.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"pl": "Możesz zaczekać przy drzwiach. W zdaniu „mogę poczekać” słowo «kann» mówi o możliwości, «warten» nazywa czynność. Tylko pierwsze zmienia się z osobą: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nMogę tu poczekać.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"pt-BR": "Oferecem um lugar para esperar perto da porta. Em “posso esperar”, «kann» mostra a possibilidade e «warten» nomeia a ação. Só a primeira parte muda com a pessoa: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nPosso esperar aqui.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"ru": "Тебе предлагают подождать у двери. Чтобы сказать не «жду», а «могу подождать», нужны два слова действия. «kann» показывает возможность, «warten» называет само действие. Только первое меняется вместе с человеком: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nЯ могу подождать здесь.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"tr": "Kapının yanında bekleyebilirsin. “Bekleyebilirim” derken «kann» imkânı, «warten» asıl eylemi anlatır. Kişiye göre yalnız ilki değişir: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nBurada bekleyebilirim.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"uk": "Тобі пропонують зачекати біля дверей. Щоб сказати не «чекаю», а «можу зачекати», потрібні два дієслова. «kann» передає можливість, «warten» — саму дію. Лише перше змінюється разом з особою: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nЯ можу зачекати тут.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"vi": "Có chỗ chờ cạnh cửa. Để nói “tôi có thể đợi”, «kann» diễn tả khả năng, «warten» gọi tên hành động chờ. Chỉ từ đầu thay đổi theo người: «ich kann», «du kannst».\n\nIch kann hier warten.\n\nTôi có thể đợi ở đây.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này."
+},
+"kind": "concept",
+"exampleIds": [
+"de:14:01"
+]
+},
+{
+"textEN": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nI can wait here.\n\nDu kannst hier warten.\n\nYou can wait here.\n\nChange “I” to informal “you”: «kann» becomes «kannst». Final «warten» stays as it is. Don’t conjugate both verbs.",
+"textES": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nPuedo esperar aquí.\n\nDu kannst hier warten.\n\nPuedes esperar aquí.\n\nCambia «yo» por «tú»: «kann» pasa a «kannst». «warten» no cambia al final. No conjugues los dos verbos.",
+"textId": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nSaya bisa menunggu di sini.\n\nDu kannst hier warten.\n\nAnda bisa menunggu di sini.\n\nGanti “aku” dengan “kamu”: «kann» menjadi «kannst». «warten» di akhir tetap. Jangan ubah kedua kata kerja sekaligus.",
+"textPl": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nMogę tu poczekać.\n\nDu kannst hier warten.\n\nMożesz tu poczekać.\n\nZmień „ja” na „ty”: «kann» stanie się «kannst». Końcowe «warten» nie zmienia się. Nie odmieniaj obu czasowników.",
+"textPtBr": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nPosso esperar aqui.\n\nDu kannst hier warten.\n\nVocê pode esperar aqui.\n\nTroque a pessoa: «kann» vira «kannst». O último «warten» não muda. Não conjugue os dois verbos.",
+"textRU": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nЯ могу подождать здесь.\n\nDu kannst hier warten.\n\nТы можешь подождать здесь.\n\nЗамени «я» на «ты»: «kann» становится «kannst». Последнее слово «warten» не меняется. Не подгоняй оба глагола под человека.",
+"textTr": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nBurada bekleyebilirim.\n\nDu kannst hier warten.\n\nBurada bekleyebilirsiniz.\n\n“Ben” yerine “sen” gelince «kann», «kannst» olur. Sondaki «warten» değişmez. Her iki fiili birden çekimleme.",
+"textUK": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nЯ можу зачекати тут.\n\nDu kannst hier warten.\n\nТи можеш зачекати тут.\n\nЗаміни «я» на «ти»: «kann» стає «kannst». Кінцеве «warten» не змінюється. Не узгоджуй обидва дієслова з особою.",
+"textVi": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nTôi có thể đợi ở đây.\n\nDu kannst hier warten.\n\nBạn có thể đợi ở đây.\n\nĐổi “tôi” sang “bạn”: «kann» thành «kannst». «warten» cuối câu không đổi. Đừng chia cả hai động từ.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nI can wait here.\n\nDu kannst hier warten.\n\nYou can wait here.\n\nChange “I” to informal “you”: «kann» becomes «kannst». Final «warten» stays as it is. Don’t conjugate both verbs.",
+"es": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nPuedo esperar aquí.\n\nDu kannst hier warten.\n\nPuedes esperar aquí.\n\nCambia «yo» por «tú»: «kann» pasa a «kannst». «warten» no cambia al final. No conjugues los dos verbos.",
+"id": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nSaya bisa menunggu di sini.\n\nDu kannst hier warten.\n\nAnda bisa menunggu di sini.\n\nGanti “aku” dengan “kamu”: «kann» menjadi «kannst». «warten» di akhir tetap. Jangan ubah kedua kata kerja sekaligus.",
+"pl": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nMogę tu poczekać.\n\nDu kannst hier warten.\n\nMożesz tu poczekać.\n\nZmień „ja” na „ty”: «kann» stanie się «kannst». Końcowe «warten» nie zmienia się. Nie odmieniaj obu czasowników.",
+"pt-BR": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nPosso esperar aqui.\n\nDu kannst hier warten.\n\nVocê pode esperar aqui.\n\nTroque a pessoa: «kann» vira «kannst». O último «warten» não muda. Não conjugue os dois verbos.",
+"ru": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nЯ могу подождать здесь.\n\nDu kannst hier warten.\n\nТы можешь подождать здесь.\n\nЗамени «я» на «ты»: «kann» становится «kannst». Последнее слово «warten» не меняется. Не подгоняй оба глагола под человека.",
+"tr": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nBurada bekleyebilirim.\n\nDu kannst hier warten.\n\nBurada bekleyebilirsiniz.\n\n“Ben” yerine “sen” gelince «kann», «kannst» olur. Sondaki «warten» değişmez. Her iki fiili birden çekimleme.",
+"uk": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nЯ можу зачекати тут.\n\nDu kannst hier warten.\n\nТи можеш зачекати тут.\n\nЗаміни «я» на «ти»: «kann» стає «kannst». Кінцеве «warten» не змінюється. Не узгоджуй обидва дієслова з особою.",
+"vi": "«Ich muss» + … + «gehen»\n\nIch kann hier warten.\n\nTôi có thể đợi ở đây.\n\nDu kannst hier warten.\n\nBạn có thể đợi ở đây.\n\nĐổi “tôi” sang “bạn”: «kann» thành «kannst». «warten» cuối câu không đổi. Đừng chia cả hai động từ."
+},
+"kind": "formula",
+"exampleIds": [
+"de:14:01",
+"de:14:02"
+]
+},
+{
+"textEN": "I can wait here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «kann» — Can: expresses the possibility; the action will come at the end.\n\n3. «hier» — Here: the answer to “where?”.\n\n4. «warten» — Wait. Use the dictionary form; kann already matches the person.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textES": "Puedo esperar aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «kann» — Puedo: expresa la posibilidad; la acción irá al final.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\n4. «warten» — Esperar. Forma de diccionario: kann ya marca la persona.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textId": "Saya bisa menunggu di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «kann» — Bisa: menyatakan kemungkinan; tindakannya muncul di akhir.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\n4. «warten» — Menunggu. Bentuk kamus; kann sudah menunjukkan orangnya.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textPl": "Mogę tu poczekać.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «kann» — Mogę: tu wyrażasz możliwość, czynność pojawi się na końcu.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\n4. «warten» — Czekać. Bezokolicznik, bo osobę wskazuje już kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textPtBr": "Posso esperar aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «kann» — Posso: indica possibilidade; a ação virá no fim.\n\n3. «hier» — Aqui: responde a “onde?”.\n\n4. «warten» — Esperar. Forma de dicionário; kann já indica a pessoa.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textRU": "Я могу подождать здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «kann» — Могу. Возможность выражена здесь; само действие будет в конце.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\n4. «warten» — Ждать. Словарная форма: лицо уже показано словом kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textTr": "Burada bekleyebilirim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «kann» — Yapabilirim: imkânı bildirir, eylem sona gelir.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\n4. «warten» — Beklemek. Kişiyi kann gösterdiği için sözlük biçimi kalır.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textUK": "Я можу зачекати тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «kann» — Можу. Тут можливість; саму дію назве кінець фрази.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\n4. «warten» — Чекати. Словникова форма: особу вже показує kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"textVi": "Tôi có thể đợi ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «kann» — Có thể: diễn tả khả năng; hành động nằm cuối câu.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\n4. «warten» — Chờ. Dùng dạng từ điển vì kann đã chia theo người.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I can wait here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «kann» — Can: expresses the possibility; the action will come at the end.\n\n3. «hier» — Here: the answer to “where?”.\n\n4. «warten» — Wait. Use the dictionary form; kann already matches the person.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"es": "Puedo esperar aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «kann» — Puedo: expresa la posibilidad; la acción irá al final.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\n4. «warten» — Esperar. Forma de diccionario: kann ya marca la persona.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"id": "Saya bisa menunggu di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «kann» — Bisa: menyatakan kemungkinan; tindakannya muncul di akhir.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\n4. «warten» — Menunggu. Bentuk kamus; kann sudah menunjukkan orangnya.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"pl": "Mogę tu poczekać.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «kann» — Mogę: tu wyrażasz możliwość, czynność pojawi się na końcu.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\n4. «warten» — Czekać. Bezokolicznik, bo osobę wskazuje już kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"pt-BR": "Posso esperar aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «kann» — Posso: indica possibilidade; a ação virá no fim.\n\n3. «hier» — Aqui: responde a “onde?”.\n\n4. «warten» — Esperar. Forma de dicionário; kann já indica a pessoa.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"ru": "Я могу подождать здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «kann» — Могу. Возможность выражена здесь; само действие будет в конце.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\n4. «warten» — Ждать. Словарная форма: лицо уже показано словом kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"tr": "Burada bekleyebilirim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «kann» — Yapabilirim: imkânı bildirir, eylem sona gelir.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\n4. «warten» — Beklemek. Kişiyi kann gösterdiği için sözlük biçimi kalır.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"uk": "Я можу зачекати тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «kann» — Можу. Тут можливість; саму дію назве кінець фрази.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\n4. «warten» — Чекати. Словникова форма: особу вже показує kann.\n\nIch → kann → hier → warten\n\nIch kann hier warten.",
+"vi": "Tôi có thể đợi ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «kann» — Có thể: diễn tả khả năng; hành động nằm cuối câu.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\n4. «warten» — Chờ. Dùng dạng từ điển vì kann đã chia theo người.\n\nIch → kann → hier → warten\n\nIch kann hier warten."
+},
+"kind": "practice",
+"exampleIds": [
+"de:14:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:14:01",
+"target": "Ich kann hier warten.",
+"ru": "Я могу подождать здесь.",
+"uk": "Я можу зачекати тут."
+},
+{
+"id": "de:14:01",
+"target": "Ich kann hier warten.",
+"ru": "Я могу подождать здесь.",
+"uk": "Я можу зачекати тут."
+},
+{
+"id": "de:14:02",
+"target": "Du kannst hier warten.",
+"ru": "Ты можешь подождать здесь.",
+"uk": "Ти можеш зачекати тут."
+},
+{
+"id": "de:14:01",
+"target": "Ich kann hier warten.",
+"ru": "Я могу подождать здесь.",
+"uk": "Я можу зачекати тут."
+}
+]
+},
+{
+"lesson": 15,
+"blocks": [
+{
+"textEN": "A friend is on your doorstep. You’re inviting them in, not describing them. «Komm» tells one familiar person to come, «rein» means “in”, and «bitte» softens the invitation. You don’t normally add «du» here.\n\nKomm bitte rein!\n\nPlease come in!\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"textES": "Un amigo está en la puerta. No describes lo que hace: lo invitas a entrar. «Komm» llama a una persona de confianza, «rein» indica «adentro» y «bitte» suaviza la invitación. Aquí no hace falta añadir «du».\n\nKomm bitte rein!\n\n¡Pase, por favor!\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"textId": "Temanmu berdiri di pintu. Kamu mengajaknya masuk, bukan menceritakan tindakannya. «Komm» mengajak satu orang yang akrab, «rein» berarti “ke dalam”, dan «bitte» memperhalus ajakan. Biasanya tidak perlu menambah «du».\n\nKomm bitte rein!\n\nSilakan masuk!\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"textPl": "Kolega stoi w progu. Nie opisujesz jego zachowania, tylko zapraszasz do środka. «Komm» znaczy „chodź” do jednej znajomej osoby, «rein» wskazuje kierunek, a «bitte» łagodzi prośbę. Nie trzeba dodawać «du».\n\nKomm bitte rein!\n\nProszę wejść!\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"textPtBr": "Um amigo está à porta. Você o convida a entrar, não descreve o que ele faz. «Komm» chama uma pessoa próxima, «rein» indica “para dentro” e «bitte» suaviza o convite. Não é preciso acrescentar «du».\n\nKomm bitte rein!\n\nPor favor, entre!\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"textRU": "Друг у тебя на пороге. Ты не рассказываешь, что он делает, а зовёшь его внутрь. «Komm» — «заходи/иди» при обращении к одному знакомому; «rein» задаёт направление «внутрь». «bitte» смягчает просьбу. Отдельное «du» в обычном приглашении не нужно.\n\nKomm bitte rein!\n\nЗаходи, пожалуйста!\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"textTr": "Arkadaşın kapıda. Ne yaptığını anlatmıyor, içeri çağırıyorsun. «Komm» bir yakınına “gel” der, «rein» yönü, «bitte» ricayı belirtir. Bu davette ayrıca «du» demen gerekmez.\n\nKomm bitte rein!\n\nLütfen içeri gelin!\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"textUK": "Друг стоїть на порозі. Ти не описуєш його дію, а запрошуєш усередину. «Komm» — «іди» до одного знайомого, «rein» показує напрямок усередину. «bitte» пом’якшує прохання. Окреме «du» тут не потрібне.\n\nKomm bitte rein!\n\nЗаходь, будь ласка!\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"textVi": "Một người bạn đang đứng ở cửa. Bạn mời người đó vào chứ không kể họ đang làm gì. «Komm» gọi một người quen đến, «rein» chỉ hướng vào trong, «bitte» làm lời mời nhẹ nhàng hơn. Không cần thêm «du» ở đây.\n\nKomm bitte rein!\n\nMời vào!\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "A friend is on your doorstep. You’re inviting them in, not describing them. «Komm» tells one familiar person to come, «rein» means “in”, and «bitte» softens the invitation. You don’t normally add «du» here.\n\nKomm bitte rein!\n\nPlease come in!\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"es": "Un amigo está en la puerta. No describes lo que hace: lo invitas a entrar. «Komm» llama a una persona de confianza, «rein» indica «adentro» y «bitte» suaviza la invitación. Aquí no hace falta añadir «du».\n\nKomm bitte rein!\n\n¡Pase, por favor!\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"id": "Temanmu berdiri di pintu. Kamu mengajaknya masuk, bukan menceritakan tindakannya. «Komm» mengajak satu orang yang akrab, «rein» berarti “ke dalam”, dan «bitte» memperhalus ajakan. Biasanya tidak perlu menambah «du».\n\nKomm bitte rein!\n\nSilakan masuk!\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"pl": "Kolega stoi w progu. Nie opisujesz jego zachowania, tylko zapraszasz do środka. «Komm» znaczy „chodź” do jednej znajomej osoby, «rein» wskazuje kierunek, a «bitte» łagodzi prośbę. Nie trzeba dodawać «du».\n\nKomm bitte rein!\n\nProszę wejść!\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"pt-BR": "Um amigo está à porta. Você o convida a entrar, não descreve o que ele faz. «Komm» chama uma pessoa próxima, «rein» indica “para dentro” e «bitte» suaviza o convite. Não é preciso acrescentar «du».\n\nKomm bitte rein!\n\nPor favor, entre!\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"ru": "Друг у тебя на пороге. Ты не рассказываешь, что он делает, а зовёшь его внутрь. «Komm» — «заходи/иди» при обращении к одному знакомому; «rein» задаёт направление «внутрь». «bitte» смягчает просьбу. Отдельное «du» в обычном приглашении не нужно.\n\nKomm bitte rein!\n\nЗаходи, пожалуйста!\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"tr": "Arkadaşın kapıda. Ne yaptığını anlatmıyor, içeri çağırıyorsun. «Komm» bir yakınına “gel” der, «rein» yönü, «bitte» ricayı belirtir. Bu davette ayrıca «du» demen gerekmez.\n\nKomm bitte rein!\n\nLütfen içeri gelin!\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"uk": "Друг стоїть на порозі. Ти не описуєш його дію, а запрошуєш усередину. «Komm» — «іди» до одного знайомого, «rein» показує напрямок усередину. «bitte» пом’якшує прохання. Окреме «du» тут не потрібне.\n\nKomm bitte rein!\n\nЗаходь, будь ласка!\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"vi": "Một người bạn đang đứng ở cửa. Bạn mời người đó vào chứ không kể họ đang làm gì. «Komm» gọi một người quen đến, «rein» chỉ hướng vào trong, «bitte» làm lời mời nhẹ nhàng hơn. Không cần thêm «du» ở đây.\n\nKomm bitte rein!\n\nMời vào!\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng."
+},
+"kind": "concept",
+"exampleIds": [
+"de:15:01"
+]
+},
+{
+"textEN": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nPlease come in!\n\nKomm bitte mit!\n\nPlease come with me!\n\n«Komm … rein» invites someone in; «Komm … mit» asks them to come along. The last tile changes the invitation. «Kommt» instead of «Komm» would address several friends.",
+"textES": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\n¡Pase, por favor!\n\nKomm bitte mit!\n\n¡Sígame!\n\n«Komm … rein» invita a entrar; «Komm … mit», a ir en compañía. La última ficha cambia la invitación. «Kommt» se dirigiría a varios amigos.",
+"textId": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nSilakan masuk!\n\nKomm bitte mit!\n\nSilakan ikut saya!\n\n«Komm … rein» mengajak masuk; «Komm … mit» mengajak ikut. Kata terakhir mengubah ajakan. «Kommt» ditujukan kepada beberapa teman.",
+"textPl": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nProszę wejść!\n\nKomm bitte mit!\n\nProszę iść ze mną!\n\n«Komm … rein» zaprasza do środka, «Komm … mit» — do wspólnego wyjścia. Ostatni kafelek zmienia prośbę. «Kommt» byłoby do kilku znajomych.",
+"textPtBr": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nPor favor, entre!\n\nKomm bitte mit!\n\nPor favor, venha comigo!\n\n«Komm … rein» chama para entrar; «Komm … mit», para ir junto. A última peça muda o convite. «Kommt» seria dirigido a vários amigos.",
+"textRU": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nЗаходи, пожалуйста!\n\nKomm bitte mit!\n\nПойдём со мной, пожалуйста!\n\n«Komm … rein» приглашает войти; «Komm … mit» — пойти вместе. Последняя плитка меняет просьбу. А «Kommt» вместо «Komm» адресовало бы просьбу нескольким друзьям.",
+"textTr": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nLütfen içeri gelin!\n\nKomm bitte mit!\n\nLütfen benimle gelin!\n\n«Komm … rein» içeri çağırır; «Komm … mit» birlikte gelmeye çağırır. Son kelime daveti değiştirir. «Kommt» ise birkaç arkadaşa yöneliktir.",
+"textUK": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nЗаходь, будь ласка!\n\nKomm bitte mit!\n\nХодімо зі мною, будь ласка!\n\n«Komm … rein» запрошує зайти, «Komm … mit» — піти разом. Остання плитка змінює прохання. А «Kommt» замість «Komm» зверталося б до кількох друзів.",
+"textVi": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nMời vào!\n\nKomm bitte mit!\n\nMời đi cùng tôi!\n\n«Komm … rein» mời vào; «Komm … mit» rủ đi cùng. Ô cuối đổi lời mời. «Kommt» sẽ là lời gọi nhiều bạn.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nPlease come in!\n\nKomm bitte mit!\n\nPlease come with me!\n\n«Komm … rein» invites someone in; «Komm … mit» asks them to come along. The last tile changes the invitation. «Kommt» instead of «Komm» would address several friends.",
+"es": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\n¡Pase, por favor!\n\nKomm bitte mit!\n\n¡Sígame!\n\n«Komm … rein» invita a entrar; «Komm … mit», a ir en compañía. La última ficha cambia la invitación. «Kommt» se dirigiría a varios amigos.",
+"id": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nSilakan masuk!\n\nKomm bitte mit!\n\nSilakan ikut saya!\n\n«Komm … rein» mengajak masuk; «Komm … mit» mengajak ikut. Kata terakhir mengubah ajakan. «Kommt» ditujukan kepada beberapa teman.",
+"pl": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nProszę wejść!\n\nKomm bitte mit!\n\nProszę iść ze mną!\n\n«Komm … rein» zaprasza do środka, «Komm … mit» — do wspólnego wyjścia. Ostatni kafelek zmienia prośbę. «Kommt» byłoby do kilku znajomych.",
+"pt-BR": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nPor favor, entre!\n\nKomm bitte mit!\n\nPor favor, venha comigo!\n\n«Komm … rein» chama para entrar; «Komm … mit», para ir junto. A última peça muda o convite. «Kommt» seria dirigido a vários amigos.",
+"ru": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nЗаходи, пожалуйста!\n\nKomm bitte mit!\n\nПойдём со мной, пожалуйста!\n\n«Komm … rein» приглашает войти; «Komm … mit» — пойти вместе. Последняя плитка меняет просьбу. А «Kommt» вместо «Komm» адресовало бы просьбу нескольким друзьям.",
+"tr": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nLütfen içeri gelin!\n\nKomm bitte mit!\n\nLütfen benimle gelin!\n\n«Komm … rein» içeri çağırır; «Komm … mit» birlikte gelmeye çağırır. Son kelime daveti değiştirir. «Kommt» ise birkaç arkadaşa yöneliktir.",
+"uk": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nЗаходь, будь ласка!\n\nKomm bitte mit!\n\nХодімо зі мною, будь ласка!\n\n«Komm … rein» запрошує зайти, «Komm … mit» — піти разом. Остання плитка змінює прохання. А «Kommt» замість «Komm» зверталося б до кількох друзів.",
+"vi": "«Warte!» / «Wartet!» / «Warten Sie!»\n\nKomm bitte rein!\n\nMời vào!\n\nKomm bitte mit!\n\nMời đi cùng tôi!\n\n«Komm … rein» mời vào; «Komm … mit» rủ đi cùng. Ô cuối đổi lời mời. «Kommt» sẽ là lời gọi nhiều bạn."
+},
+"kind": "formula",
+"exampleIds": [
+"de:15:01",
+"de:15:02"
+]
+},
+{
+"textEN": "Please come in!\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Komm» — Come: an invitation to one familiar person.\n\n2. «bitte» — Please: makes the invitation polite.\n\n3. «rein» — In: Komm … rein together means “come in”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textES": "¡Pase, por favor!\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Komm» — Ven: invitas a una persona de confianza.\n\n2. «bitte» — Por favor: suaviza la invitación.\n\n3. «rein» — Adentro: Komm … rein es «entra».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textId": "Silakan masuk!\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Komm» — Mari: ajakan kepada satu orang yang akrab.\n\n2. «bitte» — Tolong/silakan: memperhalus ajakan.\n\n3. «rein» — Ke dalam: Komm … rein berarti “masuklah”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textPl": "Proszę wejść!\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Komm» — Chodź: zaproszenie jednej znajomej osoby.\n\n2. «bitte» — Proszę: łagodzi zaproszenie.\n\n3. «rein» — Do środka: Komm … rein znaczy „wejdź”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textPtBr": "Por favor, entre!\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Komm» — Venha: convite para uma pessoa próxima.\n\n2. «bitte» — Por favor: suaviza o convite.\n\n3. «rein» — Para dentro: Komm … rein é “entre”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textRU": "Заходи, пожалуйста!\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Komm» — Иди, подойди: просьба к одному знакомому.\n\n2. «bitte» — Пожалуйста. Это вежливость, не имя человека.\n\n3. «rein» — Внутрь. Вместе Komm … rein означает «заходи».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textTr": "Lütfen içeri gelin!\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Komm» — Gel: bir yakınına çağrı.\n\n2. «bitte» — Lütfen: daveti yumuşatır.\n\n3. «rein» — İçeri: Komm … rein birlikte “içeri gel” der.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textUK": "Заходь, будь ласка!\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Komm» — Іди, підійди: прохання до однієї знайомої людини.\n\n2. «bitte» — Будь ласка. Це ввічливість, не ім’я людини.\n\n3. «rein» — Усередину. Разом Komm … rein означає «заходь».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"textVi": "Mời vào!\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Komm» — Lại đây: lời mời một người quen.\n\n2. «bitte» — Xin mời: làm lời nói nhẹ nhàng hơn.\n\n3. «rein» — Vào trong: Komm … rein nghĩa là “vào đi”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "Please come in!\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Komm» — Come: an invitation to one familiar person.\n\n2. «bitte» — Please: makes the invitation polite.\n\n3. «rein» — In: Komm … rein together means “come in”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"es": "¡Pase, por favor!\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Komm» — Ven: invitas a una persona de confianza.\n\n2. «bitte» — Por favor: suaviza la invitación.\n\n3. «rein» — Adentro: Komm … rein es «entra».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"id": "Silakan masuk!\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Komm» — Mari: ajakan kepada satu orang yang akrab.\n\n2. «bitte» — Tolong/silakan: memperhalus ajakan.\n\n3. «rein» — Ke dalam: Komm … rein berarti “masuklah”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"pl": "Proszę wejść!\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Komm» — Chodź: zaproszenie jednej znajomej osoby.\n\n2. «bitte» — Proszę: łagodzi zaproszenie.\n\n3. «rein» — Do środka: Komm … rein znaczy „wejdź”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"pt-BR": "Por favor, entre!\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Komm» — Venha: convite para uma pessoa próxima.\n\n2. «bitte» — Por favor: suaviza o convite.\n\n3. «rein» — Para dentro: Komm … rein é “entre”.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"ru": "Заходи, пожалуйста!\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Komm» — Иди, подойди: просьба к одному знакомому.\n\n2. «bitte» — Пожалуйста. Это вежливость, не имя человека.\n\n3. «rein» — Внутрь. Вместе Komm … rein означает «заходи».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"tr": "Lütfen içeri gelin!\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Komm» — Gel: bir yakınına çağrı.\n\n2. «bitte» — Lütfen: daveti yumuşatır.\n\n3. «rein» — İçeri: Komm … rein birlikte “içeri gel” der.\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"uk": "Заходь, будь ласка!\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Komm» — Іди, підійди: прохання до однієї знайомої людини.\n\n2. «bitte» — Будь ласка. Це ввічливість, не ім’я людини.\n\n3. «rein» — Усередину. Разом Komm … rein означає «заходь».\n\nKomm → bitte → rein\n\nKomm bitte rein!",
+"vi": "Mời vào!\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Komm» — Lại đây: lời mời một người quen.\n\n2. «bitte» — Xin mời: làm lời nói nhẹ nhàng hơn.\n\n3. «rein» — Vào trong: Komm … rein nghĩa là “vào đi”.\n\nKomm → bitte → rein\n\nKomm bitte rein!"
+},
+"kind": "practice",
+"exampleIds": [
+"de:15:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:15:01",
+"target": "Komm bitte rein!",
+"ru": "Заходи, пожалуйста!",
+"uk": "Заходь, будь ласка!"
+},
+{
+"id": "de:15:01",
+"target": "Komm bitte rein!",
+"ru": "Заходи, пожалуйста!",
+"uk": "Заходь, будь ласка!"
+},
+{
+"id": "de:15:02",
+"target": "Komm bitte mit!",
+"ru": "Пойдём со мной, пожалуйста!",
+"uk": "Ходімо зі мною, будь ласка!"
+},
+{
+"id": "de:15:01",
+"target": "Komm bitte rein!",
+"ru": "Заходи, пожалуйста!",
+"uk": "Заходь, будь ласка!"
+}
+]
+},
+{
+"lesson": 16,
+"blocks": [
+{
+"textEN": "The cooking is done. «Ich koche» is “I cook / I’m cooking”; «ich habe gekocht» reports that you cooked. «habe» and «gekocht» work together here; «habe» doesn’t mean you own something. «heute» tells us when.\n\nIch habe heute gekocht.\n\nI cooked today.\n\nA participle here is the form naming the event alongside a helper. For instance «kochen» is “to cook”; «gekocht» is the form in «ich habe gekocht». The helper carries tense and person; this part doesn’t change to match the person.",
+"textES": "Ya has terminado de cocinar. «Ich koche» es «cocino»; «ich habe gekocht» cuenta que cocinaste. «habe» y «gekocht» van juntos: aquí «habe» no indica posesión. «heute» aclara cuándo.\n\nIch habe heute gekocht.\n\nHoy cociné.\n\nAquí el participio nombra la acción junto a un auxiliar. «kochen» es «cocinar»; «gekocht» es la forma de «ich habe gekocht». El auxiliar marca tiempo y persona; el participio de esta construcción no cambia con la persona.",
+"textId": "Kamu selesai memasak. «Ich koche» berarti “aku memasak” sekarang atau sebagai kebiasaan; «ich habe gekocht» menceritakan bahwa kamu sudah memasak. Di sini «habe» membantu «gekocht», bukan berarti memiliki barang. «heute» menunjukkan waktunya.\n\nIch habe heute gekocht.\n\nSaya memasak hari ini.\n\nPartisip di sini adalah bentuk yang menyebut peristiwa bersama kata kerja bantu. «kochen» berarti memasak; «gekocht» dipakai dalam «ich habe gekocht». Kata bantu menandai waktu dan orang; partisip tidak ikut berubah menurut pelaku.",
+"textPl": "Gotowanie już się skończyło. «Ich koche» to „gotuję”, a «ich habe gekocht» mówi, że gotowałeś lub gotowałaś. «habe» i «gekocht» działają razem; tutaj «habe» nie oznacza posiadania. «heute» mówi kiedy.\n\nIch habe heute gekocht.\n\nGotowałem dzisiaj.\n\nImiesłów nazywa tu czynność razem z czasownikiem pomocniczym. «kochen» to „gotować”, a «gekocht» występuje w «ich habe gekocht». Osobę i czas wskazuje pomocnik; imiesłów w tej konstrukcji nie odmienia się przez osoby.",
+"textPtBr": "Você já terminou de cozinhar. «Ich koche» é “eu cozinho”; «ich habe gekocht» conta que você cozinhou. «habe» e «gekocht» funcionam juntos: aqui «habe» não indica posse. «heute» diz quando.\n\nIch habe heute gekocht.\n\nEu cozinhei hoje.\n\nAqui o particípio nomeia a ação com a ajuda de outro verbo. «kochen» é “cozinhar”; «gekocht» é a forma em «ich habe gekocht». O auxiliar indica tempo e pessoa; o particípio nessa construção não muda com a pessoa.",
+"textRU": "Готовка уже позади. «Ich koche» — «я готовлю», а «ich habe gekocht» — «я готовил». Слова «habe» и «gekocht» работают вместе: здесь «habe» не означает, что у тебя есть какая-то вещь. «heute» уточняет, когда ты готовил.\n\nIch habe heute gekocht.\n\nЯ сегодня готовил.\n\nПричастие здесь — форма, которая в паре с помощником называет само событие. Например, «kochen» — готовить, «gekocht» — форма для «ich habe gekocht». Помощник несёт время и меняется, эта часть в такой паре не меняется по лицам.",
+"textTr": "Yemek yapma işi bitti. «Ich koche» “yemek yapıyorum”, «ich habe gekocht» “yemek yaptım” der. «habe» ile «gekocht» birlikte çalışır; burada «habe» sahiplik bildirmez. «heute» ne zaman olduğunu söyler.\n\nIch habe heute gekocht.\n\nBugün yemek pişirdim.\n\nBurada ortaç, yardımcı fiille birlikte asıl eylemi adlandıran biçimdir. «kochen» yemek yapmak, «gekocht» ise «ich habe gekocht» içindeki biçimdir. Zaman ve kişiyi yardımcı fiil gösterir; ortaç kişiye göre değişmez.",
+"textUK": "Ти вже закінчив готувати. «Ich koche» — «я готую», а «ich habe gekocht» — «я готував». «habe» і «gekocht» працюють разом: тут «habe» не означає, що ти чимось володієш. «heute» уточнює, коли ти готував.\n\nIch habe heute gekocht.\n\nЯ сьогодні готував.\n\nДієприкметник тут — форма, що разом із допоміжним дієсловом називає саму подію. Наприклад, «kochen» — готувати, «gekocht» — форма в «ich habe gekocht». Час і особу показує допоміжне слово.",
+"textVi": "Bạn đã nấu ăn xong. «Ich koche» là “tôi nấu ăn”; «ich habe gekocht» kể rằng bạn đã nấu. «habe» đi cùng «gekocht», không mang nghĩa sở hữu ở đây. «heute» cho biết hành động xảy ra khi nào.\n\nIch habe heute gekocht.\n\nHôm nay tôi nấu ăn.\n\nPhân từ ở đây là dạng nêu sự việc khi đi với trợ động từ. «kochen» là nấu; «gekocht» là dạng trong «ich habe gekocht». Trợ động từ cho biết thì và ngôi; phân từ trong cấu trúc này không đổi theo người.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "The cooking is done. «Ich koche» is “I cook / I’m cooking”; «ich habe gekocht» reports that you cooked. «habe» and «gekocht» work together here; «habe» doesn’t mean you own something. «heute» tells us when.\n\nIch habe heute gekocht.\n\nI cooked today.\n\nA participle here is the form naming the event alongside a helper. For instance «kochen» is “to cook”; «gekocht» is the form in «ich habe gekocht». The helper carries tense and person; this part doesn’t change to match the person.",
+"es": "Ya has terminado de cocinar. «Ich koche» es «cocino»; «ich habe gekocht» cuenta que cocinaste. «habe» y «gekocht» van juntos: aquí «habe» no indica posesión. «heute» aclara cuándo.\n\nIch habe heute gekocht.\n\nHoy cociné.\n\nAquí el participio nombra la acción junto a un auxiliar. «kochen» es «cocinar»; «gekocht» es la forma de «ich habe gekocht». El auxiliar marca tiempo y persona; el participio de esta construcción no cambia con la persona.",
+"id": "Kamu selesai memasak. «Ich koche» berarti “aku memasak” sekarang atau sebagai kebiasaan; «ich habe gekocht» menceritakan bahwa kamu sudah memasak. Di sini «habe» membantu «gekocht», bukan berarti memiliki barang. «heute» menunjukkan waktunya.\n\nIch habe heute gekocht.\n\nSaya memasak hari ini.\n\nPartisip di sini adalah bentuk yang menyebut peristiwa bersama kata kerja bantu. «kochen» berarti memasak; «gekocht» dipakai dalam «ich habe gekocht». Kata bantu menandai waktu dan orang; partisip tidak ikut berubah menurut pelaku.",
+"pl": "Gotowanie już się skończyło. «Ich koche» to „gotuję”, a «ich habe gekocht» mówi, że gotowałeś lub gotowałaś. «habe» i «gekocht» działają razem; tutaj «habe» nie oznacza posiadania. «heute» mówi kiedy.\n\nIch habe heute gekocht.\n\nGotowałem dzisiaj.\n\nImiesłów nazywa tu czynność razem z czasownikiem pomocniczym. «kochen» to „gotować”, a «gekocht» występuje w «ich habe gekocht». Osobę i czas wskazuje pomocnik; imiesłów w tej konstrukcji nie odmienia się przez osoby.",
+"pt-BR": "Você já terminou de cozinhar. «Ich koche» é “eu cozinho”; «ich habe gekocht» conta que você cozinhou. «habe» e «gekocht» funcionam juntos: aqui «habe» não indica posse. «heute» diz quando.\n\nIch habe heute gekocht.\n\nEu cozinhei hoje.\n\nAqui o particípio nomeia a ação com a ajuda de outro verbo. «kochen» é “cozinhar”; «gekocht» é a forma em «ich habe gekocht». O auxiliar indica tempo e pessoa; o particípio nessa construção não muda com a pessoa.",
+"ru": "Готовка уже позади. «Ich koche» — «я готовлю», а «ich habe gekocht» — «я готовил». Слова «habe» и «gekocht» работают вместе: здесь «habe» не означает, что у тебя есть какая-то вещь. «heute» уточняет, когда ты готовил.\n\nIch habe heute gekocht.\n\nЯ сегодня готовил.\n\nПричастие здесь — форма, которая в паре с помощником называет само событие. Например, «kochen» — готовить, «gekocht» — форма для «ich habe gekocht». Помощник несёт время и меняется, эта часть в такой паре не меняется по лицам.",
+"tr": "Yemek yapma işi bitti. «Ich koche» “yemek yapıyorum”, «ich habe gekocht» “yemek yaptım” der. «habe» ile «gekocht» birlikte çalışır; burada «habe» sahiplik bildirmez. «heute» ne zaman olduğunu söyler.\n\nIch habe heute gekocht.\n\nBugün yemek pişirdim.\n\nBurada ortaç, yardımcı fiille birlikte asıl eylemi adlandıran biçimdir. «kochen» yemek yapmak, «gekocht» ise «ich habe gekocht» içindeki biçimdir. Zaman ve kişiyi yardımcı fiil gösterir; ortaç kişiye göre değişmez.",
+"uk": "Ти вже закінчив готувати. «Ich koche» — «я готую», а «ich habe gekocht» — «я готував». «habe» і «gekocht» працюють разом: тут «habe» не означає, що ти чимось володієш. «heute» уточнює, коли ти готував.\n\nIch habe heute gekocht.\n\nЯ сьогодні готував.\n\nДієприкметник тут — форма, що разом із допоміжним дієсловом називає саму подію. Наприклад, «kochen» — готувати, «gekocht» — форма в «ich habe gekocht». Час і особу показує допоміжне слово.",
+"vi": "Bạn đã nấu ăn xong. «Ich koche» là “tôi nấu ăn”; «ich habe gekocht» kể rằng bạn đã nấu. «habe» đi cùng «gekocht», không mang nghĩa sở hữu ở đây. «heute» cho biết hành động xảy ra khi nào.\n\nIch habe heute gekocht.\n\nHôm nay tôi nấu ăn.\n\nPhân từ ở đây là dạng nêu sự việc khi đi với trợ động từ. «kochen» là nấu; «gekocht» là dạng trong «ich habe gekocht». Trợ động từ cho biết thì và ngôi; phân từ trong cấu trúc này không đổi theo người."
+},
+"kind": "concept",
+"exampleIds": [
+"de:16:01"
+]
+},
+{
+"textEN": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nI cooked today.\n\nDu hast gestern gekocht.\n\nYou cooked yesterday.\n\nThe speaker uses «habe»; for the listener it’s «hast». The day changes too, but the cooking word «gekocht» stays the same.",
+"textES": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nHoy cociné.\n\nDu hast gestern gekocht.\n\nAyer cocinaste.\n\nPara «yo» va «habe»; para «tú», «hast». También cambia el día, pero la acción sigue siendo «gekocht».",
+"textId": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nSaya memasak hari ini.\n\nDu hast gestern gekocht.\n\nKamu memasak kemarin.\n\nPembicara memakai «habe»; dengan du menjadi «hast». Harinya juga berubah, tetapi «gekocht» tetap.",
+"textPl": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nGotowałem dzisiaj.\n\nDu hast gestern gekocht.\n\nGotowałeś wczoraj.\n\nO sobie «habe», do rozmówcy «hast». Dzień też się zmienił, lecz «gekocht» zostaje takie samo.",
+"textPtBr": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nEu cozinhei hoje.\n\nDu hast gestern gekocht.\n\nVocê cozinhou ontem.\n\nPara quem fala vem «habe»; para du, «hast». O dia também muda, mas «gekocht» continua igual.",
+"textRU": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nЯ сегодня готовил.\n\nDu hast gestern gekocht.\n\nТы вчера готовил.\n\nВ первой фразе о себе — «habe», во второй о собеседнике — «hast». День тоже изменился, но для готовки в обоих случаях остаётся «gekocht».",
+"textTr": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nBugün yemek pişirdim.\n\nDu hast gestern gekocht.\n\nDün yemek pişirdin.\n\nKonuşan için «habe», karşıdaki için «hast». Gün de değişse yemek yapmayı anlatan «gekocht» kalır.",
+"textUK": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nЯ сьогодні готував.\n\nDu hast gestern gekocht.\n\nТи вчора готував.\n\nУ першій фразі про себе — «habe», у другій про співрозмовника — «hast». День інший, але для готування в обох лишається «gekocht».",
+"textVi": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nHôm nay tôi nấu ăn.\n\nDu hast gestern gekocht.\n\nHôm qua bạn nấu ăn.\n\nNgười nói dùng «habe»; với du dùng «hast». Ngày cũng thay đổi, còn «gekocht» vẫn vậy.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nI cooked today.\n\nDu hast gestern gekocht.\n\nYou cooked yesterday.\n\nThe speaker uses «habe»; for the listener it’s «hast». The day changes too, but the cooking word «gekocht» stays the same.",
+"es": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nHoy cociné.\n\nDu hast gestern gekocht.\n\nAyer cocinaste.\n\nPara «yo» va «habe»; para «tú», «hast». También cambia el día, pero la acción sigue siendo «gekocht».",
+"id": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nSaya memasak hari ini.\n\nDu hast gestern gekocht.\n\nKamu memasak kemarin.\n\nPembicara memakai «habe»; dengan du menjadi «hast». Harinya juga berubah, tetapi «gekocht» tetap.",
+"pl": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nGotowałem dzisiaj.\n\nDu hast gestern gekocht.\n\nGotowałeś wczoraj.\n\nO sobie «habe», do rozmówcy «hast». Dzień też się zmienił, lecz «gekocht» zostaje takie samo.",
+"pt-BR": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nEu cozinhei hoje.\n\nDu hast gestern gekocht.\n\nVocê cozinhou ontem.\n\nPara quem fala vem «habe»; para du, «hast». O dia também muda, mas «gekocht» continua igual.",
+"ru": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nЯ сегодня готовил.\n\nDu hast gestern gekocht.\n\nТы вчера готовил.\n\nВ первой фразе о себе — «habe», во второй о собеседнике — «hast». День тоже изменился, но для готовки в обоих случаях остаётся «gekocht».",
+"tr": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nBugün yemek pişirdim.\n\nDu hast gestern gekocht.\n\nDün yemek pişirdin.\n\nKonuşan için «habe», karşıdaki için «hast». Gün de değişse yemek yapmayı anlatan «gekocht» kalır.",
+"uk": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nЯ сьогодні готував.\n\nDu hast gestern gekocht.\n\nТи вчора готував.\n\nУ першій фразі про себе — «habe», у другій про співрозмовника — «hast». День інший, але для готування в обох лишається «gekocht».",
+"vi": "«Ich habe» + … + «gekauft»\n\nIch habe heute gekocht.\n\nHôm nay tôi nấu ăn.\n\nDu hast gestern gekocht.\n\nHôm qua bạn nấu ăn.\n\nNgười nói dùng «habe»; với du dùng «hast». Ngày cũng thay đổi, còn «gekocht» vẫn vậy."
+},
+"kind": "formula",
+"exampleIds": [
+"de:16:01",
+"de:16:02"
+]
+},
+{
+"textEN": "I cooked today.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «habe» — A helper for past time: paired with gekocht it reports that I cooked.\n\n3. «heute» — Today: the day it happened.\n\n4. «gekocht» — Cooked: paired with habe. Dictionary form: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textES": "Hoy cociné.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «habe» — Auxiliar del pasado: con gekocht indica que cociné.\n\n3. «heute» — Hoy: el día en que ocurrió.\n\n4. «gekocht» — Cocinado: va con habe. Forma de diccionario: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textId": "Saya memasak hari ini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «habe» — Pembantu untuk masa lalu: bersama gekocht menyatakan bahwa aku memasak.\n\n3. «heute» — Hari ini: kapan kegiatan itu terjadi.\n\n4. «gekocht» — Sudah memasak: dipasangkan dengan habe. Bentuk kamus: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textPl": "Gotowałem dzisiaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «habe» — Pomocnik czasu przeszłego: wraz z gekocht mówi „gotowałem”.\n\n3. «heute» — Dzisiaj: którego dnia to się stało.\n\n4. «gekocht» — Część znacząca „gotować” w parze z habe. W słowniku: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textPtBr": "Eu cozinhei hoje.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «habe» — Auxiliar do passado: com gekocht diz que cozinhei.\n\n3. «heute» — Hoje: o dia em que aconteceu.\n\n4. «gekocht» — Cozinhado: vai com habe. Forma de dicionário: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textRU": "Я сегодня готовил.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «habe» — Помощник для прошлого: вместе с gekocht сообщает, что я готовил.\n\n3. «heute» — Сегодня: в какой день это произошло.\n\n4. «gekocht» — Готовил: в паре с habe. Словарное слово — kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textTr": "Bugün yemek pişirdim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «habe» — Geçmişi kuran yardımcı: gekocht ile birlikte “yemek yaptım”.\n\n3. «heute» — Bugün: hangi gün olduğu.\n\n4. «gekocht» — Yemek yaptım anlamı habe ile tamamlanır. Sözlük biçimi: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textUK": "Я сьогодні готував.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «habe» — Допоміжне слово для минулого: разом із gekocht — «я готував».\n\n3. «heute» — Сьогодні: у який день це сталося.\n\n4. «gekocht» — Готував: у парі з habe. Словникова форма — kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"textVi": "Hôm nay tôi nấu ăn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «habe» — Trợ động từ của thì quá khứ: cùng gekocht diễn tả đã nấu.\n\n3. «heute» — Hôm nay: ngày việc đó xảy ra.\n\n4. «gekocht» — Đã nấu: đi cùng habe. Dạng từ điển: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I cooked today.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «habe» — A helper for past time: paired with gekocht it reports that I cooked.\n\n3. «heute» — Today: the day it happened.\n\n4. «gekocht» — Cooked: paired with habe. Dictionary form: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"es": "Hoy cociné.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «habe» — Auxiliar del pasado: con gekocht indica que cociné.\n\n3. «heute» — Hoy: el día en que ocurrió.\n\n4. «gekocht» — Cocinado: va con habe. Forma de diccionario: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"id": "Saya memasak hari ini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «habe» — Pembantu untuk masa lalu: bersama gekocht menyatakan bahwa aku memasak.\n\n3. «heute» — Hari ini: kapan kegiatan itu terjadi.\n\n4. «gekocht» — Sudah memasak: dipasangkan dengan habe. Bentuk kamus: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"pl": "Gotowałem dzisiaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «habe» — Pomocnik czasu przeszłego: wraz z gekocht mówi „gotowałem”.\n\n3. «heute» — Dzisiaj: którego dnia to się stało.\n\n4. «gekocht» — Część znacząca „gotować” w parze z habe. W słowniku: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"pt-BR": "Eu cozinhei hoje.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «habe» — Auxiliar do passado: com gekocht diz que cozinhei.\n\n3. «heute» — Hoje: o dia em que aconteceu.\n\n4. «gekocht» — Cozinhado: vai com habe. Forma de dicionário: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"ru": "Я сегодня готовил.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «habe» — Помощник для прошлого: вместе с gekocht сообщает, что я готовил.\n\n3. «heute» — Сегодня: в какой день это произошло.\n\n4. «gekocht» — Готовил: в паре с habe. Словарное слово — kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"tr": "Bugün yemek pişirdim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «habe» — Geçmişi kuran yardımcı: gekocht ile birlikte “yemek yaptım”.\n\n3. «heute» — Bugün: hangi gün olduğu.\n\n4. «gekocht» — Yemek yaptım anlamı habe ile tamamlanır. Sözlük biçimi: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"uk": "Я сьогодні готував.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «habe» — Допоміжне слово для минулого: разом із gekocht — «я готував».\n\n3. «heute» — Сьогодні: у який день це сталося.\n\n4. «gekocht» — Готував: у парі з habe. Словникова форма — kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht.",
+"vi": "Hôm nay tôi nấu ăn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «habe» — Trợ động từ của thì quá khứ: cùng gekocht diễn tả đã nấu.\n\n3. «heute» — Hôm nay: ngày việc đó xảy ra.\n\n4. «gekocht» — Đã nấu: đi cùng habe. Dạng từ điển: kochen.\n\nIch → habe → heute → gekocht\n\nIch habe heute gekocht."
+},
+"kind": "practice",
+"exampleIds": [
+"de:16:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:16:01",
+"target": "Ich habe heute gekocht.",
+"ru": "Я сегодня готовил.",
+"uk": "Я сьогодні готував."
+},
+{
+"id": "de:16:01",
+"target": "Ich habe heute gekocht.",
+"ru": "Я сегодня готовил.",
+"uk": "Я сьогодні готував."
+},
+{
+"id": "de:16:02",
+"target": "Du hast gestern gekocht.",
+"ru": "Ты вчера готовил.",
+"uk": "Ти вчора готував."
+},
+{
+"id": "de:16:01",
+"target": "Ich habe heute gekocht.",
+"ru": "Я сегодня готовил.",
+"uk": "Я сьогодні готував."
+}
+]
+}
+]

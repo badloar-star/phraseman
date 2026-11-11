@@ -1,0 +1,539 @@
+{
+ "lang": "es",
+ "lesson": 12,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:12:01",
+   "target": "El libro es nuevo.",
+   "ru": "Книга новая.",
+   "uk": "Книжка нова."
+  },
+  {
+   "id": "es:12:02",
+   "target": "El bolso es nuevo.",
+   "ru": "Сумка новая.",
+   "uk": "Сумка нова."
+  },
+  {
+   "id": "es:12:03",
+   "target": "El móvil es nuevo.",
+   "ru": "Телефон новый.",
+   "uk": "Мобільний телефон новий."
+  },
+  {
+   "id": "es:12:04",
+   "target": "El mapa es nuevo.",
+   "ru": "Карта новая.",
+   "uk": "Мапа нова."
+  },
+  {
+   "id": "es:12:05",
+   "target": "El coche es nuevo.",
+   "ru": "Машина новая.",
+   "uk": "Машина нова."
+  },
+  {
+   "id": "es:12:06",
+   "target": "La mochila es nueva.",
+   "ru": "Рюкзак новый.",
+   "uk": "Рюкзак новий."
+  },
+  {
+   "id": "es:12:07",
+   "target": "La maleta es nueva.",
+   "ru": "Чемодан новый.",
+   "uk": "Валіза нова."
+  },
+  {
+   "id": "es:12:08",
+   "target": "La llave es nueva.",
+   "ru": "Ключ новый.",
+   "uk": "Ключ новий."
+  },
+  {
+   "id": "es:12:09",
+   "target": "La mesa es nueva.",
+   "ru": "Стол новый.",
+   "uk": "Стіл новий."
+  },
+  {
+   "id": "es:12:10",
+   "target": "La tienda es nueva.",
+   "ru": "Магазин новый.",
+   "uk": "Магазин новий."
+  },
+  {
+   "id": "es:12:11",
+   "target": "Los libros son pequeños.",
+   "ru": "Книги маленькие.",
+   "uk": "Книжки маленькі."
+  },
+  {
+   "id": "es:12:12",
+   "target": "Los abrigos son grandes.",
+   "ru": "Пальто большие.",
+   "uk": "Пальта великі."
+  },
+  {
+   "id": "es:12:13",
+   "target": "Los coches son pequeños.",
+   "ru": "Машины маленькие.",
+   "uk": "Машини маленькі."
+  },
+  {
+   "id": "es:12:14",
+   "target": "Los mapas son pequeños.",
+   "ru": "Карты маленькие.",
+   "uk": "Мапи маленькі."
+  },
+  {
+   "id": "es:12:15",
+   "target": "Los hoteles son pequeños.",
+   "ru": "Отели маленькие.",
+   "uk": "Готелі маленькі."
+  },
+  {
+   "id": "es:12:16",
+   "target": "Las mochilas son pequeñas.",
+   "ru": "Рюкзаки маленькие.",
+   "uk": "Рюкзаки маленькі."
+  },
+  {
+   "id": "es:12:17",
+   "target": "Las maletas son pequeñas.",
+   "ru": "Чемоданы маленькие.",
+   "uk": "Валізи маленькі."
+  },
+  {
+   "id": "es:12:18",
+   "target": "Las fotos son pequeñas.",
+   "ru": "Фотографии маленькие.",
+   "uk": "Фотографії маленькі."
+  },
+  {
+   "id": "es:12:19",
+   "target": "Las mesas son pequeñas.",
+   "ru": "Столы маленькие.",
+   "uk": "Столи маленькі."
+  },
+  {
+   "id": "es:12:20",
+   "target": "Las ventanas son pequeñas.",
+   "ru": "Окна маленькие.",
+   "uk": "Вікна маленькі."
+  },
+  {
+   "id": "es:12:21",
+   "target": "Mi coche es rojo.",
+   "ru": "Моя машина красная.",
+   "uk": "Моя машина червона."
+  },
+  {
+   "id": "es:12:22",
+   "target": "Mi mochila es roja.",
+   "ru": "Мой рюкзак красный.",
+   "uk": "Мій рюкзак червоний."
+  },
+  {
+   "id": "es:12:23",
+   "target": "Mi bolso es negro.",
+   "ru": "Моя сумка чёрная.",
+   "uk": "Моя сумка чорна."
+  },
+  {
+   "id": "es:12:24",
+   "target": "Tengo una camiseta roja.",
+   "ru": "У меня красная футболка.",
+   "uk": "У мене червона футболка."
+  },
+  {
+   "id": "es:12:25",
+   "target": "Mi móvil es blanco.",
+   "ru": "Мой телефон белый.",
+   "uk": "Мій телефон білий."
+  },
+  {
+   "id": "es:12:26",
+   "target": "Tengo un libro nuevo.",
+   "ru": "У меня новая книга.",
+   "uk": "У мене нова книжка."
+  },
+  {
+   "id": "es:12:27",
+   "target": "Tengo una mochila negra.",
+   "ru": "У меня чёрный рюкзак.",
+   "uk": "У мене чорний рюкзак."
+  },
+  {
+   "id": "es:12:28",
+   "target": "Tengo dos maletas rojas.",
+   "ru": "У меня два красных чемодана.",
+   "uk": "У мене дві червоні валізи."
+  },
+  {
+   "id": "es:12:29",
+   "target": "Busco una bufanda negra.",
+   "ru": "Я ищу чёрный шарф.",
+   "uk": "Я шукаю чорний шарф."
+  },
+  {
+   "id": "es:12:30",
+   "target": "Tengo una mesa blanca.",
+   "ru": "У меня белый стол.",
+   "uk": "У мене білий стіл."
+  },
+  {
+   "id": "es:12:31",
+   "target": "La casa es grande.",
+   "ru": "Дом большой.",
+   "uk": "Будинок великий."
+  },
+  {
+   "id": "es:12:32",
+   "target": "El hotel es grande.",
+   "ru": "Отель большой.",
+   "uk": "Готель великий."
+  },
+  {
+   "id": "es:12:33",
+   "target": "La cocina es grande.",
+   "ru": "Кухня большая.",
+   "uk": "Кухня велика."
+  },
+  {
+   "id": "es:12:34",
+   "target": "El coche es grande.",
+   "ru": "Машина большая.",
+   "uk": "Машина велика."
+  },
+  {
+   "id": "es:12:35",
+   "target": "La tienda es grande.",
+   "ru": "Магазин большой.",
+   "uk": "Магазин великий."
+  },
+  {
+   "id": "es:12:36",
+   "target": "¿Son grandes las ventanas?",
+   "ru": "Окна большие?",
+   "uk": "Вікна великі?"
+  },
+  {
+   "id": "es:12:37",
+   "target": "¿Son grandes los bolsos?",
+   "ru": "Сумки большие?",
+   "uk": "Сумки великі?"
+  },
+  {
+   "id": "es:12:38",
+   "target": "¿Son grandes las mochilas?",
+   "ru": "Рюкзаки большие?",
+   "uk": "Рюкзаки великі?"
+  },
+  {
+   "id": "es:12:39",
+   "target": "¿Son grandes los libros?",
+   "ru": "Книги большие?",
+   "uk": "Книжки великі?"
+  },
+  {
+   "id": "es:12:40",
+   "target": "¿Son grandes las mesas?",
+   "ru": "Столы большие?",
+   "uk": "Столи великі?"
+  },
+  {
+   "id": "es:12:41",
+   "target": "Busco una maleta pequeña.",
+   "ru": "Я ищу маленький чемодан.",
+   "uk": "Я шукаю маленьку валізу."
+  },
+  {
+   "id": "es:12:42",
+   "target": "Busco un bolso negro.",
+   "ru": "Я ищу чёрную сумку.",
+   "uk": "Я шукаю чорну сумку."
+  },
+  {
+   "id": "es:12:43",
+   "target": "Busco unas llaves pequeñas.",
+   "ru": "Я ищу маленькие ключи.",
+   "uk": "Я шукаю маленькі ключі."
+  },
+  {
+   "id": "es:12:44",
+   "target": "Busco un libro nuevo.",
+   "ru": "Я ищу новую книгу.",
+   "uk": "Я шукаю нову книжку."
+  },
+  {
+   "id": "es:12:45",
+   "target": "Busco una mochila roja.",
+   "ru": "Я ищу красный рюкзак.",
+   "uk": "Я шукаю червоний рюкзак."
+  },
+  {
+   "id": "es:12:46",
+   "target": "Hay un coche blanco aquí.",
+   "ru": "Здесь есть белая машина.",
+   "uk": "Тут є біла машина."
+  },
+  {
+   "id": "es:12:47",
+   "target": "Las camisetas son blancas.",
+   "ru": "Футболки белые.",
+   "uk": "Футболки білі."
+  },
+  {
+   "id": "es:12:48",
+   "target": "Hay dos mochilas negras aquí.",
+   "ru": "Здесь есть два чёрных рюкзака.",
+   "uk": "Тут є два чорні рюкзаки."
+  },
+  {
+   "id": "es:12:49",
+   "target": "Hay dos libros nuevos aquí.",
+   "ru": "Здесь есть две новые книги.",
+   "uk": "Тут є дві нові книжки."
+  },
+  {
+   "id": "es:12:50",
+   "target": "Hay una ventana grande aquí.",
+   "ru": "Здесь есть большое окно.",
+   "uk": "Тут є велике вікно."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "blanco",
+   "ru": "белый",
+   "uk": "білий"
+  },
+  {
+   "lemma": "grande",
+   "ru": "большой",
+   "uk": "великий"
+  },
+  {
+   "lemma": "negro",
+   "ru": "чёрный",
+   "uk": "чорний"
+  },
+  {
+   "lemma": "nuevo",
+   "ru": "новый",
+   "uk": "новий"
+  },
+  {
+   "lemma": "pequeño",
+   "ru": "маленький",
+   "uk": "малий"
+  },
+  {
+   "lemma": "rojo",
+   "ru": "красный",
+   "uk": "червоний"
+  },
+  {
+   "lemma": "bufanda",
+   "ru": "шарф",
+   "uk": "шарф"
+  },
+  {
+   "lemma": "camiseta",
+   "ru": "футболка",
+   "uk": "футболка"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  }
+ ],
+ "oldTopicTitle": "Красная сумка, красные сумки: согласование",
+ "oldTheoryRu": "Цвет или размер один и тот же, а окончание может измениться. Сравни новый предмет: el libro nuevo, la mochila nueva. Подбери форму прилагательного по испанскому существительному, а не по роду его перевода. Начни с испанского существительного. В el libro слово libro мужского рода: el libro nuevo. В la mochila слово mochila женского рода: la mochila nueva. Окончание согласуется с испанским словом. Сначала определи род, затем число. У rojo четыре формы: rojo, roja, rojos, rojas. В las maletas rojas обе метки совпадают с существительным. Согласование сохраняется и через глагол: la mochila es nueva, las mochilas son nuevas. Меняются сразу связка и окончание, потому что изменилось подлежащее. Grande не превращается в granda для женского рода. Оно меняется только по числу: una casa grande, dos casas grandes. Не отрезай последнюю букву автоматически. В нейтральных образцах с цветом или размером сначала называем предмет, потом признак: una mochila roja. Это модель этих заданий, а не запрет на другие позиции прилагательных. Сравни два задания: «Окна маленькие.» / «Моя машина красная». Проверь род и число испанского названия предмета. Смысловые опоры: «ventanas» — окна; «pequeñas» — маленькие. Сравни два задания: «Я ищу новую книгу.» / «Здесь есть большое окно». Проверь род и число испанского названия предмета. Подбери форму прилагательного по испанскому существительному, а не по роду его перевода."
+}

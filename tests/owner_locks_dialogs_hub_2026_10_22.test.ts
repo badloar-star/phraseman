@@ -66,14 +66,4 @@ describe('Замки владельца 22.10: хаб Диалогов', () => {
     expect(home).not.toContain('V2IconButton');
     expect(read('components/dialogs/scene/DialogsSceneHub.tsx')).toContain('topStart={<ScreenBackSlot />}');
   });
-
-  // ЗАМОК ВЛАДЕЛЬЦА 22.10: словарь ВСЕГО курса — ВНУТРИ плитки «Слова» (переключатель «Этот урок / Весь курс»), новой кнопки в шапке нет; замена слова 21.09
-  it('«Слова»: переключатель «Этот урок / Весь курс»; слова курса читаются только при открытии «Весь курс»', () => {
-    const words = read('app/learning_v2_lesson_words.tsx');
-    expect(words).toContain('testID="learning-v2-words-scope-switch"');
-    expect(words).toContain("useState<WordsScope>('lesson')");
-    expect(words).toContain("wordsScope === 'course' ? { targetLanguage: String(studyTarget), lessonOrdinals: COURSE_LESSON_ORDINALS } : null");
-    expect(words).toContain('useLearningV2CourseUnlockedWordsV1(courseScope,');
-    expect(read('app/(tabs)/lessons.tsx')).not.toMatch(/useLearningV2CourseUnlockedWordsV1|learning-v2-map-dictionary-open/);
-  });
 });

@@ -13,9 +13,6 @@ describe('подключение бонуса', () => {
     expect(src).not.toContain('defaultFirstLessonBonusDeps(() => getRemoteBool');
     expect(src.indexOf('practiceRunesSettleOnceRef.current = true;')).toBeLessThan(src.indexOf('maybeGrantFirstLessonBonus('));
   });
-  it('V2-плеер тоже зовёт (один раз на владельца — ключ общий)', () => {
-    expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('maybeGrantFirstLessonBonus(');
-  });
   it('сценарий: новичок завершил классический урок 1 дважды (повторный заход) — +500 ровно один раз', async () => {
     const grants: string[] = []; let flag = false;
     const deps: FirstLessonBonusDeps = {

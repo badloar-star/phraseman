@@ -1,0 +1,704 @@
+{
+ "lang": "de",
+ "lesson": 18,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:18:01",
+   "target": "Ich war müde.",
+   "ru": "Я был уставшим.",
+   "uk": "Я був втомлений."
+  },
+  {
+   "id": "de:18:02",
+   "target": "Du warst müde.",
+   "ru": "Ты был уставшим.",
+   "uk": "Ти був стомленим."
+  },
+  {
+   "id": "de:18:03",
+   "target": "Anna war krank.",
+   "ru": "Анна болела.",
+   "uk": "Ганна хворіла."
+  },
+  {
+   "id": "de:18:04",
+   "target": "Wir waren zu Hause.",
+   "ru": "Мы были дома.",
+   "uk": "Ми були вдома."
+  },
+  {
+   "id": "de:18:05",
+   "target": "Ihr wart pünktlich.",
+   "ru": "Вы пришли вовремя.",
+   "uk": "Ви прийшли вчасно."
+  },
+  {
+   "id": "de:18:06",
+   "target": "Die Gäste waren zufrieden.",
+   "ru": "Гости были довольны.",
+   "uk": "Гості були задоволені."
+  },
+  {
+   "id": "de:18:07",
+   "target": "Ich hatte Zeit.",
+   "ru": "У меня было время.",
+   "uk": "У мене був час."
+  },
+  {
+   "id": "de:18:08",
+   "target": "Du hattest Hunger.",
+   "ru": "Ты хотел есть.",
+   "uk": "Ти хотів їсти."
+  },
+  {
+   "id": "de:18:09",
+   "target": "Tom hatte Durst.",
+   "ru": "Том хотел пить.",
+   "uk": "Том хотів пити."
+  },
+  {
+   "id": "de:18:10",
+   "target": "Wir hatten Glück.",
+   "ru": "Нам повезло.",
+   "uk": "Нам пощастило."
+  },
+  {
+   "id": "de:18:11",
+   "target": "Gestern war die Kasse zu.",
+   "ru": "Вчера касса была закрыта.",
+   "uk": "Вчора каса була закрита."
+  },
+  {
+   "id": "de:18:12",
+   "target": "Am Morgen war die Tür offen.",
+   "ru": "Утром дверь была открыта.",
+   "uk": "Вранці двері були відчинені."
+  },
+  {
+   "id": "de:18:13",
+   "target": "Vor dem Essen war ich draußen.",
+   "ru": "Перед едой я был на улице.",
+   "uk": "Перед їжею я був на вулиці."
+  },
+  {
+   "id": "de:18:14",
+   "target": "Der Parkplatz war frei.",
+   "ru": "Парковочное место было свободно.",
+   "uk": "Паркувальне місце було вільне."
+  },
+  {
+   "id": "de:18:15",
+   "target": "Das Zimmer war sauber.",
+   "ru": "Комната была чистой.",
+   "uk": "Кімната була чистою."
+  },
+  {
+   "id": "de:18:16",
+   "target": "Die Dusche war kaputt.",
+   "ru": "Душ был сломан.",
+   "uk": "Душ був зламаний."
+  },
+  {
+   "id": "de:18:17",
+   "target": "Die Fenster waren offen.",
+   "ru": "Окна были открыты.",
+   "uk": "Вікна були відчинені."
+  },
+  {
+   "id": "de:18:18",
+   "target": "Die Straße war nass.",
+   "ru": "Дорога была мокрой.",
+   "uk": "Дорога була мокрою."
+  },
+  {
+   "id": "de:18:19",
+   "target": "Die Kinder waren leise.",
+   "ru": "Дети вели себя тихо.",
+   "uk": "Діти вели себе тихо."
+  },
+  {
+   "id": "de:18:20",
+   "target": "Das Taxi war schon da.",
+   "ru": "Такси уже было на месте.",
+   "uk": "Таксі вже було на місці."
+  },
+  {
+   "id": "de:18:21",
+   "target": "Ich hatte einen Termin.",
+   "ru": "У меня была назначена встреча.",
+   "uk": "У мене була призначена зустріч."
+  },
+  {
+   "id": "de:18:22",
+   "target": "Anna hatte eine Frage.",
+   "ru": "У Анны был вопрос.",
+   "uk": "Анна мала питання."
+  },
+  {
+   "id": "de:18:23",
+   "target": "Tom hatte den falschen Schlüssel.",
+   "ru": "У Тома был не тот ключ.",
+   "uk": "У Тома був не той ключ."
+  },
+  {
+   "id": "de:18:24",
+   "target": "Wir hatten einen Plan.",
+   "ru": "У нас был план.",
+   "uk": "У нас був план."
+  },
+  {
+   "id": "de:18:25",
+   "target": "Ihr hattet zwei Tickets.",
+   "ru": "У вас было два билета.",
+   "uk": "У вас було два квитки."
+  },
+  {
+   "id": "de:18:26",
+   "target": "Die Kinder hatten eine Idee.",
+   "ru": "У детей была идея.",
+   "uk": "Діти мали ідею."
+  },
+  {
+   "id": "de:18:27",
+   "target": "Unser Hotel hatte einen Aufzug.",
+   "ru": "В нашей гостинице был лифт.",
+   "uk": "У нашому готелі був ліфт."
+  },
+  {
+   "id": "de:18:28",
+   "target": "Mein Handy hatte keinen Empfang.",
+   "ru": "Мой телефон не ловил сеть.",
+   "uk": "Мій телефон не ловив мережу."
+  },
+  {
+   "id": "de:18:29",
+   "target": "Die Wohnung hatte keinen Balkon.",
+   "ru": "В квартире не было балкона.",
+   "uk": "У квартирі не було балкона."
+  },
+  {
+   "id": "de:18:30",
+   "target": "Der Bus hatte Verspätung.",
+   "ru": "Автобус опаздывал.",
+   "uk": "Автобус запізнювався."
+  },
+  {
+   "id": "de:18:31",
+   "target": "Warst du gestern im Büro?",
+   "ru": "Ты был вчера в офисе?",
+   "uk": "Ти був учора в офісі?"
+  },
+  {
+   "id": "de:18:32",
+   "target": "Wart ihr bei euren Eltern?",
+   "ru": "Вы были у родителей?",
+   "uk": "Ви були у батьків?"
+  },
+  {
+   "id": "de:18:33",
+   "target": "War die Apotheke offen?",
+   "ru": "Аптека была открыта?",
+   "uk": "Аптека була відкрита?"
+  },
+  {
+   "id": "de:18:34",
+   "target": "Waren alle Plätze besetzt?",
+   "ru": "Все места были заняты?",
+   "uk": "Всі місця були зайняті?"
+  },
+  {
+   "id": "de:18:35",
+   "target": "Hattest du deinen Ausweis?",
+   "ru": "У тебя было с собой удостоверение?",
+   "uk": "У тебе було з собою посвідчення?"
+  },
+  {
+   "id": "de:18:36",
+   "target": "Hatten Sie eine Reservierung?",
+   "ru": "У вас была бронь?",
+   "uk": "У вас було бронювання?"
+  },
+  {
+   "id": "de:18:37",
+   "target": "Hatte Tom genug Geld?",
+   "ru": "У Тома хватало денег?",
+   "uk": "У Тома вистачало грошей?"
+  },
+  {
+   "id": "de:18:38",
+   "target": "Hattet ihr Probleme?",
+   "ru": "У вас были проблемы?",
+   "uk": "У вас були проблеми?"
+  },
+  {
+   "id": "de:18:39",
+   "target": "Wie war die Fahrt?",
+   "ru": "Как прошла поездка?",
+   "uk": "Як минула поїздка?"
+  },
+  {
+   "id": "de:18:40",
+   "target": "Wer hatte den Wohnungsschlüssel?",
+   "ru": "У кого был ключ от квартиры?",
+   "uk": "Хто мав ключ від квартири?"
+  },
+  {
+   "id": "de:18:41",
+   "target": "Früher war hier ein Kino.",
+   "ru": "Раньше здесь был кинотеатр.",
+   "uk": "Раніше тут був кінотеатр."
+  },
+  {
+   "id": "de:18:42",
+   "target": "Damals hatte ich kein Auto.",
+   "ru": "Тогда у меня не было машины.",
+   "uk": "Тоді у мене не було машини."
+  },
+  {
+   "id": "de:18:43",
+   "target": "Im Mai waren wir am Meer.",
+   "ru": "В мае мы были на море.",
+   "uk": "У травні ми були на морі."
+  },
+  {
+   "id": "de:18:44",
+   "target": "Auf dem Markt war viel los.",
+   "ru": "На рынке было оживлённо.",
+   "uk": "На ринку було жваво."
+  },
+  {
+   "id": "de:18:45",
+   "target": "Nach der Schicht hatte Anna frei.",
+   "ru": "После смены Анна была свободна.",
+   "uk": "Після зміни Анна була вільна."
+  },
+  {
+   "id": "de:18:46",
+   "target": "Am Ende waren alle erleichtert.",
+   "ru": "В конце все почувствовали облегчение.",
+   "uk": "Наприкінці всі відчули полегшення."
+  },
+  {
+   "id": "de:18:47",
+   "target": "Zum Glück war der Schaden klein.",
+   "ru": "К счастью, ущерб был небольшим.",
+   "uk": "На щастя, збитки були невеликими."
+  },
+  {
+   "id": "de:18:48",
+   "target": "Leider hatte ich keinen Beleg.",
+   "ru": "К сожалению, у меня не было чека.",
+   "uk": "На жаль, у мене не було чека."
+  },
+  {
+   "id": "de:18:49",
+   "target": "Vor dem Umzug hatten wir mehr Platz.",
+   "ru": "До переезда у нас было больше места.",
+   "uk": "До переїзду ми мали більше місця."
+  },
+  {
+   "id": "de:18:50",
+   "target": "Die letzte Bahn war schon weg.",
+   "ru": "Последняя электричка уже ушла.",
+   "uk": "Остання електричка вже пішла."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Empfang",
+   "ru": "приём сигнала, связь",
+   "uk": "прийом сигналу, зв'язок"
+  },
+  {
+   "lemma": "die Verspätung",
+   "ru": "опоздание, задержка",
+   "uk": "запізнення, затримка"
+  },
+  {
+   "lemma": "die Schicht",
+   "ru": "рабочая смена",
+   "uk": "робоча зміна"
+  },
+  {
+   "lemma": "der Schaden",
+   "ru": "ущерб, повреждение",
+   "uk": "збитки, пошкодження"
+  },
+  {
+   "lemma": "die Dusche",
+   "ru": "душ",
+   "uk": "душ"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  }
+ ],
+ "oldTopicTitle": "Каким было и что было у меня: `war` и `hatte`",
+ "oldTheoryRu": "Сравни состояние сейчас и вчера. Там, где сейчас стояло бы `bin`, в прошлом может стоять `war`. Отдельное причастие не требуется: время уже показывает сама форма. Если речь о наличии времени, голоде или удаче, вместо `hatte` не ставят `war`. Учи бытовые сочетания с их глаголом: немецкий называет некоторые ощущения через «иметь». Прилагательное после `war` остаётся таким же, как после `ist`. Значит, чтобы сказать о вчерашнем состоянии кассы или душа, достаточно поменять время связки; прилагательное и предмет прежние. Иметь может не только человек. Гостиница имела лифт, автобус прибыл с задержкой. В этих фразах `hatte` не начало составного времени: после него идёт предмет или состояние, а не причастие. В вопросах `warst`, `wart`, `hattest`, `hattet` выходят на первое место. Сравни двух адресатов: одному другу нужна иная форма, чем нескольким друзьям. `Früher` может описывать длительный период, а `gestern` — один конкретный день. Эти маркеры времени не обязывают выбрать другой глагол: важнее, состояние это или наличие. Проверь рассказ из двух кадров: какая обстановка была и что у тебя оказалось под рукой. Можно сообщить обе вещи двумя простыми предложениями, не усложняя их ещё одним прошедшим временем."
+}

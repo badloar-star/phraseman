@@ -1,0 +1,1066 @@
+[
+{
+"lesson": 19,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:19:01",
+"it:19:02",
+"it:19:03"
+],
+"textByLocale": {
+"en": "`arrivare` and `partire` use `essere` as a helper. Don't choose it just because of the word \"motion\": for example, `ho camminato` also reports motion, but uses `avere`.",
+"ru": "У `arrivare` и `partire` помощник — `essere`. Не выбирай его только из-за слова «движение»: например, `ho camminato` тоже сообщает о движении, но употребляет `avere`.",
+"uk": "У `arrivare` і `partire` помічник - `essere`. Не вибирай його тільки через слово \"рух\": наприклад, `ho camminato` теж повідомляє про рух, але вживає `avere`."
+}
+},
+{
+"exampleIds": [
+"it:19:05",
+"it:19:06",
+"it:19:08"
+],
+"textByLocale": {
+"en": "A group of women is `sono arrivate`, a group of men or mixed people is `sono arrivati`. This is clear from the clues in the tasks. `sono` alone doesn't determine gender.",
+"ru": "Группа женщин — `sono arrivate`, мужская или смешанная группа — `sono arrivati`. В заданиях это видно из подсказки. Одна форма `sono` не определяет род.",
+"uk": "Група жінок - `sono arrivate`, чоловіча або змішана група - `sono arrivati`. У завданнях це видно з підказки. Одна форма `sono` не визначає рід."
+}
+},
+{
+"exampleIds": [
+"it:19:09",
+"it:19:10",
+"it:19:15"
+],
+"textByLocale": {
+"en": "If a person is named after a verb, the agreement still goes with it. Compare `è arrivato mio fratello` and `è arrivata mia sorella`.",
+"ru": "Если человек назван после глагола, согласование всё равно идёт с ним. Сверь `è arrivato mio fratello` и `è arrivata mia sorella`.",
+"uk": "Якщо людина названа після дієслова, узгодження все одно йде з нею. Звір `è arrivato mio fratello` та `è arrivata mia sorella`."
+}
+},
+{
+"exampleIds": [
+"it:19:21",
+"it:19:22",
+"it:19:23"
+],
+"textByLocale": {
+"en": "The place where the action took place is a separate part. First, choose the assistant and participle, then select the place. Don't confuse \"entered\" with \"was already inside.\"",
+"ru": "В каком месте произошло действие — отдельная часть. Сначала выбери помощник и причастие, затем подбери место. Не путай «вошла» и «уже была внутри».",
+"uk": "Де сталося дія - окрема частина. Спочатку вибери помічник та причастя, потім підбери місце. Не плутай «увійшла» і «вже була всередині»."
+}
+},
+{
+"exampleIds": [
+"it:19:27",
+"it:19:29",
+"it:19:30"
+],
+"textByLocale": {
+"en": "An object can also fall. For `la chiave`, choose `è caduta`, for `le foto`, choose `sono cadute`. Here, the ending indicates the grammatical gender of the name, not the person's gender.",
+"ru": "Упасть может и вещь. Для `la chiave` выбирай `è caduta`, для `le foto` — `sono cadute`. Здесь окончание показывает не пол человека, а грамматический род названия.",
+"uk": "Впасти може й річ. Для `la chiave` вибирай `è caduta`, для `le foto` - `sono cadute`. Тут закінчення показує не стать людини, а граматичний рід назви."
+}
+},
+{
+"exampleIds": [
+"it:19:31",
+"it:19:32",
+"it:19:34"
+],
+"textByLocale": {
+"en": "In negation, `non` precedes the assistant. `Non è ancora tornata` refers to a woman who has not yet returned; the absence of an event does not cancel the agreement.",
+"ru": "В отрицании `non` предшествует помощнику. `Non è ancora tornata` относится к женщине, которая ещё не вернулась; отсутствие события не отменяет согласования.",
+"uk": "У запереченні `non` передує помічнику. `Non è ancora tornata` відноситься до жінки, яка ще не повернулася; відсутність події не скасовує погодження."
+}
+},
+{
+"exampleIds": [
+"it:19:41",
+"it:19:42",
+"it:19:48"
+],
+"textByLocale": {
+"en": "`essere` is also used for birth and stay: `è nata`, `è rimasta`. Write the assistant as part of the card for a specific verb and its meaning.",
+"ru": "Для рождения и пребывания тоже встречается `essere`: `è nata`, `è rimasta`. Записывай помощник как часть карточки конкретного глагола и его значения.",
+"uk": "Для народження та перебування теж зустрічається `essere`: `è nata`, `è rimasta`. Записуй помічник як частину картки конкретного дієслова та його значення."
+}
+}
+],
+"drills": [
+{
+"bad": "sono",
+"chapter": 1,
+"id": "it:19:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 1,
+"id": "it:19:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:19:05:lab",
+"item": 5,
+"kind": "match",
+"near": 7,
+"options": [
+"Sei",
+"È",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 2,
+"id": "it:19:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"È",
+"Sono",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "Sono",
+"chapter": 2,
+"id": "it:19:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 2,
+"options": [
+"Sono",
+"È",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 2,
+"id": "it:19:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 4,
+"options": [
+"è",
+"sono",
+"siete"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 3,
+"id": "it:19:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 40,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 3
+},
+{
+"bad": "è",
+"chapter": 3,
+"id": "it:19:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 3,
+"id": "it:19:19:lab",
+"item": 19,
+"kind": "build",
+"near": 35,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:19:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:19:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 41,
+"options": [
+"è",
+"sono",
+"siete"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 4,
+"id": "it:19:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 34,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 5,
+"id": "it:19:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:19:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"è",
+"siamo",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 5,
+"id": "it:19:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 3
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:19:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 2,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:19:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 15,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:19:42:lab",
+"item": 42,
+"kind": "match",
+"near": 16,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "Mia",
+"chapter": 7,
+"id": "it:19:45:lab",
+"item": 45,
+"kind": "build",
+"near": 12,
+"options": [
+"Sua",
+"Tua",
+"Mia"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 7,
+"id": "it:19:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 39,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Paolo",
+"è arrivato"
+],
+[
+"Lea",
+"è arrivata"
+],
+[
+"due amici",
+"sono arrivati"
+],
+[
+"due amiche",
+"sono arrivate"
+],
+[
+"uscire",
+"sono uscito / uscita"
+]
+],
+"title": {
+"en": "Who arrived: past tense with `essere`",
+"ru": "Кто приехал: прошедшее с `essere`",
+"uk": "Хто приїхав: минуле з `essere`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:19:01",
+"target": "Paolo è arrivato.",
+"ru": "Паоло приехал.",
+"uk": "Паоло приїхав."
+},
+{
+"id": "it:19:02",
+"target": "Lea è arrivata.",
+"ru": "Леа приехала.",
+"uk": "Леа приїхала."
+},
+{
+"id": "it:19:03",
+"target": "Paolo è partito.",
+"ru": "Паоло уехал.",
+"uk": "Паоло поїхав."
+},
+{
+"id": "it:19:05",
+"target": "Sono arrivati.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули."
+},
+{
+"id": "it:19:06",
+"target": "Sono arrivate.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули."
+},
+{
+"id": "it:19:08",
+"target": "Sono partite.",
+"ru": "Они ушли.",
+"uk": "Вони пішли."
+},
+{
+"id": "it:19:09",
+"target": "È arrivato mio fratello.",
+"ru": "Мой брат пришел.",
+"uk": "Мій брат прийшов."
+},
+{
+"id": "it:19:10",
+"target": "È arrivata mia sorella.",
+"ru": "Моя сестра пришла.",
+"uk": "Моя сестра прийшла."
+},
+{
+"id": "it:19:15",
+"target": "Mia madre è tornata a casa presto.",
+"ru": "Моя мама вернулась домой рано.",
+"uk": "Моя мама повернулася додому рано."
+},
+{
+"id": "it:19:21",
+"target": "Lea è entrata nella stanza.",
+"ru": "Леа вошла в комнату.",
+"uk": "Леа зайшла до кімнати."
+},
+{
+"id": "it:19:22",
+"target": "Paolo è entrato in garage.",
+"ru": "Паоло вошел в гараж.",
+"uk": "Паоло зайшов до гаража."
+},
+{
+"id": "it:19:23",
+"target": "I bambini sono usciti in cortile.",
+"ru": "Дети вышли во двор.",
+"uk": "Діти вийшли на подвір’я."
+},
+{
+"id": "it:19:27",
+"target": "La chiave è caduta sotto il tavolo.",
+"ru": "Ключ упал под стол.",
+"uk": "Ключ упав під стіл."
+},
+{
+"id": "it:19:29",
+"target": "Le foto sono cadute dal muro.",
+"ru": "Фотографии упали со стены.",
+"uk": "Фотографії впали зі стіни."
+},
+{
+"id": "it:19:30",
+"target": "Il libro è caduto dalla borsa.",
+"ru": "Книга выпала из сумки.",
+"uk": "Книга випала з сумки."
+},
+{
+"id": "it:19:31",
+"target": "Paolo non è ancora tornato.",
+"ru": "Паоло ещё не вернулся.",
+"uk": "Паоло ще не повернувся."
+},
+{
+"id": "it:19:32",
+"target": "Lea non è ancora tornata.",
+"ru": "Леа ещё не вернулась.",
+"uk": "Леа ще не повернулася."
+},
+{
+"id": "it:19:34",
+"target": "I clienti non sono entrati.",
+"ru": "Клиенты не вошли.",
+"uk": "Клієнти не увійшли."
+},
+{
+"id": "it:19:41",
+"target": "Mia nonna è nata a Lille.",
+"ru": "Моя бабушка родилась в Лилле.",
+"uk": "Моя бабуся народилася в Ліллі."
+},
+{
+"id": "it:19:42",
+"target": "Mio figlio è nato a giugno.",
+"ru": "Мой сын родился в июне.",
+"uk": "Мій син народився в червні."
+},
+{
+"id": "it:19:48",
+"target": "Lea è rimasta a casa tutto il giorno.",
+"ru": "Леа осталась дома на весь день.",
+"uk": "Леа залишилася вдома весь день."
+}
+]
+},
+{
+"lesson": 20,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:20:01",
+"it:20:02",
+"it:20:04"
+],
+"textByLocale": {
+"en": "Use the past tense to describe a state, habitual action, or setting. The form itself does not indicate that the event was repeated a strictly defined number of times.",
+"ru": "Используй прошедшее описание для состояния, привычного действия или обстановки. Сама форма не сообщает, что событие повторялось строго определённое число раз.",
+"uk": "Використовуй опис для стану, звичної дії або ситуації. Сама форма не повідомляє, що подія повторювалася строго певну кількість разів."
+}
+},
+{
+"exampleIds": [
+"it:20:07",
+"it:20:08",
+"it:20:09"
+],
+"textByLocale": {
+"en": "`Essere` has a special stem: `ero`, `eri`, `era`, `eravamo`, `eravate`, `erano`. Don't try to combine the present `sono` with a regular ending.",
+"ru": "`Essere` имеет особую основу: `ero`, `eri`, `era`, `eravamo`, `eravate`, `erano`. Не пытайся склеить настоящее `sono` с обычным окончанием.",
+"uk": "`Essere` має особливу основу: `ero`, `eri`, `era`, `eravamo`, `eravate`, `erano`. Не намагайся склеїти справжнє `sono` із звичайним закінченням."
+}
+},
+{
+"exampleIds": [
+"it:20:11",
+"it:20:12",
+"it:20:13"
+],
+"textByLocale": {
+"en": "Recurring habits are often qualified by time: on Saturdays, every morning, in the summer. Add such a qualification only if it is in the clue.",
+"ru": "Повторяющиеся привычки часто уточняются временем: по субботам, каждое утро, летом. Добавь такое уточнение лишь тогда, когда оно есть в подсказке.",
+"uk": "Звички, що повторюються, часто уточнюються часом: по суботах, щоранку, влітку. Додай таке уточнення лише тоді, коли воно є у підказці."
+}
+},
+{
+"exampleIds": [
+"it:20:21",
+"it:20:23",
+"it:20:24"
+],
+"textByLocale": {
+"en": "It's also convenient to talk about the weather as a background: `pioveva`, `faceva caldo`. This isn't a message like \"suddenly it started to rain,\" where the moment of onset is important.",
+"ru": "О погоде тоже удобно рассказывать как о фоне: `pioveva`, `faceva caldo`. Это не сообщение «вдруг пошёл дождь», в котором важен момент начала.",
+"uk": "Про погоду теж зручно розповідати як про фон: `pioveva`, `faceva caldo`. Це не повідомлення «раптом пішов дощ», у якому важливий момент початку."
+}
+},
+{
+"exampleIds": [
+"it:20:26",
+"it:20:27",
+"it:20:29"
+],
+"textByLocale": {
+"en": "In a description of a room or person, find what exactly \"was\": light, windows, a feeling of cold. The tense belongs to the verb, and the gender and number of the object belong to the noun and description.",
+"ru": "В описании комнаты или человека найди, что именно «было»: свет, окна, ощущение холода. Временная форма принадлежит глаголу, а род и число предмета — существительному и описанию.",
+"uk": "В описі кімнати або людини знайди, що саме було: світло, вікна, відчуття холоду. Тимчасова форма належить дієслову, а рід і число предмета - іменнику та опису."
+}
+},
+{
+"exampleIds": [
+"it:20:31",
+"it:20:32",
+"it:20:35"
+],
+"textByLocale": {
+"en": "`Non c’era` describes something that wasn't there before. This is a past relative of the acquaintance `non c’è`. For several objects, use `non c’erano`.",
+"ru": "`Non c’era` описывает, чего раньше не было. Это прошедший родственник знакомого `non c’è`. Для нескольких предметов — `non c’erano`.",
+"uk": "`Non c’era` описує, чого раніше не було. Це минулий родич знайомого `non c’è`. Для кількох предметів – `non c’erano`."
+}
+},
+{
+"exampleIds": [
+"it:20:41",
+"it:20:48",
+"it:20:50"
+],
+"textByLocale": {
+"en": "When recalling childhood, it's useful to mentally distinguish between \"usually happened\" and \"once it happened.\" This trains your first glance, even if in Russian both messages could be called past tense.",
+"ru": "Когда вспоминаешь детство, полезно мысленно разделить «обычно бывало» и «однажды случилось». Здесь тренируется первый взгляд, даже если по-русски оба сообщения можно назвать прошедшим временем.",
+"uk": "Коли згадуєш дитинство, корисно подумки розділити «зазвичай бувало» і «одного разу трапилося». Тут тренується перший погляд, навіть якщо російською мовою обидва повідомлення можна назвати минулим часом."
+}
+}
+],
+"drills": [
+{
+"bad": "Abitavi",
+"chapter": 1,
+"id": "it:20:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Abitavamo",
+"Abitavi",
+"Abitavo"
+],
+"slot": 0
+},
+{
+"bad": "vivevano",
+"chapter": 1,
+"id": "it:20:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 8,
+"options": [
+"vivevano",
+"vivevamo",
+"viveva"
+],
+"slot": 1
+},
+{
+"bad": "Abitavi",
+"chapter": 1,
+"id": "it:20:05:lab",
+"item": 5,
+"kind": "match",
+"near": 23,
+"options": [
+"Abitavo",
+"Abitavate",
+"Abitavi"
+],
+"slot": 0
+},
+{
+"bad": "erano",
+"chapter": 2,
+"id": "it:20:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"ero",
+"era",
+"erano"
+],
+"slot": 1
+},
+{
+"bad": "erano",
+"chapter": 2,
+"id": "it:20:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"erano",
+"ero",
+"era"
+],
+"slot": 2
+},
+{
+"bad": "mangiava",
+"chapter": 2,
+"id": "it:20:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 25,
+"options": [
+"mangiavano",
+"mangiava",
+"mangiavamo"
+],
+"slot": 2
+},
+{
+"bad": "ascoltavi",
+"chapter": 3,
+"id": "it:20:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"ascoltavo",
+"ascoltavi",
+"ascoltava"
+],
+"slot": 2
+},
+{
+"bad": "Anni",
+"chapter": 3,
+"id": "it:20:17:lab",
+"item": 17,
+"kind": "match",
+"near": 3,
+"options": [
+"Vicini",
+"Andavi",
+"Anni"
+],
+"slot": 0
+},
+{
+"bad": "postino",
+"chapter": 3,
+"id": "it:20:19:lab",
+"item": 19,
+"kind": "build",
+"near": 48,
+"options": [
+"lungo",
+"postino",
+"giocavo"
+],
+"slot": 2
+},
+{
+"bad": "Erano",
+"chapter": 4,
+"id": "it:20:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 39,
+"options": [
+"Era",
+"Ero",
+"Erano"
+],
+"slot": 0
+},
+{
+"bad": "Occupava",
+"chapter": 4,
+"id": "it:20:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"Metteva",
+"Occupava",
+"Tirava"
+],
+"slot": 0
+},
+{
+"bad": "era",
+"chapter": 4,
+"id": "it:20:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 35,
+"options": [
+"erano",
+"era",
+"ero"
+],
+"slot": 2
+},
+{
+"bad": "aveva",
+"chapter": 5,
+"id": "it:20:29:lab",
+"item": 29,
+"kind": "match",
+"near": 35,
+"options": [
+"avevamo",
+"avevano",
+"aveva"
+],
+"slot": 2
+},
+{
+"bad": "lavoravo",
+"chapter": 5,
+"id": "it:20:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"conoscevo",
+"lavoravo",
+"abitavo"
+],
+"slot": 1
+},
+{
+"bad": "aveva",
+"chapter": 5,
+"id": "it:20:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"aveva",
+"avevamo",
+"avevo"
+],
+"slot": 1
+},
+{
+"bad": "alzavo",
+"chapter": 6,
+"id": "it:20:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 49,
+"options": [
+"alzavate",
+"alzavo",
+"alzavi"
+],
+"slot": 1
+},
+{
+"bad": "Erano",
+"chapter": 6,
+"id": "it:20:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 22,
+"options": [
+"Era",
+"Ero",
+"Erano"
+],
+"slot": 0
+},
+{
+"bad": "preparavate",
+"chapter": 6,
+"id": "it:20:42:lab",
+"item": 42,
+"kind": "match",
+"near": 33,
+"options": [
+"preparavamo",
+"preparava",
+"preparavate"
+],
+"slot": 2
+},
+{
+"bad": "era",
+"chapter": 7,
+"id": "it:20:45:lab",
+"item": 45,
+"kind": "build",
+"near": 20,
+"options": [
+"ero",
+"erano",
+"era"
+],
+"slot": 2
+},
+{
+"bad": "tornavano",
+"chapter": 7,
+"id": "it:20:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 19,
+"options": [
+"questo",
+"disegnavo",
+"tornavano"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"io",
+"abitavo"
+],
+[
+"tu",
+"abitavi"
+],
+[
+"lui / lei",
+"abitava"
+],
+[
+"noi",
+"abitavamo"
+],
+[
+"voi",
+"abitavate"
+],
+[
+"loro",
+"abitavano"
+],
+[
+"essere",
+"ero / eri / era / eravamo / eravate / erano"
+]
+],
+"title": {
+"en": "Usually used to be: `imperfetto`",
+"ru": "Раньше обычно: `imperfetto`",
+"uk": "Раніше зазвичай: `imperfetto`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:20:01",
+"target": "Abitavo qui.",
+"ru": "Я раньше здесь жил.",
+"uk": "Я раніше тут жив."
+},
+{
+"id": "it:20:02",
+"target": "Abitavi qui.",
+"ru": "Ты раньше здесь жил.",
+"uk": "Ти тут колись жив."
+},
+{
+"id": "it:20:04",
+"target": "Noi vivevamo in campagna.",
+"ru": "Мы жили в сельской местности.",
+"uk": "Ми жили в сільській місцевості."
+},
+{
+"id": "it:20:07",
+"target": "Ero spesso solo.",
+"ru": "Я часто был один.",
+"uk": "Я часто був сам."
+},
+{
+"id": "it:20:08",
+"target": "Lei era spesso sola.",
+"ru": "Она часто была одна.",
+"uk": "Вона часто була сама."
+},
+{
+"id": "it:20:09",
+"target": "Eravamo vicini di casa.",
+"ru": "Мы были соседями.",
+"uk": "Ми були сусідами."
+},
+{
+"id": "it:20:11",
+"target": "Lavoravo il sabato.",
+"ru": "Я раньше работал по субботам.",
+"uk": "Я працював по суботах."
+},
+{
+"id": "it:20:12",
+"target": "La domenica mangiavamo insieme.",
+"ru": "По воскресеньям мы ели вместе.",
+"uk": "По неділях ми їли разом."
+},
+{
+"id": "it:20:13",
+"target": "Ogni mattina comprava il pane.",
+"ru": "Каждое утро он покупал хлеб.",
+"uk": "Щоранку він купував хліб."
+},
+{
+"id": "it:20:21",
+"target": "Mia nonna tagliava sempre la cipolla a mano.",
+"ru": "Моя бабушка всегда резала лук вручную.",
+"uk": "Моя бабуся завжди різала цибулю вручну."
+},
+{
+"id": "it:20:23",
+"target": "Pioveva in continuazione.",
+"ru": "Непрерывно шел дождь.",
+"uk": "Постійно йшов дощ."
+},
+{
+"id": "it:20:24",
+"target": "Tirava un forte vento.",
+"ru": "Сильно дул ветер.",
+"uk": "Вітер дув сильно."
+},
+{
+"id": "it:20:26",
+"target": "Le finestre erano aperte.",
+"ru": "Окна были открыты.",
+"uk": "Вікна були відчинені."
+},
+{
+"id": "it:20:27",
+"target": "La luce era fioca.",
+"ru": "Свет был тусклым.",
+"uk": "Світло було тьмяним."
+},
+{
+"id": "it:20:29",
+"target": "I bambini avevano freddo.",
+"ru": "Детям было холодно.",
+"uk": "Дітям було холодно."
+},
+{
+"id": "it:20:31",
+"target": "Non conoscevo il quartiere.",
+"ru": "Я не знал этот район.",
+"uk": "Я не знав району."
+},
+{
+"id": "it:20:32",
+"target": "Non c’era l’ascensore.",
+"ru": "Лифта не было.",
+"uk": "Ліфта не було."
+},
+{
+"id": "it:20:35",
+"target": "I negozi erano chiusi il lunedì.",
+"ru": "Магазины не работали по понедельникам.",
+"uk": "Магазини не працювали по понеділках."
+},
+{
+"id": "it:20:41",
+"target": "A otto anni, tenevo le mie monete in una scatola.",
+"ru": "В восемь лет я хранил свои монеты в коробке.",
+"uk": "У вісім років я зберігав свої монети в коробці."
+},
+{
+"id": "it:20:48",
+"target": "Da piccolo disegnavo barche.",
+"ru": "Когда я был маленьким, я рисовал лодки.",
+"uk": "Коли я був маленьким, я малював човни."
+},
+{
+"id": "it:20:50",
+"target": "Il vecchio mercato occupava tutta la piazza.",
+"ru": "Старый рынок занимал всю площадь.",
+"uk": "Старий ринок займав всю площу."
+}
+]
+}
+]

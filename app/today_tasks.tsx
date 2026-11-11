@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,15 +30,11 @@ import { useTodayTasks } from '../hooks/use_today_tasks';
 import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { noteBackDecision, noteBackStep } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
+import { useVideoSectionPreference } from './video_section_preference';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
 import TodayScene from '../components/home/v2/today_scene/TodayScene';
 import { TODAY_SCENE_V2_ENABLED } from '../components/home/v2/today_scene/today_scene_flag';
-import type { TodayScenePollRow } from '../components/home/v2/today_scene/TodaySceneView';
-import { HOME_SCENE_V2_ENABLED } from '../components/home/v2/scene/home_scene_flag';
-import HomePollV2Card from '../components/home/HomePollV2Card';
-import HybridSheetShell from '../components/modal_fx/HybridSheetShell';
-import { useHomePollV2 } from '../hooks/use_home_poll_v2';
 
 /**
  * Высота блока колец: кольцо 222 (макет Б) + отступы TodayRings 2/14 + отступы блока 26/12 (в макете 28 сверху / 26 снизу).
@@ -67,33 +63,13 @@ export default function TodayTasksScreen() {
   const streakColors = useStreakColors(ringsOn);
   const doneColors = useMemo(() => (streakColors ? todayRingColors(streakColors) : null), [streakColors]);
   const todayTasks = useTodayTasks(lang, studyTarget);
-  const tasks = useMemo(() => filterTodayTasksForTarget(todayTasks.tasks, studyTarget), [studyTarget, todayTasks.tasks]);
-  // зачем (владелец 22.10 кнопкой: «опрос дня перенести на экран «Сегодня», Главная — строго по макету»): с новой Главной (флаг «Сцены»)
-  // строки опроса на ней нет — опрос живёт здесь строкой. Тот же хук (набор дня — бандл и расписание, ответы — с диска, сеть только у голоса)
-  // и та же шторка, что были на Главной; без флага опрос остаётся на прежней Главной и здесь не дублируется.
-  const pollOn = HOME_SCENE_V2_ENABLED;
-  const poll = useHomePollV2({ lang, active: pollOn });
-  const [pollOpen, setPollOpen] = useState(false);
-  const openPoll = useCallback(() => {
-    console.log('[TODAY-POLL] open', JSON.stringify({ setId: poll.setId, step: poll.step, total: poll.total, phase: poll.phase })); // guard-ok: одна строка на тап
-    setPollOpen(true);
-  }, [poll.phase, poll.setId, poll.step, poll.total]);
-  const closePoll = useCallback(() => setPollOpen(false), []);
-  useEffect(() => {
-    if (poll.phase === 'hidden') setPollOpen(false);
-  }, [poll.phase]);
-  const pollRow = useMemo<TodayScenePollRow | null>(() => (pollOn && poll.phase !== 'hidden' ? {
-    title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
-    subtitle: triLang(lang, { ru: `${poll.total} вопроса`, uk: `${poll.total} питання`, en: `${poll.total} questions`, es: `${poll.total} preguntas`, 'pt-BR': `${poll.total} perguntas`, vi: `${poll.total} câu hỏi`, id: `${poll.total} pertanyaan`, tr: `${poll.total} soru`, pl: `${poll.total} pytania` }),
-    onPress: openPoll,
-  } : null), [lang, openPoll, poll.phase, poll.total, pollOn]);
-  // зачем (владелец 29.10): та же строка «Попробуй Plus бесплатно», что и на Главной (общий хук и общее отклонение ✕): триал доступен и Plus нет → вместо опроса
-  const trial = useHomeTrialRow(lang, true);
-  const todayRow = trial.row ?? pollRow;
-  useEffect(() => {
-    console.log('[TODAY-POLL] row', JSON.stringify({ pollOn, phase: poll.phase, setId: poll.setId, step: poll.step, total: poll.total, shown: pollRow !== null, reason: !pollOn ? 'home_without_scene_keeps_poll' : poll.phase === 'hidden' ? 'no_set_or_answered' : 'shown' })); // guard-ok: журнал на смену состояния опроса
-  }, [poll.phase, poll.setId, poll.step, poll.total, pollOn, pollRow]);
+  const videoSectionEnabled = useVideoSectionPreference() === true;
+  const tasks = useMemo(
+    () => filterTodayTasksForTarget(todayTasks.tasks, studyTarget, videoSectionEnabled),
+    [studyTarget, todayTasks.tasks, videoSectionEnabled],
+  );
   // зачем: «до» привязано к дню И набору задач — если набор дня сменился (язык, Пик), кольцо не докручивается от чужих чисел
+  const trial = useHomeTrialRow(lang, true);
   const seenKey = `${todayTasks.dayKey}|${tasks.map((task) => task.kind).join(',')}`;
   const progress = ringProgress(tasks);
   // зачем (аудит Optimistic UI 17.10, п.7): повторное открытие за запуск — «до» из памяти синхронно, кольцо в первом кадре без пустого места
@@ -164,20 +140,6 @@ export default function TodayTasksScreen() {
 
   // зачем (эталон today-scene-concepts.html, вариант A; координатор 22.10): за флагом (dev — вкл, релиз — выкл) экран рисуется «Сценой»; хуки выше те же,
   // «до» для колец и открытие задания — прежние, поэтому поведение и журнал [TODAY-RING] не меняются
-  const pollSheet = pollOn ? (
-    <HybridSheetShell
-      visible={pollOpen}
-      onClose={closePoll}
-      closeLabel={triLang(lang, { ru: 'Закрыть опрос', uk: 'Закрити опитування', en: 'Close poll', es: 'Cerrar encuesta', 'pt-BR': 'Fechar enquete', vi: 'Đóng khảo sát', id: 'Tutup jajak pendapat', tr: 'Anketi kapat', pl: 'Zamknij ankietę' })}
-      backdropAccessible={false}
-      material="liquid-glass-opaque"
-      sheetHeight="74%"
-      testID="today-poll-v2-sheet"
-    >
-      <HomePollV2Card model={poll} lang={lang} onFinished={closePoll} />
-    </HybridSheetShell>
-  ) : null;
-
   if (TODAY_SCENE_V2_ENABLED) {
     return (
       <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
@@ -190,9 +152,9 @@ export default function TodayTasksScreen() {
           onBack={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }}
           backLabel={backLabel}
           onOpenTask={openTask}
-          pollRow={todayRow}
+          trialRow={trial.row}
         />
-        {pollSheet}
+
       </View>
     );
   }
@@ -215,7 +177,7 @@ export default function TodayTasksScreen() {
               ) : null}
             </View>
           ) : null}
-          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} surveyRow={todayRow} />
+          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} trialRow={trial.row} />
           <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
         </ScrollView>
       </SafeAreaView>
@@ -225,7 +187,7 @@ export default function TodayTasksScreen() {
         onPress={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }} // зачем ([BACK-BTN] 18.10): после тапа — решение «назад» в журнал, вкладка Главной как запасной путь
         accessibilityLabel={backLabel}
       />
-      {pollSheet}
+
     </View>
   );
 }

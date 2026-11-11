@@ -1,0 +1,120 @@
+[
+{"id":"de:09:13","type":"B1","field":"tiles","problem":"поз.2 (ihren): 4 из 5 соблазнов другой части речи (zusammen/haben/draußen/geschlossen) — притяжательное выбирается без знания слова","fix":{"position":2,"replace_distractor":"zusammen","with":"ihrem"}},
+{"id":"de:09:13","type":"B1","field":"tiles","problem":"поз.2: соблазн другой части речи","fix":{"position":2,"replace_distractor":"haben","with":"ihre"}},
+{"id":"de:09:13","type":"B1","field":"tiles","problem":"поз.2: соблазн другой части речи","fix":{"position":2,"replace_distractor":"draußen","with":"seinen"}},
+{"id":"de:09:13","type":"B1","field":"tiles","problem":"поз.2: соблазн другой части речи","fix":{"position":2,"replace_distractor":"geschlossen","with":"ihr"}},
+
+{"id":"de:09:15","type":"B1","field":"tiles","problem":"поз.2 (ihre): fährt/bin/bist/ist — глаголы на месте притяжательного, выдают ответ","fix":{"position":2,"replace_distractor":"fährt","with":"ihren"}},
+{"id":"de:09:15","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bin","with":"ihrem"}},
+{"id":"de:09:15","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bist","with":"seine"}},
+{"id":"de:09:15","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"ist","with":"meine"}},
+
+{"id":"de:09:19","type":"B1","field":"tiles","problem":"поз.2 (ihre): fährt/bin/bist/ist — глаголы на месте притяжательного, выдают ответ","fix":{"position":2,"replace_distractor":"fährt","with":"ihren"}},
+{"id":"de:09:19","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bin","with":"ihrem"}},
+{"id":"de:09:19","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bist","with":"seine"}},
+{"id":"de:09:19","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"ist","with":"meine"}},
+
+{"id":"de:09:21","type":"B1","field":"tiles","problem":"поз.0 (Unser): все 5 соблазнов — глаголы/существительные (Braucht, Kostet, Beginnt, Essen, Frage), ни одного правдоподобного","fix":{"position":0,"replace_distractor":"Braucht","with":"Unsere"}},
+{"id":"de:09:21","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Kostet","with":"Unseren"}},
+{"id":"de:09:21","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Beginnt","with":"Unserem"}},
+{"id":"de:09:21","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Essen","with":"Unserer"}},
+{"id":"de:09:21","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Frage","with":"Euer"}},
+
+{"id":"de:09:22","type":"B1","field":"tiles","problem":"поз.0 (Unsere): все 5 соблазнов — глаголы/существительные (Frage, Öffnest, Bin, Bist, Ist)","fix":{"position":0,"replace_distractor":"Frage","with":"Unser"}},
+{"id":"de:09:22","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Öffnest","with":"Unseren"}},
+{"id":"de:09:22","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Bin","with":"Unserem"}},
+{"id":"de:09:22","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Bist","with":"Unserer"}},
+{"id":"de:09:22","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Ist","with":"Eure"}},
+
+{"id":"de:09:23","type":"B1","field":"tiles","problem":"поз.0 (Unser): все 5 соблазнов — глаголы/существительные, ни одного правдоподобного","fix":{"position":0,"replace_distractor":"Braucht","with":"Unsere"}},
+{"id":"de:09:23","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Kostet","with":"Unseren"}},
+{"id":"de:09:23","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Beginnt","with":"Unserem"}},
+{"id":"de:09:23","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Essen","with":"Unserer"}},
+{"id":"de:09:23","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Frage","with":"Euer"}},
+
+{"id":"de:09:24","type":"B1","field":"tiles","problem":"поз.0 (Unsere): все 5 соблазнов — глаголы/существительные (Frage, Öffnest, Bin, Bist, Ist)","fix":{"position":0,"replace_distractor":"Frage","with":"Unser"}},
+{"id":"de:09:24","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Öffnest","with":"Unseren"}},
+{"id":"de:09:24","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Bin","with":"Unserem"}},
+{"id":"de:09:24","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Bist","with":"Unserer"}},
+{"id":"de:09:24","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Ist","with":"Eure"}},
+
+{"id":"de:09:26","type":"B1","field":"tiles","problem":"поз.0 (Eure): Bin/Bist/Ist/Seid — глаголы на месте притяжательного, остаётся выбор из двух","fix":{"position":0,"replace_distractor":"Bin","with":"Euren"}},
+{"id":"de:09:26","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Bist","with":"Eurem"}},
+{"id":"de:09:26","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Ist","with":"Eurer"}},
+{"id":"de:09:26","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Seid","with":"Unsere"}},
+
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.0 (Eure): Bin/Bist/Ist/Seid — глаголы на месте притяжательного","fix":{"position":0,"replace_distractor":"Bin","with":"Euren"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Bist","with":"Eurem"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Ist","with":"Eurer"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Seid","with":"Unsere"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.2 (warten): unseren/meinen/deinen/ihren — притяжательные на месте глагола, выдают ответ","fix":{"position":2,"replace_distractor":"unseren","with":"wartet"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.2: притяжательное на месте глагола","fix":{"position":2,"replace_distractor":"meinen","with":"warte"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.2: притяжательное на месте глагола","fix":{"position":2,"replace_distractor":"deinen","with":"wartest"}},
+{"id":"de:09:28","type":"B1","field":"tiles","problem":"поз.2: притяжательное на месте глагола","fix":{"position":2,"replace_distractor":"ihren","with":"kommen"}},
+
+{"id":"de:09:29","type":"B1","field":"tiles","problem":"поз.0 (Unser): все 5 соблазнов — глаголы/существительные, ни одного правдоподобного","fix":{"position":0,"replace_distractor":"Braucht","with":"Unsere"}},
+{"id":"de:09:29","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Kostet","with":"Unseren"}},
+{"id":"de:09:29","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Beginnt","with":"Unserem"}},
+{"id":"de:09:29","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Essen","with":"Unserer"}},
+{"id":"de:09:29","type":"B1","field":"tiles","problem":"поз.0: соблазн другой части речи","fix":{"position":0,"replace_distractor":"Frage","with":"Euer"}},
+
+{"id":"de:09:30","type":"B1","field":"tiles","problem":"поз.0 (Eure): Bin/Bist/Ist/Seid — глаголы на месте притяжательного","fix":{"position":0,"replace_distractor":"Bin","with":"Euren"}},
+{"id":"de:09:30","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Bist","with":"Eurem"}},
+{"id":"de:09:30","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Ist","with":"Eurer"}},
+{"id":"de:09:30","type":"B1","field":"tiles","problem":"поз.0: глагол на месте притяжательного","fix":{"position":0,"replace_distractor":"Seid","with":"Unsere"}},
+
+{"id":"de:09:37","type":"B1","field":"tiles","problem":"поз.2 (Ihr): Wir/Ich/Es/Er/Essen — ни одного притяжательного, ответ выбирается без знания слова","fix":{"position":2,"replace_distractor":"Wir","with":"Ihre"}},
+{"id":"de:09:37","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Ich","with":"Ihren"}},
+{"id":"de:09:37","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Es","with":"Ihrem"}},
+{"id":"de:09:37","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Essen","with":"Sein"}},
+
+{"id":"de:09:38","type":"B1","field":"tiles","problem":"поз.2 (Ihre): Fährt/Bin/Bist/Ist — глаголы на месте притяжательного","fix":{"position":2,"replace_distractor":"Fährt","with":"Ihren"}},
+{"id":"de:09:38","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Bin","with":"Ihrem"}},
+{"id":"de:09:38","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Bist","with":"Deine"}},
+{"id":"de:09:38","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Ist","with":"Seine"}},
+
+{"id":"de:09:39","type":"B1","field":"tiles","problem":"поз.2 (Ihr): Wir/Ich/Es/Er/Essen — ни одного притяжательного","fix":{"position":2,"replace_distractor":"Wir","with":"Ihre"}},
+{"id":"de:09:39","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Ich","with":"Ihren"}},
+{"id":"de:09:39","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Es","with":"Ihrem"}},
+{"id":"de:09:39","type":"B1","field":"tiles","problem":"поз.2: соблазн не притяжательное","fix":{"position":2,"replace_distractor":"Essen","with":"Sein"}},
+
+{"id":"de:09:40","type":"B1","field":"tiles","problem":"поз.2 (Ihre): Fährt/Bin/Bist/Ist — глаголы на месте притяжательного","fix":{"position":2,"replace_distractor":"Fährt","with":"Ihren"}},
+{"id":"de:09:40","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Bin","with":"Ihrem"}},
+{"id":"de:09:40","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Bist","with":"Deine"}},
+{"id":"de:09:40","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"Ist","with":"Seine"}},
+
+{"id":"de:09:47","type":"B1","field":"tiles","problem":"поз.2 (ihre): fährt/bin/bist/ist — глаголы на месте притяжательного","fix":{"position":2,"replace_distractor":"fährt","with":"ihren"}},
+{"id":"de:09:47","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bin","with":"ihrem"}},
+{"id":"de:09:47","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bist","with":"seine"}},
+{"id":"de:09:47","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"ist","with":"meine"}},
+{"id":"de:09:47","type":"B1","field":"tiles","problem":"поз.3 (Adresse): «Brauchen» — глагол на месте существительного","fix":{"position":3,"replace_distractor":"Brauchen","with":"Nummer"}},
+
+{"id":"de:09:50","type":"B1","field":"tiles","problem":"поз.2 (eure): bin/bist/ist/seid — глаголы на месте притяжательного","fix":{"position":2,"replace_distractor":"bin","with":"euren"}},
+{"id":"de:09:50","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"bist","with":"eurem"}},
+{"id":"de:09:50","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"ist","with":"eurer"}},
+{"id":"de:09:50","type":"B1","field":"tiles","problem":"поз.2: глагол на месте притяжательного","fix":{"position":2,"replace_distractor":"seid","with":"unsere"}},
+
+{"id":"de:10:07","type":"M","field":"uk","problem":"«з лікарем-жінкою» — калька; по-украински естественно «з лікаркою» (так и в de:10:25)","fix":"Ти розмовляєш із лікаркою."},
+
+{"id":"de:10:16","type":"M","field":"ru","problem":"zur Apotheke = «в аптеку»; «идёт к аптеке» звучит как «к зданию аптеки», неестественно","fix":"Она идёт в аптеку."},
+
+{"id":"de:10:34","type":"B1","field":"tiles","problem":"поз.2 (gerade): все 5 соблазнов — глаголы/местоимение (essen, bringe, diesem, bringen, beginnt), ни одного наречия","fix":{"position":2,"replace_distractor":"essen","with":"heute"}},
+{"id":"de:10:34","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"bringe","with":"oft"}},
+{"id":"de:10:34","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"diesem","with":"bald"}},
+{"id":"de:10:34","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"bringen","with":"morgen"}},
+{"id":"de:10:34","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"beginnt","with":"später"}},
+
+{"id":"de:10:35","type":"B1","field":"tiles","problem":"поз.2 (gerade): все 5 соблазнов — глаголы/местоимение, ни одного наречия","fix":{"position":2,"replace_distractor":"bringen","with":"heute"}},
+{"id":"de:10:35","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"beginnt","with":"oft"}},
+{"id":"de:10:35","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"essen","with":"bald"}},
+{"id":"de:10:35","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"diesem","with":"morgen"}},
+{"id":"de:10:35","type":"B1","field":"tiles","problem":"поз.2: соблазн не наречие","fix":{"position":2,"replace_distractor":"bringe","with":"später"}},
+
+{"id":"de:10:46","type":"B3","field":"alternatives","problem":"подсказка «Я уже неделю учу немецкий» не исключает естественный порядок «Ich lerne seit einer Woche Deutsch.» (в соседних фразах урока такой вариант добавлен)","fix":{"add":["Ich lerne seit einer Woche Deutsch."],"remove":[]}},
+
+{"id":"de:10:50","type":"B1","field":"tiles","problem":"поз.1 (diesem): все 5 соблазнов — глаголы/наречие (bringen, essen, bringe, beginnt, gerade), ни одного указательного","fix":{"position":1,"replace_distractor":"bringen","with":"dieser"}},
+{"id":"de:10:50","type":"B1","field":"tiles","problem":"поз.1: соблазн не указательное местоимение","fix":{"position":1,"replace_distractor":"essen","with":"diesen"}},
+{"id":"de:10:50","type":"B1","field":"tiles","problem":"поз.1: соблазн не указательное местоимение","fix":{"position":1,"replace_distractor":"bringe","with":"dieses"}},
+{"id":"de:10:50","type":"B1","field":"tiles","problem":"поз.1: соблазн не указательное местоимение","fix":{"position":1,"replace_distractor":"beginnt","with":"diese"}},
+{"id":"de:10:50","type":"B1","field":"tiles","problem":"поз.1: соблазн не указательное местоимение","fix":{"position":1,"replace_distractor":"gerade","with":"jedem"}}
+]

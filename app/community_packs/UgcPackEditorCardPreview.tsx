@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
-import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
+import { LV2_BAD } from '../../components/practice/PracticeGlass';
 import { useTheme } from '../../components/ThemeContext';
 import { plateBoxShadow, useShadowGlass } from '../../components/v2/ShadowSurface';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';

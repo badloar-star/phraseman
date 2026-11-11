@@ -8,15 +8,11 @@ scripts/*
 !scripts/eas_production_version_gate.mjs
 !scripts/eas_ios_development_entitlements.mjs
 # зачем (Ядро 10.10): eas-build-post-install запускает эти скрипты — без них сборка падает «модуль не найден»
-!scripts/learning_v2_audio_coverage_gate.mjs
 # зачем (12.10): помощник гейта озвучки (разбор справки потолка) — без него гейт на сервере EAS падает на импорте.
-!scripts/learning_v2_availability_advisory.mjs
 !scripts/visual_parity_gate.mjs
 !scripts/store_release_surface.mjs
 !scripts/store_route_reachability.mjs
-!scripts/learning_v2_release_parity_gate.mjs
 # зачем (репетиция release:precheck 13.10): обёртка плана Б зовётся из eas-build-post-install — без строки сервер EAS упадёт «модуль не найден»
-!scripts/learning_v2_plan_b_gates.mjs
 docs/
 qa-artifacts/
 tmp/
@@ -163,12 +159,6 @@ assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/*
 # только утяжеляла архив загрузки EAS. Файлы на месте, исключены лишь из архива.
 /ART_STYLE_FOR_CODEX/
 
-# Learning V2 audio is fetched as a verified durable lesson pack.
-assets/audio/learning-v2/
-# The complete four-voice audio for the first session is the only bundled
-# bootstrap exception. It guarantees a clean install never waits for network.
-!assets/audio/learning-v2-bootstrap-v1/
-
 # Collectible card art now streams from Firebase Storage (collectible-images/**)
 # and is disk-cached on device — see app/collectibles/collectible_image_url_map.generated.ts.
 # The local webp are the regen/backup source (full-res q90), no longer bundled
@@ -177,13 +167,8 @@ assets/audio/learning-v2/
 assets/images/collectibles/dalli/
 
 # Non-runtime authoring, diagnostics, and local test artifacts
-# Ядро 14.10: content/ исключён целиком, КРОМЕ content/learning-v2-course/activation/ — мелкие манифесты рантайма курса V2,
-# которые приложение require-ит (бандлер на сервере EAS иначе падает «Unable to resolve»). По семантике .gitignore подпапку нельзя
-# вернуть, если исключён весь родитель, поэтому исключаем содержимое по уровням. Сторож: scripts/easignore_runtime_imports_gate.mjs.
-/content/*
-!/content/learning-v2-course/
-/content/learning-v2-course/*
-!/content/learning-v2-course/activation/
+# content/ исключён целиком: приложение его не импортирует (манифесты удалённого курса занятий больше не нужны).
+/content/
 .shots/
 .eas-logs/
 test-results/

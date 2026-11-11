@@ -1,0 +1,827 @@
+{
+ "lang": "it",
+ "lesson": 25,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:25:01",
+   "target": "Ne voglio uno.",
+   "ru": "Я хочу один из них.",
+   "uk": "Я хочу один із них."
+  },
+  {
+   "id": "it:25:02",
+   "target": "Ne voglio due.",
+   "ru": "Я хочу два из них.",
+   "uk": "Я хочу два з них."
+  },
+  {
+   "id": "it:25:03",
+   "target": "Ne prendi uno.",
+   "ru": "Ты берёшь один.",
+   "uk": "Ти береш один."
+  },
+  {
+   "id": "it:25:04",
+   "target": "Ne prendi due.",
+   "ru": "Ты берёшь два.",
+   "uk": "Ти береш два."
+  },
+  {
+   "id": "it:25:05",
+   "target": "Lei ne tiene tre.",
+   "ru": "Она оставляет себе три.",
+   "uk": "Вона залишає собі три."
+  },
+  {
+   "id": "it:25:06",
+   "target": "Ne compriamo quattro.",
+   "ru": "Мы покупаем четыре.",
+   "uk": "Ми купуємо чотири."
+  },
+  {
+   "id": "it:25:07",
+   "target": "Ne vuole cinque?",
+   "ru": "Вы хотите пять штук?",
+   "uk": "Ви хочете п’ять штук?"
+  },
+  {
+   "id": "it:25:08",
+   "target": "Ne hanno sei.",
+   "ru": "У них шесть.",
+   "uk": "У них шість."
+  },
+  {
+   "id": "it:25:09",
+   "target": "Ne ho abbastanza.",
+   "ru": "У меня их достаточно.",
+   "uk": "У мене їх достатньо."
+  },
+  {
+   "id": "it:25:10",
+   "target": "Ne è rimasta una.",
+   "ru": "Осталась одна.",
+   "uk": "Залишилася одна."
+  },
+  {
+   "id": "it:25:11",
+   "target": "Di pane ne prendo un po’.",
+   "ru": "Хлеба я возьму немного.",
+   "uk": "Хліба я візьму небагато."
+  },
+  {
+   "id": "it:25:12",
+   "target": "Di formaggio ne mangia spesso.",
+   "ru": "Она часто ест сыр.",
+   "uk": "Вона часто їсть сир."
+  },
+  {
+   "id": "it:25:13",
+   "target": "Di mele ne comprerò un chilo.",
+   "ru": "Куплю килограмм яблок.",
+   "uk": "Я куплю кілограм яблук."
+  },
+  {
+   "id": "it:25:14",
+   "target": "Di uova ne prenderò sei.",
+   "ru": "Возьму шесть яиц.",
+   "uk": "Я візьму шість яєць."
+  },
+  {
+   "id": "it:25:15",
+   "target": "Di caffè ne beviamo al mattino.",
+   "ru": "Мы пьем кофе по утрам.",
+   "uk": "Ми п’ємо каву вранці."
+  },
+  {
+   "id": "it:25:16",
+   "target": "Di zuppa ne è rimasta una scodella.",
+   "ru": "Осталась миска супа.",
+   "uk": "Залишилася миска супу."
+  },
+  {
+   "id": "it:25:17",
+   "target": "Di miele ne aggiungo un cucchiaio.",
+   "ru": "Мёда я добавлю ложку.",
+   "uk": "Меду я додам ложку."
+  },
+  {
+   "id": "it:25:18",
+   "target": "Di riso ne prendo una ciotola.",
+   "ru": "Я возьму одну миску риса.",
+   "uk": "Я візьму одну миску рису."
+  },
+  {
+   "id": "it:25:19",
+   "target": "Di fragole ne vuole una vaschetta.",
+   "ru": "Клубники она хочет один лоток.",
+   "uk": "Полуниці вона хоче один лоток."
+  },
+  {
+   "id": "it:25:20",
+   "target": "Di burro ne uso pochissimo.",
+   "ru": "Масла я использую совсем немного.",
+   "uk": "Вершкового масла я використовую дуже мало."
+  },
+  {
+   "id": "it:25:21",
+   "target": "Non ne ho.",
+   "ru": "У меня их нет.",
+   "uk": "У мене їх немає."
+  },
+  {
+   "id": "it:25:22",
+   "target": "Non ne abbiamo più.",
+   "ru": "У нас их больше нет.",
+   "uk": "У нас їх більше немає."
+  },
+  {
+   "id": "it:25:23",
+   "target": "Non ne vuole.",
+   "ru": "Она их не хочет.",
+   "uk": "Вона їх не хоче."
+  },
+  {
+   "id": "it:25:24",
+   "target": "Non ne è rimasta nessuna.",
+   "ru": "Не осталось ни одной.",
+   "uk": "Не залишилося жодної."
+  },
+  {
+   "id": "it:25:25",
+   "target": "Non ne prendi mai?",
+   "ru": "Ты их никогда не берёшь?",
+   "uk": "Ти їх ніколи не береш?"
+  },
+  {
+   "id": "it:25:26",
+   "target": "Di bottiglie ne mettiamo due sullo scaffale.",
+   "ru": "Мы ставим на полку две бутылки.",
+   "uk": "Ми ставимо на полицю дві пляшки."
+  },
+  {
+   "id": "it:25:27",
+   "target": "Qui non ne trovano.",
+   "ru": "Они их здесь не находят.",
+   "uk": "Вони їх тут не знаходять."
+  },
+  {
+   "id": "it:25:28",
+   "target": "Non ne ha altri?",
+   "ru": "У вас нет других?",
+   "uk": "У вас немає інших?"
+  },
+  {
+   "id": "it:25:29",
+   "target": "Lui ne tiene solo uno.",
+   "ru": "Он оставляет себе только один.",
+   "uk": "Він залишає собі тільки один."
+  },
+  {
+   "id": "it:25:30",
+   "target": "Non ne bevo più la sera.",
+   "ru": "Я больше не пью его по вечерам.",
+   "uk": "Я більше не п’ю його вечорами."
+  },
+  {
+   "id": "it:25:31",
+   "target": "Ne ho comprate due.",
+   "ru": "Я купил две.",
+   "uk": "Я купив дві."
+  },
+  {
+   "id": "it:25:32",
+   "target": "Ne ha trovata una.",
+   "ru": "Она нашла одну.",
+   "uk": "Вона знайшла одну."
+  },
+  {
+   "id": "it:25:33",
+   "target": "Ne abbiamo prenotati tre.",
+   "ru": "Мы зарезервировали три.",
+   "uk": "Ми зарезервували три."
+  },
+  {
+   "id": "it:25:34",
+   "target": "Quanti ne hai ricevuti?",
+   "ru": "Сколько ты их получил?",
+   "uk": "Скільки ти їх одержав?"
+  },
+  {
+   "id": "it:25:35",
+   "target": "Ne abbiamo perso uno.",
+   "ru": "Один мы потеряли.",
+   "uk": "Ми втратили один."
+  },
+  {
+   "id": "it:25:36",
+   "target": "Ne porterò ancora.",
+   "ru": "Я принесу ещё.",
+   "uk": "Я принесу ще."
+  },
+  {
+   "id": "it:25:37",
+   "target": "Puoi portarne due?",
+   "ru": "Можешь принести две штуки?",
+   "uk": "Чи можеш принести дві штуки?"
+  },
+  {
+   "id": "it:25:38",
+   "target": "Ci servono dei cavi per il palco; dobbiamo ordinarne tre.",
+   "ru": "Нам нужны кабели для сцены; нужно заказать три.",
+   "uk": "Нам потрібні кабелі для сцени; нам потрібно замовити три."
+  },
+  {
+   "id": "it:25:39",
+   "target": "Dobbiamo ordinarne altri.",
+   "ru": "Нам нужно заказать ещё.",
+   "uk": "Нам потрібно замовити ще."
+  },
+  {
+   "id": "it:25:40",
+   "target": "Queste pile sono cariche: può tenerne la metà.",
+   "ru": "Эти батареи заряжены; половину можете оставить себе.",
+   "uk": "Ці батареї заряджені; ви можете залишити половину з них."
+  },
+  {
+   "id": "it:25:41",
+   "target": "Ho quattro biglietti e te ne do due.",
+   "ru": "У меня четыре билета, и я даю тебе два.",
+   "uk": "У мене чотири квитки, і я даю тобі два."
+  },
+  {
+   "id": "it:25:42",
+   "target": "Questi asciugamani sono puliti: puoi prenderne uno.",
+   "ru": "Эти полотенца чистые, можешь взять одно.",
+   "uk": "Ці рушники чисті, можеш узяти одне."
+  },
+  {
+   "id": "it:25:43",
+   "target": "Queste persiane sbattono per il vento, ne chiudo due.",
+   "ru": "Эти ставни хлопают на ветру, я закрою две из них.",
+   "uk": "Ці віконниці ляскають на вітрі, я закрию дві з них."
+  },
+  {
+   "id": "it:25:44",
+   "target": "Queste pere sono mature, ne vorrei tre.",
+   "ru": "Эти груши спелые, я бы хотел три.",
+   "uk": "Ці груші стиглі, я б хотів три."
+  },
+  {
+   "id": "it:25:45",
+   "target": "Mi piacciono questi panini e ne compro spesso.",
+   "ru": "Мне нравятся эти булочки, я часто их покупаю.",
+   "uk": "Мені подобаються ці булочки, і я часто їх купую."
+  },
+  {
+   "id": "it:25:46",
+   "target": "Mancano dei bicchieri: vado a prenderne altri.",
+   "ru": "Не хватает стаканов, я пойду возьму ещё.",
+   "uk": "Не вистачає склянок, я піду візьму ще."
+  },
+  {
+   "id": "it:25:47",
+   "target": "Questo tè è leggero: ne vuole ancora?",
+   "ru": "Этот чай мягкий, хотите еще?",
+   "uk": "Цей чай м’який, хочете ще?"
+  },
+  {
+   "id": "it:25:48",
+   "target": "Ho troppi scatoloni e ne regalerò qualcuno.",
+   "ru": "У меня слишком много коробок, я отдам часть.",
+   "uk": "У мене забагато коробок, і я деякі віддам."
+  },
+  {
+   "id": "it:25:49",
+   "target": "Abbiamo poco tempo e ne serve di più.",
+   "ru": "У нас мало времени, и нам нужно больше.",
+   "uk": "У нас мало часу, а нам потрібно більше."
+  },
+  {
+   "id": "it:25:50",
+   "target": "Ci sono delle chiatte sul canale e ne vedo due.",
+   "ru": "На канале баржи, и я вижу две.",
+   "uk": "На каналі є баржі, і я бачу дві."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "l’uovo",
+   "ru": "яйцо",
+   "uk": "яйце"
+  },
+  {
+   "lemma": "la ciotola",
+   "ru": "миска",
+   "uk": "миска"
+  },
+  {
+   "lemma": "la vaschetta",
+   "ru": "лоток, небольшая упаковка",
+   "uk": "лоток, невелика упаковка"
+  },
+  {
+   "lemma": "la metà",
+   "ru": "половина",
+   "uk": "половина"
+  },
+  {
+   "lemma": "lo scatolone",
+   "ru": "большая картонная коробка",
+   "uk": "велика картонна коробка"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  }
+ ],
+ "oldTopicTitle": "Часть известного количества: `ne`",
+ "oldTheoryRu": "Определи предмет из подсказки. Один билет — `uno`, одна бутылка — `una`. Само `ne` не изменяется, даже если название предмета женского рода. Можно назвать килограмм, несколько штук или половину. `Ne` позволяет не повторять само название уже обсуждаемого продукта. Количество остаётся явно выраженным. Следи, что заменено: вся вещь или только часть. `La compro` — покупаю её, `ne compro un po’` — покупаю немного этого. Верный глагол ещё не делает эти ответы равнозначными. В отрицании `non ne` ставится до личного глагола. `Non ne voglio` может быть законченным ответом в понятном разговоре. Не требуется всегда дописывать число. В прошедшем времени при названном количестве могут появиться формы согласования: `ne ho prese due` о вещах женского рода. Сверь подразумеваемое слово в сцене, а не только последнюю цифру. Инфинитив и `ne` соединяются: `prenderne`, `comprarne`. Сохраняй окончание инфинитива без последнего `e` перед присоединённым местоимением. В одной фразе могут сначала назвать предмет, затем уточнить, сколько ещё осталось. Если потерял смысл, мысленно верни исходное существительное вместо `ne` и пересчитай предметы."
+}

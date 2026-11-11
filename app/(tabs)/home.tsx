@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
@@ -59,9 +59,6 @@ import { coinRankDisplaySource } from '../../components/coins/coin_rank_display'
 import { STORY_RING_SLOT } from '../../components/stories/story_ring_constants';
 import StoryAvatarSlotBase from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import HomePollV2Card from '../../components/home/HomePollV2Card';
-import HomeSheetTextGuard from '../../components/home/HomeSheetTextGuard';
-import { useHomePollV2 } from '../../hooks/use_home_poll_v2';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
 import { noteHomeIdleRender } from '../home_idle_probe'; // зачем (координатор 04.11, рост View в покое): [HOME-IDLE] — таймеры и циклы по месту вызова; в релизе пусто
@@ -74,11 +71,9 @@ import { memHomeSummary, useMemHomeRegisterSources } from '../mem_home_probe';
 import { decideHomeVideoRailByInterfaceLang, logHomeVideoLang } from '../home_video_language_gate';
 import { HomeBellStateContext } from '../../components/home/v2/home_bell_state';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
-import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
 import { spirePendingCoinsTotal } from '../spire/spire_pending_coins';
-import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 // зачем (Моменты №4, координатор 26.10): окна «итог недели» и «С возвращением» держат своё состояние в своих хостах — Главная от них не перерисовывается
 import { HomeSectionOpeningSlot, HomeWeekMomentSlot, HomeWelcomeBackSlot } from '../../components/home/home_moment_slots';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
@@ -93,6 +88,7 @@ import { getRunesBalance, peekRunes } from '../runes_system';
 import { noteCoinDisplay, peekDisplayedRunes, subscribeDisplayedRunes } from '../runes_system';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { readRealPremiumSnapshotForGeneration } from '../premium_real_storage';
 // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
 // уровня удалена из хедера Главной — peekLevelSpinBalance/readLocalLevelSpinBalance/
 // иконка билета спина/animateNextLayoutTransition жили только ради неё и удалены вместе с ней.
@@ -106,7 +102,6 @@ import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../persona
 // монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
 import HomeV2HeaderBase from '../../components/home/v2/HomeV2Header';
 import { useCloudProfileRefreshing } from '../cloud_profile_refresh_state';
-import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
 import HomeVideoRailLog from '../../components/home/v2/HomeVideoRailLog';
@@ -116,9 +111,7 @@ import HomeReviewHint from '../../components/home/HomeReviewHint'; // зачем
 import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/today_scene_copy';
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
-import { SEASON_COUNT_LOG, homeSceneLessonCount } from '../../components/home/v2/scene/home_scene_count';
-import { homeSceneContinueTarget } from '../../components/home/v2/scene/home_scene_continue_target';
-import { homeSceneCtaTarget } from '../../components/home/v2/scene/home_scene_copy';
+import { markHomeScenePhraseSeen } from '../../components/home/v2/scene/use_home_scene_more_facts';
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
@@ -137,9 +130,7 @@ import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
-import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
-import { markHomeScenePhraseSeen } from '../../components/home/v2/scene/use_home_scene_more_facts';
 import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contracts';
 // зачем (владелец 2026-09-21): HomeSectionPulseButton больше не импортируется —
 // ряд из двух пилюль у «Сегодня» удалён. Сам компонент оставлен в проекте: он
@@ -150,6 +141,7 @@ import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contra
 import { homeMistakesButtonState } from '../home_mistakes_pulse_model';
 import type { LingmanYoutubeVideo } from '../lingman_youtube';
 import { isVideoButtonEnabled } from '../remote_flags';
+import { getVideoSectionSignal, useVideoSectionPreference } from '../video_section_preference';
 import { readRawCachedLingmanFeed } from '../lingman_youtube_feed_disk';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import {
@@ -159,12 +151,9 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { VIDEO_PHRASES_NAME } from '../video_phrases_name';
-import { homeHeroProgressBranch, logHomeHeroPick } from '../home_hero_log'; // зачем (координатор 05.11): журнал [HOME-HERO] pick
 import { HOME_TILE_ROW_MAX, homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
-import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
-import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
+import type { StoryEvent } from '../../modules/story_events/story_events_core';
 import { ENABLE_DEV_TOOLS } from '../config';
-import { isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { noteLessonsOpenStart } from '../lessons_tab_diagnostics';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
@@ -177,6 +166,7 @@ function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
   return state.counted ? 'counted' : 'pending';
 }
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
+import { readStoredItem, readStoredItems } from '../storage_snapshot';
 import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../../components/v2/ShadowSurface';
 import { gcDelta, gcSnapshot } from '../mem_probe';
 import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -190,7 +180,6 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 import LegacyBonusWelcomeHost from '../../components/legacy_bonus/LegacyBonusWelcomeHost';
 // зачем ([HOME-CHILD-COST] 18.10, журнал Сверки: рендер детей Главной 76–142 мс на возврате): dev-измерение каждого крупного ребёнка React Profiler; в релизе withHomeChildCost возвращает тот же компонент
 const HomeV2Header = withHomeChildCost('header', HomeV2HeaderBase);
-const HomeV2ContinueCard = withHomeChildCost('continue_card', HomeV2ContinueCardBase);
 const HomeV2FeatureTiles = withHomeChildCost('feature_tiles', HomeV2FeatureTilesBase);
 const HomeV2VideoRail = withHomeChildCost('video_rail', HomeV2VideoRailBase);
 const HomeV2TodayCard = withHomeChildCost('today_card', HomeV2TodayCardBase);
@@ -201,16 +190,12 @@ const NotificationCenterButton = withHomeChildCost('bell', NotificationCenterBut
 const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
 const loadVipCelebrationModal = () => import('../../components/VipCelebrationModal');
-const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');
 const loadSavedCardsFlight = () => import('../../components/SavedCardsFlight');
 const loadPlayerProfileModal = () => import('../../components/PlayerProfileModal');
-const loadFeatureIntroEntry = () => import('../../components/feature_intro/FeatureIntroEntry');
 const PremiumCelebrationModal = lazy(loadPremiumCelebrationModal);
 const VipCelebrationModal = lazy(loadVipCelebrationModal);
-const SurveySheetModal = lazy(loadSurveySheetModal);
 const SavedCardsFlight = lazy(loadSavedCardsFlight);
 const PlayerProfileModal = lazy(loadPlayerProfileModal);
-const FeatureIntroEntry = lazy(loadFeatureIntroEntry);
 // Защёлка «окно уже открывалось»: до первого открытия ленивое окно не монтируется вовсе, после — остаётся
 // смонтированным, чтобы доиграть анимацию закрытия и не грузиться заново.
 function useMountedAfterFirstOpen(open: boolean): boolean {
@@ -221,8 +206,8 @@ function useMountedAfterFirstOpen(open: boolean): boolean {
 function prewarmHomeDeferredModules(): void {
   const started = Date.now();
   void Promise.all([
-    loadPremiumCelebrationModal(), loadVipCelebrationModal(), loadSurveySheetModal(),
-    loadSavedCardsFlight(), loadPlayerProfileModal(), loadFeatureIntroEntry(),
+    loadPremiumCelebrationModal(), loadVipCelebrationModal(),
+    loadSavedCardsFlight(), loadPlayerProfileModal(),
   ]).then(() => {
     console.log(`[HOME-LAZY] prewarm:done ${Date.now() - started}мс`);
   }).catch((error: unknown) => {
@@ -550,8 +535,6 @@ function logHomeFirstMountEffectsTiming(): void {
 let homeVideoSnapshotMemo: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error: boolean }> | null = null;
 let homeVideoNetworkOkThisLaunch = false;
 type HomeVideoLoadSnapshot = Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error?: string }>;
-// зачем (Сверка 02:15, HOME-COLD_cold3: video:start ×2): одна цепочка загрузки ленты на время её выполнения.
-const homeVideoLoadPipeline = createHomeVideoLoadPipeline<HomeVideoLoadSnapshot>();
 function logHomeFirstRenderTiming(): void {
   if (homeFirstRenderLogged) return;
   homeFirstRenderLogged = true;
@@ -562,24 +545,6 @@ function logHomeFirstRenderTiming(): void {
     renderToCommitMs: committedAt - homeFirstRenderStartedAt,
     committedEpochMs: committedAt,
   })); // guard-ok: одна release-строка за запуск, как [HOME-PAINT] (release вырезает log/info, warn остаётся)
-}
-
-// зачем (Сверка 24.10, [SEASON-COUNT]): одна строка на смену числа «N из M» на «Сцене» — какое число и откуда; рендер Главной
-// частый, поэтому пишем только при смене
-let lastHomeSceneCountKey = '';
-// зачем (координатор 24.10, Р3): ветка «Продолжить» на «Сцене» — одна строка на смену (рендер Главной частый)
-let lastHomeSceneTargetKey = '';
-function logHomeSceneTarget(reason: string, choice: string, studyTarget: unknown): void {
-  const key = `${reason}:${choice}:${String(studyTarget)}`;
-  if (key === lastHomeSceneTargetKey) return;
-  lastHomeSceneTargetKey = key;
-  console.log('[HOME-CONTINUE] scene_target', JSON.stringify({ reason, choice, studyTarget: String(studyTarget) })); // guard-ok: одна строка на смену ветки
-}
-function logHomeSceneCount(lessonNo: number | null, count: ReturnType<typeof homeSceneLessonCount>): void {
-  const key = `${lessonNo}:${count.done}:${count.total}:${count.source}`;
-  if (key === lastHomeSceneCountKey) return;
-  lastHomeSceneCountKey = key;
-  console.log(`${SEASON_COUNT_LOG} Главная`, JSON.stringify({ lesson: lessonNo, done: count.done, total: count.total, source: count.source })); // guard-ok: одна строка на смену числа
 }
 
 export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
@@ -639,7 +604,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const rankLockedDialogues = isSurfaceLocked(useRankAccess('dialogues'));
     const rankLockedPeak = isSurfaceLocked(useRankAccess('peak'));
     const rankLockedCardsHub = isSurfaceLocked(useRankAccess('cards_hub'));
-    const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
+    const videoSectionEnabled = useVideoSectionPreference() === true;
+    const homeVideosVisible = videoSectionEnabled && isLearningSurfaceReady(studyTarget, 'videos');
+    // A new enable cycle gets its own pipeline, even while a cancelled request is settling.
+    const homeVideoLoadPipeline = useMemo(
+        () => createHomeVideoLoadPipeline<HomeVideoLoadSnapshot>(),
+        [videoSectionEnabled],
+    );
     const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');
     const topFadeScroll = useTopFadeScroll();
     noteHomeRender('home'); // [HOME-SCROLL]: счётчик рендеров Главной за окно прокрутки (срочно 25.10, «скролл дёрганый»)
@@ -700,6 +671,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // где и была точна, а не 60 раз в секунду.
     const homeTopFadeShown = useSharedValue(false);
     const homeTabBarLastY = useSharedValue(0);
+    // зачем (владелец 11.11, кадр 14:42: «главная сцена если тянуть вниз — там цвет меняется»): на сколько лента оттянута вниз за верхний край.
+    // Сцена растягивает свой фон вверх ровно на это значение (HomeSceneStage backdropStretch), и в зазоре над ней виден её же цвет, а не фон страницы.
+    // iOS: значение пишет обработчик прокрутки ниже (родная резинка даёт отрицательный offset). Android: это же значение — сама резинка
+    // BouncyScrollView (androidStretch), её пишет жест; обработчик прокрутки на Android его не трогает, иначе затёр бы оттяжку нижнего края.
+    const homeTopOverscroll = useSharedValue(0);
     // зачем ([SCROLL-RESTORE] 18.10, журнал Сверки ru → es: после lang_change y=0, высота 945 → 975 за 430 мс, и экран сам уезжает на y=81 — шапка срезана): в окне 2,5 с после РЕАЛЬНОЙ смены языка, пока человек не прокручивал пальцем,
     // возвращаем верх один раз. Жест пальцем отключает коррекцию; вне окна и без смены языка ничего не делает.
     const homeLangChangedAtRef = useRef(0);
@@ -727,6 +703,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [correctHomeScrollAfterLang, refreshDailyPhraseVisibility, topFadeScroll]);
     const homeScrollWorklet = useCallback((y: number) => {
         'worklet';
+        if (Platform.OS === 'ios') homeTopOverscroll.value = y < 0 ? -y : 0;
         const clamped = Math.max(0, y);
         const fadeShown = clamped > 6;
         // Тот же шаг 8px, что в TopFadeScrollContext.reportOffset — таббар и так
@@ -738,7 +715,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             homeTabBarLastY.value = clamped;
             runOnJS(notifyHomeScrollY)(clamped);
         }
-    }, [homeTabBarLastY, homeTopFadeShown, notifyHomeScrollY]);
+    }, [homeTabBarLastY, homeTopFadeShown, homeTopOverscroll, notifyHomeScrollY]);
     const handleHomeScrollSettled = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
         noteScrollDrag('home', false);
@@ -779,25 +756,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         homeRuntimeActiveRef.current = homeRuntimeActive;
     }, [homeRuntimeActive]);
-    // Опрос V2 живёт в строке «Сегодня»: сам хук остаётся владельцем снимка и
-    // отправки, а шторка только показывает уже загруженную модель.
-    const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });
-    const [homePollV2Open, setHomePollV2Open] = useState(false);
-    const closeHomePollV2 = useCallback(() => setHomePollV2Open(false), []);
-    useEffect(() => {
-        if (homePollV2.phase === 'hidden') closeHomePollV2();
-    }, [closeHomePollV2, homePollV2.phase]);
-    // зачем (D191, Ядро 14.10): окно итога недели берёт слот в общей очереди окон, «показано» отмечает хук; здесь только точка монтирования
-    // зачем (владелец 22.10, «вернуть анкеты»): анкета-кампания из админки — строка в «Сегодня»; загрузка раз при входе с кэшем 6 ч,
-    // шторка монтируется только пока открыта (hooks/use_home_survey_entry.ts). Делит строку с Poll V2 — анкета первой.
-    const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
-    // Одна строка «Сегодня» на два источника (владелец 22.10): анкета-кампания из админки первой, иначе Poll V2.
-    // зачем (владелец 29.10): общий хук Главной и экрана «Сегодня» — триал доступен и Plus нет → вместо анкеты/опроса строка «Попробуй Plus бесплатно» (✕ — отклонить)
     const homeTrial = useHomeTrialRow(lang, homeRuntimeActive);
-    const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';
-    useEffect(() => {
-      console.log('[SURVEY-ROW]', JSON.stringify({ source: homeTodayRowSource, surveyOffered: homeSurvey.row !== null, pollPhase: homePollV2.phase, reason: homeTodayRowSource === 'trial' ? 'trial_row_first' : homeTodayRowSource === 'survey' ? 'active_survey_campaign' : homeTodayRowSource === 'poll_v2' ? 'no_survey_poll_active' : 'nothing_active' })); // guard-ok: одна строка на смену выбора
-    }, [homeTodayRowSource, homeSurvey.row, homePollV2.phase]);
     // зачем (координатор 14.10; эталон v3-all: Играть ведёт в игру): после синхронного закрытия окна — в раздел Пика; Пик недоступен этому языку / вкладка выключена → кнопка только закрывает окно
     const weekMomentPlay = useMemo(() => (spireTabEnabled && isLearningSurfaceReady(studyTarget, 'spire') ? () => { nav.push('/(tabs)/community?section=spire' as never); } : undefined), [nav, spireTabEnabled, studyTarget]);
     // зачем (координатор 14.10): авто-пейвол «серия» шёл мимо очереди окон и мог въехать поверх окна недели / «С возвращением» — перед push ждём свободный слот, показываем один раз после ([PAYWALL-AUTO])
@@ -919,12 +878,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         return w && w.length === 7 ? [...w] : new Array(7).fill(null);
     });
     const [weekPoints, setWeekPoints] = useState(() => hh?.weekPoints ?? 0);
-    const [lastLesson, setLastLesson] = useState<{
-        id: number;
-        name: string;
-        progress: number;
-        score: string;
-    } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
+    const [lastLessonState, setLastLesson] = useState<{
+        lesson: NonNullable<ReturnType<typeof buildLastLessonFromHydration>>;
+        account: AccountGenerationToken;
+        target: typeof studyTarget;
+    } | null>(() => {
+        const account = captureAccountGeneration();
+        const lesson = isCurrentAccountGeneration(account) ? buildLastLessonFromHydration(lang, studyTarget) : null;
+        return lesson ? { lesson, account, target: studyTarget } : null;
+    });
+    const lastLesson = lastLessonState && lastLessonState.target === studyTarget
+        && isCurrentAccountGeneration(lastLessonState.account) ? lastLessonState.lesson : null;
+    const lastLessonEvent = useRef<typeof lastLessonState>(null);
     // зачем (эмулятор 30.09, лог [HOME-FIRST-FRAME]): на холодном старте снимок урока
     // живёт только в памяти — карточка «Продолжить обучение» приходила после loadData
     // и рывком сдвигала всю Главную. Ref помнит, была ли карточка, чтобы вставку анимировать.
@@ -945,31 +910,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             studyTarget: String(studyTarget), source: 'hydration_or_loadData',
         }));
     }, [continueResolved, homeLearnVisible, lastLesson?.id, lastLesson?.progress, studyTarget]);
-    // зачем (Ревизор P23, координатор 15.10): «Продолжить» показывает то, что СВЕЖЕЕ — старый урок или занятие курса V2 (метки в home_continue_mark,
-    // только локально). Раньше карточка знала только старые уроки: у тех, кто занимался V2, её не было или она вела в старый урок.
-    const continueMarks = useHomeContinueMarks(studyTarget);
-    // зачем (слово владельца 17.10, координатор): «последнее место» — не только урок, но и диалог или набор карточек; метки проверены на устаревание (раздел закрыт для языка,
-    // сценарий удалён) до выбора — устаревшая тихо отпадает, причина в [HOME-CONTINUE] stale. Считается один раз на смену меток/языка, не на каждый рендер.
-    const continuePlaces = useMemo(
-        () => resolveHomeContinuePlaces({ marks: continueMarks, dialoguesVisible: homeDialoguesVisible, flashcardsVisible: homeFlashcardsVisible, lang }),
-        [continueMarks.dialog, continueMarks.cards, homeDialoguesVisible, homeFlashcardsVisible, lang], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: нужны только эти две метки
-    );
-    // зачем (R92): карточка «Продолжить» не ведёт в курс V2, если у курса нет пояснений на языке интерфейса (есть только ru/uk)
-    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && isHomeContinueV2Enabled() && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
-    const continueChoice = pickHomeContinue(continueInput);
-    const continueV2 = continueChoice.kind === 'v2' ? continueInput.v2 : null;
-    const continuePlace = continueChoice.kind === 'dialog' ? continuePlaces.dialog : continueChoice.kind === 'cards' ? continuePlaces.cards : null;
-    // зачем: ни урока, ни занятия V2, ни диалога, ни карточек (первый запуск) — вместо пустого места «Начать урок 1»; пока урок читается, стоит прежняя заготовка той же формы
-    const continueStart = continueChoice.kind === 'none' && continueResolved && homeLearnVisible;
-    // зачем (координатор 15.10, поправка 1): «пройдено / выпущено» считается при показе из локального прогресса курса и
-    // перечитывается на каждый возврат на Главную (focusTick) — после пройденного занятия число свежее, а не из метки
-    const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive, studyTarget === 'es' ? 'es' : 'en');
-    const continueV2Launching = useHomeContinueV2Launching(); // зачем (Ревизор по R09, 🟡): занятие готовится до 12 с — карточка «Продолжить» показывает занятость вместо молчания
-    useHomeContinueV2Prewarm(continueV2?.route ?? null, lang, String(studyTarget), homeRuntimeActive); // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): урок готов до тапа «Продолжить»
-    useEffect(() => {
-        logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал пишется на смену решения или меток, а не на каждый рендер
-    }, [continueChoice.kind, continueChoice.reason, continueMarks.v2?.atMs, continueMarks.v2?.sessionId, continueMarks.legacyAtMs, continuePlaces.dialog?.atMs, continuePlaces.cards?.atMs, lastLesson?.id, studyTarget]);
     useEffect(() => {
         continueResolvedRef.current = continueResolved;
         if (continueResolved) return undefined;
@@ -993,7 +933,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         let cancelled = false;
         const token = captureAccountGeneration();
         const startedAt = Date.now();
-        void AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))
+        void readStoredItem(lastOpenedLessonKey(studyTarget))
             .then((raw) => {
                 if (cancelled || continueResolvedRef.current || !isCurrentAccountGeneration(token)) {
                     console.log(`[HOME-CONTINUE] early: пропуск cancelled=${cancelled} resolved=${continueResolvedRef.current} accountCurrent=${isCurrentAccountGeneration(token)} raw=${String(raw)}`); // guard-ok: ранний выход называет причину
@@ -1110,15 +1050,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
             ? 0
             : mistakeReadyCount;
-    const homePriorityCardReduceMotion = useReduceMotion();
-    const homePriorityCardScale = useSharedValue(1);
-    // зачем (владелец 04.10, скриншот: «ТУТ НЕ ДОЛЖНО БЫТЬ МОИ ОШИБКИ! ТУТ ПОСЛЕДНИЙ УРОК ОТКРЫТЫЙ, А НЕ ОШИБКИ!
-    // ОШИБКИ В БЛОКЕ СЕГОДНЯ»): карточка «Продолжить обучение» — всегда только последний открытый урок.
-    // Автозахват ошибками (10+) и переворот долгим нажатием «урок ↔ ошибки» удалены вместе с состоянием лица;
-    // вход в «Мои ошибки» на Главной — строка «Сегодня» (D144).
-    useEffect(() => {
-        if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
-    }, [homePriorityCardReduceMotion, homePriorityCardScale]);
     // Сколько раз юзер запрашивал повторный показ подсказок (0 = первый показ,
     // 1..5 = юмористические наборы №2..№6). Двигается кнопкой в настройках.
     const [homeFeatureTipsReplayCount, setHomeFeatureTipsReplayCount] = useState(0);
@@ -1228,24 +1159,25 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // homeRuntimeActive): сохранённый список канала читаем лёгким модулем сразу при монтировании; модуль ленты
     // потом обновит из сети и подмешает пины. Один раз за запуск (homeVideoSnapshotMemo).
     useEffect(() => {
-        if (homeVideoSnapshotMemo || !isVideoButtonEnabled() || homeVideoRailUsesCatalog(studyTarget)) return undefined;
+        const signal = getVideoSectionSignal();
+        if (!videoSectionEnabled || !signal || homeVideoSnapshotMemo || !isVideoButtonEnabled() || homeVideoRailUsesCatalog(studyTarget)) return undefined;
         let alive = true;
         const startedAt = Date.now();
         void readRawCachedLingmanFeed().then((videos) => {
             console.warn('[HOME-COLD] video:raw_cache', JSON.stringify({ ms: Date.now() - startedAt, videos: videos?.length ?? 0, alive, memo: !!homeVideoSnapshotMemo })); // guard-ok: временная трассировка холодного старта
-            if (!alive || !videos || homeVideoSnapshotMemo) return;
+            if (!alive || signal.aborted || !videos || homeVideoSnapshotMemo) return;
             homeVideoSnapshotMemo = { videos, latestVideoId: videos[0]?.id ?? null, error: false };
             latestVideoIdRef.current = homeVideoSnapshotMemo.latestVideoId;
             setHomeV2Videos(videos);
             setHomeV2VideoStatus('ready');
         });
         return () => { alive = false; };
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- один раз при монтировании
-    }, []);
+    }, [studyTarget, videoSectionEnabled]);
     // зачем (владелец 2026-09-15): вход в видео переехал из шапки в ряд «Сегодня»,
     // поэтому счётчик непросмотренных читается здесь. Локальный снапшот, без сети.
     useEffect(() => {
-        if (!homeRuntimeActive || !isVideoButtonEnabled()) {
+        const signal = getVideoSectionSignal();
+        if (!videoSectionEnabled || !signal || !homeRuntimeActive || !isVideoButtonEnabled()) {
             // зачем (Сверка 06:01, серые превью видео на холодном старте): ранний выход обязан говорить причину.
             console.warn('[HOME-COLD] video:skip', JSON.stringify({
                 homeRuntimeActive, videoButtonEnabled: isVideoButtonEnabled(), runtimeOwnerId, homeOnboardingDone,
@@ -1286,12 +1218,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const { joined, unsubscribe } = homeVideoLoadPipeline.run(applySnapshot, async (emit) => {
             try {
                 const m = await import('../lingman_youtube');
+                if (signal.aborted) return;
                 // зачем (пакет 08:26: после video:start ни одной строки — ни resolved, ни cache_miss): дошёл ли ленивый
                 // импорт ленты и сколько шло чтение кэша.
                 console.warn('[HOME-COLD] video:import_done', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, memo: !!homeVideoSnapshotMemo })); // guard-ok: временная трассировка
                 if (!homeVideoSnapshotMemo) {
                     const cached = await m.readCachedLingmanYoutubeSnapshot();
                     console.warn('[HOME-COLD] video:cache_read', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, hit: !!cached })); // guard-ok: временная трассировка
+                    if (signal.aborted) return;
                     if (cached) emit(cached, 'cache');
                     else console.warn('[HOME-COLD] video:cache_miss', JSON.stringify({ ms: Date.now() - videoLoadStartedAt })); // guard-ok: ветка логируется
                 }
@@ -1299,12 +1233,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     console.warn('[HOME-COLD] video:network_skip', JSON.stringify({ reason: 'already_refreshed_this_launch' })); // guard-ok: ветка логируется
                     return;
                 }
-                const snapshot = await m.getLingmanYoutubeSnapshot();
+                const snapshot = await m.getLingmanYoutubeSnapshot(signal);
+                if (signal.aborted) return;
                 // зачем (§CORE-0170): «сеть уже обновила ленту» — только живой RSS; запасной источник (кэш/каталог) идёт без
                 // ошибки, но следующий фокус должен снова попробовать RSS.
                 if (!snapshot.error && (snapshot.source ?? 'rss') === 'rss') homeVideoNetworkOkThisLaunch = true;
                 emit(snapshot, 'network');
             } catch (error: unknown) {
+                if (signal.aborted) return;
                 const message = error instanceof Error ? error.message : String(error);
                 console.warn('[HOME-VIDEO] snapshot:catch → 0', message); // guard-ok: лог в catch обязателен
                 // Как сбой сети: при показанном кэше он остаётся, без кэша — статус ошибки (applySnapshot).
@@ -1316,7 +1252,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             alive = false;
             unsubscribe();
         };
-    }, [focusTick, homeRuntimeActive, studyTarget]);
+    }, [focusTick, homeRuntimeActive, homeVideoLoadPipeline, studyTarget, videoSectionEnabled]);
     // зачем D130: при смене языка лента не показывает видео прежнего языка, пока грузится новая.
     const homeRailTargetRef = useRef(studyTarget);
     useEffect(() => {
@@ -1337,18 +1273,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homeRailRetryTick, setHomeRailRetryTick] = useState(0);
     // зачем D130/D132: лента Главной для es/fr/de/it — канал каталога с тегом языка.
     useEffect(() => {
-        if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
+        const signal = getVideoSectionSignal();
+        if (!signal || !homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
         if (!homeVideoRailUsesCatalog(studyTarget) || !homeVideosVisible) return undefined;
         let alive = true;
         let retryTimer: ReturnType<typeof setTimeout> | null = null;
-        void loadHomeVideoRailForTarget(studyTarget)
+        void loadHomeVideoRailForTarget(studyTarget, signal)
             .then((rail) => {
-                if (!alive) return;
+                if (!alive || signal.aborted) return;
                 setHomeV2Videos(rail.videos);
                 setHomeV2VideoStatus('ready');
                 setHomeV2VideoNoChannel(rail.source === 'no_channel_for_target');
             })
             .catch((error: unknown) => {
+                if (signal.aborted) return;
                 console.warn('[LANG-SURFACE] home_rail:catch → error', { studyTarget, error: error instanceof Error ? error.message : String(error) }); // guard-ok: лог в catch обязателен
                 if (!alive) return;
                 setHomeV2VideoStatus('error');
@@ -1374,7 +1312,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // на Главной только монета-аватар ранга, состояния ауры больше нет.
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
     const [homeProfilePlayer, setHomeProfilePlayer] = useState<PlayerInfo | null>(null);
-    const [profileIntroRequested, setProfileIntroRequested] = useState(false);
     const [titleModalVisible, setTitleModalVisible] = useState(false);
     const [selectedTitleKey, setSelectedTitleKey] = useState<string | null>(null);
     const selectedTitleHydratedRef = useRef(false);
@@ -1399,8 +1336,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const premiumCelebrationMounted = useMountedAfterFirstOpen(celebrationOverlayVisible);
     const vipCelebrationMounted = useMountedAfterFirstOpen(vipCelebrationOverlayVisible);
     const profileModalMounted = useMountedAfterFirstOpen(homeProfilePlayer !== null);
-    const profileIntroEnabled = profileIntroRequested && homeRuntimeActive && homeProfilePlayer !== null;
-    const profileIntroMounted = useMountedAfterFirstOpen(profileIntroEnabled);
     const savedCardsFlightMounted = useMountedAfterFirstOpen(cardArrivals > 0);
     useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
     // зачем (PM-214, координатор 13.10): первый заход в Пик за запуск рисует экран из памяти, а не скелет — конфиг прогревается из дискового кэша после первого кадра Главной и после онбординга (сети нет)
@@ -1709,7 +1644,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const lessonNames = lessonNamesForStudyTarget(langRef.current, studyTargetRef.current);
             const name = lessonNames[payload.lessonId - 1];
             if (!name) return;
-            setLastLesson({ id: payload.lessonId, name, progress: payload.progress, score: payload.score });
+            const account = captureAccountGeneration();
+            if (!isCurrentAccountGeneration(account)) return;
+            const update = {
+                account, target: studyTargetRef.current,
+                lesson: { id: payload.lessonId, name, progress: payload.progress, score: payload.score },
+            };
+            lastLessonEvent.current = update;
+            setLastLesson(update);
         });
         const onboardingCompletedSub = onAppEvent('onboarding_completed', () => {
             setHomeOnboardingDone(true);
@@ -1889,20 +1831,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeRefreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const lastHomeRefreshRef = useRef<{ key: string; at: number }>({ key: '', at: 0 });
     const homeRefreshKeyRef = useRef<string | null>(null);
-    const markHomeStatsReady = useCallback(() => {
+    const markHomeStatsReady = useCallback((account: AccountGenerationToken) => {
         deferredReadyTaskRef.current?.cancel?.();
         deferredReadyTaskRef.current = InteractionManager.runAfterInteractions(() => {
             deferredReadyTaskRef.current = null;
-            if (mountedRef.current)
+            if (mountedRef.current && isCurrentAccountGeneration(account))
                 setHomeStatsReady(true);
         });
     }, []);
     useEffect(() => {
-        if (!homeRuntimeActive) return;
-        const homeRefreshKey = `${studyTarget}:${lang}`;
+        if (!homeRuntimeActive || mistakeAccountGeneration.phase !== 'active') return;
+        const homeRefreshKey = `${studyTarget}:${lang}:${mistakeAccountGenerationKey}`;
         // Returning from a section must reveal the preserved Home tree, not
-        // restart its data pipeline. A real study-target/UI-language change is
-        // the only reason this effect performs a fresh full load.
+        // restart its data pipeline. Reload when the language or account changes.
         if (homeRefreshKeyRef.current === homeRefreshKey) return;
         homeRefreshKeyRef.current = homeRefreshKey;
         if (homeRefreshTimerRef.current) {
@@ -1934,13 +1875,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 homeDataDirtyRef.current = true;
             }
         };
-    }, [homeRuntimeActive, studyTarget, lang]);
+    }, [homeRuntimeActive, studyTarget, lang, mistakeAccountGeneration.phase, mistakeAccountGenerationKey]);
     useEffect(() => {
         if (homeStatsReady && isHomeOwner) {
             emitAppEvent('app_first_content_ready');
         }
     }, [homeStatsReady, isHomeOwner]);
     const loadData = async () => {
+        const homeHydrationAccount = captureAccountGeneration();
+        if (!isCurrentAccountGeneration(homeHydrationAccount)) return;
         if (loadingRef.current) {
             needsReloadRef.current = true;
             return;
@@ -1955,7 +1898,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         clearHomeSilentRetry();
         loadingRef.current = true;
         needsReloadRef.current = false;
-        const homeHydrationAccount = captureAccountGeneration();
         const homeHydrationStartedAt = Date.now();
         if (streakTimerRef.current) {
             clearTimeout(streakTimerRef.current);
@@ -1991,7 +1933,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               (value) => { parts[label] = Date.now() - partsStartedAt; return value; },
               (error: unknown) => { parts[`${label}:failed`] = Date.now() - partsStartedAt; throw error; },
             );
-            const [homeStoragePairs, currentWeekMarkers, weekPts, premiumSignalPairs, personalProgress] = await Promise.all([
+            const [homeStoragePairs, currentWeekMarkers, weekPts, premiumSnapshot, personalProgress] = await Promise.all([
                 timed('home_keys', AsyncStorage.multiGet([
                     'user_name',
                     'week_days_done',
@@ -2003,13 +1945,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 ])),
                 timed('streak_week_markers', readCurrentStreakWeekMarkers()),
                 Promise.resolve(0),
-                timed('premium_active', AsyncStorage.multiGet(['premium_active'])),
+                timed('premium_snapshot', readRealPremiumSnapshotForGeneration(homeHydrationAccount)),
                 // зачем (немой catch запрещён): сбой гидрации прогресса пишет причину; значение — прежний снимок.
                 timed('personal_progress', hydratePersonalProgress().catch((error: unknown) => {
                     noteSwallowedHandler('home:loadData.hydratePersonalProgress')(error);
                     return getPersonalProgressSnapshot();
                 })),
             ]);
+            if (!mountedRef.current || !isCurrentAccountGeneration(homeHydrationAccount)) return;
             console.log('[HOME-LOADDATA-PARTS] parallel6', JSON.stringify({ totalMs: Date.now() - partsStartedAt, parts, gc: gcDelta(partsGcAt, gcSnapshot()) }));
             step('parallel6');
             const homeStorage = new Map(homeStoragePairs);
@@ -2019,7 +1962,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null;
             const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null;
             const lastWeekDotAnimationRaw = homeStorage.get(HOME_WEEK_DOT_ANIMATION_KEY) ?? null;
-            const premiumSignals = new Map(premiumSignalPairs);
             homeSilentRetryRef.current = 0;
             setWeekMarkers(currentWeekMarkers);
             if (!selectedTitleHydratedRef.current) {
@@ -2128,11 +2070,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             let done = 0;
             const lastOpenedKey = lastOpenedLessonKey(studyTarget);
             const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
+            const lessonBeforeRead = lastLessonEvent.current;
             step('titles+achievements+greeting');
             step('titles+achievements');
             const lessonsReadStartedAt = Date.now();
             const lessonsReadGcAt = gcSnapshot();
-            const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
+            const lessonEntriesWithLastOpened = await readStoredItems([...lessonKeys, lastOpenedKey]);
+            if (!mountedRef.current || !isCurrentAccountGeneration(homeHydrationAccount)) return;
             console.log('[HOME-LOADDATA-PARTS] lessons_read', JSON.stringify({ ms: Date.now() - lessonsReadStartedAt, keys: lessonKeys.length + 1, gc: gcDelta(lessonsReadGcAt, gcSnapshot()) }));
             const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
@@ -2165,30 +2109,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
-            let lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
-            // зачем: у пользователей, успевших заглянуть в заблокированный урок до
-            // фикса в lesson_menu, в сторе остался его id — кнопка «Урок» вела на
-            // экран «Урок заблокирован» каждый раз и выглядела как поломка. Если
-            // запомненный урок недоступен — откатываемся к ближайшему доступному
-            // ниже по списку, чтобы кнопка всегда открывала то, что можно учить.
-            if (lastId && lastId >= 1 && lastId <= 32) {
-                try {
-                    // зачем (владелец 2026-09-02): здесь стоял цикл
-                    // `while (await isLessonUnlockedByEarnedProgress(...))` — до 31
-                    // итерации, каждая с 2+ чтениями диска. Замер [PERF-STEPS]:
-                    // 8 346 мс из 9 247 всей загрузки Главной. Пакетная версия
-                    // читает всё одним multiGet и решает в памяти; логика доступа
-                    // та же.
-                    const unlockStartedAt = Date.now();
-                    const { resolveLastAvailableLessonId } = await import('../lesson_lock_system');
-                    lastId = await resolveLastAvailableLessonId(lastId, studyTarget, isPremium);
-                    console.log('[HOME-LOADDATA-PARTS] unlock_loop', JSON.stringify({ ms: Date.now() - unlockStartedAt, lastId }));
-                } catch (e) {
-      // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
-      DebugLogger.error('home:lastId', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-            }
-            if (lastId && lastId >= 1 && lastId <= 32) {
+            const lastId = lastLessonIdKey ? Number(lastLessonIdKey) : null;
+            const latest = lastLessonEvent.current;
+            if (latest && latest !== lessonBeforeRead && latest.target === studyTarget && isCurrentAccountGeneration(latest.account)) {
+                snapLastLessonId = latest.lesson.id;
+                snapLastLessonProgress = latest.lesson.progress;
+                snapLastLessonScore = latest.lesson.score;
+            } else if (lastId !== null && Number.isInteger(lastId) && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
                 snapLastLessonId = lastId;
                 // зачем: берём уже посчитанное выше число верных (0 для пустой/битой записи) —
@@ -2205,7 +2132,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     console.warn('[HOME-COLD] lesson_card:late', JSON.stringify({ source: 'loadData', lastId, atEpochMs: Date.now() })); // guard-ok: временная трассировка холодного старта (сравнивать с [HOME-RENDER] committedEpochMs; ссылаться на переменные модуля тут нельзя — блок loadData исполняет сторож home_lesson_progress_single_pass)
                     animateNextLayoutTransition();
                 }
-                setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
+                setLastLesson({
+                    account: homeHydrationAccount, target: studyTarget,
+                    lesson: { id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr },
+                });
                 setContinueResolved(true);
             }
             else if (mountedRef.current) {
@@ -2219,7 +2149,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setContinueResolved(true);
             }
             // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі и ошибки — щоб не ловити вічний спінер.
-            step('lessons+unlockLoop');
+            step('lessons');
             rememberHomeScreenHydration({
                 userName: hydratedName,
                 streak: currentStreakNum,
@@ -2245,7 +2175,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     avatar: avatarSnap,
                     frame: frameSnap,
                     level: 1,
-                    premiumActive: premiumSignals.get('premium_active') === 'true',
+                    premiumActive: premiumSnapshot?.active === true,
                     vipActive: isVip,
                 },
                 progress: {
@@ -2263,7 +2193,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 },
             }));
             if (mountedRef.current)
-                markHomeStatsReady();
+                markHomeStatsReady(homeHydrationAccount);
             // зачем (D107): карточка «Почини цепочку» удалена — серию спасает только заморозка Plus.
             // Месячный Plus-лимит заморозок остаётся без старого bootstrap бонусов.
             void applyMonthlyPremiumFreezeAllowance().catch(noteSwallowedHandler('home:loadData.applyMonthlyPremiumFreezeAllowance'));
@@ -2350,14 +2280,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // Раскладка по шагам печатается в finally — она нужна и когда загрузка
             // упала на середине: видно, на каком именно шаге оборвалось.
             step.end();
-            homeStatsLoadedOnce = true;
-            if (mountedRef.current)
-                markHomeStatsReady();
-            // Загрузка закончилась (или упала) — заготовке карточки «Продолжить» больше нечего ждать.
-            if (mountedRef.current && !continueResolvedRef.current) {
-                if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:resolved_in_finally');
-                animateNextLayoutTransition();
-                setContinueResolved(true);
+            if (mountedRef.current && isCurrentAccountGeneration(homeHydrationAccount)) {
+                homeStatsLoadedOnce = true;
+                markHomeStatsReady(homeHydrationAccount);
+                if (!continueResolvedRef.current) {
+                    if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:resolved_in_finally');
+                    animateNextLayoutTransition();
+                    setContinueResolved(true);
+                }
             }
             loadingRef.current = false;
             // Если во время загрузки пришёл ещё один запрос — выполняем его сейчас
@@ -2478,32 +2408,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // хуки, и любая будущая правка условия уронила бы Главную «Rendered more/fewer hooks». Ранних выходов до хуков быть не должно.
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
-        const lastLessonImage = getHomeLastLessonImage(themeMode);
-        // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
-        // и после смены языка интерфейса оставалось на старом языке (укр. экран —
-        // русское название). Резолвим по текущему lang в рендере, как lessons.tsx.
-        const lastLessonName = lastLesson == null
-            ? ''
-            : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
-        // зачем (владелец 04.10): «Продолжить обучение» = последний открытый урок, ошибки — только в «Сегодня».
-        // D129: без курса для языка плашку урока не рисуем.
-        // зачем (P23): карточка V2 появляется сразу с верными числами — пока прогресс курса читается, стоит та же заглушка, что при загрузке
-        const priorityCardVisible = (continueV2 ? continueV2Progress !== null : lastLesson !== null) && homeLearnVisible;
-        const continueCardPending = (!continueResolved || continueV2 !== null) && homeLearnVisible && !priorityCardVisible;
-        const priorityCardTitle = continueV2 ? homeContinueV2Title(lang, continueV2.lessonOrdinal, continueV2.sessionOrdinal) : lastLessonName;
-        // зачем (ассеты 2.0, 04.10): реестр отдаёт новый предмет, а пока его нет — прежнюю картинку этого места.
-        // Владелец 04.10 про today.webp: «ЭТО ДЛЯ ПОСЛЕДНЕГО УРОКА» — блокнот с галочкой, когда последний урок пройден
-        // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
-        const lastLessonCompleted = continueV2Progress ? continueV2Progress.total > 0 && continueV2Progress.done >= continueV2Progress.total : (lastLesson?.progress ?? 0) >= 45;
-        // зачем (координатор 15.10): основа и слой .accent плитки — из ОДНОГО resolveThemedArt (кэш реестра), второго разрешения нет
         const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; }; // light-accent-ok: artAccent — данные тона арта плитки, окрашивает сам ThemedArtLayers, не графика акцентом
-        const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);
-        const priorityCardImage = priorityCardArt.base ?? lastLessonImage;
-        // зачем (слово владельца 17.10): у диалога и набора карточек на карточке «последнее место» арт их плитки (тот же resolveThemedArt, что у плиток ниже)
-        const continuePlaceArt = continuePlace === null ? null : continueChoice.kind === 'dialog'
-            ? tileArt('dialogs', require('../../assets/images/v2/chat_bubbles.png'))
-            : tileArt('cards', require('../../assets/images/v2/notecard_stack.png'));
-        const continuePlaceTitle = continuePlace ? continuePlace.title : homeContinueStartTitle(lang);
         /**
          * Единственный вход в «Мои ошибки» с Главной.
          *
@@ -2541,9 +2446,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
             nav.push('/mistakes_hub' as never);
         };
-        // зачем (владелец 28.10, «кнопка Уроки не работает»; замер Сверки: холодный старт + тап = ~8 с пустого экрана, двойная навигация push /learning-v2/course → dismissTo): плитка сразу
-        // переключает вкладку «Уроки» (тот же handleTabChange, что у таббара) и, если V2 открыт, оставляет тихий запрос «выбери карту V2» (app/lessons_open_v2_request.ts) — его применяет сама вкладка
-        // при фокусе. Маршрут /learning-v2/course остаётся только для внешних ссылок. Вкладка скрыта для языка обучения — тап не молчит: журнал и тост.
+        // Плитка сразу переключает вкладку «Уроки» на классический курс.
         // зачем (координатор 29.10): «Начать урок 1» без истории шёл тем же старым маршрутом (первый и самый важный тап нового человека) — теперь тот же быстрый путь; source различает вход в журнале.
         const openLessonsTabFromHome = (source: 'home_tile' | 'home_continue_first') => {
             const startedAt = Date.now();
@@ -2561,15 +2464,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 return;
             }
             noteLessonsOpenStart(source);
-            // зачем (владелец 04.11, заморозка V2): плитка «Уроки» всегда ведёт в обычный курс — карту V2 здесь не запрашиваем
             goToTab(1);
             void hapticTap();
             console.log('[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms: Date.now() - startedAt })); // guard-ok: сколько заняло переключение вкладки (JS-часть)
         };
         const openLessonsFromHome = () => openLessonsTabFromHome('home_tile');
-        // Плитка «Уроки» — переключает вкладку «Обучение» (retained-tab), которая открывает карту V2 (новые уроки).
-        // зачем (владелец 17.10: «Обучение открывает новые уроки»): раньше плитка вела в старый список /lessons_list. Он остался только при рубильнике «V2 скрыт»
-        // (маршрут курса в этом случае уводит на Главную) и как выход из старых уроков; без выпущенных занятий маршрут курса сам открывает старый список.
+        // Плитка «Уроки» переключает retained-вкладку на классический Курс.
         // Продолжение последнего урока остаётся на отдельной плашке ниже.
         // Плитка «Диалоги» самодостаточна и озвучивается своим label.
         const quickItems = [
@@ -2606,7 +2506,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         ];
         const openHomeProfile = () => {
             hapticTap();
-            setProfileIntroRequested(true);
             setHomeProfilePlayer({
                 name: userName || 'Phraseman',
                 points: 0,
@@ -2683,7 +2582,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 key: 'video_packs',
                 // зачем (слово владельца через координатора, e4331d3b4, макет одобрен «да! оно!!!»): плитка «Фразы из видео» на Главной ВСЕГДА, даже у ранга 0 с закрытым
                 // разделом «Видео»: ранговый замок вкладки Видео её и экран наборов из видео не прячет («в каждом ролике говорим, что в приложении есть все фразы из видео»)
-                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
+                available: videoSectionEnabled && isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
                 title: triLang(lang, VIDEO_PHRASES_NAME), // зачем (слово владельца ~21:00): название раздела одним словом «Видеофразы»
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Вислови з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
@@ -2760,6 +2659,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           // зачем (слово владельца 05.11, эталон rev6-home-free-0): подпись строки «Пройди урок» — «Один шаг в обычном курсе» из copyFor, а не название последнего урока (оно уже в герое)
           todayTasks.tasks,
           studyTarget,
+          videoSectionEnabled,
         );
         // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): в карточке «Сегодня» всегда три строки набора дня (видео — задание дня, если выпало; владелец 22.10: «раздел видео никуда не девается»); анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)
         // зачем (владелец 05.11, ранг 0 по утверждённому макету «Сегодня»: одна задача + «Смотреть все»): пока Видео и Диалоги закрыты рангом
@@ -2769,46 +2669,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeTodayTitle = triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' });
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
-        // зачем (Главная A «Сцена»): тот же переход «Продолжить», что у карточки, — одной функцией для карточки и сцены (не две копии логики)
-        const openHomeContinuePriority = () => {
-          if (continueV2) {
-            // зачем (P23): тап ведёт в то же занятие V2 тем же маршрутом, что вкладка «Уроки» (без одноразовой подготовки — экран занятия готовит сам)
-            console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'v2', sessionId: continueV2.sessionId, done: continueV2Progress?.done ?? null, total: continueV2Progress?.total ?? null }));
-            // зачем (R09): тот же запуск, что на вкладке «Уроки» — подготовка и передача «готово» плееру, иначе в релизе карта
-            void launchHomeContinueV2(continueV2.route, { lang, studyTarget: String(studyTarget), push: (href) => nav.push(href as never), homeCta: true }); // зачем (макет «Готовим занятие…», владелец 25.10): ход на кнопке, отказ — подсказка и Главная на месте
+        const openLastLesson = () => {
+          if (!lastLesson || !homeLearnVisible || !lastLessonState || !isCurrentAccountGeneration(lastLessonState.account)) {
+            console.warn('[HOME-CONTINUE] open_last_lesson:skip', JSON.stringify({ hasLesson: lastLesson !== null, learnVisible: homeLearnVisible, hasState: lastLessonState !== null, accountCurrent: lastLessonState ? isCurrentAccountGeneration(lastLessonState.account) : null })); // guard-ok: ранний выход называет причину
             return;
           }
-          if (!lastLesson) {
-            console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'no_last_lesson' })); // guard-ok: ранний выход логирует причину
-            return;
-          }
-          console.log('[HOME-CONTINUE] open', JSON.stringify({ lessonId: lastLesson.id, progress: lastLesson.progress ?? 0 }));
-          logFeatureOpened('lesson_menu');
-          trackFeatureOpened('lesson_menu').catch((error: unknown) => {
-            if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok
-          });
-          perfNavStart('lesson_menu');
-          // зачем (аудит Optimistic UI): тот же гвард двойного тапа, что у плиток (раньше «Продолжить» открывал меню урока дважды при быстром втором тапе).
-          nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
+          perfNavStart('lesson1');
+          nav.push({ pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' } } as never);
         };
-        const openHomeContinuePlace = () => {
-          if (continuePlace) {
-            // зачем: тап — сразу в то место; маршрут ведёт на экран-вход раздела со своими проверками доступа (диалог — брифинг, карточки — настройка тренировки с проверкой квоты)
-            console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: continueChoice.kind, id: continuePlace.id, pathname: continuePlace.route.pathname }));
-            nav.push({ pathname: continuePlace.route.pathname, params: continuePlace.route.params } as never);
-            return;
-          }
-          // зачем: меток нет вовсе — «Начать урок 1» ведёт в новые уроки (карта V2); при рубильнике «V2 скрыт» — в меню урока 1 старого курса
-          console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1' }));
-          // зачем (владелец 04.11, заморозка V2): «Начать урок 1» всегда ведёт в меню урока 1 обычного курса
-          {
-            nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
-            return;
-          }
-          // зачем (координатор 29.10): раньше переход на маршрут курса — экран-перенаправление ждал InteractionManager, на холодном старте ~8 с пустого экрана на самом первом тапе; теперь вкладка «Уроки» + тихий запрос карты V2.
-          openLessonsTabFromHome('home_continue_first');
-        };
-        const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string) => (
+        const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string, sceneStory?: StoryEvent) => (
               <HomeBellStateContext.Provider value={homeBellState}>
               <HomeV2Header
                 tone={tone}
@@ -2819,7 +2688,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // зачем (D192, владелец 14.10): кнопка аватара переехала в StoryAvatarSlot без изменений вида; при stories_v1 выкл или без событий это ровно прежняя кнопка профиля, с событиями — кольцо сторис и просмотр
                 avatarSlot={(
                   <StoryAvatarSlot
+                    key={mistakeAccountGenerationKey + ':' + studyTarget}
                     lang={lang}
+                    homeStories={sceneStory && mistakeAccountGeneration.phase === 'active' ? [sceneStory] : undefined}
                     coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
                     coinSource={homeCoinRankSource}
                     placeholderColor={t.bgSurface2}
@@ -2860,176 +2731,62 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               />
               </HomeBellStateContext.Provider>
         );
-        // зачем (владелец 21.10 ~23:40, эталон home-new-concepts.html раздел A): «Сцена» — те же данные, что у шапки и «Продолжить»; новых чтений нет
-        // зачем (координатор 24.10, Р3: «„Продолжить" никогда не мёртвая»): продолжать нечего, а «Уроков» для языка нет — «Сцена» становится
-        // местом первого доступного раздела («Диалоги», иначе «Карточки»): герой «newbie», название раздела, кнопка — как плитка раздела
-        const homeSceneTarget = homeSceneContinueTarget({
-          nothingToContinue: continueChoice.kind === 'none',
-          resolved: continueResolved,
-          learnVisible: homeLearnVisible,
-          dialogsVisible: homeDialoguesVisible,
-          cardsVisible: homeFlashcardsVisible,
-        });
-        const homeSceneSection = homeSceneTarget.section;
-        const homeSceneSectionItem = homeSceneSection === 'dialogs' ? quickItems[1]! : homeSceneSection === 'cards' ? quickItems[2]! : null;
-        if (HOME_SCENE_V2_ENABLED) logHomeSceneTarget(homeSceneTarget.reason, continueChoice.kind, studyTarget);
-        const openHomeSceneSection = () => {
-          console.log('[HOME-CONTINUE] scene_target', JSON.stringify({ tap: true, section: homeSceneSection, reason: homeSceneTarget.reason, studyTarget: String(studyTarget) })); // guard-ok: одна строка на тап
-          homeSceneSectionItem?.onPress();
+        const sceneLesson = homeLearnVisible ? lastLesson : null;
+        // зачем (владелец 11.11: «кнопка „Продолжить урок" открывает тот урок, на котором остановился юзер последний раз, именно урок»;
+        // ответ владельца 11.11: «новичку — спрятать кнопку»): только последний открытый урок — ни меню урока, ни диалогов, ни карточек,
+        // ни «Начать урок 1»; последнего урока нет (или раздела «Уроки» для языка нет) — кнопки нет.
+        const sceneCanContinue = sceneLesson !== null;
+        const continueFromScene = () => {
+          console.log('[HOME-CONTINUE] lesson_tap', JSON.stringify({ branch: sceneLesson ? 'last_opened_lesson' : 'no_last_lesson', lessonId: sceneLesson?.id ?? null, progress: sceneLesson?.progress ?? null, learnVisible: homeLearnVisible, resolved: continueResolved, studyTarget: String(studyTarget) })); // guard-ok: одна строка на тап
+          if (sceneLesson) openLastLesson();
         };
-        const homeSceneOnPlace = continuePlace !== null || continueStart || homeSceneSection !== null;
-        // зачем (жалоба владельца 25.10 «Ещё эпизод → открывается классическое меню»; Сверка [HOME-CONTINUE]: на холодном старте
-        // выбор none → v2 → legacy): одна цель в этом рендере — по ней и обработчик тапа, и надпись сцены; разойтись они не могут.
-        const homeSceneCta = homeSceneCtaTarget({
-          section: homeSceneSection !== null,
-          place: continuePlace !== null,
-          start: continueStart,
-          v2: continueV2 !== null,
-          legacy: lastLesson !== null && lastLesson !== undefined,
-        });
-        const homeSceneOnContinue = homeSceneCta === 'section' ? openHomeSceneSection
-          : homeSceneCta === 'place' || homeSceneCta === 'start' ? openHomeContinuePlace
-            : openHomeContinuePriority;
-        const homeSceneLessonNo = continueV2 ? continueV2.lessonOrdinal : lastLesson ? lastLesson.id : continueStart ? 1 : null;
-        // зачем (Сверка 24.10: «0 из 50» до входа в эпизод и «0 из 56» после): одно правило числа — урок V2 считает эпизоды урока
-        // (локальный прогресс курса), пока он читается — числа нет; 50 фраз — только у урока старого курса
-        const homeSceneCount = homeSceneLessonCount({
-          onPlace: homeSceneOnPlace,
-          v2: continueV2 !== null,
-          v2Progress: continueV2Progress,
-          legacyProgress: lastLesson ? lastLesson.progress ?? 0 : null,
-        });
-        if (HOME_SCENE_V2_ENABLED) logHomeSceneCount(homeSceneLessonNo, homeSceneCount);
-        // зачем (координатор 05.11, баг «0-day streak / Day counted» у новичка; сперва логи): одно значение hasProgress и ветка, которая его выбрала — [HOME-HERO] pick
-        const homeSceneHasProgress = homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false : continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null;
-        if (HOME_SCENE_V2_ENABLED) {
-          const heroFacts = { rank0: homeTodayRank0, lessonNo: homeSceneLessonNo, lastLessonId: lastLesson ? lastLesson.id : null, doneInLesson: homeSceneCount.done ?? null, continueKind: continueChoice.kind, continueResolved };
-          logHomeHeroPick({ ...heroFacts, streakDays: displayStreak, streakToday, hasProgress: homeSceneHasProgress, branch: homeHeroProgressBranch(heroFacts) });
-        }
-        const renderHomeScene = () => (
-          <HomeScene
-            lang={lang}
-            header={(surface) => renderHomeV2Header('scene', surface)}
-            artTone={homeArtTone}
-            accent={homeV2Palette.accent}
-            streakDays={displayStreak}
-            streakToday={streakToday}
-            plus={hasPremiumAccess}
-            energy={energyPeekNow ? energyPeekNow.energy : null}
-            // зачем (макет home-free-0, вердикт Макетов 05.11: герой ранга 0 — «Урок 1 + название + Начать»): на ранге 0 до первого пройденного занятия сцена — 'newbie' (прогресса нет), а не «День засчитан / Продолжить» (серия первого дня прогрессом не считается)
-            hasProgress={homeSceneHasProgress}
-            place={{
-              badge: continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards')
-                : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,
-              episode: continueV2 && !homeSceneOnPlace ? continueV2.sessionOrdinal : null,
-              title: homeSceneSectionItem ? homeSceneSectionItem.label : homeSceneOnPlace ? continuePlaceTitle : priorityCardTitle,
-              done: homeSceneCount.done,
-              total: homeSceneCount.total,
-              theoryLessonId: continueV2 && !homeSceneOnPlace ? continueV2.lessonOrdinal : null,
-              ctaTarget: homeSceneCta,
-              lessonNo: homeSceneCta === 'legacy' && lastLesson ? lastLesson.id : homeSceneCta === 'v2' && continueV2 ? continueV2.lessonOrdinal : null,
-            }}
-            courseProgress={continueV2Progress}
-            pending={!homeSceneOnPlace && !priorityCardVisible && continueCardPending}
-            busy={continueV2 !== null && continueV2Launching}
-            active={homeRuntimeActive}
-            onContinue={homeSceneOnContinue}
-            onChip={(kind) => {
-              if (kind === 'words') { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'dictionary_not_connected' })); return; } // guard-ok: ранний выход называет причину
-              if (kind === 'theory') {
-                const lessonId = continueV2 ? continueV2.lessonOrdinal : null;
-                if (lessonId === null) { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'no_v2_lesson' })); return; } // guard-ok: ранний выход называет причину
-                nav.push({ pathname: '/lesson_theory_v2', params: { id: String(lessonId) } } as never);
-                return;
-              }
-              if (kind === 'cards' || kind === 'review') { quickItems[2]!.onPress(); return; }
-              if (kind === 'video') { go('/(tabs)/video'); return; }
-              // «Фраза дня» — та же карточка ниже на Главной: прокрутка к ней
-              const phraseTop = dailyPhraseLayoutRef.current.top;
-              if (phraseTop <= 0) { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'phrase_card_not_laid_out' })); return; } // guard-ok
-              homeScrollRef.current?.scrollTo({ y: Math.max(0, phraseTop - 12), animated: true });
-            }}
-            // зачем (владелец 25.10, 12 новых состояний сцены): особые сцены — из данных телефона; ошибки — тот же счётчик, что у кнопки «Ошибки»
-            mistakesOpen={mistakeSnapshotCurrent || (ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes') ? mistakeActiveCount : null}
-            studyTarget={studyTarget}
-            onSpecial={(route) => {
-              if (route === 'mistakes') { openHomeMistakesHub('home_scene_special'); return; }
-              if (route === 'cards') { quickItems[2]!.onPress(); return; }
-              if (route === 'stats') { go('/streak_stats'); return; }
-              if (route === 'peak') { nav.push('/(tabs)/community?section=spire' as never); return; }
-              if (route === 'phrase') {
-                // «Послушать» — та же карточка фразы ниже на Главной (озвучка и «В карточки» там): прокрутка к ней
-                const top = dailyPhraseLayoutRef.current.top;
-                if (top <= 0) { console.warn('[HOME-SCENE] special:phrase_ignored', JSON.stringify({ reason: 'phrase_card_not_laid_out' })); return; } // guard-ok: ранний выход называет причину
-                homeScrollRef.current?.scrollTo({ y: Math.max(0, top - 12), animated: true });
-                return;
-              }
-              homeSceneOnContinue();
-            }}
-          />
-        );
+        const openScenePhrase = () => {
+          const top = dailyPhraseLayoutRef.current.top;
+          if (top > 0) homeScrollRef.current?.scrollTo({ y: Math.max(0, top - 12), animated: true });
+        };
         const renderHomeV2 = () => (
-          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); startHomeScrollWindow(); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} androidStretch={homeTopOverscroll} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); startHomeScrollWindow(); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
-            {HOME_SCENE_V2_ENABLED ? renderHomeScene() : (
-            <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
-              {renderHomeV2Header('default')}
-            </View>
-            )}
-            {/* зачем (Главная A «Сцена»): со сценой место продолжения показывает сцена — прежние карточки, пока HOME_SCENE_V2_ENABLED выключен (релиз до показа владельцу) */}
-            {HOME_SCENE_V2_ENABLED ? null : (<>
-            {/* зачем (слово владельца 17.10): диалог / набор карточек / «Начать урок 1» рисует блок ниже; прежняя карточка урока и V2 со своей заготовкой — без изменений */}
-            {continuePlace === null && !continueStart ? (
-            <>
-            {priorityCardVisible || continueCardPending ? (
-              <HomeV2ContinueCard
-                pending={!priorityCardVisible && continueCardPending}
-                busy={continueV2 !== null && continueV2Launching}
-                title={priorityCardTitle}
-                done={continueV2 && continueV2Progress ? Math.max(0, Math.min(continueV2Progress.total, continueV2Progress.done)) : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
-                total={continueV2 && continueV2Progress ? Math.max(1, continueV2Progress.total) : 50}
-                art={priorityCardImage}
-                artAccent={priorityCardArt.accent}
-                artWide={!lastLessonCompleted}
-                badge={continueV2 ? triLang(lang, { ru: `Урок ${continueV2.lessonOrdinal}`, uk: `Урок ${continueV2.lessonOrdinal}`, en: `Lesson ${continueV2.lessonOrdinal}`, es: `Lección ${continueV2.lessonOrdinal}`, 'pt-BR': `Lição ${continueV2.lessonOrdinal}`, vi: `Bài ${continueV2.lessonOrdinal}`, id: `Pelajaran ${continueV2.lessonOrdinal}`, tr: `Ders ${continueV2.lessonOrdinal}`, pl: `Lekcja ${continueV2.lessonOrdinal}` }) : lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
-                accessibilityLabel={`${s.home.continueBtn}: ${priorityCardTitle}`}
-                onPress={openHomeContinuePriority}
-              />
-            ) : null}
-            </>
-            ) : null}
-            {continuePlace !== null || continueStart ? (
-              <HomeV2ContinueCard
-                title={continuePlaceTitle}
-                done={0}
-                total={1}
-                hideProgress
-                art={continuePlaceArt ? continuePlaceArt.art : priorityCardImage}
-                artAccent={continuePlaceArt ? continuePlaceArt.artAccent : priorityCardArt.accent}
-                artWide={false}
-                badge={continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards') : undefined}
-                accessibilityLabel={`${s.home.continueBtn}: ${continuePlaceTitle}`}
-                onPress={openHomeContinuePlace}
-              />
-            ) : null}
-            </>)}
-            {/* зачем (владелец 22.10, вариант 2: «нет блока видео, иконки Уроки, Карточки — без скролла, и внизу под блоком Сегодня»): со «Сценой»
-                плитки идут под «Сегодня» одним рядом (ниже), ленты видео на Главной нет; без «Сцены» — прежний порядок */}
-            {HOME_SCENE_V2_ENABLED ? null : (
-            <View style={{ gap: 4 }}>
-              {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
-              {/* зачем (макет home-free-0, слово владельца «ранг 0 — 1 в 1»): видео закрыто рангом — ленты «Видео» на Главной нет */}
-              {isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
-                <HomeV2VideoRail
-                  videos={homeV2Videos}
-                  status={homeV2VideoStatus}
-                  ownerActive={homeRuntimeActive}
-                />
-              ) : null}
-            </View>
-            )}
+            <HomeScene
+              lang={lang}
+              topOverscroll={homeTopOverscroll}
+              header={(surface, sceneStory) => renderHomeV2Header('scene', surface, sceneStory)}
+              overlapNextPanel={homeV2Tiles.length === 0}
+              week={{
+                active: homeRuntimeActive,
+                focusTick,
+                todayCounted: streakToday === 'counted',
+                onPress: () => nav.push('/streak_stats?focus=series'),
+              }}
+              artTone={homeArtTone}
+              streakDays={displayStreak}
+              streakToday={streakToday}
+              plus={hasPremiumAccess}
+              energy={energyPeekNow?.energy ?? null}
+              hasProgress={sceneLesson ? true : continueResolved ? false : null}
+              // зачем (владелец 11.11: «какой урок, какой набор… удаляем полностью»): места урока на Главной нет — ни номера, ни названия, ни прогресса, ни чипов
+              place={{ badge: null, episode: null, title: '', done: null, total: null, theoryLessonId: null, ctaTarget: sceneLesson ? 'legacy' : 'unknown', lessonNo: sceneLesson?.id ?? null }}
+              pending={!continueResolved && sceneLesson === null}
+              busy={false}
+              active={homeRuntimeActive}
+              onContinue={continueFromScene}
+              canContinue={sceneCanContinue}
+              mistakesOpen={mistakeSnapshotCurrent || (ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes') ? mistakeActiveCount : null}
+              studyTarget={studyTarget}
+              onSpecial={(route) => {
+                switch (route) {
+                  case 'mistakes': return openHomeMistakesHub('home_scene_special');
+                  case 'cards': return quickItems[2]?.onPress();
+                  case 'stats': return go('/streak_stats');
+                  case 'peak': return nav.push('/(tabs)/community?section=spire' as never);
+                  case 'phrase': return openScenePhrase();
+                  case 'continue': return continueFromScene();
+                }
+              }}
+            />
+            {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             <HomeV2TodayCard
               title={HOME_SCENE_V2_ENABLED ? homeTodayTitle : homeTodayTitle.toUpperCase()}
               // зачем (эталоны rev6-home-free-0 / rev6-home-plus-3 / rev7-home-unlock-video; решение координатора 05.11 по правилу «1:1 с одобренным макетом»): справа в заголовке «Сегодня» ВСЕГДА ссылка «Все задания», на любом ранге; счёт «N из M» убран
@@ -3037,12 +2794,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               tasks={homeTodayCardTasks}
               pairRow={homeFriendPairRow}
               onOpenTask={(task) => go(task.route)}
-              // зачем (макет home-free-0): на ранге 0 в «Сегодня» ровно одна задача — строки опроса/триала нет
-              surveyRow={homeTodayRank0 ? null : homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row : homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
-                title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
-                subtitle: triLang(lang, { ru: `${homePollV2.total} вопроса`, uk: `${homePollV2.total} питання`, en: `${homePollV2.total} questions`, es: `${homePollV2.total} preguntas`, 'pt-BR': `${homePollV2.total} perguntas`, vi: `${homePollV2.total} câu hỏi`, id: `${homePollV2.total} pertanyaan`, tr: `${homePollV2.total} soru`, pl: `${homePollV2.total} pytania` }),
-                onPress: () => setHomePollV2Open(true),
-              } : null}
+              trialRow={homeTodayRank0 ? null : homeTrial.row}
               // зачем (владелец 17.10): кольца дня живут на экране «Сегодня» (/today_tasks); ссылку карточка показывает сама только за флагом moments_v3
               seeAll={{
                 label: triLang(lang, { ru: 'Смотреть все', uk: 'Дивитися всі', en: 'See all', es: 'Ver todos', 'pt-BR': 'Ver todos', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie' }),
@@ -3053,10 +2805,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               }}
             />
             <HomeReviewHint lang={lang} active={homeRuntimeActive} />
-            {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем (слово владельца 05.11, «ВЕРНИ БЛОК ВИДЕО НА ГЛАВНУЮ КАК БЫЛО РАНЬШЕ, МЕЖДУ ИКОНКАМИ И ФРАЗОЙ ДНЯ»; отменяет вариант 2 от 22.10): лента видео со «Сценой» — между рядом плиток и «Фразой дня», горизонтальный скролл; условия показа те же, что без «Сцены» */}
             {HOME_SCENE_V2_ENABLED ? <HomeVideoRailLog buttonEnabled={isVideoButtonEnabled()} videosVisible={!!homeVideosVisible} rankLocked={!!rankLockedVideo} noChannel={!!homeV2VideoNoChannel} langHidden={!!homeVideoLang.hidden} videosCount={Array.isArray(homeV2Videos) ? homeV2Videos.length : 0} status={String(homeV2VideoStatus)} studyTarget={String(studyTarget)} ownerActive={!!homeRuntimeActive} /> : null}
-            {HOME_SCENE_V2_ENABLED && isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
+            {isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
               <HomeV2VideoRail videos={homeV2Videos} status={homeV2VideoStatus} ownerActive={homeRuntimeActive} />
             ) : null}
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
@@ -3140,13 +2891,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         t, f, themeMode, liquidGlassAppearance, myCoinRank, lang, studyTarget, streakToday, cloudProfileRefreshing, todayTasks, homeRuntimeActive, tabContentBottomPad, nav, router,
         cardsTileCenter, cardArrivals, dailyPhraseCardVisible, homeOnboardingDone, userName, streak, displayStreak, homeStatsReady, weekDone, weekDotAnimationToken, weekMarkers, weekPoints,
         lastLesson, continueResolved, mistakeAccountGeneration, mistakeReadySnapshot, homeV2Videos, homeV2VideoStatus, homeV2VideoNoChannel, homeFeatureTipsReplayCount, homeFeatureTipIndex,
-        homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
+        homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, titleModalVisible, selectedTitleKey, specialTitleStats,
         celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance: homeShownCoins, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
-        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
+        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
         // зачем ([HOME-SETSTATE] 18.10): значения, которых не было в снимке — «parent_or_unlisted» на возврате (~0,3 с и ~1,2 с) не имел названной причины; onOpenDevHub — признак «перерисовал родитель»
-        continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
+        devMistakesCardOverride, devMistakesCount, homeMotionReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
     }), homeRuntimeActive, true);
     useHomeFocusCostEnd(homeFocusCost, 'home'); // зачем ([HOME-FOCUS-COST]): ПОСЛЕДНИЙ эффект корня — парой к useHomeFocusCostBegin
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
@@ -3173,45 +2924,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }}
         onClose={() => setHomeProfilePlayer(null)}
       /></Suspense>) : null}
-      {profileIntroMounted ? (<Suspense fallback={null}><FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroEnabled} /></Suspense>) : null}
-
-      {homeSurvey.launch ? (
-        // предохранитель снаружи Suspense: сторож ленивых окон держит Suspense вплотную к окну анкеты
-        <HomeSheetTextGuard
-          name="home_survey"
-          resetKey="open"
-          details={() => ({ launchKeys: Object.keys(homeSurvey.launch ?? {}).slice(0, 12) })}
-        ><Suspense fallback={null}>
-          <SurveySheetModal
-            visible
-            launch={homeSurvey.launch}
-            onClose={homeSurvey.closeSurvey}
-            onDurablyReconciled={homeSurvey.onDurablyReconciled}
-          />
-        </Suspense></HomeSheetTextGuard>) : null}
-
-      <HybridSheetShell
-        visible={homePollV2Open}
-        onClose={closeHomePollV2}
-        closeLabel={triLang(lang, { ru: 'Закрыть опрос', uk: 'Закрити опитування', en: 'Close poll', es: 'Cerrar encuesta', 'pt-BR': 'Fechar enquete', vi: 'Đóng khảo sát', id: 'Tutup jajak pendapat', tr: 'Anketi kapat', pl: 'Zamknij ankietę' })}
-        backdropAccessible={false}
-        material="liquid-glass-opaque"
-        sheetHeight="74%"
-        testID="home-poll-v2-sheet"
-      >
-        {/* зачем (координатор 25.10, Сверка: «Text strings must be rendered within a <Text>» при шторке «Опрос»): [TEXT-OUTSIDE] — стек и снимок данных, без текстов */}
-        <HomeSheetTextGuard
-          name="home_poll_v2"
-          resetKey={homePollV2Open ? 'open' : 'closed'}
-          details={() => ({
-            phase: homePollV2.phase, setId: homePollV2.setId, step: homePollV2.step, total: homePollV2.total,
-            questionType: typeof homePollV2.question, questionLength: typeof homePollV2.question === 'string' ? homePollV2.question.length : null,
-            options: homePollV2.options.map((option) => `${typeof option.label}:${typeof option.label === 'string' ? option.label.length : '-'}:${String(option.percent)}`),
-          })}
-        >
-          <HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />
-        </HomeSheetTextGuard>
-      </HybridSheetShell>
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)' /* theme-exempt: скрим затемнения под модалкой — одинаков в обоих оформлениях */, paddingHorizontal: 18 }}>

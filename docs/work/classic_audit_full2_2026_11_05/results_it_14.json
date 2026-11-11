@@ -1,0 +1,10 @@
+[
+{"id": "it:29:09", "type": "B1", "field": "tiles", "problem": "соблазн «c’è» на позиции 5 даёт верную естественную фразу «Questo è il libro che c’è sul tavolo» (= книга, которая лежит на столе)", "fix": {"position": 5, "replace_distractor": "c’è", "with": "sei"}},
+{"id": "it:29:18", "type": "B1", "field": "tiles", "problem": "соблазн «c’è» на позиции 3 даёт верную очень естественную фразу «La bici che c’è fuori è di Paolo»", "fix": {"position": 3, "replace_distractor": "c’è", "with": "sei"}},
+{"id": "it:29:30", "type": "B4", "field": "alternatives", "problem": "мусорная альтернатива «Il piatto che serve sei delizioso.» — неграмматична", "fix": {"add": [], "remove": ["Il piatto che serve sei delizioso."]}},
+{"id": "it:29:45", "type": "B2", "field": "ru", "problem": "подсказка теряет придаточное «su cui avevo scritto il codice» (на котором я записал код) — ученик не видит, что нужно собирать относительное придаточное", "fix": "Я потерял листок, на котором записал код."},
+{"id": "it:29:45", "type": "B2", "field": "uk", "problem": "подсказка теряет придаточное «su cui avevo scritto il codice» (на якому я записав код)", "fix": "Я загубив аркуш, на якому записав код."},
+{"id": "it:30:05", "type": "B3", "field": "alternatives", "problem": "у всех соседних фраз есть вариант с «È necessario che…», здесь пропущен, хотя подсказка его не исключает", "fix": {"add": ["È necessario che partiate."], "remove": []}},
+{"id": "it:30:41", "type": "M", "field": "ru", "problem": "«È meglio che…» = «лучше…», а «не следует» — запрет; смысл смещён, ученик не узнаёт конструкцию «È meglio»", "fix": "Тебе лучше не уходить одному."},
+{"id": "it:30:41", "type": "M", "field": "uk", "problem": "«È meglio che…» = «краще…», а «не слід» — запрет; смысл смещён", "fix": "Тобі краще не йти одному."}
+]

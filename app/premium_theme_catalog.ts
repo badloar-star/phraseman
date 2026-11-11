@@ -16,7 +16,10 @@ export type PremiumThemeUnlockCondition =
   | 'streak_365'
   | 'final_spire'
   | 'video_200_hours'
-  | 'learning_v2_complete';
+  // зачем: тема «Сингулярность» выдавалась за прохождение удалённого курса занятий. Заново её получить нельзя
+  // (сервер такого условия больше не знает), но у тех, кому она уже выдана, она остаётся — поэтому запись
+  // каталога сохранена под условием, которое никогда не запрашивается и не засчитывается.
+  | 'retired_course';
 
 export type PremiumThemeProgressUnit = 'purchase' | 'rank' | 'days' | 'tier' | 'hours' | 'sessions';
 export type PremiumThemeProgress = Readonly<{
@@ -27,7 +30,7 @@ export type PremiumThemeProgress = Readonly<{
 export type PremiumThemeProgressByCondition = Readonly<Partial<Record<PremiumThemeUnlockCondition, PremiumThemeProgress>>>;
 
 export const PREMIUM_THEME_CONDITIONS = Object.freeze([
-  'plus_purchase', 'final_coin_rank', 'streak_365', 'final_spire', 'video_200_hours', 'learning_v2_complete',
+  'plus_purchase', 'final_coin_rank', 'streak_365', 'final_spire', 'video_200_hours',
 ] as const satisfies readonly PremiumThemeUnlockCondition[]);
 
 export type PremiumThemeCatalogEntry = Readonly<{
@@ -44,11 +47,14 @@ export const PREMIUM_THEME_CATALOG: readonly PremiumThemeCatalogEntry[] = Object
   { id: 'grad_full_ref_storm_violet', packId: 'amethyst', condition: 'streak_365', prefetchAt: 350, unlockAt: 365 },
   { id: 'grad_full_titanium', packId: 'titanium', condition: 'final_spire', prefetchAt: 10, unlockAt: 11 },
   { id: 'grad_full_horizon', packId: 'horizon', condition: 'video_200_hours', prefetchAt: 180 * 60 * 60, unlockAt: 200 * 60 * 60 },
-  { id: 'grad_full_ref_gravity_blue', packId: 'singularity', condition: 'learning_v2_complete', prefetchAt: 1776, unlockAt: 1792 },
+  { id: 'grad_full_ref_gravity_blue', packId: 'singularity', condition: 'retired_course', prefetchAt: null, unlockAt: null },
 ]);
 
 const BY_ID = new Map(PREMIUM_THEME_CATALOG.map((entry) => [entry.id, entry]));
 const BY_CONDITION = new Map(PREMIUM_THEME_CATALOG.map((entry) => [entry.condition, entry]));
+
+/** Тема, которую больше нельзя получить: показываем её только владельцам. */
+export const RETIRED_PREMIUM_THEME_ID: PremiumThemeId = 'grad_full_ref_gravity_blue';
 
 export function isPremiumThemeId(value: unknown): value is PremiumThemeId {
   return typeof value === 'string' && BY_ID.has(value as PremiumThemeId);

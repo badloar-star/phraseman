@@ -63,9 +63,6 @@ const OVERRIDES = {
   '/coin_rank': ['keep', 'ранг монеты', 'D34/D93'],
   '/flashcards_truefalse_session': ['keep', 'карточки', 'режим тренировки карточек'],
   '/flashcards_audio': ['archive', 'карточки', 'редирект на /flashcards (старые ссылки)'],
-  '/learning_v2_modes_showcase': ['archive', 'dev-инструменты', 'production-safe gate витрины 7 режимов V2'],
-  '/learning_v2_modes_showcase_run/[family]': ['archive', 'dev-инструменты', 'запуск режима из dev-витрины'],
-  '/learning-v2/intro-reader-fixture': ['archive', 'dev-инструменты', 'dev-фикстура интро-ридера'],
   '/dev-emulator-login': ['archive', 'dev-инструменты', 'вход тестовым аккаунтом Auth-эмулятора; работает только при __DEV__ + EXPO_PUBLIC_FIREBASE_EMULATOR_HOST (Account V2, 2065c99bc)'],
 };
 const STATUS_FROM_OLD = { keep: 'keep', redesign: 'redesign', remove: 'remove', conserve: 'archive' };

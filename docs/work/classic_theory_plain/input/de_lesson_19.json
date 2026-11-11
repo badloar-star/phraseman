@@ -1,0 +1,713 @@
+{
+ "lang": "de",
+ "lesson": 19,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:19:01",
+   "target": "Ich wasche mich.",
+   "ru": "Я умываюсь.",
+   "uk": "Я вмиваюся."
+  },
+  {
+   "id": "de:19:02",
+   "target": "Du wäschst dich.",
+   "ru": "Ты умываешься.",
+   "uk": "Ти вмиваєшся."
+  },
+  {
+   "id": "de:19:03",
+   "target": "Anna wäscht sich.",
+   "ru": "Анна умывается.",
+   "uk": "Анна вмивається."
+  },
+  {
+   "id": "de:19:04",
+   "target": "Wir waschen uns.",
+   "ru": "Мы умываемся.",
+   "uk": "Ми вмиваємося."
+  },
+  {
+   "id": "de:19:05",
+   "target": "Ihr wascht euch.",
+   "ru": "Вы умываетесь.",
+   "uk": "Ви вмиваєтеся."
+  },
+  {
+   "id": "de:19:06",
+   "target": "Ich ziehe mich an.",
+   "ru": "Я одеваюсь.",
+   "uk": "Я одягаюсь."
+  },
+  {
+   "id": "de:19:07",
+   "target": "Du ziehst dich um.",
+   "ru": "Ты переодеваешься.",
+   "uk": "Ти переодягаєшся."
+  },
+  {
+   "id": "de:19:08",
+   "target": "Tom zieht sich aus.",
+   "ru": "Том раздевается.",
+   "uk": "Том роздягається."
+  },
+  {
+   "id": "de:19:09",
+   "target": "Die Kinder ziehen sich an.",
+   "ru": "Дети одеваются.",
+   "uk": "Діти одягаються."
+  },
+  {
+   "id": "de:19:10",
+   "target": "Wir ziehen uns warm an.",
+   "ru": "Мы тепло одеваемся.",
+   "uk": "Ми тепло одягаємось."
+  },
+  {
+   "id": "de:19:11",
+   "target": "Ich setze mich hin.",
+   "ru": "Я сажусь.",
+   "uk": "Я сідаю."
+  },
+  {
+   "id": "de:19:12",
+   "target": "Du setzt dich ans Fenster.",
+   "ru": "Ты садишься у окна.",
+   "uk": "Ти сідаєш біля вікна."
+  },
+  {
+   "id": "de:19:13",
+   "target": "Anna setzt sich neben Tom.",
+   "ru": "Анна садится рядом с Томом.",
+   "uk": "Анна сідає поряд із Томом."
+  },
+  {
+   "id": "de:19:14",
+   "target": "Wir setzen uns ins Café.",
+   "ru": "Мы садимся в кафе.",
+   "uk": "Ми сідаємо у кафе."
+  },
+  {
+   "id": "de:19:15",
+   "target": "Setzt ihr euch zu uns?",
+   "ru": "Сядете рядом с нами?",
+   "uk": "Сядете поряд із нами?"
+  },
+  {
+   "id": "de:19:16",
+   "target": "Ich lege mich kurz hin.",
+   "ru": "Я ненадолго приляжу.",
+   "uk": "Я ненадовго приляжу."
+  },
+  {
+   "id": "de:19:17",
+   "target": "Tom legt sich aufs Sofa.",
+   "ru": "Том ложится на диван.",
+   "uk": "Том лягає на диван."
+  },
+  {
+   "id": "de:19:18",
+   "target": "Wir ruhen uns aus.",
+   "ru": "Мы отдыхаем.",
+   "uk": "Ми відпочиваємо."
+  },
+  {
+   "id": "de:19:19",
+   "target": "Erholst du dich gut?",
+   "ru": "Ты хорошо отдыхаешь?",
+   "uk": "Ти добре відпочиваєш?"
+  },
+  {
+   "id": "de:19:20",
+   "target": "Die Gäste fühlen sich wohl.",
+   "ru": "Гости чувствуют себя комфортно.",
+   "uk": "Гості почуваються комфортно."
+  },
+  {
+   "id": "de:19:21",
+   "target": "Ich beeile mich.",
+   "ru": "Я тороплюсь.",
+   "uk": "Я поспішаю."
+  },
+  {
+   "id": "de:19:22",
+   "target": "Beeilst du dich?",
+   "ru": "Ты торопишься?",
+   "uk": "Ти поспішаєш?"
+  },
+  {
+   "id": "de:19:23",
+   "target": "Wir müssen uns beeilen.",
+   "ru": "Нам надо поторопиться.",
+   "uk": "Нам треба поквапитися."
+  },
+  {
+   "id": "de:19:24",
+   "target": "Anna verspätet sich.",
+   "ru": "Анна опаздывает.",
+   "uk": "Анна спізнюється."
+  },
+  {
+   "id": "de:19:25",
+   "target": "Ihr verspätet euch oft.",
+   "ru": "Вы часто опаздываете.",
+   "uk": "Ви часто запізнюєтеся."
+  },
+  {
+   "id": "de:19:26",
+   "target": "Ich freue mich auf morgen.",
+   "ru": "Я с нетерпением жду завтрашнего дня.",
+   "uk": "Я з нетерпінням чекаю завтрашнього дня."
+  },
+  {
+   "id": "de:19:27",
+   "target": "Tom freut sich auf die Fahrt.",
+   "ru": "Том предвкушает поездку.",
+   "uk": "Том з нетерпінням чекає на поїздку."
+  },
+  {
+   "id": "de:19:28",
+   "target": "Wir freuen uns über das Geschenk.",
+   "ru": "Мы рады подарку.",
+   "uk": "Ми раді подарунку."
+  },
+  {
+   "id": "de:19:29",
+   "target": "Freut ihr euch auf den Kurs?",
+   "ru": "Вы ждёте занятия с радостью?",
+   "uk": "Ви чекаєте на заняття з радістю?"
+  },
+  {
+   "id": "de:19:30",
+   "target": "Die Kinder freuen sich auf die Ferien.",
+   "ru": "Дети с нетерпением ждут каникул.",
+   "uk": "Діти з нетерпінням чекають на канікули."
+  },
+  {
+   "id": "de:19:31",
+   "target": "Ich melde mich morgen.",
+   "ru": "Я свяжусь с тобой завтра.",
+   "uk": "Я зв'яжуся з тобою завтра."
+  },
+  {
+   "id": "de:19:32",
+   "target": "Du meldest dich beim Arzt an.",
+   "ru": "Ты записываешься к врачу.",
+   "uk": "Ти записуєшся до лікаря."
+  },
+  {
+   "id": "de:19:33",
+   "target": "Anna meldet sich für den Kurs an.",
+   "ru": "Анна записывается на курс.",
+   "uk": "Анна записується на курс."
+  },
+  {
+   "id": "de:19:34",
+   "target": "Wir treffen uns am Bahnhof.",
+   "ru": "Мы встречаемся на вокзале.",
+   "uk": "Ми зустрічаємось на вокзалі."
+  },
+  {
+   "id": "de:19:35",
+   "target": "Wann trefft ihr euch?",
+   "ru": "Когда вы встречаетесь?",
+   "uk": "Коли ви зустрічаєтеся?"
+  },
+  {
+   "id": "de:19:36",
+   "target": "Tom und Anna verabschieden sich.",
+   "ru": "Том и Анна прощаются.",
+   "uk": "Том і Анна прощаються."
+  },
+  {
+   "id": "de:19:37",
+   "target": "Ich bedanke mich für die Hilfe.",
+   "ru": "Я благодарю за помощь.",
+   "uk": "Я дякую за допомогу."
+  },
+  {
+   "id": "de:19:38",
+   "target": "Wir entschuldigen uns für die Verspätung.",
+   "ru": "Мы извиняемся за опоздание.",
+   "uk": "Ми вибачаємось за запізнення."
+  },
+  {
+   "id": "de:19:39",
+   "target": "Er erinnert sich an die Adresse.",
+   "ru": "Он вспоминает адрес.",
+   "uk": "Він згадує адресу."
+  },
+  {
+   "id": "de:19:40",
+   "target": "Erinnerst du dich an meinen Bruder?",
+   "ru": "Ты помнишь моего брата?",
+   "uk": "Ти пам'ятаєш мого брата?"
+  },
+  {
+   "id": "de:19:41",
+   "target": "Ich wasche mir die Hände.",
+   "ru": "Я мою руки.",
+   "uk": "Я мою руки."
+  },
+  {
+   "id": "de:19:42",
+   "target": "Du putzt dir die Zähne.",
+   "ru": "Ты чистишь зубы.",
+   "uk": "Ти чистиш зуби."
+  },
+  {
+   "id": "de:19:43",
+   "target": "Anna kämmt sich die Haare.",
+   "ru": "Анна расчёсывает волосы.",
+   "uk": "Анна розчісує волосся."
+  },
+  {
+   "id": "de:19:44",
+   "target": "Ich ziehe mir die Schuhe an.",
+   "ru": "Я надеваю обувь.",
+   "uk": "Я одягаю взуття."
+  },
+  {
+   "id": "de:19:45",
+   "target": "Wir merken uns die Nummer.",
+   "ru": "Мы запоминаем номер.",
+   "uk": "Ми запам'ятовуємо номер."
+  },
+  {
+   "id": "de:19:46",
+   "target": "Merkst du dir die Adresse?",
+   "ru": "Ты запомнишь адрес?",
+   "uk": "Ти запам'ятаєш адресу?"
+  },
+  {
+   "id": "de:19:47",
+   "target": "Ich schaue mir die Wohnung an.",
+   "ru": "Я осматриваю квартиру.",
+   "uk": "Я оглядаю квартиру."
+  },
+  {
+   "id": "de:19:48",
+   "target": "Sie hat sich gut erholt.",
+   "ru": "Она хорошо отдохнула.",
+   "uk": "Вона добре відпочила."
+  },
+  {
+   "id": "de:19:49",
+   "target": "Wir haben uns gestern getroffen.",
+   "ru": "Мы вчера встречались.",
+   "uk": "Ми вчора зустрічалися."
+  },
+  {
+   "id": "de:19:50",
+   "target": "Ihr habt euch für morgen verabredet.",
+   "ru": "Вы договорились встретиться завтра.",
+   "uk": "Ви домовилися зустрітися завтра."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "sich beeilen",
+   "ru": "торопиться",
+   "uk": "поспішати"
+  },
+  {
+   "lemma": "sich erholen",
+   "ru": "отдыхать, восстанавливаться",
+   "uk": "відпочивати, відновлюватися"
+  },
+  {
+   "lemma": "sich bedanken",
+   "ru": "благодарить",
+   "uk": "дякувати"
+  },
+  {
+   "lemma": "sich erinnern",
+   "ru": "вспоминать, помнить",
+   "uk": "згадувати, пам'ятати"
+  },
+  {
+   "lemma": "die Ferien",
+   "ru": "каникулы",
+   "uk": "канікули"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  }
+ ],
+ "oldTopicTitle": "Делаю сам и для себя: возвратные местоимения",
+ "oldTheoryRu": "Один и тот же человек моет и является тем, кого моют. Для себя употреби `mich`, для собеседника — `dich`, для Анны — `sich`. В отличие от существительного, такого короткого слова достаточно без артикля. Утром надеваешь одежду, вечером переодеваешься. Возвратное местоимение и приставка выполняют разные задачи. Не отбрасывай одно из них только потому, что смысл действия кажется уже понятным. Куда сел человек? Местоимение показывает, что он сам меняет положение, а группа места — куда именно. В `sich hinlegen` и `sich ausruhen` местоимение связано с целым глаголом. Нельзя всегда переводить местоимение как отдельное «себя». `Sich beeilen` значит торопиться. Если назвать только `beeilen`, исчезнет часть обычной конструкции. Предлог иногда тоже часть значения. С `sich freuen auf` ожидают приятного события; с `sich freuen über` радуются чему-то. Сначала выбери ситуацию, а не буквальное соответствие предлогу своего языка. Если моют руки или чистят зубы, сам предмет уже назван. Местоимение владельца становится дательным: `mir`, `dir`. Сравни с фразой без второго объекта, где используется `mich`. Возвратная конструкция сохраняется и в прошлом. Даже когда причастие ушло вправо, короткое `sich` или `uns` должно остаться. Встреча двух людей — хороший пример взаимного действия."
+}

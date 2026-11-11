@@ -1,26 +1,19 @@
 /**
- * «Дуэль на 5 фраз» (идея 3) — фразы хода: задания «Собери фразу» из занятий, которые ученик уже прошёл.
+ * «Дуэль на 5 фраз» (идея 3) — фразы хода: «Собери фразу» из уроков классического курса, которые ученик уже прошёл.
  *
  * зачем (координатор 22.10: «фразы — из уже пройденного, без новых загрузок»; контракт docs/work/tasks/friends-duel-2026-10-22.md):
- * тексты курса вшиты в приложение, по сети ходят только id. id фразы = id задания курса («en:lesson-02:session-03:i01»):
- * у обоих игроков один курс, поэтому одна и та же фраза. Здесь — чистые функции над строкой занятия (без диска и сети),
- * чтение курса и прогресса — duel_phrase_source.ts.
- * Ничего не переписываем: ситуация, плитки и их порядок — те же, что ученик видел в уроке (то же перемешивание по id задания).
+ * тексты курса вшиты в приложение, по сети ходят только id. У обоих игроков один и тот же курс в сборке, поэтому по id
+ * находится одна и та же фраза.
+ * зачем (владелец 11.11): курс занятий, из которого дуэль брала фразы раньше, удалён — источник заменён на уроки
+ * классического курса (все пять языков). id фразы дуэли = «<язык>:classic:<урок двумя цифрами>:<id фразы курса>».
+ * Дуэли, начатые на удалённом курсе, по id больше не находятся: экран покажет «не удалось открыть дуэль».
+ * Здесь — чистые функции над фразами урока (без диска и сети); чтение курса и прогресса — duel_phrase_source.ts.
  */
-import { projectLearnerVisiblePromptV1 } from '../../modules/learning-v2/content/learner_visible_text_v1';
-import { stableShuffleLearningV2OptionsV1 } from '../../modules/learning-v2/runtime/stable_option_shuffle_v1';
+import type { LessonPhrase } from '../lesson_data_types';
 import { DUEL_PHRASES, pickDuelPhrases } from './duel_core';
 
-export type DuelAuthoredLocale = 'ru' | 'uk';
-export type DuelSessionRef = Readonly<{ lessonOrdinal: number; sessionOrdinal: number }>;
-
-/** Строка занятия курса — то, что дуэли нужно из FACTORY_NATIVE_MANIFEST_V1. */
-export type DuelCourseRow = Readonly<{
-  lessonOrdinal: number;
-  sessionOrdinal: number;
-  practiceTitlesByAuthoredLocale: Readonly<Record<DuelAuthoredLocale, readonly Readonly<{ ordinal: number; title: string }>[]>>;
-  loadLearner: (locale: DuelAuthoredLocale) => unknown;
-}>;
+/** Урок классического курса: язык курса и номер урока. */
+export type DuelLessonRef = Readonly<{ lang: string; lessonOrdinal: number }>;
 
 export type DuelTile = Readonly<{ responseId: string; text: string }>;
 
@@ -30,153 +23,165 @@ export type DuelPhraseVerdict = Readonly<{ correct: boolean; ms: number; detail:
 export type DuelPhrase = Readonly<{
   id: string;
   lessonOrdinal: number;
-  sessionOrdinal: number;
   targetPhrase: string;
   orderedTokens: readonly string[];
-  /** Ситуация из строки задания урока (без «Соберите фразу —»); пусто — карточки нет. */
+  /** Другие верные порядки плиток из данных курса (если есть). */
+  acceptedTokenSequences: readonly (readonly string[])[];
+  /** Карточка «Ситуация»: у фраз классического курса её нет — всегда null (поле осталось ради вёрстки экрана). */
   situation: string | null;
-  /** Цель «Скажи по-английски» — только проверенный смысл из задания (последняя «цитата» в ru и uk); нет — блока нет. */
+  /** Цель «Скажи по-…»: перевод фразы на язык интерфейса; нет перевода или он совпал с ответом — блока нет. */
   goal: string | null;
-  /** Плитки в порядке урока (стабильное перемешивание по id задания — у обоих игроков одинаково). */
+  /** Плитки: слова ответа и отвлекающие, перемешаны стабильно по id фразы — у обоих игроков одинаково. */
   tiles: readonly DuelTile[];
-  /** Пояснение после верного ответа, если автор его написал. */
+  /** Пояснение после верного ответа: у фраз классического курса его нет — всегда null. */
   completionFeedback: string | null;
-  /** Разбор неверной плитки по порядку отвлекающих слов (authoredDistractorTokens), если есть. */
+  /** Разбор неверной плитки по порядку отвлекающих слов: у классического курса разборов нет — все null. */
   distractorFeedback: readonly (string | null)[];
 }>;
 
-const PHRASE_ID_RE = /^[a-z]{2}:lesson-(\d{2}):session-(\d{2}):\S{1,48}$/u;
+const PHRASE_ID_RE = /^([a-z]{2}):classic:(\d{2}):(\S{1,48})$/u;
 const MAX_PHRASE_ID_LENGTH = 96;
-/** Сколько занятий читать на пул: в занятии 2–5 заданий «Собери фразу», трёх хватает на 5 разных фраз. */
-const POOL_SESSIONS_TARGET = 3;
-/** Потолок чтения: даже если в пройденных занятиях повторяются одни и те же фразы, больше 8 файлов курса не открываем. */
-const POOL_SESSIONS_MAX = 8;
-
-type Plain = Record<string, unknown>;
-
-function plain(value: unknown): Plain | null {
-  return typeof value === 'object' && value !== null && !Array.isArray(value) ? (value as Plain) : null;
-}
+/** Сколько уроков читать на пул: в уроке 50 фраз, одного хватает на 5 разных — берём два ради разнообразия. */
+const POOL_LESSONS_TARGET = 2;
+/** Потолок чтения: больше 4 файлов курса на один вызов не открываем. */
+const POOL_LESSONS_MAX = 4;
+/** Сколько отвлекающих плиток добавляем к словам ответа. */
+const DISTRACTOR_TILES_MAX = 3;
 
 function clean(value: unknown): string {
   return typeof value === 'string' ? value.replace(/\s+/gu, ' ').trim() : '';
 }
 
-function capitalized(value: string): string {
-  return value ? value.charAt(0).toLocaleUpperCase('ru') + value.slice(1) : value;
+function fnv1a32(value: string): number {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
 }
 
-/** Текст на языке подачи; uk без перевода — ru (как localized() курса). */
-function authoredText(source: Plain | null, locale: DuelAuthoredLocale): string {
-  if (!source) return '';
-  return clean(locale === 'uk' ? source.uk ?? source.ru : source.ru);
+/**
+ * Стабильное перемешивание плиток по id фразы: не зависит от порядка входа, одинаково на обоих телефонах,
+ * верное слово может оказаться на любом месте (тот же алгоритм, которым плитки перемешивались раньше).
+ */
+export function stableShuffleDuelTiles<T extends Readonly<{ responseId: string }>>(seed: string, options: readonly T[]): readonly T[] {
+  if (options.length < 2) return Object.freeze([...options]);
+  const shuffled = [...options].sort((left, right) => (left.responseId < right.responseId ? -1 : left.responseId > right.responseId ? 1 : 0));
+  let state = fnv1a32(seed);
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let value = Math.imul(state ^ (state >>> 15), state | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    const random = ((value ^ (value >>> 14)) >>> 0) / 0x100000000;
+    const otherIndex = Math.floor(random * (index + 1));
+    const other = shuffled[otherIndex]!;
+    shuffled[otherIndex] = shuffled[index]!;
+    shuffled[index] = other;
+  }
+  return Object.freeze(shuffled);
 }
 
-/** Как в курсе (localizedSceneMeaning): «Соберите фразу — ситуация» → «ситуация». */
-function sceneOf(text: string): string {
-  return text.replace(/^.+?\s+—\s+/u, '').trim();
+/** id фразы дуэли по языку курса, номеру урока и id фразы курса; номер вне 1..99 или пустой id — null. */
+export function duelPhraseIdFor(lang: string, lessonOrdinal: number, classicPhraseId: string): string | null {
+  if (!Number.isInteger(lessonOrdinal) || lessonOrdinal < 1 || lessonOrdinal > 99) return null;
+  const id = `${lang}:classic:${String(lessonOrdinal).padStart(2, '0')}:${classicPhraseId}`;
+  return PHRASE_ID_RE.test(id) && id.length <= MAX_PHRASE_ID_LENGTH ? id : null;
 }
 
-/** Как в курсе (reviewedQuotedMeaning): смысл — последняя «цитата», если она есть и в ru, и в uk. */
-function reviewedQuote(meaning: Plain | null, locale: DuelAuthoredLocale): string | null {
-  const lastQuote = (text: string) => [...text.matchAll(/«([^»]+)»/gu)].at(-1)?.[1]?.trim() || null;
-  const ru = lastQuote(authoredText(meaning, 'ru'));
-  const uk = lastQuote(authoredText(meaning, 'uk'));
-  if (!ru || !uk) return null;
-  return locale === 'uk' ? uk : ru;
-}
-
-function tokenList(value: unknown): string[] | null {
-  if (!Array.isArray(value)) return null;
-  const tokens = value.map(clean);
-  return tokens.every((t) => t.length > 0) ? tokens : null;
-}
-
-/** Урок и занятие из id фразы; чужой формат или слишком длинный id — null. */
-export function parseDuelPhraseId(id: unknown): DuelSessionRef | null {
+/** Язык курса и урок из id фразы; чужой формат (в том числе id удалённого курса занятий) или слишком длинный id — null. */
+export function parseDuelPhraseId(id: unknown): DuelLessonRef | null {
   if (typeof id !== 'string' || id.length > MAX_PHRASE_ID_LENGTH) return null;
   const match = PHRASE_ID_RE.exec(id);
   if (!match) return null;
-  const lessonOrdinal = Number(match[1]);
-  const sessionOrdinal = Number(match[2]);
-  return lessonOrdinal >= 1 && sessionOrdinal >= 1 ? { lessonOrdinal, sessionOrdinal } : null;
+  const lessonOrdinal = Number(match[2]);
+  return lessonOrdinal >= 1 ? { lang: match[1]!, lessonOrdinal } : null;
 }
 
-export function duelSessionKey(ref: DuelSessionRef): string {
-  return `${ref.lessonOrdinal}:${ref.sessionOrdinal}`;
+export function duelLessonKey(ref: DuelLessonRef): string {
+  return `${ref.lang}:${ref.lessonOrdinal}`;
 }
 
-function phraseFromRaw(
-  raw: Plain,
-  ordinalTitle: string | undefined,
-  row: DuelCourseRow,
-  locale: DuelAuthoredLocale,
-): DuelPhrase | null {
-  const mode = plain(raw.modePayload);
-  const id = clean(raw.interactionId);
-  const ref = parseDuelPhraseId(id);
-  if (!mode || ref === null || ref.lessonOrdinal !== row.lessonOrdinal || ref.sessionOrdinal !== row.sessionOrdinal) return null;
-  const targetPhrase = clean(mode.targetPhrase);
-  const orderedTokens = tokenList(mode.orderedTokens);
-  const distractors = tokenList(mode.authoredDistractorTokens ?? mode.distractorTokens ?? []) ?? [];
-  if (!targetPhrase || !orderedTokens || orderedTokens.length === 0) return null;
-  // Тот же текст задания, что видит урок: заголовок занятия (или prompt), без хвоста, равного ответу.
-  const prompt = clean(projectLearnerVisiblePromptV1({ title: ordinalTitle ?? clean(raw.prompt), family: 'phrase_builder', correctText: targetPhrase }));
-  const meaning = plain(mode.localizedMeaning) ?? plain(mode.localizedScene);
-  const scene = sceneOf(authoredText(meaning, locale) || prompt);
-  const explanation = plain(mode.explanationV1);
-  const completion = authoredText(plain(explanation?.completionFeedbackByLocale) ?? plain(mode.completionFeedbackByLocale), locale);
-  const slotFeedback = Array.isArray(mode.slotFeedback) ? mode.slotFeedback : [];
+const sameWord = (a: string, b: string) => a.toLocaleLowerCase() === b.toLocaleLowerCase();
+
+/** Отвлекающие слова фразы: по одному от первых слов ответа, без повторов и без слов самого ответа (выбор стабилен по id). */
+function pickDistractors(id: string, phrase: LessonPhrase, orderedTokens: readonly string[]): string[] {
+  const out: string[] = [];
+  for (let index = 0; index < phrase.words.length && out.length < DISTRACTOR_TILES_MAX; index += 1) {
+    const options = (phrase.words[index]?.distractors ?? []).map(clean).filter((text) => text.length > 0);
+    if (options.length === 0) continue;
+    const start = fnv1a32(`${id}:d${index}`) % options.length;
+    for (let step = 0; step < options.length; step += 1) {
+      const candidate = options[(start + step) % options.length]!;
+      if (orderedTokens.some((token) => sameWord(token, candidate)) || out.some((taken) => sameWord(taken, candidate))) continue;
+      out.push(candidate);
+      break;
+    }
+  }
+  return out;
+}
+
+/** Перевод фразы на язык интерфейса: точный перевод курса, для украинского — ukrainian, иначе русский. */
+function meaningFor(phrase: LessonPhrase, interfaceLang: string): string {
+  const locales = phrase.classic?.sourceLocales as Readonly<Record<string, string>> | undefined;
+  return clean(locales?.[interfaceLang]) || (interfaceLang === 'uk' ? clean(phrase.ukrainian) : '') || clean(phrase.russian);
+}
+
+/** Одна фраза урока классического курса → фраза дуэли. Пустой ответ, нет плиток или id не строится — null. */
+export function duelPhraseFromClassic(phrase: LessonPhrase, ref: DuelLessonRef, interfaceLang: string): DuelPhrase | null {
+  const targetPhrase = clean(phrase.english);
+  const orderedTokens = phrase.words.map((word) => clean(word.text));
+  const id = duelPhraseIdFor(ref.lang, ref.lessonOrdinal, String(phrase.id));
+  if (id === null || !targetPhrase || orderedTokens.length === 0 || orderedTokens.some((token) => token.length === 0)) return null;
+  const distractors = pickDistractors(id, phrase, orderedTokens);
   const tiles = [...orderedTokens, ...distractors].map((text, index) => ({
     responseId: `${id}:t${String(index + 1).padStart(2, '0')}`,
     text,
   }));
-  const goal = reviewedQuote(meaning, locale);
+  const meaning = meaningFor(phrase, interfaceLang);
+  // зачем: язык интерфейса совпал с языком курса — «перевод» был бы готовым ответом на экране, цель не показываем.
+  const goal = meaning && !sameWord(meaning, targetPhrase) ? meaning : null;
+  const accepted = (phrase.classic?.accepted ?? []).map((sequence) => sequence.map(clean)).filter((sequence) => sequence.length > 0);
   return Object.freeze({
     id,
-    lessonOrdinal: row.lessonOrdinal,
-    sessionOrdinal: row.sessionOrdinal,
+    lessonOrdinal: ref.lessonOrdinal,
     targetPhrase,
     orderedTokens: Object.freeze(orderedTokens),
-    situation: scene ? capitalized(scene) : null,
-    goal: goal ? capitalized(goal) : null,
-    tiles: stableShuffleLearningV2OptionsV1(id, tiles),
-    completionFeedback: completion || null,
-    distractorFeedback: Object.freeze(distractors.map((_, index) => authoredText(plain(plain(slotFeedback[index])?.feedbackByLocale), locale) || null)),
+    acceptedTokenSequences: Object.freeze(accepted.map((sequence) => Object.freeze(sequence))),
+    situation: null,
+    goal,
+    tiles: stableShuffleDuelTiles(id, tiles),
+    completionFeedback: null,
+    distractorFeedback: Object.freeze(distractors.map(() => null)),
   });
 }
 
 /**
- * Все задания «Собери фразу» одного занятия на языке подачи. Битое задание пропускаем (вернём меньше),
+ * Все фразы одного урока как фразы дуэли. Битую фразу пропускаем (вернём меньше),
  * число пропущенных — в skipped, чтобы читатель курса записал его в журнал.
  */
-export function duelPhrasesFromRow(row: DuelCourseRow, locale: DuelAuthoredLocale): Readonly<{ phrases: readonly DuelPhrase[]; skipped: number }> {
-  const learner = plain(row.loadLearner(locale));
-  const raws = Array.isArray(learner?.interactions) ? learner.interactions : [];
-  // Номера заголовков — порядок заданий в источнике (как в курсе: ordinal → interactions[ordinal − 1]).
-  const titleById = new Map<string, string>();
-  for (const entry of row.practiceTitlesByAuthoredLocale[locale] ?? []) {
-    const id = clean(plain(raws[entry.ordinal - 1])?.interactionId);
-    if (id) titleById.set(id, entry.title);
-  }
+export function duelPhrasesFromLesson(
+  lessonPhrases: readonly LessonPhrase[],
+  ref: DuelLessonRef,
+  interfaceLang: string,
+): Readonly<{ phrases: readonly DuelPhrase[]; skipped: number }> {
   const phrases: DuelPhrase[] = [];
   let skipped = 0;
-  for (const value of raws) {
-    const raw = plain(value);
-    if (!raw || raw.family !== 'phrase_builder') continue;
-    const phrase = phraseFromRaw(raw, titleById.get(clean(raw.interactionId)), row, locale);
+  for (const raw of lessonPhrases) {
+    const phrase = duelPhraseFromClassic(raw, ref, interfaceLang);
     if (phrase) phrases.push(phrase);
     else skipped += 1;
   }
   return { phrases: Object.freeze(phrases), skipped };
 }
 
-/** Верно, если собранные слова совпали с ответом урока (сравнение по тексту: в 127 фразах курса есть одинаковые слова). */
+/** Верно, если собранные слова совпали с ответом урока или с одним из допустимых порядков курса (сравнение по тексту). */
 export function duelAnswerIsCorrect(phrase: DuelPhrase, pickedResponseIds: readonly string[]): boolean {
   const textById = new Map(phrase.tiles.map((tile) => [tile.responseId, tile.text]));
   const picked = pickedResponseIds.map((id) => textById.get(id));
   if (picked.some((text) => text === undefined)) return false;
-  return picked.join(' ') === phrase.orderedTokens.join(' ');
+  const answer = picked.join(' ');
+  return answer === phrase.orderedTokens.join(' ') || phrase.acceptedTokenSequences.some((sequence) => sequence.join(' ') === answer);
 }
 
 /** Номер плитки в источнике («…:t05» → 4): сначала слова ответа, за ними отвлекающие. Чужая плитка — −1. */
@@ -185,7 +190,7 @@ function tileSourceIndex(phrase: DuelPhrase, responseId: string): number {
   return Number(responseId.slice(responseId.lastIndexOf(':t') + 2)) - 1;
 }
 
-/** Первая поставленная отвлекающая плитка — её разбор (если автор его написал). */
+/** Первая поставленная отвлекающая плитка — её разбор (если он есть; у классического курса разборов нет → null). */
 export function duelWrongFeedback(phrase: DuelPhrase, pickedResponseIds: readonly string[]): string | null {
   const firstDistractor = phrase.orderedTokens.length;
   for (const responseId of pickedResponseIds) {
@@ -195,29 +200,29 @@ export function duelWrongFeedback(phrase: DuelPhrase, pickedResponseIds: readonl
   return null;
 }
 
-const normalizedTarget = (phrase: DuelPhrase) => phrase.targetPhrase.toLocaleLowerCase('en').replace(/[.?!,]/gu, '').replace(/\s+/gu, ' ').trim();
+const normalizedTarget = (phrase: DuelPhrase) => phrase.targetPhrase.toLocaleLowerCase().replace(/[.?!,¿¡]/gu, '').replace(/\s+/gu, ' ').trim();
 
 /**
- * Пять фраз вызова из пройденных занятий. Занятия перемешиваем зерном и читаем по одному, пока не наберём пять РАЗНЫХ фраз
- * (одинаковые «I am here.» из разных занятий считаем одной), но не больше POOL_SESSIONS_MAX файлов.
+ * Пять фраз вызова из пройденных уроков. Уроки перемешиваем зерном и читаем по одному, пока не наберём пять РАЗНЫХ фраз
+ * (одинаковые фразы из разных уроков считаем одной), но не больше POOL_LESSONS_MAX файлов.
  * Меньше пяти разных — пустой список: дуэли нет, экран вызова предложит «Позвать на занятие».
  */
 export function buildDuelPhraseSet(
-  sessions: readonly DuelSessionRef[],
+  lessons: readonly DuelLessonRef[],
   seed: number,
-  loadSession: (ref: DuelSessionRef) => readonly DuelPhrase[],
-): Readonly<{ phrases: readonly DuelPhrase[]; sessionsRead: number }> {
-  const byKey = new Map(sessions.map((ref) => [duelSessionKey(ref), ref]));
+  loadLesson: (ref: DuelLessonRef) => readonly DuelPhrase[],
+): Readonly<{ phrases: readonly DuelPhrase[]; lessonsRead: number }> {
+  const byKey = new Map(lessons.map((ref) => [duelLessonKey(ref), ref]));
   const order = pickDuelPhrases([...byKey.keys()], seed, byKey.size);
   const byTarget = new Map<string, DuelPhrase>();
-  let sessionsRead = 0;
+  let lessonsRead = 0;
   for (const key of order) {
-    if (sessionsRead >= POOL_SESSIONS_MAX) break;
-    if (sessionsRead >= POOL_SESSIONS_TARGET && byTarget.size >= DUEL_PHRASES) break;
+    if (lessonsRead >= POOL_LESSONS_MAX) break;
+    if (lessonsRead >= POOL_LESSONS_TARGET && byTarget.size >= DUEL_PHRASES) break;
     const ref = byKey.get(key);
     if (!ref) continue;
-    sessionsRead += 1;
-    for (const phrase of loadSession(ref)) {
+    lessonsRead += 1;
+    for (const phrase of loadLesson(ref)) {
       const target = normalizedTarget(phrase);
       if (!byTarget.has(target)) byTarget.set(target, phrase);
     }
@@ -225,24 +230,24 @@ export function buildDuelPhraseSet(
   const candidates = [...byTarget.values()];
   const chosenIds = pickDuelPhrases(candidates.map((p) => p.id), seed);
   const byId = new Map(candidates.map((p) => [p.id, p]));
-  return { phrases: chosenIds.map((id) => byId.get(id)).filter((p): p is DuelPhrase => p !== undefined), sessionsRead };
+  return { phrases: chosenIds.map((id) => byId.get(id)).filter((p): p is DuelPhrase => p !== undefined), lessonsRead };
 }
 
 /**
  * Фразы дуэли по id с сервера (ход друга, итог): ровно 5 разных корректных id, каждая нашлась в курсе на телефоне.
  * Иначе null — экран покажет «не удалось открыть дуэль», а не чужие фразы.
  */
-export function resolveDuelPhrases(ids: unknown, loadSession: (ref: DuelSessionRef) => readonly DuelPhrase[]): DuelPhrase[] | null {
+export function resolveDuelPhrases(ids: unknown, loadLesson: (ref: DuelLessonRef) => readonly DuelPhrase[]): DuelPhrase[] | null {
   if (!Array.isArray(ids) || ids.length !== DUEL_PHRASES || new Set(ids).size !== DUEL_PHRASES) return null;
   const cache = new Map<string, readonly DuelPhrase[]>();
   const phrases: DuelPhrase[] = [];
   for (const id of ids) {
     const ref = parseDuelPhraseId(id);
     if (ref === null) return null;
-    const key = duelSessionKey(ref);
-    const session = cache.get(key) ?? loadSession(ref);
-    cache.set(key, session);
-    const phrase = session.find((p) => p.id === id);
+    const key = duelLessonKey(ref);
+    const lesson = cache.get(key) ?? loadLesson(ref);
+    cache.set(key, lesson);
+    const phrase = lesson.find((p) => p.id === id);
     if (!phrase) return null;
     phrases.push(phrase);
   }

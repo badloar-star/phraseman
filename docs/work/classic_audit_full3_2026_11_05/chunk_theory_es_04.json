@@ -1,0 +1,2423 @@
+[
+{
+"lesson": 9,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 9,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Я работаю, ты работаешь: настоящее на -ar",
+"formula": "trabajar → trabaj- + o / as / a / amos / áis / an",
+"story": "Trabajar — название действия. Убери -ar: останется trabaj-. Теперь добавь -o для «я» или -as для «ты».",
+"use": "Выбери окончание правильного глагола на -ar по тому, кто действует.",
+"choose": "Trabajo и trabajas уже различают говорящего и собеседника. Поэтому нейтральные фразы могут начинаться сразу с глагола. Yo или tú можно добавить для контраста, но не надо вставлять ser или estar: hablar и estudiar сами называют действие.",
+"nuance": "Trabajar только называет действие. Чтобы сказать, что мама работает, поставь форму для одного человека: trabaja.",
+"wrong": "Mi madre trabajar hoy.",
+"right": "Mi madre trabaja hoy.",
+"chapters": [
+{
+"title": "Как найти основу глагола",
+"body": "В словаре «работать» — trabajar. Для форм этого урока убери ровно две последние буквы, -ar: останется trabaj-. Затем добавь окончание того, кто действует. Говоря о себе, выбери -o: trabaj-o. В конструкторе это одно слово, trabajo.",
+"note": "trabajar → trabaj- + -as → trabajas. Действующее лицо: ты.",
+"samples": [
+"es:09:01",
+"es:09:02",
+"es:09:03"
+],
+"focusId": "es:09:02"
+},
+{
+"title": "Почему местоимение часто не видно",
+"body": "Trabajo и trabajas уже различают говорящего и собеседника. Поэтому нейтральные фразы могут начинаться сразу с глагола. Yo или tú можно добавить для контраста, но не надо вставлять ser или estar: hablar и estudiar сами называют действие.",
+"note": "hablar → habl- + -o → hablo. Действующее лицо: я.",
+"samples": [
+"es:09:05",
+"es:09:06",
+"es:09:09",
+"es:09:10"
+],
+"focusId": "es:09:09"
+},
+{
+"title": "Имя, родственник или usted: -a",
+"body": "Для одного человека, о котором говорим, используй -a: Ana habla. Вежливое usted означает «вы», но грамматически требует ту же форму: usted trabaja. Не меняй окончание из-за пола: él trabaja и ella trabaja совпадают.",
+"note": "trabajar → trabaj- + -a → trabaja. Действующее лицо: он, она или один адресат на «вы».",
+"samples": [
+"es:09:11",
+"es:09:13",
+"es:09:15",
+"es:09:19"
+],
+"focusId": "es:09:19"
+},
+{
+"title": "Три окончания для нескольких людей",
+"body": "Включаешь себя в группу → -amos. Обращаешься к друзьям в Испании на vosotros → -áis. Говоришь о них или обращаешься на ustedes → -an. Формы vosotros и ustedes не смешиваем; в Латинской Америке обычно пользуются ustedes для обращения к группе.",
+"note": "estudiar → estudi- + -an → estudian. Действующее лицо: они или несколько адресатов на ustedes.",
+"samples": [
+"es:09:21",
+"es:09:25",
+"es:09:26",
+"es:09:29"
+],
+"focusId": "es:09:29"
+},
+{
+"title": "Та же модель для buscar",
+"body": "Новый глагол buscar означает «искать». Для настоящего времени в этом уроке действуй так же: busc-o, busc-as, busc-a. Перед названием разыскиваемой вещи не нужен предлог. «Я ищу ключи» — busco las llaves, а не буквальная копия английского look for.",
+"note": "buscar → busc- + -o → busco. Действующее лицо: я.",
+"samples": [
+"es:09:31",
+"es:09:33",
+"es:09:34",
+"es:09:35"
+],
+"focusId": "es:09:33"
+},
+{
+"title": "Отрицание и вопросы на знакомой основе",
+"body": "Форма настоящего времени остаётся той же, когда добавляем no или спрашиваем. В «Я не говорю» сначала ставим no, затем hablo. В вопросе к другу не нужно добавлять отдельное «делаешь ли»: ¿Hablas inglés? Уже достаточно окончания -as и вопросительной интонации.",
+"note": "trabajar → trabaj- + -as → trabajas. Действующее лицо: ты.",
+"samples": [
+"es:09:41",
+"es:09:42",
+"es:09:44",
+"es:09:45"
+],
+"focusId": "es:09:44"
+},
+{
+"title": "Главная проверка: кто выполняет действие?",
+"body": "Найди действующее лицо, даже если подлежащее стоит после глагола. В «Где работает твоя мама?» работает один человек: trabaja. В «Ана и Луис ищут свои чемоданы» ищут двое: buscan. Не выбирай окончание по ближайшему существительному автоматически.",
+"note": "buscar → busc- + -an → buscan. Действующее лицо: они или несколько адресатов на ustedes.",
+"samples": [
+"es:09:46",
+"es:09:49",
+"es:09:50"
+],
+"focusId": "es:09:49"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · trabajo",
+"gloss": "я",
+"id": "es:09:01",
+"sample": "Trabajo aquí."
+},
+{
+"es": "tú · trabajas",
+"gloss": "ты",
+"id": "es:09:02",
+"sample": "Trabajas aquí."
+},
+{
+"es": "él / ella / usted · trabaja",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:09:11",
+"sample": "Ana trabaja aquí."
+},
+{
+"es": "nosotros/as · trabajamos",
+"gloss": "мы",
+"id": "es:09:21",
+"sample": "Trabajamos aquí."
+},
+{
+"es": "vosotros/as · trabajáis",
+"gloss": "вы, несколько друзей в Испании",
+"id": "es:09:25",
+"sample": "Trabajáis en casa."
+},
+{
+"es": "ellos / ellas / ustedes · trabajan",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:09:28",
+"sample": "Mis hermanos trabajan aquí."
+}
+],
+"title": "Формы trabajar"
+},
+{
+"rows": [
+{
+"es": "yo · estudio",
+"gloss": "я",
+"id": "es:09:05",
+"sample": "Estudio en casa."
+},
+{
+"es": "tú · estudias",
+"gloss": "ты",
+"id": "es:09:06",
+"sample": "Estudias en casa."
+},
+{
+"es": "él / ella / usted · estudia",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:09:14",
+"sample": "Mi hermano estudia español."
+},
+{
+"es": "nosotros/as · estudiamos",
+"gloss": "мы",
+"id": "es:09:23",
+"sample": "Estudiamos español."
+},
+{
+"es": "vosotros/as · estudiáis",
+"gloss": "вы, несколько друзей в Испании",
+"id": "es:09:26",
+"sample": "Estudiáis aquí."
+},
+{
+"es": "ellos / ellas / ustedes · estudian",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:09:29",
+"sample": "Ana y Luis estudian inglés."
+}
+],
+"title": "Формы estudiar"
+},
+{
+"rows": [
+{
+"es": "yo · hablo",
+"gloss": "я",
+"id": "es:09:09",
+"sample": "Hablo español."
+},
+{
+"es": "tú · hablas",
+"gloss": "ты",
+"id": "es:09:10",
+"sample": "Hablas español."
+},
+{
+"es": "él / ella / usted · habla",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:09:15",
+"sample": "Ana habla español."
+},
+{
+"es": "nosotros/as · hablamos",
+"gloss": "мы",
+"id": "es:09:24",
+"sample": "Hablamos inglés."
+},
+{
+"es": "vosotros/as · habláis",
+"gloss": "вы, несколько друзей в Испании",
+"id": "es:09:27",
+"sample": "Habláis español."
+},
+{
+"es": "ellos / ellas / ustedes · hablan",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:09:30",
+"sample": "Los estudiantes hablan español."
+}
+],
+"title": "Формы hablar"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "я",
+"id": "es:09:31",
+"sample": "Busco mi móvil."
+},
+{
+"es": "tú · buscas",
+"gloss": "ты",
+"id": "es:09:32",
+"sample": "Buscas tu móvil."
+},
+{
+"es": "él / ella / usted · busca",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:09:34",
+"sample": "Ana busca su pasaporte."
+},
+{
+"es": "nosotros/as · buscamos",
+"gloss": "мы",
+"id": "es:09:35",
+"sample": "Buscamos la salida."
+},
+{
+"es": "vosotros/as · buscáis",
+"gloss": "вы, несколько друзей в Испании",
+"id": "es:09:36",
+"sample": "Buscáis la parada."
+},
+{
+"es": "ellos / ellas / ustedes · buscan",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:09:37",
+"sample": "Los estudiantes buscan sus libros."
+}
+],
+"title": "Формы buscar"
+}
+]
+},
+"uk": {
+"title": "Я працюю, ти працюєш: теперішній час на -ar",
+"formula": "trabajar → trabaj- + o / as / a / amos / áis / an",
+"story": "Trabajar називає дію. Відкинь -ar: залишиться trabaj-. Додай -o для «я» або -as для «ти».",
+"use": "Обери закінчення правильного дієслова на -ar за тим, хто виконує дію.",
+"choose": "Trabajo і trabajas уже розрізняють мовця та співрозмовника. Тому нейтральні фрази можуть починатися відразу з дієслова. Yo або tú можна додати для протиставлення, але не треба вставляти ser чи estar: hablar та estudiar самі називають дію.",
+"nuance": "Trabajar лише називає дію. Щоб сказати, що мама працює, постав форму для однієї людини: trabaja.",
+"wrong": "Mi madre trabajar hoy.",
+"right": "Mi madre trabaja hoy.",
+"chapters": [
+{
+"title": "Як знайти основу дієслова",
+"body": "У словнику «працювати» — trabajar. Для форм цього уроку відкинь рівно дві останні літери, -ar: залишиться trabaj-. Потім додай закінчення для того, хто виконує дію. Говорячи про себе, обери -o: trabaj-o. У конструкторі це одне слово, trabajo.",
+"note": "trabajar → trabaj- + -as → trabajas. Виконавець дії: ти.",
+"samples": [
+"es:09:01",
+"es:09:02",
+"es:09:03"
+],
+"focusId": "es:09:02"
+},
+{
+"title": "Чому займенника часто не видно",
+"body": "Trabajo і trabajas уже розрізняють мовця та співрозмовника. Тому нейтральні фрази можуть починатися відразу з дієслова. Yo або tú можна додати для протиставлення, але не треба вставляти ser чи estar: hablar та estudiar самі називають дію.",
+"note": "hablar → habl- + -o → hablo. Виконавець дії: я.",
+"samples": [
+"es:09:05",
+"es:09:06",
+"es:09:09",
+"es:09:10"
+],
+"focusId": "es:09:09"
+},
+{
+"title": "Ім’я, родич чи usted: -a",
+"body": "Для однієї людини, про яку говоримо, використовуй -a: Ana habla. Ввічливе usted означає «ви», але граматично потребує тієї самої форми: usted trabaja. Не змінюй закінчення через стать: él trabaja й ella trabaja однакові.",
+"note": "trabajar → trabaj- + -a → trabaja. Виконавець дії: він, вона або один адресат на «ви».",
+"samples": [
+"es:09:11",
+"es:09:13",
+"es:09:15",
+"es:09:19"
+],
+"focusId": "es:09:19"
+},
+{
+"title": "Три закінчення для кількох людей",
+"body": "Включаєш себе до групи → -amos. Звертаєшся до друзів в Іспанії на vosotros → -áis. Говориш про них чи звертаєшся на ustedes → -an. Форми vosotros й ustedes не змішуємо; у Латинській Америці для звертання до групи зазвичай уживають ustedes.",
+"note": "estudiar → estudi- + -an → estudian. Виконавець дії: вони або кілька адресатів на ustedes.",
+"samples": [
+"es:09:21",
+"es:09:25",
+"es:09:26",
+"es:09:29"
+],
+"focusId": "es:09:29"
+},
+{
+"title": "Та сама модель для buscar",
+"body": "Нове дієслово buscar означає «шукати». Для теперішнього часу на цьому уроці дій так само: busc-o, busc-as, busc-a. Перед назвою речі, яку шукаєш, прийменник не потрібний. «Я шукаю ключі» — busco las llaves, а не буквальна копія англійського look for.",
+"note": "buscar → busc- + -o → busco. Виконавець дії: я.",
+"samples": [
+"es:09:31",
+"es:09:33",
+"es:09:34",
+"es:09:35"
+],
+"focusId": "es:09:33"
+},
+{
+"title": "Заперечення й запитання на знайомій основі",
+"body": "Форма теперішнього часу не змінюється, коли додаємо no чи запитуємо. У «Я не говорю» спершу ставимо no, потім hablo. У запитанні до друга не треба додавати окреме «чи робиш»: ¿Hablas inglés? Досить закінчення -as і питальної інтонації.",
+"note": "trabajar → trabaj- + -as → trabajas. Виконавець дії: ти.",
+"samples": [
+"es:09:41",
+"es:09:42",
+"es:09:44",
+"es:09:45"
+],
+"focusId": "es:09:44"
+},
+{
+"title": "Головна перевірка: хто виконує дію?",
+"body": "Знайди виконавця дії, навіть якщо підмет стоїть після дієслова. У «Де працює твоя мама?» працює одна людина: trabaja. В «Ана й Луїс шукають свої валізи» шукають двоє: buscan. Не обирай закінчення автоматично за найближчим іменником.",
+"note": "buscar → busc- + -an → buscan. Виконавець дії: вони або кілька адресатів на ustedes.",
+"samples": [
+"es:09:46",
+"es:09:49",
+"es:09:50"
+],
+"focusId": "es:09:49"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · trabajo",
+"gloss": "я",
+"id": "es:09:01",
+"sample": "Trabajo aquí."
+},
+{
+"es": "tú · trabajas",
+"gloss": "ти",
+"id": "es:09:02",
+"sample": "Trabajas aquí."
+},
+{
+"es": "él / ella / usted · trabaja",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:09:11",
+"sample": "Ana trabaja aquí."
+},
+{
+"es": "nosotros/as · trabajamos",
+"gloss": "ми",
+"id": "es:09:21",
+"sample": "Trabajamos aquí."
+},
+{
+"es": "vosotros/as · trabajáis",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": "es:09:25",
+"sample": "Trabajáis en casa."
+},
+{
+"es": "ellos / ellas / ustedes · trabajan",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:09:28",
+"sample": "Mis hermanos trabajan aquí."
+}
+],
+"title": "Форми trabajar"
+},
+{
+"rows": [
+{
+"es": "yo · estudio",
+"gloss": "я",
+"id": "es:09:05",
+"sample": "Estudio en casa."
+},
+{
+"es": "tú · estudias",
+"gloss": "ти",
+"id": "es:09:06",
+"sample": "Estudias en casa."
+},
+{
+"es": "él / ella / usted · estudia",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:09:14",
+"sample": "Mi hermano estudia español."
+},
+{
+"es": "nosotros/as · estudiamos",
+"gloss": "ми",
+"id": "es:09:23",
+"sample": "Estudiamos español."
+},
+{
+"es": "vosotros/as · estudiáis",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": "es:09:26",
+"sample": "Estudiáis aquí."
+},
+{
+"es": "ellos / ellas / ustedes · estudian",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:09:29",
+"sample": "Ana y Luis estudian inglés."
+}
+],
+"title": "Форми estudiar"
+},
+{
+"rows": [
+{
+"es": "yo · hablo",
+"gloss": "я",
+"id": "es:09:09",
+"sample": "Hablo español."
+},
+{
+"es": "tú · hablas",
+"gloss": "ти",
+"id": "es:09:10",
+"sample": "Hablas español."
+},
+{
+"es": "él / ella / usted · habla",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:09:15",
+"sample": "Ana habla español."
+},
+{
+"es": "nosotros/as · hablamos",
+"gloss": "ми",
+"id": "es:09:24",
+"sample": "Hablamos inglés."
+},
+{
+"es": "vosotros/as · habláis",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": "es:09:27",
+"sample": "Habláis español."
+},
+{
+"es": "ellos / ellas / ustedes · hablan",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:09:30",
+"sample": "Los estudiantes hablan español."
+}
+],
+"title": "Форми hablar"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "я",
+"id": "es:09:31",
+"sample": "Busco mi móvil."
+},
+{
+"es": "tú · buscas",
+"gloss": "ти",
+"id": "es:09:32",
+"sample": "Buscas tu móvil."
+},
+{
+"es": "él / ella / usted · busca",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:09:34",
+"sample": "Ana busca su pasaporte."
+},
+{
+"es": "nosotros/as · buscamos",
+"gloss": "ми",
+"id": "es:09:35",
+"sample": "Buscamos la salida."
+},
+{
+"es": "vosotros/as · buscáis",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": "es:09:36",
+"sample": "Buscáis la parada."
+},
+{
+"es": "ellos / ellas / ustedes · buscan",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:09:37",
+"sample": "Los estudiantes buscan sus libros."
+}
+],
+"title": "Форми buscar"
+}
+]
+},
+"en": {
+"title": "Regular -ar verbs in the present",
+"formula": "trabajar → trabaj- + o / as / a / amos / áis / an",
+"story": "Trabajar names the action. Take off -ar to get trabaj-. Add -o for the speaker or -as for the person addressed as tú.",
+"use": "Choose the ending of the correct verb ending in - ar based on the person doing the acting.",
+"choose": "Trabajo and trabajas already distinguish between the speaker and the interlocutor. Therefore, neutral phrases can begin with a verb. Yo or tú can be added for contrast, but there's no need to insert ser or estar: hablar and estudiar themselves name the action.",
+"nuance": "Trabajar only names an action. To say that Mom works, use the form for one person: trabaja.",
+"wrong": "Mi madre trabajar hoy.",
+"right": "Mi madre trabaja hoy.",
+"chapters": [
+{
+"title": "Which part of trabajar stays the same?",
+"body": "In the dictionary, \"to work\" is trabajar. For the forms in this lesson, remove exactly the last two letters, - ar: you will be left with trabaj -. Then add the ending for the one doing the acting. When talking about yourself, choose - o: trabaj-o. In the constructor, this is one word, trabajo.",
+"note": "trabajar → trabaj - + - as → trabajas. Actor: You.",
+"samples": [
+"es:09:01",
+"es:09:02",
+"es:09:03"
+],
+"focusId": "es:09:02"
+},
+{
+"title": "How can the listener tell who is speaking?",
+"body": "Trabajo and trabajas already distinguish between the speaker and the interlocutor. Therefore, neutral phrases can begin with a verb. Yo or tú can be added for contrast, but there's no need to insert ser or estar: hablar and estudiar themselves name the action.",
+"note": "hablar → habl - + - o → hablo. Actor: Me.",
+"samples": [
+"es:09:05",
+"es:09:06",
+"es:09:09",
+"es:09:10"
+],
+"focusId": "es:09:09"
+},
+{
+"title": "Which ending goes with Ana or usted?",
+"body": "For a single person, use - a: Ana habla. The polite usted means \"you,\" but grammatically requires the same form: usted trabaja. Don't change the ending based on gender: él trabaja and ella trabaja are the same.",
+"note": "trabajar → trabaj - + - a → trabaja. Character: he, she, or one addressee using the formal \"you.\"",
+"samples": [
+"es:09:11",
+"es:09:13",
+"es:09:15",
+"es:09:19"
+],
+"focusId": "es:09:19"
+},
+{
+"title": "Which plural ending do I need?",
+"body": "Include yourself in a group → - amos. Address friends in Spain with vosotros → - áis. Talk about them or address them with ustedes → - an. Don't mix vosotros and ustedes; in Latin America, ustedes is commonly used to address a group.",
+"note": "estudiar → estudi - + - an → estudian. Actor: They or multiple recipients on ustedes.",
+"samples": [
+"es:09:21",
+"es:09:25",
+"es:09:26",
+"es:09:29"
+],
+"focusId": "es:09:29"
+},
+{
+"title": "Does buscar follow the same pattern?",
+"body": "The new verb buscar means \"to search.\" For the present tense in this lesson, do the same: busc-o, busc-as, busc-a. No preposition is needed before the name of the thing being looked for. \"I'm looking for the keys\" is busco las llaves, not the literal copy of English look for.",
+"note": "buscar → busc - + - o → busco. Actor: Me.",
+"samples": [
+"es:09:31",
+"es:09:33",
+"es:09:34",
+"es:09:35"
+],
+"focusId": "es:09:33"
+},
+{
+"title": "How do I ask or say no with a familiar verb?",
+"body": "The present tense form remains the same when we add no or ask. In \"I don't speak,\" we first put no, then hablo. In a question to a friend, there's no need to add a separate \"do you do?\": ¿Hablas inglés? The ending - as and interrogative intonation are sufficient.",
+"note": "trabajar → trabaj - + - as → trabajas. Actor: You.",
+"samples": [
+"es:09:41",
+"es:09:42",
+"es:09:44",
+"es:09:45"
+],
+"focusId": "es:09:44"
+},
+{
+"title": "Who is actually doing the work?",
+"body": "Find the character, even if the subject comes after the verb. In \"Where does your mother work?\", there is one person working: trabaja. In \"Ana and Luis are looking for their suitcases,\" there are two people looking: buscan. Don't choose the ending based on the closest noun automatically.",
+"note": "buscar → busc - + - an → buscan. Actor: They or multiple recipients on ustedes.",
+"samples": [
+"es:09:46",
+"es:09:49",
+"es:09:50"
+],
+"focusId": "es:09:49"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · trabajo",
+"gloss": "I",
+"id": "es:09:01",
+"sample": "Trabajo aquí."
+},
+{
+"es": "tú · trabajas",
+"gloss": "you",
+"id": "es:09:02",
+"sample": "Trabajas aquí."
+},
+{
+"es": "él / ella / usted · trabaja",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:09:11",
+"sample": "Ana trabaja aquí."
+},
+{
+"es": "nosotros/as · trabajamos",
+"gloss": "we",
+"id": "es:09:21",
+"sample": "Trabajamos aquí."
+},
+{
+"es": "vosotros/as · trabajáis",
+"gloss": "you, several friends in Spain",
+"id": "es:09:25",
+"sample": "Trabajáis en casa."
+},
+{
+"es": "ellos / ellas / ustedes · trabajan",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:09:28",
+"sample": "Mis hermanos trabajan aquí."
+}
+],
+"title": "Forms trabajar"
+},
+{
+"rows": [
+{
+"es": "yo · estudio",
+"gloss": "I",
+"id": "es:09:05",
+"sample": "Estudio en casa."
+},
+{
+"es": "tú · estudias",
+"gloss": "you",
+"id": "es:09:06",
+"sample": "Estudias en casa."
+},
+{
+"es": "él / ella / usted · estudia",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:09:14",
+"sample": "Mi hermano estudia español."
+},
+{
+"es": "nosotros/as · estudiamos",
+"gloss": "we",
+"id": "es:09:23",
+"sample": "Estudiamos español."
+},
+{
+"es": "vosotros/as · estudiáis",
+"gloss": "you, several friends in Spain",
+"id": "es:09:26",
+"sample": "Estudiáis aquí."
+},
+{
+"es": "ellos / ellas / ustedes · estudian",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:09:29",
+"sample": "Ana y Luis estudian inglés."
+}
+],
+"title": "Forms estudiar"
+},
+{
+"rows": [
+{
+"es": "yo · hablo",
+"gloss": "I",
+"id": "es:09:09",
+"sample": "Hablo español."
+},
+{
+"es": "tú · hablas",
+"gloss": "you",
+"id": "es:09:10",
+"sample": "Hablas español."
+},
+{
+"es": "él / ella / usted · habla",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:09:15",
+"sample": "Ana habla español."
+},
+{
+"es": "nosotros/as · hablamos",
+"gloss": "we",
+"id": "es:09:24",
+"sample": "Hablamos inglés."
+},
+{
+"es": "vosotros/as · habláis",
+"gloss": "you, several friends in Spain",
+"id": "es:09:27",
+"sample": "Habláis español."
+},
+{
+"es": "ellos / ellas / ustedes · hablan",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:09:30",
+"sample": "Los estudiantes hablan español."
+}
+],
+"title": "Forms hablar"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "I",
+"id": "es:09:31",
+"sample": "Busco mi móvil."
+},
+{
+"es": "tú · buscas",
+"gloss": "you",
+"id": "es:09:32",
+"sample": "Buscas tu móvil."
+},
+{
+"es": "él / ella / usted · busca",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:09:34",
+"sample": "Ana busca su pasaporte."
+},
+{
+"es": "nosotros/as · buscamos",
+"gloss": "we",
+"id": "es:09:35",
+"sample": "Buscamos la salida."
+},
+{
+"es": "vosotros/as · buscáis",
+"gloss": "you, several friends in Spain",
+"id": "es:09:36",
+"sample": "Buscáis la parada."
+},
+{
+"es": "ellos / ellas / ustedes · buscan",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:09:37",
+"sample": "Los estudiantes buscan sus libros."
+}
+],
+"title": "Forms buscar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:09:01",
+"index": 0,
+"right": "Trabajo",
+"near": "Trabajas",
+"seq": [
+"Trabajo",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es09/lab/form1",
+"feedback": {
+"ru": "trabajar → trabajo: форма для «я».",
+"uk": "trabajar → trabajo: форма для «я».",
+"en": "trabajar → trabajo: the form for \"I.\""
+}
+},
+{
+"id": "es:09:13",
+"index": 2,
+"right": "trabaja",
+"near": "trabajan",
+"seq": [
+"Mi",
+"hermana",
+"trabaja",
+"en",
+"el",
+"hotel"
+],
+"i": 12,
+"kind": "form",
+"key": "es09/lab/form2",
+"feedback": {
+"ru": "trabajar → trabaja: форма для «он, она или один адресат на «вы»».",
+"uk": "trabajar → trabaja: форма для «він, вона або один адресат на «ви»».",
+"en": "trabajar → trabaja: Form for \"he, she, or one recipient on the formal \"vy\".\""
+}
+},
+{
+"id": "es:09:25",
+"index": 0,
+"right": "Trabajáis",
+"near": "Trabajamos",
+"seq": [
+"Trabajáis",
+"en",
+"casa"
+],
+"i": 24,
+"kind": "form",
+"key": "es09/lab/form3",
+"feedback": {
+"ru": "trabajar → trabajáis: форма для «вы, несколько друзей в Испании».",
+"uk": "trabajar → trabajáis: форма для «ви, кілька друзів в Іспанії».",
+"en": "trabajar → trabajáis: Form for \"you, several friends in Spain.\""
+}
+},
+{
+"id": "es:09:37",
+"index": 2,
+"right": "buscan",
+"near": "busca",
+"seq": [
+"Los",
+"estudiantes",
+"buscan",
+"sus",
+"libros"
+],
+"i": 36,
+"kind": "form",
+"key": "es09/lab/form4",
+"feedback": {
+"ru": "buscar → buscan: форма для «они или несколько адресатов на ustedes».",
+"uk": "buscar → buscan: форма для «вони або кілька адресатів на ustedes».",
+"en": "buscar → buscan: Form for \"they or several recipients on the formal \" ustedes \".\""
+}
+},
+{
+"id": "es:09:07",
+"index": 0,
+"right": "Estudio",
+"near": "Estudias",
+"seq": [
+"Estudio",
+"español"
+],
+"i": 6,
+"kind": "spot",
+"key": "es09/lab/spot1",
+"feedback": {
+"ru": "estudiar → estudio: форма для «я».",
+"uk": "estudiar → estudio: форма для «я».",
+"en": "estudiar → estudio: the form for \"I.\""
+}
+},
+{
+"id": "es:09:20",
+"index": 2,
+"right": "estudia",
+"near": "estudian",
+"seq": [
+"Tu",
+"hermana",
+"estudia",
+"aquí"
+],
+"i": 19,
+"kind": "spot",
+"key": "es09/lab/spot2",
+"feedback": {
+"ru": "estudiar → estudia: форма для «он, она или один адресат на «вы»».",
+"uk": "estudiar → estudia: форма для «він, вона або один адресат на «ви»».",
+"en": "estudiar → estudia: Form for \"he, she, or one recipient on the formal \"vy\".\""
+}
+},
+{
+"id": "es:09:32",
+"index": 0,
+"right": "Buscas",
+"near": "Busco",
+"seq": [
+"Buscas",
+"tu",
+"móvil"
+],
+"i": 31,
+"kind": "spot",
+"key": "es09/lab/spot3",
+"feedback": {
+"ru": "buscar → buscas: форма для «ты».",
+"uk": "buscar → buscas: форма для «ти».",
+"en": "buscar → buscas: Form for \"you.\""
+}
+},
+{
+"id": "es:09:44",
+"index": 0,
+"right": "Trabajas",
+"near": "Trabajo",
+"seq": [
+"Trabajas",
+"hoy"
+],
+"i": 43,
+"kind": "spot",
+"key": "es09/lab/spot4",
+"feedback": {
+"ru": "trabajar → trabajas: форма для «ты».",
+"uk": "trabajar → trabajas: форма для «ти».",
+"en": "trabajar → trabajas: Form for \"you.\""
+}
+},
+{
+"kind": "match",
+"key": "es09/lab/match1",
+"id": "es:09:02",
+"other": "es:09:04"
+},
+{
+"kind": "match",
+"key": "es09/lab/match2",
+"id": "es:09:17",
+"other": "es:09:16"
+},
+{
+"kind": "match",
+"key": "es09/lab/match3",
+"id": "es:09:33",
+"other": "es:09:31"
+},
+{
+"kind": "match",
+"key": "es09/lab/match4",
+"id": "es:09:46",
+"other": "es:09:47"
+},
+{
+"kind": "build",
+"key": "es09/lab/build1",
+"id": "es:09:04"
+},
+{
+"kind": "build",
+"key": "es09/lab/build2",
+"id": "es:09:15"
+},
+{
+"kind": "build",
+"key": "es09/lab/build3",
+"id": "es:09:29"
+},
+{
+"kind": "build",
+"key": "es09/lab/build4",
+"id": "es:09:42"
+},
+{
+"kind": "transform",
+"id": "es:09:05",
+"base": "es:09:03",
+"diff": [
+{
+"before": [
+"Trabajo"
+],
+"after": [
+"Estudio"
+]
+}
+],
+"key": "es09/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:09:25",
+"base": "es:09:06",
+"diff": [
+{
+"before": [
+"Estudias"
+],
+"after": [
+"Trabajáis"
+]
+}
+],
+"key": "es09/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:09:50",
+"base": "es:09:04",
+"diff": [
+{
+"before": [
+"Trabajas"
+],
+"after": [
+"Estudiamos",
+"español"
+]
+}
+],
+"key": "es09/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:09:47",
+"base": "es:09:32",
+"diff": [
+{
+"before": [
+"móvil"
+],
+"after": [
+"pasaporte"
+]
+}
+],
+"key": "es09/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+4
+],
+[
+1,
+13
+],
+[
+2,
+14
+],
+[
+10,
+6
+],
+[
+7,
+15
+],
+[
+11,
+18
+]
+],
+"worked": [
+"es:09:05",
+"es:09:18",
+"es:09:33",
+"es:09:48"
+],
+"reflection": [
+"es:09:01",
+"es:09:02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 10,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 10,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Живу здесь, читаю дома: глаголы на -er и -ir",
+"formula": "основа + окончание лица → живое действие",
+"story": "Послушай форму «мы»: comer → comemos, vivir → vivimos. В единственном числе разница почти не слышна: comes и vives заканчиваются на -es.",
+"use": "Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir.",
+"choose": "На обращение к одному знакомому указывают comes и vives. В третьем лице конечное -s исчезает: come, vive. Одна и та же форма третьего лица подходит для имени и для usted.",
+"nuance": "Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir. Согласуй личное окончание с исполнителем.",
+"wrong": "Vivir aquí.",
+"right": "Vivo aquí.",
+"chapters": [
+{
+"title": "Две группы",
+"body": "Убери -er у comer и -ir у vivir. Останутся com- и viv-. Для «я» обе основы получают -o: como, vivo. Начальная форма сама по себе не сообщает, кто действует.",
+"note": "Ключевая форма: vivo. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:01",
+"es:10:02"
+],
+"focusId": "es:10:01"
+},
+{
+"title": "От «я» к «ты»",
+"body": "На обращение к одному знакомому указывают comes и vives. В третьем лице конечное -s исчезает: come, vive. Одна и та же форма третьего лица подходит для имени и для usted.",
+"note": "Ключевая форма: vives. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:02",
+"es:10:03"
+],
+"focusId": "es:10:02"
+},
+{
+"title": "Где группы расходятся",
+"body": "«Мы едим» — comemos, но «мы живём» — vivimos. Не выводи одну форму из другой на слух: вернись к comer или vivir и восстанови группу. Для vosotros получаются coméis и vivís.",
+"note": "Ключевая форма: coméis. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:22",
+"es:10:23"
+],
+"focusId": "es:10:22"
+},
+{
+"title": "Действие без связки",
+"body": "Знакомое estoy нужно для места в Estoy aquí. В Vivo aquí слово vivo уже спрягается, поэтому добавлять estoy не нужно. Прочитай фразу, начиная с самого действия.",
+"note": "Ключевая форма: como. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:05",
+"es:10:06"
+],
+"focusId": "es:10:05"
+},
+{
+"title": "Вопрос и отрицание",
+"body": "«Ты читаешь?» отличается от «Ты читаешь» интонацией и знаками. Для «не читаешь» поставь no перед lees. Ни вопрос, ни отрицание не меняют принадлежность к -er.",
+"note": "Ключевая форма: escribo. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:35",
+"es:10:36"
+],
+"focusId": "es:10:35"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мы пишем сообщение.» / «Мы живём здесь.». Согласуй личное окончание с исполнителем. Смысловые опоры: «mensaje» — сообщение.",
+"note": "Ключевая форма: vivimos. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:20",
+"es:10:21"
+],
+"focusId": "es:10:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты читаешь книгу?» / «Вы пишете письмо?». Согласуй личное окончание с исполнителем. Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir.",
+"note": "Ключевая форма: escribís. Согласуй личное окончание с исполнителем.",
+"samples": [
+"es:10:44",
+"es:10:50"
+],
+"focusId": "es:10:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · como",
+"gloss": "я",
+"id": "es:10:05",
+"sample": "Como en casa."
+},
+{
+"es": "tú · comes",
+"gloss": "ты",
+"id": "es:10:08",
+"sample": "Comes en la cocina."
+},
+{
+"es": "él · come",
+"gloss": "он/она/Вы",
+"id": "es:10:06",
+"sample": "Ana come en casa."
+},
+{
+"es": "nosotros · comemos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · coméis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:10:22",
+"sample": "Coméis en casa."
+},
+{
+"es": "ellos · comen",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · bebo",
+"gloss": "я",
+"id": "es:10:11",
+"sample": "Bebo agua."
+},
+{
+"es": "tú · bebes",
+"gloss": "ты",
+"id": "es:10:12",
+"sample": "Bebes café."
+},
+{
+"es": "él · bebe",
+"gloss": "он/она/Вы",
+"id": "es:10:10",
+"sample": "Luis bebe café."
+},
+{
+"es": "nosotros · bebemos",
+"gloss": "мы",
+"id": "es:10:09",
+"sample": "Bebemos agua."
+},
+{
+"es": "vosotros · bebéis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · beben",
+"gloss": "они/вы (ustedes)",
+"id": "es:10:23",
+"sample": "Mis hermanos beben agua."
+}
+],
+"title": "beber · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · leo",
+"gloss": "я",
+"id": "es:10:15",
+"sample": "Leo el mensaje."
+},
+{
+"es": "tú · lees",
+"gloss": "ты",
+"id": "es:10:39",
+"sample": "No lees el libro hoy."
+},
+{
+"es": "él · lee",
+"gloss": "он/она/Вы",
+"id": "es:10:14",
+"sample": "Luis lee el libro."
+},
+{
+"es": "nosotros · leemos",
+"gloss": "мы",
+"id": "es:10:16",
+"sample": "Leemos el mensaje."
+},
+{
+"es": "vosotros · leéis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leen",
+"gloss": "они/вы (ustedes)",
+"id": "es:10:26",
+"sample": "Mis hermanos leen el mensaje."
+}
+],
+"title": "leer · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · vivo",
+"gloss": "я",
+"id": "es:10:01",
+"sample": "Vivo aquí."
+},
+{
+"es": "tú · vives",
+"gloss": "ты",
+"id": "es:10:02",
+"sample": "Vives aquí."
+},
+{
+"es": "él · vive",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivimos",
+"gloss": "мы",
+"id": "es:10:21",
+"sample": "Vivimos aquí."
+},
+{
+"es": "vosotros · vivís",
+"gloss": "вы (друзья, Испания)",
+"id": "es:10:30",
+"sample": "Vivís cerca de la estación."
+},
+{
+"es": "ellos · viven",
+"gloss": "они/вы (ustedes)",
+"id": "es:10:38",
+"sample": "Mis hermanas no viven cerca de la estación."
+}
+],
+"title": "vivir · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · escribo",
+"gloss": "я",
+"id": "es:10:35",
+"sample": "Hoy no escribo cartas."
+},
+{
+"es": "tú · escribes",
+"gloss": "ты",
+"id": "es:10:17",
+"sample": "Escribes una carta."
+},
+{
+"es": "él · escribe",
+"gloss": "он/она/Вы",
+"id": "es:10:18",
+"sample": "Luis escribe una carta."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "мы",
+"id": "es:10:20",
+"sample": "Escribimos un mensaje."
+},
+{
+"es": "vosotros · escribís",
+"gloss": "вы (друзья, Испания)",
+"id": "es:10:27",
+"sample": "Escribís una carta."
+},
+{
+"es": "ellos · escriben",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · abro",
+"gloss": "я",
+"id": "es:10:31",
+"sample": "No abro la puerta hoy."
+},
+{
+"es": "tú · abres",
+"gloss": "ты",
+"id": "es:10:32",
+"sample": "No abres la puerta hoy."
+},
+{
+"es": "él · abre",
+"gloss": "он/она/Вы",
+"id": "es:10:33",
+"sample": "Ana no abre la ventana hoy."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "мы",
+"id": "es:10:28",
+"sample": "Abrimos la puerta."
+},
+{
+"es": "vosotros · abrís",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abren",
+"gloss": "они/вы (ustedes)",
+"id": "es:10:29",
+"sample": "Mis hermanos abren la ventana."
+}
+],
+"title": "abrir · Настоящее"
+}
+]
+},
+"uk": {
+"title": "Живу тут, читаю вдома: дієслова на -er та -ir",
+"formula": "основа + закінчення особи → дія",
+"story": "Порівняй форми для «ми»: comer → comemos, vivir → vivimos. А comes і vives обидва мають закінчення -es.",
+"use": "Обери особову форму звичної дії: «живу» — vivo, а не словникове vivir.",
+"choose": "До одного знайомого звертаються comes та vives. У третій особі кінцеве -s зникає: come, vive. Та сама форма підходить до імені та до usted.",
+"nuance": "Обери особову форму звичної дії: «живу» — vivo, а не словникове vivir. Узгодь особове закінчення з виконавцем.",
+"wrong": "Vivir aquí.",
+"right": "Vivo aquí.",
+"chapters": [
+{
+"title": "Дві групи",
+"body": "Відкинь -er у comer та -ir у vivir. Залишаться com- та viv-. Для «я» обидві основи дістають -o: como, vivo. Інфінітив сам не називає виконавця.",
+"note": "Ключова форма: vivo. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:01",
+"es:10:02"
+],
+"focusId": "es:10:01"
+},
+{
+"title": "Від «я» до «ти»",
+"body": "До одного знайомого звертаються comes та vives. У третій особі кінцеве -s зникає: come, vive. Та сама форма підходить до імені та до usted.",
+"note": "Ключова форма: vives. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:02",
+"es:10:03"
+],
+"focusId": "es:10:02"
+},
+{
+"title": "Де групи розходяться",
+"body": "«Ми їмо» — comemos, але «ми живемо» — vivimos. Щоб не вгадувати, повернися до comer або vivir і визнач групу. Для vosotros отримаєш coméis та vivís.",
+"note": "Ключова форма: coméis. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:22",
+"es:10:23"
+],
+"focusId": "es:10:22"
+},
+{
+"title": "Дія без зв’язки",
+"body": "Знайоме estoy потрібне для місця в Estoy aquí. У Vivo aquí слово vivo вже стоїть в особовій формі, тому estoy не додаємо.",
+"note": "Ключова форма: como. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:05",
+"es:10:06"
+],
+"focusId": "es:10:05"
+},
+{
+"title": "Запитання й заперечення",
+"body": "«Ти читаєш?» відрізняється від «Ти читаєш» інтонацією та знаками. Для «не читаєш» постав no перед lees. Група -er від цього не змінюється.",
+"note": "Ключова форма: escribo. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:35",
+"es:10:36"
+],
+"focusId": "es:10:35"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ми пишемо повідомлення.» / «Ми живемо тут.». Узгодь особове закінчення з виконавцем. Смислові опори: «mensaje» — повідомлення.",
+"note": "Ключова форма: vivimos. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:20",
+"es:10:21"
+],
+"focusId": "es:10:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти читаєш книжку?» / «Ви пишете листа?». Узгодь особове закінчення з виконавцем. Обери особову форму звичної дії: «живу» — vivo, а не словникове vivir.",
+"note": "Ключова форма: escribís. Узгодь особове закінчення з виконавцем.",
+"samples": [
+"es:10:44",
+"es:10:50"
+],
+"focusId": "es:10:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · como",
+"gloss": "я",
+"id": "es:10:05",
+"sample": "Como en casa."
+},
+{
+"es": "tú · comes",
+"gloss": "ти",
+"id": "es:10:08",
+"sample": "Comes en la cocina."
+},
+{
+"es": "él · come",
+"gloss": "він/вона/Ви",
+"id": "es:10:06",
+"sample": "Ana come en casa."
+},
+{
+"es": "nosotros · comemos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · coméis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:10:22",
+"sample": "Coméis en casa."
+},
+{
+"es": "ellos · comen",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · bebo",
+"gloss": "я",
+"id": "es:10:11",
+"sample": "Bebo agua."
+},
+{
+"es": "tú · bebes",
+"gloss": "ти",
+"id": "es:10:12",
+"sample": "Bebes café."
+},
+{
+"es": "él · bebe",
+"gloss": "він/вона/Ви",
+"id": "es:10:10",
+"sample": "Luis bebe café."
+},
+{
+"es": "nosotros · bebemos",
+"gloss": "ми",
+"id": "es:10:09",
+"sample": "Bebemos agua."
+},
+{
+"es": "vosotros · bebéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · beben",
+"gloss": "вони/ви (ustedes)",
+"id": "es:10:23",
+"sample": "Mis hermanos beben agua."
+}
+],
+"title": "beber · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · leo",
+"gloss": "я",
+"id": "es:10:15",
+"sample": "Leo el mensaje."
+},
+{
+"es": "tú · lees",
+"gloss": "ти",
+"id": "es:10:39",
+"sample": "No lees el libro hoy."
+},
+{
+"es": "él · lee",
+"gloss": "він/вона/Ви",
+"id": "es:10:14",
+"sample": "Luis lee el libro."
+},
+{
+"es": "nosotros · leemos",
+"gloss": "ми",
+"id": "es:10:16",
+"sample": "Leemos el mensaje."
+},
+{
+"es": "vosotros · leéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leen",
+"gloss": "вони/ви (ustedes)",
+"id": "es:10:26",
+"sample": "Mis hermanos leen el mensaje."
+}
+],
+"title": "leer · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · vivo",
+"gloss": "я",
+"id": "es:10:01",
+"sample": "Vivo aquí."
+},
+{
+"es": "tú · vives",
+"gloss": "ти",
+"id": "es:10:02",
+"sample": "Vives aquí."
+},
+{
+"es": "él · vive",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivimos",
+"gloss": "ми",
+"id": "es:10:21",
+"sample": "Vivimos aquí."
+},
+{
+"es": "vosotros · vivís",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:10:30",
+"sample": "Vivís cerca de la estación."
+},
+{
+"es": "ellos · viven",
+"gloss": "вони/ви (ustedes)",
+"id": "es:10:38",
+"sample": "Mis hermanas no viven cerca de la estación."
+}
+],
+"title": "vivir · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · escribo",
+"gloss": "я",
+"id": "es:10:35",
+"sample": "Hoy no escribo cartas."
+},
+{
+"es": "tú · escribes",
+"gloss": "ти",
+"id": "es:10:17",
+"sample": "Escribes una carta."
+},
+{
+"es": "él · escribe",
+"gloss": "він/вона/Ви",
+"id": "es:10:18",
+"sample": "Luis escribe una carta."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "ми",
+"id": "es:10:20",
+"sample": "Escribimos un mensaje."
+},
+{
+"es": "vosotros · escribís",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:10:27",
+"sample": "Escribís una carta."
+},
+{
+"es": "ellos · escriben",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · abro",
+"gloss": "я",
+"id": "es:10:31",
+"sample": "No abro la puerta hoy."
+},
+{
+"es": "tú · abres",
+"gloss": "ти",
+"id": "es:10:32",
+"sample": "No abres la puerta hoy."
+},
+{
+"es": "él · abre",
+"gloss": "він/вона/Ви",
+"id": "es:10:33",
+"sample": "Ana no abre la ventana hoy."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "ми",
+"id": "es:10:28",
+"sample": "Abrimos la puerta."
+},
+{
+"es": "vosotros · abrís",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abren",
+"gloss": "вони/ви (ustedes)",
+"id": "es:10:29",
+"sample": "Mis hermanos abren la ventana."
+}
+],
+"title": "abrir · Теперішній час"
+}
+]
+},
+"en": {
+"title": "Regular -er and -ir verbs in the present",
+"formula": "verb stem + present-tense ending: comer → comemos · vivir → vivimos",
+"story": "Listen to the “we” forms: comer → comemos, vivir → vivimos. The tú forms comes and vives both end in -es.",
+"use": "Choose the personal form of the common action: \"I live\" — vivo, not the dictionary vivir.",
+"choose": "comes and vives indicate addressing an acquaintance. In the third person, the final - s disappears: come, vive. The same third person form is suitable for both a name and usted.",
+"nuance": "Choose the personal form of the common action: \"I live\" — vivo, not the dictionary vivir. Agree on the personal ending with the performer.",
+"wrong": "Vivir aquí.",
+"right": "Vivo aquí.",
+"chapters": [
+{
+"title": "What do comer and vivir have in common?",
+"body": "Remove - er from comer and - ir from vivir. This leaves com - and viv -. For \"I\", both stems get - o: como, vivo. The initial form itself doesn't indicate who is acting.",
+"note": "Key form: vivo. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:01",
+"es:10:02"
+],
+"focusId": "es:10:01"
+},
+{
+"title": "What changes from “I” to “you”?",
+"body": "comes and vives indicate addressing an acquaintance. In the third person, the final - s disappears: come, vive. The same third person form is suitable for both a name and usted.",
+"note": "Key form: vives. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:02",
+"es:10:03"
+],
+"focusId": "es:10:02"
+},
+{
+"title": "Where do -er and -ir endings differ?",
+"body": "\"We eat\" is comemos, but \"we live\" is vivimos. Don't infer one form from the other by ear: go back to comer or vivir and restore the group. For vosotros, you get coméis and vivís.",
+"note": "Key form: coméis. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:22",
+"es:10:23"
+],
+"focusId": "es:10:22"
+},
+{
+"title": "Does an ordinary action need an extra verb?",
+"body": "The familiar estoy is needed for the place in Estoy aquí. In Vivo aquí, the word vivo is already conjugated, so there's no need to add estoy. Read the phrase starting with the action itself.",
+"note": "Key form: como. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:05",
+"es:10:06"
+],
+"focusId": "es:10:05"
+},
+{
+"title": "How do I ask or say that I don’t do it?",
+"body": "\"Do you read?\" differs from \"Do you read\" in intonation and signs. For \"you don't read,\" put no before lees. Neither a question nor a negation changes the affiliation with - er.",
+"note": "Key form: escribo. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:35",
+"es:10:36"
+],
+"focusId": "es:10:35"
+},
+{
+"title": "How do I build one complete example?",
+"body": "Compare the two tasks: \"We are writing a message.\" / \"We live here.\" Agree the personal ending with the performer. Semantic supports: \" mensaje \" is a message.",
+"note": "Key form: vivimos. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:20",
+"es:10:21"
+],
+"focusId": "es:10:21"
+},
+{
+"title": "Can I use this pattern with another verb?",
+"body": "Compare the two tasks: \"Are you reading a book?\" / \"Are you writing a letter?\" Agree the personal ending with the performer. Choose the personal form of the ordinary action: \"live\" — vivo, not the dictionary form vivir.",
+"note": "Key form: escribís. Agree on the personal ending with the performer.",
+"samples": [
+"es:10:44",
+"es:10:50"
+],
+"focusId": "es:10:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · como",
+"gloss": "I",
+"id": "es:10:05",
+"sample": "Como en casa."
+},
+{
+"es": "tú · comes",
+"gloss": "you",
+"id": "es:10:08",
+"sample": "Comes en la cocina."
+},
+{
+"es": "él · come",
+"gloss": "he/she/you",
+"id": "es:10:06",
+"sample": "Ana come en casa."
+},
+{
+"es": "nosotros · comemos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · coméis",
+"gloss": "you (friends, Spain)",
+"id": "es:10:22",
+"sample": "Coméis en casa."
+},
+{
+"es": "ellos · comen",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer Present"
+},
+{
+"rows": [
+{
+"es": "yo · bebo",
+"gloss": "I",
+"id": "es:10:11",
+"sample": "Bebo agua."
+},
+{
+"es": "tú · bebes",
+"gloss": "you",
+"id": "es:10:12",
+"sample": "Bebes café."
+},
+{
+"es": "él · bebe",
+"gloss": "he/she/you",
+"id": "es:10:10",
+"sample": "Luis bebe café."
+},
+{
+"es": "nosotros · bebemos",
+"gloss": "we",
+"id": "es:10:09",
+"sample": "Bebemos agua."
+},
+{
+"es": "vosotros · bebéis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · beben",
+"gloss": "they/you (ustedes)",
+"id": "es:10:23",
+"sample": "Mis hermanos beben agua."
+}
+],
+"title": "beber Present"
+},
+{
+"rows": [
+{
+"es": "yo · leo",
+"gloss": "I",
+"id": "es:10:15",
+"sample": "Leo el mensaje."
+},
+{
+"es": "tú · lees",
+"gloss": "you",
+"id": "es:10:39",
+"sample": "No lees el libro hoy."
+},
+{
+"es": "él · lee",
+"gloss": "he/she/you",
+"id": "es:10:14",
+"sample": "Luis lee el libro."
+},
+{
+"es": "nosotros · leemos",
+"gloss": "we",
+"id": "es:10:16",
+"sample": "Leemos el mensaje."
+},
+{
+"es": "vosotros · leéis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leen",
+"gloss": "they/you (ustedes)",
+"id": "es:10:26",
+"sample": "Mis hermanos leen el mensaje."
+}
+],
+"title": "leer Present"
+},
+{
+"rows": [
+{
+"es": "yo · vivo",
+"gloss": "I",
+"id": "es:10:01",
+"sample": "Vivo aquí."
+},
+{
+"es": "tú · vives",
+"gloss": "you",
+"id": "es:10:02",
+"sample": "Vives aquí."
+},
+{
+"es": "él · vive",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivimos",
+"gloss": "we",
+"id": "es:10:21",
+"sample": "Vivimos aquí."
+},
+{
+"es": "vosotros · vivís",
+"gloss": "you (friends, Spain)",
+"id": "es:10:30",
+"sample": "Vivís cerca de la estación."
+},
+{
+"es": "ellos · viven",
+"gloss": "they/you (ustedes)",
+"id": "es:10:38",
+"sample": "Mis hermanas no viven cerca de la estación."
+}
+],
+"title": "vivir Present"
+},
+{
+"rows": [
+{
+"es": "yo · escribo",
+"gloss": "I",
+"id": "es:10:35",
+"sample": "Hoy no escribo cartas."
+},
+{
+"es": "tú · escribes",
+"gloss": "you",
+"id": "es:10:17",
+"sample": "Escribes una carta."
+},
+{
+"es": "él · escribe",
+"gloss": "he/she/you",
+"id": "es:10:18",
+"sample": "Luis escribe una carta."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "we",
+"id": "es:10:20",
+"sample": "Escribimos un mensaje."
+},
+{
+"es": "vosotros · escribís",
+"gloss": "you (friends, Spain)",
+"id": "es:10:27",
+"sample": "Escribís una carta."
+},
+{
+"es": "ellos · escriben",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir Present"
+},
+{
+"rows": [
+{
+"es": "yo · abro",
+"gloss": "I",
+"id": "es:10:31",
+"sample": "No abro la puerta hoy."
+},
+{
+"es": "tú · abres",
+"gloss": "you",
+"id": "es:10:32",
+"sample": "No abres la puerta hoy."
+},
+{
+"es": "él · abre",
+"gloss": "he/she/you",
+"id": "es:10:33",
+"sample": "Ana no abre la ventana hoy."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "we",
+"id": "es:10:28",
+"sample": "Abrimos la puerta."
+},
+{
+"es": "vosotros · abrís",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abren",
+"gloss": "they/you (ustedes)",
+"id": "es:10:29",
+"sample": "Mis hermanos abren la ventana."
+}
+],
+"title": "abrir Present"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:10:01",
+"index": 0,
+"right": "Vivo",
+"near": "Vives",
+"seq": [
+"Vivo",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es10/lab/form1",
+"feedback": {
+"ru": "Vivo ← vivir (жить); yo.",
+"uk": "Vivo ← vivir (жити); yo.",
+"en": "Vivo ← vivir (to live); yo."
+}
+},
+{
+"id": "es:10:13",
+"index": 0,
+"right": "Bebo",
+"near": "Bebes",
+"seq": [
+"Bebo",
+"café",
+"con",
+"leche"
+],
+"i": 12,
+"kind": "form",
+"key": "es10/lab/form2",
+"feedback": {
+"ru": "Bebo ← beber (пить); yo.",
+"uk": "Bebo ← beber (пити); yo.",
+"en": "Bebo ← beber (to drink); yo."
+}
+},
+{
+"id": "es:10:24",
+"index": 0,
+"right": "Bebemos",
+"near": "Bebéis",
+"seq": [
+"Bebemos",
+"café"
+],
+"i": 23,
+"kind": "form",
+"key": "es10/lab/form3",
+"feedback": {
+"ru": "Bebemos ← beber (пить); nosotros.",
+"uk": "Bebemos ← beber (пити); nosotros.",
+"en": "Bebemos ← beber (to drink); nosotros."
+}
+},
+{
+"id": "es:10:38",
+"index": 3,
+"right": "viven",
+"near": "vive",
+"seq": [
+"Mis",
+"hermanas",
+"no",
+"viven",
+"cerca",
+"de",
+"la",
+"estación"
+],
+"i": 37,
+"kind": "form",
+"key": "es10/lab/form4",
+"feedback": {
+"ru": "viven: жить.",
+"uk": "viven: жити.",
+"en": "viven: live."
+}
+},
+{
+"id": "es:10:07",
+"index": 0,
+"right": "Como",
+"near": "Comes",
+"seq": [
+"Como",
+"en",
+"la",
+"cocina"
+],
+"i": 6,
+"kind": "spot",
+"key": "es10/lab/spot1",
+"feedback": {
+"ru": "Como ← comer (есть); yo.",
+"uk": "Como ← comer (їсти); yo.",
+"en": "Como ← comer (available); yo."
+}
+},
+{
+"id": "es:10:20",
+"index": 0,
+"right": "Escribimos",
+"near": "Escribís",
+"seq": [
+"Escribimos",
+"un",
+"mensaje"
+],
+"i": 19,
+"kind": "spot",
+"key": "es10/lab/spot2",
+"feedback": {
+"ru": "Escribimos ← escribir (писать); nosotros.",
+"uk": "Escribimos ← escribir (писати); nosotros.",
+"en": "Escribimos ← escribir (write); nosotros."
+}
+},
+{
+"id": "es:10:39",
+"index": 1,
+"right": "lees",
+"near": "leo",
+"seq": [
+"No",
+"lees",
+"el",
+"libro",
+"hoy"
+],
+"i": 38,
+"kind": "spot",
+"key": "es10/lab/spot3",
+"feedback": {
+"ru": "lees ← leer (читать); tú.",
+"uk": "lees ← leer (читати); tú.",
+"en": "lees ← leer (read); tú."
+}
+},
+{
+"id": "es:10:41",
+"index": 0,
+"right": "Vives",
+"near": "Vivo",
+"seq": [
+"Vives",
+"cerca",
+"de",
+"la",
+"estación"
+],
+"i": 40,
+"kind": "spot",
+"key": "es10/lab/spot4",
+"feedback": {
+"ru": "Vives ← vivir (жить); tú.",
+"uk": "Vives ← vivir (жити); tú.",
+"en": "Vives ← vivir (to live); tú."
+}
+},
+{
+"kind": "match",
+"key": "es10/lab/match1",
+"id": "es:10:02",
+"other": "es:10:04"
+},
+{
+"kind": "match",
+"key": "es10/lab/match2",
+"id": "es:10:17",
+"other": "es:10:18"
+},
+{
+"kind": "match",
+"key": "es10/lab/match3",
+"id": "es:10:33",
+"other": "es:10:32"
+},
+{
+"kind": "match",
+"key": "es10/lab/match4",
+"id": "es:10:46",
+"other": "es:10:48"
+},
+{
+"kind": "build",
+"key": "es10/lab/build1",
+"id": "es:10:04"
+},
+{
+"kind": "build",
+"key": "es10/lab/build2",
+"id": "es:10:15"
+},
+{
+"kind": "build",
+"key": "es10/lab/build3",
+"id": "es:10:29"
+},
+{
+"kind": "build",
+"key": "es10/lab/build4",
+"id": "es:10:42"
+},
+{
+"kind": "transform",
+"id": "es:10:04",
+"base": "es:10:03",
+"diff": [
+{
+"before": [
+"Vivo"
+],
+"after": [
+"Vives"
+]
+}
+],
+"key": "es10/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:10:08",
+"base": "es:10:07",
+"diff": [
+{
+"before": [
+"Como"
+],
+"after": [
+"Comes"
+]
+}
+],
+"key": "es10/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:10:34",
+"base": "es:10:33",
+"diff": [
+{
+"before": [
+"Ana"
+],
+"after": [
+"Luis"
+]
+}
+],
+"key": "es10/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:10:32",
+"base": "es:10:31",
+"diff": [
+{
+"before": [
+"abro"
+],
+"after": [
+"abres"
+]
+}
+],
+"key": "es10/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+12
+],
+[
+2,
+5
+],
+[
+4,
+17
+],
+[
+18,
+3
+],
+[
+9,
+13
+],
+[
+11,
+15
+]
+],
+"worked": [
+"es:10:05",
+"es:10:18",
+"es:10:33",
+"es:10:48"
+],
+"reflection": [
+"es:10:01",
+"es:10:02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

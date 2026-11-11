@@ -22,7 +22,6 @@ type AiMistakeCardProps = {
   /** Kept for back-compat; no longer rendered (no daily cap). */
   remaining?: number | null;
   onExplain: () => void;
-  onOpenSimple?: () => void;
   /**
    * Подпись под скелетоном на время ожидания (см. app/ai_wait_copy.ts). Меняется
    * по мере ожидания, чтобы затянувшийся ответ не читался как зависание.
@@ -49,7 +48,6 @@ export default function AiMistakeCard({
   state,
   explanation,
   onExplain,
-  onOpenSimple,
   targetAnswer,
   userAnswer,
   waitLine,
@@ -192,33 +190,9 @@ export default function AiMistakeCard({
         </View>
       ) : null}
 
-      {isReadyExplanation && !fallback && onOpenSimple ? (
-        <Pressable
-          testID="ai-mistake-simple-button"
-          accessibilityRole="button"
-          onPress={onOpenSimple}
-          style={({ pressed }) => [styles.simpleButton, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
-        >
-          <Ionicons name="sparkles-outline" size={16} color={t.accentText} />
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
-            {triLang(lang, {
-              ru: 'Объяснить проще',
-              uk: 'Пояснити простіше',
-              en: 'Explain more simply',
-              es: 'Explicarlo más fácil',
-              'pt-BR': 'Explicar de forma mais simples',
-              vi: 'Giải thích đơn giản hơn',
-              id: 'Jelaskan lebih sederhana',
-              tr: 'Daha basit açıkla',
-              pl: 'Wyjaśnij prościej',
-            })}
-          </Text>
-        </Pressable>
-      ) : null}
-
       {state === 'idle' ? (
-        // зачем (владелец 11.10, журнал 15; макет learn D5 `.aic .bt`): разбор запускается ТОЛЬКО по тапу — две кнопки рядом:
-        // «Разобрать мой ответ» (ИИ-разбор) и «Объяснить проще». Без тапа к ИИ ничего не уходит.
+        // зачем (владелец 11.10, журнал 15; макет learn D5 `.aic .bt`): разбор запускается ТОЛЬКО по тапу. Без тапа к ИИ ничего не уходит.
+        // зачем (владелец 11.11: «убери кнопку объяснить проще… обе удалить»): упрощённого разбора нет, кнопка одна.
         <View style={styles.actionRow}>
           <Pressable
             testID="ai-mistake-explain-button"
@@ -240,28 +214,6 @@ export default function AiMistakeCard({
               })}
             </Text>
           </Pressable>
-          {onOpenSimple ? (
-            <Pressable
-              testID="ai-mistake-simple-button"
-              accessibilityRole="button"
-              onPress={onOpenSimple}
-              style={({ pressed }) => [styles.actionButton, styles.actionGhost, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
-            >
-              <Text style={[styles.actionText, { color: t.textPrimary }]}>
-                {triLang(lang, {
-                  ru: 'Объяснить проще',
-                  uk: 'Пояснити простіше',
-                  en: 'Explain more simply',
-                  es: 'Explicarlo más fácil',
-                  'pt-BR': 'Explicar de forma mais simples',
-                  vi: 'Giải thích đơn giản hơn',
-                  id: 'Jelaskan lebih sederhana',
-                  tr: 'Daha basit açıkla',
-                  pl: 'Wyjaśnij prościej',
-                })}
-              </Text>
-            </Pressable>
-          ) : null}
         </View>
       ) : null}
     </View>
@@ -321,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginTop: 12, // отделяем кнопку-репорт от текста разбора (теперь это кнопка с контейнером)
   },
-  // `.aic .bt` макета: две кнопки по 40+, поровну, зазор 10; ghost — тонкая кромка 1 px (исключение 2.0).
+  // `.aic .bt` макета: кнопка 44+ во всю ширину ряда (вторая, «Объяснить проще», убрана владельцем 11.11).
   actionRow: {
     alignSelf: 'stretch',
     flexDirection: 'row',
@@ -337,8 +289,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
-  // зачем (стиль «Тень», решение владельца 12.10): ghost-кнопка отделена заливкой контрола, а не кромкой
-  actionGhost: {},
   actionText: {
     flexShrink: 1,
     fontSize: 16,

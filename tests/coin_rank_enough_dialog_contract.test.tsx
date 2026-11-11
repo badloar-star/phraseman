@@ -43,7 +43,7 @@ jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: (...args: unknow
 jest.mock('../app/coin_rank_table_v1', () => ({
   COIN_RANK_MAX: 19,
   isValidCoinRank: (r: unknown) => typeof r === 'number' && r >= 0 && r <= 19,
-  coinRankRowForDisplay: (r: number) => ({ priceToReach: r * 1000 }),
+  coinRankRowForDisplay: (r: number) => ({ priceToReach: r === 0 ? 0 : 900 + r * 100 }),
 }));
 jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: 'MomentCoin' }));
 jest.mock('../components/spire/SpireRankCoin', () => ({ __esModule: true, default: 'SpireRankCoin' }));
@@ -64,14 +64,14 @@ const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, 
 describe('окно «Хватает на ранг N» (m14A)', () => {
   beforeEach(() => { mockPlayEvent.mockClear(); });
 
-  it('ранг 5 → «Хватает на ранг 6», цена 6 000 из таблицы, две кнопки, звуки sheet_open и coin_rank', async () => {
+  it('ранг 5 → «Хватает на ранг 6», цена 1 500 из таблицы, две кнопки, звуки sheet_open и coin_rank', async () => {
     const onUpgrade = jest.fn();
     const onLater = jest.fn();
     await render(<CoinRankEnoughDialog lang="ru" coinRank={5} coins={7004} onUpgrade={onUpgrade} onLater={onLater} />);
     await act(async () => { await new Promise((r) => setTimeout(r, 10)); });
     expect(screen.getByText('Хватает на ранг 6')).toBeTruthy();
-    expect(screen.getByText(/7\s004 монеты — ранг 6 стоит 6\s000\./)).toBeTruthy();
-    expect(screen.getByText(/Повысить за 6\s000/)).toBeTruthy();
+    expect(screen.getByText(/7\s004 монеты — ранг 6 стоит 1\s500\./)).toBeTruthy();
+    expect(screen.getByText(/Повысить за 1\s500/)).toBeTruthy();
     expect(mockPlayEvent).toHaveBeenCalledWith('sheet_open');
     expect(mockPlayEvent).toHaveBeenCalledWith('coin_rank');
     await fireEvent.press(screen.getByTestId('coin-rank-enough-upgrade'));

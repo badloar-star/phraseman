@@ -242,7 +242,7 @@ describe('PM-211 структура: путь первого кадра не ж�
   });
 
   it('тяжёлая пост-стартовая инициализация (друзья, магазин, аналитика) ждёт кадр Главной', () => {
-    const effectStart = layout.indexOf('heavyInitStartedRef.current = true;');
+    const effectStart = layout.indexOf("console.log('[COLD-START-HOLD] heavy_init:schedule'");
     expect(effectStart).toBeGreaterThan(0);
     const effect = layout.slice(effectStart, layout.indexOf('}, [', effectStart));
     expect(effect).toMatch(/runAfterHomeFirstFrame\('heavy_init'/);
@@ -250,13 +250,14 @@ describe('PM-211 структура: путь первого кадра не ж�
     expect(effect).not.toMatch(/InteractionManager\.runAfterInteractions/);
   });
 
-  it('планировщик отправки завершений Learning V2 ставится после кадра Главной и сплеша, с паузой (пакет 00:30)', () => {
-    const start = layout.indexOf("runAfterHomeFirstFrame('lv2_completion_scheduler_install'");
+  it('последовательно загружает вторичные кэши после первого кадра и онбординга', () => {
+    const start = layout.indexOf("runAfterHomeFirstFrame('secondary_screen_caches'");
     expect(start).toBeGreaterThan(0);
-    const effect = layout.slice(start, layout.indexOf('}, []);', start));
-    expect(effect).toContain('LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS');
-    expect(effect).toContain('ensureLearningV2CompletionBackgroundSchedulerInstalled()');
-    expect(layout).not.toMatch(/runAfterInteractions\(\(\) => \{\s*void import\('\.\/learning_v2_completion_background_scheduler'\)/);
+    const effect = layout.slice(start, layout.indexOf('void startupLocalHydration.catch', start));
+    expect(effect).toContain('for (const [key, load] of deferred)');
+    expect(effect).toContain('await load().catch');
+    expect(effect).toContain('!isCurrentAccountGeneration(startupSettingsGeneration)');
+    expect(effect).toContain('holdDuringOnboarding: true');
   });
 
   it('прогрев друзей в снапшоте не входит в Promise.all первого кадра (коммит 31f6e03ac)', () => {

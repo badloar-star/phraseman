@@ -1,0 +1,956 @@
+[
+{
+"lesson": 29,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:29:01",
+"de:29:05"
+],
+"textByLocale": {
+"en": "At the table, `ich hätte gern` is a ready-made way to ask for food or a drink. It's not a way to say you once had something. Learn to distinguish between `hatte` in the past and `hätte` in a polite wish.",
+"ru": "За столом `ich hätte gern` — готовый способ попросить еду или напиток. Это не рассказ о том, что вещь у тебя когда-то была. Учись различать `hatte` в прошлом и `hätte` в вежливом желании.",
+"uk": "За столом `ich hätte gern` готовий спосіб попросити їжу або напій. Це не розповідь про те, що річ у тебе колись була. Вчися розрізняти `hatte` у минулому та `hätte` у ввічливому бажанні."
+}
+},
+{
+"exampleIds": [
+"de:29:06",
+"de:29:10"
+],
+"textByLocale": {
+"en": "With `wäre`,\" it's convenient to suggest a location, a different time, or a different reservation. You're not stating that the room is available, but asking if this option would be suitable.",
+"ru": "С `wäre` удобно предложить место, другое время или условие бронирования. Ты не утверждаешь, что комната свободна, а спрашиваешь, подошёл бы такой вариант.",
+"uk": "З `wäre` зручно запропонувати місце, інший час або умову бронювання. Ти не стверджуєш, що кімната вільна, а питаєш, чи підійшов би такий варіант."
+}
+},
+{
+"exampleIds": [
+"de:29:11",
+"de:29:15"
+],
+"textByLocale": {
+"en": "The request `könnten Sie …?` retains the polite pronoun. To a friend, `könntest du`,\" to several friends, `könntet ihr`.\" Social distance and number remain part of the meaning.",
+"ru": "У просьбы `könnten Sie …?` сохраняется вежливое местоимение. К другу — `könntest du`, к нескольким друзьям — `könntet ihr`. Социальная дистанция и число остаются частью смысла.",
+"uk": "У прохання `könnten Sie …?` зберігається ввічливий займенник. До друга – `könntest du`, до кількох друзів – `könntet ihr`. Соціальна дистанція та число залишаються частиною сенсу."
+}
+},
+{
+"exampleIds": [
+"de:29:21",
+"de:29:27"
+],
+"textByLocale": {
+"en": "With `würde`,\" the action comes at the end as an infinitive. Note the difference between the speaker's individual wish and a request for the interlocutor to perform an action.",
+"ru": "С `würde` действие приходит в конце как инфинитив. Обрати внимание на разницу между отдельным желанием говорящего и просьбой к собеседнику совершить действие.",
+"uk": "З `würde` дія приходить в кінці як інфінітив. Зверни увагу на різницю між окремим бажанням того, хто говорить, і проханням до співрозмовника вчинити дію."
+}
+},
+{
+"exampleIds": [
+"de:29:31",
+"de:29:35"
+],
+"textByLocale": {
+"en": "To ask permission in a gentle manner, `dürfte` is useful. If the important question is whether parking is permitted, this is more accurate than asking about parking skills.",
+"ru": "Чтобы спросить разрешения в мягкой форме, пригодится `dürfte`. Если важно, разрешают ли правила парковку, это точнее, чем вопрос об умении припарковаться.",
+"uk": "Щоб спитати дозволи в м'якій формі, стане в нагоді `dürfte`. Якщо важливо, чи дозволяють правила паркування, це точніше, ніж питання про вміння припаркуватися."
+}
+},
+{
+"exampleIds": [
+"de:29:36",
+"de:29:40"
+],
+"textByLocale": {
+"en": "Sometimes a request is framed as a condition: it would be nice if the other person would wait a bit. First, formulate a simple, short request, then compare it with a longer, polite version.",
+"ru": "Иногда просьбу оформляют как условие: было бы хорошо, если бы собеседник немного подождал. Сначала составь простую короткую просьбу, потом сравни с более длинной вежливой версией.",
+"uk": "Іноді прохання оформлюють як умову: було б добре, якби співрозмовник трохи зачекав. Спочатку склади просте коротке прохання, потім порівняй з довшою ввічливою версією."
+}
+},
+{
+"exampleIds": [
+"de:29:41",
+"de:29:48"
+],
+"textByLocale": {
+"en": "Advice sets a different position: \"if I were you.\" The speaker advises, but does not give an order. `Lieber` indicates a preference between options, not a degree of grammatical politeness.",
+"ru": "Совет задаёт другую позицию: «на твоём месте». Говорящий советует, но не отдаёт приказ. `Lieber` показывает предпочтение между вариантами, а не степень грамматической вежливости.",
+"uk": "Рада ставить іншу позицію: «на твоєму місці». Той, хто говорить, радить, але не наказує. `Lieber` показує перевагу між варіантами, а не ступінь граматичної ввічливості."
+}
+}
+],
+"lab": [
+{
+"bad": "habt",
+"chapter": 1,
+"id": "de:29:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"hätte",
+"habe",
+"habt"
+],
+"slot": 1
+},
+{
+"bad": "habe",
+"chapter": 1,
+"id": "de:29:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"habe",
+"hast",
+"hätte"
+],
+"slot": 1
+},
+{
+"bad": "Hätte",
+"chapter": 1,
+"id": "de:29:05:lab",
+"item": 5,
+"kind": "match",
+"near": 49,
+"options": [
+"Hätten",
+"Hätte",
+"Hättet"
+],
+"slot": 0
+},
+{
+"bad": "war",
+"chapter": 2,
+"id": "de:29:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"seid",
+"war",
+"wäre"
+],
+"slot": 3
+},
+{
+"bad": "Ist",
+"chapter": 2,
+"id": "de:29:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 40,
+"options": [
+"Sein",
+"Wäre",
+"Ist"
+],
+"slot": 0
+},
+{
+"bad": "Kann",
+"chapter": 2,
+"id": "de:29:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 17,
+"options": [
+"Kann",
+"Könntet",
+"Könntest"
+],
+"slot": 0
+},
+{
+"bad": "Kannst",
+"chapter": 3,
+"id": "de:29:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 20,
+"options": [
+"Kannst",
+"Könnten",
+"Kann"
+],
+"slot": 0
+},
+{
+"bad": "Könntet",
+"chapter": 3,
+"id": "de:29:17:lab",
+"item": 17,
+"kind": "match",
+"near": 12,
+"options": [
+"Könnte",
+"Könntet",
+"Könntest"
+],
+"slot": 0
+},
+{
+"bad": "Könnt",
+"chapter": 3,
+"id": "de:29:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"Könnt",
+"Kann",
+"Könnte"
+],
+"slot": 0
+},
+{
+"bad": "Konnte",
+"chapter": 4,
+"id": "de:29:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 15,
+"options": [
+"Konnte",
+"Könnte",
+"Kann"
+],
+"slot": 0
+},
+{
+"bad": "es",
+"chapter": 4,
+"id": "de:29:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 11,
+"options": [
+"Sie",
+"er",
+"es"
+],
+"slot": 1
+},
+{
+"bad": "wäre",
+"chapter": 4,
+"id": "de:29:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 1,
+"options": [
+"würde",
+"wurde",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "werden",
+"chapter": 5,
+"id": "de:29:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"werden",
+"würde",
+"wird"
+],
+"slot": 1
+},
+{
+"bad": "Dürft",
+"chapter": 5,
+"id": "de:29:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"Darfst",
+"Dürfte",
+"Dürft"
+],
+"slot": 0
+},
+{
+"bad": "Darf",
+"chapter": 5,
+"id": "de:29:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"Muss",
+"Darf",
+"Dürfte"
+],
+"slot": 0
+},
+{
+"bad": "sind",
+"chapter": 6,
+"id": "de:29:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 38,
+"options": [
+"sind",
+"bist",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "ihr",
+"chapter": 6,
+"id": "de:29:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 31,
+"options": [
+"ihr",
+"Sie",
+"er"
+],
+"slot": 1
+},
+{
+"bad": "wird",
+"chapter": 6,
+"id": "de:29:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"wäre",
+"würde",
+"wird"
+],
+"slot": 3
+},
+{
+"bad": "könnte",
+"chapter": 7,
+"id": "de:29:45:lab",
+"item": 45,
+"kind": "build",
+"near": 16,
+"options": [
+"kann",
+"könnte",
+"könntest"
+],
+"slot": 1
+},
+{
+"bad": "bin",
+"chapter": 7,
+"id": "de:29:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 40,
+"options": [
+"bin",
+"sein",
+"wäre"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"haben",
+"hätte / hätten"
+],
+[
+"sein",
+"wäre / wären"
+],
+[
+"können",
+"könnte / könnten"
+],
+[
+"dürfen",
+"dürfte / dürften"
+],
+[
+"werden",
+"würde / würden"
+]
+],
+"title": {
+"en": "Polite requests with `hätte`, `wäre` and `könnte`",
+"ru": "Попросить мягче: `hätte`, `wäre`, `könnte`",
+"uk": "Попросити м'якше: `hätte`, `wäre`, `könnte`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:29:01",
+"target": "Ich hätte gern einen Tee.",
+"ru": "Мне бы чаю.",
+"uk": "Мені б чаю."
+},
+{
+"id": "de:29:05",
+"target": "Hätten Sie einen Moment Zeit?",
+"ru": "У вас найдётся минутка?",
+"uk": "У вас знайдеться хвилинка?"
+},
+{
+"id": "de:29:06",
+"target": "Ich wäre gern am Fenster.",
+"ru": "Я хотел бы расположиться у окна.",
+"uk": "Я хотів би розташуватись біля вікна."
+},
+{
+"id": "de:29:10",
+"target": "Wäre es auch am Freitag möglich?",
+"ru": "А в пятницу это тоже было бы возможно?",
+"uk": "А у п'ятницю це теж було б можливо?"
+},
+{
+"id": "de:29:11",
+"target": "Könnten Sie mir helfen?",
+"ru": "Не могли бы вы мне помочь?",
+"uk": "Чи не могли б ви допомогти мені?"
+},
+{
+"id": "de:29:15",
+"target": "Könnte ich den Mantel anprobieren?",
+"ru": "Можно мне примерить пальто?",
+"uk": "Чи можна мені приміряти пальто?"
+},
+{
+"id": "de:29:21",
+"target": "Würden Sie bitte das Fenster schließen?",
+"ru": "Не могли бы вы закрыть окно?",
+"uk": "Чи не могли б ви закрити вікно?"
+},
+{
+"id": "de:29:27",
+"target": "Wir würden gern länger bleiben.",
+"ru": "Мы хотели бы остаться подольше.",
+"uk": "Ми хотіли б залишитися довше."
+},
+{
+"id": "de:29:31",
+"target": "Dürfte ich hier parken?",
+"ru": "Можно было бы мне здесь припарковаться?",
+"uk": "Чи можна було б мені тут припаркуватися?"
+},
+{
+"id": "de:29:35",
+"target": "Dürften die Kinder im Hof spielen?",
+"ru": "Можно было бы детям поиграть во дворе?",
+"uk": "Чи можна було б дітям пограти у дворі?"
+},
+{
+"id": "de:29:36",
+"target": "Es wäre nett, wenn Sie kurz warten könnten.",
+"ru": "Было бы любезно с вашей стороны немного подождать.",
+"uk": "Було б люб'язно з вашого боку трохи почекати."
+},
+{
+"id": "de:29:40",
+"target": "Wäre es Ihnen morgen lieber?",
+"ru": "Вам было бы удобнее завтра?",
+"uk": "Вам було б зручніше завтра?"
+},
+{
+"id": "de:29:41",
+"target": "An deiner Stelle würde ich anrufen.",
+"ru": "На твоём месте я бы позвонил.",
+"uk": "На твоєму місці я подзвонив би."
+},
+{
+"id": "de:29:48",
+"target": "Mir wäre der frühe Zug lieber.",
+"ru": "Мне больше подошёл бы ранний поезд.",
+"uk": "Мені більше підійшов би ранній поїзд."
+}
+]
+},
+{
+"lesson": 30,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:30:01",
+"de:30:05"
+],
+"textByLocale": {
+"en": "A direct question about location can be embedded within another question. The word `wo` remains, but `ist` or another personal verb moves to the end of the embedded part. Do not copy the order of the short question entirely.",
+"ru": "Прямой вопрос о месте можно вложить в другой вопрос. Слово `wo` остаётся, но `ist` или другой личный глагол отходит в конец вложенной части. Не копируй порядок короткого вопроса целиком.",
+"uk": "Пряме питання про місце можна вкласти в інше питання. Слово `wo` залишається, але `ist` або інше особисте дієслово відходить у кінець вкладеної частини. Не копіюй порядок короткого питання цілком."
+}
+},
+{
+"exampleIds": [
+"de:30:11",
+"de:30:15"
+],
+"textByLocale": {
+"en": "If the answer before the transformation would have been \"yes\" or \"no,\" use `ob` in the subordinate clause. This is not `wenn`: we're not stating a condition, but rather determining whether the guess corresponds to reality.",
+"ru": "Если до преобразования ответом было бы «да» или «нет», во вложенной части ставь `ob`. Это не `wenn`: мы не объявляем условие, а выясняем, соответствует ли догадка действительности.",
+"uk": "Якщо до перетворення відповіддю було б «так» чи «ні», у вкладеній частині ставь `ob`. Це не `wenn`: ми не оголошуємо умову, а з'ясовуємо, чи здогад реальності."
+}
+},
+{
+"exampleIds": [
+"de:30:21",
+"de:30:25"
+],
+"textByLocale": {
+"en": "The beginning can be a request or a polite question. The content itself is the same: exit point, route, cash register location. The sign at the end depends on the entire message, not on the presence of the word `wo`.\"",
+"ru": "Начало может быть просьбой или вежливым вопросом. Само содержание одинаково: место выхода, путь, положение кассы. Знак в конце зависит от сообщения целиком, а не от наличия слова `wo`.",
+"uk": "Початок може бути запитом або ввічливим питанням. Сам зміст однаковий: місце виходу, шлях, становище каси. Знак в кінці залежить від повідомлення повністю, а не від слова `wo`."
+}
+},
+{
+"exampleIds": [
+"de:30:27",
+"de:30:30"
+],
+"textByLocale": {
+"en": "The interrogative phrase can include a noun or a preposition. In the expression `an welcher Haltestelle`,\" keep the entire phrase at the beginning of the subordinate clause; don't insert the verb in the middle.",
+"ru": "Вопросительная группа может включать существительное или предлог. В выражении `an welcher Haltestelle` держи всю группу в начале придаточного; не вставляй глагол посередине.",
+"uk": "Запитальна група може містити іменник або привід. У виразі `an welcher Haltestelle` тримай усю групу на початку придаткового; не вставляй дієслово посередині."
+}
+},
+{
+"exampleIds": [
+"de:30:31",
+"de:30:35"
+],
+"textByLocale": {
+"en": "Not every first place after a conjunction belongs to the subject being asked about. First, determine who performed the action and what detail is being discussed, then arrange the remaining parts.",
+"ru": "Не каждое первое место после союза принадлежит предмету, о котором спрашивают. Сначала определи, кто совершил действие и о какой подробности идёт речь, затем расставь остальные части.",
+"uk": "Не кожне перше місце після спілки належить предмету, про який запитують. Спочатку визнач, хто вчинив дію і про яку подробиці йдеться, потім розстав інші частини."
+}
+},
+{
+"exampleIds": [
+"de:30:36",
+"de:30:40"
+],
+"textByLocale": {
+"en": "A question about the past preserves the past. In the compound tense, move the auxiliary verb to the right; don't rearrange the participle as if it were an independent direct question again.",
+"ru": "Вопрос о прошлом сохраняет прошлое. В составном времени вынеси вспомогательный глагол вправо; не переставляй причастие так, будто это снова независимый прямой вопрос.",
+"uk": "Питання про минуле зберігає минуле. У складеному часі винеси допоміжне дієслово вправо; не переставляй причастя так, ніби це знову незалежне пряме питання."
+}
+},
+{
+"exampleIds": [
+"de:30:41",
+"de:30:50"
+],
+"textByLocale": {
+"en": "Checking in at the front desk: remove the polite frame and compose a short direct question. Then put the frame back and rearrange the order. If you're asking if there's an appointment, don't add an extra question word.",
+"ru": "Проверка на стойке регистрации: убери вежливую рамку и составь короткий прямой вопрос. Затем верни рамку и перестрой порядок. Если спрашиваешь, есть ли запись, не добавляй лишнее вопросительное слово.",
+"uk": "Перевірка на стійці реєстрації: прибери ввічливу рамку та склади коротке пряме питання. Потім поверни рамку та перебудуй порядок. Якщо запитуєш, чи є запис, не додай зайве запитання."
+}
+}
+],
+"lab": [
+{
+"bad": "wer",
+"chapter": 1,
+"id": "de:30:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"wo",
+"wer",
+"wie"
+],
+"slot": 2
+},
+{
+"bad": "wer",
+"chapter": 1,
+"id": "de:30:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 5,
+"options": [
+"wo",
+"wer",
+"wem"
+],
+"slot": 2
+},
+{
+"bad": "wer",
+"chapter": 1,
+"id": "de:30:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"wann",
+"wie",
+"wer"
+],
+"slot": 2
+},
+{
+"bad": "wer",
+"chapter": 2,
+"id": "de:30:08:lab",
+"item": 8,
+"kind": "build",
+"near": 34,
+"options": [
+"wer",
+"was",
+"wohin"
+],
+"slot": 3
+},
+{
+"bad": "wie",
+"chapter": 2,
+"id": "de:30:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"wie",
+"wohin",
+"wann"
+],
+"slot": 2
+},
+{
+"bad": "obwohl",
+"chapter": 2,
+"id": "de:30:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"damit",
+"obwohl",
+"ob"
+],
+"slot": 2
+},
+{
+"bad": "obwohl",
+"chapter": 3,
+"id": "de:30:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 18,
+"options": [
+"weil",
+"ob",
+"obwohl"
+],
+"slot": 3
+},
+{
+"bad": "als",
+"chapter": 3,
+"id": "de:30:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"als",
+"ob",
+"wenn"
+],
+"slot": 2
+},
+{
+"bad": "wenn",
+"chapter": 3,
+"id": "de:30:19:lab",
+"item": 19,
+"kind": "build",
+"near": 11,
+"options": [
+"wenn",
+"ob",
+"nachdem"
+],
+"slot": 3
+},
+{
+"bad": "obwohl",
+"chapter": 4,
+"id": "de:30:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 43,
+"options": [
+"ob",
+"obwohl",
+"dass"
+],
+"slot": 4
+},
+{
+"bad": "wer",
+"chapter": 4,
+"id": "de:30:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"wo",
+"wer",
+"was"
+],
+"slot": 3
+},
+{
+"bad": "wer",
+"chapter": 4,
+"id": "de:30:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 27,
+"options": [
+"wo",
+"wie",
+"wer"
+],
+"slot": 2
+},
+{
+"bad": "transportieren",
+"chapter": 5,
+"id": "de:30:29:lab",
+"item": 29,
+"kind": "match",
+"near": 47,
+"options": [
+"transportieren",
+"fragen",
+"sagen"
+],
+"slot": 1
+},
+{
+"bad": "wann",
+"chapter": 5,
+"id": "de:30:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"wie",
+"wann",
+"wer"
+],
+"slot": 3
+},
+{
+"bad": "wie",
+"chapter": 5,
+"id": "de:30:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 8,
+"options": [
+"wer",
+"wann",
+"wie"
+],
+"slot": 3
+},
+{
+"bad": "wenn",
+"chapter": 6,
+"id": "de:30:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 7,
+"options": [
+"weil",
+"wenn",
+"ob"
+],
+"slot": 3
+},
+{
+"bad": "wer",
+"chapter": 6,
+"id": "de:30:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 3,
+"options": [
+"wo",
+"woher",
+"wer"
+],
+"slot": 3
+},
+{
+"bad": "nachdem",
+"chapter": 6,
+"id": "de:30:42:lab",
+"item": 42,
+"kind": "match",
+"near": 14,
+"options": [
+"wenn",
+"nachdem",
+"ob"
+],
+"slot": 3
+},
+{
+"bad": "gesperrt",
+"chapter": 7,
+"id": "de:30:45:lab",
+"item": 45,
+"kind": "build",
+"near": 31,
+"options": [
+"gesperrt",
+"viel",
+"welche"
+],
+"slot": 3
+},
+{
+"bad": "spät",
+"chapter": 7,
+"id": "de:30:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 7,
+"options": [
+"bitte",
+"spät",
+"frage"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Wo ist der Bahnhof?",
+"wo der Bahnhof ist"
+],
+[
+"Hält der Zug hier?",
+"ob der Zug hier hält"
+],
+[
+"Wann fährst du los?",
+"wann du losfährst"
+],
+[
+"Was kostet das?",
+"was das kostet"
+]
+],
+"title": {
+"en": "To ask indirectly: `ob` or a question word",
+"ru": "Спросить косвенно: `ob` или вопросительное слово",
+"uk": "Запитати побічно: `ob` або запитальне слово"
+}
+},
+"exampleResolved": [
+{
+"id": "de:30:01",
+"target": "Weißt du, wo Anna wohnt?",
+"ru": "Ты знаешь, где живёт Анна?",
+"uk": "Ти знаєш, де живе Анна?"
+},
+{
+"id": "de:30:05",
+"target": "Wissen Sie, wann der Kurs beginnt?",
+"ru": "Вы знаете, когда начинается курс?",
+"uk": "Ви знаєте, коли починається курс?"
+},
+{
+"id": "de:30:11",
+"target": "Weißt du, ob der Laden offen ist?",
+"ru": "Ты знаешь, открыт ли магазин?",
+"uk": "Ти знаєш, чи відкритий магазин?"
+},
+{
+"id": "de:30:15",
+"target": "Wir möchten wissen, ob ein Zimmer frei ist.",
+"ru": "Мы хотели бы знать, есть ли свободный номер.",
+"uk": "Ми хотіли б знати, чи є вільний номер."
+},
+{
+"id": "de:30:21",
+"target": "Können Sie mir sagen, wo ich aussteigen muss?",
+"ru": "Не скажете, где мне выходить?",
+"uk": "Не скажете, де мені виходити?"
+},
+{
+"id": "de:30:25",
+"target": "Sagen Sie uns bitte, wo die Kasse ist.",
+"ru": "Скажите нам, пожалуйста, где касса.",
+"uk": "Скажіть нам, будь ласка, де каса."
+},
+{
+"id": "de:30:27",
+"target": "Erklär mir bitte, wie ich das Formular ausfülle.",
+"ru": "Объясни мне, пожалуйста, как мне заполнить бланк.",
+"uk": "Поясни мені, будь ласка, як мені заповнити бланк."
+},
+{
+"id": "de:30:30",
+"target": "Weißt du, wie spät es ist?",
+"ru": "Ты знаешь, который час?",
+"uk": "Ти знаєш, котра година?"
+},
+{
+"id": "de:30:31",
+"target": "Ich weiß nicht, wer den Schlüssel hat.",
+"ru": "Я не знаю, у кого ключ.",
+"uk": "Я не знаю, хто має ключ."
+},
+{
+"id": "de:30:35",
+"target": "Sie fragt, warum der Zug ausgefallen ist.",
+"ru": "Она спрашивает, почему поезд отменили.",
+"uk": "Вона запитує, чому поїзд скасували."
+},
+{
+"id": "de:30:36",
+"target": "Ich frage mich, ob ich den Herd ausgeschaltet habe.",
+"ru": "Интересно, выключил ли я плиту.",
+"uk": "Цікаво, чи вимкнув я плиту."
+},
+{
+"id": "de:30:40",
+"target": "Sie fragt, ob ihr Antrag bestätigt wurde.",
+"ru": "Она спрашивает, подтвердили ли её заявку.",
+"uk": "Вона запитує, чи її заявку підтвердили."
+},
+{
+"id": "de:30:41",
+"target": "Könnten Sie mir sagen, wie viel das kostet?",
+"ru": "Не могли бы вы сказать, сколько это стоит?",
+"uk": "Чи не могли б ви сказати, скільки це коштує?"
+},
+{
+"id": "de:30:50",
+"target": "Können Sie nachsehen, ob mein Termin im System steht?",
+"ru": "Не проверите, есть ли моя запись в системе?",
+"uk": "Чи не перевірите, чи є мій запис у системі?"
+}
+]
+}
+]

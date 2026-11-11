@@ -18,7 +18,7 @@ import { BalancePill } from '../../components/completion/V2DoneScreen';
 import { MyRankCoin } from '../../components/rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { KitSectionHead } from '../../components/cards-grid/CardsKit';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';

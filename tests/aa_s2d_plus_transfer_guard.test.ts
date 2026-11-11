@@ -1,8 +1,6 @@
 /*
- * AA S2d 🔴1: решение доступа premium_guard во время переноса Plus.
- * Plus прежнего аккаунта держится на новом, пока RevenueCat не ответил,
- * и пропадает сразу после снятия удержания (подтверждённое отсутствие).
- * Удержание не пишет premium_* в хранилище нового аккаунта.
+ * Account-only regression: a legacy Plus transfer hold never grants access to
+ * the next account and never writes premium_* into that account's storage.
  */
 const asyncStore: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -41,7 +39,7 @@ beforeEach(() => {
 });
 afterEach(() => warn.mockRestore());
 
-test('store Plus of account A is evidence; on B the hold keeps access until it is released', async () => {
+test('store Plus remains valid for A, while a legacy A -> B hold never grants B', async () => {
   const generation = require('../app/account_generation');
   const guard = require('../app/premium_guard');
   const hold = require('../app/plus_transfer_hold');
@@ -51,22 +49,15 @@ test('store Plus of account A is evidence; on B the hold keeps access until it i
   asyncStore.premium_plan = 'yearly';
   asyncStore.premium_rc_last_seen_at = String(Date.now());
   await expect(guard.getVerifiedRealPremiumStatus({ bypassCache: true })).resolves.toBe(true);
-  expect(hold.hasFreshStorePlusEvidenceFor(STABLE_A)).toBe(true);
 
-  // Смена аккаунта: wipe стёр premium_* A, удержание поставлено.
+  // Account switch: wipe removed A's premium_*; a legacy hold record exists.
   for (const key of Object.keys(asyncStore)) delete asyncStore[key];
   hold.beginPlusTransferHold(STABLE_A, STABLE_B, 'stable_id_set');
   generation.beginAccountGeneration(STABLE_B);
   guard.invalidatePremiumCache();
-  await expect(guard.getVerifiedRealPremiumStatus({ bypassCache: true })).resolves.toBe(true);
-  // Удержание — только решение доступа: premium_* нового аккаунта не записаны.
-  expect(asyncStore.premium_active).toBeUndefined();
-  // Реальное свидетельство B не подменено удержанием.
-  expect(hold.hasFreshStorePlusEvidenceFor(STABLE_B)).toBe(false);
-
-  await hold.clearPlusTransferHold('entitlement_absent');
-  guard.invalidatePremiumCache();
+  await expect(hold.plusTransferHoldGrantsAccess(STABLE_B)).resolves.toBe(false);
   await expect(guard.getVerifiedRealPremiumStatus({ bypassCache: true })).resolves.toBe(false);
+  expect(asyncStore.premium_active).toBeUndefined();
 });
 
 test('without a hold a fresh account never inherits Plus', async () => {

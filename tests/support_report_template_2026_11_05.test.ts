@@ -3,15 +3,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const src = fs.readFileSync(path.join(__dirname, '..', 'app/support_report.tsx'), 'utf8').replace(/\r\n/g, '\n');
-/** В исходнике шаблон записан экранированным переводом строки: обратная косая + n. */
-const NL = String.fromCharCode(92) + 'n';
-
 describe('Поддержка: шаблон обращения', () => {
-  it('кнопка видна только при пустом поле и подставляет шаблон на 9 языках', () => {
+  it('кнопка видна только при пустом поле и использует централизованный шаблон', () => {
     expect(src).toContain('{description.trim().length === 0 ? (');
     expect(src).toContain('testID="support-report-template"');
-    expect(src).toContain(`L('Что я делал(а):${NL}Что ожидал(а):${NL}Что произошло:${NL}'`);
-    expect(src).toContain(`'Co zrobiłem(am):${NL}Co oczekiwałem(am):${NL}Co się stało:${NL}'`);
+    expect(src).toContain("import { getSupportReportTemplate, isSupportReportCommentValid } from './support_report_validation';");
+    expect(src).toContain('onPress={() => setDescription(getSupportReportTemplate(lang))}');
   });
   it('без новой подписи мелким шрифтом: кнопка 15 px, без обводки', () => {
     const block = src.slice(src.indexOf('support-report-template'), src.indexOf('support-diagnostics-disclosure'));

@@ -1,0 +1,810 @@
+{
+ "lang": "es",
+ "lesson": 29,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:29:01",
+   "target": "Llamaría al hotel.",
+   "ru": "Я позвонил бы в отель.",
+   "uk": "Я зателефонував би до готелю."
+  },
+  {
+   "id": "es:29:02",
+   "target": "Llamarías al hotel.",
+   "ru": "Ты бы позвонил в отель.",
+   "uk": "Ти б зателефонував до готелю."
+  },
+  {
+   "id": "es:29:03",
+   "target": "Llamaría a Ana.",
+   "ru": "Я позвонил бы Ане.",
+   "uk": "Я зателефонував би Ані."
+  },
+  {
+   "id": "es:29:04",
+   "target": "Llamarías a Ana.",
+   "ru": "Ты позвонил бы Ане.",
+   "uk": "Ти зателефонував би Ані."
+  },
+  {
+   "id": "es:29:05",
+   "target": "Ana compraría un billete.",
+   "ru": "Ана купила бы билет.",
+   "uk": "Ана купила б квиток."
+  },
+  {
+   "id": "es:29:06",
+   "target": "Alquilaríamos una habitación.",
+   "ru": "Мы бы сняли комнату.",
+   "uk": "Ми б винайняли кімнату."
+  },
+  {
+   "id": "es:29:07",
+   "target": "Compraría pan.",
+   "ru": "Я купил бы хлеб.",
+   "uk": "Я купив би хліб."
+  },
+  {
+   "id": "es:29:08",
+   "target": "Comprarías pan.",
+   "ru": "Ты купил бы хлеб.",
+   "uk": "Ти купив би хліб."
+  },
+  {
+   "id": "es:29:09",
+   "target": "Luis volvería a casa.",
+   "ru": "Луис вернулся бы домой.",
+   "uk": "Луїс повернувся би додому."
+  },
+  {
+   "id": "es:29:10",
+   "target": "Esperaríamos aquí.",
+   "ru": "Мы подождали бы здесь.",
+   "uk": "Ми почекали б тут."
+  },
+  {
+   "id": "es:29:11",
+   "target": "Abriría la puerta.",
+   "ru": "Я открыл бы дверь.",
+   "uk": "Я відчинив би двері."
+  },
+  {
+   "id": "es:29:12",
+   "target": "Yo elegiría la habitación con balcón.",
+   "ru": "Я бы выбрал комнату с балконом.",
+   "uk": "Я б обрав кімнату з балконом."
+  },
+  {
+   "id": "es:29:13",
+   "target": "Luis mandaría la foto.",
+   "ru": "Луис отправил бы фотографию.",
+   "uk": "Луїс надіслав би фотографію."
+  },
+  {
+   "id": "es:29:14",
+   "target": "Mandarías el mapa.",
+   "ru": "Ты отправил бы карту.",
+   "uk": "Ти надіслав би мапу."
+  },
+  {
+   "id": "es:29:15",
+   "target": "Buscaría un piso más barato.",
+   "ru": "Я бы поискал квартиру подешевле.",
+   "uk": "Я б пошукав дешевшу квартиру."
+  },
+  {
+   "id": "es:29:16",
+   "target": "Escribiríamos un mensaje.",
+   "ru": "Мы написали бы сообщение.",
+   "uk": "Ми написали б повідомлення."
+  },
+  {
+   "id": "es:29:17",
+   "target": "Ana pagaría en efectivo.",
+   "ru": "Ана заплатила бы наличными.",
+   "uk": "Ана заплатила б готівкою."
+  },
+  {
+   "id": "es:29:18",
+   "target": "Mis hermanas pagarían con tarjeta.",
+   "ru": "Мои сёстры заплатили бы картой.",
+   "uk": "Мої сестри заплатили б карткою."
+  },
+  {
+   "id": "es:29:19",
+   "target": "Visitaría el piso con luz natural.",
+   "ru": "Я бы посмотрел квартиру с естественным освещением.",
+   "uk": "Я б подивився квартиру з природним освітленням."
+  },
+  {
+   "id": "es:29:20",
+   "target": "Entrarías en la oficina.",
+   "ru": "Ты вошёл бы в офис.",
+   "uk": "Ти зайшов би до офісу."
+  },
+  {
+   "id": "es:29:21",
+   "target": "Cocinaría en casa esta noche.",
+   "ru": "Я бы сегодня вечером приготовил еду дома.",
+   "uk": "Я б сьогодні ввечері приготував їжу вдома."
+  },
+  {
+   "id": "es:29:22",
+   "target": "Prepararíais la mochila.",
+   "ru": "Вы приготовили бы рюкзак.",
+   "uk": "Ви приготували б рюкзак."
+  },
+  {
+   "id": "es:29:23",
+   "target": "Mis hermanos volverían a casa.",
+   "ru": "Мои братья бы вернулись домой.",
+   "uk": "Мої брати б повернулися додому."
+  },
+  {
+   "id": "es:29:24",
+   "target": "Elegiríamos el barrio más tranquilo.",
+   "ru": "Мы бы выбрали район потише.",
+   "uk": "Ми б обрали тихіший район."
+  },
+  {
+   "id": "es:29:25",
+   "target": "Mis hermanas llevarían la maleta.",
+   "ru": "Мои сёстры отнесли бы чемодан.",
+   "uk": "Мої сестри віднесли б валізу."
+  },
+  {
+   "id": "es:29:26",
+   "target": "Mis hermanos llevarían la bolsa.",
+   "ru": "Мои братья отнесли бы пакет.",
+   "uk": "Мої брати віднесли б пакет."
+  },
+  {
+   "id": "es:29:27",
+   "target": "Leeríais el mensaje.",
+   "ru": "Вы прочитали бы сообщение.",
+   "uk": "Ви прочитали б повідомлення."
+  },
+  {
+   "id": "es:29:28",
+   "target": "Leeríamos el libro.",
+   "ru": "Мы прочитали бы книгу.",
+   "uk": "Ми прочитали б книжку."
+  },
+  {
+   "id": "es:29:29",
+   "target": "En el balcón pondría una mesa.",
+   "ru": "На балконе я бы поставил стол.",
+   "uk": "На балконі я б поставив стіл."
+  },
+  {
+   "id": "es:29:30",
+   "target": "Esperaríais fuera.",
+   "ru": "Вы подождали бы снаружи.",
+   "uk": "Ви почекали б надворі."
+  },
+  {
+   "id": "es:29:31",
+   "target": "No leería el libro hoy.",
+   "ru": "Я сегодня не прочитал бы книгу.",
+   "uk": "Я сьогодні не прочитав би книжку."
+  },
+  {
+   "id": "es:29:32",
+   "target": "No escribirías un mensaje hoy.",
+   "ru": "Ты сегодня не написал бы сообщение.",
+   "uk": "Ти сьогодні не написав би повідомлення."
+  },
+  {
+   "id": "es:29:33",
+   "target": "No alquilaría un piso tan ruidoso.",
+   "ru": "Я бы не снял такую шумную квартиру.",
+   "uk": "Я б не винайняв таку шумну квартиру."
+  },
+  {
+   "id": "es:29:34",
+   "target": "No volveríamos a casa hoy.",
+   "ru": "Мы сегодня не вернулись бы домой.",
+   "uk": "Ми сьогодні не повернулися б додому."
+  },
+  {
+   "id": "es:29:35",
+   "target": "Pediría otra habitación.",
+   "ru": "Я бы попросил другую комнату.",
+   "uk": "Я б попросив іншу кімнату."
+  },
+  {
+   "id": "es:29:36",
+   "target": "Mis hermanas no comprarían un coche tan barato.",
+   "ru": "Мои сёстры не купили бы такую дешёвую машину.",
+   "uk": "Мої сестри не купили б таку дешеву машину."
+  },
+  {
+   "id": "es:29:37",
+   "target": "No pagaría tanto por una habitación ruidosa.",
+   "ru": "Я бы столько не заплатил за шумную комнату.",
+   "uk": "Я б стільки не заплатив за шумну кімнату."
+  },
+  {
+   "id": "es:29:38",
+   "target": "No pagaría tanto por ese hotel.",
+   "ru": "Я бы столько не заплатил за тот отель.",
+   "uk": "Я б стільки не заплатив за той готель."
+  },
+  {
+   "id": "es:29:39",
+   "target": "No compraríais un billete hoy.",
+   "ru": "Вы сегодня не купили бы билет.",
+   "uk": "Ви сьогодні не купили б квиток."
+  },
+  {
+   "id": "es:29:40",
+   "target": "No dejaría la bicicleta en el ascensor.",
+   "ru": "Я бы не оставлял велосипед в лифте.",
+   "uk": "Я б не залишав велосипед у ліфті."
+  },
+  {
+   "id": "es:29:41",
+   "target": "¿Llamarías al hotel?",
+   "ru": "Ты позвонил бы в отель?",
+   "uk": "Ти зателефонував би до готелю?"
+  },
+  {
+   "id": "es:29:42",
+   "target": "¿Alquilarías una habitación en mi barrio?",
+   "ru": "Ты бы снял комнату в моём районе?",
+   "uk": "Ти б винайняв кімнату в моєму районі?"
+  },
+  {
+   "id": "es:29:43",
+   "target": "¿Alquilarías un piso sin luz natural?",
+   "ru": "Ты бы снял квартиру без естественного света?",
+   "uk": "Ти б винайняв квартиру без природного світла?"
+  },
+  {
+   "id": "es:29:44",
+   "target": "¿Pagarías con tarjeta?",
+   "ru": "Ты заплатил бы картой?",
+   "uk": "Ти заплатив би карткою?"
+  },
+  {
+   "id": "es:29:45",
+   "target": "¿Luis leería el libro?",
+   "ru": "Луис прочитал бы книгу?",
+   "uk": "Луїс прочитав би книжку?"
+  },
+  {
+   "id": "es:29:46",
+   "target": "¿Ana llevaría la maleta?",
+   "ru": "Ана отнесла бы чемодан?",
+   "uk": "Ана віднесла б валізу?"
+  },
+  {
+   "id": "es:29:47",
+   "target": "¿Elegirías el piso con balcón?",
+   "ru": "Ты бы выбрал квартиру с балконом?",
+   "uk": "Ти б обрав квартиру з балконом?"
+  },
+  {
+   "id": "es:29:48",
+   "target": "¿Esperarías aquí un minuto?",
+   "ru": "Ты бы подождал здесь минутку?",
+   "uk": "Ти б почекав тут хвилинку?"
+  },
+  {
+   "id": "es:29:49",
+   "target": "¿Mis hermanas escribirían un mensaje?",
+   "ru": "Мои сёстры написали бы сообщение?",
+   "uk": "Мої сестри написали б повідомлення?"
+  },
+  {
+   "id": "es:29:50",
+   "target": "¿Mandaríais la foto?",
+   "ru": "Вы отправили бы фотографию?",
+   "uk": "Ви надіслали б фотографію?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "alquilar",
+   "ru": "арендовать, снимать",
+   "uk": "орендувати, винаймати"
+  },
+  {
+   "lemma": "balcón",
+   "ru": "балкон",
+   "uk": "балкон"
+  },
+  {
+   "lemma": "barato",
+   "ru": "дешёвый, недорогой",
+   "uk": "дешевий, недорогий"
+  },
+  {
+   "lemma": "elegir",
+   "ru": "выбирать",
+   "uk": "обирати"
+  },
+  {
+   "lemma": "habitación",
+   "ru": "комната",
+   "uk": "кімната"
+  },
+  {
+   "lemma": "natural",
+   "ru": "естественный",
+   "uk": "природний"
+  },
+  {
+   "lemma": "piso",
+   "ru": "квартира (в Испании)",
+   "uk": "квартира (в Іспанії)"
+  },
+  {
+   "lemma": "poner",
+   "ru": "ставить, класть",
+   "uk": "ставити, класти"
+  },
+  {
+   "lemma": "ruidoso",
+   "ru": "шумный",
+   "uk": "шумний"
+  },
+  {
+   "lemma": "tan",
+   "ru": "так, настолько",
+   "uk": "так, настільки"
+  },
+  {
+   "lemma": "tanto",
+   "ru": "так много, столько",
+   "uk": "так багато, стільки"
+  },
+  {
+   "lemma": "sin",
+   "ru": "без",
+   "uk": "без"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar",
+  "corto",
+  "tuyo",
+  "encontrar",
+  "mío",
+  "silla",
+  "que",
+  "salir",
+  "vender",
+  "ver",
+  "visitar",
+  "freno",
+  "mecánico",
+  "reparar",
+  "revisar",
+  "rueda",
+  "taller",
+  "usar",
+  "noche"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  },
+  {
+   "lesson": 27,
+   "title": "Книга, которую…: относительное que"
+  },
+  {
+   "lesson": 28,
+   "title": "Завтра позвоню: простое будущее"
+  }
+ ],
+ "oldTopicTitle": "Я бы позвонил: condicional simple",
+ "oldTheoryRu": "Представляешь покупку: я купил бы хлеб: Compraría pan. Не сказал ни «точно куплю», ни «надо было купить». Возможность передаёт окончание -ía. Сообщи, что человек сделал бы при подходящих обстоятельствах, не превращая возможность в обещание. Сравни: llamaré — позвоню, llamaría — позвонил бы. Во второй фразе ты представляешь решение, а не обещаешь звонок. Это изменение смысла уже передаёт окончание -ía; отдельная плитка не нужна. Для правильного глагола сохрани инфинитив целиком: llamar-é «позвоню», llamar-ía «позвонил бы». Смена окончания меняет отношение говорящего к действию. Yo и él/ella/usted получают -ía. После имени Ana тот же испанский глагол переводится женской формой. К окончанию не прибавляется -a ради женского рода. Vivía — «раньше жил», основа viv-. Viviría — «жил бы», видна целая основа vivir-. Посмотри не только на -ía, но и на r перед ним. Фраза «Я бы позвонил» полноценна в ответ на «Как бы ты поступил?». Не надо вставлять si там, где условие не названо. Явное условие появится в последнем уроке. Сравни два задания: «Ты вошёл бы в офис.» / «Я бы сегодня вечером приготовил еду дома.». Окончание -ía и его личные варианты передают смысл «бы». Смысловые опоры: «oficina» — офис. Сравни два задания: «Ты заплатил бы картой?» / «Вы отправили бы фотографию?». Окончание -ía и его личные варианты передают смысл «бы». Сообщи, что человек сделал бы при подходящих обстоятельствах, не превращая возможность в обещание."
+}

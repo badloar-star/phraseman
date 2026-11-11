@@ -1,0 +1,1178 @@
+[
+{
+"lesson": 29,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 29,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Раньше делал или уже привык?",
+"formula": "used to + [глагол без to] · be used to + [существительное / -ing]",
+"story": "Раньше вставал рано: I used to get up early. Уже привык вставать рано: I’m used to getting up early. Ищи am: оно меняет значение всей конструкции.",
+"use": "Используйте `used to` для обозначения прошлой привычки или состояния, которое контрастирует с настоящим. Это может описывать место, которого больше не существует, а также то, что люди когда-то делали неоднократно.",
+"choose": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"nuance": "`Be used to` описывает состояние «я уже привык», `get used to` — процесс привыкания. В обоих случаях `to` — предлог: `used to the noise`, `used to getting up early`.",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте `used to` для обозначения прошлой привычки или состояния, которое контрастирует с настоящим. Это может описывать место, которого больше не существует, а также то, что люди когда-то делали неоднократно.",
+"samples": [
+"29.01",
+"29.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"samples": [
+"29.11",
+"29.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Be used to` описывает состояние «я уже привык», `get used to` — процесс привыкания. В обоих случаях `to` — предлог: `used to the noise`, `used to getting up early`.",
+"samples": [
+"29.21",
+"29.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Спросите о прежней рутине",
+"samples": [
+"29.33",
+"29.35",
+"29.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Новая смена начинается в шесть. Сравните свой предыдущий распорядок дня, первоначальные трудности и нынешний уровень комфорта с новым графиком.",
+"samples": [
+"29.42",
+"29.45",
+"29.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Сопоставьте прежнюю привычку и нынешнюю знакомость",
+"samples": [
+"29.50"
+],
+"tokenWalk": "29.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Раніше робив чи вже звик?",
+"formula": "used to + [дієслово без to] · be used to + [іменник / -ing]",
+"story": "Раніше вставав рано: I used to get up early. Уже звик вставати рано: I’m used to getting up early. Наявність am змінює зміст усієї конструкції.",
+"use": "Використовуйте `used to` для позначення минулої звички або стану, що контрастує з теперішнім. Він може описувати місце, якого більше не існує, а також те, що люди колись робили неодноразово.",
+"choose": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"nuance": "`Be used to` описує стан «я вже звик», а `get used to` — процес звикання. В обох випадках `to` є прийменником: `used to the noise`, `used to getting up early`.",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте `used to` для позначення минулої звички або стану, що контрастує з теперішнім. Він може описувати місце, якого більше не існує, а також те, що люди колись робили неодноразово.",
+"samples": [
+"29.01",
+"29.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"samples": [
+"29.11",
+"29.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Be used to` описує стан «я вже звик», а `get used to` — процес звикання. В обох випадках `to` є прийменником: `used to the noise`, `used to getting up early`.",
+"samples": [
+"29.21",
+"29.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитайте про колишню рутину",
+"samples": [
+"29.33",
+"29.35",
+"29.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Нова зміна починається о шостій. Порівняйте свій попередній розпорядок дня, початкові труднощі та поточний комфорт з новими годинами.",
+"samples": [
+"29.42",
+"29.45",
+"29.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Протиставте колишню звичку та теперішню знайомість",
+"samples": [
+"29.50"
+],
+"tokenWalk": "29.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Contrast a former habit with being accustomed to something",
+"formula": "used to + [base verb] · be used to + [noun or -ing]",
+"story": "I used to get up early is a former routine. I’m used to getting up early means it now feels normal. Spot am before used; it changes the pattern.",
+"use": "Use `used to` for a past habit or state that contrasts with now. It can describe a place that no longer exists as well as something people once did repeatedly.",
+"choose": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged.",
+"nuance": "`Be used to` means be accustomed to something; here `to` is a preposition, so an action after it takes `-ing`. `Get used to` describes the adjustment rather than the finished state.",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use `used to` for a past habit or state that contrasts with now. It can describe a place that no longer exists as well as something people once did repeatedly.",
+"samples": [
+"29.01",
+"29.11"
+]
+},
+{
+"title": "How to choose",
+"body": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged.",
+"samples": [
+"29.11",
+"29.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Be used to` means be accustomed to something; here `to` is a preposition, so an action after it takes `-ing`. `Get used to` describes the adjustment rather than the finished state.",
+"samples": [
+"29.21",
+"29.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged.",
+"wrong": "I am used to get up early.",
+"right": "I am used to getting up early.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask about a former routine",
+"samples": [
+"29.33",
+"29.35",
+"29.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A new shift starts at six. Compare your previous routine, your initial difficulty and your present comfort with the new hours.",
+"samples": [
+"29.42",
+"29.45",
+"29.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Contrast former habit and present familiarity",
+"samples": [
+"29.50"
+],
+"tokenWalk": "29.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "29.01",
+"index": 1,
+"right": "used",
+"near": "using",
+"seq": [
+"I",
+"used",
+"to",
+"drive",
+"to",
+"work"
+],
+"i": 0,
+"kind": "form",
+"key": "en29/lab/form1",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.13",
+"index": 1,
+"right": "used",
+"near": "using",
+"seq": [
+"There",
+"used",
+"to",
+"be",
+"two",
+"entrances"
+],
+"i": 12,
+"kind": "form",
+"key": "en29/lab/form2",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.26",
+"index": 4,
+"right": "use",
+"near": "using",
+"seq": [
+"This",
+"bus",
+"did",
+"not",
+"use",
+"to",
+"run",
+"on",
+"Sundays"
+],
+"i": 25,
+"kind": "form",
+"key": "en29/lab/form3",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.38",
+"index": 6,
+"right": "use",
+"near": "using",
+"seq": [
+"How",
+"much",
+"did",
+"a",
+"room",
+"here",
+"use",
+"to",
+"cost"
+],
+"i": 37,
+"kind": "form",
+"key": "en29/lab/form4",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.07",
+"index": 1,
+"right": "used",
+"near": "using",
+"seq": [
+"She",
+"used",
+"to",
+"take",
+"the",
+"bus"
+],
+"i": 6,
+"kind": "spot",
+"key": "en29/lab/spot1",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.21",
+"index": 3,
+"right": "use",
+"near": "using",
+"seq": [
+"I",
+"did",
+"not",
+"use",
+"to",
+"drink",
+"coffee"
+],
+"i": 20,
+"kind": "spot",
+"key": "en29/lab/spot2",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.47",
+"index": 2,
+"right": "getting",
+"near": "get",
+"seq": [
+"We",
+"are",
+"getting",
+"used",
+"to",
+"the",
+"new",
+"timetable"
+],
+"i": 46,
+"kind": "spot",
+"key": "en29/lab/spot3",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"id": "29.46",
+"index": 3,
+"right": "used",
+"near": "using",
+"seq": [
+"She",
+"is",
+"not",
+"used",
+"to",
+"driving",
+"on",
+"the",
+"left"
+],
+"i": 45,
+"kind": "spot",
+"key": "en29/lab/spot4",
+"feedback": {
+"ru": "Про прежнюю привычку: `I used to drive`. В обычном письменном вопросе после `did` исчезает конечная `d`: `Did you use to drive?` Не смешивай эту конструкцию с `I am used to driving`: «я привык водить».",
+"uk": "Про колишню звичку скажи `I used to drive`. У звичайному письмовому питанні після `did` зникає кінцева `d`: `Did you use to drive?` Не плутай із `I am used to driving`: «я звик водити».",
+"en": "In this course the standard written question or negative after `did` uses `use to`, without the final `d`. The base verb after it stays unchanged."
+}
+},
+{
+"kind": "match",
+"key": "en29/lab/match1",
+"id": "29.02",
+"other": "29.03"
+},
+{
+"kind": "match",
+"key": "en29/lab/match2",
+"id": "29.17",
+"other": "29.16"
+},
+{
+"kind": "match",
+"key": "en29/lab/match3",
+"id": "29.33",
+"other": "29.32"
+},
+{
+"kind": "match",
+"key": "en29/lab/match4",
+"id": "29.46",
+"other": "29.47"
+},
+{
+"kind": "build",
+"key": "en29/lab/build1",
+"id": "29.04"
+},
+{
+"kind": "build",
+"key": "en29/lab/build2",
+"id": "29.15"
+},
+{
+"kind": "build",
+"key": "en29/lab/build3",
+"id": "29.29"
+},
+{
+"kind": "build",
+"key": "en29/lab/build4",
+"id": "29.42"
+},
+{
+"kind": "transform",
+"id": "29.09",
+"base": "29.04",
+"diff": [
+{
+"before": [
+"wear",
+"glasses"
+],
+"after": [
+"carry",
+"cash"
+]
+}
+],
+"key": "en29/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "29.27",
+"base": "29.21",
+"diff": [
+{
+"before": [
+"drink",
+"coffee"
+],
+"after": [
+"check",
+"the",
+"timetable"
+]
+}
+],
+"key": "en29/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "29.28",
+"base": "29.22",
+"diff": [
+{
+"before": [
+"work",
+"weekends"
+],
+"after": [
+"wear",
+"a",
+"uniform"
+]
+}
+],
+"key": "en29/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "29.15",
+"base": "29.11",
+"diff": [
+{
+"before": [
+"factory",
+"here"
+],
+"after": [
+"clock",
+"above",
+"the",
+"door"
+]
+}
+],
+"key": "en29/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+19
+],
+[
+5,
+17
+],
+[
+10,
+14
+],
+[
+2,
+18
+],
+[
+3,
+15
+],
+[
+6,
+11
+],
+[
+7,
+9
+]
+],
+"worked": [
+"29.05",
+"29.18",
+"29.33",
+"29.48"
+],
+"reflection": [
+"29.01",
+"29.45"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 30,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 30,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как уточнить, о ком или о чём речь",
+"formula": "[существительное] + who / which / that / whose / where + [уточнение]",
+"story": "В комнате несколько людей. The person who called — именно тот, кто звонил. Нельзя просто убрать who: иначе у called пропадёт тот, кто звонил.",
+"use": "Относительное придаточное предложение помогает определить человека, предмет или место. Оно предоставляет полезную информацию, не заставляя слушателя гадать, о каком предмете идет речь.",
+"choose": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"nuance": "`Where` обозначает место внутри следующего предложения. Эти уроки предназначены для отработки определяющих придаточных предложений; не следует автоматически распространять необязательные `that` или опущенные местоимения на неопределяющие придаточные предложения с запятыми.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Относительное придаточное предложение помогает определить человека, предмет или место. Оно предоставляет полезную информацию, не заставляя слушателя гадать, о каком предмете идет речь.",
+"samples": [
+"30.01",
+"30.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"samples": [
+"30.11",
+"30.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Where` обозначает место внутри следующего предложения. Эти уроки предназначены для отработки определяющих придаточных предложений; не следует автоматически распространять необязательные `that` или опущенные местоимения на неопределяющие придаточные предложения с запятыми.",
+"samples": [
+"30.21",
+"30.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Опишите человека через принадлежащую ему вещь с помощью whose.",
+"samples": [
+"30.33",
+"30.35",
+"30.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "На столе лежат два пальто. Определите, какое из них вам кто-то одолжил. Сравните это с определением человека, который его одолжил.",
+"samples": [
+"30.42",
+"30.45",
+"30.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Определить, когда относительное слово может исчезнуть",
+"samples": [
+"30.50"
+],
+"tokenWalk": "30.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як уточнити, про кого чи про що йдеться",
+"formula": "[іменник] + who / which / that / whose / where + [уточнення]",
+"story": "У кімнаті кілька людей. The person who called — саме той, хто телефонував. Не прибирай who: воно виконує дію called.",
+"use": "Відносне речення допомагає визначити особу, річ чи місце. Воно надає корисну інформацію, не змушуючи слухача здогадуватися, який саме елемент ви маєте на увазі.",
+"choose": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"nuance": "`Where` позначає місце в наступному реченні. Ці уроки практикують означальні речення; не розширюйте автоматично необов'язкові `that` або пропущені займенники до неозначальних речень комами.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Відносне речення допомагає визначити особу, річ чи місце. Воно надає корисну інформацію, не змушуючи слухача здогадуватися, який саме елемент ви маєте на увазі.",
+"samples": [
+"30.01",
+"30.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"samples": [
+"30.11",
+"30.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Where` позначає місце в наступному реченні. Ці уроки практикують означальні речення; не розширюйте автоматично необов'язкові `that` або пропущені займенники до неозначальних речень комами.",
+"samples": [
+"30.21",
+"30.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Опишіть власника, з яким",
+"samples": [
+"30.33",
+"30.35",
+"30.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "На столі два пальта. Визначте те, яке вам позичили. Порівняйте це з визначенням особи, яка його позичила.",
+"samples": [
+"30.42",
+"30.45",
+"30.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Вирішити, коли відносне слово може зникнути",
+"samples": [
+"30.50"
+],
+"tokenWalk": "30.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Identify which person or thing you mean",
+"formula": "[noun] + who / which / that / whose / where + [detail]",
+"story": "Several people are in the room. The person who called picks one out. Do not drop who here: it is the subject of called.",
+"use": "A relative clause helps identify the person, thing or place. It supplies useful detail without making your listener guess which item you mean.",
+"choose": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person.",
+"nuance": "`Where` marks a place inside the following clause. These lessons practise defining clauses; do not automatically extend optional `that` or omitted pronouns to non-defining clauses with commas.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "A relative clause helps identify the person, thing or place. It supplies useful detail without making your listener guess which item you mean.",
+"samples": [
+"30.01",
+"30.11"
+]
+},
+{
+"title": "How to choose",
+"body": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person.",
+"samples": [
+"30.11",
+"30.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Where` marks a place inside the following clause. These lessons practise defining clauses; do not automatically extend optional `that` or omitted pronouns to non-defining clauses with commas.",
+"samples": [
+"30.21",
+"30.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person.",
+"wrong": "The driver helped me is outside.",
+"right": "The driver who helped me is outside.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Describe the owner with whose",
+"samples": [
+"30.33",
+"30.35",
+"30.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Two coats are on the desk. Identify the one somebody lent you. Compare this with identifying the person who lent it.",
+"samples": [
+"30.42",
+"30.45",
+"30.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Decide when the relative word can disappear",
+"samples": [
+"30.50"
+],
+"tokenWalk": "30.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "30.01",
+"index": 2,
+"right": "who",
+"near": "whose",
+"seq": [
+"The",
+"person",
+"who",
+"called",
+"is",
+"here"
+],
+"i": 0,
+"kind": "form",
+"key": "en30/lab/form1",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.13",
+"index": 2,
+"right": "that",
+"near": "whose",
+"seq": [
+"The",
+"receipt",
+"that",
+"you",
+"need",
+"is",
+"in",
+"the",
+"bag"
+],
+"i": 12,
+"kind": "form",
+"key": "en30/lab/form2",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.25",
+"index": 2,
+"right": "where",
+"near": "whose",
+"seq": [
+"The",
+"street",
+"where",
+"she",
+"lives",
+"is",
+"quiet"
+],
+"i": 24,
+"kind": "form",
+"key": "en30/lab/form3",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.38",
+"index": 2,
+"right": "whose",
+"near": "where",
+"seq": [
+"The",
+"colleague",
+"whose",
+"shift",
+"I",
+"covered",
+"thanked",
+"me"
+],
+"i": 37,
+"kind": "form",
+"key": "en30/lab/form4",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.07",
+"index": 2,
+"right": "that",
+"near": "whose",
+"seq": [
+"The",
+"shop",
+"that",
+"sells",
+"maps",
+"is",
+"closed"
+],
+"i": 6,
+"kind": "spot",
+"key": "en30/lab/spot1",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.21",
+"index": 4,
+"right": "where",
+"near": "whose",
+"seq": [
+"This",
+"is",
+"the",
+"cafe",
+"where",
+"we",
+"met"
+],
+"i": 20,
+"kind": "spot",
+"key": "en30/lab/spot2",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.32",
+"index": 2,
+"right": "whose",
+"near": "where",
+"seq": [
+"The",
+"woman",
+"whose",
+"keys",
+"we",
+"found",
+"is",
+"here"
+],
+"i": 31,
+"kind": "spot",
+"key": "en30/lab/spot3",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"id": "30.50",
+"index": 0,
+"right": "Who",
+"near": "Whose",
+"seq": [
+"Who",
+"is",
+"the",
+"person",
+"who",
+"handles",
+"complaints"
+],
+"i": 49,
+"kind": "spot",
+"key": "en30/lab/spot4",
+"feedback": {
+"ru": "В `the person who called` слово `who` выполняет действие: убрать его нельзя. В `the book that I borrowed` действие уже выполняет `I`, поэтому допустимо и `the book I borrowed`.",
+"uk": "У `the person who called` саме `who` виконує дію: прибрати його не можна. У `the book that I borrowed` дію вже виконує `I`, тому можливе й `the book I borrowed`.",
+"en": "If the relative word is the subject, keep it. If it is the object in a defining clause, it can often be dropped. After `whose`, name the thing that belongs to the person."
+}
+},
+{
+"kind": "match",
+"key": "en30/lab/match1",
+"id": "30.02",
+"other": "30.01"
+},
+{
+"kind": "match",
+"key": "en30/lab/match2",
+"id": "30.17",
+"other": "30.16"
+},
+{
+"kind": "match",
+"key": "en30/lab/match3",
+"id": "30.33",
+"other": "30.32"
+},
+{
+"kind": "match",
+"key": "en30/lab/match4",
+"id": "30.46",
+"other": "30.47"
+},
+{
+"kind": "build",
+"key": "en30/lab/build1",
+"id": "30.04"
+},
+{
+"kind": "build",
+"key": "en30/lab/build2",
+"id": "30.15"
+},
+{
+"kind": "build",
+"key": "en30/lab/build3",
+"id": "30.29"
+},
+{
+"kind": "build",
+"key": "en30/lab/build4",
+"id": "30.42"
+},
+{
+"kind": "transform",
+"id": "30.34",
+"base": "30.03",
+"diff": [
+{
+"before": [
+"woman",
+"who",
+"found",
+"my",
+"phone"
+],
+"after": [
+"neighbour",
+"whose",
+"dog",
+"escaped"
+]
+}
+],
+"key": "en30/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "30.32",
+"base": "30.01",
+"diff": [
+{
+"before": [
+"person",
+"who",
+"called"
+],
+"after": [
+"woman",
+"whose",
+"keys",
+"we",
+"found"
+]
+}
+],
+"key": "en30/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "30.28",
+"base": "30.07",
+"diff": [
+{
+"before": [
+"that",
+"sells",
+"maps",
+"is"
+],
+"after": [
+"where",
+"I",
+"bought",
+"this",
+"pan",
+"has"
+]
+}
+],
+"key": "en30/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "30.33",
+"base": "30.09",
+"diff": [
+{
+"before": [
+"key",
+"that",
+"opens",
+"the",
+"barrier"
+],
+"after": [
+"student",
+"whose",
+"bag"
+]
+},
+{
+"before": [],
+"after": [
+"is",
+"studying",
+"abroad"
+]
+}
+],
+"key": "en30/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+5,
+1
+],
+[
+6,
+17
+],
+[
+2,
+18
+],
+[
+10,
+19
+],
+[
+15,
+11
+],
+[
+7,
+3
+]
+],
+"worked": [
+"30.05",
+"30.18",
+"30.33",
+"30.48"
+],
+"reflection": [
+"30.01",
+"30.07"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

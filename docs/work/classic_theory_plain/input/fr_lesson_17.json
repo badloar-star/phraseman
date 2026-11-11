@@ -1,0 +1,733 @@
+{
+ "lang": "fr",
+ "lesson": 17,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:17:01",
+   "target": "Je me lève.",
+   "ru": "Я встаю.",
+   "uk": "Я встаю."
+  },
+  {
+   "id": "fr:17:02",
+   "target": "Tu te lèves.",
+   "ru": "Ты встаешь.",
+   "uk": "Ти встаєш."
+  },
+  {
+   "id": "fr:17:03",
+   "target": "Elle se lève.",
+   "ru": "Она встает.",
+   "uk": "Вона встає."
+  },
+  {
+   "id": "fr:17:04",
+   "target": "Nous nous levons.",
+   "ru": "Мы встаем.",
+   "uk": "Ми встаємо."
+  },
+  {
+   "id": "fr:17:05",
+   "target": "Vous vous levez.",
+   "ru": "Вы встаёте.",
+   "uk": "Ви встаєте."
+  },
+  {
+   "id": "fr:17:06",
+   "target": "Ils se lèvent.",
+   "ru": "Они встают.",
+   "uk": "Вони встають."
+  },
+  {
+   "id": "fr:17:07",
+   "target": "Je me prépare.",
+   "ru": "Я готовлюсь.",
+   "uk": "Я готуюся."
+  },
+  {
+   "id": "fr:17:08",
+   "target": "Tu te prépares.",
+   "ru": "Ты готовишься.",
+   "uk": "Ти готуєшся."
+  },
+  {
+   "id": "fr:17:09",
+   "target": "Paul se prépare.",
+   "ru": "Поль готовится.",
+   "uk": "Пол готується."
+  },
+  {
+   "id": "fr:17:10",
+   "target": "Léa se prépare pour le travail.",
+   "ru": "Леа готовится к работе.",
+   "uk": "Леа готується до роботи."
+  },
+  {
+   "id": "fr:17:11",
+   "target": "Je me réveille tôt.",
+   "ru": "Я просыпаюсь рано.",
+   "uk": "Я прокидаюся рано."
+  },
+  {
+   "id": "fr:17:12",
+   "target": "Tu te réveilles à sept heures.",
+   "ru": "Ты просыпаешься в семь часов.",
+   "uk": "Ти прокидаєшся о сьомій годині."
+  },
+  {
+   "id": "fr:17:13",
+   "target": "Elle se réveille avant moi.",
+   "ru": "Она просыпается раньше меня.",
+   "uk": "Вона прокидається раніше за мене."
+  },
+  {
+   "id": "fr:17:14",
+   "target": "Nous nous réveillons avec la radio.",
+   "ru": "Мы просыпаемся под радио.",
+   "uk": "Ми прокидаємося від радіо."
+  },
+  {
+   "id": "fr:17:15",
+   "target": "Vous vous réveillez souvent la nuit ?",
+   "ru": "Вы часто просыпаетесь ночью?",
+   "uk": "Ви часто прокидаєтеся вночі?"
+  },
+  {
+   "id": "fr:17:16",
+   "target": "Les enfants se réveillent en même temps.",
+   "ru": "Дети просыпаются одновременно.",
+   "uk": "Діти прокидаються одночасно."
+  },
+  {
+   "id": "fr:17:17",
+   "target": "Je me douche le matin.",
+   "ru": "Я принимаю душ утром.",
+   "uk": "Я приймаю душ вранці."
+  },
+  {
+   "id": "fr:17:18",
+   "target": "Il se douche après le sport.",
+   "ru": "Он принимает душ после занятий спортом.",
+   "uk": "Він приймає душ після спорту."
+  },
+  {
+   "id": "fr:17:19",
+   "target": "Tu te douches le soir ?",
+   "ru": "Ты принимаешь душ вечером?",
+   "uk": "Ти приймаєш душ ввечері?"
+  },
+  {
+   "id": "fr:17:20",
+   "target": "Nous nous couchons tôt.",
+   "ru": "Мы ложимся спать рано.",
+   "uk": "Ми лягаємо спати рано."
+  },
+  {
+   "id": "fr:17:21",
+   "target": "Je m’habille dans la chambre.",
+   "ru": "Я одеваюсь в спальне.",
+   "uk": "Я одягаюся в спальні."
+  },
+  {
+   "id": "fr:17:22",
+   "target": "Elle s’habille seule.",
+   "ru": "Она одевается сама.",
+   "uk": "Вона одягається сама."
+  },
+  {
+   "id": "fr:17:23",
+   "target": "Tu t’habilles vite.",
+   "ru": "Ты быстро одеваешься.",
+   "uk": "Ти одягаєшся швидко."
+  },
+  {
+   "id": "fr:17:24",
+   "target": "Vous vous habillez pour sortir.",
+   "ru": "Вы одеваетесь, чтобы выйти.",
+   "uk": "Ви одягаєтеся, щоб вийти."
+  },
+  {
+   "id": "fr:17:25",
+   "target": "Paul se rase devant le miroir.",
+   "ru": "Поль бреется перед зеркалом.",
+   "uk": "Пол голиться перед дзеркалом."
+  },
+  {
+   "id": "fr:17:26",
+   "target": "Je me brosse les dents.",
+   "ru": "Я чищу зубы.",
+   "uk": "Я чищу зуби."
+  },
+  {
+   "id": "fr:17:27",
+   "target": "Elle se lave les mains.",
+   "ru": "Она моет руки.",
+   "uk": "Вона миє руки."
+  },
+  {
+   "id": "fr:17:28",
+   "target": "Les enfants se lavent le visage.",
+   "ru": "Дети умываются.",
+   "uk": "Діти вмивають обличчя."
+  },
+  {
+   "id": "fr:17:29",
+   "target": "Nous nous séchons les cheveux.",
+   "ru": "Мы сушим волосы.",
+   "uk": "Ми сушимо волосся."
+  },
+  {
+   "id": "fr:17:30",
+   "target": "Tu te regardes dans le miroir.",
+   "ru": "Ты смотришь на себя в зеркало.",
+   "uk": "Ти дивишся на себе в дзеркало."
+  },
+  {
+   "id": "fr:17:31",
+   "target": "Je ne me lève pas avant six heures.",
+   "ru": "Я не встаю раньше шести часов.",
+   "uk": "Я не встаю раніше шостої години."
+  },
+  {
+   "id": "fr:17:32",
+   "target": "Elle ne se couche pas tard.",
+   "ru": "Она не ложится спать поздно.",
+   "uk": "Вона не лягає спати пізно."
+  },
+  {
+   "id": "fr:17:33",
+   "target": "Nous ne nous dépêchons pas.",
+   "ru": "Мы никуда не спешим.",
+   "uk": "Ми нікуди не поспішаємо."
+  },
+  {
+   "id": "fr:17:34",
+   "target": "Vous ne vous reposez jamais ?",
+   "ru": "Вы никогда не отдыхаете?",
+   "uk": "Ви ніколи не відпочиваєте?"
+  },
+  {
+   "id": "fr:17:35",
+   "target": "Il ne se rase pas le dimanche.",
+   "ru": "Он не бреется по воскресеньям.",
+   "uk": "Він не голиться по неділях."
+  },
+  {
+   "id": "fr:17:36",
+   "target": "Je vais me reposer.",
+   "ru": "Я собираюсь отдохнуть.",
+   "uk": "Я піду відпочивати."
+  },
+  {
+   "id": "fr:17:37",
+   "target": "Tu vas te préparer ici.",
+   "ru": "Ты будешь собираться здесь.",
+   "uk": "Ти збиратимешся тут."
+  },
+  {
+   "id": "fr:17:38",
+   "target": "Elle doit se lever tôt.",
+   "ru": "Ей нужно рано вставать.",
+   "uk": "Їй треба рано вставати."
+  },
+  {
+   "id": "fr:17:39",
+   "target": "Nous pouvons nous asseoir ici.",
+   "ru": "Мы можем сесть здесь.",
+   "uk": "Ми можемо сісти тут."
+  },
+  {
+   "id": "fr:17:40",
+   "target": "Vous voulez vous installer près de la fenêtre ?",
+   "ru": "Хотите сесть у окна?",
+   "uk": "Хочете сісти біля вікна?"
+  },
+  {
+   "id": "fr:17:41",
+   "target": "Je me dépêche pour le bus.",
+   "ru": "Я спешу на автобус.",
+   "uk": "Я поспішаю на автобус."
+  },
+  {
+   "id": "fr:17:42",
+   "target": "Elle se promène dans le parc.",
+   "ru": "Она гуляет в парке.",
+   "uk": "Вона гуляє парком."
+  },
+  {
+   "id": "fr:17:43",
+   "target": "Nous nous retrouvons devant le musée.",
+   "ru": "Мы встречаемся перед музеем.",
+   "uk": "Ми зустрічаємося перед музеєм."
+  },
+  {
+   "id": "fr:17:44",
+   "target": "Tu te souviens de cette adresse ?",
+   "ru": "Ты помнишь этот адрес?",
+   "uk": "Ти пам'ятаєш цю адресу?"
+  },
+  {
+   "id": "fr:17:45",
+   "target": "Comment s’appelle ton voisin ?",
+   "ru": "Как зовут твоего соседа?",
+   "uk": "Як звати твого сусіда?"
+  },
+  {
+   "id": "fr:17:46",
+   "target": "Je m’appelle Marie.",
+   "ru": "Меня зовут Мари.",
+   "uk": "Мене звати Марі."
+  },
+  {
+   "id": "fr:17:47",
+   "target": "Les enfants s’amusent dans la cour.",
+   "ru": "Дети играют во дворе.",
+   "uk": "Діти граються у дворі."
+  },
+  {
+   "id": "fr:17:48",
+   "target": "Vous vous sentez mieux ?",
+   "ru": "Вам лучше?",
+   "uk": "Вам краще?"
+  },
+  {
+   "id": "fr:17:49",
+   "target": "Il se trompe de quai.",
+   "ru": "Он ошибается платформой.",
+   "uk": "Він помиляється платформою."
+  },
+  {
+   "id": "fr:17:50",
+   "target": "Je me change après le travail.",
+   "ru": "Я переодеваюсь после работы.",
+   "uk": "Я переодягаюся після роботи."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le miroir",
+   "ru": "зеркало",
+   "uk": "дзеркало"
+  },
+  {
+   "lemma": "se lever",
+   "ru": "вставать",
+   "uk": "вставати"
+  },
+  {
+   "lemma": "se coucher",
+   "ru": "ложиться спать",
+   "uk": "лягати спати"
+  },
+  {
+   "lemma": "se doucher",
+   "ru": "принимать душ",
+   "uk": "приймати душ"
+  },
+  {
+   "lemma": "se raser",
+   "ru": "бриться",
+   "uk": "голитися"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  }
+ ],
+ "oldTopicTitle": "Утро и действия с собой: `je me lève`",
+ "oldTheoryRu": "Сравни «поднять сумку» и «встать самому». В этой теме действие касается самого исполнителя. Короткое местоимение перед глаголом показывает эту связь. Сменился человек — проверяй сразу две формы: `je me lève` → `tu te lèves`. В `nous nous levons` два `nous` не опечатка: первое называет группу, второе связано с глаголом. Для распорядка дня можно добавить время. Собери ядро, а потом уточни, когда действие происходит. Ночь или утро не меняют форму возвратного местоимения. Перед гласной или немым `h` вместо `me`, `te`, `se` пишут `m’`, `t’`, `s’`. В `elle s’habille` есть и человек, и возвратное местоимение. Апостроф присоединяет местоимение к следующему глаголу. Для обычного мытья своих рук французское выражение — `se laver les mains`. То, что руки принадлежат исполнителю, уже понятно. Не вставляй дополнительно притяжательное слово без причины. Отрицание охватывает группу `me lève`: `je ne me lève pas`. С модальным глаголом местоимение относится к инфинитиву: `je peux me reposer`, а не к `peux`. Не всякий такой глагол удобно переводится буквально «себя». Например, `se tromper` — ошибаться, `se souvenir de` — помнить. В словаре запоминай целое выражение."
+}

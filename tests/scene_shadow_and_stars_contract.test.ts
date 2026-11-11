@@ -15,18 +15,6 @@ describe('Сцена: резкий край, тень блока, мерцающ
     expect(Number(/rgba[(]0,0,0,([0-9.]+)[)]' : 'rgba[(]0,0,0,([0-9.]+)[)]'/.exec(src)![2])).toBeGreaterThanOrEqual(0.25);
   });
 
-  it.each([
-    ['components/home/v2/scene/HomeSceneStage.tsx'],
-    ['components/dialogs/scene/DialogsSceneStage.tsx'],
-    ['components/home/v2/today_scene/TodaySceneView.tsx'],
-    ['components/learning-v2/season/SeasonCourseView.tsx'],
-  ])('%s: сцена внутри рамки с тенью, рамка закрыта', (file) => {
-    const src = read(file);
-    expect(src).toContain("import SceneBlockShadow from");
-    expect((src.match(/<SceneBlockShadow /g) ?? []).length).toBe(1);
-    expect((src.match(/<\/SceneBlockShadow>/g) ?? []).length).toBe(1);
-  });
-
   it('край не растворяется: в журнале края fadeToBg=false, у сцены нет маски/градиента, уводящего низ в фон экрана', () => {
     expect(read('components/home/v2/scene/HomeSceneStage.tsx')).toContain('fadeToBg: false');
     expect(read('components/dialogs/scene/DialogsSceneBackdrop.tsx')).toContain('fadeToBg: false');

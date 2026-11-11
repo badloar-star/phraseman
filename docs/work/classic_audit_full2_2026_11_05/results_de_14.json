@@ -1,0 +1,19 @@
+[
+{"id": "de:29:05", "type": "B1", "field": "tiles", "problem": "Соблазн «Haben» даёт верную естественную фразу «Haben Sie einen Moment Zeit?» = «У вас найдётся минутка?»", "fix": {"position": 0, "replace_distractor": "Haben", "with": "Hast"}},
+{"id": "de:29:32", "type": "B1", "field": "tiles", "problem": "На позиции модального глагола все соблазны — прилагательные/наречия (Dankbar, Ruhiges, Offen…), позиция угадывается без знания слова", "fix": {"position": 0, "replace_distractor": "Dankbar", "with": "Darf"}},
+{"id": "de:29:32", "type": "B1", "field": "tiles", "problem": "То же: соблазн другого класса слов выдаёт себя (нельзя ставить Dürfen — даст верное «Dürfen wir kurz telefonieren?»)", "fix": {"position": 0, "replace_distractor": "Ruhiges", "with": "Dürft"}},
+{"id": "de:29:33", "type": "B1", "field": "tiles", "problem": "Соблазн «Darf» даёт верную естественную фразу «Darf ich eine Frage stellen?» = «Позвольте задать вопрос?»", "fix": {"position": 0, "replace_distractor": "Darf", "with": "Dürfen"}},
+{"id": "de:29:35", "type": "B1", "field": "tiles", "problem": "На позиции модального глагола все соблазны не модальные (Behalten, Fragen, Schön, Leiser, Hinsetzen) — позиция угадывается без знания слова", "fix": {"position": 0, "replace_distractor": "Behalten", "with": "Darf"}},
+{"id": "de:29:35", "type": "B1", "field": "tiles", "problem": "То же: прилагательное «Schön» на месте глагола выдаёт себя", "fix": {"position": 0, "replace_distractor": "Schön", "with": "Dürft"}},
+{"id": "de:29:36", "type": "B2", "field": "uk", "problem": "Потерян смысловой элемент kurz («немного»), который есть в ru", "fix": "Було б люб'язно з вашого боку трохи почекати."},
+{"id": "de:29:49", "type": "B1", "field": "tiles", "problem": "Соблазн «Haben» даёт верную естественную фразу «Haben Sie das auch eine Nummer größer?» = «У вас есть такой же на размер больше?»", "fix": {"position": 0, "replace_distractor": "Haben", "with": "Hätte"}},
+{"id": "de:30:01", "type": "M", "field": "uk", "problem": "Имя Anna передано как «Ганна», хотя во всех остальных фразах курса uk — «Анна»; ученик видит разных персонажей", "fix": "Ти знаєш, де живе Анна?"},
+{"id": "de:30:03", "type": "M", "field": "uk", "problem": "Пропущена запятая перед придаточным", "fix": "Ви знаєте, де вокзал?"},
+{"id": "de:30:08", "type": "M", "field": "uk", "problem": "Пропущена запятая перед придаточным", "fix": "Ми хотіли б знати, скільки коштує квиток."},
+{"id": "de:30:23", "type": "B1", "field": "tiles", "problem": "На позиции глагола «Können» соблазны — артикли (Ein, Eine, Einem, Einer), отсеиваются без знания слова", "fix": {"position": 0, "replace_distractor": "Ein", "with": "Könnt"}},
+{"id": "de:30:23", "type": "B1", "field": "tiles", "problem": "То же: артикль на месте модального глагола выдаёт себя", "fix": {"position": 0, "replace_distractor": "Eine", "with": "Kannst"}},
+{"id": "de:30:42", "type": "B1", "field": "tiles", "problem": "Соблазн «haben» даёт верную естественную фразу «Ich wollte fragen, ob Sie morgen Zeit haben.» = «найдётся ли у вас завтра время»", "fix": {"position": 7, "replace_distractor": "haben", "with": "hattet"}},
+{"id": "de:30:50", "type": "B1", "field": "tiles", "problem": "На позиции глагола «Können» соблазны — артикли (Ein, Eine, Einem, Einer), отсеиваются без знания слова", "fix": {"position": 0, "replace_distractor": "Ein", "with": "Könnt"}},
+{"id": "de:30:50", "type": "B1", "field": "tiles", "problem": "То же: артикль на месте модального глагола выдаёт себя", "fix": {"position": 0, "replace_distractor": "Eine", "with": "Kannst"}},
+{"id": "de:30:50", "type": "M", "field": "uk", "problem": "«Не перевірте» — форма повелительного наклонения; в вопросе-просьбе нужна форма будущего «перевірите»", "fix": "Чи не перевірите, чи є мій запис у системі?"}
+]

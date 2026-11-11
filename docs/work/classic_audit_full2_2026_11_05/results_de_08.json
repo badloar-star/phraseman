@@ -1,0 +1,141 @@
+[
+{"id":"de:17:02","type":"B1","field":"tiles","problem":"«Du bist gekommen» = «Ты приехал/пришёл» — верная фраза, засчитают ошибкой","fix":{"position":2,"replace_distractor":"gekommen","with":"gesprungen"}},
+{"id":"de:17:05","type":"B1","field":"tiles","problem":"«Ihr seid gekommen» = «Вы приехали» — верная фраза, засчитают ошибкой","fix":{"position":2,"replace_distractor":"gekommen","with":"gesprungen"}},
+
+{"id":"de:17:08","type":"B1","field":"tiles","problem":"слот наречия «spät»: 4 из 5 соблазнов — причастия, отсеиваются по грамматике","fix":{"position":2,"replace_distractor":"eingestiegen","with":"früh"}},
+{"id":"de:17:08","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"gerannt","with":"gestern"}},
+{"id":"de:17:08","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"zurückgekommen","with":"heute"}},
+{"id":"de:17:08","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"geradelt","with":"schnell"}},
+
+{"id":"de:17:09","type":"B1","field":"tiles","problem":"слот наречия «früh»: 4 из 5 соблазнов — причастия","fix":{"position":3,"replace_distractor":"gesprungen","with":"spät"}},
+{"id":"de:17:09","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":3,"replace_distractor":"gezogen","with":"heute"}},
+{"id":"de:17:09","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":3,"replace_distractor":"ausgestiegen","with":"gestern"}},
+{"id":"de:17:09","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":3,"replace_distractor":"aufgestanden","with":"schnell"}},
+
+{"id":"de:17:10","type":"B1","field":"tiles","problem":"слот «sofort»: все 5 соблазнов — причастия/местоимение, отсеиваются без знания слова","fix":{"position":2,"replace_distractor":"niemand","with":"spät"}},
+{"id":"de:17:10","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"abgefahren","with":"früh"}},
+{"id":"de:17:10","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"umgestiegen","with":"gestern"}},
+{"id":"de:17:10","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"eingestiegen","with":"heute"}},
+{"id":"de:17:10","type":"B1","field":"tiles","problem":"слот наречия: причастие вместо наречия","fix":{"position":2,"replace_distractor":"aufgewacht","with":"gut"}},
+
+{"id":"de:17:24","type":"B1","field":"tiles","problem":"слот прилагательного «falschen»: все 5 соблазнов — причастия","fix":{"position":3,"replace_distractor":"zurückgekommen","with":"richtigen"}},
+{"id":"de:17:24","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":3,"replace_distractor":"geworden","with":"neuen"}},
+{"id":"de:17:24","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":3,"replace_distractor":"gelaufen","with":"letzten"}},
+{"id":"de:17:24","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":3,"replace_distractor":"aufgestanden","with":"nächsten"}},
+{"id":"de:17:24","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":3,"replace_distractor":"kaputtgegangen","with":"großen"}},
+
+{"id":"de:17:25","type":"B1","field":"tiles","problem":"слот «rechtzeitig»: все 5 соблазнов — причастия/«falschen»","fix":{"position":2,"replace_distractor":"aufgewacht","with":"spät"}},
+{"id":"de:17:25","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"aufgestanden","with":"früh"}},
+{"id":"de:17:25","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"gelaufen","with":"gestern"}},
+{"id":"de:17:25","type":"B1","field":"tiles","problem":"слот наречия: склонённое прилагательное","fix":{"position":2,"replace_distractor":"falschen","with":"heute"}},
+{"id":"de:17:25","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"gezogen","with":"sofort"}},
+
+{"id":"de:17:29","type":"B1","field":"tiles","problem":"слот «neue»: глагол/артикль вместо прилагательного, отсеиваются сразу","fix":{"position":4,"replace_distractor":"mitkommen","with":"alte"}},
+{"id":"de:17:29","type":"B1","field":"tiles","problem":"слот прилагательного: глагол","fix":{"position":4,"replace_distractor":"sagt","with":"große"}},
+{"id":"de:17:29","type":"B1","field":"tiles","problem":"слот прилагательного: глагол","fix":{"position":4,"replace_distractor":"zahlen","with":"kleine"}},
+{"id":"de:17:29","type":"B1","field":"tiles","problem":"слот прилагательного: артикль","fix":{"position":4,"replace_distractor":"das","with":"schöne"}},
+
+{"id":"de:17:30","type":"B1","field":"tiles","problem":"слот «letzte»: все соблазны — наречия/причастия, не подходят к «Woche»","fix":{"position":3,"replace_distractor":"sofort","with":"diese"}},
+{"id":"de:17:30","type":"B1","field":"tiles","problem":"слот определения: наречие","fix":{"position":3,"replace_distractor":"gut","with":"nächste"}},
+{"id":"de:17:30","type":"B1","field":"tiles","problem":"слот определения: причастие","fix":{"position":3,"replace_distractor":"eingeschlafen","with":"jede"}},
+{"id":"de:17:30","type":"B1","field":"tiles","problem":"слот определения: причастие","fix":{"position":3,"replace_distractor":"geradelt","with":"eine"}},
+{"id":"de:17:30","type":"B1","field":"tiles","problem":"слот определения: наречие","fix":{"position":3,"replace_distractor":"rechtzeitig","with":"ganze"}},
+
+{"id":"de:17:33","type":"B1","field":"tiles","problem":"слот «lange»: 4 из 5 соблазнов — причастия","fix":{"position":2,"replace_distractor":"aufgestanden","with":"kurz"}},
+{"id":"de:17:33","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"gelaufen","with":"dort"}},
+{"id":"de:17:33","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"abgefahren","with":"gestern"}},
+{"id":"de:17:33","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":2,"replace_distractor":"eingestiegen","with":"allein"}},
+{"id":"de:17:33","type":"M","field":"uk","problem":"«довго залишилися» неидиоматично (довго + совершенный вид); нужно «надовго», как в ru","fix":"Ви надовго залишилися?"},
+
+{"id":"de:17:34","type":"B1","field":"tiles","problem":"слот «gut»: 4 из 5 соблазнов — причастия","fix":{"position":3,"replace_distractor":"eingezogen","with":"schlecht"}},
+{"id":"de:17:34","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":3,"replace_distractor":"ausgestiegen","with":"spät"}},
+{"id":"de:17:34","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":3,"replace_distractor":"geflogen","with":"sofort"}},
+{"id":"de:17:34","type":"B1","field":"tiles","problem":"слот наречия: причастие","fix":{"position":3,"replace_distractor":"abgefahren","with":"schnell"}},
+
+{"id":"de:17:45","type":"B1","field":"tiles","problem":"слот «Unser»: все 5 соблазнов — причастия/глаголы/прилагательное, ни одного притяжательного; ответ угадывается сразу","fix":{"position":0,"replace_distractor":"Ausgeschaltet","with":"Unsere"}},
+{"id":"de:17:45","type":"B1","field":"tiles","problem":"слот притяжательного: глагол","fix":{"position":0,"replace_distractor":"Braucht","with":"Unserem"}},
+{"id":"de:17:45","type":"B1","field":"tiles","problem":"слот притяжательного: глагол","fix":{"position":0,"replace_distractor":"Kostet","with":"Unseren"}},
+{"id":"de:17:45","type":"B1","field":"tiles","problem":"слот притяжательного: прилагательное","fix":{"position":0,"replace_distractor":"Letzte","with":"Unserer"}},
+{"id":"de:17:45","type":"B1","field":"tiles","problem":"слот притяжательного: причастие","fix":{"position":0,"replace_distractor":"Angerufen","with":"Meinem"}},
+
+{"id":"de:17:47","type":"B1","field":"tiles","problem":"слот «schlecht»: все 5 соблазнов — причастия движения, отсеиваются по грамматике","fix":{"position":5,"replace_distractor":"gefallen","with":"kalt"}},
+{"id":"de:17:47","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":5,"replace_distractor":"ausgezogen","with":"warm"}},
+{"id":"de:17:47","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":5,"replace_distractor":"gerollt","with":"heiß"}},
+{"id":"de:17:47","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":5,"replace_distractor":"gezogen","with":"besser"}},
+{"id":"de:17:47","type":"B1","field":"tiles","problem":"слот прилагательного: причастие","fix":{"position":5,"replace_distractor":"kaputtgegangen","with":"langweilig"}},
+
+{"id":"de:17:50","type":"B1","field":"tiles","problem":"слот «niemand»: все 5 соблазнов — причастия/наречие, ни одного местоимения","fix":{"position":3,"replace_distractor":"ausgezogen","with":"jemand"}},
+{"id":"de:17:50","type":"B1","field":"tiles","problem":"слот местоимения: причастие","fix":{"position":3,"replace_distractor":"angekommen","with":"alle"}},
+{"id":"de:17:50","type":"B1","field":"tiles","problem":"слот местоимения: наречие","fix":{"position":3,"replace_distractor":"direkt","with":"nichts"}},
+{"id":"de:17:50","type":"B1","field":"tiles","problem":"слот местоимения: причастие","fix":{"position":3,"replace_distractor":"gestiegen","with":"etwas"}},
+{"id":"de:17:50","type":"B1","field":"tiles","problem":"слот местоимения: причастие","fix":{"position":3,"replace_distractor":"eingezogen","with":"wer"}},
+
+{"id":"de:18:12","type":"B1","field":"tiles","problem":"слот «offen»: 4 из 5 соблазнов — артикли/глаголы/склонённое прилагательное","fix":{"position":5,"replace_distractor":"euren","with":"zu"}},
+{"id":"de:18:12","type":"B1","field":"tiles","problem":"слот предикатива: глагол","fix":{"position":5,"replace_distractor":"hatten","with":"kaputt"}},
+{"id":"de:18:12","type":"B1","field":"tiles","problem":"слот предикатива: склонённая форма","fix":{"position":5,"replace_distractor":"falschen","with":"sauber"}},
+{"id":"de:18:12","type":"B1","field":"tiles","problem":"слот предикатива: глагол","fix":{"position":5,"replace_distractor":"waren","with":"nass"}},
+
+{"id":"de:18:13","type":"M","field":"ru","problem":"«До еды» — калька/неестественно, по-русски «Перед едой»","fix":"Перед едой я был на улице."},
+{"id":"de:18:13","type":"M","field":"uk","problem":"«До їжі» неприродно, природно «Перед їжею»","fix":"Перед їжею я був на вулиці."},
+
+{"id":"de:18:17","type":"B1","field":"tiles","problem":"слот «offen»: все 5 соблазнов — артикли/глагол/склонённое прилагательное","fix":{"position":3,"replace_distractor":"keinen","with":"zu"}},
+{"id":"de:18:17","type":"B1","field":"tiles","problem":"слот предикатива: притяжательное","fix":{"position":3,"replace_distractor":"euren","with":"kaputt"}},
+{"id":"de:18:17","type":"B1","field":"tiles","problem":"слот предикатива: глагол","fix":{"position":3,"replace_distractor":"hatten","with":"sauber"}},
+{"id":"de:18:17","type":"B1","field":"tiles","problem":"слот предикатива: склонённая форма","fix":{"position":3,"replace_distractor":"falschen","with":"nass"}},
+{"id":"de:18:17","type":"B1","field":"tiles","problem":"слот предикатива: отрицательный артикль","fix":{"position":3,"replace_distractor":"kein","with":"schmutzig"}},
+
+{"id":"de:18:23","type":"B1","field":"tiles","problem":"слот «falschen» после «den»: ни один соблазн не является прилагательным на -en","fix":{"position":3,"replace_distractor":"zufrieden","with":"richtigen"}},
+{"id":"de:18:23","type":"B1","field":"tiles","problem":"слот прилагательного: притяжательное","fix":{"position":3,"replace_distractor":"deinen","with":"neuen"}},
+{"id":"de:18:23","type":"B1","field":"tiles","problem":"слот прилагательного: наречие","fix":{"position":3,"replace_distractor":"draußen","with":"alten"}},
+{"id":"de:18:23","type":"B1","field":"tiles","problem":"слот прилагательного: притяжательное","fix":{"position":3,"replace_distractor":"euren","with":"kleinen"}},
+{"id":"de:18:23","type":"B1","field":"tiles","problem":"слот прилагательного: несклоняемый предикатив","fix":{"position":3,"replace_distractor":"offen","with":"großen"}},
+
+{"id":"de:18:27","type":"B1","field":"tiles","problem":"слот «Unser»: все 5 соблазнов — причастия/глаголы/прилагательное, ни одного притяжательного","fix":{"position":0,"replace_distractor":"Ausgeschaltet","with":"Unsere"}},
+{"id":"de:18:27","type":"B1","field":"tiles","problem":"слот притяжательного: глагол","fix":{"position":0,"replace_distractor":"Braucht","with":"Unserem"}},
+{"id":"de:18:27","type":"B1","field":"tiles","problem":"слот притяжательного: глагол","fix":{"position":0,"replace_distractor":"Kostet","with":"Unseren"}},
+{"id":"de:18:27","type":"B1","field":"tiles","problem":"слот притяжательного: прилагательное","fix":{"position":0,"replace_distractor":"Letzte","with":"Unserer"}},
+{"id":"de:18:27","type":"B1","field":"tiles","problem":"слот притяжательного: причастие","fix":{"position":0,"replace_distractor":"Angerufen","with":"Meinem"}},
+
+{"id":"de:18:36","type":"B2","field":"uk","problem":"«броня» по-украински — броня/панцирь; бронь отеля = «бронювання»","fix":"У вас було бронювання?"},
+
+{"id":"de:18:39","type":"M","field":"uk","problem":"«Як відбулася поїздка?» — канцелярит, естественно «Як минула поїздка?»","fix":"Як минула поїздка?"},
+
+{"id":"de:18:42","type":"B1","field":"tiles","problem":"слот «Damals»: 4 из 5 соблазнов — прилагательные/причастие, явно не обстоятельство времени","fix":{"position":0,"replace_distractor":"Pünktlich","with":"Heute"}},
+{"id":"de:18:42","type":"B1","field":"tiles","problem":"слот обстоятельства времени: склонённое прилагательное","fix":{"position":0,"replace_distractor":"Falschen","with":"Gestern"}},
+{"id":"de:18:42","type":"B1","field":"tiles","problem":"слот обстоятельства времени: частица","fix":{"position":0,"replace_distractor":"Los","with":"Morgen"}},
+{"id":"de:18:42","type":"B1","field":"tiles","problem":"слот обстоятельства времени: причастие","fix":{"position":0,"replace_distractor":"Besetzt","with":"Jetzt"}},
+
+{"id":"de:18:44","type":"B1","field":"tiles","problem":"слот «viel» в «viel los»: все 5 соблазнов — предикативы, не дают даже правдоподобной ошибки","fix":{"position":4,"replace_distractor":"zufrieden","with":"nichts"}},
+{"id":"de:18:44","type":"B1","field":"tiles","problem":"слот количественного слова: предикатив","fix":{"position":4,"replace_distractor":"weg","with":"wenig"}},
+{"id":"de:18:44","type":"B1","field":"tiles","problem":"слот количественного слова: предикатив","fix":{"position":4,"replace_distractor":"offen","with":"kaum"}},
+{"id":"de:18:44","type":"B1","field":"tiles","problem":"слот количественного слова: причастие","fix":{"position":4,"replace_distractor":"besetzt","with":"etwas"}},
+{"id":"de:18:44","type":"B1","field":"tiles","problem":"слот количественного слова: склонённое прилагательное","fix":{"position":4,"replace_distractor":"falschen","with":"zu"}},
+
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот подлежащего «alle»: все 5 соблазнов — прилагательные, не могут быть подлежащим","fix":{"position":3,"replace_distractor":"kaputt","with":"wir"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот подлежащего: прилагательное","fix":{"position":3,"replace_distractor":"genug","with":"sie"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот подлежащего: прилагательное","fix":{"position":3,"replace_distractor":"pünktlich","with":"viele"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот подлежащего: прилагательное","fix":{"position":3,"replace_distractor":"zufrieden","with":"beide"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот подлежащего: прилагательное","fix":{"position":3,"replace_distractor":"offen","with":"ihr"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот «erleichtert»: склонённое прилагательное, отсеивается по грамматике","fix":{"position":4,"replace_distractor":"falschen","with":"müde"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот предикатива: склонённое прилагательное","fix":{"position":4,"replace_distractor":"letzte","with":"traurig"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот предикатива: частица","fix":{"position":4,"replace_distractor":"los","with":"wach"}},
+{"id":"de:18:46","type":"B1","field":"tiles","problem":"слот предикатива: сравнительное «mehr»","fix":{"position":4,"replace_distractor":"mehr","with":"krank"}},
+
+{"id":"de:18:47","type":"B1","field":"tiles","problem":"слот «klein»: все 5 соблазнов — артикли/притяжательные, ответ угадывается без знания слова","fix":{"position":5,"replace_distractor":"eine","with":"groß"}},
+{"id":"de:18:47","type":"B1","field":"tiles","problem":"слот предикатива: артикль","fix":{"position":5,"replace_distractor":"einem","with":"hoch"}},
+{"id":"de:18:47","type":"B1","field":"tiles","problem":"слот предикатива: артикль","fix":{"position":5,"replace_distractor":"einen","with":"teuer"}},
+{"id":"de:18:47","type":"B1","field":"tiles","problem":"слот предикатива: артикль","fix":{"position":5,"replace_distractor":"einer","with":"schlimm"}},
+{"id":"de:18:47","type":"B1","field":"tiles","problem":"слот предикатива: притяжательное","fix":{"position":5,"replace_distractor":"meinem","with":"schwer"}},
+
+{"id":"de:18:48","type":"B1","field":"tiles","problem":"слот «Leider»: все 5 соблазнов — прилагательные/местоимение, не вводные наречия","fix":{"position":0,"replace_distractor":"Pünktlich","with":"Gestern"}},
+{"id":"de:18:48","type":"B1","field":"tiles","problem":"слот вводного наречия: склонённое прилагательное","fix":{"position":0,"replace_distractor":"Falschen","with":"Damals"}},
+{"id":"de:18:48","type":"B1","field":"tiles","problem":"слот вводного наречия: местоимение","fix":{"position":0,"replace_distractor":"Alle","with":"Heute"}},
+{"id":"de:18:48","type":"B1","field":"tiles","problem":"слот вводного наречия: «genug»","fix":{"position":0,"replace_distractor":"Genug","with":"Dann"}},
+{"id":"de:18:48","type":"B1","field":"tiles","problem":"слот вводного наречия: прилагательное","fix":{"position":0,"replace_distractor":"Kurz","with":"Natürlich"}},
+
+{"id":"de:18:50","type":"B1","field":"tiles","problem":"слот «letzte»: все 5 соблазнов не являются прилагательными на -e, отсеиваются по грамматике","fix":{"position":1,"replace_distractor":"besetzt","with":"erste"}},
+{"id":"de:18:50","type":"B1","field":"tiles","problem":"слот прилагательного: неверное окончание -en","fix":{"position":1,"replace_distractor":"falschen","with":"nächste"}},
+{"id":"de:18:50","type":"B1","field":"tiles","problem":"слот прилагательного: местоимение","fix":{"position":1,"replace_distractor":"alle","with":"neue"}},
+{"id":"de:18:50","type":"B1","field":"tiles","problem":"слот прилагательного: «mehr»","fix":{"position":1,"replace_distractor":"mehr","with":"alte"}},
+{"id":"de:18:50","type":"B1","field":"tiles","problem":"слот прилагательного: несклоняемый предикатив","fix":{"position":1,"replace_distractor":"kaputt","with":"falsche"}}
+]

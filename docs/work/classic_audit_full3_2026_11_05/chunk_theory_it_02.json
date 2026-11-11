@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 5,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:05:01",
+"it:05:02",
+"it:05:03"
+],
+"textByLocale": {
+"en": "Look for the owner, not the number of things: one person can have several items, and the verb form will remain singular. One bag shared by several people, on the other hand, requires the plural form.",
+"ru": "Ищи владельца, а не количество вещей: один человек может иметь несколько предметов, и форма глагола останется единственной. Одна сумка у нескольких людей, наоборот, потребует формы множественного числа.",
+"uk": "Шукай власника, а не кількість речей: одна людина може мати кілька предметів і форма дієслова залишиться єдиною. Одна сумка у кількох людей, навпаки, вимагатиме форми множини."
+}
+},
+{
+"exampleIds": [
+"it:05:05",
+"it:05:06",
+"it:05:07"
+],
+"textByLocale": {
+"en": "`Abbiamo` refers to us, `avete` to the group of interlocutors, `hanno` to other people. If the verb clearly refers to a person, the pronoun can be omitted.",
+"ru": "`Abbiamo` относится к нам, `avete` к группе собеседников, `hanno` к другим людям. Если глагол достаточно явно обозначает человека, местоимение можно не произносить.",
+"uk": "`Abbiamo` відноситься до нас, `avete` до групи співрозмовників, `hanno` до інших людей. Якщо дієслово досить явно позначає людину, займенник не можна вимовляти."
+}
+},
+{
+"exampleIds": [
+"it:05:11",
+"it:05:13",
+"it:05:16"
+],
+"textByLocale": {
+"en": "For hunger, thirst and sensation of temperature, the expressions `avere fame`, `avere sete`, `avere caldo` are usually used. Do not change `avere` to `essere` just because in another language the state is expressed by an adjective.",
+"ru": "Для голода, жажды и ощущения температуры обычно используются выражения `avere fame`, `avere sete`, `avere caldo`. Не меняй `avere` на `essere` только потому, что в другом языке состояние выражается прилагательным.",
+"uk": "Для голоду, спраги та відчуття температури зазвичай використовуються вирази `avere fame`, `avere sete`, `avere caldo`. Не змінюй `avere` на `essere` тільки тому, що в іншій мові стан виражається прикметником."
+}
+},
+{
+"exampleIds": [
+"it:05:19",
+"it:05:20",
+"it:05:49"
+],
+"textByLocale": {
+"en": "Pain can be described by the group `avere mal di` and the name of the body part: `Ho mal di gola`. This is a ready-made way to name the symptom, rather than requiring the same verb to be used in all phrases about the body.",
+"ru": "Боль можно описать группой `avere mal di` и названием части тела: `Ho mal di gola`. Это готовый способ назвать симптом, а не требование во всех фразах про тело использовать один и тот же глагол.",
+"uk": "Біль можна описати групою `avere mal di` та назвою частини тіла: `Ho mal di gola`. Це готовий спосіб назвати симптом, а не вимогу у всіх фразах про тіло використовувати одне і те ж дієслово."
+}
+},
+{
+"exampleIds": [
+"it:05:21",
+"it:05:22",
+"it:05:23"
+],
+"textByLocale": {
+"en": "Age is expressed through `avere` and the number of years. `Ho vent’anni` reports age; a literal translation by words is inconvenient here. Don't omit `anni` unless the age is obvious from the question.",
+"ru": "Возраст выражается через `avere` и количество лет. `Ho vent’anni` сообщает возраст; дословный перевод по словам здесь мешает. Не опускай `anni`, если возраст не очевиден из вопроса.",
+"uk": "Вік виражається через `avere` та кількість років. `Ho vent’anni` повідомляє вік; дослівний переклад за словами тут заважає. Чи не опускай `anni`, якщо вік не очевидний з питання."
+}
+},
+{
+"exampleIds": [
+"it:05:31",
+"it:05:33",
+"it:05:40"
+],
+"textByLocale": {
+"en": "At the checkout or at a hotel, it's important to distinguish between the friendly `hai` and the polite `ha`. The same `ha` can mean \"he has\" or \"she has.\" The task clarifies the recipient when it's impossible to choose without it.",
+"ru": "В кассе или отеле важно различать дружеское `hai` и вежливое `ha`. То же `ha` может означать «у него» или «у неё». Задача уточняет адресата, когда без этого выбрать нельзя.",
+"uk": "У касі або готелі важливо розрізняти дружнє `hai` і ввічливе `ha`. Те ж саме `ha` може означати \"у нього\" або \"у неї\". Завдання уточнює одержувача, коли без цього вибрати не можна."
+}
+},
+{
+"exampleIds": [
+"it:05:41",
+"it:05:42",
+"it:05:50"
+],
+"textByLocale": {
+"en": "`Avere bisogno di` means \"to need.\" Without `bisogno`, the phrase `Ho una ricetta` means that the prescription is already available. `Ho bisogno di una ricetta` reports the opposite practical thing: a prescription is still needed.",
+"ru": "`Avere bisogno di` — «нуждаться в». Без `bisogno` фраза `Ho una ricetta` означает, что рецепт уже есть. `Ho bisogno di una ricetta` сообщает обратную практическую вещь: рецепт ещё нужен.",
+"uk": "`Avere bisogno di` - «потребувати». Без `bisogno` фраза `Ho una ricetta` означає, що рецепт вже є. `Ho bisogno di una ricetta` повідомляє зворотну практичну річ: рецепт ще потрібний."
+}
+}
+],
+"drills": [
+{
+"bad": "Ha",
+"chapter": 1,
+"id": "it:05:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Abbiamo",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 1,
+"id": "it:05:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 14,
+"options": [
+"ho",
+"abbiamo",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 1,
+"id": "it:05:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"Ha",
+"Ho",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "ha",
+"chapter": 2,
+"id": "it:05:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"hanno",
+"ha",
+"ho"
+],
+"slot": 2
+},
+{
+"bad": "Ha",
+"chapter": 2,
+"id": "it:05:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 35,
+"options": [
+"Ho",
+"Ha",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 2,
+"id": "it:05:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Ho",
+"Hai",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 3,
+"id": "it:05:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 24,
+"options": [
+"ho",
+"ha",
+"hai"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 3,
+"id": "it:05:17:lab",
+"item": 17,
+"kind": "match",
+"near": 28,
+"options": [
+"hai",
+"ha",
+"ho"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 3,
+"id": "it:05:19:lab",
+"item": 19,
+"kind": "build",
+"near": 49,
+"options": [
+"Ha",
+"Ho",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 4,
+"id": "it:05:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 9,
+"options": [
+"ho",
+"abbiamo",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 4,
+"id": "it:05:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 14,
+"options": [
+"hai",
+"ha",
+"ho"
+],
+"slot": 1
+},
+{
+"bad": "Ho",
+"chapter": 4,
+"id": "it:05:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 31,
+"options": [
+"Ha",
+"Ho",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 5,
+"id": "it:05:29:lab",
+"item": 29,
+"kind": "match",
+"near": 15,
+"options": [
+"Ho",
+"Ha",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Ho",
+"chapter": 5,
+"id": "it:05:31:lab",
+"item": 31,
+"kind": "build",
+"near": 40,
+"options": [
+"Ho",
+"Abbiamo",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "Abbiamo",
+"chapter": 5,
+"id": "it:05:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"Abbiamo",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 6,
+"id": "it:05:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"Hanno",
+"Ha",
+"Ho"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 6,
+"id": "it:05:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 22,
+"options": [
+"abbiamo",
+"ho",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 6,
+"id": "it:05:42:lab",
+"item": 42,
+"kind": "match",
+"near": 2,
+"options": [
+"Ha",
+"Ho",
+"Hai"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 7,
+"id": "it:05:45:lab",
+"item": 45,
+"kind": "build",
+"near": 27,
+"options": [
+"Ho",
+"Abbiamo",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 7,
+"id": "it:05:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 27,
+"options": [
+"Ha",
+"Abbiamo",
+"Ho"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"io",
+"ho"
+],
+[
+"tu",
+"hai"
+],
+[
+"lui / lei / Lei",
+"ha"
+],
+[
+"noi",
+"abbiamo"
+],
+[
+"voi",
+"avete"
+],
+[
+"loro",
+"hanno"
+]
+],
+"title": {
+"en": "I have: present `avere`",
+"ru": "У меня есть: настоящее `avere`",
+"uk": "У мене є: справжнє `avere`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:05:01",
+"target": "Ho una chiave.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "it:05:02",
+"target": "Hai una chiave.",
+"ru": "У тебя есть ключ.",
+"uk": "У тебе є ключ."
+},
+{
+"id": "it:05:03",
+"target": "Lei ha una borsa.",
+"ru": "У неё есть сумка.",
+"uk": "У неї є сумка."
+},
+{
+"id": "it:05:05",
+"target": "Abbiamo una piantina.",
+"ru": "У нас есть схема.",
+"uk": "У нас є схема."
+},
+{
+"id": "it:05:06",
+"target": "Avete una piantina.",
+"ru": "У вас есть схема.",
+"uk": "У вас є схема."
+},
+{
+"id": "it:05:07",
+"target": "Loro hanno un biglietto.",
+"ru": "У них есть билет.",
+"uk": "Вони мають квиток."
+},
+{
+"id": "it:05:11",
+"target": "Ho fame.",
+"ru": "Я голоден.",
+"uk": "Я голодний."
+},
+{
+"id": "it:05:13",
+"target": "Ho sete.",
+"ru": "Мне хочется пить.",
+"uk": "Я хочу пити."
+},
+{
+"id": "it:05:16",
+"target": "Avete caldo.",
+"ru": "Вам жарко.",
+"uk": "Вам спекотно."
+},
+{
+"id": "it:05:19",
+"target": "Ho mal di schiena.",
+"ru": "У меня болит спина.",
+"uk": "У мене болить спина."
+},
+{
+"id": "it:05:20",
+"target": "Hai mal di testa.",
+"ru": "У тебя болит голова.",
+"uk": "У тебе болить голова."
+},
+{
+"id": "it:05:49",
+"target": "Ho mal di gola.",
+"ru": "У меня болит горло.",
+"uk": "У мене болить горло."
+},
+{
+"id": "it:05:21",
+"target": "Ho vent’anni.",
+"ru": "Мне двадцать лет.",
+"uk": "Мені двадцять років."
+},
+{
+"id": "it:05:22",
+"target": "Lea ha trent’anni.",
+"ru": "Леа тридцать лет.",
+"uk": "Леа тридцять років."
+},
+{
+"id": "it:05:23",
+"target": "Mio fratello ha dieci anni.",
+"ru": "Моему брату десять лет.",
+"uk": "Моєму братові десять років."
+},
+{
+"id": "it:05:31",
+"target": "Ha una penna?",
+"ru": "У вас есть ручка?",
+"uk": "У вас є ручка?"
+},
+{
+"id": "it:05:33",
+"target": "Ha un momento?",
+"ru": "У вас есть минутка?",
+"uk": "Маєте хвилинку?"
+},
+{
+"id": "it:05:40",
+"target": "Ha una prenotazione?",
+"ru": "У вас есть бронирование?",
+"uk": "У вас є бронювання?"
+},
+{
+"id": "it:05:41",
+"target": "Ho bisogno di aiuto.",
+"ru": "Мне нужна помощь.",
+"uk": "Мені потрібна допомога."
+},
+{
+"id": "it:05:42",
+"target": "Hai bisogno di una pausa.",
+"ru": "Тебе нужен перерыв.",
+"uk": "Тобі потрібна перерва."
+},
+{
+"id": "it:05:50",
+"target": "Lei ha bisogno della sua ricetta.",
+"ru": "Ей нужен её рецепт.",
+"uk": "Їй потрібен її рецепт."
+}
+]
+},
+{
+"lesson": 6,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:06:01",
+"it:06:02",
+"it:06:07"
+],
+"textByLocale": {
+"en": "The article helps name a known object. In Italian, it is chosen based on the noun itself: `il pane`, `la borsa`. The gender of the original word can be completely different.",
+"ru": "Артикль помогает назвать известный предмет. В итальянском его выбирают по самому существительному: `il pane`, `la borsa`. Род исходного слова может быть совершенно другим.",
+"uk": "Артікль допомагає назвати відомий предмет. В італійському його обирають за іменником: `il pane`, `la borsa`. Рід вихідного слова може бути зовсім іншим."
+}
+},
+{
+"exampleIds": [
+"it:06:04",
+"it:06:09",
+"it:06:33"
+],
+"textByLocale": {
+"en": "Before the masculine plural, `i` and `gli` appear. When you hear `gli occhiali`, memorize the entire group. Don't choose `le` just because it ends in a vowel.",
+"ru": "Перед мужским множественным числом встречаются `i` и `gli`. Услышав `gli occhiali`, запомни всю группу. Не выбирай `le` только потому, что форма заканчивается на гласную.",
+"uk": "Перед чоловічим множиною зустрічаються `i` і `gli`. Почувши `gli occhiali`, запам'ятай усю групу. Не вибирай `le` лише тому, що форма закінчується на голосну."
+}
+},
+{
+"exampleIds": [
+"it:06:05",
+"it:06:06",
+"it:06:10"
+],
+"textByLocale": {
+"en": "Before a vowel in the singular, `l’` is possible: `l’acqua`, `l’ingresso`. The article is the same in both cases, but the gender is different. The apostrophe attaches it to the following word; no space is needed.",
+"ru": "Перед гласной в единственном числе возможен `l’`: `l’acqua`, `l’ingresso`. Артикль в обоих случаях одинаков на письме, но род разный. Апостроф приклеивает его к следующему слову: пробел не нужен.",
+"uk": "Перед голосною в однині можливий `l’`: `l’acqua`, `l’ingresso`. Артикль в обох випадках однаковий на листі, але рід різний. Апостроф приклеює його до наступного слова: пробіл не потрібен."
+}
+},
+{
+"exampleIds": [
+"it:06:11",
+"it:06:15",
+"it:06:16"
+],
+"textByLocale": {
+"en": "The definite article is often used with general preferences: `Mi piace il caffè`. Here, we may be talking about coffee in general, not just one particular cup. The meaning depends on the entire construction.",
+"ru": "С общими предпочтениями часто используют определённый артикль: `Mi piace il caffè`. Здесь речь может идти о кофе вообще, а не об одной известной чашке. Значение зависит от всей конструкции.",
+"uk": "Із загальними уподобаннями часто використовують певний артикль: `Mi piace il caffè`. Тут може йтися про каву взагалі, а не про одну відому чашку. Значення залежить від усієї конструкції."
+}
+},
+{
+"exampleIds": [
+"it:06:21",
+"it:06:22",
+"it:06:23"
+],
+"textByLocale": {
+"en": "If the name of a place is itself the subject, the article usually comes before it: `la scuola`. Don't confuse it with the set way of saying \"to school\"—`a scuola`: the grammatical role has changed.",
+"ru": "Если название места само является подлежащим, артикль обычно стоит перед ним: `la scuola`. Не путай с устойчивым способом сказать «в школу» — `a scuola`: грамматическая роль изменилась.",
+"uk": "Якщо назва місця сама підлягає, артикль зазвичай стоїть перед ним: `la scuola`. Не плутай зі стійким способом сказати «до школи» — `a scuola`: граматична роль змінилася."
+}
+},
+{
+"exampleIds": [
+"it:06:31",
+"it:06:35",
+"it:06:38"
+],
+"textByLocale": {
+"en": "`Sul` includes `su + il`, `nel`—`in + il`. You can't put `il` again after `sul`. Consider which article is already hidden in the combined form.",
+"ru": "`Sul` включает `su + il`, `nel` — `in + il`. Нельзя после `sul` ещё раз поставить `il`. Подумай, какой артикль уже спрятан в соединённой форме.",
+"uk": "`Sul` включає `su + il`, `nel` - `in + il`. Не можна після `sul` ще раз поставити `il`. Подумай, який артикль вже захований у сполученій формі."
+}
+},
+{
+"exampleIds": [
+"it:06:47",
+"it:06:48",
+"it:06:50"
+],
+"textByLocale": {
+"en": "Check which noun each article names. In `il nome sulla busta`, the name comes first, then the envelope. Each of these two names has its own gender, even though they are in the same message.",
+"ru": "Проверь, какое существительное называет каждый артикль. В `il nome sulla busta` сначала идёт имя, затем конверт. У каждого из этих двух названий свой род, хотя они в одном сообщении.",
+"uk": "Перевір, який іменник називає кожен артикль. У `il nome sulla busta` спочатку йде ім'я, потім конверт. Кожна з цих двох назв має свій рід, хоча вони в одному повідомленні."
+}
+}
+],
+"drills": [
+{
+"bad": "Il",
+"chapter": 1,
+"id": "it:06:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"La",
+"Il",
+"Un"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:06:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 38,
+"options": [
+"Una",
+"Il",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "sul",
+"chapter": 1,
+"id": "it:06:05:lab",
+"item": 5,
+"kind": "match",
+"near": 27,
+"options": [
+"sul",
+"sullo",
+"sulla"
+],
+"slot": 2
+},
+{
+"bad": "Il",
+"chapter": 2,
+"id": "it:06:08:lab",
+"item": 8,
+"kind": "build",
+"near": 21,
+"options": [
+"La",
+"Il",
+"Gli"
+],
+"slot": 0
+},
+{
+"bad": "Sulla",
+"chapter": 2,
+"id": "it:06:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"Giacca",
+"L’acqua",
+"Sulla"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 2,
+"id": "it:06:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"il",
+"un",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:06:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 17,
+"options": [
+"le",
+"il",
+"la"
+],
+"slot": 3
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:06:17:lab",
+"item": 17,
+"kind": "match",
+"near": 14,
+"options": [
+"i",
+"la",
+"il"
+],
+"slot": 3
+},
+{
+"bad": "Il",
+"chapter": 3,
+"id": "it:06:19:lab",
+"item": 19,
+"kind": "build",
+"near": 13,
+"options": [
+"Il",
+"Le",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "I",
+"chapter": 4,
+"id": "it:06:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 26,
+"options": [
+"Il",
+"I",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 4,
+"id": "it:06:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 9,
+"options": [
+"Il",
+"I",
+"Un"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "it:06:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 22,
+"options": [
+"I",
+"La",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "Caricabatterie",
+"chapter": 5,
+"id": "it:06:29:lab",
+"item": 29,
+"kind": "match",
+"near": 6,
+"options": [
+"Caricabatterie",
+"L’ascensore",
+"Chiave"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 5,
+"id": "it:06:31:lab",
+"item": 31,
+"kind": "build",
+"near": 27,
+"options": [
+"Un",
+"La",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 5,
+"id": "it:06:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 1,
+"options": [
+"Le",
+"La",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 6,
+"id": "it:06:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 4,
+"options": [
+"Il",
+"Gli",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 6,
+"id": "it:06:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"Il",
+"Un",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "alla",
+"chapter": 6,
+"id": "it:06:42:lab",
+"item": 42,
+"kind": "match",
+"near": 40,
+"options": [
+"alla",
+"al",
+"allo"
+],
+"slot": 3
+},
+{
+"bad": "La",
+"chapter": 7,
+"id": "it:06:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"Il",
+"La",
+"I"
+],
+"slot": 0
+},
+{
+"bad": "alla",
+"chapter": 7,
+"id": "it:06:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 6,
+"options": [
+"al",
+"allo",
+"alla"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"il libro",
+"i libri"
+],
+[
+"lo zaino",
+"gli zaini"
+],
+[
+"l’ufficio",
+"gli uffici"
+],
+[
+"la borsa",
+"le borse"
+],
+[
+"l’acqua",
+"l’acqua fredda"
+]
+],
+"title": {
+"en": "Articles before a familiar object",
+"ru": "Артикли перед знакомым предметом",
+"uk": "Артиклі перед знайомим предметом"
+}
+},
+"exampleResolved": [
+{
+"id": "it:06:01",
+"target": "La chiave è sul tavolo.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ на столі."
+},
+{
+"id": "it:06:02",
+"target": "La borsa è sotto il tavolo.",
+"ru": "Сумка под столом.",
+"uk": "Сумка під столом."
+},
+{
+"id": "it:06:07",
+"target": "Il pane è sul tavolo.",
+"ru": "Хлеб на столе.",
+"uk": "Хліб на столі."
+},
+{
+"id": "it:06:04",
+"target": "Gli occhiali sono sul letto.",
+"ru": "Очки лежат на кровати.",
+"uk": "Окуляри на ліжку."
+},
+{
+"id": "it:06:09",
+"target": "I bicchieri sono puliti.",
+"ru": "Стаканы чистые.",
+"uk": "Склянки чисті."
+},
+{
+"id": "it:06:33",
+"target": "I guanti sono nella borsa.",
+"ru": "Перчатки в сумке.",
+"uk": "Рукавички в сумці."
+},
+{
+"id": "it:06:05",
+"target": "L’indirizzo è sulla mappa.",
+"ru": "Адрес указан на карте.",
+"uk": "Адреса на карті."
+},
+{
+"id": "it:06:06",
+"target": "L’ingresso è a destra.",
+"ru": "Вход справа.",
+"uk": "Вхід праворуч."
+},
+{
+"id": "it:06:10",
+"target": "L’acqua è fredda.",
+"ru": "Вода холодная.",
+"uk": "Вода холодна."
+},
+{
+"id": "it:06:11",
+"target": "Mi piace il caffè.",
+"ru": "Мне нравится кофе.",
+"uk": "Я люблю каву."
+},
+{
+"id": "it:06:15",
+"target": "Ci piacciono i libri.",
+"ru": "Мы любим книги.",
+"uk": "Нам подобаються книги."
+},
+{
+"id": "it:06:16",
+"target": "Ti piacciono le fragole?",
+"ru": "Тебе нравится клубника?",
+"uk": "Тобі подобається полуниця?"
+},
+{
+"id": "it:06:21",
+"target": "La banca è chiusa.",
+"ru": "Банк закрыт.",
+"uk": "Банк закритий."
+},
+{
+"id": "it:06:22",
+"target": "Il mercato è aperto.",
+"ru": "Рынок открыт.",
+"uk": "Ринок відкритий."
+},
+{
+"id": "it:06:23",
+"target": "La scuola è di fronte.",
+"ru": "Школа находится напротив.",
+"uk": "Школа навпроти."
+},
+{
+"id": "it:06:31",
+"target": "Il cappotto è sulla sedia.",
+"ru": "Пальто лежит на стуле.",
+"uk": "Пальто на стільці."
+},
+{
+"id": "it:06:35",
+"target": "Il portafoglio è nel cassetto.",
+"ru": "Кошелек в ящике.",
+"uk": "Гаманець у шухляді."
+},
+{
+"id": "it:06:38",
+"target": "Il computer è in ufficio.",
+"ru": "Компьютер в офисе.",
+"uk": "Комп’ютер в офісі."
+},
+{
+"id": "it:06:47",
+"target": "Le chiavi della macchina sono qui.",
+"ru": "Ключи от машины здесь.",
+"uk": "Ключі від машини тут."
+},
+{
+"id": "it:06:48",
+"target": "L’ingresso al museo è gratuito.",
+"ru": "Вход в музей бесплатный.",
+"uk": "Вхід до музею безкоштовний."
+},
+{
+"id": "it:06:50",
+"target": "Il nome è sulla busta.",
+"ru": "Имя на конверте.",
+"uk": "Ім’я на конверті."
+}
+]
+}
+]

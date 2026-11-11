@@ -12,6 +12,7 @@ import {
   getYoutubePinnedVideosRaw,
 } from './remote_flags';
 import { DebugLogger } from './debug-logger';
+import { assertVideoRequestActive } from './video_section_preference';
 // зачем (пакет 10:26): ключ кэша и канал по умолчанию — из лёгкого модуля, которым Главная читает кэш без этого модуля.
 import { LINGMAN_DEFAULT_CHANNEL_ID, LINGMAN_FEED_SNAPSHOT_STORAGE_KEY } from './lingman_youtube_feed_disk';
 
@@ -432,26 +433,27 @@ async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
 // только когда сохранённый список старше 6 ч, один запрос за запуск, ≤ 12 роликов (манифест + корень + канал + ролики).
 const CATALOG_FALLBACK_MIN_CACHE_AGE_MS = 6 * 60 * 60 * 1000;
 const CATALOG_FALLBACK_LIMIT = 12;
-let catalogFallbackInFlight: Promise<LingmanYoutubeVideo[] | null> | null = null;
+let catalogFallbackInFlight: { signal?: AbortSignal; promise: Promise<LingmanYoutubeVideo[] | null> } | null = null;
 
 /** Только для тестов. */
 export function resetLingmanCatalogFallbackForTests(): void {
   catalogFallbackInFlight = null;
 }
 
-async function loadVideosFromServerCatalog(activeChannelId: string): Promise<LingmanYoutubeVideo[] | null> {
+async function loadVideosFromServerCatalog(activeChannelId: string, signal?: AbortSignal): Promise<LingmanYoutubeVideo[] | null> {
   const startedAt = Date.now();
   try {
     const client = await import('./youtube_catalog_client');
     const { resolveVideoChannelForStudyTarget } = await import('./video_language_contour');
     const { catalogVideoToRailVideo } = await import('./home_video_rail_source');
-    const manifest = await client.fetchYoutubeCatalogManifest();
+    const cancellationArgs: [AbortSignal?] = signal ? [signal] : [];
+    const manifest = await client.fetchYoutubeCatalogManifest(...cancellationArgs);
     const candidates = [...new Set([
       manifest.localeDefaults?.en,
       resolveVideoChannelForStudyTarget(manifest.channels, 'en')?.id,
     ].filter((id): id is string => !!id && manifest.channels.some((channel) => channel.id === id)))];
     for (const catalogChannelId of candidates) {
-      const rail = await client.fetchYoutubeHomeRailCatalog(catalogChannelId, manifest, CATALOG_FALLBACK_LIMIT);
+      const rail = await client.fetchYoutubeHomeRailCatalog(catalogChannelId, manifest, CATALOG_FALLBACK_LIMIT, ...cancellationArgs);
       // Чужие ролики под именем нашего канала не показываем: каталог должен быть ровно этим каналом YouTube.
       if (rail.channel.youtubeChannelId !== activeChannelId) {
         console.warn('[HOME-COLD] video_feed:catalog_channel_mismatch', JSON.stringify({ catalogChannelId, catalogYoutubeId: rail.channel.youtubeChannelId, activeChannelId })); // guard-ok: ветка логируется
@@ -494,23 +496,26 @@ export function resetLingmanFeedNotFoundForTests(): void {
 
 // зачем (аудит стоимости 11.10, HOME-COLD_cold3: video_feed:network_ok дважды за 100 мс — живая и уходящая Главная):
 // одновременные запросы одной ленты делят одну загрузку. Последовательные вызовы, как и раньше, идут в сеть.
-let feedDownloadInFlight: { url: string; promise: Promise<LingmanYoutubeVideo[]> } | null = null;
+let feedDownloadInFlight: { url: string; signal?: AbortSignal; promise: Promise<LingmanYoutubeVideo[]> } | null = null;
 
-export function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
+export function fetchLingmanYoutubeVideos(signal?: AbortSignal): Promise<LingmanYoutubeVideo[]> {
+  if (signal?.aborted) return Promise.reject(new Error('Video request cancelled'));
   const url = getActiveFeedUrl();
-  if (feedDownloadInFlight && feedDownloadInFlight.url === url) {
+  if (feedDownloadInFlight?.url === url && feedDownloadInFlight.signal === signal) {
     console.log('[HOME-COLD] video_feed:joined_in_flight'); // guard-ok: видно, что второй запрос не ушёл в сеть
     return feedDownloadInFlight.promise;
   }
-  const promise = downloadLingmanYoutubeVideos(url).finally(() => {
+  const promise = downloadLingmanYoutubeVideos(url, signal).finally(() => {
     if (feedDownloadInFlight?.promise === promise) feedDownloadInFlight = null;
   });
-  feedDownloadInFlight = { url, promise };
+  feedDownloadInFlight = { url, signal, promise };
   return promise;
 }
 
-async function downloadLingmanYoutubeVideos(feedUrl: string): Promise<LingmanYoutubeVideo[]> {
+async function downloadLingmanYoutubeVideos(feedUrl: string, signal?: AbortSignal): Promise<LingmanYoutubeVideo[]> {
   const controller = new AbortController();
+  const cancel = () => controller.abort();
+  signal?.addEventListener('abort', cancel);
   const timeout = setTimeout(() => controller.abort(), LINGMAN_FEED_TIMEOUT_MS);
   try {
     const response = await fetch(feedUrl, {
@@ -533,6 +538,7 @@ async function downloadLingmanYoutubeVideos(feedUrl: string): Promise<LingmanYou
     return videos;
   } finally {
     clearTimeout(timeout);
+    signal?.removeEventListener('abort', cancel);
   }
 }
 
@@ -559,7 +565,8 @@ export async function readCachedLingmanYoutubeSnapshot(): Promise<LingmanYoutube
   };
 }
 
-export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapshot> {
+export async function getLingmanYoutubeSnapshot(signal?: AbortSignal): Promise<LingmanYoutubeSnapshot> {
+  assertVideoRequestActive(signal);
   const seenRevisionAtStart = seenMutationRevision;
   const seenWritePendingAtStart = pendingSeenMutationRevision !== 0;
   const [persistedLastSeenId] = await Promise.all([
@@ -585,7 +592,8 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       // Ветка ниже (catch) берёт кэш/встроенный список и логирует итог — сеть не трогаем.
       throw new Error('YouTube feed 404 earlier this launch — network skipped');
     }
-    const feed = await fetchLingmanYoutubeVideos();
+    const feed = await fetchLingmanYoutubeVideos(signal);
+    assertVideoRequestActive(signal);
     console.warn('[HOME-COLD] video_feed:network_ok', JSON.stringify({ ms: Date.now() - networkStartedAt, videos: feed.length })); // guard-ok: временная трассировка холодного старта
     void cacheSuccessfulVideos(feed);
     const videos = mergePinnedVideos(pinned, feed);
@@ -598,6 +606,7 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       source: 'rss',
     };
   } catch (error) {
+    assertVideoRequestActive(signal);
     // Встроенный fallback-список — это видео PHRASEMAN. Показываем его только когда
     // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
     // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
@@ -627,10 +636,12 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       return build(cachedEntry.videos, 'feed_cache');
     }
     const activeChannelId = getActiveYoutubeChannel().channelId;
-    if (!catalogFallbackInFlight) {
-      catalogFallbackInFlight = loadVideosFromServerCatalog(activeChannelId);
+    assertVideoRequestActive(signal);
+    if (!catalogFallbackInFlight || catalogFallbackInFlight.signal !== signal) {
+      catalogFallbackInFlight = { signal, promise: loadVideosFromServerCatalog(activeChannelId, signal) };
     }
-    const catalogVideos = await catalogFallbackInFlight;
+    const catalogVideos = await catalogFallbackInFlight.promise;
+    assertVideoRequestActive(signal);
     if (catalogVideos?.length) {
       void cacheSuccessfulVideos(catalogVideos);
       return build(catalogVideos, 'catalog');

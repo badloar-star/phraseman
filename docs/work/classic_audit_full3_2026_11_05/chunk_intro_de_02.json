@@ -1,0 +1,682 @@
+[
+{
+"lesson": 9,
+"blocks": [
+{
+"textEN": "Two passports are on the table. Yours, as the speaker, is «mein Pass»; the one you hand to your friend is «dein Pass» when speaking to them. Switch from your passport to your jacket: «meine Jacke». Same owner, different ending.\n\nDas ist mein Pass.\n\nThis is my passport.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Hay dos pasaportes. El tuyo, al hablar de ti, es «mein Pass»; al devolverle el suyo a un amigo le dices «dein Pass». Cambia tu pasaporte por tu chaqueta: «meine Jacke». Mismo dueño, distinta terminación.\n\nDas ist mein Pass.\n\nEste es mi pasaporte.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Ada dua paspor di meja. Paspormu sendiri, saat kamu berbicara, adalah «mein Pass»; saat menyerahkan paspor teman kepadanya, katakan «dein Pass». Untuk jaketmu gunakan «meine Jacke»: pemilik tetap, akhiran berubah.\n\nDas ist mein Pass.\n\nIni paspor saya.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Na stole leżą dwa paszporty. O swoim mówisz «mein Pass», a podając koledze jego paszport, mówisz mu «dein Pass». Teraz wskaż swoją kurtkę: «meine Jacke». Właściciel ten sam, końcówka inna.\n\nDas ist mein Pass.\n\nTo jest mój paszport.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "Há dois passaportes na mesa. O seu, ao falar de si, é «mein Pass»; ao entregar o do seu amigo, você diz a ele «dein Pass». Troque o passaporte por sua jaqueta: «meine Jacke». Mesmo dono, final diferente.\n\nDas ist mein Pass.\n\nEste é o meu passaporte.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "На столе два паспорта. Если берёшь свой, говоришь «mein Pass»; если протягиваешь другу его паспорт — «dein Pass». Теперь замени паспорт на куртку. Хозяин тот же, но получится «meine Jacke»: конец слова подстраивается под вещь.\n\nDas ist mein Pass.\n\nЭто мой паспорт.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Masada iki pasaport var. Kendininkini gösterirken «mein Pass», arkadaşına onun pasaportunu uzatırken «dein Pass» dersin. Şimdi kendi ceketini göster: «meine Jacke». Sahip değişmedi, eşyanın adı değiştiği için ek değişti.\n\nDas ist mein Pass.\n\nBu benim pasaportum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "На столі два паспорти. Свій — «mein Pass», паспорт друга, до якого звертаєшся, — «dein Pass». Заміни паспорт на куртку. Власник той самий, але тепер «meine Jacke»: закінчення залежить від назви речі.\n\nDas ist mein Pass.\n\nЦе мій паспорт.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Trên bàn có hai hộ chiếu. Hộ chiếu của mình là «mein Pass»; nói với bạn về hộ chiếu của bạn ấy là «dein Pass». Vẫn của mình nhưng đổi sang áo khoác: «meine Jacke». Chủ không đổi, đuôi từ đổi.\n\nDas ist mein Pass.\n\nĐây là hộ chiếu của tôi.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Two passports are on the table. Yours, as the speaker, is «mein Pass»; the one you hand to your friend is «dein Pass» when speaking to them. Switch from your passport to your jacket: «meine Jacke». Same owner, different ending.\n\nDas ist mein Pass.\n\nThis is my passport.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Hay dos pasaportes. El tuyo, al hablar de ti, es «mein Pass»; al devolverle el suyo a un amigo le dices «dein Pass». Cambia tu pasaporte por tu chaqueta: «meine Jacke». Mismo dueño, distinta terminación.\n\nDas ist mein Pass.\n\nEste es mi pasaporte.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Ada dua paspor di meja. Paspormu sendiri, saat kamu berbicara, adalah «mein Pass»; saat menyerahkan paspor teman kepadanya, katakan «dein Pass». Untuk jaketmu gunakan «meine Jacke»: pemilik tetap, akhiran berubah.\n\nDas ist mein Pass.\n\nIni paspor saya.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Na stole leżą dwa paszporty. O swoim mówisz «mein Pass», a podając koledze jego paszport, mówisz mu «dein Pass». Teraz wskaż swoją kurtkę: «meine Jacke». Właściciel ten sam, końcówka inna.\n\nDas ist mein Pass.\n\nTo jest mój paszport.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "Há dois passaportes na mesa. O seu, ao falar de si, é «mein Pass»; ao entregar o do seu amigo, você diz a ele «dein Pass». Troque o passaporte por sua jaqueta: «meine Jacke». Mesmo dono, final diferente.\n\nDas ist mein Pass.\n\nEste é o meu passaporte.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "На столе два паспорта. Если берёшь свой, говоришь «mein Pass»; если протягиваешь другу его паспорт — «dein Pass». Теперь замени паспорт на куртку. Хозяин тот же, но получится «meine Jacke»: конец слова подстраивается под вещь.\n\nDas ist mein Pass.\n\nЭто мой паспорт.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Masada iki pasaport var. Kendininkini gösterirken «mein Pass», arkadaşına onun pasaportunu uzatırken «dein Pass» dersin. Şimdi kendi ceketini göster: «meine Jacke». Sahip değişmedi, eşyanın adı değiştiği için ek değişti.\n\nDas ist mein Pass.\n\nBu benim pasaportum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "На столі два паспорти. Свій — «mein Pass», паспорт друга, до якого звертаєшся, — «dein Pass». Заміни паспорт на куртку. Власник той самий, але тепер «meine Jacke»: закінчення залежить від назви речі.\n\nDas ist mein Pass.\n\nЦе мій паспорт.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Trên bàn có hai hộ chiếu. Hộ chiếu của mình là «mein Pass»; nói với bạn về hộ chiếu của bạn ấy là «dein Pass». Vẫn của mình nhưng đổi sang áo khoác: «meine Jacke». Chủ không đổi, đuôi từ đổi.\n\nDas ist mein Pass.\n\nĐây là hộ chiếu của tôi.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:09:01"
+]
+},
+{
+"textEN": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nThis is my passport.\n\nDas ist meine Jacke.\n\nThis is my jacket.\n\nBoth things belong to me. In this construction use «mein» with «Pass» and «meine» with «Jacke»: «der Pass» and «die Jacke» have different grammatical genders. The owner’s gender doesn’t matter.",
+"textES": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nEste es mi pasaporte.\n\nDas ist meine Jacke.\n\nEsta es mi chaqueta.\n\nLas dos cosas son mías. Aquí usa «mein» con «Pass» y «meine» con «Jacke»: «der Pass» y «die Jacke» tienen géneros distintos. El género de quien habla no cuenta.",
+"textId": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nIni paspor saya.\n\nDas ist meine Jacke.\n\nIni jaket saya.\n\nKedua benda itu milikku. Di sini gunakan «mein» dengan «Pass» dan «meine» dengan «Jacke»: «der Pass» dan «die Jacke» berbeda gender tata bahasa. Gender pemilik tidak menentukan.",
+"textPl": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nTo jest mój paszport.\n\nDas ist meine Jacke.\n\nTo jest moja kurtka.\n\nObie rzeczy są moje. Tutaj z «Pass» użyj «mein», z «Jacke» — «meine»: «der Pass» i «die Jacke» różnią się rodzajem. Płeć właściciela nie ma znaczenia.",
+"textPtBr": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nEste é o meu passaporte.\n\nDas ist meine Jacke.\n\nEsta é a minha jaqueta.\n\nAs duas coisas são minhas. Aqui use «mein» com «Pass» e «meine» com «Jacke»: «der Pass» e «die Jacke» têm gêneros diferentes. O gênero de quem fala não importa.",
+"textRU": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nЭто мой паспорт.\n\nDas ist meine Jacke.\n\nЭто моя куртка.\n\nОбе вещи мои. Перед «Pass» в этом образце ставь «mein», перед «Jacke» — «meine»: немецкие пары «der Pass» и «die Jacke» имеют разный род. Род владельца здесь ни при чём.",
+"textTr": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nBu benim pasaportum.\n\nDas ist meine Jacke.\n\nBu benim ceketim.\n\nİkisi de benim. Burada «Pass» ile «mein», «Jacke» ile «meine» gelir: «der Pass» ve «die Jacke» farklı dilbilgisel cinsiyettedir. Sahibinin cinsiyeti önemli değildir.",
+"textUK": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nЦе мій паспорт.\n\nDas ist meine Jacke.\n\nЦе моя куртка.\n\nОбидві речі мої. Перед «Pass» тут «mein», перед «Jacke» — «meine»: у «der Pass» і «die Jacke» різний рід. Стать власника тут ні до чого.",
+"textVi": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nĐây là hộ chiếu của tôi.\n\nDas ist meine Jacke.\n\nĐây là áo khoác của tôi.\n\nCả hai vật đều của tôi. Ở đây dùng «mein» với «Pass», «meine» với «Jacke»: «der Pass» và «die Jacke» khác giống ngữ pháp. Giới tính người sở hữu không liên quan.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nThis is my passport.\n\nDas ist meine Jacke.\n\nThis is my jacket.\n\nBoth things belong to me. In this construction use «mein» with «Pass» and «meine» with «Jacke»: «der Pass» and «die Jacke» have different grammatical genders. The owner’s gender doesn’t matter.",
+"es": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nEste es mi pasaporte.\n\nDas ist meine Jacke.\n\nEsta es mi chaqueta.\n\nLas dos cosas son mías. Aquí usa «mein» con «Pass» y «meine» con «Jacke»: «der Pass» y «die Jacke» tienen géneros distintos. El género de quien habla no cuenta.",
+"id": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nIni paspor saya.\n\nDas ist meine Jacke.\n\nIni jaket saya.\n\nKedua benda itu milikku. Di sini gunakan «mein» dengan «Pass» dan «meine» dengan «Jacke»: «der Pass» dan «die Jacke» berbeda gender tata bahasa. Gender pemilik tidak menentukan.",
+"pl": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nTo jest mój paszport.\n\nDas ist meine Jacke.\n\nTo jest moja kurtka.\n\nObie rzeczy są moje. Tutaj z «Pass» użyj «mein», z «Jacke» — «meine»: «der Pass» i «die Jacke» różnią się rodzajem. Płeć właściciela nie ma znaczenia.",
+"pt-BR": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nEste é o meu passaporte.\n\nDas ist meine Jacke.\n\nEsta é a minha jaqueta.\n\nAs duas coisas são minhas. Aqui use «mein» com «Pass» e «meine» com «Jacke»: «der Pass» e «die Jacke» têm gêneros diferentes. O gênero de quem fala não importa.",
+"ru": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nЭто мой паспорт.\n\nDas ist meine Jacke.\n\nЭто моя куртка.\n\nОбе вещи мои. Перед «Pass» в этом образце ставь «mein», перед «Jacke» — «meine»: немецкие пары «der Pass» и «die Jacke» имеют разный род. Род владельца здесь ни при чём.",
+"tr": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nBu benim pasaportum.\n\nDas ist meine Jacke.\n\nBu benim ceketim.\n\nİkisi de benim. Burada «Pass» ile «mein», «Jacke» ile «meine» gelir: «der Pass» ve «die Jacke» farklı dilbilgisel cinsiyettedir. Sahibinin cinsiyeti önemli değildir.",
+"uk": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nЦе мій паспорт.\n\nDas ist meine Jacke.\n\nЦе моя куртка.\n\nОбидві речі мої. Перед «Pass» тут «mein», перед «Jacke» — «meine»: у «der Pass» і «die Jacke» різний рід. Стать власника тут ні до чого.",
+"vi": "«mein Pass» / «meine Jacke» / «meinen Pass»\n\nDas ist mein Pass.\n\nĐây là hộ chiếu của tôi.\n\nDas ist meine Jacke.\n\nĐây là áo khoác của tôi.\n\nCả hai vật đều của tôi. Ở đây dùng «mein» với «Pass», «meine» với «Jacke»: «der Pass» và «die Jacke» khác giống ngữ pháp. Giới tính người sở hữu không liên quan."
+},
+"kind": "formula",
+"exampleIds": [
+"de:09:01",
+"de:09:03"
+]
+},
+{
+"textEN": "This is my passport.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das» — This/that: points to the thing or person.\n\n2. «ist» — Is: links “this” to what it is.\n\n3. «mein» — My: the speaker owns the item.\n\n4. «Pass» — Passport. As a German noun it starts with a capital letter.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textES": "Este es mi pasaporte.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das» — Esto: señala la cosa o a la persona.\n\n2. «ist» — Es: une «esto» con su nombre.\n\n3. «mein» — Mi: la cosa pertenece a quien habla.\n\n4. «Pass» — Pasaporte. Como sustantivo alemán, lleva mayúscula inicial.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textId": "Ini paspor saya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das» — Ini/itu: menunjuk benda atau orang.\n\n2. «ist» — Adalah: menghubungkan “ini” dengan namanya.\n\n3. «mein» — Milikku: bendanya milik pembicara.\n\n4. «Pass» — Paspor. Sebagai nomina Jerman, huruf awalnya kapital.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textPl": "To jest mój paszport.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das» — To: tak wskazujemy rzecz lub osobę.\n\n2. «ist» — Jest: łączy „to” z nazwą.\n\n3. «mein» — Mój: przedmiot należy do mówiącego.\n\n4. «Pass» — Paszport. Niemiecki rzeczownik zaczyna się wielką literą.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textPtBr": "Este é o meu passaporte.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das» — Isto: aponta para a coisa ou pessoa.\n\n2. «ist» — É: liga “isto” ao nome.\n\n3. «mein» — Meu: a coisa é de quem fala.\n\n4. «Pass» — Passaporte. Substantivos alemães começam com maiúscula.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textRU": "Это мой паспорт.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das» — Это: так указываем на вещь или человека.\n\n2. «ist» — Связка «есть»: соединяет «это» с названием.\n\n3. «mein» — Мой: вещь принадлежит говорящему.\n\n4. «Pass» — Паспорт. Пишется с большой буквы, как немецкие названия предметов.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textTr": "Bu benim pasaportum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das» — Bu/şu: nesneyi veya kişiyi gösterir.\n\n2. «ist» — “Bu ...” derken gösterileni adıyla bağlar.\n\n3. «mein» — Benim: eşya konuşana ait.\n\n4. «Pass» — Pasaport. Almancada isim olduğu için büyük harfle başlar.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textUK": "Це мій паспорт.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das» — Це: так вказуємо на річ чи людину.\n\n2. «ist» — Зв’язка «є»: поєднує «це» з назвою.\n\n3. «mein» — Мій: річ належить мовцеві.\n\n4. «Pass» — Паспорт. Пишеться з великої літери, як німецькі назви предметів.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"textVi": "Đây là hộ chiếu của tôi.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das» — Đây/đó: chỉ vào vật hoặc người.\n\n2. «ist» — Là: nối “đây” với tên gọi.\n\n3. «mein» — Của tôi: vật thuộc người nói.\n\n4. «Pass» — Hộ chiếu. Danh từ tiếng Đức viết hoa chữ cái đầu.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "This is my passport.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das» — This/that: points to the thing or person.\n\n2. «ist» — Is: links “this” to what it is.\n\n3. «mein» — My: the speaker owns the item.\n\n4. «Pass» — Passport. As a German noun it starts with a capital letter.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"es": "Este es mi pasaporte.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das» — Esto: señala la cosa o a la persona.\n\n2. «ist» — Es: une «esto» con su nombre.\n\n3. «mein» — Mi: la cosa pertenece a quien habla.\n\n4. «Pass» — Pasaporte. Como sustantivo alemán, lleva mayúscula inicial.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"id": "Ini paspor saya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das» — Ini/itu: menunjuk benda atau orang.\n\n2. «ist» — Adalah: menghubungkan “ini” dengan namanya.\n\n3. «mein» — Milikku: bendanya milik pembicara.\n\n4. «Pass» — Paspor. Sebagai nomina Jerman, huruf awalnya kapital.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"pl": "To jest mój paszport.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das» — To: tak wskazujemy rzecz lub osobę.\n\n2. «ist» — Jest: łączy „to” z nazwą.\n\n3. «mein» — Mój: przedmiot należy do mówiącego.\n\n4. «Pass» — Paszport. Niemiecki rzeczownik zaczyna się wielką literą.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"pt-BR": "Este é o meu passaporte.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das» — Isto: aponta para a coisa ou pessoa.\n\n2. «ist» — É: liga “isto” ao nome.\n\n3. «mein» — Meu: a coisa é de quem fala.\n\n4. «Pass» — Passaporte. Substantivos alemães começam com maiúscula.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"ru": "Это мой паспорт.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das» — Это: так указываем на вещь или человека.\n\n2. «ist» — Связка «есть»: соединяет «это» с названием.\n\n3. «mein» — Мой: вещь принадлежит говорящему.\n\n4. «Pass» — Паспорт. Пишется с большой буквы, как немецкие названия предметов.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"tr": "Bu benim pasaportum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das» — Bu/şu: nesneyi veya kişiyi gösterir.\n\n2. «ist» — “Bu ...” derken gösterileni adıyla bağlar.\n\n3. «mein» — Benim: eşya konuşana ait.\n\n4. «Pass» — Pasaport. Almancada isim olduğu için büyük harfle başlar.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"uk": "Це мій паспорт.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das» — Це: так вказуємо на річ чи людину.\n\n2. «ist» — Зв’язка «є»: поєднує «це» з назвою.\n\n3. «mein» — Мій: річ належить мовцеві.\n\n4. «Pass» — Паспорт. Пишеться з великої літери, як німецькі назви предметів.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass.",
+"vi": "Đây là hộ chiếu của tôi.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das» — Đây/đó: chỉ vào vật hoặc người.\n\n2. «ist» — Là: nối “đây” với tên gọi.\n\n3. «mein» — Của tôi: vật thuộc người nói.\n\n4. «Pass» — Hộ chiếu. Danh từ tiếng Đức viết hoa chữ cái đầu.\n\nDas → ist → mein → Pass\n\nDas ist mein Pass."
+},
+"kind": "practice",
+"exampleIds": [
+"de:09:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:09:01",
+"target": "Das ist mein Pass.",
+"ru": "Это мой паспорт.",
+"uk": "Це мій паспорт."
+},
+{
+"id": "de:09:01",
+"target": "Das ist mein Pass.",
+"ru": "Это мой паспорт.",
+"uk": "Це мій паспорт."
+},
+{
+"id": "de:09:03",
+"target": "Das ist meine Jacke.",
+"ru": "Это моя куртка.",
+"uk": "Це моя куртка."
+},
+{
+"id": "de:09:01",
+"target": "Das ist mein Pass.",
+"ru": "Это мой паспорт.",
+"uk": "Це мій паспорт."
+}
+]
+},
+{
+"lesson": 10,
+"blocks": [
+{
+"textEN": "Someone asks how you’ll get there. Treat «mit dem Bus» as one answer: “by bus”. Here «mit» introduces the means of transport; after it «der Bus» becomes «dem Bus». This form is called the dative. Start with the phrase, not a whole table.\n\nIch komme mit dem Bus.\n\nI'm coming by bus.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Te preguntan cómo vas a llegar. «mit dem Bus» entero significa «en autobús». Aquí «mit» introduce el transporte; después, «der Bus» pasa a «dem Bus». Esta forma se llama dativo. Aprende primero la expresión.\n\nIch komme mit dem Bus.\n\nVengo en autobús.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Orang bertanya kamu datang naik apa. «mit dem Bus» berarti “naik bus”. Di sini «mit» memperkenalkan kendaraan; setelahnya «der Bus» menjadi «dem Bus». Bentuk ini disebut datif. Mulailah dengan ungkapannya.\n\nIch komme mit dem Bus.\n\nSaya datang dengan bus.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Ktoś pyta, jak dojedziesz. Całe «mit dem Bus» znaczy „autobusem”. Tutaj «mit» wprowadza środek transportu, a po nim «der Bus» przyjmuje postać «dem Bus». Ta forma to celownik. Zacznij od wyrażenia, nie od całej tabeli.\n\nIch komme mit dem Bus.\n\nPrzyjeżdżam autobusem.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "Perguntam como você vai chegar. «mit dem Bus» significa “de ônibus”. Aqui «mit» apresenta o transporte; depois dele, «der Bus» vira «dem Bus». Essa forma se chama dativo. Comece pela expressão, não por uma tabela inteira.\n\nIch komme mit dem Bus.\n\nEstou vindo de ônibus.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "Тебя спрашивают, как ты доберёшься. «mit dem Bus» целиком означает «на автобусе». «mit» здесь указывает на транспорт, а после него «der Bus» принимает вид «dem Bus». Название этой формы — Dativ. Учить всю таблицу сразу не нужно.\n\nIch komme mit dem Bus.\n\nЯ приезжаю на автобусе.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Nasıl geleceğini soruyorlar. «mit dem Bus» bir bütün olarak “otobüsle” demektir. Burada «mit» ulaşım aracını belirtir; ardından «der Bus», «dem Bus» olur. Bu biçimin adı Dativ. Önce bu örneği öğrenmen yeterli.\n\nIch komme mit dem Bus.\n\nOtobüsle geliyorum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "Тебе питають, як ти дістанешся. «mit dem Bus» разом означає «автобусом». «mit» тут вказує на транспорт, а після нього «der Bus» набуває форми «dem Bus». Ця форма називається Dativ. Усю таблицю поки вчити не треба.\n\nIch komme mit dem Bus.\n\nЯ приїжджаю автобусом.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Có người hỏi bạn đến bằng gì. «mit dem Bus» có nghĩa “bằng xe buýt”. Ở đây «mit» giới thiệu phương tiện; sau nó, «der Bus» thành «dem Bus». Dạng này gọi là Dativ. Hãy học cụm này trước, chưa cần thuộc cả bảng.\n\nIch komme mit dem Bus.\n\nTôi đang đi xe buýt.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Someone asks how you’ll get there. Treat «mit dem Bus» as one answer: “by bus”. Here «mit» introduces the means of transport; after it «der Bus» becomes «dem Bus». This form is called the dative. Start with the phrase, not a whole table.\n\nIch komme mit dem Bus.\n\nI'm coming by bus.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Te preguntan cómo vas a llegar. «mit dem Bus» entero significa «en autobús». Aquí «mit» introduce el transporte; después, «der Bus» pasa a «dem Bus». Esta forma se llama dativo. Aprende primero la expresión.\n\nIch komme mit dem Bus.\n\nVengo en autobús.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Orang bertanya kamu datang naik apa. «mit dem Bus» berarti “naik bus”. Di sini «mit» memperkenalkan kendaraan; setelahnya «der Bus» menjadi «dem Bus». Bentuk ini disebut datif. Mulailah dengan ungkapannya.\n\nIch komme mit dem Bus.\n\nSaya datang dengan bus.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Ktoś pyta, jak dojedziesz. Całe «mit dem Bus» znaczy „autobusem”. Tutaj «mit» wprowadza środek transportu, a po nim «der Bus» przyjmuje postać «dem Bus». Ta forma to celownik. Zacznij od wyrażenia, nie od całej tabeli.\n\nIch komme mit dem Bus.\n\nPrzyjeżdżam autobusem.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "Perguntam como você vai chegar. «mit dem Bus» significa “de ônibus”. Aqui «mit» apresenta o transporte; depois dele, «der Bus» vira «dem Bus». Essa forma se chama dativo. Comece pela expressão, não por uma tabela inteira.\n\nIch komme mit dem Bus.\n\nEstou vindo de ônibus.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "Тебя спрашивают, как ты доберёшься. «mit dem Bus» целиком означает «на автобусе». «mit» здесь указывает на транспорт, а после него «der Bus» принимает вид «dem Bus». Название этой формы — Dativ. Учить всю таблицу сразу не нужно.\n\nIch komme mit dem Bus.\n\nЯ приезжаю на автобусе.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Nasıl geleceğini soruyorlar. «mit dem Bus» bir bütün olarak “otobüsle” demektir. Burada «mit» ulaşım aracını belirtir; ardından «der Bus», «dem Bus» olur. Bu biçimin adı Dativ. Önce bu örneği öğrenmen yeterli.\n\nIch komme mit dem Bus.\n\nOtobüsle geliyorum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "Тебе питають, як ти дістанешся. «mit dem Bus» разом означає «автобусом». «mit» тут вказує на транспорт, а після нього «der Bus» набуває форми «dem Bus». Ця форма називається Dativ. Усю таблицю поки вчити не треба.\n\nIch komme mit dem Bus.\n\nЯ приїжджаю автобусом.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Có người hỏi bạn đến bằng gì. «mit dem Bus» có nghĩa “bằng xe buýt”. Ở đây «mit» giới thiệu phương tiện; sau nó, «der Bus» thành «dem Bus». Dạng này gọi là Dativ. Hãy học cụm này trước, chưa cần thuộc cả bảng.\n\nIch komme mit dem Bus.\n\nTôi đang đi xe buýt.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:10:01"
+]
+},
+{
+"textEN": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nI'm coming by bus.\n\nAnna kommt mit der Bahn.\n\nAnna is coming by train.\n\nKeep «mit», but choose the article for the vehicle: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». That last «der» doesn’t turn Bahn into a masculine noun.",
+"textES": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nVengo en autobús.\n\nAnna kommt mit der Bahn.\n\nAnna viene en tren.\n\nSe mantiene «mit», pero cambia el artículo según el vehículo: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Este último «der» no vuelve masculino el nombre Bahn.",
+"textId": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nSaya datang dengan bus.\n\nAnna kommt mit der Bahn.\n\nAnna datang dengan kereta api.\n\nPertahankan «mit», pilih artikel menurut kendaraan: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». «der» terakhir ini tidak mengubah Bahn menjadi maskulin.",
+"textPl": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nPrzyjeżdżam autobusem.\n\nAnna kommt mit der Bahn.\n\nAnna przyjeżdża pociągiem.\n\n«mit» zostaje, ale rodzajnik dobierasz do środka transportu: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». To ostatnie «der» nie zmienia rodzaju Bahn na męski.",
+"textPtBr": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nEstou vindo de ônibus.\n\nAnna kommt mit der Bahn.\n\nAnna está vindo de trem.\n\nMantenha «mit», mas escolha o artigo conforme o veículo: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Esse último «der» não torna Bahn masculino.",
+"textRU": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nЯ приезжаю на автобусе.\n\nAnna kommt mit der Bahn.\n\nАнна приезжает на электричке.\n\n«mit» остаётся, а следующий артикль зависит от названия транспорта. Запомни целыми парами: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Здесь «der» во второй паре не означает, что Bahn стало словом мужского рода.",
+"textTr": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nOtobüsle geliyorum.\n\nAnna kommt mit der Bahn.\n\nAnna trenle geliyor.\n\n«mit» aynı kalır ama araç adına göre artikel seçilir: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». İkinci örnekteki «der», Bahn ismini eril yapmaz.",
+"textUK": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nЯ приїжджаю автобусом.\n\nAnna kommt mit der Bahn.\n\nАнна приїжджає електричкою.\n\n«mit» не змінюється, а артикль залежить від назви транспорту. «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Останнє «der» не робить Bahn словом чоловічого роду.",
+"textVi": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nTôi đang đi xe buýt.\n\nAnna kommt mit der Bahn.\n\nAnna đang đi tàu hỏa.\n\nGiữ «mit», chọn mạo từ theo phương tiện: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». «der» cuối không biến Bahn thành giống đực.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nI'm coming by bus.\n\nAnna kommt mit der Bahn.\n\nAnna is coming by train.\n\nKeep «mit», but choose the article for the vehicle: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». That last «der» doesn’t turn Bahn into a masculine noun.",
+"es": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nVengo en autobús.\n\nAnna kommt mit der Bahn.\n\nAnna viene en tren.\n\nSe mantiene «mit», pero cambia el artículo según el vehículo: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Este último «der» no vuelve masculino el nombre Bahn.",
+"id": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nSaya datang dengan bus.\n\nAnna kommt mit der Bahn.\n\nAnna datang dengan kereta api.\n\nPertahankan «mit», pilih artikel menurut kendaraan: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». «der» terakhir ini tidak mengubah Bahn menjadi maskulin.",
+"pl": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nPrzyjeżdżam autobusem.\n\nAnna kommt mit der Bahn.\n\nAnna przyjeżdża pociągiem.\n\n«mit» zostaje, ale rodzajnik dobierasz do środka transportu: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». To ostatnie «der» nie zmienia rodzaju Bahn na męski.",
+"pt-BR": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nEstou vindo de ônibus.\n\nAnna kommt mit der Bahn.\n\nAnna está vindo de trem.\n\nMantenha «mit», mas escolha o artigo conforme o veículo: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Esse último «der» não torna Bahn masculino.",
+"ru": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nЯ приезжаю на автобусе.\n\nAnna kommt mit der Bahn.\n\nАнна приезжает на электричке.\n\n«mit» остаётся, а следующий артикль зависит от названия транспорта. Запомни целыми парами: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Здесь «der» во второй паре не означает, что Bahn стало словом мужского рода.",
+"tr": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nOtobüsle geliyorum.\n\nAnna kommt mit der Bahn.\n\nAnna trenle geliyor.\n\n«mit» aynı kalır ama araç adına göre artikel seçilir: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». İkinci örnekteki «der», Bahn ismini eril yapmaz.",
+"uk": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nЯ приїжджаю автобусом.\n\nAnna kommt mit der Bahn.\n\nАнна приїжджає електричкою.\n\n«mit» не змінюється, а артикль залежить від назви транспорту. «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». Останнє «der» не робить Bahn словом чоловічого роду.",
+"vi": "«mit dem Bus» / «bei der Ärztin» / «zu mir»\n\nIch komme mit dem Bus.\n\nTôi đang đi xe buýt.\n\nAnna kommt mit der Bahn.\n\nAnna đang đi tàu hỏa.\n\nGiữ «mit», chọn mạo từ theo phương tiện: «der Bus» → «mit dem Bus»; «die Bahn» → «mit der Bahn». «der» cuối không biến Bahn thành giống đực."
+},
+"kind": "formula",
+"exampleIds": [
+"de:10:01",
+"de:10:02"
+]
+},
+{
+"textEN": "I'm coming by bus.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «komme» — Come: says you are coming, not how you travel.\n\n3. «mit dem Bus» — By bus: mit introduces the means, dem goes before Bus after mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textES": "Vengo en autobús.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «komme» — Vengo: indica que vienes, no el medio de transporte.\n\n3. «mit dem Bus» — En autobús: mit introduce el medio y, después de mit, dem precede a Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textId": "Saya datang dengan bus.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «komme» — Datang: menunjukkan kedatangan, belum jenis kendaraannya.\n\n3. «mit dem Bus» — Naik bus: mit menandai sarana, lalu dem sebelum Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textPl": "Przyjeżdżam autobusem.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «komme» — Przyjeżdżam: najpierw podajesz fakt przybycia, jeszcze nie środek transportu.\n\n3. «mit dem Bus» — Autobusem: mit wprowadza środek transportu; po mit przed Bus jest dem.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textPtBr": "Estou vindo de ônibus.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «komme» — Venho: indica que você vem, não em que veículo.\n\n3. «mit dem Bus» — De ônibus: mit apresenta o meio e, após mit, dem vem antes de Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textRU": "Я приезжаю на автобусе.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «komme» — Приезжаю, добираюсь сюда. Немецкое слово буквально обозначает прибытие, а не автобус.\n\n3. «mit dem Bus» — На автобусе: mit называет способ, dem идёт перед Bus после mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textTr": "Otobüsle geliyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «komme» — Geliyorum: gelişi söyler, aracı henüz söylemez.\n\n3. «mit dem Bus» — Otobüsle: mit aracı tanıtır; mit sonrasında Bus önüne dem gelir.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textUK": "Я приїжджаю автобусом.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «komme» — Приїжджаю, дістаюся сюди. Це слово називає прибуття, а не транспорт.\n\n3. «mit dem Bus» — Автобусом: mit вказує на спосіб, dem стоїть перед Bus після mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"textVi": "Tôi đang đi xe buýt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «komme» — Đến: nói bạn sẽ đến, chưa nói phương tiện.\n\n3. «mit dem Bus» — Bằng xe buýt: mit chỉ phương tiện, sau mit dùng dem trước Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I'm coming by bus.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «komme» — Come: says you are coming, not how you travel.\n\n3. «mit dem Bus» — By bus: mit introduces the means, dem goes before Bus after mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"es": "Vengo en autobús.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «komme» — Vengo: indica que vienes, no el medio de transporte.\n\n3. «mit dem Bus» — En autobús: mit introduce el medio y, después de mit, dem precede a Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"id": "Saya datang dengan bus.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «komme» — Datang: menunjukkan kedatangan, belum jenis kendaraannya.\n\n3. «mit dem Bus» — Naik bus: mit menandai sarana, lalu dem sebelum Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"pl": "Przyjeżdżam autobusem.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «komme» — Przyjeżdżam: najpierw podajesz fakt przybycia, jeszcze nie środek transportu.\n\n3. «mit dem Bus» — Autobusem: mit wprowadza środek transportu; po mit przed Bus jest dem.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"pt-BR": "Estou vindo de ônibus.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «komme» — Venho: indica que você vem, não em que veículo.\n\n3. «mit dem Bus» — De ônibus: mit apresenta o meio e, após mit, dem vem antes de Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «komme» — Приезжаю, добираюсь сюда. Немецкое слово буквально обозначает прибытие, а не автобус.\n\n3. «mit dem Bus» — На автобусе: mit называет способ, dem идёт перед Bus после mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"tr": "Otobüsle geliyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «komme» — Geliyorum: gelişi söyler, aracı henüz söylemez.\n\n3. «mit dem Bus» — Otobüsle: mit aracı tanıtır; mit sonrasında Bus önüne dem gelir.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"uk": "Я приїжджаю автобусом.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «komme» — Приїжджаю, дістаюся сюди. Це слово називає прибуття, а не транспорт.\n\n3. «mit dem Bus» — Автобусом: mit вказує на спосіб, dem стоїть перед Bus після mit.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus.",
+"vi": "Tôi đang đi xe buýt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «komme» — Đến: nói bạn sẽ đến, chưa nói phương tiện.\n\n3. «mit dem Bus» — Bằng xe buýt: mit chỉ phương tiện, sau mit dùng dem trước Bus.\n\nIch → komme → mit → dem → Bus\n\nIch komme mit dem Bus."
+},
+"kind": "practice",
+"exampleIds": [
+"de:10:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:10:01",
+"target": "Ich komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.",
+"uk": "Я приїжджаю автобусом."
+},
+{
+"id": "de:10:01",
+"target": "Ich komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.",
+"uk": "Я приїжджаю автобусом."
+},
+{
+"id": "de:10:02",
+"target": "Anna kommt mit der Bahn.",
+"ru": "Анна приезжает на электричке.",
+"uk": "Анна приїжджає електричкою."
+},
+{
+"id": "de:10:01",
+"target": "Ich komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.",
+"uk": "Я приїжджаю автобусом."
+}
+]
+},
+{
+"lesson": 11,
+"blocks": [
+{
+"textEN": "A friend is looking for a key. You aren’t moving it; you’re telling them where to look. «liegt» means “is lying” and «auf dem Tisch» means “on the table”. You’re answering «wo?» (where?), so this «auf» takes «dem», not «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Un amigo busca una llave. No la mueves: le dices dónde mirar. «liegt» expresa que está apoyada; «auf dem Tisch», «sobre la mesa». Respondes a «wo?» (¿dónde?), así que con este «auf» va «dem», no «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Temanmu mencari kunci. Kamu tidak memindahkannya, hanya menunjukkan letaknya. «liegt» berarti “terletak”, «auf dem Tisch» berarti “di atas meja”. Kamu menjawab «wo?» (di mana?), jadi di sini «auf» diikuti «dem», bukan «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Kolega szuka klucza. Nie przenosisz go, tylko mówisz, gdzie spojrzeć. «liegt» to „leży”, «auf dem Tisch» — „na stole”. Odpowiadasz na «wo?» (gdzie?), więc po «auf» w tym przykładzie jest «dem», a nie «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "Um amigo procura uma chave. Você não a move: diz onde procurar. «liegt» indica que ela está apoiada; «auf dem Tisch» significa “em cima da mesa”. A pergunta é «wo?» (onde?), por isso aqui vem «dem», não «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "Друг ищет ключ. Ты его не передвигаешь, а показываешь, куда посмотреть: он уже лежит на столе. «liegt» означает «лежит», «auf dem Tisch» — «на столе». Здесь вопрос «wo?» — «где?», поэтому после «auf» появляется «dem», а не «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Arkadaşın anahtarı arıyor. Anahtarı taşımıyorsun; nereye bakacağını söylüyorsun. «liegt» burada “duruyor”, «auf dem Tisch» “masanın üzerinde” demektir. Soru «wo?» (nerede?) olduğu için burada «auf» ile «den» değil «dem» gelir.\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "Друг шукає ключ. Ти його не пересуваєш, лише показуєш, де шукати: він уже лежить на столі. «liegt» — «лежить», «auf dem Tisch» — «на столі». Тут запитання «wo?» — «де?», тому після «auf» вживаємо «dem», а не «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Một người bạn đang tìm chìa khóa. Bạn không di chuyển nó, chỉ nói chỗ để tìm. «liegt» nghĩa là “nằm”, «auf dem Tisch» là “trên bàn”. Bạn trả lời «wo?» (ở đâu?), nên sau «auf» ở đây là «dem», không phải «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "A friend is looking for a key. You aren’t moving it; you’re telling them where to look. «liegt» means “is lying” and «auf dem Tisch» means “on the table”. You’re answering «wo?» (where?), so this «auf» takes «dem», not «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Un amigo busca una llave. No la mueves: le dices dónde mirar. «liegt» expresa que está apoyada; «auf dem Tisch», «sobre la mesa». Respondes a «wo?» (¿dónde?), así que con este «auf» va «dem», no «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Temanmu mencari kunci. Kamu tidak memindahkannya, hanya menunjukkan letaknya. «liegt» berarti “terletak”, «auf dem Tisch» berarti “di atas meja”. Kamu menjawab «wo?» (di mana?), jadi di sini «auf» diikuti «dem», bukan «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Kolega szuka klucza. Nie przenosisz go, tylko mówisz, gdzie spojrzeć. «liegt» to „leży”, «auf dem Tisch» — „na stole”. Odpowiadasz na «wo?» (gdzie?), więc po «auf» w tym przykładzie jest «dem», a nie «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "Um amigo procura uma chave. Você não a move: diz onde procurar. «liegt» indica que ela está apoiada; «auf dem Tisch» significa “em cima da mesa”. A pergunta é «wo?» (onde?), por isso aqui vem «dem», não «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "Друг ищет ключ. Ты его не передвигаешь, а показываешь, куда посмотреть: он уже лежит на столе. «liegt» означает «лежит», «auf dem Tisch» — «на столе». Здесь вопрос «wo?» — «где?», поэтому после «auf» появляется «dem», а не «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Arkadaşın anahtarı arıyor. Anahtarı taşımıyorsun; nereye bakacağını söylüyorsun. «liegt» burada “duruyor”, «auf dem Tisch» “masanın üzerinde” demektir. Soru «wo?» (nerede?) olduğu için burada «auf» ile «den» değil «dem» gelir.\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "Друг шукає ключ. Ти його не пересуваєш, лише показуєш, де шукати: він уже лежить на столі. «liegt» — «лежить», «auf dem Tisch» — «на столі». Тут запитання «wo?» — «де?», тому після «auf» вживаємо «dem», а не «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Một người bạn đang tìm chìa khóa. Bạn không di chuyển nó, chỉ nói chỗ để tìm. «liegt» nghĩa là “nằm”, «auf dem Tisch» là “trên bàn”. Bạn trả lời «wo?» (ở đâu?), nên sau «auf» ở đây là «dem», không phải «den».\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:11:01"
+]
+},
+{
+"textEN": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nDer Pass liegt in der Tasche.\n\nThe passport is in the bag.\n\nBoth answer “where?”. The key is on a surface: «auf dem Tisch». The passport is inside: «in der Tasche». Choose on or in first, then the form for location.",
+"textES": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nDer Pass liegt in der Tasche.\n\nEl pasaporte está en la bolsa.\n\nAmbas responden «¿dónde?». Sobre la superficie: «auf dem Tisch»; dentro: «in der Tasche». Elige primero la relación y después la forma de lugar.",
+"textId": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nDer Pass liegt in der Tasche.\n\nPaspornya ada di dalam tas.\n\nKeduanya menjawab “di mana?”. Di atas permukaan: «auf dem Tisch»; di dalam: «in der Tasche». Pilih hubungan tempat, lalu bentuk lokasinya.",
+"textPl": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nDer Pass liegt in der Tasche.\n\nPaszport jest w torbie.\n\nOba zdania odpowiadają „gdzie?”. Na powierzchni: «auf dem Tisch»; w środku: «in der Tasche». Wybierz najpierw relację, potem formę miejsca.",
+"textPtBr": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nDer Pass liegt in der Tasche.\n\nO passaporte está na bolsa.\n\nAmbas respondem “onde?”. Sobre a superfície: «auf dem Tisch»; dentro: «in der Tasche». Escolha a relação e depois a forma de lugar.",
+"textRU": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nDer Pass liegt in der Tasche.\n\nПаспорт в сумке.\n\nОбе фразы отвечают «где?». Ключ на поверхности — «auf dem Tisch»; паспорт внутри — «in der Tasche». Выбери сначала отношение (на или в), потом форму для места.",
+"textTr": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nDer Pass liegt in der Tasche.\n\nPasaport çantanın içinde.\n\nİkisi de “nerede?”yi yanıtlar. Yüzeyde: «auf dem Tisch»; içinde: «in der Tasche». Önce ilişkiyi, sonra konum biçimini seç.",
+"textUK": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nDer Pass liegt in der Tasche.\n\nПаспорт у сумці.\n\nОбидві фрази відповідають «де?». Ключ на поверхні — «auf dem Tisch»; паспорт усередині — «in der Tasche». Обери відношення, потім форму місця.",
+"textVi": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nDer Pass liegt in der Tasche.\n\nHộ chiếu ở trong túi.\n\nCả hai trả lời “ở đâu?”. Trên bề mặt: «auf dem Tisch»; bên trong: «in der Tasche». Chọn “trên” hay “trong” trước rồi chọn dạng chỉ vị trí.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nDer Pass liegt in der Tasche.\n\nThe passport is in the bag.\n\nBoth answer “where?”. The key is on a surface: «auf dem Tisch». The passport is inside: «in der Tasche». Choose on or in first, then the form for location.",
+"es": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nDer Pass liegt in der Tasche.\n\nEl pasaporte está en la bolsa.\n\nAmbas responden «¿dónde?». Sobre la superficie: «auf dem Tisch»; dentro: «in der Tasche». Elige primero la relación y después la forma de lugar.",
+"id": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nDer Pass liegt in der Tasche.\n\nPaspornya ada di dalam tas.\n\nKeduanya menjawab “di mana?”. Di atas permukaan: «auf dem Tisch»; di dalam: «in der Tasche». Pilih hubungan tempat, lalu bentuk lokasinya.",
+"pl": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nDer Pass liegt in der Tasche.\n\nPaszport jest w torbie.\n\nOba zdania odpowiadają „gdzie?”. Na powierzchni: «auf dem Tisch»; w środku: «in der Tasche». Wybierz najpierw relację, potem formę miejsca.",
+"pt-BR": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nDer Pass liegt in der Tasche.\n\nO passaporte está na bolsa.\n\nAmbas respondem “onde?”. Sobre a superfície: «auf dem Tisch»; dentro: «in der Tasche». Escolha a relação e depois a forma de lugar.",
+"ru": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nDer Pass liegt in der Tasche.\n\nПаспорт в сумке.\n\nОбе фразы отвечают «где?». Ключ на поверхности — «auf dem Tisch»; паспорт внутри — «in der Tasche». Выбери сначала отношение (на или в), потом форму для места.",
+"tr": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nDer Pass liegt in der Tasche.\n\nPasaport çantanın içinde.\n\nİkisi de “nerede?”yi yanıtlar. Yüzeyde: «auf dem Tisch»; içinde: «in der Tasche». Önce ilişkiyi, sonra konum biçimini seç.",
+"uk": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nDer Pass liegt in der Tasche.\n\nПаспорт у сумці.\n\nОбидві фрази відповідають «де?». Ключ на поверхні — «auf dem Tisch»; паспорт усередині — «in der Tasche». Обери відношення, потім форму місця.",
+"vi": "«Wo?» → «auf dem Tisch» / «in der Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nDer Pass liegt in der Tasche.\n\nHộ chiếu ở trong túi.\n\nCả hai trả lời “ở đâu?”. Trên bề mặt: «auf dem Tisch»; bên trong: «in der Tasche». Chọn “trên” hay “trong” trước rồi chọn dạng chỉ vị trí."
+},
+"kind": "formula",
+"exampleIds": [
+"de:11:01",
+"de:11:03"
+]
+},
+{
+"textEN": "The key is on the table.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der Schlüssel» — The key: der is the article; Schlüssel is the thing.\n\n2. «liegt» — Is lying: the object is already there.\n\n3. «auf dem Tisch» — On the table: an existing location, hence dem here.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textES": "La llave está sobre la mesa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der Schlüssel» — La llave concreta: der es el artículo; Schlüssel, la llave.\n\n2. «liegt» — Está apoyado: el objeto ya está ahí.\n\n3. «auf dem Tisch» — Sobre la mesa: lugar actual, por eso aquí va dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textId": "Kuncinya ada di atas meja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der Schlüssel» — Kunci itu: der artikelnya, Schlüssel bendanya.\n\n2. «liegt» — Terletak: bendanya sudah di tempat itu.\n\n3. «auf dem Tisch» — Di atas meja: posisi sekarang, maka di sini dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textPl": "Klucz jest na stole.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der Schlüssel» — Ten klucz: der to rodzajnik, Schlüssel oznacza klucz.\n\n2. «liegt» — Leży: przedmiot już tam jest.\n\n3. «auf dem Tisch» — Na stole: istniejące położenie, dlatego tutaj dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textPtBr": "A chave está sobre a mesa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der Schlüssel» — A chave específica: der é o artigo; Schlüssel é a chave.\n\n2. «liegt» — Está apoiado: o objeto já está no lugar.\n\n3. «auf dem Tisch» — Na mesa: lugar atual, por isso aqui vem dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textRU": "Ключ лежит на столе.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der Schlüssel» — Тот самый ключ. der — артикль, Schlüssel — ключ.\n\n2. «liegt» — Лежит: предмет уже на месте.\n\n3. «auf dem Tisch» — На столе. Это ответ «где?», поэтому здесь dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textTr": "Anahtar masanın üzerinde.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der Schlüssel» — O anahtar: der artikel, Schlüssel anahtar.\n\n2. «liegt» — Duruyor: nesne zaten orada.\n\n3. «auf dem Tisch» — Masanın üzerinde: mevcut konum olduğu için burada dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textUK": "Ключ лежить на столі.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der Schlüssel» — Той самий ключ. der — артикль, Schlüssel — ключ.\n\n2. «liegt» — Лежить: предмет уже на місці.\n\n3. «auf dem Tisch» — На столі. Відповідає на «де?», тому тут dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"textVi": "Chìa khóa ở trên bàn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der Schlüssel» — Chiếc chìa khóa ấy: der là mạo từ, Schlüssel là chìa khóa.\n\n2. «liegt» — Nằm: vật đã ở vị trí đó.\n\n3. «auf dem Tisch» — Trên bàn: vị trí hiện tại, nên dùng dem ở đây.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "The key is on the table.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der Schlüssel» — The key: der is the article; Schlüssel is the thing.\n\n2. «liegt» — Is lying: the object is already there.\n\n3. «auf dem Tisch» — On the table: an existing location, hence dem here.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"es": "La llave está sobre la mesa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der Schlüssel» — La llave concreta: der es el artículo; Schlüssel, la llave.\n\n2. «liegt» — Está apoyado: el objeto ya está ahí.\n\n3. «auf dem Tisch» — Sobre la mesa: lugar actual, por eso aquí va dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"id": "Kuncinya ada di atas meja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der Schlüssel» — Kunci itu: der artikelnya, Schlüssel bendanya.\n\n2. «liegt» — Terletak: bendanya sudah di tempat itu.\n\n3. «auf dem Tisch» — Di atas meja: posisi sekarang, maka di sini dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"pl": "Klucz jest na stole.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der Schlüssel» — Ten klucz: der to rodzajnik, Schlüssel oznacza klucz.\n\n2. «liegt» — Leży: przedmiot już tam jest.\n\n3. «auf dem Tisch» — Na stole: istniejące położenie, dlatego tutaj dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"pt-BR": "A chave está sobre a mesa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der Schlüssel» — A chave específica: der é o artigo; Schlüssel é a chave.\n\n2. «liegt» — Está apoiado: o objeto já está no lugar.\n\n3. «auf dem Tisch» — Na mesa: lugar atual, por isso aqui vem dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der Schlüssel» — Тот самый ключ. der — артикль, Schlüssel — ключ.\n\n2. «liegt» — Лежит: предмет уже на месте.\n\n3. «auf dem Tisch» — На столе. Это ответ «где?», поэтому здесь dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"tr": "Anahtar masanın üzerinde.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der Schlüssel» — O anahtar: der artikel, Schlüssel anahtar.\n\n2. «liegt» — Duruyor: nesne zaten orada.\n\n3. «auf dem Tisch» — Masanın üzerinde: mevcut konum olduğu için burada dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"uk": "Ключ лежить на столі.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der Schlüssel» — Той самий ключ. der — артикль, Schlüssel — ключ.\n\n2. «liegt» — Лежить: предмет уже на місці.\n\n3. «auf dem Tisch» — На столі. Відповідає на «де?», тому тут dem.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch.",
+"vi": "Chìa khóa ở trên bàn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der Schlüssel» — Chiếc chìa khóa ấy: der là mạo từ, Schlüssel là chìa khóa.\n\n2. «liegt» — Nằm: vật đã ở vị trí đó.\n\n3. «auf dem Tisch» — Trên bàn: vị trí hiện tại, nên dùng dem ở đây.\n\nDer → Schlüssel → liegt → auf → dem → Tisch\n\nDer Schlüssel liegt auf dem Tisch."
+},
+"kind": "practice",
+"exampleIds": [
+"de:11:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі."
+},
+{
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі."
+},
+{
+"id": "de:11:03",
+"target": "Der Pass liegt in der Tasche.",
+"ru": "Паспорт в сумке.",
+"uk": "Паспорт у сумці."
+},
+{
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі."
+}
+]
+},
+{
+"lesson": 12,
+"blocks": [
+{
+"textEN": "The key is in your hand. You put it on the table. You’re describing a change of place, not a snapshot. «legen» is “put down”; «liegen» is “lie”. Destination: «auf den Tisch». Existing location: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nI put the key on the table.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Tienes la llave en la mano y la pones en la mesa. Describes un cambio de sitio. «legen» es «poner»; «liegen» describe dónde está apoyada. Destino: «auf den Tisch». Lugar donde ya está: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nDejé la llave sobre la mesa.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Kunci ada di tanganmu lalu kamu meletakkannya di meja. Tempatnya berubah. «legen» berarti “meletakkan”, «liegen» berarti “terletak”. Tujuan: «auf den Tisch». Posisi yang sudah ada: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nSaya meletakkan kunci di atas meja.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Klucz jest w twojej dłoni. Kładziesz go na stół. Opisujesz zmianę miejsca. «legen» znaczy „kłaść”, a «liegen» — „leżeć”. Dokąd kładziesz: «auf den Tisch». Gdzie leży: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nKładę klucz na stole.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "A chave está na sua mão e você a põe na mesa. É uma mudança de lugar. «legen» é “colocar”; «liegen» descreve onde algo já está apoiado. Destino: «auf den Tisch». Localização: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nColoquei a chave sobre a mesa.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "Ключ у тебя в руке. Ты кладёшь его на стол. Это уже не фотография места, а изменение: в конце ключ окажется на столе. «legen» — «класть», «liegen» — «лежать». Сравни, куда кладёшь: «auf den Tisch»; где лежит: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стол.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Anahtar elinde; onu masaya koyuyorsun. Bu bir konum değişikliği. «legen» “koymak”, «liegen» “bir yerde durmak” anlamındadır. Hedef: «auf den Tisch». Zaten bulunduğu yer: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nAnahtarı masaya koydum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "Ключ у тебе в руці. Ти кладеш його на стіл. Це не опис місця, а зміна: наприкінці ключ опиниться на столі. «legen» — «класти», «liegen» — «лежати». Куди кладеш: «auf den Tisch»; де лежить: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стіл.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Chìa khóa đang ở trong tay, bạn đặt nó lên bàn. Đó là sự đổi chỗ. «legen» là đặt xuống; «liegen» là nằm ở đâu đó. Đích đến: «auf den Tisch». Vị trí hiện tại: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nTôi đặt chìa khóa lên bàn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "The key is in your hand. You put it on the table. You’re describing a change of place, not a snapshot. «legen» is “put down”; «liegen» is “lie”. Destination: «auf den Tisch». Existing location: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nI put the key on the table.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Tienes la llave en la mano y la pones en la mesa. Describes un cambio de sitio. «legen» es «poner»; «liegen» describe dónde está apoyada. Destino: «auf den Tisch». Lugar donde ya está: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nDejé la llave sobre la mesa.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Kunci ada di tanganmu lalu kamu meletakkannya di meja. Tempatnya berubah. «legen» berarti “meletakkan”, «liegen» berarti “terletak”. Tujuan: «auf den Tisch». Posisi yang sudah ada: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nSaya meletakkan kunci di atas meja.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Klucz jest w twojej dłoni. Kładziesz go na stół. Opisujesz zmianę miejsca. «legen» znaczy „kłaść”, a «liegen» — „leżeć”. Dokąd kładziesz: «auf den Tisch». Gdzie leży: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nKładę klucz na stole.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "A chave está na sua mão e você a põe na mesa. É uma mudança de lugar. «legen» é “colocar”; «liegen» descreve onde algo já está apoiado. Destino: «auf den Tisch». Localização: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nColoquei a chave sobre a mesa.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "Ключ у тебя в руке. Ты кладёшь его на стол. Это уже не фотография места, а изменение: в конце ключ окажется на столе. «legen» — «класть», «liegen» — «лежать». Сравни, куда кладёшь: «auf den Tisch»; где лежит: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стол.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Anahtar elinde; onu masaya koyuyorsun. Bu bir konum değişikliği. «legen» “koymak”, «liegen» “bir yerde durmak” anlamındadır. Hedef: «auf den Tisch». Zaten bulunduğu yer: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nAnahtarı masaya koydum.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "Ключ у тебе в руці. Ти кладеш його на стіл. Це не опис місця, а зміна: наприкінці ключ опиниться на столі. «legen» — «класти», «liegen» — «лежати». Куди кладеш: «auf den Tisch»; де лежить: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стіл.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Chìa khóa đang ở trong tay, bạn đặt nó lên bàn. Đó là sự đổi chỗ. «legen» là đặt xuống; «liegen» là nằm ở đâu đó. Đích đến: «auf den Tisch». Vị trí hiện tại: «auf dem Tisch».\n\nIch lege den Schlüssel auf den Tisch.\n\nTôi đặt chìa khóa lên bàn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:12:01"
+]
+},
+{
+"textEN": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nIch lege den Schlüssel auf den Tisch.\n\nI put the key on the table.\n\nSame key, same table. First it is already there («liegt … auf dem Tisch»). Then you put it there («lege … auf den Tisch»). The test isn’t “is there movement?” but “is this a destination?”.",
+"textES": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nIch lege den Schlüssel auf den Tisch.\n\nDejé la llave sobre la mesa.\n\nMisma llave y mesa. Primero ya está allí («liegt … auf dem Tisch»); luego la pones allí («lege … auf den Tisch»). La clave es si indicas un destino, no simplemente si hay movimiento.",
+"textId": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nIch lege den Schlüssel auf den Tisch.\n\nSaya meletakkan kunci di atas meja.\n\nKunci dan mejanya sama. Mula-mula benda sudah di sana («liegt … auf dem Tisch»); kemudian kamu menaruhnya ke sana («lege … auf den Tisch»). Yang menentukan adalah tujuan, bukan sekadar gerakan.",
+"textPl": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nIch lege den Schlüssel auf den Tisch.\n\nKładę klucz na stole.\n\nTen sam klucz i stół. Najpierw już tam leży («liegt … auf dem Tisch»); potem kładziesz go tam («lege … auf den Tisch»). Liczy się cel przemieszczenia, nie sam ruch.",
+"textPtBr": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nIch lege den Schlüssel auf den Tisch.\n\nColoquei a chave sobre a mesa.\n\nMesma chave e mesa. Primeiro ela já está lá («liegt … auf dem Tisch»); depois você a põe lá («lege … auf den Tisch»). O importante é haver um destino, não apenas movimento.",
+"textRU": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стол.\n\nКлюч и стол те же. В первой фразе он уже там («liegt … auf dem Tisch»). Во второй ты его туда кладёшь («lege … auf den Tisch»). Решает не наличие движения вообще, а то, описано ли новое место назначения.",
+"textTr": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nIch lege den Schlüssel auf den Tisch.\n\nAnahtarı masaya koydum.\n\nAnahtar ve masa aynı. Önce orada durur («liegt … auf dem Tisch»), sonra onu oraya koyarsın («lege … auf den Tisch»). Ölçüt salt hareket değil, bir hedef olup olmadığıdır.",
+"textUK": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стіл.\n\nКлюч і стіл ті самі. У першій він уже там («liegt … auf dem Tisch»), у другій ти його туди кладеш («lege … auf den Tisch»). Важливий не просто рух, а нове місце призначення.",
+"textVi": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nIch lege den Schlüssel auf den Tisch.\n\nTôi đặt chìa khóa lên bàn.\n\nVẫn chìa khóa và cái bàn ấy. Đầu tiên vật đã ở đó («liegt … auf dem Tisch»); sau bạn đặt nó tới đó («lege … auf den Tisch»). Điểm mấu chốt là đích đến, không phải cứ có chuyển động.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nThe key is on the table.\n\nIch lege den Schlüssel auf den Tisch.\n\nI put the key on the table.\n\nSame key, same table. First it is already there («liegt … auf dem Tisch»). Then you put it there («lege … auf den Tisch»). The test isn’t “is there movement?” but “is this a destination?”.",
+"es": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nLa llave está sobre la mesa.\n\nIch lege den Schlüssel auf den Tisch.\n\nDejé la llave sobre la mesa.\n\nMisma llave y mesa. Primero ya está allí («liegt … auf dem Tisch»); luego la pones allí («lege … auf den Tisch»). La clave es si indicas un destino, no simplemente si hay movimiento.",
+"id": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKuncinya ada di atas meja.\n\nIch lege den Schlüssel auf den Tisch.\n\nSaya meletakkan kunci di atas meja.\n\nKunci dan mejanya sama. Mula-mula benda sudah di sana («liegt … auf dem Tisch»); kemudian kamu menaruhnya ke sana («lege … auf den Tisch»). Yang menentukan adalah tujuan, bukan sekadar gerakan.",
+"pl": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nKlucz jest na stole.\n\nIch lege den Schlüssel auf den Tisch.\n\nKładę klucz na stole.\n\nTen sam klucz i stół. Najpierw już tam leży («liegt … auf dem Tisch»); potem kładziesz go tam («lege … auf den Tisch»). Liczy się cel przemieszczenia, nie sam ruch.",
+"pt-BR": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nA chave está sobre a mesa.\n\nIch lege den Schlüssel auf den Tisch.\n\nColoquei a chave sobre a mesa.\n\nMesma chave e mesa. Primeiro ela já está lá («liegt … auf dem Tisch»); depois você a põe lá («lege … auf den Tisch»). O importante é haver um destino, não apenas movimento.",
+"ru": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежит на столе.\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стол.\n\nКлюч и стол те же. В первой фразе он уже там («liegt … auf dem Tisch»). Во второй ты его туда кладёшь («lege … auf den Tisch»). Решает не наличие движения вообще, а то, описано ли новое место назначения.",
+"tr": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nAnahtar masanın üzerinde.\n\nIch lege den Schlüssel auf den Tisch.\n\nAnahtarı masaya koydum.\n\nAnahtar ve masa aynı. Önce orada durur («liegt … auf dem Tisch»), sonra onu oraya koyarsın («lege … auf den Tisch»). Ölçüt salt hareket değil, bir hedef olup olmadığıdır.",
+"uk": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nКлюч лежить на столі.\n\nIch lege den Schlüssel auf den Tisch.\n\nЯ кладу ключ на стіл.\n\nКлюч і стіл ті самі. У першій він уже там («liegt … auf dem Tisch»), у другій ти його туди кладеш («lege … auf den Tisch»). Важливий не просто рух, а нове місце призначення.",
+"vi": "«Wohin?» → «auf den Tisch» / «in die Tasche»\n\nDer Schlüssel liegt auf dem Tisch.\n\nChìa khóa ở trên bàn.\n\nIch lege den Schlüssel auf den Tisch.\n\nTôi đặt chìa khóa lên bàn.\n\nVẫn chìa khóa và cái bàn ấy. Đầu tiên vật đã ở đó («liegt … auf dem Tisch»); sau bạn đặt nó tới đó («lege … auf den Tisch»). Điểm mấu chốt là đích đến, không phải cứ có chuyển động."
+},
+"kind": "formula",
+"exampleIds": [
+"de:11:01",
+"de:12:01"
+]
+},
+{
+"textEN": "I put the key on the table.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «lege» — Put down: a change of position, not “lie”.\n\n3. «den Schlüssel» — The key: what am I putting down? Masculine der becomes den in this role.\n\n4. «auf den Tisch» — Onto the table: the destination, not the key’s existing location.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textES": "Dejé la llave sobre la mesa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «lege» — Pongo: un cambio de posición, no «estoy tumbado».\n\n3. «den Schlüssel» — La llave: ¿qué pongo? El alemán der cambia a den en esta función.\n\n4. «auf den Tisch» — A la mesa, dejándola encima: es el destino, no su posición actual.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textId": "Saya meletakkan kunci di atas meja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «lege» — Meletakkan: mengubah letak, bukan “terletak”.\n\n3. «den Schlüssel» — Kunci itu: apa yang diletakkan? der pada kata maskulin menjadi den di sini.\n\n4. «auf den Tisch» — Ke atas meja: tujuan, bukan letak kunci sebelumnya.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textPl": "Kładę klucz na stole.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «lege» — Kładę: zmieniam położenie czegoś, nie „leżę”.\n\n3. «den Schlüssel» — Klucz: co kładę? Przy męskim słowie der zmienia się tu na den.\n\n4. «auf den Tisch» — Na stół: dokąd, nie gdzie klucz już leży.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textPtBr": "Coloquei a chave sobre a mesa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «lege» — Coloco: mudança de posição, não “estou deitado”.\n\n3. «den Schlüssel» — A chave: o que coloco? O alemão der vira den nesta função.\n\n4. «auf den Tisch» — Em cima da mesa: é o destino, não a posição inicial da chave.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textRU": "Я кладу ключ на стол.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «lege» — Кладу. Это изменение положения, а не «лежу».\n\n3. «den Schlüssel» — Ключ: что кладу? У названия мужского рода der здесь меняется на den.\n\n4. «auf den Tisch» — На стол: это конечное место, не описание того, где ключ уже лежит.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textTr": "Anahtarı masaya koydum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «lege» — Koyuyorum: konumu değiştiriyorum, yatmıyorum.\n\n3. «den Schlüssel» — Anahtarı: neyi koyuyorum? Eril der bu görevde den olur.\n\n4. «auf den Tisch» — Masanın üzerine: mevcut yer değil, hedef.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textUK": "Я кладу ключ на стіл.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «lege» — Кладу. Це зміна положення, не «лежу».\n\n3. «den Schlüssel» — Ключ: що кладу? Перед чоловічим іменником der тут змінюється на den.\n\n4. «auf den Tisch» — На стіл: це кінцеве місце, не опис того, де ключ уже лежить.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"textVi": "Tôi đặt chìa khóa lên bàn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «lege» — Đặt xuống: thay đổi vị trí, không phải nằm yên.\n\n3. «den Schlüssel» — Chiếc chìa khóa: đặt cái gì? der của danh từ giống đực thành den ở đây.\n\n4. «auf den Tisch» — Lên bàn: đích đến, không phải vị trí vốn có của chìa khóa.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I put the key on the table.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «lege» — Put down: a change of position, not “lie”.\n\n3. «den Schlüssel» — The key: what am I putting down? Masculine der becomes den in this role.\n\n4. «auf den Tisch» — Onto the table: the destination, not the key’s existing location.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"es": "Dejé la llave sobre la mesa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «lege» — Pongo: un cambio de posición, no «estoy tumbado».\n\n3. «den Schlüssel» — La llave: ¿qué pongo? El alemán der cambia a den en esta función.\n\n4. «auf den Tisch» — A la mesa, dejándola encima: es el destino, no su posición actual.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"id": "Saya meletakkan kunci di atas meja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «lege» — Meletakkan: mengubah letak, bukan “terletak”.\n\n3. «den Schlüssel» — Kunci itu: apa yang diletakkan? der pada kata maskulin menjadi den di sini.\n\n4. «auf den Tisch» — Ke atas meja: tujuan, bukan letak kunci sebelumnya.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"pl": "Kładę klucz na stole.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «lege» — Kładę: zmieniam położenie czegoś, nie „leżę”.\n\n3. «den Schlüssel» — Klucz: co kładę? Przy męskim słowie der zmienia się tu na den.\n\n4. «auf den Tisch» — Na stół: dokąd, nie gdzie klucz już leży.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"pt-BR": "Coloquei a chave sobre a mesa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «lege» — Coloco: mudança de posição, não “estou deitado”.\n\n3. «den Schlüssel» — A chave: o que coloco? O alemão der vira den nesta função.\n\n4. «auf den Tisch» — Em cima da mesa: é o destino, não a posição inicial da chave.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «lege» — Кладу. Это изменение положения, а не «лежу».\n\n3. «den Schlüssel» — Ключ: что кладу? У названия мужского рода der здесь меняется на den.\n\n4. «auf den Tisch» — На стол: это конечное место, не описание того, где ключ уже лежит.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"tr": "Anahtarı masaya koydum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «lege» — Koyuyorum: konumu değiştiriyorum, yatmıyorum.\n\n3. «den Schlüssel» — Anahtarı: neyi koyuyorum? Eril der bu görevde den olur.\n\n4. «auf den Tisch» — Masanın üzerine: mevcut yer değil, hedef.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"uk": "Я кладу ключ на стіл.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «lege» — Кладу. Це зміна положення, не «лежу».\n\n3. «den Schlüssel» — Ключ: що кладу? Перед чоловічим іменником der тут змінюється на den.\n\n4. «auf den Tisch» — На стіл: це кінцеве місце, не опис того, де ключ уже лежить.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch.",
+"vi": "Tôi đặt chìa khóa lên bàn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «lege» — Đặt xuống: thay đổi vị trí, không phải nằm yên.\n\n3. «den Schlüssel» — Chiếc chìa khóa: đặt cái gì? der của danh từ giống đực thành den ở đây.\n\n4. «auf den Tisch» — Lên bàn: đích đến, không phải vị trí vốn có của chìa khóa.\n\nIch → lege → den → Schlüssel → auf → den → Tisch\n\nIch lege den Schlüssel auf den Tisch."
+},
+"kind": "practice",
+"exampleIds": [
+"de:12:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:12:01",
+"target": "Ich lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.",
+"uk": "Я кладу ключ на стіл."
+},
+{
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі."
+},
+{
+"id": "de:12:01",
+"target": "Ich lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.",
+"uk": "Я кладу ключ на стіл."
+},
+{
+"id": "de:12:01",
+"target": "Ich lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.",
+"uk": "Я кладу ключ на стіл."
+}
+]
+}
+]

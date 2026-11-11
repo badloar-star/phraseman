@@ -1,0 +1,1043 @@
+[
+{
+"lesson": 1,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:01:01",
+"it:01:02"
+],
+"textByLocale": {
+"en": "What connects the parts of a sentence? `Essere` connects a person with a place or description. A location question requires an Italian connective rather than a mechanical replacement of each original word. In a quick answer, you can simply say `Qui`, but here we're learning to construct a complete sentence.",
+"ru": "Что связывает части предложения? `Essere` соединяет человека с местом или описанием. Для вопроса о местонахождении нужна не механическая замена каждого исходного слова, а итальянская связка. В быстром ответе можно сказать просто `Qui`, но здесь мы учимся строить целую фразу.",
+"uk": "Що пов'язує частини речення? `Essere` поєднує людину з місцем або описом. Для питання місцезнаходження потрібна не механічна заміна кожного вихідного слова, а італійська зв'язка. У швидкій відповіді можна сказати просто `Qui`, але тут ми вчимося будувати цілу фразу."
+}
+},
+{
+"exampleIds": [
+"it:01:01",
+"it:01:02",
+"it:01:07"
+],
+"textByLocale": {
+"en": "The verb form identifies a person: `io sono`, `tu sei`, `noi siamo`. Compare the short and long versions: `Sono qui` and `Io sono qui`. Both refer to the speaker. A separate pronoun is especially useful when comparing \"I'm here and you're there.\"",
+"ru": "Форма глагола показывает человека: `io sono`, `tu sei`, `noi siamo`. Сравни короткую и полную версии: `Sono qui` и `Io sono qui`. Обе сообщают о говорящем. Отдельное местоимение особенно полезно при сравнении «я здесь, а ты там».",
+"uk": "Форма дієслова показує людину: `io sono`, `tu sei`, `noi siamo`. Порівняй коротку та повну версії: `Sono qui` та `Io sono qui`. Обидві повідомляють про те, що говорить. Окремий займенник особливо корисний у порівнянні «я тут, а ти там»."
+}
+},
+{
+"exampleIds": [
+"it:01:05",
+"it:01:06",
+"it:01:18"
+],
+"textByLocale": {
+"en": "One person is referred to as `è`. The stress is above the letter: `è` is the form \"to be,\" and `e` without stress means \"and.\" The name already answers the question \"who?\", so there's no need to repeat the pronoun after the name.",
+"ru": "Об одном человеке говорят `è`. Над буквой стоит ударение: `è` — форма «быть», а `e` без ударения означает «и». Имя уже отвечает на вопрос «кто?», поэтому повторять после имени местоимение не нужно.",
+"uk": "Про одну людину говорять `è`. Над літерою стоїть наголос: `è` — форма «бути», а `e` без наголосу означає «і». Ім'я вже відповідає питанням «хто?», тому повторювати після імені займенник зайве."
+}
+},
+{
+"exampleIds": [
+"it:01:11",
+"it:01:14",
+"it:01:19"
+],
+"textByLocale": {
+"en": "`Qui` is a ready-made location. Remember \"at home,\" \"at the station,\" and \"at the office\" as small groups: `a casa`, `in stazione`, `in ufficio`. Don't add `a` before `qui`, as in the phrase about home.",
+"ru": "`Qui` — готовое указание места. А «дома», «на вокзале» и «в офисе» запоминай как небольшие группы: `a casa`, `in stazione`, `in ufficio`. Не добавляй `a` перед `qui` по образцу фразы про дом.",
+"uk": "`Qui` - готова вказівка ​​місця. А «вдома», «на вокзалі» та «в офісі» запам'ятай як невеликі групи: `a casa`, `in stazione`, `in ufficio`. Не додай `a` перед `qui` на зразок фрази про будинок."
+}
+},
+{
+"exampleIds": [
+"it:01:21",
+"it:01:23",
+"it:01:26"
+],
+"textByLocale": {
+"en": "State is added to the same link. Form `pronto` refers to a man, `pronta` to a woman, `pronti` to several men or a mixed group. This changes the ending of the description, not the location itself.",
+"ru": "Состояние присоединяется к той же связке. Форма `pronto` относится к мужчине, `pronta` — к женщине, `pronti` — к нескольким мужчинам или смешанной группе. Это меняет окончание описания, а не само место.",
+"uk": "Стан приєднується до тієї ж зв'язки. Форма `pronto` відноситься до чоловіка, `pronta` - до жінки, `pronti` - до кількох чоловіків або змішаної групи. Це змінює закінчення опису, а чи не саме місце."
+}
+},
+{
+"exampleIds": [
+"it:01:31",
+"it:01:38",
+"it:01:45"
+],
+"textByLocale": {
+"en": "One door — `la porta è`; several doors — `le porte sono`. Choose the form based on what you're describing, not on the final noun in the translation. `Sono` can mean both \"I\" and \"they\": the difference is clear from the subject and context.",
+"ru": "Дверь одна — `la porta è`; дверей несколько — `le porte sono`. Выбирай форму по тому, о чём сообщаешь, а не по последнему существительному в переводе. `Sono` может значить и «я», и «они»: различие видно из подлежащего и контекста.",
+"uk": "Двері одна - `la porta è`; дверей кілька - `le porte sono`. Вибирай форму по тому, про що повідомляєш, а не по останньому іменнику в перекладі. `Sono` може означати і «я», і «вони»: відмінність видно з того, що підлягає і контексту."
+}
+},
+{
+"exampleIds": [
+"it:01:42",
+"it:01:46",
+"it:01:50"
+],
+"textByLocale": {
+"en": "Check the shift to another object: first one thing, then two, same location. The subject and verb should be the ones that change. If you also change `qui` to `lì`, the message will be about a different location.",
+"ru": "Проверь перенос на другой предмет: сначала одна вещь, потом две, место то же. Под рукой должны меняться именно подлежащее и глагол. Если изменить ещё и `qui` на `lì`, сообщение уже будет про другое место.",
+"uk": "Перевір на інший предмет: спочатку одна річ, потім дві, місце те саме. Під рукою повинні змінюватися саме те, що підлягає і дієслово. Якщо змінити ще `qui` на `lì`, повідомлення вже буде про інше місце."
+}
+}
+],
+"drills": [
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:01:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"È",
+"Sono",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:01:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"È",
+"Sono",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 1,
+"id": "it:01:05:lab",
+"item": 5,
+"kind": "match",
+"near": 41,
+"options": [
+"è",
+"siamo",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 2,
+"id": "it:01:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Sono",
+"È",
+"Siete"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 2,
+"id": "it:01:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 2,
+"id": "it:01:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Sono",
+"È",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 3,
+"id": "it:01:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 15,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 3,
+"id": "it:01:17:lab",
+"item": 17,
+"kind": "match",
+"near": 20,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 3,
+"id": "it:01:19:lab",
+"item": 19,
+"kind": "build",
+"near": 42,
+"options": [
+"Siete",
+"Sono",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 4,
+"id": "it:01:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Sono",
+"È",
+"Sei"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:01:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 6,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 4,
+"id": "it:01:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 27,
+"options": [
+"Sia",
+"È",
+"Siamo"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 5,
+"id": "it:01:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Sei",
+"Sono",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:01:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:01:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"siete",
+"sono",
+"è"
+],
+"slot": 3
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:01:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 6,
+"id": "it:01:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 49,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "È",
+"chapter": 6,
+"id": "it:01:42:lab",
+"item": 42,
+"kind": "match",
+"near": 19,
+"options": [
+"Sei",
+"È",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 7,
+"id": "it:01:45:lab",
+"item": 45,
+"kind": "build",
+"near": 5,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "È",
+"chapter": 7,
+"id": "it:01:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 16,
+"options": [
+"È",
+"Siete",
+"Sono"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"io",
+"sono qui"
+],
+[
+"tu",
+"sei qui"
+],
+[
+"lui / lei / Lei",
+"è qui"
+],
+[
+"noi",
+"siamo qui"
+],
+[
+"voi",
+"siete qui"
+],
+[
+"loro",
+"sono qui"
+]
+],
+"title": {
+"en": "I'm here: `essere`",
+"ru": "Я здесь: `essere`",
+"uk": "Я тут: `essere`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:01:01",
+"target": "Sono qui.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "it:01:02",
+"target": "Sei qui.",
+"ru": "Ты здесь.",
+"uk": "Ти тут."
+},
+{
+"id": "it:01:07",
+"target": "Siamo qui.",
+"ru": "Мы здесь.",
+"uk": "Ми тут."
+},
+{
+"id": "it:01:05",
+"target": "Lea è qui.",
+"ru": "Леа здесь.",
+"uk": "Леа тут."
+},
+{
+"id": "it:01:06",
+"target": "Paolo è lì.",
+"ru": "Паоло там.",
+"uk": "Паоло там."
+},
+{
+"id": "it:01:18",
+"target": "Lei è in ufficio.",
+"ru": "Она в офисе.",
+"uk": "Вона в офісі."
+},
+{
+"id": "it:01:11",
+"target": "Sono a casa.",
+"ru": "Я дома.",
+"uk": "Я вдома."
+},
+{
+"id": "it:01:14",
+"target": "Lea è alla stazione.",
+"ru": "Леа на вокзале.",
+"uk": "Леа на вокзалі."
+},
+{
+"id": "it:01:19",
+"target": "Sono in ufficio.",
+"ru": "Я в офисе.",
+"uk": "Я в офісі."
+},
+{
+"id": "it:01:21",
+"target": "Sono pronto.",
+"ru": "Я готов.",
+"uk": "Я готовий."
+},
+{
+"id": "it:01:23",
+"target": "Lei è pronta.",
+"ru": "Она готова.",
+"uk": "Вона готова."
+},
+{
+"id": "it:01:26",
+"target": "Siamo pronti.",
+"ru": "Мы готовы.",
+"uk": "Ми готові."
+},
+{
+"id": "it:01:31",
+"target": "La porta è aperta.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені."
+},
+{
+"id": "it:01:38",
+"target": "Le porte sono aperte.",
+"ru": "Двери открыты.",
+"uk": "Двері відчинені."
+},
+{
+"id": "it:01:45",
+"target": "La chiave è qui.",
+"ru": "Ключ здесь.",
+"uk": "Ключ тут."
+},
+{
+"id": "it:01:42",
+"target": "Sono ancora in ufficio.",
+"ru": "Я всё ещё в офисе.",
+"uk": "Я все ще в офісі."
+},
+{
+"id": "it:01:46",
+"target": "Le chiavi sono lì.",
+"ru": "Ключи там.",
+"uk": "Ключі там."
+},
+{
+"id": "it:01:50",
+"target": "Sono vicino alla porta.",
+"ru": "Я возле двери.",
+"uk": "Я біля дверей."
+}
+]
+},
+{
+"lesson": 2,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:02:01",
+"it:02:02",
+"it:02:05"
+],
+"textByLocale": {
+"en": "Here, the entire statement about a place or state is negated. Keep the familiar conjugation of `essere` and place `non` before the personal form. It's one word, not two parts surrounding the verb.",
+"ru": "Здесь отрицается целое сообщение о месте или состоянии. Оставь уже знакомое спряжение `essere` и поставь `non` перед личной формой. Это одно слово, а не две части, окружающие глагол.",
+"uk": "Тут заперечується ціле повідомлення про місце або стан. Залиш вже знайоме відмінювання `essere` і постав `non` перед особистою формою. Це одне слово, а не дві частини, що оточують дієслово."
+}
+},
+{
+"exampleIds": [
+"it:02:11",
+"it:02:12",
+"it:02:13"
+],
+"textByLocale": {
+"en": "`Non sono pronto` speaks about itself, `Non siamo pronti` about the group with the speaker. The form and agreement change. `non` itself remains the same in all persons.",
+"ru": "`Non sono pronto` говорит о себе, `Non siamo pronti` — о группе с говорящим. Меняются форма и согласование. Само `non` остаётся одинаковым во всех лицах.",
+"uk": "`Non sono pronto` говорить про себе, `Non siamo pronti` - про групу з розмовляючим. Змінюються форма та узгодження. Саме `non` залишається однаковим у всіх особах."
+}
+},
+{
+"exampleIds": [
+"it:02:21",
+"it:02:22",
+"it:02:24"
+],
+"textByLocale": {
+"en": "The subject and article can come first. In the combination `La porta non è aperta`, the negation is between the subject and the verb. Do not break group `la porta` and do not place `non` immediately after the article.",
+"ru": "В начале может стоять предмет с артиклем. В сочетании `La porta non è aperta` отрицание находится между подлежащим и глаголом. Не разрывай группу `la porta` и не помещай `non` сразу после артикля.",
+"uk": "На початку може стояти предмет із артиклем. У поєднанні `La porta non è aperta` заперечення знаходиться між підлягаючим і дієсловом. Не розривай групу `la porta` та не поміщай `non` відразу після артикля."
+}
+},
+{
+"exampleIds": [
+"it:02:27",
+"it:02:28",
+"it:02:33"
+],
+"textByLocale": {
+"en": "When answering about location, don't lose the specific location. \"They're not here\" and \"they're not there\" differ in the last part: `qui` and `lì`. Without this word, the answer may be clear in context, but it doesn't clearly convey the desired contrast.",
+"ru": "В ответе о местонахождении не теряй конкретное место. «Их здесь нет» и «их там нет» различаются последней частью: `qui` и `lì`. Без такого слова ответ в контексте может быть понятен, но не передаёт нужный контраст явно.",
+"uk": "Відповідь про місцезнаходження не втрачає конкретного місця. \"Їх тут немає\" і \"їх там немає\" відрізняються останньою частиною: `qui` і `lì`. Без такого слова відповідь у контексті може бути зрозуміла, але не передає потрібний контраст явно."
+}
+},
+{
+"exampleIds": [
+"it:02:19",
+"it:02:40",
+"it:02:43"
+],
+"textByLocale": {
+"en": "Set expressions retain the preposition: `in ritardo` means \"late.\" The negation refers to the train being late, rather than negating the preposition within the expression.",
+"ru": "Устойчивые выражения сохраняют предлог: `in ritardo` означает «с опозданием». Отрицание относится к тому, что поезд опаздывает, а не отменяет предлог внутри выражения.",
+"uk": "Стійкі вирази зберігають прийменник: `in ritardo` означає «із запізненням». Заперечення відноситься до того, що потяг спізнюється, а не скасовує привід усередині виразу."
+}
+},
+{
+"exampleIds": [
+"it:02:41",
+"it:02:42",
+"it:02:49"
+],
+"textByLocale": {
+"en": "`Non … ancora` conveys \"not yet.\" For example, `Non sono ancora a casa` leaves open the possibility that I'll arrive later. Without `ancora`, you're simply communicating where you're not currently.",
+"ru": "`Non … ancora` передаёт «ещё не». Например, `Non sono ancora a casa` оставляет возможность, что позже я приду. Без `ancora` ты просто сообщаешь, где тебя сейчас нет.",
+"uk": "`Non … ancora` передає \"ще не\". Наприклад, `Non sono ancora a casa` залишає можливість, що пізніше я прийду. Без `ancora` ти просто повідомляєш, де тебе зараз нема."
+}
+},
+{
+"exampleIds": [
+"it:02:45",
+"it:02:47",
+"it:02:50"
+],
+"textByLocale": {
+"en": "First, find what you're correcting: distance, state, or location. There is no need to change “far” to “close”: “not far” and “two steps away” are not the same statement.",
+"ru": "Сначала найди, что ты исправляешь: расстояние, состояние, место. Не обязан менять «далеко» на «близко»: «не далеко» и «в двух шагах» — не одно и то же утверждение.",
+"uk": "Спочатку знайди, що ти виправляєш: відстань, стан, місце. Не повинен міняти «далеко» на «близько»: «недалеко» і «в двох кроках» — не одне твердження."
+}
+}
+],
+"drills": [
+{
+"bad": "Già",
+"chapter": 1,
+"id": "it:02:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Già",
+"Non",
+"Più"
+],
+"slot": 0
+},
+{
+"bad": "Più",
+"chapter": 1,
+"id": "it:02:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Già",
+"Non",
+"Più"
+],
+"slot": 0
+},
+{
+"bad": "già",
+"chapter": 1,
+"id": "it:02:05:lab",
+"item": 5,
+"kind": "match",
+"near": 18,
+"options": [
+"più",
+"già",
+"non"
+],
+"slot": 1
+},
+{
+"bad": "Più",
+"chapter": 2,
+"id": "it:02:08:lab",
+"item": 8,
+"kind": "build",
+"near": 41,
+"options": [
+"Più",
+"Già",
+"Non"
+],
+"slot": 0
+},
+{
+"bad": "più",
+"chapter": 2,
+"id": "it:02:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"già",
+"più",
+"non"
+],
+"slot": 1
+},
+{
+"bad": "più",
+"chapter": 2,
+"id": "it:02:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 4,
+"options": [
+"più",
+"non",
+"già"
+],
+"slot": 1
+},
+{
+"bad": "Più",
+"chapter": 3,
+"id": "it:02:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 3,
+"options": [
+"Più",
+"Già",
+"Non"
+],
+"slot": 0
+},
+{
+"bad": "Ancora",
+"chapter": 3,
+"id": "it:02:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"Più",
+"Non",
+"Ancora"
+],
+"slot": 0
+},
+{
+"bad": "Già",
+"chapter": 3,
+"id": "it:02:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Già",
+"Non",
+"Più"
+],
+"slot": 0
+},
+{
+"bad": "più",
+"chapter": 4,
+"id": "it:02:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 26,
+"options": [
+"già",
+"più",
+"non"
+],
+"slot": 2
+},
+{
+"bad": "già",
+"chapter": 4,
+"id": "it:02:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"già",
+"più",
+"non"
+],
+"slot": 2
+},
+{
+"bad": "più",
+"chapter": 4,
+"id": "it:02:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 47,
+"options": [
+"più",
+"non",
+"già"
+],
+"slot": 2
+},
+{
+"bad": "già",
+"chapter": 5,
+"id": "it:02:29:lab",
+"item": 29,
+"kind": "match",
+"near": 30,
+"options": [
+"più",
+"non",
+"già"
+],
+"slot": 2
+},
+{
+"bad": "più",
+"chapter": 5,
+"id": "it:02:31:lab",
+"item": 31,
+"kind": "build",
+"near": 49,
+"options": [
+"più",
+"già",
+"non"
+],
+"slot": 1
+},
+{
+"bad": "più",
+"chapter": 5,
+"id": "it:02:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 23,
+"options": [
+"già",
+"non",
+"più"
+],
+"slot": 2
+},
+{
+"bad": "più",
+"chapter": 6,
+"id": "it:02:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"più",
+"non",
+"ancora"
+],
+"slot": 3
+},
+{
+"bad": "più",
+"chapter": 6,
+"id": "it:02:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 23,
+"options": [
+"più",
+"non",
+"già"
+],
+"slot": 2
+},
+{
+"bad": "Più",
+"chapter": 6,
+"id": "it:02:42:lab",
+"item": 42,
+"kind": "match",
+"near": 6,
+"options": [
+"Già",
+"Non",
+"Più"
+],
+"slot": 0
+},
+{
+"bad": "già",
+"chapter": 7,
+"id": "it:02:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"non",
+"già",
+"più"
+],
+"slot": 3
+},
+{
+"bad": "Più",
+"chapter": 7,
+"id": "it:02:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 2,
+"options": [
+"Non",
+"Già",
+"Più"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"sono qui",
+"non sono qui"
+],
+[
+"sei pronto",
+"non sei pronto"
+],
+[
+"Lea è sola",
+"Lea non è sola"
+],
+[
+"siamo lontani",
+"non siamo lontani"
+],
+[
+"i negozi sono aperti",
+"i negozi non sono aperti"
+]
+],
+"title": {
+"en": "Negation: one word `non`",
+"ru": "Отрицание: одно слово `non`",
+"uk": "Заперечення: одне слово `non`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:02:01",
+"target": "Non sono qui.",
+"ru": "Меня здесь нет.",
+"uk": "Мене тут немає."
+},
+{
+"id": "it:02:02",
+"target": "Non sei qui.",
+"ru": "Тебя здесь нет.",
+"uk": "Тебе тут немає."
+},
+{
+"id": "it:02:05",
+"target": "Paolo non è in ufficio.",
+"ru": "Паоло нет в офисе.",
+"uk": "Паоло немає в офісі."
+},
+{
+"id": "it:02:11",
+"target": "Non sono pronto.",
+"ru": "Я не готов.",
+"uk": "Я не готовий."
+},
+{
+"id": "it:02:12",
+"target": "Lei non è pronta.",
+"ru": "Она не готова.",
+"uk": "Вона не готова."
+},
+{
+"id": "it:02:13",
+"target": "Non siamo pronti.",
+"ru": "Мы не готовы.",
+"uk": "Ми не готові."
+},
+{
+"id": "it:02:21",
+"target": "La porta non è aperta.",
+"ru": "Дверь не открыта.",
+"uk": "Двері не відчинені."
+},
+{
+"id": "it:02:22",
+"target": "Il bar non è chiuso.",
+"ru": "Кафе не закрыто.",
+"uk": "Кафе не зачинене."
+},
+{
+"id": "it:02:24",
+"target": "La finestra non è chiusa.",
+"ru": "Окно не закрыто.",
+"uk": "Вікно не зачинене."
+},
+{
+"id": "it:02:27",
+"target": "Le chiavi non sono qui.",
+"ru": "Ключей здесь нет.",
+"uk": "Ключів тут немає."
+},
+{
+"id": "it:02:28",
+"target": "La borsa non è lì.",
+"ru": "Сумки там нет.",
+"uk": "Сумки там немає."
+},
+{
+"id": "it:02:33",
+"target": "Il biglietto non è nella borsa.",
+"ru": "Билета нет в сумке.",
+"uk": "Квитка немає в сумці."
+},
+{
+"id": "it:02:19",
+"target": "Non siete in ritardo.",
+"ru": "Вы не опоздали.",
+"uk": "Ви не запізнилися."
+},
+{
+"id": "it:02:40",
+"target": "Il treno non è in ritardo.",
+"ru": "Поезд не опаздывает.",
+"uk": "Поїзд не запізнюється."
+},
+{
+"id": "it:02:43",
+"target": "Il pranzo non è pronto.",
+"ru": "Обед не готов.",
+"uk": "Обід не готовий."
+},
+{
+"id": "it:02:41",
+"target": "Non sono ancora a casa.",
+"ru": "Меня ещё нет дома.",
+"uk": "Я ще не вдома."
+},
+{
+"id": "it:02:42",
+"target": "Non è ancora in ufficio.",
+"ru": "Её ещё нет в офисе.",
+"uk": "Вона ще не в офісі."
+},
+{
+"id": "it:02:49",
+"target": "L’autobus non è ancora qui.",
+"ru": "Автобуса ещё нет.",
+"uk": "Автобус ще не прибув."
+},
+{
+"id": "it:02:45",
+"target": "La stazione ferroviaria non è vicina al museo.",
+"ru": "Железнодорожный вокзал находится не рядом с музеем.",
+"uk": "Залізнична станція не поруч з музеєм."
+},
+{
+"id": "it:02:47",
+"target": "Il corridoio non è molto largo.",
+"ru": "Коридор не очень широкий.",
+"uk": "Коридор не дуже широкий."
+},
+{
+"id": "it:02:50",
+"target": "Non siamo lontani dalla stazione.",
+"ru": "Мы недалеко от вокзала.",
+"uk": "Ми недалеко від станції."
+}
+]
+}
+]

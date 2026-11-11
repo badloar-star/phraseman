@@ -18,7 +18,7 @@ import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
 import { isPremiumSceneTheme, sceneFrameToneHex, scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
-import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, FadeInDown, useAnimatedStyle, useReducedMotion, type SharedValue } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { renderWindowEpoch, useRenderCause } from '../../../../app/render_cause_probe';
@@ -38,7 +38,9 @@ import { useTheme } from '../../../ThemeContext';
 import { useLang } from '../../../LangContext';
 import LessonPrepCtaBody from '../../../lesson_prep/LessonPrepCtaBody';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import HomeWeekDots, { type HomeWeekDotsProps } from '../HomeWeekDots';
 import { HOME_SCENE_INK } from './home_scene_ink';
+import { auroraMaterialForTheme } from '../../../../constants/aurora_material';
 import KitProgressFill from '../../../KitProgressFill';
 
 const LOG = '[HOME-SCENE]';
@@ -81,8 +83,10 @@ type Props = {
   onChip: (kind: HomeSceneChipKind) => void;
   /** Высота зоны часов, если сцена рисуется от верха экрана: фон заходит под часы, раскладка отступает (0 — как раньше). */
   topInset?: number;
+  topOverscroll?: SharedValue<number>;
   /** Измеренная высота абсолютной шапки: Stage резервирует её, чтобы крупный системный текст не наложился на copy. */
   headerHeight?: number;
+  week?: HomeWeekDotsProps;
   /** Особая сцена (`состояние:ключ`); смена ключа — текст входит заново один раз. null — обычный герой. */
   specialKey?: string | null;
 };
@@ -101,12 +105,14 @@ export default function HomeSceneStage(props: Props) {
   return <HomeSceneStageView {...props} onCta={cta} onChip={chip} buildLiveText={live} />;
 }
 
-const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, pending, busy, active, onCta, onChip, topInset = 0, headerHeight = 0, specialKey = null }: Props) {
+const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, pending, busy, active, onCta, onChip, topInset = 0, topOverscroll, headerHeight = 0, week, specialKey = null }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
   const { liquidGlassThemeId, liquidGlassAppearance, isDark } = useTheme();
   const isPremium = isPremiumSceneTheme(liquidGlassThemeId);
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): на сцене «Рассвет» главная кнопка тёмная и плотная (цвет — из материала темы), надпись и значок белые
+  const aurora = auroraMaterialForTheme(liquidGlassThemeId, liquidGlassAppearance);
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
   const pillTop = useTabPillTop();
@@ -121,6 +127,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
   const [actualH, setActualH] = useState<number | null>(LAST_ACTUAL_STAGE_H);
   const paletteH = actualH !== null && actualH > 0 ? actualH : stageH;
+  const backdropStretch = useAnimatedStyle(() => ({
+    // Keep the bottom edge anchored and extend the same scene into the top bounce gap.
+    transform: [{ scaleY: 1 + Math.max(0, topOverscroll?.value ?? 0) / paletteH }],
+  }));
   // Header начинается в координате сцены, а Stage уже добавляет topInset как padding.
   // Поэтому резервируем только часть измеренной шапки ниже safe area; 52dp остаётся baseline.
   const reservedTopSpace = Math.max(TOP_SPACE, headerHeight - topInset);
@@ -162,6 +172,25 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
     <SceneBlockShadow tone={isPremium ? tokens.sceneBottom : sceneFrameToneHex(scenePal)} flat>
+    <Animated.View pointerEvents="none" style={[s.stageBackdrop, backdropStretch]}>
+      {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
+      {/* зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены, не надо было трогать»): у 6 тем за награды фон сцены свой — градиент из premiumThemeVisualSpec и свет края, как на da0a435e3; общего неба и звёзд у них нет */}
+      {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />}
+      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={paletteH} />
+      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
+        <Defs>
+          {isPremium ? (
+            <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
+              <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
+              <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
+            </RadialGradient>
+          ) : null}
+          {/* слово владельца 29.10: «убрать какие-то свечения вокруг иконки» — ореола вокруг героя нет */}
+        </Defs>
+        {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
+        {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
+      </Svg>
+    </Animated.View>
     <View
       testID="home-scene-stage"
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}
@@ -181,23 +210,6 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         console.log('[TOP-BAND]', JSON.stringify({ at: 'home_scene_stage_layout', msSinceModule: Math.round(Date.now() - HOME_STAGE_MODULE_AT), sceneReady: !pending, state, topInset: Math.round(topInset), y: Math.round(e.nativeEvent.layout.y), sceneTop: tokens.sceneTop })); // guard-ok: одна строка на смену раскладки
       }}
     >
-      {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
-      {/* зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены, не надо было трогать»): у 6 тем за награды фон сцены свой — градиент из premiumThemeVisualSpec и свет края, как на da0a435e3; общего неба и звёзд у них нет */}
-      {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />}
-      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={paletteH} />
-      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
-        <Defs>
-          {isPremium ? (
-            <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
-              <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
-              <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
-            </RadialGradient>
-          ) : null}
-          {/* слово владельца 29.10: «убрать какие-то свечения вокруг иконки» — ореола вокруг героя нет */}
-        </Defs>
-        {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
-        {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
-      </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       <View style={[s.topSpace, { height: reservedTopSpace }]} />
       <View style={s.body}>
@@ -213,7 +225,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             {copy.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
             {liveEnergy === 'title'
               ? <LiveEnergyText testID="home-scene-title" header build={buildLiveText} style={titleStyle} />
-              : <Text testID="home-scene-title" accessibilityRole="header" style={titleStyle}>{copy.title}</Text>}
+              : copy.title ? <Text testID="home-scene-title" accessibilityRole="header" style={titleStyle}>{copy.title}</Text> : null}
             {copy.warm ? (
               <View style={s.warmRow}>
                 <Ionicons name="flame" size={16} color={warmTone} />
@@ -228,18 +240,19 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             ) : null}
           </Animated.View>
         )}
+        {week ? <HomeWeekDots {...week} /> : null}
         {copy.cta ? (
           <V2Pressable
             testID="home-scene-cta"
             accessibilityRole="button"
-            accessibilityLabel={pending ? copy.cta : `${copy.cta}: ${copy.title}`}
+            accessibilityLabel={pending || !copy.title ? copy.cta : `${copy.cta}: ${copy.title}`}
             accessibilityState={{ busy: pending || busy }}
             onPress={pressCta}
             scaleTo={0.97}
-            style={s.cta}
+            style={aurora ? [s.cta, { backgroundColor: aurora.scene.ink, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 26, spreadDistance: -12, color: aurora.scene.inkShadow }] }] : s.cta}
           >
             {/* зачем (живой макет lesson-preparing-live.html, владелец 25.10): обычно занятие уже собрано — кнопка не меняется; в крайнем случае (> 0,35 с) кольцо хода, «Готовим занятие…», мягкая заливка. Прежнее приглушение до 72 % убрано */}
-            <LessonPrepCtaBody source="home" lang={lang} label={copy.cta} ink={CTA_INK} fillColor={CTA_PREP_FILL} idleIcon={<Ionicons name="play" size={18} color={CTA_INK} />} labelStyle={s.ctaText} testID="home-scene-cta-prep" />
+            <LessonPrepCtaBody source="home" lang={lang} label={copy.cta} ink={aurora ? AURORA_CTA_INK : CTA_INK} fillColor={aurora ? AURORA_CTA_PREP_FILL : CTA_PREP_FILL} idleIcon={<Ionicons name="play" size={18} color={aurora ? AURORA_CTA_INK : CTA_INK} />} labelStyle={aurora ? [s.ctaText, { color: AURORA_CTA_INK }] : s.ctaText} testID="home-scene-cta-prep" />
           </V2Pressable>
         ) : null}
         {chips.length > 0 ? (
@@ -274,6 +287,7 @@ const TEXT_OVER_HERO_SHADOW = { textShadowColor: 'rgba(0,0,0,0.38)', textShadowR
 
 const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
+  stageBackdrop: { ...StyleSheet.absoluteFillObject, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', transformOrigin: 'center bottom' },
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем: место под шапку — сама шапка лежит поверх сцены из контейнера HomeScene
   topSpace: { height: TOP_SPACE },
@@ -301,3 +315,6 @@ const baseStyles = StyleSheet.create({
 // зачем (ратчет цветовых литералов, Ревизор 25.10): тёмный текст на белой кнопке сцены задан ОДИН раз — в ctaText; значок и мягкая заливка хода «Готовим занятие…» берут тот же цвет оттуда, а не новыми литералами
 const CTA_INK = String(StyleSheet.flatten(baseStyles.ctaText).color); // baseStyles — модульный; `s` живёт только внутри компонента (падение сцены 25.10)
 const CTA_PREP_FILL = colorWithAlpha(CTA_INK, 0.09);
+// «Рассвет»: кнопка тёмная — надпись, значок и мягкая заливка хода белые (тот же белый, что у чернил сцены, новых литералов нет)
+const AURORA_CTA_INK = HOME_SCENE_INK.text;
+const AURORA_CTA_PREP_FILL = colorWithAlpha(AURORA_CTA_INK, 0.14);

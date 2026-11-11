@@ -1,0 +1,15 @@
+[
+{"id": "es:13:29", "type": "B3", "field": "alternatives", "problem": "Подсказка «Магазины сегодня закрыты» не исключает порядок с «Hoy» в начале; у соседних 13:26/13:28/13:30 он есть в alternatives, здесь пусто", "fix": {"add": ["Hoy las tiendas están cerradas."], "remove": []}},
+{"id": "es:13:35", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Está el baño libre?» не в alternatives (в 13:17/13:18 оба порядка есть)", "fix": {"add": ["¿Está el baño libre?"], "remove": []}},
+{"id": "es:13:36", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Está la mesa libre?» не в alternatives", "fix": {"add": ["¿Está la mesa libre?"], "remove": []}},
+{"id": "es:13:37", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Está el médico libre?» не в alternatives", "fix": {"add": ["¿Está el médico libre?"], "remove": []}},
+{"id": "es:13:38", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Están las mesas libres?» не в alternatives", "fix": {"add": ["¿Están las mesas libres?"], "remove": []}},
+{"id": "es:13:39", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Está la médica libre?» не в alternatives", "fix": {"add": ["¿Está la médica libre?"], "remove": []}},
+{"id": "es:13:40", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «¿Están los profesores libres?» не в alternatives", "fix": {"add": ["¿Están los profesores libres?"], "remove": []}},
+{"id": "es:13:41", "type": "B3", "field": "alternatives", "problem": "«Сегодня мы рады» / «Сьогодні ми раді» не указывает женский род, а target требует contentas; мужской (базовый) вариант не засчитают", "fix": {"add": ["Estamos contentos hoy.", "Hoy estamos contentos."], "remove": []}},
+{"id": "es:13:44", "type": "B3", "field": "alternatives", "problem": "«Сегодня вы рады» не указывает женский род; в alternatives есть «Están contentas», но нет базового мужского «Estáis contentos»", "fix": {"add": ["Estáis contentos hoy.", "Hoy estáis contentos."], "remove": []}},
+{"id": "es:14:07", "type": "B3", "field": "alternatives", "problem": "«Вы встаёте рано» допускает форму ustedes; в соседних 14:37/14:47 «Se ... » добавлено, здесь пусто", "fix": {"add": ["Se levantan temprano."], "remove": []}},
+{"id": "es:14:27", "type": "B3", "field": "alternatives", "problem": "«Вы моете руки» допускает форму ustedes; как в 14:37/14:47 нужен вариант «Se lavan las manos.»", "fix": {"add": ["Se lavan las manos."], "remove": []}},
+{"id": "es:14:23", "type": "B1", "field": "tiles", "problem": "На позиции глагола соблазны — существительные tren/bolso/foto и прилагательное cansado: единственная личная форма глагола (lava) видна без знания слова", "fix": {"position": 2, "replace_distractor": "tren", "with": "lavan"}},
+{"id": "es:14:25", "type": "B1", "field": "tiles", "problem": "На позиции глагола соблазны — существительные tren/bolso/foto и прилагательное cansado: верный lava отсеивается по грамматике без знания слова", "fix": {"position": 2, "replace_distractor": "tren", "with": "lavas"}}
+]

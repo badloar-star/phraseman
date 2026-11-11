@@ -1,4 +1,4 @@
-// зачем (решение владельца D194, 15.10; макет docs/design/v2-app/learning-v2-voice-limit.html): остаток дневных голосовых попыток на микрофоне голосовых заданий курса V2.
+// зачем (решение владельца D194, 15.10; макет лимита голоса): остаток дневных голосовых попыток на микрофоне голосовых заданий курса V2.
 // Сторож: бейдж (цифра / PLUS), SpeakHoldButton без allowance не меняется (Карточки), вшивка в плеер — гейт до записи, списание в момент старта записи, бейдж только при kind === 'limited'.
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
@@ -60,26 +60,5 @@ describe('SpeakHoldButton: allowance необязателен, Карточки 
     expect(fn.indexOf('allowance.onSpentPress();')).toBeGreaterThan(0);
     expect(fn.indexOf('allowance.onSpentPress();')).toBeLessThan(fn.indexOf('onHoldStart();'));
     expect(fn).toContain('[VOICE-LIMIT] SpeakHoldButton: press while spent -> paywall');
-  });
-});
-
-describe('плеер курса V2: гейт до записи, списание на старте записи, бейдж при limited', () => {
-  const src = read('app/learning_v2_direct_session_player_v1.tsx');
-  it('хук Ядра и контекст пейвола', () => {
-    expect(src).toContain('const voiceAllowance = useVoiceDailyAllowance();');
-    expect(src).toContain('context: "ai_voice_input", source: "learning_v2_course_voice"');
-  });
-  it('гейт стоит в startVoiceHold после проверок доступности и до запуска записи', () => {
-    const fn = src.slice(src.indexOf('const startVoiceHold = useCallback('), src.indexOf('const stopVoiceCapture = useCallback('));
-    expect(fn.indexOf('voiceDailyAllowanceGate("course_v2"')).toBeGreaterThan(fn.indexOf('voiceControlDisabled'));
-    expect(fn.indexOf('openVoicePlus();')).toBeLessThan(fn.indexOf('setVoiceHoldActive(true);'));
-  });
-  it('списание — в первый listening попытки, не на тап', () => {
-    expect(src).toContain('nextStatus === "listening" && voiceLastStatusRef.current !== "listening"');
-    expect(src).toContain('recordVoiceDailyAttempt("course_v2", `${practice.interactionId}:${voicePanelEpoch}:${voiceAttemptSeqRef.current}`');
-  });
-  it('бейдж только при kind === limited; подпись при исчерпании', () => {
-    expect(src).toContain('voiceAllowance.kind === "limited" && voiceAllowance.remaining !== null');
-    expect(src).toContain('Голос на сегодня закончился');
   });
 });

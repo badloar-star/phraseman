@@ -4,7 +4,7 @@
  * Правила и их крайние случаи — tests/level_exam_gap_rules.test.ts. Сработал — чинить отбор заданий, а не ослаблять сторожа.
  */
 import { COURSE_LEVELS } from '../app/course_levels';
-import { buildLevelExamBlueprint } from '../app/level_exam_blueprint';
+import { buildLevelExamBlueprint, LEVEL_EXAM_V5_MIX } from '../app/level_exam_blueprint';
 import { GAP_RULE_ORDER, provableGapByRule } from '../app/level_exam_gap_rules';
 
 const known = (): boolean => true;
@@ -13,11 +13,13 @@ const lower = (values: readonly string[]): string[] => values.map((value) => val
 describe('выдача экзамена: каждый пропуск доказан правилом', () => {
   const SEEDS = ['u10-a', 'u10-b', 'u10-c', 'u10-d', 'u10-e'];
 
-  it.each(COURSE_LEVELS)('%s: 6 пропусков на попытку, у каждого один верный вариант', (level) => {
+  // зачем (владелец 11.11.2026): с версии 5 число пропусков зависит от уровня (LEVEL_EXAM_V5_MIX) — их меньше, зато добавились новые механики.
+  // Суть сторожа прежняя: КАЖДЫЙ выданный пропуск доказан правилом.
+  it.each(COURSE_LEVELS)('%s: пропусков столько, сколько задано уровнем, у каждого один верный вариант', (level) => {
     for (const seed of SEEDS) {
       const blueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: 'ru', seed });
       const gaps = blueprint.tasks.filter((task) => task.format === 'fill_gap');
-      expect(gaps).toHaveLength(6);
+      expect(gaps).toHaveLength(LEVEL_EXAM_V5_MIX[level].classic.fill_gap);
       for (const task of gaps) {
         if (task.format !== 'fill_gap') continue;
         const sentence = task.explanation.split(' — ')[0]!;

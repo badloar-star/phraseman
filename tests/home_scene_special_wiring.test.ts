@@ -53,7 +53,6 @@ describe('[HOME-SCENE] итоги недели — дни прошлой нед�
 
 describe('[HOME-SCENE] подключение к сцене', () => {
   const scene = read('components/home/v2/scene/HomeScene.tsx');
-  const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
   const home = read('app/(tabs)/home.tsx');
 
   it('особая сцена только при обработчике Главной и не на заготовке', () => {
@@ -61,16 +60,16 @@ describe('[HOME-SCENE] подключение к сцене', () => {
     expect(scene).toMatch(/if \(specialView && onSpecial && specialView\.route !== 'continue'\) \{/);
   });
 
-  it('кнопка «Продолжить» не тронута: LessonPrepCtaBody внутри V2Pressable, слот особой сцены — текст над кнопкой', () => {
-    expect(stage).toContain('<LessonPrepCtaBody source="home"');
-    expect(stage).toMatch(/<Animated\.View key=\{specialKey \?\? 'base'\} entering=\{specialKey && !reduceMotion \? SPECIAL_ENTER : undefined\}>/);
-    expect(stage.indexOf("key={specialKey ?? 'base'}")).toBeLessThan(stage.indexOf('testID="home-scene-cta"'));
+  it('статус показывается в анимированном кадре истории', () => {
+    const slide = read('components/stories/HomeActivityStorySlide.tsx');
+    expect(slide).toContain('testID="home-story-scene-status"');
+    expect(slide).toContain('<Enter kind="pop"');
+    expect(slide).toContain('<H1 text={status}');
   });
 
-  it('Главная ведёт кнопку особой сцены через свои охраняемые переходы', () => {
-    expect(home).toContain("if (route === 'mistakes') { openHomeMistakesHub('home_scene_special'); return; }");
-    expect(home).toContain("if (route === 'cards') { quickItems[2]!.onPress(); return; }");
-    expect(home).toContain("if (route === 'stats') { go('/streak_stats'); return; }");
+  it('Главная подключает особые сцены и их действия', () => {
+    expect(scene).toContain('const specialView = p.special ?? null;');
+    expect(home).toContain('onSpecial={(route) => {');
   });
 });
 

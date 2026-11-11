@@ -1,0 +1,20 @@
+[
+{"id": "it:13:31", "type": "B3", "field": "alternatives", "problem": "Те же плитки дают одинаково естественный порядок «un giardino piccolo», подсказка его не исключает, в alternatives нет", "fix": {"add": ["È un giardino piccolo."], "remove": []}},
+{"id": "it:13:32", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «un cortile piccolo» из тех же плиток не засчитывается", "fix": {"add": ["È un cortile piccolo."], "remove": []}},
+{"id": "it:13:33", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «un appartamento grande» из тех же плиток не засчитывается", "fix": {"add": ["Vive in un appartamento grande."], "remove": []}},
+{"id": "it:13:34", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «una grande stanza» из тех же плиток не засчитывается", "fix": {"add": ["Lavora in una grande stanza."], "remove": []}},
+{"id": "it:13:36", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «un vicino nuovo» из тех же плиток не засчитывается", "fix": {"add": ["Abbiamo un vicino nuovo.", "Noi abbiamo un vicino nuovo."], "remove": []}},
+{"id": "it:13:37", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «un indirizzo nuovo» из тех же плиток не засчитывается", "fix": {"add": ["Ha un indirizzo nuovo?", "Hai un indirizzo nuovo?"], "remove": []}},
+{"id": "it:13:38", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «un edificio vecchio» из тех же плиток не засчитывается", "fix": {"add": ["È un edificio vecchio."], "remove": []}},
+{"id": "it:13:39", "type": "B3", "field": "alternatives", "problem": "Естественный порядок «una fotografia vecchia» из тех же плиток не засчитывается", "fix": {"add": ["È una fotografia vecchia."], "remove": []}},
+{"id": "it:13:40", "type": "M", "field": "ru", "problem": "elegante = элегантный/нарядный, «красивый» искажает смысл (это bello)", "fix": "На нём элегантный костюм."},
+{"id": "it:13:40", "type": "M", "field": "uk", "problem": "elegante = елегантний, «гарний» искажает смысл (это bello)", "fix": "На ньому елегантний костюм."},
+{"id": "it:13:40", "type": "B1", "field": "tiles", "problem": "На позиции 0 все соблазны не глаголы (Domenica, Finestra, Questa, Stanza, Alla) — Indossa выбирается без знания слова", "fix": {"position": 0, "replace_distractor": "Domenica", "with": "Indossi"}},
+{"id": "it:13:40", "type": "B1", "field": "tiles", "problem": "На позиции 0 все соблазны не глаголы — второй глагольный соблазн", "fix": {"position": 0, "replace_distractor": "Stanza", "with": "Indossano"}},
+{"id": "it:14:16", "type": "B2", "field": "ru", "problem": "cambiare posto = пересесть на другое место; «поменяться местами» друг с другом = scambiarsi di posto", "fix": "Они хотят пересесть."},
+{"id": "it:14:16", "type": "B2", "field": "uk", "problem": "cambiare posto = пересісти; «помінятися місцями» = scambiarsi di posto", "fix": "Вони хочуть пересісти."},
+{"id": "it:14:35", "type": "B1", "field": "tiles", "problem": "Позиция 3: quel — единственное указательное слово среди глаголов/наречий (ora, firmare, camicie, visitare, disturbare), выдаётся без знания", "fix": {"position": 3, "replace_distractor": "firmare", "with": "quei"}},
+{"id": "it:14:35", "type": "B1", "field": "tiles", "problem": "Позиция 3: второй соблазн-указательное (не questo — даст верную фразу «эту кнопку»)", "fix": {"position": 3, "replace_distractor": "visitare", "with": "quella"}},
+{"id": "it:14:35", "type": "B1", "field": "tiles", "problem": "Позиция 4: pulsante — единственное существительное среди глаголов/наречий, выдаётся без знания (не tasto — даст верную фразу)", "fix": {"position": 4, "replace_distractor": "nuotare", "with": "telefono"}},
+{"id": "it:14:45", "type": "M", "field": "uk", "problem": "«на спільному таксі» — неестественно и расходится с ru «вместе» (insieme)", "fix": "Ми можемо поїхати на таксі разом."}
+]

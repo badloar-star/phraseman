@@ -1,0 +1,93 @@
+[
+ {
+  "id": "lesson-23/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Не додай»; «до \"їх\"» — нужно «їм» (дательный, ru «им»); разнобой кавычек",
+  "fix": "Один адресат будь-якої статі — `lui`, кілька — `leur`. Не додавай `s` до цього `leur`. Написання `leurs` стосується, наприклад, кількох їхніх речей, а не «їм» перед дієсловом."
+ },
+ {
+  "id": "lesson-23/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«а чи не прямий об'єкт» — машинный мусор; «причастя»",
+  "fix": "У складеному минулому займенник зазвичай стоїть перед допоміжним дієсловом. Він означає адресата, а не прямий додаток. Саме `lui` не вимагає узгодження дієприкметника зі статтю одержувача."
+ },
+ {
+  "id": "lesson-23/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«Learn the control» — неверный перевод «управление» (глагольное)",
+  "fix": "This rule does not cover all constructions with `à`. For example, with the verb `penser à`, a person is referred to as `je pense à elle`. Learn each verb together with the preposition it takes."
+ },
+ {
+  "id": "lesson-24/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.ru",
+  "problem": "«Смотри, глагол описывает движение или пребывание» — без «ли» читается как утверждение",
+  "fix": "`Y` работает, когда собеседники уже знают место. Оно может соответствовать «туда» или «там». Смотри, описывает ли глагол движение или пребывание."
+ },
+ {
+  "id": "lesson-24/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "То же — нет «чи» в косвенном вопросе",
+  "fix": "`Y` працює, коли співрозмовники вже знають місце. Воно може відповідати «туди» чи «там». Дивись, чи описує дієслово рух, чи перебування."
+ },
+ {
+  "id": "lesson-24/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "«\"there\" or \"there\"» — бессмысленный повтор",
+  "fix": "`Y` works when the speakers already know the place. It can mean \"there\" as a destination or \"there\" as a location. Check whether the verb describes movement or staying."
+ },
+ {
+  "id": "lesson-24/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Перед згодою» (согласие) вместо «перед приголосною»",
+  "fix": "Перед приголосною звичайний займенник має повну форму, а перед `y` виходять `j’y`, `n’y`. Пиши апостроф разом, але дієслово після нього — окремо."
+ },
+ {
+  "id": "lesson-24/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«пропозицію» вместо «речення»",
+  "fix": "`Y` вживається не тільки з `aller`. Можна там жити, працювати, спати чи залишити велосипед. Порівняй ціле речення з назвою місця і речення, де замість неї стоїть `y`."
+ },
+ {
+  "id": "lesson-24/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«вибираєш дієслово, не за наявності y» — смысл искажён",
+  "fix": "У складеному минулому `y` стоїть перед допоміжним дієсловом: `j’y ai …`, `elle y est …`. Яке саме допоміжне дієслово потрібне, вибираєш за дієсловом, а не за наявністю `y`."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.ru",
+  "problem": "Формула «ne, y, личный глагол, pas» противоречит примеру раздела fr:24:35 «Je ne peux pas y rester» (y перед инфинитивом)",
+  "fix": "С отрицанием собери `ne` / `n’`, затем `y`, затем личный глагол и `pas` или `plus`: `je n’y vais pas`. Если есть инфинитив, `y` стоит перед ним: `je ne peux pas y rester`. Не прибавляй ещё одно название того же места без особой причины."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "То же противоречие с fr:24:35; «особисте», «Не додай»",
+  "fix": "Із запереченням збери `ne` / `n’`, потім `y`, потім особове дієслово і `pas` або `plus`: `je n’y vais pas`. Якщо є інфінітив, `y` стоїть перед ним: `je ne peux pas y rester`. Не додавай ще одну назву того самого місця без особливої причини."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "Same contradiction with fr:24:35",
+  "fix": "With negation, combine `ne` / `n’`, then `y`, then the finite verb and `pas` or `plus`: `je n’y vais pas`. With an infinitive, `y` goes before it: `je ne peux pas y rester`. Don't add another name of the same place without a special reason."
+ },
+ {
+  "id": "lesson-24/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "Невидимые символы U+200B в «у ньому»",
+  "fix": "У реченнях із двома частинами знайди, яке місце було названо в першій. Якщо це музей, то в другій `y` саме про музей, а не про людей у ньому."
+ }
+]

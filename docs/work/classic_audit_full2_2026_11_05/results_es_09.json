@@ -1,0 +1,15 @@
+[
+{"id": "es:20:01", "type": "B1", "field": "tiles", "problem": "slot 'al': distractors are nouns/adjective (coche, grandes, libro, número), obvious junk, slot solvable by grammar alone", "fix": {"position": 3, "replace_distractor": "coche", "with": "a"}},
+{"id": "es:20:01", "type": "B1", "field": "tiles", "problem": "slot 'al': adjective 'grandes' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "grandes", "with": "en"}},
+{"id": "es:20:01", "type": "B1", "field": "tiles", "problem": "slot 'al': noun 'libro' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "libro", "with": "con"}},
+{"id": "es:20:01", "type": "B1", "field": "tiles", "problem": "slot 'al': noun 'número' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "número", "with": "de"}},
+{"id": "es:20:34", "type": "B1", "field": "tiles", "problem": "slot 'al': distractors are nouns/adjective (coche, grandes, libro, número), obvious junk, slot solvable by grammar alone", "fix": {"position": 3, "replace_distractor": "coche", "with": "a"}},
+{"id": "es:20:34", "type": "B1", "field": "tiles", "problem": "slot 'al': adjective 'grandes' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "grandes", "with": "en"}},
+{"id": "es:20:34", "type": "B1", "field": "tiles", "problem": "slot 'al': noun 'libro' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "libro", "with": "con"}},
+{"id": "es:20:34", "type": "B1", "field": "tiles", "problem": "slot 'al': noun 'número' in preposition slot, obvious junk", "fix": {"position": 3, "replace_distractor": "número", "with": "de"}},
+{"id": "es:20:14", "type": "M", "field": "ru", "problem": "calque: 'preparar la mochila' = собрать рюкзак, «приготовил рюкзак» неестественно", "fix": "Ты сегодня собрал рюкзак."},
+{"id": "es:20:14", "type": "M", "field": "uk", "problem": "calque: 'preparar la mochila' = зібрати рюкзак, «приготував рюкзак» неприродно", "fix": "Ти сьогодні зібрав рюкзак."},
+{"id": "es:20:22", "type": "B4", "field": "alternatives", "problem": "ungrammatical alternative 'estas semana' (number mismatch)", "fix": {"add": [], "remove": ["Habéis leído el mensaje estas semana."]}},
+{"id": "es:20:30", "type": "B3", "field": "alternatives", "problem": "«Вы» does not exclude ustedes; sister phrase es:20:22 accepts 'Han ...', here it is missing", "fix": {"add": ["Han llevado la bolsa esta semana."], "remove": []}},
+{"id": "es:20:50", "type": "B3", "field": "alternatives", "problem": "«Вы» does not exclude ustedes; sister phrase es:20:22 accepts 'Han ...', here it is missing", "fix": {"add": ["¿Han entrado en la oficina hoy?"], "remove": []}}
+]

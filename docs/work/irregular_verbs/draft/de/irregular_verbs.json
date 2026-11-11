@@ -37,12 +37,18 @@
         "lemma": "sein",
         "meaning": {
           "ru": "быть",
-          "uk": "бути"
+          "uk": "бути",
+          "en": "to be"
         },
         "forms": {
           "inf": "sein",
           "pres3": "ist",
           "praet": "war",
+          "pp": "gewesen"
+        },
+        "train": {
+          "base": "sein",
+          "past": "war",
           "pp": "gewesen"
         },
         "aux": "sein",
@@ -62,12 +68,18 @@
         "lemma": "kommen",
         "meaning": {
           "ru": "приходить",
-          "uk": "приходити"
+          "uk": "приходити",
+          "en": "to come"
         },
         "forms": {
           "inf": "kommen",
           "pres3": "kommt",
           "praet": "kam",
+          "pp": "gekommen"
+        },
+        "train": {
+          "base": "kommen",
+          "past": "kam",
           "pp": "gekommen"
         },
         "aux": "sein",
@@ -84,12 +96,18 @@
         "lemma": "lesen",
         "meaning": {
           "ru": "читать",
-          "uk": "читати"
+          "uk": "читати",
+          "en": "to read"
         },
         "forms": {
           "inf": "lesen",
           "pres3": "liest",
           "praet": "las",
+          "pp": "gelesen"
+        },
+        "train": {
+          "base": "lesen",
+          "past": "las",
           "pp": "gelesen"
         },
         "aux": "haben",
@@ -106,12 +124,18 @@
         "lemma": "trinken",
         "meaning": {
           "ru": "пить",
-          "uk": "пити"
+          "uk": "пити",
+          "en": "to drink"
         },
         "forms": {
           "inf": "trinken",
           "pres3": "trinkt",
           "praet": "trank",
+          "pp": "getrunken"
+        },
+        "train": {
+          "base": "trinken",
+          "past": "trank",
           "pp": "getrunken"
         },
         "aux": "haben",
@@ -128,12 +152,18 @@
         "lemma": "beginnen",
         "meaning": {
           "ru": "начинаться",
-          "uk": "починатися"
+          "uk": "починатися",
+          "en": "to begin"
         },
         "forms": {
           "inf": "beginnen",
           "pres3": "beginnt",
           "praet": "begann",
+          "pp": "begonnen"
+        },
+        "train": {
+          "base": "beginnen",
+          "past": "begann",
           "pp": "begonnen"
         },
         "aux": "haben",
@@ -150,12 +180,18 @@
         "lemma": "schließen",
         "meaning": {
           "ru": "закрывать",
-          "uk": "зачиняти"
+          "uk": "зачиняти",
+          "en": "to close"
         },
         "forms": {
           "inf": "schließen",
           "pres3": "schließt",
           "praet": "schloss",
+          "pp": "geschlossen"
+        },
+        "train": {
+          "base": "schließen",
+          "past": "schloss",
           "pp": "geschlossen"
         },
         "aux": "haben",
@@ -174,12 +210,18 @@
         "lemma": "haben",
         "meaning": {
           "ru": "иметь",
-          "uk": "мати"
+          "uk": "мати",
+          "en": "to have"
         },
         "forms": {
           "inf": "haben",
           "pres3": "hat",
           "praet": "hatte",
+          "pp": "gehabt"
+        },
+        "train": {
+          "base": "haben",
+          "past": "hatte",
           "pp": "gehabt"
         },
         "aux": "haben",
@@ -197,12 +239,18 @@
         "lemma": "bleiben",
         "meaning": {
           "ru": "оставаться",
-          "uk": "залишатися"
+          "uk": "залишатися",
+          "en": "to stay"
         },
         "forms": {
           "inf": "bleiben",
           "pres3": "bleibt",
           "praet": "blieb",
+          "pp": "geblieben"
+        },
+        "train": {
+          "base": "bleiben",
+          "past": "blieb",
           "pp": "geblieben"
         },
         "aux": "sein",
@@ -219,12 +267,18 @@
         "lemma": "mögen",
         "meaning": {
           "ru": "любить, нравиться",
-          "uk": "любити, подобатися"
+          "uk": "любити, подобатися",
+          "en": "to like"
         },
         "forms": {
           "inf": "mögen",
           "pres3": "mag",
           "praet": "mochte",
+          "pp": "gemocht"
+        },
+        "train": {
+          "base": "mögen",
+          "past": "mochte",
           "pp": "gemocht"
         },
         "aux": "haben",
@@ -243,12 +297,18 @@
         "lemma": "gehen",
         "meaning": {
           "ru": "идти",
-          "uk": "йти"
+          "uk": "йти",
+          "en": "to go"
         },
         "forms": {
           "inf": "gehen",
           "pres3": "geht",
           "praet": "ging",
+          "pp": "gegangen"
+        },
+        "train": {
+          "base": "gehen",
+          "past": "ging",
           "pp": "gegangen"
         },
         "aux": "sein",
@@ -265,12 +325,18 @@
         "lemma": "fahren",
         "meaning": {
           "ru": "ехать",
-          "uk": "їхати"
+          "uk": "їхати",
+          "en": "to drive, to ride"
         },
         "forms": {
           "inf": "fahren",
           "pres3": "fährt",
           "praet": "fuhr",
+          "pp": "gefahren"
+        },
+        "train": {
+          "base": "fahren",
+          "past": "fuhr",
           "pp": "gefahren"
         },
         "aux": "sein",
@@ -287,12 +353,18 @@
         "lemma": "heißen",
         "meaning": {
           "ru": "называться",
-          "uk": "називатися"
+          "uk": "називатися",
+          "en": "to be called"
         },
         "forms": {
           "inf": "heißen",
           "pres3": "heißt",
           "praet": "hieß",
+          "pp": "geheißen"
+        },
+        "train": {
+          "base": "heißen",
+          "past": "hieß",
           "pp": "geheißen"
         },
         "aux": "haben",
@@ -311,12 +383,18 @@
         "lemma": "nehmen",
         "meaning": {
           "ru": "брать",
-          "uk": "брати"
+          "uk": "брати",
+          "en": "to take"
         },
         "forms": {
           "inf": "nehmen",
           "pres3": "nimmt",
           "praet": "nahm",
+          "pp": "genommen"
+        },
+        "train": {
+          "base": "nehmen",
+          "past": "nahm",
           "pp": "genommen"
         },
         "aux": "haben",
@@ -334,12 +412,18 @@
         "lemma": "finden",
         "meaning": {
           "ru": "находить",
-          "uk": "знаходити"
+          "uk": "знаходити",
+          "en": "to find"
         },
         "forms": {
           "inf": "finden",
           "pres3": "findet",
           "praet": "fand",
+          "pp": "gefunden"
+        },
+        "train": {
+          "base": "finden",
+          "past": "fand",
           "pp": "gefunden"
         },
         "aux": "haben",
@@ -356,12 +440,18 @@
         "lemma": "tragen",
         "meaning": {
           "ru": "нести, носить",
-          "uk": "нести, носити"
+          "uk": "нести, носити",
+          "en": "to carry, to wear"
         },
         "forms": {
           "inf": "tragen",
           "pres3": "trägt",
           "praet": "trug",
+          "pp": "getragen"
+        },
+        "train": {
+          "base": "tragen",
+          "past": "trug",
           "pp": "getragen"
         },
         "aux": "haben",
@@ -381,12 +471,18 @@
         "lemma": "essen",
         "meaning": {
           "ru": "есть",
-          "uk": "їсти"
+          "uk": "їсти",
+          "en": "to eat"
         },
         "forms": {
           "inf": "essen",
           "pres3": "isst",
           "praet": "aß",
+          "pp": "gegessen"
+        },
+        "train": {
+          "base": "essen",
+          "past": "aß",
           "pp": "gegessen"
         },
         "aux": "haben",
@@ -403,12 +499,18 @@
         "lemma": "verstehen",
         "meaning": {
           "ru": "понимать",
-          "uk": "розуміти"
+          "uk": "розуміти",
+          "en": "to understand"
         },
         "forms": {
           "inf": "verstehen",
           "pres3": "versteht",
           "praet": "verstand",
+          "pp": "verstanden"
+        },
+        "train": {
+          "base": "verstehen",
+          "past": "verstand",
           "pp": "verstanden"
         },
         "aux": "haben",
@@ -427,12 +529,18 @@
         "lemma": "schreiben",
         "meaning": {
           "ru": "писать",
-          "uk": "писати"
+          "uk": "писати",
+          "en": "to write"
         },
         "forms": {
           "inf": "schreiben",
           "pres3": "schreibt",
           "praet": "schrieb",
+          "pp": "geschrieben"
+        },
+        "train": {
+          "base": "schreiben",
+          "past": "schrieb",
           "pp": "geschrieben"
         },
         "aux": "haben",
@@ -451,12 +559,18 @@
         "lemma": "sprechen",
         "meaning": {
           "ru": "говорить",
-          "uk": "розмовляти"
+          "uk": "розмовляти",
+          "en": "to speak"
         },
         "forms": {
           "inf": "sprechen",
           "pres3": "spricht",
           "praet": "sprach",
+          "pp": "gesprochen"
+        },
+        "train": {
+          "base": "sprechen",
+          "past": "sprach",
           "pp": "gesprochen"
         },
         "aux": "haben",
@@ -474,12 +588,18 @@
         "lemma": "bringen",
         "meaning": {
           "ru": "приносить",
-          "uk": "приносити"
+          "uk": "приносити",
+          "en": "to bring"
         },
         "forms": {
           "inf": "bringen",
           "pres3": "bringt",
           "praet": "brachte",
+          "pp": "gebracht"
+        },
+        "train": {
+          "base": "bringen",
+          "past": "brachte",
           "pp": "gebracht"
         },
         "aux": "haben",
@@ -498,12 +618,18 @@
         "lemma": "stehen",
         "meaning": {
           "ru": "стоять",
-          "uk": "стояти"
+          "uk": "стояти",
+          "en": "to stand"
         },
         "forms": {
           "inf": "stehen",
           "pres3": "steht",
           "praet": "stand",
+          "pp": "gestanden"
+        },
+        "train": {
+          "base": "stehen",
+          "past": "stand",
           "pp": "gestanden"
         },
         "aux": "haben",
@@ -520,12 +646,18 @@
         "lemma": "liegen",
         "meaning": {
           "ru": "лежать",
-          "uk": "лежати"
+          "uk": "лежати",
+          "en": "to lie (be lying)"
         },
         "forms": {
           "inf": "liegen",
           "pres3": "liegt",
           "praet": "lag",
+          "pp": "gelegen"
+        },
+        "train": {
+          "base": "liegen",
+          "past": "lag",
           "pp": "gelegen"
         },
         "aux": "haben",
@@ -542,12 +674,18 @@
         "lemma": "sitzen",
         "meaning": {
           "ru": "сидеть",
-          "uk": "сидіти"
+          "uk": "сидіти",
+          "en": "to sit"
         },
         "forms": {
           "inf": "sitzen",
           "pres3": "sitzt",
           "praet": "saß",
+          "pp": "gesessen"
+        },
+        "train": {
+          "base": "sitzen",
+          "past": "saß",
           "pp": "gesessen"
         },
         "aux": "haben",
@@ -564,12 +702,18 @@
         "lemma": "schlafen",
         "meaning": {
           "ru": "спать",
-          "uk": "спати"
+          "uk": "спати",
+          "en": "to sleep"
         },
         "forms": {
           "inf": "schlafen",
           "pres3": "schläft",
           "praet": "schlief",
+          "pp": "geschlafen"
+        },
+        "train": {
+          "base": "schlafen",
+          "past": "schlief",
           "pp": "geschlafen"
         },
         "aux": "haben",
@@ -586,12 +730,18 @@
         "lemma": "halten",
         "meaning": {
           "ru": "держать",
-          "uk": "тримати"
+          "uk": "тримати",
+          "en": "to hold, to stop"
         },
         "forms": {
           "inf": "halten",
           "pres3": "hält",
           "praet": "hielt",
+          "pp": "gehalten"
+        },
+        "train": {
+          "base": "halten",
+          "past": "hielt",
           "pp": "gehalten"
         },
         "aux": "haben",
@@ -608,12 +758,18 @@
         "lemma": "laufen",
         "meaning": {
           "ru": "бежать, идти пешком",
-          "uk": "бігти, іти пішки"
+          "uk": "бігти, іти пішки",
+          "en": "to run, to walk"
         },
         "forms": {
           "inf": "laufen",
           "pres3": "läuft",
           "praet": "lief",
+          "pp": "gelaufen"
+        },
+        "train": {
+          "base": "laufen",
+          "past": "lief",
           "pp": "gelaufen"
         },
         "aux": "sein",
@@ -630,12 +786,18 @@
         "lemma": "treffen",
         "meaning": {
           "ru": "встречать",
-          "uk": "зустрічати"
+          "uk": "зустрічати",
+          "en": "to meet"
         },
         "forms": {
           "inf": "treffen",
           "pres3": "trifft",
           "praet": "traf",
+          "pp": "getroffen"
+        },
+        "train": {
+          "base": "treffen",
+          "past": "traf",
           "pp": "getroffen"
         },
         "aux": "haben",
@@ -654,12 +816,18 @@
         "lemma": "steigen",
         "meaning": {
           "ru": "подниматься",
-          "uk": "підніматися"
+          "uk": "підніматися",
+          "en": "to climb, to rise"
         },
         "forms": {
           "inf": "steigen",
           "pres3": "steigt",
           "praet": "stieg",
+          "pp": "gestiegen"
+        },
+        "train": {
+          "base": "steigen",
+          "past": "stieg",
           "pp": "gestiegen"
         },
         "aux": "sein",
@@ -669,32 +837,123 @@
         },
         "examples": [
           "de:12:30",
-          "de:13:41"
+          "de:17:38"
         ]
       }
     ],
     "13": [
       {
-        "lemma": "rufen",
+        "lemma": "anrufen",
         "meaning": {
-          "ru": "звать",
-          "uk": "кликати"
+          "ru": "звонить",
+          "uk": "телефонувати",
+          "en": "to phone"
         },
         "forms": {
-          "inf": "rufen",
-          "pres3": "ruft",
-          "praet": "rief",
-          "pp": "gerufen"
+          "inf": "anrufen",
+          "pres3": "ruft an",
+          "praet": "rief an",
+          "pp": "angerufen"
+        },
+        "train": {
+          "base": "anrufen",
+          "past": "rief an",
+          "pp": "angerufen"
         },
         "aux": "haben",
         "note": {
-          "ru": "Гласная меняется: rufen — rief — gerufen.",
-          "uk": "Голосна змінюється: rufen — rief — gerufen."
+          "ru": "Приставка «an» отделяется: ich rufe dich an.",
+          "uk": "Префікс «an» відокремлюється: ich rufe dich an."
         },
         "examples": [
           "de:13:06",
           "de:13:07",
           "de:13:10"
+        ]
+      },
+      {
+        "lemma": "aufstehen",
+        "meaning": {
+          "ru": "вставать",
+          "uk": "вставати",
+          "en": "to get up"
+        },
+        "forms": {
+          "inf": "aufstehen",
+          "pres3": "steht auf",
+          "praet": "stand auf",
+          "pp": "aufgestanden"
+        },
+        "train": {
+          "base": "aufstehen",
+          "past": "stand auf",
+          "pp": "aufgestanden"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «auf» отделяется: ich stehe auf.",
+          "uk": "Префікс «auf» відокремлюється: ich stehe auf."
+        },
+        "examples": [
+          "de:13:01",
+          "de:13:05",
+          "de:13:02"
+        ]
+      },
+      {
+        "lemma": "aussteigen",
+        "meaning": {
+          "ru": "выходить (из транспорта)",
+          "uk": "виходити (з транспорту)",
+          "en": "to get off"
+        },
+        "forms": {
+          "inf": "aussteigen",
+          "pres3": "steigt aus",
+          "praet": "stieg aus",
+          "pp": "ausgestiegen"
+        },
+        "train": {
+          "base": "aussteigen",
+          "past": "stieg aus",
+          "pp": "ausgestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «aus» отделяется: ich steige aus.",
+          "uk": "Префікс «aus» відокремлюється: ich steige aus."
+        },
+        "examples": [
+          "de:13:43",
+          "de:17:36"
+        ]
+      },
+      {
+        "lemma": "einsteigen",
+        "meaning": {
+          "ru": "садиться (в транспорт)",
+          "uk": "сідати (в транспорт)",
+          "en": "to get on"
+        },
+        "forms": {
+          "inf": "einsteigen",
+          "pres3": "steigt ein",
+          "praet": "stieg ein",
+          "pp": "eingestiegen"
+        },
+        "train": {
+          "base": "einsteigen",
+          "past": "stieg ein",
+          "pp": "eingestiegen"
+        },
+        "aux": "sein",
+        "note": {
+          "ru": "Приставка «ein» отделяется: wir steigen ein.",
+          "uk": "Префікс «ein» відокремлюється: wir steigen ein."
+        },
+        "examples": [
+          "de:13:41",
+          "de:13:42"
         ]
       }
     ],
@@ -703,12 +962,18 @@
         "lemma": "helfen",
         "meaning": {
           "ru": "помогать",
-          "uk": "допомагати"
+          "uk": "допомагати",
+          "en": "to help"
         },
         "forms": {
           "inf": "helfen",
           "pres3": "hilft",
           "praet": "half",
+          "pp": "geholfen"
+        },
+        "train": {
+          "base": "helfen",
+          "past": "half",
           "pp": "geholfen"
         },
         "aux": "haben",
@@ -725,12 +990,18 @@
         "lemma": "können",
         "meaning": {
           "ru": "мочь, уметь",
-          "uk": "могти, вміти"
+          "uk": "могти, вміти",
+          "en": "can, to be able"
         },
         "forms": {
           "inf": "können",
           "pres3": "kann",
           "praet": "konnte",
+          "pp": "gekonnt"
+        },
+        "train": {
+          "base": "können",
+          "past": "konnte",
           "pp": "gekonnt"
         },
         "aux": "haben",
@@ -748,12 +1019,18 @@
         "lemma": "müssen",
         "meaning": {
           "ru": "быть должным",
-          "uk": "бути змушеним"
+          "uk": "бути змушеним",
+          "en": "must, to have to"
         },
         "forms": {
           "inf": "müssen",
           "pres3": "muss",
           "praet": "musste",
+          "pp": "gemusst"
+        },
+        "train": {
+          "base": "müssen",
+          "past": "musste",
           "pp": "gemusst"
         },
         "aux": "haben",
@@ -771,12 +1048,18 @@
         "lemma": "dürfen",
         "meaning": {
           "ru": "иметь право",
-          "uk": "мати право"
+          "uk": "мати право",
+          "en": "may, to be allowed"
         },
         "forms": {
           "inf": "dürfen",
           "pres3": "darf",
           "praet": "durfte",
+          "pp": "gedurft"
+        },
+        "train": {
+          "base": "dürfen",
+          "past": "durfte",
           "pp": "gedurft"
         },
         "aux": "haben",
@@ -794,12 +1077,18 @@
         "lemma": "wollen",
         "meaning": {
           "ru": "хотеть",
-          "uk": "хотіти"
+          "uk": "хотіти",
+          "en": "to want"
         },
         "forms": {
           "inf": "wollen",
           "pres3": "will",
           "praet": "wollte",
+          "pp": "gewollt"
+        },
+        "train": {
+          "base": "wollen",
+          "past": "wollte",
           "pp": "gewollt"
         },
         "aux": "haben",
@@ -817,12 +1106,18 @@
         "lemma": "sollen",
         "meaning": {
           "ru": "следует",
-          "uk": "слід"
+          "uk": "слід",
+          "en": "should, to be supposed to"
         },
         "forms": {
           "inf": "sollen",
           "pres3": "soll",
           "praet": "sollte",
+          "pp": "gesollt"
+        },
+        "train": {
+          "base": "sollen",
+          "past": "sollte",
           "pp": "gesollt"
         },
         "aux": "haben",
@@ -835,72 +1130,6 @@
           "de:14:42",
           "de:14:43"
         ]
-      },
-      {
-        "lemma": "anrufen",
-        "meaning": {
-          "ru": "звонить",
-          "uk": "телефонувати"
-        },
-        "forms": {
-          "inf": "anrufen",
-          "pres3": "ruft an",
-          "praet": "rief an",
-          "pp": "angerufen"
-        },
-        "aux": "haben",
-        "note": {
-          "ru": "Приставка «an» отделяется: ich rufe dich an.",
-          "uk": "Префікс «an» відокремлюється: ich rufe dich an."
-        },
-        "examples": [
-          "de:14:32",
-          "de:16:21"
-        ]
-      },
-      {
-        "lemma": "aufstehen",
-        "meaning": {
-          "ru": "вставать",
-          "uk": "вставати"
-        },
-        "forms": {
-          "inf": "aufstehen",
-          "pres3": "steht auf",
-          "praet": "stand auf",
-          "pp": "aufgestanden"
-        },
-        "aux": "sein",
-        "note": {
-          "ru": "Приставка «auf» отделяется: ich stehe auf.",
-          "uk": "Префікс «auf» відокремлюється: ich stehe auf."
-        },
-        "examples": [
-          "de:14:12",
-          "de:17:07"
-        ]
-      },
-      {
-        "lemma": "aussteigen",
-        "meaning": {
-          "ru": "выходить (из транспорта)",
-          "uk": "виходити (з транспорту)"
-        },
-        "forms": {
-          "inf": "aussteigen",
-          "pres3": "steigt aus",
-          "praet": "stieg aus",
-          "pp": "ausgestiegen"
-        },
-        "aux": "sein",
-        "note": {
-          "ru": "Приставка «aus» отделяется: ich steige aus.",
-          "uk": "Префікс «aus» відокремлюється: ich steige aus."
-        },
-        "examples": [
-          "de:14:15",
-          "de:17:36"
-        ]
       }
     ],
     "16": [
@@ -908,12 +1137,18 @@
         "lemma": "sehen",
         "meaning": {
           "ru": "видеть",
-          "uk": "бачити"
+          "uk": "бачити",
+          "en": "to see"
         },
         "forms": {
           "inf": "sehen",
           "pres3": "sieht",
           "praet": "sah",
+          "pp": "gesehen"
+        },
+        "train": {
+          "base": "sehen",
+          "past": "sah",
           "pp": "gesehen"
         },
         "aux": "haben",
@@ -930,12 +1165,18 @@
         "lemma": "bekommen",
         "meaning": {
           "ru": "получать",
-          "uk": "отримувати"
+          "uk": "отримувати",
+          "en": "to get, to receive"
         },
         "forms": {
           "inf": "bekommen",
           "pres3": "bekommt",
           "praet": "bekam",
+          "pp": "bekommen"
+        },
+        "train": {
+          "base": "bekommen",
+          "past": "bekam",
           "pp": "bekommen"
         },
         "aux": "haben",
@@ -952,12 +1193,18 @@
         "lemma": "vergessen",
         "meaning": {
           "ru": "забывать",
-          "uk": "забувати"
+          "uk": "забувати",
+          "en": "to forget"
         },
         "forms": {
           "inf": "vergessen",
           "pres3": "vergisst",
           "praet": "vergaß",
+          "pp": "vergessen"
+        },
+        "train": {
+          "base": "vergessen",
+          "past": "vergaß",
           "pp": "vergessen"
         },
         "aux": "haben",
@@ -973,12 +1220,18 @@
         "lemma": "verlieren",
         "meaning": {
           "ru": "терять",
-          "uk": "губити"
+          "uk": "губити",
+          "en": "to lose"
         },
         "forms": {
           "inf": "verlieren",
           "pres3": "verliert",
           "praet": "verlor",
+          "pp": "verloren"
+        },
+        "train": {
+          "base": "verlieren",
+          "past": "verlor",
           "pp": "verloren"
         },
         "aux": "haben",
@@ -996,12 +1249,18 @@
         "lemma": "werden",
         "meaning": {
           "ru": "становиться",
-          "uk": "ставати"
+          "uk": "ставати",
+          "en": "to become"
         },
         "forms": {
           "inf": "werden",
           "pres3": "wird",
           "praet": "wurde",
+          "pp": "geworden"
+        },
+        "train": {
+          "base": "werden",
+          "past": "wurde",
           "pp": "geworden"
         },
         "aux": "sein",
@@ -1018,12 +1277,18 @@
         "lemma": "einschlafen",
         "meaning": {
           "ru": "засыпать",
-          "uk": "засинати"
+          "uk": "засинати",
+          "en": "to fall asleep"
         },
         "forms": {
           "inf": "einschlafen",
           "pres3": "schläft ein",
           "praet": "schlief ein",
+          "pp": "eingeschlafen"
+        },
+        "train": {
+          "base": "einschlafen",
+          "past": "schlief ein",
           "pp": "eingeschlafen"
         },
         "aux": "sein",
@@ -1036,37 +1301,21 @@
         ]
       },
       {
-        "lemma": "einsteigen",
-        "meaning": {
-          "ru": "садиться (в транспорт)",
-          "uk": "сідати (в транспорт)"
-        },
-        "forms": {
-          "inf": "einsteigen",
-          "pres3": "steigt ein",
-          "praet": "stieg ein",
-          "pp": "eingestiegen"
-        },
-        "aux": "sein",
-        "note": {
-          "ru": "Приставка «ein» отделяется: wir steigen ein.",
-          "uk": "Префікс «ein» відокремлюється: wir steigen ein."
-        },
-        "examples": [
-          "de:17:21",
-          "de:23:24"
-        ]
-      },
-      {
         "lemma": "ziehen",
         "meaning": {
           "ru": "тянуть, переезжать",
-          "uk": "тягнути, переїжджати"
+          "uk": "тягнути, переїжджати",
+          "en": "to pull, to move"
         },
         "forms": {
           "inf": "ziehen",
           "pres3": "zieht",
           "praet": "zog",
+          "pp": "gezogen"
+        },
+        "train": {
+          "base": "ziehen",
+          "past": "zog",
           "pp": "gezogen"
         },
         "aux": "haben",
@@ -1083,12 +1332,18 @@
         "lemma": "fallen",
         "meaning": {
           "ru": "падать",
-          "uk": "падати"
+          "uk": "падати",
+          "en": "to fall"
         },
         "forms": {
           "inf": "fallen",
           "pres3": "fällt",
           "praet": "fiel",
+          "pp": "gefallen"
+        },
+        "train": {
+          "base": "fallen",
+          "past": "fiel",
           "pp": "gefallen"
         },
         "aux": "sein",
@@ -1107,12 +1362,18 @@
         "lemma": "gefallen",
         "meaning": {
           "ru": "нравиться",
-          "uk": "подобатися"
+          "uk": "подобатися",
+          "en": "to please, to like"
         },
         "forms": {
           "inf": "gefallen",
           "pres3": "gefällt",
           "praet": "gefiel",
+          "pp": "gefallen"
+        },
+        "train": {
+          "base": "gefallen",
+          "past": "gefiel",
           "pp": "gefallen"
         },
         "aux": "haben",
@@ -1130,12 +1391,18 @@
         "lemma": "laden",
         "meaning": {
           "ru": "грузить, заряжать",
-          "uk": "вантажити, заряджати"
+          "uk": "вантажити, заряджати",
+          "en": "to load, to charge"
         },
         "forms": {
           "inf": "laden",
           "pres3": "lädt",
           "praet": "lud",
+          "pp": "geladen"
+        },
+        "train": {
+          "base": "laden",
+          "past": "lud",
           "pp": "geladen"
         },
         "aux": "haben",
@@ -1151,12 +1418,18 @@
         "lemma": "kennen",
         "meaning": {
           "ru": "знать (кого-то)",
-          "uk": "знати (когось)"
+          "uk": "знати (когось)",
+          "en": "to know (someone)"
         },
         "forms": {
           "inf": "kennen",
           "pres3": "kennt",
           "praet": "kannte",
+          "pp": "gekannt"
+        },
+        "train": {
+          "base": "kennen",
+          "past": "kannte",
           "pp": "gekannt"
         },
         "aux": "haben",
@@ -1175,12 +1448,18 @@
         "lemma": "wissen",
         "meaning": {
           "ru": "знать",
-          "uk": "знати"
+          "uk": "знати",
+          "en": "to know (a fact)"
         },
         "forms": {
           "inf": "wissen",
           "pres3": "weiß",
           "praet": "wusste",
+          "pp": "gewusst"
+        },
+        "train": {
+          "base": "wissen",
+          "past": "wusste",
           "pp": "gewusst"
         },
         "aux": "haben",
@@ -1198,12 +1477,18 @@
         "lemma": "tun",
         "meaning": {
           "ru": "делать",
-          "uk": "робити"
+          "uk": "робити",
+          "en": "to do"
         },
         "forms": {
           "inf": "tun",
           "pres3": "tut",
           "praet": "tat",
+          "pp": "getan"
+        },
+        "train": {
+          "base": "tun",
+          "past": "tat",
           "pp": "getan"
         },
         "aux": "haben",
@@ -1221,12 +1506,18 @@
         "lemma": "geben",
         "meaning": {
           "ru": "давать",
-          "uk": "давати"
+          "uk": "давати",
+          "en": "to give"
         },
         "forms": {
           "inf": "geben",
           "pres3": "gibt",
           "praet": "gab",
+          "pp": "gegeben"
+        },
+        "train": {
+          "base": "geben",
+          "past": "gab",
           "pp": "gegeben"
         },
         "aux": "haben",
@@ -1245,12 +1536,18 @@
         "lemma": "denken",
         "meaning": {
           "ru": "думать",
-          "uk": "думати"
+          "uk": "думати",
+          "en": "to think"
         },
         "forms": {
           "inf": "denken",
           "pres3": "denkt",
           "praet": "dachte",
+          "pp": "gedacht"
+        },
+        "train": {
+          "base": "denken",
+          "past": "dachte",
           "pp": "gedacht"
         },
         "aux": "haben",
@@ -1268,12 +1565,18 @@
         "lemma": "lassen",
         "meaning": {
           "ru": "позволять, оставлять",
-          "uk": "дозволяти, залишати"
+          "uk": "дозволяти, залишати",
+          "en": "to let, to leave"
         },
         "forms": {
           "inf": "lassen",
           "pres3": "lässt",
           "praet": "ließ",
+          "pp": "gelassen"
+        },
+        "train": {
+          "base": "lassen",
+          "past": "ließ",
           "pp": "gelassen"
         },
         "aux": "haben",

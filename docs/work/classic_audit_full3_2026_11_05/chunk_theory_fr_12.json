@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 25,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:25:01",
+"fr:25:02",
+"fr:25:03"
+],
+"textByLocale": {
+"en": "If the item is known, `en` eliminates the need to repeat it in the answer about quantity. The number is preserved: one, two, four. For a feminine item, \"one\" is `une`.",
+"ru": "Если предмет известен, `en` позволяет не повторять его в ответе о количестве. Число сохраняется: один, два, четыре. Для женского предмета «одна» — `une`.",
+"uk": "Якщо предмет відомий, `en` дозволяє не повторювати його у відповіді про кількість. Число зберігається: один, два, чотири. Для жіночого предмета \"одна\" - `une`."
+}
+},
+{
+"exampleIds": [
+"fr:25:11",
+"fr:25:12",
+"fr:25:14"
+],
+"textByLocale": {
+"en": "A substance may not have a number. `J’en prends un peu` indicates that you are taking a small amount of the mentioned product. Mentally substitute the name to check the meaning.",
+"ru": "У вещества может не быть числа. `J’en prends un peu` сообщает, что берёшь немного упомянутого продукта. Подставь мысленно название, чтобы проверить смысл.",
+"uk": "Речовина може не мати числа. `J’en prends un peu` повідомляє, що береш трохи згаданого продукту. Підстав подумки назву, щоб перевірити зміст."
+}
+},
+{
+"exampleIds": [
+"fr:25:16",
+"fr:25:17",
+"fr:25:20"
+],
+"textByLocale": {
+"en": "Instead of a number, you can use a measure: a cup, a spoon, or a package. `En` in the honey examples does not transform the spoon into a place or direction.",
+"ru": "Вместо числа можно оставить меру: чашку, ложку, упаковку. `En` в примерах с мёдом не превращает ложку в место или направление.",
+"uk": "Замість числа можна залишити міру: чашку, ложку, упаковку. `En` у прикладах з медом не перетворює ложку на місце або напрямок."
+}
+},
+{
+"exampleIds": [
+"fr:25:21",
+"fr:25:22",
+"fr:25:24"
+],
+"textByLocale": {
+"en": "After negation, the pronoun is retained, even if the remainder is zero. `Il n’en reste aucune` is appropriate when referring to feminine objects.",
+"ru": "После отрицания местоимение сохраняется, даже если остаток равен нулю. `Il n’en reste aucune` подходит, когда подразумеваются предметы женского рода.",
+"uk": "Після заперечення займенник зберігається, навіть якщо залишок дорівнює нулю. `Il n’en reste aucune` підходить, коли маються на увазі предмети жіночого роду."
+}
+},
+{
+"exampleIds": [
+"fr:25:31",
+"fr:25:32",
+"fr:25:34"
+],
+"textByLocale": {
+"en": "In the past tense, `en` comes before `ai`, `as`, `a`, and `avons`. The number usually remains after the participle. Do not use it in place of a missing noun before `en`.",
+"ru": "В прошедшем `en` стоит перед `ai`, `as`, `a`, `avons`. Число обычно остаётся после причастия. Не ставь его вместо отсутствующего существительного перед `en`.",
+"uk": "У минулому `en` стоїть перед `ai`, `as`, `a`, `avons`. Число зазвичай залишається після причастя. Не став його замість відсутнього іменника перед `en`."
+}
+},
+{
+"exampleIds": [
+"fr:25:36",
+"fr:25:37",
+"fr:25:40"
+],
+"textByLocale": {
+"en": "With the second verb, look for the semantic action: to want to try on another one — `veut en essayer un autre`. In such examples, `en` is tied to the infinitive.",
+"ru": "При втором глаголе ищи смысловое действие: захотеть примерить ещё один — `veut en essayer un autre`. В таких примерах `en` привязано к инфинитиву.",
+"uk": "При другому дієслові шукай смислову дію: захотіти приміряти ще один – `veut en essayer un autre`. У таких прикладах `en` прив'язано до інфінітиву."
+}
+},
+{
+"exampleIds": [
+"fr:25:41",
+"fr:25:46",
+"fr:25:50"
+],
+"textByLocale": {
+"en": "Distinguish the pronoun `en` from the preposition `en` in expressions about transportation. `En bus` does not mean \"several buses of them.\" Look at the position of the short word and adjacent words.",
+"ru": "Отличай `en`-местоимение от предлога `en` в выражениях про транспорт. `En bus` не означает «несколько автобусов из них». Смотри на место короткого слова и соседние слова.",
+"uk": "Відрізняй `en`-займенник від прийменника `en` у виразах про транспорт. `En bus` не означає \"кілька автобусів з них\". Дивись на місце короткого слова та сусідні слова."
+}
+}
+],
+"drills": [
+{
+"bad": "J’aime",
+"chapter": 1,
+"id": "fr:25:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"J’en",
+"J’ai",
+"J’aime"
+],
+"slot": 0
+},
+{
+"bad": "aux",
+"chapter": 1,
+"id": "fr:25:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"en",
+"aux",
+"dans"
+],
+"slot": 1
+},
+{
+"bad": "à",
+"chapter": 1,
+"id": "fr:25:05:lab",
+"item": 5,
+"kind": "match",
+"near": 32,
+"options": [
+"en",
+"à",
+"au"
+],
+"slot": 1
+},
+{
+"bad": "à",
+"chapter": 2,
+"id": "fr:25:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"à",
+"vers",
+"en"
+],
+"slot": 1
+},
+{
+"bad": "à",
+"chapter": 2,
+"id": "fr:25:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 16,
+"options": [
+"en",
+"à",
+"chez"
+],
+"slot": 1
+},
+{
+"bad": "chez",
+"chapter": 2,
+"id": "fr:25:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"en",
+"chez",
+"vers"
+],
+"slot": 3
+},
+{
+"bad": "j’aime",
+"chapter": 3,
+"id": "fr:25:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"j’en",
+"j’ai",
+"j’aime"
+],
+"slot": 2
+},
+{
+"bad": "j’aime",
+"chapter": 3,
+"id": "fr:25:17:lab",
+"item": 17,
+"kind": "match",
+"near": 20,
+"options": [
+"j’aime",
+"j’ai",
+"j’en"
+],
+"slot": 2
+},
+{
+"bad": "au",
+"chapter": 3,
+"id": "fr:25:19:lab",
+"item": 19,
+"kind": "build",
+"near": 32,
+"options": [
+"vers",
+"au",
+"en"
+],
+"slot": 3
+},
+{
+"bad": "qu’un",
+"chapter": 4,
+"id": "fr:25:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 33,
+"options": [
+"d’autres",
+"qu’un",
+"n’en"
+],
+"slot": 1
+},
+{
+"bad": "aujourd’hui",
+"chapter": 4,
+"id": "fr:25:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 29,
+"options": [
+"qu’un",
+"n’en",
+"aujourd’hui"
+],
+"slot": 1
+},
+{
+"bad": "j’en",
+"chapter": 4,
+"id": "fr:25:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 21,
+"options": [
+"j’ai",
+"j’en",
+"n’en"
+],
+"slot": 1
+},
+{
+"bad": "j’aime",
+"chapter": 5,
+"id": "fr:25:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"n’en",
+"j’aime",
+"aujourd’hui"
+],
+"slot": 1
+},
+{
+"bad": "J’aime",
+"chapter": 5,
+"id": "fr:25:31:lab",
+"item": 31,
+"kind": "build",
+"near": 9,
+"options": [
+"J’aime",
+"J’en",
+"J’ai"
+],
+"slot": 0
+},
+{
+"bad": "dans",
+"chapter": 5,
+"id": "fr:25:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 4,
+"options": [
+"en",
+"au",
+"dans"
+],
+"slot": 1
+},
+{
+"bad": "à",
+"chapter": 6,
+"id": "fr:25:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 46,
+"options": [
+"en",
+"à",
+"vers"
+],
+"slot": 2
+},
+{
+"bad": "à",
+"chapter": 6,
+"id": "fr:25:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 6,
+"options": [
+"vers",
+"en",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "chez",
+"chapter": 6,
+"id": "fr:25:42:lab",
+"item": 42,
+"kind": "match",
+"near": 40,
+"options": [
+"en",
+"chez",
+"aux"
+],
+"slot": 6
+},
+{
+"bad": "j’ai",
+"chapter": 7,
+"id": "fr:25:45:lab",
+"item": 45,
+"kind": "build",
+"near": 13,
+"options": [
+"j’aime",
+"j’en",
+"j’ai"
+],
+"slot": 5
+},
+{
+"bad": "dans",
+"chapter": 7,
+"id": "fr:25:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"vers",
+"dans",
+"en"
+],
+"slot": 7
+}
+],
+"table": [
+[
+"deux billets",
+"j’en prends deux"
+],
+[
+"une pomme",
+"j’en prends une"
+],
+[
+"du pain",
+"j’en veux un peu"
+],
+[
+"des billets",
+"je n’en ai plus"
+],
+[
+"acheter trois places",
+"en acheter trois"
+]
+],
+"title": {
+"en": "How many of them: pronoun `en`",
+"ru": "Сколько из них: местоимение `en`",
+"uk": "Скільки з них: займенник `en`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:25:01",
+"target": "J’en veux un.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "fr:25:02",
+"target": "J’en veux deux.",
+"ru": "Я хочу два из них.",
+"uk": "Я хочу два з них."
+},
+{
+"id": "fr:25:03",
+"target": "Tu en prends un.",
+"ru": "Ты берёшь один.",
+"uk": "Ти береш один."
+},
+{
+"id": "fr:25:11",
+"target": "Du pain, j’en prends un peu.",
+"ru": "Хлеба я возьму немного.",
+"uk": "Хліба я візьму небагато."
+},
+{
+"id": "fr:25:12",
+"target": "Du fromage, elle en mange souvent.",
+"ru": "Она часто ест сыр.",
+"uk": "Вона часто їсть сир."
+},
+{
+"id": "fr:25:14",
+"target": "Des œufs, j’en prends six.",
+"ru": "Возьму шесть яиц.",
+"uk": "Я візьму шість яєць."
+},
+{
+"id": "fr:25:16",
+"target": "De la soupe, il en reste un bol.",
+"ru": "Осталась тарелка супа.",
+"uk": "Залишилася миска супу."
+},
+{
+"id": "fr:25:17",
+"target": "Du miel, j’en ajoute une cuillère.",
+"ru": "Мёда добавляю ложку.",
+"uk": "Меду додаю ложку."
+},
+{
+"id": "fr:25:20",
+"target": "Du beurre, j’en mets très peu.",
+"ru": "Масла кладу совсем немного.",
+"uk": "Масла кладу зовсім трохи."
+},
+{
+"id": "fr:25:21",
+"target": "Je n’en ai pas.",
+"ru": "У меня их нет.",
+"uk": "У мене їх немає."
+},
+{
+"id": "fr:25:22",
+"target": "Nous n’en avons plus.",
+"ru": "У нас их больше нет.",
+"uk": "У нас їх більше немає."
+},
+{
+"id": "fr:25:24",
+"target": "Il n’en reste aucune.",
+"ru": "Не осталось ни одной.",
+"uk": "Не залишилося жодної."
+},
+{
+"id": "fr:25:31",
+"target": "J’en ai acheté deux.",
+"ru": "Я купил два.",
+"uk": "Я купив два."
+},
+{
+"id": "fr:25:32",
+"target": "Elle en a trouvé une.",
+"ru": "Она нашла одну.",
+"uk": "Вона знайшла одну."
+},
+{
+"id": "fr:25:34",
+"target": "Tu en as reçu combien ?",
+"ru": "Сколько ты их получил?",
+"uk": "Скільки ти їх одержав?"
+},
+{
+"id": "fr:25:36",
+"target": "Je vais en reprendre.",
+"ru": "Я возьму ещё.",
+"uk": "Я візьму ще."
+},
+{
+"id": "fr:25:37",
+"target": "Tu peux en apporter deux ?",
+"ru": "Можешь принести две штуки?",
+"uk": "Чи можеш принести дві штуки?"
+},
+{
+"id": "fr:25:40",
+"target": "Ces batteries sont chargées, vous pouvez en garder la moitié.",
+"ru": "Эти батареи заряжены; половину можете оставить себе.",
+"uk": "Ці батареї заряджені; ви можете залишити половину з них."
+},
+{
+"id": "fr:25:41",
+"target": "J’ai quatre billets et je t’en donne deux.",
+"ru": "У меня четыре билета, и я даю тебе два.",
+"uk": "У мене чотири квитки, і я даю тобі два."
+},
+{
+"id": "fr:25:46",
+"target": "Il manque des verres, je vais en chercher.",
+"ru": "Не хватает стаканов, я пойду за ними.",
+"uk": "Не вистачає склянок, я піду за ними."
+},
+{
+"id": "fr:25:50",
+"target": "Il y a des péniches sur le canal et j’en vois deux.",
+"ru": "На канале баржи, и я вижу две.",
+"uk": "На каналі є баржі, і я бачу дві."
+}
+]
+},
+{
+"lesson": 26,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:26:01",
+"fr:26:03",
+"fr:26:05"
+],
+"textByLocale": {
+"en": "Choose the direction: bigger, smaller, equal. `Que` connects the attribute with the one or thing being compared. The latter part is sometimes clear from conversation and not explicitly stated.",
+"ru": "Выбери направление: больше, меньше, наравне. `Que` соединяет признак с тем, с кем или чем сравнивают. Последняя часть иногда понятна из разговора и явно не произнесена.",
+"uk": "Виберіть напрямок: більше, менше, на рівні. `Que` поєднує ознаку з тим, з ким чи чим порівнюють. Остання частина іноді зрозуміла з розмови і явно не сказана."
+}
+},
+{
+"exampleIds": [
+"fr:26:02",
+"fr:26:04",
+"fr:26:06"
+],
+"textByLocale": {
+"en": "The adjective still agrees with what it describes. The suitcase is `lourde`, the bag is `lourd` in these French examples. `Plus` and `moins` don't cancel this out.",
+"ru": "Прилагательное по-прежнему согласуется с тем, что описывает. У чемодана `lourde`, у сумки `lourd` в этих французских примерах. `Plus` и `moins` этого не отменяют.",
+"uk": "Прикметник, як і раніше, узгоджується з описом. У валізи `lourde`, сумки `lourd` у цих французьких прикладах. `Plus` та `moins` цього не скасовують."
+}
+},
+{
+"exampleIds": [
+"fr:26:11",
+"fr:26:13",
+"fr:26:18"
+],
+"textByLocale": {
+"en": "One attribute is compared at a time: cost, comfort, thickness. `Plus` doesn't mean \"better\" by itself. The higher price may be a disadvantage.",
+"ru": "Сравнивается один признак за раз: стоимость, удобство, толщина. `Plus` не означает «лучше» само по себе. Более высокая цена может быть недостатком.",
+"uk": "Порівнюється одна ознака за раз: вартість, зручність, товщина. `Plus` не означає \"краще\" саме по собі. Вища ціна може бути недоліком."
+}
+},
+{
+"exampleIds": [
+"fr:26:21",
+"fr:26:25",
+"fr:26:28"
+],
+"textByLocale": {
+"en": "`Mieux` refers to how an action is performed. `Meilleur` and its forms describe an object or result. \"I sleep better\" and \"the best bread\" require different words.",
+"ru": "`Mieux` относится к тому, как выполняется действие. `Meilleur` и его формы описывают предмет или результат. «Лучше сплю» и «лучший хлеб» требуют разных слов.",
+"uk": "`Mieux` відноситься до того, як виконується дія. `Meilleur` та його форми описують предмет або результат. «Краще сплю» та «кращий хліб» вимагають різних слів."
+}
+},
+{
+"exampleIds": [
+"fr:26:31",
+"fr:26:32",
+"fr:26:33"
+],
+"textByLocale": {
+"en": "Before a noun comparing quantity, use `plus de`, `moins de`, `autant de`. For equal temperatures, use `aussi chaud`, and for equal amounts of time, use `autant de temps`.",
+"ru": "Перед существительным в сравнении количества используй `plus de`, `moins de`, `autant de`. Для равной температуры `aussi chaud`, а для равного количества времени `autant de temps`.",
+"uk": "Перед іменником у порівнянні кількості використовуй `plus de`, `moins de`, `autant de`. Для рівної температури `aussi chaud`, а для рівної кількості часу `autant de temps`."
+}
+},
+{
+"exampleIds": [
+"fr:26:41",
+"fr:26:42",
+"fr:26:44"
+],
+"textByLocale": {
+"en": "When choosing one extreme option from a group, a superlative phrase is needed: the shortest, the least expensive. Don't lose the article before `plus` or `moins` in this pattern.",
+"ru": "Когда выбирается один крайний вариант из группы, нужен превосходный оборот: самый короткий, наименее дорогой. Не потеряй артикль перед `plus` или `moins` в такой схеме.",
+"uk": "Коли вибирається один крайній варіант із групи, потрібен чудовий оборот: найкоротший, найменш дорогий. Не втрати артикль перед `plus` або `moins` у такій схемі."
+}
+},
+{
+"exampleIds": [
+"fr:26:45",
+"fr:26:48",
+"fr:26:50"
+],
+"textByLocale": {
+"en": "Test with purchase: Compare \"cheaper than the other\" with \"the cheapest of all.\" In the first case, mentally search for the second item; in the second, search for the entire group to choose from.",
+"ru": "Проверка с покупкой: сопоставь «дешевле другой» и «самая дешёвая из всех». В первом случае мысленно ищи вторую вещь, во втором — целую группу для выбора.",
+"uk": "Перевірка з покупкою: зістав «дешевше інший» і «найдешевша з усіх». У першому випадку подумки шукай другу річ, у другому цілу групу для вибору."
+}
+}
+],
+"drills": [
+{
+"bad": "beaucoup",
+"chapter": 1,
+"id": "fr:26:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"plus",
+"mieux",
+"beaucoup"
+],
+"slot": 2
+},
+{
+"bad": "autant",
+"chapter": 1,
+"id": "fr:26:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 17,
+"options": [
+"plus",
+"autant",
+"moins"
+],
+"slot": 3
+},
+{
+"bad": "autant",
+"chapter": 1,
+"id": "fr:26:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"aussi",
+"autant",
+"meilleur"
+],
+"slot": 3
+},
+{
+"bad": "peu",
+"chapter": 2,
+"id": "fr:26:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"plus",
+"meilleur",
+"peu"
+],
+"slot": 3
+},
+{
+"bad": "autant",
+"chapter": 2,
+"id": "fr:26:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 6,
+"options": [
+"moins",
+"aussi",
+"autant"
+],
+"slot": 3
+},
+{
+"bad": "aussi",
+"chapter": 2,
+"id": "fr:26:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 17,
+"options": [
+"aussi",
+"moins",
+"mieux"
+],
+"slot": 3
+},
+{
+"bad": "peu",
+"chapter": 3,
+"id": "fr:26:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"peu",
+"plus",
+"autant"
+],
+"slot": 4
+},
+{
+"bad": "aussi",
+"chapter": 3,
+"id": "fr:26:17:lab",
+"item": 17,
+"kind": "match",
+"near": 3,
+"options": [
+"aussi",
+"moins",
+"autant"
+],
+"slot": 3
+},
+{
+"bad": "beaucoup",
+"chapter": 3,
+"id": "fr:26:19:lab",
+"item": 19,
+"kind": "build",
+"near": 9,
+"options": [
+"beaucoup",
+"plus",
+"aussi"
+],
+"slot": 4
+},
+{
+"bad": "moins",
+"chapter": 4,
+"id": "fr:26:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 27,
+"options": [
+"plus",
+"moins",
+"meilleur"
+],
+"slot": 2
+},
+{
+"bad": "meilleur",
+"chapter": 4,
+"id": "fr:26:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 32,
+"options": [
+"moins",
+"plus",
+"meilleur"
+],
+"slot": 2
+},
+{
+"bad": "autant",
+"chapter": 4,
+"id": "fr:26:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 40,
+"options": [
+"moins",
+"mieux",
+"autant"
+],
+"slot": 2
+},
+{
+"bad": "meilleurs",
+"chapter": 5,
+"id": "fr:26:29:lab",
+"item": 29,
+"kind": "match",
+"near": 14,
+"options": [
+"meilleurs",
+"bonne",
+"meilleur"
+],
+"slot": 3
+},
+{
+"bad": "aussi",
+"chapter": 5,
+"id": "fr:26:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"aussi",
+"plus",
+"mieux"
+],
+"slot": 3
+},
+{
+"bad": "autant",
+"chapter": 5,
+"id": "fr:26:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 2,
+"options": [
+"plus",
+"peu",
+"autant"
+],
+"slot": 2
+},
+{
+"bad": "beaucoup",
+"chapter": 6,
+"id": "fr:26:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 8,
+"options": [
+"moins",
+"beaucoup",
+"aussi"
+],
+"slot": 3
+},
+{
+"bad": "aussi",
+"chapter": 6,
+"id": "fr:26:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"autant",
+"moins",
+"aussi"
+],
+"slot": 2
+},
+{
+"bad": "aussi",
+"chapter": 6,
+"id": "fr:26:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"plus",
+"aussi",
+"mieux"
+],
+"slot": 4
+},
+{
+"bad": "bons",
+"chapter": 7,
+"id": "fr:26:45:lab",
+"item": 45,
+"kind": "build",
+"near": 29,
+"options": [
+"bons",
+"bonne",
+"meilleur"
+],
+"slot": 2
+},
+{
+"bad": "meilleur",
+"chapter": 7,
+"id": "fr:26:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 44,
+"options": [
+"meilleur",
+"plus",
+"moins"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"plus grand",
+"plus grand que moi"
+],
+[
+"aussi chaud",
+"aussi chaud que le café"
+],
+[
+"moins de",
+"moins de bagages"
+],
+[
+"autant de",
+"autant de temps"
+],
+[
+"bien",
+"mieux"
+],
+[
+"bon",
+"meilleur / meilleure"
+]
+],
+"title": {
+"en": "Compare: more, less, or the same",
+"ru": "Сравнить: больше, меньше или так же",
+"uk": "Порівняти: більше, менше або так само"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:26:01",
+"target": "Paul est plus grand que moi.",
+"ru": "Поль выше меня.",
+"uk": "Пол вищий за мене."
+},
+{
+"id": "fr:26:03",
+"target": "Ce sac est moins lourd que l’autre.",
+"ru": "Эта сумка легче другой.",
+"uk": "Ця сумка легша за іншу."
+},
+{
+"id": "fr:26:05",
+"target": "Le thé est aussi chaud que le café.",
+"ru": "Чай такой же горячий, как кофе.",
+"uk": "Чай такий же гарячий, як кава."
+},
+{
+"id": "fr:26:02",
+"target": "Léa est plus grande que moi.",
+"ru": "Леа выше меня.",
+"uk": "Леа вища за мене."
+},
+{
+"id": "fr:26:04",
+"target": "Cette valise est moins lourde que l’autre.",
+"ru": "Этот чемодан легче другого.",
+"uk": "Ця валіза легша за іншу."
+},
+{
+"id": "fr:26:06",
+"target": "La soupe est aussi chaude que le thé.",
+"ru": "Суп такой же горячий, как чай.",
+"uk": "Суп такий же гарячий, як чай."
+},
+{
+"id": "fr:26:11",
+"target": "Ce manteau est plus cher que la veste.",
+"ru": "Это пальто дороже куртки.",
+"uk": "Це пальто дорожче за куртку."
+},
+{
+"id": "fr:26:13",
+"target": "Le nouveau lit est plus confortable.",
+"ru": "Новая кровать удобнее.",
+"uk": "Нове ліжко зручніше."
+},
+{
+"id": "fr:26:18",
+"target": "Les serviettes bleues sont plus douces.",
+"ru": "Синие полотенца мягче.",
+"uk": "Сині рушники м'якші."
+},
+{
+"id": "fr:26:21",
+"target": "Je marche plus vite que toi.",
+"ru": "Я хожу быстрее тебя.",
+"uk": "Я ходжу швидше за тебе."
+},
+{
+"id": "fr:26:25",
+"target": "Je dors mieux ici.",
+"ru": "Я здесь лучше сплю.",
+"uk": "Я тут краще сплю."
+},
+{
+"id": "fr:26:28",
+"target": "Cette tarte est meilleure que l’autre.",
+"ru": "Этот пирог вкуснее другого.",
+"uk": "Цей пиріг смачніший за інший."
+},
+{
+"id": "fr:26:31",
+"target": "Il y a plus de monde le samedi.",
+"ru": "По субботам людей больше.",
+"uk": "У суботу людей більше."
+},
+{
+"id": "fr:26:32",
+"target": "J’ai moins de bagages que toi.",
+"ru": "У меня меньше багажа, чем у тебя.",
+"uk": "У мене менше багажу, ніж у тебе."
+},
+{
+"id": "fr:26:33",
+"target": "Nous avons autant de temps qu’eux.",
+"ru": "У нас столько же времени, сколько и у них.",
+"uk": "У нас стільки ж часу, скільки й у них."
+},
+{
+"id": "fr:26:41",
+"target": "C’est le chemin le plus court.",
+"ru": "Это самый короткий маршрут.",
+"uk": "Це найкоротший маршрут."
+},
+{
+"id": "fr:26:42",
+"target": "C’est la rue la plus tranquille.",
+"ru": "Это самая тихая улица.",
+"uk": "Це найтихіша вулиця."
+},
+{
+"id": "fr:26:44",
+"target": "C’est la chambre la plus lumineuse.",
+"ru": "Это самая светлая комната.",
+"uk": "Це найсвітліша кімната."
+},
+{
+"id": "fr:26:45",
+"target": "C’est mon meilleur souvenir.",
+"ru": "Это мое лучшее воспоминание.",
+"uk": "Це мій найкращий спогад."
+},
+{
+"id": "fr:26:48",
+"target": "Je prends la plus petite portion.",
+"ru": "Я беру самую маленькую порцию.",
+"uk": "Я беру найменшу порцію."
+},
+{
+"id": "fr:26:50",
+"target": "Le thé refroidit plus vite dans cette tasse.",
+"ru": "Чай быстрее остывает в этой чашке.",
+"uk": "Чай швидше остигає в цій чашці."
+}
+]
+}
+]

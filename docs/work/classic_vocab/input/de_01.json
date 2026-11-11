@@ -117,25 +117,6 @@
    ]
   },
   {
-   "form": "anna",
-   "surface": "Anna",
-   "count": 6,
-   "examples": [
-    {
-     "id": "de:01:05",
-     "target": "Anna ist hier",
-     "ru": "Анна здесь.",
-     "en": "Anna is here."
-    },
-    {
-     "id": "de:01:06",
-     "target": "Anna ist müde",
-     "ru": "Анна устала.",
-     "en": "Anna is tired."
-    }
-   ]
-  },
-  {
    "form": "ist",
    "surface": "ist",
    "count": 20,
@@ -207,7 +188,7 @@
      "id": "de:01:09",
      "target": "Ihr seid wach",
      "ru": "Вы не спите.",
-     "en": "You are awake."
+     "en": "You (plural) are awake."
     }
    ]
   },
@@ -220,7 +201,7 @@
      "id": "de:01:09",
      "target": "Ihr seid wach",
      "ru": "Вы не спите.",
-     "en": "You are awake."
+     "en": "You (plural) are awake."
     },
     {
      "id": "de:01:19",
@@ -239,32 +220,13 @@
      "id": "de:01:09",
      "target": "Ihr seid wach",
      "ru": "Вы не спите.",
-     "en": "You are awake."
+     "en": "You (plural) are awake."
     },
     {
      "id": "de:01:19",
      "target": "Ihr seid bereit",
      "ru": "Вы готовы.",
      "en": "You (plural) are ready."
-    }
-   ]
-  },
-  {
-   "form": "tom",
-   "surface": "Tom",
-   "count": 5,
-   "examples": [
-    {
-     "id": "de:01:10",
-     "target": "Tom ist wach",
-     "ru": "Том не спит.",
-     "en": "Tom is awake."
-    },
-    {
-     "id": "de:01:13",
-     "target": "Tom ist zu Hause",
-     "ru": "Том дома.",
-     "en": "Tom is at home."
     }
    ]
   },

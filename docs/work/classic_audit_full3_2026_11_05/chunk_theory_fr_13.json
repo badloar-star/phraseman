@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 27,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:27:01",
+"fr:27:02",
+"fr:27:03"
+],
+"textByLocale": {
+"en": "Unlike the `aller` scheme, in the simple future, one personal verb is enough. Don't always consider these methods interchangeable: here we practice promises, forecasts, and schedules.",
+"ru": "В отличие от схемы с `aller`, в простом будущем достаточно одного личного глагола. Не считай эти способы всегда взаимозаменяемыми: здесь тренируем обещания, прогнозы и расписание.",
+"uk": "На відміну від схеми з `aller`, у простому майбутньому достатньо одного особистого дієслова. Не вважай ці способи завжди взаємозамінними: тут тренуємо обіцянки, прогнози та розклад."
+}
+},
+{
+"exampleIds": [
+"fr:27:04",
+"fr:27:05",
+"fr:27:06"
+],
+"textByLocale": {
+"en": "Change only the person: `partirai`, `partiras`, `partira`. In writing, differences are visible even when the endings sound the same. In the plural form, add the appropriate ending.",
+"ru": "Поменяй только лицо: `partirai`, `partiras`, `partira`. На письме различия видны и тогда, когда окончания звучат одинаково. В форме множественного числа добавь соответствующее окончание.",
+"uk": "Поміняй тільки обличчя: `partirai`, `partiras`, `partira`. На листі відмінності видно і тоді, коли закінчення звучать однаково. У формі множини додай відповідне закінчення."
+}
+},
+{
+"exampleIds": [
+"fr:27:11",
+"fr:27:13",
+"fr:27:18"
+],
+"textByLocale": {
+"en": "Frequent verbs have special stems: `être → ser-`, `avoir → aur-`, `aller → ir-`, `faire → fer-`. Future endings do not change regardless of whether the stem is common.",
+"ru": "Частые глаголы имеют особые основы: `être → ser-`, `avoir → aur-`, `aller → ir-`, `faire → fer-`. Окончания будущего не меняются от того, обычна ли основа.",
+"uk": "Часті дієслова мають особливі основи: `être → ser-`, `avoir → aur-`, `aller → ir-`, `faire → fer-`. Закінчення майбутнього не змінюються від того, чи звичайна основа."
+}
+},
+{
+"exampleIds": [
+"fr:27:21",
+"fr:27:23",
+"fr:27:26"
+],
+"textByLocale": {
+"en": "In advertisements about the future, the object is often mentioned first: a train, a parcel, an order. Choose the person based on that, not on the person hearing the advertisement.",
+"ru": "В объявлениях о будущем часто сначала называют предмет: поезд, посылку, заказ. Выбирай лицо по нему, а не по человеку, который слышит объявление.",
+"uk": "В оголошеннях про майбутнє часто спочатку називають предмет: поїзд, посилку, замовлення. Вибирай обличчя за ним, а не за людиною, яка чує оголошення."
+}
+},
+{
+"exampleIds": [
+"fr:27:31",
+"fr:27:33",
+"fr:27:38"
+],
+"textByLocale": {
+"en": "Negation surrounds one personal form. In question `recevrai-je`, a pronoun is added after the hyphen. Do not turn it into a new ending for the verb itself.",
+"ru": "Отрицание окружает одну личную форму. В вопросе `recevrai-je` после дефиса добавлено местоимение. Не превращай его в новое окончание самого глагола.",
+"uk": "Заперечення оточує одну особисту форму. У питанні `recevrai-je` після дефісу додано займенник. Не перетворюй його на нове закінчення самого дієслова."
+}
+},
+{
+"exampleIds": [
+"fr:27:41",
+"fr:27:43",
+"fr:27:47"
+],
+"textByLocale": {
+"en": "After `si` in the real condition, there is a present tense: `si le temps le permet`. The future tense refers to the main clause, which communicates the expected result.",
+"ru": "После `si` в реальном условии здесь стоит настоящее: `si le temps le permet`. Будущее относится к основной части, которая сообщает предполагаемый результат.",
+"uk": "Після `si` в реальній умові тут стоїть сьогодення: `si le temps le permet`. Майбутнє відноситься до основної частини, що повідомляє передбачуваний результат."
+}
+},
+{
+"exampleIds": [
+"fr:27:48",
+"fr:27:49",
+"fr:27:50"
+],
+"textByLocale": {
+"en": "Compare the promise \"I will leave\" and the suggestion \"I would leave.\" The correct tense is determined by the meaning of the message. Don't add `-s` to the first person future just because it's similar to the conditional form.",
+"ru": "Сравни обещание «я оставлю» и предположение «я бы оставил». Нужное время определяется смыслом сообщения. Не добавляй `-s` к первому лицу будущего только по сходству с условной формой.",
+"uk": "Порівняй обіцянку «я залишу» і припущення «я залишив би». Потрібний час визначається змістом повідомлення. Не додай `-s` до першої особи майбутнього лише за подібністю до умовної форми."
+}
+}
+],
+"drills": [
+{
+"bad": "partira",
+"chapter": 1,
+"id": "fr:27:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"partira",
+"partiront",
+"partirai"
+],
+"slot": 1
+},
+{
+"bad": "partirais",
+"chapter": 1,
+"id": "fr:27:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"partirai",
+"partira",
+"partirais"
+],
+"slot": 1
+},
+{
+"bad": "partiras",
+"chapter": 1,
+"id": "fr:27:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"partirai",
+"partiras",
+"partirez"
+],
+"slot": 1
+},
+{
+"bad": "passerons",
+"chapter": 2,
+"id": "fr:27:08:lab",
+"item": 8,
+"kind": "build",
+"near": 39,
+"options": [
+"passerons",
+"passerez",
+"passeras"
+],
+"slot": 1
+},
+{
+"bad": "partirons",
+"chapter": 2,
+"id": "fr:27:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 19,
+"options": [
+"pharmacie",
+"préparera",
+"partirons"
+],
+"slot": 1
+},
+{
+"bad": "serait",
+"chapter": 2,
+"id": "fr:27:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"serait",
+"seras",
+"serai"
+],
+"slot": 1
+},
+{
+"bad": "plus",
+"chapter": 3,
+"id": "fr:27:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"plus",
+"paiement",
+"aurons"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 3,
+"id": "fr:27:17:lab",
+"item": 17,
+"kind": "match",
+"near": 12,
+"options": [
+"en",
+"au",
+"aux"
+],
+"slot": 1
+},
+{
+"bad": "l’ascenseur",
+"chapter": 3,
+"id": "fr:27:19:lab",
+"item": 19,
+"kind": "build",
+"near": 18,
+"options": [
+"l’ascenseur",
+"l’exposition",
+"t’enverrai"
+],
+"slot": 1
+},
+{
+"bad": "feront",
+"chapter": 4,
+"id": "fr:27:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 11,
+"options": [
+"magasin",
+"feront",
+"travaux"
+],
+"slot": 1
+},
+{
+"bad": "brancherai",
+"chapter": 4,
+"id": "fr:27:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"colis",
+"brancherai",
+"fois"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 4,
+"id": "fr:27:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"serions",
+"suis",
+"sera"
+],
+"slot": 2
+},
+{
+"bad": "faisons",
+"chapter": 5,
+"id": "fr:27:29:lab",
+"item": 29,
+"kind": "match",
+"near": 20,
+"options": [
+"fera",
+"ferai",
+"faisons"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 5,
+"id": "fr:27:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"ne",
+"la",
+"pas"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 5,
+"id": "fr:27:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"le",
+"ne",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "aurai",
+"chapter": 6,
+"id": "fr:27:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 5,
+"options": [
+"aurez",
+"aurai",
+"as"
+],
+"slot": 1
+},
+{
+"bad": "jusqu’à",
+"chapter": 6,
+"id": "fr:27:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 8,
+"options": [
+"jusqu’à",
+"l’atelier",
+"m’aideras"
+],
+"slot": 1
+},
+{
+"bad": "ils",
+"chapter": 6,
+"id": "fr:27:42:lab",
+"item": 42,
+"kind": "match",
+"near": 3,
+"options": [
+"vous",
+"je",
+"ils"
+],
+"slot": 1
+},
+{
+"bad": "seront",
+"chapter": 7,
+"id": "fr:27:45:lab",
+"item": 45,
+"kind": "build",
+"near": 19,
+"options": [
+"moins",
+"enverront",
+"seront"
+],
+"slot": 1
+},
+{
+"bad": "après",
+"chapter": 7,
+"id": "fr:27:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 43,
+"options": [
+"trouveras",
+"demain",
+"après"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"partir",
+"partirai / partiras / partira"
+],
+[
+"nous / vous / ils",
+"partirons / partirez / partiront"
+],
+[
+"être",
+"je serai"
+],
+[
+"avoir",
+"il aura"
+],
+[
+"aller",
+"nous irons"
+],
+[
+"faire",
+"elles feront"
+]
+],
+"title": {
+"en": "Tell about the future: `futur simple`",
+"ru": "Сообщить о будущем: `futur simple`",
+"uk": "Повідомити про майбутнє: `futur simple`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:27:01",
+"target": "Je partirai demain.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "fr:27:02",
+"target": "Tu partiras demain.",
+"ru": "Ты уедешь завтра.",
+"uk": "Ти поїдеш завтра."
+},
+{
+"id": "fr:27:03",
+"target": "Elle partira demain.",
+"ru": "Она уедет завтра.",
+"uk": "Вона поїде завтра."
+},
+{
+"id": "fr:27:04",
+"target": "Nous partirons ensemble.",
+"ru": "Мы уедем вместе.",
+"uk": "Ми поїдемо разом."
+},
+{
+"id": "fr:27:05",
+"target": "Vous partirez ensemble.",
+"ru": "Вы уйдете вместе.",
+"uk": "Ви підете разом."
+},
+{
+"id": "fr:27:06",
+"target": "Ils partiront à midi.",
+"ru": "Они уйдут в полдень.",
+"uk": "Вони підуть опівдні."
+},
+{
+"id": "fr:27:11",
+"target": "Je serai à la maison à six heures.",
+"ru": "Я буду дома в шесть часов.",
+"uk": "Я буду вдома о шостій годині."
+},
+{
+"id": "fr:27:13",
+"target": "Il aura le résultat lundi.",
+"ru": "Он получит результат в понедельник.",
+"uk": "Він отримає результат у понеділок."
+},
+{
+"id": "fr:27:18",
+"target": "Je t’enverrai un lien pour le paiement avec ton portefeuille électronique.",
+"ru": "Я пришлю тебе ссылку для оплаты с помощью твоего электронного кошелька.",
+"uk": "Я надішлю тобі посилання для оплати за допомогою твого електронного гаманця."
+},
+{
+"id": "fr:27:21",
+"target": "Le train arrivera sur le quai deux.",
+"ru": "Поезд прибудет на вторую платформу.",
+"uk": "Поїзд прибуде на платформу два."
+},
+{
+"id": "fr:27:23",
+"target": "L’ascenseur fonctionnera demain.",
+"ru": "Лифт будет работать завтра.",
+"uk": "Ліфт працюватиме завтра."
+},
+{
+"id": "fr:27:26",
+"target": "Votre commande sera prête vendredi.",
+"ru": "Ваш заказ будет готов в пятницу.",
+"uk": "Ваше замовлення буде готове в п'ятницю."
+},
+{
+"id": "fr:27:31",
+"target": "Je ne resterai pas longtemps.",
+"ru": "Я не задержусь надолго.",
+"uk": "Я не затримаюся надовго."
+},
+{
+"id": "fr:27:33",
+"target": "Nous n’oublierons pas les billets.",
+"ru": "Мы не забудем билеты.",
+"uk": "Ми не забудемо квитки."
+},
+{
+"id": "fr:27:38",
+"target": "À quelle heure arriverez-vous ?",
+"ru": "Во сколько вы приедете?",
+"uk": "О котрій годині ви приїдете?"
+},
+{
+"id": "fr:27:41",
+"target": "Je garderai ta valise jusqu’à ce soir.",
+"ru": "Я подержу твой чемодан у себя до вечера.",
+"uk": "Я потримаю твою валізу у себе до вечора."
+},
+{
+"id": "fr:27:43",
+"target": "Je lui demanderai conseil pour la fuite sous le robinet.",
+"ru": "Я спрошу у него совета по поводу протечки под краном.",
+"uk": "Я попрошу його поради щодо витоку під краном."
+},
+{
+"id": "fr:27:47",
+"target": "Je laisserai une couverture dans la chambre.",
+"ru": "Я оставлю одеяло в комнате.",
+"uk": "Я залишу ковдру в кімнаті."
+},
+{
+"id": "fr:27:48",
+"target": "Tu trouveras la clé sous le pot.",
+"ru": "Ты найдёшь ключ под горшком.",
+"uk": "Ти знайдеш ключ під горщиком."
+},
+{
+"id": "fr:27:49",
+"target": "La livraison coûtera moins cher cette fois.",
+"ru": "Доставка на этот раз будет стоить дешевле.",
+"uk": "Цього разу доставка коштуватиме менше."
+},
+{
+"id": "fr:27:50",
+"target": "Nous vous attendrons devant la pharmacie.",
+"ru": "Мы будем ждать вас перед аптекой.",
+"uk": "Ми чекатимемо на вас перед аптекою."
+}
+]
+},
+{
+"lesson": 28,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:28:01",
+"fr:28:02",
+"fr:28:04"
+],
+"textByLocale": {
+"en": "Politeness can be expressed by the verb form, not just by adding \"please.\" Compare a direct wish and a request as a wish. Both options are grammatical, but the register is different.",
+"ru": "Вежливость можно выразить формой глагола, а не только добавлением «пожалуйста». Сравни желание, заявленное прямо, и просьбу как пожелание. Оба варианта грамматичны, регистр разный.",
+"uk": "Ввічливість можна висловити формою дієслова, а не лише додаванням «будь ласка». Порівняй бажання, заявлене прямо, та прохання як побажання. Обидва варіанти граматичні, регістр різний."
+}
+},
+{
+"exampleIds": [
+"fr:28:07",
+"fr:28:09",
+"fr:28:10"
+],
+"textByLocale": {
+"en": "For \"I'd like to do,\" `aimerais` is followed by the infinitive. Don't use the personal form of the second verb: the person is already expressed by the first.",
+"ru": "Для «я хотел бы сделать» после `aimerais` идёт инфинитив. Не подставляй личную форму второго глагола: лицо уже выражено первым.",
+"uk": "Для \"я хотів би зробити\" після `aimerais` йде інфінітив. Чи не підставляй особисту форму другого дієслова: обличчя вже виражене першим."
+}
+},
+{
+"exampleIds": [
+"fr:28:11",
+"fr:28:14",
+"fr:28:16"
+],
+"textByLocale": {
+"en": "With one acquaintance: `tu pourrais`; when addressing someone politely: `vous pourriez`. The interrogative inversion `pourriez-vous` is written with a hyphen. A request can be soft or without inversion.",
+"ru": "С одним знакомым — `tu pourrais`; при вежливом обращении — `vous pourriez`. Вопросительная инверсия `pourriez-vous` пишется с дефисом. Просьба может быть мягкой и без инверсии.",
+"uk": "З одним знайомим - `tu pourrais`; при ввічливому зверненні - `vous pourriez`. Питання інверсії `pourriez-vous` пишеться з дефісом. Прохання може бути м'яким і без інверсії."
+}
+},
+{
+"exampleIds": [
+"fr:28:21",
+"fr:28:22",
+"fr:28:25"
+],
+"textByLocale": {
+"en": "is built from the future stem with endings familiar from `imparfait`. Compare `je prendrai` — I'll take — and `je prendrais` — I would take. In writing, the latter `s` changes the meaning.",
+"ru": "Форма строится от основы будущего с окончаниями, знакомыми по `imparfait`. Сравни `je prendrai` — возьму и `je prendrais` — взял бы. На письме последнее `s` меняет смысл.",
+"uk": "Форма будується від основи майбутнього із закінченнями, знайомими за `imparfait`. Порівняй `je prendrai` - візьму і `je prendrais` - взяв би. На листі останнє `s` змінює сенс."
+}
+},
+{
+"exampleIds": [
+"fr:28:31",
+"fr:28:32",
+"fr:28:34"
+],
+"textByLocale": {
+"en": "`Devoir` in the conditional form softens advice: \"you should,\" not necessarily \"you must.\" Check whether you're asking the other person for something or giving them a recommendation.",
+"ru": "`Devoir` в условной форме смягчает совет: «вам стоит», не обязательно «вы обязаны». Проверь, просишь ли ты собеседника о чём-то или даёшь ему рекомендацию.",
+"uk": "`Devoir` в умовній формі пом'якшує пораду: \"вам стоїть\", не обов'язково \"ви зобов'язані\". Перевір, чи просиш ти співрозмовника про щось чи даєш йому рекомендацію."
+}
+},
+{
+"exampleIds": [
+"fr:28:41",
+"fr:28:42",
+"fr:28:46"
+],
+"textByLocale": {
+"en": "`Auriez-vous … ?` helps politely inquire about availability. This is not the same as ordering someone to give an item. This question is perfectly suited for a \"no\" answer.",
+"ru": "`Auriez-vous … ?` помогает вежливо узнать о наличии. Это не то же, что приказ дать предмет. На ответ «нет» такой вопрос вполне рассчитан.",
+"uk": "`Auriez-vous … ?` допомагає ввічливо дізнатися про наявність. Це не те, що наказ дати предмет. На відповідь «ні» таке питання цілком розраховане."
+}
+},
+{
+"exampleIds": [
+"fr:28:47",
+"fr:28:49",
+"fr:28:50"
+],
+"textByLocale": {
+"en": "For a request at an institution, imagine the entire line: what is needed and when. Choose a polite beginning, and organize the item, place, and time according to familiar rules.",
+"ru": "Для просьбы в учреждении представь целую реплику: что нужно и когда. Выбери вежливое начало, а предмет, место и время собери по знакомым правилам.",
+"uk": "Для прохання в установі уяви цілу репліку: що потрібно і коли. Вибери ввічливий початок, а предмет, місце та час збери за знайомими правилами."
+}
+}
+],
+"drills": [
+{
+"bad": "voudrait",
+"chapter": 1,
+"id": "fr:28:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"voudrai",
+"voudrait",
+"voudrais"
+],
+"slot": 1
+},
+{
+"bad": "voudrait",
+"chapter": 1,
+"id": "fr:28:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 24,
+"options": [
+"voulons",
+"voudrais",
+"voudrait"
+],
+"slot": 1
+},
+{
+"bad": "voudraient",
+"chapter": 1,
+"id": "fr:28:05:lab",
+"item": 5,
+"kind": "match",
+"near": 21,
+"options": [
+"voudraient",
+"voudrions",
+"voudrais"
+],
+"slot": 1
+},
+{
+"bad": "dehors",
+"chapter": 2,
+"id": "fr:28:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"rester",
+"dehors",
+"couverture"
+],
+"slot": 1
+},
+{
+"bad": "aimeras",
+"chapter": 2,
+"id": "fr:28:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"aimerions",
+"aimeras",
+"aimerait"
+],
+"slot": 1
+},
+{
+"bad": "écrite",
+"chapter": 2,
+"id": "fr:28:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 13,
+"options": [
+"plaît",
+"écrire",
+"écrite"
+],
+"slot": 1
+},
+{
+"bad": "demain",
+"chapter": 3,
+"id": "fr:28:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"demain",
+"devrait",
+"vérifier"
+],
+"slot": 1
+},
+{
+"bad": "pourra",
+"chapter": 3,
+"id": "fr:28:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"pourra",
+"pourrais",
+"pourraient"
+],
+"slot": 1
+},
+{
+"bad": "pourra",
+"chapter": 3,
+"id": "fr:28:19:lab",
+"item": 19,
+"kind": "build",
+"near": 43,
+"options": [
+"pourra",
+"pourrais",
+"peut"
+],
+"slot": 3
+},
+{
+"bad": "préférerait",
+"chapter": 4,
+"id": "fr:28:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 50,
+"options": [
+"préférerait",
+"préférerais",
+"préférable"
+],
+"slot": 1
+},
+{
+"bad": "préférable",
+"chapter": 4,
+"id": "fr:28:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 17,
+"options": [
+"préférerions",
+"préférerais",
+"préférable"
+],
+"slot": 1
+},
+{
+"bad": "pourriez",
+"chapter": 4,
+"id": "fr:28:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 36,
+"options": [
+"pourrait",
+"pourriez",
+"pourrais"
+],
+"slot": 1
+},
+{
+"bad": "pourraient",
+"chapter": 5,
+"id": "fr:28:29:lab",
+"item": 29,
+"kind": "match",
+"near": 25,
+"options": [
+"pourrais",
+"peut",
+"pourraient"
+],
+"slot": 1
+},
+{
+"bad": "devrions",
+"chapter": 5,
+"id": "fr:28:31:lab",
+"item": 31,
+"kind": "build",
+"near": 38,
+"options": [
+"devrions",
+"devriez",
+"matin"
+],
+"slot": 1
+},
+{
+"bad": "devez",
+"chapter": 5,
+"id": "fr:28:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 14,
+"options": [
+"devrions",
+"devez",
+"devrais"
+],
+"slot": 1
+},
+{
+"bad": "peux",
+"chapter": 6,
+"id": "fr:28:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 26,
+"options": [
+"pourrai",
+"pourrait",
+"peux"
+],
+"slot": 1
+},
+{
+"bad": "pouvons",
+"chapter": 6,
+"id": "fr:28:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"pouvons",
+"pourrai",
+"pourrais"
+],
+"slot": 1
+},
+{
+"bad": "une",
+"chapter": 6,
+"id": "fr:28:42:lab",
+"item": 42,
+"kind": "match",
+"near": 17,
+"options": [
+"une",
+"la",
+"des"
+],
+"slot": 1
+},
+{
+"bad": "aimions",
+"chapter": 7,
+"id": "fr:28:45:lab",
+"item": 45,
+"kind": "build",
+"near": 5,
+"options": [
+"aimions",
+"aimez",
+"aimerions"
+],
+"slot": 1
+},
+{
+"bad": "encore",
+"chapter": 7,
+"id": "fr:28:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 15,
+"options": [
+"me",
+"encore",
+"plus"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"vouloir",
+"je voudrais / nous voudrions"
+],
+[
+"pouvoir",
+"tu pourrais / vous pourriez"
+],
+[
+"devoir",
+"tu devrais / vous devriez"
+],
+[
+"avoir",
+"auriez-vous … ?"
+],
+[
+"être",
+"ce serait possible"
+]
+],
+"title": {
+"en": "Polite request: `je voudrais`, `pourriez-vous`",
+"ru": "Вежливая просьба: `je voudrais`, `pourriez-vous`",
+"uk": "Ввічливе прохання: `je voudrais`, `pourriez-vous`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:28:01",
+"target": "Je voudrais un café.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "fr:28:02",
+"target": "Je voudrais un thé.",
+"ru": "Я бы хотел чай.",
+"uk": "Я хотів би чаю."
+},
+{
+"id": "fr:28:04",
+"target": "Elle voudrait une chambre calme.",
+"ru": "Она хотела бы тихую комнату.",
+"uk": "Вона хотіла б тиху кімнату."
+},
+{
+"id": "fr:28:07",
+"target": "J’aimerais partir tôt.",
+"ru": "Я хотел бы уйти пораньше.",
+"uk": "Я хотів би піти раніше."
+},
+{
+"id": "fr:28:09",
+"target": "Paul aimerait apprendre à conduire.",
+"ru": "Поль хотел бы научиться водить машину.",
+"uk": "Пол хотів би навчитися водити."
+},
+{
+"id": "fr:28:10",
+"target": "Léa aimerait changer de place.",
+"ru": "Леа хотела бы пересесть.",
+"uk": "Леа хотіла б пересісти."
+},
+{
+"id": "fr:28:11",
+"target": "Pourriez-vous répéter, s’il vous plaît ?",
+"ru": "Не могли бы вы повторить, пожалуйста?",
+"uk": "Чи не могли б ви повторити, будь ласка?"
+},
+{
+"id": "fr:28:14",
+"target": "Pourriez-vous vérifier le montant ?",
+"ru": "Не могли бы вы проверить сумму?",
+"uk": "Чи не могли б ви перевірити суму?"
+},
+{
+"id": "fr:28:16",
+"target": "Tu pourrais baisser le volume ?",
+"ru": "Не мог бы ты сделать потише?",
+"uk": "Чи не міг би ти зробити тихіше?"
+},
+{
+"id": "fr:28:21",
+"target": "Nous préférerions une table dehors.",
+"ru": "Мы бы предпочли столик на улице.",
+"uk": "Ми б воліли столик на вулиці."
+},
+{
+"id": "fr:28:22",
+"target": "Je préférerais payer en espèces.",
+"ru": "Я бы предпочёл заплатить наличными.",
+"uk": "Я б волів платити готівкою."
+},
+{
+"id": "fr:28:25",
+"target": "Je prendrais bien une soupe.",
+"ru": "Я бы хотел суп.",
+"uk": "Я б хотів супу."
+},
+{
+"id": "fr:28:31",
+"target": "Vous devriez garder le reçu.",
+"ru": "Вам стоит сохранить чек.",
+"uk": "Вам варто зберегти чек."
+},
+{
+"id": "fr:28:32",
+"target": "Tu devrais te reposer.",
+"ru": "Тебе стоило бы отдохнуть.",
+"uk": "Тобі варто було б відпочити."
+},
+{
+"id": "fr:28:34",
+"target": "Nous devrions prendre le premier train.",
+"ru": "Нам следует сесть на первый поезд.",
+"uk": "Нам слід сісти на перший поїзд."
+},
+{
+"id": "fr:28:41",
+"target": "Auriez-vous une chambre pour deux ?",
+"ru": "У вас не найдётся номера на двоих?",
+"uk": "У вас не знайдеться номер на двох?"
+},
+{
+"id": "fr:28:42",
+"target": "Auriez-vous des disponibilités demain ?",
+"ru": "У вас есть свободные места завтра?",
+"uk": "У вас є вільні місця завтра?"
+},
+{
+"id": "fr:28:46",
+"target": "Il me faudrait une confirmation écrite.",
+"ru": "Мне потребуется письменное подтверждение.",
+"uk": "Мені потрібне письмове підтвердження."
+},
+{
+"id": "fr:28:47",
+"target": "Je voudrais un devis pour la cuisine.",
+"ru": "Я бы хотел смету на кухню.",
+"uk": "Я хотів би отримати цінову пропозицію на кухню."
+},
+{
+"id": "fr:28:49",
+"target": "On aimerait remercier toute l’équipe.",
+"ru": "Мы хотели бы поблагодарить всю команду.",
+"uk": "Ми хотіли б подякувати всій команді."
+},
+{
+"id": "fr:28:50",
+"target": "Je préférerais la place côté allée.",
+"ru": "Я бы предпочёл место у прохода.",
+"uk": "Я б віддав перевагу місцю біля проходу."
+}
+]
+}
+]

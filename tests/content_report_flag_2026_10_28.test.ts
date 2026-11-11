@@ -99,19 +99,6 @@ describe('флажок «Пожаловаться» встроен в Диало
     expect(route).toContain('dialogId: `dialogue_v2_freeform:${studyTarget}:${session?.sessionId ??');
   });
 
-  it('вопрос теста уровня и экзамена главы: один флажок в общем ChapterExamQuestion, мост теста называет свой экран', () => {
-    const exam = read('app/learning-v2/chapter-exam.tsx');
-    expect(exam).toContain('testID="chapter-exam-report"');
-    expect(exam).toContain("reportScreen = 'learning_v2_chapter_exam'");
-    // Learning V2 28.10: в отчёт теста уровня — слова с пропуском, варианты пропуска и верный ответ (после проверки)
-    expect(exam).toContain('Пропуск: ${gapPhrase}');
-    expect(exam).toContain('Варианты пропуска: ${gapTexts}');
-    expect(exam).toContain('Верный ответ: ${correctText}');
-    expect(exam).toMatch(/verdict === null \? null : learningV2ChapterExamCorrectAnswerV1/);
-    expect(exam).toContain('dataId: `lv2:l${lessonOrdinal}:s${question.sessionOrdinal}:${question.family}:${question.interactionId}`');
-    expect(read('components/learning-v2/placement/placement_bridge_live.tsx')).toContain('reportScreen="learning_v2_placement"');
-  });
-
   it('транспорт не шлёт журнал диагностики и не пишет в сеть напрямую: только через долговечную очередь', () => {
     const transport = read('app/content_report_v1.ts');
     expect(transport).toContain('sendSupportReportInBackground');

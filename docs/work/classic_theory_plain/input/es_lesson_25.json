@@ -1,0 +1,755 @@
+{
+ "lang": "es",
+ "lesson": 25,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:25:01",
+   "target": "Abre la puerta.",
+   "ru": "Открой дверь.",
+   "uk": "Відчини двері."
+  },
+  {
+   "id": "es:25:02",
+   "target": "Abre la ventana.",
+   "ru": "Открой окно.",
+   "uk": "Відчини вікно."
+  },
+  {
+   "id": "es:25:03",
+   "target": "Lee el libro.",
+   "ru": "Прочитай книгу.",
+   "uk": "Прочитай книжку."
+  },
+  {
+   "id": "es:25:04",
+   "target": "Lee el mensaje.",
+   "ru": "Прочитай сообщение.",
+   "uk": "Прочитай повідомлення."
+  },
+  {
+   "id": "es:25:05",
+   "target": "Escribe una carta.",
+   "ru": "Напиши письмо.",
+   "uk": "Напиши листа."
+  },
+  {
+   "id": "es:25:06",
+   "target": "Escribe un mensaje.",
+   "ru": "Напиши сообщение.",
+   "uk": "Напиши повідомлення."
+  },
+  {
+   "id": "es:25:07",
+   "target": "Apaga la luz.",
+   "ru": "Выключи свет.",
+   "uk": "Вимкни світло."
+  },
+  {
+   "id": "es:25:08",
+   "target": "Compra pan.",
+   "ru": "Купи хлеб.",
+   "uk": "Купи хліб."
+  },
+  {
+   "id": "es:25:09",
+   "target": "Llama al hotel.",
+   "ru": "Позвони в отель.",
+   "uk": "Зателефонуй до готелю."
+  },
+  {
+   "id": "es:25:10",
+   "target": "Cierra el grifo.",
+   "ru": "Закрой кран.",
+   "uk": "Закрий кран."
+  },
+  {
+   "id": "es:25:11",
+   "target": "Entra en la tienda.",
+   "ru": "Войди в магазин.",
+   "uk": "Зайди до магазину."
+  },
+  {
+   "id": "es:25:12",
+   "target": "Entra en la oficina.",
+   "ru": "Войди в офис.",
+   "uk": "Зайди до офісу."
+  },
+  {
+   "id": "es:25:13",
+   "target": "Prueba la sopa.",
+   "ru": "Попробуй суп.",
+   "uk": "Скуштуй суп."
+  },
+  {
+   "id": "es:25:14",
+   "target": "Enciende el horno.",
+   "ru": "Включи духовку.",
+   "uk": "Увімкни духовку."
+  },
+  {
+   "id": "es:25:15",
+   "target": "Manda la foto.",
+   "ru": "Отправь фотографию.",
+   "uk": "Надішли фотографію."
+  },
+  {
+   "id": "es:25:16",
+   "target": "Manda el mapa.",
+   "ru": "Отправь карту.",
+   "uk": "Надішли мапу."
+  },
+  {
+   "id": "es:25:17",
+   "target": "Pasa la sal.",
+   "ru": "Передай соль.",
+   "uk": "Передай сіль."
+  },
+  {
+   "id": "es:25:18",
+   "target": "Seca los platos.",
+   "ru": "Вытри тарелки.",
+   "uk": "Витри тарілки."
+  },
+  {
+   "id": "es:25:19",
+   "target": "Prepara la cena.",
+   "ru": "Приготовь ужин.",
+   "uk": "Приготуй вечерю."
+  },
+  {
+   "id": "es:25:20",
+   "target": "Prepara la mochila.",
+   "ru": "Приготовь рюкзак.",
+   "uk": "Приготуй рюкзак."
+  },
+  {
+   "id": "es:25:21",
+   "target": "Llama al hotel ahora.",
+   "ru": "Позвони в отель сейчас.",
+   "uk": "Зателефонуй до готелю зараз."
+  },
+  {
+   "id": "es:25:22",
+   "target": "Vuelve a casa ahora.",
+   "ru": "Вернись домой сейчас.",
+   "uk": "Повернися додому зараз."
+  },
+  {
+   "id": "es:25:23",
+   "target": "Vuelve a la estación ahora.",
+   "ru": "Вернись на вокзал сейчас.",
+   "uk": "Повернися на вокзал зараз."
+  },
+  {
+   "id": "es:25:24",
+   "target": "Baja el volumen.",
+   "ru": "Сделай потише.",
+   "uk": "Зроби тихіше."
+  },
+  {
+   "id": "es:25:25",
+   "target": "Paga con tarjeta ahora.",
+   "ru": "Заплати картой сейчас.",
+   "uk": "Заплати карткою зараз."
+  },
+  {
+   "id": "es:25:26",
+   "target": "Abre la puerta ahora.",
+   "ru": "Открой дверь сейчас.",
+   "uk": "Відчини двері зараз."
+  },
+  {
+   "id": "es:25:27",
+   "target": "Abre la ventana ahora.",
+   "ru": "Открой окно сейчас.",
+   "uk": "Відчини вікно зараз."
+  },
+  {
+   "id": "es:25:28",
+   "target": "Apaga el horno ahora.",
+   "ru": "Теперь выключи духовку.",
+   "uk": "Тепер вимкни духовку."
+  },
+  {
+   "id": "es:25:29",
+   "target": "Bebe agua ahora.",
+   "ru": "Выпей воду сейчас.",
+   "uk": "Випий воду зараз."
+  },
+  {
+   "id": "es:25:30",
+   "target": "Come en casa ahora.",
+   "ru": "Поешь дома сейчас.",
+   "uk": "Поїж вдома зараз."
+  },
+  {
+   "id": "es:25:31",
+   "target": "Compra un kilo de fruta.",
+   "ru": "Купи килограмм фруктов.",
+   "uk": "Купи кілограм фруктів."
+  },
+  {
+   "id": "es:25:32",
+   "target": "Enciende la luz del baño.",
+   "ru": "Включи свет в ванной.",
+   "uk": "Увімкни світло у ванній кімнаті."
+  },
+  {
+   "id": "es:25:33",
+   "target": "Llama a la puerta si no suena el timbre.",
+   "ru": "Постучи в дверь, если звонок не работает.",
+   "uk": "Постукай у двері, якщо дзвінок не працює."
+  },
+  {
+   "id": "es:25:34",
+   "target": "Baja un poco el volumen.",
+   "ru": "Убавь немного громкость.",
+   "uk": "Зменш трохи гучність."
+  },
+  {
+   "id": "es:25:35",
+   "target": "Espera en el parque.",
+   "ru": "Подожди в парке.",
+   "uk": "Почекай у парку."
+  },
+  {
+   "id": "es:25:36",
+   "target": "Manda el mapa más tarde.",
+   "ru": "Отправь карту позже.",
+   "uk": "Надішли мапу пізніше."
+  },
+  {
+   "id": "es:25:37",
+   "target": "Lleva una toalla a la playa.",
+   "ru": "Возьми на пляж полотенце.",
+   "uk": "Візьми на пляж рушник."
+  },
+  {
+   "id": "es:25:38",
+   "target": "Abre el grifo un poco.",
+   "ru": "Немного открой кран.",
+   "uk": "Трохи відкрий кран."
+  },
+  {
+   "id": "es:25:39",
+   "target": "Prepara la cena más tarde.",
+   "ru": "Приготовь ужин позже.",
+   "uk": "Приготуй вечерю пізніше."
+  },
+  {
+   "id": "es:25:40",
+   "target": "Prepara la mochila más tarde.",
+   "ru": "Собери рюкзак позже.",
+   "uk": "Збери рюкзак пізніше."
+  },
+  {
+   "id": "es:25:41",
+   "target": "Abre la puerta mañana.",
+   "ru": "Открой дверь завтра.",
+   "uk": "Відчини двері завтра."
+  },
+  {
+   "id": "es:25:42",
+   "target": "Abre la ventana mañana.",
+   "ru": "Открой окно завтра.",
+   "uk": "Відчини вікно завтра."
+  },
+  {
+   "id": "es:25:43",
+   "target": "Corta el queso.",
+   "ru": "Нарежь сыр.",
+   "uk": "Наріж сир."
+  },
+  {
+   "id": "es:25:44",
+   "target": "Lee el mensaje mañana.",
+   "ru": "Прочитай сообщение завтра.",
+   "uk": "Прочитай повідомлення завтра."
+  },
+  {
+   "id": "es:25:45",
+   "target": "Espera aquí, por favor.",
+   "ru": "Подожди здесь, пожалуйста.",
+   "uk": "Почекай тут, будь ласка."
+  },
+  {
+   "id": "es:25:46",
+   "target": "Guarda la sal en la cocina.",
+   "ru": "Убери соль на кухню.",
+   "uk": "Прибери сіль на кухню."
+  },
+  {
+   "id": "es:25:47",
+   "target": "Paga en efectivo mañana.",
+   "ru": "Заплати наличными завтра.",
+   "uk": "Заплати готівкою завтра."
+  },
+  {
+   "id": "es:25:48",
+   "target": "Lleva el paraguas.",
+   "ru": "Возьми зонт.",
+   "uk": "Візьми парасольку."
+  },
+  {
+   "id": "es:25:49",
+   "target": "Llama al hotel mañana.",
+   "ru": "Позвони в отель завтра.",
+   "uk": "Зателефонуй до готелю завтра."
+  },
+  {
+   "id": "es:25:50",
+   "target": "Llama a Ana mañana.",
+   "ru": "Позвони Ане завтра.",
+   "uk": "Зателефонуй Ані завтра."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "cerrar",
+   "ru": "закрывать",
+   "uk": "зачиняти, закривати"
+  },
+  {
+   "lemma": "si",
+   "ru": "если",
+   "uk": "якщо"
+  },
+  {
+   "lemma": "apagar",
+   "ru": "выключать",
+   "uk": "вимикати"
+  },
+  {
+   "lemma": "bajar",
+   "ru": "снижать; bajar el volumen — сделать потише",
+   "uk": "знижувати; bajar el volumen — зробити тихіше"
+  },
+  {
+   "lemma": "encender",
+   "ru": "включать, зажигать",
+   "uk": "вмикати, запалювати"
+  },
+  {
+   "lemma": "grifo",
+   "ru": "водопроводный кран",
+   "uk": "водопровідний кран"
+  },
+  {
+   "lemma": "horno",
+   "ru": "духовка",
+   "uk": "духовка"
+  },
+  {
+   "lemma": "luz",
+   "ru": "свет",
+   "uk": "світло"
+  },
+  {
+   "lemma": "poco",
+   "ru": "мало; un poco — немного",
+   "uk": "мало; un poco — трохи"
+  },
+  {
+   "lemma": "sal",
+   "ru": "соль",
+   "uk": "сіль"
+  },
+  {
+   "lemma": "toalla",
+   "ru": "полотенце",
+   "uk": "рушник"
+  },
+  {
+   "lemma": "volumen",
+   "ru": "громкость",
+   "uk": "гучність"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  }
+ ],
+ "oldTopicTitle": "Попроси одного человека: утвердительное tú",
+ "oldTheoryRu": "Друг у окна. Abres la ventana сообщает, что он делает; Abre la ventana просит его открыть окно. Одно s меняет назначение всей фразы. Отличи сообщение «ты открываешь» от просьбы или указания «открой». Здесь просят одного знакомого на «ты». Форма для usted была бы другой. Местоимение tú обычно не требуется, ведь сам жанр реплики уже указывает на адресата. У правильного -ar просьба к tú заканчивается на -a. В llamas описывают, что ты звонишь, а llama — «позвони». Конечное -s меняет функцию фразы. Comer → come, abrir → abre. Оба окончания в этой форме выглядят как -e. Не используй испанский инфинитив как универсальное личное обращение. В «открой окно» объект остаётся обычной именной группой: abre la ventana. Ahora, mañana или más tarde только уточняют, когда выполнить просьбу. Для «не открывай» нельзя пристроить no к форме abre: нужна другая форма, no abras. В этих 50 заданиях тренируем только утвердительные просьбы. Сравни два задания: «Приготовь рюкзак.» / «Позвони в отель сейчас.». Получатель просьбы — один человек на tú. Смысловые опоры: «mochila» — рюкзак. Сравни два задания: «Прочитай сообщение завтра.» / «Позвони Ане завтра.». Получатель просьбы — один человек на tú. Отличи сообщение «ты открываешь» от просьбы или указания «открой»."
+}

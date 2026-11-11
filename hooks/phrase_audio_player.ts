@@ -42,6 +42,50 @@ type PlayCallbacks = {
 const CLIP_RATE_LOCKED_TO_ORIGINAL = true;
 const DOWNLOAD_TIMEOUT_MS = PHRASE_AUDIO_DOWNLOAD_TIMEOUT_MS;
 const MIN_VALID_AUDIO_BYTES = 200;
+
+/**
+ * зачем (владелец 06.11, TestFlight 150: «у некоторых слов в Карточках озвучка просто шипит»):
+ * файл >200 байт, но не mp3 (JSON/HTML ошибки хранилища, обрезок, чужие байты), нативный плеер
+ * на iOS играет как шум. Проверяем заголовок: ID3-тег или синхрослово кадра MPEG (0xFF 0xE0+).
+ * Не mp3 → файл удаляем, возвращаем null → вызывающий сразу уходит в TTS нужного языка.
+ * Журнал [CARD-AUDIO] показывает размер, первые байты и причину отказа (для поиска шипящих слов).
+ */
+function inspectAudioFile(file: File): { ok: boolean; size: number; head: string; reason: string } {
+  let size = 0;
+  try { size = file.size ?? 0; } catch { size = 0; }
+  if (size <= MIN_VALID_AUDIO_BYTES) return { ok: false, size, head: '', reason: 'too_small' };
+  let head = '';
+  let bytes: Uint8Array | null = null;
+  try {
+    const handle = file.open();
+    try { bytes = handle.readBytes(4); } finally { handle.close(); }
+  } catch (error: unknown) {
+    // Не смогли прочитать заголовок — не блокируем воспроизведение (вдруг файл исправен), но причина остаётся в журнале.
+    console.warn('[CARD-AUDIO] head:read_failed — считаем файл исправным', // guard-ok: проглоченная ошибка пишет причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    return { ok: true, size, head: 'unreadable', reason: 'head_unreadable_assumed_ok' };
+  }
+  if (!bytes || bytes.length < 3) return { ok: false, size, head: '', reason: 'head_empty' };
+  head = Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('');
+  const isId3 = bytes[0] === 0x49 && bytes[1] === 0x44 && bytes[2] === 0x33;
+  const isMpegFrame = bytes[0] === 0xff && (bytes[1] & 0xe0) === 0xe0;
+  return isId3 || isMpegFrame
+    ? { ok: true, size, head, reason: 'mp3_header_ok' }
+    : { ok: false, size, head, reason: 'not_mp3_header' };
+}
+
+/** Проверяет файл кэша; битый удаляет. true — можно играть. */
+function validateOrDeleteAudioFile(file: File, label: string, textKey: string): boolean {
+  // зачем: область риска — только клипы карточек (ключ card_…); озвучку корпуса фраз не трогаем.
+  if (!textKey.startsWith('card_')) return true;
+  const info = inspectAudioFile(file);
+  if (info.ok) return true;
+  console.warn('[CARD-AUDIO] file:invalid — удаляем, фолбэк на TTS', JSON.stringify({ label, size: info.size, head: info.head, reason: info.reason })); // guard-ok: трасса отказа
+  try { file.delete(); } catch (error: unknown) {
+    console.warn('[CARD-AUDIO] file:delete_failed', error instanceof Error ? `${error.name}: ${error.message}` : String(error)); // guard-ok: проглоченная ошибка пишет причину
+  }
+  return false;
+}
 const CACHE_MAX_BYTES = 96 * 1024 * 1024;
 const CACHE_TARGET_BYTES = 80 * 1024 * 1024;
 const CACHE_MAX_FILES = 2000;
@@ -238,11 +282,11 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
   const file = cacheFileFor(key);
   try {
     if (file.exists) {
-      if ((file.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
+      if ((file.size ?? 0) > MIN_VALID_AUDIO_BYTES && validateOrDeleteAudioFile(file, key, textKey)) {
         maybeSweepPhraseAudioCache(file.uri);
         return file.uri;
       }
-      file.delete();
+      if (file.exists) file.delete();
     }
   } catch (error: unknown) {
     // Идём на скачивание — но причина обязана остаться: если кэш не читается
@@ -272,12 +316,13 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
         // expo-file-system ships two structurally-identical `File` declarations;
         // the cast keeps the imported File API aligned.
         const downloaded = await (File.downloadFileAsync(url, file) as Promise<File>);
-        if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
+        if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES && validateOrDeleteAudioFile(downloaded, key, textKey)) {
           maybeSweepPhraseAudioCache(downloaded.uri);
           return downloaded.uri;
         }
         return null;
-      } catch {
+      } catch (error: unknown) {
+        console.warn('[CARD-AUDIO] download:failed', JSON.stringify({ key, error: error instanceof Error ? error.message : String(error) })); // guard-ok: проглоченная ошибка пишет причину
         return null;
       }
     })();
@@ -361,7 +406,8 @@ export async function ensurePhraseAudioCached(text: string, url: string): Promis
           return downloaded.uri;
         }
         return null;
-      } catch {
+      } catch (error: unknown) {
+        console.warn('[CARD-AUDIO] download:failed', JSON.stringify({ key, error: error instanceof Error ? error.message : String(error) })); // guard-ok: проглоченная ошибка пишет причину
         return null;
       }
     })();

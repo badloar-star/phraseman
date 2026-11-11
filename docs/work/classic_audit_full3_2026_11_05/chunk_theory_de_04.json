@@ -1,0 +1,972 @@
+[
+{
+"lesson": 9,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:09:01",
+"de:09:04"
+],
+"textByLocale": {
+"en": "The same person can own both a passport and a jacket. The beginning of the possessive remains the same, but the ending changes depending on the name of the object. Color, size, and actual owner do not determine the grammatical gender of the object.",
+"ru": "Один и тот же человек может владеть и паспортом, и курткой. Начало притяжательного слова остаётся тем же, конец меняется из-за названия предмета. Цвет, размер и реальный владелец не определяют грамматический род предмета.",
+"uk": "Одна і та сама людина може володіти і паспортом, і курткою. Початок присвійного слова залишається тим самим, кінець змінюється через назву предмета. Колір, розмір та реальний власник не визначають граматичний рід предмета."
+}
+},
+{
+"exampleIds": [
+"de:09:07",
+"de:09:08"
+],
+"textByLocale": {
+"en": "When there are multiple items, the form `-e` appears in both the nominative and accusative cases. A single pair of shoes can teach two solutions: whose set it is and what the plural name of the item is.",
+"ru": "Когда вещей несколько, появляется форма на `-e` в именительном и винительном падежах. По одной паре обуви можно выучить сразу два решения: чей это комплект и как называется предмет во множественном числе.",
+"uk": "Коли речей кілька, з'являється форма на `-e` у називному та знахідному відмінках. По одній парі взуття можна вивчити відразу два рішення: чий це комплект і як називається предмет у множині."
+}
+},
+{
+"exampleIds": [
+"de:09:11",
+"de:09:14"
+],
+"textByLocale": {
+"en": "`Sein` or `ihr`? These examples are about the named person's own passport. For Tom, choose the stem `sein-`,\" for Anna, `ihr-`.\" The passport ending will be the same in both cases.",
+"ru": "`Sein` или `ihr`? В этих примерах речь о собственном паспорте названного человека. Для Тома выбирай основу `sein-`, для Анны — `ihr-`. Окончание у паспорта будет одинаковое в обоих случаях.",
+"uk": "`Sein` чи `ihr`? У цих прикладах йдеться про власний паспорт названої людини. Для Тома вибирай основу `sein-`, для Анни - `ihr-`. Закінчення паспорта буде однакове в обох випадках."
+}
+},
+{
+"exampleIds": [
+"de:09:17",
+"de:09:20"
+],
+"textByLocale": {
+"en": "Don't rely on the owner's gender when choosing an ending. A telephone is neuter, and keys have their own plural endings. You can change a thing without changing the owner.",
+"ru": "Не ориентируйся на пол владельца, выбирая окончание. У телефона средний род, у ключей во множественном числе свой набор окончаний. Можно менять вещь, не меняя владельца.",
+"uk": "Не орієнтуйся на підлогу власника, вибираючи закінчення. У телефону середній рід, у ключів у множині свій набір закінчень. Можна міняти річ, не змінюючи власника."
+}
+},
+{
+"exampleIds": [
+"de:09:21",
+"de:09:28"
+],
+"textByLocale": {
+"en": "There are also owner-groups: `unser` includes the speaker, `euer` is addressed to several acquaintances. Note the short `eure`; don't try to preserve both vowels of the original form.",
+"ru": "Есть и владельцы-группы: `unser` включает говорящего, `euer` обращено к нескольким знакомым. Обрати внимание на короткое `eure`, не пытайся сохранить обе гласные исходной формы.",
+"uk": "Є й власники-групи: `unser` включає того, хто говорить, `euer` звернено до кількох знайомих. Зверни увагу на коротке `eure`, не намагайся зберегти обидві голосні вихідні форми."
+}
+},
+{
+"exampleIds": [
+"de:09:33",
+"de:09:40"
+],
+"textByLocale": {
+"en": "The polite `Ihr` begins with a capital letter, even within a phrase. It can sound the same as the word \"her\" or \"their.\" The addressee in the scene hints that this is an address.",
+"ru": "Вежливое `Ihr` начинается с заглавной буквы даже внутри фразы. Оно может звучать так же, как слово «её» или «их». Адресат в сцене подсказывает, что это обращение.",
+"uk": "Ввічливе `Ihr` починається з великої літери навіть усередині фрази. Воно може звучати так само, як слово її або їх. Адресат у сцені підказує, що це звернення."
+}
+},
+{
+"exampleIds": [
+"de:09:41",
+"de:09:49"
+],
+"textByLocale": {
+"en": "When a thing becomes a direct object, the accusative case is again required. From the familiar pair `mein Rucksack` it's easy to switch to `meinen Rucksack` without changing the owner.",
+"ru": "Когда вещь становится прямым объектом, снова нужен винительный падеж. От знакомой пары `mein Rucksack` легко перейти к `meinen Rucksack`, не меняя самого владельца.",
+"uk": "Коли річ стає прямим об'єктом, знову потрібен знахідний відмінок. Від знайомої пари `mein Rucksack` легко перейти до `meinen Rucksack`, не змінюючи самого власника."
+}
+}
+],
+"lab": [
+{
+"bad": "meinem",
+"chapter": 1,
+"id": "de:09:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"mein",
+"meines",
+"meinem"
+],
+"slot": 2
+},
+{
+"bad": "mein",
+"chapter": 1,
+"id": "de:09:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"meinen",
+"meine",
+"mein"
+],
+"slot": 2
+},
+{
+"bad": "meines",
+"chapter": 1,
+"id": "de:09:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"mein",
+"meinen",
+"meines"
+],
+"slot": 2
+},
+{
+"bad": "dein",
+"chapter": 2,
+"id": "de:09:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"deinen",
+"dein",
+"deine"
+],
+"slot": 2
+},
+{
+"bad": "deinen",
+"chapter": 2,
+"id": "de:09:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"deinen",
+"deine",
+"dein"
+],
+"slot": 2
+},
+{
+"bad": "seines",
+"chapter": 2,
+"id": "de:09:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"seines",
+"seinen",
+"seinem"
+],
+"slot": 2
+},
+{
+"bad": "seinem",
+"chapter": 3,
+"id": "de:09:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"seinem",
+"seine",
+"seinen"
+],
+"slot": 2
+},
+{
+"bad": "nahm",
+"chapter": 3,
+"id": "de:09:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"nimmt",
+"nahm",
+"nehme"
+],
+"slot": 1
+},
+{
+"bad": "ihren",
+"chapter": 3,
+"id": "de:09:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"ihrer",
+"ihre",
+"ihren"
+],
+"slot": 2
+},
+{
+"bad": "Fahrrad",
+"chapter": 4,
+"id": "de:09:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Fahrrad",
+"Bahn",
+"Taxi"
+],
+"slot": 1
+},
+{
+"bad": "Fahrrad",
+"chapter": 4,
+"id": "de:09:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 22,
+"options": [
+"Fahrrad",
+"Gäste",
+"Anna"
+],
+"slot": 1
+},
+{
+"bad": "Eurem",
+"chapter": 4,
+"id": "de:09:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Euren",
+"Eure",
+"Eurem"
+],
+"slot": 0
+},
+{
+"bad": "Unserer",
+"chapter": 5,
+"id": "de:09:29:lab",
+"item": 29,
+"kind": "match",
+"near": 30,
+"options": [
+"Unser",
+"Unsere",
+"Unserer"
+],
+"slot": 0
+},
+{
+"bad": "meiner",
+"chapter": 5,
+"id": "de:09:31:lab",
+"item": 31,
+"kind": "build",
+"near": 9,
+"options": [
+"mein",
+"meiner",
+"meines"
+],
+"slot": 2
+},
+{
+"bad": "deinem",
+"chapter": 5,
+"id": "de:09:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"deiner",
+"deinem",
+"deine"
+],
+"slot": 2
+},
+{
+"bad": "Lena",
+"chapter": 6,
+"id": "de:09:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 20,
+"options": [
+"Ben",
+"Lena",
+"Tom"
+],
+"slot": 1
+},
+{
+"bad": "der",
+"chapter": 6,
+"id": "de:09:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 37,
+"options": [
+"das",
+"dem",
+"der"
+],
+"slot": 1
+},
+{
+"bad": "dein",
+"chapter": 6,
+"id": "de:09:42:lab",
+"item": 42,
+"kind": "match",
+"near": 4,
+"options": [
+"deine",
+"deinem",
+"dein"
+],
+"slot": 2
+},
+{
+"bad": "meinem",
+"chapter": 7,
+"id": "de:09:45:lab",
+"item": 45,
+"kind": "build",
+"near": 41,
+"options": [
+"mein",
+"meinem",
+"meine"
+],
+"slot": 2
+},
+{
+"bad": "seine",
+"chapter": 7,
+"id": "de:09:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 14,
+"options": [
+"sein",
+"seine",
+"seinen"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"ich",
+"mein / meine"
+],
+[
+"du",
+"dein / deine"
+],
+[
+"Tom",
+"sein / seine"
+],
+[
+"Anna",
+"ihr / ihre"
+],
+[
+"wir",
+"unser / unsere"
+],
+[
+"ihr",
+"euer / eure"
+],
+[
+"Sie",
+"Ihr / Ihre"
+]
+],
+"title": {
+"en": "Mine, yours, hers: whose thing is this?",
+"ru": "Мой, твой, её: чья это вещь?",
+"uk": "Мій, твій, її: чия це річ?"
+}
+},
+"exampleResolved": [
+{
+"id": "de:09:01",
+"target": "Das ist mein Pass.",
+"ru": "Это мой паспорт.",
+"uk": "Це мій паспорт."
+},
+{
+"id": "de:09:04",
+"target": "Das ist deine Jacke.",
+"ru": "Это твоя куртка.",
+"uk": "Це твоя куртка."
+},
+{
+"id": "de:09:07",
+"target": "Das sind meine Schuhe.",
+"ru": "Это моя обувь.",
+"uk": "Це моє взуття."
+},
+{
+"id": "de:09:08",
+"target": "Das sind deine Schuhe.",
+"ru": "Это твоя обувь.",
+"uk": "Це твоє взуття."
+},
+{
+"id": "de:09:11",
+"target": "Anna hat ihren Pass.",
+"ru": "У Анны её паспорт.",
+"uk": "У Анни її паспорт."
+},
+{
+"id": "de:09:14",
+"target": "Tom sucht seinen Schal.",
+"ru": "Том ищет свой шарф.",
+"uk": "Том шукає свій шарф."
+},
+{
+"id": "de:09:17",
+"target": "Anna nimmt ihr Handy.",
+"ru": "Анна берёт свой телефон.",
+"uk": "Анна бере свій телефон."
+},
+{
+"id": "de:09:20",
+"target": "Tom findet seine Schlüssel.",
+"ru": "Том находит свои ключи.",
+"uk": "Том знаходить свої ключі."
+},
+{
+"id": "de:09:21",
+"target": "Unser Zug kommt.",
+"ru": "Наш поезд прибывает.",
+"uk": "Наш поїзд прибуває."
+},
+{
+"id": "de:09:28",
+"target": "Eure Freunde warten.",
+"ru": "Ваши друзья ждут.",
+"uk": "Ваші друзі чекають."
+},
+{
+"id": "de:09:33",
+"target": "Hast du deinen Ausweis?",
+"ru": "У тебя с собой удостоверение?",
+"uk": "У тебе з собою посвідчення?"
+},
+{
+"id": "de:09:40",
+"target": "Brauchen Sie Ihre Quittung?",
+"ru": "Вам нужна ваша квитанция?",
+"uk": "Вам потрібна ваша квитанція?"
+},
+{
+"id": "de:09:41",
+"target": "Ich packe meinen Rucksack.",
+"ru": "Я собираю свой рюкзак.",
+"uk": "Я збираю свій рюкзак."
+},
+{
+"id": "de:09:49",
+"target": "Wir suchen unsere Plätze.",
+"ru": "Мы ищем наши места.",
+"uk": "Ми шукаємо наші місця."
+}
+]
+},
+{
+"lesson": 10,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:10:01",
+"de:10:05"
+],
+"textByLocale": {
+"en": "To name a vehicle, it's convenient to use `mit`.\" In this combination, the masculine or neuter definite article becomes `dem`,\" and the feminine becomes `der`.\" This doesn't change the meaning of the vehicle itself.",
+"ru": "Чтобы назвать транспорт, удобно использовать `mit`. В таком сочетании мужской или средний определённый артикль выглядит как `dem`, женский — как `der`. Сам транспорт от этого не становится «мужским» или «женским» по смыслу.",
+"uk": "Щоб назвати транспорт, зручно використовувати `mit`. У такому поєднанні чоловічий або середній певний артикль виглядає як `dem`, жіночий як `der`. Сам транспорт від цього не стає «чоловічим» чи «жіночим» за змістом."
+}
+},
+{
+"exampleIds": [
+"de:10:06",
+"de:10:10"
+],
+"textByLocale": {
+"en": "Who are you talking to? The question refers to the partner, not the topic of conversation. The same preposition `mit` works with people. A short pronoun replaces the entire group: `mit mir`,\" not `mit ich`.\"",
+"ru": "С кем говоришь? Вопрос относится к партнёру, а не к теме разговора. С людьми работает тот же предлог `mit`. Короткое местоимение заменяет всю группу: `mit mir`, а не `mit ich`.",
+"uk": "З ким говориш? Запитання ставиться до партнера, а не до теми розмови. З людьми працює той самий прийменник `mit`. Короткий займенник замінює всю групу: `mit mir`, а не `mit ich`."
+}
+},
+{
+"exampleIds": [
+"de:10:11",
+"de:10:18"
+],
+"textByLocale": {
+"en": "Who or what are you going to? The dative is also needed after `zu`.\" In everyday speech, `zu dem` often merges into `zum`,\" and `zu der` into `zur`.\" Don't add another article after the abbreviation.",
+"ru": "К кому или к чему идёшь? После `zu` тоже нужен дательный. В обычной речи `zu dem` часто сливается в `zum`, а `zu der` — в `zur`. Не добавляй ещё один артикль после сокращения.",
+"uk": "До кого чи до чого йдеш? Після `zu` теж потрібен дальний. У звичайній промові `zu dem` часто зливається в `zum`, а `zu der` - в `zur`. Чи не додай ще один артикль після скорочення."
+}
+},
+{
+"exampleIds": [
+"de:10:21",
+"de:10:25"
+],
+"textByLocale": {
+"en": "Who are you staying with? `Bei` denotes staying with a person or a specialist, while `zu` denotes the journey to them. This is a difference in meaning, although both prepositions require the same case.",
+"ru": "У кого находишься? `Bei` обозначает пребывание у человека или у специалиста, а `zu` — путь к нему. Это различие смысла, хотя оба предлога требуют одного падежа.",
+"uk": "У кого знаходишся? `Bei` позначає перебування в людини чи спеціаліста, а `zu` — шлях до нього. Це відмінність сенсу, хоча обидва прийменники вимагають одного відмінка."
+}
+},
+{
+"exampleIds": [
+"de:10:31",
+"de:10:39"
+],
+"textByLocale": {
+"en": "The source can be different. `Von` is convenient for the sender and the starting point. `Aus` is appropriate when exiting from inside a building. Both should not be translated into one memorized preposition for all situations.",
+"ru": "Источник бывает разным. `Von` удобно для отправителя и исходной точки. `Aus` подходит, когда выходят изнутри помещения. Оба не надо переводить одним заученным предлогом для всех ситуаций.",
+"uk": "Джерело буває різним. `Von` зручно для відправника та вихідної точки. `Aus` підходить, коли виходять зсередини приміщення. Обидва не треба перекладати одним завченим приводом для всіх ситуацій."
+}
+},
+{
+"exampleIds": [
+"de:10:41",
+"de:10:46"
+],
+"textByLocale": {
+"en": "After what and since when? `Nach` with an event indicates a later time. `Seit` describes a period that began earlier and continues now; therefore, the example uses the present tense.",
+"ru": "После чего и с какого момента? `Nach` с событием указывает на более позднее время. `Seit` описывает период, который начался раньше и продолжается сейчас; поэтому в примере используется настоящее время.",
+"uk": "Після чого і з якого моменту? `Nach` з подією вказує на більш пізній час. `Seit` описує період, який розпочався раніше і продовжується зараз; у прикладі використовується теперішній час."
+}
+},
+{
+"exampleIds": [
+"de:10:47",
+"de:10:50"
+],
+"textByLocale": {
+"en": "Note the plural: `mit meinen Eltern` or `bei den Kindern`.\" Many nouns in the dative plural add an additional `-n` if the appropriate ending is not already present.",
+"ru": "Обрати внимание на множественное число: `mit meinen Eltern` или `bei den Kindern`. У многих существительных в дательном множественного появляется дополнительное `-n`, если подходящее окончание ещё не стоит.",
+"uk": "Зверніть увагу на множину: `mit meinen Eltern` або `bei den Kindern`. У багатьох іменників у давальному множині з'являється додаткове `-n`, якщо відповідне закінчення ще не стоїть."
+}
+}
+],
+"lab": [
+{
+"bad": "aus",
+"chapter": 1,
+"id": "de:10:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 6,
+"options": [
+"aus",
+"mit",
+"nach"
+],
+"slot": 2
+},
+{
+"bad": "ohne",
+"chapter": 1,
+"id": "de:10:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 5,
+"options": [
+"nach",
+"ohne",
+"mit"
+],
+"slot": 2
+},
+{
+"bad": "zu",
+"chapter": 1,
+"id": "de:10:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"seit",
+"zu",
+"mit"
+],
+"slot": 2
+},
+{
+"bad": "für",
+"chapter": 2,
+"id": "de:10:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"mit",
+"für",
+"von"
+],
+"slot": 2
+},
+{
+"bad": "seit",
+"chapter": 2,
+"id": "de:10:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"seit",
+"mit",
+"für"
+],
+"slot": 2
+},
+{
+"bad": "vom",
+"chapter": 2,
+"id": "de:10:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"zur",
+"vom",
+"ins"
+],
+"slot": 2
+},
+{
+"bad": "am",
+"chapter": 3,
+"id": "de:10:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"ins",
+"zum",
+"am"
+],
+"slot": 2
+},
+{
+"bad": "ins",
+"chapter": 3,
+"id": "de:10:17:lab",
+"item": 17,
+"kind": "match",
+"near": 11,
+"options": [
+"am",
+"ins",
+"zur"
+],
+"slot": 4
+},
+{
+"bad": "er",
+"chapter": 3,
+"id": "de:10:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"er",
+"wir",
+"du"
+],
+"slot": 1
+},
+{
+"bad": "seit",
+"chapter": 4,
+"id": "de:10:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"seit",
+"bei",
+"ohne"
+],
+"slot": 2
+},
+{
+"bad": "am",
+"chapter": 4,
+"id": "de:10:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 6,
+"options": [
+"vom",
+"am",
+"beim"
+],
+"slot": 2
+},
+{
+"bad": "Dem",
+"chapter": 4,
+"id": "de:10:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 27,
+"options": [
+"Der",
+"Dem",
+"Das"
+],
+"slot": 0
+},
+{
+"bad": "mit",
+"chapter": 5,
+"id": "de:10:29:lab",
+"item": 29,
+"kind": "match",
+"near": 27,
+"options": [
+"mit",
+"ohne",
+"bei"
+],
+"slot": 3
+},
+{
+"bad": "Des",
+"chapter": 5,
+"id": "de:10:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"Den",
+"Des",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "ins",
+"chapter": 5,
+"id": "de:10:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 20,
+"options": [
+"ins",
+"ans",
+"vom"
+],
+"slot": 3
+},
+{
+"bad": "am",
+"chapter": 6,
+"id": "de:10:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 3,
+"options": [
+"zur",
+"am",
+"vom"
+],
+"slot": 2
+},
+{
+"bad": "zu",
+"chapter": 6,
+"id": "de:10:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 4,
+"options": [
+"aus",
+"zu",
+"seit"
+],
+"slot": 2
+},
+{
+"bad": "Von",
+"chapter": 6,
+"id": "de:10:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"Nach",
+"Von",
+"Mit"
+],
+"slot": 0
+},
+{
+"bad": "Nach",
+"chapter": 7,
+"id": "de:10:45:lab",
+"item": 45,
+"kind": "build",
+"near": 46,
+"options": [
+"Ohne",
+"Seit",
+"Nach"
+],
+"slot": 0
+},
+{
+"bad": "Von",
+"chapter": 7,
+"id": "de:10:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 47,
+"options": [
+"Mit",
+"Von",
+"Seit"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"mit + der Bus",
+"mit dem Bus"
+],
+[
+"bei + die Ärztin",
+"bei der Ärztin"
+],
+[
+"zu + dem Arzt",
+"zum Arzt"
+],
+[
+"zu + der Schule",
+"zur Schule"
+],
+[
+"von + dem Bahnhof",
+"vom Bahnhof"
+],
+[
+"mit + die Kinder",
+"mit den Kindern"
+]
+],
+"title": {
+"en": "With whom, from where, to whom: prepositions with the dative",
+"ru": "С кем, откуда, к кому: предлоги с Dativ",
+"uk": "З ким, звідки, до кого: прийменники з Dativ"
+}
+},
+"exampleResolved": [
+{
+"id": "de:10:01",
+"target": "Ich komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.",
+"uk": "Я приїжджаю автобусом."
+},
+{
+"id": "de:10:05",
+"target": "Ihr kommt mit dem Zug.",
+"ru": "Вы приезжаете на поезде.",
+"uk": "Ви приїжджаєте поїздом."
+},
+{
+"id": "de:10:06",
+"target": "Ich spreche mit dem Arzt.",
+"ru": "Я разговариваю с врачом.",
+"uk": "Я розмовляю з лікарем."
+},
+{
+"id": "de:10:10",
+"target": "Er spricht mit mir.",
+"ru": "Он разговаривает со мной.",
+"uk": "Він розмовляє зі мною."
+},
+{
+"id": "de:10:11",
+"target": "Ich fahre zur Arbeit.",
+"ru": "Я еду на работу.",
+"uk": "Я їду на роботу."
+},
+{
+"id": "de:10:18",
+"target": "Wir bringen den Koffer zum Taxi.",
+"ru": "Мы несём чемодан к такси.",
+"uk": "Ми несемо валізу до таксі."
+},
+{
+"id": "de:10:21",
+"target": "Anna wohnt bei ihrer Mutter.",
+"ru": "Анна живёт у своей матери.",
+"uk": "Анна живе у своєї матері."
+},
+{
+"id": "de:10:25",
+"target": "Du bist bei der Ärztin.",
+"ru": "Ты на приёме у врача (жен.).",
+"uk": "Ти на прийомі у лікарки."
+},
+{
+"id": "de:10:31",
+"target": "Der Brief kommt von der Bank.",
+"ru": "Письмо из банка.",
+"uk": "Лист із банку."
+},
+{
+"id": "de:10:39",
+"target": "Wir kommen aus dem Garten.",
+"ru": "Мы выходим из сада.",
+"uk": "Ми виходимо із саду."
+},
+{
+"id": "de:10:41",
+"target": "Nach dem Essen trinken wir Tee.",
+"ru": "После еды мы пьём чай.",
+"uk": "Після їди ми п'ємо чай."
+},
+{
+"id": "de:10:46",
+"target": "Seit einer Woche lerne ich Deutsch.",
+"ru": "Я уже неделю учу немецкий.",
+"uk": "Я вже тиждень вивчаю німецьку."
+},
+{
+"id": "de:10:47",
+"target": "Mit einem Freund gehe ich ins Kino.",
+"ru": "Я иду в кино с другом.",
+"uk": "Я йду в кіно з другом."
+},
+{
+"id": "de:10:50",
+"target": "Bei diesem Wetter bleibe ich zu Hause.",
+"ru": "В такую погоду я остаюсь дома.",
+"uk": "За такої погоди я залишаюся вдома."
+}
+]
+}
+]

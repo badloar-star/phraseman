@@ -50,10 +50,9 @@ describe('instant open batch', () => {
     expect(src).toContain('[BLITZ-PICKER] refreshed decks=');
   });
 
-  it('explanation disk cache is moved into memory on touch and on open', () => {
+  it('explanation disk cache can still be moved into memory', () => {
+    // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): кнопки-триггера шторки больше нет; сам перенос кэша в модуле запроса остаётся.
     expect(read('app/explain_phrase_request.ts')).toContain('export async function prefillExplainResultFromDisk(');
-    const button = read('components/ExplainButton.tsx');
-    expect(button.match(/prefillExplainResultFromDisk\(/g)?.length).toBeGreaterThanOrEqual(2);
   });
 
   it('the lessons tab arms the V2 warmup after the first frame, not only after opening V2', () => {

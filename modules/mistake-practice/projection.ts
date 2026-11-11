@@ -18,7 +18,6 @@ import { applyMistakeStepAnswer } from './three_step_rule';
  */
 export const MISTAKE_RULE_THREE_STEPS = 3;
 
-const DAY_MS = 24 * 60 * 60 * 1000;
 const LOCAL_DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export type MistakeProjectionStatus = 'active' | 'corrected' | 'hidden' | 'unavailable';
@@ -345,44 +344,26 @@ export function projectMistakes(
       continue;
     }
 
-    const localDay = payloadString(event.payload, 'localDay');
-    current.supportPassCount = Math.min(2, current.supportPassCount + 1);
-    if (
-      !independent
-      || !localDay
-      || !LOCAL_DAY_PATTERN.test(localDay)
-      || !mode
-    ) {
+    // зачем (владелец 06.11, TestFlight 150: «после отработки ошибка обязана сразу пропасть и больше не показываться»):
+    // верный ответ в отработке СРАЗУ делает ошибку исправленной — без прежних «3 дня в 2 режимах». Вернётся она только
+    // новой ошибкой в уроке (событие captured снова делает её активной) или неверным ответом в «Повторить исправленные».
+    {
+      const localDayNow = payloadString(event.payload, 'localDay');
+      if (localDayNow && LOCAL_DAY_PATTERN.test(localDayNow) && !current.qualifyingDays.includes(localDayNow)) {
+        current.qualifyingDays.push(localDayNow);
+        if (mode) current.qualifyingModes.push(mode);
+      }
+      current.supportPassCount = Math.min(2, current.supportPassCount + 1);
+      current.hasIndependentProduction = current.hasIndependentProduction || independent;
+      current.status = 'corrected';
+      current.correctedAtMs = event.occurredAtMs;
       current.dueAtMs = event.occurredAtMs;
+      if (Date.now() - event.occurredAtMs < 10 * 60 * 1000) {
+        console.log('[MISTAKE-CORRECTED]', JSON.stringify({ facet: current.facet, rule: 'first_correct_answer', mode, independent }));
+      }
       continue;
     }
 
-    if (!current.qualifyingDays.includes(localDay)) {
-      current.qualifyingDays.push(localDay);
-      current.qualifyingModes.push(mode);
-      current.hasIndependentProduction = true;
-    }
-    current.dueAtMs = event.occurredAtMs
-      + DAY_MS * Math.min(7, current.qualifyingDays.length);
-
-    // зачем (04.10, «17 не уменьшается»): второй режим требуется, только если он для этой ошибки возможен;
-    // иначе ошибка с единственным независимым режимом (печать) не уходила из счётчика никогда.
-    const requiredModes = requiredModesForMistake(current);
-    if (
-      current.qualifyingDays.length >= 3
-      && new Set(current.qualifyingModes).size >= requiredModes
-      && current.hasIndependentProduction
-    ) {
-      current.status = 'corrected';
-      current.correctedAtMs = event.occurredAtMs;
-      // Проекция пересобирается из всего журнала при каждой загрузке — логируем только живое (свежее) исправление.
-      if (Date.now() - event.occurredAtMs < 10 * 60 * 1000) {
-        console.log('[MISTAKE-CORRECTED]', JSON.stringify({
-          facet: current.facet, requiredModes, modesSeen: new Set(current.qualifyingModes).size,
-          days: current.qualifyingDays.length,
-        }));
-      }
-    }
   }
 
   return Object.freeze({

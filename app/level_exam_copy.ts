@@ -1,5 +1,5 @@
 import { triLang, type Lang } from '../constants/i18n';
-import type { LevelExamLevel } from './level_exam_types';
+import { LEVEL_EXAM_PASS_SCORE, type LevelExamLevel } from './level_exam_types';
 
 type IntroArgs = {
   level: LevelExamLevel;
@@ -23,6 +23,13 @@ export type LevelExamCopy = {
   firstPassReward: string;
   energyMissing: string;
 };
+
+// зачем (владелец 11.11.2026, «растущий порог»): порог зависит от уровня — A1/A2 21, B1 22, B2 23; число склоняется отдельно в каждом языке
+const PASS_GOAL = {
+  21: { ru: '21 правильный ответ из 30', uk: '21 правильна відповідь із 30', en: '21 correct answers out of 30', es: '21 respuestas correctas de 30', 'pt-BR': '21 respostas corretas de 30', vi: '21 câu đúng trong 30', id: '21 jawaban benar dari 30', tr: '30 sorudan 21 doğru', pl: '21 poprawnych odpowiedzi z 30' },
+  22: { ru: '22 правильных ответа из 30', uk: '22 правильні відповіді із 30', en: '22 correct answers out of 30', es: '22 respuestas correctas de 30', 'pt-BR': '22 respostas corretas de 30', vi: '22 câu đúng trong 30', id: '22 jawaban benar dari 30', tr: '30 sorudan 22 doğru', pl: '22 poprawne odpowiedzi z 30' },
+  23: { ru: '23 правильных ответа из 30', uk: '23 правильні відповіді із 30', en: '23 correct answers out of 30', es: '23 respuestas correctas de 30', 'pt-BR': '23 respostas corretas de 30', vi: '23 câu đúng trong 30', id: '23 jawaban benar dari 30', tr: '30 sorudan 23 doğru', pl: '23 poprawne odpowiedzi z 30' },
+} as const;
 
 const formatNames = {
   ru: ['Контекст', 'Сборка фраз', 'Смысл', 'Поиск ошибки', 'Быстрые пары'],
@@ -73,17 +80,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
       tr: `${firstLesson}–${lastLesson}. dersler`,
       pl: `Lekcje ${firstLesson}–${lastLesson}`,
     }),
-    passGoal: triLang(lang, {
-      ru: '21 правильный ответ из 30',
-      uk: '21 правильна відповідь із 30',
-      en: '21 correct answers out of 30',
-      es: '21 respuestas correctas de 30',
-      'pt-BR': '21 respostas corretas de 30',
-      vi: '21 câu đúng trong 30',
-      id: '21 jawaban benar dari 30',
-      tr: '30 sorudan 21 doğru',
-      pl: '21 poprawnych odpowiedzi z 30',
-    }),
+    passGoal: triLang(lang, PASS_GOAL[LEVEL_EXAM_PASS_SCORE[level]]),
     duration: triLang(lang, {
       ru: `${durationMinutes} минут`,
       uk: `${durationMinutes} хвилин`,

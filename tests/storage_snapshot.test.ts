@@ -27,6 +27,21 @@ describe('storage snapshot (read-through)', () => {
     expect(snapshot.peekStoredItem('premium_active')).toBe('true');
   });
 
+  it('shares lesson reads from a mixed bootstrap batch and invalidates them on write', async () => {
+    const { AsyncStorage, snapshot, multiGet } = load();
+    await AsyncStorage.multiSet([['lesson_key', 'old'], ['profile_key', 'name']]);
+    multiGet.mockClear();
+
+    await snapshot.readStoredItems(['lesson_key', 'profile_key'], new Set(['lesson_key']));
+    await expect(snapshot.readStoredItems(['lesson_key'])).resolves.toEqual([['lesson_key', 'old']]);
+    expect(multiGet).toHaveBeenCalledTimes(1);
+    expect(snapshot.peekStoredItem('profile_key')).toBeUndefined();
+
+    await AsyncStorage.setItem('lesson_key', 'new');
+    await expect(snapshot.readStoredItems(['lesson_key'])).resolves.toEqual([['lesson_key', 'new']]);
+    expect(multiGet).toHaveBeenLastCalledWith(['lesson_key']);
+  });
+
   it('caches an absent key as null too', async () => {
     const { snapshot, callsFor } = load();
     await expect(snapshot.readStoredItem('nothing_here')).resolves.toBeNull();

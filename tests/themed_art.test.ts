@@ -14,14 +14,14 @@ import {
 const ROOT = path.join(__dirname, '..');
 
 describe('themed art registry', () => {
-  it('has the 110 names from ASSETS_V2_PROMPTS.md + intro_profile_card + spire tile, AI-off art, six Spire badges and 18 Home/Dialogs scenes', () => {
-    expect(THEMED_ART_ALL_NAMES).toHaveLength(137);
-    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(137);
+  it('registers active themed art with unique names', () => {
+    expect(THEMED_ART_ALL_NAMES).toHaveLength(129);
+    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(129);
     expect(THEMED_ART_ALL_NAMES).toContain('spire_tile');
     expect(THEMED_ART_ALL_NAMES).toContain('ai_off');
     for (let rank = 1; rank <= 6; rank += 1) expect(THEMED_ART_ALL_NAMES).toContain(`spire_rank_${rank}`);
     for (const n of ['lessons', 'today', 'mistakes_done', 'cards_from_video', 'course_map', 'league_diamond',
-      'streak_10', 'streak_freeze_overlay', 'ach_special', 'prize_1y', 'shop', 'intro_mistake_practice', 'lesson_01', 'lesson_50']) {
+      'streak_10', 'streak_freeze_overlay', 'ach_special', 'prize_1y', 'shop', 'intro_arena', 'lesson_01', 'lesson_50']) {
       expect(THEMED_ART_ALL_NAMES).toContain(n);
     }
   });
@@ -80,7 +80,7 @@ describe('themed art registry', () => {
 
 describe('honest gaps', () => {
   it('places that show Ionicons today get NO borrowed picture (no level badges as lesson covers, no deleted intros)', () => {
-    for (const n of ['today', 'mistakes_hero', 'intro_videos', 'intro_profile_card', 'lesson_07'] as const) {
+    for (const n of ['today', 'mistakes_hero', 'intro_videos', 'intro_ai_dialog', 'lesson_07'] as const) {
       expect(resolveThemedArtFrom({}, n, 'dark').origin).toBe('none');
     }
   });
@@ -137,20 +137,15 @@ describe('first real assets (adfaa8c34) and set choice', () => {
   });
 });
 
-describe('intro scenes (06dd77148)', () => {
-  const INTROS = ['intro_cards_hub', 'intro_legacy_lessons', 'intro_statistics', 'intro_daily_phrase', 'intro_videos',
-    'intro_friends', 'intro_arena', 'intro_cards_swipe', 'intro_training_listening', 'intro_training_speaking',
-    'intro_training_blitz', 'intro_ai_dialog', 'intro_mistake_practice', 'intro_profile_card'] as const;
-  const WITH_ACCENT = ['intro_cards_hub', 'intro_cards_swipe', 'intro_legacy_lessons'];
+describe('shared art and deleted first-visit scenes', () => {
+  const shared = ['intro_arena', 'intro_ai_dialog', 'intro_videos', 'intro_friends', 'intro_cards_hub', 'intro_training_blitz'] as const;
 
-  it('all 14 scenes are real files in both sets; exactly three carry the theme-coloured .accent layer', () => {
-    for (const name of INTROS) {
-      for (const brightness of ['dark', 'light'] as const) {
-        const art = resolveThemedArt(name, brightness);
-        expect(art.origin).toBe('v2art');
-        if (WITH_ACCENT.includes(name)) expect(art.accent).not.toBeNull();
-        else expect(art.accent).toBeNull();
-      }
+  it('keeps only the intro-named files used by other screens', () => {
+    for (const brightness of ['dark', 'light'] as const) {
+      const directory = path.join(ROOT, 'assets/images/v2art', brightness);
+      expect(fs.readdirSync(directory).filter((file) => file.startsWith('intro_')).sort())
+        .toEqual([...shared.map((name) => `${name}.webp`), 'intro_cards_hub.accent.webp'].sort());
+      for (const name of shared) expect(resolveThemedArt(name, brightness).origin).toBe('v2art');
     }
   });
 });

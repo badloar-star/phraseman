@@ -75,7 +75,7 @@ import type { FlashcardMarketPack } from './flashcards/marketplace';
 import VideoPackRow from './flashcards/VideoPackRow';
 import { KitEmpty, KitFound, KitSearchField } from '../components/cards-grid/CardsKit';
 import { PackBackBare, PackScreenTitle, PackTopBarRow } from '../components/packs/PackScreenKit';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../components/practice/PracticeGlass';
 import { SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';

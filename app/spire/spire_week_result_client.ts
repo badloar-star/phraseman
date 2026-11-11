@@ -19,7 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
-import { captureAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
 import { DebugLogger } from '../debug-logger';
 import type { SpireLiveGate } from './spire_live_gate';
 import { spireErrorText, spireFirestore } from './spire_net';
@@ -162,10 +162,11 @@ async function mergeWeekWallet(token: AccountGenerationToken, uid: string, resul
   if (!w) { DebugLogger.info(LOG, `${tag} skip: снимка кошелька в итоге нет — баланс догонит квитанция урока/карточек`); return; }
   const key = `${uid}:${result.weekId}:${result.lang}:${w.seq}`;
   if (mergedWallets.has(key)) { DebugLogger.info(LOG, `${tag} skip: снимок seq=${w.seq} уже влит в этом запуске`); return; }
-  if (token.stableId?.trim() !== uid) { DebugLogger.warn(LOG, `${tag} skip: аккаунт не совпал (token=${token.stableId ? token.stableId.slice(0, 8) : 'нет'} uid=${uid.slice(0, 8)})`); return; }
+  if (!isCurrentAccountGeneration(token, uid)) { DebugLogger.warn(LOG, `${tag} skip: аккаунт/поколение не совпали (token=${token.stableId ? token.stableId.slice(0, 8) : 'нет'} uid=${uid.slice(0, 8)})`); return; }
   mergedWallets.add(key); // guard-ok: метка процесса в памяти, не данные пользователя
   try {
     const grants = await import('../level_spin_star_grants');
+    if (!isCurrentAccountGeneration(token, uid)) { mergedWallets.delete(key); return; }
     const visible = await grants.mergeLevelSpinServerStars(token, { stars: w.stars, starsEarnedTotal: w.earnedTotal, starsSeq: w.seq, serverCreditedDelta: w.paidCoins });
     DebugLogger.info(LOG, `${tag} merged: снимок stars=${w.stars} seq=${w.seq} выплата=${w.paidCoins} → видимый баланс=${visible.balance}`);
   } catch (error) {
@@ -204,20 +205,25 @@ export async function spireLoadWeekResult(
   // зачем (D191, координатор 14.10): Главная зовёт загрузчик «только посмотреть» (markShown: false) — узнать и записать в журнал,
   // КОГДА показали бы окно итога, не показывая его и не ставя «показано» (иначе карточка в Пике пропала бы). Найденный итог
   // кладётся в кэш как 'found' — Пик потом покажет его без сети.
-  opts: Readonly<{ markShown?: boolean; where?: string }> = {},
+  opts: Readonly<{ markShown?: boolean; where?: string; accountToken?: AccountGenerationToken }> = {},
 ): Promise<SpireWeekResultView | null> {
   const nowMs = Date.now();
   // зачем: аккаунт фиксируем ДО чтения — если он сменится, пока ждём сеть, снимок чужого кошелька не вольётся (merge сверит поколение).
-  const accountToken = captureAccountGeneration();
+  const accountToken = opts.accountToken ?? captureAccountGeneration();
+  const accountIsCurrent = (): boolean => isCurrentAccountGeneration(accountToken, input.uid);
+  if (!accountIsCurrent()) return null;
   const prevWeek = spirePreviousWeekKey(nowMs);
   const shouldMark = opts.markShown !== false;
   const where = opts.where ?? 'spire';
   const row = await readRow(input.uid, input.lang);
+  if (!accountIsCurrent()) return null;
   // зачем (владелец 13.10, «ЗАЧЕМ ТУТ КРЕСТИК?»): карточка показывается при ПЕРВОМ входе в Пик на новой неделе и при следующем входе уже нет. Отметка «показано»
   // — локально по weekId+uid+язык (state 'dismissed'), без записей в Firestore; ставится сразу, как только решили показать (markShown). Лог [SPIRE-WEEK-CARD].
   const logCard = (decision: 'shown' | 'skip', why: string): void => DebugLogger.info(LOG, `[SPIRE-WEEK-CARD] where=${where} weekId=${prevWeek} lang=${input.lang} ${shouldMark ? decision : `peek_${decision}`}: ${why}`);
   const markShown = async (): Promise<void> => {
+    if (!accountIsCurrent()) return;
     await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'dismissed', checkedAtMs: Date.now(), result: null });
+    if (!accountIsCurrent()) return;
     logCard('shown', 'отметка «показано» записана локально — при следующем входе карточки не будет');
   };
   if (row && row.weekId === prevWeek) {
@@ -226,11 +232,12 @@ export async function spireLoadWeekResult(
       return null;
     }
     if (row.state === 'found') {
+      if (!accountIsCurrent()) return null;
       logCard('shown', `из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
-      void recordSpireWeekStory(row.result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+      void recordSpireWeekStory(row.result, accountToken); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
       void mergeWeekWallet(accountToken, input.uid, row.result, where);
       if (shouldMark) await markShown();
-      return row.result;
+      return accountIsCurrent() ? row.result : null;
     }
     const giveUp = row.checkedAtMs - spireWeekStartMs(nowMs) > GIVE_UP_AFTER_WEEK_START_MS;
     if (giveUp || nowMs - row.checkedAtMs < RECHECK_MS) {
@@ -239,6 +246,7 @@ export async function spireLoadWeekResult(
     }
   }
   const weeks = await spireReadParticipation(input.uid, input.lang);
+  if (!accountIsCurrent()) return null;
   if (!weeks.includes(prevWeek)) {
     logCard('skip', `в комнате не сидел (недели=${weeks.join(',') || '—'}) — 0 чтений`);
     return null;
@@ -248,19 +256,20 @@ export async function spireLoadWeekResult(
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const snap = await (db as any).collection('users').doc(input.uid).collection('spire_week_results').doc(`${prevWeek}_${input.lang}`).get(); // guard-ok: один документ по id
+    if (!accountIsCurrent()) return null;
     const result = snap?.exists ? spireDecodeWeekResult(snap.data(), prevWeek, input.lang) : null;
     DebugLogger.info(LOG, `week result: сеть ${prevWeek}_${input.lang} exists=${String(Boolean(snap?.exists))} разобран=${String(result !== null)}`);
     if (result) {
       logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
-      void recordSpireWeekStory(result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+      void recordSpireWeekStory(result, accountToken); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
       void mergeWeekWallet(accountToken, input.uid, result, where);
       if (shouldMark) await markShown();
-      else await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'found', checkedAtMs: nowMs, result });
+      else if (accountIsCurrent()) await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'found', checkedAtMs: nowMs, result });
     } else {
       logCard('skip', 'документа итога нет — повторим позже');
-      await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'absent', checkedAtMs: nowMs, result: null });
+      if (accountIsCurrent()) await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'absent', checkedAtMs: nowMs, result: null });
     }
-    return result;
+    return accountIsCurrent() ? result : null;
   } catch (error) {
     logCard('skip', `чтение упало (${spireErrorText(error)}) — повторим при следующем заходе`);
     return null;

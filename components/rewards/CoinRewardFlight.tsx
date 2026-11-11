@@ -18,21 +18,22 @@
  * Координаты from/to приходят в оконной системе (measureInWindow); оверлей
  * измеряет собственное окно и переводит их в свою систему сам.
  */
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
-import { Image } from 'expo-image';
+import { Image, type ImageProps } from 'expo-image';
 import Animated, {
   cancelAnimation,
   Easing,
+  ReduceMotion,
   useAnimatedStyle,
-  useReducedMotion,
   useSharedValue,
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { soundDirector } from '../../modules/audio/sound_director';
-import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
+import { useMyRankCoinSource } from '../../hooks/use_my_rank_coin';
+import { useReduceMotionPreference } from '../../hooks/use_reduce_motion';
 import { logMemCoin } from '../coins/mem_coin_probe';
 import { COIN_SIZE, coinFlightBulge } from './coin_flight_bulge';
 
@@ -77,9 +78,10 @@ interface FlightCoinProps {
   /** Вынос дуги вправо в середине полёта, px (0 — прежняя прямая дуга). */
   bulge: number;
   onLastDone: () => void;
+  source: ImageProps['source'];
 }
 
-const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLastDone }: FlightCoinProps) {
+const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLastDone, source }: FlightCoinProps) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -88,10 +90,11 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLa
     if (index === 0) playFlightStart();
     progress.value = withDelay(
       index * STAGGER_MS,
-      withTiming(1, { duration: FLIGHT_MS, easing: FLIGHT_EASE }, (finished) => {
+      withTiming(1, { duration: FLIGHT_MS, easing: FLIGHT_EASE, reduceMotion: ReduceMotion.Never }, (finished) => {
         if (!finished) return;
         if (isLast) scheduleOnRN(onLastDone);
       }),
+      ReduceMotion.Never,
     );
     return () => cancelAnimation(progress);
   }, [index, isLast, onLastDone, progress]);
@@ -113,28 +116,41 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLa
   return (
     <Animated.View pointerEvents="none" style={[styles.coin, style]}>
       {/* зачем (R129): монета 768² в 18 dp, несколько сразу — expo-image декодирует под размер вида; движение у обёртки Animated.View, сама картинка статична */}
-      <MyRankCoin contentFit="contain" style={styles.asset} onLoad={() => logMemCoin('coin-reward-flight', COIN_SIZE)} />
+      <Image source={source} contentFit="contain" style={styles.asset} onLoad={() => logMemCoin('coin-reward-flight', COIN_SIZE)} />
     </Animated.View>
   );
 });
 
 export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count, onDone }: CoinRewardFlightProps) {
-  const reducedMotion = useReducedMotion();
-  const { width: windowWidth } = useWindowDimensions();
+  const reducedMotion = useReduceMotionPreference();
   // Обновления HUD родителя могут сменить колбэк, но никогда не перезапускают полёт.
   const onDoneRef = useRef(onDone);
-  onDoneRef.current = onDone;
-  const finishFlight = useCallback(() => onDoneRef.current(), []);
-  const rootRef = useRef<View>(null);
-  const [origin, setOrigin] = useState<CoinRewardFlightPoint | null>(null);
+  useLayoutEffect(() => {
+    onDoneRef.current = onDone;
+  }, [onDone]);
+  const terminalRef = useRef(false);
+  const finishFlight = useCallback(() => {
+    if (terminalRef.current) return;
+    terminalRef.current = true;
+    onDoneRef.current();
+  }, []);
 
   useEffect(() => {
-    if (!reducedMotion) return;
+    if (reducedMotion === false) return;
     // «Уменьшить движение»: монеты не летят, счётчик обновляется сразу.
-    onDoneRef.current();
-  }, [reducedMotion]);
+    finishFlight();
+  }, [finishFlight, reducedMotion]);
 
-  if (reducedMotion) return null;
+  if (terminalRef.current || reducedMotion !== false) return null;
+  return <ActiveCoinRewardFlight from={from} to={to} count={count} onDone={finishFlight} />;
+});
+
+function ActiveCoinRewardFlight({ from, to, count, onDone }: CoinRewardFlightProps): React.JSX.Element {
+  const { width: windowWidth } = useWindowDimensions();
+  // Один источник ранга на весь активный полёт; частицы получают уже готовый source.
+  const source = useMyRankCoinSource(COIN_SIZE);
+  const rootRef = useRef<View>(null);
+  const [origin, setOrigin] = useState<CoinRewardFlightPoint | null>(null);
   // зачем (координатор 18.10): вынос дуги — до правого края окна (с зазором) по всему пути, а не только по середине (Ревизор eb6f98f9f).
   const bulge = coinFlightBulge(from.x, to.x - from.x, windowWidth);
   const particles = Array.from({ length: Math.min(count, COIN_REWARD_FLIGHT_MAX_PARTICLES) }, (_, index) => index);
@@ -166,14 +182,15 @@ export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count
                 dx={to.x - from.x}
                 dy={to.y - from.y}
                 bulge={bulge}
-                onLastDone={finishFlight}
+                onLastDone={onDone}
+                source={source}
               />
             </View>
           ))
         : null}
     </View>
   );
-});
+}
 
 const styles = StyleSheet.create({
   coin: { width: COIN_SIZE, height: COIN_SIZE, alignItems: 'center', justifyContent: 'center' },

@@ -1,0 +1,680 @@
+{
+ "01.11": {
+  "vi": "Tôi ở nhà."
+ },
+ "01.12": {
+  "vi": "Bạn ở nhà."
+ },
+ "01.13": {
+  "vi": "Paul ở nhà."
+ },
+ "01.27": {
+  "pt-BR": "Vocês estão prontos."
+ },
+ "01.50": {
+  "pt-BR": "Estou perto da porta.",
+  "vi": "Tôi đang ở gần cửa.",
+  "tr": "Kapının yakınındayım."
+ },
+ "02.19": {
+  "ru": "Вы не опаздываете.",
+  "uk": "Ви не запізнюєтесь.",
+  "tr": "Geç değilsiniz.",
+  "pl": "Nie jesteście spóźnieni."
+ },
+ "02.20": {
+  "ru": "Мы не рано.",
+  "uk": "Ми не рано.",
+  "vi": "Chúng tôi không đến sớm.",
+  "pl": "Nie jesteśmy wcześnie.",
+  "tr": "Erken değiliz."
+ },
+ "02.21": {
+  "pl": "Drzwi nie są otwarte."
+ },
+ "02.23": {
+  "pl": "Sklepy nie są otwarte."
+ },
+ "02.28": {
+  "es": "La bolsa no está allí."
+ },
+ "02.30": {
+  "pl": "Szklanka nie jest brudna."
+ },
+ "02.32": {
+  "es": "Los baños no están al fondo.",
+  "pt-BR": "Os banheiros não ficam no fundo.",
+  "vi": "Nhà vệ sinh không ở phía sau.",
+  "id": "Toilet tidak di belakang.",
+  "tr": "Tuvaletler arkada değil.",
+  "pl": "Toalety nie są z tyłu."
+ },
+ "02.37": {
+  "pl": "Muzeum nie jest otwarte."
+ },
+ "02.40": {
+  "tr": "Tren geç değil."
+ },
+ "02.41": {
+  "es": "Todavía no estoy en casa.",
+  "pt-BR": "Eu ainda não estou em casa.",
+  "pl": "Jeszcze nie jestem w domu."
+ },
+ "02.48": {
+  "pt-BR": "Vocês não estão sozinhos aqui.",
+  "pl": "Nie jesteście tu sami."
+ },
+ "03.09": {
+  "tr": "Geç miyiz?"
+ },
+ "03.17": {
+  "ru": "Вы рано?",
+  "uk": "Ви рано?",
+  "pt-BR": "Você está adiantado?",
+  "tr": "Erken misiniz?",
+  "pl": "Czy jesteś przed czasem?"
+ },
+ "03.35": {
+  "pt-BR": "Os bilhetes estão no seu bolso?",
+  "vi": "Vé có ở trong túi áo của bạn không?",
+  "id": "Apakah tiketnya ada di saku Anda?",
+  "tr": "Biletler cebinde mi?",
+  "pl": "Czy bilety są w twojej kieszeni?"
+ },
+ "03.42": {
+  "pl": "Czy obie drzwi są zamknięte?"
+ },
+ "03.47": {
+  "uk": "Ви тут заради концерту?"
+ },
+ "03.48": {
+  "pl": "Czy pokój jest na pierwszym piętrze?"
+ },
+ "04.01": {
+  "vi": "Đây là Paul.",
+  "tr": "Bu Paul."
+ },
+ "04.02": {
+  "vi": "Đây là Léa.",
+  "tr": "Bu Léa."
+ },
+ "04.07": {
+  "pt-BR": "Este é um vizinho.",
+  "vi": "Đây là một người hàng xóm.",
+  "id": "Ini seorang tetangga.",
+  "tr": "Bu bir komşu.",
+  "pl": "To sąsiad."
+ },
+ "04.08": {
+  "en": "This is a neighbor.",
+  "pt-BR": "Esta é uma vizinha.",
+  "vi": "Đây là một người hàng xóm.",
+  "id": "Ini seorang tetangga.",
+  "tr": "Bu bir komşu.",
+  "pl": "To sąsiadka."
+ },
+ "04.19": {
+  "pt-BR": "Este é um recibo.",
+  "vi": "Đây là một biên lai.",
+  "id": "Ini adalah tanda terima.",
+  "tr": "Bu bir makbuz.",
+  "pl": "To jest paragon."
+ },
+ "04.24": {
+  "tr": "Bunlar komşular."
+ },
+ "04.40": {
+  "vi": "Đó là số của văn phòng.",
+  "pl": "To numer biura."
+ },
+ "05.07": {
+  "tr": "Onların bir bileti var."
+ },
+ "05.08": {
+  "tr": "Onların bir bileti var."
+ },
+ "05.16": {
+  "pt-BR": "Você está com calor.",
+  "vi": "Bạn thấy nóng.",
+  "id": "Kamu merasa kepanasan.",
+  "tr": "Size sıcak geliyor."
+ },
+ "06.09": {
+  "id": "Gelas-gelasnya bersih.",
+  "vi": "Những chiếc ly sạch."
+ },
+ "06.36": {
+  "pt-BR": "O troco está no bolso.",
+  "vi": "Tiền lẻ ở trong túi.",
+  "id": "Uang receh ada di dalam saku.",
+  "tr": "Bozuk para cepte."
+ },
+ "07.26": {
+  "pl": "Szukają miejsca."
+ },
+ "07.45": {
+  "uk": "Ви бронюєте на сьогоднішній вечір?"
+ },
+ "08.22": {
+  "pl": "Kiedy wyjeżdżasz?"
+ },
+ "08.24": {
+  "pl": "Kiedy bank się zamyka?"
+ },
+ "08.26": {
+  "tr": "Léa ne zaman eve dönüyor?",
+  "pl": "Kiedy Leah wraca do domu?"
+ },
+ "08.48": {
+  "id": "Apa yang sedang dilakukan Paul?"
+ },
+ "09.45": {
+  "pt-BR": "Você guarda seus óculos no estojo.",
+  "vi": "Bạn cất kính vào hộp.",
+  "tr": "Gözlüğünü kılıfına koyuyorsun.",
+  "pl": "Chowasz okulary do etui."
+ },
+ "10.24": {
+  "es": "¿Hay baños aquí?"
+ },
+ "10.27": {
+  "uk": "Чи є вільна кімната?"
+ },
+ "10.50": {
+  "pl": "Tuż naprzeciwko jest przystanek autobusowy."
+ },
+ "11.37": {
+  "pl": "Dzieci idą do szkoły pieszo."
+ },
+ "11.47": {
+  "pt-BR": "Vou à seção de calçados."
+ },
+ "12.06": {
+  "pt-BR": "Você pega leite.",
+  "vi": "Bạn lấy sữa.",
+  "id": "Anda mengambil susu.",
+  "pl": "Bierzecie mleko."
+ },
+ "12.27": {
+  "pt-BR": "Você adiciona mostarda.",
+  "vi": "Bạn cho thêm mù tạt.",
+  "id": "Anda menambahkan mustard.",
+  "tr": "Hardal ekliyorsun.",
+  "pl": "Dodajesz musztardę."
+ },
+ "12.31": {
+  "pt-BR": "Eu não pego leite."
+ },
+ "12.34": {
+  "pt-BR": "Ela não compra manteiga."
+ },
+ "12.40": {
+  "es": "Ella toma muchas verduras.",
+  "id": "Dia mengambil banyak sayuran."
+ },
+ "12.49": {
+  "ru": "Мы делим одну тарелку картошки фри.",
+  "uk": "Ми ділимо одну тарілку картоплі фрі.",
+  "pt-BR": "Nós dividimos um prato de batatas fritas.",
+  "vi": "Chúng tôi chia nhau một đĩa khoai tây chiên.",
+  "id": "Kami berbagi satu piring kentang goreng.",
+  "tr": "Bir tabak patates kızartmasını paylaşıyoruz.",
+  "pl": "Dzielimy się jednym talerzem frytek."
+ },
+ "14.03": {
+  "pl": "Ona może przyjść."
+ },
+ "14.11": {
+  "pt-BR": "Eu quero experimentar.",
+  "vi": "Tôi muốn thử.",
+  "id": "Saya ingin mencoba.",
+  "pl": "Chcę spróbować."
+ },
+ "14.25": {
+  "pt-BR": "É preciso reservar um lugar.",
+  "vi": "Cần đặt chỗ.",
+  "id": "Perlu memesan tempat.",
+  "tr": "Bir yer ayırtmak gerekiyor.",
+  "pl": "Trzeba zarezerwować miejsce."
+ },
+ "14.42": {
+  "ru": "Можете показать мне выход?",
+  "uk": "Чи можете ви показати мені вихід?",
+  "en": "Can you show me the exit?",
+  "es": "¿Me puede indicar la salida?",
+  "pt-BR": "Pode me indicar a saída?",
+  "vi": "Bạn có thể chỉ cho tôi lối ra không?",
+  "id": "Bisakah Anda menunjukkan pintu keluarnya kepada saya?",
+  "tr": "Çıkışı bana gösterebilir misiniz?",
+  "pl": "Czy możesz mi wskazać wyjście?"
+ },
+ "14.43": {
+  "pt-BR": "Você pode me emprestar seu carregador?",
+  "vi": "Bạn có thể cho tôi mượn sạc của bạn được không?",
+  "id": "Bisakah kamu meminjamkan pengisi dayamu kepada saya?",
+  "tr": "Şarj cihazınızı bana ödünç verebilir misiniz?",
+  "pl": "Czy możesz pożyczyć mi swoją ładowarkę?"
+ },
+ "15.27": {
+  "en": "Are you going to have dessert?",
+  "pt-BR": "Você vai comer sobremesa?",
+  "vi": "Bạn sẽ ăn món tráng miệng không?",
+  "id": "Apakah Anda akan makan makanan penutup?",
+  "tr": "Tatlı alacak mısınız?",
+  "pl": "Weźmiesz deser?"
+ },
+ "15.34": {
+  "tr": "Taşınmayacağız."
+ },
+ "15.35": {
+  "ru": "Вы не будете долго ждать.",
+  "uk": "Ви не чекатимете довго.",
+  "en": "You won't wait long.",
+  "es": "No va a esperar mucho.",
+  "pt-BR": "Você não vai esperar muito.",
+  "id": "Kamu tidak akan menunggu lama.",
+  "tr": "Uzun süre beklemeyeceksiniz.",
+  "pl": "Nie będziesz długo czekać."
+ },
+ "15.37": {
+  "pt-BR": "Vou guardar a fatura.",
+  "vi": "Tôi sẽ giữ lại hóa đơn.",
+  "id": "Saya akan menyimpan faktur.",
+  "tr": "Faturayı saklayacağım.",
+  "pl": "Zachowam fakturę."
+ },
+ "15.45": {
+  "vi": "Bạn sẽ thử chiếc áo khoác màu xanh dương không?"
+ },
+ "15.49": {
+  "ru": "Вы найдёте выход справа.",
+  "uk": "Ви знайдете вихід праворуч.",
+  "en": "You'll find the exit on the right.",
+  "es": "Encontrarán la salida a la derecha.",
+  "pt-BR": "Você encontrará a saída à direita.",
+  "vi": "Bạn sẽ tìm thấy lối ra bên phải.",
+  "id": "Kamu akan menemukan pintu keluar di sebelah kanan.",
+  "tr": "Çıkışı sağda bulacaksınız.",
+  "pl": "Wyjście znajdziesz po prawej stronie."
+ },
+ "16.01": {
+  "pl": "Wejdź!"
+ },
+ "16.15": {
+  "vi": "Lấy áo khoác của bạn đi!"
+ },
+ "16.31": {
+  "pl": "Nie biegaj!"
+ },
+ "16.34": {
+  "pl": "Nie zamykaj na klucz!"
+ },
+ "16.39": {
+  "pt-BR": "Não espere na frente da saída!",
+  "vi": "Đừng đợi trước lối ra!",
+  "id": "Jangan menunggu di depan pintu keluar!",
+  "tr": "Çıkışın önünde beklemeyin!",
+  "pl": "Nie czekaj przed wyjściem!"
+ },
+ "17.05": {
+  "pt-BR": "Vocês se levantam.",
+  "vi": "Các bạn thức dậy.",
+  "tr": "Siz kalkıyorsunuz."
+ },
+ "17.08": {
+  "pt-BR": "Você se prepara."
+ },
+ "17.24": {
+  "pt-BR": "Você se veste para sair.",
+  "vi": "Bạn mặc quần áo để ra ngoài.",
+  "id": "Anda berpakaian untuk keluar.",
+  "tr": "Dışarı çıkmak için giyiniyorsunuz.",
+  "pl": "Ubierasz się, żeby wyjść."
+ },
+ "17.34": {
+  "vi": "Bạn không bao giờ nghỉ ngơi à?"
+ },
+ "17.44": {
+  "es": "¿Te acuerdas de esta dirección?"
+ },
+ "17.49": {
+  "ru": "Он путает платформу.",
+  "uk": "Він плутає платформу."
+ },
+ "18.06": {
+  "pl": "Zamknęli salę."
+ },
+ "18.33": {
+  "tr": "Giriş kartını bulamadı."
+ },
+ "18.39": {
+  "pl": "Kto stłukł szklankę?"
+ },
+ "19.15": {
+  "pl": "Moja mama wróciła wcześnie do domu."
+ },
+ "19.18": {
+  "vi": "Các bà hàng xóm đã ở lại bên ngoài.",
+  "id": "Para tetangga perempuan tinggal di luar."
+ },
+ "19.43": {
+  "pt-BR": "As duas amigas vieram a pé.",
+  "vi": "Hai người bạn gái đã đi bộ đến.",
+  "id": "Dua teman perempuan datang dengan berjalan kaki.",
+  "tr": "İki kız arkadaş yürüyerek geldi.",
+  "pl": "Obie przyjaciółki przyszły pieszo."
+ },
+ "20.47": {
+  "vi": "Chúng tôi thường gặp nhau trước đài phun nước.",
+  "id": "Kami biasa bertemu di depan air mancur."
+ },
+ "21.17": {
+  "pl": "Byłem na dworcu kolejowym, kiedy napisałeś."
+ },
+ "21.19": {
+  "pt-BR": "Os alunos estavam esperando quando anunciaram a partida.",
+  "vi": "Các học sinh đang đợi thì có thông báo khởi hành.",
+  "id": "Para siswa sedang menunggu ketika keberangkatan diumumkan.",
+  "tr": "Kalkış duyurulduğunda öğrenciler bekliyordu.",
+  "pl": "Uczniowie czekali, kiedy ogłoszono odjazd."
+ },
+ "21.27": {
+  "pl": "Podczas gdy dzieci się bawiły, piłka pękła."
+ },
+ "21.49": {
+  "pt-BR": "Os passageiros estavam esperando quando as informações na tela mudaram.",
+  "vi": "Hành khách đang đợi thì thông tin trên màn hình thay đổi.",
+  "id": "Para penumpang sedang menunggu ketika informasi di layar berubah.",
+  "tr": "Ekrandaki bilgiler değiştiğinde yolcular bekliyordu.",
+  "pl": "Pasażerowie czekali, kiedy zmieniły się informacje na ekranie."
+ },
+ "22.15": {
+  "tr": "Ekmeği kesiyorum."
+ },
+ "22.16": {
+  "tr": "Bardakları yıkıyorum."
+ },
+ "22.17": {
+  "tr": "Biletleri yazdırıyorum."
+ },
+ "22.20": {
+  "tr": "Bu şarkıyı dinliyorum."
+ },
+ "22.25": {
+  "pt-BR": "Eles não o pegam.",
+  "vi": "Họ không lấy nó.",
+  "id": "Mereka tidak mengambilnya.",
+  "tr": "Onu almıyorlar.",
+  "pl": "Nie biorą go."
+ },
+ "22.34": {
+  "pt-BR": "Você pode deixá-la aqui."
+ },
+ "22.40": {
+  "pl": "Ona chce trzymać to w chłodzie."
+ },
+ "23.17": {
+  "es": "Concertamos una cita con él."
+ },
+ "23.23": {
+  "tr": "Anahtarımı ona resepsiyonda bırakıyorum."
+ },
+ "23.26": {
+  "id": "Saya mengembalikan kartunya setelah pembayaran."
+ },
+ "24.09": {
+  "pl": "On tam idzie pieszo."
+ },
+ "24.15": {
+  "ru": "Вы там долго остаётесь?",
+  "uk": "Ви там довго залишаєтеся?",
+  "pt-BR": "Você fica lá por muito tempo?",
+  "tr": "Orada uzun süre kalıyor musunuz?",
+  "pl": "Zostajesz tam długo?"
+ },
+ "24.38": {
+  "vi": "Anh ấy phải ghé qua đó vào ngày mai."
+ },
+ "24.42": {
+  "ru": "Рынок далеко, но мы идём туда пешком.",
+  "uk": "Ринок далеко, але ми йдемо туди пішки.",
+  "pt-BR": "O mercado é longe, mas nós vamos a pé.",
+  "tr": "Pazar yeri uzakta ama oraya yürüyerek gidiyoruz.",
+  "pl": "Targ jest daleko, ale idziemy tam pieszo."
+ },
+ "24.48": {
+  "pl": "Warsztat zamyka się wcześnie, a ja muszę tam teraz iść."
+ },
+ "25.03": {
+  "uk": "Ти береш один.",
+  "tr": "Sen bir tane alıyorsun.",
+  "pl": "Ty bierzesz jednego."
+ },
+ "25.04": {
+  "uk": "Ти береш два.",
+  "tr": "Sen iki tane alıyorsun.",
+  "pl": "Ty bierzesz dwa."
+ },
+ "25.07": {
+  "pt-BR": "Você quer cinco?",
+  "vi": "Bạn muốn năm cái không?",
+  "id": "Apakah Anda mau lima?",
+  "tr": "Beş tane ister misiniz?",
+  "pl": "Chcesz pięć sztuk?"
+ },
+ "25.09": {
+  "pl": "Mam ich wystarczająco."
+ },
+ "25.11": {
+  "id": "Saya akan mengambil sedikit roti."
+ },
+ "25.17": {
+  "uk": "Меду я додаю ложку.",
+  "pl": "Miód, dodam łyżkę."
+ },
+ "25.25": {
+  "pt-BR": "Você nunca leva nenhum?",
+  "vi": "Bạn không bao giờ lấy chúng à?",
+  "id": "Kamu tidak pernah mengambilnya?",
+  "pl": "Nigdy ich nie bierzesz?"
+ },
+ "25.27": {
+  "vi": "Họ không tìm thấy chúng ở đây.",
+  "pl": "Oni nie znajdują ich tutaj."
+ },
+ "25.29": {
+  "vi": "Anh ấy chỉ giữ một cái cho riêng mình."
+ },
+ "25.31": {
+  "vi": "Tôi đã mua hai cái."
+ },
+ "25.32": {
+  "vi": "Cô ấy đã tìm thấy một cái."
+ },
+ "25.33": {
+  "tr": "Üç tane ayırttık."
+ },
+ "25.36": {
+  "ru": "Я возьму ещё.",
+  "uk": "Я візьму ще.",
+  "tr": "Biraz daha alacağım.",
+  "pl": "Wezmę jeszcze."
+ },
+ "26.26": {
+  "pl": "Lepiej słyszymy przy scenie."
+ },
+ "26.48": {
+  "pt-BR": "Eu pego a menor porção."
+ },
+ "27.13": {
+  "ru": "Он получит результат в понедельник.",
+  "uk": "Він отримає результат у понеділок.",
+  "pt-BR": "Ele terá o resultado na segunda-feira.",
+  "vi": "Anh ấy sẽ nhận được kết quả vào thứ Hai.",
+  "id": "Dia akan menerima hasilnya pada hari Senin.",
+  "tr": "Sonucu Pazartesi günü alacak.",
+  "pl": "Dostanie wynik w poniedziałek."
+ },
+ "27.15": {
+  "ru": "Вы сможете оплатить на месте.",
+  "uk": "Ви зможете заплатити на місці.",
+  "pt-BR": "Você poderá pagar no local.",
+  "tr": "Yerinde ödeme yapabileceksiniz.",
+  "pl": "Będziesz mógł zapłacić na miejscu."
+ },
+ "27.27": {
+  "pl": "Bank zamknie się dziś wieczorem wcześniej."
+ },
+ "28.11": {
+  "vi": "Làm ơn, bạn có thể nhắc lại được không?",
+  "id": "Tolong, bisakah Anda mengulanginya?"
+ },
+ "28.20": {
+  "es": "¿Podría tomar un vaso de agua?",
+  "pt-BR": "Eu poderia ter um copo d'água?"
+ },
+ "28.21": {
+  "vi": "Chúng tôi thích ngồi bàn ngoài trời hơn."
+ },
+ "28.22": {
+  "vi": "Tôi thích thanh toán bằng tiền mặt hơn."
+ },
+ "28.23": {
+  "vi": "Cô ấy thích hẹn gặp vào buổi sáng hơn."
+ },
+ "28.24": {
+  "uk": "Ти б волів піти пішки?"
+ },
+ "28.31": {
+  "pt-BR": "Você deveria guardar o recibo.",
+  "id": "Anda sebaiknya menyimpan struknya.",
+  "pl": "Powinien Pan zachować paragon."
+ },
+ "28.33": {
+  "id": "Saya sebaiknya menelepon bengkel.",
+  "pl": "Powinienem zadzwonić do warsztatu."
+ },
+ "28.38": {
+  "pt-BR": "Você poderia passar aqui depois da aula.",
+  "vi": "Bạn có thể ghé qua sau giờ học.",
+  "id": "Kamu bisa mampir setelah kelas.",
+  "tr": "Dersten sonra uğrayabilirsin.",
+  "pl": "Mógłbyś wpaść po zajęciach."
+ },
+ "28.44": {
+  "en": "I'd like to reschedule my appointment.",
+  "es": "Me gustaría reprogramar mi cita.",
+  "pt-BR": "Gostaria de remarcar meu compromisso.",
+  "vi": "Tôi muốn dời lịch hẹn của tôi.",
+  "id": "Saya ingin menjadwal ulang janji saya.",
+  "tr": "Randevumu yeniden planlamak istiyorum.",
+  "pl": "Chciałbym przełożyć moje spotkanie."
+ },
+ "29.03": {
+  "pl": "Oto klucz, który otwiera piwnicę."
+ },
+ "29.10": {
+  "es": "Este es el libro que quieres."
+ },
+ "29.13": {
+  "ru": "Именно Леа забронировала.",
+  "uk": "Саме Леа забронювала.",
+  "pt-BR": "Foi Leah quem fez a reserva.",
+  "vi": "Leah là người đã đặt chỗ.",
+  "id": "Leah adalah orang yang membuat reservasi.",
+  "tr": "Rezervasyonu Leah yaptı.",
+  "pl": "To Leah dokonała rezerwacji."
+ },
+ "29.19": {
+  "ru": "Мне нравятся игры, у которых простое правило.",
+  "uk": "Мені подобаються ігри, у яких просте правило.",
+  "en": "I like games that have a simple rule.",
+  "es": "Me gustan los juegos que tienen una regla sencilla.",
+  "pt-BR": "Gosto de jogos que têm uma regra simples.",
+  "tr": "Basit bir kuralı olan oyunları severim.",
+  "pl": "Lubię gry, które mają prostą zasadę."
+ },
+ "29.22": {
+  "tr": "Beklediğimiz tren rötarlı."
+ },
+ "29.29": {
+  "ru": "Сумка, которую я храню у себя, принадлежит моей сестре.",
+  "uk": "Сумка, яку я зберігаю, належить моїй сестрі.",
+  "en": "The bag I'm keeping belongs to my sister.",
+  "pt-BR": "A bolsa que estou guardando pertence à minha irmã.",
+  "id": "Tas yang saya simpan milik saudara perempuan saya.",
+  "tr": "Sakladığım çanta kız kardeşime ait.",
+  "pl": "Torba, którą przechowuję, należy do mojej siostry."
+ },
+ "29.40": {
+  "pl": "Następny autobus jest prawie pusty."
+ },
+ "29.44": {
+  "pl": "Pociąg, którym mamy jechać, odjeżdża w południe."
+ },
+ "30.12": {
+  "id": "Anda perlu membawa kartu akses Anda."
+ },
+ "30.13": {
+  "pt-BR": "Ela precisa ter um ingresso."
+ },
+ "30.27": {
+  "tr": "Küçük bir porsiyon almam gerekiyor."
+ },
+ "30.29": {
+  "pt-BR": "Precisamos pegar um ticket.",
+  "vi": "Chúng ta cần lấy một vé.",
+  "id": "Kita perlu mengambil tiket.",
+  "pl": "Musimy wziąć bilet."
+ },
+ "31.43": {
+  "pl": "Położyliśmy papier na podłodze przed malowaniem."
+ },
+ "32.09": {
+  "pt-BR": "Se você concordasse, nós começaríamos.",
+  "vi": "Nếu bạn đồng ý, chúng ta sẽ bắt đầu.",
+  "id": "Jika Anda setuju, kami akan mulai."
+ },
+ "32.15": {
+  "pl": "Gdyby pociąg był tańszy, podróżowalibyśmy więcej."
+ },
+ "32.17": {
+  "pt-BR": "Se você soubesse o endereço, poderia nos guiar.",
+  "vi": "Nếu bạn biết địa chỉ, bạn có thể chỉ đường cho chúng tôi."
+ },
+ "32.22": {
+  "ru": "Я бы взял куртку, если бы она была теплее.",
+  "uk": "Я б взяв куртку, якби вона була тепліша.",
+  "vi": "Tôi sẽ mang áo khoác nếu nó ấm hơn.",
+  "id": "Saya akan membawa jaket jika jaket itu lebih hangat."
+ },
+ "32.25": {
+  "pt-BR": "Ele leria a mensagem se tivesse seus óculos.",
+  "vi": "Anh ấy sẽ đọc tin nhắn nếu anh ấy có kính của mình.",
+  "id": "Dia akan membaca pesan itu jika dia punya kacamatanya."
+ },
+ "32.36": {
+  "pl": "Gdyby piekarnik działał, upiekłaby ciasto."
+ },
+ "32.41": {
+  "pt-BR": "Se você me avisasse um dia antes, eu arrumaria uma cama.",
+  "vi": "Nếu bạn báo trước cho tôi một ngày, tôi sẽ dọn một cái giường.",
+  "id": "Jika Anda memperingatkan saya sehari sebelumnya, saya akan menyiapkan tempat tidur.",
+  "pl": "Gdybyś mnie ostrzegł dzień wcześniej, przygotowałbym łóżko."
+ },
+ "32.44": {
+  "ru": "Если бы ты предложил решение, я бы его выслушал.",
+  "uk": "Якби ти запропонував рішення, я б його вислухав.",
+  "pt-BR": "Se você propusesse uma solução, eu a escutaria.",
+  "vi": "Nếu bạn đưa ra giải pháp, tôi sẽ lắng nghe giải pháp đó.",
+  "id": "Jika Anda menawarkan solusi, saya akan mendengarkannya.",
+  "tr": "Bir çözüm önerseydin, onu dinlerdim.",
+  "pl": "Gdybyś zaproponował rozwiązanie, posłuchałbym go."
+ },
+ "32.46": {
+  "pt-BR": "Se você me prometesse voltar, eu guardaria o seu lugar.",
+  "vi": "Nếu bạn hứa sẽ quay lại, tôi sẽ giữ chỗ cho bạn.",
+  "id": "Jika Anda berjanji untuk kembali, saya akan menjaga tempat Anda.",
+  "pl": "Gdybyś obiecał wrócić, zatrzymałbym dla ciebie miejsce."
+ }
+}

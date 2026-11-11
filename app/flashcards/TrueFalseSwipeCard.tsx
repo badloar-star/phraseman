@@ -9,8 +9,8 @@
  * После ответа карточка остаётся на месте в «зафиксированной» позе (сдвиг 18 px, наклон 3°, штамп на полной яркости, цветное кольцо исхода),
  * а на «Дальше» экран вызывает flyOut() — карточка улетает в ту же сторону и сменяется следующей.
  */
-import React, { forwardRef, memo, useEffect, useImperativeHandle, useRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Text, useWindowDimensions, View, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { cancelAnimation, Easing as REasing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -20,6 +20,7 @@ import { FlowText } from '../../components/text-integrity/FlowText';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
+import { trueFalseFit } from './true_false_fit';
 
 /** Числа движения из макета (`initSwipe`). */
 export const TF_SWIPE_THRESHOLD = 110;
@@ -63,6 +64,16 @@ const clamp = (v: number, a: number, b: number) => {
 
 function TrueFalseSwipeCardImpl({ g, promptKey, word, translation, stampTrue, stampFalse, disabled, committed, onDecide, accessibilityLabel, testID }: Props, ref: React.Ref<TrueFalseSwipeCardHandle>) {
   const lh = useLineScale();
+  // зачем (владелец 11.11, жалоба Стеллы): слово и перевод подгоняются под ширину карточки и системный шрифт — см. true_false_fit.ts.
+  // До первой раскладки ширина оценивается по окну (поля экрана 20 + 20), чтобы первый кадр был сразу с итоговым размером, без прыжка.
+  const { width: windowWidth, fontScale } = useWindowDimensions();
+  const [measuredWidth, setMeasuredWidth] = useState(0);
+  const onZoneLayout = useCallback((event: LayoutChangeEvent) => {
+    const next = Math.round(event.nativeEvent.layout.width);
+    setMeasuredWidth((prev) => (prev === next ? prev : next));
+  }, []);
+  const cardWidth = measuredWidth > 0 ? measuredWidth : windowWidth - 40;
+  const fit = useMemo(() => trueFalseFit({ word, translation, cardWidth, fontScale }), [word, translation, cardWidth, fontScale]);
   const reduceMotion = useReduceMotion();
   const x = useSharedValue(0);
   const opacity = useSharedValue(1);
@@ -133,7 +144,7 @@ function TrueFalseSwipeCardImpl({ g, promptKey, word, translation, stampTrue, st
   const ring = committed ? (committed.ok ? g.good : g.bad) : null;
 
   return (
-    <View style={styles.zone} testID={testID}>
+    <View style={styles.zone} testID={testID} onLayout={onZoneLayout}>
       {/* `.swz .under`: карточка-подложка позади (поля 14, сверху 14, снизу −10) */}
       <View pointerEvents="none" style={[styles.under, { boxShadow: nestedBoxShadow(g) }]}>
         <PlateFill g={g} radius={20} />
@@ -146,9 +157,9 @@ function TrueFalseSwipeCardImpl({ g, promptKey, word, translation, stampTrue, st
         >
           <PlateFill g={g} radius={20} />
           {ring ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.ring, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${ring}73` }] }]} /> : null /* shadow-ok: кольцо исхода ответа «верно/неверно» (состояние), не обводка контейнера */}
-          <FlowText testID="true-false-word" provenance="authored" style={[styles.word, { color: g.text, lineHeight: lh(40) }]}>{word}</FlowText>
+          <FlowText testID="true-false-word" provenance="authored" style={[styles.word, { color: g.text, fontSize: fit.wordSize, lineHeight: lh(fit.wordLine) }]}>{word}</FlowText>
           <View style={[styles.eq, { backgroundColor: g.dividerTone }]} />
-          <FlowText testID="true-false-translation" provenance="authored" style={[styles.translation, { color: g.text, lineHeight: lh(28) }]}>{translation}</FlowText>
+          <FlowText testID="true-false-translation" provenance="authored" style={[styles.translation, { color: g.text, fontSize: fit.translationSize, lineHeight: lh(fit.translationLine) }]}>{translation}</FlowText>
           {/* штампы `.stmp.y` / `.stmp.n`: «Правда» слева сверху, «Ложь» справа сверху */}
           <Animated.View pointerEvents="none" style={[styles.stamp, styles.stampLeft, { backgroundColor: g.goodSoft }, stampTrueStyle]}>
             <Text style={[styles.stampText, { color: semanticInk(g).goodText }]}>{stampTrue}</Text>

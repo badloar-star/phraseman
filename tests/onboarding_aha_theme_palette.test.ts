@@ -8,7 +8,7 @@ import path from 'node:path';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { homeSceneOklchOf, relativeLuminance } from '../components/home/v2/scene/home_scene_tokens';
 import { ahaThemeFor } from '../components/onboarding_aha/aha_theme';
-import { hexChroma } from '../components/learning-v2/season/season_art';
+import { hexChroma } from '../constants/oklch';
 
 const ROOT = path.resolve(__dirname, '..');
 const ratio = (a: string, b: string): number => {

@@ -17,7 +17,6 @@ import { IS_STORE_RELEASE } from './config';
 import { devSeenResetKeys, parseDevSeenRequest, type DevSeenRequest } from './dev_seen_reset';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
-import { setDevPlusSplash } from './dev_plus_splash';
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
@@ -299,8 +298,6 @@ export type DevStateRequest = Readonly<{
   reminderTime?: string;
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
-  /** Заставка Plus при запуске (№35, dev_plus_splash.ts): trial / notrial / loading / failed — показать сразу в этом состоянии цены, мимо политики «раз в 14 дней» и без записи счётчика (только память); off — снять. */
-  plusSplash?: 'trial' | 'notrial' | 'loading' | 'failed' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
   animations?: 'on' | 'off';
   /** `robot_no_cloud=1`: тумблеры Уведомлений и Приватности меняют только экран — без сохранения и облака (только память). */
@@ -323,8 +320,6 @@ export type DevStateRequest = Readonly<{
   todaytask?: 'spire' | 'off';
   /** Факты «Сцены» на боевой Главной — числа эталона для героя (координатор 25.10): только память, сброс off. */
   homefacts?: DevHomeSceneFactState | 'off';
-  lv2progress?: number | 'off';
-  lv2save?: 'fail' | 'off';
   legacybonus?: 'demo' | 'pearls' | 'nothing' | 'off';
   /** D192: флаг stories_v1 в памяти — on/off/inherit (без пересборки с EXPO_PUBLIC_STORIES_DEV). */
   stories?: 'on' | 'off' | 'inherit';
@@ -498,7 +493,6 @@ export function parseDevStateParams(paramsIn: Readonly<Record<string, unknown>>)
     }
   }
   request.overlays = pick('overlays', ['on', 'off'] as const);
-  request.plusSplash = pick('plusSplash', ['trial', 'notrial', 'loading', 'failed', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
   request.guest = pick('guest', ['required'] as const);
@@ -512,8 +506,6 @@ export function parseDevStateParams(paramsIn: Readonly<Record<string, unknown>>)
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
   request.homefacts = pick('homefacts', [...DEV_HOME_SCENE_FACT_STATES, 'off'] as const);
   // зачем (Макеты 15.10, съёмка курса V2): «пройдено N первых занятий» — только память
-  request.lv2progress = intOrWord('lv2progress', ['off'] as const, 56);
-  request.lv2save = pick('lv2save', ['fail', 'off'] as const);
   // зачем (D195, Дизайн 15.10): окно «Встречайте PhraseMan 2.0» с примерными цифрами — только память
   request.legacybonus = pick('legacybonus', ['demo', 'pearls', 'nothing', 'off'] as const);
   // зачем (координатор + Макеты 15.10, съёмка D192 stories-s1…s3): кольцо и просмотр сторис без удалённого конфига и настоящих фактов — только память
@@ -1065,10 +1057,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     // зачем (координатор 12.10): для кадров, где окна не нужны, гасим все очередные окна корня (память, без записи и без отметок «прочитано»)
     await step('overlays', request.overlays, async () => setDevOverlaysOff(request.overlays === 'off'));
   }
-  if (request.plusSplash !== undefined) {
-    // зачем (координатор 21.10, «Сверка», №35): состояния цены заставки Plus без магазина; только память, счётчик показа не пишется
-    await step('plusSplash', request.plusSplash, async () => setDevPlusSplash(request.plusSplash === 'off' ? null : request.plusSplash ?? null));
-  }
   if (request.animations !== undefined) {
     await step('animations', request.animations, async () => setDevAnimationsOff(request.animations === 'off'));
   }
@@ -1085,13 +1073,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('authFetch', request.authFetch, async () => {
       const { setDevAuthCallablesFetch } = await import('./auth_callable_fetch');
       return setDevAuthCallablesFetch(request.authFetch!);
-    });
-  }
-  if (request.lv2progress !== undefined) {
-    // зачем (Макеты 15.10, learning-v2-012/011/071/074, словарь): прогресс курса в памяти, диск не меняется; перезапуск снимает
-    await step('lv2progress', String(request.lv2progress), async () => {
-      const { setLearningV2DevProgressOverrideV1 } = await import('../modules/learning-v2/progress/dev_progress_override_v1');
-      return setLearningV2DevProgressOverrideV1(request.lv2progress === 'off' ? null : request.lv2progress as number);
     });
   }
   if (request.lv2voice !== undefined) {
@@ -1130,13 +1111,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('legacybonus', request.legacybonus, async () => {
       const { setDevLegacyBonusDemo } = await import('./legacy_bonus_client');
       return setDevLegacyBonusDemo(request.legacybonus!);
-    });
-  }
-  if (request.lv2save !== undefined) {
-    // зачем (Макеты 15.10, learning-v2-062): «Не сохранилось» у нового слова курса — только память
-    await step('lv2save', request.lv2save, async () => {
-      const { setLearningV2DevWordSaveFailV1 } = await import('../modules/learning-v2/progress/dev_progress_override_v1');
-      return setLearningV2DevWordSaveFailV1(request.lv2save === 'fail');
     });
   }
   if (request.todaytask !== undefined) {

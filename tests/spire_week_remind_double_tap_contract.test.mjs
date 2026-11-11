@@ -14,7 +14,7 @@ test('scheduleRemind fires once: a synchronous latch is set before the backgroun
   assert.match(hook, /const remindFiredRef = useRef\(false\);/);
   const latchCheck = body.indexOf('if (remindFiredRef.current)');
   const latchSet = body.indexOf('remindFiredRef.current = true;');
-  const schedule = body.indexOf('scheduleSpireWeekRemindWithFeedback(uiLang)');
+  const schedule = body.indexOf('scheduleSpireWeekRemindWithFeedback(uiLang, Date.now(), decision.accountToken)');
   assert.ok(latchCheck >= 0 && latchSet > latchCheck && schedule > latchSet, 'проверка → установка → постановка, именно в таком порядке');
 });
 

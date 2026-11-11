@@ -3,6 +3,8 @@ import {
   APP_MESSAGE_TTL_MS,
   buildAppMessagePreview,
   filterAppMessagesSnapshotForAudience,
+  filterAppMessagesSnapshotForNotificationCenter,
+  sanitizeAppMessagesInboxSnapshot,
   hasAppMessageCopyForLang,
   isAppMessageVisible,
   mergeAppMessagesWithStates,
@@ -127,14 +129,8 @@ describe('app_messages', () => {
     const withEn = normalizeAppMessage('m-en', {
       active: true, createdAtMs: now, titleRu: 'Важное от Phraseman', messageRu: 'Подписка — ваша возможность',
       titleEn: 'Important from Phraseman', messageEn: 'Your subscription is your chance',
-      poll: {
-        questionRu: 'Что улучшить?', questionEn: 'What should we improve?',
-        options: [{ id: 'a', textRu: 'Скорость', textEn: 'Speed' }, { id: 'b', textRu: 'Дизайн', textEn: 'Design' }],
-      },
     }, now);
     expect(pickAppMessageText(withEn, 'en')).toEqual({ title: 'Important from Phraseman', body: 'Your subscription is your chance' });
-    expect(pickAppMessagePollQuestion(withEn.poll!, 'en')).toBe('What should we improve?');
-    expect(withEn.poll!.options.map((option) => pickAppMessagePollOptionText(option, 'en'))).toEqual(['Speed', 'Design']);
     expect(hasAppMessageCopyForLang(withEn, 'en')).toBe(true);
 
     const ruOnly = normalizeAppMessage('m-ru', { active: true, createdAtMs: now, titleRu: 'Важное', messageRu: 'Текст' }, now);
@@ -166,26 +162,31 @@ describe('app_messages', () => {
     expect(filterAppMessagesSnapshotForAudience(snapshot, true).unreadCount).toBe(2);
   });
 
-  it('always keeps VIP survey messages free-tier only, even if audience is all', () => {
-    const surveyAll = normalizeAppMessage('survey-all', {
-      active: true,
-      kind: 'vip_survey',
-      audience: 'all',
-      createdAtMs: now,
-      messageRu: 'Survey',
+  it('drops retired polls and Plus surveys from live feeds and cached snapshots', () => {
+    const message = normalizeAppMessage('news', { active: true, createdAtMs: now, messageRu: 'News' }, now);
+    const poll = normalizeAppMessage('poll', { active: true, createdAtMs: now, kind: 'poll' }, now);
+    const survey = normalizeAppMessage('survey', { active: true, createdAtMs: now, kind: 'vip_survey' }, now);
+    const settingsPoll = normalizeAppMessage('settings-poll', {
+      active: true, createdAtMs: now, kind: 'poll', deliverySurface: 'settings', settingsSlot: 'top',
     }, now);
-    const surveyPremium = normalizeAppMessage('survey-premium', {
-      active: true,
-      kind: 'vip_survey',
-      audience: 'premium',
-      createdAtMs: now - 1,
-      messageRu: 'Survey',
+    const expected = mergeAppMessagesWithStates([message], [], now);
+    const legacyPoll = normalizeAppMessage('legacy-poll', {
+      active: true, createdAtMs: now, kind: 'message', poll: {
+        questionRu: 'Question', options: [{ id: 'yes', textRu: 'Yes' }, { id: 'no', textRu: 'No' }],
+      },
     }, now);
-    const snapshot = mergeAppMessagesWithStates([surveyAll, surveyPremium], [], now);
+    expect(legacyPoll.poll).not.toBeNull();
+    const retired = [poll, survey, settingsPoll, { ...legacyPoll, kind: 'message' as const }];
+    expect(mergeAppMessagesWithStates([message, ...retired], [], now)).toEqual(expected);
 
-    expect(filterAppMessagesSnapshotForAudience(snapshot, false).messages.map((m) => m.id)).toEqual(['survey-all', 'survey-premium']);
-    expect(filterAppMessagesSnapshotForAudience(snapshot, true).messages).toEqual([]);
-    expect(filterAppMessagesSnapshotForAudience(snapshot, true).unreadCount).toBe(0);
+    const cached = {
+      messages: [...expected.messages, ...retired.map((row) => ({ ...expected.messages[0], ...row }))],
+      unreadCount: 5,
+    };
+    expect(sanitizeAppMessagesInboxSnapshot(cached)).toEqual(expected);
+    expect(filterAppMessagesSnapshotForNotificationCenter(cached)).toEqual(expected);
+    expect(filterAppMessagesSnapshotForAudience(cached, false)).toEqual(expected);
+    expect(filterAppMessagesSnapshotForAudience(cached, true)).toEqual(expected);
   });
 
   it('filters messages by exact target app versions when provided', () => {
@@ -224,7 +225,7 @@ describe('app_messages', () => {
     ]);
   });
 
-  it('normalizes polls and carries the selected option from user state', () => {
+  it('normalizes legacy poll data without displaying it', () => {
     const message = normalizeAppMessage('poll1', {
       active: true,
       kind: 'poll',
@@ -257,7 +258,7 @@ describe('app_messages', () => {
     expect(pickAppMessagePollOptionText(message.poll!.options[1], 'uk')).toBe('Картки');
     expect(pickAppMessagePollQuestion(message.poll!, 'pt-BR')).toBe('O que adicionar agora?');
     expect(pickAppMessagePollOptionText(message.poll!.options[1], 'pl')).toBe('Fiszki');
-    expect(snapshot.messages[0].pollOptionId).toBe('opt_2');
+    expect(snapshot.messages).toEqual([]);
   });
 
   it('normalizes VIP survey messages and hides dismissed states', () => {

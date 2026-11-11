@@ -1,0 +1,1940 @@
+[
+{
+"lesson": 23,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 23,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Раньше обычно: imperfecto",
+"formula": "-ar → -aba; -er/-ir → -ía",
+"story": "Рассказываешь, какой раньше была жизнь: Vivía aquí. Не уточняешь, когда переехал. Передаёшь картину того времени, а не отдельный переезд.",
+"use": "Опиши прошлую привычку или обстановку, не выделяя момент окончания.",
+"choose": "У trabajar сохраняется trabaj-, дальше идут -aba, -abas, -aba… . На «мы» обрати внимание на ударение: trabajábamos.",
+"nuance": "Опиши прошлую привычку или обстановку, не выделяя момент окончания. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"wrong": "Vivir aquí antes.",
+"right": "Vivía aquí antes.",
+"chapters": [
+{
+"title": "Не один случай, а картина",
+"body": "В «раньше я здесь жил» нет сообщения о дне переезда или точной длительности. Vivía описывает, как было. Viví здесь могло бы подать жизнь как законченный период.",
+"note": "Ключевая форма: vivía. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:01",
+"es:23:02"
+],
+"focusId": "es:23:01"
+},
+{
+"title": "Группа -ar",
+"body": "У trabajar сохраняется trabaj-, дальше идут -aba, -abas, -aba… . На «мы» обрати внимание на ударение: trabajábamos.",
+"note": "Ключевая форма: trabajábamos. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:10",
+"es:23:11"
+],
+"focusId": "es:23:10"
+},
+{
+"title": "Группы -er и -ir",
+"body": "Comer и vivir пользуются одинаковыми окончаниями: comía, vivía, vivíamos. Знак ударения на í нужен и в длинных формах.",
+"note": "Ключевая форма: vivías. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:02",
+"es:23:03"
+],
+"focusId": "es:23:02"
+},
+{
+"title": "Совпадают yo и él",
+"body": "Форма vivía подходит для yo и для él или ella. Кого имеют в виду, подскажет имя или разговор: Yo vivía aquí — о себе; Ana vivía aquí — об Ане.",
+"note": "Ключевая форма: vivía. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:03",
+"es:23:04"
+],
+"focusId": "es:23:03"
+},
+{
+"title": "А что, если есть дата?",
+"body": "Дата не выбирает время автоматически. Важен взгляд: «вчера в семь я ещё работал» может описывать фон. Здесь antes и cada día помогают читать примеры как привычки.",
+"note": "Ключевая форма: bebía. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:11",
+"es:23:12"
+],
+"focusId": "es:23:11"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты каждый день ждал снаружи.» / «Мы жили рядом с магазином.». Форма imperfecto рисует ситуацию изнутри, без конечной границы. Смысловые опоры: «día» — день.",
+"note": "Ключевая форма: Vivíamos. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:20",
+"es:23:21"
+],
+"focusId": "es:23:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты раньше пил кофе?» / «Вы обычно читали вместе на занятии?». Форма imperfecto рисует ситуацию изнутри, без конечной границы. Опиши прошлую привычку или обстановку, не выделяя момент окончания.",
+"note": "Ключевая форма: Leíais. Форма imperfecto рисует ситуацию изнутри, без конечной границы.",
+"samples": [
+"es:23:44",
+"es:23:50"
+],
+"focusId": "es:23:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · vivía",
+"gloss": "я",
+"id": "es:23:01",
+"sample": "Vivía aquí antes."
+},
+{
+"es": "tú · vivías",
+"gloss": "ты",
+"id": "es:23:02",
+"sample": "Vivías aquí antes."
+},
+{
+"es": "él · vivía",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivíamos",
+"gloss": "мы",
+"id": "es:23:21",
+"sample": "Vivíamos cerca de la tienda."
+},
+{
+"es": "vosotros · vivíais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vivían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "vivir · Привычка или фон в прошлом"
+},
+{
+"rows": [
+{
+"es": "yo · comía",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · comías",
+"gloss": "ты",
+"id": "es:23:08",
+"sample": "Comías en la cocina antes."
+},
+{
+"es": "él · comía",
+"gloss": "он/она/Вы",
+"id": "es:23:05",
+"sample": "Ana comía en casa antes."
+},
+{
+"es": "nosotros · comíamos",
+"gloss": "мы",
+"id": "es:23:06",
+"sample": "Comíamos en casa antes."
+},
+{
+"es": "vosotros · comíais",
+"gloss": "вы (друзья, Испания)",
+"id": "es:23:22",
+"sample": "Comíais en la cocina a menudo."
+},
+{
+"es": "ellos · comían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer · Привычка или фон в прошлом"
+},
+{
+"rows": [
+{
+"es": "yo · trabajaba",
+"gloss": "я",
+"id": "es:23:31",
+"sample": "No trabajaba en casa antes."
+},
+{
+"es": "tú · trabajabas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · trabajaba",
+"gloss": "он/она/Вы",
+"id": "es:23:09",
+"sample": "Luis trabajaba en casa antes."
+},
+{
+"es": "nosotros · trabajábamos",
+"gloss": "мы",
+"id": "es:23:10",
+"sample": "Trabajábamos en el hotel antes."
+},
+{
+"es": "vosotros · trabajabais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · trabajaban",
+"gloss": "они/вы (ustedes)",
+"id": "es:23:18",
+"sample": "Mis hermanas trabajaban en el hotel cada día."
+}
+],
+"title": "trabajar · Привычка или фон в прошлом"
+}
+]
+},
+"uk": {
+"title": "Раніше зазвичай: imperfecto",
+"formula": "-ar → -aba; -er/-ir → -ía",
+"story": "Описуєш, як було раніше: Vivía aquí. Не називаєш дня переїзду. Це картина життя, а не окрема подія.",
+"use": "Опиши минулу звичку або обстановку, не виділяючи момент завершення.",
+"choose": "У trabajar зберігається trabaj-, далі -aba, -abas, -aba… . У формі «ми» зверни увагу на наголос: trabajábamos.",
+"nuance": "Опиши минулу звичку або обстановку, не виділяючи момент завершення. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"wrong": "Vivir aquí antes.",
+"right": "Vivía aquí antes.",
+"chapters": [
+{
+"title": "Не один випадок, а картина",
+"body": "У «раніше я тут жив» немає повідомлення про день переїзду чи точну тривалість. Vivía описує, як було. Viví могло б подати життя як завершений період.",
+"note": "Ключова форма: vivía. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:01",
+"es:23:02"
+],
+"focusId": "es:23:01"
+},
+{
+"title": "Група -ar",
+"body": "У trabajar зберігається trabaj-, далі -aba, -abas, -aba… . У формі «ми» зверни увагу на наголос: trabajábamos.",
+"note": "Ключова форма: trabajábamos. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:10",
+"es:23:11"
+],
+"focusId": "es:23:10"
+},
+{
+"title": "Групи -er та -ir",
+"body": "Comer та vivir мають однакові закінчення: comía, vivía, vivíamos. Знак наголосу на í потрібен і в довших формах.",
+"note": "Ключова форма: vivías. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:02",
+"es:23:03"
+],
+"focusId": "es:23:02"
+},
+{
+"title": "Збігаються yo та él",
+"body": "Форма vivía підходить і для yo, і для él або ella. Про кого йдеться, підкаже ім’я чи розмова: Yo vivía aquí — про себе; Ana vivía aquí — про Ану.",
+"note": "Ключова форма: vivía. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:03",
+"es:23:04"
+],
+"focusId": "es:23:03"
+},
+{
+"title": "А якщо є дата?",
+"body": "Дата сама не обирає час. Важливий погляд: «учора о сьомій я ще працював» може описувати тло. У цих фразах antes та cada día допомагають упізнати звичку.",
+"note": "Ключова форма: bebía. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:11",
+"es:23:12"
+],
+"focusId": "es:23:11"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти щодня чекав надворі.» / «Ми жили поруч із магазином.». Imperfecto змальовує ситуацію зсередини, без кінцевої межі. Смислові опори: «día» — день.",
+"note": "Ключова форма: Vivíamos. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:20",
+"es:23:21"
+],
+"focusId": "es:23:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти раніше пив каву?» / «Ви зазвичай читали разом на занятті?». Imperfecto змальовує ситуацію зсередини, без кінцевої межі. Опиши минулу звичку або обстановку, не виділяючи момент завершення.",
+"note": "Ключова форма: Leíais. Imperfecto змальовує ситуацію зсередини, без кінцевої межі.",
+"samples": [
+"es:23:44",
+"es:23:50"
+],
+"focusId": "es:23:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · vivía",
+"gloss": "я",
+"id": "es:23:01",
+"sample": "Vivía aquí antes."
+},
+{
+"es": "tú · vivías",
+"gloss": "ти",
+"id": "es:23:02",
+"sample": "Vivías aquí antes."
+},
+{
+"es": "él · vivía",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivíamos",
+"gloss": "ми",
+"id": "es:23:21",
+"sample": "Vivíamos cerca de la tienda."
+},
+{
+"es": "vosotros · vivíais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vivían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "vivir · Звичка чи тло в минулому"
+},
+{
+"rows": [
+{
+"es": "yo · comía",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · comías",
+"gloss": "ти",
+"id": "es:23:08",
+"sample": "Comías en la cocina antes."
+},
+{
+"es": "él · comía",
+"gloss": "він/вона/Ви",
+"id": "es:23:05",
+"sample": "Ana comía en casa antes."
+},
+{
+"es": "nosotros · comíamos",
+"gloss": "ми",
+"id": "es:23:06",
+"sample": "Comíamos en casa antes."
+},
+{
+"es": "vosotros · comíais",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:23:22",
+"sample": "Comíais en la cocina a menudo."
+},
+{
+"es": "ellos · comían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer · Звичка чи тло в минулому"
+},
+{
+"rows": [
+{
+"es": "yo · trabajaba",
+"gloss": "я",
+"id": "es:23:31",
+"sample": "No trabajaba en casa antes."
+},
+{
+"es": "tú · trabajabas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · trabajaba",
+"gloss": "він/вона/Ви",
+"id": "es:23:09",
+"sample": "Luis trabajaba en casa antes."
+},
+{
+"es": "nosotros · trabajábamos",
+"gloss": "ми",
+"id": "es:23:10",
+"sample": "Trabajábamos en el hotel antes."
+},
+{
+"es": "vosotros · trabajabais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · trabajaban",
+"gloss": "вони/ви (ustedes)",
+"id": "es:23:18",
+"sample": "Mis hermanas trabajaban en el hotel cada día."
+}
+],
+"title": "trabajar · Звичка чи тло в минулому"
+}
+]
+},
+"en": {
+"title": "Past habits and descriptions: imperfecto",
+"formula": "-ar → -aba; -er/-ir → -ía",
+"story": "Vivía aquí paints a picture of life then. It does not tell us on which day the person moved in or out.",
+"use": "Describe a past habit or situation without highlighting the end.",
+"choose": "For trabajar, trabaj - is retained, followed by - aba, - abas, - aba …. Note the stress on \"we\": trabajábamos.",
+"nuance": "Describe a past habit or situation without highlighting the ending moment. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"wrong": "Vivir aquí antes.",
+"right": "Vivía aquí antes.",
+"chapters": [
+{
+"title": "Am I describing a past scene or a single event?",
+"body": "In \"I used to live here,\" there is no indication of the day of moving or the exact duration. Vivía describes how it was. Viví here could present life as a completed period.",
+"note": "Key form: vivía. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:01",
+"es:23:02"
+],
+"focusId": "es:23:01"
+},
+{
+"title": "How do -ar forms end?",
+"body": "For trabajar, trabaj - is retained, followed by - aba, - abas, - aba …. Note the stress on \"we\": trabajábamos.",
+"note": "Key form: trabajábamos. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:10",
+"es:23:11"
+],
+"focusId": "es:23:10"
+},
+{
+"title": "What happens with -er and -ir verbs?",
+"body": "Comer and vivir use the same endings: comía, vivía, vivíamos. The stress mark on í is also needed in the long forms.",
+"note": "Key form: vivías. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:02",
+"es:23:03"
+],
+"focusId": "es:23:02"
+},
+{
+"title": "How can vivía refer to me or to another person?",
+"body": "Yo vivía and ella vivía have the same verb form. The subject or the context tells you who lived there; the ending does not mark gender.",
+"note": "Key form: vivía. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:03",
+"es:23:04"
+],
+"focusId": "es:23:03"
+},
+{
+"title": "Does a date force one particular tense?",
+"body": "The date doesn't automatically select the time. The perspective is important: \"Yesterday at seven I was still working\" can describe the background. Here, antes and cada día help read the examples as habits.",
+"note": "Key form: bebía. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:11",
+"es:23:12"
+],
+"focusId": "es:23:11"
+},
+{
+"title": "How do I build a description of the past?",
+"body": "Compare the two tasks: \"You waited outside every day.\" / \"We lived next to the store.\" The form imperfecto depicts the situation from the inside, without a final boundary. Semantic supports: \" día \" is day.",
+"note": "Key form: Vivíamos. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:20",
+"es:23:21"
+],
+"focusId": "es:23:21"
+},
+{
+"title": "Can I describe another past habit?",
+"body": "Compare the two tasks: \"Did you drink coffee before?\" / \"Did you usually read together in class?\" The form imperfecto depicts the situation from the inside, without a final boundary. Describe a past habit or situation without highlighting the ending moment.",
+"note": "Key form: Leíais. Form imperfecto depicts the situation from the inside, without a final boundary.",
+"samples": [
+"es:23:44",
+"es:23:50"
+],
+"focusId": "es:23:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · vivía",
+"gloss": "I",
+"id": "es:23:01",
+"sample": "Vivía aquí antes."
+},
+{
+"es": "tú · vivías",
+"gloss": "you",
+"id": "es:23:02",
+"sample": "Vivías aquí antes."
+},
+{
+"es": "él · vivía",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vivíamos",
+"gloss": "we",
+"id": "es:23:21",
+"sample": "Vivíamos cerca de la tienda."
+},
+{
+"es": "vosotros · vivíais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vivían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "vivir Habit or Background in the Past"
+},
+{
+"rows": [
+{
+"es": "yo · comía",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · comías",
+"gloss": "you",
+"id": "es:23:08",
+"sample": "Comías en la cocina antes."
+},
+{
+"es": "él · comía",
+"gloss": "he/she/you",
+"id": "es:23:05",
+"sample": "Ana comía en casa antes."
+},
+{
+"es": "nosotros · comíamos",
+"gloss": "we",
+"id": "es:23:06",
+"sample": "Comíamos en casa antes."
+},
+{
+"es": "vosotros · comíais",
+"gloss": "you (friends, Spain)",
+"id": "es:23:22",
+"sample": "Comíais en la cocina a menudo."
+},
+{
+"es": "ellos · comían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comer Habit or Background in the Past"
+},
+{
+"rows": [
+{
+"es": "yo · trabajaba",
+"gloss": "I",
+"id": "es:23:31",
+"sample": "No trabajaba en casa antes."
+},
+{
+"es": "tú · trabajabas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · trabajaba",
+"gloss": "he/she/you",
+"id": "es:23:09",
+"sample": "Luis trabajaba en casa antes."
+},
+{
+"es": "nosotros · trabajábamos",
+"gloss": "we",
+"id": "es:23:10",
+"sample": "Trabajábamos en el hotel antes."
+},
+{
+"es": "vosotros · trabajabais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · trabajaban",
+"gloss": "they/you (ustedes)",
+"id": "es:23:18",
+"sample": "Mis hermanas trabajaban en el hotel cada día."
+}
+],
+"title": "trabajar Habit or Background in the Past"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:23:01",
+"index": 0,
+"right": "Vivía",
+"near": "Vivías",
+"seq": [
+"Vivía",
+"aquí",
+"antes"
+],
+"i": 0,
+"kind": "form",
+"key": "es23/lab/form1",
+"feedback": {
+"ru": "Vivía ← vivir (жить); yo, él.",
+"uk": "Vivía ← vivir (жити); yo, él.",
+"en": "Vivía ← vivir (to live); yo, él."
+}
+},
+{
+"id": "es:23:12",
+"index": 1,
+"right": "bebía",
+"near": "bebías",
+"seq": [
+"Ana",
+"bebía",
+"café",
+"cada",
+"día"
+],
+"i": 11,
+"kind": "form",
+"key": "es23/lab/form2",
+"feedback": {
+"ru": "bebía ← beber (пить); yo, él.",
+"uk": "bebía ← beber (пити); yo, él.",
+"en": "bebía ← beber (drink); yo, él."
+}
+},
+{
+"id": "es:23:31",
+"index": 1,
+"right": "trabajaba",
+"near": "trabajaban",
+"seq": [
+"No",
+"trabajaba",
+"en",
+"casa",
+"antes"
+],
+"i": 30,
+"kind": "form",
+"key": "es23/lab/form3",
+"feedback": {
+"ru": "trabajaba ← trabajar (работать); yo, él.",
+"uk": "trabajaba ← trabajar (працювати); yo, él.",
+"en": "trabajaba ← trabajar (to work); yo, él."
+}
+},
+{
+"id": "es:23:41",
+"index": 0,
+"right": "Vivías",
+"near": "Vivía",
+"seq": [
+"Vivías",
+"aquí",
+"antes"
+],
+"i": 40,
+"kind": "form",
+"key": "es23/lab/form4",
+"feedback": {
+"ru": "Vivías ← vivir (жить); tú.",
+"uk": "Vivías ← vivir (жити); tú.",
+"en": "Vivías ← vivir (to live); tú."
+}
+},
+{
+"id": "es:23:06",
+"index": 0,
+"right": "Comíamos",
+"near": "Comían",
+"seq": [
+"Comíamos",
+"en",
+"casa",
+"antes"
+],
+"i": 5,
+"kind": "spot",
+"key": "es23/lab/spot1",
+"feedback": {
+"ru": "Comíamos ← comer (есть); nosotros.",
+"uk": "Comíamos ← comer (їсти); nosotros.",
+"en": "Comíamos ← comer (available); nosotros."
+}
+},
+{
+"id": "es:23:14",
+"index": 0,
+"right": "Leías",
+"near": "Leíamos",
+"seq": [
+"Leías",
+"el",
+"mensaje",
+"cada",
+"día"
+],
+"i": 13,
+"kind": "spot",
+"key": "es23/lab/spot2",
+"feedback": {
+"ru": "Leías ← leer (читать); tú.",
+"uk": "Leías ← leer (читати); tú.",
+"en": "Leías ← leer (read); tú."
+}
+},
+{
+"id": "es:23:33",
+"index": 2,
+"right": "bebía",
+"near": "bebías",
+"seq": [
+"Ana",
+"no",
+"bebía",
+"agua",
+"antes"
+],
+"i": 32,
+"kind": "spot",
+"key": "es23/lab/spot3",
+"feedback": {
+"ru": "bebía ← beber (пить); yo, él.",
+"uk": "bebía ← beber (пити); yo, él.",
+"en": "bebía ← beber (drink); yo, él."
+}
+},
+{
+"id": "es:23:42",
+"index": 0,
+"right": "Vivías",
+"near": "Vivía",
+"seq": [
+"Vivías",
+"cerca",
+"del",
+"parque"
+],
+"i": 41,
+"kind": "spot",
+"key": "es23/lab/spot4",
+"feedback": {
+"ru": "Vivías ← vivir (жить); tú.",
+"uk": "Vivías ← vivir (жити); tú.",
+"en": "Vivías ← vivir (to live); tú."
+}
+},
+{
+"kind": "match",
+"key": "es23/lab/match1",
+"id": "es:23:02",
+"other": "es:23:03"
+},
+{
+"kind": "match",
+"key": "es23/lab/match2",
+"id": "es:23:17",
+"other": "es:23:18"
+},
+{
+"kind": "match",
+"key": "es23/lab/match3",
+"id": "es:23:33",
+"other": "es:23:32"
+},
+{
+"kind": "match",
+"key": "es23/lab/match4",
+"id": "es:23:46",
+"other": "es:23:47"
+},
+{
+"kind": "build",
+"key": "es23/lab/build1",
+"id": "es:23:04"
+},
+{
+"kind": "build",
+"key": "es23/lab/build2",
+"id": "es:23:15"
+},
+{
+"kind": "build",
+"key": "es23/lab/build3",
+"id": "es:23:29"
+},
+{
+"kind": "build",
+"key": "es23/lab/build4",
+"id": "es:23:42"
+},
+{
+"kind": "transform",
+"id": "es:23:04",
+"base": "es:23:03",
+"diff": [
+{
+"before": [
+"Vivía"
+],
+"after": [
+"Vivías"
+]
+}
+],
+"key": "es23/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:23:31",
+"base": "es:23:09",
+"diff": [
+{
+"before": [
+"Luis"
+],
+"after": [
+"No"
+]
+}
+],
+"key": "es23/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:23:30",
+"base": "es:23:22",
+"diff": [
+{
+"before": [
+"la",
+"cocina"
+],
+"after": [
+"casa"
+]
+}
+],
+"key": "es23/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:23:29",
+"base": "es:23:26",
+"diff": [
+{
+"before": [
+"leían",
+"el"
+],
+"after": [
+"escribían",
+"un"
+]
+}
+],
+"key": "es23/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+5
+],
+[
+16,
+12
+],
+[
+4,
+13
+],
+[
+9,
+14
+],
+[
+19,
+2
+],
+[
+7,
+11
+]
+],
+"worked": [
+"es:23:05",
+"es:23:18",
+"es:23:33",
+"es:23:48"
+],
+"reflection": [
+"es:23:01",
+"es:23:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 24,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 24,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Фон и событие в одной фразе",
+"formula": "фон в imperfecto + cuando + событие в indefinido",
+"story": "Ты уже читал, когда зазвонил телефон. Leía — что шло; sonó — что произошло. Выбирай форму по роли события, а не только по слову cuando.",
+"use": "Раздели фразу на то, что уже происходило, и то, что произошло на этом фоне.",
+"choose": "Спроси: что уже происходило к появлению другой новости? Для «мы ждали» берём esperábamos. Не выбирай tiempo только по порядку слов.",
+"nuance": "Раздели фразу на то, что уже происходило, и то, что произошло на этом фоне. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"wrong": "Leía el mensaje cuando sonar el móvil.",
+"right": "Leía el mensaje cuando sonó el móvil.",
+"chapters": [
+{
+"title": "Два взгляда",
+"body": "Leía описывает процесс чтения. Sonó предъявляет звонок как отдельное событие. Это не обязательно значит, что после звонка чтение закончилось.",
+"note": "Leía — фон; sonó — событие. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:01",
+"es:24:02"
+],
+"focusId": "es:24:01"
+},
+{
+"title": "Найди фон первым",
+"body": "Спроси: что уже происходило к появлению другой новости? Для «мы ждали» берём esperábamos. Не выбирай tiempo только по порядку слов.",
+"note": "Esperábamos — фон; llegó — событие. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:03",
+"es:24:04"
+],
+"focusId": "es:24:03"
+},
+{
+"title": "Граница события",
+"body": "Прибытие поезда, вход человека или прозвучавший звонок в этих примерах сообщаются как факты. Выбираем llegó, entró, sonó — с -ó в третьем лице.",
+"note": "Esperábamos — фон; empezó — событие. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:23",
+"es:24:24"
+],
+"focusId": "es:24:23"
+},
+{
+"title": "Пока шло действие",
+"body": "Mientras вводит часть «пока…». В наших образцах она задаёт фон. Если эта часть стоит первой, перед главной частью ставится запятая; её конструктор добавляет сам.",
+"note": "abrió — событие; leía — фон. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:31",
+"es:24:32"
+],
+"focusId": "es:24:31"
+},
+{
+"title": "Не правило про союз",
+"body": "Не заучивай «после cuando всегда indefinido». В этой серии выбран определённый сюжет: один процесс и один факт. В других сюжетах оба действия могут быть привычными.",
+"note": "Leía — фон; sonó — событие. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:11",
+"es:24:12"
+],
+"focusId": "es:24:11"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Студенты читали, когда пришла моя сестра.» / «Я читал сообщение, когда пришла моя сестра.». Отдели действие-фон от нового события и проверь исполнителя каждого. Две части: Los estudiantes leían  /  cuando llegó mi hermana.",
+"note": "Leía — фон; llegó — событие. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:20",
+"es:24:21"
+],
+"focusId": "es:24:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Пока Луис писал письмо, закончилась встреча.» / «Пока студенты читали, прибыл поезд.». Отдели действие-фон от нового события и проверь исполнителя каждого. Раздели фразу на то, что уже происходило, и то, что произошло на этом фоне.",
+"note": "llegó — событие; leían — фон. Отдели действие-фон от нового события и проверь исполнителя каждого.",
+"samples": [
+"es:24:44",
+"es:24:50"
+],
+"focusId": "es:24:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · leía",
+"gloss": "я",
+"id": "es:24:01",
+"sample": "Leía el mensaje cuando sonó el móvil."
+},
+{
+"es": "tú · leías",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · leía",
+"gloss": "он/она/Вы",
+"id": "es:24:29",
+"sample": "Ana leía el periódico cuando llegó el taxi."
+},
+{
+"es": "nosotros · leíamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leíais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leían",
+"gloss": "они/вы (ustedes)",
+"id": "es:24:10",
+"sample": "Los estudiantes leían cuando recibí tu mensaje."
+}
+],
+"title": "leer · Привычка или фон в прошлом"
+},
+{
+"rows": [
+{
+"es": "yo · preparaba",
+"gloss": "я",
+"id": "es:24:14",
+"sample": "Preparaba la sopa cuando sonó el timbre."
+},
+{
+"es": "tú · preparabas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · preparaba",
+"gloss": "он/она/Вы",
+"id": "es:24:02",
+"sample": "Ana preparaba la cena cuando recibí tu mensaje."
+},
+{
+"es": "nosotros · preparábamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · preparabais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · preparaban",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "preparar · Привычка или фон в прошлом"
+},
+{
+"rows": [
+{
+"es": "yo · esperaba",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · esperabas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · esperaba",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · esperábamos",
+"gloss": "мы",
+"id": "es:24:03",
+"sample": "Esperábamos el tren cuando llegó mi hermana."
+},
+{
+"es": "vosotros · esperabais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · esperaban",
+"gloss": "они/вы (ustedes)",
+"id": "es:24:15",
+"sample": "Mis hermanos esperaban cuando llegó el tren."
+}
+],
+"title": "esperar · Привычка или фон в прошлом"
+}
+]
+},
+"uk": {
+"title": "Тло й подія в одному реченні",
+"formula": "тло в imperfecto + cuando + подія в indefinido",
+"story": "Ти вже читав, коли задзвонив телефон. Leía — що тривало; sonó — що сталося. Саме слово cuando ще не визначає часу.",
+"use": "Поділи речення на те, що вже тривало, і те, що відбулося на цьому тлі.",
+"choose": "Запитай: що вже тривало на момент іншої події? Для «ми чекали» беремо esperábamos. Не обирай час лише за порядком слів.",
+"nuance": "Поділи речення на те, що вже тривало, і те, що відбулося на цьому тлі. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"wrong": "Leía el mensaje cuando sonar el móvil.",
+"right": "Leía el mensaje cuando sonó el móvil.",
+"chapters": [
+{
+"title": "Два погляди",
+"body": "Leía описує процес читання. Sonó подає дзвінок як окрему подію. З цього не випливає, що після дзвінка читання закінчилося.",
+"note": "Leía — тло; sonó — подія. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:01",
+"es:24:02"
+],
+"focusId": "es:24:01"
+},
+{
+"title": "Спершу знайди тло",
+"body": "Запитай: що вже тривало на момент іншої події? Для «ми чекали» беремо esperábamos. Не обирай час лише за порядком слів.",
+"note": "Esperábamos — тло; llegó — подія. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:03",
+"es:24:04"
+],
+"focusId": "es:24:03"
+},
+{
+"title": "Межа події",
+"body": "Прибуття потяга, вхід людини чи дзвінок тут подано як факти. Обираємо llegó, entró, sonó — із -ó у третій особі.",
+"note": "Esperábamos — тло; empezó — подія. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:23",
+"es:24:24"
+],
+"focusId": "es:24:23"
+},
+{
+"title": "Поки тривала дія",
+"body": "Mientras уводить частину «поки…». Тут вона задає тло. Якщо стоїть першою, перед головною частиною ставиться кома; конструктор додасть її сам.",
+"note": "abrió — подія; leía — тло. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:31",
+"es:24:32"
+],
+"focusId": "es:24:31"
+},
+{
+"title": "Не правило про сполучник",
+"body": "Не заучуй «після cuando завжди indefinido». У цій серії певний сюжет: один процес та один факт. В інших сюжетах обидві дії можуть бути звичними.",
+"note": "Leía — тло; sonó — подія. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:11",
+"es:24:12"
+],
+"focusId": "es:24:11"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Студенти читали, коли прийшла моя сестра.» / «Я читав повідомлення, коли прийшла моя сестра.». Відділи дію-тло від нової події та перевір виконавця кожної. Дві частини: Los estudiantes leían  /  cuando llegó mi hermana.",
+"note": "Leía — тло; llegó — подія. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:20",
+"es:24:21"
+],
+"focusId": "es:24:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Поки Луїс писав листа, закінчилася зустріч.» / «Поки студенти читали, прибув потяг.». Відділи дію-тло від нової події та перевір виконавця кожної. Поділи речення на те, що вже тривало, і те, що відбулося на цьому тлі.",
+"note": "llegó — подія; leían — тло. Відділи дію-тло від нової події та перевір виконавця кожної.",
+"samples": [
+"es:24:44",
+"es:24:50"
+],
+"focusId": "es:24:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · leía",
+"gloss": "я",
+"id": "es:24:01",
+"sample": "Leía el mensaje cuando sonó el móvil."
+},
+{
+"es": "tú · leías",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · leía",
+"gloss": "він/вона/Ви",
+"id": "es:24:29",
+"sample": "Ana leía el periódico cuando llegó el taxi."
+},
+{
+"es": "nosotros · leíamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leíais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leían",
+"gloss": "вони/ви (ustedes)",
+"id": "es:24:10",
+"sample": "Los estudiantes leían cuando recibí tu mensaje."
+}
+],
+"title": "leer · Звичка чи тло в минулому"
+},
+{
+"rows": [
+{
+"es": "yo · preparaba",
+"gloss": "я",
+"id": "es:24:14",
+"sample": "Preparaba la sopa cuando sonó el timbre."
+},
+{
+"es": "tú · preparabas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · preparaba",
+"gloss": "він/вона/Ви",
+"id": "es:24:02",
+"sample": "Ana preparaba la cena cuando recibí tu mensaje."
+},
+{
+"es": "nosotros · preparábamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · preparabais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · preparaban",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "preparar · Звичка чи тло в минулому"
+},
+{
+"rows": [
+{
+"es": "yo · esperaba",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · esperabas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · esperaba",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · esperábamos",
+"gloss": "ми",
+"id": "es:24:03",
+"sample": "Esperábamos el tren cuando llegó mi hermana."
+},
+{
+"es": "vosotros · esperabais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · esperaban",
+"gloss": "вони/ви (ustedes)",
+"id": "es:24:15",
+"sample": "Mis hermanos esperaban cuando llegó el tren."
+}
+],
+"title": "esperar · Звичка чи тло в минулому"
+}
+]
+},
+"en": {
+"title": "Background and events in the past",
+"formula": "imperfecto + cuando + indefinido: leía cuando sonó el móvil",
+"story": "You were already reading when the phone rang. Leía is the background; sonó is the event. Cuando alone does not decide the tense.",
+"use": "Divide the sentence into what's already happened and what's happened in the background.",
+"choose": "Asking: What has already happened when the other news item appeared? For \"we waited,\" use esperábamos. Don't choose tiempo based solely on word order.",
+"nuance": "Divide the sentence into what's already happened and what's happened in the background. Separate the background action from the new event and check the performer of each.",
+"wrong": "Leía el mensaje cuando sonar el móvil.",
+"right": "Leía el mensaje cuando sonó el móvil.",
+"chapters": [
+{
+"title": "Two ways to look at one past scene",
+"body": "Leía describes the process of reading. Sonó presents the phone call as a separate event. This does not necessarily mean that reading ended after the phone call.",
+"note": "Leía is background; sonó is event. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:01",
+"es:24:02"
+],
+"focusId": "es:24:01"
+},
+{
+"title": "Which action was already in progress?",
+"body": "Asking: What has already happened when the other news item appeared? For \"we waited,\" use esperábamos. Don't choose tiempo based solely on word order.",
+"note": "Esperábamos is background; llegó is event. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:03",
+"es:24:04"
+],
+"focusId": "es:24:03"
+},
+{
+"title": "Which event moved the story on?",
+"body": "The arrival of a train, the entrance of a person, or the ringing of a bell are reported as facts in these examples. Choose llegó, entró, sonó — with - ó in the third person.",
+"note": "Esperábamos is background; empezó is event. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:23",
+"es:24:24"
+],
+"focusId": "es:24:23"
+},
+{
+"title": "What was happening at the same time?",
+"body": "Mientras introduces the part \"while....\" In our examples, it sets the background. If this part comes first, a comma is placed before the main part; the constructor adds it automatically.",
+"note": "abrió is the event; leía is the background. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:31",
+"es:24:32"
+],
+"focusId": "es:24:31"
+},
+{
+"title": "Does cuando automatically choose a tense?",
+"body": "Don't memorize \"after cuando always indefinido \". This episode has a specific plot: one process and one fact. In other plots, both actions may be habitual.",
+"note": "Leía is background; sonó is event. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:11",
+"es:24:12"
+],
+"focusId": "es:24:11"
+},
+{
+"title": "How do I combine the two parts?",
+"body": "Compare two tasks: \"The students were reading when my sister arrived.\" / \"I was reading the message when my sister arrived.\" Separate the background action from the new event and check the performer of each. Two parts: Los estudiantes leían / cuando llegó mi hermana.",
+"note": "Leía is background; llegó is event. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:20",
+"es:24:21"
+],
+"focusId": "es:24:21"
+},
+{
+"title": "Can I tell the same kind of story elsewhere?",
+"body": "Compare the two tasks: \"While Luis was writing the letter, the meeting ended.\" / \"While the students were reading, the train arrived.\" Separate the background action from the new event and check the performer of each. Divide the phrase into what has already happened and what happened in the background.",
+"note": "llegó is the event; leían is the background. Separate the background action from the new event and check the performer of each.",
+"samples": [
+"es:24:44",
+"es:24:50"
+],
+"focusId": "es:24:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · leía",
+"gloss": "I",
+"id": "es:24:01",
+"sample": "Leía el mensaje cuando sonó el móvil."
+},
+{
+"es": "tú · leías",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · leía",
+"gloss": "he/she/you",
+"id": "es:24:29",
+"sample": "Ana leía el periódico cuando llegó el taxi."
+},
+{
+"es": "nosotros · leíamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leíais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leían",
+"gloss": "they/you (ustedes)",
+"id": "es:24:10",
+"sample": "Los estudiantes leían cuando recibí tu mensaje."
+}
+],
+"title": "leer Habit or Background in the Past"
+},
+{
+"rows": [
+{
+"es": "yo · preparaba",
+"gloss": "I",
+"id": "es:24:14",
+"sample": "Preparaba la sopa cuando sonó el timbre."
+},
+{
+"es": "tú · preparabas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · preparaba",
+"gloss": "he/she/you",
+"id": "es:24:02",
+"sample": "Ana preparaba la cena cuando recibí tu mensaje."
+},
+{
+"es": "nosotros · preparábamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · preparabais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · preparaban",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "preparar Habit or Background in the Past"
+},
+{
+"rows": [
+{
+"es": "yo · esperaba",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · esperabas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · esperaba",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · esperábamos",
+"gloss": "we",
+"id": "es:24:03",
+"sample": "Esperábamos el tren cuando llegó mi hermana."
+},
+{
+"es": "vosotros · esperabais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · esperaban",
+"gloss": "they/you (ustedes)",
+"id": "es:24:15",
+"sample": "Mis hermanos esperaban cuando llegó el tren."
+}
+],
+"title": "esperar Habit or Background in the Past"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:24:01",
+"index": 4,
+"right": "sonó",
+"near": "sonaron",
+"seq": [
+"Leía",
+"el",
+"mensaje",
+"cuando",
+"sonó",
+"el",
+"móvil"
+],
+"i": 0,
+"kind": "form",
+"key": "es24/lab/form1",
+"feedback": {
+"ru": "Глагол: sonar — звонить, звучать.",
+"uk": "Дієслово: sonar — дзвонити, лунати.",
+"en": "Verb: sonar — to ring, to sound."
+}
+},
+{
+"id": "es:24:13",
+"index": 0,
+"right": "Esperábamos",
+"near": "Esperabais",
+"seq": [
+"Esperábamos",
+"el",
+"tren",
+"cuando",
+"se",
+"abrió",
+"la",
+"puerta"
+],
+"i": 12,
+"kind": "form",
+"key": "es24/lab/form2",
+"feedback": {
+"ru": "Глагол: esperar — ждать.",
+"uk": "Дієслово: esperar — чекати.",
+"en": "Verb: esperar — to wait."
+}
+},
+{
+"id": "es:24:26",
+"index": 3,
+"right": "terminó",
+"near": "terminaron",
+"seq": [
+"Bebía",
+"café",
+"cuando",
+"terminó",
+"la",
+"reunión"
+],
+"i": 25,
+"kind": "form",
+"key": "es24/lab/form3",
+"feedback": {
+"ru": "Глагол: terminar — заканчивать.",
+"uk": "Дієслово: terminar — закінчувати.",
+"en": "Verb: terminar — to finish."
+}
+},
+{
+"id": "es:24:38",
+"index": 3,
+"right": "hablaba",
+"near": "hablaban",
+"seq": [
+"Mientras",
+"la",
+"profesora",
+"hablaba",
+"llegó",
+"mi",
+"hermana"
+],
+"i": 37,
+"kind": "form",
+"key": "es24/lab/form4",
+"feedback": {
+"ru": "Глагол: hablar — говорить.",
+"uk": "Дієслово: hablar — говорити.",
+"en": "Verb: hablar — to speak."
+}
+},
+{
+"id": "es:24:07",
+"index": 4,
+"right": "llegó",
+"near": "llegaron",
+"seq": [
+"Buscabas",
+"la",
+"llave",
+"cuando",
+"llegó",
+"Ana"
+],
+"i": 6,
+"kind": "spot",
+"key": "es24/lab/spot1",
+"feedback": {
+"ru": "Глагол: llegar — прибывать, приходить.",
+"uk": "Дієслово: llegar — прибувати, приходити.",
+"en": "Verb: llegar — to arrive, to come."
+}
+},
+{
+"id": "es:24:22",
+"index": 1,
+"right": "preparaba",
+"near": "preparaban",
+"seq": [
+"Ana",
+"preparaba",
+"la",
+"cena",
+"cuando",
+"se",
+"abrió",
+"la",
+"puerta"
+],
+"i": 21,
+"kind": "spot",
+"key": "es24/lab/spot2",
+"feedback": {
+"ru": "Глагол: preparar — готовить.",
+"uk": "Дієслово: preparar — готувати.",
+"en": "Verb: preparar — to cook."
+}
+},
+{
+"id": "es:24:37",
+"index": 4,
+"right": "recibí",
+"near": "recibiste",
+"seq": [
+"Mientras",
+"buscabas",
+"la",
+"llave",
+"recibí",
+"tu",
+"mensaje"
+],
+"i": 36,
+"kind": "spot",
+"key": "es24/lab/spot3",
+"feedback": {
+"ru": "Глагол: recibir — получать.",
+"uk": "Дієслово: recibir — отримувати.",
+"en": "Verb: recibir — to receive."
+}
+},
+{
+"id": "es:24:49",
+"index": 4,
+"right": "entró",
+"near": "entraron",
+"seq": [
+"Mientras",
+"comíamos",
+"en",
+"casa",
+"entró",
+"el",
+"médico"
+],
+"i": 48,
+"kind": "spot",
+"key": "es24/lab/spot4",
+"feedback": {
+"ru": "Глагол: entrar — входить.",
+"uk": "Дієслово: entrar — заходити.",
+"en": "Verb: entrar — to enter."
+}
+},
+{
+"kind": "match",
+"key": "es24/lab/match1",
+"id": "es:24:02",
+"other": "es:24:01"
+},
+{
+"kind": "match",
+"key": "es24/lab/match2",
+"id": "es:24:17",
+"other": "es:24:18"
+},
+{
+"kind": "match",
+"key": "es24/lab/match3",
+"id": "es:24:33",
+"other": "es:24:32"
+},
+{
+"kind": "match",
+"key": "es24/lab/match4",
+"id": "es:24:46",
+"other": "es:24:41"
+},
+{
+"kind": "build",
+"key": "es24/lab/build1",
+"id": "es:24:04"
+},
+{
+"kind": "build",
+"key": "es24/lab/build2",
+"id": "es:24:15"
+},
+{
+"kind": "build",
+"key": "es24/lab/build3",
+"id": "es:24:29"
+},
+{
+"kind": "build",
+"key": "es24/lab/build4",
+"id": "es:24:42"
+},
+{
+"kind": "transform",
+"id": "es:24:23",
+"base": "es:24:19",
+"diff": [
+{
+"before": [
+"autobús"
+],
+"after": [
+"tren"
+]
+}
+],
+"key": "es24/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:24:30",
+"base": "es:24:13",
+"diff": [
+{
+"before": [
+"Esperábamos",
+"el",
+"tren"
+],
+"after": [
+"Yo",
+"cocinaba"
+]
+}
+],
+"key": "es24/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:24:43",
+"base": "es:24:33",
+"diff": [
+{
+"before": [
+"llamó",
+"Ana"
+],
+"after": [
+"llamaste"
+]
+}
+],
+"key": "es24/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:24:42",
+"base": "es:24:32",
+"diff": [
+{
+"before": [
+"entró"
+],
+"after": [
+"sonó"
+]
+},
+{
+"before": [
+"médico"
+],
+"after": [
+"timbre"
+]
+}
+],
+"key": "es24/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+16,
+5
+],
+[
+10,
+19
+],
+[
+1,
+13
+],
+[
+9,
+2
+],
+[
+7,
+18
+]
+],
+"worked": [
+"es:24:05",
+"es:24:18",
+"es:24:33",
+"es:24:48"
+],
+"reflection": [
+"es:24:01",
+"es:24:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

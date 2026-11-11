@@ -1,26 +1,16 @@
 import Purchases, { LOG_LEVEL, type CustomerInfo, type PurchasesPackage } from 'react-native-purchases';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { getCanonicalUserId } from './user_id_policy';
-import {
-  inferPremiumPlanFromProductId,
-  persistStorePremiumLocally,
-  revenueCatCustomerInfoHasPremiumAccess,
-  revenueCatPremiumMetadata,
-  type PremiumStorePlan,
-} from './premium_revenuecat_state';
+import { revenueCatCustomerInfoHasPremiumAccess, type PremiumStorePlan } from './premium_revenuecat_state';
 import { invalidatePremiumCache } from './premium_guard';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLockWithDeadline,
 } from './account_generation';
-import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
-import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
-import { installPlusTransferRunner } from './plus_transfer';
 
 // зачем: PM-229 — на денежном пути (личность RevenueCat, CustomerInfo) сбой чтения раньше превращался
 // в «нет данных» без следа; теперь причина пишется, а возвращаемое значение прежнее.
@@ -269,13 +259,11 @@ async function syncRevenueCatIdentityOnceTraced(
   // путь (премиум/план/метаданные). Purchases.logIn уже отдаёт типизированный
   // customerInfo, ему и доверяем; проверка полей всё равно живёт в
   // revenuecat_premium_access.ts (?., clean, typeof), она никуда не делась.
-  let loginCustomerInfo: CustomerInfo | null = null;
   if (currentAppUserId !== canonicalUserId) {
     if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(rcFallback('logIn_6', null));
     mark(`log_in:${loginResult ? 'ok' : 'null'}`);
     if (!isCurrent() || !loginResult) return false;
-    loginCustomerInfo = loginResult.customerInfo ?? null;
   }
 
   // logIn resolving is not proof that the SDK actually moved from A to B.
@@ -292,22 +280,6 @@ async function syncRevenueCatIdentityOnceTraced(
   await Purchases.setAttributes(attributes).catch(swallowError('revenuecat_init:setAttributes_8'));
   mark('set_attributes');
   if (!isCurrent()) return false;
-
-  if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo)) {
-    const metadata = revenueCatPremiumMetadata(loginCustomerInfo);
-    const plan = inferPremiumPlanFromProductId(
-      metadata.productId ?? loginCustomerInfo?.activeSubscriptions?.[0],
-      'monthly',
-    );
-    if (!isCurrent()) return false;
-    const persisted = await withAccountTransitionLockWithDeadline(async () => {
-      if (!isCurrent()) return false;
-      return persistStorePremiumLocally(plan, metadata, isCurrent, false, true);
-    }, RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS);
-    if (!persisted.completed || !persisted.value || !isCurrent()) {
-      return false;
-    }
-  }
 
   if (!isCurrent()) return false;
   lastIdentitySyncUserId = canonicalUserId;
@@ -331,28 +303,15 @@ async function applyPushedCustomerInfo(
   info: CustomerInfo,
   isCurrent: () => boolean,
 ): Promise<void> {
-  try {
-    if (!isCurrent()) return;
-    const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(rcFallback('getItem_9', null));
-    if (!isCurrent() || resolveTesterNoPremiumOverride(noPremium)) return;
-    const subs = info?.activeSubscriptions;
-    if (revenueCatCustomerInfoHasPremiumAccess(info)) {
-      const metadata = revenueCatPremiumMetadata(info);
-      // Не понижаем уже сохранённый lifetime до monthly при пуш-апдейте без productId:
-      // lifetime (non-consumable) RC может прислать без productId в активных подписках,
-      // а inferPremiumPlanFromProductId без сигнала вернёт дефолт 'monthly'.
-      const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(rcFallback('getItem_10', '')) ?? '').trim().toLowerCase();
-      if (!isCurrent()) return;
-      const inferred = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
-      const plan = existingPlan === 'lifetime' && inferred === 'monthly' ? 'lifetime' : inferred;
-      await persistStorePremiumLocally(plan, metadata, isCurrent, false, true); // внутри invalidatePremiumCache + RC_LAST_SEEN
-    } else {
-      if (!isCurrent()) return;
-      invalidatePremiumCache();
-    }
-  } catch (e) {
-    if (__DEV__) console.warn('[RevenueCat] applyPushedCustomerInfo error:', e);
+  if (!isCurrent()) return;
+  // Passive SDK CustomerInfo is not owner-binding evidence. It may reflect a
+  // receipt transferred by RevenueCat policy or a previously cached identity.
+  // Explicit purchase/restore flows own local persistence; passive updates only
+  // invalidate the decision cache so account-scoped cloud projection can win.
+  if (revenueCatCustomerInfoHasPremiumAccess(info)) {
+    DebugLogger.info('[RC-LISTENER]', 'active CustomerInfo ignored until explicit/account-scoped confirmation');
   }
+  invalidatePremiumCache();
 }
 
 // зачем: возвращаем настоящий CustomerInfo, а не `unknown`. Тип стирался тут,
@@ -427,19 +386,6 @@ async function _doInit(): Promise<void> {
         DebugLogger.error('[RC-LISTENER] addCustomerInfoUpdateListener failed', e instanceof Error ? e : new Error(String(e)), 'warning');
       }
     }
-    // зачем (AA S2d 🔴1): перенос Plus после смены аккаунта — тихое восстановление
-    // покупок с повтором на старте/возврате из фона. Ставится только когда SDK
-    // сконфигурирован; RC-зависимости передаются сюда, чтобы не было цикла импортов.
-    installPlusTransferRunner({
-      syncIdentity: () => syncRevenueCatIdentity(),
-      persistConfirmedPremium: async (confirmedInfo, isTransferCurrent) => {
-        const applied = await withAccountTransitionLockWithDeadline(
-          () => applyPushedCustomerInfo(confirmedInfo, isTransferCurrent),
-          RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS,
-        );
-        if (!applied.completed) throw new Error('plus_transfer_persist_lock_timeout');
-      },
-    });
     // зачем (PM-057): прогрев getOfferings для магазина жемчуга убран вместе с
     // самим магазином — это был лишний сетевой запрос к RevenueCat на КАЖДОМ
     // старте. Подписка Plus грузит свои offerings сама, в paywall.
@@ -454,67 +400,10 @@ async function _doInit(): Promise<void> {
     ]);
 
     if (info && isInitAccountCurrent()) {
-      await withAccountTransitionLockWithDeadline(async () => {
-      if (!isInitAccountCurrent()) return;
-      if (revenueCatCustomerInfoHasPremiumAccess(info)) {
-        const scopedVip = await readVipSnapshotForGeneration(initAccount);
-        if (!isInitAccountCurrent()) return;
-        // Тестер «Снять премиум» в dev/preview — не перезаписывать локальное
-        // «без премиума» флагом из RC. Store-релиз старый QA-флаг игнорирует.
-        const pairs = await AsyncStorage.multiGet([
-          'tester_no_premium',
-          'admin_premium_override',
-          'premium_plan',
-          'premium_expiry',
-          'premium_admin_grant_at',
-        ]);
-        if (!isInitAccountCurrent()) return;
-        const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
-        const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
-        const existingPlan = String(pairs.find(p => p[0] === 'premium_plan')?.[1] ?? '').trim();
-        if (resolveTesterNoPremiumOverride(noPremium)) {
-          if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
-        } else {
-          const metadata = revenueCatPremiumMetadata(info);
-          const legacyAdminVip =
-            adminOverride === 'true' ||
-            (existingPlan.toLowerCase() === 'admin_grant' && adminOverride !== 'false');
-          if (legacyAdminVip) {
-            const now = Date.now();
-            const expiryRaw = Number(pairs.find(p => p[0] === 'premium_expiry')?.[1] ?? 0);
-            const expiry = Number.isFinite(expiryRaw) ? Math.max(0, Math.floor(expiryRaw)) : 0;
-            const active = expiry <= 0 || expiry > now;
-            const grantAt =
-              String(scopedVip?.vip_admin_grant_at ?? '').trim() ||
-              String(pairs.find(p => p[0] === 'premium_admin_grant_at')?.[1] ?? '').trim() ||
-              String(now);
-            if (!initAccount.stableId) return;
-            await writeVipSnapshotForAccount(initAccount.stableId, {
-              vip_active: active ? 'true' : 'false',
-              vip_plan: active ? 'admin_vip' : '',
-              vip_from: grantAt,
-              vip_until: expiry > 0 ? String(expiry) : '0',
-              vip_admin_override: active ? 'true' : 'false',
-              vip_admin_grant_at: grantAt,
-            });
-            if (!isInitAccountCurrent()) return;
-            await AsyncStorage.setItem('admin_premium_override', 'false');
-            if (!isInitAccountCurrent()) return;
-          }
-          const existingStorePlan =
-            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly'
-              || existingPlan === 'lifetime')
-              ? existingPlan as PremiumStorePlan
-              : null;
-          const inferredPlan = inferPremiumPlanFromProductId(
-            metadata.productId ?? info.activeSubscriptions?.[0],
-            'monthly',
-          );
-          const plan = resolveRevenueCatStorePlan(existingStorePlan, inferredPlan);
-          await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false, true);
-        }
-      }
-      }, RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS);
+      // Startup CustomerInfo is passive SDK state, not proof that the receipt
+      // belongs to this stable account. Explicit purchase/restore persists;
+      // account-scoped cloud projection restores other-device access.
+      invalidatePremiumCache();
     }
   } catch (e) {
     if (__DEV__) console.warn('[RevenueCat] init error:', e);

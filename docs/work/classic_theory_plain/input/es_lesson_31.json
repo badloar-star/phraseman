@@ -1,0 +1,839 @@
+{
+ "lang": "es",
+ "lesson": 31,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:31:01",
+   "target": "Te llamaré cuando llegue a casa.",
+   "ru": "Я тебе позвоню, когда приду домой.",
+   "uk": "Я тобі зателефоную, коли прийду додому."
+  },
+  {
+   "id": "es:31:02",
+   "target": "Te llamaré cuando termine de trabajar.",
+   "ru": "Я тебе позвоню, когда я закончу работать.",
+   "uk": "Я тобі зателефоную, коли я закінчу працювати."
+  },
+  {
+   "id": "es:31:03",
+   "target": "Cuando termine la clase, te llamaré.",
+   "ru": "Когда закончится занятие, я тебе позвоню.",
+   "uk": "Коли закінчиться заняття, я тобі зателефоную."
+  },
+  {
+   "id": "es:31:04",
+   "target": "Te llamaré cuando tenga tiempo.",
+   "ru": "Я тебе позвоню, когда у меня будет время.",
+   "uk": "Я тобі зателефоную, коли у мене буде час."
+  },
+  {
+   "id": "es:31:05",
+   "target": "Te llamaré cuando sepa la hora.",
+   "ru": "Я тебе позвоню, когда я узнаю время.",
+   "uk": "Я тобі зателефоную, коли я дізнаюся час."
+  },
+  {
+   "id": "es:31:06",
+   "target": "Te llamaré cuando tenga cobertura.",
+   "ru": "Я позвоню тебе, когда появится связь.",
+   "uk": "Я зателефоную тобі, коли з’явиться зв’язок."
+  },
+  {
+   "id": "es:31:07",
+   "target": "Cuando tenga tiempo, te mandaré la foto.",
+   "ru": "Когда у меня будет время, я отправлю тебе фотографию.",
+   "uk": "Коли у мене буде час, я надішлю тобі фотографію."
+  },
+  {
+   "id": "es:31:08",
+   "target": "Te mandaré la foto cuando cargue el móvil.",
+   "ru": "Я отправлю тебе фото, когда заряжу телефон.",
+   "uk": "Я надішлю тобі фото, коли заряджу телефон."
+  },
+  {
+   "id": "es:31:09",
+   "target": "Te mandaré la foto cuando termine de trabajar.",
+   "ru": "Я отправлю тебе фотографию, когда закончу работать.",
+   "uk": "Я надішлю тобі фотографію, коли закінчу працювати."
+  },
+  {
+   "id": "es:31:10",
+   "target": "Cuando terminemos la reunión, te mandaré la foto.",
+   "ru": "Когда мы закончим совещание, я отправлю тебе фотографию.",
+   "uk": "Коли ми закінчимо нараду, я надішлю тобі фотографію."
+  },
+  {
+   "id": "es:31:11",
+   "target": "Cuando tenga el dinero, compraremos los billetes.",
+   "ru": "Когда у меня будут деньги, мы купим билеты.",
+   "uk": "Коли у мене будуть гроші, ми купимо квитки."
+  },
+  {
+   "id": "es:31:12",
+   "target": "Compraremos los billetes cuando sepa la hora.",
+   "ru": "Мы купим билеты, когда я узнаю время.",
+   "uk": "Ми купимо квитки, коли я дізнаюся час."
+  },
+  {
+   "id": "es:31:13",
+   "target": "Compraremos los billetes cuando confirmen el horario.",
+   "ru": "Мы купим билеты, когда подтвердят расписание.",
+   "uk": "Ми купимо квитки, коли підтвердять розклад."
+  },
+  {
+   "id": "es:31:14",
+   "target": "Cuando abra la tienda, compraremos los billetes.",
+   "ru": "Когда откроется магазин, мы купим билеты.",
+   "uk": "Коли відчиниться магазин, ми купимо квитки."
+  },
+  {
+   "id": "es:31:15",
+   "target": "Compraremos los billetes cuando estés listo.",
+   "ru": "Мы купим билеты, когда ты будешь готов.",
+   "uk": "Ми купимо квитки, коли ти будеш готовий."
+  },
+  {
+   "id": "es:31:16",
+   "target": "Volveremos a casa cuando termine la clase.",
+   "ru": "Мы вернёмся домой, когда закончится занятие.",
+   "uk": "Ми повернемося додому, коли закінчиться заняття."
+  },
+  {
+   "id": "es:31:17",
+   "target": "Cuando salga del túnel, te llamaré.",
+   "ru": "Когда я выеду из тоннеля, я тебе позвоню.",
+   "uk": "Коли я виїду з тунелю, я тобі зателефоную."
+  },
+  {
+   "id": "es:31:18",
+   "target": "Cuando venga Ana, volveremos a casa.",
+   "ru": "Когда придёт Ана, мы вернёмся домой.",
+   "uk": "Коли прийде Ана, ми повернемося додому."
+  },
+  {
+   "id": "es:31:19",
+   "target": "Volveremos a casa cuando estés listo.",
+   "ru": "Мы вернёмся домой, когда ты будешь готов.",
+   "uk": "Ми повернемося додому, коли ти будеш готовий."
+  },
+  {
+   "id": "es:31:20",
+   "target": "Volveremos a casa cuando encuentre las llaves.",
+   "ru": "Мы вернёмся домой, когда я найду ключи.",
+   "uk": "Ми повернемося додому, коли я знайду ключі."
+  },
+  {
+   "id": "es:31:21",
+   "target": "Abriré la puerta cuando venga Ana.",
+   "ru": "Я открою дверь, когда придёт Ана.",
+   "uk": "Я відчиню двері, коли прийде Ана."
+  },
+  {
+   "id": "es:31:22",
+   "target": "Cuando vuelvas, abriré la puerta.",
+   "ru": "Когда ты вернёшься, я открою дверь.",
+   "uk": "Коли ти повернешся, я відчиню двері."
+  },
+  {
+   "id": "es:31:23",
+   "target": "Cambiaré la batería cuando llegue a casa.",
+   "ru": "Я заменю аккумулятор, когда приду домой.",
+   "uk": "Я заміню акумулятор, коли прийду додому."
+  },
+  {
+   "id": "es:31:24",
+   "target": "Abriré la puerta cuando llegue a casa.",
+   "ru": "Я открою дверь, когда приду домой.",
+   "uk": "Я відчиню двері, коли прийду додому."
+  },
+  {
+   "id": "es:31:25",
+   "target": "Cuando avise el mecánico, recogeremos el coche.",
+   "ru": "Когда механик даст знать, мы заберём машину.",
+   "uk": "Коли механік дасть знати, ми заберемо машину."
+  },
+  {
+   "id": "es:31:26",
+   "target": "Cuando vuelvas, hablaremos del viaje.",
+   "ru": "Когда ты вернёшься, мы поговорим о поездке.",
+   "uk": "Коли ти повернешся, ми поговоримо про поїздку."
+  },
+  {
+   "id": "es:31:27",
+   "target": "Hablaremos del viaje cuando llegues a casa.",
+   "ru": "Мы поговорим о поездке, когда ты придёшь домой.",
+   "uk": "Ми поговоримо про поїздку, коли ти прийдеш додому."
+  },
+  {
+   "id": "es:31:28",
+   "target": "Hablaremos cuando vuelva la señal.",
+   "ru": "Мы поговорим, когда снова появится сигнал.",
+   "uk": "Ми поговоримо, коли знову з’явиться сигнал."
+  },
+  {
+   "id": "es:31:29",
+   "target": "Cuando terminemos la reunión, hablaremos del viaje.",
+   "ru": "Когда мы закончим совещание, мы поговорим о поездке.",
+   "uk": "Коли ми закінчимо нараду, ми поговоримо про поїздку."
+  },
+  {
+   "id": "es:31:30",
+   "target": "Hablaremos del viaje cuando venga Ana.",
+   "ru": "Мы поговорим о поездке, когда придёт Ана.",
+   "uk": "Ми поговоримо про поїздку, коли прийде Ана."
+  },
+  {
+   "id": "es:31:31",
+   "target": "Prepararé la cena cuando llegue a casa.",
+   "ru": "Я приготовлю ужин, когда приду домой.",
+   "uk": "Я приготую вечерю, коли прийду додому."
+  },
+  {
+   "id": "es:31:32",
+   "target": "Cargaré el móvil cuando llegue a la oficina.",
+   "ru": "Я поставлю телефон на зарядку, когда доберусь до офиса.",
+   "uk": "Я поставлю телефон на зарядку, коли дістануся офісу."
+  },
+  {
+   "id": "es:31:33",
+   "target": "Te llamaré cuando apunte la dirección.",
+   "ru": "Я тебе позвоню, когда запишу адрес.",
+   "uk": "Я тобі зателефоную, коли запишу адресу."
+  },
+  {
+   "id": "es:31:34",
+   "target": "Cuando termine la película, apagaré la pantalla.",
+   "ru": "Когда закончится фильм, я выключу экран.",
+   "uk": "Коли закінчиться фільм, я вимкну екран."
+  },
+  {
+   "id": "es:31:35",
+   "target": "Cuando la batería esté cargada, enviaré las fotos.",
+   "ru": "Когда аккумулятор зарядится, я отправлю фотографии.",
+   "uk": "Коли акумулятор зарядиться, я надішлю фотографії."
+  },
+  {
+   "id": "es:31:36",
+   "target": "Te daré la llave cuando vuelvas.",
+   "ru": "Я дам тебе ключ, когда ты вернёшься.",
+   "uk": "Я дам тобі ключ, коли ти повернешся."
+  },
+  {
+   "id": "es:31:37",
+   "target": "Cuando llegues a casa, te daré la llave.",
+   "ru": "Когда ты придёшь домой, я дам тебе ключ.",
+   "uk": "Коли ти прийдеш додому, я дам тобі ключ."
+  },
+  {
+   "id": "es:31:38",
+   "target": "Te enviaré el correo cuando confirme la reserva.",
+   "ru": "Я отправлю тебе электронное письмо, когда подтвержу бронь.",
+   "uk": "Я надішлю тобі електронного листа, коли підтверджу бронювання."
+  },
+  {
+   "id": "es:31:39",
+   "target": "Te mandaré el horario cuando tenga cobertura.",
+   "ru": "Я пришлю тебе расписание, когда появится связь.",
+   "uk": "Я надішлю тобі розклад, коли з’явиться зв’язок."
+  },
+  {
+   "id": "es:31:40",
+   "target": "Cuando estés listo, te daré la llave.",
+   "ru": "Когда ты будешь готов, я дам тебе ключ.",
+   "uk": "Коли ти будеш готовий, я дам тобі ключ."
+  },
+  {
+   "id": "es:31:41",
+   "target": "Cuando estés listo, saldremos.",
+   "ru": "Когда ты будешь готов, мы выйдем.",
+   "uk": "Коли ти будеш готовий, ми вийдемо."
+  },
+  {
+   "id": "es:31:42",
+   "target": "Saldremos cuando termine la clase.",
+   "ru": "Мы выйдем, когда закончится занятие.",
+   "uk": "Ми вийдемо, коли закінчиться заняття."
+  },
+  {
+   "id": "es:31:43",
+   "target": "Saldremos cuando terminemos la reunión.",
+   "ru": "Мы выйдем, когда мы закончим совещание.",
+   "uk": "Ми вийдемо, коли ми закінчимо нараду."
+  },
+  {
+   "id": "es:31:44",
+   "target": "Cuando llegue el tren, saldremos.",
+   "ru": "Когда прибудет поезд, мы выйдем.",
+   "uk": "Коли прибуде потяг, ми вийдемо."
+  },
+  {
+   "id": "es:31:45",
+   "target": "Saldremos cuando venga Ana.",
+   "ru": "Мы выйдем, когда придёт Ана.",
+   "uk": "Ми вийдемо, коли прийде Ана."
+  },
+  {
+   "id": "es:31:46",
+   "target": "Pagaré cuando tenga el dinero.",
+   "ru": "Я заплачу, когда у меня будут деньги.",
+   "uk": "Я заплачу, коли у мене будуть гроші."
+  },
+  {
+   "id": "es:31:47",
+   "target": "Pagaré cuando llegue a casa.",
+   "ru": "Я заплачу, когда приду домой.",
+   "uk": "Я заплачу, коли прийду додому."
+  },
+  {
+   "id": "es:31:48",
+   "target": "Cuando salga del túnel, te mandaré la ubicación.",
+   "ru": "Когда я выеду из тоннеля, я отправлю тебе геолокацию.",
+   "uk": "Коли я виїду з тунелю, я надішлю тобі геолокацію."
+  },
+  {
+   "id": "es:31:49",
+   "target": "Pagaré cuando reciba el dinero.",
+   "ru": "Я заплачу, когда получу деньги.",
+   "uk": "Я заплачу, коли отримаю гроші."
+  },
+  {
+   "id": "es:31:50",
+   "target": "Pagaré cuando terminemos la reunión.",
+   "ru": "Я заплачу, когда мы закончим совещание.",
+   "uk": "Я заплачу, коли ми закінчимо нараду."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "batería",
+   "ru": "аккумулятор, батарея",
+   "uk": "акумулятор, батарея"
+  },
+  {
+   "lemma": "cargado",
+   "ru": "заряженный",
+   "uk": "заряджений"
+  },
+  {
+   "lemma": "cargar",
+   "ru": "заряжать",
+   "uk": "заряджати"
+  },
+  {
+   "lemma": "cobertura",
+   "ru": "покрытие мобильной сети, связь",
+   "uk": "покриття мобільної мережі, зв’язок"
+  },
+  {
+   "lemma": "enviar",
+   "ru": "отправлять",
+   "uk": "надсилати"
+  },
+  {
+   "lemma": "horario",
+   "ru": "расписание",
+   "uk": "розклад"
+  },
+  {
+   "lemma": "señal",
+   "ru": "сигнал",
+   "uk": "сигнал"
+  },
+  {
+   "lemma": "túnel",
+   "ru": "тоннель",
+   "uk": "тунель"
+  },
+  {
+   "lemma": "ubicación",
+   "ru": "местоположение, геолокация",
+   "uk": "місцеперебування, геолокація"
+  },
+  {
+   "lemma": "dinero",
+   "ru": "деньги",
+   "uk": "гроші"
+  },
+  {
+   "lemma": "hora",
+   "ru": "время, час",
+   "uk": "час, година"
+  },
+  {
+   "lemma": "saber",
+   "ru": "знать",
+   "uk": "знати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar",
+  "corto",
+  "tuyo",
+  "encontrar",
+  "mío",
+  "silla",
+  "que",
+  "salir",
+  "vender",
+  "ver",
+  "visitar",
+  "freno",
+  "mecánico",
+  "reparar",
+  "revisar",
+  "rueda",
+  "taller",
+  "usar",
+  "noche",
+  "alquilar",
+  "balcón",
+  "barato",
+  "elegir",
+  "habitación",
+  "natural",
+  "piso",
+  "poner",
+  "ruidoso",
+  "tan",
+  "tanto",
+  "sin",
+  "despacio",
+  "apuntar",
+  "avisar",
+  "contraseña",
+  "copiar",
+  "pantalla",
+  "texto",
+  "dirección",
+  "querer"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  },
+  {
+   "lesson": 27,
+   "title": "Книга, которую…: относительное que"
+  },
+  {
+   "lesson": 28,
+   "title": "Завтра позвоню: простое будущее"
+  },
+  {
+   "lesson": 29,
+   "title": "Я бы позвонил: condicional simple"
+  },
+  {
+   "lesson": 30,
+   "title": "Хочу, чтобы ты…: querer que"
+  }
+ ],
+ "oldTopicTitle": "Когда придёшь: будущее событие с cuando",
+ "oldTheoryRu": "Звонок ещё впереди. Скажи Te llamaré, а момент добавь через cuando llegue. Llegue здесь не означает, что человек уже пришёл. Отдельно пообещай звонок: Te llamaré. Затем назови событие, которого ждёшь: cuando llegue. Форма llegue обозначает здесь предстоящее событие, а не уже состоявшийся приход. В Te llamaré cuando llegue обещание — llamaré. Возвращение задаёт момент звонка, на момент речи оно ещё впереди. Для него выбираем llegue. Cuando без ударения вводит временную часть. Отдельный вопрос ¿Cuándo llegarás? пишется с ударением, и будущее llegarás в вопросе уместно. Это другая конструкция. В «позвоню, когда ты придёшь» первый глагол для yo, второй для tú: te llamaré cuando llegues. Окончания двух глаголов не обязаны совпадать. Cuando termine la clase, volveremos a casa. Порядок частей изменился, выбор формы нет. После начального придаточного ставится запятая; это оформление, а не плитка. Каждый раз, когда возвращаюсь, звоню — привычка: cuando vuelvo. Позвоню, когда вернусь, — предстоящее событие: cuando vuelva. Само слово cuando не требует одного наклонения всегда. Сравни два задания: «Мы вернёмся домой, когда я найду ключи.» / «Я открою дверь, когда придёт Ана.». После cuando ожидаемое событие выражено subjuntivo. Две части: Volveremos a casa  /  cuando encuentre las llaves. Сравни два задания: «Когда прибудет поезд, мы выйдем.» / «Я заплачу, когда мы закончим совещание.». После cuando ожидаемое событие выражено subjuntivo. Свяжи обещание с событием, которого ещё ждут. После cuando не копируй будущее из русского перевода."
+}

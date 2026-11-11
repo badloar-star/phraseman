@@ -8,7 +8,6 @@ import {
   contestAccountCreatedAtMs,
   contestLessonsCompleted,
   contestStandingsShouldRefresh,
-  learningV2CompletedFromMasks,
   tallyContestMonth,
   type TallyPack,
   type TallyVote,
@@ -59,35 +58,12 @@ describe('правило 1: пройденный урок — любой', () =>
     expect(contestLessonsCompleted({ completed_lessons: [1, 2, 3] })).toBe(3);
     expect(contestLessonsCompleted({ completed_lessons: { 1: true } })).toBe(1);
   });
-  it('Learning V2: облачная копия числа пройденных занятий', () => {
-    expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '1' })).toBe(1);
-    expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: 'oops' })).toBe(0);
-    // испанский курс (ключи с суффиксом :target:es) — тоже урок; с английским суммируется
-    expect(contestLessonsCompleted({ 'learning_v2_course_progress_sync_v1:target:es': '2' })).toBe(2);
-    expect(contestLessonsCompleted({ 'learning_v2_course_masks_sync_v1:target:es': JSON.stringify({ v: 1, c: '80' }) })).toBe(1);
-    expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '1', 'learning_v2_course_progress_sync_v1:target:es': '1' })).toBe(2);
-  });
-  it('Learning V2 по маске пройденных (начал не с начала): «c» считается, «o» (открыто) — нет', () => {
-    expect(learningV2CompletedFromMasks(JSON.stringify({ v: 1, c: '0400', o: 'ffff' }))).toBe(1);
-    expect(learningV2CompletedFromMasks(JSON.stringify({ v: 1, c: '0000', o: 'ffff' }))).toBe(0);
-    expect(learningV2CompletedFromMasks('{broken')).toBe(0);
-    expect(contestLessonsCompleted({ learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: '80' }) })).toBe(1);
-  });
-  it('только V2, ни одного классического урока → голос засчитан', () => {
-    const r = tallyContestMonth({
-      month, packs: [pack('a')], votes: [vote('a', 'v2only', t(5))],
-      voters: new Map([['v2only', { createdAtMs: Date.UTC(2026, 0, 1), lessonsCompleted: contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '1' }) }]]),
-    });
-    expect(heartsOf(r, 'a')).toBe(1);
-  });
-  it('только маска «пройдено» (с середины курса) → засчитан; только «открыто» → НЕ засчитан', () => {
-    const voters = new Map<string, TallyVoter>([
-      ['mid', { createdAtMs: Date.UTC(2026, 0, 1), lessonsCompleted: contestLessonsCompleted({ learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: '00000010', o: '000000ff' }) }) }],
-      ['openedOnly', { createdAtMs: Date.UTC(2026, 0, 1), lessonsCompleted: contestLessonsCompleted({ learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: '00000000', o: '000000ff' }) }) }],
-    ]);
-    const r = tallyContestMonth({ month, packs: [pack('a')], votes: [vote('a', 'mid', t(5)), vote('a', 'openedOnly', t(5))], voters });
-    expect(heartsOf(r, 'a')).toBe(1);
-    expect(r.stats.excluded.noLesson).toBe(1);
+  // зачем: занятия удалённого курса больше не считаются пройденным уроком (правила версии 4) — даже если
+  // их прежние счётчики и маски остались в профиле.
+  it('счётчики удалённого курса занятий уроком не считаются', () => {
+    expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '5' })).toBe(0);
+    expect(contestLessonsCompleted({ learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: 'ff' }) })).toBe(0);
+    expect(contestLessonsCompleted({ lessons_completed: '2', learning_v2_course_progress_sync_v1: '5' })).toBe(2);
   });
   it('ничего не пройдено — голос не засчитан (noLesson)', () => {
     const r = tallyContestMonth({

@@ -17,6 +17,9 @@ describe('RevenueCat identity bootstrap', () => {
       })),
     }));
     jest.doMock('../app/cloud_sync', () => ({ syncToCloud: jest.fn(async () => undefined) }));
+    jest.doMock('../app/revenuecat_projection_sync', () => ({
+      syncRevenueCatProjectionForAccount: jest.fn(async () => true),
+    }));
     jest.doMock('../app/premium_guard', () => ({
       invalidatePremiumCache: jest.fn(),
       markPremiumStoreSeenNow: jest.fn(async () => undefined),
@@ -29,6 +32,7 @@ describe('RevenueCat identity bootstrap', () => {
       revenueCat: await import('../app/revenuecat_init'),
       purchases: (await import('react-native-purchases')).default as any,
       premiumState: await import('../app/premium_revenuecat_state'),
+      premiumGuard: await import('../app/premium_guard'),
     };
   };
 
@@ -135,7 +139,7 @@ describe('RevenueCat identity bootstrap', () => {
     expect(revenueCat.resolveRevenueCatStorePlan(null, 'lifetime')).toBe('lifetime');
   });
 
-  it('switches A to B with direct logIn and verifies B before attributes or CustomerInfo persistence', async () => {
+  it('switches A to B for SDK identity but never persists entitlement returned by the identity change itself', async () => {
     const { revenueCat, purchases, premiumState } = await loadSubject('stable-B');
     const premiumInfo = {
       entitlements: { active: { premium: { productIdentifier: 'premium_yearly' } } },
@@ -155,9 +159,7 @@ describe('RevenueCat identity bootstrap', () => {
     expect(purchases.getAppUserID.mock.invocationCallOrder[1]).toBeLessThan(
       purchases.setAttributes.mock.invocationCallOrder[0],
     );
-    expect(purchases.getAppUserID.mock.invocationCallOrder[1]).toBeLessThan(
-      (premiumState.persistStorePremiumLocally as jest.Mock).mock.invocationCallOrder[0],
-    );
+    expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
   });
 
   it('keeps identity unresolved and retryable when logIn does not actually move RevenueCat to B', async () => {
@@ -208,10 +210,8 @@ describe('RevenueCat identity bootstrap', () => {
     expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
   });
 
-  // зачем (2.0): MAX запломбирован — квитанция остаётся видимой по id товара, но доступа не даёт. При старте и в общем
-  // слушателе вместе с активным premium сохраняется ТОЛЬКО Premium (раньше выигрывал MAX).
-  it('startup and the shared listener persist Premium and ignore a retired MAX entitlement', async () => {
-    const { revenueCat, purchases, premiumState } = await loadSubject();
+  it('startup and the shared listener never persist passive Premium, even with retired MAX beside it', async () => {
+    const { revenueCat, purchases, premiumState, premiumGuard } = await loadSubject();
     const dualInfo = {
       entitlements: { active: {
         premium: {
@@ -235,35 +235,16 @@ describe('RevenueCat identity bootstrap', () => {
 
     await revenueCat.initRevenueCat();
 
-    expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
-      'monthly',
-      expect.objectContaining({
-        productId: 'phraseman_premium_monthly_399',
-        expiryMs: 1_000,
-      }),
-      expect.any(Function),
-      false,
-      true,
-    );
-    (premiumState.persistStorePremiumLocally as jest.Mock).mockClear();
-    let listenerPersisted!: () => void;
-    const listenerPersistence = new Promise<void>((resolve) => { listenerPersisted = resolve; });
-    (premiumState.persistStorePremiumLocally as jest.Mock).mockImplementationOnce(async () => {
-      listenerPersisted();
-      return true;
-    });
+    expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
+    expect(premiumGuard.invalidatePremiumCache).toHaveBeenCalled();
+    (premiumGuard.invalidatePremiumCache as jest.Mock).mockClear();
 
     const listener = purchases.addCustomerInfoUpdateListener.mock.calls[0]?.[0];
     expect(typeof listener).toBe('function');
     listener();
-    await listenerPersistence;
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
 
-    expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
-      'monthly',
-      expect.objectContaining({ productId: 'phraseman_premium_monthly_399' }),
-      expect.any(Function),
-      false,
-      true,
-    );
+    expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
+    expect(premiumGuard.invalidatePremiumCache).toHaveBeenCalled();
   });
 });

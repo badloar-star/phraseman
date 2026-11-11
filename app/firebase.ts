@@ -9,6 +9,8 @@ import { shouldUseNativeFirebaseTelemetry } from './native_runtime_capability';
 import { rnfbInstance } from './rnfb_modular';
 import { recordSmartReminderEvent } from './smart_reminder_store';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { readRealPremiumSnapshotForGeneration } from './premium_real_storage';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -210,19 +212,21 @@ export function logFlashcardAdded() {
 
 export function logCancelSurvey(reason: string, reasonText = '', context = 'manage') {
   logEvent('subscription_cancel_survey', { reason });
+  const token = captureAccountGeneration();
   void (async () => {
-    const [userName, lang, plan] = await Promise.all([
+    const [userName, lang, snapshot] = await Promise.all([
       AsyncStorage.getItem('user_name').catch(noteSwallowedAs('firebase:promise_9', null)),
       AsyncStorage.getItem('app_lang').catch(noteSwallowedAs('firebase:promise_10', null)),
-      AsyncStorage.getItem('premium_plan').catch(noteSwallowedAs('firebase:promise_11', null)),
+      readRealPremiumSnapshotForGeneration(token).catch(noteSwallowedAs('firebase:promise_11', null)),
     ]);
+    const current = !!token.stableId && isCurrentAccountGeneration(token, token.stableId);
     await submitClientReport('subscription_cancel_survey', {
       reason: String(reason || 'unknown').slice(0, 80),
       reasonText: String(reasonText || '').trim().slice(0, 1000),
       context: String(context || 'manage').slice(0, 80),
-      userName: userName || null,
+      userName: current ? userName || null : null,
       lang: lang || null,
-      premiumPlan: plan || null,
+      premiumPlan: current && snapshot?.active ? snapshot.plan : null,
       platform: Platform.OS,
       osVersion: String(Platform.Version),
       appVersion: Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown',

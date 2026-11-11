@@ -1,0 +1,1074 @@
+[
+{
+"lesson": 5,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:05:01",
+"fr:05:02",
+"fr:05:03"
+],
+"textByLocale": {
+"en": "`Avoir` means \"to have\" in the dictionary. When talking about yourself, it becomes `ai`, and `je` before a vowel becomes `j’`. When talking about a friend, you'll need a different pair: `tu as`.",
+"ru": "`Avoir` в словаре значит «иметь». В сообщении о себе оно превращается в `ai`, а `je` перед гласной — в `j’`. В сообщении о друге на «ты» понадобится другая пара: `tu as`.",
+"uk": "`Avoir` у словнику означає «мати». У повідомленні про себе воно перетворюється на `ai`, а `je` перед голосною — на `j’`. У повідомленні про друга на «ти» знадобиться інша пара: `tu as`."
+}
+},
+{
+"exampleIds": [
+"fr:05:05",
+"fr:05:06",
+"fr:05:07"
+],
+"textByLocale": {
+"en": "Several people also have something. `Nous avons` means \"we have,\" `vous avez` means \"you have,\" `ils ont` means \"they have.\" Don't confuse `ont` with `sont`: the former is about possession, while the latter is a form of `être`.",
+"ru": "У нескольких людей тоже что-то есть. `Nous avons` — «у нас есть», `vous avez` — «у вас есть», `ils ont` — «у них есть». Не путай `ont` с `sont`: первое про обладание, второе — форма `être`.",
+"uk": "У кількох людей теж щось є. `Nous avons` - \"у нас є\", `vous avez` - \"у вас є\", `ils ont` - \"у них є\". Не плутай `ont` з `sont`: перше про володіння, друге форма `être`."
+}
+},
+{
+"exampleIds": [
+"fr:05:11",
+"fr:05:13",
+"fr:05:15"
+],
+"textByLocale": {
+"en": "Hunger, thirst, and cold are often described in French using `avoir`. The phrase `J’ai faim` is easy to remember in its entirety: it means \"I am hungry,\" not \"I am hunger.\"",
+"ru": "Голод, жажду и холод французский часто описывает через `avoir`. Фразу `J’ai faim` удобно запоминать целиком: она значит «я голоден», а не «я есть голод».",
+"uk": "Голод, спрагу і холод французький часто описує через `avoir`. Фразу `J’ai faim` зручно запам'ятовувати цілком: вона означає «я голодний», а не «я голод»."
+}
+},
+{
+"exampleIds": [
+"fr:05:21",
+"fr:05:22",
+"fr:05:23"
+],
+"textByLocale": {
+"en": "Age is the number of years a person \"has.\" `ans` follows the number. Don't choose the form `être`, even if age is expressed differently in another language.",
+"ru": "Возраст — количество лет, которые у человека «есть». После числа идёт `ans`. Не выбирай форму `être`, даже если в другом языке возраст выражается иначе.",
+"uk": "Вік - кількість років, які у людини є. Після числа йде `ans`. Не вибирай форму `être`, навіть якщо в іншій мові вік виражається інакше."
+}
+},
+{
+"exampleIds": [
+"fr:05:27",
+"fr:05:31",
+"fr:05:36"
+],
+"textByLocale": {
+"en": "`Vous avez` can describe presence or become a question. In the form `Avez-vous`, the order is reversed and a hyphen appears. The question mark does not replace the required verb.",
+"ru": "`Vous avez` может описывать наличие или превращаться в вопрос. В форме `Avez-vous` порядок меняется и появляется дефис. Вопросительный знак не заменяет нужный глагол.",
+"uk": "`Vous avez` може описувати наявність або перетворюватися на запитання. У формі `Avez-vous` порядок змінюється та з'являється дефіс. Знак питання не замінює потрібне дієслово."
+}
+},
+{
+"exampleIds": [
+"fr:05:41",
+"fr:05:42",
+"fr:05:44"
+],
+"textByLocale": {
+"en": "To indicate a need, use `avoir besoin de`. Before a vowel, `d’` can be used, for example `d’aide`. This is part of the expression, not a replacement for the verb `avoir`.",
+"ru": "Чтобы назвать необходимость, используй `avoir besoin de`. Перед гласной возможна форма `d’`, например `d’aide`. Это часть выражения, а не замена глаголу `avoir`.",
+"uk": "Щоб назвати необхідність, використовуй `avoir besoin de`. Перед голосною можлива форма `d’`, наприклад `d’aide`. Це частина висловлювання, а не заміна дієслова `avoir`."
+}
+},
+{
+"exampleIds": [
+"fr:05:46",
+"fr:05:49",
+"fr:05:50"
+],
+"textByLocale": {
+"en": "First, determine the type of complement: object, sensation, or set phrase. For \"I have a sore throat,\" the entire `avoir mal à la gorge` structure is important, not just the noun.",
+"ru": "Сначала определи тип дополнения: предмет, ощущение или устойчивая группа. Для «у меня болит горло» важна вся конструкция `avoir mal à la gorge`, а не только существительное.",
+"uk": "Спочатку визнач тип доповнення: предмет, відчуття або стійка група. Для «у мене болить горло» важлива вся конструкція `avoir mal à la gorge`, а не тільки іменник."
+}
+}
+],
+"drills": [
+{
+"bad": "Avez-vous",
+"chapter": 1,
+"id": "fr:05:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Avez-vous",
+"Qu’elle",
+"J’ai"
+],
+"slot": 0
+},
+{
+"bad": "as",
+"chapter": 1,
+"id": "fr:05:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 14,
+"options": [
+"aurai",
+"a",
+"as"
+],
+"slot": 1
+},
+{
+"bad": "avait",
+"chapter": 1,
+"id": "fr:05:05:lab",
+"item": 5,
+"kind": "match",
+"near": 15,
+"options": [
+"avait",
+"aurait",
+"avons"
+],
+"slot": 1
+},
+{
+"bad": "avez",
+"chapter": 2,
+"id": "fr:05:08:lab",
+"item": 8,
+"kind": "build",
+"near": 18,
+"options": [
+"ai",
+"avez",
+"ont"
+],
+"slot": 1
+},
+{
+"bad": "Avez-vous",
+"chapter": 2,
+"id": "fr:05:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 11,
+"options": [
+"Avez-vous",
+"D’une",
+"J’ai"
+],
+"slot": 0
+},
+{
+"bad": "aurai",
+"chapter": 2,
+"id": "fr:05:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"aurai",
+"as",
+"aurez"
+],
+"slot": 1
+},
+{
+"bad": "aurez",
+"chapter": 3,
+"id": "fr:05:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 24,
+"options": [
+"avez",
+"aurez",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "aurez",
+"chapter": 3,
+"id": "fr:05:17:lab",
+"item": 17,
+"kind": "match",
+"near": 28,
+"options": [
+"a",
+"aurez",
+"as"
+],
+"slot": 1
+},
+{
+"bad": "Avez-vous",
+"chapter": 3,
+"id": "fr:05:19:lab",
+"item": 19,
+"kind": "build",
+"near": 49,
+"options": [
+"Avez-vous",
+"Qu’elle",
+"J’ai"
+],
+"slot": 0
+},
+{
+"bad": "aurait",
+"chapter": 4,
+"id": "fr:05:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 9,
+"options": [
+"aurait",
+"aurez",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "aurais",
+"chapter": 4,
+"id": "fr:05:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 14,
+"options": [
+"a",
+"ai",
+"aurais"
+],
+"slot": 1
+},
+{
+"bad": "aurais",
+"chapter": 4,
+"id": "fr:05:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"aurais",
+"aurez",
+"avez"
+],
+"slot": 1
+},
+{
+"bad": "aura",
+"chapter": 5,
+"id": "fr:05:29:lab",
+"item": 29,
+"kind": "match",
+"near": 15,
+"options": [
+"avons",
+"avais",
+"aura"
+],
+"slot": 1
+},
+{
+"bad": "ce",
+"chapter": 5,
+"id": "fr:05:31:lab",
+"item": 31,
+"kind": "build",
+"near": 27,
+"options": [
+"du",
+"un",
+"ce"
+],
+"slot": 1
+},
+{
+"bad": "avais",
+"chapter": 5,
+"id": "fr:05:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 17,
+"options": [
+"avais",
+"a",
+"avez"
+],
+"slot": 2
+},
+{
+"bad": "aurais",
+"chapter": 6,
+"id": "fr:05:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"ont",
+"avez",
+"aurais"
+],
+"slot": 1
+},
+{
+"bad": "avaient",
+"chapter": 6,
+"id": "fr:05:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 35,
+"options": [
+"aura",
+"avaient",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "aurai",
+"chapter": 6,
+"id": "fr:05:42:lab",
+"item": 42,
+"kind": "match",
+"near": 12,
+"options": [
+"a",
+"as",
+"aurai"
+],
+"slot": 1
+},
+{
+"bad": "Rendez-vous",
+"chapter": 7,
+"id": "fr:05:45:lab",
+"item": 45,
+"kind": "build",
+"near": 27,
+"options": [
+"Rendez-vous",
+"J’ai",
+"D’eau"
+],
+"slot": 0
+},
+{
+"bad": "avaient",
+"chapter": 7,
+"id": "fr:05:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 15,
+"options": [
+"avez",
+"avons",
+"avaient"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"avoir",
+"j’ai"
+],
+[
+"tu",
+"as"
+],
+[
+"il / elle",
+"a"
+],
+[
+"nous",
+"avons"
+],
+[
+"vous",
+"avez"
+],
+[
+"ils / elles",
+"ont"
+],
+[
+"avoir faim",
+"J’ai faim."
+],
+[
+"avoir besoin de",
+"Elle a besoin d’eau."
+]
+],
+"title": {
+"en": "What I have: `avoir`",
+"ru": "Что у меня есть: `avoir`",
+"uk": "Що маю: `avoir`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:05:01",
+"target": "J’ai une clé.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "fr:05:02",
+"target": "Tu as une clé.",
+"ru": "У тебя есть ключ.",
+"uk": "У тебе є ключ."
+},
+{
+"id": "fr:05:03",
+"target": "Elle a un sac.",
+"ru": "У неё есть сумка.",
+"uk": "У неї є сумка."
+},
+{
+"id": "fr:05:05",
+"target": "Nous avons un plan.",
+"ru": "У нас есть план.",
+"uk": "У нас є план."
+},
+{
+"id": "fr:05:06",
+"target": "Vous avez un plan.",
+"ru": "У вас есть план.",
+"uk": "У вас є план."
+},
+{
+"id": "fr:05:07",
+"target": "Ils ont un billet.",
+"ru": "У них есть билет.",
+"uk": "Вони мають квиток."
+},
+{
+"id": "fr:05:11",
+"target": "J’ai faim.",
+"ru": "Я голоден.",
+"uk": "Я голодний."
+},
+{
+"id": "fr:05:13",
+"target": "J’ai soif.",
+"ru": "Мне хочется пить.",
+"uk": "Я хочу пити."
+},
+{
+"id": "fr:05:15",
+"target": "Nous avons froid.",
+"ru": "Нам холодно.",
+"uk": "Нам холодно."
+},
+{
+"id": "fr:05:21",
+"target": "J’ai vingt ans.",
+"ru": "Мне двадцать лет.",
+"uk": "Мені двадцять років."
+},
+{
+"id": "fr:05:22",
+"target": "Léa a trente ans.",
+"ru": "Леа тридцать лет.",
+"uk": "Леа тридцять років."
+},
+{
+"id": "fr:05:23",
+"target": "Mon frère a dix ans.",
+"ru": "Моему брату десять лет.",
+"uk": "Моєму братові десять років."
+},
+{
+"id": "fr:05:27",
+"target": "J’ai un rendez-vous.",
+"ru": "У меня назначена встреча.",
+"uk": "У мене призначена зустріч."
+},
+{
+"id": "fr:05:31",
+"target": "Avez-vous un stylo ?",
+"ru": "У вас есть ручка?",
+"uk": "У вас є ручка?"
+},
+{
+"id": "fr:05:36",
+"target": "Ils ont les clés du bureau ?",
+"ru": "У них есть ключи от офиса?",
+"uk": "У них є ключі від офісу?"
+},
+{
+"id": "fr:05:41",
+"target": "J’ai besoin d’aide.",
+"ru": "Мне нужна помощь.",
+"uk": "Мені потрібна допомога."
+},
+{
+"id": "fr:05:42",
+"target": "Tu as besoin d’une pause.",
+"ru": "Тебе нужен перерыв.",
+"uk": "Тобі потрібна перерва."
+},
+{
+"id": "fr:05:44",
+"target": "Nous avons besoin d’eau.",
+"ru": "Нам нужна вода.",
+"uk": "Нам потрібна вода."
+},
+{
+"id": "fr:05:46",
+"target": "Vous avez le choix.",
+"ru": "У вас есть выбор.",
+"uk": "У вас є вибір."
+},
+{
+"id": "fr:05:49",
+"target": "J’ai mal à la gorge.",
+"ru": "У меня болит горло.",
+"uk": "У мене болить горло."
+},
+{
+"id": "fr:05:50",
+"target": "Elle a besoin de son ordonnance.",
+"ru": "Ей нужен её рецепт.",
+"uk": "Їй потрібен її рецепт."
+}
+]
+},
+{
+"lesson": 6,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:06:01",
+"fr:06:02",
+"fr:06:03"
+],
+"textByLocale": {
+"en": "An article is a short word before the name of an object. When it's clear to someone which object you're referring to, a definite article is often needed. Remember the name immediately with it, rather than guessing the gender from the translation.",
+"ru": "Артикль — короткое слово перед названием предмета. Когда человеку понятно, какой предмет ты имеешь в виду, часто нужен определённый артикль. Запоминай название сразу с ним, а не угадывай род по переводу.",
+"uk": "Артикль - коротке слово перед назвою предмета. Коли людині зрозуміло, який предмет ти маєш на увазі, часто потрібний певний артикль. Запам'ятай назву одразу з ним, а не вгадуй рід перекладу."
+}
+},
+{
+"exampleIds": [
+"fr:06:04",
+"fr:06:05",
+"fr:06:06"
+],
+"textByLocale": {
+"en": "In the singular, distinguish between `le` and `la` before a consonant. Before a vowel or the silent `h`, both can become `l’`. The apostrophe is attached to the next word: `l’entrée`.",
+"ru": "В единственном числе перед согласной различай `le` и `la`. Перед гласной либо немым `h` оба могут стать `l’`. Апостроф прилегает к следующему слову: `l’entrée`.",
+"uk": "В однині перед згодною різницею `le` і `la`. Перед голосною або німим `h` обидва можуть стати `l’`. Апостроф прилягає до наступного слова: `l’entrée`."
+}
+},
+{
+"exampleIds": [
+"fr:06:11",
+"fr:06:13",
+"fr:06:15"
+],
+"textByLocale": {
+"en": "French also uses a definite article when talking about a category as a whole. `J’aime le café` is usually about coffee as a drink, not about the single cup in front of you.",
+"ru": "Французский также ставит определённый артикль, когда говорит о категории в целом. `J’aime le café` обычно о кофе как напитке, а не об одной чашке, стоящей перед тобой.",
+"uk": "Французька також ставить певний артикль, коли говорить про категорію в цілому. `J’aime le café` зазвичай про каву як напій, а не про одну чашку, що стоїть перед тобою."
+}
+},
+{
+"exampleIds": [
+"fr:06:21",
+"fr:06:23",
+"fr:06:27"
+],
+"textByLocale": {
+"en": "Even if the article is contracted, the gender has not disappeared. For example, `l’école` cannot be treated as a word without gender. Words with the so-called aspirated `h` are not contracted; this property is checked in a dictionary.",
+"ru": "Если артикль сократился, род не исчез. Например, относиться к `l’école` как к слову без рода нельзя. Для слов с так называемым придыхательным `h` сокращения нет; это свойство проверяют по словарю.",
+"uk": "Якщо артикль скоротився, рід не зник. Наприклад, ставитися до `l’école` як до слова без роду не можна. Для слів із так званим придихальним `h` скорочення немає; цю властивість перевіряють за словником."
+}
+},
+{
+"exampleIds": [
+"fr:06:31",
+"fr:06:33",
+"fr:06:37"
+],
+"textByLocale": {
+"en": "In the plural, `les` is suitable for both masculine and feminine genders. In writing, the number is important even when the final letter of the noun is not audible.",
+"ru": "Во множественном числе `les` подходит и к мужскому, и к женскому роду. В написании число важно даже тогда, когда финальная буква существительного не слышна.",
+"uk": "У множині `les` підходить і до чоловічого, і до жіночого роду. У написанні число важливе навіть тоді, коли фінальна літера іменника не чути."
+}
+},
+{
+"exampleIds": [
+"fr:06:41",
+"fr:06:44",
+"fr:06:45"
+],
+"textByLocale": {
+"en": "Don't add a second determiner to an existing one. \"My key\" is `ma clé`, not `la ma clé`. The article in the adjacent object can remain in place.",
+"ru": "Не прибавляй второй определитель к уже готовому. «Мой ключ» — `ma clé`, а не `la ma clé`. Артикль в соседнем дополнении может оставаться на своём месте.",
+"uk": "Не додай другий визначник до готового. \"Мій ключ\" - `ma clé`, а не `la ma clé`. Артикль у сусідньому доповненні може залишатися на своєму місці."
+}
+},
+{
+"exampleIds": [
+"fr:06:48",
+"fr:06:49",
+"fr:06:50"
+],
+"textByLocale": {
+"en": "Find all the noun groups in a long phrase. Each has its own article or a different determiner. Don't choose an article for the second group based on the gender of the first.",
+"ru": "Найди все группы существительных в длинной фразе. У каждой собственный артикль или другой определитель. Не выбирай артикль для второй группы по роду первой.",
+"uk": "Знайди всі групи іменників у довгій фразі. Кожна має власний артикль або інший визначник. Не вибирай артикль для другої групи за першою."
+}
+}
+],
+"drills": [
+{
+"bad": "Le",
+"chapter": 1,
+"id": "fr:06:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"La",
+"Ces",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "De",
+"chapter": 1,
+"id": "fr:06:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 36,
+"options": [
+"Cet",
+"De",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "un",
+"chapter": 1,
+"id": "fr:06:05:lab",
+"item": 5,
+"kind": "match",
+"near": 7,
+"options": [
+"à",
+"un",
+"la"
+],
+"slot": 3
+},
+{
+"bad": "De",
+"chapter": 2,
+"id": "fr:06:08:lab",
+"item": 8,
+"kind": "build",
+"near": 21,
+"options": [
+"Ce",
+"La",
+"De"
+],
+"slot": 0
+},
+{
+"bad": "L’écharpe",
+"chapter": 2,
+"id": "fr:06:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"L’écharpe",
+"L’odeur",
+"L’eau"
+],
+"slot": 0
+},
+{
+"bad": "cet",
+"chapter": 2,
+"id": "fr:06:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"cet",
+"le",
+"des"
+],
+"slot": 1
+},
+{
+"bad": "une",
+"chapter": 3,
+"id": "fr:06:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 17,
+"options": [
+"à",
+"une",
+"le"
+],
+"slot": 2
+},
+{
+"bad": "de",
+"chapter": 3,
+"id": "fr:06:17:lab",
+"item": 17,
+"kind": "match",
+"near": 14,
+"options": [
+"le",
+"de",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "ces",
+"chapter": 3,
+"id": "fr:06:19:lab",
+"item": 19,
+"kind": "build",
+"near": 13,
+"options": [
+"la",
+"une",
+"ces"
+],
+"slot": 2
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "fr:06:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 26,
+"options": [
+"La",
+"Le",
+"Des"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "fr:06:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 9,
+"options": [
+"Les",
+"Le",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "Cet",
+"chapter": 4,
+"id": "fr:06:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 22,
+"options": [
+"Cet",
+"La",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "sommes",
+"chapter": 5,
+"id": "fr:06:29:lab",
+"item": 29,
+"kind": "match",
+"near": 6,
+"options": [
+"est",
+"serai",
+"sommes"
+],
+"slot": 1
+},
+{
+"bad": "Aux",
+"chapter": 5,
+"id": "fr:06:31:lab",
+"item": 31,
+"kind": "build",
+"near": 7,
+"options": [
+"Aux",
+"Un",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "aux",
+"chapter": 5,
+"id": "fr:06:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 4,
+"options": [
+"un",
+"le",
+"aux"
+],
+"slot": 3
+},
+{
+"bad": "Ces",
+"chapter": 6,
+"id": "fr:06:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 3,
+"options": [
+"La",
+"Ces",
+"Ce"
+],
+"slot": 0
+},
+{
+"bad": "Cet",
+"chapter": 6,
+"id": "fr:06:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 3,
+"options": [
+"Cette",
+"Le",
+"Cet"
+],
+"slot": 0
+},
+{
+"bad": "Des",
+"chapter": 6,
+"id": "fr:06:42:lab",
+"item": 42,
+"kind": "match",
+"near": 29,
+"options": [
+"Des",
+"Aux",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "Un",
+"chapter": 7,
+"id": "fr:06:45:lab",
+"item": 45,
+"kind": "build",
+"near": 38,
+"options": [
+"Un",
+"Des",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "L’amie",
+"chapter": 7,
+"id": "fr:06:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 6,
+"options": [
+"L’hôtel",
+"L’amie",
+"L’entrée"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"le",
+"le sac"
+],
+[
+"la",
+"la clé"
+],
+[
+"l’",
+"l’école, l’hôtel"
+],
+[
+"les",
+"les clés, les sacs"
+],
+[
+"la clé",
+"ma clé"
+],
+[
+"le sac",
+"mon sac"
+]
+],
+"title": {
+"en": "Known object: `le`, `la`, `l’`, `les`",
+"ru": "Известный предмет: `le`, `la`, `l’`, `les`",
+"uk": "Відомий предмет: `le`, `la`, `l’`, `les`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:06:01",
+"target": "La clé est sur la table.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ на столі."
+},
+{
+"id": "fr:06:02",
+"target": "Le sac est sous la table.",
+"ru": "Сумка под столом.",
+"uk": "Сумка під столом."
+},
+{
+"id": "fr:06:03",
+"target": "Le billet est dans la poche.",
+"ru": "Билет в кармане.",
+"uk": "Квиток у кишені."
+},
+{
+"id": "fr:06:04",
+"target": "Les lunettes sont sur le lit.",
+"ru": "Очки лежат на кровати.",
+"uk": "Окуляри на ліжку."
+},
+{
+"id": "fr:06:05",
+"target": "L’adresse est sur la carte.",
+"ru": "Адрес указан на карте.",
+"uk": "Адреса на карті."
+},
+{
+"id": "fr:06:06",
+"target": "L’entrée est à droite.",
+"ru": "Вход справа.",
+"uk": "Вхід праворуч."
+},
+{
+"id": "fr:06:11",
+"target": "J’aime le café.",
+"ru": "Мне нравится кофе.",
+"uk": "Я люблю каву."
+},
+{
+"id": "fr:06:13",
+"target": "Elle aime la musique.",
+"ru": "Ей нравится музыка.",
+"uk": "Їй подобається музика."
+},
+{
+"id": "fr:06:15",
+"target": "Nous aimons les livres.",
+"ru": "Мы любим книги.",
+"uk": "Нам подобаються книги."
+},
+{
+"id": "fr:06:21",
+"target": "La banque est fermée.",
+"ru": "Банк закрыт.",
+"uk": "Банк закритий."
+},
+{
+"id": "fr:06:23",
+"target": "L’école est en face.",
+"ru": "Школа находится напротив.",
+"uk": "Школа навпроти."
+},
+{
+"id": "fr:06:27",
+"target": "L’hôtel est près de la gare.",
+"ru": "Отель рядом с вокзалом.",
+"uk": "Готель біля вокзалу."
+},
+{
+"id": "fr:06:31",
+"target": "Le manteau est sur la chaise.",
+"ru": "Пальто лежит на стуле.",
+"uk": "Пальто на стільці."
+},
+{
+"id": "fr:06:33",
+"target": "Les gants sont dans le sac.",
+"ru": "Перчатки в сумке.",
+"uk": "Рукавички в сумці."
+},
+{
+"id": "fr:06:37",
+"target": "Les chaussures sont sous la chaise.",
+"ru": "Обувь под стулом.",
+"uk": "Взуття під стільцем."
+},
+{
+"id": "fr:06:41",
+"target": "La première porte est fermée.",
+"ru": "Первая дверь закрыта.",
+"uk": "Перші двері зачинені."
+},
+{
+"id": "fr:06:44",
+"target": "L’amie de Léa est ici.",
+"ru": "Подруга Леа здесь.",
+"uk": "Подруга Леа тут."
+},
+{
+"id": "fr:06:45",
+"target": "Le frère de Paul est au marché.",
+"ru": "Брат Поля на рынке.",
+"uk": "Брат Поля на ринку."
+},
+{
+"id": "fr:06:48",
+"target": "L’entrée du musée est gratuite.",
+"ru": "Вход в музей бесплатный.",
+"uk": "Вхід до музею безкоштовний."
+},
+{
+"id": "fr:06:49",
+"target": "Les prix sont sur la carte.",
+"ru": "Цены указаны в меню.",
+"uk": "Ціни вказані в меню."
+},
+{
+"id": "fr:06:50",
+"target": "Le nom est sur l’enveloppe.",
+"ru": "Имя на конверте.",
+"uk": "Ім'я на конверті."
+}
+]
+}
+]

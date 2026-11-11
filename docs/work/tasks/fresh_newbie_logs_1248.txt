@@ -1,0 +1,21 @@
+11-05 12:45:50.427 11042 11152 I ReactNativeJS: '[RANK-GATE] verdict', '{"isNew":false,"reason":"no_owner"}'
+11-05 12:45:52.786 11042 11152 I ReactNativeJS: [ONBOARD-LANG] read raw=null known=0 result=en ui=en source=AsyncStorage:study_target_v1
+11-05 12:45:55.330 11042 11152 I ReactNativeJS: '[HOME-FIT]', 'stageH', '{"before":280,"after":332,"planned":280,"source":"first_measure"}'
+11-05 12:45:55.330 11042 11152 I ReactNativeJS: '[HOME-FIT]', '{"planned":280,"actual":332,"headerHeight":0,"reservedTopSpace":52,"windowH":800,"windowW":360,"pillTop":96,"fontScale":1,"title":""}'
+11-05 12:45:55.652 11042 11152 I ReactNativeJS: '[RANK-GATE] verdict', '{"isNew":false,"reason":"no_owner"}'
+11-05 12:45:55.657 11042 11152 I ReactNativeJS: '[WELCOME-B3]', '{"show":false,"reason":"no_owner"}'
+11-05 12:45:56.577 11042 11152 I ReactNativeJS: '[HOME-FIT]', 'stageH', '{"before":332,"after":340,"planned":280,"source":"relayout"}'
+11-05 12:45:56.578 11042 11152 I ReactNativeJS: '[HOME-FIT]', '{"planned":280,"actual":340,"headerHeight":126,"reservedTopSpace":60,"windowH":800,"windowW":360,"pillTop":96,"fontScale":1,"title":""}'
+11-05 12:46:01.111 11042 11152 I ReactNativeJS: '[RANK-GATE] verdict', '{"isNew":false,"reason":"no_timestamp","owner":"3f38ad…","completedAtMs":null,"accountCreatedAtMs":1793882757001,"priorProgress":false,"sinceMs":1793841350582}'
+11-05 12:46:01.115 11042 11152 I ReactNativeJS: '[RANK-GATE] verdict', '{"isNew":false,"reason":"no_timestamp","owner":"3f38ad…","completedAtMs":null,"accountCreatedAtMs":1793882757001,"priorProgress":false,"sinceMs":1793841350582}'
+11-05 12:46:01.118 11042 11152 I ReactNativeJS: '[WELCOME-B3]', '{"show":false,"isNew":false,"reason":"no_timestamp","alreadyShown":false,"attempt":0,"retryInMs":null}'
+11-05 12:46:19.617 11042 11152 I ReactNativeJS: [ONBOARD-LANG] ensure_en: дефолт en записывается (кнопка «Начать»/новый аккаунт), ui=en — перезапишет выбор, если он уже был
+11-05 12:46:19.679 11042 11152 I ReactNativeJS: [ONBOARD-LANG] ensure_en: дефолт en записывается (кнопка «Начать»/новый аккаунт), ui=en — перезапишет выбор, если он уже был
+11-05 12:46:21.926 11042 11152 I ReactNativeJS: '[HOME-FIT]', 'stageH', '{"before":340,"after":317,"planned":280,"source":"relayout"}'
+11-05 12:46:21.929 11042 11152 I ReactNativeJS: '[HOME-FIT]', '{"planned":280,"actual":317,"headerHeight":126,"reservedTopSpace":60,"windowH":800,"windowW":360,"pillTop":96,"fontScale":1,"title":"Start lesson 1"}'
+11-05 12:46:22.651 11042 11152 I ReactNativeJS: [ONBOARD-LANG] lock_decision target=en locked=0 reason=no_record primary=none
+11-05 12:46:22.705 11042 11152 I ReactNativeJS: [ONBOARD-LANG] set requested=en written=en before=en ui=en
+11-05 12:46:22.710 11042 11152 I ReactNativeJS: [ONBOARD-LANG] set requested=en written=en before=en ui=en
+11-05 12:46:22.739 11042 11152 I ReactNativeJS: [ONBOARD-LANG] read raw=en known=1 result=en ui=en source=AsyncStorage:study_target_v1
+11-05 12:46:22.848 11042 11152 I ReactNativeJS: [ONBOARD-LANG] set requested=en written=en before=en ui=en
+11-05 12:46:22.853 11042 11152 I ReactNativeJS: [ONBOARD-LANG] set requested=en written=en before=en ui=en

@@ -9,6 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useMemo } from 'react';
 import { PixelRatio, type ImageSourcePropType } from 'react-native';
+import { onAccountOwnerChanged } from '../app/account_owner_change';
 import { coinRankSourceForSize, COIN_RANK_MIN } from '../app/coin_rank_table_v1';
 import { useMyCoinRank } from './use_my_coin_rank';
 
@@ -18,6 +19,8 @@ export const MY_RANK_COIN_DEFAULT_SIZE = 48;
 
 export type MyRankCoinOrigin = 'live' | 'last_known' | 'pending_base';
 let lastKnownRank: number | null = null;
+// зачем (F17, аудит, владелец 11.11): пока ранг нового игрока не прочитан, монета рисовалась рангом прошлого
+onAccountOwnerChanged('my_rank_coin_last_known', () => { lastKnownRank = null; });
 let lastLoggedKey = '';
 
 /** Ранг монеты для показа и откуда он взят (без сети). */

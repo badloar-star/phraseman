@@ -1,0 +1,964 @@
+[
+{
+"lesson": 11,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:11:01",
+"de:11:04"
+],
+"textByLocale": {
+"en": "Describing a place is like writing a caption under a photograph. You're not moving the object, you're helping it find it. The key is on the table, the passport is inside the bag. Choose a preposition based on where exactly you need to look.",
+"ru": "Описание места — как подпись под фотографией. Ты не переносишь предмет, а помогаешь его найти. Ключ лежит на столе, паспорт лежит внутри сумки. Выбирай предлог по тому, где именно надо искать.",
+"uk": "Опис місця – як підпис під фотографією. Ти не переносиш предмет, а допомагаєш його знайти. Ключ лежить на столі, паспорт лежить усередині сумки. Вибирай прийменник того, де саме треба шукати."
+}
+},
+{
+"exampleIds": [
+"de:11:05",
+"de:11:08"
+],
+"textByLocale": {
+"en": "Lying, standing, hanging, or sitting? German descriptions of places are often more precise than simply \"being.\" The glasses are lying down, the suitcase is standing, the jacket is hanging, and the person is sitting. These aren't four different case rules.",
+"ru": "Лежать, стоять, висеть или сидеть? Немецкое описание места нередко точнее простого «находиться». Очки лежат, чемодан стоит, куртка висит, а человек сидит. Это не четыре разных падежных правила.",
+"uk": "Лежати, стояти, висіти чи сидіти? Німецький опис місця нерідко точніше простого «перебувати». Окуляри лежать, валіза стоїть, куртка висить, а людина сидить. Це не чотири різні відмінкові правила."
+}
+},
+{
+"exampleIds": [
+"de:11:11",
+"de:11:15"
+],
+"textByLocale": {
+"en": "One object has different neighbors: in front of the door, next to it, behind the cabinet. Change the preposition when the relative position changes, but when responding to `wo`,\" keep the dative case for these prepositions.",
+"ru": "У одного предмета разные соседи: перед дверью, рядом с нею, за шкафом. Меняй предлог, когда меняется относительное положение, но для ответа на `wo` у этих предлогов сохраняй дательный падеж.",
+"uk": "В одного предмета різні сусіди: перед дверима, поруч із нею, за шафою. Міняй прийменник, коли змінюється відносне становище, але для відповіді на `wo` у цих прийменників зберігай дальний відмінок."
+}
+},
+{
+"exampleIds": [
+"de:11:16",
+"de:11:20"
+],
+"textByLocale": {
+"en": "If a mirror hangs above the sink, it doesn't move upward. `Über` conveys the relative position of two things. The object relative to which they are oriented comes after the preposition.",
+"ru": "Если зеркало висит над раковиной, оно не движется вверх. `Über` передаёт взаимное положение двух вещей. Объект, относительно которого ориентируются, идёт после предлога.",
+"uk": "Якщо дзеркало висить над раковиною, воно не рухається вгору. `Über` передає взаємне становище двох речей. Об'єкт, щодо якого орієнтуються, йде після прийменника."
+}
+},
+{
+"exampleIds": [
+"de:11:21",
+"de:11:25"
+],
+"textByLocale": {
+"en": "The preposition `in` has a common abbreviation `im` for `in dem`. `im` is not followed by `dem`.\" To refer to a feminine kitchen, the full form `in der` remains.",
+"ru": "У предлога `in` есть обычное сокращение `im` для `in dem`. После `im` не ставят ещё одно `dem`. Чтобы сказать про кухню женского рода, остаётся полная форма `in der`.",
+"uk": "Прийменник `in` має звичайне скорочення `im` для `in dem`. Після `im` не ставлять ще одне `dem`. Щоб сказати про кухню жіночого роду залишається повна форма `in der`."
+}
+},
+{
+"exampleIds": [
+"de:11:28",
+"de:11:30"
+],
+"textByLocale": {
+"en": "Movement does not necessarily indicate the accusative case. A dog can run inside a garden, and a person can swim in a lake. If you report where the movement is happening, it is still a question of \"where?\"",
+"ru": "Движение ещё не означает винительный падеж. Собака может бегать внутри сада, а человек — плавать в озере. Если сообщаешь, где происходит движение, это всё ещё вопрос «где?».",
+"uk": "Рух ще не означає знахідний відмінок. Собака може бігати всередині саду, а людина плавати в озері. Якщо повідомляєш, де відбувається рух, це ще питання «де?»."
+}
+},
+{
+"exampleIds": [
+"de:11:41",
+"de:11:50"
+],
+"textByLocale": {
+"en": "Restore the picture using the words: find the object and the landmark. There's a spoon in the drawer, and a dog is sleeping under the sofa. The verb describes the first object, and the second case group specifies the locative relation.",
+"ru": "Восстанови картину по словам: найди вещь и ориентир. В ящике лежит ложка, под диваном спит собака. Глагол описывает именно первую вещь, а падеж второй группы задаёт местное отношение.",
+"uk": "Віднови картину за словами: знайди річ та орієнтир. У ящику лежить ложка, під диваном спить собака. Дієслово описує саме першу річ, а відмінок другої групи ставить місцеве ставлення."
+}
+}
+],
+"lab": [
+{
+"bad": "Des",
+"chapter": 1,
+"id": "de:11:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Des",
+"Das",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "Die",
+"chapter": 1,
+"id": "de:11:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"Den",
+"Die",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "aufs",
+"chapter": 1,
+"id": "de:11:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"beim",
+"im",
+"aufs"
+],
+"slot": 3
+},
+{
+"bad": "in",
+"chapter": 2,
+"id": "de:11:08:lab",
+"item": 8,
+"kind": "build",
+"near": 9,
+"options": [
+"auf",
+"in",
+"vor"
+],
+"slot": 2
+},
+{
+"bad": "zum",
+"chapter": 2,
+"id": "de:11:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 6,
+"options": [
+"im",
+"zum",
+"ans"
+],
+"slot": 3
+},
+{
+"bad": "Das",
+"chapter": 2,
+"id": "de:11:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Der",
+"Die",
+"Das"
+],
+"slot": 0
+},
+{
+"bad": "auf",
+"chapter": 3,
+"id": "de:11:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 15,
+"options": [
+"vor",
+"neben",
+"auf"
+],
+"slot": 3
+},
+{
+"bad": "des",
+"chapter": 3,
+"id": "de:11:17:lab",
+"item": 17,
+"kind": "match",
+"near": 6,
+"options": [
+"den",
+"der",
+"des"
+],
+"slot": 4
+},
+{
+"bad": "Den",
+"chapter": 3,
+"id": "de:11:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Den",
+"Der",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "am",
+"chapter": 4,
+"id": "de:11:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 23,
+"options": [
+"zum",
+"am",
+"im"
+],
+"slot": 2
+},
+{
+"bad": "den",
+"chapter": 4,
+"id": "de:11:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"dem",
+"der",
+"den"
+],
+"slot": 3
+},
+{
+"bad": "bin",
+"chapter": 4,
+"id": "de:11:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 44,
+"options": [
+"bin",
+"war",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "Das",
+"chapter": 5,
+"id": "de:11:29:lab",
+"item": 29,
+"kind": "match",
+"near": 23,
+"options": [
+"Das",
+"Der",
+"Dem"
+],
+"slot": 0
+},
+{
+"bad": "die",
+"chapter": 5,
+"id": "de:11:31:lab",
+"item": 31,
+"kind": "build",
+"near": 47,
+"options": [
+"die",
+"der",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "ans",
+"chapter": 5,
+"id": "de:11:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 30,
+"options": [
+"ans",
+"am",
+"im"
+],
+"slot": 3
+},
+{
+"bad": "unter",
+"chapter": 6,
+"id": "de:11:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 42,
+"options": [
+"unter",
+"neben",
+"vor"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 6,
+"id": "de:11:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 24,
+"options": [
+"der",
+"dem",
+"des"
+],
+"slot": 4
+},
+{
+"bad": "über",
+"chapter": 6,
+"id": "de:11:42:lab",
+"item": 42,
+"kind": "match",
+"near": 46,
+"options": [
+"über",
+"vor",
+"auf"
+],
+"slot": 3
+},
+{
+"bad": "in",
+"chapter": 7,
+"id": "de:11:45:lab",
+"item": 45,
+"kind": "build",
+"near": 27,
+"options": [
+"in",
+"auf",
+"vor"
+],
+"slot": 3
+},
+{
+"bad": "Ecke",
+"chapter": 7,
+"id": "de:11:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 4,
+"options": [
+"Büro",
+"Ecke",
+"Heft"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"der Tisch",
+"auf dem Tisch"
+],
+[
+"die Tasche",
+"in der Tasche"
+],
+[
+"das Auto",
+"im Auto"
+],
+[
+"die Bücher",
+"zwischen den Büchern"
+],
+[
+"wo?",
+"im Garten"
+]
+],
+"title": {
+"en": "Where something is: `wo?`",
+"ru": "Где: предмет уже находится на месте",
+"uk": "Де міститься предмет: `wo?`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі."
+},
+{
+"id": "de:11:04",
+"target": "Das Handy liegt in der Tasche.",
+"ru": "Телефон в сумке.",
+"uk": "Телефон у сумці."
+},
+{
+"id": "de:11:05",
+"target": "Die Brille liegt im Auto.",
+"ru": "Очки лежат в машине.",
+"uk": "Окуляри лежать у машині."
+},
+{
+"id": "de:11:08",
+"target": "Tom sitzt auf dem Stuhl.",
+"ru": "Том сидит на стуле.",
+"uk": "Том сидить на стільці."
+},
+{
+"id": "de:11:11",
+"target": "Das Fahrrad steht vor der Tür.",
+"ru": "Велосипед стоит перед дверью.",
+"uk": "Велосипед стоїть перед дверима."
+},
+{
+"id": "de:11:15",
+"target": "Die Kiste steht hinter dem Schrank.",
+"ru": "Ящик стоит за шкафом.",
+"uk": "Ящик стоїть за шафою."
+},
+{
+"id": "de:11:16",
+"target": "Der Spiegel hängt über dem Waschbecken.",
+"ru": "Зеркало висит над раковиной.",
+"uk": "Дзеркало висить над раковиною."
+},
+{
+"id": "de:11:20",
+"target": "Der Teppich liegt vor dem Sofa.",
+"ru": "Ковёр лежит перед диваном.",
+"uk": "Килим лежить перед диваном."
+},
+{
+"id": "de:11:21",
+"target": "Ich bin in der Küche.",
+"ru": "Я на кухне.",
+"uk": "Я на кухні."
+},
+{
+"id": "de:11:25",
+"target": "Wir sind im Zimmer.",
+"ru": "Мы в комнате.",
+"uk": "Ми в кімнаті."
+},
+{
+"id": "de:11:28",
+"target": "Die Kinder spielen auf dem Spielplatz.",
+"ru": "Дети играют на площадке.",
+"uk": "Діти грають на майданчику."
+},
+{
+"id": "de:11:30",
+"target": "Anna schwimmt im See.",
+"ru": "Анна плавает в озере.",
+"uk": "Анна плаває в озері."
+},
+{
+"id": "de:11:41",
+"target": "Die Post liegt zwischen der Bank und dem Hotel.",
+"ru": "Почта находится между банком и гостиницей.",
+"uk": "Пошта знаходиться між банком та готелем."
+},
+{
+"id": "de:11:50",
+"target": "Der Hund schläft unter dem Tisch.",
+"ru": "Собака спит под столом.",
+"uk": "Собака спить під столом."
+}
+]
+},
+{
+"lesson": 12,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:12:01",
+"de:12:02"
+],
+"textByLocale": {
+"en": "You don't say where the passport is now: you put it in your bag. A new position requires an action verb. Compare `liegt` with `legt`: the former describes the result, the latter describes the object's movement there.",
+"ru": "Ты не сообщаешь, где паспорт лежит сейчас: ты кладёшь его в сумку. Для нового положения нужен глагол действия. Сравни `liegt` с `legt`: первое описывает результат, второе — движение предмета туда.",
+"uk": "Ти не повідомляєш, де паспорт лежить зараз: ти кладеш його в сумку. Для нового положення потрібне дієслово дії. Порівняй `liegt` з `legt`: перше описує результат, друге - рух предмета туди."
+}
+},
+{
+"exampleIds": [
+"de:12:03",
+"de:12:05"
+],
+"textByLocale": {
+"en": "In German, a distinction is often made between how an object is positioned and how it is lying. A small, flat object is usually placed down, while a cup or chair is placed down. First, choose the action, and only then the article of destination.",
+"ru": "В немецком часто различают, как будет стоять или лежать вещь. Небольшой плоский предмет обычно кладут, а чашку или стул ставят. Сначала выбери действие, только потом артикль места назначения.",
+"uk": "У німецькій мові часто розрізняють, як стоятиме чи лежатиме річ. Невеликий плоский предмет зазвичай кладуть, а чашку чи стілець ставлять. Спочатку вибери дію, тільки потім артикль місця призначення."
+}
+},
+{
+"exampleIds": [
+"de:12:06",
+"de:12:10"
+],
+"textByLocale": {
+"en": "Compare `auf dem Tisch` and `auf den Tisch`.\" In the first case, we are looking on the table; in the second, we are placing the object there. In this lesson, the masculine article form helps us notice the difference both aurally and in writing.",
+"ru": "Сравни `auf dem Tisch` и `auf den Tisch`. В первом случае ищем на столе; во втором туда ставим предмет. В этом уроке форма мужского артикля позволяет заметить разницу на слух и в написании.",
+"uk": "Порівняй `auf dem Tisch` та `auf den Tisch`. У першому випадку шукаємо на столі; у другому туди ставимо предмет. У цьому уроці форма чоловічого артикля дозволяє помітити різницю на слух і написання."
+}
+},
+{
+"exampleIds": [
+"de:12:11",
+"de:12:16"
+],
+"textByLocale": {
+"en": "`An` associates an object with a surface or attachment point. When you hang a picture on the wall, it moves to that surface. A picture already hanging would be described differently.",
+"ru": "`An` связывает предмет с поверхностью или точкой крепления. Когда вешаешь картину на стену, она перемещается на эту поверхность. Уже висящая картина описывалась бы иначе.",
+"uk": "`An` пов'язує предмет з поверхнею або точкою кріплення. Коли вішаєш картину на стіну, вона переміщається на поверхню. Вже висить картина описувалася б інакше."
+}
+},
+{
+"exampleIds": [
+"de:12:21",
+"de:12:30"
+],
+"textByLocale": {
+"en": "A person can also change location themselves. `In den Garten` means they will end up inside a garden. `Im Garten` would refer to the space within which they are already walking or running.",
+"ru": "Человек тоже может сам сменить место. `In den Garten` означает, что он попадёт внутрь сада. `Im Garten` называло бы пространство, внутри которого он уже гуляет или бегает.",
+"uk": "Людина теж може сама змінити місце. `In den Garten` означає, що він потрапить усередину саду. `Im Garten` називало б простір, у якому він вже гуляє чи бігає."
+}
+},
+{
+"exampleIds": [
+"de:12:36",
+"de:12:40"
+],
+"textByLocale": {
+"en": "This is not a rule for any preposition denoting direction. `Zu` retains the dative case even when moving toward the doctor. Here, only prepositions that can change case with place and purpose are compared.",
+"ru": "Это не правило для любого предлога со значением направления. `Zu` сохраняет дательный даже при движении к врачу. Здесь сравниваются только предлоги, способные менять падеж с местом и целью.",
+"uk": "Це не правило для будь-якого приводу зі значенням напряму. `Zu` зберігає давальне навіть при русі до лікаря. Тут порівнюються лише прийменники, здатні змінювати відмінок з місцем та метою."
+}
+},
+{
+"exampleIds": [
+"de:12:41",
+"de:12:50"
+],
+"textByLocale": {
+"en": "Test yourself with the words \"where did the object end up?\" The ball doesn't simply roll somewhere under the sofa: in the final sentence, it rolls underneath it. The overall meaning is more important than the mechanical counting of verbs of motion.",
+"ru": "Проверь себя словами «где оказался предмет?». Мяч не просто катится где-то под диваном: в заключительной фразе он закатывается под него. Общий смысл важнее механического подсчёта глаголов движения.",
+"uk": "Перевір себе словами «де виявився предмет?». М'яч не просто котиться десь під диваном: у заключній фразі він закочується під нього. Загальний зміст важливіший за механічний підрахунок дієслів руху."
+}
+}
+],
+"lab": [
+{
+"bad": "der",
+"chapter": 1,
+"id": "de:12:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 6,
+"options": [
+"der",
+"die",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 1,
+"id": "de:12:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 23,
+"options": [
+"den",
+"die",
+"der"
+],
+"slot": 2
+},
+{
+"bad": "das",
+"chapter": 1,
+"id": "de:12:05:lab",
+"item": 5,
+"kind": "match",
+"near": 35,
+"options": [
+"das",
+"des",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 2,
+"id": "de:12:08:lab",
+"item": 8,
+"kind": "build",
+"near": 44,
+"options": [
+"die",
+"der",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "die",
+"chapter": 2,
+"id": "de:12:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 48,
+"options": [
+"des",
+"das",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 2,
+"id": "de:12:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 13,
+"options": [
+"das",
+"dem",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 3,
+"id": "de:12:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 45,
+"options": [
+"dem",
+"der",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 3,
+"id": "de:12:17:lab",
+"item": 17,
+"kind": "match",
+"near": 22,
+"options": [
+"des",
+"den",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 3,
+"id": "de:12:19:lab",
+"item": 19,
+"kind": "build",
+"near": 2,
+"options": [
+"den",
+"das",
+"der"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 4,
+"id": "de:12:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 17,
+"options": [
+"den",
+"der",
+"das"
+],
+"slot": 3
+},
+{
+"bad": "des",
+"chapter": 4,
+"id": "de:12:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"dem",
+"des",
+"die"
+],
+"slot": 3
+},
+{
+"bad": "dem",
+"chapter": 4,
+"id": "de:12:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 39,
+"options": [
+"dem",
+"des",
+"den"
+],
+"slot": 3
+},
+{
+"bad": "Dem",
+"chapter": 5,
+"id": "de:12:29:lab",
+"item": 29,
+"kind": "match",
+"near": 25,
+"options": [
+"Dem",
+"Das",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "des",
+"chapter": 5,
+"id": "de:12:31:lab",
+"item": 31,
+"kind": "build",
+"near": 40,
+"options": [
+"das",
+"des",
+"die"
+],
+"slot": 3
+},
+{
+"bad": "des",
+"chapter": 5,
+"id": "de:12:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 20,
+"options": [
+"des",
+"die",
+"der"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 6,
+"id": "de:12:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 43,
+"options": [
+"den",
+"dem",
+"die"
+],
+"slot": 3
+},
+{
+"bad": "des",
+"chapter": 6,
+"id": "de:12:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 26,
+"options": [
+"den",
+"des",
+"der"
+],
+"slot": 3
+},
+{
+"bad": "im",
+"chapter": 6,
+"id": "de:12:42:lab",
+"item": 42,
+"kind": "match",
+"near": 9,
+"options": [
+"zum",
+"ans",
+"im"
+],
+"slot": 3
+},
+{
+"bad": "die",
+"chapter": 7,
+"id": "de:12:45:lab",
+"item": 45,
+"kind": "build",
+"near": 14,
+"options": [
+"die",
+"den",
+"der"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 7,
+"id": "de:12:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 34,
+"options": [
+"das",
+"die",
+"der"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"wo?",
+"wohin?"
+],
+[
+"auf dem Tisch",
+"auf den Tisch"
+],
+[
+"in der Tasche",
+"in die Tasche"
+],
+[
+"im Garten",
+"in den Garten"
+],
+[
+"im Auto",
+"ins Auto"
+],
+[
+"an der Wand",
+"an die Wand"
+]
+],
+"title": {
+"en": "Where something is going: `wohin?`",
+"ru": "Куда: переместить или положить",
+"uk": "Куди кладемо або переносимо предмет: `wohin?`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:12:01",
+"target": "Ich lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.",
+"uk": "Я кладу ключ на стіл."
+},
+{
+"id": "de:12:02",
+"target": "Ich lege den Pass in die Tasche.",
+"ru": "Я кладу паспорт в сумку.",
+"uk": "Я кладу паспорт у сумку."
+},
+{
+"id": "de:12:03",
+"target": "Anna legt die Brille ins Auto.",
+"ru": "Анна кладёт очки в машину.",
+"uk": "Анна кладе окуляри у машину."
+},
+{
+"id": "de:12:05",
+"target": "Wir legen den Teppich vor das Sofa.",
+"ru": "Мы стелем ковёр перед диваном.",
+"uk": "Ми стелимо килим перед диваном."
+},
+{
+"id": "de:12:06",
+"target": "Ich stelle die Tasse auf den Tisch.",
+"ru": "Я ставлю чашку на стол.",
+"uk": "Я ставлю чашку на стіл."
+},
+{
+"id": "de:12:10",
+"target": "Wir stellen das Fahrrad in den Flur.",
+"ru": "Мы ставим велосипед в прихожую.",
+"uk": "Ми ставимо велосипед до передпокою."
+},
+{
+"id": "de:12:11",
+"target": "Ich hänge die Jacke an den Haken.",
+"ru": "Я вешаю куртку на крючок.",
+"uk": "Я вішаю куртку на гачок."
+},
+{
+"id": "de:12:16",
+"target": "Ich stecke den Ausweis in die Jacke.",
+"ru": "Я кладу удостоверение в куртку.",
+"uk": "Я кладу посвідчення у куртку."
+},
+{
+"id": "de:12:21",
+"target": "Ich gehe in die Küche.",
+"ru": "Я иду на кухню.",
+"uk": "Я йду на кухню."
+},
+{
+"id": "de:12:30",
+"target": "Anna steigt in den Bus.",
+"ru": "Анна садится в автобус.",
+"uk": "Анна сідає до автобуса."
+},
+{
+"id": "de:12:36",
+"target": "Gehen wir an den See?",
+"ru": "Пойдём к озеру?",
+"uk": "Ходімо до озера?"
+},
+{
+"id": "de:12:40",
+"target": "Setzt du dich auf die Bank?",
+"ru": "Ты садишься на скамейку?",
+"uk": "Ти сідаєш на лаву?"
+},
+{
+"id": "de:12:41",
+"target": "Ich setze mich neben Anna.",
+"ru": "Я сажусь рядом с Анной.",
+"uk": "Я сідаю поряд з Ганною."
+},
+{
+"id": "de:12:50",
+"target": "Der Ball rollt unter das Sofa.",
+"ru": "Мяч закатывается под диван.",
+"uk": "М'яч закочується під диван."
+}
+]
+}
+]

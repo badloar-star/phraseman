@@ -5,7 +5,6 @@
 // Показывает: статус «Premium активирован», название плана, дату след. списания
 // и сумму (из RevenueCat customerInfo), список включённого, карточку «Перейти
 // на годовой» (Google DEFERRED-проплейшн) и кнопку «Отменить подписку» →
-// шит-опрос (logCancelSurvey) → переход в стор для фактической отмены.
 //
 // Данные о подписке — авторитетно из стора (Purchases.getCustomerInfo). Никаких
 // фейковых дат/сумм: если данных нет, поле просто не показывается.
@@ -26,9 +25,8 @@ import { useSubscriptionTier } from '../components/plus/use_subscription_tier';
 import { isDevManageLoadingHold } from './dev_paywall_state';
 import {
   View, Text, ScrollView, StyleSheet, ActivityIndicator,
-  KeyboardAvoidingView, Linking, Platform, TextInput, type LayoutChangeEvent,
+  KeyboardAvoidingView, Linking, Platform, type LayoutChangeEvent,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenBackButton, { ScreenBackZone, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -42,11 +40,11 @@ import DuoPressable from '../components/DuoPressable';
 import FullscreenHybridEntrance from '../components/feedback/FullscreenHybridEntrance';
 import { useKeyboardBottomInset } from '../components/keyboardAvoidance';
 import PressableHybrid from '../components/PressableHybrid';
+import { ManageSubscriptionDuoGlow, ManageSubscriptionDuoView } from '../components/manage-subscription/ManageSubscriptionDuoView';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import { useScreen } from '../hooks/use-screen';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim, storeUnreachableToast } from './paywall_purchase';
@@ -57,7 +55,7 @@ import {
   revenueCatPremiumMetadata,
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
-import { logCancelSurvey, logChangePlanStarted } from './firebase';
+import { logChangePlanStarted } from './firebase';
 import { trackEvent } from './analytics';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
@@ -74,18 +72,13 @@ import {
   isManageSubscriptionOperationCurrent,
 } from './manage_subscription_purchase';
 import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
-import { peekHomeScreenHydration } from './home_screen_hydration';
-import { DEV_SAVE_OFFER_PROGRESS, getDevSaveOfferProgress, takeDevSaveOfferOpen } from './dev_save_offer_progress';
+import { readRealPremiumSnapshotForGeneration } from './premium_real_storage';
 import { isDevRestorePurchaseEmpty } from './dev_paywall_state';
-import {
-  resolveSaveOffer,
-  type SaveOfferKind,
-  type SaveOfferProgress,
-} from './manage_subscription_save_offer';
 import { DebugLogger } from './debug-logger';
 import { peekPaywallPriceCache } from './paywall_price_cache';
 import { resolvePaywallReferencePrices } from './paywall_reference_prices';
 import { withPurchaseFlow } from './purchase_flow_activity';
+import { confirmRestoreOwnerOnServer, restoreOwnerNotConfirmedToast } from './restore_owner_confirmation';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Потолок ожидания магазина при «Восстановить» (решение координатора 15.10). */
@@ -120,17 +113,6 @@ const INCLUDED: ManageSubscriptionBenefit[] = [
   { benefitId: 'streak_freezes', icon: 'snow-outline', ru: '3 заморозки серии в месяц', uk: '3 заморозки серії на місяць', en: '3 streak freezes per month', es: '3 protecciones de racha al mes', 'pt-BR': '3 congelamentos de sequência por mês', vi: '3 lần đóng băng chuỗi mỗi tháng', id: '3 pembekuan rangkaian per bulan', tr: 'Ayda 3 seri dondurma', pl: '3 zamrożenia serii miesięcznie' },
   { benefitId: 'detailed_stats', icon: 'trending-up-outline', ru: 'Подробная статистика занятий', uk: 'Докладна статистика занять', en: 'Detailed learning statistics', es: 'Estadísticas detalladas de aprendizaje', 'pt-BR': 'Estatísticas detalhadas de estudo', vi: 'Thống kê học tập chi tiết', id: 'Statistik belajar terperinci', tr: 'Ayrıntılı çalışma istatistikleri', pl: 'Szczegółowe statystyki nauki' },
   { benefitId: 'flashcard_training', icon: 'layers-outline', ru: 'Тренировки с карточками без ограничений', uk: 'Тренування з картками без обмежень', en: 'Unlimited flashcard training', es: 'Entrenamiento con tarjetas sin límites', 'pt-BR': 'Treinos com cartões sem limites', vi: 'Luyện tập thẻ ghi nhớ không giới hạn', id: 'Latihan kartu tanpa batas', tr: 'Sınırsız kart çalışması', pl: 'Trening z kartami bez ograniczeń' },
-];
-
-// Причины отмены для шит-опроса (logCancelSurvey).
-// зачем (координатор 13.10): у причин не было en, а вызов клал r.ru в слот en — 6 причин по-русски в английском интерфейсе.
-const CANCEL_REASONS: ({ key: string } & ManageSubscriptionCopy)[] = [
-  { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', en: 'Too expensive', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' },
-  { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', en: 'I don’t use it enough', es: 'No lo uso lo suficiente', 'pt-BR': 'Não uso o suficiente', vi: 'Tôi không dùng đủ nhiều', id: 'Saya tidak cukup sering memakainya', tr: 'Yeterince kullanmıyorum', pl: 'Nie korzystam wystarczająco' },
-  { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', en: 'Missing features', es: 'Faltan funciones', 'pt-BR': 'Faltam recursos', vi: 'Thiếu tính năng', id: 'Fitur kurang', tr: 'Özellikler eksik', pl: 'Brakuje funkcji' },
-  { key: 'technical', ru: 'Технические проблемы', uk: 'Технічні проблеми', en: 'Technical problems', es: 'Problemas técnicos', 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' },
-  { key: 'temporary', ru: 'Временно, вернусь позже', uk: 'Тимчасово, повернусь пізніше', en: 'Temporary, I’ll come back later', es: 'Temporal, vuelvo luego', 'pt-BR': 'Temporário, volto depois', vi: 'Tạm thời, tôi sẽ quay lại sau', id: 'Sementara, nanti saya kembali', tr: 'Geçici, sonra döneceğim', pl: 'Tymczasowo, wrócę później' },
-  { key: 'other', ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 ];
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
@@ -272,7 +254,6 @@ export default function ManageSubscription() {
   const glass = liquidGlassTokens(liquidGlassThemeId);
   // зачем (контраст-гейт OTA 25.10, Темы): подпись плашек «дней подряд / уроков» — secondary на buttonFillDisabled поверх шторки давала
   // до 3,09 в 78 из 174 сочетаний; тот же серый тон темы, доведённый к тексту до ≥ 4,5 на плашке
-  const offerStatLabelInk = legibleOn(glass.secondary, glass.text, [flattenOver(glass.buttonFillDisabled, flattenOver(glass.opaqueSheet, glass.bg))], 4.55);
   const designScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
   const scaled = useCallback((value: number) => Math.round(value * designScale), [designScale]);
   // зачем (владелец 06.11, Plus/Ultra): у владельца годовой подписки все строки экрана говорят «Ultra» (название не переводится), у месячной — «Plus».
@@ -325,20 +306,6 @@ export default function ManageSubscription() {
   const restoringRef = useRef(false);
   const restoreRunRef = useRef(0); // зачем (потолок 15.10): номер запуска «Восстановить» — поздний finally старого запуска не снимает замок нового
   const [showRestoreEmpty, setShowRestoreEmpty] = useState(false);
-  const [showCancelSheet, setShowCancelSheet] = useState(false);
-  const [cancelReason, setCancelReason] = useState<string | null>(null);
-  const [cancelText, setCancelText] = useState('');
-  // зачем (аудит 2026-08-24): шаг удержания живёт ВНУТРИ того же шита, а не
-  // вторым модальным окном поверх первого — модалка над модалкой на телефоне
-  // читается как ловушка и мешает уйти. 'reasons' → 'offer' → стор.
-  const [cancelStep, setCancelStep] = useState<'reasons' | 'offer'>('reasons');
-  const [saveOffer, setSaveOffer] = useState<SaveOfferKind>('none');
-  const [offerProgress, setOfferProgress] = useState<SaveOfferProgress | null>(null);
-  // зачем (2026-08-24): шит закрывается синхронно, но кадр с кнопкой ещё живёт —
-  // быстрый двойной тап успевал вызвать router.push дважды и открыть экран
-  // обращения двумя слоями. Ref, а не state: не требует перерисовки и не
-  // проигрывает гонку внутри одного кадра.
-  const saveOfferBusyRef = useRef(false);
   const screenAccountRef = useRef(screenAccount);
 
   useEffect(() => {
@@ -356,18 +323,6 @@ export default function ManageSubscription() {
       setYearlyPkg(null);
       setYearlyPriceStr('');
       setChanging(false);
-      setShowCancelSheet(false);
-      setCancelReason(null);
-      setCancelText('');
-      // зачем: шаг удержания и прогресс тоже принадлежат прошлому аккаунту —
-      // без сброса новый владелец устройства увидел бы чужие стрик/уроки/опыт
-      // (класс бага «чужие пиксели после смены аккаунта»).
-      setCancelStep('reasons');
-      setSaveOffer('none');
-      setOfferProgress(null);
-      // Иначе взведённый тапом замок пережил бы смену аккаунта и новый владелец
-      // не смог бы нажать ни одну кнопку удержания.
-      saveOfferBusyRef.current = false;
       setScreenAccount(next);
     };
     acceptAccount(captureAccountGeneration());
@@ -395,11 +350,12 @@ export default function ManageSubscription() {
         // плана) читаем ПЕРВЫМ и отдельно от RevenueCat — он не требует сети и обычно уже
         // точнее route-параметра (знает lifetime/expiry), поэтому обновляет fallbackPlan
         // ещё до того, как достучимся до RevenueCat.
-        const localPairs = await AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id']);
+        const localSnapshot = await readRealPremiumSnapshotForGeneration(generation);
+        if (!isBootstrapCurrent()) return;
         // зачем (координатор 12.10, R1 «нет пути»): dev `plan=yearly|monthly|lifetime` — план из памяти процесса, хранилище и облако не трогаем; в стор-сборке null.
         const devPlan = getDevPlanOverride();
-        const storedPlan = devPlan ? devPlan.plan : localPairs.find(p => p[0] === 'premium_plan')?.[1];
-        const storedProductId = devPlan ? '' : localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
+        const storedPlan = devPlan ? devPlan.plan : (localSnapshot?.active ? localSnapshot.plan : null);
+        const storedProductId = devPlan ? '' : (localSnapshot?.active ? localSnapshot.rcProductId : null);
         const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
         if (!devPlan) rememberPremiumPlan(storedPlan, storedProductId ?? null, 'manage_local');
         if (isBootstrapCurrent() && nextFallbackPlan) {
@@ -597,6 +553,19 @@ export default function ManageSubscription() {
         setShowRestoreEmpty(true);
         return;
       }
+      // зачем (U23, владелец 09.11 «подписка только на исходном аккаунте»): магазин может вернуть чужую подписку любому аккаунту
+      // на этом телефоне. Раньше тост «Plus вернулся» показывался сразу — для чужого аккаунта это была неправда.
+      // Теперь экран и тост меняются только после того, как сервер подтвердил владельца (тот же путь, что в пейволе).
+      const ownerCheck = await confirmRestoreOwnerOnServer(generation.stableId, 'manage_subscription');
+      if (!isOperationCurrent()) {
+        console.warn(`[RESTORE] drop:stale_after_owner_check verdict=${ownerCheck.verdict} ms=${ownerCheck.ms}`); // guard-ok
+        return;
+      }
+      if (ownerCheck.verdict !== 'confirmed') {
+        console.warn(`[RESTORE] drop:owner_${ownerCheck.verdict} ms=${ownerCheck.ms} → Plus не показан, тост «Plus только на исходном аккаунте»`); // guard-ok: ветка решения называет значение
+        emitAppEvent('action_toast', restoreOwnerNotConfirmedToast());
+        return;
+      }
       // Optimistic: экран показывает Plus сразу, кэш сбрасывается, остальные
       // экраны узнают через событие — без перезапуска приложения.
       setInfo(restored);
@@ -669,20 +638,10 @@ export default function ManageSubscription() {
   const handleRestoreRef = useRef<(() => Promise<void>) | null>(null);
   handleRestoreRef.current = handleRestore;
 
-  const closeCancelSheet = useCallback(() => {
-    setShowCancelSheet(false);
-    setCancelStep('reasons');
-    setSaveOffer('none');
-    setOfferProgress(null);
-  }, []);
-
   /** Уход в системный экран отмены — единственная точка выхода в стор. */
   const openStoreCancel = useCallback(() => {
-    // зачем (аудит 2026-08-26): раньше шторка закрывалась ДО открытия ссылки, а отказ
-    // глушился `.catch(() => {})`. Это единственный путь к отмене подписки: если
-    // магазин не открылся, человек оставался в тупике без единого объяснения.
+    if (!isManageSubscriptionOperationCurrent(screenAccount)) return;
     void Linking.openURL(getStoreManageUrl())
-      .then(() => { closeCancelSheet(); })
       .catch((err: unknown) => {
         void import('./debug-logger')
           .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:openStoreCancel', err, 'critical'))
@@ -700,90 +659,9 @@ export default function ManageSubscription() {
           messagePl: 'Nie udało się otworzyć sklepu. Anuluj subskrypcję w ustawieniach telefonu.',
         });
       });
-  }, [closeCancelSheet]);
+  }, [screenAccount]);
 
-  // ── отмена: опрос → удержание → стор ────────────────────────────────────────
-  // зачем (аудит 2026-08-24): опрос причины уже собирался, но никак не влиял на
-  // происходящее — человека сразу отпускали в магазин. Теперь причина решает,
-  // что показать. Нечего показать → ведём в магазин ровно как раньше.
-  const submitCancel = useCallback(() => {
-    if (!isManageSubscriptionOperationCurrent(screenAccount)) {
-      closeCancelSheet();
-      setCancelReason(null);
-      setCancelText('');
-      return;
-    }
-    hapticTap();
-    logCancelSurvey(cancelReason ?? 'unknown', cancelText, 'manage');
-    void trackEvent('subscription_cancel_survey', { reason: cancelReason ?? 'unknown' });
-
-    // Прогресс берём из уже прогретого снапшота главной: 0 чтений Firestore и
-    // мгновенный рендер. peek сам вернёт null после смены аккаунта, поэтому
-    // чужие цифры показаться не могут.
-    const hydration = peekHomeScreenHydration();
-    // зачем (profile-022 / paywalls-024, dev): подмена прогресса из ссылки dev_state?offerProgress=on — шаг робота останавливается на шторке удержания, а не уходит в браузер магазина
-    const progress: SaveOfferProgress | null = getDevSaveOfferProgress() ?? (hydration
-      ? {
-          streak: hydration.displayStreak || hydration.streak || 0,
-          lessonsCompleted: hydration.lessonsCompleted || 0,
-        }
-      : null);
-    const offer = resolveSaveOffer({ reason: cancelReason, progress });
-
-    if (offer === 'none') {
-      void trackEvent('cancel_save_offer_skipped', { reason: cancelReason ?? 'unknown' });
-      openStoreCancel();
-      return;
-    }
-    void trackEvent('cancel_save_offer_shown', { reason: cancelReason ?? 'unknown', offer });
-    // Замок снимаем ровно тогда, когда показываем шаг: следующий заход в отмену
-    // (человек вернулся на экран) обязан снова работать.
-    saveOfferBusyRef.current = false;
-    setOfferProgress(progress);
-    setSaveOffer(offer);
-    setCancelStep('offer');
-  }, [cancelReason, cancelText, screenAccount, closeCancelSheet, openStoreCancel]);
-
-  // зачем (координатор 13.10, dev `saveOffer=progress|support`): шаг удержания сразу, без тапов — кадры paywalls-024 / profile-022.
-  // В стор-сборке takeDevSaveOfferOpen — заглушка (null), эффект ничего не делает.
-  useEffect(() => {
-    const devStep = takeDevSaveOfferOpen();
-    if (!devStep) return;
-    const progress = getDevSaveOfferProgress() ?? DEV_SAVE_OFFER_PROGRESS;
-    console.log(`[DEV-STATE] manage_subscription: шаг удержания открыт подменой saveOffer=${devStep} серия=${progress.streak} уроков=${progress.lessonsCompleted}`); // guard-ok: dev-ветка
-    setCancelReason(devStep === 'progress' ? 'too_expensive' : 'technical');
-    setOfferProgress(devStep === 'progress' ? progress : null);
-    setSaveOffer(devStep);
-    setCancelStep('offer');
-    setShowCancelSheet(true);
-  }, []);
-
-  /** Человек остаётся. Никаких тарифов и сумм — только продукт и поддержка. */
-  const acceptSaveOffer = useCallback(() => {
-    if (saveOfferBusyRef.current) return;
-    saveOfferBusyRef.current = true;
-    hapticTap();
-    void trackEvent('cancel_save_offer_accepted', { reason: cancelReason ?? 'unknown', offer: saveOffer });
-    if (saveOffer === 'support') {
-      // зачем: PM-171 — раздел «Идеи» скрыт, редирект «поддержки» из шага удержания
-      // теперь ведёт в реальную поддержку, а не в удалённый экран идей.
-      closeCancelSheet();
-      router.push('/support_report');
-      return;
-    }
-    closeCancelSheet();
-  }, [saveOffer, cancelReason, closeCancelSheet, router]);
-
-  /** Отказ от удержания — уход в магазин остаётся живым и одним тапом. */
-  const declineSaveOffer = useCallback(() => {
-    if (saveOfferBusyRef.current) return;
-    saveOfferBusyRef.current = true;
-    hapticTap();
-    void trackEvent('cancel_save_offer_declined', { reason: cancelReason ?? 'unknown', offer: saveOffer });
-    openStoreCancel();
-  }, [saveOffer, cancelReason, openStoreCancel]);
-
-  const overlayActive = showCancelSheet || showRestoreEmpty;
+  const overlayActive = showRestoreEmpty;
 
   // зачем (координатор 15.10, Макеты ed4f4a6ff): «Plus активирован» — только при доступе. Нет доступа — обычный пейвол (источник notification_premium_expiry), доступ неизвестен — тихий скелетон.
   const { hasPremiumAccess, accessResolved } = usePremium();
@@ -818,6 +696,7 @@ export default function ManageSubscription() {
 
   return (
     <LinearGradient colors={[glass.bgTop, glass.bgBottom]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
+      <ManageSubscriptionDuoGlow tier={manageTier} isLight={glass.isLight} />
       <SafeAreaView style={S.safe}>
         <View testID="manage-subscription-safe-content" style={S.safeContent}>
         <View
@@ -833,289 +712,53 @@ export default function ManageSubscription() {
             </ScreenOriginBelowSafeTop>
             {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
             <ScreenBackZone />
-            <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
+            <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scrollDuo}>
 
-            <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
-              {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): русский заголовок сменили на «Подписка Plus»
-                  по макету PRF-10, а 8 языков остались «Управление подпиской» — теперь та же строка, что у пункта в Настройках. */}
-              {LP('Подписка Plus', 'Підписка Plus', 'Plus subscription', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus')}
-            </Text>
-
-            <View testID="manage-subscription-status-card" style={[S.statusCard, { backgroundColor: glass.opaqueCard }]}>
-              <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={S.cardSheen} />
-              <View pointerEvents="none" style={[S.cardRim, { backgroundColor: glass.glassEdge }]} />
-              <View style={S.statusRow}>
-                {/* зачем (разбор Макетов 49c24a872, paywalls-020/021; образец manage-subscription-states.html .mst): значок 20 и подпись 16 жирным (шкала D145), было 18 и 15 */}
-                <Ionicons name="checkmark-circle" size={20} color={glass.lightTint} />
-                <Text style={[S.statusText, { color: glass.secondary, fontSize: scaled(16), lineHeight: scaled(20) }]}>
-                  {LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
-                </Text>
-              </View>
-              <Text style={[S.planTitle, { color: glass.text, fontSize: scaled(24), lineHeight: scaled(30) }]}>{planLabel}</Text>
-              {!loading && !isLifetime && nextDate && (
-                <View style={S.infoRow}>
-                  <Text style={[S.infoLabel, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
-                    {LP('Следующее списание', 'Наступне списання', 'Next charge', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
-                  </Text>
-                  <Text style={[S.infoValue, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(20) }]}>{nextDate}</Text>
+            {/* зачем (владелец 11.11, макет docs/work/mockups/plus-screens-duo-2026-11-11, раздел B, «в точности как на макете»): экран в стиле пейвола «Два пути» —
+                знак и цвет уровня, карточка-пропуск с датой, «Что включено» одним блоком. Вид — в ManageSubscriptionDuoView; статус, дата, покупка,
+                восстановление и отмена остаются здесь и передаются готовыми. Разовая покупка сохраняет своё название (planLabel). */}
+            <ManageSubscriptionDuoView
+              lang={L}
+              g={glass}
+              tier={manageTier}
+              period={isLifetime ? 'lifetime' : currentPlan === 'yearly' ? 'year' : isMonthly ? 'month' : null}
+              passNameOverride={isLifetime ? planLabel : undefined}
+              title={LP('Подписка Plus', 'Підписка Plus', 'Plus subscription', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus')}
+              status={LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
+              nextDate={!loading && !isLifetime && nextDate ? nextDate : ''}
+              nextDateLabel={LP('Следующее списание', 'Наступне списання', 'Next charge', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
+              lifetimeNote={loading ? '' : LP('Разовая покупка — без списаний и автопродления.', 'Разова покупка — без списань і автопродовження.', 'One-time purchase — no charges or auto-renewal.', 'Compra única, sin cobros ni renovación.', 'Compra única, sem cobranças nem renovação automática.', 'Mua một lần, không thu phí và không tự gia hạn.', 'Pembelian sekali, tanpa tagihan dan perpanjangan otomatis.', 'Tek seferlik satın alma, ödeme ve otomatik yenileme yok.', 'Jednorazowy zakup, bez opłat i automatycznego odnawiania.')}
+              loading={loading}
+              loadingSlot={(
+                <View testID="manage-subscription-loading" style={S.loading}>
+                  <SkeletonBlock width="100%" height={64} borderRadius={14} />
+                  <SkeletonBlock width="100%" height={64} borderRadius={14} />
+                  <SkeletonBlock width="70%" height={48} borderRadius={14} />
                 </View>
               )}
-              {!loading && isLifetime && (
-                <Text style={[S.lifetimeNote, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
-                  {LP('Разовая покупка — без списаний и автопродления.', 'Разова покупка — без списань і автопродовження.', 'One-time purchase — no charges or auto-renewal.', 'Compra única, sin cobros ni renovación.', 'Compra única, sem cobranças nem renovação automática.', 'Mua một lần, không thu phí và không tự gia hạn.', 'Pembelian sekali, tanpa tagihan dan perpanjangan otomatis.', 'Tek seferlik satın alma, ödeme ve otomatik yenileme yok.', 'Jednorazowy zakup, bez opłat i automatycznego odnawiania.')}
-                </Text>
-              )}
-            </View>
-
-            {loading ? (
-              <View testID="manage-subscription-loading" style={S.loading}>
-                <SkeletonBlock width="100%" height={64} borderRadius={14} />
-                <SkeletonBlock width="100%" height={64} borderRadius={14} />
-                <SkeletonBlock width="70%" height={48} borderRadius={14} />
-              </View>
-            ) : (
-              <>
-                <Text style={[S.sectionTitle, { color: glass.secondary, fontSize: scaled(11), lineHeight: scaled(16) }]}>
-                  {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'WHAT\'S INCLUDED', 'QUÉ INCLUYE', 'O QUE INCLUI', 'BAO GỒM', 'YANG TERMASUK', 'NELER DAHİL', 'CO ZAWIERA')}
-                </Text>
-                <View style={S.benefitList}>
-                  {INCLUDED.map((benefit) => (
-                    <View
-                      key={benefit.benefitId}
-                      testID={`manage-subscription-benefit-${benefit.benefitId}`}
-                      accessibilityRole="text"
-                      style={[S.benefitRow, { backgroundColor: glass.opaqueControl }]}
-                    >
-                      <View style={[S.benefitIcon, { backgroundColor: glass.selected }]}>
-                        <Ionicons name={benefit.icon} size={22} color={glass.lightTint} />
-                      </View>
-                      <Text style={[S.benefitText, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
-                        {LP(benefit.ru, benefit.uk, benefit.en, benefit.es, benefit['pt-BR'], benefit.vi, benefit.id, benefit.tr, benefit.pl)}
-                      </Text>
-                      <Ionicons name="checkmark" size={20} color={glass.lightTint} />
-                    </View>
-                  ))}
-                </View>
-
-                {/* Карточка «Перейти на годовой» — только если сейчас месячный и годовой пакет есть. */}
-                {isMonthly && yearlyPkg && (
-                  <PressableHybrid
-                    testID="manage-subscription-change-plan"
-                    accessibilityRole="button"
-                    accessibilityState={{ disabled: changing }}
-                    onPress={handleChangePlan}
-                    disabled={changing}
-                    withHaptic={false}
-                    withSound={false}
-                    variant="card"
-                    contentStyle={[S.changeCard, { backgroundColor: glass.opaqueCard }]}
-                  >
-                    <View style={S.actionCopy}>
-                      <Text style={[S.changeTitle, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
-                        {LP('Перейти на годовой план', 'Перейти на річний план', 'Switch to the annual plan', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny')}
-                      </Text>
-                      <Text style={[S.changeSub, { color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20) }]}>
-                        {yearlyShown
-                          ? LP(`Дешевле в пересчёте — ${yearlyShown}/год`, `Дешевше в перерахунку — ${yearlyShown}/рік`, `Cheaper per year — ${yearlyShown}/yr`, `Más barato al año — ${yearlyShown}/año`, `Mais barato no ano — ${yearlyShown}/ano`, `Rẻ hơn tính theo năm — ${yearlyShown}/năm`, `Lebih murah per tahun — ${yearlyShown}/tahun`, `Yıllık daha ucuz — ${yearlyShown}/yıl`, `Taniej rocznie — ${yearlyShown}/rok`)
-                          : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Cheaper per month', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc')}
-                      </Text>
-                    </View>
-                    {changing
-                      ? <ActivityIndicator color={glass.lightTint} />
-                      : <Ionicons name="arrow-forward-circle" size={26} color={glass.lightTint} />}
-                  </PressableHybrid>
-                )}
-
-                {/* Восстановить покупки — виден ВСЕГДА, в том числе без активной
-                    подписки: именно без неё он и нужен (сменил телефон, переустановил).
-                    Геометрия строки не меняется в busy — крутится только иконка,
-                    текст остаётся на месте (без прыжка раскладки). */}
-                <PressableHybrid
-                  testID="manage-subscription-restore"
-                  accessibilityRole="button"
-                  accessibilityState={{ disabled: restoring }}
-                  accessibilityLabel={LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
-                  onPress={handleRestore}
-                  disabled={restoring}
-                  withHaptic={false}
-                  withSound={false}
-                  variant="card"
-                  contentStyle={[S.restoreRow, { backgroundColor: glass.opaqueControl }]}
-                >
-                  <Ionicons name="refresh" size={20} color={glass.lightTint} />
-                  <Text style={[S.restoreText, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
-                    {LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
-                  </Text>
-                  {restoring
-                    ? <ActivityIndicator color={glass.lightTint} />
-                    : <Ionicons name="chevron-forward" size={18} color={glass.secondary} />}
-                </PressableHybrid>
-
-                {/* Отмена — только для подписок (не lifetime). */}
-                {!isLifetime && (
-                  <PressableHybrid
-                    testID="manage-subscription-cancel"
-                    accessibilityRole="button"
-                    accessibilityLabel={LP('Отменить подписку', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
-                    onPress={() => { hapticTap(); setShowCancelSheet(true); }}
-                    withHaptic={false}
-                    withSound={false}
-                    variant="secondary"
-                    contentStyle={[S.cancelBtn, { backgroundColor: glass.opaqueControl }]}
-                  >
-                    <Ionicons name="open-outline" size={19} color={glass.secondary} />
-                    <Text style={[S.cancelText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
-                      {/* зачем (profile-017, Макеты 13.10): кнопка ведёт к шагу причин, а не отменяет — тексты как у кнопки шага причин на всех языках */}
-                      {LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
-                    </Text>
-                  </PressableHybrid>
-                )}
-                {/* зачем: паритет с макетом PRF-10 — короткая подпись под кнопками про источник цены */}
-                <Text style={{ color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18), textAlign: 'center', marginTop: 16 }}>
-                  {LP('Цена и период всегда берутся из App Store / Google Play.', 'Ціна й період завжди беруться з App Store / Google Play.', 'Price and period always come from the App Store / Google Play.', 'El precio y el período siempre vienen del App Store / Google Play.', 'Preço e período sempre vêm da App Store / Google Play.', 'Giá và thời hạn luôn lấy từ App Store / Google Play.', 'Harga dan periode selalu berasal dari App Store / Google Play.', 'Fiyat ve süre her zaman App Store / Google Play’den gelir.', 'Cena i okres zawsze pochodzą z App Store / Google Play.')}
-                </Text>
-              </>
-            )}
+              benefits={INCLUDED.map((benefit) => ({ id: benefit.benefitId, icon: benefit.icon, label: LP(benefit.ru, benefit.uk, benefit.en, benefit.es, benefit['pt-BR'], benefit.vi, benefit.id, benefit.tr, benefit.pl) }))}
+              upgrade={isMonthly && yearlyPkg ? {
+                title: LP('Перейти на годовой план', 'Перейти на річний план', 'Switch to the annual plan', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny'),
+                sub: yearlyShown
+                  ? LP(`Дешевле в пересчёте — ${yearlyShown}/год`, `Дешевше в перерахунку — ${yearlyShown}/рік`, `Cheaper per year — ${yearlyShown}/yr`, `Más barato al año — ${yearlyShown}/año`, `Mais barato no ano — ${yearlyShown}/ano`, `Rẻ hơn tính theo năm — ${yearlyShown}/năm`, `Lebih murah per tahun — ${yearlyShown}/tahun`, `Yıllık daha ucuz — ${yearlyShown}/yıl`, `Taniej rocznie — ${yearlyShown}/rok`)
+                  : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Cheaper per month', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc'),
+                busy: changing,
+                onPress: handleChangePlan,
+              } : null}
+              restore={{
+                label: LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy'),
+                busy: restoring,
+                onPress: handleRestore,
+              }}
+              cancel={isLifetime ? null : {
+                label: LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania'),
+                onPress: () => { hapticTap(); openStoreCancel(); },
+              }}
+              storeNote={LP('Цена и период всегда берутся из App Store / Google Play.', 'Ціна й період завжди беруться з App Store / Google Play.', 'Price and period always come from the App Store / Google Play.', 'El precio y el período siempre vienen del App Store / Google Play.', 'Preço e período sempre vêm da App Store / Google Play.', 'Giá và thời hạn luôn lấy từ App Store / Google Play.', 'Harga dan periode selalu berasal dari App Store / Google Play.', 'Fiyat ve süre her zaman App Store / Google Play’den gelir.', 'Cena i okres zawsze pochodzą z App Store / Google Play.')}
+            />
             </ScrollView>
           </ContentWrap>
         </View>
-
-        {/* ── шит-опрос отмены ── */}
-        {showCancelSheet && cancelStep === 'reasons' && (
-          <SubscriptionOverlayFrame bloomColor={glass.selected} glass={glass}>
-              <Text style={[S.sheetTitle, { color: glass.text, fontSize: scaled(22), lineHeight: scaled(28) }]}>
-                {LP('Почему уходишь?', 'Чому йдеш?', 'Why are you leaving?', '¿Por qué te vas?', 'Por que você vai sair?', 'Vì sao bạn rời đi?', 'Mengapa kamu pergi?', 'Neden ayrılıyorsun?', 'Dlaczego odchodzisz?')}
-              </Text>
-              <Text style={[S.sheetSub, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
-                {LP('Это поможет нам стать лучше.', 'Це допоможе нам стати кращими.', 'This helps us get better.', 'Nos ayuda a mejorar.', 'Isso nos ajuda a melhorar.', 'Điều này giúp chúng tôi cải thiện.', 'Ini membantu kami menjadi lebih baik.', 'Bu, daha iyi olmamıza yardımcı olur.', 'To pomoże nam się poprawić.')}
-              </Text>
-              {CANCEL_REASONS.map((r) => {
-                const sel = cancelReason === r.key;
-                return (
-                  <PressableHybrid
-                    key={r.key}
-                    testID={`manage-subscription-reason-${r.key}`}
-                    accessibilityRole="radio"
-                    accessibilityState={{ selected: sel }}
-                    onPress={() => { hapticTap(); setCancelReason(r.key); }}
-                    withHaptic={false}
-                    withSound={false}
-                    variant="secondary"
-                    contentStyle={[S.reasonRow, { backgroundColor: sel ? glass.selected : glass.buttonFillDisabled }]} /* зачем (координатор 15.10, paywalls-023/024; правило «не сливается»): плашка причины на шторке ≥ 1,5 : 1 к шторке во всех темах — opaqueControl с ней сливался */
-                  >
-                    <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={20} color={sel ? glass.lightTint : glass.secondary} />
-                    <Text style={[S.reasonText, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}>{LP(r.ru, r.uk, r.en, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
-                  </PressableHybrid>
-                );
-              })}
-              {cancelReason === 'other' && (
-                <TextInput
-                  testID="manage-subscription-reason-other-input"
-                  value={cancelText}
-                  onChangeText={setCancelText}
-                  placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Tell us more…', 'Cuéntanos más…', 'Conte mais…', 'Nói rõ hơn…', 'Ceritakan lebih lanjut…', 'Biraz daha anlat…', 'Napisz więcej…')}
-                  placeholderTextColor={glass.mutedText}
-                  style={[S.input, { backgroundColor: glass.buttonFillDisabled, color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}
-                  multiline
-                />
-              )}
-              <DuoPressable
-                testID="manage-subscription-reasons-continue"
-                accessibilityRole="button"
-                accessibilityState={{ disabled: !cancelReason }}
-                onPress={submitCancel}
-                disabled={!cancelReason}
-                withHaptic={false}
-                wrapStyle={S.sheetPrimaryWrap}
-                style={[S.sheetPrimary, { backgroundColor: glass.accent, opacity: cancelReason ? 1 : 0.5 }]}
-              >
-                <Text style={[S.sheetPrimaryText, { color: glass.accentInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
-                  {LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
-                </Text>
-              </DuoPressable>
-              <PressableHybrid
-                testID="manage-subscription-reasons-stay"
-                accessibilityRole="button"
-                onPress={() => { hapticTap(); closeCancelSheet(); }}
-                withHaptic={false}
-                withSound={false}
-                variant="secondary"
-                contentStyle={S.sheetSecondary}
-              >
-                <Text style={[S.sheetSecondaryText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
-                  {LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
-                </Text>
-              </PressableHybrid>
-          </SubscriptionOverlayFrame>
-        )}
-
-        {/* ── шаг удержания: ответ на названную причину ──
-            Кнопка отмены остаётся живой и видимой (требование ревью сторов):
-            один дополнительный экран — да, препятствие отмене — нет. */}
-        {showCancelSheet && cancelStep === 'offer' && (
-          <SubscriptionOverlayFrame bloomColor={glass.selected} glass={glass}>
-              <Text style={[S.sheetTitle, { color: glass.text, fontSize: scaled(22), lineHeight: scaled(28) }]}>
-                {saveOffer === 'support'
-                  ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Tell us what went wrong', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
-                  : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'You\'ve already achieved a lot', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
-              </Text>
-              <Text style={[S.sheetSub, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
-                {saveOffer === 'support'
-                  ? LP('Мы читаем каждое обращение и чиним то, что мешает.', 'Ми читаємо кожне звернення і лагодимо те, що заважає.', 'We read every message and fix what\'s getting in your way.', 'Leemos cada mensaje y arreglamos lo que molesta.', 'Lemos cada mensagem e corrigimos o que atrapalha.', 'Chúng tôi đọc mọi phản hồi và sửa những gì gây cản trở.', 'Kami membaca setiap pesan dan memperbaiki yang mengganggu.', 'Her mesajı okuyoruz ve engel olan şeyi düzeltiyoruz.', 'Czytamy każde zgłoszenie i naprawiamy to, co przeszkadza.')
-                  : LP('Прогресс останется с тобой, но занятия придётся продолжать без Plus.', 'Прогрес залишиться з тобою, але заняття доведеться продовжувати без Plus.', 'Your progress stays with you, but you\'ll have to keep learning without Plus.', 'Tu progreso se queda, pero seguirás sin Plus.', 'Seu progresso fica, mas você seguirá sem o Plus.', 'Tiến trình vẫn còn, nhưng bạn sẽ học tiếp mà không có Plus.', 'Progresmu tetap ada, tetapi kamu akan lanjut tanpa Plus.', 'İlerlemen kalır, ama Plus olmadan devam edeceksin.', 'Twoje postępy zostaną, ale będziesz uczyć się bez Plus.')}
-              </Text>
-
-              {saveOffer === 'progress' && offerProgress && (
-                <View style={S.offerStats}>
-                  {offerProgress.streak > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
-                      <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.streak}</Text>
-                      <Text style={[S.offerStatLabel, { color: offerStatLabelInk, fontSize: scaled(13), lineHeight: scaled(18) }]}>
-                        {LP('дней подряд', 'днів поспіль', 'days in a row', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
-                      </Text>
-                    </View>
-                  )}
-                  {offerProgress.lessonsCompleted > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
-                      <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.lessonsCompleted}</Text>
-                      <Text style={[S.offerStatLabel, { color: offerStatLabelInk, fontSize: scaled(13), lineHeight: scaled(18) }]}>
-                        {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
-                      </Text>
-                    </View>
-                  )}
-                </View>
-              )}
-
-              <DuoPressable
-                testID="manage-subscription-offer-accept"
-                onPress={acceptSaveOffer}
-                accessibilityRole="button"
-                withHaptic={false}
-                wrapStyle={S.sheetPrimaryWrap}
-                style={[S.sheetPrimary, { backgroundColor: glass.accent }]}
-              >
-                <Text style={[S.sheetPrimaryText, { color: glass.accentInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
-                  {saveOffer === 'support'
-                    ? LP('Написать нам', 'Написати нам', 'Write to us', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
-                    : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
-                </Text>
-              </DuoPressable>
-
-              <PressableHybrid
-                testID="manage-subscription-offer-decline"
-                onPress={declineSaveOffer}
-                accessibilityRole="button"
-                withHaptic={false}
-                withSound={false}
-                variant="secondary"
-                contentStyle={S.sheetSecondary}
-              >
-                <Text style={[S.sheetSecondaryText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
-                  {LP('Всё равно отменить', 'Все одно скасувати', 'Cancel anyway', 'Cancelar de todos modos', 'Cancelar mesmo assim', 'Vẫn hủy', 'Tetap batalkan', 'Yine de iptal et', 'Anuluj mimo to')}
-                </Text>
-              </PressableHybrid>
-          </SubscriptionOverlayFrame>
-        )}
 
         {/* ── покупок не нашлось ──
             зачем: пустой результат восстановления — НЕ ошибка, поэтому тон
@@ -1180,6 +823,8 @@ const S = StyleSheet.create({
   safeContent: { flex: 1, position: 'relative' },
   host: { flex: 1 },
   scroll: { paddingHorizontal: 15, paddingBottom: 40 },
+  // зачем: поля и нижний отступ новый вид несёт сам (макет: 22 по бокам, 34 снизу)
+  scrollDuo: { paddingBottom: 6 },
   closeHit: { width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 },
   closeFace: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   screenTitle: { marginTop: 10, fontWeight: '700', letterSpacing: -0.6, flexShrink: 1 },
@@ -1227,8 +872,6 @@ const S = StyleSheet.create({
   sheetContent: { paddingHorizontal: 20, paddingTop: 22, paddingBottom: 16 },
   sheetTitle: { fontWeight: '700', letterSpacing: -0.4, flexShrink: 1 },
   sheetSub: { fontWeight: '400', marginTop: 6, marginBottom: 14, flexShrink: 1 },
-  reasonRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12, marginTop: 8 },
-  reasonText: { flex: 1, minWidth: 0, fontWeight: '400', flexShrink: 1 },
   input: { borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12, marginTop: 10, minHeight: 88, fontWeight: '400', textAlignVertical: 'top' },
   sheetPrimaryWrap: { marginTop: 16 },
   sheetPrimary: { minHeight: 52, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14, alignItems: 'center', justifyContent: 'center' },
@@ -1236,10 +879,6 @@ const S = StyleSheet.create({
   sheetSecondary: { minHeight: 48, paddingHorizontal: 16, paddingVertical: 13, alignItems: 'center', justifyContent: 'center', marginTop: 4 },
   sheetSecondaryText: { fontWeight: '700', textAlign: 'center', flexShrink: 1 },
   // Плитки прогресса: разделены тоном подложки, без обводок (правило владельца).
-  offerStats: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 4, marginBottom: 4 },
-  offerStat: { minWidth: 132, flexBasis: 0, flexGrow: 1, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 10, alignItems: 'center', gap: 2 },
-  offerStatNum: { fontWeight: '700', letterSpacing: -0.3, flexShrink: 1 },
-  offerStatLabel: { fontWeight: '400', textAlign: 'center', flexShrink: 1 },
 });
 
 import BackGlyph from '../components/v2/BackGlyph';

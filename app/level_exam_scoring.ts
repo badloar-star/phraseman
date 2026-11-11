@@ -1,3 +1,5 @@
+import { gradeExpanded } from '../modules/expanded-formats/grade';
+import { EXPANDED_FORMATS } from '../modules/expanded-formats/types';
 import { getLessonData } from './lesson_data_all';
 import type { LessonPhrase } from './lesson_data_types';
 import { getExamMedalTier, type MedalTier } from './medal_utils';
@@ -81,6 +83,16 @@ export function scoreLevelExam(
         lessonId: task.lessonId,
         correct: answer?.kind === 'translate_build' && sameStrings(answer.tokenIds, task.correctTokenIds),
       });
+    } else if ('exercise' in task) {
+      // зачем: двенадцать новых механик — правильность решает только общая проверка gradeExpanded (неполный ответ = неверно).
+      // Отбор по полю exercise, а не по format: формат задания выбора — три значения сразу, сравнением его из типа не убрать.
+      const answer = answers[task.scoreUnitId];
+      units.push({
+        scoreUnitId: task.scoreUnitId,
+        format: task.format,
+        lessonId: task.lessonId,
+        correct: answer?.kind === 'expanded' && gradeExpanded(task.exercise, answer.response, blueprint.studyTarget),
+      });
     }
   }
 
@@ -96,7 +108,8 @@ export function scoreLevelExam(
     find_oddity: { correct: 0, total: 0 },
     translate_build: { correct: 0, total: 0 },
     speed_match: { correct: 0, total: 0 },
-  } satisfies Record<LevelExamFormat, { correct: number; total: number }>;
+    ...Object.fromEntries(EXPANDED_FORMATS.map((format) => [format, { correct: 0, total: 0 }])),
+  } as Record<LevelExamFormat, { correct: number; total: number }>;
   const lessonTotals = new Map<number, { correct: number; total: number }>();
   for (const unit of units) {
     byFormat[unit.format].total += 1;

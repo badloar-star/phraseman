@@ -1,0 +1,1050 @@
+[
+{
+"lesson": 3,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:03:01",
+"it:03:02",
+"it:03:03"
+],
+"textByLocale": {
+"en": "Start with the content of the statement: \"you are there,\" \"you are here,\" \"you are ready.\" A question doesn't make all three phrases interchangeable. Check the place, person, and number before choosing a tile.",
+"ru": "Начинай с содержания утверждения: «ты там», «ты здесь», «ты готов». Вопрос не делает все три фразы взаимозаменяемыми. Проверь место, лицо и число до выбора плитки.",
+"uk": "Починай із змісту твердження: \"ти там\", \"ти тут\", \"ти готовий\". Питання не робить усі три фрази взаємозамінними. Перевір місце, обличчя та число до вибору плитки."
+}
+},
+{
+"exampleIds": [
+"it:03:05",
+"it:03:06",
+"it:03:12"
+],
+"textByLocale": {
+"en": "Statements with a name or object can be left in their usual order. The interrogative intonation applies to the entire line. Don't add `è` before an existing construction where the verb is present.",
+"ru": "Утверждение с именем или предметом можно оставить в привычном порядке. Вопросительная интонация относится ко всей строке. Не добавляй `è` перед уже готовой конструкцией, где глагол присутствует.",
+"uk": "Затвердження з ім'ям або предметом можна залишити у звичному порядку. Питальна інтонація відноситься до всього рядка. Не додай `è` перед вже готовою конструкцією, де дієслово є."
+}
+},
+{
+"exampleIds": [
+"it:03:07",
+"it:03:10",
+"it:03:31"
+],
+"textByLocale": {
+"en": "A friend is addressed with `tu`, a group with `voi`, and one person politely with `Lei`. The third person form is required for the latter. Consider the situation before the task, and not just the word \"you\" in the translation.",
+"ru": "К другу обращаются на `tu`, к группе — на `voi`, к одному человеку вежливо — на `Lei`. Для последнего нужна форма третьего лица. Учитывай ситуацию перед заданием, а не только слово «вы» в переводе.",
+"uk": "До друга звертаються на `tu`, до групи - на `voi`, до однієї людини ввічливо - на `Lei`. Для останньої потрібна форма третьої особи. Зважай на ситуацію перед завданням, а не лише слово «ви» у перекладі."
+}
+},
+{
+"exampleIds": [
+"it:03:14",
+"it:03:20",
+"it:03:34"
+],
+"textByLocale": {
+"en": "The question about a free table and the question about a clean room look similar. First, determine what you're describing, then choose the ending: `libero` with `tavolo`, `libera` with `camera`.",
+"ru": "Вопрос о свободном столике и вопрос о чистой комнате выглядят похоже. Сначала определи, что описываешь, затем подбери окончание: `libero` с `tavolo`, `libera` с `camera`.",
+"uk": "Питання про вільний столик і питання про чисту кімнату виглядають схоже. Спочатку визнач, що описуєш, потім підбери закінчення: `libero` з `tavolo`, `libera` з `camera`."
+}
+},
+{
+"exampleIds": [
+"it:03:16",
+"it:03:17",
+"it:03:41"
+],
+"textByLocale": {
+"en": "Time and degree of certainty are not part of the question formula. `Già` is \"already,\" `in orario` is \"on time, according to schedule.\" They add meaning that wouldn't be present in the short version without them.",
+"ru": "Время и степень уверенности не являются частями вопросительной формулы. `Già` — «уже», `in orario` — «вовремя, по расписанию». Они добавляют смысл, которого в коротком варианте без них нет.",
+"uk": "Час і ступінь впевненості не є частиною запитальної формули. `Già` - \"вже\", `in orario` - \"вчасно, за розкладом\". Вони додають сенсу, якого в короткому варіанті без них немає."
+}
+},
+{
+"exampleIds": [
+"it:03:22",
+"it:03:25",
+"it:03:26"
+],
+"textByLocale": {
+"en": "The right and left sides have different answers: `a destra`, `a sinistra`. It's convenient to study in pairs, but in the constructor, look for the specific side the person is asking about.",
+"ru": "Правая и левая стороны — разные ответы: `a destra`, `a sinistra`. Учить удобно парой, но в конструкторе ищи именно ту сторону, про которую человек спрашивает.",
+"uk": "Права і ліва сторони - різні відповіді: `a destra`, `a sinistra`. Вчити зручно парою, але в конструкторі шукай саме той бік, про який людина запитує."
+}
+},
+{
+"exampleIds": [
+"it:03:42",
+"it:03:48",
+"it:03:50"
+],
+"textByLocale": {
+"en": "Read the completed phrase first as a message, then as a question. A good test: can the second option be answered with just \"yes\" or \"no\"? If you're asked to name the floor or the time, you chose a different question type.",
+"ru": "Прочти готовую фразу сначала как сообщение, затем как вопрос. Хороший тест: можно ли на второй вариант ответить только «да» или «нет»? Если требуется назвать этаж или время, ты выбрал другой тип вопроса.",
+"uk": "Прочитай готову фразу спочатку як повідомлення, а потім запитання. Хороший тест: чи можна на другий варіант відповісти тільки так чи ні? Якщо потрібно назвати поверх або час, ти вибрав інший тип питання."
+}
+}
+],
+"drills": [
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:03:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"È",
+"Sei",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:03:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Sono",
+"Sei",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 1,
+"id": "it:03:05:lab",
+"item": 5,
+"kind": "match",
+"near": 18,
+"options": [
+"sono",
+"è",
+"siete"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 2,
+"id": "it:03:08:lab",
+"item": 8,
+"kind": "build",
+"near": 15,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "Sono",
+"chapter": 2,
+"id": "it:03:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 34,
+"options": [
+"Sono",
+"Sei",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "sono",
+"chapter": 2,
+"id": "it:03:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 21,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 3,
+"id": "it:03:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "È",
+"chapter": 3,
+"id": "it:03:17:lab",
+"item": 17,
+"kind": "match",
+"near": 9,
+"options": [
+"È",
+"Sono",
+"Siete"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 3,
+"id": "it:03:19:lab",
+"item": 19,
+"kind": "build",
+"near": 49,
+"options": [
+"sono",
+"è",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:03:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 1,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:03:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 4,
+"id": "it:03:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"è",
+"sei",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:03:29:lab",
+"item": 29,
+"kind": "match",
+"near": 41,
+"options": [
+"è",
+"sei",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:03:31:lab",
+"item": 31,
+"kind": "build",
+"near": 6,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 5,
+"id": "it:03:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 36,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:03:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 34,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "sono",
+"chapter": 6,
+"id": "it:03:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 6,
+"id": "it:03:42:lab",
+"item": 42,
+"kind": "match",
+"near": 8,
+"options": [
+"sei",
+"sono",
+"è"
+],
+"slot": 3
+},
+{
+"bad": "sono",
+"chapter": 7,
+"id": "it:03:45:lab",
+"item": 45,
+"kind": "build",
+"near": 25,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 1
+},
+{
+"bad": "sono",
+"chapter": 7,
+"id": "it:03:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 20,
+"options": [
+"sono",
+"sei",
+"è"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"Sei qui.",
+"Sei qui?"
+],
+[
+"La sala è libera.",
+"La sala è libera?"
+],
+[
+"Siete a casa.",
+"Siete a casa?"
+],
+[
+"Le chiavi sono qui.",
+"Le chiavi sono qui?"
+]
+],
+"title": {
+"en": "Clarify a guess: question without rearrangement",
+"ru": "Уточнить догадку: вопрос без перестановки",
+"uk": "Уточнити здогад: питання без перестановки"
+}
+},
+"exampleResolved": [
+{
+"id": "it:03:01",
+"target": "Sei lì?",
+"ru": "Ты там?",
+"uk": "Ти там?"
+},
+{
+"id": "it:03:02",
+"target": "Sei qui?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+},
+{
+"id": "it:03:03",
+"target": "Sei pronto?",
+"ru": "Ты готов?",
+"uk": "Ти готовий?"
+},
+{
+"id": "it:03:05",
+"target": "Paolo è in ufficio?",
+"ru": "Паоло в офисе?",
+"uk": "Паоло в офісі?"
+},
+{
+"id": "it:03:06",
+"target": "Lea è alla stazione?",
+"ru": "Леа на вокзале?",
+"uk": "Леа на вокзалі?"
+},
+{
+"id": "it:03:12",
+"target": "La porta è aperta?",
+"ru": "Дверь открыта?",
+"uk": "Двері відчинені?"
+},
+{
+"id": "it:03:07",
+"target": "Siete a casa?",
+"ru": "Вы дома?",
+"uk": "Ви вдома?"
+},
+{
+"id": "it:03:10",
+"target": "È libero?",
+"ru": "Вы свободны?",
+"uk": "Ви вільні?"
+},
+{
+"id": "it:03:31",
+"target": "Lea è con te?",
+"ru": "Леа с тобой?",
+"uk": "Леа з тобою?"
+},
+{
+"id": "it:03:14",
+"target": "La sala è libera?",
+"ru": "Зал свободен?",
+"uk": "Зала вільна?"
+},
+{
+"id": "it:03:20",
+"target": "La camera è pulita?",
+"ru": "Комната чистая?",
+"uk": "Кімната чиста?"
+},
+{
+"id": "it:03:34",
+"target": "Il tavolo è libero?",
+"ru": "Столик свободен?",
+"uk": "Столик вільний?"
+},
+{
+"id": "it:03:16",
+"target": "Il treno è in orario?",
+"ru": "Поезд идёт по расписанию?",
+"uk": "Поїзд іде за розкладом?"
+},
+{
+"id": "it:03:17",
+"target": "Siete in anticipo?",
+"ru": "Вы пришли раньше времени?",
+"uk": "Ви прийшли завчасно?"
+},
+{
+"id": "it:03:41",
+"target": "Il prossimo autobus è già qui?",
+"ru": "Следующий автобус уже здесь?",
+"uk": "Наступний автобус вже тут?"
+},
+{
+"id": "it:03:22",
+"target": "L’ingresso è lì?",
+"ru": "Вход там?",
+"uk": "Вхід там?"
+},
+{
+"id": "it:03:25",
+"target": "L’uscita è a sinistra?",
+"ru": "Выход слева?",
+"uk": "Вихід ліворуч?"
+},
+{
+"id": "it:03:26",
+"target": "Il parcheggio è a destra?",
+"ru": "Парковка справа?",
+"uk": "Парковка праворуч?"
+},
+{
+"id": "it:03:42",
+"target": "Entrambe le porte sono chiuse?",
+"ru": "Обе двери закрыты?",
+"uk": "Обидві двері зачинені?"
+},
+{
+"id": "it:03:48",
+"target": "La camera è al primo piano?",
+"ru": "Комната на первом этаже?",
+"uk": "Кімната на першому поверсі?"
+},
+{
+"id": "it:03:50",
+"target": "Il pranzo è pronto?",
+"ru": "Обед готов?",
+"uk": "Обід готовий?"
+}
+]
+},
+{
+"lesson": 4,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:04:01",
+"it:04:02",
+"it:04:03"
+],
+"textByLocale": {
+"en": "The demonstrative word stands alone and points to the person being seen. Compare this with a typical personal statement about yourself. The first form of the verb does not replace the indication of another person.",
+"ru": "Указательное слово стоит самостоятельно и указывает на того, кого видят. Сравни с обычным личным сообщением о себе. Глагол первой формы не заменяет указание на другого человека.",
+"uk": "Вказівне слово стоїть самостійно та вказує на того, кого бачать. Порівняй зі звичайним особистим повідомленням про себе. Дієслово першої форми не замінює вказівку на іншу людину."
+}
+},
+{
+"exampleIds": [
+"it:04:05",
+"it:04:06",
+"it:04:08"
+],
+"textByLocale": {
+"en": "When naming one of many people, use the appropriate indefinite article. Before the feminine `amica`, you get `un’amica`, but the masculine `un amico` has no apostrophe. Gender changes both spelling and meaning.",
+"ru": "Называя одного из многих людей, используй подходящий неопределённый артикль. Перед женским `amica` получается `un’amica`, но мужское `un amico` апострофа не имеет. Род меняет и написание, и смысл.",
+"uk": "Називаючи одного з багатьох людей, використовуй відповідний невизначений артикль. Перед жіночим `amica` виходить `un’amica`, але чоловіче `un amico` апострофа немає. Рід змінює і написання, і зміст."
+}
+},
+{
+"exampleIds": [
+"it:04:09",
+"it:04:10",
+"it:04:46"
+],
+"textByLocale": {
+"en": "Before a singular close-family noun, the possessive normally has no article: `mia madre`, `mio padre`, `tuo fratello`. That does not apply to objects: say `la mia borsa`.",
+"ru": "В сочетаниях `mia madre`, `mio padre`, `tuo fratello` обычный артикль перед притяжательным словом не нужен. Не распространяй это на любую вещь: про сумку говорят `la mia borsa`.",
+"uk": "У поєднаннях `mia madre`, `mio padre`, `tuo fratello` звичайний артикль перед присвійним словом не потрібен. Не розповсюджуй це на будь-яку річ: про сумку говорять `la mia borsa`."
+}
+},
+{
+"exampleIds": [
+"it:04:11",
+"it:04:18",
+"it:04:19"
+],
+"textByLocale": {
+"en": "In the combination `Questo è un indirizzo`, the word `questo` specifies, and `un indirizzo` names, the type of object. Simply saying \"address\" eliminates the \"this is an address\" part of the message.",
+"ru": "В сочетании `Questo è un indirizzo` слово `questo` указывает, а `un indirizzo` называет тип предмета. Если просто сказать «адрес», исчезнет часть сообщения «это адрес».",
+"uk": "У поєднанні `Questo è un indirizzo` слово `questo` вказує, а `un indirizzo` називає тип предмета. Якщо просто сказати \"адресу\", зникне частина повідомлення \"це адреса\"."
+}
+},
+{
+"exampleIds": [
+"it:04:21",
+"it:04:22",
+"it:04:26"
+],
+"textByLocale": {
+"en": "The indication, verb, and name must all fit together in the same number group. `Queste sono le mie chiavi`: There are multiple objects, so don't use `è`. For clothing, look at the Italian noun, not the number in the translation.",
+"ru": "Указание, глагол и название должны уживаться в одной группе по числу. `Queste sono le mie chiavi`: предметов несколько, поэтому не `è`. Для одежды смотри на итальянское существительное, а не на число в переводе.",
+"uk": "Вказівка, дієслово та назва повинні вживатися в одній групі за кількістю. `Queste sono le mie chiavi`: предметів кілька, тому не `è`. Для одягу дивись на іменник, а не на число в перекладі."
+}
+},
+{
+"exampleIds": [
+"it:04:31",
+"it:04:36",
+"it:04:37"
+],
+"textByLocale": {
+"en": "A clarification may end the phrase: first visit, correct address, last bus. Try naming the object without clarification first, and then returning the part. This way, you can see what information it adds.",
+"ru": "В конце фразы может идти уточнение: первый визит, правильный адрес, последний автобус. Попробуй сначала назвать вещь без уточнения, а затем вернуть деталь. Так видно, какую информацию она добавляет.",
+"uk": "Наприкінці фрази може йти уточнення: перший візит, правильна адреса, останній автобус. Спробуй спочатку назвати річ без уточнення, потім повернути деталь. Так видно, яку інформацію вона додає."
+}
+},
+{
+"exampleIds": [
+"it:04:41",
+"it:04:44",
+"it:04:45"
+],
+"textByLocale": {
+"en": "You can deny or ask who the object represents. `Questa non è la mia borsa` doesn't mean the bag isn't there: the bag is in front of us, it's just someone else's.",
+"ru": "Можно отрицать или спрашивать, кого обозначает предмет. `Questa non è la mia borsa` не означает, что сумки нет: сумка перед нами, просто она чужая.",
+"uk": "Ви можете заперечити або запитувати, кого позначає предмет. `Questa non è la mia borsa` не означає, що сумки немає: сумка перед нами просто вона чужа."
+}
+}
+],
+"drills": [
+{
+"bad": "Qui",
+"chapter": 1,
+"id": "it:04:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"Questo",
+"Questa",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 1,
+"id": "it:04:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 10,
+"options": [
+"Qui",
+"Questo",
+"Questa"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 1,
+"id": "it:04:05:lab",
+"item": 5,
+"kind": "match",
+"near": 2,
+"options": [
+"Questo",
+"Queste",
+"Questa"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 2,
+"id": "it:04:08:lab",
+"item": 8,
+"kind": "build",
+"near": 11,
+"options": [
+"Qui",
+"Questo",
+"Questa"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 2,
+"id": "it:04:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"Questa",
+"Qui",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 2,
+"id": "it:04:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 13,
+"options": [
+"Qui",
+"Questa",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 3,
+"id": "it:04:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 15,
+"options": [
+"Questa",
+"Questi",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 3,
+"id": "it:04:17:lab",
+"item": 17,
+"kind": "match",
+"near": 38,
+"options": [
+"Questa",
+"Questo",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 3,
+"id": "it:04:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Qui",
+"Queste",
+"Questa"
+],
+"slot": 0
+},
+{
+"bad": "Questa",
+"chapter": 4,
+"id": "it:04:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 44,
+"options": [
+"Questa",
+"Qui",
+"Questi"
+],
+"slot": 0
+},
+{
+"bad": "Questa",
+"chapter": 4,
+"id": "it:04:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 27,
+"options": [
+"Questa",
+"Questo",
+"Questi"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 4,
+"id": "it:04:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 28,
+"options": [
+"Queste",
+"Questa",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 5,
+"id": "it:04:29:lab",
+"item": 29,
+"kind": "match",
+"near": 30,
+"options": [
+"Questo",
+"Questi",
+"Questa"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 5,
+"id": "it:04:31:lab",
+"item": 31,
+"kind": "build",
+"near": 41,
+"options": [
+"Questa",
+"Questi",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 5,
+"id": "it:04:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"Questa",
+"Qui",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 6,
+"id": "it:04:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 43,
+"options": [
+"Questa",
+"Qui",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Questo",
+"chapter": 6,
+"id": "it:04:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 16,
+"options": [
+"Questa",
+"Questo",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Questa",
+"chapter": 6,
+"id": "it:04:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"Questa",
+"Qui",
+"Questo"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 7,
+"id": "it:04:45:lab",
+"item": 45,
+"kind": "build",
+"near": 40,
+"options": [
+"Questa",
+"Questo",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Questa",
+"chapter": 7,
+"id": "it:04:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 12,
+"options": [
+"Questa",
+"Qui",
+"Questo"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"questo",
+"Questo è mio padre."
+],
+[
+"questa",
+"Questa è mia madre."
+],
+[
+"questi",
+"Questi sono i miei amici."
+],
+[
+"queste",
+"Queste sono le vostre ricevute."
+]
+],
+"title": {
+"en": "Introduce a person or name a thing",
+"ru": "Представить человека или назвать вещь",
+"uk": "Уявити людину або назвати річ"
+}
+},
+"exampleResolved": [
+{
+"id": "it:04:01",
+"target": "Questo è Paolo.",
+"ru": "Это Паоло.",
+"uk": "Це Паоло."
+},
+{
+"id": "it:04:02",
+"target": "Questa è Lea.",
+"ru": "Это Леа.",
+"uk": "Це Леа."
+},
+{
+"id": "it:04:03",
+"target": "Questa è mia sorella.",
+"ru": "Это моя сестра.",
+"uk": "Це моя сестра."
+},
+{
+"id": "it:04:05",
+"target": "Questa è un’amica.",
+"ru": "Это подруга.",
+"uk": "Це подруга."
+},
+{
+"id": "it:04:06",
+"target": "Questo è un amico.",
+"ru": "Это друг.",
+"uk": "Це друг."
+},
+{
+"id": "it:04:08",
+"target": "Questa è una vicina.",
+"ru": "Это соседка.",
+"uk": "Це сусідка."
+},
+{
+"id": "it:04:09",
+"target": "Questo è mio padre.",
+"ru": "Это мой отец.",
+"uk": "Це мій батько."
+},
+{
+"id": "it:04:10",
+"target": "Questa è mia madre.",
+"ru": "Это моя мать.",
+"uk": "Це моя мати."
+},
+{
+"id": "it:04:46",
+"target": "Questo è tuo fratello?",
+"ru": "Это твой брат?",
+"uk": "Це твій брат?"
+},
+{
+"id": "it:04:11",
+"target": "Questa è una chiave.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "it:04:18",
+"target": "Questo è un indirizzo.",
+"ru": "Это адрес.",
+"uk": "Це адреса."
+},
+{
+"id": "it:04:19",
+"target": "Questa è una ricevuta.",
+"ru": "Это чек.",
+"uk": "Це чек."
+},
+{
+"id": "it:04:21",
+"target": "Queste sono le mie chiavi.",
+"ru": "Это мои ключи.",
+"uk": "Це мої ключі."
+},
+{
+"id": "it:04:22",
+"target": "Questi sono i miei amici.",
+"ru": "Это мои друзья.",
+"uk": "Це мої друзі."
+},
+{
+"id": "it:04:26",
+"target": "Queste sono le tue scarpe.",
+"ru": "Это твоя обувь.",
+"uk": "Це твоє взуття."
+},
+{
+"id": "it:04:31",
+"target": "Questa è la mia prima visita.",
+"ru": "Это мой первый визит.",
+"uk": "Це мій перший візит."
+},
+{
+"id": "it:04:36",
+"target": "Questo è l’indirizzo giusto.",
+"ru": "Это правильный адрес.",
+"uk": "Це правильна адреса."
+},
+{
+"id": "it:04:37",
+"target": "Questo è l’ultimo autobus.",
+"ru": "Это последний автобус.",
+"uk": "Це останній автобус."
+},
+{
+"id": "it:04:41",
+"target": "Questa non è la mia borsa.",
+"ru": "Это не моя сумка.",
+"uk": "Це не моя сумка."
+},
+{
+"id": "it:04:44",
+"target": "Questi non sono i miei occhiali.",
+"ru": "Это не мои очки.",
+"uk": "Це не мої окуляри."
+},
+{
+"id": "it:04:45",
+"target": "Questo è il suo telefono?",
+"ru": "Это ваш телефон?",
+"uk": "Це ваш телефон?"
+}
+]
+}
+]

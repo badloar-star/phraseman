@@ -1,44 +1,25 @@
-import { getPhraseAudioUrl } from '../app/phrase_audio_url_map.generated';
-import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
+import fs from 'node:fs';
+import path from 'node:path';
 
-describe('phrase audio lookup', () => {
-  it('keeps exact lookups unchanged', () => {
-    expect(getPlayablePhraseAudioUrl('A long shot')).toBe(
-      getPhraseAudioUrl('A long shot'),
-    );
+import { getPlayablePhraseAudioUrl, phraseAudioSpokenKey } from '../modules/audio/phrase_audio_lookup';
+
+const ROOT = path.resolve(__dirname, '..');
+
+// зачем (владелец 11.11.2026, «удали всю озвучку»): готовых клипов фраз больше нет,
+// фразы читает только голос телефона. Сторож не даёт карте клипов вернуться незаметно.
+describe('phrase audio lookup — готовых клипов нет', () => {
+  it.each(['A long shot', "I'm okay", 'I am okay', '', '   '])('не отдаёт ссылку на клип для %j', (text) => {
+    expect(getPlayablePhraseAudioUrl(text)).toBeUndefined();
   });
 
-  it('reuses an unambiguous clip when display cleanup removed punctuation', () => {
-    const recorded = 'If you do not save this, you will lose it';
-    const displayed = 'If you do not save this you will lose it';
-
-    expect(getPhraseAudioUrl(displayed)).toBeUndefined();
-    expect(getPlayablePhraseAudioUrl(displayed)).toBe(getPhraseAudioUrl(recorded));
+  it('карта «фраза → mp3» удалена и не импортируется', () => {
+    expect(fs.existsSync(path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts'))).toBe(false);
+    const source = fs.readFileSync(path.join(ROOT, 'modules', 'audio', 'phrase_audio_lookup.ts'), 'utf8');
+    expect(source).not.toContain('require(');
+    expect(source).not.toContain('firebasestorage');
   });
 
-  it.each([
-    ["I'm ready", 'I am ready'],
-    ['It’s cheap', 'It is cheap'],
-    ["We're friends", 'We are friends'],
-    ["They're happy", 'They are happy'],
-    ["Don't call him", 'Do not call him'],
-    ["He won't help them next week", 'He will not help them next week'],
-    ["She'll help us next week", 'She will help us next week'],
-    ["You're late", 'You are late'],
-  ])(
-    'reuses the canonical lesson clip for accepted contraction %s',
-    (accepted, canonical) => {
-      expect(getPhraseAudioUrl(accepted)).toBeUndefined();
-      expect(getPlayablePhraseAudioUrl(accepted)).toBe(
-        getPhraseAudioUrl(canonical),
-      );
-    },
-  );
-
-  it('does not guess when one accepted form matches different recordings', () => {
-    const ambiguous = 'After finishing, call me!';
-
-    expect(getPhraseAudioUrl(ambiguous)).toBeUndefined();
-    expect(getPlayablePhraseAudioUrl(ambiguous)).toBeUndefined();
+  it('ключ произнесённой формы по-прежнему склеивает принятые варианты записи', () => {
+    expect(phraseAudioSpokenKey("  I'm   okay ")).toBe(phraseAudioSpokenKey('I am okay'));
   });
 });

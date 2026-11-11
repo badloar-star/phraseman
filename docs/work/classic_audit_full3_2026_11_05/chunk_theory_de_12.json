@@ -1,0 +1,964 @@
+[
+{
+"lesson": 25,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:25:01",
+"de:25:04"
+],
+"textByLocale": {
+"en": "The buyer doesn't want just any shoes, but red ones. The description is now within a noun phrase. You can say `Der Mantel ist rot` on its own, but when combined with the name of the item, it becomes `rote`.\"",
+"ru": "Покупателю нужны не любые туфли, а красные. Описание теперь внутри именной группы. Отдельно можно сказать `Der Mantel ist rot`, но в сочетании с названием предмета появляется форма `rote`.",
+"uk": "Покупцеві потрібні не будь-які черевики, а червоні. Опис тепер усередині іменної групи. Окремо можна сказати `Der Mantel ist rot`, але в поєднанні з назвою предмета з'являється форма `rote`."
+}
+},
+{
+"exampleIds": [
+"de:25:05",
+"de:25:10"
+],
+"textByLocale": {
+"en": "For the singular nominative after the definite article in this lesson, you'll usually see `-e`.\" In the plural, it will be `-en`.\" Check whether the person is talking about one box or several.",
+"ru": "Для единственного числа в именительном после определённого артикля в этом уроке обычно увидишь `-e`. Во множественном вместо него будет `-en`. Проверь, говорит ли человек об одной коробке или нескольких.",
+"uk": "Для однини в називному після певного артикля в цьому уроці зазвичай побачиш `-e`. У множині замість нього буде `-en`. Перевір, чи говорить людина про одну коробку чи кілька."
+}
+},
+{
+"exampleIds": [
+"de:25:11",
+"de:25:17"
+],
+"textByLocale": {
+"en": "A masculine object as a direct object is an important transition: `der rote Mantel` becomes `den roten Mantel`.\" The change isn't visible in the name of the coat itself; the surrounding words provide a clue.",
+"ru": "Мужской предмет как прямой объект — важный переход: `der rote Mantel` превращается в `den roten Mantel`. На самом названии пальто изменения не видно; подсказку дают соседние слова.",
+"uk": "Чоловічий предмет як прямий об'єкт - важливий перехід: `der rote Mantel` перетворюється на `den roten Mantel`. На самій назві пальта зміни не видно; підказку дають сусідні слова."
+}
+},
+{
+"exampleIds": [
+"de:25:21",
+"de:25:24"
+],
+"textByLocale": {
+"en": "After `mit`,\" the dative case is required. Within a noun phrase with a definite article, the adjective will become `-en`.\" This doesn't only apply to people: you can take the train or the last train.",
+"ru": "После `mit` нужен дательный падеж. Внутри именной группы с определённым артиклем у прилагательного будет `-en`. Это работает не только у людей: можно ехать поездом или последней электричкой.",
+"uk": "Після `mit` потрібен дальний відмінок. Усередині іменної групи з певним артиклем прикметник матиме `-en`. Це працює не тільки у людей: можна їхати потягом чи останньою електричкою."
+}
+},
+{
+"exampleIds": [
+"de:25:31",
+"de:25:36"
+],
+"textByLocale": {
+"en": "Compare two sentences about the same object: does it do something itself, or does someone choose it? This comparison helps distinguish the subject from the object, without trying to determine the case solely by translation.",
+"ru": "Сравни две реплики об одном предмете: он что-то делает сам или кто-то его выбирает? Такое сравнение помогает отличить подлежащее от объекта, не пытаясь определить падеж только по переводу.",
+"uk": "Порівняй дві репліки про один предмет: він щось робить сам чи хтось його вибирає? Таке порівняння допомагає відрізнити підлягає об'єкту, не намагаючись визначити відмінок лише з перекладу."
+}
+},
+{
+"exampleIds": [
+"de:25:38",
+"de:25:44"
+],
+"textByLocale": {
+"en": "The ending of an adjective doesn't convey quality by itself. Yellow doesn't change color when the envelope's role in the sentence changes. Only the relationship between the words changes.",
+"ru": "Окончание прилагательного не передаёт качество само по себе. Жёлтый не становится другим цветом при смене роли конверта в предложении. Изменяется только связь между словами.",
+"uk": "Закінчення прикметника не передає якість саме по собі. Жовтий не стає іншим кольором при зміні ролі конверта у реченні. Змінюється лише зв'язок між словами."
+}
+},
+{
+"exampleIds": [
+"de:25:47",
+"de:25:50"
+],
+"textByLocale": {
+"en": "First, practice collocations with the definite article. Don't transfer the finished table unchanged to collocations without the article or with `ein`: the distribution of case signals is different there.",
+"ru": "Сначала тренируем сочетания с определённым артиклем. Не переноси готовую таблицу без изменений на сочетания без артикля или с `ein`: распределение падежных сигналов там отличается.",
+"uk": "Спочатку тренуємо поєднання з певним артиклем. Не переноси готову таблицю без змін на поєднання без артикля або з `ein`: розподіл відмінкових сигналів там відрізняється."
+}
+}
+],
+"lab": [
+{
+"bad": "roter",
+"chapter": 1,
+"id": "de:25:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"rotem",
+"rote",
+"roter"
+],
+"slot": 1
+},
+{
+"bad": "rotes",
+"chapter": 1,
+"id": "de:25:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"rote",
+"rotes",
+"roter"
+],
+"slot": 1
+},
+{
+"bad": "kleiner",
+"chapter": 1,
+"id": "de:25:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"kleiner",
+"kleinem",
+"kleine"
+],
+"slot": 1
+},
+{
+"bad": "kleines",
+"chapter": 2,
+"id": "de:25:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"kleines",
+"klein",
+"kleinen"
+],
+"slot": 1
+},
+{
+"bad": "neuer",
+"chapter": 2,
+"id": "de:25:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"neuer",
+"neue",
+"neuen"
+],
+"slot": 1
+},
+{
+"bad": "rotem",
+"chapter": 2,
+"id": "de:25:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 44,
+"options": [
+"rotem",
+"roter",
+"rote"
+],
+"slot": 3
+},
+{
+"bad": "runden",
+"chapter": 3,
+"id": "de:25:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 28,
+"options": [
+"runden",
+"roten",
+"langen"
+],
+"slot": 2
+},
+{
+"bad": "neuer",
+"chapter": 3,
+"id": "de:25:17:lab",
+"item": 17,
+"kind": "match",
+"near": 10,
+"options": [
+"neuer",
+"neue",
+"neu"
+],
+"slot": 3
+},
+{
+"bad": "frühen",
+"chapter": 3,
+"id": "de:25:19:lab",
+"item": 19,
+"kind": "build",
+"near": 38,
+"options": [
+"leeren",
+"frühen",
+"sprechen"
+],
+"slot": 3
+},
+{
+"bad": "leeren",
+"chapter": 4,
+"id": "de:25:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 13,
+"options": [
+"gesehen",
+"letzten",
+"leeren"
+],
+"slot": 4
+},
+{
+"bad": "neuer",
+"chapter": 4,
+"id": "de:25:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 15,
+"options": [
+"neu",
+"neuen",
+"neuer"
+],
+"slot": 4
+},
+{
+"bad": "kleiner",
+"chapter": 4,
+"id": "de:25:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"kleinen",
+"kleiner",
+"kleine"
+],
+"slot": 2
+},
+{
+"bad": "liegen",
+"chapter": 5,
+"id": "de:25:29:lab",
+"item": 29,
+"kind": "match",
+"near": 34,
+"options": [
+"großen",
+"liegen",
+"runden"
+],
+"slot": 2
+},
+{
+"bad": "ruhigen",
+"chapter": 5,
+"id": "de:25:31:lab",
+"item": 31,
+"kind": "build",
+"near": 5,
+"options": [
+"direkte",
+"wichtigen",
+"ruhigen"
+],
+"slot": 1
+},
+{
+"bad": "vollen",
+"chapter": 5,
+"id": "de:25:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 16,
+"options": [
+"gelben",
+"offene",
+"vollen"
+],
+"slot": 3
+},
+{
+"bad": "tagsüber",
+"chapter": 6,
+"id": "de:25:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"kalte",
+"hintere",
+"tagsüber"
+],
+"slot": 3
+},
+{
+"bad": "tut",
+"chapter": 6,
+"id": "de:25:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 9,
+"options": [
+"feuchte",
+"teilen",
+"tut"
+],
+"slot": 1
+},
+{
+"bad": "reparieren",
+"chapter": 6,
+"id": "de:25:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"reparieren",
+"gelben",
+"sprechen"
+],
+"slot": 3
+},
+{
+"bad": "alten",
+"chapter": 7,
+"id": "de:25:45:lab",
+"item": 45,
+"kind": "build",
+"near": 46,
+"options": [
+"gehört",
+"alten",
+"hintere"
+],
+"slot": 1
+},
+{
+"bad": "direkten",
+"chapter": 7,
+"id": "de:25:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 47,
+"options": [
+"wichtigen",
+"direkten",
+"leeren"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"der rote Mantel",
+"den roten Mantel"
+],
+[
+"die rote Jacke",
+"die rote Jacke"
+],
+[
+"das rote Kleid",
+"das rote Kleid"
+],
+[
+"die roten Schuhe",
+"die roten Schuhe"
+],
+[
+"mit",
+"mit dem roten Mantel"
+]
+],
+"title": {
+"en": "Which one? An adjective after a definite article.",
+"ru": "Какой именно? Прилагательное после определённого артикля",
+"uk": "Який саме? Прикметник після певного артикля"
+}
+},
+"exampleResolved": [
+{
+"id": "de:25:01",
+"target": "Der rote Mantel passt.",
+"ru": "Красное пальто подходит.",
+"uk": "Червоне пальто підходить."
+},
+{
+"id": "de:25:04",
+"target": "Die roten Schuhe passen.",
+"ru": "Красные туфли подходят.",
+"uk": "Червоні туфлі підходять."
+},
+{
+"id": "de:25:05",
+"target": "Der kleine Koffer ist leicht.",
+"ru": "Маленький чемодан лёгкий.",
+"uk": "Маленька валіза легка."
+},
+{
+"id": "de:25:10",
+"target": "Die neue Karte funktioniert.",
+"ru": "Новая карта работает.",
+"uk": "Нова карта працює."
+},
+{
+"id": "de:25:11",
+"target": "Ich nehme den roten Mantel.",
+"ru": "Я беру красное пальто.",
+"uk": "Я беру червоне пальто."
+},
+{
+"id": "de:25:17",
+"target": "Ich lese das neue Buch.",
+"ru": "Я читаю новую книгу.",
+"uk": "Я читаю нову книгу."
+},
+{
+"id": "de:25:21",
+"target": "Ich fahre mit dem frühen Zug.",
+"ru": "Я еду ранним поездом.",
+"uk": "Я їду раннім поїздом."
+},
+{
+"id": "de:25:24",
+"target": "Wir sprechen mit den neuen Nachbarn.",
+"ru": "Мы разговариваем с новыми соседями.",
+"uk": "Ми розмовляємо з новими сусідами."
+},
+{
+"id": "de:25:31",
+"target": "Der direkte Zug ist teurer.",
+"ru": "Прямой поезд дороже.",
+"uk": "Прямий поїзд дорожчий."
+},
+{
+"id": "de:25:36",
+"target": "Tom trinkt das kalte Wasser.",
+"ru": "Том пьёт холодную воду.",
+"uk": "Том п'є холодну воду."
+},
+{
+"id": "de:25:38",
+"target": "Wir teilen die frischen Brötchen.",
+"ru": "Мы делим свежие булочки.",
+"uk": "Ми ділимо свіжі булочки."
+},
+{
+"id": "de:25:44",
+"target": "Ich hänge die nasse Jacke an den Haken.",
+"ru": "Я вешаю мокрую куртку на крючок.",
+"uk": "Я вішаю мокру куртку на гачок."
+},
+{
+"id": "de:25:47",
+"target": "Die wichtigen Unterlagen liegen hier.",
+"ru": "Важные документы лежат здесь.",
+"uk": "Важливі документи лежать тут."
+},
+{
+"id": "de:25:50",
+"target": "Wir gehen durch den schmalen Gang zur Kasse.",
+"ru": "Мы идём к кассе по узкому проходу.",
+"uk": "Ми йдемо до каси вузьким проходом."
+}
+]
+},
+{
+"lesson": 26,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:26:01",
+"de:26:05"
+],
+"textByLocale": {
+"en": "There is an attempt and there is its goal. The person is shown by the verb \"trying,\" and the second action is not conjugated separately. Make sure you haven't named the performer a second time, as in a complete subordinate clause.",
+"ru": "Есть попытка и есть её цель. Лицо показывает глагол «пытаюсь», а второе действие не спрягается отдельно. Проверь, что ты не назвал исполнителя второй раз как в полном придаточном.",
+"uk": "Є спроба і її мета. Обличчя показує дієслово «намагаюся», а друга дія не відмінюється окремо. Перевір, що ти не назвав виконавця вдруге, як у повному підрядному."
+}
+},
+{
+"exampleIds": [
+"de:26:06",
+"de:26:10"
+],
+"textByLocale": {
+"en": "A hope or plan can also refer to a state, such as being at home. The form `zu sein` behaves like any other infinitive with `zu`,\" although the speaker's usual form would be `bin`.\"",
+"ru": "Надежда или план могут относиться и к состоянию, например быть дома. Форма `zu sein` ведёт себя как любой другой инфинитив с `zu`, хотя обычная форма для говорящего была бы `bin`.",
+"uk": "Надія або план можуть стосуватися і стану, наприклад, бути вдома. Форма `zu sein` веде себе як будь-який інший інфінітив з `zu`, хоча звичайна форма для того, хто говорить, була б `bin`."
+}
+},
+{
+"exampleIds": [
+"de:26:11",
+"de:26:15"
+],
+"textByLocale": {
+"en": "If the prefix is separable, `zu` is placed inside and the whole thing is written together: `anzurufen`, `abzuschließen`.\" Don't choose three tiles instead of one written word.",
+"ru": "Если приставка отделяемая, `zu` ставится внутрь и всё пишется слитно: `anzurufen`, `abzuschließen`. Не выбирай три плитки вместо одного написанного слова.",
+"uk": "Якщо приставка, що відокремлюється, `zu` ставиться всередину і все пишеться разом: `anzurufen`, `abzuschließen`. Не вибирай три плитки замість одного написаного слова."
+}
+},
+{
+"exampleIds": [
+"de:26:21",
+"de:26:25"
+],
+"textByLocale": {
+"en": "The construction with `es ist` first evaluates the action: easy, difficult, important. What exactly is easy or important is stated next. The performer can be general, so a pronoun is not always required.",
+"ru": "Конструкция с `es ist` сначала оценивает действие: легко, трудно, важно. Что именно легко или важно, называют дальше. Исполнитель может быть общим, поэтому местоимение не всегда требуется.",
+"uk": "Конструкція з `es ist` спочатку оцінює дію: легко, важко, важливо. Що саме легко чи важливо називають далі. Виконавець може бути загальним, тому займенник не завжди потрібний."
+}
+},
+{
+"exampleIds": [
+"de:26:31",
+"de:26:38"
+],
+"textByLocale": {
+"en": "A request indicates that the performer is not necessarily the same person as the first verb. In `Er bittet mich, …`,\" I am specifically being asked to perform the next action.",
+"ru": "Просьба показывает, что исполнитель не обязательно тот же человек, что у первого глагола. В `Er bittet mich, …` просят именно меня совершить следующее действие.",
+"uk": "Прохання показує, що виконавець не обов'язково та сама людина, що у першого дієслова. У `Er bittet mich, …` просять саме мене вчинити таку дію."
+}
+},
+{
+"exampleIds": [
+"de:26:41",
+"de:26:46"
+],
+"textByLocale": {
+"en": "For a purpose, ask the question \"why?\" A person goes to the post office to pick up a package. `Um` opens the purpose group, and `zu` refers to the infinitive. This is not the same meaning as \"because.\"",
+"ru": "Для цели задай вопрос «зачем?». Человек идёт на почту, чтобы забрать посылку. `Um` открывает группу цели, а `zu` относится к инфинитиву. Это не тот же смысл, что «потому что».",
+"uk": "Для мети задай питання «навіщо?». Людина йде на пошту, щоб забрати посилку. `Um` відкриває групу мети, а `zu` відноситься до інфінітиву. Це не той самий сенс, що «бо»."
+}
+},
+{
+"exampleIds": [
+"de:26:47",
+"de:26:50"
+],
+"textByLocale": {
+"en": "The boundary with modal verbs is important: after `muss`,\" the main action usually occurs without `zu`.\" Don't add a particle just because there are two verbs in the sentence. The choice depends on the construction.",
+"ru": "Граница с модальными глаголами важна: после `muss` основное действие обычно идёт без `zu`. Не добавляй частицу просто оттого, что в предложении два глагола. Выбор зависит от конструкции.",
+"uk": "Кордон з модальними дієсловами важливий: після `muss` основна дія зазвичай йде без `zu`. Не додай частинку просто тому, що у реченні два дієслова. Вибір залежить від конструкції."
+}
+}
+],
+"lab": [
+{
+"bad": "für",
+"chapter": 1,
+"id": "de:26:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 20,
+"options": [
+"zu",
+"für",
+"von"
+],
+"slot": 3
+},
+{
+"bad": "bei",
+"chapter": 1,
+"id": "de:26:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"seit",
+"zu",
+"bei"
+],
+"slot": 4
+},
+{
+"bad": "seit",
+"chapter": 1,
+"id": "de:26:05:lab",
+"item": 5,
+"kind": "match",
+"near": 8,
+"options": [
+"seit",
+"ohne",
+"zu"
+],
+"slot": 3
+},
+{
+"bad": "nach",
+"chapter": 2,
+"id": "de:26:08:lab",
+"item": 8,
+"kind": "build",
+"near": 5,
+"options": [
+"nach",
+"zu",
+"von"
+],
+"slot": 4
+},
+{
+"bad": "nach",
+"chapter": 2,
+"id": "de:26:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"nach",
+"für",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "umzuziehen",
+"chapter": 2,
+"id": "de:26:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"umzuziehen",
+"trinken",
+"abzuschließen"
+],
+"slot": 5
+},
+{
+"bad": "hätte",
+"chapter": 3,
+"id": "de:26:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 32,
+"options": [
+"haben",
+"hätte",
+"hast"
+],
+"slot": 1
+},
+{
+"bad": "bei",
+"chapter": 3,
+"id": "de:26:17:lab",
+"item": 17,
+"kind": "match",
+"near": 42,
+"options": [
+"bei",
+"nach",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "bei",
+"chapter": 3,
+"id": "de:26:19:lab",
+"item": 19,
+"kind": "build",
+"near": 5,
+"options": [
+"zu",
+"ohne",
+"bei"
+],
+"slot": 5
+},
+{
+"bad": "seit",
+"chapter": 4,
+"id": "de:26:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 23,
+"options": [
+"ohne",
+"seit",
+"zu"
+],
+"slot": 5
+},
+{
+"bad": "aus",
+"chapter": 4,
+"id": "de:26:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"zu",
+"mit",
+"aus"
+],
+"slot": 4
+},
+{
+"bad": "von",
+"chapter": 4,
+"id": "de:26:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 24,
+"options": [
+"seit",
+"von",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "von",
+"chapter": 5,
+"id": "de:26:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"ohne",
+"zu",
+"von"
+],
+"slot": 4
+},
+{
+"bad": "ohne",
+"chapter": 5,
+"id": "de:26:31:lab",
+"item": 31,
+"kind": "build",
+"near": 40,
+"options": [
+"bei",
+"ohne",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "seit",
+"chapter": 5,
+"id": "de:26:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 44,
+"options": [
+"zu",
+"von",
+"seit"
+],
+"slot": 5
+},
+{
+"bad": "ohne",
+"chapter": 6,
+"id": "de:26:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 24,
+"options": [
+"bei",
+"ohne",
+"zu"
+],
+"slot": 6
+},
+{
+"bad": "von",
+"chapter": 6,
+"id": "de:26:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 46,
+"options": [
+"aus",
+"von",
+"zu"
+],
+"slot": 5
+},
+{
+"bad": "nach",
+"chapter": 6,
+"id": "de:26:42:lab",
+"item": 42,
+"kind": "match",
+"near": 17,
+"options": [
+"bei",
+"nach",
+"zu"
+],
+"slot": 7
+},
+{
+"bad": "von",
+"chapter": 7,
+"id": "de:26:45:lab",
+"item": 45,
+"kind": "build",
+"near": 48,
+"options": [
+"von",
+"seit",
+"zu"
+],
+"slot": 7
+},
+{
+"bad": "von",
+"chapter": 7,
+"id": "de:26:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"von",
+"ohne",
+"zu"
+],
+"slot": 7
+}
+],
+"table": [
+[
+"lernen",
+"zu lernen"
+],
+[
+"anrufen",
+"anzurufen"
+],
+[
+"abschließen",
+"abzuschließen"
+],
+[
+"ausfüllen",
+"auszufüllen"
+],
+[
+"bezahlen",
+"zu bezahlen"
+],
+[
+"sein",
+"zu sein"
+]
+],
+"title": {
+"en": "Two actions: infinitive with `zu`",
+"ru": "Два действия: инфинитив с `zu`",
+"uk": "Дві дії: інфінітив з `zu`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:26:01",
+"target": "Ich versuche, langsam zu sprechen.",
+"ru": "Я стараюсь говорить медленно.",
+"uk": "Я намагаюся говорити повільно."
+},
+{
+"id": "de:26:05",
+"target": "Wir versuchen, früher zu kommen.",
+"ru": "Мы стараемся прийти пораньше.",
+"uk": "Ми намагаємося прийти раніше."
+},
+{
+"id": "de:26:06",
+"target": "Ich hoffe, bald zu Hause zu sein.",
+"ru": "Я надеюсь скоро оказаться дома.",
+"uk": "Я сподіваюся скоро опинитися вдома."
+},
+{
+"id": "de:26:10",
+"target": "Ihr plant, am Freitag zu fahren.",
+"ru": "Вы планируете уехать в пятницу.",
+"uk": "Ви плануєте поїхати у п'ятницю."
+},
+{
+"id": "de:26:11",
+"target": "Ich habe vergessen, Brot zu kaufen.",
+"ru": "Я забыл купить хлеб.",
+"uk": "Я забув купити хліб."
+},
+{
+"id": "de:26:15",
+"target": "Er hat vergessen, die Karte mitzunehmen.",
+"ru": "Он забыл взять с собой карту.",
+"uk": "Він забув взяти з собою карту."
+},
+{
+"id": "de:26:21",
+"target": "Es ist leicht, den Bahnhof zu finden.",
+"ru": "Найти вокзал легко.",
+"uk": "Знайти вокзал легко."
+},
+{
+"id": "de:26:25",
+"target": "Es ist besser, vorher anzurufen.",
+"ru": "Лучше позвонить заранее.",
+"uk": "Краще зателефонувати заздалегідь."
+},
+{
+"id": "de:26:31",
+"target": "Ich habe Zeit, dir zu helfen.",
+"ru": "У меня есть время тебе помочь.",
+"uk": "У мене є час тобі допомогти."
+},
+{
+"id": "de:26:38",
+"target": "Wir bitten Sie, das Formular zu unterschreiben.",
+"ru": "Мы просим вас подписать бланк.",
+"uk": "Ми просимо вас підписати бланк."
+},
+{
+"id": "de:26:41",
+"target": "Ich gehe zur Post, um das Paket abzuholen.",
+"ru": "Я иду на почту, чтобы забрать посылку.",
+"uk": "Я йду на пошту, щоб забрати посилку."
+},
+{
+"id": "de:26:46",
+"target": "Sie ruft an, um den Termin zu bestätigen.",
+"ru": "Она звонит, чтобы подтвердить запись.",
+"uk": "Вона дзвонить, щоб підтвердити запис."
+},
+{
+"id": "de:26:47",
+"target": "Wir bleiben zu Hause, um uns auszuruhen.",
+"ru": "Мы остаёмся дома, чтобы отдохнуть.",
+"uk": "Ми залишаємося вдома, щоб відпочити."
+},
+{
+"id": "de:26:50",
+"target": "Wir nehmen die Treppe, um nicht auf den Aufzug zu warten.",
+"ru": "Мы идём по лестнице, чтобы не ждать лифт.",
+"uk": "Ми йдемо сходами, щоб не чекати ліфт."
+}
+]
+}
+]

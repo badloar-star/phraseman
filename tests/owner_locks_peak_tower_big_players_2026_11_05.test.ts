@@ -1,6 +1,5 @@
 // Governance-ID: TG-59579F3AB225
 // ЗАМОК ВЛАДЕЛЬЦА 05.11 07:4x (скрин эмулятора 14_peak_tower_small_emulator_0737): «башню сделать больше по возможности и опустить вниз». Реестр docs/work/OWNER_LOCKS.md, строки 05.11.
-// Часть замка «на башне показывать иконки юзеров» (07:38) ОТМЕНЕНА словом владельца ~19:12 («с башни убирай иконки юзеров, не надо они там») — см. tests/owner_locks_peak_no_tower_icons_2026_11_05.test.ts.
 // Остаётся замок на размер и посадку башни. Ослабить можно только по новому слову владельца: правка файла + реестра + KNOWN_GUARDS в tests/owner_locks_registry.test.cjs.
 import { peakTowerFit, PEAK_TOWER_BODY_UNITS } from '../components/spire/peak/peak_tower_fit';
 import { SPIRE_TOWER_GEOM } from '../components/spire/spire_tower_model';
@@ -36,6 +35,6 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — башня Пика крупн
     expect(src).toContain('themeColors={towerTheme}'); // башня — в цветах темы экрана, не серая на светлом (Макеты 05.11)
     expect(src).toContain('bottom: -towerFit.sinkDown');
     // запреты: без цифр этажей слева и без «+N» (rivalsByFloor самой башне не передаём); иконок игроков на башне нет (19:12)
-    expect(src).toContain('hideFloorWords rivalsByFloor={undefined}');
+    expect(src).toContain('hideFloorWords rivalsOnTower rivalsByFloor={floorMembers}');
   });
 });

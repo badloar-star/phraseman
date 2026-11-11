@@ -1,0 +1,111 @@
+[
+ {
+  "id": "lesson-9/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«Численна кількість відноситься до» — неграмматично/калька; нужно «Множина стосується»",
+  "fix": "Множина стосується кількох речей. `Le mie chiavi` — мої ключі, а не ключі кількох господарів. Артикль і присвійне слово узгоджені з `chiavi`."
+ },
+ {
+  "id": "lesson-9/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«possessive noun» — притяжательное не существительное; «is my keys» неграмматично",
+  "fix": "The plural refers to several items. `Le mie chiavi` means my keys, not the keys of several owners. The article and the possessive agree with `chiavi`."
+ },
+ {
+  "id": "lesson-9/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«підлогу» = пол (покрытие) вместо «стать»; пропущено «або її» — смысл ≠ ru",
+  "fix": "`Suo` та `sua` не вказують на стать власника. `La sua giacca` може бути його або її курткою. Ясність дають ім'я та ситуація. Не виводь із `sua`, що річ неодмінно належить жінці."
+ },
+ {
+  "id": "lesson-9/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].exampleIds",
+  "problem": "it:09:12 «Il vostro treno…» не иллюстрирует suo/sua; есть it:09:23 «Paolo cerca il suo badge» (имя даёт ясность)",
+  "fix": [
+   "it:09:07",
+   "it:09:08",
+   "it:09:23"
+  ]
+ },
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "«for multiple speakers, use vostro» — неверно: vostro — для нескольких собеседников (адресатов), не говорящих",
+  "fix": "For a group that includes the speaker, use `nostro` and its forms; for several people you are talking to, use `vostro`. You don't need to repeat who is in the group in every vocabulary card: compare `i nostri` and `i vostri` on one item."
+ },
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«з розмовляючим» — калька, нужно «з мовцем»",
+  "fix": "Для групи, до якої входить мовець, використовується `nostro` та його форми; для кількох співрозмовників — `vostro`. Склад групи не потрібно повторювати в кожній словниковій картці: зістав `i nostri` та `i vostri` на одній речі."
+ },
+ {
+  "id": "lesson-9/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "«part of the subject» (должно быть object) и «form for the omission» — «пропуск» переведён как «пропущенное», а не «pass»",
+  "fix": "In a sentence about an action, the possessive stays part of the object: \"I'm looking for my pass.\" First choose the verb form for the person who is looking, then the article and the possessive form for the pass. These are two independent checks."
+ },
+ {
+  "id": "lesson-9/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«форму для пропуску» — по-украински «пропуск» = пропущенное; выше в тексте «перепустка»",
+  "fix": "У реченні про дію присвійне залишається частиною предмета: «шукаю свою перепустку». Спочатку вибери дієслово для того, хто шукає, потім артикль та форму для перепустки. Це дві незалежні перевірки."
+ },
+ {
+  "id": "lesson-9/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[5].exampleIds",
+  "problem": "глава про `loro`, а ни один пример (31, 34, 37) не содержит loro; во фразах урока есть it:09:15 и it:09:27",
+  "fix": [
+   "it:09:15",
+   "it:09:27"
+  ]
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[6].exampleIds",
+  "problem": "it:09:46 «Mostri il Suo biglietto» не про родственника без артикля; есть it:09:38 «Sua sorella lavora qui»",
+  "fix": [
+   "it:09:38",
+   "it:09:49",
+   "it:09:50"
+  ]
+ },
+ {
+  "id": "lesson-10/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«з необчислюваним речовиною» — несогласование рода и неверное слово (нужно «незлічуваною»)",
+  "fix": "`C’è` використовується з одним предметом і з незлічуваною речовиною в однині. `Ci sono` — з кількома. Спочатку виріши, один предмет чи багато, потім вибирай початок."
+ },
+ {
+  "id": "lesson-10/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«вперше уявити» = вообразить; нужно «представити»",
+  "fix": "Неозначений артикль допомагає вперше представити один предмет. Числівник сам показує кількість; перед «два» не потрібне ще одне `un`."
+ },
+ {
+  "id": "lesson-10/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«від затвердження» = утверждение (одобрение документа); нужно «від ствердження»",
+  "fix": "Питання зберігає ту саму основу: `C’è una camera libera?` відрізняється від ствердження інтонацією та знаком, а не новою допоміжною часткою."
+ },
+ {
+  "id": "lesson-10/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«італійське іменник» — несогласование рода",
+  "fix": "`Ancora` та `più` змінюють сенс наявності: ще залишилося чи більше немає. `Molta gente` — багато людей за змістом, але італійський іменник `gente` стоїть в однині."
+ }
+]

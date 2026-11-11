@@ -1,0 +1,6874 @@
+[
+{
+"lesson": 11,
+"id": "de:11:01",
+"target": "Der Schlüssel liegt auf dem Tisch.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ лежить на столі.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Den",
+"Die",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"über",
+"neben",
+"in",
+"vor",
+"aus"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"die",
+"das",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:02",
+"target": "Die Karte liegt auf dem Tisch.",
+"ru": "Карта лежит на столе.",
+"uk": "Карта лежить на столі.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Karte",
+"distractors": [
+"Tür",
+"Bus",
+"Jacke",
+"Paket",
+"Tom"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"zwischen",
+"über",
+"unter",
+"neben",
+"aus"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:03",
+"target": "Der Pass liegt in der Tasche.",
+"ru": "Паспорт в сумке.",
+"uk": "Паспорт у сумці.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Die",
+"Den",
+"Das",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Pass",
+"distractors": [
+"Tisch",
+"Handy",
+"Kisten",
+"Küche",
+"Kind"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"an",
+"auf",
+"unter",
+"vor",
+"zwischen"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"die",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:04",
+"target": "Das Handy liegt in der Tasche.",
+"ru": "Телефон в сумке.",
+"uk": "Телефон у сумці.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Die",
+"Dem",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Gäste",
+"Laden",
+"Eingang",
+"Tee"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"an",
+"zwischen",
+"vor",
+"über",
+"neben"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"die",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:05",
+"target": "Die Brille liegt im Auto.",
+"ru": "Очки лежат в машине.",
+"uk": "Окуляри лежать у машині.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Der",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Brille",
+"distractors": [
+"Rechnung",
+"Kisten",
+"Fenster",
+"Tasche",
+"Jacke"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"aufs",
+"ins",
+"zum",
+"am",
+"ans"
+]
+},
+{
+"correct": "Auto",
+"distractors": [
+"Teppich",
+"Löffel",
+"Bild",
+"Ecke",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Die Brille liegt in dem Auto."
+]
+},
+{
+"lesson": 11,
+"id": "de:11:06",
+"target": "Die Jacke hängt im Flur.",
+"ru": "Куртка висит в прихожей.",
+"uk": "Куртка висить у передпокої.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Der",
+"Den",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"hält",
+"warten",
+"läuft",
+"schläft",
+"spielen"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"aufs",
+"zum",
+"am",
+"vom",
+"ins"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:07",
+"target": "Das Bild hängt an der Wand.",
+"ru": "Картина висит на стене.",
+"uk": "Картина висить на стіні.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Die",
+"Den",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Bild",
+"distractors": [
+"Kiste",
+"Stuhl",
+"Handy",
+"Büchern",
+"Kinder"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"hält",
+"treffen",
+"läuft",
+"schwimmt",
+"warten"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"in",
+"hinter",
+"über",
+"vor",
+"aus"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Wand",
+"distractors": [
+"Halle",
+"Eingang",
+"Koffer",
+"Bett",
+"Bad"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:08",
+"target": "Tom sitzt auf dem Stuhl.",
+"ru": "Том сидит на стуле.",
+"uk": "Том сидить на стільці.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "sitzt",
+"distractors": [
+"früher",
+"setze",
+"bringen",
+"hängst",
+"kaputt"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"in",
+"vor",
+"über",
+"zwischen",
+"unter"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"die",
+"den",
+"der",
+"das",
+"und"
+]
+},
+{
+"correct": "Stuhl",
+"distractors": [
+"Kisten",
+"Bank",
+"Buch",
+"Gäste",
+"Tisch"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:09",
+"target": "Anna sitzt auf der Bank.",
+"ru": "Анна сидит на скамейке.",
+"uk": "Анна сидить на лавці.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Schlüssel",
+"Bus",
+"Kinder"
+]
+},
+{
+"correct": "sitzt",
+"distractors": [
+"früher",
+"setze",
+"bringen",
+"hängst",
+"kaputt"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"in",
+"vor",
+"neben",
+"unter"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"das",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Bank",
+"distractors": [
+"Stuhl",
+"Krankenhaus",
+"Handtuch",
+"Ausweis",
+"Karte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:10",
+"target": "Die Kinder sitzen im Bus.",
+"ru": "Дети сидят в автобусе.",
+"uk": "Діти сидять у автобусі.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Der",
+"Das",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Handy",
+"Tür",
+"Gäste",
+"Bild",
+"Treppe"
+]
+},
+{
+"correct": "sitzen",
+"distractors": [
+"warten",
+"bezahlen",
+"einen",
+"spielen",
+"offen"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"zum",
+"ans",
+"aufs",
+"ins",
+"am"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:11",
+"target": "Das Fahrrad steht vor der Tür.",
+"ru": "Велосипед стоит перед дверью.",
+"uk": "Велосипед стоїть перед дверима.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Die",
+"Dem",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Fahrrad",
+"distractors": [
+"Schal",
+"Halle",
+"See",
+"Spielplatz",
+"Anna"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"gehe",
+"gehen",
+"gehst",
+"bestellt",
+"brauche"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"auf",
+"an",
+"unter",
+"über",
+"in"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:12",
+"target": "Der Koffer steht neben der Tür.",
+"ru": "Чемодан стоит у двери сбоку.",
+"uk": "Валіза стоїть біля дверей збоку.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Die",
+"Den",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Koffer",
+"distractors": [
+"Kiste",
+"Aufzug",
+"Waschbecken",
+"Eingang",
+"Ball"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"gehe",
+"gehen",
+"gehst",
+"bestellt",
+"brauche"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"unter",
+"auf",
+"an",
+"vor",
+"über"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"die",
+"das",
+"und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:13",
+"target": "Die Schuhe stehen unter der Bank.",
+"ru": "Обувь стоит под скамейкой.",
+"uk": "Взуття стоїть під лавкою.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Dem",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Schuhe",
+"distractors": [
+"Anna",
+"Bild",
+"Hängt",
+"Halle",
+"Laden"
+]
+},
+{
+"correct": "stehen",
+"distractors": [
+"bringen",
+"warten",
+"kaufen",
+"spielen",
+"machen"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"auf",
+"neben",
+"vor",
+"zwischen",
+"in"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bank",
+"distractors": [
+"Schrank",
+"Jacke",
+"Halle",
+"Ausweis",
+"Tickets"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:14",
+"target": "Die Lampe steht neben dem Bett.",
+"ru": "Лампа стоит рядом с кроватью.",
+"uk": "Лампа стоїть поруч із ліжком.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Lampe",
+"distractors": [
+"Schule",
+"Zahnbürste",
+"Halle",
+"Tasse",
+"Schuhe"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"gehe",
+"gehen",
+"gehst",
+"bestellt",
+"brauche"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"auf",
+"vor",
+"hinter",
+"unter",
+"über"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"der",
+"das",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bett",
+"distractors": [
+"Koffer",
+"Spiegel",
+"Löffel",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:15",
+"target": "Die Kiste steht hinter dem Schrank.",
+"ru": "Ящик стоит за шкафом.",
+"uk": "Скринька стоїть за шафою.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Kiste",
+"distractors": [
+"Büchern",
+"Sofa",
+"Gäste",
+"Tür",
+"Bild"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"gehe",
+"gehen",
+"gehst",
+"bestellt",
+"brauche"
+]
+},
+{
+"correct": "hinter",
+"distractors": [
+"in",
+"vor",
+"zwischen",
+"unter",
+"über"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schrank",
+"distractors": [
+"Tom",
+"Fenster",
+"Jacke",
+"Auto",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:16",
+"target": "Der Spiegel hängt über dem Waschbecken.",
+"ru": "Зеркало висит над раковиной.",
+"uk": "Дзеркало висить над раковиною.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Die",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Spiegel",
+"distractors": [
+"Gäste",
+"Kasse",
+"Bank",
+"Schuhe",
+"Heizung"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"warten",
+"schläft",
+"spielen",
+"läuft",
+"hält"
+]
+},
+{
+"correct": "über",
+"distractors": [
+"an",
+"hinter",
+"unter",
+"in",
+"auf"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"die",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Waschbecken",
+"distractors": [
+"Laden",
+"Halle",
+"Zimmer",
+"Tickets",
+"Zahnbürste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:17",
+"target": "Die Uhr hängt über der Tür.",
+"ru": "Часы висят над дверью.",
+"uk": "Годинник висить над дверима.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Uhr",
+"distractors": [
+"Schlüssel",
+"Tasche",
+"Jacke",
+"Gäste",
+"Sofa"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"treffen",
+"spielen",
+"schwimmt",
+"hält",
+"läuft"
+]
+},
+{
+"correct": "über",
+"distractors": [
+"auf",
+"neben",
+"vor",
+"unter",
+"hinter"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:18",
+"target": "Das Handtuch hängt an der Heizung.",
+"ru": "Полотенце висит на батарее.",
+"uk": "Рушник висить на батареї.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Die",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Handtuch",
+"distractors": [
+"Kisten",
+"Taschen",
+"Stuhl",
+"Teppich",
+"Eimer"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"treffen",
+"spielen",
+"warten",
+"hält",
+"läuft"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"neben",
+"zwischen",
+"über",
+"vor",
+"aus"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"die",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Heizung",
+"distractors": [
+"Löffel",
+"Ausweis",
+"Hund",
+"Wand",
+"Laden"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:19",
+"target": "Der Ball liegt unter dem Bett.",
+"ru": "Мяч лежит под кроватью.",
+"uk": "М'яч лежить під ліжком.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Die",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Ball",
+"distractors": [
+"Kind",
+"Kiste",
+"Treppe",
+"Bank",
+"Bild"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"in",
+"an",
+"auf",
+"vor",
+"hinter"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"die",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bett",
+"distractors": [
+"Koffer",
+"Spiegel",
+"Löffel",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:20",
+"target": "Der Teppich liegt vor dem Sofa.",
+"ru": "Ковёр лежит перед диваном.",
+"uk": "Килим лежить перед диваном.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Den",
+"Die",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Teppich",
+"distractors": [
+"Heizung",
+"Handtuch",
+"Spiegel",
+"Schublade",
+"Gäste"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"unter",
+"hinter",
+"an",
+"in",
+"über"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"die",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Sofa",
+"distractors": [
+"Gäste",
+"Fahrrad",
+"Küche",
+"Kind",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:21",
+"target": "Ich bin in der Küche.",
+"ru": "Я на кухне.",
+"uk": "Я на кухні.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Er",
+"Es",
+"Sie",
+"Du"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"sein",
+"ist",
+"sind",
+"bist",
+"seid"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"über",
+"auf",
+"neben",
+"an",
+"vor"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"die",
+"den",
+"dem",
+"und"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:22",
+"target": "Du bist im Bad.",
+"ru": "Ты в ванной.",
+"uk": "Ти у ванній.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Es",
+"Er",
+"Ihr",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"bin",
+"sind",
+"seid",
+"ist",
+"sein"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"am",
+"zum",
+"aufs",
+"vom",
+"ins"
+]
+},
+{
+"correct": "Bad",
+"distractors": [
+"Waschbecken",
+"Schal",
+"Spielplatz",
+"Ball",
+"Ecke"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:23",
+"target": "Anna ist im Garten.",
+"ru": "Анна в саду.",
+"uk": "Анна в саду.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Schlüssel",
+"Bus",
+"Kinder"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"sein",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"am",
+"aufs",
+"vom",
+"ins",
+"zur"
+]
+},
+{
+"correct": "Garten",
+"distractors": [
+"Kinder",
+"Fenster",
+"Ärztin",
+"Tom",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:24",
+"target": "Tom ist in der Schule.",
+"ru": "Том в школе.",
+"uk": "Том у школі.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sein",
+"bin",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"auf",
+"vor",
+"über",
+"unter",
+"aus"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Schule",
+"distractors": [
+"Gäste",
+"Tisch",
+"Tasche",
+"Ecke",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:25",
+"target": "Wir sind im Zimmer.",
+"ru": "Мы в комнате.",
+"uk": "Ми в кімнаті.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Du",
+"Sie",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"sein",
+"bin",
+"seid",
+"ist",
+"bist"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"zur",
+"ans",
+"vom",
+"am",
+"zum"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:26",
+"target": "Ihr seid am Bahnhof.",
+"ru": "Вы на вокзале.",
+"uk": "Ви на вокзалі.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Er",
+"Wir",
+"Es",
+"Ich",
+"Essen"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"sein",
+"offen",
+"fertig",
+"früher"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"im",
+"zum",
+"ans",
+"aufs",
+"zur"
+]
+},
+{
+"correct": "Bahnhof",
+"distractors": [
+"Zug",
+"Bus",
+"Gäste",
+"Paket",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Am Bahnhof seid ihr."
+]
+},
+{
+"lesson": 11,
+"id": "de:11:27",
+"target": "Die Gäste sind im Café.",
+"ru": "Гости в кафе.",
+"uk": "Гості у кафе.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Dem",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Küche",
+"Heizung",
+"Tom",
+"Eingang",
+"Hund"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"sein",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"vom",
+"zur",
+"ins",
+"ans",
+"am"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Hängt",
+"Schrank",
+"Schal",
+"Flur",
+"Treppe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:28",
+"target": "Die Kinder spielen auf dem Spielplatz.",
+"ru": "Дети играют на площадке.",
+"uk": "Діти грають на майданчику.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Lampe",
+"Regal",
+"Jacke",
+"Schuhe",
+"See"
+]
+},
+{
+"correct": "spielen",
+"distractors": [
+"stehen",
+"sitzen",
+"warten",
+"bezahlen",
+"hören"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"vor",
+"neben",
+"unter",
+"über",
+"aus"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"der",
+"das",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Spielplatz",
+"distractors": [
+"Kasse",
+"Handy",
+"Flur",
+"Halle",
+"Spiegel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:29",
+"target": "Der Hund läuft im Garten.",
+"ru": "Собака бегает в саду.",
+"uk": "Собака бігає у саду.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Dem",
+"Die",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Hund",
+"distractors": [
+"Büro",
+"Lampe",
+"Schublade",
+"Anna",
+"Uhr"
+]
+},
+{
+"correct": "läuft",
+"distractors": [
+"hält",
+"schwimmt",
+"spielen",
+"treffen",
+"warten"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"zum",
+"aufs",
+"ans",
+"am",
+"ins"
+]
+},
+{
+"correct": "Garten",
+"distractors": [
+"Kinder",
+"Fenster",
+"Ärztin",
+"Tom",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:30",
+"target": "Anna schwimmt im See.",
+"ru": "Анна плавает в озере.",
+"uk": "Анна плаває в озері.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "schwimmt",
+"distractors": [
+"warten",
+"hängt",
+"treffen",
+"läuft",
+"hält"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"vom",
+"ans",
+"am",
+"aufs",
+"zum"
+]
+},
+{
+"correct": "See",
+"distractors": [
+"Wand",
+"Bank",
+"Bad",
+"Hotel",
+"Jacke"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:31",
+"target": "Wo liegt der Ausweis?",
+"ru": "Где лежит удостоверение?",
+"uk": "Де лежить посвідчення?",
+"tiles": [
+{
+"correct": "Wo",
+"distractors": [
+"Wann",
+"Wohin",
+"Wie",
+"Woher",
+"Was"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Ausweis",
+"distractors": [
+"Tasche",
+"Bank",
+"Tom",
+"Schlüssel",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:32",
+"target": "Liegt dein Schal im Flur?",
+"ru": "Твой шарф лежит в прихожей?",
+"uk": "Твій шарф лежить у передпокої?",
+"tiles": [
+{
+"correct": "Liegt",
+"distractors": [
+"Lege",
+"Legen",
+"Legst",
+"Warten",
+"Läuft"
+]
+},
+{
+"correct": "dein",
+"distractors": [
+"eine",
+"einem",
+"einen",
+"einer",
+"meinem"
+]
+},
+{
+"correct": "Schal",
+"distractors": [
+"See",
+"Ball",
+"Auto",
+"Bus",
+"Hause"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"aufs",
+"vom",
+"ins",
+"zum",
+"ans"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:33",
+"target": "Steht mein Glas auf dem Tisch?",
+"ru": "Мой стакан стоит на столе?",
+"uk": "Моя склянка стоїть на столі?",
+"tiles": [
+{
+"correct": "Steht",
+"distractors": [
+"Gehe",
+"Gehen",
+"Gehst",
+"Bestellt",
+"Brauche"
+]
+},
+{
+"correct": "mein",
+"distractors": [
+"meinem",
+"meiner",
+"sein",
+"eine",
+"einem"
+]
+},
+{
+"correct": "Glas",
+"distractors": [
+"Pass",
+"Hotel",
+"Zimmer",
+"Büro",
+"Küche"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"neben",
+"zwischen",
+"über",
+"aus"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"den",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:34",
+"target": "Hängt das Bild im Büro?",
+"ru": "Картина висит в офисе?",
+"uk": "Картина висить в офісі?",
+"tiles": [
+{
+"correct": "Hängt",
+"distractors": [
+"Warten",
+"Hält",
+"Schwimmt",
+"Schläft",
+"Wartet"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Bild",
+"distractors": [
+"Kind",
+"Anna",
+"Jacke",
+"Bus",
+"Schal"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"ans",
+"am",
+"vom",
+"zur",
+"zum"
+]
+},
+{
+"correct": "Büro",
+"distractors": [
+"Anna",
+"Zimmer",
+"Hotel",
+"Küche",
+"Fenster"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:35",
+"target": "Sitzt Tom neben dir?",
+"ru": "Том сидит рядом с тобой?",
+"uk": "Том сидить поряд з тобою?",
+"tiles": [
+{
+"correct": "Sitzt",
+"distractors": [
+"Früher",
+"Setze",
+"Rollt",
+"Setzen",
+"Springt"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Hause",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"in",
+"zwischen",
+"über",
+"auf",
+"an"
+]
+},
+{
+"correct": "dir",
+"distractors": [
+"sich",
+"mir",
+"uns",
+"dich",
+"mich"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:36",
+"target": "Wartet ihr vor dem Laden?",
+"ru": "Вы ждёте перед магазином?",
+"uk": "Ви чекаєте перед магазином?",
+"tiles": [
+{
+"correct": "Wartet",
+"distractors": [
+"Schwimmt",
+"Schläft",
+"Hält",
+"Treffen",
+"Beginnt"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"es",
+"wir",
+"ich",
+"er",
+"ihrer"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"unter",
+"neben",
+"auf",
+"zwischen",
+"hinter"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"die",
+"der",
+"das",
+"und"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Halle",
+"Karte",
+"Heft",
+"Tom",
+"Sofa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:37",
+"target": "Ist die Kasse hinter der Treppe?",
+"ru": "Касса за лестницей?",
+"uk": "Каса за сходами?",
+"tiles": [
+{
+"correct": "Ist",
+"distractors": [
+"Bin",
+"Sein",
+"Viel",
+"Hat",
+"Haben"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Kasse",
+"distractors": [
+"Tasse",
+"Spiegel",
+"Jacke",
+"Wartet",
+"Schal"
+]
+},
+{
+"correct": "hinter",
+"distractors": [
+"in",
+"zwischen",
+"über",
+"an",
+"vor"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Treppe",
+"distractors": [
+"Bank",
+"Taxi",
+"Tom",
+"Anna",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:38",
+"target": "Ist der Eingang neben dem Aufzug?",
+"ru": "Вход рядом с лифтом?",
+"uk": "Вхід поряд із ліфтом?",
+"tiles": [
+{
+"correct": "Ist",
+"distractors": [
+"Sein",
+"Bin",
+"Viel",
+"Hat",
+"Haben"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"das",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Gäste",
+"Zahnbürste",
+"Heizung",
+"Tasche",
+"Bus"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"auf",
+"an",
+"in",
+"unter",
+"zwischen"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"die",
+"das",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Aufzug",
+"distractors": [
+"Schlüssel",
+"Gäste",
+"Tisch",
+"Kisten",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:39",
+"target": "Sind die Tickets in der Jacke?",
+"ru": "Билеты в куртке?",
+"uk": "Квитки у куртці?",
+"tiles": [
+{
+"correct": "Sind",
+"distractors": [
+"Bin",
+"Sein",
+"Kinder",
+"Montag",
+"Anna"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tickets",
+"distractors": [
+"Laden",
+"Aufzug",
+"Krankenhaus",
+"Glas",
+"Brille"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"hinter",
+"auf",
+"an",
+"unter",
+"neben"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"den",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:40",
+"target": "Steht die Tasse auf dem Regal?",
+"ru": "Чашка стоит на полке?",
+"uk": "Чашка стоїть на полиці?",
+"tiles": [
+{
+"correct": "Steht",
+"distractors": [
+"Gehe",
+"Gehen",
+"Gehst",
+"Bestellt",
+"Brauche"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasse",
+"distractors": [
+"Aufzug",
+"Kasse",
+"Teppich",
+"Glas",
+"Schule"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"in",
+"vor",
+"neben",
+"über",
+"aus"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"den",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Regal",
+"distractors": [
+"Kinder",
+"Tisch",
+"Jacke",
+"Tür",
+"Küche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:41",
+"target": "Die Post liegt zwischen der Bank und dem Hotel.",
+"ru": "Почта находится между банком и гостиницей.",
+"uk": "Пошта знаходиться між банком та готелем.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Mit",
+"Für",
+"Ohne"
+]
+},
+{
+"correct": "Post",
+"distractors": [
+"Hause",
+"Brief",
+"Schwester",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "zwischen",
+"distractors": [
+"hinter",
+"an",
+"auf",
+"über",
+"vor"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"den",
+"mit",
+"für",
+"ohne"
+]
+},
+{
+"correct": "Bank",
+"distractors": [
+"Bild",
+"Stuhl",
+"Flur",
+"Koffer",
+"Büchern"
+]
+},
+{
+"correct": "und",
+"distractors": [
+"nachdem",
+"obwohl",
+"damit",
+"ob",
+"wenn"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"das",
+"mit",
+"für",
+"ohne"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:42",
+"target": "Die Haltestelle liegt vor dem Krankenhaus.",
+"ru": "Остановка находится перед больницей.",
+"uk": "Зупинка знаходиться перед лікарнею.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Haltestelle",
+"distractors": [
+"Schlüssel",
+"Tische",
+"Kisten",
+"Café",
+"Stühle"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"über",
+"auf",
+"hinter",
+"in",
+"zwischen"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Krankenhaus",
+"distractors": [
+"Koffer",
+"Bus",
+"Schuhe",
+"Post",
+"Bild"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:43",
+"target": "Der Bus hält an der Ecke.",
+"ru": "Автобус останавливается на углу.",
+"uk": "Автобус зупиняється на розі.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "hält",
+"distractors": [
+"spielen",
+"läuft",
+"hängt",
+"treffen",
+"warten"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"unter",
+"hinter",
+"vor",
+"neben",
+"aus"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"das",
+"die",
+"den",
+"und"
+]
+},
+{
+"correct": "Ecke",
+"distractors": [
+"Wartet",
+"Jacke",
+"Heft",
+"Tasse",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:44",
+"target": "Wir treffen uns am Eingang.",
+"ru": "Мы встречаемся у входа.",
+"uk": "Ми зустрічаємось біля входу.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Sie",
+"Du",
+"Es",
+"Er",
+"Ich"
+]
+},
+{
+"correct": "treffen",
+"distractors": [
+"stehen",
+"spielen",
+"warten",
+"hören",
+"hält"
+]
+},
+{
+"correct": "uns",
+"distractors": [
+"mich",
+"sich",
+"dich",
+"dir",
+"mir"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"aufs",
+"zur",
+"ins",
+"zum",
+"im"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Büchern",
+"Krankenhaus",
+"Fahrrad",
+"Tür",
+"Glas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:45",
+"target": "Die Gäste warten vor der Halle.",
+"ru": "Гости ждут перед залом.",
+"uk": "Гості чекають перед залою.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Dem",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Wand",
+"Heizung",
+"Ecke",
+"Heft",
+"Bus"
+]
+},
+{
+"correct": "warten",
+"distractors": [
+"treffen",
+"spielen",
+"sitzen",
+"bezahlen",
+"hören"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"in",
+"auf",
+"zwischen",
+"hinter",
+"unter"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Halle",
+"distractors": [
+"Tickets",
+"See",
+"Post",
+"Glas",
+"Krankenhaus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:46",
+"target": "Die Zahnbürste liegt neben dem Glas.",
+"ru": "Зубная щётка лежит рядом со стаканом.",
+"uk": "Зубна щітка лежить поряд зі склянкою.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Zahnbürste",
+"distractors": [
+"Auto",
+"Garten",
+"Eingang",
+"Schrank",
+"Kinder"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"auf",
+"zwischen",
+"vor",
+"über",
+"hinter"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"den",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Glas",
+"distractors": [
+"Hund",
+"Post",
+"Büro",
+"Hotel",
+"Wand"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:47",
+"target": "Der Löffel liegt in der Schublade.",
+"ru": "Ложка в выдвижном ящике.",
+"uk": "Ложка у висувній скриньці.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Die",
+"Den",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Löffel",
+"distractors": [
+"Bett",
+"Schuhe",
+"Gäste",
+"Spiegel",
+"Büro"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"auf",
+"unter",
+"hinter",
+"über",
+"an"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"die",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Schublade",
+"distractors": [
+"Koffer",
+"Hund",
+"Spiegel",
+"Handtuch",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:48",
+"target": "Das Heft liegt zwischen den Büchern.",
+"ru": "Тетрадь лежит между книгами.",
+"uk": "Зошит лежить між книгами.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Der",
+"Dem",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Heft",
+"distractors": [
+"Ecke",
+"Büro",
+"Heizung",
+"Küche",
+"Kasse"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "zwischen",
+"distractors": [
+"auf",
+"vor",
+"an",
+"unter",
+"über"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Büchern",
+"distractors": [
+"Brille",
+"Jacke",
+"Treppe",
+"Bank",
+"Teppich"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:49",
+"target": "Das Kind schläft auf dem Sofa.",
+"ru": "Ребёнок спит на диване.",
+"uk": "Дитина спить на дивані.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Kind",
+"distractors": [
+"Kinder",
+"Tom",
+"Gäste",
+"Tür",
+"Tee"
+]
+},
+{
+"correct": "schläft",
+"distractors": [
+"warten",
+"hält",
+"hängt",
+"treffen",
+"spielen"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"in",
+"vor",
+"über",
+"unter"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"die",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Sofa",
+"distractors": [
+"Bild",
+"Uhr",
+"Bank",
+"Bad",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:50",
+"target": "Der Hund schläft unter dem Tisch.",
+"ru": "Собака спит под столом.",
+"uk": "Собака спить під столом.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Die",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Hund",
+"distractors": [
+"Bad",
+"Ecke",
+"Glas",
+"Kinder",
+"Uhr"
+]
+},
+{
+"correct": "schläft",
+"distractors": [
+"warten",
+"schwimmt",
+"hält",
+"hängt",
+"spielen"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"hinter",
+"in",
+"an",
+"auf",
+"über"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"das",
+"den",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:01",
+"target": "Ich lege den Schlüssel auf den Tisch.",
+"ru": "Я кладу ключ на стол.",
+"uk": "Я кладу ключ на стіл.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Du",
+"Sie",
+"Es",
+"Ihr"
+]
+},
+{
+"correct": "lege",
+"distractors": [
+"legt",
+"legst",
+"legen",
+"bringen",
+"stellen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"die",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"zwischen",
+"unter",
+"hinter",
+"in",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"die",
+"der",
+"dem",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Tische",
+"Termin",
+"Gäste",
+"Café",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:02",
+"target": "Ich lege den Pass in die Tasche.",
+"ru": "Я кладу паспорт в сумку.",
+"uk": "Я кладу паспорт у сумку.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Ihr",
+"Sie",
+"Er",
+"Wir"
+]
+},
+{
+"correct": "lege",
+"distractors": [
+"legt",
+"legen",
+"legst",
+"bringen",
+"stellen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Pass",
+"distractors": [
+"Tisch",
+"Handy",
+"Kisten",
+"Küche",
+"Kind"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"vor",
+"zwischen",
+"hinter",
+"an",
+"unter"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Taschen",
+"Wasser",
+"Schlüssel",
+"Anna",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:03",
+"target": "Anna legt die Brille ins Auto.",
+"ru": "Анна кладёт очки в машину.",
+"uk": "Анна кладе окуляри у машину.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Schlüssel",
+"Bus",
+"Kinder"
+]
+},
+{
+"correct": "legt",
+"distractors": [
+"warten",
+"läuft",
+"hält",
+"frage",
+"hängen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Brille",
+"distractors": [
+"Rechnung",
+"Kisten",
+"Fenster",
+"Tasche",
+"Jacke"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"am",
+"beim",
+"zum",
+"ans",
+"zur"
+]
+},
+{
+"correct": "Auto",
+"distractors": [
+"Haus",
+"Hängst",
+"Kiste",
+"Wagen",
+"Fenster"
+]
+}
+],
+"alternatives": [
+"Anna legt die Brille in das Auto."
+]
+},
+{
+"lesson": 12,
+"id": "de:12:04",
+"target": "Tom legt das Buch ins Regal.",
+"ru": "Том кладёт книгу на полку.",
+"uk": "Том кладе книгу на полицю.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "legt",
+"distractors": [
+"warten",
+"läuft",
+"hält",
+"frage",
+"hängen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"der",
+"den",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Buch",
+"distractors": [
+"Ausweis",
+"Spielplatz",
+"Bücher",
+"Ticket",
+"Bad"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"ans",
+"vom",
+"zur",
+"zum",
+"am"
+]
+},
+{
+"correct": "Regal",
+"distractors": [
+"Kinder",
+"Tisch",
+"Jacke",
+"Tür",
+"Küche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:05",
+"target": "Wir legen den Teppich vor das Sofa.",
+"ru": "Мы стелем ковёр перед диваном.",
+"uk": "Ми стелимо килим перед диваном.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ihr",
+"Er",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "legen",
+"distractors": [
+"legst",
+"lege",
+"legt",
+"bringen",
+"stellen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"die",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Teppich",
+"distractors": [
+"Brief",
+"Café",
+"Taschen",
+"Umschlag",
+"Haus"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"über",
+"an",
+"hinter",
+"in",
+"auf"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"der",
+"die",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Sofa",
+"distractors": [
+"Keller",
+"Stock",
+"Bild",
+"Bus",
+"Briefkasten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:06",
+"target": "Ich stelle die Tasse auf den Tisch.",
+"ru": "Я ставлю чашку на стол.",
+"uk": "Я ставлю чашку на стіл.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Wir",
+"Es",
+"Du",
+"Sie"
+]
+},
+{
+"correct": "stelle",
+"distractors": [
+"stellen",
+"stellst",
+"stellt",
+"bringen",
+"legen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasse",
+"distractors": [
+"Decke",
+"Stock",
+"Eimer",
+"Kind",
+"Lampe"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"in",
+"über",
+"vor",
+"hinter",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Tische",
+"Termin",
+"Gäste",
+"Café",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:07",
+"target": "Du stellst den Koffer vor die Tür.",
+"ru": "Ты ставишь чемодан перед дверью.",
+"uk": "Ти ставиш валізу перед дверима.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Sie",
+"Er",
+"Ihr",
+"Es"
+]
+},
+{
+"correct": "stellst",
+"distractors": [
+"stellt",
+"stellen",
+"stelle",
+"bringen",
+"legen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Koffer",
+"distractors": [
+"Kind",
+"Uhr",
+"Bett",
+"Lampe",
+"Pass"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"unter",
+"auf",
+"an",
+"in",
+"neben"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Türen",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:08",
+"target": "Anna stellt die Lampe neben das Bett.",
+"ru": "Анна ставит лампу рядом с кроватью.",
+"uk": "Анна ставить лампу поруч із ліжком.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "stellt",
+"distractors": [
+"hält",
+"passt",
+"beginnt",
+"bestellen",
+"bezahlen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Lampe",
+"distractors": [
+"Stock",
+"Bücher",
+"Schule",
+"Jacke",
+"Eimer"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"zwischen",
+"unter",
+"auf",
+"hinter",
+"in"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bett",
+"distractors": [
+"Koffer",
+"Spiegel",
+"Löffel",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:09",
+"target": "Tom stellt den Stuhl ans Fenster.",
+"ru": "Том ставит стул к окну.",
+"uk": "Том ставить стілець до вікна.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "stellt",
+"distractors": [
+"hält",
+"passt",
+"beginnt",
+"bestellen",
+"bezahlen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"die",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Stuhl",
+"distractors": [
+"Kisten",
+"Bank",
+"Buch",
+"Gäste",
+"Tisch"
+]
+},
+{
+"correct": "ans",
+"distractors": [
+"ins",
+"zur",
+"am",
+"beim",
+"aufs"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Gäste",
+"Kiste",
+"Anna",
+"Zug",
+"Zimmer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:10",
+"target": "Wir stellen das Fahrrad in den Flur.",
+"ru": "Мы ставим велосипед в прихожую.",
+"uk": "Ми ставимо велосипед до передпокою.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Er",
+"Ihr",
+"Ich",
+"Es"
+]
+},
+{
+"correct": "stellen",
+"distractors": [
+"stelle",
+"stellst",
+"stellt",
+"bringen",
+"legen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Fahrrad",
+"distractors": [
+"Handtuch",
+"Stuhl",
+"Teppich",
+"Kisten",
+"Kind"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"hinter",
+"über",
+"an",
+"neben",
+"zwischen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"die",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:11",
+"target": "Ich hänge die Jacke an den Haken.",
+"ru": "Я вешаю куртку на крючок.",
+"uk": "Я вішаю куртку на гачок.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Wir",
+"Sie",
+"Es",
+"Ihr"
+]
+},
+{
+"correct": "hänge",
+"distractors": [
+"dritten",
+"schiebt",
+"bringen",
+"laufen",
+"hängt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"hinter",
+"zwischen",
+"vor",
+"unter",
+"neben"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Haken",
+"distractors": [
+"Umschlag",
+"Koffer",
+"Café",
+"Kino",
+"Schublade"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:12",
+"target": "Du hängst das Bild an die Wand.",
+"ru": "Ты вешаешь картину на стену.",
+"uk": "Ти вішаєш картину на стіну.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Es",
+"Wir",
+"Er",
+"Sie",
+"Ich"
+]
+},
+{
+"correct": "hängst",
+"distractors": [
+"trägt",
+"hängen",
+"hängt",
+"rollt",
+"springt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"der",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bild",
+"distractors": [
+"Kisten",
+"Heizung",
+"Wasser",
+"Taschen",
+"Jacke"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"zwischen",
+"unter",
+"neben",
+"in",
+"aus"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Wand",
+"distractors": [
+"Garten",
+"Heizung",
+"Uhr",
+"Spielplatz",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:13",
+"target": "Anna hängt das Handtuch an die Heizung.",
+"ru": "Анна вешает полотенце на батарею.",
+"uk": "Анна вішає рушник на батарею.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"setzt",
+"springt",
+"laufen",
+"dritten",
+"läuft"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"der",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Handtuch",
+"distractors": [
+"Kisten",
+"Taschen",
+"Stuhl",
+"Teppich",
+"Eimer"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"hinter",
+"über",
+"neben",
+"unter",
+"vor"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Heizung",
+"distractors": [
+"Umschlag",
+"Spiegel",
+"Bank",
+"Spielplatz",
+"Schuhe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:14",
+"target": "Tom hängt den Spiegel über das Waschbecken.",
+"ru": "Том вешает зеркало над раковиной.",
+"uk": "Том вішає дзеркало над раковиною.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"stecke",
+"setzen",
+"steckst",
+"bringen",
+"läuft"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Spiegel",
+"distractors": [
+"Gäste",
+"Kasse",
+"Bank",
+"Schuhe",
+"Heizung"
+]
+},
+{
+"correct": "über",
+"distractors": [
+"in",
+"hinter",
+"auf",
+"an",
+"zwischen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Waschbecken",
+"distractors": [
+"Schrank",
+"Kinder",
+"Umschlag",
+"Ausweis",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:15",
+"target": "Wir hängen die Uhr über die Tür.",
+"ru": "Мы вешаем часы над дверью.",
+"uk": "Ми вішаємо годинник над дверима.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Es",
+"Sie",
+"Ich",
+"Ihr"
+]
+},
+{
+"correct": "hängen",
+"distractors": [
+"dritten",
+"setzen",
+"bringen",
+"laufen",
+"läuft"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Uhr",
+"distractors": [
+"Karte",
+"Lampe",
+"Bank",
+"Kino",
+"Briefkasten"
+]
+},
+{
+"correct": "über",
+"distractors": [
+"vor",
+"in",
+"an",
+"hinter",
+"zwischen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"das",
+"den",
+"und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Türen",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:16",
+"target": "Ich stecke den Ausweis in die Jacke.",
+"ru": "Я кладу удостоверение в куртку.",
+"uk": "Я кладу посвідчення у куртку.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Wir",
+"Sie",
+"Ihr",
+"Du"
+]
+},
+{
+"correct": "stecke",
+"distractors": [
+"steckst",
+"steigt",
+"springt",
+"rollt",
+"schiebt"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Ausweis",
+"distractors": [
+"Ausweise",
+"Gäste",
+"Tasche",
+"Bank",
+"Tom"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"an",
+"vor",
+"zwischen",
+"hinter",
+"über"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:17",
+"target": "Du steckst die Karte in den Umschlag.",
+"ru": "Ты вкладываешь открытку в конверт.",
+"uk": "Ти вкладаєш листівку у конверт.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Ihr",
+"Es",
+"Er",
+"Wir"
+]
+},
+{
+"correct": "steckst",
+"distractors": [
+"dritten",
+"rollt",
+"stecke",
+"hängen",
+"schiebe"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Karte",
+"distractors": [
+"Karten",
+"Tür",
+"Bus",
+"Jacke",
+"Paket"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"hinter",
+"unter",
+"auf",
+"vor",
+"neben"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Umschlag",
+"distractors": [
+"Kinder",
+"Hotel",
+"Café",
+"Schuhe",
+"Kino"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:18",
+"target": "Sie steckt den Brief in den Briefkasten.",
+"ru": "Она опускает письмо в почтовый ящик.",
+"uk": "Вона опускає листа до поштової скриньки.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Es",
+"Ihr",
+"Ich",
+"Wir",
+"Er"
+]
+},
+{
+"correct": "steckt",
+"distractors": [
+"trägt",
+"läuft",
+"bringen",
+"hänge",
+"laufen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Brief",
+"distractors": [
+"Briefe",
+"Essen",
+"Hause",
+"Bahn",
+"Adresse"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"zwischen",
+"auf",
+"an",
+"über",
+"neben"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Briefkasten",
+"distractors": [
+"Platz",
+"Hund",
+"Tom",
+"Bus",
+"Fenster"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:19",
+"target": "Er steckt das Ticket in die Tasche.",
+"ru": "Он кладёт билет в сумку.",
+"uk": "Він кладе квиток у сумку.",
+"tiles": [
+{
+"correct": "Er",
+"distractors": [
+"Ihr",
+"Wir",
+"Es",
+"Du",
+"Ich"
+]
+},
+{
+"correct": "steckt",
+"distractors": [
+"packe",
+"stecke",
+"hänge",
+"hängen",
+"springt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"der",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Ticket",
+"distractors": [
+"Tickets",
+"Gäste",
+"Kinder",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"über",
+"hinter",
+"vor",
+"auf",
+"unter"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Taschen",
+"Wasser",
+"Schlüssel",
+"Anna",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:20",
+"target": "Ich packe die Schuhe in den Koffer.",
+"ru": "Я упаковываю обувь в чемодан.",
+"uk": "Я упаковую взуття у валізу.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Es",
+"Wir",
+"Du",
+"Er"
+]
+},
+{
+"correct": "packe",
+"distractors": [
+"springt",
+"laufen",
+"bringen",
+"steckt",
+"setze"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schuhe",
+"distractors": [
+"Garten",
+"Teppich",
+"Tom",
+"Hund",
+"Briefkasten"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"an",
+"unter",
+"auf",
+"neben",
+"zwischen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Koffer",
+"distractors": [
+"Decke",
+"Löffel",
+"Teppich",
+"Sofa",
+"Regal"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:21",
+"target": "Ich gehe in die Küche.",
+"ru": "Я иду на кухню.",
+"uk": "Я йду на кухню.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Er",
+"Wir",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "gehe",
+"distractors": [
+"gehst",
+"gehen",
+"geht",
+"bleiben",
+"sprechen"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"vor",
+"über",
+"hinter",
+"unter",
+"neben"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:22",
+"target": "Du gehst in den Garten.",
+"ru": "Ты идёшь в сад.",
+"uk": "Ти йдеш до саду.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Er",
+"Es",
+"Ihr",
+"Ich"
+]
+},
+{
+"correct": "gehst",
+"distractors": [
+"gehen",
+"gehe",
+"geht",
+"bleiben",
+"sprechen"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"vor",
+"hinter",
+"über",
+"unter",
+"auf"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Garten",
+"distractors": [
+"Kinder",
+"Fenster",
+"Ärztin",
+"Tom",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:23",
+"target": "Anna geht ins Bad.",
+"ru": "Анна идёт в ванную.",
+"uk": "Анна йде у ванну кімнату.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "geht",
+"distractors": [
+"haben",
+"kommen",
+"nehmen",
+"bleiben",
+"stehe"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"im",
+"beim",
+"aufs",
+"am",
+"ans"
+]
+},
+{
+"correct": "Bad",
+"distractors": [
+"Keller",
+"Brille",
+"Ausweis",
+"Kinder",
+"Tasse"
+]
+}
+],
+"alternatives": [
+"Anna geht in das Bad."
+]
+},
+{
+"lesson": 12,
+"id": "de:12:24",
+"target": "Tom geht in die Schule.",
+"ru": "Том идёт в школу.",
+"uk": "Том йде до школи.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "geht",
+"distractors": [
+"haben",
+"kommen",
+"nehmen",
+"bleiben",
+"stehe"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"zwischen",
+"vor",
+"neben",
+"unter",
+"auf"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"den",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Schule",
+"distractors": [
+"Tisch",
+"Pass",
+"Kino",
+"Tasche",
+"Hof"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:25",
+"target": "Wir gehen ins Café.",
+"ru": "Мы идём в кафе.",
+"uk": "Ми йдемо до кафе.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Sie",
+"Du",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "gehen",
+"distractors": [
+"gehst",
+"geht",
+"gehe",
+"bleiben",
+"sprechen"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"zur",
+"beim",
+"am",
+"im",
+"ans"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Stuhl",
+"Pass",
+"Tisch",
+"Tür",
+"Regal"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:26",
+"target": "Ihr geht auf den Spielplatz.",
+"ru": "Вы идёте на площадку.",
+"uk": "Ви йдете на майданчик.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Ich",
+"Er",
+"Wir",
+"Es",
+"Essen"
+]
+},
+{
+"correct": "geht",
+"distractors": [
+"haben",
+"kommen",
+"nehmen",
+"bleiben",
+"stehe"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"zwischen",
+"vor",
+"unter",
+"hinter",
+"über"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Spielplatz",
+"distractors": [
+"Anna",
+"Bad",
+"Tisch",
+"Ticket",
+"Wand"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:27",
+"target": "Die Kinder laufen auf den Hof.",
+"ru": "Дети выбегают во двор.",
+"uk": "Діти вибігають у двір.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Der",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Umschlag",
+"Regal",
+"Küche",
+"Kino",
+"Markt"
+]
+},
+{
+"correct": "laufen",
+"distractors": [
+"legen",
+"dritten",
+"stellen",
+"bringen",
+"hängen"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"zwischen",
+"unter",
+"hinter",
+"neben",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Hof",
+"distractors": [
+"Meer",
+"Bank",
+"Bus",
+"Bad",
+"Tasse"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:28",
+"target": "Der Hund läuft unter den Tisch.",
+"ru": "Собака забегает под стол.",
+"uk": "Собака забігає під стіл.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Die",
+"Dem",
+"Das",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Hund",
+"distractors": [
+"Koffer",
+"Wagen",
+"Tasche",
+"Schublade",
+"Briefkasten"
+]
+},
+{
+"correct": "läuft",
+"distractors": [
+"steckst",
+"packe",
+"stecke",
+"trägt",
+"bringen"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"neben",
+"über",
+"hinter",
+"in",
+"auf"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:29",
+"target": "Das Kind springt ins Wasser.",
+"ru": "Ребёнок прыгает в воду.",
+"uk": "Дитина стрибає у воду.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Die",
+"Den",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Kind",
+"distractors": [
+"Kinder",
+"Tom",
+"Gäste",
+"Tür",
+"Tee"
+]
+},
+{
+"correct": "springt",
+"distractors": [
+"hängen",
+"setzt",
+"schiebe",
+"läuft",
+"hängst"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"vom",
+"ans",
+"im",
+"beim",
+"aufs"
+]
+},
+{
+"correct": "Wasser",
+"distractors": [
+"Hause",
+"Bus",
+"Tasche",
+"Platz",
+"Dienstag"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:30",
+"target": "Anna steigt in den Bus.",
+"ru": "Анна садится в автобус.",
+"uk": "Анна сідає до автобуса.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "steigt",
+"distractors": [
+"rollt",
+"hängen",
+"schiebe",
+"packe",
+"setzt"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"neben",
+"auf",
+"hinter",
+"zwischen",
+"an"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Wasser",
+"Zeit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:31",
+"target": "Wohin stellst du die Kiste?",
+"ru": "Куда ты ставишь ящик?",
+"uk": "Куди ти ставиш ящик?",
+"tiles": [
+{
+"correct": "Wohin",
+"distractors": [
+"Wer",
+"Was",
+"Wo",
+"Wie",
+"Woher"
+]
+},
+{
+"correct": "stellst",
+"distractors": [
+"stellt",
+"stellen",
+"stelle",
+"bringen",
+"legen"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"wir",
+"sie",
+"er",
+"es",
+"ich"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"den",
+"dem",
+"und"
+]
+},
+{
+"correct": "Kiste",
+"distractors": [
+"Schule",
+"Fenster",
+"Bücher",
+"Fahrrad",
+"Wand"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:32",
+"target": "Legst du den Löffel in die Schublade?",
+"ru": "Ты кладёшь ложку в выдвижной ящик?",
+"uk": "Ти кладеш ложку у висувну скриньку?",
+"tiles": [
+{
+"correct": "Legst",
+"distractors": [
+"Legt",
+"Legen",
+"Lege",
+"Bahnhof",
+"Dritten"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"sie",
+"ich",
+"er",
+"wir",
+"es"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Löffel",
+"distractors": [
+"Kiste",
+"Heizung",
+"Uhr",
+"Jacke",
+"Decke"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"neben",
+"auf",
+"vor",
+"an",
+"über"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schublade",
+"distractors": [
+"Koffer",
+"Hund",
+"Spiegel",
+"Handtuch",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:33",
+"target": "Legt ihr die Bücher auf das Regal?",
+"ru": "Вы кладёте книги на полку?",
+"uk": "Ви кладете книги на полицю?",
+"tiles": [
+{
+"correct": "Legt",
+"distractors": [
+"Warten",
+"Läuft",
+"Hält",
+"Frage",
+"Hängen"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"ich",
+"wir",
+"er",
+"es",
+"ihrer"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bücher",
+"distractors": [
+"Teppich",
+"Sofa",
+"Setzt",
+"Hängst",
+"See"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"neben",
+"in",
+"unter",
+"hinter",
+"aus"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Regal",
+"distractors": [
+"Kinder",
+"Tisch",
+"Jacke",
+"Tür",
+"Küche"
+]
+}
+],
+"alternatives": [
+"Legt ihr die Bücher aufs Regal?"
+]
+},
+{
+"lesson": 12,
+"id": "de:12:34",
+"target": "Hängst du die Jacke in den Schrank?",
+"ru": "Ты вешаешь куртку в шкаф?",
+"uk": "Ти вішаєш куртку у шафу?",
+"tiles": [
+{
+"correct": "Hängst",
+"distractors": [
+"Laufen",
+"Setze",
+"Dritten",
+"Stecke",
+"Setzen"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"ihr",
+"es",
+"wir",
+"ich"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"an",
+"neben",
+"über",
+"auf",
+"hinter"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schrank",
+"distractors": [
+"Tom",
+"Fenster",
+"Auto",
+"Kinder",
+"Zimmer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:35",
+"target": "Stellst du den Wagen vor das Haus?",
+"ru": "Ты ставишь машину перед домом?",
+"uk": "Ти ставиш машину перед будинком?",
+"tiles": [
+{
+"correct": "Stellst",
+"distractors": [
+"Stelle",
+"Stellen",
+"Stellt",
+"Hole",
+"Schalte"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ihr",
+"er",
+"es",
+"ich",
+"wir"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Wagen",
+"distractors": [
+"Lampe",
+"Tür",
+"Flur",
+"Bücher",
+"Keller"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"auf",
+"zwischen",
+"in",
+"über",
+"neben"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Haus",
+"distractors": [
+"Handtuch",
+"Ticket",
+"Eimer",
+"Taschen",
+"Kisten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:36",
+"target": "Gehen wir an den See?",
+"ru": "Пойдём к озеру?",
+"uk": "Ходімо до озера?",
+"tiles": [
+{
+"correct": "Gehen",
+"distractors": [
+"Kaufen",
+"Draußen",
+"Spreche",
+"Sprichst",
+"Spricht"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"er",
+"du",
+"sie",
+"es",
+"ich"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"neben",
+"zwischen",
+"vor",
+"hinter",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"die",
+"der",
+"das",
+"und"
+]
+},
+{
+"correct": "See",
+"distractors": [
+"Brille",
+"Fenster",
+"Tasse",
+"Uhr",
+"Wagen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:37",
+"target": "Fahren wir ans Meer?",
+"ru": "Поедем к морю?",
+"uk": "Поїдемо до моря?",
+"tiles": [
+{
+"correct": "Fahren",
+"distractors": [
+"Ist",
+"Sind",
+"Ihr",
+"Ihre",
+"Ihrer"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"du",
+"sie",
+"ich",
+"er"
+]
+},
+{
+"correct": "ans",
+"distractors": [
+"vom",
+"beim",
+"am",
+"zur",
+"im"
+]
+},
+{
+"correct": "Meer",
+"distractors": [
+"Waschbecken",
+"Kisten",
+"Schlüssel",
+"Fahrrad",
+"Haus"
+]
+}
+],
+"alternatives": [
+"Fahren wir an das Meer?"
+]
+},
+{
+"lesson": 12,
+"id": "de:12:38",
+"target": "Kommst du mit ins Kino?",
+"ru": "Ты пойдёшь с нами в кино?",
+"uk": "Ти підеш з нами у кіно?",
+"tiles": [
+{
+"correct": "Kommst",
+"distractors": [
+"Kommen",
+"Komme",
+"Kommt",
+"Bringe",
+"Fängt"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ich",
+"wir",
+"es",
+"er",
+"sie"
+]
+},
+{
+"correct": "mit",
+"distractors": [
+"aus",
+"seit",
+"nach",
+"bei",
+"zu"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"zur",
+"aufs",
+"zum",
+"vom",
+"beim"
+]
+},
+{
+"correct": "Kino",
+"distractors": [
+"Spiegel",
+"Bett",
+"Markt",
+"Garten",
+"Stock"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:39",
+"target": "Geht ihr auf den Markt?",
+"ru": "Вы идёте на рынок?",
+"uk": "Ви йдете на ринок?",
+"tiles": [
+{
+"correct": "Geht",
+"distractors": [
+"Stehe",
+"Stehen",
+"Stehst",
+"Bestellt",
+"Brauche"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"ich",
+"wir",
+"es",
+"er",
+"ihrer"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"zwischen",
+"hinter",
+"über",
+"neben",
+"in"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"die",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Markt",
+"distractors": [
+"Bad",
+"Bus",
+"Eimer",
+"Handtuch",
+"Kisten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:40",
+"target": "Setzt du dich auf die Bank?",
+"ru": "Ты садишься на скамейку?",
+"uk": "Ти сідаєш на лаву?",
+"tiles": [
+{
+"correct": "Setzt",
+"distractors": [
+"Setzen",
+"Setze",
+"Springt",
+"Rollt",
+"Steckt"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ich",
+"er",
+"es",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "dich",
+"distractors": [
+"mir",
+"sich",
+"dir",
+"uns",
+"mich"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"zwischen",
+"in",
+"vor",
+"aus"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Bank",
+"distractors": [
+"Schrank",
+"Ball",
+"Spiegel",
+"Bücher",
+"Teppich"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:41",
+"target": "Ich setze mich neben Anna.",
+"ru": "Я сажусь рядом с Анной.",
+"uk": "Я сідаю поряд з Ганною.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Du",
+"Wir",
+"Es",
+"Ihr"
+]
+},
+{
+"correct": "setze",
+"distractors": [
+"läuft",
+"hänge",
+"steigt",
+"steckst",
+"setzt"
+]
+},
+{
+"correct": "mich",
+"distractors": [
+"mir",
+"dir",
+"uns",
+"sich",
+"dich"
+]
+},
+{
+"correct": "neben",
+"distractors": [
+"hinter",
+"vor",
+"über",
+"an",
+"auf"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:42",
+"target": "Tom setzt sich ans Fenster.",
+"ru": "Том садится у окна.",
+"uk": "Том сідає біля вікна.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "setzt",
+"distractors": [
+"hängst",
+"laufen",
+"bringen",
+"läuft",
+"hängt"
+]
+},
+{
+"correct": "sich",
+"distractors": [
+"uns",
+"mich",
+"dich",
+"mir",
+"dir"
+]
+},
+{
+"correct": "ans",
+"distractors": [
+"im",
+"zur",
+"am",
+"aufs",
+"ins"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Gäste",
+"Kiste",
+"Anna",
+"Zug",
+"Zimmer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:43",
+"target": "Wir setzen uns an den Tisch.",
+"ru": "Мы садимся за стол.",
+"uk": "Ми сідаємо за стіл.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ich",
+"Du",
+"Sie",
+"Es",
+"Ihr"
+]
+},
+{
+"correct": "setzen",
+"distractors": [
+"hängen",
+"legen",
+"bringen",
+"dritten",
+"laufen"
+]
+},
+{
+"correct": "uns",
+"distractors": [
+"mir",
+"dir",
+"mich",
+"sich",
+"dich"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"zwischen",
+"unter",
+"über",
+"hinter",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"die",
+"der",
+"dem",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Tische",
+"Termin",
+"Gäste",
+"Café",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:44",
+"target": "Sie legt die Decke auf das Bett.",
+"ru": "Она кладёт одеяло на кровать.",
+"uk": "Вона кладе ковдру на ліжко.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Du",
+"Er",
+"Wir",
+"Ihr",
+"Es"
+]
+},
+{
+"correct": "legt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"bringen",
+"stellen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Decke",
+"distractors": [
+"Laden",
+"Samstag",
+"Löffel",
+"Bus",
+"Jacke"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"in",
+"zwischen",
+"vor",
+"über",
+"aus"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"den",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bett",
+"distractors": [
+"Koffer",
+"Spiegel",
+"Löffel",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:45",
+"target": "Er stellt den Eimer unter das Waschbecken.",
+"ru": "Он ставит ведро под раковину.",
+"uk": "Він ставить цебро під раковину.",
+"tiles": [
+{
+"correct": "Er",
+"distractors": [
+"Ihr",
+"Ich",
+"Du",
+"Wir",
+"Es"
+]
+},
+{
+"correct": "stellt",
+"distractors": [
+"stelle",
+"stellen",
+"stellst",
+"bringen",
+"legen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Eimer",
+"distractors": [
+"Jacke",
+"Tee",
+"Kisten",
+"Lampe",
+"Ofen"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"an",
+"in",
+"auf",
+"zwischen",
+"vor"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Waschbecken",
+"distractors": [
+"Wand",
+"Pass",
+"Markt",
+"Kiste",
+"Fenster"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:46",
+"target": "Ich schiebe den Stuhl unter den Tisch.",
+"ru": "Я задвигаю стул под стол.",
+"uk": "Я засуваю стілець під стіл.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Du",
+"Es",
+"Wir",
+"Ihr"
+]
+},
+{
+"correct": "schiebe",
+"distractors": [
+"hängt",
+"hängst",
+"steckt",
+"läuft",
+"hängen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"die",
+"dem",
+"der",
+"und"
+]
+},
+{
+"correct": "Stuhl",
+"distractors": [
+"Stühle",
+"Kisten",
+"Café",
+"Schlüssel",
+"Buch"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"neben",
+"hinter",
+"an",
+"zwischen",
+"in"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"dem",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Tische",
+"Termin",
+"Gäste",
+"Café",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:47",
+"target": "Anna schiebt den Wagen in den Hof.",
+"ru": "Анна вкатывает тележку во двор.",
+"uk": "Ганна вкочує візок у двір.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "schiebt",
+"distractors": [
+"hänge",
+"springt",
+"laufen",
+"hängt",
+"trägt"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Wagen",
+"distractors": [
+"Heizung",
+"Jacke",
+"Kisten",
+"Taschen",
+"Bücher"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"auf",
+"neben",
+"zwischen",
+"vor",
+"unter"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Hof",
+"distractors": [
+"Tasse",
+"Löffel",
+"Wand",
+"Hund",
+"Haken"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:48",
+"target": "Wir bringen die Kisten in den Keller.",
+"ru": "Мы относим ящики в подвал.",
+"uk": "Ми відносимо ящики до підвалу.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Sie",
+"Ihr",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "bringen",
+"distractors": [
+"stellen",
+"hängen",
+"gehen",
+"legen",
+"gehst"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Kisten",
+"distractors": [
+"Hof",
+"Ausweis",
+"Pass",
+"Wand",
+"Lampe"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"auf",
+"an",
+"unter",
+"hinter",
+"neben"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Keller",
+"distractors": [
+"Bus",
+"Laden",
+"Ausweis",
+"Lampe",
+"Sofa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:49",
+"target": "Tom trägt die Taschen in den dritten Stock.",
+"ru": "Том несёт сумки на третий этаж.",
+"uk": "Том несе сумки на третій поверх.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "trägt",
+"distractors": [
+"läuft",
+"steckst",
+"hänge",
+"rollt",
+"hängt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Taschen",
+"distractors": [
+"Kinder",
+"Hund",
+"Café",
+"Haken",
+"Koffer"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"zwischen",
+"auf",
+"an",
+"unter",
+"neben"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "dritten",
+"distractors": [
+"hängen",
+"stellen",
+"laufen",
+"bringen",
+"stellst"
+]
+},
+{
+"correct": "Stock",
+"distractors": [
+"Spiegel",
+"Löffel",
+"Handtuch",
+"Schublade",
+"Teppich"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:50",
+"target": "Der Ball rollt unter das Sofa.",
+"ru": "Мяч закатывается под диван.",
+"uk": "М'яч закочується під диван.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Dem",
+"Die",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Ball",
+"distractors": [
+"Bett",
+"Tasse",
+"Hund",
+"Löffel",
+"Kinder"
+]
+},
+{
+"correct": "rollt",
+"distractors": [
+"läuft",
+"laufen",
+"hängst",
+"packe",
+"schiebe"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"hinter",
+"vor",
+"zwischen",
+"über",
+"in"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"dem",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Sofa",
+"distractors": [
+"Waschbecken",
+"See",
+"Tasse",
+"Tisch",
+"Café"
+]
+}
+],
+"alternatives": []
+}
+]

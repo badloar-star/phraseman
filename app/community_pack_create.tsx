@@ -41,7 +41,7 @@ import { normalizePackLevel, PACK_LEVELS, type PackLevel } from './flashcards/pa
 import { useAuthorPackQuota } from './community_packs/useAuthorPackQuota';
 import { KitCta, KitSectionHead } from '../components/cards-grid/CardsKit';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../components/practice/PracticeGlass';
 import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';

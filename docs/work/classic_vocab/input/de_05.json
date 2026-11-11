@@ -197,19 +197,6 @@
    ]
   },
   {
-   "form": "weber",
-   "surface": "Weber",
-   "count": 1,
-   "examples": [
-    {
-     "id": "de:05:40",
-     "target": "Sind Sie Frau Weber",
-     "ru": "Вы госпожа Вебер?",
-     "en": "Are you Mrs. Weber?"
-    }
-   ]
-  },
-  {
    "form": "hast",
    "surface": "Hast",
    "count": 1,

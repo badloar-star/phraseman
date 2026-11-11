@@ -1,0 +1,9 @@
+[
+  {
+    "id": "es:03:23",
+    "type": "B4",
+    "field": "alternatives",
+    "problem": "Подсказка «Вы дома? / Ви вдома?» (usted), а в alternatives лежит «¿Estás en casa?» — это «Ты дома?», другое лицо; засчитывается ответ с неверным смыслом",
+    "fix": {"add": [], "remove": ["¿Estás en casa?"]}
+  }
+]

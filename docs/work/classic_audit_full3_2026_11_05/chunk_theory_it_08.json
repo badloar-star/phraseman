@@ -1,0 +1,1066 @@
+[
+{
+"lesson": 17,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:17:01",
+"it:17:02",
+"it:17:03"
+],
+"textByLocale": {
+"en": "Break the dictionary `alzarsi` into an action and a reflexivity marker. In the present tense, the short pronoun is placed separately before the personal form. In the dictionary, this is one entry, not six different verbs.",
+"ru": "Разбей словарное `alzarsi` на действие и помету возвратности. В настоящем времени короткое местоимение ставится отдельно перед личной формой. В словаре это одна запись, а не шесть разных глаголов.",
+"uk": "Розбий словникове `alzarsi` на дію та послід повернення. Нині короткий займенник ставиться окремо перед особистої формою. У словнику це один запис, а не шість різних дієслів."
+}
+},
+{
+"exampleIds": [
+"it:17:04",
+"it:17:05",
+"it:17:06"
+],
+"textByLocale": {
+"en": "A group with a speaker uses `ci`: `ci alziamo`. The group is addressed by `vi alzate`. Several other people have the same `si` as one person, and the difference is visible in the verb.",
+"ru": "Группа с говорящим использует `ci`: `ci alziamo`. Обращение к группе — `vi alzate`. У нескольких других людей `si` такое же, как у одного, а различие видно по глаголу.",
+"uk": "Група з говорящим використовує `ci`: `ci alziamo`. Звернення до групи - `vi alzate`. У кількох інших людей `si` таке ж, як у одного, а різниця видно по дієслову."
+}
+},
+{
+"exampleIds": [
+"it:17:11",
+"it:17:12",
+"it:17:13"
+],
+"textByLocale": {
+"en": "`Svegliarsi` - wake up; `alzarsi` - get up. The person may already be awake and still be lying down. For the alarm clock task, check what action is named.",
+"ru": "`Svegliarsi` — проснуться; `alzarsi` — встать. Человек может уже проснуться и ещё лежать. Для задания про будильник проверь, какое действие названо.",
+"uk": "`Svegliarsi` - прокинутися; `alzarsi` - встати. Людина може прокинутися і ще лежати. Для завдання про будильник перевір, яка дія названа."
+}
+},
+{
+"exampleIds": [
+"it:17:21",
+"it:17:25",
+"it:17:27"
+],
+"textByLocale": {
+"en": "The order in a simple phrase is: pronoun, action, and, if necessary, object or place. `Mi lavo le mani` literally names the hands with the article; the additional `mie` is usually unnecessary.",
+"ru": "Порядок в простой фразе: местоимение, действие, при необходимости предмет или место. `Mi lavo le mani` буквально называет руки с артиклем; дополнительное `mie` обычно не нужно.",
+"uk": "Порядок у простій фразі: займенник, дія, у разі потреби предмет або місце. `Mi lavo le mani` буквально називає руки із артиклем; додаткове `mie` зазвичай не потрібне."
+}
+},
+{
+"exampleIds": [
+"it:17:31",
+"it:17:32",
+"it:17:35"
+],
+"textByLocale": {
+"en": "`Non` is placed before the pronoun and verb: `non mi alzo`. Do not insert it between `mi` and `alzo`. Other adverbial modifiers go where they make sense.",
+"ru": "`Non` ставится перед местоимением и глаголом: `non mi alzo`. Не вставляй его между `mi` и `alzo`. Другие обстоятельства идут там, где им удобно по смыслу.",
+"uk": "`Non` ставиться перед займенником та дієсловом: `non mi alzo`. Не вставляй його між `mi` та `alzo`. Інші обставини йдуть там, де їм зручно за змістом."
+}
+},
+{
+"exampleIds": [
+"it:17:38",
+"it:17:39",
+"it:17:40"
+],
+"textByLocale": {
+"en": "If a modal verb comes first, two natural variants are possible: `posso sedermi` and `mi posso sedere`. Exactly one pronoun is required. In the added variant, the final `e` infinitive is omitted.",
+"ru": "Если впереди модальный глагол, возможны два естественных варианта: `posso sedermi` и `mi posso sedere`. Нужно ровно одно местоимение. В присоединённом варианте финальное `e` инфинитива отпадает.",
+"uk": "Якщо попереду модальне дієслово, можливі два природні варіанти: `posso sedermi` і `mi posso sedere`. Потрібно рівно один займенник. У приєднаному варіанті фінальне інфінітиву `e` відпадає."
+}
+},
+{
+"exampleIds": [
+"it:17:43",
+"it:17:46",
+"it:17:50"
+],
+"textByLocale": {
+"en": "Not every `si` is translated as the single word \"himself.\" `Chiamarsi` indicates a name; `incontrarsi` about several people can mean a meeting with each other. Learn to recognize the whole verb in context.",
+"ru": "Не всякое `si` переводится отдельным словом «себя». `Chiamarsi` сообщает имя; `incontrarsi` о нескольких людях может означать встречу друг с другом. Учись узнавать целый глагол в контексте.",
+"uk": "Не всяке `si` перекладається окремим словом «себе». `Chiamarsi` повідомляє ім'я; `incontrarsi` про кількох людей може означати зустріч один з одним. Вчися впізнавати ціле дієслово в контексті."
+}
+}
+],
+"drills": [
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:17:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"La",
+"Mi",
+"Vi"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:17:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 6,
+"options": [
+"La",
+"Mi",
+"Si"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:17:05:lab",
+"item": 5,
+"kind": "match",
+"near": 24,
+"options": [
+"La",
+"Mi",
+"Vi"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:17:08:lab",
+"item": 8,
+"kind": "build",
+"near": 37,
+"options": [
+"La",
+"Si",
+"Ti"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 2,
+"id": "it:17:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 41,
+"options": [
+"la",
+"si",
+"ci"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:17:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 8,
+"options": [
+"La",
+"Ti",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 3,
+"id": "it:17:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"Ci",
+"Si",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "Ci",
+"chapter": 3,
+"id": "it:17:17:lab",
+"item": 17,
+"kind": "match",
+"near": 19,
+"options": [
+"Ci",
+"La",
+"Mi"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 3,
+"id": "it:17:19:lab",
+"item": 19,
+"kind": "build",
+"near": 17,
+"options": [
+"La",
+"Ne",
+"Ti"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "it:17:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 6,
+"options": [
+"Mi",
+"La",
+"Si"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "it:17:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 5,
+"options": [
+"Vi",
+"La",
+"Ne"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 4,
+"id": "it:17:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 7,
+"options": [
+"Si",
+"La",
+"Mi"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 5,
+"id": "it:17:29:lab",
+"item": 29,
+"kind": "match",
+"near": 4,
+"options": [
+"La",
+"Le",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:17:31:lab",
+"item": 31,
+"kind": "build",
+"near": 1,
+"options": [
+"li",
+"la",
+"mi"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 5,
+"id": "it:17:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"la",
+"si",
+"le"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 6,
+"id": "it:17:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 15,
+"options": [
+"Abbiamo",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "Può",
+"chapter": 6,
+"id": "it:17:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 37,
+"options": [
+"Possiamo",
+"Può",
+"Posso"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 6,
+"id": "it:17:42:lab",
+"item": 42,
+"kind": "match",
+"near": 18,
+"options": [
+"Mi",
+"Si",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 7,
+"id": "it:17:45:lab",
+"item": 45,
+"kind": "build",
+"near": 9,
+"options": [
+"ne",
+"si",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "Ci",
+"chapter": 7,
+"id": "it:17:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 6,
+"options": [
+"Si",
+"Ne",
+"Ci"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"io",
+"mi alzo"
+],
+[
+"tu",
+"ti alzi"
+],
+[
+"lui / lei / Lei",
+"si alza"
+],
+[
+"noi",
+"ci alziamo"
+],
+[
+"voi",
+"vi alzate"
+],
+[
+"loro",
+"si alzano"
+]
+],
+"title": {
+"en": "The action concerns you: `mi alzo`",
+"ru": "Действие касается тебя: `mi alzo`",
+"uk": "Дія стосується тебе: `mi alzo`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:17:01",
+"target": "Mi alzo.",
+"ru": "Я встаю.",
+"uk": "Я встаю."
+},
+{
+"id": "it:17:02",
+"target": "Ti alzi.",
+"ru": "Ты встаешь.",
+"uk": "Ти встаєш."
+},
+{
+"id": "it:17:03",
+"target": "Si alza.",
+"ru": "Она встает.",
+"uk": "Вона встає."
+},
+{
+"id": "it:17:04",
+"target": "Ci alziamo.",
+"ru": "Мы встаем.",
+"uk": "Ми встаємо."
+},
+{
+"id": "it:17:05",
+"target": "Vi alzate.",
+"ru": "Вы встаёте.",
+"uk": "Ви встаєте."
+},
+{
+"id": "it:17:06",
+"target": "Si alzano.",
+"ru": "Они встают.",
+"uk": "Вони встають."
+},
+{
+"id": "it:17:11",
+"target": "Mi sveglio presto.",
+"ru": "Я просыпаюсь рано.",
+"uk": "Я прокидаюся рано."
+},
+{
+"id": "it:17:12",
+"target": "Ti svegli alle sette.",
+"ru": "Ты просыпаешься в семь часов.",
+"uk": "Ти прокидаєшся о сьомій годині."
+},
+{
+"id": "it:17:13",
+"target": "Lei si sveglia prima di me.",
+"ru": "Она просыпается раньше меня.",
+"uk": "Вона прокидається раніше за мене."
+},
+{
+"id": "it:17:21",
+"target": "Mi vesto in camera mia.",
+"ru": "Я одеваюсь в своей комнате.",
+"uk": "Я одягаюся у своїй кімнаті."
+},
+{
+"id": "it:17:25",
+"target": "Paolo si rade davanti allo specchio.",
+"ru": "Паоло бреется перед зеркалом.",
+"uk": "Паоло голиться перед дзеркалом."
+},
+{
+"id": "it:17:27",
+"target": "Lei si lava le mani.",
+"ru": "Она моет руки.",
+"uk": "Вона миє руки."
+},
+{
+"id": "it:17:31",
+"target": "Non mi alzo prima delle sei.",
+"ru": "Я не встаю раньше шести часов.",
+"uk": "Я не встаю раніше шостої години."
+},
+{
+"id": "it:17:32",
+"target": "Lei non si corica tardi.",
+"ru": "Она не ложится спать поздно.",
+"uk": "Вона не лягає спати пізно."
+},
+{
+"id": "it:17:35",
+"target": "Non si rade la domenica.",
+"ru": "Он не бреется по воскресеньям.",
+"uk": "Він не голиться по неділях."
+},
+{
+"id": "it:17:38",
+"target": "Deve alzarsi presto.",
+"ru": "Ей нужно рано вставать.",
+"uk": "Їй треба рано вставати."
+},
+{
+"id": "it:17:39",
+"target": "Possiamo sederci qui.",
+"ru": "Мы можем сесть здесь.",
+"uk": "Ми можемо сісти тут."
+},
+{
+"id": "it:17:40",
+"target": "Vuole sedersi vicino alla finestra?",
+"ru": "Хотите сесть у окна?",
+"uk": "Хочете сісти біля вікна?"
+},
+{
+"id": "it:17:43",
+"target": "Ci incontriamo davanti al museo.",
+"ru": "Мы встречаемся перед музеем.",
+"uk": "Ми зустрічаємося перед музеєм."
+},
+{
+"id": "it:17:46",
+"target": "Mi chiamo Marie.",
+"ru": "Меня зовут Мари.",
+"uk": "Мене звати Марі."
+},
+{
+"id": "it:17:50",
+"target": "Mi cambio dopo il lavoro.",
+"ru": "Я переодеваюсь после работы.",
+"uk": "Я переодягаюся після роботи."
+}
+]
+},
+{
+"lesson": 18,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:18:01",
+"it:18:02",
+"it:18:04"
+],
+"textByLocale": {
+"en": "In a two-word phrase, the first part indicates the person, the second the action. If you leave only `ho`, you get \"I have.\" If you leave only `chiuso`, you won't get a complete statement about who closed the door.",
+"ru": "В двухсловной группе первая часть показывает человека, вторая — действие. Если оставить только `ho`, выйдет «у меня есть». Если оставить только `chiuso`, полноценного сообщения о том, кто закрыл, не получится.",
+"uk": "У двослівній групі перша частина показує людину, друга - дію. Якщо залишити лише `ho`, вийде \"у мене є\". Якщо залишити лише `chiuso`, повноцінного повідомлення про те, хто закрив, не вийде."
+}
+},
+{
+"exampleIds": [
+"it:18:07",
+"it:18:11",
+"it:18:13"
+],
+"textByLocale": {
+"en": "Many verbs that start with `-are` end in `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Once you recognize the pattern, apply it to another verb, but not to all of them.",
+"ru": "У многих глаголов на `-are` форма заканчивается на `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Узнав модель, примени её к другому глаголу, но не ко всем без исключения.",
+"uk": "Багато дієслів на `-are` форма закінчується на `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Дізнавшись модель, застосуй її до іншого дієслова, але не до всіх без винятку."
+}
+},
+{
+"exampleIds": [
+"it:18:21",
+"it:18:23",
+"it:18:24"
+],
+"textByLocale": {
+"en": "Frequent forms must be learned in their entirety: `preso`, `letto`, `visto`. It is convenient to learn in threes: dictionary name, form, short phrase from life.",
+"ru": "Частые формы надо узнавать целиком: `preso`, `letto`, `visto`. Удобно учить тройками: словарное название, форма, короткая фраза из жизни.",
+"uk": "Часті форми треба впізнавати цілком: `preso`, `letto`, `visto`. Зручно вчити трійками: словникова назва, форма, коротка фраза з життя."
+}
+},
+{
+"exampleIds": [
+"it:18:17",
+"it:18:18",
+"it:18:25"
+],
+"textByLocale": {
+"en": "With a regular noun after a verb, the participle with `avere` does not follow the gender of that noun: `ho chiuso la porta`, not `ho chiusa la porta`. With a preceding pronoun, the rule is different.",
+"ru": "С обычным существительным после глагола причастие с `avere` не следует за родом этого существительного: `ho chiuso la porta`, не `ho chiusa la porta`. С предшествующим местоимением правило будет другим.",
+"uk": "Зі звичайним іменником після дієслова дієприкметник з `avere` не слідує за родом цього іменника: `ho chiuso la porta`, не `ho chiusa la porta`. З попереднім займенником правило буде іншим."
+}
+},
+{
+"exampleIds": [
+"it:18:31",
+"it:18:32",
+"it:18:35"
+],
+"textByLocale": {
+"en": "The negation comes before the assistant. After `non ho`, you still need to name the action. Don't move `non` immediately before the name of the thing.",
+"ru": "Отрицание идёт перед помощником. После `non ho` всё равно нужно назвать действие. Не переставляй `non` сразу перед названием вещи.",
+"uk": "Заперечення відбувається перед помічником. Після `non ho` все одно потрібно назвати дію. Не переставляй `non` одразу перед назвою речі."
+}
+},
+{
+"exampleIds": [
+"it:18:36",
+"it:18:37",
+"it:18:40"
+],
+"textByLocale": {
+"en": "A question does not negate the past tense: first assemble both parts of the verb, then the rest of the words. `Ancora` with negation helps show that the action has not yet happened.",
+"ru": "Вопрос не отменяет прошедшее: сначала собери обе части глагола, затем остальные слова. `Ancora` с отрицанием помогает показать, что действие пока не произошло.",
+"uk": "Питання не скасовує минуле: спочатку збери обидві частини дієслова, потім решту слів. `Ancora` із запереченням допомагає показати, що дія поки що не відбулася."
+}
+},
+{
+"exampleIds": [
+"it:18:41",
+"it:18:43",
+"it:18:45"
+],
+"textByLocale": {
+"en": "Yesterday and this morning go well with a story about a completed episode. But the choice of tense is determined by how the person narrates the event, not by a list of \"magic words.\"",
+"ru": "Вчера и сегодня утром хорошо сочетаются с рассказом о завершённом эпизоде. Но выбор времени определяется тем, как человек рассказывает о событии, а не списком «волшебных слов».",
+"uk": "Вчора і сьогодні вранці добре поєднуються з розповіддю про завершений епізод. Але вибір часу визначається тим, як людина розповідає про подію, а не списком «чарівних слів»."
+}
+}
+],
+"drills": [
+{
+"bad": "Ha",
+"chapter": 1,
+"id": "it:18:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Ho",
+"Ha",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 1,
+"id": "it:18:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"ho",
+"ha",
+"abbiamo"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 1,
+"id": "it:18:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Ho",
+"Avete",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 2,
+"id": "it:18:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"ho",
+"hai",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 2,
+"id": "it:18:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 28,
+"options": [
+"ha",
+"ho",
+"abbiamo"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 2,
+"id": "it:18:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 37,
+"options": [
+"Ho",
+"Ha",
+"Hai"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 3,
+"id": "it:18:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"Abbiamo",
+"Ha",
+"Ho"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 3,
+"id": "it:18:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"Abbiamo",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "ho",
+"chapter": 3,
+"id": "it:18:19:lab",
+"item": 19,
+"kind": "build",
+"near": 13,
+"options": [
+"hai",
+"ho",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 4,
+"id": "it:18:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 2,
+"options": [
+"Ho",
+"Ha",
+"Hai"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 4,
+"id": "it:18:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 4,
+"options": [
+"Ho",
+"Ha",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Ho",
+"chapter": 4,
+"id": "it:18:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 45,
+"options": [
+"Hai",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "Ho",
+"chapter": 5,
+"id": "it:18:29:lab",
+"item": 29,
+"kind": "match",
+"near": 38,
+"options": [
+"Ha",
+"Ho",
+"Abbiamo"
+],
+"slot": 0
+},
+{
+"bad": "ha",
+"chapter": 5,
+"id": "it:18:31:lab",
+"item": 31,
+"kind": "build",
+"near": 27,
+"options": [
+"ha",
+"ho",
+"hai"
+],
+"slot": 1
+},
+{
+"bad": "ha",
+"chapter": 5,
+"id": "it:18:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 17,
+"options": [
+"abbiamo",
+"ha",
+"ho"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 6,
+"id": "it:18:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"ho",
+"ha",
+"abbiamo"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 6,
+"id": "it:18:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 40,
+"options": [
+"ha",
+"ho",
+"abbiamo"
+],
+"slot": 1
+},
+{
+"bad": "ho",
+"chapter": 6,
+"id": "it:18:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"abbiamo",
+"ho",
+"ha"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 7,
+"id": "it:18:45:lab",
+"item": 45,
+"kind": "build",
+"near": 27,
+"options": [
+"Ha",
+"Abbiamo",
+"Ho"
+],
+"slot": 0
+},
+{
+"bad": "Ha",
+"chapter": 7,
+"id": "it:18:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 47,
+"options": [
+"Ha",
+"Avete",
+"Ho"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"chiudere",
+"ho chiuso"
+],
+[
+"comprare",
+"hai comprato"
+],
+[
+"leggere",
+"ha letto"
+],
+[
+"vedere",
+"abbiamo visto"
+],
+[
+"scrivere",
+"avete scritto"
+],
+[
+"bere",
+"hanno bevuto"
+]
+],
+"title": {
+"en": "Completed action: `ho chiuso`",
+"ru": "Завершённое действие: `ho chiuso`",
+"uk": "Завершена дія: `ho chiuso`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:18:01",
+"target": "Ho chiuso la porta.",
+"ru": "Я закрыл дверь.",
+"uk": "Я зачинив двері."
+},
+{
+"id": "it:18:02",
+"target": "Hai chiuso la porta.",
+"ru": "Ты закрыл дверь.",
+"uk": "Ти зачинив двері."
+},
+{
+"id": "it:18:04",
+"target": "Abbiamo chiuso il negozio.",
+"ru": "Мы закрыли магазин.",
+"uk": "Ми зачинили магазин."
+},
+{
+"id": "it:18:07",
+"target": "Ho comprato del pane.",
+"ru": "Я купил хлеб.",
+"uk": "Я купив хліб."
+},
+{
+"id": "it:18:11",
+"target": "Ho prenotato un tavolo.",
+"ru": "Я забронировал столик.",
+"uk": "Я забронював столик."
+},
+{
+"id": "it:18:13",
+"target": "Lui ha pagato il conto.",
+"ru": "Он оплатил счет.",
+"uk": "Він оплатив рахунок."
+},
+{
+"id": "it:18:21",
+"target": "Ho preso il treno.",
+"ru": "Я поехал на поезде.",
+"uk": "Я поїхав поїздом."
+},
+{
+"id": "it:18:23",
+"target": "Lea ha letto il messaggio.",
+"ru": "Леа прочитала сообщение.",
+"uk": "Леа прочитала повідомлення."
+},
+{
+"id": "it:18:24",
+"target": "Abbiamo visto il film.",
+"ru": "Мы посмотрели фильм.",
+"uk": "Ми подивилися фільм."
+},
+{
+"id": "it:18:17",
+"target": "Ho dimenticato l’ombrello.",
+"ru": "Я забыл зонт.",
+"uk": "Я забув парасольку."
+},
+{
+"id": "it:18:18",
+"target": "Lei ha trovato le chiavi.",
+"ru": "Она нашла свои ключи.",
+"uk": "Вона знайшла свої ключі."
+},
+{
+"id": "it:18:25",
+"target": "Hanno bevuto il succo di mela.",
+"ru": "Они выпили яблочный сок.",
+"uk": "Вони випили яблучний сік."
+},
+{
+"id": "it:18:31",
+"target": "Non ho sentito il campanello.",
+"ru": "Я не слышал звонка в дверь.",
+"uk": "Я не чув дзвінка у двері."
+},
+{
+"id": "it:18:32",
+"target": "Non hai risposto al telefono.",
+"ru": "Ты не ответил на звонок.",
+"uk": "Ти не відповів на дзвінок."
+},
+{
+"id": "it:18:35",
+"target": "Non hanno capito le istruzioni.",
+"ru": "Они не поняли инструкции.",
+"uk": "Вони не зрозуміли інструкцій."
+},
+{
+"id": "it:18:36",
+"target": "Non ha ancora firmato.",
+"ru": "Вы еще не подписали.",
+"uk": "Ви ще не підписалися."
+},
+{
+"id": "it:18:37",
+"target": "Hai controllato l’indirizzo?",
+"ru": "Ты проверил адрес?",
+"uk": "Ти перевірив адресу?"
+},
+{
+"id": "it:18:40",
+"target": "Quando ha inviato il fascicolo?",
+"ru": "Когда вы отправили папку с документами?",
+"uk": "Коли ви надіслали папку з документами?"
+},
+{
+"id": "it:18:41",
+"target": "Ieri ho lavato la maglietta.",
+"ru": "Вчера я постирал футболку.",
+"uk": "Вчора я виправ футболку."
+},
+{
+"id": "it:18:43",
+"target": "Paolo ha riparato la serratura.",
+"ru": "Паоло починил замок.",
+"uk": "Паоло полагодив замок."
+},
+{
+"id": "it:18:45",
+"target": "Ho scritto il numero sulla busta.",
+"ru": "Я написала номер на конверте.",
+"uk": "Я написала номер на конверті."
+}
+]
+}
+]

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@frozen-c/*": [
+        "../../Users/badlo/Documents/Codex/2026-11-02/x20/work/offline-l1-c-controller-09/modules/classic-course-v1/*"
+      ],
+      "@frozen-c-test/*": [
+        "../../Users/badlo/Documents/Codex/2026-11-02/x20/work/offline-l1-c-controller-09/tests/fixtures/*"
+      ]
+    },
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "modules/classic-course-v1/classic_starter_native_ports.ts",
+    "tests/classic_starter_native_ports.test.ts",
+    "tests/fixtures/classic_starter_native_ports_fixture.ts"
+  ]
+}

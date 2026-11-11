@@ -1,0 +1,114 @@
+[
+ {
+  "id": "lesson-5/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Find the form before the rearrangement. Imagine the statement `Ihr seid bereit`. In the question, the same `seid` remains, only it comes first. Don't replace it with the infinitive `sein`."
+ },
+ {
+  "id": "lesson-5/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "uk «допоміжному дієслову деяких мовах» — пропущен предлог",
+  "fix": "Звичайні дії влаштовані так само. Якщо питаєш про навчання чи адресу, вперед виходить вже саме дієслово дії. Окрема частка, аналогічна допоміжному дієслову в деяких мовах, не потрібна."
+ },
+ {
+  "id": "lesson-5/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "en «Ask an unfamiliar adult `Sie`» — пропущено «with», «a set of people» искажает смысл",
+  "fix": "Polite address. Ask an unfamiliar adult with `Sie` and the matching verb form. The capital letter inside the sentence matters here. Don't automatically turn the person you're talking to into several people."
+ },
+ {
+  "id": "lesson-5/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «Останнє іменник» — неверный род",
+  "fix": "Коротка перевірка перед виходом. Порівняй `hast`, `hat` та `habt`: хто мав взяти квиток чи ключі? Останній іменник не вирішує, який із трьох варіантів взяти."
+ },
+ {
+  "id": "lesson-5/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "A quick check before leaving. Compare `hast`, `hat`, and `habt`: who should have taken the ticket or the keys? The last noun doesn't decide which of the three options to take."
+ },
+ {
+  "id": "lesson-6/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "What's unknown? If you need an address or location, start with `wo`. Unlike the question \"Are you here?\", answering \"yes\" is not enough: the other person must also provide a location."
+ },
+ {
+  "id": "lesson-6/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "uk «скільки продовжується дія» — калька (нужно «триває»)",
+  "fix": "Час чи тривалість? `Wann` запитує момент початку чи прибуття. `Wie lange` запитує, скільки триває дія. Це два різні питання, навіть якщо обидва пов'язані з часом."
+ },
+ {
+  "id": "lesson-6/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "Неверно: форма глагола меняется в самом вопросе (heißt du / heißen Sie), а не «в ответе»",
+  "fix": "У формы обращения есть последствия. Когда спрашиваешь имя друга, в вопросе нужна другая форма глагола, чем при обращении к незнакомому взрослому: `Wie heißt du?`, но `Wie heißen Sie?`. Само вопросительное слово остаётся тем же."
+ },
+ {
+  "id": "lesson-6/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "Неверно: форма дієслова змінюється в самому питанні, а не «у відповіді»",
+  "fix": "Форма звернення має наслідки. Коли запитуєш ім'я друга, у питанні потрібна інша форма дієслова, ніж при зверненні до незнайомого дорослого: `Wie heißt du?`, але `Wie heißen Sie?`. Саме запитальне слово залишається тим самим."
+ },
+ {
+  "id": "lesson-6/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Неверно: verb form differs in the question itself, not in the answer",
+  "fix": "Forms of address have consequences. When asking a friend's name, the question needs a different verb form than when addressing an unfamiliar adult: `Wie heißt du?` but `Wie heißen Sie?`. The question word itself stays the same."
+ },
+ {
+  "id": "lesson-6/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "uk «Не розривай запитання» (ru: вопросительное выражение), «а чи не між» — машинный мусор, «особисте» вместо «особове»",
+  "fix": "Не розривай питальний вираз. У `wie lange` чи `wie spät` обидві частини разом займають першу позицію. Особове дієслово ставиться після всієї групи, а не між її словами."
+ },
+ {
+  "id": "lesson-6/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Don't break the interrogative phrase. In `wie lange` or `wie spät`, both parts together occupy the first position. The personal verb comes after the entire phrase, not between its words."
+ },
+ {
+  "id": "lesson-6/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "uk «дві різні питання конструкції» — неграмматично",
+  "fix": "Питання про ціну. `Was kostet` — звичайний спосіб запитати, скільки коштує товар або квиток. Предмет стоїть після дієслова. Не поєднуй дві різні питальні конструкції в одну."
+ },
+ {
+  "id": "lesson-6/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «де підлягає залишається явним» — машинная калька «подлежащее»",
+  "fix": "Коли запитуєш «хто?», `wer` вже замінює дійову особу. Після дієслова не потрібно дублювати його займенником. Порівняй із питанням про місце, де підмет залишається явним."
+ },
+ {
+  "id": "lesson-6/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "uk «запитує джерело, wohin - мета» — неграмматично (нужно «про джерело … про мету»)",
+  "fix": "Звідки, куди чи скільки? `Woher` запитує про джерело, `wohin` — про мету. Для кількості гостей потрібно `wie viele`, а для ціни — `wie viel`. Подивися, якого типу відповідь була б корисною співрозмовнику."
+ },
+ {
+  "id": "lesson-6/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Where from, where to, or how many? `Woher` asks the source, `wohin` the destination. For the number of guests being counted, `wie viele` is needed, and for the price, `wie viel`. Consider what type of answer would be helpful to the other person."
+ }
+]

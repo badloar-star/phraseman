@@ -1,0 +1,1010 @@
+[
+{
+"lesson": 13,
+"blocks": [
+{
+"textES": "Levantas la bolsa, luego la maleta: ambas pesan. En francés, estos objetos tienen géneros gramaticales diferentes. Esta es una propiedad de la palabra, no de la cosa; se verifica mediante el nombre con el artículo.\nEl adjetivo indica qué tipo de objeto es. Se basa en el género del sustantivo francés, no en el del hablante. En el par de una bolsa y una maleta, se cambia el objeto y su forma asociada.",
+"textId": "Anda mengangkat tas, lalu koper: keduanya berat. Dalam bahasa Prancis, objek-objek ini memiliki jenis kelamin gramatikal yang berbeda. Ini adalah sifat kata, bukan benda; hal ini dibuktikan oleh nama dengan artikel.\nKata sifat memberitahu jenis objek apa itu. Kata sifat melihat jenis kelamin kata benda Prancis, bukan jenis kelamin pembicara. Dalam pasangan tentang tas dan koper, Anda mengubah objek dan bentuk yang terkait dengannya.",
+"textPl": "Podnosisz torbę, potem walizkę: obie są ciężkie. W języku francuskim te przedmioty mają różne rodzaje gramatyczne. Jest to właściwość słowa, a nie rzeczy; jest to weryfikowane przez nazwę z rodzajnikiem.\nPrzymiotnik wskazuje, jaki to rodzaj przedmiotu. Zwraca uwagę na rodzaj francuskiego rzeczownika, a nie na rodzaj mówiącego. W parze o torbie i walizce zmieniamy przedmiot i jego powiązaną formę.",
+"textPtBr": "Você levanta a sacola, depois a mala: ambas são pesadas. Em francês, esses objetos têm gêneros gramaticais diferentes. Isso é uma propriedade da palavra, não da coisa; é verificado pelo nome com o artigo.\nO adjetivo indica que tipo de objeto é. Ele considera o gênero do substantivo francês, não o gênero do falante. No par sobre uma bolsa e uma mala, você altera o objeto e sua forma associada.",
+"textRU": "Ты поднимаешь сумку, потом чемодан: оба тяжёлые. Во французском эти предметы разного грамматического рода. Это свойство слова, а не вещи; проверяется оно по названию с артиклем.\nПрилагательное говорит, какой предмет. Оно смотрит на род французского названия, а не на пол говорящего. В паре про сумку и чемодан ты меняешь предмет и связанную с ним форму.",
+"textTr": "Önce çantayı, sonra bavulu kaldırıyorsunuz: ikisi de ağır. Fransızcada bu nesnelerin gramer cinsiyetleri farklıdır. Bu, nesnenin değil, kelimenin bir özelliğidir; bu durum, ismin artikelle birlikte kullanılmasıyla doğrulanır.\nSıfat, nesnenin türünü belirtir. Konuşmacının cinsiyetine değil, Fransızca ismin cinsiyetine bakar. Çanta ve bavul çiftinde, nesneyi ve onunla ilişkili biçimi değiştirirsiniz.",
+"textUK": "Ти піднімаєш сумку, потім валізу: обидва важкі. У французькому ці предмети різного граматичного роду. Це властивість слова, а чи не речі; перевіряється воно за назвою з артиклем.\nПрикметник каже, який предмет. Воно дивиться на рід французької назви, а не на підлогу того, хто говорить. У парі про сумку та валізу ти змінюєш предмет і пов'язану з ним форму.",
+"textVi": "Bạn nhấc cái túi, rồi đến cái vali: cả hai đều nặng. Trong tiếng Pháp, những vật này có giống ngữ pháp khác nhau. Đây là đặc tính của từ, không phải của vật; nó được xác minh bằng danh từ kèm theo mạo từ.\nTính từ cho biết đó là loại vật gì. Nó xem xét giống của danh từ tiếng Pháp, chứ không phải giống của người nói. Trong cặp về một chiếc túi và một chiếc vali, bạn thay đổi vật thể và hình thức liên quan của nó.",
+"titleES": "Descripción de una cosa: género y número de un adjetivo",
+"titleId": "Deskripsi suatu benda: jenis kelamin dan jumlah kata sifat",
+"titlePl": "Opis rzeczy: rodzaj i liczba przymiotnika",
+"titlePtBr": "Descrição de uma coisa: gênero e número de um adjetivo",
+"titleRU": "Описание вещи: род и число прилагательного",
+"titleTr": "Bir şeyin tanımı: sıfatın cinsiyeti ve sayısı",
+"titleUK": "Опис речі: рід та число прикметника",
+"titleVi": "Mô tả một vật: giống và số của tính từ",
+"titleByLocale": {
+"en": "Description of a thing: gender and number of an adjective",
+"es": "Descripción de una cosa: género y número de un adjetivo",
+"id": "Deskripsi suatu benda: jenis kelamin dan jumlah kata sifat",
+"pl": "Opis rzeczy: rodzaj i liczba przymiotnika",
+"pt-BR": "Descrição de uma coisa: gênero e número de um adjetivo",
+"ru": "Описание вещи: род и число прилагательного",
+"tr": "Bir şeyin tanımı: sıfatın cinsiyeti ve sayısı",
+"uk": "Опис речі: рід та число прикметника",
+"vi": "Mô tả một vật: giống và số của tính từ"
+},
+"textByLocale": {
+"en": [
+"You lift the bag, then the suitcase: both are heavy. In French, these objects have different grammatical genders. This is a property of the word, not the thing; it is verified by the name with the article.",
+"The adjective tells what kind of object it is. It looks at the gender of the French noun, not the gender of the speaker. In the pair about a bag and a suitcase, you change the object and its associated form."
+],
+"es": [
+"Levantas la bolsa, luego la maleta: ambas pesan. En francés, estos objetos tienen géneros gramaticales diferentes. Esta es una propiedad de la palabra, no de la cosa; se verifica mediante el nombre con el artículo.",
+"El adjetivo indica qué tipo de objeto es. Se basa en el género del sustantivo francés, no en el del hablante. En el par de una bolsa y una maleta, se cambia el objeto y su forma asociada."
+],
+"id": [
+"Anda mengangkat tas, lalu koper: keduanya berat. Dalam bahasa Prancis, objek-objek ini memiliki jenis kelamin gramatikal yang berbeda. Ini adalah sifat kata, bukan benda; hal ini dibuktikan oleh nama dengan artikel.",
+"Kata sifat memberitahu jenis objek apa itu. Kata sifat melihat jenis kelamin kata benda Prancis, bukan jenis kelamin pembicara. Dalam pasangan tentang tas dan koper, Anda mengubah objek dan bentuk yang terkait dengannya."
+],
+"pl": [
+"Podnosisz torbę, potem walizkę: obie są ciężkie. W języku francuskim te przedmioty mają różne rodzaje gramatyczne. Jest to właściwość słowa, a nie rzeczy; jest to weryfikowane przez nazwę z rodzajnikiem.",
+"Przymiotnik wskazuje, jaki to rodzaj przedmiotu. Zwraca uwagę na rodzaj francuskiego rzeczownika, a nie na rodzaj mówiącego. W parze o torbie i walizce zmieniamy przedmiot i jego powiązaną formę."
+],
+"pt-BR": [
+"Você levanta a sacola, depois a mala: ambas são pesadas. Em francês, esses objetos têm gêneros gramaticais diferentes. Isso é uma propriedade da palavra, não da coisa; é verificado pelo nome com o artigo.",
+"O adjetivo indica que tipo de objeto é. Ele considera o gênero do substantivo francês, não o gênero do falante. No par sobre uma bolsa e uma mala, você altera o objeto e sua forma associada."
+],
+"ru": [
+"Ты поднимаешь сумку, потом чемодан: оба тяжёлые. Во французском эти предметы разного грамматического рода. Это свойство слова, а не вещи; проверяется оно по названию с артиклем.",
+"Прилагательное говорит, какой предмет. Оно смотрит на род французского названия, а не на пол говорящего. В паре про сумку и чемодан ты меняешь предмет и связанную с ним форму."
+],
+"tr": [
+"Önce çantayı, sonra bavulu kaldırıyorsunuz: ikisi de ağır. Fransızcada bu nesnelerin gramer cinsiyetleri farklıdır. Bu, nesnenin değil, kelimenin bir özelliğidir; bu durum, ismin artikelle birlikte kullanılmasıyla doğrulanır.",
+"Sıfat, nesnenin türünü belirtir. Konuşmacının cinsiyetine değil, Fransızca ismin cinsiyetine bakar. Çanta ve bavul çiftinde, nesneyi ve onunla ilişkili biçimi değiştirirsiniz."
+],
+"uk": [
+"Ти піднімаєш сумку, потім валізу: обидва важкі. У французькому ці предмети різного граматичного роду. Це властивість слова, а чи не речі; перевіряється воно за назвою з артиклем.",
+"Прикметник каже, який предмет. Воно дивиться на рід французької назви, а не на підлогу того, хто говорить. У парі про сумку та валізу ти змінюєш предмет і пов'язану з ним форму."
+],
+"vi": [
+"Bạn nhấc cái túi, rồi đến cái vali: cả hai đều nặng. Trong tiếng Pháp, những vật này có giống ngữ pháp khác nhau. Đây là đặc tính của từ, không phải của vật; nó được xác minh bằng danh từ kèm theo mạo từ.",
+"Tính từ cho biết đó là loại vật gì. Nó xem xét giống của danh từ tiếng Pháp, chứ không phải giống của người nói. Trong cặp về một chiếc túi và một chiếc vali, bạn thay đổi vật thể và hình thức liên quan của nó."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:13:01"
+]
+},
+{
+"textES": "Sustantivo + être + descripción acordada\nLe sac est lourd y la valise est lourde: El verbo es el mismo porque el sujeto es el mismo en ambos casos. Pero la descripción se adapta al nombre. No añadas una letra solo porque quien habla sea mujer.\nA menudo se añade e, pero esta no es una regla mecánica para ninguna raíz. Blanc se convierte en blanche y léger en légère. Es útil ver las dos formas una al lado de la otra.",
+"textId": "Kata benda + être + deskripsi yang disepakati\nLe sac est lourd dan la valise est lourde: Kata kerjanya sama karena subjeknya sama dalam kedua kasus. Tetapi deskripsinya disesuaikan dengan nama. Jangan menambahkan huruf hanya karena pembicaranya adalah seorang wanita.\ne sering ditambahkan, tetapi ini bukan aturan baku untuk setiap kata dasar. Blanc menjadi blanche, dan léger menjadi légère. Akan sangat membantu jika melihat kedua bentuk tersebut berdampingan.",
+"textPl": "Rzeczownik + être + uzgodniony opis\nLe sac est lourd i la valise est lourde: Czasownik jest taki sam, ponieważ podmiot jest taki sam w obu przypadkach. Opis dostosowuje się jednak do nazwy. Nie dodawaj litery tylko dlatego, że mówiąca jest kobietą.\nCzęsto dodaje się e, ale nie jest to reguła mechaniczna dla żadnego tematu. Blanc zmienia się w blanche, a léger w légère. Warto zobaczyć te dwie formy obok siebie.",
+"textPtBr": "Substantivo + être + descrição acordada\nLe sac est lourd e la valise est lourde: O verbo é o mesmo porque o sujeito é o mesmo em ambos os casos. Mas a descrição se adapta ao nome. Não adicione uma letra só porque quem fala é mulher.\ne é frequentemente adicionado, mas esta não é uma regra mecânica para nenhum radical. Blanc torna-se blanche e léger torna-se légère. É útil ver as duas formas lado a lado.",
+"textRU": "существительное + être + согласованное описание\nLe sac est lourd и la valise est lourde: глагол один и тот же, потому что предмет один в обоих случаях. Но описание подстраивается под название. Не добавляй букву только потому, что говорящий — женщина.\nНередко прибавляют e, но это не механическое правило для любой основы. Blanc превращается в blanche, léger — в légère. Полезно видеть две формы рядом.",
+"textTr": "İsim + être + üzerinde anlaşılmış tanım\nLe sac est lourd ve la valise est lourde: Fiil aynı çünkü her iki durumda da özne aynı. Ancak açıklama isme göre uyarlanıyor. Konuşan kadın diye harf eklemeyin.\ne sıklıkla eklenir, ancak bu herhangi bir kök için mekanik bir kural değildir. Blanc, blanche olur ve léger, légère olur. İki formu yan yana görmek faydalıdır.",
+"textUK": "іменник + être + погоджений опис\nLe sac est lourd і la valise est lourde: дієслово одне й те саме, тому що предмет один в обох випадках. Але опис підлаштовується під назвою. Не додай букву тільки тому, що той, хто говорить, — жінка.\nНерідко додають e, але це не механічне правило для будь-якої основи. Blanc перетворюється на blanche, léger - на légère. Корисно бачити дві форми поруч.",
+"textVi": "Danh từ + être + mô tả đã thống nhất\nLe sac est lourd và la valise est lourde: Động từ giống nhau vì chủ ngữ giống nhau trong cả hai trường hợp. Nhưng phần mô tả được điều chỉnh cho phù hợp với tên. Không thêm một chữ cái chỉ vì người nói là nữ.\ne thường được thêm vào, nhưng đây không phải là quy tắc máy móc cho bất kỳ gốc từ nào. Blanc trở thành blanche, và léger trở thành légère. Sẽ hữu ích hơn nếu xem hai dạng này cạnh nhau.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Noun + «être» + agreed-upon description",
+"«Le sac est lourd» and «la valise est lourde»: The verb is the same because the subject is the same in both cases. But the description adapts to the name. Don't add a letter just because the speaker is a woman.",
+"«e» is often added, but this isn't a mechanical rule for any stem. «Blanc» becomes «blanche», and «léger» becomes «légère». It's helpful to see the two forms side by side."
+],
+"es": [
+"Sustantivo + «être» + descripción acordada",
+"«Le sac est lourd» y «la valise est lourde»: El verbo es el mismo porque el sujeto es el mismo en ambos casos. Pero la descripción se adapta al nombre. No añadas una letra solo porque quien habla sea mujer.",
+"A menudo se añade «e», pero esta no es una regla mecánica para ninguna raíz. «Blanc» se convierte en «blanche» y «léger» en «légère». Es útil ver las dos formas una al lado de la otra."
+],
+"id": [
+"Kata benda + «être» + deskripsi yang disepakati",
+"«Le sac est lourd» dan «la valise est lourde»: Kata kerjanya sama karena subjeknya sama dalam kedua kasus. Tetapi deskripsinya disesuaikan dengan nama. Jangan menambahkan huruf hanya karena pembicaranya adalah seorang wanita.",
+"«e» sering ditambahkan, tetapi ini bukan aturan baku untuk setiap kata dasar. «Blanc» menjadi «blanche», dan «léger» menjadi «légère». Akan sangat membantu jika melihat kedua bentuk tersebut berdampingan."
+],
+"pl": [
+"Rzeczownik + «être» + uzgodniony opis",
+"«Le sac est lourd» i «la valise est lourde»: Czasownik jest taki sam, ponieważ podmiot jest taki sam w obu przypadkach. Opis dostosowuje się jednak do nazwy. Nie dodawaj litery tylko dlatego, że mówiąca jest kobietą.",
+"Często dodaje się «e», ale nie jest to reguła mechaniczna dla żadnego tematu. «Blanc» zmienia się w «blanche», a «léger» w «légère». Warto zobaczyć te dwie formy obok siebie."
+],
+"pt-BR": [
+"Substantivo + «être» + descrição acordada",
+"«Le sac est lourd» e «la valise est lourde»: O verbo é o mesmo porque o sujeito é o mesmo em ambos os casos. Mas a descrição se adapta ao nome. Não adicione uma letra só porque quem fala é mulher.",
+"«e» é frequentemente adicionado, mas esta não é uma regra mecânica para nenhum radical. «Blanc» torna-se «blanche» e «léger» torna-se «légère». É útil ver as duas formas lado a lado."
+],
+"ru": [
+"существительное + «être» + согласованное описание",
+"«Le sac est lourd» и «la valise est lourde»: глагол один и тот же, потому что предмет один в обоих случаях. Но описание подстраивается под название. Не добавляй букву только потому, что говорящий — женщина.",
+"Нередко прибавляют «e», но это не механическое правило для любой основы. «Blanc» превращается в «blanche», «léger» — в «légère». Полезно видеть две формы рядом."
+],
+"tr": [
+"İsim + «être» + üzerinde anlaşılmış tanım",
+"«Le sac est lourd» ve «la valise est lourde»: Fiil aynı çünkü her iki durumda da özne aynı. Ancak açıklama isme göre uyarlanıyor. Konuşan kadın diye harf eklemeyin.",
+"«e» sıklıkla eklenir, ancak bu herhangi bir kök için mekanik bir kural değildir. «Blanc», «blanche» olur ve «léger», «légère» olur. İki formu yan yana görmek faydalıdır."
+],
+"uk": [
+"іменник + «être» + погоджений опис",
+"«Le sac est lourd» і «la valise est lourde»: дієслово одне й те саме, тому що предмет один в обох випадках. Але опис підлаштовується під назвою. Не додай букву тільки тому, що той, хто говорить, — жінка.",
+"Нерідко додають «e», але це не механічне правило для будь-якої основи. «Blanc» перетворюється на «blanche», «léger» - на «légère». Корисно бачити дві форми поруч."
+],
+"vi": [
+"Danh từ + «être» + mô tả đã thống nhất",
+"«Le sac est lourd» và «la valise est lourde»: Động từ giống nhau vì chủ ngữ giống nhau trong cả hai trường hợp. Nhưng phần mô tả được điều chỉnh cho phù hợp với tên. Không thêm một chữ cái chỉ vì người nói là nữ.",
+"«e» thường được thêm vào, nhưng đây không phải là quy tắc máy móc cho bất kỳ gốc từ nào. «Blanc» trở thành «blanche», và «léger» trở thành «légère». Sẽ hữu ích hơn nếu xem hai dạng này cạnh nhau."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:13:05",
+"fr:13:06"
+]
+},
+{
+"textES": "Digamos que la bolsa es pesada. En francés, es le sac, masculino. Tomamos est, luego lourd. Al hablar de la valise, mantenemos el verbo, pero escribimos lourde.",
+"textId": "Katakanlah tas itu berat. Dalam bahasa Prancis, itu adalah le sac, maskulin. Ambil est, lalu lourd. Saat berbicara tentang la valise, pertahankan kata kerja, tetapi tulis lourde.",
+"textPl": "Powiedzmy, że torba jest ciężka. Po francusku to le sac, rodzaj męski. Weźmy est, a następnie lourd. Mówiąc o la valise, zachowaj czasownik, ale napisz lourde.",
+"textPtBr": "Digamos que a bolsa seja pesada. Em francês, isso é le sac, masculino. Use est e depois lourd. Ao falar sobre la valise, mantenha o verbo, mas escreva lourde.",
+"textRU": "Скажи, что сумка тяжёлая. Во французском это le sac, мужской род. Возьми est, затем lourd. Когда говоришь о la valise, сохрани глагол, но напиши lourde.",
+"textTr": "Çantanın ağır olduğunu söyleyin. Fransızcada bu le sac, erildir. est'yi, sonra lourd'ü alın. la valise'ten bahsederken fiili koruyun, ancak lourde yazın.",
+"textUK": "Скажи, що сумка важка. У французькому це le sac, чоловічий рід. Візьми est, потім lourd. Коли говориш про la valise, збережи дієслово, але напиши lourde.",
+"textVi": "Ví dụ: chiếc túi nặng. Trong tiếng Pháp, đó là le sac, giống đực. Lấy est, sau đó là lourd. Khi nói về la valise, giữ nguyên động từ, nhưng viết lourde.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Say the bag is heavy. In French, that's «le sac», masculine. Take «est», then «lourd». When talking about «la valise», keep the verb, but write «lourde»."
+],
+"es": [
+"Digamos que la bolsa es pesada. En francés, es «le sac», masculino. Tomamos «est», luego «lourd». Al hablar de «la valise», mantenemos el verbo, pero escribimos «lourde»."
+],
+"id": [
+"Katakanlah tas itu berat. Dalam bahasa Prancis, itu adalah «le sac», maskulin. Ambil «est», lalu «lourd». Saat berbicara tentang «la valise», pertahankan kata kerja, tetapi tulis «lourde»."
+],
+"pl": [
+"Powiedzmy, że torba jest ciężka. Po francusku to «le sac», rodzaj męski. Weźmy «est», a następnie «lourd». Mówiąc o «la valise», zachowaj czasownik, ale napisz «lourde»."
+],
+"pt-BR": [
+"Digamos que a bolsa seja pesada. Em francês, isso é «le sac», masculino. Use «est» e depois «lourd». Ao falar sobre «la valise», mantenha o verbo, mas escreva «lourde»."
+],
+"ru": [
+"Скажи, что сумка тяжёлая. Во французском это «le sac», мужской род. Возьми «est», затем «lourd». Когда говоришь о «la valise», сохрани глагол, но напиши «lourde»."
+],
+"tr": [
+"Çantanın ağır olduğunu söyleyin. Fransızcada bu «le sac», erildir. «est»'yi, sonra «lourd»'ü alın. «la valise»'ten bahsederken fiili koruyun, ancak «lourde» yazın."
+],
+"uk": [
+"Скажи, що сумка важка. У французькому це «le sac», чоловічий рід. Візьми «est», потім «lourd». Коли говориш про «la valise», збережи дієслово, але напиши «lourde»."
+],
+"vi": [
+"Ví dụ: chiếc túi nặng. Trong tiếng Pháp, đó là «le sac», giống đực. Lấy «est», sau đó là «lourd». Khi nói về «la valise», giữ nguyên động từ, nhưng viết «lourde»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:13:01",
+"fr:13:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:13:01",
+"target": "Le sac est lourd.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "fr:13:05",
+"target": "Le drap est blanc.",
+"ru": "Простыня белая.",
+"uk": "Простирадло біле."
+},
+{
+"id": "fr:13:06",
+"target": "La chemise est blanche.",
+"ru": "Рубашка белая.",
+"uk": "Сорочка біла."
+},
+{
+"id": "fr:13:01",
+"target": "Le sac est lourd.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "fr:13:04",
+"target": "La veste est légère.",
+"ru": "Куртка лёгкая.",
+"uk": "Куртка легка."
+}
+]
+},
+{
+"lesson": 14,
+"blocks": [
+{
+"textES": "Se pueden decir tres cosas distintas en la puerta: puedo entrar, debo entrar o quiero entrar. Entrar en sí sigue siendo la misma acción; solo cambia la actitud hacia ella.\nLas palabras \"Puedo entrar\" tienen dos soluciones. La primera es si la persona puede hacerlo. La segunda es qué exactamente. La terminación personal aparece en el primer verbo; el segundo se mantiene en la forma del diccionario.",
+"textId": "Tiga hal berbeda dapat dikatakan di depan pintu: Saya boleh masuk, Saya harus masuk, atau Saya ingin masuk. Memasuki itu sendiri tetap merupakan tindakan yang sama; hanya sikap terhadapnya yang berubah.\nKata-kata \"Saya dapat masuk\" memiliki dua solusi. Yang pertama adalah apakah orang tersebut dapat melakukannya. Yang kedua adalah apa tepatnya. Akhiran personal muncul pada kata kerja pertama; yang kedua tetap dalam bentuk kamus.",
+"textPl": "Przy drzwiach można powiedzieć trzy różne rzeczy: „Mogę wejść”, „Muszę wejść” lub „Chcę wejść”. Samo wejście pozostaje tą samą czynnością; zmienia się jedynie nastawienie do niej.\nSłowa „Mogę wejść” mają dwa rozwiązania. Pierwsze to czy dana osoba może to zrobić. Drugie to co dokładnie. Końcówka osobowa pojawia się w pierwszym czasowniku; drugi pozostaje w formie słownikowej.",
+"textPtBr": "Três coisas diferentes podem ser ditas à porta: Posso entrar, Devo entrar ou Quero entrar. Entrar em si continua sendo a mesma ação; apenas a atitude em relação a ela muda.\nAs palavras \"Eu posso entrar\" têm duas soluções. A primeira é se a pessoa pode fazer isso. A segunda é o quê exatamente. A terminação pessoal aparece no primeiro verbo; a segunda permanece na forma do dicionário.",
+"textRU": "Перед дверью можно сказать три разных вещи: я могу войти, я должен войти или я хочу войти. Сам вход остаётся прежним действием; меняется только отношение к нему.\nВ словах «могу войти» есть два решения. Первое — может ли человек это сделать. Второе — что именно. Личное окончание появляется у первого глагола; второй остаётся в словарной форме.",
+"textTr": "Kapıda üç farklı şey söylenebilir: Girebilirim, girmeliyim veya girmek istiyorum. Girme eyleminin kendisi aynı kalır; sadece ona karşı tutum değişir.\n\"İçeri girebilirim\" kelimelerinin iki çözümü vardır. Birincisi, kişinin bunu yapıp yapamayacağıdır. İkincisi ise tam olarak ne yapacağıdır. Kişi eki ilk fiilde görünür; ikincisi sözlük biçiminde kalır.",
+"textUK": "Перед дверима можна сказати три різні речі: я можу увійти, я маю увійти або я хочу увійти. Сам вхід залишається колишньою дією; змінюється лише ставлення щодо нього.\nУ словах \"можу увійти\" є два рішення. Перше – чи може людина це зробити. Друге – що саме. Особисте закінчення у першого дієслова; другий залишається у словниковій формі.",
+"textVi": "Có thể nói ba điều khác nhau ở cửa: Tôi có thể vào, tôi phải vào, hoặc tôi muốn vào. Bản thân việc vào vẫn là hành động đó; chỉ có thái độ đối với nó thay đổi.\nCụm từ \"Tôi có thể vào\" có hai cách giải quyết. Cách thứ nhất là liệu người đó có thể làm được hay không. Cách thứ hai là chính xác là làm gì. Đuôi chỉ người xuất hiện ở động từ đầu tiên; động từ thứ hai vẫn giữ nguyên dạng từ điển.",
+"titleES": "Can, should, want: dos verbos juntos",
+"titleId": "Can, should, want: dua kata kerja bersama",
+"titlePl": "Can, should, want: dwa czasowniki razem",
+"titlePtBr": "Can, should, want: dois verbos juntos",
+"titleRU": "Могу, должен, хочу: два глагола вместе",
+"titleTr": "Can, should, want: iki fiil birlikte",
+"titleUK": "Можу, маю, хочу: два дієслова разом",
+"titleVi": "Can, should, want: hai động từ đứng cạnh nhau",
+"titleByLocale": {
+"en": "Can, should, want: two verbs together",
+"es": "Can, should, want: dos verbos juntos",
+"id": "Can, should, want: dua kata kerja bersama",
+"pl": "Can, should, want: dwa czasowniki razem",
+"pt-BR": "Can, should, want: dois verbos juntos",
+"ru": "Могу, должен, хочу: два глагола вместе",
+"tr": "Can, should, want: iki fiil birlikte",
+"uk": "Можу, маю, хочу: два дієслова разом",
+"vi": "Can, should, want: hai động từ đứng cạnh nhau"
+},
+"textByLocale": {
+"en": [
+"Three different things can be said at the door: I can enter, I must enter, or I want to enter. Entering itself remains the same action; only the attitude toward it changes.",
+"The words \"I can come in\" have two solutions. The first is whether the person can do it. The second is what exactly. The personal ending appears on the first verb; the second remains in the dictionary form."
+],
+"es": [
+"Se pueden decir tres cosas distintas en la puerta: puedo entrar, debo entrar o quiero entrar. Entrar en sí sigue siendo la misma acción; solo cambia la actitud hacia ella.",
+"Las palabras \"Puedo entrar\" tienen dos soluciones. La primera es si la persona puede hacerlo. La segunda es qué exactamente. La terminación personal aparece en el primer verbo; el segundo se mantiene en la forma del diccionario."
+],
+"id": [
+"Tiga hal berbeda dapat dikatakan di depan pintu: Saya boleh masuk, Saya harus masuk, atau Saya ingin masuk. Memasuki itu sendiri tetap merupakan tindakan yang sama; hanya sikap terhadapnya yang berubah.",
+"Kata-kata \"Saya dapat masuk\" memiliki dua solusi. Yang pertama adalah apakah orang tersebut dapat melakukannya. Yang kedua adalah apa tepatnya. Akhiran personal muncul pada kata kerja pertama; yang kedua tetap dalam bentuk kamus."
+],
+"pl": [
+"Przy drzwiach można powiedzieć trzy różne rzeczy: „Mogę wejść”, „Muszę wejść” lub „Chcę wejść”. Samo wejście pozostaje tą samą czynnością; zmienia się jedynie nastawienie do niej.",
+"Słowa „Mogę wejść” mają dwa rozwiązania. Pierwsze to czy dana osoba może to zrobić. Drugie to co dokładnie. Końcówka osobowa pojawia się w pierwszym czasowniku; drugi pozostaje w formie słownikowej."
+],
+"pt-BR": [
+"Três coisas diferentes podem ser ditas à porta: Posso entrar, Devo entrar ou Quero entrar. Entrar em si continua sendo a mesma ação; apenas a atitude em relação a ela muda.",
+"As palavras \"Eu posso entrar\" têm duas soluções. A primeira é se a pessoa pode fazer isso. A segunda é o quê exatamente. A terminação pessoal aparece no primeiro verbo; a segunda permanece na forma do dicionário."
+],
+"ru": [
+"Перед дверью можно сказать три разных вещи: я могу войти, я должен войти или я хочу войти. Сам вход остаётся прежним действием; меняется только отношение к нему.",
+"В словах «могу войти» есть два решения. Первое — может ли человек это сделать. Второе — что именно. Личное окончание появляется у первого глагола; второй остаётся в словарной форме."
+],
+"tr": [
+"Kapıda üç farklı şey söylenebilir: Girebilirim, girmeliyim veya girmek istiyorum. Girme eyleminin kendisi aynı kalır; sadece ona karşı tutum değişir.",
+"\"İçeri girebilirim\" kelimelerinin iki çözümü vardır. Birincisi, kişinin bunu yapıp yapamayacağıdır. İkincisi ise tam olarak ne yapacağıdır. Kişi eki ilk fiilde görünür; ikincisi sözlük biçiminde kalır."
+],
+"uk": [
+"Перед дверима можна сказати три різні речі: я можу увійти, я маю увійти або я хочу увійти. Сам вхід залишається колишньою дією; змінюється лише ставлення щодо нього.",
+"У словах \"можу увійти\" є два рішення. Перше – чи може людина це зробити. Друге – що саме. Особисте закінчення у першого дієслова; другий залишається у словниковій формі."
+],
+"vi": [
+"Có thể nói ba điều khác nhau ở cửa: Tôi có thể vào, tôi phải vào, hoặc tôi muốn vào. Bản thân việc vào vẫn là hành động đó; chỉ có thái độ đối với nó thay đổi.",
+"Cụm từ \"Tôi có thể vào\" có hai cách giải quyết. Cách thứ nhất là liệu người đó có thể làm được hay không. Cách thứ hai là chính xác là làm gì. Đuôi chỉ người xuất hiện ở động từ đầu tiên; động từ thứ hai vẫn giữ nguyên dạng từ điển."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:14:01"
+]
+},
+{
+"textES": "who + forma pouvoir, devoir o vouloir + infinitivo\nEl primer verbo expresa una posibilidad, obligación o deseo. El segundo verbo indica qué hacer: se deja en su forma de diccionario. En Je peux entrer, elija la forma personal solo para pouvoir.\nOportunidad, obligación y deseo no son lo mismo. El pago está disponible - je peux payer. El pago es requerido - je dois payer. Quiero pagar - je veux payer.",
+"textId": "who + bentuk pouvoir, devoir, atau vouloir + infinitif\nKata kerja pertama menyatakan kemungkinan, kewajiban, atau keinginan. Kata kerja kedua menyatakan apa yang harus dilakukan: kata kerja ini dibiarkan dalam bentuk kamus. Pada Je peux entrer, pilih bentuk personal hanya untuk pouvoir.\nKesempatan, kewajiban, dan keinginan bukanlah hal yang sama. Pembayaran tersedia - je peux payer. Pembayaran diperlukan - je dois payer. Saya ingin membayar - je veux payer.",
+"textPl": "who + forma pouvoir, devoir lub vouloir + bezokolicznik\nPierwszy czasownik wyraża możliwość, obowiązek lub pragnienie. Drugi czasownik określa, co należy zrobić: pozostaje w formie słownikowej. W przypadku czasownika Je peux entrer należy wybrać formę osobową tylko dla czasownika pouvoir.\nMożliwość, obowiązek i pragnienie to nie to samo. Płatność jest dostępna - je peux payer. Płatność jest wymagana - je dois payer. Chcę zapłacić - je veux payer.",
+"textPtBr": "who + forma pouvoir, devoir ou vouloir + infinitivo\nO primeiro verbo expressa uma possibilidade, obrigação ou desejo. O segundo verbo indica o que fazer: ele permanece em sua forma original. Em Je peux entrer, escolha a forma pessoal apenas para pouvoir.\nOportunidade, obrigação e desejo não são a mesma coisa. Pagamento disponível - je peux payer. Pagamento necessário - je dois payer. Eu quero pagar - je veux payer.",
+"textRU": "кто + форма pouvoir, devoir или vouloir + инфинитив\nПервый глагол сообщает возможность, обязанность или желание. Второй называет, что сделать: его оставляют в словарной форме. В Je peux entrer выбирай личную форму только у pouvoir.\nВозможность, обязанность и желание не совпадают. Оплата доступна — je peux payer. Оплата нужна — je dois payer. Я хочу оплатить — je veux payer.",
+"textTr": "who + biçim pouvoir, devoir veya vouloir + mastar\nBirinci fiil bir olasılığı, yükümlülüğü veya arzuyu ifade eder. İkinci fiil ne yapılacağını belirtir: sözlükteki haliyle bırakılmıştır. Je peux entrer'de, yalnızca pouvoir için şahıs formunu seçin.\nFırsat, yükümlülük ve arzu aynı şey değildir. Ödeme mevcuttur - je peux payer. Ödeme gereklidir - je dois payer. Ödemek istiyorum - je veux payer.",
+"textUK": "хто + форма pouvoir, devoir або vouloir + інфінітив\nПерше дієслово повідомляє можливість, обов'язок чи бажання. Другий називає, що зробити: його залишають у словниковій формі. У Je peux entrer вибирай особисту форму лише у pouvoir.\nМожливість, обов'язок та бажання не збігаються. Оплата доступна - je peux payer. Оплата потрібна - je dois payer. Я хочу оплатити - je veux payer.",
+"textVi": "who + dạng pouvoir, devoir, hoặc vouloir + động từ nguyên mẫu\nĐộng từ đầu tiên diễn tả khả năng, nghĩa vụ hoặc mong muốn. Động từ thứ hai nêu rõ hành động cần làm: nó được giữ nguyên dạng từ điển. Trong Je peux entrer, chỉ chọn dạng cá nhân cho pouvoir.\nCơ hội, nghĩa vụ và mong muốn không giống nhau. Thanh toán có sẵn - je peux payer. Thanh toán là bắt buộc - je dois payer. Tôi muốn trả tiền - je veux payer.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + form «pouvoir», «devoir», or «vouloir» + infinitive",
+"The first verb expresses a possibility, obligation, or desire. The second verb states what to do: it is left in its dictionary form. In «Je peux entrer», choose the personal form only for «pouvoir».",
+"Opportunity, obligation, and desire are not the same. Payment is available - «je peux payer». Payment is required - «je dois payer». I want to pay - «je veux payer»."
+],
+"es": [
+"who + forma «pouvoir», «devoir» o «vouloir» + infinitivo",
+"El primer verbo expresa una posibilidad, obligación o deseo. El segundo verbo indica qué hacer: se deja en su forma de diccionario. En «Je peux entrer», elija la forma personal solo para «pouvoir».",
+"Oportunidad, obligación y deseo no son lo mismo. El pago está disponible - «je peux payer». El pago es requerido - «je dois payer». Quiero pagar - «je veux payer»."
+],
+"id": [
+"who + bentuk «pouvoir», «devoir», atau «vouloir» + infinitif",
+"Kata kerja pertama menyatakan kemungkinan, kewajiban, atau keinginan. Kata kerja kedua menyatakan apa yang harus dilakukan: kata kerja ini dibiarkan dalam bentuk kamus. Pada «Je peux entrer», pilih bentuk personal hanya untuk «pouvoir».",
+"Kesempatan, kewajiban, dan keinginan bukanlah hal yang sama. Pembayaran tersedia - «je peux payer». Pembayaran diperlukan - «je dois payer». Saya ingin membayar - «je veux payer»."
+],
+"pl": [
+"who + forma «pouvoir», «devoir» lub «vouloir» + bezokolicznik",
+"Pierwszy czasownik wyraża możliwość, obowiązek lub pragnienie. Drugi czasownik określa, co należy zrobić: pozostaje w formie słownikowej. W przypadku czasownika «Je peux entrer» należy wybrać formę osobową tylko dla czasownika «pouvoir».",
+"Możliwość, obowiązek i pragnienie to nie to samo. Płatność jest dostępna - «je peux payer». Płatność jest wymagana - «je dois payer». Chcę zapłacić - «je veux payer»."
+],
+"pt-BR": [
+"who + forma «pouvoir», «devoir» ou «vouloir» + infinitivo",
+"O primeiro verbo expressa uma possibilidade, obrigação ou desejo. O segundo verbo indica o que fazer: ele permanece em sua forma original. Em «Je peux entrer», escolha a forma pessoal apenas para «pouvoir».",
+"Oportunidade, obrigação e desejo não são a mesma coisa. Pagamento disponível - «je peux payer». Pagamento necessário - «je dois payer». Eu quero pagar - «je veux payer»."
+],
+"ru": [
+"кто + форма «pouvoir», «devoir» или «vouloir» + инфинитив",
+"Первый глагол сообщает возможность, обязанность или желание. Второй называет, что сделать: его оставляют в словарной форме. В «Je peux entrer» выбирай личную форму только у «pouvoir».",
+"Возможность, обязанность и желание не совпадают. Оплата доступна — «je peux payer». Оплата нужна — «je dois payer». Я хочу оплатить — «je veux payer»."
+],
+"tr": [
+"who + biçim «pouvoir», «devoir» veya «vouloir» + mastar",
+"Birinci fiil bir olasılığı, yükümlülüğü veya arzuyu ifade eder. İkinci fiil ne yapılacağını belirtir: sözlükteki haliyle bırakılmıştır. «Je peux entrer»'de, yalnızca «pouvoir» için şahıs formunu seçin.",
+"Fırsat, yükümlülük ve arzu aynı şey değildir. Ödeme mevcuttur - «je peux payer». Ödeme gereklidir - «je dois payer». Ödemek istiyorum - «je veux payer»."
+],
+"uk": [
+"хто + форма «pouvoir», «devoir» або «vouloir» + інфінітив",
+"Перше дієслово повідомляє можливість, обов'язок чи бажання. Другий називає, що зробити: його залишають у словниковій формі. У «Je peux entrer» вибирай особисту форму лише у «pouvoir».",
+"Можливість, обов'язок та бажання не збігаються. Оплата доступна - «je peux payer». Оплата потрібна - «je dois payer». Я хочу оплатити - «je veux payer»."
+],
+"vi": [
+"who + dạng «pouvoir», «devoir», hoặc «vouloir» + động từ nguyên mẫu",
+"Động từ đầu tiên diễn tả khả năng, nghĩa vụ hoặc mong muốn. Động từ thứ hai nêu rõ hành động cần làm: nó được giữ nguyên dạng từ điển. Trong «Je peux entrer», chỉ chọn dạng cá nhân cho «pouvoir».",
+"Cơ hội, nghĩa vụ và mong muốn không giống nhau. Thanh toán có sẵn - «je peux payer». Thanh toán là bắt buộc - «je dois payer». Tôi muốn trả tiền - «je veux payer»."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:14:07",
+"fr:14:08"
+]
+},
+{
+"textES": "Estás indicando que puedes entrar. Je es el hablante, peux es la oportunidad, entrer es la acción en sí. No coloques entre al final: la persona ya está indicada por peux.",
+"textId": "Anda menyatakan bahwa Anda dapat masuk. Je adalah pembicara, peux adalah kesempatan, entrer adalah tindakan itu sendiri. Jangan letakkan entre di akhir: orang tersebut sudah ditunjukkan oleh peux.",
+"textPl": "Stwierdzasz, że możesz wejść. Je to osoba mówiąca, peux to okazja, entrer to sama czynność. Nie dodawaj entre na końcu: osoba jest już wskazana przez peux.",
+"textPtBr": "Você está afirmando que pode entrar. Je é o falante, peux é a oportunidade, entrer é a própria ação. Não coloque entre por último: a pessoa já está indicada por peux.",
+"textRU": "Ты сообщаешь, что можешь войти. Je — говорящий, peux — возможность, entrer — само действие. Не ставь entre на последнее место: лицо уже обозначено формой peux.",
+"textTr": "İçeri girebileceğinizi belirtiyorsunuz. Je konuşmacı, peux fırsat, entrer ise eylemin kendisidir. entre'ü sona koymayın: kişi zaten peux ile belirtilmiştir.",
+"textUK": "Ти повідомляєш, що можеш увійти. Je - говорить, peux - можливість, entrer - сама дія. Не став entre на останнє місце: особа вже позначена формою peux.",
+"textVi": "Bạn đang nói rằng bạn có thể vào. Je là người nói, peux là cơ hội, entrer là hành động. Đừng đặt entre ở cuối: người nói đã được chỉ định bởi peux.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You are stating that you can come in. «Je» is the speaker, «peux» is the opportunity, «entrer» is the action itself. Don't put «entre» last: the person is already indicated by «peux»."
+],
+"es": [
+"Estás indicando que puedes entrar. «Je» es el hablante, «peux» es la oportunidad, «entrer» es la acción en sí. No coloques «entre» al final: la persona ya está indicada por «peux»."
+],
+"id": [
+"Anda menyatakan bahwa Anda dapat masuk. «Je» adalah pembicara, «peux» adalah kesempatan, «entrer» adalah tindakan itu sendiri. Jangan letakkan «entre» di akhir: orang tersebut sudah ditunjukkan oleh «peux»."
+],
+"pl": [
+"Stwierdzasz, że możesz wejść. «Je» to osoba mówiąca, «peux» to okazja, «entrer» to sama czynność. Nie dodawaj «entre» na końcu: osoba jest już wskazana przez «peux»."
+],
+"pt-BR": [
+"Você está afirmando que pode entrar. «Je» é o falante, «peux» é a oportunidade, «entrer» é a própria ação. Não coloque «entre» por último: a pessoa já está indicada por «peux»."
+],
+"ru": [
+"Ты сообщаешь, что можешь войти. «Je» — говорящий, «peux» — возможность, «entrer» — само действие. Не ставь «entre» на последнее место: лицо уже обозначено формой «peux»."
+],
+"tr": [
+"İçeri girebileceğinizi belirtiyorsunuz. «Je» konuşmacı, «peux» fırsat, «entrer» ise eylemin kendisidir. «entre»'ü sona koymayın: kişi zaten «peux» ile belirtilmiştir."
+],
+"uk": [
+"Ти повідомляєш, що можеш увійти. «Je» - говорить, «peux» - можливість, «entrer» - сама дія. Не став «entre» на останнє місце: особа вже позначена формою «peux»."
+],
+"vi": [
+"Bạn đang nói rằng bạn có thể vào. «Je» là người nói, «peux» là cơ hội, «entrer» là hành động. Đừng đặt «entre» ở cuối: người nói đã được chỉ định bởi «peux»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:14:01",
+"fr:14:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:14:01",
+"target": "Je peux entrer.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "fr:14:07",
+"target": "Je dois partir.",
+"ru": "Мне нужно уйти.",
+"uk": "Мені треба йти."
+},
+{
+"id": "fr:14:08",
+"target": "Tu dois attendre.",
+"ru": "Тебе нужно подождать.",
+"uk": "Тобі треба почекати."
+},
+{
+"id": "fr:14:01",
+"target": "Je peux entrer.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "fr:14:04",
+"target": "Nous pouvons attendre.",
+"ru": "Мы можем подождать.",
+"uk": "Ми можемо почекати."
+}
+]
+},
+{
+"lesson": 15,
+"blocks": [
+{
+"textES": "El hombre de la maleta aún no se ha marchado, pero se está preparando para irse. Anteriormente, después de «irse», indicábamos el lugar, como la estación de tren. Ahora, tras un comienzo similar, describiremos la acción que tiene por delante.\nCompara je vais à la gare y je vais partir. En el primer caso, vais va seguido de un lugar; en el segundo, de otra acción. No insertes à entre los dos verbos.",
+"textId": "Pria dengan koper itu belum pergi, tetapi dia sedang bersiap-siap. Sebelumnya, setelah \"pergi,\" kita menyebutkan lokasinya, seperti stasiun kereta api. Sekarang, setelah permulaan yang serupa, kita akan menyebutkan tindakan yang akan terjadi selanjutnya.\nBandingkan je vais à la gare dan je vais partir. Dalam kasus pertama, vais diikuti oleh tempat; dalam kasus kedua, oleh tindakan lain. Jangan sisipkan à di antara kedua kata kerja tersebut.",
+"textPl": "Mężczyzna z walizką jeszcze nie wyszedł, ale szykuje się do wyjścia. Wcześniej, po słowie „wyjście”, nadawaliśmy nazwę lokalizacji, na przykład stacji kolejowej. Teraz, po podobnym początku, nazwiemy akcję, która nas czeka.\nPorównaj je vais à la gare i je vais partir. W pierwszym przypadku po vais następuje miejsce; w drugim – inna czynność. Nie wstawiaj à między te dwa czasowniki.",
+"textPtBr": "O homem com a mala ainda não partiu, mas está se preparando para ir. Anteriormente, depois de \"ir\", mencionamos o local, como a estação de trem. Agora, após um início semelhante, nomearemos a ação que está por vir.\nCompare je vais à la gare e je vais partir. No primeiro caso, vais é seguido por um lugar; no segundo, por outra ação. Não insira à entre os dois verbos.",
+"textRU": "Человек с чемоданом ещё не ушёл, но уже собирается уходить. Раньше после «иду» мы называли место, например вокзал. Теперь после похожего начала назовём действие, которое впереди.\nСравни je vais à la gare и je vais partir. В первом случае после vais есть место, во втором — ещё одно действие. Не вставляй между двумя глаголами à.",
+"textTr": "Valizli adam henüz ayrılmadı ama gitmeye hazırlanıyor. Daha önce, \"gitmek\" fiilinden sonra, tren istasyonu gibi, yeri belirtmiştik. Şimdi, benzer bir başlangıçtan sonra, ilerideki eylemi belirteceğiz.\nje vais à la gare ve je vais partir'yi karşılaştırın. İlk durumda, vais'ü bir yer takip eder; ikincisinde ise başka bir eylem. İki fiil arasına à'ü eklemeyin.",
+"textUK": "Людина з валізою ще не пішла, але вже збирається йти. Раніше після «іду» ми називали місце, наприклад, вокзал. Тепер після схожого початку назвемо дію, яка попереду.\nПорівняй je vais à la gare і je vais partir. У першому випадку після vais є місце, у другому ще одна дія. Чи не вставляй між двома дієсловами à.",
+"textVi": "Người đàn ông với chiếc vali vẫn chưa rời đi, nhưng anh ta đang chuẩn bị lên đường. Trước đây, sau từ \"đi\", chúng ta thường nêu tên địa điểm, ví dụ như nhà ga xe lửa. Giờ đây, sau một khởi đầu tương tự, chúng ta sẽ nêu tên hành động sắp diễn ra.\nSo sánh je vais à la gare và je vais partir. Trong trường hợp đầu tiên, vais được theo sau bởi một địa điểm; trong trường hợp thứ hai, bởi một hành động khác. Không chèn à giữa hai động từ.",
+"titleES": "Plan para el futuro cercano: aller + acción",
+"titleId": "Rencana untuk masa depan dekat: aller + tindakan",
+"titlePl": "Plan na najbliższą przyszłość: aller + działanie",
+"titlePtBr": "Plano para o futuro próximo: aller + ação",
+"titleRU": "План на ближайшее время: aller + действие",
+"titleTr": "Yakın gelecek için plan: aller + eylem",
+"titleUK": "План на найближчий час: aller + дія",
+"titleVi": "Kế hoạch cho tương lai gần: aller + hành động",
+"titleByLocale": {
+"en": "Plan for the near future: aller + action",
+"es": "Plan para el futuro cercano: aller + acción",
+"id": "Rencana untuk masa depan dekat: aller + tindakan",
+"pl": "Plan na najbliższą przyszłość: aller + działanie",
+"pt-BR": "Plano para o futuro próximo: aller + ação",
+"ru": "План на ближайшее время: aller + действие",
+"tr": "Yakın gelecek için plan: aller + eylem",
+"uk": "План на найближчий час: aller + дія",
+"vi": "Kế hoạch cho tương lai gần: aller + hành động"
+},
+"textByLocale": {
+"en": [
+"The man with the suitcase hasn't left yet, but he's getting ready to go. Previously, after \"going,\" we named the location, like the train station. Now, after a similar beginning, we'll name the action that lies ahead.",
+"Compare «je vais à la gare» and «je vais partir». In the first case, «vais» is followed by a place; in the second, by another action. Don't insert «à» between the two verbs."
+],
+"es": [
+"El hombre de la maleta aún no se ha marchado, pero se está preparando para irse. Anteriormente, después de «irse», indicábamos el lugar, como la estación de tren. Ahora, tras un comienzo similar, describiremos la acción que tiene por delante.",
+"Compara «je vais à la gare» y «je vais partir». En el primer caso, «vais» va seguido de un lugar; en el segundo, de otra acción. No insertes «à» entre los dos verbos."
+],
+"id": [
+"Pria dengan koper itu belum pergi, tetapi dia sedang bersiap-siap. Sebelumnya, setelah \"pergi,\" kita menyebutkan lokasinya, seperti stasiun kereta api. Sekarang, setelah permulaan yang serupa, kita akan menyebutkan tindakan yang akan terjadi selanjutnya.",
+"Bandingkan «je vais à la gare» dan «je vais partir». Dalam kasus pertama, «vais» diikuti oleh tempat; dalam kasus kedua, oleh tindakan lain. Jangan sisipkan «à» di antara kedua kata kerja tersebut."
+],
+"pl": [
+"Mężczyzna z walizką jeszcze nie wyszedł, ale szykuje się do wyjścia. Wcześniej, po słowie „wyjście”, nadawaliśmy nazwę lokalizacji, na przykład stacji kolejowej. Teraz, po podobnym początku, nazwiemy akcję, która nas czeka.",
+"Porównaj «je vais à la gare» i «je vais partir». W pierwszym przypadku po «vais» następuje miejsce; w drugim – inna czynność. Nie wstawiaj «à» między te dwa czasowniki."
+],
+"pt-BR": [
+"O homem com a mala ainda não partiu, mas está se preparando para ir. Anteriormente, depois de \"ir\", mencionamos o local, como a estação de trem. Agora, após um início semelhante, nomearemos a ação que está por vir.",
+"Compare «je vais à la gare» e «je vais partir». No primeiro caso, «vais» é seguido por um lugar; no segundo, por outra ação. Não insira «à» entre os dois verbos."
+],
+"ru": [
+"Человек с чемоданом ещё не ушёл, но уже собирается уходить. Раньше после «иду» мы называли место, например вокзал. Теперь после похожего начала назовём действие, которое впереди.",
+"Сравни «je vais à la gare» и «je vais partir». В первом случае после «vais» есть место, во втором — ещё одно действие. Не вставляй между двумя глаголами «à»."
+],
+"tr": [
+"Valizli adam henüz ayrılmadı ama gitmeye hazırlanıyor. Daha önce, \"gitmek\" fiilinden sonra, tren istasyonu gibi, yeri belirtmiştik. Şimdi, benzer bir başlangıçtan sonra, ilerideki eylemi belirteceğiz.",
+"«je vais à la gare» ve «je vais partir»'yi karşılaştırın. İlk durumda, «vais»'ü bir yer takip eder; ikincisinde ise başka bir eylem. İki fiil arasına «à»'ü eklemeyin."
+],
+"uk": [
+"Людина з валізою ще не пішла, але вже збирається йти. Раніше після «іду» ми називали місце, наприклад, вокзал. Тепер після схожого початку назвемо дію, яка попереду.",
+"Порівняй «je vais à la gare» і «je vais partir». У першому випадку після «vais» є місце, у другому ще одна дія. Чи не вставляй між двома дієсловами «à»."
+],
+"vi": [
+"Người đàn ông với chiếc vali vẫn chưa rời đi, nhưng anh ta đang chuẩn bị lên đường. Trước đây, sau từ \"đi\", chúng ta thường nêu tên địa điểm, ví dụ như nhà ga xe lửa. Giờ đây, sau một khởi đầu tương tự, chúng ta sẽ nêu tên hành động sắp diễn ra.",
+"So sánh «je vais à la gare» và «je vais partir». Trong trường hợp đầu tiên, «vais» được theo sau bởi một địa điểm; trong trường hợp thứ hai, bởi một hành động khác. Không chèn «à» giữa hai động từ."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:15:01"
+]
+},
+{
+"textES": "quien + forma aller + infinitivo\nJe vais à la gare — ¿Adónde voy? A la estación. Je vais partir — ¿Qué pienso hacer? Irme. Esta comprobación es más útil en significado que la regla \"vais always needs à\" — no existe tal regla.\nEs aller el que muestra el rostro. Si hay varias personas involucradas, cambie vais por allons o vont, y mantenga el segundo verbo en su forma de diccionario.",
+"textId": "siapa + bentuk aller + infinitif\nJe vais à la gare — Ke mana saya pergi? Ke stasiun. Je vais partir — Apa yang saya rencanakan? Pergi. Pemeriksaan ini lebih berguna dalam hal makna daripada aturan \"vais selalu membutuhkan à\" — tidak ada aturan seperti itu.\naller-lah yang menunjukkan wajah. Jika beberapa orang terlibat, ubah vais menjadi allons atau vont, dan pertahankan kata kerja kedua dalam bentuk kamusnya.",
+"textPl": "kto + forma aller + bezokolicznik\nJe vais à la gare — Dokąd idę? Na stację. Je vais partir — Co planuję zrobić? Wyjść. Ta kontrola jest bardziej użyteczna niż zasada „vais always needs à” — takiej zasady nie ma.\nTo aller pokazuje twarz. Jeśli zaangażowanych jest kilka osób, zmień vais na allons lub vont i zachowaj drugi czasownik w jego formie słownikowej.",
+"textPtBr": "quem + forma aller + infinitivo\nJe vais à la gare — Para onde vou? Para a estação. Je vais partir — O que pretendo fazer? Sair. Esta verificação é mais útil em termos de significado do que a regra \"vais sempre precisa de à\" — tal regra não existe.\nÉ aller que mostra o rosto. Se várias pessoas estiverem envolvidas, troque vais por allons ou vont e mantenha o segundo verbo em sua forma original.",
+"textRU": "кто + форма aller + инфинитив\nJe vais à la gare — иду куда? На вокзал. Je vais partir — собираюсь что сделать? Уехать. Эта проверка по смыслу полезнее, чем правило «после vais всегда нужно à» — такого правила нет.\nИменно aller показывает лицо. Если за дело берутся несколько людей, меняй vais на allons или vont, а второй глагол сохрани в словарной форме.",
+"textTr": "kim + biçim aller + mastar\nJe vais à la gare — Nereye gidiyorum? İstasyona. Je vais partir — Ne yapmayı planlıyorum? Ayrılmayı. Bu kontrol, \"vais her zaman à gerektirir\" kuralından anlam bakımından daha kullanışlıdır; böyle bir kural yoktur.\nYüzü gösteren aller'dir. Birden fazla kişi söz konusuysa, vais'yi allons veya vont olarak değiştirin ve ikinci fiili sözlük biçiminde bırakın.",
+"textUK": "хто + форма aller + інфінітив\nJe vais à la gare - йду куди? На вокзал. Je vais partir - збираюся що зробити? Виїхати. Ця перевірка за змістом корисніша, ніж правило «після vais завжди потрібно à» — такого правила немає.\nСаме aller показує особу. Якщо за справу беруться кілька людей, змінюй vais на allons або vont, а друге дієслово збережи у словниковій формі.",
+"textVi": "ai + hình thức aller + động từ nguyên mẫu\nJe vais à la gare — Tôi đang đi đâu? Đến nhà ga. Je vais partir — Tôi định làm gì? Rời đi. Kiểm tra này hữu ích hơn về mặt ý nghĩa so với quy tắc \"vais luôn cần à\" — không có quy tắc nào như vậy.\nChính aller thể hiện khuôn mặt. Nếu có nhiều người liên quan, hãy thay đổi vais thành allons hoặc vont, và giữ nguyên động từ thứ hai ở dạng từ điển.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + form «aller» + infinitive",
+"«Je vais à la gare» — Where am I going? To the station. «Je vais partir» — What am I planning to do? Leave. This check is more useful in meaning than the rule \"vais always needs à\" — there is no such rule.",
+"It's «aller» that shows the face. If several people are involved, change «vais» to «allons» or «vont», and keep the second verb in its dictionary form."
+],
+"es": [
+"quien + forma «aller» + infinitivo",
+"«Je vais à la gare» — ¿Adónde voy? A la estación. «Je vais partir» — ¿Qué pienso hacer? Irme. Esta comprobación es más útil en significado que la regla \"vais always needs à\" — no existe tal regla.",
+"Es «aller» el que muestra el rostro. Si hay varias personas involucradas, cambie «vais» por «allons» o «vont», y mantenga el segundo verbo en su forma de diccionario."
+],
+"id": [
+"siapa + bentuk «aller» + infinitif",
+"«Je vais à la gare» — Ke mana saya pergi? Ke stasiun. «Je vais partir» — Apa yang saya rencanakan? Pergi. Pemeriksaan ini lebih berguna dalam hal makna daripada aturan \"vais selalu membutuhkan à\" — tidak ada aturan seperti itu.",
+"«aller»-lah yang menunjukkan wajah. Jika beberapa orang terlibat, ubah «vais» menjadi «allons» atau «vont», dan pertahankan kata kerja kedua dalam bentuk kamusnya."
+],
+"pl": [
+"kto + forma «aller» + bezokolicznik",
+"«Je vais à la gare» — Dokąd idę? Na stację. «Je vais partir» — Co planuję zrobić? Wyjść. Ta kontrola jest bardziej użyteczna niż zasada „vais always needs à” — takiej zasady nie ma.",
+"To «aller» pokazuje twarz. Jeśli zaangażowanych jest kilka osób, zmień «vais» na «allons» lub «vont» i zachowaj drugi czasownik w jego formie słownikowej."
+],
+"pt-BR": [
+"quem + forma «aller» + infinitivo",
+"«Je vais à la gare» — Para onde vou? Para a estação. «Je vais partir» — O que pretendo fazer? Sair. Esta verificação é mais útil em termos de significado do que a regra \"vais sempre precisa de à\" — tal regra não existe.",
+"É «aller» que mostra o rosto. Se várias pessoas estiverem envolvidas, troque «vais» por «allons» ou «vont» e mantenha o segundo verbo em sua forma original."
+],
+"ru": [
+"кто + форма «aller» + инфинитив",
+"«Je vais à la gare» — иду куда? На вокзал. «Je vais partir» — собираюсь что сделать? Уехать. Эта проверка по смыслу полезнее, чем правило «после vais всегда нужно à» — такого правила нет.",
+"Именно «aller» показывает лицо. Если за дело берутся несколько людей, меняй «vais» на «allons» или «vont», а второй глагол сохрани в словарной форме."
+],
+"tr": [
+"kim + biçim «aller» + mastar",
+"«Je vais à la gare» — Nereye gidiyorum? İstasyona. «Je vais partir» — Ne yapmayı planlıyorum? Ayrılmayı. Bu kontrol, \"vais her zaman à gerektirir\" kuralından anlam bakımından daha kullanışlıdır; böyle bir kural yoktur.",
+"Yüzü gösteren «aller»'dir. Birden fazla kişi söz konusuysa, «vais»'yi «allons» veya «vont» olarak değiştirin ve ikinci fiili sözlük biçiminde bırakın."
+],
+"uk": [
+"хто + форма «aller» + інфінітив",
+"«Je vais à la gare» - йду куди? На вокзал. «Je vais partir» - збираюся що зробити? Виїхати. Ця перевірка за змістом корисніша, ніж правило «після vais завжди потрібно à» — такого правила немає.",
+"Саме «aller» показує особу. Якщо за справу беруться кілька людей, змінюй «vais» на «allons» або «vont», а друге дієслово збережи у словниковій формі."
+],
+"vi": [
+"ai + hình thức «aller» + động từ nguyên mẫu",
+"«Je vais à la gare» — Tôi đang đi đâu? Đến nhà ga. «Je vais partir» — Tôi định làm gì? Rời đi. Kiểm tra này hữu ích hơn về mặt ý nghĩa so với quy tắc \"vais luôn cần à\" — không có quy tắc nào như vậy.",
+"Chính «aller» thể hiện khuôn mặt. Nếu có nhiều người liên quan, hãy thay đổi «vais» thành «allons» hoặc «vont», và giữ nguyên động từ thứ hai ở dạng từ điển."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:15:04",
+"fr:15:05"
+]
+},
+{
+"textES": "Je vais ya es familiar como el inicio de una ruta. Ahora, después de él, coloca la palabra partir, \"salir\", en lugar de un lugar. Juntos, representan un plan: Estoy planeando salir.",
+"textId": "Je vais sudah dikenal sebagai awal dari sebuah rute. Sekarang, setelahnya, letakkan kata partir, \"untuk pergi,\" sebagai pengganti tempat. Bersama-sama, keduanya mewakili sebuah rencana: Saya berencana untuk pergi.",
+"textPl": "Je vais jest już znane jako początek trasy. Teraz, zamiast miejsca, wstaw słowo partir, „opuszczać”. Razem reprezentują one plan: Planuję opuścić.",
+"textPtBr": "Je vais já é familiar como o início de uma rota. Agora, depois dele, coloque a palavra partir, \"sair\", em vez de um lugar. Juntos, eles representam um plano: Estou planejando sair.",
+"textRU": "Je vais уже знакомо как начало маршрута. Теперь после него поставь не место, а слово partir, «уехать». Вместе они обозначают план: я собираюсь уехать.",
+"textTr": "Je vais zaten bir rotanın başlangıcı olarak biliniyor. Şimdi, ondan sonra, bir yer yerine partir, \"ayrılmak\" kelimesini koyun. Birlikte bir planı temsil ediyorlar: Ayrılmayı planlıyorum.",
+"textUK": "Je vais вже знайоме як початок маршруту. Тепер після нього постав не місце, а слово partir, «поїхати». Разом вони означають план: я збираюся поїхати.",
+"textVi": "Je vais đã quen thuộc như là điểm bắt đầu của một tuyến đường. Bây giờ, sau đó, hãy đặt từ partir, \"rời đi,\" thay vì một địa điểm. Cùng nhau, chúng thể hiện một kế hoạch: Tôi đang lên kế hoạch rời đi.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"«Je vais» is already familiar as the beginning of a route. Now, after it, put the word «partir», \"to leave,\" instead of a place. Together, they represent a plan: I'm planning to leave."
+],
+"es": [
+"«Je vais» ya es familiar como el inicio de una ruta. Ahora, después de él, coloca la palabra «partir», \"salir\", en lugar de un lugar. Juntos, representan un plan: Estoy planeando salir."
+],
+"id": [
+"«Je vais» sudah dikenal sebagai awal dari sebuah rute. Sekarang, setelahnya, letakkan kata «partir», \"untuk pergi,\" sebagai pengganti tempat. Bersama-sama, keduanya mewakili sebuah rencana: Saya berencana untuk pergi."
+],
+"pl": [
+"«Je vais» jest już znane jako początek trasy. Teraz, zamiast miejsca, wstaw słowo «partir», „opuszczać”. Razem reprezentują one plan: Planuję opuścić."
+],
+"pt-BR": [
+"«Je vais» já é familiar como o início de uma rota. Agora, depois dele, coloque a palavra «partir», \"sair\", em vez de um lugar. Juntos, eles representam um plano: Estou planejando sair."
+],
+"ru": [
+"«Je vais» уже знакомо как начало маршрута. Теперь после него поставь не место, а слово «partir», «уехать». Вместе они обозначают план: я собираюсь уехать."
+],
+"tr": [
+"«Je vais» zaten bir rotanın başlangıcı olarak biliniyor. Şimdi, ondan sonra, bir yer yerine «partir», \"ayrılmak\" kelimesini koyun. Birlikte bir planı temsil ediyorlar: Ayrılmayı planlıyorum."
+],
+"uk": [
+"«Je vais» вже знайоме як початок маршруту. Тепер після нього постав не місце, а слово «partir», «поїхати». Разом вони означають план: я збираюся поїхати."
+],
+"vi": [
+"«Je vais» đã quen thuộc như là điểm bắt đầu của một tuyến đường. Bây giờ, sau đó, hãy đặt từ «partir», \"rời đi,\" thay vì một địa điểm. Cùng nhau, chúng thể hiện một kế hoạch: Tôi đang lên kế hoạch rời đi."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:15:01",
+"fr:15:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:15:01",
+"target": "Je vais partir.",
+"ru": "Я собираюсь уйти.",
+"uk": "Я збираюся йти."
+},
+{
+"id": "fr:15:04",
+"target": "Nous allons marcher.",
+"ru": "Мы собираемся пойти пешком.",
+"uk": "Ми збираємося піти пішки."
+},
+{
+"id": "fr:15:05",
+"target": "Vous allez rester.",
+"ru": "Вы собираетесь остаться.",
+"uk": "Ви маєте намір залишитися."
+},
+{
+"id": "fr:15:01",
+"target": "Je vais partir.",
+"ru": "Я собираюсь уйти.",
+"uk": "Я збираюся йти."
+},
+{
+"id": "fr:15:04",
+"target": "Nous allons marcher.",
+"ru": "Мы собираемся пойти пешком.",
+"uk": "Ми збираємося піти пішки."
+}
+]
+},
+{
+"lesson": 16,
+"blocks": [
+{
+"textES": "La puerta está abierta y un amigo está afuera. Lo invitas a pasar con una sola palabra. No se trata de una invitación a entrar, sino de una interpelación directa a la persona. Por eso no se necesita una ficha aparte para \"tú\".\nEn órdenes, peticiones e invitaciones, el interlocutor generalmente no se menciona con un pronombre aparte. Por lo tanto, el primer verbo aquí es una forma personal completa, no un infinitivo.",
+"textId": "Pintunya terbuka, dan seorang teman berdiri di luar. Anda mengundang mereka masuk dengan satu kata. Ini bukan narasi \"Anda masuk\", tetapi sapaan langsung kepada orang tersebut. Itulah mengapa ubin \"Anda\" terpisah tidak diperlukan di sini.\nDalam perintah, permintaan, dan undangan, lawan bicara biasanya tidak disebut dengan kata ganti terpisah. Oleh karena itu, kata kerja pertama di sini adalah bentuk personal lengkap, bukan infinitif kamus.",
+"textPl": "Drzwi są otwarte, a na zewnątrz stoi znajomy. Zapraszasz go jednym słowem. To nie jest narracja typu „wchodzisz”, ale zwracasz się bezpośrednio do tej osoby. Dlatego oddzielny kafelek „ty” nie jest tu potrzebny.\nW poleceniach, prośbach i zaproszeniach rozmówca zazwyczaj nie jest określany oddzielnym zaimkiem. Dlatego pierwszy czasownik jest tutaj pełną formą osobową, a nie bezokolicznikiem słownikowym.",
+"textPtBr": "A porta está aberta e um amigo está do lado de fora. Você o convida a entrar com uma palavra. Esta não é uma narrativa de \"você entra\", mas sim um convite direto à pessoa. É por isso que um espaço separado para \"você\" não é necessário aqui.\nEm ordens, pedidos e convites, o interlocutor geralmente não é referido por um pronome separado. Portanto, o primeiro verbo aqui é uma forma pessoal completa, não um infinitivo de dicionário.",
+"textRU": "Дверь открыта, друг стоит снаружи. Ты приглашаешь его войти одним словом. Это не рассказ «ты входишь», а обращение прямо к человеку. Именно поэтому отдельная плитка «ты» здесь не нужна.\nВ приказе, просьбе и приглашении собеседник обычно не называется отдельным местоимением. Поэтому первый глагол здесь — полноценная личная форма, а не инфинитив из словаря.",
+"textTr": "Kapı açık ve bir arkadaşınız dışarıda bekliyor. Onu tek bir kelimeyle içeri davet ediyorsunuz. Bu bir \"siz içeri girin\" anlatımı değil, doğrudan kişiye hitap eden bir anlatım. Bu yüzden burada ayrı bir \"siz\" kutucuğuna gerek yok.\nEmirlerde, rica ve davetlerde muhatap genellikle ayrı bir zamirle anılmaz. Bu nedenle, buradaki ilk fiil tam şahıs biçimidir, sözlük mastarı değildir.",
+"textUK": "Двері відчинені, друг стоїть зовні. Ти запрошуєш його увійти одним словом. Це не розповідь «ти входиш», а звернення до людини. Саме тому окрема плитка \"ти\" тут не потрібна.\nУ наказі, проханні та запрошенні співрозмовник зазвичай не називається окремим займенником. Тому перше дієслово тут — повноцінна особиста форма, а не інфінітив зі словника.",
+"textVi": "Cánh cửa đang mở, và một người bạn đang đứng bên ngoài. Bạn mời họ vào bằng một từ. Đây không phải là một câu chuyện kiểu \"bạn bước vào\", mà là một lời chào trực tiếp tới người đó. Đó là lý do tại sao không cần một ô \"bạn\" riêng biệt ở đây.\nTrong các mệnh lệnh, yêu cầu và lời mời, người đối thoại thường không được đề cập bằng một đại từ riêng biệt. Do đó, động từ đầu tiên ở đây là dạng cá nhân đầy đủ, không phải là dạng nguyên thể trong từ điển.",
+"titleES": "Instrucciones breves: forma imperativa",
+"titleId": "Instruksi singkat: bentuk imperatif",
+"titlePl": "Krótkie instrukcje: forma rozkazująca",
+"titlePtBr": "Instruções curtas: forma imperativa",
+"titleRU": "Короткие инструкции: повелительная форма",
+"titleTr": "Kısa talimatlar: emir kipi",
+"titleUK": "Короткі інструкції: наказова форма",
+"titleVi": "Hướng dẫn ngắn gọn: thể mệnh lệnh",
+"titleByLocale": {
+"en": "Short instructions: imperative form",
+"es": "Instrucciones breves: forma imperativa",
+"id": "Instruksi singkat: bentuk imperatif",
+"pl": "Krótkie instrukcje: forma rozkazująca",
+"pt-BR": "Instruções curtas: forma imperativa",
+"ru": "Короткие инструкции: повелительная форма",
+"tr": "Kısa talimatlar: emir kipi",
+"uk": "Короткі інструкції: наказова форма",
+"vi": "Hướng dẫn ngắn gọn: thể mệnh lệnh"
+},
+"textByLocale": {
+"en": [
+"The door is open, and a friend is standing outside. You invite them in with one word. This isn't a \"you enter\" narrative, but an address directly to the person. That's why a separate \"you\" tile isn't needed here.",
+"In orders, requests, and invitations, the interlocutor is usually not referred to by a separate pronoun. Therefore, the first verb here is a full personal form, not a dictionary infinitive."
+],
+"es": [
+"La puerta está abierta y un amigo está afuera. Lo invitas a pasar con una sola palabra. No se trata de una invitación a entrar, sino de una interpelación directa a la persona. Por eso no se necesita una ficha aparte para \"tú\".",
+"En órdenes, peticiones e invitaciones, el interlocutor generalmente no se menciona con un pronombre aparte. Por lo tanto, el primer verbo aquí es una forma personal completa, no un infinitivo."
+],
+"id": [
+"Pintunya terbuka, dan seorang teman berdiri di luar. Anda mengundang mereka masuk dengan satu kata. Ini bukan narasi \"Anda masuk\", tetapi sapaan langsung kepada orang tersebut. Itulah mengapa ubin \"Anda\" terpisah tidak diperlukan di sini.",
+"Dalam perintah, permintaan, dan undangan, lawan bicara biasanya tidak disebut dengan kata ganti terpisah. Oleh karena itu, kata kerja pertama di sini adalah bentuk personal lengkap, bukan infinitif kamus."
+],
+"pl": [
+"Drzwi są otwarte, a na zewnątrz stoi znajomy. Zapraszasz go jednym słowem. To nie jest narracja typu „wchodzisz”, ale zwracasz się bezpośrednio do tej osoby. Dlatego oddzielny kafelek „ty” nie jest tu potrzebny.",
+"W poleceniach, prośbach i zaproszeniach rozmówca zazwyczaj nie jest określany oddzielnym zaimkiem. Dlatego pierwszy czasownik jest tutaj pełną formą osobową, a nie bezokolicznikiem słownikowym."
+],
+"pt-BR": [
+"A porta está aberta e um amigo está do lado de fora. Você o convida a entrar com uma palavra. Esta não é uma narrativa de \"você entra\", mas sim um convite direto à pessoa. É por isso que um espaço separado para \"você\" não é necessário aqui.",
+"Em ordens, pedidos e convites, o interlocutor geralmente não é referido por um pronome separado. Portanto, o primeiro verbo aqui é uma forma pessoal completa, não um infinitivo de dicionário."
+],
+"ru": [
+"Дверь открыта, друг стоит снаружи. Ты приглашаешь его войти одним словом. Это не рассказ «ты входишь», а обращение прямо к человеку. Именно поэтому отдельная плитка «ты» здесь не нужна.",
+"В приказе, просьбе и приглашении собеседник обычно не называется отдельным местоимением. Поэтому первый глагол здесь — полноценная личная форма, а не инфинитив из словаря."
+],
+"tr": [
+"Kapı açık ve bir arkadaşınız dışarıda bekliyor. Onu tek bir kelimeyle içeri davet ediyorsunuz. Bu bir \"siz içeri girin\" anlatımı değil, doğrudan kişiye hitap eden bir anlatım. Bu yüzden burada ayrı bir \"siz\" kutucuğuna gerek yok.",
+"Emirlerde, rica ve davetlerde muhatap genellikle ayrı bir zamirle anılmaz. Bu nedenle, buradaki ilk fiil tam şahıs biçimidir, sözlük mastarı değildir."
+],
+"uk": [
+"Двері відчинені, друг стоїть зовні. Ти запрошуєш його увійти одним словом. Це не розповідь «ти входиш», а звернення до людини. Саме тому окрема плитка \"ти\" тут не потрібна.",
+"У наказі, проханні та запрошенні співрозмовник зазвичай не називається окремим займенником. Тому перше дієслово тут — повноцінна особиста форма, а не інфінітив зі словника."
+],
+"vi": [
+"Cánh cửa đang mở, và một người bạn đang đứng bên ngoài. Bạn mời họ vào bằng một từ. Đây không phải là một câu chuyện kiểu \"bạn bước vào\", mà là một lời chào trực tiếp tới người đó. Đó là lý do tại sao không cần một ô \"bạn\" riêng biệt ở đây.",
+"Trong các mệnh lệnh, yêu cầu và lời mời, người đối thoại thường không được đề cập bằng một đại từ riêng biệt. Do đó, động từ đầu tiên ở đây là dạng cá nhân đầy đủ, không phải là dạng nguyên thể trong từ điển."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:16:01"
+]
+},
+{
+"textES": "Acción sin sujeto + detalles necesarios\nEntre ! — a un conocido. Entrez ! — dirigido cortésmente a una persona o a un grupo. Esta carta cambia el destinatario, no el propósito de la acción. En caso de una solicitud negativa, el marco ne … pas volverá a aparecer.\nLa dirección influye en la ortografía. Para un conocido, reste; para un destinatario cortés o plural, restez. No te preocupes por no añadir vous antes del verbo: no es necesario en las instrucciones.",
+"textId": "tindakan tanpa subjek + detail yang diperlukan\nEntre ! — kepada kenalan. Entrez ! — ditujukan secara sopan kepada satu orang atau ketika ditujukan kepada sekelompok orang. Huruf ini mengubah penerima, bukan arah tindakan. Dalam permintaan negatif, bingkai ne … pas akan muncul lagi.\nAlamat memengaruhi ejaan. Untuk seorang kenalan, reste; untuk penerima yang sopan atau jamak, restez. Jangan menghukum diri sendiri karena tidak menambahkan vous sebelum kata kerja: itu tidak diperlukan dalam instruksi.",
+"textPl": "czynność bez podmiotu + niezbędne szczegóły\nEntre ! — do znajomego. Entrez ! — grzecznie adresowany do jednej osoby lub grupy. Ten list zmienia adresata, a nie kierunek działania. W przypadku prośby negatywnej ramka ne … pas pojawi się ponownie.\nAdres wpływa na pisownię. Dla znajomego: reste; dla adresata uprzejmego lub w liczbie mnogiej: restez. Nie karz się za to, że nie dodałeś vous przed czasownikiem: nie jest to wymagane w poleceniach.",
+"textPtBr": "ação sem sujeito + detalhes necessários\nEntre ! — para um conhecido. Entrez ! — dirigido educadamente a uma pessoa ou a um grupo. Esta letra altera o destinatário, não a direção da ação. Em uma solicitação negativa, a moldura ne … pas aparecerá novamente.\nO tratamento influencia a grafia. Para um conhecido, reste; para um destinatário formal ou plural, restez. Não se preocupe em não adicionar vous antes do verbo: não é necessário nas instruções.",
+"textRU": "действие без подлежащего + нужные подробности\nEntre ! — одному знакомому. Entrez ! — вежливо одному человеку или при обращении к группе. Эта буква меняет адресата, а не направление действия. В отрицательной просьбе снова появится рамка ne … pas.\nОбращение влияет на написание. Для знакомого reste, для вежливого или множественного адресата restez. Не наказывай себя за отсутствие vous перед глаголом: в инструкции оно как раз не требуется.",
+"textTr": "öznesiz eylem + gerekli ayrıntılar\nEntre ! — bir tanıdığa. Entrez ! — kibarca bir kişiye veya bir gruba hitap ederken kullanılır. Bu harf alıcıyı değiştirir, eylemin yönünü değil. Olumsuz bir istekte, ne … pas çerçevesi tekrar görünecektir.\nHitap, yazımı etkiler. Bir tanıdık için reste; kibar veya çoğul bir muhatap için restez. Fiilden önce vous eklemediğiniz için kendinizi cezalandırmayın: talimatlarda gerekli değildir.",
+"textUK": "дія без підлягає + потрібні подробиці\nEntre ! - одному знайомому. Entrez ! - чемно одній людині або при зверненні до групи. Ця буква змінює адресата, а чи не напрямок дії. У негативному проханні знову з'явиться рамка ne … pas.\nЗвернення впливає на написання. Для знайомого reste, для ввічливого чи множинного адресата restez. Не карай себе за відсутність vous перед дієсловом: в інструкції воно не потрібно.",
+"textVi": "Hành động không có chủ ngữ + chi tiết cần thiết\nEntre ! — gửi cho người quen. Entrez ! — dùng để xưng hô lịch sự với một người hoặc khi xưng hô với một nhóm người. Chữ cái này thay đổi người nhận, chứ không thay đổi hướng hành động. Trong yêu cầu phủ định, khung ne … pas sẽ xuất hiện lại.\nCách xưng hô ảnh hưởng đến chính tả. Đối với người quen, dùng reste; đối với người được xưng hô lịch sự hoặc số nhiều, dùng restez. Đừng tự trách mình vì không thêm vous trước động từ: nó không bắt buộc trong hướng dẫn.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"action without a subject + necessary details",
+"«Entre !» — to an acquaintance. «Entrez !» — politely addressed to one person or when addressing a group. This letter changes the recipient, not the direction of the action. In a negative request, the «ne … pas» frame will appear again.",
+"The address influences the spelling. For an acquaintance, «reste»; for a polite or plural addressee, «restez». Don't punish yourself for not adding «vous» before the verb: it's not required in the instructions."
+],
+"es": [
+"Acción sin sujeto + detalles necesarios",
+"«Entre !» — a un conocido. «Entrez !» — dirigido cortésmente a una persona o a un grupo. Esta carta cambia el destinatario, no el propósito de la acción. En caso de una solicitud negativa, el marco «ne … pas» volverá a aparecer.",
+"La dirección influye en la ortografía. Para un conocido, «reste»; para un destinatario cortés o plural, «restez». No te preocupes por no añadir «vous» antes del verbo: no es necesario en las instrucciones."
+],
+"id": [
+"tindakan tanpa subjek + detail yang diperlukan",
+"«Entre !» — kepada kenalan. «Entrez !» — ditujukan secara sopan kepada satu orang atau ketika ditujukan kepada sekelompok orang. Huruf ini mengubah penerima, bukan arah tindakan. Dalam permintaan negatif, bingkai «ne … pas» akan muncul lagi.",
+"Alamat memengaruhi ejaan. Untuk seorang kenalan, «reste»; untuk penerima yang sopan atau jamak, «restez». Jangan menghukum diri sendiri karena tidak menambahkan «vous» sebelum kata kerja: itu tidak diperlukan dalam instruksi."
+],
+"pl": [
+"czynność bez podmiotu + niezbędne szczegóły",
+"«Entre !» — do znajomego. «Entrez !» — grzecznie adresowany do jednej osoby lub grupy. Ten list zmienia adresata, a nie kierunek działania. W przypadku prośby negatywnej ramka «ne … pas» pojawi się ponownie.",
+"Adres wpływa na pisownię. Dla znajomego: «reste»; dla adresata uprzejmego lub w liczbie mnogiej: «restez». Nie karz się za to, że nie dodałeś «vous» przed czasownikiem: nie jest to wymagane w poleceniach."
+],
+"pt-BR": [
+"ação sem sujeito + detalhes necessários",
+"«Entre !» — para um conhecido. «Entrez !» — dirigido educadamente a uma pessoa ou a um grupo. Esta letra altera o destinatário, não a direção da ação. Em uma solicitação negativa, a moldura «ne … pas» aparecerá novamente.",
+"O tratamento influencia a grafia. Para um conhecido, «reste»; para um destinatário formal ou plural, «restez». Não se preocupe em não adicionar «vous» antes do verbo: não é necessário nas instruções."
+],
+"ru": [
+"действие без подлежащего + нужные подробности",
+"«Entre !» — одному знакомому. «Entrez !» — вежливо одному человеку или при обращении к группе. Эта буква меняет адресата, а не направление действия. В отрицательной просьбе снова появится рамка «ne … pas».",
+"Обращение влияет на написание. Для знакомого «reste», для вежливого или множественного адресата «restez». Не наказывай себя за отсутствие «vous» перед глаголом: в инструкции оно как раз не требуется."
+],
+"tr": [
+"öznesiz eylem + gerekli ayrıntılar",
+"«Entre !» — bir tanıdığa. «Entrez !» — kibarca bir kişiye veya bir gruba hitap ederken kullanılır. Bu harf alıcıyı değiştirir, eylemin yönünü değil. Olumsuz bir istekte, «ne … pas» çerçevesi tekrar görünecektir.",
+"Hitap, yazımı etkiler. Bir tanıdık için «reste»; kibar veya çoğul bir muhatap için «restez». Fiilden önce «vous» eklemediğiniz için kendinizi cezalandırmayın: talimatlarda gerekli değildir."
+],
+"uk": [
+"дія без підлягає + потрібні подробиці",
+"«Entre !» - одному знайомому. «Entrez !» - чемно одній людині або при зверненні до групи. Ця буква змінює адресата, а чи не напрямок дії. У негативному проханні знову з'явиться рамка «ne … pas».",
+"Звернення впливає на написання. Для знайомого «reste», для ввічливого чи множинного адресата «restez». Не карай себе за відсутність «vous» перед дієсловом: в інструкції воно не потрібно."
+],
+"vi": [
+"Hành động không có chủ ngữ + chi tiết cần thiết",
+"«Entre !» — gửi cho người quen. «Entrez !» — dùng để xưng hô lịch sự với một người hoặc khi xưng hô với một nhóm người. Chữ cái này thay đổi người nhận, chứ không thay đổi hướng hành động. Trong yêu cầu phủ định, khung «ne … pas» sẽ xuất hiện lại.",
+"Cách xưng hô ảnh hưởng đến chính tả. Đối với người quen, dùng «reste»; đối với người được xưng hô lịch sự hoặc số nhiều, dùng «restez». Đừng tự trách mình vì không thêm «vous» trước động từ: nó không bắt buộc trong hướng dẫn."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:16:05",
+"fr:16:06"
+]
+},
+{
+"textES": "La puerta está abierta. Invitas a un conocido a pasar. Entre ! ya es una invitación completa. No es necesario añadir tu: la dirección queda clara por la forma y la situación.",
+"textId": "Pintunya terbuka. Anda mengundang seorang kenalan masuk. Entre ! sudah merupakan undangan lengkap. Tidak perlu menambahkan tu: alamatnya sudah jelas dari bentuk dan situasinya.",
+"textPl": "Drzwi są otwarte. Zapraszasz znajomego. Entre ! to już kompletne zaproszenie. Nie trzeba dodawać tu: adres wynika z formy i sytuacji.",
+"textPtBr": "A porta está aberta. Você convida um conhecido para entrar. Entre ! já é um convite completo. Não é necessário adicionar tu: o tratamento está claro pela forma e pela situação.",
+"textRU": "Дверь открыта. Ты приглашаешь одного знакомого войти. Entre ! — уже полное приглашение. Не нужно добавлять tu: обращение понятно по форме и ситуации.",
+"textTr": "Kapı açık. Bir tanıdığınızı içeri davet ediyorsunuz. Entre ! zaten eksiksiz bir davettir. tu eklemeye gerek yok: hitap, biçimden ve durumdan açıkça anlaşılıyor.",
+"textUK": "Двері відчинені. Ти запрошуєш одного знайомого увійти. Entre ! – вже повне запрошення. Не треба додавати tu: звернення зрозуміле за формою та ситуацією.",
+"textVi": "Cửa đang mở. Bạn mời một người quen vào. Entre ! đã là một lời mời hoàn chỉnh. Không cần thêm tu: cách xưng hô đã rõ ràng từ hình thức và tình huống.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"The door is open. You invite an acquaintance in. «Entre !» is already a complete invitation. No need to add «tu»: the address is clear from the form and the situation."
+],
+"es": [
+"La puerta está abierta. Invitas a un conocido a pasar. «Entre !» ya es una invitación completa. No es necesario añadir «tu»: la dirección queda clara por la forma y la situación."
+],
+"id": [
+"Pintunya terbuka. Anda mengundang seorang kenalan masuk. «Entre !» sudah merupakan undangan lengkap. Tidak perlu menambahkan «tu»: alamatnya sudah jelas dari bentuk dan situasinya."
+],
+"pl": [
+"Drzwi są otwarte. Zapraszasz znajomego. «Entre !» to już kompletne zaproszenie. Nie trzeba dodawać «tu»: adres wynika z formy i sytuacji."
+],
+"pt-BR": [
+"A porta está aberta. Você convida um conhecido para entrar. «Entre !» já é um convite completo. Não é necessário adicionar «tu»: o tratamento está claro pela forma e pela situação."
+],
+"ru": [
+"Дверь открыта. Ты приглашаешь одного знакомого войти. «Entre !» — уже полное приглашение. Не нужно добавлять «tu»: обращение понятно по форме и ситуации."
+],
+"tr": [
+"Kapı açık. Bir tanıdığınızı içeri davet ediyorsunuz. «Entre !» zaten eksiksiz bir davettir. «tu» eklemeye gerek yok: hitap, biçimden ve durumdan açıkça anlaşılıyor."
+],
+"uk": [
+"Двері відчинені. Ти запрошуєш одного знайомого увійти. «Entre !» – вже повне запрошення. Не треба додавати «tu»: звернення зрозуміле за формою та ситуацією."
+],
+"vi": [
+"Cửa đang mở. Bạn mời một người quen vào. «Entre !» đã là một lời mời hoàn chỉnh. Không cần thêm «tu»: cách xưng hô đã rõ ràng từ hình thức và tình huống."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:16:01",
+"fr:16:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:16:01",
+"target": "Entre !",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "fr:16:05",
+"target": "Reste ici !",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!"
+},
+{
+"id": "fr:16:06",
+"target": "Restez ici !",
+"ru": "Останьтесь здесь!",
+"uk": "Залишайтеся тут!"
+},
+{
+"id": "fr:16:01",
+"target": "Entre !",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "fr:16:04",
+"target": "Attendez !",
+"ru": "Подождите!",
+"uk": "Зачекайте!"
+}
+]
+}
+]

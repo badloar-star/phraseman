@@ -164,7 +164,6 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
       type: 'RENEWAL',
       app_id: 'appabc123',
       app_user_id: 'stable-user',
-      original_app_user_id: 'stable-user',
       product_id: 'phraseman_premium_monthly_399:monthly-base',
       entitlement_ids: ['premium'],
       store: 'PLAY_STORE',
@@ -175,6 +174,7 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
       event_timestamp_ms: 1_800_000_000_000,
       expiration_at_ms: 1_802_592_000_000,
     });
+    expect(first.original_app_user_id).toBeUndefined();
   });
 
   it.each([

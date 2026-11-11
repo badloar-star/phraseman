@@ -1,0 +1,682 @@
+[
+{
+"lesson": 17,
+"blocks": [
+{
+"textEN": "You’ve stepped off the train and text to say you’ve arrived. In «Ich bin hier», «bin» links you to a place. In «Ich bin angekommen», it helps report a past arrival. Read the two words together: “I’ve arrived”, not “I am arrive”.\n\nIch bin angekommen.\n\nI have arrived.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"textES": "Has bajado del tren y avisas que ya llegaste. En «Ich bin hier», «bin» te sitúa en un lugar. En «Ich bin angekommen», ayuda a contar una llegada pasada. Las dos palabras juntas significan «he llegado».\n\nIch bin angekommen.\n\nHe llegado.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"textId": "Kamu turun dari kereta dan memberi kabar sudah tiba. Dalam «Ich bin hier», «bin» menghubungkan orang dengan tempat. Dalam «Ich bin angekommen», kata itu membantu menyatakan kedatangan yang telah terjadi. Maknai sebagai “aku sudah tiba”.\n\nIch bin angekommen.\n\nSaya telah tiba.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"textPl": "Wysiadasz z pociągu i piszesz, że już jesteś na miejscu. W «Ich bin hier» słowo «bin» łączy cię z miejscem. W «Ich bin angekommen» pomaga opowiedzieć o przybyciu. Razem znaczą „dotarłem/dotarłam”.\n\nIch bin angekommen.\n\nPrzybyłem.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"textPtBr": "Você desceu do trem e avisa que chegou. Em «Ich bin hier», «bin» liga você a um lugar. Em «Ich bin angekommen», ajuda a contar uma chegada que já aconteceu. Leia o conjunto: “cheguei”.\n\nIch bin angekommen.\n\nEu cheguei.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"textRU": "Ты вышел из поезда и пишешь, что уже на месте. В «Ich bin hier» слово «bin» связывает тебя с местом. В «Ich bin angekommen» оно помогает рассказать о прибытии в прошлом. Не переводим его отдельно: оба слова вместе дают «я прибыл».\n\nIch bin angekommen.\n\nЯ приехал.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"textTr": "Trenden inip vardığını bildiriyorsun. «Ich bin hier» içinde «bin» seni bir yere bağlar. «Ich bin angekommen» içinde ise geçmişteki varışı anlatmaya yardım eder. İki kelimeyi birlikte düşün: “vardım”.\n\nIch bin angekommen.\n\nVardım.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"textUK": "Ти вийшов із потяга й пишеш, що вже на місці. У «Ich bin hier» слово «bin» пов’язує тебе з місцем. У «Ich bin angekommen» воно допомагає розповісти про прибуття в минулому. Разом ці слова означають «я прибув».\n\nIch bin angekommen.\n\nЯ приїхав.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"textVi": "Bạn vừa xuống tàu và nhắn đã đến nơi. Trong «Ich bin hier», «bin» nối người với địa điểm. Trong «Ich bin angekommen», nó giúp kể việc đã đến. Hãy hiểu cả cụm là “tôi đã đến nơi”.\n\nIch bin angekommen.\n\nTôi đã đến.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’ve stepped off the train and text to say you’ve arrived. In «Ich bin hier», «bin» links you to a place. In «Ich bin angekommen», it helps report a past arrival. Read the two words together: “I’ve arrived”, not “I am arrive”.\n\nIch bin angekommen.\n\nI have arrived.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"es": "Has bajado del tren y avisas que ya llegaste. En «Ich bin hier», «bin» te sitúa en un lugar. En «Ich bin angekommen», ayuda a contar una llegada pasada. Las dos palabras juntas significan «he llegado».\n\nIch bin angekommen.\n\nHe llegado.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"id": "Kamu turun dari kereta dan memberi kabar sudah tiba. Dalam «Ich bin hier», «bin» menghubungkan orang dengan tempat. Dalam «Ich bin angekommen», kata itu membantu menyatakan kedatangan yang telah terjadi. Maknai sebagai “aku sudah tiba”.\n\nIch bin angekommen.\n\nSaya telah tiba.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"pl": "Wysiadasz z pociągu i piszesz, że już jesteś na miejscu. W «Ich bin hier» słowo «bin» łączy cię z miejscem. W «Ich bin angekommen» pomaga opowiedzieć o przybyciu. Razem znaczą „dotarłem/dotarłam”.\n\nIch bin angekommen.\n\nPrzybyłem.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"pt-BR": "Você desceu do trem e avisa que chegou. Em «Ich bin hier», «bin» liga você a um lugar. Em «Ich bin angekommen», ajuda a contar uma chegada que já aconteceu. Leia o conjunto: “cheguei”.\n\nIch bin angekommen.\n\nEu cheguei.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"ru": "Ты вышел из поезда и пишешь, что уже на месте. В «Ich bin hier» слово «bin» связывает тебя с местом. В «Ich bin angekommen» оно помогает рассказать о прибытии в прошлом. Не переводим его отдельно: оба слова вместе дают «я прибыл».\n\nIch bin angekommen.\n\nЯ приехал.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"tr": "Trenden inip vardığını bildiriyorsun. «Ich bin hier» içinde «bin» seni bir yere bağlar. «Ich bin angekommen» içinde ise geçmişteki varışı anlatmaya yardım eder. İki kelimeyi birlikte düşün: “vardım”.\n\nIch bin angekommen.\n\nVardım.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"uk": "Ти вийшов із потяга й пишеш, що вже на місці. У «Ich bin hier» слово «bin» пов’язує тебе з місцем. У «Ich bin angekommen» воно допомагає розповісти про прибуття в минулому. Разом ці слова означають «я прибув».\n\nIch bin angekommen.\n\nЯ приїхав.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"vi": "Bạn vừa xuống tàu và nhắn đã đến nơi. Trong «Ich bin hier», «bin» nối người với địa điểm. Trong «Ich bin angekommen», nó giúp kể việc đã đến. Hãy hiểu cả cụm là “tôi đã đến nơi”.\n\nIch bin angekommen.\n\nTôi đã đến.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ."
+},
+"kind": "concept",
+"exampleIds": [
+"de:17:01"
+]
+},
+{
+"textEN": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nI am here.\n\nIch bin angekommen.\n\nI have arrived.\n\n«hier» tells you where I am now. «angekommen» tells you what happened. Both start «Ich bin», but only the second uses «bin» to build a past tense.",
+"textES": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nEstoy aquí.\n\nIch bin angekommen.\n\nHe llegado.\n\n«hier» dice dónde estoy ahora. «angekommen» cuenta qué ocurrió. Ambas empiezan por «Ich bin»; solo en la segunda «bin» forma un tiempo pasado.",
+"textId": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nSaya di sini.\n\nIch bin angekommen.\n\nSaya telah tiba.\n\n«hier» menunjukkan posisiku sekarang; «angekommen» menyatakan apa yang terjadi. Keduanya berawal «Ich bin», tetapi hanya yang kedua memakai «bin» untuk bentuk lampau.",
+"textPl": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nJestem tutaj.\n\nIch bin angekommen.\n\nPrzybyłem.\n\n«hier» mówi, gdzie jestem teraz, «angekommen» — co się stało. Obie zaczynają się «Ich bin», ale tylko w drugiej «bin» tworzy czas przeszły.",
+"textPtBr": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nEu estou aqui.\n\nIch bin angekommen.\n\nEu cheguei.\n\n«hier» diz onde estou agora. «angekommen» diz o que aconteceu. Ambas começam com «Ich bin», mas só na segunda «bin» forma um tempo passado.",
+"textRU": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nЯ здесь.\n\nIch bin angekommen.\n\nЯ приехал.\n\n«hier» — где я сейчас. «angekommen» — что уже произошло. Оба образца начинаются «Ich bin», но только во втором «bin» помогает строить прошедшее время.",
+"textTr": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nBen buradayım.\n\nIch bin angekommen.\n\nVardım.\n\n«hier» şimdiki yerimi, «angekommen» olan olayı söyler. İkisi de «Ich bin» ile başlar ama yalnız ikincide «bin» geçmişi kurar.",
+"textUK": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nЯ тут.\n\nIch bin angekommen.\n\nЯ приїхав.\n\n«hier» — де я зараз, «angekommen» — що вже сталося. Обидва починаються з «Ich bin», але лише в другому «bin» допомагає утворити минулий час.",
+"textVi": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nTôi ở đây.\n\nIch bin angekommen.\n\nTôi đã đến.\n\n«hier» cho biết tôi đang ở đâu; «angekommen» cho biết chuyện đã xảy ra. Cả hai bắt đầu bằng «Ich bin», nhưng chỉ câu sau dùng «bin» để tạo thì quá khứ.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nI am here.\n\nIch bin angekommen.\n\nI have arrived.\n\n«hier» tells you where I am now. «angekommen» tells you what happened. Both start «Ich bin», but only the second uses «bin» to build a past tense.",
+"es": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nEstoy aquí.\n\nIch bin angekommen.\n\nHe llegado.\n\n«hier» dice dónde estoy ahora. «angekommen» cuenta qué ocurrió. Ambas empiezan por «Ich bin»; solo en la segunda «bin» forma un tiempo pasado.",
+"id": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nSaya di sini.\n\nIch bin angekommen.\n\nSaya telah tiba.\n\n«hier» menunjukkan posisiku sekarang; «angekommen» menyatakan apa yang terjadi. Keduanya berawal «Ich bin», tetapi hanya yang kedua memakai «bin» untuk bentuk lampau.",
+"pl": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nJestem tutaj.\n\nIch bin angekommen.\n\nPrzybyłem.\n\n«hier» mówi, gdzie jestem teraz, «angekommen» — co się stało. Obie zaczynają się «Ich bin», ale tylko w drugiej «bin» tworzy czas przeszły.",
+"pt-BR": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nEu estou aqui.\n\nIch bin angekommen.\n\nEu cheguei.\n\n«hier» diz onde estou agora. «angekommen» diz o que aconteceu. Ambas começam com «Ich bin», mas só na segunda «bin» forma um tempo passado.",
+"ru": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nЯ здесь.\n\nIch bin angekommen.\n\nЯ приехал.\n\n«hier» — где я сейчас. «angekommen» — что уже произошло. Оба образца начинаются «Ich bin», но только во втором «bin» помогает строить прошедшее время.",
+"tr": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nBen buradayım.\n\nIch bin angekommen.\n\nVardım.\n\n«hier» şimdiki yerimi, «angekommen» olan olayı söyler. İkisi de «Ich bin» ile başlar ama yalnız ikincide «bin» geçmişi kurar.",
+"uk": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nЯ тут.\n\nIch bin angekommen.\n\nЯ приїхав.\n\n«hier» — де я зараз, «angekommen» — що вже сталося. Обидва починаються з «Ich bin», але лише в другому «bin» допомагає утворити минулий час.",
+"vi": "«Wir sind» + … + «angekommen»\n\nIch bin hier.\n\nTôi ở đây.\n\nIch bin angekommen.\n\nTôi đã đến.\n\n«hier» cho biết tôi đang ở đâu; «angekommen» cho biết chuyện đã xảy ra. Cả hai bắt đầu bằng «Ich bin», nhưng chỉ câu sau dùng «bin» để tạo thì quá khứ."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:01",
+"de:17:01"
+]
+},
+{
+"textEN": "I have arrived.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The past-time helper for ankommen; bin goes with ich.\n\n3. «angekommen» — Arrived: names the completed event.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textES": "He llegado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Auxiliar del pasado de ankommen; bin concuerda con ich.\n\n3. «angekommen» — Llegado: expresa la llegada ya realizada.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textId": "Saya telah tiba.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Pembantu masa lampau untuk ankommen; bin cocok dengan ich.\n\n3. «angekommen» — Sudah tiba: peristiwa yang selesai.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textPl": "Przybyłem.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Pomocnik w czasie przeszłym ankommen; z ich jest bin.\n\n3. «angekommen» — Wskazuje na zakończone przybycie: „dotarłem”.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textPtBr": "Eu cheguei.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Auxiliar do passado de ankommen; bin combina com ich.\n\n3. «angekommen» — Chegado: indica a chegada concluída.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textRU": "Я приехал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Помощник для прошлого с ankommen: лицо «я» слышно в bin.\n\n3. «angekommen» — Прибыл, добрался: название завершившегося события.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textTr": "Vardım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — ankommen fiilinin geçmişinde yardımcı; ich ile bin kullanılır.\n\n3. «angekommen» — Varışın gerçekleştiğini anlatır.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textUK": "Я приїхав.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Допоміжне слово для минулого з ankommen: bin відповідає «я».\n\n3. «angekommen» — Прибув, дістався: назва завершеної події.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"textVi": "Tôi đã đến.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Trợ động từ cho quá khứ của ankommen; bin đi với ich.\n\n3. «angekommen» — Đã đến: nêu sự việc hoàn tất.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I have arrived.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The past-time helper for ankommen; bin goes with ich.\n\n3. «angekommen» — Arrived: names the completed event.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"es": "He llegado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Auxiliar del pasado de ankommen; bin concuerda con ich.\n\n3. «angekommen» — Llegado: expresa la llegada ya realizada.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"id": "Saya telah tiba.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Pembantu masa lampau untuk ankommen; bin cocok dengan ich.\n\n3. «angekommen» — Sudah tiba: peristiwa yang selesai.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"pl": "Przybyłem.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Pomocnik w czasie przeszłym ankommen; z ich jest bin.\n\n3. «angekommen» — Wskazuje na zakończone przybycie: „dotarłem”.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"pt-BR": "Eu cheguei.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Auxiliar do passado de ankommen; bin combina com ich.\n\n3. «angekommen» — Chegado: indica a chegada concluída.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"ru": "Я приехал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Помощник для прошлого с ankommen: лицо «я» слышно в bin.\n\n3. «angekommen» — Прибыл, добрался: название завершившегося события.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"tr": "Vardım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — ankommen fiilinin geçmişinde yardımcı; ich ile bin kullanılır.\n\n3. «angekommen» — Varışın gerçekleştiğini anlatır.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"uk": "Я приїхав.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Допоміжне слово для минулого з ankommen: bin відповідає «я».\n\n3. «angekommen» — Прибув, дістався: назва завершеної події.\n\nIch → bin → angekommen\n\nIch bin angekommen.",
+"vi": "Tôi đã đến.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Trợ động từ cho quá khứ của ankommen; bin đi với ich.\n\n3. «angekommen» — Đã đến: nêu sự việc hoàn tất.\n\nIch → bin → angekommen\n\nIch bin angekommen."
+},
+"kind": "practice",
+"exampleIds": [
+"de:17:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:17:01",
+"target": "Ich bin angekommen.",
+"ru": "Я приехал.",
+"uk": "Я приїхав."
+},
+{
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "de:17:01",
+"target": "Ich bin angekommen.",
+"ru": "Я приехал.",
+"uk": "Я приїхав."
+},
+{
+"id": "de:17:01",
+"target": "Ich bin angekommen.",
+"ru": "Я приехал.",
+"uk": "Я приїхав."
+}
+]
+},
+{
+"lesson": 18,
+"blocks": [
+{
+"textEN": "You were tired yesterday but feel fine now. «Ich bin müde» would describe you now. Change «bin» to «war»: «Ich war müde». For something you had, use a different pair: «ich habe» (I have), «ich hatte» (I had).\n\nIch war müde.\n\nI was tired.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"textES": "Ayer tenías cansancio; hoy ya descansaste. «Ich bin müde» te describiría ahora. Cambia «bin» por «war»: «Ich war müde». Para algo que tenías, la pareja es «ich habe» (tengo) y «ich hatte» (tenía).\n\nIch war müde.\n\nEstaba cansado.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"textId": "Kemarin kamu lelah, sekarang sudah segar. «Ich bin müde» menggambarkan keadaan sekarang. Ganti «bin» dengan «war»: «Ich war müde». Untuk sesuatu yang dimiliki, pasangannya «ich habe» (aku punya) dan «ich hatte» (dulu aku punya).\n\nIch war müde.\n\nSaya lelah.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"textPl": "Wczoraj odczuwałeś zmęczenie, dziś już nie. «Ich bin müde» opisuje stan teraz. Zmień «bin» na «war»: «Ich war müde». Gdy mówisz, że coś miałeś, użyj innej pary: «ich habe» (mam), «ich hatte» (miałem).\n\nIch war müde.\n\nByłem zmęczony.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"textPtBr": "Você estava com cansaço ontem, mas já descansou. «Ich bin müde» descreveria o estado atual. Troque «bin» por «war»: «Ich war müde». Para algo que tinha, use «ich habe» (tenho) e «ich hatte» (tinha).\n\nIch war müde.\n\nEu estava cansado(a).\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"textRU": "Вчера ты устал, а сейчас уже отдохнул. «Ich bin müde» описывало бы тебя сейчас. Замени «bin» на «war»: «Ich war müde». Со временем или билетом другая пара: «ich habe» — «у меня есть», «ich hatte» — «у меня было».\n\nIch war müde.\n\nЯ был уставшим.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"textTr": "Dün yorgundun ama artık dinlendin. «Ich bin müde» şimdiki durumunu anlatır. «bin» yerine «war» koy: «Ich war müde». Sahip oldukların için başka bir çift var: «ich habe» (var) ve «ich hatte» (vardı).\n\nIch war müde.\n\nYorgundum.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"textUK": "Учора ти був утомлений, а зараз відпочив. «Ich bin müde» описувало б тебе зараз. Заміни «bin» на «war»: «Ich war müde». Для часу чи квитка інша пара: «ich habe» — «я маю», «ich hatte» — «я мав».\n\nIch war müde.\n\nЯ був втомлений.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"textVi": "Hôm qua bạn mệt nhưng giờ đã khỏe. «Ich bin müde» tả trạng thái hiện tại. Thay «bin» bằng «war»: «Ich war müde». Muốn kể mình từng có thứ gì, dùng cặp «ich habe» (tôi có) và «ich hatte» (tôi đã có).\n\nIch war müde.\n\nTôi mệt.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You were tired yesterday but feel fine now. «Ich bin müde» would describe you now. Change «bin» to «war»: «Ich war müde». For something you had, use a different pair: «ich habe» (I have), «ich hatte» (I had).\n\nIch war müde.\n\nI was tired.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"es": "Ayer tenías cansancio; hoy ya descansaste. «Ich bin müde» te describiría ahora. Cambia «bin» por «war»: «Ich war müde». Para algo que tenías, la pareja es «ich habe» (tengo) y «ich hatte» (tenía).\n\nIch war müde.\n\nEstaba cansado.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"id": "Kemarin kamu lelah, sekarang sudah segar. «Ich bin müde» menggambarkan keadaan sekarang. Ganti «bin» dengan «war»: «Ich war müde». Untuk sesuatu yang dimiliki, pasangannya «ich habe» (aku punya) dan «ich hatte» (dulu aku punya).\n\nIch war müde.\n\nSaya lelah.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"pl": "Wczoraj odczuwałeś zmęczenie, dziś już nie. «Ich bin müde» opisuje stan teraz. Zmień «bin» na «war»: «Ich war müde». Gdy mówisz, że coś miałeś, użyj innej pary: «ich habe» (mam), «ich hatte» (miałem).\n\nIch war müde.\n\nByłem zmęczony.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"pt-BR": "Você estava com cansaço ontem, mas já descansou. «Ich bin müde» descreveria o estado atual. Troque «bin» por «war»: «Ich war müde». Para algo que tinha, use «ich habe» (tenho) e «ich hatte» (tinha).\n\nIch war müde.\n\nEu estava cansado(a).\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"ru": "Вчера ты устал, а сейчас уже отдохнул. «Ich bin müde» описывало бы тебя сейчас. Замени «bin» на «war»: «Ich war müde». Со временем или билетом другая пара: «ich habe» — «у меня есть», «ich hatte» — «у меня было».\n\nIch war müde.\n\nЯ был уставшим.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"tr": "Dün yorgundun ama artık dinlendin. «Ich bin müde» şimdiki durumunu anlatır. «bin» yerine «war» koy: «Ich war müde». Sahip oldukların için başka bir çift var: «ich habe» (var) ve «ich hatte» (vardı).\n\nIch war müde.\n\nYorgundum.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"uk": "Учора ти був утомлений, а зараз відпочив. «Ich bin müde» описувало б тебе зараз. Заміни «bin» на «war»: «Ich war müde». Для часу чи квитка інша пара: «ich habe» — «я маю», «ich hatte» — «я мав».\n\nIch war müde.\n\nЯ був втомлений.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"vi": "Hôm qua bạn mệt nhưng giờ đã khỏe. «Ich bin müde» tả trạng thái hiện tại. Thay «bin» bằng «war»: «Ich war müde». Muốn kể mình từng có thứ gì, dùng cặp «ich habe» (tôi có) và «ich hatte» (tôi đã có).\n\nIch war müde.\n\nTôi mệt.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ."
+},
+"kind": "concept",
+"exampleIds": [
+"de:18:01"
+]
+},
+{
+"textEN": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nI am tired.\n\nIch war müde.\n\nI was tired.\n\nThe final word «müde» hasn’t changed. Here «bin» versus «war» does all the work of moving the state from now to then.",
+"textES": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nEstoy cansado.\n\nIch war müde.\n\nEstaba cansado.\n\nLa última palabra, «müde», no cambia. Aquí la diferencia entre ahora y entonces la marcan «bin» y «war».",
+"textId": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nSaya lelah.\n\nIch war müde.\n\nSaya lelah.\n\nKata akhir «müde» tidak berubah. Di sini «bin» dan «war» membedakan sekarang dan dahulu.",
+"textPl": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch war müde.\n\nByłem zmęczony.\n\nKońcowe «müde» się nie zmieniło. Różnicę między teraz a wtedy pokazują tu «bin» i «war».",
+"textPtBr": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch war müde.\n\nEu estava cansado(a).\n\nA última palavra, «müde», não mudou. Aqui «bin» e «war» distinguem agora de antes.",
+"textRU": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nЯ устал.\n\nIch war müde.\n\nЯ был уставшим.\n\nСравни последнее слово: «müde» не изменилось. За разницу между «сейчас» и «тогда» здесь отвечают «bin» и «war».",
+"textTr": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nBen yorgunum.\n\nIch war müde.\n\nYorgundum.\n\nSondaki «müde» değişmedi. Şimdi ile o zaman arasındaki farkı burada «bin» ve «war» verir.",
+"textUK": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nЯ втомився.\n\nIch war müde.\n\nЯ був втомлений.\n\nПорівняй кінець: «müde» не змінилося. Різницю між «зараз» і «тоді» тут показують «bin» та «war».",
+"textVi": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch war müde.\n\nTôi mệt.\n\nTừ cuối «müde» không đổi. Ở đây «bin» và «war» phân biệt bây giờ với lúc trước.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nI am tired.\n\nIch war müde.\n\nI was tired.\n\nThe final word «müde» hasn’t changed. Here «bin» versus «war» does all the work of moving the state from now to then.",
+"es": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nEstoy cansado.\n\nIch war müde.\n\nEstaba cansado.\n\nLa última palabra, «müde», no cambia. Aquí la diferencia entre ahora y entonces la marcan «bin» y «war».",
+"id": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nSaya lelah.\n\nIch war müde.\n\nSaya lelah.\n\nKata akhir «müde» tidak berubah. Di sini «bin» dan «war» membedakan sekarang dan dahulu.",
+"pl": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch war müde.\n\nByłem zmęczony.\n\nKońcowe «müde» się nie zmieniło. Różnicę między teraz a wtedy pokazują tu «bin» i «war».",
+"pt-BR": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch war müde.\n\nEu estava cansado(a).\n\nA última palavra, «müde», não mudou. Aqui «bin» e «war» distinguem agora de antes.",
+"ru": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nЯ устал.\n\nIch war müde.\n\nЯ был уставшим.\n\nСравни последнее слово: «müde» не изменилось. За разницу между «сейчас» и «тогда» здесь отвечают «bin» и «war».",
+"tr": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nBen yorgunum.\n\nIch war müde.\n\nYorgundum.\n\nSondaki «müde» değişmedi. Şimdi ile o zaman arasındaki farkı burada «bin» ve «war» verir.",
+"uk": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nЯ втомився.\n\nIch war müde.\n\nЯ був втомлений.\n\nПорівняй кінець: «müde» не змінилося. Різницю між «зараз» і «тоді» тут показують «bin» та «war».",
+"vi": "«Ich war» + … / «ich hatte» + …\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch war müde.\n\nTôi mệt.\n\nTừ cuối «müde» không đổi. Ở đây «bin» và «war» phân biệt bây giờ với lúc trước."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:04",
+"de:18:01"
+]
+},
+{
+"textEN": "I was tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «war» — Was: past form of sein. The state belonged to that earlier time.\n\n3. «müde» — Tired: a state, not a separate action.\n\nIch → war → müde\n\nIch war müde.",
+"textES": "Estaba cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «war» — Estaba: forma pasada de sein. El estado corresponde a aquel momento.\n\n3. «müde» — Cansado: un estado, no una acción.\n\nIch → war → müde\n\nIch war müde.",
+"textId": "Saya lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «war» — Dulu berada dalam keadaan itu: bentuk lampau sein.\n\n3. «müde» — Lelah: keadaan, bukan tindakan lain.\n\nIch → war → müde\n\nIch war müde.",
+"textPl": "Byłem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «war» — Byłem/byłam: forma przeszła sein, stan z tamtej chwili.\n\n3. «müde» — Zmęczony: stan, nie odrębna czynność.\n\nIch → war → müde\n\nIch war müde.",
+"textPtBr": "Eu estava cansado(a).\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «war» — Estava: forma passada de sein. O estado era de outro momento.\n\n3. «müde» — Cansado: um estado, não uma ação.\n\nIch → war → müde\n\nIch war müde.",
+"textRU": "Я был уставшим.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «war» — Был, была. Это прошлое слова sein: состояние относилось к тому времени.\n\n3. «müde» — Уставший. Это состояние, а не отдельное действие.\n\nIch → war → müde\n\nIch war müde.",
+"textTr": "Yorgundum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «war» — İdim: sein fiilinin geçmişi; o zamanki durum.\n\n3. «müde» — Yorgun: ayrı bir eylem değil, durum.\n\nIch → war → müde\n\nIch war müde.",
+"textUK": "Я був втомлений.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «war» — Був, була. Це минуле від sein: стан стосується того часу.\n\n3. «müde» — Втомлений. Це стан, а не окрема дія.\n\nIch → war → müde\n\nIch war müde.",
+"textVi": "Tôi mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «war» — Đã ở trong trạng thái ấy: dạng quá khứ của sein.\n\n3. «müde» — Mệt: trạng thái, không phải hành động khác.\n\nIch → war → müde\n\nIch war müde.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I was tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «war» — Was: past form of sein. The state belonged to that earlier time.\n\n3. «müde» — Tired: a state, not a separate action.\n\nIch → war → müde\n\nIch war müde.",
+"es": "Estaba cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «war» — Estaba: forma pasada de sein. El estado corresponde a aquel momento.\n\n3. «müde» — Cansado: un estado, no una acción.\n\nIch → war → müde\n\nIch war müde.",
+"id": "Saya lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «war» — Dulu berada dalam keadaan itu: bentuk lampau sein.\n\n3. «müde» — Lelah: keadaan, bukan tindakan lain.\n\nIch → war → müde\n\nIch war müde.",
+"pl": "Byłem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «war» — Byłem/byłam: forma przeszła sein, stan z tamtej chwili.\n\n3. «müde» — Zmęczony: stan, nie odrębna czynność.\n\nIch → war → müde\n\nIch war müde.",
+"pt-BR": "Eu estava cansado(a).\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «war» — Estava: forma passada de sein. O estado era de outro momento.\n\n3. «müde» — Cansado: um estado, não uma ação.\n\nIch → war → müde\n\nIch war müde.",
+"ru": "Я был уставшим.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «war» — Был, была. Это прошлое слова sein: состояние относилось к тому времени.\n\n3. «müde» — Уставший. Это состояние, а не отдельное действие.\n\nIch → war → müde\n\nIch war müde.",
+"tr": "Yorgundum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «war» — İdim: sein fiilinin geçmişi; o zamanki durum.\n\n3. «müde» — Yorgun: ayrı bir eylem değil, durum.\n\nIch → war → müde\n\nIch war müde.",
+"uk": "Я був втомлений.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «war» — Був, була. Це минуле від sein: стан стосується того часу.\n\n3. «müde» — Втомлений. Це стан, а не окрема дія.\n\nIch → war → müde\n\nIch war müde.",
+"vi": "Tôi mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «war» — Đã ở trong trạng thái ấy: dạng quá khứ của sein.\n\n3. «müde» — Mệt: trạng thái, không phải hành động khác.\n\nIch → war → müde\n\nIch war müde."
+},
+"kind": "practice",
+"exampleIds": [
+"de:18:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:18:01",
+"target": "Ich war müde.",
+"ru": "Я был уставшим.",
+"uk": "Я був втомлений."
+},
+{
+"id": "de:01:04",
+"target": "Ich bin müde.",
+"ru": "Я устал.",
+"uk": "Я втомився."
+},
+{
+"id": "de:18:01",
+"target": "Ich war müde.",
+"ru": "Я был уставшим.",
+"uk": "Я був втомлений."
+},
+{
+"id": "de:18:01",
+"target": "Ich war müde.",
+"ru": "Я был уставшим.",
+"uk": "Я був втомлений."
+}
+]
+},
+{
+"lesson": 19,
+"blocks": [
+{
+"textEN": "Am I washing myself or a child? «Ich wasche mich» points to me twice: «ich» does the washing and «mich» receives it. That is what “reflexive” means here. For the person you’re talking to, the pair becomes «du … dich».\n\nIch wasche mich.\n\nI wash myself.\n\nA pronoun stands in for a name or noun. Ask what job it has: who is acting, or who receives the action? Don’t add another “he” if another word is already doing that job.",
+"textES": "¿Me lavo yo o lavo a un niño? En «Ich wasche mich» aparezco dos veces: «ich» realiza la acción; «mich» la recibe. Eso significa «reflexivo». Si te lavas tú, la pareja es «du … dich».\n\nIch wasche mich.\n\nMe lavo.\n\nUn pronombre sustituye a un nombre. ¿Quién actúa o quién recibe la acción? No añadas otro «él» si una palabra anterior ya cumple esa función.",
+"textId": "Aku mencuci diriku atau memandikan anak? Dalam «Ich wasche mich», «ich» melakukan kegiatan dan «mich» menerimanya: orangnya sama. Itulah arti “refleksif”. Untuk lawan bicara pasangannya «du … dich».\n\nIch wasche mich.\n\nSaya mandi.\n\nPronomina menggantikan nama atau nomina. Apa perannya: pelaku atau penerima tindakan? Jangan menambah “dia” jika kata lain sudah menjalankan peran itu.",
+"textPl": "Myję siebie czy dziecko? W «Ich wasche mich» dwa słowa wskazują na mnie: «ich» myje, «mich» jest myte. Na tym polega zwrotność. Gdy mówisz do drugiej osoby, użyjesz pary «du … dich».\n\nIch wasche mich.\n\nMyję się.\n\nZaimek zastępuje imię lub rzeczownik. Sprawdź jego rolę: kto działa, a kogo czynność dotyczy? Nie dodawaj drugiego „on”, jeśli tę rolę pełni już inne słowo.",
+"textPtBr": "Estou me lavando ou lavando uma criança? Em «Ich wasche mich», «ich» faz a ação e «mich» a recebe. É isso que “reflexivo” quer dizer aqui. Para a pessoa com quem você fala, o par é «du … dich».\n\nIch wasche mich.\n\nEu me lavo.\n\nUm pronome substitui um nome. Qual é o papel dele: quem age ou quem recebe a ação? Não acrescente outro “ele” se outra palavra já cumpre essa função.",
+"textRU": "Кого я мою — себя или ребёнка? «Ich wasche mich» называет меня дважды: «ich» — кто моет, «mich» — кого моют. Это и значит «возвратное»: действие возвращается к самому человеку. Если умываешься ты, пара меняется на «du … dich».\n\nIch wasche mich.\n\nЯ умываюсь.\n\nМестоимение заменяет имя или название. Важно спросить, какую работу оно делает: кто действует или на кого направлено действие? Не вставляй второе слово «он», если эту работу уже выполняет другое слово.",
+"textTr": "Kimi yıkıyorum: kendimi mi, bir çocuğu mu? «Ich wasche mich» içinde «ich» yıkayan, «mich» yıkanan kişidir: ikisi de benim. Dönüşlü demek burada budur. Karşındaki için «du … dich» kullanılır.\n\nIch wasche mich.\n\nKendimi yıkıyorum.\n\nZamir bir ismin yerini tutar. İşi yapanı mı, işten etkileneni mi gösteriyor? Bu görevi başka bir kelime zaten üstleniyorsa bir de “o” ekleme.",
+"textUK": "Кого я мию — себе чи дитину? «Ich wasche mich» називає мене двічі: «ich» — хто миє, «mich» — кого миють. Це і є «зворотне»: дія стосується самого виконавця. Якщо вмиваєшся ти, пара змінюється на «du … dich».\n\nIch wasche mich.\n\nЯ вмиваюся.\n\nЗайменник замінює ім’я чи назву. З’ясуй його роль: хто виконує дію чи на кого вона спрямована? Не додавай друге «він», якщо цю роль уже виконує інше слово.",
+"textVi": "Tôi tự rửa người hay tắm cho em bé? Trong «Ich wasche mich», «ich» là người thực hiện, «mich» cũng chính là người được rửa. Đó là nghĩa của “phản thân”. Với người đối diện dùng «du … dich».\n\nIch wasche mich.\n\nTôi tắm rửa.\n\nĐại từ thay cho tên người hoặc sự vật. Xem vai trò của nó: ai thực hiện hay ai nhận tác động? Đừng thêm một từ “anh ấy” nếu đã có từ đảm nhiệm vai trò đó.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Am I washing myself or a child? «Ich wasche mich» points to me twice: «ich» does the washing and «mich» receives it. That is what “reflexive” means here. For the person you’re talking to, the pair becomes «du … dich».\n\nIch wasche mich.\n\nI wash myself.\n\nA pronoun stands in for a name or noun. Ask what job it has: who is acting, or who receives the action? Don’t add another “he” if another word is already doing that job.",
+"es": "¿Me lavo yo o lavo a un niño? En «Ich wasche mich» aparezco dos veces: «ich» realiza la acción; «mich» la recibe. Eso significa «reflexivo». Si te lavas tú, la pareja es «du … dich».\n\nIch wasche mich.\n\nMe lavo.\n\nUn pronombre sustituye a un nombre. ¿Quién actúa o quién recibe la acción? No añadas otro «él» si una palabra anterior ya cumple esa función.",
+"id": "Aku mencuci diriku atau memandikan anak? Dalam «Ich wasche mich», «ich» melakukan kegiatan dan «mich» menerimanya: orangnya sama. Itulah arti “refleksif”. Untuk lawan bicara pasangannya «du … dich».\n\nIch wasche mich.\n\nSaya mandi.\n\nPronomina menggantikan nama atau nomina. Apa perannya: pelaku atau penerima tindakan? Jangan menambah “dia” jika kata lain sudah menjalankan peran itu.",
+"pl": "Myję siebie czy dziecko? W «Ich wasche mich» dwa słowa wskazują na mnie: «ich» myje, «mich» jest myte. Na tym polega zwrotność. Gdy mówisz do drugiej osoby, użyjesz pary «du … dich».\n\nIch wasche mich.\n\nMyję się.\n\nZaimek zastępuje imię lub rzeczownik. Sprawdź jego rolę: kto działa, a kogo czynność dotyczy? Nie dodawaj drugiego „on”, jeśli tę rolę pełni już inne słowo.",
+"pt-BR": "Estou me lavando ou lavando uma criança? Em «Ich wasche mich», «ich» faz a ação e «mich» a recebe. É isso que “reflexivo” quer dizer aqui. Para a pessoa com quem você fala, o par é «du … dich».\n\nIch wasche mich.\n\nEu me lavo.\n\nUm pronome substitui um nome. Qual é o papel dele: quem age ou quem recebe a ação? Não acrescente outro “ele” se outra palavra já cumpre essa função.",
+"ru": "Кого я мою — себя или ребёнка? «Ich wasche mich» называет меня дважды: «ich» — кто моет, «mich» — кого моют. Это и значит «возвратное»: действие возвращается к самому человеку. Если умываешься ты, пара меняется на «du … dich».\n\nIch wasche mich.\n\nЯ умываюсь.\n\nМестоимение заменяет имя или название. Важно спросить, какую работу оно делает: кто действует или на кого направлено действие? Не вставляй второе слово «он», если эту работу уже выполняет другое слово.",
+"tr": "Kimi yıkıyorum: kendimi mi, bir çocuğu mu? «Ich wasche mich» içinde «ich» yıkayan, «mich» yıkanan kişidir: ikisi de benim. Dönüşlü demek burada budur. Karşındaki için «du … dich» kullanılır.\n\nIch wasche mich.\n\nKendimi yıkıyorum.\n\nZamir bir ismin yerini tutar. İşi yapanı mı, işten etkileneni mi gösteriyor? Bu görevi başka bir kelime zaten üstleniyorsa bir de “o” ekleme.",
+"uk": "Кого я мию — себе чи дитину? «Ich wasche mich» називає мене двічі: «ich» — хто миє, «mich» — кого миють. Це і є «зворотне»: дія стосується самого виконавця. Якщо вмиваєшся ти, пара змінюється на «du … dich».\n\nIch wasche mich.\n\nЯ вмиваюся.\n\nЗайменник замінює ім’я чи назву. З’ясуй його роль: хто виконує дію чи на кого вона спрямована? Не додавай друге «він», якщо цю роль уже виконує інше слово.",
+"vi": "Tôi tự rửa người hay tắm cho em bé? Trong «Ich wasche mich», «ich» là người thực hiện, «mich» cũng chính là người được rửa. Đó là nghĩa của “phản thân”. Với người đối diện dùng «du … dich».\n\nIch wasche mich.\n\nTôi tắm rửa.\n\nĐại từ thay cho tên người hoặc sự vật. Xem vai trò của nó: ai thực hiện hay ai nhận tác động? Đừng thêm một từ “anh ấy” nếu đã có từ đảm nhiệm vai trò đó."
+},
+"kind": "concept",
+"exampleIds": [
+"de:19:01"
+]
+},
+{
+"textEN": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nI wash myself.\n\nDu wäschst dich.\n\nYou wash yourself.\n\nMore than the first word changes. Pair «ich» with «wasche» and «mich»; «du» with «wäschst» and «dich». Keep «ich» but pick «dich» and you’re washing the other person.",
+"textES": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nMe lavo.\n\nDu wäschst dich.\n\nTe lavas.\n\nNo cambia solo el inicio. Para «yo», «wasche» y «mich»; para «tú», «wäschst» y «dich». Con «ich» y «dich», yo lavo a la otra persona.",
+"textId": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nSaya mandi.\n\nDu wäschst dich.\n\nKamu mandi.\n\nBukan hanya kata pertama yang berubah: «ich» berpasangan dengan «wasche» dan «mich»; «du» dengan «wäschst» dan «dich». Gabungkan «ich» dan «dich», maka aku mencuci orang lain.",
+"textPl": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nMyję się.\n\nDu wäschst dich.\n\nTy się myjesz.\n\nZmienia się nie tylko początek. Z «ich» potrzebujesz «wasche» i «mich»; z «du» — «wäschst» i «dich». Połączenie «ich» i «dich» znaczy „myję ciebie”.",
+"textPtBr": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nEu me lavo.\n\nDu wäschst dich.\n\nVocê se lava.\n\nNão muda só o início. Para «ich», use «wasche» e «mich»; para «du», «wäschst» e «dich». Com «ich» e «dich», você lava a outra pessoa.",
+"textRU": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nЯ умываюсь.\n\nDu wäschst dich.\n\nТы умываешься.\n\nМеняется не только начало. Для «я» нужны «wasche» и «mich»; для «ты» — «wäschst» и «dich». Если оставить «ich» и выбрать «dich», получится «я мою тебя».",
+"textTr": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nKendimi yıkıyorum.\n\nDu wäschst dich.\n\nSen kendini yıkıyorsun.\n\nSadece baş değişmez. «ich» için «wasche» ve «mich»; «du» için «wäschst» ve «dich» gelir. «ich» ile «dich» kullanırsan “seni yıkıyorum” dersin.",
+"textUK": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nЯ вмиваюся.\n\nDu wäschst dich.\n\nТи вмиваєшся.\n\nЗмінюється не лише початок. Для «я» — «wasche» та «mich», для «ти» — «wäschst» та «dich». З «ich» і «dich» вийде «я мию тебе».",
+"textVi": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nTôi tắm rửa.\n\nDu wäschst dich.\n\nBạn tắm rửa.\n\nKhông chỉ đổi từ đầu. «ich» đi với «wasche» và «mich»; «du» đi với «wäschst» và «dich». Ghép «ich» với «dich» là tôi rửa cho bạn.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nI wash myself.\n\nDu wäschst dich.\n\nYou wash yourself.\n\nMore than the first word changes. Pair «ich» with «wasche» and «mich»; «du» with «wäschst» and «dich». Keep «ich» but pick «dich» and you’re washing the other person.",
+"es": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nMe lavo.\n\nDu wäschst dich.\n\nTe lavas.\n\nNo cambia solo el inicio. Para «yo», «wasche» y «mich»; para «tú», «wäschst» y «dich». Con «ich» y «dich», yo lavo a la otra persona.",
+"id": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nSaya mandi.\n\nDu wäschst dich.\n\nKamu mandi.\n\nBukan hanya kata pertama yang berubah: «ich» berpasangan dengan «wasche» dan «mich»; «du» dengan «wäschst» dan «dich». Gabungkan «ich» dan «dich», maka aku mencuci orang lain.",
+"pl": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nMyję się.\n\nDu wäschst dich.\n\nTy się myjesz.\n\nZmienia się nie tylko początek. Z «ich» potrzebujesz «wasche» i «mich»; z «du» — «wäschst» i «dich». Połączenie «ich» i «dich» znaczy „myję ciebie”.",
+"pt-BR": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nEu me lavo.\n\nDu wäschst dich.\n\nVocê se lava.\n\nNão muda só o início. Para «ich», use «wasche» e «mich»; para «du», «wäschst» e «dich». Com «ich» e «dich», você lava a outra pessoa.",
+"ru": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nЯ умываюсь.\n\nDu wäschst dich.\n\nТы умываешься.\n\nМеняется не только начало. Для «я» нужны «wasche» и «mich»; для «ты» — «wäschst» и «dich». Если оставить «ich» и выбрать «dich», получится «я мою тебя».",
+"tr": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nKendimi yıkıyorum.\n\nDu wäschst dich.\n\nSen kendini yıkıyorsun.\n\nSadece baş değişmez. «ich» için «wasche» ve «mich»; «du» için «wäschst» ve «dich» gelir. «ich» ile «dich» kullanırsan “seni yıkıyorum” dersin.",
+"uk": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nЯ вмиваюся.\n\nDu wäschst dich.\n\nТи вмиваєшся.\n\nЗмінюється не лише початок. Для «я» — «wasche» та «mich», для «ти» — «wäschst» та «dich». З «ich» і «dich» вийде «я мию тебе».",
+"vi": "«ich wasche mich» / «ich wasche mir die Hände»\n\nIch wasche mich.\n\nTôi tắm rửa.\n\nDu wäschst dich.\n\nBạn tắm rửa.\n\nKhông chỉ đổi từ đầu. «ich» đi với «wasche» và «mich»; «du» đi với «wäschst» và «dich». Ghép «ich» với «dich» là tôi rửa cho bạn."
+},
+"kind": "formula",
+"exampleIds": [
+"de:19:01",
+"de:19:02"
+]
+},
+{
+"textEN": "I wash myself.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «wasche» — Wash: this word alone doesn’t say whom.\n\n3. «mich» — Myself: the speaker is also the person being washed.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textES": "Me lavo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «wasche» — Lavo: aún no dice a quién.\n\n3. «mich» — Me: la acción vuelve a quien habla.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textId": "Saya mandi.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «wasche» — Mencuci: belum mengatakan siapa yang dicuci.\n\n3. «mich» — Diriku sendiri: tindakan kembali ke pembicara.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textPl": "Myję się.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «wasche» — Myję: jeszcze nie wiadomo, kogo.\n\n3. «mich» — Siebie: czynność dotyczy mówiącego.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textPtBr": "Eu me lavo.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «wasche» — Lavo: ainda não diz quem.\n\n3. «mich» — Me: a ação volta para quem fala.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textRU": "Я умываюсь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «wasche» — Мою. Слово пока не называет, кого именно.\n\n3. «mich» — Себя. Действие направлено на самого говорящего.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textTr": "Kendimi yıkıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «wasche» — Yıkıyorum: henüz kimi olduğu belli değil.\n\n3. «mich» — Kendimi: eylem konuşanın kendisine döner.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textUK": "Я вмиваюся.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «wasche» — Мию. Поки не сказано, кого саме.\n\n3. «mich» — Себе. Дія спрямована на самого мовця.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"textVi": "Tôi tắm rửa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «wasche» — Rửa: chưa cho biết rửa ai.\n\n3. «mich» — Chính mình: người nói cũng là người được rửa.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I wash myself.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «wasche» — Wash: this word alone doesn’t say whom.\n\n3. «mich» — Myself: the speaker is also the person being washed.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"es": "Me lavo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «wasche» — Lavo: aún no dice a quién.\n\n3. «mich» — Me: la acción vuelve a quien habla.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"id": "Saya mandi.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «wasche» — Mencuci: belum mengatakan siapa yang dicuci.\n\n3. «mich» — Diriku sendiri: tindakan kembali ke pembicara.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"pl": "Myję się.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «wasche» — Myję: jeszcze nie wiadomo, kogo.\n\n3. «mich» — Siebie: czynność dotyczy mówiącego.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"pt-BR": "Eu me lavo.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «wasche» — Lavo: ainda não diz quem.\n\n3. «mich» — Me: a ação volta para quem fala.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"ru": "Я умываюсь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «wasche» — Мою. Слово пока не называет, кого именно.\n\n3. «mich» — Себя. Действие направлено на самого говорящего.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"tr": "Kendimi yıkıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «wasche» — Yıkıyorum: henüz kimi olduğu belli değil.\n\n3. «mich» — Kendimi: eylem konuşanın kendisine döner.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"uk": "Я вмиваюся.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «wasche» — Мию. Поки не сказано, кого саме.\n\n3. «mich» — Себе. Дія спрямована на самого мовця.\n\nIch → wasche → mich\n\nIch wasche mich.",
+"vi": "Tôi tắm rửa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «wasche» — Rửa: chưa cho biết rửa ai.\n\n3. «mich» — Chính mình: người nói cũng là người được rửa.\n\nIch → wasche → mich\n\nIch wasche mich."
+},
+"kind": "practice",
+"exampleIds": [
+"de:19:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:19:01",
+"target": "Ich wasche mich.",
+"ru": "Я умываюсь.",
+"uk": "Я вмиваюся."
+},
+{
+"id": "de:19:01",
+"target": "Ich wasche mich.",
+"ru": "Я умываюсь.",
+"uk": "Я вмиваюся."
+},
+{
+"id": "de:19:02",
+"target": "Du wäschst dich.",
+"ru": "Ты умываешься.",
+"uk": "Ти вмиваєшся."
+},
+{
+"id": "de:19:01",
+"target": "Ich wasche mich.",
+"ru": "Я умываюсь.",
+"uk": "Я вмиваюся."
+}
+]
+},
+{
+"lesson": 20,
+"blocks": [
+{
+"textEN": "A bus overtakes you. You’re comparing speeds, not just saying the bus is fast. «schnell» means “fast”; «schneller» means “faster”. «als» introduces the other side of the comparison. For equal speeds use «so schnell wie» (“as fast as”).\n\nDer Bus ist schneller als ich.\n\nThe bus is faster than me.\n\nA comparative describes something relative to another thing. «schnell» and «schneller» both describe speed. The second form compares two sides; you don’t need a third object.",
+"textES": "Un autobús te adelanta. Comparas velocidades: «schnell» es «rápido» y «schneller» es «más rápido». «als» introduce el otro término de la comparación. Si van igual de rápido, usa «so schnell wie» («tan rápido como»).\n\nDer Bus ist schneller als ich.\n\nEl autobús es más rápido que yo.\n\nUn comparativo describe algo respecto a otra cosa. «schnell» y «schneller» hablan de velocidad. La segunda forma compara dos términos; no necesitas un tercero.",
+"textId": "Bus mendahuluimu. Kamu membandingkan kecepatan: «schnell» berarti cepat, «schneller» lebih cepat. «als» memperkenalkan pembanding. Untuk kecepatan yang sama gunakan «so schnell wie» (sama cepatnya dengan).\n\nDer Bus ist schneller als ich.\n\nBus lebih cepat daripada saya.\n\nBentuk komparatif menjelaskan sesuatu dibandingkan dengan yang lain. «schnell» dan «schneller» sama-sama berbicara tentang kecepatan. Bentuk kedua membandingkan dua pihak.",
+"textPl": "Autobus cię wyprzedza. Porównujesz prędkości: «schnell» to „szybki”, «schneller» — „szybszy”. «als» wprowadza drugą stronę porównania. Przy jednakowej prędkości użyjesz «so schnell wie» („tak szybki jak”).\n\nDer Bus ist schneller als ich.\n\nAutobus jest szybszy niż ja.\n\nStopień wyższy opisuje coś w odniesieniu do czegoś innego. «schnell» i «schneller» dotyczą szybkości. Druga forma porównuje dwie strony; trzeciej nie potrzeba.",
+"textPtBr": "Um ônibus ultrapassa você. Você está comparando velocidades: «schnell» é “rápido” e «schneller», “mais rápido”. «als» apresenta o outro lado da comparação. Para velocidades iguais, use «so schnell wie» (“tão rápido quanto”).\n\nDer Bus ist schneller als ich.\n\nO ônibus é mais rápido do que eu.\n\nO comparativo descreve algo em relação a outra coisa. «schnell» e «schneller» falam de velocidade. A segunda forma compara dois lados; não precisa de um terceiro elemento.",
+"textRU": "Автобус тебя обгоняет. Ты сравниваешь две скорости, а не просто называешь автобус быстрым. «schnell» — быстро, «schneller» — быстрее. «als» вводит того, с кем сравнивают. Для равенства другая пара: «so schnell wie» — так же быстро, как.\n\nDer Bus ist schneller als ich.\n\nАвтобус быстрее меня.\n\nСтепень сравнения отвечает не просто на «какой?», а на «какой по сравнению с другим?». В «schnell» и «schneller» узнаётся одно качество — скорость. Вторая форма сравнивает, третья вещь для этого не нужна.",
+"textTr": "Otobüs seni geçiyor. Hızları karşılaştırıyorsun: «schnell» “hızlı”, «schneller» “daha hızlı”. «als» karşılaştırılan öteki kişiyi ya da şeyi tanıtır. Hızlar eşitse «so schnell wie» (… kadar hızlı) kullan.\n\nDer Bus ist schneller als ich.\n\nOtobüs benden daha hızlı.\n\nKarşılaştırma biçimi, bir şeyi ötekine göre anlatır. «schnell» ve «schneller» ikisi de hızla ilgilidir. İkinci biçim iki tarafı karşılaştırır; üçüncü bir şey gerekmez.",
+"textUK": "Автобус тебе обганяє. Ти порівнюєш дві швидкості, а не просто називаєш автобус швидким. «schnell» — швидко, «schneller» — швидше. «als» вводить того, з ким порівнюють. Для рівності — «so schnell wie»: так само швидко, як.\n\nDer Bus ist schneller als ich.\n\nАвтобус швидше за мене.\n\nСтупінь порівняння відповідає не просто на «який?», а «який порівняно з іншим?». «schnell» і «schneller» називають ту саму якість — швидкість. Друга форма порівнює дві сторони.",
+"textVi": "Xe buýt vượt lên trước bạn. Bạn đang so tốc độ: «schnell» là nhanh, «schneller» là nhanh hơn. «als» dẫn vào đối tượng đem ra so sánh. Nếu hai bên nhanh như nhau, dùng «so schnell wie».\n\nDer Bus ist schneller als ich.\n\nXe buýt nhanh hơn tôi.\n\nDạng so sánh hơn tả một thứ khi so với thứ khác. «schnell» và «schneller» đều nói về tốc độ. Dạng thứ hai so hai bên, không cần thứ ba.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "A bus overtakes you. You’re comparing speeds, not just saying the bus is fast. «schnell» means “fast”; «schneller» means “faster”. «als» introduces the other side of the comparison. For equal speeds use «so schnell wie» (“as fast as”).\n\nDer Bus ist schneller als ich.\n\nThe bus is faster than me.\n\nA comparative describes something relative to another thing. «schnell» and «schneller» both describe speed. The second form compares two sides; you don’t need a third object.",
+"es": "Un autobús te adelanta. Comparas velocidades: «schnell» es «rápido» y «schneller» es «más rápido». «als» introduce el otro término de la comparación. Si van igual de rápido, usa «so schnell wie» («tan rápido como»).\n\nDer Bus ist schneller als ich.\n\nEl autobús es más rápido que yo.\n\nUn comparativo describe algo respecto a otra cosa. «schnell» y «schneller» hablan de velocidad. La segunda forma compara dos términos; no necesitas un tercero.",
+"id": "Bus mendahuluimu. Kamu membandingkan kecepatan: «schnell» berarti cepat, «schneller» lebih cepat. «als» memperkenalkan pembanding. Untuk kecepatan yang sama gunakan «so schnell wie» (sama cepatnya dengan).\n\nDer Bus ist schneller als ich.\n\nBus lebih cepat daripada saya.\n\nBentuk komparatif menjelaskan sesuatu dibandingkan dengan yang lain. «schnell» dan «schneller» sama-sama berbicara tentang kecepatan. Bentuk kedua membandingkan dua pihak.",
+"pl": "Autobus cię wyprzedza. Porównujesz prędkości: «schnell» to „szybki”, «schneller» — „szybszy”. «als» wprowadza drugą stronę porównania. Przy jednakowej prędkości użyjesz «so schnell wie» („tak szybki jak”).\n\nDer Bus ist schneller als ich.\n\nAutobus jest szybszy niż ja.\n\nStopień wyższy opisuje coś w odniesieniu do czegoś innego. «schnell» i «schneller» dotyczą szybkości. Druga forma porównuje dwie strony; trzeciej nie potrzeba.",
+"pt-BR": "Um ônibus ultrapassa você. Você está comparando velocidades: «schnell» é “rápido” e «schneller», “mais rápido”. «als» apresenta o outro lado da comparação. Para velocidades iguais, use «so schnell wie» (“tão rápido quanto”).\n\nDer Bus ist schneller als ich.\n\nO ônibus é mais rápido do que eu.\n\nO comparativo descreve algo em relação a outra coisa. «schnell» e «schneller» falam de velocidade. A segunda forma compara dois lados; não precisa de um terceiro elemento.",
+"ru": "Автобус тебя обгоняет. Ты сравниваешь две скорости, а не просто называешь автобус быстрым. «schnell» — быстро, «schneller» — быстрее. «als» вводит того, с кем сравнивают. Для равенства другая пара: «so schnell wie» — так же быстро, как.\n\nDer Bus ist schneller als ich.\n\nАвтобус быстрее меня.\n\nСтепень сравнения отвечает не просто на «какой?», а на «какой по сравнению с другим?». В «schnell» и «schneller» узнаётся одно качество — скорость. Вторая форма сравнивает, третья вещь для этого не нужна.",
+"tr": "Otobüs seni geçiyor. Hızları karşılaştırıyorsun: «schnell» “hızlı”, «schneller» “daha hızlı”. «als» karşılaştırılan öteki kişiyi ya da şeyi tanıtır. Hızlar eşitse «so schnell wie» (… kadar hızlı) kullan.\n\nDer Bus ist schneller als ich.\n\nOtobüs benden daha hızlı.\n\nKarşılaştırma biçimi, bir şeyi ötekine göre anlatır. «schnell» ve «schneller» ikisi de hızla ilgilidir. İkinci biçim iki tarafı karşılaştırır; üçüncü bir şey gerekmez.",
+"uk": "Автобус тебе обганяє. Ти порівнюєш дві швидкості, а не просто називаєш автобус швидким. «schnell» — швидко, «schneller» — швидше. «als» вводить того, з ким порівнюють. Для рівності — «so schnell wie»: так само швидко, як.\n\nDer Bus ist schneller als ich.\n\nАвтобус швидше за мене.\n\nСтупінь порівняння відповідає не просто на «який?», а «який порівняно з іншим?». «schnell» і «schneller» називають ту саму якість — швидкість. Друга форма порівнює дві сторони.",
+"vi": "Xe buýt vượt lên trước bạn. Bạn đang so tốc độ: «schnell» là nhanh, «schneller» là nhanh hơn. «als» dẫn vào đối tượng đem ra so sánh. Nếu hai bên nhanh như nhau, dùng «so schnell wie».\n\nDer Bus ist schneller als ich.\n\nXe buýt nhanh hơn tôi.\n\nDạng so sánh hơn tả một thứ khi so với thứ khác. «schnell» và «schneller» đều nói về tốc độ. Dạng thứ hai so hai bên, không cần thứ ba."
+},
+"kind": "concept",
+"exampleIds": [
+"de:20:01"
+]
+},
+{
+"textEN": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nThe train is faster than the bus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nThe bicycle is slower than the train.\n\n«schneller» and «langsamer» compare in opposite directions: faster and slower. After «als» name the comparison partner. «-er» already does the work of “more”; don’t add «mehr».",
+"textES": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nEl tren es más rápido que el autobús.\n\nDas Fahrrad ist langsamer als der Zug.\n\nLa bicicleta es más lenta que el tren.\n\n«schneller» y «langsamer» comparan en sentidos opuestos: más rápido y más lento. Tras «als» nombra el otro término. «-er» ya marca el comparativo; no añadas «mehr».",
+"textId": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nKereta lebih cepat daripada bus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nSepeda lebih lambat daripada kereta.\n\n«schneller» lebih cepat, «langsamer» lebih lambat. Setelah «als» sebutkan pembanding. «-er» sudah berarti lebih, jadi tak perlu «mehr» lagi.",
+"textPl": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nPociąg jest szybszy niż autobus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nRower jest wolniejszy niż pociąg.\n\n«schneller» i «langsamer» to odpowiednio szybciej i wolniej. Po «als» podaj drugą stronę. «-er» już tworzy stopień wyższy; nie dodawaj «mehr».",
+"textPtBr": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nO trem é mais rápido do que o ônibus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nA bicicleta é mais lenta do que o trem.\n\n«schneller» e «langsamer» comparam em direções opostas: mais rápido e mais lento. Depois de «als», diga com quem compara. «-er» já marca a comparação; não acrescente «mehr».",
+"textRU": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nПоезд быстрее автобуса.\n\nDas Fahrrad ist langsamer als der Zug.\n\nВелосипед медленнее поезда.\n\n«schneller» и «langsamer» направляют сравнение в разные стороны: быстрее или медленнее. После «als» назови того, с кем сравниваешь. Само «-er» уже даёт «более»; ещё одно «mehr» не нужно.",
+"textTr": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nTren otobüsten daha hızlı.\n\nDas Fahrrad ist langsamer als der Zug.\n\nBisiklet trenden daha yavaş.\n\n«schneller» daha hızlı, «langsamer» daha yavaş demektir. «als» sonrasında karşılaştırdığın kişiyi ya da şeyi söyle. «-er» zaten karşılaştırma yapar, ayrıca «mehr» ekleme.",
+"textUK": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nПоїзд швидше за автобус.\n\nDas Fahrrad ist langsamer als der Zug.\n\nВелосипед повільніший за поїзд.\n\n«schneller» і «langsamer» задають протилежні напрямки: швидше або повільніше. Після «als» назви, з ким порівнюєш. «-er» уже створює ступінь, додаткове «mehr» не потрібне.",
+"textVi": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nTàu hỏa nhanh hơn xe buýt.\n\nDas Fahrrad ist langsamer als der Zug.\n\nXe đạp chậm hơn tàu hỏa.\n\n«schneller» là nhanh hơn, «langsamer» là chậm hơn. Sau «als» nêu bên được so sánh. Đuôi «-er» đã diễn tả “hơn”, đừng thêm «mehr».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nThe train is faster than the bus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nThe bicycle is slower than the train.\n\n«schneller» and «langsamer» compare in opposite directions: faster and slower. After «als» name the comparison partner. «-er» already does the work of “more”; don’t add «mehr».",
+"es": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nEl tren es más rápido que el autobús.\n\nDas Fahrrad ist langsamer als der Zug.\n\nLa bicicleta es más lenta que el tren.\n\n«schneller» y «langsamer» comparan en sentidos opuestos: más rápido y más lento. Tras «als» nombra el otro término. «-er» ya marca el comparativo; no añadas «mehr».",
+"id": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nKereta lebih cepat daripada bus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nSepeda lebih lambat daripada kereta.\n\n«schneller» lebih cepat, «langsamer» lebih lambat. Setelah «als» sebutkan pembanding. «-er» sudah berarti lebih, jadi tak perlu «mehr» lagi.",
+"pl": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nPociąg jest szybszy niż autobus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nRower jest wolniejszy niż pociąg.\n\n«schneller» i «langsamer» to odpowiednio szybciej i wolniej. Po «als» podaj drugą stronę. «-er» już tworzy stopień wyższy; nie dodawaj «mehr».",
+"pt-BR": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nO trem é mais rápido do que o ônibus.\n\nDas Fahrrad ist langsamer als der Zug.\n\nA bicicleta é mais lenta do que o trem.\n\n«schneller» e «langsamer» comparam em direções opostas: mais rápido e mais lento. Depois de «als», diga com quem compara. «-er» já marca a comparação; não acrescente «mehr».",
+"ru": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nПоезд быстрее автобуса.\n\nDas Fahrrad ist langsamer als der Zug.\n\nВелосипед медленнее поезда.\n\n«schneller» и «langsamer» направляют сравнение в разные стороны: быстрее или медленнее. После «als» назови того, с кем сравниваешь. Само «-er» уже даёт «более»; ещё одно «mehr» не нужно.",
+"tr": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nTren otobüsten daha hızlı.\n\nDas Fahrrad ist langsamer als der Zug.\n\nBisiklet trenden daha yavaş.\n\n«schneller» daha hızlı, «langsamer» daha yavaş demektir. «als» sonrasında karşılaştırdığın kişiyi ya da şeyi söyle. «-er» zaten karşılaştırma yapar, ayrıca «mehr» ekleme.",
+"uk": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nПоїзд швидше за автобус.\n\nDas Fahrrad ist langsamer als der Zug.\n\nВелосипед повільніший за поїзд.\n\n«schneller» і «langsamer» задають протилежні напрямки: швидше або повільніше. Після «als» назви, з ким порівнюєш. «-er» уже створює ступінь, додаткове «mehr» не потрібне.",
+"vi": "«größer als» / «so groß wie» / «am größten»\n\nDer Zug ist schneller als der Bus.\n\nTàu hỏa nhanh hơn xe buýt.\n\nDas Fahrrad ist langsamer als der Zug.\n\nXe đạp chậm hơn tàu hỏa.\n\n«schneller» là nhanh hơn, «langsamer» là chậm hơn. Sau «als» nêu bên được so sánh. Đuôi «-er» đã diễn tả “hơn”, đừng thêm «mehr»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:20:02",
+"de:20:03"
+]
+},
+{
+"textEN": "The bus is faster than me.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der Bus» — The bus: the first thing being compared.\n\n2. «ist» — Is: joins one bus to its description.\n\n3. «schneller» — Faster, not just fast: -er marks the comparison.\n\n4. «als ich» — Than I am: als is comparing, not saying “when”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textES": "El autobús es más rápido que yo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der Bus» — El autobús: primer término de la comparación.\n\n2. «ist» — Es: une un autobús con su descripción.\n\n3. «schneller» — Más rápido: -er marca la comparación.\n\n4. «als ich» — Que yo: aquí als compara, no significa «cuando».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textId": "Bus lebih cepat daripada saya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der Bus» — Bus itu: yang pertama dibandingkan.\n\n2. «ist» — Menghubungkan satu bus dengan keterangannya.\n\n3. «schneller» — Lebih cepat: -er membuat perbandingan.\n\n4. «als ich» — Daripada aku: als membandingkan, bukan berarti “ketika”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textPl": "Autobus jest szybszy niż ja.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der Bus» — Autobus: pierwsza strona porównania.\n\n2. «ist» — Jest: łączy jeden autobus z opisem.\n\n3. «schneller» — Szybszy: -er sygnalizuje porównanie.\n\n4. «als ich» — Ode mnie: tutaj als porównuje, nie oznacza „kiedy”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textPtBr": "O ônibus é mais rápido do que eu.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der Bus» — O ônibus: primeiro elemento comparado.\n\n2. «ist» — É: liga um ônibus à descrição.\n\n3. «schneller» — Mais rápido: -er marca a comparação.\n\n4. «als ich» — Do que eu: aqui als compara, não quer dizer “quando”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textRU": "Автобус быстрее меня.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der Bus» — Автобус: то, что сравниваем первым.\n\n2. «ist» — Форма «быть» для одного предмета. Соединяет автобус с его описанием.\n\n3. «schneller» — Быстрее, не просто быстро: окончание -er создаёт сравнение.\n\n4. «als ich» — Чем я. Здесь als сравнивает; оно не значит «когда».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textTr": "Otobüs benden daha hızlı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der Bus» — Otobüs: karşılaştırmanın ilk tarafı.\n\n2. «ist» — Tek bir otobüsü niteliğine bağlar.\n\n3. «schneller» — Daha hızlı: -er karşılaştırma yapar.\n\n4. «als ich» — Benden: burada als karşılaştırır, “-dığında” demek değildir.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textUK": "Автобус швидше за мене.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der Bus» — Автобус: що порівнюємо першим.\n\n2. «ist» — Форма «бути» для одного предмета. Поєднує автобус з описом.\n\n3. «schneller» — Швидший, не просто швидкий: -er створює порівняння.\n\n4. «als ich» — Ніж я. Тут als порівнює, не означає «коли».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"textVi": "Xe buýt nhanh hơn tôi.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der Bus» — Chiếc xe buýt: đối tượng đầu tiên để so sánh.\n\n2. «ist» — Là: nối một chiếc xe với đặc điểm của nó.\n\n3. «schneller» — Nhanh hơn: -er nêu so sánh.\n\n4. «als ich» — Hơn tôi: als để so sánh, không phải “khi”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "The bus is faster than me.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der Bus» — The bus: the first thing being compared.\n\n2. «ist» — Is: joins one bus to its description.\n\n3. «schneller» — Faster, not just fast: -er marks the comparison.\n\n4. «als ich» — Than I am: als is comparing, not saying “when”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"es": "El autobús es más rápido que yo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der Bus» — El autobús: primer término de la comparación.\n\n2. «ist» — Es: une un autobús con su descripción.\n\n3. «schneller» — Más rápido: -er marca la comparación.\n\n4. «als ich» — Que yo: aquí als compara, no significa «cuando».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"id": "Bus lebih cepat daripada saya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der Bus» — Bus itu: yang pertama dibandingkan.\n\n2. «ist» — Menghubungkan satu bus dengan keterangannya.\n\n3. «schneller» — Lebih cepat: -er membuat perbandingan.\n\n4. «als ich» — Daripada aku: als membandingkan, bukan berarti “ketika”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"pl": "Autobus jest szybszy niż ja.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der Bus» — Autobus: pierwsza strona porównania.\n\n2. «ist» — Jest: łączy jeden autobus z opisem.\n\n3. «schneller» — Szybszy: -er sygnalizuje porównanie.\n\n4. «als ich» — Ode mnie: tutaj als porównuje, nie oznacza „kiedy”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"pt-BR": "O ônibus é mais rápido do que eu.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der Bus» — O ônibus: primeiro elemento comparado.\n\n2. «ist» — É: liga um ônibus à descrição.\n\n3. «schneller» — Mais rápido: -er marca a comparação.\n\n4. «als ich» — Do que eu: aqui als compara, não quer dizer “quando”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"ru": "Автобус быстрее меня.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der Bus» — Автобус: то, что сравниваем первым.\n\n2. «ist» — Форма «быть» для одного предмета. Соединяет автобус с его описанием.\n\n3. «schneller» — Быстрее, не просто быстро: окончание -er создаёт сравнение.\n\n4. «als ich» — Чем я. Здесь als сравнивает; оно не значит «когда».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"tr": "Otobüs benden daha hızlı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der Bus» — Otobüs: karşılaştırmanın ilk tarafı.\n\n2. «ist» — Tek bir otobüsü niteliğine bağlar.\n\n3. «schneller» — Daha hızlı: -er karşılaştırma yapar.\n\n4. «als ich» — Benden: burada als karşılaştırır, “-dığında” demek değildir.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"uk": "Автобус швидше за мене.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der Bus» — Автобус: що порівнюємо першим.\n\n2. «ist» — Форма «бути» для одного предмета. Поєднує автобус з описом.\n\n3. «schneller» — Швидший, не просто швидкий: -er створює порівняння.\n\n4. «als ich» — Ніж я. Тут als порівнює, не означає «коли».\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich.",
+"vi": "Xe buýt nhanh hơn tôi.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der Bus» — Chiếc xe buýt: đối tượng đầu tiên để so sánh.\n\n2. «ist» — Là: nối một chiếc xe với đặc điểm của nó.\n\n3. «schneller» — Nhanh hơn: -er nêu so sánh.\n\n4. «als ich» — Hơn tôi: als để so sánh, không phải “khi”.\n\nDer → Bus → ist → schneller → als → ich\n\nDer Bus ist schneller als ich."
+},
+"kind": "practice",
+"exampleIds": [
+"de:20:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:20:01",
+"target": "Der Bus ist schneller als ich.",
+"ru": "Автобус быстрее меня.",
+"uk": "Автобус швидший за мене."
+},
+{
+"id": "de:20:02",
+"target": "Der Zug ist schneller als der Bus.",
+"ru": "Поезд быстрее автобуса.",
+"uk": "Поїзд швидший за автобус."
+},
+{
+"id": "de:20:03",
+"target": "Das Fahrrad ist langsamer als der Zug.",
+"ru": "Велосипед медленнее поезда.",
+"uk": "Велосипед повільніший за поїзд."
+},
+{
+"id": "de:20:01",
+"target": "Der Bus ist schneller als ich.",
+"ru": "Автобус быстрее меня.",
+"uk": "Автобус швидший за мене."
+}
+]
+}
+]

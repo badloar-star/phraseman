@@ -1,0 +1,114 @@
+[
+ {
+  "id": "lesson-7/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Compare three types of objects. For one unspecified object, you get `einen`, `eine`, and `ein`. In the masculine gender, the ending `-en` is easy to spot; it cannot be added mechanically in each gender."
+ },
+ {
+  "id": "lesson-7/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "uk «окремого приводу» (привід = повод) вместо «прийменника»",
+  "fix": "Питання «кого чи що шукають?» допомагає побачити об'єкт. Дієслово `suchen` не вимагає окремого прийменника перед самим об'єктом. Спочатку склади `Ich suche`, потім додай, кого чи що."
+ },
+ {
+  "id": "lesson-7/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "The question \"Who or what are they looking for?\" helps identify the object. The verb `suchen` doesn't require a separate preposition before the object itself. First, form `Ich suche`, then add who or what."
+ },
+ {
+  "id": "lesson-7/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.ru",
+  "problem": "nehmen буквально «взять», а не «выбрать»",
+  "fix": "Транспорт тоже бывает объектом: `den Bus nehmen` — поехать автобусом, буквально «взять» его. Не путай этот способ выразить поездку с конструкцией `mit dem Bus`, где падеж задаёт предлог."
+ },
+ {
+  "id": "lesson-7/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "nehmen буквально «взяти», а не «вибрати»",
+  "fix": "Транспорт теж буває об'єктом: `den Bus nehmen` — поїхати автобусом, буквально «взяти» його. Не плутай цей спосіб висловити поїздку з конструкцією `mit dem Bus`, де відмінок задає прийменник."
+ },
+ {
+  "id": "lesson-7/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "en перевёрнут смысл: «the case determines the preposition» (ru: падеж задаёт предлог); «choose» вместо «take»; лишние кавычки",
+  "fix": "Transportation can also be an object: `den Bus nehmen` means to go by bus, literally to take it. Don't confuse this way of expressing a trip with the construction `mit dem Bus`, where the preposition determines the case."
+ },
+ {
+  "id": "lesson-7/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «Коли артикль залежить» — потерян противительный смысл ru «В то время как»",
+  "fix": "Не забувай про форму дієслова. Тоді як артикль залежить від об'єкта, `liest` або `trägt` вибирається за виконавцем. Ці два рішення незалежні."
+ },
+ {
+  "id": "lesson-7/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "uk «Вивчіть … перетворіть» — переход на «ви», в остальном «ти»",
+  "fix": "Практична перевірка. Чек, посвідчення та квитанція можуть бути різного роду, хоча ситуація одна й та сама. Вивчи кожне слово з артиклем, а потім перетвори цю словникову пару на об'єкт дії."
+ },
+ {
+  "id": "lesson-7/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "en «different types» вместо «different genders» (род), «check» (банковский чек) вместо receipt",
+  "fix": "Practice check. A receipt, an ID card, and a slip can have different genders, even though the situation is the same. Learn each word with its article, then turn this vocabulary pair into the object of the action."
+ },
+ {
+  "id": "lesson-8/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "uk «Не додай» — неверная форма запрета (нужно «Не додавай»)",
+  "fix": "Щоб сказати, що не маєш квитка, використовується заперечний артикль. Уяви позитивне `ein Ticket` та заміни артикль: `kein Ticket`. Не додавай другий невизначений артикль."
+ },
+ {
+  "id": "lesson-8/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "To say you don't have a ticket, use the negative article. Imagine the positive `ein Ticket` and replace the article: `kein Ticket`. Don't add a second indefinite article."
+ },
+ {
+  "id": "lesson-8/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Why is it `keinen`? The ending of the negative article depends on the same gender, number, and case as other determiners. For a masculine object, `haben` requires `keinen`."
+ },
+ {
+  "id": "lesson-8/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.ru",
+  "problem": "Обрывочное «Перед противопоставленным местом — перед группой места»; пример главы de:08:36 «nicht mit Karte» про способ оплаты, а не место; в de:08:31 нет «известного предмета»",
+  "fix": "Место `nicht` не фиксировано. Если отрицаешь одну часть фразы, например способ оплаты, `nicht` стоит прямо перед ней: `nicht mit Karte`. Когда отрицается всё действие целиком, `nicht` обычно оказывается ближе к концу: `Ich arbeite heute nicht`."
+ },
+ {
+  "id": "lesson-8/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "То же + «просте дію» — неверный род; обрывочная фраза про місце",
+  "fix": "Місце `nicht` не фіксоване. Якщо заперечуєш одну частину фрази, наприклад спосіб оплати, `nicht` стоїть просто перед нею: `nicht mit Karte`. Коли заперечується вся дія цілком, `nicht` зазвичай опиняється ближче до кінця: `Ich arbeite heute nicht`."
+ },
+ {
+  "id": "lesson-8/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "То же; «The place `nicht`» — неграмматично",
+  "fix": "The position of `nicht` is not fixed. If you negate one part of the sentence, such as the payment method, `nicht` goes right before it: `nicht mit Karte`. When the whole action is negated, `nicht` usually ends up near the end: `Ich arbeite heute nicht`."
+ },
+ {
+  "id": "lesson-8/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "This is not my suitcase. It already contains the determiner `mein`, so you can't simultaneously use `kein mein`. Negate possession with `nicht` before the group with `mein`."
+ }
+]

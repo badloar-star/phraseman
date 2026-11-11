@@ -1,0 +1,128 @@
+[
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "Текст говорит только о паспорте, но пример de:09:14 — seinen Schal",
+  "fix": "`Sein` или `ihr`? В этих примерах речь о собственной вещи названного человека. Для Тома выбирай основу `sein-`, для Анны — `ihr-`. Окончание зависит от вещи, а не от владельца: `ihren Pass`, `seinen Schal`."
+ },
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "Текст говорить лише про паспорт, але приклад de:09:14 — seinen Schal",
+  "fix": "`Sein` чи `ihr`? У цих прикладах ідеться про власну річ названої людини. Для Тома вибирай основу `sein-`, для Анни — `ihr-`. Закінчення залежить від речі, а не від власника: `ihren Pass`, `seinen Schal`."
+ },
+ {
+  "id": "lesson-9/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Same mismatch (example is Schal) + stray quotes",
+  "fix": "`Sein` or `ihr`? These examples are about the named person's own thing. For Tom, choose the stem `sein-`; for Anna, `ihr-`. The ending depends on the thing, not on the owner: `ihren Pass`, `seinen Schal`."
+ },
+ {
+  "id": "lesson-9/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«підлогу власника» — машинная ошибка (підлога = пол в комнате), нужно «стать»",
+  "fix": "Не орієнтуйся на стать власника, вибираючи закінчення. У телефону середній рід, у ключів у множині свій набір закінчень. Можна міняти річ, не змінюючи власника."
+ },
+ {
+  "id": "lesson-9/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«голосні вихідні форми» — неверный падеж, нужно «вихідної форми»",
+  "fix": "Є й власники-групи: `unser` включає того, хто говорить, `euer` звернено до кількох знайомих. Зверни увагу на коротке `eure`, не намагайся зберегти обидві голосні вихідної форми."
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "Пример de:09:33 (deinen Ausweis) не про вежливое Ihr; текст не объясняет контраст",
+  "fix": "Вежливое `Ihr` начинается с заглавной буквы даже внутри фразы. Сравни: знакомому — `deinen Ausweis`, собеседнику на «вы» — `Ihre Quittung`. На слух `Ihr` совпадает со словом «её» или «их», поэтому смотри, к кому обращаются."
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "Приклад de:09:33 (deinen Ausweis) не про ввічливе Ihr",
+  "fix": "Ввічливе `Ihr` починається з великої літери навіть усередині фрази. Порівняй: знайомому — `deinen Ausweis`, співрозмовнику на «ви» — `Ihre Quittung`. На слух `Ihr` збігається зі словом «її» або «їх», тому дивись, до кого звертаються."
+ },
+ {
+  "id": "lesson-9/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "Example de:09:33 (deinen Ausweis) is not about polite Ihr",
+  "fix": "The polite `Ihr` begins with a capital letter, even within a phrase. Compare: to a friend — `deinen Ausweis`, to someone you address formally — `Ihre Quittung`. By ear, `Ihr` sounds like \"her\" or \"their\", so check who is being addressed."
+ },
+ {
+  "id": "lesson-10/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "To name a vehicle, it's convenient to use `mit`. In this combination, the masculine or neuter definite article becomes `dem`, and the feminine becomes `der`. This doesn't change the meaning of the vehicle itself."
+ },
+ {
+  "id": "lesson-10/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Who are you talking to? The question refers to the partner, not the topic of conversation. The same preposition `mit` works with people. A short pronoun replaces the entire group: `mit mir`, not `mit ich`."
+ },
+ {
+  "id": "lesson-10/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«промові» (=выступление), «Чи не додай» — машинный перевод, «дальний» вместо «давальний»",
+  "fix": "До кого чи до чого йдеш? Після `zu` теж потрібен давальний. У звичайному мовленні `zu dem` часто зливається в `zum`, а `zu der` — в `zur`. Не додавай ще один артикль після скорочення."
+ },
+ {
+  "id": "lesson-10/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Who or what are you going to? The dative is also needed after `zu`. In everyday speech, `zu dem` often merges into `zum`, and `zu der` into `zur`. Don't add another article after the abbreviation."
+ },
+ {
+  "id": "lesson-10/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.ru",
+  "problem": "«Aus — изнутри помещения», а пример de:10:39 — aus dem Garten (сад не помещение)",
+  "fix": "Источник бывает разным. `Von` удобно для отправителя и исходной точки. `Aus` подходит, когда выходят изнутри места: здания, сада, города. Оба не надо переводить одним заученным предлогом для всех ситуаций."
+ },
+ {
+  "id": "lesson-10/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«зсередини приміщення» не підходить до aus dem Garten; «приводом» — машинна помилка (треба «прийменником»)",
+  "fix": "Джерело буває різним. `Von` зручно для відправника та вихідної точки. `Aus` підходить, коли виходять зсередини місця: будівлі, саду, міста. Обидва не треба перекладати одним завченим прийменником для всіх ситуацій."
+ },
+ {
+  "id": "lesson-10/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "\"inside a building\" contradicts aus dem Garten",
+  "fix": "The source can be different. `Von` is convenient for the sender and the starting point. `Aus` fits when coming out from inside a place: a building, a garden, a city. Don't translate both with one memorized preposition for every situation."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.ru",
+  "problem": "Правило про множественное (mit meinen Eltern) не проиллюстрировано: оба примера (de:10:47, de:10:50) в единственном числе",
+  "fix": "Дательный работает и с `einem`, `diesem`: `mit einem Freund`, `bei diesem Wetter`. Во множественном числе артикль — `den`, и у многих существительных появляется дополнительное `-n`, если такого окончания ещё нет: `mit meinen Eltern`, `bei den Kindern`."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«Зверніть увагу» — на «ви», в остальной теории «ти»; примеры в единственном числе не иллюстрируют правило",
+  "fix": "Давальний працює і з `einem`, `diesem`: `mit einem Freund`, `bei diesem Wetter`. У множині артикль — `den`, і в багатьох іменників з'являється додаткове `-n`, якщо такого закінчення ще немає: `mit meinen Eltern`, `bei den Kindern`."
+ },
+ {
+  "id": "lesson-10/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "Plural rule not illustrated by singular examples + stray quote",
+  "fix": "The dative also works with `einem`, `diesem`: `mit einem Freund`, `bei diesem Wetter`. In the plural, the article is `den`, and many nouns add an extra `-n` if they don't already have that ending: `mit meinen Eltern`, `bei den Kindern`."
+ }
+]

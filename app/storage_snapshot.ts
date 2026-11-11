@@ -156,7 +156,10 @@ export function readStoredItem(key: string): Promise<string | null> {
  * multiGet с ответом из памяти; недостающие ключи читаются ОДНИМ multiGet, а параллельные вызовы с теми же ключами
  * присоединяются к уже летящему чтению (single-flight по ключу, как у readStoredItem). Порядок и форма — как у AsyncStorage.
  */
-export async function readStoredItems(keys: readonly string[]): Promise<ReadonlyArray<readonly [string, string | null]>> {
+export async function readStoredItems(
+  keys: readonly string[],
+  cacheKeys?: ReadonlySet<string>,
+): Promise<ReadonlyArray<readonly [string, string | null]>> {
   if (!isMutationTrackingActive()) return AsyncStorage.multiGet([...keys]);
   ensureSubscribed();
   const result = new Map<string, string | null>();
@@ -164,13 +167,14 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
   const missing: string[] = [];
   for (const key of keys) {
     if (result.has(key) || missing.includes(key)) continue;
-    const peeked = peekStoredItem(key);
+    const useCache = !cacheKeys || cacheKeys.has(key);
+    const peeked = useCache ? peekStoredItem(key) : undefined;
     if (peeked !== undefined) {
       stats.hits += 1;
       result.set(key, peeked);
       continue;
     }
-    const shared = isSnapshotDeniedKey(key) ? undefined : readsInFlight.get(key);
+    const shared = useCache && !isSnapshotDeniedKey(key) ? readsInFlight.get(key) : undefined;
     if (shared && shared.epoch === epochOf(key)) {
       joined.push(shared.promise.then((value) => { result.set(key, value); }));
       continue;
@@ -179,7 +183,7 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
   }
   if (missing.length > 0) {
     const epochs = new Map(missing.map((key) => [key, epochOf(key)] as const));
-    const cacheable = new Map(missing.map((key) => [key, canCache(key)] as const));
+    const cacheable = new Map(missing.map((key) => [key, (!cacheKeys || cacheKeys.has(key)) && canCache(key)] as const));
     const batch = AsyncStorage.multiGet(missing);
     for (const key of missing) {
       if (isSnapshotDeniedKey(key) || !cacheable.get(key)) continue;
@@ -196,7 +200,7 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
     }
     let rows: ReadonlyArray<readonly [string, string | null]>;
     try {
-      rows = await batch;
+      [rows] = await Promise.all([batch, Promise.all(joined)]);
     } catch (error) {
       stats.errors += 1;
       warn(`readMany:catch keys=${missing.length}`, errorText(error));
@@ -210,8 +214,9 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
         entries.set(key, { value });
       }
     }
+  } else {
+    await Promise.all(joined);
   }
-  await Promise.all(joined);
   return keys.map((key) => [key, result.get(key) ?? null] as const);
 }
 

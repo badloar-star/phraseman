@@ -1,0 +1,17 @@
+[
+{"id": "en-classic-r1:11.02", "type": "M", "field": "ru", "problem": "«шла до станции» — несовершенный вид + «до» звучит как процесс «шла по дороге к станции», неестественно; uk «пішла до станції»", "fix": "Она дошла до станции пешком."},
+{"id": "en-classic-r1:11.15", "type": "B2", "field": "ru", "problem": "ru «вещи» vs uk «валізи» — разный объект в двух подсказках; в target bags", "fix": "Они собрали свои чемоданы."},
+{"id": "en-classic-r1:11.27", "type": "M", "field": "uk", "problem": "«перетнули дорогу» — книжно; пешеход по-украински «перейшли дорогу»", "fix": "Ми перейшли дорогу на світлофорі."},
+{"id": "en-classic-r1:11.31", "type": "B1", "field": "tiles", "problem": "Have (поз.0) + called (поз.2) даёт верное «Have you called the office?» = «Вы звонили в офис?»", "fix": {"position": 0, "replace_distractor": "Have", "with": "Was"}},
+{"id": "en-classic-r1:11.33", "type": "B1", "field": "tiles", "problem": "Have (поз.0) + posted (поз.2) даёт верное «Have they posted the letter?» = «Они отправили письмо?»", "fix": {"position": 0, "replace_distractor": "Have", "with": "Was"}},
+{"id": "en-classic-r1:11.34", "type": "B1", "field": "tiles", "problem": "Has (поз.0) + locked (поз.2) даёт верное «Has he locked the bike?» = «Он запер велосипед?»", "fix": {"position": 0, "replace_distractor": "Has", "with": "Was"}},
+{"id": "en-classic-r1:11.36", "type": "B1", "field": "tiles", "problem": "have (поз.1) + checked (поз.3) даёт верное «I have not checked the label.» = «Я не проверял этикетку.»", "fix": {"position": 1, "replace_distractor": "have", "with": "was"}},
+{"id": "en-classic-r1:11.38", "type": "B1", "field": "tiles", "problem": "have (поз.1) + missed (поз.3) даёт верное «They have not missed the flight.» = «Они не опоздали на рейс.»", "fix": {"position": 1, "replace_distractor": "have", "with": "was"}},
+{"id": "en-classic-r1:11.47", "type": "M", "field": "ru", "problem": "«заметил отсутствующую страницу» — калька, по-русски так не говорят", "fix": "Я заметил, что не хватает страницы."},
+{"id": "en-classic-r1:11.47", "type": "M", "field": "uk", "problem": "«помітив відсутню сторінку» — калька, неприродно", "fix": "Я помітив, що бракує сторінки."},
+{"id": "en-classic-r1:12.22", "type": "B2", "field": "ru", "problem": "sign = надпись/табличка; ru «объявление» (notice) расходится с uk «напис»", "fix": "Я дважды прочитал надпись."},
+{"id": "en-classic-r1:12.31", "type": "B1", "field": "tiles", "problem": "Have (поз.0) + found (поз.2) даёт верное «Have you found your keys?» = «Ты нашёл свои ключи?»", "fix": {"position": 0, "replace_distractor": "Have", "with": "Was"}},
+{"id": "en-classic-r1:12.36", "type": "B1", "field": "tiles", "problem": "have (поз.1) + found (поз.3) даёт верное «We have not found a parking space.» = «Мы не нашли парковочное место.»", "fix": {"position": 1, "replace_distractor": "have", "with": "was"}},
+{"id": "en-classic-r1:12.38", "type": "B1", "field": "tiles", "problem": "has (поз.1) + broken (поз.3) даёт верное «He has not broken the lock.» = «Он не сломал замок.»", "fix": {"position": 1, "replace_distractor": "has", "with": "was"}},
+{"id": "en-classic-r1:12.44", "type": "B1", "field": "tiles", "problem": "have (поз.1) + met (поз.3) даёт грамматичное «Who have you met at the station?» = «Кого ты встретил на вокзале?»", "fix": {"position": 1, "replace_distractor": "have", "with": "was"}}
+]

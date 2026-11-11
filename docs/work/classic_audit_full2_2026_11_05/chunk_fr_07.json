@@ -1,0 +1,5543 @@
+[
+{
+"lesson": 15,
+"id": "fr:15:01",
+"target": "Je vais partir.",
+"ru": "Я собираюсь уйти.",
+"uk": "Я збираюся йти.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Tu",
+"On",
+"Elles",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allez",
+"vas",
+"allons",
+"va",
+"vont"
+]
+},
+{
+"correct": "partir",
+"distractors": [
+"partez",
+"part",
+"partons",
+"pars",
+"sortie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:02",
+"target": "Tu vas partir.",
+"ru": "Ты собираешься уйти.",
+"uk": "Ти збираєшся йти.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Il",
+"Je",
+"On",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"vais",
+"vont",
+"va",
+"allons",
+"allez"
+]
+},
+{
+"correct": "partir",
+"distractors": [
+"part",
+"partons",
+"partez",
+"pars",
+"sortie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:03",
+"target": "Elle va téléphoner.",
+"ru": "Она собирается позвонить.",
+"uk": "Вона збирається зробити телефонний дзвінок.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Ils",
+"Je",
+"Nous",
+"Tu",
+"Il"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"allez",
+"vont",
+"allons",
+"vas"
+]
+},
+{
+"correct": "téléphoner",
+"distractors": [
+"lunettes",
+"allons",
+"minutes",
+"vélo",
+"conduire"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:04",
+"target": "Nous allons marcher.",
+"ru": "Мы собираемся пойти пешком.",
+"uk": "Ми збираємося піти пішки.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Il",
+"Ils",
+"Elles",
+"Je",
+"Tu"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"va",
+"vont",
+"vas",
+"vais",
+"allez"
+]
+},
+{
+"correct": "marcher",
+"distractors": [
+"marché",
+"cours",
+"acheter",
+"allez",
+"colis"
+]
+}
+],
+"alternatives": [
+"On va marcher."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:05",
+"target": "Vous allez rester.",
+"ru": "Вы собираетесь остаться.",
+"uk": "Ви маєте намір залишитися.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Il",
+"Ils",
+"Je",
+"On",
+"Elles"
+]
+},
+{
+"correct": "allez",
+"distractors": [
+"vais",
+"musée",
+"marché",
+"nous",
+"elles"
+]
+},
+{
+"correct": "rester",
+"distractors": [
+"minutes",
+"film",
+"facture",
+"magasin",
+"veste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:06",
+"target": "Ils vont rentrer.",
+"ru": "Они пойдут домой.",
+"uk": "Вони підуть додому.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Il",
+"Tu",
+"On",
+"Je",
+"Nous"
+]
+},
+{
+"correct": "vont",
+"distractors": [
+"va",
+"vas",
+"vais",
+"allons",
+"allez"
+]
+},
+{
+"correct": "rentrer",
+"distractors": [
+"facture",
+"acheter",
+"imprimer",
+"visiter",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:07",
+"target": "Je vais réserver une chambre.",
+"ru": "Я забронирую номер.",
+"uk": "Я забронюю кімнату.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"Il",
+"Elles",
+"Tu",
+"Ils"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"va",
+"allez",
+"allons",
+"vont",
+"vas"
+]
+},
+{
+"correct": "réserver",
+"distractors": [
+"conduire",
+"pied",
+"samedi",
+"perdre",
+"gauche"
+]
+},
+{
+"correct": "une",
+"distractors": [
+"un",
+"à",
+"de",
+"que",
+"et"
+]
+},
+{
+"correct": "chambre",
+"distractors": [
+"sortie",
+"école",
+"maison",
+"rue",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:08",
+"target": "Tu vas prendre le bus.",
+"ru": "Ты поедешь на автобусе.",
+"uk": "Ти поїдеш автобусом.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"On",
+"Nous",
+"Elles",
+"Il",
+"Je"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"vont",
+"allez",
+"va",
+"vais",
+"allons"
+]
+},
+{
+"correct": "prendre",
+"distractors": [
+"photo",
+"nous",
+"apporter",
+"place",
+"matinée"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"de",
+"une",
+"à",
+"ces",
+"cette"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"taxi",
+"vélo",
+"métro",
+"train",
+"voiture"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:09",
+"target": "Léa va préparer le déjeuner.",
+"ru": "Леа собирается приготовить обед.",
+"uk": "Леа приготує обід.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Julie",
+"Anna",
+"Tom",
+"Paul",
+"Marie"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"allons",
+"tu",
+"a",
+"bus"
+]
+},
+{
+"correct": "préparer",
+"distractors": [
+"veste",
+"rappeler",
+"lunettes",
+"sac",
+"valise"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"aux",
+"au",
+"ce",
+"que",
+"et"
+]
+},
+{
+"correct": "déjeuner",
+"distractors": [
+"ranger",
+"remplir",
+"passer",
+"trouver",
+"essayer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:10",
+"target": "Paul va ouvrir le magasin.",
+"ru": "Поль собирается открыть магазин.",
+"uk": "Пол відкриє магазин.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Léa",
+"Marie",
+"Anna",
+"Tom",
+"Julie"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"allons",
+"musée",
+"marché",
+"travail"
+]
+},
+{
+"correct": "ouvrir",
+"distractors": [
+"ouverts",
+"ouvertes",
+"ouvert",
+"ouverte",
+"ouvre"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"au",
+"la",
+"de",
+"aux",
+"que"
+]
+},
+{
+"correct": "magasin",
+"distractors": [
+"rester",
+"formulaire",
+"cours",
+"passer",
+"dormir"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:11",
+"target": "Je vais acheter du pain.",
+"ru": "Я собираюсь купить хлеб.",
+"uk": "Я куплю хліба.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Tu",
+"Ils",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"vas",
+"vont",
+"va",
+"allons",
+"allez"
+]
+},
+{
+"correct": "acheter",
+"distractors": [
+"matinée",
+"trouver",
+"enfants",
+"place",
+"imprimer"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"à",
+"les",
+"aux",
+"la",
+"que"
+]
+},
+{
+"correct": "pain",
+"distractors": [
+"café",
+"riz",
+"lait",
+"soupe",
+"thé"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:12",
+"target": "Elle va chercher ses lunettes.",
+"ru": "Она собирается поискать свои очки.",
+"uk": "Вона збирається пошукати свої окуляри.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Ils",
+"Je",
+"Tu",
+"Elles",
+"Il"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"vont",
+"vas",
+"allons",
+"allez"
+]
+},
+{
+"correct": "chercher",
+"distractors": [
+"cherches",
+"cherchent",
+"cherchons",
+"cherchez",
+"cherche"
+]
+},
+{
+"correct": "ses",
+"distractors": [
+"sa",
+"leur",
+"ta",
+"nos",
+"son"
+]
+},
+{
+"correct": "lunettes",
+"distractors": [
+"valise",
+"veste",
+"gants",
+"pull",
+"boîte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:13",
+"target": "Nous allons inviter nos voisins.",
+"ru": "Мы собираемся пригласить наших соседей.",
+"uk": "Ми збираємося запросити наших сусідів.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Ils",
+"Je",
+"On",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"vont",
+"va",
+"vais",
+"allez",
+"vas"
+]
+},
+{
+"correct": "inviter",
+"distractors": [
+"commander",
+"soir",
+"vélo",
+"formulaire",
+"téléphoner"
+]
+},
+{
+"correct": "nos",
+"distractors": [
+"sa",
+"ses",
+"tes",
+"ton",
+"mon"
+]
+},
+{
+"correct": "voisins",
+"distractors": [
+"sortir",
+"médecin",
+"dîner",
+"envoyer",
+"elles"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:14",
+"target": "Vous allez changer de train.",
+"ru": "Вы собираетесь пересесть на другой поезд.",
+"uk": "Ви збираєтеся зробити пересадку.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"On",
+"Nous",
+"Elles",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "allez",
+"distractors": [
+"vais",
+"elles",
+"demain",
+"nous",
+"musée"
+]
+},
+{
+"correct": "changer",
+"distractors": [
+"choisir",
+"veste",
+"marcher",
+"gauche",
+"sac"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"vélo",
+"métro",
+"taxi",
+"voiture"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:15",
+"target": "Ils vont livrer le colis.",
+"ru": "Они доставят посылку.",
+"uk": "Вони збираються доставити посилку.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Il",
+"Je",
+"Tu",
+"On",
+"Nous"
+]
+},
+{
+"correct": "vont",
+"distractors": [
+"va",
+"allons",
+"allez",
+"vais",
+"vas"
+]
+},
+{
+"correct": "livrer",
+"distractors": [
+"inviter",
+"elles",
+"reporter",
+"rester",
+"sortir"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"au",
+"des",
+"cette",
+"ces",
+"de"
+]
+},
+{
+"correct": "colis",
+"distractors": [
+"photo",
+"attendre",
+"marcher",
+"sortir",
+"pain"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:16",
+"target": "Je vais imprimer le billet.",
+"ru": "Я собираюсь распечатать билет.",
+"uk": "Я збираюся роздрукувати квиток.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"Nous",
+"On",
+"Il",
+"Ils"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allons",
+"va",
+"allez",
+"vont",
+"vas"
+]
+},
+{
+"correct": "imprimer",
+"distractors": [
+"ranger",
+"vont",
+"dessert",
+"tourner",
+"va"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"de",
+"au",
+"ces",
+"aux",
+"du"
+]
+},
+{
+"correct": "billet",
+"distractors": [
+"badge",
+"passeport",
+"formulaire",
+"reçu",
+"faut"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:17",
+"target": "Tu vas remplir le formulaire.",
+"ru": "Ты собираешься заполнить бланк.",
+"uk": "Ти збираєшся заповнити бланк.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Ils",
+"Je",
+"On",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"allons",
+"vais",
+"allez",
+"va",
+"vont"
+]
+},
+{
+"correct": "remplir",
+"distractors": [
+"place",
+"rentrer",
+"taxi",
+"cours",
+"train"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"du",
+"cette",
+"à",
+"aux",
+"que"
+]
+},
+{
+"correct": "formulaire",
+"distractors": [
+"ticket",
+"billet",
+"badge",
+"reçu",
+"passeport"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:18",
+"target": "On va passer à la banque.",
+"ru": "Мы собираемся зайти в банк.",
+"uk": "Ми збираємося зайти до банку.",
+"tiles": [
+{
+"correct": "On",
+"distractors": [
+"Elles",
+"Je",
+"Tu",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vont",
+"vas",
+"vais",
+"allons",
+"allez"
+]
+},
+{
+"correct": "passer",
+"distractors": [
+"magasin",
+"voisins",
+"train",
+"inviter",
+"métro"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"du",
+"des",
+"de",
+"ce",
+"que"
+]
+},
+{
+"correct": "banque",
+"distractors": [
+"gare",
+"rue",
+"salle",
+"sortie",
+"chambre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:19",
+"target": "Le bus va tourner à gauche.",
+"ru": "Автобус повернет налево.",
+"uk": "Автобус поверне ліворуч.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Les",
+"Une",
+"Au",
+"Cette"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"train",
+"métro",
+"voiture",
+"vélo",
+"taxi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"allons",
+"musée",
+"prends",
+"veste"
+]
+},
+{
+"correct": "tourner",
+"distractors": [
+"dîner",
+"essayer",
+"marché",
+"réserver",
+"musée"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "gauche",
+"distractors": [
+"facture",
+"jouer",
+"serviettes",
+"réparer",
+"nous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:20",
+"target": "Le film va commencer.",
+"ru": "Фильм начнётся.",
+"uk": "Фільм почнеться.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Une",
+"Ce",
+"Ces",
+"Au",
+"À"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"changer",
+"midi",
+"minutes",
+"vérifier",
+"facture"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vais",
+"prends",
+"veste",
+"soir"
+]
+},
+{
+"correct": "commencer",
+"distractors": [
+"place",
+"lunettes",
+"rentrer",
+"billet",
+"rester"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:21",
+"target": "Demain, je vais voir Léa.",
+"ru": "Завтра я собираюсь повидаться с Леа.",
+"uk": "Завтра я збираюся побачитися з Леа.",
+"tiles": [
+{
+"correct": "Demain",
+"distractors": [
+"Maintenant",
+"Aujourd’hui",
+"J’ai",
+"Ne",
+"C’est"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"il",
+"vous",
+"tu",
+"elle"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"vas",
+"vont",
+"va",
+"allons",
+"allez"
+]
+},
+{
+"correct": "voir",
+"distractors": [
+"voisins",
+"travailler",
+"acheter",
+"préparer",
+"enfants"
+]
+},
+{
+"correct": "Léa",
+"distractors": [
+"Anna",
+"Paul",
+"Tom",
+"Julie",
+"Marie"
+]
+}
+],
+"alternatives": [
+"Je vais voir Léa demain."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:22",
+"target": "Ce soir, nous allons dîner ensemble.",
+"ru": "Сегодня вечером мы будем ужинать вместе.",
+"uk": "Сьогодні ввечері ми повечеряємо разом.",
+"tiles": [
+{
+"correct": "Ce",
+"distractors": [
+"Les",
+"Ces",
+"La",
+"Le",
+"Du"
+]
+},
+{
+"correct": "soir",
+"distractors": [
+"midi",
+"samedi",
+"dimanche",
+"matin",
+"minuit"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"elles",
+"vous",
+"elle",
+"tu",
+"il"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"vont",
+"allez",
+"vais",
+"va",
+"vas"
+]
+},
+{
+"correct": "dîner",
+"distractors": [
+"enfants",
+"déjeuner",
+"tourner",
+"facture",
+"déjà"
+]
+},
+{
+"correct": "ensemble",
+"distractors": [
+"place",
+"changer",
+"elles",
+"voisins",
+"partir"
+]
+}
+],
+"alternatives": [
+"Nous allons dîner ensemble ce soir."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:23",
+"target": "Après le cours, je vais rentrer à pied.",
+"ru": "После занятий я пойду домой пешком.",
+"uk": "Після уроків я піду додому пішки.",
+"tiles": [
+{
+"correct": "Après",
+"distractors": [
+"De",
+"En",
+"Sur",
+"Dans",
+"Chez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"aux",
+"des",
+"ce",
+"que",
+"et"
+]
+},
+{
+"correct": "cours",
+"distractors": [
+"cour",
+"changer",
+"place",
+"rappeler",
+"pleuvoir"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"ils",
+"vous",
+"il",
+"elle",
+"nous"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"va",
+"allons",
+"allez",
+"vont",
+"vas"
+]
+},
+{
+"correct": "rentrer",
+"distractors": [
+"envoyer",
+"farine",
+"perdre",
+"longtemps",
+"déménager"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "pied",
+"distractors": [
+"magasin",
+"voyage",
+"minutes",
+"attendre",
+"garage"
+]
+}
+],
+"alternatives": [
+"Je vais rentrer à pied après le cours."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:24",
+"target": "Samedi, ils vont visiter le marché.",
+"ru": "В субботу они пойдут на рынок.",
+"uk": "У суботу вони збираються відвідати ринок.",
+"tiles": [
+{
+"correct": "Samedi",
+"distractors": [
+"Dimanche",
+"Minuit",
+"Midi",
+"Garde",
+"Chambre"
+]
+},
+{
+"correct": "ils",
+"distractors": [
+"il",
+"nous",
+"tu",
+"on",
+"vous"
+]
+},
+{
+"correct": "vont",
+"distractors": [
+"vas",
+"allons",
+"allez",
+"vais",
+"va"
+]
+},
+{
+"correct": "visiter",
+"distractors": [
+"chercher",
+"pain",
+"serviettes",
+"facteur",
+"place"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"du",
+"au",
+"à",
+"de",
+"que"
+]
+},
+{
+"correct": "marché",
+"distractors": [
+"marcher",
+"vous",
+"rappeler",
+"commencer",
+"je"
+]
+}
+],
+"alternatives": [
+"Ils vont visiter le marché samedi."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:25",
+"target": "Dans deux minutes, le train va partir.",
+"ru": "Поезд отправится через две минуты.",
+"uk": "Поїзд відправляється через дві хвилини.",
+"tiles": [
+{
+"correct": "Dans",
+"distractors": [
+"Avec",
+"Sans",
+"Par",
+"Pour",
+"Sur"
+]
+},
+{
+"correct": "deux",
+"distractors": [
+"trois",
+"dix",
+"cinq",
+"trente",
+"vingt"
+]
+},
+{
+"correct": "minutes",
+"distractors": [
+"billet",
+"dîner",
+"choisir",
+"ticket",
+"reçu"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"ce",
+"à",
+"de",
+"que",
+"et"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"métro",
+"vélo",
+"taxi",
+"bus",
+"voiture"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vais",
+"musée",
+"prends",
+"veste"
+]
+},
+{
+"correct": "partir",
+"distractors": [
+"partez",
+"partons",
+"part",
+"pars",
+"photo"
+]
+}
+],
+"alternatives": [
+"Le train va partir dans deux minutes."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:26",
+"target": "Tu vas travailler demain ?",
+"ru": "Ты завтра пойдешь на работу?",
+"uk": "Ти йдеш на роботу завтра?",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Ils",
+"Il",
+"On",
+"Je",
+"Nous"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"allez",
+"vais",
+"allons",
+"va",
+"vont"
+]
+},
+{
+"correct": "travailler",
+"distractors": [
+"travaillent",
+"travailles",
+"travaille",
+"travaillez",
+"travaillons"
+]
+},
+{
+"correct": "demain",
+"distractors": [
+"maintenant",
+"aujourd’hui",
+"l’eau",
+"j’ai",
+"est-ce"
+]
+}
+],
+"alternatives": [
+"Est-ce que tu vas travailler demain ?",
+"Vas-tu travailler demain ?"
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:27",
+"target": "Vous allez prendre un dessert ?",
+"ru": "Вы возьмёте десерт?",
+"uk": "Ви візьмете десерт?",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Il",
+"On",
+"Elles",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "allez",
+"distractors": [
+"vais",
+"musée",
+"marché",
+"nous",
+"elles"
+]
+},
+{
+"correct": "prendre",
+"distractors": [
+"réserver",
+"banque",
+"rappeler",
+"train",
+"métro"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"ce",
+"des",
+"aux",
+"la",
+"de"
+]
+},
+{
+"correct": "dessert",
+"distractors": [
+"déménager",
+"film",
+"passer",
+"gauche",
+"jouer"
+]
+}
+],
+"alternatives": [
+"Est-ce que vous allez prendre un dessert ?",
+"Allez-vous prendre un dessert ?"
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:28",
+"target": "Est-ce qu’elle va conduire ?",
+"ru": "Она поедет за рулем?",
+"uk": "Вона сідатиме за кермо?",
+"tiles": [
+{
+"correct": "Est-ce",
+"distractors": [
+"Week-end",
+"Allez-vous",
+"Qu’est-ce",
+"Avez-vous",
+"Est-il"
+]
+},
+{
+"correct": "qu’elle",
+"distractors": [
+"qu’est-ce",
+"l’étiquette",
+"allez-vous",
+"aujourd’hui",
+"l’adresse"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vont",
+"vais",
+"allez",
+"vas"
+]
+},
+{
+"correct": "conduire",
+"distractors": [
+"déjeuner",
+"marché",
+"colis",
+"sortie",
+"gauche"
+]
+}
+],
+"alternatives": [
+"Elle va conduire ?"
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:29",
+"target": "Qu’est-ce que tu vas commander ?",
+"ru": "Что ты собираешься заказать?",
+"uk": "Що ти замовиш?",
+"tiles": [
+{
+"correct": "Qu’est-ce",
+"distractors": [
+"Qu’elle",
+"Est-ce",
+"Allez-vous",
+"N’allez",
+"Week-end"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"quand",
+"comme",
+"mais",
+"car",
+"si"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"on",
+"elle",
+"vous",
+"nous",
+"elles"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"allez",
+"allons",
+"vais",
+"va",
+"vont"
+]
+},
+{
+"correct": "commander",
+"distractors": [
+"farine",
+"trouver",
+"perdre",
+"allons",
+"matinée"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:30",
+"target": "Où allez-vous dormir ?",
+"ru": "Где вы будете спать?",
+"uk": "Де ви спатимете?",
+"tiles": [
+{
+"correct": "Où",
+"distractors": [
+"Quelle",
+"Qui",
+"Comment",
+"Combien",
+"Quoi"
+]
+},
+{
+"correct": "allez-vous",
+"distractors": [
+"est-ce",
+"week-end",
+"qu’est-ce",
+"êtes-vous",
+"sont-ils"
+]
+},
+{
+"correct": "dormir",
+"distractors": [
+"réparer",
+"longtemps",
+"rentrer",
+"demain",
+"voisins"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:31",
+"target": "Je ne vais pas sortir ce soir.",
+"ru": "Сегодня вечером я никуда не пойду.",
+"uk": "Сьогодні ввечері я нікуди не піду.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Il",
+"Nous",
+"Tu",
+"Ils"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"leur",
+"y",
+"me",
+"encore",
+"le"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allez",
+"allons",
+"va",
+"vont",
+"vas"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"y",
+"le",
+"me",
+"la"
+]
+},
+{
+"correct": "sortir",
+"distractors": [
+"sortie",
+"droite",
+"marcher",
+"essayer",
+"photo"
+]
+},
+{
+"correct": "ce",
+"distractors": [
+"la",
+"au",
+"des",
+"cette",
+"le"
+]
+},
+{
+"correct": "soir",
+"distractors": [
+"minuit",
+"matin",
+"dimanche",
+"midi",
+"samedi"
+]
+}
+],
+"alternatives": [
+"Ce soir, je ne vais pas sortir."
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:32",
+"target": "Tu ne vas pas perdre ta place.",
+"ru": "Ты не потеряешь своё место.",
+"uk": "Ти не втратиш свого місця.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"On",
+"Ils",
+"Je",
+"Elles",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"les",
+"encore",
+"le",
+"la"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"vont",
+"va",
+"allons",
+"vais",
+"allez"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"y",
+"me",
+"le",
+"lui",
+"la"
+]
+},
+{
+"correct": "perdre",
+"distractors": [
+"rappeler",
+"banque",
+"ensemble",
+"cuisine",
+"salle"
+]
+},
+{
+"correct": "ta",
+"distractors": [
+"mon",
+"ton",
+"ma",
+"sa",
+"leurs"
+]
+},
+{
+"correct": "place",
+"distractors": [
+"visiter",
+"prendre",
+"pied",
+"cours",
+"téléphoner"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:33",
+"target": "Il ne va pas pleuvoir aujourd’hui.",
+"ru": "Сегодня дождя не будет.",
+"uk": "Сьогодні дощу не буде.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Je",
+"On",
+"Ils",
+"Nous",
+"Tu"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"y",
+"le",
+"lui",
+"me",
+"la"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vais",
+"allons",
+"tu",
+"a",
+"bus"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"y",
+"leur",
+"le",
+"me",
+"lui"
+]
+},
+{
+"correct": "pleuvoir",
+"distractors": [
+"pain",
+"facture",
+"inviter",
+"essayer",
+"voyage"
+]
+},
+{
+"correct": "aujourd’hui",
+"distractors": [
+"demain",
+"maintenant",
+"l’eau",
+"j’ai",
+"est-ce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:34",
+"target": "Nous n’allons pas déménager.",
+"ru": "Мы не собираемся переезжать.",
+"uk": "Ми не збираємося переїжджати.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Elles",
+"Tu",
+"Je",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "n’allons",
+"distractors": [
+"n’allez",
+"l’étiquette",
+"est-ce",
+"l’accueil",
+"week-end"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"y",
+"leur",
+"le",
+"les"
+]
+},
+{
+"correct": "déménager",
+"distractors": [
+"marché",
+"photo",
+"voisins",
+"réparer",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:35",
+"target": "Vous n’allez pas attendre longtemps.",
+"ru": "Вам не придётся долго ждать.",
+"uk": "Вам не доведеться довго чекати.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Je",
+"Ils",
+"Elles",
+"Nous",
+"Il"
+]
+},
+{
+"correct": "n’allez",
+"distractors": [
+"est-ce",
+"l’accueil",
+"allez-vous",
+"qu’elle",
+"qu’il"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"leur",
+"les",
+"le",
+"la",
+"y"
+]
+},
+{
+"correct": "attendre",
+"distractors": [
+"rester",
+"formulaire",
+"garage",
+"voyage",
+"laisser"
+]
+},
+{
+"correct": "longtemps",
+"distractors": [
+"formulaire",
+"allez",
+"ouvrir",
+"inviter",
+"vais"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:36",
+"target": "Elles ne vont pas prendre de taxi.",
+"ru": "Они не будут брать такси.",
+"uk": "Вони не збираються брати таксі.",
+"tiles": [
+{
+"correct": "Elles",
+"distractors": [
+"Nous",
+"On",
+"Tu",
+"Je",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"me",
+"plus",
+"leur",
+"y",
+"le"
+]
+},
+{
+"correct": "vont",
+"distractors": [
+"allons",
+"va",
+"vais",
+"allez",
+"vas"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"encore",
+"y",
+"le",
+"les"
+]
+},
+{
+"correct": "prendre",
+"distractors": [
+"laisser",
+"lire",
+"visiter",
+"perdre",
+"film"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"train",
+"vélo",
+"bus",
+"voiture",
+"métro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:37",
+"target": "Je vais garder la facture.",
+"ru": "Я сохраню квитанцию.",
+"uk": "Я збережу квитанцію.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Tu",
+"Ils",
+"On",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allez",
+"allons",
+"va",
+"vont",
+"vas"
+]
+},
+{
+"correct": "garder",
+"distractors": [
+"imprimer",
+"vont",
+"taxi",
+"place",
+"train"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"des",
+"le",
+"un",
+"de",
+"les"
+]
+},
+{
+"correct": "facture",
+"distractors": [
+"serviettes",
+"remplir",
+"voyage",
+"nous",
+"envoyer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:38",
+"target": "Elle va reporter son voyage.",
+"ru": "Она отложит свою поездку.",
+"uk": "Вона відкладе свою поїздку.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Elles",
+"Ils",
+"On",
+"Tu",
+"Je"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vais",
+"allez",
+"vont",
+"vas"
+]
+},
+{
+"correct": "reporter",
+"distractors": [
+"lunettes",
+"banque",
+"commencer",
+"rentrer",
+"soir"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"ses",
+"leurs",
+"tes",
+"vos",
+"nos"
+]
+},
+{
+"correct": "voyage",
+"distractors": [
+"travailler",
+"dessert",
+"essayer",
+"garage",
+"longtemps"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:39",
+"target": "Nous allons vérifier l’adresse.",
+"ru": "Мы проверим адрес.",
+"uk": "Ми перевіримо адресу.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Je",
+"On",
+"Elles",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"vais",
+"vont",
+"vas",
+"va",
+"allez"
+]
+},
+{
+"correct": "vérifier",
+"distractors": [
+"envoyer",
+"jouer",
+"médecin",
+"bleue",
+"passer"
+]
+},
+{
+"correct": "l’adresse",
+"distractors": [
+"l’étiquette",
+"l’accueil",
+"qu’est-ce",
+"allez-vous",
+"week-end"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:40",
+"target": "Je vais ranger le garage.",
+"ru": "Я приведу в порядок гараж.",
+"uk": "Я приберу в гаражі.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Il",
+"Tu",
+"Ils",
+"Nous",
+"Elles"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"vont",
+"va",
+"allons",
+"allez",
+"vas"
+]
+},
+{
+"correct": "ranger",
+"distractors": [
+"rentrer",
+"changer",
+"perdre",
+"trouver",
+"demain"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"les",
+"de",
+"du",
+"des"
+]
+},
+{
+"correct": "garage",
+"distractors": [
+"pleuvoir",
+"vélo",
+"rester",
+"voisins",
+"lire"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:41",
+"target": "Je vais rappeler le médecin après midi.",
+"ru": "Я перезвоню врачу после полудня.",
+"uk": "Я передзвоню лікарю після полудня.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Il",
+"Tu",
+"Nous",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allez",
+"allons",
+"vont",
+"va",
+"vas"
+]
+},
+{
+"correct": "rappeler",
+"distractors": [
+"voyage",
+"pleuvoir",
+"chercher",
+"lire",
+"envoyer"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"une",
+"la",
+"les",
+"de",
+"que"
+]
+},
+{
+"correct": "médecin",
+"distractors": [
+"droite",
+"marché",
+"elles",
+"déjeuner",
+"vous"
+]
+},
+{
+"correct": "après",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "midi",
+"distractors": [
+"soir",
+"minuit",
+"dimanche",
+"matin",
+"samedi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:42",
+"target": "Le facteur va passer dans la matinée.",
+"ru": "Почтальон зайдёт утром.",
+"uk": "Листоноша зайде вранці.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ces",
+"Aux",
+"Cette",
+"Une",
+"Que"
+]
+},
+{
+"correct": "facteur",
+"distractors": [
+"visiter",
+"pied",
+"marcher",
+"photo",
+"place"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vais",
+"prends",
+"veste",
+"soir"
+]
+},
+{
+"correct": "passer",
+"distractors": [
+"banque",
+"marcher",
+"envoyer",
+"rentrer",
+"taxi"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"pour",
+"par",
+"de",
+"en",
+"à"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"à",
+"ces",
+"cette",
+"que",
+"et"
+]
+},
+{
+"correct": "matinée",
+"distractors": [
+"voir",
+"ouvrir",
+"lunettes",
+"trouver",
+"cour"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:43",
+"target": "Nous allons apporter des serviettes.",
+"ru": "Мы возьмем полотенца.",
+"uk": "Ми принесемо рушники.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Je",
+"Elles",
+"Ils",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"allez",
+"vais",
+"va",
+"vont",
+"vas"
+]
+},
+{
+"correct": "apporter",
+"distractors": [
+"sortir",
+"trouver",
+"gauche",
+"place",
+"places"
+]
+},
+{
+"correct": "des",
+"distractors": [
+"un",
+"une",
+"de",
+"que",
+"et"
+]
+},
+{
+"correct": "serviettes",
+"distractors": [
+"partir",
+"photo",
+"pied",
+"colis",
+"passer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:44",
+"target": "Les enfants vont jouer dans la cour.",
+"ru": "Дети будут играть во дворе.",
+"uk": "Діти гратимуться у дворі.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Cette",
+"Aux",
+"Un",
+"Du",
+"Après"
+]
+},
+{
+"correct": "enfants",
+"distractors": [
+"matinée",
+"préparer",
+"allez",
+"changer",
+"elles"
+]
+},
+{
+"correct": "vont",
+"distractors": [
+"vais",
+"allons",
+"veste",
+"musée",
+"prends"
+]
+},
+{
+"correct": "jouer",
+"distractors": [
+"minutes",
+"déménager",
+"vélo",
+"magasin",
+"rentrer"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"de",
+"vers",
+"avec",
+"en",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ces",
+"un",
+"au",
+"à",
+"que"
+]
+},
+{
+"correct": "cour",
+"distractors": [
+"livrer",
+"matinée",
+"réparer",
+"dehors",
+"garage"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:45",
+"target": "Tu vas essayer la veste bleue ?",
+"ru": "Ты собираешься примерить синюю куртку?",
+"uk": "Ти збираєшся приміряти синю куртку?",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Je",
+"Il",
+"Ils",
+"Elles",
+"Nous"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"va",
+"allez",
+"allons",
+"vais",
+"vont"
+]
+},
+{
+"correct": "essayer",
+"distractors": [
+"déménager",
+"inviter",
+"marcher",
+"billet",
+"dessert"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"au",
+"ce",
+"aux",
+"que",
+"et"
+]
+},
+{
+"correct": "veste",
+"distractors": [
+"gants",
+"sac",
+"boîte",
+"lunettes",
+"pull"
+]
+},
+{
+"correct": "bleue",
+"distractors": [
+"rester",
+"conduire",
+"livrer",
+"travailler",
+"travaille"
+]
+}
+],
+"alternatives": [
+"Est-ce que tu vas essayer la veste bleue ?",
+"Vas-tu essayer la veste bleue ?"
+]
+},
+{
+"lesson": 15,
+"id": "fr:15:46",
+"target": "Je vais laisser la clé à l’accueil.",
+"ru": "Я оставлю ключ на ресепшене.",
+"uk": "Я залишу ключ на рецепції.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"On",
+"Elles",
+"Il",
+"Ils"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allons",
+"allez",
+"va",
+"vont",
+"vas"
+]
+},
+{
+"correct": "laisser",
+"distractors": [
+"laisse",
+"laissez",
+"ouvre",
+"robinet",
+"allons"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"des",
+"du",
+"les",
+"que",
+"et"
+]
+},
+{
+"correct": "clé",
+"distractors": [
+"tu",
+"ils",
+"il",
+"les",
+"mon"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "l’accueil",
+"distractors": [
+"l’adresse",
+"l’étiquette",
+"week-end",
+"allez-vous",
+"est-ce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:47",
+"target": "Elle va nous envoyer une photo.",
+"ru": "Она пришлет нам фотографию.",
+"uk": "Вона надішле нам фото.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Ils",
+"Elles",
+"Je",
+"Tu",
+"Il"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"allons",
+"vais",
+"allez",
+"vont",
+"vas"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"je",
+"on",
+"il",
+"elles",
+"tu"
+]
+},
+{
+"correct": "envoyer",
+"distractors": [
+"essayer",
+"sortir",
+"elles",
+"allez",
+"partir"
+]
+},
+{
+"correct": "une",
+"distractors": [
+"à",
+"ce",
+"au",
+"que",
+"et"
+]
+},
+{
+"correct": "photo",
+"distractors": [
+"serviettes",
+"réparer",
+"vais",
+"perdre",
+"samedi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:48",
+"target": "Nous allons lire l’étiquette avant de choisir la farine.",
+"ru": "Мы прочитаем этикетку, прежде чем выбирать муку.",
+"uk": "Ми збираємося прочитати етикетку, перш ніж вибрати борошно.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Elles",
+"Il",
+"Je",
+"On",
+"Ils"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"vais",
+"vas",
+"allez",
+"va",
+"vont"
+]
+},
+{
+"correct": "lire",
+"distractors": [
+"lunettes",
+"vous",
+"préparer",
+"je",
+"elles"
+]
+},
+{
+"correct": "l’étiquette",
+"distractors": [
+"l’adresse",
+"l’accueil",
+"allez-vous",
+"n’allez",
+"aujourd’hui"
+]
+},
+{
+"correct": "avant",
+"distractors": [
+"à",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
+]
+},
+{
+"correct": "choisir",
+"distractors": [
+"elles",
+"vont",
+"laisser",
+"prendre",
+"film"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"aux",
+"au",
+"des",
+"que",
+"et"
+]
+},
+{
+"correct": "farine",
+"distractors": [
+"café",
+"pain",
+"sel",
+"thé",
+"miel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:49",
+"target": "Vous allez trouver la sortie à droite.",
+"ru": "Вы увидите выход справа.",
+"uk": "Ви побачите вихід праворуч.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Il",
+"Ils",
+"Nous",
+"Je",
+"Elles"
+]
+},
+{
+"correct": "allez",
+"distractors": [
+"vais",
+"elles",
+"demain",
+"nous",
+"musée"
+]
+},
+{
+"correct": "trouver",
+"distractors": [
+"passer",
+"train",
+"sortir",
+"voisins",
+"métro"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"cette",
+"ces",
+"le",
+"que",
+"et"
+]
+},
+{
+"correct": "sortie",
+"distractors": [
+"banque",
+"école",
+"rue",
+"salle",
+"gare"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "droite",
+"distractors": [
+"taxi",
+"réserver",
+"remplir",
+"sortir",
+"reporter"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "fr:15:50",
+"target": "Ce week-end, je vais réparer mon vélo.",
+"ru": "В эти выходные я собираюсь починить свой велосипед.",
+"uk": "Цих вихідних я збираюся полагодити свій велосипед.",
+"tiles": [
+{
+"correct": "Ce",
+"distractors": [
+"La",
+"Au",
+"Un",
+"Ces",
+"Le"
+]
+},
+{
+"correct": "week-end",
+"distractors": [
+"allez-vous",
+"est-ce",
+"qu’est-ce",
+"êtes-vous",
+"es-tu"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"tu",
+"nous",
+"il",
+"ils"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"vont",
+"allez",
+"allons",
+"va",
+"vas"
+]
+},
+{
+"correct": "réparer",
+"distractors": [
+"garage",
+"ouvrir",
+"magasin",
+"attendre",
+"ranger"
+]
+},
+{
+"correct": "mon",
+"distractors": [
+"ta",
+"vos",
+"votre",
+"nos",
+"leur"
+]
+},
+{
+"correct": "vélo",
+"distractors": [
+"taxi",
+"bus",
+"train",
+"métro",
+"voiture"
+]
+}
+],
+"alternatives": [
+"Je vais réparer mon vélo ce week-end."
+]
+},
+{
+"lesson": 16,
+"id": "fr:16:01",
+"target": "Entre !",
+"ru": "Заходи!",
+"uk": "Заходь!",
+"tiles": [
+{
+"correct": "Entre",
+"distractors": [
+"Sur",
+"Sous",
+"Derrière",
+"À",
+"De"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:02",
+"target": "Entrez !",
+"ru": "Заходите!",
+"uk": "Заходьте!",
+"tiles": [
+{
+"correct": "Entrez",
+"distractors": [
+"Balance",
+"Volume",
+"Montant",
+"Attends",
+"Attendez"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:03",
+"target": "Attends !",
+"ru": "Подожди!",
+"uk": "Почекай!",
+"tiles": [
+{
+"correct": "Attends",
+"distractors": [
+"Bien",
+"Reçu",
+"Lait",
+"Signez",
+"Montant"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:04",
+"target": "Attendez !",
+"ru": "Подождите!",
+"uk": "Зачекайте!",
+"tiles": [
+{
+"correct": "Attendez",
+"distractors": [
+"Pause",
+"Signal",
+"Restons",
+"Restez",
+"Reste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:05",
+"target": "Reste ici !",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!",
+"tiles": [
+{
+"correct": "Reste",
+"distractors": [
+"Restez",
+"Écoutez",
+"Pose",
+"Garde",
+"Gardez"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"près",
+"loin",
+"dehors",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:06",
+"target": "Restez ici !",
+"ru": "Останьтесь здесь!",
+"uk": "Залишайтеся тут!",
+"tiles": [
+{
+"correct": "Restez",
+"distractors": [
+"Reste",
+"Sortie",
+"Sœur",
+"Cours",
+"Vérifiez"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:07",
+"target": "Écoute bien !",
+"ru": "Слушай внимательно!",
+"uk": "Слухай уважно!",
+"tiles": [
+{
+"correct": "Écoute",
+"distractors": [
+"Restons",
+"Vérifiez",
+"Colis",
+"Reste",
+"Restez"
+]
+},
+{
+"correct": "bien",
+"distractors": [
+"deuxième",
+"attends",
+"volume",
+"attendez",
+"plaît"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:08",
+"target": "Écoutez bien !",
+"ru": "Слушайте внимательно!",
+"uk": "Слухайте уважно!",
+"tiles": [
+{
+"correct": "Écoutez",
+"distractors": [
+"Écoutes",
+"Près",
+"Laisse",
+"Restons",
+"Garde"
+]
+},
+{
+"correct": "bien",
+"distractors": [
+"regarde",
+"fenêtre",
+"laissez",
+"passez",
+"autre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:09",
+"target": "Regarde devant toi !",
+"ru": "Смотри перед собой!",
+"uk": "Дивись перед собою!",
+"tiles": [
+{
+"correct": "Regarde",
+"distractors": [
+"Regardez",
+"Vérifiez",
+"Cour",
+"Cours",
+"Sortie"
+]
+},
+{
+"correct": "devant",
+"distractors": [
+"sur",
+"entre",
+"sous",
+"à",
+"de"
+]
+},
+{
+"correct": "toi",
+"distractors": [
+"ton",
+"une",
+"lit",
+"le",
+"la"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:10",
+"target": "Regardez devant vous !",
+"ru": "Смотрите перед собой!",
+"uk": "Дивіться перед собою!",
+"tiles": [
+{
+"correct": "Regardez",
+"distractors": [
+"Regarde",
+"Regardes",
+"Vérifiez",
+"Cour",
+"Cours"
+]
+},
+{
+"correct": "devant",
+"distractors": [
+"entre",
+"derrière",
+"sous",
+"à",
+"de"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"nous",
+"je",
+"elles",
+"on",
+"il"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:11",
+"target": "Ferme la porte !",
+"ru": "Закрой дверь!",
+"uk": "Зачини двері!",
+"tiles": [
+{
+"correct": "Ferme",
+"distractors": [
+"Fermer",
+"Fermé",
+"Ferment",
+"Ne",
+"Encore"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"te",
+"les",
+"ne",
+"lui",
+"en"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"plaît",
+"robinet",
+"bien",
+"prenez",
+"autre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:12",
+"target": "Ouvre la fenêtre !",
+"ru": "Открой окно!",
+"uk": "Відкрий вікно!",
+"tiles": [
+{
+"correct": "Ouvre",
+"distractors": [
+"Ouvrir",
+"Ouvert",
+"Ouverte",
+"Ouverts",
+"Laisse"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"pas",
+"ne",
+"plus",
+"que"
+]
+},
+{
+"correct": "fenêtre",
+"distractors": [
+"ensemble",
+"dehors",
+"pause",
+"attendez",
+"carte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:13",
+"target": "Pose le sac ici !",
+"ru": "Поставь сумку сюда!",
+"uk": "Постав сумку сюди!",
+"tiles": [
+{
+"correct": "Pose",
+"distractors": [
+"Posez",
+"Table",
+"Laisse",
+"Marche",
+"Autre"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"encore",
+"te",
+"en",
+"se",
+"lui"
+]
+},
+{
+"correct": "sac",
+"distractors": [
+"veste",
+"pull",
+"gants",
+"écharpe",
+"lunettes"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:14",
+"target": "Garde le ticket !",
+"ru": "Сохрани билет!",
+"uk": "Збережи квиток!",
+"tiles": [
+{
+"correct": "Garde",
+"distractors": [
+"Gardez",
+"Baissez",
+"Vérifiez",
+"Balance",
+"Restez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"leur",
+"lui",
+"en",
+"me",
+"que"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"passeport",
+"reçu",
+"formulaire",
+"badge",
+"vous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:15",
+"target": "Prends ta veste !",
+"ru": "Возьми свою куртку!",
+"uk": "Візьми свою куртку!",
+"tiles": [
+{
+"correct": "Prends",
+"distractors": [
+"Votre",
+"Vérifiez",
+"Attache",
+"Baissez",
+"Ceinture"
+]
+},
+{
+"correct": "ta",
+"distractors": [
+"ses",
+"sa",
+"tes",
+"mes",
+"ma"
+]
+},
+{
+"correct": "veste",
+"distractors": [
+"gants",
+"boîte",
+"sac",
+"écharpe",
+"valise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:16",
+"target": "Range tes chaussures !",
+"ru": "Убери свою обувь!",
+"uk": "Прибери своє взуття!",
+"tiles": [
+{
+"correct": "Range",
+"distractors": [
+"Vérifiez",
+"Cours",
+"Regardez",
+"Sortie",
+"Cour"
+]
+},
+{
+"correct": "tes",
+"distractors": [
+"ma",
+"ses",
+"ton",
+"nos",
+"votre"
+]
+},
+{
+"correct": "chaussures",
+"distractors": [
+"autre",
+"vitre",
+"suis",
+"ferme",
+"vous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:17",
+"target": "Tourne à gauche !",
+"ru": "Поверни налево!",
+"uk": "Поверни ліворуч!",
+"tiles": [
+{
+"correct": "Tourne",
+"distractors": [
+"Prenez",
+"Cour",
+"Attache",
+"Range",
+"Baissez"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "gauche",
+"distractors": [
+"ouvre",
+"carte",
+"deuxième",
+"chemin",
+"cours"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:18",
+"target": "Traverse au feu !",
+"ru": "Перейди дорогу у светофора!",
+"uk": "Перейди дорогу біля світлофора!",
+"tiles": [
+{
+"correct": "Traverse",
+"distractors": [
+"Gardez",
+"Attache",
+"Jette",
+"Lait",
+"Laisse"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"un",
+"une",
+"des",
+"le",
+"la"
+]
+},
+{
+"correct": "feu",
+"distractors": [
+"un",
+"sel",
+"ta",
+"du",
+"le"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:19",
+"target": "Suis le chemin !",
+"ru": "Иди по тропинке!",
+"uk": "Іди стежкою!",
+"tiles": [
+{
+"correct": "Suis",
+"distractors": [
+"Es",
+"Sommes",
+"Êtes",
+"Est",
+"Avez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"lui",
+"en",
+"plus",
+"se",
+"que"
+]
+},
+{
+"correct": "chemin",
+"distractors": [
+"allons",
+"ouvre",
+"laissez",
+"gardez",
+"vais"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:20",
+"target": "Appelle ta sœur !",
+"ru": "Позвони своей сестре!",
+"uk": "Подзвони своїй сестрі!",
+"tiles": [
+{
+"correct": "Appelle",
+"distractors": [
+"Montrez",
+"Laisse",
+"Écoutez",
+"Près",
+"C’est"
+]
+},
+{
+"correct": "ta",
+"distractors": [
+"mes",
+"leur",
+"mon",
+"votre",
+"vos"
+]
+},
+{
+"correct": "sœur",
+"distractors": [
+"pelouse",
+"posez",
+"regardez",
+"prenez",
+"passez"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:21",
+"target": "Signez en bas, s’il vous plaît.",
+"ru": "Распишитесь внизу, пожалуйста.",
+"uk": "Розпишіться внизу, будь ласка.",
+"tiles": [
+{
+"correct": "Signez",
+"distractors": [
+"Signal",
+"Pose",
+"Chemin",
+"Deuxième",
+"Posez"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "bas",
+"distractors": [
+"un",
+"lit",
+"sel",
+"une",
+"le"
+]
+},
+{
+"correct": "s’il",
+"distractors": [
+"n’attendez",
+"n’ajoutez",
+"n’oublie",
+"train",
+"métro"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"il",
+"ils",
+"elle",
+"elles",
+"je"
+]
+},
+{
+"correct": "plaît",
+"distractors": [
+"laisse",
+"suis",
+"bouton",
+"vérifiez",
+"marché"
+]
+}
+],
+"alternatives": [
+"S’il vous plaît, signez en bas."
+]
+},
+{
+"lesson": 16,
+"id": "fr:16:22",
+"target": "Montrez votre billet, s’il vous plaît.",
+"ru": "Покажите свой билет, пожалуйста.",
+"uk": "Покажіть свій квиток, будь ласка.",
+"tiles": [
+{
+"correct": "Montrez",
+"distractors": [
+"Appuyez",
+"Marche",
+"Veste",
+"Droite",
+"Laisse"
+]
+},
+{
+"correct": "votre",
+"distractors": [
+"notre",
+"tes",
+"leur",
+"nos",
+"mon"
+]
+},
+{
+"correct": "billet",
+"distractors": [
+"reçu",
+"passeport",
+"badge",
+"formulaire",
+"faut"
+]
+},
+{
+"correct": "s’il",
+"distractors": [
+"n’ajoutez",
+"n’attendez",
+"n’oublie",
+"ici",
+"dehors"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"on",
+"nous",
+"il",
+"elles",
+"je"
+]
+},
+{
+"correct": "plaît",
+"distractors": [
+"pluie",
+"bien",
+"laissez",
+"ensemble",
+"laisse"
+]
+}
+],
+"alternatives": [
+"S’il vous plaît, montrez votre billet."
+]
+},
+{
+"lesson": 16,
+"id": "fr:16:23",
+"target": "Passez par la cour.",
+"ru": "Пройдите через двор.",
+"uk": "Пройдіть через двір.",
+"tiles": [
+{
+"correct": "Passez",
+"distractors": [
+"Passeport",
+"Sœur",
+"Près",
+"C’est",
+"Est-ce"
+]
+},
+{
+"correct": "par",
+"distractors": [
+"sur",
+"chez",
+"dans",
+"à",
+"pour"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"plus",
+"jamais",
+"en",
+"le",
+"pas"
+]
+},
+{
+"correct": "cour",
+"distractors": [
+"ouvre",
+"allume",
+"écoute",
+"gardez",
+"ouverte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:24",
+"target": "Prenez la deuxième rue à droite.",
+"ru": "Сверните на вторую улицу направо.",
+"uk": "Поверніть на другу вулицю праворуч.",
+"tiles": [
+{
+"correct": "Prenez",
+"distractors": [
+"Attache",
+"Baissez",
+"Cour",
+"Range",
+"Tourne"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"plus",
+"encore",
+"jamais",
+"ne",
+"pas"
+]
+},
+{
+"correct": "deuxième",
+"distractors": [
+"pelouse",
+"colis",
+"écoute",
+"retirez",
+"cette"
+]
+},
+{
+"correct": "rue",
+"distractors": [
+"maison",
+"sortie",
+"cuisine",
+"chambre",
+"gare"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "droite",
+"distractors": [
+"suis",
+"ferme",
+"gardez",
+"sortie",
+"marché"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:25",
+"target": "Appuyez sur le bouton vert.",
+"ru": "Нажмите зелёную кнопку.",
+"uk": "Натисніть зелену кнопку.",
+"tiles": [
+{
+"correct": "Appuyez",
+"distractors": [
+"Partons",
+"Attache",
+"Chaussures",
+"Deuxième",
+"Marché"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"devant",
+"sous",
+"à",
+"de",
+"en"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"y",
+"se",
+"pas",
+"ne",
+"que"
+]
+},
+{
+"correct": "bouton",
+"distractors": [
+"regardez",
+"ouvre",
+"posez",
+"ouverte",
+"ouvert"
+]
+},
+{
+"correct": "vert",
+"distractors": [
+"robinet",
+"message",
+"passeport",
+"allons",
+"laissez"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:26",
+"target": "Restez derrière la ligne.",
+"ru": "Оставайтесь за линией.",
+"uk": "Залишайтеся за лінією.",
+"tiles": [
+{
+"correct": "Restez",
+"distractors": [
+"Reste",
+"Colis",
+"Écoute",
+"Vérifiez",
+"Garde"
+]
+},
+{
+"correct": "derrière",
+"distractors": [
+"sous",
+"devant",
+"à",
+"de",
+"en"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"encore",
+"en",
+"y",
+"pas"
+]
+},
+{
+"correct": "ligne",
+"distractors": [
+"lait",
+"porte",
+"vous",
+"traverse",
+"je"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:27",
+"target": "Gardez votre passeport sur vous.",
+"ru": "Держите паспорт при себе.",
+"uk": "Тримайте паспорт при собі.",
+"tiles": [
+{
+"correct": "Gardez",
+"distractors": [
+"Garde",
+"Vert",
+"Restez",
+"Attendez",
+"Restons"
+]
+},
+{
+"correct": "votre",
+"distractors": [
+"tes",
+"mon",
+"vos",
+"ton",
+"ma"
+]
+},
+{
+"correct": "passeport",
+"distractors": [
+"billet",
+"ticket",
+"formulaire",
+"reçu",
+"badge"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"derrière",
+"entre",
+"à",
+"de",
+"en"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"il",
+"nous",
+"elles",
+"je",
+"on"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:28",
+"target": "Posez le colis sur la balance.",
+"ru": "Положите посылку на весы.",
+"uk": "Покладіть посилку на ваги.",
+"tiles": [
+{
+"correct": "Posez",
+"distractors": [
+"Pose",
+"Gardez",
+"Autre",
+"Entrez",
+"Deuxième"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"lui",
+"ne",
+"y",
+"pas",
+"me"
+]
+},
+{
+"correct": "colis",
+"distractors": [
+"tourne",
+"montant",
+"pelouse",
+"ferme",
+"fermé"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"sous",
+"entre",
+"devant",
+"à",
+"de"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ne",
+"encore",
+"lui",
+"te",
+"y"
+]
+},
+{
+"correct": "balance",
+"distractors": [
+"plaît",
+"droite",
+"enveloppe",
+"pose",
+"montant"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:29",
+"target": "Vérifiez le montant.",
+"ru": "Проверьте сумму.",
+"uk": "Перевірте суму.",
+"tiles": [
+{
+"correct": "Vérifiez",
+"distractors": [
+"Votre",
+"Montrez",
+"Prends",
+"Baissez",
+"Mon"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"me",
+"lui",
+"te",
+"leur",
+"plus"
+]
+},
+{
+"correct": "montant",
+"distractors": [
+"veste",
+"votre",
+"parapluie",
+"prends",
+"allons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:30",
+"target": "Retirez votre carte.",
+"ru": "Заберите свою карту.",
+"uk": "Заберіть картку.",
+"tiles": [
+{
+"correct": "Retirez",
+"distractors": [
+"Autre",
+"Laisse",
+"Ouvre",
+"Entrez",
+"Laissez"
+]
+},
+{
+"correct": "votre",
+"distractors": [
+"ta",
+"leur",
+"nos",
+"notre",
+"mes"
+]
+},
+{
+"correct": "carte",
+"distractors": [
+"ceinture",
+"gardez",
+"plaît",
+"ticket",
+"billet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:31",
+"target": "Ne cours pas !",
+"ru": "Не беги!",
+"uk": "Не біжи!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Jamais",
+"Leur",
+"Les",
+"Encore",
+"Le"
+]
+},
+{
+"correct": "cours",
+"distractors": [
+"cherchons",
+"sortie",
+"tourne",
+"dehors",
+"ici"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"te",
+"les",
+"la",
+"le",
+"leur"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:32",
+"target": "Ne touchez pas à la vitre !",
+"ru": "Не прикасайтесь к стеклу!",
+"uk": "Не торкайтеся скла!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Lui",
+"Jamais",
+"Encore",
+"Se",
+"Le"
+]
+},
+{
+"correct": "touchez",
+"distractors": [
+"appuyez",
+"allons",
+"tourne",
+"écoute",
+"vais"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"jamais",
+"se",
+"me",
+"y"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"jamais",
+"le",
+"se",
+"y",
+"que"
+]
+},
+{
+"correct": "vitre",
+"distractors": [
+"près",
+"tourne",
+"deuxième",
+"veste",
+"ensemble"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:33",
+"target": "N’oublie pas ton parapluie !",
+"ru": "Не забудь свой зонт!",
+"uk": "Не забудь свою парасольку!",
+"tiles": [
+{
+"correct": "N’oublie",
+"distractors": [
+"N’ajoutez",
+"N’attendez",
+"S’il",
+"Tard",
+"Train"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"me",
+"les",
+"y",
+"le"
+]
+},
+{
+"correct": "ton",
+"distractors": [
+"ses",
+"tes",
+"mes",
+"ma",
+"son"
+]
+},
+{
+"correct": "parapluie",
+"distractors": [
+"ouvre",
+"laissez",
+"touchez",
+"allume",
+"ouverte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:34",
+"target": "Ne ferme pas à clé !",
+"ru": "Не запирай на ключ!",
+"uk": "Не замикай на ключ!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Lui",
+"Les",
+"Y",
+"La",
+"Le"
+]
+},
+{
+"correct": "ferme",
+"distractors": [
+"ferment",
+"fermé",
+"fermer",
+"sont",
+"loin"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"la",
+"leur",
+"me",
+"le"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "clé",
+"distractors": [
+"feu",
+"sac",
+"toi",
+"veste",
+"pull"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:35",
+"target": "Ne perdez pas le reçu !",
+"ru": "Не потеряйте чек!",
+"uk": "Не втратьте чек!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Encore",
+"Se",
+"Jamais",
+"Les",
+"Lui"
+]
+},
+{
+"correct": "perdez",
+"distractors": [
+"pose",
+"baissez",
+"cour",
+"ouvre",
+"ouverte"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"y",
+"les",
+"me",
+"lui"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"y",
+"me",
+"leur",
+"se",
+"en"
+]
+},
+{
+"correct": "reçu",
+"distractors": [
+"passeport",
+"formulaire",
+"badge",
+"ticket",
+"billet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:36",
+"target": "Ne laisse pas le lait dehors !",
+"ru": "Не оставляй молоко на улице!",
+"uk": "Не залишай молоко на вулиці!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Me",
+"Leur",
+"Les",
+"La",
+"Ce"
+]
+},
+{
+"correct": "laisse",
+"distractors": [
+"laissez",
+"laisser",
+"ouvre",
+"robinet",
+"allons"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"me",
+"les",
+"lui",
+"la",
+"y"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"lui",
+"se",
+"la",
+"leur",
+"plus"
+]
+},
+{
+"correct": "lait",
+"distractors": [
+"soupe",
+"pain",
+"thé",
+"riz",
+"café"
+]
+},
+{
+"correct": "dehors",
+"distractors": [
+"là",
+"ici",
+"loin",
+"près",
+"cour"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:37",
+"target": "N’ajoutez pas de sel !",
+"ru": "Не добавляйте соль!",
+"uk": "Не додавайте сіль!",
+"tiles": [
+{
+"correct": "N’ajoutez",
+"distractors": [
+"N’oublie",
+"N’attendez",
+"S’il",
+"Train",
+"Tard"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"se",
+"lui",
+"me",
+"y",
+"ne"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "sel",
+"distractors": [
+"riz",
+"lait",
+"miel",
+"thé",
+"pain"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:38",
+"target": "Ne jette pas cette enveloppe !",
+"ru": "Не выбрасывай этот конверт!",
+"uk": "Не викидай цей конверт!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Plus",
+"Encore",
+"Lui",
+"Jamais",
+"Le"
+]
+},
+{
+"correct": "jette",
+"distractors": [
+"tourne",
+"reçu",
+"faisons",
+"message",
+"perdez"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"se",
+"lui",
+"y",
+"le"
+]
+},
+{
+"correct": "cette",
+"distractors": [
+"le",
+"aux",
+"les",
+"un",
+"la"
+]
+},
+{
+"correct": "enveloppe",
+"distractors": [
+"signal",
+"attends",
+"plaît",
+"baissez",
+"prenez"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:39",
+"target": "N’attendez pas devant la sortie !",
+"ru": "Не ждите перед выходом!",
+"uk": "Не чекайте перед виходом!",
+"tiles": [
+{
+"correct": "N’attendez",
+"distractors": [
+"N’oublie",
+"N’ajoutez",
+"S’il",
+"Près",
+"C’est"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"te",
+"y",
+"le",
+"les",
+"ne"
+]
+},
+{
+"correct": "devant",
+"distractors": [
+"sous",
+"entre",
+"sur",
+"à",
+"de"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"encore",
+"me",
+"le",
+"que",
+"et"
+]
+},
+{
+"correct": "sortie",
+"distractors": [
+"gare",
+"banque",
+"école",
+"salle",
+"chambre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:40",
+"target": "Ne marche pas sur la pelouse !",
+"ru": "Не ходи по газону!",
+"uk": "Не ходи газоном!",
+"tiles": [
+{
+"correct": "Ne",
+"distractors": [
+"Se",
+"Te",
+"Le",
+"Lui",
+"Les"
+]
+},
+{
+"correct": "marche",
+"distractors": [
+"marché",
+"bouton",
+"veste",
+"près",
+"faisons"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"les",
+"te",
+"lui",
+"y"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"entre",
+"sous",
+"derrière",
+"à",
+"de"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"les",
+"le",
+"y",
+"me",
+"encore"
+]
+},
+{
+"correct": "pelouse",
+"distractors": [
+"range",
+"regarde",
+"montant",
+"passeport",
+"ouvre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:41",
+"target": "Allons au marché !",
+"ru": "Пойдём на рынок!",
+"uk": "Підемо на ринок!",
+"tiles": [
+{
+"correct": "Allons",
+"distractors": [
+"Vais",
+"Vont",
+"Va",
+"Lui",
+"Le"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"les",
+"la",
+"des",
+"le",
+"un"
+]
+},
+{
+"correct": "marché",
+"distractors": [
+"marche",
+"ouvre",
+"deuxième",
+"laissez",
+"laisse"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:42",
+"target": "Faisons une pause !",
+"ru": "Давайте сделаем перерыв!",
+"uk": "Давайте зробимо перерву!",
+"tiles": [
+{
+"correct": "Faisons",
+"distractors": [
+"Fait",
+"Ont",
+"A",
+"Vais",
+"Avez"
+]
+},
+{
+"correct": "une",
+"distractors": [
+"ces",
+"les",
+"ce",
+"un",
+"que"
+]
+},
+{
+"correct": "pause",
+"distractors": [
+"cour",
+"message",
+"touchez",
+"attends",
+"robinet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:43",
+"target": "Restons ensemble !",
+"ru": "Давайте держаться вместе!",
+"uk": "Давайте триматися разом!",
+"tiles": [
+{
+"correct": "Restons",
+"distractors": [
+"Robinet",
+"Vérifiez",
+"Passeport",
+"Ceinture",
+"Colis"
+]
+},
+{
+"correct": "ensemble",
+"distractors": [
+"signal",
+"passez",
+"deuxième",
+"ligne",
+"passeport"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:44",
+"target": "Cherchons une autre table !",
+"ru": "Давайте поищем другой столик!",
+"uk": "Пошукаймо інший столик!",
+"tiles": [
+{
+"correct": "Cherchons",
+"distractors": [
+"Ont",
+"A",
+"Vais",
+"Avez",
+"As"
+]
+},
+{
+"correct": "une",
+"distractors": [
+"à",
+"ces",
+"au",
+"de",
+"que"
+]
+},
+{
+"correct": "autre",
+"distractors": [
+"traverse",
+"carte",
+"attendez",
+"chemin",
+"colis"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"restez",
+"ligne",
+"billet",
+"reçu",
+"cour"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:45",
+"target": "Partons avant la pluie !",
+"ru": "Пойдём до того, как начнётся дождь!",
+"uk": "Підемо до того, як почнеться дощ!",
+"tiles": [
+{
+"correct": "Partons",
+"distractors": [
+"Attache",
+"Deuxième",
+"Chaussures",
+"Appuyez",
+"Marché"
+]
+},
+{
+"correct": "avant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"se",
+"en",
+"encore",
+"ne"
+]
+},
+{
+"correct": "pluie",
+"distractors": [
+"jette",
+"gardez",
+"laisse",
+"restez",
+"chaussures"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:46",
+"target": "Attache ta ceinture !",
+"ru": "Пристегни ремень!",
+"uk": "Пристебни ремінь!",
+"tiles": [
+{
+"correct": "Attache",
+"distractors": [
+"Pluie",
+"Colis",
+"Prends",
+"Vérifiez",
+"Baissez"
+]
+},
+{
+"correct": "ta",
+"distractors": [
+"leurs",
+"sa",
+"mon",
+"votre",
+"son"
+]
+},
+{
+"correct": "ceinture",
+"distractors": [
+"posez",
+"prenez",
+"passez",
+"suis",
+"reste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:47",
+"target": "Baissez le volume, s’il vous plaît.",
+"ru": "Убавьте громкость, пожалуйста.",
+"uk": "Зменште гучність, будь ласка.",
+"tiles": [
+{
+"correct": "Baissez",
+"distractors": [
+"Allume",
+"Tourne",
+"Perdez",
+"Gauche",
+"Autre"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"plus",
+"en",
+"me",
+"te",
+"ne"
+]
+},
+{
+"correct": "volume",
+"distractors": [
+"jette",
+"robinet",
+"laissez",
+"vert",
+"pause"
+]
+},
+{
+"correct": "s’il",
+"distractors": [
+"n’oublie",
+"n’ajoutez",
+"n’attendez",
+"gare",
+"train"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"je",
+"nous",
+"on",
+"elles",
+"il"
+]
+},
+{
+"correct": "plaît",
+"distractors": [
+"billet",
+"attendez",
+"tourne",
+"ouvre",
+"parapluie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:48",
+"target": "Ferme le robinet !",
+"ru": "Закрой кран!",
+"uk": "Закрий кран!",
+"tiles": [
+{
+"correct": "Ferme",
+"distractors": [
+"Fermer",
+"Fermé",
+"Ferment",
+"Ne",
+"Encore"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"jamais",
+"y",
+"te",
+"encore",
+"les"
+]
+},
+{
+"correct": "robinet",
+"distractors": [
+"autre",
+"gauche",
+"laissez",
+"ouvre",
+"dehors"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:49",
+"target": "Laissez un message après le signal.",
+"ru": "Оставьте сообщение после сигнала.",
+"uk": "Залишіть повідомлення після сигналу.",
+"tiles": [
+{
+"correct": "Laissez",
+"distractors": [
+"Laisser",
+"Laisse",
+"Autre",
+"Entrez",
+"Ouvre"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"les",
+"la",
+"cette",
+"ces",
+"des"
+]
+},
+{
+"correct": "message",
+"distractors": [
+"dehors",
+"regarde",
+"cour",
+"sœur",
+"balance"
+]
+},
+{
+"correct": "après",
+"distractors": [
+"entre",
+"à",
+"de",
+"en",
+"sur"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"plus",
+"lui",
+"en",
+"y",
+"que"
+]
+},
+{
+"correct": "signal",
+"distractors": [
+"signez",
+"passez",
+"pluie",
+"sœur",
+"cherchons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "fr:16:50",
+"target": "Allume la lampe près du lit !",
+"ru": "Включи лампу у кровати!",
+"uk": "Увімкни лампу біля ліжка!",
+"tiles": [
+{
+"correct": "Allume",
+"distractors": [
+"Montant",
+"Reçu",
+"Volume",
+"Attendez",
+"Vert"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"te",
+"ne",
+"se",
+"les",
+"le"
+]
+},
+{
+"correct": "lampe",
+"distractors": [
+"message",
+"sœur",
+"lait",
+"billet",
+"prenez"
+]
+},
+{
+"correct": "près",
+"distractors": [
+"loin",
+"ici",
+"dehors",
+"là",
+"porte"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"cette",
+"de",
+"ces",
+"que",
+"et"
+]
+},
+{
+"correct": "lit",
+"distractors": [
+"une",
+"sac",
+"au",
+"le",
+"un"
+]
+}
+],
+"alternatives": []
+}
+]

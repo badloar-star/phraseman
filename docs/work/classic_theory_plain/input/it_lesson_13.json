@@ -1,0 +1,719 @@
+{
+ "lang": "it",
+ "lesson": 13,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:13:01",
+   "target": "La borsa è pesante.",
+   "ru": "Сумка тяжелая.",
+   "uk": "Сумка важка."
+  },
+  {
+   "id": "it:13:02",
+   "target": "La valigia è pesante.",
+   "ru": "Чемодан тяжелый.",
+   "uk": "Валіза важка."
+  },
+  {
+   "id": "it:13:03",
+   "target": "Gli zaini sono leggeri.",
+   "ru": "Рюкзаки лёгкие.",
+   "uk": "Рюкзаки легкі."
+  },
+  {
+   "id": "it:13:04",
+   "target": "La giacca è leggera.",
+   "ru": "Куртка легкая.",
+   "uk": "Куртка легка."
+  },
+  {
+   "id": "it:13:05",
+   "target": "Il lenzuolo è bianco.",
+   "ru": "Простыня белая.",
+   "uk": "Простирадло біле."
+  },
+  {
+   "id": "it:13:06",
+   "target": "La camicia è bianca.",
+   "ru": "Рубашка белая.",
+   "uk": "Сорочка біла."
+  },
+  {
+   "id": "it:13:07",
+   "target": "Il maglione è verde.",
+   "ru": "Свитер зеленый.",
+   "uk": "Светр зелений."
+  },
+  {
+   "id": "it:13:08",
+   "target": "La gonna è verde.",
+   "ru": "Юбка зеленая.",
+   "uk": "Спідниця зелена."
+  },
+  {
+   "id": "it:13:09",
+   "target": "Il cappello è grigio.",
+   "ru": "Шапка серая.",
+   "uk": "Шапка сіра."
+  },
+  {
+   "id": "it:13:10",
+   "target": "Il vestito è grigio.",
+   "ru": "Платье серое.",
+   "uk": "Сукня сіра."
+  },
+  {
+   "id": "it:13:11",
+   "target": "La bicicletta è nuova.",
+   "ru": "Велосипед новый.",
+   "uk": "Велосипед новий."
+  },
+  {
+   "id": "it:13:12",
+   "target": "L’auto è nuova.",
+   "ru": "Машина новая.",
+   "uk": "Машина нова."
+  },
+  {
+   "id": "it:13:13",
+   "target": "Le biciclette sono nuove.",
+   "ru": "Велосипеды новые.",
+   "uk": "Велосипеди нові."
+  },
+  {
+   "id": "it:13:14",
+   "target": "Le auto sono nuove.",
+   "ru": "Машины новые.",
+   "uk": "Машини нові."
+  },
+  {
+   "id": "it:13:15",
+   "target": "La scatola è piena.",
+   "ru": "Коробка полная.",
+   "uk": "Коробка повна."
+  },
+  {
+   "id": "it:13:16",
+   "target": "Le scatole sono piene.",
+   "ru": "Коробки полные.",
+   "uk": "Коробки повні."
+  },
+  {
+   "id": "it:13:17",
+   "target": "Il bicchiere è vuoto.",
+   "ru": "Стакан пуст.",
+   "uk": "Склянка порожня."
+  },
+  {
+   "id": "it:13:18",
+   "target": "I bicchieri sono vuoti.",
+   "ru": "Стаканы пусты.",
+   "uk": "Склянки порожні."
+  },
+  {
+   "id": "it:13:19",
+   "target": "La strada è stretta.",
+   "ru": "Улица узкая.",
+   "uk": "Вулиця вузька."
+  },
+  {
+   "id": "it:13:20",
+   "target": "Le strade sono strette.",
+   "ru": "Улицы узкие.",
+   "uk": "Вулиці вузькі."
+  },
+  {
+   "id": "it:13:21",
+   "target": "Cerco una borsa nera.",
+   "ru": "Я ищу черную сумку.",
+   "uk": "Я шукаю чорну сумку."
+  },
+  {
+   "id": "it:13:22",
+   "target": "Cerco una giacca nera.",
+   "ru": "Я ищу черную куртку.",
+   "uk": "Я шукаю чорну куртку."
+  },
+  {
+   "id": "it:13:23",
+   "target": "Lui porta dei pantaloni blu.",
+   "ru": "На нём синие брюки.",
+   "uk": "Він у синіх штанях."
+  },
+  {
+   "id": "it:13:24",
+   "target": "Lei porta una camicia blu.",
+   "ru": "На ней синяя рубашка.",
+   "uk": "Вона в синій сорочці."
+  },
+  {
+   "id": "it:13:25",
+   "target": "Compro dei calzini neri.",
+   "ru": "Я покупаю чёрные носки.",
+   "uk": "Я купую чорні шкарпетки."
+  },
+  {
+   "id": "it:13:26",
+   "target": "Prendiamo gli asciugamani bianchi.",
+   "ru": "Мы берём белые полотенца.",
+   "uk": "Ми беремо білі рушники."
+  },
+  {
+   "id": "it:13:27",
+   "target": "Preferisci il maglione rosso?",
+   "ru": "Ты предпочитаешь красный свитер?",
+   "uk": "Тобі більше подобається червоний светр?"
+  },
+  {
+   "id": "it:13:28",
+   "target": "Lei sceglie le scarpe verdi.",
+   "ru": "Она выбирает зелёные туфли.",
+   "uk": "Вона обирає зелені туфлі."
+  },
+  {
+   "id": "it:13:29",
+   "target": "Il cappotto marrone è caldo.",
+   "ru": "Коричневое пальто тёплое.",
+   "uk": "Коричневе пальто тепле."
+  },
+  {
+   "id": "it:13:30",
+   "target": "La coperta marrone è calda.",
+   "ru": "Коричневое одеяло тёплое.",
+   "uk": "Коричнева ковдра тепла."
+  },
+  {
+   "id": "it:13:31",
+   "target": "È un piccolo giardino.",
+   "ru": "Это небольшой сад.",
+   "uk": "Це маленький сад."
+  },
+  {
+   "id": "it:13:32",
+   "target": "È un piccolo cortile.",
+   "ru": "Это небольшой дворик.",
+   "uk": "Це маленький внутрішній дворик."
+  },
+  {
+   "id": "it:13:33",
+   "target": "Vive in un grande appartamento.",
+   "ru": "Он живёт в большой квартире.",
+   "uk": "Він живе у великій квартирі."
+  },
+  {
+   "id": "it:13:34",
+   "target": "Lavora in una stanza grande.",
+   "ru": "Она работает в большой комнате.",
+   "uk": "Вона працює у великій кімнаті."
+  },
+  {
+   "id": "it:13:35",
+   "target": "Vorrei una sciarpa lunga.",
+   "ru": "Я бы хотел длинный шарф.",
+   "uk": "Я хотів би довгий шарф."
+  },
+  {
+   "id": "it:13:36",
+   "target": "Abbiamo un nuovo vicino.",
+   "ru": "У нас новый сосед.",
+   "uk": "У нас новий сусід."
+  },
+  {
+   "id": "it:13:37",
+   "target": "Ha un nuovo indirizzo?",
+   "ru": "У вас новый адрес?",
+   "uk": "У вас нова адреса?"
+  },
+  {
+   "id": "it:13:38",
+   "target": "È un vecchio edificio.",
+   "ru": "Это старое здание.",
+   "uk": "Це стара будівля."
+  },
+  {
+   "id": "it:13:39",
+   "target": "È una vecchia fotografia.",
+   "ru": "Это старая фотография.",
+   "uk": "Це стара фотографія."
+  },
+  {
+   "id": "it:13:40",
+   "target": "Indossa un abito elegante.",
+   "ru": "На нём элегантный костюм.",
+   "uk": "На ньому елегантний костюм."
+  },
+  {
+   "id": "it:13:41",
+   "target": "Questa zuppa è fredda.",
+   "ru": "Этот суп холодный.",
+   "uk": "Цей суп холодний."
+  },
+  {
+   "id": "it:13:42",
+   "target": "Le bevande sono fredde.",
+   "ru": "Напитки холодные.",
+   "uk": "Напої холодні."
+  },
+  {
+   "id": "it:13:43",
+   "target": "La pera è matura.",
+   "ru": "Груша спелая.",
+   "uk": "Груша стигла."
+  },
+  {
+   "id": "it:13:44",
+   "target": "Le mele sono mature.",
+   "ru": "Яблоки спелые.",
+   "uk": "Яблука стиглі."
+  },
+  {
+   "id": "it:13:45",
+   "target": "La porta del garage è alta.",
+   "ru": "Гаражные ворота высокие.",
+   "uk": "Гаражні ворота високі."
+  },
+  {
+   "id": "it:13:46",
+   "target": "La parete della cucina è bianca.",
+   "ru": "Стена на кухне белая.",
+   "uk": "Стіна на кухні біла."
+  },
+  {
+   "id": "it:13:47",
+   "target": "Gli scaffali sono troppo bassi.",
+   "ru": "Полки слишком низкие.",
+   "uk": "Полиці занадто низькі."
+  },
+  {
+   "id": "it:13:48",
+   "target": "Le nuove sedie sono robuste.",
+   "ru": "Новые стулья прочные.",
+   "uk": "Нові стільці міцні."
+  },
+  {
+   "id": "it:13:49",
+   "target": "La mia giacca leggera è in valigia.",
+   "ru": "Моя легкая куртка в чемодане.",
+   "uk": "Моя легка куртка у валізі."
+  },
+  {
+   "id": "it:13:50",
+   "target": "Prendo la piccola scatola blu.",
+   "ru": "Я возьму маленькую синюю коробку.",
+   "uk": "Я візьму маленьку синю коробку."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "leggero",
+   "ru": "лёгкий, лёгкая (по весу)",
+   "uk": "легкий, легка (за вагою)"
+  },
+  {
+   "lemma": "la scatola",
+   "ru": "коробка",
+   "uk": "коробка"
+  },
+  {
+   "lemma": "il maglione",
+   "ru": "свитер",
+   "uk": "светр"
+  },
+  {
+   "lemma": "la camicia",
+   "ru": "рубашка",
+   "uk": "сорочка"
+  },
+  {
+   "lemma": "lo scaffale",
+   "ru": "полка",
+   "uk": "полку"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  }
+ ],
+ "oldTopicTitle": "Какой предмет: согласование прилагательного",
+ "oldTheoryRu": "У прилагательных есть разные модели. У `pesante` одна форма для обоих родов в единственном числе. У `leggero` две: `leggero` и `leggera`. В цветах тоже бывают разные окончания: `bianco`, `bianca`, а `verde` в единственном числе не различает род. Учить лучше вместе с примером предмета. Смена числа затрагивает несколько мест сразу: `la scatola è piena` и `le scatole sono piene`. Поставь рядом две версии и отметь, какие четыре части поменялись. Описание может идти сразу за названием без отдельного `è`: `una borsa nera`. В таком случае прилагательное входит в название вещи, которую ищут или покупают. Не все названия цветов одинаково меняются: например, распространённое `blu` остаётся `blu` и с несколькими предметами. Не изобретай окончание только по сходству с `rosso`. Прилагательное бывает до или после существительного. От положения иногда зависит оттенок значения. Для начала запомни естественную группу целиком и не переставляй автоматически все прилагательные. Иногда признак относится к предмету не рядом с собой: сперва назови предмет, потом опиши его. При проверке проследи мысленную линию от существительного к его прилагательному."
+}

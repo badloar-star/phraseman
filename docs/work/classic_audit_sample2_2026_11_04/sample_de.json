@@ -70,10 +70,10 @@
 "correct": "zu",
 "distractors": [
 "nach",
+"aus",
+"für",
 "mit",
-"um",
-"auf",
-"ein"
+"von"
 ]
 },
 {
@@ -169,11 +169,7 @@
 ]
 }
 ],
-"alternatives": [
-"Anna bist drinnen.",
-"Anna seid drinnen.",
-"Anna sind drinnen."
-]
+"alternatives": []
 },
 {
 "lesson": 1,
@@ -285,11 +281,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"die",
+"dem",
+"das",
+"den",
+"und"
 ]
 },
 {
@@ -304,13 +300,7 @@
 }
 ],
 "alternatives": [
-"Der Schlüssel ist hier.",
-"Hier bist der Schlüssel.",
-"Der Schlüssel bist hier.",
-"Hier seid der Schlüssel.",
-"Der Schlüssel seid hier.",
-"Hier sind der Schlüssel.",
-"Der Schlüssel sind hier."
+"Der Schlüssel ist hier."
 ]
 },
 {
@@ -323,11 +313,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Den",
+"Der",
+"Das",
+"Dem",
+"Und"
 ]
 },
 {
@@ -361,27 +351,23 @@
 ]
 }
 ],
-"alternatives": [
-"Die Tasche bist neu.",
-"Die Tasche seid neu.",
-"Die Tasche sind neu."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
 "id": "de:02:12",
 "target": "Die Bahn ist da.",
-"ru": "Поезд уже здесь.",
-"uk": "Поїзд вже тут.",
+"ru": "Поезд здесь.",
+"uk": "Поїзд тут.",
 "tiles": [
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Dem",
+"Der",
+"Den",
+"Das",
+"Und"
 ]
 },
 {
@@ -415,11 +401,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Bahn bist da.",
-"Die Bahn seid da.",
-"Die Bahn sind da."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -431,11 +413,11 @@
 {
 "correct": "Der",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Die",
+"Den",
+"Das",
+"Dem",
+"Und"
 ]
 },
 {
@@ -469,11 +451,7 @@
 ]
 }
 ],
-"alternatives": [
-"Der Bahnhof bist hier.",
-"Der Bahnhof seid hier.",
-"Der Bahnhof sind hier."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -485,11 +463,11 @@
 {
 "correct": "Das",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Dem",
+"Den",
+"Die",
+"Der",
+"Und"
 ]
 },
 {
@@ -523,11 +501,7 @@
 ]
 }
 ],
-"alternatives": [
-"Das Zimmer bist frei.",
-"Das Zimmer seid frei.",
-"Das Zimmer sind frei."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -539,11 +513,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Den",
+"Das",
+"Der",
+"Dem",
+"Und"
 ]
 },
 {
@@ -577,11 +551,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Zimmer bist frei.",
-"Die Zimmer ist frei.",
-"Die Zimmer seid frei."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -593,11 +563,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Der",
+"Den",
+"Das",
+"Dem",
+"Und"
 ]
 },
 {
@@ -631,11 +601,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Lampe bist kaputt.",
-"Die Lampe seid kaputt.",
-"Die Lampe sind kaputt."
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -727,11 +693,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Nach",
-"Um"
+"Den",
+"Dem",
+"Der",
+"Das",
+"Und"
 ]
 },
 {
@@ -765,11 +731,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Gästen kaufen Tickets.",
-"Die Gäste kaufst Tickets.",
-"Die Gäste kauft Tickets."
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -841,11 +803,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"den",
+"dem",
+"der",
+"das",
+"und"
 ]
 },
 {
@@ -859,10 +821,7 @@
 ]
 }
 ],
-"alternatives": [
-"Tom hörst die Kinder.",
-"Tom hören die Kinder."
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -943,11 +902,7 @@
 }
 ],
 "alternatives": [
-"Anna lernt morgen.",
-"Morgen lernst Anna.",
-"Anna lernst morgen.",
-"Morgen lernen Anna.",
-"Anna lernen morgen."
+"Anna lernt morgen."
 ]
 },
 {
@@ -1009,11 +964,7 @@
 }
 ],
 "alternatives": [
-"Tom macht am Sonntag Frühstück.",
-"Am Sonntag machst Tom Frühstück.",
-"Tom machst am Sonntag Frühstück.",
-"Am Sonntag machen Tom Frühstück.",
-"Tom machen am Sonntag Frühstück."
+"Tom macht am Sonntag Frühstück."
 ]
 },
 {
@@ -1027,10 +978,10 @@
 "correct": "Um",
 "distractors": [
 "Auf",
+"An",
 "Mit",
 "Vor",
-"Zu",
-"In"
+"Aus"
 ]
 },
 {
@@ -1056,11 +1007,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"auf"
+"den",
+"der",
+"das",
+"dem",
+"und"
 ]
 },
 {
@@ -1086,21 +1037,21 @@
 {
 "correct": "Vor",
 "distractors": [
+"Neben",
 "In",
-"Auf",
-"Um",
-"Zu",
-"Mit"
+"Hinter",
+"Über",
+"Zwischen"
 ]
 },
 {
 "correct": "dem",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"den",
+"der",
+"das",
+"die",
+"und"
 ]
 },
 {
@@ -1116,11 +1067,11 @@
 {
 "correct": "trinke",
 "distractors": [
-"trinkt",
 "trinken",
 "arbeiten",
 "draußen",
-"kochen"
+"kochen",
+"hören"
 ]
 },
 {
@@ -1159,20 +1110,20 @@
 "correct": "In",
 "distractors": [
 "Auf",
-"Vor",
-"Um",
-"Zu",
-"Mit"
+"Zwischen",
+"Neben",
+"An",
+"Vor"
 ]
 },
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"die",
+"den",
+"das",
+"dem",
+"und"
 ]
 },
 {
@@ -1188,11 +1139,11 @@
 {
 "correct": "trinken",
 "distractors": [
-"trinkt",
 "trinke",
 "arbeiten",
 "draußen",
-"kochen"
+"kochen",
+"hören"
 ]
 },
 {
@@ -1250,11 +1201,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"die",
+"dem",
+"das",
+"den",
+"und"
 ]
 },
 {
@@ -1278,11 +1229,7 @@
 ]
 }
 ],
-"alternatives": [
-"Heute bist der Laden offen.",
-"Heute seid der Laden offen.",
-"Heute sind der Laden offen."
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -1502,10 +1449,7 @@
 ]
 }
 ],
-"alternatives": [
-"Hörst Tom Musik?",
-"Hören Tom Musik?"
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -1527,11 +1471,11 @@
 {
 "correct": "das",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"den",
+"die",
+"dem",
+"der",
+"und"
 ]
 },
 {
@@ -1587,11 +1531,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"die",
+"den",
+"dem",
+"das",
+"und"
 ]
 },
 {
@@ -1637,11 +1581,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"den",
+"die",
+"dem",
+"das",
+"und"
 ]
 },
 {
@@ -1687,11 +1631,11 @@
 {
 "correct": "das",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"der",
+"die",
+"den",
+"dem",
+"und"
 ]
 },
 {
@@ -1706,9 +1650,7 @@
 }
 ],
 "alternatives": [
-"Wie viel kostet das Ticket?",
-"Was kosten das Ticket?",
-"Wie viel kosten das Ticket?"
+"Wie viel kostet das Ticket?"
 ]
 },
 {
@@ -1795,8 +1737,8 @@
 "lesson": 7,
 "id": "de:07:19",
 "target": "Wir suchen einen Parkplatz.",
-"ru": "Мы ищем парковочное место.",
-"uk": "Ми шукаємо паркувальне місце.",
+"ru": "Мы ищем парковку.",
+"uk": "Ми шукаємо паркування.",
 "tiles": [
 {
 "correct": "Wir",
@@ -1821,11 +1763,11 @@
 {
 "correct": "einen",
 "distractors": [
+"eine",
+"ein",
 "und",
 "mit",
-"zu",
-"nach",
-"um"
+"für"
 ]
 },
 {
@@ -1845,8 +1787,8 @@
 "lesson": 7,
 "id": "de:07:23",
 "target": "Anna nimmt die Bahn.",
-"ru": "Анна едет по железной дороге.",
-"uk": "Ганна їде залізницею.",
+"ru": "Анна едет на поезде.",
+"uk": "Анна їде поїздом.",
 "tiles": [
 {
 "correct": "Anna",
@@ -1871,11 +1813,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"dem",
+"der",
+"das",
+"den",
+"und"
 ]
 },
 {
@@ -1889,11 +1831,7 @@
 ]
 }
 ],
-"alternatives": [
-"Anna nimmst die Bahn.",
-"Anna nehmt die Bahn.",
-"Anna nehmen die Bahn."
-]
+"alternatives": []
 },
 {
 "lesson": 7,
@@ -1925,11 +1863,11 @@
 {
 "correct": "das",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"dem",
+"der",
+"den",
+"die",
+"und"
 ]
 },
 {
@@ -1975,11 +1913,11 @@
 {
 "correct": "den",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"der",
+"dem",
+"die",
+"das",
+"und"
 ]
 },
 {
@@ -2015,11 +1953,11 @@
 {
 "correct": "finde",
 "distractors": [
-"findet",
 "bereit",
 "leise",
 "allein",
-"ruhig"
+"ruhig",
+"krank"
 ]
 },
 {
@@ -2035,11 +1973,11 @@
 {
 "correct": "den",
 "distractors": [
-"und",
-"mit",
-"zu",
-"nach",
-"um"
+"das",
+"dem",
+"der",
+"die",
+"und"
 ]
 },
 {
@@ -2065,11 +2003,11 @@
 {
 "correct": "Der",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Bei",
-"Nach"
+"Dem",
+"Den",
+"Das",
+"Die",
+"Und"
 ]
 },
 {
@@ -2096,10 +2034,10 @@
 "correct": "keine",
 "distractors": [
 "ein",
-"einem",
 "einen",
-"einer",
-"dein"
+"dein",
+"deinen",
+"mein"
 ]
 },
 {
@@ -2113,11 +2051,7 @@
 ]
 }
 ],
-"alternatives": [
-"Der Laden hast keine Kasse.",
-"Der Laden habt keine Kasse.",
-"Der Laden haben keine Kasse."
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -2168,11 +2102,7 @@
 }
 ],
 "alternatives": [
-"Morgen kommt Anna nicht.",
-"Anna kommst morgen nicht.",
-"Morgen kommst Anna nicht.",
-"Anna kommen morgen nicht.",
-"Morgen kommen Anna nicht."
+"Morgen kommt Anna nicht."
 ]
 },
 {
@@ -2223,11 +2153,7 @@
 ]
 }
 ],
-"alternatives": [
-"Tom wartest nicht draußen.",
-"Tom warten nicht draußen.",
-"Tom warte nicht draußen."
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -2239,11 +2165,11 @@
 {
 "correct": "Das",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Bei",
-"Nach"
+"Die",
+"Dem",
+"Den",
+"Der",
+"Und"
 ]
 },
 {
@@ -2260,10 +2186,10 @@
 "correct": "kein",
 "distractors": [
 "eine",
-"einem",
 "einen",
-"einer",
-"meinem"
+"meinen",
+"meine",
+"deine"
 ]
 },
 {
@@ -2277,11 +2203,7 @@
 ]
 }
 ],
-"alternatives": [
-"Das bist kein Eingang.",
-"Das seid kein Eingang.",
-"Das sind kein Eingang."
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -2293,11 +2215,11 @@
 {
 "correct": "Das",
 "distractors": [
-"Und",
-"Mit",
-"Zu",
-"Bei",
-"Nach"
+"Dem",
+"Den",
+"Der",
+"Die",
+"Und"
 ]
 },
 {
@@ -2306,8 +2228,8 @@
 "bin",
 "sein",
 "seinen",
-"seinem",
-"seine"
+"seine",
+"meinen"
 ]
 },
 {
@@ -2324,10 +2246,10 @@
 "correct": "deine",
 "distractors": [
 "ein",
-"einem",
 "einen",
-"einer",
-"kein"
+"kein",
+"keinen",
+"mein"
 ]
 },
 {
@@ -2381,10 +2303,7 @@
 ]
 }
 ],
-"alternatives": [
-"Unsere Bahn kommst.",
-"Unsere Bahn kommen."
-]
+"alternatives": []
 },
 {
 "lesson": 9,
@@ -2450,7 +2369,7 @@
 "sein",
 "fertig",
 "offen",
-"stehen"
+"finde"
 ]
 },
 {
@@ -2474,11 +2393,7 @@
 ]
 }
 ],
-"alternatives": [
-"Wo bist meine Schuhe?",
-"Wo ist meine Schuhe?",
-"Wo seid meine Schuhe?"
-]
+"alternatives": []
 },
 {
 "lesson": 9,
@@ -2534,8 +2449,8 @@
 "lesson": 9,
 "id": "de:09:34",
 "target": "Hast du deine Fahrkarte?",
-"ru": "У тебя с собой твой билет?",
-"uk": "У тебе із собою твій квиток?",
+"ru": "У тебя твой билет?",
+"uk": "У тебе твій квиток?",
 "tiles": [
 {
 "correct": "Hast",
@@ -2610,21 +2525,21 @@
 {
 "correct": "mit",
 "distractors": [
+"ohne",
 "nach",
 "bei",
 "seit",
-"zu",
-"aus"
+"zu"
 ]
 },
 {
 "correct": "dem",
 "distractors": [
-"und",
-"zu",
-"bei",
-"aus",
-"von"
+"das",
+"die",
+"den",
+"der",
+"und"
 ]
 },
 {
@@ -2638,10 +2553,7 @@
 ]
 }
 ],
-"alternatives": [
-"Tom kommst mit dem Fahrrad.",
-"Tom kommen mit dem Fahrrad."
-]
+"alternatives": []
 },
 {
 "lesson": 10,
@@ -2675,19 +2587,19 @@
 "distractors": [
 "zu",
 "seit",
+"ohne",
 "von",
-"bei",
-"aus"
+"bei"
 ]
 },
 {
 "correct": "dem",
 "distractors": [
-"und",
-"zu",
-"bei",
-"aus",
-"von"
+"das",
+"den",
+"die",
+"der",
+"und"
 ]
 },
 {
@@ -2723,21 +2635,21 @@
 {
 "correct": "fahre",
 "distractors": [
-"fährst",
-"fahren",
 "fährt",
-"warten",
-"steigen"
+"ihr",
+"ihren",
+"ihrer",
+"bin"
 ]
 },
 {
 "correct": "zur",
 "distractors": [
-"ans",
 "im",
 "beim",
 "vom",
-"am"
+"am",
+"zum"
 ]
 },
 {
@@ -2757,8 +2669,8 @@
 "lesson": 10,
 "id": "de:10:25",
 "target": "Du bist bei der Ärztin.",
-"ru": "Ты на приёме у врача-женщины.",
-"uk": "Ти на прийомі у лікаря-жінки.",
+"ru": "Ты на приёме у врача (жен.).",
+"uk": "Ти на прийомі у лікарки.",
 "tiles": [
 {
 "correct": "Du",
@@ -2793,11 +2705,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"zu",
-"aus",
-"nach"
+"den",
+"das",
+"die",
+"dem",
+"und"
 ]
 },
 {
@@ -2818,7 +2730,7 @@
 "id": "de:10:37",
 "target": "Ich komme aus dem Büro.",
 "ru": "Я выхожу из офиса.",
-"uk": "Я виходжу із офісу.",
+"uk": "Я виходжу з офісу.",
 "tiles": [
 {
 "correct": "Ich",
@@ -2843,21 +2755,21 @@
 {
 "correct": "aus",
 "distractors": [
+"für",
 "seit",
 "nach",
 "mit",
-"zu",
-"bei"
+"vor"
 ]
 },
 {
 "correct": "dem",
 "distractors": [
-"und",
-"mit",
-"zu",
-"bei",
-"nach"
+"die",
+"der",
+"das",
+"den",
+"und"
 ]
 },
 {
@@ -2878,26 +2790,26 @@
 "id": "de:10:46",
 "target": "Seit einer Woche lerne ich Deutsch.",
 "ru": "Я уже неделю учу немецкий.",
-"uk": "Я вже тиждень навчаю німецьку.",
+"uk": "Я вже тиждень вивчаю німецьку.",
 "tiles": [
 {
 "correct": "Seit",
 "distractors": [
+"Ohne",
 "Nach",
+"Für",
 "Zu",
-"Aus",
-"Mit",
-"Von"
+"Aus"
 ]
 },
 {
 "correct": "einer",
 "distractors": [
-"und",
-"mit",
-"zu",
-"bei",
-"aus"
+"ein",
+"eine",
+"einem",
+"einen",
+"und"
 ]
 },
 {
@@ -2953,11 +2865,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Den",
+"Der",
+"Dem",
+"Das",
+"Und"
 ]
 },
 {
@@ -3002,9 +2914,7 @@
 }
 ],
 "alternatives": [
-"Die Brille liegt in dem Auto.",
-"Die Brille liegen im Auto.",
-"Die Brille liegen in dem Auto."
+"Die Brille liegt in dem Auto."
 ]
 },
 {
@@ -3041,17 +2951,17 @@
 "vor",
 "über",
 "unter",
-"hinter"
+"aus"
 ]
 },
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"den",
+"dem",
+"das",
+"die",
+"und"
 ]
 },
 {
@@ -3065,11 +2975,7 @@
 ]
 }
 ],
-"alternatives": [
-"Tom bist in der Schule.",
-"Tom seid in der Schule.",
-"Tom sind in der Schule."
-]
+"alternatives": []
 },
 {
 "lesson": 11,
@@ -3133,11 +3039,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Den",
+"Das",
+"Dem",
+"Der",
+"Und"
 ]
 },
 {
@@ -3181,12 +3087,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Gästen sind im Café.",
-"Die Gäste bist im Café.",
-"Die Gäste ist im Café.",
-"Die Gäste seid im Café."
-]
+"alternatives": []
 },
 {
 "lesson": 11,
@@ -3198,11 +3099,11 @@
 {
 "correct": "Die",
 "distractors": [
+"Den",
+"Das",
+"Dem",
 "Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Mit"
 ]
 },
 {
@@ -3218,11 +3119,11 @@
 {
 "correct": "warten",
 "distractors": [
-"neben",
-"zwischen",
 "treffen",
 "spielen",
-"sitzen"
+"sitzen",
+"bezahlen",
+"hören"
 ]
 },
 {
@@ -3238,11 +3139,11 @@
 {
 "correct": "der",
 "distractors": [
+"den",
+"das",
+"dem",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3256,12 +3157,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Gästen warten vor der Halle.",
-"Die Gäste wartest vor der Halle.",
-"Die Gäste wartet vor der Halle.",
-"Die Gäste warte vor der Halle."
-]
+"alternatives": []
 },
 {
 "lesson": 11,
@@ -3273,11 +3169,11 @@
 {
 "correct": "Der",
 "distractors": [
+"Den",
+"Die",
+"Das",
 "Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Mit"
 ]
 },
 {
@@ -3296,8 +3192,8 @@
 "warten",
 "schwimmt",
 "hält",
-"und",
-"hängt"
+"hängt",
+"spielen"
 ]
 },
 {
@@ -3313,11 +3209,11 @@
 {
 "correct": "dem",
 "distractors": [
+"das",
+"den",
+"die",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3363,11 +3259,11 @@
 {
 "correct": "das",
 "distractors": [
+"dem",
+"der",
+"den",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3387,17 +3283,17 @@
 "unter",
 "neben",
 "in",
-"vor"
+"aus"
 ]
 },
 {
 "correct": "die",
 "distractors": [
+"der",
+"dem",
+"den",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3443,11 +3339,11 @@
 {
 "correct": "das",
 "distractors": [
+"der",
+"den",
+"dem",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3473,11 +3369,11 @@
 {
 "correct": "die",
 "distractors": [
+"den",
+"der",
+"dem",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3533,11 +3429,11 @@
 {
 "correct": "den",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"dem",
+"das",
+"der",
+"die",
+"und"
 ]
 },
 {
@@ -3566,8 +3462,8 @@
 "Stelle",
 "Stellen",
 "Stellt",
-"Gut",
-"Hole"
+"Hole",
+"Schalte"
 ]
 },
 {
@@ -3583,11 +3479,11 @@
 {
 "correct": "den",
 "distractors": [
+"die",
+"dem",
+"der",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3613,11 +3509,11 @@
 {
 "correct": "das",
 "distractors": [
+"dem",
+"die",
+"der",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3708,18 +3604,18 @@
 "stelle",
 "stellen",
 "stellst",
-"neben",
-"bringen"
+"bringen",
+"legen"
 ]
 },
 {
 "correct": "den",
 "distractors": [
+"die",
+"der",
+"dem",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3745,11 +3641,11 @@
 {
 "correct": "das",
 "distractors": [
+"dem",
+"die",
+"der",
 "und",
-"mit",
-"für",
-"zu",
-"bei"
+"mit"
 ]
 },
 {
@@ -3796,10 +3692,10 @@
 "correct": "um",
 "distractors": [
 "mit",
-"ab",
 "an",
-"ein",
-"aus"
+"aus",
+"vor",
+"seit"
 ]
 },
 {
@@ -3815,11 +3711,11 @@
 {
 "correct": "auf",
 "distractors": [
-"ein",
 "zu",
 "vor",
 "aus",
-"mit"
+"mit",
+"seit"
 ]
 }
 ],
@@ -3829,8 +3725,8 @@
 "lesson": 13,
 "id": "de:13:08",
 "target": "Tom ruft seine Mutter an.",
-"ru": "Том звонит своей матери.",
-"uk": "Том дзвонить своїй матері.",
+"ru": "Том звонит своей маме.",
+"uk": "Том дзвонить своїй мамі.",
 "tiles": [
 {
 "correct": "Tom",
@@ -3877,9 +3773,9 @@
 "distractors": [
 "aus",
 "mit",
-"ab",
 "zu",
-"von"
+"vor",
+"seit"
 ]
 }
 ],
@@ -3936,17 +3832,14 @@
 "correct": "an",
 "distractors": [
 "vor",
-"ein",
-"ab",
 "zu",
-"aus"
+"aus",
+"mit",
+"seit"
 ]
 }
 ],
-"alternatives": [
-"Anna rufst im Hotel an.",
-"Anna rufen im Hotel an."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -3958,11 +3851,11 @@
 {
 "correct": "Der",
 "distractors": [
-"Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Dem",
+"Das",
+"Die",
+"Den",
+"Und"
 ]
 },
 {
@@ -3988,11 +3881,11 @@
 {
 "correct": "um",
 "distractors": [
-"ein",
 "vor",
 "zu",
 "auf",
-"an"
+"aus",
+"mit"
 ]
 },
 {
@@ -4008,19 +3901,15 @@
 {
 "correct": "ab",
 "distractors": [
-"mit",
 "ein",
-"aus",
-"an",
-"vor"
+"einen",
+"einer",
+"einem",
+"eine"
 ]
 }
 ],
-"alternatives": [
-"Der Zug fährst um elf ab.",
-"Der Zug fahrt um elf ab.",
-"Der Zug fahren um elf ab."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -4052,11 +3941,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"dem",
+"den",
+"das",
+"die",
+"und"
 ]
 },
 {
@@ -4072,19 +3961,15 @@
 {
 "correct": "ab",
 "distractors": [
-"um",
-"vor",
 "ein",
-"zu",
-"aus"
+"einen",
+"einer",
+"einem",
+"eine"
 ]
 }
 ],
-"alternatives": [
-"Wann fährst der Bus ab?",
-"Wann fahrt der Bus ab?",
-"Wann fahren der Bus ab?"
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -4127,10 +4012,10 @@
 "correct": "am",
 "distractors": [
 "zum",
-"vom",
 "zur",
 "ins",
-"ans"
+"ans",
+"im"
 ]
 },
 {
@@ -4146,11 +4031,11 @@
 {
 "correct": "ab",
 "distractors": [
-"um",
-"mit",
-"vor",
-"aus",
-"zu"
+"ein",
+"bitte",
+"dem",
+"das",
+"der"
 ]
 }
 ],
@@ -4186,11 +4071,11 @@
 {
 "correct": "den",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"dem",
+"der",
+"die",
+"das",
+"und"
 ]
 },
 {
@@ -4206,11 +4091,11 @@
 {
 "correct": "ab",
 "distractors": [
-"vor",
 "ein",
-"um",
-"aus",
-"mit"
+"einen",
+"einer",
+"einem",
+"eine"
 ]
 }
 ],
@@ -4408,9 +4293,9 @@
 "distractors": [
 "auch",
 "wieder",
-"gesprochen",
-"gekocht",
-"gemacht"
+"machen",
+"suche",
+"suchen"
 ]
 },
 {
@@ -4424,11 +4309,7 @@
 ]
 }
 ],
-"alternatives": [
-"Hier darfst man nicht rauchen.",
-"Hier dürft man nicht rauchen.",
-"Hier dürfen man nicht rauchen."
-]
+"alternatives": []
 },
 {
 "lesson": 14,
@@ -4470,11 +4351,11 @@
 {
 "correct": "eine",
 "distractors": [
+"einem",
+"einer",
 "und",
 "mit",
-"für",
-"zu",
-"bei"
+"für"
 ]
 },
 {
@@ -4490,11 +4371,11 @@
 {
 "correct": "stellen",
 "distractors": [
-"neben",
 "bringen",
 "können",
 "legen",
-"hängen"
+"hängen",
+"laufen"
 ]
 }
 ],
@@ -4520,11 +4401,11 @@
 {
 "correct": "der",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"dem",
+"das",
+"die",
+"den",
+"und"
 ]
 },
 {
@@ -4548,11 +4429,7 @@
 ]
 }
 ],
-"alternatives": [
-"Darfst der Hund mitkommen?",
-"Dürft der Hund mitkommen?",
-"Dürfen der Hund mitkommen?"
-]
+"alternatives": []
 },
 {
 "lesson": 15,
@@ -4574,11 +4451,11 @@
 {
 "correct": "das",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"dem",
+"den",
+"die",
+"der",
+"und"
 ]
 },
 {
@@ -4608,8 +4485,8 @@
 "lesson": 15,
 "id": "de:15:19",
 "target": "Fahr vorsichtig!",
-"ru": "Веди осторожно!",
-"uk": "Веди обережно!",
+"ru": "Езжай осторожно!",
+"uk": "Їдь обережно!",
 "tiles": [
 {
 "correct": "Fahr",
@@ -4625,10 +4502,10 @@
 "correct": "vorsichtig",
 "distractors": [
 "rechts",
-"bis",
 "langsamer",
 "früh",
-"hierhin"
+"hierhin",
+"bitte"
 ]
 }
 ],
@@ -4672,11 +4549,7 @@
 ]
 }
 ],
-"alternatives": [
-"Wartest am Eingang!",
-"Warten am Eingang!",
-"Warte am Eingang!"
-]
+"alternatives": []
 },
 {
 "lesson": 15,
@@ -4730,9 +4603,9 @@
 "distractors": [
 "Ihrer",
 "Fahre",
-"Fährst",
 "Fährt",
-"Ist"
+"Ist",
+"Sind"
 ]
 },
 {
@@ -4838,11 +4711,11 @@
 {
 "correct": "den",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"die",
+"der",
+"das",
+"dem",
+"und"
 ]
 },
 {
@@ -4898,11 +4771,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"den",
+"das",
+"dem",
+"der",
+"und"
 ]
 },
 {
@@ -4958,11 +4831,11 @@
 {
 "correct": "das",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"der",
+"den",
+"dem",
+"die",
+"und"
 ]
 },
 {
@@ -5018,11 +4891,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"der",
+"den",
+"das",
+"dem",
+"und"
 ]
 },
 {
@@ -5046,11 +4919,7 @@
 ]
 }
 ],
-"alternatives": [
-"Tom hast die Schlüssel verloren.",
-"Tom habt die Schlüssel verloren.",
-"Tom haben die Schlüssel verloren."
-]
+"alternatives": []
 },
 {
 "lesson": 16,
@@ -5118,8 +4987,8 @@
 "lesson": 17,
 "id": "de:17:27",
 "target": "Mein Bruder ist aus Wien zurückgekommen.",
-"ru": "Брат вернулся из Вены.",
-"uk": "Брат повернувся з Відня.",
+"ru": "Мой брат вернулся из Вены.",
+"uk": "Мій брат повернувся з Відня.",
 "tiles": [
 {
 "correct": "Mein",
@@ -5158,7 +5027,7 @@
 "nach",
 "für",
 "bei",
-"zu"
+"mit"
 ]
 },
 {
@@ -5182,11 +5051,7 @@
 ]
 }
 ],
-"alternatives": [
-"Mein Bruder bist aus Wien zurückgekommen.",
-"Mein Bruder seid aus Wien zurückgekommen.",
-"Mein Bruder sind aus Wien zurückgekommen."
-]
+"alternatives": []
 },
 {
 "lesson": 17,
@@ -5198,11 +5063,11 @@
 {
 "correct": "Die",
 "distractors": [
-"Und",
-"Mit",
-"Für",
-"Zu",
-"Bei"
+"Der",
+"Das",
+"Den",
+"Dem",
+"Und"
 ]
 },
 {
@@ -5256,12 +5121,7 @@
 ]
 }
 ],
-"alternatives": [
-"Die Nachbarn bist letzte Woche ausgezogen.",
-"Die Nachbarn ist letzte Woche ausgezogen.",
-"Die Nachbarn seid letzte Woche ausgezogen.",
-"Die Nachbarn sind letzten Woche ausgezogen."
-]
+"alternatives": []
 },
 {
 "lesson": 17,
@@ -5283,11 +5143,11 @@
 {
 "correct": "die",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"der",
+"das",
+"den",
+"dem",
+"und"
 ]
 },
 {
@@ -5321,11 +5181,7 @@
 ]
 }
 ],
-"alternatives": [
-"Bist die Kinder gut eingeschlafen?",
-"Ist die Kinder gut eingeschlafen?",
-"Seid die Kinder gut eingeschlafen?"
-]
+"alternatives": []
 },
 {
 "lesson": 17,
@@ -5421,11 +5277,11 @@
 {
 "correct": "dem",
 "distractors": [
-"und",
-"mit",
-"für",
-"zu",
-"bei"
+"der",
+"den",
+"das",
+"die",
+"und"
 ]
 },
 {
@@ -5513,11 +5369,11 @@
 {
 "correct": "Wenn",
 "distractors": [
+"Obwohl",
 "Als",
-"Dass",
-"Weil",
-"Was",
-"Wie"
+"Damit",
+"Nachdem",
+"Dass"
 ]
 },
 {
@@ -5585,11 +5441,11 @@
 {
 "correct": "Der",
 "distractors": [
-"Und",
-"Mit",
-"Für",
-"Dass",
-"Zu"
+"Den",
+"Das",
+"Die",
+"Dem",
+"Und"
 ]
 },
 {
@@ -5653,19 +5509,14 @@
 ]
 }
 ],
-"alternatives": [
-"Der Ausweis musst am Eingang gezeigt werden.",
-"Der Ausweis müsst am Eingang gezeigt werden.",
-"Der Ausweis müssen am Eingang gezeigt werden.",
-"Der Ausweis muss am Eingang gezeigt wird."
-]
+"alternatives": []
 },
 {
 "lesson": 29,
 "id": "de:29:09",
 "target": "Wäre morgen ein Termin frei?",
-"ru": "На завтра найдётся свободное время для записи?",
-"uk": "На завтра знайдеться вільний час для запису?",
+"ru": "На завтра есть свободное время для записи?",
+"uk": "На завтра є вільний час для запису?",
 "tiles": [
 {
 "correct": "Wäre",
@@ -5690,11 +5541,11 @@
 {
 "correct": "ein",
 "distractors": [
+"einem",
+"einer",
 "und",
 "mit",
-"für",
-"aber",
-"dass"
+"für"
 ]
 },
 {

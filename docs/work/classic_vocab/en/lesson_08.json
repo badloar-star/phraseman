@@ -219,10 +219,15 @@
    "es": "primero"
   },
   "of": {
-   "ru": "слово при дате (первое мая); по-русски нет",
-   "uk": "слово при даті (перше травня); українською немає",
-   "en": "small linking word",
-   "es": "de"
+   "ru": "Первое мая (the first ___ May)",
+   "uk": "Перше травня (the first ___ May)",
+   "en": "May 1 (the first ___ May)",
+   "es": "El primero de mayo (the first ___ May)",
+   "pt-BR": "Primeiro de maio (the first ___ May)",
+   "vi": "Ngày một tháng Năm (the first ___ May)",
+   "id": "Tanggal satu Mei (the first ___ May)",
+   "tr": "Mayısın biri (the first ___ May)",
+   "pl": "Pierwszy maja (the first ___ May)"
   },
   "may": {
    "ru": "май",

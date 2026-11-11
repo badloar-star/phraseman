@@ -209,18 +209,6 @@
       "valueClass": "enum_code",
       "description": "Allowlisted Arena interaction mode; never task or answer content."
     },
-    "outcome": {
-      "valueClass": "enum_code",
-      "description": "Allowlisted Arena terminal outcome."
-    },
-    "correct_count": {
-      "valueClass": "integer",
-      "description": "Bounded Arena correct-answer count from zero to ten."
-    },
-    "duration_bucket": {
-      "valueClass": "enum_code",
-      "description": "Coarse Arena duration bucket; never an exact player timeline."
-    },
     "item_id": {
       "valueClass": "enum_code",
       "description": "Allowlisted shipped Arena cosmetic catalog identifier."
@@ -232,34 +220,6 @@
     "price_bucket": {
       "valueClass": "enum_code",
       "description": "Coarse Arena cosmetic price bucket; never wallet balance."
-    },
-    "lesson_ordinal": {
-      "valueClass": "integer",
-      "description": "Bounded Learning V2 lesson ordinal from one to thirty-two; course coordinate, never identity."
-    },
-    "session_ordinal": {
-      "valueClass": "integer",
-      "description": "Bounded Learning V2 session ordinal from one to fifty-six; course coordinate, never identity."
-    },
-    "session_kind": {
-      "valueClass": "enum_code",
-      "description": "Allowlisted Learning V2 session kind code; never lesson text or answers."
-    },
-    "activity_family": {
-      "valueClass": "enum_code",
-      "description": "Allowlisted Learning V2 activity family code; never the task prompt or answer."
-    },
-    "stars_earned": {
-      "valueClass": "integer",
-      "description": "Bounded Learning V2 session grade from zero to three; a grade, never a wallet balance."
-    },
-    "attempt_bucket": {
-      "valueClass": "enum_code",
-      "description": "Coarse attempt bucket for a single task; never an exact answer trail."
-    },
-    "stage": {
-      "valueClass": "enum_code",
-      "description": "Allowlisted Learning V2 session stage code where the learner stopped."
     }
   },
   "fieldSets": {
@@ -347,37 +307,6 @@
       "app_version",
       "build_number",
       "occurred_at_ms"
-    ],
-    "learningV2Session": [
-      "lesson_ordinal",
-      "session_ordinal",
-      "session_kind",
-      "study_target",
-      "duration_bucket"
-    ],
-    "learningV2SessionComplete": [
-      "lesson_ordinal",
-      "session_ordinal",
-      "session_kind",
-      "study_target",
-      "duration_bucket",
-      "stars_earned",
-      "correct_count"
-    ],
-    "learningV2SessionAbandon": [
-      "lesson_ordinal",
-      "session_ordinal",
-      "session_kind",
-      "study_target",
-      "duration_bucket",
-      "stage"
-    ],
-    "learningV2Task": [
-      "lesson_ordinal",
-      "session_ordinal",
-      "activity_family",
-      "outcome",
-      "attempt_bucket"
     ]
   },
   "events": [
@@ -581,30 +510,6 @@
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
-    },
-    {
-      "name": "learning_v2_session_start",
-      "entity": "attempt",
-      "warehouse": "telemetry_only",
-      "fieldSet": "learningV2Session"
-    },
-    {
-      "name": "learning_v2_session_complete",
-      "entity": "attempt",
-      "warehouse": "telemetry_only",
-      "fieldSet": "learningV2SessionComplete"
-    },
-    {
-      "name": "learning_v2_session_abandon",
-      "entity": "attempt",
-      "warehouse": "telemetry_only",
-      "fieldSet": "learningV2SessionAbandon"
-    },
-    {
-      "name": "learning_v2_task_result",
-      "entity": "attempt",
-      "warehouse": "telemetry_only",
-      "fieldSet": "learningV2Task"
     }
   ],
   "metrics": [

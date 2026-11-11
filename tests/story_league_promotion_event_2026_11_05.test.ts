@@ -29,7 +29,7 @@ describe('история «переход в лигу» (spire_week, исход 
     for (const rel of ['components/stories/templates/frames_progress.tsx', 'components/stories/StorySlides.tsx']) {
       const src = read(rel);
       expect(src).toMatch(/outcome === 'up' && (tpl\.)?promotionCoins > 0/);
-      expect(src).toMatch(/promotionCoins > 0 \? `\+\$\{storyThousands\((tpl\.)?promotionCoins\)\}`/);
+      expect(src).toMatch(/promotionCoins > 0 \? momentText\(lang, 'promoBonus', \{ n: (tpl\.)?promotionCoins \}\)/);
     }
   });
 

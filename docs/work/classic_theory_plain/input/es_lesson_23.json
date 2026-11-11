@@ -1,0 +1,729 @@
+{
+ "lang": "es",
+ "lesson": 23,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:23:01",
+   "target": "Vivía aquí antes.",
+   "ru": "Я раньше жил здесь.",
+   "uk": "Я раніше жив тут."
+  },
+  {
+   "id": "es:23:02",
+   "target": "Vivías aquí antes.",
+   "ru": "Ты раньше жил здесь.",
+   "uk": "Ти раніше жив тут."
+  },
+  {
+   "id": "es:23:03",
+   "target": "Vivía cerca de la estación antes.",
+   "ru": "Я раньше жил рядом с вокзалом.",
+   "uk": "Я раніше жив поруч із вокзалом."
+  },
+  {
+   "id": "es:23:04",
+   "target": "Vivías cerca de la estación antes.",
+   "ru": "Ты раньше жил рядом с вокзалом.",
+   "uk": "Ти раніше жив поруч із вокзалом."
+  },
+  {
+   "id": "es:23:05",
+   "target": "Ana comía en casa antes.",
+   "ru": "Ана раньше ела дома.",
+   "uk": "Ана раніше їла вдома."
+  },
+  {
+   "id": "es:23:06",
+   "target": "Comíamos en casa antes.",
+   "ru": "Мы раньше ели дома.",
+   "uk": "Ми раніше їли вдома."
+  },
+  {
+   "id": "es:23:07",
+   "target": "Vivía en un barrio tranquilo.",
+   "ru": "Я жил в тихом районе.",
+   "uk": "Я жив у тихому районі."
+  },
+  {
+   "id": "es:23:08",
+   "target": "Comías en la cocina antes.",
+   "ru": "Ты раньше ел на кухне.",
+   "uk": "Ти раніше їв на кухні."
+  },
+  {
+   "id": "es:23:09",
+   "target": "Luis trabajaba en casa antes.",
+   "ru": "Луис раньше работал дома.",
+   "uk": "Луїс раніше працював вдома."
+  },
+  {
+   "id": "es:23:10",
+   "target": "Trabajábamos en el hotel antes.",
+   "ru": "Мы раньше работали в отеле.",
+   "uk": "Ми раніше працювали у готелі."
+  },
+  {
+   "id": "es:23:11",
+   "target": "Bebía agua cada día.",
+   "ru": "Я каждый день пил воду.",
+   "uk": "Я щодня пив воду."
+  },
+  {
+   "id": "es:23:12",
+   "target": "Ana bebía café cada día.",
+   "ru": "Ана каждый день пила кофе.",
+   "uk": "Ана щодня пила каву."
+  },
+  {
+   "id": "es:23:13",
+   "target": "Mi madre iba al mercado en autobús.",
+   "ru": "Моя мама ездила на рынок на автобусе.",
+   "uk": "Моя мама їздила на ринок автобусом."
+  },
+  {
+   "id": "es:23:14",
+   "target": "Leías el mensaje cada día.",
+   "ru": "Ты каждый день читал сообщение.",
+   "uk": "Ти щодня читав повідомлення."
+  },
+  {
+   "id": "es:23:15",
+   "target": "Escribía una carta cada día.",
+   "ru": "Я каждый день писал письмо.",
+   "uk": "Я щодня писав листа."
+  },
+  {
+   "id": "es:23:16",
+   "target": "Escribíamos un mensaje cada día.",
+   "ru": "Мы каждый день писали сообщение.",
+   "uk": "Ми щодня писали повідомлення."
+  },
+  {
+   "id": "es:23:17",
+   "target": "Ana trabajaba en casa cada día.",
+   "ru": "Ана каждый день работала дома.",
+   "uk": "Ана щодня працювала вдома."
+  },
+  {
+   "id": "es:23:18",
+   "target": "Mis hermanas trabajaban en el hotel cada día.",
+   "ru": "Мои сёстры каждый день работали в отеле.",
+   "uk": "Мої сестри щодня працювали у готелі."
+  },
+  {
+   "id": "es:23:19",
+   "target": "De niño iba a ese colegio.",
+   "ru": "В детстве я ходил в ту школу.",
+   "uk": "У дитинстві я ходив до тієї школи."
+  },
+  {
+   "id": "es:23:20",
+   "target": "Esperabas fuera cada día.",
+   "ru": "Ты каждый день ждал снаружи.",
+   "uk": "Ти щодня чекав надворі."
+  },
+  {
+   "id": "es:23:21",
+   "target": "Vivíamos cerca de la tienda.",
+   "ru": "Мы жили рядом с магазином.",
+   "uk": "Ми жили поруч із магазином."
+  },
+  {
+   "id": "es:23:22",
+   "target": "Comíais en la cocina a menudo.",
+   "ru": "Вы часто ели на кухне.",
+   "uk": "Ви часто їли на кухні."
+  },
+  {
+   "id": "es:23:23",
+   "target": "Mis hermanos trabajaban en casa a menudo.",
+   "ru": "Мои братья часто работали дома.",
+   "uk": "Мої брати часто працювали вдома."
+  },
+  {
+   "id": "es:23:24",
+   "target": "Mis vecinos paseaban por el parque.",
+   "ru": "Мои соседи гуляли по парку.",
+   "uk": "Мої сусіди гуляли парком."
+  },
+  {
+   "id": "es:23:25",
+   "target": "Mis hermanas leían el libro a menudo.",
+   "ru": "Мои сёстры часто читали книгу.",
+   "uk": "Мої сестри часто читали книжку."
+  },
+  {
+   "id": "es:23:26",
+   "target": "Mis hermanos leían el mensaje a menudo.",
+   "ru": "Мои братья часто читали сообщение.",
+   "uk": "Мої брати часто читали повідомлення."
+  },
+  {
+   "id": "es:23:27",
+   "target": "El autobús pasaba por mi barrio.",
+   "ru": "Автобус проезжал через мой район.",
+   "uk": "Автобус проїжджав через мій район."
+  },
+  {
+   "id": "es:23:28",
+   "target": "Bebíamos agua a menudo.",
+   "ru": "Мы часто пили воду.",
+   "uk": "Ми часто пили воду."
+  },
+  {
+   "id": "es:23:29",
+   "target": "Mis hermanos escribían un mensaje a menudo.",
+   "ru": "Мои братья часто писали сообщение.",
+   "uk": "Мої брати часто писали повідомлення."
+  },
+  {
+   "id": "es:23:30",
+   "target": "Comíais en casa a menudo.",
+   "ru": "Вы часто ели дома.",
+   "uk": "Ви часто їли вдома."
+  },
+  {
+   "id": "es:23:31",
+   "target": "No trabajaba en casa antes.",
+   "ru": "Я раньше не работал дома.",
+   "uk": "Я раніше не працював вдома."
+  },
+  {
+   "id": "es:23:32",
+   "target": "No comías en la cocina antes.",
+   "ru": "Ты раньше не ел на кухне.",
+   "uk": "Ти раніше не їв на кухні."
+  },
+  {
+   "id": "es:23:33",
+   "target": "Ana no bebía agua antes.",
+   "ru": "Ана раньше не пила воду.",
+   "uk": "Ана раніше не пила воду."
+  },
+  {
+   "id": "es:23:34",
+   "target": "De niño compraba fruta en ese mercado.",
+   "ru": "В детстве я покупал фрукты на том рынке.",
+   "uk": "У дитинстві я купував фрукти на тому ринку."
+  },
+  {
+   "id": "es:23:35",
+   "target": "Luis no escribía cartas antes.",
+   "ru": "Раньше Луис не писал писем.",
+   "uk": "Раніше Луїс не писав листів."
+  },
+  {
+   "id": "es:23:36",
+   "target": "Mis hermanas no esperaban aquí antes.",
+   "ru": "Мои сёстры раньше не ждали здесь.",
+   "uk": "Мої сестри раніше не чекали тут."
+  },
+  {
+   "id": "es:23:37",
+   "target": "No preparábamos la cena antes.",
+   "ru": "Мы раньше не готовили ужин.",
+   "uk": "Ми раніше не готували вечерю."
+  },
+  {
+   "id": "es:23:38",
+   "target": "Íbamos al colegio en bicicleta.",
+   "ru": "Мы ездили в школу на велосипедах.",
+   "uk": "Ми їздили до школи велосипедами."
+  },
+  {
+   "id": "es:23:39",
+   "target": "No volvíais a la estación antes.",
+   "ru": "Вы раньше не возвращались на вокзал.",
+   "uk": "Ви раніше не поверталися на вокзал."
+  },
+  {
+   "id": "es:23:40",
+   "target": "Antes mis hermanos no llevaban mochila.",
+   "ru": "Раньше мои братья не носили рюкзак.",
+   "uk": "Раніше мої брати не носили рюкзак."
+  },
+  {
+   "id": "es:23:41",
+   "target": "¿Vivías aquí antes?",
+   "ru": "Ты раньше жил здесь?",
+   "uk": "Ти раніше жив тут?"
+  },
+  {
+   "id": "es:23:42",
+   "target": "¿Vivías cerca del parque?",
+   "ru": "Ты раньше жил рядом с парком?",
+   "uk": "Ти раніше жив біля парку?"
+  },
+  {
+   "id": "es:23:43",
+   "target": "¿Trabajábamos en el hotel antes?",
+   "ru": "Мы раньше работали в отеле?",
+   "uk": "Ми раніше працювали у готелі?"
+  },
+  {
+   "id": "es:23:44",
+   "target": "¿Bebías café antes?",
+   "ru": "Ты раньше пил кофе?",
+   "uk": "Ти раніше пив каву?"
+  },
+  {
+   "id": "es:23:45",
+   "target": "¿Luis leía en el tren?",
+   "ru": "Луис обычно читал в поезде?",
+   "uk": "Луїс зазвичай читав у потязі?"
+  },
+  {
+   "id": "es:23:46",
+   "target": "¿Ana escribía un mensaje antes?",
+   "ru": "Ана раньше писала сообщение?",
+   "uk": "Ана раніше писала повідомлення?"
+  },
+  {
+   "id": "es:23:47",
+   "target": "¿Esperábamos fuera antes?",
+   "ru": "Мы раньше ждали снаружи?",
+   "uk": "Ми раніше чекали надворі?"
+  },
+  {
+   "id": "es:23:48",
+   "target": "¿Tus vecinos también trabajaban aquí?",
+   "ru": "Твои соседи тоже раньше работали здесь?",
+   "uk": "Твої сусіди теж раніше працювали тут?"
+  },
+  {
+   "id": "es:23:49",
+   "target": "¿Mis hermanas volvían a casa antes?",
+   "ru": "Мои сёстры раньше возвращались домой?",
+   "uk": "Мої сестри раніше поверталися додому?"
+  },
+  {
+   "id": "es:23:50",
+   "target": "¿Leíais juntos en clase?",
+   "ru": "Вы обычно читали вместе на занятии?",
+   "uk": "Ви зазвичай читали разом на занятті?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "junto",
+   "ru": "вместе, совместно",
+   "uk": "разом, спільно"
+  },
+  {
+   "lemma": "a menudo",
+   "ru": "часто (вместе с a)",
+   "uk": "часто (разом з a)"
+  },
+  {
+   "lemma": "cada",
+   "ru": "каждый",
+   "uk": "кожний"
+  },
+  {
+   "lemma": "autobús",
+   "ru": "автобус",
+   "uk": "автобус"
+  },
+  {
+   "lemma": "barrio",
+   "ru": "район города",
+   "uk": "район міста"
+  },
+  {
+   "lemma": "colegio",
+   "ru": "школа",
+   "uk": "школа"
+  },
+  {
+   "lemma": "ese",
+   "ru": "тот, та",
+   "uk": "той, та"
+  },
+  {
+   "lemma": "niño",
+   "ru": "ребёнок; de niño — в детстве (о мальчике)",
+   "uk": "дитина; de niño — у дитинстві (про хлопчика)"
+  },
+  {
+   "lemma": "parque",
+   "ru": "парк",
+   "uk": "парк"
+  },
+  {
+   "lemma": "también",
+   "ru": "тоже",
+   "uk": "також"
+  },
+  {
+   "lemma": "tranquilo",
+   "ru": "тихий, спокойный",
+   "uk": "тихий, спокійний"
+  },
+  {
+   "lemma": "vecino",
+   "ru": "сосед",
+   "uk": "сусід"
+  },
+  {
+   "lemma": "día",
+   "ru": "день",
+   "uk": "день"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  }
+ ],
+ "oldTopicTitle": "Раньше обычно: imperfecto",
+ "oldTheoryRu": "Рассказываешь, какой раньше была жизнь: Vivía aquí. Не уточняешь, когда переехал. Передаёшь картину того времени, а не отдельный переезд. Опиши прошлую привычку или обстановку, не выделяя момент окончания. В «раньше я здесь жил» нет сообщения о дне переезда или точной длительности. Vivía описывает, как было. Viví aquí могло бы подать жизнь как законченный период. У trabajar сохраняется trabaj-, дальше идут -aba, -abas, -aba… . На «мы» обрати внимание на ударение: trabajábamos. Comer и vivir пользуются одинаковыми окончаниями: comía, vivía, vivíamos. Знак ударения на í нужен и в длинных формах. Форма vivía подходит для yo и для él или ella. Кого имеют в виду, подскажет имя или разговор: Yo vivía aquí — о себе; Ana vivía aquí — об Ане. Дата не выбирает время автоматически. Важен взгляд: «вчера в семь я ещё работал» может описывать фон. Здесь antes и cada día помогают читать примеры как привычки. Сравни два задания: «Ты каждый день ждал снаружи.» / «Мы жили рядом с магазином.». Форма imperfecto рисует ситуацию изнутри, без конечной границы. Смысловые опоры: «día» — день. Сравни два задания: «Ты раньше пил кофе?» / «Вы обычно читали вместе на занятии?». Форма imperfecto рисует ситуацию изнутри, без конечной границы. Опиши прошлую привычку или обстановку, не выделяя момент окончания."
+}

@@ -1,0 +1,11 @@
+[
+{"id": "es:05:20", "type": "B2", "field": "ru", "problem": "добавлено «сейчас», которого нет в target (¿Quién está en la recepción?)", "fix": "Кто на ресепшене?"},
+{"id": "es:05:20", "type": "B2", "field": "uk", "problem": "добавлено «зараз», которого нет в target", "fix": "Хто на рецепції?"},
+{"id": "es:05:23", "type": "B3", "field": "alternatives", "problem": "нет варианта с явным местоимением, хотя в соседних фразах (¿Dónde estás tú?) он принимается", "fix": {"add": ["¿Quién eres tú?"], "remove": []}},
+{"id": "es:05:31", "type": "B3", "field": "alternatives", "problem": "«Что это?» не различает esto/eso; в es:05:32 esto принимается как альтернатива, а здесь eso — нет", "fix": {"add": ["¿Qué es eso?"], "remove": []}},
+{"id": "es:05:39", "type": "B1", "field": "tiles", "problem": "на позиции 0 нет ни одного вопросительного слова (Mi/Mis/Tu/Su/Sus), на позиции 1 нет ни одного глагола (las/la/mi/un/una) — обе позиции решаются без знания слов", "fix": {"position": 0, "replace_distractor": "Mi", "with": "Cuántos"}},
+{"id": "es:05:39", "type": "B1", "field": "tiles", "problem": "позиция 1: все соблазны — артикли/притяжательные, глагол cuesta выдаёт себя", "fix": {"position": 1, "replace_distractor": "mi", "with": "cuestan"}},
+{"id": "es:06:10", "type": "B3", "field": "alternatives", "problem": "ru «Пальто внутри.» не передаёт множественное число (uk «Пальта» передаёт); вариант в ед. ч. не засчитывается", "fix": {"add": ["El abrigo está dentro."], "remove": []}},
+{"id": "es:06:42", "type": "B2", "field": "ru", "problem": "ru «Врач у двери.» совпадает с es:06:41 (El médico) и теряет женский род; uk «Лікарка» род передаёт — ru и uk расходятся", "fix": "Женщина-врач у двери."},
+{"id": "es:06:46", "type": "B2", "field": "ru", "problem": "ru «Гид в отеле.» совпадает с es:06:45 (El guía) и теряет женский род; uk «Гідеса» род передаёт — ru и uk расходятся", "fix": "Женщина-гид в отеле."}
+]

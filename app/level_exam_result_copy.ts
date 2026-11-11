@@ -95,6 +95,19 @@ export function getLevelExamResultCopy(
       find_oddity: triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }),
       translate_build: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання висловів', en: 'Build phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
       speed_match: triLang(lang, { ru: 'Быстрые пары', uk: 'Швидкі пари', en: 'Speed match', es: 'Pares', 'pt-BR': 'Pares', vi: 'Ghép cặp', id: 'Pasangan', tr: 'Eşleştirme', pl: 'Pary' }),
+      // зачем (владелец 11.11.2026): двенадцать новых механик экзамена — короткие названия навыков для итога
+      context_choice: triLang(lang, { ru: 'Точный перевод', uk: 'Точний переклад', en: 'Exact translation', es: 'Traducción exacta', 'pt-BR': 'Tradução exata', vi: 'Dịch chính xác', id: 'Terjemahan tepat', tr: 'Tam çeviri', pl: 'Dokładne tłumaczenie' }),
+      dialogue_order: triLang(lang, { ru: 'Порядок фраз', uk: 'Порядок фраз', en: 'Phrase order', es: 'Orden de frases', 'pt-BR': 'Ordem das frases', vi: 'Thứ tự câu', id: 'Urutan frasa', tr: 'Cümle sırası', pl: 'Kolejność zdań' }),
+      word_repair: triLang(lang, { ru: 'Исправление', uk: 'Виправлення', en: 'Corrections', es: 'Correcciones', 'pt-BR': 'Correções', vi: 'Sửa lỗi', id: 'Perbaikan', tr: 'Düzeltme', pl: 'Poprawki' }),
+      multi_select: triLang(lang, { ru: 'Два ответа', uk: 'Дві відповіді', en: 'Two answers', es: 'Dos respuestas', 'pt-BR': 'Duas respostas', vi: 'Hai đáp án', id: 'Dua jawaban', tr: 'İki cevap', pl: 'Dwie odpowiedzi' }),
+      linked_gaps: triLang(lang, { ru: 'Два пропуска', uk: 'Два пропуски', en: 'Two gaps', es: 'Dos huecos', 'pt-BR': 'Duas lacunas', vi: 'Hai chỗ trống', id: 'Dua rumpang', tr: 'İki boşluk', pl: 'Dwie luki' }),
+      typed_word: triLang(lang, { ru: 'Слово по памяти', uk: 'Слово з пам’яті', en: 'Word from memory', es: 'Palabra de memoria', 'pt-BR': 'Palavra de memória', vi: 'Nhớ từ', id: 'Kata dari ingatan', tr: 'Ezberden kelime', pl: 'Słowo z pamięci' }),
+      classify_function: triLang(lang, { ru: 'Группы', uk: 'Групи', en: 'Groups', es: 'Grupos', 'pt-BR': 'Grupos', vi: 'Phân nhóm', id: 'Kelompok', tr: 'Gruplar', pl: 'Grupy' }),
+      reply_pairs: triLang(lang, { ru: 'Перевод и фраза', uk: 'Переклад і фраза', en: 'Translation and phrase', es: 'Traducción y frase', 'pt-BR': 'Tradução e frase', vi: 'Bản dịch và câu', id: 'Terjemahan dan frasa', tr: 'Çeviri ve ifade', pl: 'Tłumaczenie i zdanie' }),
+      sentence_build_noise: triLang(lang, { ru: 'Сборка с лишним', uk: 'Складання із зайвим', en: 'Build with extras', es: 'Frases con sobras', 'pt-BR': 'Frases com sobras', vi: 'Ghép câu có từ thừa', id: 'Susun dengan kata lebih', tr: 'Fazlalıklı kurma', pl: 'Układanie z nadmiarem' }),
+      remove_intruder: triLang(lang, { ru: 'Лишнее слово', uk: 'Зайве слово', en: 'Extra word', es: 'Palabra de más', 'pt-BR': 'Palavra a mais', vi: 'Từ thừa', id: 'Kata berlebih', tr: 'Fazla kelime', pl: 'Zbędne słowo' }),
+      sentence_transform: triLang(lang, { ru: 'Перевод целиком', uk: 'Переклад повністю', en: 'Full translation', es: 'Traducción completa', 'pt-BR': 'Tradução completa', vi: 'Dịch cả câu', id: 'Terjemahan penuh', tr: 'Tam cümle çevirisi', pl: 'Pełne tłumaczenie' }),
+      evidence_choice: triLang(lang, { ru: 'Поиск в тексте', uk: 'Пошук у тексті', en: 'Find in text', es: 'Buscar en el texto', 'pt-BR': 'Buscar no texto', vi: 'Tìm trong đoạn văn', id: 'Cari dalam teks', tr: 'Metinde bulma', pl: 'Szukanie w tekście' }),
     },
   };
 }

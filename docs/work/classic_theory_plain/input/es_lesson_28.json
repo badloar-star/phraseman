@@ -1,0 +1,778 @@
+{
+ "lang": "es",
+ "lesson": 28,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:28:01",
+   "target": "Llamaré al hotel mañana.",
+   "ru": "Я завтра позвоню в отель.",
+   "uk": "Я завтра зателефоную до готелю."
+  },
+  {
+   "id": "es:28:02",
+   "target": "Llamarás al hotel mañana.",
+   "ru": "Ты завтра позвонишь в отель.",
+   "uk": "Ти завтра зателефонуєш до готелю."
+  },
+  {
+   "id": "es:28:03",
+   "target": "Llamaré a Ana mañana.",
+   "ru": "Я завтра позвоню Ане.",
+   "uk": "Я завтра зателефоную Ані."
+  },
+  {
+   "id": "es:28:04",
+   "target": "Llamarás a Ana mañana.",
+   "ru": "Ты завтра позвонишь Ане.",
+   "uk": "Ти завтра зателефонуєш Ані."
+  },
+  {
+   "id": "es:28:05",
+   "target": "Ana volverá a casa mañana.",
+   "ru": "Ана завтра вернётся домой.",
+   "uk": "Ана завтра повернеться додому."
+  },
+  {
+   "id": "es:28:06",
+   "target": "Volveremos a casa mañana.",
+   "ru": "Мы завтра вернёмся домой.",
+   "uk": "Ми завтра повернемося додому."
+  },
+  {
+   "id": "es:28:07",
+   "target": "Llevaré la bicicleta al taller.",
+   "ru": "Я отвезу велосипед в мастерскую.",
+   "uk": "Я відвезу велосипед до майстерні."
+  },
+  {
+   "id": "es:28:08",
+   "target": "Mandarás el mapa mañana.",
+   "ru": "Ты завтра отправишь карту.",
+   "uk": "Ти завтра надішлеш мапу."
+  },
+  {
+   "id": "es:28:09",
+   "target": "Luis comprará un billete mañana.",
+   "ru": "Луис завтра купит билет.",
+   "uk": "Луїс завтра купить квиток."
+  },
+  {
+   "id": "es:28:10",
+   "target": "Compraremos pan mañana.",
+   "ru": "Мы завтра купим хлеб.",
+   "uk": "Ми завтра купимо хліб."
+  },
+  {
+   "id": "es:28:11",
+   "target": "Escribiré una carta más tarde.",
+   "ru": "Я позже напишу письмо.",
+   "uk": "Я пізніше напишу листа."
+  },
+  {
+   "id": "es:28:12",
+   "target": "El mecánico revisará los frenos.",
+   "ru": "Механик проверит тормоза.",
+   "uk": "Механік перевірить гальма."
+  },
+  {
+   "id": "es:28:13",
+   "target": "Luis abrirá la puerta más tarde.",
+   "ru": "Луис позже откроет дверь.",
+   "uk": "Луїс пізніше відчинить двері."
+  },
+  {
+   "id": "es:28:14",
+   "target": "Abrirás la ventana más tarde.",
+   "ru": "Ты позже откроешь окно.",
+   "uk": "Ти пізніше відчиниш вікно."
+  },
+  {
+   "id": "es:28:15",
+   "target": "Leeré el mensaje más tarde.",
+   "ru": "Я позже прочитаю сообщение.",
+   "uk": "Я пізніше прочитаю повідомлення."
+  },
+  {
+   "id": "es:28:16",
+   "target": "Cambiaremos la rueda mañana.",
+   "ru": "Мы завтра поменяем колесо.",
+   "uk": "Ми завтра замінимо колесо."
+  },
+  {
+   "id": "es:28:17",
+   "target": "Ana preparará la mochila más tarde.",
+   "ru": "Ана позже соберёт рюкзак.",
+   "uk": "Ана пізніше збере рюкзак."
+  },
+  {
+   "id": "es:28:18",
+   "target": "Mis hermanas volverán a la estación más tarde.",
+   "ru": "Мои сёстры позже вернутся на вокзал.",
+   "uk": "Мої сестри пізніше повернуться на вокзал."
+  },
+  {
+   "id": "es:28:19",
+   "target": "Repararán mi bicicleta en el taller.",
+   "ru": "В мастерской починят мой велосипед.",
+   "uk": "У майстерні полагодять мій велосипед."
+  },
+  {
+   "id": "es:28:20",
+   "target": "Pagarás en efectivo más tarde.",
+   "ru": "Ты позже заплатишь наличными.",
+   "uk": "Ти пізніше заплатиш готівкою."
+  },
+  {
+   "id": "es:28:21",
+   "target": "Venderé mi coche después del viaje.",
+   "ru": "Я продам машину после поездки.",
+   "uk": "Я продам машину після поїздки."
+  },
+  {
+   "id": "es:28:22",
+   "target": "Mandaréis el mapa mañana.",
+   "ru": "Вы завтра отправите карту.",
+   "uk": "Ви завтра надішлете мапу."
+  },
+  {
+   "id": "es:28:23",
+   "target": "Mis hermanos volverán a casa mañana.",
+   "ru": "Мои братья завтра вернутся домой.",
+   "uk": "Мої брати завтра повернуться додому."
+  },
+  {
+   "id": "es:28:24",
+   "target": "Volveremos a la estación mañana.",
+   "ru": "Мы завтра вернёмся на вокзал.",
+   "uk": "Ми завтра повернемося на вокзал."
+  },
+  {
+   "id": "es:28:25",
+   "target": "Recogeré el coche en el taller.",
+   "ru": "Я заберу машину из мастерской.",
+   "uk": "Я заберу машину з майстерні."
+  },
+  {
+   "id": "es:28:26",
+   "target": "Pasaré por el parque después del colegio.",
+   "ru": "После школы я зайду в парк.",
+   "uk": "Після школи я зайду до парку."
+  },
+  {
+   "id": "es:28:27",
+   "target": "Pagaréis en efectivo mañana.",
+   "ru": "Вы завтра заплатите наличными.",
+   "uk": "Ви завтра заплатите готівкою."
+  },
+  {
+   "id": "es:28:28",
+   "target": "Pagaremos con tarjeta mañana.",
+   "ru": "Мы завтра заплатим картой.",
+   "uk": "Ми завтра заплатимо карткою."
+  },
+  {
+   "id": "es:28:29",
+   "target": "Mis hermanos llamarán al hotel mañana.",
+   "ru": "Мои братья завтра позвонят в отель.",
+   "uk": "Мої брати завтра зателефонують до готелю."
+  },
+  {
+   "id": "es:28:30",
+   "target": "El mecánico revisará la rueda.",
+   "ru": "Механик проверит колесо.",
+   "uk": "Механік перевірить колесо."
+  },
+  {
+   "id": "es:28:31",
+   "target": "No compraré un billete esta noche.",
+   "ru": "Я сегодня вечером не куплю билет.",
+   "uk": "Я сьогодні ввечері не куплю квиток."
+  },
+  {
+   "id": "es:28:32",
+   "target": "No escribirás un mensaje esta noche.",
+   "ru": "Ты сегодня вечером не напишешь сообщение.",
+   "uk": "Ти сьогодні ввечері не напишеш повідомлення."
+  },
+  {
+   "id": "es:28:33",
+   "target": "Ana llamará al taller mañana.",
+   "ru": "Ана завтра позвонит в мастерскую.",
+   "uk": "Ана завтра зателефонує до майстерні."
+  },
+  {
+   "id": "es:28:34",
+   "target": "No usaré la bicicleta mañana.",
+   "ru": "Я завтра не буду пользоваться велосипедом.",
+   "uk": "Я завтра не користуватимуся велосипедом."
+  },
+  {
+   "id": "es:28:35",
+   "target": "Luis no mandará el mapa esta noche.",
+   "ru": "Луис сегодня вечером не отправит карту.",
+   "uk": "Луїс сьогодні ввечері не надішле мапу."
+  },
+  {
+   "id": "es:28:36",
+   "target": "Mis hermanas no llevarán la maleta esta noche.",
+   "ru": "Мои сёстры сегодня вечером не отнесут чемодан.",
+   "uk": "Мої сестри сьогодні ввечері не віднесуть валізу."
+  },
+  {
+   "id": "es:28:37",
+   "target": "No compraré otra rueda.",
+   "ru": "Я не буду покупать ещё одно колесо.",
+   "uk": "Я не купуватиму ще одного колеса."
+  },
+  {
+   "id": "es:28:38",
+   "target": "No volverás a la estación esta noche.",
+   "ru": "Ты сегодня вечером не вернёшься на вокзал.",
+   "uk": "Ти сьогодні ввечері не повернешся на вокзал."
+  },
+  {
+   "id": "es:28:39",
+   "target": "Revisaremos los frenos antes del viaje.",
+   "ru": "Мы проверим тормоза перед поездкой.",
+   "uk": "Ми перевіримо гальма перед поїздкою."
+  },
+  {
+   "id": "es:28:40",
+   "target": "Veremos la película en casa.",
+   "ru": "Мы посмотрим фильм дома.",
+   "uk": "Ми подивимося фільм удома."
+  },
+  {
+   "id": "es:28:41",
+   "target": "¿Llamarás a Ana?",
+   "ru": "Ты позвонишь Ане?",
+   "uk": "Ти зателефонуєш Ані?"
+  },
+  {
+   "id": "es:28:42",
+   "target": "¿Revisarás la factura?",
+   "ru": "Ты проверишь счёт?",
+   "uk": "Ти перевіриш рахунок?"
+  },
+  {
+   "id": "es:28:43",
+   "target": "¿Pagaremos en efectivo?",
+   "ru": "Мы заплатим наличными?",
+   "uk": "Ми заплатимо готівкою?"
+  },
+  {
+   "id": "es:28:44",
+   "target": "¿Abrirás la ventana?",
+   "ru": "Ты откроешь окно?",
+   "uk": "Ти відчиниш вікно?"
+  },
+  {
+   "id": "es:28:45",
+   "target": "Llevaré el paraguas si empieza a llover.",
+   "ru": "Я возьму зонт, если начнётся дождь.",
+   "uk": "Я візьму парасолю, якщо почнеться дощ."
+  },
+  {
+   "id": "es:28:46",
+   "target": "¿Ana llevará la bolsa?",
+   "ru": "Ана отнесёт пакет?",
+   "uk": "Ана віднесе пакет?"
+  },
+  {
+   "id": "es:28:47",
+   "target": "¿Repararán el ascensor mañana?",
+   "ru": "Лифт завтра починят?",
+   "uk": "Ліфт завтра полагодять?"
+  },
+  {
+   "id": "es:28:48",
+   "target": "¿Luis comprará un billete?",
+   "ru": "Луис купит билет?",
+   "uk": "Луїс купить квиток?"
+  },
+  {
+   "id": "es:28:49",
+   "target": "¿Mis hermanas prepararán la cena?",
+   "ru": "Мои сёстры приготовят ужин?",
+   "uk": "Мої сестри приготують вечерю?"
+  },
+  {
+   "id": "es:28:50",
+   "target": "¿Leeréis el mensaje?",
+   "ru": "Вы прочитаете сообщение?",
+   "uk": "Ви прочитаєте повідомлення?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "freno",
+   "ru": "тормоз",
+   "uk": "гальмо"
+  },
+  {
+   "lemma": "mecánico",
+   "ru": "механик",
+   "uk": "механік"
+  },
+  {
+   "lemma": "reparar",
+   "ru": "чинить",
+   "uk": "лагодити"
+  },
+  {
+   "lemma": "revisar",
+   "ru": "проверять, осматривать",
+   "uk": "перевіряти, оглядати"
+  },
+  {
+   "lemma": "rueda",
+   "ru": "колесо",
+   "uk": "колесо"
+  },
+  {
+   "lemma": "taller",
+   "ru": "мастерская",
+   "uk": "майстерня"
+  },
+  {
+   "lemma": "usar",
+   "ru": "использовать",
+   "uk": "використовувати"
+  },
+  {
+   "lemma": "noche",
+   "ru": "ночь; вечер",
+   "uk": "ніч; вечір"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar",
+  "corto",
+  "tuyo",
+  "encontrar",
+  "mío",
+  "silla",
+  "que",
+  "salir",
+  "vender",
+  "ver",
+  "visitar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  },
+  {
+   "lesson": 27,
+   "title": "Книга, которую…: относительное que"
+  }
+ ],
+ "oldTopicTitle": "Завтра позвоню: простое будущее",
+ "oldTheoryRu": "Обещаешь позвонить завтра: llamaré. Сохрани целое llamar с последней r и прибавь é. Не путай с llamé — «я позвонил». Вырази будущее одной глагольной формой, не добавляя voy a. Для llamo отбрасывали -ar. В llamaré оно остаётся: llamar + é. У правильных глаголов всех трёх групп используется одна и та же серия окончаний. Llamaré — обещание от первого лица. Llamará — речь об одном другом человеке или обращение на usted. Смотри на последнюю гласную и не путай llamaré с прошедшим llamé. Для «мы» добавляется -emos: llamaremos. Для «они» — -án: llamarán. У nosotros в этой форме нет графического ударения, у ellos есть. Te llamaré состоит из двух слов: te показывает адресата звонка, llamaré — кто позвонит и когда. Для отрицания начало будет no te… . Voy a llamar и llamaré иногда описывают одно реальное действие. В этой серии выбирается однословная форма как учебная цель. Не считай перифраз грамматической ошибкой вне задания. Сравни два задания: «Ты позже заплатишь наличными.» / «Я продам машину после поездки.». Окончание будущего присоединяется к целому инфинитиву в регулярной модели. Смысловые опоры: «efectivo» — наличные. Сравни два задания: «Ты откроешь окно?» / «Вы прочитаете сообщение?». Окончание будущего присоединяется к целому инфинитиву в регулярной модели. Вырази будущее одной глагольной формой, не добавляя voy a."
+}

@@ -1,0 +1,1593 @@
+[
+{
+"lesson": 17,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 17,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Что мне нравится: gusta или gustan",
+"formula": "кому + gusta/gustan + что нравится",
+"story": "Мне нравится кофе: Me gusta el café. Мне нравятся фотографии: Me gustan las fotos. Того, кому нравится, не меняли; глагол поменяли из-за фотографий.",
+"use": "Отдельно назови того, кому нравится, и то, что нравится. Глагол согласуется со вторым.",
+"choose": "Me означает «мне», te — «тебе», nos — «нам». Эти слова не выбирают gusta или gustan. Сравни me gusta и nos gusta: предмет может оставаться один.",
+"nuance": "Отдельно назови того, кому нравится, и то, что нравится. Глагол согласуется со вторым. Сверь число понравившейся вещи, а не число людей, которым она нравится.",
+"wrong": "Me gustan el café.",
+"right": "Me gusta el café.",
+"chapters": [
+{
+"title": "Кто управляет глаголом",
+"body": "В me gusta el café кофе — единственное число. Мне могут нравиться три книги: me gustan los libros. Меняется не me, а форма глагола.",
+"note": "После gusta стоит «el café». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:01",
+"es:17:02"
+],
+"focusId": "es:17:01"
+},
+{
+"title": "Кому нравится",
+"body": "Me означает «мне», te — «тебе», nos — «нам». Эти слова не выбирают gusta или gustan. Сравни me gusta и nos gusta: предмет может оставаться один.",
+"note": "После gustan стоит «las fotos de Ana». Это несколько предметов, поэтому -n.",
+"samples": [
+"es:17:26",
+"es:17:27"
+],
+"focusId": "es:17:26"
+},
+{
+"title": "Названный человек",
+"body": "A Ana le gusta… прямо называет Ану. Короткое le сохраняется рядом с глаголом. Для нескольких людей — les: a mis hermanos les gusta… .",
+"note": "После gusta стоит «este hotel». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:21",
+"es:17:22"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "Когда нравится действие",
+"body": "Если нравится читать, в роли того, что нравится, стоит инфинитив leer. Для одного действия бери gusta: me gusta leer. Не согласуй gusta с людьми, которые читают.",
+"note": "После gusta стоит «leer en casa». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:31",
+"es:17:32"
+],
+"focusId": "es:17:31"
+},
+{
+"title": "Порядок отрицания",
+"body": "No me gusta — «мне не нравится». No ставится перед me, а не между me и gusta. В вопросе сохрани короткое местоимение перед глаголом.",
+"note": "После gusta стоит «este mapa». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:16",
+"es:17:17"
+],
+"focusId": "es:17:16"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мне не нравится эта музыка.» / «Ане нравится этот отель.». Сверь число понравившейся вещи, а не число людей, которым она нравится. Смысловые опоры: «música» — музыка.",
+"note": "После gusta стоит «este hotel». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:20",
+"es:17:21"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Моим сёстрам не нравятся эти туфли.» / «Нам нравится эта фотография.». Сверь число понравившейся вещи, а не число людей, которым она нравится. Отдельно назови того, кому нравится, и то, что нравится. Глагол согласуется со вторым.",
+"note": "После gusta стоит «esta foto». Это одна вещь или одно действие, поэтому без -n.",
+"samples": [
+"es:17:44",
+"es:17:50"
+],
+"focusId": "es:17:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "singular · gusta",
+"gloss": "одна вещь или действие",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "plural · gustan",
+"gloss": "несколько вещей",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "gustar · Настоящее"
+},
+{
+"rows": [
+{
+"es": "gusta",
+"gloss": "нравится одна вещь или действие",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "gustan",
+"gloss": "нравятся несколько вещей",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Що мені подобається: gusta чи gustan",
+"formula": "кому + gusta/gustan + що подобається",
+"story": "Мені подобається кава: Me gusta el café. Мені подобаються фото: Me gustan las fotos. Дієслово змінилося через множину fotos.",
+"use": "Окремо визнач, кому подобається і що подобається. Дієслово узгоджується з другим.",
+"choose": "Me означає «мені», te — «тобі», nos — «нам». Ці слова не визначають gusta чи gustan. Порівняй me gusta і nos gusta: предмет може лишатися один.",
+"nuance": "Окремо визнач, кому подобається і що подобається. Дієслово узгоджується з другим. Звір число речі, що подобається, а не кількість людей, яким вона до вподоби.",
+"wrong": "Me gustan el café.",
+"right": "Me gusta el café.",
+"chapters": [
+{
+"title": "Хто керує дієсловом",
+"body": "У me gusta el café кава в однині. Мені можуть подобатися три книжки: me gustan los libros. Змінюється не me, а форма дієслова.",
+"note": "Після gusta стоїть «el café». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:01",
+"es:17:02"
+],
+"focusId": "es:17:01"
+},
+{
+"title": "Кому подобається",
+"body": "Me означає «мені», te — «тобі», nos — «нам». Ці слова не визначають gusta чи gustan. Порівняй me gusta і nos gusta: предмет може лишатися один.",
+"note": "Після gustan стоїть «las fotos de Ana». Це кілька речей, тому -n.",
+"samples": [
+"es:17:26",
+"es:17:27"
+],
+"focusId": "es:17:26"
+},
+{
+"title": "Названа людина",
+"body": "A Ana le gusta… прямо називає Ану. Коротке le залишається біля дієслова. Для кількох людей — les: a mis hermanos les gusta… .",
+"note": "Після gusta стоїть «este hotel». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:21",
+"es:17:22"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "Коли подобається дія",
+"body": "Якщо подобається читати, тим, що подобається, є інфінітив leer. Для однієї дії обирай gusta: me gusta leer. Не узгоджуй gusta з людьми, які читають.",
+"note": "Після gusta стоїть «leer en casa». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:31",
+"es:17:32"
+],
+"focusId": "es:17:31"
+},
+{
+"title": "Порядок заперечення",
+"body": "No me gusta — «мені не подобається». No став перед me, а не між me та gusta. У запитанні збережи малий займенник перед дієсловом.",
+"note": "Після gusta стоїть «este mapa». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:16",
+"es:17:17"
+],
+"focusId": "es:17:16"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Мені не подобається ця музика.» / «Ані подобається цей готель.». Звір число речі, що подобається, а не кількість людей, яким вона до вподоби. Смислові опори: «música» — музика.",
+"note": "Після gusta стоїть «este hotel». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:20",
+"es:17:21"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Моїм сестрам не подобаються ці туфлі.» / «Нам подобається ця фотографія.». Звір число речі, що подобається, а не кількість людей, яким вона до вподоби. Окремо визнач, кому подобається і що подобається. Дієслово узгоджується з другим.",
+"note": "Після gusta стоїть «esta foto». Це одна річ чи одна дія, тому без -n.",
+"samples": [
+"es:17:44",
+"es:17:50"
+],
+"focusId": "es:17:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "singular · gusta",
+"gloss": "одна річ чи дія",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "plural · gustan",
+"gloss": "кілька речей",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "gustar · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "gusta",
+"gloss": "подобається одна річ чи дія",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "gustan",
+"gloss": "подобаються кілька речей",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Saying what you like: gusta or gustan",
+"formula": "me / te / le / nos / os / les + gusta / gustan + the thing or things liked",
+"story": "I like coffee: Me gusta el café. I like the photos: Me gustan las fotos. The person still likes them; the photos make the verb plural.",
+"use": "Separately name the person who likes and the thing they like. The verb agrees with the second.",
+"choose": "Me means \"me,\" te means \"you,\" nos means \"us.\" These words do not select gusta or gustan. Compare me gusta and nos gusta: the object can remain alone.",
+"nuance": "Separately name the person who likes and the thing they like. The verb agrees with the second. Check the number of the thing they like, not the number of people who like it.",
+"wrong": "Me gustan el café.",
+"right": "Me gusta el café.",
+"chapters": [
+{
+"title": "What decides between gusta and gustan?",
+"body": "In me gusta el café coffee is singular. I can like three books: me gustan los libros. It's not me that changes, but the verb form.",
+"note": "After gusta comes \" el café \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:01",
+"es:17:02"
+],
+"focusId": "es:17:01"
+},
+{
+"title": "Who is the person that likes it?",
+"body": "Me means \"me,\" te means \"you,\" nos means \"us.\" These words do not select gusta or gustan. Compare me gusta and nos gusta: the object can remain alone.",
+"note": "After gustan comes \" las fotos de Ana \". These are multiple items, so - n.",
+"samples": [
+"es:17:26",
+"es:17:27"
+],
+"focusId": "es:17:26"
+},
+{
+"title": "How do I name that person?",
+"body": "A Ana le gusta … directly names Anu. The short le is retained next to the verb. For several people — les: a mis hermanos les gusta ….",
+"note": "After gusta comes \" este hotel \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:21",
+"es:17:22"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "What if the thing I enjoy is an activity?",
+"body": "If you enjoy reading, the infinitive leer appears as the word you enjoy. For one action, use gusta: me gusta leer. Don't coordinate gusta with people who are reading.",
+"note": "After gusta comes \" leer en casa \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:31",
+"es:17:32"
+],
+"focusId": "es:17:31"
+},
+{
+"title": "Where do no and the pronoun go?",
+"body": "No me gusta — \"I don't like it.\" No is placed before me, not between me and gusta. In the question, keep the short pronoun before the verb.",
+"note": "After gusta comes \" este mapa \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:16",
+"es:17:17"
+],
+"focusId": "es:17:16"
+},
+{
+"title": "How do I build one complete example?",
+"body": "Compare the two tasks: \"I don't like this music.\" / \"Anna likes this hotel.\" Compare the number of the item you like, not the number of people who like it. Semantic supports: \" música \" - music.",
+"note": "After gusta comes \" este hotel \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:20",
+"es:17:21"
+],
+"focusId": "es:17:21"
+},
+{
+"title": "Can I change what the person likes?",
+"body": "Compare two tasks: \"My sisters don't like these shoes.\" / \"We like this photo.\" Compare the number of the thing you like, not the number of people who like it. Separately name the person who likes it and the thing you like. The verb agrees with the second.",
+"note": "After gusta comes \" esta foto \". This is a single thing or action, so no - n.",
+"samples": [
+"es:17:44",
+"es:17:50"
+],
+"focusId": "es:17:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "singular · gusta",
+"gloss": "One thing or action",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "plural · gustan",
+"gloss": "several things",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "gustar Present"
+},
+{
+"rows": [
+{
+"es": "gusta",
+"gloss": "like one thing or action",
+"id": "es:17:01",
+"sample": "Me gusta el café."
+},
+{
+"es": "gustan",
+"gloss": "like several things",
+"id": "es:17:06",
+"sample": "Me gustan estos libros."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:17:01",
+"index": 1,
+"right": "gusta",
+"near": "gustan",
+"seq": [
+"Me",
+"gusta",
+"el",
+"café"
+],
+"i": 0,
+"kind": "form",
+"key": "es17/lab/form1",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:12",
+"index": 1,
+"right": "gustan",
+"near": "gusta",
+"seq": [
+"Te",
+"gustan",
+"mis",
+"fotos"
+],
+"i": 11,
+"kind": "form",
+"key": "es17/lab/form2",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:26",
+"index": 1,
+"right": "gustan",
+"near": "gusta",
+"seq": [
+"Nos",
+"gustan",
+"las",
+"fotos",
+"de",
+"Ana"
+],
+"i": 25,
+"kind": "form",
+"key": "es17/lab/form3",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:38",
+"index": 1,
+"right": "gusta",
+"near": "gustan",
+"seq": [
+"Os",
+"gusta",
+"estudiar",
+"aquí"
+],
+"i": 37,
+"kind": "form",
+"key": "es17/lab/form4",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:07",
+"index": 1,
+"right": "gustan",
+"near": "gusta",
+"seq": [
+"Me",
+"gustan",
+"las",
+"fotos"
+],
+"i": 6,
+"kind": "spot",
+"key": "es17/lab/spot1",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:20",
+"index": 2,
+"right": "gusta",
+"near": "gustan",
+"seq": [
+"No",
+"me",
+"gusta",
+"esta",
+"música"
+],
+"i": 19,
+"kind": "spot",
+"key": "es17/lab/spot2",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:32",
+"index": 1,
+"right": "gusta",
+"near": "gustan",
+"seq": [
+"Me",
+"gusta",
+"pasear",
+"por",
+"la",
+"playa"
+],
+"i": 31,
+"kind": "spot",
+"key": "es17/lab/spot3",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"id": "es:17:45",
+"index": 5,
+"right": "gustan",
+"near": "gusta",
+"seq": [
+"A",
+"mi",
+"hermano",
+"no",
+"le",
+"gustan",
+"estos",
+"zapatos"
+],
+"i": 44,
+"kind": "spot",
+"key": "es17/lab/spot4",
+"feedback": {
+"ru": "Глагол: gustar — нравиться.",
+"uk": "Дієслово: gustar — подобатися.",
+"en": "Verb: gustar — to like."
+}
+},
+{
+"kind": "match",
+"key": "es17/lab/match1",
+"id": "es:17:02",
+"other": "es:17:03"
+},
+{
+"kind": "match",
+"key": "es17/lab/match2",
+"id": "es:17:17",
+"other": "es:17:16"
+},
+{
+"kind": "match",
+"key": "es17/lab/match3",
+"id": "es:17:33",
+"other": "es:17:32"
+},
+{
+"kind": "match",
+"key": "es17/lab/match4",
+"id": "es:17:46",
+"other": "es:17:47"
+},
+{
+"kind": "build",
+"key": "es17/lab/build1",
+"id": "es:17:04"
+},
+{
+"kind": "build",
+"key": "es17/lab/build2",
+"id": "es:17:15"
+},
+{
+"kind": "build",
+"key": "es17/lab/build3",
+"id": "es:17:29"
+},
+{
+"kind": "build",
+"key": "es17/lab/build4",
+"id": "es:17:42"
+},
+{
+"kind": "transform",
+"id": "es:17:02",
+"base": "es:17:01",
+"diff": [
+{
+"before": [
+"café"
+],
+"after": [
+"pan"
+]
+}
+],
+"key": "es17/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:17:27",
+"base": "es:17:26",
+"diff": [
+{
+"before": [
+"Nos"
+],
+"after": [
+"Les"
+]
+}
+],
+"key": "es17/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:17:30",
+"base": "es:17:28",
+"diff": [
+{
+"before": [
+"Te"
+],
+"after": [
+"Me"
+]
+}
+],
+"key": "es17/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:17:45",
+"base": "es:17:43",
+"diff": [
+{
+"before": [
+"madre"
+],
+"after": [
+"hermano"
+]
+}
+],
+"key": "es17/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+2,
+17
+],
+[
+5,
+9
+],
+[
+6,
+10
+],
+[
+13,
+1
+],
+[
+14,
+18
+],
+[
+7,
+19
+]
+],
+"worked": [
+"es:17:05",
+"es:17:18",
+"es:17:33",
+"es:17:48"
+],
+"reflection": [
+"es:17:01",
+"es:17:06"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 18,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 18,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Заменяем предмет: lo, la, los, las",
+"formula": "прямое дополнение + личная форма",
+"story": "Уже назвали книгу? Вместо el libro скажи lo. Вместо la llave — la. В Lo tengo местоимение заменяет вещь, а tengo называет действие.",
+"use": "Вернись к уже названному предмету. Вместо его названия поставь безударное местоимение перед глаголом.",
+"choose": "Lo заменяет конкретный предмет мужского рода, la — женского. Книгу можно передать словом lo, потому что по-испански это el libro.",
+"nuance": "Вернись к уже названному предмету. Вместо его названия поставь безударное местоимение перед глаголом. Проверь род и число испанского слова из контекста.",
+"wrong": "Tengo lo aquí.",
+"right": "Lo tengo aquí.",
+"chapters": [
+{
+"title": "Зачем дан контекст",
+"body": "Отдельное «его» не говорит нам, какое испанское слово заменили. Поэтому перед каждым заданием назван предмет. Род el libro и la mochila важнее рода слов «книга» и «рюкзак».",
+"note": "Имеем в виду: el libro — книга. Испанская форма — lo. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:01",
+"es:18:02"
+],
+"focusId": "es:18:01"
+},
+{
+"title": "Единственное число",
+"body": "Lo заменяет конкретный предмет мужского рода, la — женского. Книгу можно передать словом lo, потому что по-испански это el libro.",
+"note": "Имеем в виду: la llave (ключ). Испанская форма — la. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:02",
+"es:18:03"
+],
+"focusId": "es:18:02"
+},
+{
+"title": "Несколько вещей",
+"body": "Два билета — los billetes → los. Фотографии — las fotos → las. Конечное -s добавляет число, но не отменяет род.",
+"note": "Речь о билетах: los billetes. Испанская форма — los. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:03",
+"es:18:04"
+],
+"focusId": "es:18:03"
+},
+{
+"title": "Не артикль",
+"body": "La перед существительным называет предмет вместе с ним: la llave. В la tengo за la сразу идёт глагол: это уже самостоятельное дополнение, название ключа не повторяется.",
+"note": "Имеем в виду: la mochila (рюкзак). Испанская форма — la. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:06",
+"es:18:07"
+],
+"focusId": "es:18:06"
+},
+{
+"title": "Место возле глагола",
+"body": "В этой теме работаем с одной личной формой: lo busco, no lo busco. Другие позиции возможны с инфинитивом и повелительной формой, но это не цель данной тренировки.",
+"note": "Имеем в виду: el móvil (телефон). Испанская форма — lo. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:35",
+"es:18:36"
+],
+"focusId": "es:18:35"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Я его ищу?» / «Ана её несёт домой.». Проверь род и число испанского слова из контекста. Смысловые опоры: lo.",
+"note": "Имеем в виду: el libro (книгу). Испанская форма — lo. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:20",
+"es:18:21"
+],
+"focusId": "es:18:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Я заберу их после занятия.» / «Мы его оставляем дома?». Проверь род и число испанского слова из контекста. Вернись к уже названному предмету. Вместо его названия поставь безударное местоимение перед глаголом.",
+"note": "Имеем в виду: el pasaporte (паспорт). Испанская форма — lo. Проверь род и число испанского слова из контекста.",
+"samples": [
+"es:18:44",
+"es:18:50"
+],
+"focusId": "es:18:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "я",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "tú · tienes",
+"gloss": "ты",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "él · tiene",
+"gloss": "он/она/Вы",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "мы",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · tienen",
+"gloss": "они/вы (ustedes)",
+"id": "es:18:08",
+"sample": "Mis hermanos las tienen aquí."
+}
+],
+"title": "tener · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "я",
+"id": "es:18:15",
+"sample": "No lo busco."
+},
+{
+"es": "tú · buscas",
+"gloss": "ты",
+"id": "es:18:11",
+"sample": "Lo buscas."
+},
+{
+"es": "él · busca",
+"gloss": "он/она/Вы",
+"id": "es:18:12",
+"sample": "Ana la busca."
+},
+{
+"es": "nosotros · buscamos",
+"gloss": "мы",
+"id": "es:18:18",
+"sample": "Las buscamos."
+},
+{
+"es": "vosotros · buscáis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · buscan",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "buscar · Настоящее"
+},
+{
+"rows": [
+{
+"es": "lo",
+"gloss": "один предмет мужского рода",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "la",
+"gloss": "один предмет женского рода",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "los",
+"gloss": "несколько предметов мужского рода",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "las",
+"gloss": "несколько предметов женского рода",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Замінюємо предмет: lo, la, los, las",
+"formula": "прямий додаток + особова форма",
+"story": "Книжку вже названо? Замість el libro скажи lo, замість la llave — la. У Lo tengo займенник замінює річ.",
+"use": "Повернися до вже названої речі. Замість її назви постав ненаголошений займенник перед дієсловом.",
+"choose": "Lo замінює конкретну річ чоловічого роду, la — жіночого. Книжку можна передати через lo, бо іспанською це el libro.",
+"nuance": "Повернися до вже названої речі. Замість її назви постав ненаголошений займенник перед дієсловом. Перевір рід та число іспанського слова з контексту.",
+"wrong": "Tengo lo aquí.",
+"right": "Lo tengo aquí.",
+"chapters": [
+{
+"title": "Навіщо подано контекст",
+"body": "Саме «його» не повідомляє, яке іспанське слово замінили. Перед завданням названо річ. Рід el libro й la mochila важливіший за рід слів «книжка» та «рюкзак».",
+"note": "Ідеться про el libro — книжку. Іспанська форма — lo. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:01",
+"es:18:02"
+],
+"focusId": "es:18:01"
+},
+{
+"title": "Однина",
+"body": "Lo замінює конкретну річ чоловічого роду, la — жіночого. Книжку можна передати через lo, бо іспанською це el libro.",
+"note": "Ідеться про la llave (ключ). Іспанська форма — la. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:02",
+"es:18:03"
+],
+"focusId": "es:18:02"
+},
+{
+"title": "Кілька речей",
+"body": "Два квитки — los billetes → los. Фотографії — las fotos → las. Кінцеве -s додає число, але не скасовує роду.",
+"note": "Ідеться про квитки: los billetes. Іспанська форма — los. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:03",
+"es:18:04"
+],
+"focusId": "es:18:03"
+},
+{
+"title": "Не артикль",
+"body": "La перед іменником лише супроводжує його: la llave. У la tengo за la відразу дієслово: це вже додаток, назву ключа не повторюємо.",
+"note": "Ідеться про la mochila (рюкзак). Іспанська форма — la. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:06",
+"es:18:07"
+],
+"focusId": "es:18:06"
+},
+{
+"title": "Місце біля дієслова",
+"body": "У цій темі одна особова форма: lo busco, no lo busco. Інші позиції можливі з інфінітивом та наказовим способом, але їх тут не відпрацьовуємо.",
+"note": "Ідеться про el móvil (телефон). Іспанська форма — lo. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:35",
+"es:18:36"
+],
+"focusId": "es:18:35"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Я його шукаю?» / «Ана її несе додому.». Перевір рід та число іспанського слова з контексту. Смислові опори: lo.",
+"note": "Ідеться про el libro (книжку). Іспанська форма — lo. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:20",
+"es:18:21"
+],
+"focusId": "es:18:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Я заберу їх після заняття.» / «Ми його залишаємо вдома?». Перевір рід та число іспанського слова з контексту. Повернися до вже названої речі. Замість її назви постав ненаголошений займенник перед дієсловом.",
+"note": "Ідеться про el pasaporte (паспорт). Іспанська форма — lo. Перевір рід та число іспанського слова з контексту.",
+"samples": [
+"es:18:44",
+"es:18:50"
+],
+"focusId": "es:18:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "я",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "tú · tienes",
+"gloss": "ти",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "él · tiene",
+"gloss": "він/вона/Ви",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "ми",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · tienen",
+"gloss": "вони/ви (ustedes)",
+"id": "es:18:08",
+"sample": "Mis hermanos las tienen aquí."
+}
+],
+"title": "tener · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "я",
+"id": "es:18:15",
+"sample": "No lo busco."
+},
+{
+"es": "tú · buscas",
+"gloss": "ти",
+"id": "es:18:11",
+"sample": "Lo buscas."
+},
+{
+"es": "él · busca",
+"gloss": "він/вона/Ви",
+"id": "es:18:12",
+"sample": "Ana la busca."
+},
+{
+"es": "nosotros · buscamos",
+"gloss": "ми",
+"id": "es:18:18",
+"sample": "Las buscamos."
+},
+{
+"es": "vosotros · buscáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · buscan",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "buscar · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "lo",
+"gloss": "одна річ чоловічого роду",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "la",
+"gloss": "одна річ жіночого роду",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "los",
+"gloss": "кілька речей чоловічого роду",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "las",
+"gloss": "кілька речей жіночого роду",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Direct object pronouns: lo, la, los, las",
+"formula": "lo / la / los / las + conjugated verb",
+"story": "Already mentioned el libro? Use lo instead of repeating it. For la llave use la. In Lo tengo, lo stands for the thing you have.",
+"use": "Return to the item already mentioned. Instead of its name, put an unstressed pronoun before the verb.",
+"choose": "Lo replaces a specific masculine object, la a feminine one. The book can be represented as lo, because in Spanish it is el libro.",
+"nuance": "Return to the object you've already named. Instead of its name, put an unstressed pronoun before the verb. Check the gender and number of the Spanish word from the context.",
+"wrong": "Tengo lo aquí.",
+"right": "Lo tengo aquí.",
+"chapters": [
+{
+"title": "Why do I need to know what we are talking about?",
+"body": "The separate \"his\" doesn't tell us which Spanish word was replaced. Therefore, the object is named before each task. The genders of el libro and la mochila are more important than the genders of the words \"book\" and \"backpack.\"",
+"note": "We mean: el libro is a book. The Spanish form is lo. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:01",
+"es:18:02"
+],
+"focusId": "es:18:01"
+},
+{
+"title": "Which pronoun replaces one item?",
+"body": "Lo replaces a specific masculine object, la a feminine one. The book can be represented as lo, because in Spanish it is el libro.",
+"note": "We mean: la llave (key). The Spanish form is la. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:02",
+"es:18:03"
+],
+"focusId": "es:18:02"
+},
+{
+"title": "What if there are several items?",
+"body": "Two tickets — los billetes → los. Photographs — las fotos → las. The final - s adds number but doesn't negate gender.",
+"note": "You're talking about tickets: los billetes. The Spanish form is los. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:03",
+"es:18:04"
+],
+"focusId": "es:18:03"
+},
+{
+"title": "How is this different from an article?",
+"body": "La names the object along with the noun before it: la llave. In la tengo, la is immediately followed by a verb: this is already an independent complement, the name of the key is not repeated.",
+"note": "We mean: la mochila (backpack). The Spanish form is la. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:06",
+"es:18:07"
+],
+"focusId": "es:18:06"
+},
+{
+"title": "Where does the pronoun go next to the verb?",
+"body": "In this topic, we work with one personal form: lo busco, no lo busco. Other positions are possible with the infinitive and imperative forms, but that's not the purpose of this exercise.",
+"note": "We mean: el móvil (phone). The Spanish form is lo. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:35",
+"es:18:36"
+],
+"focusId": "es:18:35"
+},
+{
+"title": "How do I build the whole sentence?",
+"body": "Compare the two tasks: \"Am I looking for it?\" / \"Ana is bringing it home.\" Check the gender and number of the Spanish word from the context. Semantic supports: lo.",
+"note": "We mean: el libro (book). The Spanish form is lo. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:20",
+"es:18:21"
+],
+"focusId": "es:18:21"
+},
+{
+"title": "Can I swap the named item for a pronoun?",
+"body": "Compare the two tasks: \"I'll pick them up after class.\" / \"Are we leaving it at home?\" Check the gender and number of the Spanish word from the context. Return to the object already named. Instead of its name, put an unstressed pronoun before the verb.",
+"note": "We mean: el pasaporte (passport). The Spanish form is lo. Check the gender and number of the Spanish word from the context.",
+"samples": [
+"es:18:44",
+"es:18:50"
+],
+"focusId": "es:18:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "I",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "tú · tienes",
+"gloss": "you",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "él · tiene",
+"gloss": "he/she/you",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "we",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · tienen",
+"gloss": "they/you (ustedes)",
+"id": "es:18:08",
+"sample": "Mis hermanos las tienen aquí."
+}
+],
+"title": "tener Present"
+},
+{
+"rows": [
+{
+"es": "yo · busco",
+"gloss": "I",
+"id": "es:18:15",
+"sample": "No lo busco."
+},
+{
+"es": "tú · buscas",
+"gloss": "you",
+"id": "es:18:11",
+"sample": "Lo buscas."
+},
+{
+"es": "él · busca",
+"gloss": "he/she/you",
+"id": "es:18:12",
+"sample": "Ana la busca."
+},
+{
+"es": "nosotros · buscamos",
+"gloss": "we",
+"id": "es:18:18",
+"sample": "Las buscamos."
+},
+{
+"es": "vosotros · buscáis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · buscan",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "buscar Present"
+},
+{
+"rows": [
+{
+"es": "lo",
+"gloss": "One masculine object",
+"id": "es:18:01",
+"sample": "Lo tengo aquí."
+},
+{
+"es": "la",
+"gloss": "One feminine object",
+"id": "es:18:02",
+"sample": "La tienes aquí."
+},
+{
+"es": "los",
+"gloss": "several masculine objects",
+"id": "es:18:03",
+"sample": "Ana los tiene en el bolso."
+},
+{
+"es": "las",
+"gloss": "several feminine objects",
+"id": "es:18:04",
+"sample": "Las tenemos aquí."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:18:01",
+"index": 0,
+"right": "Lo",
+"near": "Los",
+"seq": [
+"Lo",
+"tengo",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es18/lab/form1",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:13",
+"index": 0,
+"right": "Los",
+"near": "Lo",
+"seq": [
+"Los",
+"devuelvo",
+"hoy"
+],
+"i": 12,
+"kind": "form",
+"key": "es18/lab/form2",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:24",
+"index": 0,
+"right": "Las",
+"near": "La",
+"seq": [
+"Las",
+"llevo",
+"a",
+"casa"
+],
+"i": 23,
+"kind": "form",
+"key": "es18/lab/form3",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:39",
+"index": 1,
+"right": "la",
+"near": "las",
+"seq": [
+"No",
+"la",
+"necesitas",
+"hoy"
+],
+"i": 38,
+"kind": "form",
+"key": "es18/lab/form4",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:07",
+"index": 0,
+"right": "Los",
+"near": "Lo",
+"seq": [
+"Los",
+"tienes",
+"aquí"
+],
+"i": 6,
+"kind": "spot",
+"key": "es18/lab/spot1",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:20",
+"index": 0,
+"right": "Lo",
+"near": "Los",
+"seq": [
+"Lo",
+"busco"
+],
+"i": 19,
+"kind": "spot",
+"key": "es18/lab/spot2",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:32",
+"index": 1,
+"right": "la",
+"near": "las",
+"seq": [
+"Luis",
+"la",
+"necesita",
+"hoy"
+],
+"i": 31,
+"kind": "spot",
+"key": "es18/lab/spot3",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"id": "es:18:48",
+"index": 0,
+"right": "Las",
+"near": "La",
+"seq": [
+"Las",
+"dejas",
+"en",
+"casa"
+],
+"i": 47,
+"kind": "spot",
+"key": "es18/lab/spot4",
+"feedback": {
+"ru": "Местоимение: lo/la — его, её, их: прямое дополнение.",
+"uk": "Займенник: lo/la — його, її, їх: прямий додаток.",
+"en": "Pronoun: lo / la — his, her, their: direct object."
+}
+},
+{
+"kind": "match",
+"key": "es18/lab/match1",
+"id": "es:18:02",
+"other": "es:18:01"
+},
+{
+"kind": "match",
+"key": "es18/lab/match2",
+"id": "es:18:17",
+"other": "es:18:16"
+},
+{
+"kind": "match",
+"key": "es18/lab/match3",
+"id": "es:18:33",
+"other": "es:18:32"
+},
+{
+"kind": "match",
+"key": "es18/lab/match4",
+"id": "es:18:46",
+"other": "es:18:45"
+},
+{
+"kind": "build",
+"key": "es18/lab/build1",
+"id": "es:18:04"
+},
+{
+"kind": "build",
+"key": "es18/lab/build2",
+"id": "es:18:15"
+},
+{
+"kind": "build",
+"key": "es18/lab/build3",
+"id": "es:18:29"
+},
+{
+"kind": "build",
+"key": "es18/lab/build4",
+"id": "es:18:42"
+},
+{
+"kind": "transform",
+"id": "es:18:19",
+"base": "es:18:12",
+"diff": [
+{
+"before": [],
+"after": [
+"no"
+]
+}
+],
+"key": "es18/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:18:30",
+"base": "es:18:25",
+"diff": [
+{
+"before": [
+"No"
+],
+"after": []
+}
+],
+"key": "es18/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:18:50",
+"base": "es:18:45",
+"diff": [
+{
+"before": [
+"No"
+],
+"after": []
+}
+],
+"key": "es18/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:18:47",
+"base": "es:18:42",
+"diff": [
+{
+"before": [
+"La"
+],
+"after": [
+"Los"
+]
+}
+],
+"key": "es18/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+1,
+13
+],
+[
+9,
+16
+],
+[
+10,
+3
+],
+[
+5,
+2
+],
+[
+18,
+7
+]
+],
+"worked": [
+"es:18:05",
+"es:18:18",
+"es:18:33",
+"es:18:48"
+],
+"reflection": [
+"es:18:01",
+"es:18:06"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

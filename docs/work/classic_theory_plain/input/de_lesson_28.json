@@ -1,0 +1,795 @@
+{
+ "lang": "de",
+ "lesson": 28,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:28:01",
+   "target": "Die Tür wird geöffnet.",
+   "ru": "Дверь открывают.",
+   "uk": "Двері відчиняють."
+  },
+  {
+   "id": "de:28:02",
+   "target": "Das Fenster wird geöffnet.",
+   "ru": "Окно открывают.",
+   "uk": "Вікно відчиняють."
+  },
+  {
+   "id": "de:28:03",
+   "target": "Die Fenster werden geöffnet.",
+   "ru": "Окна открывают.",
+   "uk": "Вікна відчиняють."
+  },
+  {
+   "id": "de:28:04",
+   "target": "Der Tisch wird gedeckt.",
+   "ru": "На стол накрывают.",
+   "uk": "На стіл накривають."
+  },
+  {
+   "id": "de:28:05",
+   "target": "Die Tische werden gedeckt.",
+   "ru": "На столы накрывают.",
+   "uk": "На столи накривають."
+  },
+  {
+   "id": "de:28:06",
+   "target": "Das Essen wird gekocht.",
+   "ru": "Еду готовят.",
+   "uk": "Їжу готують."
+  },
+  {
+   "id": "de:28:07",
+   "target": "Der Brief wird geschrieben.",
+   "ru": "Письмо пишут.",
+   "uk": "Лист пишуть."
+  },
+  {
+   "id": "de:28:08",
+   "target": "Die Rechnung wird geprüft.",
+   "ru": "Счёт проверяют.",
+   "uk": "Рахунок перевіряють."
+  },
+  {
+   "id": "de:28:09",
+   "target": "Die Kisten werden gepackt.",
+   "ru": "Ящики упаковывают.",
+   "uk": "Ящики пакують."
+  },
+  {
+   "id": "de:28:10",
+   "target": "Die Gäste werden begrüßt.",
+   "ru": "Гостей приветствуют.",
+   "uk": "Гостей вітають."
+  },
+  {
+   "id": "de:28:11",
+   "target": "Das Paket wird heute geliefert.",
+   "ru": "Посылку доставят сегодня.",
+   "uk": "Посилку доставлять сьогодні."
+  },
+  {
+   "id": "de:28:12",
+   "target": "Die Straße wird morgen gesperrt.",
+   "ru": "Дорогу перекроют завтра.",
+   "uk": "Дорогу перекриють завтра."
+  },
+  {
+   "id": "de:28:13",
+   "target": "Der Aufzug wird gerade repariert.",
+   "ru": "Лифт сейчас ремонтируют.",
+   "uk": "Ліфт зараз ремонтують."
+  },
+  {
+   "id": "de:28:14",
+   "target": "Die Zimmer werden täglich gereinigt.",
+   "ru": "Номера убирают ежедневно.",
+   "uk": "Номери прибирають щодня."
+  },
+  {
+   "id": "de:28:15",
+   "target": "Die Milch wird kühl gelagert.",
+   "ru": "Молоко хранят в прохладном месте.",
+   "uk": "Молоко зберігають у прохолодному місці."
+  },
+  {
+   "id": "de:28:16",
+   "target": "Das Brot wird hier gebacken.",
+   "ru": "Хлеб пекут здесь.",
+   "uk": "Хліб печуть тут."
+  },
+  {
+   "id": "de:28:17",
+   "target": "Die Brötchen werden morgens verkauft.",
+   "ru": "Булочки продают по утрам.",
+   "uk": "Булочки продають вранці."
+  },
+  {
+   "id": "de:28:18",
+   "target": "Der Müll wird am Dienstag abgeholt.",
+   "ru": "Мусор забирают во вторник.",
+   "uk": "Сміття забирають у вівторок."
+  },
+  {
+   "id": "de:28:19",
+   "target": "Die Wäsche wird im Keller gewaschen.",
+   "ru": "Бельё стирают в подвале.",
+   "uk": "Білизну перуть у підвалі."
+  },
+  {
+   "id": "de:28:20",
+   "target": "Die Fahrräder werden im Hof abgestellt.",
+   "ru": "Велосипеды ставят во дворе.",
+   "uk": "Велосипеди ставлять у дворі."
+  },
+  {
+   "id": "de:28:21",
+   "target": "Hier wird mit Karte bezahlt.",
+   "ru": "Здесь платят картой.",
+   "uk": "Тут платять карткою."
+  },
+  {
+   "id": "de:28:22",
+   "target": "Im Flur wird nicht geraucht.",
+   "ru": "В коридоре не курят.",
+   "uk": "У коридорі не курять."
+  },
+  {
+   "id": "de:28:23",
+   "target": "Der Eingang wird verlegt, um Gedränge zu vermeiden.",
+   "ru": "Вход переносят, чтобы избежать давки.",
+   "uk": "Вхід переносять, щоб уникнути скупчення людей."
+  },
+  {
+   "id": "de:28:24",
+   "target": "Ab acht Uhr wird gearbeitet.",
+   "ru": "Работу начинают с восьми.",
+   "uk": "Роботу починають із восьми."
+  },
+  {
+   "id": "de:28:25",
+   "target": "An dieser Kasse wird bar bezahlt.",
+   "ru": "На этой кассе платят наличными.",
+   "uk": "На цій касі платять готівкою."
+  },
+  {
+   "id": "de:28:26",
+   "target": "Im Kurs wird viel gesprochen.",
+   "ru": "На занятии много говорят.",
+   "uk": "На занятті багато говорять."
+  },
+  {
+   "id": "de:28:27",
+   "target": "Sonntags werden die Stühle im Gang abgestellt.",
+   "ru": "По воскресеньям стулья ставят в коридоре.",
+   "uk": "По неділях стільці ставлять у коридорі."
+  },
+  {
+   "id": "de:28:28",
+   "target": "Im Bus werden die Haltestellen angesagt.",
+   "ru": "В автобусе объявляют остановки.",
+   "uk": "В автобусі оголошують зупинки."
+  },
+  {
+   "id": "de:28:29",
+   "target": "Mit diesen Lampen wird weniger Strom verbraucht.",
+   "ru": "С этими лампами расходуется меньше электричества.",
+   "uk": "Ці лампи споживають менше електроенергії."
+  },
+  {
+   "id": "de:28:30",
+   "target": "Im Garten wird ein Baum gepflanzt.",
+   "ru": "В саду сажают дерево.",
+   "uk": "У саду садять дерево."
+  },
+  {
+   "id": "de:28:31",
+   "target": "Der Patient wird von der Ärztin untersucht.",
+   "ru": "Пациента осматривает врач-женщина.",
+   "uk": "Пацієнта оглядає лікар-жінка."
+  },
+  {
+   "id": "de:28:32",
+   "target": "Die Leute werden von einem Kollegen am Eingang begrüßt.",
+   "ru": "У входа людей встречает один из коллег.",
+   "uk": "Людей зустрічає колега біля входу."
+  },
+  {
+   "id": "de:28:33",
+   "target": "Der Schlüssel wird vom Hausmeister gebracht.",
+   "ru": "Ключ приносит смотритель.",
+   "uk": "Ключ приносить доглядач."
+  },
+  {
+   "id": "de:28:34",
+   "target": "Der Tisch wird nach dem Kurs zusammengeklappt.",
+   "ru": "После занятия стол складывают.",
+   "uk": "Після заняття стіл складають."
+  },
+  {
+   "id": "de:28:35",
+   "target": "Die Rechnung wird von der Firma bezahlt.",
+   "ru": "Счёт оплачивает фирма.",
+   "uk": "Рахунок оплачує фірма."
+  },
+  {
+   "id": "de:28:36",
+   "target": "Die Tür wurde gestern gestrichen.",
+   "ru": "Дверь покрасили вчера.",
+   "uk": "Двері пофарбували вчора."
+  },
+  {
+   "id": "de:28:37",
+   "target": "Der Zug wurde kurzfristig abgesagt.",
+   "ru": "Поезд отменили в последний момент.",
+   "uk": "Потяг скасували в останній момент."
+  },
+  {
+   "id": "de:28:38",
+   "target": "Die Unterlagen wurden schon verschickt.",
+   "ru": "Документы уже отправили.",
+   "uk": "Документи вже надіслали."
+  },
+  {
+   "id": "de:28:39",
+   "target": "Das Handy wurde gestern gefunden.",
+   "ru": "Вчера нашли телефон.",
+   "uk": "Вчора знайшли телефон."
+  },
+  {
+   "id": "de:28:40",
+   "target": "Die Gäste wurden am Eingang abgeholt.",
+   "ru": "Гостей встретили у входа.",
+   "uk": "Гостей зустріли біля входу."
+  },
+  {
+   "id": "de:28:41",
+   "target": "Wann wird die Heizung repariert?",
+   "ru": "Когда отремонтируют отопление?",
+   "uk": "Коли відремонтують опалення?"
+  },
+  {
+   "id": "de:28:42",
+   "target": "Wo wird das Paket abgegeben?",
+   "ru": "Где сдают посылку?",
+   "uk": "Де здають посилку?"
+  },
+  {
+   "id": "de:28:43",
+   "target": "Werden die Kosten erstattet?",
+   "ru": "Расходы возмещаются?",
+   "uk": "Витрати відшкодовуються?"
+  },
+  {
+   "id": "de:28:44",
+   "target": "Wurde der Termin bestätigt?",
+   "ru": "Встречу подтвердили?",
+   "uk": "Зустріч підтвердили?"
+  },
+  {
+   "id": "de:28:45",
+   "target": "Wurden die Fenster schon geputzt?",
+   "ru": "Окна уже помыли?",
+   "uk": "Вікна вже помили?"
+  },
+  {
+   "id": "de:28:46",
+   "target": "Das Formular muss hier unterschrieben werden.",
+   "ru": "Бланк нужно подписать здесь.",
+   "uk": "Бланк потрібно підписати тут."
+  },
+  {
+   "id": "de:28:47",
+   "target": "Die Tür darf nicht blockiert werden.",
+   "ru": "Дверь нельзя загораживать.",
+   "uk": "Не можна загороджувати двері."
+  },
+  {
+   "id": "de:28:48",
+   "target": "Das Wasser muss zuerst gekocht werden.",
+   "ru": "Воду сначала надо вскипятить.",
+   "uk": "Воду спочатку треба закип'ятити."
+  },
+  {
+   "id": "de:28:49",
+   "target": "Die Adresse kann noch geändert werden.",
+   "ru": "Адрес ещё можно изменить.",
+   "uk": "Адресу ще можна змінити."
+  },
+  {
+   "id": "de:28:50",
+   "target": "Der Ausweis muss am Eingang gezeigt werden.",
+   "ru": "У входа надо предъявить удостоверение.",
+   "uk": "Біля входу треба пред'явити посвідчення."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Müll",
+   "ru": "мусор",
+   "uk": "сміття"
+  },
+  {
+   "lemma": "der Hausmeister",
+   "ru": "смотритель здания",
+   "uk": "доглядач будівлі"
+  },
+  {
+   "lemma": "die Firma",
+   "ru": "фирма",
+   "uk": "фірма"
+  },
+  {
+   "lemma": "erstatten",
+   "ru": "возмещать расходы",
+   "uk": "відшкодовувати витрати"
+  },
+  {
+   "lemma": "liefern",
+   "ru": "доставлять",
+   "uk": "доставляти"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden",
+  "der Kollege",
+  "die Leute",
+  "verbrauchen",
+  "zusammenklappen",
+  "sonntags"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  },
+  {
+   "lesson": 27,
+   "title": "Какой человек или предмет: относительное предложение"
+  }
+ ],
+ "oldTopicTitle": "Что делают с предметом: пассив с `werden`",
+ "oldTheoryRu": "В активном сообщении кто-то открывает окно. В пассивном важнее само окно и происходящий процесс. Оно становится подлежащим; форма `wird` или `werden` зависит теперь от его числа. На табличке часто сообщают действие, а не имя мастера. Если ремонтируют лифт, для пассажира обычно неважно, кто держит инструмент. Не выдумывай обязательного исполнителя. Порядок похож на рамку Perfekt, но смысл другой. `Wird geliefert` сообщает о доставке как процессе; одна только форма `wird` ещё не заставляет считать фразу будущим временем. Иногда у сообщения нет обычного предмета-подлежащего: здесь платят картой, в коридоре не курят. Безличный пассив — отдельный образец; не вставляй случайный предмет лишь ради перевода. Если исполнитель важен, назови его после `von` в дательном падеже. Это добавление не меняет число глагола: форму по-прежнему задаёт тот, кого забрали или осмотрели. Чтобы перенести процесс в прошлое, меняй `wird` на `wurde`, во множественном — на `wurden`. Причастие остаётся тем же. Не путай сообщение о процессе с описанием уже достигнутого состояния через `sein`. Модальное слово может стоять впереди рамки. В конце останутся причастие и `werden`: речь о том, что должно быть сделано или может быть изменено. Не теряй последнюю часть при сборке длинного ответа."
+}

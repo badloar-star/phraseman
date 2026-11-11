@@ -41,24 +41,19 @@ test('statistics explanation does not promise XP', () => {
     assert.doesNotMatch(statistics.body(locale), /XP|опыт|досвід/u, `statistics ${locale} must not promise XP`);
   }
 });
-test('all approved explanations are registered and wired at their real entry owners', () => {
-  assert.match(read('app/feature_intro_registry.ts'), /\.\.\.SECTION_FEATURE_INTROS/);
-  for (const [id, , path] of routes) assert.ok(read(path).includes(id), `${path} must own ${id}`);
-  assert.match(read('components/DailyPhraseCard.tsx'), /useRequestedFeatureIntro/);
-});
-test('daily phrase hands off after native dismissal and preserves widget links', () => {
-  const source = read('components/DailyPhraseCard.tsx');
-  assert.ok(source.includes('introActive && !detailsVisible'));
-  assert.ok(source.includes('onDismissed={dailyIntro.finish}'));
-  assert.ok(source.includes('onDone={dailyIntro.close}'));
-  assert.ok(source.includes('if (detailsVisible) {\n      handledDeepLinkRef.current = linkKey;') || source.includes('if (detailsVisible) {\r\n      handledDeepLinkRef.current = linkKey;'));
-  assert.ok(source.includes('handledDeepLinkRef.current = pendingDeepLinkRef.current'));
-  assert.ok(source.includes('spokenDeepLinkRef.current = linkKey'));
-});
-test('friends explanation yields to active confirmation modals', () => {
-  const entry = read('app/(tabs)/friends.tsx').split('\n').find(line => line.includes('id="friends_first_visit"'));
-  // 01.10 (Q6): окно уровня дружбы удалено целиком — levelUpModal больше нет.
-  for (const name of ['studyInvite', 'deleteTarget']) {
-    assert.ok(entry?.includes(`!${name}`), name);
+test('sections open directly and Peak retains its first-visit tour', () => {
+  for (const [id, , path] of routes) {
+    assert.doesNotMatch(read(path), /FeatureIntroEntry|FeatureIntroModal|useRequestedFeatureIntro/, path);
+    assert.ok(!read(path).includes(id), path);
   }
+  for (const path of ['app/flashcards_training_setup.tsx', 'app/flashcards_swipe.tsx']) {
+    assert.doesNotMatch(read(path), /FeatureIntroEntry|FeatureIntroModal|showSwipeHint/, path);
+  }
+  assert.match(read('components/spire/peak/PeakScreenV2.tsx'), /tourOn \? <PeakTourFull/);
+});
+test('daily phrase opens directly and keeps widget playback', () => {
+  const source = read('components/DailyPhraseCard.tsx');
+  assert.match(source, /handledDeepLinkRef\.current = linkKey;\s+setDetailsVisible\(true\);/);
+  assert.match(source, /spokenDeepLinkRef\.current = linkKey/);
+  assert.match(source, /if \(!detailsRuntimeActiveRef\.current\) return;[\s\S]+?setDetailsVisible\(true\);/);
 });

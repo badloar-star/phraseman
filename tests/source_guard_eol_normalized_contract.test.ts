@@ -18,7 +18,6 @@ const ALLOWED_RAW_READS: Readonly<Record<string, string>> = {
   'tests/asset_hygiene_safe.test.ts': 'хеши по точным байтам',
   'tests/flashcards_liquid_hub_source_contract.test.mjs': 'хеши по точным байтам',
   'tests/global_broadcast_privacy_rollout_contract.test.ts': 'хеши по точным байтам',
-  'tests/learning_v2_lesson1_local_audio.test.ts': 'хеши по точным байтам',
   'tests/session_result_liquid_glass_source_contract.test.mjs': 'хеши по точным байтам',
   'tests/settings_notifications_liquid_glass.test.mjs': 'хеши по точным байтам',
   'tests/tournament_pool_migration_scripts.test.ts': 'хеши по точным байтам',

@@ -4,7 +4,7 @@
  *
  * зачем (владелец, 2026-08-23): деплой ВСЕХ функций упал с ошибкой
  *   More than one codebase claims following functions:
- *   adminPublishAuthoredLearningV2Course: default, content
+ *   <имя функции>: default, <вторая кодовая база>
  * Утром коммит 478b03750 вынес контент-фабрику в базу `content`, чтобы основной
  * бандл похудел с 380 до 140 МБ. Днём другая сессия добавила экспорт той же
  * функции обратно в `functions/src/index.ts` — ей нужен был эндпоинт для кнопки

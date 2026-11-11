@@ -3,12 +3,13 @@
 // 1) память плана (peekPremiumPlan — первый кадр, без IO), 2) локальное хранилище (premium_plan / premium_rc_product_id), 3) пересчёт по событиям подписки.
 // Новых сетевых запросов нет. Неизвестный план при активной подписке = Plus: Ultra по догадке не показываем. null — подписки нет.
 import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { onAppEvent } from '../../app/events';
 import { getDevPlanOverride } from '../../app/dev_vip_override';
 import { peekPremiumPlan } from '../../app/premium_plan_peek';
 import { logSubscriptionTier, tierFromPlan, tierFromProductId, type SubscriptionTier } from '../../app/subscription_tier';
 import { usePremium } from '../PremiumContext';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/account_generation';
+import { readRealPremiumSnapshotForGeneration } from '../../app/premium_real_storage';
 
 type KnownPlan = Readonly<{ plan: string | null; productId: string | null; source: string }>;
 
@@ -40,11 +41,12 @@ export function useSubscriptionTier(): SubscriptionTier | null {
         if (!cancelled) setKnown(fromPeek);
         return;
       }
-      AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id'])
-        .then((rows) => {
-          if (cancelled) return;
-          const plan = rows[0]?.[1] ?? null;
-          const productId = rows[1]?.[1] ?? null;
+      const token = captureAccountGeneration();
+      readRealPremiumSnapshotForGeneration(token)
+        .then((snapshot) => {
+          if (cancelled || !token.stableId || !isCurrentAccountGeneration(token, token.stableId)) return;
+          const plan = snapshot?.active ? snapshot.plan : null;
+          const productId = snapshot?.active ? snapshot.rcProductId : null;
           setKnown(plan || productId ? { plan: plan ? String(plan).trim().toLowerCase() : null, productId: productId ? String(productId) : null, source: 'storage' } : null);
         })
         .catch((error: unknown) => {

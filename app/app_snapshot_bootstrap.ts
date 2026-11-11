@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { readStoredItems } from './storage_snapshot';
 import {
   patchAppSnapshot,
   type AppSnapshot,
@@ -21,6 +21,10 @@ import {
   type VipStorageValues,
 } from './premium_vip_storage';
 import {
+  readRealPremiumSnapshotForGeneration,
+  type RealPremiumSnapshotV1,
+} from './premium_real_storage';
+import {
   REFERRAL_STATE_STORAGE_KEY,
   hydrateReferralStateFromRaw,
 } from './referrals_cache';
@@ -31,8 +35,6 @@ const BOOT_PROFILE_KEYS = [
   'user_name',
   'user_avatar',
   'user_frame',
-  'premium_active',
-  'premium_plan',
 ] as const;
 
 const BOOT_PROGRESS_KEYS = [
@@ -85,7 +87,7 @@ export function writePeekStudyTargetRaw(value: string | null): void {
   peekStudyTargetState = value;
 }
 
-function mapPairs(pairs: readonly [string, string | null][]): Map<string, string | null> {
+function mapPairs(pairs: ReadonlyArray<readonly [string, string | null]>): Map<string, string | null> {
   return new Map(pairs);
 }
 
@@ -102,6 +104,7 @@ function buildProfileSnapshot(
   values: Map<string, string | null>,
   now: number,
   vipSnapshot: VipStorageValues | null,
+  realPremiumSnapshot: RealPremiumSnapshotV1 | null,
 ): AppSnapshotProfile {
   const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
   // зачем: пожизненный VIP-грант (сертификат «Pro — навсегда», промокод,
@@ -122,8 +125,8 @@ function buildProfileSnapshot(
     name,
     avatar,
     frame,
-    premiumActive: readBool(values.get('premium_active')),
-    premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
+    premiumActive: realPremiumSnapshot?.active === true,
+    premiumPlan: realPremiumSnapshot?.active ? realPremiumSnapshot.plan ?? undefined : undefined,
     vipActive: vipUntil > now || vipLifetime,
     vipLifetime,
   };
@@ -255,8 +258,11 @@ export async function primeAppSnapshotFromStorage(
   if (!isAccountCurrent()) { exit('account_changed:personal_progress'); return; }
   await migrateLegacyVipSnapshotOnce(accountGeneration).catch(noteSwallowedAs('app_snapshot_bootstrap:migrateLegacyVipSnapshotOnce', false));
   if (!isAccountCurrent()) { exit('account_changed:vip_migrate'); return; }
-  const vipSnapshot = await readVipSnapshotForGeneration(accountGeneration);
-  if (!isAccountCurrent()) { exit('account_changed:vip_read'); return; }
+  const [vipSnapshot, realPremiumSnapshot] = await Promise.all([
+    readVipSnapshotForGeneration(accountGeneration),
+    readRealPremiumSnapshotForGeneration(accountGeneration),
+  ]);
+  if (!isAccountCurrent()) { exit('account_changed:premium_read'); return; }
   const preReadMs = Date.now() - now;
   const lastOpenedKey = lastOpenedLessonKey(studyTarget);
   // зачем (пакет 07:26 [HOME-COLD]: карточка урока на холодном старте — заглушки): прогресс уроков читаем в ТОМ ЖЕ
@@ -283,7 +289,7 @@ export async function primeAppSnapshotFromStorage(
     .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null))
     .finally(() => mark('runesPeekMs'));
   const [storageRead] = await Promise.all([
-    AsyncStorage.multiGet(keys).then(
+    readStoredItems(keys, new Set([...lessonProgressKeys, lastOpenedKey])).then(
       (pairs) => { mark('multiGetMs'); return { ok: true as const, pairs }; },
       () => { mark('multiGetMs'); return { ok: false as const, pairs: [] as [string, string | null][] }; },
     ),
@@ -309,7 +315,7 @@ export async function primeAppSnapshotFromStorage(
     now,
   );
   if (!isAccountCurrent()) { exit('account_changed:referral'); return; }
-  const profile = buildProfileSnapshot(values, now, vipSnapshot);
+  const profile = buildProfileSnapshot(values, now, vipSnapshot, realPremiumSnapshot);
   if (!isAccountCurrent()) { exit('account_changed:profile'); return; }
   // зачем: страховка. Обычно прогрев энергии уже отработал — он запускается сам
   // при импорте своего модуля (EnergyProvider монтируется выше AppContent, и

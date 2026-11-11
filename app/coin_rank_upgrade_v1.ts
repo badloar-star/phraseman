@@ -1,6 +1,6 @@
 // ═══ Атомарное повышение ранга монеты (PM-075) ═══════════════════════════════
 // зачем (владелец 2026-09-24, D34/D42/D60/D62): человек сам жмёт «Повысить уровень» на
-// Главной, когда накопил цену следующего ранга (N × 1000, app/coin_rank_table_v1.ts);
+// Главной, когда накопил цену следующего ранга (1 000, затем +100, app/coin_rank_table_v1.ts);
 // монеты списываются, монета-аватар меняется на следующую.
 //
 // Кошелёк монет = рунный кошелёк (до PM-069), поэтому списание идёт ТЕМ ЖЕ путём, что и
@@ -133,12 +133,17 @@ async function upgradeCoinRankOnce(
         balanceBefore: spend.balanceBefore, balanceAfter: spend.balanceAfter,
       });
 
+      // При восстановлении после старого частичного коммита цена берётся из
+      // неизменяемой квитанции, а не из нового прайса: повтор не списывает и
+      // история навсегда показывает то, что человек действительно заплатил.
+      const paidPrice = spend.existingSpend?.price ?? next.priceToReach;
+
       const nextState: CoinRankStateV1 = Object.freeze({
         ...state,
         rank: next.rank,
         upgrades: Object.freeze([
           ...state.upgrades,
-          Object.freeze({ toRank: next.rank, operationId, price: next.priceToReach, atMs: input.nowMs ?? Date.now() }),
+          Object.freeze({ toRank: next.rank, operationId, price: paidPrice, atMs: input.nowMs ?? Date.now() }),
         ]),
       });
       // зачем одним multiSet: трата и ранг ложатся вместе или не ложатся вовсе.
@@ -147,6 +152,13 @@ async function upgradeCoinRankOnce(
         ...spend.durableWrites.map(([k, v]) => [k, v] as [string, string]),
         [key, JSON.stringify(nextState)],
       ]);
+      if (!isCurrentAccountGeneration(token, owner)) {
+        // Composite A уже честно и атомарно лёг на диск; откатывать его нельзя.
+        // Но после смены аккаунта нельзя публиковать A в UI B, запускать его
+        // церемонию или ставить его историю в очередь нового владельца.
+        trace('composite записан, но аккаунт сменился до публикации', { owner, toRank: next.rank });
+        return { ok: false, reason: 'identity_changed' } as const;
+      }
       // Показывать новую цифру и новую монету — только после записи на диск.
       publishRuneSpend(token, spend);
       publishCoinRank(owner, next.rank);
@@ -160,16 +172,16 @@ async function upgradeCoinRankOnce(
         // Денежный результат остаётся успешным даже при синхронном сбое окружения.
       }
       trace('повышено', {
-        owner, fromRank: state.rank, toRank: next.rank, price: next.priceToReach,
+        owner, fromRank: state.rank, toRank: next.rank, price: paidPrice,
         balanceAfter: spend.balanceAfter, recovered: spend.alreadySpent,
       });
-      void recordCoinRankStory(next.rank); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+      void recordCoinRankStory(next.rank, paidPrice, token); // зачем (D192): факт → история у аватарки на Главной; токен не даст приписать A аккаунту B.
       return {
         ok: true,
         status: 'upgraded',
         fromRank: state.rank,
         toRank: next.rank,
-        price: next.priceToReach,
+        price: paidPrice,
         balanceAfter: spend.balanceAfter,
         recovered: spend.alreadySpent,
       } as const;

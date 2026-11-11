@@ -226,12 +226,12 @@ import { LadderRow, momentLadderValue } from '../components/spire/moments/Moment
 
 describe('окна недели Пика: место — ступенями, монеты — награда', () => {
   const NB = (s: string): string => s.replace(/ | /g, ' ');
-  it('повышение по ступеням: «5 место · 42 ступени за неделю · +100 монет»', () => {
-    expect(NB(promotionShortBody('ru', 5, 470, 100, 42))).toBe('5 место · 42 · +100 монет'); // зачем (владелец 05.11, «ни слова про ступени»): число без слова, {steps} — очки комнаты
+  it('повышение по ступеням: «5 место · 42 · +100 монет за повышение»', () => {
+    expect(NB(promotionShortBody('ru', 5, 470, 100, 42))).toBe('5 место · 42 · +100 монет за повышение'); // зачем (владелец 05.11, «ни слова про ступени»): число без слова, {steps} — очки комнаты
     expect(NB(promotionShortBody('ru', 5, 470, 0, 42))).toBe('5 место · 42');
   });
   it('режим монет — как было', () => {
-    expect(NB(promotionShortBody('ru', 5, 470, 100))).toMatch(/^5 место · 470 монет за неделю · \+100$/);
+    expect(NB(promotionShortBody('ru', 5, 470, 100))).toMatch(/^5 место · 470 монет за неделю · \+100 монет за повышение$/);
   });
   it('удержался и «Поделиться» по ступеням', () => {
     expect(NB(momentText('ru', 'stayBodyStepsNoGap', { place: 7, steps: 21 }))).toBe('7 место · 21.');

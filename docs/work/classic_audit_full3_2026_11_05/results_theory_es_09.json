@@ -1,0 +1,184 @@
+[
+ {
+  "id": "lesson-19/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "For \"I\" — estoy, for \"we\" — estamos. Only this helper verb changes. The form leyendo is the same for one person and for an entire group."
+ },
+ {
+  "id": "lesson-19/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Leo can describe a habit. In estoy leyendo, it's like turning on a camera in the middle of reading. The \"now\" in the clue sets the situation; it doesn't require a separate ahora in each Spanish phrase."
+ },
+ {
+  "id": "lesson-19/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estoy leyendo. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "For \"I\" — estoy, for \"we\" — estamos. Only this helper verb changes. The form leyendo is the same for one person and for an entire group."
+ },
+ {
+  "id": "lesson-19/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estás leyendo. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Trabajar yields trabajando, and comer and escribir yield comiendo and escribiendo. This is neither a finite form nor an infinitive: the form ending in -ando or -iendo is added to estoy."
+ },
+ {
+  "id": "lesson-19/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estamos comiendo. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estoy leyendo. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estás trabajando. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Compare two tasks: \"You are now paying with a card.\" / \"We are now reading a book.\" estar expresses the person, the gerund expresses the process. Semantic supports: \"tarjeta\" is a payment card."
+ },
+ {
+  "id": "lesson-19/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estamos leyendo. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-19/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Estás buscando. estar shows the person; the gerund shows the process."
+ },
+ {
+  "id": "lesson-20/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Match the result with the current time period in the Spanish variant accepted for this lesson. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: he llamado. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: has llamado. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "In regular forms, replace -ar with -ado and -er/-ir with -ido: llamado, comido, vivido. In leído, the stress on í is marked in writing; comprado has no written accent."
+ },
+ {
+  "id": "lesson-20/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: ha comprado. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: han abierto. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: He pagado. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Compare two tasks: \"You returned to the station today.\" / \"We read a book this week.\" haber carries the personal ending; the participle does not agree with the object. Semantic supports: \"estación\" — station."
+ },
+ {
+  "id": "lesson-20/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Hemos leído. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Compare two tasks: \"Did you read a book today?\" / \"Did you enter the office today?\" haber carries the personal ending; the participle does not agree with the object. Connect the result with the current time period in the Spanish version accepted for this lesson."
+ },
+ {
+  "id": "lesson-20/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Verb phrase: Habéis entrado. haber carries the personal ending; the participle does not agree with the object."
+ },
+ {
+  "id": "lesson-20/use",
+  "type": "T2",
+  "field": "ru.use",
+  "problem": "Калька «в варианте Испании»: неестественно и неточно (uk: «у варіанті іспанської, обраному для цього уроку»)",
+  "fix": "Соедини результат с текущим отрезком времени — так, как принято в испанском варианте этого урока."
+ },
+ {
+  "id": "lesson-20/nuance",
+  "type": "T2",
+  "field": "ru.nuance",
+  "problem": "Калька «в варианте Испании»",
+  "fix": "Соедини результат с текущим отрезком времени — так, как принято в испанском варианте этого урока. Личное окончание у haber, причастие не согласуется с предметом."
+ },
+ {
+  "id": "lesson-20/chapters[6]",
+  "type": "T2",
+  "field": "ru.chapters[6].body",
+  "problem": "Калька «в варианте Испании»",
+  "fix": "Сравни два задания: «Ты сегодня прочитал книгу?» / «Вы сегодня вошли в офис?». Личное окончание у haber, причастие не согласуется с предметом. Соедини результат с текущим отрезком времени — так, как принято в испанском варианте этого урока."
+ }
+]

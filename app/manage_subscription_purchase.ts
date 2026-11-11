@@ -44,8 +44,8 @@ async function persistForGeneration(
 ): Promise<boolean> {
   if (!isManageSubscriptionOperationCurrent(generation)) return false;
   const metadata = revenueCatPremiumMetadata(info, fallbackProductId);
-  const committed = await commitRevenueCatResultForGeneration(generation, (isCurrent) => (
-    persistStorePremiumLocally(plan, metadata, isCurrent, true, true)
+  const committed = await commitRevenueCatResultForGeneration(generation, (_isCurrent, lease) => (
+    persistStorePremiumLocally(generation, plan, metadata, 'store_plan_change', true, lease)
   ));
   return committed.status === 'ok' && committed.value;
 }

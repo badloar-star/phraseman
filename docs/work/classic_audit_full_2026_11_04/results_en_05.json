@@ -1,0 +1,17 @@
+[
+  {"id": "en-classic-r1:18.07", "type": "B2", "field": "uk", "problem": "«Будьте обережні під ногою» неграматично и неестественно", "fix": "Дивіться під ноги."},
+  {"id": "en-classic-r1:18.21", "type": "B2", "field": "ru", "problem": "потеряно «пожалуйста» (Please) — в uk есть", "fix": "Пожалуйста, передайте полотенце."},
+  {"id": "en-classic-r1:18.22", "type": "B2", "field": "ru", "problem": "потеряно «пожалуйста»; «подпишитесь» = subscribe, нужно «распишитесь»", "fix": "Пожалуйста, распишитесь на этой строке."},
+  {"id": "en-classic-r1:18.23", "type": "B2", "field": "ru", "problem": "потеряно «пожалуйста» (Please) — в uk есть", "fix": "Пожалуйста, верните ключ на ресепшен."},
+  {"id": "en-classic-r1:18.23", "type": "B1", "field": "tiles", "problem": "соблазн «to» даёт верную фразу «Please return the key to reception»", "fix": {"position": 4, "replace_distractor": "to", "with": "of"}},
+  {"id": "en-classic-r1:18.26", "type": "B2", "field": "uk", "problem": "потерян смысл spell («по буквах») — «напишіть прізвище» = write", "fix": "Будь ласка, продиктуйте своє прізвище по літерах."},
+  {"id": "en-classic-r1:18.31", "type": "B1", "field": "tiles", "problem": "соблазн «light» даёт верную фразу «Turn left at the light» (светофор)", "fix": {"position": 4, "replace_distractor": "light", "with": "lit"}},
+  {"id": "en-classic-r1:18.45", "type": "B1", "field": "tiles", "problem": "соблазн «by» даёт верную фразу «Let's sit by the window» (= сядем у окна)", "fix": {"position": 2, "replace_distractor": "by", "with": "of"}},
+  {"id": "en-classic-r1:19.11", "type": "B2", "field": "uk", "problem": "ru на «вы» (Встретьтесь), uk на «ти» (Зустрінь)", "fix": "Зустріньте мене біля входу."},
+  {"id": "en-classic-r1:19.12", "type": "B2", "field": "uk", "problem": "ru на «вы» (Встретьтесь), uk на «ти» (Зустрінь)", "fix": "Зустріньте мене у вестибюлі."},
+  {"id": "en-classic-r1:19.18", "type": "B1", "field": "tiles", "problem": "соблазн «at» даёт верную фразу «The map is at the station» (= на вокзале)", "fix": {"position": 3, "replace_distractor": "at", "with": "after"}},
+  {"id": "en-classic-r1:19.35", "type": "B2", "field": "uk", "problem": "«дверцята» — дверцы шкафа, а не дверь", "fix": "Підсуньте записку під двері."},
+  {"id": "en-classic-r1:19.37", "type": "B2", "field": "uk", "problem": "«обкладинка» (обложка книги) ≠ ru «чехол» — разный смысл ru и uk", "fix": "Зберігайте чек всередині чохла."},
+  {"id": "en-classic-r1:20.16", "type": "B1", "field": "tiles", "problem": "соблазн «I've» даёт верную фразу «I've read a notice. The notice was in English.» (= я прочитал)", "fix": {"position": 0, "replace_distractor": "I've", "with": "they"}},
+  {"id": "en-classic-r1:20.19", "type": "B2", "field": "uk", "problem": "ru на «ты» (у тебя на столе), uk на «ви» (на вашому столі)", "fix": "Я написав листа. Лист лежить на твоєму столі."}
+]

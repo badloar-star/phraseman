@@ -1,0 +1,688 @@
+{
+ "lang": "fr",
+ "lesson": 12,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:12:01",
+   "target": "Je prends du pain.",
+   "ru": "Я беру хлеб.",
+   "uk": "Я беру хліб."
+  },
+  {
+   "id": "fr:12:02",
+   "target": "Tu prends du pain.",
+   "ru": "Ты берёшь хлеб.",
+   "uk": "Ти береш хліб."
+  },
+  {
+   "id": "fr:12:03",
+   "target": "Je prends de la soupe.",
+   "ru": "Я беру суп.",
+   "uk": "Я беру суп."
+  },
+  {
+   "id": "fr:12:04",
+   "target": "Elle prend de la soupe.",
+   "ru": "Она берёт суп.",
+   "uk": "Вона бере суп."
+  },
+  {
+   "id": "fr:12:05",
+   "target": "Nous prenons de l’eau.",
+   "ru": "Мы берём воду.",
+   "uk": "Ми беремо воду."
+  },
+  {
+   "id": "fr:12:06",
+   "target": "Vous prenez du lait.",
+   "ru": "Вы берёте молоко.",
+   "uk": "Ви берете молоко."
+  },
+  {
+   "id": "fr:12:07",
+   "target": "Il prend du fromage.",
+   "ru": "Он берёт сыр.",
+   "uk": "Він бере сир."
+  },
+  {
+   "id": "fr:12:08",
+   "target": "Elles prennent de la salade.",
+   "ru": "Они берут салат.",
+   "uk": "Вони беруть салат."
+  },
+  {
+   "id": "fr:12:09",
+   "target": "Je voudrais du riz.",
+   "ru": "Я бы хотел риса.",
+   "uk": "Я хотів би трохи рису."
+  },
+  {
+   "id": "fr:12:10",
+   "target": "Je voudrais de l’huile.",
+   "ru": "Я бы хотел растительного масла.",
+   "uk": "Я б хотів рослинної олії."
+  },
+  {
+   "id": "fr:12:11",
+   "target": "J’achète du beurre.",
+   "ru": "Я покупаю сливочное масло.",
+   "uk": "Я купую вершкове масло."
+  },
+  {
+   "id": "fr:12:12",
+   "target": "J’achète de la farine.",
+   "ru": "Я покупаю муку.",
+   "uk": "Я купую борошно."
+  },
+  {
+   "id": "fr:12:13",
+   "target": "Nous achetons du poisson.",
+   "ru": "Мы покупаем рыбу.",
+   "uk": "Ми купуємо рибу."
+  },
+  {
+   "id": "fr:12:14",
+   "target": "Tu achètes de la crème.",
+   "ru": "Ты покупаешь сливки.",
+   "uk": "Ти купуєш вершки."
+  },
+  {
+   "id": "fr:12:15",
+   "target": "Il achète de l’ail.",
+   "ru": "Он покупает чеснок.",
+   "uk": "Він купує часник."
+  },
+  {
+   "id": "fr:12:16",
+   "target": "Elle achète du jambon.",
+   "ru": "Она покупает ветчину.",
+   "uk": "Вона купує шинку."
+  },
+  {
+   "id": "fr:12:17",
+   "target": "Je mange du poulet.",
+   "ru": "Я ем курицу.",
+   "uk": "Я їм курку."
+  },
+  {
+   "id": "fr:12:18",
+   "target": "Tu manges de la compote.",
+   "ru": "Ты ешь фруктовое пюре.",
+   "uk": "Ти їси фруктове пюре."
+  },
+  {
+   "id": "fr:12:19",
+   "target": "Nous mangeons des pâtes.",
+   "ru": "Мы едим макароны.",
+   "uk": "Ми їмо макарони."
+  },
+  {
+   "id": "fr:12:20",
+   "target": "Ils mangent des fraises.",
+   "ru": "Они едят клубнику.",
+   "uk": "Вони їдять полуницю."
+  },
+  {
+   "id": "fr:12:21",
+   "target": "Je bois du thé.",
+   "ru": "Я пью чай.",
+   "uk": "Я п'ю чай."
+  },
+  {
+   "id": "fr:12:22",
+   "target": "Elle boit de l’eau.",
+   "ru": "Она пьет воду.",
+   "uk": "Вона п'є воду."
+  },
+  {
+   "id": "fr:12:23",
+   "target": "Nous buvons du jus de pomme.",
+   "ru": "Мы пьем яблочный сок.",
+   "uk": "Ми п'ємо яблучний сік."
+  },
+  {
+   "id": "fr:12:24",
+   "target": "Vous buvez du café ?",
+   "ru": "Вы пьёте кофе?",
+   "uk": "Ви п'єте каву?"
+  },
+  {
+   "id": "fr:12:25",
+   "target": "Je mets du sel.",
+   "ru": "Я добавляю соль.",
+   "uk": "Я додаю сіль."
+  },
+  {
+   "id": "fr:12:26",
+   "target": "Elle ajoute du poivre.",
+   "ru": "Она добавляет перец.",
+   "uk": "Вона додає перець."
+  },
+  {
+   "id": "fr:12:27",
+   "target": "Tu ajoutes de la moutarde.",
+   "ru": "Ты добавляешь горчицу.",
+   "uk": "Ти додаєш гірчицю."
+  },
+  {
+   "id": "fr:12:28",
+   "target": "Il reste du sucre.",
+   "ru": "Осталось немного сахара.",
+   "uk": "Залишилося трохи цукру."
+  },
+  {
+   "id": "fr:12:29",
+   "target": "Il reste de la confiture.",
+   "ru": "Осталось немного джема.",
+   "uk": "Залишилося трохи варення."
+  },
+  {
+   "id": "fr:12:30",
+   "target": "Il reste de l’eau fraîche.",
+   "ru": "Осталось немного прохладной воды.",
+   "uk": "Залишилося трохи прохолодної води."
+  },
+  {
+   "id": "fr:12:31",
+   "target": "Je ne prends pas de lait.",
+   "ru": "Я не беру молоко.",
+   "uk": "Я не беру молоко."
+  },
+  {
+   "id": "fr:12:32",
+   "target": "Nous ne mangeons pas de viande.",
+   "ru": "Мы не едим мясо.",
+   "uk": "Ми не їмо м'яса."
+  },
+  {
+   "id": "fr:12:33",
+   "target": "Il ne boit pas de café.",
+   "ru": "Он не пьет кофе.",
+   "uk": "Він не п'є каву."
+  },
+  {
+   "id": "fr:12:34",
+   "target": "Elle n’achète pas de beurre.",
+   "ru": "Она не покупает сливочное масло.",
+   "uk": "Вона не купує вершкове масло."
+  },
+  {
+   "id": "fr:12:35",
+   "target": "Tu ne mets pas de sel ?",
+   "ru": "Ты не добавляешь соль?",
+   "uk": "Ти не додаєш сіль?"
+  },
+  {
+   "id": "fr:12:36",
+   "target": "Je n’ai plus de farine.",
+   "ru": "У меня закончилась мука.",
+   "uk": "У мене закінчилося борошно."
+  },
+  {
+   "id": "fr:12:37",
+   "target": "Nous n’avons plus d’huile.",
+   "ru": "У нас закончилось растительное масло.",
+   "uk": "У нас закінчилася олія."
+  },
+  {
+   "id": "fr:12:38",
+   "target": "Il ne reste pas de riz.",
+   "ru": "Риса не осталось.",
+   "uk": "Рису не залишилося."
+  },
+  {
+   "id": "fr:12:39",
+   "target": "Je voudrais un peu de soupe.",
+   "ru": "Я бы хотел немного супа.",
+   "uk": "Я б хотів трохи супу."
+  },
+  {
+   "id": "fr:12:40",
+   "target": "Elle prend beaucoup de légumes.",
+   "ru": "Она берёт много овощей.",
+   "uk": "Вона бере багато овочів."
+  },
+  {
+   "id": "fr:12:41",
+   "target": "Je voudrais un verre d’eau.",
+   "ru": "Я бы хотел стакан воды.",
+   "uk": "Я б хотів склянку води."
+  },
+  {
+   "id": "fr:12:42",
+   "target": "Il achète un kilo de pommes.",
+   "ru": "Он покупает килограмм яблок.",
+   "uk": "Він купує кілограм яблук."
+  },
+  {
+   "id": "fr:12:43",
+   "target": "Nous prenons une bouteille de lait.",
+   "ru": "Мы берём бутылку молока.",
+   "uk": "Ми беремо пляшку молока."
+  },
+  {
+   "id": "fr:12:44",
+   "target": "Tu veux une tasse de thé ?",
+   "ru": "Хочешь чашку чая?",
+   "uk": "Хочеш чашку чаю?"
+  },
+  {
+   "id": "fr:12:45",
+   "target": "Elle ajoute une cuillère de miel.",
+   "ru": "Она добавляет ложку меда.",
+   "uk": "Вона додає ложку меду."
+  },
+  {
+   "id": "fr:12:46",
+   "target": "Je voudrais du pain et du beurre.",
+   "ru": "Я бы хотел хлеб с маслом.",
+   "uk": "Я б хотів хліба з маслом."
+  },
+  {
+   "id": "fr:12:47",
+   "target": "Il y a de l’ail dans la sauce.",
+   "ru": "В соусе есть чеснок.",
+   "uk": "У соусі є часник."
+  },
+  {
+   "id": "fr:12:48",
+   "target": "Je prends du poisson avec du riz.",
+   "ru": "Я возьму рыбу с рисом.",
+   "uk": "Я візьму рибу з рисом."
+  },
+  {
+   "id": "fr:12:49",
+   "target": "Nous partageons une assiette de frites.",
+   "ru": "Мы делим одну тарелку картошки фри.",
+   "uk": "Ми ділимо одну тарілку картоплі фрі."
+  },
+  {
+   "id": "fr:12:50",
+   "target": "Dans mon café, je mets un peu de lait.",
+   "ru": "В свой кофе я добавляю немного молока.",
+   "uk": "У свою каву я додаю трохи молока."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le beurre",
+   "ru": "сливочное масло",
+   "uk": "вершкове масло"
+  },
+  {
+   "lemma": "la farine",
+   "ru": "мука",
+   "uk": "борошно"
+  },
+  {
+   "lemma": "le miel",
+   "ru": "мёд",
+   "uk": "мед"
+  },
+  {
+   "lemma": "le sel",
+   "ru": "соль",
+   "uk": "сіль"
+  },
+  {
+   "lemma": "la tasse",
+   "ru": "чашка",
+   "uk": "чашка"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  }
+ ],
+ "oldTopicTitle": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`",
+ "oldTheoryRu": "Представь, что на столе вода, суп и хлеб. Ты берёшь часть, а не весь запас. Для неопределённого количества во французском нужны небольшие слова перед названием продукта. У `soupe` женский род — `de la soupe`. У `pain` мужской — `du pain`. Перед гласной выходит `de l’eau`. Апостроф не говорит тебе, какого рода слово: он меняет только написание. Одна и та же еда допускает разные способы счёта. `Du poisson` в меню — рыба как еда, `un poisson` — одна рыба. Сначала реши, измеряется ли здесь порция вообще. Запоминай сочетание с действием: пить что-то, добавлять что-то. Чай, сок и горчица в этих примерах не считаются поштучно. Когда говоришь, что любишь продукт вообще, действует прежняя схема с определённым артиклем. В нейтральном полном отрицании прямого дополнения обычно используют `pas de` или `plus de`: не беру молока, не осталось муки. Не распространяй это на любое `de` во французском. Когда количество уже задано мерой, после меры обычно идёт `de`: стакан воды, килограмм яблок. Не складывай `un verre de` с `de l’eau`: нужно `un verre d’eau`. В длинной фразе продукты могут играть разные роли. В `une cuillère de miel` меру задаёт ложка, а в `du pain et du beurre` меры нет. Начни с намерения покупателя, только потом выбирай артикль."
+}

@@ -7,13 +7,14 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
+import { beginAccountGeneration, captureAccountGeneration, type AccountGenerationToken } from '../app/account_generation';
 import { COIN_RANK_TABLE } from '../app/coin_rank_table_v1';
 import { __resetCoinRankCacheForTests, coinRankStateKey, peekCoinRank } from '../app/coin_rank_state_v1';
 import { upgradeCoinRank } from '../app/coin_rank_upgrade_v1';
-import { enqueueLevelSpinStarGrant, readUnifiedLevelSpinStars } from '../app/level_spin_star_grants';
+import { enqueueLevelSpinStarGrant, prepareRuneSpend, readUnifiedLevelSpinStars } from '../app/level_spin_star_grants';
 
 const mockSyncPublicProfileSnapshot = jest.fn<Promise<void>, [Record<string, unknown>, unknown]>(async () => undefined);
+const mockRecordCoinRankStory = jest.fn<Promise<unknown>, [number, number, AccountGenerationToken]>(async () => ({}));
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/phone_state_economy_bridge', () => ({
@@ -25,17 +26,24 @@ jest.mock('../app/app_snapshot_store', () => ({ getAppSnapshot: jest.fn(), patch
 jest.mock('../app/public_profile_snapshot', () => ({
   syncPublicProfileSnapshot: (input: Record<string, unknown>, token: unknown) => mockSyncPublicProfileSnapshot(input, token),
 }));
+jest.mock('../modules/story_events/story_event_sources', () => ({
+  recordCoinRankStory: (toRank: number, paidPrice: number, token: AccountGenerationToken) => mockRecordCoinRankStory(toRank, paidPrice, token),
+}));
 
 const OWNER = 'owner-rank';
 const storage: Record<string, string> = {};
 let visibleProgress: { stars: number; starsEarnedTotal: number };
 let failNextMultiSet = false;
+let beforeNextMultiSet: (() => void | Promise<void>) | null = null;
 
 function wireStorage(): void {
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => { storage[key] = value; });
   (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => { delete storage[key]; });
   (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    const beforeWrite = beforeNextMultiSet;
+    beforeNextMultiSet = null;
+    if (beforeWrite) await beforeWrite();
     if (failNextMultiSet) {
       failNextMultiSet = false;
       throw new Error('simulated_disk_failure');
@@ -80,6 +88,7 @@ beforeEach(() => {
   Object.keys(storage).forEach((key) => delete storage[key]);
   visibleProgress = { stars: 0, starsEarnedTotal: 0 };
   failNextMultiSet = false;
+  beforeNextMultiSet = null;
   __resetCoinRankCacheForTests();
   jest.spyOn(console, 'log').mockImplementation(() => {});
   jest.spyOn(console, 'warn').mockImplementation(() => {});
@@ -104,11 +113,12 @@ afterEach(() => {
   jest.restoreAllMocks();
 });
 
-test('таблица: 20 рангов, цена N×1000, итог 190 000', () => {
+test('таблица: 20 рангов, ранг 1 стоит 1 000, затем +100, итог 36 100', () => {
   expect(COIN_RANK_TABLE).toHaveLength(20);
   expect(COIN_RANK_TABLE[1].priceToReach).toBe(1000);
-  expect(COIN_RANK_TABLE[19].priceToReach).toBe(19000);
-  expect(COIN_RANK_TABLE[19].totalSpent).toBe(190000);
+  expect(COIN_RANK_TABLE[2].priceToReach).toBe(1100);
+  expect(COIN_RANK_TABLE[19].priceToReach).toBe(2800);
+  expect(COIN_RANK_TABLE[19].totalSpent).toBe(36100);
   expect(COIN_RANK_TABLE[19].levelTitle).toBe('Титан');
 });
 
@@ -184,4 +194,129 @@ test('смена аккаунта: токен старого владельца 
   beginAccountGeneration(OWNER);
   expect(await balance()).toBe(1000);
   expect(storedRank()).toBe(0);
+});
+
+test('старая трата на ранг 2 за 2 000 без записи ранга: ретрай не списывает второй раз и сохраняет фактическую цену', async () => {
+  await seedCoins(['stars_1000', 'stars_1000', 'stars_1000', 'stars_1000']);
+  const token = captureAccountGeneration();
+  await expect(upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() }))
+    .resolves.toMatchObject({ ok: true, status: 'upgraded', toRank: 1, price: 1000 });
+
+  const legacySpend = await prepareRuneSpend({
+    token,
+    operationId: 'coin_rank:to_2',
+    kind: 'coin_rank',
+    subjectId: 'rank_2',
+    price: 2000,
+    createdAtMs: later(),
+  });
+  expect(legacySpend.ok).toBe(true);
+  if (!legacySpend.ok) throw new Error('legacy spend setup failed');
+  await AsyncStorage.multiSet(legacySpend.durableWrites.map(([key, value]) => [key, value]));
+  expect(await balance()).toBe(1000);
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 1, nowMs: later() }))
+    .resolves.toMatchObject({ ok: true, status: 'upgraded', toRank: 2, price: 2000, balanceAfter: 1000, recovered: true });
+  expect(await balance()).toBe(1000);
+  expect(storedRank()).toBe(2);
+  const persisted = JSON.parse(storage[coinRankStateKey(OWNER)]) as { upgrades: Array<{ toRank: number; price: number }> };
+  expect(persisted.upgrades.find((entry) => entry.toRank === 2)?.price).toBe(2000);
+  expect(mockRecordCoinRankStory).toHaveBeenLastCalledWith(2, 2000, token);
+});
+
+test('существующая операция с тем же id, но чужим kind: ранг не выдаётся и второго списания нет', async () => {
+  await seedCoins(['stars_1000', 'stars_1000', 'stars_1000', 'stars_1000']);
+  const token = captureAccountGeneration();
+  await upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() });
+  const mismatchedSpend = await prepareRuneSpend({
+    token,
+    operationId: 'coin_rank:to_2',
+    kind: 'profile_card_pro',
+    subjectId: 'rank_2',
+    price: 2000,
+    createdAtMs: later(),
+  });
+  expect(mismatchedSpend.ok).toBe(true);
+  if (!mismatchedSpend.ok) throw new Error('mismatch setup failed');
+  await AsyncStorage.multiSet(mismatchedSpend.durableWrites.map(([key, value]) => [key, value]));
+  const balanceBeforeRetry = await balance();
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 1, nowMs: later() }))
+    .resolves.toMatchObject({ ok: false, reason: 'failed' });
+  expect(await balance()).toBe(balanceBeforeRetry);
+  expect(storedRank()).toBe(1);
+});
+
+test('существующая операция с тем же id и kind, но чужим subject: ранг не выдаётся и второго списания нет', async () => {
+  await seedCoins(['stars_1000', 'stars_1000', 'stars_1000', 'stars_1000']);
+  const token = captureAccountGeneration();
+  await upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() });
+  const mismatchedSpend = await prepareRuneSpend({
+    token,
+    operationId: 'coin_rank:to_2',
+    kind: 'coin_rank',
+    subjectId: 'rank_3',
+    price: 2000,
+    createdAtMs: later(),
+  });
+  expect(mismatchedSpend.ok).toBe(true);
+  if (!mismatchedSpend.ok) throw new Error('subject mismatch setup failed');
+  await AsyncStorage.multiSet(mismatchedSpend.durableWrites.map(([key, value]) => [key, value]));
+  const balanceBeforeRetry = await balance();
+  mockRecordCoinRankStory.mockClear();
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 1, nowMs: later() }))
+    .resolves.toMatchObject({ ok: false, reason: 'failed' });
+  expect(await balance()).toBe(balanceBeforeRetry);
+  expect(storedRank()).toBe(1);
+  expect(mockRecordCoinRankStory).not.toHaveBeenCalled();
+});
+
+test('смена аккаунта во время проверки старой квитанции: старый ранг не дописывается и история не создаётся', async () => {
+  await seedCoins(['stars_1000', 'stars_1000', 'stars_1000', 'stars_1000']);
+  const token = captureAccountGeneration();
+  await upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() });
+  const legacySpend = await prepareRuneSpend({
+    token,
+    operationId: 'coin_rank:to_2',
+    kind: 'coin_rank',
+    subjectId: 'rank_2',
+    price: 2000,
+    createdAtMs: later(),
+  });
+  if (!legacySpend.ok) throw new Error('legacy spend setup failed');
+  await AsyncStorage.multiSet(legacySpend.durableWrites.map(([key, value]) => [key, value]));
+  const balanceBeforeRetry = await balance();
+  mockRecordCoinRankStory.mockClear();
+
+  const economy = jest.requireActual('../modules/phone-state/domains/economy') as typeof import('../modules/phone-state/domains/economy');
+  const validateFingerprint = economy.hasValidRuneSpendFingerprint;
+  jest.spyOn(economy, 'hasValidRuneSpendFingerprint').mockImplementationOnce(async (operation) => {
+    beginAccountGeneration('someone-else');
+    return validateFingerprint(operation);
+  });
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 1, nowMs: later() }))
+    .resolves.toMatchObject({ ok: false, reason: 'identity_changed' });
+  expect(mockRecordCoinRankStory).not.toHaveBeenCalled();
+  beginAccountGeneration(OWNER);
+  expect(await balance()).toBe(balanceBeforeRetry);
+  expect(storedRank()).toBe(1);
+});
+
+test('смена аккаунта во время durable multiSet: A получает уже оплаченный composite, B не получает публикацию, историю или success', async () => {
+  await seedCoins(['stars_1000']);
+  const token = captureAccountGeneration();
+  mockRecordCoinRankStory.mockClear();
+  beforeNextMultiSet = () => { beginAccountGeneration('someone-else'); };
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() }))
+    .resolves.toMatchObject({ ok: false, reason: 'identity_changed' });
+  expect(mockRecordCoinRankStory).not.toHaveBeenCalled();
+
+  beginAccountGeneration(OWNER);
+  expect(await balance()).toBe(0);
+  expect(storedRank()).toBe(1);
+  await expect(upgradeCoinRank({ token: captureAccountGeneration(), expectedFromRank: 0, nowMs: later() }))
+    .resolves.toMatchObject({ ok: true, status: 'already_applied', toRank: 1 });
 });

@@ -213,9 +213,4 @@ describe('submitFeedbackEntry idempotency and consent contract', () => {
 });
 
 describe('FEEDBACK_KINDS', () => {
-  it('covers every screen the owner asked for (lesson/learning_v2/vocab/dialogue/arena_blitz/arena_rating)', () => {
-    expect([...FEEDBACK_KINDS].sort()).toEqual(
-      ['arena_blitz', 'arena_rating', 'dialogue', 'learning_v2', 'lesson', 'vocab'].sort(),
-    );
-  });
 });

@@ -3,7 +3,7 @@ import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { isLightThemeMode } from '../constants/theme';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, Animated } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -30,6 +30,7 @@ import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import { theoryEntryFor, triLang } from '../constants/i18n';
+import { theoryEntryRouteForTarget } from './theory_entry_route';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
@@ -84,7 +85,6 @@ import {
   theoryOverallProgressPct,
 } from './theory_progress';
 import {
-  lastOpenedLessonKey,
   irregularVerbsGlobalKey,
   lessonBestScoreKey,
   lessonPrepositionProgressKey,
@@ -94,7 +94,6 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
-import { recordHomeContinueLegacy } from './home_continue_mark';
 import { DebugLogger } from './debug-logger';
 import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
 import { captureAccountGeneration } from './account_generation'; // зачем: stableId в ключ подтверждения доступа (Ревизор 7d564d137)
@@ -956,22 +955,6 @@ function LessonMenu() {
     }
   }, [lessonId, studyTarget]);
 
-  // Запись «последний открытый урок» на первый кадр не влияет — откладываем её за
-  // анимацию перехода, чтобы не занимать поток в момент открытия экрана.
-  // зачем: запоминаем ТОЛЬКО доступный урок. Раньше заглянув в заблокированный
-  // урок (напр. №2 из списка), пользователь записывал его как «последний
-  // открытый», и кнопка «Урок» на Главной потом каждый раз приводила на экран
-  // «Урок заблокирован» — выглядело как поломка приложения. Ждём результат
-  // проверки блокировки (lockStateLoaded), чтобы не записать урок до неё.
-  useEffect(() => {
-    if (!lockStateLoaded || isLessonLocked) return;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
-      recordHomeContinueLegacy(studyTarget); // зачем (P23): карточка «Продолжить» сравнивает время старого урока и занятия V2
-    });
-    return () => task.cancel();
-  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);
-
   // зачем (координатор 12.10, «сперва логи»: кадры energy-modes ушли на Главную, а после тапа «Начать» в журнале не было НИ ОДНОЙ
   // строки): каждый обработчик старта пишет вход, каждое решение со значениями, каждый ранний выход и итог навигации.
   const lessonMenuTrace = useCallback((event: string, extra: Record<string, unknown> = {}) => {
@@ -1264,13 +1247,13 @@ function LessonMenu() {
       onPress: () => {
         hapticTap();
         // зачем (координатор 12.10): маршрут теории по языку интерфейса — pt-BR/vi/id/tr/pl в lesson_help (их язык), en скрыт до решения владельца.
-        const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu');
+        const entry = theoryEntryRouteForTarget({ uiLang: lang, studyTarget, interactive: isInteractiveTheoryLesson(lessonId), origin: 'lesson_menu' });
         if (entry === 'hidden') return;
         if (!navOnce(`lesson_menu:theory:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — одна теория
         router.push({ pathname: entry === 'hint' ? '/hint' : '/lesson_help', params: { id: lessonId } });
       },
       // Своей теории для языка нет (английский) — пункт не показываем; список фильтрует hidden, пустой строки нет.
-      hidden: targetTheoryUnavailable || theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden',
+      hidden: targetTheoryUnavailable || theoryEntryRouteForTarget({ uiLang: lang, studyTarget, interactive: isInteractiveTheoryLesson(lessonId), origin: 'lesson_menu' }) === 'hidden',
     },
   ];
 

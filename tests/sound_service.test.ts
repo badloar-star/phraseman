@@ -79,6 +79,8 @@ const { Platform } = require('react-native');
 // зачем (Ревизор 25.10, прогон 05:00): с 3e7f6b519 банк V2 включён по умолчанию и playSfx уходит в него (tryPlayV2ForFc),
 // а этот файл проверяет прежний пул expo-audio и карту §5 — мост к V2 здесь выключен; путь V2 и заглушки tap/correct покрывает tests/sound_v2_wiring.test.ts
 jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2ForFc: () => false }));
+// Generic legacy-engine coverage: production policy is exercised separately.
+jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true }));
 
 jest.mock('../hooks/use-haptics', () => ({
   hapticSuccess: jest.fn(async () => {}),

@@ -1,0 +1,17 @@
+[
+{"id": "it:19:15", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается столь же естественное «Mia madre è tornata presto a casa.», подсказка порядок не исключает", "fix": {"add": ["Mia madre è tornata presto a casa."], "remove": []}},
+{"id": "it:19:16", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается столь же естественное «Mio padre è tornato tardi a casa.», подсказка порядок не исключает", "fix": {"add": ["Mio padre è tornato tardi a casa."], "remove": []}},
+{"id": "it:19:19", "type": "M", "field": "uk", "problem": "uk «приїхав» (приехал на транспорте) расходится с ru «приходил» и с passare (зайти, пройти)", "fix": "Листоноша приходив сьогодні вранці."},
+{"id": "it:19:20", "type": "M", "field": "ru", "problem": "«Почтальон пришла» — неестественное согласование мужского существительного с женским глаголом", "fix": "Почтальонша приходила вчера."},
+{"id": "it:19:33", "type": "B2", "field": "uk", "problem": "uk «двоюрідні брати і сестри» не совпадает с ru «кузены» (только мужчины/смешанная группа без сестёр)", "fix": "Мої двоюрідні брати не прийшли."},
+{"id": "it:19:33", "type": "B2", "field": "ru", "problem": "ru «кузены» книжное и расходится с uk; привести к общему естественному варианту", "fix": "Мои двоюродные братья не пришли."},
+{"id": "it:19:35", "type": "B3", "field": "alternatives", "problem": "ru «Автобус вчера не приехал» прямо подсказывает порядок «L’autobus ieri non è passato.», он естественен и собирается из плиток", "fix": {"add": ["L’autobus ieri non è passato."], "remove": []}},
+{"id": "it:19:42", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную фразу «Mio figlio è nato in giugno.» (in + месяц грамматически правильно)", "fix": {"position": 4, "replace_distractor": "in", "with": "su"}},
+{"id": "it:19:48", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается столь же естественное «Lea è rimasta tutto il giorno a casa.»", "fix": {"add": ["Lea è rimasta tutto il giorno a casa."], "remove": []}},
+{"id": "it:20:24", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается столь же естественное «Tirava un vento forte.»", "fix": {"add": ["Tirava un vento forte."], "remove": []}},
+{"id": "it:20:40", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается столь же естественное «Come tornavano i bambini a casa?», ru «Как дети добирались домой?» даже подсказывает этот порядок", "fix": {"add": ["Come tornavano i bambini a casa?"], "remove": []}},
+{"id": "it:20:42", "type": "B3", "field": "alternatives", "problem": "ru «Моя тётя каждое воскресенье пекла…» подсказывает порядок «Mia zia preparava ogni domenica una crostata.», он естественен и собирается из плиток", "fix": {"add": ["Mia zia preparava ogni domenica una crostata."], "remove": []}},
+{"id": "it:20:46", "type": "M", "field": "ru", "problem": "passeggiare = гулять, а не просто «шёл»; потерян смысл прогулки", "fix": "Я гулял вдоль канала."},
+{"id": "it:20:46", "type": "M", "field": "uk", "problem": "passeggiare = гуляти, а не просто «йшов»; потерян смысл прогулки", "fix": "Я гуляв уздовж каналу."},
+{"id": "it:20:50", "type": "B3", "field": "alternatives", "problem": "Из тех же плиток собирается естественное «Il mercato vecchio occupava tutta la piazza.» (тот же смысл «старый рынок»)", "fix": {"add": ["Il mercato vecchio occupava tutta la piazza."], "remove": []}}
+]

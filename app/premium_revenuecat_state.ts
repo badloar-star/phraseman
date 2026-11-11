@@ -2,10 +2,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
-import { withAccountTransitionLock } from './account_generation';
+import {
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+  type AccountTransitionLockLease,
+} from './account_generation';
 import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
 import { swallowError } from './debug-logger';
 import { rememberPremiumPlan } from './premium_plan_peek';
+import {
+  replaceRealPremiumSnapshotForGeneration,
+  type RealPremiumEvidenceSource,
+} from './premium_real_storage';
 
 export {
   customerInfoConfirmsProductAccess,
@@ -101,18 +110,21 @@ export function revenueCatBillingIssueAtMs(info: CustomerInfo | null | undefined
 }
 
 export async function persistStorePremiumLocally(
+  token: AccountGenerationToken,
   plan: PremiumStorePlan,
   metadata: RevenueCatPremiumMetadata = {},
-  isCurrent: () => boolean = () => true,
+  evidenceSource: RealPremiumEvidenceSource,
   syncCloud: boolean = true,
-  transitionLockHeld: boolean = false,
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
-  if (!transitionLockHeld) {
-    return withAccountTransitionLock(() => (
-      persistStorePremiumLocally(plan, metadata, isCurrent, syncCloud, true)
-    ));
-  }
+  const ownerStableId = token.stableId?.trim() || null;
+  if (!ownerStableId) return false;
   const now = Date.now();
+  const validTime = (value: number | null | undefined): number => (
+    typeof value === 'number' && Number.isFinite(value) && value >= 0
+      ? Math.floor(value)
+      : 0
+  );
   const pairs: [string, string][] = [
     ['premium_plan', plan],
     ['premium_expiry', '0'],
@@ -125,23 +137,41 @@ export async function persistStorePremiumLocally(
   if (metadata.periodType) pairs.push(['premium_rc_period_type', metadata.periodType]);
   if (metadata.store) pairs.push(['premium_rc_store', metadata.store]);
   if (metadata.expiryMs != null && Number.isFinite(metadata.expiryMs)) {
-    pairs.push(['premium_rc_expiry_ms', String(Math.max(0, Math.floor(metadata.expiryMs)))]);
+    pairs.push(['premium_rc_expiry_ms', String(validTime(metadata.expiryMs))]);
   }
   if (metadata.purchasedMs != null && Number.isFinite(metadata.purchasedMs)) {
-    pairs.push(['premium_rc_purchased_at_ms', String(Math.max(0, Math.floor(metadata.purchasedMs)))]);
+    pairs.push(['premium_rc_purchased_at_ms', String(validTime(metadata.purchasedMs))]);
   }
 
-  if (!isCurrent()) return false;
-  await AsyncStorage.multiSet(pairs);
-  // зачем (PM-214): экран «Подписка Plus» берёт план из памяти на первом кадре, не дожидаясь хранилища и RevenueCat
-  rememberPremiumPlan(plan, metadata.productId ?? null, 'rc_persist');
-  if (!isCurrent()) return false;
-  await markPremiumStoreSeenNow({ alreadyTransitionLocked: true, isCurrent });
-  if (!isCurrent()) return false;
-  invalidatePremiumCache();
-  if (!isCurrent()) return false;
-  if (syncCloud) await syncToCloud({ forceNow: true }).catch(swallowError('premium_revenuecat_state:sync_to_cloud'));
-  return isCurrent();
+  return withAccountTransitionLock(async (lease) => {
+    const isCurrent = () => isCurrentAccountGeneration(token, ownerStableId);
+    if (!isCurrent()) return false;
+    const scoped = await replaceRealPremiumSnapshotForGeneration(token, {
+      active: true,
+      plan,
+      premiumExpiryMs: 0,
+      rcExpiryMs: validTime(metadata.expiryMs),
+      rcLastSeenAtMs: now,
+      rcProductId: clean(metadata.productId) || null,
+      rcPeriodType: clean(metadata.periodType) || null,
+      rcStore: clean(metadata.store) || null,
+      rcPurchasedAtMs: validTime(metadata.purchasedMs),
+      rcUpdatedAtMs: now,
+      evidenceSource,
+    }, lease);
+    if (!scoped || !isCurrent()) return false;
+    await AsyncStorage.multiSet(pairs);
+    if (!isCurrent()) return false;
+    // зачем (PM-214): экран «Подписка Plus» берёт план из памяти на первом кадре, не дожидаясь хранилища и RevenueCat
+    rememberPremiumPlan(plan, metadata.productId ?? null, 'rc_persist');
+    await markPremiumStoreSeenNow({ generation: token, inheritedLease: lease });
+    if (!isCurrent()) return false;
+    invalidatePremiumCache();
+    if (syncCloud) {
+      await syncToCloud({ forceNow: true }).catch(swallowError('premium_revenuecat_state:sync_to_cloud'));
+    }
+    return isCurrent();
+  }, inheritedLease);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

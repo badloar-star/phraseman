@@ -3,6 +3,7 @@ const asyncStore: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(async (k: string) => asyncStore[k] ?? null),
   setItem: jest.fn(async (k: string, v: string) => { asyncStore[k] = v; }),
+  removeItem: jest.fn(async (k: string) => { delete asyncStore[k]; }),
   multiGet: jest.fn(async (keys: string[]) => keys.map(k => [k, asyncStore[k] ?? null])),
   multiSet: jest.fn(async (pairs: [string, string][]) => { pairs.forEach(([k, v]) => { asyncStore[k] = v; }); }),
 }));
@@ -57,6 +58,35 @@ async function migrateLegacyVipForCurrentTestAccount(): Promise<void> {
   await storage.migrateLegacyVipSnapshotOnce(generation.captureAccountGeneration());
 }
 
+async function writeRealPremiumForCurrentTestAccount(
+  overrides: Partial<{
+    active: boolean;
+    plan: 'monthly' | 'yearly' | 'lifetime' | null;
+    premiumExpiryMs: number;
+    rcExpiryMs: number;
+    rcLastSeenAtMs: number;
+    evidenceSource: 'store_purchase' | 'server_projection';
+  }> = {},
+): Promise<void> {
+  const generation = require('../app/account_generation');
+  const storage = require('../app/premium_real_storage');
+  const token = generation.captureAccountGeneration();
+  await storage.replaceRealPremiumSnapshotForGeneration(token, {
+    active: true,
+    plan: 'monthly',
+    premiumExpiryMs: 0,
+    rcExpiryMs: 0,
+    rcLastSeenAtMs: Date.now(),
+    rcProductId: 'phraseman_premium_monthly_399',
+    rcPeriodType: 'NORMAL',
+    rcStore: 'APP_STORE',
+    rcPurchasedAtMs: Date.now() - 60_000,
+    rcUpdatedAtMs: Date.now(),
+    evidenceSource: 'store_purchase',
+    ...overrides,
+  });
+}
+
 beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
@@ -103,7 +133,7 @@ test('__DEV__ does not preserve a stale premium_active flag without a store plan
   const { getVerifiedPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(false);
-  expect(asyncStore.premium_active).toBe('false');
+  expect(asyncStore.premium_active).toBe('true');
   await __waitForPremiumBackgroundRefreshForTests();
   expect(getCustomerInfo).toHaveBeenCalled();
 });
@@ -163,6 +193,7 @@ test('real Premium and survey VIP can be active at the same time', async () => {
   asyncStore.vip_until = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
   asyncStore.vip_admin_override = 'true';
   await migrateLegacyVipForCurrentTestAccount();
+  await writeRealPremiumForCurrentTestAccount();
   const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } = require('../app/premium_guard');
   await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
@@ -206,7 +237,7 @@ test('an unrelated RevenueCat entitlement or subscription does not unlock Premiu
   expect(syncRevenueCatProjectionForAccount).not.toHaveBeenCalled();
 });
 
-test('returns the local decision first and syncs a managed RevenueCat entitlement in background', async () => {
+test('passive RevenueCat entitlement never grants locally even after a positive projection result', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: {
       active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
@@ -217,12 +248,13 @@ test('returns the local decision first and syncs a managed RevenueCat entitlemen
 
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   await __waitForPremiumBackgroundRefreshForTests();
-  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  expect(asyncStore.premium_active).not.toBe('true');
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledTimes(1);
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledWith('premium-guard-test');
 });
 
-test('background refresh ignores retired MAX and persists only ordinary Premium', async () => {
+test('background refresh does not persist ordinary Premium or retired MAX from passive CustomerInfo', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: { active: {
       premium: {
@@ -244,12 +276,12 @@ test('background refresh ignores retired MAX and persists only ordinary Premium'
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   await __waitForPremiumBackgroundRefreshForTests();
 
-  expect(asyncStore.premium_plan).toBe('monthly');
-  expect(asyncStore.premium_rc_product_id).toBe('phraseman_premium_monthly_399');
-  expect(asyncStore.premium_rc_expiry_ms).toBe('1000');
+  expect(asyncStore.premium_plan).toBeUndefined();
+  expect(asyncStore.premium_rc_product_id).toBeUndefined();
+  expect(asyncStore.premium_rc_expiry_ms).toBeUndefined();
 });
 
-test('preserves local paid access and logs warning when projection sync fails', async () => {
+test('does not persist passive RevenueCat access when server projection sync fails', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: {
       active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
@@ -261,7 +293,8 @@ test('preserves local paid access and logs warning when projection sync fails', 
 
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   await __waitForPremiumBackgroundRefreshForTests();
-  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  expect(asyncStore.premium_active).not.toBe('true');
   expect(debugError).toHaveBeenCalledWith(
     'premium_guard:revenuecat_projection_sync',
     expect.any(Error),
@@ -385,6 +418,9 @@ test('deactivates stale local premium when RC says inactive', async () => {
   asyncStore.premium_active = 'true';
   asyncStore.premium_expiry = '0';
   asyncStore.premium_rc_last_seen_at = String(Date.now() - (25 * 60 * 60 * 1000));
+  await writeRealPremiumForCurrentTestAccount({
+    rcLastSeenAtMs: Date.now() - (73 * 60 * 60 * 1000),
+  });
   getCustomerInfo.mockResolvedValue({
     entitlements: { active: {} },
     activeSubscriptions: [],
@@ -526,6 +562,12 @@ test('keeps cloud-restored paid Premium when RC expiry is still in the future', 
   asyncStore.premium_plan = 'yearly';
   asyncStore.premium_expiry = '0';
   asyncStore.premium_rc_expiry_ms = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  await writeRealPremiumForCurrentTestAccount({
+    plan: 'yearly',
+    rcExpiryMs: Date.now() + 30 * 24 * 60 * 60 * 1000,
+    rcLastSeenAtMs: 0,
+    evidenceSource: 'server_projection',
+  });
   getCustomerInfo.mockResolvedValue({
     entitlements: { active: {} },
     activeSubscriptions: [],
@@ -534,18 +576,20 @@ test('keeps cloud-restored paid Premium when RC expiry is still in the future', 
   const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus } = require('../app/premium_guard');
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
   await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
-  expect(asyncStore.premium_active).toBe('true');
+  const scoped = JSON.parse(String(asyncStore['premium_real_snapshot_v1:premium-guard-test']));
+  expect(scoped).toEqual(expect.objectContaining({ active: true, evidenceSource: 'server_projection' }));
 });
 
-test('restores cloud-paid Premium from plan metadata when RC is unavailable', async () => {
+test('does not adopt ownerless plan metadata when RC is unavailable', async () => {
   asyncStore.premium_plan = 'monthly';
   asyncStore.premium_expiry = '0';
   getCustomerInfo.mockRejectedValue(new Error('offline'));
 
   const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus } = require('../app/premium_guard');
-  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
-  await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
-  expect(asyncStore.premium_active).toBe('true');
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(asyncStore.premium_active).toBeUndefined();
+  expect(asyncStore.premium_plan).toBe('monthly');
 });
 
 test('expires cloud-restored paid Premium when stored RC expiry is in the past', async () => {
@@ -553,6 +597,12 @@ test('expires cloud-restored paid Premium when stored RC expiry is in the past',
   asyncStore.premium_plan = 'yearly';
   asyncStore.premium_expiry = '0';
   asyncStore.premium_rc_expiry_ms = String(Date.now() - 24 * 60 * 60 * 1000);
+  await writeRealPremiumForCurrentTestAccount({
+    plan: 'yearly',
+    rcExpiryMs: Date.now() - 24 * 60 * 60 * 1000,
+    rcLastSeenAtMs: 0,
+    evidenceSource: 'server_projection',
+  });
   getCustomerInfo.mockRejectedValue(new Error('offline'));
 
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');

@@ -44,13 +44,11 @@ describe('dev-кампании слота сообщений Настроек', 
   });
   afterEach(() => { log.mockRestore(); warn.mockRestore(); });
 
-  it('poll: опрос в нижнем слоте без голоса; верхнего слота нет', async () => {
+  it('устаревший опрос не занимает ни один слот', async () => {
     const res = await devSeedSettingsMessageSlot('poll', 'stable-1');
     expect(res.ok).toBe(true);
     const selection = selectSettingsMessageSlots(peekAppMessagesSnapshot(), CTX);
-    expect(selection.bottom?.id).toBe(`${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`);
-    expect(selection.bottom?.kind).toBe('poll');
-    expect(selection.bottom?.poll?.options.length).toBe(4); // зачем (settings-gap-008): 4 варианта, как в макете
+    expect(selection.bottom).toBeNull();
     expect(selection.top).toBeNull();
     expect(await readSettingsPollVote('stable-1', `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`)).toBeNull();
   });

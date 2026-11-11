@@ -1,0 +1,1196 @@
+[
+{
+"lesson": 31,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 31,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как сказать «видел, как…» и «разрешили сделать»",
+"formula": "hear / see + [дополнение] + [глагол без to / -ing] · let / make + [дополнение] + [глагол без to]",
+"story": "Мне разрешили уйти: They let me leave. Меня попросили уйти: They asked me to leave. Оба раза ухожу я; слово to зависит от let или ask.",
+"use": "Начните с того, кто заметил, допустил или вызвал что-то. Затем назовите человека или предмет, который выполняет следующее действие. Используйте обычную лексику, чтобы изменение после дополнения было легко услышать.",
+"choose": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"nuance": "`Let` и активный залог `make` берут базовую форму после дополнения. `Ask`, `tell`, `want` и `expect` в этом шаблоне обычно требуют `to`. Пассивный залог `make` ведет себя иначе и не проверяется по тому же правилу.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Начните с того, кто заметил, допустил или вызвал что-то. Затем назовите человека или предмет, который выполняет следующее действие. Используйте обычную лексику, чтобы изменение после дополнения было легко услышать.",
+"samples": [
+"31.01",
+"31.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"samples": [
+"31.11",
+"31.25"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Let` и активный залог `make` берут базовую форму после дополнения. `Ask`, `tell`, `want` и `expect` в этом шаблоне обычно требуют `to`. Пассивный залог `make` ведет себя иначе и не проверяется по тому же правилу.",
+"samples": [
+"31.25",
+"31.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Позволить или заставить кого-то что-то сделать",
+"samples": [
+"31.33",
+"31.35",
+"31.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы услышали, как упал ключ, увидели, как кто-то его ищет, и позволили ему воспользоваться фонариком. Определите среднее слово, а затем выберите тип глагола, который следует за ним.",
+"samples": [
+"31.42",
+"31.45",
+"31.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Противопоставить глаголам, требующим to",
+"samples": [
+"31.50"
+],
+"tokenWalk": "31.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як сказати «бачив, як…» і «дозволили зробити»",
+"formula": "hear / see + [додаток] + [дієслово без to / -ing] · let / make + [додаток] + [дієслово без to]",
+"story": "Мені дозволили піти: They let me leave. Мене попросили піти: They asked me to leave. Іду я в обох випадках; to залежить від let або ask.",
+"use": "Почніть з того, хто щось помітив, дозволив або спричинив. Потім назвіть особу або річ, яка виконує наступну дію. Дотримуйтесь звичайної лексики, щоб зміну після додатка було легко почути.",
+"choose": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"nuance": "`Let` та активний стан `make` приймають основну форму після додатка. `Ask`, `tell`, `want` та `expect` зазвичай потребують `to` у цьому шаблоні. Пасивний стан `make` поводиться по-різному і не перевіряється як те саме правило.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Почніть з того, хто щось помітив, дозволив або спричинив. Потім назвіть особу або річ, яка виконує наступну дію. Дотримуйтесь звичайної лексики, щоб зміну після додатка було легко почути.",
+"samples": [
+"31.01",
+"31.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"samples": [
+"31.11",
+"31.25"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Let` та активний стан `make` приймають основну форму після додатка. `Ask`, `tell`, `want` та `expect` зазвичай потребують `to` у цьому шаблоні. Пасивний стан `make` поводиться по-різному і не перевіряється як те саме правило.",
+"samples": [
+"31.25",
+"31.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Дозволити або змусити когось щось зробити",
+"samples": [
+"31.33",
+"31.35",
+"31.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви почули, як упав ключ, побачили, як хтось його шукає, і дозволили їм використати світло. Визначте середнє слово, а потім виберіть тип дієслова, яке йде після нього.",
+"samples": [
+"31.42",
+"31.45",
+"31.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Порівняти з дієсловами, які вимагають",
+"samples": [
+"31.50"
+],
+"tokenWalk": "31.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Describe what you witnessed or allowed",
+"formula": "hear / see + [object] + [base or -ing] · let / make + [object] + [base]",
+"story": "They let me leave gives permission; They asked me to leave makes a request. I leave in both. Let takes leave here; ask takes to leave.",
+"use": "Start with who noticed, allowed or caused something. Then name the person or thing that performs the next action. Keep ordinary vocabulary so the change after the object is easy to hear.",
+"choose": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation.",
+"nuance": "`Let` and active `make` take the base form after the object. `Ask`, `tell`, `want` and `expect` generally need `to` in this pattern. The passive of `make` behaves differently and is not tested as the same rule.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Start with who noticed, allowed or caused something. Then name the person or thing that performs the next action. Keep ordinary vocabulary so the change after the object is easy to hear.",
+"samples": [
+"31.01",
+"31.11"
+]
+},
+{
+"title": "How to choose",
+"body": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation.",
+"samples": [
+"31.11",
+"31.25"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Let` and active `make` take the base form after the object. `Ask`, `tell`, `want` and `expect` generally need `to` in this pattern. The passive of `make` behaves differently and is not tested as the same rule.",
+"samples": [
+"31.25",
+"31.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation.",
+"wrong": "They let me to use the printer.",
+"right": "They let me use the printer.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Let or make someone do something",
+"samples": [
+"31.33",
+"31.35",
+"31.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You heard a key fall, saw someone looking for it and let them use a light. Identify the middle word and then choose the type of verb that follows it.",
+"samples": [
+"31.42",
+"31.45",
+"31.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Contrast with verbs that require to",
+"samples": [
+"31.50"
+],
+"tokenWalk": "31.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "31.01",
+"index": 3,
+"right": "leave",
+"near": "leaves",
+"seq": [
+"I",
+"saw",
+"Tom",
+"leave"
+],
+"i": 0,
+"kind": "form",
+"key": "en31/lab/form1",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.11",
+"index": 3,
+"right": "drop",
+"near": "drops",
+"seq": [
+"I",
+"saw",
+"him",
+"drop",
+"the",
+"key"
+],
+"i": 10,
+"kind": "form",
+"key": "en31/lab/form2",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.31",
+"index": 3,
+"right": "use",
+"near": "uses",
+"seq": [
+"They",
+"let",
+"me",
+"use",
+"the",
+"printer"
+],
+"i": 30,
+"kind": "form",
+"key": "en31/lab/form3",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.40",
+"index": 3,
+"right": "change",
+"near": "changes",
+"seq": [
+"What",
+"made",
+"you",
+"change",
+"your",
+"mind"
+],
+"i": 39,
+"kind": "form",
+"key": "en31/lab/form4",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.06",
+"index": 4,
+"right": "stop",
+"near": "stops",
+"seq": [
+"I",
+"felt",
+"the",
+"bus",
+"stop"
+],
+"i": 5,
+"kind": "spot",
+"key": "en31/lab/spot1",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.05",
+"index": 4,
+"right": "fall",
+"near": "falls",
+"seq": [
+"He",
+"saw",
+"the",
+"key",
+"fall"
+],
+"i": 4,
+"kind": "spot",
+"key": "en31/lab/spot2",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.35",
+"index": 3,
+"right": "finish",
+"near": "finishes",
+"seq": [
+"Please",
+"let",
+"me",
+"finish",
+"the",
+"repair"
+],
+"i": 34,
+"kind": "spot",
+"key": "en31/lab/spot3",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"id": "31.50",
+"index": 3,
+"right": "pay",
+"near": "pays",
+"seq": [
+"They",
+"made",
+"him",
+"pay",
+"but",
+"they",
+"let",
+"us",
+"go"
+],
+"i": 49,
+"kind": "spot",
+"key": "en31/lab/spot4",
+"feedback": {
+"ru": "После `see` или `hear` назови участника события, затем выбери, как ты его видел или слышал. `I saw Tom leave` — увидел уход как целое. `I saw Tom leaving` — застал Тома в процессе. Это не всегда один и тот же перевод.",
+"uk": "Після `see` чи `hear` назви учасника події, а далі обери, як саме ти її сприйняв. `I saw Tom leave` — побачив, як Том пішов. `I saw Tom leaving` — застав Тома, коли він саме йшов. Це не завжди той самий переклад.",
+"en": "A perception verb plus a bare infinitive often presents a complete event. An `-ing` form presents an event in progress. The two choices are both grammatical but need not describe the same observation."
+}
+},
+{
+"kind": "match",
+"key": "en31/lab/match1",
+"id": "31.02",
+"other": "31.01"
+},
+{
+"kind": "match",
+"key": "en31/lab/match2",
+"id": "31.17",
+"other": "31.13"
+},
+{
+"kind": "match",
+"key": "en31/lab/match3",
+"id": "31.33",
+"other": "31.34"
+},
+{
+"kind": "match",
+"key": "en31/lab/match4",
+"id": "31.46",
+"other": "31.45"
+},
+{
+"kind": "build",
+"key": "en31/lab/build1",
+"id": "31.04"
+},
+{
+"kind": "build",
+"key": "en31/lab/build2",
+"id": "31.15"
+},
+{
+"kind": "build",
+"key": "en31/lab/build3",
+"id": "31.29"
+},
+{
+"kind": "build",
+"key": "en31/lab/build4",
+"id": "31.42"
+},
+{
+"kind": "transform",
+"id": "31.09",
+"base": "31.02",
+"diff": [
+{
+"before": [
+"Anna",
+"laugh"
+],
+"after": [
+"someone",
+"knock",
+"twice"
+]
+}
+],
+"key": "en31/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "31.15",
+"base": "31.06",
+"diff": [
+{
+"before": [
+"the",
+"bus",
+"stop"
+],
+"after": [
+"it",
+"move"
+]
+}
+],
+"key": "en31/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "31.42",
+"base": "31.13",
+"diff": [
+{
+"before": [
+"watched"
+],
+"after": [
+"wanted"
+]
+},
+{
+"before": [
+"sign"
+],
+"after": [
+"to",
+"check"
+]
+}
+],
+"key": "en31/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "31.46",
+"base": "31.22",
+"diff": [
+{
+"before": [
+"children",
+"playing"
+],
+"after": [
+"doorbell",
+"ring",
+"while",
+"I",
+"was"
+]
+}
+],
+"key": "en31/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+16
+],
+[
+2,
+10
+],
+[
+14,
+9
+],
+[
+6,
+3
+],
+[
+15,
+18
+],
+[
+7,
+11
+]
+],
+"worked": [
+"31.05",
+"31.18",
+"31.33",
+"31.48"
+],
+"reflection": [
+"31.01",
+"31.02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 32,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 32,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Самостоятельный выбор конструкции",
+"formula": "[время] → [намерение говорящего] → [глагольная конструкция]",
+"story": "У кассы нужен прямой вопрос: How much does a ticket cost? Пересказываешь его другу: I asked how much a ticket cost. Не оставляй порядок прямого вопроса внутри пересказа.",
+"use": "Этот урок не добавляет новых времен. Предыдущие модели намеренно смешаны. Решите, чего пытается добиться говорящий, прежде чем смотреть на возможные вспомогательные слова.",
+"choose": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"nuance": "Знакомое слово само по себе не является надежным ориентиром. Дата может требовать завершенного события в прошлом; результат в настоящем может потребовать совершенной формы. Гипотетическое условие не становится реальным, потому что оба придаточных предложения обсуждают будущее.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Этот урок не добавляет новых времен. Предыдущие модели намеренно смешаны. Решите, чего пытается добиться говорящий, прежде чем смотреть на возможные вспомогательные слова.",
+"samples": [
+"32.02",
+"32.12"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"samples": [
+"32.12",
+"32.16"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Знакомое слово само по себе не является надежным ориентиром. Дата может требовать завершенного события в прошлом; результат в настоящем может потребовать совершенной формы. Гипотетическое условие не становится реальным, потому что оба придаточных предложения обсуждают будущее.",
+"samples": [
+"32.16",
+"32.25"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Сочетать знакомые модели в новых ситуациях",
+"samples": [
+"32.33",
+"32.35",
+"32.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "На ресепшене бронирование неверно. Спросите о предъявленном обвинении, перескажите, что вам сказали, и предложите гипотетическое решение. Каждое сообщение по-прежнему должно строиться по одному слову за раз.",
+"samples": [
+"32.42",
+"32.45",
+"32.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Предложить гипотетические решения без нового времени",
+"samples": [
+"32.50"
+],
+"tokenWalk": "32.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Самостійний вибір конструкції",
+"formula": "[час] → [намір мовця] → [дієслівна конструкція]",
+"story": "Біля каси потрібне пряме запитання: How much does a ticket cost? Переказуєш другу: I asked how much a ticket cost. Усередині переказу не залишай порядок прямого запитання.",
+"use": "Цей урок не додає нових часів. Попередні моделі навмисно змішуються. Визначте, чого намагається досягти мовець, перш ніж розглядати можливі допоміжні слова.",
+"choose": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"nuance": "Знайоме слово саме по собі не є надійним сигналом. Дата може вимагати завершеної минулої події; результат теперішнього часу може вимагати доконаної форми. Гіпотетична умова не стає реальною, оскільки обидва речення обговорюють майбутнє.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Цей урок не додає нових часів. Попередні моделі навмисно змішуються. Визначте, чого намагається досягти мовець, перш ніж розглядати можливі допоміжні слова.",
+"samples": [
+"32.02",
+"32.12"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"samples": [
+"32.12",
+"32.16"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Знайоме слово саме по собі не є надійним сигналом. Дата може вимагати завершеної минулої події; результат теперішнього часу може вимагати доконаної форми. Гіпотетична умова не стає реальною, оскільки обидва речення обговорюють майбутнє.",
+"samples": [
+"32.16",
+"32.25"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Поєднати знайомі моделі в нових ситуаціях",
+"samples": [
+"32.33",
+"32.35",
+"32.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "На рецепції бронювання неправильне. Запитайте про плату, повідомте, що вам хтось сказав, і запропонуйте гіпотетичне рішення. Кожне повідомлення все ще має бути побудоване по одному слову за раз.",
+"samples": [
+"32.42",
+"32.45",
+"32.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Пропонувати гіпотетичні рішення без нового часу",
+"samples": [
+"32.50"
+],
+"tokenWalk": "32.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Choose a construction without a label",
+"formula": "identify [time] → [speaker's intention] → [verb pattern]",
+"story": "At the ticket desk ask How much does a ticket cost? Later report I asked how much a ticket cost. Do not carry direct question order into the report.",
+"use": "This lesson adds no new tense. Previous patterns are mixed deliberately. Decide what the speaker is trying to achieve before looking at the possible helper words.",
+"choose": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word.",
+"nuance": "A familiar word is not a reliable cue on its own. A date can require a finished past event; a present result can call for a perfect form. A hypothetical condition does not become real because both clauses discuss the future.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "This lesson adds no new tense. Previous patterns are mixed deliberately. Decide what the speaker is trying to achieve before looking at the possible helper words.",
+"samples": [
+"32.02",
+"32.12"
+]
+},
+{
+"title": "How to choose",
+"body": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word.",
+"samples": [
+"32.12",
+"32.16"
+]
+},
+{
+"title": "A useful contrast",
+"body": "A familiar word is not a reliable cue on its own. A date can require a finished past event; a present result can call for a perfect form. A hypothetical condition does not become real because both clauses discuss the future.",
+"samples": [
+"32.16",
+"32.25"
+]
+},
+{
+"title": "Common mistake",
+"body": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word.",
+"wrong": "He asked where had we left the keys.",
+"right": "He asked where we had left the keys.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Combine familiar patterns in new situations",
+"samples": [
+"32.33",
+"32.35",
+"32.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "At reception a reservation is wrong. Ask about the charge, report what someone told you and suggest a hypothetical solution. Each message still has to be built one word at a time.",
+"samples": [
+"32.42",
+"32.45",
+"32.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Offer hypothetical solutions without a new tense",
+"samples": [
+"32.50"
+],
+"tokenWalk": "32.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "32.01",
+"index": 0,
+"right": "Is",
+"near": "Are",
+"seq": [
+"Is",
+"the",
+"small",
+"room",
+"still",
+"available"
+],
+"i": 0,
+"kind": "form",
+"key": "en32/lab/form1",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.13",
+"index": 0,
+"right": "Have",
+"near": "Has",
+"seq": [
+"Have",
+"you",
+"ever",
+"stayed",
+"in",
+"this",
+"part",
+"of",
+"town"
+],
+"i": 12,
+"kind": "form",
+"key": "en32/lab/form2",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.23",
+"index": 2,
+"right": "have",
+"near": "has",
+"seq": [
+"Unless",
+"you",
+"have",
+"a",
+"pass",
+"use",
+"the",
+"main",
+"entrance"
+],
+"i": 22,
+"kind": "form",
+"key": "en32/lab/form3",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.39",
+"index": 3,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"quietest",
+"room",
+"is",
+"the",
+"one",
+"that",
+"faces",
+"the",
+"factory"
+],
+"i": 38,
+"kind": "form",
+"key": "en32/lab/form4",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.05",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"There",
+"are",
+"two",
+"stops",
+"before",
+"the",
+"bridge"
+],
+"i": 4,
+"kind": "spot",
+"key": "en32/lab/spot1",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.16",
+"index": 2,
+"right": "has",
+"near": "have",
+"seq": [
+"Our",
+"reservation",
+"has",
+"just",
+"been",
+"confirmed"
+],
+"i": 15,
+"kind": "spot",
+"key": "en32/lab/spot2",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.30",
+"index": 6,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"niece",
+"I",
+"told",
+"you",
+"about",
+"is",
+"waiting",
+"at",
+"the",
+"harbour"
+],
+"i": 29,
+"kind": "spot",
+"key": "en32/lab/spot3",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"id": "32.29",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"That",
+"is",
+"the",
+"hotel",
+"where",
+"I",
+"left",
+"my",
+"charger"
+],
+"i": 28,
+"kind": "spot",
+"key": "en32/lab/spot4",
+"feedback": {
+"ru": "Не ищи знакомое слово на кнопках наудачу. Сначала определи, это факт, процесс, результат, условие, просьба или пересказ. В длинной фразе отдельно собери смысл первой и второй части.",
+"uk": "Не шукай навмання знайоме слово серед кнопок. Спершу визнач, це факт, процес, результат, умова, прохання чи переказ. У довгій фразі окремо розбери значення першої та другої частин.",
+"en": "Check the time frame first, then whether a clause is a statement, question, condition or report. Reconstruct longer sentences a clause at a time instead of guessing from one familiar word."
+}
+},
+{
+"kind": "match",
+"key": "en32/lab/match1",
+"id": "32.02",
+"other": "32.03"
+},
+{
+"kind": "match",
+"key": "en32/lab/match2",
+"id": "32.17",
+"other": "32.16"
+},
+{
+"kind": "match",
+"key": "en32/lab/match3",
+"id": "32.33",
+"other": "32.34"
+},
+{
+"kind": "match",
+"key": "en32/lab/match4",
+"id": "32.46",
+"other": "32.45"
+},
+{
+"kind": "build",
+"key": "en32/lab/build1",
+"id": "32.04"
+},
+{
+"kind": "build",
+"key": "en32/lab/build2",
+"id": "32.15"
+},
+{
+"kind": "build",
+"key": "en32/lab/build3",
+"id": "32.29"
+},
+{
+"kind": "build",
+"key": "en32/lab/build4",
+"id": "32.42"
+},
+{
+"kind": "transform",
+"id": "32.29",
+"base": "32.06",
+"diff": [
+{
+"before": [],
+"after": [
+"That",
+"is",
+"the",
+"hotel",
+"where"
+]
+},
+{
+"before": [
+"umbrella",
+"on",
+"the",
+"early",
+"bus"
+],
+"after": [
+"charger"
+]
+}
+],
+"key": "en32/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "32.35",
+"base": "32.28",
+"diff": [
+{
+"before": [
+"woman",
+"who",
+"answered",
+"knew"
+],
+"after": [
+"receptionist",
+"told",
+"us",
+"not",
+"to",
+"blame"
+]
+}
+],
+"key": "en32/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "32.44",
+"base": "32.41",
+"diff": [
+{
+"before": [
+"had",
+"your",
+"number"
+],
+"after": [
+"were",
+"you"
+]
+},
+{
+"before": [
+"call",
+"you"
+],
+"after": [
+"keep",
+"the",
+"receipt"
+]
+}
+],
+"key": "en32/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "32.32",
+"base": "32.09",
+"diff": [
+{
+"before": [
+"waiting",
+"by"
+],
+"after": [
+"still",
+"getting",
+"used",
+"to"
+]
+},
+{
+"before": [
+"ticket",
+"machine"
+],
+"after": [
+"early",
+"start"
+]
+}
+],
+"key": "en32/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+8,
+0
+],
+[
+5,
+9
+],
+[
+13,
+2
+],
+[
+7,
+14
+],
+[
+10,
+17
+],
+[
+15,
+11
+],
+[
+18,
+3
+]
+],
+"worked": [
+"32.05",
+"32.18",
+"32.33",
+"32.48"
+],
+"reflection": [
+"32.01",
+"32.02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

@@ -241,7 +241,6 @@ add('profile-013', [], S_FREE, '/support_report', note='форма поддер�
 add(['profile-014', 'settings-gap-022'], ['tap:#support-diagnostics-disclosure'], S_FREE, '/support_report', note='форма поддержки — диагностика раскрыта')
 add('settings-gap-035', ['tap:#support-report-input', 'type:short'], S_FREE, '/support_report', note='«Отправить» неактивна: меньше 10 символов')
 add('settings-gap-036', ['tap:#support-report-input', 'type:Test message for the layout check', 'tap:#support-report-submit'], 'plus=off&support=fail', '/support_report', note='отправка не удалась (support=fail — на сервер ничего не уходит)')
-add('profile-025', [], S_FREE, '/survey_screen', note='опрос недоступен — совместимый маршрут')
 add('profile-026', [], 'referral=off', '/referrals', note='приглашение друга (referral=off)')
 
 

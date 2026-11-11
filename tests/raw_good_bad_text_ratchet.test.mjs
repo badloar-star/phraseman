@@ -54,10 +54,4 @@ test('сырой good/bad как цвет текста или значка не 
   assert.deepEqual(grew, [], `сырой good/bad как цвет текста (используйте semanticInk из constants/liquidGlassSemanticInk): ${JSON.stringify(grew)}`);
 });
 
-test('semanticInk подключён в файлах, которые я перевёл', () => {
-  for (const f of ['components/friends_together/FriendWeekCard.tsx', 'components/completion/V2DoneScreen.tsx', 'app/learning_v2_session_intro.tsx']) {
-    assert.match(readFileSync(join(ROOT, f), 'utf8'), /semanticInk\(/, `${f} не использует semanticInk`);
-  }
-});
-
 if (process.argv.includes('--print')) console.log(JSON.stringify(count(), null, 2));

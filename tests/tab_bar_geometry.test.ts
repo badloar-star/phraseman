@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, computeTabBarGeometry, tabCapLeft, tabCapRightFits } from '../components/v2/tab_bar_geometry';
+import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, TAB_CAP_MAX_W, computeTabBarGeometry, tabCapLeft, tabCapMetrics, tabCapPillLeft, tabCapRightFits } from '../components/v2/tab_bar_geometry';
 
 // зачем (владелец 11.10, капсом: «кнопки на таб-баре справа все обрезаны»): сумма ширин слотов не превышает внутреннюю ширину капсулы, а капсула —
 // ширину окна, при любом числе вкладок, ширине окна (в том числе очень узкой) и безопасных зонах слева/справа. Плюс сторож источника: V2TabBar берёт
@@ -36,6 +36,54 @@ describe('tab bar geometry', () => {
     const g = computeTabBarGeometry({ windowWidth: 10, insetLeft: 20, insetRight: 20, count: 0 });
     expect(g.width).toBe(0);
     expect(g.slotW).toBe(0);
+  });
+});
+
+// зачем (слово владельца, фото планшета Samsung Galaxy Tab: «фон каждой вкладки на таббаре справа обрезан, слева скруглён»): плашка активной вкладки — симметричная
+// «таблетка» внутри СВОЕЙ ячейки, по центру, с РАВНЫМИ отступами слева и справа при любом числе вкладок и любой ширине (телефон, планшет, поворот).
+describe('active cap sits symmetric inside its own cell (tablet bug)', () => {
+  const GRID_W = [360, 411, 600, 800, 1280];
+  const GRID_COUNT = [3, 4, 5];
+  test.each(GRID_W)('width %i dp: cap width ≤ cell width, equal insets, never leaves the cell or the capsule', (windowWidth) => {
+    for (const count of GRID_COUNT) {
+      const g = computeTabBarGeometry({ windowWidth, count });
+      const { capW, inset } = tabCapMetrics(g.slotW);
+      expect(capW).toBeLessThanOrEqual(g.slotW + 0.001);
+      expect(capW).toBeLessThanOrEqual(TAB_CAP_MAX_W);
+      const insetRight = g.slotW - capW - inset;
+      expect(Math.abs(inset - insetRight)).toBeLessThan(0.001); // равные отступы слева и справа
+      expect(inset).toBeGreaterThanOrEqual(0);
+      for (let i = 0; i < count; i++) {
+        const cellLeft = tabCapLeft(g.slotW, i);
+        const pillLeft = tabCapPillLeft(g.slotW, i);
+        expect(pillLeft).toBeGreaterThanOrEqual(cellLeft - 0.001);
+        expect(pillLeft + capW).toBeLessThanOrEqual(cellLeft + g.slotW + 0.001);
+        expect(pillLeft + capW).toBeLessThanOrEqual(g.width - TAB_BAR_PAD + 0.001);
+        // центр плашки = центр ячейки (иконка по центру ячейки лежит под центром плашки)
+        expect(pillLeft + capW / 2).toBeCloseTo(cellLeft + g.slotW / 2, 3);
+        expect(tabCapRightFits(g.width, g.slotW, i)).toBe(true);
+      }
+    }
+  });
+
+  test('on a phone the cap still fills the whole cell (look unchanged); on a tablet it is capped and centered', () => {
+    const phone = computeTabBarGeometry({ windowWidth: 411, count: 5 });
+    expect(tabCapMetrics(phone.slotW).inset).toBe(0);
+    const tablet = computeTabBarGeometry({ windowWidth: 1280, count: 4 });
+    expect(tablet.slotW).toBeGreaterThan(TAB_CAP_MAX_W);
+    expect(tabCapMetrics(tablet.slotW).capW).toBe(TAB_CAP_MAX_W);
+    expect(tabCapMetrics(tablet.slotW).inset).toBeGreaterThan(0);
+  });
+
+  test('the source mirrors the fill (no fade-out on the right), centers the cap and logs [TABBAR-LAYOUT]', () => {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'v2', 'V2TabBar.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(src).toContain('tabCapMetrics(slotW)');
+    expect(src).toContain('width: capW,');
+    expect(src).toContain('<CapFill width={capW}');
+    expect(src).toContain('scaleX: -1');
+    expect(src).toContain("'[TABBAR-LAYOUT]'");
+    expect(src).toContain('const to = PAD + activeIndex * slotW + capInset;');
+    expect(src).not.toContain('<CapFill width={slotW}');
   });
 });
 

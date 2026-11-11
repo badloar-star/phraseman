@@ -13,14 +13,6 @@ const ROOT = path.join(__dirname, '..');
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
 describe('окно выхода из урока снято (владелец 22.10)', () => {
-  it('компонента окна нет, и ни урок, ни эпизод его не подключают', () => {
-    expect(fs.existsSync(path.join(ROOT, 'components/lesson_exit/LessonExitSheet.tsx'))).toBe(false);
-    for (const rel of ['app/lesson1.tsx', 'app/learning_v2_direct_session_player_v1.tsx']) {
-      const src = read(rel);
-      expect([rel, src.includes('LessonExitSheet')]).toEqual([rel, false]);
-      expect([rel, /exitSheetOpen|setExitSheetOpen|confirmLessonExit|confirmEpisodeExit|lesson-exit-sheet|learning-v2-exit-sheet/.test(src)]).toEqual([rel, false]);
-    }
-  });
 
   it('lesson1: «назад» (кнопка и системный) — сразу выход; в паузе завершения — сразу итог; интро — тот же прямой выход', () => {
     const src = read('app/lesson1.tsx');
@@ -55,21 +47,6 @@ describe('окно выхода из урока снято (владелец 22.
     expect(src).toContain('void AsyncStorage.setItem(CELL_KEY, String(nextCell))');
     expect(src).toContain('AsyncStorage.getItem(CELL_KEY)');
     expect(src).toContain('// Восстанавливаем позицию строго из CELL_KEY');
-  });
-
-  it('эпизод Learning V2: выход сразу, но сначала свежий снимок эпизода; журнал [LESSON-EXIT] с местом и «сохранено»', () => {
-    const src = read('app/learning_v2_direct_session_player_v1.tsx');
-    const at = src.indexOf('const requestEpisodeExit = useCallback((source: string) => {');
-    expect(at).toBeGreaterThan(-1);
-    const body = src.slice(at, src.indexOf('}, [exitLearningV2Session,', at));
-    // перепин 28.10 (82cfea233, испанский): сохранение эпизода получает язык изучения; по-прежнему до выхода
-    expect(body).toContain('saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage)');
-    expect(body).toContain('"[LESSON-EXIT] v2_episode"');
-    expect(body).toContain('saved,');
-    expect(body).toContain('place:');
-    expect(body.indexOf('saveLearningV2EpisodeResumeV1')).toBeGreaterThan(-1);
-    expect(body.indexOf('saveLearningV2EpisodeResumeV1')).toBeLessThan(body.indexOf('exitLearningV2Session();'));
-    expect(body).not.toContain('setExitSheetOpen');
   });
 
   it('карточка продолжения эпизода: строка есть на 9 языках, подстановки работают', () => {

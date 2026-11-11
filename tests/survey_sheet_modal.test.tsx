@@ -449,6 +449,34 @@ describe('SurveySheetModal', () => {
   // Раньше стор открывался прямо на тапе по варианту, а кнопка перехода стояла
   // под вариантом и дёргала router.push из-под живой нативной шторки — экран
   // менялся невидимо, тап выглядел мёртвым.
+  test('replaces the reported survey copy without promising an unconfirmed save', async () => {
+    const title = 'Посоветуешь Phraseman другу — или сначала проведёшь ему независимое языковое расследование?';
+    const currentQuestion = { ...launch.survey.questions[0], text: title };
+    const legacyLaunch = { ...launch, survey: {
+      ...launch.survey,
+      title,
+      questions: [currentQuestion],
+      finalTitle: 'Спасибо! Жемчужина твоя',
+      finalSubtitle: 'Ответ записан. Теперь у нас меньше гаданий на кофейной гуще.',
+    } };
+    for (const phase of ['editing', 'optimistic-reward', 'reconciled'] as const) {
+      mockUseSurveyFlowController.mockReturnValue(editingFlow({
+        currentQuestion,
+        submission: { phase, attemptId: 1, expectedReward: 0, confirmedReward: 0, messageKey: null },
+      }));
+      const screen = await render(<SurveySheetModal visible launch={legacyLaunch} onClose={jest.fn()} />);
+      expect(screen.getByText('Порекомендуешь Phraseman другу?')).toBeTruthy();
+      expect(screen.queryByText(title)).toBeNull();
+      if (phase !== 'editing') {
+        expect(screen.getByText('Спасибо за ответ!')).toBeTruthy();
+        expect(screen.queryByText(legacyLaunch.survey.finalTitle)).toBeNull();
+        expect(screen.queryByText(legacyLaunch.survey.finalSubtitle)).toBeNull();
+        expect(Boolean(screen.queryByText('Ответ сохранён.'))).toBe(phase === 'reconciled');
+      }
+      await screen.unmount();
+    }
+  });
+
   test('selecting an answer neither opens the Store nor shows an inline CTA', async () => {
     const currentQuestion = {
       ...launch.survey.questions[0],

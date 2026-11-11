@@ -1,0 +1,67 @@
+[
+ {
+  "id": "lesson-13/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "Калька «будущее время — это не одна форма английского языка, используемая повсеместно»; «вы» при «ты».",
+  "fix": {
+   "ru": "Will — для решения, принятого прямо в разговоре, для предложения, обещания и прогноза: I will wait outside. Для расписаний часто берут настоящее простое время, поэтому не каждое «будет» по-английски — will.",
+   "uk": "Will — для рішення, ухваленого просто під час розмови, для пропозиції, обіцянки й прогнозу: I will wait outside. Для розкладів часто беруть теперішній простий час, тож не кожне «буде» англійською — will."
+  }
+ },
+ {
+  "id": "lesson-13/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (+chapters[2].body)",
+  "problem": "Два невидимых символа U+200B внутри «домовлена подія».",
+  "fix": "`I'll` та `I will` можуть виражати ту саму обіцянку. Не плутайте `won't`, що означає `will not`, з `want`, іншим дієсловом. У деяких контекстах домовлена подія природніше виражається теперішнім часом."
+ },
+ {
+  "id": "lesson-13/chapters[5]",
+  "type": "T2",
+  "field": "localized.ru|uk|en.chapters[5].body + chapters[5].samples",
+  "problem": "«Сделайте предложение» двусмысленно (предложение руки); примеры 13.42, 13.45, 13.48 не про коробку — нужная фраза 13.12.",
+  "fix": {
+   "ru": "Кто-то несёт тяжёлую коробку. Предложи помощь прямо сейчас: I will carry the heavy box. Не описывай то, что делаешь обычно.",
+   "uk": "Хтось несе важку коробку. Запропонуй допомогу просто зараз: I will carry the heavy box. Не описуй те, що робиш зазвичай.",
+   "en": "Someone is carrying a heavy box. Offer help right now: I will carry the heavy box. Do not describe what you usually do.",
+   "samples": [
+    "13.12",
+    "13.14",
+    "13.11"
+   ]
+  }
+ },
+ {
+  "id": "lesson-14/choose",
+  "type": "T1",
+  "field": "localized.ru|uk|en.choose (+chapters[1].body, chapters[3].body, feedback)",
+  "problem": "ru/uk не дают правила -er / more (на нём построена ошибка more wider), en не даёт than / the; en и ru о разном.",
+  "fix": {
+   "ru": "Две вещи сравнивай с than: cheaper than, more comfortable than. Одну из группы выделяй через the: the cheapest, the most comfortable. Короткие прилагательные берут -er / -est, длинные — more / most; особые формы: better, worse.",
+   "uk": "Дві речі порівнюй з than: cheaper than, more comfortable than. Одну з групи виділяй через the: the cheapest, the most comfortable. Короткі прикметники беруть -er / -est, довгі — more / most; особливі форми: better, worse.",
+   "en": "Compare two things with than: cheaper than, more comfortable than. Pick one from a group with the: the cheapest, the most comfortable. Short adjectives take -er / -est, longer ones more / most; special forms: better, worse."
+  }
+ },
+ {
+  "id": "lesson-14/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "«Вы» («Сравните… используйте») при «ты» в story/choose; «при принятии решения» — канцелярит.",
+  "fix": {
+   "ru": "Сравнивай два тарифа, маршрута или номера, когда выбираешь. Если выбираешь один из целой группы, нужна превосходная степень, обычно с the.",
+   "uk": "Порівнюй два тарифи, маршрути чи номери, коли обираєш. Якщо обираєш один із цілої групи, потрібен найвищий ступінь, зазвичай із the."
+  }
+ },
+ {
+  "id": "lesson-14/chapters[5]",
+  "type": "T1",
+  "field": "chapters[5].samples",
+  "problem": "Текст о двух комнатах (комфорт, шум, самая тихая), а примеры 14.42, 14.45, 14.48 не об этом.",
+  "fix": [
+   "14.18",
+   "14.21",
+   "14.31"
+  ]
+ }
+]

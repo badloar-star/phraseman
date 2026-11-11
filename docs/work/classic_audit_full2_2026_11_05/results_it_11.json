@@ -1,0 +1,17 @@
+[
+{"id": "it:23:14", "type": "B1", "field": "tiles", "problem": "на позиции глагола все 5 соблазнов — существительные/предлоги (data, alla, casa, carta, d’acqua): верный глагол выдаёт себя без знания слова", "fix": {"position": 2, "replace_distractor": "data", "with": "mando"}},
+{"id": "it:23:17", "type": "B1", "field": "tiles", "problem": "соблазн «l’appuntamento» даёт «Gli diamo l’appuntamento» — естественный вариант «назначаем ему встречу», засчитается ошибкой", "fix": {"position": 2, "replace_distractor": "l’appuntamento", "with": "l’indirizzo"}},
+{"id": "it:23:46", "type": "B2", "field": "ru", "problem": "regalato = подарил, а не «дал» — потерян смысл подарка", "fix": "Кто подарил ей этот шарф?"},
+{"id": "it:23:46", "type": "B2", "field": "uk", "problem": "regalato = подарував, а не «дав» — потерян смысл подарка", "fix": "Хто подарував їй цей шарф?"},
+{"id": "it:24:01", "type": "B1", "field": "tiles", "problem": "соблазн «vi» (книжное «туда») даёт верную фразу «…e vi va anche Paolo»", "fix": {"position": 4, "replace_distractor": "vi", "with": "lo"}},
+{"id": "it:24:04", "type": "B1", "field": "tiles", "problem": "соблазн «vi» (книжное «туда») даёт верную фразу «…e vi andiamo anche noi»", "fix": {"position": 5, "replace_distractor": "vi", "with": "le"}},
+{"id": "it:24:09", "type": "B1", "field": "tiles", "problem": "соблазн «vi» даёт верную (книжную) фразу «Lui vi va a piedi»", "fix": {"position": 1, "replace_distractor": "vi", "with": "lo"}},
+{"id": "it:24:10", "type": "B1", "field": "tiles", "problem": "соблазн «Vi» даёт верную (книжную) фразу «Vi andiamo in autobus»", "fix": {"position": 0, "replace_distractor": "Vi", "with": "Lo"}},
+{"id": "it:24:11", "type": "B1", "field": "tiles", "problem": "соблазн «Vi» даёт верную (книжную) фразу «Vi abito da un anno»", "fix": {"position": 0, "replace_distractor": "Vi", "with": "Le"}},
+{"id": "it:24:16", "type": "M", "field": "uk", "problem": "потеряно «тут/там» (ci), в ru оно есть — ru и uk расходятся", "fix": "Мені подобається ця тераса, і їжа тут смачна."},
+{"id": "it:24:20", "type": "B1", "field": "tiles", "problem": "соблазн «vi» даёт верную (книжную) фразу «I bambini vi giocano dopo la scuola»", "fix": {"position": 2, "replace_distractor": "vi", "with": "gli"}},
+{"id": "it:24:38", "type": "M", "field": "uk", "problem": "«їхати» (ехать) расходится с ru «пойти» и с andarci без указания транспорта", "fix": "Він має піти туди завтра."},
+{"id": "it:24:41", "type": "M", "field": "ru", "problem": "torno = возвращаюсь; ru «хожу» расходится с target и с uk «повертаюся»", "fix": "Музей бесплатный, и я часто туда возвращаюсь."},
+{"id": "it:24:42", "type": "B1", "field": "tiles", "problem": "соблазн «vi» даёт верную (книжную) фразу «…ma vi andremo a piedi»", "fix": {"position": 5, "replace_distractor": "vi", "with": "lo"}},
+{"id": "it:24:47", "type": "B1", "field": "tiles", "problem": "соблазн «vi» даёт верную (книжную) фразу «…ma vi lavoro bene»", "fix": {"position": 6, "replace_distractor": "vi", "with": "si"}}
+]

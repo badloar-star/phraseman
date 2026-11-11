@@ -1,0 +1,2536 @@
+[
+{
+"lesson": 21,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 21,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Вчера сделал: правильное простое прошедшее",
+"formula": "основа + окончание простого прошедшего",
+"story": "Вчерашний звонок закончился. Llamé — звонил я; llamaste — звонил ты. Ударение в llamé отличает эту форму от других.",
+"use": "Представь событие как законченный эпизод в прошлом. Кто действовал, покажет окончание.",
+"choose": "У -ar говорящий выбирает -é, а для él/ella используется -ó. Llamé и llamó не взаимозаменяемы. По написанию видно, кто позвонил.",
+"nuance": "Представь событие как законченный эпизод в прошлом. Кто действовал, покажет окончание. Выбери лицо и правильное окончание законченного события.",
+"wrong": "Llamó al hotel ayer.",
+"right": "Llamé al hotel ayer.",
+"chapters": [
+{
+"title": "Прошлый эпизод",
+"body": "Ayer отделяет вчерашний эпизод от сегодняшнего отчёта. В llamé прошедшее уже выражено одной формой. Не прибавляй he к llamé.",
+"note": "Ключевая форма: llamé. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:01",
+"es:21:02"
+],
+"focusId": "es:21:01"
+},
+{
+"title": "Я и он: разные ударения",
+"body": "У -ar говорящий выбирает -é, а для él/ella используется -ó. Llamé и llamó не взаимозаменяемы. По написанию видно, кто позвонил.",
+"note": "Ключевая форма: llamaste. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:02",
+"es:21:03"
+],
+"focusId": "es:21:02"
+},
+{
+"title": "Обращение к одному человеку",
+"body": "Для tú у -ar ставим -aste, у -er/-ir — -iste. Не добавляй конечное s по аналогии с настоящим: llamaste, escribiste.",
+"note": "Ключевая форма: Compraste. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:42",
+"es:21:43"
+],
+"focusId": "es:21:42"
+},
+{
+"title": "Совпадения",
+"body": "Compramos может означать «мы покупаем» или «мы купили». Здесь помогает ayer или законченная ситуация. У escribir также совпадают формы escribimos.",
+"note": "Ключевая форма: compramos. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:06",
+"es:21:07"
+],
+"focusId": "es:21:06"
+},
+{
+"title": "Буква ради звука",
+"body": "Pagar даёт pagué: сочетание gu сохраняет согласный перед e. Не путай изменение написания ради звучания с новой словарной единицей.",
+"note": "Ключевая форма: entramos. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:24",
+"es:21:25"
+],
+"focusId": "es:21:24"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты вчера вечером отнёс пакет.» / «Мы вчера заплатили наличными.». Выбери лицо и правильное окончание законченного события. Смысловые опоры: «bolsa» — пакет, сумка.",
+"note": "Ключевая форма: pagamos. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:20",
+"es:21:21"
+],
+"focusId": "es:21:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты вчера прочитал сообщение?» / «Вы вчера написали сообщение?». Выбери лицо и правильное окончание законченного события. Представь событие как законченный эпизод в прошлом. Кто действовал, покажет окончание.",
+"note": "Ключевая форма: escribisteis. Выбери лицо и правильное окончание законченного события.",
+"samples": [
+"es:21:44",
+"es:21:50"
+],
+"focusId": "es:21:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamé",
+"gloss": "я",
+"id": "es:21:01",
+"sample": "Llamé al hotel ayer."
+},
+{
+"es": "tú · llamaste",
+"gloss": "ты",
+"id": "es:21:02",
+"sample": "Llamaste al hotel ayer."
+},
+{
+"es": "él · llamó",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamasteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamaron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · compré",
+"gloss": "я",
+"id": "es:21:07",
+"sample": "Compré queso en el mercado."
+},
+{
+"es": "tú · compraste",
+"gloss": "ты",
+"id": "es:21:08",
+"sample": "Compraste pan ayer."
+},
+{
+"es": "él · compró",
+"gloss": "он/она/Вы",
+"id": "es:21:05",
+"sample": "Ana compró un billete ayer."
+},
+{
+"es": "nosotros · compramos",
+"gloss": "мы",
+"id": "es:21:06",
+"sample": "Compramos un billete ayer."
+},
+{
+"es": "vosotros · comprasteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:21:27",
+"sample": "Comprasteis un billete ayer."
+},
+{
+"es": "ellos · compraron",
+"gloss": "они/вы (ustedes)",
+"id": "es:21:29",
+"sample": "Mis hermanos compraron cebollas en el mercado."
+}
+],
+"title": "comprar · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · abrí",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abriste",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abrió",
+"gloss": "он/она/Вы",
+"id": "es:21:13",
+"sample": "Luis abrió la puerta anoche."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "мы",
+"id": "es:21:43",
+"sample": "¿Abrimos la puerta ayer?"
+},
+{
+"es": "vosotros · abristeis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abrieron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "я",
+"id": "es:21:11",
+"sample": "Escribí una carta anoche."
+},
+{
+"es": "tú · escribiste",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · escribió",
+"gloss": "он/она/Вы",
+"id": "es:21:12",
+"sample": "Ana escribió un mensaje anoche."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:21:50",
+"sample": "¿Escribisteis un mensaje ayer?"
+},
+{
+"es": "ellos · escribieron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · pagué",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · pagaste",
+"gloss": "ты",
+"id": "es:21:46",
+"sample": "¿Pagaste con tarjeta ayer?"
+},
+{
+"es": "él · pagó",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · pagamos",
+"gloss": "мы",
+"id": "es:21:21",
+"sample": "Pagamos en efectivo ayer."
+},
+{
+"es": "vosotros · pagasteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:21:22",
+"sample": "Pagasteis con tarjeta ayer."
+},
+{
+"es": "ellos · pagaron",
+"gloss": "они/вы (ustedes)",
+"id": "es:21:36",
+"sample": "Mis hermanas no pagaron con tarjeta anoche."
+}
+],
+"title": "pagar · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · leí",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · leíste",
+"gloss": "ты",
+"id": "es:21:44",
+"sample": "¿Leíste el mensaje ayer?"
+},
+{
+"es": "él · leyó",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leímos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leísteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leyeron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer · Простое прошедшее"
+}
+]
+},
+"uk": {
+"title": "Учора зробив: правильний простий минулий",
+"formula": "основа + закінчення простого минулого",
+"story": "Учорашній дзвінок завершено. Llamé — телефонував я; llamaste — ти. Знак наголосу в llamé важливий.",
+"use": "Подай подію як завершений епізод у минулому. Виконавця покаже закінчення.",
+"choose": "У -ar мовець обирає -é, а для él/ella використовує -ó. Llamé та llamó не взаємозамінні. Написання показує, хто телефонував.",
+"nuance": "Подай подію як завершений епізод у минулому. Виконавця покаже закінчення. Обери особу та правильне закінчення завершеної події.",
+"wrong": "Llamó al hotel ayer.",
+"right": "Llamé al hotel ayer.",
+"chapters": [
+{
+"title": "Минулий епізод",
+"body": "Ayer відділяє вчорашній епізод від сьогоднішнього звіту. У llamé минуле вже виражене однією формою. Не додавай he до llamé.",
+"note": "Ключова форма: llamé. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:01",
+"es:21:02"
+],
+"focusId": "es:21:01"
+},
+{
+"title": "Я і він: різні наголоси",
+"body": "У -ar мовець обирає -é, а для él/ella використовує -ó. Llamé та llamó не взаємозамінні. Написання показує, хто телефонував.",
+"note": "Ключова форма: llamaste. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:02",
+"es:21:03"
+],
+"focusId": "es:21:02"
+},
+{
+"title": "Звертання до однієї людини",
+"body": "Для tú у -ar ставимо -aste, у -er/-ir — -iste. Не додавай кінцеве s за аналогією з теперішнім: llamaste, escribiste.",
+"note": "Ключова форма: Compraste. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:42",
+"es:21:43"
+],
+"focusId": "es:21:42"
+},
+{
+"title": "Збіги",
+"body": "Compramos може означати «ми купуємо» чи «ми купили». Тут допомагає ayer або завершена ситуація. В escribir також збігаються форми escribimos.",
+"note": "Ключова форма: compramos. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:06",
+"es:21:07"
+],
+"focusId": "es:21:06"
+},
+{
+"title": "Літера для збереження звука",
+"body": "Pagar дає pagué: сполука gu зберігає приголосний перед e. Зміна написання заради звучання не створює нової словникової одиниці.",
+"note": "Ключова форма: entramos. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:24",
+"es:21:25"
+],
+"focusId": "es:21:24"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти учора ввечері відніс пакет.» / «Ми вчора заплатили готівкою.». Обери особу та правильне закінчення завершеної події. Смислові опори: «bolsa» — пакет, сумка.",
+"note": "Ключова форма: pagamos. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:20",
+"es:21:21"
+],
+"focusId": "es:21:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти вчора прочитав повідомлення?» / «Ви вчора написали повідомлення?». Обери особу та правильне закінчення завершеної події. Подай подію як завершений епізод у минулому. Виконавця покаже закінчення.",
+"note": "Ключова форма: escribisteis. Обери особу та правильне закінчення завершеної події.",
+"samples": [
+"es:21:44",
+"es:21:50"
+],
+"focusId": "es:21:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamé",
+"gloss": "я",
+"id": "es:21:01",
+"sample": "Llamé al hotel ayer."
+},
+{
+"es": "tú · llamaste",
+"gloss": "ти",
+"id": "es:21:02",
+"sample": "Llamaste al hotel ayer."
+},
+{
+"es": "él · llamó",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamasteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamaron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · compré",
+"gloss": "я",
+"id": "es:21:07",
+"sample": "Compré queso en el mercado."
+},
+{
+"es": "tú · compraste",
+"gloss": "ти",
+"id": "es:21:08",
+"sample": "Compraste pan ayer."
+},
+{
+"es": "él · compró",
+"gloss": "він/вона/Ви",
+"id": "es:21:05",
+"sample": "Ana compró un billete ayer."
+},
+{
+"es": "nosotros · compramos",
+"gloss": "ми",
+"id": "es:21:06",
+"sample": "Compramos un billete ayer."
+},
+{
+"es": "vosotros · comprasteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:21:27",
+"sample": "Comprasteis un billete ayer."
+},
+{
+"es": "ellos · compraron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:21:29",
+"sample": "Mis hermanos compraron cebollas en el mercado."
+}
+],
+"title": "comprar · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · abrí",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abriste",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abrió",
+"gloss": "він/вона/Ви",
+"id": "es:21:13",
+"sample": "Luis abrió la puerta anoche."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "ми",
+"id": "es:21:43",
+"sample": "¿Abrimos la puerta ayer?"
+},
+{
+"es": "vosotros · abristeis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abrieron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "я",
+"id": "es:21:11",
+"sample": "Escribí una carta anoche."
+},
+{
+"es": "tú · escribiste",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · escribió",
+"gloss": "він/вона/Ви",
+"id": "es:21:12",
+"sample": "Ana escribió un mensaje anoche."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:21:50",
+"sample": "¿Escribisteis un mensaje ayer?"
+},
+{
+"es": "ellos · escribieron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · pagué",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · pagaste",
+"gloss": "ти",
+"id": "es:21:46",
+"sample": "¿Pagaste con tarjeta ayer?"
+},
+{
+"es": "él · pagó",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · pagamos",
+"gloss": "ми",
+"id": "es:21:21",
+"sample": "Pagamos en efectivo ayer."
+},
+{
+"es": "vosotros · pagasteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:21:22",
+"sample": "Pagasteis con tarjeta ayer."
+},
+{
+"es": "ellos · pagaron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:21:36",
+"sample": "Mis hermanas no pagaron con tarjeta anoche."
+}
+],
+"title": "pagar · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · leí",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · leíste",
+"gloss": "ти",
+"id": "es:21:44",
+"sample": "¿Leíste el mensaje ayer?"
+},
+{
+"es": "él · leyó",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leímos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leísteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leyeron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer · Простий минулий"
+}
+]
+},
+"en": {
+"title": "Completed events: the regular preterite",
+"formula": "verb stem + preterite ending: llamar → llamaste",
+"story": "A finished call yesterday: llamé if I called, llamaste if you called. Keep the accent on the final é in llamé.",
+"use": "Imagine the event as a complete episode in the past. The actor will show the ending.",
+"choose": "For - ar, the speaker chooses - é, and for él / ella, - ó is used. Llamé and llamó are not interchangeable. The spelling indicates who is calling.",
+"nuance": "Imagine the event as a complete episode in the past. The actor will show the ending. Choose the person and the correct ending of the completed event.",
+"wrong": "Llamó al hotel ayer.",
+"right": "Llamé al hotel ayer.",
+"chapters": [
+{
+"title": "Is this a finished event?",
+"body": "Ayer separates yesterday's episode from today's report. In llamé, the past tense is already expressed by one form. Do not add he to llamé.",
+"note": "Key form: llamé. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:01",
+"es:21:02"
+],
+"focusId": "es:21:01"
+},
+{
+"title": "Why do llamé and llamó sound different?",
+"body": "For - ar, the speaker chooses - é, and for él / ella, - ó is used. Llamé and llamó are not interchangeable. The spelling indicates who is calling.",
+"note": "Key form: llamaste. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:02",
+"es:21:03"
+],
+"focusId": "es:21:02"
+},
+{
+"title": "Which form addresses one friend?",
+"body": "For tú, for - ar, we put - aste, for - er /- ir, we put - iste. Don't add the final s, as in the present: llamaste, escribiste.",
+"note": "Key form: Compraste. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:42",
+"es:21:43"
+],
+"focusId": "es:21:42"
+},
+{
+"title": "When do present and past look alike?",
+"body": "Compramos can mean \"we buy\" or \"we bought.\" ayer or a complete situation helps here. escribir also shares the same forms as escribimos.",
+"note": "Key form: compramos. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:06",
+"es:21:07"
+],
+"focusId": "es:21:06"
+},
+{
+"title": "Which spelling changes preserve the sound?",
+"body": "Pagar yields pagué: the combination gu preserves the consonant before e. Don't confuse a spelling change for the sake of sound with a new vocabulary item.",
+"note": "Key form: entramos. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:24",
+"es:21:25"
+],
+"focusId": "es:21:24"
+},
+{
+"title": "How do I assemble a complete past event?",
+"body": "Compare two tasks: \"You delivered the package yesterday evening.\" / \"We paid in cash yesterday.\" Choose the person and the correct ending of the completed event. Semantic supports: \" bolsa \" — package, bag.",
+"note": "Key form: pagamos. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:20",
+"es:21:21"
+],
+"focusId": "es:21:21"
+},
+{
+"title": "Can I change the person without changing the time?",
+"body": "Compare two tasks: \"Did you read the message yesterday?\" / \"Did you write the message yesterday?\" Choose the person and the correct ending of the completed event. Imagine the event as a completed episode in the past. The ending indicates who acted.",
+"note": "Key form: escribisteis. Choose the person and the correct ending of the completed event.",
+"samples": [
+"es:21:44",
+"es:21:50"
+],
+"focusId": "es:21:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamé",
+"gloss": "I",
+"id": "es:21:01",
+"sample": "Llamé al hotel ayer."
+},
+{
+"es": "tú · llamaste",
+"gloss": "you",
+"id": "es:21:02",
+"sample": "Llamaste al hotel ayer."
+},
+{
+"es": "él · llamó",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamasteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamaron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · compré",
+"gloss": "I",
+"id": "es:21:07",
+"sample": "Compré queso en el mercado."
+},
+{
+"es": "tú · compraste",
+"gloss": "you",
+"id": "es:21:08",
+"sample": "Compraste pan ayer."
+},
+{
+"es": "él · compró",
+"gloss": "he/she/you",
+"id": "es:21:05",
+"sample": "Ana compró un billete ayer."
+},
+{
+"es": "nosotros · compramos",
+"gloss": "we",
+"id": "es:21:06",
+"sample": "Compramos un billete ayer."
+},
+{
+"es": "vosotros · comprasteis",
+"gloss": "you (friends, Spain)",
+"id": "es:21:27",
+"sample": "Comprasteis un billete ayer."
+},
+{
+"es": "ellos · compraron",
+"gloss": "they/you (ustedes)",
+"id": "es:21:29",
+"sample": "Mis hermanos compraron cebollas en el mercado."
+}
+],
+"title": "comprar Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · abrí",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abriste",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abrió",
+"gloss": "he/she/you",
+"id": "es:21:13",
+"sample": "Luis abrió la puerta anoche."
+},
+{
+"es": "nosotros · abrimos",
+"gloss": "we",
+"id": "es:21:43",
+"sample": "¿Abrimos la puerta ayer?"
+},
+{
+"es": "vosotros · abristeis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abrieron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "I",
+"id": "es:21:11",
+"sample": "Escribí una carta anoche."
+},
+{
+"es": "tú · escribiste",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · escribió",
+"gloss": "he/she/you",
+"id": "es:21:12",
+"sample": "Ana escribió un mensaje anoche."
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "you (friends, Spain)",
+"id": "es:21:50",
+"sample": "¿Escribisteis un mensaje ayer?"
+},
+{
+"es": "ellos · escribieron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · pagué",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · pagaste",
+"gloss": "you",
+"id": "es:21:46",
+"sample": "¿Pagaste con tarjeta ayer?"
+},
+{
+"es": "él · pagó",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · pagamos",
+"gloss": "we",
+"id": "es:21:21",
+"sample": "Pagamos en efectivo ayer."
+},
+{
+"es": "vosotros · pagasteis",
+"gloss": "you (friends, Spain)",
+"id": "es:21:22",
+"sample": "Pagasteis con tarjeta ayer."
+},
+{
+"es": "ellos · pagaron",
+"gloss": "they/you (ustedes)",
+"id": "es:21:36",
+"sample": "Mis hermanas no pagaron con tarjeta anoche."
+}
+],
+"title": "pagar Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · leí",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · leíste",
+"gloss": "you",
+"id": "es:21:44",
+"sample": "¿Leíste el mensaje ayer?"
+},
+{
+"es": "él · leyó",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leímos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leísteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · leyeron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer Simple Past"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:21:01",
+"index": 0,
+"right": "Llamé",
+"near": "Llamaste",
+"seq": [
+"Llamé",
+"al",
+"hotel",
+"ayer"
+],
+"i": 0,
+"kind": "form",
+"key": "es21/lab/form1",
+"feedback": {
+"ru": "Llamé ← llamar (звонить); yo.",
+"uk": "Llamé ← llamar (телефонувати); yo.",
+"en": "Llamé ← llamar (call); yo."
+}
+},
+{
+"id": "es:21:12",
+"index": 1,
+"right": "escribió",
+"near": "escribieron",
+"seq": [
+"Ana",
+"escribió",
+"un",
+"mensaje",
+"anoche"
+],
+"i": 11,
+"kind": "form",
+"key": "es21/lab/form2",
+"feedback": {
+"ru": "escribió ← escribir (писать); él.",
+"uk": "escribió ← escribir (писати); él.",
+"en": "escribió ← escribir (write); él."
+}
+},
+{
+"id": "es:21:23",
+"index": 1,
+"right": "compró",
+"near": "compraron",
+"seq": [
+"Ana",
+"compró",
+"fruta",
+"ayer"
+],
+"i": 22,
+"kind": "form",
+"key": "es21/lab/form3",
+"feedback": {
+"ru": "compró ← comprar (покупать); él.",
+"uk": "compró ← comprar (купувати); él.",
+"en": "compró ← comprar (to buy); él."
+}
+},
+{
+"id": "es:21:38",
+"index": 1,
+"right": "compré",
+"near": "compraste",
+"seq": [
+"No",
+"compré",
+"un",
+"kilo",
+"de",
+"queso"
+],
+"i": 37,
+"kind": "form",
+"key": "es21/lab/form4",
+"feedback": {
+"ru": "compré ← comprar (покупать); yo.",
+"uk": "compré ← comprar (купувати); yo.",
+"en": "compré ← comprar (to buy); yo."
+}
+},
+{
+"id": "es:21:08",
+"index": 0,
+"right": "Compraste",
+"near": "Compré",
+"seq": [
+"Compraste",
+"pan",
+"ayer"
+],
+"i": 7,
+"kind": "spot",
+"key": "es21/lab/spot1",
+"feedback": {
+"ru": "Compraste ← comprar (покупать); tú.",
+"uk": "Compraste ← comprar (купувати); tú.",
+"en": "Compraste ← comprar (to buy); tú."
+}
+},
+{
+"id": "es:21:15",
+"index": 0,
+"right": "Mandé",
+"near": "Mandaste",
+"seq": [
+"Mandé",
+"la",
+"foto",
+"anoche"
+],
+"i": 14,
+"kind": "spot",
+"key": "es21/lab/spot2",
+"feedback": {
+"ru": "Mandé ← mandar (отправлять); yo.",
+"uk": "Mandé ← mandar (надсилати); yo.",
+"en": "Mandé ← mandar (to send); yo."
+}
+},
+{
+"id": "es:21:37",
+"index": 1,
+"right": "preparó",
+"near": "prepararon",
+"seq": [
+"Luis",
+"preparó",
+"la",
+"sopa",
+"anoche"
+],
+"i": 36,
+"kind": "spot",
+"key": "es21/lab/spot3",
+"feedback": {
+"ru": "preparó ← preparar (готовить); él.",
+"uk": "preparó ← preparar (готувати); él.",
+"en": "preparó ← preparar (cook); él."
+}
+},
+{
+"id": "es:21:41",
+"index": 0,
+"right": "Llamaste",
+"near": "Llamé",
+"seq": [
+"Llamaste",
+"al",
+"hotel",
+"ayer"
+],
+"i": 40,
+"kind": "spot",
+"key": "es21/lab/spot4",
+"feedback": {
+"ru": "Llamaste ← llamar (звонить); tú.",
+"uk": "Llamaste ← llamar (телефонувати); tú.",
+"en": "Llamaste ← llamar (call); tú."
+}
+},
+{
+"kind": "match",
+"key": "es21/lab/match1",
+"id": "es:21:02",
+"other": "es:21:03"
+},
+{
+"kind": "match",
+"key": "es21/lab/match2",
+"id": "es:21:17",
+"other": "es:21:08"
+},
+{
+"kind": "match",
+"key": "es21/lab/match3",
+"id": "es:21:33",
+"other": "es:21:34"
+},
+{
+"kind": "match",
+"key": "es21/lab/match4",
+"id": "es:21:46",
+"other": "es:21:45"
+},
+{
+"kind": "build",
+"key": "es21/lab/build1",
+"id": "es:21:04"
+},
+{
+"kind": "build",
+"key": "es21/lab/build2",
+"id": "es:21:15"
+},
+{
+"kind": "build",
+"key": "es21/lab/build3",
+"id": "es:21:29"
+},
+{
+"kind": "build",
+"key": "es21/lab/build4",
+"id": "es:21:42"
+},
+{
+"kind": "transform",
+"id": "es:21:04",
+"base": "es:21:03",
+"diff": [
+{
+"before": [
+"Llamé"
+],
+"after": [
+"Llamaste"
+]
+}
+],
+"key": "es21/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:21:41",
+"base": "es:21:01",
+"diff": [
+{
+"before": [
+"Llamé"
+],
+"after": [
+"Llamaste"
+]
+}
+],
+"key": "es21/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:21:45",
+"base": "es:21:05",
+"diff": [
+{
+"before": [
+"Ana"
+],
+"after": [
+"Luis"
+]
+}
+],
+"key": "es21/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:21:34",
+"base": "es:21:15",
+"diff": [
+{
+"before": [
+"Mandé"
+],
+"after": [
+"No",
+"mandamos"
+]
+}
+],
+"key": "es21/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+12
+],
+[
+15,
+7
+],
+[
+4,
+1
+],
+[
+2,
+14
+],
+[
+9,
+5
+],
+[
+18,
+11
+]
+],
+"worked": [
+"es:21:05",
+"es:21:18",
+"es:21:33",
+"es:21:48"
+],
+"reflection": [
+"es:21:01",
+"es:21:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 22,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 22,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Ушёл, смог, пришёл: неправильное прошедшее",
+"formula": "прошлая форма целиком + участники действия",
+"story": "Вчера я пошёл к врачу — Fui al médico. Здесь fui означает «пошёл», потому что дальше указано, куда. Не добавляй к ir обычное окончание.",
+"use": "Передай законченные события с пятью частотными глаголами, у которых меняется основа.",
+"choose": "Tuve и pude оканчиваются на -e без ударения на письме. Не добавляй обычное -í к инфинитиву: это особые основы, а не tenerí или poderí.",
+"nuance": "Передай законченные события с пятью частотными глаголами, у которых меняется основа. Простое прошедшее здесь требует особой основы.",
+"wrong": "Iré al médico ayer.",
+"right": "Fui al médico ayer.",
+"chapters": [
+{
+"title": "Ir и направление",
+"body": "Fui al médico — я сходил к врачу. Fui совпадает с прошедшим ser, но направление al médico и контекст выбирают ir. Будущее iré в рассказ о вчерашнем походе не подходит.",
+"note": "Ключевая форма: fui. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:01",
+"es:22:02"
+],
+"focusId": "es:22:01"
+},
+{
+"title": "Основы tuv- и pud-",
+"body": "Tuve и pude оканчиваются на -e без ударения на письме. Не добавляй обычное -í к инфинитиву: это особые основы, а не tenerí или poderí.",
+"note": "Ключевая форма: tuve. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:11",
+"es:22:12"
+],
+"focusId": "es:22:11"
+},
+{
+"title": "Hice и hizo",
+"body": "Для «я сделал» — hice, для «он сделал» — hizo. В словосочетаниях hacer una pregunta и hacer una foto переводим смысл: задать вопрос, сделать снимок.",
+"note": "Ключевая форма: hizo. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:23",
+"es:22:24"
+],
+"focusId": "es:22:23"
+},
+{
+"title": "Откуда приехали и куда направились?",
+"body": "Представь: ты уже в гостях. Vine en tren — я приехал сюда на поезде. Теперь рассказываешь о другой поездке: Fui al médico — я ходил к врачу. Vine — прошедшая форма venir, а fui — форма ir в этом примере. Смотри на направление движения, а не на транспорт.",
+"note": "Ключевая форма: vino. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:33",
+"es:22:34"
+],
+"focusId": "es:22:33"
+},
+{
+"title": "Смог сделать",
+"body": "Pude entrar часто означает, что мне удалось войти в конкретном случае. После pude оставь entrar в начальной форме. Не путай это с общей способностью в прошлом, podía entrar.",
+"note": "Ключевая форма: pude. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:41",
+"es:22:42"
+],
+"focusId": "es:22:41"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «У тебя вчера возникла проблема?» / «Я вчера сделал покупки.». Простое прошедшее здесь требует особой основы. Смысловые опоры: «problema» — проблема.",
+"note": "Ключевая форма: hice. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:20",
+"es:22:21"
+],
+"focusId": "es:22:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Мы вчера смогли позвонить в отель.» / «Ты вчера смог открыть дверь?». Простое прошедшее здесь требует особой основы. Передай законченные события с пятью частотными глаголами, у которых меняется основа.",
+"note": "Ключевая форма: pudiste. Простое прошедшее здесь требует особой основы.",
+"samples": [
+"es:22:44",
+"es:22:50"
+],
+"focusId": "es:22:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · fui",
+"gloss": "я",
+"id": "es:22:01",
+"sample": "Fui al médico ayer."
+},
+{
+"es": "tú · fuiste",
+"gloss": "ты",
+"id": "es:22:02",
+"sample": "Fuiste al hotel anoche."
+},
+{
+"es": "él · fue",
+"gloss": "он/она/Вы",
+"id": "es:22:03",
+"sample": "Ana fue a la estación."
+},
+{
+"es": "nosotros · fuimos",
+"gloss": "мы",
+"id": "es:22:04",
+"sample": "Fuimos al centro ayer."
+},
+{
+"es": "vosotros · fuisteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · fueron",
+"gloss": "они/вы (ustedes)",
+"id": "es:22:06",
+"sample": "Mis hermanos fueron al médico ayer."
+}
+],
+"title": "ir · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · tuve",
+"gloss": "я",
+"id": "es:22:11",
+"sample": "Tuve una reunión ayer."
+},
+{
+"es": "tú · tuviste",
+"gloss": "ты",
+"id": "es:22:12",
+"sample": "Tuviste tiempo para leer anoche."
+},
+{
+"es": "él · tuvo",
+"gloss": "он/она/Вы",
+"id": "es:22:13",
+"sample": "Ana tuvo una idea."
+},
+{
+"es": "nosotros · tuvimos",
+"gloss": "мы",
+"id": "es:22:14",
+"sample": "Tuvimos una cita ayer."
+},
+{
+"es": "vosotros · tuvisteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:22:17",
+"sample": "Tuvisteis tiempo para leer ayer."
+},
+{
+"es": "ellos · tuvieron",
+"gloss": "они/вы (ustedes)",
+"id": "es:22:16",
+"sample": "Mis hermanos tuvieron una reunión ayer."
+}
+],
+"title": "tener · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · hice",
+"gloss": "я",
+"id": "es:22:21",
+"sample": "Hice la compra ayer."
+},
+{
+"es": "tú · hiciste",
+"gloss": "ты",
+"id": "es:22:22",
+"sample": "Hiciste una reserva anoche."
+},
+{
+"es": "él · hizo",
+"gloss": "он/она/Вы",
+"id": "es:22:23",
+"sample": "Ana hizo una foto."
+},
+{
+"es": "nosotros · hicimos",
+"gloss": "мы",
+"id": "es:22:24",
+"sample": "Hicimos una pregunta ayer."
+},
+{
+"es": "vosotros · hicisteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:22:27",
+"sample": "Hicisteis una reserva ayer."
+},
+{
+"es": "ellos · hicieron",
+"gloss": "они/вы (ustedes)",
+"id": "es:22:26",
+"sample": "Mis hermanos hicieron la compra ayer."
+}
+],
+"title": "hacer · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · vine",
+"gloss": "я",
+"id": "es:22:31",
+"sample": "Vine a casa ayer."
+},
+{
+"es": "tú · viniste",
+"gloss": "ты",
+"id": "es:22:38",
+"sample": "¿Viniste en tren ayer?"
+},
+{
+"es": "él · vino",
+"gloss": "он/она/Вы",
+"id": "es:22:33",
+"sample": "Ana vino en tren."
+},
+{
+"es": "nosotros · vinimos",
+"gloss": "мы",
+"id": "es:22:34",
+"sample": "Vinimos a la reunión ayer."
+},
+{
+"es": "vosotros · vinisteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:22:37",
+"sample": "Vinisteis al hotel ayer."
+},
+{
+"es": "ellos · vinieron",
+"gloss": "они/вы (ustedes)",
+"id": "es:22:36",
+"sample": "Mis hermanos vinieron a casa ayer."
+}
+],
+"title": "venir · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · pude",
+"gloss": "я",
+"id": "es:22:41",
+"sample": "Pude entrar ayer."
+},
+{
+"es": "tú · pudiste",
+"gloss": "ты",
+"id": "es:22:42",
+"sample": "Pudiste volver a casa anoche."
+},
+{
+"es": "él · pudo",
+"gloss": "он/она/Вы",
+"id": "es:22:43",
+"sample": "Ana pudo comprar el billete."
+},
+{
+"es": "nosotros · pudimos",
+"gloss": "мы",
+"id": "es:22:44",
+"sample": "Pudimos llamar al hotel ayer."
+},
+{
+"es": "vosotros · pudisteis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:22:47",
+"sample": "Pudisteis volver a casa ayer."
+},
+{
+"es": "ellos · pudieron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "poder · Простое прошедшее"
+}
+]
+},
+"uk": {
+"title": "Пішов, зміг, прийшов: неправильний минулий",
+"formula": "минула форма цілісно + учасники дії",
+"story": "Учора я пішов до лікаря — Fui al médico. Тут fui означає рух: далі сказано куди. Не додавай до ir звичайне закінчення.",
+"use": "Передай завершені події з п’ятьма поширеними дієсловами, що змінюють основу.",
+"choose": "Tuve та pude закінчуються на -e без графічного наголосу. Не додавай звичне -í до інфінітива: тут особливі основи.",
+"nuance": "Передай завершені події з п’ятьма поширеними дієсловами, що змінюють основу. Простий минулий тут потребує особливої основи.",
+"wrong": "Iré al médico ayer.",
+"right": "Fui al médico ayer.",
+"chapters": [
+{
+"title": "Ir і напрямок",
+"body": "Fui al médico — я сходив до лікаря. Fui збігається з минулим ser, але напрямок al médico й контекст обирають ir. Майбутнє iré тут не підходить.",
+"note": "Ключова форма: fui. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:01",
+"es:22:02"
+],
+"focusId": "es:22:01"
+},
+{
+"title": "Основи tuv- та pud-",
+"body": "Tuve та pude закінчуються на -e без графічного наголосу. Не додавай звичне -í до інфінітива: тут особливі основи.",
+"note": "Ключова форма: tuve. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:11",
+"es:22:12"
+],
+"focusId": "es:22:11"
+},
+{
+"title": "Hice та hizo",
+"body": "Для «я зробив» — hice, для «він зробив» — hizo. У hacer una pregunta та hacer una foto перекладай зміст: поставити запитання, зробити знімок.",
+"note": "Ключова форма: hizo. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:23",
+"es:22:24"
+],
+"focusId": "es:22:23"
+},
+{
+"title": "Звідки приїхали й куди вирушили?",
+"body": "Уяви: ти вже в гостях. Vine en tren — я приїхав сюди потягом. Про іншу поїздку скажеш Fui al médico — я ходив до лікаря. Vine — минула форма venir, а fui в цьому прикладі походить від ir. Зверни увагу на напрямок, а не на транспорт.",
+"note": "Ключова форма: vino. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:33",
+"es:22:34"
+],
+"focusId": "es:22:33"
+},
+{
+"title": "Зміг зробити",
+"body": "Pude entrar часто означає, що мені вдалося зайти саме цього разу. Після pude лиши entrar в інфінітиві. Загальна можливість у минулому — podía entrar.",
+"note": "Ключова форма: pude. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:41",
+"es:22:42"
+],
+"focusId": "es:22:41"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «У тебе вчора виникла проблема?» / «Я вчора зробив покупки.». Простий минулий тут потребує особливої основи. Смислові опори: «problema» — проблема.",
+"note": "Ключова форма: hice. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:20",
+"es:22:21"
+],
+"focusId": "es:22:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ми вчора змогли зателефонувати до готелю.» / «Ти вчора зміг відчинити двері?». Простий минулий тут потребує особливої основи. Передай завершені події з п’ятьма поширеними дієсловами, що змінюють основу.",
+"note": "Ключова форма: pudiste. Простий минулий тут потребує особливої основи.",
+"samples": [
+"es:22:44",
+"es:22:50"
+],
+"focusId": "es:22:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · fui",
+"gloss": "я",
+"id": "es:22:01",
+"sample": "Fui al médico ayer."
+},
+{
+"es": "tú · fuiste",
+"gloss": "ти",
+"id": "es:22:02",
+"sample": "Fuiste al hotel anoche."
+},
+{
+"es": "él · fue",
+"gloss": "він/вона/Ви",
+"id": "es:22:03",
+"sample": "Ana fue a la estación."
+},
+{
+"es": "nosotros · fuimos",
+"gloss": "ми",
+"id": "es:22:04",
+"sample": "Fuimos al centro ayer."
+},
+{
+"es": "vosotros · fuisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · fueron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:22:06",
+"sample": "Mis hermanos fueron al médico ayer."
+}
+],
+"title": "ir · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · tuve",
+"gloss": "я",
+"id": "es:22:11",
+"sample": "Tuve una reunión ayer."
+},
+{
+"es": "tú · tuviste",
+"gloss": "ти",
+"id": "es:22:12",
+"sample": "Tuviste tiempo para leer anoche."
+},
+{
+"es": "él · tuvo",
+"gloss": "він/вона/Ви",
+"id": "es:22:13",
+"sample": "Ana tuvo una idea."
+},
+{
+"es": "nosotros · tuvimos",
+"gloss": "ми",
+"id": "es:22:14",
+"sample": "Tuvimos una cita ayer."
+},
+{
+"es": "vosotros · tuvisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:22:17",
+"sample": "Tuvisteis tiempo para leer ayer."
+},
+{
+"es": "ellos · tuvieron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:22:16",
+"sample": "Mis hermanos tuvieron una reunión ayer."
+}
+],
+"title": "tener · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · hice",
+"gloss": "я",
+"id": "es:22:21",
+"sample": "Hice la compra ayer."
+},
+{
+"es": "tú · hiciste",
+"gloss": "ти",
+"id": "es:22:22",
+"sample": "Hiciste una reserva anoche."
+},
+{
+"es": "él · hizo",
+"gloss": "він/вона/Ви",
+"id": "es:22:23",
+"sample": "Ana hizo una foto."
+},
+{
+"es": "nosotros · hicimos",
+"gloss": "ми",
+"id": "es:22:24",
+"sample": "Hicimos una pregunta ayer."
+},
+{
+"es": "vosotros · hicisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:22:27",
+"sample": "Hicisteis una reserva ayer."
+},
+{
+"es": "ellos · hicieron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:22:26",
+"sample": "Mis hermanos hicieron la compra ayer."
+}
+],
+"title": "hacer · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · vine",
+"gloss": "я",
+"id": "es:22:31",
+"sample": "Vine a casa ayer."
+},
+{
+"es": "tú · viniste",
+"gloss": "ти",
+"id": "es:22:38",
+"sample": "¿Viniste en tren ayer?"
+},
+{
+"es": "él · vino",
+"gloss": "він/вона/Ви",
+"id": "es:22:33",
+"sample": "Ana vino en tren."
+},
+{
+"es": "nosotros · vinimos",
+"gloss": "ми",
+"id": "es:22:34",
+"sample": "Vinimos a la reunión ayer."
+},
+{
+"es": "vosotros · vinisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:22:37",
+"sample": "Vinisteis al hotel ayer."
+},
+{
+"es": "ellos · vinieron",
+"gloss": "вони/ви (ustedes)",
+"id": "es:22:36",
+"sample": "Mis hermanos vinieron a casa ayer."
+}
+],
+"title": "venir · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · pude",
+"gloss": "я",
+"id": "es:22:41",
+"sample": "Pude entrar ayer."
+},
+{
+"es": "tú · pudiste",
+"gloss": "ти",
+"id": "es:22:42",
+"sample": "Pudiste volver a casa anoche."
+},
+{
+"es": "él · pudo",
+"gloss": "він/вона/Ви",
+"id": "es:22:43",
+"sample": "Ana pudo comprar el billete."
+},
+{
+"es": "nosotros · pudimos",
+"gloss": "ми",
+"id": "es:22:44",
+"sample": "Pudimos llamar al hotel ayer."
+},
+{
+"es": "vosotros · pudisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:22:47",
+"sample": "Pudisteis volver a casa ayer."
+},
+{
+"es": "ellos · pudieron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "poder · Простий минулий"
+}
+]
+},
+"en": {
+"title": "Irregular verbs in the preterite",
+"formula": "tener → tuve · ir → fui · hacer → hice",
+"story": "Fui al médico is a completed trip to the doctor. The destination tells you fui is from ir here. Learn fui as a whole.",
+"use": "Relate complete events with five frequent verbs that change their stem.",
+"choose": "Tuve and pude end in - e without stress in writing. Don't add the usual - í to the infinitive: these are special stems, not tenerí or poderí.",
+"nuance": "Relate complete events with five frequent verbs that change their stem. The simple past requires a special stem here.",
+"wrong": "Iré al médico ayer.",
+"right": "Fui al médico ayer.",
+"chapters": [
+{
+"title": "Where did the person go?",
+"body": "Fui al médico — I went to the doctor. Fui matches the past tense of ser, but the direction of al médico and the context choose ir. The future tense of iré is not suitable for the story about yesterday's hike.",
+"note": "Key form: fui. The simple past requires a special stem here.",
+"samples": [
+"es:22:01",
+"es:22:02"
+],
+"focusId": "es:22:01"
+},
+{
+"title": "How do tuve and pude differ from regular forms?",
+"body": "Tuve and pude end in - e without stress in writing. Don't add the usual - í to the infinitive: these are special stems, not tenerí or poderí.",
+"note": "Key form: tuve. The simple past requires a special stem here.",
+"samples": [
+"es:22:11",
+"es:22:12"
+],
+"focusId": "es:22:11"
+},
+{
+"title": "Why hice but hizo?",
+"body": "For \"I did\" — hice, for \"he did\" — hizo. In the phrases hacer una pregunta and hacer una foto, we translate the meaning: ask a question, take a photo.",
+"note": "Key form: hizo. The simple past requires a special stem here.",
+"samples": [
+"es:22:23",
+"es:22:24"
+],
+"focusId": "es:22:23"
+},
+{
+"title": "Where did someone come from or go to?",
+"body": "Imagine you have arrived at a friend’s home. Vine en tren means “I came here by train”. For a different trip, Fui al médico means “I went to the doctor”. Vine is a past form of venir; fui is a past form of ir here. What matters is the direction, not the vehicle.",
+"note": "Key form: vino. The simple past requires a special stem here.",
+"samples": [
+"es:22:33",
+"es:22:34"
+],
+"focusId": "es:22:33"
+},
+{
+"title": "When does pude suggest someone managed to do it?",
+"body": "Pude entrar often means that I was able to enter in a specific case. After pude, leave entrar in its initial form. Don't confuse this with the general ability in the past, podía entrar.",
+"note": "Key form: pude. The simple past requires a special stem here.",
+"samples": [
+"es:22:41",
+"es:22:42"
+],
+"focusId": "es:22:41"
+},
+{
+"title": "How do I check the whole sentence?",
+"body": "Compare the two tasks: \"Did you have a problem yesterday?\" / \"I did the shopping yesterday.\" The simple past requires a special stem here. Semantic supports: \" problema \" — problem.",
+"note": "Key form: hice. The simple past requires a special stem here.",
+"samples": [
+"es:22:20",
+"es:22:21"
+],
+"focusId": "es:22:21"
+},
+{
+"title": "Can I report a different finished event?",
+"body": "Compare two tasks: \"We were able to call the hotel yesterday.\" / \"Were you able to open the door yesterday?\" The simple past requires a special stem here. Convey complete events with five frequent verbs whose stems change.",
+"note": "Key form: pudiste. The simple past requires a special stem here.",
+"samples": [
+"es:22:44",
+"es:22:50"
+],
+"focusId": "es:22:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · fui",
+"gloss": "I",
+"id": "es:22:01",
+"sample": "Fui al médico ayer."
+},
+{
+"es": "tú · fuiste",
+"gloss": "you",
+"id": "es:22:02",
+"sample": "Fuiste al hotel anoche."
+},
+{
+"es": "él · fue",
+"gloss": "he/she/you",
+"id": "es:22:03",
+"sample": "Ana fue a la estación."
+},
+{
+"es": "nosotros · fuimos",
+"gloss": "we",
+"id": "es:22:04",
+"sample": "Fuimos al centro ayer."
+},
+{
+"es": "vosotros · fuisteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · fueron",
+"gloss": "they/you (ustedes)",
+"id": "es:22:06",
+"sample": "Mis hermanos fueron al médico ayer."
+}
+],
+"title": "ir Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · tuve",
+"gloss": "I",
+"id": "es:22:11",
+"sample": "Tuve una reunión ayer."
+},
+{
+"es": "tú · tuviste",
+"gloss": "you",
+"id": "es:22:12",
+"sample": "Tuviste tiempo para leer anoche."
+},
+{
+"es": "él · tuvo",
+"gloss": "he/she/you",
+"id": "es:22:13",
+"sample": "Ana tuvo una idea."
+},
+{
+"es": "nosotros · tuvimos",
+"gloss": "we",
+"id": "es:22:14",
+"sample": "Tuvimos una cita ayer."
+},
+{
+"es": "vosotros · tuvisteis",
+"gloss": "you (friends, Spain)",
+"id": "es:22:17",
+"sample": "Tuvisteis tiempo para leer ayer."
+},
+{
+"es": "ellos · tuvieron",
+"gloss": "they/you (ustedes)",
+"id": "es:22:16",
+"sample": "Mis hermanos tuvieron una reunión ayer."
+}
+],
+"title": "tener Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · hice",
+"gloss": "I",
+"id": "es:22:21",
+"sample": "Hice la compra ayer."
+},
+{
+"es": "tú · hiciste",
+"gloss": "you",
+"id": "es:22:22",
+"sample": "Hiciste una reserva anoche."
+},
+{
+"es": "él · hizo",
+"gloss": "he/she/you",
+"id": "es:22:23",
+"sample": "Ana hizo una foto."
+},
+{
+"es": "nosotros · hicimos",
+"gloss": "we",
+"id": "es:22:24",
+"sample": "Hicimos una pregunta ayer."
+},
+{
+"es": "vosotros · hicisteis",
+"gloss": "you (friends, Spain)",
+"id": "es:22:27",
+"sample": "Hicisteis una reserva ayer."
+},
+{
+"es": "ellos · hicieron",
+"gloss": "they/you (ustedes)",
+"id": "es:22:26",
+"sample": "Mis hermanos hicieron la compra ayer."
+}
+],
+"title": "hacer Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · vine",
+"gloss": "I",
+"id": "es:22:31",
+"sample": "Vine a casa ayer."
+},
+{
+"es": "tú · viniste",
+"gloss": "you",
+"id": "es:22:38",
+"sample": "¿Viniste en tren ayer?"
+},
+{
+"es": "él · vino",
+"gloss": "he/she/you",
+"id": "es:22:33",
+"sample": "Ana vino en tren."
+},
+{
+"es": "nosotros · vinimos",
+"gloss": "we",
+"id": "es:22:34",
+"sample": "Vinimos a la reunión ayer."
+},
+{
+"es": "vosotros · vinisteis",
+"gloss": "you (friends, Spain)",
+"id": "es:22:37",
+"sample": "Vinisteis al hotel ayer."
+},
+{
+"es": "ellos · vinieron",
+"gloss": "they/you (ustedes)",
+"id": "es:22:36",
+"sample": "Mis hermanos vinieron a casa ayer."
+}
+],
+"title": "venir Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · pude",
+"gloss": "I",
+"id": "es:22:41",
+"sample": "Pude entrar ayer."
+},
+{
+"es": "tú · pudiste",
+"gloss": "you",
+"id": "es:22:42",
+"sample": "Pudiste volver a casa anoche."
+},
+{
+"es": "él · pudo",
+"gloss": "he/she/you",
+"id": "es:22:43",
+"sample": "Ana pudo comprar el billete."
+},
+{
+"es": "nosotros · pudimos",
+"gloss": "we",
+"id": "es:22:44",
+"sample": "Pudimos llamar al hotel ayer."
+},
+{
+"es": "vosotros · pudisteis",
+"gloss": "you (friends, Spain)",
+"id": "es:22:47",
+"sample": "Pudisteis volver a casa ayer."
+},
+{
+"es": "ellos · pudieron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "poder Simple Past"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:22:01",
+"index": 0,
+"right": "Fui",
+"near": "Fuiste",
+"seq": [
+"Fui",
+"al",
+"médico",
+"ayer"
+],
+"i": 0,
+"kind": "form",
+"key": "es22/lab/form1",
+"feedback": {
+"ru": "Глагол: ir — идти, ехать.",
+"uk": "Дієслово: ir — іти, їхати.",
+"en": "Verb: ir — to go, to drive."
+}
+},
+{
+"id": "es:22:13",
+"index": 1,
+"right": "tuvo",
+"near": "tuvieron",
+"seq": [
+"Ana",
+"tuvo",
+"una",
+"idea"
+],
+"i": 12,
+"kind": "form",
+"key": "es22/lab/form2",
+"feedback": {
+"ru": "tuvo ← tener (иметь).",
+"uk": "tuvo ← tener (мати).",
+"en": "tuvo ← tener (have)."
+}
+},
+{
+"id": "es:22:21",
+"index": 0,
+"right": "Hice",
+"near": "Hizo",
+"seq": [
+"Hice",
+"la",
+"compra",
+"ayer"
+],
+"i": 20,
+"kind": "form",
+"key": "es22/lab/form3",
+"feedback": {
+"ru": "Глагол: hacer — делать.",
+"uk": "Дієслово: hacer — робити.",
+"en": "Verb: hacer — to do."
+}
+},
+{
+"id": "es:22:32",
+"index": 0,
+"right": "Vine",
+"near": "Vino",
+"seq": [
+"Vine",
+"en",
+"taxi",
+"desde",
+"el",
+"aeropuerto"
+],
+"i": 31,
+"kind": "form",
+"key": "es22/lab/form4",
+"feedback": {
+"ru": "Глагол: venir — приходить, приезжать.",
+"uk": "Дієслово: venir — приходити, приїжджати.",
+"en": "Verb: venir — to arrive, to come."
+}
+},
+{
+"id": "es:22:06",
+"index": 2,
+"right": "fueron",
+"near": "fue",
+"seq": [
+"Mis",
+"hermanos",
+"fueron",
+"al",
+"médico",
+"ayer"
+],
+"i": 5,
+"kind": "spot",
+"key": "es22/lab/spot1",
+"feedback": {
+"ru": "Глагол: ir — идти, ехать.",
+"uk": "Дієслово: ir — іти, їхати.",
+"en": "Verb: ir — to go, to drive."
+}
+},
+{
+"id": "es:22:15",
+"index": 5,
+"right": "tuve",
+"near": "tuviste",
+"seq": [
+"Volví",
+"en",
+"taxi",
+"porque",
+"no",
+"tuve",
+"tiempo"
+],
+"i": 14,
+"kind": "spot",
+"key": "es22/lab/spot2",
+"feedback": {
+"ru": "tuve ← tener (иметь).",
+"uk": "tuve ← tener (мати).",
+"en": "tuve ← tener (have)."
+}
+},
+{
+"id": "es:22:31",
+"index": 0,
+"right": "Vine",
+"near": "Vino",
+"seq": [
+"Vine",
+"a",
+"casa",
+"ayer"
+],
+"i": 30,
+"kind": "spot",
+"key": "es22/lab/spot3",
+"feedback": {
+"ru": "Глагол: venir — приходить, приезжать.",
+"uk": "Дієслово: venir — приходити, приїжджати.",
+"en": "Verb: venir — to arrive, to come."
+}
+},
+{
+"id": "es:22:44",
+"index": 0,
+"right": "Pudimos",
+"near": "Pude",
+"seq": [
+"Pudimos",
+"llamar",
+"al",
+"hotel",
+"ayer"
+],
+"i": 43,
+"kind": "spot",
+"key": "es22/lab/spot4",
+"feedback": {
+"ru": "Pudimos ← poder (мочь).",
+"uk": "Pudimos ← poder (могти).",
+"en": "Pudimos ← poder (to be able)."
+}
+},
+{
+"kind": "match",
+"key": "es22/lab/match1",
+"id": "es:22:02",
+"other": "es:22:01"
+},
+{
+"kind": "match",
+"key": "es22/lab/match2",
+"id": "es:22:17",
+"other": "es:22:16"
+},
+{
+"kind": "match",
+"key": "es22/lab/match3",
+"id": "es:22:33",
+"other": "es:22:32"
+},
+{
+"kind": "match",
+"key": "es22/lab/match4",
+"id": "es:22:46",
+"other": "es:22:45"
+},
+{
+"kind": "build",
+"key": "es22/lab/build1",
+"id": "es:22:04"
+},
+{
+"kind": "build",
+"key": "es22/lab/build2",
+"id": "es:22:15"
+},
+{
+"kind": "build",
+"key": "es22/lab/build3",
+"id": "es:22:29"
+},
+{
+"kind": "build",
+"key": "es22/lab/build4",
+"id": "es:22:42"
+},
+{
+"kind": "transform",
+"id": "es:22:31",
+"base": "es:22:10",
+"diff": [
+{
+"before": [
+"Fuiste"
+],
+"after": [
+"Vine"
+]
+}
+],
+"key": "es22/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:22:19",
+"base": "es:22:14",
+"diff": [
+{
+"before": [
+"Tuvimos"
+],
+"after": [
+"Ana",
+"no",
+"tuvo"
+]
+}
+],
+"key": "es22/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:22:44",
+"base": "es:22:37",
+"diff": [
+{
+"before": [
+"Vinisteis"
+],
+"after": [
+"Pudimos",
+"llamar"
+]
+}
+],
+"key": "es22/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:22:39",
+"base": "es:22:32",
+"diff": [
+{
+"before": [
+"Vine"
+],
+"after": [
+"Viniste"
+]
+},
+{
+"before": [
+"aeropuerto"
+],
+"after": [
+"banco"
+]
+}
+],
+"key": "es22/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+5
+],
+[
+2,
+17
+],
+[
+10,
+3
+],
+[
+15,
+7
+],
+[
+9,
+13
+],
+[
+18,
+11
+]
+],
+"worked": [
+"es:22:05",
+"es:22:18",
+"es:22:33",
+"es:22:48"
+],
+"reflection": [
+"es:22:01",
+"es:22:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

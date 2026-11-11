@@ -83,18 +83,30 @@ const started = Date.now();
 const trackedList = listTracked();
 const tracked = new Set(trackedList);
 
+/** Сколько удалений ещё ищем поштучно; больше — проверяем все файлы приложения в индексе (быстрее и не слабее). */
+const MASS_DELETION_THRESHOLD = 200;
+let massDeletion = false;
 let importers;
 if (staged) {
   // зачем: в pre-commit смотрим только то, что меняет коммит, — изменённые файлы и тех, кто импортирует удалённые
   const changed = git(['diff', '--cached', '--name-only', '--diff-filter=ACMR']).split('\n').filter(Boolean);
   const removed = git(['diff', '--cached', '--name-only', '--diff-filter=D']).split('\n').filter(Boolean);
   const set = new Set(changed.filter((p) => SCOPE.test(p) && CODE.test(p) && !SKIP.test(p)));
-  for (const gone of removed) {
-    const stem = path.posix.basename(gone).replace(/(\.(ios|android|native|web))?\.[a-z]+$/, '');
-    if (!stem) continue;
-    const hits = spawnSync('git', ['grep', '--cached', '-l', '-F', stem, '--', 'app', 'components', 'constants', 'hooks', 'modules', 'shared'], { encoding: 'utf8' });
-    for (const p of String(hits.stdout).split('\n').filter(Boolean)) if (CODE.test(p) && !SKIP.test(p)) set.add(p);
+  if (removed.length > MASS_DELETION_THRESHOLD) {
+    // зачем (владелец 11.11, удаление курса занятий): поиск импортёров шёл отдельным `git grep` на КАЖДЫЙ удалённый файл —
+    // при 58 тыс. удалений сторож работал часами, держал индекс и проигрывал гонку с коммитами других сессий. При массовом
+    // удалении проверяем ВСЕ файлы приложения в индексе: это надмножество «импортёров удалённого», проверка не слабее.
+    massDeletion = true;
+    for (const p of trackedList) if (SCOPE.test(p) && CODE.test(p) && !SKIP.test(p)) set.add(p);
+  } else {
+    for (const gone of removed) {
+      const stem = path.posix.basename(gone).replace(/(\.(ios|android|native|web))?\.[a-z]+$/, '');
+      if (!stem) continue;
+      const hits = spawnSync('git', ['grep', '--cached', '-l', '-F', stem, '--', 'app', 'components', 'constants', 'hooks', 'modules', 'shared'], { encoding: 'utf8' });
+      for (const p of String(hits.stdout).split('\n').filter(Boolean)) if (CODE.test(p) && !SKIP.test(p)) set.add(p);
+    }
   }
+  console.log(`${LOG} выборка: изменено ${changed.length}, удалено ${removed.length}, режим=${massDeletion ? 'все файлы приложения (массовое удаление)' : 'изменённые + импортёры удалённых'}`);
   importers = [...set].filter((p) => tracked.has(p));
 } else {
   importers = trackedList.filter((p) => SCOPE.test(p) && CODE.test(p) && !SKIP.test(p));

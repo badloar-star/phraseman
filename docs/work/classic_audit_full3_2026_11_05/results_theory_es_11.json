@@ -1,0 +1,156 @@
+[
+ {
+  "id": "lesson-23/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "For trabajar, trabaj- is retained, followed by -aba, -abas, -aba …. In the \"we\" form, note the written accent: trabajábamos."
+ },
+ {
+  "id": "lesson-23/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Describe a past habit or situation without highlighting the ending moment. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: vivía. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "For trabajar, trabaj- is retained, followed by -aba, -abas, -aba …. In the \"we\" form, note the written accent: trabajábamos."
+ },
+ {
+  "id": "lesson-23/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: trabajábamos. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: vivías. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: vivía. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: bebía. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Compare the two tasks: \"You waited outside every day.\" / \"We lived next to the store.\" The imperfecto depicts the situation from the inside, without a final boundary. Semantic supports: \"día\" is day."
+ },
+ {
+  "id": "lesson-23/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: Vivíamos. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Compare the two tasks: \"Did you drink coffee before?\" / \"Did you usually read together in class?\" The imperfecto depicts the situation from the inside, without a final boundary. Describe a past habit or situation without highlighting the ending moment."
+ },
+ {
+  "id": "lesson-23/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].note",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Key form: Leíais. The imperfecto depicts the situation from the inside, without a final boundary."
+ },
+ {
+  "id": "lesson-23/chapters[0]",
+  "type": "T2",
+  "field": "ru.chapters[0].body",
+  "problem": "Смешение языков «Viví здесь»",
+  "fix": "В «раньше я здесь жил» нет сообщения о дне переезда или точной длительности. Vivía описывает, как было. Viví aquí могло бы подать жизнь как законченный период."
+ },
+ {
+  "id": "lesson-23/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es23/lab/spot1].feedback.en",
+  "problem": "comer переведено как «available» — неверно, должно быть «to eat»",
+  "fix": "Comíamos ← comer (to eat); nosotros."
+ },
+ {
+  "id": "lesson-24/use",
+  "type": "T2",
+  "field": "en.use",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Divide the sentence into what was already going on and what happened against that background."
+ },
+ {
+  "id": "lesson-24/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Ask: what was already going on when the other event happened? For \"we waited,\" use esperábamos. Don't choose the tense based solely on word order."
+ },
+ {
+  "id": "lesson-24/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Divide the sentence into what was already going on and what happened against that background. Separate the background action from the new event and check the performer of each."
+ },
+ {
+  "id": "lesson-24/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Ask: what was already going on when the other event happened? For \"we waited,\" use esperábamos. Don't choose the tense based solely on word order."
+ },
+ {
+  "id": "lesson-24/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "The arrival of a train, the entrance of a person, or the ringing of a bell are reported as facts in these examples. Choose llegó, entró, sonó — with -ó in the third person."
+ },
+ {
+  "id": "lesson-24/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Compare the two tasks: \"While Luis was writing the letter, the meeting ended.\" / \"While the students were reading, the train arrived.\" Separate the background action from the new event and check the performer of each. Divide the sentence into what was already going on and what happened against that background."
+ },
+ {
+  "id": "lesson-24/choose",
+  "type": "T2",
+  "field": "ru.choose",
+  "problem": "Испанское слово tiempo посреди русского текста вместо «время» (uk: «час»)",
+  "fix": "Спроси: что уже происходило к появлению другой новости? Для «мы ждали» берём esperábamos. Не выбирай время только по порядку слов."
+ },
+ {
+  "id": "lesson-24/chapters[1]",
+  "type": "T2",
+  "field": "ru.chapters[1].body",
+  "problem": "Испанское tiempo посреди русского текста",
+  "fix": "Спроси: что уже происходило к появлению другой новости? Для «мы ждали» берём esperábamos. Не выбирай время только по порядку слов."
+ }
+]

@@ -21,7 +21,7 @@ import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../comp
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';

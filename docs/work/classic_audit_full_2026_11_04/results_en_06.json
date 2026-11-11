@@ -1,0 +1,19 @@
+[
+  {"id": "en-classic-r1:20.40", "type": "B1", "field": "tiles", "problem": "Distractor 'in' gives the correct 'I buy fruit in the market.' (на рынке)", "fix": {"position": 3, "replace_distractor": "in", "with": "under"}},
+  {"id": "en-classic-r1:20.47", "type": "B1", "field": "tiles", "problem": "Distractor 'to' gives the correct 'She speaks English to her customers.'", "fix": {"position": 3, "replace_distractor": "to", "with": "by"}},
+  {"id": "en-classic-r1:20.49", "type": "B2", "field": "uk", "problem": "uk 'обід' (lunch) narrows 'meal' and does not match ru 'еду'", "fix": "Я заплатив за їжу карткою."},
+  {"id": "en-classic-r1:21.05", "type": "B2", "field": "ru", "problem": "ru 'Мне нужна помощь' loses 'someone' from the target", "fix": "Мне нужен кто-то, кто поможет."},
+  {"id": "en-classic-r1:21.05", "type": "B2", "field": "uk", "problem": "uk 'Мені потрібна допомога' loses 'someone' from the target", "fix": "Мені потрібен хтось, хто допоможе."},
+  {"id": "en-classic-r1:21.13", "type": "B1", "field": "tiles", "problem": "Distractor 'something' gives the correct 'Do you need something else?'", "fix": {"position": 3, "replace_distractor": "something", "with": "everything"}},
+  {"id": "en-classic-r1:21.18", "type": "B1", "field": "tiles", "problem": "Distractor 'somewhere' gives the correct 'Did you go somewhere yesterday?'", "fix": {"position": 3, "replace_distractor": "somewhere", "with": "everywhere"}},
+  {"id": "en-classic-r1:21.20", "type": "B1", "field": "tiles", "problem": "Distractor 'something' gives the correct 'Can I get you something?'", "fix": {"position": 4, "replace_distractor": "something", "with": "nobody"}},
+  {"id": "en-classic-r1:21.32", "type": "B2", "field": "uk", "problem": "uk loses 'now' (тепер), unlike ru 'Теперь всё готово'", "fix": "Тепер усе готове."},
+  {"id": "en-classic-r1:21.33", "type": "B2", "field": "ru", "problem": "ru 'Все заняли свои места' means 'took their seats' (past action), not 'has a seat'", "fix": "У всех есть место."},
+  {"id": "en-classic-r1:21.36", "type": "B2", "field": "uk", "problem": "uk 'пакет' (plastic bag) does not match ru 'сумку'", "fix": "Все поміщається в одну сумку."},
+  {"id": "en-classic-r1:21.37", "type": "B2", "field": "uk", "problem": "uk 'квиток' means ticket, not receipt (ru 'квитанцию')", "fix": "Ми всюди шукали квитанцію."},
+  {"id": "en-classic-r1:21.45", "type": "B1", "field": "tiles", "problem": "Distractor 'something' gives the correct 'Is there something I should bring?'", "fix": {"position": 2, "replace_distractor": "something", "with": "everyone"}},
+  {"id": "en-classic-r1:21.45", "type": "B2", "field": "ru", "problem": "ru 'Что мне нужно взять с собой?' is a wh-question ('What should I bring?'); target is a yes/no 'Is there anything...'", "fix": "Есть ли что-нибудь, что мне нужно взять с собой?"},
+  {"id": "en-classic-r1:21.48", "type": "B2", "field": "uk", "problem": "uk 'Мені потрібно щось написати' means 'I need to write something', not 'something to write on'", "fix": "Мені потрібно щось, на чому можна писати."},
+  {"id": "en-classic-r1:22.47", "type": "B2", "field": "uk", "problem": "uk 'Вони не розбудили дитину' loses 'avoided' (they just didn't wake)", "fix": "Вони постаралися не розбудити дитину."},
+  {"id": "en-classic-r1:23.24", "type": "B2", "field": "uk", "problem": "uk 'Ваш багаж зареєстровано?' means 'Has your luggage been checked in?', differs from target and ru 'Вашу сумку проверили?'", "fix": "Вашу сумку перевірили?"}
+]

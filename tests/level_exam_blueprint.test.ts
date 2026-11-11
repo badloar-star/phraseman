@@ -1,8 +1,14 @@
 import { COURSE_LEVEL_RANGES, COURSE_LEVELS } from '../app/course_levels';
-import { buildLevelExamBlueprint } from '../app/level_exam_blueprint';
+import { buildLevelExamBlueprint as buildCurrentLevelExamBlueprint } from '../app/level_exam_blueprint';
+import type { BuildLevelExamBlueprintInput } from '../app/level_exam_types';
 import { getLessonData } from '../app/lesson_data_all';
 import type { LessonPhrase } from '../app/lesson_data_types';
 import type { SourceLocale } from '../app/source_locales';
+
+// зачем (владелец 11.11.2026): этот сторож держит набор версии 4 — по 6 заданий четырёх видов из прежних фраз. Версия 4 остаётся
+// поддержанной: попытка, начатая до обновления, обязана восстановиться ровно таким набором. Новый состав (версия 5: механики Пика,
+// фразы курса из уроков, растущий порог) держат tests/level_exam_expanded_blueprint.test.ts и tests/level_exam_authored_bank.test.ts.
+const buildLevelExamBlueprint = (input: BuildLevelExamBlueprintInput) => buildCurrentLevelExamBlueprint({ blueprintVersion: 4, ...input });
 
 type FormatCounts = Record<
   'guess_phrase' | 'fill_gap' | 'find_oddity' | 'translate_build' | 'speed_match',

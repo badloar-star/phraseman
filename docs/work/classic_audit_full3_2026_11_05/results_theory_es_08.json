@@ -1,0 +1,170 @@
+[
+ {
+  "id": "lesson-17/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Me means \"me,\" te means \"you,\" nos means \"us.\" These words do not select gusta or gustan. Compare me gusta and nos gusta: the thing liked can stay singular."
+ },
+ {
+  "id": "lesson-17/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"el café\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-17/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Me means \"me,\" te means \"you,\" nos means \"us.\" These words do not select gusta or gustan. Compare me gusta and nos gusta: the thing liked can stay singular."
+ },
+ {
+  "id": "lesson-17/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gustan comes \"las fotos de Ana\". These are multiple items, so -n."
+ },
+ {
+  "id": "lesson-17/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "A Ana le gusta … directly names Ana. The short le is retained next to the verb. For several people — les: a mis hermanos les gusta …."
+ },
+ {
+  "id": "lesson-17/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"este hotel\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-17/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "If you enjoy reading, the infinitive leer appears as the word you enjoy. For one action, use gusta: me gusta leer. Don't make gusta agree with the people who are reading."
+ },
+ {
+  "id": "lesson-17/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"leer en casa\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-17/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"este mapa\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-17/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Compare the two tasks: \"I don't like this music.\" / \"Anna likes this hotel.\" Compare the number of the item you like, not the number of people who like it. Semantic supports: \"música\" — music."
+ },
+ {
+  "id": "lesson-17/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"este hotel\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-17/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].note",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "After gusta comes \"esta foto\". This is a single thing or action, so no -n."
+ },
+ {
+  "id": "lesson-18/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "On its own, \"it\" doesn't tell us which Spanish word was replaced. Therefore, the object is named before each task. The genders of el libro and la mochila are more important than the genders of the words \"book\" and \"backpack.\""
+ },
+ {
+  "id": "lesson-18/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Two tickets — los billetes → los. Photographs — las fotos → las. The final -s adds number but doesn't negate gender."
+ },
+ {
+  "id": "lesson-18/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Before a noun, la is an article: la llave. In la tengo, la is directly followed by a verb: here it is an object pronoun, and the word for the key is not repeated."
+ },
+ {
+  "id": "lesson-18/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "In this topic, we work with one conjugated form: lo busco, no lo busco. Other positions are possible with the infinitive and imperative forms, but that's not the purpose of this exercise."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/form1].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/form2].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/form3].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/form4].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/spot1].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/spot2].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/spot3].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ },
+ {
+  "id": "lesson-18/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es18/lab/spot4].feedback.en",
+  "problem": "«his, her, their» — притяжательные, а lo/la — прямое дополнение (him/her/it/them)",
+  "fix": "Pronoun: lo / la — him/it, her/it (los/las — them): direct object."
+ }
+]

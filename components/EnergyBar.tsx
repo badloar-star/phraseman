@@ -19,7 +19,7 @@ import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import PressableHybrid from './PressableHybrid';
-import { useLv2Glass } from './learning-v2/LearningV2Glass';
+import { useLv2Glass } from './practice/PracticeGlass';
 
 interface Props {
   /** Deprecated sizing input: every screen now uses one fixed compact pill. */

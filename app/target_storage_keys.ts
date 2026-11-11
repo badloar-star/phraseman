@@ -263,7 +263,7 @@ export function lastOpenedLessonKey(studyTarget?: RuntimeStudyTarget): string {
  * сторож описи хранилища (guard_phone_state_legacy_inventory).
  */
 export const HOME_CONTINUE_MARK_PREFIX = 'last_opened_lesson__continue_';
-// зачем (поручение владельца через координатора 18.10): 'map' — последний открытый на карте Learning V2 урок (app/learning_v2_last_lesson.ts); стирается вместе с остальными метками
+// Retired keys remain in the account cleanup list for existing installations.
 export const HOME_CONTINUE_MARK_KINDS = ['v2', 'at', 'dialog', 'cards', 'map'] as const;
 export type HomeContinueMarkKind = (typeof HOME_CONTINUE_MARK_KINDS)[number];
 

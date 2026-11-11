@@ -1,0 +1,58 @@
+[
+ {
+  "id": "lesson-13/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«для обох пологів» — «пологи» = роды (деторождение), нужно «родів»",
+  "fix": "Прикметники мають різні моделі. У `pesante` одна форма для обох родів в однині. У `leggero` дві: `leggero` та `leggera`."
+ },
+ {
+  "id": "lesson-13/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«Flowers» — ru «цвета» (colors) переведено как «цветы»",
+  "fix": "Colors also have different endings: `bianco`, `bianca`, while `verde` doesn't distinguish gender in the singular. It's best to learn them together with an example object."
+ },
+ {
+  "id": "lesson-13/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "«три части» — меняются четыре: la→le, scatola→scatole, è→sono, piena→piene",
+  "fix": "Смена числа затрагивает несколько мест сразу: `la scatola è piena` и `le scatole sono piene`. Поставь рядом две версии и отметь, какие четыре части поменялись."
+ },
+ {
+  "id": "lesson-13/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "то же: меняются четыре части, не три",
+  "fix": "Зміна числа зачіпає кілька місць відразу: `la scatola è piena` і `le scatole sono piene`. Постав поруч дві версії і відзнач, які чотири частини змінилися."
+ },
+ {
+  "id": "lesson-13/chapter-2",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "same: four parts change, not three",
+  "fix": "A change in number affects several places at once: `la scatola è piena` and `le scatole sono piene`. Put the two versions side by side and note which four parts have changed."
+ },
+ {
+  "id": "lesson-13/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "пропущено «або після» — правило искажено, ≠ ru",
+  "fix": "Прикметник буває до або після іменника. Від положення іноді залежить відтінок значення. Спочатку запам'ятай природну групу цілком і не переставляй автоматично всі прикметники."
+ },
+ {
+  "id": "lesson-14/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«обличчя дієслова» = лицо (физиономия); нужно «особу»",
+  "fix": "Спробуй спочатку побудувати лише `devo compilare`, а потім додати `questo modulo`. Так менше ризику переплутати особу дієслова через довгу назву документа."
+ },
+ {
+  "id": "lesson-14/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«особистим дієсловом» — нужно «особовим» (грамматическое лицо)",
+  "fix": "`Non` ставиться перед особовим дієсловом. `Non posso restare` — не можу залишитися; це не те саме, що не хочу залишитися. Модальне значення зберігається й у запереченні."
+ }
+]

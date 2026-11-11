@@ -1,58 +1,18 @@
-// зачем (владелец 17.10: «вкладка Обучения будет открывать конкретно именно новые уроки, а не старые, а старые уроки будут открываться отдельной кнопочкой»):
-// раньше здесь сторожилась память выбора «Уроки | V2» (владелец 13.10). Решение отменено: корневая вкладка всегда открывается на карте V2, памяти выбора нет;
-// старый список — кнопка «Классический курс» на карте, «назад» из него возвращает на карту, с карты — на Главную.
 import fs from 'node:fs';
 import path from 'node:path';
 
-const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
-const src = read('app/(tabs)/lessons.tsx');
-const course = read('components/learning-v2/LearningV2ChaptersCourse.tsx');
+const src = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'lessons.tsx'), 'utf8');
 
-describe('вкладка «Обучение»: карта V2 по умолчанию, старые уроки — кнопкой', () => {
-  it('памяти выбора вкладки больше нет (иначе у людей со старой записью «v2» отдельный маршрут старого списка прыгал бы на карту)', () => {
+describe('lessons tab entry and back navigation', () => {
+  it('opens the Classic list on entry without restoring a page preference', () => {
+    expect(src).toContain('useState<"lessons" | "dialogs">("lessons")');
+    expect(src).toContain('testID="legacy-lessons-catalog"');
     expect(src).not.toContain('lessons_tab_page_v1');
-    expect(src).not.toContain('rememberLessonsPage');
-    expect(src).not.toContain('rememberedLessonsPage');
-    expect(src).not.toContain('userPickedTabRef');
   });
 
-  it('стартовая страница всегда Classic после решения владельца; журнал [LESSONS-TABS] сохраняет причину', () => {
-    expect(src).toContain('useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen))');
-    // перепривязка 05.11: решение владельца 04.11 (заморозка V2) — стартовая страница берётся из initialPage, а журнал печатает выбранное значение (→ старт=${start}), а не фиксированную причину owner_disabled
-    expect(src).toContain('→ старт=${start}');
-    expect(src).toContain('владелец 04.11, заморозка V2');
-    expect(src).toContain('return "lessons";');
-    expect(src).toContain('[LESSONS-TABS] вход: presentation=');
-  });
-
-  it('«назад»: с карты в корневой вкладке — на Главную; из старого списка вкладки — на карту (если она доступна), иначе на Главную', () => {
-    expect(src).toContain('if (isRetainedTab && page === "v2") {');
-    expect(src).toContain('[LESSONS-TABS] назад с карты V2 → Главная');
-    expect(src).toContain('[LESSONS-TABS] назад из старого списка → карта V2');
-    // в корневой вкладке у старого списка есть стрелка «назад», чип «Новые уроки» там снят (остался в push-маршруте)
-    expect(src).toContain('{!isRetainedTab || learningV2CanOpen ? (');
-    expect(src).toContain('{!isRetainedTab && learningV2CanOpen ? (');
-  });
-
-  it('кнопка «Классический курс» на карте: 9 языков, без слова «старые», открывает список через то же вводное окно; заголовок списка остаётся «Обучение»', () => {
-    const block = src.slice(src.indexOf('const classicCourseLabel = triLang(lang, {'), src.indexOf('});', src.indexOf('const classicCourseLabel = triLang(lang, {')));
-    for (const key of ['ru:', 'en:', 'uk:', 'es:', '"pt-BR":', 'vi:', 'id:', 'tr:', 'pl:']) expect(block).toContain(key);
-    expect(block).toContain('ru: "Классический курс"');
-    expect(block.toLowerCase()).not.toContain('стар');
-    expect(src).toContain('legacyLessonsLabel={classicCourseLabel}');
-    expect(src).toContain('onLegacyLessons={requestLegacyLessons}');
-    expect(src).toContain('ru: "Обучение"');
-    expect(course).toContain('testID="learning-v2-open-classic-course"');
-    expect(course).toContain('onPress={props.onLegacyLessons}');
-  });
-
-  it('кнопка на карте: тон без обводки, подпись не обрезается и не ужимается шрифтом (сторож карты запрещает numberOfLines)', () => {
-    const chip = course.slice(course.indexOf('testID="learning-v2-open-classic-course"'), course.indexOf('</PressableHybrid>', course.indexOf('testID="learning-v2-open-classic-course"')));
-    expect(chip).toContain('backgroundColor: g.buttonFill');
-    expect(chip).not.toContain('numberOfLines');
-    // зачем (Макеты 17.10): кнопка 36 pt — цель нажатия добирается до 44 через hitSlop по вертикали
-    expect(chip).toContain('hitSlop={{ top: 4, bottom: 4 }}');
-    expect(chip).not.toContain('borderWidth');
-    expect(course).not.toContain('adjustsFontSizeToFit');
+  it('returns from Dialogues to the list and uses the correct back path for each presentation', () => {
+    expect(src).toMatch(/if \(page === "dialogs"\) \{[^}]*setPage\("lessons"\)/);
+    expect(src).toContain('noteBackDecision("tab_legacy_list → goHome")');
+    expect(src).toContain('noteBackDecision("push_legacy_list → safeRouterBack")');
   });
 });

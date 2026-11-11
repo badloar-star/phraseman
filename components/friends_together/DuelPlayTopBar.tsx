@@ -9,8 +9,8 @@ import { StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { FlowText } from '../text-integrity';
-import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
-import { LV2_TASK_LAYOUT, lv2TaskPlateStyle, lv2TaskTrackColor } from '../learning-v2/learning_v2_task_layout_tokens';
+import { useLv2Glass, type Lv2Glass } from '../practice/PracticeGlass';
+import { LV2_TASK_LAYOUT, lv2TaskPlateStyle, lv2TaskTrackColor } from '../practice/practice_layout_tokens';
 import { DUEL_PHRASE_MAX_MS } from '../../app/friends_together/duel_core';
 import { duelClock } from '../../app/friends_together/duel_play_copy';
 import { ScreenBackSlot } from '../v2/ScreenBackButton';

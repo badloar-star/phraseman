@@ -37,13 +37,19 @@
         "lemma": "être",
         "meaning": {
           "ru": "быть",
-          "uk": "бути"
+          "uk": "бути",
+          "en": "to be"
         },
         "forms": {
           "inf": "être",
           "present": "je suis / il est",
           "pc": "j’ai été",
           "futur": "je serai"
+        },
+        "train": {
+          "base": "être",
+          "past": "suis",
+          "pp": "été"
         },
         "aux": "avoir",
         "note": {
@@ -62,13 +68,19 @@
         "lemma": "avoir",
         "meaning": {
           "ru": "иметь",
-          "uk": "мати"
+          "uk": "мати",
+          "en": "to have"
         },
         "forms": {
           "inf": "avoir",
           "present": "j’ai / il a",
           "pc": "j’ai eu",
           "futur": "j’aurai"
+        },
+        "train": {
+          "base": "avoir",
+          "past": "ai",
+          "pp": "eu"
         },
         "aux": "avoir",
         "note": {
@@ -87,13 +99,19 @@
         "lemma": "aller",
         "meaning": {
           "ru": "идти, ехать",
-          "uk": "йти, їхати"
+          "uk": "йти, їхати",
+          "en": "to go"
         },
         "forms": {
           "inf": "aller",
           "present": "je vais / il va",
           "pc": "je suis allé",
           "futur": "j’irai"
+        },
+        "train": {
+          "base": "aller",
+          "past": "vais",
+          "pp": "allé"
         },
         "aux": "être",
         "note": {
@@ -109,13 +127,19 @@
         "lemma": "faire",
         "meaning": {
           "ru": "делать",
-          "uk": "робити"
+          "uk": "робити",
+          "en": "to do, to make"
         },
         "forms": {
           "inf": "faire",
           "present": "je fais / il fait",
           "pc": "j’ai fait",
           "futur": "je ferai"
+        },
+        "train": {
+          "base": "faire",
+          "past": "fais",
+          "pp": "fait"
         },
         "aux": "avoir",
         "note": {
@@ -131,13 +155,19 @@
         "lemma": "vouloir",
         "meaning": {
           "ru": "хотеть",
-          "uk": "хотіти"
+          "uk": "хотіти",
+          "en": "to want"
         },
         "forms": {
           "inf": "vouloir",
           "present": "je veux / il veut",
           "pc": "j’ai voulu",
           "futur": "je voudrai"
+        },
+        "train": {
+          "base": "vouloir",
+          "past": "veux",
+          "pp": "voulu"
         },
         "aux": "avoir",
         "note": {
@@ -153,13 +183,19 @@
         "lemma": "venir",
         "meaning": {
           "ru": "приходить",
-          "uk": "приходити"
+          "uk": "приходити",
+          "en": "to come"
         },
         "forms": {
           "inf": "venir",
           "present": "je viens / il vient",
           "pc": "je suis venu",
           "futur": "je viendrai"
+        },
+        "train": {
+          "base": "venir",
+          "past": "viens",
+          "pp": "venu"
         },
         "aux": "être",
         "note": {
@@ -175,13 +211,19 @@
         "lemma": "prendre",
         "meaning": {
           "ru": "брать",
-          "uk": "брати"
+          "uk": "брати",
+          "en": "to take"
         },
         "forms": {
           "inf": "prendre",
           "present": "je prends / il prend",
           "pc": "j’ai pris",
           "futur": "je prendrai"
+        },
+        "train": {
+          "base": "prendre",
+          "past": "prends",
+          "pp": "pris"
         },
         "aux": "avoir",
         "note": {
@@ -197,13 +239,19 @@
         "lemma": "partir",
         "meaning": {
           "ru": "уезжать",
-          "uk": "їхати, відʼїжджати"
+          "uk": "їхати, відʼїжджати",
+          "en": "to leave"
         },
         "forms": {
           "inf": "partir",
           "present": "je pars / il part",
           "pc": "je suis parti",
           "futur": "je partirai"
+        },
+        "train": {
+          "base": "partir",
+          "past": "pars",
+          "pp": "parti"
         },
         "aux": "être",
         "note": {
@@ -220,13 +268,19 @@
         "lemma": "ouvrir",
         "meaning": {
           "ru": "открывать",
-          "uk": "відчиняти"
+          "uk": "відчиняти",
+          "en": "to open"
         },
         "forms": {
           "inf": "ouvrir",
           "present": "j’ouvre / il ouvre",
           "pc": "j’ai ouvert",
           "futur": "j’ouvrirai"
+        },
+        "train": {
+          "base": "ouvrir",
+          "past": "ouvre",
+          "pp": "ouvert"
         },
         "aux": "avoir",
         "note": {
@@ -244,13 +298,19 @@
         "lemma": "mettre",
         "meaning": {
           "ru": "класть, надевать",
-          "uk": "класти, одягати"
+          "uk": "класти, одягати",
+          "en": "to put, to put on"
         },
         "forms": {
           "inf": "mettre",
           "present": "je mets / il met",
           "pc": "j’ai mis",
           "futur": "je mettrai"
+        },
+        "train": {
+          "base": "mettre",
+          "past": "mets",
+          "pp": "mis"
         },
         "aux": "avoir",
         "note": {
@@ -266,13 +326,19 @@
         "lemma": "boire",
         "meaning": {
           "ru": "пить",
-          "uk": "пити"
+          "uk": "пити",
+          "en": "to drink"
         },
         "forms": {
           "inf": "boire",
           "present": "je bois / il boit",
           "pc": "j’ai bu",
           "futur": "je boirai"
+        },
+        "train": {
+          "base": "boire",
+          "past": "bois",
+          "pp": "bu"
         },
         "aux": "avoir",
         "note": {
@@ -291,13 +357,19 @@
         "lemma": "pouvoir",
         "meaning": {
           "ru": "мочь",
-          "uk": "могти"
+          "uk": "могти",
+          "en": "can, to be able"
         },
         "forms": {
           "inf": "pouvoir",
           "present": "je peux / il peut",
           "pc": "j’ai pu",
           "futur": "je pourrai"
+        },
+        "train": {
+          "base": "pouvoir",
+          "past": "peux",
+          "pp": "pu"
         },
         "aux": "avoir",
         "note": {
@@ -314,13 +386,19 @@
         "lemma": "savoir",
         "meaning": {
           "ru": "знать, уметь",
-          "uk": "знати, вміти"
+          "uk": "знати, вміти",
+          "en": "to know (how)"
         },
         "forms": {
           "inf": "savoir",
           "present": "je sais / il sait",
           "pc": "j’ai su",
           "futur": "je saurai"
+        },
+        "train": {
+          "base": "savoir",
+          "past": "sais",
+          "pp": "su"
         },
         "aux": "avoir",
         "note": {
@@ -336,13 +414,19 @@
         "lemma": "devoir",
         "meaning": {
           "ru": "быть должным",
-          "uk": "бути повинним"
+          "uk": "бути повинним",
+          "en": "must, to have to"
         },
         "forms": {
           "inf": "devoir",
           "present": "je dois / il doit",
           "pc": "j’ai dû",
           "futur": "je devrai"
+        },
+        "train": {
+          "base": "devoir",
+          "past": "dois",
+          "pp": "dû"
         },
         "aux": "avoir",
         "note": {
@@ -359,13 +443,19 @@
         "lemma": "falloir",
         "meaning": {
           "ru": "нужно, надо",
-          "uk": "потрібно, треба"
+          "uk": "потрібно, треба",
+          "en": "to be necessary"
         },
         "forms": {
           "inf": "falloir",
           "present": "il faut",
           "pc": "il a fallu",
           "futur": "il faudra"
+        },
+        "train": {
+          "base": "falloir",
+          "past": "faut",
+          "pp": "fallu"
         },
         "aux": "avoir",
         "note": {
@@ -381,13 +471,19 @@
         "lemma": "lire",
         "meaning": {
           "ru": "читать",
-          "uk": "читати"
+          "uk": "читати",
+          "en": "to read"
         },
         "forms": {
           "inf": "lire",
           "present": "je lis / il lit",
           "pc": "j’ai lu",
           "futur": "je lirai"
+        },
+        "train": {
+          "base": "lire",
+          "past": "lis",
+          "pp": "lu"
         },
         "aux": "avoir",
         "note": {
@@ -405,13 +501,19 @@
         "lemma": "voir",
         "meaning": {
           "ru": "видеть",
-          "uk": "бачити"
+          "uk": "бачити",
+          "en": "to see"
         },
         "forms": {
           "inf": "voir",
           "present": "je vois / il voit",
           "pc": "j’ai vu",
           "futur": "je verrai"
+        },
+        "train": {
+          "base": "voir",
+          "past": "vois",
+          "pp": "vu"
         },
         "aux": "avoir",
         "note": {
@@ -427,13 +529,19 @@
         "lemma": "sortir",
         "meaning": {
           "ru": "выходить",
-          "uk": "виходити"
+          "uk": "виходити",
+          "en": "to go out"
         },
         "forms": {
           "inf": "sortir",
           "present": "je sors / il sort",
           "pc": "je suis sorti",
           "futur": "je sortirai"
+        },
+        "train": {
+          "base": "sortir",
+          "past": "sors",
+          "pp": "sorti"
         },
         "aux": "être",
         "note": {
@@ -449,13 +557,19 @@
         "lemma": "dormir",
         "meaning": {
           "ru": "спать",
-          "uk": "спати"
+          "uk": "спати",
+          "en": "to sleep"
         },
         "forms": {
           "inf": "dormir",
           "present": "je dors / il dort",
           "pc": "j’ai dormi",
           "futur": "je dormirai"
+        },
+        "train": {
+          "base": "dormir",
+          "past": "dors",
+          "pp": "dormi"
         },
         "aux": "avoir",
         "note": {
@@ -471,13 +585,19 @@
         "lemma": "pleuvoir",
         "meaning": {
           "ru": "идти (о дожде)",
-          "uk": "іти (про дощ)"
+          "uk": "іти (про дощ)",
+          "en": "to rain"
         },
         "forms": {
           "inf": "pleuvoir",
           "present": "il pleut",
           "pc": "il a plu",
           "futur": "il pleuvra"
+        },
+        "train": {
+          "base": "pleuvoir",
+          "past": "pleut",
+          "pp": "plu"
         },
         "aux": "avoir",
         "note": {
@@ -495,13 +615,19 @@
         "lemma": "plaire",
         "meaning": {
           "ru": "нравиться",
-          "uk": "подобатися"
+          "uk": "подобатися",
+          "en": "to please, to like"
         },
         "forms": {
           "inf": "plaire",
           "present": "je plais / il plaît",
           "pc": "j’ai plu",
           "futur": "je plairai"
+        },
+        "train": {
+          "base": "plaire",
+          "past": "plais",
+          "pp": "plu"
         },
         "aux": "avoir",
         "note": {
@@ -518,13 +644,19 @@
         "lemma": "dire",
         "meaning": {
           "ru": "говорить",
-          "uk": "казати"
+          "uk": "казати",
+          "en": "to say"
         },
         "forms": {
           "inf": "dire",
           "present": "je dis / il dit",
           "pc": "j’ai dit",
           "futur": "je dirai"
+        },
+        "train": {
+          "base": "dire",
+          "past": "dis",
+          "pp": "dit"
         },
         "aux": "avoir",
         "note": {
@@ -540,13 +672,19 @@
         "lemma": "écrire",
         "meaning": {
           "ru": "писать",
-          "uk": "писати"
+          "uk": "писати",
+          "en": "to write"
         },
         "forms": {
           "inf": "écrire",
           "present": "j’écris / il écrit",
           "pc": "j’ai écrit",
           "futur": "j’écrirai"
+        },
+        "train": {
+          "base": "écrire",
+          "past": "écris",
+          "pp": "écrit"
         },
         "aux": "avoir",
         "note": {
@@ -562,13 +700,19 @@
         "lemma": "comprendre",
         "meaning": {
           "ru": "понимать",
-          "uk": "розуміти"
+          "uk": "розуміти",
+          "en": "to understand"
         },
         "forms": {
           "inf": "comprendre",
           "present": "je comprends / il comprend",
           "pc": "j’ai compris",
           "futur": "je comprendrai"
+        },
+        "train": {
+          "base": "comprendre",
+          "past": "comprends",
+          "pp": "compris"
         },
         "aux": "avoir",
         "note": {
@@ -586,13 +730,19 @@
         "lemma": "connaître",
         "meaning": {
           "ru": "знать (кого-то)",
-          "uk": "знати (когось)"
+          "uk": "знати (когось)",
+          "en": "to know (someone)"
         },
         "forms": {
           "inf": "connaître",
           "present": "je connais / il connaît",
           "pc": "j’ai connu",
           "futur": "je connaîtrai"
+        },
+        "train": {
+          "base": "connaître",
+          "past": "connais",
+          "pp": "connu"
         },
         "aux": "avoir",
         "note": {
@@ -610,13 +760,19 @@
         "lemma": "courir",
         "meaning": {
           "ru": "бежать",
-          "uk": "бігти"
+          "uk": "бігти",
+          "en": "to run"
         },
         "forms": {
           "inf": "courir",
           "present": "je cours / il court",
           "pc": "j’ai couru",
           "futur": "je courrai"
+        },
+        "train": {
+          "base": "courir",
+          "past": "cours",
+          "pp": "couru"
         },
         "aux": "avoir",
         "note": {
@@ -634,13 +790,19 @@
         "lemma": "recevoir",
         "meaning": {
           "ru": "получать",
-          "uk": "отримувати"
+          "uk": "отримувати",
+          "en": "to receive"
         },
         "forms": {
           "inf": "recevoir",
           "present": "je reçois / il reçoit",
           "pc": "j’ai reçu",
           "futur": "je recevrai"
+        },
+        "train": {
+          "base": "recevoir",
+          "past": "reçois",
+          "pp": "reçu"
         },
         "aux": "avoir",
         "note": {

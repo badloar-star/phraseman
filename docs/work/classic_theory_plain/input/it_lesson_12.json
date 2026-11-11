@@ -1,0 +1,710 @@
+{
+ "lang": "it",
+ "lesson": 12,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:12:01",
+   "target": "Prendo del pane.",
+   "ru": "Я беру хлеб.",
+   "uk": "Я беру хліб."
+  },
+  {
+   "id": "it:12:02",
+   "target": "Prendi del pane.",
+   "ru": "Ты берёшь хлеб.",
+   "uk": "Ти береш хліб."
+  },
+  {
+   "id": "it:12:03",
+   "target": "Prendo della zuppa.",
+   "ru": "Я беру суп.",
+   "uk": "Я беру суп."
+  },
+  {
+   "id": "it:12:04",
+   "target": "Lei prende della zuppa.",
+   "ru": "Она берёт суп.",
+   "uk": "Вона бере суп."
+  },
+  {
+   "id": "it:12:05",
+   "target": "Prendiamo dell’acqua.",
+   "ru": "Мы берём воду.",
+   "uk": "Ми беремо воду."
+  },
+  {
+   "id": "it:12:06",
+   "target": "Prendete del latte.",
+   "ru": "Вы берёте молоко.",
+   "uk": "Ви берете молоко."
+  },
+  {
+   "id": "it:12:07",
+   "target": "Lui prende del formaggio.",
+   "ru": "Он берёт сыр.",
+   "uk": "Він бере сир."
+  },
+  {
+   "id": "it:12:08",
+   "target": "Prendono dell’insalata.",
+   "ru": "Они берут салат.",
+   "uk": "Вони беруть салат."
+  },
+  {
+   "id": "it:12:09",
+   "target": "Vorrei del riso.",
+   "ru": "Я бы хотел риса.",
+   "uk": "Я хотів би трохи рису."
+  },
+  {
+   "id": "it:12:10",
+   "target": "Vorrei dell’olio.",
+   "ru": "Я бы хотел растительного масла.",
+   "uk": "Я б хотів рослинної олії."
+  },
+  {
+   "id": "it:12:11",
+   "target": "Compro del burro.",
+   "ru": "Я покупаю сливочное масло.",
+   "uk": "Я купую вершкове масло."
+  },
+  {
+   "id": "it:12:12",
+   "target": "Compro della farina.",
+   "ru": "Я покупаю муку.",
+   "uk": "Я купую борошно."
+  },
+  {
+   "id": "it:12:13",
+   "target": "Compriamo del pesce.",
+   "ru": "Мы покупаем рыбу.",
+   "uk": "Ми купуємо рибу."
+  },
+  {
+   "id": "it:12:14",
+   "target": "Compri della panna.",
+   "ru": "Ты покупаешь сливки.",
+   "uk": "Ти купуєш вершки."
+  },
+  {
+   "id": "it:12:15",
+   "target": "Lui compra dell’aglio.",
+   "ru": "Он покупает чеснок.",
+   "uk": "Він купує часник."
+  },
+  {
+   "id": "it:12:16",
+   "target": "Lei compra del prosciutto.",
+   "ru": "Она покупает ветчину.",
+   "uk": "Вона купує шинку."
+  },
+  {
+   "id": "it:12:17",
+   "target": "Mangio del pollo.",
+   "ru": "Я ем курицу.",
+   "uk": "Я їм курку."
+  },
+  {
+   "id": "it:12:18",
+   "target": "Mangi della composta di mele.",
+   "ru": "Ты ешь яблочное пюре.",
+   "uk": "Ти їси яблучне пюре."
+  },
+  {
+   "id": "it:12:19",
+   "target": "Mangiamo della pasta.",
+   "ru": "Мы едим макароны.",
+   "uk": "Ми їмо макарони."
+  },
+  {
+   "id": "it:12:20",
+   "target": "Mangiano delle fragole.",
+   "ru": "Они едят клубнику.",
+   "uk": "Вони їдять полуницю."
+  },
+  {
+   "id": "it:12:21",
+   "target": "Bevo del tè.",
+   "ru": "Я пью чай.",
+   "uk": "Я п’ю чай."
+  },
+  {
+   "id": "it:12:22",
+   "target": "Lei beve dell’acqua.",
+   "ru": "Она пьет воду.",
+   "uk": "Вона п’є воду."
+  },
+  {
+   "id": "it:12:23",
+   "target": "Beviamo del succo di mela.",
+   "ru": "Мы пьем яблочный сок.",
+   "uk": "Ми п’ємо яблучний сік."
+  },
+  {
+   "id": "it:12:24",
+   "target": "Beve del caffè?",
+   "ru": "Вы пьёте кофе?",
+   "uk": "Ви п’єте каву?"
+  },
+  {
+   "id": "it:12:25",
+   "target": "Aggiungo del sale.",
+   "ru": "Я добавляю соль.",
+   "uk": "Я додаю сіль."
+  },
+  {
+   "id": "it:12:26",
+   "target": "Lei aggiunge del pepe.",
+   "ru": "Она добавляет перец.",
+   "uk": "Вона додає перець."
+  },
+  {
+   "id": "it:12:27",
+   "target": "Aggiungi della senape.",
+   "ru": "Ты добавляешь горчицу.",
+   "uk": "Ти додаєш гірчицю."
+  },
+  {
+   "id": "it:12:28",
+   "target": "È rimasto dello zucchero.",
+   "ru": "Осталось немного сахара.",
+   "uk": "Залишилося трохи цукру."
+  },
+  {
+   "id": "it:12:29",
+   "target": "È rimasta della marmellata.",
+   "ru": "Осталось немного джема.",
+   "uk": "Залишилося трохи варення."
+  },
+  {
+   "id": "it:12:30",
+   "target": "È rimasta dell’acqua fresca.",
+   "ru": "Осталось немного свежей воды.",
+   "uk": "Залишилося трохи свіжої води."
+  },
+  {
+   "id": "it:12:31",
+   "target": "Non bevo latte.",
+   "ru": "Я не пью молоко.",
+   "uk": "Я не п’ю молока."
+  },
+  {
+   "id": "it:12:32",
+   "target": "Non mangiamo carne.",
+   "ru": "Мы не едим мясо.",
+   "uk": "Ми не їмо м’яса."
+  },
+  {
+   "id": "it:12:33",
+   "target": "Lui non beve caffè.",
+   "ru": "Он не пьет кофе.",
+   "uk": "Він не п’є каву."
+  },
+  {
+   "id": "it:12:34",
+   "target": "Lei non compra burro.",
+   "ru": "Она не покупает сливочное масло.",
+   "uk": "Вона не купує вершкове масло."
+  },
+  {
+   "id": "it:12:35",
+   "target": "Non aggiungi sale?",
+   "ru": "Ты не добавляешь соль?",
+   "uk": "Ти не додаєш сіль?"
+  },
+  {
+   "id": "it:12:36",
+   "target": "Non ho più farina.",
+   "ru": "У меня закончилась мука.",
+   "uk": "У мене закінчилося борошно."
+  },
+  {
+   "id": "it:12:37",
+   "target": "Non abbiamo più olio.",
+   "ru": "У нас закончилось растительное масло.",
+   "uk": "У нас закінчилося рослинне масло."
+  },
+  {
+   "id": "it:12:38",
+   "target": "Non c’è più riso.",
+   "ru": "Риса не осталось.",
+   "uk": "Рису не залишилося."
+  },
+  {
+   "id": "it:12:39",
+   "target": "Vorrei un po’ di zuppa.",
+   "ru": "Я бы хотел немного супа.",
+   "uk": "Я б хотів трохи супу."
+  },
+  {
+   "id": "it:12:40",
+   "target": "Lei mangia molte verdure.",
+   "ru": "Она ест много овощей.",
+   "uk": "Вона їсть багато овочів."
+  },
+  {
+   "id": "it:12:41",
+   "target": "Vorrei un bicchiere d’acqua.",
+   "ru": "Я бы хотел стакан воды.",
+   "uk": "Я б хотів склянку води."
+  },
+  {
+   "id": "it:12:42",
+   "target": "Compra un chilo di mele.",
+   "ru": "Он покупает килограмм яблок.",
+   "uk": "Він купує кілограм яблук."
+  },
+  {
+   "id": "it:12:43",
+   "target": "Prendiamo una bottiglia di latte.",
+   "ru": "Мы берём бутылку молока.",
+   "uk": "Ми беремо пляшку молока."
+  },
+  {
+   "id": "it:12:44",
+   "target": "Vuoi una tazza di tè?",
+   "ru": "Хочешь чашку чая?",
+   "uk": "Хочеш чашку чаю?"
+  },
+  {
+   "id": "it:12:45",
+   "target": "Aggiunge un cucchiaio di miele.",
+   "ru": "Она добавляет ложку меда.",
+   "uk": "Вона додає ложку меду."
+  },
+  {
+   "id": "it:12:46",
+   "target": "Vorrei del pane e del burro.",
+   "ru": "Я бы хотел хлеб с маслом.",
+   "uk": "Я б хотів хліба з маслом."
+  },
+  {
+   "id": "it:12:47",
+   "target": "C’è dell’aglio nella salsa.",
+   "ru": "В соусе есть чеснок.",
+   "uk": "У соусі є часник."
+  },
+  {
+   "id": "it:12:48",
+   "target": "Prendo del pesce con il riso.",
+   "ru": "Я закажу рыбу с рисом.",
+   "uk": "Я візьму рибу з рисом."
+  },
+  {
+   "id": "it:12:49",
+   "target": "Dividiamo un piatto di patatine.",
+   "ru": "Мы берём одну тарелку картошки фри на всех.",
+   "uk": "Ми беремо одну тарілку картоплі фрі на всіх."
+  },
+  {
+   "id": "it:12:50",
+   "target": "Metto un po’ di latte nel caffè.",
+   "ru": "Я добавляю немного молока в кофе.",
+   "uk": "Я додаю трохи молока до кави."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il burro",
+   "ru": "сливочное масло",
+   "uk": "вершкове масло"
+  },
+  {
+   "lemma": "la farina",
+   "ru": "мука",
+   "uk": "борошно"
+  },
+  {
+   "lemma": "il miele",
+   "ru": "мёд",
+   "uk": "мед"
+  },
+  {
+   "lemma": "il sale",
+   "ru": "соль",
+   "uk": "сіль"
+  },
+  {
+   "lemma": "la tazza",
+   "ru": "чашка",
+   "uk": "чашка"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  }
+ ],
+ "oldTopicTitle": "Неопределённое количество: `del pane`, `dell’acqua`",
+ "oldTheoryRu": "Частичный артикль выглядит как соединение `di` с определённым артиклем, но в этих фразах он не означает «из». Он вводит некоторое количество продукта. С маслом различай `l’olio` и `il burro`. Важно не механически подставить знакомое слово, а понять, какое масло нужно по ситуации. Артикль должен соответствовать выбранному слову. Вещество обычно не считают без единицы измерения, но ягоды можно назвать во множественном числе. `Delle fragole` не означает определённую известную упаковку. В итальянском нередко можно вовсе не указывать артикль: `bevo acqua`. В отличие от жёсткого шаблона, это живой выбор контекста. Не добавляй слово «немного» туда, где требуется точная порция. В отрицательной фразе `non bevo latte` существительное может стоять без артикля. После каждого отрицания не нужно автоматически вставлять `di`. С единицей измерения идёт `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. Единицу считаем целиком: одна бутылка, два стакана. Отличай продукт от посуды. Если просят чашку чая, `una tazza di tè` сохраняет и чашку, и напиток. Общая фраза «я пью чай» теряет конкретный заказ."
+}

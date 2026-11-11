@@ -1,0 +1,21 @@
+[
+{"id": "fr:27:08", "type": "B1", "field": "tiles", "problem": "Соблазн «passes» даёт естественную фразу «Tu passes à l’atelier après l’exposition.» (настоящее в значении ближайшего будущего) = «Ты зайдёшь в мастерскую после выставки»", "fix": {"position": 1, "replace_distractor": "passes", "with": "passons"}},
+{"id": "fr:27:17", "type": "M", "field": "uk", "problem": "ru «пойду» (пешком), uk «поїду» (на транспорте) — разный смысл ru и uk; aller нейтрально", "fix": "Я піду на ринок у суботу."},
+{"id": "fr:27:27", "type": "M", "field": "ru", "problem": "Неестественный порядок слов «закроется сегодня вечером раньше»", "fix": "Сегодня вечером банк закроется раньше."},
+{"id": "fr:27:28", "type": "B1", "field": "tiles", "problem": "Соблазн «La» даёт допустимую фразу «La médecin vous rappellera demain.» (женская форма la/une médecin признана нормой), ru «Врач» род не задаёт", "fix": {"position": 0, "replace_distractor": "La", "with": "Les"}},
+{"id": "fr:27:30", "type": "M", "field": "ru", "problem": "«Les travaux» — (ремонтные) работы во мн. ч.; «Работа продлится» передаёт travail, теряет смысл ремонта/стройки", "fix": "Работы продлятся три дня."},
+{"id": "fr:27:30", "type": "M", "field": "uk", "problem": "«Les travaux» — роботи (ремонт) во мн. ч.; «Робота триватиме» — калька от travail", "fix": "Роботи триватимуть три дні."},
+{"id": "fr:27:32", "type": "M", "field": "uk", "problem": "ru «не возьмёт машину», uk «не поїде машиною» — разный смысл ru и uk", "fix": "Вона не візьме машину."},
+{"id": "fr:27:40", "type": "B1", "field": "tiles", "problem": "Соблазн «garde» даёт естественную фразу «Qui garde les enfants demain ?» (настоящее + demain = будущее)", "fix": {"position": 1, "replace_distractor": "garde", "with": "gardez"}},
+{"id": "fr:27:40", "type": "M", "field": "uk", "problem": "«догляне за дітьми» — калька/русизм, доглядати управляє знахідним відмінком", "fix": "Хто завтра догляне дітей?"},
+{"id": "fr:27:45", "type": "M", "field": "ru", "problem": "«dossier» здесь — документы/папка с документами; «файл по почте» вводит в заблуждение (компьютерный файл)", "fix": "Они отправят документы по почте."},
+{"id": "fr:27:45", "type": "M", "field": "uk", "problem": "«dossier» — документи; «файл поштою» вводить в оману", "fix": "Вони надішлють документи поштою."},
+{"id": "fr:28:03", "type": "B1", "field": "tiles", "problem": "Соблазн «veux» даёт «Tu veux du lait ?» — дословно «Хочешь молока?», ровно как подсказка", "fix": {"position": 1, "replace_distractor": "veux", "with": "voudrions"}},
+{"id": "fr:28:06", "type": "B1", "field": "tiles", "problem": "Соблазн «voulez» даёт «Vous voulez une autre table ?» — дословно «Хотите другой столик?», ровно как подсказка", "fix": {"position": 1, "replace_distractor": "voulez", "with": "voudrions"}},
+{"id": "fr:28:10", "type": "B2", "field": "ru", "problem": "«changer de place» = пересесть/сменить место; «поменяться местами» — обмен с кем-то (changer de place avec qqn); расходится с uk «пересісти»", "fix": "Леа хотела бы пересесть."},
+{"id": "fr:28:19", "type": "B1", "field": "tiles", "problem": "Соблазн «peux» даёт «Est-ce que je peux essayer cette veste ?» = «Можно мне примерить…» / uk «Чи можу я приміряти…» — точно по подсказке", "fix": {"position": 3, "replace_distractor": "peux", "with": "pouvez"}},
+{"id": "fr:28:20", "type": "B1", "field": "tiles", "problem": "Соблазн «peux» даёт «Je peux avoir un verre d’eau ?» = «Можно мне стакан воды?» — точно по подсказке", "fix": {"position": 1, "replace_distractor": "peux", "with": "pouvez"}},
+{"id": "fr:28:33", "type": "M", "field": "ru", "problem": "«garage» во французском — автосервис; «позвонить в гараж» — ложный друг/калька", "fix": "Мне следует позвонить в автосервис."},
+{"id": "fr:28:33", "type": "M", "field": "uk", "problem": "«garage» — автосервіс; «зателефонувати в гараж» — калька", "fix": "Мені слід зателефонувати в автосервіс."},
+{"id": "fr:28:42", "type": "B1", "field": "tiles", "problem": "Соблазн «Avez-vous» даёт «Avez-vous des disponibilités demain ?» — дословно «У вас есть свободные места завтра?», ровно как подсказка", "fix": {"position": 0, "replace_distractor": "Avez-vous", "with": "Êtes-vous"}}
+]

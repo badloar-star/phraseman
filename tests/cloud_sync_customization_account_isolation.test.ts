@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { V2CompiledRequiredSession } from '../modules/learning-v2/content/session_compiler';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -12,21 +11,11 @@ import {
   wipeLocalAccountData,
   wipeLocalAccountDataForCleanInstallRecovery,
 } from '../app/cloud_sync';
-import { createLesson1LocalProgressStore } from '../modules/learning-v2/progress/lesson1_local_progress';
-import { createProgressOutbox } from '../modules/learning-v2/progress/progress_outbox';
-import {
-  deriveLocalOfflineProgressAccountScopeHash,
-  LOCAL_OFFLINE_PROGRESS_GENERATION,
-} from '../modules/learning-v2/progress/progress_account_scope';
-import { materializeRequiredSessionCompletionEnvelope } from '../modules/learning-v2/progress/required_session_completion_envelope';
-import { createRequiredSessionLocalCommitCoordinator } from '../modules/learning-v2/progress/required_session_local_commit';
-import type { ProgressStorage } from '../modules/learning-v2/progress/progress_store';
-import { getLesson1SessionRuntime } from '../modules/learning-v2/runtime/lesson1_session_runtime';
 import {
   canonicalJsonV1,
   hashCanonicalBody,
   utf8ByteLengthV1,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 import { shardDeltaQueueStorageKey } from '../app/shards_delta_queue';
 import { getAppSnapshot, patchAppSnapshot } from '../app/app_snapshot_store';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
@@ -52,8 +41,6 @@ const { getCanonicalUserId } = require('../app/user_id_policy');
 const store: Record<string, string> = {};
 const BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
 const BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
-const REQUIRED_SESSION_IDS = ['understand', 'use', 'master'].flatMap((zone) =>
-  [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`));
 const localStableId = 'local-stable-id';
 const pendingShardGrantAccountKeys = [
   'pending_shard_grants_v2:local-stable-id',
@@ -64,44 +51,6 @@ const pendingShardGrantAccountKeys = [
   'pending_shard_grants_recovery_needed_v1:local-stable-id',
   'pending_shard_grants_correlated_event_v1:local-stable-id:purchase-1',
 ] as const;
-const localScope = {
-  stableId: localStableId,
-  accountScopeHash: deriveLocalOfflineProgressAccountScopeHash(localStableId),
-  seasonId: 'learning-v2',
-  studyTarget: 'en',
-  learnerSourceLocale: 'ru',
-  generation: LOCAL_OFFLINE_PROGRESS_GENERATION,
-};
-
-const completionEnvelopeFor = (
-  session: V2CompiledRequiredSession,
-  sessionRunId: string,
-) => {
-  const runtime = getLesson1SessionRuntime();
-  return materializeRequiredSessionCompletionEnvelope({
-    scope: localScope,
-    episodeId: runtime.payload.episodeId,
-    sessionSetId: runtime.sessionSetId,
-    sessionSetHash: runtime.sessionSetHash,
-    localSessionId: REQUIRED_SESSION_IDS[session.ordinal - 1],
-    sessionRunId,
-    session,
-    taskResults: session.cards.map((card) => ({
-      taskId: card.cardId,
-      disposition: 'completed' as const,
-      learnerAttempts: 1,
-      hintUsed: false,
-    })),
-  });
-};
-
-const progressStorage: ProgressStorage = {
-  getItem: (key) => AsyncStorage.getItem(key),
-  setItem: (key, value) => AsyncStorage.setItem(key, value),
-  removeItem: (key) => AsyncStorage.removeItem(key),
-  getAllKeys: () => AsyncStorage.getAllKeys(),
-};
-
 const legacyBackupRootFor = (stableId: string): string => JSON.stringify({
   version: 1,
   createdAt: Date.now(),
@@ -476,7 +425,7 @@ it('fails closed when wildcard account-key discovery is unavailable', async () =
   store['personal_plan_day_runtime_v1:account_a_plan:gavan:9'] = 'account-a-runtime';
   (AsyncStorage.getAllKeys as jest.Mock).mockRejectedValueOnce(new Error('storage scan failed'));
 
-  await expect(wipeLocalAccountData()).rejects.toThrow('learning_v2_account_key_scan_failed');
+  await expect(wipeLocalAccountData()).rejects.toThrow('account_key_scan_failed');
 
   expect(store.personal_plan_attempt_events_v1).toBe('account-a-attempts');
   expect(store['personal_plan_day_runtime_v1:account_a_plan:gavan:9']).toBe('account-a-runtime');
@@ -562,47 +511,6 @@ it.each(pendingShardGrantAccountKeys)(
   },
 );
 
-it('backs up, wipes, restores, and drains one exact pending completion graph', async () => {
-  const session = getLesson1SessionRuntime().compiled.sessions[0];
-  const envelope = completionEnvelopeFor(session, 'backup-restore-session-run');
-  const coordinator = createRequiredSessionLocalCommitCoordinator(
-    progressStorage,
-    () => true,
-    REQUIRED_SESSION_IDS,
-  );
-  await coordinator.commit(localScope, envelope);
-  expect(await coordinator.pendingCount(localScope)).toBeGreaterThan(0);
-
-  await saveAccountSwitchEmergencyBackup('pending-completion-e2e', localStableId);
-  await wipeLocalAccountData();
-  expect(Object.keys(store).some((key) =>
-    key.startsWith('v2:required-session-local-commit:'))).toBe(false);
-
-  await expect(restoreAccountSwitchEmergencyBackupIfSafe()).resolves.toEqual(
-    expect.objectContaining({ status: 'restored' }),
-  );
-  const recovered = createRequiredSessionLocalCommitCoordinator(
-    progressStorage,
-    () => true,
-    REQUIRED_SESSION_IDS,
-  );
-  await recovered.recover(localScope);
-  await recovered.recover(localScope);
-
-  expect(await recovered.pendingCount(localScope)).toBe(0);
-  const pending = await createProgressOutbox(progressStorage, () => true).list(localScope);
-  expect(pending).toHaveLength(1);
-  expect(pending[0].payload).toEqual(expect.objectContaining({
-    sessionRunId: 'backup-restore-session-run',
-  }));
-  const progress = await createLesson1LocalProgressStore(
-    progressStorage,
-    () => true,
-    REQUIRED_SESSION_IDS,
-  ).load(localScope);
-  expect(progress.sessions[REQUIRED_SESSION_IDS[0]]).toBe('completed');
-});
-
 it('backs up and verifies the exact owner-scoped shard earn queue before account switch', async () => {
   const queueKey = shardDeltaQueueStorageKey('local-stable-id');
   const queueRaw = JSON.stringify([{
@@ -636,7 +544,7 @@ it('does not report an emergency backup when wildcard discovery fails', async ()
   (AsyncStorage.getAllKeys as jest.Mock).mockRejectedValueOnce(new Error('storage scan failed'));
 
   await expect(saveAccountSwitchEmergencyBackup('test')).rejects.toThrow(
-    'learning_v2_account_key_scan_failed',
+    'account_key_scan_failed',
   );
 
   expect(store[BACKUP_KEY]).toBe(priorRoot);

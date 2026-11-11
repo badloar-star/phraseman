@@ -15,10 +15,10 @@ describe('Gustav last opened lesson target isolation', () => {
 
     expect(home).toContain('lastOpenedLessonKey');
     expect(home).toContain('const lastOpenedKey = lastOpenedLessonKey(studyTarget)');
-    expect(home).toContain('AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
+    expect(home).toContain('readStoredItems([...lessonKeys, lastOpenedKey])');
     expect(home).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
 
-    expect(lessonMenu).toContain('AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId))');
+    expect(lessonMenu).not.toContain('AsyncStorage.setItem(lastOpenedLessonKey');
     expect(lessonMenu).not.toContain("AsyncStorage.setItem('last_opened_lesson'");
 
     expect(layout).toContain('const { studyTarget } = useStudyTarget();');

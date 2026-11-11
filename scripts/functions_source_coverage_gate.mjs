@@ -39,9 +39,6 @@ const ENGLISH_TEST_INDEX = resolve(
 );
 /* Кодовая база MAX удалена (владелец 04.10, «вычистить весь MAX»): функции MAX, ещё живущие в облаке, честно
    показываются непокрытыми, пока их не удалят по имени. */
-/* Четвёртый codebase "content": контент-фабрика Learning V2 (2026-08-23).
-   Тянула в память авторские сессии курса — 236 МБ из 380 МБ основного бандла. */
-const CONTENT_INDEX = resolve(REPO_ROOT, "functions-content/lib/functions-content/index.js");
 const LIVE_CACHE = resolve(REPO_ROOT, ".codex-tmp/live-functions-list.json");
 
 /*
@@ -207,24 +204,6 @@ function readBuiltExports() {
 }
 
 /** Второй codebase — plain JS, читаем exports.X текстом, сборки у него нет. */
-/** Codebase "max": собранный index (tsc), читаем реальные экспорты. */
-function readCodebaseExports(indexPath, label, buildHint) {
-  if (!existsSync(indexPath)) {
-    console.warn(
-      `[gate] нет сборки ${indexPath} — функции ${label} будут считаться непокрытыми.
-` +
-      `       Собрать: ${buildHint}`,
-    );
-    return [];
-  }
-  try {
-    return Object.keys(require(indexPath));
-  } catch (error) {
-    console.warn(`[gate] не читается ${indexPath}: ${error.message}`);
-    return [];
-  }
-}
-
 function readEnglishTestExports() {
   if (!existsSync(ENGLISH_TEST_INDEX)) return [];
   const source = readFileSync(ENGLISH_TEST_INDEX, "utf8");
@@ -291,12 +270,7 @@ function readLiveFunctions() {
 
 const builtNames = readBuiltExports();
 const englishTestNames = readEnglishTestExports();
-const contentNames = readCodebaseExports(
-  CONTENT_INDEX,
-  "content",
-  "npm --prefix functions-content run build",
-);
-const covered = new Set([...builtNames, ...englishTestNames, ...contentNames]);
+const covered = new Set([...builtNames, ...englishTestNames]);
 const live = readLiveFunctions();
 
 const allMissing = live.names.filter((name) => !covered.has(name));
@@ -334,7 +308,7 @@ console.log("\n=== Гейт «экспорты vs прод» ===");
 console.log(`Источник списка живых функций: ${live.source}`);
 console.log(`Живых функций в проде:          ${live.names.length}`);
 console.log(
-  `Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length} + content ${contentNames.length})`,
+  `Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length})`,
 );
 console.log(`Осознанно удалено (чаты):       ${intentional.length}`);
 console.log(

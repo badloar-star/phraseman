@@ -1,0 +1,89 @@
+[
+ {
+  "id": "lesson-15/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "uk: «називати назву» (тавтология) и «форма присвійного відмінка» — неверный термин (my/mine не падеж); ru/uk на «вы» при «ты».",
+  "fix": {
+   "ru": "Когда называешь владельца, сначала реши, назовёшь ли сам предмет. От этого зависит, какая притяжательная форма нужна: my coat или mine.",
+   "uk": "Коли називаєш власника, спершу виріши, чи називатимеш сам предмет. Від цього залежить, яка присвійна форма потрібна: my coat чи mine."
+  }
+ },
+ {
+  "id": "lesson-15/nuance",
+  "type": "T2",
+  "field": "localized.ru|uk.nuance (+chapters[2].body)",
+  "problem": "«Имя владельца обозначается по-разному» / «Іменований власник відрізняється» искажают en (названный владелец → 's); «пол объекта» неестественно (нужно «род предмета»).",
+  "fix": {
+   "ru": "В yours и hers нет апострофа. Если владелец назван словом, добавь 's: Anna's coat, my sister's coat. His или her выбирают по владельцу, а не по роду предмета.",
+   "uk": "У yours і hers немає апострофа. Якщо власника названо словом, додай 's: Anna's coat, my sister's coat. His чи her обирають за власником, а не за родом предмета."
+  }
+ },
+ {
+  "id": "lesson-15/chapters[5]",
+  "type": "T2",
+  "field": "localized.ru|uk|en.chapters[5].body + chapters[5].samples",
+  "problem": "Обрыв: «а затем, не повторяя его.» — без сказуемого; примеры 15.42, 15.45, 15.48 не про пальто (нужны 15.01, 15.02).",
+  "fix": {
+   "ru": "Два похожих пальто висят у двери. Сначала покажи своё, назвав предмет: This is my coat. Потом скажи то же без слова coat: This coat is mine.",
+   "uk": "Два схожі пальта висять біля дверей. Спершу покажи своє, назвавши предмет: This is my coat. Потім скажи те саме без слова coat: This coat is mine.",
+   "en": "Two similar coats are hanging by the door. First point out yours with the noun: This is my coat. Then say it without repeating the noun: This coat is mine.",
+   "samples": [
+    "15.01",
+    "15.02"
+   ]
+  }
+ },
+ {
+  "id": "lesson-15/chapters[6]",
+  "type": "T1",
+  "field": "chapters[6].samples + tokenWalk",
+  "problem": "«Добавьте имена и родственные связи», а разбирается 15.50 I think this umbrella is yours — ни имени, ни родства.",
+  "fix": {
+   "samples": [
+    "15.43"
+   ],
+   "tokenWalk": "15.43"
+  }
+ },
+ {
+  "id": "lesson-16/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "«Вы» («Рассматривайте», «Візьміть») при «ты» в story/choose; uk «Візьміть два слова як один вираз» — калька.",
+  "fix": {
+   "ru": "Короткое слово может изменить смысл глагола. Запоминай два слова как одно выражение: look after — это «присматривать», а не просто «смотреть».",
+   "uk": "Коротке слово може змінити значення дієслова. Запам'ятовуй два слова як один вираз: look after — це «доглядати», а не просто «дивитися»."
+  }
+ },
+ {
+  "id": "lesson-16/nuance",
+  "type": "T2",
+  "field": "localized.ru|uk.nuance (+chapters[2].body)",
+  "problem": "Калька «перед отсутствующим предметом» / «перед відсутнім предметом» (missing thing = то, что ищешь).",
+  "fix": {
+   "ru": "Не каждое сочетание разделяется. look after держи вместе перед человеком: I look after my nephew. look for — вместе перед тем, что ищешь: He looked for his wallet. Сам глагол по-прежнему меняется по времени и лицу.",
+   "uk": "Не кожне сполучення розділяється. look after тримай разом перед людиною: I look after my nephew. look for — разом перед тим, що шукаєш: He looked for his wallet. Саме дієслово й далі змінюється за часом та особою."
+  }
+ },
+ {
+  "id": "lesson-16/chapters[2]",
+  "type": "T1",
+  "field": "chapters[2].samples",
+  "problem": "Глава о неразделяемых look after / look for, а примеры 16.14, 16.16 — turn off (разделяемый).",
+  "fix": [
+   "16.31",
+   "16.34"
+  ]
+ },
+ {
+  "id": "lesson-16/chapters[5]",
+  "type": "T1",
+  "field": "chapters[5].samples",
+  "problem": "Текст про вентилятор (назвать, затем it), а примеры 16.42, 16.45, 16.48 не про него.",
+  "fix": [
+   "16.14",
+   "16.16"
+  ]
+ }
+]

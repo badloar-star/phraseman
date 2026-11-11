@@ -158,7 +158,8 @@ describe('dev account states', () => {
       expect(bodyOf(auth, fn, 300)).toMatch(/isDevAuthNone\(\)/);
     }
     expect(read('app/account_switch_unsaved_cards.ts')).toMatch(/isDevUnsavedCardsPrompt\(\)/);
-    expect(read('app/plus_transfer_hold.ts')).toMatch(/hasFreshStorePlusEvidenceFor\(currentStableId\) \|\| isDevPlusTransferNotice\(\)/);
+    expect(read('app/plus_transfer_hold.ts')).toMatch(/const show = false;/);
+    expect(read('app/plus_transfer_hold.ts')).not.toContain('isDevPlusTransferNotice');
   });
 
   // зачем (координатор 12.10, кадры settings-gap-024/025/026/031 и profile-028): ответ проверки имени и «выход выполняется» — фикстурой в памяти.

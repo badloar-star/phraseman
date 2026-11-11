@@ -1,0 +1,2947 @@
+[
+{
+"lemma": "else",
+"meaning": {
+"ru": "другое",
+"uk": "інше",
+"en": "else",
+"es": "otra cosa",
+"pt-BR": "outra coisa",
+"vi": "khác",
+"id": "lain",
+"tr": "başka",
+"pl": "gdzie indziej"
+},
+"firstLesson": 21,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:21.13",
+"target": "Do you need anything else?",
+"ru": "Вам что-нибудь еще нужно?",
+"uk": "Вам ще щось потрібно?"
+}
+],
+"other": {}
+},
+{
+"lemma": "anywhere",
+"meaning": {
+"ru": "где угодно",
+"uk": "будь-де",
+"en": "anywhere",
+"es": "en cualquier lugar",
+"pt-BR": "em qualquer lugar",
+"vi": "bất cứ đâu",
+"id": "di mana saja",
+"tr": "herhangi bir yerde",
+"pl": "gdziekolwiek"
+},
+"firstLesson": 21,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:21.17",
+"target": "Is there anywhere to park?",
+"ru": "Есть ли где-нибудь припарковаться?",
+"uk": "Чи є де припаркуватися?"
+},
+{
+"id": "en-classic-r1:21.18",
+"target": "Did you go anywhere yesterday?",
+"ru": "Вы куда-нибудь ходили вчера?",
+"uk": "Ви кудись ходили вчора?"
+},
+{
+"id": "en-classic-r1:21.43",
+"target": "We did not go anywhere on Sunday.",
+"ru": "Мы никуда не ходили в воскресенье.",
+"uk": "Ми нікуди не ходили в неділю."
+}
+],
+"other": {}
+},
+{
+"lemma": "nobody",
+"meaning": {
+"ru": "ни одного человека",
+"uk": "жодної людини",
+"en": "not a single person",
+"es": "ni una sola persona",
+"pt-BR": "nenhuma pessoa",
+"vi": "không phải một người nào cả",
+"id": "tidak seorang pun",
+"tr": "tek bir kişi bile değil",
+"pl": "ani jednej osoby"
+},
+"firstLesson": 21,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:21.21",
+"target": "Nobody answered the phone.",
+"ru": "Никто не ответил на телефон.",
+"uk": "Ніхто не відповів на дзвінок."
+},
+{
+"id": "en-classic-r1:21.24",
+"target": "Nobody signed the form.",
+"ru": "Никто не подписал форму.",
+"uk": "Ніхто не підписав форму."
+},
+{
+"id": "en-classic-r1:21.26",
+"target": "I know nobody in this town.",
+"ru": "Я никого не знаю в этом городе.",
+"uk": "Я нікого не знаю в цьому місті."
+}
+],
+"other": {}
+},
+{
+"lemma": "nothing",
+"meaning": {
+"ru": "ничего",
+"uk": "нічого",
+"en": "nothing",
+"es": "nada",
+"pt-BR": "nada",
+"vi": "không có gì",
+"id": "tidak ada",
+"tr": "hiçbir şey",
+"pl": "nic"
+},
+"firstLesson": 21,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:21.22",
+"target": "Nothing is open yet.",
+"ru": "Пока ничего не открыто.",
+"uk": "Ще нічого не відчинено."
+},
+{
+"id": "en-classic-r1:21.25",
+"target": "Nothing happened after lunch.",
+"ru": "После обеда ничего не произошло.",
+"uk": "Нічого не сталося після обіду."
+},
+{
+"id": "en-classic-r1:21.27",
+"target": "We have nothing to declare.",
+"ru": "Нам нечего декларировать.",
+"uk": "Нам нема чого декларувати."
+}
+],
+"other": {}
+},
+{
+"lemma": "nowhere",
+"meaning": {
+"ru": "нигде",
+"uk": "ніде",
+"en": "nowhere",
+"es": "en ninguna parte",
+"pt-BR": "lugar nenhum",
+"vi": "không nơi nào",
+"id": "tidak di mana pun",
+"tr": "hiçbir yerde",
+"pl": "nigdzie"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:21.23",
+"target": "There is nowhere to sit.",
+"ru": "Сидеть негде.",
+"uk": "Немає де сісти."
+},
+{
+"id": "en-classic-r1:21.30",
+"target": "The key was nowhere to be found.",
+"ru": "Ключа нигде не было.",
+"uk": "Ключа ніде не було."
+}
+],
+"other": {}
+},
+{
+"lemma": "happened",
+"meaning": {
+"ru": "произошло",
+"uk": "сталося",
+"en": "took place",
+"es": "pasó",
+"pt-BR": "aconteceu",
+"vi": "đã xảy ra",
+"id": "terjadi",
+"tr": "oldu"
+},
+"firstLesson": 21,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:21.25",
+"target": "Nothing happened after lunch.",
+"ru": "После обеда ничего не произошло.",
+"uk": "Нічого не сталося після обіду."
+}
+],
+"other": {}
+},
+{
+"lemma": "town",
+"meaning": {
+"ru": "город",
+"uk": "місто",
+"en": "town",
+"es": "pueblo",
+"pt-BR": "cidade",
+"vi": "thị trấn",
+"id": "kota",
+"tr": "kasaba",
+"pl": "miasto"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:21.26",
+"target": "I know nobody in this town.",
+"ru": "Я никого не знаю в этом городе.",
+"uk": "Я нікого не знаю в цьому місті."
+},
+{
+"id": "en-classic-r1:32.13",
+"target": "Have you ever stayed in this part of town?",
+"ru": "Вы когда-нибудь останавливались в этой части города?",
+"uk": "Ви коли-небудь зупинялися в цій частині міста?"
+}
+],
+"other": {}
+},
+{
+"lemma": "declare",
+"meaning": {
+"ru": "объявить",
+"uk": "заявити",
+"en": "declare",
+"es": "declarar",
+"pt-BR": "declarar",
+"vi": "tuyên bố",
+"id": "menyatakan",
+"tr": "ilan etmek",
+"pl": "zadeklarować"
+},
+"firstLesson": 21,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:21.27",
+"target": "We have nothing to declare.",
+"ru": "Нам нечего декларировать.",
+"uk": "Нам нема чого декларувати."
+}
+],
+"other": {}
+},
+{
+"lemma": "everybody",
+"meaning": {
+"ru": "все",
+"uk": "всі",
+"en": "everybody",
+"es": "todos",
+"pt-BR": "todos",
+"vi": "mọi người",
+"id": "semua orang",
+"tr": "herkes",
+"pl": "wszyscy"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:21.31",
+"target": "Everybody needs a ticket.",
+"ru": "Всем нужен билет.",
+"uk": "Усім потрібен квиток."
+},
+{
+"id": "en-classic-r1:21.35",
+"target": "Everybody heard the bell.",
+"ru": "Все услышали звонок.",
+"uk": "Усі чули дзвінок."
+}
+],
+"other": {}
+},
+{
+"lemma": "everyone",
+"meaning": {
+"ru": "все",
+"uk": "всі",
+"en": "everyone",
+"es": "todos",
+"pt-BR": "todos",
+"vi": "tất cả mọi người",
+"id": "semua orang",
+"tr": "herkes",
+"pl": "wszyscy"
+},
+"firstLesson": 21,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:21.33",
+"target": "Everyone has a seat.",
+"ru": "У каждого есть место.",
+"uk": "У кожного є місце."
+},
+{
+"id": "en-classic-r1:21.38",
+"target": "Everyone has a ticket for the rehearsal.",
+"ru": "У всех есть билет на репетицию.",
+"uk": "У кожного є квиток на репетицію."
+},
+{
+"id": "en-classic-r1:21.40",
+"target": "I thanked everyone at the desk.",
+"ru": "Я поблагодарил всех за стойкой.",
+"uk": "Я подякував усім за стійкою."
+}
+],
+"other": {}
+},
+{
+"lemma": "everywhere",
+"meaning": {
+"ru": "везде",
+"uk": "у кожному місці",
+"en": "in every place",
+"es": "en todas partes",
+"pt-BR": "em todos os lugares",
+"vi": "ở mọi nơi",
+"id": "di setiap tempat",
+"tr": "her yerde",
+"pl": "w każdym miejscu"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:21.37",
+"target": "We looked everywhere for the receipt.",
+"ru": "Мы везде искали квитанцию.",
+"uk": "Ми всюди шукали квитанцію."
+},
+{
+"id": "en-classic-r1:24.16",
+"target": "I have already looked everywhere for my pass.",
+"ru": "Я уже везде искал свой пропуск.",
+"uk": "Я вже всюди шукав свою перепустку."
+}
+],
+"other": {}
+},
+{
+"lemma": "thank",
+"meaning": {
+"ru": "спасибо",
+"uk": "подякувати",
+"en": "thank",
+"es": "gracias",
+"pt-BR": "agradecer",
+"vi": "cảm ơn",
+"id": "terima kasih",
+"tr": "teşekkür etmek",
+"pl": "podziękować"
+},
+"firstLesson": 21,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:21.40",
+"target": "I thanked everyone at the desk.",
+"ru": "Я поблагодарил всех за стойкой.",
+"uk": "Я подякував усім за стійкою."
+},
+{
+"id": "en-classic-r1:22.21",
+"target": "Thank you for helping me.",
+"ru": "Спасибо за помощь.",
+"uk": "Дякую за допомогу."
+},
+{
+"id": "en-classic-r1:22.40",
+"target": "She thanked me for lending her a pen.",
+"ru": "Она поблагодарила меня за то, что я одолжил ей ручку.",
+"uk": "Вона подякувала мені за те, що я позичив їй ручку."
+}
+],
+"other": {}
+},
+{
+"lemma": "except",
+"meaning": {
+"ru": "кроме",
+"uk": "крім",
+"en": "except",
+"es": "excepto",
+"pt-BR": "exceto",
+"vi": "ngoại trừ",
+"id": "kecuali",
+"tr": "hariç",
+"pl": "z wyjątkiem"
+},
+"firstLesson": 21,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:21.47",
+"target": "Everyone is here except Tom.",
+"ru": "Все здесь, кроме Тома.",
+"uk": "Усі тут, крім Тома."
+}
+],
+"other": {}
+},
+{
+"lemma": "relax",
+"meaning": {
+"ru": "расслабиться",
+"uk": "розслабитися",
+"en": "relax",
+"es": "relajarse",
+"pt-BR": "relaxar",
+"vi": "thư giãn",
+"id": "santai",
+"tr": "rahatlamak",
+"pl": "zrelaksować się"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.01",
+"target": "Swimming helps me relax.",
+"ru": "Плавание помогает мне расслабиться.",
+"uk": "Плавання допомагає мені розслабитися."
+}
+],
+"other": {}
+},
+{
+"lemma": "money",
+"meaning": {
+"ru": "деньги",
+"uk": "гроші",
+"en": "money",
+"es": "dinero",
+"pt-BR": "dinheiro",
+"vi": "tiền",
+"id": "uang",
+"tr": "para",
+"pl": "pieniądze"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.02",
+"target": "Walking saves money.",
+"ru": "Ходьба экономит деньги.",
+"uk": "Ходьба економить гроші."
+},
+{
+"id": "en-classic-r1:22.34",
+"target": "We saved money by taking the bus.",
+"ru": "Мы сэкономили деньги, поехав на автобусе.",
+"uk": "Ми заощадили гроші, поїхавши автобусом."
+}
+],
+"other": {}
+},
+{
+"lemma": "practice",
+"meaning": {
+"ru": "практика",
+"uk": "практика",
+"en": "practice",
+"es": "práctica",
+"pt-BR": "praticar",
+"vi": "luyện tập",
+"id": "berlatih",
+"tr": "pratik yapmak",
+"pl": "ćwiczyć"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.03",
+"target": "Cooking takes practice.",
+"ru": "Готовка требует практики.",
+"uk": "Приготування їжі вимагає практики."
+}
+],
+"other": {}
+},
+{
+"lemma": "dizzy",
+"meaning": {
+"ru": "головокружение",
+"uk": "запаморочення",
+"en": "dizzy",
+"es": "mareado",
+"pt-BR": "tonto",
+"vi": "chóng mặt",
+"id": "pusing",
+"tr": "baş dönmesi",
+"pl": "zawroty głowy"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.04",
+"target": "Reading on the bus makes me dizzy.",
+"ru": "Чтение в автобусе вызывает у меня головокружение.",
+"uk": "Читання в автобусі викликає у мене запаморочення."
+}
+],
+"other": {}
+},
+{
+"lemma": "fog",
+"meaning": {
+"ru": "туман",
+"uk": "туман",
+"en": "fog",
+"es": "niebla",
+"pt-BR": "neblina",
+"vi": "sương mù",
+"id": "kabut",
+"tr": "sis",
+"pl": "mgła"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.05",
+"target": "Driving in fog is difficult.",
+"ru": "Ездить в тумане сложно.",
+"uk": "Керувати автомобілем у тумані важко."
+},
+{
+"id": "en-classic-r1:23.17",
+"target": "The flight was delayed because of fog.",
+"ru": "Рейс задержали из-за тумана.",
+"uk": "Рейс затримали через туман."
+}
+],
+"other": {}
+},
+{
+"lemma": "difficult",
+"meaning": {
+"ru": "трудно",
+"uk": "важко",
+"en": "difficult",
+"es": "difícil",
+"pt-BR": "difícil",
+"vi": "khó khăn",
+"id": "sulit",
+"tr": "zor",
+"pl": "trudne"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.05",
+"target": "Driving in fog is difficult.",
+"ru": "Ездить в тумане сложно.",
+"uk": "Керувати автомобілем у тумані важко."
+}
+],
+"other": {}
+},
+{
+"lemma": "fun",
+"meaning": {
+"ru": "веселье",
+"uk": "веселощі",
+"en": "fun",
+"es": "diversión",
+"pt-BR": "diversão",
+"vi": "vui vẻ",
+"id": "menyenangkan",
+"tr": "eğlence",
+"pl": "zabawa"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.06",
+"target": "Waiting outside is not much fun.",
+"ru": "Ожидание на улице не доставляет удовольствия.",
+"uk": "Чекати надворі не дуже весело."
+}
+],
+"other": {}
+},
+{
+"lemma": "suit",
+"meaning": {
+"ru": "подходить",
+"uk": "підходити",
+"en": "to suit",
+"es": "convenir",
+"pt-BR": "ser adequado",
+"vi": "phù hợp",
+"id": "cocok",
+"tr": "uygun olmak",
+"pl": "pasować"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.10",
+"target": "Working nights suits my brother.",
+"ru": "Работа в ночную смену подходит моему брату.",
+"uk": "Робота вночі підходить моєму братові."
+}
+],
+"other": {}
+},
+{
+"lemma": "enjoy",
+"meaning": {
+"ru": "наслаждаться",
+"uk": "насолоджуватися",
+"en": "to enjoy",
+"es": "disfrutar",
+"pt-BR": "desfrutar",
+"vi": "để thưởng thức",
+"id": "untuk dinikmati",
+"tr": "keyif almak için",
+"pl": "delektować się"
+},
+"firstLesson": 22,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:22.11",
+"target": "I enjoy cooking for friends.",
+"ru": "Мне нравится готовить для друзей.",
+"uk": "Мені подобається готувати для друзів."
+},
+{
+"id": "en-classic-r1:22.12",
+"target": "She enjoys walking by the river.",
+"ru": "Ей нравится гулять вдоль реки.",
+"uk": "Їй подобається гуляти біля річки."
+},
+{
+"id": "en-classic-r1:28.49",
+"target": "I enjoyed myself at the concert.",
+"ru": "Мне понравилось на концерте.",
+"uk": "Мені сподобалося на концерті."
+}
+],
+"other": {}
+},
+{
+"lemma": "river",
+"meaning": {
+"ru": "река",
+"uk": "річка",
+"en": "river",
+"es": "río",
+"pt-BR": "rio",
+"vi": "dòng sông",
+"id": "sungai",
+"tr": "nehir",
+"pl": "rzeka"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.12",
+"target": "She enjoys walking by the river.",
+"ru": "Ей нравится гулять вдоль реки.",
+"uk": "Їй подобається гуляти біля річки."
+}
+],
+"other": {}
+},
+{
+"lemma": "avoid",
+"meaning": {
+"ru": "избегать",
+"uk": "уникати",
+"en": "to avoid",
+"es": "evitar",
+"pt-BR": "evitar",
+"vi": "để tránh",
+"id": "untuk dihindari",
+"tr": "kaçınmak için",
+"pl": "unikać"
+},
+"firstLesson": 22,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:22.13",
+"target": "He avoids driving at night.",
+"ru": "Он избегает вождения ночью.",
+"uk": "Він уникає їздити за кермом вночі."
+},
+{
+"id": "en-classic-r1:22.47",
+"target": "They avoided waking the baby.",
+"ru": "Они постарались не разбудить ребёнка.",
+"uk": "Вони постаралися не розбудити дитину."
+},
+{
+"id": "en-classic-r1:32.40",
+"target": "We can avoid the queue at the cinema by booking online.",
+"ru": "Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн.",
+"uk": "Ми можемо уникнути черги в кіно, забронювавши квиток онлайн."
+}
+],
+"other": {}
+},
+{
+"lemma": "talking",
+"meaning": {
+"ru": "разговаривая",
+"uk": "розмовляючи",
+"en": "speaking together",
+"es": "hablando",
+"pt-BR": "conversando",
+"vi": "nói chuyện",
+"id": "berbicara",
+"tr": "konuşmak"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.15",
+"target": "They stopped talking at the door.",
+"ru": "Они перестали разговаривать у двери.",
+"uk": "Вони перестали розмовляти біля дверей."
+},
+{
+"id": "en-classic-r1:25.43",
+"target": "We were talking when the doors opened.",
+"ru": "Мы разговаривали, когда открылись двери.",
+"uk": "Ми розмовляли, коли двері відчинилися."
+}
+],
+"other": {}
+},
+{
+"lemma": "mind",
+"meaning": {
+"ru": "к разуму или объекту",
+"uk": "думати чи об'єкт",
+"en": "to mind or object",
+"es": "pensar u objeto",
+"pt-BR": "para a mente ou objeto",
+"vi": "nghĩ về vật thể",
+"id": "keberatan atau keberatan",
+"tr": "aklına veya nesnesine",
+"pl": "do umysłu lub przedmiotu"
+},
+"firstLesson": 22,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:22.18",
+"target": "Do you mind waiting here?",
+"ru": "Не могли бы вы подождать здесь?",
+"uk": "Ви не проти почекати тут?"
+},
+{
+"id": "en-classic-r1:22.41",
+"target": "Do you mind closing the door?",
+"ru": "Не могли бы вы закрыть дверь?",
+"uk": "Ви не проти зачинити двері?"
+},
+{
+"id": "en-classic-r1:31.40",
+"target": "What made you change your mind?",
+"ru": "Что заставило вас передумать?",
+"uk": "Що змусило вас передумати?"
+}
+],
+"other": {}
+},
+{
+"lemma": "suggested",
+"meaning": {
+"ru": "предложил",
+"uk": "запропонував",
+"en": "proposed an idea",
+"es": "sugirió",
+"pt-BR": "sugeriu",
+"vi": "đã gợi ý",
+"id": "menyarankan",
+"tr": "önerdi"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.19",
+"target": "He suggested sharing a taxi.",
+"ru": "Он предложил разделить такси.",
+"uk": "Він запропонував поїхати разом на таксі."
+}
+],
+"other": {}
+},
+{
+"lemma": "practise",
+"meaning": {
+"ru": "практика",
+"uk": "практика",
+"en": "practise",
+"es": "práctica",
+"pt-BR": "prática",
+"vi": "luyện tập",
+"id": "berlatih",
+"tr": "pratik yapmak",
+"pl": "praktyka"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.20",
+"target": "We practise speaking after class.",
+"ru": "Мы практикуем разговорную речь после занятий.",
+"uk": "Ми практикуємо розмову після заняття."
+}
+],
+"other": {}
+},
+{
+"lemma": "tired",
+"meaning": {
+"ru": "усталый",
+"uk": "втомлений",
+"en": "tired",
+"es": "cansado",
+"pt-BR": "cansado",
+"vi": "mệt mỏi",
+"id": "lelah",
+"tr": "yorgun",
+"pl": "zmęczony"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.23",
+"target": "I am tired of carrying this bag.",
+"ru": "Я устал носить эту сумку.",
+"uk": "Я втомився носити цю сумку."
+},
+{
+"id": "en-classic-r1:27.01",
+"target": "Anna said she was tired.",
+"ru": "Анна сказала, что устала.",
+"uk": "Анна сказала, що втомилася."
+}
+],
+"other": {}
+},
+{
+"lemma": "interested",
+"meaning": {
+"ru": "заинтересованный",
+"uk": "зацікавлений",
+"en": "interested",
+"es": "interesado",
+"pt-BR": "interessado",
+"vi": "quan tâm",
+"id": "tertarik",
+"tr": "ilgili",
+"pl": "zainteresowany"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.24",
+"target": "He is interested in learning English.",
+"ru": "Он заинтересован в изучении английского языка.",
+"uk": "Він зацікавлений у вивченні англійської мови."
+}
+],
+"other": {}
+},
+{
+"lemma": "talked",
+"meaning": {
+"ru": "говорил",
+"uk": "говорив",
+"en": "spoke",
+"es": "habló",
+"pt-BR": "falou",
+"vi": "đã nói",
+"id": "berbicara",
+"tr": "konuştu"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.25",
+"target": "We talked about moving house.",
+"ru": "Мы говорили о переезде.",
+"uk": "Ми говорили про переїзд."
+}
+],
+"other": {}
+},
+{
+"lemma": "house",
+"meaning": {
+"ru": "дом",
+"uk": "будинок",
+"en": "house",
+"es": "casa",
+"pt-BR": "casa",
+"vi": "ngôi nhà",
+"id": "rumah",
+"tr": "ev",
+"pl": "dom"
+},
+"firstLesson": 22,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:22.25",
+"target": "We talked about moving house.",
+"ru": "Мы говорили о переезде.",
+"uk": "Ми говорили про переїзд."
+},
+{
+"id": "en-classic-r1:24.27",
+"target": "We have moved house twice.",
+"ru": "Мы дважды переезжали.",
+"uk": "Ми двічі переїжджали."
+},
+{
+"id": "en-classic-r1:31.45",
+"target": "I expected the house to be empty before six.",
+"ru": "Я ожидал, что дом опустеет до шести.",
+"uk": "Я очікував, що будинок буде порожнім до шостої."
+}
+],
+"other": {}
+},
+{
+"lemma": "goodbye",
+"meaning": {
+"ru": "до свидания",
+"uk": "прощання",
+"en": "goodbye",
+"es": "adiós",
+"pt-BR": "adeus",
+"vi": "tạm biệt",
+"id": "selamat tinggal",
+"tr": "güle güle",
+"pl": "do widzenia"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.26",
+"target": "She left without saying goodbye.",
+"ru": "Она ушла, не попрощавшись.",
+"uk": "Вона пішла, не попрощавшись."
+}
+],
+"other": {}
+},
+{
+"lemma": "forward",
+"meaning": {
+"ru": "вперед",
+"uk": "вперед",
+"en": "forward",
+"es": "adelante",
+"pt-BR": "para frente",
+"vi": "tiến lên",
+"id": "maju",
+"tr": "ileri",
+"pl": "do przodu"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.31",
+"target": "I look forward to meeting you.",
+"ru": "Я с нетерпением жду встречи с вами.",
+"uk": "З нетерпінням чекаю зустрічі з вами."
+},
+{
+"id": "en-classic-r1:23.50",
+"target": "The message has been forwarded to reception.",
+"ru": "Сообщение перенаправлено на ресепшен.",
+"uk": "Повідомлення переслано на рецепцію."
+}
+],
+"other": {}
+},
+{
+"lemma": "afraid",
+"meaning": {
+"ru": "боялся",
+"uk": "боятися",
+"en": "afraid",
+"es": "asustado",
+"pt-BR": "com medo",
+"vi": "sợ hãi",
+"id": "takut",
+"tr": "korkmuş",
+"pl": "przestraszony"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.32",
+"target": "She is afraid of waking the baby.",
+"ru": "Она боится разбудить ребенка.",
+"uk": "Вона боїться розбудити дитину."
+}
+],
+"other": {}
+},
+{
+"lemma": "apologised",
+"meaning": {
+"ru": "извинился",
+"uk": "вибачився",
+"en": "said sorry",
+"es": "se disculpó",
+"pt-BR": "pediu desculpas",
+"vi": "xin lỗi",
+"id": "meminta maaf",
+"tr": "özür diledi"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.33",
+"target": "He apologised for arriving late.",
+"ru": "Он извинился за опоздание.",
+"uk": "Він вибачився за те, що прийшов пізно."
+}
+],
+"other": {}
+},
+{
+"lemma": "insisted",
+"meaning": {
+"ru": "настоял",
+"uk": "наполягав",
+"en": "said firmly that something must happen",
+"es": "insistió",
+"pt-BR": "insistiu",
+"vi": "khăng khăng",
+"id": "bersikeras",
+"tr": "ısrar etti"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.35",
+"target": "She insisted on paying her share.",
+"ru": "Она настояла на том, чтобы заплатить свою долю.",
+"uk": "Вона наполягала на тому, щоб заплатити свою частку."
+}
+],
+"other": {}
+},
+{
+"lemma": "job",
+"meaning": {
+"ru": "работа",
+"uk": "робота",
+"en": "job",
+"es": "trabajo",
+"pt-BR": "emprego",
+"vi": "công việc",
+"id": "pekerjaan",
+"tr": "iş",
+"pl": "praca"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.37",
+"target": "He is thinking about changing jobs.",
+"ru": "Он подумывает о смене работы.",
+"uk": "Він думає про зміну роботи."
+},
+{
+"id": "en-classic-r1:26.44",
+"target": "I would take the job if the hours were better.",
+"ru": "Я бы согласился на эту работу, если бы график был лучше.",
+"uk": "Я б погодився на роботу, якби графік був кращим."
+}
+],
+"other": {}
+},
+{
+"lemma": "complain",
+"meaning": {
+"ru": "жаловаться",
+"uk": "скаржитися",
+"en": "complain",
+"es": "quejarse",
+"pt-BR": "reclamar",
+"vi": "phàn nàn",
+"id": "mengeluh",
+"tr": "şikayet etmek",
+"pl": "narzekał"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.38",
+"target": "They complained about waiting in the rain.",
+"ru": "Они жаловались на ожидание под дождем.",
+"uk": "Вони скаржилися на очікування під дощем."
+}
+],
+"other": {}
+},
+{
+"lemma": "lend",
+"meaning": {
+"ru": "одолжить",
+"uk": "позичати",
+"en": "to lend",
+"es": "prestar",
+"pt-BR": "emprestar",
+"vi": "để cho mượn",
+"id": "untuk meminjamkan",
+"tr": "ödünç vermek",
+"pl": "pożyczać"
+},
+"firstLesson": 22,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:22.40",
+"target": "She thanked me for lending her a pen.",
+"ru": "Она поблагодарила меня за то, что я одолжил ей ручку.",
+"uk": "Вона подякувала мені за те, що я позичив їй ручку."
+},
+{
+"id": "en-classic-r1:30.44",
+"target": "The phone you lent me is more reliable than mine.",
+"ru": "Телефон, который вы мне одолжили, надежнее моего.",
+"uk": "Телефон, який ви мені позичили, надійніший за мій."
+},
+{
+"id": "en-classic-r1:31.28",
+"target": "We saw Anna lend the driver a pen.",
+"ru": "Мы видели, как Анна одолжила водителю ручку.",
+"uk": "Ми бачили, як Анна позичила водієві ручку."
+}
+],
+"other": {}
+},
+{
+"lemma": "considered",
+"meaning": {
+"ru": "рассмотрел",
+"uk": "розглянув",
+"en": "thought about as a possibility",
+"es": "consideró",
+"pt-BR": "considerou",
+"vi": "đã cân nhắc",
+"id": "mempertimbangkan",
+"tr": "düşündü"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.42",
+"target": "We considered booking a later flight.",
+"ru": "Мы подумывали забронировать более поздний рейс.",
+"uk": "Ми розглядали можливість забронювати пізніший рейс."
+}
+],
+"other": {}
+},
+{
+"lemma": "imagine",
+"meaning": {
+"ru": "представлять",
+"uk": "уявляти",
+"en": "imagine",
+"es": "imaginar",
+"pt-BR": "imaginar",
+"vi": "tưởng tượng",
+"id": "membayangkan",
+"tr": "hayal etmek",
+"pl": "wyobraź sobie"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.43",
+"target": "I cannot imagine living without a kitchen.",
+"ru": "Я не могу представить себе жизнь без кухни.",
+"uk": "Я не можу уявити життя без кухні."
+}
+],
+"other": {}
+},
+{
+"lemma": "admit",
+"meaning": {
+"ru": "признавать",
+"uk": "визнавати",
+"en": "admit",
+"es": "admitir",
+"pt-BR": "admitir",
+"vi": "thừa nhận",
+"id": "mengakui",
+"tr": "itiraf etmek",
+"pl": "przyznaj się"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.44",
+"target": "She admitted taking the wrong bag.",
+"ru": "Она призналась, что взяла не ту сумку.",
+"uk": "Вона зізналася, що взяла не ту сумку."
+}
+],
+"other": {}
+},
+{
+"lemma": "aloud",
+"meaning": {
+"ru": "громко",
+"uk": "вголос",
+"en": "out loud",
+"es": "en voz alta",
+"pt-BR": "em voz alta",
+"vi": "nói to",
+"id": "dengan keras",
+"tr": "yüksek sesle",
+"pl": "na głos"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.48",
+"target": "Try reading the number aloud.",
+"ru": "Попробуйте прочитать число вслух.",
+"uk": "Спробуйте прочитати номер вголос."
+},
+{
+"id": "en-classic-r1:31.19",
+"target": "They heard me read the address aloud.",
+"ru": "Они слышали, как я читал адрес вслух.",
+"uk": "Вони чули, як я прочитав адресу вголос."
+}
+],
+"other": {}
+},
+{
+"lemma": "remember",
+"meaning": {
+"ru": "помнить",
+"uk": "пам'ятати",
+"en": "remember",
+"es": "recordar",
+"pt-BR": "lembrar",
+"vi": "nhớ",
+"id": "ingat",
+"tr": "hatırlamak",
+"pl": "pamiętaj"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:22.49",
+"target": "I remember locking the front door.",
+"ru": "Я помню, как запер входную дверь.",
+"uk": "Я пам'ятаю, як замкнув вхідні двері."
+},
+{
+"id": "en-classic-r1:30.26",
+"target": "I remember the day when the power went off.",
+"ru": "Я помню день, когда отключили электричество.",
+"uk": "Я пам'ятаю день, коли відключили електрику."
+}
+],
+"other": {}
+},
+{
+"lemma": "then",
+"meaning": {
+"ru": "затем",
+"uk": "тоді",
+"en": "then",
+"es": "entonces",
+"pt-BR": "então",
+"vi": "sau đó",
+"id": "lalu",
+"tr": "sonra",
+"pl": "wtedy"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:22.50",
+"target": "We stopped to buy water, then carried on walking.",
+"ru": "Мы остановились, чтобы купить воды, а затем продолжили идти.",
+"uk": "Ми зупинилися, щоб купити води, а потім продовжили йти."
+}
+],
+"other": {}
+},
+{
+"lemma": "daily",
+"meaning": {
+"ru": "ежедневно",
+"uk": "щодня",
+"en": "daily",
+"es": "diariamente",
+"pt-BR": "diariamente",
+"vi": "hàng ngày",
+"id": "setiap hari",
+"tr": "günlük",
+"pl": "codziennie"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.02",
+"target": "The rooms are cleaned daily.",
+"ru": "Комнаты убираются ежедневно.",
+"uk": "Кімнати прибираються щодня."
+}
+],
+"other": {}
+},
+{
+"lemma": "deliver",
+"meaning": {
+"ru": "доставка",
+"uk": "доставка",
+"en": "deliver",
+"es": "entregar",
+"pt-BR": "entregar",
+"vi": "giao hàng",
+"id": "mengirimkan",
+"tr": "teslim etmek",
+"pl": "dostarczono"
+},
+"firstLesson": 23,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:23.05",
+"target": "The milk is delivered in the morning.",
+"ru": "Молоко доставляют утром.",
+"uk": "Молоко доставляють вранці."
+},
+{
+"id": "en-classic-r1:23.15",
+"target": "My parcel was delivered next door.",
+"ru": "Мою посылку доставили в соседний дом.",
+"uk": "Мою посилку доставили по сусідству."
+},
+{
+"id": "en-classic-r1:23.33",
+"target": "My order was not delivered.",
+"ru": "Мой заказ не был доставлен.",
+"uk": "Моє замовлення не було доставлено."
+}
+],
+"other": {}
+},
+{
+"lemma": "shown",
+"meaning": {
+"ru": "показан",
+"uk": "показаний",
+"en": "displayed or presented",
+"es": "mostrado",
+"pt-BR": "mostrado",
+"vi": "được hiển thị",
+"id": "ditampilkan",
+"tr": "gösterilen"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:23.08",
+"target": "The price is shown on the screen.",
+"ru": "Цена отображается на экране.",
+"uk": "Ціна відображається на екрані."
+},
+{
+"id": "en-classic-r1:30.45",
+"target": "The room we were shown had a leak in the ceiling.",
+"ru": "В комнате, которую нам показали, была протечка в потолке.",
+"uk": "У кімнаті, яку нам показали, була протічка в стелі."
+}
+],
+"other": {}
+},
+{
+"lemma": "site",
+"meaning": {
+"ru": "участок или помещение",
+"uk": "ділянка або приміщення",
+"en": "a site or premises",
+"es": "un sitio o local",
+"pt-BR": "um local ou instalações",
+"vi": "một địa điểm hoặc cơ sở",
+"id": "lokasi atau tempat",
+"tr": "bir yer veya tesis",
+"pl": "miejsce lub lokal"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.09",
+"target": "The uniforms are washed on site.",
+"ru": "Униформу стирают на месте.",
+"uk": "Уніформу перуть на місці."
+}
+],
+"other": {}
+},
+{
+"lemma": "reserve",
+"meaning": {
+"ru": "резерв",
+"uk": "резерв",
+"en": "reserve",
+"es": "reservar",
+"pt-BR": "reservar",
+"vi": "đặt trước",
+"id": "memesan",
+"tr": "rezerv",
+"pl": "zarezerwowano"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.12",
+"target": "The seats by the aisle were reserved for us.",
+"ru": "Для нас были зарезервированы места у прохода.",
+"uk": "Місця біля проходу були зарезервовані для нас."
+}
+],
+"other": {}
+},
+{
+"lemma": "repair",
+"meaning": {
+"ru": "отремонтировать",
+"uk": "відремонтувати",
+"en": "to repair",
+"es": "reparar",
+"pt-BR": "reparar",
+"vi": "sửa chữa",
+"id": "untuk memperbaiki",
+"tr": "onarmak",
+"pl": "naprawa"
+},
+"firstLesson": 23,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:23.13",
+"target": "The door was repaired on Friday.",
+"ru": "Дверь была отремонтирована в пятницу.",
+"uk": "Двері було відремонтовано в п'ятницю."
+},
+{
+"id": "en-classic-r1:23.48",
+"target": "The lift is being repaired this week.",
+"ru": "Лифт ремонтируется на этой неделе.",
+"uk": "Ліфт ремонтують цього тижня."
+},
+{
+"id": "en-classic-r1:27.39",
+"target": "I asked how much the repair would cost.",
+"ru": "Я спросил, сколько будет стоить ремонт.",
+"uk": "Я запитав, скільки коштуватиме ремонт."
+}
+],
+"other": {}
+},
+{
+"lemma": "delay",
+"meaning": {
+"ru": "задержать",
+"uk": "затримати",
+"en": "to delay",
+"es": "retrasar",
+"pt-BR": "atrasar",
+"vi": "trì hoãn",
+"id": "untuk menunda",
+"tr": "geciktirmek",
+"pl": "opóźnienie"
+},
+"firstLesson": 23,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:23.17",
+"target": "The flight was delayed because of fog.",
+"ru": "Рейс задержали из-за тумана.",
+"uk": "Рейс затримали через туман."
+},
+{
+"id": "en-classic-r1:23.29",
+"target": "Why was the flight delayed?",
+"ru": "Почему рейс был задержан?",
+"uk": "Чому рейс затримали?"
+},
+{
+"id": "en-classic-r1:31.38",
+"target": "The delay made us miss the train.",
+"ru": "Из-за задержки мы опоздали на поезд.",
+"uk": "Через затримку ми пропустили поїзд."
+}
+],
+"other": {}
+},
+{
+"lemma": "bins",
+"meaning": {
+"ru": "мусорные баки",
+"uk": "смітники",
+"en": "containers for rubbish",
+"es": "contenedores",
+"pt-BR": "lixeiras",
+"vi": "thùng rác",
+"id": "tempat sampah",
+"tr": "çöp kutuları"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.27",
+"target": "When are the bins collected?",
+"ru": "Когда вывозят мусор?",
+"uk": "Коли збирають сміттєві баки?"
+}
+],
+"other": {}
+},
+{
+"lemma": "deposit",
+"meaning": {
+"ru": "предоплата",
+"uk": "депозит сплачено авансом",
+"en": "deposit paid in advance",
+"es": "depósito pagado por adelantado",
+"pt-BR": "depósito pago antecipadamente",
+"vi": "tiền đặt cọc trả trước",
+"id": "deposit dibayar di muka",
+"tr": "önceden ödenen depozito",
+"pl": "zaliczka wpłacona z góry"
+},
+"firstLesson": 23,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:23.28",
+"target": "How is the deposit returned?",
+"ru": "Как возвращается залог?",
+"uk": "Як повертається застава?"
+},
+{
+"id": "en-classic-r1:27.46",
+"target": "He said he had already paid the deposit.",
+"ru": "Он сказал, что уже внес залог.",
+"uk": "Він сказав, що вже сплатив завдаток."
+},
+{
+"id": "en-classic-r1:32.17",
+"target": "Was the deposit included in the total?",
+"ru": "Был ли депозит включен в общую сумму?",
+"uk": "Чи був депозит включений у загальну суму?"
+}
+],
+"other": {}
+},
+{
+"lemma": "garage",
+"meaning": {
+"ru": "гараж",
+"uk": "гараж",
+"en": "garage",
+"es": "garaje",
+"pt-BR": "garagem",
+"vi": "nhà để xe",
+"id": "garasi",
+"tr": "garaj",
+"pl": "garaż"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:23.31",
+"target": "The garage is not included in the rent.",
+"ru": "Гараж не входит в стоимость аренды.",
+"uk": "Гараж не включено у вартість оренди."
+},
+{
+"id": "en-classic-r1:32.33",
+"target": "I saw the driver reverse the van into the garage.",
+"ru": "Я видел, как водитель задним ходом загнал фургон в гараж.",
+"uk": "Я бачив, як водій заднім ходом загнав фургон у гараж."
+}
+],
+"other": {}
+},
+{
+"lemma": "leather",
+"meaning": {
+"ru": "кожа",
+"uk": "шкіра",
+"en": "leather",
+"es": "cuero",
+"pt-BR": "couro",
+"vi": "da",
+"id": "kulit",
+"tr": "deri",
+"pl": "skóra"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:23.32",
+"target": "These shoes are not made of leather.",
+"ru": "Эти туфли сделаны не из кожи.",
+"uk": "Це взуття не зі шкіри."
+},
+{
+"id": "en-classic-r1:30.12",
+"target": "The leather coat that she bought is too small.",
+"ru": "Кожаное пальто, которое она купила, слишком маленькое.",
+"uk": "Шкіряне пальто, яке вона купила, замале."
+}
+],
+"other": {}
+},
+{
+"lemma": "allowed",
+"meaning": {
+"ru": "разрешено",
+"uk": "дозволено",
+"en": "permitted",
+"es": "permitido",
+"pt-BR": "permitido",
+"vi": "được phép",
+"id": "diizinkan",
+"tr": "izin verildi"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.36",
+"target": "Parking is not allowed here.",
+"ru": "Парковка здесь запрещена.",
+"uk": "Паркування тут заборонено."
+}
+],
+"other": {}
+},
+{
+"lemma": "food",
+"meaning": {
+"ru": "продукты питания",
+"uk": "їжа",
+"en": "food",
+"es": "comida",
+"pt-BR": "comida",
+"vi": "thực phẩm",
+"id": "makanan",
+"tr": "yiyecek",
+"pl": "jedzenie"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.37",
+"target": "Food is not served after nine.",
+"ru": "Еда не подается после девяти.",
+"uk": "Їжа не подається після дев'ятої."
+}
+],
+"other": {}
+},
+{
+"lemma": "served",
+"meaning": {
+"ru": "обслужил",
+"uk": "обслужив",
+"en": "provided to customers",
+"es": "atendió",
+"pt-BR": "atendeu",
+"vi": "phục vụ",
+"id": "melayani",
+"tr": "servis yaptı"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.37",
+"target": "Food is not served after nine.",
+"ru": "Еда не подается после девяти.",
+"uk": "Їжа не подається після дев'ятої."
+}
+],
+"other": {}
+},
+{
+"lemma": "damage",
+"meaning": {
+"ru": "повредить",
+"uk": "пошкодити",
+"en": "to damage",
+"es": "dañar",
+"pt-BR": "danificar",
+"vi": "làm hư hỏng",
+"id": "untuk merusak",
+"tr": "hasar vermek",
+"pl": "uszkodzenie"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:23.40",
+"target": "The parcel was not damaged.",
+"ru": "Посылка не повреждена.",
+"uk": "Посилка не пошкоджена."
+},
+{
+"id": "en-classic-r1:28.30",
+"target": "We saw the damage ourselves.",
+"ru": "Мы сами увидели повреждения.",
+"uk": "Ми самі бачили пошкодження."
+}
+],
+"other": {}
+},
+{
+"lemma": "processed",
+"meaning": {
+"ru": "обработан",
+"uk": "оброблено",
+"en": "handled through a system",
+"es": "procesado",
+"pt-BR": "processado",
+"vi": "được xử lý",
+"id": "diproses",
+"tr": "işlendi"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.42",
+"target": "The refund will be processed tomorrow.",
+"ru": "Возврат средств будет обработан завтра.",
+"uk": "Повернення коштів буде оброблено завтра."
+}
+],
+"other": {}
+},
+{
+"lemma": "replaced",
+"meaning": {
+"ru": "заменён",
+"uk": "замінено",
+"en": "taken out and another put in its place",
+"es": "reemplazado",
+"pt-BR": "substituído",
+"vi": "được thay thế",
+"id": "diganti",
+"tr": "değiştirildi"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.45",
+"target": "The screen can be replaced.",
+"ru": "Экран можно заменить.",
+"uk": "Екран можна замінити."
+}
+],
+"other": {}
+},
+{
+"lemma": "resurfaced",
+"meaning": {
+"ru": "переасфальтирован",
+"uk": "перекладено покриття",
+"en": "given a new road surface",
+"es": "repavimentado",
+"pt-BR": "repavimentado",
+"vi": "được trải lại mặt đường",
+"id": "diaspal ulang",
+"tr": "yeniden asfaltlandı"
+},
+"firstLesson": 23,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:23.47",
+"target": "Our street is being resurfaced.",
+"ru": "На нашей улице проводится ремонт дорожного покрытия.",
+"uk": "Нашу вулицю ремонтують."
+}
+],
+"other": {}
+},
+{
+"lemma": "renew",
+"meaning": {
+"ru": "обновить",
+"uk": "поновити",
+"en": "to renew",
+"es": "renovar",
+"pt-BR": "renovar",
+"vi": "gia hạn",
+"id": "untuk memperbarui",
+"tr": "yenilemek",
+"pl": "odnowienie"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:24.07",
+"target": "She has renewed her passport.",
+"ru": "Она обновила свой паспорт.",
+"uk": "Вона поновила свій паспорт."
+},
+{
+"id": "en-classic-r1:27.27",
+"target": "He told us he had renewed his licence.",
+"ru": "Он сказал нам, что продлил свои права.",
+"uk": "Він сказав нам, що поновив свої водійські права."
+}
+],
+"other": {}
+},
+{
+"lemma": "boiled",
+"meaning": {
+"ru": "вскипел",
+"uk": "закипів",
+"en": "reached boiling point",
+"es": "hirvió",
+"pt-BR": "ferveu",
+"vi": "đã sôi",
+"id": "mendidih",
+"tr": "kaynadı"
+},
+"firstLesson": 24,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:24.09",
+"target": "The kettle has boiled.",
+"ru": "Чайник закипел.",
+"uk": "Чайник закипів."
+}
+],
+"other": {}
+},
+{
+"lemma": "van",
+"meaning": {
+"ru": "фургон",
+"uk": "фургон",
+"en": "van",
+"es": "furgoneta",
+"pt-BR": "van",
+"vi": "xe tải nhỏ",
+"id": "van",
+"tr": "minibüs",
+"pl": "furgonetka"
+},
+"firstLesson": 24,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:24.11",
+"target": "I have just parked the van.",
+"ru": "Я только что припарковал фургон.",
+"uk": "Я щойно припаркував фургон."
+},
+{
+"id": "en-classic-r1:24.25",
+"target": "I have never driven a van.",
+"ru": "Я никогда не водил фургон.",
+"uk": "Я ніколи не водив фургон."
+},
+{
+"id": "en-classic-r1:27.47",
+"target": "I told her I had never driven a van.",
+"ru": "Я сказал ей, что никогда не водил фургон.",
+"uk": "Я сказав їй, що ніколи не водив фургон."
+}
+],
+"other": {}
+},
+{
+"lemma": "already",
+"meaning": {
+"ru": "уже",
+"uk": "вже",
+"en": "already",
+"es": "ya",
+"pt-BR": "já",
+"vi": "đã rồi",
+"id": "sudah",
+"tr": "zaten",
+"pl": "już"
+},
+"firstLesson": 24,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:24.14",
+"target": "He has already paid.",
+"ru": "Он уже заплатил.",
+"uk": "Він уже заплатив."
+},
+{
+"id": "en-classic-r1:24.15",
+"target": "They have already unpacked.",
+"ru": "Они уже распаковали вещи.",
+"uk": "Вони вже розпакували речі."
+},
+{
+"id": "en-classic-r1:24.16",
+"target": "I have already looked everywhere for my pass.",
+"ru": "Я уже везде искал свой пропуск.",
+"uk": "Я вже всюди шукав свою перепустку."
+}
+],
+"other": {}
+},
+{
+"lemma": "unpack",
+"meaning": {
+"ru": "распаковать",
+"uk": "розпакувати",
+"en": "to unpack",
+"es": "desempaquetar",
+"pt-BR": "desembalar",
+"vi": "mở gói",
+"id": "untuk membongkar",
+"tr": "paketi açmak",
+"pl": "rozpakowanie"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:24.15",
+"target": "They have already unpacked.",
+"ru": "Они уже распаковали вещи.",
+"uk": "Вони вже розпакували речі."
+},
+{
+"id": "en-classic-r1:31.41",
+"target": "I asked him to unpack the boxes by the gate.",
+"ru": "Я попросил его распаковать коробки у ворот.",
+"uk": "Я попросив його розпакувати коробки біля воріт."
+}
+],
+"other": {}
+},
+{
+"lemma": "ever",
+"meaning": {
+"ru": "когда-либо",
+"uk": "колись",
+"en": "ever",
+"es": "alguna vez",
+"pt-BR": "alguma vez",
+"vi": "bao giờ",
+"id": "pernah",
+"tr": "hiç",
+"pl": "kiedykolwiek"
+},
+"firstLesson": 24,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:24.21",
+"target": "Have you ever worked nights?",
+"ru": "Вы когда-нибудь работали по ночам?",
+"uk": "Ви коли-небудь працювали вночі?"
+},
+{
+"id": "en-classic-r1:24.22",
+"target": "Has she ever lived abroad?",
+"ru": "Она когда-нибудь жила за границей?",
+"uk": "Вона коли-небудь жила за кордоном?"
+},
+{
+"id": "en-classic-r1:24.23",
+"target": "Have they ever missed a flight?",
+"ru": "Они когда-нибудь опаздывали на рейс?",
+"uk": "Вони коли-небудь пропускали рейс?"
+}
+],
+"other": {}
+},
+{
+"lemma": "abroad",
+"meaning": {
+"ru": "за границей",
+"uk": "за кордоном",
+"en": "abroad",
+"es": "en el extranjero",
+"pt-BR": "no exterior",
+"vi": "ở nước ngoài",
+"id": "di luar negeri",
+"tr": "yurtdışı",
+"pl": "za granicą"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:24.22",
+"target": "Has she ever lived abroad?",
+"ru": "Она когда-нибудь жила за границей?",
+"uk": "Вона коли-небудь жила за кордоном?"
+},
+{
+"id": "en-classic-r1:30.33",
+"target": "The student whose bag is missing is studying abroad.",
+"ru": "Студент, у которого пропала сумка, учится за границей.",
+"uk": "Студент, чия сумка зникла, навчається за кордоном."
+}
+],
+"other": {}
+},
+{
+"lemma": "never",
+"meaning": {
+"ru": "никогда",
+"uk": "ніколи",
+"en": "never",
+"es": "nunca",
+"pt-BR": "nunca",
+"vi": "không bao giờ",
+"id": "tidak pernah",
+"tr": "asla",
+"pl": "nigdy"
+},
+"firstLesson": 24,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:24.25",
+"target": "I have never driven a van.",
+"ru": "Я никогда не водил фургон.",
+"uk": "Я ніколи не водив фургон."
+},
+{
+"id": "en-classic-r1:24.26",
+"target": "He has never used a locker.",
+"ru": "Он никогда не пользовался шкафчиком.",
+"uk": "Він ніколи не користувався шафкою."
+},
+{
+"id": "en-classic-r1:27.47",
+"target": "I told her I had never driven a van.",
+"ru": "Я сказал ей, что никогда не водил фургон.",
+"uk": "Я сказав їй, що ніколи не водив фургон."
+}
+],
+"other": {}
+},
+{
+"lemma": "scan",
+"meaning": {
+"ru": "сканирование",
+"uk": "сканувати",
+"en": "scan",
+"es": "escaneo",
+"pt-BR": "digitalizar",
+"vi": "quét",
+"id": "memindai",
+"tr": "tarama",
+"pl": "skanowanie"
+},
+"firstLesson": 24,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:24.28",
+"target": "She has scanned the invoice twice.",
+"ru": "Она дважды сканировала счет.",
+"uk": "Вона двічі відсканувала рахунок."
+}
+],
+"other": {}
+},
+{
+"lemma": "invoice",
+"meaning": {
+"ru": "счет-фактура",
+"uk": "рахунок-фактура",
+"en": "invoice",
+"es": "factura",
+"pt-BR": "fatura",
+"vi": "hóa đơn",
+"id": "faktur",
+"tr": "fatura",
+"pl": "faktura"
+},
+"firstLesson": 24,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:24.28",
+"target": "She has scanned the invoice twice.",
+"ru": "Она дважды сканировала счет.",
+"uk": "Вона двічі відсканувала рахунок."
+},
+{
+"id": "en-classic-r1:27.10",
+"target": "They said nobody had checked the invoice.",
+"ru": "Они сказали, что никто не проверил счёт.",
+"uk": "Вони сказали, що ніхто не перевірив рахунок."
+},
+{
+"id": "en-classic-r1:31.20",
+"target": "He saw her hand the invoice back.",
+"ru": "Он видел, как она вернула счет.",
+"uk": "Він бачив, як вона повернула рахунок."
+}
+],
+"other": {}
+},
+{
+"lemma": "since",
+"meaning": {
+"ru": "с",
+"uk": "з",
+"en": "since",
+"es": "desde",
+"pt-BR": "desde",
+"vi": "kể từ",
+"id": "sejak",
+"tr": "o zamandan beri",
+"pl": "od"
+},
+"firstLesson": 24,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:24.32",
+"target": "She has worked here since March.",
+"ru": "Она работает здесь с марта.",
+"uk": "Вона працює тут з березня."
+},
+{
+"id": "en-classic-r1:24.34",
+"target": "He has had that bike since school.",
+"ru": "Этот велосипед у него со школы.",
+"uk": "У нього цей велосипед ще зі школи."
+},
+{
+"id": "en-classic-r1:24.36",
+"target": "The shop has been closed since Monday.",
+"ru": "Магазин закрыт с понедельника.",
+"uk": "Магазин закрито з понеділка."
+}
+],
+"other": {}
+},
+{
+"lemma": "march",
+"meaning": {
+"ru": "Март, месяц",
+"uk": "Березень, місяць",
+"en": "March, the month",
+"es": "marzo, el mes",
+"pt-BR": "março, o mês",
+"vi": "Tháng Ba",
+"id": "Maret, bulan itu",
+"tr": "Mart, ay",
+"pl": "marzec, miesiąc"
+},
+"firstLesson": 24,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:24.32",
+"target": "She has worked here since March.",
+"ru": "Она работает здесь с марта.",
+"uk": "Вона працює тут з березня."
+}
+],
+"other": {}
+},
+{
+"lemma": "school",
+"meaning": {
+"ru": "школа",
+"uk": "школа",
+"en": "school",
+"es": "escuela",
+"pt-BR": "escola",
+"vi": "trường học",
+"id": "sekolah",
+"tr": "okul",
+"pl": "szkoła"
+},
+"firstLesson": 24,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:24.34",
+"target": "He has had that bike since school.",
+"ru": "Этот велосипед у него со школы.",
+"uk": "У нього цей велосипед ще зі школи."
+}
+],
+"other": {}
+},
+{
+"lemma": "ago",
+"meaning": {
+"ru": "назад",
+"uk": "тому",
+"en": "ago",
+"es": "hace",
+"pt-BR": "atrás",
+"vi": "trước đây",
+"id": "lalu",
+"tr": "önce",
+"pl": "temu"
+},
+"firstLesson": 24,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:24.50",
+"target": "The train left ten minutes ago.",
+"ru": "Поезд уехал десять минут назад.",
+"uk": "Поїзд відправився десять хвилин тому."
+}
+],
+"other": {}
+},
+{
+"lemma": "dinner",
+"meaning": {
+"ru": "ужин",
+"uk": "вечеря",
+"en": "dinner",
+"es": "cena",
+"pt-BR": "jantar",
+"vi": "bữa tối",
+"id": "makan malam",
+"tr": "akşam yemeği",
+"pl": "obiad"
+},
+"firstLesson": 25,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:25.05",
+"target": "He was cooking dinner.",
+"ru": "Он готовил ужин.",
+"uk": "Він готував вечерю."
+}
+],
+"other": {}
+},
+{
+"lemma": "barrier",
+"meaning": {
+"ru": "барьер",
+"uk": "шлагбаум",
+"en": "barrier",
+"es": "barrera",
+"pt-BR": "barreira",
+"vi": "rào cản",
+"id": "penghalang",
+"tr": "bariyer",
+"pl": "bariera"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.14",
+"target": "He was waiting near the barrier.",
+"ru": "Он ждал у шлагбаума.",
+"uk": "Він чекав біля шлагбаума."
+},
+{
+"id": "en-classic-r1:30.09",
+"target": "The key that opens the barrier is missing.",
+"ru": "Ключ, который открывает шлагбаум, пропал.",
+"uk": "Ключ, який відкриває шлагбаум, відсутній."
+}
+],
+"other": {}
+},
+{
+"lemma": "waterproof",
+"meaning": {
+"ru": "водонепроницаемый",
+"uk": "водонепроникний",
+"en": "waterproof",
+"es": "impermeable",
+"pt-BR": "à prova d'água",
+"vi": "chống thấm nước",
+"id": "tahan air",
+"tr": "su geçirmez",
+"pl": "wodoszczelność"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.16",
+"target": "I was wearing a waterproof jacket that day.",
+"ru": "В тот день на мне была водонепроницаемая куртка.",
+"uk": "Того дня на мені була водонепроникна куртка."
+},
+{
+"id": "en-classic-r1:31.48",
+"target": "She let me borrow her waterproof jacket.",
+"ru": "Она одолжила мне свою водонепроницаемую куртку.",
+"uk": "Вона позичила мені свою водонепроникну куртку."
+}
+],
+"other": {}
+},
+{
+"lemma": "drip",
+"meaning": {
+"ru": "капать",
+"uk": "капати",
+"en": "to drip",
+"es": "gotear",
+"pt-BR": "pingar",
+"vi": "để nhỏ giọt",
+"id": "menetes",
+"tr": "damlatmak",
+"pl": "do kapania"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.17",
+"target": "The rain was dripping through the ceiling.",
+"ru": "Дождь капал сквозь потолок.",
+"uk": "Дощ капав крізь стелю."
+},
+{
+"id": "en-classic-r1:31.23",
+"target": "We watched the paint dripping onto the floor.",
+"ru": "Мы наблюдали, как краска капает на пол.",
+"uk": "Ми спостерігали, як фарба капає на підлогу."
+}
+],
+"other": {}
+},
+{
+"lemma": "through",
+"meaning": {
+"ru": "через",
+"uk": "крізь",
+"en": "through",
+"es": "a través",
+"pt-BR": "através",
+"vi": "qua",
+"id": "melalui",
+"tr": "aracılığıyla",
+"pl": "przez"
+},
+"firstLesson": 25,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:25.17",
+"target": "The rain was dripping through the ceiling.",
+"ru": "Дождь капал сквозь потолок.",
+"uk": "Дощ капав крізь стелю."
+}
+],
+"other": {}
+},
+{
+"lemma": "ceiling",
+"meaning": {
+"ru": "потолок",
+"uk": "стеля",
+"en": "ceiling",
+"es": "techo",
+"pt-BR": "teto",
+"vi": "trần nhà",
+"id": "langit-langit",
+"tr": "tavan",
+"pl": "sufit"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.17",
+"target": "The rain was dripping through the ceiling.",
+"ru": "Дождь капал сквозь потолок.",
+"uk": "Дощ капав крізь стелю."
+},
+{
+"id": "en-classic-r1:30.45",
+"target": "The room we were shown had a leak in the ceiling.",
+"ru": "В комнате, которую нам показали, была протечка в потолке.",
+"uk": "У кімнаті, яку нам показали, була протічка в стелі."
+}
+],
+"other": {}
+},
+{
+"lemma": "bark",
+"meaning": {
+"ru": "лаять",
+"uk": "гавкати",
+"en": "bark",
+"es": "ladrar",
+"pt-BR": "latir",
+"vi": "sủa",
+"id": "menggonggong",
+"tr": "havlamak",
+"pl": "szczekać"
+},
+"firstLesson": 25,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:25.18",
+"target": "The dog was barking by the handrail.",
+"ru": "Собака лаяла у поручня.",
+"uk": "Собака гавкав біля поручня."
+}
+],
+"other": {}
+},
+{
+"lemma": "brake",
+"meaning": {
+"ru": "тормоз автомобиля",
+"uk": "гальмо транспортного засобу",
+"en": "vehicle brake",
+"es": "freno de vehículo",
+"pt-BR": "freio do veículo",
+"vi": "phanh xe",
+"id": "rem kendaraan",
+"tr": "araç freni",
+"pl": "hamulec pojazdu"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.19",
+"target": "The driver was checking the brakes.",
+"ru": "Водитель проверял тормоза.",
+"uk": "Водій перевіряв гальма."
+},
+{
+"id": "en-classic-r1:28.28",
+"target": "The manager checked the brakes herself.",
+"ru": "Менеджер сама проверила тормоза.",
+"uk": "Менеджер сама перевірила гальма."
+}
+],
+"other": {}
+},
+{
+"lemma": "knock",
+"meaning": {
+"ru": "стук",
+"uk": "стукіт",
+"en": "knock",
+"es": "golpe",
+"pt-BR": "bater",
+"vi": "gõ cửa",
+"id": "mengetuk",
+"tr": "vurmak",
+"pl": "pukanie"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.25",
+"target": "They were eating when someone knocked.",
+"ru": "Они ели, когда кто-то постучал.",
+"uk": "Вони їли, коли хтось постукав."
+},
+{
+"id": "en-classic-r1:31.09",
+"target": "I heard someone knock twice.",
+"ru": "Я слышал, как кто-то дважды постучал.",
+"uk": "Я чув, як хтось постукав двічі."
+}
+],
+"other": {}
+},
+{
+"lemma": "bang",
+"meaning": {
+"ru": "удар",
+"uk": "вибух",
+"en": "bang",
+"es": "estallido",
+"pt-BR": "estrondo",
+"vi": "đập mạnh",
+"id": "membentur",
+"tr": "patlamak",
+"pl": "huk"
+},
+"firstLesson": 25,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:25.28",
+"target": "We heard a bang while we were packing.",
+"ru": "Мы услышали хлопок, когда собирали вещи.",
+"uk": "Ми почули гуркіт, коли пакували речі."
+}
+],
+"other": {}
+},
+{
+"lemma": "ferry",
+"meaning": {
+"ru": "паром",
+"uk": "пором",
+"en": "ferry",
+"es": "ferry",
+"pt-BR": "balsa",
+"vi": "phà",
+"id": "feri",
+"tr": "feribot",
+"pl": "prom"
+},
+"firstLesson": 25,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:25.29",
+"target": "The ferry left while I was buying a ticket.",
+"ru": "Паром отплыл, пока я покупал билет.",
+"uk": "Пором відплив, поки я купував квиток."
+}
+],
+"other": {}
+},
+{
+"lemma": "announcement",
+"meaning": {
+"ru": "объявление",
+"uk": "оголошення",
+"en": "announcement",
+"es": "anuncio",
+"pt-BR": "anúncio",
+"vi": "thông báo",
+"id": "pengumuman",
+"tr": "duyuru",
+"pl": "ogłoszenie"
+},
+"firstLesson": 25,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:25.38",
+"target": "He was not listening to the announcement.",
+"ru": "Он не слушал объявление.",
+"uk": "Він не слухав оголошення."
+},
+{
+"id": "en-classic-r1:25.47",
+"target": "I missed the announcement because I was wearing headphones.",
+"ru": "Я пропустил объявление, потому что был в наушниках.",
+"uk": "Я пропустив оголошення, бо був у навушниках."
+},
+{
+"id": "en-classic-r1:27.24",
+"target": "I said I could not hear the announcement.",
+"ru": "Я сказал, что не слышу объявления.",
+"uk": "Я сказав, що не чую оголошення."
+}
+],
+"other": {}
+},
+{
+"lemma": "wave",
+"meaning": {
+"ru": "волна",
+"uk": "хвиля",
+"en": "wave",
+"es": "ola",
+"pt-BR": "acenar",
+"vi": "vẫy tay",
+"id": "melambaikan tangan",
+"tr": "dalga",
+"pl": "fala"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.46",
+"target": "The driver waved while we were crossing.",
+"ru": "Водитель помахал нам рукой, когда мы переходили дорогу.",
+"uk": "Водій помахав рукою, коли ми переходили дорогу."
+},
+{
+"id": "en-classic-r1:31.16",
+"target": "We saw you wave outside the clinic.",
+"ru": "Мы видели, как вы махали рукой возле клиники.",
+"uk": "Ми бачили, як ви махали біля клініки."
+}
+],
+"other": {}
+},
+{
+"lemma": "shelter",
+"meaning": {
+"ru": "укрытие",
+"uk": "укриття",
+"en": "shelter",
+"es": "refugio",
+"pt-BR": "abrigo",
+"vi": "mái che",
+"id": "tempat berlindung",
+"tr": "barınak",
+"pl": "schronienie"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:25.50",
+"target": "They were looking for shelter when the rain stopped.",
+"ru": "Они искали укрытие, когда дождь прекратился.",
+"uk": "Вони шукали прихистку, коли дощ припинився."
+},
+{
+"id": "en-classic-r1:28.25",
+"target": "They built the shelter themselves.",
+"ru": "Они сами построили убежище.",
+"uk": "Вони самі збудували укриття."
+}
+],
+"other": {}
+},
+{
+"lemma": "latch",
+"meaning": {
+"ru": "дверной замок",
+"uk": "дверна засувка",
+"en": "door latch",
+"es": "pestillo de puerta",
+"pt-BR": "trava da porta",
+"vi": "chốt cửa",
+"id": "kait pintu",
+"tr": "kapı kilidi",
+"pl": "zatrzask drzwi"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:26.05",
+"target": "If the latch sticks, lift the handle.",
+"ru": "Если защелка заклинит, поднимите ручку.",
+"uk": "Якщо засувка заклинить, підніміть ручку."
+},
+{
+"id": "en-classic-r1:31.27",
+"target": "He noticed the latch moving.",
+"ru": "Он заметил, что защелка двигается.",
+"uk": "Він помітив, як рухається засувка."
+}
+],
+"other": {}
+},
+{
+"lemma": "sticks",
+"meaning": {
+"ru": "не поддаётся",
+"uk": "не піддається",
+"en": "becomes hard to move",
+"es": "se pone duro",
+"pt-BR": "fica duro",
+"vi": "bị cứng",
+"id": "jadi kaku",
+"tr": "sertleşiyor"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:26.05",
+"target": "If the latch sticks, lift the handle.",
+"ru": "Если защелка заклинит, поднимите ручку.",
+"uk": "Якщо засувка заклинить, підніміть ручку."
+},
+{
+"id": "en-classic-r1:26.24",
+"target": "If the door sticks, pull the handle gently.",
+"ru": "Если дверь заедает, осторожно потяните за ручку.",
+"uk": "Якщо двері заїдають, обережно потягніть ручку."
+}
+],
+"other": {}
+},
+{
+"lemma": "shade",
+"meaning": {
+"ru": "защита от солнца",
+"uk": "тінь від сонця",
+"en": "shade from the sun",
+"es": "sombra del sol",
+"pt-BR": "proteção contra o sol",
+"vi": "che nắng",
+"id": "naungan dari matahari",
+"tr": "güneşten gölge",
+"pl": "osłona przeciwsłoneczna"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:26.09",
+"target": "If you wait in the shade, I will get the key.",
+"ru": "Если ты подождешь в тени, я принесу ключ.",
+"uk": "Якщо ти почекаєш у тіні, я візьму ключ."
+},
+{
+"id": "en-classic-r1:27.41",
+"target": "She asked me to wait in the shade.",
+"ru": "Она попросила меня подождать в тени.",
+"uk": "Вона попросила мене почекати в тіні."
+}
+],
+"other": {}
+},
+{
+"lemma": "text",
+"meaning": {
+"ru": "текст",
+"uk": "текст",
+"en": "text",
+"es": "texto",
+"pt-BR": "mensagem de texto",
+"vi": "nhắn tin",
+"id": "teks",
+"tr": "metin",
+"pl": "tekst"
+},
+"firstLesson": 26,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:26.11",
+"target": "I will text you if the forecast changes.",
+"ru": "Я напишу тебе, если изменится прогноз погоды.",
+"uk": "Я напишу тобі, якщо прогноз зміниться."
+}
+],
+"other": {}
+},
+{
+"lemma": "full",
+"meaning": {
+"ru": "полный",
+"uk": "повний",
+"en": "full",
+"es": "lleno",
+"pt-BR": "cheio",
+"vi": "đầy",
+"id": "penuh",
+"tr": "dolu",
+"pl": "pełny"
+},
+"firstLesson": 26,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:26.13",
+"target": "We will walk if the bus is full.",
+"ru": "Мы пойдем пешком, если автобус будет полон.",
+"uk": "Ми підемо пішки, якщо автобус буде повний."
+},
+{
+"id": "en-classic-r1:27.12",
+"target": "He told us the bus was full.",
+"ru": "Он сказал нам, что автобус полон.",
+"uk": "Він сказав нам, що автобус повний."
+},
+{
+"id": "en-classic-r1:32.21",
+"target": "If the bus is full, we will walk to the station.",
+"ru": "Если автобус будет полон, мы пойдем пешком до вокзала.",
+"uk": "Якщо автобус повний, ми підемо пішки до станції."
+}
+],
+"other": {}
+},
+{
+"lemma": "let",
+"meaning": {
+"ru": "сдавать или разрешать",
+"uk": "дозволяти",
+"en": "to let or allow",
+"es": "dejar o permitir",
+"pt-BR": "deixar ou permitir",
+"vi": "cho phép hoặc để cho phép",
+"id": "untuk menyewakan atau mengizinkan",
+"tr": "izin vermek veya müsaade etmek",
+"pl": "pozwolić lub zezwolić"
+},
+"firstLesson": 26,
+"phrasesCount": 9,
+"examples": [
+{
+"id": "en-classic-r1:26.23",
+"target": "If you find my pass, let me know.",
+"ru": "Если найдете мой пропуск, сообщите мне.",
+"uk": "Якщо знайдете мій пропуск, повідомте мене."
+},
+{
+"id": "en-classic-r1:26.50",
+"target": "I will let you know if anything changes.",
+"ru": "Я сообщу вам, если что-то изменится.",
+"uk": "Я повідомлю вас, якщо щось зміниться."
+},
+{
+"id": "en-classic-r1:31.31",
+"target": "They let me use the printer.",
+"ru": "Мне разрешили воспользоваться принтером.",
+"uk": "Вони дозволили мені користуватися принтером."
+}
+],
+"other": {}
+},
+{
+"lemma": "leak",
+"meaning": {
+"ru": "протечка воды",
+"uk": "витік води",
+"en": "water leak",
+"es": "fuga de agua",
+"pt-BR": "vazamento de água",
+"vi": "rò rỉ nước",
+"id": "kebocoran air",
+"tr": "su kaçağı",
+"pl": "wyciek wody"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:26.28",
+"target": "If there is a leak, call reception.",
+"ru": "Если есть протечка, позвоните на ресепшн.",
+"uk": "Якщо є витік, зателефонуйте на рецепцію."
+},
+{
+"id": "en-classic-r1:30.45",
+"target": "The room we were shown had a leak in the ceiling.",
+"ru": "В комнате, которую нам показали, была протечка в потолке.",
+"uk": "У кімнаті, яку нам показали, була протічка в стелі."
+}
+],
+"other": {}
+},
+{
+"lemma": "jams",
+"meaning": {
+"ru": "заклинивает",
+"uk": "заклинює",
+"en": "becomes blocked and stops working",
+"es": "se bloquea",
+"pt-BR": "trava",
+"vi": "bị kẹt",
+"id": "macet",
+"tr": "sıkışıyor"
+},
+"firstLesson": 26,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:26.29",
+"target": "If the printer jams, lift the lid.",
+"ru": "Если принтер застрял, поднимите крышку.",
+"uk": "Якщо принтер заклинить, підніміть кришку."
+}
+],
+"other": {}
+}
+]

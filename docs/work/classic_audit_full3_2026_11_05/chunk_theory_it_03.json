@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 7,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:07:01",
+"it:07:02",
+"it:07:03"
+],
+"textByLocale": {
+"en": "First, find who's doing the action. With a personal name, you usually need the third person form: `Lea lavora`. For yourself, use `lavoro`; for someone on a first-name basis, use `lavori`.",
+"ru": "Сначала найди, кто выполняет действие. С личным именем обычно нужна форма третьего лица: `Lea lavora`. Для себя — `lavoro`, для собеседника на «ты» — `lavori`.",
+"uk": "Спершу знайди, хто виконує дію. З особистим ім'ям зазвичай потрібна форма третьої особи: `Lea lavora`. Для себе – `lavoro`, для співрозмовника на «ти» – `lavori`."
+}
+},
+{
+"exampleIds": [
+"it:07:04",
+"it:07:05",
+"it:07:06"
+],
+"textByLocale": {
+"en": "For a group with a speaker, use `-iamo`. If you're addressing several people, verbs ending in `-are` will end in `-ate`. When talking about other people, this group of verbs usually uses `-ano`.",
+"ru": "Для группы с говорящим окончание `-iamo`. Если ты обращаешься к нескольким людям, у глаголов на `-are` будет `-ate`. Когда говоришь о других людях, у этой группы глаголов обычно `-ano`.",
+"uk": "Для групи з розмовляючим закінчення `-iamo`. Якщо ти звертаєшся до кількох людей, у дієслів на `-are` буде `-ate`. Коли говориш про інших людей, у цієї групи дієслів зазвичай `-ano`."
+}
+},
+{
+"exampleIds": [
+"it:07:07",
+"it:07:08",
+"it:07:09"
+],
+"textByLocale": {
+"en": "Talking about language doesn't require an article after `parlare`: `parlo italiano`. Don't add a preposition of place to the name of the language. The name of the language in Italian is written with a lowercase letter.",
+"ru": "Разговор о языке не требует обязательного артикля после `parlare`: `parlo italiano`. Не добавляй предлог места к названию языка. Название языка в итальянском пишут со строчной буквы.",
+"uk": "Розмова про мову не вимагає обов'язкового артикля після `parlare`: `parlo italiano`. Не додай привід місця до назви мови. Назва мови в італійській пишуть з малої літери."
+}
+},
+{
+"exampleIds": [
+"it:07:11",
+"it:07:12",
+"it:07:14"
+],
+"textByLocale": {
+"en": "Like `lavorare`, the verb `abitare` is easy to split into a stem and an ending. If you're adding a city, use `a`; for a location like a rural area, use the ready-made group `in campagna`.",
+"ru": "Как и `lavorare`, глагол `abitare` легко разбить на основу и окончание. Если добавляешь город, используй `a`; для места вроде сельской местности — готовую группу `in campagna`.",
+"uk": "Як і `lavorare`, дієслово `abitare` легко розбити на основу та закінчення. Якщо додаєш місто, використовуй `a`; для місця на кшталт сільської місцевості готову групу `in campagna`."
+}
+},
+{
+"exampleIds": [
+"it:07:21",
+"it:07:22",
+"it:07:24"
+],
+"textByLocale": {
+"en": "In `cercare`, the k sound is preserved: `cerco`, but `cerchi`, `cerchiamo`. The letter `h` in these two forms helps preserve pronunciation and doesn't denote a separate sound.",
+"ru": "В `cercare` звук к сохраняется: `cerco`, но `cerchi`, `cerchiamo`. Буква `h` в этих двух формах помогает сохранить произношение и не обозначает отдельный звук.",
+"uk": "У `cercare` звук зберігається: `cerco`, але `cerchi`, `cerchiamo`. Літера `h` у цих двох формах допомагає зберегти вимову і не позначає окремий звук."
+}
+},
+{
+"exampleIds": [
+"it:07:27",
+"it:07:31",
+"it:07:37"
+],
+"textByLocale": {
+"en": "The present tense is good for habit and for communicating a current fact. There's no need to add \"right now\" every time. A person in a store can simply say they're ordering tea.",
+"ru": "Настоящее время годится для привычки и для сообщения о текущем факте. Не нужно каждый раз добавлять «прямо сейчас». Человек в магазине может просто сказать, что заказывает чай.",
+"uk": "Цей час підходить для звички та повідомлення про поточний факт. Не потрібно щоразу додавати \"прямо зараз\". Людина в магазині може сказати, що замовляє чай."
+}
+},
+{
+"exampleIds": [
+"it:07:41",
+"it:07:42",
+"it:07:50"
+],
+"textByLocale": {
+"en": "Separate the action itself from the adverb. In `Lavoro il sabato`, the verb tells what I do, and `il sabato` tells what days I do. If the day changes, the verb ending remains the same.",
+"ru": "Отдели само действие от обстоятельства. В `Lavoro il sabato` глагол сообщает, что я делаю, а `il sabato` — по каким дням. Если поменял день, окончание глагола остаётся тем же.",
+"uk": "Відокремили саму дію від обставини. У `Lavoro il sabato` дієслово повідомляє, що я роблю, а `il sabato` - по яких днях. Якщо змінив день, закінчення дієслова залишається тим самим."
+}
+}
+],
+"drills": [
+{
+"bad": "Lavora",
+"chapter": 1,
+"id": "it:07:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Lavori",
+"Lavoro",
+"Lavora"
+],
+"slot": 0
+},
+{
+"bad": "lavoro",
+"chapter": 1,
+"id": "it:07:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"lavora",
+"lavori",
+"lavoro"
+],
+"slot": 1
+},
+{
+"bad": "Lavoro",
+"chapter": 1,
+"id": "it:07:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Lavorate",
+"Lavoro",
+"Lavora"
+],
+"slot": 0
+},
+{
+"bad": "Parlo",
+"chapter": 2,
+"id": "it:07:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Parla",
+"Parli",
+"Parlo"
+],
+"slot": 0
+},
+{
+"bad": "Parla",
+"chapter": 2,
+"id": "it:07:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"Parlo",
+"Parliamo",
+"Parla"
+],
+"slot": 0
+},
+{
+"bad": "Abita",
+"chapter": 2,
+"id": "it:07:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Abiti",
+"Abita",
+"Abito"
+],
+"slot": 0
+},
+{
+"bad": "Abito",
+"chapter": 3,
+"id": "it:07:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 15,
+"options": [
+"Abito",
+"Abitiamo",
+"Abita"
+],
+"slot": 0
+},
+{
+"bad": "Ascolti",
+"chapter": 3,
+"id": "it:07:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"Ascolti",
+"Ascolta",
+"Ascolto"
+],
+"slot": 0
+},
+{
+"bad": "ascolti",
+"chapter": 3,
+"id": "it:07:19:lab",
+"item": 19,
+"kind": "build",
+"near": 50,
+"options": [
+"ascolto",
+"ascolti",
+"ascolta"
+],
+"slot": 1
+},
+{
+"bad": "Cerca",
+"chapter": 4,
+"id": "it:07:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 20,
+"options": [
+"Cerchi",
+"Cerca",
+"Cerchiamo"
+],
+"slot": 0
+},
+{
+"bad": "Cerca",
+"chapter": 4,
+"id": "it:07:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 44,
+"options": [
+"Cerca",
+"Cerchiamo",
+"Cerchi"
+],
+"slot": 0
+},
+{
+"bad": "Cerca",
+"chapter": 4,
+"id": "it:07:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Cercano",
+"Cerchiamo",
+"Cerca"
+],
+"slot": 0
+},
+{
+"bad": "Guardano",
+"chapter": 5,
+"id": "it:07:29:lab",
+"item": 29,
+"kind": "match",
+"near": 36,
+"options": [
+"Guardano",
+"Guardiamo",
+"Guardo"
+],
+"slot": 0
+},
+{
+"bad": "Prepara",
+"chapter": 5,
+"id": "it:07:31:lab",
+"item": 31,
+"kind": "build",
+"near": 30,
+"options": [
+"Preparo",
+"Prepara",
+"Prepari"
+],
+"slot": 0
+},
+{
+"bad": "Prepara",
+"chapter": 5,
+"id": "it:07:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Prepara",
+"Preparo",
+"Prepariamo"
+],
+"slot": 0
+},
+{
+"bad": "prenotate",
+"chapter": 6,
+"id": "it:07:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 29,
+"options": [
+"prenotiamo",
+"prenotate",
+"prenota"
+],
+"slot": 1
+},
+{
+"bad": "Spagnolo",
+"chapter": 6,
+"id": "it:07:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 41,
+"options": [
+"Indirizzo",
+"Visitano",
+"Spagnolo"
+],
+"slot": 0
+},
+{
+"bad": "ascolti",
+"chapter": 6,
+"id": "it:07:42:lab",
+"item": 42,
+"kind": "match",
+"near": 17,
+"options": [
+"ascolto",
+"ascolti",
+"ascolta"
+],
+"slot": 2
+},
+{
+"bad": "Prenoto",
+"chapter": 7,
+"id": "it:07:45:lab",
+"item": 45,
+"kind": "build",
+"near": 50,
+"options": [
+"Prenoto",
+"Prenotiamo",
+"Prenota"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 7,
+"id": "it:07:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 15,
+"options": [
+"La",
+"Il",
+"I"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"io",
+"lavoro"
+],
+[
+"tu",
+"lavori"
+],
+[
+"lui / lei",
+"lavora"
+],
+[
+"noi",
+"lavoriamo"
+],
+[
+"voi",
+"lavorate"
+],
+[
+"loro",
+"lavorano"
+]
+],
+"title": {
+"en": "Ordinary actions: present tense",
+"ru": "Обычные действия: настоящее время",
+"uk": "Звичайні дії: теперішній час"
+}
+},
+"exampleResolved": [
+{
+"id": "it:07:01",
+"target": "Lavoro qui.",
+"ru": "Я здесь работаю.",
+"uk": "Я тут працюю."
+},
+{
+"id": "it:07:02",
+"target": "Lavori qui.",
+"ru": "Ты работаешь здесь.",
+"uk": "Ти працюєш тут."
+},
+{
+"id": "it:07:03",
+"target": "Lea lavora qui.",
+"ru": "Леа здесь работает.",
+"uk": "Леа тут працює."
+},
+{
+"id": "it:07:04",
+"target": "Lavoriamo insieme.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом."
+},
+{
+"id": "it:07:05",
+"target": "Lavorate insieme.",
+"ru": "Вы работаете вместе.",
+"uk": "Ви працюєте разом."
+},
+{
+"id": "it:07:06",
+"target": "Lavorano fuori.",
+"ru": "Они работают на улице.",
+"uk": "Вони працюють надворі."
+},
+{
+"id": "it:07:07",
+"target": "Parlo francese.",
+"ru": "Я говорю по-французски.",
+"uk": "Я розмовляю французькою."
+},
+{
+"id": "it:07:08",
+"target": "Parli francese.",
+"ru": "Ты говоришь по-французски.",
+"uk": "Ти говориш по-французьки."
+},
+{
+"id": "it:07:09",
+"target": "Lei parla inglese.",
+"ru": "Она говорит по-английски.",
+"uk": "Вона розмовляє англійською."
+},
+{
+"id": "it:07:11",
+"target": "Abito a Lione.",
+"ru": "Я живу в Лионе.",
+"uk": "Я живу в Ліоні."
+},
+{
+"id": "it:07:12",
+"target": "Abiti a Lille.",
+"ru": "Ты живёшь в Лилле.",
+"uk": "Ти живеш у Ліллі."
+},
+{
+"id": "it:07:14",
+"target": "Abitiamo in campagna.",
+"ru": "Мы живём в сельской местности.",
+"uk": "Ми живемо в сільській місцевості."
+},
+{
+"id": "it:07:21",
+"target": "Cerco le mie chiavi.",
+"ru": "Я ищу свои ключи.",
+"uk": "Я шукаю свої ключі."
+},
+{
+"id": "it:07:22",
+"target": "Cerchi la tua borsa.",
+"ru": "Ты ищешь свою сумку.",
+"uk": "Ти шукаєш свою сумку."
+},
+{
+"id": "it:07:24",
+"target": "Cerchiamo un indirizzo.",
+"ru": "Мы ищем адрес.",
+"uk": "Ми шукаємо адресу."
+},
+{
+"id": "it:07:27",
+"target": "Guardo la mappa.",
+"ru": "Я смотрю на карту.",
+"uk": "Я дивлюся на карту."
+},
+{
+"id": "it:07:31",
+"target": "Preparo la cena.",
+"ru": "Я готовлю ужин.",
+"uk": "Я готую вечерю."
+},
+{
+"id": "it:07:37",
+"target": "Ordino un tè.",
+"ru": "Я заказываю чай.",
+"uk": "Я замовляю чай."
+},
+{
+"id": "it:07:41",
+"target": "Lavoro il sabato.",
+"ru": "Я работаю по субботам.",
+"uk": "Я працюю по суботах."
+},
+{
+"id": "it:07:42",
+"target": "La mattina ascolto la radio.",
+"ru": "Утром я слушаю радио.",
+"uk": "Вранці я слухаю радіо."
+},
+{
+"id": "it:07:50",
+"target": "Lascio un messaggio per Lea.",
+"ru": "Я оставляю сообщение для Леа.",
+"uk": "Я залишаю повідомлення для Леа."
+}
+]
+},
+{
+"lesson": 8,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:08:01",
+"it:08:02",
+"it:08:03"
+],
+"textByLocale": {
+"en": "`Dove` asks about a place. It is common to write `dov’è` before `è`. For several objects, the verb is different: `Dove sono le chiavi?`.",
+"ru": "`Dove` спрашивает о месте. Перед `è` распространено написание `dov’è`. Для нескольких предметов глагол другой: `Dove sono le chiavi?`.",
+"uk": "`Dove` запитує про місце. Перед `è` поширене написання `dov’è`. Для кількох предметів дієслово інше: `Dove sono le chiavi?`."
+}
+},
+{
+"exampleIds": [
+"it:08:04",
+"it:08:05",
+"it:08:10"
+],
+"textByLocale": {
+"en": "Don't confuse a question about a place of work with a question about the occupation itself. `Dove lavori?` suggests the answer \"in the office\" or the name of the city; the name of the profession would answer a different question.",
+"ru": "Не путай вопрос о месте работы с вопросом о самом занятии. `Dove lavori?` предполагает ответ «в офисе» или название города; название профессии ответило бы на другой вопрос.",
+"uk": "Не плутай питання про місце роботи з питанням про заняття. `Dove lavori?` передбачає відповідь «в офісі» або назву міста; назва професії відповіла б на інше питання."
+}
+},
+{
+"exampleIds": [
+"it:08:11",
+"it:08:12",
+"it:08:13"
+],
+"textByLocale": {
+"en": "`Chi` asks about a person. In `Chi lavora qui?`, it is the unknown person who performs the action. There is no need to include another pronoun in such a short question.",
+"ru": "`Chi` спрашивает о человеке. В `Chi lavora qui?` именно неизвестный человек выполняет действие. Отдельно ставить ещё одно местоимение в такой короткий вопрос не нужно.",
+"uk": "`Chi` запитує про людину. У `Chi lavora qui?` саме невідома людина виконує дію. Окремо ставити ще один займенник у таке коротке запитання не потрібно."
+}
+},
+{
+"exampleIds": [
+"it:08:21",
+"it:08:24",
+"it:08:25"
+],
+"textByLocale": {
+"en": "`Quando` allows for a day, date, or period. `A che ora` is more precise: the interlocutor is asked to state the time on a clock. Choose based on the answer you really need.",
+"ru": "`Quando` допускает день, дату или период. `A che ora` точнее: собеседнику предлагается назвать время на часах. Выбирай по тому, какой ответ действительно нужен.",
+"uk": "`Quando` допускає день, дату чи період. `A che ora` точніше: співрозмовнику пропонується назвати час на годиннику. Вибирай по тому, яка відповідь дійсно потрібна."
+}
+},
+{
+"exampleIds": [
+"it:08:31",
+"it:08:32",
+"it:08:35"
+],
+"textByLocale": {
+"en": "Before the noun `quanto`, the words change: `quanto tempo`, `quante persone`. And in `Quanto costa?`, they ask for the price and don't put the name of the measured objects after `quanto`.",
+"ru": "Перед существительным `quanto` меняется: `quanto tempo`, `quante persone`. А в `Quanto costa?` спрашивают цену и не ставят после `quanto` название измеряемых предметов.",
+"uk": "Перед іменником `quanto` змінюється: `quanto tempo`, `quante persone`. А в `Quanto costa?` запитують ціну і не ставлять після `quanto` назву предметів, що вимірюваються."
+}
+},
+{
+"exampleIds": [
+"it:08:39",
+"it:08:41",
+"it:08:44"
+],
+"textByLocale": {
+"en": "`Perché` asks for a reason, `come` for a method. You can put all the other words together correctly, but get a different question if you mix up the first one.",
+"ru": "`Perché` просит объяснить причину, `come` — способ. Можно правильно собрать все остальные слова, но получить другой вопрос, если перепутать первое.",
+"uk": "`Perché` просить пояснити причину, `come` - спосіб. Можна правильно зібрати решту слів, але отримати інше питання, якщо переплутати перше."
+}
+},
+{
+"exampleIds": [
+"it:08:47",
+"it:08:48",
+"it:08:49"
+],
+"textByLocale": {
+"en": "If necessary, leave the preposition: `con chi` - with whom, `per chi` - for whom. This is the semantic part of the question. It doesn't disappear because it comes at the beginning of the phrase.",
+"ru": "При необходимости оставь предлог: `con chi` — с кем, `per chi` — для кого. Это смысловая часть вопроса. Она не исчезает потому, что стоит в начале фразы.",
+"uk": "За потреби залиши привід: `con chi` - з ким, `per chi` - для кого. Це смислова частина питання. Вона не зникає тому, що стоїть на початку фрази."
+}
+}
+],
+"drills": [
+{
+"bad": "Chi",
+"chapter": 1,
+"id": "it:08:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"Quando",
+"Chi",
+"Dove"
+],
+"slot": 0
+},
+{
+"bad": "Cosa",
+"chapter": 1,
+"id": "it:08:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 10,
+"options": [
+"Quando",
+"Dove",
+"Cosa"
+],
+"slot": 0
+},
+{
+"bad": "Cosa",
+"chapter": 1,
+"id": "it:08:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Dove",
+"Cosa",
+"Quando"
+],
+"slot": 0
+},
+{
+"bad": "C’è",
+"chapter": 2,
+"id": "it:08:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"Dov’è",
+"C’è",
+"Comincia"
+],
+"slot": 0
+},
+{
+"bad": "Quando",
+"chapter": 2,
+"id": "it:08:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"Dove",
+"Quando",
+"Chi"
+],
+"slot": 0
+},
+{
+"bad": "Cosa",
+"chapter": 2,
+"id": "it:08:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Quando",
+"Chi",
+"Cosa"
+],
+"slot": 0
+},
+{
+"bad": "Cosa",
+"chapter": 3,
+"id": "it:08:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 11,
+"options": [
+"Chi",
+"Cosa",
+"Quando"
+],
+"slot": 0
+},
+{
+"bad": "Quando",
+"chapter": 3,
+"id": "it:08:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"Chi",
+"Dove",
+"Quando"
+],
+"slot": 0
+},
+{
+"bad": "Dove",
+"chapter": 3,
+"id": "it:08:19:lab",
+"item": 19,
+"kind": "build",
+"near": 11,
+"options": [
+"Quando",
+"Dove",
+"Chi"
+],
+"slot": 0
+},
+{
+"bad": "Se",
+"chapter": 4,
+"id": "it:08:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Dove",
+"Quando",
+"Se"
+],
+"slot": 0
+},
+{
+"bad": "Che",
+"chapter": 4,
+"id": "it:08:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"Che",
+"Quando",
+"Chi"
+],
+"slot": 0
+},
+{
+"bad": "Se",
+"chapter": 4,
+"id": "it:08:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 45,
+"options": [
+"Chi",
+"Quando",
+"Se"
+],
+"slot": 0
+},
+{
+"bad": "prima",
+"chapter": 5,
+"id": "it:08:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"mentre",
+"prima",
+"che"
+],
+"slot": 1
+},
+{
+"bad": "Che",
+"chapter": 5,
+"id": "it:08:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"Quando",
+"Quanto",
+"Che"
+],
+"slot": 0
+},
+{
+"bad": "Quando",
+"chapter": 5,
+"id": "it:08:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 19,
+"options": [
+"Quanti",
+"Quando",
+"Chi"
+],
+"slot": 0
+},
+{
+"bad": "Che",
+"chapter": 6,
+"id": "it:08:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"Che",
+"Chi",
+"Quante"
+],
+"slot": 0
+},
+{
+"bad": "Dove",
+"chapter": 6,
+"id": "it:08:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"Dove",
+"Quando",
+"Quale"
+],
+"slot": 0
+},
+{
+"bad": "Dove",
+"chapter": 6,
+"id": "it:08:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Perché",
+"Dove",
+"Che"
+],
+"slot": 0
+},
+{
+"bad": "Quando",
+"chapter": 7,
+"id": "it:08:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"Chi",
+"Quando",
+"Come"
+],
+"slot": 0
+},
+{
+"bad": "Chi",
+"chapter": 7,
+"id": "it:08:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 43,
+"options": [
+"Quando",
+"Cosa",
+"Chi"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"Dove?",
+"Dove abiti?"
+],
+[
+"Chi?",
+"Chi ha la chiave?"
+],
+[
+"Quando?",
+"Quando arrivi?"
+],
+[
+"Quanto?",
+"Quanto costa il biglietto?"
+],
+[
+"Con chi?",
+"Con chi lavori?"
+]
+],
+"title": {
+"en": "Questions: where, who, when, how much",
+"ru": "Вопросы: где, кто, когда, сколько",
+"uk": "Запитання: де, хто, коли, скільки"
+}
+},
+"exampleResolved": [
+{
+"id": "it:08:01",
+"target": "Dove sei?",
+"ru": "Где ты?",
+"uk": "Де ти?"
+},
+{
+"id": "it:08:02",
+"target": "Dov’è Paolo?",
+"ru": "Где Паоло?",
+"uk": "Де Паоло?"
+},
+{
+"id": "it:08:03",
+"target": "Dove sono le chiavi?",
+"ru": "Где ключи?",
+"uk": "Де ключі?"
+},
+{
+"id": "it:08:04",
+"target": "Dove abiti?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+},
+{
+"id": "it:08:05",
+"target": "Dove lavora?",
+"ru": "Где вы работаете?",
+"uk": "Де ви працюєте?"
+},
+{
+"id": "it:08:10",
+"target": "Dove sono i bagni?",
+"ru": "Где туалеты?",
+"uk": "Де туалети?"
+},
+{
+"id": "it:08:11",
+"target": "Chi c’è?",
+"ru": "Кто здесь?",
+"uk": "Хто тут?"
+},
+{
+"id": "it:08:12",
+"target": "Chi è alla porta?",
+"ru": "Кто стоит у двери?",
+"uk": "Хто біля дверей?"
+},
+{
+"id": "it:08:13",
+"target": "Chi lavora qui?",
+"ru": "Кто здесь работает?",
+"uk": "Хто тут працює?"
+},
+{
+"id": "it:08:21",
+"target": "Quando arrivi?",
+"ru": "Когда ты приезжаешь?",
+"uk": "Коли ти приїжджаєш?"
+},
+{
+"id": "it:08:24",
+"target": "Quando chiude la banca?",
+"ru": "Когда закрывается банк?",
+"uk": "Коли зачиняється банк?"
+},
+{
+"id": "it:08:25",
+"target": "Quando comincia la lezione?",
+"ru": "Когда начинается занятие?",
+"uk": "Коли починається заняття?"
+},
+{
+"id": "it:08:31",
+"target": "Quanto costa il biglietto?",
+"ru": "Сколько стоит билет?",
+"uk": "Скільки коштує квиток?"
+},
+{
+"id": "it:08:32",
+"target": "Quanto costano queste scarpe?",
+"ru": "Сколько стоят эти туфли?",
+"uk": "Скільки коштує це взуття?"
+},
+{
+"id": "it:08:35",
+"target": "Quante notti resta?",
+"ru": "На сколько ночей вы остаётесь?",
+"uk": "На скільки ночей ви зупиняєтеся?"
+},
+{
+"id": "it:08:39",
+"target": "Quale camera è disponibile?",
+"ru": "Какой номер свободен?",
+"uk": "Який номер вільний?"
+},
+{
+"id": "it:08:41",
+"target": "Perché partite così presto?",
+"ru": "Почему вы так рано уходите?",
+"uk": "Чому ви так рано йдете?"
+},
+{
+"id": "it:08:44",
+"target": "Come si chiama questa strada?",
+"ru": "Как называется эта улица?",
+"uk": "Як називається ця вулиця?"
+},
+{
+"id": "it:08:47",
+"target": "Che cosa prepara?",
+"ru": "Что вы готовите?",
+"uk": "Що ви готуєте?"
+},
+{
+"id": "it:08:48",
+"target": "Cosa sta facendo Paolo?",
+"ru": "Что делает Паоло?",
+"uk": "Що робить Паоло?"
+},
+{
+"id": "it:08:49",
+"target": "Con chi lavori?",
+"ru": "С кем ты работаешь?",
+"uk": "З ким ти працюєш?"
+}
+]
+}
+]

@@ -1,0 +1,6 @@
+01:01:56.022 27270 27405 I ReactNativeJS: '[PAYWALL-FIT] skip', '{"touched":false,"viewportH":274,"contentH":0}'
+01:01:56.022 27270 27405 I ReactNativeJS: '[PAYWALL-FIT]', '{"viewportH":274,"contentH":362,"overflow":88,"initialOffset":0,"action":"scrollable_from_top"}'
+01:02:13.710 27270 27405 I ReactNativeJS: '[PAYWALL-FIT] skip', '{"touched":false,"viewportH":198,"contentH":0}'
+01:02:13.710 27270 27405 I ReactNativeJS: '[PAYWALL-FIT]', '{"viewportH":198,"contentH":362,"overflow":164,"initialOffset":0,"action":"scrollable_from_top"}'
+01:02:41.816 27270 27405 I ReactNativeJS: '[PAYWALL-FIT] skip', '{"touched":false,"viewportH":198,"contentH":0}'
+01:02:41.817 27270 27405 I ReactNativeJS: '[PAYWALL-FIT]', '{"viewportH":198,"contentH":414,"overflow":216,"initialOffset":0,"action":"scrollable_from_top"}'

@@ -1,0 +1,893 @@
+{
+ "lang": "en",
+ "lesson": 10,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:10.01",
+   "target": "I can swim.",
+   "ru": "Я умею плавать.",
+   "uk": "Я вмію плавати."
+  },
+  {
+   "id": "en-classic-r1:10.02",
+   "target": "She can drive.",
+   "ru": "Она умеет водить машину.",
+   "uk": "Вона вміє водити."
+  },
+  {
+   "id": "en-classic-r1:10.03",
+   "target": "We can wait.",
+   "ru": "Мы можем подождать.",
+   "uk": "Ми можемо почекати."
+  },
+  {
+   "id": "en-classic-r1:10.04",
+   "target": "He can come today.",
+   "ru": "Он может приехать сегодня.",
+   "uk": "Він може приїхати сьогодні."
+  },
+  {
+   "id": "en-classic-r1:10.05",
+   "target": "They can hear us.",
+   "ru": "Они нас слышат.",
+   "uk": "Вони нас чують."
+  },
+  {
+   "id": "en-classic-r1:10.06",
+   "target": "I cannot hear you.",
+   "ru": "Я вас не слышу.",
+   "uk": "Я вас не чую."
+  },
+  {
+   "id": "en-classic-r1:10.07",
+   "target": "She cannot see the screen.",
+   "ru": "Она не видит экран.",
+   "uk": "Вона не бачить екрану."
+  },
+  {
+   "id": "en-classic-r1:10.08",
+   "target": "We cannot open the gate.",
+   "ru": "Мы не можем открыть ворота.",
+   "uk": "Ми не можемо відкрити ворота."
+  },
+  {
+   "id": "en-classic-r1:10.09",
+   "target": "He cannot find his ticket.",
+   "ru": "Он не может найти свой билет.",
+   "uk": "Він не може знайти свій квиток."
+  },
+  {
+   "id": "en-classic-r1:10.10",
+   "target": "They cannot stay late.",
+   "ru": "Они не могут оставаться допоздна.",
+   "uk": "Вони не можуть залишатися допізна."
+  },
+  {
+   "id": "en-classic-r1:10.11",
+   "target": "Can I sit here?",
+   "ru": "Можно мне сесть здесь?",
+   "uk": "Чи можу я тут сісти?"
+  },
+  {
+   "id": "en-classic-r1:10.12",
+   "target": "Can I use your phone?",
+   "ru": "Можно мне воспользоваться вашим телефоном?",
+   "uk": "Чи можу я скористатися вашим телефоном?"
+  },
+  {
+   "id": "en-classic-r1:10.13",
+   "target": "Can I pay by card?",
+   "ru": "Можно мне расплатиться картой?",
+   "uk": "Чи можу я розплатитися карткою?"
+  },
+  {
+   "id": "en-classic-r1:10.14",
+   "target": "Can we leave our bags here?",
+   "ru": "Можно нам оставить здесь наши сумки?",
+   "uk": "Чи можемо ми залишити наші сумки тут?"
+  },
+  {
+   "id": "en-classic-r1:10.15",
+   "target": "Can I open the window?",
+   "ru": "Можно мне открыть окно?",
+   "uk": "Чи можу я відкрити вікно?"
+  },
+  {
+   "id": "en-classic-r1:10.16",
+   "target": "Can we take a short break?",
+   "ru": "Можно нам сделать небольшой перерыв?",
+   "uk": "Чи можемо ми зробити коротку перерву?"
+  },
+  {
+   "id": "en-classic-r1:10.17",
+   "target": "Can I borrow a pen?",
+   "ru": "Можно мне взять ручку?",
+   "uk": "Чи можу я позичити ручку?"
+  },
+  {
+   "id": "en-classic-r1:10.18",
+   "target": "Can I change my seat?",
+   "ru": "Можно мне поменять место?",
+   "uk": "Чи можу я пересісти?"
+  },
+  {
+   "id": "en-classic-r1:10.19",
+   "target": "Can we book a table?",
+   "ru": "Можно нам забронировать столик?",
+   "uk": "Чи можемо ми забронювати столик?"
+  },
+  {
+   "id": "en-classic-r1:10.20",
+   "target": "Can I bring a friend?",
+   "ru": "Можно мне привести друга?",
+   "uk": "Чи можу я привести друга?"
+  },
+  {
+   "id": "en-classic-r1:10.21",
+   "target": "Can you speak more slowly?",
+   "ru": "Можете говорить медленнее?",
+   "uk": "Чи можете ви говорити повільніше?"
+  },
+  {
+   "id": "en-classic-r1:10.22",
+   "target": "Can you say that again?",
+   "ru": "Можете повторить?",
+   "uk": "Чи можете ви повторити це?"
+  },
+  {
+   "id": "en-classic-r1:10.23",
+   "target": "Can you write it down?",
+   "ru": "Можете записать?",
+   "uk": "Чи можете ви записати це?"
+  },
+  {
+   "id": "en-classic-r1:10.24",
+   "target": "Can you hold the door?",
+   "ru": "Можете придержать дверь?",
+   "uk": "Чи можете ви потримати двері?"
+  },
+  {
+   "id": "en-classic-r1:10.25",
+   "target": "Can you show me the way?",
+   "ru": "Можете показать мне дорогу?",
+   "uk": "Чи можете ви показати мені дорогу?"
+  },
+  {
+   "id": "en-classic-r1:10.26",
+   "target": "Can you check the price?",
+   "ru": "Можете проверить цену?",
+   "uk": "Чи можете ви перевірити ціну?"
+  },
+  {
+   "id": "en-classic-r1:10.27",
+   "target": "Can you send me the link?",
+   "ru": "Можете прислать мне ссылку?",
+   "uk": "Чи можете ви надіслати мені посилання?"
+  },
+  {
+   "id": "en-classic-r1:10.28",
+   "target": "Can you move your bag?",
+   "ru": "Можете передвинуть свою сумку?",
+   "uk": "Чи можете ви пересунути свою сумку?"
+  },
+  {
+   "id": "en-classic-r1:10.29",
+   "target": "Can you pass me the salt?",
+   "ru": "Можете передать мне соль?",
+   "uk": "Чи можете ви передати мені сіль?"
+  },
+  {
+   "id": "en-classic-r1:10.30",
+   "target": "Can you help me with this form?",
+   "ru": "Можете помочь мне с этой формой?",
+   "uk": "Чи можете ви допомогти мені з цією формою?"
+  },
+  {
+   "id": "en-classic-r1:10.31",
+   "target": "You should keep the receipt.",
+   "ru": "Вам следует сохранить квитанцию.",
+   "uk": "Вам слід зберегти чек."
+  },
+  {
+   "id": "en-classic-r1:10.32",
+   "target": "You should check the date.",
+   "ru": "Вам стоит проверить дату.",
+   "uk": "Вам слід перевірити дату."
+  },
+  {
+   "id": "en-classic-r1:10.33",
+   "target": "We should leave soon.",
+   "ru": "Нам стоит скоро уйти.",
+   "uk": "Нам слід скоро вирушати."
+  },
+  {
+   "id": "en-classic-r1:10.34",
+   "target": "He should get some rest.",
+   "ru": "Ему стоит отдохнуть.",
+   "uk": "Йому слід відпочити."
+  },
+  {
+   "id": "en-classic-r1:10.35",
+   "target": "She should call the office.",
+   "ru": "Ей следует позвонить в офис.",
+   "uk": "Їй слід зателефонувати в офіс."
+  },
+  {
+   "id": "en-classic-r1:10.36",
+   "target": "We should not block the exit.",
+   "ru": "Нам не стоит загораживать выход.",
+   "uk": "Нам не слід блокувати вихід."
+  },
+  {
+   "id": "en-classic-r1:10.37",
+   "target": "You should not share your password.",
+   "ru": "Вам не следует сообщать свой пароль.",
+   "uk": "Вам не слід повідомляти свій пароль."
+  },
+  {
+   "id": "en-classic-r1:10.38",
+   "target": "They should take a map.",
+   "ru": "Им следует взять карту.",
+   "uk": "Їм слід взяти карту."
+  },
+  {
+   "id": "en-classic-r1:10.39",
+   "target": "Should I book in advance?",
+   "ru": "Стоит ли мне бронировать заранее?",
+   "uk": "Чи варто мені бронювати заздалегідь?"
+  },
+  {
+   "id": "en-classic-r1:10.40",
+   "target": "Should we tell the driver?",
+   "ru": "Стоит ли нам сказать водителю?",
+   "uk": "Чи варто нам сказати водієві?"
+  },
+  {
+   "id": "en-classic-r1:10.41",
+   "target": "You must wear a helmet.",
+   "ru": "Вы должны надеть шлем.",
+   "uk": "Ви повинні надіти шолом."
+  },
+  {
+   "id": "en-classic-r1:10.42",
+   "target": "We have to show our tickets.",
+   "ru": "Мы должны показать наши билеты.",
+   "uk": "Ми повинні показати наші квитки."
+  },
+  {
+   "id": "en-classic-r1:10.43",
+   "target": "He has to bring his passport.",
+   "ru": "Он должен принести свой паспорт.",
+   "uk": "Він має взяти з собою свій паспорт."
+  },
+  {
+   "id": "en-classic-r1:10.44",
+   "target": "You must not touch the cable.",
+   "ru": "Вы не должны прикасаться к кабелю.",
+   "uk": "Ви не повинні торкатися кабелю."
+  },
+  {
+   "id": "en-classic-r1:10.45",
+   "target": "You do not have to print the ticket.",
+   "ru": "Вам не нужно распечатывать билет.",
+   "uk": "Вам не потрібно друкувати квиток."
+  },
+  {
+   "id": "en-classic-r1:10.46",
+   "target": "She does not have to work tonight.",
+   "ru": "Ей не нужно работать сегодня вечером.",
+   "uk": "Їй не потрібно працювати сьогодні ввечері."
+  },
+  {
+   "id": "en-classic-r1:10.47",
+   "target": "Do we have to sign both pages?",
+   "ru": "Нужно ли нам подписывать обе страницы?",
+   "uk": "Чи повинні ми підписувати обидві сторінки?"
+  },
+  {
+   "id": "en-classic-r1:10.48",
+   "target": "Can I leave after lunch?",
+   "ru": "Можно мне уйти после обеда?",
+   "uk": "Чи можу я піти після обіду?"
+  },
+  {
+   "id": "en-classic-r1:10.49",
+   "target": "You can park here after six.",
+   "ru": "Вы можете парковаться здесь после шести.",
+   "uk": "Ви можете паркуватися тут після шостої."
+  },
+  {
+   "id": "en-classic-r1:10.50",
+   "target": "You must not park by the exit.",
+   "ru": "Вы не должны парковаться у выхода.",
+   "uk": "Ви не повинні паркуватися біля виходу."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "swim",
+   "ru": "плавать",
+   "uk": "плавати"
+  },
+  {
+   "lemma": "come",
+   "ru": "приходить",
+   "uk": "приходити"
+  },
+  {
+   "lemma": "find",
+   "ru": "найти",
+   "uk": "знаходити"
+  },
+  {
+   "lemma": "stay",
+   "ru": "оставаться",
+   "uk": "залишатися"
+  },
+  {
+   "lemma": "sit",
+   "ru": "сидеть",
+   "uk": "сидіти"
+  },
+  {
+   "lemma": "borrow",
+   "ru": "взять напрокат",
+   "uk": "позичити"
+  },
+  {
+   "lemma": "book",
+   "ru": "забронировать заранее; книга для чтения",
+   "uk": "забронювати заздалегідь; книга для читання"
+  },
+  {
+   "lemma": "bring",
+   "ru": "принести",
+   "uk": "принести"
+  },
+  {
+   "lemma": "friend",
+   "ru": "друг",
+   "uk": "друг"
+  },
+  {
+   "lemma": "again",
+   "ru": "снова",
+   "uk": "знову"
+  },
+  {
+   "lemma": "write",
+   "ru": "написать",
+   "uk": "написати"
+  },
+  {
+   "lemma": "hold",
+   "ru": "держать",
+   "uk": "утримувати"
+  },
+  {
+   "lemma": "link",
+   "ru": "связь",
+   "uk": "посилання"
+  },
+  {
+   "lemma": "move",
+   "ru": "двигаться",
+   "uk": "перемістити"
+  },
+  {
+   "lemma": "pass",
+   "ru": "передать что-либо кому-либо; проездной или пропуск",
+   "uk": "передати щось комусь; проїзний або доступний перепустка"
+  },
+  {
+   "lemma": "salt",
+   "ru": "соль",
+   "uk": "сіль"
+  },
+  {
+   "lemma": "rest",
+   "ru": "отдых",
+   "uk": "відпочинок"
+  },
+  {
+   "lemma": "exit",
+   "ru": "выход",
+   "uk": "вихід"
+  },
+  {
+   "lemma": "password",
+   "ru": "пароль",
+   "uk": "пароль"
+  },
+  {
+   "lemma": "advance",
+   "ru": "продвигаться",
+   "uk": "просунутися вперед"
+  },
+  {
+   "lemma": "tell",
+   "ru": "рассказать",
+   "uk": "сказати"
+  },
+  {
+   "lemma": "helmet",
+   "ru": "защитный шлем",
+   "uk": "захисний шолом"
+  },
+  {
+   "lemma": "touch",
+   "ru": "касаться",
+   "uk": "торкнутися"
+  },
+  {
+   "lemma": "cable",
+   "ru": "кабель",
+   "uk": "кабель"
+  },
+  {
+   "lemma": "print",
+   "ru": "печатать",
+   "uk": "друкувати"
+  }
+ ],
+ "knownWords": [
+  "i",
+  "am",
+  "ready",
+  "you",
+  "are",
+  "busy",
+  "she",
+  "is",
+  "he",
+  "we",
+  "they",
+  "free",
+  "here",
+  "at",
+  "home",
+  "work",
+  "it",
+  "open",
+  "closed",
+  "the",
+  "door",
+  "shop",
+  "shops",
+  "doors",
+  "lights",
+  "on",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "buses",
+  "room",
+  "warm",
+  "rooms",
+  "coffee",
+  "cold",
+  "my",
+  "bag",
+  "your",
+  "keys",
+  "phone",
+  "kitchen",
+  "window",
+  "windows",
+  "hands",
+  "our",
+  "seats",
+  "not",
+  "yes",
+  "no",
+  "this",
+  "seat",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "these",
+  "station",
+  "last",
+  "tickets",
+  "waiting",
+  "office",
+  "her",
+  "train",
+  "time",
+  "nearby",
+  "works",
+  "live",
+  "alone",
+  "lives",
+  "start",
+  "starts",
+  "finish",
+  "finishes",
+  "walk",
+  "need",
+  "help",
+  "needs",
+  "want",
+  "wants",
+  "tea",
+  "like",
+  "likes",
+  "use",
+  "uses",
+  "speak",
+  "english",
+  "speaks",
+  "stops",
+  "opens",
+  "nine",
+  "leaves",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "closes",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "close",
+  "take",
+  "takes",
+  "share",
+  "a",
+  "shares",
+  "flat",
+  "check",
+  "email",
+  "checks",
+  "his",
+  "cash",
+  "to",
+  "walks",
+  "sister",
+  "nights",
+  "together",
+  "sometimes",
+  "studies",
+  "driver",
+  "knows",
+  "way",
+  "key",
+  "gate",
+  "do",
+  "drive",
+  "does",
+  "smoke",
+  "eat",
+  "meat",
+  "have",
+  "entrance",
+  "accept",
+  "cards",
+  "machine",
+  "coins",
+  "know",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "stop",
+  "charge",
+  "fit",
+  "shut",
+  "shoes",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "night",
+  "until",
+  "cook",
+  "fridays",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottled",
+  "water",
+  "messages",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "cork",
+  "son",
+  "milk",
+  "that",
+  "near",
+  "understand",
+  "word",
+  "card",
+  "in",
+  "sell",
+  "stamps",
+  "sundays",
+  "down",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "by",
+  "itself",
+  "parking",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "receipts",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next",
+  "where",
+  "when",
+  "what",
+  "how",
+  "why",
+  "wait",
+  "alarm",
+  "beep",
+  "leave",
+  "much",
+  "cost",
+  "which",
+  "long",
+  "journey",
+  "gates",
+  "goes",
+  "centre",
+  "often",
+  "trains",
+  "size",
+  "colour",
+  "prefer",
+  "batteries",
+  "sale",
+  "end",
+  "label",
+  "say",
+  "one",
+  "more",
+  "coat",
+  "restart",
+  "button",
+  "screen",
+  "dark",
+  "who",
+  "orders",
+  "call",
+  "has",
+  "leads",
+  "meet",
+  "after",
+  "spell",
+  "surname",
+  "mean",
+  "many",
+  "people",
+  "far",
+  "each",
+  "day",
+  "teaches",
+  "evening",
+  "belongs",
+  "foot",
+  "number",
+  "car",
+  "bicycle",
+  "question",
+  "sore",
+  "throat",
+  "cough",
+  "headache",
+  "appointment",
+  "daughter",
+  "block",
+  "nose",
+  "fever",
+  "prescription",
+  "health",
+  "insurance",
+  "doctor",
+  "charger",
+  "passport",
+  "enough",
+  "change",
+  "pen",
+  "shower",
+  "zip",
+  "small",
+  "booking",
+  "glasses",
+  "original",
+  "licence",
+  "bike",
+  "handle",
+  "chair",
+  "garden",
+  "two",
+  "three",
+  "page",
+  "blue",
+  "deep",
+  "pocket",
+  "afternoon",
+  "table",
+  "hotel",
+  "luggage",
+  "moment",
+  "everything",
+  "seven",
+  "noon",
+  "tuesday",
+  "travel",
+  "july",
+  "midnight",
+  "arrive",
+  "monday",
+  "morning",
+  "half",
+  "past",
+  "six",
+  "quarter",
+  "four",
+  "lunchtime",
+  "concert",
+  "fifteen",
+  "ring",
+  "thirty",
+  "bakery",
+  "dawn",
+  "bell",
+  "midday",
+  "public",
+  "holidays",
+  "wednesday",
+  "bill",
+  "due",
+  "thursday",
+  "market",
+  "saturdays",
+  "first",
+  "birthday",
+  "year",
+  "short",
+  "winter",
+  "course",
+  "september",
+  "hot",
+  "summer",
+  "spring",
+  "park",
+  "june",
+  "club",
+  "january",
+  "timetable",
+  "april",
+  "beautiful",
+  "autumn",
+  "week",
+  "film",
+  "tonight",
+  "see",
+  "eleven",
+  "dentist",
+  "queue",
+  "back",
+  "toilet",
+  "upstairs",
+  "downstairs",
+  "map",
+  "outside",
+  "inside",
+  "fridge",
+  "kettle",
+  "soup",
+  "stove",
+  "egg",
+  "cup",
+  "shelf",
+  "bread",
+  "spoons",
+  "drawer",
+  "rice",
+  "cupboard",
+  "clean",
+  "towel",
+  "soap",
+  "sink",
+  "locker",
+  "blankets",
+  "step",
+  "direct",
+  "sugar",
+  "space",
+  "forks",
+  "signal",
+  "floor",
+  "single",
+  "name",
+  "list",
+  "mistake",
+  "crack",
+  "still"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  }
+ ],
+ "oldTopicTitle": "Как попросить, предложить и объяснить правило",
+ "oldTheoryRu": "Can — могу, should — стоит, must — должен. Меняй смысл первым словом; wait после них не получает ни to, ни -s. Выберите значение перед формой. `Can` может выражать способность, разрешение или просьбу. `Should` дает совет. `Must` выражает сильное требование. Выберите значение перед формой. `Can` может выражать способность, разрешение или просьбу. `Should` дает совет. `Must` выражает сильное требование. Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно. `Must not` означает, что это запрещено. `Do not have to` означает, что нет никаких обязательств. Это не альтернативные переводы одной и той же инструкции. Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно. Дайте совет Узнайте, является ли печать билета необязательной и запрещено ли прикасаться к кабелю. Два отрицания не должны звучать одинаково по смыслу. Разделите обязанность, запрет и выбор"
+}

@@ -1,0 +1,138 @@
+{
+  "_note": "Оверрайды интро классики, uk (Переводчик). Ключ = screenId. Поля titleUK/textUK/linesUK по структуре intro.json. Эталон тона — ru от Тем (classic_intro_overrides.json). Примеры по-английски не меняются.",
+  "en:01:intro:1": {
+    "titleUK": "Правило",
+    "textUK": "В англійській дієслово be («бути» у значенні «перебувати в якомусь стані») змінює форму залежно від підмета: am — лише з I, is — з he, she, it і з одним предметом, are — з you, we, they і з кількома предметами. В українській теперішній час «бути» зазвичай не вимовляється («Я готовий»), тож форму тут треба вибирати свідомо. Найчастіша помилка початківців — «I is ready» замість «I am ready». Вибирай форму за підметом, а не за змістом: «My keys are here» — ключі у множині, навіть якщо власник один. Виняток, який варто запам’ятати: you завжди вимагає are, навіть коли звертаєшся до однієї людини.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "Форма be залежить лише від того, хто або що стоїть перед нею. Порівняй три приклади."}]},
+      {"type": "example", "parts": [{"text": "I am ready.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Я готовий.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:01:intro:2": {
+    "titleUK": "Як будується",
+    "textUK": "Схема проста: підмет, потім форма be, потім ознака або місце. Підмет визначає форму: I — am; he, she, it і один предмет — is; you, we, they і кілька предметів — are.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "[підмет] + [am / is / are] + [ознака або місце]", "tone": "strong"}]},
+      {"type": "example", "parts": [{"text": "I am ready.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Я готовий.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "She is at home.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вона вдома.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "They are ready.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вони готові.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:01:intro:3": {
+    "titleUK": "Типові помилки і приклади",
+    "textUK": "Дві помилки трапляються найчастіше: форма is з I або you і змішування is/are з кількома предметами. Перевір підмет, перш ніж писати дієслово.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "Помилково: I is ready. Правильно: I am ready. З I завжди am.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: You is late. Правильно: You are late. You завжди вимагає are.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "We are at school.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Ми в школі.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "The keys are here.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Ключі тут.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:02:intro:1": {
+    "titleUK": "Правило",
+    "textUK": "Заперечення і питання з be будуються без do і does: сама форма be бере на себе цю роботу. Щоб сказати «не», став not одразу після am, is або are: The door is not open. Щоб поставити питання, переставляй форму be перед підметом: Is the door open? В українській питання нічого не переставляє («Двері відчинені?»), тому порядок слів здається незвичним. Часта помилка — додавати do: «Do you are ready?» Правильно: «Are you ready?» Якщо форма be вже є в реченні, другого допоміжного дієслова не потрібно.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "Для заперечення not іде після be, для питання be переходить на початок."}]},
+      {"type": "example", "parts": [{"text": "The door is not open.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Двері не відчинені.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:02:intro:2": {
+    "titleUK": "Як будується",
+    "textUK": "Для заперечення: підмет, потім am / is / are, потім not, потім ознака. Для питання: am / is / are, потім підмет, потім ознака, і знак питання в кінці.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "[підмет] + [am / is / are] + not + [ознака]", "tone": "strong"}]},
+      {"type": "example", "parts": [{"text": "She is not ready.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вона не готова.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "[am / is / are] + [підмет] + [ознака]?", "tone": "strong"}]},
+      {"type": "example", "parts": [{"text": "Is she ready?", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вона готова?", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "We are not late.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Ми не запізнилися.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:02:intro:3": {
+    "titleUK": "Типові помилки і приклади",
+    "textUK": "Найчастіше помиляються двома способами: додають do до форми be і ставлять not перед дієсловом. Обидва випадки виправляються одним правилом: з be питання і заперечення будуються самим be.",
+    "linesUK": [
+      {"type": "example", "parts": [{"text": "Are you ready?", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Ви готові?", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "The shop is not open.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Магазин не відчинено.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: Do you are ready? Правильно: Are you ready? Do тут зайве: be вже стоїть на потрібному місці.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: She not is ready. Правильно: She is not ready. Not ставиться після be, а не перед ним.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:03:intro:1": {
+    "titleUK": "Правило",
+    "textUK": "У теперішньому простому часі дієслово змінюється лише у третій особі однини: до нього додається закінчення -s або -es. I, you, we, they кажуть work, а he, she, it — works. В українській дієслово змінюється за особами інакше («працюю», «працює»), тому закінчення тут легко пропустити. Слова місця на кшталт here не змінюються разом із дієсловом. Закінчення стосується саме дієслова, а не сусіднього іменника: The lift works, але не «The lifts works».",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "Закінчення -s з’являється лише у дієслова при he, she, it."}]},
+      {"type": "example", "parts": [{"text": "I work nearby.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Я працюю неподалік.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:03:intro:2": {
+    "titleUK": "Як будується",
+    "textUK": "Для he, she, it: дієслово + -s. Правопис: після s, sh, ch, x, o додається -es (watch → watches, go → goes); після приголосної і y змінюємо y на -ies (study → studies); після голосної і y — просто -s (play → plays).",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "[he / she / it] + [дієслово + -s / -es] + [решта речення]", "tone": "strong"}]},
+      {"type": "example", "parts": [{"text": "She works here.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вона тут працює.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "The bus leaves at eight.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Автобус відправляється о восьмій.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:03:intro:3": {
+    "titleUK": "Типові помилки і приклади",
+    "textUK": "Головна помилка — забути закінчення у дієслова при he, she, it. Друга — неправильно написати закінчення після y. Перевіряй особу і літеру перед останньою.",
+    "linesUK": [
+      {"type": "example", "parts": [{"text": "He lives alone.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Він живе сам.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "My sister studies English.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Моя сестра вивчає англійську.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: He work here. Правильно: He works here. Закінчення -s потрібне у дієслова при he.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: She studys English. Правильно: She studies English. Після приголосної y змінюється на -ies.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:04:intro:1": {
+    "titleUK": "Правило",
+    "textUK": "У запереченні звичайного дієслова потрібне допоміжне do або does: саме дієслово «не» не отримує. Для he, she, it — does not (скорочено doesn’t), для I, you, we, they — do not (don’t). Тут українська звичка заважає: «не» в англійській стоїть окремим словом перед дієсловом, а саме дієслово повертається до базової форми без -s. Тому «She doesn’t drive», а не «She doesn’t drives». Скорочення розмовні; у письмовій мові повна форма звучить суворіше.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "Закінчення -s переходить до do → does, саме дієслово лишається базовим."}]},
+      {"type": "example", "parts": [{"text": "I do not drive.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Я не воджу машину.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:04:intro:2": {
+    "titleUK": "Як будується",
+    "textUK": "Схема: підмет, потім do або does, потім not, потім дієслово без -s. Для he, she, it — does; для решти — do.",
+    "linesUK": [
+      {"type": "text", "parts": [{"text": "[підмет] + [do / does] + not + [дієслово без -s]", "tone": "strong"}]},
+      {"type": "example", "parts": [{"text": "I do not drive.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Я не воджу машину.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "He does not drive.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Він не водить машину.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "This key doesn’t fit.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Цей ключ не підходить.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  },
+  "en:04:intro:3": {
+    "titleUK": "Типові помилки і приклади",
+    "textUK": "Дві помилки повторюються майже в усіх: закінчення -s лишається і після does, і після don’t. Запам’ятай: закінчення вже стоїть у does, тож дієслово йде без нього.",
+    "linesUK": [
+      {"type": "example", "parts": [{"text": "She does not smoke.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вона не курить.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "example", "parts": [{"text": "They don’t play tennis.", "tone": "strong", "semantic": "targetCorrect"}]},
+      {"type": "text", "parts": [{"text": "Вони не грають у теніс.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: She doesn’t drives. Правильно: She doesn’t drive. Після does дієслово без -s.", "tone": "muted", "semantic": "nativeGloss"}]},
+      {"type": "text", "parts": [{"text": "Помилково: I don’t likes coffee. Правильно: I don’t like coffee. З I, you, we, they — do і дієслово без -s.", "tone": "muted", "semantic": "nativeGloss"}]}
+    ]
+  }
+}

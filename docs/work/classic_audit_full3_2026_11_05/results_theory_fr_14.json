@@ -1,0 +1,93 @@
+[
+ {
+  "id": "lesson-29/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«якщо той підлягає наступній дії» — искажён смысл (нужно «є підметом»)",
+  "fix": "Відносний займенник пов'язує назву з уточненням. `Qui` тут не ставить питання «хто?». Він може стосуватися і предмета, якщо той є підметом наступної дії."
+ },
+ {
+  "id": "lesson-29/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«Не вставляйте друге, що підлягає…» — машинный мусор и «ви» вразнобой",
+  "fix": "Після `qui` у звичайних прикладах одразу можна назвати дієслово. У конструкції `c’est Léa qui …` саме Леа виконала дію. Не вставляй другий підмет без потреби."
+ },
+ {
+  "id": "lesson-29/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«у нейтральному листі» — нужно «на письмі»",
+  "fix": "`Que` перед голосною дає `qu’`. У `qui` в нейтральному письмі `i` зберігається. Це важливо навіть тоді, коли розмовна вимова дуже швидка."
+ },
+ {
+  "id": "lesson-29/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.ru",
+  "problem": "«передний прямой объект» — неестественная калька",
+  "fix": "Выбирая `qui` или `que`, смотри на роль слова в маленьком уточнении, а не в главной фразе. В сложном прошедшем стоящее впереди прямое дополнение иногда видно и по согласованию причастия."
+ },
+ {
+  "id": "lesson-29/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«за погодженням» — нужно «за узгодженням»; «передній об'єкт» калька",
+  "fix": "Вибираючи `qui` або `que`, дивись на роль слова в маленькому уточненні, а не в головній фразі. У складному минулому пряме доповнення, що стоїть попереду, іноді видно й за узгодженням дієприкметника."
+ },
+ {
+  "id": "lesson-29/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«the role of the small clarification» искажает ru (роль слова в уточнении)",
+  "fix": "When choosing `qui` or `que`, look at the word's role in the short clarifying clause, not in the main sentence. In the compound past, a preceding direct object is sometimes also visible from the participle agreement."
+ },
+ {
+  "id": "lesson-30/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«зі своїм підлеглим» — неверно (subordinate), нужно «підметом»",
+  "fix": "Коли важливо назвати виконавця, порівняй `il faut partir` та `il faut que je parte`. Після `que` починається нова частина зі своїм підметом. Словниковий інфінітив туди не вставляють."
+ },
+ {
+  "id": "lesson-30/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«від обличчя» — нужно «від особи»",
+  "fix": "Форма залежить від особи всередині другої частини. У `il faut que nous partions` не безособове `il`, а `nous` пояснює закінчення. Точка вибору — слово перед дієсловом, що перевіряється."
+ },
+ {
+  "id": "lesson-30/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«формами сьогодення» — нужно «теперішнього часу»",
+  "fix": "Особливо помітні неправильні форми: `être → sois, soit, soyons`; `avoir → aie, aies, ait`. Не замінюй їх звичними формами теперішнього часу `suis` та `ai`."
+ },
+ {
+  "id": "lesson-30/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "Мусор/обрыв: «од. та багато інших. числа», «переносити закінчення іншу основу»",
+  "fix": "Для `aller` порівняй `aille` та `allions`; для `prendre` — `prenne` та `prenions`. Запам'ятай пару форм однини й множини, перш ніж переносити закінчення на іншу основу."
+ },
+ {
+  "id": "lesson-30/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.ru",
+  "problem": "«Режим» вместо грамматического термина «наклонение»",
+  "fix": "Не у всех глаголов нужная форма заметно отличается от настоящего. В `il faut que tu vérifies` написание знакомо. Наклонение всё равно определяется выражением необходимости."
+ },
+ {
+  "id": "lesson-30/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«сьогодення», «Режим» вместо «теперішнього часу», «спосіб»",
+  "fix": "Не у всіх дієслів потрібна форма помітно відрізняється від теперішнього часу. У `il faut que tu vérifies` написання знайоме. Спосіб усе одно визначається виразом потреби."
+ },
+ {
+  "id": "lesson-30/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "«mode» вместо «mood»",
+  "fix": "Not all verbs have a form noticeably different from the present. In `il faut que tu vérifies`, the spelling is familiar. The mood is still determined by the expression of necessity."
+ }
+]

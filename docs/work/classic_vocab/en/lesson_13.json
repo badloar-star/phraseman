@@ -3,10 +3,15 @@
  "lesson": 13,
  "words": {
   "will": {
-   "ru": "слово-помощник: что случится потом; по-русски нет",
-   "uk": "слово-помічник: що станеться потім; українською немає",
-   "en": "helper word for later events",
-   "es": "(auxiliar de futuro)"
+   "ru": "Я подожду снаружи (I ___ wait outside)",
+   "uk": "Я зачекаю надворі (I ___ wait outside)",
+   "en": "I plan to wait outside (I ___ wait outside)",
+   "es": "Esperaré fuera (I ___ wait outside)",
+   "pt-BR": "Vou esperar do lado de fora (I ___ wait outside)",
+   "vi": "Tôi sẽ đợi ở bên ngoài (I ___ wait outside)",
+   "id": "Saya akan menunggu di luar (I ___ wait outside)",
+   "tr": "Dışarıda bekleyeceğim (I ___ wait outside)",
+   "pl": "Poczekam na zewnątrz (I ___ wait outside)"
   },
   "later": {
    "ru": "позже",

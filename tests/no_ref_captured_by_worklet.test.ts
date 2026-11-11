@@ -29,13 +29,11 @@ describe('ref-объект не уходит в worklet через runOnJS(ref.c
     expect(bad).toEqual([]);
   });
 
-  it('шесть шторок и окно регистрации зовут стабильную функцию, ref пишет только JS', () => {
+  it('четыре шторки и окно регистрации зовут стабильную функцию, ref пишет только JS', () => {
     const cases: ReadonlyArray<readonly [string, string, string]> = [
       ['components/friends/FriendsAddSheetShell.tsx', 'invokeHandleClose', 'handleCloseRef'],
       ['components/centered_dialog_shell.tsx', 'invokeHandleClose', 'handleCloseRef'],
       ['components/dialogs/DialogHowToSaySheet.tsx', 'invokeHandleClose', 'handleCloseRef'],
-      ['components/ExplainSheet.tsx', 'invokeHandleClose', 'handleCloseRef'],
-      ['components/MistakeEli5Modal.tsx', 'invokeHandleClose', 'handleCloseRef'],
       ['components/referral_sheet_shell.tsx', 'invokeHandleClose', 'handleCloseRef'],
       ['components/RegistrationPromptModal.tsx', 'invokeHandleLater', 'handleLaterRef'],
     ];

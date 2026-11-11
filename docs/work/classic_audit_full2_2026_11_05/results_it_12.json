@@ -1,0 +1,14 @@
+[
+{"id": "it:25:11", "type": "B1", "field": "tiles", "problem": "Соблазн «poco» даёт верную фразу «Di pane ne prendo un poco.» (un poco = немного), засчитают ошибкой", "fix": {"position": 5, "replace_distractor": "poco", "with": "pochi"}},
+{"id": "it:25:16", "type": "B1", "field": "tiles", "problem": "Соблазн «ciotola» даёт верную фразу «Di zuppa ne è rimasta una ciotola.» (миска супа) — совпадает с подсказкой", "fix": {"position": 6, "replace_distractor": "ciotola", "with": "fetta"}},
+{"id": "it:25:16", "type": "M", "field": "ru", "problem": "scodella = миска; в uk «миска», в ru «тарелка» — подсказки расходятся", "fix": "Осталась миска супа."},
+{"id": "it:25:18", "type": "B1", "field": "tiles", "problem": "Соблазн «scodella» — синоним ciotola: «Di riso ne prendo una scodella.» = та же миска риса", "fix": {"position": 5, "replace_distractor": "scodella", "with": "fetta"}},
+{"id": "it:25:30", "type": "B1", "field": "tiles", "problem": "Соблазн «lo» даёт «Non lo bevo più la sera.» — ровно «я больше не пью его по вечерам» из подсказки", "fix": {"position": 1, "replace_distractor": "lo", "with": "gli"}},
+{"id": "it:25:46", "type": "B2", "field": "ru", "problem": "Потеряно «altri» (ещё): «пойду за ними» вместо «пойду возьму ещё»", "fix": "Не хватает стаканов, я пойду возьму ещё."},
+{"id": "it:25:46", "type": "B2", "field": "uk", "problem": "Потеряно «altri» (ще): «піду за ними» вместо «піду візьму ще»", "fix": "Не вистачає склянок, я піду візьму ще."},
+{"id": "it:26:22", "type": "M", "field": "uk", "problem": "Русизм: сравнение с родительным «повільніше Паоло»; по-украински «за Паоло»", "fix": "Ти говориш повільніше за Паоло."},
+{"id": "it:26:30", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную фразу «Queste fragole sono più buone in giugno.» (in giugno = a giugno)", "fix": {"position": 5, "replace_distractor": "in", "with": "su"}},
+{"id": "it:26:36", "type": "M", "field": "ru", "problem": "«В поезде тише» — про тишину внутри; target: поезд сам шумит меньше автобуса", "fix": "Поезд шумит меньше, чем автобус."},
+{"id": "it:26:36", "type": "M", "field": "uk", "problem": "«У поїзді тихіше» — про тишу всередині; target: поїзд шумить менше за автобус", "fix": "Поїзд шумить менше, ніж автобус."},
+{"id": "it:26:44", "type": "M", "field": "uk", "problem": "«найяскравіша» = самая яркая; для комнаты luminosa = найсвітліша", "fix": "Це найсвітліша кімната."}
+]

@@ -1,0 +1,6 @@
+[
+{"id": "de:21:16", "type": "B1", "field": "tiles", "problem": "Соблазн 'Türen' даёт верную фразу 'Sie öffnet die Türen' — укр. 'двері' не различает ед./мн. число, ответ засчитают ошибкой", "fix": {"position": 3, "replace_distractor": "Türen", "with": "Kiste"}},
+{"id": "de:22:10", "type": "B1", "field": "tiles", "problem": "Пара соблазнов 'Türen' + 'sind' даёт верную 'Er sagt, dass die Türen offen sind' — укр. 'двері відчинені' подходит и для мн. числа", "fix": {"position": 4, "replace_distractor": "Türen", "with": "Kiste"}},
+{"id": "de:22:37", "type": "B1", "field": "tiles", "problem": "Соблазн 'Türen' даёт верную 'dass wir die Türen abschließen sollen' — укр. 'замкнути двері' не различает число", "fix": {"position": 5, "replace_distractor": "Türen", "with": "Kiste"}},
+{"id": "de:21:43", "type": "M", "field": "uk", "problem": "Пропущена запятая между придаточным и главным предложением", "fix": "Оскільки сьогодні неділя, банк закритий."}
+]

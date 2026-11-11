@@ -1,0 +1,107 @@
+[
+ {
+  "id": "lesson-21/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "«what already happened» — завершённость; ru «что уже происходило» (процесс, фон)",
+  "fix": "First, describe what was already going on. Then name the new event. French shows the difference with grammar, not with obligatory words like \"already\" and \"suddenly.\""
+ },
+ {
+  "id": "lesson-21/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«відмінюй» (склонять) вместо «дієвідмінюй» (спрягать)",
+  "fix": "Змінюючи учасників, дієвідмінюй кожну частину окремо. Хто їв — не обов'язково та сама людина, яка прийшла. Не підставляй той самий займенник в обидві частини за інерцією."
+ },
+ {
+  "id": "lesson-21/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«поодинока подія» = редкая/спорадическая; нужно «одинична»",
+  "fix": "У конструкції `pendant que` після сполучника часто йде саме тривала дія. Для `qu’il` та `qu’elle` зберігай апостроф. У головній частині може стояти одинична подія."
+ },
+ {
+  "id": "lesson-21/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.ru",
+  "problem": "Обрыв конструкции «потому что он теперь вторым»",
+  "fix": "Начни с события — смысл времён не изменится. Перемещая фон во вторую часть, не меняй его время на прошедшее завершённое просто потому, что он теперь стоит вторым."
+ },
+ {
+  "id": "lesson-21/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "Обрыв «тому, що він тепер другим», потеряно «просто»",
+  "fix": "Почни з події — сенс часів не зміниться. Переміщаючи фон у другу частину, не змінюй його час на минулий завершений просто тому, що він тепер стоїть другим."
+ },
+ {
+  "id": "lesson-21/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«past perfect» = plus-que-parfait; имеется в виду passé composé",
+  "fix": "Start with the event—the tenses keep their meaning. When moving the background to the second part, don't change it to the passé composé simply because it now comes second."
+ },
+ {
+  "id": "lesson-21/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«за довжиною дії хвилин» — неграмматично",
+  "fix": "Не варто підбирати час за тривалістю дії у хвилинах. Навіть довгий шлях можна подати як закінчений факт, а короткий звук — як тло, якщо так побудовано розповідь."
+ },
+ {
+  "id": "lesson-21/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«спілка» (организация) вместо «сполучник»; разнобой кавычек",
+  "fix": "Після складання перекажи фразу двома питаннями: «Що було в процесі?» і «Що сталося?» Якщо події за змістом помінялися місцями, сполучник сам по собі не виправить помилку."
+ },
+ {
+  "id": "lesson-21/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "Оба вопроса «What happened…» — различие фона и события потеряно",
+  "fix": "After assembling, retell the sentence with two questions: \"What was going on?\" and \"What happened?\" If the events are swapped in meaning, the conjunction alone won't fix the error."
+ },
+ {
+  "id": "lesson-22/title",
+  "type": "T2",
+  "field": "title.en",
+  "problem": "«subject» = подлежащее; ru «предмет» (объект)",
+  "fix": "Don't repeat the object: `le`, `la`, `les`"
+ },
+ {
+  "id": "lesson-22/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.ru",
+  "problem": "«Мужской единственного» — обрыв (нет «род … числа»)",
+  "fix": "Вместо повторения предмета или человека возьми короткую форму. Мужской род единственного числа — `le`, женский — `la`, множественное число — `les`. Решает род заменённого французского слова."
+ },
+ {
+  "id": "lesson-22/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Чоловічий єдиного … множинний» — неграмматично",
+  "fix": "Замість повторення предмета або людини візьми коротку форму. Чоловічий рід однини — `le`, жіночий — `la`, множина — `les`. Вирішує рід заміненого французького слова."
+ },
+ {
+  "id": "lesson-22/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "Обрыв: «determines.» без дополнения",
+  "fix": "Instead of repeating an object or person, use the short form. Masculine singular — `le`, feminine — `la`, plural — `les`. The gender of the replaced French word decides."
+ },
+ {
+  "id": "lesson-22/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Заперечення займенника залишається» — смысл искажён",
+  "fix": "При запереченні займенник залишається перед особовим дієсловом. У `je ne le trouve pas` вказівку на предмет не переносять за `pas`."
+ },
+ {
+  "id": "lesson-22/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«Перевірте» — на «ви», в остальном на «ти»",
+  "fix": "Перевір ще раз, кого або що називає займенник. Якщо предмет — зарядний пристрій, потрібна форма від `le chargeur`, навіть коли переклад цього слова іншою мовою має інший рід."
+ }
+]

@@ -293,16 +293,12 @@ describe('referral roulette screen contract', () => {
 
   it('keeps share and expiration copy aligned with the roulette model', () => {
     const share = read('app/referral_invite_share.ts');
-    const expired = read('components/EntitlementExpiredHost.tsx');
+    const paywall = read('components/paywall/PaywallPlusScreen.tsx');
 
     expect(share).toContain('Установи приложение, введи мой код и оформи Plus');
     expect(share).toContain('Plus от 1 дня до 365 дней');
-    // зачем: владелец (2026-08-02, вариант А) — карточка истёкшего доступа продаёт
-    // продление главным CTA, а в рефералку зовёт второй tonal-кнопкой на /referrals;
-    // старый текст-крючок «получишь ключ» с карточки снят сознательно.
-    expect(expired).toContain("invite: 'Пригласить друга'");
-    expect(expired).toContain("pathname: '/referrals'");
-    expect(expired).not.toContain('по 7 дней за каждого');
+    expect(paywall).toContain('entitlement-expired-invite');
+    expect(paywall).toContain("router.replace('/referrals')");
   });
 
   it('hides the welcome code-entry CTA after the code has already been applied', () => {

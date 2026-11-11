@@ -1,0 +1,805 @@
+{
+ "lang": "fr",
+ "lesson": 25,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:25:01",
+   "target": "J’en veux un.",
+   "ru": "Я хочу один из них.",
+   "uk": "Я хочу один із них."
+  },
+  {
+   "id": "fr:25:02",
+   "target": "J’en veux deux.",
+   "ru": "Я хочу два из них.",
+   "uk": "Я хочу два з них."
+  },
+  {
+   "id": "fr:25:03",
+   "target": "Tu en prends un.",
+   "ru": "Ты берёшь один.",
+   "uk": "Ти береш один."
+  },
+  {
+   "id": "fr:25:04",
+   "target": "Tu en prends deux.",
+   "ru": "Ты берёшь два.",
+   "uk": "Ти береш два."
+  },
+  {
+   "id": "fr:25:05",
+   "target": "Elle en garde trois.",
+   "ru": "Она оставляет себе три.",
+   "uk": "Вона залишає собі три."
+  },
+  {
+   "id": "fr:25:06",
+   "target": "Nous en achetons quatre.",
+   "ru": "Мы покупаем четыре.",
+   "uk": "Ми купуємо чотири."
+  },
+  {
+   "id": "fr:25:07",
+   "target": "Vous en voulez cinq ?",
+   "ru": "Вы хотите пять штук?",
+   "uk": "Ви хочете п'ять штук?"
+  },
+  {
+   "id": "fr:25:08",
+   "target": "Ils en ont six.",
+   "ru": "У них шесть.",
+   "uk": "У них шість."
+  },
+  {
+   "id": "fr:25:09",
+   "target": "J’en ai assez.",
+   "ru": "У меня их достаточно.",
+   "uk": "У мене їх достатньо."
+  },
+  {
+   "id": "fr:25:10",
+   "target": "Il en reste un.",
+   "ru": "Остался один.",
+   "uk": "Залишився один."
+  },
+  {
+   "id": "fr:25:11",
+   "target": "Du pain, j’en prends un peu.",
+   "ru": "Хлеба я возьму немного.",
+   "uk": "Хліба я візьму небагато."
+  },
+  {
+   "id": "fr:25:12",
+   "target": "Du fromage, elle en mange souvent.",
+   "ru": "Она часто ест сыр.",
+   "uk": "Вона часто їсть сир."
+  },
+  {
+   "id": "fr:25:13",
+   "target": "Des pommes, j’en achète un kilo.",
+   "ru": "Яблоки — покупаю килограмм.",
+   "uk": "Яблука — купую кілограм."
+  },
+  {
+   "id": "fr:25:14",
+   "target": "Des œufs, j’en prends six.",
+   "ru": "Возьму шесть яиц.",
+   "uk": "Я візьму шість яєць."
+  },
+  {
+   "id": "fr:25:15",
+   "target": "Du café, nous en buvons le matin.",
+   "ru": "Мы пьем кофе по утрам.",
+   "uk": "Ми п'ємо каву вранці."
+  },
+  {
+   "id": "fr:25:16",
+   "target": "De la soupe, il en reste un bol.",
+   "ru": "Осталась тарелка супа.",
+   "uk": "Залишилася миска супу."
+  },
+  {
+   "id": "fr:25:17",
+   "target": "Du miel, j’en ajoute une cuillère.",
+   "ru": "Мёда добавляю ложку.",
+   "uk": "Меду додаю ложку."
+  },
+  {
+   "id": "fr:25:18",
+   "target": "De l’eau, nous en avons assez.",
+   "ru": "Воды у нас достаточно.",
+   "uk": "Води у нас достатньо."
+  },
+  {
+   "id": "fr:25:19",
+   "target": "Des fraises, elle en veut une barquette.",
+   "ru": "Клубники она хочет один лоток.",
+   "uk": "Полуниці вона хоче один лоток."
+  },
+  {
+   "id": "fr:25:20",
+   "target": "Du beurre, j’en mets très peu.",
+   "ru": "Масла кладу совсем немного.",
+   "uk": "Масла кладу зовсім трохи."
+  },
+  {
+   "id": "fr:25:21",
+   "target": "Je n’en ai pas.",
+   "ru": "У меня их нет.",
+   "uk": "У мене їх немає."
+  },
+  {
+   "id": "fr:25:22",
+   "target": "Nous n’en avons plus.",
+   "ru": "У нас их больше нет.",
+   "uk": "У нас їх більше немає."
+  },
+  {
+   "id": "fr:25:23",
+   "target": "Elle n’en veut pas.",
+   "ru": "Она их не хочет.",
+   "uk": "Вона їх не хоче."
+  },
+  {
+   "id": "fr:25:24",
+   "target": "Il n’en reste aucune.",
+   "ru": "Не осталось ни одной.",
+   "uk": "Не залишилося жодної."
+  },
+  {
+   "id": "fr:25:25",
+   "target": "Tu n’en prends jamais ?",
+   "ru": "Ты их никогда не берёшь?",
+   "uk": "Ти їх ніколи не береш?"
+  },
+  {
+   "id": "fr:25:26",
+   "target": "Je n’en achète pas aujourd’hui.",
+   "ru": "Сегодня я их не покупаю.",
+   "uk": "Сьогодні я їх не купую."
+  },
+  {
+   "id": "fr:25:27",
+   "target": "Ils n’en trouvent pas ici.",
+   "ru": "Они их здесь не находят.",
+   "uk": "Вони їх тут не знаходять."
+  },
+  {
+   "id": "fr:25:28",
+   "target": "Vous n’en avez pas d’autres ?",
+   "ru": "У вас нет других?",
+   "uk": "У вас немає інших?"
+  },
+  {
+   "id": "fr:25:29",
+   "target": "Il n’en garde qu’un.",
+   "ru": "Он оставляет себе только один.",
+   "uk": "Він залишає собі тільки один."
+  },
+  {
+   "id": "fr:25:30",
+   "target": "Je n’en bois plus le soir.",
+   "ru": "Я больше не пью его по вечерам.",
+   "uk": "Я більше не п'ю його вечорами."
+  },
+  {
+   "id": "fr:25:31",
+   "target": "J’en ai acheté deux.",
+   "ru": "Я купил два.",
+   "uk": "Я купив два."
+  },
+  {
+   "id": "fr:25:32",
+   "target": "Elle en a trouvé une.",
+   "ru": "Она нашла одну.",
+   "uk": "Вона знайшла одну."
+  },
+  {
+   "id": "fr:25:33",
+   "target": "Nous en avons réservé trois.",
+   "ru": "Мы зарезервировали три.",
+   "uk": "Ми зарезервували три."
+  },
+  {
+   "id": "fr:25:34",
+   "target": "Tu en as reçu combien ?",
+   "ru": "Сколько ты их получил?",
+   "uk": "Скільки ти їх одержав?"
+  },
+  {
+   "id": "fr:25:35",
+   "target": "On en a perdu un.",
+   "ru": "Один мы потеряли.",
+   "uk": "Ми втратили один."
+  },
+  {
+   "id": "fr:25:36",
+   "target": "Je vais en reprendre.",
+   "ru": "Я возьму ещё.",
+   "uk": "Я візьму ще."
+  },
+  {
+   "id": "fr:25:37",
+   "target": "Tu peux en apporter deux ?",
+   "ru": "Можешь принести две штуки?",
+   "uk": "Чи можеш принести дві штуки?"
+  },
+  {
+   "id": "fr:25:38",
+   "target": "On a besoin de câbles pour la scène, on doit en commander trois.",
+   "ru": "Нам нужны кабели для сцены; нужно заказать три.",
+   "uk": "Нам потрібні кабелі для сцени; нам потрібно замовити три."
+  },
+  {
+   "id": "fr:25:39",
+   "target": "Nous devons en commander davantage.",
+   "ru": "Нам нужно заказать ещё.",
+   "uk": "Нам потрібно замовити ще."
+  },
+  {
+   "id": "fr:25:40",
+   "target": "Ces batteries sont chargées, vous pouvez en garder la moitié.",
+   "ru": "Эти батареи заряжены; половину можете оставить себе.",
+   "uk": "Ці батареї заряджені; ви можете залишити половину з них."
+  },
+  {
+   "id": "fr:25:41",
+   "target": "J’ai quatre billets et je t’en donne deux.",
+   "ru": "У меня четыре билета, и я даю тебе два.",
+   "uk": "У мене чотири квитки, і я даю тобі два."
+  },
+  {
+   "id": "fr:25:42",
+   "target": "Ces serviettes sont propres, tu peux en prendre une.",
+   "ru": "Эти полотенца чистые, можешь взять одно.",
+   "uk": "Ці рушники чисті, можеш узяти одне."
+  },
+  {
+   "id": "fr:25:43",
+   "target": "Ces volets claquent avec le vent, je vais en fermer deux.",
+   "ru": "Эти ставни хлопают на ветру, я закрою две из них.",
+   "uk": "Ці віконниці ляскають на вітрі, я закрию дві з них."
+  },
+  {
+   "id": "fr:25:44",
+   "target": "Ces poires sont mûres, j’en voudrais trois.",
+   "ru": "Эти груши спелые, я бы хотел три.",
+   "uk": "Ці груші стиглі, я б хотів три."
+  },
+  {
+   "id": "fr:25:45",
+   "target": "J’aime ces petits pains et j’en achète souvent.",
+   "ru": "Мне нравятся эти булочки, я часто их покупаю.",
+   "uk": "Мені подобаються ці булочки, і я часто їх купую."
+  },
+  {
+   "id": "fr:25:46",
+   "target": "Il manque des verres, je vais en chercher.",
+   "ru": "Не хватает стаканов, я пойду за ними.",
+   "uk": "Не вистачає склянок, я піду за ними."
+  },
+  {
+   "id": "fr:25:47",
+   "target": "Ce thé est doux, vous en voulez encore ?",
+   "ru": "Этот чай мягкий, хотите еще?",
+   "uk": "Цей чай м'який, хочете ще?"
+  },
+  {
+   "id": "fr:25:48",
+   "target": "J’ai trop de cartons et je vais en donner.",
+   "ru": "У меня слишком много коробок, я отдам часть.",
+   "uk": "У мене забагато коробок, і я деякі віддам."
+  },
+  {
+   "id": "fr:25:49",
+   "target": "Nous avons peu de temps et il en faut davantage.",
+   "ru": "У нас мало времени, и нам нужно больше.",
+   "uk": "У нас мало часу, а нам потрібно більше."
+  },
+  {
+   "id": "fr:25:50",
+   "target": "Il y a des péniches sur le canal et j’en vois deux.",
+   "ru": "На канале баржи, и я вижу две.",
+   "uk": "На каналі є баржі, і я бачу дві."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "l’œuf (m.)",
+   "ru": "яйцо",
+   "uk": "яйце"
+  },
+  {
+   "lemma": "le bol",
+   "ru": "миска",
+   "uk": "миска"
+  },
+  {
+   "lemma": "la barquette",
+   "ru": "лоток, небольшая упаковка",
+   "uk": "лоток, невелика упаковка"
+  },
+  {
+   "lemma": "la moitié",
+   "ru": "половина",
+   "uk": "половина"
+  },
+  {
+   "lemma": "le carton",
+   "ru": "картонная коробка",
+   "uk": "картонна коробка"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  }
+ ],
+ "oldTopicTitle": "Сколько из них: местоимение `en`",
+ "oldTheoryRu": "Если предмет известен, `en` позволяет не повторять его в ответе о количестве. Число сохраняется: один, два, четыре. Для женского предмета «одна» — `une`. У вещества может не быть числа. `J’en prends un peu` сообщает, что берёшь немного упомянутого продукта. Подставь мысленно название, чтобы проверить смысл. Вместо числа можно оставить меру: чашку, ложку, упаковку. `En` в примерах с мёдом не превращает ложку в место или направление. После отрицания местоимение сохраняется, даже если остаток равен нулю. `Il n’en reste aucune` подходит, когда подразумеваются предметы женского рода. В прошедшем `en` стоит перед `ai`, `as`, `a`, `avons`. Число обычно остаётся после причастия. Само существительное не повторяй: его уже заменяет `en`. При втором глаголе ищи смысловое действие: принести две штуки — `Tu peux en apporter deux ?`. В таких примерах `en` привязано к инфинитиву. Отличай `en`-местоимение от предлога `en` в выражениях про транспорт. `En bus` не означает «несколько автобусов из них». Смотри на место короткого слова и соседние слова."
+}

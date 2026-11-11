@@ -1,0 +1,10 @@
+[
+{"id": "de:25:49", "type": "B1", "field": "tiles", "problem": "Соблазн «an» даёт верную естественную фразу «Ich wohne an der ruhigen Straße hinter dem Markt» (= живу на тихой улице), которой нет в alternatives", "fix": {"position": 2, "replace_distractor": "an", "with": "unter"}},
+{"id": "de:26:11", "type": "B1", "field": "tiles", "problem": "Соблазн «hatte» даёт верную фразу «Ich hatte vergessen, Brot zu kaufen» (= я забыл купить хлеб), засчитается ошибкой", "fix": {"position": 1, "replace_distractor": "hatte", "with": "bin"}},
+{"id": "de:26:13", "type": "B1", "field": "tiles", "problem": "Соблазн «hatte» даёт верную фразу «Sie hatte vergessen, mich anzurufen» (= она забыла мне позвонить)", "fix": {"position": 1, "replace_distractor": "hatte", "with": "ist"}},
+{"id": "de:26:15", "type": "B1", "field": "tiles", "problem": "Соблазн «hatte» даёт верную фразу «Er hatte vergessen, die Karte mitzunehmen» (= он забыл взять карту)", "fix": {"position": 1, "replace_distractor": "hatte", "with": "ist"}},
+{"id": "de:25:48", "type": "M", "field": "ru", "problem": "bringt = приносит; «берёт» — это mitnehmen, смысл сдвинут", "fix": "Она приносит важные документы на встречу."},
+{"id": "de:25:48", "type": "M", "field": "uk", "problem": "bringt = приносить; «бере» — це mitnehmen, зміщення змісту", "fix": "Вона приносить важливі документи на зустріч."},
+{"id": "de:26:29", "type": "M", "field": "uk", "problem": "erlaubt = дозволено; «можна» расходится с ru «разрешено» по смыслу", "fix": "Тут дозволено паркуватися."},
+{"id": "de:26:48", "type": "M", "field": "uk", "problem": "«включає світло» — русизм, нормативно «вмикає»", "fix": "Він вмикає світло, щоб краще бачити."}
+]

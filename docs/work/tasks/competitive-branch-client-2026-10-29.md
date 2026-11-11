@@ -4,6 +4,7 @@ Governance-ID: TG-B8D12E9112D3
 Governance-ID: TG-6DB233CAE300
 Governance-ID: TG-7B1A12003BBB
 Governance-ID: TG-E4644151EB47
+Governance-ID: TG-23D84243F113
 Status: In progress (этап 1 — лесенка)
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: решение владельца 29.10 ~11:00 (три макета утверждены); серверная часть — «1 · ЯДРО» после конкурса

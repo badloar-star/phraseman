@@ -15,7 +15,7 @@ import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitCta, KitEmpty, KitSectionHead, KitSegment } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState, QuietLeave } from '../../components/cards-grid/QuietEmptyState';
 import KitTouchable from '../../components/KitTouchable';
-import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../../components/practice/PracticeGlass';
 import { PanelDock } from '../../components/mistakes-panel/PanelKit';
 import { SCREEN_BACK_GAP, SCREEN_BACK_SIZE } from '../../components/v2/ScreenBackButton';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../../components/v2/ShadowSurface';

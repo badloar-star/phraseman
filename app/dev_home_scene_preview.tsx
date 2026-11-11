@@ -42,7 +42,6 @@ import { LIQUID_GLASS_THEME_IDS, type LiquidGlassThemeId } from '../constants/li
 import { V2 } from '../constants/v2Style';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice } from './dev_appearance_override';
-import { homeContinueV2Title } from './home_continue_mark';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 const noop = (): void => undefined;
@@ -79,7 +78,7 @@ function Inner() {
 
   const setup = useMemo(() => homeScenePreviewSetup(requested, plus), [requested, plus]);
   const decision = useMemo(() => pickHomeSceneState(setup.input), [setup]);
-  const place = useMemo(() => homeScenePreviewPlace(lang, setup, homeContinueV2Title), [lang, setup]);
+  const place = useMemo(() => homeScenePreviewPlace(lang, setup), [lang, setup]);
   const words = useMemo(() => homeScenePreviewHeaderWords(lang, setup.streakDays), [lang, setup.streakDays]);
   const artTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
 

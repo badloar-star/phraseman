@@ -34,7 +34,7 @@ const KNOWN_GUARDS = [
   'tests/owner_locks_spire_2026_10_22.test.ts',
   'tests/owner_locks_peak_coins_only_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): в Пике только монеты и этажи, ни слова про ступени; режим «по ступеням» недостижим
   'tests/owner_locks_all_five_courses_2026_11_06.test.ts', // 1 · ЯДРО 06.11 (слово владельца): в онбординге и в выборе языка предлагаются все 5 курсов
-  'tests/owner_locks_peak_no_tower_icons_2026_11_05.test.ts', // 1 · ЯДРО 05.11 (слово владельца ~19:12): на башне Пика нет иконок пользователей и метки «я»; полоска списка ничего не перекрывает
+  'tests/owner_locks_peak_no_tower_icons_2026_11_05.test.ts', // 11.11: rank coins restored on tower floors; promotion line stays clear
   'tests/owner_locks_peak_tower_big_players_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): башня Пика крупная, основание внизу, иконки игроков на башне
   'tests/owner_locks_video_full_reward_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): +500 монет за 70 % видео, один раз на ролик, без ×2 и дневного предела
   'tests/owner_locks_closed_sections_absent_2026_11_05.test.ts', // 8 · МОМЕНТЫ 05.11 (слово владельца): закрытого рангом раздела нет — без экрана-заглушки, тихий возврат на Главную
@@ -43,10 +43,7 @@ const KNOWN_GUARDS = [
   'tests/screen_back_button_contract.test.ts',
   'tests/section_sheet_header_close_left.test.ts',
   'tests/screen_back_content_below_contract.test.ts', // 5 · ВХОД 22.10: контент ниже кнопки «назад/✕», не лежит под ней
-  'tests/learning_v2_not_from_start_once_v1.test.ts',
   // Learning V2 22.10: правила входного теста №10 и «пропущенное — ПРОСТО ОТКРЫТО» (прогресс v2: открыто ≠ пройдено, ничего не теряется)
-  'tests/learning_v2_placement_test_v1.test.ts',
-  'tests/learning_v2_course_progress_v2.test.ts',
   // 2 · ДИЗАЙН 25.10 (слово владельца): оценку без текста отправить нельзя — слово из 3+ букв
   'tests/owner_locks_rating_needs_text_2026_10_25.test.ts',
   'tests/owner_locks_mistakes_delete_2026_10_24.test.ts', // Learning V2 24.10: ошибки можно удалять (одна, из карточки, все) с «Вернуть»
@@ -67,8 +64,6 @@ const KNOWN_GUARDS = [
   'tests/season_nav_tiles_fit_contract.test.ts',
   'tests/season_hero_title_fit_contract.test.ts',
   'tests/season_owner_locks_2026_10_22.test.ts',
-  'tests/learning_v2_dictionary_visibility_contract.test.ts',
-  'tests/learning_v2_map_dictionary_integration_v1_gate.ts',
   // 1 · ЯДРО 22.10: «сервер для сохранения, а не решений» и «История остаётся, имя скрыто»
   'functions/src/owner_lock_server_stores_friends.test.ts',
   'functions/src/account_delete_friend_duels.test.ts',

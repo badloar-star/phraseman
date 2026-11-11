@@ -176,6 +176,7 @@ type ExplainMistakeResponse = {
   text: string;
   fullText?: string;
   eli5Text?: string;
+  breakdown?: DocData;
   remainingQuota: number;
   model: string;
   fromCache: boolean;
@@ -226,9 +227,21 @@ function mockProviderAnswers(...answers: string[]) {
   }));
 }
 
-function bundleOutput(full: string, eli5: string): string {
-  return '<PHRASEMAN_FULL_V1>\n' + full + '\n</PHRASEMAN_FULL_V1>\n' +
-    '<PHRASEMAN_ELI5_V1>\n' + eli5 + '\n</PHRASEMAN_ELI5_V1>';
+// зачем (11.11): ответ модели — поля по схеме, а не два текста между маркерами. Пустое `rule` даёт
+// старым сборкам текст, равный `why`, — так прежние проверки текста остаются точными.
+function bundleOutput(full: string, eli5: string, extra: DocData = {}): string {
+  return JSON.stringify({
+    verdict: 'one',
+    wrong: 'has',
+    right: 'have',
+    rule: '',
+    why: full,
+    you_said: '',
+    pair: [],
+    also: [],
+    simple: eli5,
+    ...extra,
+  });
 }
 
 const DEFAULT_FULL = 'После "I" здесь нужно "have": скажи "I have a reservation."';
@@ -790,7 +803,7 @@ describe('explainMistake', () => {
 
     (global.fetch as jest.Mock).mockImplementation(async (_url: unknown, init: { body: string }) => {
       const body = JSON.parse(init.body) as { messages?: Array<{ content?: string }> };
-      const isBundle = JSON.stringify(body.messages ?? []).includes('<PHRASEMAN_FULL_V1>');
+      const isBundle = Boolean((body as { response_format?: unknown }).response_format);
       if (isBundle) {
         return {
           ok: true,
@@ -828,8 +841,8 @@ describe('explainMistake', () => {
   });
 
   it('FULL bundle generates and caches both variants in one provider call', async () => {
-    const full = 'После "I" здесь нужно "have".\n"I have a reservation."';
-    const eli5 = 'Почти! После "I" поставь "have".\n"I have a reservation."';
+    const full = 'После "I" здесь нужно "have". "I have a reservation."';
+    const eli5 = 'Почти! После "I" поставь "have". "I have a reservation."';
     mockOkProvider(bundleOutput(full, eli5));
 
     const first = await callExplain(validPayload);
@@ -854,8 +867,8 @@ describe('explainMistake', () => {
   });
 
   it('FULL bundle silently retries validator rejects and bills all paid attempts', async () => {
-    const full = 'После "I" здесь нужно "have".\n"I have a reservation."';
-    const eli5 = 'Почти! После "I" поставь "have".\n"I have a reservation."';
+    const full = 'После "I" здесь нужно "have". "I have a reservation."';
+    const eli5 = 'Почти! После "I" поставь "have". "I have a reservation."';
     mockProviderAnswers(
       bundleOutput('Today you should use "have" here.', eli5),
       'Формат без обязательных секций.',
@@ -936,5 +949,56 @@ describe('explainMistake', () => {
       completionTokens: 66,
       totalTokens: 198,
     }));
+  });
+  it('returns the structured fields, caches them, and serves them again from the warm cache', async () => {
+    mockOkProvider(JSON.stringify({
+      verdict: 'one',
+      wrong: 'has',
+      right: 'have',
+      rule: 'С "I" всегда "have".',
+      why: 'Почти! "has" говорят про него или неё, а с "I" нужно "have".',
+      you_said: '',
+      pair: ['I have a reservation', 'He has a reservation'],
+      also: [],
+      simple: 'С "I" говорим "have". Вот и всё.',
+    }));
+
+    const first = await callExplain(validPayload);
+
+    expect(first.breakdown).toMatchObject({ verdict: 'one', wrong: 'has', right: 'have', rule: 'С "I" всегда "have"' });
+    // Старые сборки получают обычный текст: правило + пояснение, без дубля правильной фразы.
+    expect(first.text).toBe('С "I" всегда "have". Почти! "has" говорят про него или неё, а с "I" нужно "have".');
+    expect(first.eli5Text).toBe('С "I" говорим "have". Вот и всё.');
+    const body = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string);
+    expect(body.response_format).toMatchObject({ type: 'json_schema' });
+
+    const second = await callExplain(validPayload, 'auth-2');
+    expect(second.fromCache).toBe(true);
+    expect(second.breakdown).toEqual(first.breakdown);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the text but drops the highlight when the model points at a word that is not in the answer', async () => {
+    mockOkProvider(bundleOutput(DEFAULT_FULL, DEFAULT_ELI5, { wrong: 'had' }));
+
+    const res = await callExplain(validPayload);
+
+    expect(res.text).toBe(DEFAULT_FULL);
+    expect(res.breakdown).toMatchObject({ wrong: '', right: '' });
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not tell a Spanish-interface learner that their language has no articles', async () => {
+    mockOkProvider(bundleOutput('¡Casi! Con "I" va "have".', 'Con "I" decimos "have".'));
+    await callExplain({ ...validPayload, interfaceLang: 'es' });
+    const esPrompt = JSON.stringify(JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string).messages);
+    expect(esPrompt).not.toContain('has no articles');
+    expect(esPrompt).not.toContain('Russian has no');
+
+    (global.fetch as jest.Mock).mockClear();
+    mockOkProvider(bundleOutput(DEFAULT_FULL, DEFAULT_ELI5));
+    await callExplain({ ...validPayload, userAnswer: 'I has reservation' }, 'auth-2');
+    const ruPrompt = JSON.stringify(JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string).messages);
+    expect(ruPrompt).toContain('has no articles');
   });
 });

@@ -15,3 +15,22 @@ export function spireWeekEnergyLine(lang: Lang, r: Readonly<{ promoted: boolean;
   if (r.demoted && bonus > 0) return momentText(lang, 'demoEnergy');
   return null;
 }
+
+type PaidWeekRewards = Readonly<{
+  roomRank: number;
+  placeCoins: number;
+  promotionCoins: number;
+  rewardStatus?: string;
+}>;
+
+/** Подписи уже выплаченных наград недели; status-less старый кэш и pending не считаются доказательством выплаты. */
+export function spireWeekRewardReasonLines(lang: Lang, result: PaidWeekRewards): readonly string[] {
+  if (result.rewardStatus !== 'paid') return [];
+  const hasPlace = Number.isSafeInteger(result.roomRank) && result.roomRank > 0;
+  const placeCoins = Number.isSafeInteger(result.placeCoins) && result.placeCoins > 0 ? result.placeCoins : 0;
+  const promotionCoins = Number.isSafeInteger(result.promotionCoins) && result.promotionCoins > 0 ? result.promotionCoins : 0;
+  return [
+    placeCoins > 0 ? momentText(lang, hasPlace ? 'placeBonus' : 'placeBonusNoRank', { n: placeCoins, place: result.roomRank }) : null,
+    promotionCoins > 0 ? momentText(lang, 'promoBonus', { n: promotionCoins }) : null,
+  ].filter((line): line is string => line !== null);
+}

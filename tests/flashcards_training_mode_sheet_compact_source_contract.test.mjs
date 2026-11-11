@@ -35,6 +35,7 @@ assert.match(styleBlock('tile', 'icon'), /minHeight: 112, borderRadius: 20, padd
 assert.match(styleBlock('headCopy', 'heading'), /alignItems: 'center'/, 'heading is centred');
 assert.doesNotMatch(source, /limitPill|limitText/, 'no remaining-trainings pill in the mode sheet (cards-v2: «без пилюли»)');
 assert.match(styleBlock('scroll', 'content'), /flexShrink: 1,[\s\S]*minHeight: 0/);
+assert.match(styleBlock('content', 'grid'), /paddingBottom: TILE_SHADOW_BOTTOM_SPACE/, 'last-row shadow has room inside the scroll viewport');
 assert.doesNotMatch(source, /numberOfLines/);
 assert.doesNotMatch(source, /styles\.cancelButton/, 'no separate Cancel button — closing is the backdrop');
 for (const mode of ['blitz', 'speaking', 'truefalse', 'recall']) {

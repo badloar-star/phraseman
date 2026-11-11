@@ -3,7 +3,7 @@
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
 // Семья: AiConsentSheetModal (общий движок) через двух потребителей
 // (AiDialogConsentModal / AiExplainConsentModal), NotificationPermissionModal,
-// MistakeEli5Modal, ExplainSheet. У всех render-компонентов колбэки-пустышки —
+// (шторки «Объясни проще» и «Объяснить» удалены владельцем 11.11). У всех render-компонентов колбэки-пустышки —
 // открытие витрины не должно писать в Firestore/менять реальные настройки.
 import React from 'react';
 import type { ShowcaseSection } from '../types';
@@ -11,15 +11,12 @@ import type { Lang } from '../../../../constants/i18n';
 import AiDialogConsentModal from '../../../AiDialogConsentModal';
 import AiExplainConsentModal from '../../../AiExplainConsentModal';
 import NotificationPermissionModal from '../../../NotificationPermissionModal';
-import MistakeEli5Modal from '../../../MistakeEli5Modal';
 import DeckPickerSheet from '../../../../app/flashcards/DeckPickerSheet';
 import SectionSheetHeader from '../../../SectionSheetHeader';
 import { useTheme } from '../../../ThemeContext';
 import { cs } from '../showcase_copy';
 
 const DEMO_LANG = 'ru' as Lang;
-
-const DEMO_MISTAKE_TEXT = cs('consent_mistake_demo_text');
 
 /** Демо-наборы для DeckPickerSheet — безопасные deckId ('saved'/'custom'), онбординг ничего не начисляет. */
 const DEMO_FC_DECKS = [
@@ -161,28 +158,6 @@ export const SECTION: ShowcaseSection = {
           motionVariant="hybrid"
         />
       ),
-    },
-    {
-      id: 'mistake-eli5',
-      title: cs('mistake_eli5_title'),
-      detail: cs('mistake_eli5_detail'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <MistakeEli5Modal
-          visible={visible}
-          onClose={onClose}
-          lang={DEMO_LANG}
-          state="ready"
-          text={DEMO_MISTAKE_TEXT}
-          onRetry={() => {}}
-        />
-      ),
-    },
-    {
-      id: 'explain-sheet',
-      title: cs('explain_sheet_title'),
-      kind: 'note',
-      note: cs('explain_sheet_note'),
     },
     // зачем (PM-049, D09/S51 владельца): приветственная модалка удалена из
     // приложения — пункт витрины убран вместе с ней (components/WelcomeGiftModal.tsx

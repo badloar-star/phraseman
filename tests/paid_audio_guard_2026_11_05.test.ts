@@ -52,15 +52,6 @@ describe('замок платной озвучки', () => {
     expect(on.stdout).toContain('PASSED');
   });
 
-  it('Cloud Functions: платный транспорт фабрики контента не работает без ALLOW_PAID_AUDIO (замок до резерва расходов и сети)', () => {
-    const provider = fs.readFileSync(path.join(root, 'functions/src/content_factory/v2_openai_voice_tts_provider_v1.ts'), 'utf8');
-    const start = provider.indexOf('async function defaultTransport');
-    const gate = provider.indexOf("process.env.ALLOW_PAID_AUDIO !== '1'", start);
-    expect(gate).toBeGreaterThan(start);
-    expect(gate).toBeLessThan(provider.indexOf('reserveDailySpend', start));
-    expect(gate).toBeLessThan(provider.indexOf('await fetch(', start) < 0 ? provider.indexOf('fetch(', start) : provider.indexOf('await fetch(', start));
-  });
-
   it('озвучка директорского дайджеста (платный OpenAI TTS) не подключена: не экспортируется из index.ts', () => {
     const index = fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8');
     expect(index).not.toContain('admin_director_digest_audio');

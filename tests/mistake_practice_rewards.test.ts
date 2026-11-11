@@ -1,9 +1,3 @@
-// зачем (04.10): рабочая цепочка импортов экономики Learning V2 стала тянуть expo-asset, который сборка тестов не преобразует; сами проверки наград
-// владельца-репозитория не используют (зависимости передаются явно) — как и в соседнем тесте гонки, подставляем его пустой заглушкой.
-jest.mock('../app/learning_v2_owner_repository_runtime', () => ({
-  commitMistakeCorrectionWalletComposite: jest.fn(async () => ({ status: 'applied' })),
-}));
-
 import {
   buildMistakeCorrectionRewardKey,
   flushPendingMistakeCorrectionRewards,
@@ -15,8 +9,8 @@ import {
   loadMistakeEventJournal,
   type MistakePracticeStorage,
 } from '../app/mistake_practice_store';
-import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { deriveMistakeRewardAccountScopeHash } from '../modules/mistake-practice/correction_reward_receipt';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 
 describe('mistake practice rewards', () => {
   const base = {
@@ -178,7 +172,7 @@ describe('mistake practice rewards', () => {
     const rewardKey = buildMistakeCorrectionRewardKey(base);
     const replayReceipt = {
       schemaVersion: 'mistake-correction-wallet-composite.v1',
-      accountScopeHash: deriveLearningV2EconomicAccountScopeHash(base.accountScope),
+      accountScopeHash: deriveMistakeRewardAccountScopeHash(base.accountScope),
       rewardKey, mistakeId: base.mistakeId, cycleId: base.cycleId, studyTarget: 'en',
       correctionEventId: correctionEvent.eventId,
       correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)),
@@ -237,7 +231,7 @@ describe('mistake practice rewards', () => {
         rewardKey, stars: 1, rewardVersion: 1,
         replayReceipt: {
           schemaVersion: 'mistake-correction-wallet-composite.v1',
-          accountScopeHash: deriveLearningV2EconomicAccountScopeHash(sourceOwner),
+          accountScopeHash: deriveMistakeRewardAccountScopeHash(sourceOwner),
           rewardKey, mistakeId: base.mistakeId, cycleId: base.cycleId, studyTarget: 'en',
           correctionEventId: correctionEvent.eventId,
           correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)),
@@ -287,7 +281,7 @@ describe('mistake practice rewards', () => {
       ...common, eventId: 'foreign-reward-marker', type: 'correction_rewarded', occurredAtMs: 9,
       payload: { rewardKey, stars: 1, rewardVersion: 1, replayReceipt: {
         schemaVersion: 'mistake-correction-wallet-composite.v1',
-        accountScopeHash: deriveLearningV2EconomicAccountScopeHash('foreign-owner'),
+        accountScopeHash: deriveMistakeRewardAccountScopeHash('foreign-owner'),
         rewardKey, mistakeId: base.mistakeId, cycleId: base.cycleId, studyTarget: 'en',
         correctionEventId: correctionEvent.eventId,
         correctionEventFingerprint: 'f'.repeat(64), rewardVersion: 1,

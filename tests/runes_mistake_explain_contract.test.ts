@@ -75,6 +75,5 @@ describe('Runes mistake explain contract', () => {
   // Сам разбор не переделан — владелец: «они уже идеальны».
   it('does not change how the breakdown itself is produced', () => {
     expect(hook).toContain('callExplainMistake(buildArgs(');
-    expect(hook).toContain("buildArgs('eli5')");
   });
 });

@@ -1,5 +1,5 @@
 import { buildArtifactReceipt, artifactObjectPath, serializeArtifactPayload } from './artifact_repository';
-import { canonicalJsonV1, hashCanonicalBody } from '../../../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, hashCanonicalBody } from '../../../modules/canonical_json';
 
 describe('immutable artifact repository contract', () => {
   it('builds a release-scoped safe object path and hash-bound receipt', () => {

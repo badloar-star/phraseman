@@ -1,0 +1,80 @@
+[
+ {
+  "id": "lesson-9/use",
+  "type": "T2",
+  "field": "localized.ru.use (+chapters[0].body)",
+  "problem": "Калька («представить что-то», «уже идентифицированный объект»); обращение на «вы», тогда как story/choose на «ты».",
+  "fix": "Этой конструкцией сообщают о том, чего слушатель ещё не знает: There is a lift. Если предмет уже известен и ты говоришь, где он, начни фразу с самого предмета, а не с there."
+ },
+ {
+  "id": "lesson-9/use",
+  "type": "T2",
+  "field": "localized.uk.use (+chapters[0].body)",
+  "problem": "uk расходится с ru/en по смыслу: «коли шукаєте вже визначену річ» (ищете) вместо «говорите, где находится»; калька «представити щось»; «ви» при «ти» в story/choose.",
+  "fix": "Цією конструкцією повідомляють про те, чого слухач ще не знає: There is a lift. Якщо предмет уже відомий і ти кажеш, де він, почни речення з самого предмета, а не з there."
+ },
+ {
+  "id": "lesson-9/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru|uk|en.chapters[5].body",
+  "problem": "Текст про шкафчики (есть ли / где они), а примеры главы 09.42, 09.45, 09.48 — про имена в списке, свободную комнату и свет; вопроса «где шкафчики» в курсе нет.",
+  "fix": {
+   "ru": "Опиши, что есть в незнакомом месте: There are two names on the list. There is an empty room next door. Новое для слушателя идёт после there is / there are.",
+   "uk": "Опиши, що є в незнайомому місці: There are two names on the list. There is an empty room next door. Нове для слухача йде після there is / there are.",
+   "en": "Describe what is in an unfamiliar place: There are two names on the list. There is an empty room next door. The new information comes after there is / there are."
+  }
+ },
+ {
+  "id": "lesson-9/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru|uk|en.chapters[6].body",
+  "problem": "«Найдите и представьте в контексте» / «Locate and introduce in context» — бессмысленная калька, не описывает разбор фразы 09.50.",
+  "fix": {
+   "ru": "Разбери фразу: there + is + что есть + для чего.",
+   "uk": "Розбери фразу: there + is + що є + для чого.",
+   "en": "Break it down: there + is + what exists + what for."
+  }
+ },
+ {
+  "id": "lesson-10/story",
+  "type": "T1",
+  "field": "localized.ru|uk|en.story",
+  "problem": "Упоминается wait («wait после них не получает ни to, ни -s»), но фразы с wait в story нет — смысл обрывается.",
+  "fix": {
+   "ru": "Can — могу, should — стоит, must — должен. Смысл меняет первое слово: We can wait. Глагол после can, should, must — без to и без -s.",
+   "uk": "Can — можу, should — варто, must — мушу. Значення змінює перше слово: We can wait. Дієслово після can, should, must — без to і без -s.",
+   "en": "Can, should and must show ability, advice and obligation: We can wait. The verb after them takes neither to nor -s."
+  }
+ },
+ {
+  "id": "lesson-10/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "Калька «Выберите значение перед формой»; «вы» при «ты» в story/choose.",
+  "fix": {
+   "ru": "Сначала реши, что хочешь сказать. Can — умею, можно или просьба. Should — совет. Must — строгое требование.",
+   "uk": "Спершу виріши, що хочеш сказати. Can — умію, можна або прохання. Should — порада. Must — сувора вимога."
+  }
+ },
+ {
+  "id": "lesson-10/chapters[2]",
+  "type": "T1",
+  "field": "chapters[2].samples",
+  "problem": "Глава про must not / do not have to, а пример 10.21 (Can you speak more slowly?) правило не иллюстрирует.",
+  "fix": [
+   "10.44",
+   "10.46"
+  ]
+ },
+ {
+  "id": "lesson-10/chapters[5]",
+  "type": "T1",
+  "field": "chapters[5].samples",
+  "problem": "Текст про печать билета и кабель, но фразы про кабель (10.44) нет, а 10.48 (Can I leave after lunch?) не по теме.",
+  "fix": [
+   "10.45",
+   "10.44",
+   "10.42"
+  ]
+ }
+]

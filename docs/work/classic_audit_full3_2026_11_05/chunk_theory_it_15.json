@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 31,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:31:01",
+"it:31:02",
+"it:31:04"
+],
+"textByLocale": {
+"en": "Mark two dots on a mental line. Which came first? The payment or the call? The earlier action gets `avevo` with a participle; the order of the parts themselves in the text can be any.",
+"ru": "Отметь две точки на мысленной линии. Что было раньше? Сначала оплата или звонок? Более раннее действие получает `avevo` с причастием; порядок самих частей в тексте может быть любым.",
+"uk": "Познач дві точки на думці. Що було раніше? Спочатку оплата чи дзвінок? Раніше дію отримує `avevo` з дієприкметником; порядок самих елементів у тексті може бути будь-яким."
+}
+},
+{
+"exampleIds": [
+"it:31:07",
+"it:31:08",
+"it:31:10"
+],
+"textByLocale": {
+"en": "The choice of assistant is inherited from the verb: `è uscita` becomes `era uscita`. With `essere`, participle agreement is preserved, even when we move the action further into the past.",
+"ru": "Выбор помощника наследуется от глагола: `è uscita` превращается в `era uscita`. С `essere` согласование причастия сохраняется, даже когда мы отодвигаем действие ещё дальше в прошлое.",
+"uk": "Вибір помічника успадковується від дієслова: `è uscita` перетворюється на `era uscita`. З `essere` узгодження причастя зберігається, навіть коли ми відсуваємо дію ще далі у минуле."
+}
+},
+{
+"exampleIds": [
+"it:31:11",
+"it:31:12",
+"it:31:14"
+],
+"textByLocale": {
+"en": "An earlier event can be specified: I'm looking for something I'd forgotten. Before choosing a form, find out who was looking and who forgot: it doesn't have to be the same person.",
+"ru": "Раннее событие может стоять в уточнении: ищу вещь, которую до этого забыл. Прежде чем выбирать форму, выясни, кто искал и кто забыл: это не обязательно один человек.",
+"uk": "Рання подія може стояти в уточненні: шукаю річ, яку раніше забув. Перш ніж обирати форму, з'ясуй, хто шукав і хто забув: це не обов'язково одна людина."
+}
+},
+{
+"exampleIds": [
+"it:31:17",
+"it:31:19",
+"it:31:20"
+],
+"textByLocale": {
+"en": "The word `già` helps emphasize completion, but it's not necessary in a clear context. Don't make it a mandatory detail of every Italian answer.",
+"ru": "Слово `già` помогает выделить завершённость, но необязательно при ясном контексте. Не превращай его в обязательную деталь каждого итальянского ответа.",
+"uk": "Слово `già` допомагає виділити завершеність, але необов'язково при чіткому контексті. Не перетворюй його на обов'язкову деталь кожної італійської відповіді."
+}
+},
+{
+"exampleIds": [
+"it:31:21",
+"it:31:24",
+"it:31:26"
+],
+"textByLocale": {
+"en": "The negative comes before the helper. `Non avevo ancora finito` means that the work wasn't finished at that point. This differs from the statement that it's not finished now.",
+"ru": "Отрицание ставится перед помощником. `Non avevo ancora finito` значит, что к тому моменту работа ещё не была закончена. Это отличается от утверждения, что она не закончена сейчас.",
+"uk": "Заперечення ставиться перед помічником. `Non avevo ancora finito` означає, що на той момент робота ще не була закінчена. Це відрізняється від твердження, що вона не закінчена зараз."
+}
+},
+{
+"exampleIds": [
+"it:31:31",
+"it:31:32",
+"it:31:35"
+],
+"textByLocale": {
+"en": "If a sentence begins with a call or arrival, the temporal logic doesn't change. Find something else that has already happened by that point.",
+"ru": "Если предложение начинается со звонка или прибытия, временная логика не меняется. Найди в другой части то, что к этому моменту уже произошло.",
+"uk": "Якщо пропозиція починається з дзвінка або прибуття, тимчасова логіка не змінюється. Знайди в іншій частині те, що вже сталося."
+}
+},
+{
+"exampleIds": [
+"it:31:38",
+"it:31:41",
+"it:31:50"
+],
+"textByLocale": {
+"en": "`Il giorno prima` is counted from the event in the story, not necessarily from today. The word \"yesterday\" isn't always an exact substitute for \"the day before.\"",
+"ru": "`Il giorno prima` отсчитывается от события в рассказе, а не обязательно от сегодняшнего дня. Слово «вчера» не всегда точная замена «накануне».",
+"uk": "`Il giorno prima` відраховується від події в оповіданні, а не обов'язково від сьогодення. Слово \"вчора\" не завжди точна заміна \"напередодні\"."
+}
+}
+],
+"drills": [
+{
+"bad": "Aveva",
+"chapter": 1,
+"id": "it:31:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 8,
+"options": [
+"Avevamo",
+"Aveva",
+"Avevo"
+],
+"slot": 0
+},
+{
+"bad": "avevamo",
+"chapter": 1,
+"id": "it:31:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 49,
+"options": [
+"aveva",
+"avevamo",
+"avevo"
+],
+"slot": 1
+},
+{
+"bad": "Avevamo",
+"chapter": 1,
+"id": "it:31:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"Avevo",
+"Aveva",
+"Avevamo"
+],
+"slot": 0
+},
+{
+"bad": "erano",
+"chapter": 2,
+"id": "it:31:08:lab",
+"item": 8,
+"kind": "build",
+"near": 1,
+"options": [
+"era",
+"ero",
+"erano"
+],
+"slot": 1
+},
+{
+"bad": "era",
+"chapter": 2,
+"id": "it:31:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"erano",
+"ero",
+"era"
+],
+"slot": 3
+},
+{
+"bad": "avevo",
+"chapter": 2,
+"id": "it:31:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 13,
+"options": [
+"avevo",
+"avevamo",
+"aveva"
+],
+"slot": 6
+},
+{
+"bad": "aveva",
+"chapter": 3,
+"id": "it:31:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"avevo",
+"aveva",
+"avevamo"
+],
+"slot": 5
+},
+{
+"bad": "Aveva",
+"chapter": 3,
+"id": "it:31:17:lab",
+"item": 17,
+"kind": "match",
+"near": 1,
+"options": [
+"Avevamo",
+"Aveva",
+"Avevo"
+],
+"slot": 0
+},
+{
+"bad": "avevamo",
+"chapter": 3,
+"id": "it:31:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"aveva",
+"avevo",
+"avevamo"
+],
+"slot": 2
+},
+{
+"bad": "avevamo",
+"chapter": 4,
+"id": "it:31:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 49,
+"options": [
+"aveva",
+"avevo",
+"avevamo"
+],
+"slot": 1
+},
+{
+"bad": "aveva",
+"chapter": 4,
+"id": "it:31:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"aveva",
+"avevo",
+"avevano"
+],
+"slot": 1
+},
+{
+"bad": "era",
+"chapter": 4,
+"id": "it:31:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 29,
+"options": [
+"erano",
+"ero",
+"era"
+],
+"slot": 1
+},
+{
+"bad": "aveva",
+"chapter": 5,
+"id": "it:31:29:lab",
+"item": 29,
+"kind": "match",
+"near": 23,
+"options": [
+"aveva",
+"avevo",
+"avevamo"
+],
+"slot": 1
+},
+{
+"bad": "erano",
+"chapter": 5,
+"id": "it:31:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"erano",
+"ero",
+"era"
+],
+"slot": 7
+},
+{
+"bad": "aveva",
+"chapter": 5,
+"id": "it:31:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"aveva",
+"avevamo",
+"avevo"
+],
+"slot": 4
+},
+{
+"bad": "Era",
+"chapter": 6,
+"id": "it:31:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 38,
+"options": [
+"Ero",
+"Era",
+"Erano"
+],
+"slot": 0
+},
+{
+"bad": "erano",
+"chapter": 6,
+"id": "it:31:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 32,
+"options": [
+"era",
+"erano",
+"ero"
+],
+"slot": 8
+},
+{
+"bad": "Avevamo",
+"chapter": 6,
+"id": "it:31:42:lab",
+"item": 42,
+"kind": "match",
+"near": 5,
+"options": [
+"Aveva",
+"Avevo",
+"Avevamo"
+],
+"slot": 0
+},
+{
+"bad": "avevamo",
+"chapter": 7,
+"id": "it:31:45:lab",
+"item": 45,
+"kind": "build",
+"near": 20,
+"options": [
+"avevo",
+"aveva",
+"avevamo"
+],
+"slot": 2
+},
+{
+"bad": "Avevamo",
+"chapter": 7,
+"id": "it:31:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 44,
+"options": [
+"Avevamo",
+"Avevo",
+"Aveva"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"mangiare",
+"avevo mangiato"
+],
+[
+"leggere",
+"aveva letto"
+],
+[
+"uscire",
+"era uscito / uscita"
+],
+[
+"tornare",
+"erano tornati / tornate"
+],
+[
+"pagare",
+"avevamo già pagato"
+]
+],
+"title": {
+"en": "Before another event: `trapassato prossimo`",
+"ru": "До другого события: `trapassato prossimo`",
+"uk": "До іншої події: `trapassato prossimo`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:31:01",
+"target": "Avevo già mangiato quando hai chiamato.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "it:31:02",
+"target": "Avevi già pagato quando sono arrivato.",
+"ru": "К тому моменту, как я пришёл, ты уже заплатил.",
+"uk": "До того моменту, як я прийшов, ти вже заплатив."
+},
+{
+"id": "it:31:04",
+"target": "Avevamo già prenotato i nostri posti.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця."
+},
+{
+"id": "it:31:07",
+"target": "Paolo era già uscito quando sono entrato.",
+"ru": "Когда я вошёл, Паоло уже ушёл.",
+"uk": "Коли я увійшов, Паоло уже пішов."
+},
+{
+"id": "it:31:08",
+"target": "Lea era già uscita quando ho chiamato.",
+"ru": "Леа уже ушла, когда я позвонил.",
+"uk": "Леа вже пішла, коли я подзвонив."
+},
+{
+"id": "it:31:10",
+"target": "I miei genitori erano già tornati a casa.",
+"ru": "Мои родители уже вернулись домой.",
+"uk": "Мої батьки вже повернулися додому."
+},
+{
+"id": "it:31:11",
+"target": "Non riuscivo a trovare la chiave che avevo nascosto.",
+"ru": "Я никак не мог найти ключ, который раньше спрятал.",
+"uk": "Я ніяк не міг знайти ключ, який раніше сховав."
+},
+{
+"id": "it:31:12",
+"target": "Paolo stava cercando la borsa che aveva dimenticato.",
+"ru": "Паоло искал сумку, которую раньше забыл.",
+"uk": "Паоло шукав сумку, яку раніше забув."
+},
+{
+"id": "it:31:14",
+"target": "Ho riconosciuto la strada che avevamo attraversato.",
+"ru": "Я узнал улицу, которую мы перешли.",
+"uk": "Я впізнав вулицю, яку ми переходили."
+},
+{
+"id": "it:31:17",
+"target": "Avevo già bevuto metà della zuppa.",
+"ru": "Я уже съел половину супа.",
+"uk": "Я вже з’їв половину супу."
+},
+{
+"id": "it:31:19",
+"target": "Il vicino aveva riparato la serratura prima del nostro ritorno.",
+"ru": "Сосед починил замок до нашего возвращения.",
+"uk": "Сусід полагодив замок, перш ніж ми повернулися."
+},
+{
+"id": "it:31:20",
+"target": "La banca aveva già chiuso prima del mio arrivo.",
+"ru": "Банк уже закрылся до моего приезда.",
+"uk": "Банк уже закрився до мого приходу."
+},
+{
+"id": "it:31:21",
+"target": "Non avevo visto il cartello.",
+"ru": "Я не видел табличку.",
+"uk": "Я не бачив знака."
+},
+{
+"id": "it:31:24",
+"target": "Non avevano ancora preparato il pasto.",
+"ru": "Они ещё не приготовили еду.",
+"uk": "Вони ще не приготували їжу."
+},
+{
+"id": "it:31:26",
+"target": "Non ero mai stato in questo museo.",
+"ru": "До того я ни разу не заходил в этот музей.",
+"uk": "До того я жодного разу не заходив до цього музею."
+},
+{
+"id": "it:31:31",
+"target": "Quando ho aperto la porta, il gatto era già uscito.",
+"ru": "Когда я открыл дверь, кот уже вышел.",
+"uk": "Коли я відчинив двері, кіт уже вийшов."
+},
+{
+"id": "it:31:32",
+"target": "Quando siamo arrivati, il film era già iniziato.",
+"ru": "Когда мы приехали, фильм уже начался.",
+"uk": "Коли ми прийшли, фільм уже почався."
+},
+{
+"id": "it:31:35",
+"target": "Quando è arrivato il postino, Lea era già andata al lavoro.",
+"ru": "Когда пришёл почтальон, Леа уже ушла на работу.",
+"uk": "Коли прийшов листоноша, Леа вже пішла на роботу."
+},
+{
+"id": "it:31:38",
+"target": "Sono tornato in ufficio perché avevo dimenticato il telefono lì.",
+"ru": "Я вернулся в офис, потому что оставил там свой телефон.",
+"uk": "Я повернувся до офісу, бо залишив там телефон."
+},
+{
+"id": "it:31:41",
+"target": "Avevo preparato le valigie il giorno prima.",
+"ru": "Я собрал чемоданы накануне.",
+"uk": "Я зібрав валізи напередодні."
+},
+{
+"id": "it:31:50",
+"target": "Sono riuscito ad entrare perché mi avevi lasciato la chiave.",
+"ru": "Я смог войти, потому что ты оставил мне ключ.",
+"uk": "Я зміг увійти, бо ти залишив мені ключ."
+}
+]
+},
+{
+"lesson": 32,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:32:01",
+"it:32:02",
+"it:32:04"
+],
+"textByLocale": {
+"en": "After `se` in these hypotheses comes the past subjunctive, but it could be talking about the present. Form `avessi` here doesn't by itself mean that the person once had time.",
+"ru": "После `se` в этих гипотезах стоит прошедшая форма сослагательного, но речь может идти о настоящем. Форма `avessi` здесь не означает сама по себе, что у человека когда-то было время.",
+"uk": "Після `se` у цих гіпотезах стоїть минула форма умовного, але може йтися про сьогодення. Форма `avessi` тут не означає сама по собі, що людина колись мала час."
+}
+},
+{
+"exampleIds": [
+"it:32:06",
+"it:32:07",
+"it:32:09"
+],
+"textByLocale": {
+"en": "Find the performer in each part. You can have the time, but we can do the action together. Therefore, the endings on both sides of the comma don't always match in person.",
+"ru": "Найди исполнителя в каждой части. Время может быть у тебя, а действие мы можем сделать вместе. Поэтому окончания по обе стороны запятой не всегда совпадают по лицу.",
+"uk": "Знайди виконавця у кожній частині. Час може бути в тебе, а дію ми можемо зробити разом. Тому закінчення з обох боків коми не завжди збігаються по обличчю."
+}
+},
+{
+"exampleIds": [
+"it:32:11",
+"it:32:13",
+"it:32:15"
+],
+"textByLocale": {
+"en": "Form `-sse` often indicates a third-person condition, `-rei` indicates a result for the speaker. `Se l’autobus passasse prima, lo prenderei` talks about the bus in the first part and about me in the second.",
+"ru": "Форма `-sse` часто указывает на третье лицо условия, `-rei` — на результат для говорящего. `Se l’autobus passasse prima, lo prenderei` говорит об автобусе в первой части и обо мне во второй.",
+"uk": "Форма `-sse` часто вказує на третю особу умови, `-rei` - на результат для того, хто говорить. `Se l’autobus passasse prima, lo prenderei` говорить про автобус у першій частині та про мене у другій."
+}
+},
+{
+"exampleIds": [
+"it:32:21",
+"it:32:24",
+"it:32:28"
+],
+"textByLocale": {
+"en": "The result can come first. After the rearrangement, the word `se` remains in the condition. Don't move it to another part just because it's now at the beginning.",
+"ru": "Результат может идти первым. После перестановки слово `se` остаётся при условии. Не переноси его к другой части только потому, что она теперь в начале.",
+"uk": "Результат може йти першим. Після перестановки слово `se` залишається за умови. Чи не переноси його до іншої частини тільки тому, що вона тепер на початку."
+}
+},
+{
+"exampleIds": [
+"it:32:31",
+"it:32:33",
+"it:32:35"
+],
+"textByLocale": {
+"en": "The short `ci fosse` helps represent the presence of something. The verbs `essere` and `avere` have their own forms. It's convenient to have the pairs `fosse / sarebbe` and `avesse / avrebbe` handy.",
+"ru": "Короткое `ci fosse` помогает представить наличие чего-то. Глаголы `essere` и `avere` имеют собственные формы. Удобно держать под рукой пары `fosse / sarebbe` и `avesse / avrebbe`.",
+"uk": "Короткий `ci fosse` допомагає уявити наявність чогось. Дієслова `essere` та `avere` мають власні форми. Зручно тримати під рукою пари `fosse / sarebbe` та `avesse / avrebbe`."
+}
+},
+{
+"exampleIds": [
+"it:32:37",
+"it:32:40",
+"it:32:42"
+],
+"textByLocale": {
+"en": "`Se fossi in te` is a ready-made beginning to advice \"if I were you.\" The second part expresses what the speaker would do. Therefore, the person there is chosen based on the meaning, not on the final pronoun `te`.",
+"ru": "`Se fossi in te` — готовое начало совета «на твоём месте». Вторая часть сообщает, что сделал бы говорящий. Поэтому лицо там выбирается по смыслу, а не по последнему местоимению `te`.",
+"uk": "`Se fossi in te` – готовий початок поради «на твоєму місці». Друга частина повідомляє, що зробив би той, хто говорить. Тому особа там вибирається за змістом, а не за останнім займенником `te`."
+}
+},
+{
+"exampleIds": [
+"it:32:46",
+"it:32:48",
+"it:32:50"
+],
+"textByLocale": {
+"en": "Finally, change one fact: the presence of a key, the delivery price, free time. First, read the condition separately, then the result separately. If both parts express only the result, the construction has lost its first half.",
+"ru": "В завершение поменяй один факт: наличие ключа, цену доставки, свободное время. Сначала прочитай отдельно условие, затем отдельно итог. Если обе части выражают только результат, конструкция потеряла свою первую половину.",
+"uk": "На завершення поміняй один факт: наявність ключа, ціну доставки, вільний час. Спочатку прочитай окремо умову, потім окремо підсумок. Якщо обидві частини виражають лише результат, конструкція втратила свою першу половину."
+}
+}
+],
+"drills": [
+{
+"bad": "avessimo",
+"chapter": 1,
+"id": "it:32:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"avessimo",
+"avessi",
+"avesse"
+],
+"slot": 1
+},
+{
+"bad": "potesse",
+"chapter": 1,
+"id": "it:32:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"poteste",
+"potesse",
+"potessi"
+],
+"slot": 1
+},
+{
+"bad": "fosse",
+"chapter": 1,
+"id": "it:32:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"fossi",
+"fossero",
+"fosse"
+],
+"slot": 2
+},
+{
+"bad": "avessi",
+"chapter": 2,
+"id": "it:32:08:lab",
+"item": 8,
+"kind": "build",
+"near": 44,
+"options": [
+"avesse",
+"avessimo",
+"avessi"
+],
+"slot": 2
+},
+{
+"bad": "avessimo",
+"chapter": 2,
+"id": "it:32:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 2,
+"options": [
+"avesse",
+"avessi",
+"avessimo"
+],
+"slot": 1
+},
+{
+"bad": "lavorassimo",
+"chapter": 2,
+"id": "it:32:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 1,
+"options": [
+"lavorassi",
+"lavorassero",
+"lavorassimo"
+],
+"slot": 1
+},
+{
+"bad": "fossi",
+"chapter": 3,
+"id": "it:32:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"fosse",
+"fossi",
+"fossimo"
+],
+"slot": 4
+},
+{
+"bad": "conoscessimo",
+"chapter": 3,
+"id": "it:32:17:lab",
+"item": 17,
+"kind": "match",
+"near": 5,
+"options": [
+"conoscessero",
+"conoscessimo",
+"conoscessi"
+],
+"slot": 1
+},
+{
+"bad": "smettessero",
+"chapter": 3,
+"id": "it:32:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"smettessero",
+"smettessi",
+"smettesse"
+],
+"slot": 1
+},
+{
+"bad": "fossi",
+"chapter": 4,
+"id": "it:32:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 28,
+"options": [
+"fossero",
+"fosse",
+"fossi"
+],
+"slot": 4
+},
+{
+"bad": "avessi",
+"chapter": 4,
+"id": "it:32:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"avessi",
+"avesse",
+"avessimo"
+],
+"slot": 4
+},
+{
+"bad": "chiudessero",
+"chapter": 4,
+"id": "it:32:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 21,
+"options": [
+"chiudessi",
+"chiudessero",
+"chiudessimo"
+],
+"slot": 3
+},
+{
+"bad": "avessi",
+"chapter": 5,
+"id": "it:32:29:lab",
+"item": 29,
+"kind": "match",
+"near": 10,
+"options": [
+"avessimo",
+"avesse",
+"avessi"
+],
+"slot": 4
+},
+{
+"bad": "leggibile",
+"chapter": 5,
+"id": "it:32:31:lab",
+"item": 31,
+"kind": "build",
+"near": 45,
+"options": [
+"girasse",
+"spese",
+"leggibile"
+],
+"slot": 3
+},
+{
+"bad": "conservassimo",
+"chapter": 5,
+"id": "it:32:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 17,
+"options": [
+"conservassero",
+"conservassi",
+"conservassimo"
+],
+"slot": 1
+},
+{
+"bad": "funzionassero",
+"chapter": 6,
+"id": "it:32:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 40,
+"options": [
+"funzionaste",
+"funzionasse",
+"funzionassero"
+],
+"slot": 3
+},
+{
+"bad": "fossi",
+"chapter": 6,
+"id": "it:32:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 37,
+"options": [
+"fossi",
+"fosse",
+"fossero"
+],
+"slot": 3
+},
+{
+"bad": "fosse",
+"chapter": 6,
+"id": "it:32:42:lab",
+"item": 42,
+"kind": "match",
+"near": 4,
+"options": [
+"fossero",
+"fosse",
+"fossi"
+],
+"slot": 1
+},
+{
+"bad": "sparissero",
+"chapter": 7,
+"id": "it:32:45:lab",
+"item": 45,
+"kind": "build",
+"near": 32,
+"options": [
+"sparissimo",
+"sparisse",
+"sparissero"
+],
+"slot": 3
+},
+{
+"bad": "fosse",
+"chapter": 7,
+"id": "it:32:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 15,
+"options": [
+"fossero",
+"fossi",
+"fosse"
+],
+"slot": 5
+}
+],
+"table": [
+[
+"avere",
+"se avessi tempo"
+],
+[
+"essere",
+"se fossimo pronti"
+],
+[
+"potere",
+"se potessi scegliere"
+],
+[
+"venire",
+"verrei / verresti"
+],
+[
+"partire",
+"partiremmo"
+],
+[
+"restare",
+"resterei"
+]
+],
+"title": {
+"en": "If only it were different: `se` and the conditional mood",
+"ru": "Если бы было иначе: `se` и условное наклонение",
+"uk": "Якби було інакше: `se` та умовний спосіб"
+}
+},
+"exampleResolved": [
+{
+"id": "it:32:01",
+"target": "Se avessi tempo, verrei.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "it:32:02",
+"target": "Se avessi tempo, verresti.",
+"ru": "Если бы у тебя было время, ты бы пришел.",
+"uk": "Якби в тебе був час, ти б прийшов."
+},
+{
+"id": "it:32:04",
+"target": "Se fossi libero, ti aiuterei.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі."
+},
+{
+"id": "it:32:06",
+"target": "Se fossimo pronti, partiremmo.",
+"ru": "Если бы мы были готовы, мы бы ушли.",
+"uk": "Якби ми були готові, ми б пішли."
+},
+{
+"id": "it:32:07",
+"target": "Se lei fosse qui, capirebbe.",
+"ru": "Если бы она была здесь, она бы поняла.",
+"uk": "Якби вона була тут, вона б зрозуміла."
+},
+{
+"id": "it:32:09",
+"target": "Se Lei fosse d’accordo, cominceremmo.",
+"ru": "Если бы вы согласились, мы бы начали.",
+"uk": "Якби ви погодилися, ми почали б."
+},
+{
+"id": "it:32:11",
+"target": "Se abitassi vicino al parco, andrei a correre.",
+"ru": "Если бы я жил рядом с парком, я бы пошел на пробежку.",
+"uk": "Якби я жив біля парку, я б пішов на пробіжку."
+},
+{
+"id": "it:32:13",
+"target": "Se l’autobus arrivasse prima, lo prenderei.",
+"ru": "Если бы автобус приезжал раньше, я бы поехал на нем.",
+"uk": "Якби автобус приїжджав раніше, я б на нього сів."
+},
+{
+"id": "it:32:15",
+"target": "Se il treno costasse meno, viaggeremmo di più.",
+"ru": "Если бы поезд стоил меньше, мы бы больше путешествовали.",
+"uk": "Якби поїзд був дешевшим, ми б подорожували більше."
+},
+{
+"id": "it:32:21",
+"target": "Sceglierei questa stanza se costasse meno.",
+"ru": "Я бы выбрал эту комнату, если бы она была дешевле.",
+"uk": "Я б вибрав цю кімнату, якби вона була дешевшою."
+},
+{
+"id": "it:32:24",
+"target": "Chiamerebbe il dottore se avesse il suo numero.",
+"ru": "Она бы позвонила врачу, если бы у неё был его номер.",
+"uk": "Вона б зателефонувала лікарю, якби в неї був його номер."
+},
+{
+"id": "it:32:28",
+"target": "Porterei questa borsa se fosse più leggera.",
+"ru": "Я бы понёс эту сумку, если бы она была легче.",
+"uk": "Я б ніс цю сумку, якби вона була легшою."
+},
+{
+"id": "it:32:31",
+"target": "Se la chiave girasse, la porta si aprirebbe.",
+"ru": "Если бы ключ повернулся, дверь бы открылась.",
+"uk": "Якби ключ повернувся, двері відчинилися б."
+},
+{
+"id": "it:32:33",
+"target": "Se avessimo una scala a pioli, ripareremmo la lampada.",
+"ru": "Если бы у нас была приставная лестница, мы бы починили лампу.",
+"uk": "Якби у нас були приставні сходи, ми полагодили б лампу."
+},
+{
+"id": "it:32:35",
+"target": "Se il negozio facesse consegne a domicilio, ordinerei online.",
+"ru": "Если бы магазин доставлял на дом, я бы заказал онлайн.",
+"uk": "Якби магазин доставляв додому, я б замовив онлайн."
+},
+{
+"id": "it:32:37",
+"target": "Se il latte fosse ancora buono, farei i pancake.",
+"ru": "Если бы молоко было еще годным, я бы испек блины.",
+"uk": "Якби молоко було ще хорошим, я б спек млинці."
+},
+{
+"id": "it:32:40",
+"target": "Se il rubinetto perdesse, chiuderei l’acqua.",
+"ru": "Если бы кран протекал, я бы выключил воду.",
+"uk": "Якби протікав кран, я б вимкнув воду."
+},
+{
+"id": "it:32:42",
+"target": "Se fossi in te, gli scriverei.",
+"ru": "На твоём месте я бы написал ему.",
+"uk": "Якби я був на твоєму місці, я б написав йому."
+},
+{
+"id": "it:32:46",
+"target": "Se promettessi di tornare, terrei il tuo posto.",
+"ru": "Если бы ты пообещал вернуться, я бы придержал твоё место.",
+"uk": "Якби ти пообіцяв повернутись, я б притримав твоє місце."
+},
+{
+"id": "it:32:48",
+"target": "Se le spese di consegna fossero più basse, ordinerei quell’albero.",
+"ru": "Если бы доставка стоила дешевле, я бы заказал то дерево.",
+"uk": "Якби доставка коштувала дешевше, я б замовив те дерево."
+},
+{
+"id": "it:32:50",
+"target": "Se il programma cambiasse, la avviseremmo.",
+"ru": "Если бы расписание изменилось, мы бы вам сообщили.",
+"uk": "Якби розклад змінився, ми б вам повідомили."
+}
+]
+}
+]

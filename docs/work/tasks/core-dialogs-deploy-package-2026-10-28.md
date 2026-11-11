@@ -1,6 +1,7 @@
 # Ядро · пакет Диалогов 28.10: диагностика 18.10, разделители реплики, «?» без слова, allObjectivesComplete
 
 Governance-ID: TG-884A33EAFFB1
+Governance-ID: TG-26B354CA5EF0
 Status: In progress
 Owner: 1 · ЯДРО
 

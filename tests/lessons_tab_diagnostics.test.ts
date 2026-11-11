@@ -89,8 +89,8 @@ describe('lessons tab diagnostics', () => {
   });
 
   it('уход: явная причина пишется, повтор в секунду и неявный tab_switch следом — нет', () => {
-    noteLessonsLeave('back_button', { page: 'v2' }, 50_000);
-    noteLessonsLeave('back_button', { page: 'v2' }, 50_400);
+    noteLessonsLeave('back_button', { page: 'legacy_list' }, 50_000);
+    noteLessonsLeave('back_button', { page: 'legacy_list' }, 50_400);
     noteLessonsLeave('tab_switch', { visible: false }, 50_600);
     expect(mockRecord).toHaveBeenCalledTimes(1);
     expect(mockRecord.mock.calls[0]![0]).toMatchObject({ event: 'feature_action', action: 'lessons:leave:back_button', screen: '/lessons' });
@@ -123,7 +123,6 @@ describe('lessons tab diagnostics', () => {
 
   it('вкладка и плитка подключены: back_button, tab_switch, первый кадр, метка тапа', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
-    expect(lessons).toContain('noteLessonsLeave("back_button", { page: "v2" })');
     expect(lessons).toContain('noteLessonsLeave("back_button", { page: "legacy_list" })');
     expect(lessons).toContain('noteLessonsLeave("tab_switch"');
     expect(lessons).toContain('noteLessonsFirstFrame()');

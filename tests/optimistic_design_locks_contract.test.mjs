@@ -6,16 +6,6 @@ import test from 'node:test';
 
 const read = (p) => readFileSync(p, 'utf8').replace(/\r\n/g, '\n');
 
-test('intro: «Дальше» берёт замок до смены страницы и снимает его при смене страницы', () => {
-  const src = read('app/learning_v2_session_intro.tsx');
-  assert.match(src, /const advanceLockRef = useRef\(false\);/);
-  const advance = src.slice(src.indexOf('const advance = () => {'), src.indexOf('const advance = () => {') + 1400);
-  assert.ok(advance.includes('if (advanceLockRef.current)'), 'повторный тап отбрасывается');
-  assert.ok(advance.indexOf('advanceLockRef.current = true;') < advance.indexOf('onComplete('), 'замок берётся до завершения');
-  assert.ok(advance.indexOf('advanceLockRef.current = true;') < advance.indexOf('setIndex('), 'замок берётся до смены страницы');
-  assert.match(src, /useEffect\(\(\) => \{\n\s+advanceLockRef\.current = false;\n\s+\}, \[safeIndex\]\);/);
-});
-
 test('rating prompt: «Да» показывает «спасибо» сразу и не открывает стор дважды', () => {
   const src = read('app/lesson_complete.tsx');
   const yes = src.slice(src.indexOf('const handleYes = async () => {'), src.indexOf('const handleNo = async () => {'));

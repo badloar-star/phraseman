@@ -1,0 +1,682 @@
+[
+{
+"lesson": 1,
+"blocks": [
+{
+"textEN": "A friend is waiting at the entrance. How do you tell them “I’m here”? «Ich» names the speaker: I. «hier» tells them the place: here. Put «bin» between them. It does the job of “am” in «Ich bin hier.»\n\nIch bin hier.\n\nI am here.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.\n\nIn practice you’ll see a message in your chosen prompt language. Each button is a German word. Pick one and the choices for the next word appear. You don’t have to pick commas, full stops or question marks. Just read for now; this isn’t a test.",
+"textES": "Un amigo te espera en la entrada. ¿Cómo le dices «estoy aquí»? «Ich» identifica a quien habla: yo. «hier» indica el lugar: aquí. Entre ambos va «bin». En «Ich bin hier», «Ich bin» expresa «yo estoy».\n\nIch bin hier.\n\nEstoy aquí.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.\n\nEn la práctica aparecerá un mensaje en el idioma que hayas elegido. Cada botón es una palabra alemana. Elige una y aparecerán opciones para la siguiente. No tienes que elegir comas, puntos ni signos de interrogación. Por ahora solo lee: esto no es un examen.",
+"textId": "Temanmu menunggu di pintu masuk. Bagaimana mengatakan “aku di sini”? «Ich» menunjuk orang yang berbicara: aku. «hier» berarti di sini. Di antara keduanya perlu ada «bin» untuk membentuk kalimat lengkap: «Ich bin hier.»\n\nIch bin hier.\n\nSaya di sini.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.\n\nSaat latihan, kamu melihat pesan dalam bahasa petunjuk pilihanmu. Setiap tombol adalah satu kata Jerman. Pilih satu, lalu pilihan untuk kata berikutnya muncul. Tidak perlu memilih tanda baca. Sekarang cukup baca; ini bukan tes.",
+"textPl": "Ktoś czeka na ciebie przy wejściu. Jak powiedzieć „jestem tutaj”? «Ich» wskazuje, kto mówi: ja. «hier» to miejsce: tutaj. Pomiędzy nimi wstaw «bin». Razem «Ich bin» znaczy „jestem”: «Ich bin hier.»\n\nIch bin hier.\n\nJestem tutaj.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.\n\nW ćwiczeniu zobaczysz wiadomość w wybranym języku podpowiedzi. Każdy przycisk to jedno niemieckie słowo. Wybierz jedno, a pojawią się opcje dla następnego. Przecinków, kropek i znaków zapytania nie musisz wybierać. Na razie tylko czytaj — to nie test.",
+"textPtBr": "Um amigo espera você na entrada. Como dizer “estou aqui”? «Ich» indica quem fala: eu. «hier» indica o lugar: aqui. Entre eles, coloque «bin». Em «Ich bin hier», «Ich bin» equivale a “eu estou”.\n\nIch bin hier.\n\nEu estou aqui.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.\n\nNa prática, você verá uma mensagem no idioma escolhido. Cada botão é uma palavra alemã. Escolha uma e aparecerão as opções da próxima. Não é preciso escolher vírgulas, pontos ou interrogações. Por enquanto, basta ler: isto não é um teste.",
+"textRU": "Друг ждёт тебя у входа. Как сообщить ему «я здесь»? «Ich» — тот, кто сейчас говорит: я. «hier» — место, где я нахожусь: здесь. Между ними нужно «bin». Это слово связывает меня с местом: «Ich bin hier.»\n\nIch bin hier.\n\nЯ здесь.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.\n\nВ задании ты увидишь сообщение на выбранном тобой языке. Кнопки под ним — немецкие слова. Нажимаешь одно слово — появляются варианты следующего. Запятую, точку и знак вопроса выбирать не нужно. Пока просто читай: это объяснение, не проверка.",
+"textTr": "Bir arkadaşın girişte seni bekliyor. “Buradayım” demek için «Ich» ile kendini, «hier» ile bulunduğun yeri belirtirsin. İkisinin arasına «bin» gelir. Türkçede tek kelimeyle verdiğin mesaj Almancada üç kelimedir: «Ich bin hier.»\n\nIch bin hier.\n\nBen buradayım.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.\n\nAlıştırmada seçtiğin ipucu dilinde bir mesaj göreceksin. Her düğme bir Almanca kelime. Birini seçtiğinde sıradaki seçenekler görünür. Virgül, nokta veya soru işaretini seçmen gerekmez. Şimdilik yalnızca oku; bu bir sınav değil.",
+"textUK": "Друг чекає на тебе біля входу. Як сказати йому «я тут»? «Ich» називає того, хто говорить: я. «hier» означає місце, де я зараз: тут. Між ними потрібне «bin». Воно пов’язує мене з місцем: «Ich bin hier.»\n\nIch bin hier.\n\nЯ тут.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.\n\nУ завданні ти побачиш повідомлення обраною мовою. Кнопки під ним — німецькі слова. Обираєш одне — з’являються варіанти наступного. Кому, крапку та знак питання не треба обирати. Поки просто читай: це пояснення, а не перевірка.",
+"textVi": "Bạn đang hẹn một người bạn ở cửa. Làm sao nói “tôi ở đây”? «Ich» chỉ người đang nói: tôi. «hier» chỉ nơi bạn đang đứng: ở đây. Giữa hai từ cần có «bin» để tạo thành câu đầy đủ: «Ich bin hier.»\n\nIch bin hier.\n\nTôi ở đây.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ.\n\nKhi luyện, bạn sẽ thấy một lời nhắn bằng ngôn ngữ gợi ý đã chọn. Mỗi nút là một từ tiếng Đức. Chọn một từ thì các lựa chọn cho từ tiếp theo hiện ra. Không cần chọn dấu câu. Bây giờ chỉ cần đọc, đây không phải bài kiểm tra.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "A friend is waiting at the entrance. How do you tell them “I’m here”? «Ich» names the speaker: I. «hier» tells them the place: here. Put «bin» between them. It does the job of “am” in «Ich bin hier.»\n\nIch bin hier.\n\nI am here.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.\n\nIn practice you’ll see a message in your chosen prompt language. Each button is a German word. Pick one and the choices for the next word appear. You don’t have to pick commas, full stops or question marks. Just read for now; this isn’t a test.",
+"es": "Un amigo te espera en la entrada. ¿Cómo le dices «estoy aquí»? «Ich» identifica a quien habla: yo. «hier» indica el lugar: aquí. Entre ambos va «bin». En «Ich bin hier», «Ich bin» expresa «yo estoy».\n\nIch bin hier.\n\nEstoy aquí.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.\n\nEn la práctica aparecerá un mensaje en el idioma que hayas elegido. Cada botón es una palabra alemana. Elige una y aparecerán opciones para la siguiente. No tienes que elegir comas, puntos ni signos de interrogación. Por ahora solo lee: esto no es un examen.",
+"id": "Temanmu menunggu di pintu masuk. Bagaimana mengatakan “aku di sini”? «Ich» menunjuk orang yang berbicara: aku. «hier» berarti di sini. Di antara keduanya perlu ada «bin» untuk membentuk kalimat lengkap: «Ich bin hier.»\n\nIch bin hier.\n\nSaya di sini.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.\n\nSaat latihan, kamu melihat pesan dalam bahasa petunjuk pilihanmu. Setiap tombol adalah satu kata Jerman. Pilih satu, lalu pilihan untuk kata berikutnya muncul. Tidak perlu memilih tanda baca. Sekarang cukup baca; ini bukan tes.",
+"pl": "Ktoś czeka na ciebie przy wejściu. Jak powiedzieć „jestem tutaj”? «Ich» wskazuje, kto mówi: ja. «hier» to miejsce: tutaj. Pomiędzy nimi wstaw «bin». Razem «Ich bin» znaczy „jestem”: «Ich bin hier.»\n\nIch bin hier.\n\nJestem tutaj.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.\n\nW ćwiczeniu zobaczysz wiadomość w wybranym języku podpowiedzi. Każdy przycisk to jedno niemieckie słowo. Wybierz jedno, a pojawią się opcje dla następnego. Przecinków, kropek i znaków zapytania nie musisz wybierać. Na razie tylko czytaj — to nie test.",
+"pt-BR": "Um amigo espera você na entrada. Como dizer “estou aqui”? «Ich» indica quem fala: eu. «hier» indica o lugar: aqui. Entre eles, coloque «bin». Em «Ich bin hier», «Ich bin» equivale a “eu estou”.\n\nIch bin hier.\n\nEu estou aqui.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.\n\nNa prática, você verá uma mensagem no idioma escolhido. Cada botão é uma palavra alemã. Escolha uma e aparecerão as opções da próxima. Não é preciso escolher vírgulas, pontos ou interrogações. Por enquanto, basta ler: isto não é um teste.",
+"ru": "Друг ждёт тебя у входа. Как сообщить ему «я здесь»? «Ich» — тот, кто сейчас говорит: я. «hier» — место, где я нахожусь: здесь. Между ними нужно «bin». Это слово связывает меня с местом: «Ich bin hier.»\n\nIch bin hier.\n\nЯ здесь.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.\n\nВ задании ты увидишь сообщение на выбранном тобой языке. Кнопки под ним — немецкие слова. Нажимаешь одно слово — появляются варианты следующего. Запятую, точку и знак вопроса выбирать не нужно. Пока просто читай: это объяснение, не проверка.",
+"tr": "Bir arkadaşın girişte seni bekliyor. “Buradayım” demek için «Ich» ile kendini, «hier» ile bulunduğun yeri belirtirsin. İkisinin arasına «bin» gelir. Türkçede tek kelimeyle verdiğin mesaj Almancada üç kelimedir: «Ich bin hier.»\n\nIch bin hier.\n\nBen buradayım.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.\n\nAlıştırmada seçtiğin ipucu dilinde bir mesaj göreceksin. Her düğme bir Almanca kelime. Birini seçtiğinde sıradaki seçenekler görünür. Virgül, nokta veya soru işaretini seçmen gerekmez. Şimdilik yalnızca oku; bu bir sınav değil.",
+"uk": "Друг чекає на тебе біля входу. Як сказати йому «я тут»? «Ich» називає того, хто говорить: я. «hier» означає місце, де я зараз: тут. Між ними потрібне «bin». Воно пов’язує мене з місцем: «Ich bin hier.»\n\nIch bin hier.\n\nЯ тут.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.\n\nУ завданні ти побачиш повідомлення обраною мовою. Кнопки під ним — німецькі слова. Обираєш одне — з’являються варіанти наступного. Кому, крапку та знак питання не треба обирати. Поки просто читай: це пояснення, а не перевірка.",
+"vi": "Bạn đang hẹn một người bạn ở cửa. Làm sao nói “tôi ở đây”? «Ich» chỉ người đang nói: tôi. «hier» chỉ nơi bạn đang đứng: ở đây. Giữa hai từ cần có «bin» để tạo thành câu đầy đủ: «Ich bin hier.»\n\nIch bin hier.\n\nTôi ở đây.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ.\n\nKhi luyện, bạn sẽ thấy một lời nhắn bằng ngôn ngữ gợi ý đã chọn. Mỗi nút là một từ tiếng Đức. Chọn một từ thì các lựa chọn cho từ tiếp theo hiện ra. Không cần chọn dấu câu. Bây giờ chỉ cần đọc, đây không phải bài kiểm tra."
+},
+"kind": "concept",
+"exampleIds": [
+"de:01:01"
+]
+},
+{
+"textEN": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nI am here.\n\nDu bist hier.\n\nYou are here.\n\nThe place hasn’t changed: both end in «hier». Change the person and the middle word changes too. Use «ich bin» for yourself, «du bist» for one friend. “Here” doesn’t decide the form.",
+"textES": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nEstoy aquí.\n\nDu bist hier.\n\nEstás aquí.\n\nEl lugar no cambia: ambas terminan en «hier». Cambia la persona y cambia la palabra del medio: «ich bin» para ti al hablar de ti, «du bist» para un amigo. No es «aquí» lo que decide la forma.",
+"textId": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nSaya di sini.\n\nDu bist hier.\n\nAnda di sini.\n\nTempatnya sama: keduanya berakhir dengan «hier». Jika orangnya berubah, kata tengah ikut berubah. Untuk diri sendiri gunakan «ich bin», untuk seorang teman yang diajak bicara «du bist». Bukan kata “di sini” yang menentukannya.",
+"textPl": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nJestem tutaj.\n\nDu bist hier.\n\nJesteś tutaj.\n\nMiejsce się nie zmieniło: obie wypowiedzi kończą się «hier». Zmienia się osoba, więc zmienia się słowo pośrodku. O sobie «ich bin», do znajomego «du bist». To nie „tutaj” decyduje o formie.",
+"textPtBr": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nEu estou aqui.\n\nDu bist hier.\n\nVocê está aqui.\n\nO lugar não mudou: as duas terminam em «hier». Mude a pessoa e muda a palavra do meio: «ich bin» para falar de si, «du bist» para falar de um amigo diretamente com ele. Não é “aqui” que decide.",
+"textRU": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nЯ здесь.\n\nDu bist hier.\n\nТы здесь.\n\nМесто не поменялось: в обоих ответах «hier». Поменялся только человек. Вместе с «ich» бери «bin», вместе с «du» — «bist». Форму выбираешь по человеку, не по слову «здесь».",
+"textTr": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nBen buradayım.\n\nDu bist hier.\n\nSen buradasın.\n\nYer aynı: iki cümle de «hier» ile biter. Kişi değişince ortadaki kelime de değişir. Kendin için «ich bin», arkadaşına “sen” derken «du bist» kullan. Biçimi “burada” belirlemez.",
+"textUK": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nЯ тут.\n\nDu bist hier.\n\nТи тут.\n\nМісце те саме: в обох фразах «hier». Змінилася лише особа. До «ich» бери «bin», до «du» — «bist». Вибір залежить від особи, не від слова «тут».",
+"textVi": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nTôi ở đây.\n\nDu bist hier.\n\nBạn ở đây.\n\nĐịa điểm không đổi: cả hai đều kết thúc bằng «hier». Đổi người thì từ ở giữa đổi: «ich bin» cho mình, «du bist» khi nói với một người bạn. Không phải “ở đây” quyết định dạng từ.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nI am here.\n\nDu bist hier.\n\nYou are here.\n\nThe place hasn’t changed: both end in «hier». Change the person and the middle word changes too. Use «ich bin» for yourself, «du bist» for one friend. “Here” doesn’t decide the form.",
+"es": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nEstoy aquí.\n\nDu bist hier.\n\nEstás aquí.\n\nEl lugar no cambia: ambas terminan en «hier». Cambia la persona y cambia la palabra del medio: «ich bin» para ti al hablar de ti, «du bist» para un amigo. No es «aquí» lo que decide la forma.",
+"id": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nSaya di sini.\n\nDu bist hier.\n\nAnda di sini.\n\nTempatnya sama: keduanya berakhir dengan «hier». Jika orangnya berubah, kata tengah ikut berubah. Untuk diri sendiri gunakan «ich bin», untuk seorang teman yang diajak bicara «du bist». Bukan kata “di sini” yang menentukannya.",
+"pl": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nJestem tutaj.\n\nDu bist hier.\n\nJesteś tutaj.\n\nMiejsce się nie zmieniło: obie wypowiedzi kończą się «hier». Zmienia się osoba, więc zmienia się słowo pośrodku. O sobie «ich bin», do znajomego «du bist». To nie „tutaj” decyduje o formie.",
+"pt-BR": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nEu estou aqui.\n\nDu bist hier.\n\nVocê está aqui.\n\nO lugar não mudou: as duas terminam em «hier». Mude a pessoa e muda a palavra do meio: «ich bin» para falar de si, «du bist» para falar de um amigo diretamente com ele. Não é “aqui” que decide.",
+"ru": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nЯ здесь.\n\nDu bist hier.\n\nТы здесь.\n\nМесто не поменялось: в обоих ответах «hier». Поменялся только человек. Вместе с «ich» бери «bin», вместе с «du» — «bist». Форму выбираешь по человеку, не по слову «здесь».",
+"tr": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nBen buradayım.\n\nDu bist hier.\n\nSen buradasın.\n\nYer aynı: iki cümle de «hier» ile biter. Kişi değişince ortadaki kelime de değişir. Kendin için «ich bin», arkadaşına “sen” derken «du bist» kullan. Biçimi “burada” belirlemez.",
+"uk": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nЯ тут.\n\nDu bist hier.\n\nТи тут.\n\nМісце те саме: в обох фразах «hier». Змінилася лише особа. До «ich» бери «bin», до «du» — «bist». Вибір залежить від особи, не від слова «тут».",
+"vi": "«Ich» + «bin» + «hier»\n\nIch bin hier.\n\nTôi ở đây.\n\nDu bist hier.\n\nBạn ở đây.\n\nĐịa điểm không đổi: cả hai đều kết thúc bằng «hier». Đổi người thì từ ở giữa đổi: «ich bin» cho mình, «du bist» khi nói với một người bạn. Không phải “ở đây” quyết định dạng từ."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:01",
+"de:01:02"
+]
+},
+{
+"textEN": "I am here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The “I” form of sein (to be): am. It links the speaker to what follows.\n\n3. «hier» — Here: the answer to “where?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"textES": "Estoy aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Forma de sein (ser/estar) con «yo». En esta frase une «yo» con lo que sigue.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nIch → bin → hier\n\nIch bin hier.",
+"textId": "Saya di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Bentuk sein untuk “aku”; menghubungkan pembicara dengan keterangan berikutnya.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"textPl": "Jestem tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Forma sein (być) dla „ja”: jestem. Łączy osobę z dalszym opisem.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"textPtBr": "Eu estou aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Forma de sein (ser/estar) para “eu”. Liga quem fala ao que vem depois.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"textRU": "Я здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Форма слова sein («быть») для «я». Не отдельное действие: связывает «я» с тем, что идёт дальше.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nIch → bin → hier\n\nIch bin hier.",
+"textTr": "Ben buradayım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — sein (olmak) fiilinin “ben” biçimi; konuşanı sonraki bilgiye bağlar.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nIch → bin → hier\n\nIch bin hier.",
+"textUK": "Я тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Форма sein («бути») для «я». Не окрема дія: пов’язує «я» з тим, що йде далі.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nIch → bin → hier\n\nIch bin hier.",
+"textVi": "Tôi ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Dạng của sein (là/ở) dùng với “tôi”, nối người nói với phần sau.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I am here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The “I” form of sein (to be): am. It links the speaker to what follows.\n\n3. «hier» — Here: the answer to “where?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"es": "Estoy aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Forma de sein (ser/estar) con «yo». En esta frase une «yo» con lo que sigue.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nIch → bin → hier\n\nIch bin hier.",
+"id": "Saya di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Bentuk sein untuk “aku”; menghubungkan pembicara dengan keterangan berikutnya.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"pl": "Jestem tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Forma sein (być) dla „ja”: jestem. Łączy osobę z dalszym opisem.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"pt-BR": "Eu estou aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Forma de sein (ser/estar) para “eu”. Liga quem fala ao que vem depois.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nIch → bin → hier\n\nIch bin hier.",
+"ru": "Я здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Форма слова sein («быть») для «я». Не отдельное действие: связывает «я» с тем, что идёт дальше.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nIch → bin → hier\n\nIch bin hier.",
+"tr": "Ben buradayım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — sein (olmak) fiilinin “ben” biçimi; konuşanı sonraki bilgiye bağlar.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nIch → bin → hier\n\nIch bin hier.",
+"uk": "Я тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Форма sein («бути») для «я». Не окрема дія: пов’язує «я» з тим, що йде далі.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nIch → bin → hier\n\nIch bin hier.",
+"vi": "Tôi ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Dạng của sein (là/ở) dùng với “tôi”, nối người nói với phần sau.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nIch → bin → hier\n\nIch bin hier."
+},
+"kind": "practice",
+"exampleIds": [
+"de:01:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "de:01:02",
+"target": "Du bist hier.",
+"ru": "Ты здесь.",
+"uk": "Ти тут."
+},
+{
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+}
+]
+},
+{
+"lesson": 2,
+"blocks": [
+{
+"textEN": "At the lost-property desk you point to the key you recognise. «Das ist» means “this is”; «der Schlüssel» is “the key”. A little word like «der» before a noun is called an article. Learn the pair, not just «Schlüssel».\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "En objetos perdidos señalas la llave que reconoces. «Das ist» significa «esta es»; «der Schlüssel», «la llave». Esa palabra breve, «der», es un artículo. Aprende las dos palabras juntas: el género no se deduce del español.\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Di bagian barang hilang, kamu menunjuk kunci yang kamu kenali. «Das ist» berarti “ini adalah”; «der Schlüssel» adalah kunci itu. Kata pendek seperti «der» disebut artikel. Hafalkan bersama nama bendanya, bukan «Schlüssel» saja.\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "W biurze rzeczy znalezionych wskazujesz klucz, który rozpoznajesz. «Das ist» znaczy „to jest”, a «der Schlüssel» to ten konkretny klucz. Takie krótkie słowo przed rzeczownikiem nazywa się rodzajnikiem. Ucz się od razu całej pary.\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "No setor de achados e perdidos, você aponta para a chave que reconheceu. «Das ist» quer dizer “esta é”; «der Schlüssel», “a chave”. «der» é o artigo: aprenda o par alemão sem tentar adivinhar pelo português.\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "В бюро находок ты показываешь на нужный ключ. «Das ist» означает «это…», а «der Schlüssel» — тот самый ключ. Слово перед названием предмета называют артиклем. Учи не просто «Schlüssel», а сразу «der Schlüssel».\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Kayıp eşya bürosunda tanıdığın anahtarı gösteriyorsun. «Das ist» ile “bu…” dersin; «der Schlüssel» bildiğin o anahtardır. İsmin başındaki «der» sözcüğüne artikel denir. «Schlüssel» kelimesini tek başına değil, «der Schlüssel» olarak öğren.\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "У бюро знахідок ти показуєш на потрібний ключ. «Das ist» означає «це…», а «der Schlüssel» — той самий ключ. Слово перед назвою предмета називають артиклем. Вчи не просто «Schlüssel», а одразу «der Schlüssel».\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Ở quầy đồ thất lạc, bạn chỉ vào chiếc chìa khóa mình nhận ra. «Das ist» có nghĩa “đây là”; «der Schlüssel» là chiếc chìa khóa ấy. Từ ngắn «der» đứng trước tên đồ vật được gọi là mạo từ. Hãy học cả cụm.\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "At the lost-property desk you point to the key you recognise. «Das ist» means “this is”; «der Schlüssel» is “the key”. A little word like «der» before a noun is called an article. Learn the pair, not just «Schlüssel».\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "En objetos perdidos señalas la llave que reconoces. «Das ist» significa «esta es»; «der Schlüssel», «la llave». Esa palabra breve, «der», es un artículo. Aprende las dos palabras juntas: el género no se deduce del español.\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Di bagian barang hilang, kamu menunjuk kunci yang kamu kenali. «Das ist» berarti “ini adalah”; «der Schlüssel» adalah kunci itu. Kata pendek seperti «der» disebut artikel. Hafalkan bersama nama bendanya, bukan «Schlüssel» saja.\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "W biurze rzeczy znalezionych wskazujesz klucz, który rozpoznajesz. «Das ist» znaczy „to jest”, a «der Schlüssel» to ten konkretny klucz. Takie krótkie słowo przed rzeczownikiem nazywa się rodzajnikiem. Ucz się od razu całej pary.\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "No setor de achados e perdidos, você aponta para a chave que reconheceu. «Das ist» quer dizer “esta é”; «der Schlüssel», “a chave”. «der» é o artigo: aprenda o par alemão sem tentar adivinhar pelo português.\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "В бюро находок ты показываешь на нужный ключ. «Das ist» означает «это…», а «der Schlüssel» — тот самый ключ. Слово перед названием предмета называют артиклем. Учи не просто «Schlüssel», а сразу «der Schlüssel».\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Kayıp eşya bürosunda tanıdığın anahtarı gösteriyorsun. «Das ist» ile “bu…” dersin; «der Schlüssel» bildiğin o anahtardır. İsmin başındaki «der» sözcüğüne artikel denir. «Schlüssel» kelimesini tek başına değil, «der Schlüssel» olarak öğren.\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "У бюро знахідок ти показуєш на потрібний ключ. «Das ist» означає «це…», а «der Schlüssel» — той самий ключ. Слово перед назвою предмета називають артиклем. Вчи не просто «Schlüssel», а одразу «der Schlüssel».\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Ở quầy đồ thất lạc, bạn chỉ vào chiếc chìa khóa mình nhận ra. «Das ist» có nghĩa “đây là”; «der Schlüssel» là chiếc chìa khóa ấy. Từ ngắn «der» đứng trước tên đồ vật được gọi là mạo từ. Hãy học cả cụm.\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:02:01"
+]
+},
+{
+"textEN": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nDas ist das Handy.\n\nThis is the cell phone.\n\nKeep «Das ist» for “this is”. A key and a phone have different articles. In «Das ist das Handy» the first «Das» points to something; the second «das» belongs to «Handy».",
+"textES": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nDas ist das Handy.\n\nEste es el celular.\n\nMantén «Das ist» para «esto es». La llave y el móvil llevan artículos diferentes. En «Das ist das Handy», el primer «Das» señala; el segundo «das» acompaña a «Handy».",
+"textId": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nDas ist das Handy.\n\nIni ponselnya.\n\nTetap gunakan «Das ist» untuk “ini adalah”. Kunci dan ponsel punya artikel berbeda. Dalam «Das ist das Handy», «Das» pertama menunjuk, sedangkan «das» kedua mengiringi «Handy».",
+"textPl": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nDas ist das Handy.\n\nTo jest telefon komórkowy.\n\nPoczątek «Das ist» („to jest”) pozostaje. Klucz i telefon mają różne rodzajniki. W «Das ist das Handy» pierwsze «Das» wskazuje rzecz, drugie «das» należy do «Handy».",
+"textPtBr": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nDas ist das Handy.\n\nEste é o celular.\n\nMantenha «Das ist» para “isto é”. A chave e o celular têm artigos diferentes. Em «Das ist das Handy», o primeiro «Das» aponta; o segundo «das» acompanha «Handy».",
+"textRU": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nDas ist das Handy.\n\nЭто телефон.\n\nПервые два слова не меняются: «Das ist» означает «это…». А вот у ключа и телефона разные артикли. Во фразе «Das ist das Handy» первое «Das» указывает на вещь, а второе «das» относится к слову «Handy».",
+"textTr": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nDas ist das Handy.\n\nBu cep telefonu.\n\n“Bu ...” için «Das ist» aynı kalır. Anahtarla telefonun artikelleri farklıdır. «Das ist das Handy» içinde ilk «Das» işaret eder; ikinci «das», «Handy» ismine aittir.",
+"textUK": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nDas ist das Handy.\n\nЦе телефон.\n\nПерші два слова незмінні: «Das ist» — «це…». А ключ і телефон мають різні артиклі. У «Das ist das Handy» перше «Das» вказує на річ, а друге «das» належить до «Handy».",
+"textVi": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nDas ist das Handy.\n\nĐây là điện thoại di động.\n\nGiữ «Das ist» cho nghĩa “đây là”. Chìa khóa và điện thoại có mạo từ khác nhau. Trong «Das ist das Handy», «Das» đầu tiên dùng để chỉ, còn «das» thứ hai đi với «Handy».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nDas ist das Handy.\n\nThis is the cell phone.\n\nKeep «Das ist» for “this is”. A key and a phone have different articles. In «Das ist das Handy» the first «Das» points to something; the second «das» belongs to «Handy».",
+"es": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nDas ist das Handy.\n\nEste es el celular.\n\nMantén «Das ist» para «esto es». La llave y el móvil llevan artículos diferentes. En «Das ist das Handy», el primer «Das» señala; el segundo «das» acompaña a «Handy».",
+"id": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nDas ist das Handy.\n\nIni ponselnya.\n\nTetap gunakan «Das ist» untuk “ini adalah”. Kunci dan ponsel punya artikel berbeda. Dalam «Das ist das Handy», «Das» pertama menunjuk, sedangkan «das» kedua mengiringi «Handy».",
+"pl": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nDas ist das Handy.\n\nTo jest telefon komórkowy.\n\nPoczątek «Das ist» („to jest”) pozostaje. Klucz i telefon mają różne rodzajniki. W «Das ist das Handy» pierwsze «Das» wskazuje rzecz, drugie «das» należy do «Handy».",
+"pt-BR": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nDas ist das Handy.\n\nEste é o celular.\n\nMantenha «Das ist» para “isto é”. A chave e o celular têm artigos diferentes. Em «Das ist das Handy», o primeiro «Das» aponta; o segundo «das» acompanha «Handy».",
+"ru": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nDas ist das Handy.\n\nЭто телефон.\n\nПервые два слова не меняются: «Das ist» означает «это…». А вот у ключа и телефона разные артикли. Во фразе «Das ist das Handy» первое «Das» указывает на вещь, а второе «das» относится к слову «Handy».",
+"tr": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nDas ist das Handy.\n\nBu cep telefonu.\n\n“Bu ...” için «Das ist» aynı kalır. Anahtarla telefonun artikelleri farklıdır. «Das ist das Handy» içinde ilk «Das» işaret eder; ikinci «das», «Handy» ismine aittir.",
+"uk": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nDas ist das Handy.\n\nЦе телефон.\n\nПерші два слова незмінні: «Das ist» — «це…». А ключ і телефон мають різні артиклі. У «Das ist das Handy» перше «Das» вказує на річ, а друге «das» належить до «Handy».",
+"vi": "«Das ist» + «der Schlüssel»\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nDas ist das Handy.\n\nĐây là điện thoại di động.\n\nGiữ «Das ist» cho nghĩa “đây là”. Chìa khóa và điện thoại có mạo từ khác nhau. Trong «Das ist das Handy», «Das» đầu tiên dùng để chỉ, còn «das» thứ hai đi với «Handy»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:02:01",
+"de:02:03"
+]
+},
+{
+"textEN": "This is the key.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das» — This/that: points to the thing or person.\n\n2. «ist» — Is: links “this” to what it is.\n\n3. «der Schlüssel» — The key: der is the article; Schlüssel is the thing.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textES": "Esta es la llave.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das» — Esto: señala la cosa o a la persona.\n\n2. «ist» — Es: une «esto» con su nombre.\n\n3. «der Schlüssel» — La llave concreta: der es el artículo; Schlüssel, la llave.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textId": "Ini kuncinya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das» — Ini/itu: menunjuk benda atau orang.\n\n2. «ist» — Adalah: menghubungkan “ini” dengan namanya.\n\n3. «der Schlüssel» — Kunci itu: der artikelnya, Schlüssel bendanya.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textPl": "To jest klucz.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das» — To: tak wskazujemy rzecz lub osobę.\n\n2. «ist» — Jest: łączy „to” z nazwą.\n\n3. «der Schlüssel» — Ten klucz: der to rodzajnik, Schlüssel oznacza klucz.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textPtBr": "Esta é a chave.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das» — Isto: aponta para a coisa ou pessoa.\n\n2. «ist» — É: liga “isto” ao nome.\n\n3. «der Schlüssel» — A chave específica: der é o artigo; Schlüssel é a chave.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textRU": "Это ключ.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das» — Это: так указываем на вещь или человека.\n\n2. «ist» — Связка «есть»: соединяет «это» с названием.\n\n3. «der Schlüssel» — Тот самый ключ. der — артикль, Schlüssel — ключ.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textTr": "Bu anahtar.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das» — Bu/şu: nesneyi veya kişiyi gösterir.\n\n2. «ist» — “Bu ...” derken gösterileni adıyla bağlar.\n\n3. «der Schlüssel» — O anahtar: der artikel, Schlüssel anahtar.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textUK": "Це ключ.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das» — Це: так вказуємо на річ чи людину.\n\n2. «ist» — Зв’язка «є»: поєднує «це» з назвою.\n\n3. «der Schlüssel» — Той самий ключ. der — артикль, Schlüssel — ключ.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"textVi": "Đây là chìa khóa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das» — Đây/đó: chỉ vào vật hoặc người.\n\n2. «ist» — Là: nối “đây” với tên gọi.\n\n3. «der Schlüssel» — Chiếc chìa khóa ấy: der là mạo từ, Schlüssel là chìa khóa.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "This is the key.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das» — This/that: points to the thing or person.\n\n2. «ist» — Is: links “this” to what it is.\n\n3. «der Schlüssel» — The key: der is the article; Schlüssel is the thing.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"es": "Esta es la llave.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das» — Esto: señala la cosa o a la persona.\n\n2. «ist» — Es: une «esto» con su nombre.\n\n3. «der Schlüssel» — La llave concreta: der es el artículo; Schlüssel, la llave.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"id": "Ini kuncinya.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das» — Ini/itu: menunjuk benda atau orang.\n\n2. «ist» — Adalah: menghubungkan “ini” dengan namanya.\n\n3. «der Schlüssel» — Kunci itu: der artikelnya, Schlüssel bendanya.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"pl": "To jest klucz.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das» — To: tak wskazujemy rzecz lub osobę.\n\n2. «ist» — Jest: łączy „to” z nazwą.\n\n3. «der Schlüssel» — Ten klucz: der to rodzajnik, Schlüssel oznacza klucz.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"pt-BR": "Esta é a chave.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das» — Isto: aponta para a coisa ou pessoa.\n\n2. «ist» — É: liga “isto” ao nome.\n\n3. «der Schlüssel» — A chave específica: der é o artigo; Schlüssel é a chave.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"ru": "Это ключ.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das» — Это: так указываем на вещь или человека.\n\n2. «ist» — Связка «есть»: соединяет «это» с названием.\n\n3. «der Schlüssel» — Тот самый ключ. der — артикль, Schlüssel — ключ.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"tr": "Bu anahtar.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das» — Bu/şu: nesneyi veya kişiyi gösterir.\n\n2. «ist» — “Bu ...” derken gösterileni adıyla bağlar.\n\n3. «der Schlüssel» — O anahtar: der artikel, Schlüssel anahtar.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"uk": "Це ключ.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das» — Це: так вказуємо на річ чи людину.\n\n2. «ist» — Зв’язка «є»: поєднує «це» з назвою.\n\n3. «der Schlüssel» — Той самий ключ. der — артикль, Schlüssel — ключ.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel.",
+"vi": "Đây là chìa khóa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das» — Đây/đó: chỉ vào vật hoặc người.\n\n2. «ist» — Là: nối “đây” với tên gọi.\n\n3. «der Schlüssel» — Chiếc chìa khóa ấy: der là mạo từ, Schlüssel là chìa khóa.\n\nDas → ist → der → Schlüssel\n\nDas ist der Schlüssel."
+},
+"kind": "practice",
+"exampleIds": [
+"de:02:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "de:02:03",
+"target": "Das ist das Handy.",
+"ru": "Это телефон.",
+"uk": "Це телефон."
+},
+{
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+}
+]
+},
+{
+"lesson": 3,
+"blocks": [
+{
+"textEN": "A neighbour asks if you live in this building. «wohnen» is the dictionary form, “to live somewhere”. Say «ich wohne» about yourself and «du wohnst» about the person you’re talking to. The ending changes, not the action.\n\nIch wohne hier.\n\nI live here.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"textES": "Un vecino pregunta si vives en el edificio. «wohnen» es «vivir, residir» en el diccionario. Para hablar de ti dices «ich wohne»; para hablar de la otra persona, «du wohnst». Cambia la terminación, no la acción.\n\nIch wohne hier.\n\nYo vivo aquí.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"textId": "Tetangga bertanya apakah kamu tinggal di gedung ini. «wohnen» adalah bentuk kamus untuk “tinggal”. Untuk diri sendiri katakan «ich wohne», untuk lawan bicara «du wohnst». Akhir kata berubah, kegiatannya tetap sama.\n\nIch wohne hier.\n\nSaya tinggal di sini.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"textPl": "Sąsiad pyta, czy mieszkasz w tym budynku. «wohnen» to słownikowe „mieszkać”. O sobie powiesz «ich wohne», o rozmówcy — «du wohnst». Zmienia się końcówka słowa, działanie pozostaje to samo.\n\nIch wohne hier.\n\nMieszkam tutaj.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"textPtBr": "Um vizinho pergunta se você mora no prédio. «wohnen» é “morar”, como aparece no dicionário. Para falar de si, use «ich wohne»; para falar de quem está ouvindo, «du wohnst». Só muda o final.\n\nIch wohne hier.\n\nEu moro aqui.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"textRU": "Сосед спрашивает, живёшь ли ты в этом доме. «wohnen» — «жить, проживать», как слово записано в словаре. О себе говоришь «ich wohne», о собеседнике — «du wohnst». Конец слова меняется, само действие остаётся тем же.\n\nIch wohne hier.\n\nЯ здесь живу.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"textTr": "Komşun bu binada oturup oturmadığını soruyor. Sözlükte «wohnen» “oturmak, ikamet etmek” demektir. Kendin için «ich wohne», karşındaki için «du wohnst» dersin. Eylem değil, kelimenin sonu değişir.\n\nIch wohne hier.\n\nBen burada yaşıyorum.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"textUK": "Сусід питає, чи ти живеш у цьому будинку. «wohnen» — «жити, мешкати», так слово записане у словнику. Про себе кажеш «ich wohne», про співрозмовника — «du wohnst». Змінюється кінець слова, а не сама дія.\n\nIch wohne hier.\n\nЯ тут живу.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"textVi": "Hàng xóm hỏi bạn có sống ở tòa nhà này không. «wohnen» là dạng tra từ điển, nghĩa là sinh sống. Nói về mình dùng «ich wohne»; nói về người đối diện dùng «du wohnst». Đuôi từ đổi, hành động không đổi.\n\nIch wohne hier.\n\nTôi sống ở đây.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "A neighbour asks if you live in this building. «wohnen» is the dictionary form, “to live somewhere”. Say «ich wohne» about yourself and «du wohnst» about the person you’re talking to. The ending changes, not the action.\n\nIch wohne hier.\n\nI live here.\n\nA form is the version of a word that fits a sentence. The dictionary lists «sein» (to be); use «ich bin» about yourself and «Tom ist» about Tom. They belong to the same verb.",
+"es": "Un vecino pregunta si vives en el edificio. «wohnen» es «vivir, residir» en el diccionario. Para hablar de ti dices «ich wohne»; para hablar de la otra persona, «du wohnst». Cambia la terminación, no la acción.\n\nIch wohne hier.\n\nYo vivo aquí.\n\nUna forma es la versión de una palabra que necesitas en la frase. En el diccionario: «sein»; al hablar de ti: «ich bin»; al hablar de Tom: «Tom ist». Es el mismo verbo.",
+"id": "Tetangga bertanya apakah kamu tinggal di gedung ini. «wohnen» adalah bentuk kamus untuk “tinggal”. Untuk diri sendiri katakan «ich wohne», untuk lawan bicara «du wohnst». Akhir kata berubah, kegiatannya tetap sama.\n\nIch wohne hier.\n\nSaya tinggal di sini.\n\nBentuk kata adalah wujud kata yang sesuai dengan kalimat. Kamus memuat «sein»; untuk diri sendiri «ich bin», untuk Tom «Tom ist». Semuanya kata kerja yang sama.",
+"pl": "Sąsiad pyta, czy mieszkasz w tym budynku. «wohnen» to słownikowe „mieszkać”. O sobie powiesz «ich wohne», o rozmówcy — «du wohnst». Zmienia się końcówka słowa, działanie pozostaje to samo.\n\nIch wohne hier.\n\nMieszkam tutaj.\n\nForma to postać słowa, której potrzebujesz w zdaniu. W słowniku znajdziesz «sein»; o sobie powiesz «ich bin», o Tomie «Tom ist». To ten sam czasownik.",
+"pt-BR": "Um vizinho pergunta se você mora no prédio. «wohnen» é “morar”, como aparece no dicionário. Para falar de si, use «ich wohne»; para falar de quem está ouvindo, «du wohnst». Só muda o final.\n\nIch wohne hier.\n\nEu moro aqui.\n\nForma é a versão da palavra que cabe na frase. No dicionário: «sein»; para si: «ich bin»; para Tom: «Tom ist». É o mesmo verbo.",
+"ru": "Сосед спрашивает, живёшь ли ты в этом доме. «wohnen» — «жить, проживать», как слово записано в словаре. О себе говоришь «ich wohne», о собеседнике — «du wohnst». Конец слова меняется, само действие остаётся тем же.\n\nIch wohne hier.\n\nЯ здесь живу.\n\n«Форма» — это вид одного слова для данной фразы. В словаре «быть» — «sein»; о себе сейчас — «ich bin», о друге по имени — «Tom ist». Это не три разных действия.",
+"tr": "Komşun bu binada oturup oturmadığını soruyor. Sözlükte «wohnen» “oturmak, ikamet etmek” demektir. Kendin için «ich wohne», karşındaki için «du wohnst» dersin. Eylem değil, kelimenin sonu değişir.\n\nIch wohne hier.\n\nBen burada yaşıyorum.\n\nBiçim, bir kelimenin cümleye uygun hâlidir. Sözlükte «sein», kendin için «ich bin», Tom için «Tom ist» kullanılır. Bunlar aynı fiile aittir.",
+"uk": "Сусід питає, чи ти живеш у цьому будинку. «wohnen» — «жити, мешкати», так слово записане у словнику. Про себе кажеш «ich wohne», про співрозмовника — «du wohnst». Змінюється кінець слова, а не сама дія.\n\nIch wohne hier.\n\nЯ тут живу.\n\n«Форма» — це вигляд слова в конкретній фразі. У словнику «бути» — «sein»; про себе зараз — «ich bin», про друга на ім’я — «Tom ist». Це не три різні дії.",
+"vi": "Hàng xóm hỏi bạn có sống ở tòa nhà này không. «wohnen» là dạng tra từ điển, nghĩa là sinh sống. Nói về mình dùng «ich wohne»; nói về người đối diện dùng «du wohnst». Đuôi từ đổi, hành động không đổi.\n\nIch wohne hier.\n\nTôi sống ở đây.\n\nDạng từ là cách một từ xuất hiện cho phù hợp với câu. Từ điển ghi «sein»; nói về mình: «ich bin»; nói về Tom: «Tom ist». Cả ba thuộc cùng một động từ."
+},
+"kind": "concept",
+"exampleIds": [
+"de:03:01"
+]
+},
+{
+"textEN": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nI live here.\n\nDu wohnst hier.\n\nYou live here.\n\nTake «-en» off «wohnen» to get «wohn-». Add «-e» for “I” or «-st» for informal “you”. «wohne» or «wohnst» is already your verb; no extra «bin» before it.",
+"textES": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nYo vivo aquí.\n\nDu wohnst hier.\n\nTú vives aquí.\n\nQuita «-en» de «wohnen»: queda «wohn-». Añade «-e» para «yo» o «-st» para «tú». «wohne» o «wohnst» ya funciona como verbo; no le pongas «bin» delante.",
+"textId": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nSaya tinggal di sini.\n\nDu wohnst hier.\n\nKamu tinggal di sini.\n\nBuang «-en» dari «wohnen»: tersisa «wohn-». Tambahkan «-e» untuk “aku”, «-st» untuk du. «wohne» atau «wohnst» sudah menjadi kata kerjanya; jangan tambah «bin».",
+"textPl": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nMieszkam tutaj.\n\nDu wohnst hier.\n\nMieszkasz tutaj.\n\nOdejmij «-en» od «wohnen»: zostaje «wohn-». Dla „ja” dodaj «-e», dla „ty” «-st». «wohne» lub «wohnst» jest już czasownikiem, bez dodatkowego «bin».",
+"textPtBr": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nEu moro aqui.\n\nDu wohnst hier.\n\nVocê mora aqui.\n\nTire «-en» de «wohnen»: sobra «wohn-». Acrescente «-e» para “eu” ou «-st» para du. «wohne» ou «wohnst» já é o verbo; não coloque «bin» antes.",
+"textRU": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nЯ здесь живу.\n\nDu wohnst hier.\n\nТы здесь живёшь.\n\nУбери «-en» у «wohnen»: останется «wohn-». Для «я» добавь «-e», для «ты» — «-st». Получилось «wohne» или «wohnst»: это уже готовое действие, не добавляй перед ним «bin».",
+"textTr": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nBen burada yaşıyorum.\n\nDu wohnst hier.\n\nSen burada yaşıyorsun.\n\n«wohnen» sonundaki «-en» çıkınca «wohn-» kalır. Ben için «-e», sen için «-st» ekle. «wohne» ya da «wohnst» zaten fiildir; önüne «bin» koyma.",
+"textUK": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nЯ тут живу.\n\nDu wohnst hier.\n\nТи тут живеш.\n\nЗніми «-en» у «wohnen»: лишиться «wohn-». Для «я» додай «-e», для «ти» — «-st». «wohne» чи «wohnst» уже називає дію, перед ним не потрібне «bin».",
+"textVi": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nTôi sống ở đây.\n\nDu wohnst hier.\n\nBạn sống ở đây.\n\nBỏ «-en» của «wohnen» còn «wohn-». Thêm «-e» cho “tôi”, «-st» cho du. «wohne» hoặc «wohnst» đã là động từ chính, không thêm «bin» ở trước.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nI live here.\n\nDu wohnst hier.\n\nYou live here.\n\nTake «-en» off «wohnen» to get «wohn-». Add «-e» for “I” or «-st» for informal “you”. «wohne» or «wohnst» is already your verb; no extra «bin» before it.",
+"es": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nYo vivo aquí.\n\nDu wohnst hier.\n\nTú vives aquí.\n\nQuita «-en» de «wohnen»: queda «wohn-». Añade «-e» para «yo» o «-st» para «tú». «wohne» o «wohnst» ya funciona como verbo; no le pongas «bin» delante.",
+"id": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nSaya tinggal di sini.\n\nDu wohnst hier.\n\nKamu tinggal di sini.\n\nBuang «-en» dari «wohnen»: tersisa «wohn-». Tambahkan «-e» untuk “aku”, «-st» untuk du. «wohne» atau «wohnst» sudah menjadi kata kerjanya; jangan tambah «bin».",
+"pl": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nMieszkam tutaj.\n\nDu wohnst hier.\n\nMieszkasz tutaj.\n\nOdejmij «-en» od «wohnen»: zostaje «wohn-». Dla „ja” dodaj «-e», dla „ty” «-st». «wohne» lub «wohnst» jest już czasownikiem, bez dodatkowego «bin».",
+"pt-BR": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nEu moro aqui.\n\nDu wohnst hier.\n\nVocê mora aqui.\n\nTire «-en» de «wohnen»: sobra «wohn-». Acrescente «-e» para “eu” ou «-st» para du. «wohne» ou «wohnst» já é o verbo; não coloque «bin» antes.",
+"ru": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nЯ здесь живу.\n\nDu wohnst hier.\n\nТы здесь живёшь.\n\nУбери «-en» у «wohnen»: останется «wohn-». Для «я» добавь «-e», для «ты» — «-st». Получилось «wohne» или «wohnst»: это уже готовое действие, не добавляй перед ним «bin».",
+"tr": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nBen burada yaşıyorum.\n\nDu wohnst hier.\n\nSen burada yaşıyorsun.\n\n«wohnen» sonundaki «-en» çıkınca «wohn-» kalır. Ben için «-e», sen için «-st» ekle. «wohne» ya da «wohnst» zaten fiildir; önüne «bin» koyma.",
+"uk": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nЯ тут живу.\n\nDu wohnst hier.\n\nТи тут живеш.\n\nЗніми «-en» у «wohnen»: лишиться «wohn-». Для «я» додай «-e», для «ти» — «-st». «wohne» чи «wohnst» уже називає дію, перед ним не потрібне «bin».",
+"vi": "«ich wohne» / «du wohnst» / «wir wohnen»\n\nIch wohne hier.\n\nTôi sống ở đây.\n\nDu wohnst hier.\n\nBạn sống ở đây.\n\nBỏ «-en» của «wohnen» còn «wohn-». Thêm «-e» cho “tôi”, «-st» cho du. «wohne» hoặc «wohnst» đã là động từ chính, không thêm «bin» ở trước."
+},
+"kind": "formula",
+"exampleIds": [
+"de:03:01",
+"de:03:02"
+]
+},
+{
+"textEN": "I live here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «wohne» — Live: replace the -en of wohnen with -e for the speaker.\n\n3. «hier» — Here: the answer to “where?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textES": "Yo vivo aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «wohne» — Vivo: cambia -en de wohnen por -e para «yo».\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textId": "Saya tinggal di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «wohne» — Tinggal: ganti -en pada wohnen dengan -e untuk “aku”.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textPl": "Mieszkam tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «wohne» — Mieszkam: -en w wohnen zastąp przez -e dla „ja”.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textPtBr": "Eu moro aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «wohne» — Moro: em wohnen, troque -en por -e para “eu”.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textRU": "Я здесь живу.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «wohne» — Живу. У wohnen конец -en заменён на -e, потому что речь обо мне.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textTr": "Ben burada yaşıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «wohne» — Oturuyorum: wohnen sonundaki -en, ben için -e olur.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textUK": "Я тут живу.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «wohne» — Мешкаю. У wohnen замість -en маємо -e, бо йдеться про мене.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"textVi": "Tôi sống ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «wohne» — Sống: thay đuôi -en của wohnen bằng -e khi nói về mình.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I live here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «wohne» — Live: replace the -en of wohnen with -e for the speaker.\n\n3. «hier» — Here: the answer to “where?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"es": "Yo vivo aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «wohne» — Vivo: cambia -en de wohnen por -e para «yo».\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"id": "Saya tinggal di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «wohne» — Tinggal: ganti -en pada wohnen dengan -e untuk “aku”.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"pl": "Mieszkam tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «wohne» — Mieszkam: -en w wohnen zastąp przez -e dla „ja”.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"pt-BR": "Eu moro aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «wohne» — Moro: em wohnen, troque -en por -e para “eu”.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"ru": "Я здесь живу.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «wohne» — Живу. У wohnen конец -en заменён на -e, потому что речь обо мне.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"tr": "Ben burada yaşıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «wohne» — Oturuyorum: wohnen sonundaki -en, ben için -e olur.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nIch → wohne → hier\n\nIch wohne hier.",
+"uk": "Я тут живу.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «wohne» — Мешкаю. У wohnen замість -en маємо -e, бо йдеться про мене.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nIch → wohne → hier\n\nIch wohne hier.",
+"vi": "Tôi sống ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «wohne» — Sống: thay đuôi -en của wohnen bằng -e khi nói về mình.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nIch → wohne → hier\n\nIch wohne hier."
+},
+"kind": "practice",
+"exampleIds": [
+"de:03:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:03:01",
+"target": "Ich wohne hier.",
+"ru": "Я здесь живу.",
+"uk": "Я тут живу."
+},
+{
+"id": "de:03:01",
+"target": "Ich wohne hier.",
+"ru": "Я здесь живу.",
+"uk": "Я тут живу."
+},
+{
+"id": "de:03:02",
+"target": "Du wohnst hier.",
+"ru": "Ты здесь живёшь.",
+"uk": "Ти тут живеш."
+},
+{
+"id": "de:03:01",
+"target": "Ich wohne hier.",
+"ru": "Я здесь живу.",
+"uk": "Я тут живу."
+}
+]
+},
+{
+"lesson": 4,
+"blocks": [
+{
+"textEN": "Start with “I” or with “today”? Either works. In a plain statement the verb that matches the person comes after the first unit of meaning. «Am Montag» has two words but answers just one question: when?\n\nHeute arbeite ich.\n\nToday I am working.\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"textES": "¿Empiezas por «yo» o por «hoy»? Ambos sirven. En una afirmación normal, tras el primer bloque va el verbo conjugado. «Am Montag» tiene dos palabras, pero responde a una sola pregunta: ¿cuándo?\n\nHeute arbeite ich.\n\nHoy trabajo.\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"textId": "Mulai dengan “aku” atau “hari ini”? Keduanya bisa. Dalam pernyataan biasa, bentuk kata kerja yang sesuai dengan pelaku mengikuti satu kelompok pertama. «Am Montag» terdiri dari dua kata, tetapi hanya menjawab “kapan?”.\n\nHeute arbeite ich.\n\nHari ini saya bekerja.\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"textPl": "Zacząć od „ja” czy od „dzisiaj”? Obie wersje są możliwe. W zwykłym zdaniu oznajmującym po pierwszej całości znaczeniowej stoi odmieniony czasownik. «Am Montag» to dwa słowa, ale jedna odpowiedź na pytanie „kiedy?”.\n\nHeute arbeite ich.\n\nDzisiaj pracuję.\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"textPtBr": "Começar com “eu” ou “hoje”? As duas opções funcionam. Numa afirmação comum, o verbo conjugado vem depois do primeiro bloco de sentido. «Am Montag» tem duas palavras, mas responde a uma só pergunta: quando?\n\nHeute arbeite ich.\n\nHoje estou trabalhando.\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"textRU": "Что поставить первым: «я» или «сегодня»? Оба начала возможны. В обычном сообщении за первым смысловым кусочком идёт слово действия в нужной форме. «Am Montag» — два слова, но один ответ на вопрос «когда?».\n\nHeute arbeite ich.\n\nСегодня я работаю.\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"textTr": "Önce “ben” mi “bugün” mü gelir? İkisi de olabilir. Düz bir bildirme cümlesinde kişiye göre çekilmiş fiil ilk anlam grubundan sonra gelir. «Am Montag» iki kelime olsa da tek bir “ne zaman?” cevabıdır.\n\nHeute arbeite ich.\n\nBugün çalışıyorum.\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"textUK": "Що поставити першим: «я» чи «сьогодні»? Обидва початки можливі. У звичайному повідомленні після першої смислової частини йде дієслово в потрібній формі. «Am Montag» — два слова, але одна відповідь на запитання «коли?».\n\nHeute arbeite ich.\n\nСьогодні я працюю.\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"textVi": "Bắt đầu bằng “tôi” hay “hôm nay” đều được. Trong câu kể thông thường, động từ đã chia đứng sau cụm ý đầu tiên. «Am Montag» gồm hai từ nhưng chỉ trả lời một câu hỏi: khi nào?\n\nHeute arbeite ich.\n\nHôm nay tôi đang làm việc.\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Start with “I” or with “today”? Either works. In a plain statement the verb that matches the person comes after the first unit of meaning. «Am Montag» has two words but answers just one question: when?\n\nHeute arbeite ich.\n\nToday I am working.\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"es": "¿Empiezas por «yo» o por «hoy»? Ambos sirven. En una afirmación normal, tras el primer bloque va el verbo conjugado. «Am Montag» tiene dos palabras, pero responde a una sola pregunta: ¿cuándo?\n\nHeute arbeite ich.\n\nHoy trabajo.\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"id": "Mulai dengan “aku” atau “hari ini”? Keduanya bisa. Dalam pernyataan biasa, bentuk kata kerja yang sesuai dengan pelaku mengikuti satu kelompok pertama. «Am Montag» terdiri dari dua kata, tetapi hanya menjawab “kapan?”.\n\nHeute arbeite ich.\n\nHari ini saya bekerja.\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"pl": "Zacząć od „ja” czy od „dzisiaj”? Obie wersje są możliwe. W zwykłym zdaniu oznajmującym po pierwszej całości znaczeniowej stoi odmieniony czasownik. «Am Montag» to dwa słowa, ale jedna odpowiedź na pytanie „kiedy?”.\n\nHeute arbeite ich.\n\nDzisiaj pracuję.\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"pt-BR": "Começar com “eu” ou “hoje”? As duas opções funcionam. Numa afirmação comum, o verbo conjugado vem depois do primeiro bloco de sentido. «Am Montag» tem duas palavras, mas responde a uma só pergunta: quando?\n\nHeute arbeite ich.\n\nHoje estou trabalhando.\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"ru": "Что поставить первым: «я» или «сегодня»? Оба начала возможны. В обычном сообщении за первым смысловым кусочком идёт слово действия в нужной форме. «Am Montag» — два слова, но один ответ на вопрос «когда?».\n\nHeute arbeite ich.\n\nСегодня я работаю.\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"tr": "Önce “ben” mi “bugün” mü gelir? İkisi de olabilir. Düz bir bildirme cümlesinde kişiye göre çekilmiş fiil ilk anlam grubundan sonra gelir. «Am Montag» iki kelime olsa da tek bir “ne zaman?” cevabıdır.\n\nHeute arbeite ich.\n\nBugün çalışıyorum.\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"uk": "Що поставити першим: «я» чи «сьогодні»? Обидва початки можливі. У звичайному повідомленні після першої смислової частини йде дієслово в потрібній формі. «Am Montag» — два слова, але одна відповідь на запитання «коли?».\n\nHeute arbeite ich.\n\nСьогодні я працюю.\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"vi": "Bắt đầu bằng “tôi” hay “hôm nay” đều được. Trong câu kể thông thường, động từ đã chia đứng sau cụm ý đầu tiên. «Am Montag» gồm hai từ nhưng chỉ trả lời một câu hỏi: khi nào?\n\nHeute arbeite ich.\n\nHôm nay tôi đang làm việc.\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng."
+},
+"kind": "concept",
+"exampleIds": [
+"de:04:01"
+]
+},
+{
+"textEN": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nToday I am working.\n\nHeute arbeite ich.\n\nToday I am working.\n\nBoth describe the very same working day. Start with «ich» and «arbeite» follows. Start with «heute» and «arbeite» still follows; «ich» moves to the right. Don’t put both the time and the person before «arbeite».",
+"textES": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHoy trabajo.\n\nHeute arbeite ich.\n\nHoy trabajo.\n\nHablan del mismo día de trabajo. Si empiezas por «ich», sigue «arbeite»; si empiezas por «heute», también sigue «arbeite», y «ich» pasa detrás. No pongas el tiempo y la persona juntos antes de «arbeite».",
+"textId": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHari ini saya bekerja.\n\nHeute arbeite ich.\n\nHari ini saya bekerja.\n\nKeduanya tentang hari kerja yang sama. Mulai dengan «ich», lalu «arbeite». Mulai dengan «heute», tetap diikuti «arbeite», lalu «ich». Jangan letakkan waktu dan pelaku sekaligus sebelum «arbeite».",
+"textPl": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nDzisiaj pracuję.\n\nHeute arbeite ich.\n\nDzisiaj pracuję.\n\nTo ten sam dzień pracy. Zacznij od «ich», a potem daj «arbeite». Zacznij od «heute» — po nim też «arbeite», a «ich» przechodzi dalej. Przed «arbeite» nie umieszczaj jednocześnie czasu i osoby.",
+"textPtBr": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHoje estou trabalhando.\n\nHeute arbeite ich.\n\nHoje estou trabalhando.\n\nÉ o mesmo dia de trabalho. Comece com «ich» e depois vem «arbeite». Comece com «heute» e ainda vem «arbeite», com «ich» depois. Não ponha tempo e pessoa juntos antes de «arbeite».",
+"textRU": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nСегодня я работаю.\n\nHeute arbeite ich.\n\nСегодня я работаю.\n\nОба примера про один и тот же рабочий день. Начал с «ich» — за ним «arbeite». Начал с «heute» — за ним тоже «arbeite», а «ich» перемещается вправо. Не ставь перед «arbeite» одновременно и время, и человека.",
+"textTr": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nBugün çalışıyorum.\n\nHeute arbeite ich.\n\nBugün çalışıyorum.\n\nİkisi de aynı iş gününü anlatır. «ich» ile başlarsan ardından «arbeite»; «heute» ile başlarsan yine «arbeite», sonra «ich» gelir. «arbeite» önüne hem zamanı hem kişiyi koyma.",
+"textUK": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nСьогодні я працюю.\n\nHeute arbeite ich.\n\nСьогодні я працюю.\n\nОбидва приклади про той самий день. Починаєш з «ich» — далі «arbeite». Починаєш із «heute» — далі теж «arbeite», а «ich» переходить праворуч. Не став перед «arbeite» і час, і особу одночасно.",
+"textVi": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHôm nay tôi đang làm việc.\n\nHeute arbeite ich.\n\nHôm nay tôi đang làm việc.\n\nHai câu nói cùng một ngày làm việc. Bắt đầu bằng «ich» thì sau đó là «arbeite». Bắt đầu bằng «heute» thì sau đó vẫn là «arbeite», còn «ich» ra sau. Đừng để cả thời gian và người cùng trước «arbeite».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nToday I am working.\n\nHeute arbeite ich.\n\nToday I am working.\n\nBoth describe the very same working day. Start with «ich» and «arbeite» follows. Start with «heute» and «arbeite» still follows; «ich» moves to the right. Don’t put both the time and the person before «arbeite».",
+"es": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHoy trabajo.\n\nHeute arbeite ich.\n\nHoy trabajo.\n\nHablan del mismo día de trabajo. Si empiezas por «ich», sigue «arbeite»; si empiezas por «heute», también sigue «arbeite», y «ich» pasa detrás. No pongas el tiempo y la persona juntos antes de «arbeite».",
+"id": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHari ini saya bekerja.\n\nHeute arbeite ich.\n\nHari ini saya bekerja.\n\nKeduanya tentang hari kerja yang sama. Mulai dengan «ich», lalu «arbeite». Mulai dengan «heute», tetap diikuti «arbeite», lalu «ich». Jangan letakkan waktu dan pelaku sekaligus sebelum «arbeite».",
+"pl": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nDzisiaj pracuję.\n\nHeute arbeite ich.\n\nDzisiaj pracuję.\n\nTo ten sam dzień pracy. Zacznij od «ich», a potem daj «arbeite». Zacznij od «heute» — po nim też «arbeite», a «ich» przechodzi dalej. Przed «arbeite» nie umieszczaj jednocześnie czasu i osoby.",
+"pt-BR": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHoje estou trabalhando.\n\nHeute arbeite ich.\n\nHoje estou trabalhando.\n\nÉ o mesmo dia de trabalho. Comece com «ich» e depois vem «arbeite». Comece com «heute» e ainda vem «arbeite», com «ich» depois. Não ponha tempo e pessoa juntos antes de «arbeite».",
+"ru": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nСегодня я работаю.\n\nHeute arbeite ich.\n\nСегодня я работаю.\n\nОба примера про один и тот же рабочий день. Начал с «ich» — за ним «arbeite». Начал с «heute» — за ним тоже «arbeite», а «ich» перемещается вправо. Не ставь перед «arbeite» одновременно и время, и человека.",
+"tr": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nBugün çalışıyorum.\n\nHeute arbeite ich.\n\nBugün çalışıyorum.\n\nİkisi de aynı iş gününü anlatır. «ich» ile başlarsan ardından «arbeite»; «heute» ile başlarsan yine «arbeite», sonra «ich» gelir. «arbeite» önüne hem zamanı hem kişiyi koyma.",
+"uk": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nСьогодні я працюю.\n\nHeute arbeite ich.\n\nСьогодні я працюю.\n\nОбидва приклади про той самий день. Починаєш з «ich» — далі «arbeite». Починаєш із «heute» — далі теж «arbeite», а «ich» переходить праворуч. Не став перед «arbeite» і час, і особу одночасно.",
+"vi": "«Am Montag» + «arbeite» + «ich»\n\nIch arbeite heute.\n\nHôm nay tôi đang làm việc.\n\nHeute arbeite ich.\n\nHôm nay tôi đang làm việc.\n\nHai câu nói cùng một ngày làm việc. Bắt đầu bằng «ich» thì sau đó là «arbeite». Bắt đầu bằng «heute» thì sau đó vẫn là «arbeite», còn «ich» ra sau. Đừng để cả thời gian và người cùng trước «arbeite»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:04:01",
+"de:04:01"
+]
+},
+{
+"textEN": "Today I am working.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Heute» — Today: lead with the time.\n\n2. «arbeite» — Work: after “today” put the verb before the person.\n\n3. «ich» — I: the person speaking.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textES": "Hoy trabajo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Heute» — Hoy: primero indicas el tiempo.\n\n2. «arbeite» — Trabajo: tras «hoy» va el verbo, antes de la persona.\n\n3. «ich» — Yo: quien habla.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textId": "Hari ini saya bekerja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Heute» — Hari ini: sebutkan waktunya dahulu.\n\n2. «arbeite» — Bekerja: sesudah “hari ini”, kata kerja mendahului pelaku.\n\n3. «ich» — Aku: orang yang berbicara.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textPl": "Dzisiaj pracuję.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Heute» — Dziś: zacznij od czasu.\n\n2. «arbeite» — Pracuję: po „dzisiaj” postaw czasownik przed osobą.\n\n3. «ich» — Ja: osoba mówiąca.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textPtBr": "Hoje estou trabalhando.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Heute» — Hoje: comece pelo tempo.\n\n2. «arbeite» — Trabalho: depois de “hoje”, vem o verbo antes da pessoa.\n\n3. «ich» — Eu: quem está falando.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textRU": "Сегодня я работаю.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Heute» — Сегодня: сначала задаём время.\n\n2. «arbeite» — Работаю. После «сегодня» сразу идёт действие, пока без «я».\n\n3. «ich» — Я. Говорящий называет себя.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textTr": "Bugün çalışıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Heute» — Bugün: önce zamanı söylüyoruz.\n\n2. «arbeite» — Çalışıyorum: “bugün”den sonra kişiden önce fiil gelir.\n\n3. «ich» — Ben: konuşan kişi.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textUK": "Сьогодні я працюю.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Heute» — Сьогодні: спочатку називаємо час.\n\n2. «arbeite» — Працюю. Після «сьогодні» йде дія, поки без «я».\n\n3. «ich» — Я. Мовець називає себе.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"textVi": "Hôm nay tôi đang làm việc.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Heute» — Hôm nay: nêu thời điểm trước.\n\n2. «arbeite» — Làm việc: sau “hôm nay” đặt động từ trước người thực hiện.\n\n3. «ich» — Tôi: người đang nói.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "Today I am working.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Heute» — Today: lead with the time.\n\n2. «arbeite» — Work: after “today” put the verb before the person.\n\n3. «ich» — I: the person speaking.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"es": "Hoy trabajo.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Heute» — Hoy: primero indicas el tiempo.\n\n2. «arbeite» — Trabajo: tras «hoy» va el verbo, antes de la persona.\n\n3. «ich» — Yo: quien habla.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"id": "Hari ini saya bekerja.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Heute» — Hari ini: sebutkan waktunya dahulu.\n\n2. «arbeite» — Bekerja: sesudah “hari ini”, kata kerja mendahului pelaku.\n\n3. «ich» — Aku: orang yang berbicara.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"pl": "Dzisiaj pracuję.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Heute» — Dziś: zacznij od czasu.\n\n2. «arbeite» — Pracuję: po „dzisiaj” postaw czasownik przed osobą.\n\n3. «ich» — Ja: osoba mówiąca.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"pt-BR": "Hoje estou trabalhando.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Heute» — Hoje: comece pelo tempo.\n\n2. «arbeite» — Trabalho: depois de “hoje”, vem o verbo antes da pessoa.\n\n3. «ich» — Eu: quem está falando.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"ru": "Сегодня я работаю.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Heute» — Сегодня: сначала задаём время.\n\n2. «arbeite» — Работаю. После «сегодня» сразу идёт действие, пока без «я».\n\n3. «ich» — Я. Говорящий называет себя.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"tr": "Bugün çalışıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Heute» — Bugün: önce zamanı söylüyoruz.\n\n2. «arbeite» — Çalışıyorum: “bugün”den sonra kişiden önce fiil gelir.\n\n3. «ich» — Ben: konuşan kişi.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"uk": "Сьогодні я працюю.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Heute» — Сьогодні: спочатку називаємо час.\n\n2. «arbeite» — Працюю. Після «сьогодні» йде дія, поки без «я».\n\n3. «ich» — Я. Мовець називає себе.\n\nHeute → arbeite → ich\n\nHeute arbeite ich.",
+"vi": "Hôm nay tôi đang làm việc.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Heute» — Hôm nay: nêu thời điểm trước.\n\n2. «arbeite» — Làm việc: sau “hôm nay” đặt động từ trước người thực hiện.\n\n3. «ich» — Tôi: người đang nói.\n\nHeute → arbeite → ich\n\nHeute arbeite ich."
+},
+"kind": "practice",
+"exampleIds": [
+"de:04:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю."
+},
+{
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю."
+},
+{
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю."
+},
+{
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю."
+}
+]
+}
+]

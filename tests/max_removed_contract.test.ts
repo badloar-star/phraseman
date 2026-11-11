@@ -10,7 +10,7 @@ import path from 'node:path';
  */
 const root = process.cwd();
 // зачем: functions-admin тоже экспортирует из functions/src — после шага 2 он ссылался на удалённые файлы MAX и не собирался.
-const SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'functions/src', 'functions-admin', 'functions-content', 'functions-english-test'];
+const SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'functions/src', 'functions-admin', 'functions-english-test'];
 const MAX_MARK = /max_voice|maxVoice|MaxVoice|voice_minute|functions-max/;
 
 const ALLOWED = new Set([

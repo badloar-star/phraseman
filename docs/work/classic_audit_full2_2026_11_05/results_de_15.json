@@ -1,0 +1,15 @@
+[
+{"id": "de:31:11", "type": "B1", "field": "tiles", "problem": "Соблазн «meine» даёт верную фразу «Ich hatte meine Schlüssel vergessen und kam nicht ins Haus.» (Schlüssel во мн.ч. совпадает по форме) — засчитают ошибкой", "fix": {"position": 2, "replace_distractor": "meine", "with": "meines"}},
+{"id": "de:31:21", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als ich gegessen hatte, ging ich spazieren.» (als + Plusquamperfekt = предшествование)", "fix": {"position": 0, "replace_distractor": "Als", "with": "Weil"}},
+{"id": "de:31:22", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als du angerufen hattest, fuhr ich los.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Obwohl"}},
+{"id": "de:31:24", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als wir gepackt hatten, bestellten wir ein Taxi.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Weil"}},
+{"id": "de:31:25", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als der Zug angekommen war, stiegen wir ein.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Obwohl"}},
+{"id": "de:31:26", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als die Gäste gegangen waren, räumten wir auf.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Weil"}},
+{"id": "de:31:28", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als sie das Formular ausgefüllt hatte, gab sie es ab.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Damit"}},
+{"id": "de:31:30", "type": "B1", "field": "tiles", "problem": "Соблазн «Als» даёт верную фразу «Als das Licht ausgegangen war, holten wir eine Kerze.»", "fix": {"position": 0, "replace_distractor": "Als", "with": "Weil"}},
+{"id": "de:31:40", "type": "B1", "field": "tiles", "problem": "Соблазн «vor» даёт естественную верную фразу «…stand noch vor der Ampel» (= стоял на светофоре)", "fix": {"position": 8, "replace_distractor": "vor", "with": "von"}},
+{"id": "de:31:45", "type": "B1", "field": "tiles", "problem": "В uk «двері» не различает число: соблазн «Türen» даёт верную фразу «…dass sie die Türen abgeschlossen hatte.»", "fix": {"position": 6, "replace_distractor": "Türen", "with": "Küche"}},
+{"id": "de:32:08", "type": "M", "field": "uk", "problem": "«Якби магазин було відкрито» — безособова форма про дію (хтось відкрив), а не стан; неприродно", "fix": "Якби магазин був відчинений, я міг би купити хліб."},
+{"id": "de:32:21", "type": "M", "field": "ru", "problem": "Неестественный порядок «Если бы тогда я выехал»", "fix": "Если бы я тогда выехал раньше, я бы успел на поезд."},
+{"id": "de:32:42", "type": "M", "field": "uk", "problem": "«скринька» — маленька шкатулка, не важкий ящик (Kiste); втрачається сенс «без допомоги не доніс»", "fix": "Без твоєї допомоги я б тоді не доніс ящик."}
+]

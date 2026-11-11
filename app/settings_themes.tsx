@@ -38,6 +38,7 @@ import { useScrollToSelectedTheme } from './settings_themes_scroll';
 import {
   isPremiumThemeId,
   premiumThemeById,
+  RETIRED_PREMIUM_THEME_ID,
   type PremiumThemeProgress,
   type PremiumThemeProgressByCondition,
 } from './premium_theme_catalog';
@@ -93,7 +94,6 @@ const DEV_PREMIUM_PROGRESS: PremiumThemeProgressByCondition = Object.freeze({
   streak_365: Object.freeze({ current: 365, target: 365, unit: 'days' }),
   final_spire: Object.freeze({ current: 11, target: 11, unit: 'tier' }),
   video_200_hours: Object.freeze({ current: 200, target: 200, unit: 'hours' }),
-  learning_v2_complete: Object.freeze({ current: 1792, target: 1792, unit: 'sessions' }),
 });
 
 // Даже при временно недоступном сервере условие остаётся понятным: показываем
@@ -104,7 +104,6 @@ const FALLBACK_PREMIUM_PROGRESS: PremiumThemeProgressByCondition = Object.freeze
   streak_365: Object.freeze({ current: 0, target: 365, unit: 'days' }),
   final_spire: Object.freeze({ current: 0, target: 11, unit: 'tier' }),
   video_200_hours: Object.freeze({ current: 0, target: 200, unit: 'hours' }),
-  learning_v2_complete: Object.freeze({ current: 0, target: 1792, unit: 'sessions' }),
 });
 
 // Только для экранного диктора: у ползунка нет видимой подписи (владелец: «только ползунок»).
@@ -387,7 +386,9 @@ export default function SettingsThemes() {
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} radius={20} />
-              {PREMIUM_GRADIENT_OPTIONS.map((item, index) => {
+              {/* зачем: тема за удалённый курс занятий больше не выдаётся — закрытой строкой её не показываем,
+                  она видна только тем, у кого уже открыта. */}
+              {PREMIUM_GRADIENT_OPTIONS.filter((item) => item.mode !== RETIRED_PREMIUM_THEME_ID || isLiquidGlassThemeAvailable(item.mode)).map((item, index) => {
                 const premium = premiumThemeById(item.mode)!;
                 return (
                   <ThemeRow

@@ -13,7 +13,7 @@ describe('решение о строке триала', () => {
     expect(homeTrialRowDecision(base)).toEqual({ show: true, reason: 'first_offer_day3' });
   });
 
-  it('Plus куплен, триал недоступен/использован, доступ не определён, старт отмечен локально — не показываем, опрос возвращается', () => {
+  it('Plus куплен, триал недоступен/использован, доступ не определён, старт отмечен локально — не показываем', () => {
     expect(homeTrialRowDecision({ ...base, hasPlus: true })).toEqual({ show: false, reason: 'hidden_has_plus' });
     expect(homeTrialRowDecision({ ...base, trialEligible: false })).toEqual({ show: false, reason: 'hidden_not_eligible' });
     expect(homeTrialRowDecision({ ...base, accessResolved: false })).toEqual({ show: false, reason: 'hidden_access_unresolved' });
@@ -47,10 +47,8 @@ describe('тексты строки', () => {
 describe('Главная: приоритет и охрана', () => {
   const home = fs.readFileSync(path.join(__dirname, '..', 'app/(tabs)/home.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
-  it('строка триала первая, анкета и Poll V2 после; [SURVEY-ROW] и [TRIAL-ROW] на месте', () => {
-    expect(home).toContain("const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+  it('Главная показывает строку триала для подходящих пользователей', () => {
     expect(home).toContain('const homeTrial = useHomeTrialRow(lang, homeRuntimeActive);');
-    expect(home).toContain("console.log('[SURVEY-ROW]'");
     const hook = fs.readFileSync(path.join(__dirname, '..', 'hooks/use_home_trial_row.ts'), 'utf8');
     expect(hook).toContain("console.log('[TRIAL-ROW]', JSON.stringify({ shown: decision.show");
   });
@@ -58,11 +56,11 @@ describe('Главная: приоритет и охрана', () => {
   it('тап открывает то же окно подписки', () => {
     const hook = fs.readFileSync(path.join(__dirname, '..', 'hooks/use_home_trial_row.ts'), 'utf8');
     expect(hook).toContain("openPremiumPaywall(router, { context: 'generic', source: 'home_trial_row' });");
-    expect(home).toContain("homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row");
-    // экран «Сегодня» решает так же: строка триала вместо опроса, тот же хук
+    expect(home).toContain('trialRow={homeTodayRank0 ? null : homeTrial.row}');
+    // экран «Сегодня» решает так же: тот же хук триала
     const today = fs.readFileSync(path.join(__dirname, '..', 'app/today_tasks.tsx'), 'utf8');
     expect(today).toContain('const trial = useHomeTrialRow(lang, true);');
-    expect(today).toContain('const todayRow = trial.row ?? pollRow;');
+    expect(today).toContain('trialRow={trial.row}');
   });
 });
 
@@ -111,8 +109,8 @@ describe('день с регистрации, повтор и отклонени
     expect(hook).toMatch(/setFacts\(\(prev\) => \(\{ \.\.\.prev, dismissedAtMs: at \}\)\);\s*void saveHomeTrialRowDismissedAt/);
     expect(hook).toContain('row: decision.show ? { ...homeTrialRowCopy(lang), onPress, onDismiss, dismissLabel: homeTrialRowDismissLabel(lang), plus: true } : null');
     expect(homeSrc).toContain('const homeTrial = useHomeTrialRow(lang, homeRuntimeActive);');
-    expect(card).toContain('testID="home-v2-today-survey-dismiss"');
-    expect(card).toMatch(/home-v2-today-survey-dismiss[\s\S]{0,200}latestRef\.current\.surveyRow\?\.onDismiss\?\.\(\)/);
+    expect(card).toContain('testID="home-v2-today-trial-dismiss"');
+    expect(card).toMatch(/home-v2-today-trial-dismiss[\s\S]{0,200}latestRef\.current\.trialRow\?\.onDismiss\?\.\(\)/);
   });
 });
 

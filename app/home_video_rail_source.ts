@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { LearningLanguageTarget } from './learning_language_contour';
 import type { LingmanYoutubeVideo } from './lingman_youtube';
 import { resolveVideoChannelForStudyTarget } from './video_language_contour';
+import { assertVideoRequestActive } from './video_section_preference';
 import type { YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 
 /** Языки, чья лента на Главной идёт из каталога по languageTags (а не из RSS). */
@@ -106,21 +107,24 @@ export function peekHomeVideoRailForTarget(target: LearningLanguageTarget): Home
   return hit && Date.now() - hit.atMs < RAIL_TTL_MS ? hit.result : null;
 }
 
-export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget): Promise<HomeVideoRailResult> {
+export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget, signal?: AbortSignal): Promise<HomeVideoRailResult> {
+  assertVideoRequestActive(signal);
   const cached = peekHomeVideoRailForTarget(target);
   if (cached) {
     console.log('[LANG-SURFACE] home_rail:cache_hit', { target, count: cached.videos.length, source: cached.source });
     return cached;
   }
   const disk = await readRailFromDisk(target, Date.now());
+  assertVideoRequestActive(signal);
   if (disk) {
     cache.set(target, disk);
     console.log('[LANG-SURFACE] home_rail:disk_hit — без сети', { target, count: disk.result.videos.length, ageMin: Math.round((Date.now() - disk.atMs) / 60_000) });
     return disk.result;
   }
   try {
-    return await loadHomeVideoRailFromNetwork(target);
+    return await loadHomeVideoRailFromNetwork(target, signal);
   } catch (error) {
+    assertVideoRequestActive(signal);
     const stale = await readStaleRailFromDisk(target);
     if (stale) {
       console.warn('[LANG-SURFACE] home_rail:network_failed → устаревший кэш вместо пустоты', { target, count: stale.result.videos.length, ageMin: Math.round((Date.now() - stale.atMs) / 60_000), reason: error instanceof Error ? error.message : String(error) });
@@ -131,10 +135,11 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
   }
 }
 
-async function loadHomeVideoRailFromNetwork(target: LearningLanguageTarget): Promise<HomeVideoRailResult> {
+async function loadHomeVideoRailFromNetwork(target: LearningLanguageTarget, signal?: AbortSignal): Promise<HomeVideoRailResult> {
   const startedAt = Date.now();
   const client = await import('./youtube_catalog_client');
-  const manifest = await client.fetchYoutubeCatalogManifest();
+  const manifest = await client.fetchYoutubeCatalogManifest(signal);
+  assertVideoRequestActive(signal);
   const channel = resolveVideoChannelForStudyTarget(manifest.channels, target);
   if (!channel) {
     // Ранний выход: в каталоге нет канала с тегом языка. Английским НЕ подменяем (D132).
@@ -148,7 +153,8 @@ async function loadHomeVideoRailFromNetwork(target: LearningLanguageTarget): Pro
     void writeRailToDisk(target, entry);
     return result;
   }
-  const rail = await client.fetchYoutubeHomeRailCatalog(channel.id, manifest, RAIL_LIMIT);
+  const rail = await client.fetchYoutubeHomeRailCatalog(channel.id, manifest, RAIL_LIMIT, signal);
+  assertVideoRequestActive(signal);
   const result: HomeVideoRailResult = {
     videos: rail.videos.filter((video) => video.state !== 'upcoming').map(catalogVideoToRailVideo),
     source: 'catalog_channel',

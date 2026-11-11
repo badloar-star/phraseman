@@ -19,7 +19,7 @@ describe('Главная: 4 плитки с Пиком', () => {
   });
 
   it('журнал [HOME-TILES] со списком и причиной — только на смену набора', () => {
-    expect(home).toContain('reason={`${homeV2TilesReason};lang=${studyTarget}`}');
+    expect(home).toContain('reason={`${homeV2TilesReason};lang=${studyTarget};row`}');
     expect(tiles).toContain('if (tilesLog !== lastTilesLog) {');
     expect(tiles).toContain("console.log('[HOME-TILES]'");
   });
@@ -38,16 +38,9 @@ describe('Главная: 4 плитки с Пиком', () => {
     expect(spireHomePlaceFrom([{ isMe: false, steps: 2 }])).toBeNull();
   });
 
-  // зачем (владелец 22.10, вариант 2: «иконки Уроки, Карточки — вот так же, без скролла, и внизу под блоком Сегодня»)
-  it('со «Сценой»: 4 равные плитки одним рядом без прокрутки, под карточкой «Сегодня»; ленты видео на Главной нет', () => {
+  it('renders the four scene tiles in one row', () => {
     expect(tiles).toContain('if (tiles.length === 4 && row) {');
     expect(tiles).toMatch(/<View testID="home-v2-feature-tiles" style=\{s.row\}>\n        \{tiles.map/);
-    const home = read('app/(tabs)/home.tsx');
-    const today = home.indexOf('<HomeV2TodayCard');
-    const rowTiles = home.indexOf('uiLang={lang} row />');
-    expect(today).toBeGreaterThan(0);
-    expect(rowTiles).toBeGreaterThan(today);
-    expect(home).toContain('{HOME_SCENE_V2_ENABLED ? null : (\n            <View style={{ gap: 4 }}>');
   });
 
   it('4 плитки — иконка с артом, название под плашкой с переносом, без обрезки и ужатия шрифта', () => {

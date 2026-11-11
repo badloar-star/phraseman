@@ -1,0 +1,682 @@
+[
+{
+"lesson": 5,
+"blocks": [
+{
+"textEN": "You’re looking for a friend by the entrance. You don’t need an address, just “yes” or “no”. Turn «Du bist hier.» into «Bist du hier?»: keep the same three words and move «bist» to the front.\n\nBist du hier?\n\nAre you here?\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"textES": "Buscas a un amigo en la entrada. No necesitas su dirección, solo un sí o un no. Pasa de «Du bist hier.» a «Bist du hier?»: usa las mismas tres palabras y pon «bist» al principio.\n\nBist du hier?\n\n¿Estás aquí?\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"textId": "Kamu mencari teman di pintu masuk. Kamu tidak perlu alamat, cukup jawaban ya atau tidak. Ubah «Du bist hier.» menjadi «Bist du hier?»: gunakan tiga kata yang sama, pindahkan «bist» ke depan.\n\nBist du hier?\n\nApakah Anda di sini?\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"textPl": "Szukasz kogoś przy wejściu. Nie potrzebujesz adresu, tylko odpowiedzi „tak” lub „nie”. Z «Du bist hier.» zbuduj «Bist du hier?»: zostaw te same trzy słowa, a «bist» przenieś na początek.\n\nBist du hier?\n\nJesteś tutaj?\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"textPtBr": "Você procura um amigo na entrada. Não precisa do endereço, só de “sim” ou “não”. Transforme «Du bist hier.» em «Bist du hier?»: mantenha as três palavras e leve «bist» para o início.\n\nBist du hier?\n\nVocê está aí?\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"textRU": "Ты ищешь друга у входа. Адрес тебе не нужен: достаточно ответа «да» или «нет». Из сообщения «Du bist hier.» получается вопрос «Bist du hier?»: те же три слова, но «bist» переходит вперёд.\n\nBist du hier?\n\nТы здесь?\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"textTr": "Girişte arkadaşını arıyorsun. Adresi değil, sadece evet ya da hayır cevabını istiyorsun. «Du bist hier.» cümlesini «Bist du hier?» sorusuna çevirmek için aynı üç kelimeyi koru, «bist» kelimesini başa al.\n\nBist du hier?\n\nBurada mısınız?\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"textUK": "Ти шукаєш друга біля входу. Адреса не потрібна: вистачить «так» або «ні». З повідомлення «Du bist hier.» виходить запитання «Bist du hier?»: ті самі три слова, але «bist» стає першим.\n\nBist du hier?\n\nТи тут?\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"textVi": "Bạn đang tìm bạn mình ở cửa. Bạn chỉ cần biết có hay không, không cần địa chỉ. Từ «Du bist hier.» thành «Bist du hier?»: vẫn ba từ ấy, chỉ đưa «bist» lên đầu.\n\nBist du hier?\n\nBạn có ở đây không?\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’re looking for a friend by the entrance. You don’t need an address, just “yes” or “no”. Turn «Du bist hier.» into «Bist du hier?»: keep the same three words and move «bist» to the front.\n\nBist du hier?\n\nAre you here?\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"es": "Buscas a un amigo en la entrada. No necesitas su dirección, solo un sí o un no. Pasa de «Du bist hier.» a «Bist du hier?»: usa las mismas tres palabras y pon «bist» al principio.\n\nBist du hier?\n\n¿Estás aquí?\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"id": "Kamu mencari teman di pintu masuk. Kamu tidak perlu alamat, cukup jawaban ya atau tidak. Ubah «Du bist hier.» menjadi «Bist du hier?»: gunakan tiga kata yang sama, pindahkan «bist» ke depan.\n\nBist du hier?\n\nApakah Anda di sini?\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"pl": "Szukasz kogoś przy wejściu. Nie potrzebujesz adresu, tylko odpowiedzi „tak” lub „nie”. Z «Du bist hier.» zbuduj «Bist du hier?»: zostaw te same trzy słowa, a «bist» przenieś na początek.\n\nBist du hier?\n\nJesteś tutaj?\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"pt-BR": "Você procura um amigo na entrada. Não precisa do endereço, só de “sim” ou “não”. Transforme «Du bist hier.» em «Bist du hier?»: mantenha as três palavras e leve «bist» para o início.\n\nBist du hier?\n\nVocê está aí?\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"ru": "Ты ищешь друга у входа. Адрес тебе не нужен: достаточно ответа «да» или «нет». Из сообщения «Du bist hier.» получается вопрос «Bist du hier?»: те же три слова, но «bist» переходит вперёд.\n\nBist du hier?\n\nТы здесь?\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"tr": "Girişte arkadaşını arıyorsun. Adresi değil, sadece evet ya da hayır cevabını istiyorsun. «Du bist hier.» cümlesini «Bist du hier?» sorusuna çevirmek için aynı üç kelimeyi koru, «bist» kelimesini başa al.\n\nBist du hier?\n\nBurada mısınız?\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"uk": "Ти шукаєш друга біля входу. Адреса не потрібна: вистачить «так» або «ні». З повідомлення «Du bist hier.» виходить запитання «Bist du hier?»: ті самі три слова, але «bist» стає першим.\n\nBist du hier?\n\nТи тут?\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"vi": "Bạn đang tìm bạn mình ở cửa. Bạn chỉ cần biết có hay không, không cần địa chỉ. Từ «Du bist hier.» thành «Bist du hier?»: vẫn ba từ ấy, chỉ đưa «bist» lên đầu.\n\nBist du hier?\n\nBạn có ở đây không?\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng."
+},
+"kind": "concept",
+"exampleIds": [
+"de:05:01"
+]
+},
+{
+"textEN": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nYou are here.\n\nBist du hier?\n\nAre you here?\n\n«Du bist» states a fact. «Bist du» asks for confirmation. Move «bist» without changing it to «ist»: you’re still talking to the same person.",
+"textES": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nEstás aquí.\n\nBist du hier?\n\n¿Estás aquí?\n\n«Du bist» afirma; «Bist du» pide confirmación. Mueve «bist» sin convertirlo en «ist»: sigues hablándole a la misma persona.",
+"textId": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nAnda di sini.\n\nBist du hier?\n\nApakah Anda di sini?\n\n«Du bist» menyatakan fakta; «Bist du» meminta konfirmasi. Pindahkan «bist» tetapi jangan ganti dengan «ist»: orangnya sama.",
+"textPl": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nJesteś tutaj.\n\nBist du hier?\n\nJesteś tutaj?\n\n«Du bist» stwierdza fakt. «Bist du» prosi o potwierdzenie. Przesuń «bist», nie zmieniaj na «ist»: to nadal ta sama osoba.",
+"textPtBr": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nVocê está aqui.\n\nBist du hier?\n\nVocê está aí?\n\n«Du bist» afirma; «Bist du» pede confirmação. Mova «bist» sem trocar por «ist»: a pessoa continua a mesma.",
+"textRU": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nТы здесь.\n\nBist du hier?\n\nТы здесь?\n\n«Du bist» сообщает факт. «Bist du» просит его подтвердить. Передвинь «bist», но не меняй его на «ist»: собеседник остался тем же.",
+"textTr": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nSen buradasın.\n\nBist du hier?\n\nBurada mısınız?\n\n«Du bist» bildirir, «Bist du» doğrulama ister. «bist» başa geçer ama «ist» olmaz; kişi değişmedi.",
+"textUK": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nТи тут.\n\nBist du hier?\n\nТи тут?\n\n«Du bist» повідомляє факт. «Bist du» просить його підтвердити. Перемісти «bist», не замінюй на «ist»: співрозмовник той самий.",
+"textVi": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nBạn ở đây.\n\nBist du hier?\n\nBạn có ở đây không?\n\n«Du bist» kể; «Bist du» hỏi để xác nhận. Chuyển «bist» ra đầu nhưng đừng đổi nó thành «ist»: người nghe vẫn vậy.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nYou are here.\n\nBist du hier?\n\nAre you here?\n\n«Du bist» states a fact. «Bist du» asks for confirmation. Move «bist» without changing it to «ist»: you’re still talking to the same person.",
+"es": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nEstás aquí.\n\nBist du hier?\n\n¿Estás aquí?\n\n«Du bist» afirma; «Bist du» pide confirmación. Mueve «bist» sin convertirlo en «ist»: sigues hablándole a la misma persona.",
+"id": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nAnda di sini.\n\nBist du hier?\n\nApakah Anda di sini?\n\n«Du bist» menyatakan fakta; «Bist du» meminta konfirmasi. Pindahkan «bist» tetapi jangan ganti dengan «ist»: orangnya sama.",
+"pl": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nJesteś tutaj.\n\nBist du hier?\n\nJesteś tutaj?\n\n«Du bist» stwierdza fakt. «Bist du» prosi o potwierdzenie. Przesuń «bist», nie zmieniaj na «ist»: to nadal ta sama osoba.",
+"pt-BR": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nVocê está aqui.\n\nBist du hier?\n\nVocê está aí?\n\n«Du bist» afirma; «Bist du» pede confirmação. Mova «bist» sem trocar por «ist»: a pessoa continua a mesma.",
+"ru": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nТы здесь.\n\nBist du hier?\n\nТы здесь?\n\n«Du bist» сообщает факт. «Bist du» просит его подтвердить. Передвинь «bist», но не меняй его на «ist»: собеседник остался тем же.",
+"tr": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nSen buradasın.\n\nBist du hier?\n\nBurada mısınız?\n\n«Du bist» bildirir, «Bist du» doğrulama ister. «bist» başa geçer ama «ist» olmaz; kişi değişmedi.",
+"uk": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nТи тут.\n\nBist du hier?\n\nТи тут?\n\n«Du bist» повідомляє факт. «Bist du» просить його підтвердити. Перемісти «bist», не замінюй на «ist»: співрозмовник той самий.",
+"vi": "«Bist» + «du» + «hier?»\n\nDu bist hier.\n\nBạn ở đây.\n\nBist du hier?\n\nBạn có ở đây không?\n\n«Du bist» kể; «Bist du» hỏi để xác nhận. Chuyển «bist» ra đầu nhưng đừng đổi nó thành «ist»: người nghe vẫn vậy."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:02",
+"de:05:01"
+]
+},
+{
+"textEN": "Are you here?\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Bist» — The “are” form for du. Move it to the front to ask.\n\n2. «du» — You: one person you address informally.\n\n3. «hier» — Here: the answer to “where?”.\n\nBist → du → hier\n\nBist du hier?",
+"textES": "¿Estás aquí?\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Bist» — Forma de sein para «tú». Ponla al principio para preguntar.\n\n2. «du» — Tú: una persona de confianza.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nBist → du → hier\n\nBist du hier?",
+"textId": "Apakah Anda di sini?\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Bist» — Bentuk sein untuk du; taruh di depan untuk bertanya.\n\n2. «du» — Kamu: satu orang yang disapa secara akrab.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nBist → du → hier\n\nBist du hier?",
+"textPl": "Jesteś tutaj?\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Bist» — Forma sein dla du; wysuń ją na początek pytania.\n\n2. «du» — Ty: jedna osoba, do której zwracasz się nieformalnie.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nBist → du → hier\n\nBist du hier?",
+"textPtBr": "Você está aí?\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Bist» — Forma de sein para du. Comece por ela para perguntar.\n\n2. «du» — Você: uma pessoa em tratamento informal.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nBist → du → hier\n\nBist du hier?",
+"textRU": "Ты здесь?\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Bist» — Форма sein для «ты». Поставь её первой, чтобы задать вопрос.\n\n2. «du» — Ты: один знакомый собеседник.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nBist → du → hier\n\nBist du hier?",
+"textTr": "Burada mısınız?\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Bist» — sein fiilinin du biçimi; soru için başa al.\n\n2. «du» — Sen: samimi hitap ettiğin bir kişi.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nBist → du → hier\n\nBist du hier?",
+"textUK": "Ти тут?\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Bist» — Форма sein для «ти». Постав її першою, щоб запитати.\n\n2. «du» — Ти: один знайомий співрозмовник.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nBist → du → hier\n\nBist du hier?",
+"textVi": "Bạn có ở đây không?\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Bist» — Dạng của sein với du; đưa lên đầu để hỏi.\n\n2. «du» — Bạn: một người được gọi thân mật.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nBist → du → hier\n\nBist du hier?",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "Are you here?\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Bist» — The “are” form for du. Move it to the front to ask.\n\n2. «du» — You: one person you address informally.\n\n3. «hier» — Here: the answer to “where?”.\n\nBist → du → hier\n\nBist du hier?",
+"es": "¿Estás aquí?\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Bist» — Forma de sein para «tú». Ponla al principio para preguntar.\n\n2. «du» — Tú: una persona de confianza.\n\n3. «hier» — Aquí: responde a «¿dónde?».\n\nBist → du → hier\n\nBist du hier?",
+"id": "Apakah Anda di sini?\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Bist» — Bentuk sein untuk du; taruh di depan untuk bertanya.\n\n2. «du» — Kamu: satu orang yang disapa secara akrab.\n\n3. «hier» — Di sini: jawaban untuk “di mana?”.\n\nBist → du → hier\n\nBist du hier?",
+"pl": "Jesteś tutaj?\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Bist» — Forma sein dla du; wysuń ją na początek pytania.\n\n2. «du» — Ty: jedna osoba, do której zwracasz się nieformalnie.\n\n3. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\nBist → du → hier\n\nBist du hier?",
+"pt-BR": "Você está aí?\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Bist» — Forma de sein para du. Comece por ela para perguntar.\n\n2. «du» — Você: uma pessoa em tratamento informal.\n\n3. «hier» — Aqui: responde a “onde?”.\n\nBist → du → hier\n\nBist du hier?",
+"ru": "Ты здесь?\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Bist» — Форма sein для «ты». Поставь её первой, чтобы задать вопрос.\n\n2. «du» — Ты: один знакомый собеседник.\n\n3. «hier» — Здесь. Отвечает на вопрос «где?».\n\nBist → du → hier\n\nBist du hier?",
+"tr": "Burada mısınız?\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Bist» — sein fiilinin du biçimi; soru için başa al.\n\n2. «du» — Sen: samimi hitap ettiğin bir kişi.\n\n3. «hier» — Burada: “nerede?” sorusunun cevabı.\n\nBist → du → hier\n\nBist du hier?",
+"uk": "Ти тут?\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Bist» — Форма sein для «ти». Постав її першою, щоб запитати.\n\n2. «du» — Ти: один знайомий співрозмовник.\n\n3. «hier» — Тут. Відповідає на запитання «де?».\n\nBist → du → hier\n\nBist du hier?",
+"vi": "Bạn có ở đây không?\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Bist» — Dạng của sein với du; đưa lên đầu để hỏi.\n\n2. «du» — Bạn: một người được gọi thân mật.\n\n3. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\nBist → du → hier\n\nBist du hier?"
+},
+"kind": "practice",
+"exampleIds": [
+"de:05:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:05:01",
+"target": "Bist du hier?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+},
+{
+"id": "de:01:02",
+"target": "Du bist hier.",
+"ru": "Ты здесь.",
+"uk": "Ти тут."
+},
+{
+"id": "de:05:01",
+"target": "Bist du hier?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+},
+{
+"id": "de:05:01",
+"target": "Bist du hier?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+}
+]
+},
+{
+"lesson": 6,
+"blocks": [
+{
+"textEN": "“Do you live here?” and “Where do you live?” ask for different answers. In the second question the missing piece is a place. Start with «wo» (“where”). A town name could answer it; “yes” cannot.\n\nWo wohnst du?\n\nWhere do you live?\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"textES": "«¿Vives aquí?» y «¿Dónde vives?» piden respuestas distintas. En la segunda falta un lugar. Empieza por «wo» («dónde»). Puedes responder con una ciudad, pero no con un simple sí.\n\nWo wohnst du?\n\n¿Dónde vives?\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"textId": "“Apakah kamu tinggal di sini?” berbeda dengan “Di mana kamu tinggal?”. Pertanyaan kedua meminta tempat. Mulailah dengan «wo» (di mana). Nama kota bisa menjadi jawaban; “ya” saja tidak cukup.\n\nWo wohnst du?\n\nDi mana Anda tinggal?\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"textPl": "„Czy tu mieszkasz?” i „Gdzie mieszkasz?” wymagają różnych odpowiedzi. W drugim pytaniu brakuje miejsca. Zacznij od «wo» („gdzie”). Nazwa miasta może być odpowiedzią, samo „tak” — nie.\n\nWo wohnst du?\n\nGdzie mieszkasz?\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"textPtBr": "“Você mora aqui?” e “Onde você mora?” pedem respostas diferentes. Na segunda falta um lugar. Comece com «wo» (“onde”). O nome de uma cidade pode servir de resposta; “sim” não basta.\n\nWo wohnst du?\n\nOnde você mora?\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"textRU": "«Ты здесь живёшь?» и «Где ты живёшь?» — не один вопрос. Для второго нужна недостающая деталь: место. Поэтому начинай с «wo» («где»), а не с глагола. Ответом может быть название города, а не просто «да».\n\nWo wohnst du?\n\nГде ты живёшь?\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"textTr": "“Burada mı oturuyorsun?” ile “Nerede oturuyorsun?” farklı cevaplar ister. İkincisinde eksik bilgi yerdir. «wo» (nerede) ile başla. Bir şehir adı cevap olabilir; yalnızca “evet” yetmez.\n\nWo wohnst du?\n\nNerede yaşıyorsunuz?\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"textUK": "«Ти тут живеш?» і «Де ти живеш?» — не одне запитання. У другому бракує місця. Тому почни з «wo» («де»), а не з дієслова. Відповіддю може бути назва міста, а не просто «так».\n\nWo wohnst du?\n\nДе ти живеш?\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"textVi": "“Bạn sống ở đây phải không?” và “Bạn sống ở đâu?” cần hai câu trả lời khác nhau. Câu thứ hai thiếu địa điểm. Hãy bắt đầu bằng «wo» (ở đâu). Tên một thành phố có thể là câu trả lời, còn “có” thì không.\n\nWo wohnst du?\n\nBạn sống ở đâu?\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "“Do you live here?” and “Where do you live?” ask for different answers. In the second question the missing piece is a place. Start with «wo» (“where”). A town name could answer it; “yes” cannot.\n\nWo wohnst du?\n\nWhere do you live?\n\nA finite verb is the form already matched to its subject: «bist» in «du bist», or «arbeite» in «ich arbeite». Moving it to a different position doesn’t change who it must agree with.",
+"es": "«¿Vives aquí?» y «¿Dónde vives?» piden respuestas distintas. En la segunda falta un lugar. Empieza por «wo» («dónde»). Puedes responder con una ciudad, pero no con un simple sí.\n\nWo wohnst du?\n\n¿Dónde vives?\n\nLa forma conjugada ya concuerda con la persona: «bist» en «du bist», «arbeite» en «ich arbeite». Aunque cambie de posición, sigue correspondiendo a la misma persona.",
+"id": "“Apakah kamu tinggal di sini?” berbeda dengan “Di mana kamu tinggal?”. Pertanyaan kedua meminta tempat. Mulailah dengan «wo» (di mana). Nama kota bisa menjadi jawaban; “ya” saja tidak cukup.\n\nWo wohnst du?\n\nDi mana Anda tinggal?\n\nKata kerja terkonjugasi sudah disesuaikan dengan pelaku: «bist» pada «du bist», «arbeite» pada «ich arbeite». Memindahkannya tidak mengubah pelaku pasangannya.",
+"pl": "„Czy tu mieszkasz?” i „Gdzie mieszkasz?” wymagają różnych odpowiedzi. W drugim pytaniu brakuje miejsca. Zacznij od «wo» („gdzie”). Nazwa miasta może być odpowiedzią, samo „tak” — nie.\n\nWo wohnst du?\n\nGdzie mieszkasz?\n\nOsobowa forma czasownika pasuje do osoby: «bist» w «du bist», «arbeite» w «ich arbeite». Nawet po zmianie miejsca w zdaniu musi pasować do tej samej osoby.",
+"pt-BR": "“Você mora aqui?” e “Onde você mora?” pedem respostas diferentes. Na segunda falta um lugar. Comece com «wo» (“onde”). O nome de uma cidade pode servir de resposta; “sim” não basta.\n\nWo wohnst du?\n\nOnde você mora?\n\nO verbo conjugado já combina com a pessoa: «bist» em «du bist», «arbeite» em «ich arbeite». Mudar a posição não muda com quem ele concorda.",
+"ru": "«Ты здесь живёшь?» и «Где ты живёшь?» — не один вопрос. Для второго нужна недостающая деталь: место. Поэтому начинай с «wo» («где»), а не с глагола. Ответом может быть название города, а не просто «да».\n\nWo wohnst du?\n\nГде ты живёшь?\n\n«Личная форма» — слово действия или состояния, которое уже подстроено под человека. В «du bist» это «bist», в «ich arbeite» — «arbeite». Когда меняешь порядок слов, форма по-прежнему должна подходить к человеку.",
+"tr": "“Burada mı oturuyorsun?” ile “Nerede oturuyorsun?” farklı cevaplar ister. İkincisinde eksik bilgi yerdir. «wo» (nerede) ile başla. Bir şehir adı cevap olabilir; yalnızca “evet” yetmez.\n\nWo wohnst du?\n\nNerede yaşıyorsunuz?\n\nÇekimli fiil, kişiye göre seçilmiş biçimdir: «du bist» içinde «bist», «ich arbeite» içinde «arbeite». Yer değişse de aynı kişiyle uyumlu olmalıdır.",
+"uk": "«Ти тут живеш?» і «Де ти живеш?» — не одне запитання. У другому бракує місця. Тому почни з «wo» («де»), а не з дієслова. Відповіддю може бути назва міста, а не просто «так».\n\nWo wohnst du?\n\nДе ти живеш?\n\n«Особова форма» — слово дії або стану, яке вже узгоджене з особою. У «du bist» це «bist», в «ich arbeite» — «arbeite». Навіть коли міняєш порядок, форма має відповідати особі.",
+"vi": "“Bạn sống ở đây phải không?” và “Bạn sống ở đâu?” cần hai câu trả lời khác nhau. Câu thứ hai thiếu địa điểm. Hãy bắt đầu bằng «wo» (ở đâu). Tên một thành phố có thể là câu trả lời, còn “có” thì không.\n\nWo wohnst du?\n\nBạn sống ở đâu?\n\nĐộng từ đã chia là dạng đi với chủ thể: «bist» trong «du bist», «arbeite» trong «ich arbeite». Đổi vị trí không làm thay đổi người mà nó phải đi cùng."
+},
+"kind": "concept",
+"exampleIds": [
+"de:06:01"
+]
+},
+{
+"textEN": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nDo you live here?\n\nWo wohnst du?\n\nWhere do you live?\n\n“Yes” could answer the first question. The second needs a place. In «Wo wohnst du?», «wo» asks for a place and «wohnst» agrees with «du».",
+"textES": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\n¿Vives aquí?\n\nWo wohnst du?\n\n¿Dónde vives?\n\nLa primera admite un sí; la segunda pide un lugar. En «Wo wohnst du?», «wo» indica qué información falta y «wohnst» concuerda con «du».",
+"textId": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nApakah kamu tinggal di sini?\n\nWo wohnst du?\n\nDi mana Anda tinggal?\n\nYang pertama bisa dijawab “ya”; yang kedua membutuhkan tempat. Dalam «Wo wohnst du?», «wo» meminta lokasi dan «wohnst» cocok dengan «du».",
+"textPl": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nMieszkasz tutaj?\n\nWo wohnst du?\n\nGdzie mieszkasz?\n\nNa pierwsze można odpowiedzieć „tak”. Drugie wymaga miejsca. W «Wo wohnst du?» słowo «wo» pyta o miejsce, a «wohnst» pasuje do «du».",
+"textPtBr": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nVocê mora aqui?\n\nWo wohnst du?\n\nOnde você mora?\n\nA primeira pode receber um sim; a segunda pede um lugar. Em «Wo wohnst du?», «wo» pede a informação e «wohnst» combina com «du».",
+"textRU": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nТы здесь живёшь?\n\nWo wohnst du?\n\nГде ты живёшь?\n\nУ первого вопроса возможен ответ «да». Второму нужен адрес или место. В «Wo wohnst du?» слово «wo» задаёт тип ответа, «wohnst» подходит к «du».",
+"textTr": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nBurada mı yaşıyorsunuz?\n\nWo wohnst du?\n\nNerede yaşıyorsunuz?\n\nİlk soruya “evet” denebilir. İkincisi bir yer ister. «Wo wohnst du?» içinde «wo» gereken bilgiyi, «wohnst» ise «du» kişisine uygun fiili verir.",
+"textUK": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nТи тут живеш?\n\nWo wohnst du?\n\nДе ти живеш?\n\nНа перше можна відповісти «так». Друге вимагає місця. У «Wo wohnst du?» слово «wo» задає тип відповіді, «wohnst» узгоджується з «du».",
+"textVi": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nBạn sống ở đây à?\n\nWo wohnst du?\n\nBạn sống ở đâu?\n\nCâu đầu có thể trả lời “có”; câu sau cần địa điểm. Trong «Wo wohnst du?», «wo» hỏi nơi chốn, còn «wohnst» đi với «du».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nDo you live here?\n\nWo wohnst du?\n\nWhere do you live?\n\n“Yes” could answer the first question. The second needs a place. In «Wo wohnst du?», «wo» asks for a place and «wohnst» agrees with «du».",
+"es": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\n¿Vives aquí?\n\nWo wohnst du?\n\n¿Dónde vives?\n\nLa primera admite un sí; la segunda pide un lugar. En «Wo wohnst du?», «wo» indica qué información falta y «wohnst» concuerda con «du».",
+"id": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nApakah kamu tinggal di sini?\n\nWo wohnst du?\n\nDi mana Anda tinggal?\n\nYang pertama bisa dijawab “ya”; yang kedua membutuhkan tempat. Dalam «Wo wohnst du?», «wo» meminta lokasi dan «wohnst» cocok dengan «du».",
+"pl": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nMieszkasz tutaj?\n\nWo wohnst du?\n\nGdzie mieszkasz?\n\nNa pierwsze można odpowiedzieć „tak”. Drugie wymaga miejsca. W «Wo wohnst du?» słowo «wo» pyta o miejsce, a «wohnst» pasuje do «du».",
+"pt-BR": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nVocê mora aqui?\n\nWo wohnst du?\n\nOnde você mora?\n\nA primeira pode receber um sim; a segunda pede um lugar. Em «Wo wohnst du?», «wo» pede a informação e «wohnst» combina com «du».",
+"ru": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nТы здесь живёшь?\n\nWo wohnst du?\n\nГде ты живёшь?\n\nУ первого вопроса возможен ответ «да». Второму нужен адрес или место. В «Wo wohnst du?» слово «wo» задаёт тип ответа, «wohnst» подходит к «du».",
+"tr": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nBurada mı yaşıyorsunuz?\n\nWo wohnst du?\n\nNerede yaşıyorsunuz?\n\nİlk soruya “evet” denebilir. İkincisi bir yer ister. «Wo wohnst du?» içinde «wo» gereken bilgiyi, «wohnst» ise «du» kişisine uygun fiili verir.",
+"uk": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nТи тут живеш?\n\nWo wohnst du?\n\nДе ти живеш?\n\nНа перше можна відповісти «так». Друге вимагає місця. У «Wo wohnst du?» слово «wo» задає тип відповіді, «wohnst» узгоджується з «du».",
+"vi": "«Wo» + «wohnt» + «Anna?»\n\nWohnst du hier?\n\nBạn sống ở đây à?\n\nWo wohnst du?\n\nBạn sống ở đâu?\n\nCâu đầu có thể trả lời “có”; câu sau cần địa điểm. Trong «Wo wohnst du?», «wo» hỏi nơi chốn, còn «wohnst» đi với «du»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:05:11",
+"de:06:01"
+]
+},
+{
+"textEN": "Where do you live?\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Wo» — Where? Ask for a place.\n\n2. «wohnst» — Live: -st matches the person du.\n\n3. «du» — You: one person you address informally.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textES": "¿Dónde vives?\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Wo» — ¿Dónde? Pides un lugar.\n\n2. «wohnst» — Vives: -st corresponde a du.\n\n3. «du» — Tú: una persona de confianza.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textId": "Di mana Anda tinggal?\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Wo» — Di mana? Menanyakan tempat.\n\n2. «wohnst» — Tinggal: -st cocok dengan du.\n\n3. «du» — Kamu: satu orang yang disapa secara akrab.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textPl": "Gdzie mieszkasz?\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Wo» — Gdzie? Pytasz o miejsce.\n\n2. «wohnst» — Mieszkasz: -st pasuje do du.\n\n3. «du» — Ty: jedna osoba, do której zwracasz się nieformalnie.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textPtBr": "Onde você mora?\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Wo» — Onde? Você pede um lugar.\n\n2. «wohnst» — Mora: -st acompanha du.\n\n3. «du» — Você: uma pessoa em tratamento informal.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textRU": "Где ты живёшь?\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Wo» — Где? Просим назвать место.\n\n2. «wohnst» — Живёшь. Конец -st указывает на собеседника du.\n\n3. «du» — Ты: один знакомый собеседник.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textTr": "Nerede yaşıyorsunuz?\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Wo» — Nerede? Bir yer sorulur.\n\n2. «wohnst» — Oturuyorsun: -st du ile uyumludur.\n\n3. «du» — Sen: samimi hitap ettiğin bir kişi.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textUK": "Де ти живеш?\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Wo» — Де? Просимо назвати місце.\n\n2. «wohnst» — Живеш. Закінчення -st відповідає du.\n\n3. «du» — Ти: один знайомий співрозмовник.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"textVi": "Bạn sống ở đâu?\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Wo» — Ở đâu? Hỏi địa điểm.\n\n2. «wohnst» — Sống: đuôi -st đi với du.\n\n3. «du» — Bạn: một người được gọi thân mật.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "Where do you live?\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Wo» — Where? Ask for a place.\n\n2. «wohnst» — Live: -st matches the person du.\n\n3. «du» — You: one person you address informally.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"es": "¿Dónde vives?\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Wo» — ¿Dónde? Pides un lugar.\n\n2. «wohnst» — Vives: -st corresponde a du.\n\n3. «du» — Tú: una persona de confianza.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"id": "Di mana Anda tinggal?\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Wo» — Di mana? Menanyakan tempat.\n\n2. «wohnst» — Tinggal: -st cocok dengan du.\n\n3. «du» — Kamu: satu orang yang disapa secara akrab.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"pl": "Gdzie mieszkasz?\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Wo» — Gdzie? Pytasz o miejsce.\n\n2. «wohnst» — Mieszkasz: -st pasuje do du.\n\n3. «du» — Ty: jedna osoba, do której zwracasz się nieformalnie.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"pt-BR": "Onde você mora?\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Wo» — Onde? Você pede um lugar.\n\n2. «wohnst» — Mora: -st acompanha du.\n\n3. «du» — Você: uma pessoa em tratamento informal.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"ru": "Где ты живёшь?\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Wo» — Где? Просим назвать место.\n\n2. «wohnst» — Живёшь. Конец -st указывает на собеседника du.\n\n3. «du» — Ты: один знакомый собеседник.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"tr": "Nerede yaşıyorsunuz?\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Wo» — Nerede? Bir yer sorulur.\n\n2. «wohnst» — Oturuyorsun: -st du ile uyumludur.\n\n3. «du» — Sen: samimi hitap ettiğin bir kişi.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"uk": "Де ти живеш?\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Wo» — Де? Просимо назвати місце.\n\n2. «wohnst» — Живеш. Закінчення -st відповідає du.\n\n3. «du» — Ти: один знайомий співрозмовник.\n\nWo → wohnst → du\n\nWo wohnst du?",
+"vi": "Bạn sống ở đâu?\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Wo» — Ở đâu? Hỏi địa điểm.\n\n2. «wohnst» — Sống: đuôi -st đi với du.\n\n3. «du» — Bạn: một người được gọi thân mật.\n\nWo → wohnst → du\n\nWo wohnst du?"
+},
+"kind": "practice",
+"exampleIds": [
+"de:06:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:06:01",
+"target": "Wo wohnst du?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+},
+{
+"id": "de:05:11",
+"target": "Wohnst du hier?",
+"ru": "Ты здесь живёшь?",
+"uk": "Ти тут живеш?"
+},
+{
+"id": "de:06:01",
+"target": "Wo wohnst du?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+},
+{
+"id": "de:06:01",
+"target": "Wo wohnst du?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+}
+]
+},
+{
+"lesson": 7,
+"blocks": [
+{
+"textEN": "You’ve found a key. To tell someone you have one, start with the owner: «Ich habe» means “I have”. The thing you have is the object here. With masculine «Schlüssel» in that job, «ein» becomes «einen».\n\nIch habe einen Schlüssel.\n\nI have a key.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Has encontrado una llave. Para decir que la tienes, empieza por quien la tiene: «Ich habe» es «tengo». La cosa que tienes es el objeto. Con «Schlüssel», masculino en alemán, «ein» pasa a «einen» en esa función.\n\nIch habe einen Schlüssel.\n\nTengo una llave.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Kamu menemukan sebuah kunci. Untuk mengatakan bahwa kamu memilikinya, mulailah dengan «Ich habe» (aku punya). Benda yang kamu miliki adalah objek. Untuk «Schlüssel» yang berjenis maskulin dalam bahasa Jerman, «ein» menjadi «einen» dalam fungsi ini.\n\nIch habe einen Schlüssel.\n\nSaya punya kunci.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Masz klucz i chcesz o tym powiedzieć. Zacznij od osoby: «Ich habe» to „mam”. Rzecz, którą masz, jest tu dopełnieniem. Przy męskim «Schlüssel» w tej roli «ein» zmienia się na «einen».\n\nIch habe einen Schlüssel.\n\nMam klucz.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "Você encontrou uma chave. Para dizer que tem uma, comece por quem a tem: «Ich habe» significa “eu tenho”. A coisa que você tem é o objeto. Com «Schlüssel», palavra masculina em alemão, «ein» vira «einen» nessa função.\n\nIch habe einen Schlüssel.\n\nEu tenho uma chave.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "Дома нашёлся ключ. Чтобы сказать «у меня есть ключ», начни не с места, а с владельца: «Ich habe» — «у меня есть». То, что у тебя есть, здесь называется объектом. Перед мужским словом «Schlüssel» артикль «ein» в этой роли становится «einen».\n\nIch habe einen Schlüssel.\n\nУ меня есть ключ.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Bir anahtar buldun. Anahtarın sende olduğunu söylemek için «Ich habe» ile başla: “benim var”. Sahip olduğun şey burada nesnedir. Almancada eril olan «Schlüssel» bu görevdeyken «ein», «einen» olur.\n\nIch habe einen Schlüssel.\n\nBenim bir anahtarım var.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "Удома знайшовся ключ. Щоб сказати «у мене є ключ», почни з власника: «Ich habe» — «я маю». Те, що ти маєш, тут є об’єктом. Перед словом чоловічого роду «Schlüssel» артикль «ein» у цій ролі змінюється на «einen».\n\nIch habe einen Schlüssel.\n\nУ мене є ключ.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Bạn vừa tìm thấy một chìa khóa. Muốn nói mình có nó, hãy bắt đầu bằng «Ich habe» (tôi có). Vật mình có là đối tượng của động từ. Với danh từ giống đực «Schlüssel» ở vị trí này, «ein» đổi thành «einen».\n\nIch habe einen Schlüssel.\n\nTôi có một chiếc chìa khóa.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’ve found a key. To tell someone you have one, start with the owner: «Ich habe» means “I have”. The thing you have is the object here. With masculine «Schlüssel» in that job, «ein» becomes «einen».\n\nIch habe einen Schlüssel.\n\nI have a key.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Has encontrado una llave. Para decir que la tienes, empieza por quien la tiene: «Ich habe» es «tengo». La cosa que tienes es el objeto. Con «Schlüssel», masculino en alemán, «ein» pasa a «einen» en esa función.\n\nIch habe einen Schlüssel.\n\nTengo una llave.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Kamu menemukan sebuah kunci. Untuk mengatakan bahwa kamu memilikinya, mulailah dengan «Ich habe» (aku punya). Benda yang kamu miliki adalah objek. Untuk «Schlüssel» yang berjenis maskulin dalam bahasa Jerman, «ein» menjadi «einen» dalam fungsi ini.\n\nIch habe einen Schlüssel.\n\nSaya punya kunci.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Masz klucz i chcesz o tym powiedzieć. Zacznij od osoby: «Ich habe» to „mam”. Rzecz, którą masz, jest tu dopełnieniem. Przy męskim «Schlüssel» w tej roli «ein» zmienia się na «einen».\n\nIch habe einen Schlüssel.\n\nMam klucz.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "Você encontrou uma chave. Para dizer que tem uma, comece por quem a tem: «Ich habe» significa “eu tenho”. A coisa que você tem é o objeto. Com «Schlüssel», palavra masculina em alemão, «ein» vira «einen» nessa função.\n\nIch habe einen Schlüssel.\n\nEu tenho uma chave.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "Дома нашёлся ключ. Чтобы сказать «у меня есть ключ», начни не с места, а с владельца: «Ich habe» — «у меня есть». То, что у тебя есть, здесь называется объектом. Перед мужским словом «Schlüssel» артикль «ein» в этой роли становится «einen».\n\nIch habe einen Schlüssel.\n\nУ меня есть ключ.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Bir anahtar buldun. Anahtarın sende olduğunu söylemek için «Ich habe» ile başla: “benim var”. Sahip olduğun şey burada nesnedir. Almancada eril olan «Schlüssel» bu görevdeyken «ein», «einen» olur.\n\nIch habe einen Schlüssel.\n\nBenim bir anahtarım var.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "Удома знайшовся ключ. Щоб сказати «у мене є ключ», почни з власника: «Ich habe» — «я маю». Те, що ти маєш, тут є об’єктом. Перед словом чоловічого роду «Schlüssel» артикль «ein» у цій ролі змінюється на «einen».\n\nIch habe einen Schlüssel.\n\nУ мене є ключ.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Bạn vừa tìm thấy một chìa khóa. Muốn nói mình có nó, hãy bắt đầu bằng «Ich habe» (tôi có). Vật mình có là đối tượng của động từ. Với danh từ giống đực «Schlüssel» ở vị trí này, «ein» đổi thành «einen».\n\nIch habe einen Schlüssel.\n\nTôi có một chiếc chìa khóa.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:07:01"
+]
+},
+{
+"textEN": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nIch brauche den Schlüssel.\n\nI need the key.\n\nIdentify the particular key: «der Schlüssel». Say you need it: «den Schlüssel». The key hasn’t changed, its job has. The indefinite article makes the matching change: «ein» → «einen».",
+"textES": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nIch brauche den Schlüssel.\n\nNecesito la llave.\n\nAl identificar la llave es «der Schlüssel»; cuando dices que la necesitas, «den Schlüssel». Cambia la función, no la llave. Con el artículo indefinido: «ein» → «einen».",
+"textId": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nIch brauche den Schlüssel.\n\nSaya butuh kuncinya.\n\nMenunjuk kunci tertentu: «der Schlüssel». Mengatakan kamu membutuhkannya: «den Schlüssel». Bendanya sama, perannya berubah. Artikel tak tentu juga berubah: «ein» → «einen».",
+"textPl": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nIch brauche den Schlüssel.\n\nPotrzebuję klucza.\n\nWskazujesz konkretny klucz: «der Schlüssel». Mówisz, że go potrzebujesz: «den Schlüssel». To ten sam klucz w innej roli. Podobnie «ein» zmienia się na «einen».",
+"textPtBr": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nIch brauche den Schlüssel.\n\nPreciso da chave.\n\nAo identificar a chave: «der Schlüssel». Ao dizer que precisa dela: «den Schlüssel». Muda a função, não a chave. Com o artigo indefinido: «ein» → «einen».",
+"textRU": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nIch brauche den Schlüssel.\n\nМне нужен ключ.\n\nКогда ты показываешь на нужный ключ, он называется «der Schlüssel». Когда говоришь, что он тебе нужен, получается «den Schlüssel». Сам ключ не изменился, изменилась его роль. У неопределённого артикля та же разница: «ein» → «einen».",
+"textTr": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nIch brauche den Schlüssel.\n\nAnahtara ihtiyacım var.\n\nAnahtarı tanıtırken «der Schlüssel», ona ihtiyaç duyduğunu söylerken «den Schlüssel». Anahtar değil görevi değişir. Belirsiz artikelde de «ein» → «einen» olur.",
+"textUK": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nIch brauche den Schlüssel.\n\nМені потрібний ключ.\n\nПоказуєш ключ: «der Schlüssel». Кажеш, що він потрібен: «den Schlüssel». Змінився не предмет, а його роль. Так само змінюється неозначений артикль: «ein» → «einen».",
+"textVi": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nIch brauche den Schlüssel.\n\nTôi cần chìa khóa.\n\nChỉ chiếc chìa khóa: «der Schlüssel». Nói mình cần nó: «den Schlüssel». Vật không đổi, vai trò đổi. Mạo từ bất định cũng đổi: «ein» → «einen».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nThis is the key.\n\nIch brauche den Schlüssel.\n\nI need the key.\n\nIdentify the particular key: «der Schlüssel». Say you need it: «den Schlüssel». The key hasn’t changed, its job has. The indefinite article makes the matching change: «ein» → «einen».",
+"es": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta es la llave.\n\nIch brauche den Schlüssel.\n\nNecesito la llave.\n\nAl identificar la llave es «der Schlüssel»; cuando dices que la necesitas, «den Schlüssel». Cambia la función, no la llave. Con el artículo indefinido: «ein» → «einen».",
+"id": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nIni kuncinya.\n\nIch brauche den Schlüssel.\n\nSaya butuh kuncinya.\n\nMenunjuk kunci tertentu: «der Schlüssel». Mengatakan kamu membutuhkannya: «den Schlüssel». Bendanya sama, perannya berubah. Artikel tak tentu juga berubah: «ein» → «einen».",
+"pl": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nTo jest klucz.\n\nIch brauche den Schlüssel.\n\nPotrzebuję klucza.\n\nWskazujesz konkretny klucz: «der Schlüssel». Mówisz, że go potrzebujesz: «den Schlüssel». To ten sam klucz w innej roli. Podobnie «ein» zmienia się na «einen».",
+"pt-BR": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nEsta é a chave.\n\nIch brauche den Schlüssel.\n\nPreciso da chave.\n\nAo identificar a chave: «der Schlüssel». Ao dizer que precisa dela: «den Schlüssel». Muda a função, não a chave. Com o artigo indefinido: «ein» → «einen».",
+"ru": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nЭто ключ.\n\nIch brauche den Schlüssel.\n\nМне нужен ключ.\n\nКогда ты показываешь на нужный ключ, он называется «der Schlüssel». Когда говоришь, что он тебе нужен, получается «den Schlüssel». Сам ключ не изменился, изменилась его роль. У неопределённого артикля та же разница: «ein» → «einen».",
+"tr": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nBu anahtar.\n\nIch brauche den Schlüssel.\n\nAnahtara ihtiyacım var.\n\nAnahtarı tanıtırken «der Schlüssel», ona ihtiyaç duyduğunu söylerken «den Schlüssel». Anahtar değil görevi değişir. Belirsiz artikelde de «ein» → «einen» olur.",
+"uk": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nЦе ключ.\n\nIch brauche den Schlüssel.\n\nМені потрібний ключ.\n\nПоказуєш ключ: «der Schlüssel». Кажеш, що він потрібен: «den Schlüssel». Змінився не предмет, а його роль. Так само змінюється неозначений артикль: «ein» → «einen».",
+"vi": "«Ich habe» + «einen Schlüssel»\n\nDas ist der Schlüssel.\n\nĐây là chìa khóa.\n\nIch brauche den Schlüssel.\n\nTôi cần chìa khóa.\n\nChỉ chiếc chìa khóa: «der Schlüssel». Nói mình cần nó: «den Schlüssel». Vật không đổi, vai trò đổi. Mạo từ bất định cũng đổi: «ein» → «einen»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:02:01",
+"de:07:11"
+]
+},
+{
+"textEN": "I have a key.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «habe» — Have: the form of haben used with ich.\n\n3. «einen Schlüssel» — A key: einen marks a masculine noun in this object position.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textES": "Tengo una llave.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «habe» — Tengo: forma de haben con ich.\n\n3. «einen Schlüssel» — Una llave: el nombre alemán es masculino y aquí lleva einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textId": "Saya punya kunci.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «habe» — Punya: bentuk haben untuk ich.\n\n3. «einen Schlüssel» — Sebuah kunci: einen dipakai untuk benda maskulin sebagai objek di sini.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textPl": "Mam klucz.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «habe» — Mam: forma haben dla ich.\n\n3. «einen Schlüssel» — Klucz: przy męskim rzeczowniku w tej funkcji użyj einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textPtBr": "Eu tenho uma chave.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «habe» — Tenho: forma de haben com ich.\n\n3. «einen Schlüssel» — Uma chave: em alemão o nome é masculino e, como objeto, leva einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textRU": "У меня есть ключ.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «habe» — У меня есть. Это форма haben для ich.\n\n3. «einen Schlüssel» — Один ключ. Не любой «один»: einen — форма для мужского слова в роли объекта.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textTr": "Benim bir anahtarım var.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «habe» — Sahibim: haben fiilinin ich biçimi.\n\n3. «einen Schlüssel» — Bir anahtar: eril isim burada nesne olduğu için einen kullanılır.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textUK": "У мене є ключ.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «habe» — Маю. Це форма haben для ich.\n\n3. «einen Schlüssel» — Один ключ. einen — форма для чоловічого роду в ролі об’єкта.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"textVi": "Tôi có một chiếc chìa khóa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «habe» — Có: dạng của haben đi với ich.\n\n3. «einen Schlüssel» — Một chìa khóa: danh từ giống đực làm đối tượng nên dùng einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I have a key.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «habe» — Have: the form of haben used with ich.\n\n3. «einen Schlüssel» — A key: einen marks a masculine noun in this object position.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"es": "Tengo una llave.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «habe» — Tengo: forma de haben con ich.\n\n3. «einen Schlüssel» — Una llave: el nombre alemán es masculino y aquí lleva einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"id": "Saya punya kunci.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «habe» — Punya: bentuk haben untuk ich.\n\n3. «einen Schlüssel» — Sebuah kunci: einen dipakai untuk benda maskulin sebagai objek di sini.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"pl": "Mam klucz.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «habe» — Mam: forma haben dla ich.\n\n3. «einen Schlüssel» — Klucz: przy męskim rzeczowniku w tej funkcji użyj einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"pt-BR": "Eu tenho uma chave.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «habe» — Tenho: forma de haben com ich.\n\n3. «einen Schlüssel» — Uma chave: em alemão o nome é masculino e, como objeto, leva einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"ru": "У меня есть ключ.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «habe» — У меня есть. Это форма haben для ich.\n\n3. «einen Schlüssel» — Один ключ. Не любой «один»: einen — форма для мужского слова в роли объекта.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"tr": "Benim bir anahtarım var.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «habe» — Sahibim: haben fiilinin ich biçimi.\n\n3. «einen Schlüssel» — Bir anahtar: eril isim burada nesne olduğu için einen kullanılır.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"uk": "У мене є ключ.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «habe» — Маю. Це форма haben для ich.\n\n3. «einen Schlüssel» — Один ключ. einen — форма для чоловічого роду в ролі об’єкта.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel.",
+"vi": "Tôi có một chiếc chìa khóa.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «habe» — Có: dạng của haben đi với ich.\n\n3. «einen Schlüssel» — Một chìa khóa: danh từ giống đực làm đối tượng nên dùng einen.\n\nIch → habe → einen → Schlüssel\n\nIch habe einen Schlüssel."
+},
+"kind": "practice",
+"exampleIds": [
+"de:07:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:07:01",
+"target": "Ich habe einen Schlüssel.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "de:07:11",
+"target": "Ich brauche den Schlüssel.",
+"ru": "Мне нужен ключ.",
+"uk": "Мені потрібний ключ."
+},
+{
+"id": "de:07:01",
+"target": "Ich habe einen Schlüssel.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+}
+]
+},
+{
+"lesson": 8,
+"blocks": [
+{
+"textEN": "Being tired and having a ticket are different claims. «nicht müde» means “not tired”: you’re changing a description. «kein Ticket» means “no ticket”: a thing is missing. First ask yourself which of those you mean.\n\nIch bin nicht müde.\n\nI am not tired.\n\nNegation says something isn’t so. «nicht müde» denies tiredness; it doesn’t tell us that you are happy or energetic. Don’t change the rest of the message.",
+"textES": "No es lo mismo negar el cansancio que negar que tengas billete. «nicht müde» significa «no cansado»: niegas una descripción. «kein Ticket» significa «ningún billete»: falta una cosa. Decide primero qué niegas.\n\nIch bin nicht müde.\n\nNo estoy cansado.\n\nUna negación dice que algo no es así. «nicht müde» niega el cansancio; no afirma que estés feliz o lleno de energía. No cambies el resto del mensaje.",
+"textId": "Tidak merasa lelah berbeda dari tidak punya tiket. «nicht müde» berarti “tidak lelah”: yang disangkal adalah keadaan. «kein Ticket» berarti “tidak ada tiket”: bendanya tidak ada. Tentukan dulu apa yang kamu sangkal.\n\nIch bin nicht müde.\n\nSaya tidak lelah.\n\nNegasi menyatakan sesuatu tidak demikian. «nicht müde» hanya mengatakan tidak lelah; belum tentu berarti riang atau bersemangat. Jangan ubah isi pesan lainnya.",
+"textPl": "Nie być zmęczonym i nie mieć biletu to różne rzeczy. «nicht müde» oznacza „niezmęczony”: zaprzeczasz opisowi. «kein Ticket» to „brak biletu”: czegoś nie masz. Najpierw ustal, co chcesz zanegować.\n\nIch bin nicht müde.\n\nNie jestem zmęczony.\n\nZaprzeczenie mówi, że coś nie zachodzi. «nicht müde» zaprzecza zmęczeniu; nie znaczy automatycznie, że ktoś tryska energią. Nie zmieniaj pozostałego sensu.",
+"textPtBr": "Negar o cansaço não é o mesmo que dizer que não tem passagem. «nicht müde» significa “não estou cansado” no contexto; «kein Ticket» indica que não há passagem. Primeiro identifique o que você quer negar.\n\nIch bin nicht müde.\n\nEu não estou cansado(a).\n\nA negação diz que algo não é assim. «nicht müde» nega o cansaço; não diz que você está feliz ou cheio de energia. Não mude o restante da mensagem.",
+"textRU": "Усталость и билет отрицаются по-разному. «nicht müde» означает «не уставший»: мы меняем описание человека. «kein Ticket» означает «нет билета»: речь о вещи, которой нет. Сначала спроси себя, что именно ты отрицаешь.\n\nIch bin nicht müde.\n\nЯ не устал.\n\nОтрицание меняет сообщение на противоположное. Если говоришь «nicht müde», ты отрицаешь усталость. Это ещё не значит, что ты бодр или счастлив: ты сообщаешь только, чего нет.",
+"textTr": "Yorgun olmadığını söylemekle biletin olmadığını söylemek aynı değildir. «nicht müde» “yorgun değil”, yani bir durumun olumsuzu. «kein Ticket» ise “bilet yok”, yani bir şeyin yokluğu. Önce neyi reddettiğine bak.\n\nIch bin nicht müde.\n\nYorgun değilim.\n\nOlumsuzluk, bir durumun geçerli olmadığını söyler. «nicht müde» yorgunluğu reddeder; mutlu ya da enerjik olduğunu söylemez. Mesajın geri kalanını değiştirme.",
+"textUK": "Втому й квиток заперечуємо по-різному. «nicht müde» — «не втомлений»: змінюємо опис людини. «kein Ticket» — «немає квитка»: йдеться про відсутню річ. Спочатку з’ясуй, що саме заперечуєш.\n\nIch bin nicht müde.\n\nЯ не втомився.\n\nЗаперечення змінює зміст. «nicht müde» заперечує втому. Це ще не означає, що ти бадьорий чи щасливий: ти кажеш лише, якого стану немає.",
+"textVi": "Phủ nhận trạng thái mệt khác với nói mình không có vé. «nicht müde» là “không mệt”, phủ định một trạng thái. «kein Ticket» là “không có vé”, nói đến một thứ không có. Hãy xác định ý nào trước.\n\nIch bin nicht müde.\n\nTôi không mệt.\n\nPhủ định là nói một điều không đúng. «nicht müde» chỉ nói không mệt, không khẳng định bạn vui hay tràn đầy năng lượng. Đừng đổi phần nghĩa còn lại.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Being tired and having a ticket are different claims. «nicht müde» means “not tired”: you’re changing a description. «kein Ticket» means “no ticket”: a thing is missing. First ask yourself which of those you mean.\n\nIch bin nicht müde.\n\nI am not tired.\n\nNegation says something isn’t so. «nicht müde» denies tiredness; it doesn’t tell us that you are happy or energetic. Don’t change the rest of the message.",
+"es": "No es lo mismo negar el cansancio que negar que tengas billete. «nicht müde» significa «no cansado»: niegas una descripción. «kein Ticket» significa «ningún billete»: falta una cosa. Decide primero qué niegas.\n\nIch bin nicht müde.\n\nNo estoy cansado.\n\nUna negación dice que algo no es así. «nicht müde» niega el cansancio; no afirma que estés feliz o lleno de energía. No cambies el resto del mensaje.",
+"id": "Tidak merasa lelah berbeda dari tidak punya tiket. «nicht müde» berarti “tidak lelah”: yang disangkal adalah keadaan. «kein Ticket» berarti “tidak ada tiket”: bendanya tidak ada. Tentukan dulu apa yang kamu sangkal.\n\nIch bin nicht müde.\n\nSaya tidak lelah.\n\nNegasi menyatakan sesuatu tidak demikian. «nicht müde» hanya mengatakan tidak lelah; belum tentu berarti riang atau bersemangat. Jangan ubah isi pesan lainnya.",
+"pl": "Nie być zmęczonym i nie mieć biletu to różne rzeczy. «nicht müde» oznacza „niezmęczony”: zaprzeczasz opisowi. «kein Ticket» to „brak biletu”: czegoś nie masz. Najpierw ustal, co chcesz zanegować.\n\nIch bin nicht müde.\n\nNie jestem zmęczony.\n\nZaprzeczenie mówi, że coś nie zachodzi. «nicht müde» zaprzecza zmęczeniu; nie znaczy automatycznie, że ktoś tryska energią. Nie zmieniaj pozostałego sensu.",
+"pt-BR": "Negar o cansaço não é o mesmo que dizer que não tem passagem. «nicht müde» significa “não estou cansado” no contexto; «kein Ticket» indica que não há passagem. Primeiro identifique o que você quer negar.\n\nIch bin nicht müde.\n\nEu não estou cansado(a).\n\nA negação diz que algo não é assim. «nicht müde» nega o cansaço; não diz que você está feliz ou cheio de energia. Não mude o restante da mensagem.",
+"ru": "Усталость и билет отрицаются по-разному. «nicht müde» означает «не уставший»: мы меняем описание человека. «kein Ticket» означает «нет билета»: речь о вещи, которой нет. Сначала спроси себя, что именно ты отрицаешь.\n\nIch bin nicht müde.\n\nЯ не устал.\n\nОтрицание меняет сообщение на противоположное. Если говоришь «nicht müde», ты отрицаешь усталость. Это ещё не значит, что ты бодр или счастлив: ты сообщаешь только, чего нет.",
+"tr": "Yorgun olmadığını söylemekle biletin olmadığını söylemek aynı değildir. «nicht müde» “yorgun değil”, yani bir durumun olumsuzu. «kein Ticket» ise “bilet yok”, yani bir şeyin yokluğu. Önce neyi reddettiğine bak.\n\nIch bin nicht müde.\n\nYorgun değilim.\n\nOlumsuzluk, bir durumun geçerli olmadığını söyler. «nicht müde» yorgunluğu reddeder; mutlu ya da enerjik olduğunu söylemez. Mesajın geri kalanını değiştirme.",
+"uk": "Втому й квиток заперечуємо по-різному. «nicht müde» — «не втомлений»: змінюємо опис людини. «kein Ticket» — «немає квитка»: йдеться про відсутню річ. Спочатку з’ясуй, що саме заперечуєш.\n\nIch bin nicht müde.\n\nЯ не втомився.\n\nЗаперечення змінює зміст. «nicht müde» заперечує втому. Це ще не означає, що ти бадьорий чи щасливий: ти кажеш лише, якого стану немає.",
+"vi": "Phủ nhận trạng thái mệt khác với nói mình không có vé. «nicht müde» là “không mệt”, phủ định một trạng thái. «kein Ticket» là “không có vé”, nói đến một thứ không có. Hãy xác định ý nào trước.\n\nIch bin nicht müde.\n\nTôi không mệt.\n\nPhủ định là nói một điều không đúng. «nicht müde» chỉ nói không mệt, không khẳng định bạn vui hay tràn đầy năng lượng. Đừng đổi phần nghĩa còn lại."
+},
+"kind": "concept",
+"exampleIds": [
+"de:08:01"
+]
+},
+{
+"textEN": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nI am tired.\n\nIch bin nicht müde.\n\nI am not tired.\n\nKeep «ich bin» to change “I’m tired” to “I’m not tired”. Insert «nicht» before «müde». «kein» would introduce a missing thing; “tired” isn’t a thing.",
+"textES": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nEstoy cansado.\n\nIch bin nicht müde.\n\nNo estoy cansado.\n\nPara negar «estoy cansado» conserva «ich bin» e inserta «nicht» antes de «müde». «kein» iría ante el nombre de algo que falta; «cansado» no es una cosa.",
+"textId": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nSaya lelah.\n\nIch bin nicht müde.\n\nSaya tidak lelah.\n\nPertahankan «ich bin» saat menyangkal rasa lelah. Sisipkan «nicht» sebelum «müde». «kein» mendahului nama benda yang tidak ada; “lelah” bukan benda.",
+"textPl": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch bin nicht müde.\n\nNie jestem zmęczony.\n\nAby zaprzeczyć zmęczeniu, zostaw «ich bin» i wstaw «nicht» przed «müde». «kein» stałoby przed nazwą rzeczy, której nie ma; „zmęczony” nie jest rzeczą.",
+"textPtBr": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch bin nicht müde.\n\nEu não estou cansado(a).\n\nPara negar “estou cansado”, mantenha «ich bin» e insira «nicht» antes de «müde». «kein» apresentaria uma coisa ausente; “cansado” não é uma coisa.",
+"textRU": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nЯ устал.\n\nIch bin nicht müde.\n\nЯ не устал.\n\nЧтобы «я устал» превратилось в «я не устал», не меняй «ich bin». Поставь «nicht» перед «müde». Слово «kein» ставят перед названием отсутствующей вещи, а «müde» — не вещь.",
+"textTr": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nBen yorgunum.\n\nIch bin nicht müde.\n\nYorgun değilim.\n\n“Yorgunum”u olumsuz yaparken «ich bin» kalır. «nicht» kelimesini «müde» önüne getir. «kein» olmayan bir şeyin adından önce gelir; “yorgun” bir eşya değildir.",
+"textUK": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nЯ втомився.\n\nIch bin nicht müde.\n\nЯ не втомився.\n\nЩоб сказати «я не втомився», не змінюй «ich bin». Постав «nicht» перед «müde». «kein» ставлять перед назвою відсутньої речі, а «müde» — не річ.",
+"textVi": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch bin nicht müde.\n\nTôi không mệt.\n\nGiữ «ich bin» khi đổi “tôi mệt” thành “tôi không mệt”. Chèn «nicht» trước «müde». «kein» dùng trước tên thứ không có; “mệt” không phải một thứ.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nI am tired.\n\nIch bin nicht müde.\n\nI am not tired.\n\nKeep «ich bin» to change “I’m tired” to “I’m not tired”. Insert «nicht» before «müde». «kein» would introduce a missing thing; “tired” isn’t a thing.",
+"es": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nEstoy cansado.\n\nIch bin nicht müde.\n\nNo estoy cansado.\n\nPara negar «estoy cansado» conserva «ich bin» e inserta «nicht» antes de «müde». «kein» iría ante el nombre de algo que falta; «cansado» no es una cosa.",
+"id": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nSaya lelah.\n\nIch bin nicht müde.\n\nSaya tidak lelah.\n\nPertahankan «ich bin» saat menyangkal rasa lelah. Sisipkan «nicht» sebelum «müde». «kein» mendahului nama benda yang tidak ada; “lelah” bukan benda.",
+"pl": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch bin nicht müde.\n\nNie jestem zmęczony.\n\nAby zaprzeczyć zmęczeniu, zostaw «ich bin» i wstaw «nicht» przed «müde». «kein» stałoby przed nazwą rzeczy, której nie ma; „zmęczony” nie jest rzeczą.",
+"pt-BR": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch bin nicht müde.\n\nEu não estou cansado(a).\n\nPara negar “estou cansado”, mantenha «ich bin» e insira «nicht» antes de «müde». «kein» apresentaria uma coisa ausente; “cansado” não é uma coisa.",
+"ru": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nЯ устал.\n\nIch bin nicht müde.\n\nЯ не устал.\n\nЧтобы «я устал» превратилось в «я не устал», не меняй «ich bin». Поставь «nicht» перед «müde». Слово «kein» ставят перед названием отсутствующей вещи, а «müde» — не вещь.",
+"tr": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nBen yorgunum.\n\nIch bin nicht müde.\n\nYorgun değilim.\n\n“Yorgunum”u olumsuz yaparken «ich bin» kalır. «nicht» kelimesini «müde» önüne getir. «kein» olmayan bir şeyin adından önce gelir; “yorgun” bir eşya değildir.",
+"uk": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nЯ втомився.\n\nIch bin nicht müde.\n\nЯ не втомився.\n\nЩоб сказати «я не втомився», не змінюй «ich bin». Постав «nicht» перед «müde». «kein» ставлять перед назвою відсутньої речі, а «müde» — не річ.",
+"vi": "«kein Ticket» / «nicht frei»\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch bin nicht müde.\n\nTôi không mệt.\n\nGiữ «ich bin» khi đổi “tôi mệt” thành “tôi không mệt”. Chèn «nicht» trước «müde». «kein» dùng trước tên thứ không có; “mệt” không phải một thứ."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:04",
+"de:08:01"
+]
+},
+{
+"textEN": "I am not tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The “I” form of sein (to be): am. It links the speaker to what follows.\n\n3. «nicht» — Not: negates the following description.\n\n4. «müde» — Tired: a state, not a separate action.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textES": "No estoy cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Forma de sein (ser/estar) con «yo». En esta frase une «yo» con lo que sigue.\n\n3. «nicht» — No: niega la descripción que sigue.\n\n4. «müde» — Cansado: un estado, no una acción.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textId": "Saya tidak lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Bentuk sein untuk “aku”; menghubungkan pembicara dengan keterangan berikutnya.\n\n3. «nicht» — Tidak: menyangkal keadaan berikutnya.\n\n4. «müde» — Lelah: keadaan, bukan tindakan lain.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textPl": "Nie jestem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Forma sein (być) dla „ja”: jestem. Łączy osobę z dalszym opisem.\n\n3. «nicht» — Nie: zaprzecza określeniu, które nastąpi.\n\n4. «müde» — Zmęczony: stan, nie odrębna czynność.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textPtBr": "Eu não estou cansado(a).\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Forma de sein (ser/estar) para “eu”. Liga quem fala ao que vem depois.\n\n3. «nicht» — Não: nega a descrição seguinte.\n\n4. «müde» — Cansado: um estado, não uma ação.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textRU": "Я не устал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Форма слова sein («быть») для «я». Не отдельное действие: связывает «я» с тем, что идёт дальше.\n\n3. «nicht» — Не: отрицаем следующее описание.\n\n4. «müde» — Уставший. Это состояние, а не отдельное действие.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textTr": "Yorgun değilim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — sein (olmak) fiilinin “ben” biçimi; konuşanı sonraki bilgiye bağlar.\n\n3. «nicht» — Değil: ardından gelen durumu olumsuzlar.\n\n4. «müde» — Yorgun: ayrı bir eylem değil, durum.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textUK": "Я не втомився.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Форма sein («бути») для «я». Не окрема дія: пов’язує «я» з тим, що йде далі.\n\n3. «nicht» — Не: заперечуємо наступний опис.\n\n4. «müde» — Втомлений. Це стан, а не окрема дія.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"textVi": "Tôi không mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Dạng của sein (là/ở) dùng với “tôi”, nối người nói với phần sau.\n\n3. «nicht» — Không: phủ định trạng thái đứng sau.\n\n4. «müde» — Mệt: trạng thái, không phải hành động khác.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I am not tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich» — I: the person speaking.\n\n2. «bin» — The “I” form of sein (to be): am. It links the speaker to what follows.\n\n3. «nicht» — Not: negates the following description.\n\n4. «müde» — Tired: a state, not a separate action.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"es": "No estoy cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich» — Yo: quien habla.\n\n2. «bin» — Forma de sein (ser/estar) con «yo». En esta frase une «yo» con lo que sigue.\n\n3. «nicht» — No: niega la descripción que sigue.\n\n4. «müde» — Cansado: un estado, no una acción.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"id": "Saya tidak lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich» — Aku: orang yang berbicara.\n\n2. «bin» — Bentuk sein untuk “aku”; menghubungkan pembicara dengan keterangan berikutnya.\n\n3. «nicht» — Tidak: menyangkal keadaan berikutnya.\n\n4. «müde» — Lelah: keadaan, bukan tindakan lain.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"pl": "Nie jestem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich» — Ja: osoba mówiąca.\n\n2. «bin» — Forma sein (być) dla „ja”: jestem. Łączy osobę z dalszym opisem.\n\n3. «nicht» — Nie: zaprzecza określeniu, które nastąpi.\n\n4. «müde» — Zmęczony: stan, nie odrębna czynność.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"pt-BR": "Eu não estou cansado(a).\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich» — Eu: quem está falando.\n\n2. «bin» — Forma de sein (ser/estar) para “eu”. Liga quem fala ao que vem depois.\n\n3. «nicht» — Não: nega a descrição seguinte.\n\n4. «müde» — Cansado: um estado, não uma ação.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"ru": "Я не устал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich» — Я. Говорящий называет себя.\n\n2. «bin» — Форма слова sein («быть») для «я». Не отдельное действие: связывает «я» с тем, что идёт дальше.\n\n3. «nicht» — Не: отрицаем следующее описание.\n\n4. «müde» — Уставший. Это состояние, а не отдельное действие.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"tr": "Yorgun değilim.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich» — Ben: konuşan kişi.\n\n2. «bin» — sein (olmak) fiilinin “ben” biçimi; konuşanı sonraki bilgiye bağlar.\n\n3. «nicht» — Değil: ardından gelen durumu olumsuzlar.\n\n4. «müde» — Yorgun: ayrı bir eylem değil, durum.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"uk": "Я не втомився.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich» — Я. Мовець називає себе.\n\n2. «bin» — Форма sein («бути») для «я». Не окрема дія: пов’язує «я» з тим, що йде далі.\n\n3. «nicht» — Не: заперечуємо наступний опис.\n\n4. «müde» — Втомлений. Це стан, а не окрема дія.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde.",
+"vi": "Tôi không mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich» — Tôi: người đang nói.\n\n2. «bin» — Dạng của sein (là/ở) dùng với “tôi”, nối người nói với phần sau.\n\n3. «nicht» — Không: phủ định trạng thái đứng sau.\n\n4. «müde» — Mệt: trạng thái, không phải hành động khác.\n\nIch → bin → nicht → müde\n\nIch bin nicht müde."
+},
+"kind": "practice",
+"exampleIds": [
+"de:08:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:08:01",
+"target": "Ich bin nicht müde.",
+"ru": "Я не устал.",
+"uk": "Я не втомився."
+},
+{
+"id": "de:01:04",
+"target": "Ich bin müde.",
+"ru": "Я устал.",
+"uk": "Я втомився."
+},
+{
+"id": "de:08:01",
+"target": "Ich bin nicht müde.",
+"ru": "Я не устал.",
+"uk": "Я не втомився."
+},
+{
+"id": "de:08:01",
+"target": "Ich bin nicht müde.",
+"ru": "Я не устал.",
+"uk": "Я не втомився."
+}
+]
+}
+]

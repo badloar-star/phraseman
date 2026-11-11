@@ -187,7 +187,6 @@ const sha256 = value => createHash('sha256').update(value).digest('hex');
 // is still caught).
 const PUBLIC_STORAGE_URL_MAP_FILES = new Set([
   'app/plan_audio_url_map.generated.ts',
-  'app/phrase_audio_url_map.generated.ts',
   'app/collectibles/collectible_image_url_map.generated.ts',
   // Арт достижений и аур больше не нуждается в исключении: адреса выводятся
   // формулой БЕЗ токена (constants/achievement_image_urls.ts,

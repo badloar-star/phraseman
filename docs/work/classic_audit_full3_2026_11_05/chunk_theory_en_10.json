@@ -1,0 +1,1144 @@
+[
+{
+"lesson": 21,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 21,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Кто-то, что-нибудь, нигде",
+"formula": "some / any / no / every + one / thing / where",
+"story": "За дверью кто-то есть — someone. В сумке что-то есть — something. Не знаешь, кто или что именно, но уже знаешь, человек это или вещь.",
+"use": "Сначала выберите значение: человек, вещь или место. Затем решите, сообщаете ли вы о чем-то, задаете открытый вопрос, говорите, что ничего не существует, или включаете все члены множества.",
+"choose": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"nuance": "В `Nobody answered` отрицание уже есть в `nobody`. Другой способ сказать, что ты никого не видел: `I did not see anyone`. Не добавляй к этому ещё одно отрицание. В `Anyone can come` слово `anyone` означает «кто угодно».",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Сначала выберите значение: человек, вещь или место. Затем решите, сообщаете ли вы о чем-то, задаете открытый вопрос, говорите, что ничего не существует, или включаете все члены множества.",
+"samples": [
+"21.01",
+"21.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"samples": [
+"21.11",
+"21.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В `Nobody answered` отрицание уже есть в `nobody`. Другой способ сказать, что ты никого не видел: `I did not see anyone`. Не добавляй к этому ещё одно отрицание. В `Anyone can come` слово `anyone` означает «кто угодно».",
+"samples": [
+"21.21",
+"21.33"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Включайте всех или всё",
+"samples": [
+"21.33",
+"21.35",
+"21.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы слышали телефонный звонок, но не видели звонившего. Сравните человека, которого вы не можете идентифицировать, с ситуацией, когда никто не ответил.",
+"samples": [
+"21.42",
+"21.45",
+"21.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Меняйте смысл, а не только приставку",
+"samples": [
+"21.50"
+],
+"tokenWalk": "21.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Хтось, що-небудь, ніде",
+"formula": "some / any / no / every + one / thing / where",
+"story": "За дверима хтось є — someone. У сумці щось є — something. Імені чи назви не знаєш, але розрізняєш людину та річ.",
+"use": "Спочатку виберіть значення: особа, річ чи місце. Потім вирішіть, чи повідомляєте ви про щось, ставите відкрите питання, стверджуєте, що нічого не існує, чи включаєте всіх членів множини.",
+"choose": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"nuance": "У `Nobody answered` заперечення вже є в `nobody`. Щоб сказати, що ти нікого не бачив, можна вжити `I did not see anyone`. Не додавай ще одного заперечення. У `Anyone can come` слово `anyone` означає «будь-хто».",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Спочатку виберіть значення: особа, річ чи місце. Потім вирішіть, чи повідомляєте ви про щось, ставите відкрите питання, стверджуєте, що нічого не існує, чи включаєте всіх членів множини.",
+"samples": [
+"21.01",
+"21.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"samples": [
+"21.11",
+"21.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "У `Nobody answered` заперечення вже є в `nobody`. Щоб сказати, що ти нікого не бачив, можна вжити `I did not see anyone`. Не додавай ще одного заперечення. У `Anyone can come` слово `anyone` означає «будь-хто».",
+"samples": [
+"21.21",
+"21.33"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Включити всіх або все",
+"samples": [
+"21.33",
+"21.35",
+"21.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви чули телефонний дзвінок, але не бачили того, хто телефонував. Порівняйте людину, яку ви не можете ідентифікувати, із ситуацією, коли ніхто не відповів.",
+"samples": [
+"21.42",
+"21.45",
+"21.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Змінити значення, а не лише префікс",
+"samples": [
+"21.50"
+],
+"tokenWalk": "21.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Refer to an unspecified person, thing or place",
+"formula": "some / any / no / every + one / thing / where",
+"story": "Someone is a person you cannot identify; something is a thing. You may not know who or what, but this choice already tells the listener which kind you mean.",
+"use": "First choose the meaning: a person, a thing or a place. Then decide whether you are reporting something, asking an open question, saying that nothing exists, or including all members of a set.",
+"choose": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb.",
+"nuance": "`Nobody answered` is already negative. For the same ordinary meaning say `I didn't see anyone`, not a combination of two negatives. `Anyone` can also mean any person at all in a positive statement.",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "First choose the meaning: a person, a thing or a place. Then decide whether you are reporting something, asking an open question, saying that nothing exists, or including all members of a set.",
+"samples": [
+"21.01",
+"21.11"
+]
+},
+{
+"title": "How to choose",
+"body": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb.",
+"samples": [
+"21.11",
+"21.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Nobody answered` is already negative. For the same ordinary meaning say `I didn't see anyone`, not a combination of two negatives. `Anyone` can also mean any person at all in a positive statement.",
+"samples": [
+"21.21",
+"21.33"
+]
+},
+{
+"title": "Common mistake",
+"body": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb.",
+"wrong": "Nobody didn't answer.",
+"right": "Nobody answered.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Include everyone or everything",
+"samples": [
+"21.33",
+"21.35",
+"21.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You heard a phone but did not see the caller. Contrast a person you cannot identify with a situation where no one answered.",
+"samples": [
+"21.42",
+"21.45",
+"21.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Change the meaning, not just the prefix",
+"samples": [
+"21.50"
+],
+"tokenWalk": "21.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "21.01",
+"index": 0,
+"right": "Someone",
+"near": "Something",
+"seq": [
+"Someone",
+"is",
+"at",
+"the",
+"door"
+],
+"i": 0,
+"kind": "form",
+"key": "en21/lab/form1",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.13",
+"index": 3,
+"right": "anything",
+"near": "anyone",
+"seq": [
+"Do",
+"you",
+"need",
+"anything",
+"else"
+],
+"i": 12,
+"kind": "form",
+"key": "en21/lab/form2",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.26",
+"index": 2,
+"right": "nobody",
+"near": "nothing",
+"seq": [
+"I",
+"know",
+"nobody",
+"in",
+"this",
+"town"
+],
+"i": 25,
+"kind": "form",
+"key": "en21/lab/form3",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.41",
+"index": 4,
+"right": "anyone",
+"near": "anything",
+"seq": [
+"I",
+"did",
+"not",
+"see",
+"anyone",
+"downstairs"
+],
+"i": 40,
+"kind": "form",
+"key": "en21/lab/form4",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.06",
+"index": 2,
+"right": "something",
+"near": "someone",
+"seq": [
+"She",
+"wants",
+"something",
+"warm"
+],
+"i": 5,
+"kind": "spot",
+"key": "en21/lab/spot1",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.22",
+"index": 0,
+"right": "Nothing",
+"near": "Nobody",
+"seq": [
+"Nothing",
+"is",
+"open",
+"yet"
+],
+"i": 21,
+"kind": "spot",
+"key": "en21/lab/spot2",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.29",
+"index": 0,
+"right": "Nobody",
+"near": "Nothing",
+"seq": [
+"Nobody",
+"told",
+"me",
+"the",
+"price"
+],
+"i": 28,
+"kind": "spot",
+"key": "en21/lab/spot3",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"id": "21.49",
+"index": 2,
+"right": "somewhere",
+"near": "someone",
+"seq": [
+"There",
+"is",
+"somewhere",
+"quiet",
+"upstairs"
+],
+"i": 48,
+"kind": "spot",
+"key": "en21/lab/spot4",
+"feedback": {
+"ru": "Для человека выбери окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе часто нужно `any-`, но предложение или просьба могут начинаться с вопроса с `some-`.",
+"uk": "Для людини обери закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`.",
+"en": "In a neutral question or a negative sentence, `any` forms are common. `Some` is also natural in questions that offer something or expect agreement. A form such as `everyone` takes a singular verb."
+}
+},
+{
+"kind": "match",
+"key": "en21/lab/match1",
+"id": "21.02",
+"other": "21.01"
+},
+{
+"kind": "match",
+"key": "en21/lab/match2",
+"id": "21.17",
+"other": "21.18"
+},
+{
+"kind": "match",
+"key": "en21/lab/match3",
+"id": "21.33",
+"other": "21.31"
+},
+{
+"kind": "match",
+"key": "en21/lab/match4",
+"id": "21.46",
+"other": "21.33"
+},
+{
+"kind": "build",
+"key": "en21/lab/build1",
+"id": "21.04"
+},
+{
+"kind": "build",
+"key": "en21/lab/build2",
+"id": "21.15"
+},
+{
+"kind": "build",
+"key": "en21/lab/build3",
+"id": "21.29"
+},
+{
+"kind": "build",
+"key": "en21/lab/build4",
+"id": "21.42"
+},
+{
+"kind": "transform",
+"id": "21.23",
+"base": "21.10",
+"diff": [
+{
+"before": [
+"We",
+"need",
+"somewhere"
+],
+"after": [
+"There",
+"is",
+"nowhere"
+]
+}
+],
+"key": "en21/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "21.48",
+"base": "21.05",
+"diff": [
+{
+"before": [
+"someone"
+],
+"after": [
+"something"
+]
+},
+{
+"before": [
+"help"
+],
+"after": [
+"write",
+"on"
+]
+}
+],
+"key": "en21/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "21.38",
+"base": "21.33",
+"diff": [
+{
+"before": [
+"seat"
+],
+"after": [
+"ticket",
+"for",
+"the",
+"rehearsal"
+]
+}
+],
+"key": "en21/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "21.44",
+"base": "21.28",
+"diff": [
+{
+"before": [
+"on",
+"the",
+"label"
+],
+"after": [
+"wrong",
+"with",
+"your",
+"ticket"
+]
+}
+],
+"key": "en21/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+5,
+1
+],
+[
+10,
+18
+],
+[
+2,
+16
+],
+[
+11,
+3
+],
+[
+15,
+17
+],
+[
+7,
+19
+]
+],
+"worked": [
+"21.05",
+"21.18",
+"21.33",
+"21.48"
+],
+"reflection": [
+"21.01",
+"21.02"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 22,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 22,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как говорить о занятиях",
+"formula": "enjoy + [-ing] · without + [-ing] · [-ing] → [подлежащее]",
+"story": "Готовить — удовольствие: I enjoy cooking. Здесь cooking — занятие, которое нравится. Это не сообщение «я сейчас готовлю»: для него нужно I’m cooking.",
+"use": "Само действие может быть подлежащим предложения, дополнением предлога или дополнением, которое требуется для определенных глаголов. Это не всегда действие, происходящее прямо сейчас.",
+"choose": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"nuance": "`Stop doing` означает завершить эту деятельность. `Stop to do` означает приостановить одну деятельность для другой цели. `Do you mind ...?` — это просьба; слова после `mind` все еще требуют `-ing`.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Само действие может быть подлежащим предложения, дополнением предлога или дополнением, которое требуется для определенных глаголов. Это не всегда действие, происходящее прямо сейчас.",
+"samples": [
+"22.01",
+"22.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"samples": [
+"22.11",
+"22.18"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Stop doing` означает завершить эту деятельность. `Stop to do` означает приостановить одну деятельность для другой цели. `Do you mind ...?` — это просьба; слова после `mind` все еще требуют `-ing`.",
+"samples": [
+"22.18",
+"22.25"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Используйте устойчивые сочетания в обычных сообщениях",
+"samples": [
+"22.33",
+"22.35",
+"22.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Объясните, как вы экономите деньги и что вам нравится делать. Затем сравните завершение прогулки с приостановкой прогулки, чтобы купить воду.",
+"samples": [
+"22.42",
+"22.45",
+"22.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Различайте цель и завершение действия",
+"samples": [
+"22.50"
+],
+"tokenWalk": "22.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як говорити про заняття",
+"formula": "enjoy + [-ing] · without + [-ing] · [-ing] → [підмет]",
+"story": "Готувати приємно: I enjoy cooking. Тут cooking — улюблене заняття. «Я зараз готую» — інше повідомлення: I’m cooking.",
+"use": "Дія сама по собі може бути підметом речення, додатком прийменника або доповненням, якого вимагають певні дієслова. Це не завжди дія, яка відбувається прямо зараз.",
+"choose": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"nuance": "`Stop doing` означає припинити цю діяльність. `Stop to do` означає призупинити одну діяльність для іншої мети. `Do you mind ...?` – це прохання; слова після `mind` все ще приймають `-ing`.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Дія сама по собі може бути підметом речення, додатком прийменника або доповненням, якого вимагають певні дієслова. Це не завжди дія, яка відбувається прямо зараз.",
+"samples": [
+"22.01",
+"22.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"samples": [
+"22.11",
+"22.18"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Stop doing` означає припинити цю діяльність. `Stop to do` означає призупинити одну діяльність для іншої мети. `Do you mind ...?` – це прохання; слова після `mind` все ще приймають `-ing`.",
+"samples": [
+"22.18",
+"22.25"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Використати фіксовані комбінації у звичайних повідомленнях",
+"samples": [
+"22.33",
+"22.35",
+"22.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Поясніть, як ви заощаджуєте гроші та що вам подобається робити. Потім порівняйте завершення прогулянки з призупиненням прогулянки, щоб купити воду.",
+"samples": [
+"22.42",
+"22.45",
+"22.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Розрізняти мету від завершення дії",
+"samples": [
+"22.50"
+],
+"tokenWalk": "22.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Use an action as part of a larger phrase",
+"formula": "enjoy + [-ing] · without + [-ing] · [-ing] as subject",
+"story": "I enjoy cooking names the activity I enjoy. I’m cooking says it is happening now. The same -ing form does a different job.",
+"use": "An action can itself be the subject of a sentence, the object of a preposition, or a complement that particular verbs require. It is not always an action happening right now.",
+"choose": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them.",
+"nuance": "`Stop doing` means end that activity. `Stop to do` means pause one activity for a different purpose. `Do you mind ...?` is a request; the words after `mind` still take `-ing`.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "An action can itself be the subject of a sentence, the object of a preposition, or a complement that particular verbs require. It is not always an action happening right now.",
+"samples": [
+"22.01",
+"22.11"
+]
+},
+{
+"title": "How to choose",
+"body": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them.",
+"samples": [
+"22.11",
+"22.18"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Stop doing` means end that activity. `Stop to do` means pause one activity for a different purpose. `Do you mind ...?` is a request; the words after `mind` still take `-ing`.",
+"samples": [
+"22.18",
+"22.25"
+]
+},
+{
+"title": "Common mistake",
+"body": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them.",
+"wrong": "She enjoys to cook.",
+"right": "She enjoys cooking.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Use fixed combinations in ordinary messages",
+"samples": [
+"22.33",
+"22.35",
+"22.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Explain how you save money and what you enjoy doing. Then compare ending the walk with pausing the walk to buy water.",
+"samples": [
+"22.42",
+"22.45",
+"22.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Distinguish a purpose from ending an activity",
+"samples": [
+"22.50"
+],
+"tokenWalk": "22.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "22.01",
+"index": 0,
+"right": "Swimming",
+"near": "Swim",
+"seq": [
+"Swimming",
+"helps",
+"me",
+"relax"
+],
+"i": 0,
+"kind": "form",
+"key": "en22/lab/form1",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.13",
+"index": 2,
+"right": "driving",
+"near": "drive",
+"seq": [
+"He",
+"avoids",
+"driving",
+"at",
+"night"
+],
+"i": 12,
+"kind": "form",
+"key": "en22/lab/form2",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.25",
+"index": 3,
+"right": "moving",
+"near": "move",
+"seq": [
+"We",
+"talked",
+"about",
+"moving",
+"house"
+],
+"i": 24,
+"kind": "form",
+"key": "en22/lab/form3",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.38",
+"index": 3,
+"right": "waiting",
+"near": "wait",
+"seq": [
+"They",
+"complained",
+"about",
+"waiting",
+"in",
+"the",
+"rain"
+],
+"i": 37,
+"kind": "form",
+"key": "en22/lab/form4",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.07",
+"index": 0,
+"right": "Learning",
+"near": "Learn",
+"seq": [
+"Learning",
+"a",
+"new",
+"route",
+"takes",
+"time"
+],
+"i": 6,
+"kind": "spot",
+"key": "en22/lab/spot1",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.19",
+"index": 2,
+"right": "sharing",
+"near": "share",
+"seq": [
+"He",
+"suggested",
+"sharing",
+"a",
+"taxi"
+],
+"i": 18,
+"kind": "spot",
+"key": "en22/lab/spot2",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.30",
+"index": 5,
+"right": "walking",
+"near": "walk",
+"seq": [
+"I",
+"learnt",
+"the",
+"route",
+"by",
+"walking",
+"it"
+],
+"i": 29,
+"kind": "spot",
+"key": "en22/lab/spot3",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"id": "22.48",
+"index": 1,
+"right": "reading",
+"near": "read",
+"seq": [
+"Try",
+"reading",
+"the",
+"number",
+"aloud"
+],
+"i": 47,
+"kind": "spot",
+"key": "en22/lab/spot4",
+"feedback": {
+"ru": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Учи вместе с первым словом, а не как правило для любого второго глагола.",
+"uk": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Учи сполуку разом, не поширюй це правило на всі пари дієслів.",
+"en": "After prepositions such as `by`, `without` and `before`, an action takes the `-ing` form. Learn verbs like `enjoy` and `avoid` with the form that follows them."
+}
+},
+{
+"kind": "match",
+"key": "en22/lab/match1",
+"id": "22.02",
+"other": "22.12"
+},
+{
+"kind": "match",
+"key": "en22/lab/match2",
+"id": "22.17",
+"other": "22.12"
+},
+{
+"kind": "match",
+"key": "en22/lab/match3",
+"id": "22.33",
+"other": "22.37"
+},
+{
+"kind": "match",
+"key": "en22/lab/match4",
+"id": "22.46",
+"other": "22.49"
+},
+{
+"kind": "build",
+"key": "en22/lab/build1",
+"id": "22.04"
+},
+{
+"kind": "build",
+"key": "en22/lab/build2",
+"id": "22.15"
+},
+{
+"kind": "build",
+"key": "en22/lab/build3",
+"id": "22.29"
+},
+{
+"kind": "build",
+"key": "en22/lab/build4",
+"id": "22.42"
+},
+{
+"kind": "transform",
+"id": "22.41",
+"base": "22.18",
+"diff": [
+{
+"before": [
+"waiting",
+"here"
+],
+"after": [
+"closing",
+"the",
+"door"
+]
+}
+],
+"key": "en22/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "22.47",
+"base": "22.32",
+"diff": [
+{
+"before": [
+"She",
+"is",
+"afraid",
+"of"
+],
+"after": [
+"They",
+"avoided"
+]
+}
+],
+"key": "en22/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "22.35",
+"base": "22.17",
+"diff": [
+{
+"before": [
+"keeps",
+"losing"
+],
+"after": [
+"insisted",
+"on",
+"paying"
+]
+},
+{
+"before": [
+"keys"
+],
+"after": [
+"share"
+]
+}
+],
+"key": "en22/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "22.19",
+"base": "22.08",
+"diff": [
+{
+"before": [],
+"after": [
+"He",
+"suggested"
+]
+},
+{
+"before": [
+"flat",
+"costs",
+"less"
+],
+"after": [
+"taxi"
+]
+}
+],
+"key": "en22/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+5,
+9
+],
+[
+2,
+16
+],
+[
+14,
+6
+],
+[
+10,
+18
+],
+[
+7,
+15
+],
+[
+17,
+11
+]
+],
+"worked": [
+"22.05",
+"22.18",
+"22.33",
+"22.48"
+],
+"reflection": [
+"22.01",
+"22.11"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

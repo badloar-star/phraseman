@@ -1,0 +1,952 @@
+[
+{
+"lesson": 21,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:21:01",
+"de:21:06"
+],
+"textByLocale": {
+"en": "You're explaining why you're staying home or changing transportation. If you remove the reason, the main message remains intact. It's the reason, not the main action, that the word `weil` introduces.",
+"ru": "Ты объясняешь, почему остаёшься дома или меняешь транспорт. Если убрать причину, главное сообщение останется целым. Именно причину, а не главное действие, открывает слово `weil`.",
+"uk": "Ти пояснюєш, чому залишаєшся вдома чи змінюєш транспорт. Якщо усунути причину, головне повідомлення залишиться цілим. Саме причину, а не головну дію відкриває слово `weil`."
+}
+},
+{
+"exampleIds": [
+"de:21:08",
+"de:21:12"
+],
+"textByLocale": {
+"en": "A simple verb changes position, not person. It was `er hat Hunger`; it becomes `weil er Hunger hat`.\" Don't return `hat` to the subject out of habit in a short statement.",
+"ru": "У простого глагола меняется позиция, а не лицо. Было `er hat Hunger`; становится `weil er Hunger hat`. Не возвращай `hat` к подлежащему по привычке из короткого утверждения.",
+"uk": "У простого дієслова змінюється позиція, а не обличчя. Було `er hat Hunger`; стає `weil er Hunger hat`. Не повертай `hat` до звички, що підлягає з короткого затвердження."
+}
+},
+{
+"exampleIds": [
+"de:21:15",
+"de:21:20"
+],
+"textByLocale": {
+"en": "If the reason consists almost entirely of one action, the end of the subordinate clause is more difficult to notice. Look at the longer example next to it and check the same pattern. In the written example, the parts are separated by a comma.",
+"ru": "Если причина состоит почти из одного действия, конец придаточного заметить труднее. Посмотри на более длинный соседний пример и проверь ту же схему. В письменном образце части отделяются запятой.",
+"uk": "Якщо причина складається майже з однієї дії, кінець придаткового помітити складніше. Подивися на більш довгий сусідній приклад і перевір ту саму схему. У письмовому зразку частини відокремлюються комою."
+}
+},
+{
+"exampleIds": [
+"de:21:21",
+"de:21:24"
+],
+"textByLocale": {
+"en": "The modal construction on the right contains two verbs. In the type being studied, the action infinitive comes first, followed by the personal form: `umsteigen muss`.\" In a main clause, this same pair would be separated.",
+"ru": "В модальной конструкции справа находятся два глагола. В изучаемом типе сначала инфинитив действия, затем личная форма: `umsteigen muss`. В главной части эта же пара была бы разделена.",
+"uk": "У модальній конструкції праворуч знаходяться два дієслова. У досліджуваному типі спочатку інфінітив дії, потім особиста форма: `umsteigen muss`. У головній частині ця пара була б розділена."
+}
+},
+{
+"exampleIds": [
+"de:21:31",
+"de:21:35"
+],
+"textByLocale": {
+"en": "In the Perfect tense, the order also differs from that of a simple statement. The participle comes before the auxiliary verb: `gewartet hat`, `aufgestanden ist`.\" The person-related form is on the right margin.",
+"ru": "В Perfekt порядок также отличается от простого утверждения. Причастие идёт перед вспомогательным глаголом: `gewartet hat`, `aufgestanden ist`. Форма, связанная с лицом, на правом краю.",
+"uk": "У Perfekt порядок також відрізняється від простого затвердження. Причастя йде перед допоміжним дієсловом: `gewartet hat`, `aufgestanden ist`. Форма, пов'язана з особою, правому краю."
+}
+},
+{
+"exampleIds": [
+"de:21:41",
+"de:21:44"
+],
+"textByLocale": {
+"en": "The cause can be moved forward. The entire subordinate clause occupies the first position of the main clause. After the comma, the personal verb of the main clause comes, not another subject before it.",
+"ru": "Причину можно вынести вперёд. Всё придаточное занимает первую позицию главного предложения. После запятой идёт личный глагол главной части, а не ещё одно подлежащее перед ним.",
+"uk": "Причину можна винести наперед. Все підрядне займає першу позицію головної пропозиції. Після коми йде особисте дієслово головної частини, а не ще одне підлягає перед ним."
+}
+},
+{
+"exampleIds": [
+"de:21:46",
+"de:21:50"
+],
+"textByLocale": {
+"en": "When choosing the order, read the cause and result separately. Don't confuse `weil` with `denn`: they have a similar function, but one word can't simply be substituted for the other while maintaining any order.",
+"ru": "Выбирая порядок, прочитай отдельно причину и результат. Не путай `weil` с `denn`: у них похожая задача, но одного слова нельзя просто подставить вместо другого, сохранив любой порядок.",
+"uk": "Вибираючи порядок, прочитай окремо причину та результат. Не плутай `weil` з `denn`: вони мають схоже завдання, але одне слово не можна просто підставити замість іншого, зберігши будь-який порядок."
+}
+}
+],
+"lab": [
+{
+"bad": "wenn",
+"chapter": 1,
+"id": "de:21:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 21,
+"options": [
+"damit",
+"wenn",
+"weil"
+],
+"slot": 3
+},
+{
+"bad": "damit",
+"chapter": 1,
+"id": "de:21:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 8,
+"options": [
+"weil",
+"als",
+"damit"
+],
+"slot": 4
+},
+{
+"bad": "dass",
+"chapter": 1,
+"id": "de:21:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"weil",
+"als",
+"dass"
+],
+"slot": 4
+},
+{
+"bad": "ob",
+"chapter": 2,
+"id": "de:21:08:lab",
+"item": 8,
+"kind": "build",
+"near": 32,
+"options": [
+"ob",
+"weil",
+"damit"
+],
+"slot": 3
+},
+{
+"bad": "als",
+"chapter": 2,
+"id": "de:21:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"als",
+"weil",
+"nachdem"
+],
+"slot": 3
+},
+{
+"bad": "damit",
+"chapter": 2,
+"id": "de:21:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"weil",
+"damit",
+"als"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 3,
+"id": "de:21:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 18,
+"options": [
+"ob",
+"nachdem",
+"weil"
+],
+"slot": 3
+},
+{
+"bad": "damit",
+"chapter": 3,
+"id": "de:21:17:lab",
+"item": 17,
+"kind": "match",
+"near": 9,
+"options": [
+"als",
+"damit",
+"weil"
+],
+"slot": 3
+},
+{
+"bad": "als",
+"chapter": 3,
+"id": "de:21:19:lab",
+"item": 19,
+"kind": "build",
+"near": 27,
+"options": [
+"dass",
+"weil",
+"als"
+],
+"slot": 4
+},
+{
+"bad": "wenn",
+"chapter": 4,
+"id": "de:21:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 9,
+"options": [
+"wenn",
+"ob",
+"weil"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 4,
+"id": "de:21:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 8,
+"options": [
+"nachdem",
+"dass",
+"weil"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 4,
+"id": "de:21:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 2,
+"options": [
+"weil",
+"als",
+"nachdem"
+],
+"slot": 3
+},
+{
+"bad": "dass",
+"chapter": 5,
+"id": "de:21:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"weil",
+"dass",
+"damit"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 5,
+"id": "de:21:31:lab",
+"item": 31,
+"kind": "build",
+"near": 2,
+"options": [
+"damit",
+"nachdem",
+"weil"
+],
+"slot": 3
+},
+{
+"bad": "als",
+"chapter": 5,
+"id": "de:21:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 22,
+"options": [
+"ob",
+"weil",
+"als"
+],
+"slot": 3
+},
+{
+"bad": "dass",
+"chapter": 6,
+"id": "de:21:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"dass",
+"weil",
+"damit"
+],
+"slot": 4
+},
+{
+"bad": "damit",
+"chapter": 6,
+"id": "de:21:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 7,
+"options": [
+"damit",
+"weil",
+"nachdem"
+],
+"slot": 4
+},
+{
+"bad": "Ob",
+"chapter": 6,
+"id": "de:21:42:lab",
+"item": 42,
+"kind": "match",
+"near": 49,
+"options": [
+"Ob",
+"Als",
+"Weil"
+],
+"slot": 0
+},
+{
+"bad": "Ob",
+"chapter": 7,
+"id": "de:21:45:lab",
+"item": 45,
+"kind": "build",
+"near": 9,
+"options": [
+"Ob",
+"Weil",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "Wenn",
+"chapter": 7,
+"id": "de:21:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 49,
+"options": [
+"Damit",
+"Weil",
+"Wenn"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"Ich bin müde.",
+"weil ich müde bin"
+],
+[
+"Er hat Hunger.",
+"weil er Hunger hat"
+],
+[
+"Ich muss umsteigen.",
+"weil ich umsteigen muss"
+],
+[
+"Sie ist aufgestanden.",
+"weil sie aufgestanden ist"
+]
+],
+"title": {
+"en": "Cause after `weil`: the verb goes to the end",
+"ru": "Причина после `weil`: глагол уходит в конец",
+"uk": "Причина після `weil`: дієслово кінчається"
+}
+},
+"exampleResolved": [
+{
+"id": "de:21:01",
+"target": "Ich bleibe hier, weil ich müde bin.",
+"ru": "Я останусь здесь, потому что устал.",
+"uk": "Я залишусь тут, бо втомився."
+},
+{
+"id": "de:21:06",
+"target": "Ich nehme den Bus, weil es regnet.",
+"ru": "Я еду на автобусе, потому что идёт дождь.",
+"uk": "Я їду автобусом, тому що йде дощ."
+},
+{
+"id": "de:21:08",
+"target": "Tom isst jetzt, weil er Hunger hat.",
+"ru": "Том ест сейчас, потому что проголодался.",
+"uk": "Том їсть зараз, бо зголоднів."
+},
+{
+"id": "de:21:12",
+"target": "Anna schreibt, weil ihr Handy kaputt ist.",
+"ru": "Анна пишет, потому что у неё сломался телефон.",
+"uk": "Анна пише, бо в неї зламався телефон."
+},
+{
+"id": "de:21:15",
+"target": "Ich schließe das Fenster, weil es zieht.",
+"ru": "Я закрываю окно, потому что дует.",
+"uk": "Я зачиняю вікно, бо дме."
+},
+{
+"id": "de:21:20",
+"target": "Die Gäste warten, weil das Zimmer noch nicht fertig ist.",
+"ru": "Гости ждут, потому что номер ещё не готов.",
+"uk": "Гості чекають, бо номер ще не готовий."
+},
+{
+"id": "de:21:21",
+"target": "Ich fahre früher, weil ich umsteigen muss.",
+"ru": "Я выезжаю раньше, потому что мне предстоит пересадка.",
+"uk": "Я виїжджаю раніше, тому що мені треба робити пересадку."
+},
+{
+"id": "de:21:24",
+"target": "Tom übt, weil er besser sprechen will.",
+"ru": "Том занимается, потому что хочет лучше говорить.",
+"uk": "Том займається, тому що хоче краще говорити."
+},
+{
+"id": "de:21:31",
+"target": "Anna ist müde, weil sie früh aufgestanden ist.",
+"ru": "Анна устала, потому что рано встала.",
+"uk": "Анна втомилася, бо рано встала."
+},
+{
+"id": "de:21:35",
+"target": "Sie ist nervös, weil der Arzt angerufen hat.",
+"ru": "Она нервничает, потому что звонил врач.",
+"uk": "Вона нервується, бо дзвонив лікар."
+},
+{
+"id": "de:21:41",
+"target": "Weil es regnet, bleiben wir im Café.",
+"ru": "Из-за дождя мы остаёмся в кафе.",
+"uk": "Через дощ ми залишаємось у кафе."
+},
+{
+"id": "de:21:44",
+"target": "Weil das Kind schläft, sprechen wir leise.",
+"ru": "Поскольку ребёнок спит, мы говорим тихо.",
+"uk": "Оскільки дитина спить, ми говоримо тихо."
+},
+{
+"id": "de:21:46",
+"target": "Weil der Aufzug kaputt ist, nehmen wir die Treppe.",
+"ru": "Поскольку лифт сломан, мы идём по лестнице.",
+"uk": "Оскільки ліфт зламаний, ми йдемо сходами."
+},
+{
+"id": "de:21:50",
+"target": "Weil die Ampel rot ist, warten wir hier.",
+"ru": "Поскольку горит красный, мы ждём здесь.",
+"uk": "Оскільки горить червоний, ми чекаємо тут."
+}
+]
+},
+{
+"lesson": 22,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:22:01",
+"de:22:06"
+],
+"textByLocale": {
+"en": "Conveying a message is not the same as stating a reason. In `Tom sagt, dass …`,\" we expect what he said. Don't look for a necessary cause-and-effect relationship between the parts.",
+"ru": "Передать сообщение — не то же самое, что назвать причину. В `Tom sagt, dass …` мы ждём, что именно он сказал. Не ищи обязательной причинно-следственной связи между частями.",
+"uk": "Надіслати повідомлення не те саме, що назвати причину. У `Tom sagt, dass …` ми чекаємо, що саме він сказав. Не шукай обов'язкового причинно-наслідкового зв'язку між частинами."
+}
+},
+{
+"exampleIds": [
+"de:22:11",
+"de:22:17"
+],
+"textByLocale": {
+"en": "Verbs of hope and conjecture do not confirm a fact. The German construction is the same for both certain knowledge and opinion; the degree of certainty is determined by the verb in the main clause.",
+"ru": "Глаголы надежды и предположения не подтверждают факт. Немецкая конструкция одинакова и для достоверного знания, и для мнения; степень уверенности задаёт глагол в главной части.",
+"uk": "Дієслова надії та припущення не підтверджують факту. Німецька конструкція однакова і достовірного знання, і думки; ступінь впевненості ставить дієслово у головній частині."
+}
+},
+{
+"exampleIds": [
+"de:22:21",
+"de:22:27"
+],
+"textByLocale": {
+"en": "When an action has a separable prefix, the simple verb at the end of the subordinate clause is usually re-attached: `anruft`.\" Don't leave the prefix separate, as in the main clause.",
+"ru": "Когда у действия есть отделяемая приставка, у простого глагола в конце придаточного части обычно снова соединяются: `anruft`. Не оставляй приставку отдельно, как в главном предложении.",
+"uk": "Коли у дії є приставка, що відокремлюється, у простого дієслова в кінці придаткового частини зазвичай знову з'єднуються: `anruft`. Не залишай приставку окремо, як у головному реченні."
+}
+},
+{
+"exampleIds": [
+"de:22:31",
+"de:22:35"
+],
+"textByLocale": {
+"en": "With a modal verb, its finite form closes the subordinate clause. First, find the action in a dictionary, then add whether the person might, wants, or should perform it.",
+"ru": "При модальном глаголе закрывает придаточное его личная форма. Сначала найди действие в словарной форме, затем добавь, может, хочет или должен ли человек его выполнить.",
+"uk": "При модальному дієслові закриває підрядне його особиста форма. Спочатку знайди дію у словниковій формі, потім додай, може, хоче чи має людина її виконати."
+}
+},
+{
+"exampleIds": [
+"de:22:41",
+"de:22:44"
+],
+"textByLocale": {
+"en": "Relate a previous action in its present tense: if someone has already called, keep the past tense. Changing the order after `dass` does not in itself transform the present into the past.",
+"ru": "Прежнее действие передавай в его настоящем смысле: если кто-то уже звонил, оставь прошедшее. Изменение порядка после `dass` само по себе не превращает настоящее в прошлое.",
+"uk": "Колишню дію передавай у його справжньому значенні: якщо хтось уже дзвонив, залиши минуле. Зміна порядку після `dass` сама по собі не перетворює сьогодення на минуле."
+}
+},
+{
+"exampleIds": [
+"de:22:45",
+"de:22:49"
+],
+"textByLocale": {
+"en": "Why two letters `s`? The conjunction `dass` introduces content. The article or pronoun `das` is a different word with a different function, although they are pronounced the same. Choose by role, not by sound.",
+"ru": "Почему две буквы `s`? Союз `dass` вводит содержание. Артикль или местоимение `das` — другое слово с другой задачей, хотя произносятся они одинаково. Выбирай по роли, не по звучанию.",
+"uk": "Чому дві літери `s`? Спілка `dass` запроваджує зміст. Артикль чи займенник `das` — інше слово з іншим завданням, хоча вони вимовляються однаково. Вибирай за роллю, не за звучанням."
+}
+},
+{
+"exampleIds": [
+"de:22:47",
+"de:22:50"
+],
+"textByLocale": {
+"en": "A polite message also follows a rule. In a thank you or apology, the main part can be short. Expand the details after the conjunction and only then check the right margin.",
+"ru": "Вежливое сообщение тоже подчиняется правилу. В благодарности или извинении главная часть может быть короткой. Разворачивай подробности после союза и только там проверяй правый край.",
+"uk": "Ввічливе повідомлення також підпорядковується правилу. У подяці чи вибаченні головна частина може бути короткою. Розгортай подробиці після спілки і тільки там перевіряй правий край."
+}
+}
+],
+"lab": [
+{
+"bad": "nachdem",
+"chapter": 1,
+"id": "de:22:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 31,
+"options": [
+"weil",
+"nachdem",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "ob",
+"chapter": 1,
+"id": "de:22:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 44,
+"options": [
+"ob",
+"nachdem",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "damit",
+"chapter": 1,
+"id": "de:22:05:lab",
+"item": 5,
+"kind": "match",
+"near": 31,
+"options": [
+"dass",
+"ob",
+"damit"
+],
+"slot": 2
+},
+{
+"bad": "damit",
+"chapter": 2,
+"id": "de:22:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"damit",
+"als",
+"dass"
+],
+"slot": 3
+},
+{
+"bad": "nachdem",
+"chapter": 2,
+"id": "de:22:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 37,
+"options": [
+"wenn",
+"nachdem",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "weil",
+"chapter": 2,
+"id": "de:22:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 6,
+"options": [
+"weil",
+"dass",
+"damit"
+],
+"slot": 2
+},
+{
+"bad": "damit",
+"chapter": 3,
+"id": "de:22:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 43,
+"options": [
+"damit",
+"dass",
+"wenn"
+],
+"slot": 2
+},
+{
+"bad": "als",
+"chapter": 3,
+"id": "de:22:17:lab",
+"item": 17,
+"kind": "match",
+"near": 11,
+"options": [
+"dass",
+"nachdem",
+"als"
+],
+"slot": 2
+},
+{
+"bad": "damit",
+"chapter": 3,
+"id": "de:22:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"damit",
+"als",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "wenn",
+"chapter": 4,
+"id": "de:22:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 44,
+"options": [
+"dass",
+"wenn",
+"ob"
+],
+"slot": 2
+},
+{
+"bad": "weil",
+"chapter": 4,
+"id": "de:22:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 13,
+"options": [
+"dass",
+"wenn",
+"weil"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 4,
+"id": "de:22:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 17,
+"options": [
+"dass",
+"nachdem",
+"weil"
+],
+"slot": 2
+},
+{
+"bad": "obwohl",
+"chapter": 5,
+"id": "de:22:29:lab",
+"item": 29,
+"kind": "match",
+"near": 18,
+"options": [
+"damit",
+"obwohl",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 5,
+"id": "de:22:31:lab",
+"item": 31,
+"kind": "build",
+"near": 1,
+"options": [
+"nachdem",
+"damit",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "nachdem",
+"chapter": 5,
+"id": "de:22:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 40,
+"options": [
+"obwohl",
+"dass",
+"nachdem"
+],
+"slot": 2
+},
+{
+"bad": "damit",
+"chapter": 6,
+"id": "de:22:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 20,
+"options": [
+"dass",
+"als",
+"damit"
+],
+"slot": 2
+},
+{
+"bad": "obwohl",
+"chapter": 6,
+"id": "de:22:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 17,
+"options": [
+"obwohl",
+"dass",
+"ob"
+],
+"slot": 2
+},
+{
+"bad": "ob",
+"chapter": 6,
+"id": "de:22:42:lab",
+"item": 42,
+"kind": "match",
+"near": 21,
+"options": [
+"dass",
+"ob",
+"obwohl"
+],
+"slot": 2
+},
+{
+"bad": "wenn",
+"chapter": 7,
+"id": "de:22:45:lab",
+"item": 45,
+"kind": "build",
+"near": 50,
+"options": [
+"wenn",
+"dass",
+"damit"
+],
+"slot": 3
+},
+{
+"bad": "nachdem",
+"chapter": 7,
+"id": "de:22:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 4,
+"options": [
+"dass",
+"als",
+"nachdem"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"Anna ist hier.",
+"dass Anna hier ist"
+],
+[
+"Sie ruft an.",
+"dass sie anruft"
+],
+[
+"Sie kann kommen.",
+"dass sie kommen kann"
+],
+[
+"Er hat angerufen.",
+"dass er angerufen hat"
+]
+],
+"title": {
+"en": "Reporting what someone said: `dass`",
+"ru": "Передаю содержание сообщения: `dass`",
+"uk": "Передаємо зміст повідомлення: `dass`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:22:01",
+"target": "Ich weiß, dass Anna hier ist.",
+"ru": "Я знаю, что Анна здесь.",
+"uk": "Я знаю, що Анна тут."
+},
+{
+"id": "de:22:06",
+"target": "Tom sagt, dass er müde ist.",
+"ru": "Том говорит, что он устал.",
+"uk": "Том каже, що він втомився."
+},
+{
+"id": "de:22:11",
+"target": "Ich glaube, dass der Laden offen ist.",
+"ru": "Я думаю, что магазин открыт.",
+"uk": "Я думаю, що магазин відкритий."
+},
+{
+"id": "de:22:17",
+"target": "Ich hoffe, dass der Schlüssel passt.",
+"ru": "Надеюсь, ключ подойдёт.",
+"uk": "Сподіваюся, ключ підійде."
+},
+{
+"id": "de:22:21",
+"target": "Anna schreibt, dass sie später kommt.",
+"ru": "Анна пишет, что придёт позже.",
+"uk": "Ганна пише, що прийде пізніше."
+},
+{
+"id": "de:22:27",
+"target": "Sie verspricht, dass sie morgen anruft.",
+"ru": "Она обещает, что позвонит завтра.",
+"uk": "Вона обіцяє, що подзвонить завтра."
+},
+{
+"id": "de:22:31",
+"target": "Ich weiß, dass wir hier umsteigen müssen.",
+"ru": "Я знаю, что нам надо здесь пересесть.",
+"uk": "Я знаю, що нам треба тут пересісти."
+},
+{
+"id": "de:22:35",
+"target": "Sie schreibt, dass sie früher fahren möchte.",
+"ru": "Она пишет, что хочет выехать раньше.",
+"uk": "Вона пише, що хоче виїхати раніше."
+},
+{
+"id": "de:22:41",
+"target": "Ich weiß, dass der Brief angekommen ist.",
+"ru": "Я знаю, что письмо пришло.",
+"uk": "Я знаю, що лист надійшов."
+},
+{
+"id": "de:22:44",
+"target": "Wir hören, dass der Zug ausgefallen ist.",
+"ru": "Мы слышим, что поезд отменили.",
+"uk": "Ми чуємо, що потяг скасували."
+},
+{
+"id": "de:22:45",
+"target": "Ich freue mich, dass du Zeit hast.",
+"ru": "Я рад, что у тебя есть время.",
+"uk": "Я радий, що в тебе є час."
+},
+{
+"id": "de:22:49",
+"target": "Es stimmt, dass die Miete steigt.",
+"ru": "Правда, что квартплата растёт.",
+"uk": "Правда, що квартплата зростає."
+},
+{
+"id": "de:22:47",
+"target": "Es ist wichtig, dass wir pünktlich sind.",
+"ru": "Важно, чтобы мы пришли вовремя.",
+"uk": "Важливо, щоб ми прийшли вчасно."
+},
+{
+"id": "de:22:50",
+"target": "Danke, dass du auf mich gewartet hast.",
+"ru": "Спасибо, что подождал меня.",
+"uk": "Дякую, що зачекав мене."
+}
+]
+}
+]

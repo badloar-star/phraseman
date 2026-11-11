@@ -1,0 +1,850 @@
+{
+ "lang": "fr",
+ "lesson": 30,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:30:01",
+   "target": "Il faut que je parte.",
+   "ru": "Мне нужно уйти.",
+   "uk": "Я маю піти."
+  },
+  {
+   "id": "fr:30:02",
+   "target": "Il faut que tu partes.",
+   "ru": "Тебе нужно уйти.",
+   "uk": "Тобі треба піти."
+  },
+  {
+   "id": "fr:30:03",
+   "target": "Il faut qu’elle parte.",
+   "ru": "Ей нужно уйти.",
+   "uk": "Вона має піти."
+  },
+  {
+   "id": "fr:30:04",
+   "target": "Il faut que nous partions.",
+   "ru": "Нам нужно уйти.",
+   "uk": "Ми маємо піти."
+  },
+  {
+   "id": "fr:30:05",
+   "target": "Il faut que vous partiez.",
+   "ru": "Вам нужно уйти.",
+   "uk": "Ви повинні піти."
+  },
+  {
+   "id": "fr:30:06",
+   "target": "Il faut qu’ils partent.",
+   "ru": "Им нужно уйти.",
+   "uk": "Вони мають піти."
+  },
+  {
+   "id": "fr:30:07",
+   "target": "Il faut que je sois là.",
+   "ru": "Мне нужно быть там.",
+   "uk": "Мені потрібно бути там."
+  },
+  {
+   "id": "fr:30:08",
+   "target": "Il faut que tu sois prêt.",
+   "ru": "Нужно, чтобы ты был готов.",
+   "uk": "Потрібно, щоб ти був готовий."
+  },
+  {
+   "id": "fr:30:09",
+   "target": "Il faut qu’elle soit prête.",
+   "ru": "Ей нужно быть готовой.",
+   "uk": "Їй потрібно бути готовою."
+  },
+  {
+   "id": "fr:30:10",
+   "target": "Il faut que nous soyons à l’heure.",
+   "ru": "Нам нужно быть вовремя.",
+   "uk": "Нам потрібно бути вчасно."
+  },
+  {
+   "id": "fr:30:11",
+   "target": "Il faut que j’aie une pièce d’identité.",
+   "ru": "Мне нужно иметь при себе удостоверение личности.",
+   "uk": "Мені потрібно мати при собі посвідчення особи."
+  },
+  {
+   "id": "fr:30:12",
+   "target": "Il faut que tu aies ton badge.",
+   "ru": "Нужно, чтобы у тебя был с собой пропуск.",
+   "uk": "Потрібно, щоб у тебе була з собою перепустка."
+  },
+  {
+   "id": "fr:30:13",
+   "target": "Il faut qu’elle ait un billet.",
+   "ru": "Ей нужен билет.",
+   "uk": "Їй потрібно мати квиток."
+  },
+  {
+   "id": "fr:30:14",
+   "target": "Il faut que vous ayez le reçu.",
+   "ru": "Нужно, чтобы у вас был с собой чек.",
+   "uk": "Потрібно, щоб у вас був із собою чек."
+  },
+  {
+   "id": "fr:30:15",
+   "target": "Il faut qu’ils aient assez de place.",
+   "ru": "Им нужно достаточно места.",
+   "uk": "Їм потрібно достатньо місця."
+  },
+  {
+   "id": "fr:30:16",
+   "target": "Il faut que je fasse une copie.",
+   "ru": "Мне нужно сделать копию.",
+   "uk": "Мені потрібно зробити копію."
+  },
+  {
+   "id": "fr:30:17",
+   "target": "Il faut que tu fasses attention.",
+   "ru": "Тебе нужно быть внимательным.",
+   "uk": "Тобі потрібно бути уважним."
+  },
+  {
+   "id": "fr:30:18",
+   "target": "Il faut qu’on fasse une pause.",
+   "ru": "Нам нужно сделать перерыв.",
+   "uk": "Нам потрібно зробити перерву."
+  },
+  {
+   "id": "fr:30:19",
+   "target": "Il faut que vous fassiez un choix.",
+   "ru": "Вам нужно сделать выбор.",
+   "uk": "Вам потрібно зробити вибір."
+  },
+  {
+   "id": "fr:30:20",
+   "target": "Il faut qu’elles fassent leurs valises.",
+   "ru": "Им нужно собрать чемоданы.",
+   "uk": "Їм потрібно зібрати валізи."
+  },
+  {
+   "id": "fr:30:21",
+   "target": "Il faut que j’aille à la poste.",
+   "ru": "Мне нужно сходить на почту.",
+   "uk": "Мені потрібно йти на пошту."
+  },
+  {
+   "id": "fr:30:22",
+   "target": "Il faut que tu ailles à la banque.",
+   "ru": "Тебе нужно сходить в банк.",
+   "uk": "Тобі треба сходити до банку."
+  },
+  {
+   "id": "fr:30:23",
+   "target": "Il faut qu’il aille chez le médecin.",
+   "ru": "Ему нужно сходить к врачу.",
+   "uk": "Йому потрібно йти до лікаря."
+  },
+  {
+   "id": "fr:30:24",
+   "target": "Il faut que nous allions au bureau avant le repas.",
+   "ru": "Нам нужно сходить в офис до обеда.",
+   "uk": "Нам потрібно піти в офіс до обіду."
+  },
+  {
+   "id": "fr:30:25",
+   "target": "Il faut que vous alliez à l’accueil.",
+   "ru": "Вам нужно подойти к стойке регистрации.",
+   "uk": "Вам потрібно піти до стійки реєстрації."
+  },
+  {
+   "id": "fr:30:26",
+   "target": "Il faut qu’elles aillent au bureau.",
+   "ru": "Им нужно идти в офис.",
+   "uk": "Їм потрібно йти до офісу."
+  },
+  {
+   "id": "fr:30:27",
+   "target": "Il faut que je prenne une petite portion.",
+   "ru": "Мне нужно взять небольшую порцию.",
+   "uk": "Мені потрібно взяти невелику порцію."
+  },
+  {
+   "id": "fr:30:28",
+   "target": "Il faut qu’elle prenne son ordonnance.",
+   "ru": "Ей нужно взять свой рецепт.",
+   "uk": "Їй треба взяти свій рецепт."
+  },
+  {
+   "id": "fr:30:29",
+   "target": "Il faut que nous prenions un ticket.",
+   "ru": "Нам нужно купить билет.",
+   "uk": "Нам потрібно купити квиток."
+  },
+  {
+   "id": "fr:30:30",
+   "target": "Il faut que vous preniez rendez-vous.",
+   "ru": "Вам нужно записаться на прием.",
+   "uk": "Вам потрібно записатися на прийом."
+  },
+  {
+   "id": "fr:30:31",
+   "target": "Il faut que le sol soit sec.",
+   "ru": "Нужно, чтобы пол был сухим.",
+   "uk": "Потрібно, щоб підлога була сухою."
+  },
+  {
+   "id": "fr:30:32",
+   "target": "Il faut que le résultat soit lisible.",
+   "ru": "Результат должен быть разборчивым.",
+   "uk": "Результат має бути розбірливим."
+  },
+  {
+   "id": "fr:30:33",
+   "target": "Il faut que le devis soit lisible.",
+   "ru": "Смета должна быть разборчивой.",
+   "uk": "Кошторис має бути розбірливим."
+  },
+  {
+   "id": "fr:30:34",
+   "target": "Il faut que les enfants restent ensemble.",
+   "ru": "Дети должны оставаться вместе.",
+   "uk": "Діти мають залишатися разом."
+  },
+  {
+   "id": "fr:30:35",
+   "target": "Il faut que la salle soit vide.",
+   "ru": "Комната должна быть пустой.",
+   "uk": "Кімната має бути порожньою."
+  },
+  {
+   "id": "fr:30:36",
+   "target": "Il faut que tu vérifies la date.",
+   "ru": "Тебе нужно проверить дату.",
+   "uk": "Тобі потрібно перевірити дату."
+  },
+  {
+   "id": "fr:30:37",
+   "target": "Il faut qu’on garde l’enveloppe.",
+   "ru": "Мы должны сохранить конверт.",
+   "uk": "Ми повинні зберегти конверт."
+  },
+  {
+   "id": "fr:30:38",
+   "target": "Il faut que vous signiez en bas.",
+   "ru": "Вы должны расписаться внизу.",
+   "uk": "Ви повинні підписатися внизу."
+  },
+  {
+   "id": "fr:30:39",
+   "target": "Il faut que je retrouve la confirmation de notre séjour.",
+   "ru": "Мне нужно найти подтверждение нашего проживания.",
+   "uk": "Мені потрібно знайти підтвердження нашого перебування."
+  },
+  {
+   "id": "fr:30:40",
+   "target": "Il faut qu’elle vérifie les disponibilités avant vendredi.",
+   "ru": "Ей нужно проверить наличие мест до пятницы.",
+   "uk": "Їй потрібно перевірити наявність місць до п'ятниці."
+  },
+  {
+   "id": "fr:30:41",
+   "target": "Il ne faut pas que tu partes seul.",
+   "ru": "Тебе не следует уходить одному.",
+   "uk": "Тобі не слід йти одному."
+  },
+  {
+   "id": "fr:30:42",
+   "target": "Il ne faut pas que le lait déborde.",
+   "ru": "Молоко не должно выкипеть.",
+   "uk": "Молоко не повинно википіти."
+  },
+  {
+   "id": "fr:30:43",
+   "target": "Il ne faut pas qu’on perde le reçu.",
+   "ru": "Мы не должны потерять чек.",
+   "uk": "Ми не повинні загубити чек."
+  },
+  {
+   "id": "fr:30:44",
+   "target": "Il faut que quelqu’un prévienne le gardien.",
+   "ru": "Кто-то должен сообщить охраннику.",
+   "uk": "Хтось повинен сказати охоронцю."
+  },
+  {
+   "id": "fr:30:45",
+   "target": "Il faut que l’escalier soit bien éclairé.",
+   "ru": "Лестница должна быть хорошо освещена.",
+   "uk": "Сходи мають бути добре освітлені."
+  },
+  {
+   "id": "fr:30:46",
+   "target": "Il faut que vous veniez demain matin.",
+   "ru": "Вам нужно прийти завтра утром.",
+   "uk": "Вам потрібно прийти завтра вранці."
+  },
+  {
+   "id": "fr:30:47",
+   "target": "Il faut que nous sachions le prix avant de signer.",
+   "ru": "Нам нужно знать цену до подписания.",
+   "uk": "Нам потрібно знати ціну перед підписанням."
+  },
+  {
+   "id": "fr:30:48",
+   "target": "Il faut que tu choisisses une place côté allée.",
+   "ru": "Тебе нужно выбрать место у прохода.",
+   "uk": "Тобі потрібно вибрати місце біля проходу."
+  },
+  {
+   "id": "fr:30:49",
+   "target": "Il faut que la réparation soit terminée lundi.",
+   "ru": "Ремонт должен быть завершен к понедельнику.",
+   "uk": "Ремонт потрібно завершити до понеділка."
+  },
+  {
+   "id": "fr:30:50",
+   "target": "Il faut que j’éteigne la lumière en sortant.",
+   "ru": "Мне нужно выключить свет, когда я ухожу.",
+   "uk": "Мені потрібно вимкнути світло, коли я піду."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le gardien",
+   "ru": "смотритель, сторож",
+   "uk": "доглядач, сторож"
+  },
+  {
+   "lemma": "le sol",
+   "ru": "пол",
+   "uk": "підлога"
+  },
+  {
+   "lemma": "lisible",
+   "ru": "разборчивый",
+   "uk": "розбірливий"
+  },
+  {
+   "lemma": "la réparation",
+   "ru": "ремонт (как существительное)",
+   "uk": "ремонт (як іменник)"
+  },
+  {
+   "lemma": "déborder",
+   "ru": "переливаться через край",
+   "uk": "переливатися через край"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon",
+  "l’œuf (m.)",
+  "le bol",
+  "la barquette",
+  "la moitié",
+  "le carton",
+  "le fauteuil",
+  "l’échelle (f.)",
+  "le meilleur souvenir",
+  "la portion",
+  "l’effort (m.)",
+  "le plombier",
+  "le résultat",
+  "le repas",
+  "la pièce d’identité",
+  "le pot",
+  "le séjour",
+  "la place côté allée",
+  "la disponibilité",
+  "la confirmation",
+  "le devis",
+  "la cave",
+  "le code",
+  "le papier",
+  "la menthe",
+  "le plat"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  },
+  {
+   "lesson": 25,
+   "title": "Сколько из них: местоимение `en`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнить: больше, меньше или так же"
+  },
+  {
+   "lesson": 27,
+   "title": "Сообщить о будущем: `futur simple`"
+  },
+  {
+   "lesson": 28,
+   "title": "Вежливая просьба: `je voudrais`, `pourriez-vous`"
+  },
+  {
+   "lesson": 29,
+   "title": "Как уточнить предмет: `qui` или `que`"
+  }
+ ],
+ "oldTopicTitle": "Что необходимо: `il faut que` + `subjonctif`",
+ "oldTheoryRu": "Когда важно назвать исполнителя, сравни `il faut partir` и `il faut que je parte`. После `que` начинается новая часть со своим подлежащим. Словарный инфинитив туда не вставляют. Форма зависит от лица внутри второй части. В `il faut que nous partions` не безличное `il`, а `nous` объясняет окончание. Точка выбора — слово перед проверяемым глаголом. Особенно заметны нерегулярные формы: `être → sois, soit, soyons`; `avoir → aie, aies, ait`. Не заменяй их привычными формами настоящего `suis` и `ai`. Частое `faire` даёт `fasse`, `fasses`, `fassent`. Конечные буквы называют разных исполнителей. Это не повествование о том, что они делают сейчас. Для `aller` сравни `aille` и `allions`; для `prendre` — `prenne` и `prenions`. Запомни пару ед. и мн. числа, прежде чем пытаться переносить окончание на другую основу. Не у всех глаголов нужная форма заметно отличается от настоящего. В `il faut que tu vérifies` написание знакомо. Наклонение всё равно определяется выражением необходимости. `Il ne faut pas que …` выражает запрет или нежелательность действия. Отрицание у `faut` и отрицание внутри самого действия — не автоматически одно и то же. Перечитай, чего требуют избежать."
+}

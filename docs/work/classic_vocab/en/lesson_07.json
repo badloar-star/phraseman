@@ -51,10 +51,15 @@
    "es": "dolor de cabeza"
   },
   "an": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "small word before a thing",
-   "es": "un"
+   "ru": "У нас назначена встреча (We have ___ appointment)",
+   "uk": "У нас призначена зустріч (We have ___ appointment)",
+   "en": "We have one scheduled meeting (We have ___ appointment)",
+   "es": "Tenemos una cita (We have ___ appointment)",
+   "pt-BR": "Temos um compromisso marcado (We have ___ appointment)",
+   "vi": "Chúng tôi có một cuộc hẹn (We have ___ appointment)",
+   "id": "Kami punya janji temu (We have ___ appointment)",
+   "tr": "Bir randevumuz var (We have ___ appointment)",
+   "pl": "Mamy umówione spotkanie (We have ___ appointment)"
   },
   "appointment": {
    "ru": "запись на приём; встреча",

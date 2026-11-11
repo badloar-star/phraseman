@@ -1,0 +1,643 @@
+{
+ "lang": "de",
+ "lesson": 11,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:11:01",
+   "target": "Der Schlüssel liegt auf dem Tisch.",
+   "ru": "Ключ лежит на столе.",
+   "uk": "Ключ лежить на столі."
+  },
+  {
+   "id": "de:11:02",
+   "target": "Die Karte liegt auf dem Tisch.",
+   "ru": "Карта лежит на столе.",
+   "uk": "Карта лежить на столі."
+  },
+  {
+   "id": "de:11:03",
+   "target": "Der Pass liegt in der Tasche.",
+   "ru": "Паспорт в сумке.",
+   "uk": "Паспорт у сумці."
+  },
+  {
+   "id": "de:11:04",
+   "target": "Das Handy liegt in der Tasche.",
+   "ru": "Телефон в сумке.",
+   "uk": "Телефон у сумці."
+  },
+  {
+   "id": "de:11:05",
+   "target": "Die Brille liegt im Auto.",
+   "ru": "Очки лежат в машине.",
+   "uk": "Окуляри лежать у машині."
+  },
+  {
+   "id": "de:11:06",
+   "target": "Die Jacke hängt im Flur.",
+   "ru": "Куртка висит в прихожей.",
+   "uk": "Куртка висить у передпокої."
+  },
+  {
+   "id": "de:11:07",
+   "target": "Das Bild hängt an der Wand.",
+   "ru": "Картина висит на стене.",
+   "uk": "Картина висить на стіні."
+  },
+  {
+   "id": "de:11:08",
+   "target": "Tom sitzt auf dem Stuhl.",
+   "ru": "Том сидит на стуле.",
+   "uk": "Том сидить на стільці."
+  },
+  {
+   "id": "de:11:09",
+   "target": "Anna sitzt auf der Bank.",
+   "ru": "Анна сидит на скамейке.",
+   "uk": "Анна сидить на лавці."
+  },
+  {
+   "id": "de:11:10",
+   "target": "Die Kinder sitzen im Bus.",
+   "ru": "Дети сидят в автобусе.",
+   "uk": "Діти сидять у автобусі."
+  },
+  {
+   "id": "de:11:11",
+   "target": "Das Fahrrad steht vor der Tür.",
+   "ru": "Велосипед стоит перед дверью.",
+   "uk": "Велосипед стоїть перед дверима."
+  },
+  {
+   "id": "de:11:12",
+   "target": "Der Koffer steht neben der Tür.",
+   "ru": "Чемодан стоит рядом с дверью.",
+   "uk": "Валіза стоїть поруч із дверима."
+  },
+  {
+   "id": "de:11:13",
+   "target": "Die Schuhe stehen unter der Bank.",
+   "ru": "Обувь стоит под скамейкой.",
+   "uk": "Взуття стоїть під лавкою."
+  },
+  {
+   "id": "de:11:14",
+   "target": "Die Lampe steht neben dem Bett.",
+   "ru": "Лампа стоит рядом с кроватью.",
+   "uk": "Лампа стоїть поруч із ліжком."
+  },
+  {
+   "id": "de:11:15",
+   "target": "Die Kiste steht hinter dem Schrank.",
+   "ru": "Ящик стоит за шкафом.",
+   "uk": "Ящик стоїть за шафою."
+  },
+  {
+   "id": "de:11:16",
+   "target": "Der Spiegel hängt über dem Waschbecken.",
+   "ru": "Зеркало висит над раковиной.",
+   "uk": "Дзеркало висить над раковиною."
+  },
+  {
+   "id": "de:11:17",
+   "target": "Die Uhr hängt über der Tür.",
+   "ru": "Часы висят над дверью.",
+   "uk": "Годинник висить над дверима."
+  },
+  {
+   "id": "de:11:18",
+   "target": "Das Handtuch hängt an der Heizung.",
+   "ru": "Полотенце висит на батарее.",
+   "uk": "Рушник висить на батареї."
+  },
+  {
+   "id": "de:11:19",
+   "target": "Der Ball liegt unter dem Bett.",
+   "ru": "Мяч лежит под кроватью.",
+   "uk": "М'яч лежить під ліжком."
+  },
+  {
+   "id": "de:11:20",
+   "target": "Der Teppich liegt vor dem Sofa.",
+   "ru": "Ковёр лежит перед диваном.",
+   "uk": "Килим лежить перед диваном."
+  },
+  {
+   "id": "de:11:21",
+   "target": "Ich bin in der Küche.",
+   "ru": "Я на кухне.",
+   "uk": "Я на кухні."
+  },
+  {
+   "id": "de:11:22",
+   "target": "Du bist im Bad.",
+   "ru": "Ты в ванной.",
+   "uk": "Ти у ванній."
+  },
+  {
+   "id": "de:11:23",
+   "target": "Anna ist im Garten.",
+   "ru": "Анна в саду.",
+   "uk": "Анна в саду."
+  },
+  {
+   "id": "de:11:24",
+   "target": "Tom ist in der Schule.",
+   "ru": "Том в школе.",
+   "uk": "Том у школі."
+  },
+  {
+   "id": "de:11:25",
+   "target": "Wir sind im Zimmer.",
+   "ru": "Мы в комнате.",
+   "uk": "Ми в кімнаті."
+  },
+  {
+   "id": "de:11:26",
+   "target": "Ihr seid am Bahnhof.",
+   "ru": "Вы на вокзале.",
+   "uk": "Ви на вокзалі."
+  },
+  {
+   "id": "de:11:27",
+   "target": "Die Gäste sind im Café.",
+   "ru": "Гости в кафе.",
+   "uk": "Гості у кафе."
+  },
+  {
+   "id": "de:11:28",
+   "target": "Die Kinder spielen auf dem Spielplatz.",
+   "ru": "Дети играют на площадке.",
+   "uk": "Діти грають на майданчику."
+  },
+  {
+   "id": "de:11:29",
+   "target": "Der Hund läuft im Garten.",
+   "ru": "Собака бегает в саду.",
+   "uk": "Собака бігає у саду."
+  },
+  {
+   "id": "de:11:30",
+   "target": "Anna schwimmt im See.",
+   "ru": "Анна плавает в озере.",
+   "uk": "Анна плаває в озері."
+  },
+  {
+   "id": "de:11:31",
+   "target": "Wo liegt der Ausweis?",
+   "ru": "Где лежит удостоверение?",
+   "uk": "Де лежить посвідчення?"
+  },
+  {
+   "id": "de:11:32",
+   "target": "Liegt dein Schal im Flur?",
+   "ru": "Твой шарф лежит в прихожей?",
+   "uk": "Твій шарф лежить у передпокої?"
+  },
+  {
+   "id": "de:11:33",
+   "target": "Steht mein Glas auf dem Tisch?",
+   "ru": "Мой стакан стоит на столе?",
+   "uk": "Моя склянка стоїть на столі?"
+  },
+  {
+   "id": "de:11:34",
+   "target": "Hängt das Bild im Büro?",
+   "ru": "Картина висит в офисе?",
+   "uk": "Картина висить в офісі?"
+  },
+  {
+   "id": "de:11:35",
+   "target": "Sitzt Tom neben dir?",
+   "ru": "Том сидит рядом с тобой?",
+   "uk": "Том сидить поряд з тобою?"
+  },
+  {
+   "id": "de:11:36",
+   "target": "Wartet ihr vor dem Laden?",
+   "ru": "Вы ждёте перед магазином?",
+   "uk": "Ви чекаєте перед магазином?"
+  },
+  {
+   "id": "de:11:37",
+   "target": "Ist die Kasse hinter der Treppe?",
+   "ru": "Касса за лестницей?",
+   "uk": "Каса за сходами?"
+  },
+  {
+   "id": "de:11:38",
+   "target": "Ist der Eingang neben dem Aufzug?",
+   "ru": "Вход рядом с лифтом?",
+   "uk": "Вхід поряд із ліфтом?"
+  },
+  {
+   "id": "de:11:39",
+   "target": "Sind die Tickets in der Jacke?",
+   "ru": "Билеты в куртке?",
+   "uk": "Квитки у куртці?"
+  },
+  {
+   "id": "de:11:40",
+   "target": "Steht die Tasse auf dem Regal?",
+   "ru": "Чашка стоит на полке?",
+   "uk": "Чашка стоїть на полиці?"
+  },
+  {
+   "id": "de:11:41",
+   "target": "Die Post liegt zwischen der Bank und dem Hotel.",
+   "ru": "Почта находится между банком и гостиницей.",
+   "uk": "Пошта знаходиться між банком та готелем."
+  },
+  {
+   "id": "de:11:42",
+   "target": "Die Haltestelle liegt vor dem Krankenhaus.",
+   "ru": "Остановка находится перед больницей.",
+   "uk": "Зупинка знаходиться перед лікарнею."
+  },
+  {
+   "id": "de:11:43",
+   "target": "Der Bus hält an der Ecke.",
+   "ru": "Автобус останавливается на углу.",
+   "uk": "Автобус зупиняється на розі."
+  },
+  {
+   "id": "de:11:44",
+   "target": "Wir treffen uns am Eingang.",
+   "ru": "Мы встречаемся у входа.",
+   "uk": "Ми зустрічаємось біля входу."
+  },
+  {
+   "id": "de:11:45",
+   "target": "Die Gäste warten vor der Halle.",
+   "ru": "Гости ждут перед залом.",
+   "uk": "Гості чекають перед залою."
+  },
+  {
+   "id": "de:11:46",
+   "target": "Die Zahnbürste liegt neben dem Glas.",
+   "ru": "Зубная щётка лежит рядом со стаканом.",
+   "uk": "Зубна щітка лежить поряд зі склянкою."
+  },
+  {
+   "id": "de:11:47",
+   "target": "Der Löffel liegt in der Schublade.",
+   "ru": "Ложка в выдвижном ящике.",
+   "uk": "Ложка у шухляді."
+  },
+  {
+   "id": "de:11:48",
+   "target": "Das Heft liegt zwischen den Büchern.",
+   "ru": "Тетрадь лежит между книгами.",
+   "uk": "Зошит лежить між книгами."
+  },
+  {
+   "id": "de:11:49",
+   "target": "Das Kind schläft auf dem Sofa.",
+   "ru": "Ребёнок спит на диване.",
+   "uk": "Дитина спить на дивані."
+  },
+  {
+   "id": "de:11:50",
+   "target": "Der Hund schläft unter dem Tisch.",
+   "ru": "Собака спит под столом.",
+   "uk": "Собака спить під столом."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Flur",
+   "ru": "коридор, прихожая",
+   "uk": "коридор, передпокій"
+  },
+  {
+   "lemma": "der Spiegel",
+   "ru": "зеркало",
+   "uk": "дзеркало"
+  },
+  {
+   "lemma": "das Handtuch",
+   "ru": "полотенце",
+   "uk": "рушник"
+  },
+  {
+   "lemma": "die Schublade",
+   "ru": "выдвижной ящик",
+   "uk": "висувна скринька"
+  },
+  {
+   "lemma": "das Regal",
+   "ru": "полка, стеллаж",
+   "uk": "полиця, стелаж"
+  },
+  {
+   "lemma": "das Bett",
+   "ru": "кровать",
+   "uk": "ліжко"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  }
+ ],
+ "oldTopicTitle": "Где: предмет уже находится на месте",
+ "oldTheoryRu": "Описание места — как подпись под фотографией. Ты не переносишь предмет, а помогаешь его найти. Ключ лежит на столе, паспорт лежит внутри сумки. Выбирай предлог по тому, где именно надо искать. Лежать, стоять, висеть или сидеть? Немецкое описание места нередко точнее простого «находиться». Очки лежат, чемодан стоит, куртка висит, а человек сидит. Это не четыре разных падежных правила. У одного предмета разные соседи: перед дверью, рядом с нею, за шкафом. Меняй предлог, когда меняется относительное положение, но для ответа на `wo` у этих предлогов сохраняй дательный падеж. Если зеркало висит над раковиной, оно не движется вверх. `Über`, `vor` и другие такие предлоги передают взаимное положение двух вещей. Объект, относительно которого ориентируются, идёт после предлога в дательном: `über dem Waschbecken`, `vor dem Sofa`. У предлога `in` есть обычное сокращение `im` для `in dem`. После `im` не ставят ещё одно `dem`. Чтобы сказать про кухню женского рода, остаётся полная форма `in der`. Движение ещё не означает винительный падеж. Собака может бегать внутри сада, а человек — плавать в озере. Если сообщаешь, где происходит движение, это всё ещё вопрос «где?». Восстанови картину по словам: найди вещь и ориентир. Почта находится между банком и гостиницей, собака спит под столом. Глагол описывает первую вещь, а дательный падеж ориентира показывает, где она."
+}

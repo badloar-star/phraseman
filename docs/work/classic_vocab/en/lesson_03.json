@@ -243,10 +243,15 @@
    "es": "compartir"
   },
   "a": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; в українській немає",
-   "en": "word meaning one of something",
-   "es": "un, una"
+   "ru": "У нас общая кухня (We share ___ kitchen)",
+   "uk": "У нас спільна кухня (We share ___ kitchen)",
+   "en": "We use one kitchen together (We share ___ kitchen)",
+   "es": "Compartimos una cocina (We share ___ kitchen)",
+   "pt-BR": "Compartilhamos uma cozinha (We share ___ kitchen)",
+   "vi": "Chúng tôi dùng chung một căn bếp (We share ___ kitchen)",
+   "id": "Kami berbagi satu dapur (We share ___ kitchen)",
+   "tr": "Ortak bir mutfak kullanıyoruz (We share ___ kitchen)",
+   "pl": "Mamy wspólną kuchnię (We share ___ kitchen)"
   },
   "shares": {
    "ru": "делит",

@@ -23,34 +23,13 @@ describe('standalone survey delivery', () => {
     mockCallable.mockReset();
   });
 
-  it('keeps the source-level Home callsite contract', () => {
-    const client = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_client.ts'), 'utf8'));
-    const home = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8'));
-    const hook = normalizeEol(fs.readFileSync(path.join(ROOT, 'hooks', 'use_home_survey_entry.ts'), 'utf8'));
-    const loader = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'home_survey_entry.ts'), 'utf8'));
-    const screen = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_screen.tsx'), 'utf8'));
-    const controller = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_flow_controller.ts'), 'utf8'));
-
-    expect(client).toContain('export async function fetchActiveSurveyWithRetry');
-    expect(client).toContain('options.attempts ?? 3');
-    expect(client).toContain('wait?: (ms: number) => Promise<void>');
-    expect(client).toMatch(/Math\.min\(\d+, Math\.max\(0, [^\n]*options\.delayMs/);
-    expect(client).toContain('await wait(delayMs)');
-    // зачем (Q90, 01.10): загрузка вынесена из Главной в загрузчик с кэшем 6 ч; Главная держит только хук.
-    expect(loader).toContain('fetchActiveSurveyWithRetry({ stableId: input.stableId, platform: input.platform, lang: input.lang })');
-    expect(hook).toContain('dayKey: getUtcDayKey()');
-    expect(home).toContain('useHomeSurveyEntry(lang, homeRuntimeActive)');
-    expect(home).toContain('<SurveySheetModal');
-    expect(home).not.toContain('primeSurvey(');
-    expect(home).not.toContain("pathname: '/survey_screen'");
-    expect(screen).toContain('takePrimedSurvey(surveyId, scope)');
-    expect(screen).toContain('<SurveySheetModal');
-    expect(controller).toContain('await markSurveyOfferDone({');
-    expect(controller).toContain('stableId,');
-    expect(controller).toContain('dayKey,');
+  it('keeps offer requests out of Home and the root stack', () => {
+    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+    const root = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
+    expect(home).not.toMatch(/useHomeSurveyEntry|fetchActiveSurveyWithRetry|SurveySheetModal/);
+    expect(root).not.toMatch(/survey_screen|primeSurveyOfferCacheFromStorage/);
   });
 
-  // зачем (смета Firebase п.8, 13.10): «опроса нет» — честный ответ ротации, без повтора; повтор — только при ошибке вызова.
   it('an honest «no survey» answer is not retried', async () => {
     mockCallable.mockResolvedValue({ data: { survey: null, completion: null } });
     const wait = jest.fn(async () => {});

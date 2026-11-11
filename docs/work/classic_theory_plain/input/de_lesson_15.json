@@ -1,0 +1,677 @@
+{
+ "lang": "de",
+ "lesson": 15,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:15:01",
+   "target": "Komm bitte rein!",
+   "ru": "Заходи, пожалуйста!",
+   "uk": "Заходь, будь ласка!"
+  },
+  {
+   "id": "de:15:02",
+   "target": "Komm bitte mit!",
+   "ru": "Пойдём со мной, пожалуйста!",
+   "uk": "Ходімо зі мною, будь ласка!"
+  },
+  {
+   "id": "de:15:03",
+   "target": "Warte kurz!",
+   "ru": "Подожди немного!",
+   "uk": "Почекай трохи!"
+  },
+  {
+   "id": "de:15:04",
+   "target": "Warte hier!",
+   "ru": "Подожди здесь!",
+   "uk": "Почекай тут!"
+  },
+  {
+   "id": "de:15:05",
+   "target": "Bleib bitte sitzen!",
+   "ru": "Не вставай, пожалуйста!",
+   "uk": "Не вставай, будь ласка!"
+  },
+  {
+   "id": "de:15:06",
+   "target": "Setz dich!",
+   "ru": "Садись!",
+   "uk": "Сідай!"
+  },
+  {
+   "id": "de:15:07",
+   "target": "Ruf mich an!",
+   "ru": "Позвони мне!",
+   "uk": "Подзвони мені!"
+  },
+  {
+   "id": "de:15:08",
+   "target": "Hör gut zu!",
+   "ru": "Слушай внимательно!",
+   "uk": "Слухай уважно!"
+  },
+  {
+   "id": "de:15:09",
+   "target": "Sag mir deinen Namen!",
+   "ru": "Скажи мне, как тебя зовут!",
+   "uk": "Скажи мені, як тебе звуть!"
+  },
+  {
+   "id": "de:15:10",
+   "target": "Mach das Licht an!",
+   "ru": "Включи свет!",
+   "uk": "Увімкни світло!"
+  },
+  {
+   "id": "de:15:11",
+   "target": "Nimm den Schlüssel!",
+   "ru": "Возьми ключ!",
+   "uk": "Візьми ключ!"
+  },
+  {
+   "id": "de:15:12",
+   "target": "Nimm die nächste Bahn!",
+   "ru": "Поезжай на следующей электричке!",
+   "uk": "Їдь на наступній електричці!"
+  },
+  {
+   "id": "de:15:13",
+   "target": "Steck den Brief in den Briefkasten!",
+   "ru": "Опусти письмо в почтовый ящик!",
+   "uk": "Поклади листа в поштову скриньку!"
+  },
+  {
+   "id": "de:15:14",
+   "target": "Lies die Adresse vor!",
+   "ru": "Прочитай адрес вслух!",
+   "uk": "Прочитай адресу вголос!"
+  },
+  {
+   "id": "de:15:15",
+   "target": "Gib mir die Karte!",
+   "ru": "Дай мне карту!",
+   "uk": "Дай мені мапу!"
+  },
+  {
+   "id": "de:15:16",
+   "target": "Gib dem Kind etwas Wasser!",
+   "ru": "Дай ребёнку немного воды!",
+   "uk": "Дай дитині трохи води!"
+  },
+  {
+   "id": "de:15:17",
+   "target": "Sprich bitte langsamer!",
+   "ru": "Говори, пожалуйста, медленнее!",
+   "uk": "Говори, будь ласка, повільніше!"
+  },
+  {
+   "id": "de:15:18",
+   "target": "Hilf mir kurz!",
+   "ru": "Помоги мне на минутку!",
+   "uk": "Допоможи мені на хвилинку!"
+  },
+  {
+   "id": "de:15:19",
+   "target": "Fahr vorsichtig!",
+   "ru": "Езжай осторожно!",
+   "uk": "Їдь обережно!"
+  },
+  {
+   "id": "de:15:20",
+   "target": "Iss die Suppe!",
+   "ru": "Съешь суп!",
+   "uk": "З'їж суп!"
+  },
+  {
+   "id": "de:15:21",
+   "target": "Kommt bitte rein!",
+   "ru": "Заходите, пожалуйста!",
+   "uk": "Заходьте, будь ласка!"
+  },
+  {
+   "id": "de:15:22",
+   "target": "Wartet am Eingang!",
+   "ru": "Подождите у входа!",
+   "uk": "Зачекайте біля входу!"
+  },
+  {
+   "id": "de:15:23",
+   "target": "Stellt die Taschen hier ab!",
+   "ru": "Поставьте сумки сюда!",
+   "uk": "Поставте сумки сюди!"
+  },
+  {
+   "id": "de:15:24",
+   "target": "Nehmt eure Jacken mit!",
+   "ru": "Возьмите с собой куртки!",
+   "uk": "Візьміть із собою куртки!"
+  },
+  {
+   "id": "de:15:25",
+   "target": "Bleibt zusammen!",
+   "ru": "Держитесь вместе!",
+   "uk": "Тримайтеся разом!"
+  },
+  {
+   "id": "de:15:26",
+   "target": "Schreibt die Nummer auf!",
+   "ru": "Запишите номер!",
+   "uk": "Запишіть номер!"
+  },
+  {
+   "id": "de:15:27",
+   "target": "Macht die Fenster zu!",
+   "ru": "Закройте окна!",
+   "uk": "Закрийте вікна!"
+  },
+  {
+   "id": "de:15:28",
+   "target": "Schaltet den Herd aus!",
+   "ru": "Выключите плиту!",
+   "uk": "Вимкніть плиту!"
+  },
+  {
+   "id": "de:15:29",
+   "target": "Setzt euch hierhin!",
+   "ru": "Садитесь сюда!",
+   "uk": "Сідайте сюди!"
+  },
+  {
+   "id": "de:15:30",
+   "target": "Hört bitte kurz zu!",
+   "ru": "Послушайте минутку, пожалуйста!",
+   "uk": "Послухайте хвилинку, будь ласка!"
+  },
+  {
+   "id": "de:15:31",
+   "target": "Warten Sie bitte hier!",
+   "ru": "Подождите здесь, пожалуйста!",
+   "uk": "Зачекайте тут, будь ласка!"
+  },
+  {
+   "id": "de:15:32",
+   "target": "Nehmen Sie bitte Platz!",
+   "ru": "Присаживайтесь, пожалуйста!",
+   "uk": "Сідайте, будь ласка!"
+  },
+  {
+   "id": "de:15:33",
+   "target": "Zeigen Sie mir bitte Ihren Ausweis!",
+   "ru": "Покажите, пожалуйста, ваше удостоверение!",
+   "uk": "Покажіть, будь ласка, ваше посвідчення!"
+  },
+  {
+   "id": "de:15:34",
+   "target": "Füllen Sie bitte dieses Formular aus!",
+   "ru": "Заполните, пожалуйста, этот бланк!",
+   "uk": "Заповніть, будь ласка, цей бланк!"
+  },
+  {
+   "id": "de:15:35",
+   "target": "Unterschreiben Sie bitte hier!",
+   "ru": "Распишитесь здесь, пожалуйста!",
+   "uk": "Розпишіться тут, будь ласка!"
+  },
+  {
+   "id": "de:15:36",
+   "target": "Folgen Sie mir bitte!",
+   "ru": "Следуйте за мной, пожалуйста!",
+   "uk": "Ідіть за мною, будь ласка!"
+  },
+  {
+   "id": "de:15:37",
+   "target": "Steigen Sie vorne ein!",
+   "ru": "Входите через переднюю дверь!",
+   "uk": "Заходьте через передні двері!"
+  },
+  {
+   "id": "de:15:38",
+   "target": "Rufen Sie morgen wieder an!",
+   "ru": "Перезвоните завтра!",
+   "uk": "Передзвоніть завтра!"
+  },
+  {
+   "id": "de:15:39",
+   "target": "Gehen Sie bis zur Ampel!",
+   "ru": "Идите до светофора!",
+   "uk": "Ідіть до світлофора!"
+  },
+  {
+   "id": "de:15:40",
+   "target": "Biegen Sie rechts ab!",
+   "ru": "Поверните направо!",
+   "uk": "Поверніть праворуч!"
+  },
+  {
+   "id": "de:15:41",
+   "target": "Öffne den Umschlag!",
+   "ru": "Открой конверт!",
+   "uk": "Відкрий конверт!"
+  },
+  {
+   "id": "de:15:42",
+   "target": "Stell die Milch in den Kühlschrank!",
+   "ru": "Поставь молоко в холодильник!",
+   "uk": "Постав молоко в холодильник!"
+  },
+  {
+   "id": "de:15:43",
+   "target": "Bring bitte ein Handtuch mit!",
+   "ru": "Захвати полотенце, пожалуйста!",
+   "uk": "Захопи рушник, будь ласка!"
+  },
+  {
+   "id": "de:15:44",
+   "target": "Vergiss deinen Pass nicht!",
+   "ru": "Не забудь паспорт!",
+   "uk": "Не забудь паспорт!"
+  },
+  {
+   "id": "de:15:45",
+   "target": "Steh morgen früh auf!",
+   "ru": "Встань завтра пораньше!",
+   "uk": "Встань завтра раніше!"
+  },
+  {
+   "id": "de:15:46",
+   "target": "Schließ die Tür leise!",
+   "ru": "Закрой дверь тихо!",
+   "uk": "Зачини двері тихо!"
+  },
+  {
+   "id": "de:15:47",
+   "target": "Lass den Schlüssel hier!",
+   "ru": "Оставь ключ здесь!",
+   "uk": "Залиш ключ тут!"
+  },
+  {
+   "id": "de:15:48",
+   "target": "Sei bitte pünktlich!",
+   "ru": "Пожалуйста, не опаздывай!",
+   "uk": "Будь ласка, не запізнюйся!"
+  },
+  {
+   "id": "de:15:49",
+   "target": "Seid bitte leise!",
+   "ru": "Ведите себя тихо, пожалуйста!",
+   "uk": "Поводьтеся тихо, будь ласка!"
+  },
+  {
+   "id": "de:15:50",
+   "target": "Seien Sie bitte vorsichtig!",
+   "ru": "Будьте осторожны, пожалуйста!",
+   "uk": "Будьте обережні, будь ласка!"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "vorsichtig",
+   "ru": "осторожно, осторожный",
+   "uk": "обережно, обережний"
+  },
+  {
+   "lemma": "unterschreiben",
+   "ru": "подписывать",
+   "uk": "підписувати"
+  },
+  {
+   "lemma": "die Ampel",
+   "ru": "светофор",
+   "uk": "світлофор"
+  },
+  {
+   "lemma": "der Kühlschrank",
+   "ru": "холодильник",
+   "uk": "холодильник"
+  },
+  {
+   "lemma": "pünktlich",
+   "ru": "пунктуально, вовремя",
+   "uk": "пунктуально, вчасно"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  }
+ ],
+ "oldTopicTitle": "Попросить о действии: друг, группа, незнакомый",
+ "oldTheoryRu": "На станции нужно быстро попросить друга подождать. В короткой команде не требуется местоимение `du`: обращение уже понятно из формы и ситуации. `Bitte` смягчает просьбу, но не заменяет окончание. Две части глагола работают и в команде. В просьбе позвонить `ruf` идёт вперёд, а `an` остаётся в конце. Сначала найди весь глагол, иначе можно попросить не о том действии. Частые формы стоит услышать целиком: `nimm`, `gib`, `lies`, `sprich`, `hilf`. Они не образуются простым удалением букв у словарной формы. При смене лица может измениться и гласная. Для группы друзей возьми форму настоящего времени с `ihr`, затем убери местоимение: `ihr wartet` превращается в `wartet`. Тут не нужны отдельные вежливые слова для обозначения числа. Для незнакомого взрослого оставь местоимение `Sie` и поставь его после глагола. Одна и та же форма годится для одного или нескольких адресатов. В отличие от `ihr`, это степень вежливости, а не число знакомых. Порядок важнее длины. В просьбе сначала называешь действие, потом предмет или место: `Gehen Sie bis zur Ampel!`, `Vergiss deinen Pass nicht!`. Не меняй артикль только из-за того, что это команда. У глагола «быть» запомни ряд `sei`, `seid`, `seien Sie`. Все три просят о поведении или состоянии; разница в том, к кому именно обращаются."
+}

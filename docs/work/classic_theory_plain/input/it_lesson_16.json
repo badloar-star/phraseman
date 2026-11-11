@@ -1,0 +1,746 @@
+{
+ "lang": "it",
+ "lesson": 16,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:16:01",
+   "target": "Entra!",
+   "ru": "Заходи!",
+   "uk": "Заходь!"
+  },
+  {
+   "id": "it:16:02",
+   "target": "Entri!",
+   "ru": "Заходите!",
+   "uk": "Заходьте!"
+  },
+  {
+   "id": "it:16:03",
+   "target": "Aspetta!",
+   "ru": "Подожди!",
+   "uk": "Почекай!"
+  },
+  {
+   "id": "it:16:04",
+   "target": "Aspetti!",
+   "ru": "Подождите!",
+   "uk": "Зачекайте!"
+  },
+  {
+   "id": "it:16:05",
+   "target": "Resta qui!",
+   "ru": "Останься здесь!",
+   "uk": "Залишайся тут!"
+  },
+  {
+   "id": "it:16:06",
+   "target": "Resti qui!",
+   "ru": "Останьтесь здесь!",
+   "uk": "Залишайтеся тут!"
+  },
+  {
+   "id": "it:16:07",
+   "target": "Ascolta bene!",
+   "ru": "Слушай внимательно!",
+   "uk": "Слухай уважно!"
+  },
+  {
+   "id": "it:16:08",
+   "target": "Ascolti bene!",
+   "ru": "Слушайте внимательно!",
+   "uk": "Слухайте уважно!"
+  },
+  {
+   "id": "it:16:09",
+   "target": "Guarda davanti a te!",
+   "ru": "Смотри перед собой!",
+   "uk": "Дивись перед собою!"
+  },
+  {
+   "id": "it:16:10",
+   "target": "Guardi davanti a sé!",
+   "ru": "Смотрите перед собой!",
+   "uk": "Дивіться перед собою!"
+  },
+  {
+   "id": "it:16:11",
+   "target": "Chiudi la porta!",
+   "ru": "Закрой дверь!",
+   "uk": "Зачини двері!"
+  },
+  {
+   "id": "it:16:12",
+   "target": "Apri la finestra!",
+   "ru": "Открой окно!",
+   "uk": "Відкрий вікно!"
+  },
+  {
+   "id": "it:16:13",
+   "target": "Metti la borsa qui!",
+   "ru": "Поставь сумку сюда!",
+   "uk": "Постав сумку сюди!"
+  },
+  {
+   "id": "it:16:14",
+   "target": "Tieni il biglietto!",
+   "ru": "Сохрани билет!",
+   "uk": "Збережи квиток!"
+  },
+  {
+   "id": "it:16:15",
+   "target": "Prendi la giacca!",
+   "ru": "Возьми куртку!",
+   "uk": "Візьми куртку!"
+  },
+  {
+   "id": "it:16:16",
+   "target": "Metti via le scarpe!",
+   "ru": "Убери обувь!",
+   "uk": "Прибери взуття!"
+  },
+  {
+   "id": "it:16:17",
+   "target": "Gira a sinistra!",
+   "ru": "Поверни налево!",
+   "uk": "Поверни ліворуч!"
+  },
+  {
+   "id": "it:16:18",
+   "target": "Attraversa al semaforo!",
+   "ru": "Перейди дорогу у светофора!",
+   "uk": "Перейди дорогу біля світлофора!"
+  },
+  {
+   "id": "it:16:19",
+   "target": "Segui il percorso!",
+   "ru": "Следуй по маршруту!",
+   "uk": "Іди за маршрутом!"
+  },
+  {
+   "id": "it:16:20",
+   "target": "Chiama tua sorella!",
+   "ru": "Позвони своей сестре!",
+   "uk": "Подзвони своїй сестрі!"
+  },
+  {
+   "id": "it:16:21",
+   "target": "Firmi in fondo, per favore.",
+   "ru": "Распишитесь внизу, пожалуйста.",
+   "uk": "Розпишіться внизу, будь ласка."
+  },
+  {
+   "id": "it:16:22",
+   "target": "Mostri il biglietto, per favore.",
+   "ru": "Покажите билет, пожалуйста.",
+   "uk": "Покажіть квиток, будь ласка."
+  },
+  {
+   "id": "it:16:23",
+   "target": "Passi dal cortile.",
+   "ru": "Пройдите через двор.",
+   "uk": "Пройдіть через двір."
+  },
+  {
+   "id": "it:16:24",
+   "target": "Prenda la seconda strada a destra.",
+   "ru": "Сверните на вторую улицу направо.",
+   "uk": "Поверніть на другу вулицю праворуч."
+  },
+  {
+   "id": "it:16:25",
+   "target": "Prema il pulsante verde.",
+   "ru": "Нажмите зелёную кнопку.",
+   "uk": "Натисніть зелену кнопку."
+  },
+  {
+   "id": "it:16:26",
+   "target": "Resti dietro la linea.",
+   "ru": "Оставайтесь за линией.",
+   "uk": "Залишайтеся за лінією."
+  },
+  {
+   "id": "it:16:27",
+   "target": "Tenga il passaporto con sé.",
+   "ru": "Держите паспорт при себе.",
+   "uk": "Тримайте паспорт при собі."
+  },
+  {
+   "id": "it:16:28",
+   "target": "Metta il pacco sulla bilancia.",
+   "ru": "Положите посылку на весы.",
+   "uk": "Покладіть посилку на ваги."
+  },
+  {
+   "id": "it:16:29",
+   "target": "Controlli l’importo.",
+   "ru": "Проверьте сумму.",
+   "uk": "Перевірте суму."
+  },
+  {
+   "id": "it:16:30",
+   "target": "Tolga la carta.",
+   "ru": "Заберите карту.",
+   "uk": "Заберіть картку."
+  },
+  {
+   "id": "it:16:31",
+   "target": "Non correre!",
+   "ru": "Не беги!",
+   "uk": "Не біжи!"
+  },
+  {
+   "id": "it:16:32",
+   "target": "Mi porti il modulo firmato, per favore.",
+   "ru": "Принесите (вежл.) мне подписанный бланк, пожалуйста.",
+   "uk": "Принесіть (ввіч.) мені підписаний бланк, будь ласка."
+  },
+  {
+   "id": "it:16:33",
+   "target": "Non dimenticare l’ombrello!",
+   "ru": "Не забудь зонт!",
+   "uk": "Не забудь парасольку!"
+  },
+  {
+   "id": "it:16:34",
+   "target": "Non chiudere la porta a chiave!",
+   "ru": "Не запирай дверь на ключ!",
+   "uk": "Не замикай двері на ключ!"
+  },
+  {
+   "id": "it:16:35",
+   "target": "Non perda la ricevuta!",
+   "ru": "Не потеряйте чек!",
+   "uk": "Не втратьте чек!"
+  },
+  {
+   "id": "it:16:36",
+   "target": "Non lasciare il latte fuori!",
+   "ru": "Не оставляй молоко на улице!",
+   "uk": "Не залишай молоко на вулиці!"
+  },
+  {
+   "id": "it:16:37",
+   "target": "Non aggiunga sale!",
+   "ru": "Не добавляйте соль!",
+   "uk": "Не додавайте сіль!"
+  },
+  {
+   "id": "it:16:38",
+   "target": "Non buttare via questa busta!",
+   "ru": "Не выбрасывай этот конверт!",
+   "uk": "Не викидай цей конверт!"
+  },
+  {
+   "id": "it:16:39",
+   "target": "Non aspetti vicino all’uscita!",
+   "ru": "Не ждите возле выхода!",
+   "uk": "Не чекайте біля виходу!"
+  },
+  {
+   "id": "it:16:40",
+   "target": "Non camminare sull’erba!",
+   "ru": "Не ходи по газону!",
+   "uk": "Не ходи газоном!"
+  },
+  {
+   "id": "it:16:41",
+   "target": "Andiamo al mercato!",
+   "ru": "Пойдём на рынок!",
+   "uk": "Підемо на ринок!"
+  },
+  {
+   "id": "it:16:42",
+   "target": "Facciamo una pausa!",
+   "ru": "Давайте сделаем перерыв!",
+   "uk": "Давайте зробимо перерву!"
+  },
+  {
+   "id": "it:16:43",
+   "target": "Restiamo insieme!",
+   "ru": "Давайте держаться вместе!",
+   "uk": "Давайте триматися разом!"
+  },
+  {
+   "id": "it:16:44",
+   "target": "Troviamo un altro tavolo!",
+   "ru": "Давайте найдём другой столик!",
+   "uk": "Знайдімо інший столик!"
+  },
+  {
+   "id": "it:16:45",
+   "target": "Partiamo prima che piova!",
+   "ru": "Пойдём до того, как начнётся дождь!",
+   "uk": "Підемо до того, як почнеться дощ!"
+  },
+  {
+   "id": "it:16:46",
+   "target": "Allaccia la cintura!",
+   "ru": "Пристегни ремень!",
+   "uk": "Пристебни ремінь!"
+  },
+  {
+   "id": "it:16:47",
+   "target": "Abbassi il volume, per favore.",
+   "ru": "Убавьте громкость, пожалуйста.",
+   "uk": "Зменште гучність, будь ласка."
+  },
+  {
+   "id": "it:16:48",
+   "target": "Chiudi il rubinetto!",
+   "ru": "Закрой кран!",
+   "uk": "Закрий кран!"
+  },
+  {
+   "id": "it:16:49",
+   "target": "Lasci un messaggio dopo il segnale.",
+   "ru": "Оставьте сообщение после сигнала.",
+   "uk": "Залишіть повідомлення після сигналу."
+  },
+  {
+   "id": "it:16:50",
+   "target": "Accendi la lampada accanto al letto!",
+   "ru": "Включи лампу у кровати!",
+   "uk": "Увімкни лампу біля ліжка!"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il volume",
+   "ru": "громкость",
+   "uk": "гучність"
+  },
+  {
+   "lemma": "il rubinetto",
+   "ru": "водопроводный кран",
+   "uk": "водопровідний кран"
+  },
+  {
+   "lemma": "la cintura",
+   "ru": "ремень",
+   "uk": "ремінь"
+  },
+  {
+   "lemma": "la bilancia",
+   "ru": "весы",
+   "uk": "ваги"
+  },
+  {
+   "lemma": "l’importo",
+   "ru": "сумма платежа",
+   "uk": "сума платежу"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  }
+ ],
+ "oldTopicTitle": "Дай инструкцию: повелительная форма",
+ "oldTheoryRu": "У приказа и приглашения одна грамматическая форма, но разный тон. `Entra!` может быть дружелюбным приглашением войти. Не добавляй «немедленно», если этого нет в подсказке. Обращение на `tu` и вежливое `Lei` дают разные окончания. Вежливая форма не обязана начинаться с самого слова `Lei`: адресат понятен из ситуации. Вещь и действие сохраняются независимо: `aprire` — открыть, `prendere` — взять. Если тебя просят открыть окно, правильно выбранное обращение не спасёт неверно выбранное действие. `Per favore` смягчает просьбу и может стоять в начале или в конце. Само выражение вежливости не меняет автоматически `tu` на `Lei`; на это указывает ситуация. В отрицательной команде одному знакомому `non` идёт с инфинитивом: `Non correre!` Не бери утвердительное `corri` после `non` в этом образце. Когда предлагаешь совместное действие, используется форма для «мы»: `andiamo`, `facciamo`. Это приглашение обоим, а не команда собеседнику действовать в одиночку. Для группы подходит форма `voi`, для одного клиента — вежливое `Lei`. Если команда обращена к группе, не выбирай единственное число только потому, что речь идёт об одном предмете."
+}

@@ -1,0 +1,1693 @@
+[
+{
+"lesson": 5,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 5,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Где? Кто? Что? Вопрос с неизвестной деталью",
+"formula": "¿Dónde + форма estar + …? · ¿Quién + форма ser или estar + …? · ¿Qué es…?",
+"story": "Ждёшь название места — начни с dónde. Ждёшь имя человека — с quién. В вопросе оба слова пишутся с ударением.",
+"use": "Попроси назвать место, человека или предмет. Выбери вопросительное слово по тому, какой ответ тебе нужен.",
+"choose": "В паре ¿Dónde está la llave? и ¿Dónde están las llaves? слово dónde остаётся прежним. Один ключ требует está, несколько — están. Ты уточняешь местонахождение уже известного предмета, а не спрашиваешь, существует ли он. Место в ответе может быть коротким: En el bolso.",
+"nuance": "Когда личность неизвестна, нейтральный вопрос строится с quién está. Если спрашиваешь, кто эти несколько людей, используй согласованную пару quiénes son.",
+"wrong": "¿Quién están en casa?",
+"right": "¿Quién está en casa?",
+"chapters": [
+{
+"title": "Проверь себя возможным ответом",
+"body": "Если подходящий ответ — «на станции», начинай с dónde. Если ответ — «Ана», спрашивай quién. Если человек должен назвать предмет или выбрать нужную книгу, нужен qué. Один и тот же врач может стать причиной двух разных вопросов: где его найти или кто он среди этих людей.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «el médico».",
+"samples": [
+"es:05:29",
+"es:05:41",
+"es:05:33"
+],
+"focusId": "es:05:41"
+},
+{
+"title": "Dónde: изменяется глагол, не вопросительное слово",
+"body": "В паре ¿Dónde está la llave? и ¿Dónde están las llaves? слово dónde остаётся прежним. Один ключ требует está, несколько — están. Ты уточняешь местонахождение уже известного предмета, а не спрашиваешь, существует ли он. Место в ответе может быть коротким: En el bolso.",
+"note": "están — форма для «несколько людей или предметов». Ориентир в этом образце: «las llaves».",
+"samples": [
+"es:05:06",
+"es:05:07",
+"es:05:43",
+"es:05:44"
+],
+"focusId": "es:05:07"
+},
+{
+"title": "Quién с estar и с ser",
+"body": "¿Quién está en casa? — дом известен, назови того, кто там. ¿Quién es ella? — ты видишь женщину и хочешь узнать, кто она. Не заучивай «после quién всегда ser»: смысл вопроса решает, нужен ser или estar.",
+"note": "В этой фразе собеседник или названная группа определяют форму es: ¿Quién es ella?",
+"samples": [
+"es:05:12",
+"es:05:22",
+"es:05:47",
+"es:05:48"
+],
+"focusId": "es:05:22"
+},
+{
+"title": "Quién или quiénes",
+"body": "Если видишь нескольких женщин и спрашиваешь «Кто они?», в образце два признака множества: quiénes и son. С одной женщиной — quién и es. А когда ты только услышал шум и даже не знаешь, один человек там или несколько, нейтральное ¿Quién está aquí? вполне уместно.",
+"note": "Собеседник должен указать нескольких людей: quiénes + son. Для одного человека было бы quién + es.",
+"samples": [
+"es:05:11",
+"es:05:22",
+"es:05:25",
+"es:05:26"
+],
+"focusId": "es:05:25"
+},
+{
+"title": "Qué отдельно и перед существительным",
+"body": "В ¿Qué es esto? ты ещё не знаешь, что это за вещь. Esto удобно, когда показываешь на то, что рядом с тобой; eso в нашем примере — рядом с собеседником. В ¿Qué libros están en casa? тип предмета известен: нужны конкретные книги. Qué не получает окончания -s, даже когда книг несколько.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «libro».",
+"samples": [
+"es:05:31",
+"es:05:32",
+"es:05:33",
+"es:05:34"
+],
+"focusId": "es:05:33"
+},
+{
+"title": "Куда поставить имя и артикль",
+"body": "В образце ¿Dónde está Ana? порядок такой: что неизвестно → глагол → о ком вопрос. Если спрашиваешь о знакомой вещи, сохрани её артикль: ¿Dónde está el móvil? Но в ¿Qué libro…? место перед libro уже занято словом qué: не собирай qué el libro. Здесь отрабатываются нейтральные образцы, а не запрет на другие порядки слов во всех контекстах.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «el móvil».",
+"samples": [
+"es:05:02",
+"es:05:08",
+"es:05:33"
+],
+"focusId": "es:05:08"
+},
+{
+"title": "Как читать вопрос и куда ставить ударение",
+"body": "В вопросительных dónde, quién, quiénes и qué над гласной пишется ударение. Сохраняй его и у прописной буквы внутри слова: Dónde, а не Donde. Слова quién и qué односложные: знак здесь отличает вопросительные формы на письме. Весь прямой вопрос обрамляется ¿ и ?. В конструкторе знаки не требуют отдельного выбора.",
+"note": "es — форма для «один человек или предмет». Ориентир в этом образце: «qué».",
+"samples": [
+"es:05:01",
+"es:05:21",
+"es:05:25",
+"es:05:31"
+],
+"focusId": "es:05:31"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ты",
+"id": "es:05:23",
+"sample": "¿Quién eres?"
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "один человек или предмет",
+"id": "es:05:21",
+"sample": "¿Quién es él?"
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "вы, неформально к группе в Испании",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "несколько людей или предметов",
+"id": "es:05:25",
+"sample": "¿Quiénes son ellos?"
+}
+],
+"title": "Формы ser"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:05:05",
+"sample": "¿Dónde estoy?"
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": "es:05:01",
+"sample": "¿Dónde estás?"
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "один человек или предмет",
+"id": "es:05:02",
+"sample": "¿Dónde está Ana?"
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "мы",
+"id": "es:05:04",
+"sample": "¿Dónde estamos?"
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "вы, неформально к группе в Испании",
+"id": "es:05:45",
+"sample": "¿Dónde estáis?"
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "несколько людей или предметов",
+"id": "es:05:07",
+"sample": "¿Dónde están las llaves?"
+}
+],
+"title": "Формы estar"
+}
+]
+},
+"uk": {
+"title": "Де? Хто? Що? Запитання з невідомою деталлю",
+"formula": "¿Dónde + форма estar + …? · ¿Quién + форма ser або estar + …? · ¿Qué es…?",
+"story": "Чекаєш назву місця — почни з dónde. Чекаєш ім’я людини — з quién. У питанні обидва слова мають знак наголосу.",
+"use": "Попроси назвати місце, людину або предмет. Обери питальне слово за тим, яка відповідь тобі потрібна.",
+"choose": "У парі ¿Dónde está la llave? та ¿Dónde están las llaves? слово dónde не змінюється. Для одного ключа потрібно está, для кількох — están. Ти уточнюєш місце вже відомого предмета, а не питаєш, чи він існує. Можна коротко відповісти: En el bolso.",
+"nuance": "Коли особа невідома, нейтральне запитання будуємо з quién está. Якщо питаєш, хто ці кілька людей, використай узгоджену пару quiénes son.",
+"wrong": "¿Quién están en casa?",
+"right": "¿Quién está en casa?",
+"chapters": [
+{
+"title": "Перевір себе можливою відповіддю",
+"body": "Якщо відповідь — «на станції», починай із dónde. Якщо відповідь — «Ана», запитуй quién. Якщо людина має назвати предмет або вибрати потрібну книжку, потрібне qué. Про того самого лікаря можна поставити два різні запитання: де його знайти чи хто він серед цих людей.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «el médico».",
+"samples": [
+"es:05:29",
+"es:05:41",
+"es:05:33"
+],
+"focusId": "es:05:41"
+},
+{
+"title": "Dónde: змінюється дієслово, не питальне слово",
+"body": "У парі ¿Dónde está la llave? та ¿Dónde están las llaves? слово dónde не змінюється. Для одного ключа потрібно está, для кількох — están. Ти уточнюєш місце вже відомого предмета, а не питаєш, чи він існує. Можна коротко відповісти: En el bolso.",
+"note": "están — форма для «кілька людей або предметів». Орієнтир у цьому зразку: «las llaves».",
+"samples": [
+"es:05:06",
+"es:05:07",
+"es:05:43",
+"es:05:44"
+],
+"focusId": "es:05:07"
+},
+{
+"title": "Quién з estar і з ser",
+"body": "¿Quién está en casa? — дім відомий, назви того, хто там. ¿Quién es ella? — бачиш жінку й хочеш дізнатися, хто вона. Не завчай «після quién завжди ser»: саме зміст запитання визначає, чи потрібне ser, чи estar.",
+"note": "У цій фразі адресат або названа група визначають форму es: ¿Quién es ella?",
+"samples": [
+"es:05:12",
+"es:05:22",
+"es:05:47",
+"es:05:48"
+],
+"focusId": "es:05:22"
+},
+{
+"title": "Quién чи quiénes",
+"body": "Якщо бачиш кількох жінок і запитуєш «Хто вони?», у зразку дві ознаки множини: quiénes і son. З однією жінкою — quién і es. А коли ти лише почув шум і навіть не знаєш, одна людина там чи кілька, нейтральне ¿Quién está aquí? цілком доречне.",
+"note": "Співрозмовник має вказати на кількох людей: quiénes + son. Для однієї людини було б quién + es.",
+"samples": [
+"es:05:11",
+"es:05:22",
+"es:05:25",
+"es:05:26"
+],
+"focusId": "es:05:25"
+},
+{
+"title": "Qué окремо та перед іменником",
+"body": "У ¿Qué es esto? ти ще не знаєш, що це за річ. Esto зручно, коли показуєш на щось біля себе; eso в нашому прикладі — біля співрозмовника. У ¿Qué libros están en casa? тип предмета відомий: потрібні конкретні книжки. Qué не отримує закінчення -s, навіть коли книжок кілька.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «libro».",
+"samples": [
+"es:05:31",
+"es:05:32",
+"es:05:33",
+"es:05:34"
+],
+"focusId": "es:05:33"
+},
+{
+"title": "Де поставити ім’я й артикль",
+"body": "У зразку ¿Dónde está Ana? порядок такий: що невідомо → дієслово → про кого запитання. Якщо питаєш про знайому річ, залиш її артикль: ¿Dónde está el móvil? Але в ¿Qué libro…? місце перед libro вже зайняте словом qué: не складай qué el libro. Тут відпрацьовуємо нейтральні зразки, а не заборону на інший порядок слів у всіх контекстах.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «el móvil».",
+"samples": [
+"es:05:02",
+"es:05:08",
+"es:05:33"
+],
+"focusId": "es:05:08"
+},
+{
+"title": "Як читати запитання й де ставити наголос",
+"body": "У питальних dónde, quién, quiénes та qué над голосною пишеться наголос. Зберігай його й на початку речення: Dónde, а не Donde. Слова quién і qué односкладові: знак тут розрізняє питальні форми на письмі. Усе пряме запитання обрамляють ¿ та ?. У конструкторі їх не треба обирати окремо.",
+"note": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «qué».",
+"samples": [
+"es:05:01",
+"es:05:21",
+"es:05:25",
+"es:05:31"
+],
+"focusId": "es:05:31"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ти",
+"id": "es:05:23",
+"sample": "¿Quién eres?"
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "одна людина або річ",
+"id": "es:05:21",
+"sample": "¿Quién es él?"
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "ви, неформально до групи в Іспанії",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "кілька людей або предметів",
+"id": "es:05:25",
+"sample": "¿Quiénes son ellos?"
+}
+],
+"title": "Форми ser"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:05:05",
+"sample": "¿Dónde estoy?"
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": "es:05:01",
+"sample": "¿Dónde estás?"
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "одна людина або річ",
+"id": "es:05:02",
+"sample": "¿Dónde está Ana?"
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "ми",
+"id": "es:05:04",
+"sample": "¿Dónde estamos?"
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "ви, неформально до групи в Іспанії",
+"id": "es:05:45",
+"sample": "¿Dónde estáis?"
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "кілька людей або предметів",
+"id": "es:05:07",
+"sample": "¿Dónde están las llaves?"
+}
+],
+"title": "Форми estar"
+}
+]
+},
+"en": {
+"title": "Asking where, who and what",
+"formula": "¿Dónde + estar (está, están…)? · ¿Quién + ser / estar (es, está…)? · ¿Qué es…?",
+"story": "Expect a place as the answer? Start with dónde. Expect a person's identity? Start with quién. Both carry a written accent in questions.",
+"use": "Ask to name a place, person, or object. Choose the question word that best suits your answer.",
+"choose": "In the pair ¿Dónde está la llave? and ¿Dónde están las llaves?, the word dónde remains the same. One clue requires está, several require están. You are clarifying the location of an already known object, not asking whether it exists. The location in the answer can be short: En el bolso.",
+"nuance": "When the identity is unknown, a neutral question is formed with quién está. If you're asking who several people are, use the coordinated pair quiénes son.",
+"wrong": "¿Quién están en casa?",
+"right": "¿Quién está en casa?",
+"chapters": [
+{
+"title": "What kind of answer am I looking for?",
+"body": "If the appropriate answer is \"at the station,\" start with dónde. If the answer is \"Ana,\" ask quién. If a person must name an object or choose the right book, use qué. The same doctor can be the cause of two different questions: where to find him or who he is among these people.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" el médico.\"",
+"samples": [
+"es:05:29",
+"es:05:41",
+"es:05:33"
+],
+"focusId": "es:05:41"
+},
+{
+"title": "How do I ask where someone is?",
+"body": "In the pair ¿Dónde está la llave? and ¿Dónde están las llaves?, the word dónde remains the same. One clue requires está, several require están. You are clarifying the location of an already known object, not asking whether it exists. The location in the answer can be short: En el bolso.",
+"note": "están is the form for \"several people or things.\" The reference point in this pattern is \" las llaves.\"",
+"samples": [
+"es:05:06",
+"es:05:07",
+"es:05:43",
+"es:05:44"
+],
+"focusId": "es:05:07"
+},
+{
+"title": "Am I asking who someone is or who is there?",
+"body": "¿Quién está en casa? — the house is known, name the person there. ¿Quién es ella? — you see a woman and want to know who she is. Don't memorize \"after quién always ser \": the meaning of the question determines whether ser or estar is needed.",
+"note": "In this phrase, the interlocutor or named group determines the form of es: ¿Quién es ella?",
+"samples": [
+"es:05:12",
+"es:05:22",
+"es:05:47",
+"es:05:48"
+],
+"focusId": "es:05:22"
+},
+{
+"title": "When do I need quiénes instead of quién?",
+"body": "If you see several women and ask, \"Who are they?\", the example contains two plurality markers: quiénes and son. With one woman, there are quién and es. And when you just heard a noise and don't even know if there's one person or several, the neutral ¿Quién está aquí? is quite appropriate.",
+"note": "The interlocutor must name several people: quiénes + son. For one person, it would be quién + es.",
+"samples": [
+"es:05:11",
+"es:05:22",
+"es:05:25",
+"es:05:26"
+],
+"focusId": "es:05:25"
+},
+{
+"title": "Qué on its own and before a noun",
+"body": "In ¿Qué es esto? you don't yet know what this thing is. Esto is convenient when pointing to something next to you; eso in our example—near the person you're talking to. In ¿Qué libros están en casa? the type of object is known: specific books are needed. Qué doesn't get the ending - s, even when there are several books.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" libro.\"",
+"samples": [
+"es:05:31",
+"es:05:32",
+"es:05:33",
+"es:05:34"
+],
+"focusId": "es:05:33"
+},
+{
+"title": "Where do the name and its article go?",
+"body": "In the example ¿Dónde está Ana? the order is: what is unknown → verb → who is being asked about. If you are asking about a familiar thing, keep its article: ¿Dónde está el móvil? But in ¿Qué libro …? The space before libro is already occupied by qué: don't collect qué el libro. Neutral patterns are being practiced here, not a ban on other word orders in all contexts.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" el móvil.\"",
+"samples": [
+"es:05:02",
+"es:05:08",
+"es:05:33"
+],
+"focusId": "es:05:08"
+},
+{
+"title": "Which question words need a written accent?",
+"body": "In interrogative dónde, quién, quiénes, and qué, the stress is written above the vowel. Keep it in the capital letter inside the word: Dónde, not Donde. The words quién and qué are monosyllabic: the sign here distinguishes interrogative forms in writing. The entire direct question is framed by ¿and?. In the constructor, signs do not require separate selection.",
+"note": "es is the form for \"one person or thing.\" The reference point in this pattern is \" qué.\"",
+"samples": [
+"es:05:01",
+"es:05:21",
+"es:05:25",
+"es:05:31"
+],
+"focusId": "es:05:31"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "you",
+"id": "es:05:23",
+"sample": "¿Quién eres?"
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "One person or object",
+"id": "es:05:21",
+"sample": "¿Quién es él?"
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "You, informally to a group in Spain",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "several people or objects",
+"id": "es:05:25",
+"sample": "¿Quiénes son ellos?"
+}
+],
+"title": "Forms ser"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": "es:05:05",
+"sample": "¿Dónde estoy?"
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": "es:05:01",
+"sample": "¿Dónde estás?"
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "One person or object",
+"id": "es:05:02",
+"sample": "¿Dónde está Ana?"
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "we",
+"id": "es:05:04",
+"sample": "¿Dónde estamos?"
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "You, informally to a group in Spain",
+"id": "es:05:45",
+"sample": "¿Dónde estáis?"
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "several people or objects",
+"id": "es:05:07",
+"sample": "¿Dónde están las llaves?"
+}
+],
+"title": "Forms of estar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:05:01",
+"index": 0,
+"right": "Dónde",
+"near": "Cuándo",
+"seq": [
+"Dónde",
+"estás"
+],
+"i": 0,
+"kind": "form",
+"key": "es05/lab/form1",
+"feedback": {
+"ru": "Нужен ответ о месте, а не «да/нет»: начни с dónde. Во второй позиции — знакомая форма estar.",
+"uk": "Потрібна відповідь про місце, а не «так/ні»: почни з dónde. У другій позиції — знайома форма estar.",
+"en": "Need a location answer, not a yes/no: start with dónde. The second position is the familiar form estar."
+}
+},
+{
+"id": "es:05:13",
+"index": 0,
+"right": "Quién",
+"near": "Dónde",
+"seq": [
+"Quién",
+"está",
+"en",
+"clase"
+],
+"i": 12,
+"kind": "form",
+"key": "es05/lab/form2",
+"feedback": {
+"ru": "Нужно назвать человека: quién. Если известно место, следующий глагол estar; если спрашиваем, кто перед нами, нужен ser.",
+"uk": "Треба назвати людину: quién. Якщо відоме місце, далі дієслово estar; якщо питаємо, хто перед нами, потрібне ser.",
+"en": "A person is required: quién. If the location is known, the next verb is estar; if we are asking who is in front of us, ser is required."
+}
+},
+{
+"id": "es:05:26",
+"index": 0,
+"right": "Quiénes",
+"near": "Dónde",
+"seq": [
+"Quiénes",
+"son",
+"ellas"
+],
+"i": 25,
+"kind": "form",
+"key": "es05/lab/form3",
+"feedback": {
+"ru": "Ты спрашиваешь сразу о нескольких людях. У самого вопросительного слова есть множественная форма: quiénes.",
+"uk": "Ти питаєш одразу про кількох людей. У самого питального слова є форма множини: quiénes.",
+"en": "You're asking about several people at once. The question word itself has a plural form: quiénes."
+}
+},
+{
+"id": "es:05:38",
+"index": 0,
+"right": "Qué",
+"near": "Cuántas",
+"seq": [
+"Qué",
+"billetes",
+"están",
+"en",
+"el",
+"bolsillo"
+],
+"i": 37,
+"kind": "form",
+"key": "es05/lab/form4",
+"feedback": {
+"ru": "Qué спрашивает о вещи или о выборе. Перед названием предмета оно не меняется по роду или числу.",
+"uk": "Qué позначає запитання про річ або вибір. Перед назвою предмета воно не змінюється за родом чи числом.",
+"en": "Qué asks about an item or a choice. Before the name of an item, it doesn't change for gender or number."
+}
+},
+{
+"id": "es:05:07",
+"index": 0,
+"right": "Dónde",
+"near": "Cuándo",
+"seq": [
+"Dónde",
+"están",
+"las",
+"llaves"
+],
+"i": 6,
+"kind": "spot",
+"key": "es05/lab/spot1",
+"feedback": {
+"ru": "Нужен ответ о месте, а не «да/нет»: начни с dónde. Во второй позиции — знакомая форма estar.",
+"uk": "Потрібна відповідь про місце, а не «так/ні»: почни з dónde. У другій позиції — знайома форма estar.",
+"en": "Need a location answer, not a yes/no: start with dónde. The second position is the familiar form estar."
+}
+},
+{
+"id": "es:05:20",
+"index": 0,
+"right": "Quién",
+"near": "Dónde",
+"seq": [
+"Quién",
+"está",
+"en",
+"la",
+"recepción"
+],
+"i": 19,
+"kind": "spot",
+"key": "es05/lab/spot2",
+"feedback": {
+"ru": "Нужно назвать человека: quién. Если известно место, следующий глагол estar; если спрашиваем, кто перед нами, нужен ser.",
+"uk": "Треба назвати людину: quién. Якщо відоме місце, далі дієслово estar; якщо питаємо, хто перед нами, потрібне ser.",
+"en": "A person is required: quién. If the location is known, the next verb is estar; if we are asking who is in front of us, ser is required."
+}
+},
+{
+"id": "es:05:32",
+"index": 0,
+"right": "Qué",
+"near": "Cuántas",
+"seq": [
+"Qué",
+"es",
+"eso"
+],
+"i": 31,
+"kind": "spot",
+"key": "es05/lab/spot3",
+"feedback": {
+"ru": "Qué спрашивает о вещи или о выборе. Перед названием предмета оно не меняется по роду или числу.",
+"uk": "Qué позначає запитання про річ або вибір. Перед назвою предмета воно не змінюється за родом чи числом.",
+"en": "Qué asks about an item or a choice. Before the name of an item, it doesn't change for gender or number."
+}
+},
+{
+"id": "es:05:47",
+"index": 0,
+"right": "Quién",
+"near": "Dónde",
+"seq": [
+"Quién",
+"es",
+"la",
+"enfermera"
+],
+"i": 46,
+"kind": "spot",
+"key": "es05/lab/spot4",
+"feedback": {
+"ru": "Нужно назвать человека: quién. Если известно место, следующий глагол estar; если спрашиваем, кто перед нами, нужен ser.",
+"uk": "Треба назвати людину: quién. Якщо відоме місце, далі дієслово estar; якщо питаємо, хто перед нами, потрібне ser.",
+"en": "A person is required: quién. If the location is known, the next verb is estar; if we are asking who is in front of us, ser is required."
+}
+},
+{
+"kind": "match",
+"key": "es05/lab/match1",
+"id": "es:05:02",
+"other": "es:05:01"
+},
+{
+"kind": "match",
+"key": "es05/lab/match2",
+"id": "es:05:17",
+"other": "es:05:18"
+},
+{
+"kind": "match",
+"key": "es05/lab/match3",
+"id": "es:05:33",
+"other": "es:05:34"
+},
+{
+"kind": "match",
+"key": "es05/lab/match4",
+"id": "es:05:46",
+"other": "es:05:48"
+},
+{
+"kind": "build",
+"key": "es05/lab/build1",
+"id": "es:05:04"
+},
+{
+"kind": "build",
+"key": "es05/lab/build2",
+"id": "es:05:15"
+},
+{
+"kind": "build",
+"key": "es05/lab/build3",
+"id": "es:05:29"
+},
+{
+"kind": "build",
+"key": "es05/lab/build4",
+"id": "es:05:42"
+},
+{
+"kind": "transform",
+"id": "es:05:08",
+"base": "es:05:03",
+"diff": [
+{
+"before": [
+"aeropuerto"
+],
+"after": [
+"móvil"
+]
+}
+],
+"key": "es05/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:05:16",
+"base": "es:05:15",
+"diff": [
+{
+"before": [
+"cocina"
+],
+"after": [
+"oficina"
+]
+}
+],
+"key": "es05/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:05:42",
+"base": "es:05:17",
+"diff": [
+{
+"before": [
+"ascensor"
+],
+"after": [
+"banco"
+]
+}
+],
+"key": "es05/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:05:43",
+"base": "es:05:41",
+"diff": [
+{
+"before": [
+"médico"
+],
+"after": [
+"pasaporte"
+]
+}
+],
+"key": "es05/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+10,
+14
+],
+[
+4,
+19
+],
+[
+7,
+11
+],
+[
+2,
+5
+],
+[
+6,
+3
+],
+[
+8,
+16
+],
+[
+0,
+12
+]
+],
+"worked": [
+"es:05:05",
+"es:05:18",
+"es:05:33",
+"es:05:48"
+],
+"reflection": [
+"es:05:01",
+"es:05:11"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 6,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 6,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Конкретные вещи: el, la, los, las",
+"formula": "мужской: el → los · женский: la → las",
+"story": "У тебя один конкретный ключ: la llave. Появился второй: las llaves. Род слова не изменился; изменилось количество.",
+"use": "Для знакомого предмета сначала найди род и число испанского названия; по ним выбери el, la, los или las. Например: el mapa, но las llaves.",
+"choose": "Мужской род: el в единственном числе и los во множественном. Женский: la и las. Увидел pasaportes? Вернись к словарной паре el pasaporte, затем возьми множественное los. Увидел maletas? База la maleta, значит las. Окончание -s говорит о числе, но само по себе не скажет, какой из двух артиклей множественного числа нужен.",
+"nuance": "У mapa мужской род, несмотря на -a. Запомни пару el mapa. У mesa женский род: артикль la во второй группе остаётся.",
+"wrong": "La mapa está en la mesa.",
+"right": "El mapa está en la mesa.",
+"chapters": [
+{
+"title": "Зачем нужен определённый артикль",
+"body": "Вы с другом ищете паспорт, который он только что держал в руках. El pasaporte — именно этот, известный вам паспорт. Артикль не означает, что нужно отдельно говорить «этот». Сейчас нас интересуют конкретные знакомые предметы.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «el pasaporte».",
+"samples": [
+"es:06:01",
+"es:06:02"
+],
+"focusId": "es:06:01"
+},
+{
+"title": "Два решения дают четыре формы",
+"body": "Мужской род: el в единственном числе и los во множественном. Женский: la и las. Увидел pasaportes? Вернись к словарной паре el pasaporte, затем возьми множественное los. Увидел maletas? База la maleta, значит las. Окончание -s говорит о числе, но само по себе не скажет, какой из двух артиклей множественного числа нужен.",
+"note": "están — форма для «несколько людей или предметов». Ориентир в этом образце: «las maletas».",
+"samples": [
+"es:06:01",
+"es:06:02",
+"es:06:03",
+"es:06:04"
+],
+"focusId": "es:06:04"
+},
+{
+"title": "Почему ключ женского рода, а карта мужского",
+"body": "Род — свойство испанского слова, а не вещи. Даже знакомые предметы учи маленькими парами: la llave, el mapa, la foto. У mapa окончание -a, но нужен el. У foto окончание -o, но нужна la (это короткое название фотографии). Во множественном числе род сохраняется: los mapas, las fotos.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «la foto».",
+"samples": [
+"es:06:07",
+"es:06:21",
+"es:06:22",
+"es:06:23",
+"es:06:24"
+],
+"focusId": "es:06:23"
+},
+{
+"title": "Два артикля не обязаны совпадать",
+"body": "Раздели Los pasaportes están en la maleta на две группы. О чём говорим? Los pasaportes — мужской род, несколько. Где они? En la maleta — женский род, один чемодан. Каждое существительное определяет свой артикль. Перестановка второго артикля из первой группы дала бы неверное en los maleta.",
+"note": "están — форма для «несколько людей или предметов». Ориентир в этом образце: «los billetes».",
+"samples": [
+"es:06:31",
+"es:06:32",
+"es:06:47",
+"es:06:48"
+],
+"focusId": "es:06:48"
+},
+{
+"title": "С чем согласуется está или están",
+"body": "Глагол выбирается по тому, что находится, а не по месту. В Las fotos están en el bolso фотографий несколько, хотя сумка одна. Сравни El mapa está en el bolsillo. Мы не вводим новую форму estar, а возвращаем правило из урока 1, чтобы увидеть, какие части меняются вместе.",
+"note": "están — форма для «несколько людей или предметов». Ориентир в этом образце: «los pasaportes».",
+"samples": [
+"es:06:28",
+"es:06:29",
+"es:06:32"
+],
+"focusId": "es:06:32"
+},
+{
+"title": "Когда артикль подсказывает, о ком речь",
+"body": "В четвёртом уроке Ana es guía называло профессию без артикля. Теперь ищем конкретного гида: el guía или la guía. Слово guía не меняется; артикль уточняет, о ком речь. То же со студентами: los estudiantes — мужчины или смешанная группа, las estudiantes — только женщины. Когда перевод не уточняет состав группы, читай контекст.",
+"note": "está — форма для «один человек или предмет». Ориентир в этом образце: «la guía».",
+"samples": [
+"es:06:43",
+"es:06:44",
+"es:06:45",
+"es:06:46"
+],
+"focusId": "es:06:46"
+},
+{
+"title": "Не ставь артикль везде после en",
+"body": "En la cocina — на конкретной кухне. А знакомое en casa обычно означает «дома» и не требует la. En la casa тоже бывает правильно, но тогда говорят о конкретном доме как о здании. Смотри на смысл места, а не на правило «после en всегда артикль».",
+"note": "están — форма для «несколько людей или предметов». Ориентир в этом образце: «los móviles».",
+"samples": [
+"es:06:19",
+"es:06:37",
+"es:06:38"
+],
+"focusId": "es:06:19"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "el",
+"gloss": "el pasaporte: мужской род, единственное число. Род выбираем по испанскому слову, не по переводу.",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "la",
+"gloss": "la maleta: женский род, единственное число. Род выбираем по испанскому слову, не по переводу.",
+"id": "es:06:03",
+"sample": "La maleta está aquí."
+},
+{
+"es": "los",
+"gloss": "los pasaportes: мужской род, множественное число. Род выбираем по испанскому слову, не по переводу.",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+},
+{
+"es": "las",
+"gloss": "las maletas: женский род, множественное число. Род выбираем по испанскому слову, не по переводу.",
+"id": "es:06:04",
+"sample": "Las maletas están aquí."
+}
+],
+"title": "Четыре формы артикля"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "один человек или предмет",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "вы, неформально к группе в Испании",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "несколько людей или предметов",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+}
+],
+"title": "Формы estar"
+}
+]
+},
+"uk": {
+"title": "Конкретні речі: el, la, los, las",
+"formula": "чоловічий: el → los · жіночий: la → las",
+"story": "Один певний ключ — la llave. З’явився другий — las llaves. Рід не змінився, змінилася кількість.",
+"use": "Для знайомого предмета спершу визнач рід і число його іспанської назви; за ними обери el, la, los чи las. Наприклад: el mapa, але las llaves.",
+"choose": "Чоловічий рід: el в однині й los у множині. Жіночий: la та las. Побачив pasaportes? Повернися до словникової пари el pasaporte, а потім візьми множину los. Побачив maletas? Основа la maleta, отже las. Закінчення -s підказує число, але саме по собі не підкаже, який з двох артиклів множини потрібен.",
+"nuance": "Mapa чоловічого роду, попри закінчення -a. Запам’ятай пару el mapa. Mesa жіночого роду: артикль la у другій групі залишається.",
+"wrong": "La mapa está en la mesa.",
+"right": "El mapa está en la mesa.",
+"chapters": [
+{
+"title": "Навіщо потрібен означений артикль",
+"body": "Ви з другом шукаєте паспорт, який він щойно тримав у руках. El pasaporte — саме цей, відомий вам паспорт. Артикль не означає, що треба окремо казати «цей». Зараз нас цікавлять конкретні знайомі предмети.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «el pasaporte».",
+"samples": [
+"es:06:01",
+"es:06:02"
+],
+"focusId": "es:06:01"
+},
+{
+"title": "Два рішення дають чотири форми",
+"body": "Чоловічий рід: el в однині й los у множині. Жіночий: la та las. Побачив pasaportes? Повернися до словникової пари el pasaporte, а потім візьми множину los. Побачив maletas? Основа la maleta, отже las. Закінчення -s підказує число, але саме по собі не підкаже, який з двох артиклів множини потрібен.",
+"note": "están — форма для «кілька людей або предметів». Орієнтир у цьому зразку: «las maletas».",
+"samples": [
+"es:06:01",
+"es:06:02",
+"es:06:03",
+"es:06:04"
+],
+"focusId": "es:06:04"
+},
+{
+"title": "Чому ключ жіночого роду, а мапа чоловічого",
+"body": "Рід — властивість іспанського слова, а не самої речі. Навіть знайомі предмети вчи маленькими парами: la llave, el mapa, la foto. У mapa закінчення -a, але потрібне el. У foto закінчення -o, але потрібне la (це коротка назва фотографії). У множині рід зберігається: los mapas, las fotos.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «la foto».",
+"samples": [
+"es:06:07",
+"es:06:21",
+"es:06:22",
+"es:06:23",
+"es:06:24"
+],
+"focusId": "es:06:23"
+},
+{
+"title": "Два артиклі не обов’язково збігаються",
+"body": "Розділи Los pasaportes están en la maleta на дві групи. Про що говоримо? Los pasaportes — чоловічий рід, кілька. Де вони? En la maleta — жіночий рід, одна валіза. Кожен іменник визначає свій артикль. Якби ми перенесли артикль з першої групи в другу, отримали б помилкове en los maleta.",
+"note": "están — форма для «кілька людей або предметів». Орієнтир у цьому зразку: «los billetes».",
+"samples": [
+"es:06:31",
+"es:06:32",
+"es:06:47",
+"es:06:48"
+],
+"focusId": "es:06:48"
+},
+{
+"title": "З чим узгоджується está або están",
+"body": "Дієслово обираємо за тим, що десь перебуває, а не за місцем. У Las fotos están en el bolso фотографій кілька, хоча сумка одна. Порівняй El mapa está en el bolsillo. Не вводимо нову форму estar, а пригадуємо правило з уроку 1, щоб побачити, які частини змінюються разом.",
+"note": "están — форма для «кілька людей або предметів». Орієнтир у цьому зразку: «los pasaportes».",
+"samples": [
+"es:06:28",
+"es:06:29",
+"es:06:32"
+],
+"focusId": "es:06:32"
+},
+{
+"title": "Коли артикль підказує, про кого йдеться",
+"body": "У четвертому уроці Ana es guía називало фах без артикля. Тепер шукаємо конкретного гіда: el guía або la guía. Слово guía не змінюється; артикль уточнює, про кого йдеться. Те саме зі студентами: los estudiantes — чоловіки або змішана група, las estudiantes — лише жінки. Коли переклад не уточнює складу групи, читай контекст.",
+"note": "está — форма для «одна людина або річ». Орієнтир у цьому зразку: «la guía».",
+"samples": [
+"es:06:43",
+"es:06:44",
+"es:06:45",
+"es:06:46"
+],
+"focusId": "es:06:46"
+},
+{
+"title": "Не став артикль всюди після en",
+"body": "En la cocina — на конкретній кухні. А знайоме en casa зазвичай означає «вдома» й не потребує la. En la casa теж буває правильним, але тоді йдеться про конкретний будинок як будівлю. Зважай на зміст місця, а не на правило «після en завжди артикль».",
+"note": "están — форма для «кілька людей або предметів». Орієнтир у цьому зразку: «los móviles».",
+"samples": [
+"es:06:19",
+"es:06:37",
+"es:06:38"
+],
+"focusId": "es:06:19"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "el",
+"gloss": "el pasaporte: чоловічий рід, однина. Рід визначаємо за іспанським словом, не за перекладом.",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "la",
+"gloss": "la maleta: жіночий рід, однина. Рід визначаємо за іспанським словом, не за перекладом.",
+"id": "es:06:03",
+"sample": "La maleta está aquí."
+},
+{
+"es": "los",
+"gloss": "los pasaportes: чоловічий рід, множина. Рід визначаємо за іспанським словом, не за перекладом.",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+},
+{
+"es": "las",
+"gloss": "las maletas: жіночий рід, множина. Рід визначаємо за іспанським словом, не за перекладом.",
+"id": "es:06:04",
+"sample": "Las maletas están aquí."
+}
+],
+"title": "Чотири форми артикля"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "одна людина або річ",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "ви, неформально до групи в Іспанії",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "кілька людей або предметів",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+}
+],
+"title": "Форми estar"
+}
+]
+},
+"en": {
+"title": "Definite articles: el, la, los, las",
+"formula": "masculine: el → los · feminine: la → las",
+"story": "One particular key: la llave. More than one: las llaves. The number changes, not the gender of llave.",
+"use": "Choose el, la, los or las to match the Spanish noun in gender and number.",
+"choose": "Masculine: el singular and los plural. Feminine: la and las. Did you see pasaportes? Go back to the vocabulary pair el pasaporte, then take the plural los. See maletas? The base is la maleta, so las. The ending - s indicates number, but by itself doesn't tell you which of the two plural articles is needed.",
+"nuance": "mapa is masculine, despite the - a. Remember the pair el mapa. mesa is feminine: the article la remains in the second group.",
+"wrong": "La mapa está en la mesa.",
+"right": "El mapa está en la mesa.",
+"chapters": [
+{
+"title": "When do I mean a particular person or thing?",
+"body": "Your friend has misplaced a passport. You both know which one: El pasaporte está aquí. Use el because the passport is identifiable, not to point at it as “this one”.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" el pasaporte.\"",
+"samples": [
+"es:06:01",
+"es:06:02"
+],
+"focusId": "es:06:01"
+},
+{
+"title": "Which two decisions give me el, la, los or las?",
+"body": "Masculine: el singular and los plural. Feminine: la and las. Did you see pasaportes? Go back to the vocabulary pair el pasaporte, then take the plural los. See maletas? The base is la maleta, so las. The ending - s indicates number, but by itself doesn't tell you which of the two plural articles is needed.",
+"note": "están is the form for \"several people or things.\" The reference point in this pattern is \" las maletas.\"",
+"samples": [
+"es:06:01",
+"es:06:02",
+"es:06:03",
+"es:06:04"
+],
+"focusId": "es:06:04"
+},
+{
+"title": "Why la llave but el mapa?",
+"body": "Gender is a property of the Spanish word, not of the thing. Learn even familiar objects in small pairs: la llave, el mapa, la foto. mapa ends in - a, but el is needed. foto ends in - o, but la is needed (this is the short title of the photo). In the plural, the gender is preserved: los mapas, las fotos.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" la foto.\"",
+"samples": [
+"es:06:07",
+"es:06:21",
+"es:06:22",
+"es:06:23",
+"es:06:24"
+],
+"focusId": "es:06:23"
+},
+{
+"title": "Must two articles in one sentence match?",
+"body": "Divide Los pasaportes están en la maleta into two groups. What are we talking about? Los pasaportes is masculine, several. Where are they? En la maleta — feminine gender, one suitcase. Each noun determines its own article. Rearranging the second article from the first group would produce the incorrect en los maleta.",
+"note": "están is the form for \"several people or things.\" The reference point in this pattern is \" los billetes.\"",
+"samples": [
+"es:06:31",
+"es:06:32",
+"es:06:47",
+"es:06:48"
+],
+"focusId": "es:06:48"
+},
+{
+"title": "Which thing determines está or están?",
+"body": "The verb is selected based on what is present, not on location. In Las fotos están en el bolso, there are several photos, although there is only one bag. Compare El mapa está en el bolsillo. We don't introduce a new form estar, but return to the rule from Lesson 1 to see which parts change together.",
+"note": "están is the form for \"several people or things.\" The reference point in this pattern is \" los pasaportes.\"",
+"samples": [
+"es:06:28",
+"es:06:29",
+"es:06:32"
+],
+"focusId": "es:06:32"
+},
+{
+"title": "Can the article help identify the person?",
+"body": "In the fourth lesson, Ana es guía named a profession without an article. Now we look for a specific guide: el guía or la guía. The word guía does not change; The article specifies who is being discussed. The same applies to students: los estudiantes — men or a mixed group, las estudiantes — only women. When the translation doesn't clarify the group composition, read the context.",
+"note": "está is the form for \"one person or thing.\" The reference point in this pattern is \" la guía.\"",
+"samples": [
+"es:06:43",
+"es:06:44",
+"es:06:45",
+"es:06:46"
+],
+"focusId": "es:06:46"
+},
+{
+"title": "Do I always need an article after en?",
+"body": "En la cocina — in a specific kitchen. And the familiar en casa usually means \"at home\" and doesn't require la. En la casa can also be correct, but then we're talking about a specific house as a building. Look at the context of the place, not the rule \"the article always follows en.\"",
+"note": "están is the form for \"several people or things.\" The reference point in this pattern is \" los móviles.\"",
+"samples": [
+"es:06:19",
+"es:06:37",
+"es:06:38"
+],
+"focusId": "es:06:19"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "el",
+"gloss": "el pasaporte: Masculine, singular. Choose the gender based on the Spanish word, not the translation.",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "la",
+"gloss": "la maleta: Feminine, singular. The gender is determined by the Spanish word, not the translation.",
+"id": "es:06:03",
+"sample": "La maleta está aquí."
+},
+{
+"es": "los",
+"gloss": "los pasaportes: Masculine, plural. Choose the gender based on the Spanish word, not the translation.",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+},
+{
+"es": "las",
+"gloss": "las maletas: Feminine, plural. The gender is determined by the Spanish word, not the translation.",
+"id": "es:06:04",
+"sample": "Las maletas están aquí."
+}
+],
+"title": "Four forms of the article"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él/ella/usted · está",
+"gloss": "One person or object",
+"id": "es:06:01",
+"sample": "El pasaporte está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "You, informally to a group in Spain",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos/ellas/ustedes · están",
+"gloss": "several people or objects",
+"id": "es:06:02",
+"sample": "Los pasaportes están aquí."
+}
+],
+"title": "Forms of estar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:06:01",
+"index": 0,
+"right": "El",
+"near": "La",
+"seq": [
+"El",
+"pasaporte",
+"está",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es06/lab/form1",
+"feedback": {
+"ru": "el pasaporte: мужской род, единственное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "el pasaporte: чоловічий рід, однина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "el pasaporte: Masculine, singular. Choose the gender based on the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:12",
+"index": 0,
+"right": "Las",
+"near": "Los",
+"seq": [
+"Las",
+"botellas",
+"están",
+"allí"
+],
+"i": 11,
+"kind": "form",
+"key": "es06/lab/form2",
+"feedback": {
+"ru": "Артикль las: род и число определяет la botella.",
+"uk": "Артикль las: рід і число визначає la botella.",
+"en": "Article las: gender and number are determined by la botella."
+}
+},
+{
+"id": "es:06:26",
+"index": 0,
+"right": "La",
+"near": "El",
+"seq": [
+"La",
+"foto",
+"está",
+"en",
+"la",
+"mochila"
+],
+"i": 25,
+"kind": "form",
+"key": "es06/lab/form3",
+"feedback": {
+"ru": "la foto: женский род, единственное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "la foto: жіночий рід, однина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "la foto: Feminine, singular. The gender is determined by the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:40",
+"index": 0,
+"right": "Los",
+"near": "Las",
+"seq": [
+"Los",
+"trenes",
+"están",
+"en",
+"la",
+"estación"
+],
+"i": 39,
+"kind": "form",
+"key": "es06/lab/form4",
+"feedback": {
+"ru": "los trenes: мужской род, множественное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "los trenes: чоловічий рід, множина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "los trenes: Masculine, plural. Choose the gender based on the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:07",
+"index": 0,
+"right": "La",
+"near": "El",
+"seq": [
+"La",
+"llave",
+"está",
+"allí"
+],
+"i": 6,
+"kind": "spot",
+"key": "es06/lab/spot1",
+"feedback": {
+"ru": "la llave: женский род, единственное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "la llave: жіночий рід, однина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "la llave: Feminine, singular. The gender is determined by the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:20",
+"index": 0,
+"right": "Las",
+"near": "Los",
+"seq": [
+"Las",
+"mochilas",
+"están",
+"en",
+"casa"
+],
+"i": 19,
+"kind": "spot",
+"key": "es06/lab/spot2",
+"feedback": {
+"ru": "las mochilas: женский род, множественное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "las mochilas: жіночий рід, множина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "las mochilas: Feminine, plural. The gender is determined by the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:32",
+"index": 0,
+"right": "Los",
+"near": "Las",
+"seq": [
+"Los",
+"pasaportes",
+"están",
+"en",
+"la",
+"maleta"
+],
+"i": 31,
+"kind": "spot",
+"key": "es06/lab/spot3",
+"feedback": {
+"ru": "los pasaportes: мужской род, множественное число. Род выбираем по испанскому слову, не по переводу.",
+"uk": "los pasaportes: чоловічий рід, множина. Рід визначаємо за іспанським словом, не за перекладом.",
+"en": "los pasaportes: Masculine, plural. Choose the gender based on the Spanish word, not the translation."
+}
+},
+{
+"id": "es:06:45",
+"index": 0,
+"right": "El",
+"near": "La",
+"seq": [
+"El",
+"guía",
+"está",
+"en",
+"el",
+"hotel"
+],
+"i": 44,
+"kind": "spot",
+"key": "es06/lab/spot4",
+"feedback": {
+"ru": "el guía: мужской род, единственное число. У этого названия форма одинакова для мужчин и женщин; ориентируйся на контекст.",
+"uk": "el guía: чоловічий рід, однина. Ця назва має однакову форму для чоловіків і жінок; зважай на контекст.",
+"en": "el guía: Masculine, singular. This name has the same form for both men and women; use context."
+}
+},
+{
+"kind": "match",
+"key": "es06/lab/match1",
+"id": "es:06:02",
+"other": "es:06:03"
+},
+{
+"kind": "match",
+"key": "es06/lab/match2",
+"id": "es:06:17",
+"other": "es:06:18"
+},
+{
+"kind": "match",
+"key": "es06/lab/match3",
+"id": "es:06:33",
+"other": "es:06:32"
+},
+{
+"kind": "match",
+"key": "es06/lab/match4",
+"id": "es:06:46",
+"other": "es:06:47"
+},
+{
+"kind": "build",
+"key": "es06/lab/build1",
+"id": "es:06:04"
+},
+{
+"kind": "build",
+"key": "es06/lab/build2",
+"id": "es:06:15"
+},
+{
+"kind": "build",
+"key": "es06/lab/build3",
+"id": "es:06:29"
+},
+{
+"kind": "build",
+"key": "es06/lab/build4",
+"id": "es:06:42"
+},
+{
+"kind": "transform",
+"id": "es:06:11",
+"base": "es:06:07",
+"diff": [
+{
+"before": [
+"llave"
+],
+"after": [
+"botella"
+]
+}
+],
+"key": "es06/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:06:25",
+"base": "es:06:21",
+"diff": [
+{
+"before": [
+"mesa"
+],
+"after": [
+"mochila"
+]
+}
+],
+"key": "es06/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:06:26",
+"base": "es:06:23",
+"diff": [
+{
+"before": [
+"mesa"
+],
+"after": [
+"mochila"
+]
+}
+],
+"key": "es06/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:06:43",
+"base": "es:06:40",
+"diff": [
+{
+"before": [
+"trenes"
+],
+"after": [
+"estudiantes"
+]
+}
+],
+"key": "es06/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+17,
+5
+],
+[
+6,
+10
+],
+[
+14,
+2
+],
+[
+7,
+11
+],
+[
+3,
+9
+]
+],
+"worked": [
+"es:06:05",
+"es:06:18",
+"es:06:33",
+"es:06:48"
+],
+"reflection": [
+"es:06:01",
+"es:06:02"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

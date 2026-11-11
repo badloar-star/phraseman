@@ -13,7 +13,7 @@ import { accountDeletePermanentDenialId } from './account_delete_job';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { materializeMistakePracticeEventRecord } from './mistake_practice_event_sync';
-import { canonicalJsonV1 } from '../../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1 } from '../../modules/canonical_json';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d

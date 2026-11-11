@@ -1,0 +1,854 @@
+{
+ "lang": "it",
+ "lesson": 28,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:28:01",
+   "target": "Vorrei un caffè.",
+   "ru": "Я бы хотел кофе.",
+   "uk": "Я хотів би кави."
+  },
+  {
+   "id": "it:28:02",
+   "target": "Vorrei un tè.",
+   "ru": "Я бы хотел чай.",
+   "uk": "Я хотів би чаю."
+  },
+  {
+   "id": "it:28:03",
+   "target": "Desidera del latte?",
+   "ru": "Хотите молока?",
+   "uk": "Хочете молока?"
+  },
+  {
+   "id": "it:28:04",
+   "target": "Vorrebbe una stanza tranquilla.",
+   "ru": "Она хотела бы тихую комнату.",
+   "uk": "Вона хотіла б тиху кімнату."
+  },
+  {
+   "id": "it:28:05",
+   "target": "Vorremmo due biglietti.",
+   "ru": "Мы хотели бы два билета.",
+   "uk": "Ми хотіли б два квитки."
+  },
+  {
+   "id": "it:28:06",
+   "target": "Gradirebbe un altro tavolo?",
+   "ru": "Хотите другой столик?",
+   "uk": "Бажаєте інший столик?"
+  },
+  {
+   "id": "it:28:07",
+   "target": "Vorrei andarmene prima.",
+   "ru": "Я хотел бы уйти пораньше.",
+   "uk": "Я хотів би піти раніше."
+  },
+  {
+   "id": "it:28:08",
+   "target": "Vorrei rimanere qui.",
+   "ru": "Я хотел бы остаться здесь.",
+   "uk": "Я хотів би залишитися тут."
+  },
+  {
+   "id": "it:28:09",
+   "target": "Paolo vorrebbe imparare a guidare.",
+   "ru": "Паоло хотел бы научиться водить машину.",
+   "uk": "Паоло хотів би навчитися водити."
+  },
+  {
+   "id": "it:28:10",
+   "target": "Lea vorrebbe cambiare posto.",
+   "ru": "Леа хотела бы пересесть на другое место.",
+   "uk": "Леа хотіла б пересісти на інше місце."
+  },
+  {
+   "id": "it:28:11",
+   "target": "Potrebbe ripetere, per favore?",
+   "ru": "Не могли бы вы повторить, пожалуйста?",
+   "uk": "Чи не могли б ви повторити, будь ласка?"
+  },
+  {
+   "id": "it:28:12",
+   "target": "Potrebbe scrivere il suo nome?",
+   "ru": "Не могли бы вы написать своё имя?",
+   "uk": "Чи не могли б ви написати своє ім’я?"
+  },
+  {
+   "id": "it:28:13",
+   "target": "Potrebbe chiudere la finestra?",
+   "ru": "Не могли бы вы закрыть окно?",
+   "uk": "Чи не могли б ви зачинити вікно?"
+  },
+  {
+   "id": "it:28:14",
+   "target": "Potrebbe controllare l’importo?",
+   "ru": "Не могли бы вы проверить сумму?",
+   "uk": "Чи не могли б ви перевірити суму?"
+  },
+  {
+   "id": "it:28:15",
+   "target": "Potrebbe indicarmi l’uscita?",
+   "ru": "Не могли бы вы показать мне выход?",
+   "uk": "Чи не могли б ви показати мені вихід?"
+  },
+  {
+   "id": "it:28:16",
+   "target": "Potrebbe abbassare il volume?",
+   "ru": "Не могли бы вы сделать потише?",
+   "uk": "Чи не могли б ви зробити тихіше?"
+  },
+  {
+   "id": "it:28:17",
+   "target": "Potrebbe chiamarmi domani?",
+   "ru": "Вы могли бы позвонить мне завтра?",
+   "uk": "Ви могли б зателефонувати мені завтра?"
+  },
+  {
+   "id": "it:28:18",
+   "target": "Potrebbe prestarmi la sua bicicletta?",
+   "ru": "Вы могли бы одолжить мне свой велосипед?",
+   "uk": "Ви могли б позичити мені свій велосипед?"
+  },
+  {
+   "id": "it:28:19",
+   "target": "Posso provare questa giacca?",
+   "ru": "Можно мне примерить эту куртку?",
+   "uk": "Чи можу я приміряти цю куртку?"
+  },
+  {
+   "id": "it:28:20",
+   "target": "Posso avere un bicchiere d’acqua?",
+   "ru": "Можно мне стакан воды?",
+   "uk": "Можна мені склянку води?"
+  },
+  {
+   "id": "it:28:21",
+   "target": "Preferiremmo un tavolo all’aperto.",
+   "ru": "Мы бы предпочли столик на улице.",
+   "uk": "Ми б воліли столик на вулиці."
+  },
+  {
+   "id": "it:28:22",
+   "target": "Preferirei pagare in contanti.",
+   "ru": "Я бы предпочёл заплатить наличными.",
+   "uk": "Я б волів платити готівкою."
+  },
+  {
+   "id": "it:28:23",
+   "target": "Preferirebbe un appuntamento di mattina.",
+   "ru": "Она бы предпочла встретиться утром.",
+   "uk": "Вона б воліла ранкову зустріч."
+  },
+  {
+   "id": "it:28:24",
+   "target": "Preferiresti andare a piedi?",
+   "ru": "Ты бы предпочёл пойти пешком?",
+   "uk": "Ти волів би піти пішки?"
+  },
+  {
+   "id": "it:28:25",
+   "target": "Vorrei una zuppa calda, per favore.",
+   "ru": "Я бы хотел горячий суп, пожалуйста.",
+   "uk": "Я хотів би гарячий суп, будь ласка."
+  },
+  {
+   "id": "it:28:26",
+   "target": "Potremmo condividere una ciotola di zuppa.",
+   "ru": "Мы могли бы разделить тарелку супа.",
+   "uk": "Ми могли б розділити миску супу."
+  },
+  {
+   "id": "it:28:27",
+   "target": "Potremmo ordinare una crostata per il suo compleanno.",
+   "ru": "Мы могли бы заказать пирог из песочного теста к её дню рождения.",
+   "uk": "Ми могли б замовити пиріг з пісочного тіста до її дня народження."
+  },
+  {
+   "id": "it:28:28",
+   "target": "Una coperta in più sarebbe utile.",
+   "ru": "Дополнительное одеяло было бы кстати.",
+   "uk": "Додаткова ковдра була б корисною."
+  },
+  {
+   "id": "it:28:29",
+   "target": "Potrei portare una vaschetta di fragole e sei uova.",
+   "ru": "Я мог бы принести лоток клубники и шесть яиц.",
+   "uk": "Я міг би принести лоток полуниці та шість яєць."
+  },
+  {
+   "id": "it:28:30",
+   "target": "Sarebbe meglio prenotare.",
+   "ru": "Лучше было бы забронировать.",
+   "uk": "Краще було б забронювати."
+  },
+  {
+   "id": "it:28:31",
+   "target": "Dovrebbe conservare la ricevuta.",
+   "ru": "Вам стоит сохранить чек.",
+   "uk": "Вам варто зберегти чек."
+  },
+  {
+   "id": "it:28:32",
+   "target": "Dovresti riposarti.",
+   "ru": "Тебе стоило бы отдохнуть.",
+   "uk": "Тобі варто було б відпочити."
+  },
+  {
+   "id": "it:28:33",
+   "target": "Dovrei tornare all’ufficio postale prima di pranzo.",
+   "ru": "Мне стоило бы вернуться на почту до обеда.",
+   "uk": "Мені варто було б повернутися на пошту до обіду."
+  },
+  {
+   "id": "it:28:34",
+   "target": "Dovremmo prendere il primo treno.",
+   "ru": "Нам следует сесть на первый поезд.",
+   "uk": "Нам слід сісти на перший поїзд."
+  },
+  {
+   "id": "it:28:35",
+   "target": "Dovrebbe bere di più.",
+   "ru": "Ей следует пить больше.",
+   "uk": "Їй слід більше пити."
+  },
+  {
+   "id": "it:28:36",
+   "target": "Potremmo prendere un taxi insieme.",
+   "ru": "Мы могли бы поехать на такси вместе.",
+   "uk": "Ми могли б разом поїхати на таксі."
+  },
+  {
+   "id": "it:28:37",
+   "target": "Potremmo incontrarci al mercato.",
+   "ru": "Мы могли бы встретиться на рынке.",
+   "uk": "Ми могли б зустрітися на ринку."
+  },
+  {
+   "id": "it:28:38",
+   "target": "Potrebbe passare dopo la lezione.",
+   "ru": "Вы могли бы зайти после занятия.",
+   "uk": "Ви могли б зайти після заняття."
+  },
+  {
+   "id": "it:28:39",
+   "target": "Potrei consegnare la domanda lunedì.",
+   "ru": "Я мог бы отнести заявление в понедельник.",
+   "uk": "Я міг би подати заяву в понеділок."
+  },
+  {
+   "id": "it:28:40",
+   "target": "Potresti mandarle una foto.",
+   "ru": "Ты мог бы отправить ей фотографию.",
+   "uk": "Ти міг би надіслати їй фотографію."
+  },
+  {
+   "id": "it:28:41",
+   "target": "Avrebbe una camera per due?",
+   "ru": "У вас не найдётся номера на двоих?",
+   "uk": "У вас не знайдеться номер на двох?"
+  },
+  {
+   "id": "it:28:42",
+   "target": "Avrebbe disponibilità per domani?",
+   "ru": "У вас есть свободные места завтра?",
+   "uk": "У вас є вільні місця завтра?"
+  },
+  {
+   "id": "it:28:43",
+   "target": "Le andrebbe bene?",
+   "ru": "Вас это устроит?",
+   "uk": "Це вам підійде?"
+  },
+  {
+   "id": "it:28:44",
+   "target": "Vorrei riprogrammare il mio appuntamento.",
+   "ru": "Я хотел бы перенести встречу.",
+   "uk": "Я хотів би перенести зустріч."
+  },
+  {
+   "id": "it:28:45",
+   "target": "Vorremmo prolungare il soggiorno.",
+   "ru": "Мы хотели бы продлить наше пребывание.",
+   "uk": "Ми хотіли б продовжити наше перебування."
+  },
+  {
+   "id": "it:28:46",
+   "target": "Avrei bisogno di una conferma scritta.",
+   "ru": "Мне потребуется письменное подтверждение.",
+   "uk": "Мені потрібне письмове підтвердження."
+  },
+  {
+   "id": "it:28:47",
+   "target": "Vorrei un preventivo per la cucina.",
+   "ru": "Я хотел бы смету на кухню.",
+   "uk": "Я хотів би отримати цінову пропозицію на кухню."
+  },
+  {
+   "id": "it:28:48",
+   "target": "Potrebbe richiamarmi dopo le dieci?",
+   "ru": "Не могли бы вы перезвонить мне после 10:00?",
+   "uk": "Чи не могли б ви передзвонити мені після 10:00?"
+  },
+  {
+   "id": "it:28:49",
+   "target": "Vorremmo ringraziare tutto il team.",
+   "ru": "Мы хотели бы поблагодарить всю команду.",
+   "uk": "Ми хотіли б подякувати всій команді."
+  },
+  {
+   "id": "it:28:50",
+   "target": "Preferirei un posto lato corridoio.",
+   "ru": "Я бы предпочёл место у прохода.",
+   "uk": "Я б віддав перевагу місцю біля проходу."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il soggiorno (permanenza)",
+   "ru": "пребывание, период проживания",
+   "uk": "перебування, період проживання"
+  },
+  {
+   "lemma": "il posto lato corridoio",
+   "ru": "место у прохода",
+   "uk": "місце біля проходу"
+  },
+  {
+   "lemma": "la disponibilità",
+   "ru": "наличие свободных мест или времени",
+   "uk": "наявність вільних місць чи часу"
+  },
+  {
+   "lemma": "la conferma",
+   "ru": "подтверждение",
+   "uk": "підтвердження"
+  },
+  {
+   "lemma": "il preventivo",
+   "ru": "смета, предварительный расчёт",
+   "uk": "кошторис, попередній розрахунок"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno",
+  "l’uovo",
+  "la ciotola",
+  "la vaschetta",
+  "la metà",
+  "lo scatolone",
+  "la poltrona",
+  "la scala a pioli",
+  "il ricordo più bello",
+  "la porzione",
+  "lo sforzo",
+  "l’idraulico",
+  "il risultato",
+  "il pasto",
+  "il documento d’identità",
+  "il vaso"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  },
+  {
+   "lesson": 25,
+   "title": "Часть известного количества: `ne`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнивать: `più`, `meno`, `come`"
+  },
+  {
+   "lesson": 27,
+   "title": "Будущее: `partirò`, `partirai`"
+  }
+ ],
+ "oldTopicTitle": "Смягчить просьбу: `vorrei`, `potrebbe`",
+ "oldTheoryRu": "У `volere` форма `vorrei` — первое лицо условного наклонения. Не путай её с `vorrò`, которое сообщает о будущем желании. Сравни по звучанию и букве перед окончанием. В просьбе с `potere` второй глагол обычно остаётся в инфинитиве. `Potrebbe ripetere?` просит собеседника повторить, а не утверждает, что он уже повторил. Адресат и говорящий — разные роли. В `potrei` возможность относится ко мне, в `potrebbe` при вежливом обращении — к вам. Проверь, кто должен выполнить просьбу. `Preferirei` называет предпочтение, `potremmo` — предложение о совместном действии. Эти формы не становятся синонимами только потому, что все звучат деликатно. `Dovresti` даёт совет: следовало бы. Это мягче, чем `devi`, но совет всё же отличается от предложения «можем сделать». Найди намерение говорящего. В гостинице полезно говорить о возможности и наличии. `Avrebbe una camera?` — один из вежливых способов спросить о номере. Обращаясь к нескольким сотрудникам, форму можно изменить. Уточнение предмета делает просьбу практичной: место у прохода, письменное подтверждение, смета. Не теряй деталь при замене полной формы более короткой."
+}

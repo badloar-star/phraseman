@@ -74,8 +74,10 @@ export function sanitizePreparedReplyBody(value) {
 }
 
 /** Разбор одной строки replies.json. Ошибка → { error }, иначе { item, warning? }. */
-export function normalizeReplyRow(row, index) {
+export function normalizeReplyRow(row, index, options = {}) {
   const at = `элемент #${index + 1}`;
+  const mode = options.mode ?? 'send';
+  if (mode !== 'dry-run' && mode !== 'send') return { error: `${at}: неизвестный режим нормализации "${mode}"` };
   const reportId = String(row?.reportId ?? '').trim();
   const uid = String(row?.uid ?? '').trim();
   const title = String(row?.title ?? '').trim().slice(0, TITLE_MAX);
@@ -88,7 +90,9 @@ export function normalizeReplyRow(row, index) {
     : resolveRewardBundle(row.rewardBundle);
   const reportCollection = String(row?.reportCollection ?? 'error_reports').trim();
   if (!reportId) return { error: `${at}: пустой reportId` };
-  if (!uid || uid === 'unknown' || uid === 'test_uid_abc123') return { error: `${at}: невалидный uid "${uid}"` };
+  if ((mode === 'send' && !uid) || uid === 'unknown' || uid === 'test_uid_abc123') {
+    return { error: `${at}: невалидный uid "${uid}"` };
+  }
   if (!title || !body) return { error: `${at}: пустой title/body` };
   if (!REPORT_RESOLUTIONS.has(resolution)) return { error: `${at}: неизвестный resolution "${resolution}"` };
   if (!resolved.bundle) {
@@ -99,14 +103,19 @@ export function normalizeReplyRow(row, index) {
   }
   if (!REPORT_COLLECTIONS.has(reportCollection)) return { error: `${at}: неизвестная reportCollection "${reportCollection}"` };
   return {
-    item: { reportId, uid, title, body, resolution, rewardBundle: resolved.bundle, reportCollection },
+    item: { reportId, ...(uid ? { uid } : {}), title, body, resolution, rewardBundle: resolved.bundle, reportCollection },
     warning: resolved.upgradedFromV1
       ? `${at}: старый набор v1 (спины/руны/жемчуг) переведён в ${rewardLabel(resolved.bundle)} — D109`
       : undefined,
   };
 }
 
-/** Режим запуска: запись только при явном --send и без --dry-run; иначе предпросмотр. */
+/** Режим запуска: только точный один флаг; без флага — безопасный предпросмотр. */
 export function resolveRunMode(argv) {
-  return argv.includes('--send') && !argv.includes('--dry-run') ? 'send' : 'dry-run';
+  if (!Array.isArray(argv)) throw new Error('invalid CLI flags: expected an array');
+  if (argv.length === 0) return 'dry-run';
+  if (argv.length !== 1) throw new Error(`invalid CLI flags: ${argv.join(' ')}`);
+  if (argv[0] === '--dry-run') return 'dry-run';
+  if (argv[0] === '--send') return 'send';
+  throw new Error(`unknown CLI flag: ${argv[0]}`);
 }

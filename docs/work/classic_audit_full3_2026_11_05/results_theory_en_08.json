@@ -1,0 +1,72 @@
+[
+ {
+  "id": "lesson-17/nuance",
+  "type": "T2",
+  "field": "localized.ru.nuance (+chapters[2].body)",
+  "problem": "машинная калька: «работу где-либо в качестве вашей обычной работы», «не располагаются в таком порядке» (речь о конструкции, не о порядке)",
+  "fix": "Сравните постоянную работу где-то с временной работой в другую смену в этом месяце. Глаголы вроде `know` обычно описывают состояние и, как правило, в этой конструкции не употребляются."
+ },
+ {
+  "id": "lesson-17/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (+chapters[2].body)",
+  "problem": "калька «роботу деінде як вашу звичайну роботу», повтор «зазвичай… зазвичай»",
+  "fix": "Порівняйте постійну роботу десь із тимчасовою роботою в іншу зміну цього місяця. Дієслова на кшталт `know` зазвичай описують стан і, як правило, у цій конструкції не вживаються."
+ },
+ {
+  "id": "lesson-17/chapter-6",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "неправильне керування «розрізняти … від»",
+  "fix": "Розрізняйте розпорядок і тимчасову ситуацію"
+ },
+ {
+  "id": "lesson-17/choose",
+  "type": "T2",
+  "field": "localized.ru.choose",
+  "problem": "ты/вы вразнобой внутри урока: story/choose/strategy/feedback на «ты», use/nuance/главы 4–6 на «вы»; привести choose (и дубли в chapters[1].body, chapters[3].body, feedback) к «вы», story/strategy — тоже",
+  "fix": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Чтобы задать вопрос, поставьте `be` перед подлежащим, а для отрицания добавьте после него `not`."
+ },
+ {
+  "id": "lesson-17/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання поставте `be` перед підметом, а для заперечення додайте після нього `not`."
+ },
+ {
+  "id": "lesson-18/choose",
+  "type": "T2",
+  "field": "localized.en.choose (+chapters[1].body, chapters[3].body, feedback)",
+  "problem": "en не соответствует ru: в ru — «начни с действия: Come this way», «don't перед глаголом», «Let's go»; в en нет первого пункта, зато есть let's not",
+  "fix": "Start an instruction with the action: `Come this way`. To tell someone not to do something, put `don't` before the verb: `Don't touch`. For a shared suggestion say `Let's go`: the speaker is going too."
+ },
+ {
+  "id": "lesson-18/nuance",
+  "type": "T2",
+  "field": "localized.ru.nuance (+chapters[2].body)",
+  "problem": "калька «Давайте одно четкое указание за раз»; «предложение» двусмысленно (фраза/предложение сделать)",
+  "fix": "`Let us` может буквально означать просьбу разрешить нам что-то сделать. Не превращайте механически каждое предложение с `let's` в просьбу о разрешении. Давайте указания по одному, чётко и по шагам."
+ },
+ {
+  "id": "lesson-18/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (+chapters[2].body)",
+  "problem": "граматична помилка «по одному чіткому вказівці» (вказівка — ж. р.), калька «розширюйте … на запит дозволу»",
+  "fix": "`Let us` може буквально означати прохання дозволити нам щось зробити. Не перетворюйте механічно кожну пропозицію з `let's` на прохання про дозвіл. Давайте вказівки по одній, чітко й по кроках."
+ },
+ {
+  "id": "lesson-18/choose",
+  "type": "T2",
+  "field": "localized.ru.choose",
+  "problem": "ты/вы вразнобой внутри урока: story/choose/strategy/feedback на «ты», use/nuance/главы 4–6 на «вы»; привести choose (и дубли в chapters[1].body, chapters[3].body, feedback) к «вы», story/strategy — тоже",
+  "fix": "Начинайте инструкцию сразу с действия: `Come this way`. Для запрета поставьте `don't` перед глаголом: `Don't touch`. Для общего предложения скажите `Let's go`: говорящий тоже собирается идти."
+ },
+ {
+  "id": "lesson-18/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Починайте вказівку відразу з дії: `Come this way`. Щоб заборонити, поставте `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почніть з `Let's go`: мовець теж збирається йти."
+ }
+]

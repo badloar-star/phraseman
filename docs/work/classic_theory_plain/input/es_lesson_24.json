@@ -1,0 +1,731 @@
+{
+ "lang": "es",
+ "lesson": 24,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:24:01",
+   "target": "Leía el mensaje cuando sonó el móvil.",
+   "ru": "Я читал сообщение, когда зазвонил телефон.",
+   "uk": "Я читав повідомлення, коли задзвонив телефон."
+  },
+  {
+   "id": "es:24:02",
+   "target": "Ana preparaba la cena cuando recibí tu mensaje.",
+   "ru": "Ана готовила ужин, когда я получил твоё сообщение.",
+   "uk": "Ана готувала вечерю, коли я отримав твоє повідомлення."
+  },
+  {
+   "id": "es:24:03",
+   "target": "Esperábamos el tren cuando llegó mi hermana.",
+   "ru": "Мы ждали поезд, когда пришла моя сестра.",
+   "uk": "Ми чекали на потяг, коли прийшла моя сестра."
+  },
+  {
+   "id": "es:24:04",
+   "target": "Luis escribía una carta cuando se abrió la puerta.",
+   "ru": "Луис писал письмо, когда открылась дверь.",
+   "uk": "Луїс писав листа, коли відчинилися двері."
+  },
+  {
+   "id": "es:24:05",
+   "target": "Mis hermanos trabajaban cuando entró el médico.",
+   "ru": "Мои братья работали, когда вошёл врач.",
+   "uk": "Мої брати працювали, коли зайшов лікар."
+  },
+  {
+   "id": "es:24:06",
+   "target": "Bebía café cuando llegó el tren.",
+   "ru": "Я пил кофе, когда прибыл поезд.",
+   "uk": "Я пив каву, коли прибув потяг."
+  },
+  {
+   "id": "es:24:07",
+   "target": "Buscabas la llave cuando llegó Ana.",
+   "ru": "Ты искала ключ, когда пришла Ана.",
+   "uk": "Ти шукала ключ, коли прийшла Ана."
+  },
+  {
+   "id": "es:24:08",
+   "target": "La profesora hablaba cuando terminó la reunión.",
+   "ru": "Преподавательница говорила, когда закончилась встреча.",
+   "uk": "Викладачка говорила, коли закінчилася зустріч."
+  },
+  {
+   "id": "es:24:09",
+   "target": "Comíamos en casa cuando sonó el móvil.",
+   "ru": "Мы ели дома, когда зазвонил телефон.",
+   "uk": "Ми їли вдома, коли задзвонив телефон."
+  },
+  {
+   "id": "es:24:10",
+   "target": "Los estudiantes leían cuando recibí tu mensaje.",
+   "ru": "Студенты читали, когда я получил твоё сообщение.",
+   "uk": "Студенти читали, коли я отримав твоє повідомлення."
+  },
+  {
+   "id": "es:24:11",
+   "target": "Leía tu carta cuando sonó el móvil.",
+   "ru": "Я читал твоё письмо, когда зазвонил телефон.",
+   "uk": "Я читав твого листа, коли задзвонив телефон."
+  },
+  {
+   "id": "es:24:12",
+   "target": "Ana preparaba la cena cuando llegó mi hermana.",
+   "ru": "Ана готовила ужин, когда пришла моя сестра.",
+   "uk": "Ана готувала вечерю, коли прийшла моя сестра."
+  },
+  {
+   "id": "es:24:13",
+   "target": "Esperábamos el tren cuando se abrió la puerta.",
+   "ru": "Мы ждали поезд, когда открылась дверь.",
+   "uk": "Ми чекали на потяг, коли відчинилися двері."
+  },
+  {
+   "id": "es:24:14",
+   "target": "Preparaba la sopa cuando sonó el timbre.",
+   "ru": "Я готовил суп, когда раздался звонок в дверь.",
+   "uk": "Я готував суп, коли пролунав дзвінок у двері."
+  },
+  {
+   "id": "es:24:15",
+   "target": "Mis hermanos esperaban cuando llegó el tren.",
+   "ru": "Мои братья ждали, когда прибыл поезд.",
+   "uk": "Мої брати чекали, коли прибув потяг."
+  },
+  {
+   "id": "es:24:16",
+   "target": "Bebía café cuando me llamaste.",
+   "ru": "Я пил кофе, когда ты мне позвонил.",
+   "uk": "Я пив каву, коли ти мені зателефонував."
+  },
+  {
+   "id": "es:24:17",
+   "target": "Buscabas la llave cuando terminó la reunión.",
+   "ru": "Ты искала ключ, когда закончилась встреча.",
+   "uk": "Ти шукала ключ, коли закінчилася зустріч."
+  },
+  {
+   "id": "es:24:18",
+   "target": "La profesora hablaba cuando sonó el móvil.",
+   "ru": "Преподавательница говорила, когда зазвонил телефон.",
+   "uk": "Викладачка говорила, коли задзвонив телефон."
+  },
+  {
+   "id": "es:24:19",
+   "target": "Esperábamos el autobús cuando empezó a llover.",
+   "ru": "Мы ждали автобус, когда пошёл дождь.",
+   "uk": "Ми чекали на автобус, коли пішов дощ."
+  },
+  {
+   "id": "es:24:20",
+   "target": "Los estudiantes leían cuando llegó mi hermana.",
+   "ru": "Студенты читали, когда пришла моя сестра.",
+   "uk": "Студенти читали, коли прийшла моя сестра."
+  },
+  {
+   "id": "es:24:21",
+   "target": "Leía el mensaje cuando llegó mi hermana.",
+   "ru": "Я читал сообщение, когда пришла моя сестра.",
+   "uk": "Я читав повідомлення, коли прийшла моя сестра."
+  },
+  {
+   "id": "es:24:22",
+   "target": "Ana preparaba la cena cuando se abrió la puerta.",
+   "ru": "Ана готовила ужин, когда открылась дверь.",
+   "uk": "Ана готувала вечерю, коли відчинилися двері."
+  },
+  {
+   "id": "es:24:23",
+   "target": "Esperábamos el tren cuando empezó a llover.",
+   "ru": "Мы ждали поезд, когда пошёл дождь.",
+   "uk": "Ми чекали на потяг, коли почався дощ."
+  },
+  {
+   "id": "es:24:24",
+   "target": "Luis escribía una carta cuando llegó el tren.",
+   "ru": "Луис писал письмо, когда прибыл поезд.",
+   "uk": "Луїс писав листа, коли прибув потяг."
+  },
+  {
+   "id": "es:24:25",
+   "target": "Mis hermanos trabajaban cuando me llamaste.",
+   "ru": "Мои братья работали, когда ты мне позвонил.",
+   "uk": "Мої брати працювали, коли ти мені зателефонував."
+  },
+  {
+   "id": "es:24:26",
+   "target": "Bebía café cuando terminó la reunión.",
+   "ru": "Я пил кофе, когда закончилась встреча.",
+   "uk": "Я пив каву, коли закінчилася зустріч."
+  },
+  {
+   "id": "es:24:27",
+   "target": "Buscabas la llave cuando sonó el móvil.",
+   "ru": "Ты искала ключ, когда зазвонил телефон.",
+   "uk": "Ти шукала ключ, коли задзвонив телефон."
+  },
+  {
+   "id": "es:24:28",
+   "target": "La profesora hablaba cuando recibí tu mensaje.",
+   "ru": "Преподавательница говорила, когда я получил твоё сообщение.",
+   "uk": "Викладачка говорила, коли я отримав твоє повідомлення."
+  },
+  {
+   "id": "es:24:29",
+   "target": "Ana leía el periódico cuando llegó el taxi.",
+   "ru": "Ана читала газету, когда приехало такси.",
+   "uk": "Ана читала газету, коли приїхало таксі."
+  },
+  {
+   "id": "es:24:30",
+   "target": "Yo cocinaba cuando se abrió la puerta.",
+   "ru": "Я готовил, когда открылась дверь.",
+   "uk": "Я готував, коли відчинилися двері."
+  },
+  {
+   "id": "es:24:31",
+   "target": "Mientras leía el mensaje, se abrió la puerta.",
+   "ru": "Пока я читал сообщение, открылась дверь.",
+   "uk": "Поки я читав повідомлення, відчинилися двері."
+  },
+  {
+   "id": "es:24:32",
+   "target": "Mientras Ana preparaba la cena, entró el médico.",
+   "ru": "Пока Ана готовила ужин, вошёл врач.",
+   "uk": "Поки Ана готувала вечерю, зайшов лікар."
+  },
+  {
+   "id": "es:24:33",
+   "target": "Mientras esperábamos el tren, me llamó Ana.",
+   "ru": "Пока мы ждали поезд, мне позвонила Ана.",
+   "uk": "Поки ми чекали на потяг, мені зателефонувала Ана."
+  },
+  {
+   "id": "es:24:34",
+   "target": "Mientras cantaba Ana, empezó a llover.",
+   "ru": "Пока Ана пела, пошёл дождь.",
+   "uk": "Поки Ана співала, пішов дощ."
+  },
+  {
+   "id": "es:24:35",
+   "target": "Mientras mis hermanos trabajaban, terminó la reunión.",
+   "ru": "Пока мои братья работали, закончилась встреча.",
+   "uk": "Поки мої брати працювали, закінчилася зустріч."
+  },
+  {
+   "id": "es:24:36",
+   "target": "Mientras bebía café, sonó el móvil.",
+   "ru": "Пока я пил кофе, зазвонил телефон.",
+   "uk": "Поки я пив каву, задзвонив телефон."
+  },
+  {
+   "id": "es:24:37",
+   "target": "Mientras buscabas la llave, recibí tu mensaje.",
+   "ru": "Пока ты искала ключ, я получил твоё сообщение.",
+   "uk": "Поки ти шукала ключ, я отримав твоє повідомлення."
+  },
+  {
+   "id": "es:24:38",
+   "target": "Mientras la profesora hablaba, llegó mi hermana.",
+   "ru": "Пока преподавательница говорила, пришла моя сестра.",
+   "uk": "Поки викладачка говорила, прийшла моя сестра."
+  },
+  {
+   "id": "es:24:39",
+   "target": "Mientras comíamos en casa, llamó Luis.",
+   "ru": "Пока мы ели дома, позвонил Луис.",
+   "uk": "Поки ми їли вдома, зателефонував Луїс."
+  },
+  {
+   "id": "es:24:40",
+   "target": "Mientras cortaba el queso, sonó el timbre.",
+   "ru": "Пока я нарезал сыр, раздался звонок в дверь.",
+   "uk": "Поки я нарізав сир, пролунав дзвінок у двері."
+  },
+  {
+   "id": "es:24:41",
+   "target": "Mientras leía el mensaje, entró el médico.",
+   "ru": "Пока я читал сообщение, вошёл врач.",
+   "uk": "Поки я читав повідомлення, зайшов лікар."
+  },
+  {
+   "id": "es:24:42",
+   "target": "Mientras Ana preparaba la cena, sonó el timbre.",
+   "ru": "Пока Ана готовила ужин, позвонили в дверь.",
+   "uk": "Поки Ана готувала вечерю, подзвонили у двері."
+  },
+  {
+   "id": "es:24:43",
+   "target": "Mientras esperábamos el tren, me llamaste.",
+   "ru": "Пока мы ждали поезд, ты мне позвонил.",
+   "uk": "Поки ми чекали на потяг, ти мені зателефонував."
+  },
+  {
+   "id": "es:24:44",
+   "target": "Mientras Luis escribía una carta, terminó la reunión.",
+   "ru": "Пока Луис писал письмо, закончилась встреча.",
+   "uk": "Поки Луїс писав листа, закінчилася зустріч."
+  },
+  {
+   "id": "es:24:45",
+   "target": "Mientras mis hermanos trabajaban, sonó el móvil.",
+   "ru": "Пока мои братья работали, зазвонил телефон.",
+   "uk": "Поки мої брати працювали, задзвонив телефон."
+  },
+  {
+   "id": "es:24:46",
+   "target": "Mientras bebía café, recibí tu mensaje.",
+   "ru": "Пока я пил кофе, я получил твоё сообщение.",
+   "uk": "Поки я пив каву, я отримав твоє повідомлення."
+  },
+  {
+   "id": "es:24:47",
+   "target": "Mientras buscabas la llave, llegó mi hermana.",
+   "ru": "Пока ты искала ключ, пришла моя сестра.",
+   "uk": "Поки ти шукала ключ, прийшла моя сестра."
+  },
+  {
+   "id": "es:24:48",
+   "target": "Mientras la profesora hablaba, se abrió la puerta.",
+   "ru": "Пока преподавательница говорила, открылась дверь.",
+   "uk": "Поки викладачка говорила, відчинилися двері."
+  },
+  {
+   "id": "es:24:49",
+   "target": "Mientras comíamos en casa, entró el médico.",
+   "ru": "Пока мы ели дома, вошёл врач.",
+   "uk": "Поки ми їли вдома, зайшов лікар."
+  },
+  {
+   "id": "es:24:50",
+   "target": "Mientras los estudiantes leían, llegó el tren.",
+   "ru": "Пока студенты читали, прибыл поезд.",
+   "uk": "Поки студенти читали, прибув потяг."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "cocinar",
+   "ru": "готовить еду",
+   "uk": "готувати їжу"
+  },
+  {
+   "lemma": "cuando",
+   "ru": "когда (союз)",
+   "uk": "коли (сполучник)"
+  },
+  {
+   "lemma": "mientras",
+   "ru": "пока, в то время как",
+   "uk": "поки, у той час як"
+  },
+  {
+   "lemma": "empezar",
+   "ru": "начинать",
+   "uk": "починати"
+  },
+  {
+   "lemma": "cantar",
+   "ru": "петь",
+   "uk": "співати"
+  },
+  {
+   "lemma": "timbre",
+   "ru": "звонок (у двери)",
+   "uk": "дзвінок (у дверях)"
+  },
+  {
+   "lemma": "llegar",
+   "ru": "прибывать, приходить",
+   "uk": "прибувати, приходити"
+  },
+  {
+   "lemma": "llover",
+   "ru": "идти (о дожде)",
+   "uk": "іти (про дощ)"
+  },
+  {
+   "lemma": "sonar",
+   "ru": "звонить, звучать",
+   "uk": "дзвонити, лунати"
+  },
+  {
+   "lemma": "yo",
+   "ru": "я",
+   "uk": "я"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  }
+ ],
+ "oldTopicTitle": "Фон и событие в одной фразе",
+ "oldTheoryRu": "Ты уже читал, когда зазвонил телефон. Leía — что шло; sonó — что произошло. Выбирай форму по роли события, а не только по слову cuando. Раздели фразу на то, что уже происходило, и то, что произошло на этом фоне. Leía описывает процесс чтения. Sonó предъявляет звонок как отдельное событие. Это не обязательно значит, что после звонка чтение закончилось. Спроси: что уже происходило к появлению другой новости? Для «мы ждали» берём esperábamos. Не выбирай время только по порядку слов. Прибытие поезда, вход человека или прозвучавший звонок в этих примерах сообщаются как факты. Выбираем llegó, entró, sonó — с -ó в третьем лице. Mientras вводит часть «пока…». В наших образцах она задаёт фон. Если эта часть стоит первой, перед главной частью ставится запятая; её конструктор добавляет сам. Не заучивай «после cuando всегда indefinido». В этой серии выбран определённый сюжет: один процесс и один факт. В других сюжетах оба действия могут быть привычными. Сравни два задания: «Студенты читали, когда пришла моя сестра.» / «Я читал сообщение, когда пришла моя сестра.». Отдели действие-фон от нового события и проверь исполнителя каждого. Две части: Los estudiantes leían  /  cuando llegó mi hermana. Сравни два задания: «Пока Луис писал письмо, закончилась встреча.» / «Пока студенты читали, прибыл поезд.». Отдели действие-фон от нового события и проверь исполнителя каждого. Раздели фразу на то, что уже происходило, и то, что произошло на этом фоне."
+}

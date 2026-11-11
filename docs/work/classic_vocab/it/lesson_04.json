@@ -33,10 +33,15 @@
    "es": "una amiga"
   },
   "un": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Новый для собеседника сосед (___ vicino)",
+   "uk": "Сусід, про якого ще не говорили (___ vicino)",
+   "en": "A neighbor mentioned for the first time (___ vicino)",
+   "es": "Un vecino que se menciona por primera vez (___ vicino)",
+   "pt-BR": "Um vizinho mencionado pela primeira vez (___ vicino)",
+   "vi": "Một anh hàng xóm được nhắc đến lần đầu (___ vicino)",
+   "id": "Seorang tetangga laki-laki yang baru disebut (___ vicino)",
+   "tr": "İlk kez bahsedilen bir erkek komşu (___ vicino)",
+   "pl": "Pewien sąsiad, wspomniany po raz pierwszy (___ vicino)"
   },
   "amico": {
    "ru": "друг",
@@ -45,10 +50,15 @@
    "es": "amigo"
   },
   "una": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Новая для собеседника соседка (___ vicina)",
+   "uk": "Сусідка, про яку ще не говорили (___ vicina)",
+   "en": "A neighbor mentioned for the first time (___ vicina)",
+   "es": "Una vecina que se menciona por primera vez (___ vicina)",
+   "pt-BR": "Uma vizinha mencionada pela primeira vez (___ vicina)",
+   "vi": "Một cô hàng xóm được nhắc đến lần đầu (___ vicina)",
+   "id": "Seorang tetangga perempuan yang baru disebut (___ vicina)",
+   "tr": "İlk kez bahsedilen bir kadın komşu (___ vicina)",
+   "pl": "Pewna sąsiadka, wspomniana po raz pierwszy (___ vicina)"
   },
   "padre": {
    "ru": "отец",

@@ -23,7 +23,7 @@ import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../../app/debug-logger';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, V2_TAB_BAR_HEIGHT, computeTabBarGeometry, tabCapRightFits } from './tab_bar_geometry';
+import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, V2_TAB_BAR_HEIGHT, computeTabBarGeometry, tabCapMetrics, tabCapRightFits } from './tab_bar_geometry';
 import { colorWithAlpha } from './plateAlpha';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -87,10 +87,18 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
   // свой слой со скруглением плашки (у самой плашки обрезки нет — иначе пропала бы её тень). Нет масок для цвета — прежний SVG.
   const masks = CAP_HEX.test(color) ? homeTabbarCapMasks(color) : null;
   if (masks) {
+    // зачем (владелец, планшет: «справа обрезан, слева скруглён»): запечённая маска светлее у левого края и бледнеет к правому (альфа 42→11) — на широкой ячейке правый край
+    // таял и читался как срез. Рисуем ЛЕВУЮ половину маски и её зеркальную копию справа: заливка симметрична, края равны. Половины стыкуются на самом ровном месте маски (середина).
     return (
       <View pointerEvents="none" style={s.capClip}>
-        <Image accessible={false} source={masks.color} resizeMode="stretch" fadeDuration={0} style={[s.capMask, { tintColor: color.slice(0, 7) }]} />
-        <Image accessible={false} source={masks.white} resizeMode="stretch" fadeDuration={0} style={s.capMask} />
+        <View style={s.capHalfLeft}>
+          <Image accessible={false} source={masks.color} resizeMode="stretch" fadeDuration={0} style={[s.capHalfImage, { tintColor: color.slice(0, 7) }]} />
+          <Image accessible={false} source={masks.white} resizeMode="stretch" fadeDuration={0} style={s.capHalfImage} />
+        </View>
+        <View style={[s.capHalfRight, { transform: [{ scaleX: -1 }] }]}>
+          <Image accessible={false} source={masks.color} resizeMode="stretch" fadeDuration={0} style={[s.capHalfImage, { tintColor: color.slice(0, 7) }]} />
+          <Image accessible={false} source={masks.white} resizeMode="stretch" fadeDuration={0} style={s.capHalfImage} />
+        </View>
       </View>
     );
   }
@@ -124,14 +132,17 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
 function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, collapseStyle, reduceMotion }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const palette = liquidGlassTokens(liquidGlassThemeId);
-  const glassFill = useMemo(() => palette.premiumDock
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» капсула таб-бара — плотная плашка материала, активная вкладка — градиент главной кнопки с тёмным значком
+  const glassFill = useMemo(() => palette.aurora
+    ? ([palette.aurora.cardFrom, palette.aurora.cardTo] as const)
+    : palette.premiumDock
     ? (liquidGlassThemeId.includes('_ref_')
         ? ([palette.premiumDock, palette.bg] as const)
         : ([palette.premiumDock, palette.premiumDock] as const))
     : Platform.OS === 'ios'
       ? ([alphaHex(palette.opaqueControl, 0.64), alphaHex(palette.bgBottom, 0.76)] as const)
       : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
-  [liquidGlassThemeId, palette.bg, palette.bgBottom, palette.opaqueControl, palette.premiumDock]);
+  [liquidGlassThemeId, palette.aurora, palette.bg, palette.bgBottom, palette.opaqueControl, palette.premiumDock]);
   const count = items.length;
   // зачем (владелец 11.10, «кнопки справа обрезаны»): боковые отступы считаем от ширины ОКНА и безопасных зон слева/справа, а капсула
   // не шире окна — даже если родитель по какой-то причине шире экрана. Реальная геометрия пишется в журнал [TABBAR].
@@ -141,6 +152,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const barRef = useRef<View>(null);
   const [width, setWidth] = useState(0);
   const slotW = width > 0 ? (width - PAD * 2) / count : 0;
+  // зачем (слово владельца, планшет): плашка не шире TAB_CAP_MAX_W и стоит по центру своей ячейки с равными отступами (tab_bar_geometry.tabCapMetrics)
+  const { capW, inset: capInset } = tabCapMetrics(slotW);
   const capX = useRef(new Animated.Value(0)).current;
   const capLift = useRef(new Animated.Value(0)).current;
   const pressAnim = useRef(new Animated.Value(0)).current;
@@ -153,8 +166,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const targetLeftRef = useRef(0);
   const gestureRef = useRef<Gesture | null>(null);
   // Обработчики жеста создаются один раз — свежие значения читают отсюда.
-  const live = useRef({ slotW, count, onSelect, onInteract, reduceMotion });
-  live.current = { slotW, count, onSelect, onInteract, reduceMotion };
+  const live = useRef({ slotW, capW, capInset, count, onSelect, onInteract, reduceMotion });
+  live.current = { slotW, capW, capInset, count, onSelect, onInteract, reduceMotion };
 
   const travelTo = (left: number) => {
     targetLeftRef.current = left;
@@ -172,7 +185,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const lastSlotWRef = useRef(0);
   useEffect(() => {
     if (slotW <= 0 || activeIndex < 0 || draggingRef.current) return;
-    const to = PAD + activeIndex * slotW;
+    const to = PAD + activeIndex * slotW + capInset;
     const slotChanged = lastSlotWRef.current > 0 && Math.abs(lastSlotWRef.current - slotW) > 0.5;
     lastSlotWRef.current = slotW;
     if (slotChanged) {
@@ -194,7 +207,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     if (Math.abs(targetLeftRef.current - to) < 0.5) return;
     travelTo(to);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex, slotW]);
+  }, [activeIndex, slotW, capInset]);
 
   const pressIn = useCallback((idx: number) => {
     setPressedIdx(idx);
@@ -224,13 +237,13 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   };
 
   const followFinger = (fingerX: number) => {
-    const { slotW: sw, count: n } = live.current;
-    const left = Math.max(PAD, Math.min(PAD + (n - 1) * sw, fingerX - sw / 2));
+    const { slotW: sw, capW: cw, capInset: ci, count: n } = live.current;
+    const left = Math.max(PAD + ci, Math.min(PAD + ci + (n - 1) * sw, fingerX - cw / 2));
     dragLeftRef.current = left;
     targetLeftRef.current = left;
     // Капсула догоняет палец быстрой пружиной — едет за ним, а не телепортируется.
     Animated.spring(capX, { toValue: left, ...CAP_FOLLOW_SPRING }).start(); // guard-ok: useNativeDriver в CAP_FOLLOW_SPRING
-    const near = clampIdx(Math.round((left - PAD) / sw));
+    const near = clampIdx(Math.round((left - PAD - ci) / sw));
     setHoverIdx((prev) => (prev === near ? prev : near));
   };
 
@@ -250,7 +263,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
 
   const tapSelect = (idx: number) => {
     // Переезд стартует прямо в обработчике касания, до тяжёлой перерисовки экрана вкладки.
-    travelTo(PAD + idx * live.current.slotW);
+    travelTo(PAD + idx * live.current.slotW + live.current.capInset);
     live.current.onSelect(idx);
   };
 
@@ -268,8 +281,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         else tapSelect(g.idx);
         return;
       }
-      const target = clampIdx(Math.round((dragLeftRef.current - PAD) / live.current.slotW));
-      travelTo(PAD + target * live.current.slotW);
+      const target = clampIdx(Math.round((dragLeftRef.current - PAD - live.current.capInset) / live.current.slotW));
+      travelTo(PAD + target * live.current.slotW + live.current.capInset);
       live.current.onSelect(target);
       return;
     }
@@ -323,6 +336,15 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       capLeft: PAD + Math.max(0, activeIndex) * slot, capRight: PAD + (Math.max(0, activeIndex) + 1) * slot, barInnerRight: w - PAD, capFits: fits,
     };
     DebugLogger.info('[TABBAR]', `layout ${JSON.stringify(snapshot)}`);
+    // зачем (слово владельца, планшет: «фон активной вкладки справа обрезан»; СПЕРВА ЛОГИ): ширина панели, число вкладок, ячейка и плашка (x, ширина, отступы слева/справа), кто режет (overflow родителей)
+    const capMetrics = tabCapMetrics(slot);
+    const cellLeft = PAD + Math.max(0, activeIndex) * slot;
+    console.log('[TABBAR-LAYOUT]', JSON.stringify({ // guard-ok: одна строка на изменение раскладки панели
+      stage: 'bar', windowW: Math.round(windowWidth * 10) / 10, barW: Math.round(w * 10) / 10, count, activeIndex, slotW: Math.round(slot * 10) / 10,
+      capW: Math.round(capMetrics.capW * 10) / 10, capX: Math.round((cellLeft + capMetrics.inset) * 10) / 10, cellX: Math.round(cellLeft * 10) / 10,
+      insetL: Math.round(capMetrics.inset * 10) / 10, insetR: Math.round((slot - capMetrics.capW - capMetrics.inset) * 10) / 10, symmetric: Math.abs(capMetrics.inset - (slot - capMetrics.capW - capMetrics.inset)) < 0.01,
+      capFits: fits, parentOverflow: 'bar:visible clip:hidden(radius 33,фон капсулы) capClip:hidden(radius 18)', capRadius: CAP_RADIUS,
+    }));
     // абсолютное положение на экране: правый край капсулы за краем окна — это и есть «обрезано справа»
     requestAnimationFrame(() => {
       barRef.current?.measureInWindow?.((x, y, mw, mh) => {
@@ -400,10 +422,12 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       {slotW > 0 && activeIndex >= 0 ? (
         <Animated.View
           pointerEvents="none"
-          style={[s.cap, { width: slotW, shadowColor: palette.accentCap, transform: [{ translateX: capX }, { scale: capScale }] }]}
+          style={[s.cap, { width: capW, shadowColor: palette.accentCap, transform: [{ translateX: capX }, { scale: capScale }] }]}
         >
           {/* зачем (темы 2.0): капсула в цвете темы в «Акценте/Максимуме»; в «Спокойно» accentCap = cta (как было). */}
-          <CapFill width={slotW} color={palette.accentCap} />
+          {palette.aurora
+            ? <LinearGradient colors={[palette.aurora.ctaFrom, palette.aurora.ctaTo]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={[StyleSheet.absoluteFill, { borderRadius: CAP_RADIUS }]} />
+            : <CapFill width={capW} color={palette.accentCap} />}
           <Animated.View style={[s.capBright, { opacity: capBright }]} />
         </Animated.View>
       ) : null}
@@ -416,7 +440,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         {items.map((item, i) => {
           const on = i === activeIndex;
           // Активный значок: в «Спокойно» accentBright = cta (как было), иначе — цвет темы.
-          const color = on ? palette.accentBright : hoverIdx === i ? palette.secondary : palette.mutedText;
+          const color = on ? (palette.aurora ? palette.aurora.ctaInk : palette.accentBright) : hoverIdx === i ? palette.secondary : palette.mutedText;
           return (
             <View
               key={item.key}
@@ -490,6 +514,10 @@ const s = StyleSheet.create({
   // маски плашки обрезает этот слой (у самой плашки обрезки нет — её тень)
   capClip: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, overflow: 'hidden' },
   capMask: { ...StyleSheet.absoluteFillObject },
+  // половины зеркальной заливки: картинка вдвое шире половины, видна только её левая часть; правая половина отражена
+  capHalfLeft: { position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', overflow: 'hidden' },
+  capHalfRight: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '50%', overflow: 'hidden' },
+  capHalfImage: { position: 'absolute', left: 0, top: 0, bottom: 0, width: '200%' },
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' }, // theme-exempt: яркая вспышка плашки при нажатии — белая в любой теме
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },

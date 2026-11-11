@@ -53,10 +53,6 @@ import { useTheme } from './ThemeContext';
 import { FlowText } from './text-integrity';
 import TonalSurface from './TonalSurface';
 import { glassFill } from './GlassSurface';
-import FeatureIntroModal from './FeatureIntroModal';
-import { featureIntroById } from '../app/feature_intro_registry';
-import { featureIntroClose } from '../app/feature_intro_copy';
-import { useRequestedFeatureIntro } from '../hooks/use_requested_feature_intro';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
@@ -138,17 +134,10 @@ function DailyPhraseCard({
   ));
   const [detailsVisible, setDetailsVisible] = useState(false);
   const handledDeepLinkRef = useRef<string | null>(null);
-  const pendingDeepLinkRef = useRef<string | null>(null);
   const spokenDeepLinkRef = useRef<string | null>(null);
-  const introActive = useRuntimeActive(dailyPhraseGateOpen && (!homeAdditional || homeCardVisible));
-  const dailyIntroDef = featureIntroById('daily_phrase_first_visit')!;
-  const dailyIntro = useRequestedFeatureIntro('daily_phrase_first_visit', introActive && !detailsVisible, () => {
-    setDetailsVisible(true);
-    if (pendingDeepLinkRef.current) {
-      handledDeepLinkRef.current = pendingDeepLinkRef.current;
-      pendingDeepLinkRef.current = null;
-    }
-  });
+  const detailsRuntimeActive = useRuntimeActive(dailyPhraseGateOpen && (!homeAdditional || homeCardVisible));
+  const detailsRuntimeActiveRef = useRef(detailsRuntimeActive);
+  detailsRuntimeActiveRef.current = detailsRuntimeActive;
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
@@ -238,19 +227,15 @@ function DailyPhraseCard({
   //   phraseman://phrase/<id>?play=1 -> openPhrase=<id>&play=1 (open + speak)
   // handledDeepLinkRef ensures we act once per distinct link, not every render.
   useEffect(() => {
-    if (!dailyPhraseGateOpen || !introActive) return;
+    if (!dailyPhraseGateOpen || !detailsRuntimeActive) return;
     const openPhrase = typeof params.openPhrase === 'string' ? params.openPhrase : '';
     if (!openPhrase) return;
 
     const wantsPlay = typeof params.play === 'string' && params.play === '1';
     const linkKey = `${openPhrase}:${wantsPlay ? '1' : '0'}`;
-    if (detailsVisible) {
+    if (handledDeepLinkRef.current !== linkKey) {
       handledDeepLinkRef.current = linkKey;
-      pendingDeepLinkRef.current = null;
-    } else if (handledDeepLinkRef.current !== linkKey) {
-      // Consume only when details actually open, not during a cancellable read.
-      pendingDeepLinkRef.current = linkKey;
-      void dailyIntro.request();
+      setDetailsVisible(true);
     }
     if (!wantsPlay || spokenDeepLinkRef.current === linkKey) return;
 
@@ -264,7 +249,7 @@ function DailyPhraseCard({
       speak(english, undefined, { language: inferExpoSpeechLanguage(english, studyTarget) });
       spokenDeepLinkRef.current = linkKey;
     }
-  }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak, dailyIntro.request, introActive, detailsVisible]);
+  }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak, detailsRuntimeActive]);
 
   useEffect(() => {
     setQuestAnswered(false);
@@ -643,6 +628,7 @@ function DailyPhraseCard({
     const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
     const alreadyAnswered = answeredQuestKeysRef.has(questKey)
       || await hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(noteSwallowedAs('DailyPhraseCard:openDetails.hasDailyPhraseQuestAnswered', false));
+    if (!detailsRuntimeActiveRef.current) return;
 
     if (alreadyAnswered) {
       setCardAnswered(true);
@@ -654,7 +640,7 @@ function DailyPhraseCard({
       successAnim.setValue(0);
     }
 
-    await dailyIntro.request();
+    setDetailsVisible(true);
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(noteSwallowedHandler('DailyPhraseCard:openDetails.checkAchievements'));
   };
 
@@ -814,9 +800,6 @@ function DailyPhraseCard({
         )}
       </Animated.View>
 
-      <FeatureIntroModal visible={dailyIntro.visible} icon={dailyIntroDef.icon} family={dailyIntroDef.family} art={dailyIntroDef.art}
-        title={dailyIntroDef.title(lang)} body={dailyIntroDef.body(lang)} ctaLabel={dailyIntroDef.ctaLabel(lang)} laterLabel={featureIntroClose(lang)}
-        onDone={dailyIntro.close} onLater={dailyIntro.close} onDismissed={dailyIntro.finish} testIdPrefix="daily_phrase_first_visit" introId={dailyIntroDef.id} />
       <Modal
         visible={detailsVisible}
         transparent

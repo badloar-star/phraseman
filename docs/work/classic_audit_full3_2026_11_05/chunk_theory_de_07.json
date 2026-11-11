@@ -1,0 +1,968 @@
+[
+{
+"lesson": 15,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:15:01",
+"de:15:04"
+],
+"textByLocale": {
+"en": "At the station, you need to quickly ask a friend to wait. In a short command, he doesn't need the pronoun `du`: the opposite is already clear from the form and the situation. `Bitte` softens the request but doesn't replace the ending.",
+"ru": "На станции нужно быстро попросить друга подождать. В короткой команде ему не требуется местоимение `du`: обратное уже понятно из формы и ситуации. `Bitte` смягчает просьбу, но не заменяет окончание.",
+"uk": "На станції потрібно швидко попросити друга почекати. У короткій команді йому не потрібний займенник `du`: зворотне вже зрозуміло з форми та ситуації. `Bitte` пом'якшує прохання, але не замінює закінчення."
+}
+},
+{
+"exampleIds": [
+"de:15:07",
+"de:15:10"
+],
+"textByLocale": {
+"en": "Two parts of the verb also work in a command. In a request to call, `ruf` comes first, and `an` remains at the end. First, find the entire verb, otherwise you might ask for the wrong action.",
+"ru": "Две части глагола работают и в команде. В просьбе позвонить `ruf` идёт вперёд, а `an` остаётся в конце. Сначала найди весь глагол, иначе можно попросить не о том действии.",
+"uk": "Дві частини дієслова працюють у команді. На прохання зателефонувати `ruf` йде вперед, а `an` залишається наприкінці. Спочатку знайди все дієслово, інакше можна попросити не про ту дію."
+}
+},
+{
+"exampleIds": [
+"de:15:11",
+"de:15:18"
+],
+"textByLocale": {
+"en": "Frequent forms should be heard in full: `nimm`, `gib`, `lies`, `sprich`, `hilf`.\" They are not formed by simply deleting letters from the dictionary form. The vowel may also change when changing person.",
+"ru": "Частые формы стоит услышать целиком: `nimm`, `gib`, `lies`, `sprich`, `hilf`. Они не образуются простым удалением букв у словарной формы. При смене лица может измениться и гласная.",
+"uk": "Часті форми варто почути цілком: `nimm`, `gib`, `lies`, `sprich`, `hilf`. Не утворюються простим видаленням літер у словникової форми. При зміні особи може змінитися голосна."
+}
+},
+{
+"exampleIds": [
+"de:15:21",
+"de:15:26"
+],
+"textByLocale": {
+"en": "For a group of friends, use the present tense form of `ihr`,\" then remove the pronoun: `ihr wartet` becomes `wartet`.\" Separate polite words for number are not needed here.",
+"ru": "Для группы друзей возьми форму настоящего времени с `ihr`, затем убери местоимение: `ihr wartet` превращается в `wartet`. Тут не нужны отдельные вежливые слова для обозначения числа.",
+"uk": "Для групи друзів візьми форму теперішнього часу з `ihr`, потім прибери займенник: `ihr wartet` перетворюється на `wartet`. Тут не потрібні окремі ввічливі слова для позначення числа."
+}
+},
+{
+"exampleIds": [
+"de:15:31",
+"de:15:35"
+],
+"textByLocale": {
+"en": "For an unfamiliar adult, leave the pronoun `Sie` and place it after the verb. The same form is suitable for one or more addressees. Unlike `ihr`,\" this is a degree of politeness, not the number of acquaintances.",
+"ru": "Для незнакомого взрослого оставь местоимение `Sie` и поставь его после глагола. Одна и та же форма годится для одного или нескольких адресатов. В отличие от `ihr`, это степень вежливости, а не число знакомых.",
+"uk": "Для незнайомого дорослого залиш займенник `Sie` і постав його після дієслова. Одна й та сама форма підходить для одного або декількох адресатів. На відміну від `ihr`, це ступінь ввічливості, а чи не число знайомих."
+}
+},
+{
+"exampleIds": [
+"de:15:39",
+"de:15:44"
+],
+"textByLocale": {
+"en": "Order is more important than length. When asking someone to put milk in the refrigerator, first state the action, then the object, and then the destination. Don't change the article just because it's a command.",
+"ru": "Порядок важнее длины. В просьбе поставить молоко в холодильник сначала называешь действие, потом предмет и место назначения. Не меняй артикль только из-за того, что это команда.",
+"uk": "Порядок важливіший за довжину. У проханні поставити молоко в холодильник спочатку називаєш дію, потім предмет та місце призначення. Не змінюй артикль лише через те, що це команда."
+}
+},
+{
+"exampleIds": [
+"de:15:48",
+"de:15:50"
+],
+"textByLocale": {
+"en": "For the verb \"to be,\" remember the sequence `sei`, `seid`, `seien Sie`.\" All three ask about behavior or a state; the difference lies in who exactly is being addressed.",
+"ru": "У глагола «быть» запомни ряд `sei`, `seid`, `seien Sie`. Все три просят о поведении или состоянии; разница в том, к кому именно обращаются.",
+"uk": "У дієслова «бути» запам'ятай ряд `sei`, `seid`, `seien Sie`. Усі три просять про поведінку чи стан; різниця у тому, до кого саме звертаються."
+}
+}
+],
+"lab": [
+{
+"bad": "Kam",
+"chapter": 1,
+"id": "de:15:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Kam",
+"Kommen",
+"Komm"
+],
+"slot": 0
+},
+{
+"bad": "Wartet",
+"chapter": 1,
+"id": "de:15:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"Wartest",
+"Wartet",
+"Warte"
+],
+"slot": 0
+},
+{
+"bad": "etwas",
+"chapter": 1,
+"id": "de:15:05:lab",
+"item": 5,
+"kind": "match",
+"near": 2,
+"options": [
+"bitte",
+"bis",
+"etwas"
+],
+"slot": 1
+},
+{
+"bad": "hierhin",
+"chapter": 2,
+"id": "de:15:08:lab",
+"item": 8,
+"kind": "build",
+"near": 27,
+"options": [
+"gut",
+"rein",
+"hierhin"
+],
+"slot": 1
+},
+{
+"bad": "dem",
+"chapter": 2,
+"id": "de:15:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"den",
+"dem",
+"das"
+],
+"slot": 1
+},
+{
+"bad": "Nimmst",
+"chapter": 2,
+"id": "de:15:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Nimm",
+"Nimmst",
+"Nehmt"
+],
+"slot": 0
+},
+{
+"bad": "das",
+"chapter": 3,
+"id": "de:15:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 20,
+"options": [
+"dem",
+"das",
+"die"
+],
+"slot": 1
+},
+{
+"bad": "kurz",
+"chapter": 3,
+"id": "de:15:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"zusammen",
+"kurz",
+"bitte"
+],
+"slot": 1
+},
+{
+"bad": "Langsamer",
+"chapter": 3,
+"id": "de:15:19:lab",
+"item": 19,
+"kind": "build",
+"near": 50,
+"options": [
+"Hierhin",
+"Fahr",
+"Langsamer"
+],
+"slot": 0
+},
+{
+"bad": "Warte",
+"chapter": 4,
+"id": "de:15:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Warte",
+"Wartet",
+"Warten"
+],
+"slot": 0
+},
+{
+"bad": "eurer",
+"chapter": 4,
+"id": "de:15:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 2,
+"options": [
+"eure",
+"eurer",
+"eures"
+],
+"slot": 1
+},
+{
+"bad": "dem",
+"chapter": 4,
+"id": "de:15:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 20,
+"options": [
+"die",
+"den",
+"dem"
+],
+"slot": 1
+},
+{
+"bad": "dir",
+"chapter": 5,
+"id": "de:15:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"sich",
+"dir",
+"euch"
+],
+"slot": 1
+},
+{
+"bad": "Gewartet",
+"chapter": 5,
+"id": "de:15:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"Warten",
+"Wartest",
+"Gewartet"
+],
+"slot": 0
+},
+{
+"bad": "wir",
+"chapter": 5,
+"id": "de:15:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"Sie",
+"er",
+"wir"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 6,
+"id": "de:15:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"Sie",
+"wir",
+"es"
+],
+"slot": 1
+},
+{
+"bad": "wir",
+"chapter": 6,
+"id": "de:15:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 40,
+"options": [
+"wir",
+"ihr",
+"Sie"
+],
+"slot": 1
+},
+{
+"bad": "den",
+"chapter": 6,
+"id": "de:15:42:lab",
+"item": 42,
+"kind": "match",
+"near": 13,
+"options": [
+"das",
+"den",
+"die"
+],
+"slot": 1
+},
+{
+"bad": "später",
+"chapter": 7,
+"id": "de:15:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"später",
+"morgen",
+"bald"
+],
+"slot": 1
+},
+{
+"bad": "Etwas",
+"chapter": 7,
+"id": "de:15:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 49,
+"options": [
+"Etwas",
+"Sei",
+"Nächste"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"du",
+"Warte!"
+],
+[
+"ihr",
+"Wartet!"
+],
+[
+"Sie",
+"Warten Sie!"
+],
+[
+"du",
+"Nimm Platz!"
+],
+[
+"ihr",
+"Nehmt Platz!"
+],
+[
+"Sie",
+"Nehmen Sie Platz!"
+]
+],
+"title": {
+"en": "Giving instructions to a friend, a group or a stranger",
+"ru": "Попросить о действии: друг, группа, незнакомый",
+"uk": "Попросити про дію: друг, група, незнайомий"
+}
+},
+"exampleResolved": [
+{
+"id": "de:15:01",
+"target": "Komm bitte rein!",
+"ru": "Заходи, пожалуйста!",
+"uk": "Заходь, будь ласка!"
+},
+{
+"id": "de:15:04",
+"target": "Warte hier!",
+"ru": "Подожди здесь!",
+"uk": "Почекай тут!"
+},
+{
+"id": "de:15:07",
+"target": "Ruf mich an!",
+"ru": "Позвони мне!",
+"uk": "Подзвони мені!"
+},
+{
+"id": "de:15:10",
+"target": "Mach das Licht an!",
+"ru": "Включи свет!",
+"uk": "Увімкни світло!"
+},
+{
+"id": "de:15:11",
+"target": "Nimm den Schlüssel!",
+"ru": "Возьми ключ!",
+"uk": "Візьми ключ!"
+},
+{
+"id": "de:15:18",
+"target": "Hilf mir kurz!",
+"ru": "Помоги мне на минутку!",
+"uk": "Допоможи мені на хвилинку!"
+},
+{
+"id": "de:15:21",
+"target": "Kommt bitte rein!",
+"ru": "Заходите, пожалуйста!",
+"uk": "Заходьте, будь ласка!"
+},
+{
+"id": "de:15:26",
+"target": "Schreibt die Nummer auf!",
+"ru": "Запишите номер!",
+"uk": "Запишіть номер!"
+},
+{
+"id": "de:15:31",
+"target": "Warten Sie bitte hier!",
+"ru": "Подождите здесь, пожалуйста!",
+"uk": "Зачекайте тут, будь ласка!"
+},
+{
+"id": "de:15:35",
+"target": "Unterschreiben Sie bitte hier!",
+"ru": "Распишитесь здесь, пожалуйста!",
+"uk": "Розпишіться тут, будь ласка!"
+},
+{
+"id": "de:15:39",
+"target": "Gehen Sie bis zur Ampel!",
+"ru": "Идите до светофора!",
+"uk": "Ідіть до світлофора!"
+},
+{
+"id": "de:15:44",
+"target": "Vergiss deinen Pass nicht!",
+"ru": "Не забудь паспорт!",
+"uk": "Не забудь паспорт!"
+},
+{
+"id": "de:15:48",
+"target": "Sei bitte pünktlich!",
+"ru": "Пожалуйста, не опаздывай!",
+"uk": "Будь ласка, не запізнюйся!"
+},
+{
+"id": "de:15:50",
+"target": "Seien Sie bitte vorsichtig!",
+"ru": "Будьте осторожны, пожалуйста!",
+"uk": "Будьте обережні, будь ласка!"
+}
+]
+},
+{
+"lesson": 16,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:16:01",
+"de:16:04"
+],
+"textByLocale": {
+"en": "You can describe what you cooked or bought in two parts. The first part changes depending on the person; the second contains the action itself. `habe` alone is insufficient; it doesn't explain what happened.",
+"ru": "Сообщить о том, что приготовил или купил, можно двумя частями. Первая меняется по лицам; вторая хранит само действие. Одного `habe` недостаточно, оно пока не объясняет, что произошло.",
+"uk": "Повідомити, що приготував або купив, можна двома частинами. Перша змінюється з осіб; друга зберігає саму дію. Одного `habe` недостатньо, воно поки що не пояснює, що сталося."
+}
+},
+{
+"exampleIds": [
+"de:16:05",
+"de:16:10"
+],
+"textByLocale": {
+"en": "Many regular verbs have a participle that begins with `ge-` and ends with `-t`.\" After some stems, it's easier to pronounce `-et`,\" as in `gewartet`.\" Don't automatically transfer this pattern to every German verb.",
+"ru": "У многих правильных глаголов причастие начинается с `ge-` и заканчивается на `-t`. После некоторых основ легче произнести `-et`, как в `gewartet`. Не переноси автоматически этот образец на каждый немецкий глагол.",
+"uk": "У багатьох правильних дієслів дієприкметник починається з `ge-` і закінчується на `-t`. Після деяких основ легше вимовити `-et`, як у `gewartet`. Не переноси автоматично цей зразок на кожне німецьке дієслово."
+}
+},
+{
+"exampleIds": [
+"de:16:11",
+"de:16:16"
+],
+"textByLocale": {
+"en": "Common strong verbs change their stem, often ending in `-en`: `finden – gefunden`, `trinken – getrunken`.\" Learn the pair using a real action, such as finding a lost item.",
+"ru": "У частых сильных глаголов меняется основа и нередко появляется `-en`: `finden – gefunden`, `trinken – getrunken`. Учи пару на настоящем действии, например поиске потерянной вещи.",
+"uk": "У частих сильних дієслів змінюється основа і нерідко з'являється `-en`: `finden – gefunden`, `trinken – getrunken`. Вчи пару на справжній дії, наприклад пошуку втраченої речі."
+}
+},
+{
+"exampleIds": [
+"de:16:21",
+"de:16:27"
+],
+"textByLocale": {
+"en": "In a separable verb, `ge` can appear between the prefix and the stem. The bell rings — `angerufen`,\" the form is filled out — `ausgefüllt`.\" As a result, the participle is formed as a single tile.",
+"ru": "У отделяемого глагола `ge` может оказаться между приставкой и основой. Звонок — `angerufen`, заполнили бланк — `ausgefüllt`. В результате причастие собирается одной плиткой.",
+"uk": "Дієслово `ge`, що відокремлюється, може опинитися між приставкою і основою. Дзвінок - `angerufen`, заповнили бланк - `ausgefüllt`. В результаті дієприкметник збирається однією плиткою."
+}
+},
+{
+"exampleIds": [
+"de:16:31",
+"de:16:39"
+],
+"textByLocale": {
+"en": "Words ending in `-ieren` do not have the additional `ge-`: `telefoniert`, `repariert`.\" It also does not appear in many verbs with an inseparable prefix, for example, `bezahlt` and `besucht`.\"",
+"ru": "У слов на `-ieren` нет дополнительного `ge-`: `telefoniert`, `repariert`. Оно также не появляется у многих глаголов с неотделяемой приставкой, например у `bezahlt` и `besucht`.",
+"uk": "Слова `-ieren` не мають додаткового `ge-`: `telefoniert`, `repariert`. Воно також не з'являється у багатьох дієслів з невідокремлюваною приставкою, наприклад, у `bezahlt` і `besucht`."
+}
+},
+{
+"exampleIds": [
+"de:16:41",
+"de:16:45"
+],
+"textByLocale": {
+"en": "In a general question, `hast` or `hat` will come first. The participle will remain at the end. In a question with the word \"what?\", the interrogative word comes first, followed by the auxiliary verb.",
+"ru": "В общем вопросе `hast` или `hat` выйдет вперёд. Причастие останется в конце. В вопросе со словом «что?» сначала идёт вопросительное слово, а за ним вспомогательный глагол.",
+"uk": "У загальному питанні `hast` або `hat` вийде вперед. Причастя залишиться наприкінці. У питанні зі словом \"що?\" спочатку йде запитальне слово, а за ним допоміжне дієслово."
+}
+},
+{
+"exampleIds": [
+"de:16:48",
+"de:16:50"
+],
+"textByLocale": {
+"en": "Not every past tense is constructed with `haben`; The next topic will also show `sein`.\" For now, rely on the pairs from the lesson, and not on the assumption that the Russian or English past tense always follows the same pattern.",
+"ru": "Не всякое прошедшее строится с `haben`; следующая тема покажет и `sein`. Пока опирайся на пары из урока, а не на догадку, что русское или английское прошедшее всегда соответствует одному шаблону.",
+"uk": "Не всяке минуле будується з `haben`; наступна тема покаже і `sein`. Поки спирайся на пари з уроку, а не на здогад, що російське чи англійське минуле завжди відповідає одному шаблону."
+}
+}
+],
+"lab": [
+{
+"bad": "hatte",
+"chapter": 1,
+"id": "de:16:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 21,
+"options": [
+"haben",
+"hatte",
+"habe"
+],
+"slot": 1
+},
+{
+"bad": "hast",
+"chapter": 1,
+"id": "de:16:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 9,
+"options": [
+"hat",
+"hast",
+"habe"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 1,
+"id": "de:16:05:lab",
+"item": 5,
+"kind": "match",
+"near": 15,
+"options": [
+"haben",
+"hast",
+"hätte"
+],
+"slot": 1
+},
+{
+"bad": "hast",
+"chapter": 2,
+"id": "de:16:08:lab",
+"item": 8,
+"kind": "build",
+"near": 11,
+"options": [
+"habe",
+"haben",
+"hast"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 2,
+"id": "de:16:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 20,
+"options": [
+"hätte",
+"haben",
+"habe"
+],
+"slot": 1
+},
+{
+"bad": "hatte",
+"chapter": 2,
+"id": "de:16:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 32,
+"options": [
+"hatte",
+"haben",
+"hast"
+],
+"slot": 1
+},
+{
+"bad": "hast",
+"chapter": 3,
+"id": "de:16:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 3,
+"options": [
+"hast",
+"hatte",
+"hat"
+],
+"slot": 1
+},
+{
+"bad": "hatte",
+"chapter": 3,
+"id": "de:16:17:lab",
+"item": 17,
+"kind": "match",
+"near": 27,
+"options": [
+"hatte",
+"habe",
+"hätte"
+],
+"slot": 1
+},
+{
+"bad": "habt",
+"chapter": 3,
+"id": "de:16:19:lab",
+"item": 19,
+"kind": "build",
+"near": 4,
+"options": [
+"haben",
+"habt",
+"hat"
+],
+"slot": 1
+},
+{
+"bad": "haben",
+"chapter": 4,
+"id": "de:16:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 2,
+"options": [
+"haben",
+"hätte",
+"hast"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 4,
+"id": "de:16:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 13,
+"options": [
+"hatte",
+"hat",
+"hätte"
+],
+"slot": 1
+},
+{
+"bad": "haben",
+"chapter": 4,
+"id": "de:16:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"habe",
+"habt",
+"haben"
+],
+"slot": 1
+},
+{
+"bad": "habe",
+"chapter": 5,
+"id": "de:16:29:lab",
+"item": 29,
+"kind": "match",
+"near": 18,
+"options": [
+"hätte",
+"hat",
+"habe"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 5,
+"id": "de:16:31:lab",
+"item": 31,
+"kind": "build",
+"near": 21,
+"options": [
+"hätte",
+"habe",
+"hat"
+],
+"slot": 1
+},
+{
+"bad": "hatte",
+"chapter": 5,
+"id": "de:16:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 15,
+"options": [
+"haben",
+"hatte",
+"hast"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 6,
+"id": "de:16:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 31,
+"options": [
+"hätte",
+"habe",
+"hatte"
+],
+"slot": 1
+},
+{
+"bad": "hätte",
+"chapter": 6,
+"id": "de:16:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 6,
+"options": [
+"hast",
+"habt",
+"hätte"
+],
+"slot": 1
+},
+{
+"bad": "Hast",
+"chapter": 6,
+"id": "de:16:42:lab",
+"item": 42,
+"kind": "match",
+"near": 3,
+"options": [
+"Hast",
+"Hat",
+"Hatte"
+],
+"slot": 0
+},
+{
+"bad": "hat",
+"chapter": 7,
+"id": "de:16:45:lab",
+"item": 45,
+"kind": "build",
+"near": 41,
+"options": [
+"hat",
+"hast",
+"haben"
+],
+"slot": 1
+},
+{
+"bad": "hat",
+"chapter": 7,
+"id": "de:16:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 25,
+"options": [
+"haben",
+"hat",
+"habe"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"kaufen",
+"hat gekauft"
+],
+[
+"arbeiten",
+"hat gearbeitet"
+],
+[
+"finden",
+"hat gefunden"
+],
+[
+"anrufen",
+"hat angerufen"
+],
+[
+"bezahlen",
+"hat bezahlt"
+],
+[
+"reparieren",
+"hat repariert"
+]
+],
+"title": {
+"en": "What's already been done: Perfect tense with `haben`",
+"ru": "Что уже сделано: Perfekt с `haben`",
+"uk": "Що вже зроблено: Perfekt з `haben`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:16:01",
+"target": "Ich habe heute gekocht.",
+"ru": "Я сегодня готовил.",
+"uk": "Я сьогодні готував."
+},
+{
+"id": "de:16:04",
+"target": "Tom hat Brot gekauft.",
+"ru": "Том купил хлеб.",
+"uk": "Том купив хліб."
+},
+{
+"id": "de:16:05",
+"target": "Wir haben zusammen gelernt.",
+"ru": "Мы занимались вместе.",
+"uk": "Ми займалися разом."
+},
+{
+"id": "de:16:10",
+"target": "Wir haben den Termin gebucht.",
+"ru": "Мы записались на приём.",
+"uk": "Ми записалися на прийом."
+},
+{
+"id": "de:16:11",
+"target": "Ich habe den Schlüssel gesucht.",
+"ru": "Я искал ключ.",
+"uk": "Я шукав ключ."
+},
+{
+"id": "de:16:16",
+"target": "Ihr habt die Suppe gegessen.",
+"ru": "Вы съели суп.",
+"uk": "Ви з'їли суп."
+},
+{
+"id": "de:16:21",
+"target": "Ich habe dich angerufen.",
+"ru": "Я тебе звонил.",
+"uk": "Я тобі дзвонив."
+},
+{
+"id": "de:16:27",
+"target": "Ich habe die Adresse aufgeschrieben.",
+"ru": "Я записал адрес.",
+"uk": "Я записав адресу."
+},
+{
+"id": "de:16:31",
+"target": "Ich habe bar bezahlt.",
+"ru": "Я заплатил наличными.",
+"uk": "Я заплатив готівкою."
+},
+{
+"id": "de:16:39",
+"target": "Ihr habt das Bild fotografiert.",
+"ru": "Вы сфотографировали картину.",
+"uk": "Ви сфотографували картину."
+},
+{
+"id": "de:16:41",
+"target": "Hast du schon gegessen?",
+"ru": "Ты уже поел?",
+"uk": "Ти вже поїв?"
+},
+{
+"id": "de:16:45",
+"target": "Was hast du bestellt?",
+"ru": "Что ты заказал?",
+"uk": "Що ти замовив?"
+},
+{
+"id": "de:16:48",
+"target": "Gestern haben wir den Nachbarn geholfen.",
+"ru": "Вчера мы помогли соседям.",
+"uk": "Вчора ми допомогли сусідам."
+},
+{
+"id": "de:16:50",
+"target": "Wir haben die Nummer leider vergessen.",
+"ru": "К сожалению, мы забыли номер.",
+"uk": "На жаль, ми забули номер."
+}
+]
+}
+]

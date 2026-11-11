@@ -5,21 +5,18 @@ import { View, StyleSheet, Animated, AppState, Easing, Text } from 'react-native
 import QuickActionsBridge from '../quick_actions_bridge';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { MAIN_TABS as TABS, type MainTabDefinition as TabDef } from '../../constants/mainTabs';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
-import { triLang, type PlannedTriLangCopy } from '../../constants/i18n';
+import { triLang } from '../../constants/i18n';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
 // зачем (Пик v2): полоса под часами цветом сцены Пика — пока сцена Пика не перешла на полноэкранную страницу (как Главная)
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
 import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene_flag';
-import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
-import { LEARNING_V2_HIDDEN } from '../learning_v2_visibility_switch';
-import { useLearningV2Visibility } from '../learning_v2_progress_gate';
 import { useIsFocused } from '@react-navigation/native';
-import { HomeSceneStatusBarController, SeasonStatusBarController } from '../../components/home/v2/scene/SceneStatusBarControllers';
+import { HomeSceneStatusBarController } from '../../components/home/v2/scene/SceneStatusBarControllers';
 import { noteHomeRender } from '../home_scroll_probe';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
@@ -108,8 +105,6 @@ import { whenOnboardingSettled } from '../onboarding_defer_gate';
 import { scheduleAfterRootNavigationReady } from '../paywall_navigation';
 import { planHiddenTabRedirect } from '../tabs_hidden_route_redirect';
 import { emitTabRetap } from '../tab_retap_bus'; // зачем (удобство №1, владелец 04.11): повторный тап по открытой вкладке
-
-type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
 type TabScreenProps = {
   overlayIdentityEpoch?: number;
@@ -438,14 +433,6 @@ function markExamBestPctTabActivity(idx: number): void {
   setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe');
 }
 
-type TabLabelCopy = { ru: string; uk: string; es: string; en: string } & PlannedTriLangCopy;
-
-type TabDef = {
-  key: string;
-  icon: IconName;
-  active: IconName;
-  label: TabLabelCopy;
-};
 
 /** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков.
  *  `/friends` — старый адрес, теперь раздел «Друзья» во вкладке «Сообщество»;
@@ -613,23 +600,7 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 }
 
 // Иконка + подпись, как на референсе владельца 24.09 (2.0). Порядок = индексам табов.
-const TABS: TabDef[] = [
-  { key: 'home', icon: 'home-outline', active: 'home', label: {
-    ru: 'Главная', uk: 'Головна', en: 'Home', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Start',
-  } },
-  { key: 'lessons', icon: 'book-outline', active: 'book', label: {
-    ru: 'Обучение', uk: 'Навчання', en: 'Learn', es: 'Aprender', 'pt-BR': 'Aprender', vi: 'Học', id: 'Belajar', tr: 'Öğren', pl: 'Nauka',
-  } },
-  { key: 'video', icon: 'play-circle-outline', active: 'play-circle', label: {
-    ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy',
-  } },
-  { key: 'community', icon: 'people-outline', active: 'people', label: {
-    ru: 'Сообщество', uk: 'Спільнота', en: 'Community', es: 'Comunidad', 'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność',
-  } },
-  { key: 'settings', icon: 'settings-outline', active: 'settings', label: {
-    ru: 'Настройки', uk: 'Параметри', en: 'Settings', es: 'Ajustes', 'pt-BR': 'Ajustes', vi: 'Cài đặt', id: 'Setelan', tr: 'Ayarlar', pl: 'Ustawienia',
-  } },
-];
+
 
 // заголовок каркаса «Настроек» — та же подпись, что у вкладки
 const SETTINGS_TAB_TITLE = TABS.find((tab) => tab.key === 'settings')!.label as Readonly<Record<string, string>>;
@@ -671,14 +642,12 @@ function TabScaffold({
   // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ… НЕ ОТЛИЧАЕТСЯ ПО ЦВЕТУ»): со «Сценой» страница Главной
   // полноэкранная — сцена рисует фон от верха экрана, шапка отступает сама; без сцены отступ под часы прежний, как у всех вкладок.
   // зачем (владелец 04.11, заморозка V2): полноэкранность «Сезона» зависит от живого флага V2 — хук перерисовывает, когда проверка прогресса его открыла
-  const v2VisibilityVersion = useLearningV2Visibility();
   const homeFullBleedPages = useMemo<readonly number[]>(
     () => [
       ...(HOME_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(0, pageLayout)] : []),
       // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха): «Сезон» во вкладке «Уроки» — полноэкранная страница; шапка Уроков и обложка отступают сами (TabTopBleedContext)
-      ...(!LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []),
     ],
-    [pageLayout, v2VisibilityVersion],
+    [pageLayout],
   );
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const [devOverlayVisible, setDevOverlayVisible] = useState(false);
@@ -853,7 +822,6 @@ function TabScaffold({
       {/* зачем (владелец 04.11): ярлыки на значке; вкладки открываются только после онбординга — до него действие не обрабатывается */}
       <QuickActionsBridge />
       <HomeSceneStatusBarController scrollY={topFadeScroll?.scrollY} enabled={tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0} />
-      <SeasonStatusBarController enabled={tabsFocused && !LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />
       {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»): на Главной и Пике (страницы со «Сценой») маска-копия полотна не рисуется — сцена сама идёт до верха */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} suppressed={tabFullBleedPages.includes(physicalPageIdx)} screen={`tab:${visualIdx}`} />
       <View
@@ -872,10 +840,6 @@ function TabScaffold({
             </GestureHandlerRootView>
           </View>
           {/* Плавающая капсула поверх контента: нижняя safe-area остаётся без отдельной полосы. */}
-          {/* зачем: раздел Learning V2 открывается ВНУТРИ вкладки «Уроки», и
-              таббар оставался поверх карты на весь экран (владелец 20.09).
-              Экран просит скрытие через useHideTabBar и обязан отпустить его
-              при размонтировании — иначе таббар залипнет скрытым. */}
           {barHidden ? null : (
           <View
             style={[s.tabBarWrap, { height: tabBarBottom + V2_TAB_BAR_HEIGHT + TAB_BAR_WRAP_SHADOW_ROOM }]}
@@ -961,12 +925,14 @@ function ReleasedTabLayout() {
   const { studyTarget } = useStudyTarget();
   // зачем (слово владельца 05.11, вкладка Plus): раскладка панели — ОДНА (app/use_tab_page_layout): «Обучение» по курсу языка, «Видео» по рангу (30.10),
   // Plus — только при 4 иконках и без подписки; общий хук держит ту же раскладку и в копии панели на экранах поверх вкладок
-  const { layout: pageLayout } = useTabPageLayout();
+  const { layout: pageLayout, videoSectionEnabled } = useTabPageLayout();
   const rootNavigationReady = Boolean(useRootNavigationState()?.key);
   const rawRouteTabIdx = tabIdxFromRouter(pathname, segments);
   const hiddenTabRedirect = planHiddenTabRedirect({
     rootNavigationReady,
-    routeIsHidden: rawRouteTabIdx !== null && isLogicalTabHidden(rawRouteTabIdx, pageLayout),
+    routeIsHidden: rawRouteTabIdx !== null
+      && !(rawRouteTabIdx === SEGMENT_TO_TAB_IDX.video && videoSectionEnabled === null)
+      && isLogicalTabHidden(rawRouteTabIdx, pageLayout),
   });
   const pageLayoutRef = useRef(pageLayout);
   pageLayoutRef.current = pageLayout;
@@ -1242,12 +1208,11 @@ function ReleasedTabLayout() {
     const layout = pageLayout;
     const layoutChanged = lastEffectLayoutRef.current !== layout;
     lastEffectLayoutRef.current = layout;
-    const rawFromRouter = tabIdxFromRouter(pathname, segments);
+    const rawFromRouter = rawRouteTabIdx;
     // зачем D129: маршрут скрытой вкладки (старая ссылка, возврат из урока, смена языка)
     // ведёт на Главную — экрана «Обучение» в ленте нет.
     if (rawFromRouter !== null && isLogicalTabHidden(rawFromRouter, layout)) {
       console.warn('[LANG-SURFACE] tabs:hidden_tab_route → home', { rawFromRouter, pathname, studyTarget });
-      routerRef.current.replace('/(tabs)/home' as any);
     }
     const fromRouter = rawFromRouter === null ? null : visibleTabIdx(rawFromRouter, layout);
     if (pendingTabIdxRef.current !== null && isLogicalTabHidden(pendingTabIdxRef.current, layout)) {
@@ -1312,7 +1277,7 @@ function ReleasedTabLayout() {
     }
     const physical = logicalTabToPhysicalPage(active, layout);
     if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
-  }, [mountNow, pageLayout, pathname, segments, studyTarget]);
+  }, [mountNow, pageLayout, pathname, rawRouteTabIdx, segments, studyTarget]);
 
   useFocusEffect(useCallback(() => {
     backgroundPremountActiveRef.current = true;

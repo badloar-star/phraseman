@@ -76,7 +76,7 @@ type Result = SpireWeekMomentShow['result'];
 const result = (patch: Partial<Result>): Result => ({
   weekId: '2026-W41', lang: 'en', steps: 12, roomRank: 5, roomTotal: 30, promoted: false, demoted: false, prevTier: 0, newTier: 0, placeCoins: 0, promotionCoins: 0, rankBy: 'coins', weekCoins: 470, ...patch,
 });
-const decision = (outcome: SpireWeekMomentShow['outcome'], patch: Partial<Result>): SpireWeekMomentShow => ({ show: true, uid: 'u1', lang: 'en', weekId: '2026-W41', outcome, result: result(patch) });
+const decision = (outcome: SpireWeekMomentShow['outcome'], patch: Partial<Result>): SpireWeekMomentShow => ({ show: true, uid: 'u1', accountToken: { generation: 1, stableId: 'u1', phase: 'active' }, lang: 'en', weekId: '2026-W41', outcome, result: result(patch) });
 const LADDER = [
   { place: 1, name: 'Марк', coinRank: 12, coins: 610, isMe: false },
   { place: 2, name: 'Ты', coinRank: 5, coins: 470, isMe: true },
@@ -175,12 +175,12 @@ describe('помощники окна', () => {
 describe('m01 вариант B «Короткая»: повторное повышение (isRepeatPromotion)', () => {
   const repeat = (patch: Partial<Result>): SpireWeekMomentShow => ({ ...decision('promoted', { promoted: true, prevTier: 1, newTier: 2, promotionCoins: 100, ...patch }), isRepeatPromotion: true });
 
-  it('вместо трёх актов — короткий экран: надпись «Топ-5 · лига», «Поднимаешься», строка «5 место · 470 монет за неделю · +100», «Играть»; «Играть» СНАЧАЛА закрывает окно, потом ведёт в Пик', async () => {
+  it('вместо трёх актов — короткий экран: надпись «Топ-5 · лига», «Поднимаешься», строка «5 место · 470 монет за неделю · +100 монет за повышение», «Играть»; «Играть» СНАЧАЛА закрывает окно, потом ведёт в Пик', async () => {
     const order: string[] = [];
     await render(<SpireWeekMomentHost lang="ru" decision={repeat({})} coinRank={5} onClose={() => { order.push('close'); }} onPlay={() => { order.push('play'); }} />);
     expect(screen.getByTestId('moment-promotion-short-title').props.children).toBe('Поднимаешься');
     expect(String(screen.getByTestId('moment-promotion-short-overline').props.children)).toContain(glueNumbers('ТОП-5 · '));
-    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe(`${glueNumbers('5 место · 470 монет за неделю')} · +100`); // зачем: склейка NBSP — внутри подставленной строки, хвост « · +N» добавляется после неё
+    expect(screen.getByTestId('moment-promotion-short-body').props.children).toBe(`${glueNumbers('5 место · 470 монет за неделю')} · ${glueNumbers('+100 монет за повышение')}`);
     await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
     await fireEvent.press(screen.getByTestId('moment-promotion-short-play'));
     expect(order).toEqual(['close', 'play']);

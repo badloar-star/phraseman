@@ -1,3 +1,5 @@
+import VideoSectionGate from '../components/video/VideoSectionGate';
+import { getVideoSectionSignal } from './video_section_preference';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
@@ -8,7 +10,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { noteSkeletonGeom } from './skeleton_geom_log';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
@@ -122,6 +123,14 @@ export type LingmanVideosScreenProps = {
 };
 
 export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVideosScreenProps = {}) {
+  return (
+    <VideoSectionGate inTab={presentation === 'tab'}>
+      <LingmanVideosContent presentation={presentation} />
+    </VideoSectionGate>
+  );
+}
+
+function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
   const inTab = presentation === 'tab';
   const { runtimeOwnerId } = useTabNav();
   const tabContentBottomPad = useTabContentBottomPad();
@@ -243,6 +252,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   }), [lang]);
 
   const loadLegacyFallback = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
+    const signal = getVideoSectionSignal();
+    if (!signal) return;
     const token = captureAccountGeneration();
     if (accountScopeKey(token) !== renderAccountScope) return;
     const activeChannel = getActiveYoutubeChannel();
@@ -261,7 +272,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       return;
     }
     try {
-      const next = await getLingmanYoutubeSnapshot();
+      const next = await getLingmanYoutubeSnapshot(signal);
+      if (signal.aborted) return;
       const latestVideoId = next.latestVideoId ?? next.videos[0]?.id ?? null;
       if (next.unreadCount > 0) void markLingmanYoutubeCatalogSeen(latestVideoId);
       const openedSnapshot = { ...next, unreadCount: 0 };
@@ -271,7 +283,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         setCachedSnapshot(committed?.value ?? next);
       }
     } finally {
-      if (isLingmanSnapshotRequestCurrent(request)) setLoading(false);
+      if (isLingmanSnapshotRequestCurrent(request)) {
+        if (!signal.aborted) setLoading(false);
+      }
     }
   }, [renderAccountScope]);
 
@@ -284,6 +298,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       return;
     }
     const token = captureAccountGeneration();
+    const signal = getVideoSectionSignal();
+    if (!signal) return;
     const tokenScope = accountScopeKey(token);
     if (tokenScope && renderAccountScope && tokenScope !== renderAccountScope) {
       console.warn(`[VIDEO-LANG-PILL] channel_load_skipped reason=account_scope_changed studyTarget=${studyTarget}`);
@@ -292,7 +308,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     // зачем (ревью TG-3BD963DD05D5, R1): каждая загрузка получает номер; ответ, пришедший после более новой
     // загрузки (смена языка en→es→en), не попадает ни в состояние, ни в кэш — иначе под пилюлей EN рисовался канал ES.
     const seq = ++loadSeqRef.current;
-    const isCurrentLoad = () => seq === loadSeqRef.current;
+    const isCurrentLoad = () => !signal.aborted && seq === loadSeqRef.current;
+    setIssue('none');
     const logStale = (step: string, channelId: string) => {
       if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load_stale seq=${seq} latest=${loadSeqRef.current} step=${step} channelId=${channelId || '-'}`);
     };
@@ -301,7 +318,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     let switchingToUncachedChannel = false;
     try {
       const manifestFrom = catalogRef.current?.manifest ? 'catalog' : manifestRef.current ? 'memory' : 'network';
-      const manifest = catalogRef.current?.manifest ?? manifestRef.current ?? await fetchYoutubeCatalogManifest();
+      const manifest = catalogRef.current?.manifest ?? manifestRef.current ?? await fetchYoutubeCatalogManifest(signal);
       if (!isCurrentLoad()) { logStale('manifest', ''); return; }
       manifestRef.current = manifest;
       // зачем (владелец 01.10): канал = контур языка обучения; ручной выбор канала не применяется.
@@ -346,7 +363,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       }
       const previous = view.kind === 'pending' ? null : view.catalog;
       if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load seq=${seq} channelId=${channelId} source=${requestedChannelId ? 'requested' : routeChannel ? 'deepLink' : 'resolution'} view=${view.kind} previousVersion=${previous?.version ?? '-'}`);
-      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, force: refresh, commit: (value) => {
+      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, force: refresh, signal, commit: (value) => {
         if (!isCurrentLoad()) { logStale('commit', channelId); return; }
         catalogRef.current = value;
         setCatalog(value);
@@ -608,7 +625,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   useEffect(() => {
     if (!inTab || !screenRuntimeActive) return undefined;
     const task = InteractionManager.runAfterInteractions(() => {
-      if (peekVideoPhraseSetPacks()) return;
+      if (!getVideoSectionSignal() || peekVideoPhraseSetPacks()) return;
       loadVideoPhraseSetPacks().catch((error: unknown) => {
         DebugLogger.error('[VIDEO-TAB]:warmPacks', error, 'warning');
       });
@@ -789,7 +806,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       {inTab ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
       {glassAlertNode}
       <VideoRewardFlash flashKey={rewardFlashKey} />
-      <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !studyLanguageSheetVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
           channel={!catalog && !pendingChannel ? { ...activeChannel, displayName: '', avatarUrl: undefined } : activeChannel}

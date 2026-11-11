@@ -24,9 +24,9 @@ test('утверждённая кривая и тайминги, анимаци�
 });
 
 test('«уменьшить движение» — без полёта и сразу onDone; потолок частиц 8', () => {
-  assert.match(coin, /useReducedMotion\(\)/);
-  assert.match(coin, /if \(!reducedMotion\) return;[\s\S]{0,120}onDoneRef\.current\(\);/);
-  assert.match(coin, /if \(reducedMotion\) return null;/);
+  assert.match(coin, /useReduceMotionPreference\(\)/);
+  assert.match(coin, /if \(reducedMotion === false\) return;/);
+  assert.match(coin, /if \(terminalRef\.current \|\| reducedMotion !== false\) return null;/);
   assert.match(coin, /COIN_REWARD_FLIGHT_MAX_PARTICLES = 8;/);
   assert.match(coin, /Math\.min\(count, COIN_REWARD_FLIGHT_MAX_PARTICLES\)/);
 });
@@ -35,7 +35,8 @@ test('летит монета и звучит монетный звук отры
   // зачем (слово владельца 05.11, «монета строго по рангу, и летящая тоже»): летит монета РАНГА пользователя, а не фиксированная базовая
   assert.doesNotMatch(asset, /coin_rank_00/);
   assert.doesNotMatch(coin, /coin_rank_00/);
-  assert.match(coin, /<MyRankCoin/);
+  assert.match(coin, /useMyRankCoinSource\(COIN_SIZE\)/);
+  assert.match(coin, /<Image source=\{source\}/);
   assert.match(coin, /soundDirector\.request\('pm\.coin\.flight_start'/);
   assert.match(sounds, /'pm\.coin\.flight_start': event\(/);
   assert.doesNotMatch(sounds, /'pm\.reward\.rune_flight_start'/);

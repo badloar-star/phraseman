@@ -1,0 +1,128 @@
+[
+ {
+  "id": "lesson-11/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«прямувати будь-куди» = «куда угодно», смысл расходится с ru «куда-либо».",
+  "fix": "`Aller` означає прямувати кудись. Порівняй `je suis à la gare` — вже там — і `je vais à la gare` — це пункт призначення. Форму `vais` неможливо вивести із закінчення словникового `aller`."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.ru",
+  "problem": "«артикль места», «Нейтральное `à le marché` неверно» — неестественно; форма просто ошибочна.",
+  "fix": "Вспомни артикли. `À` с `le` сливается в `au`, с `les` — в `aux`. Перед `la` остаются два слова, а перед `l’` получаем `à l’`. Форма `à le marché` неверна — только `au marché`."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "Та же калька «артикль місця», «Нейтральне `à le marché`».",
+  "fix": "Згадай артиклі. `À` з `le` зливається в `au`, з `les` — в `aux`. Перед `la` залишаються два слова, а перед `l’` отримуємо `à l’`. Форма `à le marché` неправильна — тільки `au marché`."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«article of place», «The neutral `à le marché`» — калька.",
+  "fix": "Remember the articles. `À` with `le` merges into `au`, with `les` into `aux`. Before `la`, the two words stay separate, and before `l’` we get `à l’`. The form `à le marché` is wrong — only `au marché`."
+ },
+ {
+  "id": "lesson-11/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.ru",
+  "problem": "«На основании знания одного названия страны нельзя ставить `à` везде» — невнятная калька.",
+  "fix": "С городами здесь употребляется `à`. Для стран учи сочетания целиком: `en France`, `au Canada`, `aux Pays-Bas`. Не ставь `à` перед любой страной: предлог зависит от самой страны."
+ },
+ {
+  "id": "lesson-11/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "Та же невнятная калька в последнем предложении.",
+  "fix": "З містами тут вживається `à`. Для країн учи сполучення цілком: `en France`, `au Canada`, `aux Pays-Bas`. Не став `à` перед будь-якою країною: прийменник залежить від самої країни."
+ },
+ {
+  "id": "lesson-11/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Не додай» — неверная форма запрета, нужно «Не додавай».",
+  "fix": "Куди і яким способом — дві різні частини. У `au travail à pied` перша група вказує мету, друга — спосіб пересування. Не додавай артикль перед `pied` у цьому виразі."
+ },
+ {
+  "id": "lesson-11/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«форму, що відмінюється» — глаголы дієвідмінюються; термин неверен.",
+  "fix": "У запереченні `ne … pas` оточує дієвідмінювану форму. У питанні `Où allez-vous ?` названо адресата і дію, а місце якраз просить назвати співрозмовник."
+ },
+ {
+  "id": "lesson-11/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«Перевірте» (ви) вместо «ты»; «перший привід» — машинная ошибка вместо «прийменник».",
+  "fix": "Перевір кожне коротке слово окремо. У `au bout de la rue` перший прийменник веде до точки призначення, другий допомагає уточнити, кінцем чого вона є."
+ },
+ {
+  "id": "lesson-11/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«helps clarify what it is» — потерян смысл ru «концом чего она является».",
+  "fix": "Check each short word separately. In `au bout de la rue`, the first preposition leads to the destination, and the second clarifies what it is the end of."
+ },
+ {
+  "id": "lesson-12/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«а чи не весь запас» — машинная ошибка вместо «а не весь запас».",
+  "fix": "Уяви, що на столі вода, суп та хліб. Ти береш частину, а не весь запас. Для невизначеної кількості у французькій потрібні невеликі слова перед назвою продукту."
+ },
+ {
+  "id": "lesson-12/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.ru",
+  "problem": "Соль и сахар не встречаются в примерах главы (чай, яблочный сок, горчица); «общей любви к продукту» — калька.",
+  "fix": "Запоминай сочетание с действием: пить что-то, добавлять что-то. Чай, сок и горчица в этих примерах не считаются поштучно. Когда говоришь, что любишь продукт вообще, действует прежняя схема с определённым артиклем."
+ },
+ {
+  "id": "lesson-12/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "Соль/сахар не из примеров; «не зважають на крупинки» — неверный перевод; «певним артиклем» — калька, термин «означений».",
+  "fix": "Запам'ятовуй сполучення з дією: пити щось, додавати щось. Чай, сік і гірчицю в цих прикладах не рахують поштучно. Коли кажеш, що любиш продукт загалом, діє попередня схема з означеним артиклем."
+ },
+ {
+  "id": "lesson-12/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "Salt and sugar are not in the chapter examples (tea, apple juice, mustard).",
+  "fix": "Remember the combination with the action: to drink something, to add something. Tea, juice and mustard in these examples are not counted item by item. When you say you like a product in general, the earlier pattern with the definite article applies."
+ },
+ {
+  "id": "lesson-12/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«після заходу» (машинная ошибка: мера→захід), «Чи не складай».",
+  "fix": "Коли кількість уже задана мірою, після міри зазвичай іде `de`: склянка води, кілограм яблук. Не складай `un verre de` з `de l’eau`: потрібно `un verre d’eau`."
+ },
+ {
+  "id": "lesson-12/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.ru",
+  "problem": "`du miel` нет в примерах курса (fr:12:45 — `une cuillère de miel`, fr:12:46 — `du pain et du beurre`); «После `une cuillère` задаётся мера» — неточно.",
+  "fix": "В длинной фразе продукты могут играть разные роли. В `une cuillère de miel` меру задаёт ложка, а в `du pain et du beurre` меры нет. Начни с намерения покупателя, только потом выбирай артикль."
+ },
+ {
+  "id": "lesson-12/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "`du miel` не з прикладів; пропущено «у» перед `du miel`.",
+  "fix": "У довгій фразі продукти можуть відігравати різні ролі. У `une cuillère de miel` міру задає ложка, а в `du pain et du beurre` міри немає. Почни з наміру покупця, тільки потім вибирай артикль."
+ },
+ {
+  "id": "lesson-12/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "`du miel` is not in the course examples.",
+  "fix": "In a long phrase, products can play different roles. In `une cuillère de miel` the spoon sets the measure, while `du pain et du beurre` has no measure. Start with the buyer's intent, and only then choose the article."
+ }
+]

@@ -1,0 +1,787 @@
+{
+ "lang": "fr",
+ "lesson": 23,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:23:01",
+   "target": "Je lui parle.",
+   "ru": "Я разговариваю с ним.",
+   "uk": "Я розмовляю з ним."
+  },
+  {
+   "id": "fr:23:02",
+   "target": "Tu lui parles.",
+   "ru": "Ты разговариваешь с ним.",
+   "uk": "Ти розмовляєш з ним."
+  },
+  {
+   "id": "fr:23:03",
+   "target": "Nous lui parlons.",
+   "ru": "Мы разговариваем с ней.",
+   "uk": "Ми розмовляємо з нею."
+  },
+  {
+   "id": "fr:23:04",
+   "target": "Je leur parle.",
+   "ru": "Я разговариваю с ними.",
+   "uk": "Я розмовляю з ними."
+  },
+  {
+   "id": "fr:23:05",
+   "target": "Elle leur parle.",
+   "ru": "Она с ними разговаривает.",
+   "uk": "Вона розмовляє з ними."
+  },
+  {
+   "id": "fr:23:06",
+   "target": "Vous leur parlez.",
+   "ru": "Вы разговариваете с ними.",
+   "uk": "Ви розмовляєте з ними."
+  },
+  {
+   "id": "fr:23:07",
+   "target": "Je lui écris.",
+   "ru": "Я ей пишу.",
+   "uk": "Я пишу їй."
+  },
+  {
+   "id": "fr:23:08",
+   "target": "Tu leur écris.",
+   "ru": "Ты им пишешь.",
+   "uk": "Ти пишеш їм."
+  },
+  {
+   "id": "fr:23:09",
+   "target": "Paul lui répond.",
+   "ru": "Поль ей отвечает.",
+   "uk": "Пол відповідає їй."
+  },
+  {
+   "id": "fr:23:10",
+   "target": "Léa leur répond.",
+   "ru": "Леа им отвечает.",
+   "uk": "Леа відповідає їм."
+  },
+  {
+   "id": "fr:23:11",
+   "target": "Je lui téléphone ce soir.",
+   "ru": "Я позвоню ей сегодня вечером.",
+   "uk": "Я зателефоную їй сьогодні ввечері."
+  },
+  {
+   "id": "fr:23:12",
+   "target": "Nous leur téléphonons demain.",
+   "ru": "Мы позвоним им завтра.",
+   "uk": "Ми зателефонуємо їм завтра."
+  },
+  {
+   "id": "fr:23:13",
+   "target": "Elle lui envoie un message.",
+   "ru": "Она отправляет ему сообщение.",
+   "uk": "Вона надсилає йому повідомлення."
+  },
+  {
+   "id": "fr:23:14",
+   "target": "Il leur envoie une photo.",
+   "ru": "Он отправляет им фотографию.",
+   "uk": "Він надсилає їм фотографію."
+  },
+  {
+   "id": "fr:23:15",
+   "target": "Je lui prête mon stylo.",
+   "ru": "Я одалживаю ему свою ручку.",
+   "uk": "Я позичаю йому свою ручку."
+  },
+  {
+   "id": "fr:23:16",
+   "target": "Tu leur prêtes des chaises.",
+   "ru": "Ты одалживаешь им стулья.",
+   "uk": "Ти позичаєш їм стільці."
+  },
+  {
+   "id": "fr:23:17",
+   "target": "Nous lui donnons rendez-vous.",
+   "ru": "Мы назначаем ему встречу.",
+   "uk": "Ми призначаємо йому зустріч."
+  },
+  {
+   "id": "fr:23:18",
+   "target": "Vous leur indiquez la sortie.",
+   "ru": "Вы показываете им выход.",
+   "uk": "Ви показуєте їм вихід."
+  },
+  {
+   "id": "fr:23:19",
+   "target": "On lui apporte un verre d’eau.",
+   "ru": "Они приносят ему стакан воды.",
+   "uk": "Вони приносять йому склянку води."
+  },
+  {
+   "id": "fr:23:20",
+   "target": "Je leur raconte mon voyage.",
+   "ru": "Я рассказываю им о своей поездке.",
+   "uk": "Я розповідаю їм про свою подорож."
+  },
+  {
+   "id": "fr:23:21",
+   "target": "Je lui offre un livre pour son anniversaire.",
+   "ru": "Я дарю ей книгу на день рождения.",
+   "uk": "Я дарую їй книгу на день народження."
+  },
+  {
+   "id": "fr:23:22",
+   "target": "Je leur écris chaque dimanche.",
+   "ru": "Я пишу им каждое воскресенье.",
+   "uk": "Я пишу їм щонеділі."
+  },
+  {
+   "id": "fr:23:23",
+   "target": "Je lui laisse ma clé à la réception.",
+   "ru": "Я оставляю ей свой ключ на ресепшене.",
+   "uk": "Я залишаю їй свій ключ на рецепції."
+  },
+  {
+   "id": "fr:23:24",
+   "target": "Je lui demande conseil avant de signer.",
+   "ru": "Я спрашиваю у нее совета перед тем, как подписать.",
+   "uk": "Я прошу її поради перед тим, як підписати."
+  },
+  {
+   "id": "fr:23:25",
+   "target": "Je leur explique la règle du jeu.",
+   "ru": "Я объясняю им правила игры.",
+   "uk": "Я пояснюю їм правила гри."
+  },
+  {
+   "id": "fr:23:26",
+   "target": "Je lui rends sa carte après le paiement.",
+   "ru": "Я возвращаю ей карту после оплаты.",
+   "uk": "Я повертаю їй картку після оплати."
+  },
+  {
+   "id": "fr:23:27",
+   "target": "Je leur propose un café en attendant.",
+   "ru": "Я предлагаю им кофе, пока они ждут.",
+   "uk": "Я пропоную їм каву, поки вони чекають."
+  },
+  {
+   "id": "fr:23:28",
+   "target": "Je lui lis une histoire avant de dormir.",
+   "ru": "Я читаю ей сказку перед сном.",
+   "uk": "Я читаю їй казку перед сном."
+  },
+  {
+   "id": "fr:23:29",
+   "target": "Je lui signale la fuite dans la cuisine.",
+   "ru": "Я рассказываю ей о протечке на кухне.",
+   "uk": "Я розповідаю їй про витік на кухні."
+  },
+  {
+   "id": "fr:23:30",
+   "target": "Je leur montre le jardin derrière la maison.",
+   "ru": "Я показываю им сад за домом.",
+   "uk": "Я показую їм сад за будинком."
+  },
+  {
+   "id": "fr:23:31",
+   "target": "Je ne lui réponds pas tout de suite.",
+   "ru": "Я не отвечаю ей сразу.",
+   "uk": "Я не відповідаю їй одразу."
+  },
+  {
+   "id": "fr:23:32",
+   "target": "Elle ne leur parle pas du prix.",
+   "ru": "Она не говорит с ними о цене.",
+   "uk": "Вона не говорить з ними про ціну."
+  },
+  {
+   "id": "fr:23:33",
+   "target": "Nous ne lui disons rien.",
+   "ru": "Мы ей ничего не говорим.",
+   "uk": "Ми їй нічого не кажемо."
+  },
+  {
+   "id": "fr:23:34",
+   "target": "Tu ne leur écris jamais ?",
+   "ru": "Ты никогда им не пишешь?",
+   "uk": "Ти ніколи їм не пишеш?"
+  },
+  {
+   "id": "fr:23:35",
+   "target": "Il ne veut pas lui téléphoner.",
+   "ru": "Он не хочет ей звонить.",
+   "uk": "Він не хоче їй дзвонити."
+  },
+  {
+   "id": "fr:23:36",
+   "target": "Je vais lui demander l’heure.",
+   "ru": "Я собираюсь спросить у неё время.",
+   "uk": "Я збираюся запитати в неї, котра година."
+  },
+  {
+   "id": "fr:23:37",
+   "target": "Vous pouvez leur laisser un message.",
+   "ru": "Вы можете оставить им сообщение.",
+   "uk": "Ви можете залишити їм повідомлення."
+  },
+  {
+   "id": "fr:23:38",
+   "target": "Nous devons lui rendre son badge.",
+   "ru": "Нам нужно вернуть ему пропуск.",
+   "uk": "Нам потрібно повернути йому перепустку."
+  },
+  {
+   "id": "fr:23:39",
+   "target": "Tu peux lui passer le sel ?",
+   "ru": "Можешь передать ему соль?",
+   "uk": "Можеш передати йому сіль?"
+  },
+  {
+   "id": "fr:23:40",
+   "target": "Je voudrais leur dire merci.",
+   "ru": "Я хотел бы сказать им спасибо.",
+   "uk": "Я хотів би сказати їм спасибі."
+  },
+  {
+   "id": "fr:23:41",
+   "target": "Je lui ai envoyé la facture.",
+   "ru": "Я отправил ему счет.",
+   "uk": "Я надіслав йому рахунок."
+  },
+  {
+   "id": "fr:23:42",
+   "target": "On leur a proposé une autre date.",
+   "ru": "Мы предложили им другую дату.",
+   "uk": "Ми запропонували їм іншу дату."
+  },
+  {
+   "id": "fr:23:43",
+   "target": "Ma sœur lui a prêté son vélo.",
+   "ru": "Моя сестра одолжила ему свой велосипед.",
+   "uk": "Моя сестра позичила йому свій велосипед."
+  },
+  {
+   "id": "fr:23:44",
+   "target": "Ils lui ont demandé son adresse.",
+   "ru": "Они спросили у него адрес.",
+   "uk": "Вони запитали в нього адресу."
+  },
+  {
+   "id": "fr:23:45",
+   "target": "Vous leur avez expliqué le trajet ?",
+   "ru": "Вы объяснили им маршрут?",
+   "uk": "Ви пояснили їм маршрут?"
+  },
+  {
+   "id": "fr:23:46",
+   "target": "Qui lui a offert cette écharpe ?",
+   "ru": "Кто подарил ей этот шарф?",
+   "uk": "Хто подарував їй цей шарф?"
+  },
+  {
+   "id": "fr:23:47",
+   "target": "Quand vas-tu leur répondre ?",
+   "ru": "Когда ты собираешься им ответить?",
+   "uk": "Коли ти збираєшся їм відповісти?"
+  },
+  {
+   "id": "fr:23:48",
+   "target": "Est-ce que tu lui fais confiance ?",
+   "ru": "Ты ей доверяешь?",
+   "uk": "Ти їй довіряєш?"
+  },
+  {
+   "id": "fr:23:49",
+   "target": "Je leur souhaite un bon voyage.",
+   "ru": "Желаю им хорошей поездки.",
+   "uk": "Я бажаю їм щасливої дороги."
+  },
+  {
+   "id": "fr:23:50",
+   "target": "Elle lui rappelle son rendez-vous.",
+   "ru": "Она напоминает ему о встрече.",
+   "uk": "Вона нагадує йому про його зустріч."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le conseil",
+   "ru": "совет",
+   "uk": "порада"
+  },
+  {
+   "lemma": "la fuite",
+   "ru": "протечка",
+   "uk": "протікання"
+  },
+  {
+   "lemma": "l’anniversaire (m.)",
+   "ru": "день рождения",
+   "uk": "день народження"
+  },
+  {
+   "lemma": "la règle",
+   "ru": "правило",
+   "uk": "правило"
+  },
+  {
+   "lemma": "le paiement",
+   "ru": "оплата",
+   "uk": "оплата"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  }
+ ],
+ "oldTopicTitle": "Кому: `lui` и `leur` перед глаголом",
+ "oldTheoryRu": "Посмотри на конструкцию с полным именем: `parler à Léa`, `écrire à Paul`. Когда имя уже понятно, его вместе с предлогом заменяет `lui`. Само `à` перед `lui` здесь не дублируется. Один адресат любого пола — `lui`, несколько — `leur`. Не добавляй `s` к этому `leur`. Написание `leurs` относится, например, к их нескольким вещам, а не к «им» перед глаголом. В одной фразе могут быть получатель и предмет. Сначала коротким местоимением назови, кому, затем глаголом — действие, после него — что отправляешь, даёшь или показываешь. Проверь смысл по реальной ситуации. Подарок для одного именинника и открытка для нескольких друзей требуют разных местоимений, даже если отправитель не меняется. Отрицание не меняет получателя. С инфинитивом `lui` располагается перед этим инфинитивом. Найди конкретное действие: попросить, сказать, написать. В сложном прошедшем местоимение обычно стоит перед помощником. Оно обозначает адресата, а не прямой объект. Само `lui` не требует согласования причастия с полом получателя. Это правило не заменяет все конструкции с `à`. У глагола `penser à`, например, о человеке говорят `je pense à elle`. Учи управление вместе с глаголом."
+}

@@ -1,0 +1,952 @@
+[
+{
+"lesson": 27,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:27:01",
+"de:27:04"
+],
+"textByLocale": {
+"en": "You're not just referring to a person, but to someone who lives here. In the clarification, a short word replaces it. This word is already the subject: a separate `er` is not required next to it.",
+"ru": "Ты указываешь не просто на человека, а на того, кто здесь живёт. В уточнении его заменяет короткое слово. Это слово уже является подлежащим: отдельное `er` рядом не требуется.",
+"uk": "Ти вказуєш не просто на людину, а на того, хто тут живе. В уточненні його замінює коротке слово. Це слово вже підлягає: окреме `er` поруч не потрібно."
+}
+},
+{
+"exampleIds": [
+"de:27:05",
+"de:27:08"
+],
+"textByLocale": {
+"en": "A noun in the main clause can be the object, and in the subordinate clause, the performer. Therefore, after `den Arzt`, `der` is quite possible: you know the doctor, but he works alone.",
+"ru": "Существительное в главной части может быть объектом, а в придаточной — исполнителем. Поэтому после `den Arzt` вполне возможно `der`: врача знаешь ты, а работает он сам.",
+"uk": "Іменник у головній частині може бути об'єктом, а в придатковій — виконавцем. Тому після `den Arzt` цілком можливо `der`: лікаря знаєш ти, а працює він сам."
+}
+},
+{
+"exampleIds": [
+"de:27:11",
+"de:27:16"
+],
+"textByLocale": {
+"en": "When a qualifier already contains a performer, check the role of the other participant. \"The key I'm looking for\": I'm the one looking, and the key is the object. Therefore, the masculine gender becomes `den`.\"",
+"ru": "Когда внутри уточнения уже есть исполнитель, проверь роль другого участника. «Ключ, который я ищу»: ищу я, а ключ является объектом. Поэтому у мужского рода появляется `den`.",
+"uk": "Коли всередині уточнення вже є виконавець, перевір роль іншого учасника. \"Ключ, який я шукаю\": шукаю я, а ключ є об'єктом. Тому у чоловічого роду з'являється `den`."
+}
+},
+{
+"exampleIds": [
+"de:27:21",
+"de:27:28"
+],
+"textByLocale": {
+"en": "A qualifier inserted in the middle is separated by commas on both sides. To avoid getting lost, first mentally read the main message without the insertion, and then return the detail.",
+"ru": "Вставленное посередине уточнение отделяется запятыми с обеих сторон. Чтобы не потеряться, сначала мысленно прочитай главное сообщение без вставки, а затем верни подробность на место.",
+"uk": "Вставлене посередині уточнення відокремлюється комами з обох боків. Щоб не загубитися, спочатку прочитай головне повідомлення без вставки, а потім поверни подробиці на місце."
+}
+},
+{
+"exampleIds": [
+"de:27:31",
+"de:27:34"
+],
+"textByLocale": {
+"en": "A description helps formulate a requirement: we need one that's open, not just a random store. An adjective isn't always convenient; a complete qualifier provides space for a detailed action.",
+"ru": "Описание помогает сформулировать требование: нужен не случайный магазин, а тот, который открыт. Прилагательное не всегда удобно, целое уточнение даёт место для подробного действия.",
+"uk": "Опис допомагає сформулювати вимогу: потрібен не випадковий магазин, а відкритий. Прикметник не завжди зручний, ціле уточнення дає місце для детальної дії."
+}
+},
+{
+"exampleIds": [
+"de:27:41",
+"de:27:44"
+],
+"textByLocale": {
+"en": "Compare the colleague who helps and the colleague you're calling. With `anrufen`,\" the person is the direct object. Don't transfer the dative from a literal translation to a relative pronoun.",
+"ru": "Сравни коллегу, который помогает, и коллегу, которому ты звонишь. С `anrufen` человек является прямым объектом. Не переноси дательный из буквального перевода на форму относительного местоимения.",
+"uk": "Порівняй колегу, який допомагає, та колегу, якому ти дзвониш. З `anrufen` людина є прямим об'єктом. Не переноси давальний з буквального перекладу на форму відносного займенника."
+}
+},
+{
+"exampleIds": [
+"de:27:45",
+"de:27:50"
+],
+"textByLocale": {
+"en": "In a subordinate clause, the personal verb tends to end. If it's in the perfect tense, the last verb in the corresponding group will be the auxiliary verb. Don't confuse it with the main clause verb after the second comma.",
+"ru": "В придаточной части личный глагол стремится к концу. Если там Perfekt, последним в соответствующей группе будет вспомогательный глагол. Не путай его с глаголом главной части после второй запятой.",
+"uk": "У придатковій частині особисте дієслово прагне до кінця. Якщо там Perfekt, то останнім у відповідній групі буде допоміжне дієслово. Не плутай його з дієсловом головної частини після другої коми."
+}
+}
+],
+"lab": [
+{
+"bad": "des",
+"chapter": 1,
+"id": "de:27:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"der",
+"des",
+"dem"
+],
+"slot": 4
+},
+{
+"bad": "der",
+"chapter": 1,
+"id": "de:27:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"der",
+"das",
+"die"
+],
+"slot": 4
+},
+{
+"bad": "das",
+"chapter": 1,
+"id": "de:27:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"das",
+"die",
+"der"
+],
+"slot": 4
+},
+{
+"bad": "das",
+"chapter": 2,
+"id": "de:27:08:lab",
+"item": 8,
+"kind": "build",
+"near": 40,
+"options": [
+"dem",
+"der",
+"das"
+],
+"slot": 4
+},
+{
+"bad": "dem",
+"chapter": 2,
+"id": "de:27:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 14,
+"options": [
+"den",
+"dem",
+"die"
+],
+"slot": 4
+},
+{
+"bad": "den",
+"chapter": 2,
+"id": "de:27:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 14,
+"options": [
+"den",
+"die",
+"dem"
+],
+"slot": 4
+},
+{
+"bad": "das",
+"chapter": 3,
+"id": "de:27:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"die",
+"das",
+"des"
+],
+"slot": 4
+},
+{
+"bad": "dem",
+"chapter": 3,
+"id": "de:27:17:lab",
+"item": 17,
+"kind": "match",
+"near": 3,
+"options": [
+"den",
+"dem",
+"das"
+],
+"slot": 4
+},
+{
+"bad": "der",
+"chapter": 3,
+"id": "de:27:19:lab",
+"item": 19,
+"kind": "build",
+"near": 12,
+"options": [
+"den",
+"der",
+"die"
+],
+"slot": 4
+},
+{
+"bad": "die",
+"chapter": 4,
+"id": "de:27:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 41,
+"options": [
+"den",
+"der",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "das",
+"chapter": 4,
+"id": "de:27:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 28,
+"options": [
+"das",
+"den",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "den",
+"chapter": 4,
+"id": "de:27:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"dem",
+"den",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "die",
+"chapter": 5,
+"id": "de:27:29:lab",
+"item": 29,
+"kind": "match",
+"near": 42,
+"options": [
+"die",
+"den",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "das",
+"chapter": 5,
+"id": "de:27:31:lab",
+"item": 31,
+"kind": "build",
+"near": 38,
+"options": [
+"das",
+"der",
+"dem"
+],
+"slot": 4
+},
+{
+"bad": "der",
+"chapter": 5,
+"id": "de:27:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 20,
+"options": [
+"den",
+"die",
+"der"
+],
+"slot": 3
+},
+{
+"bad": "den",
+"chapter": 6,
+"id": "de:27:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 32,
+"options": [
+"des",
+"die",
+"den"
+],
+"slot": 4
+},
+{
+"bad": "den",
+"chapter": 6,
+"id": "de:27:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 40,
+"options": [
+"den",
+"der",
+"die"
+],
+"slot": 5
+},
+{
+"bad": "der",
+"chapter": 6,
+"id": "de:27:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"der",
+"den",
+"das"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 7,
+"id": "de:27:45:lab",
+"item": 45,
+"kind": "build",
+"near": 28,
+"options": [
+"dem",
+"der",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 7,
+"id": "de:27:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 30,
+"options": [
+"des",
+"den",
+"die"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"der Mann",
+"der hier wohnt / den ich sehe"
+],
+[
+"die Frau",
+"die hier wohnt / die ich sehe"
+],
+[
+"das Kind",
+"das hier wohnt / das ich sehe"
+],
+[
+"die Leute",
+"die hier wohnen / die ich sehe"
+]
+],
+"title": {
+"en": "Saying which person or thing: relative clauses",
+"ru": "Какой человек или предмет: относительное предложение",
+"uk": "Яка людина чи предмет: відносна пропозиція"
+}
+},
+"exampleResolved": [
+{
+"id": "de:27:01",
+"target": "Das ist der Mann, der hier wohnt.",
+"ru": "Это мужчина, который здесь живёт.",
+"uk": "Це чоловік, який тут мешкає."
+},
+{
+"id": "de:27:04",
+"target": "Das sind die Leute, die hier wohnen.",
+"ru": "Это люди, которые здесь живут.",
+"uk": "Це люди, які тут мешкають."
+},
+{
+"id": "de:27:05",
+"target": "Ich kenne den Arzt, der heute arbeitet.",
+"ru": "Я знаю врача, который сегодня работает.",
+"uk": "Я знаю лікаря, який сьогодні працює."
+},
+{
+"id": "de:27:08",
+"target": "Hier ist der Bus, der zum Markt fährt.",
+"ru": "Вот автобус, который едет к рынку.",
+"uk": "Ось автобус, який їде до ринку."
+},
+{
+"id": "de:27:11",
+"target": "Das ist der Schlüssel, den ich suche.",
+"ru": "Это ключ, который я ищу.",
+"uk": "Це ключ, який я шукаю."
+},
+{
+"id": "de:27:16",
+"target": "Hier ist die Tasche, die Tom gefunden hat.",
+"ru": "Вот сумка, которую нашёл Том.",
+"uk": "Ось сумка, яку знайшов Том."
+},
+{
+"id": "de:27:21",
+"target": "Der Zug, der nach Köln fährt, ist voll.",
+"ru": "Поезд, который едет в Кёльн, переполнен.",
+"uk": "Поїзд, що їде до Кельна, переповнений."
+},
+{
+"id": "de:27:28",
+"target": "Die Bücher, die ihr lest, sind neu.",
+"ru": "Книги, которые вы читаете, новые.",
+"uk": "Книги, які ви читаєте, нові."
+},
+{
+"id": "de:27:31",
+"target": "Ich brauche einen Stift, der gut schreibt.",
+"ru": "Мне нужна ручка, которая хорошо пишет.",
+"uk": "Мені потрібна ручка, яка добре пише."
+},
+{
+"id": "de:27:34",
+"target": "Er braucht Schuhe, die gut passen.",
+"ru": "Ему нужна обувь, которая хорошо сидит.",
+"uk": "Йому потрібне взуття, яке добре сидить."
+},
+{
+"id": "de:27:41",
+"target": "Der Kollege, der mir hilft, heißt Paul.",
+"ru": "Коллегу, который мне помогает, зовут Пауль.",
+"uk": "Колегу, який мені допомагає, звуть Пауль."
+},
+{
+"id": "de:27:44",
+"target": "Der Hund, den der Nachbar sucht, ist im Hof.",
+"ru": "Собака, которую ищет сосед, во дворе.",
+"uk": "Собака, яку шукає сусід, у дворі."
+},
+{
+"id": "de:27:45",
+"target": "Die Uhr, die an der Wand hängt, geht vor.",
+"ru": "Часы, которые висят на стене, спешат.",
+"uk": "Годинник, що висить на стіні, поспішає."
+},
+{
+"id": "de:27:50",
+"target": "Ist das der Koffer, den ihr am Bahnhof vergessen habt?",
+"ru": "Это чемодан, который вы забыли на вокзале?",
+"uk": "Це валіза, яку ви забули на вокзалі?"
+}
+]
+},
+{
+"lesson": 28,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:28:01",
+"de:28:05"
+],
+"textByLocale": {
+"en": "In the active sentence, someone opens a window. In the passive sentence, the window itself and the process taking place are more important. The window becomes the subject; the form `wird` or `werden` now depends on its number.",
+"ru": "В активном сообщении кто-то открывает окно. В пассивном важнее само окно и происходящий процесс. Оно становится подлежащим; форма `wird` или `werden` зависит теперь от его числа.",
+"uk": "В активному повідомленні хтось відкриває вікно. У пасивному важливіше саме вікно і процес, що відбувається. Воно стає підлеглим; форма `wird` або `werden` залежить тепер від його числа."
+}
+},
+{
+"exampleIds": [
+"de:28:11",
+"de:28:15"
+],
+"textByLocale": {
+"en": "A sign often reports an action, not the name of the repairman. If an elevator is being repaired, it usually doesn't matter to the passenger who is holding the tool. Don't invent an obligatory performer.",
+"ru": "На табличке часто сообщают действие, а не имя мастера. Если ремонтируют лифт, для пассажира обычно неважно, кто держит инструмент. Не выдумывай обязательного исполнителя.",
+"uk": "На табличці часто повідомляють дію, а чи не ім'я майстра. Якщо ремонтують ліфт, для пасажира зазвичай не має значення, хто тримає інструмент. Не вигадуй обов'язкового виконавця."
+}
+},
+{
+"exampleIds": [
+"de:28:16",
+"de:28:20"
+],
+"textByLocale": {
+"en": "The order is similar to the Perfect frame, but the meaning is different. `Wird geliefert` reports delivery as a process; the form `wird` alone doesn't necessarily make the phrase future tense.",
+"ru": "Порядок похож на рамку Perfekt, но смысл другой. `Wird geliefert` сообщает о доставке как процессе; одна только форма `wird` ещё не заставляет считать фразу будущим временем.",
+"uk": "Порядок схожий на рамку Perfekt, але сенс інший. `Wird geliefert` повідомляє про доставку як процес; тільки форма `wird` ще змушує вважати фразу майбутнім часом."
+}
+},
+{
+"exampleIds": [
+"de:28:21",
+"de:28:25"
+],
+"textByLocale": {
+"en": "Sometimes a message doesn't have a regular subject: here they pay by card, no smoking in the hallway. The impersonal passive is a separate example; don't insert a random subject just for the sake of translation.",
+"ru": "Иногда у сообщения нет обычного предмета-подлежащего: здесь платят картой, в коридоре не курят. Безличный пассив — отдельный образец; не вставляй случайный предмет лишь ради перевода.",
+"uk": "Іноді повідомлення не має звичайного предмета-підлягає: тут платять карткою, в коридорі не курять. Безособовий пасив – окремий зразок; не вставляй випадковий предмет лише заради перекладу."
+}
+},
+{
+"exampleIds": [
+"de:28:31",
+"de:28:35"
+],
+"textByLocale": {
+"en": "If the performer is important, name them after `von` in the dative case. This addition doesn't change the verb number: the form is still determined by the one who was taken or examined.",
+"ru": "Если исполнитель важен, назови его после `von` в дательном падеже. Это добавление не меняет число глагола: форму по-прежнему задаёт тот, кого забрали или осмотрели.",
+"uk": "Якщо виконавець важливий, назви його після `von` у давальному відмінку. Це додавання не змінює число дієслова: форму, як і раніше, задає той, кого забрали або оглянули."
+}
+},
+{
+"exampleIds": [
+"de:28:36",
+"de:28:45"
+],
+"textByLocale": {
+"en": "To move a process to the past, change `wird` to `wurde`,\" and in the plural, to `wurden`.\" The participle remains the same. Don't confuse a message about a process with a description of an already achieved state using `sein`.\"",
+"ru": "Чтобы перенести процесс в прошлое, меняй `wird` на `wurde`, во множественном — на `wurden`. Причастие остаётся тем же. Не путай сообщение о процессе с описанием уже достигнутого состояния через `sein`.",
+"uk": "Щоб перенести процес у минуле, змінюй `wird` на `wurde`, у множині – на `wurden`. Причастя залишається тим самим. Не плутай повідомлення про процес із описом вже досягнутого стану через `sein`."
+}
+},
+{
+"exampleIds": [
+"de:28:46",
+"de:28:50"
+],
+"textByLocale": {
+"en": "A modal word can precede the frame. The participle and `werden` remain at the end: we're talking about what must be done or can be changed. Don't lose the last part when putting together a long answer.",
+"ru": "Модальное слово может стоять впереди рамки. В конце останутся причастие и `werden`: речь о том, что должно быть сделано или может быть изменено. Не теряй последнюю часть при сборке длинного ответа.",
+"uk": "Модальне слово може стояти перед рамкою. Наприкінці залишаться причастя і `werden`: мова про те, що має бути зроблено чи може бути змінено. Не втрачай останню частину при збиранні довгої відповіді."
+}
+}
+],
+"lab": [
+{
+"bad": "werde",
+"chapter": 1,
+"id": "de:28:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"werde",
+"wird",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "wird",
+"chapter": 1,
+"id": "de:28:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"werdet",
+"werden",
+"wird"
+],
+"slot": 2
+},
+{
+"bad": "wurde",
+"chapter": 1,
+"id": "de:28:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"wurde",
+"werden",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "wirst",
+"chapter": 2,
+"id": "de:28:08:lab",
+"item": 8,
+"kind": "build",
+"near": 35,
+"options": [
+"wirst",
+"wird",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "wurde",
+"chapter": 2,
+"id": "de:28:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"wurde",
+"werden",
+"wäre"
+],
+"slot": 2
+},
+{
+"bad": "werden",
+"chapter": 2,
+"id": "de:28:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 8,
+"options": [
+"werden",
+"wirst",
+"wird"
+],
+"slot": 2
+},
+{
+"bad": "wirst",
+"chapter": 3,
+"id": "de:28:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 10,
+"options": [
+"wird",
+"wirst",
+"werden"
+],
+"slot": 2
+},
+{
+"bad": "werde",
+"chapter": 3,
+"id": "de:28:17:lab",
+"item": 17,
+"kind": "match",
+"near": 10,
+"options": [
+"werde",
+"wäre",
+"werden"
+],
+"slot": 2
+},
+{
+"bad": "werdet",
+"chapter": 3,
+"id": "de:28:19:lab",
+"item": 19,
+"kind": "build",
+"near": 8,
+"options": [
+"werdet",
+"wird",
+"wirst"
+],
+"slot": 2
+},
+{
+"bad": "werde",
+"chapter": 4,
+"id": "de:28:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 26,
+"options": [
+"werde",
+"werdet",
+"wird"
+],
+"slot": 2
+},
+{
+"bad": "wäre",
+"chapter": 4,
+"id": "de:28:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 8,
+"options": [
+"wird",
+"werde",
+"wäre"
+],
+"slot": 3
+},
+{
+"bad": "wirst",
+"chapter": 4,
+"id": "de:28:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 22,
+"options": [
+"wird",
+"wäre",
+"wirst"
+],
+"slot": 2
+},
+{
+"bad": "wurde",
+"chapter": 5,
+"id": "de:28:29:lab",
+"item": 29,
+"kind": "match",
+"near": 8,
+"options": [
+"wurde",
+"werden",
+"wird"
+],
+"slot": 3
+},
+{
+"bad": "wurde",
+"chapter": 5,
+"id": "de:28:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"wird",
+"wurde",
+"wäre"
+],
+"slot": 2
+},
+{
+"bad": "wirst",
+"chapter": 5,
+"id": "de:28:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 4,
+"options": [
+"wirst",
+"wird",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "werdet",
+"chapter": 6,
+"id": "de:28:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 1,
+"options": [
+"wurde",
+"wäre",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "wirst",
+"chapter": 6,
+"id": "de:28:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"wirst",
+"wurde",
+"werdet"
+],
+"slot": 2
+},
+{
+"bad": "werde",
+"chapter": 6,
+"id": "de:28:42:lab",
+"item": 42,
+"kind": "match",
+"near": 8,
+"options": [
+"wird",
+"werdet",
+"werde"
+],
+"slot": 1
+},
+{
+"bad": "Wirst",
+"chapter": 7,
+"id": "de:28:45:lab",
+"item": 45,
+"kind": "build",
+"near": 43,
+"options": [
+"Wirst",
+"Wäre",
+"Wurden"
+],
+"slot": 0
+},
+{
+"bad": "wäre",
+"chapter": 7,
+"id": "de:28:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"wäre",
+"wird",
+"werden"
+],
+"slot": 5
+}
+],
+"table": [
+[
+"jemand öffnet die Tür",
+"die Tür wird geöffnet"
+],
+[
+"jemand öffnet die Fenster",
+"die Fenster werden geöffnet"
+],
+[
+"jemand prüfte das Ticket",
+"das Ticket wurde geprüft"
+],
+[
+"man muss es zeigen",
+"es muss gezeigt werden"
+]
+],
+"title": {
+"en": "What is being done: the passive with `werden`",
+"ru": "Что делают с предметом: пассив с `werden`",
+"uk": "Що відбувається з предметом: пасив із `werden`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:28:01",
+"target": "Die Tür wird geöffnet.",
+"ru": "Дверь открывают.",
+"uk": "Двері відчиняють."
+},
+{
+"id": "de:28:05",
+"target": "Die Tische werden gedeckt.",
+"ru": "На столы накрывают.",
+"uk": "На столи накривають."
+},
+{
+"id": "de:28:11",
+"target": "Das Paket wird heute geliefert.",
+"ru": "Посылку доставят сегодня.",
+"uk": "Посилку доставлять сьогодні."
+},
+{
+"id": "de:28:15",
+"target": "Die Milch wird kühl gelagert.",
+"ru": "Молоко хранят в прохладном месте.",
+"uk": "Молоко зберігають у прохолодному місці."
+},
+{
+"id": "de:28:16",
+"target": "Das Brot wird hier gebacken.",
+"ru": "Хлеб пекут здесь.",
+"uk": "Хліб печуть тут."
+},
+{
+"id": "de:28:20",
+"target": "Die Fahrräder werden im Hof abgestellt.",
+"ru": "Велосипеды ставят во дворе.",
+"uk": "Велосипеди ставлять у дворі."
+},
+{
+"id": "de:28:21",
+"target": "Hier wird mit Karte bezahlt.",
+"ru": "Здесь платят картой.",
+"uk": "Тут платять карткою."
+},
+{
+"id": "de:28:25",
+"target": "An dieser Kasse wird bar bezahlt.",
+"ru": "На этой кассе платят наличными.",
+"uk": "На цій касі платять готівкою."
+},
+{
+"id": "de:28:31",
+"target": "Der Patient wird von der Ärztin untersucht.",
+"ru": "Пациента осматривает врач-женщина.",
+"uk": "Пацієнта оглядає лікар-жінка."
+},
+{
+"id": "de:28:35",
+"target": "Die Rechnung wird von der Firma bezahlt.",
+"ru": "Счёт оплачивает фирма.",
+"uk": "Рахунок оплачує фірма."
+},
+{
+"id": "de:28:36",
+"target": "Die Tür wurde gestern gestrichen.",
+"ru": "Дверь покрасили вчера.",
+"uk": "Двері пофарбували вчора."
+},
+{
+"id": "de:28:45",
+"target": "Wurden die Fenster schon geputzt?",
+"ru": "Окна уже помыли?",
+"uk": "Вікна вже помили?"
+},
+{
+"id": "de:28:46",
+"target": "Das Formular muss hier unterschrieben werden.",
+"ru": "Бланк нужно подписать здесь.",
+"uk": "Бланк потрібно підписати тут."
+},
+{
+"id": "de:28:50",
+"target": "Der Ausweis muss am Eingang gezeigt werden.",
+"ru": "У входа надо предъявить удостоверение.",
+"uk": "Біля входу треба пред'явити посвідчення."
+}
+]
+}
+]

@@ -201,10 +201,15 @@
    "es": "minutos"
   },
   "did": {
-   "ru": "слово-помощник вопроса и отрицания; по-русски нет",
-   "uk": "слово-помічник питання й заперечення; українською немає",
-   "en": "helper word in questions",
-   "es": "palabra auxiliar"
+   "ru": "Ты звонил в офис? (___ you call the office)",
+   "uk": "Ти телефонував до офісу? (___ you call the office)",
+   "en": "Was the call to the office made by you? (___ you call the office)",
+   "es": "¿Llamaste a la oficina? (___ you call the office)",
+   "pt-BR": "Você ligou para o escritório? (___ you call the office)",
+   "vi": "Bạn đã gọi đến văn phòng chưa? (___ you call the office)",
+   "id": "Apa kamu sudah menelepon kantor? (___ you call the office)",
+   "tr": "Ofisi aradın mı? (___ you call the office)",
+   "pl": "Czy dzwoniłeś do biura? (___ you call the office)"
   },
   "cancel": {
    "ru": "отменить",

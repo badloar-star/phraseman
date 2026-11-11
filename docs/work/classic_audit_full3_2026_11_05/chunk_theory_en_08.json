@@ -1,0 +1,1116 @@
+[
+{
+"lesson": 17,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 17,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что происходит прямо сейчас",
+"formula": "[подлежащее] + [am / is / are] + [-ing]",
+"story": "Ты видишь человека в очереди прямо сейчас: She is waiting. Waiting называет действие; is связывает это действие с she. Не выбрасывай ни одну часть.",
+"use": "Используйте эту модель для действия, которое происходит в данный момент, временной ситуации или изменения, происходящего примерно сейчас. Обычно она не описывает постоянную рутину.",
+"choose": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"nuance": "Сравните работу где-либо в качестве вашей обычной работы с работой в другую смену в этом месяце. Глаголы, подобные `know`, обычно описывают состояние и, как правило, не располагаются в таком порядке.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте эту модель для действия, которое происходит в данный момент, временной ситуации или изменения, происходящего примерно сейчас. Обычно она не описывает постоянную рутину.",
+"samples": [
+"17.01",
+"17.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"samples": [
+"17.02",
+"17.11"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Сравните работу где-либо в качестве вашей обычной работы с работой в другую смену в этом месяце. Глаголы, подобные `know`, обычно описывают состояние и, как правило, не располагаются в таком порядке.",
+"samples": [
+"17.11",
+"17.25"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Говорите о том, чего не происходит",
+"samples": [
+"17.33",
+"17.35",
+"17.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы разговариваете по телефону. Опишите, что вы видите в данный момент, вместо того, чтобы давать обычное расписание.",
+"samples": [
+"17.42",
+"17.45",
+"17.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Различайте рутину и временную ситуацию",
+"samples": [
+"17.50"
+],
+"tokenWalk": "17.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що відбувається просто зараз",
+"formula": "[підмет] + [am / is / are] + [-ing]",
+"story": "Ти бачиш людину в черзі просто зараз: She is waiting. Waiting називає дію; is пов’язує її з she. Потрібні обидві частини.",
+"use": "Використовуйте цю схему для дії, що триває, тимчасової ситуації або зміни, яка відбувається зараз. Зазвичай вона не описує постійний розпорядок дня.",
+"choose": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"nuance": "Порівняйте роботу деінде як вашу звичайну роботу з роботою в іншу зміну цього місяця. Дієслова, такі як `know`, зазвичай описують стан і зазвичай не вживаються в цій моделі.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте цю схему для дії, що триває, тимчасової ситуації або зміни, яка відбувається зараз. Зазвичай вона не описує постійний розпорядок дня.",
+"samples": [
+"17.01",
+"17.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"samples": [
+"17.02",
+"17.11"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Порівняйте роботу деінде як вашу звичайну роботу з роботою в іншу зміну цього місяця. Дієслова, такі як `know`, зазвичай описують стан і зазвичай не вживаються в цій моделі.",
+"samples": [
+"17.11",
+"17.25"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Сказати, чого не відбувається",
+"samples": [
+"17.33",
+"17.35",
+"17.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви розмовляєте по телефону. Опишіть, що ви бачите в цей момент, замість того, щоб називати звичайний розклад.",
+"samples": [
+"17.42",
+"17.45",
+"17.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Розрізняти рутину від тимчасової ситуації",
+"samples": [
+"17.50"
+],
+"tokenWalk": "17.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Describe what is happening now",
+"formula": "[subject] + [am / is / are] + [verb in -ing]",
+"story": "Someone is in the queue right now: She is waiting. Waiting gives the action, is links it to she. Keep both pieces.",
+"use": "Use this pattern for an action in progress, a temporary situation or a change that is happening around now. It does not normally describe a permanent routine.",
+"choose": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it.",
+"nuance": "Compare working somewhere as your usual job with working a different shift this month. Verbs such as `know` normally describe a state and are not usually put in this pattern.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use this pattern for an action in progress, a temporary situation or a change that is happening around now. It does not normally describe a permanent routine.",
+"samples": [
+"17.01",
+"17.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it.",
+"samples": [
+"17.02",
+"17.11"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Compare working somewhere as your usual job with working a different shift this month. Verbs such as `know` normally describe a state and are not usually put in this pattern.",
+"samples": [
+"17.11",
+"17.25"
+]
+},
+{
+"title": "Common mistake",
+"body": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it.",
+"wrong": "She waiting for the driver.",
+"right": "She is waiting for the driver.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Say what is not happening",
+"samples": [
+"17.33",
+"17.35",
+"17.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You are on the phone. Describe what you can see at this moment rather than giving the usual timetable.",
+"samples": [
+"17.42",
+"17.45",
+"17.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Distinguish a routine from a temporary situation",
+"samples": [
+"17.50"
+],
+"tokenWalk": "17.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "17.01",
+"index": 1,
+"right": "am",
+"near": "is",
+"seq": [
+"I",
+"am",
+"waiting"
+],
+"i": 0,
+"kind": "form",
+"key": "en17/lab/form1",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.13",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"He",
+"is",
+"washing",
+"his",
+"hands"
+],
+"i": 12,
+"kind": "form",
+"key": "en17/lab/form2",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.26",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"Where",
+"are",
+"we",
+"going"
+],
+"i": 25,
+"kind": "form",
+"key": "en17/lab/form3",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.38",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"It",
+"is",
+"not",
+"raining",
+"now"
+],
+"i": 37,
+"kind": "form",
+"key": "en17/lab/form4",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.06",
+"index": 1,
+"right": "am",
+"near": "is",
+"seq": [
+"I",
+"am",
+"listening"
+],
+"i": 5,
+"kind": "spot",
+"key": "en17/lab/spot1",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.21",
+"index": 0,
+"right": "Are",
+"near": "Is",
+"seq": [
+"Are",
+"you",
+"listening"
+],
+"i": 20,
+"kind": "spot",
+"key": "en17/lab/spot2",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.32",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"She",
+"is",
+"not",
+"feeling",
+"well"
+],
+"i": 31,
+"kind": "spot",
+"key": "en17/lab/spot3",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"id": "17.45",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"They",
+"are",
+"painting",
+"the",
+"front",
+"door",
+"today"
+],
+"i": 44,
+"kind": "spot",
+"key": "en17/lab/spot4",
+"feedback": {
+"ru": "Форма `be` согласуется с подлежащим, а само действие заканчивается на `-ing`: `I am waiting`, `she is waiting`. Сделай вопрос перестановкой `be`, а отрицание — добавлением `not` после него.",
+"uk": "Форма `be` узгоджується з підметом, а сама дія має закінчення `-ing`: `I am waiting`, `she is waiting`. Для питання перестав `be`, а для заперечення додай після нього `not`.",
+"en": "Choose the form of `be` for the subject. Then choose the action ending in `-ing`. For questions move the form of `be` forward. For negatives put `not` after it."
+}
+},
+{
+"kind": "match",
+"key": "en17/lab/match1",
+"id": "17.02",
+"other": "17.01"
+},
+{
+"kind": "match",
+"key": "en17/lab/match2",
+"id": "17.17",
+"other": "17.18"
+},
+{
+"kind": "match",
+"key": "en17/lab/match3",
+"id": "17.33",
+"other": "17.34"
+},
+{
+"kind": "match",
+"key": "en17/lab/match4",
+"id": "17.46",
+"other": "17.47"
+},
+{
+"kind": "build",
+"key": "en17/lab/build1",
+"id": "17.04"
+},
+{
+"kind": "build",
+"key": "en17/lab/build2",
+"id": "17.15"
+},
+{
+"kind": "build",
+"key": "en17/lab/build3",
+"id": "17.29"
+},
+{
+"kind": "build",
+"key": "en17/lab/build4",
+"id": "17.42"
+},
+{
+"kind": "transform",
+"id": "17.06",
+"base": "17.01",
+"diff": [
+{
+"before": [
+"waiting"
+],
+"after": [
+"listening"
+]
+}
+],
+"key": "en17/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "17.40",
+"base": "17.09",
+"diff": [
+{
+"before": [
+"coming"
+],
+"after": [
+"not",
+"moving"
+]
+}
+],
+"key": "en17/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "17.04",
+"base": "17.03",
+"diff": [
+{
+"before": [
+"We"
+],
+"after": [
+"They"
+]
+}
+],
+"key": "en17/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "17.39",
+"base": "17.31",
+"diff": [
+{
+"before": [
+"ignoring",
+"you"
+],
+"after": [
+"taking",
+"the",
+"car"
+]
+}
+],
+"key": "en17/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+12
+],
+[
+2,
+5
+],
+[
+14,
+6
+],
+[
+10,
+3
+],
+[
+7,
+15
+],
+[
+11,
+17
+]
+],
+"worked": [
+"17.05",
+"17.18",
+"17.33",
+"17.48"
+],
+"reflection": [
+"17.01",
+"17.02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 18,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 18,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Инструкции и предложения",
+"formula": "[глагол без to] + ... · do not + [глагол без to] · let's + [глагол без to]",
+"story": "Просишь закрыть окно: Close the window. Предлагаешь сделать вместе: Let’s close the window. Слово let’s включает говорящего.",
+"use": "Начинайте инструкцию с действия. В английском языке в обычной инструкции подлежащее `you` не требуется. Добавьте `please`, когда вы просите о помощи, а не даете прямой приказ.",
+"choose": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"nuance": "`Let us` может буквально просить кого-то разрешить нам что-то сделать. Не следует механически превращать каждое предложение с `let's` в просьбу о разрешении. Давайте одно четкое указание за раз.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Начинайте инструкцию с действия. В английском языке в обычной инструкции подлежащее `you` не требуется. Добавьте `please`, когда вы просите о помощи, а не даете прямой приказ.",
+"samples": [
+"18.01",
+"18.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"samples": [
+"18.11",
+"18.23"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Let us` может буквально просить кого-то разрешить нам что-то сделать. Не следует механически превращать каждое предложение с `let's` в просьбу о разрешении. Давайте одно четкое указание за раз.",
+"samples": [
+"18.23",
+"18.34"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Давайте указания шаг за шагом",
+"samples": [
+"18.33",
+"18.35",
+"18.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Объясните, как добраться до аптеки, а затем предложите пойти туда вместе. Обратите внимание, кто должен действовать в каждом случае.",
+"samples": [
+"18.42",
+"18.45",
+"18.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Предложить сделать что-то вместе",
+"samples": [
+"18.50"
+],
+"tokenWalk": "18.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Інструкції та пропозиції",
+"formula": "[дієслово без to] + ... · do not + [дієслово без to] · let's + [дієслово без to]",
+"story": "Просиш зачинити вікно: Close the window. Пропонуєш зробити разом: Let’s close the window. Let’s включає й того, хто говорить.",
+"use": "Почніть інструкцію з дії. В англійській мові не потрібен підмет `you` у звичайній інструкції. Додайте `please`, коли ви просите про допомогу, а не даєте простого наказу.",
+"choose": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"nuance": "`Let us` може буквально попросити когось дозволити нам щось зробити. Не розширюйте механічно кожну пропозицію за допомогою `let's` на запит дозволу. Давайте по одному чіткому вказівці за раз.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Почніть інструкцію з дії. В англійській мові не потрібен підмет `you` у звичайній інструкції. Додайте `please`, коли ви просите про допомогу, а не даєте простого наказу.",
+"samples": [
+"18.01",
+"18.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"samples": [
+"18.11",
+"18.23"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Let us` може буквально попросити когось дозволити нам щось зробити. Не розширюйте механічно кожну пропозицію за допомогою `let's` на запит дозволу. Давайте по одному чіткому вказівці за раз.",
+"samples": [
+"18.23",
+"18.34"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Давати вказівки крок за кроком",
+"samples": [
+"18.33",
+"18.35",
+"18.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Поясніть, як дістатися до аптеки, а потім запропонуйте піти туди разом. Зверніть увагу, хто має діяти в кожному випадку.",
+"samples": [
+"18.42",
+"18.45",
+"18.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Запропонуйте зробити щось разом",
+"samples": [
+"18.50"
+],
+"tokenWalk": "18.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Give an instruction or suggest a plan",
+"formula": "[base verb] + ... · do not + [base verb] · let's + [base verb]",
+"story": "Close the window asks the listener to act. Let’s close the window proposes doing it together. Let’s includes the speaker.",
+"use": "Start an instruction with the action. English does not need the subject `you` in an ordinary instruction. Add `please` when you are asking for help rather than giving a bare order.",
+"choose": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`.",
+"nuance": "`Let us` can literally ask someone to allow us to do something. Do not mechanically expand every suggestion with `let's` into a request for permission. Give one clear direction at a time.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Start an instruction with the action. English does not need the subject `you` in an ordinary instruction. Add `please` when you are asking for help rather than giving a bare order.",
+"samples": [
+"18.01",
+"18.11"
+]
+},
+{
+"title": "How to choose",
+"body": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`.",
+"samples": [
+"18.11",
+"18.23"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Let us` can literally ask someone to allow us to do something. Do not mechanically expand every suggestion with `let's` into a request for permission. Give one clear direction at a time.",
+"samples": [
+"18.23",
+"18.34"
+]
+},
+{
+"title": "Common mistake",
+"body": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`.",
+"wrong": "Don't to touch the oven.",
+"right": "Don't touch the oven.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Give directions one step at a time",
+"samples": [
+"18.33",
+"18.35",
+"18.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Explain how to get to the pharmacy, then suggest going there together. Notice who is expected to act in each case.",
+"samples": [
+"18.42",
+"18.45",
+"18.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Suggest doing something together",
+"samples": [
+"18.50"
+],
+"tokenWalk": "18.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "18.01",
+"index": 0,
+"right": "Come",
+"near": "Comes",
+"seq": [
+"Come",
+"this",
+"way"
+],
+"i": 0,
+"kind": "form",
+"key": "en18/lab/form1",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.13",
+"index": 2,
+"right": "leave",
+"near": "leaves",
+"seq": [
+"Do",
+"not",
+"leave",
+"the",
+"tap",
+"running"
+],
+"i": 12,
+"kind": "form",
+"key": "en18/lab/form2",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.25",
+"index": 1,
+"right": "keep",
+"near": "keeps",
+"seq": [
+"Please",
+"keep",
+"your",
+"ticket"
+],
+"i": 24,
+"kind": "form",
+"key": "en18/lab/form3",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.42",
+"index": 1,
+"right": "wait",
+"near": "waits",
+"seq": [
+"Let's",
+"wait",
+"for",
+"the",
+"others"
+],
+"i": 41,
+"kind": "form",
+"key": "en18/lab/form4",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.07",
+"index": 0,
+"right": "Watch",
+"near": "Watches",
+"seq": [
+"Watch",
+"your",
+"step"
+],
+"i": 6,
+"kind": "spot",
+"key": "en18/lab/spot1",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.15",
+"index": 2,
+"right": "forget",
+"near": "forgets",
+"seq": [
+"Do",
+"not",
+"forget",
+"your",
+"badge"
+],
+"i": 14,
+"kind": "spot",
+"key": "en18/lab/spot2",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.45",
+"index": 1,
+"right": "sit",
+"near": "sits",
+"seq": [
+"Let's",
+"sit",
+"near",
+"the",
+"window"
+],
+"i": 44,
+"kind": "spot",
+"key": "en18/lab/spot3",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"id": "18.47",
+"index": 2,
+"right": "leave",
+"near": "leaves",
+"seq": [
+"Let's",
+"not",
+"leave",
+"the",
+"bags",
+"here"
+],
+"i": 46,
+"kind": "spot",
+"key": "en18/lab/spot4",
+"feedback": {
+"ru": "Начни инструкцию сразу с действия: `Come this way`. Для запрета поставь `don't` перед глаголом: `Don't touch`. Для общего предложения скажи `Let's go`: говорящий тоже собирается идти.",
+"uk": "Почни вказівку відразу з дії: `Come this way`. Щоб заборонити, постав `don't` перед дієсловом: `Don't touch`. Спільну пропозицію почни з `Let's go`: мовець теж збирається йти.",
+"en": "For a warning, put `do not` or `don't` in front of the base verb. `Let's` includes the speaker in the plan. In a negative suggestion, use `let's not`."
+}
+},
+{
+"kind": "match",
+"key": "en18/lab/match1",
+"id": "18.02",
+"other": "18.03"
+},
+{
+"kind": "match",
+"key": "en18/lab/match2",
+"id": "18.17",
+"other": "18.18"
+},
+{
+"kind": "match",
+"key": "en18/lab/match3",
+"id": "18.33",
+"other": "18.34"
+},
+{
+"kind": "match",
+"key": "en18/lab/match4",
+"id": "18.46",
+"other": "18.47"
+},
+{
+"kind": "build",
+"key": "en18/lab/build1",
+"id": "18.04"
+},
+{
+"kind": "build",
+"key": "en18/lab/build2",
+"id": "18.15"
+},
+{
+"kind": "build",
+"key": "en18/lab/build3",
+"id": "18.29"
+},
+{
+"kind": "build",
+"key": "en18/lab/build4",
+"id": "18.42"
+},
+{
+"kind": "transform",
+"id": "18.12",
+"base": "18.11",
+"diff": [
+{
+"before": [
+"touch"
+],
+"after": [
+"block"
+]
+},
+{
+"before": [
+"oven"
+],
+"after": [
+"stairs"
+]
+}
+],
+"key": "en18/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "18.18",
+"base": "18.13",
+"diff": [
+{
+"before": [
+"leave"
+],
+"after": [
+"feed"
+]
+},
+{
+"before": [
+"tap",
+"running"
+],
+"after": [
+"dog"
+]
+}
+],
+"key": "en18/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "18.26",
+"base": "18.25",
+"diff": [
+{
+"before": [
+"keep"
+],
+"after": [
+"spell"
+]
+},
+{
+"before": [
+"ticket"
+],
+"after": [
+"surname"
+]
+}
+],
+"key": "en18/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "18.47",
+"base": "18.46",
+"diff": [
+{
+"before": [
+"rush"
+],
+"after": [
+"leave",
+"the",
+"bags",
+"here"
+]
+}
+],
+"key": "en18/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+16
+],
+[
+1,
+18
+],
+[
+10,
+2
+],
+[
+14,
+17
+],
+[
+3,
+15
+],
+[
+6,
+11
+],
+[
+7,
+19
+]
+],
+"worked": [
+"18.05",
+"18.18",
+"18.33",
+"18.48"
+],
+"reflection": [
+"18.03",
+"18.11"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

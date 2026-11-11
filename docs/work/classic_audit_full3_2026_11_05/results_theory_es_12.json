@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-25/sharedActivities",
+  "type": "T1",
+  "field": "sharedActivities[3].feedback (ru/uk/en)",
+  "problem": "В es:25:33 «Llama a la puerta» = «постучи в дверь», а фидбэк объясняет llamar как «звонить / телефонувати / to ring»",
+  "fix": {
+   "ru": "Llama ← llamar; llamar a la puerta — постучать в дверь; просьба к tú.",
+   "uk": "Llama ← llamar; llamar a la puerta — постукати у двері; прохання до tú.",
+   "en": "Llama ← llamar; llamar a la puerta — to knock on the door; request to tú."
+  }
+ },
+ {
+  "id": "lesson-25/choose",
+  "type": "T2",
+  "field": "ru.choose / uk.choose (и ru/uk chapters[1].body)",
+  "problem": "Обрыв фразы: «У правильного -ar» без слова «глагола»/«дієслова»",
+  "fix": {
+   "ru": "У правильных глаголов на -ar просьба к tú заканчивается на -a. В llamas описывают, что ты звонишь, а llama — «позвони». Конечное -s меняет функцию фразы.",
+   "uk": "У правильних дієслів на -ar прохання до tú закінчується на -a. Llamas описує, що ти телефонуєш, а llama — «зателефонуй». Кінцеве -s змінює функцію."
+  }
+ },
+ {
+  "id": "lesson-25/choose",
+  "type": "T2",
+  "field": "en.choose (и en.chapters[1].body)",
+  "problem": "«The correct - ar» — неверный перевод «правильного» (regular) и разорванные дефисы «- ar», «- a», «- s»",
+  "fix": "Regular -ar verbs make the tú request with -a. Llamas describes you calling, while llama means \"call.\" The final -s changes the function of the phrase."
+ },
+ {
+  "id": "lesson-25/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].title",
+  "problem": "Заголовок «When do I need to mention the person?» не соответствует ru «Предмет и уточнение» и содержанию главы (объект и наречия времени)",
+  "fix": "What goes after the command?"
+ },
+ {
+  "id": "lesson-25/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "Пробелы внутри кавычек «\" mochila \"», «one person at tú», калька «Semantic supports»",
+  "fix": "Compare two tasks: \"Prepare the backpack.\" / \"Call the hotel now.\" The request is addressed to one person as tú. Key word: \"mochila\" — backpack."
+ },
+ {
+  "id": "lesson-25/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "Имя «Anya» не совпадает с фразой курса (Ana, es:25:50); «one person at tú»",
+  "fix": "Compare two tasks: \"Read the message tomorrow.\" / \"Call Ana tomorrow.\" The request is addressed to one person as tú. Tell the statement \"you open\" apart from the request or instruction \"open.\""
+ },
+ {
+  "id": "lesson-26/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].body",
+  "problem": "«The subject is the direct object» (должно быть «the item») и «\"she\" here requires le» (должно быть «her»)",
+  "fix": "In \"I gave her the key,\" the key is what was handed over, and the woman is the one who received it. The item is the direct object; she is the recipient. In Spanish, \"her\" here is le."
+ },
+ {
+  "id": "lesson-26/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].note",
+  "problem": "Имя «Ane» вместо Ana",
+  "fix": "To: Ana. The Spanish form is le. Le or les is determined by the recipient, not by the item being sent."
+ },
+ {
+  "id": "lesson-26/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "Пробелы внутри кавычек «\" billete \"», калька «Semantic supports»",
+  "fix": "Compare the two tasks: \"Did you buy him a ticket?\" / \"I showed them the map.\" Le or les is determined by the recipient, not by what is being given. Key word: \"billete\" — ticket (for transport, Spain)."
+ },
+ {
+  "id": "lesson-26/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "Имя «Louis» вместо Luis (фраза es:26:44)",
+  "fix": "Compare the two tasks: \"We wrote to Luis yesterday.\" / \"Did we show them the photos?\" Le or les is determined by the recipient, not by the thing being sent. Name the recipient of the letter, photo, or item. Don't confuse the recipient with the thing being sent."
+ }
+]

@@ -1,0 +1,149 @@
+[
+  {
+    "id": "lesson-21/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "«обличчя» вместо «особа»; «до звички, що підлягає з короткого затвердження» — машинный мусор",
+    "fix": "У простого дієслова змінюється позиція, а не особа. Було `er hat Hunger`; стає `weil er Hunger hat`. Не повертай `hat` до підмета за звичкою з короткого твердження."
+  },
+  {
+    "id": "lesson-21/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.en",
+    "problem": "лишняя кавычка; «in a short statement» искажает «по привычке из короткого утверждения»",
+    "fix": "A simple verb changes position, not person. It was `er hat Hunger`; it becomes `weil er Hunger hat`. Don't move `hat` back next to the subject out of habit from a short statement."
+  },
+  {
+    "id": "lesson-21/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.uk",
+    "problem": "«особиста форма» (=частная) вместо «особова»; «досліджуваному»",
+    "fix": "У модальній конструкції праворуч стоять два дієслова. У цьому типі спочатку інфінітив дії, потім особова форма: `umsteigen muss`. У головній частині ця пара була б розділена."
+  },
+  {
+    "id": "lesson-21/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "The modal construction on the right contains two verbs. In the type being studied, the action infinitive comes first, followed by the personal form: `umsteigen muss`. In a main clause, this same pair would be separated."
+  },
+  {
+    "id": "lesson-21/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«затвердження» (=одобрение), «Причастя», обрыв «правому краю» без «на»",
+    "fix": "У Perfekt порядок також відрізняється від простого твердження. Дієприкметник іде перед допоміжним дієсловом: `gewartet hat`, `aufgestanden ist`. Форма, пов'язана з особою, — на правому краю."
+  },
+  {
+    "id": "lesson-21/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "In the Perfect tense, the order also differs from that of a simple statement. The participle comes before the auxiliary verb: `gewartet hat`, `aufgestanden ist`. The person-related form is on the right margin."
+  },
+  {
+    "id": "lesson-21/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.uk",
+    "problem": "«пропозиції», «особисте дієслово», «ще одне підлягає» — машинные ошибки",
+    "fix": "Причину можна винести наперед. Усе підрядне речення займає першу позицію головного речення. Після коми йде особове дієслово головної частини, а не ще один підмет перед ним."
+  },
+  {
+    "id": "lesson-21/title",
+    "type": "T2",
+    "field": "theory.title.uk",
+    "problem": "«дієслово кінчається» — неверный смысл (ru: уходит в конец)",
+    "fix": "Причина після `weil`: дієслово йде в кінець"
+  },
+  {
+    "id": "lesson-22/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.uk",
+    "problem": "«Надіслати повідомлення» (=отправить) ≠ ru «передать сообщение» (пересказать)",
+    "fix": "Передати зміст повідомлення — не те саме, що назвати причину. У `Tom sagt, dass …` ми чекаємо, що саме він сказав. Не шукай обов'язкового причинно-наслідкового зв'язку між частинами."
+  },
+  {
+    "id": "lesson-22/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "Conveying a message is not the same as stating a reason. In `Tom sagt, dass …`, we expect what he said. Don't look for a necessary cause-and-effect relationship between the parts."
+  },
+  {
+    "id": "lesson-22/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "пропущено «для»; «ступінь впевненості ставить»",
+    "fix": "Дієслова надії та припущення не підтверджують факту. Німецька конструкція однакова і для достовірного знання, і для думки; ступінь впевненості задає дієслово в головній частині."
+  },
+  {
+    "id": "lesson-22/chapter-3",
+    "type": "T1",
+    "field": "theory.chapters[2].textByLocale.ru",
+    "problem": "«обычно снова соединяются» — в придаточном приставка всегда пишется слитно; фраза неграмматична",
+    "fix": "Если у глагола есть отделяемая приставка, в конце придаточного она снова пишется слитно с глаголом: `anruft`. Не оставляй приставку отдельно, как в главном предложении."
+  },
+  {
+    "id": "lesson-22/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "«придаткового частини» — неграмматично; то же «зазвичай»",
+    "fix": "Якщо в дієслова є відокремлювана приставка, у кінці підрядного речення вона знову пишеться разом із дієсловом: `anruft`. Не залишай приставку окремо, як у головному реченні."
+  },
+  {
+    "id": "lesson-22/chapter-3",
+    "type": "T1",
+    "field": "theory.chapters[2].textByLocale.en",
+    "problem": "«usually re-attached» — всегда; лишняя кавычка",
+    "fix": "If a verb has a separable prefix, at the end of the subordinate clause the prefix is written together with the verb again: `anruft`. Don't leave the prefix separate, as in a main clause."
+  },
+  {
+    "id": "lesson-22/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.en",
+    "problem": "«find the action in a dictionary» ≠ ru «в словарной форме»",
+    "fix": "With a modal verb, its finite form closes the subordinate clause. First find the action in its dictionary form, then add whether the person can, wants to, or must do it."
+  },
+  {
+    "id": "lesson-22/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.ru",
+    "problem": "«в его настоящем смысле» двусмысленно (настоящее время) — из-за этого en перевёл как present tense",
+    "fix": "Прежнее действие передавай в его реальном значении: если кто-то уже звонил, оставь прошедшее время. Изменение порядка после `dass` само по себе не превращает настоящее в прошлое."
+  },
+  {
+    "id": "lesson-22/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«дію… у його» — род; «сьогодення на минуле»",
+    "fix": "Попередню дію передавай у її справжньому значенні: якщо хтось уже дзвонив, залиш минулий час. Зміна порядку після `dass` сама по собі не перетворює теперішній час на минулий."
+  },
+  {
+    "id": "lesson-22/chapter-5",
+    "type": "T1",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "«in its present tense» — противоречит правилу (прошедшее сохраняется)",
+    "fix": "Report a past action with its real meaning: if someone has already called, keep the past tense. Changing the word order after `dass` does not by itself turn the present into the past."
+  },
+  {
+    "id": "lesson-22/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.uk",
+    "problem": "«Спілка» (=союз-организация) вместо «Сполучник»; «запроваджує»",
+    "fix": "Чому дві літери `s`? Сполучник `dass` вводить зміст. Артикль чи займенник `das` — інше слово з іншим завданням, хоча вони вимовляються однаково. Вибирай за роллю, не за звучанням."
+  },
+  {
+    "id": "lesson-22/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.uk",
+    "problem": "«після спілки» вместо «після сполучника»",
+    "fix": "Ввічливе повідомлення також підпорядковується правилу. У подяці чи вибаченні головна частина може бути короткою. Розгортай подробиці після сполучника і тільки там перевіряй правий край."
+  },
+  {
+    "id": "lesson-22/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.en",
+    "problem": "«only then» ≠ ru «только там»",
+    "fix": "A polite message also follows the rule. In a thank-you or an apology, the main part can be short. Expand the details after the conjunction and check the right edge only there."
+  }
+]

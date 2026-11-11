@@ -1,0 +1,121 @@
+[
+  {
+    "id": "lesson-19/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "The same person washes and is washed. For yourself, use `mich`, for your interlocutor, `dich`, and for Anna, `sich`. Unlike a noun, such a short word is sufficient without an article."
+  },
+  {
+    "id": "lesson-19/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "«Чи не відкидай» — машинный мусор вместо «Не відкидай»",
+    "fix": "Вранці одягаєш одяг, увечері переодягаєшся. Зворотний займенник та приставка виконують різні завдання. Не відкидай одне з них тільки тому, що сенс дії здається вже зрозумілим."
+  },
+  {
+    "id": "lesson-19/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "«займенник пов'язані» — согласование; «становище» (=ситуация) вместо «положення»; потеряно «сам»",
+    "fix": "Куди сів чоловік? Займенник показує, що він сам змінює положення, а група місця — куди саме. У `sich hinlegen` і `sich ausruhen` займенник пов'язаний із цілим дієсловом."
+  },
+  {
+    "id": "lesson-19/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "Where did the man sit? The pronoun shows that he is changing position, and the place phrase indicates where exactly. In `sich hinlegen` and `sich ausruhen`, the pronoun is linked to the entire verb."
+  },
+  {
+    "id": "lesson-19/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "You can't always translate a pronoun as a separate \"himself.\" `Sich beeilen` means to hurry. If you only say `beeilen`, part of the usual construction disappears."
+  },
+  {
+    "id": "lesson-19/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«Привід» (=повод) вместо «Прийменник»",
+    "fix": "Прийменник іноді теж частина значення. З `sich freuen auf` очікують приємної події; з `sich freuen über` радіють чомусь. Спочатку вибери ситуацію, а не буквальну відповідність прийменнику своєї мови."
+  },
+  {
+    "id": "lesson-19/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "A preposition is sometimes also part of the meaning. With `sich freuen auf`, they expect a pleasant event; with `sich freuen über`, they rejoice at something. First, choose the situation, not the literal correspondence to the preposition in your language."
+  },
+  {
+    "id": "lesson-19/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "If they wash their hands or brush their teeth, the object itself is already named. The possessor pronoun becomes dative: `mir`, `dir`. Compare with the phrase without a second object, which uses `mich`."
+  },
+  {
+    "id": "lesson-19/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.uk",
+    "problem": "«Поворотна» вместо «Зворотна»; «причастя пішло» — русизм",
+    "fix": "Зворотна конструкція зберігається і в минулому. Навіть коли дієприкметник пішов праворуч, коротке `sich` чи `uns` має залишитися. Зустріч двох людей — добрий приклад взаємної дії."
+  },
+  {
+    "id": "lesson-20/chapter-2",
+    "type": "T1",
+    "field": "theory.chapters[1].textByLocale.ru",
+    "problem": "«в магазине… комната больше» — нелогично; пример — выбор номера (Dieses Zimmer ist größer)",
+    "fix": "Второй участник иногда понятен: при выборе номера достаточно сказать, что эта комната больше. Не требуется искусственно заканчивать каждую фразу словами «чем та». Но сравнительную форму при этом оставь."
+  },
+  {
+    "id": "lesson-20/chapter-2",
+    "type": "T1",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "то же «у магазині… кімната»; «чим та» — русизм",
+    "fix": "Другий учасник іноді зрозумілий: під час вибору номера достатньо сказати, що ця кімната більша. Не потрібно штучно закінчувати кожну фразу словами «ніж та». Але порівняльну форму при цьому залиш."
+  },
+  {
+    "id": "lesson-20/chapter-2",
+    "type": "T1",
+    "field": "theory.chapters[1].textByLocale.en",
+    "problem": "то же «in a store… room»",
+    "fix": "The second participant is sometimes clear: when choosing a room, it's enough to say that this room is larger. There's no need to artificially end each sentence with \"than that one.\" But keep the comparative form."
+  },
+  {
+    "id": "lesson-20/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "Some short adjectives change vowels: `warm – wärmer`, `kalt – kälter`. Don't insert an umlaut into every word. Learn the pair in two similar everyday examples."
+  },
+  {
+    "id": "lesson-20/chapter-5",
+    "type": "T1",
+    "field": "theory.chapters[4].textByLocale.ru",
+    "problem": "пример de:20:37 (fährt später) не иллюстрирует mehr/weniger",
+    "fix": "Количество не обязательно сравнивают прилагательным: если стало больше или меньше денег или времени, годятся `mehr` и `weniger`. Время сравнивают обычной сравнительной формой: `später`, `früher`. Проверь, что именно сравнивается."
+  },
+  {
+    "id": "lesson-20/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«Кількість не обов'язково порівнює» — неграмматично; пример 20:37 не иллюстрирует правило",
+    "fix": "Кількість не обов'язково порівнюють прикметником: якщо стало більше або менше грошей чи часу, годяться `mehr` і `weniger`. Час порівнюють звичайною порівняльною формою: `später`, `früher`. Перевір, що саме порівнюється."
+  },
+  {
+    "id": "lesson-20/chapter-5",
+    "type": "T1",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "пример 20:37 не иллюстрирует правило",
+    "fix": "Quantity isn't necessarily compared with an adjective: if there's more or less money or time, `mehr` and `weniger` work. Time is compared with the usual comparative form: `später`, `früher`. Check what exactly is being compared."
+  },
+  {
+    "id": "lesson-20/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "When there's no difference, put `wie` after `so` or `genauso`: this indicates equality based on the chosen attribute. The construction with `nicht so` expresses the opposite, but still uses `wie`."
+  }
+]

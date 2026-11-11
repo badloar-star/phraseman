@@ -22,6 +22,12 @@ const S = {
   close: ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'],
   // ── кольцо у аватара ──
   ringLabel: ['Мой профиль, есть новые события', 'Мій профіль, є нові події', 'My profile, new events', 'Mi perfil, hay eventos nuevos', 'Meu perfil, há eventos novos', 'Hồ sơ của tôi, có sự kiện mới', 'Profil saya, ada peristiwa baru', 'Profilim, yeni olaylar var', 'Mój profil, są nowe wydarzenia'],
+  replay: ['Посмотреть истории', 'Переглянути історії', 'Watch stories', 'Ver historias', 'Ver histórias', 'Xem tin', 'Lihat cerita', 'Hikâyeleri izle', 'Zobacz relacje'],
+  holdToReplay: ['Удерживай монетку секунду, чтобы посмотреть истории', 'Утримуй монетку секунду, щоб переглянути історії', 'Hold the coin for one second to watch stories', 'Mantén pulsada la moneda un segundo para ver historias', 'Segure a moeda por um segundo para ver as histórias', 'Giữ đồng xu một giây để xem tin', 'Tahan koin selama satu detik untuk melihat cerita', 'Hikâyeleri izlemek için parayı bir saniye basılı tut', 'Przytrzymaj monetę przez sekundę, aby zobaczyć relacje'],
+  activityLesson: ['Урок {n}', 'Урок {n}', 'Lesson {n}', 'Lección {n}', 'Lição {n}', 'Bài học {n}', 'Pelajaran {n}', 'Ders {n}', 'Lekcja {n}'],
+  activityCards: ['Последний набор', 'Останній набір', 'Last deck', 'Último mazo', 'Último baralho', 'Bộ thẻ gần nhất', 'Set kartu terakhir', 'Son deste', 'Ostatni zestaw'],
+  activityDialog: ['Последний диалог', 'Останній діалог', 'Last dialogue', 'Último diálogo', 'Último diálogo', 'Hội thoại gần nhất', 'Dialog terakhir', 'Son diyalog', 'Ostatni dialog'],
+  activityStreak: ['Текущая серия', 'Поточна серія', 'Current streak', 'Racha actual', 'Sequência atual', 'Chuỗi hiện tại', 'Runtunan saat ini', 'Güncel seri', 'Aktualna seria'],
   // ── слайд «итог недели» ──
   weekResult: ['Итог недели', 'Підсумок тижня', 'Week result', 'Resultado de la semana', 'Resultado da semana', 'Kết quả tuần', 'Hasil minggu', 'Hafta sonucu', 'Wynik tygodnia'],
   weekUp: ['Ты поднимаешься в {league}', 'Ти піднімаєшся в {league}', 'You move up to {league}', 'Subes a {league}', 'Você sobe para {league}', 'Bạn thăng lên {league}', 'Kamu naik ke {league}', '{league} ligine yükseliyorsun', 'Awansujesz do {league}'],

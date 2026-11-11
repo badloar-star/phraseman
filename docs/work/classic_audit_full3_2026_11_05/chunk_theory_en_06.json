@@ -1,0 +1,1152 @@
+[
+{
+"lesson": 13,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 13,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что я сделаю и что, вероятно, случится",
+"formula": "[подлежащее] + will + [глагол без to]",
+"story": "Кто-то должен позвонить. Берёшь это на себя: I’ll call. В полном варианте I will call. После will не ставь to.",
+"use": "Используйте `will` для предложения или решения, принятого вслух, обещания или предсказания. В расписании также можно использовать настоящее простое время; будущее время — это не одна форма английского языка, используемая повсеместно.",
+"choose": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"nuance": "`I'll` и `I will` могут выражать одно и то же обещание. Не путайте `won't`, означающее `will not`, с `want`, другим глаголом. В некоторых контекстах договоренное событие более естественно выражается в настоящем времени.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте `will` для предложения или решения, принятого вслух, обещания или предсказания. В расписании также можно использовать настоящее простое время; будущее время — это не одна форма английского языка, используемая повсеместно.",
+"samples": [
+"13.01",
+"13.12"
+]
+},
+{
+"title": "Как выбрать",
+"body": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"samples": [
+"13.12",
+"13.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`I'll` и `I will` могут выражать одно и то же обещание. Не путайте `won't`, означающее `will not`, с `want`, другим глаголом. В некоторых контекстах договоренное событие более естественно выражается в настоящем времени.",
+"samples": [
+"13.21",
+"13.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Просить о прогнозе",
+"samples": [
+"13.33",
+"13.35",
+"13.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Кто-то несёт тяжёлую коробку. Сделайте предложение прямо сейчас; не описывайте случайно то, что вы обычно делаете.",
+"samples": [
+"13.42",
+"13.45",
+"13.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Применять модель ко всей ситуации",
+"samples": [
+"13.50"
+],
+"tokenWalk": "13.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що я зроблю і що, ймовірно, станеться",
+"formula": "[підмет] + will + [дієслово без to]",
+"story": "Хтось має зателефонувати. Берешся: I’ll call. Повна форма — I will call. Після will не став to.",
+"use": "Використовуйте `will` для пропозиції або рішення, прийнятого під час розмови, обіцянки або прогнозу. Розклад також може використовувати теперішній простий час; майбутній час не є однією англійською формою, яка використовується всюди.",
+"choose": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"nuance": "`I'll` та `I will` можуть виражати ту саму обіцянку. Не плутайте `won't`, що означає `will not`, з `want`, іншим дієсловом. У деяких контекстах домовлена ​​подія природніше виражається теперішнім часом.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте `will` для пропозиції або рішення, прийнятого під час розмови, обіцянки або прогнозу. Розклад також може використовувати теперішній простий час; майбутній час не є однією англійською формою, яка використовується всюди.",
+"samples": [
+"13.01",
+"13.12"
+]
+},
+{
+"title": "Як вибрати",
+"body": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"samples": [
+"13.12",
+"13.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`I'll` та `I will` можуть виражати ту саму обіцянку. Не плутайте `won't`, що означає `will not`, з `want`, іншим дієсловом. У деяких контекстах домовлена ​​подія природніше виражається теперішнім часом.",
+"samples": [
+"13.21",
+"13.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитати про передбачення",
+"samples": [
+"13.33",
+"13.35",
+"13.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Хтось несе важку коробку. Зробіть пропозицію зараз; не описуйте випадково те, що ви зазвичай робите.",
+"samples": [
+"13.42",
+"13.45",
+"13.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Застосувати шаблон до цілої ситуації",
+"samples": [
+"13.50"
+],
+"tokenWalk": "13.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Offer help and predict what will happen",
+"formula": "[subject] + will + [base verb]",
+"story": "Someone needs to make the call. You volunteer: I’ll call, or I will call. No to after will.",
+"use": "Use `will` for an offer or decision made as you speak, a promise, or a prediction. A timetable can also use the present simple; the future is not one English form used everywhere.",
+"choose": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`.",
+"nuance": "`I'll` and `I will` can express the same promise. Do not confuse `won't`, meaning `will not`, with `want`, a different verb. In some contexts an arranged event is more naturally expressed with a present form.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use `will` for an offer or decision made as you speak, a promise, or a prediction. A timetable can also use the present simple; the future is not one English form used everywhere.",
+"samples": [
+"13.01",
+"13.12"
+]
+},
+{
+"title": "How to choose",
+"body": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`.",
+"samples": [
+"13.12",
+"13.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`I'll` and `I will` can express the same promise. Do not confuse `won't`, meaning `will not`, with `want`, a different verb. In some contexts an arranged event is more naturally expressed with a present form.",
+"samples": [
+"13.21",
+"13.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`.",
+"wrong": "She will calls later.",
+"right": "She will call later.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask for a prediction",
+"samples": [
+"13.33",
+"13.35",
+"13.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Someone is carrying a heavy box. Make an offer now; do not accidentally describe what you usually do.",
+"samples": [
+"13.42",
+"13.45",
+"13.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Apply the pattern to a whole situation",
+"samples": [
+"13.50"
+],
+"tokenWalk": "13.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "13.01",
+"index": 2,
+"right": "wait",
+"near": "waits",
+"seq": [
+"I",
+"will",
+"wait",
+"outside"
+],
+"i": 0,
+"kind": "form",
+"key": "en13/lab/form1",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.12",
+"index": 2,
+"right": "carry",
+"near": "carries",
+"seq": [
+"I",
+"will",
+"carry",
+"the",
+"heavy",
+"box"
+],
+"i": 11,
+"kind": "form",
+"key": "en13/lab/form2",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.28",
+"index": 4,
+"right": "open",
+"near": "opens",
+"seq": [
+"The",
+"shop",
+"will",
+"not",
+"open",
+"tomorrow"
+],
+"i": 27,
+"kind": "form",
+"key": "en13/lab/form3",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.39",
+"index": 3,
+"right": "meet",
+"near": "meets",
+"seq": [
+"Where",
+"will",
+"you",
+"meet",
+"the",
+"group"
+],
+"i": 38,
+"kind": "form",
+"key": "en13/lab/form4",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.07",
+"index": 2,
+"right": "pay",
+"near": "pays",
+"seq": [
+"We",
+"will",
+"pay",
+"by",
+"card"
+],
+"i": 6,
+"kind": "spot",
+"key": "en13/lab/spot1",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.11",
+"index": 2,
+"right": "get",
+"near": "gets",
+"seq": [
+"I",
+"will",
+"get",
+"you",
+"a",
+"towel"
+],
+"i": 10,
+"kind": "spot",
+"key": "en13/lab/spot2",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.35",
+"index": 2,
+"right": "send",
+"near": "sends",
+"seq": [
+"Will",
+"they",
+"send",
+"a",
+"receipt"
+],
+"i": 34,
+"kind": "spot",
+"key": "en13/lab/spot3",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"id": "13.50",
+"index": 2,
+"right": "call",
+"near": "calls",
+"seq": [
+"I",
+"will",
+"call",
+"you",
+"after",
+"my",
+"shift"
+],
+"i": 49,
+"kind": "spot",
+"key": "en13/lab/spot4",
+"feedback": {
+"ru": "`Will` одинаково для `I`, `he` и `they`. После него — глагол без `to` и без `-s`. Для вопроса вынеси `will` вперёд; для отрицания выбери `will not` или `won't`.",
+"uk": "`Will` однакове для `I`, `he` і `they`. Після нього — дієслово без `to` і без `-s`. Для питання постав `will` на початок; для заперечення обери `will not` або `won't`.",
+"en": "`Will` stays unchanged for every subject and is followed by a base verb. To ask, lead with `will`; to negate, use `will not` or `won't`."
+}
+},
+{
+"kind": "match",
+"key": "en13/lab/match1",
+"id": "13.02",
+"other": "13.03"
+},
+{
+"kind": "match",
+"key": "en13/lab/match2",
+"id": "13.17",
+"other": "13.18"
+},
+{
+"kind": "match",
+"key": "en13/lab/match3",
+"id": "13.33",
+"other": "13.32"
+},
+{
+"kind": "match",
+"key": "en13/lab/match4",
+"id": "13.46",
+"other": "13.35"
+},
+{
+"kind": "build",
+"key": "en13/lab/build1",
+"id": "13.04"
+},
+{
+"kind": "build",
+"key": "en13/lab/build2",
+"id": "13.15"
+},
+{
+"kind": "build",
+"key": "en13/lab/build3",
+"id": "13.29"
+},
+{
+"kind": "build",
+"key": "en13/lab/build4",
+"id": "13.42"
+},
+{
+"kind": "transform",
+"id": "13.09",
+"base": "13.04",
+"diff": [
+{
+"before": [
+"open"
+],
+"after": [
+"check"
+]
+},
+{
+"before": [
+"gate"
+],
+"after": [
+"lock"
+]
+}
+],
+"key": "en13/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "13.17",
+"base": "13.03",
+"diff": [
+{
+"before": [
+"bring"
+],
+"after": [
+"split"
+]
+},
+{
+"before": [
+"cups"
+],
+"after": [
+"bill"
+]
+}
+],
+"key": "en13/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "13.26",
+"base": "13.21",
+"diff": [
+{
+"before": [
+"be",
+"late"
+],
+"after": [
+"share",
+"your",
+"number"
+]
+}
+],
+"key": "en13/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "13.37",
+"base": "13.33",
+"diff": [
+{
+"before": [
+"price",
+"change"
+],
+"after": [
+"driver",
+"wait",
+"for",
+"us"
+]
+}
+],
+"key": "en13/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+5
+],
+[
+1,
+18
+],
+[
+10,
+14
+],
+[
+2,
+9
+],
+[
+6,
+19
+],
+[
+15,
+11
+],
+[
+7,
+3
+]
+],
+"worked": [
+"13.05",
+"13.18",
+"13.33",
+"13.48"
+],
+"reflection": [
+"13.01",
+"13.02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 14,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 14,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как сравнить варианты",
+"formula": "[сравнительная степень] + than · the + [превосходная степень]",
+"story": "Сравниваешь две сумки: lighter — легче. Выбираешь самую лёгкую из всех: the lightest. Не складывай more и -er в одном слове сравнения.",
+"use": "Сравните два тарифа, маршрута или номера при принятии решения. При выборе одного из целого набора используйте превосходную степень, часто с `the`.",
+"choose": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"nuance": "Не следует использовать два сравнительных показателя одновременно. `Less crowded` и `quieter` могут описывать одну и ту же комнату, но не обязательно означают одно и то же.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Сравните два тарифа, маршрута или номера при принятии решения. При выборе одного из целого набора используйте превосходную степень, часто с `the`.",
+"samples": [
+"14.01",
+"14.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"samples": [
+"14.11",
+"14.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Не следует использовать два сравнительных показателя одновременно. `Less crowded` и `quieter` могут описывать одну и ту же комнату, но не обязательно означают одно и то же.",
+"samples": [
+"14.21",
+"14.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Выберите один вариант из группы",
+"samples": [
+"14.33",
+"14.35",
+"14.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Две комнаты стоят одинаково. Сравните комфорт и уровень шума; затем укажите, какая комната в отеле самая тихая.",
+"samples": [
+"14.42",
+"14.45",
+"14.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Сравните практические компромиссы",
+"samples": [
+"14.50"
+],
+"tokenWalk": "14.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як порівняти варіанти",
+"formula": "[вищий ступінь] + than · the + [найвищий ступінь]",
+"story": "Порівнюєш дві сумки: lighter — легша. Обираєш найлегшу: the lightest. Не поєднуй more та -er в одному порівнянні.",
+"use": "Порівнюйте два тарифи, маршрути або кімнати, приймаючи рішення. Вибираючи один з цілого набору, використовуйте найвищий ступінь, часто з `the`.",
+"choose": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"nuance": "Не складайте два порівняльні ступені один над одним. `Less crowded` та `quieter` можуть описувати один і той самий номер, але не обов'язково означають одне й те саме.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Порівнюйте два тарифи, маршрути або кімнати, приймаючи рішення. Вибираючи один з цілого набору, використовуйте найвищий ступінь, часто з `the`.",
+"samples": [
+"14.01",
+"14.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"samples": [
+"14.11",
+"14.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Не складайте два порівняльні ступені один над одним. `Less crowded` та `quieter` можуть описувати один і той самий номер, але не обов'язково означають одне й те саме.",
+"samples": [
+"14.21",
+"14.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Виберіть одну з групи",
+"samples": [
+"14.33",
+"14.35",
+"14.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Два номери коштують однаково. Порівняйте комфорт і шум; потім скажіть, який номер найтихіший у готелі.",
+"samples": [
+"14.42",
+"14.45",
+"14.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Порівняйте практичні компроміси",
+"samples": [
+"14.50"
+],
+"tokenWalk": "14.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Compare options",
+"formula": "[comparative] + than · the + [superlative]",
+"story": "Compare two bags: lighter. Pick the lightest of the lot: the lightest. Do not use both more and -er for the same comparison.",
+"use": "Compare two fares, routes or rooms when making a decision. When choosing one from a whole set, use a superlative, often with `the`.",
+"choose": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`.",
+"nuance": "Do not stack two comparative markers. `Less crowded` and `quieter` may describe the same room, but do not necessarily mean exactly the same thing.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Compare two fares, routes or rooms when making a decision. When choosing one from a whole set, use a superlative, often with `the`.",
+"samples": [
+"14.01",
+"14.11"
+]
+},
+{
+"title": "How to choose",
+"body": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`.",
+"samples": [
+"14.11",
+"14.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Do not stack two comparative markers. `Less crowded` and `quieter` may describe the same room, but do not necessarily mean exactly the same thing.",
+"samples": [
+"14.21",
+"14.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`.",
+"wrong": "This seat is more wider.",
+"right": "This seat is wider.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Pick one from a group",
+"samples": [
+"14.33",
+"14.35",
+"14.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Two rooms cost the same. Compare comfort and noise; then say which room is the quietest in the hotel.",
+"samples": [
+"14.42",
+"14.45",
+"14.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Compare practical trade-offs",
+"samples": [
+"14.50"
+],
+"tokenWalk": "14.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "14.01",
+"index": 3,
+"right": "lighter",
+"near": "lightest",
+"seq": [
+"This",
+"bag",
+"is",
+"lighter"
+],
+"i": 0,
+"kind": "form",
+"key": "en14/lab/form1",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.12",
+"index": 4,
+"right": "than",
+"near": "then",
+"seq": [
+"The",
+"stairs",
+"are",
+"quicker",
+"than",
+"the",
+"lift"
+],
+"i": 11,
+"kind": "form",
+"key": "en14/lab/form2",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.17",
+"index": 3,
+"right": "warmer",
+"near": "warmest",
+"seq": [
+"My",
+"coat",
+"is",
+"warmer",
+"than",
+"yours"
+],
+"i": 16,
+"kind": "form",
+"key": "en14/lab/form3",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.41",
+"index": 6,
+"right": "cheaper",
+"near": "cheapest",
+"seq": [
+"The",
+"earlier",
+"train",
+"is",
+"not",
+"always",
+"cheaper"
+],
+"i": 40,
+"kind": "form",
+"key": "en14/lab/form4",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.07",
+"index": 3,
+"right": "shorter",
+"near": "shortest",
+"seq": [
+"This",
+"route",
+"is",
+"shorter"
+],
+"i": 6,
+"kind": "spot",
+"key": "en14/lab/spot1",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.14",
+"index": 4,
+"right": "wider",
+"near": "widest",
+"seq": [
+"The",
+"new",
+"desk",
+"is",
+"wider",
+"than",
+"the",
+"old",
+"one"
+],
+"i": 13,
+"kind": "spot",
+"key": "en14/lab/spot2",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.23",
+"index": 5,
+"right": "than",
+"near": "then",
+"seq": [
+"The",
+"map",
+"is",
+"more",
+"useful",
+"than",
+"the",
+"list"
+],
+"i": 22,
+"kind": "spot",
+"key": "en14/lab/spot3",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"id": "14.44",
+"index": 4,
+"right": "shorter",
+"near": "shortest",
+"seq": [
+"The",
+"return",
+"journey",
+"was",
+"shorter"
+],
+"i": 43,
+"kind": "spot",
+"key": "en14/lab/spot4",
+"feedback": {
+"ru": "Когда сравниваешь две возможности, выбирай `cheaper than` или `more comfortable than`. Если выбираешь один предмет из группы, нужны формы вроде `the cheapest` или `the most comfortable`.",
+"uk": "Порівнюючи два варіанти, обери `cheaper than` або `more comfortable than`. Коли виділяєш один предмет із групи, потрібні форми на зразок `the cheapest` чи `the most comfortable`.",
+"en": "Short adjectives often use `-er` and `-est`; longer ones usually use `more` and `most`. Look out for spelling changes and special forms such as `better` and `worse`."
+}
+},
+{
+"kind": "match",
+"key": "en14/lab/match1",
+"id": "14.02",
+"other": "14.03"
+},
+{
+"kind": "match",
+"key": "en14/lab/match2",
+"id": "14.17",
+"other": "14.16"
+},
+{
+"kind": "match",
+"key": "en14/lab/match3",
+"id": "14.33",
+"other": "14.32"
+},
+{
+"kind": "match",
+"key": "en14/lab/match4",
+"id": "14.46",
+"other": "14.47"
+},
+{
+"kind": "build",
+"key": "en14/lab/build1",
+"id": "14.04"
+},
+{
+"kind": "build",
+"key": "en14/lab/build2",
+"id": "14.15"
+},
+{
+"kind": "build",
+"key": "en14/lab/build3",
+"id": "14.29"
+},
+{
+"kind": "build",
+"key": "en14/lab/build4",
+"id": "14.42"
+},
+{
+"kind": "transform",
+"id": "14.13",
+"base": "14.01",
+"diff": [
+{
+"before": [
+"This"
+],
+"after": [
+"Her"
+]
+},
+{
+"before": [],
+"after": [
+"than",
+"mine"
+]
+}
+],
+"key": "en14/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "14.35",
+"base": "14.33",
+"diff": [
+{
+"before": [
+"nearest",
+"exit"
+],
+"after": [
+"safest",
+"crossing"
+]
+}
+],
+"key": "en14/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "14.50",
+"base": "14.19",
+"diff": [
+{
+"before": [
+"question",
+"is",
+"easier"
+],
+"after": [
+"bus",
+"was",
+"even",
+"later"
+]
+}
+],
+"key": "en14/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "14.32",
+"base": "14.31",
+"diff": [
+{
+"before": [
+"room"
+],
+"after": [
+"route"
+]
+},
+{
+"before": [
+"quietest"
+],
+"after": [
+"fastest"
+]
+}
+],
+"key": "en14/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+16
+],
+[
+1,
+6
+],
+[
+19,
+10
+],
+[
+14,
+2
+],
+[
+17,
+3
+],
+[
+15,
+7
+],
+[
+18,
+11
+]
+],
+"worked": [
+"14.05",
+"14.18",
+"14.33",
+"14.48"
+],
+"reflection": [
+"14.01",
+"14.02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

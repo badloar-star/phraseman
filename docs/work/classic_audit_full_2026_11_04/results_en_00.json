@@ -1,0 +1,13 @@
+[
+  {"id": "en-classic-r1:02.11", "type": "B2", "field": "uk", "problem": "ru «Вы готовы?» (вы), uk «Ти готовий?» (ти) — разное лицо в ru и uk", "fix": "Ви готові?"},
+  {"id": "en-classic-r1:02.15", "type": "B2", "field": "uk", "problem": "«Він відкрито?» неграмматично (рід не узгоджений, зайве «він»), не відповідає ru «Открыто?»", "fix": "Відчинено?"},
+  {"id": "en-classic-r1:02.17", "type": "B2", "field": "ru", "problem": "ru «приехал» vs uk «прийшов» — разный смысл; в уроке 1 для early используется «пришёл»", "fix": "Я пришёл раньше?"},
+  {"id": "en-classic-r1:02.45", "type": "B2", "field": "ru", "problem": "ru «Касса закрыта» vs uk «Каса не працює» — разный смысл между ru и uk; target «is not open» ближе к «не работает»", "fix": "Касса не работает."},
+  {"id": "en-classic-r1:03.34", "type": "B2", "field": "uk", "problem": "«Вона живе в одній квартирі» — обрыв смысла (с кем?), не передаёт share и не совпадает с ru", "fix": "Вона живе в одній квартирі ще з кимось."},
+  {"id": "en-classic-r1:04.01", "type": "B2", "field": "uk", "problem": "«Я не керую» — неполно/другой смысл (не управляю), должно быть «не вожу машину» как в ru", "fix": "Я не воджу машину."},
+  {"id": "en-classic-r1:04.02", "type": "B2", "field": "ru", "problem": "«Мы не ездим» = we don't travel/go, а не don't drive", "fix": "Мы не водим машину."},
+  {"id": "en-classic-r1:04.02", "type": "B2", "field": "uk", "problem": "«Ми не керуємо» — неполно/другой смысл (не управляем)", "fix": "Ми не водимо машину."},
+  {"id": "en-classic-r1:04.03", "type": "B2", "field": "uk", "problem": "«Він не керує» — неполно/другой смысл, ru «не водит машину»", "fix": "Він не водить машину."},
+  {"id": "en-classic-r1:04.15", "type": "B1", "field": "tiles", "problem": "соблазн «take» даёт верную фразу «They do not take cards» (= не принимают карты, ср. 03.37 They take cash), её нет в alternatives", "fix": {"position": 3, "replace_distractor": "take", "with": "open"}},
+  {"id": "en-classic-r1:04.20", "type": "B2", "field": "ru", "problem": "ru «сумочку» vs uk «гаманець» — разный смысл; курс британский (flat, lift), purse = кошелёк", "fix": "Она не носит с собой кошелёк."}
+]

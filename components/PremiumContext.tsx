@@ -46,7 +46,8 @@ import {
   readDevLocalPlusOverride,
   type DevLocalPlusOverride,
 } from '../app/dev_plus_controls';
-import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from '../app/premium_vip_storage';
+import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from '../app/premium_vip_storage';
+import { readRealPremiumSnapshotForGeneration } from '../app/premium_real_storage';
 import {
   capturePremiumActivationEventGuard,
   readPremiumActivationDisposition,
@@ -687,14 +688,12 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
               // ПЕРСИСТЕНТНЫХ свидетельств СТРОГО ДО перезаписи снапшота ниже.
               let hadAccessBeforeGrant = vipSnapshotStateRef.current === true || isPremiumRef.current;
               if (!hadAccessBeforeGrant && vipSnapshotStateRef.current === null && vipState.active) {
-                const [persistedVip, persistedPremiumActive, persistedPlan] = await Promise.all([
-                  readVipSnapshotForAccount(listenerStableId).catch(noteSwallowedAs('PremiumContext:promise_10', null)),
-                  AsyncStorage.getItem('premium_active').catch(noteSwallowedAs('PremiumContext:promise_11', null)),
-                  AsyncStorage.getItem('premium_plan').catch(noteSwallowedAs('PremiumContext:promise_12', null)),
+                const [persistedVip, persistedReal] = await Promise.all([
+                  readVipSnapshotForGeneration(listenerGeneration).catch(noteSwallowedAs('PremiumContext:promise_10', null)),
+                  readRealPremiumSnapshotForGeneration(listenerGeneration).catch(noteSwallowedAs('PremiumContext:promise_11', null)),
                 ]);
                 hadAccessBeforeGrant = persistedVip?.vip_active === 'true'
-                  || persistedPremiumActive === 'true'
-                  || persistedPlan === 'lifetime';
+                  || persistedReal?.active === true;
               }
               if (!isSnapshotCurrent()) return;
               await writeVipSnapshotForAccount(listenerStableId, {

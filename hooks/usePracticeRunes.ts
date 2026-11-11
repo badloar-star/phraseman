@@ -422,16 +422,11 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     }
     earningsRef.current = result.earnings;
     const displayedAward = result.earnings.pendingRunes - current.pendingRunes;
-    lessonCoinsLog('answer_awarded', { awardPerItem: result.earnings.awardPerItem, awarded: result.awarded, displayedAward, pendingBefore: current.pendingRunes, pendingAfter: result.earnings.pendingRunes, credited: result.earnings.creditedItemIds.length });
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      lessonCoinsLog('answer_awarded', { awardPerItem: result.earnings.awardPerItem, awarded: result.awarded, displayedAward, pendingBefore: current.pendingRunes, pendingAfter: result.earnings.pendingRunes, credited: result.earnings.creditedItemIds.length });
+    }
     setBaseRunes(result.earnings.pendingRunes);
     persist(result.earnings);
-    DebugLogger.info('practice_runes:answer_awarded', JSON.stringify({
-      activity: result.earnings.activity,
-      sessionKey: result.earnings.sessionKey,
-      itemId: itemId.slice(0, 80),
-      awarded: displayedAward,
-      pendingRunes: result.earnings.pendingRunes,
-    }));
     return displayedAward;
   }, [devFakeStartRunes, enabled, input.activity, persist]);
 

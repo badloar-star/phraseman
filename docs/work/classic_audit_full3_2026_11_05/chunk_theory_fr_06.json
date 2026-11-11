@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 13,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:13:01",
+"fr:13:02",
+"fr:13:03"
+],
+"textByLocale": {
+"en": "The adjective tells what kind of object it is. It looks at the gender of the French noun, not the gender of the speaker. In the pair about a bag and a suitcase, you change the object and its associated form.",
+"ru": "Прилагательное говорит, какой предмет. Оно смотрит на род французского названия, а не на пол говорящего. В паре про сумку и чемодан ты меняешь предмет и связанную с ним форму.",
+"uk": "Прикметник каже, який предмет. Воно дивиться на рід французької назви, а не на підлогу того, хто говорить. У парі про сумку та валізу ти змінюєш предмет і пов'язану з ним форму."
+}
+},
+{
+"exampleIds": [
+"fr:13:05",
+"fr:13:06",
+"fr:13:08"
+],
+"textByLocale": {
+"en": "`e` is often added, but this isn't a mechanical rule for any stem. `Blanc` becomes `blanche`, and `léger` becomes `légère`. It's helpful to see the two forms side by side.",
+"ru": "Нередко прибавляют `e`, но это не механическое правило для любой основы. `Blanc` превращается в `blanche`, `léger` — в `légère`. Полезно видеть две формы рядом.",
+"uk": "Нерідко додають `e`, але це не механічне правило для будь-якої основи. `Blanc` перетворюється на `blanche`, `léger` - на `légère`. Корисно бачити дві форми поруч."
+}
+},
+{
+"exampleIds": [
+"fr:13:11",
+"fr:13:12",
+"fr:13:14"
+],
+"textByLocale": {
+"en": "If there are multiple objects, the written form usually becomes `s`. `neuf` has an additional change: `neuve`, `neufs`, `neuves`. Don't remove the plural from the noun itself.",
+"ru": "Если предметов несколько, письменная форма обычно получает `s`. У `neuf` есть дополнительное изменение: `neuve`, `neufs`, `neuves`. Не убирай множественное число у самого существительного.",
+"uk": "Якщо предметів кілька, письмова форма зазвичай отримує `s`. У `neuf` є додаткова зміна: `neuve`, `neufs`, `neuves`. Не прибирай множину у самого іменника."
+}
+},
+{
+"exampleIds": [
+"fr:13:21",
+"fr:13:22",
+"fr:13:26"
+],
+"textByLocale": {
+"en": "In a regular group, color comes after the name. Some pairs differ only in writing: `bleu`, `bleue`. Color `rouge` ends in `e` and doesn't change gender in the singular.",
+"ru": "Цвет в обычной группе идёт после названия. Некоторые пары отличаются только письменно: `bleu`, `bleue`. Цвет `rouge` уже заканчивается на `e` и в единственном числе не меняется по роду.",
+"uk": "Колір у звичайній групі відбувається після назви. Деякі пари відрізняються тільки письмово: `bleu`, `bleue`. Колір `rouge` вже закінчується на `e` і однині не змінюється за родом."
+}
+},
+{
+"exampleIds": [
+"fr:13:31",
+"fr:13:33",
+"fr:13:38"
+],
+"textByLocale": {
+"en": "Some common adjectives come before the noun: `petit`, `grand`, `nouveau`. Don't copy the order from the color example without looking at which adjective you're using.",
+"ru": "Некоторые частые прилагательные стоят перед существительным: `petit`, `grand`, `nouveau`. Не копируй порядок из примера с цветом, не посмотрев, какое именно прилагательное используешь.",
+"uk": "Деякі часті прикметники стоять перед іменником: `petit`, `grand`, `nouveau`. Не копіюй порядок із прикладу з кольором, не подивившись, який саме прикметник використовуєш."
+}
+},
+{
+"exampleIds": [
+"fr:13:36",
+"fr:13:39",
+"fr:13:40"
+],
+"textByLocale": {
+"en": "Before a vowel in the masculine singular, special forms occur: `vieil immeuble`, but `vieux fauteuil`. `Vieil` is not feminine here: the gender remains masculine.",
+"ru": "Перед гласной в мужском единственном числе встречаются особые формы: `vieil immeuble`, но `vieux fauteuil`. `Vieil` здесь не женский род: род остаётся мужским.",
+"uk": "Перед голосною в чоловічому однині зустрічаються особливі форми: `vieil immeuble`, але `vieux fauteuil`. `Vieil` тут не жіночий рід: рід залишається чоловічим."
+}
+},
+{
+"exampleIds": [
+"fr:13:47",
+"fr:13:49",
+"fr:13:50"
+],
+"textByLocale": {
+"en": "In `la petite boîte bleue`, both adjectives refer to the same box. Determine its gender and number once, and then check the form and place of each description separately.",
+"ru": "В `la petite boîte bleue` оба прилагательных относятся к одной коробке. Определи её род и число один раз, а потом проверь отдельно форму и место каждого описания.",
+"uk": "У `la petite boîte bleue` обидва прикметники відносяться до однієї коробки. Визнач її рід і число один раз, а потім перевір окремо форму і місце кожного опису."
+}
+}
+],
+"drills": [
+{
+"bad": "lourds",
+"chapter": 1,
+"id": "fr:13:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"léger",
+"lourds",
+"lourd"
+],
+"slot": 3
+},
+{
+"bad": "lourd",
+"chapter": 1,
+"id": "fr:13:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"lourd",
+"léger",
+"légère"
+],
+"slot": 3
+},
+{
+"bad": "blanche",
+"chapter": 1,
+"id": "fr:13:05:lab",
+"item": 5,
+"kind": "match",
+"near": 46,
+"options": [
+"blanche",
+"blanc",
+"rouges"
+],
+"slot": 3
+},
+{
+"bad": "verres",
+"chapter": 2,
+"id": "fr:13:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"verte",
+"verre",
+"verres"
+],
+"slot": 3
+},
+{
+"bad": "gris",
+"chapter": 2,
+"id": "fr:13:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"grise",
+"blanc",
+"gris"
+],
+"slot": 3
+},
+{
+"bad": "neufs",
+"chapter": 2,
+"id": "fr:13:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 10,
+"options": [
+"neuf",
+"neuve",
+"neufs"
+],
+"slot": 3
+},
+{
+"bad": "vieilles",
+"chapter": 3,
+"id": "fr:13:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"neuve",
+"neuves",
+"vieilles"
+],
+"slot": 3
+},
+{
+"bad": "vides",
+"chapter": 3,
+"id": "fr:13:17:lab",
+"item": 17,
+"kind": "match",
+"near": 11,
+"options": [
+"vides",
+"mûre",
+"vide"
+],
+"slot": 3
+},
+{
+"bad": "étroites",
+"chapter": 3,
+"id": "fr:13:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"nous",
+"étroite",
+"étroites"
+],
+"slot": 3
+},
+{
+"bad": "noir",
+"chapter": 4,
+"id": "fr:13:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"noir",
+"noires",
+"noire"
+],
+"slot": 4
+},
+{
+"bad": "bleu",
+"chapter": 4,
+"id": "fr:13:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 40,
+"options": [
+"bleue",
+"pommes",
+"bleu"
+],
+"slot": 4
+},
+{
+"bad": "gris",
+"chapter": 4,
+"id": "fr:13:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 28,
+"options": [
+"gris",
+"rouge",
+"blanches"
+],
+"slot": 4
+},
+{
+"bad": "brune",
+"chapter": 5,
+"id": "fr:13:29:lab",
+"item": 29,
+"kind": "match",
+"near": 17,
+"options": [
+"brune",
+"nouveau",
+"brun"
+],
+"slot": 2
+},
+{
+"bad": "grands",
+"chapter": 5,
+"id": "fr:13:31:lab",
+"item": 31,
+"kind": "build",
+"near": 38,
+"options": [
+"petit",
+"grands",
+"grand"
+],
+"slot": 2
+},
+{
+"bad": "grandes",
+"chapter": 5,
+"id": "fr:13:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"grands",
+"grande",
+"grandes"
+],
+"slot": 4
+},
+{
+"bad": "nouvelles",
+"chapter": 6,
+"id": "fr:13:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 38,
+"options": [
+"nouvelle",
+"nouvelles",
+"nouveau"
+],
+"slot": 3
+},
+{
+"bad": "vieil",
+"chapter": 6,
+"id": "fr:13:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 32,
+"options": [
+"vieille",
+"vieil",
+"neufs"
+],
+"slot": 2
+},
+{
+"bad": "vide",
+"chapter": 6,
+"id": "fr:13:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"vide",
+"nouvelle",
+"fraîches"
+],
+"slot": 3
+},
+{
+"bad": "lourd",
+"chapter": 7,
+"id": "fr:13:45:lab",
+"item": 45,
+"kind": "build",
+"near": 43,
+"options": [
+"lourd",
+"haute",
+"noir"
+],
+"slot": 5
+},
+{
+"bad": "blanc",
+"chapter": 7,
+"id": "fr:13:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 44,
+"options": [
+"blanc",
+"brun",
+"solides"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"lourd",
+"lourde / lourds / lourdes"
+],
+[
+"blanc",
+"blanche / blancs / blanches"
+],
+[
+"neuf",
+"neuve / neufs / neuves"
+],
+[
+"léger",
+"légère / légers / légères"
+],
+[
+"vieux",
+"vieil immeuble / vieille photo"
+]
+],
+"title": {
+"en": "Description of a thing: gender and number of an adjective",
+"ru": "Описание вещи: род и число прилагательного",
+"uk": "Опис речі: рід та число прикметника"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:13:01",
+"target": "Le sac est lourd.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "fr:13:02",
+"target": "La valise est lourde.",
+"ru": "Чемодан тяжелый.",
+"uk": "Валіза важка."
+},
+{
+"id": "fr:13:03",
+"target": "Le sac est léger.",
+"ru": "Сумка легкая.",
+"uk": "Сумка легка."
+},
+{
+"id": "fr:13:05",
+"target": "Le drap est blanc.",
+"ru": "Простыня белая.",
+"uk": "Простирадло біле."
+},
+{
+"id": "fr:13:06",
+"target": "La chemise est blanche.",
+"ru": "Рубашка белая.",
+"uk": "Сорочка біла."
+},
+{
+"id": "fr:13:08",
+"target": "La jupe est verte.",
+"ru": "Юбка зеленая.",
+"uk": "Спідниця зелена."
+},
+{
+"id": "fr:13:11",
+"target": "Le vélo est neuf.",
+"ru": "Велосипед новый.",
+"uk": "Велосипед новий."
+},
+{
+"id": "fr:13:12",
+"target": "La voiture est neuve.",
+"ru": "Машина новая.",
+"uk": "Машина нова."
+},
+{
+"id": "fr:13:14",
+"target": "Les voitures sont neuves.",
+"ru": "Машины новые.",
+"uk": "Машини нові."
+},
+{
+"id": "fr:13:21",
+"target": "Je cherche un sac noir.",
+"ru": "Я ищу черную сумку.",
+"uk": "Я шукаю чорну сумку."
+},
+{
+"id": "fr:13:22",
+"target": "Je cherche une veste noire.",
+"ru": "Я ищу черную куртку.",
+"uk": "Я шукаю чорну куртку."
+},
+{
+"id": "fr:13:26",
+"target": "Nous prenons les serviettes blanches.",
+"ru": "Мы берём белые полотенца.",
+"uk": "Ми беремо білі рушники."
+},
+{
+"id": "fr:13:31",
+"target": "C’est un petit jardin.",
+"ru": "Это небольшой сад.",
+"uk": "Це маленький сад."
+},
+{
+"id": "fr:13:33",
+"target": "Il habite dans un grand appartement.",
+"ru": "Он живёт в большой квартире.",
+"uk": "Він живе у великій квартирі."
+},
+{
+"id": "fr:13:38",
+"target": "C’est un vieil immeuble.",
+"ru": "Это старое здание.",
+"uk": "Це стара будівля."
+},
+{
+"id": "fr:13:36",
+"target": "Nous avons un nouveau voisin.",
+"ru": "У нас новый сосед.",
+"uk": "У нас новий сусід."
+},
+{
+"id": "fr:13:39",
+"target": "C’est une vieille photo.",
+"ru": "Это старая фотография.",
+"uk": "Це стара фотографія."
+},
+{
+"id": "fr:13:40",
+"target": "Il porte un beau costume.",
+"ru": "На нём красивый костюм.",
+"uk": "На ньому гарний костюм."
+},
+{
+"id": "fr:13:47",
+"target": "Les étagères sont trop basses.",
+"ru": "Полки слишком низкие.",
+"uk": "Полиці занадто низькі."
+},
+{
+"id": "fr:13:49",
+"target": "Ma veste légère est dans la valise.",
+"ru": "Моя легкая куртка в чемодане.",
+"uk": "Моя легка куртка у валізі."
+},
+{
+"id": "fr:13:50",
+"target": "Je prends la petite boîte bleue.",
+"ru": "Я беру маленькую синюю коробочку.",
+"uk": "Я беру маленьку синю коробочку."
+}
+]
+},
+{
+"lesson": 14,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:14:01",
+"fr:14:02",
+"fr:14:03"
+],
+"textByLocale": {
+"en": "The words \"I can come in\" have two solutions. The first is whether the person can do it. The second is what exactly. The personal ending appears on the first verb; the second remains in the dictionary form.",
+"ru": "В словах «могу войти» есть два решения. Первое — может ли человек это сделать. Второе — что именно. Личное окончание появляется у первого глагола; второй остаётся в словарной форме.",
+"uk": "У словах \"можу увійти\" є два рішення. Перше – чи може людина це зробити. Друге – що саме. Особисте закінчення у першого дієслова; другий залишається у словниковій формі."
+}
+},
+{
+"exampleIds": [
+"fr:14:07",
+"fr:14:08",
+"fr:14:11"
+],
+"textByLocale": {
+"en": "Opportunity, obligation, and desire are not the same. Payment is available - `je peux payer`. Payment is required - `je dois payer`. I want to pay - `je veux payer`.",
+"ru": "Возможность, обязанность и желание не совпадают. Оплата доступна — `je peux payer`. Оплата нужна — `je dois payer`. Я хочу оплатить — `je veux payer`.",
+"uk": "Можливість, обов'язок та бажання не збігаються. Оплата доступна - `je peux payer`. Оплата потрібна - `je dois payer`. Я хочу оплатити - `je veux payer`."
+}
+},
+{
+"exampleIds": [
+"fr:14:17",
+"fr:14:19",
+"fr:14:20"
+],
+"textByLocale": {
+"en": "When making a request, the person changes: can you, can you? `Pouvez-vous` with a hyphen makes it an explicit question. The action itself after it does not become interrogative and does not change form.",
+"ru": "При просьбе меняется лицо: можешь ли ты, можете ли вы. `Pouvez-vous` с дефисом делает явный вопрос. Само действие после него не становится вопросительным и не меняет форму.",
+"uk": "На прохання змінюється обличчя: чи можеш ти, чи можете ви. `Pouvez-vous` з дефісом робить явне питання. Сама дія після нього не стає запитальною і не змінює форму."
+}
+},
+{
+"exampleIds": [
+"fr:14:21",
+"fr:14:24",
+"fr:14:26"
+],
+"textByLocale": {
+"en": "For a specific person's obligation, use `je dois`, `tu dois`, or `vous devez`. The impersonal `il faut` allows you to express what needs to be done without selecting a person.",
+"ru": "Для обязанности конкретного лица бери `je dois`, `tu dois`, `vous devez`. Безличное `il faut` позволяет сказать, что вообще нужно сделать, не выбирая человека.",
+"uk": "Для обов'язку конкретної особи бери `je dois`, `tu dois`, `vous devez`. Безособове `il faut` дозволяє сказати, що потрібно зробити, не вибираючи людини."
+}
+},
+{
+"exampleIds": [
+"fr:14:31",
+"fr:14:34",
+"fr:14:36"
+],
+"textByLocale": {
+"en": "In this group, negation usually surrounds the first, personal verb. Consider whether it's a refusal or an impossibility: \"I don't want to\" and \"I can't\" leave different reasons.",
+"ru": "В этой группе отрицание обычно окружает первый, личный глагол. Подумай, отказ это или невозможность: «не хочу» и «не могу» оставляют разные причины.",
+"uk": "У цій групі заперечення зазвичай оточує перше, особисте дієслово. Подумай, відмова це чи неможливість: «не хочу» та «не можу» залишають різні причини."
+}
+},
+{
+"exampleIds": [
+"fr:14:41",
+"fr:14:42",
+"fr:14:43"
+],
+"textByLocale": {
+"en": "A pronoun can refer to an action: `m’aider`, `me prêter`. Don't insert it inside `pouvoir`. First, choose the person who can fulfill the request.",
+"ru": "К действию может относиться местоимение: `m’aider`, `me prêter`. Не вставляй его внутрь `pouvoir`. Сначала выбери человека, который может выполнить просьбу.",
+"uk": "До дії може належати займенник: `m’aider`, `me prêter`. Не вставляй його всередину `pouvoir`. Спочатку вибери людину, яка може виконати прохання."
+}
+},
+{
+"exampleIds": [
+"fr:14:45",
+"fr:14:48",
+"fr:14:50"
+],
+"textByLocale": {
+"en": "A polite question doesn't mean the thing belongs to the other person. Consider what's being asked: permission, ability, or a request for help. The tiles must preserve this distinction.",
+"ru": "Вежливый вопрос ещё не значит, что вещь принадлежит собеседнику. Смотри, что спрашивают: разрешение, способность или просьбу помочь. Плитки должны сохранить эту разницу.",
+"uk": "Ввічливе питання ще не означає, що річ належить співрозмовнику. Дивись, що запитують: дозвіл, здатність чи прохання допомогти. Плитки мають зберегти цю різницю."
+}
+}
+],
+"drills": [
+{
+"bad": "pouvons",
+"chapter": 1,
+"id": "fr:14:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"pouvez",
+"peux",
+"pouvons"
+],
+"slot": 1
+},
+{
+"bad": "puisse",
+"chapter": 1,
+"id": "fr:14:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 46,
+"options": [
+"pouvons",
+"puisse",
+"peut"
+],
+"slot": 1
+},
+{
+"bad": "puisse",
+"chapter": 1,
+"id": "fr:14:05:lab",
+"item": 5,
+"kind": "match",
+"near": 19,
+"options": [
+"pourrait",
+"pouvez",
+"puisse"
+],
+"slot": 1
+},
+{
+"bad": "devrions",
+"chapter": 2,
+"id": "fr:14:08:lab",
+"item": 8,
+"kind": "build",
+"near": 27,
+"options": [
+"devrais",
+"devrions",
+"dois"
+],
+"slot": 1
+},
+{
+"bad": "doivent",
+"chapter": 2,
+"id": "fr:14:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 23,
+"options": [
+"devons",
+"devez",
+"doivent"
+],
+"slot": 1
+},
+{
+"bad": "voudrait",
+"chapter": 2,
+"id": "fr:14:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 37,
+"options": [
+"veut",
+"veux",
+"voudrait"
+],
+"slot": 1
+},
+{
+"bad": "voulez",
+"chapter": 3,
+"id": "fr:14:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 23,
+"options": [
+"voulons",
+"voulez",
+"veut"
+],
+"slot": 1
+},
+{
+"bad": "pourrait",
+"chapter": 3,
+"id": "fr:14:17:lab",
+"item": 17,
+"kind": "match",
+"near": 1,
+"options": [
+"peux",
+"pourrait",
+"pouvons"
+],
+"slot": 1
+},
+{
+"bad": "pourrait",
+"chapter": 3,
+"id": "fr:14:19:lab",
+"item": 19,
+"kind": "build",
+"near": 5,
+"options": [
+"pourrait",
+"pouvez",
+"pourrais"
+],
+"slot": 1
+},
+{
+"bad": "devons",
+"chapter": 4,
+"id": "fr:14:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 47,
+"options": [
+"devrions",
+"doit",
+"devons"
+],
+"slot": 1
+},
+{
+"bad": "doivent",
+"chapter": 4,
+"id": "fr:14:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 35,
+"options": [
+"devrais",
+"doivent",
+"devez"
+],
+"slot": 1
+},
+{
+"bad": "doit",
+"chapter": 4,
+"id": "fr:14:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 21,
+"options": [
+"doivent",
+"doit",
+"dois"
+],
+"slot": 1
+},
+{
+"bad": "deviez",
+"chapter": 5,
+"id": "fr:14:29:lab",
+"item": 29,
+"kind": "match",
+"near": 6,
+"options": [
+"deviez",
+"doivent",
+"devrait"
+],
+"slot": 1
+},
+{
+"bad": "pourriez",
+"chapter": 5,
+"id": "fr:14:31:lab",
+"item": 31,
+"kind": "build",
+"near": 40,
+"options": [
+"pourriez",
+"pourrais",
+"peux"
+],
+"slot": 2
+},
+{
+"bad": "pourrait",
+"chapter": 5,
+"id": "fr:14:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 39,
+"options": [
+"pouvez",
+"pouvons",
+"pourrait"
+],
+"slot": 2
+},
+{
+"bad": "voudriez",
+"chapter": 6,
+"id": "fr:14:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 40,
+"options": [
+"veux",
+"voudriez",
+"voudrais"
+],
+"slot": 2
+},
+{
+"bad": "pas",
+"chapter": 6,
+"id": "fr:14:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 34,
+"options": [
+"pas",
+"ne",
+"en"
+],
+"slot": 1
+},
+{
+"bad": "pouvez-vous",
+"chapter": 6,
+"id": "fr:14:42:lab",
+"item": 42,
+"kind": "match",
+"near": 20,
+"options": [
+"pouvez-vous",
+"m’indiquer",
+"l’étagère"
+],
+"slot": 1
+},
+{
+"bad": "puisse",
+"chapter": 7,
+"id": "fr:14:45:lab",
+"item": 45,
+"kind": "build",
+"near": 4,
+"options": [
+"puisse",
+"pouvons",
+"pouvez"
+],
+"slot": 1
+},
+{
+"bad": "pourriez",
+"chapter": 7,
+"id": "fr:14:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 19,
+"options": [
+"pouvez",
+"pourriez",
+"peut"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"pouvoir",
+"je peux / tu peux / il peut"
+],
+[
+"nous / vous / ils",
+"pouvons / pouvez / peuvent"
+],
+[
+"devoir",
+"je dois / il doit / vous devez"
+],
+[
+"vouloir",
+"je veux / elle veut / nous voulons"
+],
+[
+"possible",
+"Je peux entrer."
+],
+[
+"nécessaire",
+"Je dois partir."
+]
+],
+"title": {
+"en": "Can, should, want: two verbs together",
+"ru": "Могу, должен, хочу: два глагола вместе",
+"uk": "Можу, маю, хочу: два дієслова разом"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:14:01",
+"target": "Je peux entrer.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "fr:14:02",
+"target": "Tu peux entrer.",
+"ru": "Ты можешь войти.",
+"uk": "Ти можеш увійти."
+},
+{
+"id": "fr:14:03",
+"target": "Elle peut venir.",
+"ru": "Она может прийти.",
+"uk": "Вона може прийти."
+},
+{
+"id": "fr:14:07",
+"target": "Je dois partir.",
+"ru": "Мне нужно уйти.",
+"uk": "Мені треба йти."
+},
+{
+"id": "fr:14:08",
+"target": "Tu dois attendre.",
+"ru": "Тебе нужно подождать.",
+"uk": "Тобі треба почекати."
+},
+{
+"id": "fr:14:11",
+"target": "Je veux essayer.",
+"ru": "Я хочу попробовать.",
+"uk": "Я хочу спробувати."
+},
+{
+"id": "fr:14:17",
+"target": "Je peux vous aider ?",
+"ru": "Могу я вам помочь?",
+"uk": "Чи можу я вам допомогти?"
+},
+{
+"id": "fr:14:19",
+"target": "Vous pouvez répéter ?",
+"ru": "Можете повторить?",
+"uk": "Чи можете ви повторити?"
+},
+{
+"id": "fr:14:20",
+"target": "Pouvez-vous parler moins vite ?",
+"ru": "Можете говорить медленнее?",
+"uk": "Чи можете ви говорити повільніше?"
+},
+{
+"id": "fr:14:21",
+"target": "Je dois prendre ce médicament.",
+"ru": "Мне нужно принять это лекарство.",
+"uk": "Мені потрібно прийняти ці ліки."
+},
+{
+"id": "fr:14:24",
+"target": "Vous devez signer ici.",
+"ru": "Вы должны подписать здесь.",
+"uk": "Ви повинні тут підписати."
+},
+{
+"id": "fr:14:26",
+"target": "Je dois remplir ce formulaire.",
+"ru": "Я должен заполнить эту форму.",
+"uk": "Я повинен заповнити цю форму."
+},
+{
+"id": "fr:14:31",
+"target": "Je ne peux pas porter cette valise.",
+"ru": "Я не могу нести этот чемодан.",
+"uk": "Я не можу нести цю валізу."
+},
+{
+"id": "fr:14:34",
+"target": "Nous ne pouvons pas rester longtemps.",
+"ru": "Мы не можем остаться надолго.",
+"uk": "Ми не можемо залишитися надовго."
+},
+{
+"id": "fr:14:36",
+"target": "Je ne veux pas déranger.",
+"ru": "Я не хочу мешать.",
+"uk": "Я не хочу заважати."
+},
+{
+"id": "fr:14:41",
+"target": "Est-ce que je peux payer par carte ?",
+"ru": "Могу ли я оплатить картой?",
+"uk": "Чи можу я розплатитися карткою?"
+},
+{
+"id": "fr:14:42",
+"target": "Pouvez-vous m’indiquer la sortie ?",
+"ru": "Можете сказать, где выход?",
+"uk": "Чи можете ви сказати мені, де вихід?"
+},
+{
+"id": "fr:14:43",
+"target": "Tu peux me prêter ton chargeur ?",
+"ru": "Можешь одолжить мне свою зарядку?",
+"uk": "Можеш позичити мені свою зарядку?"
+},
+{
+"id": "fr:14:45",
+"target": "Nous pouvons partager un taxi.",
+"ru": "Мы можем поехать на такси вместе.",
+"uk": "Ми можемо поїхати на спільному таксі."
+},
+{
+"id": "fr:14:48",
+"target": "Vous pouvez garder la monnaie.",
+"ru": "Можете оставить сдачу себе.",
+"uk": "Можете залишити здачу собі."
+},
+{
+"id": "fr:14:50",
+"target": "Demain, je dois passer à la pharmacie.",
+"ru": "Завтра мне нужно зайти в аптеку.",
+"uk": "Завтра мені потрібно зайти до аптеки."
+}
+]
+}
+]

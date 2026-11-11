@@ -1,0 +1,1010 @@
+[
+{
+"lesson": 29,
+"blocks": [
+{
+"textES": "En la parada hay dos autobuses. Señalas uno y añades una breve aclaración: «el que va a la estación» o «el que yo tomo». En estas dos aclaraciones, el autobús desempeña un papel diferente.\nUn pronombre relativo vincula el nombre con la especificación. Aquí, Qui no pregunta \"¿quién?\". También puede referirse al objeto si es el sujeto de la acción siguiente.",
+"textId": "Ada dua bus di halte. Anda menunjuk salah satunya dan menambahkan penjelasan singkat: \"yang menuju stasiun\" atau \"yang saya tumpangi.\" Dalam dua penjelasan ini, bus tersebut memainkan peran yang berbeda.\nKata ganti relatif menghubungkan nama dengan spesifikasi. Qui di sini tidak menanyakan pertanyaan \"siapa?\". Kata ganti ini juga dapat merujuk pada objek jika objek tersebut merupakan subjek dari tindakan selanjutnya.",
+"textPl": "Na przystanku stoją dwa autobusy. Wskazujesz jeden i dodajesz krótkie wyjaśnienie: „ten, który jedzie na dworzec” lub „ten, którym jeżdżę”. W tych dwóch wyjaśnieniach autobus pełni różne role.\nZaimek względny łączy nazwę ze specyfikacją. Qui tutaj nie zadaje pytania „kto?”. Może również odnosić się do dopełnienia, jeśli jest ono podmiotem następującej czynności.",
+"textPtBr": "Há dois ônibus no ponto. Você aponta para um deles e acrescenta um breve esclarecimento: \"aquele que vai para a estação\" ou \"aquele em que eu pego\". Nessas duas situações, o ônibus desempenha papéis diferentes.\nUm pronome relativo liga o nome à especificação. Qui aqui não pergunta \"quem?\". Também pode se referir ao objeto se for o sujeito da ação seguinte.",
+"textRU": "На остановке два автобуса. Ты показываешь на один и добавляешь короткое уточнение: «тот, который идёт на вокзал» или «тот, на котором я езжу». В этих двух уточнениях автобус играет разные роли.\nОтносительное местоимение связывает название с уточнением. Qui здесь не задаёт вопрос «кто?». Оно может относиться и к предмету, если тот является подлежащим следующего действия.",
+"textTr": "Otobüs durağında iki otobüs var. Birini işaret edip kısa bir açıklama ekliyorsunuz: \"istasyona giden\" veya \"bindiğim\". Bu iki açıklamada otobüs farklı roller üstleniyor.\nBir ilgi zamiri, ismi belirtmeyle ilişkilendirir. Buradaki Qui \"kim?\" sorusunu sormaz. Ayrıca, takip eden eylemin öznesi ise nesneye de atıfta bulunabilir.",
+"textUK": "На зупинці два автобуси. Ти показуєш на один і додаєш коротке уточнення: той, що йде на вокзал або той, на якому я їжджу. У цих двох уточненнях автобус відіграє різні ролі.\nВідносний займенник пов'язує назву з уточненням. Qui тут не ставить питання «хто?». Воно може відноситися і до предмета, якщо той підлягає наступній дії.",
+"textVi": "Có hai chiếc xe buýt ở trạm dừng. Bạn chỉ vào một chiếc và nói thêm một câu ngắn gọn: \"chiếc đi đến nhà ga\" hoặc \"chiếc tôi hay đi\". Trong hai cách diễn đạt này, chiếc xe buýt đóng những vai trò khác nhau.\nMột đại từ quan hệ liên kết tên với sự xác định. Qui ở đây không hỏi câu hỏi \"ai?\". Nó cũng có thể đề cập đến đối tượng nếu nó là chủ ngữ của hành động tiếp theo.",
+"titleES": "Cómo especificar el sujeto: qui o que",
+"titleId": "Cara menentukan subjek: qui atau que",
+"titlePl": "Jak określić podmiot: qui lub que",
+"titlePtBr": "Como especificar o sujeito: qui ou que",
+"titleRU": "Как уточнить предмет: qui или que",
+"titleTr": "Özne nasıl belirtilir: qui veya que",
+"titleUK": "Як уточнити предмет: qui або que",
+"titleVi": "Cách xác định chủ ngữ: qui hoặc que",
+"titleByLocale": {
+"en": "How to specify the subject: qui or que",
+"es": "Cómo especificar el sujeto: qui o que",
+"id": "Cara menentukan subjek: qui atau que",
+"pl": "Jak określić podmiot: qui lub que",
+"pt-BR": "Como especificar o sujeito: qui ou que",
+"ru": "Как уточнить предмет: qui или que",
+"tr": "Özne nasıl belirtilir: qui veya que",
+"uk": "Як уточнити предмет: qui або que",
+"vi": "Cách xác định chủ ngữ: qui hoặc que"
+},
+"textByLocale": {
+"en": [
+"There are two buses at the bus stop. You point to one and add a short clarification: \"the one that goes to the station\" or \"the one I ride.\" In these two clarifications, the bus plays different roles.",
+"A relative pronoun links the name with the specification. «Qui» here does not ask the question \"who?\" It can also refer to the object if it is the subject of the following action."
+],
+"es": [
+"En la parada hay dos autobuses. Señalas uno y añades una breve aclaración: «el que va a la estación» o «el que yo tomo». En estas dos aclaraciones, el autobús desempeña un papel diferente.",
+"Un pronombre relativo vincula el nombre con la especificación. Aquí, «Qui» no pregunta \"¿quién?\". También puede referirse al objeto si es el sujeto de la acción siguiente."
+],
+"id": [
+"Ada dua bus di halte. Anda menunjuk salah satunya dan menambahkan penjelasan singkat: \"yang menuju stasiun\" atau \"yang saya tumpangi.\" Dalam dua penjelasan ini, bus tersebut memainkan peran yang berbeda.",
+"Kata ganti relatif menghubungkan nama dengan spesifikasi. «Qui» di sini tidak menanyakan pertanyaan \"siapa?\". Kata ganti ini juga dapat merujuk pada objek jika objek tersebut merupakan subjek dari tindakan selanjutnya."
+],
+"pl": [
+"Na przystanku stoją dwa autobusy. Wskazujesz jeden i dodajesz krótkie wyjaśnienie: „ten, który jedzie na dworzec” lub „ten, którym jeżdżę”. W tych dwóch wyjaśnieniach autobus pełni różne role.",
+"Zaimek względny łączy nazwę ze specyfikacją. «Qui» tutaj nie zadaje pytania „kto?”. Może również odnosić się do dopełnienia, jeśli jest ono podmiotem następującej czynności."
+],
+"pt-BR": [
+"Há dois ônibus no ponto. Você aponta para um deles e acrescenta um breve esclarecimento: \"aquele que vai para a estação\" ou \"aquele em que eu pego\". Nessas duas situações, o ônibus desempenha papéis diferentes.",
+"Um pronome relativo liga o nome à especificação. «Qui» aqui não pergunta \"quem?\". Também pode se referir ao objeto se for o sujeito da ação seguinte."
+],
+"ru": [
+"На остановке два автобуса. Ты показываешь на один и добавляешь короткое уточнение: «тот, который идёт на вокзал» или «тот, на котором я езжу». В этих двух уточнениях автобус играет разные роли.",
+"Относительное местоимение связывает название с уточнением. «Qui» здесь не задаёт вопрос «кто?». Оно может относиться и к предмету, если тот является подлежащим следующего действия."
+],
+"tr": [
+"Otobüs durağında iki otobüs var. Birini işaret edip kısa bir açıklama ekliyorsunuz: \"istasyona giden\" veya \"bindiğim\". Bu iki açıklamada otobüs farklı roller üstleniyor.",
+"Bir ilgi zamiri, ismi belirtmeyle ilişkilendirir. Buradaki «Qui» \"kim?\" sorusunu sormaz. Ayrıca, takip eden eylemin öznesi ise nesneye de atıfta bulunabilir."
+],
+"uk": [
+"На зупинці два автобуси. Ти показуєш на один і додаєш коротке уточнення: той, що йде на вокзал або той, на якому я їжджу. У цих двох уточненнях автобус відіграє різні ролі.",
+"Відносний займенник пов'язує назву з уточненням. «Qui» тут не ставить питання «хто?». Воно може відноситися і до предмета, якщо той підлягає наступній дії."
+],
+"vi": [
+"Có hai chiếc xe buýt ở trạm dừng. Bạn chỉ vào một chiếc và nói thêm một câu ngắn gọn: \"chiếc đi đến nhà ga\" hoặc \"chiếc tôi hay đi\". Trong hai cách diễn đạt này, chiếc xe buýt đóng những vai trò khác nhau.",
+"Một đại từ quan hệ liên kết tên với sự xác định. «Qui» ở đây không hỏi câu hỏi \"ai?\". Nó cũng có thể đề cập đến đối tượng nếu nó là chủ ngữ của hành động tiếp theo."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:29:01"
+]
+},
+{
+"textES": "nombre + qui realiza la acción; nombre + que toca a alguien\nEn le bus qui va, el autobús va solo. En le bus que je prends, yo realizo la acción y elijo el autobús. La pregunta útil no es \"¿cuál?\", sino \"¿quién realiza la siguiente acción?\".\nRecuerda mentalmente el nombre dentro de la aclaración. \"La llave abre\" — qui; \"Estoy buscando la llave\" — que. Esta prueba es más fiable que elegir qui exclusivamente para personas.",
+"textId": "nama + qui melakukan tindakan; nama + que menyentuh seseorang\nPada le bus qui va, bus berjalan sendiri. Pada le bus que je prends, saya melakukan tindakan tersebut, dan saya memilih bus. Pertanyaan yang berguna bukanlah \"yang mana?\" tetapi \"siapa yang melakukan tindakan selanjutnya?\"\nIngat kembali nama di dalam klarifikasi. \"Kuncinya membuka\" — qui; \"Saya mencari kuncinya\" — que. Tes ini lebih andal daripada memilih qui secara eksklusif untuk orang.",
+"textPl": "nazwa + qui wykonuje czynność; nazwa + que dotyka kogoś\nW le bus qui va autobus jedzie sam. W le bus que je prends wykonuję czynność i wybieram autobus. Użyteczne pytanie nie brzmi „który?”, ale „kto wykonuje następną czynność?”.\nW myślach powtórz nazwę w wyjaśnieniu. „Klucz się otwiera” — qui; „Szukam klucza” — que. Ten test jest bardziej wiarygodny niż wybieranie qui wyłącznie dla ludzi.",
+"textPtBr": "nome + qui realiza a ação; nome + que toca em alguém\nEm le bus qui va, o ônibus vai sozinho. Em le bus que je prends, eu realizo a ação e escolho o ônibus. A pergunta útil não é \"qual?\", mas sim \"quem realiza a próxima ação?\".\nMentalmente, retorne o nome dentro do esclarecimento. \"A chave abre\" — qui; \"Estou procurando a chave\" — que. Este teste é mais confiável do que escolher qui exclusivamente para pessoas.",
+"textRU": "название + qui выполняет действие; название + que кто-то затрагивает\nВ le bus qui va автобус сам едет. В le bus que je prends действие выполняю я, а автобус выбираю. Полезный вопрос не «который или которую в переводе?», а «кто выполняет следующее действие?».\nМысленно верни название внутрь уточнения. «Ключ открывает» — qui; «я ищу ключ» — que. Такой тест надёжнее, чем выбирать qui исключительно для людей.",
+"textTr": "isim + qui eylemi gerçekleştirir; isim + que birine dokunur\nle bus qui va'de otobüs kendi kendine gidiyor. le bus que je prends'de ben eylemi gerçekleştiriyorum ve otobüsü seçiyorum. Faydalı soru \"hangisi?\" değil, \"sonraki eylemi kim gerçekleştiriyor?\" olmalıdır.\nAçıklamanın içindeki ismi zihinsel olarak tekrar edin. \"Anahtar açılıyor\" — qui; \"Anahtarı arıyorum\" — que. Bu test, yalnızca insanlar için qui'ü seçmekten daha güvenilirdir.",
+"textUK": "назва + qui виконує дію; назва + que хтось торкається\nle bus qui va автобус сам їде. У le bus que je prends дію виконую я, а автобус вибираю. Корисне питання не «яке чи яке в перекладі?», а «хто виконує таку дію?».\nПодумки поверни назву всередину уточнення. \"Ключ відкриває\" - qui; \"Я шукаю ключ\" - que. Такий тест надійніше, ніж вибирати qui виключно для людей.",
+"textVi": "Tên + qui thực hiện hành động; Tên + que chạm vào ai đó\nTrong le bus qui va, xe buýt tự đi. Trong le bus que je prends, tôi thực hiện hành động và tôi chọn xe buýt. Câu hỏi hữu ích không phải là \"cái nào?\" mà là \"ai thực hiện hành động tiếp theo?\"\nHãy nhớ lại tên trong phần giải thích. \"Chìa khóa mở ra\" — qui; \"Tôi đang tìm chìa khóa\" — que. Cách kiểm tra này đáng tin cậy hơn việc chỉ chọn qui cho người.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"name + «qui» performs the action; name + «que» touches someone",
+"In «le bus qui va», the bus goes by itself. In «le bus que je prends», I perform the action, and I choose the bus. The useful question isn't \"which one?\" but \"who performs the next action?\"",
+"Mentally return the name inside the clarification. \"The key opens\" — «qui»; \"I'm looking for the key\" — «que». This test is more reliable than choosing «qui» exclusively for people."
+],
+"es": [
+"nombre + «qui» realiza la acción; nombre + «que» toca a alguien",
+"En «le bus qui va», el autobús va solo. En «le bus que je prends», yo realizo la acción y elijo el autobús. La pregunta útil no es \"¿cuál?\", sino \"¿quién realiza la siguiente acción?\".",
+"Recuerda mentalmente el nombre dentro de la aclaración. \"La llave abre\" — «qui»; \"Estoy buscando la llave\" — «que». Esta prueba es más fiable que elegir «qui» exclusivamente para personas."
+],
+"id": [
+"nama + «qui» melakukan tindakan; nama + «que» menyentuh seseorang",
+"Pada «le bus qui va», bus berjalan sendiri. Pada «le bus que je prends», saya melakukan tindakan tersebut, dan saya memilih bus. Pertanyaan yang berguna bukanlah \"yang mana?\" tetapi \"siapa yang melakukan tindakan selanjutnya?\"",
+"Ingat kembali nama di dalam klarifikasi. \"Kuncinya membuka\" — «qui»; \"Saya mencari kuncinya\" — «que». Tes ini lebih andal daripada memilih «qui» secara eksklusif untuk orang."
+],
+"pl": [
+"nazwa + «qui» wykonuje czynność; nazwa + «que» dotyka kogoś",
+"W «le bus qui va» autobus jedzie sam. W «le bus que je prends» wykonuję czynność i wybieram autobus. Użyteczne pytanie nie brzmi „który?”, ale „kto wykonuje następną czynność?”.",
+"W myślach powtórz nazwę w wyjaśnieniu. „Klucz się otwiera” — «qui»; „Szukam klucza” — «que». Ten test jest bardziej wiarygodny niż wybieranie «qui» wyłącznie dla ludzi."
+],
+"pt-BR": [
+"nome + «qui» realiza a ação; nome + «que» toca em alguém",
+"Em «le bus qui va», o ônibus vai sozinho. Em «le bus que je prends», eu realizo a ação e escolho o ônibus. A pergunta útil não é \"qual?\", mas sim \"quem realiza a próxima ação?\".",
+"Mentalmente, retorne o nome dentro do esclarecimento. \"A chave abre\" — «qui»; \"Estou procurando a chave\" — «que». Este teste é mais confiável do que escolher «qui» exclusivamente para pessoas."
+],
+"ru": [
+"название + «qui» выполняет действие; название + «que» кто-то затрагивает",
+"В «le bus qui va» автобус сам едет. В «le bus que je prends» действие выполняю я, а автобус выбираю. Полезный вопрос не «который или которую в переводе?», а «кто выполняет следующее действие?».",
+"Мысленно верни название внутрь уточнения. «Ключ открывает» — «qui»; «я ищу ключ» — «que». Такой тест надёжнее, чем выбирать «qui» исключительно для людей."
+],
+"tr": [
+"isim + «qui» eylemi gerçekleştirir; isim + «que» birine dokunur",
+"«le bus qui va»'de otobüs kendi kendine gidiyor. «le bus que je prends»'de ben eylemi gerçekleştiriyorum ve otobüsü seçiyorum. Faydalı soru \"hangisi?\" değil, \"sonraki eylemi kim gerçekleştiriyor?\" olmalıdır.",
+"Açıklamanın içindeki ismi zihinsel olarak tekrar edin. \"Anahtar açılıyor\" — «qui»; \"Anahtarı arıyorum\" — «que». Bu test, yalnızca insanlar için «qui»'ü seçmekten daha güvenilirdir."
+],
+"uk": [
+"назва + «qui» виконує дію; назва + «que» хтось торкається",
+"«le bus qui va» автобус сам їде. У «le bus que je prends» дію виконую я, а автобус вибираю. Корисне питання не «яке чи яке в перекладі?», а «хто виконує таку дію?».",
+"Подумки поверни назву всередину уточнення. \"Ключ відкриває\" - «qui»; \"Я шукаю ключ\" - «que». Такий тест надійніше, ніж вибирати «qui» виключно для людей."
+],
+"vi": [
+"Tên + «qui» thực hiện hành động; Tên + «que» chạm vào ai đó",
+"Trong «le bus qui va», xe buýt tự đi. Trong «le bus que je prends», tôi thực hiện hành động và tôi chọn xe buýt. Câu hỏi hữu ích không phải là \"cái nào?\" mà là \"ai thực hiện hành động tiếp theo?\"",
+"Hãy nhớ lại tên trong phần giải thích. \"Chìa khóa mở ra\" — «qui»; \"Tôi đang tìm chìa khóa\" — «que». Cách kiểm tra này đáng tin cậy hơn việc chỉ chọn «qui» cho người."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:29:03",
+"fr:29:04"
+]
+},
+{
+"textES": "Nombra un autobús y luego di cuál. El autobús conduce: qui va. Si subes a él, quien realiza la acción es je, y el autobús es el objeto: que je prends.",
+"textId": "Sebutkan nama bus, lalu sebutkan bus yang mana. Bus itu sendiri yang mengemudi: qui va. Jika Anda naik bus itu, pelakunya adalah je, dan bus itu adalah objeknya: que je prends.",
+"textPl": "Nazwij autobus, a następnie powiedz, który. Autobus sam prowadzi: qui va. Jeśli wsiądziesz, wykonawcą będzie je, a autobus będzie dopełnieniem: que je prends.",
+"textPtBr": "Nomeie um ônibus e, em seguida, diga qual. O próprio ônibus dirige: qui va. Se você entrar nele, o executor é je e o ônibus é o objeto: que je prends.",
+"textRU": "Назови автобус, затем скажи, какой именно. Автобус сам едет: qui va. Если же ты садишься на него, исполнитель уже je, а автобус — объект: que je prends.",
+"textTr": "Bir otobüs adı verin, sonra hangisi olduğunu söyleyin. Otobüsün kendisi hareket eder: qui va. Eğer ona binerseniz, eylemi gerçekleştiren je, otobüs ise nesnedir: que je prends.",
+"textUK": "Назви автобус, потім скажи, який саме. Автобус сам їде: qui va. Якщо ж ти сідаєш на нього, виконавець уже je, а автобус – об'єкт: que je prends.",
+"textVi": "Hãy nêu tên một chiếc xe buýt, sau đó nói rõ đó là xe buýt nào. Bản thân chiếc xe buýt tự lái: qui va. Nếu bạn lên xe, người thực hiện là je, và chiếc xe buýt là đối tượng: que je prends.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Name a bus, then say which one. The bus itself drives: «qui va». If you get on it, the performer is «je», and the bus is the object: «que je prends»."
+],
+"es": [
+"Nombra un autobús y luego di cuál. El autobús conduce: «qui va». Si subes a él, quien realiza la acción es «je», y el autobús es el objeto: «que je prends»."
+],
+"id": [
+"Sebutkan nama bus, lalu sebutkan bus yang mana. Bus itu sendiri yang mengemudi: «qui va». Jika Anda naik bus itu, pelakunya adalah «je», dan bus itu adalah objeknya: «que je prends»."
+],
+"pl": [
+"Nazwij autobus, a następnie powiedz, który. Autobus sam prowadzi: «qui va». Jeśli wsiądziesz, wykonawcą będzie «je», a autobus będzie dopełnieniem: «que je prends»."
+],
+"pt-BR": [
+"Nomeie um ônibus e, em seguida, diga qual. O próprio ônibus dirige: «qui va». Se você entrar nele, o executor é «je» e o ônibus é o objeto: «que je prends»."
+],
+"ru": [
+"Назови автобус, затем скажи, какой именно. Автобус сам едет: «qui va». Если же ты садишься на него, исполнитель уже «je», а автобус — объект: «que je prends»."
+],
+"tr": [
+"Bir otobüs adı verin, sonra hangisi olduğunu söyleyin. Otobüsün kendisi hareket eder: «qui va». Eğer ona binerseniz, eylemi gerçekleştiren «je», otobüs ise nesnedir: «que je prends»."
+],
+"uk": [
+"Назви автобус, потім скажи, який саме. Автобус сам їде: «qui va». Якщо ж ти сідаєш на нього, виконавець уже «je», а автобус – об'єкт: «que je prends»."
+],
+"vi": [
+"Hãy nêu tên một chiếc xe buýt, sau đó nói rõ đó là xe buýt nào. Bản thân chiếc xe buýt tự lái: «qui va». Nếu bạn lên xe, người thực hiện là «je», và chiếc xe buýt là đối tượng: «que je prends»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:29:01",
+"fr:29:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:29:01",
+"target": "C’est le bus qui va à la gare.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "fr:29:03",
+"target": "Voici la clé qui ouvre la cave.",
+"ru": "Вот ключ, который открывает подвал.",
+"uk": "Ось ключ, що відчиняє льох."
+},
+{
+"id": "fr:29:04",
+"target": "Voici la clé que je cherche.",
+"ru": "Вот ключ, который я ищу.",
+"uk": "Ось ключ, який я шукаю."
+},
+{
+"id": "fr:29:01",
+"target": "C’est le bus qui va à la gare.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "fr:29:04",
+"target": "Voici la clé que je cherche.",
+"ru": "Вот ключ, который я ищу.",
+"uk": "Ось ключ, який я шукаю."
+}
+]
+},
+{
+"lesson": 30,
+"blocks": [
+{
+"textES": "El tren sale pronto. No estás diciendo: «Ya me voy», sino que necesitas irte. La declaración il faut que introduce una demanda, y la siguiente parte indica a quién se aplica.\nCuando es importante nombrar al intérprete, compare il faut partir y il faut que je parte. Después de que, comienza una nueva cláusula con su propio sujeto. El infinitivo del diccionario no se inserta allí.",
+"textId": "Kereta akan segera berangkat. Anda tidak mengatakan, \"Saya sudah akan pergi,\" tetapi lebih tepatnya Anda perlu pergi. Pernyataan il faut que memperkenalkan sebuah permintaan, dan bagian selanjutnya menunjukkan kepada siapa permintaan tersebut berlaku.\nKetika penting untuk menyebutkan nama pelaku, bandingkan il faut partir dan il faut que je parte. Setelah que, klausa baru dimulai dengan subjeknya sendiri. Infinitif kamus tidak dimasukkan di sana.",
+"textPl": "Pociąg wkrótce odjeżdża. Nie mówisz: „Już odjeżdżam”, ale że musisz wyjechać. Oświadczenie il faut que wprowadza żądanie, a jego następna część wskazuje, kogo ono dotyczy.\nGdy ważne jest podanie nazwiska wykonawcy, porównaj il faut partir i il faut que je parte. Po que nowe zdanie rozpoczyna się od własnego podmiotu. Nie wstawia się tam bezokolicznika słownikowego.",
+"textPtBr": "O trem partirá em breve. Você não está dizendo \"Já estou indo embora\", mas sim que precisa ir embora. A declaração il faut que introduz uma exigência, e a parte seguinte indica a quem ela se aplica.\nQuando for importante nomear o intérprete, compare il faut partir e il faut que je parte. Após que, uma nova oração começa com seu próprio sujeito. O infinitivo do dicionário não é inserido ali.",
+"textRU": "Поезд уходит скоро. Ты не утверждаешь «я уже ухожу», а говоришь, что тебе необходимо уйти. Выражение il faut que вводит требование, и следующая часть показывает, к кому оно относится.\nКогда важно назвать исполнителя, сравни il faut partir и il faut que je parte. После que начинается новая часть со своим подлежащим. Словарный инфинитив туда не вставляют.",
+"textTr": "Tren yakında kalkıyor. \"Zaten gidiyorum\" demiyorsunuz, aksine gitmeniz gerektiğini söylüyorsunuz. il faut que numaralı ifade bir talep ortaya koyuyor ve sonraki kısım kime yönelik olduğunu gösteriyor.\nPerformansı gerçekleştirenin adının belirtilmesi önemli olduğunda, il faut partir ve il faut que je parte'yi karşılaştırın. que'ten sonra, kendi öznesiyle yeni bir cümle başlar. Sözlük mastarı oraya eklenmez.",
+"textUK": "Поїзд вирушає незабаром. Ти не стверджуєш «я вже йду», а кажеш, що тобі треба піти. Вираз il faut que вводить вимогу і наступна частина показує, до кого воно відноситься.\nКоли важливо назвати виконавця, порівняй il faut partir та il faut que je parte. Після que починається нова частина зі своїм підлеглим. Словниковий інфінітив туди не вставляють.",
+"textVi": "Chuyến tàu sắp khởi hành. Bạn không nói \"Tôi đi rồi\", mà là bạn cần phải đi. Câu il faut que đưa ra một yêu cầu, và phần tiếp theo cho biết yêu cầu đó áp dụng cho ai.\nKhi cần nêu tên người thực hiện, hãy so sánh il faut partir và il faut que je parte. Sau que, một mệnh đề mới bắt đầu với chủ ngữ riêng của nó. Dạng nguyên thể trong từ điển không được chèn vào đó.",
+"titleES": "Lo que se necesita: il faut que + subjonctif",
+"titleId": "Yang dibutuhkan: il faut que + subjonctif",
+"titlePl": "Co jest potrzebne: il faut que + subjonctif",
+"titlePtBr": "O que é necessário: il faut que + subjonctif",
+"titleRU": "Что необходимо: il faut que + subjonctif",
+"titleTr": "Gerekli olan: il faut que + subjonctif",
+"titleUK": "Що необхідно: il faut que + subjonctif",
+"titleVi": "Cần gì: il faut que + subjonctif",
+"titleByLocale": {
+"en": "What is needed: il faut que + subjonctif",
+"es": "Lo que se necesita: il faut que + subjonctif",
+"id": "Yang dibutuhkan: il faut que + subjonctif",
+"pl": "Co jest potrzebne: il faut que + subjonctif",
+"pt-BR": "O que é necessário: il faut que + subjonctif",
+"ru": "Что необходимо: il faut que + subjonctif",
+"tr": "Gerekli olan: il faut que + subjonctif",
+"uk": "Що необхідно: il faut que + subjonctif",
+"vi": "Cần gì: il faut que + subjonctif"
+},
+"textByLocale": {
+"en": [
+"The train is leaving soon. You're not saying, \"I'm leaving already,\" but rather that you need to leave. Statement «il faut que» introduces a demand, and the next part indicates to whom it applies.",
+"When it's important to name the performer, compare «il faut partir» and «il faut que je parte». After «que», a new clause begins with its own subject. The dictionary infinitive is not inserted there."
+],
+"es": [
+"El tren sale pronto. No estás diciendo: «Ya me voy», sino que necesitas irte. La declaración «il faut que» introduce una demanda, y la siguiente parte indica a quién se aplica.",
+"Cuando es importante nombrar al intérprete, compare «il faut partir» y «il faut que je parte». Después de «que», comienza una nueva cláusula con su propio sujeto. El infinitivo del diccionario no se inserta allí."
+],
+"id": [
+"Kereta akan segera berangkat. Anda tidak mengatakan, \"Saya sudah akan pergi,\" tetapi lebih tepatnya Anda perlu pergi. Pernyataan «il faut que» memperkenalkan sebuah permintaan, dan bagian selanjutnya menunjukkan kepada siapa permintaan tersebut berlaku.",
+"Ketika penting untuk menyebutkan nama pelaku, bandingkan «il faut partir» dan «il faut que je parte». Setelah «que», klausa baru dimulai dengan subjeknya sendiri. Infinitif kamus tidak dimasukkan di sana."
+],
+"pl": [
+"Pociąg wkrótce odjeżdża. Nie mówisz: „Już odjeżdżam”, ale że musisz wyjechać. Oświadczenie «il faut que» wprowadza żądanie, a jego następna część wskazuje, kogo ono dotyczy.",
+"Gdy ważne jest podanie nazwiska wykonawcy, porównaj «il faut partir» i «il faut que je parte». Po «que» nowe zdanie rozpoczyna się od własnego podmiotu. Nie wstawia się tam bezokolicznika słownikowego."
+],
+"pt-BR": [
+"O trem partirá em breve. Você não está dizendo \"Já estou indo embora\", mas sim que precisa ir embora. A declaração «il faut que» introduz uma exigência, e a parte seguinte indica a quem ela se aplica.",
+"Quando for importante nomear o intérprete, compare «il faut partir» e «il faut que je parte». Após «que», uma nova oração começa com seu próprio sujeito. O infinitivo do dicionário não é inserido ali."
+],
+"ru": [
+"Поезд уходит скоро. Ты не утверждаешь «я уже ухожу», а говоришь, что тебе необходимо уйти. Выражение «il faut que» вводит требование, и следующая часть показывает, к кому оно относится.",
+"Когда важно назвать исполнителя, сравни «il faut partir» и «il faut que je parte». После «que» начинается новая часть со своим подлежащим. Словарный инфинитив туда не вставляют."
+],
+"tr": [
+"Tren yakında kalkıyor. \"Zaten gidiyorum\" demiyorsunuz, aksine gitmeniz gerektiğini söylüyorsunuz. «il faut que» numaralı ifade bir talep ortaya koyuyor ve sonraki kısım kime yönelik olduğunu gösteriyor.",
+"Performansı gerçekleştirenin adının belirtilmesi önemli olduğunda, «il faut partir» ve «il faut que je parte»'yi karşılaştırın. «que»'ten sonra, kendi öznesiyle yeni bir cümle başlar. Sözlük mastarı oraya eklenmez."
+],
+"uk": [
+"Поїзд вирушає незабаром. Ти не стверджуєш «я вже йду», а кажеш, що тобі треба піти. Вираз «il faut que» вводить вимогу і наступна частина показує, до кого воно відноситься.",
+"Коли важливо назвати виконавця, порівняй «il faut partir» та «il faut que je parte». Після «que» починається нова частина зі своїм підлеглим. Словниковий інфінітив туди не вставляють."
+],
+"vi": [
+"Chuyến tàu sắp khởi hành. Bạn không nói \"Tôi đi rồi\", mà là bạn cần phải đi. Câu «il faut que» đưa ra một yêu cầu, và phần tiếp theo cho biết yêu cầu đó áp dụng cho ai.",
+"Khi cần nêu tên người thực hiện, hãy so sánh «il faut partir» và «il faut que je parte». Sau «que», một mệnh đề mới bắt đầu với chủ ngữ riêng của nó. Dạng nguyên thể trong từ điển không được chèn vào đó."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:30:01"
+]
+},
+{
+"textES": "il faut que + sujeto + forma subjuntiva\nJe pars es una declaración de acción. Il faut que je parte es un requisito. Después de que, se requiere un formato especial en esta cláusula. A veces se parece a un formato estándar, y a veces cambia significativamente: je suis y que je sois.\nLa forma depende de la persona dentro de la segunda cláusula. En il faut que nous partions, no es el impersonal il, sino nous el que explica el final. El punto de elección es la palabra que precede al verbo que se está verificando.",
+"textId": "il faut que + pelaku + bentuk subjungtif\nJe pars adalah pernyataan tindakan. Il faut que je parte adalah persyaratan. Setelah que, formulir khusus diperlukan dalam klausa ini. Terkadang bentuknya seperti formulir standar, dan terkadang berubah secara signifikan: je suis dan que je sois.\nBentuknya bergantung pada orang dalam klausa kedua. Dalam il faut que nous partions, bukan bentuk impersonal il, tetapi nous yang menjelaskan akhiran. Poin pilihannya adalah kata sebelum kata kerja yang diverifikasi.",
+"textPl": "il faut que + wykonawca + forma łącząca\nJe pars to oświadczenie o działaniu. Il faut que je parte to wymóg. Po que w tej klauzuli wymagany jest specjalny formularz. Czasami wygląda on jak standardowy formularz, a czasami znacząco się zmienia: je suis i que je sois.\nForma zależy od osoby w drugim zdaniu. W il faut que nous partions to nie bezosobowa forma il, ale nous wyjaśnia zakończenie. Punktem wyboru jest słowo przed weryfikowanym czasownikiem.",
+"textPtBr": "il faut que + executor + forma subjuntiva\nJe pars é uma declaração de ação. Il faut que je parte é um requisito. Após que, um formato especial é necessário nesta cláusula. Às vezes, ele se parece com um formato padrão e, às vezes, muda significativamente: je suis e que je sois.\nA forma depende da pessoa dentro da segunda oração. Em il faut que nous partions, não é o impessoal il, mas sim nous que explica a terminação. O ponto de escolha é a palavra anterior ao verbo que está sendo verificado.",
+"textRU": "il faut que + исполнитель + форма сослагательного наклонения\nJe pars — сообщение о действии. Il faut que je parte — необходимость. После que в этом обороте нужна особая форма. Иногда она выглядит как обычная, а иногда меняется заметно: je suis и que je sois.\nФорма зависит от лица внутри второй части. В il faut que nous partions не безличное il, а nous объясняет окончание. Точка выбора — слово перед проверяемым глаголом.",
+"textTr": "il faut que + icra eden + dilek kipi\nJe pars bir eylem ifadesidir. Il faut que je parte bir gerekliliktir. que'ten sonra, bu maddede özel bir form gereklidir. Bazen standart bir forma benzer, bazen de önemli ölçüde değişir: je suis ve que je sois.\nBiçim, ikinci cümledeki kişiye bağlıdır. il faut que nous partions'de, sonu açıklayan şahıssız il değil, nous'tür. Seçim noktası, doğrulanan fiilden önceki kelimedir.",
+"textUK": "il faut que + виконавець + форма умовного способу\nJe pars - повідомлення про дію. Il faut que je parte - необхідність. Після que цьому обороті потрібна особлива форма. Іноді вона виглядає як звичайна, а іноді змінюється помітно: je suis та que je sois.\nФорма залежить від обличчя всередині другої частини. У il faut que nous partions не безособове il, а nous пояснює закінчення. Точка вибору — слово перед дієсловом, що перевіряється.",
+"textVi": "il faut que + người thực hiện + dạng giả định\nJe pars là một câu lệnh hành động. Il faut que je parte là một yêu cầu. Sau que, một hình thức đặc biệt được yêu cầu trong điều khoản này. Đôi khi nó trông giống như một hình thức tiêu chuẩn, và đôi khi nó thay đổi đáng kể: je suis và que je sois.\nHình thức phụ thuộc vào ngôi trong mệnh đề thứ hai. Trong il faut que nous partions, không phải dạng phi cá nhân il mà là nous giải thích phần kết thúc. Điểm lựa chọn là từ đứng trước động từ đang được xác minh.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«il faut que» + performer + subjunctive form",
+"«Je pars» is an action statement. «Il faut que je parte» is a requirement. After «que», a special form is required in this clause. Sometimes it looks like a standard form, and sometimes it changes significantly: «je suis» and «que je sois».",
+"The form depends on the person within the second clause. In «il faut que nous partions», it's not the impersonal «il», but «nous» that explains the ending. The point of choice is the word before the verb being verified."
+],
+"es": [
+"«il faut que» + sujeto + forma subjuntiva",
+"«Je pars» es una declaración de acción. «Il faut que je parte» es un requisito. Después de «que», se requiere un formato especial en esta cláusula. A veces se parece a un formato estándar, y a veces cambia significativamente: «je suis» y «que je sois».",
+"La forma depende de la persona dentro de la segunda cláusula. En «il faut que nous partions», no es el impersonal «il», sino «nous» el que explica el final. El punto de elección es la palabra que precede al verbo que se está verificando."
+],
+"id": [
+"«il faut que» + pelaku + bentuk subjungtif",
+"«Je pars» adalah pernyataan tindakan. «Il faut que je parte» adalah persyaratan. Setelah «que», formulir khusus diperlukan dalam klausa ini. Terkadang bentuknya seperti formulir standar, dan terkadang berubah secara signifikan: «je suis» dan «que je sois».",
+"Bentuknya bergantung pada orang dalam klausa kedua. Dalam «il faut que nous partions», bukan bentuk impersonal «il», tetapi «nous» yang menjelaskan akhiran. Poin pilihannya adalah kata sebelum kata kerja yang diverifikasi."
+],
+"pl": [
+"«il faut que» + wykonawca + forma łącząca",
+"«Je pars» to oświadczenie o działaniu. «Il faut que je parte» to wymóg. Po «que» w tej klauzuli wymagany jest specjalny formularz. Czasami wygląda on jak standardowy formularz, a czasami znacząco się zmienia: «je suis» i «que je sois».",
+"Forma zależy od osoby w drugim zdaniu. W «il faut que nous partions» to nie bezosobowa forma «il», ale «nous» wyjaśnia zakończenie. Punktem wyboru jest słowo przed weryfikowanym czasownikiem."
+],
+"pt-BR": [
+"«il faut que» + executor + forma subjuntiva",
+"«Je pars» é uma declaração de ação. «Il faut que je parte» é um requisito. Após «que», um formato especial é necessário nesta cláusula. Às vezes, ele se parece com um formato padrão e, às vezes, muda significativamente: «je suis» e «que je sois».",
+"A forma depende da pessoa dentro da segunda oração. Em «il faut que nous partions», não é o impessoal «il», mas sim «nous» que explica a terminação. O ponto de escolha é a palavra anterior ao verbo que está sendo verificado."
+],
+"ru": [
+"«il faut que» + исполнитель + форма сослагательного наклонения",
+"«Je pars» — сообщение о действии. «Il faut que je parte» — необходимость. После «que» в этом обороте нужна особая форма. Иногда она выглядит как обычная, а иногда меняется заметно: «je suis» и «que je sois».",
+"Форма зависит от лица внутри второй части. В «il faut que nous partions» не безличное «il», а «nous» объясняет окончание. Точка выбора — слово перед проверяемым глаголом."
+],
+"tr": [
+"«il faut que» + icra eden + dilek kipi",
+"«Je pars» bir eylem ifadesidir. «Il faut que je parte» bir gerekliliktir. «que»'ten sonra, bu maddede özel bir form gereklidir. Bazen standart bir forma benzer, bazen de önemli ölçüde değişir: «je suis» ve «que je sois».",
+"Biçim, ikinci cümledeki kişiye bağlıdır. «il faut que nous partions»'de, sonu açıklayan şahıssız «il» değil, «nous»'tür. Seçim noktası, doğrulanan fiilden önceki kelimedir."
+],
+"uk": [
+"«il faut que» + виконавець + форма умовного способу",
+"«Je pars» - повідомлення про дію. «Il faut que je parte» - необхідність. Після «que» цьому обороті потрібна особлива форма. Іноді вона виглядає як звичайна, а іноді змінюється помітно: «je suis» та «que je sois».",
+"Форма залежить від обличчя всередині другої частини. У «il faut que nous partions» не безособове «il», а «nous» пояснює закінчення. Точка вибору — слово перед дієсловом, що перевіряється."
+],
+"vi": [
+"«il faut que» + người thực hiện + dạng giả định",
+"«Je pars» là một câu lệnh hành động. «Il faut que je parte» là một yêu cầu. Sau «que», một hình thức đặc biệt được yêu cầu trong điều khoản này. Đôi khi nó trông giống như một hình thức tiêu chuẩn, và đôi khi nó thay đổi đáng kể: «je suis» và «que je sois».",
+"Hình thức phụ thuộc vào ngôi trong mệnh đề thứ hai. Trong «il faut que nous partions», không phải dạng phi cá nhân «il» mà là «nous» giải thích phần kết thúc. Điểm lựa chọn là từ đứng trước động từ đang được xác minh."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:30:04",
+"fr:30:05"
+]
+},
+{
+"textES": "Usted, como hablante, necesita irse. Primero el impersonal Il faut, luego que je, luego parte. Aquí parte indica la acción requerida, en lugar de afirmar que la partida ya se ha realizado.",
+"textId": "Anda, sebagai pembicara, perlu pergi. Pertama, bentuk impersonal Il faut, kemudian que je, lalu parte. Di sini parte menunjukkan tindakan yang diperlukan, bukan menyatakan bahwa kepergian telah terjadi.",
+"textPl": "Ty, jako osoba mówiąca, musisz odejść. Najpierw bezosobowa forma Il faut, potem que je, a potem parte. W tym przypadku parte wskazuje na wymaganą czynność, a nie stwierdza, że ​​odejście już nastąpiło.",
+"textPtBr": "Você, como falante, precisa sair. Primeiro o impessoal Il faut, depois que je e, por fim, parte. Aqui, parte indica a ação necessária, em vez de afirmar que a partida já ocorreu.",
+"textRU": "Нужно, чтобы ушёл именно ты сам как говорящий. Сначала безличное Il faut, затем que je, затем parte. Здесь parte показывает требуемое действие, а не утверждает, что уход уже состоялся.",
+"textTr": "Konuşmacı olarak siz ayrılmalısınız. Önce şahıssız Il faut, sonra que je, sonra parte. Burada parte, ayrılışın zaten gerçekleştiğini belirtmek yerine, gerekli eylemi gösterir.",
+"textUK": "Потрібно, щоб пішов саме ти сам як той, хто говорить. Спочатку безособове Il faut, потім que je, потім parte. Тут parte показує необхідну дію, а не стверджує, що відхід вже відбувся.",
+"textVi": "Bạn, với tư cách là người nói, cần phải rời đi. Đầu tiên là dạng phi cá nhân Il faut, sau đó là que je, rồi đến parte. Ở đây parte chỉ ra hành động cần thiết, chứ không phải nói rằng việc rời đi đã diễn ra.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You, as the speaker, need to leave. First the impersonal «Il faut», then «que je», then «parte». Here «parte» indicates the required action, rather than stating that the departure has already taken place."
+],
+"es": [
+"Usted, como hablante, necesita irse. Primero el impersonal «Il faut», luego «que je», luego «parte». Aquí «parte» indica la acción requerida, en lugar de afirmar que la partida ya se ha realizado."
+],
+"id": [
+"Anda, sebagai pembicara, perlu pergi. Pertama, bentuk impersonal «Il faut», kemudian «que je», lalu «parte». Di sini «parte» menunjukkan tindakan yang diperlukan, bukan menyatakan bahwa kepergian telah terjadi."
+],
+"pl": [
+"Ty, jako osoba mówiąca, musisz odejść. Najpierw bezosobowa forma «Il faut», potem «que je», a potem «parte». W tym przypadku «parte» wskazuje na wymaganą czynność, a nie stwierdza, że ​​odejście już nastąpiło."
+],
+"pt-BR": [
+"Você, como falante, precisa sair. Primeiro o impessoal «Il faut», depois «que je» e, por fim, «parte». Aqui, «parte» indica a ação necessária, em vez de afirmar que a partida já ocorreu."
+],
+"ru": [
+"Нужно, чтобы ушёл именно ты сам как говорящий. Сначала безличное «Il faut», затем «que je», затем «parte». Здесь «parte» показывает требуемое действие, а не утверждает, что уход уже состоялся."
+],
+"tr": [
+"Konuşmacı olarak siz ayrılmalısınız. Önce şahıssız «Il faut», sonra «que je», sonra «parte». Burada «parte», ayrılışın zaten gerçekleştiğini belirtmek yerine, gerekli eylemi gösterir."
+],
+"uk": [
+"Потрібно, щоб пішов саме ти сам як той, хто говорить. Спочатку безособове «Il faut», потім «que je», потім «parte». Тут «parte» показує необхідну дію, а не стверджує, що відхід вже відбувся."
+],
+"vi": [
+"Bạn, với tư cách là người nói, cần phải rời đi. Đầu tiên là dạng phi cá nhân «Il faut», sau đó là «que je», rồi đến «parte». Ở đây «parte» chỉ ra hành động cần thiết, chứ không phải nói rằng việc rời đi đã diễn ra."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:30:01",
+"fr:30:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:30:01",
+"target": "Il faut que je parte.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "fr:30:04",
+"target": "Il faut que nous partions.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+},
+{
+"id": "fr:30:05",
+"target": "Il faut que vous partiez.",
+"ru": "Вам нужно уйти.",
+"uk": "Ви повинні піти."
+},
+{
+"id": "fr:30:01",
+"target": "Il faut que je parte.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "fr:30:04",
+"target": "Il faut que nous partions.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+}
+]
+},
+{
+"lesson": 31,
+"blocks": [
+{
+"textES": "Estás hablando de una llamada telefónica que recibiste ayer. Ya habías comido cuando sonó. Aquí hay dos eventos pasados: uno fue el punto de partida, el otro ocurrió antes.\nAquí se necesitan dos tiempos verbales del pasado, no necesariamente dos verbos en una misma frase: el segundo momento puede conocerse a partir de la conversación. Indica primero la acción anterior.",
+"textId": "Anda sedang membicarakan panggilan telepon yang Anda terima kemarin. Anda sudah makan ketika telepon berdering. Ada dua peristiwa masa lalu di sini: satu adalah titik awalnya, yang lain terjadi sebelum itu.\nDua bentuk lampau diperlukan di sini, tidak harus dua kata kerja dalam satu frasa: momen kedua mungkin diketahui dari percakapan. Nyatakan tindakan yang lebih awal terlebih dahulu.",
+"textPl": "Mówisz o telefonie, który odebrałeś wczoraj. Jadłeś już, kiedy zadzwonił. Są tu dwa wydarzenia z przeszłości: jedno było punktem wyjścia, a drugie miało miejsce przed nim.\nTutaj potrzebne są dwa czasy przeszłe, niekoniecznie dwa czasowniki w jednym zdaniu: drugi moment może być znany z rozmowy. Najpierw podaj wcześniejszą czynność.",
+"textPtBr": "Você está falando de um telefonema que recebeu ontem. Você já tinha comido quando tocou. Há dois eventos passados ​​aqui: um foi o ponto de partida, o outro aconteceu antes dele.\nDois tempos verbais no passado são necessários aqui, não necessariamente dois verbos em uma mesma frase: o segundo momento pode ser conhecido pela conversa. Declare a ação anterior primeiro.",
+"textRU": "Ты рассказываешь о вчерашнем звонке. Когда телефон зазвонил, ты уже поел. Здесь есть два события в прошлом: одно стало точкой отсчёта, другое случилось до него.\nЗдесь нужны два прошлых плана, а не обязательно два глагола в одной фразе: второй момент может быть известен из разговора. Сначала укажи более раннее действие.",
+"textTr": "Dün aldığınız bir telefon görüşmesinden bahsediyorsunuz. Telefon çaldığında zaten yemek yemiştiniz. Burada iki geçmiş olay var: biri başlangıç ​​noktası, diğeri ise ondan önce gerçekleşti.\nBurada iki geçmiş zaman kipi gereklidir, mutlaka tek bir ifadede iki fiil gerekmez: ikinci an konuşmadan bilinebilir. Önce önceki eylemi belirtin.",
+"textUK": "Ти розповідаєш про вчорашній дзвінок. Коли телефон задзвонив, то ти вже поїв. Тут є дві події в минулому: одна стала точкою відліку, інша сталася до нього.\nТут потрібні два минулі плани, а не обов'язково два дієслова в одній фразі: другий момент може бути відомий з розмови. Спочатку вкажи більш ранню дію.",
+"textVi": "Bạn đang nói về một cuộc gọi điện thoại bạn nhận được ngày hôm qua. Bạn đã ăn xong khi điện thoại reo. Có hai sự kiện trong quá khứ ở đây: một là điểm khởi đầu, sự kiện còn lại xảy ra trước đó.\nCần hai thì quá khứ ở đây, không nhất thiết phải có hai động từ trong một cụm từ: thời điểm thứ hai có thể được biết từ cuộc trò chuyện. Hãy nêu hành động trước đó trước.",
+"titleES": "Lo que sucedió incluso antes: plus-que-parfait",
+"titleId": "Apa yang terjadi bahkan lebih awal: plus-que-parfait",
+"titlePl": "Co wydarzyło się jeszcze wcześniej: plus-que-parfait",
+"titlePtBr": "O que aconteceu ainda antes: plus-que-parfait",
+"titleRU": "Что было ещё раньше: plus-que-parfait",
+"titleTr": "Daha da öncesinde ne oldu: plus-que-parfait",
+"titleUK": "Що було ще раніше: plus-que-parfait",
+"titleVi": "Điều gì đã xảy ra sớm hơn nữa: plus-que-parfait",
+"titleByLocale": {
+"en": "What happened even earlier: plus-que-parfait",
+"es": "Lo que sucedió incluso antes: plus-que-parfait",
+"id": "Apa yang terjadi bahkan lebih awal: plus-que-parfait",
+"pl": "Co wydarzyło się jeszcze wcześniej: plus-que-parfait",
+"pt-BR": "O que aconteceu ainda antes: plus-que-parfait",
+"ru": "Что было ещё раньше: plus-que-parfait",
+"tr": "Daha da öncesinde ne oldu: plus-que-parfait",
+"uk": "Що було ще раніше: plus-que-parfait",
+"vi": "Điều gì đã xảy ra sớm hơn nữa: plus-que-parfait"
+},
+"textByLocale": {
+"en": [
+"You're talking about a phone call you received yesterday. You'd already eaten when it rang. There are two past events here: one was the starting point, the other happened before it.",
+"Two past tenses are needed here, not necessarily two verbs in one phrase: the second moment may be known from the conversation. State the earlier action first."
+],
+"es": [
+"Estás hablando de una llamada telefónica que recibiste ayer. Ya habías comido cuando sonó. Aquí hay dos eventos pasados: uno fue el punto de partida, el otro ocurrió antes.",
+"Aquí se necesitan dos tiempos verbales del pasado, no necesariamente dos verbos en una misma frase: el segundo momento puede conocerse a partir de la conversación. Indica primero la acción anterior."
+],
+"id": [
+"Anda sedang membicarakan panggilan telepon yang Anda terima kemarin. Anda sudah makan ketika telepon berdering. Ada dua peristiwa masa lalu di sini: satu adalah titik awalnya, yang lain terjadi sebelum itu.",
+"Dua bentuk lampau diperlukan di sini, tidak harus dua kata kerja dalam satu frasa: momen kedua mungkin diketahui dari percakapan. Nyatakan tindakan yang lebih awal terlebih dahulu."
+],
+"pl": [
+"Mówisz o telefonie, który odebrałeś wczoraj. Jadłeś już, kiedy zadzwonił. Są tu dwa wydarzenia z przeszłości: jedno było punktem wyjścia, a drugie miało miejsce przed nim.",
+"Tutaj potrzebne są dwa czasy przeszłe, niekoniecznie dwa czasowniki w jednym zdaniu: drugi moment może być znany z rozmowy. Najpierw podaj wcześniejszą czynność."
+],
+"pt-BR": [
+"Você está falando de um telefonema que recebeu ontem. Você já tinha comido quando tocou. Há dois eventos passados ​​aqui: um foi o ponto de partida, o outro aconteceu antes dele.",
+"Dois tempos verbais no passado são necessários aqui, não necessariamente dois verbos em uma mesma frase: o segundo momento pode ser conhecido pela conversa. Declare a ação anterior primeiro."
+],
+"ru": [
+"Ты рассказываешь о вчерашнем звонке. Когда телефон зазвонил, ты уже поел. Здесь есть два события в прошлом: одно стало точкой отсчёта, другое случилось до него.",
+"Здесь нужны два прошлых плана, а не обязательно два глагола в одной фразе: второй момент может быть известен из разговора. Сначала укажи более раннее действие."
+],
+"tr": [
+"Dün aldığınız bir telefon görüşmesinden bahsediyorsunuz. Telefon çaldığında zaten yemek yemiştiniz. Burada iki geçmiş olay var: biri başlangıç ​​noktası, diğeri ise ondan önce gerçekleşti.",
+"Burada iki geçmiş zaman kipi gereklidir, mutlaka tek bir ifadede iki fiil gerekmez: ikinci an konuşmadan bilinebilir. Önce önceki eylemi belirtin."
+],
+"uk": [
+"Ти розповідаєш про вчорашній дзвінок. Коли телефон задзвонив, то ти вже поїв. Тут є дві події в минулому: одна стала точкою відліку, інша сталася до нього.",
+"Тут потрібні два минулі плани, а не обов'язково два дієслова в одній фразі: другий момент може бути відомий з розмови. Спочатку вкажи більш ранню дію."
+],
+"vi": [
+"Bạn đang nói về một cuộc gọi điện thoại bạn nhận được ngày hôm qua. Bạn đã ăn xong khi điện thoại reo. Có hai sự kiện trong quá khứ ở đây: một là điểm khởi đầu, sự kiện còn lại xảy ra trước đó.",
+"Cần hai thì quá khứ ở đây, không nhất thiết phải có hai động từ trong một cụm từ: thời điểm thứ hai có thể được biết từ cuộc trò chuyện. Hãy nêu hành động trước đó trước."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:31:01"
+]
+},
+{
+"textES": "avais / étais y otras formas de imparfait + participio\nPrimero, establezca el orden de los eventos: la comida va primero, la llamada telefónica va al final. Para identificar claramente el evento anterior, registre el código j’avais mangé. No lo confunda con el código j’ai mangé, que simplemente informa sobre una acción pasada.\nTome el mismo par de auxiliar y participio que en passé composé, pero coloque el auxiliar en imparfait. J’ai mangé se convierte en j’avais mangé. El participio en sí no cambia de tiempo.",
+"textId": "avais / étais dan bentuk lain dari imparfait + partisip\nPertama, tetapkan urutan kejadian: makanan datang pertama, panggilan telepon datang terakhir. Untuk mengidentifikasi kejadian yang lebih awal dengan jelas, kumpulkan j’avais mangé. Jangan sampai tertukar dengan j’ai mangé, yang dengan sendirinya hanya melaporkan tindakan masa lalu.\nGunakan pasangan kata bantu dan partisip yang sama seperti pada passé composé, tetapi tempatkan kata bantu di imparfait. J’ai mangé menjadi j’avais mangé. Partisip itu sendiri tidak berubah tenses-nya.",
+"textPl": "avais / étais i inne formy imparfait + imiesłów\nNajpierw ustal kolejność zdarzeń: najpierw jedzenie, a na końcu rozmowa telefoniczna. Aby jednoznacznie zidentyfikować wcześniejsze zdarzenie, zbierz j’avais mangé. Nie myl go z j’ai mangé, który sam w sobie po prostu informuje o czynności z przeszłości.\nWeź tę samą parę „asist” i „participle” co w zdaniu passé composé, ale umieść „assist” w zdaniu imparfait. J’ai mangé staje się j’avais mangé. Sam „participle” nie zmienia czasu.",
+"textPtBr": "avais / étais e outras formas de imparfait + particípio\nPrimeiro, estabeleça a ordem dos eventos: a comida vem primeiro, a ligação telefônica vem por último. Para identificar claramente o evento anterior, colete o código j’avais mangé. Não o confunda com o código j’ai mangé, que por si só simplesmente relata uma ação passada.\nPegue o mesmo par de assistente e particípio de passé composé, mas coloque o assistente em imparfait. J’ai mangé torna-se j’avais mangé. O particípio em si não muda de tempo verbal.",
+"textRU": "avais / étais и другие формы imparfait + причастие\nСначала установи порядок событий: еда — раньше, звонок — позже. Чтобы явно выделить более раннее событие, собери j’avais mangé. Не путай его с j’ai mangé, которое само по себе просто сообщает о прошедшем действии.\nВозьми ту же пару помощник и причастие, что в passé composé, но поставь помощника в imparfait. J’ai mangé превращается в j’avais mangé. Само причастие не меняет время.",
+"textTr": "avais / étais ve imparfait'ün diğer biçimleri + fiilimsiz\nÖncelikle olayların sırasını belirleyin: önce yemek, sonra telefon görüşmesi. Daha önceki olayı net bir şekilde belirlemek için j’avais mangé'i kaydedin. Bunu, tek başına sadece geçmiş bir eylemi bildiren j’ai mangé ile karıştırmayın.\npassé composé'deki yardımcı fiil ve fiilimsiyi aynı şekilde alın, ancak yardımcı fiili imparfait'ye yerleştirin. J’ai mangé, j’avais mangé olur. Fiilimsinin kendisi zaman kipini değiştirmez.",
+"textUK": "avais / étais та інші форми imparfait + причастя\nСпочатку встанови порядок подій: їжа - раніше, дзвінок - пізніше. Щоб явно виділити більш ранню подію, збери j’avais mangé. Не плутай її з j’ai mangé, яка сама по собі просто повідомляє про минулу дію.\nВізьми ту ж пару помічник і причастя, що в passé composé, але постав помічника в imparfait. J’ai mangé перетворюється на j’avais mangé. Саме причастя не змінює час.",
+"textVi": "avais / étais và các dạng khác của imparfait + phân từ\nĐầu tiên, hãy xác định thứ tự các sự kiện: thức ăn diễn ra trước, cuộc gọi điện thoại diễn ra sau. Để xác định rõ sự kiện nào xảy ra trước, hãy thu thập mã j’avais mangé. Đừng nhầm lẫn mã này với j’ai mangé, mã này chỉ đơn giản là báo cáo một hành động trong quá khứ.\nLấy cùng cặp trợ động từ và phân từ như trong passé composé, nhưng đặt trợ động từ vào vị trí imparfait. J’ai mangé trở thành j’avais mangé. Bản thân phân từ không thay đổi thì.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«avais» / «étais» and other forms of «imparfait» + participle",
+"First, establish the order of events: food comes first, phone call comes last. To clearly identify the earlier event, collect «j’avais mangé». Don't confuse it with «j’ai mangé», which by itself simply reports a past action.",
+"Take the same pair of assistant and participle as in «passé composé», but place the assistant in «imparfait». «J’ai mangé» becomes «j’avais mangé». The participle itself doesn't change tense."
+],
+"es": [
+"«avais» / «étais» y otras formas de «imparfait» + participio",
+"Primero, establezca el orden de los eventos: la comida va primero, la llamada telefónica va al final. Para identificar claramente el evento anterior, registre el código «j’avais mangé». No lo confunda con el código «j’ai mangé», que simplemente informa sobre una acción pasada.",
+"Tome el mismo par de auxiliar y participio que en «passé composé», pero coloque el auxiliar en «imparfait». «J’ai mangé» se convierte en «j’avais mangé». El participio en sí no cambia de tiempo."
+],
+"id": [
+"«avais» / «étais» dan bentuk lain dari «imparfait» + partisip",
+"Pertama, tetapkan urutan kejadian: makanan datang pertama, panggilan telepon datang terakhir. Untuk mengidentifikasi kejadian yang lebih awal dengan jelas, kumpulkan «j’avais mangé». Jangan sampai tertukar dengan «j’ai mangé», yang dengan sendirinya hanya melaporkan tindakan masa lalu.",
+"Gunakan pasangan kata bantu dan partisip yang sama seperti pada «passé composé», tetapi tempatkan kata bantu di «imparfait». «J’ai mangé» menjadi «j’avais mangé». Partisip itu sendiri tidak berubah tenses-nya."
+],
+"pl": [
+"«avais» / «étais» i inne formy «imparfait» + imiesłów",
+"Najpierw ustal kolejność zdarzeń: najpierw jedzenie, a na końcu rozmowa telefoniczna. Aby jednoznacznie zidentyfikować wcześniejsze zdarzenie, zbierz «j’avais mangé». Nie myl go z «j’ai mangé», który sam w sobie po prostu informuje o czynności z przeszłości.",
+"Weź tę samą parę „asist” i „participle” co w zdaniu «passé composé», ale umieść „assist” w zdaniu «imparfait». «J’ai mangé» staje się «j’avais mangé». Sam „participle” nie zmienia czasu."
+],
+"pt-BR": [
+"«avais» / «étais» e outras formas de «imparfait» + particípio",
+"Primeiro, estabeleça a ordem dos eventos: a comida vem primeiro, a ligação telefônica vem por último. Para identificar claramente o evento anterior, colete o código «j’avais mangé». Não o confunda com o código «j’ai mangé», que por si só simplesmente relata uma ação passada.",
+"Pegue o mesmo par de assistente e particípio de «passé composé», mas coloque o assistente em «imparfait». «J’ai mangé» torna-se «j’avais mangé». O particípio em si não muda de tempo verbal."
+],
+"ru": [
+"«avais» / «étais» и другие формы «imparfait» + причастие",
+"Сначала установи порядок событий: еда — раньше, звонок — позже. Чтобы явно выделить более раннее событие, собери «j’avais mangé». Не путай его с «j’ai mangé», которое само по себе просто сообщает о прошедшем действии.",
+"Возьми ту же пару помощник и причастие, что в «passé composé», но поставь помощника в «imparfait». «J’ai mangé» превращается в «j’avais mangé». Само причастие не меняет время."
+],
+"tr": [
+"«avais» / «étais» ve «imparfait»'ün diğer biçimleri + fiilimsiz",
+"Öncelikle olayların sırasını belirleyin: önce yemek, sonra telefon görüşmesi. Daha önceki olayı net bir şekilde belirlemek için «j’avais mangé»'i kaydedin. Bunu, tek başına sadece geçmiş bir eylemi bildiren «j’ai mangé» ile karıştırmayın.",
+"«passé composé»'deki yardımcı fiil ve fiilimsiyi aynı şekilde alın, ancak yardımcı fiili «imparfait»'ye yerleştirin. «J’ai mangé», «j’avais mangé» olur. Fiilimsinin kendisi zaman kipini değiştirmez."
+],
+"uk": [
+"«avais» / «étais» та інші форми «imparfait» + причастя",
+"Спочатку встанови порядок подій: їжа - раніше, дзвінок - пізніше. Щоб явно виділити більш ранню подію, збери «j’avais mangé». Не плутай її з «j’ai mangé», яка сама по собі просто повідомляє про минулу дію.",
+"Візьми ту ж пару помічник і причастя, що в «passé composé», але постав помічника в «imparfait». «J’ai mangé» перетворюється на «j’avais mangé». Саме причастя не змінює час."
+],
+"vi": [
+"«avais» / «étais» và các dạng khác của «imparfait» + phân từ",
+"Đầu tiên, hãy xác định thứ tự các sự kiện: thức ăn diễn ra trước, cuộc gọi điện thoại diễn ra sau. Để xác định rõ sự kiện nào xảy ra trước, hãy thu thập mã «j’avais mangé». Đừng nhầm lẫn mã này với «j’ai mangé», mã này chỉ đơn giản là báo cáo một hành động trong quá khứ.",
+"Lấy cùng cặp trợ động từ và phân từ như trong «passé composé», nhưng đặt trợ động từ vào vị trí «imparfait». «J’ai mangé» trở thành «j’avais mangé». Bản thân phân từ không thay đổi thì."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:31:04",
+"fr:31:05"
+]
+},
+{
+"textES": "Estás hablando de una llamada telefónica en el pasado. Cuando sonó el teléfono, el almuerzo ya había terminado. J’avais mangé sitúa la comida antes de ese momento; quand tu as appelé establece el punto de partida.",
+"textId": "Anda berbicara tentang panggilan telepon di masa lalu. Pada saat telepon berdering, makan siang sudah berakhir. J’avais mangé menempatkan makanan sebelum momen itu; quand tu as appelé menetapkan titik awal.",
+"textPl": "Mówisz o rozmowie telefonicznej w przeszłości. Zanim zadzwonił telefon, lunch już się skończył. J’avais mangé umieszcza jedzenie przed tym momentem; quand tu as appelé ustala punkt początkowy.",
+"textPtBr": "Você está falando sobre um telefonema no passado. Quando o telefone tocou, o almoço já havia terminado. J’avais mangé situa a refeição antes desse momento; quand tu as appelé estabelece o ponto de partida.",
+"textRU": "Ты рассказываешь о звонке в прошлом. К моменту звонка обед уже закончился. J’avais mangé ставит еду раньше этого момента; quand tu as appelé задаёт точку отсчёта.",
+"textTr": "Geçmişteki bir telefon görüşmesinden bahsediyorsunuz. Telefon çaldığında öğle yemeği çoktan bitmişti. J’avais mangé yemeği o andan önceye yerleştirir; quand tu as appelé başlangıç ​​noktasını belirler.",
+"textUK": "Ти розповідаєш про дзвінок у минулому. На момент дзвінка обід уже закінчився. J’avais mangé ставить їжу раніше за цей момент; quand tu as appelé задає точку відліку.",
+"textVi": "Bạn đang nói về một cuộc gọi điện thoại trong quá khứ. Vào thời điểm điện thoại reo, bữa trưa đã kết thúc. J’avais mangé đặt thức ăn trước thời điểm đó; quand tu as appelé đặt điểm bắt đầu.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're talking about a phone call in the past. By the time the phone rang, lunch had already ended. «J’avais mangé» places the food before that moment; «quand tu as appelé» sets the starting point."
+],
+"es": [
+"Estás hablando de una llamada telefónica en el pasado. Cuando sonó el teléfono, el almuerzo ya había terminado. «J’avais mangé» sitúa la comida antes de ese momento; «quand tu as appelé» establece el punto de partida."
+],
+"id": [
+"Anda berbicara tentang panggilan telepon di masa lalu. Pada saat telepon berdering, makan siang sudah berakhir. «J’avais mangé» menempatkan makanan sebelum momen itu; «quand tu as appelé» menetapkan titik awal."
+],
+"pl": [
+"Mówisz o rozmowie telefonicznej w przeszłości. Zanim zadzwonił telefon, lunch już się skończył. «J’avais mangé» umieszcza jedzenie przed tym momentem; «quand tu as appelé» ustala punkt początkowy."
+],
+"pt-BR": [
+"Você está falando sobre um telefonema no passado. Quando o telefone tocou, o almoço já havia terminado. «J’avais mangé» situa a refeição antes desse momento; «quand tu as appelé» estabelece o ponto de partida."
+],
+"ru": [
+"Ты рассказываешь о звонке в прошлом. К моменту звонка обед уже закончился. «J’avais mangé» ставит еду раньше этого момента; «quand tu as appelé» задаёт точку отсчёта."
+],
+"tr": [
+"Geçmişteki bir telefon görüşmesinden bahsediyorsunuz. Telefon çaldığında öğle yemeği çoktan bitmişti. «J’avais mangé» yemeği o andan önceye yerleştirir; «quand tu as appelé» başlangıç ​​noktasını belirler."
+],
+"uk": [
+"Ти розповідаєш про дзвінок у минулому. На момент дзвінка обід уже закінчився. «J’avais mangé» ставить їжу раніше за цей момент; «quand tu as appelé» задає точку відліку."
+],
+"vi": [
+"Bạn đang nói về một cuộc gọi điện thoại trong quá khứ. Vào thời điểm điện thoại reo, bữa trưa đã kết thúc. «J’avais mangé» đặt thức ăn trước thời điểm đó; «quand tu as appelé» đặt điểm bắt đầu."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:31:01",
+"fr:31:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:31:01",
+"target": "J’avais déjà mangé quand tu as appelé.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "fr:31:04",
+"target": "Nous avions déjà réservé nos places.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця."
+},
+{
+"id": "fr:31:05",
+"target": "Vous aviez déjà lu le message.",
+"ru": "Вы уже прочитали сообщение.",
+"uk": "Ви вже прочитали повідомлення."
+},
+{
+"id": "fr:31:01",
+"target": "J’avais déjà mangé quand tu as appelé.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "fr:31:04",
+"target": "Nous avions déjà réservé nos places.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця."
+}
+]
+},
+{
+"lesson": 32,
+"blocks": [
+{
+"textES": "Un amigo se ofrece a ayudar, pero estás ocupado. Quieres decir: «Si tuviera tiempo, iría». Esto no es una promesa para mañana, sino una situación hipotética. Una parte establece la condición, la otra muestra qué cambiaría.\nSepara la condición del resultado. La forma verbal imparfait nos ayuda a imaginar una situación posible o irreal, ahora o en el futuro, no necesariamente un evento del pasado.",
+"textId": "Seorang teman menawarkan bantuan, tetapi Anda sedang sibuk. Anda ingin mengatakan, \"Jika saya punya waktu, saya akan datang.\" Ini bukan janji untuk besok, tetapi situasi imajiner. Satu bagian menetapkan kondisi, bagian lain menunjukkan apa yang akan berubah.\nPisahkan kondisi dari hasilnya. Bentuk tenses imparfait di sini membantu kita membayangkan situasi yang mungkin atau tidak nyata sekarang atau di masa depan, bukan peristiwa di masa lalu.",
+"textPl": "Przyjaciel oferuje pomoc, ale jesteś zajęty. Chcesz powiedzieć: „Gdybym miał czas, to bym przyszedł”. To nie obietnica na jutro, ale wyimaginowana sytuacja. Jedna część określa warunek, druga pokazuje, co się zmieni.\nOddziel warunek od rezultatu. Forma czasu imparfait pomaga nam wyobrazić sobie możliwą lub nierealną sytuację teraz lub w przyszłości, niekoniecznie zdarzenie z przeszłości.",
+"textPtBr": "Um amigo se oferece para ajudar, mas você está ocupado. Você quer dizer: \"Se eu tivesse tempo, eu iria\". Isso não é uma promessa para amanhã, mas uma situação imaginária. Uma parte estabelece a condição, a outra mostra o que mudaria.\nSepare a condição do resultado. A forma verbal imparfait aqui nos ajuda a imaginar uma situação possível ou irreal agora ou no futuro, não necessariamente um evento no passado.",
+"textRU": "Друг предлагает помочь, а ты занят. Хочется сказать «будь у меня время — я бы пришёл». Это не обещание на завтра, а воображаемая ситуация. Одна часть задаёт условие, вторая показывает, что изменилось бы.\nОтдели условие от результата. Временная форма imparfait здесь помогает представить возможную или нереальную ситуацию сейчас или в будущем, а не обязательно событие в прошлом.",
+"textTr": "Bir arkadaşınız yardım teklif ediyor, ama siz meşgulsünüz. \"Zamanım olsaydı gelirdim\" demek istiyorsunuz. Bu, yarın için bir söz değil, hayali bir durum. Bir kısım koşulu belirliyor, diğer kısım ise neyin değişeceğini gösteriyor.\nKoşulu sonuçtan ayırın. Buradaki imparfait zaman kipi, geçmişteki bir olayı değil, şimdi veya gelecekte olası veya gerçek olmayan bir durumu hayal etmemize yardımcı olur.",
+"textUK": "Друг пропонує допомогти, а ти зайнятий. Хочеться сказати \"будь у мене час - я б прийшов\". Це не обіцянка на завтра, а уявна ситуація. Одна частина ставить умову, друга показує, що змінилося б.\nВідокремте умову від результату. Тимчасова форма imparfait тут допомагає уявити можливу чи нереальну ситуацію зараз чи в майбутньому, а не обов'язкова подія у минулому.",
+"textVi": "Một người bạn đề nghị giúp đỡ, nhưng bạn lại bận. Bạn muốn nói, \"Nếu mình có thời gian, mình sẽ đến.\" Đây không phải là lời hứa cho ngày mai, mà là một tình huống giả định. Một phần nêu lên điều kiện, phần còn lại cho thấy điều gì sẽ thay đổi.\nTách điều kiện khỏi kết quả. Dạng thì imparfait ở đây giúp chúng ta tưởng tượng một tình huống có thể xảy ra hoặc không có thật hiện tại hoặc trong tương lai, không nhất thiết là một sự kiện trong quá khứ.",
+"titleES": "Imagina la condición: si + imparfait",
+"titleId": "Bayangkan kondisinya: si + imparfait",
+"titlePl": "Wyobraź sobie warunek: si + imparfait",
+"titlePtBr": "Imagine a condição: si + imparfait",
+"titleRU": "Представить условие: si + imparfait",
+"titleTr": "Şu koşulu hayal edin: si + imparfait",
+"titleUK": "Представити умову: si + imparfait",
+"titleVi": "Hãy tưởng tượng điều kiện: si + imparfait",
+"titleByLocale": {
+"en": "Imagine the condition: si + imparfait",
+"es": "Imagina la condición: si + imparfait",
+"id": "Bayangkan kondisinya: si + imparfait",
+"pl": "Wyobraź sobie warunek: si + imparfait",
+"pt-BR": "Imagine a condição: si + imparfait",
+"ru": "Представить условие: si + imparfait",
+"tr": "Şu koşulu hayal edin: si + imparfait",
+"uk": "Представити умову: si + imparfait",
+"vi": "Hãy tưởng tượng điều kiện: si + imparfait"
+},
+"textByLocale": {
+"en": [
+"A friend offers to help, but you're busy. You want to say, \"If I had time, I'd come.\" This isn't a promise for tomorrow, but an imaginary situation. One part sets the condition, the other shows what would change.",
+"Separate the condition from the result. The tense form «imparfait» here helps us imagine a possible or unreal situation now or in the future, not necessarily an event in the past."
+],
+"es": [
+"Un amigo se ofrece a ayudar, pero estás ocupado. Quieres decir: «Si tuviera tiempo, iría». Esto no es una promesa para mañana, sino una situación hipotética. Una parte establece la condición, la otra muestra qué cambiaría.",
+"Separa la condición del resultado. La forma verbal «imparfait» nos ayuda a imaginar una situación posible o irreal, ahora o en el futuro, no necesariamente un evento del pasado."
+],
+"id": [
+"Seorang teman menawarkan bantuan, tetapi Anda sedang sibuk. Anda ingin mengatakan, \"Jika saya punya waktu, saya akan datang.\" Ini bukan janji untuk besok, tetapi situasi imajiner. Satu bagian menetapkan kondisi, bagian lain menunjukkan apa yang akan berubah.",
+"Pisahkan kondisi dari hasilnya. Bentuk tenses «imparfait» di sini membantu kita membayangkan situasi yang mungkin atau tidak nyata sekarang atau di masa depan, bukan peristiwa di masa lalu."
+],
+"pl": [
+"Przyjaciel oferuje pomoc, ale jesteś zajęty. Chcesz powiedzieć: „Gdybym miał czas, to bym przyszedł”. To nie obietnica na jutro, ale wyimaginowana sytuacja. Jedna część określa warunek, druga pokazuje, co się zmieni.",
+"Oddziel warunek od rezultatu. Forma czasu «imparfait» pomaga nam wyobrazić sobie możliwą lub nierealną sytuację teraz lub w przyszłości, niekoniecznie zdarzenie z przeszłości."
+],
+"pt-BR": [
+"Um amigo se oferece para ajudar, mas você está ocupado. Você quer dizer: \"Se eu tivesse tempo, eu iria\". Isso não é uma promessa para amanhã, mas uma situação imaginária. Uma parte estabelece a condição, a outra mostra o que mudaria.",
+"Separe a condição do resultado. A forma verbal «imparfait» aqui nos ajuda a imaginar uma situação possível ou irreal agora ou no futuro, não necessariamente um evento no passado."
+],
+"ru": [
+"Друг предлагает помочь, а ты занят. Хочется сказать «будь у меня время — я бы пришёл». Это не обещание на завтра, а воображаемая ситуация. Одна часть задаёт условие, вторая показывает, что изменилось бы.",
+"Отдели условие от результата. Временная форма «imparfait» здесь помогает представить возможную или нереальную ситуацию сейчас или в будущем, а не обязательно событие в прошлом."
+],
+"tr": [
+"Bir arkadaşınız yardım teklif ediyor, ama siz meşgulsünüz. \"Zamanım olsaydı gelirdim\" demek istiyorsunuz. Bu, yarın için bir söz değil, hayali bir durum. Bir kısım koşulu belirliyor, diğer kısım ise neyin değişeceğini gösteriyor.",
+"Koşulu sonuçtan ayırın. Buradaki «imparfait» zaman kipi, geçmişteki bir olayı değil, şimdi veya gelecekte olası veya gerçek olmayan bir durumu hayal etmemize yardımcı olur."
+],
+"uk": [
+"Друг пропонує допомогти, а ти зайнятий. Хочеться сказати \"будь у мене час - я б прийшов\". Це не обіцянка на завтра, а уявна ситуація. Одна частина ставить умову, друга показує, що змінилося б.",
+"Відокремте умову від результату. Тимчасова форма «imparfait» тут допомагає уявити можливу чи нереальну ситуацію зараз чи в майбутньому, а не обов'язкова подія у минулому."
+],
+"vi": [
+"Một người bạn đề nghị giúp đỡ, nhưng bạn lại bận. Bạn muốn nói, \"Nếu mình có thời gian, mình sẽ đến.\" Đây không phải là lời hứa cho ngày mai, mà là một tình huống giả định. Một phần nêu lên điều kiện, phần còn lại cho thấy điều gì sẽ thay đổi.",
+"Tách điều kiện khỏi kết quả. Dạng thì «imparfait» ở đây giúp chúng ta tưởng tượng một tình huống có thể xảy ra hoặc không có thật hiện tại hoặc trong tương lai, không nhất thiết là một sự kiện trong quá khứ."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:32:01"
+]
+},
+{
+"textES": "si + la condición imaginaria en imparfait → la consecuencia en conditionnel\nLa condición comienza con si y aquí toma la forma imparfait. El resultado es la forma conditionnel. Las partes se pueden reorganizar, los roles permanecen iguales: Si j’avais le temps, je viendrais y Je viendrais si j’avais le temps.\nDespués del condicional si en este modelo, no coloques je serais ni j’aurais. La condición se construye con étais o avais. Mantén la forma con \"would\" para el resultado.",
+"textId": "si + kondisi imajiner dalam imparfait → konsekuensi dalam conditionnel\nKondisi dimulai dengan si dan di sini mengambil bentuk imparfait. Hasilnya adalah bentuk conditionnel. Bagian-bagiannya dapat disusun ulang, perannya tetap sama: Si j’avais le temps, je viendrais dan Je viendrais si j’avais le temps.\nSetelah kondisional si dalam model ini, jangan masukkan je serais atau j’aurais. Kondisi dibangun dengan étais atau avais. Pertahankan bentuk dengan \"would\" untuk hasilnya.",
+"textPl": "si + wyimaginowany warunek w imparfait → konsekwencja w conditionnel\nWarunek zaczyna się od si i tutaj przyjmuje formę imparfait. Wynikiem jest forma conditionnel. Części można przeorganizować, role pozostają takie same: Si j’avais le temps, je viendrais i Je viendrais si j’avais le temps.\nPo trybie warunkowym si w tym modelu nie umieszczaj je serais ani j’aurais. Warunek jest budowany za pomocą étais lub avais. Zachowaj formę z „would” dla rezultatu.",
+"textPtBr": "si + a condição imaginária em imparfait → a consequência em conditionnel\nA condição começa com si e aqui assume a forma imparfait. O resultado é a forma conditionnel. As partes podem ser reorganizadas, as funções permanecem as mesmas: Si j’avais le temps, je viendrais e Je viendrais si j’avais le temps.\nApós a condicional si neste modelo, não coloque je serais ou j’aurais. A condição é construída com étais ou avais. Mantenha a forma com \"would\" para o resultado.",
+"textRU": "si + воображаемое условие в imparfait → следствие в conditionnel\nУсловие начинается с si и здесь получает форму imparfait. Результат — форму conditionnel. Части можно переставить, роли остаются теми же: Si j’avais le temps, je viendrais и Je viendrais si j’avais le temps.\nПосле условного si в этой модели не ставь je serais или j’aurais. Условие строится с étais или avais. Форму с «бы» сохраняй для результата.",
+"textTr": "si + imparfait'deki hayali koşul → conditionnel'teki sonuç\nKoşul si ile başlar ve burada imparfait şeklini alır. Sonuç conditionnel şeklindedir. Parçalar yeniden düzenlenebilir, roller aynı kalır: Si j’avais le temps, je viendrais ve Je viendrais si j’avais le temps.\nBu modelde si koşullu cümlesinden sonra je serais veya j’aurais koymayın. Koşul étais veya avais ile oluşturulur. Sonuç için \"would\" ile formu koruyun.",
+"textUK": "si + уявна умова в imparfait → слідство в conditionnel\nУмова починається з si і тут отримує форму imparfait. Результат - форму conditionnel. Частини можна переставити, ролі залишаються тими ж: Si j’avais le temps, je viendrais та Je viendrais si j’avais le temps.\nПісля умовного si у цій моделі не став je serais або j’aurais. Умова будується з étais або avais. Форму з «б» зберігай для результату.",
+"textVi": "si + điều kiện tưởng tượng trong imparfait → hậu quả trong conditionnel\nTình trạng bắt đầu với si và ở đây có dạng imparfait. Kết quả là dạng conditionnel. Các bộ phận có thể được sắp xếp lại, vai trò vẫn giữ nguyên: Si j’avais le temps, je viendrais và Je viendrais si j’avais le temps.\nSau mệnh đề điều kiện si trong mô hình này, đừng đặt je serais hoặc j’aurais. Điều kiện được xây dựng bằng étais hoặc avais. Giữ nguyên dạng với \"would\" cho kết quả.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«si» + the imaginary condition in «imparfait» → the consequence in «conditionnel»",
+"The condition starts with «si» and here takes the form «imparfait». The result is form «conditionnel». The parts can be rearranged, the roles remain the same: «Si j’avais le temps, je viendrais» and «Je viendrais si j’avais le temps».",
+"After the conditional «si» in this model, don't put «je serais» or «j’aurais». The condition is built with «étais» or «avais». Keep the form with \"would\" for the result."
+],
+"es": [
+"«si» + la condición imaginaria en «imparfait» → la consecuencia en «conditionnel»",
+"La condición comienza con «si» y aquí toma la forma «imparfait». El resultado es la forma «conditionnel». Las partes se pueden reorganizar, los roles permanecen iguales: «Si j’avais le temps, je viendrais» y «Je viendrais si j’avais le temps».",
+"Después del condicional «si» en este modelo, no coloques «je serais» ni «j’aurais». La condición se construye con «étais» o «avais». Mantén la forma con \"would\" para el resultado."
+],
+"id": [
+"«si» + kondisi imajiner dalam «imparfait» → konsekuensi dalam «conditionnel»",
+"Kondisi dimulai dengan «si» dan di sini mengambil bentuk «imparfait». Hasilnya adalah bentuk «conditionnel». Bagian-bagiannya dapat disusun ulang, perannya tetap sama: «Si j’avais le temps, je viendrais» dan «Je viendrais si j’avais le temps».",
+"Setelah kondisional «si» dalam model ini, jangan masukkan «je serais» atau «j’aurais». Kondisi dibangun dengan «étais» atau «avais». Pertahankan bentuk dengan \"would\" untuk hasilnya."
+],
+"pl": [
+"«si» + wyimaginowany warunek w «imparfait» → konsekwencja w «conditionnel»",
+"Warunek zaczyna się od «si» i tutaj przyjmuje formę «imparfait». Wynikiem jest forma «conditionnel». Części można przeorganizować, role pozostają takie same: «Si j’avais le temps, je viendrais» i «Je viendrais si j’avais le temps».",
+"Po trybie warunkowym «si» w tym modelu nie umieszczaj «je serais» ani «j’aurais». Warunek jest budowany za pomocą «étais» lub «avais». Zachowaj formę z „would” dla rezultatu."
+],
+"pt-BR": [
+"«si» + a condição imaginária em «imparfait» → a consequência em «conditionnel»",
+"A condição começa com «si» e aqui assume a forma «imparfait». O resultado é a forma «conditionnel». As partes podem ser reorganizadas, as funções permanecem as mesmas: «Si j’avais le temps, je viendrais» e «Je viendrais si j’avais le temps».",
+"Após a condicional «si» neste modelo, não coloque «je serais» ou «j’aurais». A condição é construída com «étais» ou «avais». Mantenha a forma com \"would\" para o resultado."
+],
+"ru": [
+"«si» + воображаемое условие в «imparfait» → следствие в «conditionnel»",
+"Условие начинается с «si» и здесь получает форму «imparfait». Результат — форму «conditionnel». Части можно переставить, роли остаются теми же: «Si j’avais le temps, je viendrais» и «Je viendrais si j’avais le temps».",
+"После условного «si» в этой модели не ставь «je serais» или «j’aurais». Условие строится с «étais» или «avais». Форму с «бы» сохраняй для результата."
+],
+"tr": [
+"«si» + «imparfait»'deki hayali koşul → «conditionnel»'teki sonuç",
+"Koşul «si» ile başlar ve burada «imparfait» şeklini alır. Sonuç «conditionnel» şeklindedir. Parçalar yeniden düzenlenebilir, roller aynı kalır: «Si j’avais le temps, je viendrais» ve «Je viendrais si j’avais le temps».",
+"Bu modelde «si» koşullu cümlesinden sonra «je serais» veya «j’aurais» koymayın. Koşul «étais» veya «avais» ile oluşturulur. Sonuç için \"would\" ile formu koruyun."
+],
+"uk": [
+"«si» + уявна умова в «imparfait» → слідство в «conditionnel»",
+"Умова починається з «si» і тут отримує форму «imparfait». Результат - форму «conditionnel». Частини можна переставити, ролі залишаються тими ж: «Si j’avais le temps, je viendrais» та «Je viendrais si j’avais le temps».",
+"Після умовного «si» у цій моделі не став «je serais» або «j’aurais». Умова будується з «étais» або «avais». Форму з «б» зберігай для результату."
+],
+"vi": [
+"«si» + điều kiện tưởng tượng trong «imparfait» → hậu quả trong «conditionnel»",
+"Tình trạng bắt đầu với «si» và ở đây có dạng «imparfait». Kết quả là dạng «conditionnel». Các bộ phận có thể được sắp xếp lại, vai trò vẫn giữ nguyên: «Si j’avais le temps, je viendrais» và «Je viendrais si j’avais le temps».",
+"Sau mệnh đề điều kiện «si» trong mô hình này, đừng đặt «je serais» hoặc «j’aurais». Điều kiện được xây dựng bằng «étais» hoặc «avais». Giữ nguyên dạng với \"would\" cho kết quả."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:32:04",
+"fr:32:05"
+]
+},
+{
+"textES": "Estás ocupado, pero te imaginas que tienes tiempo. Si j’avais le temps establece la condición. Je viendrais nombra una acción posible. Ninguna de las partes garantiza que vendrás.",
+"textId": "Anda sibuk, tetapi Anda membayangkan Anda punya waktu. Si j’avais le temps menetapkan kondisi. Je viendrais menyebutkan tindakan yang mungkin. Kedua bagian tersebut tidak menjanjikan Anda pasti akan datang.",
+"textPl": "Jesteś zajęty, ale wyobrażasz sobie, że masz czas. Si j’avais le temps ustawia warunek. Je viendrais określa możliwą czynność. Żadna z części nie obiecuje, że na pewno przyjdziesz.",
+"textPtBr": "Você está ocupado, mas imagina que tem tempo. Si j’avais le temps estabelece a condição. Je viendrais nomeia uma possível ação. Nenhuma das partes promete que você definitivamente virá.",
+"textRU": "Ты занят, но представляешь, что время есть. Si j’avais le temps задаёт условие. Je viendrais называет возможное действие. Ни та, ни другая часть не обещает, что ты точно придёшь.",
+"textTr": "Meşgulsünüz, ama zamanınız olduğunu hayal ediyorsunuz. Si j’avais le temps koşulu belirliyor. Je viendrais olası bir eylemi adlandırıyor. Her iki kısım da kesinlikle geleceğinizi garanti etmiyor.",
+"textUK": "Ти зайнятий, але уявляєш, що час є. Si j’avais le temps визначає умову. Je viendrais називає можливу дію. Ні та, ні інша частина не обіцяє, що ти точно прийдеш.",
+"textVi": "Bạn bận rộn, nhưng bạn tưởng tượng mình có thời gian. Si j’avais le temps đặt ra điều kiện. Je viendrais nêu tên một hành động có thể xảy ra. Cả hai phần đều không đảm bảo bạn chắc chắn sẽ đến.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're busy, but you imagine you have time. «Si j’avais le temps» sets the condition. «Je viendrais» names a possible action. Neither part promises you'll definitely come."
+],
+"es": [
+"Estás ocupado, pero te imaginas que tienes tiempo. «Si j’avais le temps» establece la condición. «Je viendrais» nombra una acción posible. Ninguna de las partes garantiza que vendrás."
+],
+"id": [
+"Anda sibuk, tetapi Anda membayangkan Anda punya waktu. «Si j’avais le temps» menetapkan kondisi. «Je viendrais» menyebutkan tindakan yang mungkin. Kedua bagian tersebut tidak menjanjikan Anda pasti akan datang."
+],
+"pl": [
+"Jesteś zajęty, ale wyobrażasz sobie, że masz czas. «Si j’avais le temps» ustawia warunek. «Je viendrais» określa możliwą czynność. Żadna z części nie obiecuje, że na pewno przyjdziesz."
+],
+"pt-BR": [
+"Você está ocupado, mas imagina que tem tempo. «Si j’avais le temps» estabelece a condição. «Je viendrais» nomeia uma possível ação. Nenhuma das partes promete que você definitivamente virá."
+],
+"ru": [
+"Ты занят, но представляешь, что время есть. «Si j’avais le temps» задаёт условие. «Je viendrais» называет возможное действие. Ни та, ни другая часть не обещает, что ты точно придёшь."
+],
+"tr": [
+"Meşgulsünüz, ama zamanınız olduğunu hayal ediyorsunuz. «Si j’avais le temps» koşulu belirliyor. «Je viendrais» olası bir eylemi adlandırıyor. Her iki kısım da kesinlikle geleceğinizi garanti etmiyor."
+],
+"uk": [
+"Ти зайнятий, але уявляєш, що час є. «Si j’avais le temps» визначає умову. «Je viendrais» називає можливу дію. Ні та, ні інша частина не обіцяє, що ти точно прийдеш."
+],
+"vi": [
+"Bạn bận rộn, nhưng bạn tưởng tượng mình có thời gian. «Si j’avais le temps» đặt ra điều kiện. «Je viendrais» nêu tên một hành động có thể xảy ra. Cả hai phần đều không đảm bảo bạn chắc chắn sẽ đến."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:32:01",
+"fr:32:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:32:01",
+"target": "Si j’avais le temps, je viendrais.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "fr:32:04",
+"target": "Si j’étais libre, je t’aiderais.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі."
+},
+{
+"id": "fr:32:05",
+"target": "Si tu étais libre, tu pourrais venir.",
+"ru": "Если бы ты был свободен, ты мог бы прийти.",
+"uk": "Якби ти був вільний, ти міг би прийти."
+},
+{
+"id": "fr:32:01",
+"target": "Si j’avais le temps, je viendrais.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "fr:32:04",
+"target": "Si j’étais libre, je t’aiderais.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі."
+}
+]
+}
+]

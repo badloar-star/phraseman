@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 // check_live_functions_vs_head.mjs — сверка «что живёт на бою» с «что экспортирует HEAD» перед выкладкой функций.
-// зачем (координатор 25.10): 23–24.10 функции выкладывали из рабочего дерева — на бою оказались функции без исходника в git
-// (истории), а клиент звал функцию, которой на бою нет (learningV2CourseReleasedSessionGetV4). Перед утренним пакетом:
 //   1) каждое имя из --only обязано экспортироваться в HEAD своей кодовой базы — иначе СТОП (выкладка создала бы/сломала бы не то);
 //   2) список «на бою, но не в HEAD» печатается по кодовым базам: при адресной выкладке (--only с именами) firebase их не трогает,
-//      а выкладка всей кодовой базы удалила бы их — поэтому цель вида functions:default / functions:content без имени — СТОП.
+//      а выкладка всей кодовой базы удалила бы их — поэтому цель вида functions:default без имени — СТОП.
 // Только чтение: git show HEAD и firebase functions:list. Ничего не выкладывает.
 //
-//   node scripts/check_live_functions_vs_head.mjs --only "functions:default:a,functions:content:b,firestore:rules"
+//   node scripts/check_live_functions_vs_head.mjs --only "functions:default:a,firestore:rules"
 import { execFileSync } from 'node:child_process';
 
 const PROJECT = 'phraseman-ea0b3';
-const CODEBASE_INDEX = { default: 'functions/src/index.ts', content: 'functions-content/index.ts' };
+const CODEBASE_INDEX = { default: 'functions/src/index.ts' };
 
 function arg(name) {
   const i = process.argv.indexOf(name);

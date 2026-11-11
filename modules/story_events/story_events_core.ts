@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder'; // contest_winner, referral_ladder — истории из проекции доступа (Моменты 29.10), в журнал историй не пишутся
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder' | 'home_activity'; // Projection and Home activity stories stay out of the persistent journal.
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 
@@ -137,9 +137,17 @@ export function serializeStoryEvents(list: StoryEventList): string {
   return JSON.stringify({ v: 1, events: list });
 }
 
-/** Skip withdrawn announcements in the direction the user requested. */
-export function nextLiveStoryIndex(events:StoryEventList,target:number,current:number,liveIds?:readonly string[]):number {
- let index=Math.max(0,target);const direction=target<current?-1:1;
- while(index>=0&&index<events.length&&events[index].type==='announcement'&&liveIds&&!liveIds.includes(events[index].id))index+=direction;
- return index;
+export function isStoryAvailable(event: StoryEvent, liveAnnouncements?: readonly string[], liveHomeStoryIds?: readonly string[]): boolean {
+  if (event.type === 'announcement' && liveAnnouncements) return liveAnnouncements.includes(event.id);
+  if (event.type === 'home_activity' && liveHomeStoryIds) return liveHomeStoryIds.includes(event.id);
+  return true;
+}
+
+export function nextLiveStoryIndex(events: StoryEventList, target: number, current: number, liveAnnouncements?: readonly string[], liveHomeStoryIds?: readonly string[]): number {
+  let index = Math.max(0, target);
+  const direction = target < current ? -1 : 1;
+  while (index >= 0 && index < events.length && !isStoryAvailable(events[index], liveAnnouncements, liveHomeStoryIds)) {
+    index += direction;
+  }
+  return index;
 }

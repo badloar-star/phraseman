@@ -58,6 +58,9 @@ type ModeRow = {
 
 const SHEET_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
 
+// Give the bottom row room for its shadow inside the scroll viewport.
+const TILE_SHADOW_BOTTOM_SPACE = 24;
+
 export default function FlashcardsTrainingModeSheet({
   visible,
   lang,
@@ -230,7 +233,7 @@ export default function FlashcardsTrainingModeSheet({
         </Pressable>
         {/* зачем (координатор 14.10, «ручка ⇒ свайп», лист едет за пальцем): свайп вниз за ручку/шапку закрывает шторку тем же onClose, что фон и «назад» */}
         <SheetSwipeClose name="cards-training-mode" onClose={onClose}>
-        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { backgroundColor: g.opaqueSheet, maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40, insets.bottom + 8) }, sheetStyle]}>
+        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { backgroundColor: g.opaqueSheet, maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40 - TILE_SHADOW_BOTTOM_SPACE, insets.bottom) }, sheetStyle]}>
           {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
               Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → подложка шторки темы (opaqueSheet) на 55 % → второй цвет темы 14 %, без альфы.
               Замечание владельца 10.10: подложка и блики — токены выбранной темы, не литералы под «Аврору». */}
@@ -327,8 +330,6 @@ const baseStyles = StyleSheet.create({
   backdrop: { backgroundColor: 'rgba(2,2,4,0.88)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме (kit `.dim`)
   sheet: { width: '100%', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
-  // зачем (Сверка cards-section-032, kit.css `.sheet` поля 12/18/40 и `.grab` 44×5 + 26): шторка была ~15 px выше макета —
-  // лишние нижние поля (системный отступ + 16 + 4). Теперь низ 40 (системная полоса ложится поверх, как в макете), под хватателем 26.
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 26 },
   headRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
   // зачем (Карточки 2.0 12.10): заголовок шторки по центру (макет `.center` + 22/28), подпись «Готовим…» под ним тоже по центру
@@ -337,7 +338,7 @@ const baseStyles = StyleSheet.create({
   headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4, textAlign: 'center' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
-  content: { paddingTop: 22, paddingBottom: 0 },
+  content: { paddingTop: 22, paddingBottom: TILE_SHADOW_BOTTOM_SPACE },
   // cards-v2 `.mgrid`: сетка 2×2, зазор 10; `.mt`: r20, поля 16, высота от 112, значок сверху, подписи внизу
   grid: { gap: 10 },
   gridRow: { flexDirection: 'row', gap: 10 },

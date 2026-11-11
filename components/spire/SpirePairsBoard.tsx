@@ -13,7 +13,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import V2Pressable from '../v2/V2Pressable';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../practice/PracticeGlass';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 

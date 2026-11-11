@@ -1,0 +1,548 @@
+[
+  {
+    "id": "de:23:17",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target du → ти",
+    "fix": "Якщо платіж пройде, ти отримаєш квитанцію."
+  },
+  {
+    "id": "de:30:12",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target du → ти",
+    "fix": "Ти знаєш, чи залишилася сіль у шафі?"
+  },
+  {
+    "id": "de:30:20",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target du → ти",
+    "fix": "Ти знаєш, скільки коштує доставка?"
+  },
+  {
+    "id": "en-classic-r1:12.31",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ви знайшли свої ключі?"
+  },
+  {
+    "id": "en-classic-r1:12.35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ви бачили знак?"
+  },
+  {
+    "id": "en-classic-r1:12.41",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Куди ви поклали запасний ключ?"
+  },
+  {
+    "id": "en-classic-r1:12.44",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Кого ви зустріли на вокзалі?"
+  },
+  {
+    "id": "en-classic-r1:13.50",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Я подзвоню вам після зміни."
+  },
+  {
+    "id": "en-classic-r1:15.12",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ваш шарф на стільці."
+  },
+  {
+    "id": "en-classic-r1:15.23",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ця парасолька ваша?"
+  },
+  {
+    "id": "en-classic-r1:15.29",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Це ваша шафка?"
+  },
+  {
+    "id": "en-classic-r1:15.30",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Це ваші навушники?"
+  },
+  {
+    "id": "en-classic-r1:15.50",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Я думаю, що ця парасолька ваша."
+  },
+  {
+    "id": "en-classic-r1:16.36",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ви шукали її внизу?"
+  },
+  {
+    "id": "en-classic-r1:17.10",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Ваш чай холоне."
+  },
+  {
+    "id": "en-classic-r1:25.34",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (вы)",
+    "fix": "Де ви сиділи?"
+  },
+  {
+    "id": "en-classic-r1:28.40",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (ты)",
+    "fix": "Ти поранився, коли впав?"
+  },
+  {
+    "id": "en-classic-r1:32.46",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: en: uk приведён к обращению ru (ты)",
+    "fix": "Якби в мене була вільна кімната, ти міг би залишитися в мене."
+  },
+  {
+    "id": "fr:02:08",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Вас немає вдома."
+  },
+  {
+    "id": "fr:02:19",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви не запізнилися."
+  },
+  {
+    "id": "fr:04:45",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target votre → ваш",
+    "fix": "Це ваш телефон?"
+  },
+  {
+    "id": "fr:04:47",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vos → ваш",
+    "fix": "Це ваш багаж?"
+  },
+  {
+    "id": "fr:07:18",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти слухаєш радіо."
+  },
+  {
+    "id": "fr:07:25",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви шукаєте готель?"
+  },
+  {
+    "id": "fr:07:35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви готуєте обід."
+  },
+  {
+    "id": "fr:08:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Де ви працюєте?"
+  },
+  {
+    "id": "fr:08:09",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target votre → ваш",
+    "fix": "Де ваш готель?"
+  },
+  {
+    "id": "fr:08:45",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Як ви доберетеся додому сьогодні ввечері?"
+  },
+  {
+    "id": "fr:08:47",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Що ви готуєте?"
+  },
+  {
+    "id": "fr:09:42",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vos → ваші",
+    "fix": "Де ваші валізи?"
+  },
+  {
+    "id": "fr:10:17",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → вас",
+    "fix": "Для вас є повідомлення."
+  },
+  {
+    "id": "fr:11:35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви їдете на пляж поїздом?"
+  },
+  {
+    "id": "fr:14:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви можете пройти."
+  },
+  {
+    "id": "fr:17:44",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти пам'ятаєш цю адресу?"
+  },
+  {
+    "id": "fr:18:12",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти забронював номер."
+  },
+  {
+    "id": "fr:18:15",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви зберегли чек."
+  },
+  {
+    "id": "fr:20:36",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти вставав раніше?"
+  },
+  {
+    "id": "fr:20:37",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target ta → твоя",
+    "fix": "Де працювала твоя мама?"
+  },
+  {
+    "id": "fr:22:04",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш його."
+  },
+  {
+    "id": "fr:22:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш її."
+  },
+  {
+    "id": "fr:22:06",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш їх."
+  },
+  {
+    "id": "fr:23:18",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → ви",
+    "fix": "Ви показуєте їм вихід."
+  },
+  {
+    "id": "fr:30:19",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → вам",
+    "fix": "Вам потрібно зробити вибір."
+  },
+  {
+    "id": "fr:30:30",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vous → вам",
+    "fix": "Вам потрібно записатися на прийом."
+  },
+  {
+    "id": "fr:31:50",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Я зміг увійти, бо ти залишив мені ключ."
+  },
+  {
+    "id": "fr:32:02",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Якби в тебе був час, ти б прийшов."
+  },
+  {
+    "id": "fr:32:26",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти б краще чув, якби зачинив вікно."
+  },
+  {
+    "id": "fr:32:47",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Якби ти вмів плавати, ти міг би піти з нами."
+  },
+  {
+    "id": "fr:32:49",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target ton → твій",
+    "fix": "Якби в мене був твій досвід, я б спробував щастя."
+  },
+  {
+    "id": "it:02:08",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target voi → ви",
+    "fix": "Вас немає вдома."
+  },
+  {
+    "id": "it:04:35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target suo (Lei) → ваш",
+    "fix": "Ваша черга."
+  },
+  {
+    "id": "it:04:45",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target suo (Lei) → ваш",
+    "fix": "Це ваш телефон?"
+  },
+  {
+    "id": "it:04:47",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target vostri → ваш",
+    "fix": "Це ваш багаж?"
+  },
+  {
+    "id": "it:05:46",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "У вас є вибір."
+  },
+  {
+    "id": "it:07:25",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Ви шукаєте готель?"
+  },
+  {
+    "id": "it:07:35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target voi → ви",
+    "fix": "Ви готуєте обід."
+  },
+  {
+    "id": "it:08:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Де ви працюєте?"
+  },
+  {
+    "id": "it:08:09",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target suo (Lei) → ваш",
+    "fix": "Де ваш готель?"
+  },
+  {
+    "id": "it:08:45",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Як ви доберетеся додому сьогодні ввечері?"
+  },
+  {
+    "id": "it:08:47",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Що ви готуєте?"
+  },
+  {
+    "id": "it:10:17",
+    "type": "B2",
+    "field": "ru",
+    "problem": "ты/вы: target te → тебя (uk уже «для тебе»)",
+    "fix": "Для тебя есть сообщение."
+  },
+  {
+    "id": "it:11:35",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Ви їдете на пляж поїздом?"
+  },
+  {
+    "id": "it:14:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target voi → ви",
+    "fix": "Ви можете пройти."
+  },
+  {
+    "id": "it:18:12",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти забронював номер."
+  },
+  {
+    "id": "it:18:15",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → ви",
+    "fix": "Ви зберегли чек."
+  },
+  {
+    "id": "it:20:36",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти вставав раніше?"
+  },
+  {
+    "id": "it:20:37",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tua → твоя",
+    "fix": "Де працювала твоя мама?"
+  },
+  {
+    "id": "it:22:04",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш його."
+  },
+  {
+    "id": "it:22:05",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш її."
+  },
+  {
+    "id": "it:22:06",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти знаєш їх."
+  },
+  {
+    "id": "it:23:18",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target voi → ви",
+    "fix": "Ви показуєте їм вихід."
+  },
+  {
+    "id": "it:30:19",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target voi → вам",
+    "fix": "Вам потрібно зробити вибір."
+  },
+  {
+    "id": "it:30:25",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → вам",
+    "fix": "Вам потрібно підійти до стійки реєстрації."
+  },
+  {
+    "id": "it:30:30",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target Lei → вам",
+    "fix": "Вам потрібно записатися на прийом."
+  },
+  {
+    "id": "it:31:50",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Я зміг увійти, бо ти залишив мені ключ."
+  },
+  {
+    "id": "it:32:02",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Якби в тебе був час, ти б прийшов."
+  },
+  {
+    "id": "it:32:26",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tu → ти",
+    "fix": "Ти б краще чув, якби зачинив вікно."
+  },
+  {
+    "id": "it:32:49",
+    "type": "B2",
+    "field": "uk",
+    "problem": "ты/вы: target tua → твій",
+    "fix": "Якби в мене був твій досвід, я б спробував щастя."
+  }
+]

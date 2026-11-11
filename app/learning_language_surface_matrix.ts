@@ -3,7 +3,6 @@ export { LEARNING_LANGUAGE_TARGETS, type LearningLanguageTarget } from './learni
 
 export const LEARNING_LANGUAGE_SURFACES = [
   'lessons',
-  'learning_v2',
   'daily_phrase',
   'dialogues',
   'arena',

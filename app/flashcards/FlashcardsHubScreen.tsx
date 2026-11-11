@@ -19,7 +19,6 @@ import {
 import ContentWrap from '../../components/ContentWrap';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { usePremium } from '../../components/PremiumContext';
@@ -289,7 +288,6 @@ function FlashcardsHubScreenInner() {
     return feed.packs.length;
   }, [catalog, catalogLoadState, hiddenCommunityIds, feedPackLanguage, studyTarget]);
   const [catalogLoadRevision, setCatalogLoadRevision] = useState(0);
-  const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const openingPackRef = useRef<string | null>(null);
   /** Зеркало длины каталога: фокус-эффект решает по нему, нужен ли спиннер. */
   const catalogLenRef = useRef(0);
@@ -502,7 +500,6 @@ function FlashcardsHubScreenInner() {
        */
       if (catalogLenRef.current === 0) setCatalogLoadState('loading');
       openingPackRef.current = null;
-      setOpeningPackId(null);
       void (async () => {
         const [official, published, owned, authored] = await Promise.all([
           loadMarketplacePacks(studyTarget).catch(noteSwallowedAs('FlashcardsHubScreen:useCallback.loadMarketplacePacks', [])),
@@ -587,7 +584,7 @@ function FlashcardsHubScreenInner() {
   const trainingRemaining = Math.max(0, quotaPreview.limit - quotaPreview.used);
   // зачем (аудит #16, 15.10): у Plus лимита тренировок нет — «N/30», «осталось N из 30» ему не показываем (тренировки считаются, но не ограничивают)
   // (Ревизор 9fa4a4835, 15.10: пока доступ не выяснен, платящий не должен видеть лимит ни на кадр — только accessResolved && !hasPremiumAccess)
-  const trainingLimitShown = accessResolved && !hasPremiumAccess;
+  const trainingLimitShown = quotaPreview.limit > 0 && accessResolved && !hasPremiumAccess;
   const trainAccessibilityLabel = trainingLocked
     ? `${copy.train}. ${copy.trainA11yExhausted}`
     : quotaPreview.status === 'allowed' && trainingLimitShown
@@ -863,7 +860,7 @@ function FlashcardsHubScreenInner() {
   const showFresh = savedCount === 0 && myPackCount === 0;
   // зачем (C2): объект `fresh` не должен меняться между рендерами без смены языка/показа
   const fresh = useMemo(() => showFresh
-    // зачем (макет cards-zero 05.11): без плашки-приглашения; главная кнопка при 0/0 — «Создать набор» (то же действие, что «+» в шапке)
+    // зачем (макет cards-zero 05.11): без плашки плашки-приглашения; главная кнопка при 0/0 — «Создать набор» (то же действие, что «+» в шапке)
     ? { cta: copy.create, onPress: openCreatePack }
     : undefined, [showFresh, copy.create, openCreatePack]);
 
@@ -883,7 +880,6 @@ function FlashcardsHubScreenInner() {
     <View style={[styles.screen, { backgroundColor: g.bg }]} onLayout={() => trainNavMark('hub onLayout')}>
       {/* зачем: фон хаба как в макете — пятна цвета темы (один статичный слой), а не плоская заливка */}
       <V2Backdrop />
-      <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />
       <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>

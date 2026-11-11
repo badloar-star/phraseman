@@ -4,7 +4,6 @@
  */
 
 import { rememberInitialDeepLinkTarget } from './initial_deep_link_store';
-import { LEARNING_V2_HIDDEN_REDIRECT, logLearningV2Hidden } from './learning_v2_visibility_switch';
 
 // зачем (Сверка 10.10: `phraseman://video` открывает Главную; сперва логи): каждый вход и выход нормализации ссылки пишется одной строкой —
 // видно, что пришло, холодный ли это старт и куда ссылку отправили. Поиск по префиксу [DEEPLINK].
@@ -58,32 +57,6 @@ function redirectSystemPathInner({
   // стоит ДО реферального `/invite`, иначе `/arena/invite/…` ушло бы туда.
   if (/(?:^|\/)arena(?:_[a-z_]+)?(?:[/?#]|$)/i.test(raw)) {
     return '/home';
-  }
-
-  // Learning V2 отключён решением владельца, не включать: боевые, служебные и
-  // dev-алиасы закрываются до сопоставления Expo Router, независимо от env.
-  if (/(?:^|\/)(?:(?:dev_|_)?learning[-_]v2|dev_(?:season|chapter_exam_v2)_preview)(?:[/_?#]|$)/i.test(raw)) {
-    logLearningV2Hidden('deep_link', LEARNING_V2_HIDDEN_REDIRECT, `path=${raw.split(/[?#]/)[0]}`);
-    return LEARNING_V2_HIDDEN_REDIRECT;
-  }
-
-  // зачем (координатор 17.10, проверка живых входов в занятие, [V2-HANDOFF]): внешняя ссылка прямо в занятие идёт мимо карты — без
-  // подготовки (handoff). Канонический id (lesson-NN:session:NN) пропускаем: плеер строит локатор из id и уводит на карту с журналом
-  // (задача диплинка s56 — отдельно). Неканонический id (например en-l01-s01) давал «Сессия недоступна» — ведём на карту курса.
-  const sessionLink = raw.match(/^\/?learning-v2\/session\/([^?#/]+)/i);
-  if (sessionLink) {
-    // зачем (Ревизор 3.29, 🔴): битая ссылка (%E0%A4%A) — decodeURIComponent бросает URIError на старте навигации = краш.
-    // Не разобрали — как неканонический id: на карту курса, с причиной в журнале.
-    let linkId: string;
-    try {
-      linkId = decodeURIComponent(sessionLink[1]);
-    } catch (error: unknown) {
-      console.warn('[V2-HANDOFF] deep_link decode_failed', JSON.stringify({ raw: sessionLink[1].slice(0, 80), error: error instanceof Error ? error.message : String(error), action: 'course_map' })); // guard-ok: catch называет причину
-      return '/learning-v2/course';
-    }
-    const canonical = /^lesson-\d{2}:session:\d{2}$/.test(linkId);
-    console.log('[V2-HANDOFF] deep_link', JSON.stringify({ id: linkId, canonical, hasLocator: canonical, hasRunId: /[?&]sessionRunId=/.test(raw), action: canonical ? 'pass_to_player' : 'course_map' })); // guard-ok: строка на каждый внешний вход в занятие
-    if (!canonical) return '/learning-v2/course';
   }
 
   // зачем (владелец 2026-09-30): пейволы A–G удалены, остался один пейвол Plus

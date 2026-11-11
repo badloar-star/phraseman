@@ -1,0 +1,1465 @@
+[
+{
+"lesson": 1,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 1,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Где я, где ты, где вещи: глагол estar",
+"formula": "(кто или что) + estoy / estás / está… + место",
+"story": "Я говорю про себя: estoy. Обращаюсь к тебе: estás. Место aquí не менялось.",
+"use": "Скажи, где находишься ты, другой человек или знакомая вещь. Одна модель: форма estar + место.",
+"choose": "Переведи сначала не место, а того, о ком говоришь. Я → estoy, ты → estás. Одно имя или один предмет → está. Мы → estamos. Два имени или несколько вещей → están. Так, в «Ана и Луис здесь» есть два человека: Ana y Luis están aquí. Таблица ниже нужна для справки, не для заучивания за один раз.",
+"nuance": "Estar — словарная форма. В полном утверждении «Я здесь» нужна личная форма estoy. Добавить yo можно: Yo estoy aquí.",
+"wrong": "Yo estar aquí.",
+"right": "Estoy aquí.",
+"chapters": [
+{
+"title": "Как сказать, где я нахожусь?",
+"body": "Скажи, где ты: Estoy en casa — «Я дома». В словаре глагол называется estar, а когда говоришь о себе, выбирай estoy. На вопрос «Где?» можно коротко ответить aquí («здесь»). Для полного предложения добавь глагол: Estoy aquí.",
+"note": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"samples": [
+"es:01:01",
+"es:01:06"
+],
+"focusId": "es:01:01"
+},
+{
+"title": "Как выбирать форму, а не угадывать её?",
+"body": "Переведи сначала не место, а того, о ком говоришь. Я → estoy, ты → estás. Одно имя или один предмет → está. Мы → estamos. Два имени или несколько вещей → están. Так, в «Ана и Луис здесь» есть два человека: Ana y Luis están aquí. Таблица ниже нужна для справки, не для заучивания за один раз.",
+"note": "«Ana y Luis» — несколько человек; поэтому están.",
+"samples": [
+"es:01:02",
+"es:01:13",
+"es:01:21",
+"es:01:29"
+],
+"focusId": "es:01:29"
+},
+{
+"title": "Куда делось «я»? Когда нужно назвать человека?",
+"body": "Estoy уже сообщает «я», поэтому Estoy aquí и Yo estoy aquí грамматически правильны. Второй вариант может подчеркнуть «именно я». С está ситуация другая: без контекста непонятно, это он, она или вежливое «вы». Когда нужно назвать человека, скажи Ella está en casa или Ana está en casa. Не путай él («он») и el в el móvil.",
+"note": "«Ana» — один человек; поэтому está.",
+"samples": [
+"es:01:01",
+"es:01:11",
+"es:01:13",
+"es:01:19",
+"es:01:31"
+],
+"focusId": "es:01:13"
+},
+{
+"title": "Когда нужно en, а когда нет?",
+"body": "Aquí, allí, cerca и lejos сами называют место: Estoy aquí. Не добавляй en перед aquí. С названием места в наших примерах есть en: en casa — дома, en clase — на занятии, en la cocina — на кухне.",
+"note": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"samples": [
+"es:01:01",
+"es:01:04",
+"es:01:05",
+"es:01:06",
+"es:01:08",
+"es:01:41"
+],
+"focusId": "es:01:41"
+},
+{
+"title": "Почему en casa, но en la cocina?",
+"body": "«Я дома» здесь — Estoy en casa: запомни сочетание, не добавляй la по аналогии с кухней. En la casa тоже бывает правильным: так указывают на конкретный дом. Когда уже понятно, о какой кухне, машине или сумке идёт речь, в наших примерах стоят en la cocina, en el coche, en la mochila. Пока учи эти сочетания целиком; отдельная тема артиклей будет дальше.",
+"note": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"samples": [
+"es:01:06",
+"es:01:41",
+"es:01:48",
+"es:01:50"
+],
+"focusId": "es:01:06"
+},
+{
+"title": "Что управляет глаголом в длинной фразе?",
+"body": "В «Ключи в рюкзаке» спроси себя: что именно ищут? Ключи, las llaves, — их несколько. Поэтому Las llaves están en la mochila, а не Las llaves está en la mochila. Рюкзак один, но это место, а не то, что ищут. Для одного ключа будет La llave está dentro. Станция тоже может estar cerca: не учи правило «estar только про временное».",
+"note": "«las llaves» — несколько предметов; поэтому están.",
+"samples": [
+"es:01:32",
+"es:01:40",
+"es:01:49",
+"es:01:50"
+],
+"focusId": "es:01:50"
+},
+{
+"title": "Как сказать «вы» одному человеку и нескольким?",
+"body": "Уточни, к кому обращаешься. Одному собеседнику на usted соответствует está. Нескольким друзьям во многих районах Испании говорят estáis (vosotros). В испаноязычной Америке при обращении к группе употребляют ustedes с están. Нельзя требовать от ученика одну из этих форм, не указав, кого и как он называет. В двух заданиях этого урока регион и обращение указаны прямо.",
+"note": "Форма estáis уже указывает на «вы, друзья на vosotros»; отдельное местоимение не обязательно.",
+"samples": [
+"es:01:25",
+"es:01:27"
+],
+"focusId": "es:01:25"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:01:01",
+"sample": "Estoy aquí."
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": "es:01:02",
+"sample": "Estás aquí."
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "он, она; Вы (один человек)",
+"id": "es:01:20",
+"sample": "Él está en clase."
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "мы",
+"id": "es:01:21",
+"sample": "Estamos aquí."
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "вы (группа на «ты» в Испании)",
+"id": "es:01:25",
+"sample": "Estáis aquí."
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "они; вы (ustedes)",
+"id": "es:01:22",
+"sample": "Ellos están allí."
+}
+],
+"title": "Формы estar"
+}
+]
+},
+"uk": {
+"title": "Де я, де ти, де речі: дієслово estar",
+"formula": "(хто або що) + estoy / estás / está… + місце",
+"story": "Говорю про себе: estoy. Звертаюся до тебе: estás. Місце aquí не змінилося.",
+"use": "Скажи, де перебуваєш ти, інша людина або знайома річ. Одна модель: форма estar + місце.",
+"choose": "Спочатку переклади не місце, а того, про кого говориш. Я → estoy, ти → estás. Одне ім’я або один предмет → está. Ми → estamos. Два імені або кілька речей → están. У реченні «Ана й Луїс тут» дві людини: Ana y Luis están aquí. Таблиця нижче — довідка, а не матеріал для заучування за один раз.",
+"nuance": "Estar — словникова форма. У повному твердженні «Я тут» потрібна особова форма estoy. Додати yo можна: Yo estoy aquí.",
+"wrong": "Yo estar aquí.",
+"right": "Estoy aquí.",
+"chapters": [
+{
+"title": "Як сказати, де я перебуваю?",
+"body": "Скажи, де ти: Estoy en casa — «Я вдома». У словнику дієслово має форму estar, а коли говориш про себе, обирай estoy. На запитання «Де?» можна коротко відповісти aquí («тут»). Для повного речення додай дієслово: Estoy aquí.",
+"note": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"samples": [
+"es:01:01",
+"es:01:06"
+],
+"focusId": "es:01:01"
+},
+{
+"title": "Як обирати форму, а не вгадувати її?",
+"body": "Спочатку переклади не місце, а того, про кого говориш. Я → estoy, ти → estás. Одне ім’я або один предмет → está. Ми → estamos. Два імені або кілька речей → están. У реченні «Ана й Луїс тут» дві людини: Ana y Luis están aquí. Таблиця нижче — довідка, а не матеріал для заучування за один раз.",
+"note": "«Ana y Luis» — кілька людей; тому están.",
+"samples": [
+"es:01:02",
+"es:01:13",
+"es:01:21",
+"es:01:29"
+],
+"focusId": "es:01:29"
+},
+{
+"title": "Куди поділося «я»? Коли варто назвати людину?",
+"body": "Форма estoy вже означає «я», тому Estoy aquí та Yo estoy aquí граматично правильні. Другий варіант може підкреслити «саме я». Зі está інакше: без контексту незрозуміло, це він, вона чи ввічливе «ви». Коли треба назвати людину, скажи Ella está en casa або Ana está en casa. Не плутай él («він») та el у сполученні el móvil.",
+"note": "«Ana» — одна людина; тому está.",
+"samples": [
+"es:01:01",
+"es:01:11",
+"es:01:13",
+"es:01:19",
+"es:01:31"
+],
+"focusId": "es:01:13"
+},
+{
+"title": "Коли потрібне en, а коли ні?",
+"body": "Aquí, allí, cerca й lejos самі вказують на місце: Estoy aquí. Не додавай en перед aquí. З назвою місця в наших прикладах є en: en casa — вдома, en clase — на занятті, en la cocina — на кухні.",
+"note": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"samples": [
+"es:01:01",
+"es:01:04",
+"es:01:05",
+"es:01:06",
+"es:01:08",
+"es:01:41"
+],
+"focusId": "es:01:41"
+},
+{
+"title": "Чому en casa, але en la cocina?",
+"body": "«Я вдома» тут — Estoy en casa: запам’ятай сполучення, не додавай la за аналогією з кухнею. En la casa теж буває правильним: так указують на конкретний будинок. Коли вже зрозуміло, про яку кухню, машину чи сумку йдеться, у наших прикладах стоять en la cocina, en el coche, en la mochila. Поки вчи ці сполучення цілком; окрема тема артиклів буде далі.",
+"note": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"samples": [
+"es:01:06",
+"es:01:41",
+"es:01:48",
+"es:01:50"
+],
+"focusId": "es:01:06"
+},
+{
+"title": "Від чого залежить дієслово в довшій фразі?",
+"body": "У реченні «Ключі в рюкзаку» спитай себе: що саме шукають? Ключі, las llaves, — їх кілька. Тому Las llaves están en la mochila, а не Las llaves está en la mochila. Рюкзак один, але це місце, а не те, що шукають. Для одного ключа буде La llave está dentro. Станція теж може estar cerca: не вчи правило «estar лише про тимчасове».",
+"note": "«las llaves» — кілька предметів; тому están.",
+"samples": [
+"es:01:32",
+"es:01:40",
+"es:01:49",
+"es:01:50"
+],
+"focusId": "es:01:50"
+},
+{
+"title": "Як сказати «ви» одній людині й кільком?",
+"body": "Уточни, до кого звертаєшся. Одному співрозмовнику на usted відповідає está. До кількох друзів у багатьох регіонах Іспанії кажуть estáis (vosotros). В іспаномовній Америці до групи звертаються на ustedes з формою están. Не можна вимагати лише одну з цих форм, не вказавши, до кого і як звертаються. У двох завданнях цього уроку регіон і звертання названі прямо.",
+"note": "Форма estáis уже вказує на «ви, друзі на vosotros»; окремий займенник не обов’язковий.",
+"samples": [
+"es:01:25",
+"es:01:27"
+],
+"focusId": "es:01:25"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:01:01",
+"sample": "Estoy aquí."
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": "es:01:02",
+"sample": "Estás aquí."
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "він, вона; Ви (одна людина)",
+"id": "es:01:20",
+"sample": "Él está en clase."
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "ми",
+"id": "es:01:21",
+"sample": "Estamos aquí."
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "ви (група на «ти» в Іспанії)",
+"id": "es:01:25",
+"sample": "Estáis aquí."
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "вони; ви (ustedes)",
+"id": "es:01:22",
+"sample": "Ellos están allí."
+}
+],
+"title": "Форми estar"
+}
+]
+},
+"en": {
+"title": "Describing location with estar",
+"formula": "(optional subject) + estoy / estás / está… + place",
+"story": "When I say where I am, I use estoy. When I say where you are, I use estás. Aquí still means “here”.",
+"use": "Say where you, another person, or a familiar thing is. One pattern: form estar + location.",
+"choose": "Look for the person or thing first, not the place. I → estoy; you, speaking to a friend → estás. Ana is one person, so Ana está aquí. Ana and Luis are two people, so Ana y Luis están aquí. The place, aquí, has not changed.",
+"nuance": "Estar is the dictionary form. The complete statement \"I am here\" requires the personal form estoy. You can add yo: Yo estoy aquí.",
+"wrong": "Yo estar aquí.",
+"right": "Estoy aquí.",
+"chapters": [
+{
+"title": "How do I say where I am?",
+"body": "A friend asks where you are. Say Estoy en casa (“I’m at home”). Estar is the name you look up; estoy is the form you say about yourself. Aquí (“here”) is a perfectly good short answer. To make it a complete statement, say Estoy aquí.",
+"note": "Estoy is the first-person singular form. You can say Estoy aquí without yo.",
+"samples": [
+"es:01:01",
+"es:01:06"
+],
+"focusId": "es:01:01"
+},
+{
+"title": "Who determines the form?",
+"body": "Look for the person or thing first, not the place. I → estoy; you, speaking to a friend → estás. Ana is one person, so Ana está aquí. Ana and Luis are two people, so Ana y Luis están aquí. The place, aquí, has not changed.",
+"note": "Ana y Luis names more than one person or thing here; use están.",
+"samples": [
+"es:01:02",
+"es:01:13",
+"es:01:21",
+"es:01:29"
+],
+"focusId": "es:01:29"
+},
+{
+"title": "Can I leave the subject out?",
+"body": "Yes: Estoy aquí and Yo estoy aquí can both mean “I’m here”. Estoy already identifies the speaker; add yo when you want to emphasise who. Está alone does not tell us whether you mean he, she or formal you. Use Ana está en casa when the listener needs a name.",
+"note": "Ana names one person or thing here; use está.",
+"samples": [
+"es:01:01",
+"es:01:11",
+"es:01:13",
+"es:01:19",
+"es:01:31"
+],
+"focusId": "es:01:13"
+},
+{
+"title": "When do I use en?",
+"body": "Aquí (“here”) and allí (“over there”) already answer the question “where?”. Do not add en: Estoy aquí. A location expressed as a noun can take en: Estoy en casa (“I’m at home”) or Estoy en la cocina (“I’m in the kitchen”).",
+"note": "Estoy is the first-person singular form. You can say Estoy aquí without yo.",
+"samples": [
+"es:01:01",
+"es:01:04",
+"es:01:05",
+"es:01:06",
+"es:01:08",
+"es:01:41"
+],
+"focusId": "es:01:41"
+},
+{
+"title": "Why en casa but en la cocina?",
+"body": "Learn en casa as a unit when you mean “at home”. En la casa is possible too, but points to a particular house. If you are in the kitchen that you and your listener know, say en la cocina. Compare: Estoy en casa. Estoy en la cocina.",
+"note": "Estoy is the first-person singular form. You can say Estoy aquí without yo.",
+"samples": [
+"es:01:06",
+"es:01:41",
+"es:01:48",
+"es:01:50"
+],
+"focusId": "es:01:06"
+},
+{
+"title": "Which noun controls está or están?",
+"body": "Las llaves están en la mochila: what are we locating? The keys. There are several keys, so choose están. The backpack is singular, but it names the location, not the things we are looking for. Compare La llave está aquí with Las llaves están aquí.",
+"note": "las llaves names more than one person or thing here; use están.",
+"samples": [
+"es:01:32",
+"es:01:40",
+"es:01:49",
+"es:01:50"
+],
+"focusId": "es:01:50"
+},
+{
+"title": "How do I address one person or a group?",
+"body": "With one friend, say Estás aquí. To one person you address as usted, use Está aquí. For a group addressed as ustedes, use Están aquí. In much of Spain a group of friends can also be addressed as vosotros or vosotras: Estáis aquí. Look at the setting before choosing the form.",
+"note": "Form estáis already indicates \"you, friends on vosotros \"; a separate pronoun is optional.",
+"samples": [
+"es:01:25",
+"es:01:27"
+],
+"focusId": "es:01:25"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": "es:01:01",
+"sample": "Estoy aquí."
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": "es:01:02",
+"sample": "Estás aquí."
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "He, She; You (one person)",
+"id": "es:01:20",
+"sample": "Él está en clase."
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "we",
+"id": "es:01:21",
+"sample": "Estamos aquí."
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "you (several people you address informally in much of Spain)",
+"id": "es:01:25",
+"sample": "Estáis aquí."
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "they; you (ustedes)",
+"id": "es:01:22",
+"sample": "Ellos están allí."
+}
+],
+"title": "Forms of estar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:01:01",
+"index": 0,
+"right": "Estoy",
+"near": "Estás",
+"seq": [
+"Estoy",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es01/lab/form1",
+"feedback": {
+"ru": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"uk": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"en": "Estoy is the first-person singular form. You can say Estoy aquí without yo."
+}
+},
+{
+"id": "es:01:26",
+"index": 0,
+"right": "Estamos",
+"near": "Estoy",
+"seq": [
+"Estamos",
+"en",
+"clase"
+],
+"i": 12,
+"kind": "form",
+"key": "es01/lab/form2",
+"feedback": {
+"ru": "Форма estamos уже указывает на «мы»; отдельное местоимение не обязательно.",
+"uk": "Форма estamos уже вказує на «ми»; окремий займенник не обов’язковий.",
+"en": "Form estamos already indicates \"we\"; a separate pronoun is optional."
+}
+},
+{
+"id": "es:01:28",
+"index": 1,
+"right": "están",
+"near": "está",
+"seq": [
+"Ellos",
+"están",
+"dentro"
+],
+"i": 25,
+"kind": "form",
+"key": "es01/lab/form3",
+"feedback": {
+"ru": "«ellos» — несколько человек; поэтому están.",
+"uk": "«ellos» — кілька людей; тому están.",
+"en": "ellos names more than one person or thing here; use están."
+}
+},
+{
+"id": "es:01:37",
+"index": 2,
+"right": "está",
+"near": "están",
+"seq": [
+"El",
+"móvil",
+"está",
+"en",
+"casa"
+],
+"i": 37,
+"kind": "form",
+"key": "es01/lab/form4",
+"feedback": {
+"ru": "«el móvil» — один предмет или одно место; поэтому está.",
+"uk": "«el móvil» — один предмет або одне місце; тому está.",
+"en": "el móvil names one person or thing here; use está."
+}
+},
+{
+"id": "es:01:07",
+"index": 0,
+"right": "Estás",
+"near": "Estoy",
+"seq": [
+"Estás",
+"en",
+"casa"
+],
+"i": 2,
+"kind": "spot",
+"key": "es01/lab/spot1",
+"feedback": {
+"ru": "Форма estás уже указывает на «ты»; отдельное местоимение не обязательно.",
+"uk": "Форма estás уже вказує на «ти»; окремий займенник не обов’язковий.",
+"en": "Form estás already indicates \"you\"; a separate pronoun is not necessary."
+}
+},
+{
+"id": "es:01:29",
+"index": 3,
+"right": "están",
+"near": "está",
+"seq": [
+"Ana",
+"y",
+"Luis",
+"están",
+"aquí"
+],
+"i": 19,
+"kind": "spot",
+"key": "es01/lab/spot2",
+"feedback": {
+"ru": "«Ana y Luis» — несколько человек; поэтому están.",
+"uk": "«Ana y Luis» — кілька людей; тому están.",
+"en": "Ana y Luis names more than one person or thing here; use están."
+}
+},
+{
+"id": "es:01:27",
+"index": 0,
+"right": "Estáis",
+"near": "Estamos",
+"seq": [
+"Estáis",
+"fuera"
+],
+"i": 29,
+"kind": "spot",
+"key": "es01/lab/spot3",
+"feedback": {
+"ru": "Форма estáis уже указывает на «вы, друзья на vosotros»; отдельное местоимение не обязательно.",
+"uk": "Форма estáis уже вказує на «ви, друзі на vosotros»; окремий займенник не обов’язковий.",
+"en": "Form estáis already indicates \"you, friends on vosotros \"; a separate pronoun is optional."
+}
+},
+{
+"id": "es:01:45",
+"index": 2,
+"right": "está",
+"near": "están",
+"seq": [
+"El",
+"coche",
+"está",
+"cerca"
+],
+"i": 45,
+"kind": "spot",
+"key": "es01/lab/spot4",
+"feedback": {
+"ru": "«el coche» — один предмет или одно место; поэтому está.",
+"uk": "«el coche» — один предмет або одне місце; тому está.",
+"en": "el coche names one person or thing here; use está."
+}
+},
+{
+"kind": "match",
+"key": "es01/lab/match1",
+"id": "es:01:02",
+"other": "es:01:07"
+},
+{
+"kind": "match",
+"key": "es01/lab/match2",
+"id": "es:01:04",
+"other": "es:01:15"
+},
+{
+"kind": "match",
+"key": "es01/lab/match3",
+"id": "es:01:39",
+"other": "es:01:32"
+},
+{
+"kind": "match",
+"key": "es01/lab/match4",
+"id": "es:01:45",
+"other": "es:01:43"
+},
+{
+"kind": "build",
+"key": "es01/lab/build1",
+"id": "es:01:06"
+},
+{
+"kind": "build",
+"key": "es01/lab/build2",
+"id": "es:01:12"
+},
+{
+"kind": "build",
+"key": "es01/lab/build3",
+"id": "es:01:25"
+},
+{
+"kind": "build",
+"key": "es01/lab/build4",
+"id": "es:01:47"
+},
+{
+"kind": "transform",
+"id": "es:01:06",
+"base": "es:01:07",
+"diff": [
+{
+"before": [
+"Estás"
+],
+"after": [
+"Estoy"
+]
+}
+],
+"key": "es01/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:01:19",
+"base": "es:01:13",
+"diff": [
+{
+"before": [
+"Ana"
+],
+"after": [
+"Ella"
+]
+}
+],
+"key": "es01/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:01:39",
+"base": "es:01:31",
+"diff": [
+{
+"before": [
+"móvil"
+],
+"after": [
+"libro"
+]
+}
+],
+"key": "es01/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:01:50",
+"base": "es:01:42",
+"diff": [
+{
+"before": [
+"mesa"
+],
+"after": [
+"mochila"
+]
+}
+],
+"key": "es01/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+12
+],
+[
+5,
+8
+],
+[
+17,
+6
+],
+[
+9,
+16
+],
+[
+19,
+4
+],
+[
+10,
+18
+],
+[
+14,
+2
+]
+],
+"worked": [
+"es:01:08",
+"es:01:15",
+"es:01:39",
+"es:01:48"
+],
+"reflection": [
+"es:01:01",
+"es:01:02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 2,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 2,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Меня нет дома: отрицание с no",
+"formula": "(кто или что) + no + форма estar + где",
+"story": "Ана дома или нет? Имя Ana остаётся в начале; no ставится прямо перед está.",
+"use": "Исправь неверную догадку о том, где кто-то или что-то находится. Добавь no прямо перед знакомой формой estar.",
+"choose": "В наших коротких предложениях no и личная форма глагола стоят рядом: no estoy, no estamos. Если подлежащее названо, собери «кто или что → no → форма estar → где». Ana está no en casa не подходит для обычного «Ана не дома». Отдельное No, … с паузой означало бы ответ «Нет, …»; в нашем образце паузы и запятой нет.",
+"nuance": "Для обычного «Ана не дома» отрицание ставится перед está. Имя остаётся на своём месте; переносить no в начало перед именем не нужно.",
+"wrong": "Ana está no en casa.",
+"right": "Ana no está en casa.",
+"chapters": [
+{
+"title": "Что именно мы отрицаем?",
+"body": "Ana está aquí — «Ана здесь». Ana no está aquí — «Аны здесь нет». Ты не говоришь, что Аны не существует, и не называешь её настоящее место. Ты отвергаешь только предположение «она здесь». Поэтому в этом уроке сохраняем estar.",
+"note": "«Ana» — один человек; поэтому está.",
+"samples": [
+"es:02:08",
+"es:02:09"
+],
+"focusId": "es:02:08"
+},
+{
+"title": "Где поставить no?",
+"body": "В наших коротких предложениях no и личная форма глагола стоят рядом: no estoy, no estamos. Если подлежащее названо, собери «кто или что → no → форма estar → где». Ana está no en casa не подходит для обычного «Ана не дома». Отдельное No, … с паузой означало бы ответ «Нет, …»; в нашем образце паузы и запятой нет.",
+"note": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"samples": [
+"es:02:01",
+"es:02:06",
+"es:02:10"
+],
+"focusId": "es:02:01"
+},
+{
+"title": "Почему «ключей» — всё равно множественное число?",
+"body": "La llave no está aquí — одного конкретного ключа здесь нет. Las llaves no están aquí — речь уже о нескольких конкретных ключах. No не меняет числа; число глагола задаёт llave или llaves.",
+"note": "«las llaves» — несколько предметов; поэтому están.",
+"samples": [
+"es:02:31",
+"es:02:32"
+],
+"focusId": "es:02:32"
+},
+{
+"title": "Нужен ли предлог после отрицания?",
+"body": "No меняет смысл предложения, но не способ назвать место. «Здесь» — aquí без en. «В офисе» — en la oficina. «Дома» — en casa. Собери место так же, как в утвердительном ответе, даже если в переводе говорится «нет».",
+"note": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"samples": [
+"es:02:08",
+"es:02:19",
+"es:02:20"
+],
+"focusId": "es:02:19"
+},
+{
+"title": "«Вы не на станции»: три разных собеседника",
+"body": "Одному человеку на usted: No está en la estación. Нескольким на ustedes: No están en la estación. Группе друзей на vosotros в Испании: No estáis en la estación. В самих фразах местоимения можно опустить. Тренажёр показывает адресата перед сборкой: без него единственного ответа нет.",
+"note": "Форма estáis уже указывает на «вы, друзья на vosotros»; отдельное местоимение не обязательно.",
+"samples": [
+"es:02:21",
+"es:02:22",
+"es:02:23"
+],
+"focusId": "es:02:21"
+},
+{
+"title": "No está lejos и está cerca",
+"body": "Оба ответа могут успокоить человека, который боится опоздать. Но первый буквально отрицает «далеко», а второй прямо утверждает «близко». Расстояние может быть и средним. Когда задание просит отрицание, собери no + форму estar + lejos, не потому что другая фраза плохая, а потому что тренируем именно отрицание.",
+"note": "«la estación» — один предмет или одно место; поэтому está.",
+"samples": [
+"es:02:11",
+"es:02:13"
+],
+"focusId": "es:02:13"
+},
+{
+"title": "Ключи не в сумке: как проверить длинную фразу",
+"body": "Что ищут? Несколько ключей: las llaves. Какую догадку отвергают? Что ключи в сумке: no están en el bolso. Сумка одна, но она не управляет глаголом. Чтобы сказать про один ключ, меняются название предмета и глагол, а no и место остаются прежними.",
+"note": "«las llaves» — несколько предметов; поэтому están.",
+"samples": [
+"es:02:41",
+"es:02:42",
+"es:02:46"
+],
+"focusId": "es:02:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · no estoy",
+"gloss": "я",
+"id": "es:02:01",
+"sample": "No estoy en casa."
+},
+{
+"es": "tú · no estás",
+"gloss": "ты",
+"id": "es:02:02",
+"sample": "No estás en casa."
+},
+{
+"es": "él, ella, usted · no está",
+"gloss": "он, она; Вы (один человек)",
+"id": "es:02:06",
+"sample": "Ana no está en casa."
+},
+{
+"es": "nosotros, nosotras · no estamos",
+"gloss": "мы",
+"id": "es:02:04",
+"sample": "No estamos en clase."
+},
+{
+"es": "vosotros, vosotras · no estáis",
+"gloss": "вы (группа на «ты» в Испании)",
+"id": "es:02:21",
+"sample": "No estáis en la estación."
+},
+{
+"es": "ellos, ellas, ustedes · no están",
+"gloss": "они; вы (ustedes)",
+"id": "es:02:10",
+"sample": "Ana y Luis no están aquí."
+}
+],
+"title": "Формы estar"
+}
+]
+},
+"uk": {
+"title": "Мене немає вдома: заперечення з no",
+"formula": "(хто або що) + no + форма estar + де",
+"story": "Ана вдома чи ні? Ім’я Ana залишається на початку; no став перед está.",
+"use": "Виправ хибне припущення про те, де хтось або щось перебуває. Постав no безпосередньо перед знайомою формою estar.",
+"choose": "У наших коротких реченнях no і особова форма дієслова стоять поруч: no estoy, no estamos. Якщо підмет названо, склади «хто або що → no → форма estar → де». Ana está no en casa не підходить для звичайного «Ана не вдома». Окреме No, … з паузою означало б відповідь «Ні, …». У нашому зразку паузи й коми немає.",
+"nuance": "Для звичайного «Ана не вдома» заперечення ставимо перед está. Ім’я залишається на своєму місці; переносити no на початок перед іменем не треба.",
+"wrong": "Ana está no en casa.",
+"right": "Ana no está en casa.",
+"chapters": [
+{
+"title": "Що саме ми заперечуємо?",
+"body": "Ana está aquí — «Ана тут». Ana no está aquí — «Ани тут немає». Ти не кажеш, що Ани не існує, і не називаєш її справжнє місце. Ти лише заперечуєш припущення «вона тут». Тому на цьому уроці зберігаємо estar.",
+"note": "«Ana» — одна людина; тому está.",
+"samples": [
+"es:02:08",
+"es:02:09"
+],
+"focusId": "es:02:08"
+},
+{
+"title": "Де поставити no?",
+"body": "У наших коротких реченнях no і особова форма дієслова стоять поруч: no estoy, no estamos. Якщо підмет названо, склади «хто або що → no → форма estar → де». Ana está no en casa не підходить для звичайного «Ана не вдома». Окреме No, … з паузою означало б відповідь «Ні, …». У нашому зразку паузи й коми немає.",
+"note": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"samples": [
+"es:02:01",
+"es:02:06",
+"es:02:10"
+],
+"focusId": "es:02:01"
+},
+{
+"title": "Чому «ключів» — усе одно множина?",
+"body": "La llave no está aquí — одного конкретного ключа тут немає. Las llaves no están aquí — ідеться вже про кілька конкретних ключів. No не змінює числа; число дієслова залежить від llave або llaves.",
+"note": "«las llaves» — кілька предметів; тому están.",
+"samples": [
+"es:02:31",
+"es:02:32"
+],
+"focusId": "es:02:32"
+},
+{
+"title": "Чи потрібен прийменник після заперечення?",
+"body": "No змінює зміст речення, але не спосіб назвати місце. «Тут» — aquí без en. «В офісі» — en la oficina. «Вдома» — en casa. Складай місце так само, як у ствердній відповіді, навіть коли в перекладі є «немає».",
+"note": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"samples": [
+"es:02:08",
+"es:02:19",
+"es:02:20"
+],
+"focusId": "es:02:19"
+},
+{
+"title": "«Ви не на станції»: три різні адресати",
+"body": "До однієї людини на usted: No está en la estación. До кількох на ustedes: No están en la estación. До друзів на vosotros в Іспанії: No estáis en la estación. Займенники в цих реченнях можна пропустити. Перед складанням тренажер підказує, хто адресат: без цього єдиного перекладу немає.",
+"note": "Форма estáis уже вказує на «ви, друзі на vosotros»; окремий займенник не обов’язковий.",
+"samples": [
+"es:02:21",
+"es:02:22",
+"es:02:23"
+],
+"focusId": "es:02:21"
+},
+{
+"title": "No está lejos і está cerca",
+"body": "Обидві відповіді можуть заспокоїти людину, яка боїться запізнитися. Але перша заперечує «далеко», а друга стверджує «близько». Відстань може бути й середньою. Коли у вправі потрібне заперечення, склади no + форму estar + lejos: саме таку конструкцію ми тренуємо.",
+"note": "«la estación» — один предмет або одне місце; тому está.",
+"samples": [
+"es:02:11",
+"es:02:13"
+],
+"focusId": "es:02:13"
+},
+{
+"title": "Ключі не в сумці: як перевірити довше речення",
+"body": "Що шукають? Кілька ключів: las llaves. Яке припущення заперечують? Що ключі в сумці: no están en el bolso. Сумка одна, проте форму дієслова визначає не вона. Для одного ключа змінюються назва предмета й дієслово, а no та місце залишаються тими самими.",
+"note": "«las llaves» — кілька предметів; тому están.",
+"samples": [
+"es:02:41",
+"es:02:42",
+"es:02:46"
+],
+"focusId": "es:02:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · no estoy",
+"gloss": "я",
+"id": "es:02:01",
+"sample": "No estoy en casa."
+},
+{
+"es": "tú · no estás",
+"gloss": "ти",
+"id": "es:02:02",
+"sample": "No estás en casa."
+},
+{
+"es": "él, ella, usted · no está",
+"gloss": "він, вона; Ви (одна людина)",
+"id": "es:02:06",
+"sample": "Ana no está en casa."
+},
+{
+"es": "nosotros, nosotras · no estamos",
+"gloss": "ми",
+"id": "es:02:04",
+"sample": "No estamos en clase."
+},
+{
+"es": "vosotros, vosotras · no estáis",
+"gloss": "ви (група на «ти» в Іспанії)",
+"id": "es:02:21",
+"sample": "No estáis en la estación."
+},
+{
+"es": "ellos, ellas, ustedes · no están",
+"gloss": "вони; ви (ustedes)",
+"id": "es:02:10",
+"sample": "Ana y Luis no están aquí."
+}
+],
+"title": "Форми estar"
+}
+]
+},
+"en": {
+"title": "Saying where someone is not: no + estar",
+"formula": "(subject) + no + estar (estoy, estás…) + place",
+"story": "Is Ana at home or not? In Ana no está en casa the name stays first; no goes just before está.",
+"use": "Correct an incorrect guess about where someone or something is. Add no directly before the familiar shape estar.",
+"choose": "In our short sentences, no and the finite form of the verb stand next to each other: no estoy, no estamos. If the subject is named, combine \"who or what → no → form estar → where.\" Ana está no en casa isn't suitable for the ordinary \"Ana isn't at home.\" A separate No, … with a pause would mean the answer \"No, …\"; in our example, there is no pause or comma.",
+"nuance": "For the simple \"Ana isn't home,\" the negation comes before está. The name remains in its place; there's no need to move no to the beginning before the name.",
+"wrong": "Ana está no en casa.",
+"right": "Ana no está en casa.",
+"chapters": [
+{
+"title": "What changes when I say someone is not there?",
+"body": "Ana está aquí — \"Ana is here.\" Ana no está aquí — \"Ana is not here.\" You're not saying Ana doesn't exist, nor are you naming her current location. You only reject the assumption \"she is here.\" Therefore, in this lesson, we keep estar.",
+"note": "Ana names one person or thing here; use está.",
+"samples": [
+"es:02:08",
+"es:02:09"
+],
+"focusId": "es:02:08"
+},
+{
+"title": "Where does no go?",
+"body": "In our short sentences, no and the finite form of the verb stand next to each other: no estoy, no estamos. If the subject is named, combine \"who or what → no → form estar → where.\" Ana está no en casa isn't suitable for the ordinary \"Ana isn't at home.\" A separate No, … with a pause would mean the answer \"No, …\"; in our example, there is no pause or comma.",
+"note": "Estoy is the first-person singular form. You can say Estoy aquí without yo.",
+"samples": [
+"es:02:01",
+"es:02:06",
+"es:02:10"
+],
+"focusId": "es:02:01"
+},
+{
+"title": "Why do several keys still take están?",
+"body": "For one key, say La llave no está aquí. For several, say Las llaves no están aquí. No stays put; the noun and verb change together.",
+"note": "las llaves names more than one person or thing here; use están.",
+"samples": [
+"es:02:31",
+"es:02:32"
+],
+"focusId": "es:02:32"
+},
+{
+"title": "Does no change the preposition?",
+"body": "No changes the meaning of the sentence, but not the way the place is named. \"Here\" is aquí without en. \"At the office\" is en la oficina. \"At home\" is en casa. Assemble the location as in the affirmative answer, even if the translation says \"no.\"",
+"note": "Estoy is the first-person singular form. You can say Estoy aquí without yo.",
+"samples": [
+"es:02:08",
+"es:02:19",
+"es:02:20"
+],
+"focusId": "es:02:19"
+},
+{
+"title": "One listener or a group: which form of “you”?",
+"body": "To one person on usted: No está en la estación. To several people on ustedes: No están en la estación. To a group of friends on vosotros in Spain: No estáis en la estación. Pronouns can be omitted in the sentences themselves. The simulator shows the addressee before assembly: without it, there is no single answer.",
+"note": "Form estáis already indicates \"you, friends on vosotros \"; a separate pronoun is optional.",
+"samples": [
+"es:02:21",
+"es:02:22",
+"es:02:23"
+],
+"focusId": "es:02:21"
+},
+{
+"title": "Does “not far” mean exactly “near”?",
+"body": "Both answers can reassure a person who is afraid of being late. But the first one literally denies \"far,\" while the second one directly asserts \"close.\" The distance can also be average. When the task asks for negation, assemble no + the form estar + lejos, not because the other phrase is bad, but because we are practicing negation.",
+"note": "la estación names one person or thing here; use está.",
+"samples": [
+"es:02:11",
+"es:02:13"
+],
+"focusId": "es:02:13"
+},
+{
+"title": "How do I say the keys are not in the bag?",
+"body": "What are they looking for? Several clues: las llaves. Which guess is being rejected? That the keys are in a bag: no están en el bolso. There is only one bag, but it does not govern the verb. To talk about one key, the name of the object and the verb change, while no and the place remain the same.",
+"note": "las llaves names more than one person or thing here; use están.",
+"samples": [
+"es:02:41",
+"es:02:42",
+"es:02:46"
+],
+"focusId": "es:02:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · no estoy",
+"gloss": "I",
+"id": "es:02:01",
+"sample": "No estoy en casa."
+},
+{
+"es": "tú · no estás",
+"gloss": "you",
+"id": "es:02:02",
+"sample": "No estás en casa."
+},
+{
+"es": "él, ella, usted · no está",
+"gloss": "He, She; You (one person)",
+"id": "es:02:06",
+"sample": "Ana no está en casa."
+},
+{
+"es": "nosotros, nosotras · no estamos",
+"gloss": "we",
+"id": "es:02:04",
+"sample": "No estamos en clase."
+},
+{
+"es": "vosotros, vosotras · no estáis",
+"gloss": "you (several people you address informally in much of Spain)",
+"id": "es:02:21",
+"sample": "No estáis en la estación."
+},
+{
+"es": "ellos, ellas, ustedes · no están",
+"gloss": "they; you (ustedes)",
+"id": "es:02:10",
+"sample": "Ana y Luis no están aquí."
+}
+],
+"title": "Forms of estar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:02:01",
+"index": 0,
+"right": "No",
+"near": "Sí",
+"seq": [
+"No",
+"estoy",
+"en",
+"casa"
+],
+"i": 0,
+"kind": "form",
+"key": "es02/lab/form1",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: No estoy.",
+"uk": "Заперечення стоїть перед дієсловом: No estoy.",
+"en": "Negation comes before the verb: No estoy."
+}
+},
+{
+"id": "es:02:13",
+"index": 2,
+"right": "no",
+"near": "sí",
+"seq": [
+"La",
+"estación",
+"no",
+"está",
+"lejos"
+],
+"i": 12,
+"kind": "form",
+"key": "es02/lab/form2",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no está.",
+"uk": "Заперечення стоїть перед дієсловом: no está.",
+"en": "Negation comes before the verb: no está."
+}
+},
+{
+"id": "es:02:26",
+"index": 3,
+"right": "no",
+"near": "sí",
+"seq": [
+"Ana",
+"y",
+"Luis",
+"no",
+"están",
+"en",
+"casa"
+],
+"i": 25,
+"kind": "form",
+"key": "es02/lab/form3",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no están.",
+"uk": "Заперечення стоїть перед дієсловом: no están.",
+"en": "Negation comes before the verb: no están."
+}
+},
+{
+"id": "es:02:38",
+"index": 2,
+"right": "no",
+"near": "sí",
+"seq": [
+"El",
+"móvil",
+"no",
+"está",
+"en",
+"el",
+"coche"
+],
+"i": 37,
+"kind": "form",
+"key": "es02/lab/form4",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no está.",
+"uk": "Заперечення стоїть перед дієсловом: no está.",
+"en": "Negation comes before the verb: no está."
+}
+},
+{
+"id": "es:02:07",
+"index": 1,
+"right": "no",
+"near": "sí",
+"seq": [
+"Luis",
+"no",
+"está",
+"en",
+"clase"
+],
+"i": 6,
+"kind": "spot",
+"key": "es02/lab/spot1",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no está.",
+"uk": "Заперечення стоїть перед дієсловом: no está.",
+"en": "Negation comes before the verb: no está."
+}
+},
+{
+"id": "es:02:20",
+"index": 0,
+"right": "No",
+"near": "Sí",
+"seq": [
+"No",
+"estamos",
+"en",
+"la",
+"oficina"
+],
+"i": 19,
+"kind": "spot",
+"key": "es02/lab/spot2",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: No estamos.",
+"uk": "Заперечення стоїть перед дієсловом: No estamos.",
+"en": "Negation comes before the verb: No estamos."
+}
+},
+{
+"id": "es:02:32",
+"index": 2,
+"right": "no",
+"near": "sí",
+"seq": [
+"Las",
+"llaves",
+"no",
+"están",
+"aquí"
+],
+"i": 31,
+"kind": "spot",
+"key": "es02/lab/spot3",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no están.",
+"uk": "Заперечення стоїть перед дієсловом: no están.",
+"en": "Negation comes before the verb: no están."
+}
+},
+{
+"id": "es:02:47",
+"index": 2,
+"right": "no",
+"near": "sí",
+"seq": [
+"El",
+"libro",
+"no",
+"está",
+"en",
+"la",
+"mochila"
+],
+"i": 46,
+"kind": "spot",
+"key": "es02/lab/spot4",
+"feedback": {
+"ru": "Отрицание стоит перед глаголом: no está.",
+"uk": "Заперечення стоїть перед дієсловом: no está.",
+"en": "Negation comes before the verb: no está."
+}
+},
+{
+"kind": "match",
+"key": "es02/lab/match1",
+"id": "es:02:02",
+"other": "es:02:03"
+},
+{
+"kind": "match",
+"key": "es02/lab/match2",
+"id": "es:02:17",
+"other": "es:02:16"
+},
+{
+"kind": "match",
+"key": "es02/lab/match3",
+"id": "es:02:33",
+"other": "es:02:34"
+},
+{
+"kind": "match",
+"key": "es02/lab/match4",
+"id": "es:02:46",
+"other": "es:02:45"
+},
+{
+"kind": "build",
+"key": "es02/lab/build1",
+"id": "es:02:04"
+},
+{
+"kind": "build",
+"key": "es02/lab/build2",
+"id": "es:02:15"
+},
+{
+"kind": "build",
+"key": "es02/lab/build3",
+"id": "es:02:29"
+},
+{
+"kind": "build",
+"key": "es02/lab/build4",
+"id": "es:02:42"
+},
+{
+"kind": "transform",
+"id": "es:02:05",
+"base": "es:02:02",
+"diff": [
+{
+"before": [
+"estás"
+],
+"after": [
+"estamos"
+]
+}
+],
+"key": "es02/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:02:20",
+"base": "es:02:19",
+"diff": [
+{
+"before": [
+"estoy"
+],
+"after": [
+"estamos"
+]
+}
+],
+"key": "es02/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:02:40",
+"base": "es:02:38",
+"diff": [
+{
+"before": [
+"móvil"
+],
+"after": [
+"bolso"
+]
+}
+],
+"key": "es02/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:02:47",
+"base": "es:02:35",
+"diff": [
+{
+"before": [
+"mesa"
+],
+"after": [
+"mochila"
+]
+}
+],
+"key": "es02/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+4,
+16
+],
+[
+0,
+8
+],
+[
+6,
+10
+],
+[
+5,
+17
+],
+[
+2,
+9
+],
+[
+1,
+13
+],
+[
+11,
+15
+]
+],
+"worked": [
+"es:02:05",
+"es:02:18",
+"es:02:33",
+"es:02:48"
+],
+"reflection": [
+"es:02:01",
+"es:02:06"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

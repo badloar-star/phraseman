@@ -1,7 +1,7 @@
 import {
   canonicalJsonV1,
   sha256Utf8,
-} from '../learning-v2/policies/decision_registry';
+} from '../canonical_json';
 import type { MistakeExerciseMode } from './exercise_mode_registry';
 import { mistakePracticeOptionOrder } from './option_order';
 

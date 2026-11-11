@@ -1,0 +1,1058 @@
+[
+{
+"lesson": 25,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:25:01",
+"it:25:02",
+"it:25:03"
+],
+"textByLocale": {
+"en": "Identify the item from the clue. One ticket is `uno`, one bottle is `una`. `ne` itself does not change, even if the item's name is feminine.",
+"ru": "Определи предмет из подсказки. Один билет — `uno`, одна бутылка — `una`. Само `ne` не изменяется, даже если название предмета женского рода.",
+"uk": "Визнач предмет із підказки. Один квиток - `uno`, одна пляшка - `una`. Саме `ne` не змінюється, навіть якщо назва предмета жіночого роду."
+}
+},
+{
+"exampleIds": [
+"it:25:06",
+"it:25:09",
+"it:25:13"
+],
+"textByLocale": {
+"en": "You can say a kilogram, several pieces, or half. `Ne` eliminates the need to repeat the name of the product already discussed. The quantity remains explicit.",
+"ru": "Можно назвать килограмм, несколько штук или половину. `Ne` позволяет не повторять само название уже обсуждаемого продукта. Количество остаётся явно выраженным.",
+"uk": "Можна назвати кілограм, кілька штук чи половину. `Ne` дозволяє не повторювати саму назву вже обговорюваного продукту. Кількість залишається явно вираженим."
+}
+},
+{
+"exampleIds": [
+"it:25:16",
+"it:25:19",
+"it:25:20"
+],
+"textByLocale": {
+"en": "Keep track of what's replaced: the whole thing or just part. `La compro` means I'm buying it, `ne compro un po’` means I'm buying a little of this. A correct verb doesn't make these answers equivalent.",
+"ru": "Следи, что заменено: вся вещь или только часть. `La compro` — покупаю её, `ne compro un po’` — покупаю немного этого. Верный глагол ещё не делает эти ответы равнозначными.",
+"uk": "Стежте, що замінено: вся річ або тільки частина. `La compro` - купую її, `ne compro un po’` - купую трохи цього. Вірне дієслово ще робить ці відповіді рівнозначними."
+}
+},
+{
+"exampleIds": [
+"it:25:21",
+"it:25:23",
+"it:25:25"
+],
+"textByLocale": {
+"en": "In negation, `non ne` is placed before the finite verb. `Non ne voglio` can be a complete answer in clear conversation. It is not always necessary to add the number.",
+"ru": "В отрицании `non ne` ставится до личного глагола. `Non ne voglio` может быть законченным ответом в понятном разговоре. Не требуется всегда дописывать число.",
+"uk": "У запереченні `non ne` ставиться до особистого дієслова. `Non ne voglio` може бути закінченою відповіддю у зрозумілій розмові. Не потрібно завжди дописувати число."
+}
+},
+{
+"exampleIds": [
+"it:25:28",
+"it:25:31",
+"it:25:33"
+],
+"textByLocale": {
+"en": "Agreement forms may appear with the past tense and expressed quantity: `ne ho prese due` about feminine things. Check the implied word in the scene, not just the last digit.",
+"ru": "С прошедшим и выраженным количеством могут появиться формы согласования: `ne ho prese due` о вещах женского рода. Сверь подразумеваемое слово в сцене, а не только последнюю цифру.",
+"uk": "З минулою та вираженою кількістю можуть з'явитися форми узгодження: `ne ho prese due` про речі жіночого роду. Звір зрозуміле слово в сцені, а не тільки останню цифру."
+}
+},
+{
+"exampleIds": [
+"it:25:36",
+"it:25:38",
+"it:25:43"
+],
+"textByLocale": {
+"en": "The infinitive and `ne` are combined: `prenderne`, `comprarne`. Keep the ending of the infinitive without the final `e` before the added pronoun.",
+"ru": "Инфинитив и `ne` соединяются: `prenderne`, `comprarne`. Сохраняй окончание инфинитива без последнего `e` перед присоединённым местоимением.",
+"uk": "Інфінітив та `ne` з'єднуються: `prenderne`, `comprarne`. Зберігай закінчення інфінітиву без останнього `e` перед приєднаним займенником."
+}
+},
+{
+"exampleIds": [
+"it:25:46",
+"it:25:48",
+"it:25:50"
+],
+"textByLocale": {
+"en": "In one sentence, they may first name an object, then ask how many are left. If you lose the meaning, mentally replace `ne` with the original noun and count the objects.",
+"ru": "В одной фразе могут сначала назвать предмет, затем уточнить, сколько ещё осталось. Если потерял смысл, мысленно верни исходное существительное вместо `ne` и пересчитай предметы.",
+"uk": "В одній фразі спочатку можна назвати предмет, потім уточнити, скільки ще залишилося. Якщо втратив сенс, подумки поверни вихідне іменник замість `ne` і перерахуй предмети."
+}
+}
+],
+"drills": [
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:25:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Ne",
+"Mi",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:25:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"Ne",
+"La",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 1,
+"id": "it:25:05:lab",
+"item": 5,
+"kind": "match",
+"near": 29,
+"options": [
+"ci",
+"ne",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:25:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Ne",
+"La",
+"Mi"
+],
+"slot": 0
+},
+{
+"bad": "Mi",
+"chapter": 2,
+"id": "it:25:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 16,
+"options": [
+"Ne",
+"Mi",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 2,
+"id": "it:25:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 14,
+"options": [
+"mi",
+"la",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:25:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"ne",
+"ci",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:25:17:lab",
+"item": 17,
+"kind": "match",
+"near": 13,
+"options": [
+"ne",
+"ci",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:25:19:lab",
+"item": 19,
+"kind": "build",
+"near": 18,
+"options": [
+"ne",
+"la",
+"ci"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "it:25:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 30,
+"options": [
+"si",
+"ne",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "it:25:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"ci",
+"ne",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "it:25:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 20,
+"options": [
+"la",
+"ti",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:25:29:lab",
+"item": 29,
+"kind": "match",
+"near": 5,
+"options": [
+"la",
+"ci",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 5,
+"id": "it:25:31:lab",
+"item": 31,
+"kind": "build",
+"near": 9,
+"options": [
+"Ne",
+"Ci",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:25:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 23,
+"options": [
+"la",
+"ti",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 6,
+"id": "it:25:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 9,
+"options": [
+"Ci",
+"La",
+"Ne"
+],
+"slot": 0
+},
+{
+"bad": "prenderne",
+"chapter": 6,
+"id": "it:25:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 28,
+"options": [
+"prenderne",
+"fragole",
+"ordinarne"
+],
+"slot": 1
+},
+{
+"bad": "bottiglie",
+"chapter": 6,
+"id": "it:25:42:lab",
+"item": 42,
+"kind": "match",
+"near": 3,
+"options": [
+"chiatte",
+"bottiglie",
+"prenderne"
+],
+"slot": 5
+},
+{
+"bad": "si",
+"chapter": 7,
+"id": "it:25:45:lab",
+"item": 45,
+"kind": "build",
+"near": 12,
+"options": [
+"si",
+"ne",
+"ti"
+],
+"slot": 5
+},
+{
+"bad": "la",
+"chapter": 7,
+"id": "it:25:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 41,
+"options": [
+"la",
+"ne",
+"ci"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"un biglietto",
+"ne prendo uno"
+],
+[
+"due biglietti",
+"ne prendo due"
+],
+[
+"una bottiglia",
+"ne porto una"
+],
+[
+"metà della zuppa",
+"ne mangio metà"
+],
+[
+"nessun biglietto",
+"non ne ho"
+]
+],
+"title": {
+"en": "Part of a known quantity: `ne`",
+"ru": "Часть известного количества: `ne`",
+"uk": "Частина відомої кількості: `ne`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:25:01",
+"target": "Ne voglio uno.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "it:25:02",
+"target": "Ne voglio due.",
+"ru": "Я хочу два из них.",
+"uk": "Я хочу два з них."
+},
+{
+"id": "it:25:03",
+"target": "Ne prendi uno.",
+"ru": "Ты берёшь один.",
+"uk": "Ти береш один."
+},
+{
+"id": "it:25:06",
+"target": "Ne compriamo quattro.",
+"ru": "Мы покупаем четыре.",
+"uk": "Ми купуємо чотири."
+},
+{
+"id": "it:25:09",
+"target": "Ne ho abbastanza.",
+"ru": "У меня их достаточно.",
+"uk": "У мене їх достатньо."
+},
+{
+"id": "it:25:13",
+"target": "Di mele ne comprerò un chilo.",
+"ru": "Куплю килограмм яблок.",
+"uk": "Я куплю кілограм яблук."
+},
+{
+"id": "it:25:16",
+"target": "Di zuppa ne è rimasta una scodella.",
+"ru": "Осталась миска супа.",
+"uk": "Залишилася миска супу."
+},
+{
+"id": "it:25:19",
+"target": "Di fragole ne vuole una vaschetta.",
+"ru": "Клубники она хочет один лоток.",
+"uk": "Полуниці вона хоче один лоток."
+},
+{
+"id": "it:25:20",
+"target": "Di burro ne uso pochissimo.",
+"ru": "Масла я использую совсем немного.",
+"uk": "Вершкового масла я використовую дуже мало."
+},
+{
+"id": "it:25:21",
+"target": "Non ne ho.",
+"ru": "У меня их нет.",
+"uk": "У мене їх немає."
+},
+{
+"id": "it:25:23",
+"target": "Non ne vuole.",
+"ru": "Она их не хочет.",
+"uk": "Вона їх не хоче."
+},
+{
+"id": "it:25:25",
+"target": "Non ne prendi mai?",
+"ru": "Ты их никогда не берёшь?",
+"uk": "Ти їх ніколи не береш?"
+},
+{
+"id": "it:25:28",
+"target": "Non ne ha altri?",
+"ru": "У вас нет других?",
+"uk": "У вас немає інших?"
+},
+{
+"id": "it:25:31",
+"target": "Ne ho comprate due.",
+"ru": "Я купил две.",
+"uk": "Я купив дві."
+},
+{
+"id": "it:25:33",
+"target": "Ne abbiamo prenotati tre.",
+"ru": "Мы зарезервировали три.",
+"uk": "Ми зарезервували три."
+},
+{
+"id": "it:25:36",
+"target": "Ne porterò ancora.",
+"ru": "Я принесу ещё.",
+"uk": "Я принесу ще."
+},
+{
+"id": "it:25:38",
+"target": "Ci servono dei cavi per il palco; dobbiamo ordinarne tre.",
+"ru": "Нам нужны кабели для сцены; нужно заказать три.",
+"uk": "Нам потрібні кабелі для сцени; нам потрібно замовити три."
+},
+{
+"id": "it:25:43",
+"target": "Queste persiane sbattono per il vento, ne chiudo due.",
+"ru": "Эти ставни хлопают на ветру, я закрою две из них.",
+"uk": "Ці віконниці ляскають на вітрі, я закрию дві з них."
+},
+{
+"id": "it:25:46",
+"target": "Mancano dei bicchieri: vado a prenderne altri.",
+"ru": "Не хватает стаканов, я пойду возьму ещё.",
+"uk": "Не вистачає склянок, я піду візьму ще."
+},
+{
+"id": "it:25:48",
+"target": "Ho troppi scatoloni e ne regalerò qualcuno.",
+"ru": "У меня слишком много коробок, я отдам часть.",
+"uk": "У мене забагато коробок, і я деякі віддам."
+},
+{
+"id": "it:25:50",
+"target": "Ci sono delle chiatte sul canale e ne vedo due.",
+"ru": "На канале баржи, и я вижу две.",
+"uk": "На каналі є баржі, і я бачу дві."
+}
+]
+},
+{
+"lesson": 26,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:26:01",
+"it:26:02",
+"it:26:04"
+],
+"textByLocale": {
+"en": "A regular adjective changes agreement, but `più` and `meno` do not. In the combination `più alta`, the ending refers to the woman being described.",
+"ru": "У обычного прилагательного меняется согласование, а `più` и `meno` нет. В сочетании `più alta` окончание относится к женщине, которую описывают.",
+"uk": "У звичайного прикметника змінюється погодження, а `più` та `meno` немає. У поєднанні `più alta` закінчення відноситься до жінки, яку описують."
+}
+},
+{
+"exampleIds": [
+"it:26:05",
+"it:26:08",
+"it:26:10"
+],
+"textByLocale": {
+"en": "`di` often comes before a person or the name of a second object. When comparing two qualities or actions within a single construction, `che` is used. Don't use \"always di.\"",
+"ru": "Перед человеком или названием второго предмета часто стоит `di`. Когда сравнивают два качества или действия внутри одной конструкции, встречается `che`. Не учи «всегда di».",
+"uk": "Перед людиною або назвою другого предмета часто стоїть `di`. Коли порівнюють дві якості або дії всередині однієї конструкції, зустрічається `che`. Не вчи «завжди di»."
+}
+},
+{
+"exampleIds": [
+"it:26:13",
+"it:26:15",
+"it:26:17"
+],
+"textByLocale": {
+"en": "Don't confuse comparison and intensification: `molto comodo` is very convenient; `più comodo` is more convenient than the other. The word \"very\" doesn't indicate which of the two options is more convenient.",
+"ru": "Не путай сравнение и усиление: `molto comodo` — очень удобный; `più comodo` — удобнее другого. Слово «очень» не отвечает, какой из двух вариантов удобнее.",
+"uk": "Не плутай порівняння та посилення: `molto comodo` — дуже зручний; `più comodo` - зручніше іншого. Слово «дуже» не відповідає, який із двох варіантів зручніший."
+}
+},
+{
+"exampleIds": [
+"it:26:21",
+"it:26:23",
+"it:26:26"
+],
+"textByLocale": {
+"en": "For equality, `come` and, in the corresponding model, `quanto` are suitable. First, clarify whether they are comparing objects or the quality of an action to choose a natural phrase.",
+"ru": "Для равенства подойдут `come` и, в соответствующей модели, `quanto`. Сначала уточни, сравнивают ли предметы или качество действия, чтобы подобрать естественную фразу.",
+"uk": "Для рівності підійдуть `come` і у відповідній моделі `quanto`. Спочатку уточни, чи порівнюють предмети або якість дії, щоб підібрати природну фразу."
+}
+},
+{
+"exampleIds": [
+"it:26:29",
+"it:26:31",
+"it:26:35"
+],
+"textByLocale": {
+"en": "`Migliore` usually evaluates a person or object, `meglio` how an action is performed. Don't combine them with `più` in the expression \"better.\"",
+"ru": "`Migliore` обычно оценивает человека или предмет, `meglio` — как выполняется действие. Не складывай их с `più` в выражении «лучше».",
+"uk": "`Migliore` зазвичай оцінює людину чи предмет, `meglio` - як виконується дія. Не складай їх з `più` у виразі «краще»."
+}
+},
+{
+"exampleIds": [
+"it:26:38",
+"it:26:41",
+"it:26:43"
+],
+"textByLocale": {
+"en": "The phrase about the cheapest ticket selects it from the group: `il biglietto meno caro`. This differs from simply \"cheaper than the other.\" The article helps to indicate the chosen object.",
+"ru": "Фраза о самом дешёвом билете выбирает его из группы: `il biglietto meno caro`. Это отличается от простого «дешевле другого». Артикль помогает обозначить выбранный предмет.",
+"uk": "Фраза про найдешевший квиток вибирає його з групи: `il biglietto meno caro`. Це відрізняється від простого «дешевше іншого». Артикль допомагає позначити вибраний предмет."
+}
+},
+{
+"exampleIds": [
+"it:26:45",
+"it:26:48",
+"it:26:50"
+],
+"textByLocale": {
+"en": "Check the direction mentally: if two objects were swapped, would an opposite word be required? If so, you understood the comparison, not just recognized the ending.",
+"ru": "Проверь направление мысленно: если поменять два предмета местами, потребуется ли противоположное слово? Если да, ты понял сравнение, а не просто узнал окончание.",
+"uk": "Перевір напрямок у думках: якщо поміняти два предмети місцями, чи потрібно протилежне слово? Якщо так, ти зрозумів порівняння, а не просто дізнався про закінчення."
+}
+}
+],
+"drills": [
+{
+"bad": "non",
+"chapter": 1,
+"id": "it:26:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"più",
+"che",
+"non"
+],
+"slot": 2
+},
+{
+"bad": "non",
+"chapter": 1,
+"id": "it:26:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 28,
+"options": [
+"non",
+"più",
+"di"
+],
+"slot": 3
+},
+{
+"bad": "che",
+"chapter": 1,
+"id": "it:26:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"dove",
+"che",
+"come"
+],
+"slot": 4
+},
+{
+"bad": "non",
+"chapter": 2,
+"id": "it:26:08:lab",
+"item": 8,
+"kind": "build",
+"near": 14,
+"options": [
+"più",
+"non",
+"meno"
+],
+"slot": 3
+},
+{
+"bad": "non",
+"chapter": 2,
+"id": "it:26:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 13,
+"options": [
+"non",
+"più",
+"che"
+],
+"slot": 4
+},
+{
+"bad": "non",
+"chapter": 2,
+"id": "it:26:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 43,
+"options": [
+"che",
+"non",
+"più"
+],
+"slot": 3
+},
+{
+"bad": "che",
+"chapter": 3,
+"id": "it:26:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 8,
+"options": [
+"non",
+"più",
+"che"
+],
+"slot": 4
+},
+{
+"bad": "che",
+"chapter": 3,
+"id": "it:26:17:lab",
+"item": 17,
+"kind": "match",
+"near": 35,
+"options": [
+"meno",
+"di",
+"che"
+],
+"slot": 3
+},
+{
+"bad": "di",
+"chapter": 3,
+"id": "it:26:19:lab",
+"item": 19,
+"kind": "build",
+"near": 14,
+"options": [
+"dove",
+"quanto",
+"di"
+],
+"slot": 5
+},
+{
+"bad": "non",
+"chapter": 4,
+"id": "it:26:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"che",
+"più",
+"non"
+],
+"slot": 1
+},
+{
+"bad": "quante",
+"chapter": 4,
+"id": "it:26:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 32,
+"options": [
+"che",
+"quante",
+"meno"
+],
+"slot": 2
+},
+{
+"bad": "cammino",
+"chapter": 4,
+"id": "it:26:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"cammino",
+"palco",
+"meglio"
+],
+"slot": 1
+},
+{
+"bad": "buone",
+"chapter": 5,
+"id": "it:26:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"migliore",
+"gente",
+"buone"
+],
+"slot": 4
+},
+{
+"bad": "non",
+"chapter": 5,
+"id": "it:26:31:lab",
+"item": 31,
+"kind": "build",
+"near": 13,
+"options": [
+"non",
+"più",
+"che"
+],
+"slot": 3
+},
+{
+"bad": "non",
+"chapter": 5,
+"id": "it:26:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 2,
+"options": [
+"che",
+"più",
+"non"
+],
+"slot": 2
+},
+{
+"bad": "che",
+"chapter": 6,
+"id": "it:26:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"più",
+"che",
+"meno"
+],
+"slot": 3
+},
+{
+"bad": "che",
+"chapter": 6,
+"id": "it:26:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 46,
+"options": [
+"tante",
+"più",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "non",
+"chapter": 6,
+"id": "it:26:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"che",
+"più",
+"non"
+],
+"slot": 4
+},
+{
+"bad": "non",
+"chapter": 7,
+"id": "it:26:45:lab",
+"item": 45,
+"kind": "build",
+"near": 43,
+"options": [
+"non",
+"di",
+"più"
+],
+"slot": 4
+},
+{
+"bad": "non",
+"chapter": 7,
+"id": "it:26:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 47,
+"options": [
+"non",
+"che",
+"più"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"alto",
+"più alto di me"
+],
+[
+"caro",
+"meno caro dell’altro"
+],
+[
+"buono",
+"migliore"
+],
+[
+"bene",
+"meglio"
+],
+[
+"economico",
+"il più economico"
+]
+],
+"title": {
+"en": "Compare: `più`, `meno`, `come`",
+"ru": "Сравнивать: `più`, `meno`, `come`",
+"uk": "Порівнювати: `più`, `meno`, `come`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:26:01",
+"target": "Paolo è più alto di me.",
+"ru": "Паоло выше меня.",
+"uk": "Паоло вищий за мене."
+},
+{
+"id": "it:26:02",
+"target": "Lea è più alta di me.",
+"ru": "Леа выше меня.",
+"uk": "Леа вища за мене."
+},
+{
+"id": "it:26:04",
+"target": "Questa valigia è meno pesante dell’altra.",
+"ru": "Этот чемодан легче другого.",
+"uk": "Ця валіза легша за іншу."
+},
+{
+"id": "it:26:05",
+"target": "Il tè è caldo come il caffè.",
+"ru": "Чай такой же горячий, как кофе.",
+"uk": "Чай такий же гарячий, як кава."
+},
+{
+"id": "it:26:08",
+"target": "La metropolitana è più veloce dell’autobus.",
+"ru": "Метро быстрее автобуса.",
+"uk": "Метро швидше за автобус."
+},
+{
+"id": "it:26:10",
+"target": "Il nuovo modulo è più chiaro di quello vecchio.",
+"ru": "Новый бланк понятнее старого.",
+"uk": "Новий бланк зрозуміліший за старий."
+},
+{
+"id": "it:26:13",
+"target": "Il nuovo letto è più comodo.",
+"ru": "Новая кровать удобнее.",
+"uk": "Нове ліжко зручніше."
+},
+{
+"id": "it:26:15",
+"target": "La mia stanza è più luminosa della tua.",
+"ru": "Моя комната светлее твоей.",
+"uk": "Моя кімната світліша за твою."
+},
+{
+"id": "it:26:17",
+"target": "Questo giornale costa meno dell’altro.",
+"ru": "Эта газета дешевле, чем другая.",
+"uk": "Ця газета дешевша за іншу."
+},
+{
+"id": "it:26:21",
+"target": "Cammino più velocemente di te.",
+"ru": "Я хожу быстрее тебя.",
+"uk": "Я ходжу швидше за тебе."
+},
+{
+"id": "it:26:23",
+"target": "Lavora bene quanto suo fratello.",
+"ru": "Она работает так же хорошо, как и её брат.",
+"uk": "Вона працює так само добре, як і її брат."
+},
+{
+"id": "it:26:26",
+"target": "Sentiamo meglio vicino al palco.",
+"ru": "Мы лучше слышим возле сцены.",
+"uk": "Ми краще чуємо біля сцени."
+},
+{
+"id": "it:26:29",
+"target": "Oggi il pane è migliore.",
+"ru": "Хлеб сегодня лучше.",
+"uk": "Хліб сьогодні кращий."
+},
+{
+"id": "it:26:31",
+"target": "Il sabato c’è più gente.",
+"ru": "По субботам людей больше.",
+"uk": "У суботу людей більше."
+},
+{
+"id": "it:26:35",
+"target": "Questo viaggio richiede meno sforzo.",
+"ru": "Эта поездка требует меньше усилий.",
+"uk": "Ця подорож вимагає менше зусиль."
+},
+{
+"id": "it:26:38",
+"target": "Paolo beve meno caffè adesso.",
+"ru": "Паоло теперь пьет меньше кофе.",
+"uk": "Паоло тепер п’є менше кави."
+},
+{
+"id": "it:26:41",
+"target": "Questo è il percorso più breve.",
+"ru": "Это самый короткий маршрут.",
+"uk": "Це найкоротший маршрут."
+},
+{
+"id": "it:26:43",
+"target": "Questo è il biglietto più economico.",
+"ru": "Это самый дешевый билет.",
+"uk": "Це найдешевший квиток."
+},
+{
+"id": "it:26:45",
+"target": "È il mio ricordo più bello.",
+"ru": "Это мое лучшее воспоминание.",
+"uk": "Це мій найкращий спогад."
+},
+{
+"id": "it:26:48",
+"target": "Prendo la porzione più piccola.",
+"ru": "Я беру самую маленькую порцию.",
+"uk": "Я беру найменшу порцію."
+},
+{
+"id": "it:26:50",
+"target": "Il tè si raffredda più velocemente in questa tazza.",
+"ru": "Чай быстрее остывает в этой чашке.",
+"uk": "Чай швидше остигає в цій чашці."
+}
+]
+}
+]

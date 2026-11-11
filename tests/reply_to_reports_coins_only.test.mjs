@@ -52,11 +52,36 @@ test('legacy shards field gives the minor coin tier', () => {
   assert.equal(rewardLabel(item.rewardBundle), '300 монет');
 });
 
-test('run mode is a preview unless --send is passed explicitly (and --dry-run always wins)', () => {
+test('run mode accepts only one exact flag and defaults to preview', () => {
   assert.equal(resolveRunMode([]), 'dry-run');
   assert.equal(resolveRunMode(['--dry-run']), 'dry-run');
-  assert.equal(resolveRunMode(['--send', '--dry-run']), 'dry-run');
   assert.equal(resolveRunMode(['--send']), 'send');
+  assert.throws(() => resolveRunMode(['--send', '--dry-run']), /invalid.*flag|flag.*invalid|conflict/i);
+  assert.throws(() => resolveRunMode(['--dry-run', '--dry-run']), /invalid.*flag|flag.*invalid|duplicate/i);
+  assert.throws(() => resolveRunMode(['--wat']), /invalid.*flag|flag.*invalid|unknown/i);
+  assert.throws(() => resolveRunMode(null), /invalid.*flag|flag.*invalid/i);
+});
+
+test('reportId-only rows are accepted only for dry-run', () => {
+  const idOnly = {
+    reportId: 'report-id-only-1',
+    title: 'Спасибо!',
+    body: 'Мы получили ваше сообщение.',
+    resolution: 'unconfirmed',
+    rewardBundle: REPORT_REWARD_BUNDLES.none,
+  };
+  const preview = normalizeReplyRow(idOnly, 0, { mode: 'dry-run' });
+  assert.equal(preview.error, undefined);
+  assert.equal(preview.item.reportId, idOnly.reportId);
+  assert.equal(Object.hasOwn(preview.item, 'uid'), false);
+
+  const live = normalizeReplyRow(idOnly, 0, { mode: 'send' });
+  assert.match(live.error, /невалидный uid/);
+});
+
+test('unknown normalization mode fails closed', () => {
+  const result = normalizeReplyRow(row(REPORT_REWARD_BUNDLES.none), 0, { mode: 'preview' });
+  assert.match(result.error, /mode|режим/i);
 });
 
 test('the script without flags previews coins and never initialises Firebase', () => {

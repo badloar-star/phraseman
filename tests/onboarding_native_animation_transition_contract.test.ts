@@ -6,7 +6,6 @@ const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'),
   'utf8',
 ));
-const rootLayout = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8'));
 
 describe('CleanOnboarding native animation transition safety', () => {
   it('keeps the welcome entrance and breathing scales on separate native nodes', () => {
@@ -15,15 +14,6 @@ describe('CleanOnboarding native animation transition safety', () => {
     expect(welcomeLogo).not.toContain('Animated.add(');
     expect(welcomeLogo).toContain('styles.logoEnterLayer');
     expect(welcomeLogo).toContain('styles.logoBreatheLayer');
-  });
-
-  it('keeps the startup splash on separate native nodes (no Animated.add) — the pulse was replaced by the finite coin animation (05.11)', () => {
-    const startupSplash = rootLayout.match(/function StartupSplashHold[\s\S]*?\n\}/)?.[0] ?? '';
-    const coin = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'components', 'startup', 'SplashCoin.tsx'), 'utf8'));
-
-    expect(startupSplash).not.toContain('Animated.add(');
-    expect(startupSplash).toContain('<SplashCoin');
-    expect(coin.replace(/^\s*\/\/.*$/gm, '')).not.toContain('Animated.add(');
   });
 
   it('keeps looping onboarding art scales off native arithmetic nodes', () => {

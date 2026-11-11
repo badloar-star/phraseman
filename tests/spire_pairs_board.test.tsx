@@ -29,7 +29,7 @@ jest.mock('../components/v2/V2Pressable', () => {
       R.createElement('Pressable', { onPress: disabled ? undefined : onPress, testID, accessibilityState: { disabled } }, children),
   };
 });
-jest.mock('../components/learning-v2/LearningV2Glass', () => ({ lv2Alpha: (c: string, a: number) => `${c}/${a}` }));
+jest.mock('../components/practice/PracticeGlass', () => ({ lv2Alpha: (c: string, a: number) => `${c}/${a}` }));
 jest.mock('../components/spire/useSpirePalette', () => ({
   useSpirePalette: () => ({ card: 'card', accentGraphic: 'accent', correct: 'correct', wrong: 'wrong', text: 'text' }),
 }));

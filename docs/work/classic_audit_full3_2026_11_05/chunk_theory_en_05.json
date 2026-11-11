@@ -1,0 +1,1137 @@
+[
+{
+"lesson": 11,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 11,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что я сделал вчера",
+"formula": "[подлежащее] + [verb + -ed] · did + [подлежащее] + [глагол без to]?",
+"story": "Ты вчера проверил адрес: You checked the address. Переспрашиваешь: Did you check the address? Прошедшее время уже показано в did.",
+"use": "Для завершенного события в завершенное время используйте прошедшее простое время. Большинство правильных глаголов используют одну и ту же форму прошедшего времени для всех подлежащих.",
+"choose": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"nuance": "`Did` — вспомогательный глагол, который уже обозначает прошедшее время. Поэтому `Did she check…?`, а не `Did she checked…?`. Перед `last week` предлог не нужен.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Для завершенного события в завершенное время используйте прошедшее простое время. Большинство правильных глаголов используют одну и ту же форму прошедшего времени для всех подлежащих.",
+"samples": [
+"11.01",
+"11.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"samples": [
+"11.11",
+"11.29"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Did` — вспомогательный глагол, который уже обозначает прошедшее время. Поэтому `Did she check…?`, а не `Did she checked…?`. Перед `last week` предлог не нужен.",
+"samples": [
+"11.29",
+"11.32"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Задавать вопросы и отрицать в прошедшем времени",
+"samples": [
+"11.33",
+"11.35",
+"11.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Подробно расскажите сотрудникам на стойке регистрации, как вы вернули посылку. Затем спросите, возместил ли магазин стоимость доставки.",
+"samples": [
+"11.42",
+"11.45",
+"11.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Устранять неполадки в том, что работало вчера",
+"samples": [
+"11.50"
+],
+"tokenWalk": "11.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що я зробив учора",
+"formula": "[підмет] + [verb + -ed] · did + [підмет] + [дієслово без to]?",
+"story": "Ти вчора перевірив адресу: You checked the address. Перепитуєш: Did you check the address? Минулий час уже показує did.",
+"use": "Для позначення події, що закінчилася, у час, що закінчився, використовуйте простий минулий час. Більшість правильних дієслів використовують однакову форму минулого часу для всіх підметів.",
+"choose": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"nuance": "`Did` — допоміжне дієслово, яке вже позначає минулий час. Тому `Did she check…?`, а не `Did she checked…?`. Перед `last week` прийменник не потрібен.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Для позначення події, що закінчилася, у час, що закінчився, використовуйте простий минулий час. Більшість правильних дієслів використовують однакову форму минулого часу для всіх підметів.",
+"samples": [
+"11.01",
+"11.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"samples": [
+"11.11",
+"11.29"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Did` — допоміжне дієслово, яке вже позначає минулий час. Тому `Did she check…?`, а не `Did she checked…?`. Перед `last week` прийменник не потрібен.",
+"samples": [
+"11.29",
+"11.32"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитати та заперечити в минулому часі",
+"samples": [
+"11.33",
+"11.35",
+"11.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Точно розкажіть працівникам стійки реєстрації, що ви зробили, щоб повернути посилку. Потім запитайте, чи повернув магазин вартість доставки.",
+"samples": [
+"11.42",
+"11.45",
+"11.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Виправити неполадки, які працювали вчора",
+"samples": [
+"11.50"
+],
+"tokenWalk": "11.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Tell someone what happened yesterday",
+"formula": "[subject] + [verb with -ed] · did + [subject] + [base verb]?",
+"story": "You checked the address describes yesterday. Did you check the address? puts the past into did; check no longer needs -ed.",
+"use": "For a finished event at a finished time, use the past simple. Most regular verbs use the same past form for all subjects.",
+"choose": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`.",
+"nuance": "The helper `did` already marks past time, so a question or negative takes a base verb. Do not mark past time twice. A phrase such as `last week` needs no extra preposition.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "For a finished event at a finished time, use the past simple. Most regular verbs use the same past form for all subjects.",
+"samples": [
+"11.01",
+"11.11"
+]
+},
+{
+"title": "How to choose",
+"body": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`.",
+"samples": [
+"11.11",
+"11.29"
+]
+},
+{
+"title": "A useful contrast",
+"body": "The helper `did` already marks past time, so a question or negative takes a base verb. Do not mark past time twice. A phrase such as `last week` needs no extra preposition.",
+"samples": [
+"11.29",
+"11.32"
+]
+},
+{
+"title": "Common mistake",
+"body": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`.",
+"wrong": "Did she checked the address?",
+"right": "Did she check the address?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask and negate in the past",
+"samples": [
+"11.33",
+"11.35",
+"11.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Tell the desk exactly what you did to return a parcel. Then ask whether the shop refunded the delivery charge.",
+"samples": [
+"11.42",
+"11.45",
+"11.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Troubleshoot something that worked yesterday",
+"samples": [
+"11.50"
+],
+"tokenWalk": "11.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "11.01",
+"index": 1,
+"right": "walked",
+"near": "walk",
+"seq": [
+"I",
+"walked",
+"home",
+"yesterday"
+],
+"i": 0,
+"kind": "form",
+"key": "en11/lab/form1",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.12",
+"index": 1,
+"right": "closed",
+"near": "close",
+"seq": [
+"She",
+"closed",
+"the",
+"gate"
+],
+"i": 11,
+"kind": "form",
+"key": "en11/lab/form2",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.30",
+"index": 2,
+"right": "arrived",
+"near": "arrive",
+"seq": [
+"The",
+"train",
+"arrived",
+"ten",
+"minutes",
+"late"
+],
+"i": 29,
+"kind": "form",
+"key": "en11/lab/form3",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.41",
+"index": 2,
+"right": "worked",
+"near": "work",
+"seq": [
+"The",
+"charger",
+"worked",
+"yesterday"
+],
+"i": 40,
+"kind": "form",
+"key": "en11/lab/form4",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.07",
+"index": 1,
+"right": "waited",
+"near": "wait",
+"seq": [
+"They",
+"waited",
+"outside",
+"the",
+"shop"
+],
+"i": 6,
+"kind": "spot",
+"key": "en11/lab/spot1",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.16",
+"index": 1,
+"right": "checked",
+"near": "check",
+"seq": [
+"I",
+"checked",
+"the",
+"address"
+],
+"i": 15,
+"kind": "spot",
+"key": "en11/lab/spot2",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.11",
+"index": 1,
+"right": "opened",
+"near": "open",
+"seq": [
+"I",
+"opened",
+"the",
+"envelope"
+],
+"i": 10,
+"kind": "spot",
+"key": "en11/lab/spot3",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"id": "11.10",
+"index": 1,
+"right": "helped",
+"near": "help",
+"seq": [
+"I",
+"helped",
+"her",
+"with",
+"the",
+"boxes"
+],
+"i": 9,
+"kind": "spot",
+"key": "en11/lab/spot4",
+"feedback": {
+"ru": "В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят.",
+"uk": "У твердженні додай `-ed`: `work → worked`; після кінцевої `e` досить `-d`. Порівняй `copy → copied` і `stop → stopped`. Після `did` закінчення вже не додають.",
+"en": "Add `-ed` or `-d`; consonant plus `y` changes to `-ied` as in `copied`. A short stressed final syllable can double a consonant, as in `stopped`."
+}
+},
+{
+"kind": "match",
+"key": "en11/lab/match1",
+"id": "11.02",
+"other": "11.01"
+},
+{
+"kind": "match",
+"key": "en11/lab/match2",
+"id": "11.17",
+"other": "11.18"
+},
+{
+"kind": "match",
+"key": "en11/lab/match3",
+"id": "11.33",
+"other": "11.34"
+},
+{
+"kind": "match",
+"key": "en11/lab/match4",
+"id": "11.46",
+"other": "11.45"
+},
+{
+"kind": "build",
+"key": "en11/lab/build1",
+"id": "11.04"
+},
+{
+"kind": "build",
+"key": "en11/lab/build2",
+"id": "11.15"
+},
+{
+"kind": "build",
+"key": "en11/lab/build3",
+"id": "11.29"
+},
+{
+"kind": "build",
+"key": "en11/lab/build4",
+"id": "11.42"
+},
+{
+"kind": "transform",
+"id": "11.11",
+"base": "11.05",
+"diff": [
+{
+"before": [
+"called"
+],
+"after": [
+"opened"
+]
+},
+{
+"before": [
+"office"
+],
+"after": [
+"envelope"
+]
+}
+],
+"key": "en11/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "11.32",
+"base": "11.16",
+"diff": [
+{
+"before": [
+"I",
+"checked"
+],
+"after": [
+"Did",
+"she",
+"check"
+]
+}
+],
+"key": "en11/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "11.45",
+"base": "11.12",
+"diff": [
+{
+"before": [
+"closed"
+],
+"after": [
+"copied"
+]
+},
+{
+"before": [
+"gate"
+],
+"after": [
+"file"
+]
+}
+],
+"key": "en11/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "11.33",
+"base": "11.18",
+"diff": [
+{
+"before": [
+"We",
+"posted"
+],
+"after": [
+"Did",
+"they",
+"post"
+]
+}
+],
+"key": "en11/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+6
+],
+[
+14,
+16
+],
+[
+17,
+2
+],
+[
+9,
+19
+],
+[
+10,
+3
+],
+[
+15,
+18
+],
+[
+11,
+5
+]
+],
+"worked": [
+"11.05",
+"11.18",
+"11.33",
+"11.48"
+],
+"reflection": [
+"11.01",
+"11.02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 12,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 12,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что случилось: неправильные глаголы",
+"formula": "[подлежащее] + [неправильная форма прошедшего] · did + [подлежащее] + [глагол без to]?",
+"story": "Я видел знак: I saw the sign. Ты видел знак? Did you see the sign? После did верни see, а не saw.",
+"use": "Многие повседневные действия имеют особую форму прошедшего времени, а не окончание. Изучите форму на примере полезного предмета: автобуса, потерянной вещи, счета или сообщения.",
+"choose": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"nuance": "Некоторые формы выглядят неизменными на странице. Прошедшее время `read` пишется так же, как и базовая форма, но произносится иначе; время указывается в остальной части предложения. С подлежащим `who` в нейтральном вопросе можно использовать форму прошедшего времени без `did`.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Многие повседневные действия имеют особую форму прошедшего времени, а не окончание. Изучите форму на примере полезного предмета: автобуса, потерянной вещи, счета или сообщения.",
+"samples": [
+"12.01",
+"12.05"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"samples": [
+"12.05",
+"12.08"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Некоторые формы выглядят неизменными на странице. Прошедшее время `read` пишется так же, как и базовая форма, но произносится иначе; время указывается в остальной части предложения. С подлежащим `who` в нейтральном вопросе можно использовать форму прошедшего времени без `did`.",
+"samples": [
+"12.08",
+"12.35"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Переключаться между формой прошедшего времени и базовой формой глагола",
+"samples": [
+"12.33",
+"12.35",
+"12.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Пропала сумка. Скажите, где вы видели ее в последний раз, и выясните, кто ее взял. Спросите о человеке и о предмете в отдельных вопросах.",
+"samples": [
+"12.42",
+"12.45",
+"12.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Выяснять, кто что сделал",
+"samples": [
+"12.50"
+],
+"tokenWalk": "12.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що сталося: неправильні дієслова",
+"formula": "[підмет] + [неправильна форма минулого часу] · did + [підмет] + [дієслово без to]?",
+"story": "Я бачив знак: I saw the sign. Ти бачив? Did you see the sign? Після did повертається see.",
+"use": "Багато повсякденних дій мають спеціальну форму минулого часу, а не закінчення. Вивчіть форму з корисним об'єктом: автобус, загублений предмет, рахунок або повідомлення.",
+"choose": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"nuance": "Деякі форми виглядають на сторінці незмінними. Минулий час `read` пишеться як основна форма, але вимовляється по-іншому; решта речення задає час. З підметом `who` нейтральне питання може використовувати форму минулого часу без `did`.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Багато повсякденних дій мають спеціальну форму минулого часу, а не закінчення. Вивчіть форму з корисним об'єктом: автобус, загублений предмет, рахунок або повідомлення.",
+"samples": [
+"12.01",
+"12.05"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"samples": [
+"12.05",
+"12.08"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Деякі форми виглядають на сторінці незмінними. Минулий час `read` пишеться як основна форма, але вимовляється по-іншому; решта речення задає час. З підметом `who` нейтральне питання може використовувати форму минулого часу без `did`.",
+"samples": [
+"12.08",
+"12.35"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Переключитися між формою минулого часу та основною формою",
+"samples": [
+"12.33",
+"12.35",
+"12.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Сумка відсутня. Скажіть, де ви її востаннє бачили, і дізнайтеся, хто її взяв. Запитайте про особу та предмет в окремих питаннях.",
+"samples": [
+"12.42",
+"12.45",
+"12.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Дізнатися, хто що зробив",
+"samples": [
+"12.50"
+],
+"tokenWalk": "12.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Report a finished event",
+"formula": "[subject] + [irregular past] · did + [subject] + [base form]?",
+"story": "I saw the sign reports the event. To ask, say Did you see the sign? After did, go back from saw to see.",
+"use": "Many everyday actions have a special past form rather than an ending. Learn the form with a useful object: a bus, a lost item, a bill or a message.",
+"choose": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form.",
+"nuance": "Some forms look unchanged on the page. Past `read` is spelt like the base form but pronounced differently; the rest of the sentence supplies the time. With subject `who`, a neutral question can use a past form without `did`.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Many everyday actions have a special past form rather than an ending. Learn the form with a useful object: a bus, a lost item, a bill or a message.",
+"samples": [
+"12.01",
+"12.05"
+]
+},
+{
+"title": "How to choose",
+"body": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form.",
+"samples": [
+"12.05",
+"12.08"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Some forms look unchanged on the page. Past `read` is spelt like the base form but pronounced differently; the rest of the sentence supplies the time. With subject `who`, a neutral question can use a past form without `did`.",
+"samples": [
+"12.08",
+"12.35"
+]
+},
+{
+"title": "Common mistake",
+"body": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form.",
+"wrong": "Did you saw the sign?",
+"right": "Did you see the sign?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Switch between past form and base form",
+"samples": [
+"12.33",
+"12.35",
+"12.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A bag is missing. Say where you last saw it and find out who took it. Ask about the person and the object in separate questions.",
+"samples": [
+"12.42",
+"12.45",
+"12.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Find out who did what",
+"samples": [
+"12.50"
+],
+"tokenWalk": "12.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "12.01",
+"index": 1,
+"right": "went",
+"near": "go",
+"seq": [
+"I",
+"went",
+"home",
+"early"
+],
+"i": 0,
+"kind": "form",
+"key": "en12/lab/form1",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.13",
+"index": 1,
+"right": "caught",
+"near": "catch",
+"seq": [
+"We",
+"caught",
+"the",
+"early",
+"train"
+],
+"i": 12,
+"kind": "form",
+"key": "en12/lab/form2",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.15",
+"index": 1,
+"right": "gave",
+"near": "give",
+"seq": [
+"He",
+"gave",
+"me",
+"a",
+"lift"
+],
+"i": 14,
+"kind": "form",
+"key": "en12/lab/form3",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.43",
+"index": 1,
+"right": "took",
+"near": "take",
+"seq": [
+"Who",
+"took",
+"the",
+"last",
+"cup"
+],
+"i": 42,
+"kind": "form",
+"key": "en12/lab/form4",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.07",
+"index": 1,
+"right": "brought",
+"near": "bring",
+"seq": [
+"She",
+"brought",
+"a",
+"spare",
+"key"
+],
+"i": 6,
+"kind": "spot",
+"key": "en12/lab/spot1",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.14",
+"index": 1,
+"right": "got",
+"near": "get",
+"seq": [
+"They",
+"got",
+"home",
+"at",
+"nine"
+],
+"i": 13,
+"kind": "spot",
+"key": "en12/lab/spot2",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.11",
+"index": 1,
+"right": "left",
+"near": "leave",
+"seq": [
+"I",
+"left",
+"my",
+"glasses",
+"at",
+"work"
+],
+"i": 10,
+"kind": "spot",
+"key": "en12/lab/spot3",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"id": "12.10",
+"index": 1,
+"right": "found",
+"near": "find",
+"seq": [
+"He",
+"found",
+"his",
+"wallet",
+"downstairs"
+],
+"i": 9,
+"kind": "spot",
+"key": "en12/lab/spot4",
+"feedback": {
+"ru": "Учи пару в контексте: `take → took`, `buy → bought`. Скажи `I took the bus`, но спроси `Did you take the bus?` Вопросительное `did` уже обозначает прошедшее время.",
+"uk": "Вчи пару в контексті: `take → took`, `buy → bought`. Скажи `I took the bus`, але запитай `Did you take the bus?` Питальне `did` уже позначає минулий час.",
+"en": "Compare `take` and `took`, `bring` and `brought`, `buy` and `bought`. In a past question with `did`, select the base form, not the past form."
+}
+},
+{
+"kind": "match",
+"key": "en12/lab/match1",
+"id": "12.02",
+"other": "12.01"
+},
+{
+"kind": "match",
+"key": "en12/lab/match2",
+"id": "12.17",
+"other": "12.21"
+},
+{
+"kind": "match",
+"key": "en12/lab/match3",
+"id": "12.33",
+"other": "12.34"
+},
+{
+"kind": "match",
+"key": "en12/lab/match4",
+"id": "12.46",
+"other": "12.47"
+},
+{
+"kind": "build",
+"key": "en12/lab/build1",
+"id": "12.04"
+},
+{
+"kind": "build",
+"key": "en12/lab/build2",
+"id": "12.15"
+},
+{
+"kind": "build",
+"key": "en12/lab/build3",
+"id": "12.29"
+},
+{
+"kind": "build",
+"key": "en12/lab/build4",
+"id": "12.42"
+},
+{
+"kind": "transform",
+"id": "12.18",
+"base": "12.03",
+"diff": [
+{
+"before": [
+"took"
+],
+"after": [
+"heard"
+]
+},
+{
+"before": [
+"bus",
+"home"
+],
+"after": [
+"alarm"
+]
+}
+],
+"key": "en12/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "12.29",
+"base": "12.10",
+"diff": [
+{
+"before": [
+"found"
+],
+"after": [
+"broke"
+]
+},
+{
+"before": [
+"wallet",
+"downstairs"
+],
+"after": [
+"glasses"
+]
+}
+],
+"key": "en12/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "12.40",
+"base": "12.17",
+"diff": [
+{
+"before": [
+"She",
+"saw"
+],
+"after": [
+"They",
+"did",
+"not",
+"get"
+]
+}
+],
+"key": "en12/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "12.35",
+"base": "12.31",
+"diff": [
+{
+"before": [
+"find",
+"your",
+"keys"
+],
+"after": [
+"see",
+"the",
+"sign"
+]
+}
+],
+"key": "en12/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+12
+],
+[
+19,
+7
+],
+[
+14,
+17
+],
+[
+10,
+18
+],
+[
+15,
+3
+],
+[
+11,
+16
+]
+],
+"worked": [
+"12.05",
+"12.18",
+"12.33",
+"12.48"
+],
+"reflection": [
+"12.01",
+"12.02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

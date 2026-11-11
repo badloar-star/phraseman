@@ -1,0 +1,6 @@
+[
+  {"id": "es:11:10", "type": "M", "field": "ru", "problem": "«входные билеты» — калька с entradas, по-русски так не говорят", "fix": "У меня билеты."},
+  {"id": "es:11:10", "type": "M", "field": "uk", "problem": "«вхідні квитки» — калька з entradas, неприродно", "fix": "У мене квитки."},
+  {"id": "es:11:19", "type": "B1", "field": "tiles", "problem": "соблазн «con» даёт естественную «Tengo otra botella con agua» (бутылка с водой) — верный ответ засчитают ошибкой", "fix": {"position": 3, "replace_distractor": "con", "with": "sin"}},
+  {"id": "es:12:48", "type": "B3", "field": "alternatives", "problem": "нет порядка «Aquí hay…», который есть у соседних 12:46/12:49/12:50 и подсказка его не исключает", "fix": {"add": ["Aquí hay dos mochilas negras."], "remove": []}}
+]

@@ -109,7 +109,7 @@
 ## 05 · Коли потрібне es
 
 **body**
-Якщо дія закінчується на sh, ch, s або x, просте s не вимовиш — додають es, і з'являється склад: wash → washes, catch → catches, teach → teaches, fish → fishes, mix → mixes.
+Якщо дія закінчується на sh, ch, s або x, просте s не вимовити — додають es, і з'являється склад: wash → washes, catch → catches, teach → teaches, fish → fishes, mix → mixes.
 
 **examples** 🔊
 | en | uk | hi |

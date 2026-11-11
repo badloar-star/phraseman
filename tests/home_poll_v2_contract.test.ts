@@ -34,27 +34,9 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(catalog.reduce((sum, set) => sum + (set?.questions.length ?? 0), 0)).toBe(228);
   });
 
-  it('replaces the Today poll entry with the v2 sheet and never fetches poll text for display', () => {
-    const home = read('app/(tabs)/home.tsx');
-    const client = read('app/home_polls/home_polls_v2_client.ts');
-    expect(home).toContain("import { useHomePollV2 } from '../../hooks/use_home_poll_v2'");
-    expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
-    // зачем (владелец 22.10, «вернуть анкеты»): одна строка «Сегодня» — анкета-кампания первой, иначе Poll V2
-    expect(home).toContain("const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
-    // зачем (владелец 22.10 кнопкой): строка опроса на Главной — только без «Сцены»; с новой Главной опрос на «Сегодня» тем же хуком и шторкой
-    expect(home).toContain("homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {");
-    const todayScreen = read('app/today_tasks.tsx');
-    expect(todayScreen).toContain('const poll = useHomePollV2({ lang, active: pollOn });');
-    expect(todayScreen).toContain('<HomePollV2Card model={poll} lang={lang} onFinished={closePoll} />');
-    expect(home).toContain('onPress: () => setHomePollV2Open(true)');
-    expect(home).toContain('<HybridSheetShell');
-    expect(home).toContain('testID="home-poll-v2-sheet"');
-    expect(home).toContain('<HomePollV2Card model={homePollV2}');
-    expect(home).not.toContain('<HomePollV2Card lang={lang} active={homeRuntimeActive} />');
-    // опрос не берёт тексты из сервера анкет (анкета-кампания идёт своим хуком, владелец 22.10)
-    expect(home).not.toContain('fetchActiveSurveyWithRetry(');
-    expect(client).toContain("require('./home_polls_v2.json')");
-    expect(client).not.toMatch(/collection\(['"]home_polls_v2/);
+  it('keeps the former poll client out of Home and Today', () => {
+    expect(read('app/(tabs)/home.tsx')).not.toMatch(/useHomePollV2|HomePollV2Card/);
+    expect(read('app/today_tasks.tsx')).not.toMatch(/useHomePollV2|HomePollV2Card/);
   });
 
   it('keeps a durable account-scoped retry queue and guards duplicate taps with a ref', () => {
@@ -82,13 +64,12 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(client).toContain("data.status === 'accepted' ? vote.optionId : null");
   });
 
-  it('keeps aggregate counts out of the optimistic card while retaining the admin set summary', () => {
+  it('keeps aggregate counts out of the optimistic card and removes the admin set summary', () => {
     const card = read('components/home/HomePollV2Card.tsx');
     const admin = read('admin/v2/legacy.html');
     expect(card).not.toContain("model.phase === 'result'");
     expect(card).toContain('accessibilityRole="button"');
-    expect(admin).toContain("collection(db, 'home_polls_v2')");
-    expect(admin).toContain('Итоги по вопросам');
+    expect(admin).not.toContain("collection(db, 'home_polls_v2')");
   });
 
   it('never shows transport state or an offline claim in the strict optimistic flow', () => {

@@ -7,7 +7,7 @@
  * пока срезы не закрыты зелёными сторожами.
  */
 import { CLASSIC_LESSON_LOADERS, type ClassicCourseLang } from './classic_course_registry.gen';
-import type { LessonPhrase, LessonWord } from './lesson_data_types';
+import type { ClassicLessonSourceLocales, LessonPhrase, LessonWord } from './lesson_data_types';
 
 export type { ClassicCourseLang };
 export const CLASSIC_COURSE_LANGS: readonly ClassicCourseLang[] = ['en', 'es', 'fr', 'de', 'it'];
@@ -58,6 +58,17 @@ export function classicPhraseFromRecord(raw: RawPhrase, lang: ClassicCourseLang)
     const v = str(sl[key]).trim();
     if (v) sourceLocales[key] = v;
   }
+  const classicSourceLocales: ClassicLessonSourceLocales = {
+    ru: str(sl.ru),
+    uk: str(sl.uk),
+    en: str(sl.en),
+    es: str(sl.es),
+    'pt-BR': str(sl['pt-BR']),
+    vi: str(sl.vi),
+    id: str(sl.id),
+    tr: str(sl.tr),
+    pl: str(sl.pl),
+  };
   const accepted = Array.isArray(raw.accepted) ? (raw.accepted as unknown[]).map(strList).filter((p) => p.length > 0) : undefined;
   return {
     id,
@@ -70,6 +81,7 @@ export function classicPhraseFromRecord(raw: RawPhrase, lang: ClassicCourseLang)
     classic: {
       lang,
       rev: str(raw.rev),
+      sourceLocales: classicSourceLocales,
       accepted: accepted && accepted.length > 0 ? accepted : undefined,
       clarifierKeys: strList(raw.clarifierKeys),
       wordNoteKeys: strList(raw.wordNoteKeys),

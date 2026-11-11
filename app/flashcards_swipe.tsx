@@ -5,10 +5,6 @@ import { isAttemptsInputBlocked, isAttemptsStopEffect } from './session_attempts
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
-import { useDevFeatureIntroReplay } from './feature_intro_dev_replay';
-import FeatureIntroModal from '../components/FeatureIntroModal';
-import { featureIntroById } from './feature_intro_registry';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -101,7 +97,7 @@ import {
   swipeCommitDirection,
 } from './flashcards_swipe_session';
 import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
-import { loadLearningV2DictionaryTrainingDeckV1, practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
+import { loadDictionaryTrainingDeck, practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { usePackContinueRecorder } from './flashcards/use_pack_continue_recorder';
 import {
   canUseLegacySwipeGrantFailOpen,
@@ -123,7 +119,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { loadGateBackoffMs } from './load_gate_config';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
-import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { flashcardsSwipeMemoryKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from './accounts_v2_client_flag';
 import {
   flashcardsCommunityPacksAvailableForTarget,
@@ -1261,15 +1257,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
    * осталась прежней (страховочный таймер улёта).
    */
   const [cardEpoch, setCardEpoch] = useState(0);
-  // зачем: одноразовая подсказка «как пользоваться экраном» для новых юзеров —
-  // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
-  // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
-  const [showSwipeHint, setShowSwipeHint] = useState(false);
-  const swipeIntroActive = useRuntimeActive();
-  const devIntroReplay = useDevFeatureIntroReplay();
-  const swipeIntro = featureIntroById('cards_swipe_help');
-  const swipeHintCheckedRef = useRef(false);
-  const swipeHintWasDevRef = useRef(false);
   const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
   const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<Record<string, CardProgress>>({});
@@ -1511,7 +1498,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     [sessionDraftScope, studyTarget],
   );
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
-  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(requestedDeckIds), [requestedDeckIds]);
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(requestedDeckIds), [requestedDeckIds]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: runeSessionKey,
@@ -2105,19 +2092,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         tr: 'Kartı sağa/sola kaydır ya da düğmeleri kullan. Hoparlör simgesi ifadeyi seslendirir.',
         pl: 'Przesuń kartę w prawo/lewo albo użyj przycisków. Ikona głośnika odczyta zwrot.',
       }),
-      // зачем: accessibilityLabel кнопки закрытия одноразовой подсказки — раньше по
-      // ошибке использовался text.reload («Обновить»), что неверно озвучивалось скринридером.
-      dismissHint: triLang(lang, {
-        ru: 'Закрыть подсказку',
-        en: 'Dismiss hint',
-        uk: 'Закрити підказку',
-        es: 'Cerrar sugerencia',
-        'pt-BR': 'Fechar dica',
-        vi: 'Đóng gợi ý',
-        id: 'Tutup petunjuk',
-        tr: 'İpucunu kapat',
-        pl: 'Zamknij podpowiedź',
-      }),
     }),
     [lang],
   );
@@ -2202,7 +2176,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // зачем (словарь V2, владелец 21.10): слова, выбранные в словаре Learning V2, — свой источник; карточки уже на телефоне.
       for (const deckId of requestedDeckIds) {
         if (!deckId.startsWith('lv2:')) continue;
-        const deckCards = await loadLearningV2DictionaryTrainingDeckV1(deckId.slice(4), cardContentLang);
+        const deckCards = await loadDictionaryTrainingDeck(deckId.slice(4), cardContentLang);
         tfPrep('sources:lv2', { deckId, cards: deckCards.length });
         if (deckCards.length === 0) continue;
         next.push({
@@ -3093,35 +3067,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     };
   }, [flushDraftSave]);
 
-  // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
-  // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
-  // не просто phase). Флаг ставим сразу при показе, чтобы повторный маунт экрана
-  // (напр. быстрый back/forward) не показал баннер снова, пока идёт запрос к AsyncStorage.
-  useEffect(() => {
-    if (devIntroReplay) swipeHintCheckedRef.current = false;
-  }, [devIntroReplay, swipeIntroActive]);
-
-  useEffect(() => {
-    if (!swipeAccessGranted || !swipeIntroActive || phase !== 'play' || !currentPrompt || swipeHintCheckedRef.current) return;
-    let cancelled = false;
-    void AsyncStorage.getItem(flashcardsSwipeHintSeenKey(studyTarget))
-      .then((seen) => {
-        if (cancelled) return;
-        swipeHintCheckedRef.current = true;
-        if (seen === '1' && !devIntroReplay) return;
-        swipeHintWasDevRef.current = devIntroReplay;
-        setShowSwipeHint(true);
-        if (!devIntroReplay) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1').catch((error: unknown) => { console.warn('[FC-SWIPE] AsyncStorage.setItem: не удалось (продолжаем без неё)', error); });
-      })
-      .catch((error: unknown) => { console.warn('[FC-SWIPE] AsyncStorage.setItem: не удалось (продолжаем без неё)', error); });
-    return () => { cancelled = true; };
-  }, [currentPrompt, phase, studyTarget, swipeAccessGranted, swipeIntroActive, devIntroReplay]);
-
-  const dismissSwipeHint = useCallback(() => {
-    setShowSwipeHint(false);
-    if (!swipeHintWasDevRef.current) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1');
-  }, [studyTarget]);
-
   const clearCorrectTranslationReminder = useCallback(() => {
     if (correctTranslationReminderTimer.current) {
       clearTimeout(correctTranslationReminderTimer.current);
@@ -3164,10 +3109,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       });
     }, 3200);
   }, [correctTranslationReminderAnim]);
-
-  useEffect(() => {
-    if (!swipeIntroActive) setShowSwipeHint(false);
-  }, [swipeIntroActive]);
 
   useEffect(() => () => {
     if (correctTranslationReminderTimer.current) {
@@ -3398,7 +3339,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       }
       answeredPromptIdRef.current = currentPrompt.id;
       clearCorrectTranslationReminder();
-      if (showSwipeHint) dismissSwipeHint();
       // FIX (владелец, 2026-08-13), вторая половина «улетает и возвращается»:
       // ошибочный ответ раньше тоже уводил карточку за край экрана, но разбор
       // (правильный перевод) показывается НА ТОЙ ЖЕ карточке — и она честно
@@ -3424,7 +3364,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, flyOpacity, isTrueFalseSession, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, feedback, flyOpacity, isTrueFalseSession, position, settleCard, settling],
   );
 
   const revealCurrent = useCallback(() => {
@@ -4123,22 +4063,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           {/* зачем (Волна 2, пункт 18): заливка прогресса едет плавно (KitProgressFill: scaleX на нативном драйвере, 800 мс), а не прыгает на каждый шаг; радиус 0 — трек обрезает края */}
           <KitProgressFill ratio={progressPct / 100} style={{ backgroundColor: swipeGlass.accentGraphic, borderRadius: 0 }} testID="flashcards-swipe-progress-fill" />
         </View>
-
-        {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}
-        {swipeIntro ? <FeatureIntroModal
-          visible={showSwipeHint && swipeIntroActive}
-          family="orbit"
-          art="cards_swipe"
-          icon={swipeIntro.icon}
-          title={swipeIntro.title(lang)}
-          body={swipeIntro.body(lang)}
-          ctaLabel={swipeIntro.ctaLabel(lang)}
-          laterLabel={text.dismissHint}
-          onDone={dismissSwipeHint}
-          onLater={dismissSwipeHint}
-          testIdPrefix="swipe-intro"
-          introId={swipeIntro.id}
-        /> : null}
 
         {/* Источник полёта рун (владелец, 2026-08-27) */}
         <View ref={runeFlight.originRef} collapsable={false} style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>

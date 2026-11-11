@@ -11,13 +11,13 @@ import { Animated, Easing, StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { FlowText } from '../text-integrity';
-import { Lv2Chip, lv2Alpha, useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { Lv2Chip, lv2Alpha, useLv2Glass } from '../practice/PracticeGlass';
 import {
   LV2_TASK_LAYOUT,
   LV2_TASK_VERDICT_BLOCK,
   lv2TaskTitleTileColor,
   lv2TaskVerdictBlockLook,
-} from '../learning-v2/learning_v2_task_layout_tokens';
+} from '../practice/practice_layout_tokens';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { Lang } from '../../constants/i18n';
@@ -110,9 +110,13 @@ function DuelPhraseBoard({ phrase, picked, verdict, lang, textScale, onAppend, o
 
       {phrase.goal ? (
         <View style={styles.goal}>
-          <FlowText testID="friend-duel-goal-label" provenance="authored" style={[styles.kicker, styles.center, { color: g.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>{/* guard-ok: метка цели «Скажи по-английски» (.goal .k макета) */}
-            {duelPlayCopy(lang, 'sayInEnglish')}
-          </FlowText>
+          {/* зачем: дуэль идёт на любом из пяти языков классического курса; метка «Скажи по-английски» верна только
+              для английских фраз. Для остальных языков её нет — заголовок «Собери фразу» выше уже называет задание. */}
+          {phrase.id.startsWith('en:') ? (
+            <FlowText testID="friend-duel-goal-label" provenance="authored" style={[styles.kicker, styles.center, { color: g.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>{/* guard-ok: метка цели «Скажи по-английски» (.goal .k макета) */}
+              {duelPlayCopy(lang, 'sayInEnglish')}
+            </FlowText>
+          ) : null}
           <FlowText testID="friend-duel-goal" provenance="authored" style={[styles.goalText, styles.center, { color: g.text, fontSize: 28 * textScale, lineHeight: 34 * textScale }]}>
             {phrase.goal}
           </FlowText>

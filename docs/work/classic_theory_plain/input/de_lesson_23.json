@@ -1,0 +1,750 @@
+{
+ "lang": "de",
+ "lesson": 23,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:23:01",
+   "target": "Wenn es regnet, bleibe ich zu Hause.",
+   "ru": "Если пойдёт дождь, я останусь дома.",
+   "uk": "Якщо йтиме дощ, я залишуся вдома."
+  },
+  {
+   "id": "de:23:02",
+   "target": "Wenn es schneit, nehme ich den Bus.",
+   "ru": "Если пойдёт снег, я поеду на автобусе.",
+   "uk": "Якщо піде сніг, я поїду автобусом."
+  },
+  {
+   "id": "de:23:03",
+   "target": "Wenn ich müde bin, mache ich eine Pause.",
+   "ru": "Если я устал, я делаю перерыв.",
+   "uk": "Якщо я втомився, я роблю перерву."
+  },
+  {
+   "id": "de:23:04",
+   "target": "Wenn du Hunger hast, kochen wir.",
+   "ru": "Если ты голоден, мы приготовим поесть.",
+   "uk": "Якщо ти голодний, ми приготуємо поїсти."
+  },
+  {
+   "id": "de:23:05",
+   "target": "Wenn Anna Zeit hat, kommt sie mit.",
+   "ru": "Если у Анны есть время, она пойдёт с нами.",
+   "uk": "Якщо Анна має час, вона піде з нами."
+  },
+  {
+   "id": "de:23:06",
+   "target": "Wenn Tom anruft, sage ich Bescheid.",
+   "ru": "Если позвонит Том, я дам знать.",
+   "uk": "Якщо зателефонує Том, я дам знати."
+  },
+  {
+   "id": "de:23:07",
+   "target": "Wenn das Kind schläft, lesen wir.",
+   "ru": "Когда ребёнок спит, мы читаем.",
+   "uk": "Коли дитина спить, ми читаємо."
+  },
+  {
+   "id": "de:23:08",
+   "target": "Wenn die Sonne scheint, gehen wir raus.",
+   "ru": "Если светит солнце, мы выходим на улицу.",
+   "uk": "Якщо світить сонце, ми виходимо надвір."
+  },
+  {
+   "id": "de:23:09",
+   "target": "Wenn der Bus kommt, steigen wir ein.",
+   "ru": "Когда придёт автобус, мы сядем.",
+   "uk": "Коли прийде автобус, ми сядемо."
+  },
+  {
+   "id": "de:23:10",
+   "target": "Wenn das Licht grün wird, gehen wir los.",
+   "ru": "Когда загорится зелёный, мы пойдём.",
+   "uk": "Коли спалахне зелений, ми підемо."
+  },
+  {
+   "id": "de:23:11",
+   "target": "Ich rufe dich an, wenn ich zu Hause bin.",
+   "ru": "Я позвоню тебе, когда буду дома.",
+   "uk": "Я подзвоню тобі, коли буду вдома."
+  },
+  {
+   "id": "de:23:12",
+   "target": "Wir fahren los, wenn alle bereit sind.",
+   "ru": "Мы выедем, когда все будут готовы.",
+   "uk": "Ми виїдемо, коли всі будуть готові."
+  },
+  {
+   "id": "de:23:13",
+   "target": "Anna hilft dir, wenn du fragst.",
+   "ru": "Анна поможет тебе, если ты попросишь.",
+   "uk": "Анна допоможе тобі, якщо ти попросиш."
+  },
+  {
+   "id": "de:23:14",
+   "target": "Tom nimmt ein Taxi, wenn es spät ist.",
+   "ru": "Том берёт такси, если уже поздно.",
+   "uk": "Том бере таксі, якщо вже пізно."
+  },
+  {
+   "id": "de:23:15",
+   "target": "Ich kaufe Milch, wenn der Laden offen ist.",
+   "ru": "Я куплю молоко, если магазин открыт.",
+   "uk": "Я куплю молоко, якщо магазин відкритий."
+  },
+  {
+   "id": "de:23:16",
+   "target": "Wir warten draußen, wenn das Café voll ist.",
+   "ru": "Мы подождём снаружи, если в кафе нет места.",
+   "uk": "Ми зачекаємо зовні, якщо в кафе немає місця."
+  },
+  {
+   "id": "de:23:17",
+   "target": "Wenn die Zahlung klappt, bekommst du den Beleg.",
+   "ru": "Если платёж пройдёт, ты получишь квитанцию.",
+   "uk": "Якщо платіж пройде, ти отримаєш квитанцію."
+  },
+  {
+   "id": "de:23:18",
+   "target": "Sie bringt Brot mit, wenn sie einkauft.",
+   "ru": "Она приносит хлеб, когда ходит за покупками.",
+   "uk": "Вона приносить хліб, коли ходить за покупками."
+  },
+  {
+   "id": "de:23:19",
+   "target": "Ich höre Musik, wenn ich koche.",
+   "ru": "Я слушаю музыку, когда готовлю.",
+   "uk": "Я слухаю музику, коли готую."
+  },
+  {
+   "id": "de:23:20",
+   "target": "Wir lüften, wenn das Wetter gut ist.",
+   "ru": "Мы проветриваем, когда погода хорошая.",
+   "uk": "Ми провітрюємо, коли погода хороша."
+  },
+  {
+   "id": "de:23:21",
+   "target": "Wenn du den Pass findest, ruf mich an!",
+   "ru": "Если найдёшь паспорт, позвони мне!",
+   "uk": "Якщо знайдеш паспорт, подзвони мені!"
+  },
+  {
+   "id": "de:23:22",
+   "target": "Wenn es klingelt, öffne bitte die Tür!",
+   "ru": "Если позвонят в дверь, открой, пожалуйста!",
+   "uk": "Якщо подзвонять у двері, відчини, будь ласка!"
+  },
+  {
+   "id": "de:23:23",
+   "target": "Wenn ihr fertig seid, räumt den Tisch ab!",
+   "ru": "Когда закончите, уберите со стола!",
+   "uk": "Коли закінчите, приберіть зі столу!"
+  },
+  {
+   "id": "de:23:24",
+   "target": "Wenn Sie einsteigen, zeigen Sie bitte Ihr Ticket!",
+   "ru": "При входе покажите, пожалуйста, ваш билет!",
+   "uk": "При вході покажіть, будь ласка, ваш квиток!"
+  },
+  {
+   "id": "de:23:25",
+   "target": "Wenn dir kalt ist, zieh die Jacke an!",
+   "ru": "Если тебе холодно, надень куртку!",
+   "uk": "Якщо тобі холодно, одягни куртку!"
+  },
+  {
+   "id": "de:23:26",
+   "target": "Wenn du ankommst, schreib mir bitte!",
+   "ru": "Когда придёшь, напиши мне, пожалуйста!",
+   "uk": "Коли прийдеш, напиши мені, будь ласка!"
+  },
+  {
+   "id": "de:23:27",
+   "target": "Wenn etwas fehlt, sag mir Bescheid!",
+   "ru": "Если чего-то не хватает, дай мне знать!",
+   "uk": "Якщо чогось не вистачає, дай мені знати!"
+  },
+  {
+   "id": "de:23:28",
+   "target": "Wenn du gehst, schalte das Licht aus!",
+   "ru": "Когда будешь уходить, выключи свет!",
+   "uk": "Коли йтимеш, вимкни світло!"
+  },
+  {
+   "id": "de:23:29",
+   "target": "Wenn die Suppe kocht, stell den Herd kleiner!",
+   "ru": "Когда суп закипит, убавь огонь!",
+   "uk": "Коли суп закипить, зменши вогонь!"
+  },
+  {
+   "id": "de:23:30",
+   "target": "Wenn ihr Hilfe braucht, fragt Anna!",
+   "ru": "Если вам нужна помощь, спросите Анну!",
+   "uk": "Якщо вам потрібна допомога, спитайте Анну!"
+  },
+  {
+   "id": "de:23:31",
+   "target": "Wenn der Zug ausfällt, können wir den Bus nehmen.",
+   "ru": "Если поезд отменят, мы можем поехать на автобусе.",
+   "uk": "Якщо потяг скасують, ми можемо поїхати автобусом."
+  },
+  {
+   "id": "de:23:32",
+   "target": "Wenn es laut ist, muss ich das Fenster schließen.",
+   "ru": "Если шумно, мне приходится закрывать окно.",
+   "uk": "Якщо шумно, мені доводиться закривати вікно."
+  },
+  {
+   "id": "de:23:33",
+   "target": "Wenn du möchtest, kann ich dich abholen.",
+   "ru": "Если хочешь, я могу тебя забрать.",
+   "uk": "Якщо хочеш, я можу тебе забрати."
+  },
+  {
+   "id": "de:23:34",
+   "target": "Wenn wir früher fahren, können wir öfter anhalten.",
+   "ru": "Если выедем раньше, сможем чаще останавливаться.",
+   "uk": "Якщо виїдемо раніше, зможемо частіше зупинятися."
+  },
+  {
+   "id": "de:23:35",
+   "target": "Wenn ich krank bin, muss ich den Termin absagen.",
+   "ru": "Если я заболею, мне придётся отменить запись.",
+   "uk": "Якщо я захворію, мені доведеться скасувати запис."
+  },
+  {
+   "id": "de:23:36",
+   "target": "Wenn ihr hier parkt, müsst ihr bezahlen.",
+   "ru": "Если вы здесь паркуетесь, вам нужно заплатить.",
+   "uk": "Якщо ви паркуєтеся тут, вам потрібно заплатити."
+  },
+  {
+   "id": "de:23:37",
+   "target": "Wenn es dunkel wird, musst du Licht anmachen.",
+   "ru": "Когда стемнеет, тебе нужно включить свет.",
+   "uk": "Коли стемніє, тобі потрібно ввімкнути світло."
+  },
+  {
+   "id": "de:23:38",
+   "target": "Wenn Sie Fragen haben, können Sie hier anrufen.",
+   "ru": "Если у вас есть вопросы, можете позвонить сюда.",
+   "uk": "Якщо ви маєте запитання, можете зателефонувати сюди."
+  },
+  {
+   "id": "de:23:39",
+   "target": "Wenn das Handy leer ist, kann ich nicht anrufen.",
+   "ru": "Если телефон разряжен, я не могу позвонить.",
+   "uk": "Якщо телефон розряджений, я не можу зателефонувати."
+  },
+  {
+   "id": "de:23:40",
+   "target": "Wenn der Preis stimmt, möchte ich das Rad kaufen.",
+   "ru": "Если цена подойдёт, я хотел бы купить велосипед.",
+   "uk": "Якщо ціна підійде, я хотів би купити велосипед."
+  },
+  {
+   "id": "de:23:41",
+   "target": "Immer wenn ich hier bin, besuche ich meine Schwester.",
+   "ru": "Всякий раз, когда я бываю здесь, я навещаю сестру.",
+   "uk": "Щоразу, коли я буваю тут, я відвідую сестру."
+  },
+  {
+   "id": "de:23:42",
+   "target": "Wenn Tom Nachtschicht hat, schläft er tagsüber.",
+   "ru": "Когда Том работает в ночную смену, он спит днём.",
+   "uk": "Коли Том працює в нічну зміну, він спить вдень."
+  },
+  {
+   "id": "de:23:43",
+   "target": "Wenn die Kinder Ferien haben, fahren wir ans Meer.",
+   "ru": "Когда у детей каникулы, мы едем к морю.",
+   "uk": "Коли у дітей канікули, ми їдемо до моря."
+  },
+  {
+   "id": "de:23:44",
+   "target": "Wenn ich Post bekomme, lege ich sie auf den Tisch.",
+   "ru": "Когда я получаю почту, я кладу её на стол.",
+   "uk": "Коли я отримую пошту, я кладу її на стіл."
+  },
+  {
+   "id": "de:23:45",
+   "target": "Wenn der Akku fast leer ist, lade ich ihn auf.",
+   "ru": "Когда заряд почти закончился, я заряжаю аккумулятор.",
+   "uk": "Коли заряд майже закінчився, я заряджаю акумулятор."
+  },
+  {
+   "id": "de:23:46",
+   "target": "Wenn die Tür klemmt, drück sie leicht nach oben!",
+   "ru": "Если дверь заедает, немного приподними её, надавив снизу!",
+   "uk": "Якщо двері заїдають, злегка підніми їх, натиснувши знизу!"
+  },
+  {
+   "id": "de:23:47",
+   "target": "Ich trinke Tee, wenn mein Hals wehtut.",
+   "ru": "Я пью чай, когда у меня болит горло.",
+   "uk": "Я п'ю чай, коли у мене болить горло."
+  },
+  {
+   "id": "de:23:48",
+   "target": "Wir nehmen die Treppe, wenn der Aufzug nicht fährt.",
+   "ru": "Мы идём по лестнице, когда лифт не работает.",
+   "uk": "Ми йдемо сходами, коли ліфт не працює."
+  },
+  {
+   "id": "de:23:49",
+   "target": "Wenn die Busfahrer streiken, gehe ich zu Fuß.",
+   "ru": "Когда водители автобусов бастуют, я иду пешком.",
+   "uk": "Коли водії автобусів страйкують, я йду пішки."
+  },
+  {
+   "id": "de:23:50",
+   "target": "Wenn die Bahn pünktlich ist, schaffen wir den Anschluss.",
+   "ru": "Если электричка придёт вовремя, мы успеем на пересадку.",
+   "uk": "Якщо електричка прийде вчасно, ми встигнемо на пересадку."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "die Nachtschicht",
+   "ru": "ночная смена",
+   "uk": "нічна зміна"
+  },
+  {
+   "lemma": "der Anschluss",
+   "ru": "стыковка, пересадка",
+   "uk": "стикування, пересадка"
+  },
+  {
+   "lemma": "lüften",
+   "ru": "проветривать",
+   "uk": "провітрювати"
+  },
+  {
+   "lemma": "absagen",
+   "ru": "отменять",
+   "uk": "скасовувати"
+  },
+  {
+   "lemma": "tagsüber",
+   "ru": "в дневное время",
+   "uk": "вдень"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  }
+ ],
+ "oldTopicTitle": "Условие и повторяющийся случай: `wenn`",
+ "oldTheoryRu": "Человек ещё не знает, пойдёт ли дождь. Он предлагает план на такой случай. Обычное настоящее время подходит для реального условия; специальная форма будущего здесь не обязательна. Если сначала сказать результат, в главной части обычный порядок. Когда условие в конце, оно не меняет первые слова главного предложения. В обоих порядках смысл условия можно сохранить. Результат может быть просьбой, а не обычным сообщением. После запятой останется команда: подлежащее `du` не обязано появляться только потому, что в первой части оно было названо. Модальная часть сообщает возможность или обязанность. Выбирай её по практическому значению: что можно сделать, а что придётся сделать. Не теряй инфинитив в самом конце главной части. Другая полезная функция — повторяющееся обстоятельство. `Immer wenn` означает «всякий раз, когда». Вспомни повторяющийся рабочий день, а не единственный случай из прошлого. Смысл не обязательно условный в строгом смысле. Когда аккумулятор почти сел, его заряжают: событие ожидается, вопрос только в том, когда оно случится. Условие и ожидаемый момент получают одну структуру предложения. Не путай с косвенным вопросом «ли». В этом уроке сообщаем, при каких условиях действуем; мы не спрашиваем, верно ли утверждение. Отдельное слово для косвенных вопросов появится позднее."
+}

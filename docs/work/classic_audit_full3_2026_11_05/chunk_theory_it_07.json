@@ -1,0 +1,1066 @@
+[
+{
+"lesson": 15,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:15:01",
+"it:15:02",
+"it:15:03"
+],
+"textByLocale": {
+"en": "Use this form when you look at the action from the inside: it has already begun and is still ongoing. This is not a necessary translation of any present tense. For a habitual activity, the simple present is often sufficient.",
+"ru": "Используй эту форму, когда смотришь на действие изнутри: оно уже началось и ещё идёт. Это не обязательный перевод любого настоящего времени. Для привычного занятия часто достаточно простого настоящего.",
+"uk": "Використовуй цю форму, коли дивишся на дію зсередини: вона вже почалася і ще йде. Це не обов'язковий переклад будь-якого теперішнього часу. Для звичного заняття часто досить простого сьогодення."
+}
+},
+{
+"exampleIds": [
+"it:15:05",
+"it:15:06",
+"it:15:07"
+],
+"textByLocale": {
+"en": "Verbs ending in `-are` usually have a gerund ending in `-ando`: `tagliare` → `tagliando`. For `leggere` and `scrivere`, here `leggendo`, `scrivendo`. Don't put an infinitive after `sto` in this pattern.",
+"ru": "У глаголов на `-are` герундий обычно на `-ando`: `tagliare` → `tagliando`. У `leggere` и `scrivere` здесь `leggendo`, `scrivendo`. Не ставь инфинитив после `sto` в этой модели.",
+"uk": "У дієслів на `-are` герундій зазвичай на `-ando`: `tagliare` → `tagliando`. У `leggere` і `scrivere` тут `leggendo`, `scrivendo`. Не став інфінітив після `sto` в цій моделі."
+}
+},
+{
+"exampleIds": [
+"it:15:09",
+"it:15:11",
+"it:15:12"
+],
+"textByLocale": {
+"en": "Conjugates `stare`, and the gerund is the same for any person. Compare `sto bevendo` and `sta bevendo`: a change in person should not change the ending of `bevendo`.",
+"ru": "Спрягается `stare`, а герундий одинаков при любом человеке. Сравни `sto bevendo` и `sta bevendo`: изменение лица не должно менять конец `bevendo`.",
+"uk": "Відмінюється `stare`, а герундій однаковий при будь-якій людині. Порівняй `sto bevendo` та `sta bevendo`: зміна особи не повинна змінювати кінець `bevendo`."
+}
+},
+{
+"exampleIds": [
+"it:15:15",
+"it:15:18",
+"it:15:20"
+],
+"textByLocale": {
+"en": "A long addition doesn't cancel the process form. First, assemble the \"who is doing what now\" link, then indicate the item or payment method, if it's in the clue.",
+"ru": "Длинное дополнение не отменяет форму процесса. Сначала собери связку «кто сейчас что делает», затем укажи предмет или способ оплаты, если они есть в подсказке.",
+"uk": "Довге доповнення не скасовує форму процесу. Спочатку збери зв'язку \"хто зараз що робить\", потім вкажи предмет або спосіб оплати, якщо вони є в підказці."
+}
+},
+{
+"exampleIds": [
+"it:15:21",
+"it:15:22",
+"it:15:25"
+],
+"textByLocale": {
+"en": "In group forms, distinguish between `stiamo`, `state`, and `stanno`. Choose based on the participants in the action, not the number of books, cups, or things they are holding.",
+"ru": "В формах для группы различай `stiamo`, `state`, `stanno`. Выбирай по участникам действия, а не по количеству книг, чашек или вещей у них в руках.",
+"uk": "У формах для групи розрізняй `stiamo`, `state`, `stanno`. Вибирай за учасниками дії, а не за кількістю книг, чашок чи речей у них у руках."
+}
+},
+{
+"exampleIds": [
+"it:15:32",
+"it:15:34",
+"it:15:36"
+],
+"textByLocale": {
+"en": "Negation usually comes before the personal group: `non sto scrivendo`. With a reflexive pronoun, `mi sto lavando` and `sto lavandomi` are possible. Both methods don't need to be combined into a single answer.",
+"ru": "Отрицание обычно идёт перед личной группой: `non sto scrivendo`. С возвратным местоимением возможны `mi sto lavando` и `sto lavandomi`. Оба способа не нужно соединять в один ответ.",
+"uk": "Заперечення зазвичай йде перед особистою групою: `non sto scrivendo`. Зі зворотним займенником можливі `mi sto lavando` і `sto lavandomi`. Обидва способи не потрібно з'єднувати в одну відповідь."
+}
+},
+{
+"exampleIds": [
+"it:15:41",
+"it:15:44",
+"it:15:50"
+],
+"textByLocale": {
+"en": "For a question, the sign is placed at the very end, and the stem remains familiar. Hearing `Stai leggendo?` means asking what's happening now, and not whether you can even read.",
+"ru": "Для вопроса знак ставится в самом конце, а основа остаётся знакомой. Услышал `Stai leggendo?` — спрашивают, что происходит сейчас, а не умеешь ли ты вообще читать.",
+"uk": "Для питання знак ставиться наприкінці, а основа залишається знайомою. Почув `Stai leggendo?` – запитують, що відбувається зараз, а чи не вмієш ти взагалі читати."
+}
+}
+],
+"drills": [
+{
+"bad": "letto",
+"chapter": 1,
+"id": "it:15:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"letto",
+"leggo",
+"leggendo"
+],
+"slot": 1
+},
+{
+"bad": "letto",
+"chapter": 1,
+"id": "it:15:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"leggendo",
+"leggere",
+"letto"
+],
+"slot": 1
+},
+{
+"bad": "scrivo",
+"chapter": 1,
+"id": "it:15:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"scritto",
+"scrivendo",
+"scrivo"
+],
+"slot": 2
+},
+{
+"bad": "scrivo",
+"chapter": 2,
+"id": "it:15:08:lab",
+"item": 8,
+"kind": "build",
+"near": 43,
+"options": [
+"scritto",
+"scrivo",
+"scrivendo"
+],
+"slot": 1
+},
+{
+"bad": "stai",
+"chapter": 2,
+"id": "it:15:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"mangiando",
+"stai",
+"sta"
+],
+"slot": 1
+},
+{
+"bad": "bere",
+"chapter": 2,
+"id": "it:15:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 49,
+"options": [
+"bevendo",
+"bere",
+"bevo"
+],
+"slot": 2
+},
+{
+"bad": "stai",
+"chapter": 3,
+"id": "it:15:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 40,
+"options": [
+"preparando",
+"stai",
+"sta"
+],
+"slot": 2
+},
+{
+"bad": "sta",
+"chapter": 3,
+"id": "it:15:17:lab",
+"item": 17,
+"kind": "match",
+"near": 46,
+"options": [
+"portando",
+"sta",
+"stai"
+],
+"slot": 2
+},
+{
+"bad": "stai",
+"chapter": 3,
+"id": "it:15:19:lab",
+"item": 19,
+"kind": "build",
+"near": 26,
+"options": [
+"sta",
+"stai",
+"pagando"
+],
+"slot": 4
+},
+{
+"bad": "letto",
+"chapter": 4,
+"id": "it:15:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 4,
+"options": [
+"leggendo",
+"leggere",
+"letto"
+],
+"slot": 1
+},
+{
+"bad": "sta",
+"chapter": 4,
+"id": "it:15:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 15,
+"options": [
+"stai",
+"sta",
+"assaggiando"
+],
+"slot": 1
+},
+{
+"bad": "stai",
+"chapter": 4,
+"id": "it:15:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 29,
+"options": [
+"sta",
+"aspettando",
+"stai"
+],
+"slot": 4
+},
+{
+"bad": "sta",
+"chapter": 5,
+"id": "it:15:29:lab",
+"item": 29,
+"kind": "match",
+"near": 26,
+"options": [
+"sta",
+"stai",
+"mangiando"
+],
+"slot": 4
+},
+{
+"bad": "stai",
+"chapter": 5,
+"id": "it:15:31:lab",
+"item": 31,
+"kind": "build",
+"near": 43,
+"options": [
+"stai",
+"incartando",
+"sta"
+],
+"slot": 1
+},
+{
+"bad": "stai",
+"chapter": 5,
+"id": "it:15:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 27,
+"options": [
+"stai",
+"sta",
+"lavando"
+],
+"slot": 2
+},
+{
+"bad": "bevuto",
+"chapter": 6,
+"id": "it:15:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 38,
+"options": [
+"bevuto",
+"bevendo",
+"beve"
+],
+"slot": 2
+},
+{
+"bad": "leggo",
+"chapter": 6,
+"id": "it:15:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 22,
+"options": [
+"leggo",
+"leggere",
+"leggendo"
+],
+"slot": 2
+},
+{
+"bad": "stai",
+"chapter": 6,
+"id": "it:15:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"stai",
+"asciugando",
+"sta"
+],
+"slot": 1
+},
+{
+"bad": "sta",
+"chapter": 7,
+"id": "it:15:45:lab",
+"item": 45,
+"kind": "build",
+"near": 35,
+"options": [
+"portando",
+"stai",
+"sta"
+],
+"slot": 2
+},
+{
+"bad": "sta",
+"chapter": 7,
+"id": "it:15:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 45,
+"options": [
+"sta",
+"stai",
+"tornando"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"io / tu",
+"sto / stai leggendo"
+],
+[
+"lui / noi",
+"sta / stiamo leggendo"
+],
+[
+"voi / loro",
+"state / stanno leggendo"
+],
+[
+"tagliare",
+"tagliando"
+],
+[
+"leggere",
+"leggendo"
+],
+[
+"aprire",
+"aprendo"
+],
+[
+"bere",
+"bevendo"
+]
+],
+"title": {
+"en": "Right now: `stare` + gerund",
+"ru": "Прямо сейчас: `stare` + герундий",
+"uk": "Зараз: `stare` + герундій"
+}
+},
+"exampleResolved": [
+{
+"id": "it:15:01",
+"target": "Sto leggendo il libro.",
+"ru": "Я сейчас читаю книгу.",
+"uk": "Я зараз читаю книжку."
+},
+{
+"id": "it:15:02",
+"target": "Stai leggendo il libro.",
+"ru": "Ты сейчас читаешь книгу.",
+"uk": "Ти зараз читаєш книжку."
+},
+{
+"id": "it:15:03",
+"target": "Sto leggendo il messaggio.",
+"ru": "Я сейчас читаю сообщение.",
+"uk": "Я зараз читаю повідомлення."
+},
+{
+"id": "it:15:05",
+"target": "Ana sta scrivendo una lettera.",
+"ru": "Ана сейчас пишет письмо.",
+"uk": "Ана зараз пише листа."
+},
+{
+"id": "it:15:06",
+"target": "Stiamo scrivendo una lettera.",
+"ru": "Мы сейчас пишем письмо.",
+"uk": "Ми зараз пишемо листа."
+},
+{
+"id": "it:15:07",
+"target": "Sto tagliando una cipolla.",
+"ru": "Я сейчас режу луковицу.",
+"uk": "Я зараз ріжу цибулину."
+},
+{
+"id": "it:15:09",
+"target": "Luis sta mangiando a casa.",
+"ru": "Луис сейчас ест дома.",
+"uk": "Луїс зараз їсть вдома."
+},
+{
+"id": "it:15:11",
+"target": "Sto bevendo acqua.",
+"ru": "Я сейчас пью воду.",
+"uk": "Я зараз п’ю воду."
+},
+{
+"id": "it:15:12",
+"target": "Ana sta bevendo un caffè.",
+"ru": "Ана сейчас пьёт кофе.",
+"uk": "Ана зараз п’є каву."
+},
+{
+"id": "it:15:15",
+"target": "Sto aprendo la porta.",
+"ru": "Я сейчас открываю дверь.",
+"uk": "Я зараз відчиняю двері."
+},
+{
+"id": "it:15:18",
+"target": "Ana sta asciugando i piatti.",
+"ru": "Ана сейчас вытирает тарелки.",
+"uk": "Ана зараз витирає тарілки."
+},
+{
+"id": "it:15:20",
+"target": "Stai pagando con la carta.",
+"ru": "Ты сейчас платишь картой.",
+"uk": "Ти зараз платиш карткою."
+},
+{
+"id": "it:15:21",
+"target": "Stiamo leggendo il libro.",
+"ru": "Мы сейчас читаем книгу.",
+"uk": "Ми зараз читаємо книжку."
+},
+{
+"id": "it:15:22",
+"target": "State leggendo il messaggio.",
+"ru": "Вы сейчас читаете сообщение.",
+"uk": "Ви зараз читаєте повідомлення."
+},
+{
+"id": "it:15:25",
+"target": "Le mie sorelle stanno aspettando qui.",
+"ru": "Мои сёстры сейчас ждут здесь.",
+"uk": "Мої сестри зараз чекають тут."
+},
+{
+"id": "it:15:32",
+"target": "Non stai scrivendo una lettera.",
+"ru": "Ты сейчас не пишешь письмо.",
+"uk": "Ти зараз не пишеш листа."
+},
+{
+"id": "it:15:34",
+"target": "Mi sto lavando le mani.",
+"ru": "Я сейчас мою руки.",
+"uk": "Я зараз мию руки."
+},
+{
+"id": "it:15:36",
+"target": "Non stiamo bevendo caffè.",
+"ru": "Мы сейчас не пьём кофе.",
+"uk": "Ми зараз не п’ємо каву."
+},
+{
+"id": "it:15:41",
+"target": "Stai lavorando a casa?",
+"ru": "Ты сейчас работаешь дома?",
+"uk": "Ти зараз працюєш вдома?"
+},
+{
+"id": "it:15:44",
+"target": "Stai leggendo il libro?",
+"ru": "Ты сейчас читаешь книгу?",
+"uk": "Ти зараз читаєш книжку?"
+},
+{
+"id": "it:15:50",
+"target": "Stai cercando le mie chiavi?",
+"ru": "Ты сейчас ищешь мои ключи?",
+"uk": "Ти зараз шукаєш мої ключі?"
+}
+]
+},
+{
+"lesson": 16,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:16:01",
+"it:16:02",
+"it:16:03"
+],
+"textByLocale": {
+"en": "A command and an invitation have the same grammatical form, but different tone. `Entra!` can be a friendly invitation to enter. Don't add \"immediately\" unless it's in the clue.",
+"ru": "У приказа и приглашения одна грамматическая форма, но разный тон. `Entra!` может быть дружелюбным приглашением войти. Не добавляй «немедленно», если этого нет в подсказке.",
+"uk": "У наказу та запрошення одна граматична форма, але різний тон. `Entra!` може бути дружнім запрошенням увійти. Не додай «негайно», якщо цього немає у підказці."
+}
+},
+{
+"exampleIds": [
+"it:16:05",
+"it:16:07",
+"it:16:11"
+],
+"textByLocale": {
+"en": "The address `tu` and the polite `Lei` have different endings. The polite form doesn't have to begin with `Lei` itself: the recipient is clear from the situation.",
+"ru": "Обращение на `tu` и вежливое `Lei` дают разные окончания. Вежливая форма не обязана начинаться с самого слова `Lei`: адресат понятен из ситуации.",
+"uk": "Звернення на `tu` та ввічливе `Lei` дають різні закінчення. Ввічлива форма має починатися із самого слова `Lei`: адресат зрозумілий із ситуації."
+}
+},
+{
+"exampleIds": [
+"it:16:12",
+"it:16:14",
+"it:16:15"
+],
+"textByLocale": {
+"en": "The thing and the action are stored independently: `aprire` means open, `prendere` means take. If you're asked to open a window, the correct address won't save the incorrectly chosen action.",
+"ru": "Вещь и действие сохраняются независимо: `aprire` — открыть, `prendere` — взять. Если тебя просят открыть окно, правильно выбранное обращение не спасёт неверно выбранное действие.",
+"uk": "Річ та дія зберігаються незалежно: `aprire` – відкрити, `prendere` – взяти. Якщо тебе просять відкрити вікно, правильно обране звернення не врятує невірно вибрану дію."
+}
+},
+{
+"exampleIds": [
+"it:16:21",
+"it:16:22",
+"it:16:25"
+],
+"textByLocale": {
+"en": "`Per favore` softens the request and can appear at the beginning or end. The polite expression itself does not automatically change `tu` to `Lei`; the situation dictates this.",
+"ru": "`Per favore` смягчает просьбу и может стоять в начале или в конце. Само выражение вежливости не меняет автоматически `tu` на `Lei`; на это указывает ситуация.",
+"uk": "`Per favore` пом'якшує прохання і може стояти на початку або наприкінці. Сам вираз ввічливості не змінює автоматично `tu` на `Lei`; це вказує ситуація."
+}
+},
+{
+"exampleIds": [
+"it:16:31",
+"it:16:33",
+"it:16:36"
+],
+"textByLocale": {
+"en": "In a negative command to a single acquaintance, `non` is followed by an infinitive: `Non correre!` Don't use the affirmative `corri` after `non` in this example.",
+"ru": "В отрицательной команде одному знакомому `non` идёт с инфинитивом: `Non correre!` Не бери утвердительное `corri` после `non` в этом образце.",
+"uk": "У негативній команді одному знайомому `non` йде з інфінітивом: `Non correre!` Не бери ствердне `corri` після `non` у цьому зразку."
+}
+},
+{
+"exampleIds": [
+"it:16:41",
+"it:16:42",
+"it:16:45"
+],
+"textByLocale": {
+"en": "When proposing a joint action, the \"we\" form is used: `andiamo`, `facciamo`. This is an invitation to both, not a command to the interlocutor to act alone.",
+"ru": "Когда предлагаешь совместное действие, используется форма для «мы»: `andiamo`, `facciamo`. Это приглашение обоим, а не команда собеседнику действовать в одиночку.",
+"uk": "Коли пропонуєш спільну дію, використовується форма для «ми»: `andiamo`, `facciamo`. Це запрошення обом, а не команда співрозмовнику діяти поодинці."
+}
+},
+{
+"exampleIds": [
+"it:16:46",
+"it:16:48",
+"it:16:49"
+],
+"textByLocale": {
+"en": "For a group, `voi` is appropriate; for a single client, the polite `Lei` is appropriate. If the command is addressed to a group, don't choose the singular form just because the subject is the same.",
+"ru": "Для группы подходит форма `voi`, для одного клиента — вежливое `Lei`. Если команда обращена к группе, не выбирай единственное число только потому, что речь идёт об одном предмете.",
+"uk": "Для групи підходить форма `voi`, для одного клієнта — ввічливе `Lei`. Якщо команда звернена до групи, не вибирай однину тільки тому, що йдеться про один предмет."
+}
+}
+],
+"drills": [
+{
+"bad": "Entri",
+"chapter": 1,
+"id": "it:16:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"Entro",
+"Entri",
+"Entra"
+],
+"slot": 0
+},
+{
+"bad": "Resta",
+"chapter": 1,
+"id": "it:16:06:lab",
+"item": 6,
+"kind": "spot",
+"near": 13,
+"options": [
+"Resti",
+"Restiamo",
+"Resta"
+],
+"slot": 0
+},
+{
+"bad": "Resti",
+"chapter": 1,
+"id": "it:16:05:lab",
+"item": 5,
+"kind": "match",
+"near": 13,
+"options": [
+"Resta",
+"Resti",
+"Restiamo"
+],
+"slot": 0
+},
+{
+"bad": "Ascolta",
+"chapter": 2,
+"id": "it:16:08:lab",
+"item": 8,
+"kind": "build",
+"near": 9,
+"options": [
+"Ascolta",
+"Ascolto",
+"Ascolti"
+],
+"slot": 0
+},
+{
+"bad": "Guarda",
+"chapter": 2,
+"id": "it:16:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 17,
+"options": [
+"Guarda",
+"Guardiamo",
+"Guardi"
+],
+"slot": 0
+},
+{
+"bad": "Apre",
+"chapter": 2,
+"id": "it:16:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Apriamo",
+"Apri",
+"Apre"
+],
+"slot": 0
+},
+{
+"bad": "Tiene",
+"chapter": 3,
+"id": "it:16:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 22,
+"options": [
+"Tengo",
+"Tiene",
+"Tieni"
+],
+"slot": 0
+},
+{
+"bad": "Girano",
+"chapter": 3,
+"id": "it:16:17:lab",
+"item": 17,
+"kind": "match",
+"near": 10,
+"options": [
+"Girano",
+"Girate",
+"Gira"
+],
+"slot": 0
+},
+{
+"bad": "Segue",
+"chapter": 3,
+"id": "it:16:19:lab",
+"item": 19,
+"kind": "build",
+"near": 14,
+"options": [
+"Segue",
+"Segui",
+"Seguo"
+],
+"slot": 0
+},
+{
+"bad": "Controlli",
+"chapter": 4,
+"id": "it:16:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 47,
+"options": [
+"Aspetti",
+"Controlli",
+"Mostri"
+],
+"slot": 0
+},
+{
+"bad": "Prendiamo",
+"chapter": 4,
+"id": "it:16:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 34,
+"options": [
+"Prendiate",
+"Prendiamo",
+"Prenda"
+],
+"slot": 0
+},
+{
+"bad": "Resta",
+"chapter": 4,
+"id": "it:16:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 6,
+"options": [
+"Restiamo",
+"Resti",
+"Resta"
+],
+"slot": 0
+},
+{
+"bad": "Guardi",
+"chapter": 5,
+"id": "it:16:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Controlli",
+"Guardi",
+"Mostri"
+],
+"slot": 0
+},
+{
+"bad": "volume",
+"chapter": 5,
+"id": "it:16:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"volume",
+"scarpe",
+"correre"
+],
+"slot": 1
+},
+{
+"bad": "favore",
+"chapter": 5,
+"id": "it:16:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 11,
+"options": [
+"chiudere",
+"buttare",
+"favore"
+],
+"slot": 1
+},
+{
+"bad": "favore",
+"chapter": 6,
+"id": "it:16:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 31,
+"options": [
+"lasciare",
+"favore",
+"chiave"
+],
+"slot": 1
+},
+{
+"bad": "aspetta",
+"chapter": 6,
+"id": "it:16:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 31,
+"options": [
+"aspetta",
+"aspetti",
+"aspettano"
+],
+"slot": 1
+},
+{
+"bad": "Fa",
+"chapter": 6,
+"id": "it:16:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Fa",
+"Facciamo",
+"Faccio"
+],
+"slot": 0
+},
+{
+"bad": "Parte",
+"chapter": 7,
+"id": "it:16:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"Partiamo",
+"Partite",
+"Parte"
+],
+"slot": 0
+},
+{
+"bad": "Chiudo",
+"chapter": 7,
+"id": "it:16:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 19,
+"options": [
+"Chiudi",
+"Chiude",
+"Chiudo"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"entrare",
+"entra (tu) / entri (Lei)"
+],
+[
+"ascoltare",
+"ascolta (tu) / ascolti (Lei)"
+],
+[
+"prendere",
+"prendi (tu) / prenda (Lei)"
+],
+[
+"aprire",
+"apri (tu) / apra (Lei)"
+],
+[
+"tu / voi",
+"non lasciare / non lasciate"
+]
+],
+"title": {
+"en": "Give instructions: imperative form",
+"ru": "Дай инструкцию: повелительная форма",
+"uk": "Дай інструкцію: наказова форма"
+}
+},
+"exampleResolved": [
+{
+"id": "it:16:01",
+"target": "Entra!",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "it:16:02",
+"target": "Entri!",
+"ru": "Заходите!",
+"uk": "Заходьте!"
+},
+{
+"id": "it:16:03",
+"target": "Aspetta!",
+"ru": "Подожди!",
+"uk": "Почекай!"
+},
+{
+"id": "it:16:05",
+"target": "Resta qui!",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!"
+},
+{
+"id": "it:16:07",
+"target": "Ascolta bene!",
+"ru": "Слушай внимательно!",
+"uk": "Слухай уважно!"
+},
+{
+"id": "it:16:11",
+"target": "Chiudi la porta!",
+"ru": "Закрой дверь!",
+"uk": "Зачини двері!"
+},
+{
+"id": "it:16:12",
+"target": "Apri la finestra!",
+"ru": "Открой окно!",
+"uk": "Відкрий вікно!"
+},
+{
+"id": "it:16:14",
+"target": "Tieni il biglietto!",
+"ru": "Сохрани билет!",
+"uk": "Збережи квиток!"
+},
+{
+"id": "it:16:15",
+"target": "Prendi la giacca!",
+"ru": "Возьми куртку!",
+"uk": "Візьми куртку!"
+},
+{
+"id": "it:16:21",
+"target": "Firmi in fondo, per favore.",
+"ru": "Распишитесь внизу, пожалуйста.",
+"uk": "Розпишіться внизу, будь ласка."
+},
+{
+"id": "it:16:22",
+"target": "Mostri il biglietto, per favore.",
+"ru": "Покажите билет, пожалуйста.",
+"uk": "Покажіть квиток, будь ласка."
+},
+{
+"id": "it:16:25",
+"target": "Prema il pulsante verde.",
+"ru": "Нажмите зелёную кнопку.",
+"uk": "Натисніть зелену кнопку."
+},
+{
+"id": "it:16:31",
+"target": "Non correre!",
+"ru": "Не беги!",
+"uk": "Не біжи!"
+},
+{
+"id": "it:16:33",
+"target": "Non dimenticare l’ombrello!",
+"ru": "Не забудь зонт!",
+"uk": "Не забудь парасольку!"
+},
+{
+"id": "it:16:36",
+"target": "Non lasciare il latte fuori!",
+"ru": "Не оставляй молоко на улице!",
+"uk": "Не залишай молоко на вулиці!"
+},
+{
+"id": "it:16:41",
+"target": "Andiamo al mercato!",
+"ru": "Пойдём на рынок!",
+"uk": "Підемо на ринок!"
+},
+{
+"id": "it:16:42",
+"target": "Facciamo una pausa!",
+"ru": "Давайте сделаем перерыв!",
+"uk": "Давайте зробимо перерву!"
+},
+{
+"id": "it:16:45",
+"target": "Partiamo prima che piova!",
+"ru": "Пойдём до того, как начнётся дождь!",
+"uk": "Підемо до того, як почнеться дощ!"
+},
+{
+"id": "it:16:46",
+"target": "Allaccia la cintura!",
+"ru": "Пристегни ремень!",
+"uk": "Пристебни ремінь!"
+},
+{
+"id": "it:16:48",
+"target": "Chiudi il rubinetto!",
+"ru": "Закрой кран!",
+"uk": "Закрий кран!"
+},
+{
+"id": "it:16:49",
+"target": "Lasci un messaggio dopo il segnale.",
+"ru": "Оставьте сообщение после сигнала.",
+"uk": "Залишіть повідомлення після сигналу."
+}
+]
+}
+]

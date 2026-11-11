@@ -21,6 +21,7 @@
 import * as admin from 'firebase-admin';
 import { createHash } from 'crypto';
 import { normalizePhrase } from './explain_cache';
+import type { MistakeBreakdown } from './mistake_explain_structured';
 
 export const MISTAKE_COLLECTION = 'mistake_explanations';
 
@@ -41,8 +42,12 @@ export const MISTAKE_LOCK_TTL_MS = 135_000;
  *  v5 (2026-06-21): prompts now BAN guessing the learner's reason for the mistake ("you translated
  *  literally", "you didn't think about the context") — a false, unkind mind-read when the learner may
  *  have simply mis-tapped (user report: goodbye→thanks). Old v3/v4 breakdowns contain exactly this
- *  invented-cause water and must regenerate. */
-export const MISTAKE_SCHEMA_VERSION = 6;
+ *  invented-cause water and must regenerate.
+ *  v7 (2026-11-11, владелец: «Да, внедряй» после аудита разбора): разбор приходит ПОЛЯМИ (`breakdown`),
+ *  а не абзацем. Старые записи несут дубль правильной фразы в тексте, ложное «в русском нет артиклей»
+ *  для интерфейсов с артиклями и не имеют полей — карточка не смогла бы выделить промах. Каждая
+ *  уникальная ошибка один раз генерируется заново (цена ограничена дневным потолком расходов). */
+export const MISTAKE_SCHEMA_VERSION = 7;
 
 /** How long a judge-rejected breakdown serves nothing before one request may retry generation. */
 export const MISTAKE_REJECTED_RETRY_TTL_MS = 15_000;
@@ -58,6 +63,8 @@ export interface CachedMistakeExplanation {
   full?: string;
   /** The "explain like I'm five" text shown in the modal. */
   eli5?: string;
+  /** Structured fields behind `full` / `eli5` (v7+). Absent on ELI5-first partial documents. */
+  breakdown?: MistakeBreakdown;
   lang?: string;
   /** Canonical target answer (the correct phrase). */
   targetEn?: string;
@@ -225,6 +232,7 @@ export async function invalidateMistakeCachedVariant(
     tx.set(ref, {
       status: admin.firestore.FieldValue.delete(),
       full: admin.firestore.FieldValue.delete(),
+      breakdown: admin.firestore.FieldValue.delete(),
       createdAtMs: admin.firestore.FieldValue.delete(),
       reason: admin.firestore.FieldValue.delete(),
       updatedAtMs: Date.now(),
@@ -262,7 +270,7 @@ export async function writeReadyMistakeExplanation(
 /** Publish both validated variants atomically so readers never observe a partial bundle. */
 export async function writeReadyMistakeExplanationBundle(
   mistakeHash: string,
-  bundle: { full: string; eli5: string },
+  bundle: { full: string; eli5: string; breakdown?: MistakeBreakdown },
   meta: MistakeReadyMeta,
   claimedAtMs: number,
 ): Promise<boolean> {
@@ -275,6 +283,8 @@ export async function writeReadyMistakeExplanationBundle(
       schemaVersion: MISTAKE_SCHEMA_VERSION,
       full: bundle.full,
       eli5: bundle.eli5,
+      // зачем: поля и текст публикуются одной транзакцией — читатель не увидит текст без полей.
+      breakdown: bundle.breakdown ?? admin.firestore.FieldValue.delete(),
       eli5PendingAtMs: null,
       createdAtMs: admin.firestore.FieldValue.delete(),
       lang: meta.lang,
@@ -325,6 +335,7 @@ export async function writeRejectedMistakeExplanation(
       schemaVersion: MISTAKE_SCHEMA_VERSION,
       full: admin.firestore.FieldValue.delete(),
       eli5: admin.firestore.FieldValue.delete(),
+      breakdown: admin.firestore.FieldValue.delete(),
       createdAtMs: admin.firestore.FieldValue.delete(),
       targetEn: admin.firestore.FieldValue.delete(),
       userAnswer: admin.firestore.FieldValue.delete(),

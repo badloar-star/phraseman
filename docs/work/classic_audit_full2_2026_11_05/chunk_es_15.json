@@ -1,0 +1,7700 @@
+[
+{
+"lesson": 31,
+"id": "es:31:01",
+"target": "Te llamaré cuando llegue a casa.",
+"ru": "Я тебе позвоню, когда приду домой.",
+"uk": "Я тобі зателефоную, коли прийду додому.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mis",
+"Los",
+"La",
+"Mi",
+"Las"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llame",
+"llamar",
+"llamarías",
+"llamado",
+"llamaste"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llegó",
+"llega",
+"llegues",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"sin",
+"de",
+"con",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"manos",
+"número",
+"cena",
+"móvil",
+"mapas"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a casa, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:02",
+"target": "Te llamaré cuando termine de trabajar.",
+"ru": "Я тебе позвоню, когда я закончу работать.",
+"uk": "Я тобі зателефоную, коли я закінчу працювати.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Una",
+"Mis",
+"Sus",
+"Contigo"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llame",
+"llamar",
+"llamaría",
+"llamaste",
+"llamarán"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"para",
+"con",
+"por",
+"en"
+]
+},
+{
+"correct": "trabajar",
+"distractors": [
+"trabajaba",
+"trabajo",
+"trabaja",
+"trabajaban",
+"abre"
+]
+}
+],
+"alternatives": [
+"Cuando termine de trabajar, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:03",
+"target": "Cuando termine la clase, te llamaré.",
+"ru": "Когда закончится занятие, я тебе позвоню.",
+"uk": "Коли закінчиться заняття, я тобі зателефоную.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"lo",
+"las",
+"un",
+"con"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"cocina",
+"salida",
+"bolso",
+"libro",
+"libros"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"mi",
+"mis",
+"los",
+"me",
+"una"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llamar",
+"llamó",
+"llamarás",
+"llamé",
+"llamaste"
+]
+}
+],
+"alternatives": [
+"Te llamaré cuando termine la clase."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:04",
+"target": "Te llamaré cuando tenga tiempo.",
+"ru": "Я тебе позвоню, когда у меня будет время.",
+"uk": "Я тобі зателефоную, коли у мене буде час.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Una",
+"Mi",
+"Los",
+"El",
+"Os"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llamar",
+"llama",
+"llames",
+"llamaría",
+"llamarás"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"pero",
+"que",
+"porque",
+"ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tuve",
+"tiene",
+"tienen",
+"llover",
+"tienes"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"archivo",
+"barrio",
+"sopa",
+"coche",
+"carta"
+]
+}
+],
+"alternatives": [
+"Cuando tenga tiempo, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:05",
+"target": "Te llamaré cuando sepa la hora.",
+"ru": "Я тебе позвоню, когда я узнаю время.",
+"uk": "Я тобі зателефоную, коли я дізнаюся час.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Una",
+"Un",
+"Tu",
+"Los",
+"Se"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llamará",
+"llamaste",
+"llamó",
+"llame",
+"llamar"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sepa",
+"distractors": [
+"supiera",
+"podéis",
+"pudiste",
+"pedimos",
+"hay"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"lo",
+"los",
+"cada"
+]
+},
+{
+"correct": "hora",
+"distractors": [
+"rueda",
+"bolsillo",
+"casa",
+"coche",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Cuando sepa la hora, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:06",
+"target": "Te llamaré cuando tenga cobertura.",
+"ru": "Я позвоню тебе, когда появится связь.",
+"uk": "Я зателефоную тобі, коли з’явиться зв’язок.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"El",
+"Su",
+"Los",
+"Un",
+"La"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llamar",
+"llamarás",
+"llamaste",
+"llamó",
+"llama"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"que",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tuvo",
+"tienes",
+"tiene",
+"vivía",
+"tenemos"
+]
+},
+{
+"correct": "cobertura",
+"distractors": [
+"tienda",
+"coche",
+"billetes",
+"agua",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Cuando tenga cobertura, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:07",
+"target": "Cuando tenga tiempo, te mandaré la foto.",
+"ru": "Когда у меня будет время, я отправлю тебе фотографию.",
+"uk": "Коли у мене буде час, я надішлю тобі фотографію.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tuvimos",
+"tuve",
+"tuviera",
+"tiene",
+"quiere"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"mapa",
+"oficina",
+"mochila",
+"mesas",
+"camiseta"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"los",
+"mis",
+"las",
+"el",
+"les"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandaríais",
+"mandasteis",
+"mandamos",
+"mandará",
+"enciendas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"un",
+"los",
+"esta"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"coche",
+"cara",
+"reunión",
+"azúcar",
+"mochila"
+]
+}
+],
+"alternatives": [
+"Te mandaré la foto cuando tenga tiempo."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:08",
+"target": "Te mandaré la foto cuando cargue el móvil.",
+"ru": "Я отправлю тебе фото, когда заряжу телефон.",
+"uk": "Я надішлю тобі фото, коли заряджу телефон.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"Las",
+"Un",
+"Tu",
+"Mis"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandó",
+"mandamos",
+"mandé",
+"mandaríais",
+"comiendo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"estas",
+"con",
+"que"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"hoteles",
+"oficina",
+"avería",
+"número",
+"cuenta"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"si",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "cargue",
+"distractors": [
+"cargaría",
+"cargaré",
+"terminó",
+"pondría",
+"llamar"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"una",
+"mío",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"ventana",
+"factura",
+"estación",
+"libro",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando cargue el móvil, te mandaré la foto."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:09",
+"target": "Te mandaré la foto cuando termine de trabajar.",
+"ru": "Я отправлю тебе фотографию, когда закончу работать.",
+"uk": "Я надішлю тобі фотографію, коли закінчу працювати.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Tu",
+"Su",
+"Las",
+"Mis",
+"Nos"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandado",
+"mandasteis",
+"mandaríais",
+"mandaría",
+"sonó"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"un",
+"estos"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"cuenta",
+"batería",
+"mañana",
+"canción",
+"pantalla"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"porque",
+"pero",
+"que",
+"ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"para",
+"con",
+"en",
+"a",
+"por"
+]
+},
+{
+"correct": "trabajar",
+"distractors": [
+"trabajaban",
+"trabaja",
+"trabajaba",
+"trabajábamos",
+"quiere"
+]
+}
+],
+"alternatives": [
+"Cuando termine de trabajar, te mandaré la foto."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:10",
+"target": "Cuando terminemos la reunión, te mandaré la foto.",
+"ru": "Когда мы закончим совещание, я отправлю тебе фотографию.",
+"uk": "Коли ми закінчимо нараду, я надішлю тобі фотографію.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "terminemos",
+"distractors": [
+"termine",
+"terminó",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"estos",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"mensaje",
+"cena",
+"mochila",
+"sal",
+"bolsillo"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"los",
+"un",
+"las",
+"lo",
+"el"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandaría",
+"mandará",
+"mandaréis",
+"mandar",
+"trabajamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"las",
+"el",
+"este"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"mesas",
+"ascensor",
+"cebollas",
+"baño",
+"mochilas"
+]
+}
+],
+"alternatives": [
+"Te mandaré la foto cuando terminemos la reunión."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:11",
+"target": "Cuando tenga el dinero, compraremos los billetes.",
+"ru": "Когда у меня будут деньги, мы купим билеты.",
+"uk": "Коли у мене будуть гроші, ми купимо квитки.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tuviera",
+"tienen",
+"tienes",
+"preparaba",
+"tiene"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"cada",
+"con",
+"que"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"mapa",
+"mensaje",
+"coche",
+"tarjeta",
+"supermercado"
+]
+},
+{
+"correct": "compraremos",
+"distractors": [
+"compraré",
+"compraste",
+"compra",
+"compraron",
+"buscamos"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"mi",
+"las",
+"la",
+"una",
+"esta"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"bolsa",
+"centro",
+"cena",
+"mesas",
+"vecino"
+]
+}
+],
+"alternatives": [
+"Compraremos los billetes cuando tenga el dinero."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:12",
+"target": "Compraremos los billetes cuando sepa la hora.",
+"ru": "Мы купим билеты, когда я узнаю время.",
+"uk": "Ми купимо квитки, коли я дізнаюся час.",
+"tiles": [
+{
+"correct": "Compraremos",
+"distractors": [
+"Compré",
+"Comprado",
+"Compraré",
+"Compra",
+"Mandando"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"mis",
+"tu",
+"una",
+"las",
+"con"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"cara",
+"libro",
+"batería",
+"arroz",
+"libros"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sepa",
+"distractors": [
+"supiera",
+"somos",
+"escribirías",
+"revisará",
+"preparábamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"lo",
+"el",
+"tuyo",
+"con"
+]
+},
+{
+"correct": "hora",
+"distractors": [
+"huevos",
+"billete",
+"bolsillo",
+"mesas",
+"kilo"
+]
+}
+],
+"alternatives": [
+"Cuando sepa la hora, compraremos los billetes."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:13",
+"target": "Compraremos los billetes cuando confirmen el horario.",
+"ru": "Мы купим билеты, когда подтвердят расписание.",
+"uk": "Ми купимо квитки, коли підтвердять розклад.",
+"tiles": [
+{
+"correct": "Compraremos",
+"distractors": [
+"Comprará",
+"Comprado",
+"Compra",
+"Compraste",
+"Llamaste"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"la",
+"tu",
+"mis",
+"una",
+"con"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"casa",
+"parada",
+"clientes",
+"cita",
+"agua"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"porque",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "confirmen",
+"distractors": [
+"confirme",
+"confirmado",
+"preparar",
+"copiaría",
+"lleva"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"esta",
+"con",
+"que"
+]
+},
+{
+"correct": "horario",
+"distractors": [
+"hermanas",
+"bolso",
+"fruta",
+"mensaje",
+"taller"
+]
+}
+],
+"alternatives": [
+"Cuando confirmen el horario, compraremos los billetes."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:14",
+"target": "Cuando abra la tienda, compraremos los billetes.",
+"ru": "Когда откроется магазин, мы купим билеты.",
+"uk": "Коли відчиниться магазин, ми купимо квитки.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "abra",
+"distractors": [
+"abrió",
+"abren",
+"abrirá",
+"abre",
+"abrir"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"cada",
+"con",
+"que"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"mochila",
+"hermanos",
+"llaves",
+"clientes",
+"madre"
+]
+},
+{
+"correct": "compraremos",
+"distractors": [
+"compraba",
+"compraron",
+"compraste",
+"comprar",
+"abrirás"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"tu",
+"mis",
+"un",
+"una",
+"con"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"mesa",
+"foto",
+"grifo",
+"cena",
+"tren"
+]
+}
+],
+"alternatives": [
+"Compraremos los billetes cuando abra la tienda."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:15",
+"target": "Compraremos los billetes cuando estés listo.",
+"ru": "Мы купим билеты, когда ты будешь готов.",
+"uk": "Ми купимо квитки, коли ти будеш готовий.",
+"tiles": [
+{
+"correct": "Compraremos",
+"distractors": [
+"Compramos",
+"Compraba",
+"Compraríais",
+"Comprado",
+"Volvamos"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"tu",
+"una",
+"la",
+"un",
+"las"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"lista",
+"cuenta",
+"pedido",
+"música",
+"hotel"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "estés",
+"distractors": [
+"estuviera",
+"estoy",
+"están",
+"está",
+"llevarían"
+]
+},
+{
+"correct": "listo",
+"distractors": [
+"otra",
+"pequeñas",
+"cerrada",
+"nueva",
+"pequeña"
+]
+}
+],
+"alternatives": [
+"Cuando estés listo, compraremos los billetes."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:16",
+"target": "Volveremos a casa cuando termine la clase.",
+"ru": "Мы вернёмся домой, когда закончится занятие.",
+"uk": "Ми повернемося додому, коли закінчиться заняття.",
+"tiles": [
+{
+"correct": "Volveremos",
+"distractors": [
+"Volver",
+"Volváis",
+"Vuelvas",
+"Volvían",
+"Vuelto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"tarjeta",
+"llaves",
+"platos",
+"factura",
+"móvil"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"cada",
+"con"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"hermanas",
+"tiempo",
+"trenes",
+"madre",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando termine la clase, volveremos a casa."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:17",
+"target": "Cuando salga del túnel, te llamaré.",
+"ru": "Когда я выеду из тоннеля, я тебе позвоню.",
+"uk": "Коли я виїду з тунелю, я тобі зателефоную.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "salga",
+"distractors": [
+"sale",
+"saldremos",
+"trabaja",
+"volveríamos",
+"necesita"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "túnel",
+"distractors": [
+"tarjeta",
+"huevos",
+"llave",
+"pasaporte",
+"libro"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"la",
+"mis",
+"un",
+"contigo",
+"el"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llama",
+"llamará",
+"llamaste",
+"llames",
+"llamarán"
+]
+}
+],
+"alternatives": [
+"Te llamaré cuando salga del túnel."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:18",
+"target": "Cuando venga Ana, volveremos a casa.",
+"ru": "Когда придёт Ана, мы вернёмся домой.",
+"uk": "Коли прийде Ана, ми повернемося додому.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "venga",
+"distractors": [
+"vino",
+"vengas",
+"viniste",
+"vinieron",
+"venir"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Pronto",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "volveremos",
+"distractors": [
+"volver",
+"volviendo",
+"volvería",
+"volvamos",
+"vuelto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"supermercado",
+"coche",
+"reunión",
+"carta",
+"autobús"
+]
+}
+],
+"alternatives": [
+"Volveremos a casa cuando venga Ana."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:19",
+"target": "Volveremos a casa cuando estés listo.",
+"ru": "Мы вернёмся домой, когда ты будешь готов.",
+"uk": "Ми повернемося додому, коли ти будеш готовий.",
+"tiles": [
+{
+"correct": "Volveremos",
+"distractors": [
+"Volverá",
+"Volvían",
+"Volveríamos",
+"Vuelto",
+"Volver"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"de",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"camiseta",
+"billetes",
+"música",
+"manos",
+"ascensor"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "estés",
+"distractors": [
+"está",
+"estáis",
+"estaba",
+"están",
+"compraste"
+]
+},
+{
+"correct": "listo",
+"distractors": [
+"roja",
+"cargada",
+"grandes",
+"pequeños",
+"grande"
+]
+}
+],
+"alternatives": [
+"Cuando estés listo, volveremos a casa."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:20",
+"target": "Volveremos a casa cuando encuentre las llaves.",
+"ru": "Мы вернёмся домой, когда я найду ключи.",
+"uk": "Ми повернемося додому, коли я знайду ключі.",
+"tiles": [
+{
+"correct": "Volveremos",
+"distractors": [
+"Volver",
+"Volviendo",
+"Volvíais",
+"Volverían",
+"Volvamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"vecinos",
+"madre",
+"cambio",
+"libro",
+"coche"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "encuentre",
+"distractors": [
+"encontramos",
+"encuentro",
+"pagaré",
+"cargaría",
+"es"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"mis",
+"los",
+"la",
+"una",
+"con"
+]
+},
+{
+"correct": "llaves",
+"distractors": [
+"pan",
+"correo",
+"bufanda",
+"coche",
+"número"
+]
+}
+],
+"alternatives": [
+"Cuando encuentre las llaves, volveremos a casa."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:21",
+"target": "Abriré la puerta cuando venga Ana.",
+"ru": "Я открою дверь, когда придёт Ана.",
+"uk": "Я відчиню двері, коли прийде Ана.",
+"tiles": [
+{
+"correct": "Abriré",
+"distractors": [
+"Abrió",
+"Abrir",
+"Abra",
+"Abrirás",
+"Llover"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"las",
+"un",
+"los",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"billete",
+"arroz",
+"reserva",
+"hotel",
+"plato"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "venga",
+"distractors": [
+"vino",
+"vengas",
+"viniste",
+"vinieron",
+"vine"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Quién",
+"Pronto"
+]
+}
+],
+"alternatives": [
+"Cuando venga Ana, abriré la puerta."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:22",
+"target": "Cuando vuelvas, abriré la puerta.",
+"ru": "Когда ты вернёшься, я открою дверь.",
+"uk": "Коли ти повернешся, я відчиню двері.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Pero",
+"Si",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "vuelvas",
+"distractors": [
+"volvían",
+"volver",
+"volveremos",
+"volverán",
+"vuelva"
+]
+},
+{
+"correct": "abriré",
+"distractors": [
+"abra",
+"abrir",
+"abre",
+"abriría",
+"vas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"los",
+"unas",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"oficina",
+"volumen",
+"foto",
+"baño",
+"parada"
+]
+}
+],
+"alternatives": [
+"Abriré la puerta cuando vuelvas."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:23",
+"target": "Cambiaré la batería cuando llegue a casa.",
+"ru": "Я заменю аккумулятор, когда приду домой.",
+"uk": "Я заміню акумулятор, коли прийду додому.",
+"tiles": [
+{
+"correct": "Cambiaré",
+"distractors": [
+"Cambias",
+"Cambiaremos",
+"Está",
+"Escribe",
+"Hablan"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"lo",
+"el",
+"con"
+]
+},
+{
+"correct": "batería",
+"distractors": [
+"llave",
+"pedido",
+"llaves",
+"archivo",
+"paraguas"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llegó",
+"llega",
+"llegues",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"aeropuerto",
+"habitación",
+"libro",
+"hotel",
+"café"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a casa, cambiaré la batería."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:24",
+"target": "Abriré la puerta cuando llegue a casa.",
+"ru": "Я открою дверь, когда приду домой.",
+"uk": "Я відчиню двері, коли прийду додому.",
+"tiles": [
+{
+"correct": "Abriré",
+"distractors": [
+"Abriendo",
+"Abierto",
+"Abren",
+"Abrir",
+"Quedaría"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"baño",
+"foto",
+"coche",
+"piso",
+"cliente"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"pero",
+"que",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llegó",
+"llega",
+"llegues",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"desde",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"tren",
+"barrio",
+"billetes",
+"mapa",
+"zapatos"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a casa, abriré la puerta."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:25",
+"target": "Cuando avise el mecánico, recogeremos el coche.",
+"ru": "Когда механик даст знать, мы заберём машину.",
+"uk": "Коли механік дасть знати, ми заберемо машину.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Pero",
+"Si",
+"Que",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "avise",
+"distractors": [
+"avises",
+"mostré",
+"estudiamos",
+"preparado",
+"llevaría"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"la",
+"los",
+"con"
+]
+},
+{
+"correct": "mecánico",
+"distractors": [
+"paraguas",
+"billetes",
+"cena",
+"puerta",
+"hermana"
+]
+},
+{
+"correct": "recogeremos",
+"distractors": [
+"recogiendo",
+"recojo",
+"recogeré",
+"recogido",
+"vende"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"lo",
+"la",
+"esta",
+"con"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"bolso",
+"ventana",
+"cocina",
+"hotel",
+"foto"
+]
+}
+],
+"alternatives": [
+"Recogeremos el coche cuando avise el mecánico."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:26",
+"target": "Cuando vuelvas, hablaremos del viaje.",
+"ru": "Когда ты вернёшься, мы поговорим о поездке.",
+"uk": "Коли ти повернешся, ми поговоримо про поїздку.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "vuelvas",
+"distractors": [
+"vuelve",
+"volvíais",
+"volvería",
+"volveremos",
+"volver"
+]
+},
+{
+"correct": "hablaremos",
+"distractors": [
+"hablan",
+"hablaba",
+"habláis",
+"hablo",
+"usaría"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "viaje",
+"distractors": [
+"madre",
+"cara",
+"tiempo",
+"farmacia",
+"idea"
+]
+}
+],
+"alternatives": [
+"Hablaremos del viaje cuando vuelvas."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:27",
+"target": "Hablaremos del viaje cuando llegues a casa.",
+"ru": "Мы поговорим о поездке, когда ты придёшь домой.",
+"uk": "Ми поговоримо про поїздку, коли ти прийдеш додому.",
+"tiles": [
+{
+"correct": "Hablaremos",
+"distractors": [
+"Hablas",
+"Hablaría",
+"Habla",
+"Hable",
+"Buscabas"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "viaje",
+"distractors": [
+"aeropuerto",
+"estación",
+"problema",
+"llaves",
+"clientes"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"pero",
+"que",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegues",
+"distractors": [
+"llega",
+"llegó",
+"llegue",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"desde",
+"sin",
+"de",
+"para",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"reunión",
+"tarjeta",
+"playa",
+"taller",
+"bicicleta"
+]
+}
+],
+"alternatives": [
+"Cuando llegues a casa, hablaremos del viaje."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:28",
+"target": "Hablaremos cuando vuelva la señal.",
+"ru": "Мы поговорим, когда снова появится сигнал.",
+"uk": "Ми поговоримо, коли знову з’явиться сигнал.",
+"tiles": [
+{
+"correct": "Hablaremos",
+"distractors": [
+"Habláis",
+"Hablamos",
+"Hablaba",
+"Hablar",
+"Llevaré"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"pero",
+"porque",
+"si",
+"ni"
+]
+},
+{
+"correct": "vuelva",
+"distractors": [
+"volváis",
+"vuelvas",
+"volvería",
+"vuelve",
+"volver"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"el",
+"estos",
+"con"
+]
+},
+{
+"correct": "señal",
+"distractors": [
+"taxi",
+"bicicleta",
+"viaje",
+"libro",
+"número"
+]
+}
+],
+"alternatives": [
+"Cuando vuelva la señal, hablaremos."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:29",
+"target": "Cuando terminemos la reunión, hablaremos del viaje.",
+"ru": "Когда мы закончим совещание, мы поговорим о поездке.",
+"uk": "Коли ми закінчимо нараду, ми поговоримо про поїздку.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "terminemos",
+"distractors": [
+"termine",
+"terminado",
+"terminó",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"el",
+"las",
+"los",
+"estas"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"número",
+"cocina",
+"archivo",
+"oficina",
+"casa"
+]
+},
+{
+"correct": "hablaremos",
+"distractors": [
+"hablan",
+"hablaría",
+"hablo",
+"hable",
+"pagaré"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "viaje",
+"distractors": [
+"estación",
+"billetes",
+"hermanos",
+"tiempo",
+"botella"
+]
+}
+],
+"alternatives": [
+"Hablaremos del viaje cuando terminemos la reunión."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:30",
+"target": "Hablaremos del viaje cuando venga Ana.",
+"ru": "Мы поговорим о поездке, когда придёт Ана.",
+"uk": "Ми поговоримо про поїздку, коли прийде Ана.",
+"tiles": [
+{
+"correct": "Hablaremos",
+"distractors": [
+"Habla",
+"Hablamos",
+"Hablaba",
+"Hablar",
+"Es"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "viaje",
+"distractors": [
+"azúcar",
+"problema",
+"foto",
+"música",
+"mapa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "venga",
+"distractors": [
+"vino",
+"vengas",
+"viniste",
+"vinieron",
+"vine"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Cuándo",
+"Nunca",
+"Ayer"
+]
+}
+],
+"alternatives": [
+"Cuando venga Ana, hablaremos del viaje."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:31",
+"target": "Prepararé la cena cuando llegue a casa.",
+"ru": "Я приготовлю ужин, когда приду домой.",
+"uk": "Я приготую вечерю, коли прийду додому.",
+"tiles": [
+{
+"correct": "Prepararé",
+"distractors": [
+"Prepararán",
+"Preparando",
+"Preparamos",
+"Prepararon",
+"Vinieron"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"el",
+"esta"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"cartas",
+"libro",
+"correo",
+"llaves",
+"clientes"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"pero",
+"que",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llegó",
+"llegues",
+"llega",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"de",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cuenta",
+"hermanas",
+"viaje",
+"kilo",
+"mesas"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a casa, prepararé la cena."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:32",
+"target": "Cargaré el móvil cuando llegue a la oficina.",
+"ru": "Я поставлю телефон на зарядку, когда доберусь до офиса.",
+"uk": "Я поставлю телефон на зарядку, коли дістануся офісу.",
+"tiles": [
+{
+"correct": "Cargaré",
+"distractors": [
+"Cargue",
+"Cargaría",
+"Comprar",
+"Llamar",
+"Has"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"una",
+"las",
+"mío",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"mochila",
+"entradas",
+"grifo",
+"cambio",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llega",
+"llegó",
+"llegues",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"sin",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "oficina",
+"distractors": [
+"cebolla",
+"pasaporte",
+"salida",
+"cara",
+"ventanas"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a la oficina, cargaré el móvil."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:33",
+"target": "Te llamaré cuando apunte la dirección.",
+"ru": "Я тебе позвоню, когда запишу адрес.",
+"uk": "Я тобі зателефоную, коли запишу адресу.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Un",
+"Una",
+"El",
+"Nos"
+]
+},
+{
+"correct": "llamaré",
+"distractors": [
+"llamaste",
+"llamarías",
+"llamar",
+"llamó",
+"llamarás"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "apunte",
+"distractors": [
+"apuntes",
+"buscaría",
+"entraría",
+"hay",
+"trabajo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"unas",
+"con"
+]
+},
+{
+"correct": "dirección",
+"distractors": [
+"señal",
+"canción",
+"cita",
+"mapa",
+"cena"
+]
+}
+],
+"alternatives": [
+"Cuando apunte la dirección, te llamaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:34",
+"target": "Cuando termine la película, apagaré la pantalla.",
+"ru": "Когда закончится фильм, я выключу экран.",
+"uk": "Коли закінчиться фільм, я вимкну екран.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Pero",
+"Si",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"un",
+"estas",
+"con"
+]
+},
+{
+"correct": "película",
+"distractors": [
+"gracias",
+"gente",
+"cartas",
+"túnel",
+"fotos"
+]
+},
+{
+"correct": "apagaré",
+"distractors": [
+"apagues",
+"apaga",
+"pagasteis",
+"pasear",
+"leeríais"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"lo",
+"el",
+"las",
+"con"
+]
+},
+{
+"correct": "pantalla",
+"distractors": [
+"café",
+"reloj",
+"cebolla",
+"tienda",
+"cargador"
+]
+}
+],
+"alternatives": [
+"Apagaré la pantalla cuando termine la película."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:35",
+"target": "Cuando la batería esté cargada, enviaré las fotos.",
+"ru": "Когда аккумулятор зарядится, я отправлю фотографии.",
+"uk": "Коли акумулятор зарядиться, я надішлю фотографії.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"el",
+"esta",
+"con",
+"que"
+]
+},
+{
+"correct": "batería",
+"distractors": [
+"bolsa",
+"billete",
+"llaves",
+"día",
+"balcón"
+]
+},
+{
+"correct": "esté",
+"distractors": [
+"estoy",
+"están",
+"estés",
+"está",
+"comprado"
+]
+},
+{
+"correct": "cargada",
+"distractors": [
+"abierta",
+"corto",
+"nervioso",
+"pequeñas",
+"cansado"
+]
+},
+{
+"correct": "enviaré",
+"distractors": [
+"enviaría",
+"terminemos",
+"abrir",
+"baje",
+"buscas"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"mis",
+"su",
+"el",
+"estos",
+"con"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"hermano",
+"puerta",
+"películas",
+"taxi",
+"colegio"
+]
+}
+],
+"alternatives": [
+"Enviaré las fotos cuando la batería esté cargada."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:36",
+"target": "Te daré la llave cuando vuelvas.",
+"ru": "Я дам тебе ключ, когда ты вернёшься.",
+"uk": "Я дам тобі ключ, коли ти повернешся.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Tu",
+"Una",
+"Mis",
+"Me"
+]
+},
+{
+"correct": "daré",
+"distractors": [
+"dio",
+"diste",
+"di",
+"dimos",
+"entres"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"un",
+"esta",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"bolsa",
+"trenes",
+"hermanas",
+"piso",
+"archivo"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"pero",
+"que",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "vuelvas",
+"distractors": [
+"volviendo",
+"volváis",
+"volver",
+"vuelto",
+"volvamos"
+]
+}
+],
+"alternatives": [
+"Cuando vuelvas, te daré la llave."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:37",
+"target": "Cuando llegues a casa, te daré la llave.",
+"ru": "Когда ты придёшь домой, я дам тебе ключ.",
+"uk": "Коли ти прийдеш додому, я дам тобі ключ.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "llegues",
+"distractors": [
+"llegó",
+"llega",
+"llegue",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"coche",
+"llaves",
+"billete",
+"trenes",
+"correo"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"las",
+"tus",
+"mi",
+"tu",
+"le"
+]
+},
+{
+"correct": "daré",
+"distractors": [
+"dio",
+"dimos",
+"di",
+"diste",
+"recibido"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"lo",
+"los",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"queso",
+"ubicación",
+"arroz",
+"azúcar",
+"fruta"
+]
+}
+],
+"alternatives": [
+"Te daré la llave cuando llegues a casa."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:38",
+"target": "Te enviaré el correo cuando confirme la reserva.",
+"ru": "Я отправлю тебе электронное письмо, когда подтвержу бронь.",
+"uk": "Я надішлю тобі електронного листа, коли підтверджу бронювання.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"Una",
+"Sus",
+"Mis",
+"Tu"
+]
+},
+{
+"correct": "enviaré",
+"distractors": [
+"enviaría",
+"bebemos",
+"llevar",
+"apaga",
+"sienta"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"una",
+"con",
+"que"
+]
+},
+{
+"correct": "correo",
+"distractors": [
+"banco",
+"arroz",
+"efectivo",
+"pantalla",
+"hermana"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"pero",
+"si",
+"ni"
+]
+},
+{
+"correct": "confirme",
+"distractors": [
+"confirmen",
+"confirmado",
+"llevaron",
+"manda",
+"estudias"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"lo",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "reserva",
+"distractors": [
+"viaje",
+"tren",
+"zapatos",
+"llaves",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando confirme la reserva, te enviaré el correo."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:39",
+"target": "Te mandaré el horario cuando tenga cobertura.",
+"ru": "Я пришлю тебе расписание, когда появится связь.",
+"uk": "Я надішлю тобі розклад, коли з’явиться зв’язок.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Mis",
+"Un",
+"Una",
+"Les"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandaste",
+"mandarías",
+"mandamos",
+"mandaría",
+"bebemos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "horario",
+"distractors": [
+"efectivo",
+"coche",
+"bolsa",
+"libros",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tuve",
+"tuvimos",
+"tiene",
+"llamar",
+"tuviera"
+]
+},
+{
+"correct": "cobertura",
+"distractors": [
+"llave",
+"clase",
+"foto",
+"zapatos",
+"banco"
+]
+}
+],
+"alternatives": [
+"Cuando tenga cobertura, te mandaré el horario."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:40",
+"target": "Cuando estés listo, te daré la llave.",
+"ru": "Когда ты будешь готов, я дам тебе ключ.",
+"uk": "Коли ти будеш готовий, я дам тобі ключ.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "estés",
+"distractors": [
+"estás",
+"estamos",
+"está",
+"están",
+"estoy"
+]
+},
+{
+"correct": "listo",
+"distractors": [
+"cerrada",
+"directo",
+"tranquilo",
+"nueva",
+"pequeña"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"mi",
+"mis",
+"el",
+"les",
+"una"
+]
+},
+{
+"correct": "daré",
+"distractors": [
+"dimos",
+"dio",
+"diste",
+"di",
+"llegó"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"lo",
+"estas",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"coche",
+"barrio",
+"hotel",
+"cartas",
+"carta"
+]
+}
+],
+"alternatives": [
+"Te daré la llave cuando estés listo."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:41",
+"target": "Cuando estés listo, saldremos.",
+"ru": "Когда ты будешь готов, мы выйдем.",
+"uk": "Коли ти будеш готовий, ми вийдемо.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "estés",
+"distractors": [
+"estáis",
+"está",
+"esté",
+"están",
+"escribimos"
+]
+},
+{
+"correct": "listo",
+"distractors": [
+"barato",
+"cansados",
+"roja",
+"ocupados",
+"cansada"
+]
+},
+{
+"correct": "saldremos",
+"distractors": [
+"sale",
+"salga",
+"quiero",
+"siento",
+"pagado"
+]
+}
+],
+"alternatives": [
+"Saldremos cuando estés listo."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:42",
+"target": "Saldremos cuando termine la clase.",
+"ru": "Мы выйдем, когда закончится занятие.",
+"uk": "Ми вийдемо, коли закінчиться заняття.",
+"tiles": [
+{
+"correct": "Saldremos",
+"distractors": [
+"Salga",
+"Sale",
+"Pueden",
+"Vengas",
+"Estoy"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "termine",
+"distractors": [
+"terminó",
+"terminemos",
+"terminado",
+"gustan",
+"gusta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"el",
+"un",
+"con"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"aeropuerto",
+"pasaportes",
+"libros",
+"reserva",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Cuando termine la clase, saldremos."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:43",
+"target": "Saldremos cuando terminemos la reunión.",
+"ru": "Мы выйдем, когда мы закончим совещание.",
+"uk": "Ми вийдемо, коли ми закінчимо нараду.",
+"tiles": [
+{
+"correct": "Saldremos",
+"distractors": [
+"Sale",
+"Salga",
+"Bebe",
+"Lee",
+"Paseaban"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "terminemos",
+"distractors": [
+"terminó",
+"terminado",
+"termine",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"los",
+"estos",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"hotel",
+"mochilas",
+"semana",
+"arroz",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando terminemos la reunión, saldremos."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:44",
+"target": "Cuando llegue el tren, saldremos.",
+"ru": "Когда прибудет поезд, мы выйдем.",
+"uk": "Коли прибуде потяг, ми вийдемо.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llegó",
+"llega",
+"llegues",
+"llegaron",
+"preparábamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"lo",
+"los",
+"cada"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"vecino",
+"llaves",
+"factura",
+"foto",
+"libro"
+]
+},
+{
+"correct": "saldremos",
+"distractors": [
+"sale",
+"salga",
+"pasaré",
+"entró",
+"repararán"
+]
+}
+],
+"alternatives": [
+"Saldremos cuando llegue el tren."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:45",
+"target": "Saldremos cuando venga Ana.",
+"ru": "Мы выйдем, когда придёт Ана.",
+"uk": "Ми вийдемо, коли прийде Ана.",
+"tiles": [
+{
+"correct": "Saldremos",
+"distractors": [
+"Sale",
+"Salga",
+"Escrito",
+"Volváis",
+"Apagaré"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "venga",
+"distractors": [
+"vino",
+"vengas",
+"viniste",
+"vinieron",
+"vine"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Quién",
+"Nunca"
+]
+}
+],
+"alternatives": [
+"Cuando venga Ana, saldremos."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:46",
+"target": "Pagaré cuando tenga el dinero.",
+"ru": "Я заплачу, когда у меня будут деньги.",
+"uk": "Я заплачу, коли у мене будуть гроші.",
+"tiles": [
+{
+"correct": "Pagaré",
+"distractors": [
+"Pagar",
+"Pagarías",
+"Pagando",
+"Pagaremos",
+"Estudiar"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "tenga",
+"distractors": [
+"tenemos",
+"tuve",
+"tenéis",
+"vivimos",
+"tiene"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"puerta",
+"estación",
+"gente",
+"factura",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Cuando tenga el dinero, pagaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:47",
+"target": "Pagaré cuando llegue a casa.",
+"ru": "Я заплачу, когда приду домой.",
+"uk": "Я заплачу, коли прийду додому.",
+"tiles": [
+{
+"correct": "Pagaré",
+"distractors": [
+"Pagar",
+"Pagaréis",
+"Pagado",
+"Pagando",
+"Elegiríamos"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"pero",
+"que",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegue",
+"distractors": [
+"llega",
+"llegó",
+"llegues",
+"llegaron",
+"revisaremos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"maleta",
+"noche",
+"arroz",
+"kilo",
+"llave"
+]
+}
+],
+"alternatives": [
+"Cuando llegue a casa, pagaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:48",
+"target": "Cuando salga del túnel, te mandaré la ubicación.",
+"ru": "Когда я выеду из тоннеля, я отправлю тебе геолокацию.",
+"uk": "Коли я виїду з тунелю, я надішлю тобі геолокацію.",
+"tiles": [
+{
+"correct": "Cuando",
+"distractors": [
+"Que",
+"Porque",
+"Si",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "salga",
+"distractors": [
+"saldremos",
+"sale",
+"pagar",
+"abra",
+"esperaríamos"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "túnel",
+"distractors": [
+"maleta",
+"salida",
+"tiempo",
+"vecinos",
+"hermana"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"las",
+"mis",
+"una",
+"los",
+"el"
+]
+},
+{
+"correct": "mandaré",
+"distractors": [
+"mandé",
+"mandado",
+"mandando",
+"mandaría",
+"necesitaría"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"un",
+"mío",
+"con"
+]
+},
+{
+"correct": "ubicación",
+"distractors": [
+"piso",
+"mesa",
+"efectivo",
+"madre",
+"botella"
+]
+}
+],
+"alternatives": [
+"Te mandaré la ubicación cuando salga del túnel."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:49",
+"target": "Pagaré cuando reciba el dinero.",
+"ru": "Я заплачу, когда получу деньги.",
+"uk": "Я заплачу, коли отримаю гроші.",
+"tiles": [
+{
+"correct": "Pagaré",
+"distractors": [
+"Pagar",
+"Pagaron",
+"Pagarás",
+"Pagaste",
+"Puedo"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "reciba",
+"distractors": [
+"recibido",
+"recibí",
+"recibiste",
+"trabajaba",
+"tuviera"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"la",
+"una",
+"con"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"huevos",
+"llave",
+"hotel",
+"farmacia",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando reciba el dinero, pagaré."
+]
+},
+{
+"lesson": 31,
+"id": "es:31:50",
+"target": "Pagaré cuando terminemos la reunión.",
+"ru": "Я заплачу, когда мы закончим совещание.",
+"uk": "Я заплачу, коли ми закінчимо нараду.",
+"tiles": [
+{
+"correct": "Pagaré",
+"distractors": [
+"Pagaréis",
+"Pagasteis",
+"Pagaría",
+"Pagaron",
+"Duché"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"porque",
+"pero",
+"que",
+"ni"
+]
+},
+{
+"correct": "terminemos",
+"distractors": [
+"terminó",
+"termine",
+"terminado",
+"tuve",
+"buscabas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"pasaporte",
+"recepción",
+"verduras",
+"huevos",
+"farmacia"
+]
+}
+],
+"alternatives": [
+"Cuando terminemos la reunión, pagaré."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:01",
+"target": "Si tuviera tiempo, iría contigo.",
+"ru": "Если бы у меня было время, я бы пошёл с тобой.",
+"uk": "Якби я мав час, я б пішов із тобою.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Porque",
+"Que",
+"Cuando",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tuve",
+"enseñamos",
+"tengo",
+"tienes"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"mochilas",
+"túnel",
+"casa",
+"mesa",
+"zapatos"
+]
+},
+{
+"correct": "iría",
+"distractors": [
+"fuiste",
+"iríamos",
+"íbamos",
+"ir",
+"fue"
+]
+},
+{
+"correct": "contigo",
+"distractors": [
+"las",
+"su",
+"mi",
+"el",
+"los"
+]
+}
+],
+"alternatives": [
+"Iría contigo si tuviera tiempo.",
+"Si tuviese tiempo, iría contigo.",
+"Iría contigo si tuviese tiempo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:02",
+"target": "Iría contigo si tuviera dinero.",
+"ru": "Я бы пошёл с тобой, если бы у меня были деньги.",
+"uk": "Я б пішов із тобою, якби я мав гроші.",
+"tiles": [
+{
+"correct": "Iría",
+"distractors": [
+"Va",
+"Fuiste",
+"Iba",
+"Íbamos",
+"Iríamos"
+]
+},
+{
+"correct": "contigo",
+"distractors": [
+"tu",
+"las",
+"los",
+"la",
+"nos"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"pero",
+"cuando",
+"que",
+"mientras",
+"porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"tiene",
+"tengo",
+"volveremos",
+"tienes"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"pasaporte",
+"mecánico",
+"pregunta",
+"compra",
+"estación"
+]
+}
+],
+"alternatives": [
+"Si tuviera dinero, iría contigo.",
+"Iría contigo si tuviese dinero.",
+"Si tuviese dinero, iría contigo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:03",
+"target": "Si estuviera libre, iría contigo.",
+"ru": "Если бы я был свободен, я бы пошёл с тобой.",
+"uk": "Якби я був вільний, я б пішов із тобою.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Pero",
+"Cuando",
+"Porque",
+"Mientras",
+"Que"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"esté",
+"voy",
+"están",
+"estás"
+]
+},
+{
+"correct": "libre",
+"distractors": [
+"lista",
+"listo",
+"otra",
+"contento",
+"cansados"
+]
+},
+{
+"correct": "iría",
+"distractors": [
+"íbamos",
+"ir",
+"fue",
+"iba",
+"es"
+]
+},
+{
+"correct": "contigo",
+"distractors": [
+"mis",
+"la",
+"su",
+"el",
+"nos"
+]
+}
+],
+"alternatives": [
+"Iría contigo si estuviera libre.",
+"Si estuviese libre, iría contigo.",
+"Iría contigo si estuviese libre."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:04",
+"target": "Si viviera más cerca, iría contigo.",
+"ru": "Если бы я жил ближе, я бы пошёл с тобой.",
+"uk": "Якби я жив ближче, я б пішов із тобою.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Pero",
+"Cuando",
+"Que",
+"Mientras",
+"Porque"
+]
+},
+{
+"correct": "viviera",
+"distractors": [
+"vivía",
+"leí",
+"vivo",
+"es",
+"llamar"
+]
+},
+{
+"correct": "más",
+"distractors": [
+"ahora",
+"tarde",
+"temprano",
+"mañana",
+"anoche"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"aquí",
+"fuera",
+"lejos",
+"allí",
+"dentro"
+]
+},
+{
+"correct": "iría",
+"distractors": [
+"iba",
+"fuiste",
+"fui",
+"iríamos",
+"fue"
+]
+},
+{
+"correct": "contigo",
+"distractors": [
+"el",
+"la",
+"mi",
+"una",
+"le"
+]
+}
+],
+"alternatives": [
+"Iría contigo si viviera más cerca.",
+"Si viviese más cerca, iría contigo.",
+"Iría contigo si viviese más cerca."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:05",
+"target": "Iría contigo si hubiera un tren directo.",
+"ru": "Я бы поехал с тобой, если бы был прямой поезд.",
+"uk": "Я б поїхав із тобою, якби був прямий потяг.",
+"tiles": [
+{
+"correct": "Iría",
+"distractors": [
+"Va",
+"Fuiste",
+"Fue",
+"Ir",
+"Iríamos"
+]
+},
+{
+"correct": "contigo",
+"distractors": [
+"la",
+"mis",
+"mi",
+"los",
+"me"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"que",
+"cuando",
+"mientras",
+"pero",
+"porque"
+]
+},
+{
+"correct": "hubiera",
+"distractors": [
+"ha",
+"hay",
+"recibí",
+"hemos",
+"he"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"la",
+"los",
+"cada",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"mochila",
+"reloj",
+"móvil",
+"cobertura",
+"carta"
+]
+},
+{
+"correct": "directo",
+"distractors": [
+"tranquilo",
+"cerrados",
+"contenta",
+"roja",
+"pequeña"
+]
+}
+],
+"alternatives": [
+"Si hubiera un tren directo, iría contigo.",
+"Iría contigo si hubiese un tren directo.",
+"Si hubiese un tren directo, iría contigo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:06",
+"target": "Te visitaría si tuviera tiempo.",
+"ru": "Я бы тебя навестил, если бы у меня было время.",
+"uk": "Я б тебе відвідав, якби я мав час.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Un",
+"El",
+"Tu",
+"Una",
+"Le"
+]
+},
+{
+"correct": "visitaría",
+"distractors": [
+"visitamos",
+"usaré",
+"enviaría",
+"comprará",
+"vivía"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"que",
+"cuando",
+"porque",
+"pero",
+"mientras"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tiene",
+"gusta",
+"tienes",
+"tuve"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"tienda",
+"clase",
+"niño",
+"hermanos",
+"oficina"
+]
+}
+],
+"alternatives": [
+"Si tuviera tiempo, te visitaría.",
+"Te visitaría si tuviese tiempo.",
+"Si tuviese tiempo, te visitaría."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:07",
+"target": "Si tuviera coche, te visitaría.",
+"ru": "Если бы у меня была машина, я бы тебя навестил.",
+"uk": "Якби я мав машину, я б тебе відвідав.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Mientras",
+"Cuando",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tiene",
+"tuve",
+"volvería",
+"tienes"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"mensaje",
+"centro",
+"reunión",
+"agua",
+"llaves"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"tu",
+"un",
+"los",
+"su",
+"le"
+]
+},
+{
+"correct": "visitaría",
+"distractors": [
+"visitamos",
+"has",
+"abrirla",
+"es",
+"trabaja"
+]
+}
+],
+"alternatives": [
+"Te visitaría si tuviera coche.",
+"Si tuviese coche, te visitaría.",
+"Te visitaría si tuviese coche."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:08",
+"target": "Si viviera más cerca, te visitaría.",
+"ru": "Если бы я жил ближе, я бы тебя навестил.",
+"uk": "Якби я жив ближче, я б тебе відвідав.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Que",
+"Cuando",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "viviera",
+"distractors": [
+"vivo",
+"vivía",
+"preparábamos",
+"es",
+"llamar"
+]
+},
+{
+"correct": "más",
+"distractors": [
+"ya",
+"tanto",
+"mañana",
+"anoche",
+"ahora"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"lejos",
+"allí",
+"dentro",
+"aquí",
+"fuera"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"mis",
+"los",
+"el",
+"mi",
+"la"
+]
+},
+{
+"correct": "visitaría",
+"distractors": [
+"visitamos",
+"abre",
+"tienes",
+"están",
+"escribirías"
+]
+}
+],
+"alternatives": [
+"Te visitaría si viviera más cerca.",
+"Si viviese más cerca, te visitaría.",
+"Te visitaría si viviese más cerca."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:09",
+"target": "Te visitaría si supiera la dirección.",
+"ru": "Я бы тебя навестил, если бы я знал адрес.",
+"uk": "Я б тебе відвідав, якби я знав адресу.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"Mis",
+"Los",
+"Lo",
+"Tu"
+]
+},
+{
+"correct": "visitaría",
+"distractors": [
+"visitamos",
+"escribíamos",
+"hemos",
+"está",
+"estés"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"cuando",
+"que",
+"pero",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "supiera",
+"distractors": [
+"tuviste",
+"tiene",
+"tengo",
+"tienes",
+"tenéis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "dirección",
+"distractors": [
+"botellas",
+"señal",
+"hermanos",
+"llaves",
+"pueblo"
+]
+}
+],
+"alternatives": [
+"Si supiera la dirección, te visitaría.",
+"Te visitaría si supiese la dirección.",
+"Si supiese la dirección, te visitaría."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:10",
+"target": "Si tuviera un balcón, pondría la mesa fuera.",
+"ru": "Будь у меня балкон, я бы поставил стол снаружи.",
+"uk": "Якби в мене був балкон, я б поставив стіл надворі.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Pero",
+"Cuando",
+"Mientras",
+"Que",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"abra",
+"tengo",
+"tiene",
+"tenemos"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"los",
+"estos",
+"con",
+"que"
+]
+},
+{
+"correct": "balcón",
+"distractors": [
+"regalo",
+"cartas",
+"mecánico",
+"cena",
+"entradas"
+]
+},
+{
+"correct": "pondría",
+"distractors": [
+"mandará",
+"mandamos",
+"mandar",
+"mandaré",
+"mandaría"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"lo",
+"el",
+"unas",
+"con"
+]
+},
+{
+"correct": "mesa",
+"distractors": [
+"hoteles",
+"centro",
+"autobús",
+"ventana",
+"puerta"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"aquí",
+"lejos",
+"allí",
+"cerca",
+"dentro"
+]
+}
+],
+"alternatives": [
+"Pondría la mesa fuera si tuviera un balcón.",
+"Si tuviese un balcón, pondría la mesa fuera.",
+"Pondría la mesa fuera si tuviese un balcón."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:11",
+"target": "Si tuviera dinero, compraría el billete.",
+"ru": "Если бы у меня были деньги, я бы купил билет.",
+"uk": "Якби я мав гроші, я б купив квиток.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Mientras",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"puedo",
+"tiene",
+"tuve",
+"tienes"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"frenos",
+"libros",
+"vecinos",
+"viaje",
+"ascensor"
+]
+},
+{
+"correct": "compraría",
+"distractors": [
+"comprarían",
+"comprar",
+"comprado",
+"compraba",
+"compraríais"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"las",
+"los",
+"una",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"mesa",
+"madre",
+"casa",
+"vecinos",
+"clase"
+]
+}
+],
+"alternatives": [
+"Compraría el billete si tuviera dinero.",
+"Si tuviese dinero, compraría el billete.",
+"Compraría el billete si tuviese dinero."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:12",
+"target": "Si costara menos, alquilaría la habitación.",
+"ru": "Если бы комната стоила дешевле, я бы её снял.",
+"uk": "Якби кімната коштувала дешевше, я б її винайняв.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Que",
+"Cuando",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "costara",
+"distractors": [
+"cuesta",
+"repararán",
+"gusta",
+"buscando",
+"dejo"
+]
+},
+{
+"correct": "menos",
+"distractors": [
+"tarde",
+"más",
+"ayer",
+"tanto",
+"también"
+]
+},
+{
+"correct": "alquilaría",
+"distractors": [
+"alquilarías",
+"alquilaríamos",
+"vuelve",
+"busca",
+"estuviera"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"un",
+"las",
+"con"
+]
+},
+{
+"correct": "habitación",
+"distractors": [
+"oficina",
+"canción",
+"cebollas",
+"estación",
+"compra"
+]
+}
+],
+"alternatives": [
+"Alquilaría la habitación si costara menos.",
+"Si costase menos, alquilaría la habitación.",
+"Alquilaría la habitación si costase menos."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:13",
+"target": "Compraría el billete si hubiera un tren directo.",
+"ru": "Я бы купил билет, если бы был прямой поезд.",
+"uk": "Я б купив квиток, якби був прямий потяг.",
+"tiles": [
+{
+"correct": "Compraría",
+"distractors": [
+"Compraba",
+"Compramos",
+"Comprar",
+"Comprará",
+"Comprarían"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"las",
+"la",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"llaves",
+"hotel",
+"arroz",
+"pregunta",
+"foto"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"porque",
+"mientras",
+"pero",
+"cuando",
+"que"
+]
+},
+{
+"correct": "hubiera",
+"distractors": [
+"hay",
+"ha",
+"queremos",
+"hemos",
+"he"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"los",
+"una",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"mensaje",
+"libros",
+"baño",
+"tiempo",
+"libro"
+]
+},
+{
+"correct": "directo",
+"distractors": [
+"blanco",
+"listos",
+"abierto",
+"juntos",
+"listo"
+]
+}
+],
+"alternatives": [
+"Si hubiera un tren directo, compraría el billete.",
+"Compraría el billete si hubiese un tren directo.",
+"Si hubiese un tren directo, compraría el billete."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:14",
+"target": "Compraría ese billete si fuera más barato.",
+"ru": "Я бы купил этот билет, если бы он был дешевле.",
+"uk": "Я б купив цей квиток, якби він був дешевшим.",
+"tiles": [
+{
+"correct": "Compraría",
+"distractors": [
+"Compraremos",
+"Compraron",
+"Compré",
+"Comprar",
+"Compraríais"
+]
+},
+{
+"correct": "ese",
+"distractors": [
+"una",
+"un",
+"la",
+"mis",
+"estas"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"cara",
+"cena",
+"madre",
+"clase",
+"paquete"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"mientras",
+"cuando",
+"pero",
+"que",
+"porque"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"es",
+"fue",
+"he",
+"aquí",
+"lejos"
+]
+},
+{
+"correct": "más",
+"distractors": [
+"tarde",
+"poco",
+"tanto",
+"ahora",
+"mañana"
+]
+},
+{
+"correct": "barato",
+"distractors": [
+"cansado",
+"ruidoso",
+"cerradas",
+"juntos",
+"pequeña"
+]
+}
+],
+"alternatives": [
+"Compraría ese billete si fuese más barato."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:15",
+"target": "Compraría el piso si el barrio fuera tranquilo.",
+"ru": "Я бы купил квартиру, если бы район был тихим.",
+"uk": "Я б купив квартиру, якби район був тихим.",
+"tiles": [
+{
+"correct": "Compraría",
+"distractors": [
+"Compraron",
+"Compré",
+"Compraríais",
+"Compró",
+"Comprarías"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"los",
+"este",
+"con"
+]
+},
+{
+"correct": "piso",
+"distractors": [
+"móviles",
+"texto",
+"madre",
+"sal",
+"hermanas"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"porque",
+"que",
+"cuando",
+"mientras",
+"pero"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"lo",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "barrio",
+"distractors": [
+"leche",
+"semana",
+"estación",
+"pan",
+"tienda"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"compraré",
+"aquí",
+"lejos",
+"cerca",
+"dentro"
+]
+},
+{
+"correct": "tranquilo",
+"distractors": [
+"cerrada",
+"negra",
+"abiertas",
+"grande",
+"nuevo"
+]
+}
+],
+"alternatives": [
+"Si el barrio fuera tranquilo, compraría el piso.",
+"Compraría el piso si el barrio fuese tranquilo.",
+"Si el barrio fuese tranquilo, compraría el piso."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:16",
+"target": "Si tuviera coche, iríamos al centro.",
+"ru": "Если бы у меня была машина, мы бы поехали в центр.",
+"uk": "Якби я мав машину, ми б поїхали до центру.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Pero",
+"Que",
+"Cuando",
+"Mientras",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tengo",
+"tuve",
+"lavando",
+"tienes"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"pan",
+"minuto",
+"hotel",
+"mesa",
+"recepción"
+]
+},
+{
+"correct": "iríamos",
+"distractors": [
+"va",
+"fueron",
+"iría",
+"ir",
+"vas"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"grandes",
+"libro",
+"número",
+"otra"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"libro",
+"pasaporte",
+"casa",
+"cena",
+"canción"
+]
+}
+],
+"alternatives": [
+"Iríamos al centro si tuviera coche.",
+"Si tuviese coche, iríamos al centro.",
+"Iríamos al centro si tuviese coche."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:17",
+"target": "Si supiera la contraseña, copiaría el archivo.",
+"ru": "Если бы я знал пароль, я бы скопировал файл.",
+"uk": "Якби я знав пароль, я б скопіював файл.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Cuando",
+"Que",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "supiera",
+"distractors": [
+"tuvisteis",
+"tienes",
+"tengo",
+"tiene",
+"tuve"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"lo",
+"las",
+"tuyo"
+]
+},
+{
+"correct": "contraseña",
+"distractors": [
+"madre",
+"foto",
+"maleta",
+"música",
+"barrio"
+]
+},
+{
+"correct": "copiaría",
+"distractors": [
+"copie",
+"copies",
+"lavo",
+"gustan",
+"envolviendo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"una",
+"los",
+"tuyo",
+"con"
+]
+},
+{
+"correct": "archivo",
+"distractors": [
+"abrigo",
+"zapatos",
+"libro",
+"autobús",
+"bicicleta"
+]
+}
+],
+"alternatives": [
+"Copiaría el archivo si supiera la contraseña.",
+"Si supiese la contraseña, copiaría el archivo.",
+"Copiaría el archivo si supiese la contraseña."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:18",
+"target": "Si pudieras venir, iríamos al centro.",
+"ru": "Если бы ты мог прийти, мы бы поехали в центр.",
+"uk": "Якби ти міг прийти, ми б поїхали до центру.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Pero",
+"Mientras",
+"Porque"
+]
+},
+{
+"correct": "pudieras",
+"distractors": [
+"puedes",
+"copie",
+"podemos",
+"puede",
+"puedo"
+]
+},
+{
+"correct": "venir",
+"distractors": [
+"vino",
+"vine",
+"vinimos",
+"vinisteis",
+"puede"
+]
+},
+{
+"correct": "iríamos",
+"distractors": [
+"íbamos",
+"fue",
+"iba",
+"iría",
+"fuiste"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"grifo",
+"efectivo",
+"tarjeta",
+"plato",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Iríamos al centro si pudieras venir.",
+"Si pudieses venir, iríamos al centro.",
+"Iríamos al centro si pudieses venir."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:19",
+"target": "Si hubiera una avería, llamaría al taller.",
+"ru": "Если бы что-то сломалось, я бы позвонил в мастерскую.",
+"uk": "Якби щось зламалося, я б зателефонував до майстерні.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Porque",
+"Que",
+"Cuando",
+"Mientras",
+"Pero"
+]
+},
+{
+"correct": "hubiera",
+"distractors": [
+"hay",
+"ha",
+"manda",
+"hemos",
+"he"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"sus",
+"mi",
+"las",
+"unas",
+"un"
+]
+},
+{
+"correct": "avería",
+"distractors": [
+"estación",
+"coche",
+"botella",
+"correo",
+"libro"
+]
+},
+{
+"correct": "llamaría",
+"distractors": [
+"llamar",
+"llame",
+"llamaré",
+"llamarás",
+"llamarías"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "taller",
+"distractors": [
+"maleta",
+"hermanas",
+"agua",
+"plato",
+"música"
+]
+}
+],
+"alternatives": [
+"Llamaría al taller si hubiera una avería.",
+"Si hubiese una avería, llamaría al taller.",
+"Llamaría al taller si hubiese una avería."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:20",
+"target": "Iríamos al centro si hubiera un tren directo.",
+"ru": "Мы бы поехали в центр, если бы был прямой поезд.",
+"uk": "Ми б поїхали до центру, якби був прямий потяг.",
+"tiles": [
+{
+"correct": "Iríamos",
+"distractors": [
+"Iría",
+"Ir",
+"Íbamos",
+"Fue",
+"Fui"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"archivo",
+"bicicleta",
+"puerta",
+"madre",
+"farmacia"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"mientras",
+"cuando",
+"que",
+"porque",
+"pero"
+]
+},
+{
+"correct": "hubiera",
+"distractors": [
+"ha",
+"eres",
+"son",
+"es",
+"soy"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"la",
+"los",
+"estas",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"casa",
+"hermanas",
+"trenes",
+"mochila",
+"libro"
+]
+},
+{
+"correct": "directo",
+"distractors": [
+"blanca",
+"listo",
+"cansada",
+"negra",
+"libre"
+]
+}
+],
+"alternatives": [
+"Si hubiera un tren directo, iríamos al centro.",
+"Iríamos al centro si hubiese un tren directo.",
+"Si hubiese un tren directo, iríamos al centro."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:21",
+"target": "Hablaría con Luis si tuviera su número.",
+"ru": "Я бы поговорил с Луисом, если бы у меня был его номер.",
+"uk": "Я б поговорив із Луїсом, якби я мав його номер.",
+"tiles": [
+{
+"correct": "Hablaría",
+"distractors": [
+"Hablaba",
+"Habla",
+"Hablas",
+"Habláis",
+"Hablan"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"a",
+"para",
+"por",
+"de",
+"en"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Pronto",
+"Nunca",
+"Quién"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"mientras",
+"que",
+"cuando",
+"pero",
+"porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tiene",
+"tuve",
+"termine",
+"tienes"
+]
+},
+{
+"correct": "su",
+"distractors": [
+"tus",
+"mi",
+"sus",
+"mis",
+"tu"
+]
+},
+{
+"correct": "número",
+"distractors": [
+"ventana",
+"agua",
+"batería",
+"semana",
+"noche"
+]
+}
+],
+"alternatives": [
+"Si tuviera su número, hablaría con Luis.",
+"Hablaría con Luis si tuviese su número.",
+"Si tuviese su número, hablaría con Luis."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:22",
+"target": "Si tuviera cobertura, mandaría la ubicación.",
+"ru": "Если бы была связь, я бы отправил геолокацию.",
+"uk": "Якби був зв’язок, я б надіслав геолокацію.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Porque",
+"Que",
+"Mientras",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"tiene",
+"paseaban",
+"tengo",
+"tienes"
+]
+},
+{
+"correct": "cobertura",
+"distractors": [
+"mensaje",
+"aeropuerto",
+"móvil",
+"platos",
+"mochilas"
+]
+},
+{
+"correct": "mandaría",
+"distractors": [
+"mandando",
+"mandé",
+"mandará",
+"mandamos",
+"llegue"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"lo",
+"unas",
+"con"
+]
+},
+{
+"correct": "ubicación",
+"distractors": [
+"carta",
+"estación",
+"pregunta",
+"bicicleta",
+"farmacia"
+]
+}
+],
+"alternatives": [
+"Mandaría la ubicación si tuviera cobertura.",
+"Si tuviese cobertura, mandaría la ubicación.",
+"Mandaría la ubicación si tuviese cobertura."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:23",
+"target": "Si tuviera tu número, te enviaría la receta.",
+"ru": "Если бы у меня был твой номер, я бы отправил тебе рецепт.",
+"uk": "Якби я мав твій номер, я б надіслав тобі рецепт.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Cuando",
+"Pero",
+"Porque",
+"Que"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tuve",
+"leído",
+"tengo",
+"tienes"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"mis",
+"mi",
+"su",
+"sus",
+"tus"
+]
+},
+{
+"correct": "número",
+"distractors": [
+"botella",
+"mapa",
+"bufanda",
+"periódico",
+"noche"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"un",
+"el",
+"se",
+"una",
+"los"
+]
+},
+{
+"correct": "enviaría",
+"distractors": [
+"enviaré",
+"vinieron",
+"cuesta",
+"sientas",
+"llegue"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"lo",
+"unas",
+"con"
+]
+},
+{
+"correct": "receta",
+"distractors": [
+"efectivo",
+"camarero",
+"supermercado",
+"hora",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Te enviaría la receta si tuviera tu número.",
+"Si tuviese tu número, te enviaría la receta.",
+"Te enviaría la receta si tuviese tu número."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:24",
+"target": "Hablaría con Luis si viviera más cerca.",
+"ru": "Я бы поговорил с Луисом, если бы я жил ближе.",
+"uk": "Я б поговорив із Луїсом, якби я жив ближче.",
+"tiles": [
+{
+"correct": "Hablaría",
+"distractors": [
+"Hablaba",
+"Habla",
+"Hablan",
+"Hablamos",
+"Hablaremos"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"para",
+"a",
+"desde",
+"de",
+"por"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Cuándo",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"que",
+"cuando",
+"pero",
+"mientras",
+"porque"
+]
+},
+{
+"correct": "viviera",
+"distractors": [
+"vivo",
+"vivía",
+"es",
+"son",
+"soy"
+]
+},
+{
+"correct": "más",
+"distractors": [
+"antes",
+"tarde",
+"ahora",
+"anoche",
+"ayer"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"aquí",
+"lejos",
+"fuera",
+"allí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"Si viviera más cerca, hablaría con Luis.",
+"Hablaría con Luis si viviese más cerca.",
+"Si viviese más cerca, hablaría con Luis."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:25",
+"target": "Si tuviera su número, le escribiría.",
+"ru": "Если бы у меня был его номер, я бы ему написал.",
+"uk": "Якби я мав його номер, я б йому написав.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Mientras",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tuve",
+"tiene",
+"sientas",
+"tienes"
+]
+},
+{
+"correct": "su",
+"distractors": [
+"mis",
+"mi",
+"tu",
+"sus",
+"tus"
+]
+},
+{
+"correct": "número",
+"distractors": [
+"hotel",
+"cargador",
+"maletas",
+"libro",
+"tarjeta"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"el",
+"un",
+"una",
+"los",
+"se"
+]
+},
+{
+"correct": "escribiría",
+"distractors": [
+"escribimos",
+"escribes",
+"escribirían",
+"escribís",
+"lavan"
+]
+}
+],
+"alternatives": [
+"Le escribiría si tuviera su número.",
+"Si tuviese su número, le escribiría.",
+"Le escribiría si tuviese su número."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:26",
+"target": "Si tuviera coche, volvería mañana.",
+"ru": "Если бы у меня была машина, я бы вернулся завтра.",
+"uk": "Якби я мав машину, я б повернувся завтра.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"dejé",
+"tiene",
+"tuve",
+"tienes"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"maleta",
+"lista",
+"fruta",
+"verduras",
+"barrio"
+]
+},
+{
+"correct": "volvería",
+"distractors": [
+"volvían",
+"volver",
+"volvamos",
+"volváis",
+"volverían"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"ayer",
+"anoche",
+"tarde",
+"menudo",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Volvería mañana si tuviera coche.",
+"Si tuviese coche, volvería mañana.",
+"Volvería mañana si tuviese coche."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:27",
+"target": "Volvería en taxi si perdiera el autobús.",
+"ru": "Если бы я опоздал на автобус, то вернулся бы на такси.",
+"uk": "Я б повернувся на таксі, якби запізнився на автобус.",
+"tiles": [
+{
+"correct": "Volvería",
+"distractors": [
+"Volvamos",
+"Volví",
+"Volvíais",
+"Volverían",
+"Volver"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"para",
+"desde",
+"de",
+"con"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"reserva",
+"tienda",
+"señal",
+"sal",
+"mesa"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"cuando",
+"mientras",
+"que",
+"porque",
+"pero"
+]
+},
+{
+"correct": "perdiera",
+"distractors": [
+"trabajar",
+"probando",
+"he",
+"sonó",
+"enviaré"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"las",
+"la",
+"estos",
+"con"
+]
+},
+{
+"correct": "autobús",
+"distractors": [
+"billetes",
+"móviles",
+"efectivo",
+"mensaje",
+"tarjeta"
+]
+}
+],
+"alternatives": [
+"Si perdiera el autobús, volvería en taxi.",
+"Volvería en taxi si perdiese el autobús.",
+"Si perdiese el autobús, volvería en taxi."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:28",
+"target": "Volvería mañana si tuviera dinero.",
+"ru": "Я бы вернулся завтра, если бы у меня были деньги.",
+"uk": "Я б повернувся завтра, якби я мав гроші.",
+"tiles": [
+{
+"correct": "Volvería",
+"distractors": [
+"Volvamos",
+"Volvíais",
+"Volverán",
+"Volver",
+"Volverían"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"menudo",
+"temprano",
+"antes",
+"poco",
+"más"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"cuando",
+"mientras",
+"que",
+"porque",
+"pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tengo",
+"comprará",
+"tienes",
+"tuve"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"pedido",
+"farmacias",
+"mochila",
+"hermana",
+"vecino"
+]
+}
+],
+"alternatives": [
+"Si tuviera dinero, volvería mañana.",
+"Volvería mañana si tuviese dinero.",
+"Si tuviese dinero, volvería mañana."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:29",
+"target": "Si estuviera libre, volvería mañana.",
+"ru": "Если бы я был свободен, я бы вернулся завтра.",
+"uk": "Якби я був вільний, я б повернувся завтра.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Cuando",
+"Que",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"avises",
+"están",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "libre",
+"distractors": [
+"pequeños",
+"contentas",
+"abierta",
+"nuevo",
+"fría"
+]
+},
+{
+"correct": "volvería",
+"distractors": [
+"volvamos",
+"volver",
+"vuelto",
+"vuelve",
+"volviendo"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"tarde",
+"más",
+"antes",
+"menudo",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Volvería mañana si estuviera libre.",
+"Si estuviese libre, volvería mañana.",
+"Volvería mañana si estuviese libre."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:30",
+"target": "Si la batería estuviera cargada, usaría el mapa.",
+"ru": "Если бы аккумулятор был заряжен, я бы воспользовался картой.",
+"uk": "Якби акумулятор був заряджений, я б скористався мапою.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"ese",
+"con"
+]
+},
+{
+"correct": "batería",
+"distractors": [
+"salida",
+"leche",
+"carta",
+"tiempo",
+"abrigo"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"esté",
+"han",
+"están",
+"estás"
+]
+},
+{
+"correct": "cargada",
+"distractors": [
+"pequeñas",
+"libre",
+"nerviosa",
+"negro",
+"nuevos"
+]
+},
+{
+"correct": "usaría",
+"distractors": [
+"usaré",
+"usaríamos",
+"deja",
+"trabajo",
+"prepara"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"luz",
+"rueda",
+"mecánico",
+"hermanas",
+"bolso"
+]
+}
+],
+"alternatives": [
+"Usaría el mapa si la batería estuviera cargada.",
+"Si la batería estuviese cargada, usaría el mapa.",
+"Usaría el mapa si la batería estuviese cargada."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:31",
+"target": "Si tuviera la llave, entraría ahora.",
+"ru": "Если бы у меня был ключ, я бы сейчас вошёл.",
+"uk": "Якби я мав ключ, я б зараз зайшов.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"tengo",
+"deja",
+"tiene",
+"tienes"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"lo",
+"mío"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"casa",
+"reunión",
+"mensaje",
+"correo",
+"cambio"
+]
+},
+{
+"correct": "entraría",
+"distractors": [
+"entrado",
+"entrar",
+"entramos",
+"entró",
+"deja"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"ayer",
+"poco",
+"mañana",
+"tarde",
+"menudo"
+]
+}
+],
+"alternatives": [
+"Entraría ahora si tuviera la llave.",
+"Si tuviese la llave, entraría ahora.",
+"Entraría ahora si tuviese la llave."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:32",
+"target": "Entraría ahora si la tienda estuviera abierta.",
+"ru": "Я бы сейчас вошёл, если бы магазин был открыт.",
+"uk": "Я б зараз зайшов, якби магазин був відчинений.",
+"tiles": [
+{
+"correct": "Entraría",
+"distractors": [
+"Entrar",
+"Entrado",
+"Entramos",
+"Entrarías",
+"Preparado"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"más",
+"antes",
+"despacio",
+"mañana",
+"anoche"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"que",
+"porque",
+"cuando",
+"mientras",
+"pero"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"los",
+"un",
+"este"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"madre",
+"clientes",
+"tiempo",
+"paquete",
+"llaves"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"estaba",
+"prepararíais",
+"están",
+"estás"
+]
+},
+{
+"correct": "abierta",
+"distractors": [
+"grande",
+"nuevos",
+"rojas",
+"ruidosa",
+"blancas"
+]
+}
+],
+"alternatives": [
+"Si la tienda estuviera abierta, entraría ahora.",
+"Entraría ahora si la tienda estuviese abierta.",
+"Si la tienda estuviese abierta, entraría ahora."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:33",
+"target": "No alquilaría ese piso si fuera tan ruidoso.",
+"ru": "Я бы не снял ту квартиру, если бы она была такой шумной.",
+"uk": "Я б не винайняв ту квартиру, якби вона була такою шумною.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "alquilaría",
+"distractors": [
+"alquilarías",
+"alquilaríamos",
+"leeré",
+"llamar",
+"bebe"
+]
+},
+{
+"correct": "ese",
+"distractors": [
+"una",
+"el",
+"su",
+"tus",
+"la"
+]
+},
+{
+"correct": "piso",
+"distractors": [
+"mochila",
+"abrigos",
+"cargador",
+"cena",
+"niño"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"que",
+"mientras",
+"cuando",
+"pero",
+"porque"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"es",
+"escribe",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "tan",
+"distractors": [
+"ahora",
+"ya",
+"menos",
+"mañana",
+"más"
+]
+},
+{
+"correct": "ruidoso",
+"distractors": [
+"pequeños",
+"natural",
+"nuevos",
+"listo",
+"grandes"
+]
+}
+],
+"alternatives": [
+"Si fuera tan ruidoso, no alquilaría ese piso.",
+"No alquilaría ese piso si fuese tan ruidoso.",
+"Si fuese tan ruidoso, no alquilaría ese piso."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:34",
+"target": "Si supiera la contraseña, abriría el archivo.",
+"ru": "Если бы я знал пароль, я бы открыл файл.",
+"uk": "Якби я знав пароль, я б відкрив файл.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Que",
+"Cuando",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "supiera",
+"distractors": [
+"volvamos",
+"volver",
+"volviendo",
+"vuelto",
+"volveremos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "contraseña",
+"distractors": [
+"dinero",
+"platos",
+"queso",
+"cena",
+"tren"
+]
+},
+{
+"correct": "abriría",
+"distractors": [
+"abriré",
+"abra",
+"abrir",
+"abren",
+"termine"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"lo",
+"los",
+"esta",
+"con"
+]
+},
+{
+"correct": "archivo",
+"distractors": [
+"noche",
+"coches",
+"ventana",
+"pedido",
+"azúcar"
+]
+}
+],
+"alternatives": [
+"Abriría el archivo si supiera la contraseña.",
+"Si supiese la contraseña, abriría el archivo.",
+"Abriría el archivo si supiese la contraseña."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:35",
+"target": "Si la puerta estuviera abierta, entraría.",
+"ru": "Если бы дверь была открыта, я бы вошёл.",
+"uk": "Якби двері були відчинені, я б зайшов.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"esta",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"bolsillo",
+"clase",
+"túnel",
+"habitación",
+"hermanos"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"estudias",
+"están",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "abierta",
+"distractors": [
+"ocupadas",
+"grande",
+"grandes",
+"nueva",
+"listas"
+]
+},
+{
+"correct": "entraría",
+"distractors": [
+"entrado",
+"entrar",
+"entra",
+"entró",
+"bebemos"
+]
+}
+],
+"alternatives": [
+"Entraría si la puerta estuviera abierta.",
+"Si la puerta estuviese abierta, entraría.",
+"Entraría si la puerta estuviese abierta."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:36",
+"target": "Te acompañaría si tuviera tiempo.",
+"ru": "Я бы тебя проводил, если бы у меня было время.",
+"uk": "Я б тебе провів, якби я мав час.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Una",
+"El",
+"Su",
+"Mis",
+"Les"
+]
+},
+{
+"correct": "acompañaría",
+"distractors": [
+"compramos",
+"vuelto",
+"levanta",
+"revisarás",
+"prueba"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"cuando",
+"porque",
+"mientras",
+"que",
+"pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tengo",
+"tuve",
+"hablaría",
+"tienes"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"zapatos",
+"bolsillo",
+"receta",
+"bolso",
+"ventana"
+]
+}
+],
+"alternatives": [
+"Si tuviera tiempo, te acompañaría.",
+"Te acompañaría si tuviese tiempo.",
+"Si tuviese tiempo, te acompañaría."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:37",
+"target": "Si hubiera una avería, usaríamos la bicicleta.",
+"ru": "Если бы произошла поломка, мы бы поехали на велосипеде.",
+"uk": "Якби сталася поломка, ми б поїхали велосипедом.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Que",
+"Cuando",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "hubiera",
+"distractors": [
+"hay",
+"ha",
+"mandaríais",
+"hemos",
+"he"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"los",
+"un",
+"el",
+"tu",
+"cada"
+]
+},
+{
+"correct": "avería",
+"distractors": [
+"foto",
+"billete",
+"carta",
+"favor",
+"archivo"
+]
+},
+{
+"correct": "usaríamos",
+"distractors": [
+"usaría",
+"usaré",
+"entrar",
+"comiendo",
+"cocinaba"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"lo",
+"ese",
+"con"
+]
+},
+{
+"correct": "bicicleta",
+"distractors": [
+"baño",
+"cita",
+"parque",
+"cambio",
+"tarjeta"
+]
+}
+],
+"alternatives": [
+"Usaríamos la bicicleta si hubiera una avería.",
+"Si hubiese una avería, usaríamos la bicicleta.",
+"Usaríamos la bicicleta si hubiese una avería."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:38",
+"target": "Si tuviera coche, te acompañaría.",
+"ru": "Если бы у меня была машина, я бы тебя проводил.",
+"uk": "Якби я мав машину, я б тебе провів.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Pero",
+"Mientras",
+"Que",
+"Cuando",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"tiene",
+"tengo",
+"pudieras",
+"tienes"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"fruta",
+"puerta",
+"piso",
+"tienda",
+"frenos"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"un",
+"tu",
+"sus",
+"el",
+"os"
+]
+},
+{
+"correct": "acompañaría",
+"distractors": [
+"es",
+"viniste",
+"escribís",
+"fueron",
+"quedaría"
+]
+}
+],
+"alternatives": [
+"Te acompañaría si tuviera coche.",
+"Si tuviese coche, te acompañaría.",
+"Te acompañaría si tuviese coche."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:39",
+"target": "Si el túnel estuviera cerrado, volvería al pueblo.",
+"ru": "Если бы тоннель был закрыт, я бы вернулся в посёлок.",
+"uk": "Якби тунель був закритий, я б повернувся до селища.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"lo",
+"esta",
+"con"
+]
+},
+{
+"correct": "túnel",
+"distractors": [
+"queso",
+"maletas",
+"oficina",
+"día",
+"cambio"
+]
+},
+{
+"correct": "estuviera",
+"distractors": [
+"está",
+"estaba",
+"hable",
+"están",
+"estás"
+]
+},
+{
+"correct": "cerrado",
+"distractors": [
+"lista",
+"otra",
+"barato",
+"listo",
+"directo"
+]
+},
+{
+"correct": "volvería",
+"distractors": [
+"vuelto",
+"vuelvas",
+"volvíais",
+"volverás",
+"volver"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "pueblo",
+"distractors": [
+"minuto",
+"mercado",
+"hermanas",
+"maleta",
+"vecinos"
+]
+}
+],
+"alternatives": [
+"Volvería al pueblo si el túnel estuviera cerrado.",
+"Si el túnel estuviese cerrado, volvería al pueblo.",
+"Volvería al pueblo si el túnel estuviese cerrado."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:40",
+"target": "Si pudieras venir, te acompañaría.",
+"ru": "Если бы ты мог прийти, я бы тебя проводил.",
+"uk": "Якби ти міг прийти, я б тебе провів.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Porque",
+"Que",
+"Mientras",
+"Cuando",
+"Pero"
+]
+},
+{
+"correct": "pudieras",
+"distractors": [
+"pudiste",
+"puedes",
+"recogiendo",
+"podemos",
+"puede"
+]
+},
+{
+"correct": "venir",
+"distractors": [
+"venga",
+"viniste",
+"vinieron",
+"vengas",
+"llevará"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"una",
+"mi",
+"mis",
+"su",
+"contigo"
+]
+},
+{
+"correct": "acompañaría",
+"distractors": [
+"terminó",
+"leas",
+"trabaja",
+"come",
+"copie"
+]
+}
+],
+"alternatives": [
+"Te acompañaría si pudieras venir.",
+"Si pudieses venir, te acompañaría.",
+"Te acompañaría si pudieses venir."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:41",
+"target": "Si tuviera tiempo, me quedaría aquí.",
+"ru": "Если бы у меня было время, я бы остался здесь.",
+"uk": "Якби я мав час, я б залишився тут.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Mientras",
+"Pero",
+"Porque"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tuve",
+"prepararé",
+"tiene",
+"tienes"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"libros",
+"bicicleta",
+"hermanos",
+"camisetas",
+"piso"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"los",
+"una",
+"mis",
+"mi",
+"lo"
+]
+},
+{
+"correct": "quedaría",
+"distractors": [
+"llegue",
+"mandé",
+"pedí",
+"confirmen",
+"bebo"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"cerca",
+"dentro",
+"lejos",
+"fuera"
+]
+}
+],
+"alternatives": [
+"Me quedaría aquí si tuviera tiempo.",
+"Si tuviese tiempo, me quedaría aquí.",
+"Me quedaría aquí si tuviese tiempo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:42",
+"target": "Cargaría el móvil si tuviera tiempo.",
+"ru": "Я бы зарядил телефон, если бы у меня было время.",
+"uk": "Я б зарядив телефон, якби мав час.",
+"tiles": [
+{
+"correct": "Cargaría",
+"distractors": [
+"Cargue",
+"Cargaré",
+"Estés",
+"Llevando",
+"Llamarías"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"lo",
+"los",
+"cada",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"vecino",
+"mano",
+"kilo",
+"playa",
+"paquete"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"mientras",
+"cuando",
+"que",
+"porque",
+"pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"preparó",
+"tiene",
+"tuve",
+"tienes"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"salida",
+"túnel",
+"entradas",
+"hermana",
+"señal"
+]
+}
+],
+"alternatives": [
+"Cargaría el móvil si tuviese tiempo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:43",
+"target": "Si tuviera tu dirección, también te mandaría una carta.",
+"ru": "Если бы я знал твой адрес, я бы ещё и отправил тебе письмо.",
+"uk": "Якби я знав твою адресу, я б ще й надіслав тобі листа.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Cuando",
+"Que",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tengo",
+"tiene",
+"vuelto",
+"tienes",
+"tuve"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"tus",
+"mi",
+"mis",
+"su",
+"sus"
+]
+},
+{
+"correct": "dirección",
+"distractors": [
+"estación",
+"cena",
+"niño",
+"colegio",
+"casa"
+]
+},
+{
+"correct": "también",
+"distractors": [
+"anoche",
+"mañana",
+"ayer",
+"ya",
+"después"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"mi",
+"los",
+"el",
+"su",
+"se"
+]
+},
+{
+"correct": "mandaría",
+"distractors": [
+"mandando",
+"mandamos",
+"mandé",
+"mandar",
+"preparar"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mi",
+"los",
+"mis",
+"las",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"mesa",
+"hermanos",
+"llave",
+"hotel",
+"viaje"
+]
+}
+],
+"alternatives": [
+"También te mandaría una carta si tuviera tu dirección.",
+"Si tuviese tu dirección, también te mandaría una carta.",
+"También te mandaría una carta si tuviese tu dirección."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:44",
+"target": "Si tuviera señal, te enviaría el archivo.",
+"ru": "Если бы был сигнал, я бы отправил тебе файл.",
+"uk": "Якби був сигнал, я б надіслав тобі файл.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Mientras",
+"Cuando",
+"Que",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"íbamos",
+"tengo",
+"tiene",
+"tenemos"
+]
+},
+{
+"correct": "señal",
+"distractors": [
+"billete",
+"rueda",
+"tren",
+"mapa",
+"efectivo"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"tu",
+"las",
+"sus",
+"les",
+"la"
+]
+},
+{
+"correct": "enviaría",
+"distractors": [
+"enviaré",
+"mandar",
+"bebías",
+"comprar",
+"tengo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"lo",
+"esta",
+"con"
+]
+},
+{
+"correct": "archivo",
+"distractors": [
+"mecánico",
+"bolsillo",
+"libro",
+"hermanas",
+"tarjeta"
+]
+}
+],
+"alternatives": [
+"Te enviaría el archivo si tuviera señal.",
+"Si tuviese señal, te enviaría el archivo.",
+"Te enviaría el archivo si tuviese señal."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:45",
+"target": "Si pudiera ayudarte, me quedaría aquí.",
+"ru": "Если бы я мог тебе помочь, я бы остался здесь.",
+"uk": "Якби я міг тобі допомогти, я б залишився тут.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Cuando",
+"Porque",
+"Mientras",
+"Pero"
+]
+},
+{
+"correct": "pudiera",
+"distractors": [
+"puede",
+"pudo",
+"volvamos",
+"podemos",
+"puedes"
+]
+},
+{
+"correct": "ayudarte",
+"distractors": [
+"vives",
+"están",
+"quiero",
+"dimos",
+"fue"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"su",
+"un",
+"los",
+"tu",
+"lo"
+]
+},
+{
+"correct": "quedaría",
+"distractors": [
+"necesitamos",
+"voy",
+"devolví",
+"bebiendo",
+"sonó"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"fuera",
+"dentro",
+"lejos",
+"cerca",
+"allí"
+]
+}
+],
+"alternatives": [
+"Me quedaría aquí si pudiera ayudarte.",
+"Si pudiese ayudarte, me quedaría aquí.",
+"Me quedaría aquí si pudiese ayudarte.",
+"Si te pudiera ayudar, me quedaría aquí.",
+"Me quedaría aquí si te pudiera ayudar.",
+"Si te pudiese ayudar, me quedaría aquí.",
+"Me quedaría aquí si te pudiese ayudar."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:46",
+"target": "Si viviera en el pueblo, necesitaría un coche.",
+"ru": "Если бы я жил в посёлке, мне бы понадобилась машина.",
+"uk": "Якби я жив у селищі, мені б знадобилася машина.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Porque",
+"Mientras",
+"Pero"
+]
+},
+{
+"correct": "viviera",
+"distractors": [
+"vivo",
+"vivía",
+"llamar",
+"llamaré",
+"llamaste"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"desde",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"lo",
+"las",
+"con"
+]
+},
+{
+"correct": "pueblo",
+"distractors": [
+"taller",
+"fotos",
+"azúcar",
+"fruta",
+"puerta"
+]
+},
+{
+"correct": "necesitaría",
+"distractors": [
+"necesitamos",
+"necesitan",
+"necesita",
+"necesito",
+"compraremos"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"unas",
+"con",
+"que"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"casa",
+"bicicleta",
+"botella",
+"sal",
+"película"
+]
+}
+],
+"alternatives": [
+"Necesitaría un coche si viviera en el pueblo.",
+"Si viviese en el pueblo, necesitaría un coche.",
+"Necesitaría un coche si viviese en el pueblo."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:47",
+"target": "Pagaría hoy si costara menos.",
+"ru": "Я бы заплатил сегодня, если бы это стоило дешевле.",
+"uk": "Я б заплатив сьогодні, якби це коштувало дешевше.",
+"tiles": [
+{
+"correct": "Pagaría",
+"distractors": [
+"Pagaremos",
+"Pagar",
+"Pagarás",
+"Pagando",
+"Fui"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"quién",
+"mañana",
+"ya",
+"ahora"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"cuando",
+"mientras",
+"que",
+"pero",
+"porque"
+]
+},
+{
+"correct": "costara",
+"distractors": [
+"cuesta",
+"gusta",
+"gustan",
+"están",
+"buscando"
+]
+},
+{
+"correct": "menos",
+"distractors": [
+"después",
+"anoche",
+"mañana",
+"ayer",
+"antes"
+]
+}
+],
+"alternatives": [
+"Si costara menos, pagaría hoy.",
+"Pagaría hoy si costase menos.",
+"Si costase menos, pagaría hoy."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:48",
+"target": "Si tuviera el horario, te mandaría una foto.",
+"ru": "Если бы у меня было расписание, я бы прислал тебе фотографию.",
+"uk": "Якби я мав розклад, я б надіслав тобі фотографію.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Que",
+"Mientras",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tiene",
+"tengo",
+"elegiríamos",
+"tienes",
+"tuve"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"las",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "horario",
+"distractors": [
+"gente",
+"volumen",
+"mensaje",
+"llave",
+"cita"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"las",
+"sus",
+"los",
+"nos",
+"un"
+]
+},
+{
+"correct": "mandaría",
+"distractors": [
+"mandaríais",
+"mandará",
+"mandarás",
+"mandaré",
+"han"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mi",
+"mis",
+"este",
+"con",
+"que"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"playa",
+"hermana",
+"número",
+"manos",
+"túnel"
+]
+}
+],
+"alternatives": [
+"Si tuviese el horario, te mandaría una foto."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:49",
+"target": "Si perdiera las llaves, llamaría a mi vecino.",
+"ru": "Если бы я потерял ключи, я бы позвонил соседу.",
+"uk": "Якби я загубив ключі, я б зателефонував сусідові.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Cuando",
+"Mientras",
+"Pero",
+"Que",
+"Porque"
+]
+},
+{
+"correct": "perdiera",
+"distractors": [
+"cierres",
+"vamos",
+"cambiaré",
+"llevaron",
+"busca"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"sus",
+"su",
+"el",
+"mis",
+"cada"
+]
+},
+{
+"correct": "llaves",
+"distractors": [
+"correo",
+"madre",
+"mensaje",
+"compra",
+"móvil"
+]
+},
+{
+"correct": "llamaría",
+"distractors": [
+"llamaré",
+"llamarán",
+"llamarías",
+"llames",
+"llamar"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"con",
+"desde",
+"por",
+"para"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"su",
+"mis",
+"sus",
+"tus",
+"tu"
+]
+},
+{
+"correct": "vecino",
+"distractors": [
+"rueda",
+"coche",
+"viaje",
+"cocina",
+"balcón"
+]
+}
+],
+"alternatives": [
+"Llamaría a mi vecino si perdiera las llaves.",
+"Si perdiese las llaves, llamaría a mi vecino.",
+"Llamaría a mi vecino si perdiese las llaves."
+]
+},
+{
+"lesson": 32,
+"id": "es:32:50",
+"target": "Si tuviera el dinero, pagaría hoy.",
+"ru": "Если бы у меня были эти деньги, я бы заплатил сегодня.",
+"uk": "Якби я мав ці гроші, я б заплатив сьогодні.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Que",
+"Mientras",
+"Cuando",
+"Porque",
+"Pero"
+]
+},
+{
+"correct": "tuviera",
+"distractors": [
+"tuve",
+"tengo",
+"tiene",
+"pedí",
+"tienes"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"la",
+"cada",
+"con"
+]
+},
+{
+"correct": "dinero",
+"distractors": [
+"sal",
+"hermanos",
+"clase",
+"fruta",
+"tienda"
+]
+},
+{
+"correct": "pagaría",
+"distractors": [
+"pagado",
+"pagarían",
+"pagaré",
+"pagasteis",
+"es"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"lejos",
+"allí",
+"aquí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"Pagaría hoy si tuviera el dinero.",
+"Si tuviese el dinero, pagaría hoy.",
+"Pagaría hoy si tuviese el dinero."
+]
+}
+]

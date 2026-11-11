@@ -278,6 +278,22 @@ describe('safeRouterBack', () => {
     expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=5');
   });
 
+  it('returns past a replaced foreign-target hint to the originating lesson menu', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+    const { redirectHintToLessonHelp } = require('../app/theory_entry_route') as typeof import('../app/theory_entry_route');
+
+    navigation.rememberNavigationPath('/lesson_menu?id=1');
+    navigation.rememberNavigationPath('/hint?id=1');
+    redirectHintToLessonHelp(router, 1);
+    navigation.rememberNavigationPath('/lesson_help?id=1');
+    navigation.safeRouterBack(router, { pathname: '/lesson_menu', params: { id: '1' } } as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=1');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/hint?id=1');
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/lesson_help', params: { id: '1' } });
+  });
+
   // зачем 2026-08-23: правило (закрывая экран, возвращаемся на КОНКРЕТНЫЙ
   // предыдущий экран с его параметрами, а не на голый корень раздела) раньше
   // проверялось на турнирных экранах. Турниры выключены и заархивированы,

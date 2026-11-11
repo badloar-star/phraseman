@@ -50,23 +50,11 @@
    "en": "he, she is (somewhere)",
    "es": "se encuentra"
   },
-  "ana": {
-   "ru": "Ана (имя)",
-   "uk": "Ана (ім’я)",
-   "en": "Ana (a name)",
-   "es": "Ana (nombre de mujer)"
-  },
   "ella": {
    "ru": "она",
    "uk": "вона",
    "en": "she",
    "es": "esa persona (mujer)"
-  },
-  "luis": {
-   "ru": "Луис (имя)",
-   "uk": "Луїс (ім’я)",
-   "en": "Luis (a name)",
-   "es": "Luis (nombre de hombre)"
   },
   "estamos": {
    "ru": "(мы) находимся",
@@ -135,10 +123,15 @@
    "es": "vosotros os encontráis"
   },
   "el": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before a thing)",
-   "es": "palabra antes de un nombre"
+   "ru": "Та самая книга (___ libro)",
+   "uk": "Та сама книжка (___ libro)",
+   "en": "The specific book (___ libro)",
+   "es": "Antes de «libro» cuando ya sabemos cuál (___ libro)",
+   "pt-BR": "O livro de que estamos falando (___ libro)",
+   "vi": "Cuốn sách đang được nhắc đến (___ libro)",
+   "id": "Buku yang sedang dibicarakan (___ libro)",
+   "tr": "Sözünü ettiğimiz kitap (___ libro)",
+   "pl": "Ta konkretna książka (___ libro)"
   },
   "móvil": {
    "ru": "мобильный телефон",
@@ -147,10 +140,15 @@
    "es": "teléfono que se lleva encima"
   },
   "las": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before several things)",
-   "es": "palabra antes de varios nombres"
+   "ru": "Речь о конкретных ключах (___ llaves)",
+   "uk": "Ідеться про конкретні ключі (___ llaves)",
+   "en": "Those specific keys (___ llaves)",
+   "es": "Antes de «llaves» si sabemos cuáles (___ llaves)",
+   "pt-BR": "As chaves de que estamos falando (___ llaves)",
+   "vi": "Những chiếc chìa khóa đang được nhắc đến (___ llaves)",
+   "id": "Kunci-kunci yang sedang dibicarakan (___ llaves)",
+   "tr": "Sözünü ettiğimiz anahtarlar (___ llaves)",
+   "pl": "Te konkretne klucze (___ llaves)"
   },
   "llaves": {
    "ru": "ключи",
@@ -165,10 +163,15 @@
    "es": "texto con muchas páginas"
   },
   "los": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before several things)",
-   "es": "palabra antes de varios nombres"
+   "ru": "Речь о конкретных книгах (___ libros)",
+   "uk": "Ідеться про конкретні книжки (___ libros)",
+   "en": "Those specific books (___ libros)",
+   "es": "Antes de «libros» si sabemos cuáles (___ libros)",
+   "pt-BR": "Os livros de que estamos falando (___ libros)",
+   "vi": "Những cuốn sách đang được nhắc đến (___ libros)",
+   "id": "Buku-buku yang sedang dibicarakan (___ libros)",
+   "tr": "Sözünü ettiğimiz kitaplar (___ libros)",
+   "pl": "Te konkretne książki (___ libros)"
   },
   "libros": {
    "ru": "книги",
@@ -189,10 +192,15 @@
    "es": "varios coches"
   },
   "la": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before a thing)",
-   "es": "palabra antes de un nombre"
+   "ru": "Тот самый рюкзак (___ mochila)",
+   "uk": "Той самий рюкзак (___ mochila)",
+   "en": "The specific backpack (___ mochila)",
+   "es": "Antes de «mochila» cuando ya sabemos cuál (___ mochila)",
+   "pt-BR": "A mochila de que estamos falando (___ mochila)",
+   "vi": "Chiếc ba lô đang được nhắc đến (___ mochila)",
+   "id": "Tas ransel yang sedang dibicarakan (___ mochila)",
+   "tr": "Sözünü ettiğimiz sırt çantası (___ mochila)",
+   "pl": "Ten konkretny plecak (___ mochila)"
   },
   "mochila": {
    "ru": "рюкзак",

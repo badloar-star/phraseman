@@ -81,7 +81,6 @@ function readRouteBackdrop(pathname?: string | null): {
   backdropName?: AppArtBackdropName;
 } {
   const normalized = normalizePathname(pathname);
-  const learningV2Backdrop = resolveLearningV2Backdrop(normalized);
   const segments = normalized
     .split('/')
     .map(segment => segment.trim())
@@ -92,21 +91,8 @@ function readRouteBackdrop(pathname?: string | null): {
   return {
     normalized,
     lastSegment,
-    backdropName: learningV2Backdrop ?? APP_ART_ROUTE_BACKDROPS[lastSegment],
+    backdropName: APP_ART_ROUTE_BACKDROPS[lastSegment],
   };
-}
-
-function resolveLearningV2Backdrop(normalized: string): AppArtBackdropName | undefined {
-  // зачем (§129): ветка '/learning-v2/lesson/' снята вместе с экраном-картой урока (маршрут удалён)
-  if (normalized === '/learning-v2/course') {
-    return 'lessons';
-  }
-
-  if (normalized.startsWith('/learning-v2/session/')) {
-    return 'lessonPractice';
-  }
-
-  return undefined;
 }
 
 export function assertAppArtBackdropRoute(pathname?: string | null): AppArtBackdropName {

@@ -1,0 +1,648 @@
+{
+ "lang": "de",
+ "lesson": 12,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:12:01",
+   "target": "Ich lege den Schlüssel auf den Tisch.",
+   "ru": "Я кладу ключ на стол.",
+   "uk": "Я кладу ключ на стіл."
+  },
+  {
+   "id": "de:12:02",
+   "target": "Ich lege den Pass in die Tasche.",
+   "ru": "Я кладу паспорт в сумку.",
+   "uk": "Я кладу паспорт у сумку."
+  },
+  {
+   "id": "de:12:03",
+   "target": "Anna legt die Brille ins Auto.",
+   "ru": "Анна кладёт очки в машину.",
+   "uk": "Анна кладе окуляри у машину."
+  },
+  {
+   "id": "de:12:04",
+   "target": "Tom legt das Buch ins Regal.",
+   "ru": "Том кладёт книгу на полку.",
+   "uk": "Том кладе книгу на полицю."
+  },
+  {
+   "id": "de:12:05",
+   "target": "Wir legen den Teppich vor das Sofa.",
+   "ru": "Мы стелем ковёр перед диваном.",
+   "uk": "Ми стелимо килим перед диваном."
+  },
+  {
+   "id": "de:12:06",
+   "target": "Ich stelle die Tasse auf den Tisch.",
+   "ru": "Я ставлю чашку на стол.",
+   "uk": "Я ставлю чашку на стіл."
+  },
+  {
+   "id": "de:12:07",
+   "target": "Du stellst den Koffer vor die Tür.",
+   "ru": "Ты ставишь чемодан перед дверью.",
+   "uk": "Ти ставиш валізу перед дверима."
+  },
+  {
+   "id": "de:12:08",
+   "target": "Anna stellt die Lampe neben das Bett.",
+   "ru": "Анна ставит лампу рядом с кроватью.",
+   "uk": "Анна ставить лампу поруч із ліжком."
+  },
+  {
+   "id": "de:12:09",
+   "target": "Tom stellt den Stuhl ans Fenster.",
+   "ru": "Том ставит стул к окну.",
+   "uk": "Том ставить стілець до вікна."
+  },
+  {
+   "id": "de:12:10",
+   "target": "Wir stellen das Fahrrad in den Flur.",
+   "ru": "Мы ставим велосипед в прихожую.",
+   "uk": "Ми ставимо велосипед до передпокою."
+  },
+  {
+   "id": "de:12:11",
+   "target": "Ich hänge die Jacke an den Haken.",
+   "ru": "Я вешаю куртку на крючок.",
+   "uk": "Я вішаю куртку на гачок."
+  },
+  {
+   "id": "de:12:12",
+   "target": "Du hängst das Bild an die Wand.",
+   "ru": "Ты вешаешь картину на стену.",
+   "uk": "Ти вішаєш картину на стіну."
+  },
+  {
+   "id": "de:12:13",
+   "target": "Anna hängt das Handtuch an die Heizung.",
+   "ru": "Анна вешает полотенце на батарею.",
+   "uk": "Анна вішає рушник на батарею."
+  },
+  {
+   "id": "de:12:14",
+   "target": "Tom hängt den Spiegel über das Waschbecken.",
+   "ru": "Том вешает зеркало над раковиной.",
+   "uk": "Том вішає дзеркало над раковиною."
+  },
+  {
+   "id": "de:12:15",
+   "target": "Wir hängen die Uhr über die Tür.",
+   "ru": "Мы вешаем часы над дверью.",
+   "uk": "Ми вішаємо годинник над дверима."
+  },
+  {
+   "id": "de:12:16",
+   "target": "Ich stecke den Ausweis in die Jacke.",
+   "ru": "Я кладу удостоверение в куртку.",
+   "uk": "Я кладу посвідчення у куртку."
+  },
+  {
+   "id": "de:12:17",
+   "target": "Du steckst die Karte in den Umschlag.",
+   "ru": "Ты вкладываешь открытку в конверт.",
+   "uk": "Ти вкладаєш листівку у конверт."
+  },
+  {
+   "id": "de:12:18",
+   "target": "Sie steckt den Brief in den Briefkasten.",
+   "ru": "Она опускает письмо в почтовый ящик.",
+   "uk": "Вона опускає листа до поштової скриньки."
+  },
+  {
+   "id": "de:12:19",
+   "target": "Er steckt das Ticket in die Tasche.",
+   "ru": "Он кладёт билет в сумку.",
+   "uk": "Він кладе квиток у сумку."
+  },
+  {
+   "id": "de:12:20",
+   "target": "Ich packe die Schuhe in den Koffer.",
+   "ru": "Я упаковываю обувь в чемодан.",
+   "uk": "Я упаковую взуття у валізу."
+  },
+  {
+   "id": "de:12:21",
+   "target": "Ich gehe in die Küche.",
+   "ru": "Я иду на кухню.",
+   "uk": "Я йду на кухню."
+  },
+  {
+   "id": "de:12:22",
+   "target": "Du gehst in den Garten.",
+   "ru": "Ты идёшь в сад.",
+   "uk": "Ти йдеш до саду."
+  },
+  {
+   "id": "de:12:23",
+   "target": "Anna geht ins Bad.",
+   "ru": "Анна идёт в ванную.",
+   "uk": "Анна йде у ванну кімнату."
+  },
+  {
+   "id": "de:12:24",
+   "target": "Tom geht in die Schule.",
+   "ru": "Том идёт в школу.",
+   "uk": "Том йде до школи."
+  },
+  {
+   "id": "de:12:25",
+   "target": "Wir gehen ins Café.",
+   "ru": "Мы идём в кафе.",
+   "uk": "Ми йдемо до кафе."
+  },
+  {
+   "id": "de:12:26",
+   "target": "Ihr geht auf den Spielplatz.",
+   "ru": "Вы идёте на площадку.",
+   "uk": "Ви йдете на майданчик."
+  },
+  {
+   "id": "de:12:27",
+   "target": "Die Kinder laufen auf den Hof.",
+   "ru": "Дети выбегают во двор.",
+   "uk": "Діти вибігають у двір."
+  },
+  {
+   "id": "de:12:28",
+   "target": "Der Hund läuft unter den Tisch.",
+   "ru": "Собака забегает под стол.",
+   "uk": "Собака забігає під стіл."
+  },
+  {
+   "id": "de:12:29",
+   "target": "Das Kind springt ins Wasser.",
+   "ru": "Ребёнок прыгает в воду.",
+   "uk": "Дитина стрибає у воду."
+  },
+  {
+   "id": "de:12:30",
+   "target": "Anna steigt in den Bus.",
+   "ru": "Анна садится в автобус.",
+   "uk": "Анна сідає до автобуса."
+  },
+  {
+   "id": "de:12:31",
+   "target": "Wohin stellst du die Kiste?",
+   "ru": "Куда ты ставишь ящик?",
+   "uk": "Куди ти ставиш ящик?"
+  },
+  {
+   "id": "de:12:32",
+   "target": "Legst du den Löffel in die Schublade?",
+   "ru": "Ты кладёшь ложку в выдвижной ящик?",
+   "uk": "Ти кладеш ложку в шухляду?"
+  },
+  {
+   "id": "de:12:33",
+   "target": "Legt ihr die Bücher auf das Regal?",
+   "ru": "Вы кладёте книги на полку?",
+   "uk": "Ви кладете книги на полицю?"
+  },
+  {
+   "id": "de:12:34",
+   "target": "Hängst du die Jacke in den Schrank?",
+   "ru": "Ты вешаешь куртку в шкаф?",
+   "uk": "Ти вішаєш куртку у шафу?"
+  },
+  {
+   "id": "de:12:35",
+   "target": "Stellst du den Wagen vor das Haus?",
+   "ru": "Ты ставишь машину перед домом?",
+   "uk": "Ти ставиш машину перед будинком?"
+  },
+  {
+   "id": "de:12:36",
+   "target": "Gehen wir an den See?",
+   "ru": "Пойдём к озеру?",
+   "uk": "Ходімо до озера?"
+  },
+  {
+   "id": "de:12:37",
+   "target": "Fahren wir ans Meer?",
+   "ru": "Поедем к морю?",
+   "uk": "Поїдемо до моря?"
+  },
+  {
+   "id": "de:12:38",
+   "target": "Kommst du mit ins Kino?",
+   "ru": "Ты пойдёшь с нами в кино?",
+   "uk": "Ти підеш з нами у кіно?"
+  },
+  {
+   "id": "de:12:39",
+   "target": "Geht ihr auf den Markt?",
+   "ru": "Вы идёте на рынок?",
+   "uk": "Ви йдете на ринок?"
+  },
+  {
+   "id": "de:12:40",
+   "target": "Setzt du dich auf die Bank?",
+   "ru": "Ты садишься на скамейку?",
+   "uk": "Ти сідаєш на лаву?"
+  },
+  {
+   "id": "de:12:41",
+   "target": "Ich setze mich neben Anna.",
+   "ru": "Я сажусь рядом с Анной.",
+   "uk": "Я сідаю поряд з Ганною."
+  },
+  {
+   "id": "de:12:42",
+   "target": "Tom setzt sich ans Fenster.",
+   "ru": "Том садится у окна.",
+   "uk": "Том сідає біля вікна."
+  },
+  {
+   "id": "de:12:43",
+   "target": "Wir setzen uns an den Tisch.",
+   "ru": "Мы садимся за стол.",
+   "uk": "Ми сідаємо за стіл."
+  },
+  {
+   "id": "de:12:44",
+   "target": "Sie legt die Decke auf das Bett.",
+   "ru": "Она кладёт одеяло на кровать.",
+   "uk": "Вона кладе ковдру на ліжко."
+  },
+  {
+   "id": "de:12:45",
+   "target": "Er stellt den Eimer unter das Waschbecken.",
+   "ru": "Он ставит ведро под раковину.",
+   "uk": "Він ставить цебро під раковину."
+  },
+  {
+   "id": "de:12:46",
+   "target": "Ich schiebe den Stuhl unter den Tisch.",
+   "ru": "Я задвигаю стул под стол.",
+   "uk": "Я засуваю стілець під стіл."
+  },
+  {
+   "id": "de:12:47",
+   "target": "Anna schiebt den Wagen in den Hof.",
+   "ru": "Анна вкатывает тележку во двор.",
+   "uk": "Ганна вкочує візок у двір."
+  },
+  {
+   "id": "de:12:48",
+   "target": "Wir bringen die Kisten in den Keller.",
+   "ru": "Мы относим ящики в подвал.",
+   "uk": "Ми відносимо ящики до підвалу."
+  },
+  {
+   "id": "de:12:49",
+   "target": "Tom trägt die Taschen in den dritten Stock.",
+   "ru": "Том несёт сумки на третий этаж.",
+   "uk": "Том несе сумки на третій поверх."
+  },
+  {
+   "id": "de:12:50",
+   "target": "Der Ball rollt unter das Sofa.",
+   "ru": "Мяч закатывается под диван.",
+   "uk": "М'яч закочується під диван."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Umschlag",
+   "ru": "конверт",
+   "uk": "конверт"
+  },
+  {
+   "lemma": "der Briefkasten",
+   "ru": "почтовый ящик",
+   "uk": "поштова скринька"
+  },
+  {
+   "lemma": "der Keller",
+   "ru": "подвал",
+   "uk": "підвал"
+  },
+  {
+   "lemma": "die Decke",
+   "ru": "одеяло, плед",
+   "uk": "ковдра, плед"
+  },
+  {
+   "lemma": "der Eimer",
+   "ru": "ведро",
+   "uk": "відро"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  }
+ ],
+ "oldTopicTitle": "Куда: переместить или положить",
+ "oldTheoryRu": "Ты не сообщаешь, где паспорт лежит сейчас: ты кладёшь его в сумку. Для нового положения нужен глагол действия. Сравни `liegt` с `legt`: первое описывает результат, второе — движение предмета туда. В немецком часто различают, как будет стоять или лежать вещь. Небольшой плоский предмет обычно кладут, а чашку или стул ставят. Сначала выбери действие, только потом артикль места назначения. Сравни `auf dem Tisch` и `auf den Tisch`. В первом случае ищем на столе; во втором туда ставим предмет. В этом уроке форма мужского артикля позволяет заметить разницу на слух и в написании. `An` связывает предмет с поверхностью или точкой крепления. Когда вешаешь картину на стену, она перемещается на эту поверхность. Уже висящая картина описывалась бы иначе. Человек тоже может сам сменить место. `In den Garten` означает, что он попадёт внутрь сада. `Im Garten` называло бы пространство, внутри которого он уже гуляет или бегает. Это не правило для любого предлога со значением направления. `Zu` сохраняет дательный даже при движении к врачу. Здесь сравниваются только предлоги, способные менять падеж с местом и целью. Проверь себя словами «где оказался предмет?». Мяч не просто катится где-то под диваном: в заключительной фразе он закатывается под него. Общий смысл важнее механического подсчёта глаголов движения."
+}

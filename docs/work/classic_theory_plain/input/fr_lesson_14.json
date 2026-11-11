@@ -1,0 +1,706 @@
+{
+ "lang": "fr",
+ "lesson": 14,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:14:01",
+   "target": "Je peux entrer.",
+   "ru": "Я могу войти.",
+   "uk": "Я можу зайти."
+  },
+  {
+   "id": "fr:14:02",
+   "target": "Tu peux entrer.",
+   "ru": "Ты можешь войти.",
+   "uk": "Ти можеш увійти."
+  },
+  {
+   "id": "fr:14:03",
+   "target": "Elle peut venir.",
+   "ru": "Она может прийти.",
+   "uk": "Вона може прийти."
+  },
+  {
+   "id": "fr:14:04",
+   "target": "Nous pouvons attendre.",
+   "ru": "Мы можем подождать.",
+   "uk": "Ми можемо почекати."
+  },
+  {
+   "id": "fr:14:05",
+   "target": "Vous pouvez passer.",
+   "ru": "Вы можете пройти.",
+   "uk": "Ви можете пройти."
+  },
+  {
+   "id": "fr:14:06",
+   "target": "Ils peuvent rester.",
+   "ru": "Они могут остаться.",
+   "uk": "Вони можуть залишитися."
+  },
+  {
+   "id": "fr:14:07",
+   "target": "Je dois partir.",
+   "ru": "Мне нужно уйти.",
+   "uk": "Мені треба йти."
+  },
+  {
+   "id": "fr:14:08",
+   "target": "Tu dois attendre.",
+   "ru": "Тебе нужно подождать.",
+   "uk": "Тобі треба почекати."
+  },
+  {
+   "id": "fr:14:09",
+   "target": "Il doit rentrer.",
+   "ru": "Ему нужно идти домой.",
+   "uk": "Йому треба додому."
+  },
+  {
+   "id": "fr:14:10",
+   "target": "Nous devons payer.",
+   "ru": "Нам нужно заплатить.",
+   "uk": "Ми маємо заплатити."
+  },
+  {
+   "id": "fr:14:11",
+   "target": "Je veux essayer.",
+   "ru": "Я хочу попробовать.",
+   "uk": "Я хочу спробувати."
+  },
+  {
+   "id": "fr:14:12",
+   "target": "Elle veut réserver.",
+   "ru": "Она хочет забронировать.",
+   "uk": "Вона хоче забронювати."
+  },
+  {
+   "id": "fr:14:13",
+   "target": "Tu veux t’asseoir ?",
+   "ru": "Хочешь присесть?",
+   "uk": "Хочеш сісти?"
+  },
+  {
+   "id": "fr:14:14",
+   "target": "Nous voulons visiter le musée.",
+   "ru": "Мы хотим посетить музей.",
+   "uk": "Ми хочемо відвідати музей."
+  },
+  {
+   "id": "fr:14:15",
+   "target": "Vous voulez boire quelque chose ?",
+   "ru": "Хотите что-нибудь выпить?",
+   "uk": "Бажаєте чогось випити?"
+  },
+  {
+   "id": "fr:14:16",
+   "target": "Ils veulent changer de place.",
+   "ru": "Они хотят пересесть.",
+   "uk": "Вони хочуть пересісти."
+  },
+  {
+   "id": "fr:14:17",
+   "target": "Je peux vous aider ?",
+   "ru": "Могу я вам помочь?",
+   "uk": "Чи можу я вам допомогти?"
+  },
+  {
+   "id": "fr:14:18",
+   "target": "Tu peux fermer la porte ?",
+   "ru": "Можешь закрыть дверь?",
+   "uk": "Можеш зачинити двері?"
+  },
+  {
+   "id": "fr:14:19",
+   "target": "Vous pouvez répéter ?",
+   "ru": "Можете повторить?",
+   "uk": "Чи можете ви повторити?"
+  },
+  {
+   "id": "fr:14:20",
+   "target": "Pouvez-vous parler moins vite ?",
+   "ru": "Можете говорить медленнее?",
+   "uk": "Чи можете ви говорити повільніше?"
+  },
+  {
+   "id": "fr:14:21",
+   "target": "Je dois prendre ce médicament.",
+   "ru": "Мне нужно принять это лекарство.",
+   "uk": "Мені потрібно прийняти ці ліки."
+  },
+  {
+   "id": "fr:14:22",
+   "target": "Elle doit présenter son passeport.",
+   "ru": "Ей нужно показать свой паспорт.",
+   "uk": "Їй потрібно показати свій паспорт."
+  },
+  {
+   "id": "fr:14:23",
+   "target": "Nous devons garder le reçu.",
+   "ru": "Мы должны сохранить квитанцию.",
+   "uk": "Ми повинні зберегти чек."
+  },
+  {
+   "id": "fr:14:24",
+   "target": "Vous devez signer ici.",
+   "ru": "Вы должны подписать здесь.",
+   "uk": "Ви повинні тут підписати."
+  },
+  {
+   "id": "fr:14:25",
+   "target": "Il faut réserver une place.",
+   "ru": "Нужно забронировать место.",
+   "uk": "Потрібно забронювати місце."
+  },
+  {
+   "id": "fr:14:26",
+   "target": "Je dois remplir ce formulaire.",
+   "ru": "Я должен заполнить эту форму.",
+   "uk": "Я повинен заповнити цю форму."
+  },
+  {
+   "id": "fr:14:27",
+   "target": "Tu dois rendre le badge.",
+   "ru": "Тебе нужно вернуть пропуск.",
+   "uk": "Тобі потрібно повернути перепустку."
+  },
+  {
+   "id": "fr:14:28",
+   "target": "On doit ranger les chemises sur l’étagère.",
+   "ru": "Нам нужно убрать рубашки на полку.",
+   "uk": "Нам потрібно прибрати сорочки на полицю."
+  },
+  {
+   "id": "fr:14:29",
+   "target": "Ils doivent annuler le rendez-vous.",
+   "ru": "Они должны отменить встречу.",
+   "uk": "Вони повинні скасувати зустріч."
+  },
+  {
+   "id": "fr:14:30",
+   "target": "Je dois charger mon téléphone.",
+   "ru": "Мне нужно зарядить телефон.",
+   "uk": "Мені потрібно зарядити телефон."
+  },
+  {
+   "id": "fr:14:31",
+   "target": "Je ne peux pas porter cette valise.",
+   "ru": "Я не могу нести этот чемодан.",
+   "uk": "Я не можу нести цю валізу."
+  },
+  {
+   "id": "fr:14:32",
+   "target": "Tu ne peux pas entrer ici.",
+   "ru": "Ты не можешь сюда войти.",
+   "uk": "Ти не можеш увійти сюди."
+  },
+  {
+   "id": "fr:14:33",
+   "target": "Paul ne peut pas répondre maintenant.",
+   "ru": "Поль не может ответить прямо сейчас.",
+   "uk": "Пол зараз не може відповісти."
+  },
+  {
+   "id": "fr:14:34",
+   "target": "Nous ne pouvons pas rester longtemps.",
+   "ru": "Мы не можем остаться надолго.",
+   "uk": "Ми не можемо залишитися надовго."
+  },
+  {
+   "id": "fr:14:35",
+   "target": "Vous ne devez pas toucher ce bouton.",
+   "ru": "Вам нельзя трогать эту кнопку.",
+   "uk": "Вам не можна торкатися цієї кнопки."
+  },
+  {
+   "id": "fr:14:36",
+   "target": "Je ne veux pas déranger.",
+   "ru": "Я не хочу мешать.",
+   "uk": "Я не хочу заважати."
+  },
+  {
+   "id": "fr:14:37",
+   "target": "Elle ne veut pas jeter le pain.",
+   "ru": "Она не хочет выбрасывать хлеб.",
+   "uk": "Вона не хоче викидати хліб."
+  },
+  {
+   "id": "fr:14:38",
+   "target": "Il ne peut pas ouvrir la boîte.",
+   "ru": "Он не может открыть коробку.",
+   "uk": "Він не може відкрити коробку."
+  },
+  {
+   "id": "fr:14:39",
+   "target": "Nous ne voulons pas perdre nos places.",
+   "ru": "Мы не хотим потерять свои места.",
+   "uk": "Ми не хочемо втратити свої місця."
+  },
+  {
+   "id": "fr:14:40",
+   "target": "Je ne peux pas lire cette étiquette.",
+   "ru": "Я не могу прочитать эту этикетку.",
+   "uk": "Я не можу прочитати цю етикетку."
+  },
+  {
+   "id": "fr:14:41",
+   "target": "Est-ce que je peux payer par carte ?",
+   "ru": "Могу ли я оплатить картой?",
+   "uk": "Чи можу я розплатитися карткою?"
+  },
+  {
+   "id": "fr:14:42",
+   "target": "Pouvez-vous m’indiquer la sortie ?",
+   "ru": "Можете сказать, где выход?",
+   "uk": "Чи можете ви сказати мені, де вихід?"
+  },
+  {
+   "id": "fr:14:43",
+   "target": "Tu peux me prêter ton chargeur ?",
+   "ru": "Можешь одолжить мне свою зарядку?",
+   "uk": "Можеш позичити мені свою зарядку?"
+  },
+  {
+   "id": "fr:14:44",
+   "target": "Je voudrais savoir où je dois signer.",
+   "ru": "Я хотел бы узнать, где мне нужно расписаться.",
+   "uk": "Я хотів би знати, де мені потрібно підписати."
+  },
+  {
+   "id": "fr:14:45",
+   "target": "Nous pouvons partager un taxi.",
+   "ru": "Мы можем поехать на такси вместе.",
+   "uk": "Ми можемо поїхати на спільному таксі."
+  },
+  {
+   "id": "fr:14:46",
+   "target": "Elle peut déplacer la réunion.",
+   "ru": "Она может перенести встречу.",
+   "uk": "Вона може перенести зустріч."
+  },
+  {
+   "id": "fr:14:47",
+   "target": "Il doit prévenir son équipe.",
+   "ru": "Ему нужно предупредить свою команду.",
+   "uk": "Йому потрібно попередити свою команду."
+  },
+  {
+   "id": "fr:14:48",
+   "target": "Vous pouvez garder la monnaie.",
+   "ru": "Можете оставить сдачу себе.",
+   "uk": "Можете залишити здачу собі."
+  },
+  {
+   "id": "fr:14:49",
+   "target": "Je veux apprendre à nager.",
+   "ru": "Я хочу научиться плавать.",
+   "uk": "Я хочу навчитися плавати."
+  },
+  {
+   "id": "fr:14:50",
+   "target": "Demain, je dois passer à la pharmacie.",
+   "ru": "Завтра мне нужно зайти в аптеку.",
+   "uk": "Завтра мені потрібно зайти до аптеки."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le formulaire",
+   "ru": "бланк, форма",
+   "uk": "бланк, форма"
+  },
+  {
+   "lemma": "l’étiquette (f.)",
+   "ru": "ярлык, этикетка",
+   "uk": "ярлик, етикетка"
+  },
+  {
+   "lemma": "le bouton",
+   "ru": "кнопка",
+   "uk": "кнопка"
+  },
+  {
+   "lemma": "répondre",
+   "ru": "отвечать",
+   "uk": "відповідати"
+  },
+  {
+   "lemma": "signer",
+   "ru": "подписывать",
+   "uk": "підписувати"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  }
+ ],
+ "oldTopicTitle": "Могу, должен, хочу: два глагола вместе",
+ "oldTheoryRu": "В словах «могу войти» есть два решения. Первое — может ли человек это сделать. Второе — что именно. Личное окончание появляется у первого глагола; второй остаётся в словарной форме. Возможность, обязанность и желание не совпадают. Оплата доступна — `je peux payer`. Оплата нужна — `je dois payer`. Я хочу оплатить — `je veux payer`. При просьбе меняется лицо: можешь ли ты, можете ли вы. `Pouvez-vous` с дефисом делает явный вопрос. Само действие после него не становится вопросительным и не меняет форму. Для обязанности конкретного лица бери `je dois`, `tu dois`, `vous devez`. Безличное `il faut` позволяет сказать, что вообще нужно сделать, не выбирая человека. В этой группе отрицание обычно окружает первый, личный глагол. Подумай, отказ это или невозможность: «не хочу» и «не могу» оставляют разные причины. К действию может относиться местоимение: `m’aider`, `me prêter`. Не вставляй его внутрь `pouvoir`. Сначала выбери человека, который может выполнить просьбу. Вежливый вопрос ещё не значит, что вещь принадлежит собеседнику. Смотри, что спрашивают: разрешение, способность или просьбу помочь. Плитки должны сохранить эту разницу."
+}

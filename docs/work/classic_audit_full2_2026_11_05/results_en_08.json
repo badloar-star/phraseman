@@ -1,0 +1,17 @@
+[
+{"id": "en-classic-r1:17.12", "type": "B3", "field": "alternatives", "problem": "Equally natural order 'putting on her coat' (on tile can be placed before her) is not accepted", "fix": {"add": ["She is putting on her coat.", "She's putting on her coat."], "remove": []}},
+{"id": "en-classic-r1:17.16", "type": "B2", "field": "ru", "problem": "ru 'наступаешь' (stepping on) ≠ target 'standing on'; differs from uk 'стоїш'", "fix": "Ты стоишь на моём шарфе."},
+{"id": "en-classic-r1:17.17", "type": "B3", "field": "alternatives", "problem": "Equally natural order 'writing the address down' is not accepted", "fix": {"add": ["I am writing the address down.", "I'm writing the address down."], "remove": []}},
+{"id": "en-classic-r1:17.41", "type": "M", "field": "uk", "problem": "Habitual 'usually drive' rendered with one-off 'їду за кермом'; needs 'їжджу'", "fix": "Зазвичай я їжджу машиною, але сьогодні йду пішки."},
+{"id": "en-classic-r1:17.43", "type": "B2", "field": "uk", "problem": "uk uses future 'зупинимося' while target/ru are present ('are staying', 'гостим')", "fix": "Цього тижня ми гостюємо в друзів."},
+{"id": "en-classic-r1:18.11", "type": "B1", "field": "tiles", "problem": "All distractors at the verb position 'touch' are nouns (ticket, train, breakfast, card, bus) - answer chosen by grammar alone", "fix": {"position": 2, "replace_distractor": "breakfast", "with": "move"}},
+{"id": "en-classic-r1:18.12", "type": "B1", "field": "tiles", "problem": "All distractors at the verb position 'block' are nouns (kitchen, train, friday, april, oven) - obvious giveaway, 'friday/april' absurd", "fix": {"position": 2, "replace_distractor": "friday", "with": "use"}},
+{"id": "en-classic-r1:18.24", "type": "B3", "field": "alternatives", "problem": "Equally natural order 'switch off your phone' is not accepted", "fix": {"add": ["Please switch off your phone.", "Switch off your phone, please."], "remove": []}},
+{"id": "en-classic-r1:18.26", "type": "B2", "field": "ru", "problem": "ru 'напишите по буквам' (write) ≠ 'spell' (say letter by letter); differs from uk 'продиктуйте'", "fix": "Пожалуйста, назовите свою фамилию по буквам."},
+{"id": "en-classic-r1:18.29", "type": "M", "field": "uk", "problem": "'зарезервуйте мені місце' is officialese for 'save me a seat'; natural is 'займіть'", "fix": "Будь ласка, займіть мені місце."},
+{"id": "en-classic-r1:18.35", "type": "M", "field": "uk", "problem": "'Слідкуйте за знаками' means 'keep an eye on/monitor', not 'follow the signs'", "fix": "Ідіть за синіми вказівниками."},
+{"id": "en-classic-r1:18.39", "type": "B1", "field": "tiles", "problem": "All distractors at preposition position 'towards' are plural nouns (keys, seats, bags, doors, tickets) - giveaway", "fix": {"position": 3, "replace_distractor": "keys", "with": "behind"}},
+{"id": "en-classic-r1:18.41", "type": "M", "field": "ru", "problem": "'Поедем на ранний поезд' is unnatural; 'Let's' suggestion and 'take a train' normally 'поедем ранним поездом'", "fix": "Давайте поедем ранним поездом."},
+{"id": "en-classic-r1:18.46", "type": "M", "field": "uk", "problem": "'Давайте не поспішатимемо' is an awkward calque; natural Ukrainian is the imperative 'Не поспішаймо'", "fix": "Не поспішаймо."},
+{"id": "en-classic-r1:18.47", "type": "M", "field": "uk", "problem": "'Давайте не залишатимемо' is an awkward calque; natural is 'Не залишаймо'", "fix": "Не залишаймо тут сумки."}
+]

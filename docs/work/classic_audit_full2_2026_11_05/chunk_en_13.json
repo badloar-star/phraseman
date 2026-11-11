@@ -1,0 +1,7436 @@
+[
+{
+"lesson": 27,
+"id": "en-classic-r1:27.01",
+"target": "Anna said she was tired.",
+"ru": "Анна сказала, что устала.",
+"uk": "Анна сказала, що втомилася.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"You",
+"Me",
+"Tom",
+"Us",
+"Him"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"listening",
+"caught",
+"teaches"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"the",
+"me",
+"you",
+"he"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"be",
+"report",
+"been"
+]
+},
+{
+"correct": "tired",
+"distractors": [
+"found",
+"left",
+"called",
+"checked",
+"took"
+]
+}
+],
+"alternatives": [
+"Anna said that she was tired."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.02",
+"target": "Tom said he was ready.",
+"ru": "Том сказал, что готов.",
+"uk": "Том сказав, що готовий.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"You",
+"Anna",
+"Me",
+"Him",
+"Us"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"starts",
+"missed",
+"finished"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"she",
+"the",
+"you",
+"we",
+"they"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"pay",
+"being",
+"were",
+"be",
+"bag"
+]
+},
+{
+"correct": "ready",
+"distractors": [
+"slow",
+"open",
+"more",
+"cheaper",
+"full"
+]
+}
+],
+"alternatives": [
+"Tom said that he was ready."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.03",
+"target": "She said the new shift was less stressful.",
+"ru": "Она сказала, что новая смена менее стрессовая.",
+"uk": "Вона сказала, що нова зміна менш стресова.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"I'm",
+"He",
+"We"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"is",
+"wait",
+"asked"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"where",
+"whose",
+"if",
+"who",
+"and"
+]
+},
+{
+"correct": "new",
+"distractors": [
+"key",
+"gate",
+"last",
+"valid",
+"useful"
+]
+},
+{
+"correct": "shift",
+"distractors": [
+"door",
+"room",
+"leather",
+"time",
+"noise"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"am",
+"were",
+"being"
+]
+},
+{
+"correct": "less",
+"distractors": [
+"more",
+"better",
+"worse",
+"heavier",
+"smaller"
+]
+},
+{
+"correct": "stressful",
+"distractors": [
+"door",
+"gate",
+"overnight",
+"form",
+"spare"
+]
+}
+],
+"alternatives": [
+"She said that the new shift was less stressful."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.04",
+"target": "He said the shop was closed.",
+"ru": "Он сказал, что магазин закрыт.",
+"uk": "Він сказав, що магазин закритий.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"I'm",
+"We",
+"She"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"have",
+"starts",
+"take"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"who",
+"which",
+"if",
+"how",
+"and"
+]
+},
+{
+"correct": "shop",
+"distractors": [
+"hotel",
+"flat",
+"elevator",
+"shouldn't",
+"room"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"were",
+"am",
+"have"
+]
+},
+{
+"correct": "closed",
+"distractors": [
+"close",
+"closes",
+"free",
+"ready",
+"warm"
+]
+}
+],
+"alternatives": [
+"He said the store was closed.",
+"He said that the shop was closed.",
+"He said that the store was closed."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.05",
+"target": "They said there was a fee for storage.",
+"ru": "Они сказали, что за хранение взимается плата.",
+"uk": "Вони сказали, що за зберігання стягується плата.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"He",
+"We",
+"He'd"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"saying",
+"say",
+"need",
+"start",
+"check"
+]
+},
+{
+"correct": "there",
+"distractors": [
+"the",
+"where",
+"how",
+"somewhere",
+"that"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"be",
+"am",
+"waking"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"each",
+"and"
+]
+},
+{
+"correct": "fee",
+"distractors": [
+"rent",
+"anyone",
+"anything",
+"someone",
+"nobody"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"at",
+"in",
+"with"
+]
+},
+{
+"correct": "storage",
+"distractors": [
+"bus",
+"gate",
+"fridays",
+"step",
+"meal"
+]
+}
+],
+"alternatives": [
+"They said that there was a fee for storage."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.06",
+"target": "I said I needed a receipt.",
+"ru": "Я сказал, что мне нужен чек.",
+"uk": "Я сказав, що мені потрібен чек.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"He",
+"They",
+"We'll",
+"I'm"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"is",
+"run",
+"pick"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"You",
+"We",
+"The",
+"She",
+"He"
+]
+},
+{
+"correct": "needed",
+"distractors": [
+"need",
+"needs",
+"fell",
+"have",
+"found"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"those",
+"and"
+]
+},
+{
+"correct": "receipt",
+"distractors": [
+"number",
+"ticket",
+"pass",
+"map",
+"road"
+]
+}
+],
+"alternatives": [
+"I said that I needed a receipt."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.07",
+"target": "We said we wanted two seats.",
+"ru": "Мы сказали, что хотим два места.",
+"uk": "Ми сказали, що хочемо два місця.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"He",
+"They",
+"You"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"is",
+"have",
+"cut"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"the",
+"he",
+"you",
+"they"
+]
+},
+{
+"correct": "wanted",
+"distractors": [
+"wants",
+"want",
+"is",
+"show",
+"parking"
+]
+},
+{
+"correct": "two",
+"distractors": [
+"six",
+"seven",
+"ten",
+"nine",
+"eight"
+]
+},
+{
+"correct": "seats",
+"distractors": [
+"keys",
+"bags",
+"cups",
+"children",
+"chairs"
+]
+}
+],
+"alternatives": [
+"We said that we wanted two seats."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.08",
+"target": "She said she knew the address.",
+"ru": "Она сказала, что знает адрес.",
+"uk": "Вона сказала, що знає адресу.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"He",
+"We",
+"They've"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"is",
+"used",
+"wait"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"he",
+"we",
+"you",
+"they",
+"me"
+]
+},
+{
+"correct": "knew",
+"distractors": [
+"know",
+"knowing",
+"is",
+"get",
+"have"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"every",
+"and"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"seats",
+"trains",
+"week",
+"slide",
+"alarm"
+]
+}
+],
+"alternatives": [
+"She said that she knew the address."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.09",
+"target": "He said he had a spare key.",
+"ru": "Он сказал, что у него есть запасной ключ.",
+"uk": "Він сказав, що в нього є запасний ключ.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"You",
+"They",
+"We'd"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"says",
+"have",
+"check"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"we",
+"the",
+"they",
+"you",
+"she"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"have",
+"has",
+"did",
+"does",
+"do"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"all",
+"and",
+"but"
+]
+},
+{
+"correct": "spare",
+"distractors": [
+"seat",
+"lunch",
+"work",
+"daily",
+"early"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"letter",
+"book",
+"small",
+"past",
+"long"
+]
+}
+],
+"alternatives": [
+"He said that he had a spare key."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.10",
+"target": "They said nobody had checked the invoice.",
+"ru": "Они сказали, что никто не проверил счёт.",
+"uk": "Вони сказали, що ніхто не перевірив рахунок.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"We",
+"Me",
+"I'm",
+"They're"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"is",
+"check",
+"washed"
+]
+},
+{
+"correct": "nobody",
+"distractors": [
+"not",
+"everyone",
+"anything",
+"anyone",
+"here"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"do",
+"does",
+"did"
+]
+},
+{
+"correct": "checked",
+"distractors": [
+"check",
+"checking",
+"checks",
+"cancelled",
+"raining"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"both",
+"and"
+]
+},
+{
+"correct": "invoice",
+"distractors": [
+"receipt",
+"pass",
+"message",
+"envelope",
+"notice"
+]
+}
+],
+"alternatives": [
+"They said no one had checked the invoice."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.11",
+"target": "She told me she was downstairs.",
+"ru": "Она сказала мне, что она внизу.",
+"uk": "Вона сказала мені, що вона внизу.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"They",
+"We",
+"I've",
+"You're"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"has",
+"spell",
+"share"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"we",
+"you",
+"we'll",
+"he",
+"they"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"the",
+"he",
+"you",
+"they"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"be",
+"am",
+"drive"
+]
+},
+{
+"correct": "downstairs",
+"distractors": [
+"there",
+"home",
+"here",
+"nearby",
+"saturdays"
+]
+}
+],
+"alternatives": [
+"She told me that she was downstairs."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.12",
+"target": "He told us the bus was full.",
+"ru": "Он сказал нам, что автобус полон.",
+"uk": "Він сказав нам, що автобус повний.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"She's",
+"You",
+"We"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"cost",
+"cleaned",
+"need",
+"is"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"you",
+"we",
+"they",
+"she",
+"me"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"which",
+"if",
+"where",
+"and",
+"but"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"train",
+"taxi",
+"bike",
+"dinner",
+"pen"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"turn",
+"need",
+"painting"
+]
+},
+{
+"correct": "full",
+"distractors": [
+"hot",
+"wet",
+"big",
+"clearer",
+"cold"
+]
+}
+],
+"alternatives": [
+"He told us that the bus was full."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.13",
+"target": "I told her I was at the station.",
+"ru": "Я сказал ей, что я на вокзале.",
+"uk": "Я сказав їй, що я на станції.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"He",
+"We'll",
+"They",
+"Them"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"walk",
+"got",
+"have",
+"do"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"she",
+"he",
+"they've",
+"we",
+"you"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"You",
+"He",
+"They"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"were",
+"being",
+"be",
+"bag",
+"been"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"near",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"those",
+"much",
+"and"
+]
+},
+{
+"correct": "station",
+"distractors": [
+"entrance",
+"harbour",
+"airport",
+"platform",
+"exit"
+]
+}
+],
+"alternatives": [
+"I told her that I was at the station."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.14",
+"target": "We told them we needed more time.",
+"ru": "Мы сказали им, что нам нужно больше времени.",
+"uk": "Ми сказали їм, що нам потрібно більше часу.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"We've",
+"She's",
+"I'll"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"put",
+"cooking",
+"do",
+"has"
+]
+},
+{
+"correct": "them",
+"distractors": [
+"he",
+"it",
+"she",
+"they",
+"you"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"the",
+"he",
+"you",
+"they"
+]
+},
+{
+"correct": "needed",
+"distractors": [
+"need",
+"needs",
+"is",
+"used",
+"drive"
+]
+},
+{
+"correct": "more",
+"distractors": [
+"less",
+"better",
+"worse",
+"best",
+"heavier"
+]
+},
+{
+"correct": "time",
+"distractors": [
+"bus",
+"room",
+"crack",
+"shade",
+"train"
+]
+}
+],
+"alternatives": [
+"We told them that we needed more time."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.15",
+"target": "Anna told him the fuse had blown.",
+"ru": "Анна сказала ему, что перегорел предохранитель.",
+"uk": "Анна сказала йому, що перегорів запобіжник.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Me",
+"Us",
+"You",
+"We"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"wear",
+"travel",
+"need"
+]
+},
+{
+"correct": "him",
+"distractors": [
+"he",
+"them",
+"we're",
+"we",
+"you"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"where",
+"which",
+"if",
+"what",
+"and"
+]
+},
+{
+"correct": "fuse",
+"distractors": [
+"bus",
+"train",
+"phone",
+"ticket",
+"date"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"do",
+"did",
+"does"
+]
+},
+{
+"correct": "blown",
+"distractors": [
+"go",
+"take",
+"missing",
+"do",
+"studies"
+]
+}
+],
+"alternatives": [
+"Anna told him that the fuse had blown."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.16",
+"target": "They told me the price included breakfast.",
+"ru": "Они сказали мне, что цена включает завтрак.",
+"uk": "Вони сказали мені, що у вартість входить сніданок.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"We",
+"He",
+"You"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"have",
+"turn",
+"let"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"she",
+"he",
+"we",
+"we've",
+"you"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"which",
+"if",
+"at",
+"and",
+"but"
+]
+},
+{
+"correct": "price",
+"distractors": [
+"rent",
+"deposit",
+"key",
+"bus",
+"room"
+]
+},
+{
+"correct": "included",
+"distractors": [
+"include",
+"reached",
+"is",
+"does",
+"do"
+]
+},
+{
+"correct": "breakfast",
+"distractors": [
+"door",
+"lunch",
+"time",
+"key",
+"form"
+]
+}
+],
+"alternatives": [
+"They told me that the price included breakfast."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.17",
+"target": "She told us there was somewhere quiet to sit.",
+"ru": "Она сказала нам, что есть тихое место, где можно посидеть.",
+"uk": "Вона сказала нам, що є тихе місце, де можна посидіти.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"He",
+"They've",
+"They"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"helped",
+"does",
+"have",
+"looked"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"we",
+"you",
+"she's",
+"he",
+"they"
+]
+},
+{
+"correct": "there",
+"distractors": [
+"the",
+"whose",
+"who",
+"a",
+"that"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"packing",
+"been",
+"am"
+]
+},
+{
+"correct": "somewhere",
+"distractors": [
+"here",
+"not",
+"outside",
+"anywhere",
+"home"
+]
+},
+{
+"correct": "quiet",
+"distractors": [
+"quieter",
+"quietest",
+"opens",
+"is",
+"return"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"for",
+"in",
+"at",
+"by",
+"of"
+]
+},
+{
+"correct": "sit",
+"distractors": [
+"sitting",
+"imagine",
+"stops",
+"pay",
+"is"
+]
+}
+],
+"alternatives": [
+"She told us that there was somewhere quiet to sit."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.18",
+"target": "I told Tom his coat was in the hall.",
+"ru": "Я сказал Тому, что его пальто в прихожей.",
+"uk": "Я сказав Тому, що його пальто в коридорі.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"Me",
+"We're",
+"She",
+"You"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"heard",
+"leave",
+"let",
+"drive"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"You",
+"Me",
+"Us",
+"Him"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"her",
+"our",
+"yours"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"shoes",
+"parcel",
+"jacket",
+"gloves"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"be",
+"am",
+"have"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"before",
+"at",
+"by",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "hall",
+"distractors": [
+"flat",
+"room",
+"kitchen",
+"need",
+"shop"
+]
+}
+],
+"alternatives": [
+"I told Tom that his coat was in the hall."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.19",
+"target": "He told the driver he felt sick.",
+"ru": "Он сказал водителю, что ему плохо.",
+"uk": "Він сказав водієві, що йому погано.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"They",
+"She",
+"They've"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"take",
+"walking",
+"keep",
+"do"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"many",
+"and"
+]
+},
+{
+"correct": "driver",
+"distractors": [
+"neighbour",
+"manager",
+"confirmation",
+"landlord",
+"bus"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"she",
+"you",
+"we",
+"they",
+"me"
+]
+},
+{
+"correct": "felt",
+"distractors": [
+"feel",
+"feeling",
+"do",
+"send",
+"is"
+]
+},
+{
+"correct": "sick",
+"distractors": [
+"note",
+"seat",
+"last",
+"cheaper",
+"expensive"
+]
+}
+],
+"alternatives": [
+"He told the driver that he felt sick."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.20",
+"target": "We told the manager the lift did not work.",
+"ru": "Мы сказали менеджеру, что лифт не работает.",
+"uk": "Ми сказали менеджеру, що ліфт не працює.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"You",
+"I've",
+"She"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"cooking",
+"sent",
+"do"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"no",
+"some",
+"and"
+]
+},
+{
+"correct": "manager",
+"distractors": [
+"driver",
+"neighbour",
+"landlord",
+"rush",
+"bus"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"how",
+"when",
+"if",
+"why",
+"and"
+]
+},
+{
+"correct": "lift",
+"distractors": [
+"desk",
+"window",
+"don't",
+"let's",
+"door"
+]
+},
+{
+"correct": "did",
+"distractors": [
+"do",
+"does",
+"meet",
+"call",
+"have"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"down",
+"yet",
+"twice"
+]
+},
+{
+"correct": "work",
+"distractors": [
+"worked",
+"works",
+"working",
+"called",
+"collect"
+]
+}
+],
+"alternatives": [
+"We told the manager the elevator didn't work.",
+"We told the manager the lift didn't work.",
+"We told the manager that the elevator didn't work.",
+"We told the manager that the lift didn't work.",
+"We told the manager the elevator did not work.",
+"We told the manager that the elevator did not work.",
+"We told the manager that the lift did not work."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.21",
+"target": "She said she could wait.",
+"ru": "Она сказала, что может подождать.",
+"uk": "Вона сказала, що може почекати.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"You",
+"She'll",
+"He's"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"saying",
+"is",
+"arrived",
+"felt"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"the",
+"she's",
+"you",
+"he"
+]
+},
+{
+"correct": "could",
+"distractors": [
+"cannot",
+"should",
+"must",
+"might",
+"don't"
+]
+},
+{
+"correct": "wait",
+"distractors": [
+"waiting",
+"waited",
+"do",
+"stay",
+"want"
+]
+}
+],
+"alternatives": [
+"She said that she could wait."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.22",
+"target": "He said he would send a reminder.",
+"ru": "Он сказал, что пришлет напоминание.",
+"uk": "Він сказав, що надішле нагадування.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"You",
+"I'll",
+"She's"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"says",
+"say",
+"washing",
+"arrive",
+"saying"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"you",
+"the",
+"she",
+"we",
+"they"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"should",
+"must",
+"cannot",
+"might",
+"may"
+]
+},
+{
+"correct": "send",
+"distractors": [
+"sent",
+"sleep",
+"have",
+"do",
+"has"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "reminder",
+"distractors": [
+"map",
+"note",
+"monday",
+"stain",
+"soap"
+]
+}
+],
+"alternatives": [
+"He said he'd send a reminder.",
+"He said that he'd send a reminder.",
+"He said that he would send a reminder."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.23",
+"target": "They said they might be late.",
+"ru": "Они сказали, что могут опоздать.",
+"uk": "Вони сказали, що можуть запізнитися.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"You",
+"I'm",
+"Me"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"is",
+"drive",
+"tried"
+]
+},
+{
+"correct": "they",
+"distractors": [
+"he",
+"the",
+"she's",
+"you",
+"we"
+]
+},
+{
+"correct": "might",
+"distractors": [
+"will",
+"can",
+"would",
+"did",
+"must"
+]
+},
+{
+"correct": "be",
+"distractors": [
+"is",
+"are",
+"was",
+"has",
+"arrived"
+]
+},
+{
+"correct": "late",
+"distractors": [
+"free",
+"early",
+"open",
+"closed",
+"busy"
+]
+}
+],
+"alternatives": [
+"They said that they might be late."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.24",
+"target": "I said I could not hear the announcement.",
+"ru": "Я сказал, что не слышу объявления.",
+"uk": "Я сказав, що не чую оголошення.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"Him",
+"I'm",
+"I'll",
+"She"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"saying",
+"say",
+"lost",
+"do",
+"stop"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"She",
+"He",
+"We",
+"You",
+"They"
+]
+},
+{
+"correct": "could",
+"distractors": [
+"round-trip",
+"who's",
+"should",
+"cannot",
+"must"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"already",
+"back",
+"usually"
+]
+},
+{
+"correct": "hear",
+"distractors": [
+"heard",
+"call",
+"let",
+"asked",
+"saw"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "announcement",
+"distractors": [
+"seat",
+"price",
+"card",
+"station",
+"door"
+]
+}
+],
+"alternatives": [
+"I said I couldn't hear the announcement.",
+"I said that I couldn't hear the announcement.",
+"I said that I could not hear the announcement."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.25",
+"target": "We said we would collect the parcel.",
+"ru": "Мы сказали, что заберем посылку.",
+"uk": "Ми сказали, що заберемо посилку.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"He",
+"They",
+"It's"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"saying",
+"say",
+"try",
+"do",
+"does"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"you",
+"he",
+"they",
+"me"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"should",
+"cannot",
+"must",
+"might",
+"may"
+]
+},
+{
+"correct": "collect",
+"distractors": [
+"collected",
+"is",
+"use",
+"break",
+"left"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"no",
+"and"
+]
+},
+{
+"correct": "parcel",
+"distractors": [
+"towel",
+"envelope",
+"elevator",
+"can't",
+"book"
+]
+}
+],
+"alternatives": [
+"We said we'd collect the package.",
+"We said we'd collect the parcel.",
+"We said that we'd collect the package.",
+"We said that we'd collect the parcel.",
+"We said we would collect the package.",
+"We said that we would collect the package.",
+"We said that we would collect the parcel."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.26",
+"target": "She told me she would bring the receipt.",
+"ru": "Она сказала мне, что принесет квитанцию.",
+"uk": "Вона сказала мені, що принесе квитанцію.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"He",
+"They're",
+"We"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"got",
+"do",
+"take",
+"speak"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"she'd",
+"them",
+"they",
+"we",
+"you"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"us",
+"you",
+"he",
+"we",
+"they"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"should",
+"cannot",
+"must",
+"might",
+"may"
+]
+},
+{
+"correct": "bring",
+"distractors": [
+"brought",
+"is",
+"have",
+"quiet",
+"keep"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "receipt",
+"distractors": [
+"number",
+"label",
+"code",
+"message",
+"week"
+]
+}
+],
+"alternatives": [
+"She told me she'd bring the receipt.",
+"She told me that she'd bring the receipt.",
+"She told me that she would bring the receipt."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.27",
+"target": "He told us he had renewed his licence.",
+"ru": "Он сказал нам, что продлил свои права.",
+"uk": "Він сказав нам, що поновив свої водійські права.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"We",
+"It's",
+"I'm"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"let",
+"cooking",
+"miss"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"we",
+"she",
+"you",
+"they",
+"me"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"she",
+"the",
+"you",
+"we",
+"they"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"have",
+"do",
+"did",
+"does",
+"is"
+]
+},
+{
+"correct": "renewed",
+"distractors": [
+"take",
+"make",
+"is",
+"hear",
+"quiet"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"hers"
+]
+},
+{
+"correct": "licence",
+"distractors": [
+"station",
+"gate",
+"somebody",
+"there's",
+"book"
+]
+}
+],
+"alternatives": [
+"He told us he'd renewed his licence.",
+"He told us he'd renewed his license.",
+"He told us he had renewed his license.",
+"He told us that he'd renewed his licence.",
+"He told us that he'd renewed his license.",
+"He told us that he had renewed his licence.",
+"He told us that he had renewed his license."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.28",
+"target": "I told her I would keep a seat.",
+"ru": "Я сказал ей, что придержу место.",
+"uk": "Я сказав їй, що залишу місце.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"He",
+"We",
+"She's",
+"You",
+"We've"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"did",
+"does",
+"has",
+"are"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"we",
+"she",
+"they",
+"he's",
+"you"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"They",
+"He",
+"The",
+"You",
+"She"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"should",
+"may",
+"cannot",
+"must",
+"might"
+]
+},
+{
+"correct": "keep",
+"distractors": [
+"kept",
+"keeps",
+"use",
+"filled",
+"have"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"some",
+"and"
+]
+},
+{
+"correct": "seat",
+"distractors": [
+"table",
+"shelf",
+"entrance",
+"need",
+"address"
+]
+}
+],
+"alternatives": [
+"I told her I'd keep a seat.",
+"I told her that I'd keep a seat.",
+"I told her that I would keep a seat."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.29",
+"target": "They said they could not find the flat.",
+"ru": "Они сказали, что не могут найти квартиру.",
+"uk": "Вони сказали, що не можуть знайти квартиру.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"I'll",
+"We",
+"You",
+"They're"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"take",
+"drive",
+"speak"
+]
+},
+{
+"correct": "they",
+"distractors": [
+"she",
+"she's",
+"you",
+"we",
+"he"
+]
+},
+{
+"correct": "could",
+"distractors": [
+"store",
+"don't",
+"should",
+"cannot",
+"must"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"away",
+"just",
+"yes"
+]
+},
+{
+"correct": "find",
+"distractors": [
+"found",
+"did",
+"got",
+"saw",
+"has"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "flat",
+"distractors": [
+"room",
+"library",
+"that's",
+"there's",
+"kitchen"
+]
+}
+],
+"alternatives": [
+"They said they couldn't find the apartment.",
+"They said they couldn't find the flat.",
+"They said that they couldn't find the apartment.",
+"They said that they couldn't find the flat.",
+"They said they could not find the apartment.",
+"They said that they could not find the apartment.",
+"They said that they could not find the flat."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.30",
+"target": "She said she would pay by card.",
+"ru": "Она сказала, что заплатит картой.",
+"uk": "Вона сказала, що заплатить карткою.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"You",
+"We",
+"We'll"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"says",
+"say",
+"is",
+"sent",
+"are"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"you",
+"the",
+"he",
+"we",
+"they"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"must",
+"should",
+"cannot",
+"might",
+"may"
+]
+},
+{
+"correct": "pay",
+"distractors": [
+"paid",
+"paying",
+"need",
+"saw",
+"got"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"on",
+"for",
+"under",
+"in"
+]
+},
+{
+"correct": "card",
+"distractors": [
+"room",
+"coat",
+"mind",
+"way",
+"mirror"
+]
+}
+],
+"alternatives": [
+"She said she'd pay by card.",
+"She said that she'd pay by card.",
+"She said that she would pay by card."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.31",
+"target": "He asked who could look after his dog.",
+"ru": "Он спросил, кто может присмотреть за его собакой.",
+"uk": "Він запитав, хто може доглянути за його собакою.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"We",
+"You",
+"We'll"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"have",
+"collect",
+"hear"
+]
+},
+{
+"correct": "who",
+"distractors": [
+"where",
+"how",
+"what",
+"which",
+"whose"
+]
+},
+{
+"correct": "could",
+"distractors": [
+"must",
+"should",
+"cannot",
+"might",
+"don't"
+]
+},
+{
+"correct": "look",
+"distractors": [
+"looked",
+"looking",
+"cancel",
+"wanted",
+"worked"
+]
+},
+{
+"correct": "after",
+"distractors": [
+"to",
+"on",
+"in",
+"of",
+"at"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"yours"
+]
+},
+{
+"correct": "dog",
+"distractors": [
+"bus",
+"note",
+"work",
+"train",
+"cafe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.32",
+"target": "She asked what I needed.",
+"ru": "Она спросила, что мне нужно.",
+"uk": "Вона запитала, що мені потрібно.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"We",
+"He",
+"He'd",
+"Him",
+"You"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"is",
+"left",
+"was"
+]
+},
+{
+"correct": "what",
+"distractors": [
+"who",
+"how",
+"where",
+"whose",
+"why"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"He",
+"They",
+"You",
+"She'll",
+"We"
+]
+},
+{
+"correct": "needed",
+"distractors": [
+"need",
+"needs",
+"have",
+"include",
+"signed"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.33",
+"target": "They asked when the shop closed.",
+"ru": "Они спросили, когда закрывается магазин.",
+"uk": "Вони запитали, коли магазин закривається.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"I'd",
+"You",
+"I've"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"is",
+"booked",
+"got"
+]
+},
+{
+"correct": "when",
+"distractors": [
+"if",
+"but",
+"while",
+"unless",
+"and"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"some",
+"and"
+]
+},
+{
+"correct": "shop",
+"distractors": [
+"flat",
+"hotel",
+"doesn't",
+"don't",
+"room"
+]
+},
+{
+"correct": "closed",
+"distractors": [
+"closes",
+"close",
+"closer",
+"closing",
+"open"
+]
+}
+],
+"alternatives": [
+"They asked when the store closed."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.34",
+"target": "I asked why the bus was late.",
+"ru": "Я спросил, почему автобус опаздывает.",
+"uk": "Я запитав, чому автобус запізнився.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"You",
+"He",
+"It"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"do",
+"cover",
+"learning"
+]
+},
+{
+"correct": "why",
+"distractors": [
+"which",
+"where",
+"who",
+"whose",
+"how"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"much",
+"and"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"car",
+"bike",
+"end",
+"driver",
+"house"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"am",
+"be",
+"used"
+]
+},
+{
+"correct": "late",
+"distractors": [
+"early",
+"yesterday",
+"closed",
+"open",
+"cold"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.35",
+"target": "We asked which gate we needed.",
+"ru": "Мы спросили, какие нам нужны ворота.",
+"uk": "Ми запитали, які ворота нам потрібні.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"I've",
+"Me",
+"They"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"cooking",
+"wants",
+"collect"
+]
+},
+{
+"correct": "which",
+"distractors": [
+"why",
+"where",
+"who",
+"how",
+"whose"
+]
+},
+{
+"correct": "gate",
+"distractors": [
+"lift",
+"entrance",
+"window",
+"door",
+"platform"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"you",
+"he",
+"they",
+"she",
+"me"
+]
+},
+{
+"correct": "needed",
+"distractors": [
+"need",
+"needs",
+"is",
+"walking",
+"know"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.36",
+"target": "He asked if I had a reference number.",
+"ru": "Он спросил, есть ли у меня номер обращения.",
+"uk": "Він запитав, чи є у мене номер звернення.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"She",
+"You",
+"We'll",
+"He'd",
+"We"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"is",
+"buy",
+"bought"
+]
+},
+{
+"correct": "if",
+"distractors": [
+"but",
+"when",
+"while",
+"unless",
+"and"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"We",
+"You",
+"She",
+"I've",
+"I'll"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"have",
+"has",
+"does",
+"did",
+"do"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "reference",
+"distractors": [
+"key",
+"phone",
+"shift",
+"way",
+"clock"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"label",
+"english",
+"week",
+"pass"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.37",
+"target": "She asked whether we wanted a replacement.",
+"ru": "Она спросила, хотим ли мы замену.",
+"uk": "Вона запитала, чи хочемо ми заміну.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"I've",
+"He's",
+"He"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"reminded",
+"parking",
+"is"
+]
+},
+{
+"correct": "whether",
+"distractors": [
+"bus",
+"door",
+"off",
+"train",
+"work"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she's",
+"we're",
+"you",
+"he",
+"they"
+]
+},
+{
+"correct": "wanted",
+"distractors": [
+"want",
+"wants",
+"help",
+"quiet",
+"bought"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"some",
+"and"
+]
+},
+{
+"correct": "replacement",
+"distractors": [
+"train",
+"bus",
+"password",
+"badge",
+"shelter"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.38",
+"target": "They asked if the room was free.",
+"ru": "Они спросили, свободна ли комната.",
+"uk": "Вони запитали, чи вільний номер.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"I'll",
+"We",
+"Me"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"told",
+"is",
+"have"
+]
+},
+{
+"correct": "if",
+"distractors": [
+"while",
+"when",
+"but",
+"unless",
+"and"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "room",
+"distractors": [
+"flat",
+"hall",
+"office",
+"kitchen",
+"fuse"
+]
+},
+{
+"correct": "was",
+"distractors": [
+"is",
+"are",
+"am",
+"said",
+"has"
+]
+},
+{
+"correct": "free",
+"distractors": [
+"open",
+"ready",
+"useful",
+"better",
+"expensive"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.39",
+"target": "I asked how much the repair would cost.",
+"ru": "Я спросил, сколько будет стоить ремонт.",
+"uk": "Я запитав, скільки коштуватиме ремонт.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"It",
+"They",
+"We're",
+"She"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"have",
+"drink",
+"do"
+]
+},
+{
+"correct": "how",
+"distractors": [
+"where",
+"which",
+"who",
+"why",
+"whose"
+]
+},
+{
+"correct": "much",
+"distractors": [
+"a",
+"long",
+"wrong",
+"early",
+"that"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "repair",
+"distractors": [
+"repaired",
+"have",
+"do",
+"waiting",
+"does"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"should",
+"cannot",
+"must",
+"might",
+"may"
+]
+},
+{
+"correct": "cost",
+"distractors": [
+"costs",
+"rent",
+"deposit",
+"charging",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.40",
+"target": "We asked who dealt with complaints.",
+"ru": "Мы спросили, кто занимается жалобами.",
+"uk": "Ми запитали, хто розглядає скарги.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"They",
+"You",
+"I'll",
+"He'll"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"sent",
+"like",
+"check"
+]
+},
+{
+"correct": "who",
+"distractors": [
+"how",
+"where",
+"why",
+"which",
+"what"
+]
+},
+{
+"correct": "dealt",
+"distractors": [
+"keep",
+"look",
+"looking",
+"come",
+"lights"
+]
+},
+{
+"correct": "with",
+"distractors": [
+"to",
+"at",
+"on",
+"for",
+"in"
+]
+},
+{
+"correct": "complaints",
+"distractors": [
+"seats",
+"bags",
+"stairs",
+"towels",
+"suitcases"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.41",
+"target": "She asked me to wait in the shade.",
+"ru": "Она попросила меня подождать в тени.",
+"uk": "Вона попросила мене почекати в тіні.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"We",
+"We've",
+"They"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"is",
+"have",
+"are"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"we",
+"you",
+"her",
+"he",
+"they"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"by",
+"after",
+"for",
+"of"
+]
+},
+{
+"correct": "wait",
+"distractors": [
+"waiting",
+"waited",
+"scanned",
+"gave",
+"switched"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"at",
+"by",
+"for",
+"of",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "shade",
+"distractors": [
+"work",
+"station",
+"saturdays",
+"coat",
+"film"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.42",
+"target": "He told me not to lift the lid.",
+"ru": "Он сказал мне не поднимать крышку.",
+"uk": "Він сказав мені не піднімати кришку.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"She",
+"You're"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"ate",
+"eating",
+"reserved",
+"responding"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"you",
+"we",
+"she",
+"us",
+"they"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"never",
+"abroad",
+"now",
+"always"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"in",
+"of",
+"before",
+"at",
+"for"
+]
+},
+{
+"correct": "lift",
+"distractors": [
+"light",
+"window",
+"please",
+"sink",
+"tap"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"all",
+"no",
+"and"
+]
+},
+{
+"correct": "lid",
+"distractors": [
+"bus",
+"phone",
+"saturdays",
+"room",
+"crack"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.43",
+"target": "I asked him to send the address.",
+"ru": "Я попросил его прислать адрес.",
+"uk": "Я попросив його надіслати адресу.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"I'll",
+"You",
+"I've",
+"She"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"told",
+"heard",
+"want"
+]
+},
+{
+"correct": "him",
+"distractors": [
+"they",
+"we",
+"she'd",
+"you",
+"she"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"in",
+"of",
+"before",
+"for"
+]
+},
+{
+"correct": "send",
+"distractors": [
+"sent",
+"is",
+"used",
+"take",
+"are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"no",
+"and"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"seats",
+"keys",
+"garden",
+"balcony",
+"queue"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.44",
+"target": "They told us to use the side entrance.",
+"ru": "Нам сказали воспользоваться боковым входом.",
+"uk": "Вони сказали нам скористатися боковим входом.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"We",
+"We'll",
+"I'm"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"has",
+"saw",
+"does"
+]
+},
+{
+"correct": "us",
+"distractors": [
+"you",
+"she",
+"we",
+"he",
+"me"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"for",
+"in",
+"by",
+"of"
+]
+},
+{
+"correct": "use",
+"distractors": [
+"used",
+"using",
+"has",
+"left",
+"found"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"all",
+"and"
+]
+},
+{
+"correct": "side",
+"distractors": [
+"phone",
+"lunch",
+"beep",
+"class",
+"everything"
+]
+},
+{
+"correct": "entrance",
+"distractors": [
+"platform",
+"bridge",
+"airport",
+"gate",
+"friday"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.45",
+"target": "She said she had left her phone at home.",
+"ru": "Она сказала, что оставила телефон дома.",
+"uk": "Вона сказала, що залишила телефон вдома.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"He",
+"We'll",
+"I'd"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"noticed",
+"eat",
+"is"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"you",
+"the",
+"he",
+"we",
+"they"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"do",
+"does",
+"did"
+]
+},
+{
+"correct": "left",
+"distractors": [
+"leave",
+"leaves",
+"up",
+"opposite",
+"right"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"we",
+"you",
+"he",
+"they",
+"me"
+]
+},
+{
+"correct": "phone",
+"distractors": [
+"go",
+"take",
+"is",
+"does",
+"turn"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"with",
+"behind"
+]
+},
+{
+"correct": "home",
+"distractors": [
+"there",
+"nearby",
+"english",
+"bill",
+"friday"
+]
+}
+],
+"alternatives": [
+"She said she'd left her phone at home.",
+"She said that she'd left her phone at home.",
+"She said that she had left her phone at home."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.46",
+"target": "He said he had already paid the deposit.",
+"ru": "Он сказал, что уже внес залог.",
+"uk": "Він сказав, що вже сплатив завдаток.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"They",
+"We",
+"Us"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"says",
+"say",
+"is",
+"have",
+"pay"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"we",
+"you",
+"she",
+"they",
+"me"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"having",
+"have",
+"do",
+"did",
+"does"
+]
+},
+{
+"correct": "already",
+"distractors": [
+"not",
+"ever",
+"back",
+"never",
+"just"
+]
+},
+{
+"correct": "paid",
+"distractors": [
+"pay",
+"paying",
+"got",
+"have",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "deposit",
+"distractors": [
+"cost",
+"charge",
+"fare",
+"rent",
+"receipt"
+]
+}
+],
+"alternatives": [
+"He said he'd already paid the deposit.",
+"He said that he'd already paid the deposit.",
+"He said that he had already paid the deposit."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.47",
+"target": "I told her I had never driven a van.",
+"ru": "Я сказал ей, что никогда не водил фургон.",
+"uk": "Я сказав їй, що ніколи не водив фургон.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"We",
+"They",
+"Me",
+"We'd"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"is",
+"carry",
+"waiting",
+"left"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"you",
+"he",
+"we",
+"they",
+"she"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"The",
+"You",
+"She"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"do",
+"does",
+"having"
+]
+},
+{
+"correct": "never",
+"distractors": [
+"not",
+"ever",
+"normally",
+"often",
+"alone"
+]
+},
+{
+"correct": "driven",
+"distractors": [
+"driving",
+"drive",
+"charging",
+"standing",
+"answered"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "van",
+"distractors": [
+"taxi",
+"car",
+"bus",
+"pan",
+"alarm"
+]
+}
+],
+"alternatives": [
+"I told her I'd never driven a van.",
+"I told her that I'd never driven a van.",
+"I told her that I had never driven a van."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.48",
+"target": "They said the train had left ten minutes earlier.",
+"ru": "Они сказали, что поезд ушёл десятью минутами ранее.",
+"uk": "Вони сказали, що поїзд відправився десять хвилин раніше.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"We",
+"It",
+"I'm"
+]
+},
+{
+"correct": "said",
+"distractors": [
+"say",
+"says",
+"heard",
+"stop",
+"have"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"who",
+"which",
+"if",
+"what",
+"and"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"car",
+"taxi",
+"delivery",
+"everything"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"does",
+"do",
+"did"
+]
+},
+{
+"correct": "left",
+"distractors": [
+"leave",
+"leaves",
+"up",
+"has",
+"meet"
+]
+},
+{
+"correct": "ten",
+"distractors": [
+"six",
+"two",
+"eight",
+"three",
+"nine"
+]
+},
+{
+"correct": "minutes",
+"distractors": [
+"trains",
+"bags",
+"messages",
+"cards",
+"pages"
+]
+},
+{
+"correct": "earlier",
+"distractors": [
+"next",
+"last",
+"not",
+"first",
+"book"
+]
+}
+],
+"alternatives": [
+"They said that the train had left ten minutes earlier."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.49",
+"target": "She told me the parcel would arrive the next day.",
+"ru": "Она сказала мне, что посылка прибудет на следующий день.",
+"uk": "Вона сказала мені, що посилка прибуде наступного дня.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"You",
+"It",
+"He's"
+]
+},
+{
+"correct": "told",
+"distractors": [
+"tell",
+"do",
+"drop",
+"let",
+"call"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"it",
+"she's",
+"him",
+"we",
+"you"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"where",
+"which",
+"if",
+"why",
+"and"
+]
+},
+{
+"correct": "parcel",
+"distractors": [
+"towel",
+"coat",
+"there's",
+"elevator",
+"book"
+]
+},
+{
+"correct": "would",
+"distractors": [
+"must",
+"should",
+"cannot",
+"might",
+"may"
+]
+},
+{
+"correct": "arrive",
+"distractors": [
+"arrived",
+"arrives",
+"arriving",
+"is",
+"hurt"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "next",
+"distractors": [
+"last",
+"later",
+"easiest",
+"deep",
+"difficult"
+]
+},
+{
+"correct": "day",
+"distractors": [
+"work",
+"train",
+"door",
+"english",
+"key"
+]
+}
+],
+"alternatives": [
+"She told me the package would arrive the next day.",
+"She told me that the package would arrive the next day.",
+"She told me that the parcel would arrive the next day."
+]
+},
+{
+"lesson": 27,
+"id": "en-classic-r1:27.50",
+"target": "He asked if I had received his message.",
+"ru": "Он спросил, получил ли я его сообщение.",
+"uk": "Він запитав, чи отримав я його повідомлення.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"We",
+"She",
+"You",
+"I'm",
+"They"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"canceled",
+"hurt",
+"standing"
+]
+},
+{
+"correct": "if",
+"distractors": [
+"when",
+"but",
+"while",
+"unless",
+"and"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"You",
+"She",
+"We've",
+"Me",
+"We"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"has",
+"have",
+"does",
+"do",
+"did"
+]
+},
+{
+"correct": "received",
+"distractors": [
+"called",
+"found",
+"flashed",
+"resurfaced",
+"waved"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"hers"
+]
+},
+{
+"correct": "message",
+"distractors": [
+"pass",
+"receipt",
+"button",
+"tomorrow",
+"label"
+]
+}
+],
+"alternatives": [
+"He asked if I'd received his message."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.01",
+"target": "I cut myself.",
+"ru": "Я порезался.",
+"uk": "Я порізався.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"We",
+"She's",
+"It",
+"Them"
+]
+},
+{
+"correct": "cut",
+"distractors": [
+"use",
+"keep",
+"renewed",
+"catch",
+"used"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"themselves",
+"herself",
+"himself",
+"ourselves",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.02",
+"target": "She hurt herself.",
+"ru": "Она поранилась.",
+"uk": "Вона поранилася.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"They",
+"Me",
+"We",
+"She'll"
+]
+},
+{
+"correct": "hurt",
+"distractors": [
+"use",
+"take",
+"worried",
+"packed",
+"is"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"themselves",
+"yourself",
+"himself",
+"ourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.03",
+"target": "He blamed himself.",
+"ru": "Он винил себя.",
+"uk": "Він звинувачував себе.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"We're",
+"You're",
+"I've"
+]
+},
+{
+"correct": "blamed",
+"distractors": [
+"booking",
+"do",
+"told",
+"is",
+"are"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"themselves",
+"yourself",
+"herself",
+"myself",
+"ourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.04",
+"target": "We introduced ourselves.",
+"ru": "Мы представились.",
+"uk": "Ми представилися.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"He",
+"You",
+"I'll"
+]
+},
+{
+"correct": "introduced",
+"distractors": [
+"is",
+"sealed",
+"understand",
+"restarted",
+"was"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"himself",
+"myself",
+"themselves",
+"herself",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.05",
+"target": "They introduced themselves.",
+"ru": "Они представились.",
+"uk": "Вони представилися.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"We",
+"I'm",
+"He's"
+]
+},
+{
+"correct": "introduced",
+"distractors": [
+"got",
+"do",
+"turn",
+"have",
+"is"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"ourselves",
+"myself",
+"herself",
+"himself",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.06",
+"target": "You can help yourself.",
+"ru": "Можете угощаться.",
+"uk": "Можете пригощатися.",
+"tiles": [
+{
+"correct": "You",
+"distractors": [
+"I",
+"We",
+"She",
+"He",
+"They"
+]
+},
+{
+"correct": "can",
+"distractors": [
+"must",
+"cannot",
+"should",
+"does",
+"did"
+]
+},
+{
+"correct": "help",
+"distractors": [
+"helped",
+"helps",
+"is",
+"waiting",
+"are"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"bag",
+"herself",
+"she",
+"we",
+"he"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.07",
+"target": "The cat washed itself.",
+"ru": "Кошка умылась.",
+"uk": "Кіт помився.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"No",
+"And"
+]
+},
+{
+"correct": "cat",
+"distractors": [
+"work",
+"lunch",
+"pan",
+"ticket",
+"quietest"
+]
+},
+{
+"correct": "washed",
+"distractors": [
+"washing",
+"wash",
+"is",
+"stop",
+"was"
+]
+},
+{
+"correct": "itself",
+"distractors": [
+"myself",
+"ourselves",
+"yourselves",
+"themselves",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.08",
+"target": "I saw myself in the mirror.",
+"ru": "Я увидел себя в зеркале.",
+"uk": "Я побачив себе в дзеркалі.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"She",
+"He'll",
+"We'll"
+]
+},
+{
+"correct": "saw",
+"distractors": [
+"see",
+"seen",
+"pay",
+"have",
+"want"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"herself",
+"yourself",
+"themselves",
+"himself",
+"ourselves"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"by",
+"at",
+"over",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "mirror",
+"distractors": [
+"desk",
+"lunch",
+"machine",
+"front",
+"toilet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.09",
+"target": "She taught herself English.",
+"ru": "Она самостоятельно выучила английский.",
+"uk": "Вона сама вивчила англійську.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"Me",
+"He",
+"You"
+]
+},
+{
+"correct": "taught",
+"distractors": [
+"teaches",
+"is",
+"have",
+"left",
+"waiting"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"yourself",
+"himself",
+"themselves",
+"ourselves"
+]
+},
+{
+"correct": "English",
+"distractors": [
+"French",
+"Spanish",
+"German",
+"Italian",
+"Russian"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.10",
+"target": "He looked at himself in the window.",
+"ru": "Он посмотрел на себя в окно.",
+"uk": "Він подивився на себе у вікно.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"They",
+"He's"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"look",
+"use",
+"is",
+"have"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"for",
+"of",
+"after"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"herself",
+"themselves",
+"yourselves",
+"myself",
+"ourselves"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"by",
+"for",
+"of",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"no",
+"these",
+"and"
+]
+},
+{
+"correct": "window",
+"distractors": [
+"lift",
+"door",
+"handle",
+"light",
+"side"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.11",
+"target": "I made myself a sandwich.",
+"ru": "Я сделал себе бутерброд.",
+"uk": "Я зробив собі бутерброд.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"I'll",
+"He's",
+"They're"
+]
+},
+{
+"correct": "made",
+"distractors": [
+"make",
+"makes",
+"use",
+"is",
+"put"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"yourself",
+"themselves",
+"herself",
+"himself",
+"itself"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"these",
+"some",
+"and"
+]
+},
+{
+"correct": "sandwich",
+"distractors": [
+"lunch",
+"train",
+"practice",
+"meal",
+"email"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.12",
+"target": "She poured herself some water.",
+"ru": "Она налила себе воды.",
+"uk": "Вона налила собі води.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"They",
+"He",
+"Me"
+]
+},
+{
+"correct": "poured",
+"distractors": [
+"is",
+"stop",
+"change",
+"buy",
+"are"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"themselves",
+"himself",
+"yourself",
+"ourselves",
+"itself"
+]
+},
+{
+"correct": "some",
+"distractors": [
+"the",
+"a",
+"enough",
+"this",
+"that"
+]
+},
+{
+"correct": "water",
+"distractors": [
+"milk",
+"soup",
+"coffee",
+"bread",
+"rain"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.13",
+"target": "He cut himself a slice of bread.",
+"ru": "Он отрезал себе ломтик хлеба.",
+"uk": "Він відрізав собі шматочок хліба.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"She",
+"We",
+"She's"
+]
+},
+{
+"correct": "cut",
+"distractors": [
+"use",
+"keep",
+"have",
+"bring",
+"get"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"myself",
+"ourselves",
+"herself",
+"itself",
+"themselves"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "slice",
+"distractors": [
+"coat",
+"shop",
+"key",
+"lunch",
+"email"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"in",
+"on",
+"at",
+"by"
+]
+},
+{
+"correct": "bread",
+"distractors": [
+"coffee",
+"milk",
+"rice",
+"charger",
+"sister"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.14",
+"target": "We got ourselves a map.",
+"ru": "Мы взяли себе карту.",
+"uk": "Ми взяли собі карту.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"You",
+"I'd",
+"She's"
+]
+},
+{
+"correct": "got",
+"distractors": [
+"get",
+"getting",
+"gets",
+"is",
+"starts"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"myself",
+"herself",
+"himself",
+"themselves",
+"yourself"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"no",
+"some",
+"and"
+]
+},
+{
+"correct": "map",
+"distractors": [
+"number",
+"receipt",
+"postcode",
+"slice",
+"label"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.15",
+"target": "They booked themselves a room.",
+"ru": "Они забронировали себе номер.",
+"uk": "Вони забронювали собі кімнату.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"He",
+"We",
+"She",
+"You"
+]
+},
+{
+"correct": "booked",
+"distractors": [
+"booking",
+"book",
+"check",
+"said",
+"saves"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"myself",
+"himself",
+"herself",
+"itself",
+"ourselves"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "room",
+"distractors": [
+"flat",
+"library",
+"date",
+"fan",
+"office"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.16",
+"target": "I reminded myself to bring the receipt.",
+"ru": "Я напомнил себе взять квитанцию.",
+"uk": "Я нагадав собі взяти чек.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"He",
+"Us",
+"He's"
+]
+},
+{
+"correct": "reminded",
+"distractors": [
+"keep",
+"look",
+"is",
+"forget",
+"break"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"herself",
+"himself",
+"themselves",
+"yourself",
+"ourselves"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"in",
+"for",
+"with",
+"by"
+]
+},
+{
+"correct": "bring",
+"distractors": [
+"brought",
+"has",
+"sign",
+"does",
+"put"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"each",
+"and"
+]
+},
+{
+"correct": "receipt",
+"distractors": [
+"number",
+"envelope",
+"form",
+"message",
+"english"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.17",
+"target": "She asked herself a useful question.",
+"ru": "Она задала себе полезный вопрос.",
+"uk": "Вона поставила собі корисне запитання.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"They",
+"Me",
+"I'm"
+]
+},
+{
+"correct": "asked",
+"distractors": [
+"ask",
+"asks",
+"is",
+"are",
+"do"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"himself",
+"themselves",
+"yourself",
+"itself"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "useful",
+"distractors": [
+"gate",
+"station",
+"spare",
+"fresh",
+"dark"
+]
+},
+{
+"correct": "question",
+"distractors": [
+"door",
+"train",
+"shoe",
+"midday",
+"bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.18",
+"target": "He promised himself a day off.",
+"ru": "Он пообещал себе выходной.",
+"uk": "Він пообіцяв собі вихідний.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"They",
+"I'll"
+]
+},
+{
+"correct": "promised",
+"distractors": [
+"called",
+"found",
+"left",
+"made",
+"checked"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"yourself",
+"myself",
+"herself",
+"ourselves",
+"yourselves"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "day",
+"distractors": [
+"train",
+"phone",
+"dog",
+"bus",
+"work"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"than",
+"left",
+"not",
+"back"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.19",
+"target": "We gave ourselves extra time.",
+"ru": "Мы выделили себе дополнительное время.",
+"uk": "Ми дали собі додатковий час.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"It",
+"You",
+"They",
+"Me"
+]
+},
+{
+"correct": "gave",
+"distractors": [
+"give",
+"refund",
+"read",
+"used",
+"sign"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"herself",
+"myself",
+"itself",
+"yourselves",
+"himself"
+]
+},
+{
+"correct": "extra",
+"distractors": [
+"bus",
+"gate",
+"main",
+"water",
+"last"
+]
+},
+{
+"correct": "time",
+"distractors": [
+"bus",
+"seat",
+"card",
+"clock",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.20",
+"target": "They found themselves a quiet table.",
+"ru": "Они нашли себе тихий столик.",
+"uk": "Вони знайшли собі тихий столик.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"We",
+"I'm",
+"He",
+"You"
+]
+},
+{
+"correct": "found",
+"distractors": [
+"find",
+"have",
+"worried",
+"finish",
+"stay"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"herself",
+"yourself",
+"myself",
+"itself",
+"himself"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"some",
+"each",
+"and"
+]
+},
+{
+"correct": "quiet",
+"distractors": [
+"quieter",
+"quietest",
+"is",
+"wake",
+"driving"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"shelf",
+"seat",
+"warehouse",
+"day",
+"insurance"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.21",
+"target": "I fixed the tap myself.",
+"ru": "Я сам починил кран.",
+"uk": "Я сам полагодив кран.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"It",
+"She",
+"I'll",
+"Me"
+]
+},
+{
+"correct": "fixed",
+"distractors": [
+"fixing",
+"is",
+"used",
+"said",
+"walking"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "tap",
+"distractors": [
+"book",
+"letter",
+"please",
+"remember",
+"forget"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"herself",
+"ourselves",
+"themselves",
+"yourself",
+"himself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.22",
+"target": "She wrote the letter herself.",
+"ru": "Она сама написала письмо.",
+"uk": "Вона сама написала листа.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"Me",
+"They",
+"We'd"
+]
+},
+{
+"correct": "wrote",
+"distractors": [
+"write",
+"writing",
+"written",
+"is",
+"need"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "letter",
+"distractors": [
+"package",
+"parcel",
+"towel",
+"coat",
+"page"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"ourselves",
+"themselves",
+"yourself",
+"we",
+"you"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.23",
+"target": "He carried both boxes himself.",
+"ru": "Он сам перенёс обе коробки.",
+"uk": "Він сам переніс обидві коробки.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"She",
+"I'd",
+"They're"
+]
+},
+{
+"correct": "carried",
+"distractors": [
+"carry",
+"carrying",
+"move",
+"fell",
+"has"
+]
+},
+{
+"correct": "both",
+"distractors": [
+"bag",
+"enough",
+"the",
+"a",
+"no"
+]
+},
+{
+"correct": "boxes",
+"distractors": [
+"rooms",
+"bags",
+"mornings",
+"letters",
+"holidays"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"herself",
+"myself",
+"ourselves",
+"themselves",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.24",
+"target": "We did the painting ourselves.",
+"ru": "Мы сами покрасили.",
+"uk": "Ми самі фарбували.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"He",
+"She's",
+"They"
+]
+},
+{
+"correct": "did",
+"distractors": [
+"does",
+"do",
+"delivered",
+"collect",
+"have"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "painting",
+"distractors": [
+"is",
+"split",
+"go",
+"was",
+"are"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"myself",
+"himself",
+"themselves",
+"herself",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.25",
+"target": "They built the shelter themselves.",
+"ru": "Они сами построили убежище.",
+"uk": "Вони самі збудували укриття.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"We",
+"She",
+"They're",
+"She's"
+]
+},
+{
+"correct": "built",
+"distractors": [
+"building",
+"is",
+"change",
+"have",
+"wrote"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"some",
+"and",
+"but"
+]
+},
+{
+"correct": "shelter",
+"distractors": [
+"phone",
+"ticket",
+"money",
+"space",
+"monday"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"myself",
+"herself",
+"ourselves",
+"himself",
+"yourself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.26",
+"target": "Did you make this yourself?",
+"ru": "Ты сам это сделал?",
+"uk": "Ти сам це зробив?",
+"tiles": [
+{
+"correct": "Did",
+"distractors": [
+"Does",
+"Do",
+"Left",
+"Told",
+"Felt"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"he",
+"they",
+"me",
+"she"
+]
+},
+{
+"correct": "make",
+"distractors": [
+"made",
+"makes",
+"use",
+"told",
+"wait"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"no",
+"much"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"itself",
+"herself",
+"himself",
+"ourselves",
+"myself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.27",
+"target": "I want to hear it myself.",
+"ru": "Я хочу услышать это сам.",
+"uk": "Я хочу сам це почути.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"She",
+"Me",
+"They"
+]
+},
+{
+"correct": "want",
+"distractors": [
+"wanted",
+"wants",
+"is",
+"have",
+"put"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"in",
+"from",
+"for",
+"by"
+]
+},
+{
+"correct": "hear",
+"distractors": [
+"heard",
+"walk",
+"delivered",
+"washed",
+"go"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"she",
+"he",
+"they're",
+"you",
+"we"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"himself",
+"themselves",
+"herself",
+"yourself",
+"ourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.28",
+"target": "The manager checked the brakes herself.",
+"ru": "Менеджер сама проверила тормоза.",
+"uk": "Менеджер сама перевірила гальма.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Each",
+"And",
+"But"
+]
+},
+{
+"correct": "manager",
+"distractors": [
+"driver",
+"neighbour",
+"slide",
+"salt",
+"landlord"
+]
+},
+{
+"correct": "checked",
+"distractors": [
+"check",
+"checking",
+"checks",
+"is",
+"parking"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"these",
+"and"
+]
+},
+{
+"correct": "brakes",
+"distractors": [
+"bags",
+"seats",
+"people",
+"tickets",
+"cards"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"himself",
+"yourself",
+"themselves",
+"ourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.29",
+"target": "The driver checked the address himself.",
+"ru": "Водитель сам проверил адрес.",
+"uk": "Водій сам перевірив адресу.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Some",
+"And",
+"But"
+]
+},
+{
+"correct": "driver",
+"distractors": [
+"manager",
+"landlord",
+"week",
+"english",
+"use"
+]
+},
+{
+"correct": "checked",
+"distractors": [
+"check",
+"checking",
+"is",
+"checks",
+"have"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"seats",
+"shops",
+"return",
+"screen",
+"today"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"myself",
+"ourselves",
+"themselves",
+"yourself",
+"itself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.30",
+"target": "We saw the damage ourselves.",
+"ru": "Мы сами увидели повреждения.",
+"uk": "Ми самі бачили пошкодження.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"Us",
+"I've",
+"He's"
+]
+},
+{
+"correct": "saw",
+"distractors": [
+"see",
+"sees",
+"read",
+"found",
+"has"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "damage",
+"distractors": [
+"damaged",
+"need",
+"said",
+"printed",
+"cooking"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"herself",
+"himself",
+"themselves",
+"itself",
+"myself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.31",
+"target": "I went by myself.",
+"ru": "Я поехал один.",
+"uk": "Я їхав сам.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"We'll",
+"We",
+"Me",
+"She"
+]
+},
+{
+"correct": "went",
+"distractors": [
+"go",
+"goes",
+"going",
+"cancelled",
+"is"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"for",
+"in",
+"from",
+"on"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"herself",
+"ourselves",
+"itself",
+"himself",
+"themselves"
+]
+}
+],
+"alternatives": [
+"I went on my own."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.32",
+"target": "She lives by herself.",
+"ru": "Она живет одна.",
+"uk": "Вона живе сама.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"It",
+"Us",
+"I'm"
+]
+},
+{
+"correct": "lives",
+"distractors": [
+"lived",
+"live",
+"living",
+"set",
+"sitting"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"in",
+"for",
+"from",
+"on"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"itself",
+"himself",
+"ourselves",
+"themselves"
+]
+}
+],
+"alternatives": [
+"She lives on her own."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.33",
+"target": "He travelled by himself.",
+"ru": "Он ехал один.",
+"uk": "Він подорожував сам.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"We'll",
+"She",
+"Us"
+]
+},
+{
+"correct": "travelled",
+"distractors": [
+"travel",
+"travelling",
+"is",
+"starts",
+"was"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"in",
+"over",
+"for",
+"on"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"yourself",
+"themselves",
+"herself",
+"myself",
+"ourselves"
+]
+}
+],
+"alternatives": [
+"He traveled by himself.",
+"He traveled on his own.",
+"He travelled on his own."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.34",
+"target": "We had the room to ourselves.",
+"ru": "Комната была в нашем распоряжении.",
+"uk": "Кімната була в нашому розпорядженні.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"They",
+"You",
+"She",
+"They've"
+]
+},
+{
+"correct": "had",
+"distractors": [
+"have",
+"has",
+"do",
+"does",
+"did"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"no",
+"and"
+]
+},
+{
+"correct": "room",
+"distractors": [
+"flat",
+"office",
+"morning",
+"appointment",
+"printer"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"for",
+"near",
+"into",
+"in"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"himself",
+"myself",
+"yourself",
+"herself",
+"themselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.35",
+"target": "They walked home by themselves.",
+"ru": "Они сами дошли до дома пешком.",
+"uk": "Вони самі дісталися додому пішки.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"It",
+"We",
+"I'll",
+"She'd"
+]
+},
+{
+"correct": "walked",
+"distractors": [
+"walk",
+"walking",
+"walks",
+"is",
+"take"
+]
+},
+{
+"correct": "home",
+"distractors": [
+"there",
+"nearby",
+"here",
+"inside",
+"outside"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"in",
+"for",
+"from",
+"on"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"myself",
+"herself",
+"ourselves",
+"yourself",
+"himself"
+]
+}
+],
+"alternatives": [
+"They walked home on their own."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.36",
+"target": "Can your son dress himself?",
+"ru": "Ваш сын может одеться сам?",
+"uk": "Ваш син може сам одягнутися?",
+"tiles": [
+{
+"correct": "Can",
+"distractors": [
+"Might",
+"Should",
+"Cannot",
+"Must",
+"Don't"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"his",
+"her",
+"our",
+"hers"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"room",
+"door",
+"cost",
+"check",
+"map"
+]
+},
+{
+"correct": "dress",
+"distractors": [
+"go",
+"take",
+"is",
+"asked",
+"refund"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"herself",
+"myself",
+"themselves",
+"ourselves",
+"yourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.37",
+"target": "Please make yourself at home.",
+"ru": "Пожалуйста, чувствуйте себя как дома.",
+"uk": "Будь ласка, почувайтеся як вдома.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Made",
+"Makes",
+"Use",
+"Tap",
+"Price"
+]
+},
+{
+"correct": "make",
+"distractors": [
+"made",
+"makes",
+"is",
+"use",
+"starts"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"herself",
+"myself",
+"himself",
+"themselves",
+"ourselves"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"under",
+"for"
+]
+},
+{
+"correct": "home",
+"distractors": [
+"there",
+"nearby",
+"alarm",
+"route",
+"card"
+]
+}
+],
+"alternatives": [
+"Make yourself at home, please."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.38",
+"target": "Help yourselves to some fruit.",
+"ru": "Угощайтесь фруктами.",
+"uk": "Пригощайтеся фруктами.",
+"tiles": [
+{
+"correct": "Help",
+"distractors": [
+"Helped",
+"Helps",
+"Is",
+"Set",
+"Fixing"
+]
+},
+{
+"correct": "yourselves",
+"distractors": [
+"herself",
+"ourselves",
+"itself",
+"themselves",
+"myself"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"under",
+"in",
+"for",
+"by"
+]
+},
+{
+"correct": "some",
+"distractors": [
+"many",
+"a",
+"enough",
+"this",
+"that"
+]
+},
+{
+"correct": "fruit",
+"distractors": [
+"room",
+"water",
+"work",
+"time",
+"need"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.39",
+"target": "Do not burn yourself on the pan.",
+"ru": "Не обожгитесь на сковороде.",
+"uk": "Не обпечіться об сковороду.",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Did",
+"Isn't",
+"Let",
+"Are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"now",
+"usually",
+"aloud",
+"still"
+]
+},
+{
+"correct": "burn",
+"distractors": [
+"burning",
+"is",
+"share",
+"reading",
+"was"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"himself",
+"herself",
+"myself",
+"themselves",
+"itself"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"of",
+"with",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"both",
+"no",
+"and"
+]
+},
+{
+"correct": "pan",
+"distractors": [
+"bus",
+"coat",
+"battery",
+"course",
+"wall"
+]
+}
+],
+"alternatives": [
+"Don't burn yourself on the pan."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.40",
+"target": "Did you hurt yourself when you fell?",
+"ru": "Ты поранился, когда упал?",
+"uk": "Ти поранився, коли впав?",
+"tiles": [
+{
+"correct": "Did",
+"distractors": [
+"Does",
+"Do",
+"Will",
+"Have",
+"Has"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"they",
+"we",
+"she",
+"we'll",
+"he"
+]
+},
+{
+"correct": "hurt",
+"distractors": [
+"use",
+"go",
+"know",
+"follow",
+"is"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"myself",
+"themselves",
+"herself",
+"ourselves",
+"himself"
+]
+},
+{
+"correct": "when",
+"distractors": [
+"if",
+"but",
+"while",
+"unless",
+"and"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"we'll",
+"me",
+"it",
+"she"
+]
+},
+{
+"correct": "fell",
+"distractors": [
+"fall",
+"has",
+"have",
+"collect",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.41",
+"target": "We looked at each other.",
+"ru": "Мы посмотрели друг на друга.",
+"uk": "Ми подивилися одне на одного.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"They",
+"Me",
+"We'll"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"look",
+"is",
+"use",
+"missed"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"with",
+"for"
+]
+},
+{
+"correct": "each",
+"distractors": [
+"phone",
+"lunch",
+"the",
+"key",
+"station"
+]
+},
+{
+"correct": "other",
+"distractors": [
+"train",
+"seat",
+"coat",
+"more",
+"ticket"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.42",
+"target": "We each looked at ourselves in the mirror.",
+"ru": "Каждый из нас посмотрел на себя в зеркало.",
+"uk": "Ми кожен подивився на себе в дзеркало.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"You",
+"She",
+"I'll"
+]
+},
+{
+"correct": "each",
+"distractors": [
+"kitchen",
+"key",
+"lunch",
+"phone",
+"a"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"look",
+"use",
+"is",
+"got"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"after",
+"on",
+"for",
+"of"
+]
+},
+{
+"correct": "ourselves",
+"distractors": [
+"myself",
+"himself",
+"herself",
+"yourself",
+"themselves"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"before",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "mirror",
+"distractors": [
+"lunch",
+"desk",
+"reminder",
+"luggage",
+"pocket"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.43",
+"target": "They helped each other carry the boxes.",
+"ru": "Они помогали друг другу нести коробки.",
+"uk": "Вони допомагали одне одному нести коробки.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"We",
+"You",
+"She",
+"It"
+]
+},
+{
+"correct": "helped",
+"distractors": [
+"help",
+"helping",
+"is",
+"do",
+"helps"
+]
+},
+{
+"correct": "each",
+"distractors": [
+"key",
+"train",
+"a",
+"phone",
+"that"
+]
+},
+{
+"correct": "other",
+"distractors": [
+"room",
+"train",
+"comfortable",
+"beautiful",
+"difficult"
+]
+},
+{
+"correct": "carry",
+"distractors": [
+"carrying",
+"carried",
+"do",
+"wearing",
+"listening"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "boxes",
+"distractors": [
+"keys",
+"shops",
+"windows",
+"flashes",
+"children"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.44",
+"target": "They taught themselves to cook.",
+"ru": "Они научились готовить сами.",
+"uk": "Вони самі навчилися готувати.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"We",
+"You",
+"He"
+]
+},
+{
+"correct": "taught",
+"distractors": [
+"teaches",
+"gets",
+"is",
+"leave",
+"bought"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"myself",
+"himself",
+"we",
+"you",
+"she"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"in",
+"at",
+"by",
+"across",
+"for"
+]
+},
+{
+"correct": "cook",
+"distractors": [
+"cooking",
+"have",
+"is",
+"found",
+"come"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.45",
+"target": "She cut the bread, not herself.",
+"ru": "Она порезала хлеб, а не себя.",
+"uk": "Вона порізала хліб, а не себе.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"He",
+"We",
+"We'll"
+]
+},
+{
+"correct": "cut",
+"distractors": [
+"use",
+"take",
+"have",
+"listening",
+"driving"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"some",
+"and"
+]
+},
+{
+"correct": "bread",
+"distractors": [
+"coffee",
+"rain",
+"reception",
+"milk",
+"week"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yet",
+"down",
+"away",
+"just"
+]
+},
+{
+"correct": "herself",
+"distractors": [
+"myself",
+"himself",
+"themselves",
+"yourself",
+"ourselves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.46",
+"target": "I taught my brother, but he tested himself.",
+"ru": "Я научил своего брата, но он проверял себя.",
+"uk": "Я навчив брата, але він випробував себе.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"You",
+"We",
+"He'll",
+"They"
+]
+},
+{
+"correct": "taught",
+"distractors": [
+"teaches",
+"is",
+"take",
+"cooking",
+"are"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"her",
+"our",
+"their",
+"mine"
+]
+},
+{
+"correct": "brother",
+"distractors": [
+"coat",
+"seat",
+"day",
+"smoke",
+"work"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"unless",
+"and",
+"because"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"we",
+"she's",
+"he'll",
+"she",
+"you"
+]
+},
+{
+"correct": "tested",
+"distractors": [
+"found",
+"checked",
+"rented",
+"copied",
+"delayed"
+]
+},
+{
+"correct": "himself",
+"distractors": [
+"myself",
+"ourselves",
+"yourself",
+"yourselves",
+"herself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.47",
+"target": "The door closed by itself.",
+"ru": "Дверь закрылась сама.",
+"uk": "Двері зачинилися самі.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"gate",
+"photo",
+"screen",
+"driver"
+]
+},
+{
+"correct": "closed",
+"distractors": [
+"close",
+"closes",
+"closer",
+"open",
+"ready"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"in",
+"on",
+"near",
+"for"
+]
+},
+{
+"correct": "itself",
+"distractors": [
+"myself",
+"herself",
+"themselves",
+"yourself",
+"himself"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.48",
+"target": "The children made lunch by themselves.",
+"ru": "Дети сами приготовили обед.",
+"uk": "Діти самі приготували обід.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"No",
+"And"
+]
+},
+{
+"correct": "children",
+"distractors": [
+"room",
+"water",
+"studies",
+"cups",
+"lights"
+]
+},
+{
+"correct": "made",
+"distractors": [
+"make",
+"makes",
+"use",
+"is",
+"left"
+]
+},
+{
+"correct": "lunch",
+"distractors": [
+"letter",
+"kitchen",
+"form",
+"bicycle",
+"goodbye"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"for",
+"in",
+"on",
+"of"
+]
+},
+{
+"correct": "themselves",
+"distractors": [
+"myself",
+"ourselves",
+"herself",
+"himself",
+"yourself"
+]
+}
+],
+"alternatives": [
+"The children made lunch on their own."
+]
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.49",
+"target": "I enjoyed myself at the concert.",
+"ru": "Мне понравилось на концерте.",
+"uk": "Мені сподобалося на концерті.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"She",
+"He'd",
+"We",
+"We're"
+]
+},
+{
+"correct": "enjoyed",
+"distractors": [
+"enjoys",
+"enjoy",
+"help",
+"leave",
+"need"
+]
+},
+{
+"correct": "myself",
+"distractors": [
+"himself",
+"herself",
+"yourself",
+"ourselves",
+"themselves"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"after",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "concert",
+"distractors": [
+"kitchen",
+"letter",
+"shift",
+"factory",
+"room"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "en-classic-r1:28.50",
+"target": "Take care of yourself on the way home.",
+"ru": "Береги себя по дороге домой.",
+"uk": "Бережи себе дорогою додому.",
+"tiles": [
+{
+"correct": "Take",
+"distractors": [
+"Takes",
+"Took",
+"Taking",
+"Is",
+"Have"
+]
+},
+{
+"correct": "care",
+"distractors": [
+"bus",
+"work",
+"time",
+"passport",
+"front"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"at",
+"by",
+"after",
+"in"
+]
+},
+{
+"correct": "yourself",
+"distractors": [
+"themselves",
+"herself",
+"himself",
+"ourselves",
+"myself"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"by",
+"for",
+"under",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "way",
+"distractors": [
+"work",
+"desk",
+"cafe",
+"printer",
+"bus"
+]
+},
+{
+"correct": "home",
+"distractors": [
+"there",
+"upstairs",
+"sister",
+"outside",
+"address"
+]
+}
+],
+"alternatives": []
+}
+]

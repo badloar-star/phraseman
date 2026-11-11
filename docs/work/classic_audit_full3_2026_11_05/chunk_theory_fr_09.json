@@ -1,0 +1,1046 @@
+[
+{
+"lesson": 19,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:19:01",
+"fr:19:02",
+"fr:19:03"
+],
+"textByLocale": {
+"en": "Some frequent verbs form the past tense with `être`. The phrase `est parti` reports a completed departure, and not just describes the person's location.",
+"ru": "Часть частых глаголов образует прошедшее с `être`. Словосочетание `est parti` сообщает о совершившемся отъезде, а не только описывает, где находится человек.",
+"uk": "Частина частих дієслів утворює минуле з `être`. Словосполучення `est parti` повідомляє про від'їзд, а не тільки описує, де знаходиться людина."
+}
+},
+{
+"exampleIds": [
+"fr:19:01",
+"fr:19:02",
+"fr:19:05"
+],
+"textByLocale": {
+"en": "With `être`, look at the subject of these simple verbs. For a man, there's usually no addition, for a woman, `-e`, for a group, `-s`, and for a group of women, `-es`.",
+"ru": "С `être` у этих простых глаголов смотри на подлежащее. Для мужчины обычно без добавления, для женщины `-e`, для группы `-s`, для группы женщин `-es`.",
+"uk": "З `être` у цих простих дієслів дивись на підмет. Для чоловіка зазвичай без додавання, для жінки `-e`, групи `-s`, для групи жінок `-es`."
+}
+},
+{
+"exampleIds": [
+"fr:19:11",
+"fr:19:12",
+"fr:19:14"
+],
+"textByLocale": {
+"en": "The final letters of `allé`, `allée`, `allés`, and `allées` are often indistinguishable by ear. They are visible in the construction set. Determine who went before choosing the last part.",
+"ru": "Конечные буквы у `allé`, `allée`, `allés`, `allées` на слух часто не различаются. В конструкторе их видно. Определи, кто пошёл, до выбора последней части.",
+"uk": "Кінцеві букви у `allé`, `allée`, `allés`, `allées` на слух часто не відрізняються. У конструкторі їх видно. Визнач, хто пішов до вибору останньої частини."
+}
+},
+{
+"exampleIds": [
+"fr:19:21",
+"fr:19:25",
+"fr:19:28"
+],
+"textByLocale": {
+"en": "Don't infer the choice of assistant solely from the idea of ​​movement: `marcher` is used with `avoir`. Learn the verb itself with a sample. For some verbs, the helper depends on what exactly is being done: `elle est montée`, but `elle a monté la valise`.",
+"ru": "Не выводи выбор помощника только из идеи движения: `marcher` употребляется с `avoir`. Учи сам глагол с образцом. У некоторых глаголов помощник зависит от того, что именно делают: `elle est montée`, но `elle a monté la valise`.",
+"uk": "Не виводь вибір помічника тільки з ідеї руху: `marcher` вживається з `avoir`. Вчи сам дієслово зі зразком. У деяких дієслів помічник залежить від того, що саме роблять: `elle est montée`, але `elle a monté la valise`."
+}
+},
+{
+"exampleIds": [
+"fr:19:31",
+"fr:19:32",
+"fr:19:35"
+],
+"textByLocale": {
+"en": "In negation, `ne … pas` surrounds `être`. And in a negative phrase, the participle does not lose agreement: for Paul it is `revenu`, for Leah it is `revenue`.",
+"ru": "При отрицании `ne … pas` окружает `être`. И в отрицательной фразе причастие не утрачивает согласование: у Поля `revenu`, у Леа `revenue`.",
+"uk": "При запереченні `ne … pas` оточує `être`. І в негативній фразі дієприкметник не втрачає узгодження: у Поля `revenu`, у Леа `revenue`."
+}
+},
+{
+"exampleIds": [
+"fr:19:36",
+"fr:19:37",
+"fr:19:38"
+],
+"textByLocale": {
+"en": "When inverted, `est-elle` and `sont-ils` appear between the question word and the participle. The translation may not have separate visible words for this helper, but they are required in full French.",
+"ru": "При инверсии `est-elle` и `sont-ils` появятся между вопросительным словом и причастием. В переводе может не быть отдельных видимых слов для этого помощника, но в полном французском они нужны.",
+"uk": "При інверсії `est-elle` та `sont-ils` з'являться між запитальним словом та дієприкметником. У перекладі може бути окремих видимих ​​слів цього помічника, але у повному французькому вони потрібні."
+}
+},
+{
+"exampleIds": [
+"fr:19:41",
+"fr:19:43",
+"fr:19:50"
+],
+"textByLocale": {
+"en": "When the subject is an object, the principle is the same. One clue is `la clé est tombée`, several things are a plural participle. Check the gender of the noun, not the animacy.",
+"ru": "Когда подлежащее — предмет, принцип тот же. Один ключ — `la clé est tombée`, несколько вещей — причастие во множественном числе. Проверяй род названия, а не одушевлённость.",
+"uk": "Коли підлягає предмет, принцип той самий. Один ключ - `la clé est tombée`, кілька речей - причастя у множині. Перевіряй рід назви, а не одухотвореність."
+}
+}
+],
+"drills": [
+{
+"bad": "étais",
+"chapter": 1,
+"id": "fr:19:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"étais",
+"est",
+"sois"
+],
+"slot": 1
+},
+{
+"bad": "étais",
+"chapter": 1,
+"id": "fr:19:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"étais",
+"sera",
+"est"
+],
+"slot": 1
+},
+{
+"bad": "étiez",
+"chapter": 1,
+"id": "fr:19:05:lab",
+"item": 5,
+"kind": "match",
+"near": 7,
+"options": [
+"sont",
+"sera",
+"étiez"
+],
+"slot": 1
+},
+{
+"bad": "étiez",
+"chapter": 2,
+"id": "fr:19:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"étais",
+"sont",
+"étiez"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 2,
+"id": "fr:19:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 25,
+"options": [
+"suis",
+"est",
+"soit"
+],
+"slot": 2
+},
+{
+"bad": "étaient",
+"chapter": 2,
+"id": "fr:19:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"seraient",
+"étaient",
+"est"
+],
+"slot": 1
+},
+{
+"bad": "était",
+"chapter": 3,
+"id": "fr:19:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"était",
+"étiez",
+"sont"
+],
+"slot": 2
+},
+{
+"bad": "serions",
+"chapter": 3,
+"id": "fr:19:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"serions",
+"sont",
+"sera"
+],
+"slot": 2
+},
+{
+"bad": "serions",
+"chapter": 3,
+"id": "fr:19:19:lab",
+"item": 19,
+"kind": "build",
+"near": 30,
+"options": [
+"est",
+"suis",
+"serions"
+],
+"slot": 2
+},
+{
+"bad": "étaient",
+"chapter": 4,
+"id": "fr:19:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 49,
+"options": [
+"étaient",
+"est",
+"suis"
+],
+"slot": 1
+},
+{
+"bad": "était",
+"chapter": 4,
+"id": "fr:19:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 10,
+"options": [
+"est",
+"étiez",
+"était"
+],
+"slot": 2
+},
+{
+"bad": "serions",
+"chapter": 4,
+"id": "fr:19:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 50,
+"options": [
+"serions",
+"est",
+"sont"
+],
+"slot": 2
+},
+{
+"bad": "soit",
+"chapter": 5,
+"id": "fr:19:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"soit",
+"serions",
+"sont"
+],
+"slot": 2
+},
+{
+"bad": "est-ce",
+"chapter": 5,
+"id": "fr:19:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"sont-ils",
+"est-ce",
+"n’est"
+],
+"slot": 1
+},
+{
+"bad": "sera",
+"chapter": 5,
+"id": "fr:19:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"sera",
+"soyez",
+"sont"
+],
+"slot": 3
+},
+{
+"bad": "es-tu",
+"chapter": 6,
+"id": "fr:19:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 2,
+"options": [
+"est-elle",
+"es-tu",
+"êtes-vous"
+],
+"slot": 1
+},
+{
+"bad": "Est-elle",
+"chapter": 6,
+"id": "fr:19:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 15,
+"options": [
+"Est-ce",
+"Est-il",
+"Est-elle"
+],
+"slot": 0
+},
+{
+"bad": "seraient",
+"chapter": 6,
+"id": "fr:19:42:lab",
+"item": 42,
+"kind": "match",
+"near": 9,
+"options": [
+"seraient",
+"est",
+"suis"
+],
+"slot": 2
+},
+{
+"bad": "serai",
+"chapter": 7,
+"id": "fr:19:45:lab",
+"item": 45,
+"kind": "build",
+"near": 4,
+"options": [
+"est",
+"étions",
+"serai"
+],
+"slot": 2
+},
+{
+"bad": "sommes",
+"chapter": 7,
+"id": "fr:19:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 21,
+"options": [
+"sommes",
+"est",
+"soyons"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"arriver",
+"Paul est arrivé / Léa est arrivée"
+],
+[
+"partir",
+"ils sont partis / elles sont parties"
+],
+[
+"venir",
+"il est venu / elle est venue"
+],
+[
+"aller",
+"elle est allée / ils sont allés"
+],
+[
+"retourner",
+"elle est retournée"
+]
+],
+"title": {
+"en": "\"He left\" and \"she left\": past tense with `être`",
+"ru": "«Уехал» и «уехала»: прошедшее с `être`",
+"uk": "«Поїхав» та «поїхала»: минуле з `être`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:19:01",
+"target": "Paul est arrivé.",
+"ru": "Поль приехал.",
+"uk": "Поль приїхав."
+},
+{
+"id": "fr:19:02",
+"target": "Léa est arrivée.",
+"ru": "Леа приехала.",
+"uk": "Леа приїхала."
+},
+{
+"id": "fr:19:03",
+"target": "Paul est parti.",
+"ru": "Поль уехал.",
+"uk": "Поль поїхав."
+},
+{
+"id": "fr:19:05",
+"target": "Ils sont arrivés.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули."
+},
+{
+"id": "fr:19:11",
+"target": "Paul est allé à la gare.",
+"ru": "Поль пошел на вокзал.",
+"uk": "Пол пішов на вокзал."
+},
+{
+"id": "fr:19:12",
+"target": "Léa est allée à la banque.",
+"ru": "Леа пошла в банк.",
+"uk": "Леа пішла до банку."
+},
+{
+"id": "fr:19:14",
+"target": "Mes sœurs sont allées au concert.",
+"ru": "Мои сестры пошли на концерт.",
+"uk": "Мої сестри пішли на концерт."
+},
+{
+"id": "fr:19:21",
+"target": "Léa est entrée dans la salle.",
+"ru": "Леа вошла в комнату.",
+"uk": "Леа зайшла до кімнати."
+},
+{
+"id": "fr:19:25",
+"target": "Ma sœur est montée au premier étage.",
+"ru": "Моя сестра поднялась на второй этаж.",
+"uk": "Моя сестра піднялася на другий поверх."
+},
+{
+"id": "fr:19:28",
+"target": "Les pièces de monnaie sont tombées de ma poche.",
+"ru": "Монеты выпали из моего кармана.",
+"uk": "Монети випали з моєї кишені."
+},
+{
+"id": "fr:19:31",
+"target": "Paul n’est pas encore revenu.",
+"ru": "Поль ещё не вернулся.",
+"uk": "Пол ще не повернувся."
+},
+{
+"id": "fr:19:32",
+"target": "Léa n’est pas encore revenue.",
+"ru": "Леа ещё не вернулась.",
+"uk": "Леа ще не повернулася."
+},
+{
+"id": "fr:19:35",
+"target": "Le bus n’est pas passé hier.",
+"ru": "Автобус вчера не приехал.",
+"uk": "Автобус не приїхав учора."
+},
+{
+"id": "fr:19:36",
+"target": "Quand est-elle arrivée ?",
+"ru": "Когда она приехала?",
+"uk": "Коли вона приїхала?"
+},
+{
+"id": "fr:19:37",
+"target": "Où sont-ils allés ?",
+"ru": "Куда они ушли?",
+"uk": "Куди вони пішли?"
+},
+{
+"id": "fr:19:38",
+"target": "À quelle heure est-il parti ?",
+"ru": "Во сколько он ушёл?",
+"uk": "О котрій годині він пішов?"
+},
+{
+"id": "fr:19:41",
+"target": "Ma grand-mère est née à Lille.",
+"ru": "Моя бабушка родилась в Лилле.",
+"uk": "Моя бабуся народилася в Ліллі."
+},
+{
+"id": "fr:19:43",
+"target": "Les deux amies sont venues à pied.",
+"ru": "Две подруги пришли пешком.",
+"uk": "Дві подруги прийшли пішки."
+},
+{
+"id": "fr:19:50",
+"target": "Les voyageuses sont montées dans le dernier bus.",
+"ru": "Путешественницы сели в последний автобус.",
+"uk": "Мандрівниці сіли до останнього автобуса."
+}
+]
+},
+{
+"lesson": 20,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:20:01",
+"fr:20:02",
+"fr:20:03"
+],
+"textByLocale": {
+"en": "Here we need a look from within the past: the environment, a repeated habit, a long-term state. We don't ask at what moment it ended.",
+"ru": "Здесь нужен взгляд изнутри прошлого: обстановка, повторявшаяся привычка, длительное состояние. Не спрашиваем, в какую секунду оно закончилось.",
+"uk": "Тут потрібен погляд зсередини минулого: обстановка, звичка, що повторювалася, тривалий стан. Не питаємо, яку секунду воно закінчилося."
+}
+},
+{
+"exampleIds": [
+"fr:20:04",
+"fr:20:05",
+"fr:20:06"
+],
+"textByLocale": {
+"en": "For most verbs, take the present form of `nous`, remove `-ons`, and add endings. `habiter` becomes `habit-`. `être` has a special stem: `ét-`.",
+"ru": "Для большинства глаголов бери форму `nous` настоящего, убирай `-ons` и добавляй окончания. У `habiter` получается `habit-`. Особая основа у `être`: `ét-`.",
+"uk": "Для більшості дієслів бери форму `nous` цього, прибирай `-ons` і додай закінчення. У `habiter` виходить `habit-`. Особлива основа `être`: `ét-`."
+}
+},
+{
+"exampleIds": [
+"fr:20:11",
+"fr:20:12",
+"fr:20:14"
+],
+"textByLocale": {
+"en": "`Chaque matin`, `le dimanche` help us see repetition in the past described. These are hints of meaning, not an automatic rule: the meaning of the entire sentence is more important than a single marker.",
+"ru": "`Chaque matin`, `le dimanche` помогают увидеть повторяемость в описанном прошлом. Это подсказки смысла, не автоматическое правило: значение всего предложения важнее одного маркера.",
+"uk": "`Chaque matin`, `le dimanche` допомагають побачити повторюваність в описаному минулому. Це підказки сенсу, не автоматичне правило: значення всієї пропозиції важливіше одного маркера."
+}
+},
+{
+"exampleIds": [
+"fr:20:21",
+"fr:20:22",
+"fr:20:23"
+],
+"textByLocale": {
+"en": "`il faisait` and `il pleuvait` are appropriate for weather and lighting. Don't turn them into \"it rained once\" if the narrator is describing the background against which something happened.",
+"ru": "Для погоды и освещения подходят `il faisait`, `il pleuvait`. Не превращай их в «однажды случился дождь», если рассказчик описывает фон, на котором что-то происходило.",
+"uk": "Для погоди та освітлення підходять `il faisait`, `il pleuvait`. Не перетворюй їх на «одного разу дощ», якщо оповідач описує фон, на якому щось відбувалося."
+}
+},
+{
+"exampleIds": [
+"fr:20:31",
+"fr:20:32",
+"fr:20:33"
+],
+"textByLocale": {
+"en": "The negation of the simple past in this form is built around a single personal verb. `Il n’y avait pas` is a previous absence; the assistant `a` is not required after `avait`.",
+"ru": "Отрицание простого прошедшего в этой форме строится вокруг одного личного глагола. `Il n’y avait pas` — прежнее отсутствие; помощника `a` после `avait` не требуется.",
+"uk": "Заперечення простого минулого у цій формі будується навколо одного особистого дієслова. `Il n’y avait pas` - колишня відсутність; помічника `a` після `avait` не потрібно."
+}
+},
+{
+"exampleIds": [
+"fr:20:36",
+"fr:20:37",
+"fr:20:40"
+],
+"textByLocale": {
+"en": "The question can also be about habit: how did you get home, where did you work before? For `vous`, expect `-iez`, even if you are politely asking one person.",
+"ru": "Вопрос тоже может быть о привычке: как добирались домой, где работали раньше? Для `vous` ожидай `-iez`, даже если вежливо спрашиваешь одного человека.",
+"uk": "Питання теж може бути про звичку: як добиралися додому, де працювали раніше? Для `vous` чекай на `-iez`, навіть якщо ввічливо запитуєш одну людину."
+}
+},
+{
+"exampleIds": [
+"fr:20:41",
+"fr:20:46",
+"fr:20:48"
+],
+"textByLocale": {
+"en": "Imagine two pictures: every Sunday, your aunt baked a pie; one day, she baked a pie. Here, we practice the first one. The verb \"bake\" itself does not select the tense.",
+"ru": "Представь две картинки: каждое воскресенье тётя пекла пирог; однажды она испекла пирог. Здесь тренируем первую. Глагол «печь» сам по себе не выбирает время.",
+"uk": "Уяви дві картинки: щонеділі тітка пекла пиріг; Якось вона спекла пиріг. Тут тренуємо першу. Дієслово «пекти» сам по собі не вибирає час."
+}
+}
+],
+"drills": [
+{
+"bad": "J’étais",
+"chapter": 1,
+"id": "fr:20:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"J’étais",
+"N’avait",
+"J’habitais"
+],
+"slot": 0
+},
+{
+"bad": "habite",
+"chapter": 1,
+"id": "fr:20:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 8,
+"options": [
+"habitais",
+"habite",
+"habitait"
+],
+"slot": 1
+},
+{
+"bad": "habitons",
+"chapter": 1,
+"id": "fr:20:05:lab",
+"item": 5,
+"kind": "match",
+"near": 39,
+"options": [
+"habitiez",
+"habiterais",
+"habitons"
+],
+"slot": 1
+},
+{
+"bad": "serai",
+"chapter": 2,
+"id": "fr:20:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"était",
+"serai",
+"sera"
+],
+"slot": 1
+},
+{
+"bad": "étions",
+"chapter": 2,
+"id": "fr:20:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"était",
+"étais",
+"étions"
+],
+"slot": 2
+},
+{
+"bad": "mangé",
+"chapter": 2,
+"id": "fr:20:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 10,
+"options": [
+"mangé",
+"mangions",
+"mangent"
+],
+"slot": 3
+},
+{
+"bad": "écouterez",
+"chapter": 3,
+"id": "fr:20:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 43,
+"options": [
+"écoutait",
+"écouterons",
+"écouterez"
+],
+"slot": 3
+},
+{
+"bad": "allait",
+"chapter": 3,
+"id": "fr:20:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"irait",
+"allais",
+"allait"
+],
+"slot": 1
+},
+{
+"bad": "habitait",
+"chapter": 3,
+"id": "fr:20:19:lab",
+"item": 19,
+"kind": "build",
+"near": 30,
+"options": [
+"lisait",
+"espèces",
+"habitait"
+],
+"slot": 2
+},
+{
+"bad": "froid",
+"chapter": 4,
+"id": "fr:20:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"habitais",
+"froid",
+"faisait"
+],
+"slot": 1
+},
+{
+"bad": "prenait",
+"chapter": 4,
+"id": "fr:20:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 10,
+"options": [
+"prenait",
+"soufflait",
+"mangions"
+],
+"slot": 2
+},
+{
+"bad": "suis",
+"chapter": 4,
+"id": "fr:20:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 29,
+"options": [
+"étaient",
+"était",
+"suis"
+],
+"slot": 2
+},
+{
+"bad": "aura",
+"chapter": 5,
+"id": "fr:20:29:lab",
+"item": 29,
+"kind": "match",
+"near": 45,
+"options": [
+"avaient",
+"aura",
+"avais"
+],
+"slot": 2
+},
+{
+"bad": "déjà",
+"chapter": 5,
+"id": "fr:20:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"déjà",
+"connaissais",
+"habitait"
+],
+"slot": 2
+},
+{
+"bad": "n’avait",
+"chapter": 5,
+"id": "fr:20:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 9,
+"options": [
+"n’avait",
+"n’y",
+"n’étions"
+],
+"slot": 1
+},
+{
+"bad": "magasins",
+"chapter": 6,
+"id": "fr:20:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 2,
+"options": [
+"magasins",
+"nuit",
+"levais"
+],
+"slot": 2
+},
+{
+"bad": "serai",
+"chapter": 6,
+"id": "fr:20:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 7,
+"options": [
+"serai",
+"étiez",
+"sera"
+],
+"slot": 1
+},
+{
+"bad": "levais",
+"chapter": 6,
+"id": "fr:20:42:lab",
+"item": 42,
+"kind": "match",
+"near": 12,
+"options": [
+"nuit",
+"levais",
+"préparait"
+],
+"slot": 2
+},
+{
+"bad": "avions",
+"chapter": 7,
+"id": "fr:20:45:lab",
+"item": 45,
+"kind": "build",
+"near": 29,
+"options": [
+"avais",
+"avions",
+"avaient"
+],
+"slot": 2
+},
+{
+"bad": "j’habitais",
+"chapter": 7,
+"id": "fr:20:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 11,
+"options": [
+"l’école",
+"j’étais",
+"j’habitais"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"habiter",
+"j’habitais / tu habitais / elle habitait"
+],
+[
+"nous / vous / ils",
+"habitions / habitiez / habitaient"
+],
+[
+"être",
+"j’étais / nous étions"
+],
+[
+"avoir",
+"j’avais / ils avaient"
+],
+[
+"il y a",
+"il y avait"
+]
+],
+"title": {
+"en": "As before: `imparfait`",
+"ru": "Как было раньше: `imparfait`",
+"uk": "Як було раніше: `imparfait`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:20:01",
+"target": "J’habitais ici.",
+"ru": "Я раньше здесь жил.",
+"uk": "Я раніше тут жив."
+},
+{
+"id": "fr:20:02",
+"target": "Tu habitais ici.",
+"ru": "Ты раньше здесь жил.",
+"uk": "Ти тут колись жив."
+},
+{
+"id": "fr:20:03",
+"target": "Elle habitait à Lyon.",
+"ru": "Она жила в Лионе.",
+"uk": "Вона жила в Ліоні."
+},
+{
+"id": "fr:20:04",
+"target": "Nous habitions à la campagne.",
+"ru": "Мы жили в сельской местности.",
+"uk": "Ми жили в сільській місцевості."
+},
+{
+"id": "fr:20:05",
+"target": "Vous habitiez en ville.",
+"ru": "Вы жили в городе.",
+"uk": "Ви жили у місті."
+},
+{
+"id": "fr:20:06",
+"target": "Ils habitaient près du port.",
+"ru": "Они жили недалеко от порта.",
+"uk": "Вони жили біля порту."
+},
+{
+"id": "fr:20:11",
+"target": "Avant, je travaillais le samedi.",
+"ru": "Я раньше работал по субботам.",
+"uk": "Раніше я працював по суботах."
+},
+{
+"id": "fr:20:12",
+"target": "Le dimanche, nous mangions ensemble.",
+"ru": "По воскресеньям мы ели вместе.",
+"uk": "По неділях ми їли разом."
+},
+{
+"id": "fr:20:14",
+"target": "Le soir, elle écoutait la radio.",
+"ru": "Вечером она слушала радио.",
+"uk": "Увечері вона слухала радіо."
+},
+{
+"id": "fr:20:21",
+"target": "Il faisait chaud.",
+"ru": "Было жарко.",
+"uk": "Було спекотно."
+},
+{
+"id": "fr:20:22",
+"target": "Il faisait déjà nuit.",
+"ru": "Уже стемнело.",
+"uk": "Вже стемніло."
+},
+{
+"id": "fr:20:23",
+"target": "Il pleuvait sans arrêt.",
+"ru": "Непрерывно шел дождь.",
+"uk": "Постійно йшов дощ."
+},
+{
+"id": "fr:20:31",
+"target": "Je ne connaissais pas le quartier.",
+"ru": "Я не знал этот район.",
+"uk": "Я не знав району."
+},
+{
+"id": "fr:20:32",
+"target": "Il n’y avait pas d’ascenseur.",
+"ru": "Лифта не было.",
+"uk": "Ліфта не було."
+},
+{
+"id": "fr:20:33",
+"target": "Elle n’avait pas de vélo.",
+"ru": "У неё не было велосипеда.",
+"uk": "У неї не було велосипеда."
+},
+{
+"id": "fr:20:36",
+"target": "Tu te levais plus tôt ?",
+"ru": "Ты вставал раньше?",
+"uk": "Ти вставав раніше?"
+},
+{
+"id": "fr:20:37",
+"target": "Où travaillait ta mère ?",
+"ru": "Где работала твоя мама?",
+"uk": "Де працювала твоя мама?"
+},
+{
+"id": "fr:20:40",
+"target": "Comment rentraient les enfants ?",
+"ru": "Как дети добирались домой?",
+"uk": "Як діти добиралися додому?"
+},
+{
+"id": "fr:20:41",
+"target": "À huit ans, je gardais mes pièces dans une boîte.",
+"ru": "В восемь лет я хранил монеты в коробке.",
+"uk": "У вісім років я зберігав свої монети в коробці."
+},
+{
+"id": "fr:20:46",
+"target": "Je me promenais le long du canal.",
+"ru": "Я гулял вдоль канала.",
+"uk": "Я гуляв уздовж каналу."
+},
+{
+"id": "fr:20:48",
+"target": "Quand j’étais petit, je dessinais des bateaux.",
+"ru": "Когда я был маленьким, я рисовал лодки.",
+"uk": "Коли я був маленьким, я малював човни."
+}
+]
+}
+]

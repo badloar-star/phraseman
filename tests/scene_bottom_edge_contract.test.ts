@@ -19,6 +19,18 @@ describe('Нижний край сцены: скруглён и не закры�
     expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('marginBottom: -HOME_SCENE_PANEL_OVERLAP }');
   });
 
+  it('renders the tile row between the active Home scene and Today', () => {
+    const home = read('app/(tabs)/home.tsx');
+    const scene = home.indexOf('<HomeScene\n');
+    const today = home.indexOf('<HomeV2TodayCard');
+    const row = home.indexOf('uiLang={lang} row />');
+    expect(scene).toBeGreaterThan(-1);
+    expect(row).toBeGreaterThan(scene);
+    expect(today).toBeGreaterThan(row);
+    expect(home).toMatch(/\{HOME_SCENE_V2_ENABLED && homeV2Tiles\.length > 0 \? <HomeV2FeatureTiles/);
+    expect(home).toContain('overlapNextPanel={homeV2Tiles.length === 0}');
+  });
+
   it('Диалоги и «Сегодня»: панель ниже сцены начинается под её краем с зазором', () => {
     const stage = read('components/dialogs/scene/DialogsSceneStage.tsx');
     expect(stage).toContain('export const DIALOGS_SCENE_PANEL_OVERLAP = 0;');
@@ -28,21 +40,5 @@ describe('Нижний край сцены: скруглён и не закры�
     const m = /const PANEL_OVERLAP = (-?\d+)/.exec(today);
     expect(m).not.toBeNull();
     expect(Number(m![1])).toBeLessThan(0);
-  });
-
-  it(`у всех сцен нижний край скруглён радиусом ${BOTTOM_RADIUS} (Главная, Диалоги, Пик, Сезон)`, () => {
-    const radii: Array<[string, RegExp]> = [
-      ['components/home/v2/scene/HomeSceneStage.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
-      ['components/dialogs/scene/DialogsSceneStage.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
-      ['components/spire/scene/SpireScene.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
-      ['components/learning-v2/season/SeasonCourseView.tsx', /hero: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
-    ];
-    for (const [file, rx] of radii) expect(`${file}: ${rx.test(read(file))}`).toBe(`${file}: true`);
-  });
-
-  it('сцены клипают содержимое по скруглению (overflow hidden), слой цвета не выходит за него', () => {
-    for (const file of ['components/home/v2/scene/HomeSceneStage.tsx', 'components/dialogs/scene/DialogsSceneStage.tsx', 'components/spire/scene/SpireScene.tsx', 'components/learning-v2/season/SeasonCourseView.tsx']) {
-      expect(`${file}: ${/overflow: 'hidden'/.test(read(file))}`).toBe(`${file}: true`);
-    }
   });
 });

@@ -1,0 +1,5352 @@
+[
+{
+"lesson": 3,
+"id": "de:03:01",
+"target": "Ich wohne hier.",
+"ru": "Я здесь живу.",
+"uk": "Я тут живу.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Du",
+"Wir",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "wohne",
+"distractors": [
+"wohnen",
+"wohnt",
+"wohnst",
+"kaufen",
+"machen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"heute",
+"morgen",
+"draußen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:02",
+"target": "Du wohnst hier.",
+"ru": "Ты здесь живёшь.",
+"uk": "Ти тут живеш.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Es",
+"Ihr",
+"Ich",
+"Wir"
+]
+},
+{
+"correct": "wohnst",
+"distractors": [
+"wohnen",
+"wohne",
+"wohnt",
+"kaufen",
+"machen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"dort",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:03",
+"target": "Anna wohnt hier.",
+"ru": "Анна здесь живёт.",
+"uk": "Анна тут мешкає.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "wohnt",
+"distractors": [
+"lerne",
+"lernen",
+"lernst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"drinnen",
+"heute",
+"morgen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:04",
+"target": "Wir wohnen hier.",
+"ru": "Мы здесь живём.",
+"uk": "Ми тут живемо.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Ich",
+"Sie",
+"Du",
+"Es"
+]
+},
+{
+"correct": "wohnen",
+"distractors": [
+"wohnst",
+"wohnt",
+"wohne",
+"kaufen",
+"machen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"drinnen",
+"draußen",
+"dort",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:05",
+"target": "Ihr wohnt hier.",
+"ru": "Вы здесь живёте.",
+"uk": "Ви тут мешкаєте.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Ich",
+"Es",
+"Wir",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "wohnt",
+"distractors": [
+"lerne",
+"lernen",
+"lernst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"drinnen",
+"heute",
+"morgen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:06",
+"target": "Ich lerne Deutsch.",
+"ru": "Я учу немецкий.",
+"uk": "Я вчу німецьку.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Es",
+"Du",
+"Ihr",
+"Wir"
+]
+},
+{
+"correct": "lerne",
+"distractors": [
+"lernt",
+"lernst",
+"lernen",
+"kochen",
+"kaufen"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Kaffee",
+"Rechnung",
+"Schlüssel",
+"Pause",
+"Café"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:07",
+"target": "Du lernst Deutsch.",
+"ru": "Ты учишь немецкий.",
+"uk": "Ти вчиш німецьку.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ich",
+"Ihr",
+"Sie",
+"Es",
+"Wir"
+]
+},
+{
+"correct": "lernst",
+"distractors": [
+"lernt",
+"lernen",
+"lerne",
+"kochen",
+"kaufen"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Eingang",
+"Anna",
+"Musik",
+"Tickets",
+"Essen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:08",
+"target": "Tom lernt Deutsch.",
+"ru": "Том учит немецкий.",
+"uk": "Том вчить німецьку.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "lernt",
+"distractors": [
+"wohne",
+"wohnen",
+"wohnst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Rechnung",
+"Ticket",
+"Handy",
+"Anna",
+"Brot"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:09",
+"target": "Wir lernen Deutsch.",
+"ru": "Мы учим немецкий.",
+"uk": "Ми вчимо німецьку.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ich",
+"Es",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "lernen",
+"distractors": [
+"lerne",
+"lernt",
+"lernst",
+"kochen",
+"kaufen"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Milch",
+"Handy",
+"Tee",
+"Radio",
+"Musik"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:10",
+"target": "Die Kinder lernen Deutsch.",
+"ru": "Дети учат немецкий.",
+"uk": "Діти вчать німецьку.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Brot",
+"Hotel",
+"Milch",
+"Gemüse",
+"Lied"
+]
+},
+{
+"correct": "lernen",
+"distractors": [
+"kochen",
+"kaufen",
+"zusammen",
+"spielen",
+"arbeiten"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Kaffee",
+"Schlüssel",
+"Handy",
+"Rechnung",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:11",
+"target": "Ich mache Kaffee.",
+"ru": "Я готовлю кофе.",
+"uk": "Я готую каву.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Ihr",
+"Es",
+"Du",
+"Wir"
+]
+},
+{
+"correct": "mache",
+"distractors": [
+"machen",
+"macht",
+"machst",
+"warten",
+"kaufen"
+]
+},
+{
+"correct": "Kaffee",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Anna",
+"Kinder",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:12",
+"target": "Du machst Tee.",
+"ru": "Ты готовишь чай.",
+"uk": "Ти готуєш чай.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Ihr",
+"Wir",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "machst",
+"distractors": [
+"macht",
+"mache",
+"machen",
+"warten",
+"kaufen"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Hause",
+"Milch",
+"Deutsch",
+"Rechnung",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:13",
+"target": "Anna macht Frühstück.",
+"ru": "Анна готовит завтрак.",
+"uk": "Анна готує сніданок.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "macht",
+"distractors": [
+"auch",
+"suche",
+"suchen",
+"suchst",
+"beginnt"
+]
+},
+{
+"correct": "Frühstück",
+"distractors": [
+"Lied",
+"Hause",
+"Schlüssel",
+"Rechnung",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:14",
+"target": "Wir machen eine Pause.",
+"ru": "Мы делаем перерыв.",
+"uk": "Ми робимо перерву.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ihr",
+"Es",
+"Ich",
+"Sie"
+]
+},
+{
+"correct": "machen",
+"distractors": [
+"machst",
+"mache",
+"macht",
+"warten",
+"kaufen"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"ein",
+"einen",
+"und",
+"mit",
+"für"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:15",
+"target": "Ihr macht das Essen.",
+"ru": "Вы готовите еду.",
+"uk": "Ви готуєте їжу.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Ich",
+"Wir",
+"Offen",
+"Bahn"
+]
+},
+{
+"correct": "macht",
+"distractors": [
+"auch",
+"suche",
+"suchen",
+"suchst",
+"beginnt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"dem",
+"den",
+"der",
+"und"
+]
+},
+{
+"correct": "Essen",
+"distractors": [
+"Tee",
+"Gäste",
+"Frühstück",
+"Anna",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:16",
+"target": "Ich kaufe Brot.",
+"ru": "Я покупаю хлеб.",
+"uk": "Я купую хліб.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Du",
+"Es",
+"Ihr",
+"Sie"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kaufst",
+"kauft",
+"kaufen",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "Brot",
+"distractors": [
+"Kinder",
+"Rechnung",
+"Samstag",
+"Durst",
+"Tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:17",
+"target": "Du kaufst Milch.",
+"ru": "Ты покупаешь молоко.",
+"uk": "Ти купуєш молоко.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Sie",
+"Ihr",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "kaufst",
+"distractors": [
+"kaufe",
+"kaufen",
+"kauft",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "Milch",
+"distractors": [
+"Kinder",
+"Termin",
+"Eingang",
+"Tom",
+"Rechnung"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:18",
+"target": "Tom kauft Kaffee.",
+"ru": "Том покупает кофе.",
+"uk": "Том купує каву.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "kauft",
+"distractors": [
+"warten",
+"spät",
+"beginnt",
+"hole",
+"holen"
+]
+},
+{
+"correct": "Kaffee",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Anna",
+"Kinder",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:19",
+"target": "Wir kaufen Gemüse.",
+"ru": "Мы покупаем овощи.",
+"uk": "Ми купуємо овочі.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Es",
+"Ihr",
+"Sie",
+"Ich"
+]
+},
+{
+"correct": "kaufen",
+"distractors": [
+"kauft",
+"kaufst",
+"kaufe",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "Gemüse",
+"distractors": [
+"Musik",
+"Suppe",
+"Essen",
+"Frühstück",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:20",
+"target": "Die Gäste kaufen Tickets.",
+"ru": "Гости покупают билеты.",
+"uk": "Гості купують квитки.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Der",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Frühstück",
+"Gemüse",
+"Rechnung",
+"Kasse",
+"Lied"
+]
+},
+{
+"correct": "kaufen",
+"distractors": [
+"kochen",
+"offen",
+"bezahlen",
+"lernen",
+"draußen"
+]
+},
+{
+"correct": "Tickets",
+"distractors": [
+"Kasse",
+"Tom",
+"Eingang",
+"Hause",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:21",
+"target": "Ich suche den Schlüssel.",
+"ru": "Я ищу ключ.",
+"uk": "Я шукаю ключ.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Wir",
+"Es",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "suche",
+"distractors": [
+"suchen",
+"suchst",
+"sucht",
+"brauchen",
+"einen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"die",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:22",
+"target": "Du suchst die Tasche.",
+"ru": "Ты ищешь сумку.",
+"uk": "Ти шукаєш сумку.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Ihr",
+"Wir",
+"Ich",
+"Es"
+]
+},
+{
+"correct": "suchst",
+"distractors": [
+"sucht",
+"suche",
+"suchen",
+"brauchen",
+"einen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:23",
+"target": "Anna sucht das Handy.",
+"ru": "Анна ищет телефон.",
+"uk": "Анна шукає телефон.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "sucht",
+"distractors": [
+"auch",
+"machen",
+"mache",
+"machst",
+"beginnt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"den",
+"dem",
+"der",
+"und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:24",
+"target": "Wir suchen den Eingang.",
+"ru": "Мы ищем вход.",
+"uk": "Ми шукаємо вхід.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ich",
+"Es",
+"Du",
+"Ihr",
+"Sie"
+]
+},
+{
+"correct": "suchen",
+"distractors": [
+"suchst",
+"sucht",
+"suche",
+"brauchen",
+"einen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Tickets",
+"Musik",
+"Ticket",
+"Tee",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Wir suchen nach dem Eingang."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:25",
+"target": "Ihr sucht die Kasse.",
+"ru": "Вы ищете кассу.",
+"uk": "Ви шукаєте касу.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Ich",
+"Wir",
+"Es",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "sucht",
+"distractors": [
+"auch",
+"machen",
+"mache",
+"machst",
+"beginnt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"dem",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Kasse",
+"distractors": [
+"Schlüssel",
+"Gäste",
+"Ticket",
+"Radio",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Ihr sucht nach der Kasse."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:26",
+"target": "Ich höre Musik.",
+"ru": "Я слушаю музыку.",
+"uk": "Я слухаю музику.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Ihr",
+"Es",
+"Du",
+"Sie"
+]
+},
+{
+"correct": "höre",
+"distractors": [
+"warten",
+"hört",
+"wartest",
+"koche",
+"bezahlen"
+]
+},
+{
+"correct": "Musik",
+"distractors": [
+"Deutsch",
+"Kasse",
+"Radio",
+"Tasche",
+"Tickets"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:27",
+"target": "Du hörst Radio.",
+"ru": "Ты слушаешь радио.",
+"uk": "Ти слухаєш радіо.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Es",
+"Ihr",
+"Sie",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "hörst",
+"distractors": [
+"hören",
+"wartest",
+"bezahlt",
+"höre",
+"kochst"
+]
+},
+{
+"correct": "Radio",
+"distractors": [
+"Kinder",
+"Schlüssel",
+"Kaffee",
+"Hause",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:28",
+"target": "Tom hört die Kinder.",
+"ru": "Том слышит детей.",
+"uk": "Том чує дітей.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Gäste",
+"Schlüssel",
+"Zug"
+]
+},
+{
+"correct": "hört",
+"distractors": [
+"spielen",
+"koche",
+"wartet",
+"wartest",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"dem",
+"der",
+"das",
+"und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Ticket",
+"Rechnung",
+"Milch",
+"Deutsch",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:29",
+"target": "Wir hören den Bus.",
+"ru": "Мы слышим автобус.",
+"uk": "Ми чуємо автобус.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Es",
+"Sie",
+"Du",
+"Ich"
+]
+},
+{
+"correct": "hören",
+"distractors": [
+"draußen",
+"wohnen",
+"arbeiten",
+"kaufen",
+"machen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:30",
+"target": "Die Kinder hören ein Lied.",
+"ru": "Дети слушают песню.",
+"uk": "Діти слухають пісню.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Der",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Frühstück",
+"Brot",
+"Tickets",
+"Eingang",
+"Tee"
+]
+},
+{
+"correct": "hören",
+"distractors": [
+"machen",
+"drinnen",
+"spielen",
+"suchen",
+"arbeiten"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Lied",
+"distractors": [
+"Tasche",
+"Gemüse",
+"Hotel",
+"Kasse",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:31",
+"target": "Ich arbeite heute.",
+"ru": "Я сегодня работаю.",
+"uk": "Я сьогодні працюю.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Wir",
+"Sie",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "arbeite",
+"distractors": [
+"arbeitet",
+"arbeitest",
+"arbeiten",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "heute",
+"distractors": [
+"früher",
+"morgen",
+"dort",
+"hier",
+"bald"
+]
+}
+],
+"alternatives": [
+"Heute arbeite ich."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:32",
+"target": "Du arbeitest hier.",
+"ru": "Ты здесь работаешь.",
+"uk": "Ти тут працюєш.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Ihr",
+"Ich",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "arbeitest",
+"distractors": [
+"arbeiten",
+"arbeitet",
+"arbeite",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"dort",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:33",
+"target": "Anna arbeitet im Hotel.",
+"ru": "Анна работает в гостинице.",
+"uk": "Анна працює у готелі.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"am",
+"zum",
+"das",
+"den",
+"der"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Bus",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:34",
+"target": "Wir arbeiten zusammen.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Sie",
+"Es",
+"Du",
+"Ich"
+]
+},
+{
+"correct": "arbeiten",
+"distractors": [
+"arbeitest",
+"arbeite",
+"arbeitet",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "zusammen",
+"distractors": [
+"suchen",
+"bezahlen",
+"spielen",
+"warten",
+"hören"
+]
+}
+],
+"alternatives": [
+"Zusammen arbeiten wir."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:35",
+"target": "Ihr arbeitet draußen.",
+"ru": "Вы работаете на улице.",
+"uk": "Ви працюєте на вулиці.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Wir",
+"Ich",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:36",
+"target": "Ich warte hier.",
+"ru": "Я жду здесь.",
+"uk": "Я чекаю тут.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Ihr",
+"Du",
+"Wir",
+"Es"
+]
+},
+{
+"correct": "warte",
+"distractors": [
+"bezahle",
+"hörst",
+"spielen",
+"zusammen",
+"hören"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"drinnen",
+"dort",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:37",
+"target": "Du wartest draußen.",
+"ru": "Ты ждёшь на улице.",
+"uk": "Ти чекаєш на вулиці.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Es",
+"Sie",
+"Ich",
+"Ihr",
+"Wir"
+]
+},
+{
+"correct": "wartest",
+"distractors": [
+"bezahlen",
+"bezahlt",
+"spielen",
+"bezahlst",
+"hört"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"spielen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:38",
+"target": "Tom wartet am Eingang.",
+"ru": "Том ждёт у входа.",
+"uk": "Том чекає на вході.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "wartet",
+"distractors": [
+"kochst",
+"bezahlt",
+"kochen",
+"spielen",
+"schließt"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"zum",
+"im",
+"komme",
+"kommen",
+"kommst"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Musik",
+"Suppe",
+"Kasse",
+"Rechnung",
+"Essen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:39",
+"target": "Wir warten im Café.",
+"ru": "Мы ждём в кафе.",
+"uk": "Ми чекаємо в кафе.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Ich",
+"Du",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "warten",
+"distractors": [
+"drinnen",
+"wohnen",
+"kochen",
+"kaufen",
+"machen"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"zum",
+"am",
+"das",
+"den",
+"der"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Gemüse",
+"Musik",
+"Kasse",
+"Tee",
+"Essen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:40",
+"target": "Die Gäste warten drinnen.",
+"ru": "Гости ждут внутри.",
+"uk": "Гості чекають усередині.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Der",
+"Den",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Radio",
+"Anna",
+"Café",
+"Hause",
+"Lied"
+]
+},
+{
+"correct": "warten",
+"distractors": [
+"kaufen",
+"wohnen",
+"spielen",
+"bezahlen",
+"hören"
+]
+},
+{
+"correct": "drinnen",
+"distractors": [
+"draußen",
+"offen",
+"spielen",
+"machen",
+"kochen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:41",
+"target": "Ich bezahle die Rechnung.",
+"ru": "Я оплачиваю счёт.",
+"uk": "Я сплачую рахунок.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Es",
+"Sie",
+"Du",
+"Wir"
+]
+},
+{
+"correct": "bezahle",
+"distractors": [
+"bezahlt",
+"hören",
+"hörst",
+"wartet",
+"spielen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Rechnung",
+"distractors": [
+"Rechnungen",
+"Schlüssel",
+"Tom",
+"Kinder",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:42",
+"target": "Du bezahlst das Ticket.",
+"ru": "Ты оплачиваешь билет.",
+"uk": "Ти сплачуєш квиток.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ihr",
+"Ich",
+"Es",
+"Wir",
+"Sie"
+]
+},
+{
+"correct": "bezahlst",
+"distractors": [
+"warte",
+"kocht",
+"spielen",
+"kochen",
+"koche"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Ticket",
+"distractors": [
+"Tickets",
+"Gäste",
+"Kinder",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:43",
+"target": "Anna bezahlt das Frühstück.",
+"ru": "Анна оплачивает завтрак.",
+"uk": "Анна оплачує сніданок.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "bezahlt",
+"distractors": [
+"warte",
+"zusammen",
+"kochen",
+"höre",
+"draußen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Frühstück",
+"distractors": [
+"Pause",
+"Hotel",
+"Gäste",
+"Ticket",
+"Gemüse"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:44",
+"target": "Wir bezahlen zusammen.",
+"ru": "Мы платим вместе.",
+"uk": "Ми платимо разом.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Sie",
+"Ich",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "bezahlen",
+"distractors": [
+"lernen",
+"wohnen",
+"machen",
+"kaufen",
+"suchen"
+]
+},
+{
+"correct": "zusammen",
+"distractors": [
+"lernen",
+"kaufen",
+"wohnen",
+"suchen",
+"kaufst"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:45",
+"target": "Ich koche heute.",
+"ru": "Я сегодня готовлю.",
+"uk": "Я сьогодні готую.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Sie",
+"Du",
+"Wir",
+"Ihr"
+]
+},
+{
+"correct": "koche",
+"distractors": [
+"kochen",
+"warten",
+"bezahlen",
+"kocht",
+"bezahlst"
+]
+},
+{
+"correct": "heute",
+"distractors": [
+"bald",
+"früher",
+"morgen",
+"dort",
+"hier"
+]
+}
+],
+"alternatives": [
+"Heute koche ich."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:46",
+"target": "Du kochst die Suppe.",
+"ru": "Ты варишь суп.",
+"uk": "Ти вариш суп.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Es",
+"Ich",
+"Wir",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "kochst",
+"distractors": [
+"bezahle",
+"warte",
+"koche",
+"bezahlt",
+"kocht"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"den",
+"dem",
+"der",
+"und"
+]
+},
+{
+"correct": "Suppe",
+"distractors": [
+"Essen",
+"Hause",
+"Wasser",
+"Tee",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:47",
+"target": "Tom kocht das Gemüse.",
+"ru": "Том готовит овощи.",
+"uk": "Том готує овочі.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Hause",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "kocht",
+"distractors": [
+"bezahle",
+"wartet",
+"hörst",
+"spielen",
+"brauchen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Gemüse",
+"distractors": [
+"Ticket",
+"Kinder",
+"Lied",
+"Tee",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:48",
+"target": "Wir kochen zu Hause.",
+"ru": "Мы готовим дома.",
+"uk": "Ми готуємо вдома.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Du",
+"Ich",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"lernen",
+"arbeiten",
+"drinnen",
+"spielen",
+"warten"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"von",
+"mit",
+"aus",
+"bei",
+"seit"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Deutsch",
+"Pause",
+"Frühstück",
+"Eingang",
+"Anna"
+]
+}
+],
+"alternatives": [
+"Wir kochen zuhause."
+]
+},
+{
+"lesson": 3,
+"id": "de:03:49",
+"target": "Ihr lernt zusammen.",
+"ru": "Вы учитесь вместе.",
+"uk": "Ви навчаєтесь разом.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Ich",
+"Wir",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "lernt",
+"distractors": [
+"wohne",
+"wohnen",
+"wohnst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "zusammen",
+"distractors": [
+"lernen",
+"warten",
+"kaufen",
+"wohnen",
+"machen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:50",
+"target": "Die Kinder spielen draußen.",
+"ru": "Дети играют на улице.",
+"uk": "Діти грають на вулиці.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Den",
+"Dem",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Eingang",
+"Handy",
+"Anna",
+"Milch",
+"Kaffee"
+]
+},
+{
+"correct": "spielen",
+"distractors": [
+"machen",
+"warten",
+"wohnen",
+"drinnen",
+"bezahlen"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"hören"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Bald",
+"Früher",
+"Morgen",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "arbeite",
+"distractors": [
+"arbeitest",
+"arbeitet",
+"arbeiten",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"wir",
+"sie",
+"es",
+"ihr"
+]
+}
+],
+"alternatives": [
+"Ich arbeite heute."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:02",
+"target": "Morgen arbeite ich.",
+"ru": "Завтра я работаю.",
+"uk": "Завтра я працюю.",
+"tiles": [
+{
+"correct": "Morgen",
+"distractors": [
+"Bald",
+"Heute",
+"Früher",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "arbeite",
+"distractors": [
+"arbeiten",
+"arbeitet",
+"arbeitest",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"ihr",
+"wir",
+"es",
+"du"
+]
+}
+],
+"alternatives": [
+"Ich arbeite morgen."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:03",
+"target": "Heute lernt Anna.",
+"ru": "Сегодня Анна учится.",
+"uk": "Сьогодні Ганна навчається.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Bald",
+"Morgen",
+"Früher",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "lernt",
+"distractors": [
+"wohne",
+"wohnen",
+"wohnst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Anna lernt heute."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:04",
+"target": "Morgen lernt Anna.",
+"ru": "Завтра Анна учится.",
+"uk": "Завтра Ганна навчається.",
+"tiles": [
+{
+"correct": "Morgen",
+"distractors": [
+"Heute",
+"Früher",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "lernt",
+"distractors": [
+"wohne",
+"wohnen",
+"wohnst",
+"schließt",
+"heißen"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Anna lernt morgen."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:05",
+"target": "Am Montag arbeite ich.",
+"ru": "В понедельник я работаю.",
+"uk": "У понеділок я працюю.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Montag",
+"distractors": [
+"Abend",
+"Milch",
+"Rechnung",
+"Tom",
+"Schlüssel"
+]
+},
+{
+"correct": "arbeite",
+"distractors": [
+"arbeitet",
+"arbeitest",
+"arbeiten",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"sie",
+"wir",
+"du",
+"es"
+]
+}
+],
+"alternatives": [
+"Ich arbeite am Montag."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:06",
+"target": "Am Dienstag arbeite ich.",
+"ru": "Во вторник я работаю.",
+"uk": "У вівторок я працюю.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Dienstag",
+"distractors": [
+"Arbeit",
+"Kaffee",
+"Essen",
+"Wasser",
+"Platz"
+]
+},
+{
+"correct": "arbeite",
+"distractors": [
+"arbeitet",
+"arbeiten",
+"arbeitest",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"ihr",
+"es",
+"wir",
+"du"
+]
+}
+],
+"alternatives": [
+"Ich arbeite am Dienstag."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:07",
+"target": "Am Freitag arbeitet Tom.",
+"ru": "В пятницу Том работает.",
+"uk": "У п'ятницю Том працює.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Freitag",
+"distractors": [
+"Platz",
+"Wochenende",
+"Fenster",
+"Eingang",
+"Kurs"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Tom arbeitet am Freitag."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:08",
+"target": "Am Samstag arbeitet Tom.",
+"ru": "В субботу Том работает.",
+"uk": "У суботу Том працює.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Samstag",
+"distractors": [
+"Küche",
+"Freitag",
+"Kaffee",
+"Brot",
+"Rechnung"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Tom arbeitet am Samstag."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:09",
+"target": "Am Sonntag kochen wir.",
+"ru": "В воскресенье мы готовим.",
+"uk": "У неділю ми готуємо.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Sonntag",
+"distractors": [
+"Dienstag",
+"Wasser",
+"Hause",
+"Café",
+"Arbeit"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"kaufen",
+"lernen",
+"spielen",
+"zusammen",
+"draußen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"sie",
+"du",
+"ihr",
+"ich"
+]
+}
+],
+"alternatives": [
+"Wir kochen am Sonntag."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:10",
+"target": "Heute kochen wir zusammen.",
+"ru": "Сегодня мы готовим вместе.",
+"uk": "Сьогодні ми готуємо разом.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Früher",
+"Bald",
+"Morgen",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"offen",
+"lernen",
+"hören",
+"arbeiten",
+"kaufen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"ihr",
+"du",
+"sie",
+"ich"
+]
+},
+{
+"correct": "zusammen",
+"distractors": [
+"lernen",
+"arbeiten",
+"lesen",
+"offen",
+"draußen"
+]
+}
+],
+"alternatives": [
+"Wir kochen heute zusammen."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:11",
+"target": "Heute kaufe ich Brot.",
+"ru": "Сегодня я покупаю хлеб.",
+"uk": "Сьогодні я купую хліб.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Bald",
+"Früher",
+"Morgen",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kaufen",
+"kauft",
+"kaufst",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"es",
+"ihr",
+"sie",
+"wir"
+]
+},
+{
+"correct": "Brot",
+"distractors": [
+"Kinder",
+"Rechnung",
+"Samstag",
+"Durst",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Ich kaufe heute Brot."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:12",
+"target": "Morgen kaufe ich Milch.",
+"ru": "Завтра я покупаю молоко.",
+"uk": "Завтра купую молоко.",
+"tiles": [
+{
+"correct": "Morgen",
+"distractors": [
+"Heute",
+"Früher",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kauft",
+"kaufen",
+"kaufst",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"es",
+"du",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "Milch",
+"distractors": [
+"Kinder",
+"Termin",
+"Eingang",
+"Tom",
+"Rechnung"
+]
+}
+],
+"alternatives": [
+"Ich kaufe morgen Milch."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:13",
+"target": "Heute sucht Anna den Schlüssel.",
+"ru": "Сегодня Анна ищет ключ.",
+"uk": "Сьогодні Анна шукає ключ.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Früher",
+"Bald",
+"Morgen",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "sucht",
+"distractors": [
+"auch",
+"machen",
+"mache",
+"machst",
+"beginnt"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Zimmer",
+"Bus",
+"Tasche"
+]
+}
+],
+"alternatives": [
+"Anna sucht heute den Schlüssel."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:14",
+"target": "Morgen bezahlt Tom die Rechnung.",
+"ru": "Завтра Том оплачивает счёт.",
+"uk": "Завтра Том сплачує рахунок.",
+"tiles": [
+{
+"correct": "Morgen",
+"distractors": [
+"Früher",
+"Heute",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "bezahlt",
+"distractors": [
+"öffnet",
+"wartet",
+"schließt",
+"spielen",
+"beginnt"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"dem",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Rechnung",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Deutsch",
+"Eingang",
+"Brot"
+]
+}
+],
+"alternatives": [
+"Tom bezahlt morgen die Rechnung."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:15",
+"target": "Am Montag kaufen wir Gemüse.",
+"ru": "В понедельник мы покупаем овощи.",
+"uk": "У понеділок ми купуємо овочі.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Montag",
+"distractors": [
+"Kurs",
+"Abend",
+"Suppe",
+"Wasser",
+"Büro"
+]
+},
+{
+"correct": "kaufen",
+"distractors": [
+"kaufe",
+"kauft",
+"kaufst",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"es",
+"ich",
+"sie",
+"du"
+]
+},
+{
+"correct": "Gemüse",
+"distractors": [
+"Musik",
+"Anna",
+"Dienstag",
+"Deutsch",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Wir kaufen am Montag Gemüse."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:16",
+"target": "Am Dienstag kochen wir Suppe.",
+"ru": "Во вторник мы варим суп.",
+"uk": "У вівторок ми варимо суп.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Dienstag",
+"distractors": [
+"Freitag",
+"Essen",
+"Wasser",
+"Bus",
+"Schlüssel"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"trinken",
+"offen",
+"kaufen",
+"arbeiten",
+"machen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"sie",
+"ich",
+"du",
+"es"
+]
+},
+{
+"correct": "Suppe",
+"distractors": [
+"Essen",
+"Hause",
+"Wasser",
+"Tee",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Wir kochen am Dienstag Suppe."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:17",
+"target": "Am Freitag lernen wir Deutsch.",
+"ru": "В пятницу мы учим немецкий.",
+"uk": "У п'ятницю ми вчимо німецьку.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Freitag",
+"distractors": [
+"Musik",
+"Gemüse",
+"Fenster",
+"Laden",
+"Küche"
+]
+},
+{
+"correct": "lernen",
+"distractors": [
+"lernst",
+"lerne",
+"lernt",
+"kochen",
+"kaufen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"ihr",
+"ich",
+"sie",
+"du"
+]
+},
+{
+"correct": "Deutsch",
+"distractors": [
+"Fenster",
+"Brot",
+"Samstag",
+"Büro",
+"Kurs"
+]
+}
+],
+"alternatives": [
+"Wir lernen am Freitag Deutsch."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:18",
+"target": "Am Samstag spielen die Kinder draußen.",
+"ru": "В субботу дети играют на улице.",
+"uk": "У суботу діти грають на вулиці.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Samstag",
+"distractors": [
+"Essen",
+"Montag",
+"Wasser",
+"Schlüssel",
+"Anna"
+]
+},
+{
+"correct": "spielen",
+"distractors": [
+"lernen",
+"trinken",
+"lesen",
+"hören",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"den",
+"der",
+"und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Kurs",
+"Arbeit",
+"Nachmittag",
+"Sonntag",
+"Anna"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"hören"
+]
+}
+],
+"alternatives": [
+"Die Kinder spielen am Samstag draußen."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:19",
+"target": "Am Sonntag macht Tom Frühstück.",
+"ru": "В воскресенье Том готовит завтрак.",
+"uk": "У неділю Том готує сніданок.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Sonntag",
+"distractors": [
+"Musik",
+"Nachmittag",
+"Samstag",
+"Montag",
+"Dienstag"
+]
+},
+{
+"correct": "macht",
+"distractors": [
+"auch",
+"suche",
+"suchen",
+"suchst",
+"beginnt"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Frühstück",
+"distractors": [
+"Ende",
+"Hause",
+"Montag",
+"Pause",
+"Küche"
+]
+}
+],
+"alternatives": [
+"Tom macht am Sonntag Frühstück."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:20",
+"target": "Heute macht Anna Kaffee.",
+"ru": "Сегодня Анна готовит кофе.",
+"uk": "Сьогодні Ганна готує каву.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Morgen",
+"Früher",
+"Bald",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "macht",
+"distractors": [
+"auch",
+"suche",
+"suchen",
+"suchst",
+"beginnt"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Kaffee",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Kinder",
+"Tasche",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Anna macht heute Kaffee."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:21",
+"target": "Um acht beginnt der Kurs.",
+"ru": "В восемь начинается занятие.",
+"uk": "О восьмій починається заняття.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Aus",
+"Mit",
+"An",
+"Vor",
+"Auf"
+]
+},
+{
+"correct": "acht",
+"distractors": [
+"vier",
+"sieben",
+"zwölf",
+"fünf",
+"zehn"
+]
+},
+{
+"correct": "beginnt",
+"distractors": [
+"spielen",
+"hören",
+"kochen",
+"warten",
+"draußen"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Freitag",
+"Kinder",
+"Gäste",
+"Fenster"
+]
+}
+],
+"alternatives": [
+"Der Kurs beginnt um acht."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:22",
+"target": "Um neun beginnt die Arbeit.",
+"ru": "В девять начинается работа.",
+"uk": "О дев'ятій починається робота.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Auf",
+"An",
+"Mit",
+"Vor",
+"Aus"
+]
+},
+{
+"correct": "neun",
+"distractors": [
+"fünf",
+"drei",
+"zwölf",
+"acht",
+"zehn"
+]
+},
+{
+"correct": "beginnt",
+"distractors": [
+"schließt",
+"kochen",
+"hören",
+"spielen",
+"wartet"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Arbeit",
+"distractors": [
+"Fahrrad",
+"Kinder",
+"Tom",
+"Anna",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:23",
+"target": "Um zehn öffnet der Laden.",
+"ru": "В десять открывается магазин.",
+"uk": "О десятій відкривається магазин.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Auf",
+"Zu",
+"An",
+"Aus",
+"Mit"
+]
+},
+{
+"correct": "zehn",
+"distractors": [
+"fünf",
+"acht",
+"sechs",
+"drei",
+"sieben"
+]
+},
+{
+"correct": "öffnet",
+"distractors": [
+"zusammen",
+"spielen",
+"schließt",
+"kochen",
+"wartet"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Deutsch",
+"Eingang",
+"Frühstück",
+"Hause",
+"Samstag"
+]
+}
+],
+"alternatives": [
+"Der Laden öffnet um zehn."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:24",
+"target": "Um sechs schließt die Küche.",
+"ru": "В шесть закрывается кухня.",
+"uk": "О шостій закривається кухня.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Auf",
+"Zu",
+"Vor",
+"An",
+"Aus"
+]
+},
+{
+"correct": "sechs",
+"distractors": [
+"zehn",
+"fünf",
+"acht",
+"drei",
+"zwölf"
+]
+},
+{
+"correct": "schließt",
+"distractors": [
+"hören",
+"spielen",
+"kochen",
+"beginnt",
+"draußen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+}
+],
+"alternatives": [
+"Die Küche schließt um sechs."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:25",
+"target": "Um sieben kommt der Bus.",
+"ru": "В семь приходит автобус.",
+"uk": "О сьомій приходить автобус.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Auf",
+"Aus",
+"Zu",
+"Mit",
+"Vor"
+]
+},
+{
+"correct": "sieben",
+"distractors": [
+"vier",
+"acht",
+"zwölf",
+"fünf",
+"zehn"
+]
+},
+{
+"correct": "kommt",
+"distractors": [
+"offen",
+"nehme",
+"nehmen",
+"nimmst",
+"beginnt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"das",
+"die",
+"den",
+"und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Der Bus kommt um sieben."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:26",
+"target": "Um zwölf machen wir eine Pause.",
+"ru": "В двенадцать мы делаем перерыв.",
+"uk": "О дванадцятій ми робимо перерву.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Vor",
+"Zu",
+"Auf",
+"Aus",
+"An"
+]
+},
+{
+"correct": "zwölf",
+"distractors": [
+"acht",
+"vier",
+"sieben",
+"fünf",
+"zehn"
+]
+},
+{
+"correct": "machen",
+"distractors": [
+"macht",
+"mache",
+"machst",
+"warten",
+"kaufen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"ich",
+"sie",
+"es",
+"du"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"ein",
+"einen",
+"und",
+"mit",
+"für"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+}
+],
+"alternatives": [
+"Wir machen um zwölf eine Pause."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:27",
+"target": "Um drei wartet Tom am Eingang.",
+"ru": "В три Том ждёт у входа.",
+"uk": "У три Том чекає на вході.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Vor",
+"Zu",
+"Mit",
+"Auf",
+"Aus"
+]
+},
+{
+"correct": "drei",
+"distractors": [
+"zehn",
+"fünf",
+"zwölf",
+"acht",
+"sechs"
+]
+},
+{
+"correct": "wartet",
+"distractors": [
+"schließt",
+"öffnet",
+"beginnt",
+"brauchen",
+"bezahlt"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"zum",
+"im",
+"komme",
+"kommen",
+"kommst"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Kinder",
+"Frühstück",
+"Brot",
+"Kurs",
+"Tee"
+]
+}
+],
+"alternatives": [
+"Tom wartet um drei am Eingang."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:28",
+"target": "Um vier arbeitet Anna im Café.",
+"ru": "В четыре Анна работает в кафе.",
+"uk": "О четвертій Анна працює в кафе.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Auf",
+"Zu",
+"Aus",
+"Mit",
+"Vor"
+]
+},
+{
+"correct": "vier",
+"distractors": [
+"sechs",
+"fünf",
+"zwölf",
+"acht",
+"zehn"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"zum",
+"am",
+"das",
+"den",
+"der"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Frühstück",
+"Dienstag",
+"Platz",
+"Wochenende",
+"Büro"
+]
+}
+],
+"alternatives": [
+"Anna arbeitet um vier im Café."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:29",
+"target": "Um fünf kochen wir.",
+"ru": "В пять мы готовим.",
+"uk": "О п'ятій ми готуємо.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"Zu",
+"Mit",
+"Aus",
+"Vor",
+"Auf"
+]
+},
+{
+"correct": "fünf",
+"distractors": [
+"zwölf",
+"zehn",
+"acht",
+"drei",
+"vier"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"lernen",
+"zusammen",
+"draußen",
+"lesen",
+"spielen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"sie",
+"es",
+"ihr",
+"ich"
+]
+}
+],
+"alternatives": [
+"Wir kochen um fünf."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:30",
+"target": "Um acht bin ich zu Hause.",
+"ru": "В восемь я дома.",
+"uk": "О восьмій я вдома.",
+"tiles": [
+{
+"correct": "Um",
+"distractors": [
+"An",
+"Auf",
+"Vor",
+"Aus",
+"Mit"
+]
+},
+{
+"correct": "acht",
+"distractors": [
+"zehn",
+"sechs",
+"drei",
+"fünf",
+"zwölf"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"ist",
+"sind",
+"bist",
+"seid",
+"eine"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"sie",
+"wir",
+"du",
+"ihr"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"seit",
+"bei",
+"mit",
+"für",
+"ohne"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Laden",
+"Bus",
+"Eingang",
+"Schlüssel",
+"Essen"
+]
+}
+],
+"alternatives": [
+"Ich bin um acht zu Hause.",
+"Um acht bin ich zuhause.",
+"Ich bin um acht zuhause."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:31",
+"target": "Nach dem Kurs lerne ich zu Hause.",
+"ru": "После занятия я учусь дома.",
+"uk": "Після заняття я навчаюсь вдома.",
+"tiles": [
+{
+"correct": "Nach",
+"distractors": [
+"Ohne",
+"Seit",
+"Bei",
+"Aus",
+"Mit"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"die",
+"das",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Freitag",
+"Kinder",
+"Gäste",
+"Fenster"
+]
+},
+{
+"correct": "lerne",
+"distractors": [
+"lernen",
+"lernt",
+"lernst",
+"kochen",
+"kaufen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"sie",
+"wir",
+"ihr",
+"es"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"mit",
+"seit",
+"bei",
+"für",
+"aus"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Musik",
+"Nachmittag",
+"Ende",
+"Deutsch",
+"Montag"
+]
+}
+],
+"alternatives": [
+"Ich lerne nach dem Kurs zu Hause.",
+"Nach dem Kurs lerne ich zuhause.",
+"Ich lerne nach dem Kurs zuhause."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:32",
+"target": "Nach der Arbeit kauft Anna Brot.",
+"ru": "После работы Анна покупает хлеб.",
+"uk": "Після роботи Ганна купує хліб.",
+"tiles": [
+{
+"correct": "Nach",
+"distractors": [
+"Aus",
+"Von",
+"Mit",
+"Bei",
+"Für"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"den",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Arbeit",
+"distractors": [
+"Fahrrad",
+"Kinder",
+"Tom",
+"Gäste",
+"Hause"
+]
+},
+{
+"correct": "kauft",
+"distractors": [
+"warten",
+"spät",
+"beginnt",
+"hole",
+"holen"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Brot",
+"distractors": [
+"Kinder",
+"Rechnung",
+"Samstag",
+"Durst",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Anna kauft nach der Arbeit Brot."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:33",
+"target": "Nach dem Essen hören wir Musik.",
+"ru": "После еды мы слушаем музыку.",
+"uk": "Після їди ми слухаємо музику.",
+"tiles": [
+{
+"correct": "Nach",
+"distractors": [
+"Für",
+"Bei",
+"Zu",
+"Ohne",
+"Von"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"die",
+"das",
+"den",
+"der",
+"und"
+]
+},
+{
+"correct": "Essen",
+"distractors": [
+"Eingang",
+"Suppe",
+"Frühstück",
+"Sonntag",
+"Deutsch"
+]
+},
+{
+"correct": "hören",
+"distractors": [
+"trinken",
+"arbeiten",
+"machen",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"ihr",
+"sie",
+"es",
+"du"
+]
+},
+{
+"correct": "Musik",
+"distractors": [
+"Abend",
+"Bus",
+"Eingang",
+"Wochenende",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Wir hören nach dem Essen Musik."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:34",
+"target": "Vor dem Kurs trinke ich Tee.",
+"ru": "Перед занятием я пью чай.",
+"uk": "Перед заняттям я п'ю чай.",
+"tiles": [
+{
+"correct": "Vor",
+"distractors": [
+"Neben",
+"In",
+"Hinter",
+"Über",
+"Zwischen"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"der",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Freitag",
+"Kinder",
+"Gäste",
+"Fenster"
+]
+},
+{
+"correct": "trinke",
+"distractors": [
+"trinken",
+"arbeiten",
+"draußen",
+"kochen",
+"hören"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"es",
+"du",
+"wir",
+"sie"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Deutsch",
+"Pause",
+"Hause",
+"Sonntag",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Ich trinke vor dem Kurs Tee."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:35",
+"target": "Vor der Arbeit macht Tom Kaffee.",
+"ru": "Перед работой Том готовит кофе.",
+"uk": "Перед роботою Том готує каву.",
+"tiles": [
+{
+"correct": "Vor",
+"distractors": [
+"Hinter",
+"Zwischen",
+"Über",
+"Unter",
+"Neben"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"den",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Arbeit",
+"distractors": [
+"Fahrrad",
+"Kinder",
+"Anna",
+"Gäste",
+"Hause"
+]
+},
+{
+"correct": "macht",
+"distractors": [
+"auch",
+"suche",
+"suchen",
+"suchst",
+"beginnt"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Kaffee",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Anna",
+"Kinder",
+"Tasche"
+]
+}
+],
+"alternatives": [
+"Tom macht vor der Arbeit Kaffee."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:36",
+"target": "Am Morgen suche ich meine Schlüssel.",
+"ru": "Утром я ищу свои ключи.",
+"uk": "Вранці я шукаю свої ключі.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Morgen",
+"distractors": [
+"Heute",
+"Früher",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "suche",
+"distractors": [
+"sucht",
+"suchst",
+"suchen",
+"brauchen",
+"einen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"wir",
+"du",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "meine",
+"distractors": [
+"mein",
+"ein",
+"einen",
+"dein",
+"kein"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Ich suche am Morgen meine Schlüssel."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:37",
+"target": "Am Abend lesen wir.",
+"ru": "Вечером мы читаем.",
+"uk": "Увечері ми читаємо.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Abend",
+"distractors": [
+"Montag",
+"Sonntag",
+"Frühstück",
+"Wochenende",
+"Anna"
+]
+},
+{
+"correct": "lesen",
+"distractors": [
+"liest",
+"lese",
+"draußen",
+"offen",
+"kochen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"ich",
+"du",
+"es",
+"sie"
+]
+}
+],
+"alternatives": [
+"Wir lesen am Abend."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:38",
+"target": "Am Nachmittag spielen die Kinder.",
+"ru": "После обеда дети играют.",
+"uk": "Після обіду діти граються.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Nachmittag",
+"distractors": [
+"Hause",
+"Schlüssel",
+"Frühstück",
+"Dienstag",
+"Wasser"
+]
+},
+{
+"correct": "spielen",
+"distractors": [
+"kaufen",
+"hören",
+"zusammen",
+"draußen",
+"lernen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Rechnung",
+"Eingang",
+"Sonntag",
+"Kurs",
+"Freitag"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:39",
+"target": "In der Pause trinken wir Wasser.",
+"ru": "На перерыве мы пьём воду.",
+"uk": "На перерві ми п'ємо воду.",
+"tiles": [
+{
+"correct": "In",
+"distractors": [
+"Auf",
+"Zwischen",
+"Neben",
+"An",
+"Vor"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+},
+{
+"correct": "trinken",
+"distractors": [
+"trinke",
+"arbeiten",
+"draußen",
+"kochen",
+"hören"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"sie",
+"du",
+"es",
+"ich"
+]
+},
+{
+"correct": "Wasser",
+"distractors": [
+"Hause",
+"Bus",
+"Tasche",
+"Platz",
+"Dienstag"
+]
+}
+],
+"alternatives": [
+"Wir trinken in der Pause Wasser."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:40",
+"target": "Am Wochenende arbeiten wir draußen.",
+"ru": "В выходные мы работаем на улице.",
+"uk": "У вихідні ми працюємо на вулиці.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Wochenende",
+"distractors": [
+"Abend",
+"Anna",
+"Bus",
+"Gäste",
+"Fenster"
+]
+},
+{
+"correct": "arbeiten",
+"distractors": [
+"arbeite",
+"arbeitest",
+"arbeitet",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"es",
+"ich",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": [
+"Wir arbeiten am Wochenende draußen."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:41",
+"target": "Heute ist der Laden offen.",
+"ru": "Сегодня магазин открыт.",
+"uk": "Сьогодні магазин відкритий.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Morgen",
+"Bald",
+"Früher",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"das",
+"den",
+"und"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Rechnung",
+"Pause",
+"Hause",
+"Eingang",
+"Sonntag"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"spielen",
+"lernen",
+"hören",
+"kaufen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:42",
+"target": "Morgen ist das Büro zu.",
+"ru": "Завтра офис закрыт.",
+"uk": "Завтра офіс закритий.",
+"tiles": [
+{
+"correct": "Morgen",
+"distractors": [
+"Heute",
+"Früher",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"den",
+"der",
+"dem",
+"und"
+]
+},
+{
+"correct": "Büro",
+"distractors": [
+"Anna",
+"Zimmer",
+"Hotel",
+"Küche",
+"Fenster"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"bei",
+"seit",
+"von",
+"für",
+"aus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:43",
+"target": "Am Montag ist das Café offen.",
+"ru": "В понедельник кафе открыто.",
+"uk": "У понеділок кафе відчинено.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Montag",
+"distractors": [
+"Tom",
+"Platz",
+"Arbeit",
+"Tee",
+"Kaffee"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"den",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Tom",
+"Fenster",
+"Rechnung",
+"Milch",
+"Nachmittag"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"arbeiten",
+"trinken",
+"lesen",
+"spielen",
+"hören"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:44",
+"target": "Heute sind die Fenster zu.",
+"ru": "Сегодня окна закрыты.",
+"uk": "Сьогодні вікна зачинені.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Morgen",
+"Bald",
+"Früher",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"den",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"bei",
+"nach",
+"seit",
+"für",
+"mit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:45",
+"target": "Am Abend ist der Platz frei.",
+"ru": "Вечером место свободно.",
+"uk": "Увечері місце вільне.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Abend",
+"distractors": [
+"Musik",
+"Deutsch",
+"Kurs",
+"Tom",
+"Hause"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"die",
+"das",
+"und"
+]
+},
+{
+"correct": "Platz",
+"distractors": [
+"Laden",
+"Essen",
+"Montag",
+"Frühstück",
+"Hause"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"müde",
+"leise",
+"bereit",
+"allein",
+"wach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:46",
+"target": "In der Pause ist die Küche frei.",
+"ru": "Во время перерыва кухня свободна.",
+"uk": "Під час перерви кухня є вільною.",
+"tiles": [
+{
+"correct": "In",
+"distractors": [
+"Zwischen",
+"Auf",
+"Hinter",
+"Unter",
+"An"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"ruhig",
+"müde",
+"bereit",
+"allein"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:47",
+"target": "Heute sind wir müde.",
+"ru": "Сегодня мы устали.",
+"uk": "Сьогодні ми втомилися.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Früher",
+"Morgen",
+"Bald",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bist",
+"ist",
+"bin",
+"seid",
+"fertig"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"ihr",
+"ich",
+"sie",
+"du"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"wach",
+"bereit",
+"allein",
+"krank",
+"leise"
+]
+}
+],
+"alternatives": [
+"Wir sind heute müde."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:48",
+"target": "Am Morgen bin ich wach.",
+"ru": "Утром я уже не сплю.",
+"uk": "Вранці я вже не сплю.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Morgen",
+"distractors": [
+"Heute",
+"Früher",
+"Bald",
+"Nehmen",
+"Einen"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"seid",
+"bist",
+"ist",
+"sind",
+"eine"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"sie",
+"du",
+"es",
+"ihr"
+]
+},
+{
+"correct": "wach",
+"distractors": [
+"allein",
+"leise",
+"krank",
+"müde",
+"bereit"
+]
+}
+],
+"alternatives": [
+"Ich bin am Morgen wach."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:49",
+"target": "Nach der Arbeit ist Anna zu Hause.",
+"ru": "После работы Анна дома.",
+"uk": "Після роботи Анна вдома.",
+"tiles": [
+{
+"correct": "Nach",
+"distractors": [
+"Ohne",
+"Für",
+"Seit",
+"Mit",
+"Bei"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Arbeit",
+"distractors": [
+"Fahrrad",
+"Kinder",
+"Tom",
+"Gäste",
+"Wasser"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Kinder",
+"Gäste",
+"Schlüssel",
+"Zug"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"von",
+"aus",
+"für",
+"seit",
+"mit"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Tom",
+"Wochenende",
+"Laden",
+"Deutsch",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Anna ist nach der Arbeit zu Hause.",
+"Nach der Arbeit ist Anna zuhause.",
+"Anna ist nach der Arbeit zuhause."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:50",
+"target": "Am Freitag ist der Kurs zu Ende.",
+"ru": "В пятницу курс заканчивается.",
+"uk": "У п'ятницю курс закінчується.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Im",
+"Zum",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Freitag",
+"distractors": [
+"Essen",
+"Eingang",
+"Gemüse",
+"Pause",
+"Hause"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"die",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Kinder",
+"Gäste",
+"Fenster",
+"Hause"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"seit",
+"aus",
+"bei",
+"von",
+"nach"
+]
+},
+{
+"correct": "Ende",
+"distractors": [
+"Abend",
+"Suppe",
+"Wochenende",
+"Tee",
+"Montag"
+]
+}
+],
+"alternatives": []
+}
+]

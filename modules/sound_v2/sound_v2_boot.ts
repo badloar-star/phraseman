@@ -4,6 +4,7 @@
 // и — лишь если флаг ВКЛЮЧЁН — поставить в очередь прогрев плееров самых частых событий (по одному с паузой, это умеет сам банк). Выключен — ничего не грузим и не импортируем.
 // Журнал одной строкой: [SOUND-V2] prime ms=… flag=… events=… files≈… Каждая ошибка загрузки пишется движком с причиной.
 import { SOUND_V2_CATALOG, type SoundV2EventId } from './catalog';
+import { isProductionSfxMusicAllowed } from '../audio/sfx_music_policy';
 import { tryPlayV2Event } from './legacy_bridge';
 import { isSoundV2Enabled, primeSoundV2Flag } from './sound_v2_flag';
 
@@ -38,6 +39,7 @@ export function subscribeAchievementSound(now: () => number = Date.now): void {
 export type SoundV2BootResult = Readonly<{ ms: number; enabled: boolean; events: number; files: number }>;
 
 export async function bootSoundV2(now: () => number = Date.now): Promise<SoundV2BootResult> {
+  if (!isProductionSfxMusicAllowed()) return { ms: 0, enabled: false, events: 0, files: 0 };
   const startedAt = now();
   subscribeAchievementSound();
   try {

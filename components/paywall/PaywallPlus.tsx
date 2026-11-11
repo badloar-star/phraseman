@@ -185,7 +185,7 @@ export function paywallPlusCtaCopy(lang: Lang, args: {
   };
 }
 
-export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, planLine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreVisible, restoreDisabled, onRestore, promoVisible, promoDisabled, onPromo, serverRefused = false, onLater, planSection, viewportHeight, hideCta = false, lowerStyle, children }: {
+export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, planLine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreVisible, restoreDisabled, onRestore, promoVisible, promoDisabled, onPromo, serverRefused = false, onLater, planSection, viewportHeight, hideCta = false, hideFine = false, lowerStyle, children }: {
   lang: Lang; g: GlassTokens; state: PaywallPlusState; label: string; fine: string; notice: boolean;
   /** Строка выбранного плана с ценой и периодом над кнопкой («Ultra · Год — €39,99 в год»): цена рядом с кнопкой на экране без прокрутки (требование сторов). */
   planLine?: string;
@@ -193,7 +193,9 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   restoring: boolean; restoreVisible: boolean; restoreDisabled: boolean; onRestore: () => void;
   promoVisible: boolean; promoDisabled: boolean; onPromo: () => void; serverRefused?: boolean; onLater?: () => void; planSection?: React.ReactNode; viewportHeight?: number;
   /** зачем (владелец 11.11, пейвол «Два пути»): покупают сами кнопки-тарифы в planSection — отдельной кнопки и строки цены над ней нет; мелкий текст про списание остаётся под тарифами. */
-  hideCta?: boolean; lowerStyle?: StyleProp<ViewStyle>; children?: React.ReactNode;
+  hideCta?: boolean;
+  /** зачем (владелец 11.11, окно «магазин недоступен»): покупки в окне нет — строка про списание и цену не нужна, свою строку показывает planSection. */
+  hideFine?: boolean; lowerStyle?: StyleProp<ViewStyle>; children?: React.ReactNode;
 }) {
   const ready = state === 'ready';
   // зачем (D158): кнопка покупки ВСЕГДА активна, кроме самой покупки/восстановления (disabled от экрана).
@@ -249,7 +251,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
             : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{tierText(label)}</Text>}
         </V2Pressable>}
         {planLine && !hideCta ?<Text testID="paywall-plan-line" style={[S.planLine, { color: g.text }]}>{planLine}</Text> : null}
-        <Text testID="paywall-fine" onLayout={logPaywallLayout('dock_fine', S.fine)} style={[S.fine, hideCta ? S.fineDuo : null, { color: hideCta ? g.mutedText : g.text }]}>{fineText}</Text>
+        {hideFine ? null : <Text testID="paywall-fine" onLayout={logPaywallLayout('dock_fine', S.fine)} style={[S.fine, hideCta ? S.fineDuo : null, { color: hideCta ? g.mutedText : g.text }]}>{fineText}</Text>}
       </View>
       {/* зачем (макет «Два пути»): всё, что ниже первого экрана, лежит на одной панели со скруглённым верхом — её стиль задаёт экран (lowerStyle) */}
       <View style={lowerStyle}>

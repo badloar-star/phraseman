@@ -100,14 +100,6 @@ test('шаблон «к двоим» не ослабляет сторож: од�
   }
 });
 
-test('интерфейс Learning V2 под сторожем: экраны и тексты хаба не попадают под пропуски', () => {
-  for (const rel of ['app/learning_v2_lesson_words.tsx', 'components/learning-v2/season/season_copy.ts', 'components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx']) {
-    assert.ok(fs.existsSync(path.join(ROOT, rel)), `${rel} переехал — обнови самопроверку`);
-    assert.ok(!SKIP_PATH.test(rel) && !ALLOWED_FILES.has(rel), `${rel} выпал из сторожа — интерфейс Learning V2 обязан быть на «ты»`);
-  }
-  assert.ok(!DIRS.includes('modules'), 'modules/learning-v2 — голос курса на «вы», сторож туда не ходит');
-});
-
 test('замки владельца не протухают: закреплённая фраза есть в файле', () => {
   for (const [file, phrases] of OWNER_LOCKED_PHRASES) {
     const src = fs.readFileSync(path.join(ROOT, file), 'utf8');

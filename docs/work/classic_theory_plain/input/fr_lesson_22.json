@@ -1,0 +1,778 @@
+{
+ "lang": "fr",
+ "lesson": 22,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:22:01",
+   "target": "Je le vois.",
+   "ru": "Я вижу его.",
+   "uk": "Я бачу його."
+  },
+  {
+   "id": "fr:22:02",
+   "target": "Je la vois.",
+   "ru": "Я вижу её.",
+   "uk": "Я бачу її."
+  },
+  {
+   "id": "fr:22:03",
+   "target": "Je les vois.",
+   "ru": "Я вижу их.",
+   "uk": "Я бачу їх."
+  },
+  {
+   "id": "fr:22:04",
+   "target": "Tu le connais.",
+   "ru": "Ты его знаешь.",
+   "uk": "Ти знаєш його."
+  },
+  {
+   "id": "fr:22:05",
+   "target": "Tu la connais.",
+   "ru": "Ты её знаешь.",
+   "uk": "Ти знаєш її."
+  },
+  {
+   "id": "fr:22:06",
+   "target": "Tu les connais.",
+   "ru": "Ты их знаешь.",
+   "uk": "Ти їх знаєш."
+  },
+  {
+   "id": "fr:22:07",
+   "target": "Elle le cherche.",
+   "ru": "Она ищет его.",
+   "uk": "Вона шукає його."
+  },
+  {
+   "id": "fr:22:08",
+   "target": "Elle la cherche.",
+   "ru": "Она ищет её.",
+   "uk": "Вона шукає її."
+  },
+  {
+   "id": "fr:22:09",
+   "target": "Elle les cherche.",
+   "ru": "Она ищет их.",
+   "uk": "Вона шукає їх."
+  },
+  {
+   "id": "fr:22:10",
+   "target": "Nous les attendons.",
+   "ru": "Мы ждём их.",
+   "uk": "Ми чекаємо на них."
+  },
+  {
+   "id": "fr:22:11",
+   "target": "La porte, je la ferme.",
+   "ru": "Дверь — я её закрываю.",
+   "uk": "Двері - я її закриваю."
+  },
+  {
+   "id": "fr:22:12",
+   "target": "Le sac, je le garde.",
+   "ru": "Сумку я оставляю у себя.",
+   "uk": "Сумку я залишаю у себе."
+  },
+  {
+   "id": "fr:22:13",
+   "target": "Les clés, je les prends.",
+   "ru": "Ключи я беру с собой.",
+   "uk": "Ключі я беру із собою."
+  },
+  {
+   "id": "fr:22:14",
+   "target": "La veste, je la range.",
+   "ru": "Куртку я убираю на место.",
+   "uk": "Куртку я прибираю на місце."
+  },
+  {
+   "id": "fr:22:15",
+   "target": "Le pain, je le coupe.",
+   "ru": "Я режу хлеб.",
+   "uk": "Я ріжу хліб."
+  },
+  {
+   "id": "fr:22:16",
+   "target": "Les verres, je les lave.",
+   "ru": "Я мою стаканы.",
+   "uk": "Я мию склянки."
+  },
+  {
+   "id": "fr:22:17",
+   "target": "Les billets, je les imprime.",
+   "ru": "Я распечатываю билеты.",
+   "uk": "Я друкую квитки."
+  },
+  {
+   "id": "fr:22:18",
+   "target": "La soupe, je la goûte.",
+   "ru": "Суп — я его пробую.",
+   "uk": "Суп - я його пробую."
+  },
+  {
+   "id": "fr:22:19",
+   "target": "Le pull, je l’essaie.",
+   "ru": "Свитер — я его примеряю.",
+   "uk": "Светр - я його приміряю."
+  },
+  {
+   "id": "fr:22:20",
+   "target": "Cette chanson, je l’écoute.",
+   "ru": "Я слушаю эту песню.",
+   "uk": "Я слухаю цю пісню."
+  },
+  {
+   "id": "fr:22:21",
+   "target": "Je ne le trouve pas.",
+   "ru": "Я его не нахожу.",
+   "uk": "Я його не знаходжу."
+  },
+  {
+   "id": "fr:22:22",
+   "target": "Elle ne la reconnaît pas.",
+   "ru": "Она её не узнаёт.",
+   "uk": "Вона її не впізнає."
+  },
+  {
+   "id": "fr:22:23",
+   "target": "Nous ne les voyons pas.",
+   "ru": "Мы их не видим.",
+   "uk": "Ми їх не бачимо."
+  },
+  {
+   "id": "fr:22:24",
+   "target": "On ne l’entend pas.",
+   "ru": "Мы его не слышим.",
+   "uk": "Ми його не чуємо."
+  },
+  {
+   "id": "fr:22:25",
+   "target": "Ils ne le prennent pas.",
+   "ru": "Они его не берут.",
+   "uk": "Вони його не беруть."
+  },
+  {
+   "id": "fr:22:26",
+   "target": "Tu les as ?",
+   "ru": "Они у тебя есть?",
+   "uk": "Вони у тебе є?"
+  },
+  {
+   "id": "fr:22:27",
+   "target": "Vous la voulez ?",
+   "ru": "Вы её хотите?",
+   "uk": "Ви її хочете?"
+  },
+  {
+   "id": "fr:22:28",
+   "target": "Est-ce que je peux le garder ?",
+   "ru": "Можно я его оставлю себе?",
+   "uk": "Можна я його залишу собі?"
+  },
+  {
+   "id": "fr:22:29",
+   "target": "Tu vas les chercher ?",
+   "ru": "Ты собираешься их забрать?",
+   "uk": "Ти збираєшся їх забрати?"
+  },
+  {
+   "id": "fr:22:30",
+   "target": "Je voudrais l’essayer.",
+   "ru": "Я хотел бы его примерить.",
+   "uk": "Я хотів би його приміряти."
+  },
+  {
+   "id": "fr:22:31",
+   "target": "Je vais la rappeler.",
+   "ru": "Я ей перезвоню.",
+   "uk": "Я передзвоню їй."
+  },
+  {
+   "id": "fr:22:32",
+   "target": "Nous allons le réparer.",
+   "ru": "Мы собираемся его починить.",
+   "uk": "Ми збираємося його відремонтувати."
+  },
+  {
+   "id": "fr:22:33",
+   "target": "Elle doit les rendre.",
+   "ru": "Она должна их вернуть.",
+   "uk": "Вона має їх повернути."
+  },
+  {
+   "id": "fr:22:34",
+   "target": "Tu peux la laisser ici.",
+   "ru": "Ты можешь оставить её здесь.",
+   "uk": "Ти можеш залишити її тут."
+  },
+  {
+   "id": "fr:22:35",
+   "target": "Le journal, je préfère le lire demain.",
+   "ru": "Газету я предпочитаю почитать завтра.",
+   "uk": "Я волію почитати газету завтра."
+  },
+  {
+   "id": "fr:22:36",
+   "target": "On peut les acheter en ligne.",
+   "ru": "Мы можем купить их онлайн.",
+   "uk": "Ми можемо купити їх онлайн."
+  },
+  {
+   "id": "fr:22:37",
+   "target": "La pièce de monnaie, tu peux la laisser sur le palier.",
+   "ru": "Монету ты можешь оставить на лестничной площадке.",
+   "uk": "Монету ти можеш залишити на сходовому майданчику."
+  },
+  {
+   "id": "fr:22:38",
+   "target": "Vous pouvez les poser là.",
+   "ru": "Можете положить их туда.",
+   "uk": "Можете покласти їх туди."
+  },
+  {
+   "id": "fr:22:39",
+   "target": "Ce câble, je vais le brancher.",
+   "ru": "Я собираюсь подключить этот кабель.",
+   "uk": "Я підключу цей кабель."
+  },
+  {
+   "id": "fr:22:40",
+   "target": "Elle veut la garder au frais.",
+   "ru": "Она хочет хранить её в прохладе.",
+   "uk": "Вона хоче зберігати її в прохолоді."
+  },
+  {
+   "id": "fr:22:41",
+   "target": "Ces photos, je les montre à ma sœur.",
+   "ru": "Я показываю эти фотографии своей сестре.",
+   "uk": "Я показую ці фотографії своїй сестрі."
+  },
+  {
+   "id": "fr:22:42",
+   "target": "Cette adresse, je la note sur le reçu.",
+   "ru": "Я пишу этот адрес на чеке.",
+   "uk": "Я пишу цю адресу на чеку."
+  },
+  {
+   "id": "fr:22:43",
+   "target": "Ton message, je le lis dans le bus.",
+   "ru": "Твоё сообщение я читаю в автобусе.",
+   "uk": "Твоє повідомлення я читаю в автобусі."
+  },
+  {
+   "id": "fr:22:44",
+   "target": "Ce chargeur, je le prête à Paul.",
+   "ru": "Эту зарядку я одалживаю Полю.",
+   "uk": "Цю зарядку я позичаю Полю."
+  },
+  {
+   "id": "fr:22:45",
+   "target": "Les gants, je les mets dans ma poche.",
+   "ru": "Я кладу перчатки в карман.",
+   "uk": "Я кладу рукавички в кишеню."
+  },
+  {
+   "id": "fr:22:46",
+   "target": "La batterie, je la recharge le matin.",
+   "ru": "Я заряжаю батарею утром.",
+   "uk": "Я заряджаю акумулятор вранці."
+  },
+  {
+   "id": "fr:22:47",
+   "target": "Les légumes, je les coupe avant de manger.",
+   "ru": "Я нарезаю овощи перед едой.",
+   "uk": "Я нарізаю овочі перед їжею."
+  },
+  {
+   "id": "fr:22:48",
+   "target": "Le colis, nous le retirons au guichet.",
+   "ru": "Посылку мы забираем в окошке выдачи.",
+   "uk": "Посилку ми забираємо у віконці видачі."
+  },
+  {
+   "id": "fr:22:49",
+   "target": "Mon portefeuille électronique, je l’utilise en voyage.",
+   "ru": "Я использую свой электронный кошелек, когда путешествую.",
+   "uk": "Я використовую свій електронний гаманець, коли подорожую."
+  },
+  {
+   "id": "fr:22:50",
+   "target": "Les enfants, je les retrouve après le cours.",
+   "ru": "Я встречаю детей после занятий.",
+   "uk": "Я зустрічаюся з дітьми після уроків."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "brancher",
+   "ru": "подключить к розетке",
+   "uk": "підключити до розетки"
+  },
+  {
+   "lemma": "le câble",
+   "ru": "кабель",
+   "uk": "кабель"
+  },
+  {
+   "lemma": "le journal",
+   "ru": "газета",
+   "uk": "газета"
+  },
+  {
+   "lemma": "la batterie",
+   "ru": "аккумулятор",
+   "uk": "акумулятор"
+  },
+  {
+   "lemma": "le portefeuille électronique",
+   "ru": "электронный кошелёк",
+   "uk": "електронний гаманець"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  }
+ ],
+ "oldTopicTitle": "Не повторять предмет: `le`, `la`, `les`",
+ "oldTheoryRu": "Вместо повторения предмета или человека возьми короткую форму. Мужской род единственного числа — `le`, женский — `la`, множественное число — `les`. Решает род заменённого французского слова. Тема может быть названа сначала: `La porte, je la ferme`. Запятая отделяет предмет разговора. `La` перед `porte` — артикль, а `la` перед `ferme` — местоимение. Перед гласной или немым `h` формы `le` и `la` становятся `l’`. Сам апостроф не показывает ни род, ни одушевлённость. При переводе помогает предыдущая фраза или пояснение. При отрицании местоимение остаётся перед личным глаголом. В `je ne le trouve pas` указание на предмет не переносится за `pas`. Когда смысловое действие выражено инфинитивом, местоимение обычно ставится перед ним: «хочу примерить её» — `je veux l’essayer`. Оно относится к примерке, а не к желанию. Перепроверь, кого или что называют местоимением. Если предмет — зарядное устройство, нужна форма от `le chargeur`, даже когда перевод этого слова в другом языке имеет иной род. Нельзя автоматически применять `le` к любому человеку. Важна модель глагола: `voir quelqu’un` без предлога. С `parler à quelqu’un` понадобится другой тип местоимения в следующем уроке."
+}

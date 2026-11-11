@@ -1,0 +1,1058 @@
+[
+{
+"lesson": 31,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:31:01",
+"fr:31:02",
+"fr:31:03"
+],
+"textByLocale": {
+"en": "Two past tenses are needed here, not necessarily two verbs in one phrase: the second moment may be known from the conversation. State the earlier action first.",
+"ru": "Здесь нужны два прошлых плана, а не обязательно два глагола в одной фразе: второй момент может быть известен из разговора. Сначала укажи более раннее действие.",
+"uk": "Тут потрібні два минулі плани, а не обов'язково два дієслова в одній фразі: другий момент може бути відомий з розмови. Спочатку вкажи більш ранню дію."
+}
+},
+{
+"exampleIds": [
+"fr:31:04",
+"fr:31:05",
+"fr:31:06"
+],
+"textByLocale": {
+"en": "Take the same pair of assistant and participle as in `passé composé`, but place the assistant in `imparfait`. `J’ai mangé` becomes `j’avais mangé`. The participle itself doesn't change tense.",
+"ru": "Возьми ту же пару помощник и причастие, что в `passé composé`, но поставь помощника в `imparfait`. `J’ai mangé` превращается в `j’avais mangé`. Само причастие не меняет время.",
+"uk": "Візьми ту ж пару помічник і причастя, що в `passé composé`, але постав помічника в `imparfait`. `J’ai mangé` перетворюється на `j’avais mangé`. Саме причастя не змінює час."
+}
+},
+{
+"exampleIds": [
+"fr:31:07",
+"fr:31:08",
+"fr:31:09"
+],
+"textByLocale": {
+"en": "With `être`, the agreement rule remains: Paul left in `était parti`, Leah left in `était partie`. The tense of the assistant changes, not the gender of the person.",
+"ru": "При `être` правило согласования сохраняется: Поль ушёл `était parti`, Леа ушла `était partie`. Меняется время помощника, а не род человека.",
+"uk": "При `être` правило узгодження зберігається: Поль пішов `était parti`, Леа пішла `était partie`. Змінюється час помічника, а не рід людини."
+}
+},
+{
+"exampleIds": [
+"fr:31:11",
+"fr:31:13",
+"fr:31:15"
+],
+"textByLocale": {
+"en": "In `avoir`, special agreement occurs when the direct object precedes the participle: `la lettre qu’elle avait reçue`. The ending refers to the letter, not the person who received it.",
+"ru": "У `avoir` особое согласование появляется, когда прямое дополнение предшествует причастию: `la lettre qu’elle avait reçue`. Окончание указывает на письмо, не на человека, который его получил.",
+"uk": "У `avoir` особливе узгодження з'являється, коли пряме доповнення передує причастю: `la lettre qu’elle avait reçue`. Закінчення вказує на листа, не на людину, яка його отримала."
+}
+},
+{
+"exampleIds": [
+"fr:31:21",
+"fr:31:23",
+"fr:31:26"
+],
+"textByLocale": {
+"en": "Negation includes the assistant. `Jamais` and `encore` specify whether this happened before that past moment. Don't change the order of all the words at once.",
+"ru": "Отрицание охватывает помощника. `Jamais` и `encore` уточняют, случалось ли это до того прошлого момента. Не меняй расположение всех слов сразу.",
+"uk": "Заперечення охоплює помічника. `Jamais` та `encore` уточнюють, чи траплялося це до того минулого моменту. Не змінюй розташування всіх слів відразу."
+}
+},
+{
+"exampleIds": [
+"fr:31:31",
+"fr:31:36",
+"fr:31:38"
+],
+"textByLocale": {
+"en": "The conjunction `quand` specifies a time point, and `parce que` can explain the reason. It's not the conjunction itself that requires `plus-que-parfait`: one past action must actually precede the other.",
+"ru": "Союз `quand` задаёт временную точку, а `parce que` может объяснять причину. Не сам союз требует `plus-que-parfait`: нужно, чтобы одно прошлое действие действительно предшествовало другому.",
+"uk": "Союз `quand` задає тимчасову точку, а `parce que` може пояснювати причину. Не сам союз вимагає `plus-que-parfait`: потрібно, щоб одна колишня дія дійсно передувала іншій."
+}
+},
+{
+"exampleIds": [
+"fr:31:41",
+"fr:31:46",
+"fr:31:50"
+],
+"textByLocale": {
+"en": "Read the two parts backwards in time. First, they left the key—then they were able to enter. If the narrative begins with the entrance, the tenses must still maintain the real sequence.",
+"ru": "Прочитай две части обратно по времени. Сначала оставили ключ — потом смогли войти. Если изложение начинается с входа, времена всё равно должны сохранить реальную последовательность.",
+"uk": "Прочитай дві частини назад за часом. Спочатку залишили ключ – потім змогли увійти. Якщо виклад починається з входу, часи однаково повинні зберегти реальну послідовність."
+}
+}
+],
+"drills": [
+{
+"bad": "J’ai",
+"chapter": 1,
+"id": "fr:31:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 8,
+"options": [
+"J’étais",
+"J’ai",
+"J’avais"
+],
+"slot": 0
+},
+{
+"bad": "ont",
+"chapter": 1,
+"id": "fr:31:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 22,
+"options": [
+"ont",
+"auraient",
+"avait"
+],
+"slot": 1
+},
+{
+"bad": "avait",
+"chapter": 1,
+"id": "fr:31:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"aviez",
+"a",
+"avait"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 2,
+"id": "fr:31:08:lab",
+"item": 8,
+"kind": "build",
+"near": 1,
+"options": [
+"était",
+"étiez",
+"suis"
+],
+"slot": 1
+},
+{
+"bad": "étions",
+"chapter": 2,
+"id": "fr:31:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"étions",
+"étiez",
+"étaient"
+],
+"slot": 2
+},
+{
+"bad": "auraient",
+"chapter": 2,
+"id": "fr:31:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 32,
+"options": [
+"auraient",
+"avait",
+"aurions"
+],
+"slot": 5
+},
+{
+"bad": "auraient",
+"chapter": 3,
+"id": "fr:31:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 11,
+"options": [
+"avions",
+"ont",
+"auraient"
+],
+"slot": 6
+},
+{
+"bad": "J’ai",
+"chapter": 3,
+"id": "fr:31:17:lab",
+"item": 17,
+"kind": "match",
+"near": 3,
+"options": [
+"J’avais",
+"J’ai",
+"J’étais"
+],
+"slot": 0
+},
+{
+"bad": "aurai",
+"chapter": 3,
+"id": "fr:31:19:lab",
+"item": 19,
+"kind": "build",
+"near": 46,
+"options": [
+"aurai",
+"ont",
+"avait"
+],
+"slot": 2
+},
+{
+"bad": "n’avaient",
+"chapter": 4,
+"id": "fr:31:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"n’avais",
+"n’avait",
+"n’avaient"
+],
+"slot": 1
+},
+{
+"bad": "n’avais",
+"chapter": 4,
+"id": "fr:31:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"n’avais",
+"n’avaient",
+"n’avait"
+],
+"slot": 1
+},
+{
+"bad": "n’était",
+"chapter": 4,
+"id": "fr:31:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 29,
+"options": [
+"n’était",
+"n’avaient",
+"n’étais"
+],
+"slot": 1
+},
+{
+"bad": "n’avais",
+"chapter": 5,
+"id": "fr:31:29:lab",
+"item": 29,
+"kind": "match",
+"near": 23,
+"options": [
+"n’avaient",
+"n’avais",
+"n’avions"
+],
+"slot": 1
+},
+{
+"bad": "étais",
+"chapter": 5,
+"id": "fr:31:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"étais",
+"étions",
+"était"
+],
+"slot": 7
+},
+{
+"bad": "j’ai",
+"chapter": 5,
+"id": "fr:31:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"j’avais",
+"j’étais",
+"j’ai"
+],
+"slot": 4
+},
+{
+"bad": "J’avais",
+"chapter": 6,
+"id": "fr:31:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"J’y",
+"J’avais",
+"J’étais"
+],
+"slot": 0
+},
+{
+"bad": "étiez",
+"chapter": 6,
+"id": "fr:31:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 48,
+"options": [
+"sont",
+"étiez",
+"était"
+],
+"slot": 9
+},
+{
+"bad": "ont",
+"chapter": 6,
+"id": "fr:31:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"ont",
+"avions",
+"avait"
+],
+"slot": 1
+},
+{
+"bad": "ont",
+"chapter": 7,
+"id": "fr:31:45:lab",
+"item": 45,
+"kind": "build",
+"near": 20,
+"options": [
+"auraient",
+"ont",
+"avait"
+],
+"slot": 2
+},
+{
+"bad": "aura",
+"chapter": 7,
+"id": "fr:31:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 39,
+"options": [
+"avait",
+"aura",
+"avais"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"j’ai mangé",
+"j’avais mangé"
+],
+[
+"elle a lu",
+"elle avait lu"
+],
+[
+"nous avons réservé",
+"nous avions réservé"
+],
+[
+"il est parti",
+"il était parti"
+],
+[
+"elle est partie",
+"elle était partie"
+]
+],
+"title": {
+"en": "What happened even earlier: `plus-que-parfait`",
+"ru": "Что было ещё раньше: `plus-que-parfait`",
+"uk": "Що було ще раніше: `plus-que-parfait`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:31:01",
+"target": "J’avais déjà mangé quand tu as appelé.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "fr:31:02",
+"target": "Tu avais déjà payé quand je suis arrivé.",
+"ru": "К тому моменту, как я пришёл, ты уже заплатил.",
+"uk": "До того моменту, як я прийшов, ти вже заплатив."
+},
+{
+"id": "fr:31:03",
+"target": "Elle avait déjà rangé la salle.",
+"ru": "Она уже убрала комнату.",
+"uk": "Вона вже прибрала в кімнаті."
+},
+{
+"id": "fr:31:04",
+"target": "Nous avions déjà réservé nos places.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця."
+},
+{
+"id": "fr:31:05",
+"target": "Vous aviez déjà lu le message.",
+"ru": "Вы уже прочитали сообщение.",
+"uk": "Ви вже прочитали повідомлення."
+},
+{
+"id": "fr:31:06",
+"target": "Ils avaient déjà pris le bus.",
+"ru": "Они уже сели на автобус.",
+"uk": "Вони вже сіли на автобус."
+},
+{
+"id": "fr:31:07",
+"target": "Paul était déjà parti quand je suis entré.",
+"ru": "Когда я вошёл, Поль уже ушёл.",
+"uk": "Коли я увійшов, Поль уже пішов."
+},
+{
+"id": "fr:31:08",
+"target": "Léa était déjà partie quand j’ai appelé.",
+"ru": "Леа уже ушла, когда я позвонил.",
+"uk": "Леа вже пішла, коли я подзвонив."
+},
+{
+"id": "fr:31:09",
+"target": "Les clientes étaient déjà sorties.",
+"ru": "Клиентки к тому моменту уже вышли.",
+"uk": "Клієнтки на той момент вже вийшли."
+},
+{
+"id": "fr:31:11",
+"target": "Je ne trouvais plus la clé que j’avais cachée.",
+"ru": "Я уже не мог найти ключ, который спрятал.",
+"uk": "Я вже не міг знайти ключ, який сховав."
+},
+{
+"id": "fr:31:13",
+"target": "Elle a relu la lettre qu’elle avait reçue.",
+"ru": "Она перечитала письмо, которое до этого получила.",
+"uk": "Вона перечитала листа, який до цього отримала."
+},
+{
+"id": "fr:31:15",
+"target": "Tu as retrouvé le badge que tu avais perdu.",
+"ru": "Ты нашёл пропуск, который до этого потерял.",
+"uk": "Ти знайшов перепустку, яку до цього втратив."
+},
+{
+"id": "fr:31:21",
+"target": "Je n’avais pas vu le panneau.",
+"ru": "Я не видел табличку.",
+"uk": "Я не бачив таблички."
+},
+{
+"id": "fr:31:23",
+"target": "Nous n’avions pas reçu le code.",
+"ru": "Мы не получили код.",
+"uk": "Ми не отримали код."
+},
+{
+"id": "fr:31:26",
+"target": "Je n’étais jamais entré dans ce musée.",
+"ru": "До того я ни разу не заходил в этот музей.",
+"uk": "До того я жодного разу не заходив до цього музею."
+},
+{
+"id": "fr:31:31",
+"target": "Quand j’ai ouvert la porte, le chat était déjà sorti.",
+"ru": "Когда я открыл дверь, кот уже вышел.",
+"uk": "Коли я відчинив двері, кіт уже вийшов."
+},
+{
+"id": "fr:31:36",
+"target": "J’étais fatigué parce que j’avais mal dormi.",
+"ru": "Я устал, потому что плохо спал.",
+"uk": "Я втомився, бо погано спав."
+},
+{
+"id": "fr:31:38",
+"target": "Je suis retourné au bureau parce que j’y avais laissé mon téléphone.",
+"ru": "Я вернулся в офис, потому что оставил там свой телефон.",
+"uk": "Я повернувся до офісу, бо залишив там телефон."
+},
+{
+"id": "fr:31:41",
+"target": "J’avais préparé les valises la veille.",
+"ru": "Я собрал чемоданы накануне.",
+"uk": "Я зібрав валізи напередодні."
+},
+{
+"id": "fr:31:46",
+"target": "Le plombier avait coupé l’eau avant de commencer.",
+"ru": "Сантехник перекрыл воду перед началом работы.",
+"uk": "Сантехнік вимкнув воду перед початком робіт."
+},
+{
+"id": "fr:31:50",
+"target": "J’ai pu entrer parce que tu m’avais laissé la clé.",
+"ru": "Я смог войти, потому что ты оставил мне ключ.",
+"uk": "Я зміг увійти, бо ти залишив мені ключ."
+}
+]
+},
+{
+"lesson": 32,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:32:01",
+"fr:32:02",
+"fr:32:03"
+],
+"textByLocale": {
+"en": "Separate the condition from the result. The tense form `imparfait` here helps us imagine a possible or unreal situation now or in the future, not necessarily an event in the past.",
+"ru": "Отдели условие от результата. Временная форма `imparfait` здесь помогает представить возможную или нереальную ситуацию сейчас или в будущем, а не обязательно событие в прошлом.",
+"uk": "Відокремте умову від результату. Тимчасова форма `imparfait` тут допомагає уявити можливу чи нереальну ситуацію зараз чи в майбутньому, а не обов'язкова подія у минулому."
+}
+},
+{
+"exampleIds": [
+"fr:32:04",
+"fr:32:05",
+"fr:32:08"
+],
+"textByLocale": {
+"en": "After the conditional `si` in this model, don't put `je serais` or `j’aurais`. The condition is built with `étais` or `avais`. Keep the form with \"would\" for the result.",
+"ru": "После условного `si` в этой модели не ставь `je serais` или `j’aurais`. Условие строится с `étais` или `avais`. Форму с «бы» сохраняй для результата.",
+"uk": "Після умовного `si` у цій моделі не став `je serais` або `j’aurais`. Умова будується з `étais` або `avais`. Форму з «б» зберігай для результату."
+}
+},
+{
+"exampleIds": [
+"fr:32:11",
+"fr:32:13",
+"fr:32:15"
+],
+"textByLocale": {
+"en": "Don't make a conditional sentence by rearranging random endings. Assign each action to its performer: If the bus had come earlier, I would have taken it.",
+"ru": "Не делай условное предложение перестановкой случайных окончаний. Приписывай каждое действие своему исполнителю: автобус приходил бы раньше — я бы на него садился.",
+"uk": "Не роби умовну пропозицію перестановкою випадкових закінчень. Приписуй кожну дію своєму виконавцю: автобус приходив би раніше — я на нього сідав би."
+}
+},
+{
+"exampleIds": [
+"fr:32:21",
+"fr:32:22",
+"fr:32:24"
+],
+"textByLocale": {
+"en": "The result can be called the first: I would choose the room if the price were lower. The grammar of the parts does not change when they are rearranged. In writing, a comma is usually needed after the initial condition.",
+"ru": "Результат можно назвать первым: комнату выбрал бы я, если бы цена была ниже. Грамматика частей не меняется при их перестановке. В написании запятая обычно нужна после начального условия.",
+"uk": "Результат можна назвати першим: кімнату вибрав би я, якби ціна була нижчою. Граматика елементів не змінюється за її перестановці. У написанні кома зазвичай потрібна після початкової умови."
+}
+},
+{
+"exampleIds": [
+"fr:32:31",
+"fr:32:33",
+"fr:32:36"
+],
+"textByLocale": {
+"en": "Short everyday problems clearly demonstrate connections: if there were a ladder, the lamp would be fixed; if the oven worked, the cake could be baked. Don't substitute a statement of fact for a possibility.",
+"ru": "Короткие бытовые задачи хорошо показывают связь: будь лестница — починили бы лампу; работала бы духовка — можно было бы испечь пирог. Не подменяй возможность утверждением о факте.",
+"uk": "Короткі побутові завдання добре показують зв'язок: якби сходи — полагодили б лампу; працювала б духовка — можна було б спекти пиріг. Не підмінюй можливість твердженням про факт."
+}
+},
+{
+"exampleIds": [
+"fr:32:41",
+"fr:32:42",
+"fr:32:46"
+],
+"textByLocale": {
+"en": "`À ta place` already creates an imaginary situation: \"in your place.\" In the full model, check both forms again, rather than trying to put the conditional mood in both parts.",
+"ru": "`À ta place` уже создаёт воображаемую ситуацию: «на твоём месте». В полной модели снова проверяй две формы, а не пытайся ставить условное наклонение в обе части.",
+"uk": "`À ta place` вже створює уявну ситуацію: \"на твоєму місці\". У повній моделі знову перевіряй дві форми, а не намагайся ставити умовний спосіб в обидві частини."
+}
+},
+{
+"exampleIds": [
+"fr:32:47",
+"fr:32:49",
+"fr:32:50"
+],
+"textByLocale": {
+"en": "Compare with the actual condition: `si tu viens, je préparerai …` and the hypothesis `si tu venais, je préparerais …`. This lesson trains the second scheme. The number of complete sentences alone is not enough to establish the level of language proficiency.",
+"ru": "Сравни с реальным условием: `si tu viens, je préparerai …` и предположением `si tu venais, je préparerais …`. Этот урок тренирует вторую схему. Самого количества законченных фраз недостаточно, чтобы установить уровень владения языком.",
+"uk": "Порівняй з реальною умовою: `si tu viens, je préparerai …` та припущенням `si tu venais, je préparerais …`. Цей урок тренує другу схему. Самої кількості закінчених фраз недостатньо, щоб встановити рівень володіння мовою."
+}
+}
+],
+"drills": [
+{
+"bad": "viendra",
+"chapter": 1,
+"id": "fr:32:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"viendrai",
+"viendra",
+"viendrais"
+],
+"slot": 5
+},
+{
+"bad": "resterons",
+"chapter": 1,
+"id": "fr:32:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"resterai",
+"resterons",
+"resterais"
+],
+"slot": 5
+},
+{
+"bad": "pourraient",
+"chapter": 1,
+"id": "fr:32:05:lab",
+"item": 5,
+"kind": "match",
+"near": 17,
+"options": [
+"pourrais",
+"peut",
+"pourraient"
+],
+"slot": 5
+},
+{
+"bad": "vient",
+"chapter": 2,
+"id": "fr:32:08:lab",
+"item": 8,
+"kind": "build",
+"near": 44,
+"options": [
+"vient",
+"viendrai",
+"viendrait"
+],
+"slot": 6
+},
+{
+"bad": "j’habitais",
+"chapter": 2,
+"id": "fr:32:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"j’avais",
+"j’entrerais",
+"j’habitais"
+],
+"slot": 4
+},
+{
+"bad": "viendra",
+"chapter": 2,
+"id": "fr:32:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 1,
+"options": [
+"viendra",
+"viendrais",
+"viens"
+],
+"slot": 5
+},
+{
+"bad": "marcherais",
+"chapter": 3,
+"id": "fr:32:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 16,
+"options": [
+"marchions",
+"marcherais",
+"marcherions"
+],
+"slot": 7
+},
+{
+"bad": "pouvons",
+"chapter": 3,
+"id": "fr:32:17:lab",
+"item": 17,
+"kind": "match",
+"near": 47,
+"options": [
+"peut",
+"pourrais",
+"pouvons"
+],
+"slot": 5
+},
+{
+"bad": "sortie",
+"chapter": 3,
+"id": "fr:32:19:lab",
+"item": 19,
+"kind": "build",
+"near": 9,
+"options": [
+"sortie",
+"sortirait",
+"temps"
+],
+"slot": 5
+},
+{
+"bad": "étions",
+"chapter": 4,
+"id": "fr:32:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"étions",
+"était",
+"étiez"
+],
+"slot": 6
+},
+{
+"bad": "a",
+"chapter": 4,
+"id": "fr:32:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"a",
+"avait",
+"ai"
+],
+"slot": 6
+},
+{
+"bad": "fermaient",
+"chapter": 4,
+"id": "fr:32:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"fermais",
+"fermerai",
+"fermaient"
+],
+"slot": 5
+},
+{
+"bad": "avais",
+"chapter": 5,
+"id": "fr:32:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"avait",
+"avais",
+"aura"
+],
+"slot": 6
+},
+{
+"bad": "s’il",
+"chapter": 5,
+"id": "fr:32:31:lab",
+"item": 31,
+"kind": "build",
+"near": 45,
+"options": [
+"s’il",
+"s’arrêtait",
+"s’ouvrirait"
+],
+"slot": 6
+},
+{
+"bad": "pourrait",
+"chapter": 5,
+"id": "fr:32:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 5,
+"options": [
+"pourrais",
+"pourrait",
+"pourrai"
+],
+"slot": 6
+},
+{
+"bad": "fait",
+"chapter": 6,
+"id": "fr:32:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 7,
+"options": [
+"ferait",
+"fait",
+"feraient"
+],
+"slot": 5
+},
+{
+"bad": "rentrerais",
+"chapter": 6,
+"id": "fr:32:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"rentrerais",
+"trouverait",
+"promettais"
+],
+"slot": 6
+},
+{
+"bad": "solution",
+"chapter": 6,
+"id": "fr:32:42:lab",
+"item": 42,
+"kind": "match",
+"near": 4,
+"options": [
+"ferions",
+"solution",
+"écrirais"
+],
+"slot": 7
+},
+{
+"bad": "partirions",
+"chapter": 7,
+"id": "fr:32:45:lab",
+"item": 45,
+"kind": "build",
+"near": 50,
+"options": [
+"préviendrions",
+"partirions",
+"avions"
+],
+"slot": 5
+},
+{
+"bad": "commanderez",
+"chapter": 7,
+"id": "fr:32:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 35,
+"options": [
+"commanderez",
+"commanderais",
+"commanderons"
+],
+"slot": 9
+}
+],
+"table": [
+[
+"si j’avais",
+"je viendrais"
+],
+[
+"si tu étais",
+"tu pourrais"
+],
+[
+"si nous étions",
+"nous partirions"
+],
+[
+"s’il avait",
+"il lirait"
+],
+[
+"si j’étais à ta place",
+"je lui écrirais"
+]
+],
+"title": {
+"en": "Imagine the condition: `si` + `imparfait`",
+"ru": "Представить условие: `si` + `imparfait`",
+"uk": "Представити умову: `si` + `imparfait`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:32:01",
+"target": "Si j’avais le temps, je viendrais.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "fr:32:02",
+"target": "Si tu avais le temps, tu viendrais.",
+"ru": "Если бы у тебя было время, ты бы пришел.",
+"uk": "Якби в тебе був час, ти б прийшов."
+},
+{
+"id": "fr:32:03",
+"target": "Si j’avais le choix, je resterais.",
+"ru": "Если бы у меня был выбор, я бы остался.",
+"uk": "Якби в мене був вибір, я б залишився."
+},
+{
+"id": "fr:32:04",
+"target": "Si j’étais libre, je t’aiderais.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі."
+},
+{
+"id": "fr:32:05",
+"target": "Si tu étais libre, tu pourrais venir.",
+"ru": "Если бы ты был свободен, ты мог бы прийти.",
+"uk": "Якби ти був вільний, ти міг би прийти."
+},
+{
+"id": "fr:32:08",
+"target": "Si Paul avait une voiture, il viendrait.",
+"ru": "Если бы у Поля была машина, он бы приехал.",
+"uk": "Якби в Поля була машина, він би приїхав."
+},
+{
+"id": "fr:32:11",
+"target": "Si j’habitais près du parc, j’irais courir.",
+"ru": "Если бы я жил рядом с парком, я бы пошел на пробежку.",
+"uk": "Якби я жив біля парку, я б пішов на пробіжку."
+},
+{
+"id": "fr:32:13",
+"target": "Si le bus passait plus tôt, je le prendrais.",
+"ru": "Если бы автобус приходил раньше, я бы на нём ездил.",
+"uk": "Якби автобус приходив раніше, я б ним їздив."
+},
+{
+"id": "fr:32:15",
+"target": "Si le train coûtait moins cher, on voyagerait davantage.",
+"ru": "Если бы поезд был дешевле, мы бы больше путешествовали.",
+"uk": "Якби поїзд був дешевшим, ми б подорожували більше."
+},
+{
+"id": "fr:32:21",
+"target": "Je choisirais cette chambre si elle était moins chère.",
+"ru": "Я бы выбрал эту комнату, если бы она была дешевле.",
+"uk": "Я б вибрав цю кімнату, якби вона була дешевшою."
+},
+{
+"id": "fr:32:22",
+"target": "Je prendrais la veste si elle était plus chaude.",
+"ru": "Я бы взял куртку, если бы она была теплее.",
+"uk": "Я б взяв куртку, якби вона була теплішою."
+},
+{
+"id": "fr:32:24",
+"target": "Elle appellerait le médecin si elle avait son numéro.",
+"ru": "Она бы позвонила врачу, если бы у неё был его номер.",
+"uk": "Вона б зателефонувала лікарю, якби в неї був його номер."
+},
+{
+"id": "fr:32:31",
+"target": "Si la clé tournait, la porte s’ouvrirait.",
+"ru": "Если бы ключ повернулся, дверь бы открылась.",
+"uk": "Якби ключ повернувся, двері відчинилися б."
+},
+{
+"id": "fr:32:33",
+"target": "Si nous avions une échelle, on réparerait la lampe.",
+"ru": "Если бы у нас была лестница, мы бы починили лампу.",
+"uk": "Якби у нас була драбина, ми б полагодили лампу."
+},
+{
+"id": "fr:32:36",
+"target": "Si le four fonctionnait, elle ferait une tarte.",
+"ru": "Если бы духовка работала, она бы испекла пирог.",
+"uk": "Якби духовка працювала, вона б спекла пиріг."
+},
+{
+"id": "fr:32:41",
+"target": "Si tu me prévenais la veille, je préparerais un lit.",
+"ru": "Если бы ты предупредил меня накануне, я бы приготовил постель.",
+"uk": "Якби ти попередив мене напередодні, я приготував би постіль."
+},
+{
+"id": "fr:32:42",
+"target": "Si j’étais à ta place, je lui écrirais.",
+"ru": "На твоем месте я бы написал ей.",
+"uk": "Якби я був на твоєму місці, я б написав їй."
+},
+{
+"id": "fr:32:46",
+"target": "Si tu me promettais de revenir, je garderais ta place.",
+"ru": "Если бы ты пообещал вернуться, я бы придержал твоё место.",
+"uk": "Якби ти пообіцяв повернутись, я б притримав твоє місце."
+},
+{
+"id": "fr:32:47",
+"target": "Si tu savais nager, tu pourrais nous accompagner.",
+"ru": "Если бы ты умел плавать, ты мог бы поехать с нами.",
+"uk": "Якби ти вмів плавати, ти міг би піти з нами."
+},
+{
+"id": "fr:32:49",
+"target": "Si j’avais ton expérience, je tenterais ma chance.",
+"ru": "Если бы у меня был твой опыт, я бы попытал счастья.",
+"uk": "Якби в мене був твій досвід, я б спробував щастя."
+},
+{
+"id": "fr:32:50",
+"target": "Si les horaires changeaient, nous vous préviendrions.",
+"ru": "Если бы расписание изменилось, мы бы вам сообщили.",
+"uk": "Якби розклад змінився, ми б вам повідомили."
+}
+]
+}
+]

@@ -363,6 +363,14 @@ function LessonHelp() {
   // зачем (владелец 05.11): прямой переход на /lesson_help при курсе без своей теории не показывает ни английский текст, ни заглушку — возвращает в меню урока.
   // зачем (владелец 05.11): любой заход без теории (нет ни своей теории курса, ни английской для этого интерфейса) возвращает в меню урока без текста-заглушки
   const theoryMissingHere = !isFrenchTarget && !plannedTheoryScreens?.length && (Boolean(plannedLocale) || (lang === 'en' && THEORY_FALLBACK === 'hide') || !theory);
+  // зачем (владелец 11.11: из теории fr/es/de/it не выйти): единая точка «назад» из теории + журнал [THEORY-NAV] (экран, курс, что делает назад).
+  const leaveTheory = (via: string): void => {
+    console.log('[THEORY-NAV] back', JSON.stringify({ screen: 'lesson_help', via, lessonId, studyTarget: String(studyTarget), uiLang: lang, fallback: '/lesson_menu' })); // guard-ok: журнал навигации
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  };
+  useEffect(() => {
+    console.log('[THEORY-NAV] mount', JSON.stringify({ screen: 'lesson_help', lessonId, studyTarget: String(studyTarget), uiLang: lang })); // guard-ok: журнал навигации
+  }, [lessonId, studyTarget, lang]);
   useEffect(() => {
     if (!theoryMissingHere) return;
     console.log('[LESSON-HELP] theory missing for lesson — back to menu', JSON.stringify({ lessonId, lang, studyTarget })); // guard-ok: ранний выход с причиной
@@ -396,7 +404,7 @@ function LessonHelp() {
         sections={classicView.sections}
         metrics={classicView.metrics}
         progressStorageKey={lessonTheorySectionsSeenKey(lessonId, studyTarget)}
-        onBack={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+        onBack={() => leaveTheory('theory_view_back')}
         level={null}
         reportDataId={`classic_theory_${storageStudyTarget(studyTarget)}_${lessonId}`}
       />
@@ -410,7 +418,7 @@ function LessonHelp() {
         {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
         <SafeTopBackButton
           screen="lesson_help"
-          onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+          onPress={() => { fk.tap(); leaveTheory('legacy_back_button'); }}
           testID="lesson-help-back"
           accessibilityLabel={triLang(lang, {
             uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',

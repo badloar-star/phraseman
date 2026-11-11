@@ -1,5 +1,6 @@
 import React from 'react';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react-native';
+import { usePeakFloorRecords } from '../components/spire/peak/use_peak_floor_records';
 import SpireFloorRecord from '../components/spire/SpireFloorRecord';
 import type { SpireRoomSnapshot } from '../modules/spire/room_rows';
 import type { SpireConfigDoc } from '../modules/spire/config_contract';
@@ -71,4 +72,24 @@ test('failed finish retries the same token and does not report a winner early', 
   const submits = requests.filter((r) => r.action === 'finish');
   expect(submits).toHaveLength(2);
   expect(submits[0]).toEqual(submits[1]);
+});
+
+test('the Peak sheet reads records only while open and keeps room owner and stable account separate', async () => {
+  const record = { uid: 'other', durationMs: 12000, completedAtMs: 1 };
+  mockCall.mockResolvedValue({ records: { '1:1': record }, personal: {} });
+  const source = { uid: room.uid, stableId: 'stable-account', room, config: { ...config, floorRecordsEnabled: true } };
+  function Probe({ open }: { open: boolean }) {
+    const { status, records } = usePeakFloorRecords(source, open);
+    return React.createElement('Text', { testID: 'peak-record-probe' }, `${status}:${records?.['1:1']?.durationMs ?? ''}`);
+  }
+  const view = await render(<Probe open={false} />);
+  expect(mockCall).not.toHaveBeenCalled();
+  await view.rerender(<Probe open />);
+  expect(mockCall).toHaveBeenCalledWith(expect.anything(), 'spireFloorRecords', {
+    action: 'read', stableId: 'stable-account', groupId: room.groupId, weekId: room.weekId, lang: room.lang,
+  });
+  expect(screen.getByText('ready:12000')).toBeTruthy();
+  await view.rerender(<Probe open={false} />);
+  await view.rerender(<Probe open />);
+  expect(mockCall).toHaveBeenCalledTimes(1);
 });

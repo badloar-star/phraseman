@@ -3,7 +3,7 @@ import { join } from 'path';
 
 // зачем (Ревизор 22.10, 💸): квитанции повторов «Друзей» стираются TTL Firestore через 30 дней — только если в каждой записи
 // есть поле expireAt. Новая запись квитанции без него копилась бы вечно.
-const FILES = ['friends_duel.ts', 'friends_lesson_together.ts'];
+const FILES = ['friends_duel.ts'];
 
 describe('квитанции «Друзей» несут expireAt для TTL', () => {
   test.each(FILES)('%s: каждая запись receiptRef ставит expireAt', (file) => {

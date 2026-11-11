@@ -1,6 +1,7 @@
 // зачем (владелец 11.10, журнал 15; макет learn D5): на экране результата «Неверно» в уроке ИИ-разбор запускается ТОЛЬКО по тапу
-// «Разобрать мой ответ» — автозапуска нет, рядом вторая кнопка «Объяснить проще». «Мои ошибки» сохраняют прежнюю автозагрузку (autoStart).
-// Сторож смотрит на исходники: по умолчанию хук не стартует сам, урок не просит autoStart, карточка рисует две кнопки, офлайн-тап не молчит.
+// «Разобрать мой ответ» — автозапуска нет. «Мои ошибки» сохраняют прежнюю автозагрузку (autoStart).
+// зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): второй кнопки «Объяснить проще» больше нет — сторож держит её отсутствие.
+// Сторож смотрит на исходники: по умолчанию хук не стартует сам, урок не просит autoStart, карточка рисует одну кнопку, офлайн-тап не молчит.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -26,16 +27,17 @@ test('lesson result screen asks for the breakdown on tap; mistakes practice keep
   const call = lesson.slice(lesson.indexOf('useMistakeExplain({'), lesson.indexOf('useMistakeExplain({') + 600);
   assert.ok(!/autoStart/.test(call), 'урок не просит автозапуск');
   assert.match(lesson, /onExplain=\{explainCurrentMistake\}/);
-  assert.match(lesson, /onOpenSimple=\{openEli5Modal\}/);
+  assert.doesNotMatch(lesson, /onOpenSimple|MistakeEli5Modal/, 'упрощённого разбора в уроке нет');
   const practice = read('app', 'mistake_practice_session.tsx');
   assert.match(practice, /autoStart: true,/);
+  assert.doesNotMatch(practice, /mistake-verdict-simpler|MistakeEli5Modal/, 'упрощённого разбора в «Моих ошибках» нет');
 });
 
-test('mistake card shows two buttons side by side in the idle state', () => {
+test('mistake card shows only the breakdown button in the idle state', () => {
   const card = read('components', 'AiMistakeCard.tsx');
   assert.match(card, /state === 'idle' \?[\s\S]{0,400}styles\.actionRow/);
   assert.match(card, /testID="ai-mistake-explain-button"/);
-  assert.match(card, /testID="ai-mistake-simple-button"/);
+  assert.doesNotMatch(card, /ai-mistake-simple-button|onOpenSimple/);
   assert.match(card, /ru: 'Разобрать мой ответ'/);
-  assert.match(card, /ru: 'Объяснить проще'/);
+  assert.doesNotMatch(card, /ru: 'Объяснить проще'/);
 });

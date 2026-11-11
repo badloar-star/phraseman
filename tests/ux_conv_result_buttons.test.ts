@@ -26,14 +26,4 @@ describe('итог классического урока', () => {
 });
 
 describe('итог урока Learning V2', () => {
-  it('главная кнопка «Дальше: урок N»', () => {
-    const copy = read('components/learning-v2/horizons/horizon_result_glass_copy.ts');
-    for (const text of NEXT) expect(copy).toContain(text);
-    expect(copy).not.toContain('К уроку ${lesson}');
-  });
-  it('вторая кнопка «Повторить мои ошибки · N» с числом ошибок экрана', () => {
-    const review = read('components/learning-v2/horizons/HorizonMistakeReview.tsx');
-    for (const text of MISTAKES) expect(review).toContain(text);
-    expect(review).toContain('${shownTotal}');
-  });
 });

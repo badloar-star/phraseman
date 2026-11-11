@@ -38,23 +38,11 @@
    "en": "there",
    "es": "allí, ahí"
   },
-  "léa": {
-   "ru": "Леа (имя)",
-   "uk": "Леа (ім'я)",
-   "en": "Léa (name)",
-   "es": "Léa (nombre)"
-  },
   "est": {
    "ru": "(он, она) есть, находится",
    "uk": "(він, вона) є, перебуває",
    "en": "(he, she) is",
    "es": "(él, ella) está, es"
-  },
-  "paul": {
-   "ru": "Поль (имя)",
-   "uk": "Поль (ім'я)",
-   "en": "Paul (name)",
-   "es": "Paul (nombre)"
   },
   "nous": {
    "ru": "мы",
@@ -105,10 +93,15 @@
    "es": "en, a"
   },
   "la": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before a thing's name)",
-   "es": "la (antes del nombre)"
+   "ru": "Тот самый дом (___ maison)",
+   "uk": "Той самий дім (___ maison)",
+   "en": "The specific house (___ maison)",
+   "es": "La casa de la que hablamos (___ maison)",
+   "pt-BR": "A casa de que estamos falando (___ maison)",
+   "vi": "Ngôi nhà đang được nhắc đến (___ maison)",
+   "id": "Rumah yang sedang dibicarakan (___ maison)",
+   "tr": "Sözünü ettiğimiz ev (___ maison)",
+   "pl": "Ten konkretny dom (___ maison)"
   },
   "maison": {
    "ru": "дом",
@@ -207,10 +200,15 @@
    "es": "ventana"
   },
   "le": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the (before a thing's name)",
-   "es": "el (antes del nombre)"
+   "ru": "Тот самый магазин (___ magasin)",
+   "uk": "Той самий магазин (___ magasin)",
+   "en": "The specific shop (___ magasin)",
+   "es": "La tienda de la que hablamos (___ magasin)",
+   "pt-BR": "A loja de que estamos falando (___ magasin)",
+   "vi": "Cửa hàng đang được nhắc đến (___ magasin)",
+   "id": "Toko yang sedang dibicarakan (___ magasin)",
+   "tr": "Sözünü ettiğimiz dükkân (___ magasin)",
+   "pl": "Ten konkretny sklep (___ magasin)"
   },
   "magasin": {
    "ru": "магазин",
@@ -255,10 +253,15 @@
    "es": "cerrada"
   },
   "les": {
-   "ru": "слово перед названиями вещей; по-русски нет",
-   "uk": "слово перед назвами речей; українською немає",
-   "en": "the (before several things)",
-   "es": "los, las"
+   "ru": "Те самые двери (___ portes)",
+   "uk": "Ті самі двері (___ portes)",
+   "en": "The specific doors (___ portes)",
+   "es": "Las puertas de las que hablamos (___ portes)",
+   "pt-BR": "As portas de que estamos falando (___ portes)",
+   "vi": "Những cánh cửa đang được nhắc đến (___ portes)",
+   "id": "Pintu-pintu yang sedang dibicarakan (___ portes)",
+   "tr": "Sözünü ettiğimiz kapılar (___ portes)",
+   "pl": "Te konkretne drzwi (___ portes)"
   },
   "portes": {
    "ru": "двери",

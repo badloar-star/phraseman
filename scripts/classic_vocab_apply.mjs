@@ -4,6 +4,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isClassicVocabExcluded } from './classic_vocab_exclusions.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ALL = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const norm = (t) => String(t).toLowerCase().replace(/[.,!?;:¿¡«»"]/g, '').trim();
@@ -33,6 +34,7 @@ export function applyVocab(lang, lemmas, phrases) {
       if (!ids.length) throw new Error(`словарь ${lang}: слово «${form}» урока ${n} не найдено во фразах`);
       const first = Math.min(...ids.map(lessonOf));
       if (first !== n) throw new Error(`словарь ${lang}: слово «${form}» в файле урока ${n}, но впервые встречается в уроке ${first}`);
+      if (isClassicVocabExcluded(lang, form, first)) continue;
       coveredForms.add(form);
       fresh.push({ lemma: form, meaning: Object.fromEntries(ALL.map((l) => [l, (m[l] ?? '').toString().trim() || (m.en ?? m.ru).toString().trim()])), firstLesson: n, phraseIds: ids, forms: [form] });
       vocabStats.words++;

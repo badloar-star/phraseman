@@ -10,7 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { animateNextLayoutTransition } from '../../../app/smooth_layout';
 import { useLang } from '../../LangContext';
-import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../practice/PracticeGlass';
 import V2Pressable from '../../v2/V2Pressable';
 import { dialogueWorldIcon } from '../dialogue_scenario_icons';
 import { dialogsHubTokens } from '../scene/dialogs_hub_tokens';

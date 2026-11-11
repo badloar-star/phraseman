@@ -1,0 +1,639 @@
+{
+ "lang": "es",
+ "lesson": 17,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:17:01",
+   "target": "Me gusta el café.",
+   "ru": "Мне нравится кофе.",
+   "uk": "Мені подобається кава."
+  },
+  {
+   "id": "es:17:02",
+   "target": "Me gusta el pan.",
+   "ru": "Мне нравится хлеб.",
+   "uk": "Мені подобається хліб."
+  },
+  {
+   "id": "es:17:03",
+   "target": "Me gusta la música.",
+   "ru": "Мне нравится музыка.",
+   "uk": "Мені подобається музика."
+  },
+  {
+   "id": "es:17:04",
+   "target": "Me gusta este libro.",
+   "ru": "Мне нравится эта книга.",
+   "uk": "Мені подобається ця книжка."
+  },
+  {
+   "id": "es:17:05",
+   "target": "Me gusta tu casa.",
+   "ru": "Мне нравится твой дом.",
+   "uk": "Мені подобається твій дім."
+  },
+  {
+   "id": "es:17:06",
+   "target": "Me gustan estos libros.",
+   "ru": "Мне нравятся эти книги.",
+   "uk": "Мені подобаються ці книжки."
+  },
+  {
+   "id": "es:17:07",
+   "target": "Me gustan las fotos.",
+   "ru": "Мне нравятся фотографии.",
+   "uk": "Мені подобаються фотографії."
+  },
+  {
+   "id": "es:17:08",
+   "target": "Me gustan tus ideas.",
+   "ru": "Мне нравятся твои идеи.",
+   "uk": "Мені подобаються твої ідеї."
+  },
+  {
+   "id": "es:17:09",
+   "target": "Me gustan las ventanas grandes.",
+   "ru": "Мне нравятся большие окна.",
+   "uk": "Мені подобаються великі вікна."
+  },
+  {
+   "id": "es:17:10",
+   "target": "Me gustan estas canciones.",
+   "ru": "Мне нравятся эти песни.",
+   "uk": "Мені подобаються ці пісні."
+  },
+  {
+   "id": "es:17:11",
+   "target": "¿Te gusta el hotel?",
+   "ru": "Тебе нравится отель?",
+   "uk": "Тобі подобається готель?"
+  },
+  {
+   "id": "es:17:12",
+   "target": "¿Te gustan mis fotos?",
+   "ru": "Тебе нравятся мои фотографии?",
+   "uk": "Тобі подобаються мої фотографії?"
+  },
+  {
+   "id": "es:17:13",
+   "target": "¿Te gusta la playa?",
+   "ru": "Тебе нравится пляж?",
+   "uk": "Тобі подобається пляж?"
+  },
+  {
+   "id": "es:17:14",
+   "target": "¿Te gustan los coches pequeños?",
+   "ru": "Тебе нравятся маленькие машины?",
+   "uk": "Тобі подобаються малі машини?"
+  },
+  {
+   "id": "es:17:15",
+   "target": "¿Te gusta este café?",
+   "ru": "Тебе нравится этот кофе?",
+   "uk": "Тобі подобається ця кава?"
+  },
+  {
+   "id": "es:17:16",
+   "target": "No me gusta este mapa.",
+   "ru": "Мне не нравится эта карта.",
+   "uk": "Мені не подобається ця мапа."
+  },
+  {
+   "id": "es:17:17",
+   "target": "No me gustan estos zapatos.",
+   "ru": "Мне не нравятся эти туфли.",
+   "uk": "Мені не подобаються ці туфлі."
+  },
+  {
+   "id": "es:17:18",
+   "target": "No me gusta el café frío.",
+   "ru": "Мне не нравится холодный кофе.",
+   "uk": "Мені не подобається холодна кава."
+  },
+  {
+   "id": "es:17:19",
+   "target": "No me gustan las maletas grandes.",
+   "ru": "Мне не нравятся большие чемоданы.",
+   "uk": "Мені не подобаються великі валізи."
+  },
+  {
+   "id": "es:17:20",
+   "target": "No me gusta esta música.",
+   "ru": "Мне не нравится эта музыка.",
+   "uk": "Мені не подобається ця музика."
+  },
+  {
+   "id": "es:17:21",
+   "target": "A Ana le gusta este hotel.",
+   "ru": "Ане нравится этот отель.",
+   "uk": "Ані подобається цей готель."
+  },
+  {
+   "id": "es:17:22",
+   "target": "A Luis le gusta esta película.",
+   "ru": "Луису нравится этот фильм.",
+   "uk": "Луїсу подобається цей фільм."
+  },
+  {
+   "id": "es:17:23",
+   "target": "A mi madre le gusta este hotel.",
+   "ru": "Моей маме нравится этот отель.",
+   "uk": "Моїй мамі подобається цей готель."
+  },
+  {
+   "id": "es:17:24",
+   "target": "A mi hermana le gustan las verduras.",
+   "ru": "Моей сестре нравятся овощи.",
+   "uk": "Моїй сестрі подобаються овочі."
+  },
+  {
+   "id": "es:17:25",
+   "target": "A mis hermanos les gusta este hotel.",
+   "ru": "Моим братьям нравится этот отель.",
+   "uk": "Моїм братам подобається цей готель."
+  },
+  {
+   "id": "es:17:26",
+   "target": "Nos gustan las fotos de Ana.",
+   "ru": "Нам нравятся фотографии Аны.",
+   "uk": "Нам подобаються фотографії Ани."
+  },
+  {
+   "id": "es:17:27",
+   "target": "Les gustan las fotos de Ana.",
+   "ru": "Им нравятся фотографии Аны.",
+   "uk": "Їм подобаються фотографії Ани."
+  },
+  {
+   "id": "es:17:28",
+   "target": "Te gustan las fotos de Ana.",
+   "ru": "Тебе нравятся фотографии Аны.",
+   "uk": "Тобі подобаються фотографії Ани."
+  },
+  {
+   "id": "es:17:29",
+   "target": "¿Os gusta esta canción?",
+   "ru": "Вам нравится эта песня?",
+   "uk": "Вам подобається ця пісня?"
+  },
+  {
+   "id": "es:17:30",
+   "target": "Me gustan las fotos de Ana.",
+   "ru": "Мне нравятся фотографии Аны.",
+   "uk": "Мені подобаються фотографії Ани."
+  },
+  {
+   "id": "es:17:31",
+   "target": "Me gusta leer en casa.",
+   "ru": "Мне нравится читать дома.",
+   "uk": "Мені подобається читати вдома."
+  },
+  {
+   "id": "es:17:32",
+   "target": "Me gusta pasear por la playa.",
+   "ru": "Мне нравится гулять по пляжу.",
+   "uk": "Мені подобається гуляти пляжем."
+  },
+  {
+   "id": "es:17:33",
+   "target": "Me gusta hablar español.",
+   "ru": "Мне нравится говорить по-испански.",
+   "uk": "Мені подобається говорити іспанською."
+  },
+  {
+   "id": "es:17:34",
+   "target": "Me gusta preparar café.",
+   "ru": "Мне нравится готовить кофе.",
+   "uk": "Мені подобається готувати каву."
+  },
+  {
+   "id": "es:17:35",
+   "target": "Me gusta escribir cartas.",
+   "ru": "Мне нравится писать письма.",
+   "uk": "Мені подобається писати листи."
+  },
+  {
+   "id": "es:17:36",
+   "target": "¿Te gusta estudiar aquí?",
+   "ru": "Тебе нравится здесь учиться?",
+   "uk": "Тобі подобається тут навчатися?"
+  },
+  {
+   "id": "es:17:37",
+   "target": "¿Te gustan las películas en español?",
+   "ru": "Тебе нравятся фильмы на испанском?",
+   "uk": "Тобі подобаються фільми іспанською?"
+  },
+  {
+   "id": "es:17:38",
+   "target": "¿Os gusta estudiar aquí?",
+   "ru": "Вам нравится здесь учиться?",
+   "uk": "Вам подобається тут навчатися?"
+  },
+  {
+   "id": "es:17:39",
+   "target": "¿Les gusta estudiar aquí?",
+   "ru": "Им нравится здесь учиться?",
+   "uk": "Їм подобається тут навчатися?"
+  },
+  {
+   "id": "es:17:40",
+   "target": "¿Le gusta estudiar aquí?",
+   "ru": "Вам нравится здесь учиться?",
+   "uk": "Вам подобається тут навчатися?"
+  },
+  {
+   "id": "es:17:41",
+   "target": "A Ana no le gustan estos zapatos.",
+   "ru": "Ане не нравятся эти туфли.",
+   "uk": "Ані не подобаються ці туфлі."
+  },
+  {
+   "id": "es:17:42",
+   "target": "A Luis no le gusta el arroz frío.",
+   "ru": "Луису не нравится холодный рис.",
+   "uk": "Луїсу не подобається холодний рис."
+  },
+  {
+   "id": "es:17:43",
+   "target": "A mi madre no le gustan estos zapatos.",
+   "ru": "Моей маме не нравятся эти туфли.",
+   "uk": "Моїй мамі не подобаються ці туфлі."
+  },
+  {
+   "id": "es:17:44",
+   "target": "A mis hermanas no les gustan estos zapatos.",
+   "ru": "Моим сёстрам не нравятся эти туфли.",
+   "uk": "Моїм сестрам не подобаються ці туфлі."
+  },
+  {
+   "id": "es:17:45",
+   "target": "A mi hermano no le gustan estos zapatos.",
+   "ru": "Моему брату не нравятся эти туфли.",
+   "uk": "Моєму братові не подобаються ці туфлі."
+  },
+  {
+   "id": "es:17:46",
+   "target": "Nos gusta esta mesa.",
+   "ru": "Нам нравится этот стол.",
+   "uk": "Нам подобається цей стіл."
+  },
+  {
+   "id": "es:17:47",
+   "target": "Nos gusta este hotel.",
+   "ru": "Нам нравится этот отель.",
+   "uk": "Нам подобається цей готель."
+  },
+  {
+   "id": "es:17:48",
+   "target": "Nos gusta ir en bicicleta.",
+   "ru": "Нам нравится ездить на велосипеде.",
+   "uk": "Нам подобається їздити на велосипеді."
+  },
+  {
+   "id": "es:17:49",
+   "target": "Nos gusta este libro.",
+   "ru": "Нам нравится эта книга.",
+   "uk": "Нам подобається ця книжка."
+  },
+  {
+   "id": "es:17:50",
+   "target": "Nos gusta esta foto.",
+   "ru": "Нам нравится эта фотография.",
+   "uk": "Нам подобається ця фотографія."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "este",
+   "ru": "этот, эта, эти",
+   "uk": "цей, ця, ці"
+  },
+  {
+   "lemma": "gustar",
+   "ru": "нравиться",
+   "uk": "подобатися"
+  },
+  {
+   "lemma": "ir",
+   "ru": "идти, ехать",
+   "uk": "іти, їхати"
+  },
+  {
+   "lemma": "canción",
+   "ru": "песня",
+   "uk": "пісня"
+  },
+  {
+   "lemma": "pasear",
+   "ru": "гулять",
+   "uk": "гуляти"
+  },
+  {
+   "lemma": "película",
+   "ru": "фильм",
+   "uk": "фільм"
+  },
+  {
+   "lemma": "playa",
+   "ru": "пляж",
+   "uk": "пляж"
+  },
+  {
+   "lemma": "música",
+   "ru": "музыка",
+   "uk": "музика"
+  },
+  {
+   "lemma": "zapato",
+   "ru": "туфля, ботинок",
+   "uk": "туфля, черевик"
+  },
+  {
+   "lemma": "le",
+   "ru": "ему, ей, Вам (адресат)",
+   "uk": "йому, їй, Вам (адресат)"
+  },
+  {
+   "lemma": "les",
+   "ru": "им, вам (адресаты)",
+   "uk": "їм, вам (адресати)"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  }
+ ],
+ "oldTopicTitle": "Что мне нравится: gusta или gustan",
+ "oldTheoryRu": "Мне нравится кофе: Me gusta el café. Мне нравятся фотографии: Me gustan las fotos. Того, кому нравится, не меняли; глагол поменяли из-за фотографий. Отдельно назови того, кому нравится, и то, что нравится. Глагол согласуется со вторым. В me gusta el café кофе — единственное число. Мне могут нравиться три книги: me gustan los libros. Меняется не me, а форма глагола. Me означает «мне», te — «тебе», nos — «нам». Эти слова не выбирают gusta или gustan. Сравни me gusta и nos gusta: предмет может оставаться один. A Ana le gusta… прямо называет Ану. Короткое le сохраняется рядом с глаголом. Для нескольких людей — les: a mis hermanos les gusta… . Если нравится читать, в роли того, что нравится, стоит инфинитив leer. Для одного действия бери gusta: me gusta leer. Не согласуй gusta с людьми, которые читают. No me gusta — «мне не нравится». No ставится перед me, а не между me и gusta. В вопросе сохрани короткое местоимение перед глаголом. Сравни два задания: «Мне не нравится эта музыка.» / «Ане нравится этот отель.». Сверь число понравившейся вещи, а не число людей, которым она нравится. Смысловые опоры: «música» — музыка. Сравни два задания: «Моим сёстрам не нравятся эти туфли.» / «Нам нравится эта фотография.». Сверь число понравившейся вещи, а не число людей, которым она нравится. Отдельно назови того, кому нравится, и то, что нравится. Глагол согласуется со вторым."
+}

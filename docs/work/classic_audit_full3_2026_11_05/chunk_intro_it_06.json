@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 25,
+"blocks": [
+{
+"textES": "Te ofrecen boletos. \"Necesito dos\" implica \"dos de ellos\". Ne voglio due mantiene esta conexión: ne te recuerda a los boletos y due nombra la cantidad.\nIdentifica el artículo a partir de la pista. Un boleto es uno, una botella es una. El ne no cambia, incluso si el nombre del artículo es femenino.",
+"textEn": "You are offered tickets. \"I need two\" implies \"two of them.\" Ne voglio due maintains this connection: ne reminds you of tickets, and due names the quantity.\nIdentify the item from the clue. One ticket is uno, one bottle is una. ne itself does not change, even if the item's name is feminine.",
+"textId": "Anda ditawari tiket. \"Saya butuh dua\" menyiratkan \"dua tiket.\" Ne voglio due mempertahankan hubungan ini: ne mengingatkan Anda tentang tiket, dan due menyebutkan kuantitasnya.\nIdentifikasi barang dari petunjuk. Satu tiket adalah uno, satu botol adalah una. ne itu sendiri tidak berubah, meskipun nama barangnya feminin.",
+"textPl": "Dostajesz bilety. „Potrzebuję dwóch” implikuje „dwa z nich”. Ne voglio due utrzymuje to połączenie: ne przypomina o biletach, a due podaje ich ilość.\nZidentyfikuj przedmiot ze wskazówki. Jeden bilet to uno, jedna butelka to una. Samo ne się nie zmienia, nawet jeśli nazwa przedmiotu jest rodzaju żeńskiego.",
+"textPtBr": "Você recebe ingressos. \"Preciso de dois\" implica \"dois deles\". Ne voglio due mantém essa conexão: ne lembra você dos ingressos e due nomeia a quantidade.\nIdentifique o item a partir da dica. Um ingresso é uno, uma garrafa é una. O próprio ne não muda, mesmo que o nome do item seja feminino.",
+"textRU": "Тебе предлагают билеты. «Мне нужно два» подразумевает «два из них». Ne voglio due сохраняет эту связь: ne напоминает о билетах, а due называет количество.\nОпредели предмет из подсказки. Один билет — uno, одна бутылка — una. Само ne не изменяется, даже если название предмета женского рода.",
+"textTr": "Size bilet teklif ediliyor. \"İki taneye ihtiyacım var\" ifadesi \"iki tanesine\" ihtiyacınız olduğunu ima eder. Ne voglio due bu bağlantıyı korur: ne size biletleri hatırlatır ve due miktarı belirtir.\nİpucundan öğeyi belirleyin. Bir bilet uno, bir şişe una'dir. Öğenin adı dişil olsa bile ne'ün kendisi değişmez.",
+"textUK": "Тобі пропонують квитки. \"Мені потрібно два\" має на увазі \"два з них\". Ne voglio due зберігає цей зв'язок: ne нагадує про квитки, а due називає кількість.\nВизнач предмет із підказки. Один квиток - uno, одна пляшка - una. Саме ne не змінюється, навіть якщо назва предмета жіночого роду.",
+"textVi": "Bạn được mời mua vé. \"Tôi cần hai\" ngụ ý \"hai vé\". Ne voglio due duy trì mối liên hệ này: ne nhắc bạn về vé, và due nêu tên số lượng.\nXác định mặt hàng từ gợi ý. Một vé là uno, một chai là una. Bản thân ne không thay đổi, ngay cả khi tên mặt hàng là giống cái.",
+"titleES": "Parte de una cantidad conocida: ne",
+"titleEn": "Part of a known quantity: ne",
+"titleId": "Bagian dari kuantitas yang diketahui: ne",
+"titlePl": "Część znanej ilości: ne",
+"titlePtBr": "Parte de uma quantidade conhecida: ne",
+"titleRU": "Часть известного количества: ne",
+"titleTr": "Bilinen bir miktarın parçası: ne",
+"titleUK": "Частина відомої кількості: ne",
+"titleVi": "Một phần của số lượng đã biết: ne",
+"titleByLocale": {
+"en": "Part of a known quantity: ne",
+"es": "Parte de una cantidad conocida: ne",
+"id": "Bagian dari kuantitas yang diketahui: ne",
+"pl": "Część znanej ilości: ne",
+"pt-BR": "Parte de uma quantidade conhecida: ne",
+"ru": "Часть известного количества: ne",
+"tr": "Bilinen bir miktarın parçası: ne",
+"uk": "Частина відомої кількості: ne",
+"vi": "Một phần của số lượng đã biết: ne"
+},
+"textByLocale": {
+"en": [
+"You are offered tickets. \"I need two\" implies \"two of them.\" «Ne voglio due» maintains this connection: «ne» reminds you of tickets, and «due» names the quantity.",
+"Identify the item from the clue. One ticket is «uno», one bottle is «una». «ne» itself does not change, even if the item's name is feminine."
+],
+"es": [
+"Te ofrecen boletos. \"Necesito dos\" implica \"dos de ellos\". «Ne voglio due» mantiene esta conexión: «ne» te recuerda a los boletos y «due» nombra la cantidad.",
+"Identifica el artículo a partir de la pista. Un boleto es «uno», una botella es «una». El «ne» no cambia, incluso si el nombre del artículo es femenino."
+],
+"id": [
+"Anda ditawari tiket. \"Saya butuh dua\" menyiratkan \"dua tiket.\" «Ne voglio due» mempertahankan hubungan ini: «ne» mengingatkan Anda tentang tiket, dan «due» menyebutkan kuantitasnya.",
+"Identifikasi barang dari petunjuk. Satu tiket adalah «uno», satu botol adalah «una». «ne» itu sendiri tidak berubah, meskipun nama barangnya feminin."
+],
+"pl": [
+"Dostajesz bilety. „Potrzebuję dwóch” implikuje „dwa z nich”. «Ne voglio due» utrzymuje to połączenie: «ne» przypomina o biletach, a «due» podaje ich ilość.",
+"Zidentyfikuj przedmiot ze wskazówki. Jeden bilet to «uno», jedna butelka to «una». Samo «ne» się nie zmienia, nawet jeśli nazwa przedmiotu jest rodzaju żeńskiego."
+],
+"pt-BR": [
+"Você recebe ingressos. \"Preciso de dois\" implica \"dois deles\". «Ne voglio due» mantém essa conexão: «ne» lembra você dos ingressos e «due» nomeia a quantidade.",
+"Identifique o item a partir da dica. Um ingresso é «uno», uma garrafa é «una». O próprio «ne» não muda, mesmo que o nome do item seja feminino."
+],
+"ru": [
+"Тебе предлагают билеты. «Мне нужно два» подразумевает «два из них». «Ne voglio due» сохраняет эту связь: «ne» напоминает о билетах, а «due» называет количество.",
+"Определи предмет из подсказки. Один билет — «uno», одна бутылка — «una». Само «ne» не изменяется, даже если название предмета женского рода."
+],
+"tr": [
+"Size bilet teklif ediliyor. \"İki taneye ihtiyacım var\" ifadesi \"iki tanesine\" ihtiyacınız olduğunu ima eder. «Ne voglio due» bu bağlantıyı korur: «ne» size biletleri hatırlatır ve «due» miktarı belirtir.",
+"İpucundan öğeyi belirleyin. Bir bilet «uno», bir şişe «una»'dir. Öğenin adı dişil olsa bile «ne»'ün kendisi değişmez."
+],
+"uk": [
+"Тобі пропонують квитки. \"Мені потрібно два\" має на увазі \"два з них\". «Ne voglio due» зберігає цей зв'язок: «ne» нагадує про квитки, а «due» називає кількість.",
+"Визнач предмет із підказки. Один квиток - «uno», одна пляшка - «una». Саме «ne» не змінюється, навіть якщо назва предмета жіночого роду."
+],
+"vi": [
+"Bạn được mời mua vé. \"Tôi cần hai\" ngụ ý \"hai vé\". «Ne voglio due» duy trì mối liên hệ này: «ne» nhắc bạn về vé, và «due» nêu tên số lượng.",
+"Xác định mặt hàng từ gợi ý. Một vé là «uno», một chai là «una». Bản thân «ne» không thay đổi, ngay cả khi tên mặt hàng là giống cái."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:25:01"
+]
+},
+{
+"textES": "ne + verbo + cuántos\nCompara Li prendo —Me los llevo, el grupo especificado— y Ne prendo due —Me llevo dos de este grupo—. No reemplaces ne con la palabra de lugar ci. Cantidad y lugar responden a preguntas diferentes.\nPuedes decir un kilogramo, varias piezas o la mitad. Ne elimina la necesidad de repetir el nombre del producto ya mencionado. La cantidad permanece explícita.",
+"textEn": "ne + verb + how many\nCompare Li prendo—I take them, the entire specified group—and Ne prendo due—I take two from this group. Don't replace ne with the place word ci. Quantity and place answer different questions.\nYou can say a kilogram, several pieces, or half. Ne eliminates the need to repeat the name of the product already discussed. The quantity remains explicit.",
+"textId": "ne + kata kerja + berapa banyak\nBandingkan Li prendo—Saya mengambilnya, seluruh kelompok yang ditentukan—dan Ne prendo due—Saya mengambil dua dari kelompok ini. Jangan mengganti ne dengan kata tempat ci. Kuantitas dan tempat menjawab pertanyaan yang berbeda.\nAnda dapat mengatakan satu kilogram, beberapa potong, atau setengahnya. Ne menghilangkan kebutuhan untuk mengulangi nama produk yang telah dibahas. Jumlahnya tetap eksplisit.",
+"textPl": "ne + czasownik + ile\nPorównaj Li prendo — Biorę je, całą określoną grupę — i Ne prendo due — Biorę dwa z tej grupy. Nie zastępuj ne słowem określającym miejsce ci. Ilość i miejsce odpowiadają na różne pytania.\nMożesz powiedzieć kilogram, kilka sztuk lub połowę. Ne eliminuje potrzebę powtarzania nazwy produktu, który już omówiliśmy. Ilość pozostaje wyraźna.",
+"textPtBr": "ne + verbo + quantos\nCompare Li prendo — Eu os pego, todo o grupo especificado — e Ne prendo due — Eu pego dois deste grupo. Não substitua ne pela palavra de lugar ci. Quantidade e lugar respondem a perguntas diferentes.\nVocê pode dizer um quilograma, várias peças ou metade. Ne elimina a necessidade de repetir o nome do produto já discutido. A quantidade permanece explícita.",
+"textRU": "ne + глагол + сколько\nСравни Li prendo — беру их, всю указанную группу — и Ne prendo due — беру два из этой группы. Не заменяй ne на слово для места ci. Количество и место отвечают на разные вопросы.\nМожно назвать килограмм, несколько штук или половину. Ne позволяет не повторять само название уже обсуждаемого продукта. Количество остаётся явно выраженным.",
+"textTr": "ne + fiil + kaç tane\nLi prendo'i (belirtilen grubun tamamını alıyorum) ve Ne prendo due'yi (bu gruptan iki tane alıyorum) karşılaştırın. ne'ü yer belirten ci kelimesiyle değiştirmeyin. Miktar ve yer farklı soruları yanıtlar.\nBir kilogram, birkaç parça veya yarım diyebilirsiniz. Ne, daha önce bahsedilen ürünün adını tekrarlama ihtiyacını ortadan kaldırır. Miktar açık kalır.",
+"textUK": "ne + дієслово + скільки\nПорівняй Li prendo - беру їх, всю зазначену групу - і Ne prendo due - беру два з цієї групи. Не замінюй ne на слово для місця ci. Кількість та місце відповідають на різні запитання.\nМожна назвати кілограм, кілька штук чи половину. Ne дозволяє не повторювати саму назву вже обговорюваного продукту. Кількість залишається явно вираженим.",
+"textVi": "ne + động từ + số lượng\nSo sánh Li prendo—Tôi lấy chúng, toàn bộ nhóm được chỉ định—và Ne prendo due—Tôi lấy hai vé từ nhóm này. Đừng thay thế ne bằng từ chỉ vị trí ci. Số lượng và vị trí trả lời các câu hỏi khác nhau.\nBạn có thể nói một kilogram, vài miếng, hoặc một nửa. Ne loại bỏ sự cần thiết phải lặp lại tên của sản phẩm đã được thảo luận. Số lượng vẫn được nêu rõ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«ne» + verb + how many",
+"Compare «Li prendo»—I take them, the entire specified group—and «Ne prendo due»—I take two from this group. Don't replace «ne» with the place word «ci». Quantity and place answer different questions.",
+"You can say a kilogram, several pieces, or half. «Ne» eliminates the need to repeat the name of the product already discussed. The quantity remains explicit."
+],
+"es": [
+"«ne» + verbo + cuántos",
+"Compara «Li prendo» —Me los llevo, el grupo especificado— y «Ne prendo due» —Me llevo dos de este grupo—. No reemplaces «ne» con la palabra de lugar «ci». Cantidad y lugar responden a preguntas diferentes.",
+"Puedes decir un kilogramo, varias piezas o la mitad. «Ne» elimina la necesidad de repetir el nombre del producto ya mencionado. La cantidad permanece explícita."
+],
+"id": [
+"«ne» + kata kerja + berapa banyak",
+"Bandingkan «Li prendo»—Saya mengambilnya, seluruh kelompok yang ditentukan—dan «Ne prendo due»—Saya mengambil dua dari kelompok ini. Jangan mengganti «ne» dengan kata tempat «ci». Kuantitas dan tempat menjawab pertanyaan yang berbeda.",
+"Anda dapat mengatakan satu kilogram, beberapa potong, atau setengahnya. «Ne» menghilangkan kebutuhan untuk mengulangi nama produk yang telah dibahas. Jumlahnya tetap eksplisit."
+],
+"pl": [
+"«ne» + czasownik + ile",
+"Porównaj «Li prendo» — Biorę je, całą określoną grupę — i «Ne prendo due» — Biorę dwa z tej grupy. Nie zastępuj «ne» słowem określającym miejsce «ci». Ilość i miejsce odpowiadają na różne pytania.",
+"Możesz powiedzieć kilogram, kilka sztuk lub połowę. «Ne» eliminuje potrzebę powtarzania nazwy produktu, który już omówiliśmy. Ilość pozostaje wyraźna."
+],
+"pt-BR": [
+"«ne» + verbo + quantos",
+"Compare «Li prendo» — Eu os pego, todo o grupo especificado — e «Ne prendo due» — Eu pego dois deste grupo. Não substitua «ne» pela palavra de lugar «ci». Quantidade e lugar respondem a perguntas diferentes.",
+"Você pode dizer um quilograma, várias peças ou metade. «Ne» elimina a necessidade de repetir o nome do produto já discutido. A quantidade permanece explícita."
+],
+"ru": [
+"«ne» + глагол + сколько",
+"Сравни «Li prendo» — беру их, всю указанную группу — и «Ne prendo due» — беру два из этой группы. Не заменяй «ne» на слово для места «ci». Количество и место отвечают на разные вопросы.",
+"Можно назвать килограмм, несколько штук или половину. «Ne» позволяет не повторять само название уже обсуждаемого продукта. Количество остаётся явно выраженным."
+],
+"tr": [
+"«ne» + fiil + kaç tane",
+"«Li prendo»'i (belirtilen grubun tamamını alıyorum) ve «Ne prendo due»'yi (bu gruptan iki tane alıyorum) karşılaştırın. «ne»'ü yer belirten «ci» kelimesiyle değiştirmeyin. Miktar ve yer farklı soruları yanıtlar.",
+"Bir kilogram, birkaç parça veya yarım diyebilirsiniz. «Ne», daha önce bahsedilen ürünün adını tekrarlama ihtiyacını ortadan kaldırır. Miktar açık kalır."
+],
+"uk": [
+"«ne» + дієслово + скільки",
+"Порівняй «Li prendo» - беру їх, всю зазначену групу - і «Ne prendo due» - беру два з цієї групи. Не замінюй «ne» на слово для місця «ci». Кількість та місце відповідають на різні запитання.",
+"Можна назвати кілограм, кілька штук чи половину. «Ne» дозволяє не повторювати саму назву вже обговорюваного продукту. Кількість залишається явно вираженим."
+],
+"vi": [
+"«ne» + động từ + số lượng",
+"So sánh «Li prendo»—Tôi lấy chúng, toàn bộ nhóm được chỉ định—và «Ne prendo due»—Tôi lấy hai vé từ nhóm này. Đừng thay thế «ne» bằng từ chỉ vị trí «ci». Số lượng và vị trí trả lời các câu hỏi khác nhau.",
+"Bạn có thể nói một kilogram, vài miếng, hoặc một nửa. «Ne» loại bỏ sự cần thiết phải lặp lại tên của sản phẩm đã được thảo luận. Số lượng vẫn được nêu rõ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:25:06",
+"it:25:09"
+]
+},
+{
+"textES": "Para \"Quiero uno\" en la escena del boleto, elige Ne, luego voglio y finalmente uno. El número permanece en la respuesta: ne reemplazó el artículo, no la cantidad.",
+"textEn": "For \"I want one\" in the ticket scene, choose Ne, then voglio, then uno. The number remains in the answer: ne replaced the item, not the quantity.",
+"textId": "Untuk \"Saya ingin satu\" dalam adegan tiket, pilih Ne, lalu voglio, lalu uno. Angka tetap ada dalam jawaban: ne menggantikan barangnya, bukan jumlahnya.",
+"textPl": "W scenie z biletem, w odpowiedzi „Chcę jeden”, wybierz Ne, następnie voglio, a następnie uno. Liczba pozostaje w odpowiedzi: ne zastępuje przedmiot, a nie ilość.",
+"textPtBr": "Para \"Eu quero um\" na cena do ingresso, escolha Ne, depois voglio e, por fim, uno. O número permanece na resposta: ne substituiu o item, não a quantidade.",
+"textRU": "Для «Я хочу один» в сцене с билетами выбери Ne, затем voglio, затем uno. Число остаётся в ответе: ne заменило предмет, а не количество.",
+"textTr": "Bilet sahnesindeki \"Bir tane istiyorum\" için önce Ne, sonra voglio, sonra da uno'ü seçin. Cevapta sayı aynı kalır: ne, miktarı değil, öğeyi değiştirir.",
+"textUK": "Для «Я хочу один» у сцені з квитками вибери Ne, потім voglio, потім uno. Число залишається у відповіді: ne замінило предмет, а не кількість.",
+"textVi": "Đối với câu \"Tôi muốn một\" trong cảnh mua vé, hãy chọn Ne, sau đó là voglio, rồi uno. Số vẫn giữ nguyên trong câu trả lời: ne thay thế mặt hàng, chứ không phải số lượng.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For \"I want one\" in the ticket scene, choose «Ne», then «voglio», then «uno». The number remains in the answer: «ne» replaced the item, not the quantity."
+],
+"es": [
+"Para \"Quiero uno\" en la escena del boleto, elige «Ne», luego «voglio» y finalmente «uno». El número permanece en la respuesta: «ne» reemplazó el artículo, no la cantidad."
+],
+"id": [
+"Untuk \"Saya ingin satu\" dalam adegan tiket, pilih «Ne», lalu «voglio», lalu «uno». Angka tetap ada dalam jawaban: «ne» menggantikan barangnya, bukan jumlahnya."
+],
+"pl": [
+"W scenie z biletem, w odpowiedzi „Chcę jeden”, wybierz «Ne», następnie «voglio», a następnie «uno». Liczba pozostaje w odpowiedzi: «ne» zastępuje przedmiot, a nie ilość."
+],
+"pt-BR": [
+"Para \"Eu quero um\" na cena do ingresso, escolha «Ne», depois «voglio» e, por fim, «uno». O número permanece na resposta: «ne» substituiu o item, não a quantidade."
+],
+"ru": [
+"Для «Я хочу один» в сцене с билетами выбери «Ne», затем «voglio», затем «uno». Число остаётся в ответе: «ne» заменило предмет, а не количество."
+],
+"tr": [
+"Bilet sahnesindeki \"Bir tane istiyorum\" için önce «Ne», sonra «voglio», sonra da «uno»'ü seçin. Cevapta sayı aynı kalır: «ne», miktarı değil, öğeyi değiştirir."
+],
+"uk": [
+"Для «Я хочу один» у сцені з квитками вибери «Ne», потім «voglio», потім «uno». Число залишається у відповіді: «ne» замінило предмет, а не кількість."
+],
+"vi": [
+"Đối với câu \"Tôi muốn một\" trong cảnh mua vé, hãy chọn «Ne», sau đó là «voglio», rồi «uno». Số vẫn giữ nguyên trong câu trả lời: «ne» thay thế mặt hàng, chứ không phải số lượng."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:25:01",
+"it:25:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:25:01",
+"target": "Ne voglio uno.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "it:25:06",
+"target": "Ne compriamo quattro.",
+"ru": "Мы покупаем четыре.",
+"uk": "Ми купуємо чотири."
+},
+{
+"id": "it:25:09",
+"target": "Ne ho abbastanza.",
+"ru": "У меня их достаточно.",
+"uk": "У мене їх достатньо."
+},
+{
+"id": "it:25:01",
+"target": "Ne voglio uno.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "it:25:04",
+"target": "Ne prendi due.",
+"ru": "Ты берёшь два.",
+"uk": "Ти береш два."
+}
+]
+},
+{
+"lesson": 26,
+"blocks": [
+{
+"textES": "Dos maletas están una al lado de la otra. Una pesa más que la otra. Più pesante pesa más, meno pesante pesa menos. Es importante no solo describir el objeto, sino también indicar la dirección de la comparación.\nUn adjetivo regular cambia la concordancia, pero più y meno no. En la combinación più alta, la terminación se refiere a la mujer descrita.",
+"textEn": "Two suitcases stand next to each other. One is heavier than the other. Più pesante is heavier, meno pesante is lighter. It's important not just to describe the object, but to state the direction of comparison.\nA regular adjective changes agreement, but più and meno do not. In the combination più alta, the ending refers to the woman being described.",
+"textId": "Dua koper berdiri berdampingan. Satu lebih berat daripada yang lain. Più pesante lebih berat, meno pesante lebih ringan. Penting untuk tidak hanya mendeskripsikan objek, tetapi juga menyatakan arah perbandingan.\nKata sifat biasa mengubah kesepakatan, tetapi più dan meno tidak. Dalam kombinasi più alta, akhiran tersebut merujuk pada wanita yang sedang dijelaskan.",
+"textPl": "Dwie walizki stoją obok siebie. Jedna jest cięższa od drugiej. Più pesante jest cięższa, meno pesante jest lżejsza. Ważne jest nie tylko opisanie przedmiotu, ale także określenie kierunku porównania.\nZwykły przymiotnik zmienia zgodność, ale più i meno nie. W połączeniu più alta końcówka odnosi się do opisywanej kobiety.",
+"textPtBr": "Duas malas estão lado a lado. Uma é mais pesada que a outra. Più pesante é mais pesada, meno pesante é mais leve. É importante não apenas descrever o objeto, mas também indicar a direção da comparação.\nUm adjetivo regular muda de concordância, mas più e meno não. Na combinação più alta, a terminação se refere à mulher que está sendo descrita.",
+"textRU": "Рядом стоят два чемодана. Один тяжелее другого. Più pesante — тяжелее, meno pesante — менее тяжёлый. Нужно не просто описать предмет, а назвать направление сравнения.\nУ обычного прилагательного меняется согласование, а più и meno нет. В сочетании più alta окончание относится к женщине, которую описывают.",
+"textTr": "İki bavul yan yana duruyor. Biri diğerinden daha ağır. Più pesante daha ağır, meno pesante daha hafif. Sadece nesneyi tanımlamak değil, karşılaştırma yönünü de belirtmek önemlidir.\nDüzenli bir sıfat uyum değiştirir, ancak più ve meno değiştirmez. più alta kombinasyonunda, son ek tanımlanan kadına atıfta bulunur.",
+"textUK": "Поруч стоять дві валізи. Один важчий за інший. Più pesante – важчий, meno pesante – менш важкий. Потрібно не просто описати предмет, а назвати напрям порівняння.\nУ звичайного прикметника змінюється погодження, а più та meno немає. У поєднанні più alta закінчення відноситься до жінки, яку описують.",
+"textVi": "Hai chiếc vali đặt cạnh nhau. Một chiếc nặng hơn chiếc kia. Più pesante nặng hơn, meno pesante nhẹ hơn. Điều quan trọng không chỉ là mô tả đối tượng mà còn phải nêu rõ hướng so sánh.\nMột tính từ thông thường thay đổi sự hòa hợp, nhưng più và meno thì không. Trong sự kết hợp più alta, phần cuối đề cập đến người phụ nữ được mô tả.",
+"titleES": "Comparar: più, meno, come",
+"titleEn": "Compare: più, meno, come",
+"titleId": "Bandingkan: più, meno, come",
+"titlePl": "Porównaj: più, meno, come",
+"titlePtBr": "Comparar: più, meno, come",
+"titleRU": "Сравнивать: più, meno, come",
+"titleTr": "Karşılaştırın: più, meno, come",
+"titleUK": "Порівнювати: più, meno, come",
+"titleVi": "So sánh: più, meno, come",
+"titleByLocale": {
+"en": "Compare: più, meno, come",
+"es": "Comparar: più, meno, come",
+"id": "Bandingkan: più, meno, come",
+"pl": "Porównaj: più, meno, come",
+"pt-BR": "Comparar: più, meno, come",
+"ru": "Сравнивать: più, meno, come",
+"tr": "Karşılaştırın: più, meno, come",
+"uk": "Порівнювати: più, meno, come",
+"vi": "So sánh: più, meno, come"
+},
+"textByLocale": {
+"en": [
+"Two suitcases stand next to each other. One is heavier than the other. «Più pesante» is heavier, «meno pesante» is lighter. It's important not just to describe the object, but to state the direction of comparison.",
+"A regular adjective changes agreement, but «più» and «meno» do not. In the combination «più alta», the ending refers to the woman being described."
+],
+"es": [
+"Dos maletas están una al lado de la otra. Una pesa más que la otra. «Più pesante» pesa más, «meno pesante» pesa menos. Es importante no solo describir el objeto, sino también indicar la dirección de la comparación.",
+"Un adjetivo regular cambia la concordancia, pero «più» y «meno» no. En la combinación «più alta», la terminación se refiere a la mujer descrita."
+],
+"id": [
+"Dua koper berdiri berdampingan. Satu lebih berat daripada yang lain. «Più pesante» lebih berat, «meno pesante» lebih ringan. Penting untuk tidak hanya mendeskripsikan objek, tetapi juga menyatakan arah perbandingan.",
+"Kata sifat biasa mengubah kesepakatan, tetapi «più» dan «meno» tidak. Dalam kombinasi «più alta», akhiran tersebut merujuk pada wanita yang sedang dijelaskan."
+],
+"pl": [
+"Dwie walizki stoją obok siebie. Jedna jest cięższa od drugiej. «Più pesante» jest cięższa, «meno pesante» jest lżejsza. Ważne jest nie tylko opisanie przedmiotu, ale także określenie kierunku porównania.",
+"Zwykły przymiotnik zmienia zgodność, ale «più» i «meno» nie. W połączeniu «più alta» końcówka odnosi się do opisywanej kobiety."
+],
+"pt-BR": [
+"Duas malas estão lado a lado. Uma é mais pesada que a outra. «Più pesante» é mais pesada, «meno pesante» é mais leve. É importante não apenas descrever o objeto, mas também indicar a direção da comparação.",
+"Um adjetivo regular muda de concordância, mas «più» e «meno» não. Na combinação «più alta», a terminação se refere à mulher que está sendo descrita."
+],
+"ru": [
+"Рядом стоят два чемодана. Один тяжелее другого. «Più pesante» — тяжелее, «meno pesante» — менее тяжёлый. Нужно не просто описать предмет, а назвать направление сравнения.",
+"У обычного прилагательного меняется согласование, а «più» и «meno» нет. В сочетании «più alta» окончание относится к женщине, которую описывают."
+],
+"tr": [
+"İki bavul yan yana duruyor. Biri diğerinden daha ağır. «Più pesante» daha ağır, «meno pesante» daha hafif. Sadece nesneyi tanımlamak değil, karşılaştırma yönünü de belirtmek önemlidir.",
+"Düzenli bir sıfat uyum değiştirir, ancak «più» ve «meno» değiştirmez. «più alta» kombinasyonunda, son ek tanımlanan kadına atıfta bulunur."
+],
+"uk": [
+"Поруч стоять дві валізи. Один важчий за інший. «Più pesante» – важчий, «meno pesante» – менш важкий. Потрібно не просто описати предмет, а назвати напрям порівняння.",
+"У звичайного прикметника змінюється погодження, а «più» та «meno» немає. У поєднанні «più alta» закінчення відноситься до жінки, яку описують."
+],
+"vi": [
+"Hai chiếc vali đặt cạnh nhau. Một chiếc nặng hơn chiếc kia. «Più pesante» nặng hơn, «meno pesante» nhẹ hơn. Điều quan trọng không chỉ là mô tả đối tượng mà còn phải nêu rõ hướng so sánh.",
+"Một tính từ thông thường thay đổi sự hòa hợp, nhưng «più» và «meno» thì không. Trong sự kết hợp «più alta», phần cuối đề cập đến người phụ nữ được mô tả."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:26:01"
+]
+},
+{
+"textES": "più / meno + atributo + di; igual a come\nAl comparar a alguien contigo mismo, es conveniente decir più alto di me. Si no hay diferencia, alto come me es suficiente. Una sola palabra cambia la conclusión: más alto o de la misma altura.\ndi suele preceder a una persona o al nombre de un segundo objeto. Al comparar dos cualidades o acciones dentro de una misma construcción, se usa che. No use «always di».",
+"textEn": "più / meno + attribute + di; equal to come\nWhen comparing someone to yourself, it's convenient to say più alto di me. If there's no difference, alto come me will do. One small word changes the conclusion: taller or the same height.\ndi often comes before a person or the name of a second object. When comparing two qualities or actions within a single construction, che is used. Don't use \"always di.\"",
+"textId": "più / meno + atribut + di; sama dengan come\nSaat membandingkan seseorang dengan diri Anda sendiri, akan lebih mudah untuk mengatakan più alto di me. Jika tidak ada perbedaan, alto come me pun cukup. Satu kata kecil mengubah kesimpulan: lebih tinggi atau tinggi yang sama.\ndi sering kali muncul sebelum seseorang atau nama objek kedua. Saat membandingkan dua kualitas atau tindakan dalam satu konstruksi, che digunakan. Jangan gunakan \"always di.\"",
+"textPl": "più / meno + atrybut + di; równa się come\nPorównując kogoś do siebie, wygodnie jest powiedzieć più alto di me. Jeśli nie ma różnicy, wystarczy alto come me. Jedno małe słowo zmienia wniosek: wyższy lub tego samego wzrostu.\ndi często występuje przed osobą lub nazwą drugiego obiektu. Porównując dwie cechy lub czynności w ramach jednej konstrukcji, używa się che. Nie używaj „always di”.",
+"textPtBr": "più / meno + atributo + di; igual a come\nAo comparar alguém consigo mesmo, é conveniente dizer più alto di me. Se não houver diferença, alto come me serve. Uma pequena palavra muda a conclusão: mais alto ou da mesma altura.\ndi geralmente vem antes de uma pessoa ou do nome de um segundo objeto. Ao comparar duas qualidades ou ações dentro de uma única construção, usa-se che. Não use \"sempre di\".",
+"textRU": "più / meno + признак + di; равенство с come\nСравнивая человека с собой, удобно сказать più alto di me. Если отличия нет, подойдёт alto come me. Одно маленькое слово меняет вывод: выше или такого же роста.\nПеред человеком или названием второго предмета часто стоит di. Когда сравнивают два качества или действия внутри одной конструкции, встречается che. Не учи «всегда di».",
+"textTr": "più / meno + özellik + di; come'e eşittir\nBirini kendinizle karşılaştırırken più alto di me demek uygundur. Eğer fark yoksa, alto come me de olur. Küçük bir kelime sonucu değiştirir: daha uzun veya aynı boyda.\ndi genellikle bir kişiden veya ikinci bir nesnenin adından önce gelir. Tek bir yapı içinde iki niteliği veya eylemi karşılaştırırken che kullanılır. \"Her zaman di\" kullanmayın.",
+"textUK": "più / meno + ознака + di; рівність з come\nПорівнюючи людину з собою, зручно сказати più alto di me. Якщо відмінності немає, підійде alto come me. Одне маленьке слово змінює висновок: вище або такого ж зросту.\nПеред людиною або назвою другого предмета часто стоїть di. Коли порівнюють дві якості або дії всередині однієї конструкції, зустрічається che. Не вчи «завжди di».",
+"textVi": "più / meno + thuộc tính + di; bằng come\nKhi so sánh ai đó với chính mình, nói più alto di me rất tiện lợi. Nếu không có sự khác biệt, alto come me cũng được. Chỉ một từ nhỏ cũng thay đổi kết luận: cao hơn hoặc bằng chiều cao.\ndi thường đứng trước một người hoặc tên của một đối tượng thứ hai. Khi so sánh hai phẩm chất hoặc hành động trong cùng một cấu trúc, che được sử dụng. Không sử dụng \"luôn luôn di\".",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«più / meno» + attribute + «di»; equal to «come»",
+"When comparing someone to yourself, it's convenient to say «più alto di me». If there's no difference, «alto come me» will do. One small word changes the conclusion: taller or the same height.",
+"«di» often comes before a person or the name of a second object. When comparing two qualities or actions within a single construction, «che» is used. Don't use \"always di.\""
+],
+"es": [
+"«più / meno» + atributo + «di»; igual a «come»",
+"Al comparar a alguien contigo mismo, es conveniente decir «più alto di me». Si no hay diferencia, «alto come me» es suficiente. Una sola palabra cambia la conclusión: más alto o de la misma altura.",
+"«di» suele preceder a una persona o al nombre de un segundo objeto. Al comparar dos cualidades o acciones dentro de una misma construcción, se usa «che». No use «always di»."
+],
+"id": [
+"«più / meno» + atribut + «di»; sama dengan «come»",
+"Saat membandingkan seseorang dengan diri Anda sendiri, akan lebih mudah untuk mengatakan «più alto di me». Jika tidak ada perbedaan, «alto come me» pun cukup. Satu kata kecil mengubah kesimpulan: lebih tinggi atau tinggi yang sama.",
+"«di» sering kali muncul sebelum seseorang atau nama objek kedua. Saat membandingkan dua kualitas atau tindakan dalam satu konstruksi, «che» digunakan. Jangan gunakan \"always di.\""
+],
+"pl": [
+"«più / meno» + atrybut + «di»; równa się «come»",
+"Porównując kogoś do siebie, wygodnie jest powiedzieć «più alto di me». Jeśli nie ma różnicy, wystarczy «alto come me». Jedno małe słowo zmienia wniosek: wyższy lub tego samego wzrostu.",
+"«di» często występuje przed osobą lub nazwą drugiego obiektu. Porównując dwie cechy lub czynności w ramach jednej konstrukcji, używa się «che». Nie używaj „always di”."
+],
+"pt-BR": [
+"«più / meno» + atributo + «di»; igual a «come»",
+"Ao comparar alguém consigo mesmo, é conveniente dizer «più alto di me». Se não houver diferença, «alto come me» serve. Uma pequena palavra muda a conclusão: mais alto ou da mesma altura.",
+"«di» geralmente vem antes de uma pessoa ou do nome de um segundo objeto. Ao comparar duas qualidades ou ações dentro de uma única construção, usa-se «che». Não use \"sempre di\"."
+],
+"ru": [
+"«più / meno» + признак + «di»; равенство с «come»",
+"Сравнивая человека с собой, удобно сказать «più alto di me». Если отличия нет, подойдёт «alto come me». Одно маленькое слово меняет вывод: выше или такого же роста.",
+"Перед человеком или названием второго предмета часто стоит «di». Когда сравнивают два качества или действия внутри одной конструкции, встречается «che». Не учи «всегда di»."
+],
+"tr": [
+"«più / meno» + özellik + «di»; «come»'e eşittir",
+"Birini kendinizle karşılaştırırken «più alto di me» demek uygundur. Eğer fark yoksa, «alto come me» de olur. Küçük bir kelime sonucu değiştirir: daha uzun veya aynı boyda.",
+"«di» genellikle bir kişiden veya ikinci bir nesnenin adından önce gelir. Tek bir yapı içinde iki niteliği veya eylemi karşılaştırırken «che» kullanılır. \"Her zaman di\" kullanmayın."
+],
+"uk": [
+"«più / meno» + ознака + «di»; рівність з «come»",
+"Порівнюючи людину з собою, зручно сказати «più alto di me». Якщо відмінності немає, підійде «alto come me». Одне маленьке слово змінює висновок: вище або такого ж зросту.",
+"Перед людиною або назвою другого предмета часто стоїть «di». Коли порівнюють дві якості або дії всередині однієї конструкції, зустрічається «che». Не вчи «завжди di»."
+],
+"vi": [
+"«più / meno» + thuộc tính + «di»; bằng «come»",
+"Khi so sánh ai đó với chính mình, nói «più alto di me» rất tiện lợi. Nếu không có sự khác biệt, «alto come me» cũng được. Chỉ một từ nhỏ cũng thay đổi kết luận: cao hơn hoặc bằng chiều cao.",
+"«di» thường đứng trước một người hoặc tên của một đối tượng thứ hai. Khi so sánh hai phẩm chất hoặc hành động trong cùng một cấu trúc, «che» được sử dụng. Không sử dụng \"luôn luôn di\"."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:26:05",
+"it:26:08"
+]
+},
+{
+"textES": "En el primer ejemplo, nombre Paolo, añada è, forme el grupo più alto y solo entonces di me. Cambiar a meno invertiría el mensaje.",
+"textEn": "In the first example, name Paolo, add è, form the group più alto, and only then di me. Changing to meno would reverse the message.",
+"textId": "Pada contoh pertama, sebutkan Paolo, tambahkan è, bentuk kelompok più alto, dan baru kemudian di me. Mengubahnya menjadi meno akan membalikkan pesannya.",
+"textPl": "W pierwszym przykładzie imię Paolo, dodaj è, utwórz grupę più alto, a dopiero potem di me. Zmiana na meno odwróciłaby przekaz.",
+"textPtBr": "No primeiro exemplo, nomeie Paolo, adicione è, forme o grupo più alto e somente então di me. Alterar para meno inverteria a mensagem.",
+"textRU": "В первом примере назови Паоло, добавь è, собери группу più alto, и только потом di me. Смена на meno поменяла бы сообщение на обратное.",
+"textTr": "İlk örnekte, Paolo adını verin, è ekleyin, più alto grubunu oluşturun ve ancak ondan sonra di me'ü ekleyin. meno'e geçmek mesajı tersine çevirir.",
+"textUK": "У першому прикладі назви Паоло, додай è, збери групу più alto і тільки потім di me. Зміна на meno змінила б повідомлення на зворотне.",
+"textVi": "Trong ví dụ đầu tiên, đặt tên là Paolo, thêm è, tạo thành nhóm più alto, và chỉ sau đó mới là di me. Thay đổi thành meno sẽ đảo ngược thông điệp.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the first example, name Paolo, add «è», form the group «più alto», and only then «di me». Changing to «meno» would reverse the message."
+],
+"es": [
+"En el primer ejemplo, nombre Paolo, añada «è», forme el grupo «più alto» y solo entonces «di me». Cambiar a «meno» invertiría el mensaje."
+],
+"id": [
+"Pada contoh pertama, sebutkan Paolo, tambahkan «è», bentuk kelompok «più alto», dan baru kemudian «di me». Mengubahnya menjadi «meno» akan membalikkan pesannya."
+],
+"pl": [
+"W pierwszym przykładzie imię Paolo, dodaj «è», utwórz grupę «più alto», a dopiero potem «di me». Zmiana na «meno» odwróciłaby przekaz."
+],
+"pt-BR": [
+"No primeiro exemplo, nomeie Paolo, adicione «è», forme o grupo «più alto» e somente então «di me». Alterar para «meno» inverteria a mensagem."
+],
+"ru": [
+"В первом примере назови Паоло, добавь «è», собери группу «più alto», и только потом «di me». Смена на «meno» поменяла бы сообщение на обратное."
+],
+"tr": [
+"İlk örnekte, Paolo adını verin, «è» ekleyin, «più alto» grubunu oluşturun ve ancak ondan sonra «di me»'ü ekleyin. «meno»'e geçmek mesajı tersine çevirir."
+],
+"uk": [
+"У першому прикладі назви Паоло, додай «è», збери групу «più alto» і тільки потім «di me». Зміна на «meno» змінила б повідомлення на зворотне."
+],
+"vi": [
+"Trong ví dụ đầu tiên, đặt tên là Paolo, thêm «è», tạo thành nhóm «più alto», và chỉ sau đó mới là «di me». Thay đổi thành «meno» sẽ đảo ngược thông điệp."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:26:01",
+"it:26:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:26:01",
+"target": "Paolo è più alto di me.",
+"ru": "Паоло выше меня.",
+"uk": "Паоло вищий за мене."
+},
+{
+"id": "it:26:05",
+"target": "Il tè è caldo come il caffè.",
+"ru": "Чай такой же горячий, как кофе.",
+"uk": "Чай такий же гарячий, як кава."
+},
+{
+"id": "it:26:08",
+"target": "La metropolitana è più veloce dell’autobus.",
+"ru": "Метро быстрее автобуса.",
+"uk": "Метро швидше за автобус."
+},
+{
+"id": "it:26:01",
+"target": "Paolo è più alto di me.",
+"ru": "Паоло выше меня.",
+"uk": "Паоло вищий за мене."
+},
+{
+"id": "it:26:04",
+"target": "Questa valigia è meno pesante dell’altra.",
+"ru": "Этот чемодан легче другого.",
+"uk": "Ця валіза легша за іншу."
+}
+]
+},
+{
+"lesson": 27,
+"blocks": [
+{
+"textES": "La partida aún está por llegar. Anuncias que te irás mañana: Partirò domani. Una sola palabra en italiano ya transmite la acción, el tiempo y el hablante. No se necesita la palabra \"will\" aquí.\nEn futuro, la terminación italiana se añade a una raíz especial. Para partire, es partir-; no dejes la palabra en su forma de diccionario ni le añadas sono.",
+"textEn": "Departure is still ahead. You announce that you will leave tomorrow: Partirò domani. One Italian word already conveys the action, the time, and the speaker. A separate word \"will\" is not needed here.\nIn the future, the Italian ending is added to a special stem. For partire, it's partir-; don't leave the word in dictionary form and don't put sono before it.",
+"textId": "Keberangkatan masih di depan. Anda mengumumkan bahwa Anda akan berangkat besok: Partirò domani. Satu kata dalam bahasa Italia sudah menyampaikan tindakan, waktu, dan pembicara. Kata terpisah \"akan\" tidak diperlukan di sini.\nDi masa depan, akhiran bahasa Italia ditambahkan ke akar kata khusus. Untuk partire, itu adalah partir-; jangan biarkan kata tersebut dalam bentuk kamus dan jangan tambahkan sono di depannya.",
+"textPl": "Wyjazd jeszcze przed nami. Ogłaszasz, że jutro wyjedziesz: Partirò domani. Jedno włoskie słowo oddaje już czynność, czas i osobę mówiącą. Osobne słowo „will” nie jest tu potrzebne.\nW czasie przyszłym włoska końcówka jest dodawana do specjalnego tematu. Dla partire jest to partir-; nie pozostawiaj słowa w formie słownikowej i nie dodawaj przed nim sono.",
+"textPtBr": "A partida ainda está por vir. Você anuncia que partirá amanhã: Partirò domani. Uma palavra italiana já transmite a ação, o tempo e o falante. Uma palavra separada \"partirá\" não é necessária aqui.\nNo futuro, a terminação italiana é adicionada a um radical especial. Para partire, é partir-; não deixe a palavra na forma do dicionário e não coloque sono antes dela.",
+"textRU": "Отправление ещё впереди. Ты сообщаешь, что уедешь завтра: Partirò domani. Одно итальянское слово уже передаёт и действие, и время, и говорящего. Отдельное слово «буду» здесь не требуется.\nВ будущем итальянское окончание добавляется к особой основе. Для partire это partir-; не оставляй слово в форме словаря и не ставь перед ним sono.",
+"textTr": "Ayrılış henüz gerçekleşmedi. Yarın ayrılacağınızı duyuruyorsunuz: Partirò domani. Tek bir İtalyanca kelime eylemi, zamanı ve konuşmacıyı zaten iletiyor. Burada ayrı bir \"will\" kelimesine gerek yok.\nGelecek zamanda, İtalyanca son ek özel bir köke eklenir. partire için bu partir-'dir; kelimeyi sözlük biçiminde bırakmayın ve önüne sono koymayın.",
+"textUK": "Надсилання ще попереду. Ти повідомляєш, що поїдеш завтра: Partirò domani. Одне італійське слово вже передає і дію, і час, і того, хто говорить. Окреме слово «буду» тут не потрібне.\nУ майбутньому італійське закінчення додається до особливої ​​основи. Для partire це partir-; не залишай слово у формі словника та не ставь перед ним sono.",
+"textVi": "Việc khởi hành vẫn còn ở phía trước. Bạn thông báo rằng bạn sẽ rời đi vào ngày mai: Partirò domani. Một từ tiếng Ý đã truyền tải hành động, thời gian và người nói. Không cần thêm từ \"will\" ở đây.\nTrong tương lai, đuôi tiếng Ý được thêm vào một gốc đặc biệt. Đối với partire, đó là partir-; đừng để nguyên từ ở dạng từ điển và đừng đặt sono trước nó.",
+"titleES": "Futuro: partirò, partirai",
+"titleEn": "Future: partirò, partirai",
+"titleId": "Masa Depan: partirò, partirai",
+"titlePl": "Czas przyszły: partirò, partirai",
+"titlePtBr": "Futuro: partirò, partirai",
+"titleRU": "Будущее: partirò, partirai",
+"titleTr": "Gelecek: partirò, partirai",
+"titleUK": "Майбутнє: partirò, partirai",
+"titleVi": "Tương lai: partirò, partirai",
+"titleByLocale": {
+"en": "Future: partirò, partirai",
+"es": "Futuro: partirò, partirai",
+"id": "Masa Depan: partirò, partirai",
+"pl": "Czas przyszły: partirò, partirai",
+"pt-BR": "Futuro: partirò, partirai",
+"ru": "Будущее: partirò, partirai",
+"tr": "Gelecek: partirò, partirai",
+"uk": "Майбутнє: partirò, partirai",
+"vi": "Tương lai: partirò, partirai"
+},
+"textByLocale": {
+"en": [
+"Departure is still ahead. You announce that you will leave tomorrow: «Partirò domani». One Italian word already conveys the action, the time, and the speaker. A separate word \"will\" is not needed here.",
+"In the future, the Italian ending is added to a special stem. For «partire», it's «partir-»; don't leave the word in dictionary form and don't put «sono» before it."
+],
+"es": [
+"La partida aún está por llegar. Anuncias que te irás mañana: «Partirò domani». Una sola palabra en italiano ya transmite la acción, el tiempo y el hablante. No se necesita la palabra \"will\" aquí.",
+"En futuro, la terminación italiana se añade a una raíz especial. Para «partire», es «partir-»; no dejes la palabra en su forma de diccionario ni le añadas «sono»."
+],
+"id": [
+"Keberangkatan masih di depan. Anda mengumumkan bahwa Anda akan berangkat besok: «Partirò domani». Satu kata dalam bahasa Italia sudah menyampaikan tindakan, waktu, dan pembicara. Kata terpisah \"akan\" tidak diperlukan di sini.",
+"Di masa depan, akhiran bahasa Italia ditambahkan ke akar kata khusus. Untuk «partire», itu adalah «partir-»; jangan biarkan kata tersebut dalam bentuk kamus dan jangan tambahkan «sono» di depannya."
+],
+"pl": [
+"Wyjazd jeszcze przed nami. Ogłaszasz, że jutro wyjedziesz: «Partirò domani». Jedno włoskie słowo oddaje już czynność, czas i osobę mówiącą. Osobne słowo „will” nie jest tu potrzebne.",
+"W czasie przyszłym włoska końcówka jest dodawana do specjalnego tematu. Dla «partire» jest to «partir-»; nie pozostawiaj słowa w formie słownikowej i nie dodawaj przed nim «sono»."
+],
+"pt-BR": [
+"A partida ainda está por vir. Você anuncia que partirá amanhã: «Partirò domani». Uma palavra italiana já transmite a ação, o tempo e o falante. Uma palavra separada \"partirá\" não é necessária aqui.",
+"No futuro, a terminação italiana é adicionada a um radical especial. Para «partire», é «partir-»; não deixe a palavra na forma do dicionário e não coloque «sono» antes dela."
+],
+"ru": [
+"Отправление ещё впереди. Ты сообщаешь, что уедешь завтра: «Partirò domani». Одно итальянское слово уже передаёт и действие, и время, и говорящего. Отдельное слово «буду» здесь не требуется.",
+"В будущем итальянское окончание добавляется к особой основе. Для «partire» это «partir-»; не оставляй слово в форме словаря и не ставь перед ним «sono»."
+],
+"tr": [
+"Ayrılış henüz gerçekleşmedi. Yarın ayrılacağınızı duyuruyorsunuz: «Partirò domani». Tek bir İtalyanca kelime eylemi, zamanı ve konuşmacıyı zaten iletiyor. Burada ayrı bir \"will\" kelimesine gerek yok.",
+"Gelecek zamanda, İtalyanca son ek özel bir köke eklenir. «partire» için bu «partir-»'dir; kelimeyi sözlük biçiminde bırakmayın ve önüne «sono» koymayın."
+],
+"uk": [
+"Надсилання ще попереду. Ти повідомляєш, що поїдеш завтра: «Partirò domani». Одне італійське слово вже передає і дію, і час, і того, хто говорить. Окреме слово «буду» тут не потрібне.",
+"У майбутньому італійське закінчення додається до особливої ​​основи. Для «partire» це «partir-»; не залишай слово у формі словника та не ставь перед ним «sono»."
+],
+"vi": [
+"Việc khởi hành vẫn còn ở phía trước. Bạn thông báo rằng bạn sẽ rời đi vào ngày mai: «Partirò domani». Một từ tiếng Ý đã truyền tải hành động, thời gian và người nói. Không cần thêm từ \"will\" ở đây.",
+"Trong tương lai, đuôi tiếng Ý được thêm vào một gốc đặc biệt. Đối với «partire», đó là «partir-»; đừng để nguyên từ ở dạng từ điển và đừng đặt «sono» trước nó."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:27:01"
+]
+},
+{
+"textES": "Futuro base + -ò / -ai / -à / -emo / -ete / -anno\nElige la terminación -ò para ti, -ai para un amigo: partirò, partirai. El tiempo \"mañana\" puede permanecer igual. No pierdas el acento en la última letra: ayuda a distinguir las formas.\nMuchos verbos que terminan en -are se convierten en e en futuro: lavorare → lavorerò. Aprende la primera forma junto con el verbo y luego añade las terminaciones restantes a la misma raíz.",
+"textEn": "Future base + -ò / -ai / -à / -emo / -ete / -anno\nChoose the ending -ò for yourself, -ai for a friend: partirò, partirai. The time \"tomorrow\" can remain the same. Don't lose the stress on the last letter: it helps distinguish the forms.\nMany verbs ending in -are become e in the future: lavorare → lavorerò. Learn the first form along with the verb, then add the remaining endings to the same stem.",
+"textId": "Basis masa depan + -ò / -ai / -à / -emo / -ete / -anno\nPilih akhiran -ò untuk diri sendiri, -ai untuk teman: partirò, partirai. Waktu \"besok\" dapat tetap sama. Jangan kehilangan penekanan pada huruf terakhir: ini membantu membedakan bentuknya.\nBanyak kata kerja yang berakhiran -are menjadi e di masa depan: lavorare → lavorerò. Pelajari bentuk pertama bersama dengan kata kerja, lalu tambahkan akhiran yang tersisa ke akar kata yang sama.",
+"textPl": "Czas przyszły + -ò / -ai / -à / -emo / -ete / -anno\nWybierz końcówkę -ò dla siebie, -ai dla przyjaciela: partirò, partirai. Czas „tomorrow” może pozostać ten sam. Nie zapominaj o akcentowaniu ostatniej litery: pomaga to rozróżnić formy.\nWiele czasowników zakończonych na -are w czasie przyszłym zmienia się na e: lavorare → lavorerò. Naucz się pierwszej formy wraz z czasownikiem, a następnie dodaj pozostałe końcówki do tego samego tematu.",
+"textPtBr": "Futuro base + -ò / -ai / -à / -emo / -ete / -anno\nEscolha a terminação -ò para si mesmo, -ai para um amigo: partirò, partirai. O tempo \"amanhã\" pode permanecer o mesmo. Não perca a ênfase na última letra: ela ajuda a distinguir as formas.\nMuitos verbos terminados em -are tornam-se e no futuro: lavorare → lavorerò. Aprenda a primeira forma junto com o verbo e, em seguida, adicione as terminações restantes ao mesmo radical.",
+"textRU": "основа будущего + -ò / -ai / -à / -emo / -ete / -anno\nДля себя выбери окончание -ò, для друга -ai: partirò, partirai. Время завтра можно оставить тем же. Не теряй ударение на последней букве: оно помогает отличать формы.\nУ многих глаголов на -are в будущем появляется e: lavorare → lavorerò. Учи первую форму вместе с глаголом, затем добавляй остальные окончания к той же основе.",
+"textTr": "Gelecek temel + -ò / -ai / -à / -emo / -ete / -anno\nKendiniz için -ò, bir arkadaşınız için -ai son ekini seçin: partirò, partirai. \"Yarın\" zamanı aynı kalabilir. Son harfteki vurguyu kaybetmeyin: bu, biçimleri ayırt etmeye yardımcı olur.\n-are ile biten birçok fiil gelecek zamanda e olur: lavorare → lavorerò. İlk biçimi fiille birlikte öğrenin, ardından kalan son ekleri aynı köke ekleyin.",
+"textUK": "основа майбутнього + -ò / -ai / -à / -emo / -ete / -anno\nДля себе вибери закінчення -ò, для друга -ai: partirò, partirai. Час завтра можна залишити тим же. Не втрачай наголос на останній літері: він допомагає відрізняти форми.\nБагато дієслів на -are у майбутньому з'являється e: lavorare → lavorerò. Вчи першу форму разом з дієсловом, потім додай решту закінчення до тієї ж основі.",
+"textVi": "Cơ sở tương lai + -ò / -ai / -à / -emo / -ete / -anno\nChọn đuôi -ò cho bản thân, -ai cho bạn bè: partirò, partirai. Thời gian \"ngày mai\" có thể giữ nguyên. Đừng bỏ qua trọng âm ở chữ cái cuối cùng: nó giúp phân biệt các dạng.\nNhiều động từ kết thúc bằng -are trở thành e trong tương lai: lavorare → lavorerò. Hãy học dạng đầu tiên cùng với động từ, sau đó thêm các đuôi còn lại vào cùng một gốc.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Future base + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Choose the ending «-ò» for yourself, «-ai» for a friend: «partirò», «partirai». The time \"tomorrow\" can remain the same. Don't lose the stress on the last letter: it helps distinguish the forms.",
+"Many verbs ending in «-are» become «e» in the future: «lavorare» → «lavorerò». Learn the first form along with the verb, then add the remaining endings to the same stem."
+],
+"es": [
+"Futuro base + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Elige la terminación «-ò» para ti, «-ai» para un amigo: «partirò», «partirai». El tiempo \"mañana\" puede permanecer igual. No pierdas el acento en la última letra: ayuda a distinguir las formas.",
+"Muchos verbos que terminan en «-are» se convierten en «e» en futuro: «lavorare» → «lavorerò». Aprende la primera forma junto con el verbo y luego añade las terminaciones restantes a la misma raíz."
+],
+"id": [
+"Basis masa depan + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Pilih akhiran «-ò» untuk diri sendiri, «-ai» untuk teman: «partirò», «partirai». Waktu \"besok\" dapat tetap sama. Jangan kehilangan penekanan pada huruf terakhir: ini membantu membedakan bentuknya.",
+"Banyak kata kerja yang berakhiran «-are» menjadi «e» di masa depan: «lavorare» → «lavorerò». Pelajari bentuk pertama bersama dengan kata kerja, lalu tambahkan akhiran yang tersisa ke akar kata yang sama."
+],
+"pl": [
+"Czas przyszły + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Wybierz końcówkę «-ò» dla siebie, «-ai» dla przyjaciela: «partirò», «partirai». Czas „tomorrow” może pozostać ten sam. Nie zapominaj o akcentowaniu ostatniej litery: pomaga to rozróżnić formy.",
+"Wiele czasowników zakończonych na «-are» w czasie przyszłym zmienia się na «e»: «lavorare» → «lavorerò». Naucz się pierwszej formy wraz z czasownikiem, a następnie dodaj pozostałe końcówki do tego samego tematu."
+],
+"pt-BR": [
+"Futuro base + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Escolha a terminação «-ò» para si mesmo, «-ai» para um amigo: «partirò», «partirai». O tempo \"amanhã\" pode permanecer o mesmo. Não perca a ênfase na última letra: ela ajuda a distinguir as formas.",
+"Muitos verbos terminados em «-are» tornam-se «e» no futuro: «lavorare» → «lavorerò». Aprenda a primeira forma junto com o verbo e, em seguida, adicione as terminações restantes ao mesmo radical."
+],
+"ru": [
+"основа будущего + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Для себя выбери окончание «-ò», для друга «-ai»: «partirò», «partirai». Время завтра можно оставить тем же. Не теряй ударение на последней букве: оно помогает отличать формы.",
+"У многих глаголов на «-are» в будущем появляется «e»: «lavorare» → «lavorerò». Учи первую форму вместе с глаголом, затем добавляй остальные окончания к той же основе."
+],
+"tr": [
+"Gelecek temel + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Kendiniz için «-ò», bir arkadaşınız için «-ai» son ekini seçin: «partirò», «partirai». \"Yarın\" zamanı aynı kalabilir. Son harfteki vurguyu kaybetmeyin: bu, biçimleri ayırt etmeye yardımcı olur.",
+"«-are» ile biten birçok fiil gelecek zamanda «e» olur: «lavorare» → «lavorerò». İlk biçimi fiille birlikte öğrenin, ardından kalan son ekleri aynı köke ekleyin."
+],
+"uk": [
+"основа майбутнього + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Для себе вибери закінчення «-ò», для друга «-ai»: «partirò», «partirai». Час завтра можна залишити тим же. Не втрачай наголос на останній літері: він допомагає відрізняти форми.",
+"Багато дієслів на «-are» у майбутньому з'являється «e»: «lavorare» → «lavorerò». Вчи першу форму разом з дієсловом, потім додай решту закінчення до тієї ж основі."
+],
+"vi": [
+"Cơ sở tương lai + «-ò / -ai / -à / -emo / -ete / -anno»",
+"Chọn đuôi «-ò» cho bản thân, «-ai» cho bạn bè: «partirò», «partirai». Thời gian \"ngày mai\" có thể giữ nguyên. Đừng bỏ qua trọng âm ở chữ cái cuối cùng: nó giúp phân biệt các dạng.",
+"Nhiều động từ kết thúc bằng «-are» trở thành «e» trong tương lai: «lavorare» → «lavorerò». Hãy học dạng đầu tiên cùng với động từ, sau đó thêm các đuôi còn lại vào cùng một gốc."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:27:07",
+"it:27:09"
+]
+},
+{
+"textES": "En la primera respuesta, busca Partirò y luego domani. Para el segundo mensaje, cambia la persona, no el tiempo verbal. Para el futuro de cortesía \"tú\", la forma es diferente, como en la tercera persona.",
+"textEn": "In the first answer, find Partirò, then domani. For the second message, change the person, not the tense word. For the future polite \"you,\" the form is different—like the third person.",
+"textId": "Pada jawaban pertama, temukan Partirò, lalu domani. Untuk pesan kedua, ubah orangnya, bukan kata kerja kalanya. Untuk kata ganti orang kedua yang sopan di masa depan, bentuknya berbeda—seperti orang ketiga.",
+"textPl": "W pierwszej odpowiedzi znajdź Partirò, a następnie domani. W drugiej wiadomości zmień osobę, a nie czasownik. Forma grzecznościowa „you” w czasie przyszłym jest inna – podobnie jak w trzeciej osobie.",
+"textPtBr": "Na primeira resposta, encontre Partirò e depois domani. Para a segunda mensagem, mude a pessoa, não o tempo verbal. Para o futuro formal \"você\", a forma é diferente — como a terceira pessoa.",
+"textRU": "В первом ответе найди Partirò, затем domani. Для второго сообщения поменяй лицо, а не слово времени. Для будущего вежливого «Вы» форма другая — как у третьего лица.",
+"textTr": "İlk cevapta, önce Partirò'i, sonra domani'yi bulun. İkinci mesaj için, zaman kipini değil, kişiyi değiştirin. Gelecek zaman için kullanılan kibar \"siz\" zamirinin biçimi farklıdır - üçüncü şahıs gibi.",
+"textUK": "У першій відповіді знайди Partirò, потім domani. Для другого повідомлення змінюй обличчя, а не слово часу. Для майбутнього ввічливого \"Ви\" форма інша - як у третьої особи.",
+"textVi": "Trong câu trả lời đầu tiên, hãy tìm Partirò, sau đó là domani. Đối với tin nhắn thứ hai, hãy thay đổi ngôi, chứ không phải thì. Đối với ngôi thứ hai lịch sự (bạn), hình thức khác nhau—giống như ngôi thứ ba.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the first answer, find «Partirò», then «domani». For the second message, change the person, not the tense word. For the future polite \"you,\" the form is different—like the third person."
+],
+"es": [
+"En la primera respuesta, busca «Partirò» y luego «domani». Para el segundo mensaje, cambia la persona, no el tiempo verbal. Para el futuro de cortesía \"tú\", la forma es diferente, como en la tercera persona."
+],
+"id": [
+"Pada jawaban pertama, temukan «Partirò», lalu «domani». Untuk pesan kedua, ubah orangnya, bukan kata kerja kalanya. Untuk kata ganti orang kedua yang sopan di masa depan, bentuknya berbeda—seperti orang ketiga."
+],
+"pl": [
+"W pierwszej odpowiedzi znajdź «Partirò», a następnie «domani». W drugiej wiadomości zmień osobę, a nie czasownik. Forma grzecznościowa „you” w czasie przyszłym jest inna – podobnie jak w trzeciej osobie."
+],
+"pt-BR": [
+"Na primeira resposta, encontre «Partirò» e depois «domani». Para a segunda mensagem, mude a pessoa, não o tempo verbal. Para o futuro formal \"você\", a forma é diferente — como a terceira pessoa."
+],
+"ru": [
+"В первом ответе найди «Partirò», затем «domani». Для второго сообщения поменяй лицо, а не слово времени. Для будущего вежливого «Вы» форма другая — как у третьего лица."
+],
+"tr": [
+"İlk cevapta, önce «Partirò»'i, sonra «domani»'yi bulun. İkinci mesaj için, zaman kipini değil, kişiyi değiştirin. Gelecek zaman için kullanılan kibar \"siz\" zamirinin biçimi farklıdır - üçüncü şahıs gibi."
+],
+"uk": [
+"У першій відповіді знайди «Partirò», потім «domani». Для другого повідомлення змінюй обличчя, а не слово часу. Для майбутнього ввічливого \"Ви\" форма інша - як у третьої особи."
+],
+"vi": [
+"Trong câu trả lời đầu tiên, hãy tìm «Partirò», sau đó là «domani». Đối với tin nhắn thứ hai, hãy thay đổi ngôi, chứ không phải thì. Đối với ngôi thứ hai lịch sự (bạn), hình thức khác nhau—giống như ngôi thứ ba."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:27:01",
+"it:27:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:27:01",
+"target": "Partirò domani.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "it:27:07",
+"target": "Collegherò la lampada alla presa quando tornerà la corrente.",
+"ru": "Я включу лампу в розетку, когда снова дадут электричество.",
+"uk": "Я ввімкну лампу в розетку, коли знову з’явиться електрика."
+},
+{
+"id": "it:27:09",
+"target": "Paolo chiamerà la banca.",
+"ru": "Паоло позвонит в банк.",
+"uk": "Паоло зателефонує в банк."
+},
+{
+"id": "it:27:01",
+"target": "Partirò domani.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "it:27:04",
+"target": "Partiremo insieme.",
+"ru": "Мы уедем вместе.",
+"uk": "Ми поїдемо разом."
+}
+]
+},
+{
+"lesson": 28,
+"blocks": [
+{
+"textES": "Pides un café. Voglio un caffè expresa directamente el deseo. Vorrei un caffè transmite \"Quisiera un café\" y suena más suave. Es una sola palabra, no dos verbos.\nEn volere, la forma vorrei corresponde al condicional de primera persona. No la confunda con vorrò, que expresa un deseo futuro. Compárese por el sonido y la letra anterior a la terminación.",
+"textEn": "You order coffee. Voglio un caffè directly states the desire. Vorrei un caffè conveys \"I would like coffee\" and sounds softer. It's one word, not two verbs.\nIn volere, the form vorrei is the first person conditional. Don't confuse it with vorrò, which expresses a future desire. Compare by sound and the letter before the ending.",
+"textId": "Anda memesan kopi. Voglio un caffè secara langsung menyatakan keinginan. Vorrei un caffè menyampaikan \"Saya ingin kopi\" dan terdengar lebih lembut. Itu satu kata, bukan dua kata kerja.\nDalam volere, bentuk vorrei adalah kondisional orang pertama. Jangan bingung dengan vorrò, yang menyatakan keinginan di masa depan. Bandingkan berdasarkan bunyi dan huruf sebelum akhiran.",
+"textPl": "Zamawiasz kawę. Voglio un caffè bezpośrednio wyraża pragnienie. Vorrei un caffè przekazuje „Chciałbym kawę” i brzmi łagodniej. To jedno słowo, a nie dwa czasowniki.\nW zdaniu volere forma vorrei to tryb warunkowy pierwszej osoby. Nie należy jej mylić z vorrò, które wyraża przyszłe pragnienie. Porównaj głoskę i literę przed końcówką.",
+"textPtBr": "Você pede um café. Voglio un caffè expressa diretamente o desejo. Vorrei un caffè transmite \"Eu gostaria de um café\" e soa mais suave. É uma palavra só, não dois verbos.\nEm volere, a forma vorrei é a condicional da primeira pessoa. Não confunda com vorrò, que expressa um desejo futuro. Compare pelo som e pela letra antes da terminação.",
+"textRU": "Ты заказываешь кофе. Voglio un caffè прямо называет желание. Vorrei un caffè передаёт «я бы хотел кофе» и звучит мягче. Это одно слово, а не дословно два глагола.\nУ volere форма vorrei — первое лицо условного наклонения. Не путай её с vorrò, которое сообщает о будущем желании. Сравни по звучанию и букве перед окончанием.",
+"textTr": "Kahve sipariş ediyorsunuz. Voglio un caffè doğrudan isteği belirtir. Vorrei un caffè \"Kahve istiyorum\" anlamına gelir ve daha yumuşak bir tondadır. İki fiil değil, tek kelimedir.\nvolere'de, vorrei formu birinci şahıs şart kipidir. Gelecekteki bir isteği ifade eden vorrò ile karıştırmayın. Ses ve sondaki harfe göre karşılaştırın.",
+"textUK": "Ти замовляєш каву. Voglio un caffè прямо називає бажання. Vorrei un caffè передає «я хотів би кави» і звучить м'якше. Це одне слово, а не буквально два дієслова.\nУ volere форма vorrei - перша особа умовного способу. Не плутай її з vorrò, що повідомляє про майбутнє бажання. Порівняй за звучанням і літерою перед закінченням.",
+"textVi": "Bạn gọi cà phê. Voglio un caffè trực tiếp nêu lên mong muốn. Vorrei un caffè diễn đạt \"Tôi muốn uống cà phê\" và nghe nhẹ nhàng hơn. Đó là một từ, không phải hai động từ.\nTrong volere, dạng vorrei là câu điều kiện ngôi thứ nhất. Đừng nhầm lẫn nó với vorrò, diễn tả mong muốn trong tương lai. So sánh bằng âm thanh và chữ cái trước đuôi.",
+"titleES": "Suavizar una petición: vorrei, potrebbe",
+"titleEn": "Soften a request: vorrei, potrebbe",
+"titleId": "Melunakkan permintaan: vorrei, potrebbe",
+"titlePl": "Złagodzenie prośby: vorrei, potrebbe",
+"titlePtBr": "Suavizar um pedido: vorrei, potrebbe",
+"titleRU": "Смягчить просьбу: vorrei, potrebbe",
+"titleTr": "Bir isteği yumuşatın: vorrei, potrebbe",
+"titleUK": "Пом'якшити прохання: vorrei, potrebbe",
+"titleVi": "Làm dịu yêu cầu: vorrei, potrebbe",
+"titleByLocale": {
+"en": "Soften a request: vorrei, potrebbe",
+"es": "Suavizar una petición: vorrei, potrebbe",
+"id": "Melunakkan permintaan: vorrei, potrebbe",
+"pl": "Złagodzenie prośby: vorrei, potrebbe",
+"pt-BR": "Suavizar um pedido: vorrei, potrebbe",
+"ru": "Смягчить просьбу: vorrei, potrebbe",
+"tr": "Bir isteği yumuşatın: vorrei, potrebbe",
+"uk": "Пом'якшити прохання: vorrei, potrebbe",
+"vi": "Làm dịu yêu cầu: vorrei, potrebbe"
+},
+"textByLocale": {
+"en": [
+"You order coffee. «Voglio un caffè» directly states the desire. «Vorrei un caffè» conveys \"I would like coffee\" and sounds softer. It's one word, not two verbs.",
+"In «volere», the form «vorrei» is the first person conditional. Don't confuse it with «vorrò», which expresses a future desire. Compare by sound and the letter before the ending."
+],
+"es": [
+"Pides un café. «Voglio un caffè» expresa directamente el deseo. «Vorrei un caffè» transmite \"Quisiera un café\" y suena más suave. Es una sola palabra, no dos verbos.",
+"En «volere», la forma «vorrei» corresponde al condicional de primera persona. No la confunda con «vorrò», que expresa un deseo futuro. Compárese por el sonido y la letra anterior a la terminación."
+],
+"id": [
+"Anda memesan kopi. «Voglio un caffè» secara langsung menyatakan keinginan. «Vorrei un caffè» menyampaikan \"Saya ingin kopi\" dan terdengar lebih lembut. Itu satu kata, bukan dua kata kerja.",
+"Dalam «volere», bentuk «vorrei» adalah kondisional orang pertama. Jangan bingung dengan «vorrò», yang menyatakan keinginan di masa depan. Bandingkan berdasarkan bunyi dan huruf sebelum akhiran."
+],
+"pl": [
+"Zamawiasz kawę. «Voglio un caffè» bezpośrednio wyraża pragnienie. «Vorrei un caffè» przekazuje „Chciałbym kawę” i brzmi łagodniej. To jedno słowo, a nie dwa czasowniki.",
+"W zdaniu «volere» forma «vorrei» to tryb warunkowy pierwszej osoby. Nie należy jej mylić z «vorrò», które wyraża przyszłe pragnienie. Porównaj głoskę i literę przed końcówką."
+],
+"pt-BR": [
+"Você pede um café. «Voglio un caffè» expressa diretamente o desejo. «Vorrei un caffè» transmite \"Eu gostaria de um café\" e soa mais suave. É uma palavra só, não dois verbos.",
+"Em «volere», a forma «vorrei» é a condicional da primeira pessoa. Não confunda com «vorrò», que expressa um desejo futuro. Compare pelo som e pela letra antes da terminação."
+],
+"ru": [
+"Ты заказываешь кофе. «Voglio un caffè» прямо называет желание. «Vorrei un caffè» передаёт «я бы хотел кофе» и звучит мягче. Это одно слово, а не дословно два глагола.",
+"У «volere» форма «vorrei» — первое лицо условного наклонения. Не путай её с «vorrò», которое сообщает о будущем желании. Сравни по звучанию и букве перед окончанием."
+],
+"tr": [
+"Kahve sipariş ediyorsunuz. «Voglio un caffè» doğrudan isteği belirtir. «Vorrei un caffè» \"Kahve istiyorum\" anlamına gelir ve daha yumuşak bir tondadır. İki fiil değil, tek kelimedir.",
+"«volere»'de, «vorrei» formu birinci şahıs şart kipidir. Gelecekteki bir isteği ifade eden «vorrò» ile karıştırmayın. Ses ve sondaki harfe göre karşılaştırın."
+],
+"uk": [
+"Ти замовляєш каву. «Voglio un caffè» прямо називає бажання. «Vorrei un caffè» передає «я хотів би кави» і звучить м'якше. Це одне слово, а не буквально два дієслова.",
+"У «volere» форма «vorrei» - перша особа умовного способу. Не плутай її з «vorrò», що повідомляє про майбутнє бажання. Порівняй за звучанням і літерою перед закінченням."
+],
+"vi": [
+"Bạn gọi cà phê. «Voglio un caffè» trực tiếp nêu lên mong muốn. «Vorrei un caffè» diễn đạt \"Tôi muốn uống cà phê\" và nghe nhẹ nhàng hơn. Đó là một từ, không phải hai động từ.",
+"Trong «volere», dạng «vorrei» là câu điều kiện ngôi thứ nhất. Đừng nhầm lẫn nó với «vorrò», diễn tả mong muốn trong tương lai. So sánh bằng âm thanh và chữ cái trước đuôi."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:28:01"
+]
+},
+{
+"textES": "Condicional + objeto o infinitivo\nPara preguntarle a un desconocido, toma potrebbe y añade una acción: Potrebbe ripetere?. potresti sería apropiado para un amigo. La cortesía en sí misma no requiere inventar una nueva acción.\nEn una petición con potere, el segundo verbo suele permanecer en infinitivo. Potrebbe ripetere? pide al interlocutor que repita, en lugar de afirmar que ya lo ha repetido.",
+"textEn": "Conditional form + object or infinitive\nTo ask a stranger, take potrebbe and add an action: Potrebbe ripetere?. potresti would be appropriate for a friend. Politeness itself doesn't require inventing a new action.\nIn a request with potere, the second verb usually remains infinitive. Potrebbe ripetere? asks the interlocutor to repeat, rather than asserting that they have already repeated it.",
+"textId": "Bentuk kondisional + objek atau infinitif\nUntuk bertanya kepada orang asing, ambil potrebbe dan tambahkan tindakan: Potrebbe ripetere?. potresti akan tepat untuk seorang teman. Kesopanan itu sendiri tidak memerlukan penciptaan tindakan baru.\nDalam permintaan dengan potere, kata kerja kedua biasanya tetap infinitif. Potrebbe ripetere? meminta lawan bicara untuk mengulanginya, daripada menegaskan bahwa mereka telah mengulanginya.",
+"textPl": "Forma warunkowa + dopełnienie lub bezokolicznik\nAby poprosić nieznajomego, weź potrebbe i dodaj działanie: Potrebbe ripetere?. potresti byłoby odpowiednie dla przyjaciela. Sama uprzejmość nie wymaga wymyślania nowego działania.\nW zdaniu potere drugi czasownik zazwyczaj pozostaje bezokolicznikowy. Potrebbe ripetere? prosi rozmówcę o powtórzenie, zamiast twierdzić, że już to powtórzył.",
+"textPtBr": "Forma condicional + objeto ou infinitivo\nPara pedir algo a um estranho, pegue potrebbe e adicione uma ação: Potrebbe ripetere?. potresti seria apropriado para um amigo. A própria cortesia não exige a invenção de uma nova ação.\nEm um pedido com potere, o segundo verbo geralmente permanece no infinitivo. Potrebbe ripetere? pede ao interlocutor que repita, em vez de afirmar que ele já repetiu.",
+"textRU": "форма условия + предмет или инфинитив\nДля просьбы к одному незнакомому человеку возьми potrebbe и добавь действие: Potrebbe ripetere? К другу подойдёт potresti. Сама вежливость не требует выдумывать новое действие.\nВ просьбе с potere второй глагол обычно остаётся в инфинитиве. Potrebbe ripetere? просит собеседника повторить, а не утверждает, что он уже повторил.",
+"textTr": "Şart kipi + nesne veya mastar\nBir yabancıya sormak için potrebbe'e bir eylem ekleyin: Potrebbe ripetere?. potresti bir arkadaş için uygun olurdu. Nezaketin kendisi yeni bir eylem icat etmeyi gerektirmez.\npotere ile yapılan bir istekte, ikinci fiil genellikle mastar halinde kalır. Potrebbe ripetere?, muhataptan tekrar etmesini ister, zaten tekrar ettiğini iddia etmez.",
+"textUK": "форма умови + предмет чи інфінітив\nДля прохання до однієї незнайомої людини візьми potrebbe і додай дію: Potrebbe ripetere? До друга підійде potresti. Сама ввічливість не вимагає вигадувати нову дію.\nНа прохання з potere друге дієслово зазвичай залишається в інфінітиві. Potrebbe ripetere? просить співрозмовника повторити, а чи не стверджує, що він уже повторив.",
+"textVi": "Dạng điều kiện + tân ngữ hoặc động từ nguyên mẫu\nĐể hỏi người lạ, hãy lấy potrebbe và thêm một hành động: Potrebbe ripetere?. potresti sẽ phù hợp với một người bạn. Bản thân phép lịch sự không đòi hỏi phải tạo ra một hành động mới.\nTrong một yêu cầu với potere, động từ thứ hai thường vẫn ở dạng nguyên mẫu. Potrebbe ripetere? yêu cầu người đối thoại lặp lại, chứ không phải khẳng định rằng họ đã lặp lại rồi.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Conditional form + object or infinitive",
+"To ask a stranger, take «potrebbe» and add an action: «Potrebbe ripetere?». «potresti» would be appropriate for a friend. Politeness itself doesn't require inventing a new action.",
+"In a request with «potere», the second verb usually remains infinitive. «Potrebbe ripetere?» asks the interlocutor to repeat, rather than asserting that they have already repeated it."
+],
+"es": [
+"Condicional + objeto o infinitivo",
+"Para preguntarle a un desconocido, toma «potrebbe» y añade una acción: «Potrebbe ripetere?». «potresti» sería apropiado para un amigo. La cortesía en sí misma no requiere inventar una nueva acción.",
+"En una petición con «potere», el segundo verbo suele permanecer en infinitivo. «Potrebbe ripetere?» pide al interlocutor que repita, en lugar de afirmar que ya lo ha repetido."
+],
+"id": [
+"Bentuk kondisional + objek atau infinitif",
+"Untuk bertanya kepada orang asing, ambil «potrebbe» dan tambahkan tindakan: «Potrebbe ripetere?». «potresti» akan tepat untuk seorang teman. Kesopanan itu sendiri tidak memerlukan penciptaan tindakan baru.",
+"Dalam permintaan dengan «potere», kata kerja kedua biasanya tetap infinitif. «Potrebbe ripetere?» meminta lawan bicara untuk mengulanginya, daripada menegaskan bahwa mereka telah mengulanginya."
+],
+"pl": [
+"Forma warunkowa + dopełnienie lub bezokolicznik",
+"Aby poprosić nieznajomego, weź «potrebbe» i dodaj działanie: «Potrebbe ripetere?». «potresti» byłoby odpowiednie dla przyjaciela. Sama uprzejmość nie wymaga wymyślania nowego działania.",
+"W zdaniu «potere» drugi czasownik zazwyczaj pozostaje bezokolicznikowy. «Potrebbe ripetere?» prosi rozmówcę o powtórzenie, zamiast twierdzić, że już to powtórzył."
+],
+"pt-BR": [
+"Forma condicional + objeto ou infinitivo",
+"Para pedir algo a um estranho, pegue «potrebbe» e adicione uma ação: «Potrebbe ripetere?». «potresti» seria apropriado para um amigo. A própria cortesia não exige a invenção de uma nova ação.",
+"Em um pedido com «potere», o segundo verbo geralmente permanece no infinitivo. «Potrebbe ripetere?» pede ao interlocutor que repita, em vez de afirmar que ele já repetiu."
+],
+"ru": [
+"форма условия + предмет или инфинитив",
+"Для просьбы к одному незнакомому человеку возьми «potrebbe» и добавь действие: «Potrebbe ripetere?» К другу подойдёт «potresti». Сама вежливость не требует выдумывать новое действие.",
+"В просьбе с «potere» второй глагол обычно остаётся в инфинитиве. «Potrebbe ripetere?» просит собеседника повторить, а не утверждает, что он уже повторил."
+],
+"tr": [
+"Şart kipi + nesne veya mastar",
+"Bir yabancıya sormak için «potrebbe»'e bir eylem ekleyin: «Potrebbe ripetere?». «potresti» bir arkadaş için uygun olurdu. Nezaketin kendisi yeni bir eylem icat etmeyi gerektirmez.",
+"«potere» ile yapılan bir istekte, ikinci fiil genellikle mastar halinde kalır. «Potrebbe ripetere?», muhataptan tekrar etmesini ister, zaten tekrar ettiğini iddia etmez."
+],
+"uk": [
+"форма умови + предмет чи інфінітив",
+"Для прохання до однієї незнайомої людини візьми «potrebbe» і додай дію: «Potrebbe ripetere?» До друга підійде «potresti». Сама ввічливість не вимагає вигадувати нову дію.",
+"На прохання з «potere» друге дієслово зазвичай залишається в інфінітиві. «Potrebbe ripetere?» просить співрозмовника повторити, а чи не стверджує, що він уже повторив."
+],
+"vi": [
+"Dạng điều kiện + tân ngữ hoặc động từ nguyên mẫu",
+"Để hỏi người lạ, hãy lấy «potrebbe» và thêm một hành động: «Potrebbe ripetere?». «potresti» sẽ phù hợp với một người bạn. Bản thân phép lịch sự không đòi hỏi phải tạo ra một hành động mới.",
+"Trong một yêu cầu với «potere», động từ thứ hai thường vẫn ở dạng nguyên mẫu. «Potrebbe ripetere?» yêu cầu người đối thoại lặp lại, chứ không phải khẳng định rằng họ đã lặp lại rồi."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:28:07",
+"it:28:10"
+]
+},
+{
+"textES": "«Me gustaría un café»: Vorrei → un → caffè. Se trata de una petición actual, no del recuerdo de un deseo del pasado. Para «nos gustaría», la primera parte cambia: vorremmo.",
+"textEn": "\"I would like some coffee\": Vorrei → un → caffè. This is a request now, not a memory of yesterday's desire. For \"we would like,\" the first part changes: vorremmo.",
+"textId": "\"Saya ingin kopi\": Vorrei → un → caffè. Ini adalah permintaan sekarang, bukan kenangan keinginan kemarin. Untuk \"kami ingin,\" bagian pertama berubah: vorremmo.",
+"textPl": "„Poproszę kawę”: Vorrei → un → caffè. To prośba wyrażana teraz, a nie wspomnienie wczorajszego pragnienia. W zdaniu „chcielibyśmy” pierwsza część ulega zmianie: vorremmo.",
+"textPtBr": "\"Eu gostaria de um café\": Vorrei → un → caffè. Este é um pedido agora, não uma lembrança de um desejo de ontem. Para \"nós gostaríamos\", a primeira parte muda: vorremmo.",
+"textRU": "«Я хотел бы кофе»: Vorrei → un → caffè. Это просьба сейчас, а не воспоминание о вчерашнем желании. Для «мы хотели бы» меняется первая часть: vorremmo.",
+"textTr": "\"Biraz kahve istiyorum\": Vorrei → un → caffè. Bu, dünkü bir isteğin anısı değil, şimdiki bir istektir. \"İsterdik\" için ilk kısım değişir: vorremmo.",
+"textUK": "«Я хотів би кави»: Vorrei → un → caffè. Це прохання зараз, а не спогад про вчорашнє бажання. Для \"ми хотіли б\" змінюється перша частина: vorremmo.",
+"textVi": "\"Tôi muốn một ít cà phê\": Vorrei → un → caffè. Đây là một yêu cầu hiện tại, không phải là ký ức về mong muốn của ngày hôm qua. Đối với \"chúng tôi muốn\", phần đầu tiên thay đổi: vorremmo.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"\"I would like some coffee\": «Vorrei» → «un» → «caffè». This is a request now, not a memory of yesterday's desire. For \"we would like,\" the first part changes: «vorremmo»."
+],
+"es": [
+"«Me gustaría un café»: «Vorrei» → «un» → «caffè». Se trata de una petición actual, no del recuerdo de un deseo del pasado. Para «nos gustaría», la primera parte cambia: «vorremmo»."
+],
+"id": [
+"\"Saya ingin kopi\": «Vorrei» → «un» → «caffè». Ini adalah permintaan sekarang, bukan kenangan keinginan kemarin. Untuk \"kami ingin,\" bagian pertama berubah: «vorremmo»."
+],
+"pl": [
+"„Poproszę kawę”: «Vorrei» → «un» → «caffè». To prośba wyrażana teraz, a nie wspomnienie wczorajszego pragnienia. W zdaniu „chcielibyśmy” pierwsza część ulega zmianie: «vorremmo»."
+],
+"pt-BR": [
+"\"Eu gostaria de um café\": «Vorrei» → «un» → «caffè». Este é um pedido agora, não uma lembrança de um desejo de ontem. Para \"nós gostaríamos\", a primeira parte muda: «vorremmo»."
+],
+"ru": [
+"«Я хотел бы кофе»: «Vorrei» → «un» → «caffè». Это просьба сейчас, а не воспоминание о вчерашнем желании. Для «мы хотели бы» меняется первая часть: «vorremmo»."
+],
+"tr": [
+"\"Biraz kahve istiyorum\": «Vorrei» → «un» → «caffè». Bu, dünkü bir isteğin anısı değil, şimdiki bir istektir. \"İsterdik\" için ilk kısım değişir: «vorremmo»."
+],
+"uk": [
+"«Я хотів би кави»: «Vorrei» → «un» → «caffè». Це прохання зараз, а не спогад про вчорашнє бажання. Для \"ми хотіли б\" змінюється перша частина: «vorremmo»."
+],
+"vi": [
+"\"Tôi muốn một ít cà phê\": «Vorrei» → «un» → «caffè». Đây là một yêu cầu hiện tại, không phải là ký ức về mong muốn của ngày hôm qua. Đối với \"chúng tôi muốn\", phần đầu tiên thay đổi: «vorremmo»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:28:01",
+"it:28:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:28:01",
+"target": "Vorrei un caffè.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "it:28:07",
+"target": "Vorrei andarmene prima.",
+"ru": "Я хотел бы уйти пораньше.",
+"uk": "Я хотів би піти раніше."
+},
+{
+"id": "it:28:10",
+"target": "Lea vorrebbe cambiare posto.",
+"ru": "Леа хотела бы пересесть на другое место.",
+"uk": "Леа хотіла б пересісти на інше місце."
+},
+{
+"id": "it:28:01",
+"target": "Vorrei un caffè.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "it:28:04",
+"target": "Vorrebbe una stanza tranquilla.",
+"ru": "Она хотела бы тихую комнату.",
+"uk": "Вона хотіла б тиху кімнату."
+}
+]
+}
+]

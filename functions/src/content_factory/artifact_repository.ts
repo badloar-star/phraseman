@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { canonicalJsonV1, hashCanonicalBody } from '../../../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, hashCanonicalBody } from '../../../modules/canonical_json';
 import { CANONICAL_RELEASE_SURFACES, type CanonicalReleaseSurface } from './course_release_contract';
 
 export interface ArtifactReceipt {

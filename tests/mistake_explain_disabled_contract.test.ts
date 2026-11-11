@@ -72,18 +72,18 @@ describe('ИИ-разбор ошибок: включён в бою, аварий
     }));
     await act(async () => {
       hook.result.current.explain();
-      hook.result.current.eli5.onOpen();
       hook.result.current.refreshMistakeExplain();
     });
     expect(hook.result.current.aiMistakeState).toBe('hidden');
     expect(hook.result.current.consentGate.visible).toBe(false);
-    expect(hook.result.current.eli5.open).toBe(false);
     expect(callExplainMistake).not.toHaveBeenCalled();
   });
 
   it('плитка «Объяснить» в уроке и облачная подсказка хаба ошибок выключены тем же флагом', () => {
     const lesson = fs.readFileSync(path.join(process.cwd(), 'app/lesson1.tsx'), 'utf8');
-    expect(lesson).toContain('MISTAKE_EXPLAIN_ENABLED && isExplainEnabled()');
+    // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): плитки «Объяснить» в уроке нет вовсе — флагу там нечего гасить.
+    expect(lesson).not.toContain('testID="lesson1-explain"');
+    expect(lesson).not.toContain('<ExplainSheet');
     const advice = fs.readFileSync(path.join(process.cwd(), 'app/mistake_hub_advice.ts'), 'utf8');
     expect(advice).toContain('[MISTAKE-HUB-ADVICE] disabled');
     expect(advice.indexOf('if (!MISTAKE_EXPLAIN_ENABLED)')).toBeLessThan(advice.indexOf('const pending = refreshInFlight.get(key)'));

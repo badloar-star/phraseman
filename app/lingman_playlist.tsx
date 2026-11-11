@@ -1,3 +1,4 @@
+import VideoSectionGate from '../components/video/VideoSectionGate';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -36,6 +37,10 @@ function trustedPlaylistUrl(rawUrl: string, playlistId: string): string | null {
 }
 
 export default function LingmanPlaylistScreen() {
+  return <VideoSectionGate><LingmanPlaylistScreenContent /></VideoSectionGate>;
+}
+
+function LingmanPlaylistScreenContent() {
   const router = useRouter();
   const favorites = useVideoFavorites();
   const toggleLike = (videoId: string) => {

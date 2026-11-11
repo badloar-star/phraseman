@@ -1,0 +1,786 @@
+{
+ "lang": "de",
+ "lesson": 27,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:27:01",
+   "target": "Das ist der Mann, der hier wohnt.",
+   "ru": "Это мужчина, который здесь живёт.",
+   "uk": "Це чоловік, який тут мешкає."
+  },
+  {
+   "id": "de:27:02",
+   "target": "Das ist die Frau, die hier wohnt.",
+   "ru": "Это женщина, которая здесь живёт.",
+   "uk": "Це жінка, яка тут мешкає."
+  },
+  {
+   "id": "de:27:03",
+   "target": "Das ist das Kind, das hier wohnt.",
+   "ru": "Это ребёнок, который здесь живёт.",
+   "uk": "Це дитина, яка тут мешкає."
+  },
+  {
+   "id": "de:27:04",
+   "target": "Das sind die Leute, die hier wohnen.",
+   "ru": "Это люди, которые здесь живут.",
+   "uk": "Це люди, які тут мешкають."
+  },
+  {
+   "id": "de:27:05",
+   "target": "Ich kenne den Arzt, der heute arbeitet.",
+   "ru": "Я знаю врача, который сегодня работает.",
+   "uk": "Я знаю лікаря, який сьогодні працює."
+  },
+  {
+   "id": "de:27:06",
+   "target": "Ich kenne die Ärztin, die heute arbeitet.",
+   "ru": "Я знаю женщину-врача, которая сегодня работает.",
+   "uk": "Я знаю жінку-лікаря, яка сьогодні працює."
+  },
+  {
+   "id": "de:27:07",
+   "target": "Wir suchen das Taxi, das draußen wartet.",
+   "ru": "Мы ищем такси, которое ждёт снаружи.",
+   "uk": "Ми шукаємо таксі, яке чекає на вулиці."
+  },
+  {
+   "id": "de:27:08",
+   "target": "Hier ist der Bus, der zum Markt fährt.",
+   "ru": "Вот автобус, который едет к рынку.",
+   "uk": "Ось автобус, який їде до ринку."
+  },
+  {
+   "id": "de:27:09",
+   "target": "Dort ist die Bahn, die zum Bahnhof fährt.",
+   "ru": "Вон электричка, которая идёт до вокзала.",
+   "uk": "Он електричка, яка йде до вокзалу."
+  },
+  {
+   "id": "de:27:10",
+   "target": "Das sind die Gäste, die morgen kommen.",
+   "ru": "Это гости, которые придут завтра.",
+   "uk": "Це гості, які прийдуть завтра."
+  },
+  {
+   "id": "de:27:11",
+   "target": "Das ist der Schlüssel, den ich suche.",
+   "ru": "Это ключ, который я ищу.",
+   "uk": "Це ключ, який я шукаю."
+  },
+  {
+   "id": "de:27:12",
+   "target": "Das ist die Karte, die ich suche.",
+   "ru": "Это карта, которую я ищу.",
+   "uk": "Це мапа, яку я шукаю."
+  },
+  {
+   "id": "de:27:13",
+   "target": "Das Kleid, das Anna trägt, ist neu.",
+   "ru": "Платье, которое носит Анна, новое.",
+   "uk": "Сукня, яку носить Анна, нова."
+  },
+  {
+   "id": "de:27:14",
+   "target": "Das sind die Tickets, die ich suche.",
+   "ru": "Это билеты, которые я ищу.",
+   "uk": "Це квитки, які я шукаю."
+  },
+  {
+   "id": "de:27:15",
+   "target": "Das ist eine Wohnung, in der man den Lärm kaum hört.",
+   "ru": "Это квартира, в которой почти не слышно шума.",
+   "uk": "Це квартира, де шум ледь чутний."
+  },
+  {
+   "id": "de:27:16",
+   "target": "Hier ist die Tasche, die Tom gefunden hat.",
+   "ru": "Вот сумка, которую нашёл Том.",
+   "uk": "Ось сумка, яку знайшов Том."
+  },
+  {
+   "id": "de:27:17",
+   "target": "Hier ist das Paket, das du bestellt hast.",
+   "ru": "Вот посылка, которую ты заказал.",
+   "uk": "Ось посилка, яку ти замовив."
+  },
+  {
+   "id": "de:27:18",
+   "target": "Da ist der Mantel, den ich anprobieren möchte.",
+   "ru": "Вон пальто, которое я хочу примерить.",
+   "uk": "Он пальто, яке я хочу приміряти."
+  },
+  {
+   "id": "de:27:19",
+   "target": "Da ist die Jacke, die mir gefällt.",
+   "ru": "Вон куртка, которая мне нравится.",
+   "uk": "Он куртка, яка мені подобається."
+  },
+  {
+   "id": "de:27:20",
+   "target": "Das sind die Schuhe, die wir gekauft haben.",
+   "ru": "Это туфли, которые мы купили.",
+   "uk": "Це туфлі, які ми купили."
+  },
+  {
+   "id": "de:27:21",
+   "target": "Der Zug, der nach Köln fährt, ist voll.",
+   "ru": "Поезд, который едет в Кёльн, переполнен.",
+   "uk": "Поїзд, що їде до Кельна, переповнений."
+  },
+  {
+   "id": "de:27:22",
+   "target": "Der Gang, der zum Notausgang führt, muss frei bleiben.",
+   "ru": "Проход, который ведёт к аварийному выходу, должен оставаться свободным.",
+   "uk": "Коридор, що веде до аварійного виходу, має залишатися вільним."
+  },
+  {
+   "id": "de:27:23",
+   "target": "Das Fenster, das zum Hof geht, ist offen.",
+   "ru": "Окно, которое выходит во двор, открыто.",
+   "uk": "Вікно, що виходить у двір, відчинене."
+  },
+  {
+   "id": "de:27:24",
+   "target": "Die Kinder, die im Garten spielen, sind müde.",
+   "ru": "Дети, которые играют в саду, устали.",
+   "uk": "Діти, які грають у саду, втомилися."
+  },
+  {
+   "id": "de:27:25",
+   "target": "Der Mann, den du kennst, ist mein Nachbar.",
+   "ru": "Мужчина, которого ты знаешь, — мой сосед.",
+   "uk": "Чоловік, якого ти знаєш, — мій сусід."
+  },
+  {
+   "id": "de:27:26",
+   "target": "Die Frau, die du siehst, ist meine Schwester.",
+   "ru": "Женщина, которую ты видишь, — моя сестра.",
+   "uk": "Жінка, яку ти бачиш, - моя сестра."
+  },
+  {
+   "id": "de:27:27",
+   "target": "Das Fahrrad, das du fährst, gehört Anna.",
+   "ru": "Велосипед, на котором ты ездишь, принадлежит Анне.",
+   "uk": "Велосипед, на якому ти їздиш, належить Ганні."
+  },
+  {
+   "id": "de:27:28",
+   "target": "Die Bücher, die ihr lest, sind neu.",
+   "ru": "Книги, которые вы читаете, новые.",
+   "uk": "Книги, які ви читаєте, нові."
+  },
+  {
+   "id": "de:27:29",
+   "target": "Der Bus, den wir nehmen, hält hier.",
+   "ru": "Автобус, на котором мы поедем, останавливается здесь.",
+   "uk": "Автобус, яким ми поїдемо, зупиняється тут."
+  },
+  {
+   "id": "de:27:30",
+   "target": "Die Milch, die du brauchst, steht im Kühlschrank.",
+   "ru": "Молоко, которое тебе нужно, в холодильнике.",
+   "uk": "Молоко, яке тобі потрібне, в холодильнику."
+  },
+  {
+   "id": "de:27:31",
+   "target": "Ich brauche einen Stift, der gut schreibt.",
+   "ru": "Мне нужна ручка, которая хорошо пишет.",
+   "uk": "Мені потрібна ручка, яка добре пише."
+  },
+  {
+   "id": "de:27:32",
+   "target": "Anna sucht eine Wohnung, die einen Balkon hat.",
+   "ru": "Анна ищет квартиру, в которой есть балкон.",
+   "uk": "Анна шукає квартиру, де є балкон."
+  },
+  {
+   "id": "de:27:33",
+   "target": "Wir suchen ein Café, das früh öffnet.",
+   "ru": "Мы ищем кафе, которое рано открывается.",
+   "uk": "Ми шукаємо кафе, яке рано відкривається."
+  },
+  {
+   "id": "de:27:34",
+   "target": "Er braucht Schuhe, die gut passen.",
+   "ru": "Ему нужна обувь, которая хорошо сидит.",
+   "uk": "Йому потрібне взуття, яке добре сидить."
+  },
+  {
+   "id": "de:27:35",
+   "target": "Ich möchte einen Tisch, den man zusammenklappen kann.",
+   "ru": "Я хотел бы стол, который можно складывать.",
+   "uk": "Я хотів би стіл, який можна складати."
+  },
+  {
+   "id": "de:27:36",
+   "target": "Sie sucht eine Lampe, die wenig Strom verbraucht.",
+   "ru": "Она ищет лампу, которая расходует мало электричества.",
+   "uk": "Вона шукає лампу, яка витрачає мало електрики."
+  },
+  {
+   "id": "de:27:37",
+   "target": "Wir brauchen ein Zimmer, das ruhig ist.",
+   "ru": "Нам нужна тихая комната.",
+   "uk": "Нам потрібна тиха кімната."
+  },
+  {
+   "id": "de:27:38",
+   "target": "Ich kenne einen Laden, der sonntags offen ist.",
+   "ru": "Я знаю магазин, который открыт по воскресеньям.",
+   "uk": "Я знаю магазин, який відкритий у неділю."
+  },
+  {
+   "id": "de:27:39",
+   "target": "Hier gibt es einen Aufzug, der bis zum Keller fährt.",
+   "ru": "Здесь есть лифт, который доезжает до подвала.",
+   "uk": "Тут є ліфт, який доїжджає до підвалу."
+  },
+  {
+   "id": "de:27:40",
+   "target": "Gibt es einen Bus, der direkt zum Hotel fährt?",
+   "ru": "Есть автобус, который едет прямо до гостиницы?",
+   "uk": "Чи є автобус, який їде прямо до готелю?"
+  },
+  {
+   "id": "de:27:41",
+   "target": "Der Kollege, der mir hilft, heißt Paul.",
+   "ru": "Коллегу, который мне помогает, зовут Пауль.",
+   "uk": "Колегу, який мені допомагає, звуть Пауль."
+  },
+  {
+   "id": "de:27:42",
+   "target": "Der Kollege, den ich anrufe, heißt Paul.",
+   "ru": "Коллегу, которому я звоню, зовут Пауль.",
+   "uk": "Колегу, якому я дзвоню, звуть Пауль."
+  },
+  {
+   "id": "de:27:43",
+   "target": "Der Nachbar, der den Hund sucht, wartet draußen.",
+   "ru": "Сосед, который ищет собаку, ждёт на улице.",
+   "uk": "Сусід, який шукає собаку, чекає на вулиці."
+  },
+  {
+   "id": "de:27:44",
+   "target": "Der Hund, den der Nachbar sucht, ist im Hof.",
+   "ru": "Собака, которую ищет сосед, во дворе.",
+   "uk": "Собака, яку шукає сусід, у дворі."
+  },
+  {
+   "id": "de:27:45",
+   "target": "Die Uhr, die an der Wand hängt, geht vor.",
+   "ru": "Часы, которые висят на стене, спешат.",
+   "uk": "Годинник, що висить на стіні, поспішає."
+  },
+  {
+   "id": "de:27:46",
+   "target": "Der Termin, den ich abgesagt habe, war am Montag.",
+   "ru": "Встреча, которую я отменил, была назначена на понедельник.",
+   "uk": "Зустріч, яку я скасував, було призначено на понеділок."
+  },
+  {
+   "id": "de:27:47",
+   "target": "Das Bild, das über dem Sofa hängt, ist ein Geschenk.",
+   "ru": "Картина, которая висит над диваном, — подарок.",
+   "uk": "Картина, що висить над диваном, — подарунок."
+  },
+  {
+   "id": "de:27:48",
+   "target": "Die Quittung, die Sie brauchen, liegt im Umschlag.",
+   "ru": "Квитанция, которая вам нужна, лежит в конверте.",
+   "uk": "Квитанція, яка вам потрібна, лежить у конверті."
+  },
+  {
+   "id": "de:27:49",
+   "target": "Kennst du die Frau, die gerade eingestiegen ist?",
+   "ru": "Ты знаешь женщину, которая только что вошла в транспорт?",
+   "uk": "Ти знаєш жінку, яка щойно увійшла до транспорту?"
+  },
+  {
+   "id": "de:27:50",
+   "target": "Ist das der Koffer, den ihr am Bahnhof vergessen habt?",
+   "ru": "Это чемодан, который вы забыли на вокзале?",
+   "uk": "Це валіза, яку ви забули на вокзалі?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Kollege",
+   "ru": "коллега",
+   "uk": "колега"
+  },
+  {
+   "lemma": "die Leute",
+   "ru": "люди",
+   "uk": "люди"
+  },
+  {
+   "lemma": "verbrauchen",
+   "ru": "расходовать",
+   "uk": "витрачати"
+  },
+  {
+   "lemma": "zusammenklappen",
+   "ru": "складывать складную вещь",
+   "uk": "складати складну річ"
+  },
+  {
+   "lemma": "sonntags",
+   "ru": "по воскресеньям",
+   "uk": "у неділю"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  }
+ ],
+ "oldTopicTitle": "Какой человек или предмет: относительное предложение",
+ "oldTheoryRu": "Ты указываешь не просто на человека, а на того, кто здесь живёт. В уточнении его заменяет короткое слово. Это слово уже является подлежащим: отдельное `er` рядом не требуется. Существительное в главной части может быть объектом, а в придаточной — исполнителем. Поэтому после `den Arzt` вполне возможно `der`: врача знаешь ты, а работает он сам. Когда внутри уточнения уже есть исполнитель, проверь роль другого участника. «Ключ, который я ищу»: ищу я, а ключ является объектом. Поэтому у мужского рода появляется `den`. Вставленное посередине уточнение отделяется запятыми с обеих сторон. Чтобы не потеряться, сначала мысленно прочитай главное сообщение без вставки, а затем верни подробность на место. Описание помогает сформулировать требование: нужен не случайный магазин, а тот, который открыт. Прилагательное не всегда удобно, целое уточнение даёт место для подробного действия. Сравни коллегу, который помогает, и коллегу, которому ты звонишь. С `anrufen` человек является прямым объектом. Не переноси дательный из буквального перевода на форму относительного местоимения. В придаточной части личный глагол стремится к концу. Если там Perfekt, последним в соответствующей группе будет вспомогательный глагол. Не путай его с глаголом главной части после второй запятой."
+}

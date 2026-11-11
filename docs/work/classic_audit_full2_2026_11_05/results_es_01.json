@@ -1,0 +1,10 @@
+[
+{"id": "es:03:23", "type": "B4", "field": "alternatives", "problem": "«¿Estás en casa?» — это «Ты дома?», а подсказка «Вы дома?» (usted); допустимый ответ меняет лицо", "fix": {"add": [], "remove": ["¿Estás en casa?"]}},
+{"id": "es:04:17", "type": "B1", "field": "tiles", "problem": "на позиции местоимения соблазн-существительное «Café» отсеивается без знания слова", "fix": {"position": 0, "replace_distractor": "Café", "with": "Él"}},
+{"id": "es:04:17", "type": "B1", "field": "tiles", "problem": "соблазн-существительное «Cargador» вместо местоимения — явный мусор", "fix": {"position": 0, "replace_distractor": "Cargador", "with": "Ellas"}},
+{"id": "es:04:17", "type": "B1", "field": "tiles", "problem": "соблазн-существительное «Móviles» вместо местоимения — явный мусор", "fix": {"position": 0, "replace_distractor": "Móviles", "with": "Ellos"}},
+{"id": "es:04:17", "type": "B1", "field": "tiles", "problem": "соблазн-существительное «Puerta» вместо местоимения — явный мусор", "fix": {"position": 0, "replace_distractor": "Puerta", "with": "Usted"}},
+{"id": "es:04:32", "type": "M", "field": "ru", "problem": "«Я та самая врач» — неуклюжее согласование, звучит неестественно (в 04:35 тот же смысл передан как «Я и есть…»)", "fix": "Я и есть врач."},
+{"id": "es:04:35", "type": "M", "field": "uk", "problem": "«гідеса» — редкое, неестественное слово; в 04:37 используется «гідом»", "fix": "Я і є гід."},
+{"id": "es:04:36", "type": "B4", "field": "alternatives", "problem": "«Soy el guía» = «Я и есть гид» (как в 04:31/04:38), а подсказка «Я гид» — смысл меняется; при этом женский вариант не принят, то есть непоследовательно", "fix": {"add": [], "remove": ["Yo soy el guía.", "Soy el guía."]}}
+]

@@ -56,4 +56,12 @@ describe('холодный старт: новые модули моментов 
     expect(screen).toContain("ringsOn ? (require('../components/streak/moments/TodayRingsSlot')");
     expect(screen).not.toMatch(/^import .*TodayRingsSlot/m);
   });
+
+  it('root layout does not schedule removed SFX/music prewarm or V2 boot', () => {
+    const layout = normalizeEol(fs.readFileSync(`${ROOT}app/_layout.tsx`, 'utf8'));
+    expect(layout).not.toMatch(/scheduleStartupSfxPrewarm|prewarmLessonEndSfx|lessonEndPrewarmPlan/);
+    expect(layout).not.toMatch(/sound_v2_boot|bootSoundV2/);
+    // Audio-session initialization remains for spoken audio and TTS.
+    expect(layout).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
+  });
 });

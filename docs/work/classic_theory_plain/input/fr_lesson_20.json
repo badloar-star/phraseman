@@ -1,0 +1,760 @@
+{
+ "lang": "fr",
+ "lesson": 20,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:20:01",
+   "target": "J’habitais ici.",
+   "ru": "Я раньше здесь жил.",
+   "uk": "Я раніше тут жив."
+  },
+  {
+   "id": "fr:20:02",
+   "target": "Tu habitais ici.",
+   "ru": "Ты раньше здесь жил.",
+   "uk": "Ти тут колись жив."
+  },
+  {
+   "id": "fr:20:03",
+   "target": "Elle habitait à Lyon.",
+   "ru": "Она жила в Лионе.",
+   "uk": "Вона жила в Ліоні."
+  },
+  {
+   "id": "fr:20:04",
+   "target": "Nous habitions à la campagne.",
+   "ru": "Мы жили в сельской местности.",
+   "uk": "Ми жили в сільській місцевості."
+  },
+  {
+   "id": "fr:20:05",
+   "target": "Vous habitiez en ville.",
+   "ru": "Вы жили в городе.",
+   "uk": "Ви жили у місті."
+  },
+  {
+   "id": "fr:20:06",
+   "target": "Ils habitaient près du port.",
+   "ru": "Они жили недалеко от порта.",
+   "uk": "Вони жили біля порту."
+  },
+  {
+   "id": "fr:20:07",
+   "target": "J’étais souvent seul.",
+   "ru": "Я часто был один.",
+   "uk": "Я часто був сам."
+  },
+  {
+   "id": "fr:20:08",
+   "target": "Elle était souvent seule.",
+   "ru": "Она часто была одна.",
+   "uk": "Вона часто була сама."
+  },
+  {
+   "id": "fr:20:09",
+   "target": "Nous étions voisins.",
+   "ru": "Мы были соседями.",
+   "uk": "Ми були сусідами."
+  },
+  {
+   "id": "fr:20:10",
+   "target": "Le jardin était grand.",
+   "ru": "Сад был большим.",
+   "uk": "Сад був великий."
+  },
+  {
+   "id": "fr:20:11",
+   "target": "Avant, je travaillais le samedi.",
+   "ru": "Я раньше работал по субботам.",
+   "uk": "Раніше я працював по суботах."
+  },
+  {
+   "id": "fr:20:12",
+   "target": "Le dimanche, nous mangions ensemble.",
+   "ru": "По воскресеньям мы ели вместе.",
+   "uk": "По неділях ми їли разом."
+  },
+  {
+   "id": "fr:20:13",
+   "target": "Chaque matin, il achetait du pain.",
+   "ru": "Каждое утро он покупал хлеб.",
+   "uk": "Щоранку він купував хліб."
+  },
+  {
+   "id": "fr:20:14",
+   "target": "Le soir, elle écoutait la radio.",
+   "ru": "Вечером она слушала радио.",
+   "uk": "Увечері вона слухала радіо."
+  },
+  {
+   "id": "fr:20:15",
+   "target": "À l’époque, on payait en espèces.",
+   "ru": "Тогда мы расплачивались наличными.",
+   "uk": "Тоді ми платили готівкою."
+  },
+  {
+   "id": "fr:20:16",
+   "target": "En été, ils dormaient dehors.",
+   "ru": "Летом они спали на улице.",
+   "uk": "Влітку вони спали надворі."
+  },
+  {
+   "id": "fr:20:17",
+   "target": "Tu allais à l’école à pied.",
+   "ru": "Ты ходил в школу пешком.",
+   "uk": "Ти ходив до школи пішки."
+  },
+  {
+   "id": "fr:20:18",
+   "target": "Mon père prenait toujours le bus.",
+   "ru": "Мой отец всегда ездил на автобусе.",
+   "uk": "Мій батько завжди їздив автобусом."
+  },
+  {
+   "id": "fr:20:19",
+   "target": "Ma sœur lisait avant de dormir.",
+   "ru": "Моя сестра читала перед сном.",
+   "uk": "Моя сестра читала перед сном."
+  },
+  {
+   "id": "fr:20:20",
+   "target": "Je jouais souvent dans cette cour.",
+   "ru": "Я часто играл в этом дворе.",
+   "uk": "Я часто грався на цьому подвір'ї."
+  },
+  {
+   "id": "fr:20:21",
+   "target": "Il faisait chaud.",
+   "ru": "Было жарко.",
+   "uk": "Було спекотно."
+  },
+  {
+   "id": "fr:20:22",
+   "target": "Il faisait déjà nuit.",
+   "ru": "Уже стемнело.",
+   "uk": "Вже стемніло."
+  },
+  {
+   "id": "fr:20:23",
+   "target": "Il pleuvait sans arrêt.",
+   "ru": "Непрерывно шел дождь.",
+   "uk": "Постійно йшов дощ."
+  },
+  {
+   "id": "fr:20:24",
+   "target": "Le vent soufflait fort.",
+   "ru": "Сильно дул ветер.",
+   "uk": "Вітер дув сильно."
+  },
+  {
+   "id": "fr:20:25",
+   "target": "La rue était déserte.",
+   "ru": "Улица была пустынна.",
+   "uk": "Вулиця була безлюдна."
+  },
+  {
+   "id": "fr:20:26",
+   "target": "Les fenêtres étaient ouvertes.",
+   "ru": "Окна были открыты.",
+   "uk": "Вікна були відчинені."
+  },
+  {
+   "id": "fr:20:27",
+   "target": "La lumière était faible.",
+   "ru": "Свет был тусклым.",
+   "uk": "Світло було тьмяним."
+  },
+  {
+   "id": "fr:20:28",
+   "target": "La salle sentait le café.",
+   "ru": "В комнате пахло кофе.",
+   "uk": "У кімнаті пахло кавою."
+  },
+  {
+   "id": "fr:20:29",
+   "target": "Les enfants avaient froid.",
+   "ru": "Детям было холодно.",
+   "uk": "Дітям було холодно."
+  },
+  {
+   "id": "fr:20:30",
+   "target": "Nous avions beaucoup de temps.",
+   "ru": "У нас было много времени.",
+   "uk": "У нас було багато часу."
+  },
+  {
+   "id": "fr:20:31",
+   "target": "Je ne connaissais pas le quartier.",
+   "ru": "Я не знал этот район.",
+   "uk": "Я не знав району."
+  },
+  {
+   "id": "fr:20:32",
+   "target": "Il n’y avait pas d’ascenseur.",
+   "ru": "Лифта не было.",
+   "uk": "Ліфта не було."
+  },
+  {
+   "id": "fr:20:33",
+   "target": "Elle n’avait pas de vélo.",
+   "ru": "У неё не было велосипеда.",
+   "uk": "У неї не було велосипеда."
+  },
+  {
+   "id": "fr:20:34",
+   "target": "Nous n’étions pas pressés.",
+   "ru": "Мы никуда не спешили.",
+   "uk": "Ми не поспішали."
+  },
+  {
+   "id": "fr:20:35",
+   "target": "Les magasins n’ouvraient pas le lundi.",
+   "ru": "Магазины не работали по понедельникам.",
+   "uk": "Магазини не працювали по понеділках."
+  },
+  {
+   "id": "fr:20:36",
+   "target": "Tu te levais plus tôt ?",
+   "ru": "Ты вставал раньше?",
+   "uk": "Ти вставав раніше?"
+  },
+  {
+   "id": "fr:20:37",
+   "target": "Où travaillait ta mère ?",
+   "ru": "Где работала твоя мама?",
+   "uk": "Де працювала твоя мама?"
+  },
+  {
+   "id": "fr:20:38",
+   "target": "Que faisiez-vous le soir ?",
+   "ru": "Чем вы занимались по вечерам?",
+   "uk": "Чим ви займалися вечорами?"
+  },
+  {
+   "id": "fr:20:39",
+   "target": "Vous étiez souvent de garde ?",
+   "ru": "Вы часто дежурили?",
+   "uk": "Ви часто чергували?"
+  },
+  {
+   "id": "fr:20:40",
+   "target": "Comment rentraient les enfants ?",
+   "ru": "Как дети добирались домой?",
+   "uk": "Як діти добиралися додому?"
+  },
+  {
+   "id": "fr:20:41",
+   "target": "À huit ans, je gardais mes pièces dans une boîte.",
+   "ru": "В восемь лет я хранил монеты в коробке.",
+   "uk": "У вісім років я зберігав свої монети в коробці."
+  },
+  {
+   "id": "fr:20:42",
+   "target": "Ma tante préparait la même tarte chaque dimanche.",
+   "ru": "Моя тетя пекла один и тот же пирог каждое воскресенье.",
+   "uk": "Моя тітка щонеділі готувала один і той самий пиріг."
+  },
+  {
+   "id": "fr:20:43",
+   "target": "Le facteur posait les colis sur la balance.",
+   "ru": "Почтальон ставил посылки на весы.",
+   "uk": "Листоноша ставив посилки на ваги."
+  },
+  {
+   "id": "fr:20:44",
+   "target": "La gare se trouvait au bout de la rue.",
+   "ru": "Вокзал находился в конце улицы.",
+   "uk": "Залізнична станція була в кінці вулиці."
+  },
+  {
+   "id": "fr:20:45",
+   "target": "Les trains avaient souvent du retard.",
+   "ru": "Поезда часто опаздывали.",
+   "uk": "Поїзди часто запізнювалися."
+  },
+  {
+   "id": "fr:20:46",
+   "target": "Je me promenais le long du canal.",
+   "ru": "Я гулял вдоль канала.",
+   "uk": "Я гуляв уздовж каналу."
+  },
+  {
+   "id": "fr:20:47",
+   "target": "Nous nous retrouvions devant la fontaine.",
+   "ru": "Мы встречались перед фонтаном.",
+   "uk": "Ми зустрічалися перед фонтаном."
+  },
+  {
+   "id": "fr:20:48",
+   "target": "Quand j’étais petit, je dessinais des bateaux.",
+   "ru": "Когда я был маленьким, я рисовал лодки.",
+   "uk": "Коли я був маленьким, я малював човни."
+  },
+  {
+   "id": "fr:20:49",
+   "target": "Elle se couchait avant la fin du film.",
+   "ru": "Она обычно ложилась спать, не досмотрев фильм.",
+   "uk": "Вона зазвичай лягала спати, не додивившись фільм."
+  },
+  {
+   "id": "fr:20:50",
+   "target": "L’ancien marché occupait toute la place.",
+   "ru": "Старый рынок занимал всю площадь.",
+   "uk": "Старий ринок займав всю площу."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le quartier",
+   "ru": "квартал, район",
+   "uk": "квартал, район"
+  },
+  {
+   "lemma": "la tarte",
+   "ru": "пирог",
+   "uk": "пиріг"
+  },
+  {
+   "lemma": "le vent",
+   "ru": "ветер",
+   "uk": "вітер"
+  },
+  {
+   "lemma": "la lumière",
+   "ru": "свет",
+   "uk": "світло"
+  },
+  {
+   "lemma": "le canal",
+   "ru": "канал",
+   "uk": "канал"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  }
+ ],
+ "oldTopicTitle": "Как было раньше: `imparfait`",
+ "oldTheoryRu": "Здесь нужен взгляд изнутри прошлого: обстановка, повторявшаяся привычка, длительное состояние. Не спрашиваем, в какую секунду оно закончилось. Для большинства глаголов бери форму `nous` настоящего, убирай `-ons` и добавляй окончания. У `habiter` получается `habit-`. Особая основа у `être`: `ét-`. `Chaque matin`, `le dimanche` помогают увидеть повторяемость в описанном прошлом. Это подсказки смысла, не автоматическое правило: значение всего предложения важнее одного маркера. Для погоды и освещения подходят `il faisait`, `il pleuvait`. Не превращай их в «однажды случился дождь», если рассказчик описывает фон, на котором что-то происходило. Отрицание в `imparfait` строится вокруг одного спрягаемого глагола. `Il n’y avait pas` — раньше чего-то не было; помощник `a` после `avait` не нужен. Вопрос тоже может быть о привычке: как добирались домой, где работали раньше? Для `vous` ожидай `-iez`, даже если вежливо спрашиваешь одного человека. Представь две картинки: каждое воскресенье тётя пекла пирог; однажды она испекла пирог. Здесь тренируем первую. Глагол «печь» сам по себе не выбирает время."
+}

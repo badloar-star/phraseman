@@ -31,16 +31,17 @@ describe('lesson AI mistake card integration', () => {
     expect(combined).toContain('diffPairs');
   });
 
-  it('wires the ELI5 «Объяснить проще» modal opened from the card footer', () => {
-    expect(source).toContain('MistakeEli5Modal');
-    expect(source).toContain('openEli5Modal');
-    // Хук строит запрос с вариантом eli5 через buildArgs('eli5').
-    expect(combined).toMatch(/buildArgs\(['"]eli5['"]\)|variant: 'eli5'/);
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): урок не открывает ни шторку «Объясни проще», ни шторку «Объяснить».
+  it('has no «Объяснить проще» modal and no footer «Объяснить» tile in the lesson', () => {
+    expect(source).not.toContain('MistakeEli5Modal');
+    expect(source).not.toContain('openEli5Modal');
+    expect(source).not.toContain('onOpenSimple');
+    expect(source).not.toContain('<ExplainSheet');
+    expect(source).not.toContain('setExplainOpen');
+    expect(source).not.toContain('testID="lesson1-explain"');
   });
 
-  it('keeps the footer phrase-explain button on the 3+gift credit path (separate from the mistake breakdown)', () => {
-    // The footer «Объясни просто» button toggles the ExplainSheet via explainOpen state.
-    expect(source).toContain('setExplainOpen');
+  it('keeps the 50/50 hint on the 3+gift daily credit path', () => {
     expect(source).toContain('const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday)');
     expect(source).not.toContain('lesson1-explain-result');
   });

@@ -18,7 +18,12 @@ import {
 
 const PROJECT_ID = 'demo-phraseman-rc-lineage-rules';
 const RULES_PATH = path.resolve(__dirname, '../../firestore.rules');
-const ROOTS = ['revenuecat_premium_lineages', 'revenuecat_premium_denials'] as const;
+const ROOTS = [
+  'revenuecat_premium_lineages',
+  'revenuecat_premium_denials',
+  'revenuecat_premium_lineage_owners',
+  'revenuecat_restore_operations',
+] as const;
 
 describe('RevenueCat premium server-only roots (emulator)', () => {
   let environment: RulesTestEnvironment;
@@ -34,16 +39,20 @@ describe('RevenueCat premium server-only roots (emulator)', () => {
   beforeEach(async () => environment.clearFirestore());
 
   for (const root of ROOTS) {
-    it(`${root}: even browser admin cannot get/list/create/update/delete`, async () => {
+    it.each([
+      ['unauthenticated', () => environment.unauthenticatedContext().firestore()],
+      ['authenticated non-admin', () => environment.authenticatedContext('ordinary-auth').firestore()],
+      ['browser admin', () => environment.authenticatedContext('admin-auth', { admin: true }).firestore()],
+    ])(`${root}: %s cannot get/list/create/update/delete`, async (_label, firestore) => {
       await environment.withSecurityRulesDisabled(async (context) => {
         await setDoc(doc(context.firestore(), root, 'existing'), { ownerUid: 'owner-a', value: 1 });
       });
-      const adminDb = environment.authenticatedContext('admin-auth', { admin: true }).firestore();
-      await assertFails(getDoc(doc(adminDb, root, 'existing')));
-      await assertFails(getDocs(collection(adminDb, root)));
-      await assertFails(setDoc(doc(adminDb, root, 'new'), { ownerUid: 'owner-a' }));
-      await assertFails(updateDoc(doc(adminDb, root, 'existing'), { value: 2 }));
-      await assertFails(deleteDoc(doc(adminDb, root, 'existing')));
+      const db = firestore();
+      await assertFails(getDoc(doc(db, root, 'existing')));
+      await assertFails(getDocs(collection(db, root)));
+      await assertFails(setDoc(doc(db, root, 'new'), { ownerUid: 'owner-a' }));
+      await assertFails(updateDoc(doc(db, root, 'existing'), { value: 2 }));
+      await assertFails(deleteDoc(doc(db, root, 'existing')));
     });
   }
 

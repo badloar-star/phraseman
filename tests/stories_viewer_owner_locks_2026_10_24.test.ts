@@ -50,25 +50,19 @@ describe('Замок: просмотр историй — 10 секунд на �
     expect(slot).toContain('loadStoryViewer();');
   });
 
-  // ЗАМОК ВЛАДЕЛЬЦА 24.10: «истории должны открываться» — тап по аватару ВСЕГДА открывает истории, если есть живые слайды (сначала непросмотренные, иначе все с первого);
-  // в профиль — только когда историй нет или флаг выключен (решение координатора 24.10, меняет R21 15.10)
-  it('тап по аватару открывает истории и после просмотра: очередь — непросмотренные, иначе все живые', () => {
-    expect(slot).toContain('(ring ? playback : enabled ? [...stories].reverse() : [])');
-    expect(slot).toContain('const opensStories = queue.length > 0;');
-    // слово владельца 26.10 (меняет 24.10 «тап ВСЕГДА открывает»): обычный тап открывает просмотр, только пока горит кольцо; просмотренные повторяются удержанием 2 с
-    expect(slot).toContain("if (ring && opensStories) open(); else onOpenProfile();");
+  it('тап открывает непросмотренные истории, удержание секунду повторяет всю очередь', () => {
+    expect(slot).toContain('const unreadQueue = useMemo');
+    expect(slot).toContain('const opensStories = replayQueue.length > 0;');
+    expect(slot).toContain('if (unreadQueue.length > 0) open(unreadQueue); else onOpenProfile();');
     expect(slot).toContain('onLongPress={opensStories ? onLongPress : undefined}');
-    expect(slot).toContain('delayLongPress={2000}');
-    expect(slot).toMatch(/const onLongPress = useCallback\(\(\) => \{[\s\S]*?if \(opensStories\) open\(\);/);
+    expect(slot).toContain('delayLongPress={1000}');
+    expect(slot).toContain('open(replayQueue);');
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 24.10: «истории должны открываться» — правило «сперва логи»: причина «кольца нет / куда ведёт тап» пишется одной строкой [STORIES]
   it('журнал [STORIES] объясняет, почему кольцо горит или нет и куда ведёт тап', () => {
     expect(slot).toContain("DebugLogger.info('[STORIES]'");
-    expect(slot).toContain('кольца нет');
-    expect(slot).toContain("'в просмотр непросмотренных'");
-    // повтор просмотренных (удержание) пишет в журнал «недавние», просмотр непросмотренных — «непросмотренные»
-    expect(slot).toContain('тап → просмотр (${ring ? \'непросмотренные\' : \'недавние\'})');
-    expect(slot).toContain("'в профиль'");
+    expect(slot).toContain('непросмотрено=${unseenCount} повтор=${replayQueue.length}');
+    expect(slot).toContain("'просмотр сторис' : 'профиль'");
   });
 });

@@ -151,7 +151,7 @@ window.EL = (() => {
   const nav = (cur) => `<div class="elnav">${NAV.map(([h, t]) => `<a href="${h}"${h === cur ? ' class="on"' : ''}>${t}</a>`).join('')}</div>`;
   function mount(sections) {
     const all = sections.flatMap((s) => s.screens), stop = {};
-    const run = (id, auto = true) => { const s = all.find((x) => x.id === id), ph = document.querySelector(`[data-ph="${id}"]`); if (stop[id]) stop[id](); stop[id] = s.fn(ph, auto) || null; log('запуск экрана', id); };
+    const run = (id, auto = true) => { const s = all.find((x) => x.id === id), ph = document.querySelector(`[data-ph="${id}"]`); if (!s) return; /* зачем: уменьшенные телефоны «было» в стиле сцены — статичные, показа у них нет */ if (stop[id]) stop[id](); stop[id] = s.fn(ph, auto) || null; log('запуск экрана', id); };
     const colOf = (s) => `<div class="col"><div class="lbl">${s.lbl}</div><div class="pairw">${s.was ? `${s.was}<div class="arrow">${I('arrowR', 's24')}</div>` : ''}<div class="now">${s.was ? '<div class="tagw">Стало</div>' : ''}${sky(s.id, s.cls || '')}</div></div><button class="replay" data-run="${s.id}">${I('play', 's16')}Показать ещё раз</button>${s.note ? `<div class="cap2"${s.was ? ' style="max-width:640px"' : ''}>${s.note}</div>` : ''}</div>`;
     document.getElementById('root').innerHTML = sections.map((s) => `<section class="block" id="${s.id}"><h2>${s.title}</h2><p>${s.lead}</p>${s.html || ''}<div class="phones">${s.screens.map(colOf).join('')}</div></section>`).join('');
     document.querySelectorAll('.ph.sky').forEach(stars);

@@ -1,0 +1,6540 @@
+[
+{
+"lesson": 7,
+"id": "en-classic-r1:07.01",
+"target": "I have a ticket.",
+"ru": "У меня есть билет.",
+"uk": "У мене є квиток.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"He",
+"I'm",
+"He's",
+"You"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"are",
+"is"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"and",
+"but",
+"with",
+"for"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"receipt",
+"number",
+"label",
+"code",
+"timetable"
+]
+}
+],
+"alternatives": [
+"I've got a ticket.",
+"I have got a ticket."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.02",
+"target": "She has a ticket.",
+"ru": "У неё есть билет.",
+"uk": "У неї є квиток.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"It",
+"We're",
+"We",
+"You"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"receipt",
+"label",
+"number",
+"code",
+"timetable"
+]
+}
+],
+"alternatives": [
+"She's got a ticket.",
+"She has got a ticket."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.03",
+"target": "We have a spare key.",
+"ru": "У нас есть запасной ключ.",
+"uk": "У нас є запасний ключ.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He's",
+"She",
+"They",
+"You"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"do",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "spare",
+"distractors": [
+"seat",
+"new",
+"last",
+"work",
+"next"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"price",
+"water",
+"door",
+"bus",
+"work"
+]
+}
+],
+"alternatives": [
+"We've got a spare key.",
+"We have got a spare key."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.04",
+"target": "He has a spare key.",
+"ru": "У него есть запасной ключ.",
+"uk": "У нього є запасний ключ.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"They",
+"It",
+"She"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"does",
+"do",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"is",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "spare",
+"distractors": [
+"door",
+"more",
+"work",
+"lift",
+"gate"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"kitchen",
+"next",
+"last",
+"door",
+"room"
+]
+}
+],
+"alternatives": [
+"He's got a spare key.",
+"He has got a spare key."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.05",
+"target": "I have your number.",
+"ru": "У меня есть ваш номер.",
+"uk": "У мене є ваш номер.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"He",
+"We've",
+"They",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"do",
+"is",
+"are"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"get",
+"my",
+"gets",
+"his",
+"her"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"name",
+"paper",
+"label",
+"ticket"
+]
+}
+],
+"alternatives": [
+"I've got your number.",
+"I have got your number."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.06",
+"target": "She has my address.",
+"ru": "У неё есть мой адрес.",
+"uk": "У неї є моя адреса.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"They",
+"We",
+"He"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"get",
+"gets",
+"your",
+"his",
+"her"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"rooms",
+"keys",
+"machine",
+"day",
+"week"
+]
+}
+],
+"alternatives": [
+"She's got my address.",
+"She has got my address."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.07",
+"target": "They have a car.",
+"ru": "У них есть машина.",
+"uk": "У них є машина.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"We",
+"He",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"do",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "car",
+"distractors": [
+"bike",
+"bus",
+"train",
+"work",
+"room"
+]
+}
+],
+"alternatives": [
+"They've got a car.",
+"They have got a car."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.08",
+"target": "He has a bicycle.",
+"ru": "У него есть велосипед.",
+"uk": "У нього є велосипед.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"You",
+"We",
+"They"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"and",
+"but",
+"with",
+"for"
+]
+},
+{
+"correct": "bicycle",
+"distractors": [
+"time",
+"gate",
+"name",
+"phone",
+"bus"
+]
+}
+],
+"alternatives": [
+"He's got a bicycle.",
+"He has got a bicycle."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.09",
+"target": "We have time.",
+"ru": "У нас есть время.",
+"uk": "У нас є час.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"You",
+"She's",
+"He"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"does",
+"is"
+]
+},
+{
+"correct": "time",
+"distractors": [
+"get",
+"gets",
+"bus",
+"lunch",
+"train"
+]
+}
+],
+"alternatives": [
+"We've got time.",
+"We have got time."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.10",
+"target": "I have a question.",
+"ru": "У меня есть вопрос.",
+"uk": "У мене є питання.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"We",
+"You",
+"He",
+"They"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"does",
+"do",
+"is"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "question",
+"distractors": [
+"door",
+"train",
+"price",
+"lunch",
+"email"
+]
+}
+],
+"alternatives": [
+"I've got a question.",
+"I have got a question."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.11",
+"target": "I have a sore throat.",
+"ru": "У меня болит горло.",
+"uk": "У мене болить горло.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"He",
+"You",
+"She",
+"We",
+"They"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "sore",
+"distractors": [
+"work",
+"room",
+"blue",
+"bus",
+"door"
+]
+},
+{
+"correct": "throat",
+"distractors": [
+"glasses",
+"cold",
+"sundays",
+"parcel",
+"open"
+]
+}
+],
+"alternatives": [
+"I've got a sore throat.",
+"I have got a sore throat."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.12",
+"target": "He has a cough.",
+"ru": "У него кашель.",
+"uk": "У нього кашель.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"You",
+"I've",
+"We"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "cough",
+"distractors": [
+"glasses",
+"throat",
+"fever",
+"headache",
+"cold"
+]
+}
+],
+"alternatives": [
+"He's got a cough.",
+"He has got a cough."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.13",
+"target": "She has a headache.",
+"ru": "У неё болит голова.",
+"uk": "У неї болить голова.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"You",
+"He",
+"They"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"do",
+"is",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "headache",
+"distractors": [
+"fever",
+"cold",
+"cough",
+"open",
+"glasses"
+]
+}
+],
+"alternatives": [
+"She's got a headache.",
+"She has got a headache."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.14",
+"target": "We have an appointment.",
+"ru": "У нас назначена встреча.",
+"uk": "У нас призначений прийом.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"We're",
+"You",
+"He"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"do",
+"is",
+"does"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "appointment",
+"distractors": [
+"phone",
+"seat",
+"bus",
+"work",
+"door"
+]
+}
+],
+"alternatives": [
+"We've got an appointment.",
+"We have got an appointment."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.15",
+"target": "My daughter has a cold.",
+"ru": "У моей дочери простуда.",
+"uk": "У моєї доньки застуда.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Our",
+"His",
+"Her",
+"We"
+]
+},
+{
+"correct": "daughter",
+"distractors": [
+"station",
+"lunch",
+"shift",
+"check",
+"gate"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"does",
+"do",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "cold",
+"distractors": [
+"hot",
+"open",
+"glasses",
+"free",
+"closed"
+]
+}
+],
+"alternatives": [
+"My daughter has got a cold."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.16",
+"target": "I have a blocked nose.",
+"ru": "У меня заложен нос.",
+"uk": "У мене закладений ніс.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"They",
+"You",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"starts",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "blocked",
+"distractors": [
+"left",
+"is",
+"check",
+"booking",
+"use"
+]
+},
+{
+"correct": "nose",
+"distractors": [
+"glasses",
+"headache",
+"throat",
+"cold",
+"open"
+]
+}
+],
+"alternatives": [
+"I've got a blocked nose.",
+"I have got a blocked nose."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.17",
+"target": "He has a fever.",
+"ru": "У него температура.",
+"uk": "У нього температура.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"They",
+"You",
+"She"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "fever",
+"distractors": [
+"headache",
+"cough",
+"glasses",
+"throat",
+"nose"
+]
+}
+],
+"alternatives": [
+"He's got a fever.",
+"He has got a fever."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.18",
+"target": "She has a prescription.",
+"ru": "У неё есть рецепт.",
+"uk": "У неї є рецепт.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"He",
+"We",
+"They"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"does",
+"do",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "prescription",
+"distractors": [
+"door",
+"station",
+"alarm",
+"bill",
+"sign"
+]
+}
+],
+"alternatives": [
+"She's got a prescription.",
+"She has got a prescription."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.19",
+"target": "They have health insurance.",
+"ru": "У них есть медицинская страховка.",
+"uk": "У них є медична страховка.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"She",
+"He",
+"You",
+"We"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"are",
+"is"
+]
+},
+{
+"correct": "health",
+"distractors": [
+"get",
+"work",
+"coat",
+"bag",
+"is"
+]
+},
+{
+"correct": "insurance",
+"distractors": [
+"room",
+"friday",
+"door",
+"heating",
+"work"
+]
+}
+],
+"alternatives": [
+"They've got health insurance.",
+"They have got health insurance."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.20",
+"target": "I have the doctor's number.",
+"ru": "У меня есть номер врача.",
+"uk": "У мене є номер лікаря.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"You",
+"They",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"do",
+"does",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "doctor's",
+"distractors": [
+"keys",
+"doors",
+"seats",
+"tickets",
+"stairs"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"label",
+"charger",
+"ticket",
+"code"
+]
+}
+],
+"alternatives": [
+"I've got the doctor's number.",
+"I have got the doctor's number."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.21",
+"target": "Do you have a charger?",
+"ru": "У вас есть зарядное устройство?",
+"uk": "У вас є зарядний пристрій?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"she",
+"they",
+"she's",
+"he"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "charger",
+"distractors": [
+"station",
+"room",
+"flat",
+"bus",
+"work"
+]
+}
+],
+"alternatives": [
+"Have you got a charger?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.22",
+"target": "Does she have her passport?",
+"ru": "У неё есть паспорт?",
+"uk": "У неї є паспорт?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Is",
+"Are",
+"Am",
+"Has"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"he",
+"you",
+"it",
+"we",
+"they"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"do",
+"is",
+"am"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"you",
+"we",
+"he",
+"they",
+"it"
+]
+},
+{
+"correct": "passport",
+"distractors": [
+"work",
+"time",
+"pen",
+"market",
+"bus"
+]
+}
+],
+"alternatives": [
+"Has she got her passport?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.23",
+"target": "Do we have enough time?",
+"ru": "У нас достаточно времени?",
+"uk": "У нас достатньо часу?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"he",
+"you",
+"she",
+"they",
+"it"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "enough",
+"distractors": [
+"bag",
+"no",
+"not",
+"a",
+"that"
+]
+},
+{
+"correct": "time",
+"distractors": [
+"room",
+"seat",
+"bus",
+"lunch",
+"monday"
+]
+}
+],
+"alternatives": [
+"Have we got enough time?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.24",
+"target": "Does he have any change?",
+"ru": "У него есть сдача?",
+"uk": "У нього є решта?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Likes",
+"Got",
+"Is",
+"Are"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"she",
+"you",
+"we",
+"they",
+"it"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"is",
+"are",
+"take"
+]
+},
+{
+"correct": "any",
+"distractors": [
+"the",
+"a",
+"enough",
+"this",
+"that"
+]
+},
+{
+"correct": "change",
+"distractors": [
+"changes",
+"is",
+"send",
+"are",
+"am"
+]
+}
+],
+"alternatives": [
+"Has he got any change?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.25",
+"target": "Do you have a pen?",
+"ru": "У вас есть ручка?",
+"uk": "У вас є ручка?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"she",
+"he",
+"we're",
+"they"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "pen",
+"distractors": [
+"work",
+"door",
+"ticket",
+"bus",
+"gate"
+]
+}
+],
+"alternatives": [
+"Have you got a pen?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.26",
+"target": "Does the room have a shower?",
+"ru": "В номере есть душ?",
+"uk": "У номері є душ?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Prefer",
+"Is",
+"Are",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "room",
+"distractors": [
+"office",
+"flat",
+"passport",
+"need",
+"shop"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"do",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"no",
+"and"
+]
+},
+{
+"correct": "shower",
+"distractors": [
+"train",
+"coat",
+"date",
+"bus",
+"bike"
+]
+}
+],
+"alternatives": [
+"Has the room got a shower?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.27",
+"target": "Do the rooms have windows?",
+"ru": "В номерах есть окна?",
+"uk": "У номерах є вікна?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "rooms",
+"distractors": [
+"doors",
+"pockets",
+"people",
+"keys",
+"seats"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "windows",
+"distractors": [
+"keys",
+"seats",
+"tickets",
+"works",
+"doors"
+]
+}
+],
+"alternatives": [
+"Have the rooms got windows?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.28",
+"target": "Does the bag have a zip?",
+"ru": "На сумке есть молния?",
+"uk": "Чи є на сумці блискавка?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Use",
+"Is",
+"Are",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"pen",
+"is",
+"are",
+"am",
+"bus"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"this",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "zip",
+"distractors": [
+"door",
+"work",
+"bus",
+"lift",
+"gate"
+]
+}
+],
+"alternatives": [
+"Has the bag got a zip?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.29",
+"target": "Do you have a smaller size?",
+"ru": "У вас есть меньший размер?",
+"uk": "У вас є менший розмір?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"she",
+"he",
+"they",
+"it"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"does",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"any",
+"these",
+"and"
+]
+},
+{
+"correct": "smaller",
+"distractors": [
+"bus",
+"water",
+"phone",
+"spare",
+"time"
+]
+},
+{
+"correct": "size",
+"distractors": [
+"door",
+"price",
+"week",
+"lift",
+"work"
+]
+}
+],
+"alternatives": [
+"Have you got a smaller size?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.30",
+"target": "Does the shop have a phone number?",
+"ru": "У магазина есть номер телефона?",
+"uk": "У магазині є номер телефону?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Share",
+"Is",
+"Are",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "shop",
+"distractors": [
+"flat",
+"office",
+"isn't",
+"haven't",
+"room"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "phone",
+"distractors": [
+"go",
+"take",
+"is",
+"are",
+"am"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"timetable",
+"label",
+"ticket",
+"code"
+]
+}
+],
+"alternatives": [
+"Does the store have a phone number?",
+"Has the shop got a phone number?",
+"Has the store got a phone number?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.31",
+"target": "I do not have a booking.",
+"ru": "У меня нет бронирования.",
+"uk": "У мене немає бронювання.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"It",
+"He",
+"She",
+"He's"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"are",
+"is",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"home",
+"yes",
+"nearby",
+"usually"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"does",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "booking",
+"distractors": [
+"is",
+"parcel",
+"package",
+"check",
+"carry"
+]
+}
+],
+"alternatives": [
+"I don't have a booking.",
+"I haven't got a booking.",
+"I have not got a booking."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.32",
+"target": "She does not have her glasses.",
+"ru": "У нее нет очков.",
+"uk": "У неї немає окулярів.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"You",
+"She's",
+"He's"
+]
+},
+{
+"correct": "does",
+"distractors": [
+"do",
+"is",
+"are",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yes",
+"down",
+"home",
+"usually"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"you",
+"he",
+"they",
+"he's",
+"we"
+]
+},
+{
+"correct": "glasses",
+"distractors": [
+"throat",
+"cold",
+"cough",
+"nose",
+"open"
+]
+}
+],
+"alternatives": [
+"She doesn't have her glasses.",
+"She hasn't got her glasses.",
+"She has not got her glasses."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.33",
+"target": "We do not have the original receipt.",
+"ru": "У нас нет оригинала чека.",
+"uk": "У нас немає оригінального чека.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"It",
+"I'm",
+"She"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"are",
+"is",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"home",
+"yes",
+"nearby",
+"usually"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"no",
+"and"
+]
+},
+{
+"correct": "original",
+"distractors": [
+"work",
+"bus",
+"train",
+"door",
+"room"
+]
+},
+{
+"correct": "receipt",
+"distractors": [
+"number",
+"form",
+"daughter",
+"label",
+"ticket"
+]
+}
+],
+"alternatives": [
+"We don't have the original receipt.",
+"We haven't got the original receipt.",
+"We have not got the original receipt."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.34",
+"target": "He does not have a driving licence.",
+"ru": "У него нет водительских прав.",
+"uk": "У нього немає водійських прав.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"They",
+"She"
+]
+},
+{
+"correct": "does",
+"distractors": [
+"do",
+"is",
+"are",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"always",
+"home",
+"yes",
+"usually"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "driving",
+"distractors": [
+"drive",
+"store",
+"is",
+"do",
+"are"
+]
+},
+{
+"correct": "licence",
+"distractors": [
+"key",
+"doesn't",
+"door",
+"bus",
+"work"
+]
+}
+],
+"alternatives": [
+"He doesn't have a driver's license.",
+"He doesn't have a driving licence.",
+"He doesn't have a driving license.",
+"He hasn't got a driver's license.",
+"He hasn't got a driving licence.",
+"He hasn't got a driving license.",
+"He does not have a driver's license.",
+"He does not have a driving license.",
+"He has not got a driver's license.",
+"He has not got a driving licence.",
+"He has not got a driving license."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.35",
+"target": "They do not have a lift.",
+"ru": "У них нет лифта.",
+"uk": "У них немає ліфта.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"We",
+"She",
+"He"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"are",
+"is",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"far",
+"home",
+"yes",
+"nearby"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"much",
+"and"
+]
+},
+{
+"correct": "lift",
+"distractors": [
+"window",
+"handle",
+"bell",
+"door",
+"gate"
+]
+}
+],
+"alternatives": [
+"They don't have a lift.",
+"They haven't got a lift.",
+"They have not got a lift."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.36",
+"target": "I do not have your new number.",
+"ru": "У меня нет вашего нового номера.",
+"uk": "У мене немає вашого нового номера.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"She",
+"They",
+"You"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"are",
+"is",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"down",
+"home",
+"yes",
+"usually"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"his",
+"her",
+"our",
+"we"
+]
+},
+{
+"correct": "new",
+"distractors": [
+"lunch",
+"shop",
+"last",
+"blue",
+"room"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"label",
+"bill",
+"appointment",
+"ticket"
+]
+}
+],
+"alternatives": [
+"I don't have your new number.",
+"I haven't got your new number.",
+"I have not got your new number."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.37",
+"target": "My bike does not have lights.",
+"ru": "На моем велосипеде нет фар.",
+"uk": "У мого велосипеда немає фар.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Her",
+"Our",
+"His",
+"We"
+]
+},
+{
+"correct": "bike",
+"distractors": [
+"bus",
+"car",
+"train",
+"work",
+"room"
+]
+},
+{
+"correct": "does",
+"distractors": [
+"do",
+"is",
+"are",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"enough",
+"home",
+"yes",
+"nearby"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "lights",
+"distractors": [
+"is",
+"are",
+"hands",
+"keys",
+"seats"
+]
+}
+],
+"alternatives": [
+"My bike doesn't have lights.",
+"My bike hasn't got lights.",
+"My bike has not got lights."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.38",
+"target": "This door does not have a handle.",
+"ru": "У этой двери нет ручки.",
+"uk": "У цих дверях немає ручки.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"An",
+"No",
+"Much",
+"Any"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"window",
+"gate",
+"meat",
+"work"
+]
+},
+{
+"correct": "does",
+"distractors": [
+"do",
+"is",
+"are",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"yes",
+"home",
+"usually",
+"nearby"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"that",
+"much",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "handle",
+"distractors": [
+"lift",
+"bell",
+"window",
+"gate",
+"entrance"
+]
+}
+],
+"alternatives": [
+"This door doesn't have a handle.",
+"This door hasn't got a handle.",
+"This door has not got a handle."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.39",
+"target": "We do not have a spare chair.",
+"ru": "У нас нет запасного стула.",
+"uk": "У нас немає вільного стільця.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He's",
+"She",
+"You",
+"He"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"are",
+"is",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"alone",
+"home",
+"yes",
+"nearby"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"is",
+"does",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "spare",
+"distractors": [
+"time",
+"key",
+"door",
+"work",
+"bus"
+]
+},
+{
+"correct": "chair",
+"distractors": [
+"table",
+"delivery",
+"seat",
+"desk",
+"bag"
+]
+}
+],
+"alternatives": [
+"We don't have a spare chair.",
+"We haven't got a spare chair.",
+"We have not got a spare chair."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.40",
+"target": "The flat does not have a garden.",
+"ru": "В квартире нет сада.",
+"uk": "У квартирі немає саду.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"Many",
+"And"
+]
+},
+{
+"correct": "flat",
+"distractors": [
+"form",
+"time",
+"room",
+"office",
+"shop"
+]
+},
+{
+"correct": "does",
+"distractors": [
+"do",
+"is",
+"are",
+"has",
+"am"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"usually",
+"alone",
+"down",
+"home"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"is",
+"do",
+"am"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"much",
+"any",
+"and"
+]
+},
+{
+"correct": "garden",
+"distractors": [
+"room",
+"work",
+"bus",
+"door",
+"shop"
+]
+}
+],
+"alternatives": [
+"The apartment doesn't have a garden.",
+"The apartment hasn't got a garden.",
+"The flat doesn't have a garden.",
+"The flat hasn't got a garden.",
+"The apartment does not have a garden.",
+"The apartment has not got a garden.",
+"The flat has not got a garden."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.41",
+"target": "Our bus has two doors.",
+"ru": "В нашем автобусе две двери.",
+"uk": "У нашому автобусі двоє дверей.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"His",
+"Her",
+"We"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"bike",
+"train",
+"january",
+"work",
+"car"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"do",
+"does",
+"are"
+]
+},
+{
+"correct": "two",
+"distractors": [
+"ten",
+"six",
+"eight",
+"nine",
+"seven"
+]
+},
+{
+"correct": "doors",
+"distractors": [
+"keys",
+"seats",
+"tickets",
+"stairs",
+"rooms"
+]
+}
+],
+"alternatives": [
+"Our bus has got two doors."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.42",
+"target": "Your ticket has a seat number.",
+"ru": "На вашем билете указан номер места.",
+"uk": "У вашому квитку є номер місця.",
+"tiles": [
+{
+"correct": "Your",
+"distractors": [
+"My",
+"Her",
+"His",
+"Our",
+"We"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"receipt",
+"timetable",
+"label",
+"code",
+"form"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"does",
+"do",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "seat",
+"distractors": [
+"chair",
+"day",
+"english",
+"pen",
+"table"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"label",
+"market",
+"code",
+"timetable"
+]
+}
+],
+"alternatives": [
+"Your ticket has got a seat number."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.43",
+"target": "The form has three pages.",
+"ru": "В анкете три страницы.",
+"uk": "Анкета має три сторінки.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "form",
+"distractors": [
+"receipt",
+"label",
+"number",
+"ticket",
+"code"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"do",
+"does",
+"is",
+"are"
+]
+},
+{
+"correct": "three",
+"distractors": [
+"two",
+"seven",
+"six",
+"ten",
+"eight"
+]
+},
+{
+"correct": "pages",
+"distractors": [
+"keys",
+"trains",
+"seats",
+"doors",
+"tickets"
+]
+}
+],
+"alternatives": [
+"The form has got three pages."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.44",
+"target": "My passport has a blue cover.",
+"ru": "Мой паспорт в синей обложке.",
+"uk": "У мого паспорта синя обкладинка.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Her",
+"Our",
+"His",
+"We"
+]
+},
+{
+"correct": "passport",
+"distractors": [
+"work",
+"bus",
+"price",
+"card",
+"time"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"does",
+"do",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "blue",
+"distractors": [
+"room",
+"gate",
+"bag",
+"bus",
+"door"
+]
+},
+{
+"correct": "cover",
+"distractors": [
+"is",
+"are",
+"am",
+"have",
+"do"
+]
+}
+],
+"alternatives": [
+"My passport has got a blue cover."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.45",
+"target": "The coat has deep pockets.",
+"ru": "В пальто глубокие карманы.",
+"uk": "У пальто глибокі кишені.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"parcel",
+"shoes",
+"uniform",
+"bus"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"do",
+"is",
+"does",
+"are"
+]
+},
+{
+"correct": "deep",
+"distractors": [
+"get",
+"gets",
+"bus",
+"price",
+"train"
+]
+},
+{
+"correct": "pockets",
+"distractors": [
+"seats",
+"stairs",
+"glasses",
+"keys",
+"tickets"
+]
+}
+],
+"alternatives": [
+"The coat has got deep pockets."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.46",
+"target": "She has a free afternoon.",
+"ru": "У неё свободна вторая половина дня.",
+"uk": "Після обіду вона вільна.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"We",
+"He",
+"They"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"is",
+"does",
+"do",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "free",
+"distractors": [
+"open",
+"cold",
+"closed",
+"empty",
+"late"
+]
+},
+{
+"correct": "afternoon",
+"distractors": [
+"morning",
+"lunchtime",
+"noon",
+"dawn",
+"evening"
+]
+}
+],
+"alternatives": [
+"She's got a free afternoon.",
+"She has got a free afternoon."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.47",
+"target": "We have a table for two.",
+"ru": "У нас есть столик на двоих.",
+"uk": "У нас є столик на двох.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"He",
+"She",
+"They"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"gets",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"seat",
+"bag",
+"cash",
+"email",
+"week"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"at",
+"on",
+"in",
+"by"
+]
+},
+{
+"correct": "two",
+"distractors": [
+"six",
+"ten",
+"five",
+"seven",
+"eight"
+]
+}
+],
+"alternatives": [
+"We've got a table for two.",
+"We have got a table for two."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.48",
+"target": "The hotel has a luggage room.",
+"ru": "В отеле есть камера хранения багажа.",
+"uk": "У готелі є камера схову.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"These",
+"And"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"bakery",
+"sale",
+"shop",
+"flat",
+"cafe"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"do",
+"is",
+"does",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"get",
+"is",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "luggage",
+"distractors": [
+"door",
+"coat",
+"colleague",
+"alarm",
+"address"
+]
+},
+{
+"correct": "room",
+"distractors": [
+"flat",
+"office",
+"shop",
+"kitchen",
+"bus"
+]
+}
+],
+"alternatives": [
+"The hotel has got a luggage room."
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.49",
+"target": "Do you have a moment?",
+"ru": "У вас есть минутка?",
+"uk": "Маєте хвилинку?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Are",
+"Is",
+"Am",
+"Has"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"she",
+"we",
+"they",
+"he",
+"it"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"is",
+"are",
+"use"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"much",
+"and"
+]
+},
+{
+"correct": "moment",
+"distractors": [
+"shop",
+"button",
+"english",
+"fridays",
+"room"
+]
+}
+],
+"alternatives": [
+"Have you got a moment?"
+]
+},
+{
+"lesson": 7,
+"id": "en-classic-r1:07.50",
+"target": "I have everything I need.",
+"ru": "У меня есть всё, что мне нужно.",
+"uk": "У мене є все, що мені потрібно.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"He",
+"You",
+"He's",
+"They",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"are",
+"do",
+"does",
+"is"
+]
+},
+{
+"correct": "everything",
+"distractors": [
+"get",
+"anyone",
+"gets",
+"got",
+"the"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"He",
+"You",
+"They"
+]
+},
+{
+"correct": "need",
+"distractors": [
+"needs",
+"quiet",
+"is",
+"do",
+"are"
+]
+}
+],
+"alternatives": [
+"I've got everything I need.",
+"I have got everything I need."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.01",
+"target": "I start at seven.",
+"ru": "Я начинаю в семь.",
+"uk": "Я починаю о сьомій.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"He",
+"We",
+"They",
+"You",
+"She"
+]
+},
+{
+"correct": "start",
+"distractors": [
+"starts",
+"have",
+"has",
+"is",
+"do"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"after",
+"for"
+]
+},
+{
+"correct": "seven",
+"distractors": [
+"two",
+"six",
+"nine",
+"eight",
+"ten"
+]
+}
+],
+"alternatives": [
+"At seven, I start."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.02",
+"target": "She starts at noon.",
+"ru": "Она начинает в полдень.",
+"uk": "Вона починає опівдні.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"He",
+"She's",
+"You"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"leave",
+"wear",
+"are"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"before",
+"with"
+]
+},
+{
+"correct": "noon",
+"distractors": [
+"morning",
+"evening",
+"afternoon",
+"night",
+"midnight"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.03",
+"target": "We meet on Tuesday.",
+"ru": "Мы встречаемся во вторник.",
+"uk": "Ми зустрічаємося у вівторок.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"You",
+"He",
+"They"
+]
+},
+{
+"correct": "meet",
+"distractors": [
+"is",
+"meets",
+"have",
+"are",
+"do"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"near",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "Tuesday",
+"distractors": [
+"Monday",
+"Friday",
+"Thursday",
+"Wednesday",
+"Saturday"
+]
+}
+],
+"alternatives": [
+"On Tuesday, we meet."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.04",
+"target": "He works on Fridays.",
+"ru": "Он работает по пятницам.",
+"uk": "Він працює по п'ятницях.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"You",
+"She",
+"We",
+"They"
+]
+},
+{
+"correct": "works",
+"distractors": [
+"work",
+"is",
+"are",
+"am",
+"have"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"of",
+"by",
+"after"
+]
+},
+{
+"correct": "Fridays",
+"distractors": [
+"Keys",
+"Seats",
+"Bags",
+"Size",
+"Fuse"
+]
+}
+],
+"alternatives": [
+"On Fridays, he works."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.05",
+"target": "I travel in July.",
+"ru": "Я путешествую в июле.",
+"uk": "Я подорожую в липні.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We're",
+"We",
+"It",
+"He's",
+"She's"
+]
+},
+{
+"correct": "travel",
+"distractors": [
+"stop",
+"lives",
+"is",
+"stops",
+"live"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"of",
+"for",
+"by"
+]
+},
+{
+"correct": "July",
+"distractors": [
+"January",
+"June",
+"September",
+"March",
+"Fridays"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.06",
+"target": "She studies in the evening.",
+"ru": "Она учится вечером.",
+"uk": "Вона навчається ввечері.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"We",
+"I",
+"He",
+"You",
+"They're"
+]
+},
+{
+"correct": "studies",
+"distractors": [
+"study",
+"is",
+"know",
+"are",
+"am"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "evening",
+"distractors": [
+"night",
+"morning",
+"afternoon",
+"noon",
+"dawn"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.07",
+"target": "We finish at midnight.",
+"ru": "Мы заканчиваем в полночь.",
+"uk": "Ми закінчуємо опівночі.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"They",
+"She",
+"He"
+]
+},
+{
+"correct": "finish",
+"distractors": [
+"finishes",
+"is",
+"change",
+"are",
+"am"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"in",
+"on",
+"before",
+"for"
+]
+},
+{
+"correct": "midnight",
+"distractors": [
+"afternoon",
+"night",
+"morning",
+"noon",
+"evening"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.08",
+"target": "They arrive on Monday.",
+"ru": "Они приезжают в понедельник.",
+"uk": "Вони прибувають у понеділок.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"We",
+"You",
+"He",
+"She"
+]
+},
+{
+"correct": "arrive",
+"distractors": [
+"arrives",
+"has",
+"check",
+"is",
+"are"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "Monday",
+"distractors": [
+"Friday",
+"Wednesday",
+"Thursday",
+"Tuesday",
+"Saturday"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.09",
+"target": "I walk in the morning.",
+"ru": "Я гуляю утром.",
+"uk": "Я гуляю вранці.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"We",
+"He's",
+"We've",
+"It"
+]
+},
+{
+"correct": "walk",
+"distractors": [
+"walks",
+"do",
+"does",
+"is",
+"have"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"between",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "morning",
+"distractors": [
+"night",
+"midnight",
+"noon",
+"evening",
+"summer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.10",
+"target": "He works at night.",
+"ru": "Он работает ночью.",
+"uk": "Він працює вночі.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"We",
+"They",
+"It"
+]
+},
+{
+"correct": "works",
+"distractors": [
+"work",
+"do",
+"does",
+"is",
+"have"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"for",
+"in",
+"before"
+]
+},
+{
+"correct": "night",
+"distractors": [
+"morning",
+"evening",
+"afternoon",
+"noon",
+"midnight"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.11",
+"target": "The gate opens at half past six.",
+"ru": "Ворота открываются в половине седьмого.",
+"uk": "Ворота відчиняються о пів на сьому.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "gate",
+"distractors": [
+"lift",
+"entrance",
+"window",
+"name",
+"door"
+]
+},
+{
+"correct": "opens",
+"distractors": [
+"open",
+"is",
+"show",
+"are",
+"am"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"for",
+"of"
+]
+},
+{
+"correct": "half",
+"distractors": [
+"cafe",
+"work",
+"ticket",
+"hotel",
+"bus"
+]
+},
+{
+"correct": "past",
+"distractors": [
+"work",
+"door",
+"spare",
+"bus",
+"key"
+]
+},
+{
+"correct": "six",
+"distractors": [
+"two",
+"eleven",
+"three",
+"eight",
+"five"
+]
+}
+],
+"alternatives": [
+"The gate opens at six thirty."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.12",
+"target": "The train leaves at a quarter past eight.",
+"ru": "Поезд отправляется в четверть девятого.",
+"uk": "Поїзд відправляється о чверть на дев'яту.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"These",
+"And",
+"But"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"bike",
+"work",
+"car",
+"room"
+]
+},
+{
+"correct": "leaves",
+"distractors": [
+"leave",
+"left",
+"is",
+"has",
+"are"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"of",
+"behind"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "quarter",
+"distractors": [
+"ticket",
+"gate",
+"door",
+"lift",
+"bus"
+]
+},
+{
+"correct": "past",
+"distractors": [
+"kitchen",
+"room",
+"flat",
+"shop",
+"phone"
+]
+},
+{
+"correct": "eight",
+"distractors": [
+"two",
+"six",
+"seven",
+"ten",
+"nine"
+]
+}
+],
+"alternatives": [
+"The train leaves at a quarter after eight."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.13",
+"target": "Lunch starts at one.",
+"ru": "Обед начинается в час дня.",
+"uk": "Обід починається о першій.",
+"tiles": [
+{
+"correct": "Lunch",
+"distractors": [
+"Ticket",
+"Kitchen",
+"Half",
+"Noise",
+"Room"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"fall",
+"is",
+"do",
+"has"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"for",
+"on",
+"after",
+"in"
+]
+},
+{
+"correct": "one",
+"distractors": [
+"get",
+"gets",
+"cafe",
+"half",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.14",
+"target": "The desk closes at half past four.",
+"ru": "Стойка регистрации закрывается в половине пятого.",
+"uk": "Стійка зачиняється о пів на п'яту.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "desk",
+"distractors": [
+"seat",
+"shower",
+"insurance",
+"work",
+"chair"
+]
+},
+{
+"correct": "closes",
+"distractors": [
+"closed",
+"close",
+"is",
+"are",
+"am"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"of",
+"for"
+]
+},
+{
+"correct": "half",
+"distractors": [
+"one",
+"cafe",
+"work",
+"ticket",
+"hotel"
+]
+},
+{
+"correct": "past",
+"distractors": [
+"gate",
+"train",
+"work",
+"spare",
+"bus"
+]
+},
+{
+"correct": "four",
+"distractors": [
+"six",
+"two",
+"ten",
+"five",
+"eight"
+]
+}
+],
+"alternatives": [
+"The desk closes at four thirty."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.15",
+"target": "We meet at lunchtime.",
+"ru": "Мы встречаемся в обеденное время.",
+"uk": "Ми зустрічаємося під час обіду.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"They're",
+"She",
+"They",
+"You"
+]
+},
+{
+"correct": "meet",
+"distractors": [
+"meets",
+"is",
+"has",
+"are",
+"have"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"in",
+"on",
+"behind",
+"for"
+]
+},
+{
+"correct": "lunchtime",
+"distractors": [
+"afternoon",
+"evening",
+"night",
+"noon",
+"midnight"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.16",
+"target": "The concert starts at eight fifteen.",
+"ru": "Концерт начинается в восемь пятнадцать.",
+"uk": "Концерт починається о восьмій п'ятнадцять.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "concert",
+"distractors": [
+"seat",
+"kitchen",
+"parcel",
+"drive",
+"fridge"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"stops",
+"buy",
+"are"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"in",
+"on",
+"under",
+"before"
+]
+},
+{
+"correct": "eight",
+"distractors": [
+"six",
+"ten",
+"two",
+"three",
+"nine"
+]
+},
+{
+"correct": "fifteen",
+"distractors": [
+"two",
+"six",
+"ten",
+"nine",
+"seven"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.17",
+"target": "The alarm rings at six thirty.",
+"ru": "Будильник звонит в шесть тридцать.",
+"uk": "Будильник дзвонить о шостій тридцять.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "alarm",
+"distractors": [
+"work",
+"shop",
+"charger",
+"lunch",
+"name"
+]
+},
+{
+"correct": "rings",
+"distractors": [
+"lights",
+"is",
+"light",
+"are",
+"hands"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"with",
+"for"
+]
+},
+{
+"correct": "six",
+"distractors": [
+"two",
+"ten",
+"eleven",
+"eight",
+"seven"
+]
+},
+{
+"correct": "thirty",
+"distractors": [
+"two",
+"ten",
+"eight",
+"nine",
+"seven"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.18",
+"target": "The bakery opens at dawn.",
+"ru": "Пекарня открывается на рассвете.",
+"uk": "Пекарня відкривається на світанку.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"That",
+"This",
+"No",
+"Much",
+"And"
+]
+},
+{
+"correct": "bakery",
+"distractors": [
+"hotel",
+"shop",
+"moment",
+"room",
+"flat"
+]
+},
+{
+"correct": "opens",
+"distractors": [
+"open",
+"is",
+"left",
+"smoke",
+"are"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"for",
+"of"
+]
+},
+{
+"correct": "dawn",
+"distractors": [
+"morning",
+"evening",
+"night",
+"afternoon",
+"noon"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.19",
+"target": "The shift changes at ten.",
+"ru": "Пересменка в десять.",
+"uk": "Зміна змінюється о десятій.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"No",
+"And"
+]
+},
+{
+"correct": "shift",
+"distractors": [
+"work",
+"room",
+"address",
+"station",
+"bus"
+]
+},
+{
+"correct": "changes",
+"distractors": [
+"change",
+"is",
+"are",
+"am",
+"have"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"for",
+"after",
+"in"
+]
+},
+{
+"correct": "ten",
+"distractors": [
+"eight",
+"six",
+"two",
+"nine",
+"seven"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.20",
+"target": "The bell rings at midday.",
+"ru": "Звонок звонит в полдень.",
+"uk": "Дзвінок дзвонить опівдні.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Any",
+"These",
+"And"
+]
+},
+{
+"correct": "bell",
+"distractors": [
+"lift",
+"light",
+"shift",
+"gate",
+"card"
+]
+},
+{
+"correct": "rings",
+"distractors": [
+"is",
+"do",
+"have",
+"does",
+"take"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"for",
+"of"
+]
+},
+{
+"correct": "midday",
+"distractors": [
+"train",
+"phone",
+"bus",
+"bike",
+"work"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.21",
+"target": "The office closes on public holidays.",
+"ru": "Офис закрыт в праздничные дни.",
+"uk": "Офіс зачиняється у святкові дні.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "office",
+"distractors": [
+"flat",
+"room",
+"shop",
+"kitchen",
+"hotel"
+]
+},
+{
+"correct": "closes",
+"distractors": [
+"close",
+"closed",
+"open",
+"ready",
+"free"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"under",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "public",
+"distractors": [
+"bus",
+"phone",
+"past",
+"train",
+"work"
+]
+},
+{
+"correct": "holidays",
+"distractors": [
+"keys",
+"seats",
+"coins",
+"tickets",
+"doors"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.22",
+"target": "We train on Wednesday evenings.",
+"ru": "Мы проводим тренировки по средам вечером.",
+"uk": "Ми тренуємося по середах ввечері.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"He's",
+"They",
+"You"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bike",
+"bus",
+"car",
+"night",
+"work"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "Wednesday",
+"distractors": [
+"Friday",
+"Monday",
+"Thursday",
+"Tuesday",
+"Saturday"
+]
+},
+{
+"correct": "evenings",
+"distractors": [
+"keys",
+"rooms",
+"stairs",
+"eggs",
+"batteries"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.23",
+"target": "The bill is due on Friday.",
+"ru": "Счет нужно оплатить в пятницу.",
+"uk": "Рахунок має бути сплачений у п'ятницю.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"These",
+"And",
+"But"
+]
+},
+{
+"correct": "bill",
+"distractors": [
+"coat",
+"key",
+"gate",
+"day",
+"phone"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"bag",
+"am",
+"have",
+"do"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"bus",
+"key",
+"time",
+"train",
+"work"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"into",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "Friday",
+"distractors": [
+"Monday",
+"Thursday",
+"Tuesday",
+"Wednesday",
+"Saturday"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.24",
+"target": "My appointment is on Thursday morning.",
+"ru": "Моя встреча назначена на утро четверга.",
+"uk": "Моя зустріч у четвер вранці.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Her",
+"Our",
+"His",
+"We"
+]
+},
+{
+"correct": "appointment",
+"distractors": [
+"phone",
+"work",
+"breakfast",
+"english",
+"floor"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"left",
+"parking",
+"need",
+"am"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"before",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "Thursday",
+"distractors": [
+"Monday",
+"Sunday",
+"Friday",
+"Tuesday",
+"Wednesday"
+]
+},
+{
+"correct": "morning",
+"distractors": [
+"night",
+"summer",
+"noon",
+"afternoon",
+"midnight"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.25",
+"target": "The market opens on Saturdays.",
+"ru": "Рынок открыт по субботам.",
+"uk": "Ринок відкривається по суботах.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"Each",
+"And"
+]
+},
+{
+"correct": "market",
+"distractors": [
+"bus",
+"train",
+"driver",
+"number",
+"bike"
+]
+},
+{
+"correct": "opens",
+"distractors": [
+"open",
+"closed",
+"late",
+"ready",
+"free"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"for",
+"between",
+"from",
+"at",
+"by"
+]
+},
+{
+"correct": "Saturdays",
+"distractors": [
+"Seats",
+"Keys",
+"Driver",
+"Card",
+"Cooking"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.26",
+"target": "The parcel arrives on Monday afternoon.",
+"ru": "Посылка прибудет в понедельник днем.",
+"uk": "Посилка прибуває в понеділок вдень.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"To",
+"At",
+"In",
+"For",
+"And"
+]
+},
+{
+"correct": "parcel",
+"distractors": [
+"coat",
+"isn't",
+"shoes",
+"bus",
+"key"
+]
+},
+{
+"correct": "arrives",
+"distractors": [
+"arrive",
+"is",
+"travel",
+"are",
+"am"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"before",
+"of",
+"by"
+]
+},
+{
+"correct": "Monday",
+"distractors": [
+"Sunday",
+"Friday",
+"Tuesday",
+"Wednesday",
+"Thursday"
+]
+},
+{
+"correct": "afternoon",
+"distractors": [
+"morning",
+"midnight",
+"night",
+"noon",
+"evening"
+]
+}
+],
+"alternatives": [
+"On Monday afternoon, the package arrives.",
+"On Monday afternoon, the parcel arrives.",
+"The package arrives on Monday afternoon."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.27",
+"target": "The rent is due on the first of May.",
+"ru": "Арендная плата должна быть внесена первого мая.",
+"uk": "Орендна плата має бути сплачена першого травня.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "rent",
+"distractors": [
+"charge",
+"cost",
+"price",
+"word",
+"bus"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"am",
+"need",
+"call",
+"have"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"key",
+"bus",
+"new",
+"train",
+"work"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"through",
+"for",
+"by",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "first",
+"distractors": [
+"last",
+"next",
+"new",
+"spare",
+"not"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"at",
+"in",
+"for",
+"by"
+]
+},
+{
+"correct": "May",
+"distractors": [
+"January",
+"April",
+"June",
+"July",
+"September"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.28",
+"target": "Her birthday is on New Year's Day.",
+"ru": "Ее день рождения приходится на Новый год.",
+"uk": "Її день народження на Новий рік.",
+"tiles": [
+{
+"correct": "Her",
+"distractors": [
+"I",
+"She",
+"They",
+"We",
+"You"
+]
+},
+{
+"correct": "birthday",
+"distractors": [
+"water",
+"coat",
+"work",
+"way",
+"appointment"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"am",
+"share",
+"do",
+"have"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"by",
+"onto",
+"for",
+"of"
+]
+},
+{
+"correct": "New",
+"distractors": [
+"Key",
+"Shop",
+"Gate",
+"Last",
+"Lunch"
+]
+},
+{
+"correct": "Year's",
+"distractors": [
+"Keys",
+"Doesn't",
+"There's",
+"Rooms",
+"Store"
+]
+},
+{
+"correct": "Day",
+"distractors": [
+"Door",
+"Ticket",
+"Sale",
+"Early",
+"Late"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.29",
+"target": "The last class is on Friday evening.",
+"ru": "Последнее занятие в пятницу вечером.",
+"uk": "Останнє заняття у п'ятницю ввечері.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"These",
+"And"
+]
+},
+{
+"correct": "last",
+"distractors": [
+"next",
+"first",
+"new",
+"spare",
+"not"
+]
+},
+{
+"correct": "class",
+"distractors": [
+"doors",
+"size",
+"screen",
+"keys",
+"seats"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"am",
+"live",
+"have",
+"do"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"before",
+"of",
+"for",
+"by"
+]
+},
+{
+"correct": "Friday",
+"distractors": [
+"Monday",
+"Sunday",
+"Tuesday",
+"Wednesday",
+"Thursday"
+]
+},
+{
+"correct": "evening",
+"distractors": [
+"summer",
+"morning",
+"afternoon",
+"night",
+"noon"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.30",
+"target": "We do the shopping on Sundays.",
+"ru": "Мы ходим за покупками по воскресеньям.",
+"uk": "Ми робимо покупки по неділях.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"You",
+"He's",
+"She"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"have",
+"has",
+"is",
+"are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"these",
+"and"
+]
+},
+{
+"correct": "shopping",
+"distractors": [
+"waiting",
+"is",
+"wait",
+"have",
+"are"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"by",
+"of",
+"at",
+"for",
+"after"
+]
+},
+{
+"correct": "Sundays",
+"distractors": [
+"Keys",
+"Seats",
+"Bill",
+"Week",
+"Trains"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.31",
+"target": "The days are short in winter.",
+"ru": "Дни зимой короткие.",
+"uk": "Взимку дні короткі.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Any",
+"And",
+"But"
+]
+},
+{
+"correct": "days",
+"distractors": [
+"keys",
+"seats",
+"headphones",
+"tickets",
+"doors"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"am",
+"have",
+"do",
+"does"
+]
+},
+{
+"correct": "short",
+"distractors": [
+"price",
+"gate",
+"long",
+"door",
+"lift"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"with",
+"at",
+"for",
+"by"
+]
+},
+{
+"correct": "winter",
+"distractors": [
+"morning",
+"summer",
+"evening",
+"autumn",
+"spring"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.32",
+"target": "Our course starts in September.",
+"ru": "Наш курс начинается в сентябре.",
+"uk": "Наш курс починається у вересні.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"Her",
+"His",
+"We"
+]
+},
+{
+"correct": "course",
+"distractors": [
+"work",
+"price",
+"lunch",
+"door",
+"bus"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"are",
+"am",
+"have"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"under",
+"near",
+"for"
+]
+},
+{
+"correct": "September",
+"distractors": [
+"April",
+"January",
+"February",
+"March",
+"May"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.33",
+"target": "The kitchen gets hot in summer.",
+"ru": "На кухне летом жарко.",
+"uk": "Влітку на кухні стає спекотно.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"These",
+"And",
+"But"
+]
+},
+{
+"correct": "kitchen",
+"distractors": [
+"flat",
+"room",
+"noise",
+"english",
+"office"
+]
+},
+{
+"correct": "gets",
+"distractors": [
+"got",
+"get",
+"is",
+"are",
+"am"
+]
+},
+{
+"correct": "hot",
+"distractors": [
+"empty",
+"warm",
+"open",
+"closed",
+"late"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"for",
+"across",
+"by"
+]
+},
+{
+"correct": "summer",
+"distractors": [
+"morning",
+"evening",
+"winter",
+"autumn",
+"spring"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.34",
+"target": "We usually travel in spring.",
+"ru": "Обычно мы путешествуем весной.",
+"uk": "Ми зазвичай подорожуємо навесні.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"He",
+"You",
+"We've"
+]
+},
+{
+"correct": "usually",
+"distractors": [
+"not",
+"sometimes",
+"still",
+"back",
+"here"
+]
+},
+{
+"correct": "travel",
+"distractors": [
+"is",
+"are",
+"am",
+"have",
+"do"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"for",
+"by",
+"at",
+"of"
+]
+},
+{
+"correct": "spring",
+"distractors": [
+"winter",
+"summer",
+"autumn",
+"morning",
+"evening"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.35",
+"target": "The park is quiet in the afternoon.",
+"ru": "В парке тихо днем.",
+"uk": "У парку тихо вдень.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Each",
+"And",
+"But"
+]
+},
+{
+"correct": "park",
+"distractors": [
+"parking",
+"do",
+"got",
+"does",
+"have"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"meet",
+"am",
+"have",
+"do"
+]
+},
+{
+"correct": "quiet",
+"distractors": [
+"check",
+"do",
+"checks",
+"have",
+"does"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"by",
+"at",
+"onto",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "afternoon",
+"distractors": [
+"morning",
+"evening",
+"midnight",
+"night",
+"dawn"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.36",
+"target": "My birthday is in June.",
+"ru": "Мой день рождения в июне.",
+"uk": "Мій день народження в червні.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"His",
+"Our",
+"Her",
+"We"
+]
+},
+{
+"correct": "birthday",
+"distractors": [
+"work",
+"water",
+"alarm",
+"english",
+"door"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"wear",
+"am",
+"have",
+"do"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"under",
+"for",
+"by"
+]
+},
+{
+"correct": "June",
+"distractors": [
+"April",
+"September",
+"January",
+"February",
+"March"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.37",
+"target": "Our club meets in January.",
+"ru": "Наш клуб собирается в январе.",
+"uk": "Наш клуб зустрічається в січні.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"Her",
+"His",
+"We"
+]
+},
+{
+"correct": "club",
+"distractors": [
+"coat",
+"cafe",
+"machine",
+"moment",
+"half"
+]
+},
+{
+"correct": "meets",
+"distractors": [
+"meet",
+"is",
+"sign",
+"are",
+"am"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"for",
+"of",
+"by",
+"at"
+]
+},
+{
+"correct": "January",
+"distractors": [
+"April",
+"March",
+"September",
+"July",
+"June"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.38",
+"target": "The new timetable starts in April.",
+"ru": "Новое расписание вступает в силу в апреле.",
+"uk": "Новий розклад починається у квітні.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"And",
+"But"
+]
+},
+{
+"correct": "new",
+"distractors": [
+"shop",
+"gate",
+"last",
+"late",
+"spare"
+]
+},
+{
+"correct": "timetable",
+"distractors": [
+"receipt",
+"number",
+"label",
+"ticket",
+"code"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"buy",
+"are",
+"am"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"for",
+"of",
+"by"
+]
+},
+{
+"correct": "April",
+"distractors": [
+"January",
+"February",
+"March",
+"May",
+"June"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.39",
+"target": "The garden is beautiful in autumn.",
+"ru": "Сад прекрасен осенью.",
+"uk": "Сад прекрасний восени.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "garden",
+"distractors": [
+"work",
+"room",
+"crack",
+"bus",
+"door"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"am",
+"have",
+"do",
+"does"
+]
+},
+{
+"correct": "beautiful",
+"distractors": [
+"bus",
+"bag",
+"spare",
+"early",
+"train"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"by",
+"at",
+"for",
+"of"
+]
+},
+{
+"correct": "autumn",
+"distractors": [
+"spring",
+"morning",
+"evening",
+"summer",
+"night"
+]
+}
+],
+"alternatives": [
+"The garden is beautiful in fall."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.40",
+"target": "We take a break in the evening.",
+"ru": "Мы делаем перерыв вечером.",
+"uk": "Ми робимо перерву ввечері.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"They",
+"I've",
+"She's"
+]
+},
+{
+"correct": "take",
+"distractors": [
+"takes",
+"does",
+"do",
+"is",
+"have"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"and",
+"but",
+"with"
+]
+},
+{
+"correct": "break",
+"distractors": [
+"do",
+"understand",
+"does",
+"have",
+"is"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"of",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"every",
+"and"
+]
+},
+{
+"correct": "evening",
+"distractors": [
+"afternoon",
+"midnight",
+"night",
+"morning",
+"summer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.41",
+"target": "I work every Monday.",
+"ru": "Я работаю каждый понедельник.",
+"uk": "Я працюю щопонеділка.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"She",
+"He",
+"We",
+"It"
+]
+},
+{
+"correct": "work",
+"distractors": [
+"is",
+"hear",
+"are",
+"am",
+"have"
+]
+},
+{
+"correct": "every",
+"distractors": [
+"bag",
+"enough",
+"the",
+"a",
+"this"
+]
+},
+{
+"correct": "Monday",
+"distractors": [
+"Friday",
+"Tuesday",
+"Thursday",
+"Anna",
+"Wednesday"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.42",
+"target": "She starts next week.",
+"ru": "Она начинает на следующей неделе.",
+"uk": "Вона починає наступного тижня.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"He",
+"They",
+"They're"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"do",
+"call",
+"are"
+]
+},
+{
+"correct": "next",
+"distractors": [
+"last",
+"first",
+"single",
+"new",
+"spare"
+]
+},
+{
+"correct": "week",
+"distractors": [
+"desk",
+"bus",
+"way",
+"address",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.43",
+"target": "The film starts tonight.",
+"ru": "Фильм начинается сегодня вечером.",
+"uk": "Фільм починається сьогодні ввечері.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Every",
+"No",
+"And"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"ticket",
+"shop",
+"sign",
+"need",
+"is"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"is",
+"check",
+"speak",
+"are"
+]
+},
+{
+"correct": "tonight",
+"distractors": [
+"early",
+"late",
+"not",
+"today",
+"here"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.44",
+"target": "I see him every morning.",
+"ru": "Я вижу его каждое утро.",
+"uk": "Я бачу його щоранку.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"They",
+"You",
+"He"
+]
+},
+{
+"correct": "see",
+"distractors": [
+"is",
+"have",
+"take",
+"are",
+"do"
+]
+},
+{
+"correct": "him",
+"distractors": [
+"we",
+"he",
+"you",
+"she",
+"they"
+]
+},
+{
+"correct": "every",
+"distractors": [
+"enough",
+"bag",
+"the",
+"a",
+"this"
+]
+},
+{
+"correct": "morning",
+"distractors": [
+"night",
+"evening",
+"afternoon",
+"autumn",
+"charger"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.45",
+"target": "The shop closes early today.",
+"ru": "Магазин сегодня закрывается рано.",
+"uk": "Магазин сьогодні закривається рано.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"And",
+"But",
+"With"
+]
+},
+{
+"correct": "shop",
+"distractors": [
+"flat",
+"hotel",
+"elevator",
+"room",
+"office"
+]
+},
+{
+"correct": "closes",
+"distractors": [
+"close",
+"closed",
+"is",
+"are",
+"am"
+]
+},
+{
+"correct": "early",
+"distractors": [
+"soon",
+"more",
+"late",
+"not",
+"open"
+]
+},
+{
+"correct": "today",
+"distractors": [
+"late",
+"soon",
+"tonight",
+"open",
+"not"
+]
+}
+],
+"alternatives": [
+"The store closes early today."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.46",
+"target": "Does she work at night?",
+"ru": "Она работает по ночам?",
+"uk": "Вона працює вночі?",
+"tiles": [
+{
+"correct": "Does",
+"distractors": [
+"Do",
+"Collect",
+"Hear",
+"Is",
+"Have"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"he",
+"you",
+"they",
+"it"
+]
+},
+{
+"correct": "work",
+"distractors": [
+"works",
+"is",
+"got",
+"are",
+"am"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"in",
+"on",
+"with",
+"before"
+]
+},
+{
+"correct": "night",
+"distractors": [
+"morning",
+"evening",
+"friday",
+"bell",
+"afternoon"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.47",
+"target": "Do you study on Sunday mornings?",
+"ru": "Вы занимаетесь учёбой по воскресным утрам?",
+"uk": "Ви навчаєтесь у неділю вранці?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Know",
+"Have",
+"Has",
+"Are"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"she",
+"we",
+"they",
+"he",
+"it"
+]
+},
+{
+"correct": "study",
+"distractors": [
+"studies",
+"is",
+"has",
+"are",
+"have"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"with",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "Sunday",
+"distractors": [
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday"
+]
+},
+{
+"correct": "mornings",
+"distractors": [
+"trains",
+"doors",
+"evenings",
+"keys",
+"seats"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.48",
+"target": "The last bus leaves at eleven.",
+"ru": "Последний автобус отправляется в одиннадцать.",
+"uk": "Останній автобус відправляється об одинадцятій.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Much",
+"These",
+"And"
+]
+},
+{
+"correct": "last",
+"distractors": [
+"next",
+"first",
+"long",
+"new",
+"spare"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"car",
+"train",
+"bike",
+"work",
+"room"
+]
+},
+{
+"correct": "leaves",
+"distractors": [
+"leave",
+"left",
+"accept",
+"is",
+"down"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"over",
+"for"
+]
+},
+{
+"correct": "eleven",
+"distractors": [
+"two",
+"six",
+"ten",
+"eight",
+"nine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.49",
+"target": "I have a dentist's appointment on Tuesday.",
+"ru": "У меня назначена встреча с дантистом во вторник.",
+"uk": "У мене прийом у стоматолога у вівторок.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"They",
+"It",
+"We",
+"You",
+"She"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"does",
+"is",
+"are"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "dentist's",
+"distractors": [
+"keys",
+"doors",
+"elevator",
+"seats",
+"tickets"
+]
+},
+{
+"correct": "appointment",
+"distractors": [
+"lunch",
+"phone",
+"bus",
+"work",
+"key"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"by",
+"of",
+"for",
+"after"
+]
+},
+{
+"correct": "Tuesday",
+"distractors": [
+"Thursday",
+"Sunday",
+"Monday",
+"Friday",
+"Wednesday"
+]
+}
+],
+"alternatives": [
+"On Tuesday, I have a dentist's appointment."
+]
+},
+{
+"lesson": 8,
+"id": "en-classic-r1:08.50",
+"target": "Do we have time before the train leaves at six?",
+"ru": "У нас есть время до отправления поезда в шесть?",
+"uk": "У нас є час до відправлення поїзда о шостій?",
+"tiles": [
+{
+"correct": "Do",
+"distractors": [
+"Does",
+"Starts",
+"Close",
+"Has",
+"Is"
+]
+},
+{
+"correct": "we",
+"distractors": [
+"she",
+"he",
+"you",
+"they",
+"it"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"are",
+"is",
+"am"
+]
+},
+{
+"correct": "time",
+"distractors": [
+"bus",
+"seat",
+"date",
+"station",
+"work"
+]
+},
+{
+"correct": "before",
+"distractors": [
+"to",
+"by",
+"on",
+"near",
+"in"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"each",
+"and",
+"but"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"list",
+"film",
+"bike",
+"work"
+]
+},
+{
+"correct": "leaves",
+"distractors": [
+"left",
+"leave",
+"is",
+"got",
+"are"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"after",
+"on",
+"in",
+"for"
+]
+},
+{
+"correct": "six",
+"distractors": [
+"two",
+"ten",
+"fifteen",
+"eight",
+"nine"
+]
+}
+],
+"alternatives": []
+}
+]

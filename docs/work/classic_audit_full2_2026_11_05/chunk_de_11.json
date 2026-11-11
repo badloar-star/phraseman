@@ -1,0 +1,9020 @@
+[
+{
+"lesson": 23,
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Ob",
+"Dass",
+"Nachdem",
+"Obwohl",
+"Weil"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"sie",
+"du",
+"wir",
+"er",
+"ihr"
+]
+},
+{
+"correct": "regnet",
+"distractors": [
+"kocht",
+"bitte",
+"anhalten",
+"alle",
+"schalte"
+]
+},
+{
+"correct": "bleibe",
+"distractors": [
+"bleibt",
+"geblieben",
+"bleiben",
+"angekommen",
+"vergessen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"sie",
+"du",
+"er",
+"wir"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"ohne",
+"seit",
+"bei",
+"nach",
+"aus"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Schwester",
+"Aufzug",
+"Bescheid",
+"Zahlung",
+"Suppe"
+]
+}
+],
+"alternatives": [
+"Ich bleibe zu Hause, wenn es regnet.",
+"Wenn es regnet, bleibe ich zuhause.",
+"Ich bleibe zuhause, wenn es regnet."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:02",
+"target": "Wenn es schneit, nehme ich den Bus.",
+"ru": "Если пойдёт снег, я поеду на автобусе.",
+"uk": "Якщо сніг піде, я поїду автобусом.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Ob",
+"Dass",
+"Nachdem",
+"Obwohl",
+"Als"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"du",
+"wir",
+"ihr",
+"sie",
+"er"
+]
+},
+{
+"correct": "schneit",
+"distractors": [
+"öfter",
+"fertig",
+"ausfällt",
+"steigen",
+"ankommst"
+]
+},
+{
+"correct": "nehme",
+"distractors": [
+"nimmst",
+"genommen",
+"nehmen",
+"nimmt",
+"angerufen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"er",
+"ihr",
+"du",
+"wir"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"der",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Ich nehme den Bus, wenn es schneit."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:03",
+"target": "Wenn ich müde bin, mache ich eine Pause.",
+"ru": "Если я устал, я делаю перерыв.",
+"uk": "Якщо я втомився, я роблю перерву.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Obwohl",
+"Als",
+"Dass",
+"Weil",
+"Ob"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"er",
+"sie",
+"ihr",
+"du"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"wach",
+"frei",
+"leise",
+"ruhig",
+"allein"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"sein",
+"seid",
+"sind",
+"war",
+"ist"
+]
+},
+{
+"correct": "mache",
+"distractors": [
+"gemacht",
+"macht",
+"machst",
+"machen",
+"warten"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"es",
+"ihr",
+"sie",
+"er"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"einen",
+"ein",
+"einer",
+"einem",
+"und"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+}
+],
+"alternatives": [
+"Ich mache eine Pause, wenn ich müde bin."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:04",
+"target": "Wenn du Hunger hast, kochen wir.",
+"ru": "Если ты голоден, мы приготовим поесть.",
+"uk": "Якщо ти голодний, ми приготуємо поїсти.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Ob",
+"Dass",
+"Als",
+"Damit",
+"Obwohl"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ihr",
+"sie",
+"ich",
+"er",
+"es"
+]
+},
+{
+"correct": "Hunger",
+"distractors": [
+"Zeit",
+"Bus",
+"Café",
+"Freitag",
+"Anna"
+]
+},
+{
+"correct": "hast",
+"distractors": [
+"hatte",
+"habt",
+"hat",
+"haben",
+"habe"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"bezahlen",
+"oben",
+"können",
+"steigen",
+"kaufen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"ihr",
+"er",
+"sie",
+"es"
+]
+}
+],
+"alternatives": [
+"Wir kochen, wenn du Hunger hast."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:05",
+"target": "Wenn Anna Zeit hat, kommt sie mit.",
+"ru": "Если у Анны есть время, она пойдёт с нами.",
+"uk": "Якщо Анна має час, вона піде з нами.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Nachdem",
+"Damit",
+"Als",
+"Obwohl",
+"Dass"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Zeit",
+"distractors": [
+"Brot",
+"Anschluss",
+"Schwester",
+"Ferien",
+"Pause"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"hatte",
+"habe",
+"hast",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kommt",
+"distractors": [
+"kommst",
+"gekommen",
+"kam",
+"komme",
+"kommen"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"er",
+"ihr",
+"es",
+"du",
+"ich"
+]
+},
+{
+"correct": "mit",
+"distractors": [
+"zu",
+"nach",
+"bei",
+"seit",
+"von"
+]
+}
+],
+"alternatives": [
+"Anna kommt mit, wenn sie Zeit hat."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:06",
+"target": "Wenn Tom anruft, sage ich Bescheid.",
+"ru": "Если позвонит Том, я дам знать.",
+"uk": "Якщо зателефонує Том, я дам знати.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Obwohl",
+"Als",
+"Damit",
+"Nachdem",
+"Dass"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "anruft",
+"distractors": [
+"fragst",
+"zieh",
+"steigen",
+"pünktlich",
+"warten"
+]
+},
+{
+"correct": "sage",
+"distractors": [
+"schaffen",
+"fragst",
+"alle",
+"fragt",
+"offen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"er",
+"sie",
+"wir",
+"du"
+]
+},
+{
+"correct": "Bescheid",
+"distractors": [
+"Aufzug",
+"Fragen",
+"Tee",
+"Busfahrer",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Ich sage Bescheid, wenn Tom anruft."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:07",
+"target": "Wenn das Kind schläft, lesen wir.",
+"ru": "Когда ребёнок спит, мы читаем.",
+"uk": "Коли дитина спить, ми читаємо.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Damit",
+"Als",
+"Ob",
+"Nachdem"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Kind",
+"distractors": [
+"Kinder",
+"Tom",
+"Gäste",
+"Tür",
+"Tee"
+]
+},
+{
+"correct": "schläft",
+"distractors": [
+"kocht",
+"parkt",
+"lade",
+"los",
+"fertig"
+]
+},
+{
+"correct": "lesen",
+"distractors": [
+"las",
+"lese",
+"liest",
+"draußen",
+"offen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"es",
+"sie",
+"ich",
+"er"
+]
+}
+],
+"alternatives": [
+"Wir lesen, wenn das Kind schläft."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:08",
+"target": "Wenn die Sonne scheint, gehen wir raus.",
+"ru": "Если светит солнце, мы выходим на улицу.",
+"uk": "Якщо світить сонце, ми виходимо надвір.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Ob",
+"Als",
+"Nachdem",
+"Dass"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Sonne",
+"distractors": [
+"Fenster",
+"Handy",
+"Tee",
+"Brot",
+"Laden"
+]
+},
+{
+"correct": "scheint",
+"distractors": [
+"braucht",
+"räumt",
+"warten",
+"ausfällt",
+"spät"
+]
+},
+{
+"correct": "gehen",
+"distractors": [
+"geht",
+"ging",
+"gehst",
+"gehe",
+"gegangen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"sie",
+"ihr",
+"du",
+"er"
+]
+},
+{
+"correct": "raus",
+"distractors": [
+"schließen",
+"schaffen",
+"drück",
+"steigen",
+"gut"
+]
+}
+],
+"alternatives": [
+"Wir gehen raus, wenn die Sonne scheint."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:09",
+"target": "Wenn der Bus kommt, steigen wir ein.",
+"ru": "Когда придёт автобус, мы сядем.",
+"uk": "Коли прийде автобус, ми сядемо.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Dass",
+"Nachdem",
+"Ob"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"den",
+"die",
+"und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "kommt",
+"distractors": [
+"kommst",
+"komme",
+"kommen",
+"kam",
+"gekommen"
+]
+},
+{
+"correct": "steigen",
+"distractors": [
+"kochen",
+"fahren",
+"gehen",
+"lesen",
+"abholen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"ihr",
+"sie",
+"er",
+"ich"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"einer",
+"eine",
+"einem",
+"einen",
+"und"
+]
+}
+],
+"alternatives": [
+"Wir steigen ein, wenn der Bus kommt."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:10",
+"target": "Wenn das Licht grün wird, gehen wir los.",
+"ru": "Когда загорится зелёный, мы пойдём.",
+"uk": "Коли спалахне зелений, ми підемо.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Nachdem",
+"Damit",
+"Als",
+"Ob",
+"Weil"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Anna",
+"Laden",
+"Post",
+"Musik",
+"Fragen"
+]
+},
+{
+"correct": "grün",
+"distractors": [
+"klappt",
+"einsteigen",
+"lüften",
+"kochen",
+"stell"
+]
+},
+{
+"correct": "wird",
+"distractors": [
+"wurde",
+"ist",
+"bist",
+"sein",
+"war"
+]
+},
+{
+"correct": "gehen",
+"distractors": [
+"geht",
+"gehe",
+"ging",
+"gegangen",
+"gehst"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"ihr",
+"ich",
+"sie",
+"er"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"öffne",
+"schalte",
+"voll",
+"regnet",
+"koche"
+]
+}
+],
+"alternatives": [
+"Wir gehen los, wenn das Licht grün wird."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:11",
+"target": "Ich rufe dich an, wenn ich zu Hause bin.",
+"ru": "Я позвоню тебе, когда буду дома.",
+"uk": "Я подзвоню тобі, коли буду вдома.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Du",
+"Er",
+"Ihr",
+"Wir"
+]
+},
+{
+"correct": "rufe",
+"distractors": [
+"stell",
+"bekommst",
+"schließen",
+"fertig",
+"öffne"
+]
+},
+{
+"correct": "dich",
+"distractors": [
+"dir",
+"mir",
+"mich",
+"sich",
+"euch"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"unter",
+"hinter",
+"über",
+"vor",
+"aus"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"obwohl",
+"nachdem",
+"weil",
+"damit",
+"dass"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"sie",
+"wir",
+"du",
+"es"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"ohne",
+"für",
+"von",
+"seit",
+"bei"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Hilfe",
+"Taxi",
+"Rad",
+"Akku",
+"Jacke"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"sein",
+"seid",
+"war",
+"bist",
+"ist"
+]
+}
+],
+"alternatives": [
+"Wenn ich zu Hause bin, rufe ich dich an.",
+"Ich rufe dich an, wenn ich zuhause bin.",
+"Wenn ich zuhause bin, rufe ich dich an."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:12",
+"target": "Wir fahren los, wenn alle bereit sind.",
+"ru": "Мы выедем, когда все будут готовы.",
+"uk": "Ми виїдемо, коли всі будуть готові.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ich",
+"Es",
+"Ihr",
+"Sie",
+"Er"
+]
+},
+{
+"correct": "fahren",
+"distractors": [
+"fahre",
+"gefahren",
+"fährt",
+"vergessen",
+"abholen"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"räumt",
+"anhalten",
+"bekommst",
+"steigen",
+"braucht"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"obwohl",
+"als",
+"nachdem",
+"weil",
+"damit"
+]
+},
+{
+"correct": "alle",
+"distractors": [
+"bitte",
+"kocht",
+"rufe",
+"höre",
+"räumt"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"leise",
+"krank",
+"allein",
+"ruhig",
+"wach"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"ist",
+"sein",
+"bin",
+"bist",
+"seid"
+]
+}
+],
+"alternatives": [
+"Wenn alle bereit sind, fahren wir los."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:13",
+"target": "Anna hilft dir, wenn du fragst.",
+"ru": "Анна поможет тебе, если ты попросишь.",
+"uk": "Анна допоможе тобі, якщо ти попросиш.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hilft",
+"distractors": [
+"geholfen",
+"helfen",
+"bekommen",
+"abholen",
+"zahlen"
+]
+},
+{
+"correct": "dir",
+"distractors": [
+"mich",
+"dich",
+"euch",
+"sich",
+"uns"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"als",
+"damit",
+"dass",
+"nachdem",
+"weil"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ihr",
+"wir",
+"ich",
+"er",
+"sie"
+]
+},
+{
+"correct": "fragst",
+"distractors": [
+"anrufen",
+"regnet",
+"leicht",
+"drück",
+"anruft"
+]
+}
+],
+"alternatives": [
+"Wenn du fragst, hilft Anna dir.",
+"Wenn du fragst, hilft dir Anna."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:14",
+"target": "Tom nimmt ein Taxi, wenn es spät ist.",
+"ru": "Том берёт такси, если уже поздно.",
+"uk": "Том бере таксі, якщо вже пізно.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Hause",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "nimmt",
+"distractors": [
+"nehme",
+"genommen",
+"verstanden",
+"aufgeschrieben",
+"angerufen"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"einem",
+"einer",
+"und",
+"mit",
+"für"
+]
+},
+{
+"correct": "Taxi",
+"distractors": [
+"Jacke",
+"Bus",
+"Rad",
+"Wetter",
+"Jacken"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"damit",
+"ob",
+"weil",
+"obwohl",
+"dass"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"wir",
+"du",
+"ich",
+"ihr",
+"etwas"
+]
+},
+{
+"correct": "spät",
+"distractors": [
+"voll",
+"bezahlen",
+"fragst",
+"rufe",
+"parkt"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sein",
+"bin",
+"war",
+"seinen",
+"seinem"
+]
+}
+],
+"alternatives": [
+"Wenn es spät ist, nimmt Tom ein Taxi."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:15",
+"target": "Ich kaufe Milch, wenn der Laden offen ist.",
+"ru": "Я куплю молоко, если магазин открыт.",
+"uk": "Я куплю молоко, якщо магазин відкритий.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Ihr",
+"Wir",
+"Du",
+"Er"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kauft",
+"kaufen",
+"gekauft",
+"kaufst",
+"kochen"
+]
+},
+{
+"correct": "Milch",
+"distractors": [
+"Kinder",
+"Termin",
+"Eingang",
+"Tom",
+"Rechnung"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"nachdem",
+"damit",
+"weil",
+"als",
+"obwohl"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"die",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Hause",
+"Rad",
+"Akku",
+"Zug",
+"Tom"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"kochen",
+"abholen",
+"lüften",
+"können",
+"fahren"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sind",
+"war",
+"bin",
+"sein",
+"bist"
+]
+}
+],
+"alternatives": [
+"Wenn der Laden offen ist, kaufe ich Milch."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:16",
+"target": "Wir warten draußen, wenn das Café voll ist.",
+"ru": "Мы подождём снаружи, если в кафе нет места.",
+"uk": "Ми зачекаємо зовні, якщо в кафе немає місця.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ich",
+"Er",
+"Du",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "warten",
+"distractors": [
+"streiken",
+"nehmen",
+"lesen",
+"offen",
+"kaufen"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"vorne",
+"oben",
+"offen",
+"zusammen"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"ob",
+"damit",
+"als",
+"nachdem",
+"dass"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Aufzug",
+"Preis",
+"Tisch",
+"Bescheid",
+"Beleg"
+]
+},
+{
+"correct": "voll",
+"distractors": [
+"leicht",
+"kochen",
+"ruf",
+"bekommst",
+"fast"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"seid",
+"bist",
+"sein",
+"war"
+]
+}
+],
+"alternatives": [
+"Wenn das Café voll ist, warten wir draußen."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:17",
+"target": "Wenn die Zahlung klappt, bekommst du den Beleg.",
+"ru": "Если платёж пройдёт, ты получишь квитанцию.",
+"uk": "Якщо платіж пройде, ти отримаєш квитанцію.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Nachdem",
+"Obwohl",
+"Damit",
+"Weil",
+"Ob"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Zahlung",
+"distractors": [
+"Bank",
+"Bescheid",
+"Bus",
+"Kind",
+"Café"
+]
+},
+{
+"correct": "klappt",
+"distractors": [
+"raus",
+"anhalten",
+"drück",
+"sag",
+"koche"
+]
+},
+{
+"correct": "bekommst",
+"distractors": [
+"einkauft",
+"tagsüber",
+"schläft",
+"streiken",
+"wehtut"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ich",
+"er",
+"sie",
+"es",
+"ihr"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Beleg",
+"distractors": [
+"Hause",
+"Zug",
+"Kinder",
+"Bescheid",
+"Rad"
+]
+}
+],
+"alternatives": [
+"Du bekommst den Beleg, wenn die Zahlung klappt."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:18",
+"target": "Sie bringt Brot mit, wenn sie einkauft.",
+"ru": "Она приносит хлеб, когда ходит за покупками.",
+"uk": "Вона приносить хліб, коли ходить за покупками.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Ich",
+"Wir",
+"Du",
+"Ihr",
+"Er"
+]
+},
+{
+"correct": "bringt",
+"distractors": [
+"schaffen",
+"koche",
+"bekomme",
+"anruft",
+"sag"
+]
+},
+{
+"correct": "Brot",
+"distractors": [
+"Kinder",
+"Rechnung",
+"Samstag",
+"Durst",
+"Tom"
+]
+},
+{
+"correct": "mit",
+"distractors": [
+"von",
+"für",
+"bei",
+"seit",
+"nach"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"weil",
+"obwohl",
+"damit",
+"ob",
+"dass"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"es",
+"wir",
+"du",
+"ich",
+"er"
+]
+},
+{
+"correct": "einkauft",
+"distractors": [
+"bekommst",
+"einsteigen",
+"leer",
+"räumt",
+"rufe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:19",
+"target": "Ich höre Musik, wenn ich koche.",
+"ru": "Я слушаю музыку, когда готовлю.",
+"uk": "Я слухаю музику, коли готую.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Ihr",
+"Wir",
+"Es",
+"Sie"
+]
+},
+{
+"correct": "höre",
+"distractors": [
+"warten",
+"streiken",
+"ausfällt",
+"leer",
+"besuche"
+]
+},
+{
+"correct": "Musik",
+"distractors": [
+"Beleg",
+"Milch",
+"Zahlung",
+"Anna",
+"Herd"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"weil",
+"dass",
+"ob",
+"damit",
+"nachdem"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"ihr",
+"du",
+"er",
+"es"
+]
+},
+{
+"correct": "koche",
+"distractors": [
+"zeigen",
+"absagen",
+"regnet",
+"braucht",
+"schaffen"
+]
+}
+],
+"alternatives": [
+"Wenn ich koche, höre ich Musik."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:20",
+"target": "Wir lüften, wenn das Wetter gut ist.",
+"ru": "Мы проветриваем, когда погода хорошая.",
+"uk": "Ми провітрюємо, коли погода хороша.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Ich",
+"Ihr",
+"Du",
+"Sie"
+]
+},
+{
+"correct": "lüften",
+"distractors": [
+"oben",
+"warten",
+"schaffen",
+"zeigen",
+"fahren"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"dass",
+"ob",
+"obwohl",
+"als",
+"nachdem"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"der",
+"die",
+"den",
+"und"
+]
+},
+{
+"correct": "Wetter",
+"distractors": [
+"Bus",
+"Tasche",
+"Taxi",
+"Fahrrad",
+"Woche"
+]
+},
+{
+"correct": "gut",
+"distractors": [
+"einkauft",
+"schalte",
+"koche",
+"grün",
+"kocht"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"seid",
+"sind",
+"bin",
+"sein",
+"war"
+]
+}
+],
+"alternatives": [
+"Wenn das Wetter gut ist, lüften wir."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:21",
+"target": "Wenn du den Pass findest, ruf mich an!",
+"ru": "Если найдёшь паспорт, позвони мне!",
+"uk": "Якщо знайдеш паспорт, подзвони мені!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Damit",
+"Weil",
+"Dass",
+"Obwohl"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"wir",
+"sie",
+"ich",
+"es",
+"ihr"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"dem",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Pass",
+"distractors": [
+"Pässe",
+"Tisch",
+"Fuß",
+"Tasche",
+"Termin"
+]
+},
+{
+"correct": "findest",
+"distractors": [
+"gefunden",
+"findet",
+"fand",
+"finde",
+"geschrieben"
+]
+},
+{
+"correct": "ruf",
+"distractors": [
+"räumt",
+"zieh",
+"fragst",
+"anmachen",
+"leer"
+]
+},
+{
+"correct": "mich",
+"distractors": [
+"mir",
+"sich",
+"euch",
+"dich",
+"uns"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"vor",
+"neben",
+"hinter",
+"unter",
+"zwischen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:22",
+"target": "Wenn es klingelt, öffne bitte die Tür!",
+"ru": "Если позвонят в дверь, открой, пожалуйста!",
+"uk": "Якщо подзвонять у двері, відчини, будь ласка!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Ob",
+"Obwohl",
+"Damit",
+"Als"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"wir",
+"ich",
+"ihr",
+"du",
+"ihren"
+]
+},
+{
+"correct": "klingelt",
+"distractors": [
+"schneit",
+"bringt",
+"bezahlen",
+"offen",
+"tagsüber"
+]
+},
+{
+"correct": "öffne",
+"distractors": [
+"ruf",
+"grün",
+"laut",
+"anrufen",
+"sag"
+]
+},
+{
+"correct": "bitte",
+"distractors": [
+"schneit",
+"fehlt",
+"fragt",
+"bekomme",
+"langsamer"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"dem",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+}
+],
+"alternatives": [
+"Wenn es klingelt, öffne die Tür bitte!",
+"Wenn es klingelt, bitte öffne die Tür!"
+]
+},
+{
+"lesson": 23,
+"id": "de:23:23",
+"target": "Wenn ihr fertig seid, räumt den Tisch ab!",
+"ru": "Когда закончите, уберите со стола!",
+"uk": "Коли закінчите, приберіть зі столу!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Dass",
+"Damit",
+"Obwohl",
+"Nachdem"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"es",
+"er",
+"wir",
+"ich",
+"ihrer"
+]
+},
+{
+"correct": "fertig",
+"distractors": [
+"sag",
+"offen",
+"kocht",
+"raus",
+"wehtut"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"war",
+"sein",
+"seinen",
+"seinem"
+]
+},
+{
+"correct": "räumt",
+"distractors": [
+"öffne",
+"offen",
+"kocht",
+"braucht",
+"stimmt"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"der",
+"dem",
+"die",
+"das",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "ab",
+"distractors": [
+"ein",
+"einen",
+"einer",
+"einem",
+"eine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:24",
+"target": "Wenn Sie einsteigen, zeigen Sie bitte Ihr Ticket!",
+"ru": "При входе покажите, пожалуйста, ваш билет!",
+"uk": "При вході покажіть, будь ласка, ваш квиток!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Obwohl",
+"Dass",
+"Damit",
+"Ob",
+"Nachdem"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
+]
+},
+{
+"correct": "einsteigen",
+"distractors": [
+"kaufen",
+"nehmen",
+"abholen",
+"anmachen",
+"können"
+]
+},
+{
+"correct": "zeigen",
+"distractors": [
+"offen",
+"schaffen",
+"haben",
+"draußen",
+"streiken"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
+]
+},
+{
+"correct": "bitte",
+"distractors": [
+"schneit",
+"fehlt",
+"laut",
+"scheint",
+"anruft"
+]
+},
+{
+"correct": "Ihr",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Er",
+"Essen"
+]
+},
+{
+"correct": "Ticket",
+"distractors": [
+"Gäste",
+"Bus",
+"Kinder",
+"Tom",
+"Anna"
+]
+}
+],
+"alternatives": [
+"Wenn Sie einsteigen, zeigen Sie Ihr Ticket bitte!",
+"Wenn Sie einsteigen, bitte zeigen Sie Ihr Ticket!"
+]
+},
+{
+"lesson": 23,
+"id": "de:23:25",
+"target": "Wenn dir kalt ist, zieh die Jacke an!",
+"ru": "Если тебе холодно, надень куртку!",
+"uk": "Якщо тобі холодно, одягни куртку!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Ob",
+"Als",
+"Dass",
+"Weil"
+]
+},
+{
+"correct": "dir",
+"distractors": [
+"mir",
+"dich",
+"sich",
+"euch",
+"mich"
+]
+},
+{
+"correct": "kalt",
+"distractors": [
+"warm",
+"heiß",
+"nass",
+"trocken",
+"dunkel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sind",
+"bist",
+"war",
+"bin",
+"sein"
+]
+},
+{
+"correct": "zieh",
+"distractors": [
+"etwas",
+"kocht",
+"fast",
+"bekomme",
+"bekommst"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"den",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Jacken",
+"Platz",
+"Bank",
+"Schuhe",
+"Tom"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"vor",
+"zwischen",
+"neben",
+"hinter",
+"aus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:26",
+"target": "Wenn du ankommst, schreib mir bitte!",
+"ru": "Когда придёшь, напиши мне, пожалуйста!",
+"uk": "Коли прийдеш, напиши мені, будь ласка!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Ob",
+"Obwohl",
+"Nachdem",
+"Dass",
+"Als"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"wir",
+"er",
+"ich",
+"es",
+"ihr"
+]
+},
+{
+"correct": "ankommst",
+"distractors": [
+"fragst",
+"rufe",
+"öffne",
+"bekomme",
+"bezahlen"
+]
+},
+{
+"correct": "schreib",
+"distractors": [
+"absagen",
+"fast",
+"stimmt",
+"bekommst",
+"offen"
+]
+},
+{
+"correct": "mir",
+"distractors": [
+"mich",
+"uns",
+"euch",
+"dir",
+"dich"
+]
+},
+{
+"correct": "bitte",
+"distractors": [
+"schalte",
+"fragt",
+"schläft",
+"abholen",
+"räumt"
+]
+}
+],
+"alternatives": [
+"Wenn du ankommst, bitte schreib mir!"
+]
+},
+{
+"lesson": 23,
+"id": "de:23:27",
+"target": "Wenn etwas fehlt, sag mir Bescheid!",
+"ru": "Если чего-то не хватает, дай мне знать!",
+"uk": "Якщо чогось не вистачає, дай мені знати!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Dass",
+"Weil",
+"Nachdem",
+"Als",
+"Obwohl"
+]
+},
+{
+"correct": "etwas",
+"distractors": [
+"fragst",
+"ihn",
+"regnet",
+"fragt",
+"besuche"
+]
+},
+{
+"correct": "fehlt",
+"distractors": [
+"steigen",
+"lade",
+"fragst",
+"bezahlen",
+"los"
+]
+},
+{
+"correct": "sag",
+"distractors": [
+"schneit",
+"kocht",
+"gut",
+"leer",
+"zieh"
+]
+},
+{
+"correct": "mir",
+"distractors": [
+"mich",
+"dich",
+"dir",
+"euch",
+"sich"
+]
+},
+{
+"correct": "Bescheid",
+"distractors": [
+"Termin",
+"Bahn",
+"Laden",
+"Anna",
+"Treppe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:28",
+"target": "Wenn du gehst, schalte das Licht aus!",
+"ru": "Когда будешь уходить, выключи свет!",
+"uk": "Коли йтимеш, вимкни світло!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Dass",
+"Obwohl",
+"Weil",
+"Ob",
+"Als"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"es",
+"wir",
+"ich",
+"neue"
+]
+},
+{
+"correct": "gehst",
+"distractors": [
+"ging",
+"gegangen",
+"kaputtgegangen",
+"gesprungen",
+"umgestiegen"
+]
+},
+{
+"correct": "schalte",
+"distractors": [
+"ruf",
+"klappt",
+"schläft",
+"lüften",
+"tagsüber"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"den",
+"der",
+"dem",
+"und"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Hause",
+"Schwester",
+"Laden",
+"Meer",
+"Kind"
+]
+},
+{
+"correct": "aus",
+"distractors": [
+"für",
+"nach",
+"ohne",
+"zu",
+"mit"
+]
+}
+],
+"alternatives": [
+"Schalte das Licht aus, wenn du gehst!"
+]
+},
+{
+"lesson": 23,
+"id": "de:23:29",
+"target": "Wenn die Suppe kocht, stell den Herd kleiner!",
+"ru": "Когда суп закипит, убавь огонь!",
+"uk": "Коли суп закипить, зменши вогонь!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Als",
+"Dass",
+"Obwohl",
+"Ob"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Suppe",
+"distractors": [
+"Essen",
+"Hause",
+"Wasser",
+"Tee",
+"Bus"
+]
+},
+{
+"correct": "kocht",
+"distractors": [
+"bezahlen",
+"ausfällt",
+"scheint",
+"fragst",
+"ihn"
+]
+},
+{
+"correct": "stell",
+"distractors": [
+"leicht",
+"anmachen",
+"ruf",
+"spät",
+"abholen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Herd",
+"distractors": [
+"Anna",
+"Schlüssel",
+"Kinder",
+"Hause",
+"Samstag"
+]
+},
+{
+"correct": "kleiner",
+"distractors": [
+"klein",
+"dein",
+"deine",
+"deinen",
+"ein"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:30",
+"target": "Wenn ihr Hilfe braucht, fragt Anna!",
+"ru": "Если вам нужна помощь, спросите Анну!",
+"uk": "Якщо вам потрібна допомога, спитайте Анну!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Als",
+"Obwohl",
+"Ob",
+"Nachdem"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"er",
+"ich",
+"wir",
+"es",
+"ihrer"
+]
+},
+{
+"correct": "Hilfe",
+"distractors": [
+"Kinder",
+"Tom",
+"Gäste",
+"Hause",
+"Arzt"
+]
+},
+{
+"correct": "braucht",
+"distractors": [
+"voll",
+"raus",
+"klappt",
+"abholen",
+"stimmt"
+]
+},
+{
+"correct": "fragt",
+"distractors": [
+"bezahlen",
+"schneit",
+"tagsüber",
+"einkauft",
+"klingelt"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:31",
+"target": "Wenn der Zug ausfällt, können wir den Bus nehmen.",
+"ru": "Если поезд отменят, мы можем поехать на автобусе.",
+"uk": "Якщо потяг скасують, ми можемо поїхати автобусом.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Damit",
+"Obwohl",
+"Nachdem"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"das",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Zug",
+"distractors": [
+"Tom",
+"Gäste",
+"Kinder",
+"Anna",
+"Hause"
+]
+},
+{
+"correct": "ausfällt",
+"distractors": [
+"sage",
+"öfter",
+"rufe",
+"ruf",
+"fehlt"
+]
+},
+{
+"correct": "können",
+"distractors": [
+"könnt",
+"kannst",
+"müssen",
+"kann",
+"darf"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"er",
+"es",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "nehmen",
+"distractors": [
+"nehme",
+"nimmt",
+"genommen",
+"nimmst",
+"angerufen"
+]
+}
+],
+"alternatives": [
+"Wir können den Bus nehmen, wenn der Zug ausfällt."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:32",
+"target": "Wenn es laut ist, muss ich das Fenster schließen.",
+"ru": "Если шумно, мне приходится закрывать окно.",
+"uk": "Якщо шумно, мені доводиться закривати вікно.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Dass",
+"Als",
+"Weil",
+"Nachdem"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"wir",
+"er",
+"ihr",
+"du",
+"sie"
+]
+},
+{
+"correct": "laut",
+"distractors": [
+"lüften",
+"etwas",
+"öfter",
+"pünktlich",
+"klemmt"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"war",
+"sein",
+"seid",
+"bist",
+"sind"
+]
+},
+{
+"correct": "muss",
+"distractors": [
+"darf",
+"müssen",
+"musst",
+"müsst",
+"kann"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"er",
+"du",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+},
+{
+"correct": "schließen",
+"distractors": [
+"haben",
+"anrufen",
+"steigen",
+"draußen",
+"anmachen"
+]
+}
+],
+"alternatives": [
+"Ich muss das Fenster schließen, wenn es laut ist."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:33",
+"target": "Wenn du möchtest, kann ich dich abholen.",
+"ru": "Если хочешь, я могу тебя забрать.",
+"uk": "Якщо хочеш, я можу тебе забрати.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Dass",
+"Obwohl",
+"Ob"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"es",
+"sie",
+"ihr",
+"wir"
+]
+},
+{
+"correct": "möchtest",
+"distractors": [
+"möchte",
+"muss",
+"wollen",
+"wollt",
+"möchten"
+]
+},
+{
+"correct": "kann",
+"distractors": [
+"kannst",
+"könnt",
+"können",
+"müssen",
+"muss"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"es",
+"er",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "dich",
+"distractors": [
+"mir",
+"dir",
+"mich",
+"uns",
+"euch"
+]
+},
+{
+"correct": "abholen",
+"distractors": [
+"steigen",
+"fahren",
+"offen",
+"kaufen",
+"schließen"
+]
+}
+],
+"alternatives": [
+"Ich kann dich abholen, wenn du möchtest."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:34",
+"target": "Wenn wir früher fahren, können wir öfter anhalten.",
+"ru": "Если выедем раньше, сможем чаще останавливаться.",
+"uk": "Якщо виїдемо раніше, зможемо частіше зупинятися.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Ob",
+"Nachdem",
+"Dass",
+"Damit"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"sie",
+"du",
+"er",
+"ihr",
+"es"
+]
+},
+{
+"correct": "früher",
+"distractors": [
+"abgefahren",
+"angerufen",
+"bezahlt",
+"billiger",
+"essen"
+]
+},
+{
+"correct": "fahren",
+"distractors": [
+"gefahren",
+"vergessen",
+"abholen",
+"warten",
+"ausgestiegen"
+]
+},
+{
+"correct": "können",
+"distractors": [
+"müssen",
+"darf",
+"musst",
+"soll",
+"müsst"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"ich",
+"sie",
+"du",
+"er"
+]
+},
+{
+"correct": "öfter",
+"distractors": [
+"bezahlen",
+"kochen",
+"kocht",
+"schließen",
+"scheint"
+]
+},
+{
+"correct": "anhalten",
+"distractors": [
+"bezahlen",
+"lüften",
+"streiken",
+"absagen",
+"schließen"
+]
+}
+],
+"alternatives": [
+"Wir können öfter anhalten, wenn wir früher fahren."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:35",
+"target": "Wenn ich krank bin, muss ich den Termin absagen.",
+"ru": "Если я заболею, мне придётся отменить запись.",
+"uk": "Якщо я захворію, мені доведеться скасувати запис.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Nachdem",
+"Als",
+"Damit",
+"Dass",
+"Weil"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"du",
+"ihr",
+"wir",
+"sie"
+]
+},
+{
+"correct": "krank",
+"distractors": [
+"bereit",
+"leise",
+"ruhig",
+"müde",
+"wach"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"sind",
+"war",
+"ist",
+"sein",
+"bist"
+]
+},
+{
+"correct": "muss",
+"distractors": [
+"müssen",
+"musst",
+"müsst",
+"darf",
+"kann"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"es",
+"er",
+"du",
+"sie"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"der",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Termin",
+"distractors": [
+"Tisch",
+"Milch",
+"Frage",
+"Anna",
+"Schlüssel"
+]
+},
+{
+"correct": "absagen",
+"distractors": [
+"einsteigen",
+"schließen",
+"gehen",
+"lüften",
+"zeigen"
+]
+}
+],
+"alternatives": [
+"Ich muss den Termin absagen, wenn ich krank bin."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:36",
+"target": "Wenn ihr hier parkt, müsst ihr bezahlen.",
+"ru": "Если вы здесь паркуетесь, вам нужно заплатить.",
+"uk": "Якщо ви паркуєтеся тут, вам потрібно заплатити.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Obwohl",
+"Nachdem",
+"Weil",
+"Als"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"er",
+"ich",
+"es",
+"wir",
+"ihrer"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"oben",
+"drinnen",
+"dort",
+"heute"
+]
+},
+{
+"correct": "parkt",
+"distractors": [
+"besuche",
+"anhalten",
+"kochen",
+"fragst",
+"leer"
+]
+},
+{
+"correct": "müsst",
+"distractors": [
+"soll",
+"darf",
+"kann",
+"kannst",
+"sollen"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"wir",
+"es",
+"er",
+"ich",
+"ihrer"
+]
+},
+{
+"correct": "bezahlen",
+"distractors": [
+"offen",
+"schaffen",
+"können",
+"anmachen",
+"oben"
+]
+}
+],
+"alternatives": [
+"Ihr müsst bezahlen, wenn ihr hier parkt."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:37",
+"target": "Wenn es dunkel wird, musst du Licht anmachen.",
+"ru": "Когда стемнеет, тебе нужно включить свет.",
+"uk": "Коли стемніє, тобі потрібно ввімкнути світло.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Obwohl",
+"Weil",
+"Als",
+"Ob",
+"Damit"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"ich",
+"er",
+"wir",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "dunkel",
+"distractors": [
+"warm",
+"nass",
+"kalt",
+"trocken",
+"heiß"
+]
+},
+{
+"correct": "wird",
+"distractors": [
+"wurde",
+"ist",
+"bist",
+"sein",
+"war"
+]
+},
+{
+"correct": "musst",
+"distractors": [
+"soll",
+"müsst",
+"darf",
+"müssen",
+"muss"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"ich",
+"ihr",
+"wir",
+"sie"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Akku",
+"Taxi",
+"Milch",
+"Laden",
+"Suppe"
+]
+},
+{
+"correct": "anmachen",
+"distractors": [
+"schaffen",
+"offen",
+"kaufen",
+"bezahlen",
+"können"
+]
+}
+],
+"alternatives": [
+"Du musst Licht anmachen, wenn es dunkel wird."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:38",
+"target": "Wenn Sie Fragen haben, können Sie hier anrufen.",
+"ru": "Если у вас есть вопросы, можете позвонить сюда.",
+"uk": "Якщо ви маєте запитання, можете зателефонувати сюди.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Ob",
+"Damit",
+"Nachdem"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
+]
+},
+{
+"correct": "Fragen",
+"distractors": [
+"Hause",
+"Suppe",
+"Taxi",
+"Tee",
+"Nachtschicht"
+]
+},
+{
+"correct": "haben",
+"distractors": [
+"hatte",
+"hatten",
+"hattest",
+"hattet",
+"draußen"
+]
+},
+{
+"correct": "können",
+"distractors": [
+"müssen",
+"darf",
+"musst",
+"soll",
+"müsst"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"oben",
+"draußen",
+"heute",
+"morgen"
+]
+},
+{
+"correct": "anrufen",
+"distractors": [
+"nehmen",
+"anhalten",
+"steigen",
+"abholen",
+"fahren"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:39",
+"target": "Wenn das Handy leer ist, kann ich nicht anrufen.",
+"ru": "Если телефон разряжен, я не могу позвонить.",
+"uk": "Якщо телефон розряджений, я не можу зателефонувати.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Dass",
+"Nachdem",
+"Als",
+"Obwohl",
+"Weil"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"der",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+},
+{
+"correct": "leer",
+"distractors": [
+"bitte",
+"regnet",
+"klingelt",
+"tagsüber",
+"rufe"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sein",
+"sind",
+"war",
+"seid",
+"bist"
+]
+},
+{
+"correct": "kann",
+"distractors": [
+"kannst",
+"können",
+"müssen",
+"könnt",
+"muss"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"es",
+"wir",
+"er",
+"du"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"wieder",
+"auch",
+"gesprochen",
+"gekocht",
+"gemacht"
+]
+},
+{
+"correct": "anrufen",
+"distractors": [
+"schaffen",
+"draußen",
+"streiken",
+"lüften",
+"kaufen"
+]
+}
+],
+"alternatives": [
+"Ich kann nicht anrufen, wenn das Handy leer ist."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:40",
+"target": "Wenn der Preis stimmt, möchte ich das Rad kaufen.",
+"ru": "Если цена подойдёт, я хотел бы купить велосипед.",
+"uk": "Якщо ціна підійде, я хотів би купити велосипед.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Obwohl",
+"Dass",
+"Nachdem"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"die",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Preis",
+"distractors": [
+"Tom",
+"Ticket",
+"Fenster",
+"Ferien",
+"Anna"
+]
+},
+{
+"correct": "stimmt",
+"distractors": [
+"öffne",
+"ihn",
+"tagsüber",
+"rufe",
+"anhalten"
+]
+},
+{
+"correct": "möchte",
+"distractors": [
+"wollen",
+"wollt",
+"muss",
+"kann",
+"müssen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"er",
+"ihr",
+"du",
+"sie"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"die",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Rad",
+"distractors": [
+"Hause",
+"Akku",
+"Tom",
+"Bus",
+"Zug"
+]
+},
+{
+"correct": "kaufen",
+"distractors": [
+"kaufst",
+"kauft",
+"kaufe",
+"gekauft",
+"kochen"
+]
+}
+],
+"alternatives": [
+"Ich möchte das Rad kaufen, wenn der Preis stimmt."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:41",
+"target": "Immer wenn ich hier bin, besuche ich meine Schwester.",
+"ru": "Всякий раз, когда я бываю здесь, я навещаю сестру.",
+"uk": "Щоразу, коли я буваю тут, я відвідую сестру.",
+"tiles": [
+{
+"correct": "Immer",
+"distractors": [
+"Nicht",
+"Auch",
+"Wieder",
+"Schon",
+"Dort"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"damit",
+"obwohl",
+"nachdem",
+"als",
+"dass"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"sie",
+"es",
+"wir",
+"ihr"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"drinnen",
+"draußen",
+"oben",
+"dort",
+"heute"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"war",
+"bist",
+"sind",
+"ist",
+"seid"
+]
+},
+{
+"correct": "besuche",
+"distractors": [
+"schreib",
+"fragst",
+"bezahlen",
+"fast",
+"ausfällt"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"sie",
+"es",
+"er",
+"wir"
+]
+},
+{
+"correct": "meine",
+"distractors": [
+"meinem",
+"meinen",
+"mein",
+"meiner",
+"sein"
+]
+},
+{
+"correct": "Schwester",
+"distractors": [
+"Tisch",
+"Post",
+"Sonne",
+"Fuß",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:42",
+"target": "Wenn Tom Nachtschicht hat, schläft er tagsüber.",
+"ru": "Когда Том работает в ночную смену, он спит днём.",
+"uk": "Коли Том працює в нічну зміну, він спить вдень.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Obwohl",
+"Damit",
+"Als",
+"Ob",
+"Nachdem"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "Nachtschicht",
+"distractors": [
+"Fenster",
+"Hause",
+"Taxi",
+"Tee",
+"Kisten"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"habe",
+"habt",
+"hatte",
+"haben",
+"hast"
+]
+},
+{
+"correct": "schläft",
+"distractors": [
+"leicht",
+"scheint",
+"anruft",
+"gut",
+"besuche"
+]
+},
+{
+"correct": "er",
+"distractors": [
+"du",
+"ihr",
+"sie",
+"wir",
+"ich"
+]
+},
+{
+"correct": "tagsüber",
+"distractors": [
+"warten",
+"klemmt",
+"leicht",
+"sage",
+"bringt"
+]
+}
+],
+"alternatives": [
+"Tom schläft tagsüber, wenn er Nachtschicht hat."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:43",
+"target": "Wenn die Kinder Ferien haben, fahren wir ans Meer.",
+"ru": "Когда у детей каникулы, мы едем к морю.",
+"uk": "Коли у дітей канікули, ми їдемо до моря.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Ob",
+"Obwohl",
+"Damit",
+"Dass",
+"Als"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Bahn",
+"Handy",
+"Pause",
+"Fuß",
+"Tee"
+]
+},
+{
+"correct": "Ferien",
+"distractors": [
+"Tom",
+"Fenster",
+"Laden",
+"Bahnhof",
+"Brot"
+]
+},
+{
+"correct": "haben",
+"distractors": [
+"hat",
+"habe",
+"habt",
+"hast",
+"hatte"
+]
+},
+{
+"correct": "fahren",
+"distractors": [
+"gefahren",
+"fährt",
+"fahre",
+"vergessen",
+"abholen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"er",
+"ihr",
+"sie",
+"ich",
+"es"
+]
+},
+{
+"correct": "ans",
+"distractors": [
+"zur",
+"ins",
+"aufs",
+"am",
+"beim"
+]
+},
+{
+"correct": "Meer",
+"distractors": [
+"Herd",
+"Post",
+"Hilfe",
+"Hause",
+"Schlüssel"
+]
+}
+],
+"alternatives": [
+"Wir fahren ans Meer, wenn die Kinder Ferien haben."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:44",
+"target": "Wenn ich Post bekomme, lege ich sie auf den Tisch.",
+"ru": "Когда я получаю почту, я кладу её на стол.",
+"uk": "Коли я отримую пошту, я кладу її на стіл.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Nachdem",
+"Als",
+"Weil",
+"Obwohl",
+"Dass"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"du",
+"wir",
+"er",
+"es"
+]
+},
+{
+"correct": "Post",
+"distractors": [
+"Hause",
+"Brief",
+"Schwester",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "bekomme",
+"distractors": [
+"bekommst",
+"laut",
+"schalte",
+"stimmt",
+"schreib"
+]
+},
+{
+"correct": "lege",
+"distractors": [
+"legt",
+"legst",
+"legen",
+"bringen",
+"stellen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"du",
+"wir",
+"es",
+"er"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"er",
+"es",
+"du",
+"ihr",
+"wir"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"neben",
+"über",
+"zwischen",
+"hinter",
+"aus"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"die",
+"das",
+"der",
+"und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Tische",
+"Termin",
+"Gäste",
+"Café",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:45",
+"target": "Wenn der Akku fast leer ist, lade ich ihn auf.",
+"ru": "Когда заряд почти закончился, я заряжаю аккумулятор.",
+"uk": "Коли заряд майже закінчився, я заряджаю акумулятор.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Damit",
+"Als",
+"Dass",
+"Weil",
+"Obwohl"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"das",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Akku",
+"distractors": [
+"Rad",
+"Taxi",
+"Hause",
+"Laden",
+"Tom"
+]
+},
+{
+"correct": "fast",
+"distractors": [
+"rufe",
+"klingelt",
+"räumt",
+"regnet",
+"koche"
+]
+},
+{
+"correct": "leer",
+"distractors": [
+"schließen",
+"kocht",
+"ruf",
+"bekommst",
+"parkt"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"seid",
+"sein",
+"war",
+"sind"
+]
+},
+{
+"correct": "lade",
+"distractors": [
+"höre",
+"scheint",
+"bitte",
+"klingelt",
+"lüften"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"wir",
+"du",
+"er",
+"sie"
+]
+},
+{
+"correct": "ihn",
+"distractors": [
+"anhalten",
+"schließen",
+"stell",
+"spät",
+"fertig"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"zwischen",
+"vor",
+"unter",
+"aus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:46",
+"target": "Wenn die Tür klemmt, drück sie leicht nach oben!",
+"ru": "Если дверь заедает, немного приподними её, надавив снизу!",
+"uk": "Якщо двері заїдають, злегка підніми їх, натиснувши знизу!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Damit",
+"Weil",
+"Obwohl",
+"Dass"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Türen",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+},
+{
+"correct": "klemmt",
+"distractors": [
+"bekomme",
+"abholen",
+"klingelt",
+"ankommst",
+"ruf"
+]
+},
+{
+"correct": "drück",
+"distractors": [
+"zeigen",
+"schaffen",
+"tagsüber",
+"sage",
+"offen"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"wir",
+"du",
+"ihr",
+"er",
+"ich"
+]
+},
+{
+"correct": "leicht",
+"distractors": [
+"spät",
+"tagsüber",
+"bezahlen",
+"laut",
+"warten"
+]
+},
+{
+"correct": "nach",
+"distractors": [
+"zu",
+"für",
+"aus",
+"von",
+"mit"
+]
+},
+{
+"correct": "oben",
+"distractors": [
+"vorne",
+"draußen",
+"drinnen",
+"bezahlen",
+"können"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:47",
+"target": "Ich trinke Tee, wenn mein Hals wehtut.",
+"ru": "Я пью чай, когда у меня болит горло.",
+"uk": "Я п'ю чай, коли у мене болить горло.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Wir",
+"Es",
+"Du",
+"Er"
+]
+},
+{
+"correct": "trinke",
+"distractors": [
+"getrunken",
+"trinkt",
+"trinken",
+"draußen",
+"arbeiten"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Schwester",
+"Musik",
+"Bescheid",
+"Sonne",
+"Zahlung"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"weil",
+"als",
+"nachdem",
+"dass",
+"ob"
+]
+},
+{
+"correct": "mein",
+"distractors": [
+"meine",
+"meinen",
+"meiner",
+"meinem",
+"sein"
+]
+},
+{
+"correct": "Hals",
+"distractors": [
+"Beleg",
+"Bescheid",
+"Anschluss",
+"Zahlung",
+"Kind"
+]
+},
+{
+"correct": "wehtut",
+"distractors": [
+"zeigen",
+"bringt",
+"ihn",
+"grün",
+"bitte"
+]
+}
+],
+"alternatives": [
+"Wenn mein Hals wehtut, trinke ich Tee."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:48",
+"target": "Wir nehmen die Treppe, wenn der Aufzug nicht fährt.",
+"ru": "Мы идём по лестнице, когда лифт не работает.",
+"uk": "Ми йдемо сходами, коли ліфт не працює.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ihr",
+"Sie",
+"Ich",
+"Es"
+]
+},
+{
+"correct": "nehmen",
+"distractors": [
+"nimmst",
+"nehme",
+"genommen",
+"nimmt",
+"angerufen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"das",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Treppe",
+"distractors": [
+"Bank",
+"Taxi",
+"Tom",
+"Anna",
+"Schlüssel"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"ob",
+"obwohl",
+"damit",
+"als",
+"dass"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Aufzug",
+"distractors": [
+"Schlüssel",
+"Gäste",
+"Tisch",
+"Kisten",
+"Tasche"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"auch",
+"wieder",
+"gesprochen",
+"gekocht",
+"gemacht"
+]
+},
+{
+"correct": "fährt",
+"distractors": [
+"gefahren",
+"fahre",
+"fahren",
+"vergessen",
+"abholen"
+]
+}
+],
+"alternatives": [
+"Wenn der Aufzug nicht fährt, nehmen wir die Treppe."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:49",
+"target": "Wenn die Busfahrer streiken, gehe ich zu Fuß.",
+"ru": "Когда водители автобусов бастуют, я иду пешком.",
+"uk": "Якщо водії автобусів страйкують, я піду пішки.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Weil",
+"Als",
+"Nachdem",
+"Dass",
+"Ob"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"der",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Busfahrer",
+"distractors": [
+"Meer",
+"Preis",
+"Suppe",
+"Jacke",
+"Fragen"
+]
+},
+{
+"correct": "streiken",
+"distractors": [
+"warten",
+"gehen",
+"draußen",
+"lüften",
+"lesen"
+]
+},
+{
+"correct": "gehe",
+"distractors": [
+"gegangen",
+"gehst",
+"ging",
+"gehen",
+"geht"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"es",
+"du",
+"wir",
+"sie"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"von",
+"ohne",
+"mit",
+"seit",
+"aus"
+]
+},
+{
+"correct": "Fuß",
+"distractors": [
+"Wetter",
+"Kinder",
+"Hals",
+"Schwester",
+"Pause"
+]
+}
+],
+"alternatives": [
+"Ich gehe zu Fuß, wenn die Busfahrer streiken."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:50",
+"target": "Wenn die Bahn pünktlich ist, schaffen wir den Anschluss.",
+"ru": "Если электричка придёт вовремя, мы успеем на пересадку.",
+"uk": "Якщо електричка прийде вчасно, ми встигнемо на пересадку.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Dass",
+"Nachdem",
+"Weil",
+"Obwohl"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bahn",
+"distractors": [
+"Beleg",
+"Fragen",
+"Treppe",
+"Ferien",
+"Laden"
+]
+},
+{
+"correct": "pünktlich",
+"distractors": [
+"raus",
+"grün",
+"scheint",
+"ruf",
+"sag"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bist",
+"war",
+"seid",
+"bin",
+"sind"
+]
+},
+{
+"correct": "schaffen",
+"distractors": [
+"abholen",
+"anrufen",
+"gehen",
+"können",
+"haben"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"sie",
+"ihr",
+"ich",
+"er",
+"es"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Anschluss",
+"distractors": [
+"Brot",
+"Kind",
+"Zeit",
+"Pause",
+"Schwester"
+]
+}
+],
+"alternatives": [
+"Wir schaffen den Anschluss, wenn die Bahn pünktlich ist."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:01",
+"target": "Als ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.",
+"uk": "Коли я приїхав, двері були відчинені.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Damit",
+"Wenn",
+"Weil",
+"Nachdem"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"es",
+"du",
+"wir",
+"sie"
+]
+},
+{
+"correct": "ankam",
+"distractors": [
+"hielten",
+"viel",
+"bezahlen",
+"fehlte",
+"ausgestiegen"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bist",
+"ist",
+"bin",
+"sind",
+"seid"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"das",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Türen",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"einkaufen",
+"geschrieben",
+"fanden",
+"niemanden",
+"hielten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:02",
+"target": "Als Anna ankam, war ich schon da.",
+"ru": "Когда приехала Анна, я уже был на месте.",
+"uk": "Коли приїхала Ганна, я вже був на місці.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Dass",
+"Wenn",
+"Obwohl",
+"Nachdem"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ankam",
+"distractors": [
+"regnete",
+"bezahlen",
+"fehlte",
+"erstes",
+"fanden"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bin",
+"seid",
+"ist",
+"sind",
+"sein"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"er",
+"wir",
+"sie",
+"du"
+]
+},
+{
+"correct": "schon",
+"distractors": [
+"auch",
+"wieder",
+"immer",
+"nicht",
+"noch"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"anrief",
+"klingelte",
+"offen",
+"aufwachte",
+"wollte"
+]
+}
+],
+"alternatives": [
+"Ich war schon da, als Anna ankam."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:03",
+"target": "Als Tom anrief, war ich im Bus.",
+"ru": "Когда позвонил Том, я был в автобусе.",
+"uk": "Коли зателефонував Том, я був у автобусі.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Obwohl",
+"Nachdem",
+"Weil",
+"Damit",
+"Ob"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "anrief",
+"distractors": [
+"feucht",
+"sahen",
+"ausgestiegen",
+"fertig",
+"schlief"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"bist",
+"ist",
+"sind",
+"bin"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"wir",
+"sie",
+"es",
+"er"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"ins",
+"vom",
+"zur",
+"zum",
+"am"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Ich war im Bus, als Tom anrief."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:04",
+"target": "Als wir losfuhren, regnete es.",
+"ru": "Когда мы выехали, шёл дождь.",
+"uk": "Коли ми виїхали, йшов дощ.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Ob",
+"Wenn",
+"Obwohl",
+"Damit"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"er",
+"ihr",
+"du",
+"sie"
+]
+},
+{
+"correct": "losfuhren",
+"distractors": [
+"verließen",
+"einkaufen",
+"fanden",
+"bezahlen",
+"ausgestiegen"
+]
+},
+{
+"correct": "regnete",
+"distractors": [
+"freute",
+"regnen",
+"viel",
+"fiel",
+"wollte"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"er",
+"du",
+"ich",
+"ihr",
+"sie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:05",
+"target": "Als der Zug hielt, stand ich auf.",
+"ru": "Когда поезд остановился, я встал.",
+"uk": "Коли поїзд зупинився, я встав.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Ob",
+"Nachdem",
+"Damit",
+"Wenn"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"das",
+"den",
+"die",
+"und"
+]
+},
+{
+"correct": "Zug",
+"distractors": [
+"Tom",
+"Gäste",
+"Kinder",
+"Anna",
+"Hause"
+]
+},
+{
+"correct": "hielt",
+"distractors": [
+"geschneit",
+"bezahlen",
+"öffnete",
+"nahmen",
+"schlief"
+]
+},
+{
+"correct": "stand",
+"distractors": [
+"stehst",
+"steht",
+"stehe",
+"stehen",
+"steigen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"ihr",
+"du",
+"es",
+"er"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"hinter",
+"neben",
+"in",
+"vor",
+"aus"
+]
+}
+],
+"alternatives": [
+"Ich stand auf, als der Zug hielt."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:06",
+"target": "Als die Gäste kamen, war das Essen fertig.",
+"ru": "Когда пришли гости, еда была готова.",
+"uk": "Коли прийшли гості, їжа була готова.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Dass",
+"Damit",
+"Weil",
+"Obwohl"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"der",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Fuß",
+"Musik",
+"Eingang",
+"Strand",
+"Kinder"
+]
+},
+{
+"correct": "kamen",
+"distractors": [
+"angerufen",
+"einkaufen",
+"verließen",
+"geschrieben",
+"sahen"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"seid",
+"ist",
+"bin",
+"sind"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Essen",
+"distractors": [
+"Bahn",
+"Gepäck",
+"Anna",
+"Flur",
+"Brief"
+]
+},
+{
+"correct": "fertig",
+"distractors": [
+"früh",
+"einmal",
+"regnete",
+"hielten",
+"hielt"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:07",
+"target": "Als ich aufwachte, war es noch dunkel.",
+"ru": "Когда я проснулся, было ещё темно.",
+"uk": "Коли я прокинувся, було ще темно.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Weil",
+"Dass",
+"Obwohl",
+"Damit"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"ihr",
+"er",
+"sie",
+"du"
+]
+},
+{
+"correct": "aufwachte",
+"distractors": [
+"gerade",
+"ausging",
+"losging",
+"anrief",
+"nahmen"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"seid",
+"bin",
+"bist",
+"sind",
+"ist"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"ihr",
+"sie",
+"er",
+"wir",
+"du"
+]
+},
+{
+"correct": "noch",
+"distractors": [
+"immer",
+"schon",
+"wieder",
+"auch",
+"nicht"
+]
+},
+{
+"correct": "dunkel",
+"distractors": [
+"trocken",
+"nass",
+"warm",
+"kalt",
+"heiß"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:08",
+"target": "Als der Wecker klingelte, schlief Tom noch.",
+"ru": "Когда зазвонил будильник, Том ещё спал.",
+"uk": "Коли задзвонив будильник, Том ще спав.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Weil",
+"Nachdem",
+"Obwohl",
+"Dass"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"den",
+"die",
+"und"
+]
+},
+{
+"correct": "Wecker",
+"distractors": [
+"Flur",
+"Frühstück",
+"Haus",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "klingelte",
+"distractors": [
+"regnen",
+"aufwachte",
+"gerade",
+"öffnete",
+"fehlte"
+]
+},
+{
+"correct": "schlief",
+"distractors": [
+"einmal",
+"verließen",
+"anfing",
+"aufging",
+"öffnete"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "noch",
+"distractors": [
+"wieder",
+"schon",
+"nicht",
+"auch",
+"immer"
+]
+}
+],
+"alternatives": [
+"Tom schlief noch, als der Wecker klingelte."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:09",
+"target": "Als ich die Tür öffnete, sah ich das Paket.",
+"ru": "Когда я открыл дверь, я увидел посылку.",
+"uk": "Коли я відчинив двері, я побачив посилку.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Wenn",
+"Weil",
+"Ob",
+"Obwohl"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"du",
+"ihr",
+"es",
+"wir"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"der",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Lampe",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+},
+{
+"correct": "öffnete",
+"distractors": [
+"verließen",
+"lebte",
+"lachte",
+"lief",
+"aufwachte"
+]
+},
+{
+"correct": "sah",
+"distractors": [
+"sehe",
+"sehen",
+"gesehen",
+"zusammen",
+"angerufen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"sie",
+"wir",
+"ihr",
+"es"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"der",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Paket",
+"distractors": [
+"Anna",
+"Bus",
+"Zimmer",
+"Tom",
+"Karte"
+]
+}
+],
+"alternatives": [
+"Ich sah das Paket, als ich die Tür öffnete."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:10",
+"target": "Als Anna das Fenster öffnete, hörte sie Musik.",
+"ru": "Когда Анна открыла окно, она услышала музыку.",
+"uk": "Коли Анна відчинила вікно, вона почула музику.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Wenn",
+"Obwohl",
+"Ob",
+"Dass"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"der",
+"dem",
+"den",
+"und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Zug",
+"Zimmer"
+]
+},
+{
+"correct": "öffnete",
+"distractors": [
+"ausfiel",
+"geschneit",
+"erschrak",
+"regnete",
+"ankamen"
+]
+},
+{
+"correct": "hörte",
+"distractors": [
+"kamen",
+"bekam",
+"anrief",
+"fertig",
+"erleichtert"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"ihr",
+"wir",
+"du",
+"es",
+"ich"
+]
+},
+{
+"correct": "Musik",
+"distractors": [
+"Schal",
+"Essen",
+"Strand",
+"Licht",
+"Auto"
+]
+}
+],
+"alternatives": [
+"Anna hörte Musik, als sie das Fenster öffnete."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:11",
+"target": "Ich war zu Hause, als das Handy klingelte.",
+"ru": "Я был дома, когда зазвонил телефон.",
+"uk": "Я був удома, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Du",
+"Wir",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sind",
+"bist",
+"bin",
+"sein",
+"ist"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"seit",
+"ohne",
+"für",
+"von",
+"bei"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Schule",
+"Paket",
+"Bahnhof",
+"Flur",
+"Wecker"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"nachdem",
+"obwohl",
+"wenn",
+"ob",
+"weil"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"dem",
+"den",
+"der",
+"und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+},
+{
+"correct": "klingelte",
+"distractors": [
+"regnen",
+"bezahlen",
+"roch",
+"umzogen",
+"früh"
+]
+}
+],
+"alternatives": [
+"Als das Handy klingelte, war ich zu Hause.",
+"Ich war zuhause, als das Handy klingelte.",
+"Als das Handy klingelte, war ich zuhause."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:12",
+"target": "Wir waren im Garten, als es anfing zu regnen.",
+"ru": "Мы были в саду, когда пошёл дождь.",
+"uk": "Ми були у саду, коли пішов дощ.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Er",
+"Sie",
+"Ich",
+"Du"
+]
+},
+{
+"correct": "waren",
+"distractors": [
+"ist",
+"wart",
+"war",
+"sind",
+"bin"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"vom",
+"zur",
+"aufs",
+"ins",
+"zum"
+]
+},
+{
+"correct": "Garten",
+"distractors": [
+"Kinder",
+"Fenster",
+"Ärztin",
+"Tom",
+"Gäste"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"dass",
+"obwohl",
+"damit",
+"wenn"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"ihr",
+"du",
+"er",
+"sie",
+"ich"
+]
+},
+{
+"correct": "anfing",
+"distractors": [
+"wollte",
+"öffnete",
+"zerbrach",
+"verließen",
+"kamen"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"aus",
+"seit",
+"mit",
+"ohne",
+"bei"
+]
+},
+{
+"correct": "regnen",
+"distractors": [
+"geschrieben",
+"hatten",
+"einkaufen",
+"nahmen",
+"offen"
+]
+}
+],
+"alternatives": [
+"Als es anfing zu regnen, waren wir im Garten.",
+"Wir waren im Garten, als es zu regnen anfing.",
+"Als es zu regnen anfing, waren wir im Garten."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:13",
+"target": "Tom war am Eingang, als der Arzt kam.",
+"ru": "Том был у входа, когда пришёл врач.",
+"uk": "Том був біля входу, коли прийшов лікар.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"ist",
+"seid",
+"bin",
+"sind",
+"bist"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"beim",
+"vom",
+"ins",
+"aufs",
+"im"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Schnee",
+"See",
+"Strand",
+"Bahn",
+"Karte"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"weil",
+"nachdem",
+"wenn",
+"ob",
+"dass"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"die",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Arzt",
+"distractors": [
+"Hause",
+"Schal",
+"Pause",
+"Nachbarn",
+"Wind"
+]
+},
+{
+"correct": "kam",
+"distractors": [
+"kommt",
+"kommst",
+"gekommen",
+"kommen",
+"komme"
+]
+}
+],
+"alternatives": [
+"Als der Arzt kam, war Tom am Eingang."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:14",
+"target": "Anna war im Flur, als das Licht ausging.",
+"ru": "Анна была в коридоре, когда погас свет.",
+"uk": "Анна була в коридорі, коли згасло світло.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"ist",
+"seid",
+"sein",
+"bist",
+"sind"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"ans",
+"ins",
+"zum",
+"vom",
+"am"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"wenn",
+"weil",
+"nachdem",
+"damit"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"die",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Mitternacht",
+"Wind",
+"Keller",
+"Baby",
+"Fuß"
+]
+},
+{
+"correct": "ausging",
+"distractors": [
+"roch",
+"lachte",
+"nahmen",
+"bekam",
+"klingelte"
+]
+}
+],
+"alternatives": [
+"Als das Licht ausging, war Anna im Flur."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:15",
+"target": "Ich hatte gerade Pause, als du angerufen hast.",
+"ru": "У меня как раз был перерыв, когда ты позвонил.",
+"uk": "У мене якраз була перерва, коли ти зателефонував.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Sie",
+"Es",
+"Wir",
+"Ihr"
+]
+},
+{
+"correct": "hatte",
+"distractors": [
+"habe",
+"hat",
+"habt",
+"haben",
+"hatten"
+]
+},
+{
+"correct": "gerade",
+"distractors": [
+"losfuhren",
+"regnete",
+"bekam",
+"kannte",
+"feucht"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"weil",
+"damit",
+"dass",
+"wenn",
+"nachdem"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"sie",
+"wir",
+"ihr",
+"es"
+]
+},
+{
+"correct": "angerufen",
+"distractors": [
+"bezahlen",
+"kamen",
+"umzogen",
+"offen",
+"hatten"
+]
+},
+{
+"correct": "hast",
+"distractors": [
+"hat",
+"haben",
+"habe",
+"habt",
+"hatten"
+]
+}
+],
+"alternatives": [
+"Als du angerufen hast, hatte ich gerade Pause."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:16",
+"target": "Wir hatten viel Gepäck, als wir umzogen.",
+"ru": "У нас было много багажа, когда мы переезжали.",
+"uk": "Ми мали багато багажу, коли ми переїжджали.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Ihr",
+"Sie",
+"Es",
+"Du"
+]
+},
+{
+"correct": "hatten",
+"distractors": [
+"haben",
+"hattest",
+"hatte",
+"hat",
+"hast"
+]
+},
+{
+"correct": "viel",
+"distractors": [
+"anrief",
+"bekam",
+"geschneit",
+"hielt",
+"erschrak"
+]
+},
+{
+"correct": "Gepäck",
+"distractors": [
+"Gäste",
+"Brief",
+"Arzt",
+"Film",
+"Schule"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"damit",
+"dass",
+"ob",
+"nachdem",
+"weil"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"er",
+"ich",
+"du",
+"ihr"
+]
+},
+{
+"correct": "umzogen",
+"distractors": [
+"fanden",
+"regnen",
+"bezahlen",
+"losfuhren",
+"nahmen"
+]
+}
+],
+"alternatives": [
+"Als wir umzogen, hatten wir viel Gepäck."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:17",
+"target": "Das Baby schlief, als der Bus hielt.",
+"ru": "Малыш спал, когда автобус остановился.",
+"uk": "Малюк спав, коли автобус зупинився.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Die",
+"Den",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "Baby",
+"distractors": [
+"Anna",
+"Arzt",
+"Fuß",
+"Zug",
+"Gepäck"
+]
+},
+{
+"correct": "schlief",
+"distractors": [
+"offen",
+"feucht",
+"roch",
+"sahen",
+"einkaufen"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"damit",
+"nachdem",
+"obwohl",
+"dass"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"den",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "hielt",
+"distractors": [
+"geschneit",
+"ausfiel",
+"erschrak",
+"losging",
+"aufging"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:18",
+"target": "Die Kasse war zu, als ich bezahlen wollte.",
+"ru": "Касса была закрыта, когда я хотел заплатить.",
+"uk": "Касу було закрито, коли я хотів заплатити.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Dem",
+"Den",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Kasse",
+"distractors": [
+"Essen",
+"Gepäck",
+"Wind",
+"Eingang",
+"Glas"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"bin",
+"sind",
+"ist",
+"seid"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"bei",
+"mit",
+"nach",
+"seit",
+"für"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"dass",
+"ob",
+"wenn",
+"nachdem",
+"damit"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"es",
+"ihr",
+"er",
+"sie"
+]
+},
+{
+"correct": "bezahlen",
+"distractors": [
+"hielten",
+"nahmen",
+"öffneten",
+"regnen",
+"offen"
+]
+},
+{
+"correct": "wollte",
+"distractors": [
+"heraus",
+"anfing",
+"bekam",
+"lachte",
+"fertig"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:19",
+"target": "Der Platz war frei, als wir ankamen.",
+"ru": "Место было свободно, когда мы приехали.",
+"uk": "Місце було вільне, коли ми приїхали.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Das",
+"Dem",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Platz",
+"distractors": [
+"Tom",
+"Paket",
+"Mitternacht",
+"Kasse",
+"Ampel"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"ist",
+"bist",
+"sein",
+"seid",
+"bin"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"müde",
+"allein",
+"krank",
+"ruhig"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"dass",
+"weil",
+"ob",
+"obwohl",
+"wenn"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"es",
+"ihr",
+"du",
+"er"
+]
+},
+{
+"correct": "ankamen",
+"distractors": [
+"niemanden",
+"verließen",
+"umzogen",
+"einkaufen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:20",
+"target": "Ich war nervös, als der Kurs begann.",
+"ru": "Я нервничал, когда начался курс.",
+"uk": "Я нервувався, коли почався курс.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Du",
+"Sie",
+"Ihr",
+"Er",
+"Wir"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sind",
+"sein",
+"bin",
+"bist",
+"ist"
+]
+},
+{
+"correct": "nervös",
+"distractors": [
+"fragte",
+"roch",
+"einkaufen",
+"erreichten",
+"hörte"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"dass",
+"damit",
+"nachdem",
+"weil",
+"obwohl"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"das",
+"die",
+"den",
+"und"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Freitag",
+"Kinder",
+"Gäste",
+"Fenster"
+]
+},
+{
+"correct": "begann",
+"distractors": [
+"aufging",
+"öffnete",
+"ausfiel",
+"viel",
+"heraus"
+]
+}
+],
+"alternatives": [
+"Als der Kurs begann, war ich nervös."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:21",
+"target": "Als Anna noch ein Kind war, hatte sie ein rotes Fahrrad.",
+"ru": "Когда Анна была ребёнком, у неё был красный велосипед.",
+"uk": "Коли Анна була дитиною, вона мала червоний велосипед.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Wenn",
+"Obwohl",
+"Damit",
+"Dass"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Schlüssel",
+"Bus",
+"Kinder"
+]
+},
+{
+"correct": "noch",
+"distractors": [
+"wieder",
+"immer",
+"schon",
+"nicht",
+"auch"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"einem",
+"einer",
+"und",
+"mit",
+"für"
+]
+},
+{
+"correct": "Kind",
+"distractors": [
+"Kinder",
+"Tom",
+"Gäste",
+"Tür",
+"Tee"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"bin",
+"ist",
+"sind",
+"bist"
+]
+},
+{
+"correct": "hatte",
+"distractors": [
+"haben",
+"hast",
+"habe",
+"habt",
+"draußen"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"wir",
+"ich",
+"das",
+"dem",
+"den"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"einer",
+"einem",
+"und",
+"mit",
+"für"
+]
+},
+{
+"correct": "rotes",
+"distractors": [
+"rot",
+"erreichten",
+"fiel",
+"kamen",
+"regnete"
+]
+},
+{
+"correct": "Fahrrad",
+"distractors": [
+"Pause",
+"Fenster",
+"Zug",
+"Tochter",
+"Foto"
+]
+}
+],
+"alternatives": [
+"Anna hatte ein rotes Fahrrad, als sie noch ein Kind war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:22",
+"target": "Als ich klein war, wohnte ich am See.",
+"ru": "Когда я был маленьким, я жил у озера.",
+"uk": "Коли я був маленьким, я жив біля озера.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Ob",
+"Obwohl",
+"Wenn",
+"Damit"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"wir",
+"du",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "klein",
+"distractors": [
+"kleinen",
+"kleiner",
+"kleine",
+"gehen",
+"direkten"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"seid",
+"sein",
+"sind",
+"ist",
+"bin"
+]
+},
+{
+"correct": "wohnte",
+"distractors": [
+"wohnt",
+"gewohnt",
+"wohnen",
+"wohne",
+"wohnst"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"ihr",
+"es",
+"wir",
+"er"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"aufs",
+"zum",
+"ans",
+"ins",
+"im"
+]
+},
+{
+"correct": "See",
+"distractors": [
+"Fuß",
+"Handy",
+"Foto",
+"Schal",
+"Auto"
+]
+}
+],
+"alternatives": [
+"Ich wohnte am See, als ich klein war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:23",
+"target": "Als ich sechs war, bekam ich mein erstes Rad.",
+"ru": "Когда мне было шесть, мне подарили мой первый велосипед.",
+"uk": "Коли мені було шість, мені подарували перший велосипед.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Obwohl",
+"Wenn",
+"Damit",
+"Nachdem"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"wir",
+"es",
+"du",
+"ihr"
+]
+},
+{
+"correct": "sechs",
+"distractors": [
+"zehn",
+"acht",
+"zwölf",
+"fünf",
+"drei"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bin",
+"sein",
+"ist",
+"seid",
+"sind"
+]
+},
+{
+"correct": "bekam",
+"distractors": [
+"lachte",
+"fragte",
+"angerufen",
+"bezahlen",
+"hielt"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"sie",
+"ihr",
+"wir",
+"du"
+]
+},
+{
+"correct": "mein",
+"distractors": [
+"meiner",
+"meine",
+"meinem",
+"meinen",
+"sein"
+]
+},
+{
+"correct": "erstes",
+"distractors": [
+"regnete",
+"fiel",
+"öffnete",
+"kamen",
+"erreichten"
+]
+},
+{
+"correct": "Rad",
+"distractors": [
+"Hause",
+"Akku",
+"Tom",
+"Bus",
+"Zug"
+]
+}
+],
+"alternatives": [
+"Ich bekam mein erstes Rad, als ich sechs war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:24",
+"target": "Als ich Schüler war, ging ich zu Fuß zur Schule.",
+"ru": "Когда я был школьником, я ходил в школу пешком.",
+"uk": "Коли я був школярем, я ходив до школи пішки.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Damit",
+"Obwohl",
+"Ob",
+"Weil"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"es",
+"du",
+"wir",
+"sie"
+]
+},
+{
+"correct": "Schüler",
+"distractors": [
+"Licht",
+"Flur",
+"Strand",
+"Nachbarn",
+"Glas"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bist",
+"sein",
+"sind",
+"ist",
+"seid"
+]
+},
+{
+"correct": "ging",
+"distractors": [
+"gegangen",
+"gehst",
+"geht",
+"gehen",
+"gehe"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"es",
+"wir",
+"du",
+"ihr"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"für",
+"aus",
+"von",
+"nach",
+"ohne"
+]
+},
+{
+"correct": "Fuß",
+"distractors": [
+"Nachbarn",
+"Brief",
+"Film",
+"Paket",
+"Strand"
+]
+},
+{
+"correct": "zur",
+"distractors": [
+"am",
+"ins",
+"vom",
+"ans",
+"beim"
+]
+},
+{
+"correct": "Schule",
+"distractors": [
+"Hause",
+"Sonne",
+"Tür",
+"Schnee",
+"Türen"
+]
+}
+],
+"alternatives": [
+"Ich ging zu Fuß zur Schule, als ich Schüler war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:25",
+"target": "Als Anna studierte, lebte sie in Köln.",
+"ru": "Когда Анна училась в университете, она жила в Кёльне.",
+"uk": "Коли Анна навчалася в університеті, вона жила в Кельні.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Obwohl",
+"Weil",
+"Wenn",
+"Damit"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "studierte",
+"distractors": [
+"hielt",
+"feucht",
+"ausfiel",
+"umzogen",
+"fragte"
+]
+},
+{
+"correct": "lebte",
+"distractors": [
+"erschrak",
+"erstes",
+"ankamen",
+"nervös",
+"freute"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"es",
+"ihr",
+"er",
+"ich",
+"du"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"zwischen",
+"an",
+"vor",
+"hinter",
+"neben"
+]
+},
+{
+"correct": "Köln",
+"distractors": [
+"Auto",
+"Hause",
+"Zug",
+"Schal",
+"Rad"
+]
+}
+],
+"alternatives": [
+"Anna lebte in Köln, als sie studierte."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:26",
+"target": "Als Tom neu in der Stadt war, kannte er niemanden.",
+"ru": "Когда Том только приехал в город, он никого не знал.",
+"uk": "Коли Том тільки-но приїхав до міста, він нікого не знав.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Obwohl",
+"Damit",
+"Ob",
+"Dass",
+"Nachdem"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Hause",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "neu",
+"distractors": [
+"neue",
+"neuen",
+"direkten",
+"leeren",
+"sprechen"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"unter",
+"vor",
+"hinter",
+"zwischen",
+"an"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Stadt",
+"distractors": [
+"Bahnhof",
+"See",
+"Schal",
+"Paket",
+"Kind"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"seid",
+"ist",
+"sind",
+"bin"
+]
+},
+{
+"correct": "kannte",
+"distractors": [
+"aufging",
+"früh",
+"fehlte",
+"lebte",
+"bezahlen"
+]
+},
+{
+"correct": "er",
+"distractors": [
+"es",
+"ich",
+"sie",
+"ihr",
+"wir"
+]
+},
+{
+"correct": "niemanden",
+"distractors": [
+"hielten",
+"verließen",
+"umzogen",
+"fanden",
+"einkaufen"
+]
+}
+],
+"alternatives": [
+"Als Tom neu in der Stadt war, kannte er keinen Menschen.",
+"Tom kannte niemanden, als er neu in der Stadt war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:27",
+"target": "Als wir Nachbarn waren, sahen wir uns oft.",
+"ru": "Когда мы были соседями, мы часто виделись.",
+"uk": "Коли ми були сусідами, ми часто бачилися.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Nachdem",
+"Weil",
+"Ob",
+"Obwohl"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"ich",
+"er",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "Nachbarn",
+"distractors": [
+"Köln",
+"Hause",
+"Bus",
+"Pause",
+"Paket"
+]
+},
+{
+"correct": "waren",
+"distractors": [
+"sind",
+"wart",
+"war",
+"warst",
+"ist"
+]
+},
+{
+"correct": "sahen",
+"distractors": [
+"erreichten",
+"verließen",
+"kamen",
+"hatten",
+"bezahlen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"du",
+"sie",
+"es",
+"er"
+]
+},
+{
+"correct": "uns",
+"distractors": [
+"sich",
+"dir",
+"dich",
+"euch",
+"mich"
+]
+},
+{
+"correct": "oft",
+"distractors": [
+"studierte",
+"regnete",
+"einmal",
+"bekam",
+"öffnete"
+]
+}
+],
+"alternatives": [
+"Wir sahen uns oft, als wir Nachbarn waren."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:28",
+"target": "Als meine Tochter klein war, las ich ihr vor.",
+"ru": "Когда моя дочь была маленькой, я читал ей вслух.",
+"uk": "Коли моя дочка була маленькою, я читав їй уголос.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Wenn",
+"Weil",
+"Dass",
+"Damit",
+"Ob"
+]
+},
+{
+"correct": "meine",
+"distractors": [
+"mein",
+"meinem",
+"meinen",
+"meiner",
+"sein"
+]
+},
+{
+"correct": "Tochter",
+"distractors": [
+"Handy",
+"Wecker",
+"Eingang",
+"Haus",
+"Keller"
+]
+},
+{
+"correct": "klein",
+"distractors": [
+"kleiner",
+"kleine",
+"kleinen",
+"gehen",
+"direkten"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bist",
+"bin",
+"seid",
+"sein",
+"ist"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"liest",
+"lese",
+"lesen",
+"draußen",
+"offen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"es",
+"er",
+"sie",
+"wir"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"sie",
+"er",
+"du",
+"es",
+"wir"
+]
+},
+{
+"correct": "vor",
+"distractors": [
+"in",
+"neben",
+"an",
+"zwischen",
+"hinter"
+]
+}
+],
+"alternatives": [
+"Ich las ihr vor, als meine Tochter klein war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:29",
+"target": "Als ich im Hotel arbeitete, stand ich früh auf.",
+"ru": "Когда я работал в гостинице, я рано вставал.",
+"uk": "Коли я працював у готелі, я рано вставав.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Ob",
+"Obwohl",
+"Nachdem",
+"Wenn",
+"Dass"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"sie",
+"er",
+"es",
+"du"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"ins",
+"ans",
+"zum",
+"aufs",
+"vom"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "arbeitete",
+"distractors": [
+"arbeiten",
+"gearbeitet",
+"arbeitest",
+"arbeitet",
+"arbeite"
+]
+},
+{
+"correct": "stand",
+"distractors": [
+"stehe",
+"stehst",
+"steht",
+"stehen",
+"steigen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"wir",
+"er",
+"sie",
+"es"
+]
+},
+{
+"correct": "früh",
+"distractors": [
+"ausfiel",
+"verließen",
+"aufging",
+"zerbrach",
+"fanden"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"über",
+"neben",
+"unter",
+"in",
+"aus"
+]
+}
+],
+"alternatives": [
+"Ich stand früh auf, als ich im Hotel arbeitete."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:30",
+"target": "Als wir noch kein Auto hatten, nahmen wir die Bahn.",
+"ru": "Пока у нас ещё не было машины, мы ездили на электричке.",
+"uk": "Поки ми ще не мали машини, ми їздили електричкою.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Obwohl",
+"Dass",
+"Weil",
+"Nachdem"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"sie",
+"er",
+"ihr",
+"ich"
+]
+},
+{
+"correct": "noch",
+"distractors": [
+"auch",
+"immer",
+"schon",
+"nicht",
+"wieder"
+]
+},
+{
+"correct": "kein",
+"distractors": [
+"keine",
+"keinen",
+"falschen",
+"draußen",
+"einen"
+]
+},
+{
+"correct": "Auto",
+"distractors": [
+"Tom",
+"Mitternacht",
+"Hotel",
+"Fenster",
+"Schrank"
+]
+},
+{
+"correct": "hatten",
+"distractors": [
+"hat",
+"haben",
+"hattest",
+"hatte",
+"hast"
+]
+},
+{
+"correct": "nahmen",
+"distractors": [
+"angerufen",
+"losfuhren",
+"öffneten",
+"bezahlen",
+"umzogen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"ihr",
+"ich",
+"er",
+"sie"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Bahn",
+"distractors": [
+"Preis",
+"Platz",
+"Mitternacht",
+"Schnee",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Wir nahmen die Bahn, als wir noch kein Auto hatten."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:31",
+"target": "Als ich ausgestiegen bin, hat es geschneit.",
+"ru": "Когда я вышел из транспорта, шёл снег.",
+"uk": "Коли я вийшов із транспорту, йшов сніг.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Dass",
+"Nachdem",
+"Obwohl",
+"Ob"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"er",
+"sie",
+"du",
+"ihr"
+]
+},
+{
+"correct": "ausgestiegen",
+"distractors": [
+"umzogen",
+"verließen",
+"geschrieben",
+"erreichten",
+"losfuhren"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"sein",
+"bist",
+"sind",
+"seid",
+"ist"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"habt",
+"habe",
+"hast",
+"haben",
+"hatte"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"du",
+"sie",
+"er",
+"wir",
+"ihr"
+]
+},
+{
+"correct": "geschneit",
+"distractors": [
+"sahen",
+"einmal",
+"öffnete",
+"kamen",
+"studierte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:32",
+"target": "Als du geschrieben hast, war ich einkaufen.",
+"ru": "Когда ты написал, я был за покупками.",
+"uk": "Коли ти написав, я був за покупками.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Damit",
+"Ob",
+"Wenn",
+"Weil"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"wir",
+"es",
+"er",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "geschrieben",
+"distractors": [
+"schreibt",
+"gesprochen",
+"gefunden",
+"verließen",
+"angezogen"
+]
+},
+{
+"correct": "hast",
+"distractors": [
+"habt",
+"haben",
+"hat",
+"hatte",
+"habe"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"seid",
+"sein",
+"ist",
+"bist",
+"bin"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"wir",
+"er",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "einkaufen",
+"distractors": [
+"waren",
+"bezahlen",
+"hatten",
+"fanden",
+"nahmen"
+]
+}
+],
+"alternatives": [
+"Ich war einkaufen, als du geschrieben hast."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:33",
+"target": "Als Anna nach Hause kam, lag der Brief schon da.",
+"ru": "Когда Анна пришла домой, письмо уже лежало там.",
+"uk": "Коли Анна прийшла додому, лист уже лежав там.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Nachdem",
+"Ob",
+"Dass",
+"Obwohl"
+]
+},
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Kinder",
+"Gäste",
+"Schlüssel",
+"Zug"
+]
+},
+{
+"correct": "nach",
+"distractors": [
+"seit",
+"aus",
+"bei",
+"für",
+"von"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Preis",
+"Wind",
+"Fahrrad",
+"Eingang",
+"Schlüssel"
+]
+},
+{
+"correct": "kam",
+"distractors": [
+"gekommen",
+"kommt",
+"komme",
+"kommst",
+"kommen"
+]
+},
+{
+"correct": "lag",
+"distractors": [
+"liegt",
+"liegen",
+"runden",
+"direkten",
+"holen"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"dem",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Brief",
+"distractors": [
+"Essen",
+"Bahn",
+"Adresse",
+"Post",
+"Arzt"
+]
+},
+{
+"correct": "schon",
+"distractors": [
+"nicht",
+"immer",
+"auch",
+"noch",
+"wieder"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"umzogen",
+"öffneten",
+"lief",
+"losfuhren",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:34",
+"target": "Als Tom bezahlen wollte, fehlte seine Karte.",
+"ru": "Когда Том хотел заплатить, выяснилось, что у него нет карты.",
+"uk": "Коли Том хотів заплатити, з'ясувалося, що він не має карти.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Damit",
+"Dass",
+"Wenn",
+"Ob"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "bezahlen",
+"distractors": [
+"hatten",
+"waren",
+"regnen",
+"kamen",
+"nahmen"
+]
+},
+{
+"correct": "wollte",
+"distractors": [
+"bekam",
+"hielt",
+"sahen",
+"ausfiel",
+"viel"
+]
+},
+{
+"correct": "fehlte",
+"distractors": [
+"fragte",
+"schlief",
+"ausgestiegen",
+"ausfiel",
+"feucht"
+]
+},
+{
+"correct": "seine",
+"distractors": [
+"seinem",
+"ein",
+"einem",
+"einen",
+"einer"
+]
+},
+{
+"correct": "Karte",
+"distractors": [
+"Tür",
+"Bus",
+"Jacke",
+"Paket",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:35",
+"target": "Als wir ankamen, lief der Film schon.",
+"ru": "Когда мы пришли, фильм уже шёл.",
+"uk": "Коли ми прийшли, фільм уже йшов.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Ob",
+"Obwohl",
+"Wenn",
+"Nachdem"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"es",
+"du",
+"sie",
+"er",
+"ihr"
+]
+},
+{
+"correct": "ankamen",
+"distractors": [
+"nahmen",
+"regnen",
+"ausgestiegen",
+"verließen",
+"fanden"
+]
+},
+{
+"correct": "lief",
+"distractors": [
+"ausging",
+"stärker",
+"losfuhren",
+"viel",
+"schlief"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"das",
+"den",
+"und"
+]
+},
+{
+"correct": "Film",
+"distractors": [
+"Haus",
+"Wecker",
+"Hotel",
+"Flur",
+"Ampel"
+]
+},
+{
+"correct": "schon",
+"distractors": [
+"noch",
+"nicht",
+"wieder",
+"auch",
+"immer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:36",
+"target": "Als der Alarm losging, verließen wir das Haus.",
+"ru": "Когда сработала сигнализация, мы вышли из дома.",
+"uk": "Коли спрацювала сигналізація, ми вийшли з дому.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Nachdem",
+"Dass",
+"Damit",
+"Wenn",
+"Obwohl"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"den",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Alarm",
+"distractors": [
+"Jacke",
+"Aufzug",
+"Kisten",
+"Karte",
+"Koffer"
+]
+},
+{
+"correct": "losging",
+"distractors": [
+"anfing",
+"schlief",
+"studierte",
+"ankamen",
+"hielt"
+]
+},
+{
+"correct": "verließen",
+"distractors": [
+"nahmen",
+"sahen",
+"geschrieben",
+"losfuhren",
+"fanden"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"ich",
+"ihr",
+"es",
+"er"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"die",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Haus",
+"distractors": [
+"Sonne",
+"Rad",
+"Licht",
+"Kurs",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Wir verließen das Haus, als der Alarm losging."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:37",
+"target": "Als der Wind stärker wurde, verließen wir den Strand.",
+"ru": "Когда ветер усилился, мы ушли с пляжа.",
+"uk": "Коли вітер посилився, ми покинули пляж.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Ob",
+"Dass",
+"Obwohl",
+"Nachdem"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Wind",
+"distractors": [
+"Hause",
+"Eingang",
+"Tasche",
+"Tee",
+"Essen"
+]
+},
+{
+"correct": "stärker",
+"distractors": [
+"fast",
+"fragte",
+"anfing",
+"ankam",
+"klingelte"
+]
+},
+{
+"correct": "wurde",
+"distractors": [
+"wird",
+"bereit",
+"leise",
+"allein",
+"ruhig"
+]
+},
+{
+"correct": "verließen",
+"distractors": [
+"losfuhren",
+"kamen",
+"nahmen",
+"ankamen",
+"hielten"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"ich",
+"sie",
+"es",
+"er"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"dem",
+"die",
+"und",
+"mit"
+]
+},
+{
+"correct": "Strand",
+"distractors": [
+"Eingang",
+"Essen",
+"Fahrrad",
+"Musik",
+"Flur"
+]
+}
+],
+"alternatives": [
+"Wir verließen den Strand, als der Wind stärker wurde."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:38",
+"target": "Als ich den Schrank öffnete, fiel der Schal heraus.",
+"ru": "Когда я открыл шкаф, из него выпал шарф.",
+"uk": "Коли я відкрив шафу, з неї випав шарф.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Wenn",
+"Ob",
+"Nachdem",
+"Weil"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"er",
+"es",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"das",
+"die",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schrank",
+"distractors": [
+"Tom",
+"Fenster",
+"Jacke",
+"Auto",
+"Kinder"
+]
+},
+{
+"correct": "öffnete",
+"distractors": [
+"stärker",
+"erleichtert",
+"fehlte",
+"zerbrach",
+"angerufen"
+]
+},
+{
+"correct": "fiel",
+"distractors": [
+"anfing",
+"erstes",
+"regnen",
+"kannte",
+"losfuhren"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"dem",
+"die",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schal",
+"distractors": [
+"See",
+"Ball",
+"Auto",
+"Bus",
+"Hause"
+]
+},
+{
+"correct": "heraus",
+"distractors": [
+"losfuhren",
+"schlief",
+"angerufen",
+"kamen",
+"erstes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:39",
+"target": "Als wir das Hotel fanden, war es fast Mitternacht.",
+"ru": "Когда мы нашли гостиницу, была почти полночь.",
+"uk": "Коли ми знайшли готель, була майже північ.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Obwohl",
+"Ob",
+"Damit",
+"Wenn",
+"Dass"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"sie",
+"er",
+"ich",
+"du",
+"ihr"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"der",
+"den",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "fanden",
+"distractors": [
+"nahmen",
+"niemanden",
+"ankamen",
+"hielten",
+"ausgestiegen"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sind",
+"seid",
+"bin",
+"bist",
+"ist"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"er",
+"ich",
+"sie",
+"ihr",
+"du"
+]
+},
+{
+"correct": "fast",
+"distractors": [
+"roch",
+"früh",
+"sahen",
+"hielten",
+"verließen"
+]
+},
+{
+"correct": "Mitternacht",
+"distractors": [
+"Tom",
+"Platz",
+"Auto",
+"Fenster",
+"Paket"
+]
+}
+],
+"alternatives": [
+"Es war fast Mitternacht, als wir das Hotel fanden."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:40",
+"target": "Als der Strom ausfiel, holte ich eine Kerze.",
+"ru": "Когда отключили электричество, я принёс свечу.",
+"uk": "Коли відключили електрику, я приніс свічку.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Damit",
+"Nachdem",
+"Obwohl",
+"Weil",
+"Ob"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"den",
+"die",
+"das",
+"dem",
+"und"
+]
+},
+{
+"correct": "Strom",
+"distractors": [
+"Bus",
+"Tom",
+"Schlüssel",
+"Kinder",
+"Fenster"
+]
+},
+{
+"correct": "ausfiel",
+"distractors": [
+"feucht",
+"studierte",
+"erschrak",
+"verließen",
+"angerufen"
+]
+},
+{
+"correct": "holte",
+"distractors": [
+"nahmen",
+"anfing",
+"nervös",
+"umzogen",
+"verließen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"er",
+"ihr",
+"es",
+"du"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"einen",
+"ein",
+"einem",
+"einer",
+"und"
+]
+},
+{
+"correct": "Kerze",
+"distractors": [
+"Tom",
+"Fenster",
+"Taxi",
+"Karte",
+"Kasse"
+]
+}
+],
+"alternatives": [
+"Ich holte eine Kerze, als der Strom ausfiel."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:41",
+"target": "Ich freute mich, als das Paket ankam.",
+"ru": "Я обрадовался, когда пришла посылка.",
+"uk": "Я зрадів, коли надійшла посилка.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Es",
+"Wir",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "freute",
+"distractors": [
+"schlief",
+"fehlte",
+"niemanden",
+"studierte",
+"feucht"
+]
+},
+{
+"correct": "mich",
+"distractors": [
+"mir",
+"dir",
+"dich",
+"uns",
+"sich"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"dass",
+"wenn",
+"damit",
+"weil",
+"ob"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"dem",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Paket",
+"distractors": [
+"Anna",
+"Bus",
+"Zimmer",
+"Tom",
+"Karte"
+]
+},
+{
+"correct": "ankam",
+"distractors": [
+"ausfiel",
+"ausgestiegen",
+"fanden",
+"verließen",
+"erstes"
+]
+}
+],
+"alternatives": [
+"Als das Paket ankam, freute ich mich."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:42",
+"target": "Sie erschrak, als das Glas zerbrach.",
+"ru": "Она испугалась, когда разбился стакан.",
+"uk": "Вона злякалася, коли розбилася склянка.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Ich",
+"Du",
+"Wir",
+"Er",
+"Es"
+]
+},
+{
+"correct": "erschrak",
+"distractors": [
+"fehlte",
+"kannte",
+"heraus",
+"einkaufen",
+"öffneten"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"dass",
+"nachdem",
+"wenn",
+"obwohl"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"der",
+"die",
+"den",
+"und"
+]
+},
+{
+"correct": "Glas",
+"distractors": [
+"Platz",
+"Baby",
+"Bahnhof",
+"Stadt",
+"Flur"
+]
+},
+{
+"correct": "zerbrach",
+"distractors": [
+"kamen",
+"ausgestiegen",
+"gerade",
+"anfing",
+"früh"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:43",
+"target": "Wir hielten an, als die Ampel rot wurde.",
+"ru": "Мы остановились, когда загорелся красный свет.",
+"uk": "Ми зупинилися, коли спалахнуло червоне світло.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Du",
+"Ich",
+"Es",
+"Sie"
+]
+},
+{
+"correct": "hielten",
+"distractors": [
+"angerufen",
+"öffneten",
+"einkaufen",
+"offen",
+"nahmen"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"zwischen",
+"in",
+"über",
+"neben",
+"aus"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"wenn",
+"ob",
+"weil",
+"damit",
+"dass"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"der",
+"den",
+"das",
+"und"
+]
+},
+{
+"correct": "Ampel",
+"distractors": [
+"Tom",
+"Gäste",
+"Hause",
+"Termin",
+"Arzt"
+]
+},
+{
+"correct": "rot",
+"distractors": [
+"rote",
+"rotes",
+"roten",
+"gesehen",
+"langen"
+]
+},
+{
+"correct": "wurde",
+"distractors": [
+"wird",
+"bereit",
+"leise",
+"allein",
+"ruhig"
+]
+}
+],
+"alternatives": [
+"Als die Ampel rot wurde, hielten wir an."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:44",
+"target": "Er lachte, als er das Foto sah.",
+"ru": "Он рассмеялся, когда увидел фотографию.",
+"uk": "Він засміявся, коли побачив фотографію.",
+"tiles": [
+{
+"correct": "Er",
+"distractors": [
+"Es",
+"Sie",
+"Du",
+"Wir",
+"Ihr"
+]
+},
+{
+"correct": "lachte",
+"distractors": [
+"geschneit",
+"holte",
+"kamen",
+"aufging",
+"gerade"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"nachdem",
+"wenn",
+"dass",
+"weil"
+]
+},
+{
+"correct": "er",
+"distractors": [
+"ihr",
+"ich",
+"wir",
+"es",
+"du"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"dem",
+"die",
+"und"
+]
+},
+{
+"correct": "Foto",
+"distractors": [
+"Haus",
+"Kerze",
+"Köln",
+"Platz",
+"Kind"
+]
+},
+{
+"correct": "sah",
+"distractors": [
+"sehen",
+"gesehen",
+"sehe",
+"zusammen",
+"angerufen"
+]
+}
+],
+"alternatives": [
+"Als er das Foto sah, lachte er."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:45",
+"target": "Ich habe viel gelernt, als ich dort gewohnt habe.",
+"ru": "Я многому научился, когда там жил.",
+"uk": "Я багато чого навчився, коли там жив.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Du",
+"Wir",
+"Ihr",
+"Es"
+]
+},
+{
+"correct": "habe",
+"distractors": [
+"hast",
+"hatte",
+"haben",
+"habt",
+"hat"
+]
+},
+{
+"correct": "viel",
+"distractors": [
+"anfing",
+"nervös",
+"angerufen",
+"feucht",
+"wollte"
+]
+},
+{
+"correct": "gelernt",
+"distractors": [
+"lernt",
+"lernen",
+"lerne",
+"lernst",
+"kochen"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"ob",
+"wenn",
+"nachdem",
+"damit",
+"weil"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"er",
+"du",
+"ihr",
+"es"
+]
+},
+{
+"correct": "dort",
+"distractors": [
+"vorne",
+"drinnen",
+"draußen",
+"oben",
+"hier"
+]
+},
+{
+"correct": "gewohnt",
+"distractors": [
+"wohnt",
+"wohnen",
+"wohnte",
+"wohnst",
+"wohne"
+]
+},
+{
+"correct": "habe",
+"distractors": [
+"hatte",
+"hast",
+"haben",
+"hat",
+"habt"
+]
+}
+],
+"alternatives": [
+"Als ich dort gewohnt habe, habe ich viel gelernt."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:46",
+"target": "Als ich den Preis hörte, fragte ich noch einmal nach.",
+"ru": "Когда я услышал цену, я переспросил.",
+"uk": "Коли я почув ціну, я перепитав.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Damit",
+"Obwohl",
+"Wenn",
+"Nachdem"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"er",
+"wir",
+"ihr",
+"es"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"die",
+"der",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Preis",
+"distractors": [
+"Schüler",
+"Kasse",
+"Karte",
+"Kerze",
+"Glas"
+]
+},
+{
+"correct": "hörte",
+"distractors": [
+"bekam",
+"einkaufen",
+"öffneten",
+"anfing",
+"lebte"
+]
+},
+{
+"correct": "fragte",
+"distractors": [
+"heraus",
+"studierte",
+"fiel",
+"erschrak",
+"viel"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"wir",
+"du",
+"er",
+"ihr"
+]
+},
+{
+"correct": "noch",
+"distractors": [
+"immer",
+"auch",
+"wieder",
+"nicht",
+"schon"
+]
+},
+{
+"correct": "einmal",
+"distractors": [
+"öffnete",
+"ankamen",
+"lief",
+"lebte",
+"offen"
+]
+},
+{
+"correct": "nach",
+"distractors": [
+"mit",
+"ohne",
+"seit",
+"von",
+"bei"
+]
+}
+],
+"alternatives": [
+"Ich fragte noch einmal nach, als ich den Preis hörte."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:47",
+"target": "Als wir den Keller öffneten, roch es feucht.",
+"ru": "Когда мы открыли подвал, запахло сыростью.",
+"uk": "Коли ми відкрили підвал, запахло вогкістю.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Wenn",
+"Obwohl",
+"Weil",
+"Damit"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"sie",
+"ich",
+"du",
+"er",
+"ihr"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"das",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Keller",
+"distractors": [
+"Bus",
+"Laden",
+"Ausweis",
+"Lampe",
+"Sofa"
+]
+},
+{
+"correct": "öffneten",
+"distractors": [
+"regnen",
+"ausgestiegen",
+"nahmen",
+"bezahlen",
+"hatten"
+]
+},
+{
+"correct": "roch",
+"distractors": [
+"geschneit",
+"lachte",
+"stärker",
+"hielten",
+"holte"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"er",
+"ihr",
+"sie",
+"du",
+"ich"
+]
+},
+{
+"correct": "feucht",
+"distractors": [
+"regnete",
+"erschrak",
+"kannte",
+"einkaufen",
+"öffnete"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:48",
+"target": "Als Tom den Pass fand, war er erleichtert.",
+"ru": "Когда Том нашёл паспорт, он почувствовал облегчение.",
+"uk": "Коли Том знайшов паспорт, він відчув полегшення.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Ob",
+"Obwohl",
+"Nachdem",
+"Weil",
+"Damit"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"die",
+"und"
+]
+},
+{
+"correct": "Pass",
+"distractors": [
+"Pässe",
+"Tisch",
+"Fuß",
+"Tasche",
+"Termin"
+]
+},
+{
+"correct": "fand",
+"distractors": [
+"gefunden",
+"findet",
+"findest",
+"finde",
+"geschrieben"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"seid",
+"sein",
+"sind",
+"bin",
+"ist"
+]
+},
+{
+"correct": "er",
+"distractors": [
+"es",
+"wir",
+"sie",
+"ihr",
+"ich"
+]
+},
+{
+"correct": "erleichtert",
+"distractors": [
+"losging",
+"umzogen",
+"losfuhren",
+"aufwachte",
+"studierte"
+]
+}
+],
+"alternatives": [
+"Tom war erleichtert, als er den Pass fand."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:49",
+"target": "Als ich gestern aus dem Haus ging, lag Schnee.",
+"ru": "Когда я вчера вышел из дома, лежал снег.",
+"uk": "Коли я вчора вийшов із дому, лежав сніг.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Obwohl",
+"Dass",
+"Damit",
+"Nachdem",
+"Ob"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"es",
+"sie",
+"du",
+"er",
+"ihr"
+]
+},
+{
+"correct": "gestern",
+"distractors": [
+"jetzt",
+"morgen",
+"bald",
+"früher",
+"heute"
+]
+},
+{
+"correct": "aus",
+"distractors": [
+"nach",
+"für",
+"mit",
+"ohne",
+"vor"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"den",
+"das",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Haus",
+"distractors": [
+"Flur",
+"Eingang",
+"Garten",
+"Bahn",
+"Zug"
+]
+},
+{
+"correct": "ging",
+"distractors": [
+"gegangen",
+"gehe",
+"gehst",
+"geht",
+"gehen"
+]
+},
+{
+"correct": "lag",
+"distractors": [
+"liegt",
+"liegen",
+"runden",
+"direkten",
+"holen"
+]
+},
+{
+"correct": "Schnee",
+"distractors": [
+"Kisten",
+"Karte",
+"Koffer",
+"Bahn",
+"Platz"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 24,
+"id": "de:24:50",
+"target": "Als die Sonne aufging, erreichten wir den Bahnhof.",
+"ru": "Когда взошло солнце, мы добрались до вокзала.",
+"uk": "Коли зійшло сонце, ми дісталися вокзалу.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Obwohl",
+"Damit",
+"Weil",
+"Nachdem",
+"Dass"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"das",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Sonne",
+"distractors": [
+"Fuß",
+"Fenster",
+"Schrank",
+"Licht",
+"Film"
+]
+},
+{
+"correct": "aufging",
+"distractors": [
+"regnete",
+"losging",
+"nahmen",
+"anrief",
+"bezahlen"
+]
+},
+{
+"correct": "erreichten",
+"distractors": [
+"regnen",
+"bezahlen",
+"verließen",
+"hielten",
+"offen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"sie",
+"er",
+"es",
+"du"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"dem",
+"der",
+"das",
+"und",
+"mit"
+]
+},
+{
+"correct": "Bahnhof",
+"distractors": [
+"Zug",
+"Bus",
+"Gäste",
+"Paket",
+"Kinder"
+]
+}
+],
+"alternatives": [
+"Wir erreichten den Bahnhof, als die Sonne aufging."
+]
+}
+]

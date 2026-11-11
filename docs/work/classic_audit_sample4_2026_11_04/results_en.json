@@ -1,0 +1,22 @@
+[
+{"id": "en-classic-r1:06.17", "type": "B2", "field": "ru", "problem": "ru «турникеты» и uk «ворота» — разный смысл между ru и uk; gates = ворота", "fix": "Когда закрываются ворота?"},
+{"id": "en-classic-r1:08.17", "type": "B2", "field": "uk", "problem": "неверная форма: «о шості» вместо «о шостій»", "fix": "Будильник дзвонить о шостій тридцять."},
+{"id": "en-classic-r1:10.44", "type": "B1", "field": "tiles", "problem": "соблазн should даёт «You should not touch the cable.» = uk «Ви не повинні торкатися кабелю», нет в alternatives", "fix": {"position": 1, "replace_distractor": "should", "with": "did"}},
+{"id": "en-classic-r1:10.44", "type": "B1", "field": "tiles", "problem": "соблазн can + not даёт «You can not touch the cable.» = ru «Нельзя прикасаться», нет в alternatives", "fix": {"position": 1, "replace_distractor": "can", "with": "does"}},
+{"id": "en-classic-r1:13.30", "type": "B2", "field": "uk", "problem": "неграмматично: «Батарея не вистачить» — нужен родительный падеж", "fix": "Батареї не вистачить на весь день."},
+{"id": "en-classic-r1:13.32", "type": "B2", "field": "uk", "problem": "неграмматично: «Чи знадобиться їй підвезти?»", "fix": "Чи треба буде її підвезти?"},
+{"id": "en-classic-r1:16.05", "type": "B2", "field": "ru", "problem": "ru в будущем времени «отправимся», target и uk — прошедшее", "fix": "Мы отправились в порт до обеда."},
+{"id": "en-classic-r1:17.50", "type": "B2", "field": "uk", "problem": "«щойно» = только что (завершено), противоречит «закінчую»; нужно «якраз»", "fix": "Я якраз закінчую звіт на своєму планшеті."},
+{"id": "en-classic-r1:18.22", "type": "B2", "field": "ru", "problem": "потеряно «Please/пожалуйста» (в uk есть); «Подпишитесь» двусмысленно (подписка)", "fix": "Пожалуйста, распишитесь на этой строке."},
+{"id": "en-classic-r1:19.17", "type": "B1", "field": "tiles", "problem": "соблазн in даёт «They are in the airport.» = «Они в аэропорту», нет в alternatives", "fix": {"position": 2, "replace_distractor": "in", "with": "of"}},
+{"id": "en-classic-r1:21.33", "type": "B2", "field": "ru", "problem": "«Все заняли свои места» = took their seats, не «has a seat»", "fix": "У каждого есть место."},
+{"id": "en-classic-r1:21.33", "type": "B2", "field": "uk", "problem": "«Усім є місця» неграмматично и меняет смысл (места для всех)", "fix": "У кожного є місце."},
+{"id": "en-classic-r1:23.45", "type": "B2", "field": "uk", "problem": "uk «Монітор» ≠ screen и ≠ ru «Экран»", "fix": "Екран можна замінити."},
+{"id": "en-classic-r1:27.08", "type": "B1", "field": "tiles", "problem": "соблазн knows даёт «She said she knows the address.» — грамматично и буквально = ru/uk «что знает адрес», нет в alternatives", "fix": {"position": 3, "replace_distractor": "knows", "with": "knowing"}},
+{"id": "en-classic-r1:27.46", "type": "B1", "field": "tiles", "problem": "соблазн has даёт «He said he has already paid the deposit.» — допустимо без согласования времён и = ru/uk, нет в alternatives", "fix": {"position": 3, "replace_distractor": "has", "with": "having"}},
+{"id": "en-classic-r1:28.07", "type": "B1", "field": "tiles", "problem": "ru «Кошка умылась» — «The cat washed herself.» верно для кошки-самки, нет в alternatives", "fix": {"position": 3, "replace_distractor": "herself", "with": "yourselves"}},
+{"id": "en-classic-r1:28.07", "type": "B1", "field": "tiles", "problem": "uk «Кіт помився» — «The cat washed himself.» верно для кота, нет в alternatives", "fix": {"position": 3, "replace_distractor": "himself", "with": "themselves"}},
+{"id": "en-classic-r1:28.37", "type": "B2", "field": "ru", "problem": "потеряно «Please/пожалуйста» (в uk есть)", "fix": "Пожалуйста, чувствуйте себя как дома."},
+{"id": "en-classic-r1:29.32", "type": "B1", "field": "tiles", "problem": "соблазн in даёт «Did she use to work in reception?» — естественный британский вариант, нет в alternatives", "fix": {"position": 5, "replace_distractor": "in", "with": "into"}},
+{"id": "en-classic-r1:29.32", "type": "B1", "field": "tiles", "problem": "соблазн on даёт «Did she use to work on reception?» — употребимо в BrE, нет в alternatives", "fix": {"position": 5, "replace_distractor": "on", "with": "under"}}
+]

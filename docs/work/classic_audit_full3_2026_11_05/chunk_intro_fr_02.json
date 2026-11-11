@@ -1,0 +1,1010 @@
+[
+{
+"lesson": 9,
+"blocks": [
+{
+"textES": "Hay dos bolsas similares en el mostrador. Debes decir «mi bolsa está aquí», no «la bolsa está aquí». La palabra que precede al artículo lo vincula con su dueño y coincide con su nombre en francés.\nPrimero, determina a quién pertenece el artículo. Mon o ma: a mí; ton o ta: a ti. La elección final no depende del género del propietario, sino del artículo en sí.",
+"textId": "Ada dua tas serupa di konter. Anda harus mengatakan \"tas saya ada di sini,\" bukan \"tas itu ada di sini.\" Kata sebelum barang tersebut menghubungkannya dengan pemiliknya dan sesuai dengan nama Prancisnya.\nPertama, tentukan siapa pemilik barang tersebut. Mon atau ma - saya, ton atau ta - Anda. Pilihan terakhir tidak bergantung pada jenis kelamin pemilik, tetapi pada barang itu sendiri.",
+"textPl": "Na ladzie leżą dwie podobne torby. Powinieneś powiedzieć „moja torba jest tutaj”, a nie „torba jest tutaj”. Słowo przed nazwą przedmiotu łączy go z jego właścicielem i pasuje do jego francuskiej nazwy.\nNajpierw określ, do kogo należy przedmiot. Mon lub ma – do mnie, ton lub ta – do ciebie. Ostateczny wybór nie zależy od płci właściciela, ale od samego przedmiotu.",
+"textPtBr": "Há duas bolsas semelhantes no balcão. Você deve dizer \"minha bolsa está aqui\", e não \"a bolsa está aqui\". A palavra antes do item o conecta ao seu dono e corresponde ao seu nome em francês.\nPrimeiro, determine a quem o item pertence. Mon ou ma - a mim, ton ou ta - a você. A escolha final depende não do gênero do proprietário, mas do próprio item.",
+"textRU": "На стойке лежат две похожие сумки. Нужно сказать не «сумка здесь», а «моя сумка здесь». Слово перед вещью одновременно связывает её с владельцем и подходит к её французскому названию.\nСначала установи, кому принадлежит вещь. Mon или ma — мне, ton или ta — тебе. Окончательный выбор зависит не от пола владельца, а от самой вещи.",
+"textTr": "Tezgahta birbirine benzeyen iki çanta var. \"Çanta burada\" değil, \"Çantam burada\" demelisiniz. Eşyanın önüne gelen kelime hem onu ​​sahibine bağlıyor hem de Fransızca adıyla eşleşiyor.\nÖncelikle eşyanın kime ait olduğunu belirleyin. Mon veya ma - bana, ton veya ta - size. Son seçim, sahibinin cinsiyetine değil, eşyanın kendisine bağlıdır.",
+"textUK": "На стійці лежать дві схожі сумки. Потрібно сказати не «торба тут», а «моя сумка тут». Слово перед річчю одночасно пов'язує її з власником і підходить до її французької назви.\nСпочатку встанови, кому належить річ. Mon чи ma – мені, ton чи ta – тобі. Остаточний вибір залежить не від статі власника, а від самої речі.",
+"textVi": "Có hai chiếc túi giống nhau trên quầy. Bạn nên nói \"túi của tôi ở đây\", chứ không phải \"cái túi ở đây\". Từ đứng trước món đồ vừa liên kết món đồ với chủ nhân của nó, vừa phù hợp với tên tiếng Pháp của nó.\nTrước tiên, hãy xác định vật phẩm thuộc về ai. Mon hoặc ma - tôi, ton hoặc ta - bạn. Lựa chọn cuối cùng không phụ thuộc vào giới tính của chủ sở hữu, mà phụ thuộc vào chính vật phẩm đó.",
+"titleES": "¿De quién es el artículo?: mon, ma, mes",
+"titleId": "Barang milik siapa: mon, ma, mes",
+"titlePl": "Czyj to przedmiot: mon, ma, mes",
+"titlePtBr": "De quem é o item: mon, ma, mes",
+"titleRU": "Чья вещь: mon, ma, mes",
+"titleTr": "Eşyanın sahibi: mon, ma, mes",
+"titleUK": "Чия річ: mon, ma, mes",
+"titleVi": "Vật phẩm của ai: mon, ma, mes",
+"titleByLocale": {
+"en": "Whose item: mon, ma, mes",
+"es": "¿De quién es el artículo?: mon, ma, mes",
+"id": "Barang milik siapa: mon, ma, mes",
+"pl": "Czyj to przedmiot: mon, ma, mes",
+"pt-BR": "De quem é o item: mon, ma, mes",
+"ru": "Чья вещь: mon, ma, mes",
+"tr": "Eşyanın sahibi: mon, ma, mes",
+"uk": "Чия річ: mon, ma, mes",
+"vi": "Vật phẩm của ai: mon, ma, mes"
+},
+"textByLocale": {
+"en": [
+"There are two similar bags on the counter. You should say \"my bag is here,\" not \"the bag is here.\" The word before the item both connects it to its owner and matches its French name.",
+"First, determine who the item belongs to. «Mon» or «ma» - me, «ton» or «ta» - you. The final choice depends not on the owner's gender, but on the item itself."
+],
+"es": [
+"Hay dos bolsas similares en el mostrador. Debes decir «mi bolsa está aquí», no «la bolsa está aquí». La palabra que precede al artículo lo vincula con su dueño y coincide con su nombre en francés.",
+"Primero, determina a quién pertenece el artículo. «Mon» o «ma»: a mí; «ton» o «ta»: a ti. La elección final no depende del género del propietario, sino del artículo en sí."
+],
+"id": [
+"Ada dua tas serupa di konter. Anda harus mengatakan \"tas saya ada di sini,\" bukan \"tas itu ada di sini.\" Kata sebelum barang tersebut menghubungkannya dengan pemiliknya dan sesuai dengan nama Prancisnya.",
+"Pertama, tentukan siapa pemilik barang tersebut. «Mon» atau «ma» - saya, «ton» atau «ta» - Anda. Pilihan terakhir tidak bergantung pada jenis kelamin pemilik, tetapi pada barang itu sendiri."
+],
+"pl": [
+"Na ladzie leżą dwie podobne torby. Powinieneś powiedzieć „moja torba jest tutaj”, a nie „torba jest tutaj”. Słowo przed nazwą przedmiotu łączy go z jego właścicielem i pasuje do jego francuskiej nazwy.",
+"Najpierw określ, do kogo należy przedmiot. «Mon» lub «ma» – do mnie, «ton» lub «ta» – do ciebie. Ostateczny wybór nie zależy od płci właściciela, ale od samego przedmiotu."
+],
+"pt-BR": [
+"Há duas bolsas semelhantes no balcão. Você deve dizer \"minha bolsa está aqui\", e não \"a bolsa está aqui\". A palavra antes do item o conecta ao seu dono e corresponde ao seu nome em francês.",
+"Primeiro, determine a quem o item pertence. «Mon» ou «ma» - a mim, «ton» ou «ta» - a você. A escolha final depende não do gênero do proprietário, mas do próprio item."
+],
+"ru": [
+"На стойке лежат две похожие сумки. Нужно сказать не «сумка здесь», а «моя сумка здесь». Слово перед вещью одновременно связывает её с владельцем и подходит к её французскому названию.",
+"Сначала установи, кому принадлежит вещь. «Mon» или «ma» — мне, «ton» или «ta» — тебе. Окончательный выбор зависит не от пола владельца, а от самой вещи."
+],
+"tr": [
+"Tezgahta birbirine benzeyen iki çanta var. \"Çanta burada\" değil, \"Çantam burada\" demelisiniz. Eşyanın önüne gelen kelime hem onu ​​sahibine bağlıyor hem de Fransızca adıyla eşleşiyor.",
+"Öncelikle eşyanın kime ait olduğunu belirleyin. «Mon» veya «ma» - bana, «ton» veya «ta» - size. Son seçim, sahibinin cinsiyetine değil, eşyanın kendisine bağlıdır."
+],
+"uk": [
+"На стійці лежать дві схожі сумки. Потрібно сказати не «торба тут», а «моя сумка тут». Слово перед річчю одночасно пов'язує її з власником і підходить до її французької назви.",
+"Спочатку встанови, кому належить річ. «Mon» чи «ma» – мені, «ton» чи «ta» – тобі. Остаточний вибір залежить не від статі власника, а від самої речі."
+],
+"vi": [
+"Có hai chiếc túi giống nhau trên quầy. Bạn nên nói \"túi của tôi ở đây\", chứ không phải \"cái túi ở đây\". Từ đứng trước món đồ vừa liên kết món đồ với chủ nhân của nó, vừa phù hợp với tên tiếng Pháp của nó.",
+"Trước tiên, hãy xác định vật phẩm thuộc về ai. «Mon» hoặc «ma» - tôi, «ton» hoặc «ta» - bạn. Lựa chọn cuối cùng không phụ thuộc vào giới tính của chủ sở hữu, mà phụ thuộc vào chính vật phẩm đó."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:09:01"
+]
+},
+{
+"textES": "Formulario del propietario + nombre del artículo\nDos preguntas independientes: ¿de quién es el objeto y es el único? Mon sac y ton sac se diferencian en el propietario; ma clé y mes clés, en el número de llaves. Para son sac, esta palabra por sí sola no basta para determinar el género del propietario.\nCompare una llave ma clé con varias llaves mes clés. El propietario sigue siendo el mismo. Este número de llaves ha cambiado la palabra que las precede. El género ya no se distingue en plural.",
+"textId": "Formulir pemilik + nama barang\nDua pertanyaan independen: barang ini milik siapa dan apakah ini satu-satunya? Mon sac dan ton sac berbeda pemiliknya; ma clé dan mes clés – berbeda jumlah kuncinya. Untuk son sac, kata ini saja tidak cukup untuk menentukan jenis kelamin pemiliknya.\nBandingkan satu kunci ma clé dan beberapa kunci mes clés. Pemiliknya tetap sama. Jumlah kunci ini telah mengubah kata sebelumnya. Jenis kelamin tidak lagi dibedakan dalam bentuk jamak.",
+"textPl": "Formularz właściciela + nazwa przedmiotu\nDwa niezależne pytania: czyj to przedmiot i czy jest jedyny? Mon sac i ton sac różnią się właścicielem; ma clé i mes clés – liczbą kluczy. W przypadku son sac samo to słowo nie wystarczy, aby określić płeć właściciela.\nPorównaj jeden klucz ma clé i kilka kluczy mes clés. Właściciel pozostaje ten sam. Liczba kluczy zmieniła słowo przed nimi. Płeć nie jest już rozróżniana w liczbie mnogiej.",
+"textPtBr": "Forma do proprietário + nome do item\nDuas questões independentes: de quem é o item e é o único? Os itens Mon sac e ton sac diferem no proprietário; os itens ma clé e mes clés, no número de chaves. Para o item son sac, essa palavra sozinha não é suficiente para determinar o gênero do proprietário.\nCompare uma chave ma clé com várias chaves mes clés. O proprietário permanece o mesmo. Este número de chaves alterou a palavra que as precede. O gênero não é mais distinguido no plural.",
+"textRU": "форма владельца + название вещи\nДва независимых вопроса: чья вещь и одна ли она? Mon sac и ton sac различаются хозяином; ma clé и mes clés — количеством ключей. Для son sac одного этого слова мало, чтобы определить пол владельца.\nСравни один ключ ma clé и несколько mes clés. Владелец остался тем же. Это число ключей изменило слово перед ними. Род во множественном числе уже не различается.",
+"textTr": "Sahibinin formu + eşyanın adı\nİki bağımsız soru: Bu eşya kime ait ve tek mi? Mon sac ve ton sac sahipleri bakımından farklılık gösterirken; ma clé ve mes clés ise anahtar sayısı bakımından farklılık gösteriyor. son sac için ise bu kelime tek başına sahibinin cinsiyetini belirlemek için yeterli değil.\nTek bir anahtar ma clé ve birden fazla anahtar mes clés'yi karşılaştırın. Sahip aynı kalır. Bu anahtar sayısı, önlerindeki kelimeyi değiştirmiştir. Çoğulda cinsiyet artık ayırt edilmez.",
+"textUK": "форма власника + назва речі\nДва незалежні питання: чия річ і чи вона одна? Mon sac та ton sac відрізняються господарем; ma clé та mes clés - кількістю ключів. Для son sac цього слова мало, щоб визначити стать власника.\nПорівняй один ключ ma clé і кілька mes clés. Власник залишився тим самим. Це число ключів змінило слово перед ними. Рід у множині вже не відрізняється.",
+"textVi": "Hình thức của chủ sở hữu + tên vật phẩm\nHai câu hỏi độc lập: vật này thuộc về ai và nó có phải là vật duy nhất không? Mon sac và ton sac khác nhau về chủ sở hữu; ma clé và mes clés khác nhau về số lượng chìa khóa. Đối với son sac, chỉ riêng từ này không đủ để xác định giới tính của chủ sở hữu.\nSo sánh một khóa ma clé và nhiều khóa mes clés. Chủ sở hữu vẫn giữ nguyên. Số lượng khóa này đã thay đổi từ đứng trước chúng. Giới tính không còn được phân biệt ở dạng số nhiều.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Owner's form + item's name",
+"Two independent questions: whose item is it and is it the only one? «Mon sac» and «ton sac» differ in the owner; «ma clé» and «mes clés» – in the number of keys. For «son sac», this word alone is not enough to determine the owner's gender.",
+"Compare one key «ma clé» and several keys «mes clés». The owner remains the same. This number of keys has changed the word before them. Gender is no longer distinguished in the plural."
+],
+"es": [
+"Formulario del propietario + nombre del artículo",
+"Dos preguntas independientes: ¿de quién es el objeto y es el único? «Mon sac» y «ton sac» se diferencian en el propietario; «ma clé» y «mes clés», en el número de llaves. Para «son sac», esta palabra por sí sola no basta para determinar el género del propietario.",
+"Compare una llave «ma clé» con varias llaves «mes clés». El propietario sigue siendo el mismo. Este número de llaves ha cambiado la palabra que las precede. El género ya no se distingue en plural."
+],
+"id": [
+"Formulir pemilik + nama barang",
+"Dua pertanyaan independen: barang ini milik siapa dan apakah ini satu-satunya? «Mon sac» dan «ton sac» berbeda pemiliknya; «ma clé» dan «mes clés» – berbeda jumlah kuncinya. Untuk «son sac», kata ini saja tidak cukup untuk menentukan jenis kelamin pemiliknya.",
+"Bandingkan satu kunci «ma clé» dan beberapa kunci «mes clés». Pemiliknya tetap sama. Jumlah kunci ini telah mengubah kata sebelumnya. Jenis kelamin tidak lagi dibedakan dalam bentuk jamak."
+],
+"pl": [
+"Formularz właściciela + nazwa przedmiotu",
+"Dwa niezależne pytania: czyj to przedmiot i czy jest jedyny? «Mon sac» i «ton sac» różnią się właścicielem; «ma clé» i «mes clés» – liczbą kluczy. W przypadku «son sac» samo to słowo nie wystarczy, aby określić płeć właściciela.",
+"Porównaj jeden klucz «ma clé» i kilka kluczy «mes clés». Właściciel pozostaje ten sam. Liczba kluczy zmieniła słowo przed nimi. Płeć nie jest już rozróżniana w liczbie mnogiej."
+],
+"pt-BR": [
+"Forma do proprietário + nome do item",
+"Duas questões independentes: de quem é o item e é o único? Os itens «Mon sac» e «ton sac» diferem no proprietário; os itens «ma clé» e «mes clés», no número de chaves. Para o item «son sac», essa palavra sozinha não é suficiente para determinar o gênero do proprietário.",
+"Compare uma chave «ma clé» com várias chaves «mes clés». O proprietário permanece o mesmo. Este número de chaves alterou a palavra que as precede. O gênero não é mais distinguido no plural."
+],
+"ru": [
+"форма владельца + название вещи",
+"Два независимых вопроса: чья вещь и одна ли она? «Mon sac» и «ton sac» различаются хозяином; «ma clé» и «mes clés» — количеством ключей. Для «son sac» одного этого слова мало, чтобы определить пол владельца.",
+"Сравни один ключ «ma clé» и несколько «mes clés». Владелец остался тем же. Это число ключей изменило слово перед ними. Род во множественном числе уже не различается."
+],
+"tr": [
+"Sahibinin formu + eşyanın adı",
+"İki bağımsız soru: Bu eşya kime ait ve tek mi? «Mon sac» ve «ton sac» sahipleri bakımından farklılık gösterirken; «ma clé» ve «mes clés» ise anahtar sayısı bakımından farklılık gösteriyor. «son sac» için ise bu kelime tek başına sahibinin cinsiyetini belirlemek için yeterli değil.",
+"Tek bir anahtar «ma clé» ve birden fazla anahtar «mes clés»'yi karşılaştırın. Sahip aynı kalır. Bu anahtar sayısı, önlerindeki kelimeyi değiştirmiştir. Çoğulda cinsiyet artık ayırt edilmez."
+],
+"uk": [
+"форма власника + назва речі",
+"Два незалежні питання: чия річ і чи вона одна? «Mon sac» та «ton sac» відрізняються господарем; «ma clé» та «mes clés» - кількістю ключів. Для «son sac» цього слова мало, щоб визначити стать власника.",
+"Порівняй один ключ «ma clé» і кілька «mes clés». Власник залишився тим самим. Це число ключів змінило слово перед ними. Рід у множині вже не відрізняється."
+],
+"vi": [
+"Hình thức của chủ sở hữu + tên vật phẩm",
+"Hai câu hỏi độc lập: vật này thuộc về ai và nó có phải là vật duy nhất không? «Mon sac» và «ton sac» khác nhau về chủ sở hữu; «ma clé» và «mes clés» khác nhau về số lượng chìa khóa. Đối với «son sac», chỉ riêng từ này không đủ để xác định giới tính của chủ sở hữu.",
+"So sánh một khóa «ma clé» và nhiều khóa «mes clés». Chủ sở hữu vẫn giữ nguyên. Số lượng khóa này đã thay đổi từ đứng trước chúng. Giới tính không còn được phân biệt ở dạng số nhiều."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:09:03",
+"fr:09:05"
+]
+},
+{
+"textES": "Estás hablando de tu artículo, un bolso. Sac es masculino, solo hay un artículo: elige mon. Luego sac y el conocido est ici. Cuando cambia el propietario, solo cambia la primera palabra.",
+"textId": "Anda berbicara tentang barang Anda, sebuah tas. Sac adalah maskulin, hanya ada satu barang: pilih mon. Kemudian sac dan est ici yang sudah dikenal. Ketika pemilik berubah, hanya kata pertama yang berubah.",
+"textPl": "Mówisz o swoim przedmiocie, torbie. Sac jest rodzaju męskiego, jest tylko jeden przedmiot: wybierz mon. Następnie sac i dobrze znany est ici. Po zmianie właściciela zmienia się tylko pierwsze słowo.",
+"textPtBr": "Você está falando sobre o seu item, uma bolsa. Sac é masculino, só existe um item: escolha mon. Depois, sac e o conhecido est ici. Quando o proprietário muda, apenas a primeira palavra muda.",
+"textRU": "Ты говоришь о своём предмете, сумке. Sac мужского рода, предмет один: выбирай mon. Затем sac и известное est ici. При смене владельца меняется только первое слово.",
+"textTr": "Bahsettiğiniz eşya, bir çanta. Sac erkek cinsiyetine ait, sadece bir eşya var: mon'yi seçin. Sonra sac ve bilinen est ici. Sahibi değiştiğinde sadece ilk kelime değişir.",
+"textUK": "Ти говориш про свій предмет, сумку. Sac чоловічого роду, предмет один: вибирай mon. Потім sac та відоме est ici. При зміні власника змінюється лише перше слово.",
+"textVi": "Bạn đang nói về vật phẩm của mình, một chiếc túi. Sac là giống đực, chỉ có một vật phẩm: hãy chọn mon. Sau đó là sac và est ici quen thuộc. Khi chủ sở hữu thay đổi, chỉ có từ đầu tiên thay đổi.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're talking about your item, a bag. «Sac» is masculine, there's only one item: choose «mon». Then «sac» and the well-known «est ici». When the owner changes, only the first word changes."
+],
+"es": [
+"Estás hablando de tu artículo, un bolso. «Sac» es masculino, solo hay un artículo: elige «mon». Luego «sac» y el conocido «est ici». Cuando cambia el propietario, solo cambia la primera palabra."
+],
+"id": [
+"Anda berbicara tentang barang Anda, sebuah tas. «Sac» adalah maskulin, hanya ada satu barang: pilih «mon». Kemudian «sac» dan «est ici» yang sudah dikenal. Ketika pemilik berubah, hanya kata pertama yang berubah."
+],
+"pl": [
+"Mówisz o swoim przedmiocie, torbie. «Sac» jest rodzaju męskiego, jest tylko jeden przedmiot: wybierz «mon». Następnie «sac» i dobrze znany «est ici». Po zmianie właściciela zmienia się tylko pierwsze słowo."
+],
+"pt-BR": [
+"Você está falando sobre o seu item, uma bolsa. «Sac» é masculino, só existe um item: escolha «mon». Depois, «sac» e o conhecido «est ici». Quando o proprietário muda, apenas a primeira palavra muda."
+],
+"ru": [
+"Ты говоришь о своём предмете, сумке. «Sac» мужского рода, предмет один: выбирай «mon». Затем «sac» и известное «est ici». При смене владельца меняется только первое слово."
+],
+"tr": [
+"Bahsettiğiniz eşya, bir çanta. «Sac» erkek cinsiyetine ait, sadece bir eşya var: «mon»'yi seçin. Sonra «sac» ve bilinen «est ici». Sahibi değiştiğinde sadece ilk kelime değişir."
+],
+"uk": [
+"Ти говориш про свій предмет, сумку. «Sac» чоловічого роду, предмет один: вибирай «mon». Потім «sac» та відоме «est ici». При зміні власника змінюється лише перше слово."
+],
+"vi": [
+"Bạn đang nói về vật phẩm của mình, một chiếc túi. «Sac» là giống đực, chỉ có một vật phẩm: hãy chọn «mon». Sau đó là «sac» và «est ici» quen thuộc. Khi chủ sở hữu thay đổi, chỉ có từ đầu tiên thay đổi."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:09:01",
+"fr:09:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:09:01",
+"target": "Mon sac est ici.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "fr:09:03",
+"target": "Ma clé est là.",
+"ru": "Мой ключ там.",
+"uk": "Мій ключ там."
+},
+{
+"id": "fr:09:05",
+"target": "Mes clés sont ici.",
+"ru": "Мои ключи здесь.",
+"uk": "Мої ключі тут."
+},
+{
+"id": "fr:09:01",
+"target": "Mon sac est ici.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "fr:09:04",
+"target": "Ta clé est là.",
+"ru": "Твой ключ там.",
+"uk": "Твій ключ там."
+}
+]
+},
+{
+"lesson": 10,
+"blocks": [
+{
+"textES": "Entras por primera vez a un patio y ves un banco. No buscas el banco que ya conoces, sino que comunicas información nueva: \"Hay un banco aquí\". Esto requiere una frase de tres palabras muy cortas.\nAnteriormente, mencionaste la ubicación de un objeto conocido. Ahora introduce uno nuevo: «Aquí hay un banco». La construcción il y a comunica presencia, pero no responde a la pregunta de dónde se encuentra un banco específico.",
+"textId": "Anda memasuki halaman untuk pertama kalinya dan melihat sebuah bangku. Anda tidak mencari bangku yang sudah Anda kenal, tetapi menyampaikan informasi baru: \"Ada bangku di sini.\" Ini membutuhkan frasa yang terdiri dari tiga kata yang sangat pendek.\nSebelumnya, Anda menyebutkan lokasi objek yang familiar. Sekarang perkenalkan objek baru: \"Ada bangku di sini.\" Konstruksi il y a mengkomunikasikan keberadaan, tetapi tidak menjawab pertanyaan di mana bangku tertentu berada.",
+"textPl": "Wchodzisz na dziedziniec po raz pierwszy i zauważasz ławkę. Nie szukasz już znanej ławki, ale przekazujesz nową informację: „Tutaj jest ławka”. Wymaga to frazy składającej się z trzech bardzo krótkich słów.\nWcześniej wspomniałeś o lokalizacji znanego obiektu. Teraz wprowadź nowy: „Tutaj jest ławka”. Konstrukcja il y a komunikuje obecność, ale nie odpowiada na pytanie, gdzie znajduje się konkretna ławka.",
+"textPtBr": "Você entra em um pátio pela primeira vez e nota um banco. Você não procura o banco que já conhece, mas comunica uma nova informação: \"Há um banco aqui\". Isso requer uma frase composta por três palavras muito curtas.\nAnteriormente, você mencionou a localização de um objeto familiar. Agora introduza um novo: \"Há um banco aqui\". A construção il y a comunica presença, mas não responde à pergunta de onde está um banco específico.",
+"textRU": "Вы впервые заходите во двор и замечаете скамейку. Ты не ищешь заранее известную скамейку, а сообщаешь новую информацию: «Тут есть скамейка». Для этого нужен оборот из трёх очень коротких слов.\nДо этого ты говорил, где находится знакомая вещь. Теперь вводишь новую: «здесь есть скамейка». Конструкция il y a сообщает о наличии, а не отвечает, где лежит конкретная скамейка.",
+"textTr": "Bir avluya ilk kez giriyorsunuz ve bir bank görüyorsunuz. Zaten bildiğiniz bankı aramıyorsunuz, bunun yerine yeni bir bilgi iletiyorsunuz: \"Burada bir bank var.\" Bu, üç çok kısa kelimeden oluşan bir ifade gerektirir.\nDaha önce tanıdık bir nesnenin yerini belirtmiştiniz. Şimdi yeni bir nesne tanıtın: \"Burada bir bank var.\" il y a yapısı varlığı iletiyor, ancak belirli bir bankın nerede olduğu sorusunu yanıtlamıyor.",
+"textUK": "Ви вперше заходите у двір і помічаєте лаву. Ти не шукаєш заздалегідь відому лаву, а повідомляєш нову інформацію: «Тут є лава». Для цього потрібний оборот із трьох дуже коротких слів.\nДо цього ти казав, де знайома річ. Тепер вводиш нову: тут є лава. Конструкція il y a повідомляє про наявність, а не відповідає, де лежить конкретна лава.",
+"textVi": "Bạn lần đầu tiên bước vào một sân trong và để ý thấy một chiếc ghế dài. Bạn không tìm kiếm chiếc ghế dài quen thuộc mà muốn truyền đạt thông tin mới: \"Có một chiếc ghế dài ở đây.\" Điều này đòi hỏi một cụm từ gồm ba từ rất ngắn.\nTrước đó, bạn đã đề cập đến vị trí của một vật thể quen thuộc. Bây giờ hãy giới thiệu một vật thể mới: \"Có một chiếc ghế dài ở đây.\" Cấu trúc il y a truyền đạt sự hiện diện, nhưng không trả lời câu hỏi về vị trí cụ thể của chiếc ghế dài đó.",
+"titleES": "Lo que hay aquí: il y a",
+"titleId": "Apa yang ada di sini: il y a",
+"titlePl": "Co tu jest: il y a",
+"titlePtBr": "O que está aqui: il y a",
+"titleRU": "Что здесь есть: il y a",
+"titleTr": "Burada ne var: il y a",
+"titleUK": "Що тут є: il y a",
+"titleVi": "Cái gì ở đây: il y a",
+"titleByLocale": {
+"en": "What's here: il y a",
+"es": "Lo que hay aquí: il y a",
+"id": "Apa yang ada di sini: il y a",
+"pl": "Co tu jest: il y a",
+"pt-BR": "O que está aqui: il y a",
+"ru": "Что здесь есть: il y a",
+"tr": "Burada ne var: il y a",
+"uk": "Що тут є: il y a",
+"vi": "Cái gì ở đây: il y a"
+},
+"textByLocale": {
+"en": [
+"You enter a courtyard for the first time and notice a bench. You don't look for the bench you already know, but communicate new information: \"There's a bench here.\" This requires a phrase consisting of three very short words.",
+"Previously, you mentioned the location of a familiar object. Now introduce a new one: \"There is a bench here.\" The construction «il y a» communicates presence, but doesn't answer the question of where a specific bench is."
+],
+"es": [
+"Entras por primera vez a un patio y ves un banco. No buscas el banco que ya conoces, sino que comunicas información nueva: \"Hay un banco aquí\". Esto requiere una frase de tres palabras muy cortas.",
+"Anteriormente, mencionaste la ubicación de un objeto conocido. Ahora introduce uno nuevo: «Aquí hay un banco». La construcción «il y a» comunica presencia, pero no responde a la pregunta de dónde se encuentra un banco específico."
+],
+"id": [
+"Anda memasuki halaman untuk pertama kalinya dan melihat sebuah bangku. Anda tidak mencari bangku yang sudah Anda kenal, tetapi menyampaikan informasi baru: \"Ada bangku di sini.\" Ini membutuhkan frasa yang terdiri dari tiga kata yang sangat pendek.",
+"Sebelumnya, Anda menyebutkan lokasi objek yang familiar. Sekarang perkenalkan objek baru: \"Ada bangku di sini.\" Konstruksi «il y a» mengkomunikasikan keberadaan, tetapi tidak menjawab pertanyaan di mana bangku tertentu berada."
+],
+"pl": [
+"Wchodzisz na dziedziniec po raz pierwszy i zauważasz ławkę. Nie szukasz już znanej ławki, ale przekazujesz nową informację: „Tutaj jest ławka”. Wymaga to frazy składającej się z trzech bardzo krótkich słów.",
+"Wcześniej wspomniałeś o lokalizacji znanego obiektu. Teraz wprowadź nowy: „Tutaj jest ławka”. Konstrukcja «il y a» komunikuje obecność, ale nie odpowiada na pytanie, gdzie znajduje się konkretna ławka."
+],
+"pt-BR": [
+"Você entra em um pátio pela primeira vez e nota um banco. Você não procura o banco que já conhece, mas comunica uma nova informação: \"Há um banco aqui\". Isso requer uma frase composta por três palavras muito curtas.",
+"Anteriormente, você mencionou a localização de um objeto familiar. Agora introduza um novo: \"Há um banco aqui\". A construção «il y a» comunica presença, mas não responde à pergunta de onde está um banco específico."
+],
+"ru": [
+"Вы впервые заходите во двор и замечаете скамейку. Ты не ищешь заранее известную скамейку, а сообщаешь новую информацию: «Тут есть скамейка». Для этого нужен оборот из трёх очень коротких слов.",
+"До этого ты говорил, где находится знакомая вещь. Теперь вводишь новую: «здесь есть скамейка». Конструкция «il y a» сообщает о наличии, а не отвечает, где лежит конкретная скамейка."
+],
+"tr": [
+"Bir avluya ilk kez giriyorsunuz ve bir bank görüyorsunuz. Zaten bildiğiniz bankı aramıyorsunuz, bunun yerine yeni bir bilgi iletiyorsunuz: \"Burada bir bank var.\" Bu, üç çok kısa kelimeden oluşan bir ifade gerektirir.",
+"Daha önce tanıdık bir nesnenin yerini belirtmiştiniz. Şimdi yeni bir nesne tanıtın: \"Burada bir bank var.\" «il y a» yapısı varlığı iletiyor, ancak belirli bir bankın nerede olduğu sorusunu yanıtlamıyor."
+],
+"uk": [
+"Ви вперше заходите у двір і помічаєте лаву. Ти не шукаєш заздалегідь відому лаву, а повідомляєш нову інформацію: «Тут є лава». Для цього потрібний оборот із трьох дуже коротких слів.",
+"До цього ти казав, де знайома річ. Тепер вводиш нову: тут є лава. Конструкція «il y a» повідомляє про наявність, а не відповідає, де лежить конкретна лава."
+],
+"vi": [
+"Bạn lần đầu tiên bước vào một sân trong và để ý thấy một chiếc ghế dài. Bạn không tìm kiếm chiếc ghế dài quen thuộc mà muốn truyền đạt thông tin mới: \"Có một chiếc ghế dài ở đây.\" Điều này đòi hỏi một cụm từ gồm ba từ rất ngắn.",
+"Trước đó, bạn đã đề cập đến vị trí của một vật thể quen thuộc. Bây giờ hãy giới thiệu một vật thể mới: \"Có một chiếc ghế dài ở đây.\" Cấu trúc «il y a» truyền đạt sự hiện diện, nhưng không trả lời câu hỏi về vị trí cụ thể của chiếc ghế dài đó."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:10:01"
+]
+},
+{
+"textES": "il y a + objeto o cantidad\nLa expresión il y a no cambia si ves dos bancos en lugar de uno. Cambia lo que sigue: un banc o deux bancs. No intentes atribuir un hombre específico al primer il.\nDespués de la construcción, puede haber un objeto, varios o una sustancia. El comienzo de il y a permanece igual en los tres casos. No reemplaces a con la forma plural.",
+"textId": "il y a + objek atau kuantitas\nEkspresi il y a tidak berubah jika Anda melihat dua bangku, bukan satu. Ubah apa yang ada selanjutnya: un banc atau deux bancs. Jangan mencoba mengaitkan orang tertentu dengan il yang pertama.\nSetelah konstruksi, mungkin ada satu objek, beberapa, atau suatu zat. Awal dari il y a tetap sama dalam ketiga kasus tersebut. Jangan mengganti a dengan bentuk jamak.",
+"textPl": "il y a + przedmiot lub ilość\nWyrażenie il y a nie zmienia się, jeśli widzisz dwie ławki zamiast jednej. Zmień to, co następuje: un banc lub deux bancs. Nie próbuj przypisywać konkretnego mężczyzny do pierwszego il.\nPo konstrukcji może znajdować się jeden obiekt, kilka lub substancja. Początek il y a pozostaje taki sam we wszystkich trzech przypadkach. Nie zastępuj a liczbą mnogą.",
+"textPtBr": "il y a + objeto ou quantidade\nA expressão il y a não muda se você vir dois bancos em vez de um. Altere o que vem a seguir: un banc ou deux bancs. Não tente atribuir um homem específico ao primeiro il.\nApós a construção, pode haver um objeto, vários ou uma substância. O início de il y a permanece o mesmo nos três casos. Não substitua a pela forma plural.",
+"textRU": "il y a + предмет или количество\nВыражение il y a не меняется, если вместо одной скамейки видишь две. Меняй то, что следует дальше: un banc или deux bancs. Не пытайся приписать первому il конкретного мужчину.\nПосле конструкции может быть одна вещь, несколько или вещество. Начало il y a во всех трёх случаях неизменно. Не заменяй a формой множественного числа.",
+"textTr": "il y a + nesne veya miktar\nİki bank yerine bir bank görseniz bile il y a ifadesi değişmez. Sonrakini değiştirin: un banc veya deux bancs. İlk il'e belirli bir adamı atfetmeye çalışmayın.\nYapıdan sonra bir nesne, birkaç nesne veya bir madde olabilir. il y a'in başlangıcı her üç durumda da aynı kalır. a'yi çoğul formla değiştirmeyin.",
+"textUK": "il y a + предмет чи кількість\nВираз il y a не змінюється, якщо замість однієї лави бачиш дві. Міняй те, що слідує далі: un banc або deux bancs. Не намагайся приписати першому il конкретного чоловіка.\nПісля конструкції може бути одна річ, кілька або речовина. Початок il y a у всіх трьох випадках незмінний. Не замінюй a формою множини.",
+"textVi": "il y a + đối tượng hoặc số lượng\nBiểu thức il y a không thay đổi nếu bạn thấy hai băng ghế thay vì một. Hãy thay đổi những gì tiếp theo: un banc hoặc deux bancs. Đừng cố gắng gán một người cụ thể cho il đầu tiên.\nSau cấu trúc, có thể có một vật thể, nhiều vật thể, hoặc một chất. Phần đầu của il y a vẫn giữ nguyên trong cả ba trường hợp. Đừng thay thế a bằng dạng số nhiều.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«il y a» + object or quantity",
+"The expression «il y a» doesn't change if you see two benches instead of one. Change what comes next: «un banc» or «deux bancs». Don't try to attribute a specific man to the first «il».",
+"After the construction, there may be one object, several, or a substance. The beginning of «il y a» remains the same in all three cases. Don't replace «a» with the plural form."
+],
+"es": [
+"«il y a» + objeto o cantidad",
+"La expresión «il y a» no cambia si ves dos bancos en lugar de uno. Cambia lo que sigue: «un banc» o «deux bancs». No intentes atribuir un hombre específico al primer «il».",
+"Después de la construcción, puede haber un objeto, varios o una sustancia. El comienzo de «il y a» permanece igual en los tres casos. No reemplaces «a» con la forma plural."
+],
+"id": [
+"«il y a» + objek atau kuantitas",
+"Ekspresi «il y a» tidak berubah jika Anda melihat dua bangku, bukan satu. Ubah apa yang ada selanjutnya: «un banc» atau «deux bancs». Jangan mencoba mengaitkan orang tertentu dengan «il» yang pertama.",
+"Setelah konstruksi, mungkin ada satu objek, beberapa, atau suatu zat. Awal dari «il y a» tetap sama dalam ketiga kasus tersebut. Jangan mengganti «a» dengan bentuk jamak."
+],
+"pl": [
+"«il y a» + przedmiot lub ilość",
+"Wyrażenie «il y a» nie zmienia się, jeśli widzisz dwie ławki zamiast jednej. Zmień to, co następuje: «un banc» lub «deux bancs». Nie próbuj przypisywać konkretnego mężczyzny do pierwszego «il».",
+"Po konstrukcji może znajdować się jeden obiekt, kilka lub substancja. Początek «il y a» pozostaje taki sam we wszystkich trzech przypadkach. Nie zastępuj «a» liczbą mnogą."
+],
+"pt-BR": [
+"«il y a» + objeto ou quantidade",
+"A expressão «il y a» não muda se você vir dois bancos em vez de um. Altere o que vem a seguir: «un banc» ou «deux bancs». Não tente atribuir um homem específico ao primeiro «il».",
+"Após a construção, pode haver um objeto, vários ou uma substância. O início de «il y a» permanece o mesmo nos três casos. Não substitua «a» pela forma plural."
+],
+"ru": [
+"«il y a» + предмет или количество",
+"Выражение «il y a» не меняется, если вместо одной скамейки видишь две. Меняй то, что следует дальше: «un banc» или «deux bancs». Не пытайся приписать первому «il» конкретного мужчину.",
+"После конструкции может быть одна вещь, несколько или вещество. Начало «il y a» во всех трёх случаях неизменно. Не заменяй «a» формой множественного числа."
+],
+"tr": [
+"«il y a» + nesne veya miktar",
+"İki bank yerine bir bank görseniz bile «il y a» ifadesi değişmez. Sonrakini değiştirin: «un banc» veya «deux bancs». İlk «il»'e belirli bir adamı atfetmeye çalışmayın.",
+"Yapıdan sonra bir nesne, birkaç nesne veya bir madde olabilir. «il y a»'in başlangıcı her üç durumda da aynı kalır. «a»'yi çoğul formla değiştirmeyin."
+],
+"uk": [
+"«il y a» + предмет чи кількість",
+"Вираз «il y a» не змінюється, якщо замість однієї лави бачиш дві. Міняй те, що слідує далі: «un banc» або «deux bancs». Не намагайся приписати першому «il» конкретного чоловіка.",
+"Після конструкції може бути одна річ, кілька або речовина. Початок «il y a» у всіх трьох випадках незмінний. Не замінюй «a» формою множини."
+],
+"vi": [
+"«il y a» + đối tượng hoặc số lượng",
+"Biểu thức «il y a» không thay đổi nếu bạn thấy hai băng ghế thay vì một. Hãy thay đổi những gì tiếp theo: «un banc» hoặc «deux bancs». Đừng cố gắng gán một người cụ thể cho «il» đầu tiên.",
+"Sau cấu trúc, có thể có một vật thể, nhiều vật thể, hoặc một chất. Phần đầu của «il y a» vẫn giữ nguyên trong cả ba trường hợp. Đừng thay thế «a» bằng dạng số nhiều."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:10:02",
+"fr:10:03"
+]
+},
+{
+"textES": "Entras en un patio y ves un banco por primera vez. No traduzcas las tres primeras fichas por separado. Il y a significa «hay». Luego, nombra un objeto: un banc.",
+"textId": "Anda memasuki halaman dan melihat bangku untuk pertama kalinya. Jangan menerjemahkan masing-masing dari tiga ubin pertama secara terpisah. Il y a bersama-sama berarti \"ada.\" Kemudian sebutkan satu objek: un banc.",
+"textPl": "Wchodzisz na dziedziniec i po raz pierwszy zauważasz ławkę. Nie tłumacz każdego z pierwszych trzech kafelków oddzielnie. Il y a razem oznacza „jest”. Następnie nazwij jeden obiekt: un banc.",
+"textPtBr": "Você entra em um pátio e nota um banco pela primeira vez. Não traduza cada uma das três primeiras peças separadamente. Il y a juntas significam \"há\". Em seguida, nomeie um objeto: un banc.",
+"textRU": "Ты заходишь во двор и впервые замечаешь скамейку. Не переводи каждую из первых трёх плиток отдельно. Il y a вместе означает «есть». Затем назови один предмет: un banc.",
+"textTr": "Bir avluya giriyorsunuz ve ilk kez bir bank fark ediyorsunuz. İlk üç karoyu ayrı ayrı çevirmeyin. Il y a birlikte \"vardır\" anlamına gelir. Ardından bir nesne adı verin: un banc.",
+"textUK": "Ти заходиш у двір і вперше помічаєш лаву. Не перекладай кожну з перших трьох плиток окремо. Il y a разом означає \"є\". Далі назви один предмет: un banc.",
+"textVi": "Bạn bước vào một sân trong và lần đầu tiên nhìn thấy một chiếc ghế dài. Đừng dịch riêng từng ô trong ba ô đầu tiên. Il y a ghép lại có nghĩa là \"có\". Sau đó, hãy nêu tên một vật thể: un banc.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You enter a courtyard and notice a bench for the first time. Don't translate each of the first three tiles separately. «Il y a» together means \"there is.\" Then name one object: «un banc»."
+],
+"es": [
+"Entras en un patio y ves un banco por primera vez. No traduzcas las tres primeras fichas por separado. «Il y a» significa «hay». Luego, nombra un objeto: «un banc»."
+],
+"id": [
+"Anda memasuki halaman dan melihat bangku untuk pertama kalinya. Jangan menerjemahkan masing-masing dari tiga ubin pertama secara terpisah. «Il y a» bersama-sama berarti \"ada.\" Kemudian sebutkan satu objek: «un banc»."
+],
+"pl": [
+"Wchodzisz na dziedziniec i po raz pierwszy zauważasz ławkę. Nie tłumacz każdego z pierwszych trzech kafelków oddzielnie. «Il y a» razem oznacza „jest”. Następnie nazwij jeden obiekt: «un banc»."
+],
+"pt-BR": [
+"Você entra em um pátio e nota um banco pela primeira vez. Não traduza cada uma das três primeiras peças separadamente. «Il y a» juntas significam \"há\". Em seguida, nomeie um objeto: «un banc»."
+],
+"ru": [
+"Ты заходишь во двор и впервые замечаешь скамейку. Не переводи каждую из первых трёх плиток отдельно. «Il y a» вместе означает «есть». Затем назови один предмет: «un banc»."
+],
+"tr": [
+"Bir avluya giriyorsunuz ve ilk kez bir bank fark ediyorsunuz. İlk üç karoyu ayrı ayrı çevirmeyin. «Il y a» birlikte \"vardır\" anlamına gelir. Ardından bir nesne adı verin: «un banc»."
+],
+"uk": [
+"Ти заходиш у двір і вперше помічаєш лаву. Не перекладай кожну з перших трьох плиток окремо. «Il y a» разом означає \"є\". Далі назви один предмет: «un banc»."
+],
+"vi": [
+"Bạn bước vào một sân trong và lần đầu tiên nhìn thấy một chiếc ghế dài. Đừng dịch riêng từng ô trong ba ô đầu tiên. «Il y a» ghép lại có nghĩa là \"có\". Sau đó, hãy nêu tên một vật thể: «un banc»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:10:01",
+"fr:10:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:10:01",
+"target": "Il y a un banc.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "fr:10:02",
+"target": "Il y a une table.",
+"ru": "Есть стол.",
+"uk": "Є стіл."
+},
+{
+"id": "fr:10:03",
+"target": "Il y a deux bancs.",
+"ru": "Есть две скамейки.",
+"uk": "Є дві лавки."
+},
+{
+"id": "fr:10:01",
+"target": "Il y a un banc.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "fr:10:04",
+"target": "Il y a trois chaises.",
+"ru": "Есть три стула.",
+"uk": "Є три стільці."
+}
+]
+},
+{
+"lesson": 11,
+"blocks": [
+{
+"textES": "Estás saliendo de casa. Cuando te pregunten adónde vas, es importante que indiques tu ruta, no tu ubicación actual. Primero, di quién viene y luego añade tu destino.\nAller significa dirigirse a algún lugar. Compara je suis à la gare —ya allí— con je vais à la gare —el destino—. No puedes derivar vais del diccionario que termina en aller.",
+"textId": "Anda akan meninggalkan rumah. Saat ditanya ke mana Anda akan pergi, penting untuk menyebutkan rute Anda, bukan lokasi Anda saat ini. Pertama, sebutkan siapa yang akan ikut, lalu tambahkan tujuan Anda.\nAller berarti sedang menuju ke suatu tempat. Bandingkan je suis à la gare—sudah sampai—dan je vais à la gare—tujuan. Anda tidak dapat menurunkan vais dari akhiran kamus aller.",
+"textPl": "Wychodzisz z domu. Zapytany, dokąd zmierzasz, ważne jest, aby podać trasę, a nie aktualną lokalizację. Najpierw powiedz, kto idzie, a następnie dodaj cel podróży.\nAller oznacza zmierzać gdzieś. Porównaj je suis à la gare — już tam — i je vais à la gare — cel podróży. Nie można wywnioskować vais ze słownika z końcówką aller.",
+"textPtBr": "Você está saindo de casa. Quando perguntarem para onde você vai, é importante informar o trajeto, não sua localização atual. Primeiro, diga quem está vindo e depois acrescente o destino.\nAller significa estar indo para algum lugar. Compare je suis à la gare — já estar lá — e je vais à la gare — o destino. Você não pode derivar vais da terminação do dicionário aller.",
+"textRU": "Ты выходишь из дома. На вопрос, куда направляешься, важно назвать маршрут, а не место, в котором ты уже находишься. Сначала скажи, кто идёт, а затем добавь пункт назначения.\nAller означает направляться куда-либо. Сравни je suis à la gare — уже там — и je vais à la gare — это пункт назначения. Нельзя вывести vais из окончания словарного aller.",
+"textTr": "Evden ayrılıyorsunuz. Nereye gittiğiniz sorulduğunda, mevcut konumunuzu değil, rotanızı belirtmeniz önemlidir. Önce kimlerin geldiğini söyleyin, sonra varış noktanızı ekleyin.\nAller bir yere doğru gidiyor olmak anlamına gelir. je suis à la gare (zaten orada) ve je vais à la gare (varış noktası) ile karşılaştırın. aller sözlük sonundan vais'ü türetemezsiniz.",
+"textUK": "Ти виходиш із дому. На питання, куди прямуєш, важливо назвати маршрут, а не місце, де ти вже перебуваєш. Спочатку скажи, хто йде, а потім додай пункт призначення.\nAller означає прямувати будь-куди. Порівняй je suis à la gare – вже там – і je vais à la gare – це пункт призначення. Неможливо вивести vais із закінчення словникового aller.",
+"textVi": "Bạn đang rời khỏi nhà. Khi được hỏi bạn đi đâu, điều quan trọng là phải nêu rõ lộ trình, chứ không phải vị trí hiện tại của bạn. Trước tiên, hãy cho biết ai sẽ đi cùng, sau đó mới nói điểm đến.\nAller có nghĩa là đang hướng đến một nơi nào đó. So sánh je suis à la gare—đã ở đó—và je vais à la gare—điểm đến. Bạn không thể suy ra vais từ hậu tố aller trong từ điển.",
+"titleES": "Adónde voy: aller y destino",
+"titleId": "Ke mana saya akan pergi: aller dan tujuan",
+"titlePl": "Dokąd jadę: aller i cel podróży",
+"titlePtBr": "Para onde vou: aller e destino",
+"titleRU": "Куда иду: aller и место назначения",
+"titleTr": "Nereye gidiyorum: aller ve varış noktası",
+"titleUK": "Куди йду: aller та місце призначення",
+"titleVi": "Tôi đang đi đâu: aller và điểm đến",
+"titleByLocale": {
+"en": "Where I'm going: aller and destination",
+"es": "Adónde voy: aller y destino",
+"id": "Ke mana saya akan pergi: aller dan tujuan",
+"pl": "Dokąd jadę: aller i cel podróży",
+"pt-BR": "Para onde vou: aller e destino",
+"ru": "Куда иду: aller и место назначения",
+"tr": "Nereye gidiyorum: aller ve varış noktası",
+"uk": "Куди йду: aller та місце призначення",
+"vi": "Tôi đang đi đâu: aller và điểm đến"
+},
+"textByLocale": {
+"en": [
+"You're leaving your house. When asked where you're going, it's important to state your route, not your current location. First, say who's coming, then add your destination.",
+"«Aller» means to be heading somewhere. Compare «je suis à la gare»—already there—and «je vais à la gare»—the destination. You can't derive «vais» from the dictionary ending «aller»."
+],
+"es": [
+"Estás saliendo de casa. Cuando te pregunten adónde vas, es importante que indiques tu ruta, no tu ubicación actual. Primero, di quién viene y luego añade tu destino.",
+"«Aller» significa dirigirse a algún lugar. Compara «je suis à la gare» —ya allí— con «je vais à la gare» —el destino—. No puedes derivar «vais» del diccionario que termina en «aller»."
+],
+"id": [
+"Anda akan meninggalkan rumah. Saat ditanya ke mana Anda akan pergi, penting untuk menyebutkan rute Anda, bukan lokasi Anda saat ini. Pertama, sebutkan siapa yang akan ikut, lalu tambahkan tujuan Anda.",
+"«Aller» berarti sedang menuju ke suatu tempat. Bandingkan «je suis à la gare»—sudah sampai—dan «je vais à la gare»—tujuan. Anda tidak dapat menurunkan «vais» dari akhiran kamus «aller»."
+],
+"pl": [
+"Wychodzisz z domu. Zapytany, dokąd zmierzasz, ważne jest, aby podać trasę, a nie aktualną lokalizację. Najpierw powiedz, kto idzie, a następnie dodaj cel podróży.",
+"«Aller» oznacza zmierzać gdzieś. Porównaj «je suis à la gare» — już tam — i «je vais à la gare» — cel podróży. Nie można wywnioskować «vais» ze słownika z końcówką «aller»."
+],
+"pt-BR": [
+"Você está saindo de casa. Quando perguntarem para onde você vai, é importante informar o trajeto, não sua localização atual. Primeiro, diga quem está vindo e depois acrescente o destino.",
+"«Aller» significa estar indo para algum lugar. Compare «je suis à la gare» — já estar lá — e «je vais à la gare» — o destino. Você não pode derivar «vais» da terminação do dicionário «aller»."
+],
+"ru": [
+"Ты выходишь из дома. На вопрос, куда направляешься, важно назвать маршрут, а не место, в котором ты уже находишься. Сначала скажи, кто идёт, а затем добавь пункт назначения.",
+"«Aller» означает направляться куда-либо. Сравни «je suis à la gare» — уже там — и «je vais à la gare» — это пункт назначения. Нельзя вывести «vais» из окончания словарного «aller»."
+],
+"tr": [
+"Evden ayrılıyorsunuz. Nereye gittiğiniz sorulduğunda, mevcut konumunuzu değil, rotanızı belirtmeniz önemlidir. Önce kimlerin geldiğini söyleyin, sonra varış noktanızı ekleyin.",
+"«Aller» bir yere doğru gidiyor olmak anlamına gelir. «je suis à la gare» (zaten orada) ve «je vais à la gare» (varış noktası) ile karşılaştırın. «aller» sözlük sonundan «vais»'ü türetemezsiniz."
+],
+"uk": [
+"Ти виходиш із дому. На питання, куди прямуєш, важливо назвати маршрут, а не місце, де ти вже перебуваєш. Спочатку скажи, хто йде, а потім додай пункт призначення.",
+"«Aller» означає прямувати будь-куди. Порівняй «je suis à la gare» – вже там – і «je vais à la gare» – це пункт призначення. Неможливо вивести «vais» із закінчення словникового «aller»."
+],
+"vi": [
+"Bạn đang rời khỏi nhà. Khi được hỏi bạn đi đâu, điều quan trọng là phải nêu rõ lộ trình, chứ không phải vị trí hiện tại của bạn. Trước tiên, hãy cho biết ai sẽ đi cùng, sau đó mới nói điểm đến.",
+"«Aller» có nghĩa là đang hướng đến một nơi nào đó. So sánh «je suis à la gare»—đã ở đó—và «je vais à la gare»—điểm đến. Bạn không thể suy ra «vais» từ hậu tố «aller» trong từ điển."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:11:01"
+]
+},
+{
+"textES": "es la forma aller + à, au, aux, en o chez + ubicación\nEn Je vais à la gare, el lugar es la estación de tren. En Je vais au marché, el mercado. La elección entre à la y au depende del nombre francés del lugar. Antes del nombre de una persona, se necesita otra forma: chez Léa.\nRecuerda el artículo de lugar. À con le se fusiona en au, con les en aux. Antes de la, quedan dos palabras, y antes de l’, obtenemos à l’. El artículo neutro à le marché es incorrecto.",
+"textId": "adalah bentuk aller + à, au, aux, en, atau chez + lokasi\nDi Je vais à la gare, tempatnya adalah stasiun kereta api. Di Je vais au marché, pasar. Pilihan antara à la dan au bergantung pada nama tempat dalam bahasa Prancis. Sebelum nama orang, diperlukan bentuk lain: chez Léa.\nIngat artikel tempat. À dengan le bergabung menjadi au, dengan les menjadi aux. Sebelum la, tersisa dua kata, dan sebelum l’, kita mendapatkan à l’. Kata netral à le marché salah.",
+"textPl": "to forma aller + à, au, aux, en lub chez + lokalizacja\nW kodzie Je vais à la gare miejscem jest dworzec kolejowy. W kodzie Je vais au marché – targ. Wybór między kodami à la i au zależy od francuskiej nazwy miejscowości. Przed imieniem i nazwiskiem osoby należy podać inną formę: chez Léa.\nPamiętaj o rodzajniku miejsca. À z le łączy się w au, a z les w aux. Przed la pozostają dwa słowa, a przed l’ otrzymujemy à l’. Neutralne à le marché jest niepoprawne.",
+"textPtBr": "é a forma aller + à, au, aux, en ou chez + localização\nEm Je vais à la gare, o local é a estação de trem. Em Je vais au marché, o mercado. A escolha entre à la e au depende do nome francês do local. Antes do nome de uma pessoa, é necessário outro formulário: chez Léa.\nLembre-se do artigo definido como lugar. À com le se funde em au, com les em aux. Antes de la, restam duas palavras, e antes de l’, obtemos à l’. O neutro à le marché está incorreto.",
+"textRU": "форма aller + à, au, aux, en или chez + место\nВ Je vais à la gare место — вокзал. В Je vais au marché — рынок. Выбор между à la и au зависит от французского названия места. Перед именем человека нужен другой способ: chez Léa.\nВспомни артикль места. À с le сливается в au, с les — в aux. Перед la остаются два слова, а перед l’ получаем à l’. Нейтральное à le marché неверно.",
+"textTr": ", aller + à, au, aux, en veya chez + konum biçimindedir.\nJe vais à la gare'de yer tren istasyonudur. Je vais au marché'de ise pazar yeridir. à la ve au arasındaki seçim, yerin Fransızca adına bağlıdır. Kişi adından önce başka bir biçim gereklidir: chez Léa.\nYer belirtecini hatırlayın. À ile le birleşerek au'ü, les ile birleşerek aux'i oluşturur. la'dan önce iki kelime kalır ve l’'den önce à l’'i elde ederiz. Tarafsız à le marché yanlıştır.",
+"textUK": "форма aller + à, au, aux, en або chez + місце\nУ Je vais à la gare місце – вокзал. У Je vais au marché - ринок. Вибір між à la та au залежить від французької назви місця. Перед іменем людини потрібний інший спосіб: chez Léa.\nЗгадай артикль місця. À з le зливається в au, з les - в aux. Перед la залишаються два слова, а перед l’ отримуємо à l’. Нейтральне à le marché неправильне.",
+"textVi": "là dạng aller + à, au, aux, en, hoặc chez + vị trí\nỞ Je vais à la gare, địa điểm là nhà ga xe lửa. Ở Je vais au marché, là chợ. Việc lựa chọn giữa à la và au phụ thuộc vào tên tiếng Pháp của địa điểm. Trước tên người, cần thêm một dạng khác: chez Léa.\nHãy nhớ mạo từ chỉ địa điểm. À kết hợp với le tạo thành au, với les tạo thành aux. Trước la, còn lại hai từ, và trước l’, ta được à l’. Từ trung lập à le marché là không chính xác.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"is the form «aller» + «à», «au», «aux», «en», or «chez» + location",
+"In «Je vais à la gare», the place is the train station. In «Je vais au marché», the market. The choice between «à la» and «au» depends on the French name of the place. Before a person's name, another form is needed: «chez Léa».",
+"Remember the article of place. «À» with «le» merges into «au», with «les» into «aux». Before «la», two words remain, and before «l’», we get «à l’». The neutral «à le marché» is incorrect."
+],
+"es": [
+"es la forma «aller» + «à», «au», «aux», «en» o «chez» + ubicación",
+"En «Je vais à la gare», el lugar es la estación de tren. En «Je vais au marché», el mercado. La elección entre «à la» y «au» depende del nombre francés del lugar. Antes del nombre de una persona, se necesita otra forma: «chez Léa».",
+"Recuerda el artículo de lugar. «À» con «le» se fusiona en «au», con «les» en «aux». Antes de «la», quedan dos palabras, y antes de «l’», obtenemos «à l’». El artículo neutro «à le marché» es incorrecto."
+],
+"id": [
+"adalah bentuk «aller» + «à», «au», «aux», «en», atau «chez» + lokasi",
+"Di «Je vais à la gare», tempatnya adalah stasiun kereta api. Di «Je vais au marché», pasar. Pilihan antara «à la» dan «au» bergantung pada nama tempat dalam bahasa Prancis. Sebelum nama orang, diperlukan bentuk lain: «chez Léa».",
+"Ingat artikel tempat. «À» dengan «le» bergabung menjadi «au», dengan «les» menjadi «aux». Sebelum «la», tersisa dua kata, dan sebelum «l’», kita mendapatkan «à l’». Kata netral «à le marché» salah."
+],
+"pl": [
+"to forma «aller» + «à», «au», «aux», «en» lub «chez» + lokalizacja",
+"W kodzie «Je vais à la gare» miejscem jest dworzec kolejowy. W kodzie «Je vais au marché» – targ. Wybór między kodami «à la» i «au» zależy od francuskiej nazwy miejscowości. Przed imieniem i nazwiskiem osoby należy podać inną formę: «chez Léa».",
+"Pamiętaj o rodzajniku miejsca. «À» z «le» łączy się w «au», a z «les» w «aux». Przed «la» pozostają dwa słowa, a przed «l’» otrzymujemy «à l’». Neutralne «à le marché» jest niepoprawne."
+],
+"pt-BR": [
+"é a forma «aller» + «à», «au», «aux», «en» ou «chez» + localização",
+"Em «Je vais à la gare», o local é a estação de trem. Em «Je vais au marché», o mercado. A escolha entre «à la» e «au» depende do nome francês do local. Antes do nome de uma pessoa, é necessário outro formulário: «chez Léa».",
+"Lembre-se do artigo definido como lugar. «À» com «le» se funde em «au», com «les» em «aux». Antes de «la», restam duas palavras, e antes de «l’», obtemos «à l’». O neutro «à le marché» está incorreto."
+],
+"ru": [
+"форма «aller» + «à», «au», «aux», «en» или «chez» + место",
+"В «Je vais à la gare» место — вокзал. В «Je vais au marché» — рынок. Выбор между «à la» и «au» зависит от французского названия места. Перед именем человека нужен другой способ: «chez Léa».",
+"Вспомни артикль места. «À» с «le» сливается в «au», с «les» — в «aux». Перед «la» остаются два слова, а перед «l’» получаем «à l’». Нейтральное «à le marché» неверно."
+],
+"tr": [
+", «aller» + «à», «au», «aux», «en» veya «chez» + konum biçimindedir.",
+"«Je vais à la gare»'de yer tren istasyonudur. «Je vais au marché»'de ise pazar yeridir. «à la» ve «au» arasındaki seçim, yerin Fransızca adına bağlıdır. Kişi adından önce başka bir biçim gereklidir: «chez Léa».",
+"Yer belirtecini hatırlayın. «À» ile «le» birleşerek «au»'ü, «les» ile birleşerek «aux»'i oluşturur. «la»'dan önce iki kelime kalır ve «l’»'den önce «à l’»'i elde ederiz. Tarafsız «à le marché» yanlıştır."
+],
+"uk": [
+"форма «aller» + «à», «au», «aux», «en» або «chez» + місце",
+"У «Je vais à la gare» місце – вокзал. У «Je vais au marché» - ринок. Вибір між «à la» та «au» залежить від французької назви місця. Перед іменем людини потрібний інший спосіб: «chez Léa».",
+"Згадай артикль місця. «À» з «le» зливається в «au», з «les» - в «aux». Перед «la» залишаються два слова, а перед «l’» отримуємо «à l’». Нейтральне «à le marché» неправильне."
+],
+"vi": [
+"là dạng «aller» + «à», «au», «aux», «en», hoặc «chez» + vị trí",
+"Ở «Je vais à la gare», địa điểm là nhà ga xe lửa. Ở «Je vais au marché», là chợ. Việc lựa chọn giữa «à la» và «au» phụ thuộc vào tên tiếng Pháp của địa điểm. Trước tên người, cần thêm một dạng khác: «chez Léa».",
+"Hãy nhớ mạo từ chỉ địa điểm. «À» kết hợp với «le» tạo thành «au», với «les» tạo thành «aux». Trước «la», còn lại hai từ, và trước «l’», ta được «à l’». Từ trung lập «à le marché» là không chính xác."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:11:03",
+"fr:11:05"
+]
+},
+{
+"textES": "Di je vais en silencio. Luego indica tu destino: el familiar la gare requiere à la. Cuatro palabras te indicarán la ruta, no tu ubicación actual.",
+"textId": "Ucapkan je vais dalam hati. Kemudian sebutkan tujuan Anda: la gare yang familiar membutuhkan à la. Empat kata akan memberi tahu Anda rute, bukan lokasi Anda saat ini.",
+"textPl": "Powiedz je vais bezgłośnie. Następnie podaj cel podróży: znane la gare wymaga à la. Cztery słowa wskażą Ci trasę, a nie Twoją aktualną lokalizację.",
+"textPtBr": "Diga je vais mentalmente. Em seguida, diga seu destino: o familiar la gare requer à la. Quatro palavras indicarão a rota, não sua localização atual.",
+"textRU": "Про себя скажи je vais. Затем назови, куда идёшь: знакомая la gare требует à la. Из четырёх слов получится сообщение о маршруте, а не о нынешнем местонахождении.",
+"textTr": "je vais'i sessizce söyleyin. Ardından varış noktanızı belirtin: tanıdık la gare, à la gerektirir. Dört kelime size rotayı söyleyecektir, mevcut konumunuzu değil.",
+"textUK": "Про себе скажи je vais. Потім назви, куди йдеш: знайома la gare вимагає à la. З чотирьох слів вийде повідомлення про маршрут, а не про місцезнаходження.",
+"textVi": "Đọc thầm je vais. Sau đó nói điểm đến của bạn: la gare quen thuộc yêu cầu à la. Bốn từ sẽ cho bạn biết tuyến đường, chứ không phải vị trí hiện tại của bạn.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Say «je vais» silently. Then state your destination: familiar «la gare» requires «à la». Four words will tell you the route, not your current location."
+],
+"es": [
+"Di «je vais» en silencio. Luego indica tu destino: el familiar «la gare» requiere «à la». Cuatro palabras te indicarán la ruta, no tu ubicación actual."
+],
+"id": [
+"Ucapkan «je vais» dalam hati. Kemudian sebutkan tujuan Anda: «la gare» yang familiar membutuhkan «à la». Empat kata akan memberi tahu Anda rute, bukan lokasi Anda saat ini."
+],
+"pl": [
+"Powiedz «je vais» bezgłośnie. Następnie podaj cel podróży: znane «la gare» wymaga «à la». Cztery słowa wskażą Ci trasę, a nie Twoją aktualną lokalizację."
+],
+"pt-BR": [
+"Diga «je vais» mentalmente. Em seguida, diga seu destino: o familiar «la gare» requer «à la». Quatro palavras indicarão a rota, não sua localização atual."
+],
+"ru": [
+"Про себя скажи «je vais». Затем назови, куда идёшь: знакомая «la gare» требует «à la». Из четырёх слов получится сообщение о маршруте, а не о нынешнем местонахождении."
+],
+"tr": [
+"«je vais»'i sessizce söyleyin. Ardından varış noktanızı belirtin: tanıdık «la gare», «à la» gerektirir. Dört kelime size rotayı söyleyecektir, mevcut konumunuzu değil."
+],
+"uk": [
+"Про себе скажи «je vais». Потім назви, куди йдеш: знайома «la gare» вимагає «à la». З чотирьох слів вийде повідомлення про маршрут, а не про місцезнаходження."
+],
+"vi": [
+"Đọc thầm «je vais». Sau đó nói điểm đến của bạn: «la gare» quen thuộc yêu cầu «à la». Bốn từ sẽ cho bạn biết tuyến đường, chứ không phải vị trí hiện tại của bạn."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:11:01",
+"fr:11:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:11:01",
+"target": "Je vais à la gare.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "fr:11:03",
+"target": "Elle va au marché.",
+"ru": "Она идет на рынок.",
+"uk": "Вона йде на ринок."
+},
+{
+"id": "fr:11:05",
+"target": "Nous allons à l’école.",
+"ru": "Мы идём в школу.",
+"uk": "Ми йдемо до школи."
+},
+{
+"id": "fr:11:01",
+"target": "Je vais à la gare.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "fr:11:04",
+"target": "Il va au marché.",
+"ru": "Он идет на рынок.",
+"uk": "Він йде на ринок."
+}
+]
+},
+{
+"lesson": 12,
+"blocks": [
+{
+"textES": "En el desayuno te ofrecen pan. No tomas \"todo el pan que haya\", ni necesariamente una barra entera. No especificas la cantidad; precisamente por eso en francés se usan palabras cortas antes del producto.\nImagina que hay agua, sopa y pan en la mesa. Tomas una parte, no todo. En francés, se usan palabras cortas antes del nombre del alimento para indicar una cantidad indefinida.",
+"textId": "Saat sarapan, Anda akan ditawari roti. Anda tidak mengambil \"semua roti yang ada,\" dan tidak harus satu roti utuh. Anda tidak menentukan jumlahnya—itulah mengapa bahasa Prancis menggunakan kata-kata pendek sebelum menyebutkan produk.\nBayangkan ada air, sup, dan roti di atas meja. Anda mengambil sebagian, bukan semuanya. Dalam bahasa Prancis, kata-kata kecil digunakan sebelum nama makanan untuk jumlah yang tidak pasti.",
+"textPl": "Na śniadanie dostajesz chleb. Nie bierzesz „całego chleba, jaki jest”, i niekoniecznie tylko jednego bochenka. Nie określasz ilości – właśnie dlatego w języku francuskim przed nazwą produktu występują krótkie słowa.\nWyobraź sobie, że na stole jest woda, zupa i chleb. Bierzesz część, a nie całość. W języku francuskim przed nazwą produktu spożywczego używa się małych słów, aby określić nieokreśloną ilość.",
+"textPtBr": "No café da manhã, oferecem pão. Você não pega \"todo o pão que existe\", e não necessariamente apenas um pão inteiro. Você não especifica a quantidade — é exatamente por isso que o francês usa palavras curtas antes do produto.\nImagine que há água, sopa e pão na mesa. Você pega uma parte, não tudo. Em francês, pequenas palavras são usadas antes do nome do alimento para indicar uma quantidade indefinida.",
+"textRU": "За завтраком тебе предлагают хлеб. Ты берёшь не «весь хлеб, который существует», и не обязательно одну целую буханку. Ты не указываешь количество — как раз для этого у французского есть короткие слова перед продуктом.\nПредставь, что на столе вода, суп и хлеб. Ты берёшь часть, а не весь запас. Для неопределённого количества во французском нужны небольшие слова перед названием продукта.",
+"textTr": "Kahvaltıda size ekmek ikram edilir. \"Bütün ekmeği\" almazsınız, illa ki tek bir somun ekmek de almazsınız. Miktarı belirtmezsiniz; Fransızcada ürünün önüne kısa kelimelerin gelmesinin sebebi de tam olarak budur.\nMasada su, çorba ve ekmek olduğunu hayal edin. Hepsini değil, bir kısmını alırsınız. Fransızcada, belirsiz miktarlar için yiyecek maddesinin adından önce küçük harfler kullanılır.",
+"textUK": "За сніданком тобі пропонують хліб. Ти береш не «весь хліб, який існує», і не обов'язково один цілий буханець. Ти не вказуєш кількість — саме для цього французька має короткі слова перед продуктом.\nУяви, що на столі вода, суп та хліб. Ти береш частину, а чи не весь запас. Для невизначеної кількості французькою потрібні невеликі слова перед назвою продукту.",
+"textVi": "Vào bữa sáng, bạn được mời bánh mì. Bạn không lấy \"tất cả bánh mì có sẵn\", và không nhất thiết chỉ là một ổ bánh mì nguyên vẹn. Bạn không chỉ định số lượng—đó chính là lý do tại sao tiếng Pháp có những từ ngắn đứng trước sản phẩm.\nHãy tưởng tượng trên bàn có nước, súp và bánh mì. Bạn lấy một phần, chứ không phải tất cả. Trong tiếng Pháp, các từ viết tắt được sử dụng trước tên món ăn để chỉ số lượng không xác định.",
+"titleES": "No todo el pan, sino un poco: du, de la, de l’",
+"titleId": "Bukan seluruh roti, tetapi sedikit roti: du, de la, de l’",
+"titlePl": "Nie cały bochenek, ale trochę chleba: du, de la, de l’",
+"titlePtBr": "Não o pão inteiro, mas um pouco de pão: du, de la, de l’",
+"titleRU": "Не вся булка, а немного хлеба: du, de la, de l’",
+"titleTr": "Bütün ekmek değil, küçük bir parça ekmek: du, de la, de l’",
+"titleUK": "Не вся булка, а трохи хліба: du, de la, de l’",
+"titleVi": "Không phải cả ổ bánh mì, mà chỉ một ít bánh mì: du, de la, de l’",
+"titleByLocale": {
+"en": "Not the whole loaf, but a little bread: du, de la, de l’",
+"es": "No todo el pan, sino un poco: du, de la, de l’",
+"id": "Bukan seluruh roti, tetapi sedikit roti: du, de la, de l’",
+"pl": "Nie cały bochenek, ale trochę chleba: du, de la, de l’",
+"pt-BR": "Não o pão inteiro, mas um pouco de pão: du, de la, de l’",
+"ru": "Не вся булка, а немного хлеба: du, de la, de l’",
+"tr": "Bütün ekmek değil, küçük bir parça ekmek: du, de la, de l’",
+"uk": "Не вся булка, а трохи хліба: du, de la, de l’",
+"vi": "Không phải cả ổ bánh mì, mà chỉ một ít bánh mì: du, de la, de l’"
+},
+"textByLocale": {
+"en": [
+"At breakfast, you're offered bread. You don't take \"all the bread there is,\" and not necessarily just one whole loaf. You don't specify the quantity—that's precisely why French has short words before the product.",
+"Imagine there's water, soup, and bread on the table. You take part, not all of it. In French, small words are used before the food item's name for an indefinite quantity."
+],
+"es": [
+"En el desayuno te ofrecen pan. No tomas \"todo el pan que haya\", ni necesariamente una barra entera. No especificas la cantidad; precisamente por eso en francés se usan palabras cortas antes del producto.",
+"Imagina que hay agua, sopa y pan en la mesa. Tomas una parte, no todo. En francés, se usan palabras cortas antes del nombre del alimento para indicar una cantidad indefinida."
+],
+"id": [
+"Saat sarapan, Anda akan ditawari roti. Anda tidak mengambil \"semua roti yang ada,\" dan tidak harus satu roti utuh. Anda tidak menentukan jumlahnya—itulah mengapa bahasa Prancis menggunakan kata-kata pendek sebelum menyebutkan produk.",
+"Bayangkan ada air, sup, dan roti di atas meja. Anda mengambil sebagian, bukan semuanya. Dalam bahasa Prancis, kata-kata kecil digunakan sebelum nama makanan untuk jumlah yang tidak pasti."
+],
+"pl": [
+"Na śniadanie dostajesz chleb. Nie bierzesz „całego chleba, jaki jest”, i niekoniecznie tylko jednego bochenka. Nie określasz ilości – właśnie dlatego w języku francuskim przed nazwą produktu występują krótkie słowa.",
+"Wyobraź sobie, że na stole jest woda, zupa i chleb. Bierzesz część, a nie całość. W języku francuskim przed nazwą produktu spożywczego używa się małych słów, aby określić nieokreśloną ilość."
+],
+"pt-BR": [
+"No café da manhã, oferecem pão. Você não pega \"todo o pão que existe\", e não necessariamente apenas um pão inteiro. Você não especifica a quantidade — é exatamente por isso que o francês usa palavras curtas antes do produto.",
+"Imagine que há água, sopa e pão na mesa. Você pega uma parte, não tudo. Em francês, pequenas palavras são usadas antes do nome do alimento para indicar uma quantidade indefinida."
+],
+"ru": [
+"За завтраком тебе предлагают хлеб. Ты берёшь не «весь хлеб, который существует», и не обязательно одну целую буханку. Ты не указываешь количество — как раз для этого у французского есть короткие слова перед продуктом.",
+"Представь, что на столе вода, суп и хлеб. Ты берёшь часть, а не весь запас. Для неопределённого количества во французском нужны небольшие слова перед названием продукта."
+],
+"tr": [
+"Kahvaltıda size ekmek ikram edilir. \"Bütün ekmeği\" almazsınız, illa ki tek bir somun ekmek de almazsınız. Miktarı belirtmezsiniz; Fransızcada ürünün önüne kısa kelimelerin gelmesinin sebebi de tam olarak budur.",
+"Masada su, çorba ve ekmek olduğunu hayal edin. Hepsini değil, bir kısmını alırsınız. Fransızcada, belirsiz miktarlar için yiyecek maddesinin adından önce küçük harfler kullanılır."
+],
+"uk": [
+"За сніданком тобі пропонують хліб. Ти береш не «весь хліб, який існує», і не обов'язково один цілий буханець. Ти не вказуєш кількість — саме для цього французька має короткі слова перед продуктом.",
+"Уяви, що на столі вода, суп та хліб. Ти береш частину, а чи не весь запас. Для невизначеної кількості французькою потрібні невеликі слова перед назвою продукту."
+],
+"vi": [
+"Vào bữa sáng, bạn được mời bánh mì. Bạn không lấy \"tất cả bánh mì có sẵn\", và không nhất thiết chỉ là một ổ bánh mì nguyên vẹn. Bạn không chỉ định số lượng—đó chính là lý do tại sao tiếng Pháp có những từ ngắn đứng trước sản phẩm.",
+"Hãy tưởng tượng trên bàn có nước, súp và bánh mì. Bạn lấy một phần, chứ không phải tất cả. Trong tiếng Pháp, các từ viết tắt được sử dụng trước tên món ăn để chỉ số lượng không xác định."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:12:01"
+]
+},
+{
+"textES": "verbo + du / de la / de l’ + sustancia\nDu pain, de la soupe, de l’eau: tres muestras, no tres cantidades diferentes. Elija según la palabra en francés. Si ya ha nombrado una medida, como un vaso, dígalo de otra manera: un verre d’eau.\nsoupe es femenino: de la soupe. pain es masculino: du pain. Antes de una vocal, se convierte en de l’eau. El apóstrofo no indica el género de la palabra; solo cambia la ortografía.",
+"textId": "kata kerja + du / de la / de l’ + zat\nDu pain, de la soupe, de l’eau—tiga sampel, bukan tiga kuantitas berbeda. Pilih berdasarkan kata dalam bahasa Prancis. Jika Anda sudah menyebutkan ukuran, seperti gelas, ucapkan dengan cara berbeda: un verre d’eau.\nsoupe adalah feminin—de la soupe. pain adalah maskulin—du pain. Sebelum vokal, menjadi de l’eau. Tanda apostrof tidak memberi tahu Anda jenis kelamin kata; itu hanya mengubah ejaan.",
+"textPl": "czasownik + du / de la / de l’ + substancja\nDu pain, de la soupe, de l’eau — trzy próbki, a nie trzy różne ilości. Wybierz na podstawie francuskiego słowa. Jeśli już nadałeś nazwę miarce, np. szklance, podaj ją inaczej: un verre d’eau.\nsoupe jest rodzaju żeńskiego — de la soupe. pain jest rodzaju męskiego — du pain. Przed samogłoską zmienia się na de l’eau. Apostrof nie określa rodzaju słowa, a jedynie zmienia jego pisownię.",
+"textPtBr": "verbo + du / de la / de l’ + substância\nDu pain, de la soupe, de l’eau — três amostras, não três quantidades diferentes. Escolha com base na palavra em francês. Se você já nomeou uma medida, como um copo, diga-a de forma diferente: un verre d’eau.\nsoupe é feminino — de la soupe. pain é masculino — du pain. Antes de uma vogal, torna-se de l’eau. O apóstrofo não indica o gênero da palavra; ele apenas muda a grafia.",
+"textRU": "глагол + du / de la / de l’ + вещество\nDu pain, de la soupe, de l’eau — три образца, а не три разных количества. Выбирай по французскому слову. Если уже назвал меру, например стакан, скажи иначе: un verre d’eau.\nУ soupe женский род — de la soupe. У pain мужской — du pain. Перед гласной выходит de l’eau. Апостроф не говорит тебе, какого рода слово: он меняет только написание.",
+"textTr": "fiil + du / de la / de l’ + madde\nDu pain, de la soupe, de l’eau—üç örnek, üç farklı miktar değil. Fransızca kelimeye göre seçim yapın. Eğer bir ölçü birimini, örneğin bir bardağı, zaten adlandırdıysanız, farklı şekilde söyleyin: un verre d’eau.\nsoupe dişildir—de la soupe. pain erildir—du pain. Bir sesli harften önce de l’eau olur. Kesme işareti kelimenin cinsiyetini söylemez; sadece yazımını değiştirir.",
+"textUK": "дієслово + du / de la / de l’ + речовина\nDu pain, de la soupe, de l’eau — три зразки, а не три різні кількості. Вибирай за французьким словом. Якщо вже назвав міру, наприклад, склянку, скажи інакше: un verre d’eau.\nУ soupe жіночий рід - de la soupe. У pain чоловічий - du pain. Перед голосною виходить de l’eau. Апостроф не говорить тобі, якого роду слово: він змінює тільки написання.",
+"textVi": "động từ + du / de la / de l’ + chất\nDu pain, de la soupe, de l’eau — ba mẫu, không phải ba số lượng khác nhau. Hãy chọn dựa trên từ tiếng Pháp. Nếu bạn đã đặt tên cho một dụng cụ đo lường, ví dụ như ly, hãy đặt tên khác đi: un verre d’eau.\nsoupe là giống cái—de la soupe. pain là giống đực—du pain. Trước một nguyên âm, nó trở thành de l’eau. Dấu nháy đơn không cho biết giống của từ; nó chỉ thay đổi cách viết.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"verb + «du» / «de la» / «de l’» + substance",
+"«Du pain», «de la soupe», «de l’eau»—three samples, not three different quantities. Choose based on the French word. If you've already named a measure, like a glass, say it differently: «un verre d’eau».",
+"«soupe» is feminine—«de la soupe». «pain» is masculine—«du pain». Before a vowel, it becomes «de l’eau». The apostrophe doesn't tell you the gender of the word; it only changes the spelling."
+],
+"es": [
+"verbo + «du» / «de la» / «de l’» + sustancia",
+"«Du pain», «de la soupe», «de l’eau»: tres muestras, no tres cantidades diferentes. Elija según la palabra en francés. Si ya ha nombrado una medida, como un vaso, dígalo de otra manera: «un verre d’eau».",
+"«soupe» es femenino: «de la soupe». «pain» es masculino: «du pain». Antes de una vocal, se convierte en «de l’eau». El apóstrofo no indica el género de la palabra; solo cambia la ortografía."
+],
+"id": [
+"kata kerja + «du» / «de la» / «de l’» + zat",
+"«Du pain», «de la soupe», «de l’eau»—tiga sampel, bukan tiga kuantitas berbeda. Pilih berdasarkan kata dalam bahasa Prancis. Jika Anda sudah menyebutkan ukuran, seperti gelas, ucapkan dengan cara berbeda: «un verre d’eau».",
+"«soupe» adalah feminin—«de la soupe». «pain» adalah maskulin—«du pain». Sebelum vokal, menjadi «de l’eau». Tanda apostrof tidak memberi tahu Anda jenis kelamin kata; itu hanya mengubah ejaan."
+],
+"pl": [
+"czasownik + «du» / «de la» / «de l’» + substancja",
+"«Du pain», «de la soupe», «de l’eau» — trzy próbki, a nie trzy różne ilości. Wybierz na podstawie francuskiego słowa. Jeśli już nadałeś nazwę miarce, np. szklance, podaj ją inaczej: «un verre d’eau».",
+"«soupe» jest rodzaju żeńskiego — «de la soupe». «pain» jest rodzaju męskiego — «du pain». Przed samogłoską zmienia się na «de l’eau». Apostrof nie określa rodzaju słowa, a jedynie zmienia jego pisownię."
+],
+"pt-BR": [
+"verbo + «du» / «de la» / «de l’» + substância",
+"«Du pain», «de la soupe», «de l’eau» — três amostras, não três quantidades diferentes. Escolha com base na palavra em francês. Se você já nomeou uma medida, como um copo, diga-a de forma diferente: «un verre d’eau».",
+"«soupe» é feminino — «de la soupe». «pain» é masculino — «du pain». Antes de uma vogal, torna-se «de l’eau». O apóstrofo não indica o gênero da palavra; ele apenas muda a grafia."
+],
+"ru": [
+"глагол + «du» / «de la» / «de l’» + вещество",
+"«Du pain», «de la soupe», «de l’eau» — три образца, а не три разных количества. Выбирай по французскому слову. Если уже назвал меру, например стакан, скажи иначе: «un verre d’eau».",
+"У «soupe» женский род — «de la soupe». У «pain» мужской — «du pain». Перед гласной выходит «de l’eau». Апостроф не говорит тебе, какого рода слово: он меняет только написание."
+],
+"tr": [
+"fiil + «du» / «de la» / «de l’» + madde",
+"«Du pain», «de la soupe», «de l’eau»—üç örnek, üç farklı miktar değil. Fransızca kelimeye göre seçim yapın. Eğer bir ölçü birimini, örneğin bir bardağı, zaten adlandırdıysanız, farklı şekilde söyleyin: «un verre d’eau».",
+"«soupe» dişildir—«de la soupe». «pain» erildir—«du pain». Bir sesli harften önce «de l’eau» olur. Kesme işareti kelimenin cinsiyetini söylemez; sadece yazımını değiştirir."
+],
+"uk": [
+"дієслово + «du» / «de la» / «de l’» + речовина",
+"«Du pain», «de la soupe», «de l’eau» — три зразки, а не три різні кількості. Вибирай за французьким словом. Якщо вже назвав міру, наприклад, склянку, скажи інакше: «un verre d’eau».",
+"У «soupe» жіночий рід - «de la soupe». У «pain» чоловічий - «du pain». Перед голосною виходить «de l’eau». Апостроф не говорить тобі, якого роду слово: він змінює тільки написання."
+],
+"vi": [
+"động từ + «du» / «de la» / «de l’» + chất",
+"«Du pain», «de la soupe», «de l’eau» — ba mẫu, không phải ba số lượng khác nhau. Hãy chọn dựa trên từ tiếng Pháp. Nếu bạn đã đặt tên cho một dụng cụ đo lường, ví dụ như ly, hãy đặt tên khác đi: «un verre d’eau».",
+"«soupe» là giống cái—«de la soupe». «pain» là giống đực—«du pain». Trước một nguyên âm, nó trở thành «de l’eau». Dấu nháy đơn không cho biết giống của từ; nó chỉ thay đổi cách viết."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:12:03",
+"fr:12:05"
+]
+},
+{
+"textES": "En la cafetería, tomas pan, pero no mencionas la cantidad de panecillos ni su peso. Di Je prends, luego du pain. du te permite evitar especificar la cantidad exacta.",
+"textId": "Di kantin, Anda mengambil roti, tetapi jangan menyebutkan jumlah roti atau beratnya. Katakan Je prends, lalu du pain. du memungkinkan Anda untuk menghindari menyebutkan jumlah pastinya.",
+"textPl": "W stołówce bierzesz chleb, ale nie podajesz liczby bułek ani ich wagi. Powiedz Je prends, a następnie du pain. du pozwala uniknąć podawania dokładnej ilości.",
+"textPtBr": "Na cantina, você pega pão, mas não menciona o número de pãezinhos nem o peso deles. Diga Je prends, depois du pain. du permite que você evite especificar a quantidade exata.",
+"textRU": "В столовой ты берёшь хлеб, но не называешь ни число булок, ни их вес. Скажи Je prends, затем du pain. Именно du позволяет не указывать точное количество.",
+"textTr": "Kafeteryada ekmek alırsınız, ancak kaç tane olduğunu veya ağırlığını belirtmezsiniz. Je prends, sonra du pain dersiniz. du, tam miktarı belirtmekten kaçınmanızı sağlar.",
+"textUK": "У їдальні ти береш хліб, але не називаєш ні число булок, ні їхню вагу. Скажи Je prends, потім du pain. Саме du дозволяє не вказувати точну кількість.",
+"textVi": "Trong căng tin, bạn lấy bánh mì, nhưng không đề cập đến số lượng hoặc trọng lượng của chúng. Hãy nói Je prends, sau đó là du pain. du cho phép bạn tránh việc chỉ định số lượng chính xác.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the cafeteria, you take bread, but don't mention the number of rolls or their weight. Say «Je prends», then «du pain». «du» allows you to avoid specifying the exact quantity."
+],
+"es": [
+"En la cafetería, tomas pan, pero no mencionas la cantidad de panecillos ni su peso. Di «Je prends», luego «du pain». «du» te permite evitar especificar la cantidad exacta."
+],
+"id": [
+"Di kantin, Anda mengambil roti, tetapi jangan menyebutkan jumlah roti atau beratnya. Katakan «Je prends», lalu «du pain». «du» memungkinkan Anda untuk menghindari menyebutkan jumlah pastinya."
+],
+"pl": [
+"W stołówce bierzesz chleb, ale nie podajesz liczby bułek ani ich wagi. Powiedz «Je prends», a następnie «du pain». «du» pozwala uniknąć podawania dokładnej ilości."
+],
+"pt-BR": [
+"Na cantina, você pega pão, mas não menciona o número de pãezinhos nem o peso deles. Diga «Je prends», depois «du pain». «du» permite que você evite especificar a quantidade exata."
+],
+"ru": [
+"В столовой ты берёшь хлеб, но не называешь ни число булок, ни их вес. Скажи «Je prends», затем «du pain». Именно «du» позволяет не указывать точное количество."
+],
+"tr": [
+"Kafeteryada ekmek alırsınız, ancak kaç tane olduğunu veya ağırlığını belirtmezsiniz. «Je prends», sonra «du pain» dersiniz. «du», tam miktarı belirtmekten kaçınmanızı sağlar."
+],
+"uk": [
+"У їдальні ти береш хліб, але не називаєш ні число булок, ні їхню вагу. Скажи «Je prends», потім «du pain». Саме «du» дозволяє не вказувати точну кількість."
+],
+"vi": [
+"Trong căng tin, bạn lấy bánh mì, nhưng không đề cập đến số lượng hoặc trọng lượng của chúng. Hãy nói «Je prends», sau đó là «du pain». «du» cho phép bạn tránh việc chỉ định số lượng chính xác."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:12:01",
+"fr:12:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:12:01",
+"target": "Je prends du pain.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "fr:12:03",
+"target": "Je prends de la soupe.",
+"ru": "Я беру суп.",
+"uk": "Я беру суп."
+},
+{
+"id": "fr:12:05",
+"target": "Nous prenons de l’eau.",
+"ru": "Мы берём воду.",
+"uk": "Ми беремо воду."
+},
+{
+"id": "fr:12:01",
+"target": "Je prends du pain.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "fr:12:04",
+"target": "Elle prend de la soupe.",
+"ru": "Она берёт суп.",
+"uk": "Вона бере суп."
+}
+]
+}
+]

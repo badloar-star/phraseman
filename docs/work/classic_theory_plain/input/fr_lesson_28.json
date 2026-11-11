@@ -1,0 +1,832 @@
+{
+ "lang": "fr",
+ "lesson": 28,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:28:01",
+   "target": "Je voudrais un café.",
+   "ru": "Я бы хотел кофе.",
+   "uk": "Я хотів би кави."
+  },
+  {
+   "id": "fr:28:02",
+   "target": "Je voudrais un thé.",
+   "ru": "Я бы хотел чай.",
+   "uk": "Я хотів би чаю."
+  },
+  {
+   "id": "fr:28:03",
+   "target": "Tu voudrais du lait ?",
+   "ru": "Хочешь молока?",
+   "uk": "Хочеш молока?"
+  },
+  {
+   "id": "fr:28:04",
+   "target": "Elle voudrait une chambre calme.",
+   "ru": "Она хотела бы тихую комнату.",
+   "uk": "Вона хотіла б тиху кімнату."
+  },
+  {
+   "id": "fr:28:05",
+   "target": "Nous voudrions deux billets.",
+   "ru": "Мы хотели бы два билета.",
+   "uk": "Ми хотіли б два квитки."
+  },
+  {
+   "id": "fr:28:06",
+   "target": "Vous voudriez une autre table ?",
+   "ru": "Хотите другой столик?",
+   "uk": "Бажаєте інший столик?"
+  },
+  {
+   "id": "fr:28:07",
+   "target": "J’aimerais partir tôt.",
+   "ru": "Я хотел бы уйти пораньше.",
+   "uk": "Я хотів би піти раніше."
+  },
+  {
+   "id": "fr:28:08",
+   "target": "J’aimerais rester ici.",
+   "ru": "Я хотел бы остаться здесь.",
+   "uk": "Я хотів би залишитися тут."
+  },
+  {
+   "id": "fr:28:09",
+   "target": "Paul aimerait apprendre à conduire.",
+   "ru": "Поль хотел бы научиться водить машину.",
+   "uk": "Пол хотів би навчитися водити."
+  },
+  {
+   "id": "fr:28:10",
+   "target": "Léa aimerait changer de place.",
+   "ru": "Леа хотела бы пересесть.",
+   "uk": "Леа хотіла б пересісти."
+  },
+  {
+   "id": "fr:28:11",
+   "target": "Pourriez-vous répéter, s’il vous plaît ?",
+   "ru": "Не могли бы вы повторить, пожалуйста?",
+   "uk": "Чи не могли б ви повторити, будь ласка?"
+  },
+  {
+   "id": "fr:28:12",
+   "target": "Pourriez-vous écrire votre nom ?",
+   "ru": "Не могли бы вы написать своё имя?",
+   "uk": "Чи не могли б ви написати своє ім'я?"
+  },
+  {
+   "id": "fr:28:13",
+   "target": "Pourriez-vous fermer la fenêtre ?",
+   "ru": "Не могли бы вы закрыть окно?",
+   "uk": "Чи не могли б ви зачинити вікно?"
+  },
+  {
+   "id": "fr:28:14",
+   "target": "Pourriez-vous vérifier le montant ?",
+   "ru": "Не могли бы вы проверить сумму?",
+   "uk": "Чи не могли б ви перевірити суму?"
+  },
+  {
+   "id": "fr:28:15",
+   "target": "Pourriez-vous me montrer la sortie ?",
+   "ru": "Не могли бы вы показать мне выход?",
+   "uk": "Чи не могли б ви показати мені вихід?"
+  },
+  {
+   "id": "fr:28:16",
+   "target": "Tu pourrais baisser le volume ?",
+   "ru": "Не мог бы ты сделать потише?",
+   "uk": "Чи не міг би ти зробити тихіше?"
+  },
+  {
+   "id": "fr:28:17",
+   "target": "Tu pourrais m’appeler demain ?",
+   "ru": "Ты мог бы позвонить мне завтра?",
+   "uk": "Ти міг би зателефонувати мені завтра?"
+  },
+  {
+   "id": "fr:28:18",
+   "target": "Tu pourrais me prêter ton vélo ?",
+   "ru": "Ты мог бы одолжить мне свой велосипед?",
+   "uk": "Ти міг би позичити мені свій велосипед?"
+  },
+  {
+   "id": "fr:28:19",
+   "target": "Est-ce que je pourrais essayer cette veste ?",
+   "ru": "Можно мне примерить эту куртку?",
+   "uk": "Чи можу я приміряти цю куртку?"
+  },
+  {
+   "id": "fr:28:20",
+   "target": "Je pourrais avoir un verre d’eau ?",
+   "ru": "Можно мне стакан воды?",
+   "uk": "Чи можна мені склянку води?"
+  },
+  {
+   "id": "fr:28:21",
+   "target": "Nous préférerions une table dehors.",
+   "ru": "Мы бы предпочли столик на улице.",
+   "uk": "Ми б воліли столик на вулиці."
+  },
+  {
+   "id": "fr:28:22",
+   "target": "Je préférerais payer en espèces.",
+   "ru": "Я бы предпочёл заплатить наличными.",
+   "uk": "Я б волів платити готівкою."
+  },
+  {
+   "id": "fr:28:23",
+   "target": "Elle préférerait un rendez-vous le matin.",
+   "ru": "Она бы предпочла встретиться утром.",
+   "uk": "Вона б воліла ранкову зустріч."
+  },
+  {
+   "id": "fr:28:24",
+   "target": "Tu préférerais marcher ?",
+   "ru": "Ты бы предпочёл пойти пешком?",
+   "uk": "Ти б волів піти пішки?"
+  },
+  {
+   "id": "fr:28:25",
+   "target": "Je prendrais bien une soupe.",
+   "ru": "Я бы хотел суп.",
+   "uk": "Я б хотів супу."
+  },
+  {
+   "id": "fr:28:26",
+   "target": "On pourrait partager un bol de soupe.",
+   "ru": "Мы могли бы разделить тарелку супа.",
+   "uk": "Ми могли б розділити миску супу."
+  },
+  {
+   "id": "fr:28:27",
+   "target": "Nous pourrions commander une tarte pour son anniversaire.",
+   "ru": "Мы могли бы заказать пирог на ее день рождения.",
+   "uk": "Ми могли б замовити пиріг на її день народження."
+  },
+  {
+   "id": "fr:28:28",
+   "target": "Une couverture de plus serait utile.",
+   "ru": "Дополнительное одеяло было бы кстати.",
+   "uk": "Додаткова ковдра була б корисною."
+  },
+  {
+   "id": "fr:28:29",
+   "target": "Je pourrais apporter une barquette de fraises et six œufs.",
+   "ru": "Я мог бы принести лоток клубники и шесть яиц.",
+   "uk": "Я міг би принести кошик полуниці та шість яєць."
+  },
+  {
+   "id": "fr:28:30",
+   "target": "Il serait préférable de réserver.",
+   "ru": "Было бы лучше забронировать.",
+   "uk": "Було б краще забронювати."
+  },
+  {
+   "id": "fr:28:31",
+   "target": "Vous devriez garder le reçu.",
+   "ru": "Вам стоит сохранить чек.",
+   "uk": "Вам варто зберегти чек."
+  },
+  {
+   "id": "fr:28:32",
+   "target": "Tu devrais te reposer.",
+   "ru": "Тебе стоило бы отдохнуть.",
+   "uk": "Тобі варто було б відпочити."
+  },
+  {
+   "id": "fr:28:33",
+   "target": "Je devrais appeler le garage.",
+   "ru": "Мне следует позвонить в автосервис.",
+   "uk": "Мені слід зателефонувати в автосервіс."
+  },
+  {
+   "id": "fr:28:34",
+   "target": "Nous devrions prendre le premier train.",
+   "ru": "Нам следует сесть на первый поезд.",
+   "uk": "Нам слід сісти на перший поїзд."
+  },
+  {
+   "id": "fr:28:35",
+   "target": "Elle devrait boire davantage.",
+   "ru": "Ей следует пить больше.",
+   "uk": "Їй слід більше пити."
+  },
+  {
+   "id": "fr:28:36",
+   "target": "On pourrait partager un taxi.",
+   "ru": "Мы могли бы поехать на такси вместе.",
+   "uk": "Ми могли б поїхати на спільному таксі."
+  },
+  {
+   "id": "fr:28:37",
+   "target": "Nous pourrions nous retrouver au marché.",
+   "ru": "Мы могли бы встретиться на рынке.",
+   "uk": "Ми могли б зустрітися на ринку."
+  },
+  {
+   "id": "fr:28:38",
+   "target": "Vous pourriez passer après le cours.",
+   "ru": "Вы могли бы зайти после занятия.",
+   "uk": "Ви могли б зайти після заняття."
+  },
+  {
+   "id": "fr:28:39",
+   "target": "Je pourrais déposer le dossier lundi.",
+   "ru": "Я мог бы отнести заявление в понедельник.",
+   "uk": "Я міг би залишити заявку в понеділок."
+  },
+  {
+   "id": "fr:28:40",
+   "target": "Tu pourrais lui envoyer une photo.",
+   "ru": "Ты мог бы отправить ей фотографию.",
+   "uk": "Ти міг би надіслати їй фотографію."
+  },
+  {
+   "id": "fr:28:41",
+   "target": "Auriez-vous une chambre pour deux ?",
+   "ru": "У вас не найдётся номера на двоих?",
+   "uk": "У вас не знайдеться номер на двох?"
+  },
+  {
+   "id": "fr:28:42",
+   "target": "Auriez-vous des disponibilités demain ?",
+   "ru": "У вас есть свободные места завтра?",
+   "uk": "У вас є вільні місця завтра?"
+  },
+  {
+   "id": "fr:28:43",
+   "target": "Est-ce que cela vous conviendrait ?",
+   "ru": "Вас это устроит?",
+   "uk": "Це вам підійде?"
+  },
+  {
+   "id": "fr:28:44",
+   "target": "Je souhaiterais déplacer mon rendez-vous.",
+   "ru": "Я хотел бы перенести встречу.",
+   "uk": "Я хотів би перенести зустріч."
+  },
+  {
+   "id": "fr:28:45",
+   "target": "Nous aimerions prolonger notre séjour.",
+   "ru": "Мы хотели бы продлить наше пребывание.",
+   "uk": "Ми хотіли б продовжити наше перебування."
+  },
+  {
+   "id": "fr:28:46",
+   "target": "Il me faudrait une confirmation écrite.",
+   "ru": "Мне потребуется письменное подтверждение.",
+   "uk": "Мені потрібне письмове підтвердження."
+  },
+  {
+   "id": "fr:28:47",
+   "target": "Je voudrais un devis pour la cuisine.",
+   "ru": "Я бы хотел смету на кухню.",
+   "uk": "Я хотів би отримати цінову пропозицію на кухню."
+  },
+  {
+   "id": "fr:28:48",
+   "target": "Pourriez-vous me rappeler après dix heures ?",
+   "ru": "Не могли бы вы перезвонить мне после 10:00?",
+   "uk": "Чи не могли б ви передзвонити мені після 10:00?"
+  },
+  {
+   "id": "fr:28:49",
+   "target": "On aimerait remercier toute l’équipe.",
+   "ru": "Мы хотели бы поблагодарить всю команду.",
+   "uk": "Ми хотіли б подякувати всій команді."
+  },
+  {
+   "id": "fr:28:50",
+   "target": "Je préférerais la place côté allée.",
+   "ru": "Я бы предпочёл место у прохода.",
+   "uk": "Я б віддав перевагу місцю біля проходу."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le séjour",
+   "ru": "пребывание, период проживания",
+   "uk": "перебування, період проживання"
+  },
+  {
+   "lemma": "la place côté allée",
+   "ru": "место у прохода",
+   "uk": "місце біля проходу"
+  },
+  {
+   "lemma": "la disponibilité",
+   "ru": "наличие свободных мест или времени",
+   "uk": "наявність вільних місць чи часу"
+  },
+  {
+   "lemma": "la confirmation",
+   "ru": "подтверждение",
+   "uk": "підтвердження"
+  },
+  {
+   "lemma": "le devis",
+   "ru": "смета, предварительный расчёт",
+   "uk": "кошторис, попередній розрахунок"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon",
+  "l’œuf (m.)",
+  "le bol",
+  "la barquette",
+  "la moitié",
+  "le carton",
+  "le fauteuil",
+  "l’échelle (f.)",
+  "le meilleur souvenir",
+  "la portion",
+  "l’effort (m.)",
+  "le plombier",
+  "le résultat",
+  "le repas",
+  "la pièce d’identité",
+  "le pot"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  },
+  {
+   "lesson": 25,
+   "title": "Сколько из них: местоимение `en`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнить: больше, меньше или так же"
+  },
+  {
+   "lesson": 27,
+   "title": "Сообщить о будущем: `futur simple`"
+  }
+ ],
+ "oldTopicTitle": "Вежливая просьба: `je voudrais`, `pourriez-vous`",
+ "oldTheoryRu": "Вежливость можно выразить формой глагола, а не только добавлением «пожалуйста». Сравни желание, заявленное прямо, и просьбу как пожелание. Оба варианта грамматичны, регистр разный. Для «я хотел бы сделать» после `aimerais` идёт инфинитив. Не подставляй личную форму второго глагола: лицо уже выражено первым. С одним знакомым — `tu pourrais`; при вежливом обращении — `vous pourriez`. Вопросительная инверсия `pourriez-vous` пишется с дефисом. Просьба может быть мягкой и без инверсии. Форма строится от основы будущего с окончаниями, знакомыми по `imparfait`. Сравни `je prendrai` — возьму и `je prendrais` — взял бы. На письме последнее `s` меняет смысл. `Devoir` в условной форме смягчает совет: «вам стоит», не обязательно «вы обязаны». Проверь, просишь ли ты собеседника о чём-то или даёшь ему рекомендацию. `Auriez-vous … ?` помогает вежливо узнать о наличии. Это не то же, что приказ дать предмет. На ответ «нет» такой вопрос вполне рассчитан. Для просьбы в учреждении представь целую реплику: что нужно и когда. Выбери вежливое начало, а предмет, место и время собери по знакомым правилам."
+}

@@ -10,6 +10,7 @@ import {
   waitForRestoreApplicationIdleWithDeadline,
   withRestoreApplicationLock,
   withAccountTransitionLock,
+  acquireAccountTransitionCommitPermit,
 } from '../app/account_generation';
 import fs from 'fs';
 import path from 'path';
@@ -136,6 +137,28 @@ describe('account generation', () => {
     release();
     await blocker;
     await queued;
+  });
+
+  it('commit permit is a synchronous observation and never delays generation changes', async () => {
+    const tokenA = beginAccountGeneration('stable-a');
+    const seen: string[] = [];
+    const subscription = subscribeAccountGeneration((token) => {
+      seen.push(`${token.phase}:${token.stableId ?? 'none'}`);
+    });
+
+    await withAccountTransitionLock(async (lease) => {
+      expect(acquireAccountTransitionCommitPermit(lease, tokenA)).toBe(true);
+      const invalidated = invalidateAccountGeneration();
+      expect(invalidated).toMatchObject({ stableId: null, phase: 'transitioning' });
+      expect(isCurrentAccountGeneration(tokenA)).toBe(false);
+      expect(seen).toEqual(['transitioning:none']);
+      expect(acquireAccountTransitionCommitPermit(lease, tokenA)).toBe(false);
+
+      const tokenB = beginAccountGeneration('stable-b');
+      expect(isCurrentAccountGeneration(tokenB, 'stable-b')).toBe(true);
+      expect(seen).toEqual(['transitioning:none', 'active:stable-b']);
+    });
+    subscription.remove();
   });
 
   it('registers all Avatar DNA account-local prefixes in scoped account cleanup', () => {

@@ -1,0 +1,20 @@
+[
+{"id": "fr:21:02", "type": "B2", "field": "uk", "problem": "Род собеседника расходится: ru «ты позвонила», uk «ти подзвонив»", "fix": "Я спала, коли ти подзвонила."},
+{"id": "fr:21:07", "type": "B1", "field": "tiles", "problem": "Соблазн «passait» даёт верную фразу «Je travaillais quand elle passait» — это и есть дословно «когда она проходила мимо» из подсказки", "fix": {"position": 5, "replace_distractor": "passait", "with": "dormais"}},
+{"id": "fr:21:07", "type": "B2", "field": "ru", "problem": "«est passée» (passé composé) = «зашла», а «проходила мимо» — несовершенный вид, это imparfait «passait»", "fix": "Я работала, когда она зашла."},
+{"id": "fr:21:07", "type": "B2", "field": "uk", "problem": "«est passée» = «зайшла»; «проходила повз» — это imparfait «passait»", "fix": "Я працювала, коли вона зайшла."},
+{"id": "fr:21:10", "type": "B1", "field": "tiles", "problem": "На позиции глагола все 5 соблазнов — существительные (sonnette, soupe, porte, miroir, lait): ученик выбирает единственный глагол, слово не проверяется; заменить хотя бы 2–3 на глагольные формы", "fix": {"position": 1, "replace_distractor": "sonnette", "with": "parlais"}},
+{"id": "fr:21:11", "type": "B3", "field": "alternatives", "problem": "ru/uk начинаются с «Когда мы уходили…» — естественный порядок «Quand nous sommes partis, il pleuvait.» не засчитают", "fix": {"add": ["Quand nous sommes partis, il pleuvait."], "remove": []}},
+{"id": "fr:21:11", "type": "M", "field": "uk", "problem": "ru «уходили» (пешком), uk «виїхали» (уехали на транспорте) — разный смысл", "fix": "Коли ми виходили, йшов дощ."},
+{"id": "fr:21:17", "type": "B2", "field": "ru", "problem": "Род собеседника расходится: ru «ты написала», uk «ти написав»", "fix": "Я был на вокзале, когда ты написал."},
+{"id": "fr:21:18", "type": "B3", "field": "alternatives", "problem": "ru/uk начинаются с «Когда принесли суп…» — естественный порядок «Quand la soupe est arrivée, nous avions faim.» не засчитают", "fix": {"add": ["Quand la soupe est arrivée, nous avions faim."], "remove": []}},
+{"id": "fr:21:18", "type": "B1", "field": "tiles", "problem": "На позиции глагола «avions» все 5 соблазнов не глаголы (magasin, encore, lunettes, gant, départ) — выбор очевиден; заменить хотя бы 2–3 на формы avoir/être", "fix": {"position": 1, "replace_distractor": "magasin", "with": "étions"}},
+{"id": "fr:21:20", "type": "B1", "field": "tiles", "problem": "На позиции глагола «étaient» все 5 соблазнов не глаголы (encore, valise, magasin, radio, café) — выбор очевиден; заменить хотя бы 2–3 на формы être", "fix": {"position": 1, "replace_distractor": "encore", "with": "était"}},
+{"id": "fr:21:21", "type": "B1", "field": "tiles", "problem": "Соблазн «ticket» (ticket de caisse = чек) даёт верную фразу «Léa a trouvé le ticket» при uk «знайшла чек»", "fix": {"position": 8, "replace_distractor": "ticket", "with": "dossier"}},
+{"id": "fr:21:23", "type": "B2", "field": "ru", "problem": "Род собеседника расходится: ru «ты вела», uk «ти їхав»", "fix": "Пока ты вёл машину, я прочитал сообщение."},
+{"id": "fr:21:23", "type": "M", "field": "uk", "problem": "«їхав» = просто «ехал», теряется «вести машину» (conduire)", "fix": "Поки ти був за кермом, я прочитав повідомлення."},
+{"id": "fr:22:05", "type": "B1", "field": "tiles", "problem": "На позиции глагола «connais» все 5 соблазнов — существительные (message, monnaie, sœur, soupe, portefeuille) — выбор очевиден; заменить хотя бы 2–3 на глагольные формы", "fix": {"position": 2, "replace_distractor": "message", "with": "connaît"}},
+{"id": "fr:22:28", "type": "M", "field": "uk", "problem": "«Чи можна я…» — калька, неестественно по-украински", "fix": "Можна я його залишу собі?"},
+{"id": "fr:22:35", "type": "M", "field": "ru", "problem": "Неестественный порядок слов «предпочитаю завтра почитать газету»", "fix": "Газету я предпочитаю почитать завтра."},
+{"id": "fr:22:42", "type": "B1", "field": "tiles", "problem": "Соблазн «ticket» (= чек) даёт верную фразу «je la note sur le ticket» при ru/uk «на чеке»", "fix": {"position": 7, "replace_distractor": "ticket", "with": "billet"}}
+]

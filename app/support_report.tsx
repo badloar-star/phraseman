@@ -14,7 +14,6 @@ import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
-import { ERROR_REPORT_COMMENT_MIN_LEN } from './error_report';
 import { emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -22,6 +21,7 @@ import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 import { captureSupportDiagnosticBundle } from './support_diagnostics';
 import { isSupportDiagnosticsEnabled } from './remote_flags';
 import { sendSupportReportInBackground } from './support_report_outbox';
+import { getSupportReportTemplate, isSupportReportCommentValid } from './support_report_validation';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type SubmitState = 'idle' | 'sent';
@@ -75,7 +75,7 @@ export default function SupportReportScreen() {
   }, [diagnosticsEnabled]);
 
   const canSend = useMemo(
-    () => description.trim().length >= ERROR_REPORT_COMMENT_MIN_LEN,
+    () => isSupportReportCommentValid(description),
     [description],
   );
 
@@ -108,11 +108,11 @@ export default function SupportReportScreen() {
   }, []);
 
   const send = useCallback(() => {
-    if (!canSend || submissionStartedRef.current) return;
+    if (!isSupportReportCommentValid(description) || submissionStartedRef.current) return;
     submissionStartedRef.current = true;
     Keyboard.dismiss();
     hapticTap();
-    const comment = description.trim();
+    const comment = description;
     setSendFailed(false);
     setState('sent');
     void sendSupportReportInBackground({
@@ -132,7 +132,7 @@ export default function SupportReportScreen() {
       submissionStartedRef.current = false;
       if (mountedRef.current) { setState('idle'); setSendFailed(true); } else notifyFailedAfterLeave();
     });
-  }, [attachDiagnostics, canSend, description, diagnosticsPreview, lang, notifyFailedAfterLeave]);
+  }, [attachDiagnostics, description, diagnosticsPreview, lang, notifyFailedAfterLeave]);
 
   return (
     <ScreenGradient artBackdrop="settings">
@@ -210,7 +210,7 @@ export default function SupportReportScreen() {
                 <PressableHybrid
                   testID="support-report-template"
                   accessibilityRole="button"
-                  onPress={() => setDescription(L('Что я делал(а):\nЧто ожидал(а):\nЧто произошло:\n', 'Що я робив(ла):\nЩо очікував(ла):\nЩо сталося:\n', 'What I did:\nWhat I expected:\nWhat happened:\n', 'Lo que hice:\nLo que esperaba:\nLo que pasó:\n', 'O que eu fiz:\nO que eu esperava:\nO que aconteceu:\n', 'Tôi đã làm:\nTôi mong đợi:\nĐiều đã xảy ra:\n', 'Yang saya lakukan:\nYang saya harapkan:\nYang terjadi:\n', 'Ne yaptım:\nNe bekliyordum:\nNe oldu:\n', 'Co zrobiłem(am):\nCo oczekiwałem(am):\nCo się stało:\n'))}
+                  onPress={() => setDescription(getSupportReportTemplate(lang))}
                   withHaptic={false}
                   withSound={false}
                   style={{ marginTop: 10, alignSelf: 'flex-start' }}

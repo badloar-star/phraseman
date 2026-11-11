@@ -1,0 +1,5995 @@
+[
+{
+"lesson": 21,
+"id": "es:21:01",
+"target": "Llamé al hotel ayer.",
+"ru": "Я вчера позвонил в отель.",
+"uk": "Я вчора зателефонував до готелю.",
+"tiles": [
+{
+"correct": "Llamé",
+"distractors": [
+"Llamar",
+"Llamado",
+"Llamaste",
+"Dónde",
+"Quiénes"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"cocina",
+"mochila",
+"hermana",
+"bolso",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ya",
+"ahora",
+"tarde",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo llamé al hotel ayer.",
+"Ayer llamé al hotel.",
+"Yo ayer llamé al hotel.",
+"Ayer yo llamé al hotel."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:02",
+"target": "Llamaste al hotel ayer.",
+"ru": "Ты вчера позвонил в отель.",
+"uk": "Ти вчора зателефонував до готелю.",
+"tiles": [
+{
+"correct": "Llamaste",
+"distractors": [
+"Llamado",
+"Llamar",
+"Llamé",
+"Has",
+"Puede"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mochila",
+"clase",
+"cocina",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"tarde",
+"ahora",
+"antes",
+"más"
+]
+}
+],
+"alternatives": [
+"Tú llamaste al hotel ayer.",
+"Ayer llamaste al hotel.",
+"Tú ayer llamaste al hotel.",
+"Ayer tú llamaste al hotel."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:03",
+"target": "Llamé a Ana ayer.",
+"ru": "Я вчера позвонил Ане.",
+"uk": "Я вчора зателефонував Ані.",
+"tiles": [
+{
+"correct": "Llamé",
+"distractors": [
+"Llamar",
+"Llamado",
+"Llamaste",
+"Has",
+"Puede"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"con",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Lejos",
+"Cuándo"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"ahora",
+"anoche",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo llamé a Ana ayer.",
+"Ayer llamé a Ana.",
+"Yo ayer llamé a Ana.",
+"Ayer yo llamé a Ana."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:04",
+"target": "Llamaste a Ana ayer.",
+"ru": "Ты вчера позвонил Ане.",
+"uk": "Ти вчора зателефонував Ані.",
+"tiles": [
+{
+"correct": "Llamaste",
+"distractors": [
+"Llamar",
+"Llamado",
+"Llamé",
+"Has",
+"Puede"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"para",
+"desde",
+"con",
+"de"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Pronto",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"antes",
+"tarde",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": [
+"Tú llamaste a Ana ayer.",
+"Ayer llamaste a Ana.",
+"Tú ayer llamaste a Ana.",
+"Ayer tú llamaste a Ana."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:05",
+"target": "Ana compró un billete ayer.",
+"ru": "Ана вчера купила билет.",
+"uk": "Ана вчора купила квиток.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Quién",
+"Cuándo",
+"Nunca"
+]
+},
+{
+"correct": "compró",
+"distractors": [
+"comprar",
+"comprado",
+"comprasteis",
+"puedes",
+"prepara"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"los",
+"estos",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"tren",
+"regalo",
+"coche",
+"estación",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"más",
+"después",
+"ya",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Ayer Ana compró un billete."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:06",
+"target": "Compramos un billete ayer.",
+"ru": "Мы вчера купили билет.",
+"uk": "Ми вчора купили квиток.",
+"tiles": [
+{
+"correct": "Compramos",
+"distractors": [
+"Compró",
+"Compré",
+"Compraste",
+"Comprar",
+"Compraron"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"la",
+"estas",
+"con",
+"que"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"billetes",
+"viaje",
+"abrigos",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"anoche",
+"ya",
+"antes",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros compramos un billete ayer.",
+"Nosotras compramos un billete ayer.",
+"Ayer compramos un billete."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:07",
+"target": "Compré queso en el mercado.",
+"ru": "Я купил сыр на рынке.",
+"uk": "Я купив сир на ринку.",
+"tiles": [
+{
+"correct": "Compré",
+"distractors": [
+"Comprado",
+"Compra",
+"Compró",
+"Compramos",
+"Compraste"
+]
+},
+{
+"correct": "queso",
+"distractors": [
+"reserva",
+"bicicleta",
+"estación",
+"hermana",
+"películas"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"desde",
+"con",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "mercado",
+"distractors": [
+"bolsa",
+"pedido",
+"abrigos",
+"casa",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Yo compré queso en el mercado."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:08",
+"target": "Compraste pan ayer.",
+"ru": "Ты вчера купил хлеб.",
+"uk": "Ти вчора купив хліб.",
+"tiles": [
+{
+"correct": "Compraste",
+"distractors": [
+"Compré",
+"Comprasteis",
+"Comprar",
+"Compramos",
+"Compró"
+]
+},
+{
+"correct": "pan",
+"distractors": [
+"llaves",
+"casa",
+"mensaje",
+"mochila",
+"hotel"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"ahora",
+"tarde",
+"mañana",
+"antes"
+]
+}
+],
+"alternatives": [
+"Tú compraste pan ayer.",
+"Ayer compraste pan.",
+"Tú ayer compraste pan.",
+"Ayer tú compraste pan."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:09",
+"target": "Luis preparó la cena ayer.",
+"ru": "Луис вчера приготовил ужин.",
+"uk": "Луїс вчора приготував вечерю.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Lejos",
+"Pronto",
+"Nunca"
+]
+},
+{
+"correct": "preparó",
+"distractors": [
+"preparado",
+"preparar",
+"preparando",
+"somos",
+"vamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"casa",
+"cebolla",
+"clase",
+"maleta",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"mañana",
+"más",
+"después",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Ayer Luis preparó la cena."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:10",
+"target": "Preparamos la mochila ayer.",
+"ru": "Мы вчера приготовили рюкзак.",
+"uk": "Ми вчора приготували рюкзак.",
+"tiles": [
+{
+"correct": "Preparamos",
+"distractors": [
+"Prepara",
+"Preparar",
+"Preparando",
+"Preparado",
+"Preparas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"los",
+"unas",
+"con"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"salida",
+"foto",
+"bufanda",
+"bolsillo",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"ahora",
+"mañana",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros preparamos la mochila ayer.",
+"Nosotras preparamos la mochila ayer.",
+"Ayer preparamos la mochila."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:11",
+"target": "Escribí una carta anoche.",
+"ru": "Я вчера вечером написал письмо.",
+"uk": "Я учора ввечері написав листа.",
+"tiles": [
+{
+"correct": "Escribí",
+"distractors": [
+"Escribís",
+"Escribiendo",
+"Escribimos",
+"Escribisteis",
+"Escribe"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"el",
+"un",
+"mi",
+"los",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"estación",
+"móvil",
+"farmacia",
+"pregunta",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ahora",
+"más",
+"tarde",
+"ayer",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Yo escribí una carta anoche.",
+"Anoche escribí una carta.",
+"Yo anoche escribí una carta.",
+"Anoche yo escribí una carta."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:12",
+"target": "Ana escribió un mensaje anoche.",
+"ru": "Ана вчера вечером написала сообщение.",
+"uk": "Ана учора ввечері написала повідомлення.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Pronto",
+"Quién",
+"Lejos"
+]
+},
+{
+"correct": "escribió",
+"distractors": [
+"escribimos",
+"escrito",
+"escribir",
+"escribiendo",
+"escribisteis"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"arroz",
+"pregunta",
+"reunión",
+"factura",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ahora",
+"tarde",
+"mañana",
+"ayer",
+"más"
+]
+}
+],
+"alternatives": [
+"Anoche Ana escribió un mensaje."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:13",
+"target": "Luis abrió la puerta anoche.",
+"ru": "Луис вчера вечером открыл дверь.",
+"uk": "Луїс учора ввечері відчинив двері.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Lejos",
+"Pronto",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abrimos",
+"abierto",
+"abrir",
+"abriendo",
+"gustan"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"platos",
+"foto",
+"maleta",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ahora",
+"después",
+"mañana",
+"ayer",
+"más"
+]
+}
+],
+"alternatives": [
+"Anoche Luis abrió la puerta."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:14",
+"target": "Compramos un kilo de arroz.",
+"ru": "Мы купили килограмм риса.",
+"uk": "Ми купили кілограм рису.",
+"tiles": [
+{
+"correct": "Compramos",
+"distractors": [
+"Compraste",
+"Comprar",
+"Compré",
+"Compraron",
+"Compró"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"la",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "kilo",
+"distractors": [
+"hermanos",
+"carta",
+"película",
+"pasaporte",
+"casa"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"con",
+"en",
+"por",
+"para"
+]
+},
+{
+"correct": "arroz",
+"distractors": [
+"llaves",
+"cargador",
+"casa",
+"salida",
+"pedido"
+]
+}
+],
+"alternatives": [
+"Nosotros compramos un kilo de arroz.",
+"Nosotras compramos un kilo de arroz."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:15",
+"target": "Mandé la foto anoche.",
+"ru": "Я вчера вечером отправил фотографию.",
+"uk": "Я учора ввечері надіслав фотографію.",
+"tiles": [
+{
+"correct": "Mandé",
+"distractors": [
+"Mandado",
+"Mandamos",
+"Mandasteis",
+"Ha",
+"Hemos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"mercado",
+"centro",
+"hermanos",
+"fotos",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"antes",
+"ya",
+"mañana",
+"tarde",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Yo mandé la foto anoche.",
+"Anoche mandé la foto.",
+"Yo anoche mandé la foto.",
+"Anoche yo mandé la foto."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:16",
+"target": "Mandamos el mapa anoche.",
+"ru": "Мы вчера вечером отправили карту.",
+"uk": "Ми учора ввечері надіслали мапу.",
+"tiles": [
+{
+"correct": "Mandamos",
+"distractors": [
+"Mandé",
+"Mandasteis",
+"Mandado",
+"Ha",
+"Hemos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"una",
+"esta",
+"con"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"madre",
+"oficina",
+"café",
+"reloj",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"más",
+"tarde",
+"temprano",
+"antes",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Nosotros mandamos el mapa anoche.",
+"Nosotras mandamos el mapa anoche.",
+"Anoche mandamos el mapa."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:17",
+"target": "Compraste dos huevos.",
+"ru": "Ты купил два яйца.",
+"uk": "Ти купив два яйця.",
+"tiles": [
+{
+"correct": "Compraste",
+"distractors": [
+"Compré",
+"Comprar",
+"Compró",
+"Compramos",
+"Compraron"
+]
+},
+{
+"correct": "dos",
+"distractors": [
+"cinco",
+"diez",
+"cuatro",
+"ocho",
+"seis"
+]
+},
+{
+"correct": "huevos",
+"distractors": [
+"música",
+"cambio",
+"maleta",
+"casa",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Tú compraste dos huevos."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:18",
+"target": "Compré un regalo para mi madre.",
+"ru": "Я купил подарок для мамы.",
+"uk": "Я купив подарунок для мами.",
+"tiles": [
+{
+"correct": "Compré",
+"distractors": [
+"Comprado",
+"Compramos",
+"Compraste",
+"Compró",
+"Comprar"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"la",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "regalo",
+"distractors": [
+"bolsos",
+"ideas",
+"coches",
+"hermanas",
+"casa"
+]
+},
+{
+"correct": "para",
+"distractors": [
+"hasta",
+"sin",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"tu",
+"mis",
+"su",
+"sus",
+"tus"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"bicicleta",
+"tiendas",
+"café",
+"mapa",
+"casa"
+]
+}
+],
+"alternatives": [
+"Yo compré un regalo para mi madre."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:19",
+"target": "Mis hermanos llevaron la maleta anoche.",
+"ru": "Мои братья вчера вечером отнесли чемодан.",
+"uk": "Мої брати учора ввечері віднесли валізу.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Sus",
+"Tu",
+"Tus",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"reserva",
+"favor",
+"mapa",
+"mensaje",
+"casa"
+]
+},
+{
+"correct": "llevaron",
+"distractors": [
+"llevado",
+"llevamos",
+"llevando",
+"laváis",
+"lleva"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"un",
+"este"
+]
+},
+{
+"correct": "maleta",
+"distractors": [
+"tarjeta",
+"pasaporte",
+"problema",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ayer",
+"tarde",
+"antes",
+"temprano",
+"ya"
+]
+}
+],
+"alternatives": [
+"Anoche mis hermanos llevaron la maleta."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:20",
+"target": "Llevaste la bolsa anoche.",
+"ru": "Ты вчера вечером отнёс пакет.",
+"uk": "Ти учора ввечері відніс пакет.",
+"tiles": [
+{
+"correct": "Llevaste",
+"distractors": [
+"Llevar",
+"Llevas",
+"Llevo",
+"Envolviendo",
+"Llevando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"las",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "bolsa",
+"distractors": [
+"cartas",
+"mochilas",
+"libro",
+"bolsillo",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ya",
+"ayer",
+"ahora",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Tú llevaste la bolsa anoche.",
+"Anoche llevaste la bolsa.",
+"Tú anoche llevaste la bolsa.",
+"Anoche tú llevaste la bolsa."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:21",
+"target": "Pagamos en efectivo ayer.",
+"ru": "Мы вчера заплатили наличными.",
+"uk": "Ми вчора заплатили готівкою.",
+"tiles": [
+{
+"correct": "Pagamos",
+"distractors": [
+"Pagar",
+"Pagaste",
+"Pagaron",
+"Pagando",
+"Pagasteis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sobre",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "efectivo",
+"distractors": [
+"mochila",
+"arroz",
+"maleta",
+"móvil",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ahora",
+"antes",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros pagamos en efectivo ayer.",
+"Nosotras pagamos en efectivo ayer.",
+"Ayer pagamos en efectivo."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:22",
+"target": "Pagasteis con tarjeta ayer.",
+"ru": "Вы вчера заплатили картой.",
+"uk": "Ви вчора заплатили карткою.",
+"tiles": [
+{
+"correct": "Pagasteis",
+"distractors": [
+"Pagar",
+"Pagado",
+"Pagando",
+"Pagamos",
+"Es"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"desde",
+"en",
+"a",
+"de",
+"por"
+]
+},
+{
+"correct": "tarjeta",
+"distractors": [
+"idea",
+"hermanos",
+"billete",
+"hotel",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ahora",
+"ya",
+"tarde",
+"más"
+]
+}
+],
+"alternatives": [
+"Ayer pagasteis con tarjeta.",
+"Pagaron con tarjeta ayer."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:23",
+"target": "Ana compró fruta ayer.",
+"ru": "Ана вчера купила фрукты.",
+"uk": "Ана вчора купила фрукти.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Nunca",
+"Quién",
+"Lejos",
+"Cuándo"
+]
+},
+{
+"correct": "compró",
+"distractors": [
+"comprar",
+"comprado",
+"comprasteis",
+"puedes",
+"prepara"
+]
+},
+{
+"correct": "fruta",
+"distractors": [
+"coche",
+"abrigos",
+"películas",
+"baño",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"mañana",
+"ahora",
+"más",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer Ana compró fruta."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:24",
+"target": "Entramos en la oficina ayer.",
+"ru": "Мы вчера вошли в офис.",
+"uk": "Ми вчора зайшли до офісу.",
+"tiles": [
+{
+"correct": "Entramos",
+"distractors": [
+"Entrar",
+"Deja",
+"Entrado",
+"Preparado",
+"Son"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"de",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"esta",
+"con"
+]
+},
+{
+"correct": "oficina",
+"distractors": [
+"maleta",
+"carta",
+"clase",
+"botella",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"antes",
+"más",
+"tarde",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Nosotros entramos en la oficina ayer.",
+"Nosotras entramos en la oficina ayer.",
+"Ayer entramos en la oficina."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:25",
+"target": "Mis hermanas prepararon la cena ayer.",
+"ru": "Мои сёстры вчера приготовили ужин.",
+"uk": "Мої сестри вчора приготували вечерю.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Sus",
+"Su",
+"Tu"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"puerta",
+"recepción",
+"agua",
+"viaje",
+"cita"
+]
+},
+{
+"correct": "prepararon",
+"distractors": [
+"preparar",
+"prepara",
+"preparado",
+"preparando",
+"preparamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"los",
+"esta",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"maleta",
+"verduras",
+"semana",
+"botella",
+"puerta"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"después",
+"ahora",
+"ya",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanas prepararon la cena."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:26",
+"target": "Mis hermanos prepararon la mochila ayer.",
+"ru": "Мои братья вчера собрали рюкзак.",
+"uk": "Мої брати вчора зібрали рюкзак.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tus",
+"Tu",
+"Sus",
+"Mi",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"salidas",
+"pregunta",
+"bufanda",
+"número",
+"casa"
+]
+},
+{
+"correct": "prepararon",
+"distractors": [
+"prepara",
+"preparado",
+"gusta",
+"gustan",
+"preparar"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"el",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"tren",
+"efectivo",
+"oficina",
+"coche",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"mañana",
+"antes",
+"ahora",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanos prepararon la mochila."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:27",
+"target": "Comprasteis un billete ayer.",
+"ru": "Вы вчера купили билет.",
+"uk": "Ви вчора купили квиток.",
+"tiles": [
+{
+"correct": "Comprasteis",
+"distractors": [
+"Compró",
+"Compramos",
+"Compré",
+"Comprar",
+"Comprado"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"los",
+"la",
+"unas",
+"las",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"llave",
+"zapatos",
+"carta",
+"película",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"anoche",
+"más",
+"después",
+"tarde",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Ayer comprasteis un billete.",
+"Compraron un billete ayer."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:28",
+"target": "Me levanté temprano ayer.",
+"ru": "Я вчера рано встал.",
+"uk": "Я вчора рано встав.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Mi",
+"Las",
+"La",
+"Tu",
+"Te"
+]
+},
+{
+"correct": "levanté",
+"distractors": [
+"levantan",
+"levantas",
+"levanta",
+"levantamos",
+"abierto"
+]
+},
+{
+"correct": "temprano",
+"distractors": [
+"mañana",
+"antes",
+"anoche",
+"ahora",
+"más"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"más",
+"tarde",
+"ahora",
+"antes"
+]
+}
+],
+"alternatives": [
+"Ayer me levanté temprano.",
+"Yo me levanté temprano ayer.",
+"Yo ayer me levanté temprano.",
+"Ayer yo me levanté temprano."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:29",
+"target": "Mis hermanos compraron cebollas en el mercado.",
+"ru": "Мои братья купили лук на рынке.",
+"uk": "Мої брати купили цибулю на ринку.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Mi",
+"Tus",
+"Sus",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"coche",
+"taxi",
+"mochilas",
+"mesas",
+"casa"
+]
+},
+{
+"correct": "compraron",
+"distractors": [
+"compraste",
+"compramos",
+"comprar",
+"comprado",
+"comprasteis"
+]
+},
+{
+"correct": "cebollas",
+"distractors": [
+"fotos",
+"mochilas",
+"mensaje",
+"tarjeta",
+"casa"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"de",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"una",
+"la",
+"con"
+]
+},
+{
+"correct": "mercado",
+"distractors": [
+"tienda",
+"queso",
+"sopa",
+"coche",
+"mapas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "es:21:30",
+"target": "Mandasteis el mapa ayer.",
+"ru": "Вы вчера отправили карту.",
+"uk": "Ви вчора надіслали мапу.",
+"tiles": [
+{
+"correct": "Mandasteis",
+"distractors": [
+"Mandé",
+"Mandamos",
+"Mandado",
+"Ha",
+"Hemos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"una",
+"los",
+"con"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"reserva",
+"fruta",
+"pan",
+"tienda",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"anoche",
+"mañana",
+"tarde",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": [
+"Ayer mandasteis el mapa.",
+"Mandaron el mapa ayer.",
+"Ayer mandaron el mapa."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:31",
+"target": "No llamé a Ana anoche.",
+"ru": "Я вчера вечером не позвонил Ане.",
+"uk": "Я учора ввечері не зателефонував Ані.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "llamé",
+"distractors": [
+"llamaste",
+"llamar",
+"llamado",
+"tiene",
+"está"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Quién",
+"Lejos",
+"Nunca"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"tarde",
+"ahora",
+"ayer",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo no llamé a Ana anoche.",
+"Anoche no llamé a Ana.",
+"Yo anoche no llamé a Ana.",
+"Anoche yo no llamé a Ana."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:32",
+"target": "Lavé las camisetas ayer.",
+"ru": "Я вчера постирал футболки.",
+"uk": "Я вчора виправ футболки.",
+"tiles": [
+{
+"correct": "Lavé",
+"distractors": [
+"Lavo",
+"Lavando",
+"Llevaron",
+"Llevar",
+"Pagado"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"una",
+"mis",
+"la",
+"un",
+"con"
+]
+},
+{
+"correct": "camisetas",
+"distractors": [
+"compra",
+"farmacias",
+"billetes",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ya",
+"tarde",
+"anoche",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Yo lavé las camisetas ayer.",
+"Ayer lavé las camisetas.",
+"Yo ayer lavé las camisetas.",
+"Ayer yo lavé las camisetas."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:33",
+"target": "No compramos huevos ayer.",
+"ru": "Мы вчера не купили яйца.",
+"uk": "Ми вчора не купили яєць.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Mañana"
+]
+},
+{
+"correct": "compramos",
+"distractors": [
+"compré",
+"compra",
+"compró",
+"compraste",
+"comprado"
+]
+},
+{
+"correct": "huevos",
+"distractors": [
+"camiseta",
+"farmacias",
+"sopa",
+"manos",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"tarde",
+"antes",
+"mañana",
+"anoche",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros no compramos huevos ayer.",
+"Nosotras no compramos huevos ayer.",
+"Ayer no compramos huevos."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:34",
+"target": "No mandamos la foto anoche.",
+"ru": "Мы вчера вечером не отправили фотографию.",
+"uk": "Ми учора ввечері не надіслали фотографію.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora"
+]
+},
+{
+"correct": "mandamos",
+"distractors": [
+"mandar",
+"mandaron",
+"mandé",
+"mandado",
+"mandasteis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"mochila",
+"lista",
+"madre",
+"móvil",
+"semana"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"más",
+"ayer",
+"mañana",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros no mandamos la foto anoche.",
+"Nosotras no mandamos la foto anoche.",
+"Anoche no mandamos la foto."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:35",
+"target": "Me duché antes de la cena.",
+"ru": "Я принял душ перед ужином.",
+"uk": "Я прийняв душ перед вечерею.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Un",
+"Mi",
+"El",
+"Mis",
+"Se"
+]
+},
+{
+"correct": "duché",
+"distractors": [
+"duchas",
+"ducha",
+"duchamos",
+"ducho",
+"escribe"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ayer",
+"ahora",
+"anoche",
+"mañana",
+"más"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"con",
+"en",
+"para",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"las",
+"un",
+"los",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"número",
+"foto",
+"hermanos",
+"mapa",
+"tiempo"
+]
+}
+],
+"alternatives": [
+"Yo me duché antes de la cena."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:36",
+"target": "Mis hermanas no pagaron con tarjeta anoche.",
+"ru": "Мои сёстры вчера вечером не заплатили картой.",
+"uk": "Мої сестри учора ввечері не заплатили карткою.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Sus",
+"Tu",
+"Su"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"tiempo",
+"cara",
+"mochila",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"ayer",
+"mañana",
+"ahora",
+"más"
+]
+},
+{
+"correct": "pagaron",
+"distractors": [
+"pagar",
+"pagaste",
+"pagamos",
+"podemos",
+"pagado"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"por",
+"de",
+"en",
+"a",
+"para"
+]
+},
+{
+"correct": "tarjeta",
+"distractors": [
+"aeropuerto",
+"bolsos",
+"hermano",
+"viaje",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"temprano",
+"ahora",
+"más",
+"mañana",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Anoche mis hermanas no pagaron con tarjeta."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:37",
+"target": "Luis preparó la sopa anoche.",
+"ru": "Луис вчера вечером приготовил суп.",
+"uk": "Луїс учора ввечері приготував суп.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Nunca",
+"Quién",
+"Cuándo"
+]
+},
+{
+"correct": "preparó",
+"distractors": [
+"preparando",
+"preparar",
+"fui",
+"preparado",
+"fue"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "sopa",
+"distractors": [
+"bicicleta",
+"agua",
+"hermanos",
+"ideas",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ahora",
+"mañana",
+"antes",
+"temprano",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Anoche Luis preparó la sopa."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:38",
+"target": "No compré un kilo de queso.",
+"ru": "Я не покупал килограмм сыра.",
+"uk": "Я не купував кілограма сиру.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Mañana"
+]
+},
+{
+"correct": "compré",
+"distractors": [
+"comprar",
+"compraron",
+"compraste",
+"compró",
+"compramos"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"los",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "kilo",
+"distractors": [
+"idea",
+"casa",
+"ventana",
+"tiendas",
+"platos"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"en",
+"a",
+"con",
+"sin",
+"por"
+]
+},
+{
+"correct": "queso",
+"distractors": [
+"fotos",
+"cara",
+"bicicleta",
+"coche",
+"mesa"
+]
+}
+],
+"alternatives": [
+"Yo no compré un kilo de queso."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:39",
+"target": "No llevasteis la bolsa anoche.",
+"ru": "Вы вчера вечером не отнесли пакет.",
+"uk": "Ви учора ввечері не віднесли пакет.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "llevasteis",
+"distractors": [
+"llevar",
+"lleva",
+"llevando",
+"busca",
+"llevado"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"lo",
+"los",
+"con"
+]
+},
+{
+"correct": "bolsa",
+"distractors": [
+"parada",
+"sopa",
+"manos",
+"mensaje",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"tarde",
+"ayer",
+"después",
+"temprano",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Anoche no llevasteis la bolsa.",
+"No llevaron la bolsa anoche.",
+"Anoche no llevaron la bolsa."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:40",
+"target": "Mis hermanos no esperaron aquí anoche.",
+"ru": "Мои братья вчера вечером не подождали здесь.",
+"uk": "Мої брати учора ввечері не почекали тут.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Tu",
+"Sus",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"tren",
+"foto",
+"oficina",
+"móvil",
+"casa"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"ayer",
+"mañana",
+"ahora",
+"más"
+]
+},
+{
+"correct": "esperaron",
+"distractors": [
+"esperar",
+"has",
+"hay",
+"hemos",
+"ha"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"fuera",
+"dentro",
+"cerca",
+"lejos"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ya",
+"mañana",
+"ayer",
+"tarde",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Anoche mis hermanos no esperaron aquí."
+]
+},
+{
+"lesson": 21,
+"id": "es:21:41",
+"target": "¿Llamaste al hotel ayer?",
+"ru": "Ты вчера позвонил в отель?",
+"uk": "Ти вчора зателефонував до готелю?",
+"tiles": [
+{
+"correct": "Llamaste",
+"distractors": [
+"Llamar",
+"Llamado",
+"Llamé",
+"Has",
+"Buscáis"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"puerta",
+"tiempo",
+"madre",
+"regalo",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"temprano",
+"anoche",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Tú llamaste al hotel ayer?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:42",
+"target": "¿Compraste queso ayer?",
+"ru": "Ты вчера купил сыр?",
+"uk": "Ти вчора купив сир?",
+"tiles": [
+{
+"correct": "Compraste",
+"distractors": [
+"Comprado",
+"Compramos",
+"Compraron",
+"Compré",
+"Comprar"
+]
+},
+{
+"correct": "queso",
+"distractors": [
+"ventanas",
+"cita",
+"mapa",
+"ventana",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ahora",
+"tarde",
+"más",
+"antes"
+]
+}
+],
+"alternatives": [
+"¿Tú compraste queso ayer?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:43",
+"target": "¿Abrimos la puerta ayer?",
+"ru": "Мы вчера открыли дверь?",
+"uk": "Ми вчора відчинили двері?",
+"tiles": [
+{
+"correct": "Abrimos",
+"distractors": [
+"Abrió",
+"Abrir",
+"Abrirla",
+"Abre",
+"Abren"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"mensaje",
+"semana",
+"pasaporte",
+"viaje",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"temprano",
+"antes",
+"tarde",
+"ya"
+]
+}
+],
+"alternatives": [
+"¿Nosotros abrimos la puerta ayer?",
+"¿Nosotras abrimos la puerta ayer?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:44",
+"target": "¿Leíste el mensaje ayer?",
+"ru": "Ты вчера прочитал сообщение?",
+"uk": "Ти вчора прочитав повідомлення?",
+"tiles": [
+{
+"correct": "Leíste",
+"distractors": [
+"Leo",
+"Leído",
+"Leyendo",
+"Leer",
+"Lees"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"los",
+"este",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"idea",
+"madre",
+"clase",
+"hermana",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"tarde",
+"ya",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Tú leíste el mensaje ayer?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:45",
+"target": "¿Luis compró un billete ayer?",
+"ru": "Луис вчера купил билет?",
+"uk": "Луїс вчора купив квиток?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Cuándo",
+"Quién",
+"Pronto",
+"Nunca"
+]
+},
+{
+"correct": "compró",
+"distractors": [
+"comprasteis",
+"comprar",
+"comprado",
+"está",
+"puedes"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"los",
+"unas",
+"una",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"bolsa",
+"cita",
+"hermanas",
+"cebolla",
+"abrigo"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"más",
+"temprano",
+"antes",
+"ahora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "es:21:46",
+"target": "¿Pagaste con tarjeta ayer?",
+"ru": "Ты вчера заплатил картой?",
+"uk": "Ти вчора заплатив карткою?",
+"tiles": [
+{
+"correct": "Pagaste",
+"distractors": [
+"Pagamos",
+"Pagar",
+"Pagaron",
+"Pagasteis",
+"Tenemos"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"en",
+"sin",
+"desde",
+"por",
+"de"
+]
+},
+{
+"correct": "tarjeta",
+"distractors": [
+"película",
+"móvil",
+"cocina",
+"café",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"tarde",
+"temprano",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Tú pagaste con tarjeta ayer?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:47",
+"target": "¿Pagaste la factura anoche?",
+"ru": "Ты вчера вечером оплатил счёт?",
+"uk": "Ти вчора ввечері оплатив рахунок?",
+"tiles": [
+{
+"correct": "Pagaste",
+"distractors": [
+"Pagasteis",
+"Pagar",
+"Pagaron",
+"Pagamos",
+"Pagado"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"los",
+"el",
+"con"
+]
+},
+{
+"correct": "factura",
+"distractors": [
+"libro",
+"oficina",
+"carta",
+"casa",
+"hermanas"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"tarde",
+"mañana",
+"más",
+"temprano",
+"ayer"
+]
+}
+],
+"alternatives": [
+"¿Tú pagaste la factura anoche?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:48",
+"target": "¿Luis abrió la ventana ayer?",
+"ru": "Луис вчера открыл окно?",
+"uk": "Луїс вчора відчинив вікно?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Quién",
+"Cuándo",
+"Lejos"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abrir",
+"abriendo",
+"abierto",
+"abrimos",
+"abrirla"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"el",
+"con"
+]
+},
+{
+"correct": "ventana",
+"distractors": [
+"pasaporte",
+"viaje",
+"hermanos",
+"canción",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ya",
+"ahora",
+"más",
+"antes"
+]
+}
+],
+"alternatives": [
+"¿Abrió Luis la ventana ayer?",
+"¿Ayer Luis abrió la ventana?"
+]
+},
+{
+"lesson": 21,
+"id": "es:21:49",
+"target": "¿Mis hermanas prepararon la cena ayer?",
+"ru": "Мои сёстры вчера приготовили ужин?",
+"uk": "Мої сестри вчора приготували вечерю?",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Sus",
+"Su",
+"Tu"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"mochilas",
+"regalo",
+"ascensor",
+"paraguas",
+"casa"
+]
+},
+{
+"correct": "prepararon",
+"distractors": [
+"preparar",
+"prepara",
+"tuve",
+"tengo",
+"tiene"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"billete",
+"madre",
+"trenes",
+"bolso",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ahora",
+"mañana",
+"ya",
+"después",
+"más"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "es:21:50",
+"target": "¿Escribisteis un mensaje ayer?",
+"ru": "Вы вчера написали сообщение?",
+"uk": "Ви вчора написали повідомлення?",
+"tiles": [
+{
+"correct": "Escribisteis",
+"distractors": [
+"Escribimos",
+"Escribir",
+"Escribió",
+"Escribís",
+"Escribo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"los",
+"una",
+"unas",
+"estas",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"bolsa",
+"sopa",
+"maletas",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"ya",
+"mañana",
+"ahora",
+"antes"
+]
+}
+],
+"alternatives": [
+"¿Escribieron un mensaje ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:01",
+"target": "Fui al médico ayer.",
+"ru": "Я вчера сходил к врачу.",
+"uk": "Я вчора сходив до лікаря.",
+"tiles": [
+{
+"correct": "Fui",
+"distractors": [
+"Ir",
+"Fuiste",
+"Fuimos",
+"Fue",
+"Fueron"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"médicas",
+"profesora",
+"profesoras",
+"guía",
+"estudiantes"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"ya",
+"después",
+"anoche",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Yo fui al médico ayer.",
+"Ayer fui al médico.",
+"Yo ayer fui al médico.",
+"Ayer yo fui al médico."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:02",
+"target": "Fuiste al hotel anoche.",
+"ru": "Ты вчера вечером сходил в отель.",
+"uk": "Ти учора ввечері сходив до готелю.",
+"tiles": [
+{
+"correct": "Fuiste",
+"distractors": [
+"Fui",
+"Fueron",
+"Iba",
+"Fue",
+"Fuimos"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"puerta",
+"foto",
+"tiempo",
+"botella",
+"bicicleta"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"antes",
+"más",
+"ayer",
+"tarde",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Tú fuiste al hotel anoche.",
+"Anoche fuiste al hotel.",
+"Tú anoche fuiste al hotel.",
+"Anoche tú fuiste al hotel."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:03",
+"target": "Ana fue a la estación.",
+"ru": "Ана сходила на вокзал.",
+"uk": "Ана сходила на вокзал.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Ayer",
+"Cuándo",
+"Nunca"
+]
+},
+{
+"correct": "fue",
+"distractors": [
+"fui",
+"es",
+"aquí",
+"iba",
+"íbamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"lo",
+"el",
+"las",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"bicicleta",
+"semana",
+"paraguas",
+"maleta",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:04",
+"target": "Fuimos al centro ayer.",
+"ru": "Мы вчера сходили в центр.",
+"uk": "Ми вчора сходили до центру.",
+"tiles": [
+{
+"correct": "Fuimos",
+"distractors": [
+"Fue",
+"Fui",
+"Iba",
+"Fuiste",
+"Fueron"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"farmacia",
+"paraguas",
+"clase",
+"vecinos",
+"baño"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ahora",
+"menudo",
+"antes",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros fuimos al centro ayer.",
+"Nosotras fuimos al centro ayer.",
+"Ayer fuimos al centro."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:05",
+"target": "Luis fue a casa.",
+"ru": "Луис пошёл домой.",
+"uk": "Луїс пішов додому.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Ayer",
+"Nunca",
+"Cuándo"
+]
+},
+{
+"correct": "fue",
+"distractors": [
+"fui",
+"va",
+"íbamos",
+"vas",
+"vamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"para",
+"por",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mercado",
+"reunión",
+"ventana",
+"mensaje",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:06",
+"target": "Mis hermanos fueron al médico ayer.",
+"ru": "Мои братья вчера сходили к врачу.",
+"uk": "Мої брати вчора сходили до лікаря.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Su",
+"Tus",
+"Tu",
+"Mi",
+"Sus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"madre",
+"móviles",
+"fruta",
+"reserva",
+"mercado"
+]
+},
+{
+"correct": "fueron",
+"distractors": [
+"fuimos",
+"íbamos",
+"fui",
+"iba",
+"ir"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"profesores",
+"guía",
+"estudiante",
+"profesora",
+"estudiantes"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"antes",
+"temprano",
+"también",
+"ya"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanos fueron al médico."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:07",
+"target": "Fui al supermercado con la lista.",
+"ru": "Я пошёл в супермаркет со списком.",
+"uk": "Я пішов до супермаркету зі списком.",
+"tiles": [
+{
+"correct": "Fui",
+"distractors": [
+"Fue",
+"Ir",
+"Fueron",
+"Fuiste",
+"Fuimos"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "supermercado",
+"distractors": [
+"cebollas",
+"parque",
+"botellas",
+"tarjeta",
+"tienda"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"en",
+"a",
+"por",
+"para",
+"de"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"un",
+"que"
+]
+},
+{
+"correct": "lista",
+"distractors": [
+"zapatos",
+"hermano",
+"billetes",
+"cargador",
+"oficina"
+]
+}
+],
+"alternatives": [
+"Yo fui al supermercado con la lista."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:08",
+"target": "¿Fuiste a la estación ayer?",
+"ru": "Ты вчера ходил на вокзал?",
+"uk": "Ти вчора ходив на вокзал?",
+"tiles": [
+{
+"correct": "Fuiste",
+"distractors": [
+"Fue",
+"Fueron",
+"Fui",
+"Ir",
+"Iba"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"camiseta",
+"hermanos",
+"recepción",
+"banco",
+"móvil"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"ahora",
+"anoche",
+"menudo",
+"mañana"
+]
+}
+],
+"alternatives": [
+"¿Tú fuiste a la estación ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:09",
+"target": "Ana no fue al centro ayer.",
+"ru": "Ана вчера не сходила в центр.",
+"uk": "Ана вчора не сходила до центру.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Quién",
+"Nunca",
+"Cuándo"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"también",
+"ya",
+"mañana",
+"ahora",
+"tarde"
+]
+},
+{
+"correct": "fue",
+"distractors": [
+"fuimos",
+"iba",
+"es",
+"fui",
+"aquí"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"mochila",
+"carta",
+"clase",
+"oficina",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ya",
+"mañana",
+"antes",
+"más",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Ayer Ana no fue al centro."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:10",
+"target": "¿Fuiste a casa ayer?",
+"ru": "Ты вчера сходил домой?",
+"uk": "Ти вчора сходив додому?",
+"tiles": [
+{
+"correct": "Fuiste",
+"distractors": [
+"Fui",
+"Va",
+"Fue",
+"Fuimos",
+"Van"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"con",
+"sin",
+"de",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"baño",
+"tienda",
+"mapas",
+"maletas",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"tarde",
+"anoche",
+"más",
+"después",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Tú fuiste a casa ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:11",
+"target": "Tuve una reunión ayer.",
+"ru": "У меня вчера было совещание.",
+"uk": "У мене вчора була нарада.",
+"tiles": [
+{
+"correct": "Tuve",
+"distractors": [
+"Tuviste",
+"Tenemos",
+"Tuvisteis",
+"Tenéis",
+"Tuvieron"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"tus",
+"las",
+"el",
+"esta",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"carta",
+"puerta",
+"casa",
+"mensaje",
+"hotel"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"anoche",
+"ya",
+"antes",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer tuve una reunión.",
+"Yo tuve una reunión ayer.",
+"Yo ayer tuve una reunión.",
+"Ayer yo tuve una reunión."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:12",
+"target": "Tuviste tiempo para leer anoche.",
+"ru": "У тебя вчера вечером было время почитать.",
+"uk": "У тебе учора ввечері був час почитати.",
+"tiles": [
+{
+"correct": "Tuviste",
+"distractors": [
+"Tengo",
+"Tuvisteis",
+"Tienen",
+"Tuvimos",
+"Tenemos"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"casa",
+"ascensor",
+"canción",
+"hermanas",
+"mochila"
+]
+},
+{
+"correct": "para",
+"distractors": [
+"a",
+"en",
+"con",
+"de",
+"por"
+]
+},
+{
+"correct": "leer",
+"distractors": [
+"leían",
+"leído",
+"leyendo",
+"están",
+"está"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"tarde",
+"después",
+"ayer",
+"ahora",
+"antes"
+]
+}
+],
+"alternatives": [
+"Anoche tuviste tiempo para leer.",
+"Tú tuviste tiempo para leer anoche.",
+"Tú anoche tuviste tiempo para leer.",
+"Anoche tú tuviste tiempo para leer."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:13",
+"target": "Ana tuvo una idea.",
+"ru": "У Аны появилась идея.",
+"uk": "У Ани виникла ідея.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Pronto",
+"Lejos",
+"Nunca"
+]
+},
+{
+"correct": "tuvo",
+"distractors": [
+"tenemos",
+"tienes",
+"tiene",
+"tengo",
+"tenéis"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"un",
+"el",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "idea",
+"distractors": [
+"puerta",
+"ventana",
+"billete",
+"salida",
+"lista"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:14",
+"target": "Tuvimos una cita ayer.",
+"ru": "У нас вчера была назначена встреча.",
+"uk": "У нас вчора була призначена зустріч.",
+"tiles": [
+{
+"correct": "Tuvimos",
+"distractors": [
+"Tengo",
+"Tienen",
+"Tenemos",
+"Tienes",
+"Tuve"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mis",
+"las",
+"los",
+"estas",
+"con"
+]
+},
+{
+"correct": "cita",
+"distractors": [
+"cebolla",
+"tren",
+"bolsillo",
+"tiempo",
+"recepción"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ahora",
+"mañana",
+"más",
+"antes",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer tuvimos una cita.",
+"Nosotros tuvimos una cita ayer.",
+"Nosotras tuvimos una cita ayer."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:15",
+"target": "Volví en taxi porque no tuve tiempo.",
+"ru": "Я вернулся на такси, потому что у меня не было времени.",
+"uk": "Я повернувся на таксі, бо не мав часу.",
+"tiles": [
+{
+"correct": "Volví",
+"distractors": [
+"Volvíais",
+"Podemos",
+"Puedo",
+"Puedes",
+"Puede"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"con",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"minuto",
+"fotos",
+"gente",
+"estación",
+"casa"
+]
+},
+{
+"correct": "porque",
+"distractors": [
+"que",
+"cuando",
+"mientras",
+"si",
+"pero"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"también",
+"ayer",
+"mañana",
+"ahora"
+]
+},
+{
+"correct": "tuve",
+"distractors": [
+"tienen",
+"tiene",
+"tengo",
+"tienes",
+"tuviste"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"compra",
+"aeropuerto",
+"casa",
+"mensaje",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Yo volví en taxi porque no tuve tiempo."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:16",
+"target": "Mis hermanos tuvieron una reunión ayer.",
+"ru": "У моих братьев вчера было совещание.",
+"uk": "У моїх братів вчора була нарада.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Su",
+"Mi",
+"Sus",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"agua",
+"mesa",
+"billete",
+"mañana",
+"tren"
+]
+},
+{
+"correct": "tuvieron",
+"distractors": [
+"tuve",
+"tienen",
+"tuvimos",
+"tiene",
+"tengo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"las",
+"mi",
+"los",
+"un",
+"esta"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"clase",
+"queso",
+"efectivo",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"mañana",
+"después",
+"ya",
+"anoche"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanos tuvieron una reunión."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:17",
+"target": "Tuvisteis tiempo para leer ayer.",
+"ru": "У вас вчера было время почитать.",
+"uk": "У вас вчора був час почитати.",
+"tiles": [
+{
+"correct": "Tuvisteis",
+"distractors": [
+"Tenemos",
+"Tiene",
+"Tengo",
+"Tienes",
+"Tenéis"
+]
+},
+{
+"correct": "tiempo",
+"distractors": [
+"madre",
+"estación",
+"música",
+"pasaporte",
+"casa"
+]
+},
+{
+"correct": "para",
+"distractors": [
+"desde",
+"con",
+"a",
+"por",
+"en"
+]
+},
+{
+"correct": "leer",
+"distractors": [
+"leído",
+"leyendo",
+"leían",
+"leía",
+"lee"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"mañana",
+"ahora",
+"más",
+"antes"
+]
+}
+],
+"alternatives": [
+"Ayer tuvisteis tiempo para leer.",
+"Tuvieron tiempo para leer ayer."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:18",
+"target": "¿Tuviste otra idea?",
+"ru": "У тебя появилась другая идея?",
+"uk": "У тебе виникла інша ідея?",
+"tiles": [
+{
+"correct": "Tuviste",
+"distractors": [
+"Tienes",
+"Tuvieron",
+"Tuvimos",
+"Tuvisteis",
+"Tengo"
+]
+},
+{
+"correct": "otra",
+"distractors": [
+"juntos",
+"nerviosa",
+"cansados",
+"blanco",
+"negra"
+]
+},
+{
+"correct": "idea",
+"distractors": [
+"foto",
+"billete",
+"llaves",
+"hermana",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:19",
+"target": "Ana no tuvo una cita ayer.",
+"ru": "У Аны вчера не было назначенной встречи.",
+"uk": "У Ани вчора не було призначеної зустрічі.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Cuándo",
+"Lejos"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"quién",
+"también",
+"hoy",
+"mañana"
+]
+},
+{
+"correct": "tuvo",
+"distractors": [
+"tiene",
+"tenéis",
+"tengo",
+"tienes",
+"tenemos"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"un",
+"los",
+"su",
+"mi",
+"el"
+]
+},
+{
+"correct": "cita",
+"distractors": [
+"fotos",
+"reloj",
+"libro",
+"mochilas",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"anoche",
+"mañana",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Ayer Ana no tuvo una cita."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:20",
+"target": "¿Tuviste un problema ayer?",
+"ru": "У тебя вчера возникла проблема?",
+"uk": "У тебе вчора виникла проблема?",
+"tiles": [
+{
+"correct": "Tuviste",
+"distractors": [
+"Tenéis",
+"Tenemos",
+"Tuvo",
+"Tengo",
+"Tiene"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"unas",
+"una",
+"las",
+"con"
+]
+},
+{
+"correct": "problema",
+"distractors": [
+"hermanas",
+"día",
+"parada",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ya",
+"ahora",
+"temprano",
+"tarde",
+"mañana"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:21",
+"target": "Hice la compra ayer.",
+"ru": "Я вчера сделал покупки.",
+"uk": "Я вчора зробив покупки.",
+"tiles": [
+{
+"correct": "Hice",
+"distractors": [
+"Hicisteis",
+"Hicieron",
+"Hiciste",
+"Hicimos",
+"Hizo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"lo",
+"esta"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"foto",
+"puerta",
+"móviles",
+"parada",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"mañana",
+"anoche",
+"menudo",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Yo hice la compra ayer.",
+"Ayer hice la compra.",
+"Yo ayer hice la compra.",
+"Ayer yo hice la compra."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:22",
+"target": "Hiciste una reserva anoche.",
+"ru": "Ты оформил бронь вчера вечером.",
+"uk": "Ти оформив бронювання вчора ввечері.",
+"tiles": [
+{
+"correct": "Hiciste",
+"distractors": [
+"Hicimos",
+"Hizo",
+"Hice",
+"Hicieron",
+"Hicisteis"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"los",
+"el",
+"mi",
+"mis",
+"con"
+]
+},
+{
+"correct": "reserva",
+"distractors": [
+"billetes",
+"foto",
+"número",
+"recepción",
+"casa"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"también",
+"ya",
+"ayer",
+"no",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Tú hiciste una reserva anoche.",
+"Anoche hiciste una reserva.",
+"Tú anoche hiciste una reserva.",
+"Anoche tú hiciste una reserva."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:23",
+"target": "Ana hizo una foto.",
+"ru": "Ана сделала фотографию.",
+"uk": "Ана зробила фотографію.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Cuándo",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "hizo",
+"distractors": [
+"hice",
+"hicimos",
+"gustan",
+"gusta",
+"llamar"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"tus",
+"un",
+"el",
+"mis",
+"con"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"cita",
+"reserva",
+"casa",
+"salida",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:24",
+"target": "Hicimos una pregunta ayer.",
+"ru": "Мы вчера задали один вопрос.",
+"uk": "Ми вчора поставили одне запитання.",
+"tiles": [
+{
+"correct": "Hicimos",
+"distractors": [
+"Hiciste",
+"Hizo",
+"Hicieron",
+"Hicisteis",
+"Hice"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"los",
+"su",
+"el",
+"tu",
+"un"
+]
+},
+{
+"correct": "pregunta",
+"distractors": [
+"tienda",
+"mochila",
+"coche",
+"cita",
+"café"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"ahora",
+"más",
+"ya",
+"antes"
+]
+}
+],
+"alternatives": [
+"Nosotros hicimos una pregunta ayer.",
+"Nosotras hicimos una pregunta ayer.",
+"Ayer hicimos una pregunta."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:25",
+"target": "Hicimos la compra en el mercado.",
+"ru": "Мы закупились на рынке.",
+"uk": "Ми закупилися на ринку.",
+"tiles": [
+{
+"correct": "Hicimos",
+"distractors": [
+"Hizo",
+"Hice",
+"Hiciste",
+"Hicieron",
+"Hicisteis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"ese",
+"con",
+"que"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"bolsillo",
+"puerta",
+"tienda",
+"cambio",
+"banco"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"de",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"los",
+"ese",
+"con"
+]
+},
+{
+"correct": "mercado",
+"distractors": [
+"agua",
+"cocina",
+"ideas",
+"foto",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Nosotros hicimos la compra en el mercado.",
+"Nosotras hicimos la compra en el mercado."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:26",
+"target": "Mis hermanos hicieron la compra ayer.",
+"ru": "Мои братья вчера сделали покупки.",
+"uk": "Мої брати вчора зробили покупки.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Sus",
+"Su",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"bolsillos",
+"reloj",
+"bufanda",
+"sopa",
+"casa"
+]
+},
+{
+"correct": "hicieron",
+"distractors": [
+"hicimos",
+"hice",
+"gustan",
+"gusta",
+"llamar"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"el",
+"las",
+"estos",
+"con"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"banco",
+"abrigos",
+"cocina",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"ahora",
+"ya",
+"menudo",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanos hicieron la compra."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:27",
+"target": "Hicisteis una reserva ayer.",
+"ru": "Вы вчера оформили бронь.",
+"uk": "Ви вчора оформили бронювання.",
+"tiles": [
+{
+"correct": "Hicisteis",
+"distractors": [
+"Hice",
+"Hicimos",
+"Tuviste",
+"Probando",
+"Compramos"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"el",
+"mis",
+"mi",
+"los",
+"con"
+]
+},
+{
+"correct": "reserva",
+"distractors": [
+"mensaje",
+"tarjeta",
+"hermano",
+"llaves",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"temprano",
+"menudo",
+"tarde",
+"ya",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Ayer hicisteis una reserva.",
+"Hicieron una reserva ayer."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:28",
+"target": "¿Hiciste una foto del mapa?",
+"ru": "Ты сфотографировал карту?",
+"uk": "Ти сфотографував мапу?",
+"tiles": [
+{
+"correct": "Hiciste",
+"distractors": [
+"Hicisteis",
+"Hicimos",
+"Hice",
+"Hizo",
+"Hicieron"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"las",
+"mi",
+"los",
+"tu",
+"el"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"estación",
+"recepción",
+"llaves",
+"cara",
+"puerta"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"los",
+"un",
+"la"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"móvil",
+"bolso",
+"viaje",
+"hotel",
+"llave"
+]
+}
+],
+"alternatives": [
+"¿Tú hiciste una foto del mapa?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:29",
+"target": "Ana no hizo la compra ayer.",
+"ru": "Ана вчера не ходила за покупками.",
+"uk": "Ана вчора не ходила по покупки.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Cuándo",
+"Lejos"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"también",
+"quién",
+"hoy",
+"mañana"
+]
+},
+{
+"correct": "hizo",
+"distractors": [
+"hice",
+"hicimos",
+"gustan",
+"gusta",
+"llamar"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"lo",
+"unas",
+"con"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"mochila",
+"hotel",
+"bolsillos",
+"casa",
+"cara"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ahora",
+"anoche",
+"antes",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Ayer Ana no hizo la compra."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:30",
+"target": "¿Hiciste la cena ayer?",
+"ru": "Ты вчера приготовил ужин?",
+"uk": "Ти вчора приготував вечерю?",
+"tiles": [
+{
+"correct": "Hiciste",
+"distractors": [
+"Hizo",
+"Hicieron",
+"Hice",
+"Hicisteis",
+"Hicimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"las",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"estación",
+"ventanas",
+"café",
+"pasaportes",
+"carta"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"anoche",
+"mañana",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": [
+"¿Tú hiciste la cena ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:31",
+"target": "Vine a casa ayer.",
+"ru": "Я вчера пришёл домой.",
+"uk": "Я вчора прийшов додому.",
+"tiles": [
+{
+"correct": "Vine",
+"distractors": [
+"Vino",
+"Viniste",
+"Vinisteis",
+"Vinieron",
+"Vinimos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"ventanas",
+"correo",
+"ascensor",
+"efectivo",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"más",
+"temprano",
+"anoche",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Yo vine a casa ayer.",
+"Ayer vine a casa.",
+"Yo ayer vine a casa.",
+"Ayer yo vine a casa."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:32",
+"target": "Vine en taxi desde el aeropuerto.",
+"ru": "Я приехал из аэропорта на такси.",
+"uk": "Я приїхав з аеропорту на таксі.",
+"tiles": [
+{
+"correct": "Vine",
+"distractors": [
+"Vinimos",
+"Vinisteis",
+"Viniste",
+"Vino",
+"Vinieron"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"sin"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"cartas",
+"bicicleta",
+"compra",
+"café",
+"casa"
+]
+},
+{
+"correct": "desde",
+"distractors": [
+"con",
+"por",
+"de",
+"a",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"la",
+"unas",
+"con"
+]
+},
+{
+"correct": "aeropuerto",
+"distractors": [
+"sopa",
+"pasaportes",
+"maleta",
+"café",
+"casa"
+]
+}
+],
+"alternatives": [
+"Yo vine en taxi desde el aeropuerto."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:33",
+"target": "Ana vino en tren.",
+"ru": "Ана приехала на поезде.",
+"uk": "Ана приїхала потягом.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Cuándo",
+"Ayer",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "vino",
+"distractors": [
+"vinieron",
+"vinisteis",
+"gustan",
+"gusta",
+"hay"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"por",
+"con",
+"de",
+"desde"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"platos",
+"bolso",
+"pasaportes",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:34",
+"target": "Vinimos a la reunión ayer.",
+"ru": "Мы вчера пришли на встречу.",
+"uk": "Ми вчора прийшли на зустріч.",
+"tiles": [
+{
+"correct": "Vinimos",
+"distractors": [
+"Vino",
+"Viniste",
+"Vine",
+"Vinisteis",
+"Vinieron"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"bolso",
+"mochila",
+"sopa",
+"queso",
+"cena"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"después",
+"tarde",
+"más",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros vinimos a la reunión ayer.",
+"Nosotras vinimos a la reunión ayer.",
+"Ayer vinimos a la reunión."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:35",
+"target": "Luis vino con Ana.",
+"ru": "Луис пришёл с Аной.",
+"uk": "Луїс прийшов з Аною.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ayer",
+"Nunca",
+"Quién",
+"Cuándo",
+"Lejos"
+]
+},
+{
+"correct": "vino",
+"distractors": [
+"vinisteis",
+"vinieron",
+"gustan",
+"gusta",
+"mandar"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"a",
+"por",
+"de",
+"en",
+"para"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Lejos",
+"Nunca",
+"Quién",
+"Ayer",
+"Cuándo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:36",
+"target": "Mis hermanos vinieron a casa ayer.",
+"ru": "Мои братья вчера пришли домой.",
+"uk": "Мої брати вчора прийшли додому.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Sus",
+"Tus",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"puerta",
+"películas",
+"mensaje",
+"hotel",
+"estación"
+]
+},
+{
+"correct": "vinieron",
+"distractors": [
+"viniste",
+"vine",
+"vinisteis",
+"vino",
+"vinimos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"sin",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermanas",
+"mesa",
+"hotel",
+"taxi",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"antes",
+"más",
+"ahora",
+"mañana",
+"tarde"
+]
+}
+],
+"alternatives": [
+"Ayer mis hermanos vinieron a casa."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:37",
+"target": "Vinisteis al hotel ayer.",
+"ru": "Вы вчера пришли в отель.",
+"uk": "Ви вчора прийшли до готелю.",
+"tiles": [
+{
+"correct": "Vinisteis",
+"distractors": [
+"Vino",
+"Vine",
+"Vinimos",
+"Es",
+"Pagar"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"lista",
+"puerta",
+"mensaje",
+"casa",
+"mochila"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"tarde",
+"después",
+"ahora",
+"menudo",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Ayer vinisteis al hotel.",
+"Vinieron al hotel ayer."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:38",
+"target": "¿Viniste en tren ayer?",
+"ru": "Ты вчера приехал на поезде?",
+"uk": "Ти вчора приїхав потягом?",
+"tiles": [
+{
+"correct": "Viniste",
+"distractors": [
+"Vinimos",
+"Vinieron",
+"Vinisteis",
+"Vino",
+"Vine"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"de",
+"con",
+"sin",
+"para"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"minuto",
+"tienda",
+"compra",
+"maleta",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"después",
+"más",
+"ahora",
+"anoche",
+"mañana"
+]
+}
+],
+"alternatives": [
+"¿Tú viniste en tren ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:39",
+"target": "¿Viniste en taxi desde el banco?",
+"ru": "Ты приехал из банка на такси?",
+"uk": "Ти приїхав з банку на таксі?",
+"tiles": [
+{
+"correct": "Viniste",
+"distractors": [
+"Vinimos",
+"Vinieron",
+"Vinisteis",
+"Vine",
+"Vino"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"por",
+"de",
+"con",
+"sin"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"mesas",
+"música",
+"billete",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "desde",
+"distractors": [
+"a",
+"con",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"las",
+"esta",
+"con"
+]
+},
+{
+"correct": "banco",
+"distractors": [
+"supermercado",
+"cebolla",
+"libro",
+"hotel",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Tú viniste en taxi desde el banco?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:40",
+"target": "¿Viniste con Ana ayer?",
+"ru": "Ты вчера пришёл с Аной?",
+"uk": "Ти вчора прийшов з Аною?",
+"tiles": [
+{
+"correct": "Viniste",
+"distractors": [
+"Vinimos",
+"Vine",
+"Vinisteis",
+"Vino",
+"Vinieron"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"a",
+"de",
+"por",
+"para",
+"en"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Pronto",
+"Nunca",
+"Cuándo"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"tarde",
+"ahora",
+"ya",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"¿Tú viniste con Ana ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:41",
+"target": "Pude entrar ayer.",
+"ru": "Я вчера смог войти.",
+"uk": "Я вчора зміг зайти.",
+"tiles": [
+{
+"correct": "Pude",
+"distractors": [
+"Puede",
+"Pudiste",
+"Pueden",
+"Puedo",
+"Puedes"
+]
+},
+{
+"correct": "entrar",
+"distractors": [
+"entrado",
+"están",
+"está",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"antes",
+"ahora",
+"menudo",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo pude entrar ayer.",
+"Ayer pude entrar.",
+"Yo ayer pude entrar.",
+"Ayer yo pude entrar."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:42",
+"target": "Pudiste volver a casa anoche.",
+"ru": "Ты вчера вечером смог вернуться домой.",
+"uk": "Ти учора ввечері зміг повернутися додому.",
+"tiles": [
+{
+"correct": "Pudiste",
+"distractors": [
+"Podemos",
+"Pude",
+"Podéis",
+"Puedo",
+"Puedes"
+]
+},
+{
+"correct": "volver",
+"distractors": [
+"estudias",
+"volviendo",
+"vuelto",
+"estudiamos",
+"estudia"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"para",
+"por",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"reunión",
+"clase",
+"libro",
+"pasaporte",
+"mensaje"
+]
+},
+{
+"correct": "anoche",
+"distractors": [
+"ayer",
+"tarde",
+"más",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Tú pudiste volver a casa anoche.",
+"Anoche pudiste volver a casa.",
+"Tú anoche pudiste volver a casa.",
+"Anoche tú pudiste volver a casa."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:43",
+"target": "Ana pudo comprar el billete.",
+"ru": "Ана смогла купить билет.",
+"uk": "Ана змогла купити квиток.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Nunca",
+"Lejos",
+"Ayer",
+"Quién"
+]
+},
+{
+"correct": "pudo",
+"distractors": [
+"puedes",
+"podemos",
+"pudisteis",
+"puede",
+"puedo"
+]
+},
+{
+"correct": "comprar",
+"distractors": [
+"compraste",
+"compramos",
+"comprasteis",
+"compró",
+"puedes"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"los",
+"esta",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"regalo",
+"pan",
+"playa",
+"mapa",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "es:22:44",
+"target": "Pudimos llamar al hotel ayer.",
+"ru": "Мы вчера смогли позвонить в отель.",
+"uk": "Ми вчора змогли зателефонувати до готелю.",
+"tiles": [
+{
+"correct": "Pudimos",
+"distractors": [
+"Puedes",
+"Puede",
+"Puedo",
+"Pude",
+"Pudiste"
+]
+},
+{
+"correct": "llamar",
+"distractors": [
+"llamaste",
+"recojo",
+"llamado",
+"llamé",
+"recogido"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"camiseta",
+"fotos",
+"pasaporte",
+"mensaje",
+"mañana"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"mañana",
+"anoche",
+"temprano",
+"menudo",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros pudimos llamar al hotel ayer.",
+"Nosotras pudimos llamar al hotel ayer.",
+"Ayer pudimos llamar al hotel."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:45",
+"target": "No pude recoger el paquete.",
+"ru": "Я не смог забрать посылку.",
+"uk": "Я не зміг забрати посилку.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "pude",
+"distractors": [
+"puedes",
+"puede",
+"pudimos",
+"podemos",
+"pudisteis"
+]
+},
+{
+"correct": "recoger",
+"distractors": [
+"recogido",
+"recogiendo",
+"recojo",
+"has",
+"hay"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"las",
+"los",
+"una",
+"con"
+]
+},
+{
+"correct": "paquete",
+"distractors": [
+"clase",
+"mensaje",
+"coche",
+"salida",
+"fotos"
+]
+}
+],
+"alternatives": [
+"Yo no pude recoger el paquete."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:46",
+"target": "No pude abrir el paraguas.",
+"ru": "Я не смог раскрыть зонт.",
+"uk": "Я не зміг розкрити парасольку.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"También",
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "pude",
+"distractors": [
+"puedo",
+"pueden",
+"puede",
+"podemos",
+"pudimos"
+]
+},
+{
+"correct": "abrir",
+"distractors": [
+"abren",
+"abre",
+"abrió",
+"abierto",
+"abres"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"lo",
+"los",
+"con"
+]
+},
+{
+"correct": "paraguas",
+"distractors": [
+"hermanos",
+"fotos",
+"llave",
+"bolso",
+"mapa"
+]
+}
+],
+"alternatives": [
+"Yo no pude abrir el paraguas."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:47",
+"target": "Pudisteis volver a casa ayer.",
+"ru": "Вы (мн.) вчера смогли вернуться домой.",
+"uk": "Ви (мн.) вчора змогли повернутися додому.",
+"tiles": [
+{
+"correct": "Pudisteis",
+"distractors": [
+"Podemos",
+"Podéis",
+"Puedo",
+"Puedes",
+"Pude"
+]
+},
+{
+"correct": "volver",
+"distractors": [
+"vuelto",
+"abriendo",
+"volviendo",
+"volvíais",
+"volvían"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"de",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"lista",
+"pan",
+"carta",
+"favor",
+"leche"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"anoche",
+"después",
+"antes",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Ayer pudisteis volver a casa."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:48",
+"target": "¿Pude comprar el billete ayer?",
+"ru": "Я вчера смог купить билет?",
+"uk": "Я вчора зміг купити квиток?",
+"tiles": [
+{
+"correct": "Pude",
+"distractors": [
+"Puede",
+"Podemos",
+"Pudiste",
+"Pueden",
+"Pudo"
+]
+},
+{
+"correct": "comprar",
+"distractors": [
+"comprasteis",
+"compró",
+"prepara",
+"compraste",
+"compré"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"lo",
+"la",
+"con"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"clase",
+"cebolla",
+"casa",
+"recepción",
+"pedido"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"menudo",
+"ya",
+"temprano",
+"anoche",
+"más"
+]
+}
+],
+"alternatives": [
+"¿Yo pude comprar el billete ayer?"
+]
+},
+{
+"lesson": 22,
+"id": "es:22:49",
+"target": "Ana no pudo llamar al hotel ayer.",
+"ru": "Ана вчера не смогла позвонить в отель.",
+"uk": "Ана вчора не змогла зателефонувати до готелю.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Cuándo",
+"Quién",
+"Nunca",
+"Lejos"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"también",
+"mañana",
+"ahora",
+"tarde"
+]
+},
+{
+"correct": "pudo",
+"distractors": [
+"puede",
+"podemos",
+"puedo",
+"puedes",
+"podéis"
+]
+},
+{
+"correct": "llamar",
+"distractors": [
+"llamé",
+"llamaste",
+"llamado",
+"tiene",
+"tengo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"billetes",
+"mapa",
+"móvil",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"después",
+"mañana",
+"menudo",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": [
+"Ayer Ana no pudo llamar al hotel."
+]
+},
+{
+"lesson": 22,
+"id": "es:22:50",
+"target": "¿Pudiste abrir la puerta ayer?",
+"ru": "Ты вчера смог открыть дверь?",
+"uk": "Ти вчора зміг відчинити двері?",
+"tiles": [
+{
+"correct": "Pudiste",
+"distractors": [
+"Puede",
+"Puedes",
+"Pueden",
+"Pudisteis",
+"Puedo"
+]
+},
+{
+"correct": "abrir",
+"distractors": [
+"abierto",
+"abrió",
+"hay",
+"hemos",
+"ha"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"los",
+"un",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"libros",
+"música",
+"bufanda",
+"mensaje",
+"casa"
+]
+},
+{
+"correct": "ayer",
+"distractors": [
+"ahora",
+"temprano",
+"más",
+"mañana",
+"antes"
+]
+}
+],
+"alternatives": [
+"¿Tú pudiste abrir la puerta ayer?"
+]
+}
+]

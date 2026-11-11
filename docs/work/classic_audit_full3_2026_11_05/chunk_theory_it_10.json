@@ -1,0 +1,1054 @@
+[
+{
+"lesson": 21,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:21:01",
+"it:21:02",
+"it:21:04"
+],
+"textByLocale": {
+"en": "Two events can belong to different people. Choose the person separately in each part: `leggevo` - I, `hai chiamato` - you. One present ending does not replace both past ones.",
+"ru": "Два события могут принадлежать разным людям. Выбирай лицо отдельно в каждой части: `leggevo` — я, `hai chiamato` — ты. Одно настоящее окончание не заменяет оба прошедших.",
+"uk": "Дві події можуть належати різним людям. Вибирай особу окремо в кожній частині: `leggevo` – я, `hai chiamato` – ти. Одне справжнє закінчення не замінює обоє минулих."
+}
+},
+{
+"exampleIds": [
+"it:21:05",
+"it:21:06",
+"it:21:10"
+],
+"textByLocale": {
+"en": "For an action in progress, `stavo leggendo` is also possible. Assistant `stavo` itself stands in the past. Do not put present `sto` when both moments are in the past.",
+"ru": "Для действия в процессе возможно и `stavo leggendo`. Помощник `stavo` сам стоит в прошлом. Не ставь настоящее `sto`, когда оба момента остались в прошлом.",
+"uk": "Для дії в процесі можливо і `stavo leggendo`. Помічник `stavo` сам стоїть у минулому. Не став сьогодення `sto`, коли обидва моменти залишилися в минулому."
+}
+},
+{
+"exampleIds": [
+"it:21:11",
+"it:21:13",
+"it:21:15"
+],
+"textByLocale": {
+"en": "The background can be motionless: it was cold, the street was empty, the shutters were closed. A gerund is not needed here to show a pre-existing state.",
+"ru": "Фон бывает неподвижным: было холодно, улица была пустой, ставни были закрыты. Здесь не нужен герундий, чтобы показать уже существующее состояние.",
+"uk": "Фон буває нерухомим: було холодно, вулиця була порожня, віконниці були зачинені. Тут не потрібний герундій, щоб показати вже існуючий стан."
+}
+},
+{
+"exampleIds": [
+"it:21:21",
+"it:21:22",
+"it:21:23"
+],
+"textByLocale": {
+"en": "`Mentre` opens the part meaning \"while.\" In our examples, it provides the ongoing background, and the second part names the result or event.",
+"ru": "`Mentre` открывает часть со значением «пока». В наших примерах она даёт протекающий фон, а вторая часть называет результат или происшествие.",
+"uk": "`Mentre` відкриває частину зі значенням \"поки\". У наших прикладах вона дає фон, що протікає, а друга частина називає результат або подію."
+}
+},
+{
+"exampleIds": [
+"it:21:31",
+"it:21:32",
+"it:21:33"
+],
+"textByLocale": {
+"en": "You can start directly with the event and specify the background later. When swapping parts, don't change who did what. Each part must retain its own verb.",
+"ru": "Можно начать непосредственно с события, а фон назвать потом. Меняя местами части, не меняй, кто что делал. У каждой части должен сохраниться собственный глагол.",
+"uk": "Можна розпочати безпосередньо з події, а фон назвати потім. Змінюючи місцями частини, не міняй, хто що робив. У кожної частини має зберегтися власне дієслово."
+}
+},
+{
+"exampleIds": [
+"it:21:37",
+"it:21:39",
+"it:21:40"
+],
+"textByLocale": {
+"en": "With words about arrival or fall, check the assistant separately in the completed part. The presence of `mentre` in the adjacent part alone does not select `avere` or `essere`.",
+"ru": "Со словами про прибытие или падение отдельно проверь помощник в завершённой части. Наличие `mentre` в соседней части само по себе не выбирает `avere` или `essere`.",
+"uk": "Зі словами про прибуття або падіння окремо перевір помічник у завершеній частині. Наявність `mentre` у сусідній частині сама по собі не вибирає `avere` чи `essere`."
+}
+},
+{
+"exampleIds": [
+"it:21:43",
+"it:21:45",
+"it:21:48"
+],
+"textByLocale": {
+"en": "A quick self-check: what image was already visible before the bell rang, the fall, or the door opened? It describes the background. What changed at that moment? This is the event.",
+"ru": "Быстрый способ самопроверки: какая картинка уже была видна до звонка, падения или открытия двери? Её описывает фон. Что изменилось в этот момент? Это событие.",
+"uk": "Швидкий спосіб самоперевірки: яке зображення вже було видно до дзвінка, падіння або відкриття дверей? Її описує тло. Що змінилося у цей момент? Ця подія."
+}
+}
+],
+"drills": [
+{
+"bad": "Leggeva",
+"chapter": 1,
+"id": "it:21:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Leggevo",
+"Leggeva",
+"Leggevate"
+],
+"slot": 0
+},
+{
+"bad": "Cucinavo",
+"chapter": 1,
+"id": "it:21:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 29,
+"options": [
+"Cucinavo",
+"Cucinavano",
+"Cucinava"
+],
+"slot": 0
+},
+{
+"bad": "Stavamo",
+"chapter": 1,
+"id": "it:21:05:lab",
+"item": 5,
+"kind": "match",
+"near": 14,
+"options": [
+"Stavo",
+"Stavamo",
+"Stavi"
+],
+"slot": 0
+},
+{
+"bad": "camminavo",
+"chapter": 2,
+"id": "it:21:08:lab",
+"item": 8,
+"kind": "build",
+"near": 44,
+"options": [
+"camminava",
+"camminavo",
+"camminavamo"
+],
+"slot": 1
+},
+{
+"bad": "Stavamo",
+"chapter": 2,
+"id": "it:21:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 46,
+"options": [
+"Stavo",
+"Stavamo",
+"Stava"
+],
+"slot": 0
+},
+{
+"bad": "erano",
+"chapter": 2,
+"id": "it:21:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 16,
+"options": [
+"erano",
+"era",
+"ero"
+],
+"slot": 2
+},
+{
+"bad": "era",
+"chapter": 3,
+"id": "it:21:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 5,
+"options": [
+"erano",
+"era",
+"ero"
+],
+"slot": 2
+},
+{
+"bad": "Era",
+"chapter": 3,
+"id": "it:21:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"Era",
+"Erano",
+"Ero"
+],
+"slot": 0
+},
+{
+"bad": "aspettavamo",
+"chapter": 3,
+"id": "it:21:19:lab",
+"item": 19,
+"kind": "build",
+"near": 18,
+"options": [
+"aspettava",
+"aspettavamo",
+"aspettavano"
+],
+"slot": 2
+},
+{
+"bad": "aspettavano",
+"chapter": 4,
+"id": "it:21:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 30,
+"options": [
+"aspettavamo",
+"aspettavano",
+"aspettavate"
+],
+"slot": 1
+},
+{
+"bad": "dalla",
+"chapter": 4,
+"id": "it:21:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"dalla",
+"aperta",
+"pioveva"
+],
+"slot": 1
+},
+{
+"bad": "pioveva",
+"chapter": 4,
+"id": "it:21:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 23,
+"options": [
+"zuppa",
+"scaldava",
+"pioveva"
+],
+"slot": 4
+},
+{
+"bad": "leggevo",
+"chapter": 5,
+"id": "it:21:29:lab",
+"item": 29,
+"kind": "match",
+"near": 3,
+"options": [
+"leggevo",
+"leggeva",
+"leggevano"
+],
+"slot": 2
+},
+{
+"bad": "leggeva",
+"chapter": 5,
+"id": "it:21:31:lab",
+"item": 31,
+"kind": "build",
+"near": 37,
+"options": [
+"leggevate",
+"leggevo",
+"leggeva"
+],
+"slot": 5
+},
+{
+"bad": "faceva",
+"chapter": 5,
+"id": "it:21:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 18,
+"options": [
+"facevo",
+"facevano",
+"faceva"
+],
+"slot": 5
+},
+{
+"bad": "stavamo",
+"chapter": 6,
+"id": "it:21:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 40,
+"options": [
+"stavamo",
+"stavo",
+"stava"
+],
+"slot": 5
+},
+{
+"bad": "camminava",
+"chapter": 6,
+"id": "it:21:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"camminavamo",
+"camminava",
+"camminavo"
+],
+"slot": 5
+},
+{
+"bad": "attraversavano",
+"chapter": 6,
+"id": "it:21:42:lab",
+"item": 42,
+"kind": "match",
+"near": 7,
+"options": [
+"attraversava",
+"attraversavi",
+"attraversavano"
+],
+"slot": 1
+},
+{
+"bad": "stavo",
+"chapter": 7,
+"id": "it:21:45:lab",
+"item": 45,
+"kind": "build",
+"near": 6,
+"options": [
+"stavamo",
+"stava",
+"stavo"
+],
+"slot": 2
+},
+{
+"bad": "erano",
+"chapter": 7,
+"id": "it:21:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 12,
+"options": [
+"era",
+"ero",
+"erano"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"leggevo",
+"quando hai chiamato"
+],
+[
+"mentre aspettavamo",
+"è uscito il dottore"
+],
+[
+"il telefono ha vibrato",
+"mentre stavo pagando"
+],
+[
+"faceva freddo",
+"quando la porta si è aperta"
+]
+],
+"title": {
+"en": "Background and Event: `mentre` and `quando`",
+"ru": "Фон и событие: `mentre` и `quando`",
+"uk": "Фон та подія: `mentre` та `quando`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:21:01",
+"target": "Leggevo quando hai chiamato.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував."
+},
+{
+"id": "it:21:02",
+"target": "Dormivo quando hai chiamato.",
+"ru": "Я спала, когда ты позвонила.",
+"uk": "Я спала, коли ти подзвонила."
+},
+{
+"id": "it:21:04",
+"target": "Stavamo mangiando quando è arrivato Paolo.",
+"ru": "Мы ели, когда приехал Паоло.",
+"uk": "Ми їли, коли прийшов Паоло."
+},
+{
+"id": "it:21:05",
+"target": "Stavi scrivendo quando sono entrato.",
+"ru": "Ты писал, когда я вошёл.",
+"uk": "Ти писав, коли я увійшов."
+},
+{
+"id": "it:21:06",
+"target": "Stavano parlando quando è andata via la luce.",
+"ru": "Они разговаривали, когда погас свет.",
+"uk": "Вони розмовляли, коли згасло світло."
+},
+{
+"id": "it:21:10",
+"target": "Stavo pagando quando mi è caduta la carta.",
+"ru": "Я расплачивалась, когда моя карта упала.",
+"uk": "Я розплачувалася, коли моя картка випала."
+},
+{
+"id": "it:21:11",
+"target": "Pioveva quando siamo usciti.",
+"ru": "Шёл дождь, когда мы вышли.",
+"uk": "Ішов дощ, коли ми вийшли."
+},
+{
+"id": "it:21:13",
+"target": "La strada era deserta quando Paolo è uscito.",
+"ru": "Улица была пуста, когда вышел Паоло.",
+"uk": "Вулиця була порожня, коли вийшов Паоло."
+},
+{
+"id": "it:21:15",
+"target": "Faceva freddo quando la porta si è aperta.",
+"ru": "Было холодно, когда открылась дверь.",
+"uk": "Було холодно, коли двері відчинилися."
+},
+{
+"id": "it:21:21",
+"target": "Mentre riordinavo, Lea ha trovato lo scontrino.",
+"ru": "Пока я убирался, Леа нашла квитанцию.",
+"uk": "Поки я прибирав, Леа знайшла чек."
+},
+{
+"id": "it:21:22",
+"target": "Mentre aspettavamo, è uscito il dottore.",
+"ru": "Пока мы ждали, вышел врач.",
+"uk": "Поки ми чекали, вийшов лікар."
+},
+{
+"id": "it:21:23",
+"target": "Mentre guidavi, ho letto il messaggio.",
+"ru": "Пока ты вела машину, я прочитал сообщение.",
+"uk": "Поки ти вела машину, я прочитав повідомлення."
+},
+{
+"id": "it:21:31",
+"target": "Ho sentito un rumore mentre leggevo.",
+"ru": "Я услышал шум, когда читал.",
+"uk": "Я почув шум, коли читав."
+},
+{
+"id": "it:21:32",
+"target": "Lo specchio è caduto mentre mi radevo.",
+"ru": "Зеркало упало, когда я брился.",
+"uk": "Дзеркало впало, поки я голився."
+},
+{
+"id": "it:21:33",
+"target": "La sveglia è suonata mentre mi vestivo.",
+"ru": "Будильник сработал, пока я одевалась.",
+"uk": "Будильник задзвонив, поки я одягалася."
+},
+{
+"id": "it:21:37",
+"target": "Ho perso il guanto mentre correvo.",
+"ru": "Я потерял перчатку, когда бежал.",
+"uk": "Я загубив рукавичку, коли бігав."
+},
+{
+"id": "it:21:39",
+"target": "Il treno ha frenato mentre camminavo lungo il corridoio.",
+"ru": "Поезд затормозил, пока я шла по коридору.",
+"uk": "Поїзд загальмував, коли я йшла коридором."
+},
+{
+"id": "it:21:40",
+"target": "Il campanello ha suonato mentre salivo le scale.",
+"ru": "Дверной звонок зазвонил, когда я поднимался по лестнице.",
+"uk": "Дзвінок у двері продзвенів, коли я піднімався сходами."
+},
+{
+"id": "it:21:43",
+"target": "Stavo pensando a te quando è arrivato il tuo messaggio.",
+"ru": "Я думал о тебе, когда пришло твое сообщение.",
+"uk": "Я думав про тебе, коли прийшло твоє повідомлення."
+},
+{
+"id": "it:21:45",
+"target": "La radio stava trasmettendo una canzone quando è andata via la corrente.",
+"ru": "По радио играла песня, когда отключилось электричество.",
+"uk": "Радіо грало пісню, коли зникло світло."
+},
+{
+"id": "it:21:48",
+"target": "Il pane era ancora caldo quando l’ho tagliato.",
+"ru": "Хлеб был еще теплым, когда я его разрезал.",
+"uk": "Хліб був ще теплим, коли я його розрізав."
+}
+]
+},
+{
+"lesson": 22,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:22:01",
+"it:22:02",
+"it:22:03"
+],
+"textByLocale": {
+"en": "The question \"I see who or what?\" is answered by a direct object. For a familiar object or person, a short pronoun can be used instead of a noun. It comes before the personal verb.",
+"ru": "На вопрос «вижу кого или что?» отвечает прямой объект. Для знакомого предмета или человека вместо существительного можно поставить короткое местоимение. Оно оказывается перед личным глаголом.",
+"uk": "На запитання «бачу кого чи що?» відповідає прямий об'єкт. Для знайомого предмета чи людини замість іменника можна поставити короткий займенник. Воно опиняється перед особистим дієсловом."
+}
+},
+{
+"exampleIds": [
+"it:22:04",
+"it:22:05",
+"it:22:07"
+],
+"textByLocale": {
+"en": "`Lo conosco` and `la conosco` differ in who I know. Don't attach the pronoun after the simple personal form, as if it were an infinitive.",
+"ru": "`Lo conosco` и `la conosco` различаются тем, кого я знаю. Не прикрепляй местоимение после простой личной формы, как если бы это был инфинитив.",
+"uk": "`Lo conosco` та `la conosco` відрізняються тим, кого я знаю. Не прикріплюй займенник після простої особистої форми, начебто це був інфінітив."
+}
+},
+{
+"exampleIds": [
+"it:22:11",
+"it:22:13",
+"it:22:14"
+],
+"textByLocale": {
+"en": "In conversation, the subject can be brought to the beginning: `Le chiavi, le prendo io`. A pronoun within a message refers to the stated topic. A comma is not a separate tile.",
+"ru": "В разговоре предмет могут вынести в начало: `Le chiavi, le prendo io`. Местоимение внутри сообщения отсылает к названной теме. Запятая не является отдельной плиткой.",
+"uk": "У розмові предмет можуть винести на початок: `Le chiavi, le prendo io`. Займенник усередині повідомлення надсилає до названої теми. Кома не є окремою плиткою."
+}
+},
+{
+"exampleIds": [
+"it:22:21",
+"it:22:23",
+"it:22:25"
+],
+"textByLocale": {
+"en": "With negation, the order is: `non` + pronoun + personal form. In `non lo trovo`, no word needs to be added between `lo` and `trovo`.",
+"ru": "С отрицанием порядок такой: `non` + местоимение + личная форма. В `non lo trovo` никакого слова между `lo` и `trovo` добавлять не нужно.",
+"uk": "Із запереченням порядок такий: `non` + займенник + особиста форма. У `non lo trovo` жодного слова між `lo` та `trovo` додавати не потрібно."
+}
+},
+{
+"exampleIds": [
+"it:22:28",
+"it:22:33",
+"it:22:36"
+],
+"textByLocale": {
+"en": "With a modal verb, two positions are available: `li possiamo comprare` and `possiamo comprarli`. The full reference to the object must appear exactly once in each version.",
+"ru": "С модальным глаголом доступны две позиции: `li possiamo comprare` и `possiamo comprarli`. Полное упоминание объекта должно присутствовать ровно один раз в каждой версии.",
+"uk": "З модальним дієсловом доступні дві позиції: `li possiamo comprare` і `possiamo comprarli`. Повна згадка об'єкта повинна бути присутня рівно один раз у кожній версії."
+}
+},
+{
+"exampleIds": [
+"it:22:37",
+"it:22:39",
+"it:22:41"
+],
+"textByLocale": {
+"en": "In the compound form `l’ho vista`, a shortened notation is visible before the vowel, and the ending of the participle sometimes helps restore the gender. Do not transfer this abbreviation to a place where there is a consonant after the pronoun.",
+"ru": "У составной формы `l’ho vista` перед гласной видна короткая запись, а окончание причастия иногда помогает восстановить род. Не переноси это сокращение туда, где после местоимения стоит согласная.",
+"uk": "У складової форми `l’ho vista` перед голосною видно короткий запис, а закінчення причастя іноді допомагає відновити рід. Не переноси це скорочення туди, де після займенника стоїть згодна."
+}
+},
+{
+"exampleIds": [
+"it:22:43",
+"it:22:46",
+"it:22:49"
+],
+"textByLocale": {
+"en": "The form is chosen based on the Italian name of the thing, not the translation. `Il cavo` - `lo`, `la presa` - `la`. First, restore the full noun, then decide which chip will replace it.",
+"ru": "Форма выбирается по итальянскому названию вещи, не по переводу. `Il cavo` — `lo`, `la presa` — `la`. Сначала восстанови полное существительное, потом решай, какой чип его заменит.",
+"uk": "Форма вибирається за італійською назвою речі, не за перекладом. `Il cavo` - `lo`, `la presa` - `la`. Спочатку віднови повне іменник, потім вирішуй, який чіп його замінить."
+}
+}
+],
+"drills": [
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:22:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"La",
+"Il",
+"Lo"
+],
+"slot": 0
+},
+{
+"bad": "Ci",
+"chapter": 1,
+"id": "it:22:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Ci",
+"La",
+"Li"
+],
+"slot": 0
+},
+{
+"bad": "Ci",
+"chapter": 1,
+"id": "it:22:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"Ci",
+"Il",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "il",
+"chapter": 2,
+"id": "it:22:08:lab",
+"item": 8,
+"kind": "build",
+"near": 9,
+"options": [
+"ti",
+"la",
+"il"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:22:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 6,
+"options": [
+"Mi",
+"Li",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "il",
+"chapter": 2,
+"id": "it:22:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"ne",
+"la",
+"il"
+],
+"slot": 2
+},
+{
+"bad": "il",
+"chapter": 3,
+"id": "it:22:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"la",
+"il",
+"mi"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:22:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"li",
+"la",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:22:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"la",
+"lo",
+"il"
+],
+"slot": 2
+},
+{
+"bad": "il",
+"chapter": 4,
+"id": "it:22:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 8,
+"options": [
+"si",
+"la",
+"il"
+],
+"slot": 2
+},
+{
+"bad": "il",
+"chapter": 4,
+"id": "it:22:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"il",
+"la",
+"lo"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "it:22:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 23,
+"options": [
+"li",
+"mi",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "il",
+"chapter": 5,
+"id": "it:22:29:lab",
+"item": 29,
+"kind": "match",
+"near": 19,
+"options": [
+"la",
+"lo",
+"il"
+],
+"slot": 2
+},
+{
+"bad": "Il",
+"chapter": 5,
+"id": "it:22:31:lab",
+"item": 31,
+"kind": "build",
+"near": 27,
+"options": [
+"Ti",
+"Il",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "moneta",
+"chapter": 5,
+"id": "it:22:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 37,
+"options": [
+"moneta",
+"tenerla",
+"lasciarla"
+],
+"slot": 1
+},
+{
+"bad": "metterli",
+"chapter": 6,
+"id": "it:22:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"metterli",
+"restituirli",
+"comprarli"
+],
+"slot": 1
+},
+{
+"bad": "incontro",
+"chapter": 6,
+"id": "it:22:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 32,
+"options": [
+"dividiamo",
+"collegarlo",
+"incontro"
+],
+"slot": 5
+},
+{
+"bad": "il",
+"chapter": 6,
+"id": "it:22:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"lo",
+"il",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 7,
+"id": "it:22:45:lab",
+"item": 45,
+"kind": "build",
+"near": 17,
+"options": [
+"mi",
+"la",
+"li"
+],
+"slot": 2
+},
+{
+"bad": "il",
+"chapter": 7,
+"id": "it:22:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 19,
+"options": [
+"la",
+"lo",
+"il"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"il biglietto",
+"lo prendo"
+],
+[
+"la borsa",
+"la prendo"
+],
+[
+"i guanti",
+"li prendo"
+],
+[
+"le chiavi",
+"le prendo"
+],
+[
+"la porta",
+"posso aprirla / la posso aprire"
+]
+],
+"title": {
+"en": "Don't repeat the subject: `lo`, `la`, `li`, `le`",
+"ru": "Не повторять предмет: `lo`, `la`, `li`, `le`",
+"uk": "Не повторювати об'єкт: `lo`, `la`, `li`, `le`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:22:01",
+"target": "Lo vedo.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його."
+},
+{
+"id": "it:22:02",
+"target": "La vedo.",
+"ru": "Я вижу её.",
+"uk": "Я бачу її."
+},
+{
+"id": "it:22:03",
+"target": "Li vedo.",
+"ru": "Я вижу их.",
+"uk": "Я бачу їх."
+},
+{
+"id": "it:22:04",
+"target": "Lo conosci.",
+"ru": "Ты его знаешь.",
+"uk": "Ти знаєш його."
+},
+{
+"id": "it:22:05",
+"target": "La conosci.",
+"ru": "Ты её знаешь.",
+"uk": "Ти її знаєш."
+},
+{
+"id": "it:22:07",
+"target": "Lei lo cerca.",
+"ru": "Она ищет его.",
+"uk": "Вона шукає його."
+},
+{
+"id": "it:22:11",
+"target": "La porta, la chiudo io.",
+"ru": "Дверь — я её закрываю.",
+"uk": "Двері - я її закриваю."
+},
+{
+"id": "it:22:13",
+"target": "Le chiavi, le porto con me.",
+"ru": "Ключи я беру с собой.",
+"uk": "Ключі я беру із собою."
+},
+{
+"id": "it:22:14",
+"target": "La giacca, la metto via.",
+"ru": "Куртку я убираю на место.",
+"uk": "Куртку я прибираю на місце."
+},
+{
+"id": "it:22:21",
+"target": "Non lo trovo.",
+"ru": "Я его не нахожу.",
+"uk": "Я його не знаходжу."
+},
+{
+"id": "it:22:23",
+"target": "Non li vediamo.",
+"ru": "Мы их не видим.",
+"uk": "Ми їх не бачимо."
+},
+{
+"id": "it:22:25",
+"target": "Loro non lo prendono.",
+"ru": "Они его не берут.",
+"uk": "Вони його не беруть."
+},
+{
+"id": "it:22:28",
+"target": "Posso tenerlo?",
+"ru": "Можно я его оставлю себе?",
+"uk": "Можна, я його залишу собі?"
+},
+{
+"id": "it:22:33",
+"target": "Lei deve restituirli.",
+"ru": "Она должна их вернуть.",
+"uk": "Вона має їх повернути."
+},
+{
+"id": "it:22:36",
+"target": "Possiamo comprarli online.",
+"ru": "Мы можем купить их онлайн.",
+"uk": "Ми можемо купити їх онлайн."
+},
+{
+"id": "it:22:37",
+"target": "La moneta, puoi lasciarla sul pianerottolo.",
+"ru": "Монету ты можешь оставить на лестничной площадке.",
+"uk": "Монету ти можеш залишити на сходовому майданчику."
+},
+{
+"id": "it:22:39",
+"target": "Questo cavo, ho intenzione di collegarlo.",
+"ru": "Я собираюсь подключить этот кабель.",
+"uk": "Я збираюся підключити цей кабель."
+},
+{
+"id": "it:22:41",
+"target": "Queste foto, le mostro a mia sorella.",
+"ru": "Я показываю эти фотографии своей сестре.",
+"uk": "Я показую ці фотографії своїй сестрі."
+},
+{
+"id": "it:22:43",
+"target": "Il tuo messaggio, lo leggo sull’autobus.",
+"ru": "Твоё сообщение я читаю в автобусе.",
+"uk": "Твоє повідомлення я читаю в автобусі."
+},
+{
+"id": "it:22:46",
+"target": "La batteria, la ricarico al mattino.",
+"ru": "Я заряжаю батарею утром.",
+"uk": "Я заряджаю акумулятор вранці."
+},
+{
+"id": "it:22:49",
+"target": "Il mio portafoglio elettronico, lo uso quando viaggio.",
+"ru": "Я использую свой электронный кошелек, когда путешествую.",
+"uk": "Я використовую свій електронний гаманець, коли подорожую."
+}
+]
+}
+]

@@ -1,0 +1,8 @@
+11-06 01:08:27.907 I/(28288): '[SECTION-OPENING]', 'story_tap_next', '{"id":"rank","segmentIndex":0,"segments":1}'
+11-06 01:08:27.908 I/(28288): '[SECTION-OPENING-DEV]', 'skip', '{"id":"rank"}'
+11-06 01:08:30.596 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.15,"ctaReady":false}'
+11-06 01:08:31.612 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.43,"ctaReady":false}'
+11-06 01:08:32.227 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.6,"ctaReady":false}'
+11-06 01:08:34.262 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.82,"ctaReady":true}'
+11-06 01:08:34.886 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":1,"ctaReady":true}'
+11-06 01:08:36.107 I/(28288): '[SECTION-OPENING-DEV]', 'skip', '{"id":"rank"}'

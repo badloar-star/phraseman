@@ -14,6 +14,7 @@
  * Один файл для действующих вариантов доступа и промокода.
  */
 import { createAudioPlayer } from 'expo-audio';
+import { isProductionSfxMusicAllowed } from './sfx_music_policy';
 import { SOUND_EVENTS } from './sound_events';
 import { claimAmbientAudio, type AmbientAudioClaim } from './audio_runtime_arbiter';
 import { getSoundSettingsSnapshot, subscribeSoundSettings } from './sound_settings';
@@ -125,6 +126,7 @@ function disposeBackground(background: Background): void {
 
 /** Запустить фон с мягким нарастанием громкости. Повторный вызов — no-op. */
 export function startCelebrationBackground(): void {
+  if (!isProductionSfxMusicAllowed()) return;
   if (active) return;
   // A prior normal close can still be fading naturally. A new celebration owns
   // the bed exclusively, so clean that bounded tail before starting another.

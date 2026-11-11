@@ -45,6 +45,10 @@ import { purgeAccountAuthorityForLegacyIdentities } from './account_authority/ac
 import { swallowed } from './swallowed_error';
 import { anonymizeFriendDuelsForDeletedPlayer } from './account_delete_friend_duels';
 import { spireLadderMemberKey } from './spire_finalize_core';
+import {
+  SPIRE_FINALIZATION_INTEGRITY_HOLD_SCHEMA,
+  classifySpireFreezeForDeletion,
+} from './spire_finalization_freeze';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -1640,6 +1644,7 @@ export async function removeFromSpireGroups(
 
   const memberPath = new admin.firestore.FieldPath('members', stableUid);
   let removed = 0;
+  let heldCount = 0;
   for (;;) {
     stats.queriesRun += 1;
     const snap = await db.collection('spire_groups').where(memberPath, '!=', null).limit(DELETE_BATCH_LIMIT).get();
@@ -1653,23 +1658,51 @@ export async function removeFromSpireGroups(
       ];
       await scrubRecordRefs(recordRefs);
     }
-    const batch = db.batch();
     for (const doc of snap.docs) {
-      batch.update(doc.ref, {
-        [`members.${stableUid}`]: admin.firestore.FieldValue.delete(),
-        liveMemberCount: admin.firestore.FieldValue.increment(-1),
-        updatedAt: Date.now(),
+      const didRemove = await db.runTransaction(async (tx) => {
+        const current = await tx.get(doc.ref);
+        if (!current.exists) return false;
+        const data = current.data() ?? {};
+        const members = data.members && typeof data.members === 'object' ? data.members as Record<string, unknown> : {};
+        if (!Object.prototype.hasOwnProperty.call(members, stableUid)) return false;
+        const patch: Record<string, unknown> = {
+          [`members.${stableUid}`]: admin.firestore.FieldValue.delete(),
+          liveMemberCount: admin.firestore.FieldValue.increment(-1),
+          updatedAt: Date.now(),
+        };
+        const freeze = classifySpireFreezeForDeletion(data);
+        if (freeze.kind === 'valid') {
+          patch['finalizationFreeze.removedAfterFreezeCount'] = admin.firestore.FieldValue.increment(1);
+        } else if (freeze.kind === 'invalid') {
+          // Preserve malformed evidence verbatim. This sibling hold is the
+          // exact public V3 aggregate and contains no deleting identity.
+          patch.finalizationIntegrityHold = {
+            schema: SPIRE_FINALIZATION_INTEGRITY_HOLD_SCHEMA,
+            reason: 'invalid_freeze_during_member_deletion',
+            heldAtMs: Date.now(),
+          };
+        }
+        tx.update(doc.ref, patch);
+        return freeze.kind;
       });
-      stats.docsUpdated += 1;
-      removed += 1;
+      if (didRemove) {
+        stats.docsUpdated += 1;
+        removed += 1;
+        if (didRemove === 'invalid') heldCount += 1;
+      }
     }
-    await batch.commit();
     if (snap.size < DELETE_BATCH_LIMIT) break;
   }
   // A finish transaction that read membership before the removal batch may
   // have raced with the first scrub. Once membership is gone it cannot commit
   // again; this second indexed sweep removes any record it briefly restored.
   await scrubIndexedStepRecords();
+  if (heldCount > 0) {
+    console.warn('[ACCOUNT-DELETE] spire integrity hold', JSON.stringify({
+      reason: 'invalid_freeze_during_member_deletion',
+      roomsHeld: heldCount,
+    }));
+  }
   console.log('[ACCOUNT-DELETE] spire_groups member removed', JSON.stringify({ groups: removed }));
 }
 

@@ -1,0 +1,628 @@
+{
+ "lang": "es",
+ "lesson": 16,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:16:01",
+   "target": "Voy a llamar al hotel.",
+   "ru": "Я собираюсь позвонить в отель.",
+   "uk": "Я збираюся зателефонувати до готелю."
+  },
+  {
+   "id": "es:16:02",
+   "target": "Vas a llamar al hotel.",
+   "ru": "Ты собираешься позвонить в отель.",
+   "uk": "Ти збираєшся зателефонувати до готелю."
+  },
+  {
+   "id": "es:16:03",
+   "target": "Voy a llamar a Ana.",
+   "ru": "Я собираюсь позвонить Ане.",
+   "uk": "Я збираюся зателефонувати Ані."
+  },
+  {
+   "id": "es:16:04",
+   "target": "Vas a llamar a Ana.",
+   "ru": "Ты собираешься позвонить Ане.",
+   "uk": "Ти збираєшся зателефонувати Ані."
+  },
+  {
+   "id": "es:16:05",
+   "target": "Voy a volver a casa.",
+   "ru": "Я собираюсь вернуться домой.",
+   "uk": "Я збираюся повернутися додому."
+  },
+  {
+   "id": "es:16:06",
+   "target": "Vas a volver a casa.",
+   "ru": "Ты собираешься вернуться домой.",
+   "uk": "Ти збираєшся повернутися додому."
+  },
+  {
+   "id": "es:16:07",
+   "target": "Ana va a entrar en la tienda.",
+   "ru": "Ана собирается войти в магазин.",
+   "uk": "Ана збирається зайти до магазину."
+  },
+  {
+   "id": "es:16:08",
+   "target": "Vamos a entrar en la tienda.",
+   "ru": "Мы собираемся войти в магазин.",
+   "uk": "Ми збираємося зайти до магазину."
+  },
+  {
+   "id": "es:16:09",
+   "target": "Voy a comprar un billete.",
+   "ru": "Я собираюсь купить билет.",
+   "uk": "Я збираюся купити квиток."
+  },
+  {
+   "id": "es:16:10",
+   "target": "Luis va a comprar pan.",
+   "ru": "Луис собирается купить хлеб.",
+   "uk": "Луїс збирається купити хліб."
+  },
+  {
+   "id": "es:16:11",
+   "target": "Ana va a escribir una carta más tarde.",
+   "ru": "Ана позже собирается написать письмо.",
+   "uk": "Ана пізніше збирається написати листа."
+  },
+  {
+   "id": "es:16:12",
+   "target": "Vamos a escribir un mensaje más tarde.",
+   "ru": "Мы позже собираемся написать сообщение.",
+   "uk": "Ми пізніше збираємося написати повідомлення."
+  },
+  {
+   "id": "es:16:13",
+   "target": "Luis va a leer el libro más tarde.",
+   "ru": "Луис позже собирается прочитать книгу.",
+   "uk": "Луїс пізніше збирається прочитати книжку."
+  },
+  {
+   "id": "es:16:14",
+   "target": "Voy a leer el mensaje más tarde.",
+   "ru": "Я позже собираюсь прочитать сообщение.",
+   "uk": "Я пізніше збираюся прочитати повідомлення."
+  },
+  {
+   "id": "es:16:15",
+   "target": "Voy a comprar arroz.",
+   "ru": "Я собираюсь купить рис.",
+   "uk": "Я збираюся купити рис."
+  },
+  {
+   "id": "es:16:16",
+   "target": "Vamos a comprar verduras.",
+   "ru": "Мы собираемся купить овощи.",
+   "uk": "Ми збираємося купити овочі."
+  },
+  {
+   "id": "es:16:17",
+   "target": "Luis va a abrir la puerta más tarde.",
+   "ru": "Луис позже собирается открыть дверь.",
+   "uk": "Луїс пізніше збирається відчинити двері."
+  },
+  {
+   "id": "es:16:18",
+   "target": "Voy a escribir la lista.",
+   "ru": "Я собираюсь составить список.",
+   "uk": "Я збираюся скласти список."
+  },
+  {
+   "id": "es:16:19",
+   "target": "Mis hermanos van a preparar la cena más tarde.",
+   "ru": "Мои братья позже собираются приготовить ужин.",
+   "uk": "Мої брати пізніше збираються приготувати вечерю."
+  },
+  {
+   "id": "es:16:20",
+   "target": "Vamos a preparar la mochila más tarde.",
+   "ru": "Мы позже собираемся собрать рюкзак.",
+   "uk": "Ми пізніше збираємося зібрати рюкзак."
+  },
+  {
+   "id": "es:16:21",
+   "target": "Vamos a pagar en efectivo mañana.",
+   "ru": "Мы завтра собираемся заплатить наличными.",
+   "uk": "Ми завтра збираємося заплатити готівкою."
+  },
+  {
+   "id": "es:16:22",
+   "target": "Vais a pagar con tarjeta mañana.",
+   "ru": "Вы завтра собираетесь заплатить картой.",
+   "uk": "Ви завтра збираєтеся заплатити карткою."
+  },
+  {
+   "id": "es:16:23",
+   "target": "Ana va a pasar por el supermercado.",
+   "ru": "Ана собирается зайти в супермаркет.",
+   "uk": "Ана збирається зайти до супермаркету."
+  },
+  {
+   "id": "es:16:24",
+   "target": "Vamos a volver a la estación mañana.",
+   "ru": "Мы завтра собираемся вернуться на вокзал.",
+   "uk": "Ми завтра збираємося повернутися на вокзал."
+  },
+  {
+   "id": "es:16:25",
+   "target": "¿Vais a comprar arroz en el supermercado?",
+   "ru": "Вы (мн.) собираетесь купить рис в супермаркете?",
+   "uk": "Ви (мн.) збираєтеся купити рис у супермаркеті?"
+  },
+  {
+   "id": "es:16:26",
+   "target": "Mis hermanos van a entrar en la oficina mañana.",
+   "ru": "Мои братья завтра собираются войти в офис.",
+   "uk": "Мої брати завтра збираються зайти до офісу."
+  },
+  {
+   "id": "es:16:27",
+   "target": "Vamos a mandar la foto mañana.",
+   "ru": "Мы завтра собираемся отправить фотографию.",
+   "uk": "Ми завтра збираємося надіслати фотографію."
+  },
+  {
+   "id": "es:16:28",
+   "target": "Vais a mandar el mapa mañana.",
+   "ru": "Вы завтра собираетесь отправить карту.",
+   "uk": "Ви завтра збираєтеся надіслати мапу."
+  },
+  {
+   "id": "es:16:29",
+   "target": "Mis hermanos van a llevar la maleta mañana.",
+   "ru": "Мои братья завтра собираются отнести чемодан.",
+   "uk": "Мої брати завтра збираються віднести валізу."
+  },
+  {
+   "id": "es:16:30",
+   "target": "Luis va a llevar la bolsa mañana.",
+   "ru": "Луис завтра собирается отнести пакет.",
+   "uk": "Луїс завтра збирається віднести пакет."
+  },
+  {
+   "id": "es:16:31",
+   "target": "No voy a comprar leche hoy.",
+   "ru": "Я не собираюсь сегодня покупать молоко.",
+   "uk": "Я не збираюся сьогодні купувати молоко."
+  },
+  {
+   "id": "es:16:32",
+   "target": "Voy a esperar porque estás ocupado.",
+   "ru": "Я подожду, потому что ты занят.",
+   "uk": "Я почекаю, бо ти зайнятий."
+  },
+  {
+   "id": "es:16:33",
+   "target": "No vamos a preparar arroz hoy.",
+   "ru": "Мы не собираемся сегодня готовить рис.",
+   "uk": "Ми не збираємося сьогодні готувати рис."
+  },
+  {
+   "id": "es:16:34",
+   "target": "Luis no va a volver a casa hoy.",
+   "ru": "Луис сегодня не собирается возвращаться домой.",
+   "uk": "Луїс сьогодні не збирається повертатися додому."
+  },
+  {
+   "id": "es:16:35",
+   "target": "No voy a escribir una carta hoy.",
+   "ru": "Я сегодня не собираюсь писать письмо.",
+   "uk": "Я сьогодні не збираюся писати листа."
+  },
+  {
+   "id": "es:16:36",
+   "target": "Ana no va a escribir un mensaje hoy.",
+   "ru": "Ана сегодня не собирается писать сообщение.",
+   "uk": "Ана сьогодні не збирається писати повідомлення."
+  },
+  {
+   "id": "es:16:37",
+   "target": "Mis hermanas no van a preparar la cena hoy.",
+   "ru": "Мои сёстры сегодня не собираются готовить ужин.",
+   "uk": "Мої сестри сьогодні не збираються готувати вечерю."
+  },
+  {
+   "id": "es:16:38",
+   "target": "No vamos a llevar el coche.",
+   "ru": "Мы не собираемся брать машину.",
+   "uk": "Ми не збираємося брати машину."
+  },
+  {
+   "id": "es:16:39",
+   "target": "No vas a abrir la puerta hoy.",
+   "ru": "Ты сегодня не собираешься открывать дверь.",
+   "uk": "Ти сьогодні не збираєшся відчиняти двері."
+  },
+  {
+   "id": "es:16:40",
+   "target": "Luis no va a abrir la ventana hoy.",
+   "ru": "Луис сегодня не собирается открывать окно.",
+   "uk": "Луїс сьогодні не збирається відчиняти вікно."
+  },
+  {
+   "id": "es:16:41",
+   "target": "¿Vas a llamar al hotel?",
+   "ru": "Ты собираешься позвонить в отель?",
+   "uk": "Ти збираєшся зателефонувати до готелю?"
+  },
+  {
+   "id": "es:16:42",
+   "target": "¿Ana va a volver a casa?",
+   "ru": "Ана собирается вернуться домой?",
+   "uk": "Ана збирається повернутися додому?"
+  },
+  {
+   "id": "es:16:43",
+   "target": "¿Vamos a trabajar en el hotel?",
+   "ru": "Мы собираемся поработать в отеле?",
+   "uk": "Ми збираємося попрацювати у готелі?"
+  },
+  {
+   "id": "es:16:44",
+   "target": "¿Vas a comer en casa?",
+   "ru": "Ты собираешься поесть дома?",
+   "uk": "Ти збираєшся поїсти вдома?"
+  },
+  {
+   "id": "es:16:45",
+   "target": "¿Luis va a esperar fuera?",
+   "ru": "Луис собирается подождать снаружи?",
+   "uk": "Луїс збирається почекати надворі?"
+  },
+  {
+   "id": "es:16:46",
+   "target": "¿Mis hermanas van a leer el libro?",
+   "ru": "Мои сёстры собираются прочитать книгу?",
+   "uk": "Мої сестри збираються прочитати книжку?"
+  },
+  {
+   "id": "es:16:47",
+   "target": "¿Vas a llevar la lista?",
+   "ru": "Ты возьмёшь с собой список?",
+   "uk": "Ти візьмеш із собою список?"
+  },
+  {
+   "id": "es:16:48",
+   "target": "¿Vas a llevar la bolsa?",
+   "ru": "Ты собираешься отнести пакет?",
+   "uk": "Ти збираєшся віднести пакет?"
+  },
+  {
+   "id": "es:16:49",
+   "target": "¿Vais a esperar aquí?",
+   "ru": "Вы собираетесь ждать здесь?",
+   "uk": "Ви збираєтеся чекати тут?"
+  },
+  {
+   "id": "es:16:50",
+   "target": "¿Luis va a comprar un billete?",
+   "ru": "Луис собирается купить билет?",
+   "uk": "Луїс збирається купити квиток?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "más",
+   "ru": "больше; усиление сравнения",
+   "uk": "більше; посилення порівняння"
+  },
+  {
+   "lemma": "tarde",
+   "ru": "поздно; позже в más tarde",
+   "uk": "пізно; пізніше в más tarde"
+  },
+  {
+   "lemma": "ir a",
+   "ru": "собираться что-либо сделать",
+   "uk": "збиратися щось зробити"
+  },
+  {
+   "lemma": "arroz",
+   "ru": "рис",
+   "uk": "рис"
+  },
+  {
+   "lemma": "lista",
+   "ru": "список",
+   "uk": "список"
+  },
+  {
+   "lemma": "pasar",
+   "ru": "проходить; pasar por — заходить или проходить через; передавать предмет",
+   "uk": "проходити; pasar por — заходити або проходити через; передавати річ"
+  },
+  {
+   "lemma": "porque",
+   "ru": "потому что",
+   "uk": "тому що"
+  },
+  {
+   "lemma": "supermercado",
+   "ru": "супермаркет",
+   "uk": "супермаркет"
+  },
+  {
+   "lemma": "verdura",
+   "ru": "овощ; овощи как категория",
+   "uk": "городина; овочі"
+  },
+  {
+   "lemma": "cena",
+   "ru": "ужин",
+   "uk": "вечеря"
+  },
+  {
+   "lemma": "pan",
+   "ru": "хлеб",
+   "uk": "хліб"
+  },
+  {
+   "lemma": "preparar",
+   "ru": "готовить",
+   "uk": "готувати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  }
+ ],
+ "oldTopicTitle": "Собираюсь сделать: ir a + инфинитив",
+ "oldTheoryRu": "У тебя план, а не поездка в отель: Voy a llamar al hotel. После voy a назови действие, не место назначения. Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами. Voy al hotel — иду в отель. Voy a llamar al hotel — собираюсь позвонить в отель. После a теперь стоит действие, поэтому идти куда-либо необязательно. Учитель и ученики строят план по-разному: el profesor va…, los estudiantes van… . Формы ir в настоящем не похожи на инфинитив: voy, vas, va, vamos, vais, van. У poder перед инфинитивом нет предлога. У ir для плана он обязателен: puedo llamar, но voy a llamar. На экране a занимает отдельную позицию. Hoy, mañana и más tarde уточняют план, но не меняют форму инфинитива. Mañana в значении «завтра» не имеет артикля; la mañana — «утро». No перед va или voy отрицает именно план. No voy a llamar — я не собираюсь звонить; это не сообщение о том, что звонок технически невозможен. Сравни два задания: «Мы позже собираемся собрать рюкзак.» / «Мы завтра собираемся заплатить наличными». Меняется ir, а между ним и инфинитивом сохраняется a. Смысловые опоры: «mochila» — рюкзак. Сравни два задания: «Ты собираешься поесть дома?» / «Луис собирается купить билет?» Меняется ir, а между ним и инфинитивом сохраняется a. Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами."
+}

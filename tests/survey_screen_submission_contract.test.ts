@@ -1,28 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-const screenSource = fs.readFileSync(path.join(__dirname, '../app/survey_screen.tsx'), 'utf8');
 const controllerSource = fs.readFileSync(path.join(__dirname, '../app/survey_flow_controller.ts'), 'utf8');
 
-describe('survey screen submission contract', () => {
-  test('the compatibility route delegates all mutable flow state to the shared controller', () => {
-    expect(screenSource).toContain('takePrimedSurvey(surveyId, scope)');
-    expect(screenSource).toContain('<SurveySheetModal');
-    expect(screenSource).toContain('onClose={requestRouteDismiss}');
-    expect(screenSource).toContain('onDismissed={closeRoute}');
-    expect(screenSource).toContain('visible={routeVisible}');
-    expect(screenSource).toContain('key={launchKey}');
-    expect(screenSource).not.toContain('useSurveyFlowController');
-    expect(screenSource).not.toContain('<SurveyRewardPanel');
-    expect(screenSource).not.toContain('QuestionBlock');
-    expect(screenSource).not.toContain('useReducer(reduceSurveySubmission');
-    expect(screenSource).not.toContain('await submitSurvey(');
-    expect(screenSource).not.toContain("emitAppEvent('action_toast'");
-    expect(screenSource).not.toContain('Alert.alert');
-    expect(screenSource).not.toMatch(/<Text[^>]*numberOfLines=\{1\}[^>]*>\{survey\.title\}/);
-    expect(screenSource).not.toContain('<Text style={{ fontSize: 44 }}>');
-  });
-
+describe('legacy survey controller submission contract', () => {
   test('the controller uses the hardened reducer and optimistic canonical reward before sending', () => {
     expect(controllerSource).toContain('useReducer(');
     expect(controllerSource).toContain('reduceSurveySubmission');
@@ -35,10 +16,6 @@ describe('survey screen submission contract', () => {
   });
 
   test('captures identity generation and the immutable opened scope before sending', () => {
-    expect(screenSource).toContain('canonicalStableId === scope.stableId');
-    expect(screenSource).toContain("account.phase === 'active'");
-    expect(screenSource).toContain('account.stableId === canonicalStableId');
-    expect(screenSource).toContain('return { survey, stableId: scopeIdentityVerified.stableId, dayKey: openedDayKey, lang };');
     expect(controllerSource).toContain('const accountToken = captureAccountGeneration()');
     expect(controllerSource).toContain("accountToken.phase !== 'active'");
     expect(controllerSource).toContain('!isCurrentAccountGeneration(accountToken, stableId)');

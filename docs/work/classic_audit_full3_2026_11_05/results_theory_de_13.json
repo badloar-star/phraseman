@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-27/title",
+  "type": "T2",
+  "field": "theory.title.uk",
+  "problem": "«відносна пропозиція» — калька (пропозиція = оферта), нужно «речення»",
+  "fix": "Яка людина чи предмет: відносне підрядне речення"
+ },
+ {
+  "id": "lesson-27/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Це слово вже підлягає» — бессмыслица (нужно «є підметом»)",
+  "fix": "Ти вказуєш не просто на людину, а на того, хто тут живе. В уточненні його замінює коротке слово. Це слово вже є підметом: окреме `er` поруч не потрібне."
+ },
+ {
+  "id": "lesson-27/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«but he works alone» искажает ru «а работает он сам» (он — исполнитель)",
+  "fix": "A noun in the main clause can be the object, and in the subordinate clause, the performer. Therefore, after `den Arzt`, `der` is quite possible: you are the one who knows the doctor, but he is the one who works."
+ },
+ {
+  "id": "lesson-27/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "When a qualifier already contains a performer, check the role of the other participant. \"The key I'm looking for\": I'm the one looking, and the key is the object. Therefore, the masculine gender becomes `den`."
+ },
+ {
+  "id": "lesson-27/ch6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "Compare the colleague who helps and the colleague you're calling. With `anrufen`, the person is the direct object. Don't transfer the dative from a literal translation to a relative pronoun."
+ },
+ {
+  "id": "lesson-27/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«the personal verb tends to end» — бессмыслица (нужно «moves to the end»)",
+  "fix": "In a subordinate clause, the finite verb moves to the end. If it's in the Perfekt, the last verb in that group will be the auxiliary verb. Don't confuse it with the main clause verb after the second comma."
+ },
+ {
+  "id": "lesson-28/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Воно стає підлеглим» (подчинённым) вместо «підметом»",
+  "fix": "В активному повідомленні хтось відчиняє вікно. У пасивному важливіше саме вікно і процес, що відбувається. Воно стає підметом; форма `wird` або `werden` тепер залежить від його числа."
+ },
+ {
+  "id": "lesson-28/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«а чи не ім'я майстра» — смысл искажён (нужно «а не»)",
+  "fix": "На табличці часто повідомляють дію, а не ім'я майстра. Якщо ремонтують ліфт, для пасажира зазвичай не має значення, хто тримає інструмент. Не вигадуй обов'язкового виконавця."
+ },
+ {
+  "id": "lesson-28/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "пропущено «не»: «тільки форма wird ще змушує вважати фразу майбутнім» — смысл противоположен ru",
+  "fix": "Порядок схожий на рамку Perfekt, але сенс інший. `Wird geliefert` повідомляє про доставку як процес; сама лише форма `wird` ще не змушує вважати фразу майбутнім часом."
+ },
+ {
+  "id": "lesson-28/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«предмета-підлягає» — бессмыслица (нужно «предмета-підмета»)",
+  "fix": "Іноді повідомлення не має звичайного предмета-підмета: тут платять карткою, в коридорі не курять. Безособовий пасив – окремий зразок; не вставляй випадковий предмет лише заради перекладу."
+ },
+ {
+  "id": "lesson-28/ch6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "To move a process to the past, change `wird` to `wurde`, and in the plural, to `wurden`. The participle remains the same. Don't confuse a message about a process with a description of an already achieved state using `sein`."
+ }
+]

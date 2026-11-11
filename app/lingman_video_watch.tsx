@@ -8,6 +8,8 @@
  * Вкладка «Видео» открывает этот экран по тапу на ролик в сетке (владелец 11.10, макет video-redesign #c1, экран 3): сверху «назад» и закладка,
  * плеер, полоса прогресса, название, фразы по таймкодам, внизу закреплена «Добавить набор себе · N карточек».
  */
+import VideoSectionGate from '../components/video/VideoSectionGate';
+import { useVideoSectionPreference } from './video_section_preference';
 import { SaveStar } from '../components/youtube/SaveStar';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -66,8 +68,15 @@ function findPackForVideo(packs: readonly FlashcardMarketPack[] | null, videoId:
 }
 
 export default function LingmanVideoWatchScreen() {
-  const router = useRouter();
   const params = useLocalSearchParams<Params>();
+  const videoEnabled = useVideoSectionPreference() === true;
+  const screen = <LingmanVideoWatchScreenContent params={params} videoEnabled={videoEnabled} />;
+  if (params.source === 'my_packs' || params.source === 'video_packs') return screen;
+  return <VideoSectionGate>{screen}</VideoSectionGate>;
+}
+
+function LingmanVideoWatchScreenContent({ params, videoEnabled }: { params: Params; videoEnabled: boolean }) {
+  const router = useRouter();
   const videoId = typeof params.videoId === 'string' ? params.videoId : '';
   const source = typeof params.source === 'string' ? params.source : 'unknown';
   const { lang } = useLang();
@@ -85,7 +94,7 @@ export default function LingmanVideoWatchScreen() {
   const catalog = useMemo(() => peekYoutubeCatalogScreenSnapshot(token), [token]);
   const video = useMemo(() => catalog?.videos.find((item) => item.id === videoId) ?? null, [catalog, videoId]);
   // зачем (владелец 05.11: «+500 монет за полный просмотр — 70 %»): детектор просмотра, иконка «+500» в плеере; пометка «просмотрено», награда и история — одно событие
-  const { flashKey: rewardFlashKey, progressPct: rewardProgressPct } = useVideoFullWatch({ videoId: videoId || null, durationSec: video?.durationSec, live: (video as { state?: string } | null)?.state === 'live', active: runtimeActive });
+  const { flashKey: rewardFlashKey, progressPct: rewardProgressPct } = useVideoFullWatch({ videoId: videoId || null, durationSec: video?.durationSec, live: (video as { state?: string } | null)?.state === 'live', active: videoEnabled && runtimeActive });
   // зачем (владелец 06.11): строка «+500 · 42 %» — пока награда за ролик не получена; получена прямо сейчас на этом экране — остаётся «Засчитано»; live/короткие — progressPct=null, строки нет
   const rewardedIds = useVideoFullRewarded();
   const rewardRowVisible = videoRewardRowVisible({ percent: rewardProgressPct, rewardedBefore: rewardedIds.has(videoId), grantedNow: rewardFlashKey > 0 });
@@ -271,32 +280,38 @@ export default function LingmanVideoWatchScreen() {
           <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.back} onPress={close} hitSlop={8} style={styles.topButton}>
             <BackGlyph size={24} color={g.text} />
           </Pressable>
-          <Pressable
-            testID={`video-save-${videoId}`}
-            accessibilityRole="button"
-            accessibilityLabel={savedVideo ? copy.unsave : copy.save}
-            accessibilityState={{ selected: savedVideo }}
-            onPressIn={() => hapticTap()}
-            onPress={toggleSave}
-            style={[styles.topButton, { backgroundColor: 'transparent' }]}
-          >
-            <SaveStar saved={!!savedVideo} activeColor={g.accentTextSafe} idleColor={g.secondary} />
-          </Pressable>
-        </View>
-        <View style={styles.player}>
-          {videoId && playerOpen ? (
-            <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay={resumeSec === null} startSec={resumeSec ?? startSec} />
+          {videoEnabled ? (
+            <Pressable
+              testID={`video-save-${videoId}`}
+              accessibilityRole="button"
+              accessibilityLabel={savedVideo ? copy.unsave : copy.save}
+              accessibilityState={{ selected: savedVideo }}
+              onPressIn={() => hapticTap()}
+              onPress={toggleSave}
+              style={[styles.topButton, { backgroundColor: 'transparent' }]}
+            >
+              <SaveStar saved={!!savedVideo} activeColor={g.accentTextSafe} idleColor={g.secondary} />
+            </Pressable>
           ) : null}
-          <VideoRewardFlash flashKey={rewardFlashKey} />
         </View>
-        <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />
-        {rewardRowVisible && rewardProgressPct !== null ? (
-          <VideoRewardProgress percent={rewardProgressPct} doneLabel={copy.rewardDone} progressLabel={copy.rewardLabel} colors={{ text: g.text, secondary: g.secondary, track: g.opaqueControl, fill: g.accentGraphic }} />
+        {videoEnabled ? (
+          <>
+            <View style={styles.player}>
+              {videoId && playerOpen ? (
+                <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay={resumeSec === null} startSec={resumeSec ?? startSec} />
+              ) : null}
+              <VideoRewardFlash flashKey={rewardFlashKey} />
+            </View>
+            <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />
+            {rewardRowVisible && rewardProgressPct !== null ? (
+              <VideoRewardProgress percent={rewardProgressPct} doneLabel={copy.rewardDone} progressLabel={copy.rewardLabel} colors={{ text: g.text, secondary: g.secondary, track: g.opaqueControl, fill: g.accentGraphic }} />
+            ) : null}
+          </>
         ) : null}
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}
-          {videoId && quizReady ? (
+          {videoEnabled && videoId && quizReady ? (
             <View style={styles.quiz}>
               <V2Button testID="lingman-video-watch-quiz" label={copy.quiz} variant="secondary" onPress={openQuiz} />
             </View>

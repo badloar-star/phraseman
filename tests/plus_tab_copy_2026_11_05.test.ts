@@ -66,7 +66,12 @@ describe('вкладка Plus: список «Бесплатно / Plus»', () =
     const screen = fs.readFileSync(path.join(__dirname, '..', 'components', 'plus-tab', 'PlusTabScreen.tsx'), 'utf8');
     expect(screen).toContain('THEME_SLIDERS_V1_ENABLED');
     expect(screen).toContain('usePaywallPurchase');
-    expect(screen).toContain('ULTRA_PALETTE');
+    const benefits = fs.readFileSync(path.join(__dirname, '..', 'components', 'plus-tab', 'PlusTabBenefits.tsx'), 'utf8');
+    expect(screen).toContain('<PlusTabBenefits');
+    expect(benefits).toContain('g.opaqueCard');
+    expect(benefits).toContain('g.opaqueControl');
+    expect(benefits).toContain('g.selected');
+    expect(benefits).not.toMatch(/section(Title|Header)/i);
     expect(screen).not.toMatch(/section(Title|Header)/i);
   });
 });

@@ -2098,286 +2098,6 @@ function ReassureLine({ label, dark = false, style }: { label: string; dark?: bo
   );
 }
 
-// Строка тарифа в тёмном шите: обводка только у выбранной (radio-выбор).
-function OfferRow({
-  title,
-  caption,
-  price,
-  priceCaption,
-  selected,
-  loading,
-  onPress,
-  testID,
-}: {
-  title: string;
-  caption: string;
-  price: string;
-  priceCaption: string;
-  selected: boolean;
-  loading?: boolean;
-  onPress: () => void;
-  testID: string;
-}) {
-  const styles = createStyles(useOnboardingPalette());
-  return (
-    <Pressable
-      testID={testID}
-      onPressIn={() => { void hapticTap(); }}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityState={{ selected }}
-      style={({ pressed }) => [styles.offerRow, selected && styles.offerRowSelected, pressed && styles.pressed]}
-    >
-      <View>
-        <Text style={styles.offerTitle}>{title}</Text>
-        <Text style={styles.offerCaption}>{caption}</Text>
-      </View>
-      <View style={styles.offerPriceCol}>
-        {loading ? <View style={styles.offerSkeleton} /> : <Text style={styles.offerPrice}>{price}</Text>}
-        {loading ? <View style={styles.offerSkeleton} /> : <Text style={styles.offerCaption}>{priceCaption}</Text>}
-      </View>
-    </Pressable>
-  );
-}
-
-// 'free' — «Продолжить бесплатно»: выход с пейвола без покупки (онбординг окончен).
-type OffersAction = 'continue' | 'free' | 'promo' | 'referral' | 'restore';
-const SHEET_OFFSCREEN_Y = 560;
-// Тёмный bottom-sheet «Больше предложений» (Bevel, кадр 12): собственная
-// анимация входа/выхода на native driver; действие (покупка / промокод / код
-// друга / восстановить) выполняется ТОЛЬКО после конца анимации закрытия — второй
-// Modal нельзя показывать поверх закрывающегося. closingRef — защита от двойного тапа.
-function MoreOffersSheet({
-  visible,
-  selected,
-  onSelect,
-  onClose,
-  onAction,
-  yearlyPrice,
-  yearlyPerMonth,
-  monthlyPrice,
-  lifetimePrice,
-  lifetimeAvailable,
-  loading,
-  restoring,
-  purchasing,
-  trialDays,
-  offeringsFailed,
-  selectedAvailable,
-  onRestoreFocus,
-}: {
-  visible: boolean;
-  selected: PaywallPlan;
-  onSelect: (plan: PaywallPlan) => void;
-  onClose: () => void;
-  onAction: (action: OffersAction) => void;
-  yearlyPrice: string;
-  yearlyPerMonth: string;
-  monthlyPrice: string;
-  lifetimePrice: string;
-  lifetimeAvailable: boolean;
-  loading: boolean;
-  restoring: boolean;
-  purchasing: boolean;
-  offeringsFailed: boolean;
-  selectedAvailable: boolean;
-  onRestoreFocus: () => void;
-  /** null — стор ответил, что триала нет: CTA «Продолжить», без обещания дней. */
-  trialDays: number | null;
-}) {
-  const P = useOnboardingPalette();
-  const styles = createStyles(P);
-  const copy = useOnboardingCopy();
-  const olang = useOnboardingLang();
-  const insets = useStableSafeAreaInsets();
-  const reduceMotion = useReduceMotion();
-  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const [mounted, setMounted] = useState(visible);
-  const scrim = useRef(new Animated.Value(0)).current;
-  const sheetY = useRef(new Animated.Value(SHEET_OFFSCREEN_Y)).current;
-  const closingRef = useRef(false);
-  const pendingRef = useRef<OffersAction | null>(null);
-  const titleRef = useRef<Text | null>(null);
-
-  useEffect(() => {
-    if (visible) { closingRef.current = false; setMounted(true); }
-  }, [visible]);
-  useEffect(() => {
-    if (!mounted) return;
-    const task = InteractionManager.runAfterInteractions(() => {
-      const node = findNodeHandle(titleRef.current);
-      if (node) AccessibilityInfo.setAccessibilityFocus(node);
-    });
-    return () => task.cancel();
-  }, [mounted]);
-  useEffect(() => {
-    if (!mounted) return;
-    if (reduceMotion) {
-      scrim.setValue(1);
-      sheetY.setValue(0);
-      return;
-    }
-    scrim.setValue(0);
-    sheetY.setValue(SHEET_OFFSCREEN_Y);
-    const a = Animated.parallel([
-      Animated.timing(scrim, { toValue: 1, duration: LUM.backdropMs, useNativeDriver: true }),
-      Animated.spring(sheetY, { toValue: 0, ...LUM.settle, useNativeDriver: true }),
-    ]);
-    a.start();
-    return () => a.stop();
-  }, [mounted, reduceMotion, scrim, sheetY]);
-
-  const close = useCallback((action?: OffersAction) => {
-    if (closingRef.current) return;
-    closingRef.current = true;
-    pendingRef.current = action ?? null;
-    if (reduceMotion) {
-      setMounted(false);
-      onClose();
-      const pending = pendingRef.current;
-      pendingRef.current = null;
-      if (pending) onAction(pending); else onRestoreFocus();
-      return;
-    }
-    Animated.parallel([
-      Animated.timing(scrim, { toValue: 0, duration: LUM.exitMs, useNativeDriver: true }),
-      Animated.timing(sheetY, { toValue: SHEET_OFFSCREEN_Y, duration: LUM.exitMs, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
-    ]).start(() => {
-      setMounted(false);
-      onClose();
-      const pending = pendingRef.current;
-      pendingRef.current = null;
-      if (pending) onAction(pending); else onRestoreFocus();
-    });
-  }, [onAction, onClose, onRestoreFocus, reduceMotion, scrim, sheetY]);
-
-  useEffect(() => {
-    if (!visible && mounted && !closingRef.current) close();
-  }, [close, mounted, visible]);
-
-  if (!mounted) return null;
-  const isLifetime = selected === 'lifetime';
-  const ctaLabel = isLifetime
-    ? copy.openForever
-    : trialDays
-      ? fill(copy.tryDaysFree, { n: trialDays, days: onboardingDaysWord(trialDays, olang) })
-      : copy.continue;
-  const reassureLabel = isLifetime
-    ? copy.oneTimeNoSub
-    : trialDays
-      ? copy.nothingChargedNow
-      : copy.cancelAnytime;
-  return (
-    <Modal transparent statusBarTranslucent animationType="none" visible onRequestClose={() => close()}>
-      <Animated.View style={[styles.offersScrim, { opacity: scrim }]}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={() => close()} accessibilityLabel={copy.close} accessibilityRole="button" />
-      </Animated.View>
-      <Animated.View
-        style={[styles.offersSheet, { paddingBottom: Math.max(bottomInset, 16) + 6, transform: [{ translateY: sheetY }] }]}
-        accessibilityViewIsModal
-        onAccessibilityEscape={() => close()}
-      >
-        <View style={styles.offersCloseRow}>
-          <Text ref={titleRef} style={styles.offersTitle} accessibilityRole="header">{copy.moreOffers}</Text>
-          <Pressable
-            testID="onboarding-paywall-offers-close"
-            onPressIn={() => { void hapticTap(); }}
-            onPress={() => close()}
-            style={({ pressed }) => [styles.offersClose, pressed && styles.pressed]}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel={copy.close}
-          >
-            <Ionicons name="close" size={18} color={P.text} />
-          </Pressable>
-        </View>
-        <ScrollView decelerationRate="fast"
-          style={styles.offersScroll}
-          contentContainerStyle={styles.offersScrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-        <View style={styles.offerList}>
-          <OfferRow
-            testID="onboarding-paywall-offer-yearly"
-            title={copy.tierYear}
-            caption={copy.sheetYearSub}
-            price={fill(copy.sheetPerYear, { price: yearlyPrice })}
-            priceCaption={fill(copy.sheetPerMonth, { price: yearlyPerMonth })}
-            selected={selected === 'yearly'}
-            loading={loading}
-            onPress={() => onSelect('yearly')}
-          />
-          <OfferRow
-            testID="onboarding-paywall-offer-monthly"
-            title={copy.tierMonth}
-            caption={copy.cancelAnytime}
-            price={fill(copy.sheetPerMonth, { price: monthlyPrice })}
-            priceCaption={copy.sheetBilledMonthly}
-            selected={selected === 'monthly'}
-            loading={loading}
-            onPress={() => onSelect('monthly')}
-          />
-          {lifetimeAvailable ? (
-            <OfferRow
-              testID="onboarding-paywall-offer-lifetime"
-              title="Phraseman Pro"
-              caption={copy.sheetLifetimeSub}
-              price={lifetimePrice}
-              priceCaption={copy.sheetNoSubscription}
-              selected={isLifetime}
-              loading={loading}
-              onPress={() => onSelect('lifetime')}
-            />
-          ) : null}
-        </View>
-        <Pressable
-          testID="onboarding-paywall-offers-continue"
-          onPressIn={() => { if (!loading && !purchasing) void hapticTap(); }}
-          onPress={() => close('continue')}
-          disabled={loading || purchasing || offeringsFailed || !selectedAvailable}
-          style={({ pressed }) => [styles.offersCta, pressed && styles.pressed, (loading || offeringsFailed || !selectedAvailable) && styles.disabled]}
-          accessibilityRole="button"
-          accessibilityState={{ disabled: loading || offeringsFailed || !selectedAvailable, busy: purchasing }}
-        >
-          {purchasing ? <ActivityIndicator size="small" color={P.ctaInk} /> : (
-            <Text style={styles.offersCtaText}>{offeringsFailed ? copy.sheetLoadFailed : ctaLabel}</Text>
-          )}
-        </Pressable>
-        <ReassureLine dark label={reassureLabel} style={styles.offersReassure} />
-        {/* Второй выход с пейвола (владелец): продолжить без покупки — онбординг
-            окончен, согласия уже собраны раньше. Тише CTA, но с полной зоной 40pt. */}
-        <Pressable
-          testID="onboarding-paywall-continue-free"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => close('free')}
-          disabled={purchasing}
-          style={({ pressed }) => [styles.offersFreeLink, pressed && styles.pressed]}
-          accessibilityRole="button"
-          accessibilityLabel={copy.continueFree}
-          accessibilityState={{ disabled: purchasing }}
-        >
-          <Text style={styles.offersFreeLinkText}>{copy.continueFree}</Text>
-        </Pressable>
-        {/* Сервисные ссылки — то, что раньше жило в светлом меню «···». */}
-        <View style={styles.offersLinksRow}>
-          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-promo" onPress={() => close('promo')} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>{copy.promoCode}</Text>
-          </Pressable>
-          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-referral" onPress={() => close('referral')} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>{copy.friendCode}</Text>
-          </Pressable>
-          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-restore" onPress={() => close('restore')} disabled={restoring} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>{restoring ? copy.restoring : copy.restore}</Text>
-          </Pressable>
-        </View>
-        </ScrollView>
-      </Animated.View>
-    </Modal>
-  );
-}
-
-// ── Финал (Bevel, кадр 9): конфетти + зелёная галочка ─────────────────────────
-// Данные конфетти — детерминированная таблица на уровне модуля (никакого
 // Math.random в рендере). Все интерполяции от одного progress, native driver,
 // конечная анимация без гейта.
 const CONFETTI_COLORS = ['#FF7A59', '#FFC93C', '#3ECF8E', '#5B8DEF', '#B48CFF', '#FF5C8A'];
@@ -2572,7 +2292,6 @@ function CleanOnboarding({
   const [legalError, setLegalError] = useState<string | null>(null);
   // Тёмный шит «Больше предложений» на пейволе (по «···» и по ссылке) и шит
   // ввода кода (промокод / код друга).
-  const [offersSheetOpen, setOffersSheetOpen] = useState(false);
   // зачем: имя из аккаунта для «Рад познакомиться, {имя}!» — заполняется, когда
   // вход на экране-сейфе создал новый аккаунт; иначе берём синхронный peek
   // текущего пользователя (без сети), иначе приветствие без имени.
@@ -2587,7 +2306,7 @@ function CleanOnboarding({
   const [interfaceLanguageMenuBusy, setInterfaceLanguageMenuBusy] = useState(false);
   // зачем (22.10, 🟡 Ревизора): галочка встаёт на выбранный язык сразу, до сохранения; при сбое — откат на прежний.
   const [pendingInterfaceLang, setPendingInterfaceLang] = useState<Lang | null>(null);
-  const paywallMenuButtonRef = useRef<View | null>(null);
+  const paywallPromoButtonRef = useRef<View | null>(null);
   const interfaceLanguageMenuButtonRef = useRef<View | null>(null);
   const codeInputRef = useRef<TextInput | null>(null);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(() =>
@@ -2603,9 +2322,9 @@ function CleanOnboarding({
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
-  const restorePaywallMenuFocus = useCallback(() => {
+  const restorePaywallPromoFocus = useCallback(() => {
     InteractionManager.runAfterInteractions(() => {
-      const node = findNodeHandle(paywallMenuButtonRef.current);
+      const node = findNodeHandle(paywallPromoButtonRef.current);
       if (node) AccessibilityInfo.setAccessibilityFocus(node);
     });
   }, []);
@@ -2619,8 +2338,8 @@ function CleanOnboarding({
   const closeCodeSheet = useCallback(() => {
     if (codeBusy) return;
     setCodeSheet(null);
-    restorePaywallMenuFocus();
-  }, [codeBusy, restorePaywallMenuFocus]);
+    restorePaywallPromoFocus();
+  }, [codeBusy, restorePaywallPromoFocus]);
   const restoreLanguageMenuFocus = useCallback(() => {
     InteractionManager.runAfterInteractions(() => {
       const node = findNodeHandle(interfaceLanguageMenuButtonRef.current);
@@ -2708,7 +2427,6 @@ function CleanOnboarding({
     purchasing: paywallPurchasing,
     offeringsFailed: paywallOfferingsFailed,
     ctaDisabled: paywallCtaDisabled,
-    selectedAvailable: paywallSelectedAvailable,
     reloadOfferings,
     handleRestore,
     handlePurchase: paywallHandlePurchase,
@@ -4493,47 +4211,52 @@ function CleanOnboarding({
         // бесплатно = онбординг окончен (согласия собраны шагом «name» раньше).
         onClose={() => { void completeOnboarding(); }}
         closeLabel={oc.continueFree}
-        headerRight={(
-          <Pressable
-            ref={paywallMenuButtonRef}
-            testID="onboarding-paywall-menu"
-            onPressIn={() => { void hapticTap(); }}
-            onPress={() => setOffersSheetOpen(true)}
-            style={({ pressed }) => [styles.paywallMenuButton, pressed && styles.pressed]}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel={oc.moreLine}
-          >
-            <Ionicons name="ellipsis-horizontal" size={22} color={P.text} />
-          </Pressable>
-        )}
         plainTitle
-        footer={
-          <>
-            <PrimaryButton
-              label={trialCta}
-              onPress={() => {
-                if (paywallOfferingsFailed) { reloadOfferings(); return; }
-                void continueFromOnboardingPaywall();
-              }}
-              loading={paywallBusy || paywallPurchasing || (paywallLoading && !paywallOfferingsFailed)}
-              disabled={paywallCtaDisabled && !paywallOfferingsFailed}
-              testID="onboarding-paywall-continue"
-              flat
-            />
-            <ReassureLine label={paywallTapNotice ? oc.tryInMinute : reassure} />
-            <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
-            <Text style={styles.paywallLegalNote}>
-              {oc.renewalNote}{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_store'); }}>{oc.legalStoreTerms}</Text>
-              {' '}·{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_store'); }}>{oc.legalStorePrivacy}</Text>
-            </Text>
-          </>
-        }
       >
-        <Text style={styles.paywallCBrand}>PhraseMan Plus</Text>
         <Text accessibilityRole="header" style={styles.paywallCTitle}>{oc.paywallHeadline}</Text>
+        {/* Два тарифа рядом; третий (навсегда) — в шите «Больше предложений». */}
+        <View style={styles.planRow}>
+          <PaywallPlanTile
+            plan="monthly"
+            title={`Plus · ${oc.tierMonth}`}
+            price={monthlyLabel}
+            caption={monthlySubLabel}
+            loading={paywallLoading}
+            selected={selectedBillingPlan === 'monthly'}
+            onPress={choosePaywallPlan}
+            testID="onboarding-paywall-plan-monthly"
+          />
+          <PaywallPlanTile
+            plan="yearly"
+            title={`Ultra · ${oc.tierYear}`}
+            price={yearlyLabel}
+            caption={yearlySubLabel}
+            loading={paywallLoading}
+            selected={selectedBillingPlan === 'yearly'}
+            onPress={choosePaywallPlan}
+            testID="onboarding-paywall-plan-yearly"
+          />
+        </View>
+        {lifetimeAvailable ? (
+          <PaywallPlanTile plan="lifetime" title="PhraseMan Pro" price={lifetimeLabel}
+            caption={oc.oneTimeNoSub} loading={paywallLoading} selected={isLifetime}
+            onPress={choosePaywallPlan} testID="onboarding-paywall-plan-lifetime" />
+        ) : null}
+        <View style={styles.paywallInlineAction}>
+          <PrimaryButton
+            label={trialCta}
+            onPress={() => {
+              if (paywallOfferingsFailed) { reloadOfferings(); return; }
+              void continueFromOnboardingPaywall();
+            }}
+            loading={paywallBusy || paywallPurchasing || (paywallLoading && !paywallOfferingsFailed)}
+            disabled={paywallCtaDisabled && !paywallOfferingsFailed}
+            testID="onboarding-paywall-continue"
+            flat
+          />
+          <ReassureLine label={paywallTapNotice ? oc.tryInMinute : reassure} />
+          <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
+        </View>
         <View testID="onboarding-paywall-c-benefits" style={styles.benefitList}>
           {PAYWALL_BENEFITS.slice(0, 3).map((b, i) => (
             <PaywallBenefitRow
@@ -4549,66 +4272,36 @@ function CleanOnboarding({
             />
           ))}
         </View>
-        {/* Два тарифа рядом; третий (навсегда) — в шите «Больше предложений». */}
-        <View style={styles.planRow}>
-          <PaywallPlanTile
-            plan="yearly"
-            title={oc.tierYear}
-            price={yearlyLabel}
-            caption={yearlySubLabel}
-            badge={oc.bestPrice}
-            loading={paywallLoading}
-            selected={selectedBillingPlan === 'yearly'}
-            onPress={choosePaywallPlan}
-            testID="onboarding-paywall-plan-yearly"
-          />
-          <PaywallPlanTile
-            plan="monthly"
-            title={oc.tierMonth}
-            price={monthlyLabel}
-            caption={monthlySubLabel}
-            loading={paywallLoading}
-            selected={selectedBillingPlan === 'monthly'}
-            onPress={choosePaywallPlan}
-            testID="onboarding-paywall-plan-monthly"
-          />
-        </View>
+        <Text style={styles.paywallLegalNote}>
+          {oc.renewalNote}{' '}
+          <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'onboarding_store'); }}>{oc.legalStoreTerms}</Text>
+          {' '}·{' '}
+          <Text style={styles.paywallLegalLink} onPress={() => { openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'onboarding_store'); }}>{oc.legalStorePrivacy}</Text>
+        </Text>
         <Pressable
-          testID="onboarding-paywall-more-offers"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => setOffersSheetOpen(true)}
-          style={({ pressed }) => [styles.moreOffersLink, pressed && styles.pressed]}
+          testID="onboarding-paywall-continue-free"
+          onPress={() => { void completeOnboarding(); }}
+          disabled={paywallBusy || paywallPurchasing}
+          style={styles.offersFreeLink}
           accessibilityRole="button"
         >
-          <Text style={styles.moreOffersLinkText}>
-            {isLifetime ? fill(oc.selectedPro, { label: lifetimeLabel }) : oc.moreOffers}
-          </Text>
+          <Text style={styles.offersFreeLinkText}>{oc.continueFree}</Text>
         </Pressable>
-        <MoreOffersSheet
-          visible={offersSheetOpen}
-          selected={selectedBillingPlan}
-          onSelect={choosePaywallPlan}
-          onClose={() => setOffersSheetOpen(false)}
-          onRestoreFocus={restorePaywallMenuFocus}
-          onAction={(action) => {
-            if (action === 'continue') void continueFromOnboardingPaywall();
-            else if (action === 'free') void completeOnboarding();
-            else if (action === 'promo') openCodeSheet('promo');
-            else if (action === 'referral') openCodeSheet('referral');
-            else void handleRestore();
-          }}
-          yearlyPrice={yearlyPrice ? `${yearApprox}${yearlyPrice}` : oc.tierYear}
-          yearlyPerMonth={yearlyPerMonth || '—'}
-          monthlyPrice={monthlyPrice ? `${monthApprox}${monthlyPrice}` : oc.tierMonth}
-          lifetimePrice={lifetimeLabel}
-          lifetimeAvailable={lifetimeAvailable}
-          loading={paywallLoading}
-          offeringsFailed={paywallOfferingsFailed}
-          selectedAvailable={paywallSelectedAvailable}
-          restoring={paywallRestoring}
-          purchasing={paywallBusy || paywallPurchasing}
-          trialDays={effectiveTrialDays}
-        />
+        <View style={styles.offersLinksRow}>
+          <Pressable ref={paywallPromoButtonRef} style={styles.offersLinkButton} testID="onboarding-paywall-menu-promo"
+            onPress={() => openCodeSheet('promo')} disabled={paywallBusy || paywallPurchasing || paywallRestoring} accessibilityRole="button">
+            <Text style={styles.offersLinkText}>{oc.promoCode}</Text>
+          </Pressable>
+          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-referral"
+            onPress={() => openCodeSheet('referral')} disabled={paywallBusy || paywallPurchasing || paywallRestoring} accessibilityRole="button">
+            <Text style={styles.offersLinkText}>{oc.friendCode}</Text>
+          </Pressable>
+          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-restore"
+            onPress={() => { void handleRestore(); }} disabled={paywallBusy || paywallPurchasing || paywallRestoring}
+            accessibilityRole="button" accessibilityState={{ busy: paywallRestoring }}>
+            <Text style={styles.offersLinkText}>{paywallRestoring ? oc.restoring : oc.restore}</Text>
+          </Pressable>
+        </View>
         {codeSheet ? (
           <Modal
             transparent
@@ -5589,13 +5282,7 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     borderColor: 'transparent',
     ...noAndroidOutline,
   },
-  paywallCBrand: {
-    color: P.text,
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '700',
-    marginTop: 18,
-  },
+  paywallInlineAction: { marginTop: 14 },
   paywallCTitle: {
     color: P.text,
     fontSize: 32,
@@ -5621,13 +5308,14 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   },
   planTilePrice: {
     color: P.text,
-    fontSize: 19,
-    lineHeight: 24,
+    fontSize: 28,
+    lineHeight: 34,
     fontWeight: '800',
     letterSpacing: -0.4,
   },
   planTilePriceLong: {
-    fontSize: 18,
+    fontSize: 22,
+    lineHeight: 28,
     letterSpacing: -0.5,
   },
   planTileCaptionSlot: {
@@ -5687,18 +5375,6 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     fontWeight: '700',
     letterSpacing: 0.3,
   },
-  moreOffersLink: {
-    alignSelf: 'center',
-    minHeight: 48,
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-    marginTop: 2,
-  },
-  moreOffersLinkText: {
-    color: P.text,
-    fontSize: 15,
-    fontWeight: '600',
-  },
   // Расстояние до кнопки задаёт gap футера (11) — как у Bevel (~10–12), без
   // собственного marginTop.
   reassureRow: {
@@ -5718,116 +5394,6 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   reassureTextDark: {
     color: P.textA(0.62),
   },
-  // ── шит «Больше предложений» (Bevel, кадр 12) ──────────────────────────────
-  offersScrim: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(10,12,18,0.55)',
-  },
-  offersSheet: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: P.sheet,
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
-    paddingHorizontal: 18,
-    paddingTop: 16,
-    maxHeight: '92%',
-  },
-  offersCloseRow: {
-    minHeight: 48,
-    marginBottom: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  offersTitle: {
-    color: P.text,
-    fontSize: 20,
-    lineHeight: 26,
-    fontWeight: '800',
-  },
-  offersClose: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: P.textA(0.14),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  offerList: {
-    gap: 8,
-  },
-  offersScroll: {
-    flexGrow: 0,
-  },
-  offersScrollContent: {
-    paddingBottom: 2,
-  },
-  // Обводка 1.5 всегда, видна только у выбранной (radio-выбор).
-  offerRow: {
-    minHeight: 64,
-    borderRadius: 16,
-    backgroundColor: P.textA(0.06),
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderWidth: 1.5,
-    borderColor: 'transparent',
-  },
-  offerRowSelected: {
-    borderColor: P.textA(0.72),
-  },
-  offerTitle: {
-    color: P.text,
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '700',
-  },
-  offerCaption: {
-    color: P.textA(0.58),
-    fontSize: 12,
-    lineHeight: 16,
-    marginTop: 2,
-  },
-  offerPriceCol: {
-    alignItems: 'flex-end',
-  },
-  offerPrice: {
-    color: P.text,
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '700',
-  },
-  offerSkeleton: {
-    width: 56,
-    height: 14,
-    borderRadius: 4,
-    backgroundColor: P.textA(0.12),
-    marginVertical: 3,
-  },
-  offersCta: {
-    marginTop: 18,
-    // зачем (аудит R58 #49, 15.10): крупный системный шрифт не должен резать подпись кнопки — 56 это минимум, высота по содержимому; вид по умолчанию прежний
-    minHeight: 56,
-    borderRadius: 28,
-    backgroundColor: P.ctaFill,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  offersCtaText: {
-    color: P.ctaInk,
-    fontSize: 17,
-    lineHeight: 22,
-    fontWeight: '600',
-    letterSpacing: -0.2,
-  },
-  offersReassure: {
-    marginTop: 10,
-  },
   offersFreeLink: {
     alignSelf: 'center',
     minHeight: 48,
@@ -5844,6 +5410,7 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     marginTop: 12,
     minHeight: 48,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 22,
@@ -6356,15 +5923,6 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     textDecorationLine: 'underline',
   },
   // ── paywall: кнопка «···» ──────────────────────────────────────────────────
-  paywallMenuButton: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: P.card,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: P.card }),
-  },
   codeScrim: {
     flex: 1,
     backgroundColor: 'rgba(20, 22, 28, 0.45)',

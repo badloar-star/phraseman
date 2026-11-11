@@ -1,0 +1,756 @@
+{
+ "lang": "es",
+ "lesson": 26,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:26:01",
+   "target": "Le escribí una carta.",
+   "ru": "Я написал ей письмо.",
+   "uk": "Я написав їй листа."
+  },
+  {
+   "id": "es:26:02",
+   "target": "Le escribí una carta a Luis.",
+   "ru": "Я написал Луису письмо.",
+   "uk": "Я написав Луїсу листа."
+  },
+  {
+   "id": "es:26:03",
+   "target": "No le escribí una carta.",
+   "ru": "Я не написал ей письмо.",
+   "uk": "Я не написав їй листа."
+  },
+  {
+   "id": "es:26:04",
+   "target": "Les escribí una carta a mis hermanas.",
+   "ru": "Я написал моим сёстрам письмо.",
+   "uk": "Я написав моїм сестрам листа."
+  },
+  {
+   "id": "es:26:05",
+   "target": "¿Les escribiste una carta?",
+   "ru": "Ты написал им письмо?",
+   "uk": "Ти написав їм листа?"
+  },
+  {
+   "id": "es:26:06",
+   "target": "Le mandé la foto.",
+   "ru": "Я отправил ему фотографию.",
+   "uk": "Я надіслав йому фотографію."
+  },
+  {
+   "id": "es:26:07",
+   "target": "Le mandé la receta a mi madre.",
+   "ru": "Я отправил маме рецепт.",
+   "uk": "Я надіслав мамі рецепт."
+  },
+  {
+   "id": "es:26:08",
+   "target": "No les mandé la foto.",
+   "ru": "Я не отправил им фотографию.",
+   "uk": "Я не надіслав їм фотографію."
+  },
+  {
+   "id": "es:26:09",
+   "target": "Les mandé la factura a los clientes.",
+   "ru": "Я отправил клиентам счёт.",
+   "uk": "Я надіслав клієнтам рахунок."
+  },
+  {
+   "id": "es:26:10",
+   "target": "¿Le mandaste la foto?",
+   "ru": "Ты отправил ему фотографию?",
+   "uk": "Ти надіслав йому фотографію?"
+  },
+  {
+   "id": "es:26:11",
+   "target": "Le di la llave.",
+   "ru": "Я дал ей ключ.",
+   "uk": "Я дав їй ключ."
+  },
+  {
+   "id": "es:26:12",
+   "target": "Les di la llave a mis hermanas.",
+   "ru": "Я дал моим сёстрам ключ.",
+   "uk": "Я дав моїм сестрам ключ."
+  },
+  {
+   "id": "es:26:13",
+   "target": "No les di la llave.",
+   "ru": "Я не дал им ключ.",
+   "uk": "Я не дав їм ключ."
+  },
+  {
+   "id": "es:26:14",
+   "target": "Le di una toalla a mi hermana.",
+   "ru": "Я дал сестре полотенце.",
+   "uk": "Я дав сестрі рушник."
+  },
+  {
+   "id": "es:26:15",
+   "target": "¿Le diste la llave?",
+   "ru": "Ты дал ей ключ?",
+   "uk": "Ти дав їй ключ?"
+  },
+  {
+   "id": "es:26:16",
+   "target": "Les compré un billete.",
+   "ru": "Я купил им билет.",
+   "uk": "Я купив їм квиток."
+  },
+  {
+   "id": "es:26:17",
+   "target": "Les compré un billete a los estudiantes.",
+   "ru": "Я купил студентам билет.",
+   "uk": "Я купив студентам квиток."
+  },
+  {
+   "id": "es:26:18",
+   "target": "No le compré un billete.",
+   "ru": "Я не купил ей билет.",
+   "uk": "Я не купив їй квиток."
+  },
+  {
+   "id": "es:26:19",
+   "target": "Le pedí la cuenta al camarero.",
+   "ru": "Я попросил у официанта счёт.",
+   "uk": "Я попросив у офіціанта рахунок."
+  },
+  {
+   "id": "es:26:20",
+   "target": "¿Le compraste un billete?",
+   "ru": "Ты купил ему билет?",
+   "uk": "Ти купив йому квиток?"
+  },
+  {
+   "id": "es:26:21",
+   "target": "Les mostré el mapa.",
+   "ru": "Я показал им карту.",
+   "uk": "Я показав їм мапу."
+  },
+  {
+   "id": "es:26:22",
+   "target": "Le mostré el mapa a Ana.",
+   "ru": "Я показал Ане карту.",
+   "uk": "Я показав Ані мапу."
+  },
+  {
+   "id": "es:26:23",
+   "target": "No le mostré el mapa.",
+   "ru": "Я не показал ему карту.",
+   "uk": "Я не показав йому мапу."
+  },
+  {
+   "id": "es:26:24",
+   "target": "Le mostré el pedido al cliente.",
+   "ru": "Я показал клиенту заказ.",
+   "uk": "Я показав клієнтові замовлення."
+  },
+  {
+   "id": "es:26:25",
+   "target": "Le pasé la sal a Luis.",
+   "ru": "Я передал Луису соль.",
+   "uk": "Я передав Луїсу сіль."
+  },
+  {
+   "id": "es:26:26",
+   "target": "Le mandamos un mensaje.",
+   "ru": "Мы отправили ей сообщение.",
+   "uk": "Ми надіслали їй повідомлення."
+  },
+  {
+   "id": "es:26:27",
+   "target": "Le mandamos un mensaje a Luis.",
+   "ru": "Мы отправили Луису сообщение.",
+   "uk": "Ми надіслали Луїсу повідомлення."
+  },
+  {
+   "id": "es:26:28",
+   "target": "No le mandamos un mensaje.",
+   "ru": "Мы не отправили ей сообщение.",
+   "uk": "Ми не надіслали їй повідомлення."
+  },
+  {
+   "id": "es:26:29",
+   "target": "Les mandamos la receta a los vecinos.",
+   "ru": "Мы отправили соседям рецепт.",
+   "uk": "Ми надіслали сусідам рецепт."
+  },
+  {
+   "id": "es:26:30",
+   "target": "¿Les mandamos un mensaje?",
+   "ru": "Мы отправили им сообщение?",
+   "uk": "Ми надіслали їм повідомлення?"
+  },
+  {
+   "id": "es:26:31",
+   "target": "Le dimos los libros.",
+   "ru": "Мы дали ему книги.",
+   "uk": "Ми дали йому книжки."
+  },
+  {
+   "id": "es:26:32",
+   "target": "Le dimos los libros a mi madre.",
+   "ru": "Мы дали моей маме книги.",
+   "uk": "Ми дали моїй мамі книжки."
+  },
+  {
+   "id": "es:26:33",
+   "target": "Les pedí la lista a mis vecinos.",
+   "ru": "Я попросил у соседей список.",
+   "uk": "Я попросив у сусідів список."
+  },
+  {
+   "id": "es:26:34",
+   "target": "Les dimos los libros a los estudiantes.",
+   "ru": "Мы дали студентам книги.",
+   "uk": "Ми дали студентам книжки."
+  },
+  {
+   "id": "es:26:35",
+   "target": "¿Le dimos los libros?",
+   "ru": "Мы дали ему книги?",
+   "uk": "Ми дали йому книжки?"
+  },
+  {
+   "id": "es:26:36",
+   "target": "Le leímos la carta.",
+   "ru": "Мы прочитали ей письмо.",
+   "uk": "Ми прочитали їй листа."
+  },
+  {
+   "id": "es:26:37",
+   "target": "Le pedimos otra botella al camarero.",
+   "ru": "Мы попросили у официанта ещё одну бутылку.",
+   "uk": "Ми попросили в офіціанта ще одну пляшку."
+  },
+  {
+   "id": "es:26:38",
+   "target": "Le compré fruta a mi vecino.",
+   "ru": "Я купил фрукты для соседа.",
+   "uk": "Я купив фрукти для сусіда."
+  },
+  {
+   "id": "es:26:39",
+   "target": "Le leímos la carta a Ana.",
+   "ru": "Мы прочитали Ане письмо.",
+   "uk": "Ми прочитали Ані листа."
+  },
+  {
+   "id": "es:26:40",
+   "target": "¿Le leímos la carta?",
+   "ru": "Мы прочитали ей письмо?",
+   "uk": "Ми прочитали їй листа?"
+  },
+  {
+   "id": "es:26:41",
+   "target": "Les escribimos ayer.",
+   "ru": "Мы написали им вчера.",
+   "uk": "Ми написали їм вчора."
+  },
+  {
+   "id": "es:26:42",
+   "target": "Les escribimos ayer a los estudiantes.",
+   "ru": "Мы написали студентам вчера.",
+   "uk": "Ми написали студентам вчора."
+  },
+  {
+   "id": "es:26:43",
+   "target": "Le enseñé la cuenta a Luis.",
+   "ru": "Я показал Луису счёт.",
+   "uk": "Я показав Луїсу рахунок."
+  },
+  {
+   "id": "es:26:44",
+   "target": "Le escribimos ayer a Luis.",
+   "ru": "Мы написали Луису вчера.",
+   "uk": "Ми написали Луїсу вчора."
+  },
+  {
+   "id": "es:26:45",
+   "target": "Le di las gracias a la profesora.",
+   "ru": "Я поблагодарил преподавательницу.",
+   "uk": "Я подякував викладачці."
+  },
+  {
+   "id": "es:26:46",
+   "target": "Les enseñamos las fotos.",
+   "ru": "Мы показали им фотографии.",
+   "uk": "Ми показали їм фотографії."
+  },
+  {
+   "id": "es:26:47",
+   "target": "Le enseñamos las fotos a Ana.",
+   "ru": "Мы показали Ане фотографии.",
+   "uk": "Ми показали Ані фотографії."
+  },
+  {
+   "id": "es:26:48",
+   "target": "Les devolví el paraguas a mis vecinos.",
+   "ru": "Я вернул зонт моим соседям.",
+   "uk": "Я повернув парасольку моїм сусідам."
+  },
+  {
+   "id": "es:26:49",
+   "target": "Le enseñamos las fotos a mi madre.",
+   "ru": "Мы показали моей маме фотографии.",
+   "uk": "Ми показали моїй мамі фотографії."
+  },
+  {
+   "id": "es:26:50",
+   "target": "¿Les enseñamos las fotos?",
+   "ru": "Мы показали им фотографии?",
+   "uk": "Ми показали їм фотографії?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "dar",
+   "ru": "давать",
+   "uk": "давати"
+  },
+  {
+   "lemma": "enseñar",
+   "ru": "показывать",
+   "uk": "показувати"
+  },
+  {
+   "lemma": "camarero",
+   "ru": "официант",
+   "uk": "офіціант"
+  },
+  {
+   "lemma": "cliente",
+   "ru": "клиент, покупатель",
+   "uk": "клієнт, покупець"
+  },
+  {
+   "lemma": "cuenta",
+   "ru": "счёт в кафе или ресторане",
+   "uk": "рахунок у кафе чи ресторані"
+  },
+  {
+   "lemma": "gracias",
+   "ru": "спасибо; dar las gracias — благодарить",
+   "uk": "дякую; dar las gracias — дякувати"
+  },
+  {
+   "lemma": "pedir",
+   "ru": "просить, заказывать",
+   "uk": "просити, замовляти"
+  },
+  {
+   "lemma": "receta",
+   "ru": "рецепт блюда",
+   "uk": "рецепт страви"
+  },
+  {
+   "lemma": "mostrar",
+   "ru": "показывать",
+   "uk": "показувати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  }
+ ],
+ "oldTopicTitle": "Кому? Адресат с le и les",
+ "oldTheoryRu": "Письмо — что отправили. Луис — кому отправили. В Le escribí una carta слово le обозначает получателя, а не письмо. Назови получателя письма, фотографии или вещи. Не перепутай получателя с тем, что передали. В «я дал ей ключ» ключ передали, а женщине его дали. Предмет — прямое дополнение; она — адресат. В испанском для «ей» здесь нужно le. Один получатель даёт le независимо от того, мужчина это или женщина. Уточнение про Ану или Луиса помогает понимать перевод, но само местоимение не меняется. Le di los libros: много книг, один адресат. Les di la llave: один ключ, несколько получателей. Считай людей, а не переданные вещи. Le mandé la foto a Ana: a Ana называет, кому именно. Здесь тренируется распространённый образец с коротким местоимением; не считай повтор le отдельным адресатом. У личной формы местоимение стоит перед глаголом, а no ещё раньше: no le mandé… . Не заменяй le на lo только потому, что переданная вещь мужского рода. Сравни два задания: «Ты купил ему билет?» / «Я показал им карту.». Le или les определяется получателем, а не тем, что передают. Смысловые опоры: «billete» — билет (на транспорт, Испания). Сравни два задания: «Мы написали Луису вчера.» / «Мы показали им фотографии?». Le или les определяется получателем, а не тем, что передают. Назови получателя письма, фотографии или вещи. Не перепутай получателя с тем, что передали."
+}

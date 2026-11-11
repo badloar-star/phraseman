@@ -14,7 +14,6 @@ const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf
 
 const WIRING: ReadonlyArray<Readonly<{ file: string; kind: string; marker: RegExp }>> = [
   { file: 'app/lesson_complete.tsx', kind: 'lesson', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'lesson'/ },
-  { file: 'app/learning_v2_direct_session_player_v1.tsx', kind: 'lesson', marker: /recordTodayTaskActivity\(\{\s*kind:\s*"lesson"/ },
   { file: 'app/dialogs_progress.ts', kind: 'dialog', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'dialog'/ },
   { file: 'app/dialogue_v2_session_outcome_store.ts', kind: 'dialog', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'dialog'/ },
   { file: 'hooks/usePracticeRunes.ts', kind: 'cards+mistakes', marker: /todayTaskKindForPracticeActivity\(input\.activity\)/ },

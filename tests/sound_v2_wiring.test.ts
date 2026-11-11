@@ -13,6 +13,7 @@ const mockHandlers: Array<() => void> = [];
 jest.mock('../app/events', () => ({ onAppEvent: (_name: string, cb: () => void) => { mockHandlers.push(cb); return { remove: () => undefined }; } }));
 
 import { SOUND_V2_CATALOG } from '../modules/sound_v2/catalog';
+jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true }));
 import { SoundBank, playEvent, prewarmSoundV2, type SoundBankDeps, type SoundV2Player } from '../modules/sound_v2/sound_bank';
 import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
 import { DIRECTOR_TO_V2, FC_TO_V2, tryPlayV2Event, tryPlayV2ForDirector, tryPlayV2ForFc } from '../modules/sound_v2/legacy_bridge';
@@ -119,9 +120,10 @@ describe('запуск после первого кадра Главной', () 
     log.mockRestore();
   });
 
-  it('корень зовёт запуск только после первого кадра Главной (runAfterHomeFirstFrame) и лениво', () => {
+  it('production root does not schedule or lazily import the removed V2 sound boot', () => {
     const layout = read('app/_layout.tsx');
-    expect(layout).toContain("runAfterHomeFirstFrame('sound_v2_boot', () => import('../modules/sound_v2/sound_v2_boot')");
+    expect(layout).not.toContain("runAfterHomeFirstFrame('sound_v2_boot'");
+    expect(layout).not.toContain("import('../modules/sound_v2/sound_v2_boot')");
     expect(layout).not.toMatch(/^import .*sound_v2_boot/m);
   });
 
@@ -204,8 +206,6 @@ describe('остальные события V2 — места подключен
   const SITES: ReadonlyArray<readonly [string, string]> = [
     ['components/CustomSwitch.tsx', "tryPlayV2Event(value ? 'toggle_off' : 'toggle_on'"],
     ['components/modal_fx/SheetSwipeClose.tsx', "tryPlayV2Event('sheet_close'"],
-    ['components/ExplainSheet.tsx', "tryPlayV2Event('hint'"],
-    ['components/ExplainSheetHybrid.tsx', "tryPlayV2Event('hint'"],
     ['components/stories/StoryViewer.tsx', "tryPlayV2Event('story'"],
     ['components/StreakRiskToastHost.tsx', "tryPlayV2Event('streak_risk'"],
     ['components/level_up/CoinRankUpgradeCeremony.tsx', "tryPlayV2Event('coin_rank'"],

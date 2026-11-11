@@ -87,10 +87,15 @@
    "es": "(nosotros) hacemos"
   },
   "eine": {
-   "ru": "один, какой-то; по-русски нет",
-   "uk": "один, якийсь; українською немає",
-   "en": "a, an",
-   "es": "un, una"
+   "ru": "Делаем перерыв (Wir machen ___ Pause)",
+   "uk": "Робимо перерву (Wir machen ___ Pause)",
+   "en": "We are taking a break (Wir machen ___ Pause)",
+   "es": "Hacemos una pausa (Wir machen ___ Pause)",
+   "pt-BR": "Vamos fazer uma pausa (Wir machen ___ Pause)",
+   "vi": "Chúng ta nghỉ một lát (Wir machen ___ Pause)",
+   "id": "Kita beristirahat sebentar (Wir machen ___ Pause)",
+   "tr": "Bir mola veriyoruz (Wir machen ___ Pause)",
+   "pl": "Robimy przerwę (Wir machen ___ Pause)"
   },
   "pause": {
    "ru": "перерыв, пауза",
@@ -153,10 +158,15 @@
    "es": "(yo) busco"
   },
   "den": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the",
-   "es": "el"
+   "ru": "Я ищу тот самый ключ (Ich suche ___ Schlüssel)",
+   "uk": "Я шукаю той самий ключ (Ich suche ___ Schlüssel)",
+   "en": "I'm looking for the key (Ich suche ___ Schlüssel)",
+   "es": "Busco la llave (Ich suche ___ Schlüssel)",
+   "pt-BR": "Estou procurando a chave (Ich suche ___ Schlüssel)",
+   "vi": "Tôi đang tìm chiếc chìa khóa đó (Ich suche ___ Schlüssel)",
+   "id": "Saya sedang mencari kunci itu (Ich suche ___ Schlüssel)",
+   "tr": "O anahtarı arıyorum (Ich suche ___ Schlüssel)",
+   "pl": "Szukam tego klucza (Ich suche ___ Schlüssel)"
   },
   "suchst": {
    "ru": "(ты) ищешь",
@@ -207,10 +217,15 @@
    "es": "(nosotros) escuchamos"
   },
   "ein": {
-   "ru": "один, какой-то; по-русски нет",
-   "uk": "один, якийсь; українською немає",
-   "en": "a, an",
-   "es": "un"
+   "ru": "Дети слушают песню (Die Kinder hören ___ Lied)",
+   "uk": "Діти слухають пісню (Die Kinder hören ___ Lied)",
+   "en": "The children are listening to a song (Die Kinder hören ___ Lied)",
+   "es": "Los niños escuchan una canción (Die Kinder hören ___ Lied)",
+   "pt-BR": "As crianças estão ouvindo uma canção (Die Kinder hören ___ Lied)",
+   "vi": "Các em nhỏ đang nghe một bài hát (Die Kinder hören ___ Lied)",
+   "id": "Anak-anak sedang mendengarkan sebuah lagu (Die Kinder hören ___ Lied)",
+   "tr": "Çocuklar bir şarkı dinliyor (Die Kinder hören ___ Lied)",
+   "pl": "Dzieci słuchają piosenki (Die Kinder hören ___ Lied)"
   },
   "lied": {
    "ru": "песня",

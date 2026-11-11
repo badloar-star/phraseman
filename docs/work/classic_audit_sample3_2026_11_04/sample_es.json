@@ -94,11 +94,11 @@
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"de",
+"con",
+"por",
+"para",
+"desde"
 ]
 },
 {
@@ -127,11 +127,11 @@
 {
 "correct": "Los",
 "distractors": [
-"Y",
-"Ella",
-"Ellas",
-"Usted",
-"Ustedes"
+"Las",
+"Sus",
+"Su",
+"Mis",
+"Con"
 ]
 },
 {
@@ -148,20 +148,20 @@
 "correct": "están",
 "distractors": [
 "estamos",
-"fuera",
 "somos",
 "es",
-"la"
+"la",
+"una"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"para",
+"con",
+"de",
+"por",
+"desde"
 ]
 },
 {
@@ -208,10 +208,10 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "cuesta",
 "los",
-"una"
+"una",
+"las"
 ]
 },
 {
@@ -225,9 +225,7 @@
 ]
 }
 ],
-"alternatives": [
-"Ana no estás aquí."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -240,7 +238,7 @@
 "correct": "No",
 "distractors": [
 "Aquí",
-"Fuera",
+"Hoy",
 "Allí",
 "Cerca",
 "Dentro"
@@ -282,11 +280,11 @@
 {
 "correct": "Ellos",
 "distractors": [
-"Ellas",
 "Ustedes",
 "Él",
 "Usted",
-"Ella"
+"Ella",
+"La"
 ]
 },
 {
@@ -312,11 +310,11 @@
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"por",
+"de",
+"con",
+"para",
+"desde"
 ]
 },
 {
@@ -344,11 +342,11 @@
 {
 "correct": "La",
 "distractors": [
-"Y",
-"Ellas",
-"Ellos",
-"Usted",
-"Ustedes"
+"Las",
+"Un",
+"Los",
+"Con",
+"Que"
 ]
 },
 {
@@ -365,40 +363,40 @@
 "correct": "no",
 "distractors": [
 "aquí",
-"fuera",
 "lejos",
 "allí",
-"dentro"
+"dentro",
+"cerca"
 ]
 },
 {
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "cuesta",
 "los",
-"una"
+"una",
+"las"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"café",
-"libro",
-"maleta",
-"casa"
+"para",
+"con",
+"por",
+"de",
+"desde"
 ]
 },
 {
 "correct": "el",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"las",
+"los",
+"con",
+"que",
+"y"
 ]
 },
 {
@@ -434,11 +432,11 @@
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"con",
+"para",
+"de",
+"por",
+"desde"
 ]
 },
 {
@@ -498,11 +496,11 @@
 {
 "correct": "La",
 "distractors": [
-"Y",
-"Ellas",
-"Ellos",
-"Usted",
-"Ustedes"
+"Los",
+"Un",
+"Con",
+"Que",
+"Y"
 ]
 },
 {
@@ -519,10 +517,10 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "cuesta",
 "los",
-"una"
+"una",
+"las"
 ]
 },
 {
@@ -552,19 +550,19 @@
 "distractors": [
 "Estamos",
 "Es",
-"Eres",
-"Soy",
-"Somos"
+"Una",
+"El",
+"Eres"
 ]
 },
 {
 "correct": "los",
 "distractors": [
+"una",
 "tu",
-"y",
-"mis",
-"mi",
-"tus"
+"las",
+"el",
+"con"
 ]
 },
 {
@@ -580,21 +578,21 @@
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"para",
+"desde",
+"de",
+"con",
+"por"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"un",
+"las",
+"el",
+"con",
+"que"
 ]
 },
 {
@@ -623,10 +621,10 @@
 "correct": "Soy",
 "distractors": [
 "Es",
-"Fuera",
 "Sois",
 "Somos",
-"Son"
+"Son",
+"Eres"
 ]
 },
 {
@@ -655,10 +653,10 @@
 "correct": "Eres",
 "distractors": [
 "Son",
-"Fuera",
 "Somos",
 "Es",
-"Soy"
+"Soy",
+"Sois"
 ]
 },
 {
@@ -728,11 +726,11 @@
 {
 "correct": "y",
 "distractors": [
-"quién",
-"lejos",
-"estamos",
-"está",
-"están"
+"pero",
+"ni",
+"o",
+"porque",
+"mientras"
 ]
 },
 {
@@ -750,9 +748,9 @@
 "distractors": [
 "soy",
 "somos",
-"fuera",
 "están",
-"en"
+"está",
+"estás"
 ]
 },
 {
@@ -766,10 +764,7 @@
 ]
 }
 ],
-"alternatives": [
-"Ana y Luis sois estudiantes.",
-"Ana y Luis son estudiante."
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -781,11 +776,11 @@
 {
 "correct": "Dónde",
 "distractors": [
-"Quién",
 "Qué",
 "Quiénes",
-"Cuándo",
-"Cuánta"
+"Cuánto",
+"Es",
+"Está"
 ]
 },
 {
@@ -816,38 +811,38 @@
 "Dónde",
 "Qué",
 "Cuánto",
-"Cuándo",
-"Luis"
+"No",
+"Mi"
 ]
 },
 {
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "cuesta",
 "los",
-"una"
+"una",
+"las"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"por",
+"de",
+"con",
+"para",
+"desde"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"los",
+"el",
+"las",
+"un",
+"con"
 ]
 },
 {
@@ -876,8 +871,8 @@
 "Dónde",
 "Qué",
 "Quiénes",
-"Cuándo",
-"Cómo"
+"Cuánto",
+"No"
 ]
 },
 {
@@ -913,11 +908,11 @@
 {
 "correct": "Las",
 "distractors": [
-"Y",
-"Ella",
-"Ellos",
-"Usted",
-"Ustedes"
+"Mi",
+"Los",
+"El",
+"Tu",
+"Una"
 ]
 },
 {
@@ -965,11 +960,11 @@
 {
 "correct": "Las",
 "distractors": [
-"Y",
-"Ella",
-"Ellos",
-"Usted",
-"Ustedes"
+"Mi",
+"Tu",
+"Una",
+"Con",
+"Que"
 ]
 },
 {
@@ -986,30 +981,30 @@
 "correct": "están",
 "distractors": [
 "estamos",
-"fuera",
 "somos",
 "es",
-"la"
+"la",
+"los"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"de",
+"por",
+"con",
+"para",
+"desde"
 ]
 },
 {
 "correct": "el",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"una",
+"los",
+"con",
+"que",
+"y"
 ]
 },
 {
@@ -1037,11 +1032,11 @@
 {
 "correct": "El",
 "distractors": [
-"Y",
-"Mochila",
-"Mapa",
-"Botella",
-"Casa"
+"Los",
+"Una",
+"Las",
+"Con",
+"Que"
 ]
 },
 {
@@ -1058,30 +1053,30 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "cuesta",
 "los",
-"una"
+"una",
+"las"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"de",
+"sin",
+"con",
+"por",
+"para"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"un",
+"las",
+"los",
+"con",
+"que"
 ]
 },
 {
@@ -1109,11 +1104,11 @@
 {
 "correct": "Hay",
 "distractors": [
-"Buscas",
 "Estáis",
 "Está",
 "Están",
-"Es"
+"Es",
+"Son"
 ]
 },
 {
@@ -1139,21 +1134,21 @@
 {
 "correct": "en",
 "distractors": [
-"hermanas",
-"mochila",
-"café",
-"libro",
-"maleta"
+"con",
+"para",
+"de",
+"por",
+"desde"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"y",
-"mis",
-"mi",
-"tu",
-"tus"
+"las",
+"un",
+"el",
+"con",
+"que"
 ]
 },
 {
@@ -1181,11 +1176,11 @@
 {
 "correct": "Hay",
 "distractors": [
-"Buscas",
 "Estáis",
 "Está",
 "Están",
-"Es"
+"Es",
+"Son"
 ]
 },
 {
@@ -1223,21 +1218,21 @@
 {
 "correct": "Hay",
 "distractors": [
-"Buscas",
 "Estáis",
 "Está",
 "Están",
-"Es"
+"Es",
+"Son"
 ]
 },
 {
 "correct": "una",
 "distractors": [
+"el",
+"los",
 "mis",
 "tu",
-"y",
-"mi",
-"tus"
+"con"
 ]
 },
 {
@@ -1261,11 +1256,7 @@
 ]
 }
 ],
-"alternatives": [
-"¿Cerca hay una tienda?",
-"¿Hay una tiendas cerca?",
-"¿Cerca hay una tiendas?"
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -1298,10 +1289,10 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
-"escribimos",
 "buscamos",
-"estudias"
+"estudias",
+"estudiáis",
+"cuesta"
 ]
 },
 {
@@ -1316,9 +1307,7 @@
 }
 ],
 "alternatives": [
-"Aquí está mi libro.",
-"Mi libro estás aquí.",
-"Aquí estás mi libro."
+"Aquí está mi libro."
 ]
 },
 {
@@ -1352,30 +1341,30 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
-"escribimos",
 "buscamos",
-"estudias"
+"estudias",
+"estudiáis",
+"cuesta"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"del",
+"por",
+"para",
 "de",
 "con",
-"hermanas",
-"mochila"
+"desde"
 ]
 },
 {
 "correct": "el",
 "distractors": [
+"una",
+"las",
+"la",
 "con",
-"y",
-"de",
-"del",
-"mis"
+"que"
 ]
 },
 {
@@ -1385,7 +1374,7 @@
 "mochilas",
 "hermana",
 "casa",
-"mensaje"
+"hotel"
 ]
 }
 ],
@@ -1414,18 +1403,18 @@
 "hermanas",
 "casa",
 "hotel",
-"mensaje",
-"clase"
+"clase",
+"hermanos"
 ]
 },
 {
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
-"escribimos",
 "buscamos",
-"estudias"
+"estudias",
+"estudiáis",
+"cuesta"
 ]
 },
 {
@@ -1488,10 +1477,10 @@
 "correct": "Busco",
 "distractors": [
 "Buscamos",
-"Busca",
 "Buscas",
 "Buscáis",
-"Buscan"
+"Buscan",
+"Hay"
 ]
 },
 {
@@ -1568,9 +1557,7 @@
 }
 ],
 "alternatives": [
-"Hoy mi madre trabaja.",
-"Mi madre trabajas hoy.",
-"Hoy mi madre trabajas."
+"Hoy mi madre trabaja."
 ]
 },
 {
@@ -1603,11 +1590,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"en",
-"de",
-"del"
+"una",
+"los",
+"la",
+"las",
+"con"
 ]
 },
 {
@@ -1643,11 +1630,11 @@
 {
 "correct": "el",
 "distractors": [
+"una",
+"las",
+"la",
 "con",
-"y",
-"en",
-"de",
-"del"
+"que"
 ]
 },
 {
@@ -1698,8 +1685,8 @@
 "bebemos",
 "están",
 "abre",
-"de",
-"con"
+"del",
+"mochila"
 ]
 },
 {
@@ -1714,9 +1701,7 @@
 }
 ],
 "alternatives": [
-"¿Beben mis hermanas café?",
-"¿Mis hermana beben café?",
-"¿Beben mis hermana café?"
+"¿Beben mis hermanas café?"
 ]
 },
 {
@@ -1729,11 +1714,11 @@
 {
 "correct": "No",
 "distractors": [
-"Siempre",
-"Sí",
-"Ya",
-"Nunca",
-"Porque"
+"Aquí",
+"Hoy",
+"Foto",
+"Carta",
+"Cocina"
 ]
 },
 {
@@ -1749,11 +1734,11 @@
 {
 "correct": "las",
 "distractors": [
+"una",
+"un",
+"la",
 "tu",
-"con",
-"y",
-"en",
-"de"
+"con"
 ]
 },
 {
@@ -1782,20 +1767,20 @@
 "correct": "Tenéis",
 "distractors": [
 "Tenemos",
-"Tuviera",
-"Tuviste",
 "Tengo",
-"Tenga"
+"Hay",
+"Mi",
+"Cuánto"
 ]
 },
 {
 "correct": "las",
 "distractors": [
-"con",
-"y",
-"en",
-"del",
-"mi"
+"los",
+"una",
+"un",
+"la",
+"con"
 ]
 },
 {
@@ -1811,11 +1796,11 @@
 {
 "correct": "de",
 "distractors": [
+"a",
 "con",
 "en",
-"del",
-"y",
-"contentas"
+"por",
+"para"
 ]
 },
 {
@@ -1830,8 +1815,6 @@
 }
 ],
 "alternatives": [
-"Tiene las llaves de casa.",
-"Usted tiene las llaves de casa.",
 "Tienen las llaves de casa.",
 "Ustedes tienen las llaves de casa.",
 "Vosotros tenéis las llaves de casa.",
@@ -1871,18 +1854,18 @@
 "tenemos",
 "tengo",
 "vivimos",
-"con",
-"del"
+"del",
+"mochila"
 ]
 },
 {
 "correct": "las",
 "distractors": [
+"la",
+"un",
 "tu",
-"con",
-"y",
-"en",
-"del"
+"los",
+"con"
 ]
 },
 {
@@ -1899,10 +1882,10 @@
 "correct": "de",
 "distractors": [
 "con",
+"a",
 "en",
-"del",
-"y",
-"contentas"
+"para",
+"por"
 ]
 },
 {
@@ -1928,11 +1911,11 @@
 {
 "correct": "El",
 "distractors": [
+"Las",
+"Los",
+"Una",
 "Con",
-"Y",
-"Para",
-"A",
-"En"
+"Que"
 ]
 },
 {
@@ -1950,9 +1933,9 @@
 "distractors": [
 "somos",
 "soy",
-"fuera",
 "aquí",
-"lejos"
+"lejos",
+"cerca"
 ]
 },
 {
@@ -1966,10 +1949,7 @@
 ]
 }
 ],
-"alternatives": [
-"El mapas es nuevo.",
-"El mapa eres nuevo."
-]
+"alternatives": []
 },
 {
 "lesson": 12,
@@ -1981,11 +1961,11 @@
 {
 "correct": "La",
 "distractors": [
-"Que",
-"Por",
-"Pero",
-"Entre",
-"Porque"
+"El",
+"Un",
+"Los",
+"Las",
+"Con"
 ]
 },
 {
@@ -1993,19 +1973,19 @@
 "distractors": [
 "mesa",
 "mesas",
-"mañana",
 "foto",
-"llave"
+"llave",
+"hotel"
 ]
 },
 {
 "correct": "es",
 "distractors": [
 "soy",
-"fuera",
 "somos",
 "aquí",
-"lejos"
+"lejos",
+"cerca"
 ]
 },
 {
@@ -2031,11 +2011,11 @@
 {
 "correct": "Hay",
 "distractors": [
+"Tengo",
+"Tenemos",
 "Buscas",
 "Bebo",
-"Beben",
-"Prepara",
-"Preparamos"
+"Beben"
 ]
 },
 {
@@ -2079,10 +2059,7 @@
 ]
 }
 ],
-"alternatives": [
-"Hay dos mochila negras aquí.",
-"Hay dos mochilas negra aquí."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -2094,11 +2071,11 @@
 {
 "correct": "La",
 "distractors": [
-"Ese",
-"Que",
-"Por",
-"Pero",
-"Entre"
+"Los",
+"Las",
+"El",
+"Con",
+"Que"
 ]
 },
 {
@@ -2115,10 +2092,10 @@
 "correct": "está",
 "distractors": [
 "estamos",
-"fuera",
 "prepara",
 "escribimos",
-"buscamos"
+"buscamos",
+"estudias"
 ]
 },
 {
@@ -2144,11 +2121,11 @@
 {
 "correct": "Las",
 "distractors": [
+"El",
 "Mis",
-"Que",
-"Por",
-"Pero",
-"Entre"
+"La",
+"Una",
+"Un"
 ]
 },
 {
@@ -2165,10 +2142,10 @@
 "correct": "están",
 "distractors": [
 "estamos",
-"fuera",
 "somos",
 "es",
-"tienes"
+"tienes",
+"trabaja"
 ]
 },
 {
@@ -2194,11 +2171,11 @@
 {
 "correct": "Las",
 "distractors": [
+"La",
 "Mis",
 "Mi",
-"Que",
-"Por",
-"Pero"
+"El",
+"Una"
 ]
 },
 {
@@ -2215,10 +2192,10 @@
 "correct": "están",
 "distractors": [
 "estamos",
-"fuera",
-"entrar",
 "somos",
-"es"
+"es",
+"tienes",
+"trabaja"
 ]
 },
 {
@@ -2257,8 +2234,8 @@
 "Ana",
 "Ayer",
 "Lejos",
-"Entre",
-"Quién"
+"Quién",
+"Nunca"
 ]
 },
 {
@@ -2274,21 +2251,21 @@
 {
 "correct": "lava",
 "distractors": [
-"vas",
-"vais",
-"vamos",
-"van",
-"voy"
+"cansado",
+"llevar",
+"tren",
+"bolso",
+"foto"
 ]
 },
 {
 "correct": "las",
 "distractors": [
+"el",
+"los",
 "mi",
-"con",
-"y",
-"por",
-"para"
+"una",
+"con"
 ]
 },
 {
@@ -2345,20 +2322,20 @@
 "correct": "de",
 "distractors": [
 "a",
-"al",
 "en",
 "para",
-"por"
+"por",
+"con"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"un",
+"el",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que",
+"y"
 ]
 },
 {
@@ -2418,10 +2395,10 @@
 "correct": "preparan",
 "distractors": [
 "preparamos",
-"preparar",
-"fuera",
 "es",
-"escribir"
+"escribir",
+"bebemos",
+"trabaja"
 ]
 },
 {
@@ -2429,7 +2406,7 @@
 "distractors": [
 "por",
 "en",
-"al",
+"desde",
 "de",
 "a"
 ]
@@ -2437,11 +2414,11 @@
 {
 "correct": "el",
 "distractors": [
+"la",
+"las",
+"una",
 "con",
-"y",
-"por",
-"pero",
-"en"
+"que"
 ]
 },
 {
@@ -2487,11 +2464,11 @@
 {
 "correct": "el",
 "distractors": [
+"las",
+"la",
+"los",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -2530,21 +2507,21 @@
 {
 "correct": "pagar",
 "distractors": [
-"gustan",
-"gusta",
 "estáis",
 "podemos",
-"leer"
+"leer",
+"volver",
+"comprar"
 ]
 },
 {
 "correct": "en",
 "distractors": [
-"al",
-"del",
-"con",
 "por",
-"de"
+"de",
+"para",
+"desde",
+"sin"
 ]
 },
 {
@@ -2560,11 +2537,11 @@
 {
 "correct": "hoy",
 "distractors": [
-"porque",
-"pero",
 "quién",
 "lejos",
-"no"
+"no",
+"mañana",
+"estamos"
 ]
 }
 ],
@@ -2582,11 +2559,11 @@
 {
 "correct": "No",
 "distractors": [
-"Ya",
-"Siempre",
-"Aún",
-"También",
-"Porque"
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
 ]
 },
 {
@@ -2595,8 +2572,8 @@
 "podemos",
 "puedo",
 "hay",
-"gustan",
-"gusta"
+"llamar",
+"va"
 ]
 },
 {
@@ -2604,29 +2581,29 @@
 "distractors": [
 "estamos",
 "están",
-"fuera",
 "eres",
-"gustan"
+"prepara",
+"escribimos"
 ]
 },
 {
 "correct": "en",
 "distractors": [
 "de",
+"sin",
 "por",
 "con",
-"al",
-"del"
+"para"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"esta",
+"las",
+"un",
 "con",
-"y",
-"por",
-"para"
+"que",
+"y"
 ]
 },
 {
@@ -2683,10 +2660,10 @@
 "correct": "a",
 "distractors": [
 "con",
-"al",
-"del",
+"desde",
 "de",
-"por"
+"por",
+"para"
 ]
 },
 {
@@ -2702,11 +2679,11 @@
 {
 "correct": "la",
 "distractors": [
+"el",
+"las",
+"un",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -2725,8 +2702,8 @@
 "mañana",
 "temprano",
 "ahora",
-"después",
-"casa"
+"casa",
+"hotel"
 ]
 },
 {
@@ -2735,8 +2712,8 @@
 "temprano",
 "mañana",
 "ahora",
-"después",
-"casa"
+"casa",
+"hotel"
 ]
 }
 ],
@@ -2763,10 +2740,10 @@
 "correct": "a",
 "distractors": [
 "de",
-"al",
-"del",
+"sin",
 "con",
-"por"
+"por",
+"para"
 ]
 },
 {
@@ -2792,21 +2769,21 @@
 {
 "correct": "en",
 "distractors": [
-"del",
-"al",
 "de",
 "con",
-"por"
+"por",
+"para",
+"desde"
 ]
 },
 {
 "correct": "el",
 "distractors": [
+"la",
+"una",
+"las",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -2844,11 +2821,11 @@
 {
 "correct": "a",
 "distractors": [
+"sin",
 "para",
 "de",
-"al",
 "con",
-"del"
+"por"
 ]
 },
 {
@@ -2865,20 +2842,20 @@
 "correct": "en",
 "distractors": [
 "de",
+"sin",
 "por",
-"del",
-"al",
-"con"
+"con",
+"para"
 ]
 },
 {
 "correct": "el",
 "distractors": [
+"la",
+"los",
 "esta",
 "con",
-"y",
-"por",
-"para"
+"que"
 ]
 },
 {
@@ -2907,11 +2884,11 @@
 {
 "correct": "No",
 "distractors": [
-"Nunca",
-"Ya",
-"Siempre",
-"También",
-"Quién"
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
 ]
 },
 {
@@ -2937,11 +2914,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"una",
+"las",
+"la",
+"los",
+"con"
 ]
 },
 {
@@ -2990,10 +2967,10 @@
 "correct": "gusta",
 "distractors": [
 "gustan",
-"esperando",
-"esperar",
 "están",
-"puedo"
+"puedo",
+"trabaja",
+"es"
 ]
 },
 {
@@ -3011,9 +2988,9 @@
 "distractors": [
 "inglés",
 "lejos",
-"fuera",
 "dentro",
-"allí"
+"allí",
+"cerca"
 ]
 }
 ],
@@ -3045,27 +3022,27 @@
 "están",
 "puedo",
 "trabaja",
-"buscando"
+"es"
 ]
 },
 {
 "correct": "ir",
 "distractors": [
 "volver",
-"volviendo",
 "va",
 "gustan",
-"vas"
+"vas",
+"trabaja"
 ]
 },
 {
 "correct": "en",
 "distractors": [
 "para",
-"al",
-"del",
 "con",
-"de"
+"de",
+"por",
+"desde"
 ]
 },
 {
@@ -3094,11 +3071,11 @@
 {
 "correct": "Lo",
 "distractors": [
+"Un",
+"Las",
+"El",
 "Mis",
-"Le",
-"Que",
-"Por",
-"Pero"
+"Con"
 ]
 },
 {
@@ -3106,9 +3083,9 @@
 "distractors": [
 "llevando",
 "llevar",
-"llevado",
 "lleva",
-"llevamos"
+"llevamos",
+"llevo"
 ]
 },
 {
@@ -3116,9 +3093,9 @@
 "distractors": [
 "por",
 "de",
-"del",
 "con",
-"al"
+"para",
+"desde"
 ]
 },
 {
@@ -3145,20 +3122,20 @@
 "correct": "Ana",
 "distractors": [
 "Luis",
-"Entre",
 "Quién",
-"Desde",
-"Ayer"
+"Nunca",
+"Ayer",
+"Cuándo"
 ]
 },
 {
 "correct": "lo",
 "distractors": [
+"los",
+"una",
 "tus",
-"les",
-"con",
-"y",
-"por"
+"las",
+"les"
 ]
 },
 {
@@ -3167,18 +3144,18 @@
 "necesitan",
 "necesitas",
 "necesitamos",
-"necesito",
-"tienes"
+"tienes",
+"leer"
 ]
 },
 {
 "correct": "hoy",
 "distractors": [
 "lejos",
-"fuera",
 "dentro",
 "allí",
-"cerca"
+"cerca",
+"aquí"
 ]
 }
 ],
@@ -3204,31 +3181,31 @@
 {
 "correct": "la",
 "distractors": [
+"un",
+"el",
+"las",
 "se",
-"con",
-"y",
-"por",
-"para"
+"con"
 ]
 },
 {
 "correct": "deja",
 "distractors": [
-"dejo",
 "dejas",
 "pagar",
 "dejamos",
-"pagado"
+"pagando",
+"somos"
 ]
 },
 {
 "correct": "en",
 "distractors": [
 "de",
-"al",
 "por",
-"del",
-"con"
+"con",
+"para",
+"desde"
 ]
 },
 {
@@ -3274,11 +3251,11 @@
 {
 "correct": "el",
 "distractors": [
+"una",
+"los",
+"lo",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -3337,10 +3314,10 @@
 "correct": "esperando",
 "distractors": [
 "esperar",
-"esperaron",
 "gustan",
 "gusta",
-"han"
+"han",
+"llamar"
 ]
 },
 {
@@ -3356,17 +3333,15 @@
 {
 "correct": "ahora",
 "distractors": [
-"ayer",
 "mañana",
 "después",
 "más",
-"anoche"
+"tarde",
+"temprano"
 ]
 }
 ],
-"alternatives": [
-"Mis hermanos estáis esperando fuera ahora."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
@@ -3401,18 +3376,18 @@
 "de",
 "por",
 "con",
-"al",
-"del"
+"para",
+"desde"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"el",
+"lo",
+"un",
 "esta",
-"con",
-"y",
-"por",
-"para"
+"con"
 ]
 },
 {
@@ -3428,11 +3403,11 @@
 {
 "correct": "ahora",
 "distractors": [
-"antes",
 "después",
-"ayer",
 "mañana",
-"más"
+"más",
+"tarde",
+"temprano"
 ]
 }
 ],
@@ -3470,9 +3445,9 @@
 "distractors": [
 "de",
 "por",
-"al",
+"sin",
 "con",
-"del"
+"para"
 ]
 },
 {
@@ -3489,10 +3464,10 @@
 "correct": "hoy",
 "distractors": [
 "ayer",
-"porque",
-"pero",
 "mañana",
-"ahora"
+"ahora",
+"ya",
+"más"
 ]
 }
 ],
@@ -3533,11 +3508,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"lo",
+"las",
+"la",
+"una",
+"con"
 ]
 },
 {
@@ -3568,8 +3543,8 @@
 "Luis",
 "Ayer",
 "Quién",
-"Desde",
-"Entre"
+"Nunca",
+"Cuándo"
 ]
 },
 {
@@ -3595,11 +3570,11 @@
 {
 "correct": "la",
 "distractors": [
+"el",
+"las",
+"un",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -3617,9 +3592,9 @@
 "distractors": [
 "ayer",
 "lejos",
-"fuera",
 "allí",
-"aquí"
+"aquí",
+"dentro"
 ]
 }
 ],
@@ -3641,7 +3616,7 @@
 "Lejos",
 "Quién",
 "Cuándo",
-"Entre"
+"Nunca"
 ]
 },
 {
@@ -3657,11 +3632,11 @@
 {
 "correct": "un",
 "distractors": [
+"la",
+"una",
+"los",
 "estos",
-"con",
-"y",
-"por",
-"para"
+"con"
 ]
 },
 {
@@ -3686,11 +3661,7 @@
 }
 ],
 "alternatives": [
-"Ayer Ana compró un billete.",
-"Ana compraste un billete ayer.",
-"Ayer Ana compraste un billete.",
-"Ana compró un billetes ayer.",
-"Ayer Ana compró un billetes."
+"Ayer Ana compró un billete."
 ]
 },
 {
@@ -3733,11 +3704,11 @@
 {
 "correct": "la",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"lo",
+"el",
+"los",
+"las",
+"con"
 ]
 },
 {
@@ -3746,8 +3717,8 @@
 "tren",
 "efectivo",
 "oficina",
-"día",
-"coche"
+"coche",
+"casa"
 ]
 },
 {
@@ -3756,8 +3727,8 @@
 "más",
 "mañana",
 "antes",
-"menudo",
-"ahora"
+"ahora",
+"tarde"
 ]
 }
 ],
@@ -3777,9 +3748,9 @@
 "distractors": [
 "Ana",
 "Nunca",
-"Entre",
-"Porque",
-"Quién"
+"Quién",
+"Cuándo",
+"Lejos"
 ]
 },
 {
@@ -3795,11 +3766,11 @@
 {
 "correct": "la",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"las",
+"los",
+"un",
+"el",
+"con"
 ]
 },
 {
@@ -3817,9 +3788,9 @@
 "distractors": [
 "mañana",
 "ya",
-"menudo",
 "ahora",
-"más"
+"más",
+"antes"
 ]
 }
 ],
@@ -3845,11 +3816,11 @@
 {
 "correct": "al",
 "distractors": [
-"en",
-"con",
-"a",
-"de",
-"por"
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
 ]
 },
 {
@@ -3900,20 +3871,20 @@
 "correct": "con",
 "distractors": [
 "a",
-"al",
 "de",
-"del",
-"por"
+"por",
+"para",
+"en"
 ]
 },
 {
 "correct": "Ana",
 "distractors": [
 "Luis",
-"Desde",
 "Quién",
-"Entre",
-"Pronto"
+"Pronto",
+"Nunca",
+"Cuándo"
 ]
 },
 {
@@ -3961,11 +3932,11 @@
 {
 "correct": "a",
 "distractors": [
-"al",
 "para",
 "de",
-"del",
-"con"
+"con",
+"por",
+"desde"
 ]
 },
 {
@@ -4026,18 +3997,18 @@
 "en",
 "por",
 "a",
-"del",
-"al"
+"con",
+"para"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"el",
+"las",
+"un",
 "esta",
-"con",
-"y",
-"por",
-"para"
+"con"
 ]
 },
 {
@@ -4053,11 +4024,11 @@
 {
 "correct": "antes",
 "distractors": [
-"poco",
 "ya",
 "ahora",
 "ayer",
-"mañana"
+"mañana",
+"más"
 ]
 }
 ],
@@ -4086,20 +4057,20 @@
 "correct": "en",
 "distractors": [
 "de",
-"al",
-"del",
+"sin",
 "con",
-"por"
+"por",
+"para"
 ]
 },
 {
 "correct": "un",
 "distractors": [
+"la",
+"los",
+"una",
 "con",
-"y",
-"por",
-"para",
-"pero"
+"que"
 ]
 },
 {
@@ -4158,10 +4129,10 @@
 "correct": "también",
 "distractors": [
 "tarde",
-"poco",
 "ahora",
 "después",
-"ayer"
+"ayer",
+"mañana"
 ]
 },
 {
@@ -4200,8 +4171,8 @@
 "Luis",
 "Ayer",
 "Cuándo",
-"Desde",
-"Quién"
+"Quién",
+"Nunca"
 ]
 },
 {
@@ -4217,11 +4188,11 @@
 {
 "correct": "la",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"el",
+"los",
+"las",
+"un",
+"con"
 ]
 },
 {
@@ -4237,21 +4208,21 @@
 {
 "correct": "cuando",
 "distractors": [
+"que",
 "si",
 "pero",
 "porque",
-"hoy",
-"ayer"
+"ni"
 ]
 },
 {
 "correct": "recibí",
 "distractors": [
 "recibido",
-"dimos",
 "confirmado",
-"diste",
-"di"
+"está",
+"gusta",
+"llamar"
 ]
 },
 {
@@ -4289,11 +4260,11 @@
 {
 "correct": "Mientras",
 "distractors": [
-"Arroz",
-"Casa",
-"Enfermero",
-"Estudiantes",
-"Oficina"
+"Porque",
+"Que",
+"Si",
+"Pero",
+"Ni"
 ]
 },
 {
@@ -4309,11 +4280,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"las",
+"lo",
+"una",
+"la",
+"con"
 ]
 },
 {
@@ -4339,11 +4310,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"las",
+"lo",
+"una",
+"los",
+"con"
 ]
 },
 {
@@ -4371,11 +4342,11 @@
 {
 "correct": "Mientras",
 "distractors": [
-"Arroz",
-"Casa",
-"Enfermero",
-"Estudiantes",
-"Oficina"
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
 ]
 },
 {
@@ -4391,11 +4362,11 @@
 {
 "correct": "la",
 "distractors": [
-"con",
-"y",
-"por",
-"para",
-"pero"
+"las",
+"un",
+"el",
+"los",
+"con"
 ]
 },
 {
@@ -4434,8 +4405,8 @@
 "billetes",
 "paquete",
 "tiendas",
-"hermano",
-"tren"
+"tren",
+"casa"
 ]
 }
 ],
@@ -4463,11 +4434,11 @@
 {
 "correct": "con",
 "distractors": [
-"al",
-"del",
 "en",
 "desde",
-"a"
+"a",
+"de",
+"por"
 ]
 },
 {
@@ -4513,11 +4484,11 @@
 {
 "correct": "la",
 "distractors": [
-"con",
-"que",
-"y",
-"por",
-"para"
+"los",
+"las",
+"un",
+"el",
+"con"
 ]
 },
 {
@@ -4573,11 +4544,11 @@
 {
 "correct": "la",
 "distractors": [
+"las",
+"el",
+"los",
 "esta",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -4615,29 +4586,29 @@
 "distractors": [
 "Tu",
 "Las",
-"Le",
 "Mis",
-"Mi"
+"Mi",
+"Su"
 ]
 },
 {
 "correct": "mandé",
 "distractors": [
-"mandaréis",
-"mandarás",
 "mandamos",
 "mandó",
-"mandar"
+"mandar",
+"mandado",
+"manda"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"las",
+"un",
+"lo",
 "cada",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -4653,11 +4624,11 @@
 {
 "correct": "a",
 "distractors": [
-"del",
-"al",
+"sin",
 "de",
 "con",
-"por"
+"por",
+"para"
 ]
 },
 {
@@ -4666,8 +4637,8 @@
 "mi",
 "mis",
 "sus",
-"con",
-"que"
+"el",
+"las"
 ]
 },
 {
@@ -4697,7 +4668,7 @@
 "Mis",
 "Tu",
 "Las",
-"Contigo"
+"Mi"
 ]
 },
 {
@@ -4713,11 +4684,11 @@
 {
 "correct": "la",
 "distractors": [
+"un",
+"las",
+"el",
 "cada",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -4763,11 +4734,11 @@
 {
 "correct": "la",
 "distractors": [
+"el",
+"las",
+"un",
 "este",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -4783,11 +4754,11 @@
 {
 "correct": "al",
 "distractors": [
-"con",
-"de",
-"a",
-"para",
-"en"
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
 ]
 },
 {
@@ -4813,11 +4784,11 @@
 {
 "correct": "La",
 "distractors": [
-"Por",
-"Pero",
-"Entre",
-"Porque",
-"Cuando"
+"Un",
+"El",
+"Los",
+"Las",
+"Unas"
 ]
 },
 {
@@ -4837,7 +4808,7 @@
 "si",
 "cuando",
 "mientras",
-"pero"
+"aunque"
 ]
 },
 {
@@ -4855,9 +4826,9 @@
 "distractors": [
 "Luis",
 "Nunca",
-"Porque",
-"Desde",
-"Cuándo"
+"Cuándo",
+"Quién",
+"Ayer"
 ]
 },
 {
@@ -4865,19 +4836,19 @@
 "distractors": [
 "somos",
 "soy",
-"fuera",
 "fue",
-"aquí"
+"aquí",
+"gusta"
 ]
 },
 {
 "correct": "roja",
 "distractors": [
-"barato",
 "grandes",
 "blanco",
 "negro",
-"abiertos"
+"abiertos",
+"pequeños"
 ]
 }
 ],
@@ -4894,10 +4865,10 @@
 "correct": "No",
 "distractors": [
 "Ya",
-"Sí",
 "También",
-"Siempre",
-"Ayer"
+"Aquí",
+"Hoy",
+"Anoche"
 ]
 },
 {
@@ -4913,11 +4884,11 @@
 {
 "correct": "el",
 "distractors": [
-"con",
-"y",
-"por",
-"sin",
-"para"
+"la",
+"lo",
+"los",
+"unas",
+"con"
 ]
 },
 {
@@ -4934,10 +4905,10 @@
 "correct": "que",
 "distractors": [
 "si",
+"ni",
 "pero",
-"porque",
-"mientras",
-"cuando"
+"aunque",
+"porque"
 ]
 },
 {
@@ -4947,7 +4918,7 @@
 "escribo",
 "escrito",
 "escribía",
-"escribir"
+"escribieron"
 ]
 }
 ],
@@ -4965,9 +4936,9 @@
 "distractors": [
 "Soy",
 "Somos",
-"Fuera",
 "Pagar",
-"Estamos"
+"Estamos",
+"Comprar"
 ]
 },
 {
@@ -4983,11 +4954,11 @@
 {
 "correct": "el",
 "distractors": [
+"una",
+"las",
 "ese",
 "con",
-"y",
-"por",
-"sin"
+"y"
 ]
 },
 {
@@ -5006,8 +4977,8 @@
 "porque",
 "cuando",
 "si",
-"mientras",
-"pero"
+"aunque",
+"ni"
 ]
 },
 {
@@ -5017,7 +4988,7 @@
 "estamos",
 "compraste",
 "escribíamos",
-"fuera"
+"hemos"
 ]
 },
 {
@@ -5025,19 +4996,19 @@
 "distractors": [
 "de",
 "para",
-"del",
 "con",
-"al"
+"por",
+"desde"
 ]
 },
 {
 "correct": "la",
 "distractors": [
-"con",
-"y",
-"por",
-"sin",
-"para"
+"las",
+"un",
+"los",
+"unas",
+"con"
 ]
 },
 {
@@ -5065,19 +5036,19 @@
 "distractors": [
 "Llamarán",
 "Llamaste",
-"Llame",
 "Llamarías",
-"Llama"
+"Llama",
+"Llamar"
 ]
 },
 {
 "correct": "a",
 "distractors": [
 "de",
-"al",
 "con",
 "desde",
-"del"
+"por",
+"para"
 ]
 },
 {
@@ -5087,7 +5058,7 @@
 "Pronto",
 "Quién",
 "Ayer",
-"Porque"
+"Nunca"
 ]
 },
 {
@@ -5120,9 +5091,9 @@
 "distractors": [
 "Luis",
 "Ayer",
-"Desde",
 "Cuándo",
-"Entre"
+"Quién",
+"Nunca"
 ]
 },
 {
@@ -5138,11 +5109,11 @@
 {
 "correct": "la",
 "distractors": [
+"los",
+"un",
+"las",
 "estas",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -5220,11 +5191,11 @@
 {
 "correct": "el",
 "distractors": [
-"mío",
-"con",
-"que",
-"y",
-"por"
+"la",
+"los",
+"las",
+"una",
+"mío"
 ]
 },
 {
@@ -5258,11 +5229,7 @@
 ]
 }
 ],
-"alternatives": [
-"Luis no mandarás el mapa esta noche.",
-"Luis no mandará el mapas esta noche.",
-"Luis no mandará el mapa estas noche."
-]
+"alternatives": []
 },
 {
 "lesson": 29,
@@ -5284,11 +5251,11 @@
 {
 "correct": "al",
 "distractors": [
-"en",
 "del",
-"con",
-"a",
-"de"
+"coche",
+"grandes",
+"libro",
+"número"
 ]
 },
 {
@@ -5340,17 +5307,17 @@
 "volviendo",
 "vuelto",
 "volváis",
-"vuelvas"
+"volvíais"
 ]
 },
 {
 "correct": "a",
 "distractors": [
-"al",
 "de",
 "con",
 "por",
-"del"
+"para",
+"desde"
 ]
 },
 {
@@ -5386,11 +5353,11 @@
 {
 "correct": "una",
 "distractors": [
+"unas",
+"el",
+"las",
 "con",
-"que",
-"y",
-"por",
-"sin"
+"que"
 ]
 },
 {
@@ -5406,11 +5373,11 @@
 {
 "correct": "en",
 "distractors": [
-"del",
-"al",
 "sin",
 "por",
-"de"
+"de",
+"con",
+"para"
 ]
 },
 {
@@ -5450,9 +5417,9 @@
 "distractors": [
 "Luis",
 "Ayer",
-"Porque",
 "Quién",
-"Entre"
+"Nunca",
+"Cuándo"
 ]
 },
 {
@@ -5488,11 +5455,11 @@
 {
 "correct": "la",
 "distractors": [
-"estos",
-"con",
-"y",
-"por",
-"sin"
+"lo",
+"las",
+"el",
+"los",
+"estos"
 ]
 },
 {
@@ -5568,21 +5535,21 @@
 {
 "correct": "la",
 "distractors": [
+"un",
+"los",
+"las",
 "cada",
-"con",
-"y",
-"por",
-"sin"
+"con"
 ]
 },
 {
 "correct": "ventana",
 "distractors": [
-"avería",
 "agua",
 "casa",
 "trenes",
-"toalla"
+"toalla",
+"mochila"
 ]
 }
 ],
@@ -5639,20 +5606,20 @@
 "correct": "avises",
 "distractors": [
 "avise",
-"venir",
 "va",
 "elegirías",
-"puedo"
+"puedo",
+"vas"
 ]
 },
 {
 "correct": "al",
 "distractors": [
-"de",
-"en",
 "del",
-"para",
-"con"
+"coche",
+"grandes",
+"libro",
+"número"
 ]
 },
 {
@@ -5702,7 +5669,7 @@
 "que",
 "si",
 "pero",
-"hoy"
+"ni"
 ]
 },
 {
@@ -5710,9 +5677,9 @@
 "distractors": [
 "tuvo",
 "tienes",
-"tengo",
 "tiene",
-"vivía"
+"vivía",
+"tenemos"
 ]
 },
 {
@@ -5760,11 +5727,11 @@
 {
 "correct": "la",
 "distractors": [
-"estos",
-"con",
-"que",
-"y",
-"por"
+"las",
+"los",
+"el",
+"un",
+"estos"
 ]
 },
 {
@@ -5784,7 +5751,7 @@
 "porque",
 "pero",
 "que",
-"hoy"
+"ni"
 ]
 },
 {
@@ -5803,8 +5770,8 @@
 "para",
 "con",
 "en",
-"al",
-"a"
+"a",
+"por"
 ]
 },
 {
@@ -5832,11 +5799,11 @@
 {
 "correct": "Cuando",
 "distractors": [
-"Leer",
-"Beber",
-"Comíamos",
-"Abrir",
-"Bebo"
+"Que",
+"Porque",
+"Si",
+"Pero",
+"Ni"
 ]
 },
 {
@@ -5852,11 +5819,11 @@
 {
 "correct": "del",
 "distractors": [
-"con",
-"para",
-"de",
 "al",
-"por"
+"las",
+"una",
+"los",
+"un"
 ]
 },
 {
@@ -5892,11 +5859,11 @@
 {
 "correct": "la",
 "distractors": [
+"los",
+"el",
+"un",
 "mío",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {
@@ -6038,11 +6005,11 @@
 {
 "correct": "al",
 "distractors": [
-"a",
 "del",
-"para",
-"en",
-"desde"
+"coche",
+"grandes",
+"libro",
+"número"
 ]
 },
 {
@@ -6092,11 +6059,11 @@
 {
 "correct": "la",
 "distractors": [
+"las",
+"los",
 "con",
 "que",
-"y",
-"por",
-"sin"
+"y"
 ]
 },
 {
@@ -6122,11 +6089,11 @@
 {
 "correct": "el",
 "distractors": [
+"una",
+"lo",
+"los",
 "esta",
-"con",
-"que",
-"y",
-"por"
+"con"
 ]
 },
 {

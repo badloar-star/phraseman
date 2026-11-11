@@ -5,9 +5,6 @@ const root = path.resolve(__dirname, '..');
 const live = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
 const mainEntry = fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8');
 const englishTestEntry = fs.readFileSync(path.join(root, 'functions-english-test/index.js'), 'utf8');
-// зачем (04.10): админка зовёт и функции кодовых баз content/admin (напр. learningV2CourseActiveCatalogGetV1
-// живёт в functions-content) — паритет считаем по всем развёртываемым точкам входа.
-const contentEntry = fs.readFileSync(path.join(root, 'functions-content/index.ts'), 'utf8');
 const adminEntry = fs.readFileSync(path.join(root, 'functions-admin/index.ts'), 'utf8');
 // зачем (29.10, слово владельца «всё в одной ветке»): adminYoutubeComments и youtubeOAuthCallback живут на бою отдельной
 // кодовой базой youtube-admin — шим functions-youtube-admin/index.js с exports.X = require(...); это тоже развёртываемая точка входа.
@@ -31,7 +28,6 @@ describe('live admin callable deployment parity', () => {
       !mainEntry.includes(name)
       && !youtubeAdminEntry.includes(`exports.${name}`)
       && !englishTestEntry.includes(`exports.${name}`)
-      && !new RegExp(`\\b${name}\\b`).test(contentEntry)
       && !new RegExp(`\\b${name}\\b`).test(adminEntry)
     ));
 

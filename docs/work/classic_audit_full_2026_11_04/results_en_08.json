@@ -1,0 +1,246 @@
+[
+ {
+  "id": "en-classic-r1:26.44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "«I would take this job...» верно при ru «на эту работу»",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "this",
+   "with": "my"
+  }
+ },
+ {
+  "id": "en-classic-r1:26.44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "«I would take that job...» верно при ru «на эту работу»",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "that",
+   "with": "his"
+  }
+ },
+ {
+  "id": "en-classic-r1:26.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "«if something changes» — верный перевод «если что-то изменится»",
+  "fix": {
+   "position": 6,
+   "replace_distractor": "something",
+   "with": "somewhere"
+  }
+ },
+ {
+  "id": "en-classic-r1:27.07",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «нам нужно» (need) ≠ wanted, расходится с uk «хочемо»",
+  "fix": "Мы сказали, что хотим два места."
+ },
+ {
+  "id": "en-classic-r1:27.18",
+  "type": "B2",
+  "field": "ru",
+  "problem": "род говорящего: ru «сказала», uk «сказав»",
+  "fix": "Я сказал Тому, что его пальто в прихожей."
+ },
+ {
+  "id": "en-classic-r1:27.23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "«They said they could be late» — естественный верный перевод «могут опоздать»",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "could",
+   "with": "did"
+  }
+ },
+ {
+  "id": "en-classic-r1:27.26",
+  "type": "B2",
+  "field": "ru",
+  "problem": "потеряно «мне» (told me), в uk есть",
+  "fix": "Она сказала мне, что принесет квитанцию."
+ },
+ {
+  "id": "en-classic-r1:27.28",
+  "type": "B2",
+  "field": "ru",
+  "problem": "род говорящего: ru «сказала», uk «сказав»",
+  "fix": "Я сказал ей, что придержу место."
+ },
+ {
+  "id": "en-classic-r1:27.36",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«номер довідки» ≠ reference number, расходится с ru «номер обращения»",
+  "fix": "Він запитав, чи є у мене номер звернення."
+ },
+ {
+  "id": "en-classic-r1:27.37",
+  "type": "B2",
+  "field": "uk",
+  "problem": "uk «чи потрібна нам» (need) ≠ wanted, расходится с ru «хотим ли мы»",
+  "fix": "Вона запитала, чи хочемо ми заміну."
+ },
+ {
+  "id": "en-classic-r1:28.06",
+  "type": "B2",
+  "field": "uk",
+  "problem": "uk буквально «самі собі допомогти», ru «угощаться» — разный смысл",
+  "fix": "Можете пригощатися."
+ },
+ {
+  "id": "en-classic-r1:28.14",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «взяли» vs uk «купили» — разный смысл, потеряно «себе»",
+  "fix": "Мы взяли себе карту."
+ },
+ {
+  "id": "en-classic-r1:28.14",
+  "type": "B2",
+  "field": "uk",
+  "problem": "uk «купили» vs ru «взяли» — разный смысл",
+  "fix": "Ми взяли собі карту."
+ },
+ {
+  "id": "en-classic-r1:28.34",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«Ми мали кімнату самі» — неестественно/неграмматично",
+  "fix": "Кімната була в нашому розпорядженні."
+ },
+ {
+  "id": "en-classic-r1:28.38",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "«Help yourselves to the fruit» — верный перевод «Угощайтесь фруктами»",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "the",
+   "with": "many"
+  }
+ },
+ {
+  "id": "en-classic-r1:28.39",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«Не обпеклися» — прошедшее время вместо повелительного",
+  "fix": "Не обпечіться об сковороду."
+ },
+ {
+  "id": "en-classic-r1:28.40",
+  "type": "B2",
+  "field": "uk",
+  "problem": "ты/ви: ru «Ты поранился», uk «Ви поранилися»",
+  "fix": "Ти поранився, коли впав?"
+ },
+ {
+  "id": "en-classic-r1:28.45",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«а не сама» = «не самостоятельно», а нужно «а не себе»",
+  "fix": "Вона порізала хліб, а не себе."
+ },
+ {
+  "id": "en-classic-r1:29.02",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Вона раніше жила нагорі."
+ },
+ {
+  "id": "en-classic-r1:29.03",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Ми раніше ділили квартиру."
+ },
+ {
+  "id": "en-classic-r1:29.05",
+  "type": "B2",
+  "field": "ru",
+  "problem": "потеряно «раньше» (used to)",
+  "fix": "Раньше они открывались рано."
+ },
+ {
+  "id": "en-classic-r1:29.05",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Раніше вони відкривалися рано."
+ },
+ {
+  "id": "en-classic-r1:29.06",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Я раніше працював на складі."
+ },
+ {
+  "id": "en-classic-r1:29.08",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Ми раніше ходили додому разом пішки."
+ },
+ {
+  "id": "en-classic-r1:29.09",
+  "type": "B2",
+  "field": "ru",
+  "problem": "потеряно «раньше» (used to)",
+  "fix": "Раньше он носил с собой наличные."
+ },
+ {
+  "id": "en-classic-r1:29.09",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Раніше він носив із собою готівку."
+ },
+ {
+  "id": "en-classic-r1:29.10",
+  "type": "B2",
+  "field": "ru",
+  "problem": "потеряно «раньше» (used to)",
+  "fix": "Раньше они встречались на детской площадке."
+ },
+ {
+  "id": "en-classic-r1:29.10",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Раніше вони зустрічалися на дитячому майданчику."
+ },
+ {
+  "id": "en-classic-r1:29.35",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «раніше» (used to)",
+  "fix": "Де ви раніше купували квитки?"
+ },
+ {
+  "id": "en-classic-r1:29.37",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«відправився» — разовое событие, потеряна привычность (used to), расходится с ru «обычно»",
+  "fix": "О котрій годині зазвичай відправлявся останній поїзд?"
+ },
+ {
+  "id": "en-classic-r1:29.43",
+  "type": "B2",
+  "field": "uk",
+  "problem": "«наша квартира є нашою» — тавтология, потерян смысл own",
+  "fix": "Раніше ми орендували житло, а тепер маємо власну квартиру."
+ },
+ {
+  "id": "en-classic-r1:29.45",
+  "type": "B2",
+  "field": "uk",
+  "problem": "потеряно «тепер» (now), в ru есть",
+  "fix": "Тепер я звик рано вставати."
+ }
+]

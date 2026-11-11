@@ -117,10 +117,15 @@
    "es": "cerrado"
   },
   "the": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; в українській немає",
-   "en": "word before a known thing",
-   "es": "el, la"
+   "ru": "Та самая дверь открыта (___ door is open)",
+   "uk": "Ті самі двері відчинені (___ door is open)",
+   "en": "The door we know is open (___ door is open)",
+   "es": "La puerta de la que hablamos está abierta (___ door is open)",
+   "pt-BR": "A porta de que estamos falando está aberta (___ door is open)",
+   "vi": "Cánh cửa đang nói đến đang mở (___ door is open)",
+   "id": "Pintu yang dimaksud terbuka (___ door is open)",
+   "tr": "Sözünü ettiğimiz kapı açık (___ door is open)",
+   "pl": "Te konkretne drzwi są otwarte (___ door is open)"
   },
   "door": {
    "ru": "дверь",

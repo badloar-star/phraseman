@@ -1,0 +1,751 @@
+{
+ "lang": "fr",
+ "lesson": 19,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:19:01",
+   "target": "Paul est arrivé.",
+   "ru": "Поль приехал.",
+   "uk": "Поль приїхав."
+  },
+  {
+   "id": "fr:19:02",
+   "target": "Léa est arrivée.",
+   "ru": "Леа приехала.",
+   "uk": "Леа приїхала."
+  },
+  {
+   "id": "fr:19:03",
+   "target": "Paul est parti.",
+   "ru": "Поль уехал.",
+   "uk": "Поль поїхав."
+  },
+  {
+   "id": "fr:19:04",
+   "target": "Léa est partie.",
+   "ru": "Леа уехала.",
+   "uk": "Леа поїхала."
+  },
+  {
+   "id": "fr:19:05",
+   "target": "Ils sont arrivés.",
+   "ru": "Они прибыли.",
+   "uk": "Вони прибули."
+  },
+  {
+   "id": "fr:19:06",
+   "target": "Elles sont arrivées.",
+   "ru": "Они прибыли.",
+   "uk": "Вони прибули."
+  },
+  {
+   "id": "fr:19:07",
+   "target": "Ils sont partis.",
+   "ru": "Они ушли.",
+   "uk": "Вони пішли."
+  },
+  {
+   "id": "fr:19:08",
+   "target": "Elles sont parties.",
+   "ru": "Они ушли.",
+   "uk": "Вони пішли."
+  },
+  {
+   "id": "fr:19:09",
+   "target": "Mon frère est venu.",
+   "ru": "Мой брат пришел.",
+   "uk": "Мій брат прийшов."
+  },
+  {
+   "id": "fr:19:10",
+   "target": "Ma sœur est venue.",
+   "ru": "Моя сестра пришла.",
+   "uk": "Моя сестра прийшла."
+  },
+  {
+   "id": "fr:19:11",
+   "target": "Paul est allé à la gare.",
+   "ru": "Поль пошел на вокзал.",
+   "uk": "Пол пішов на вокзал."
+  },
+  {
+   "id": "fr:19:12",
+   "target": "Léa est allée à la banque.",
+   "ru": "Леа пошла в банк.",
+   "uk": "Леа пішла до банку."
+  },
+  {
+   "id": "fr:19:13",
+   "target": "Mes parents sont allés au marché.",
+   "ru": "Мои родители пошли на рынок.",
+   "uk": "Мої батьки пішли на ринок."
+  },
+  {
+   "id": "fr:19:14",
+   "target": "Mes sœurs sont allées au concert.",
+   "ru": "Мои сестры пошли на концерт.",
+   "uk": "Мої сестри пішли на концерт."
+  },
+  {
+   "id": "fr:19:15",
+   "target": "Ma mère est rentrée tôt.",
+   "ru": "Моя мама вернулась домой рано.",
+   "uk": "Моя мама повернулася додому рано."
+  },
+  {
+   "id": "fr:19:16",
+   "target": "Mon père est rentré tard.",
+   "ru": "Мой отец вернулся домой поздно.",
+   "uk": "Мій батько повернувся додому пізно."
+  },
+  {
+   "id": "fr:19:17",
+   "target": "Les invités sont restés ici.",
+   "ru": "Гости остались здесь.",
+   "uk": "Гості залишилися тут."
+  },
+  {
+   "id": "fr:19:18",
+   "target": "Les voisines sont restées dehors.",
+   "ru": "Соседки остались на улице.",
+   "uk": "Сусідки залишилися на вулиці."
+  },
+  {
+   "id": "fr:19:19",
+   "target": "Le facteur est passé ce matin.",
+   "ru": "Почтальон приходил сегодня утром.",
+   "uk": "Листоноша приходив сьогодні вранці."
+  },
+  {
+   "id": "fr:19:20",
+   "target": "La factrice est passée hier.",
+   "ru": "Почтальон пришла вчера.",
+   "uk": "Листоноша прийшла вчора."
+  },
+  {
+   "id": "fr:19:21",
+   "target": "Léa est entrée dans la salle.",
+   "ru": "Леа вошла в комнату.",
+   "uk": "Леа зайшла до кімнати."
+  },
+  {
+   "id": "fr:19:22",
+   "target": "Paul est entré dans le garage.",
+   "ru": "Поль вошел в гараж.",
+   "uk": "Пол зайшов до гаража."
+  },
+  {
+   "id": "fr:19:23",
+   "target": "Les enfants sont sortis dans la cour.",
+   "ru": "Дети вышли во двор.",
+   "uk": "Діти вийшли на подвір'я."
+  },
+  {
+   "id": "fr:19:24",
+   "target": "Ma fille est sortie par la porte du jardin.",
+   "ru": "Моя дочь вышла через садовую калитку.",
+   "uk": "Моя донька вийшла через садову хвіртку."
+  },
+  {
+   "id": "fr:19:25",
+   "target": "Ma sœur est montée au premier étage.",
+   "ru": "Моя сестра поднялась на второй этаж.",
+   "uk": "Моя сестра піднялася на другий поверх."
+  },
+  {
+   "id": "fr:19:26",
+   "target": "Les clients sont descendus sur le palier.",
+   "ru": "Покупатели спустились на лестничную площадку.",
+   "uk": "Покупці спустилися на сходовий майданчик."
+  },
+  {
+   "id": "fr:19:27",
+   "target": "La clé est tombée sous la table.",
+   "ru": "Ключ упал под стол.",
+   "uk": "Ключ упав під стіл."
+  },
+  {
+   "id": "fr:19:28",
+   "target": "Les pièces de monnaie sont tombées de ma poche.",
+   "ru": "Монеты выпали из моего кармана.",
+   "uk": "Монети випали з моєї кишені."
+  },
+  {
+   "id": "fr:19:29",
+   "target": "Les photos sont tombées du mur.",
+   "ru": "Фотографии упали со стены.",
+   "uk": "Фотографії впали зі стіни."
+  },
+  {
+   "id": "fr:19:30",
+   "target": "Le livre est tombé du sac.",
+   "ru": "Книга выпала из сумки.",
+   "uk": "Книга випала з сумки."
+  },
+  {
+   "id": "fr:19:31",
+   "target": "Paul n’est pas encore revenu.",
+   "ru": "Поль ещё не вернулся.",
+   "uk": "Пол ще не повернувся."
+  },
+  {
+   "id": "fr:19:32",
+   "target": "Léa n’est pas encore revenue.",
+   "ru": "Леа ещё не вернулась.",
+   "uk": "Леа ще не повернулася."
+  },
+  {
+   "id": "fr:19:33",
+   "target": "Mes cousins ne sont pas venus.",
+   "ru": "Мои кузены не пришли.",
+   "uk": "Мої двоюрідні брати і сестри не прийшли."
+  },
+  {
+   "id": "fr:19:34",
+   "target": "Les clientes ne sont pas entrées.",
+   "ru": "Клиентки не вошли.",
+   "uk": "Клієнтки не увійшли."
+  },
+  {
+   "id": "fr:19:35",
+   "target": "Le bus n’est pas passé hier.",
+   "ru": "Автобус вчера не приехал.",
+   "uk": "Автобус не приїхав учора."
+  },
+  {
+   "id": "fr:19:36",
+   "target": "Quand est-elle arrivée ?",
+   "ru": "Когда она приехала?",
+   "uk": "Коли вона приїхала?"
+  },
+  {
+   "id": "fr:19:37",
+   "target": "Où sont-ils allés ?",
+   "ru": "Куда они ушли?",
+   "uk": "Куди вони пішли?"
+  },
+  {
+   "id": "fr:19:38",
+   "target": "À quelle heure est-il parti ?",
+   "ru": "Во сколько он ушёл?",
+   "uk": "О котрій годині він пішов?"
+  },
+  {
+   "id": "fr:19:39",
+   "target": "Est-ce que Julie est rentrée ?",
+   "ru": "Джули вернулась домой?",
+   "uk": "Джулі повернулася додому?"
+  },
+  {
+   "id": "fr:19:40",
+   "target": "Les infirmières sont déjà parties ?",
+   "ru": "Медсёстры уже ушли?",
+   "uk": "Медсестри вже пішли?"
+  },
+  {
+   "id": "fr:19:41",
+   "target": "Ma grand-mère est née à Lille.",
+   "ru": "Моя бабушка родилась в Лилле.",
+   "uk": "Моя бабуся народилася в Ліллі."
+  },
+  {
+   "id": "fr:19:42",
+   "target": "Mon fils est né en juin.",
+   "ru": "Мой сын родился в июне.",
+   "uk": "Мій син народився в червні."
+  },
+  {
+   "id": "fr:19:43",
+   "target": "Les deux amies sont venues à pied.",
+   "ru": "Две подруги пришли пешком.",
+   "uk": "Дві подруги прийшли пішки."
+  },
+  {
+   "id": "fr:19:44",
+   "target": "Son père est arrivé en avance.",
+   "ru": "Её отец приехал рано.",
+   "uk": "Її батько прибув рано."
+  },
+  {
+   "id": "fr:19:45",
+   "target": "Sa mère est partie sans son sac.",
+   "ru": "Её мать ушла без сумки.",
+   "uk": "Її мати пішла без сумки."
+  },
+  {
+   "id": "fr:19:46",
+   "target": "La voisine est descendue chercher le courrier.",
+   "ru": "Соседка спустилась вниз за почтой.",
+   "uk": "Сусідка спустилася вниз по пошту."
+  },
+  {
+   "id": "fr:19:47",
+   "target": "Les élèves sont retournés en classe.",
+   "ru": "Ученики вернулись в класс.",
+   "uk": "Учні повернулися до класу."
+  },
+  {
+   "id": "fr:19:48",
+   "target": "Léa est restée chez elle toute la journée.",
+   "ru": "Леа осталась дома на весь день.",
+   "uk": "Леа залишилася вдома весь день."
+  },
+  {
+   "id": "fr:19:49",
+   "target": "Paul est reparti après le déjeuner.",
+   "ru": "Поль ушёл после обеда.",
+   "uk": "Пол пішов після обіду."
+  },
+  {
+   "id": "fr:19:50",
+   "target": "Les voyageuses sont montées dans le dernier bus.",
+   "ru": "Путешественницы сели в последний автобус.",
+   "uk": "Мандрівниці сіли до останнього автобуса."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le courrier",
+   "ru": "почта, корреспонденция",
+   "uk": "пошта, кореспонденція"
+  },
+  {
+   "lemma": "le palier",
+   "ru": "лестничная площадка",
+   "uk": "сходовий майданчик"
+  },
+  {
+   "lemma": "la pièce de monnaie",
+   "ru": "монета",
+   "uk": "монета"
+  },
+  {
+   "lemma": "l’élève",
+   "ru": "ученик, ученица",
+   "uk": "учень, учениця"
+  },
+  {
+   "lemma": "l’infirmière",
+   "ru": "медицинская сестра",
+   "uk": "медична сестра"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  }
+ ],
+ "oldTopicTitle": "«Уехал» и «уехала»: прошедшее с `être`",
+ "oldTheoryRu": "Часть частых глаголов образует прошедшее с `être`. Словосочетание `est parti` сообщает о совершившемся отъезде, а не только описывает, где находится человек. С `être` у этих простых глаголов смотри на подлежащее. Для мужчины обычно без добавления, для женщины `-e`, для группы `-s`, для группы женщин `-es`. Конечные буквы у `allé`, `allée`, `allés`, `allées` на слух часто не различаются. В конструкторе их видно. Определи, кто пошёл, до выбора последней части. Не выводи выбор помощника только из идеи движения: `marcher` употребляется с `avoir`. Учи сам глагол с образцом. У некоторых глаголов помощник зависит от того, что именно делают: `elle est montée`, но `elle a monté la valise`. При отрицании `ne … pas` окружает `être`. И в отрицательной фразе причастие не утрачивает согласование: у Поля `revenu`, у Леа `revenue`. При инверсии `est-elle` и `sont-ils` появятся между вопросительным словом и причастием. В переводе может не быть отдельных видимых слов для этого помощника, но в полном французском они нужны. Когда подлежащее — предмет, принцип тот же. Один ключ — `la clé est tombée`, несколько вещей — причастие во множественном числе. Проверяй род названия, а не одушевлённость."
+}

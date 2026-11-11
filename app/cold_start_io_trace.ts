@@ -47,12 +47,13 @@ type AnyFn = (...args: unknown[]) => unknown;
  */
 const SLOW_CALL_MS = 1_500;
 
-export function coldStartIoCallerTag(stack: string | undefined): string {
+export function coldStartIoCallerTag(stack: string | undefined, depth: number = 2): string {
   const frames = String(stack ?? '')
     .split('\n')
     .map((line) => line.trim())
-    .filter((line) => line.startsWith('at ') && !/cold_start_io_trace|wrappedIo|Promise|tryCallOne|tryCallTwo|doResolve/.test(line));
-  return frames.slice(0, 2)
+    // зачем (11.11): кадры обвязки async-функций (asyncGeneratorStep/_next/next (native)) съедали всю глубину — вызывающий не был виден.
+    .filter((line) => line.startsWith('at ') && !/cold_start_io_trace|wrappedIo|Promise|tryCallOne|tryCallTwo|doResolve|asyncGeneratorStep|_asyncToGenerator|at _next |at _throw |at next \(native\)|at apply \(native\)/.test(line));
+  return frames.slice(0, depth)
     .map((frame) => frame.replace(/^at\s+/, '').replace(/\s*\(.*?([^/\\()\s]+:\d+:\d+)\)$/, ' @$1').slice(0, 70))
     .join(' < ') || 'unknown';
 }
@@ -71,6 +72,7 @@ export function installColdStartIoTrace(
   let maxInflight = 0;
   let calls = 0;
   const callers = new Map<string, number>();
+  const suspectTimes = new Map<string, number[]>();
 
   const wrap = (owner: Record<string, unknown> | undefined, method: string, api: string,
     keyOf: (args: unknown[]) => string): boolean => {
@@ -84,9 +86,19 @@ export function installColdStartIoTrace(
       // обращение к хранилищу, в «calls» ему не место (иначе ворота PM-220 считали бы то, чего уже нет).
       if (name.startsWith('AS.multiGet:[0]')) return (original as AnyFn).apply(this, args);
       // зачем (§122): чтения журнала ошибок (mistake_practice) тоже помечаем вызывающим — источники ≈15 повторов были неизвестны
-      if (name === 'AS.getAllKeys:*' || name.includes('mistake_practice')) {
-        const tag = `${api}<${coldStartIoCallerTag(new Error().stack)}`;
+      // зачем (владелец 11.11 «разбирай», замер release: снимок подписки читается 23–26 раз за 15 с, копия подарка — до 22, а кто зовёт —
+      // неизвестно: чтение идёт из 13 мест): помечаем вызывающих и для этих ключей, глубже обычного (4 кадра — сам читатель,
+      // premium_guard и тот, кто его позвал). ВРЕМЕННО: убрать ветку после того, как повторы устранены.
+      const repeatSuspect = name.includes('premium_real_snapshot') || name.includes('loyalty_gift_verified_copy');
+      if (name === 'AS.getAllKeys:*' || name.includes('mistake_practice') || repeatSuspect) {
+        const tag = `${api}<${coldStartIoCallerTag(new Error().stack, repeatSuspect ? 5 : 2)}`;
         callers.set(tag, (callers.get(tag) ?? 0) + 1);
+        // зачем: по времени вызовов видно, одновременные это чтения (лечится общим чтением «в полёте») или подряд (нужен кэш).
+        if (repeatSuspect) {
+          const times = suspectTimes.get(tag) ?? [];
+          if (times.length < 14) times.push(Date.now() - startedAt);
+          suspectTimes.set(tag, times);
+        }
       }
       const callStartedAt = Date.now();
       const inflightAtStart = inflight;
@@ -165,6 +177,8 @@ export function installColdStartIoTrace(
     const lock = getStorageLockMetrics();
     const callerTop = [...callers.entries()].sort((a, b) => b[1] - a[1]).slice(0, TOP)
       .map(([tag, n]) => `${tag} n=${n}`);
+    // Отдельной строкой: строка summary разбирается воротами PM-220 и не должна менять формат.
+    for (const [tag, times] of suspectTimes) console.warn(`[COLD-START-IO] suspect n=${callers.get(tag) ?? 0} atMs=${times.join(',')} ${tag}`);
     console.warn(`[COLD-START-IO] summary windowMs=${windowMs} startedEpochMs=${startedAt} calls=${calls} groups=${groups.size} maxInflight=${maxInflight} patched=${JSON.stringify(patched)} top=${JSON.stringify(top)} lock=${JSON.stringify(lock)} callers=${JSON.stringify(callerTop)}`);
   }, windowMs);
 }

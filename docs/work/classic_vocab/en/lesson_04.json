@@ -3,10 +3,15 @@
  "lesson": 4,
  "words": {
   "do": {
-   "ru": "слово для отрицания и вопроса; по-русски нет",
-   "uk": "слово для заперечення й питання; в українській немає",
-   "en": "helper word in questions and negatives",
-   "es": "verbo auxiliar (no se traduce)"
+   "ru": "Я не вожу машину (I ___ not drive)",
+   "uk": "Я не воджу машину (I ___ not drive)",
+   "en": "I never drive (I ___ not drive)",
+   "es": "No conduzco (I ___ not drive)",
+   "pt-BR": "Eu não dirijo (I ___ not drive)",
+   "vi": "Tôi không lái xe (I ___ not drive)",
+   "id": "Saya tidak menyetir (I ___ not drive)",
+   "tr": "Araba kullanmıyorum (I ___ not drive)",
+   "pl": "Nie prowadzę samochodu (I ___ not drive)"
   },
   "drive": {
    "ru": "водить машину, вожу",
@@ -15,10 +20,15 @@
    "es": "conducir"
   },
   "does": {
-   "ru": "слово для отрицания и вопроса; по-русски нет",
-   "uk": "слово для заперечення й питання; в українській немає",
-   "en": "helper word in questions and negatives",
-   "es": "verbo auxiliar (no se traduce)"
+   "ru": "Она не курит (She ___ not smoke)",
+   "uk": "Вона не курить (She ___ not smoke)",
+   "en": "She never smokes (She ___ not smoke)",
+   "es": "Ella no fuma (She ___ not smoke)",
+   "pt-BR": "Ela não fuma (She ___ not smoke)",
+   "vi": "Cô ấy không hút thuốc (She ___ not smoke)",
+   "id": "Dia tidak merokok (She ___ not smoke)",
+   "tr": "O sigara içmez (She ___ not smoke)",
+   "pl": "Ona nie pali (She ___ not smoke)"
   },
   "smoke": {
    "ru": "курить, курю",

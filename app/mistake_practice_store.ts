@@ -1,6 +1,6 @@
 import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import type {
   MistakeEvent,
   MistakeStudyTarget,

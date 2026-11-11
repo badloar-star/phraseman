@@ -1958,6 +1958,21 @@ describe("immutable personal phone-state sync streams", () => {
     expect(block).toContain("allow create, update, delete: if false");
   });
 
+  test("Spire freeze fields do not broaden the existing client permissions", () => {
+    const resultBlock = nestedUserBlock("spire_week_results/{resultId}");
+    expect(resultBlock).toContain("allow read:   if userDocOwnerMatchesAuth(userId)");
+    expect(resultBlock).toContain("allow write:  if false");
+
+    const groupBlocks = rootMatchBlocks(rules)
+      .filter((block) => block.path === "spire_groups/{groupId}")
+      .map((block) => block.source);
+    expect(groupBlocks).toHaveLength(1);
+    expect(allowStatements(groupBlocks[0])).toEqual([
+      { operations: "read", expression: "request.auth != null" },
+      { operations: "create, update, delete", expression: "isAdmin()" },
+    ]);
+  });
+
   test("access projection is owner-readable and fully server-write-owned", () => {
     const block = nestedUserBlock("access_projection/current");
     expect(block).toContain("allow read: if userDocOwnerMatchesAuth(userId)");

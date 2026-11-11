@@ -152,15 +152,20 @@ function AccordionSection({ section, index, total, open, onToggle, renderBlock }
 
   const rotate = useMemo(() => new Animated.Value(open ? 1 : 0), []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleToggle = useCallback(() => {
-    Animated.timing(rotate, {
-      toValue: open ? 0 : 1,
+  useEffect(() => {
+    const animation = Animated.timing(rotate, {
+      toValue: open ? 1 : 0,
       duration: 180,
       easing: Easing.out(Easing.ease),
       useNativeDriver: true,
-    }).start();
+    });
+    animation.start();
+    return () => animation.stop();
+  }, [open, rotate]);
+
+  const handleToggle = useCallback(() => {
     onToggle();
-  }, [open, onToggle, rotate]);
+  }, [onToggle]);
 
   const chevronRotate = rotate.interpolate({
     inputRange: [0, 1],

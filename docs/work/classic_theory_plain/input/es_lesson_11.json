@@ -1,0 +1,539 @@
+{
+ "lang": "es",
+ "lesson": 11,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:11:01",
+   "target": "Tengo una pregunta.",
+   "ru": "У меня есть вопрос.",
+   "uk": "У мене є запитання."
+  },
+  {
+   "id": "es:11:02",
+   "target": "Tienes una pregunta.",
+   "ru": "У тебя есть вопрос.",
+   "uk": "У тебе є запитання."
+  },
+  {
+   "id": "es:11:03",
+   "target": "Ana tiene una pregunta.",
+   "ru": "У Аны есть вопрос.",
+   "uk": "В Ани є запитання."
+  },
+  {
+   "id": "es:11:04",
+   "target": "Tenemos una pregunta.",
+   "ru": "У нас есть вопрос.",
+   "uk": "У нас є запитання."
+  },
+  {
+   "id": "es:11:05",
+   "target": "Mis hermanos tienen una pregunta.",
+   "ru": "У моих братьев есть вопрос.",
+   "uk": "У моїх братів є запитання."
+  },
+  {
+   "id": "es:11:06",
+   "target": "Tengo la llave.",
+   "ru": "У меня ключ.",
+   "uk": "У мене ключ."
+  },
+  {
+   "id": "es:11:07",
+   "target": "Tengo el mapa.",
+   "ru": "У меня карта.",
+   "uk": "У мене мапа."
+  },
+  {
+   "id": "es:11:08",
+   "target": "Tengo tu libro.",
+   "ru": "У меня твоя книга.",
+   "uk": "У мене твоя книжка."
+  },
+  {
+   "id": "es:11:09",
+   "target": "Tengo el pasaporte.",
+   "ru": "У меня паспорт.",
+   "uk": "У мене паспорт."
+  },
+  {
+   "id": "es:11:10",
+   "target": "Tengo las entradas.",
+   "ru": "У меня билеты.",
+   "uk": "У мене квитки."
+  },
+  {
+   "id": "es:11:11",
+   "target": "Ana tiene una cita.",
+   "ru": "У Аны назначена встреча.",
+   "uk": "В Ани призначена зустріч."
+  },
+  {
+   "id": "es:11:12",
+   "target": "Luis tiene una cita.",
+   "ru": "У Луиса назначена встреча.",
+   "uk": "У Луїса призначена зустріч."
+  },
+  {
+   "id": "es:11:13",
+   "target": "Mi hermana tiene una cita.",
+   "ru": "У моей сестры назначена встреча.",
+   "uk": "У моєї сестри призначена зустріч."
+  },
+  {
+   "id": "es:11:14",
+   "target": "Mi madre tiene una cita.",
+   "ru": "У моей мамы назначена встреча.",
+   "uk": "У моєї мами призначена зустріч."
+  },
+  {
+   "id": "es:11:15",
+   "target": "El profesor tiene una cita.",
+   "ru": "У преподавателя назначена встреча.",
+   "uk": "У викладача призначена зустріч."
+  },
+  {
+   "id": "es:11:16",
+   "target": "Tenemos tiempo.",
+   "ru": "У нас есть время.",
+   "uk": "У нас є час."
+  },
+  {
+   "id": "es:11:17",
+   "target": "Tenemos una reserva.",
+   "ru": "У нас есть бронь.",
+   "uk": "У нас є бронювання."
+  },
+  {
+   "id": "es:11:18",
+   "target": "Tenemos dos billetes.",
+   "ru": "У нас есть два билета.",
+   "uk": "У нас є два квитки."
+  },
+  {
+   "id": "es:11:19",
+   "target": "Tengo otra botella de agua.",
+   "ru": "У меня есть ещё одна бутылка воды.",
+   "uk": "Я маю ще одну пляшку води."
+  },
+  {
+   "id": "es:11:20",
+   "target": "Tenemos una idea.",
+   "ru": "У нас есть идея.",
+   "uk": "У нас є ідея."
+  },
+  {
+   "id": "es:11:21",
+   "target": "No tengo cambio.",
+   "ru": "У меня нет мелочи.",
+   "uk": "У мене немає дрібних грошей."
+  },
+  {
+   "id": "es:11:22",
+   "target": "No tienes cambio.",
+   "ru": "У тебя нет мелочи.",
+   "uk": "У тебе немає дрібних грошей."
+  },
+  {
+   "id": "es:11:23",
+   "target": "Ana no tiene cambio.",
+   "ru": "У Аны нет мелочи.",
+   "uk": "В Ани немає дрібних грошей."
+  },
+  {
+   "id": "es:11:24",
+   "target": "No tenemos cambio.",
+   "ru": "У нас нет мелочи.",
+   "uk": "У нас немає дрібних грошей."
+  },
+  {
+   "id": "es:11:25",
+   "target": "No tenéis cambio.",
+   "ru": "У вас нет мелочи.",
+   "uk": "У вас немає дрібних грошей."
+  },
+  {
+   "id": "es:11:26",
+   "target": "No tengo coche.",
+   "ru": "У меня нет машины.",
+   "uk": "У мене немає машини."
+  },
+  {
+   "id": "es:11:27",
+   "target": "No tengo reserva.",
+   "ru": "У меня нет брони.",
+   "uk": "У мене немає бронювання."
+  },
+  {
+   "id": "es:11:28",
+   "target": "No tengo tiempo.",
+   "ru": "У меня нет времени.",
+   "uk": "У мене немає часу."
+  },
+  {
+   "id": "es:11:29",
+   "target": "No tengo tu número.",
+   "ru": "У меня нет твоего номера.",
+   "uk": "У мене немає твого номера."
+  },
+  {
+   "id": "es:11:30",
+   "target": "No tengo las llaves.",
+   "ru": "У меня нет ключей.",
+   "uk": "У мене немає ключів."
+  },
+  {
+   "id": "es:11:31",
+   "target": "¿Tienes un minuto?",
+   "ru": "У тебя есть минутка?",
+   "uk": "У тебе є хвилинка?"
+  },
+  {
+   "id": "es:11:32",
+   "target": "¿Tienes mi mochila?",
+   "ru": "Мой рюкзак у тебя?",
+   "uk": "Мій рюкзак у тебе?"
+  },
+  {
+   "id": "es:11:33",
+   "target": "¿Tienes una foto?",
+   "ru": "У тебя есть фотография?",
+   "uk": "У тебе є фотографія?"
+  },
+  {
+   "id": "es:11:34",
+   "target": "No tengo mi cargador aquí.",
+   "ru": "Моей зарядки здесь нет.",
+   "uk": "Мого зарядного пристрою тут немає."
+  },
+  {
+   "id": "es:11:35",
+   "target": "¿Tienes una pregunta?",
+   "ru": "У тебя есть вопрос?",
+   "uk": "У тебе є запитання?"
+  },
+  {
+   "id": "es:11:36",
+   "target": "¿Tiene usted una reserva?",
+   "ru": "У вас есть бронь?",
+   "uk": "У вас є бронювання?"
+  },
+  {
+   "id": "es:11:37",
+   "target": "¿Tenéis una reserva?",
+   "ru": "У вас есть бронь?",
+   "uk": "У вас є бронювання?"
+  },
+  {
+   "id": "es:11:38",
+   "target": "¿Tienen ustedes una reserva?",
+   "ru": "У вас есть бронь?",
+   "uk": "У вас є бронювання?"
+  },
+  {
+   "id": "es:11:39",
+   "target": "¿Tenemos una reserva?",
+   "ru": "У нас есть бронь?",
+   "uk": "У нас є бронювання?"
+  },
+  {
+   "id": "es:11:40",
+   "target": "¿Tiene Luis una reserva?",
+   "ru": "У Луиса есть бронь?",
+   "uk": "У Луїса є бронювання?"
+  },
+  {
+   "id": "es:11:41",
+   "target": "Mi madre tiene mi número.",
+   "ru": "У моей мамы есть мой номер.",
+   "uk": "У моєї мами є мій номер."
+  },
+  {
+   "id": "es:11:42",
+   "target": "¿Tienes una cita en el banco?",
+   "ru": "У тебя назначена встреча в банке?",
+   "uk": "У тебе призначена зустріч у банку?"
+  },
+  {
+   "id": "es:11:43",
+   "target": "Ana tiene mi número.",
+   "ru": "У Аны есть мой номер.",
+   "uk": "В Ани є мій номер."
+  },
+  {
+   "id": "es:11:44",
+   "target": "Luis tiene mi número.",
+   "ru": "У Луиса есть мой номер.",
+   "uk": "У Луїса є мій номер."
+  },
+  {
+   "id": "es:11:45",
+   "target": "El médico tiene mi número.",
+   "ru": "У врача есть мой номер.",
+   "uk": "У лікаря є мій номер."
+  },
+  {
+   "id": "es:11:46",
+   "target": "Tengo las llaves de casa.",
+   "ru": "У меня ключи от дома.",
+   "uk": "У мене ключі від дому."
+  },
+  {
+   "id": "es:11:47",
+   "target": "Tienes las llaves de casa.",
+   "ru": "У тебя ключи от дома.",
+   "uk": "У тебе ключі від дому."
+  },
+  {
+   "id": "es:11:48",
+   "target": "Tenemos las llaves de casa.",
+   "ru": "У нас ключи от дома.",
+   "uk": "У нас ключі від дому."
+  },
+  {
+   "id": "es:11:49",
+   "target": "Tenéis las llaves de casa.",
+   "ru": "У вас (мн.) ключи от дома.",
+   "uk": "У вас (мн.) ключі від дому."
+  },
+  {
+   "id": "es:11:50",
+   "target": "Mis hermanas tienen las llaves de casa.",
+   "ru": "У моих сестёр ключи от дома.",
+   "uk": "У моїх сестер ключі від дому."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "otro",
+   "ru": "другой, ещё один",
+   "uk": "інший, ще один"
+  },
+  {
+   "lemma": "cambio",
+   "ru": "мелочь, размен",
+   "uk": "дрібні гроші, решта"
+  },
+  {
+   "lemma": "cita",
+   "ru": "назначенная встреча",
+   "uk": "призначена зустріч"
+  },
+  {
+   "lemma": "entrada",
+   "ru": "входной билет",
+   "uk": "вхідний квиток"
+  },
+  {
+   "lemma": "idea",
+   "ru": "идея",
+   "uk": "ідея"
+  },
+  {
+   "lemma": "minuto",
+   "ru": "минута",
+   "uk": "хвилина"
+  },
+  {
+   "lemma": "número",
+   "ru": "номер",
+   "uk": "номер"
+  },
+  {
+   "lemma": "pregunta",
+   "ru": "вопрос",
+   "uk": "запитання"
+  },
+  {
+   "lemma": "reserva",
+   "ru": "бронь",
+   "uk": "бронювання"
+  },
+  {
+   "lemma": "tiempo",
+   "ru": "время",
+   "uk": "час"
+  },
+  {
+   "lemma": "tener",
+   "ru": "иметь",
+   "uk": "мати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  }
+ ],
+ "oldTopicTitle": "У меня есть: tener",
+ "oldTheoryRu": "Представь, что поднимаешь руку: Tengo una pregunta — вопрос у меня. Вопрос у Аны? Тогда Ana tiene una pregunta. Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener. В «У меня вопрос» владелец — говорящий. Именно он становится подлежащим испанской фразы. Не переводи «у» отдельным предлогом: tengo уже означает «у меня есть». Запомни tengo, tienes, tiene вместе с лицами yo, tú, él. Не используй правильную модель comer вслепую: tengo имеет g, а tienes и tiene — ie. Когда владельцы — мы, нужно tenemos. Два билета не меняют форму: tenemos un billete и tenemos dos billetes. У ellos, наоборот, tienen даже с одним билетом. Hay una llave сообщает о наличии ключа, но не называет владельца. Tengo la llave отвечает на другой вопрос: ключ у меня. Определи, какую информацию передаёт подсказка. В «У меня нет времени» сначала определи владельца. Для «я» выбери tengo и поставь перед ним no. Не пытайся отрицать существительное tiempo. Сравни два задания: «У нас есть идея.» / «У меня нет мелочи». Глагол согласуется с владельцем, не с тем, чем он владеет. Смысловые опоры: «idea» — идея. Сравни два задания: «У Луиса есть мой номер.» / «У моих сестёр ключи от дома». Глагол согласуется с владельцем, не с тем, чем он владеет. Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener."
+}

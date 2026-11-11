@@ -1,0 +1,114 @@
+[
+ {
+  "id": "lesson-3/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«обличчя» (лицо как часть тела) вместо «особу»",
+  "fix": "Починай із змісту твердження: «ти там», «ти тут», «ти готовий». Питання не робить усі три фрази взаємозамінними. Перевір місце, особу та число до вибору плитки."
+ },
+ {
+  "id": "lesson-3/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Затвердження» (утверждение документа) вместо «Твердження»; «Не додай» вместо «Не додавай»; «відноситься» — калька",
+  "fix": "Твердження з ім'ям або предметом можна залишити у звичному порядку. Питальна інтонація стосується всього рядка. Не додавай `è` перед уже готовою конструкцією, де дієслово є."
+ },
+ {
+  "id": "lesson-3/chapter-4",
+  "type": "T1",
+  "field": "chapters[3].textByLocale.ru",
+  "problem": "«libera с camera» противоречит примеру it:03:20 (La camera è pulita?); libera в курсе — с sala (it:03:14)",
+  "fix": "Вопрос о свободном столике и вопрос о чистой комнате выглядят похоже. Сначала определи, что описываешь, затем подбери окончание: `libero` с `tavolo`, `libera` с `sala`, `pulita` с `camera`."
+ },
+ {
+  "id": "lesson-3/chapter-4",
+  "type": "T1",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "«libera with camera» противоречит примеру it:03:20 (pulita)",
+  "fix": "The question about a free table and the question about a clean room look similar. First, determine what you're describing, then choose the ending: `libero` with `tavolo`, `libera` with `sala`, `pulita` with `camera`."
+ },
+ {
+  "id": "lesson-3/chapter-4",
+  "type": "T1",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«libera з camera» противоречит примеру it:03:20 (pulita)",
+  "fix": "Питання про вільний столик і питання про чисту кімнату виглядають схоже. Спочатку визнач, що описуєш, потім підбери закінчення: `libero` з `tavolo`, `libera` з `sala`, `pulita` з `camera`."
+ },
+ {
+  "id": "lesson-3/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«як повідомлення, а потім запитання» — пропущено «як»",
+  "fix": "Прочитай готову фразу спочатку як повідомлення, а потім як запитання. Хороший тест: чи можна на другий варіант відповісти тільки «так» чи «ні»? Якщо потрібно назвати поверх або час, ти вибрав інший тип питання."
+ },
+ {
+  "id": "lesson-4/title",
+  "type": "T2",
+  "field": "title.uk",
+  "problem": "«Уявити людину» = вообразить; нужно «представити»",
+  "fix": "Представити людину або назвати річ"
+ },
+ {
+  "id": "lesson-4/chapter-1",
+  "type": "T1",
+  "field": "chapters[0].textByLocale.ru",
+  "problem": "«Глагол первой формы» — неверный термин (форма первого лица)",
+  "fix": "Указательное слово стоит самостоятельно и указывает на того, кого видят. Сравни с обычным сообщением о себе. Форма первого лица `sono` не заменяет указания на другого человека."
+ },
+ {
+  "id": "lesson-4/chapter-1",
+  "type": "T1",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "«The first form of the verb» — неверный термин (first-person form)",
+  "fix": "The demonstrative word stands alone and points to the person being seen. Compare this with an ordinary statement about yourself. The first-person form `sono` does not replace pointing to another person."
+ },
+ {
+  "id": "lesson-4/chapter-1",
+  "type": "T1",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Дієслово першої форми» — неверный термин; «особистим повідомленням» = приватное сообщение",
+  "fix": "Вказівне слово стоїть самостійно та вказує на того, кого бачать. Порівняй зі звичайним повідомленням про себе. Форма першої особи `sono` не замінює вказівки на іншу людину."
+ },
+ {
+  "id": "lesson-4/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«чоловіче un amico апострофа немає» — неграмматично",
+  "fix": "Називаючи одну людину з багатьох, використовуй відповідний неозначений артикль. Перед жіночим `amica` виходить `un’amica`, а чоловіче `un amico` апострофа не має. Рід змінює і написання, і зміст."
+ },
+ {
+  "id": "lesson-4/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«сказати \"адресу\"» — должен быть им. падеж «адреса»",
+  "fix": "У поєднанні `Questo è un indirizzo` слово `questo` вказує, а `un indirizzo` називає тип предмета. Якщо просто сказати «адреса», зникне частина повідомлення «це адреса»."
+ },
+ {
+  "id": "lesson-4/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«вживатися … за кількістю» — неверно передано «уживаться по числу» (узгоджуватися за числом); выпало «італійський»",
+  "fix": "Вказівка, дієслово та назва мають узгоджуватися за числом. `Queste sono le mie chiavi`: предметів кілька, тому не `è`. Для одягу дивись на італійський іменник, а не на число в перекладі."
+ },
+ {
+  "id": "lesson-4/chapter-7",
+  "type": "T1",
+  "field": "chapters[6].textByLocale.ru",
+  "problem": "«кого обозначает предмет» — бессмысленно; речь о принадлежности (it:04:41, it:04:45)",
+  "fix": "Можно отрицать или спрашивать, чей это предмет. `Questa non è la mia borsa` не означает, что сумки нет: сумка перед нами, просто она чужая."
+ },
+ {
+  "id": "lesson-4/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«who the object represents» — неверно (whose)",
+  "fix": "You can deny or ask whose object it is. `Questa non è la mia borsa` doesn't mean the bag isn't there: the bag is in front of us, it's just someone else's."
+ },
+ {
+  "id": "lesson-4/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Ви можете» — «ви» при «ти» в остальном курсе; «кого позначає»; пропущена запятая перед «просто»",
+  "fix": "Можна заперечувати або запитувати, чий це предмет. `Questa non è la mia borsa` не означає, що сумки немає: сумка перед нами, просто вона чужа."
+ }
+]

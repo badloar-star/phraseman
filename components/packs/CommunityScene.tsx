@@ -7,6 +7,9 @@ import { LinearGradient } from '../SafeLinearGradient';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { KitTouchable } from '../KitTouchable';
 import { useTheme } from '../ThemeContext';
+import { useIsTabPage } from '../tab_top_bleed';
+import { useTabNav } from '../../app/TabContext';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme, homeSceneOklchOf } from '../home/v2/scene/home_scene_tokens';
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
@@ -132,7 +135,12 @@ export function CommunityContestStage({ packs, lang, authorId, topInset = 100, a
 }>): React.JSX.Element {
   const [rules, setRules] = useState(false);
   const [liveNowMs, setNowMs] = useState(Date.now);
+  const isTabPage = useIsTabPage();
+  const { runtimeOwnerId } = useTabNav();
+  const contestRuntimeActive = useRuntimeActive(!isTabPage || runtimeOwnerId === 'packs');
+  const hasFixedReferenceNow = authors !== undefined && typeof referenceNowMs === 'number' && Number.isFinite(referenceNowMs);
   useEffect(() => {
+    if (!contestRuntimeActive || hasFixedReferenceNow) return undefined;
     const refresh = () => setNowMs(previous => {
       const current = Date.now();
       return Math.floor(current / 60000) === Math.floor(previous / 60000) ? previous : current;
@@ -140,10 +148,11 @@ export function CommunityContestStage({ packs, lang, authorId, topInset = 100, a
     // зачем (оптимизация плиток 29.10): счётчик показывает минуты — будим JS раз в минуту на её границе, а не 60 раз (было setInterval 1 с)
     let timer: ReturnType<typeof setTimeout> | null = null;
     const schedule = () => { timer = setTimeout(() => { refresh(); schedule(); }, 60000 - (Date.now() % 60000) + 50); };
+    refresh();
     schedule();
     const subscription = AppState.addEventListener('change', state => { if (state === 'active') refresh(); });
     return () => { if (timer !== null) clearTimeout(timer); subscription.remove(); };
-  }, []);
+  }, [contestRuntimeActive, hasFixedReferenceNow]);
   const nowMs = authors && typeof referenceNowMs === 'number' && Number.isFinite(referenceNowMs) ? referenceNowMs : liveNowMs;
   const month = contestMonth(nowMs);
   const schedule = communityContestSchedule(nowMs);

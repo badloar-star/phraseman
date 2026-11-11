@@ -15,7 +15,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { KitCta } from '../../components/cards-grid/CardsKit';
 import { FlipCard } from '../../components/cards-grid/FlipCard';
 import { useLineScale } from '../../components/cards-grid/useLineScale';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';

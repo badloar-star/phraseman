@@ -76,8 +76,4 @@ describe('«Восстановить»: потолок магазина', () => 
 });
 
 describe('Курс V2: мост карта → занятие', () => {
-  it('потеря моста пишет [V2-BRIDGE] с причиной и значениями до возврата на карту', () => {
-    const src = read('app/learning_v2_direct_session_player_v1.tsx');
-    expect(src).toContain('[V2-BRIDGE] bounce_to_map reason=learning_v2_session_ready_handoff_missing');
-  });
 });

@@ -1,0 +1,65 @@
+[
+ {
+  "id": "lesson-17/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«послід повернення» — неверное слово (послід = помёт/послед), «Нині» вместо «у теперішньому часі», «перед особистої формою» — неграмматично и не тот термин",
+  "fix": "Розбий словникове `alzarsi` на дію та позначку зворотності. У теперішньому часі короткий займенник ставиться окремо перед особовою формою. У словнику це один запис, а не шість різних дієслів."
+ },
+ {
+  "id": "lesson-17/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "русизм «з говорящим», ошибка согласования «різниця видно»",
+  "fix": "Група з мовцем використовує `ci`: `ci alziamo`. Звертання до групи — `vi alzate`. У кількох інших людей `si` таке саме, як в одного, а різницю видно з дієслова."
+ },
+ {
+  "id": "lesson-17/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«Потрібно рівно один займенник» — ошибка согласования; «фінальне інфінітиву `e`» — сломанный порядок слов",
+  "fix": "Якщо попереду модальне дієслово, можливі два природні варіанти: `posso sedermi` і `mi posso sedere`. Потрібен рівно один займенник. У приєднаному варіанті фінальне `e` інфінітива відпадає."
+ },
+ {
+  "id": "lesson-17/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "«In the added variant, the final `e` infinitive is omitted» — неграмматично, «added» не передаёт «присоединённый»",
+  "fix": "If a modal verb comes first, two natural variants are possible: `posso sedermi` and `mi posso sedere`. Exactly one pronoun is required. In the attached variant, the infinitive drops its final `e`."
+ },
+ {
+  "id": "lesson-18/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«verbs that start with `-are`» — должно быть «end in»",
+  "fix": "Many verbs ending in `-are` have a form ending in `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Once you recognize the pattern, apply it to another verb, but not to every verb without exception."
+ },
+ {
+  "id": "lesson-18/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Багато дієслів на `-are` форма закінчується» — неграмматично",
+  "fix": "У багатьох дієслів на `-are` форма закінчується на `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Упізнавши модель, застосуй її до іншого дієслова, але не до всіх без винятку."
+ },
+ {
+  "id": "lesson-18/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«assistant» вместо термина auxiliary (вспомогательный глагол)",
+  "fix": "The negation comes before the auxiliary. After `non ho`, you still need to name the action. Don't move `non` right before the name of the thing."
+ },
+ {
+  "id": "lesson-18/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«Заперечення відбувається перед помічником» — калька, бессмыслица (ru: «идёт перед»)",
+  "fix": "Заперечення стоїть перед помічником. Після `non ho` все одно потрібно назвати дію. Не переставляй `non` одразу перед назвою речі."
+ },
+ {
+  "id": "lesson-18/chapter-6",
+  "type": "T1",
+  "field": "exampleResolved[it:18:36].uk",
+  "problem": "«Ви ще не підписалися» = «ещё не подписались/записались»; Non ha ancora firmato = «не подписали»",
+  "fix": "Ви ще не підписали."
+ }
+]

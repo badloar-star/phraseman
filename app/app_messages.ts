@@ -1061,7 +1061,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const poll = normalizeAppMessagePoll(data, titleRu, messageRu);
   const kindRaw = cleanText(data.kind, poll ? 'poll' : 'message');
   const kind: AppMessageKind =
-    kindRaw === 'poll' && poll ? 'poll'
+    (kindRaw === 'poll' || (kindRaw === 'message' && poll)) ? 'poll'
     : kindRaw === 'vip_survey' ? 'vip_survey'
     : kindRaw === 'report_reply' ? 'report_reply'
     : kindRaw === 'personal_admin_message' ? 'personal_admin_message'
@@ -1173,14 +1173,14 @@ export function normalizeAppMessageState(messageId: string, data: Record<string,
 }
 
 export function isAppMessageVisible(message: AppMessage, nowMs = Date.now()): boolean {
-  return message.active && message.expiresAtMs > nowMs && message.createdAtMs <= nowMs + 60_000;
+  return !isRetiredSurveyMessage(message) && message.active && message.expiresAtMs > nowMs && message.createdAtMs <= nowMs + 60_000;
 }
 
 export function isAppMessageAllowedForAudience(
-  message: Pick<AppMessage, 'audience'> & Partial<Pick<AppMessage, 'kind'>>,
+  message: Pick<AppMessage, 'audience'> & Partial<Pick<AppMessage, 'kind' | 'poll'>>,
   hasPremiumAccess: boolean,
 ): boolean {
-  if (message.kind === 'vip_survey') return !hasPremiumAccess;
+  if (isRetiredSurveyMessage(message)) return false;
   if (message.audience === 'premium') return hasPremiumAccess;
   if (message.audience === 'free') return !hasPremiumAccess;
   return true;
@@ -1274,11 +1274,11 @@ export function buildAppMessagePreview(body: string, maxChars = 120): string {
   return `${head}...`;
 }
 
-/**
- * Removes no server-owned message kinds; this boundary only recalculates the unread count.
- */
+function isRetiredSurveyMessage({ kind, poll }: Partial<Pick<AppMessage, 'kind' | 'poll'>>): boolean {
+  return kind === 'poll' || kind === 'vip_survey' || (kind === 'message' && Boolean(poll));
+}
 export function sanitizeAppMessagesInboxSnapshot(snapshot: AppMessagesSnapshot): AppMessagesSnapshot {
-  const messages = snapshot.messages;
+  const messages = snapshot.messages.filter((message) => !isRetiredSurveyMessage(message));
   const sanitized = {
     messages,
     unreadCount: messages.reduce((count, message) => (
@@ -1344,7 +1344,7 @@ export function listPendingAppMessageModals(
   appVersion = currentAppVersion(),
 ): AppMessageWithState[] {
   return filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess, appVersion).messages.filter((message) => (
-    (message.kind === 'message' || message.kind === 'poll')
+    message.kind === 'message'
     && message.showOnNextLoginModal
     && !message.appMessageModalAcknowledgedAtMs
   ));
@@ -1393,7 +1393,8 @@ export function filterAppMessagesSnapshotForNotificationCenter(
   snapshot: AppMessagesSnapshot,
 ): AppMessagesSnapshot {
   const messages = snapshot.messages.filter((message) => (
-    message.kind !== 'report_reply' || message.reportReply?.rewardBundle.severity === 'legacy'
+    !isRetiredSurveyMessage(message)
+    && (message.kind !== 'report_reply' || message.reportReply?.rewardBundle.severity === 'legacy')
   ));
   return {
     messages,

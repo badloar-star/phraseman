@@ -66,7 +66,7 @@ import { FlipCard } from '../components/cards-grid/FlipCard';
 import { KitCard, KitIconTile } from '../components/cards-grid/CardsKit';
 import { SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../components/practice/PracticeGlass';
 import { EditorField } from './community_packs/PackEditorV2';
 import { addCardToLocalPack, loadAddableLocalPacks } from './community_packs/localPackCardAdd';
 import { getDevCardDraft } from './dev_cards_state';

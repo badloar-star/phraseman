@@ -35,6 +35,10 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   ['055841b39652220b0455f02542779c30f60f7cb75c306b2c8ccd2eac3dfd6800', 1],
 ]);
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const PREEXISTING_UNREVIEWED_L_CALLS = new Map([
+  ['91e4b7447fc502735de05158d718c367a831c727d76d0a83096e441305bdb2ff', 1],
+  ['4d95d87f72be68441e4759f57b0a105b35be57482d55903dfaa1751a51e7a20d', 1],
+]);
 const RUNTIME_COPY = {
   title: ['Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc'],
   subtitle: ['Расскажи, что случилось', 'Розкажи, що сталося', 'Tell us what happened', 'Cuéntanos qué pasó', 'Conte o que aconteceu', 'Hãy cho chúng tôi biết chuyện gì xảy ra', 'Ceritakan apa yang terjadi', 'Ne olduğunu anlat', 'Opisz, co się stało'],
@@ -57,14 +61,33 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 19, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label; +1 for the diagnostics-off card text; +2 (owner 12.10 (b)) for the attach-log switch label and the «log won’t be attached» text');
+  assert.equal(calls.length, 21, 'the centralized template removes exactly its prior localized L() call from the frozen before-source count of 22');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);
     actual.set(digest, (actual.get(digest) ?? 0) + 1);
   }
-  assert.deepEqual(actual, EXPECTED_L_CALL_COUNTS);
+  assert.deepEqual(actual, new Map([...EXPECTED_L_CALL_COUNTS, ...PREEXISTING_UNREVIEWED_L_CALLS]));
 }
+
+function loadSupportReportValidation() {
+  const validationSource = fs.readFileSync('app/support_report_validation.ts', 'utf8');
+  const module = { exports: {} };
+  const code = ts.transpileModule(validationSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, esModuleInterop: true },
+  }).outputText;
+  vm.runInNewContext(code, {
+    module,
+    exports: module.exports,
+    require: name => {
+      assert.equal(name, './error_report', 'validation imports only the frozen minimum-length constant');
+      return { ERROR_REPORT_COMMENT_MIN_LEN: 10 };
+    },
+  }, { filename: 'support_report_validation.ts' });
+  return module.exports;
+}
+
+const actualSupportReportValidation = loadSupportReportValidation();
 
 function openingElementForTestId(candidate, testID) {
   const file = parseSource(candidate);
@@ -161,6 +184,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
       Keyboard: { dismiss: () => { calls.dismiss += 1; } }, Text: 'Text', TextInput: 'TextInput', View: 'View',
     },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
+    '../components/DoneTick': { DoneTick: 'DoneTick' },
     'expo-router': { useRouter: () => ({ id: 'router' }) },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
     '../components/LangContext': { useLang: () => ({ lang }) },
@@ -191,6 +215,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     // зачем (15.10, красные сторожи; тест устарел): экран спрашивает флаг диагностики через './remote_flags' — в харнессе он выключен, как в проде (isSupportDiagnosticsEnabled = () => false).
     './remote_flags': { isSupportDiagnosticsEnabled: () => false },
     './support_diagnostics': { captureSupportDiagnosticBundle: () => capturePromise ?? Promise.resolve(diagnostics) },
+    './support_report_validation': actualSupportReportValidation,
     // зачем: PM-229 (db985607f) добавил в экран noteSwallowedHandler — обвязка теста его не знала.
     './swallow_log': { noteSwallowedHandler: () => () => undefined },
     './support_report_outbox': { sendSupportReportInBackground: (...args) => { calls.sends.push(args); return Promise.resolve(); } },
@@ -253,6 +278,11 @@ test('actual handlers keep validation, duplicate guard, optimistic confirmation,
   assert.equal(submit.props.disabled, true, 'short reports stay disabled');
   assert.equal(submit.props.withHaptic, false);
   assert.equal(submit.props.withSound, false);
+  nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-template').props.onPress();
+  tree = harness.render();
+  nodes = visit(tree);
+  submit = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-submit');
+  assert.equal(submit.props.disabled, true, 'an actual untouched template stays disabled through the real validator');
   input.props.onChangeText('  enough detail  ');
   tree = harness.render();
   nodes = visit(tree);
@@ -277,7 +307,7 @@ test('actual handlers keep validation, duplicate guard, optimistic confirmation,
   assert.equal(harness.calls.dismiss, 1);
   assert.equal(harness.calls.haptics, 1);
   assert.equal(harness.calls.sends.length, 1, 'duplicate taps cannot enqueue twice');
-  assert.equal(harness.calls.sends[0][0].comment, 'enough detail');
+  assert.equal(harness.calls.sends[0][0].comment, '  enough detail  ');
   assert.equal(harness.calls.sends[0][0].screen, 'settings_support');
   assert.equal(harness.calls.sends[0][0].diagnostics, harness.diagnostics);
   tree = harness.render();
@@ -354,7 +384,7 @@ test('support copy, payload, diagnostics allowlist projection, and controls rema
     'Спасибо! Команда всё проверит и ответит в приложении.', 'Готово',
   ]) assert.ok(source.includes(text), `${text} is preserved`);
   for (const token of [
-    'ERROR_REPORT_COMMENT_MIN_LEN', 'submissionStartedRef.current', 'maxLength={3000}',
+    'isSupportReportCommentValid', 'getSupportReportTemplate', 'submissionStartedRef.current', 'maxLength={3000}',
     "screen: 'settings_support'", "dataId: 'settings_support_request'", "dataText: 'In-app support request'",
     'diagnosticsPreview.events.slice(-12)',
     'testID="support-diagnostics-disclosure"', 'testID="support-diagnostics-preview-toggle"',

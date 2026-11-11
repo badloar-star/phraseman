@@ -27,17 +27,6 @@ cd "$ROOT" || exit 1
 HEADSHA=$(git rev-parse --short HEAD)
 say "HEAD=$HEADSHA dir=$X logs=$LOG free=$(mem)МБ $(date +%T)"
 
-# 0) зачем (координатор 15.10 ночь): репетиция собирает HEAD, а EAS — РАБОЧУЮ папку. Если в ней потолок V2 / набор звука /
-# таблица голосов отличаются от закоммиченных (незакоммиченный прогон сторожа переписывал потолок на 145), зелёная
-# репетиция ничего не доказывает о реальной сборке. Стоп сразу, с понятным логом.
-if node scripts/learning_v2_ceiling_committed_gate.mjs > "$LOG/ceiling_gate.log" 2>&1; then
-  say "ceiling_committed=PASS ($(grep -o 'потолок [0-9]*' "$LOG/ceiling_gate.log" | head -1))"
-else
-  say "ceiling_committed=FAIL: $(grep -m1 'отличается' "$LOG/ceiling_gate.log" | cut -c1-200)"
-  say "FAIL HEAD=$HEADSHA (рабочая папка ≠ HEAD по потолку V2 — EAS собрал бы не то) $(date +%T)"
-  exit 1
-fi
-
 # 1) выгрузка: сначала снять junction (rmdir без /s удаляет только ссылку, не цель), потом папку целиком
 if [ -e "$X/node_modules" ]; then cmd //c "rmdir $(cygpath -w "$X/node_modules")" > /dev/null 2>&1; fi
 if [ -e "$X/node_modules" ]; then say "FAIL: не удалось снять junction $X/node_modules — папку не трогаю"; exit 1; fi
@@ -63,7 +52,7 @@ node scripts/release_keys_gate.mjs > "$LOG/post_install.log" 2>&1; rc=$?
 [ $rc -eq 0 ] && say "release_keys(static)=PASS" || { say "release_keys(static)=FAIL ($rc)"; fail=1; }
 export EAS_BUILD=true EAS_BUILD_PROFILE=production EAS_BUILD_PLATFORM=android CI=1
 export EXPO_PUBLIC_STORE_RELEASE=1 EXPO_PUBLIC_AI_DIALOG_ENABLED=true EXPO_PUBLIC_EXPLAIN_ENABLED=true
-for g in scripts/eas_production_version_gate.mjs scripts/learning_v2_plan_b_gates.mjs scripts/store_route_reachability.mjs; do
+for g in scripts/eas_production_version_gate.mjs scripts/store_route_reachability.mjs; do
   echo "--- $g" >> "$LOG/post_install.log"
   node "$g" > "$LOG/gate.tmp" 2>&1; rc=$?
   cat "$LOG/gate.tmp" >> "$LOG/post_install.log"

@@ -40,7 +40,11 @@ service cloud.firestore {
         || collection == 'content_v2_repository_auth'
         || collection == 'content_v2_voice_human_reviews'
         || collection.matches('content_v2_stage_(repository_commits|candidate_pins)')
-        || collection.matches('content_v2_(required_session|season_release|activity_auxiliary_release|activity_learner_core_release|activity_server_evaluator_release)_.*');
+        || collection.matches('content_v2_(required_session|season_release|activity_auxiliary_release|activity_learner_core_release|activity_server_evaluator_release)_.*')
+        // зачем: курс занятий удалён, но его записи остались в базе. Явные правила `if false` для этих корней сняты:
+        // они не закрывали записи от браузерной админки (catch-all ниже складывается с ними через ИЛИ). Исключение
+        // здесь закрывает и админку; для остальных действует запрет по умолчанию. Доступ — только Admin SDK.
+        || collection.matches('learning_v2_.*');
     }
 
     // Existing tournament roots plus semantic-review state and unpublished v11
@@ -495,8 +499,7 @@ service cloud.firestore {
         'lesson_progress_v2::es::lesson1_pass_live',
         'lesson_progress_v2::de::lesson1_pass_live',
         'lesson_progress_v2::it::lesson1_pass_live',
-        // Лесенка C (29.10): серверные дни итогов Learning V2 — по ним друг засчитывается для Plus.
-        // Пишет только submitLearningV2CourseSessionCompletedV1; подделка клиентом дала бы бесплатный Plus.
+        // Серверные метки удалённого курса занятий: клиенту по-прежнему нельзя их писать (значения остались в базе).
         'lv2_srv_day1',
         'lv2_srv_day2',
         // Collectibles: server-only, always blocked regardless of migration flag.
@@ -1580,21 +1583,6 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
-      // Source receipts for Learning V2 wallet redemption. Server callables
-      // write them atomically with the originating economic decision (coin
-      // exchange or bounded required-session performance improvement); clients
-      // receive only the request identity and cannot read or forge protected bytes.
-      match /v2_wallet_reward_receipts/{rewardId} {
-        allow read, write: if false;
-      }
-
-      // Protected authorization for one exact Learning V2 course-session
-      // unlock. The app receives only the bounded request reference and must
-      // resolve canonical bytes through the authenticated callable.
-      match /v2_course_unlock_receipts/{unlockId} {
-        allow read, write: if false;
-      }
-
       // Маркеры активации промокодов. Пишет ТОЛЬКО сервер (promoCodeRedeem, Admin SDK).
       // Владелец может прочитать (приложение видит, что код уже активирован), но не
       // создавать/менять — иначе обход «один код на юзера» и самовыдача премиума.
@@ -1633,8 +1621,8 @@ service cloud.firestore {
         allow write:  if false;
       }
 
-      // Шпиль (PM-276): итог недели {weekId}_{lang}. Пишет только spireFinalizeCron
-      // (Admin SDK); клиент читает, чтобы показать итог фактом при первом заходе.
+      // Шпиль (PM-276/X05): итог недели {weekId}_{lang}. Freeze/settlement поля
+      // пишет только сервер через Admin SDK; клиентский доступ НЕ расширен.
       match /spire_week_results/{resultId} {
         allow read:   if userDocOwnerMatchesAuth(userId);
         allow write:  if false;
@@ -1671,6 +1659,7 @@ service cloud.firestore {
     }
 
     match /public_profiles/{userId} {
+      // profileCardShowcase is published by publicProfileProjectMine; no client writes.
       allow read: if request.auth != null;
       // Server-authoritative projection only. Clients may choose cosmetics via
       // publicProfileProjectMine, but cannot claim progress or entitlements.
@@ -2263,12 +2252,13 @@ service cloud.firestore {
     // Клиент только создаёт компактные события фиксированной формы; читает админ.
     match /paywall_funnel/{docId} {
       allow create: if request.auth != null
-        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'price', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
-        && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'restore_completed', 'close']
+        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'periodType', 'obColor', 'price', 'day', 'ts', 'uidh', 'dev', 'expireAt', 'schemaVersion', 'impressionId', 'transactionHash'])
+        && request.resource.data.step in ['store_confirmed', 'access_applied', 'shown', 'cta_click', 'trial_started', 'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'restore_completed', 'close']
         && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'PLUS']
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
         && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly', 'lifetime'])
+        && (request.resource.data.periodType == null || (request.resource.data.periodType is string && request.resource.data.periodType.size() > 0 && request.resource.data.periodType.size() <= 24))
         && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green', 'main'])
         && (request.resource.data.price == null || (request.resource.data.price is string && request.resource.data.price.size() <= 24))
         && request.resource.data.day is string
@@ -2276,7 +2266,10 @@ service cloud.firestore {
         && (request.resource.data.ts is int || request.resource.data.ts is float)
         && request.resource.data.uidh is string
         && request.resource.data.uidh.size() <= 16
-        && request.resource.data.dev is bool;
+        && request.resource.data.dev is bool
+        && (!('schemaVersion' in request.resource.data) || request.resource.data.schemaVersion == 2)
+        && (!('impressionId' in request.resource.data) || (request.resource.data.impressionId is string && request.resource.data.impressionId.size() > 0 && request.resource.data.impressionId.size() <= 80))
+        && (!('transactionHash' in request.resource.data) || request.resource.data.transactionHash == null || (request.resource.data.transactionHash is string && request.resource.data.transactionHash.matches('^[a-f0-9]{64}$')));
       allow read: if isAdmin();
       allow update, delete: if false;
     }
@@ -2649,8 +2642,8 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-    // Шпиль (PM-277): комнаты по 30 на язык и день входа. Пишет только сервер
-    // (spireJoinRoom, spireReportSteps); клиент читает раз в 6 ч при заходе.
+    // Шпиль (PM-277/X05): комнаты по 30 на язык и день входа. Freeze/hold поля
+    // server-owned (Admin SDK); клиентские разрешения остаются прежними.
     // Ступени ботов в документе не хранятся — формула на устройстве (D56).
     match /spire_groups/{groupId} {
       allow read: if request.auth != null;
@@ -3527,6 +3520,8 @@ service cloud.firestore {
         && collection != 'admin_staff_rate_limits'
         && collection != 'admin_staff_invitations'
         && collection != 'admin_staff_invitation_audit'
+        && collection != 'admin_youtube_comments'
+        && collection != 'admin_youtube_comment_settings'
         && collection != 'story_announcements'
         && collection != 'community_contest_winners' && collection != 'community_month_results' && collection != 'community_contest_config'
         && collection != 'story_announcement_feed'
@@ -3540,6 +3535,8 @@ service cloud.firestore {
         && collection != 'account_merge_outbox'
         && collection != 'revenuecat_premium_events'
         && collection != 'revenuecat_premium_lineages'
+        && collection != 'revenuecat_premium_lineage_owners'
+        && collection != 'revenuecat_restore_operations'
         && collection != 'revenuecat_premium_denials'
         && collection != 'revenuecat_shard_refunds'
         && collection != 'premium_theme_video_watch'
@@ -3649,6 +3646,12 @@ service cloud.firestore {
     match /revenuecat_premium_lineages/{docId} {
       allow read, write: if false;
     }
+    match /revenuecat_premium_lineage_owners/{lineageHash} {
+      allow read, write: if false;
+    }
+    match /revenuecat_restore_operations/{operationHash} {
+      allow read, write: if false;
+    }
     match /revenuecat_premium_denials/{docId} {
       allow read, write: if false;
     }
@@ -3680,7 +3683,7 @@ service cloud.firestore {
       allow list: if isAdmin();
     }
 
-    // Learning V2 Content Studio authoring state is callable/Admin-SDK only.
+    // Authoring state of the removed session course is callable/Admin-SDK only.
     // Firestore allow expressions are OR-combined across overlapping matches,
     // so these exact deny blocks rely on the final catch-all also being deny-only.
     match /content_mode_template_versions/{docId} {
@@ -3771,21 +3774,6 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    match /content_v2_owner_episode_confirmations/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_unified_course_release_heads/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_unified_course_release_roots/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_unified_course_release_heads_v3/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_unified_course_release_roots_v3/{docId} {
-      allow read, write: if false;
-    }
     // Authenticated repository evidence is Firebase-Admin-only. These roots
     // are reserved before the adapter is wired so no browser credential can
     // forge a published profile, a repository claim, or a durable stage pin.
@@ -3805,114 +3793,6 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_voice_generation_profile_lifecycle/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_repository_auth/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_voice_human_reviews/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_stage_repository_commits/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_stage_candidate_pins/{docId} {
-      allow read, write: if false;
-    }
-    // Published required-session bytes are release authority for server-side
-    // progress settlement. Browser admins and clients must use reviewed
-    // callables; direct writes could mint arbitrary course/task coordinates.
-    match /content_v2_required_session_sets/{docId} {
-      allow read, write: if false;
-    }
-
-    match /content_v2_required_session_answer_manifests/{docId} {
-      allow read, write: if false;
-    }
-    // The V2 Season pointer is the final root-last publication coordinate.
-    // Even browser-admin tokens must go through the audited server CAS.
-    match /content_v2_season_release_pointers/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_season_release_manifests/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_activity_auxiliary_release_pointers/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_activity_learner_core_release_pointers/{docId} {
-      allow read, write: if false;
-    }
-    match /content_v2_activity_server_evaluator_release_pointers/{docId} {
-      allow read, write: if false;
-    }
-
-    // Required-session counters and settled projections are transaction-owned.
-    // They are deliberately not client-readable: the callable returns only the
-    // accepted projection while protected economic receipts use another seam.
-    match /users/{uid}/v2_required_session_runs/{docId} {
-      allow read, write: if false;
-    }
-    match /users/{uid}/v2_required_session_task_attempts/{docId} {
-      allow read, write: if false;
-    }
-    match /users/{uid}/v2_required_session_settlements/{docId} {
-      allow read, write: if false;
-    }
-    // Monotonic best-of-12 award state and its per-completion decisions are
-    // server-only. Direct reads would expose another device's economic
-    // history; direct writes could mint or suppress access-star deltas.
-    match /users/{uid}/v2_required_session_performance_awards/{docId} {
-      allow read, write: if false;
-    }
-    match /users/{uid}/v2_required_session_performance_award_decisions/{docId} {
-      allow read, write: if false;
-    }
-    match /users/{uid}/v2_required_session_course_awards/{docId} {
-      allow read, write: if false;
-    }
-    // Completed offline sessions are uploaded through the App Check protected
-    // callable only. Direct client access could bypass immutable catalog and
-    // account-generation cross-checks or expose another device's pending data.
-    match /users/{uid}/v2_required_session_completion_inbox/{docId} {
-      allow read, write: if false;
-    }
-    // Released Activity completions are accepted only by the App Check/Auth
-    // callable after active-release and account-generation reconciliation.
-    // Direct client access could forge completion coordinates or inspect a
-    // different device's pending post-session verification record.
-    match /users/{uid}/v2_activity_released_completion_inbox/{docId} {
-      allow read, write: if false;
-    }
-
-    // Learning V2 post-session answer batches and server evaluations are
-    // server-only. Clients receive only the narrow callable receipt.
-    match /users/{uid}/v2_activity_released_submission_inbox/{docId} {
-      allow read, write: if false;
-    }
-    // The settlement decision binds one evaluated released submission to the
-    // shared required-session economy state and protected reward receipt.
-    // It is transaction-owned and never a client-mintable progress record.
-    match /users/{uid}/v2_activity_released_settlement_decisions/{docId} {
-      allow read, write: if false;
-    }
-
-    // Learning V2 delayed evidence is server-owned. Clients must use the
-    // callable; direct reads/writes would bypass assignment, timing and
-    // idempotency checks. Admin SDK writes are unaffected by these rules.
-    match /learning_v2_assignments/{docId} {
-      allow read, write: if false;
-    }
-    match /learning_v2_launches/{docId} {
-      allow read, write: if false;
-    }
-    match /learning_v2_timing_receipts/{docId} {
-      allow read, write: if false;
-    }
-    match /learning_v2_failure_receipts/{docId} {
-      allow read, write: if false;
-    }
-    match /learning_v2_receipt_operations/{docId} {
       allow read, write: if false;
     }
 
@@ -4244,6 +4124,10 @@ service cloud.firestore {
     match /story_announcement_feed/{id} { allow read, write: if false; }
     match /community_contest_winners/{packId} { allow read: if request.auth != null; allow write: if false; }
     match /community_month_results/{id} { allow read, write: if false; }
+
+    // Owner-approved YouTube replies: callable-only; clients cannot forge approvals or delivery state.
+    match /admin_youtube_comments/{id} { allow read, write: if false; }
+    match /admin_youtube_comment_settings/{id} { allow read, write: if false; }
 
     match /{document=**} {
       allow read, write: if false;

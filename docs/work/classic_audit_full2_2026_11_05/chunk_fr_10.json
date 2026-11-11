@@ -1,0 +1,7619 @@
+[
+{
+"lesson": 21,
+"id": "fr:21:01",
+"target": "Je lisais quand tu as appelé.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Ils",
+"Elles",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "lisais",
+"distractors": [
+"marchais",
+"allait",
+"couloir",
+"répondait",
+"commencé"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"et",
+"si",
+"que",
+"comme",
+"mais"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"elle",
+"nous",
+"on",
+"elles",
+"vous"
+]
+},
+{
+"correct": "as",
+"distractors": [
+"a",
+"avez",
+"avons",
+"ont",
+"avaient"
+]
+},
+{
+"correct": "appelé",
+"distractors": [
+"répondait",
+"encore",
+"entendu",
+"sommes",
+"annoncé"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:02",
+"target": "Je dormais quand tu as appelé.",
+"ru": "Я спала, когда ты позвонила.",
+"uk": "Я спала, коли ти подзвонив.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Ils",
+"Elles",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "dormais",
+"distractors": [
+"magasin",
+"faisait",
+"éteinte",
+"était",
+"sœur"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"que",
+"comme",
+"mais",
+"si"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"on",
+"vous",
+"nous",
+"elles",
+"elle"
+]
+},
+{
+"correct": "as",
+"distractors": [
+"ont",
+"avez",
+"a",
+"avons",
+"avait"
+]
+},
+{
+"correct": "appelé",
+"distractors": [
+"fermé",
+"message",
+"sauté",
+"payais",
+"ferme"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:03",
+"target": "Elle cuisinait quand le téléphone a sonné.",
+"ru": "Она готовила, когда зазвонил телефон.",
+"uk": "Вона готувала, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Elles",
+"Tu",
+"Ils",
+"Il",
+"Je"
+]
+},
+{
+"correct": "cuisinait",
+"distractors": [
+"départ",
+"sonnette",
+"dînions",
+"commencé",
+"écrivais"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"comme",
+"et",
+"si",
+"mais"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"des",
+"de",
+"au",
+"la",
+"que"
+]
+},
+{
+"correct": "téléphone",
+"distractors": [
+"nouvelle",
+"commencé",
+"ligne",
+"sortions",
+"enfants"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avons",
+"ont",
+"avaient",
+"as"
+]
+},
+{
+"correct": "sonné",
+"distractors": [
+"son",
+"sonnette",
+"réveil",
+"élèves",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:04",
+"target": "Nous mangions quand Paul est arrivé.",
+"ru": "Мы ели, когда приехал Поль.",
+"uk": "Ми їли, коли прийшов Пол.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Il",
+"On",
+"Elles",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "mangions",
+"distractors": [
+"mangent",
+"manger",
+"mange",
+"achète",
+"mangeons"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"et",
+"si",
+"mais",
+"que",
+"comme"
+]
+},
+{
+"correct": "Paul",
+"distractors": [
+"Anna",
+"Léa",
+"Tom",
+"Julie",
+"Marie"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sont",
+"êtes",
+"suis",
+"sommes",
+"es"
+]
+},
+{
+"correct": "arrivé",
+"distractors": [
+"arrivés",
+"arrivées",
+"commencé",
+"enfants",
+"voisin"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:05",
+"target": "Tu écrivais quand je suis entré.",
+"ru": "Ты писал, когда я вошёл.",
+"uk": "Ти писав, коли я увійшов.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Il",
+"On",
+"Elles",
+"Nous",
+"Ils"
+]
+},
+{
+"correct": "écrivais",
+"distractors": [
+"ligne",
+"dormais",
+"passé",
+"cherchais",
+"trouvé"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"et",
+"comme",
+"mais",
+"si",
+"que"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"ils",
+"elles",
+"elle",
+"vous",
+"nous"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"es",
+"sont",
+"était",
+"est",
+"sommes"
+]
+},
+{
+"correct": "entré",
+"distractors": [
+"entendu",
+"commencé",
+"gant",
+"lisais",
+"arrivé"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:06",
+"target": "Ils parlaient quand la lumière s’est éteinte.",
+"ru": "Они разговаривали, когда погас свет.",
+"uk": "Вони розмовляли, коли згасло світло.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Je",
+"On",
+"Nous",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "parlaient",
+"distractors": [
+"parlait",
+"parle",
+"parles",
+"parler",
+"parlons"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"et",
+"que",
+"si",
+"comme"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ces",
+"du",
+"le",
+"des",
+"que"
+]
+},
+{
+"correct": "lumière",
+"distractors": [
+"numéro",
+"sauté",
+"réveil",
+"vous",
+"place"
+]
+},
+{
+"correct": "s’est",
+"distractors": [
+"qu’elle",
+"m’endormais",
+"l’écran",
+"qu’il",
+"l’ai"
+]
+},
+{
+"correct": "éteinte",
+"distractors": [
+"vide",
+"crevé",
+"fermés",
+"ballon",
+"rangeais"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:07",
+"target": "Je travaillais quand elle est passée.",
+"ru": "Я работала, когда она проходила мимо.",
+"uk": "Я працювала, коли вона проходила повз.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Ils",
+"On",
+"Elles",
+"Tu",
+"Il"
+]
+},
+{
+"correct": "travaillais",
+"distractors": [
+"travaillait",
+"travailles",
+"travaillez",
+"travailler",
+"travaillons"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"comme",
+"car",
+"mais",
+"si"
+]
+},
+{
+"correct": "elle",
+"distractors": [
+"ils",
+"elles",
+"nous",
+"vous",
+"tu"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"êtes",
+"sont",
+"suis",
+"sommes",
+"es"
+]
+},
+{
+"correct": "passée",
+"distractors": [
+"passait",
+"passagers",
+"attendions",
+"faim",
+"vous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:08",
+"target": "Léa marchait quand il a commencé à pleuvoir.",
+"ru": "Леа шла, когда начался дождь.",
+"uk": "Леа йшла, коли почався дощ.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Paul",
+"Anna",
+"Tom",
+"Marie",
+"Julie"
+]
+},
+{
+"correct": "marchait",
+"distractors": [
+"dormais",
+"pain",
+"ouverte",
+"attendait",
+"café"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"si",
+"comme",
+"mais",
+"et",
+"que"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"nous",
+"vous",
+"ils",
+"tu",
+"je"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avaient",
+"avons",
+"avions",
+"jardin"
+]
+},
+{
+"correct": "commencé",
+"distractors": [
+"cherchais",
+"pris",
+"départ",
+"suis",
+"dormais"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "pleuvoir",
+"distractors": [
+"pleuvait",
+"sortions",
+"beau",
+"attendait",
+"dormais"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:09",
+"target": "On attendait quand le bus est arrivé.",
+"ru": "Мы ждали, когда подъехал автобус.",
+"uk": "Ми чекали, коли під'їхав автобус.",
+"tiles": [
+{
+"correct": "On",
+"distractors": [
+"Tu",
+"Ils",
+"Il",
+"Je",
+"Vous"
+]
+},
+{
+"correct": "attendait",
+"distractors": [
+"attendions",
+"attendaient",
+"pleine",
+"changé",
+"sonné"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"si",
+"car",
+"que",
+"et",
+"comme"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"du",
+"au",
+"à",
+"la",
+"que"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"voiture",
+"taxi",
+"métro",
+"vélo",
+"train"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"était",
+"sommes",
+"sont",
+"suis",
+"êtes"
+]
+},
+{
+"correct": "arrivé",
+"distractors": [
+"arrivés",
+"arrivées",
+"commencé",
+"enfants",
+"voisin"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:10",
+"target": "Je payais quand ma carte est tombée.",
+"ru": "Я расплачивалась, когда моя карта упала.",
+"uk": "Я розплачувалася, коли моя картка впала.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Il",
+"On",
+"Elles",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "payais",
+"distractors": [
+"sonnette",
+"soupe",
+"porte",
+"miroir",
+"lait"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"comme",
+"car",
+"que",
+"si"
+]
+},
+{
+"correct": "ma",
+"distractors": [
+"nos",
+"tes",
+"ses",
+"leurs",
+"votre"
+]
+},
+{
+"correct": "carte",
+"distractors": [
+"froid",
+"cuisinait",
+"chauffait",
+"message",
+"enfants"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sont",
+"êtes",
+"sommes",
+"es"
+]
+},
+{
+"correct": "tombée",
+"distractors": [
+"courais",
+"salle",
+"reçu",
+"téléphone",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:11",
+"target": "Il pleuvait quand nous sommes partis.",
+"ru": "Когда мы уходили, шел дождь.",
+"uk": "Коли ми виїхали, йшов дощ.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Je",
+"Elles",
+"On",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "pleuvait",
+"distractors": [
+"pleuvoir",
+"lunettes",
+"dormiez",
+"écrivais",
+"bruit"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"comme",
+"que",
+"et",
+"car"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"elle",
+"vous",
+"elles",
+"ils",
+"je"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"suis",
+"es",
+"est",
+"sont",
+"êtes"
+]
+},
+{
+"correct": "partis",
+"distractors": [
+"part",
+"partir",
+"partons",
+"partie",
+"parti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:12",
+"target": "Il faisait beau quand le train est arrivé.",
+"ru": "Погода была хорошая, когда прибыл поезд.",
+"uk": "Погода була гарною, коли прибув поїзд.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"On",
+"Nous",
+"Ils",
+"Je",
+"Tu"
+]
+},
+{
+"correct": "faisait",
+"distractors": [
+"jouaient",
+"parlait",
+"vérifiait",
+"travaillais",
+"sonné"
+]
+},
+{
+"correct": "beau",
+"distractors": [
+"montais",
+"concert",
+"message",
+"prix",
+"enfants"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"comme",
+"que",
+"car",
+"si",
+"et"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"ces",
+"une",
+"du",
+"cette",
+"que"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"métro",
+"vélo",
+"bus",
+"voiture",
+"taxi"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"était",
+"sommes",
+"suis",
+"étiez",
+"étaient"
+]
+},
+{
+"correct": "arrivé",
+"distractors": [
+"commencé",
+"route",
+"descendue",
+"palier",
+"premier"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:13",
+"target": "La rue était vide quand Paul est sorti.",
+"ru": "Улица была пуста, когда вышел Поль.",
+"uk": "Вулиця була порожня, коли вийшов Пол.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ces",
+"Cette",
+"De",
+"Du",
+"Le"
+]
+},
+{
+"correct": "rue",
+"distractors": [
+"école",
+"salle",
+"banque",
+"sortie",
+"gare"
+]
+},
+{
+"correct": "était",
+"distractors": [
+"étiez",
+"suis",
+"sont",
+"sommes",
+"êtes"
+]
+},
+{
+"correct": "vide",
+"distractors": [
+"sauté",
+"concert",
+"ligne",
+"voisin",
+"message"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"si",
+"et",
+"que",
+"comme"
+]
+},
+{
+"correct": "Paul",
+"distractors": [
+"Tom",
+"Julie",
+"Marie",
+"Léa",
+"Anna"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"étiez",
+"étaient",
+"étions"
+]
+},
+{
+"correct": "sorti",
+"distractors": [
+"lâché",
+"attendions",
+"départ",
+"réveil",
+"avions"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:14",
+"target": "Les volets étaient fermés quand je suis passé.",
+"ru": "Ставни были закрыты, когда я проходил мимо.",
+"uk": "Віконниці були зачинені, коли я проходив повз.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Le",
+"À",
+"Aux",
+"Au",
+"Cette"
+]
+},
+{
+"correct": "volets",
+"distractors": [
+"réveil",
+"ballon",
+"valise",
+"aperçu",
+"attendait"
+]
+},
+{
+"correct": "étaient",
+"distractors": [
+"sonné",
+"miroir",
+"pleuvait",
+"est",
+"était"
+]
+},
+{
+"correct": "fermés",
+"distractors": [
+"fermé",
+"jouaient",
+"vide",
+"changé",
+"passait"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"que",
+"car",
+"comme",
+"si"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"vous",
+"nous",
+"tu",
+"on",
+"il"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"es",
+"était",
+"est",
+"sont",
+"êtes"
+]
+},
+{
+"correct": "passé",
+"distractors": [
+"passait",
+"passagers",
+"médecin",
+"aperçu",
+"encore"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:15",
+"target": "Il faisait froid quand la porte s’est ouverte.",
+"ru": "Было холодно, когда открылась дверь.",
+"uk": "Було холодно, коли двері відчинилися.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Nous",
+"Elles",
+"On",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "faisait",
+"distractors": [
+"départ",
+"perdu",
+"magasin",
+"répondait",
+"crevé"
+]
+},
+{
+"correct": "froid",
+"distractors": [
+"salle",
+"pris",
+"conduisais",
+"jouaient",
+"gare"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"mais",
+"si",
+"comme",
+"car"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"aux",
+"au",
+"ces",
+"que"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"parti",
+"crevé",
+"noté",
+"nouvelle",
+"valise"
+]
+},
+{
+"correct": "s’est",
+"distractors": [
+"j’ai",
+"l’écran",
+"l’escalier",
+"j’étais",
+"qu’il"
+]
+},
+{
+"correct": "ouverte",
+"distractors": [
+"ouvrir",
+"ouvre",
+"cour",
+"laissez",
+"fatigué"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:16",
+"target": "La salle était pleine quand le concert a commencé.",
+"ru": "Зал был полон, когда начался концерт.",
+"uk": "Зал був повний, коли почався концерт.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ce",
+"Aux",
+"Cette",
+"Les",
+"Que"
+]
+},
+{
+"correct": "salle",
+"distractors": [
+"cuisine",
+"gare",
+"sortie",
+"école",
+"rue"
+]
+},
+{
+"correct": "était",
+"distractors": [
+"est",
+"sont",
+"suis",
+"sommes",
+"êtes"
+]
+},
+{
+"correct": "pleine",
+"distractors": [
+"sœur",
+"route",
+"lisais",
+"appelé",
+"message"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"si",
+"car",
+"mais",
+"comme"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"les",
+"du",
+"au",
+"que",
+"et"
+]
+},
+{
+"correct": "concert",
+"distractors": [
+"encore",
+"réveil",
+"fermé",
+"aperçu",
+"pas"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avons",
+"avaient",
+"avions",
+"encore"
+]
+},
+{
+"correct": "commencé",
+"distractors": [
+"route",
+"vérifiait",
+"freiné",
+"sonnette",
+"perdu"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:17",
+"target": "J’étais à la gare quand tu as écrit.",
+"ru": "Я был на вокзале, когда ты написала.",
+"uk": "Я був на вокзалі, коли ти написав.",
+"tiles": [
+{
+"correct": "J’étais",
+"distractors": [
+"J’ai",
+"L’écran",
+"Qu’il",
+"S’est",
+"Qu’elle"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"aux",
+"du",
+"de",
+"les"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"maison",
+"école",
+"salle",
+"rue",
+"chambre"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"car",
+"comme",
+"mais",
+"si"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"elle",
+"je",
+"vous",
+"nous",
+"ils"
+]
+},
+{
+"correct": "as",
+"distractors": [
+"avait",
+"avons",
+"a",
+"ont",
+"avaient"
+]
+},
+{
+"correct": "écrit",
+"distractors": [
+"écrivais",
+"table",
+"annoncé",
+"travaillais",
+"garage"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:18",
+"target": "Nous avions faim quand la soupe est arrivée.",
+"ru": "Когда принесли суп, мы были голодны.",
+"uk": "Коли принесли суп, ми були голодні.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Elles",
+"Je",
+"Il",
+"Tu",
+"Ils"
+]
+},
+{
+"correct": "avions",
+"distractors": [
+"magasin",
+"encore",
+"lunettes",
+"gant",
+"départ"
+]
+},
+{
+"correct": "faim",
+"distractors": [
+"faisait",
+"aperçu",
+"enfants",
+"sauté",
+"encore"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"si",
+"mais",
+"comme",
+"car"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"cette",
+"ces",
+"aux",
+"à",
+"les"
+]
+},
+{
+"correct": "soupe",
+"distractors": [
+"miel",
+"lait",
+"riz",
+"café",
+"sel"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"es",
+"sont",
+"êtes",
+"sommes"
+]
+},
+{
+"correct": "arrivée",
+"distractors": [
+"arrivées",
+"arrivés",
+"parc",
+"quai",
+"valises"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:19",
+"target": "Les élèves attendaient quand on a annoncé le départ.",
+"ru": "Ученики ждали, когда объявили отправление.",
+"uk": "Учні чекали, коли оголосили відправлення.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Du",
+"Ces",
+"Une",
+"La",
+"Que"
+]
+},
+{
+"correct": "élèves",
+"distractors": [
+"marchais",
+"vérifiait",
+"chauffait",
+"cherchais",
+"sœur"
+]
+},
+{
+"correct": "attendaient",
+"distractors": [
+"attendions",
+"vélo",
+"fermé",
+"radio",
+"train"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"que",
+"si",
+"comme",
+"car"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"nous",
+"elle",
+"vous",
+"elles",
+"tu"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"avaient",
+"avait",
+"avions",
+"encore"
+]
+},
+{
+"correct": "annoncé",
+"distractors": [
+"pleine",
+"valise",
+"soupe",
+"rasais",
+"pain"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"à",
+"la",
+"que",
+"et",
+"pour"
+]
+},
+{
+"correct": "départ",
+"distractors": [
+"magasin",
+"tombée",
+"alors",
+"marchait",
+"froid"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:20",
+"target": "Ils étaient en route quand j’ai reçu la nouvelle.",
+"ru": "Они были в пути, когда я получил известие.",
+"uk": "Вони були в дорозі, коли я отримав новину.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Tu",
+"Il",
+"Je",
+"Nous",
+"On"
+]
+},
+{
+"correct": "étaient",
+"distractors": [
+"encore",
+"valise",
+"magasin",
+"radio",
+"café"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "route",
+"distractors": [
+"aperçu",
+"alors",
+"répondait",
+"bruit",
+"banc"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"comme",
+"et",
+"que",
+"mais"
+]
+},
+{
+"correct": "j’ai",
+"distractors": [
+"j’étais",
+"qu’il",
+"l’escalier",
+"m’habillais",
+"m’endormais"
+]
+},
+{
+"correct": "reçu",
+"distractors": [
+"passeport",
+"formulaire",
+"billet",
+"dossier",
+"ticket"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"du",
+"ces",
+"au",
+"aux",
+"que"
+]
+},
+{
+"correct": "nouvelle",
+"distractors": [
+"coupé",
+"marchait",
+"répondait",
+"vélo",
+"vérifiait"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:21",
+"target": "Pendant que je rangeais, Léa a trouvé le reçu.",
+"ru": "Пока я убирался, Леа нашла квитанцию.",
+"uk": "Поки я прибирав, Леа знайшла чек.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"mais",
+"car",
+"quand",
+"comme",
+"si"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"nous",
+"vous",
+"on",
+"elle",
+"il"
+]
+},
+{
+"correct": "rangeais",
+"distractors": [
+"rasais",
+"magasin",
+"chaud",
+"pluie",
+"prix"
+]
+},
+{
+"correct": "Léa",
+"distractors": [
+"Anna",
+"Paul",
+"Julie",
+"Tom",
+"Marie"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avez",
+"avaient",
+"ont",
+"avons"
+]
+},
+{
+"correct": "trouvé",
+"distractors": [
+"faim",
+"chanson",
+"vous",
+"entendu",
+"magasin"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"ces",
+"des",
+"aux",
+"et"
+]
+},
+{
+"correct": "reçu",
+"distractors": [
+"passeport",
+"billet",
+"badge",
+"ticket",
+"formulaire"
+]
+}
+],
+"alternatives": [
+"Léa a trouvé le reçu pendant que je rangeais."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:22",
+"target": "Pendant que nous attendions, le médecin est sorti.",
+"ru": "Пока мы ждали, вышел врач.",
+"uk": "Поки ми чекали, вийшов лікар.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"et",
+"mais",
+"comme",
+"quand",
+"car"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"je",
+"on",
+"ils",
+"elle",
+"il"
+]
+},
+{
+"correct": "attendions",
+"distractors": [
+"attendaient",
+"attendait",
+"ballon",
+"déraillé",
+"commencé"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"au",
+"de",
+"aux",
+"et"
+]
+},
+{
+"correct": "médecin",
+"distractors": [
+"téléphone",
+"vibré",
+"crevé",
+"pleuvoir",
+"voisin"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sont",
+"suis",
+"es",
+"êtes",
+"sommes"
+]
+},
+{
+"correct": "sorti",
+"distractors": [
+"sortions",
+"soupe",
+"montait",
+"attendaient",
+"salle"
+]
+}
+],
+"alternatives": [
+"Le médecin est sorti pendant que nous attendions."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:23",
+"target": "Pendant que tu conduisais, j’ai lu le message.",
+"ru": "Пока ты вела машину, я прочитал сообщение.",
+"uk": "Поки ти їхав, я прочитав повідомлення.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"si",
+"mais",
+"comme",
+"et",
+"quand"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"on",
+"elle",
+"nous",
+"il",
+"je"
+]
+},
+{
+"correct": "conduisais",
+"distractors": [
+"perdu",
+"tombé",
+"carte",
+"entré",
+"faisait"
+]
+},
+{
+"correct": "j’ai",
+"distractors": [
+"j’étais",
+"l’écran",
+"l’ai",
+"qu’elle",
+"quelqu’un"
+]
+},
+{
+"correct": "lu",
+"distractors": [
+"lumière",
+"lunettes",
+"sa",
+"au",
+"la"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"les",
+"à",
+"des",
+"et",
+"pour"
+]
+},
+{
+"correct": "message",
+"distractors": [
+"pain",
+"route",
+"rangeais",
+"salle",
+"gare"
+]
+}
+],
+"alternatives": [
+"J’ai lu le message pendant que tu conduisais."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:24",
+"target": "Pendant qu’il pleuvait, nous avons pris un café.",
+"ru": "Пока шел дождь, мы пили кофе.",
+"uk": "Поки йшов дощ, ми пили каву.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "qu’il",
+"distractors": [
+"qu’elle",
+"s’est",
+"j’ai",
+"l’écran",
+"m’endormais"
+]
+},
+{
+"correct": "pleuvait",
+"distractors": [
+"pleuvoir",
+"parlaient",
+"concert",
+"freiné",
+"cherchais"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"vous",
+"je",
+"il",
+"tu",
+"elles"
+]
+},
+{
+"correct": "avons",
+"distractors": [
+"a",
+"avait",
+"ont",
+"avaient",
+"as"
+]
+},
+{
+"correct": "pris",
+"distractors": [
+"prenez",
+"prenons",
+"prend",
+"prends",
+"prennent"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"à",
+"aux",
+"des",
+"les",
+"que"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"riz",
+"farine",
+"soupe",
+"sel",
+"beurre"
+]
+}
+],
+"alternatives": [
+"Nous avons pris un café pendant qu’il pleuvait."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:25",
+"target": "Pendant que Paul parlait, j’ai noté son numéro.",
+"ru": "Пока Поль говорил, я записал его номер.",
+"uk": "Поки Пол розмовляв, я записав його номер.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"comme",
+"mais",
+"car",
+"quand",
+"si"
+]
+},
+{
+"correct": "Paul",
+"distractors": [
+"Léa",
+"Anna",
+"Tom",
+"Julie",
+"Marie"
+]
+},
+{
+"correct": "parlait",
+"distractors": [
+"parler",
+"parles",
+"parle",
+"parlons",
+"parlaient"
+]
+},
+{
+"correct": "j’ai",
+"distractors": [
+"j’étais",
+"l’escalier",
+"qu’elle",
+"s’est",
+"l’écran"
+]
+},
+{
+"correct": "noté",
+"distractors": [
+"magasin",
+"dormiez",
+"ballon",
+"marchait",
+"fermés"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"leurs",
+"ses",
+"leur",
+"nos",
+"vos"
+]
+},
+{
+"correct": "numéro",
+"distractors": [
+"parlaient",
+"arrivé",
+"ballon",
+"arrivée",
+"arrivés"
+]
+}
+],
+"alternatives": [
+"J’ai noté son numéro pendant que Paul parlait."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:26",
+"target": "Pendant que la soupe chauffait, j’ai mis la table.",
+"ru": "Пока суп разогревался, я накрыл на стол.",
+"uk": "Поки суп нагрівався, я накрив на стіл.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"quand",
+"mais",
+"et",
+"comme",
+"car"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"du",
+"le",
+"des",
+"de",
+"au"
+]
+},
+{
+"correct": "soupe",
+"distractors": [
+"thé",
+"café",
+"sel",
+"farine",
+"pain"
+]
+},
+{
+"correct": "chauffait",
+"distractors": [
+"éteinte",
+"volets",
+"ballon",
+"répondait",
+"crevé"
+]
+},
+{
+"correct": "j’ai",
+"distractors": [
+"j’étais",
+"qu’elle",
+"s’est",
+"l’escalier",
+"quelqu’un"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"mets",
+"billets",
+"elle",
+"garde",
+"pomme"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"au",
+"un",
+"ce",
+"de",
+"et"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"banc",
+"cuisinait",
+"travaillais",
+"partis",
+"courais"
+]
+}
+],
+"alternatives": [
+"J’ai mis la table pendant que la soupe chauffait."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:27",
+"target": "Pendant que les enfants jouaient, le ballon a crevé.",
+"ru": "Пока дети играли, мяч лопнул.",
+"uk": "Поки діти гралися, м'яч лопнув.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"si",
+"comme",
+"quand",
+"mais",
+"car"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"une",
+"ce",
+"ces",
+"au",
+"et"
+]
+},
+{
+"correct": "enfants",
+"distractors": [
+"facteur",
+"frappé",
+"pleine",
+"montait",
+"faisait"
+]
+},
+{
+"correct": "jouaient",
+"distractors": [
+"banc",
+"écrivais",
+"message",
+"tombée",
+"départ"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"une",
+"ces",
+"aux",
+"ce",
+"et"
+]
+},
+{
+"correct": "ballon",
+"distractors": [
+"changé",
+"trouvé",
+"marchais",
+"lâché",
+"cinéma"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"avaient",
+"avait",
+"avions",
+"encore"
+]
+},
+{
+"correct": "crevé",
+"distractors": [
+"sommes",
+"alors",
+"déraillé",
+"était",
+"parlait"
+]
+}
+],
+"alternatives": [
+"Le ballon a crevé pendant que les enfants jouaient."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:28",
+"target": "Pendant que je cherchais mes lunettes, le bus est parti.",
+"ru": "Пока я искал свои очки, автобус уехал.",
+"uk": "Поки я шукав свої окуляри, автобус поїхав.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"quand",
+"comme",
+"mais",
+"car",
+"si"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"on",
+"nous",
+"ils",
+"elle",
+"vous"
+]
+},
+{
+"correct": "cherchais",
+"distractors": [
+"cherchez",
+"cherches",
+"cherchons",
+"chercher",
+"cherchent"
+]
+},
+{
+"correct": "mes",
+"distractors": [
+"tes",
+"ma",
+"leurs",
+"ses",
+"sa"
+]
+},
+{
+"correct": "lunettes",
+"distractors": [
+"gants",
+"veste",
+"valise",
+"écharpe",
+"sac"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"une",
+"des",
+"aux",
+"les",
+"et"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"voiture",
+"vélo",
+"métro",
+"train",
+"taxi"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"es",
+"sont",
+"suis",
+"êtes"
+]
+},
+{
+"correct": "parti",
+"distractors": [
+"parties",
+"partons",
+"partir",
+"pars",
+"déjà"
+]
+}
+],
+"alternatives": [
+"Le bus est parti pendant que je cherchais mes lunettes."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:29",
+"target": "Pendant qu’elle répondait, la ligne a coupé.",
+"ru": "Пока она отвечала, связь прервалась.",
+"uk": "Поки вона відповідала, зв'язок обірвався.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "qu’elle",
+"distractors": [
+"qu’il",
+"l’écran",
+"quelqu’un",
+"m’endormais",
+"l’escalier"
+]
+},
+{
+"correct": "répondait",
+"distractors": [
+"reçu",
+"nouvelle",
+"douchais",
+"dormiez",
+"message"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ce",
+"aux",
+"au",
+"que",
+"et"
+]
+},
+{
+"correct": "ligne",
+"distractors": [
+"facteur",
+"enfants",
+"passait",
+"vérifiait",
+"rasais"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avons",
+"ont",
+"avaient",
+"as"
+]
+},
+{
+"correct": "coupé",
+"distractors": [
+"courais",
+"couloir",
+"courant",
+"porte",
+"arrivée"
+]
+}
+],
+"alternatives": [
+"La ligne a coupé pendant qu’elle répondait."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:30",
+"target": "Pendant que vous dormiez, le facteur est passé.",
+"ru": "Пока вы спали, приходил почтальон.",
+"uk": "Поки ви спали, приходив листоноша.",
+"tiles": [
+{
+"correct": "Pendant",
+"distractors": [
+"À",
+"De",
+"En",
+"Sur",
+"Dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"car",
+"si",
+"mais",
+"quand",
+"comme"
+]
+},
+{
+"correct": "vous",
+"distractors": [
+"il",
+"ils",
+"on",
+"je",
+"nous"
+]
+},
+{
+"correct": "dormiez",
+"distractors": [
+"lâché",
+"arrivée",
+"parlait",
+"faim",
+"arrivé"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"ces",
+"cette",
+"au",
+"des",
+"une"
+]
+},
+{
+"correct": "facteur",
+"distractors": [
+"chaud",
+"arrivé",
+"route",
+"passagers",
+"vide"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"était",
+"étiez",
+"étaient"
+]
+},
+{
+"correct": "passé",
+"distractors": [
+"passagers",
+"sommes",
+"montais",
+"sont",
+"suis"
+]
+}
+],
+"alternatives": [
+"Le facteur est passé pendant que vous dormiez."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:31",
+"target": "J’ai entendu un bruit pendant que je lisais.",
+"ru": "Я услышал шум, когда читал.",
+"uk": "Я почув шум, коли читав.",
+"tiles": [
+{
+"correct": "J’ai",
+"distractors": [
+"J’étais",
+"M’habillais",
+"L’écran",
+"L’escalier",
+"Qu’il"
+]
+},
+{
+"correct": "entendu",
+"distractors": [
+"prix",
+"voisin",
+"douchais",
+"avions",
+"courant"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"aux",
+"la",
+"à",
+"et",
+"pour"
+]
+},
+{
+"correct": "bruit",
+"distractors": [
+"valise",
+"lâché",
+"passé",
+"soupe",
+"veste"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"et",
+"comme",
+"quand",
+"mais",
+"car"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"tu",
+"elle",
+"elles",
+"il",
+"ils"
+]
+},
+{
+"correct": "lisais",
+"distractors": [
+"passé",
+"sonné",
+"encore",
+"arrivée",
+"changé"
+]
+}
+],
+"alternatives": [
+"Pendant que je lisais, j’ai entendu un bruit."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:32",
+"target": "Le miroir est tombé pendant que je me rasais.",
+"ru": "Зеркало упало, когда я брился.",
+"uk": "Дзеркало впало, поки я голився.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Les",
+"Du",
+"Au",
+"Ces",
+"Et"
+]
+},
+{
+"correct": "miroir",
+"distractors": [
+"froid",
+"café",
+"changé",
+"cinéma",
+"sauté"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"es",
+"sommes",
+"êtes",
+"sont",
+"suis"
+]
+},
+{
+"correct": "tombé",
+"distractors": [
+"travaillais",
+"banc",
+"café",
+"passée",
+"pain"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"si",
+"quand",
+"comme",
+"mais",
+"car"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"on",
+"nous",
+"ils",
+"elles"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"plus",
+"lui",
+"ne",
+"la",
+"encore"
+]
+},
+{
+"correct": "rasais",
+"distractors": [
+"étaient",
+"soupe",
+"attendait",
+"pleuvait",
+"facteur"
+]
+}
+],
+"alternatives": [
+"Pendant que je me rasais, le miroir est tombé."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:33",
+"target": "Le réveil a sonné alors que je m’habillais.",
+"ru": "Будильник сработал, пока я одевалась.",
+"uk": "Будильник задзвонив, поки я одягалася.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Ce",
+"Les",
+"Aux",
+"À"
+]
+},
+{
+"correct": "réveil",
+"distractors": [
+"gant",
+"nouvelle",
+"arrivé",
+"magasin",
+"chauffait"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"as",
+"ont",
+"avons",
+"avait",
+"avaient"
+]
+},
+{
+"correct": "sonné",
+"distractors": [
+"sonnette",
+"son",
+"ballon",
+"était",
+"coupé"
+]
+},
+{
+"correct": "alors",
+"distractors": [
+"dînions",
+"sortions",
+"miroir",
+"enfants",
+"sorti"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"car",
+"quand",
+"comme",
+"mais",
+"si"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"nous",
+"vous",
+"il",
+"tu"
+]
+},
+{
+"correct": "m’habillais",
+"distractors": [
+"m’endormais",
+"s’est",
+"l’écran",
+"j’étais",
+"j’ai"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:34",
+"target": "Ma sœur est arrivée pendant que je me douchais.",
+"ru": "Моя сестра приехала, пока я принимала душ.",
+"uk": "Моя сестра прийшла, поки я приймала душ.",
+"tiles": [
+{
+"correct": "Ma",
+"distractors": [
+"Nos",
+"Leurs",
+"Vos",
+"Ton",
+"Son"
+]
+},
+{
+"correct": "sœur",
+"distractors": [
+"pleuvait",
+"crevé",
+"partis",
+"avions",
+"départ"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"sont",
+"suis",
+"êtes",
+"es"
+]
+},
+{
+"correct": "arrivée",
+"distractors": [
+"arrivées",
+"arrivés",
+"voisin",
+"parc",
+"père"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"comme",
+"mais",
+"et",
+"car",
+"quand"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"elle",
+"elles",
+"on",
+"vous"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"ne",
+"plus",
+"se",
+"te",
+"les"
+]
+},
+{
+"correct": "douchais",
+"distractors": [
+"pleuvoir",
+"freiné",
+"crevé",
+"aperçu",
+"banc"
+]
+}
+],
+"alternatives": [
+"Pendant que je me douchais, ma sœur est arrivée."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:35",
+"target": "Le chat est entré pendant que nous aérions.",
+"ru": "Кошка вошла, пока мы проветривали комнату.",
+"uk": "Кіт зайшов, поки ми провітрювали кімнату.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Au",
+"Une",
+"Ces",
+"Les",
+"Et"
+]
+},
+{
+"correct": "chat",
+"distractors": [
+"chauffait",
+"changé",
+"chaud",
+"chanson",
+"coupé"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"était",
+"suis",
+"sont",
+"êtes"
+]
+},
+{
+"correct": "entré",
+"distractors": [
+"entendu",
+"annoncé",
+"sauté",
+"passée",
+"pensais"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"et",
+"si",
+"mais",
+"quand",
+"comme"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"elles",
+"ils",
+"elle",
+"vous",
+"je"
+]
+},
+{
+"correct": "aérions",
+"distractors": [
+"conduisais",
+"sommes",
+"concert",
+"chanson",
+"sont"
+]
+}
+],
+"alternatives": [
+"Pendant que nous aérions, le chat est entré."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:36",
+"target": "Le téléphone a vibré pendant que je payais.",
+"ru": "Телефон завибрировал, пока я расплачивалась.",
+"uk": "Телефон завібрував, поки я платила.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"À",
+"Des",
+"Une",
+"Aux",
+"De"
+]
+},
+{
+"correct": "téléphone",
+"distractors": [
+"porte",
+"écrivais",
+"magasin",
+"attendait",
+"lisais"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"as",
+"avons",
+"ont",
+"avaient",
+"avait"
+]
+},
+{
+"correct": "vibré",
+"distractors": [
+"vide",
+"parti",
+"valise",
+"vous",
+"route"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"comme",
+"si",
+"quand",
+"et",
+"mais"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"vous",
+"nous",
+"elles",
+"ils",
+"on"
+]
+},
+{
+"correct": "payais",
+"distractors": [
+"cinéma",
+"pain",
+"pluie",
+"annoncé",
+"café"
+]
+}
+],
+"alternatives": [
+"Pendant que je payais, le téléphone a vibré."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:37",
+"target": "J’ai perdu mon gant pendant que je courais.",
+"ru": "Я потерял перчатку, когда бежал.",
+"uk": "Я загубив рукавичку, коли бігав.",
+"tiles": [
+{
+"correct": "J’ai",
+"distractors": [
+"J’étais",
+"L’escalier",
+"Quelqu’un",
+"L’ai",
+"L’écran"
+]
+},
+{
+"correct": "perdu",
+"distractors": [
+"montais",
+"vérifiait",
+"cuisinait",
+"travaillais",
+"voisin"
+]
+},
+{
+"correct": "mon",
+"distractors": [
+"sa",
+"votre",
+"leur",
+"mes",
+"ma"
+]
+},
+{
+"correct": "gant",
+"distractors": [
+"lisais",
+"marchait",
+"lâché",
+"chanson",
+"dormais"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"comme",
+"mais",
+"si",
+"quand",
+"car"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"on",
+"il",
+"nous",
+"tu",
+"vous"
+]
+},
+{
+"correct": "courais",
+"distractors": [
+"courant",
+"reçu",
+"rangeais",
+"attendions",
+"table"
+]
+}
+],
+"alternatives": [
+"Pendant que je courais, j’ai perdu mon gant."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:38",
+"target": "Un voisin a frappé pendant que nous dînions.",
+"ru": "Сосед постучал, пока мы ужинали.",
+"uk": "Сусід постукав, коли ми вечеряли.",
+"tiles": [
+{
+"correct": "Un",
+"distractors": [
+"Au",
+"Cette",
+"Ce",
+"Aux",
+"Et"
+]
+},
+{
+"correct": "voisin",
+"distractors": [
+"café",
+"gant",
+"soupe",
+"élèves",
+"lait"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"ont",
+"avaient",
+"avons",
+"as"
+]
+},
+{
+"correct": "frappé",
+"distractors": [
+"beau",
+"faim",
+"pensais",
+"marchais",
+"vous"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"si",
+"et",
+"quand",
+"comme",
+"mais"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"ils",
+"elles",
+"tu",
+"vous",
+"on"
+]
+},
+{
+"correct": "dînions",
+"distractors": [
+"fermé",
+"courant",
+"rangeais",
+"salle",
+"freiné"
+]
+}
+],
+"alternatives": [
+"Pendant que nous dînions, un voisin a frappé."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:39",
+"target": "Le train a freiné pendant que je marchais dans le couloir.",
+"ru": "Поезд затормозил, пока я шла по коридору.",
+"uk": "Поїзд загальмував, коли я йшла коридором.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ces",
+"Les",
+"Cette",
+"Ce",
+"Des"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"vélo",
+"taxi",
+"métro",
+"voiture"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"avait",
+"ont",
+"avaient",
+"as"
+]
+},
+{
+"correct": "freiné",
+"distractors": [
+"sortions",
+"vide",
+"nous",
+"faim",
+"vous"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"chez"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"si",
+"quand",
+"comme",
+"mais",
+"car"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"tu",
+"ils",
+"nous",
+"il",
+"elle"
+]
+},
+{
+"correct": "marchais",
+"distractors": [
+"marchait",
+"aperçu",
+"concert",
+"coupé",
+"encore"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"sur",
+"par",
+"pour",
+"à",
+"sans"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"les",
+"une",
+"des",
+"et",
+"pour"
+]
+},
+{
+"correct": "couloir",
+"distractors": [
+"attendions",
+"avions",
+"courais",
+"marchait",
+"élèves"
+]
+}
+],
+"alternatives": [
+"Pendant que je marchais dans le couloir, le train a freiné."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:40",
+"target": "La sonnette a retenti pendant que je montais l’escalier.",
+"ru": "Когда я поднимался по лестнице, зазвонил дверной звонок.",
+"uk": "Дзвінок у двері продзвенів, коли я піднімався сходами.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Le",
+"Des",
+"Au",
+"À",
+"Et"
+]
+},
+{
+"correct": "sonnette",
+"distractors": [
+"dînions",
+"sonné",
+"route",
+"vous",
+"freiné"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avons",
+"ont",
+"avaient",
+"as"
+]
+},
+{
+"correct": "retenti",
+"distractors": [
+"douchais",
+"arrivé",
+"partis",
+"vous",
+"commencé"
+]
+},
+{
+"correct": "pendant",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"car",
+"si",
+"quand",
+"comme",
+"mais"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elle",
+"vous",
+"tu",
+"elles",
+"on"
+]
+},
+{
+"correct": "montais",
+"distractors": [
+"montait",
+"avions",
+"éteinte",
+"avons",
+"fermés"
+]
+},
+{
+"correct": "l’escalier",
+"distractors": [
+"l’écran",
+"l’ai",
+"j’ai",
+"m’endormais",
+"qu’il"
+]
+}
+],
+"alternatives": [
+"Pendant que je montais l’escalier, la sonnette a retenti."
+]
+},
+{
+"lesson": 21,
+"id": "fr:21:41",
+"target": "Je cherchais un banc quand j’ai aperçu Léa.",
+"ru": "Я искал скамейку, когда увидел Леа.",
+"uk": "Я шукав лаву, коли побачив Леа.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"On",
+"Nous",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "cherchais",
+"distractors": [
+"cherchons",
+"cherches",
+"cherchent",
+"cherchez",
+"chercher"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"une",
+"les",
+"cette",
+"que",
+"et"
+]
+},
+{
+"correct": "banc",
+"distractors": [
+"avions",
+"lumière",
+"entré",
+"soupe",
+"élèves"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"que",
+"mais",
+"et",
+"comme",
+"car"
+]
+},
+{
+"correct": "j’ai",
+"distractors": [
+"j’étais",
+"l’escalier",
+"l’ai",
+"m’habillais",
+"qu’elle"
+]
+},
+{
+"correct": "aperçu",
+"distractors": [
+"dormais",
+"sœur",
+"faim",
+"avions",
+"garage"
+]
+},
+{
+"correct": "Léa",
+"distractors": [
+"Paul",
+"Tom",
+"Julie",
+"Marie",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:42",
+"target": "Paul allait au garage quand son vélo a déraillé.",
+"ru": "Поль ехал в мастерскую, когда на его велосипеде слетела цепь.",
+"uk": "Поль їхав у майстерню, коли на його велосипеді злетів ланцюг.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Marie",
+"Julie",
+"Léa",
+"Anna",
+"Tom"
+]
+},
+{
+"correct": "allait",
+"distractors": [
+"dormais",
+"train",
+"elle",
+"vibré",
+"pluie"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"une",
+"ces",
+"cette",
+"le",
+"la"
+]
+},
+{
+"correct": "garage",
+"distractors": [
+"pain",
+"téléphone",
+"freiné",
+"vide",
+"courais"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"et",
+"mais",
+"comme",
+"si",
+"que"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"votre",
+"leurs",
+"ta",
+"nos",
+"ses"
+]
+},
+{
+"correct": "vélo",
+"distractors": [
+"voiture",
+"métro",
+"train",
+"bus",
+"taxi"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"as",
+"avez",
+"ont",
+"avaient"
+]
+},
+{
+"correct": "déraillé",
+"distractors": [
+"parti",
+"parlait",
+"pleine",
+"arrivé",
+"concert"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:43",
+"target": "Je pensais à toi quand ton message est arrivé.",
+"ru": "Я думал о тебе, когда пришло твое сообщение.",
+"uk": "Я думав про тебе, коли прийшло твоє повідомлення.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Il",
+"On",
+"Ils",
+"Tu",
+"Nous"
+]
+},
+{
+"correct": "pensais",
+"distractors": [
+"garage",
+"gant",
+"travaillais",
+"entendu",
+"travaillait"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "toi",
+"distractors": [
+"il",
+"un",
+"son",
+"ils",
+"sa"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"et",
+"car",
+"comme",
+"que"
+]
+},
+{
+"correct": "ton",
+"distractors": [
+"votre",
+"tes",
+"mes",
+"notre",
+"leur"
+]
+},
+{
+"correct": "message",
+"distractors": [
+"rasais",
+"pleine",
+"lisais",
+"sonné",
+"garage"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"êtes",
+"sont",
+"sommes",
+"es"
+]
+},
+{
+"correct": "arrivé",
+"distractors": [
+"arrivés",
+"arrivées",
+"tard",
+"commencé",
+"voisines"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:44",
+"target": "Nous sortions du cinéma quand la pluie a commencé.",
+"ru": "Мы выходили из кинотеатра, когда начался дождь.",
+"uk": "Ми виходили з кінотеатру, коли почався дощ.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"On",
+"Il",
+"Je",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "sortions",
+"distractors": [
+"sorti",
+"sommes",
+"appelé",
+"radio",
+"sonné"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"les",
+"de",
+"un",
+"le",
+"que"
+]
+},
+{
+"correct": "cinéma",
+"distractors": [
+"faim",
+"cuisinait",
+"pleine",
+"mangions",
+"tombée"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"et",
+"comme",
+"que",
+"car"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"ces",
+"aux",
+"des",
+"que"
+]
+},
+{
+"correct": "pluie",
+"distractors": [
+"élèves",
+"courais",
+"valise",
+"pensais",
+"avions"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avez",
+"avaient",
+"avait",
+"ont",
+"avons"
+]
+},
+{
+"correct": "commencé",
+"distractors": [
+"table",
+"cherchais",
+"rasais",
+"annoncé",
+"était"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:45",
+"target": "La radio passait une chanson quand le courant a sauté.",
+"ru": "По радио играла песня, когда отключилось электричество.",
+"uk": "Радіо грало пісню, коли зникло світло.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"De",
+"Du",
+"Les",
+"À",
+"Que"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"enfants",
+"sommes",
+"passée",
+"chauffait",
+"commencé"
+]
+},
+{
+"correct": "passait",
+"distractors": [
+"passagers",
+"entendu",
+"faisait",
+"jouaient",
+"montait"
+]
+},
+{
+"correct": "une",
+"distractors": [
+"du",
+"de",
+"ce",
+"à",
+"des"
+]
+},
+{
+"correct": "chanson",
+"distractors": [
+"dormais",
+"sommes",
+"vide",
+"gant",
+"est"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"comme",
+"si",
+"que",
+"mais",
+"car"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"cette",
+"aux",
+"les",
+"à",
+"que"
+]
+},
+{
+"correct": "courant",
+"distractors": [
+"courais",
+"vous",
+"téléphone",
+"noté",
+"je"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"avaient",
+"avait",
+"avions",
+"encore"
+]
+},
+{
+"correct": "sauté",
+"distractors": [
+"départ",
+"elle",
+"dînions",
+"allait",
+"froid"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:46",
+"target": "Il montait l’escalier quand il a lâché sa valise.",
+"ru": "Он поднимался по лестнице, когда уронил чемодан.",
+"uk": "Він піднімався сходами, коли впустив свою валізу.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Tu",
+"Ils",
+"Elles",
+"Nous",
+"Je"
+]
+},
+{
+"correct": "montait",
+"distractors": [
+"montais",
+"volets",
+"rasais",
+"passée",
+"passé"
+]
+},
+{
+"correct": "l’escalier",
+"distractors": [
+"l’écran",
+"l’ai",
+"m’endormais",
+"j’étais",
+"qu’il"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"si",
+"mais",
+"comme",
+"que",
+"car"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"elles",
+"je",
+"nous",
+"tu",
+"vous"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avons",
+"as",
+"ont",
+"avaient",
+"avait"
+]
+},
+{
+"correct": "lâché",
+"distractors": [
+"cherchais",
+"pain",
+"payais",
+"pleuvait",
+"carte"
+]
+},
+{
+"correct": "sa",
+"distractors": [
+"notre",
+"leurs",
+"ta",
+"leur",
+"nos"
+]
+},
+{
+"correct": "valise",
+"distractors": [
+"écharpe",
+"sac",
+"gants",
+"lunettes",
+"veste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:47",
+"target": "Elle vérifiait les prix quand le magasin a fermé.",
+"ru": "Она проверяла цены, когда магазин закрылся.",
+"uk": "Вона перевіряла ціни, коли магазин зачинився.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Tu",
+"Ils",
+"Il",
+"Elles",
+"Nous"
+]
+},
+{
+"correct": "vérifiait",
+"distractors": [
+"noté",
+"valise",
+"vide",
+"sortions",
+"attendaient"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"du",
+"ce",
+"un",
+"que",
+"et"
+]
+},
+{
+"correct": "prix",
+"distractors": [
+"pris",
+"route",
+"soupe",
+"arrivé",
+"crevé"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"si",
+"mais",
+"que",
+"comme"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"de",
+"à",
+"aux",
+"une",
+"des"
+]
+},
+{
+"correct": "magasin",
+"distractors": [
+"avions",
+"faim",
+"dormiez",
+"sommes",
+"est"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"as",
+"avons",
+"ont",
+"avaient",
+"avait"
+]
+},
+{
+"correct": "fermé",
+"distractors": [
+"fermes",
+"fermer",
+"ferme",
+"ferment",
+"fermés"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:48",
+"target": "Le pain était encore chaud quand je l’ai coupé.",
+"ru": "Хлеб был еще теплым, когда я его разрезал.",
+"uk": "Хліб був ще теплим, коли я його різав.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"À",
+"Du",
+"La",
+"Au",
+"Que"
+]
+},
+{
+"correct": "pain",
+"distractors": [
+"soupe",
+"miel",
+"sel",
+"beurre",
+"farine"
+]
+},
+{
+"correct": "était",
+"distractors": [
+"suis",
+"étiez",
+"étaient",
+"est",
+"sont"
+]
+},
+{
+"correct": "encore",
+"distractors": [
+"leur",
+"y",
+"me",
+"pas",
+"ne"
+]
+},
+{
+"correct": "chaud",
+"distractors": [
+"chauffait",
+"chat",
+"chanson",
+"changé",
+"gare"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"et",
+"que",
+"comme",
+"car",
+"mais"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"nous",
+"elle",
+"tu",
+"elles",
+"ils"
+]
+},
+{
+"correct": "l’ai",
+"distractors": [
+"l’escalier",
+"l’écran",
+"quelqu’un",
+"s’est",
+"m’habillais"
+]
+},
+{
+"correct": "coupé",
+"distractors": [
+"courant",
+"courais",
+"couloir",
+"passé",
+"lâché"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:49",
+"target": "Les passagers attendaient quand l’écran a changé.",
+"ru": "Пассажиры ждали, когда информация на экране изменилась.",
+"uk": "Пасажири чекали, коли інформація на екрані змінилася.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"À",
+"Une",
+"La",
+"Un",
+"Que"
+]
+},
+{
+"correct": "passagers",
+"distractors": [
+"passait",
+"crevé",
+"payais",
+"lâché",
+"ballon"
+]
+},
+{
+"correct": "attendaient",
+"distractors": [
+"attendions",
+"crevé",
+"numéro",
+"ballon",
+"chambre"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"car",
+"si",
+"mais",
+"comme",
+"que"
+]
+},
+{
+"correct": "l’écran",
+"distractors": [
+"l’ai",
+"l’escalier",
+"s’est",
+"qu’il",
+"j’étais"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avaient",
+"avons",
+"avions",
+"chaud"
+]
+},
+{
+"correct": "changé",
+"distractors": [
+"chanson",
+"sorti",
+"suis",
+"passée",
+"fermés"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "fr:21:50",
+"target": "Je m’endormais quand quelqu’un a sonné.",
+"ru": "Я засыпал, когда кто-то позвонил в звонок.",
+"uk": "Я засинав, коли хтось подзвонив у дзвінок.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Ils",
+"Tu",
+"Elles",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "m’endormais",
+"distractors": [
+"m’habillais",
+"j’étais",
+"l’escalier",
+"s’est",
+"qu’elle"
+]
+},
+{
+"correct": "quand",
+"distractors": [
+"mais",
+"que",
+"et",
+"comme",
+"car"
+]
+},
+{
+"correct": "quelqu’un",
+"distractors": [
+"l’écran",
+"m’habillais",
+"qu’il",
+"j’étais",
+"qu’elle"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"avait",
+"avez",
+"avaient",
+"ont",
+"avons"
+]
+},
+{
+"correct": "sonné",
+"distractors": [
+"sonnette",
+"son",
+"rasais",
+"parti",
+"répondait"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:01",
+"target": "Je le vois.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Tu",
+"Il",
+"On",
+"Ils",
+"Nous"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"jamais",
+"en",
+"te",
+"la",
+"encore"
+]
+},
+{
+"correct": "vois",
+"distractors": [
+"réparer",
+"veut",
+"prends",
+"goûte",
+"range"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:02",
+"target": "Je la vois.",
+"ru": "Я вижу её.",
+"uk": "Я бачу її.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"Il",
+"Nous",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"en",
+"jamais",
+"se",
+"lui",
+"leur"
+]
+},
+{
+"correct": "vois",
+"distractors": [
+"vais",
+"laisser",
+"frais",
+"note",
+"préfère"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:03",
+"target": "Je les vois.",
+"ru": "Я вижу их.",
+"uk": "Я бачу їх.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"Tu",
+"Ils",
+"On",
+"Il"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"en",
+"me",
+"le",
+"pas",
+"se"
+]
+},
+{
+"correct": "vois",
+"distractors": [
+"acheter",
+"voulez",
+"montre",
+"lire",
+"sœur"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:04",
+"target": "Tu le connais.",
+"ru": "Ты его знаешь.",
+"uk": "Ти знаєш його.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"On",
+"Je",
+"Il",
+"Ils",
+"Nous"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"se",
+"lui",
+"ne",
+"pas",
+"y"
+]
+},
+{
+"correct": "connais",
+"distractors": [
+"message",
+"vous",
+"réparer",
+"coupe",
+"enfants"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:05",
+"target": "Tu la connais.",
+"ru": "Ты её знаешь.",
+"uk": "Ти знаєш її.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Nous",
+"Il",
+"Ils",
+"Je",
+"Elles"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"plus",
+"me",
+"ne",
+"en",
+"les"
+]
+},
+{
+"correct": "connais",
+"distractors": [
+"message",
+"monnaie",
+"sœur",
+"soupe",
+"portefeuille"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:06",
+"target": "Tu les connais.",
+"ru": "Ты их знаешь.",
+"uk": "Ти їх знаєш.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Nous",
+"Je",
+"Il",
+"Ils",
+"Elles"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"me",
+"le",
+"encore",
+"jamais",
+"plus"
+]
+},
+{
+"correct": "connais",
+"distractors": [
+"câble",
+"garder",
+"électronique",
+"cherche",
+"chercher"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:07",
+"target": "Elle le cherche.",
+"ru": "Она ищет его.",
+"uk": "Вона шукає його.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Il",
+"Ils",
+"Tu",
+"Je",
+"On"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"me",
+"te",
+"leur",
+"pas",
+"encore"
+]
+},
+{
+"correct": "cherche",
+"distractors": [
+"cherches",
+"cherchent",
+"chercher",
+"cherchais",
+"cherchons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:08",
+"target": "Elle la cherche.",
+"ru": "Она ищет её.",
+"uk": "Вона шукає її.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Elles",
+"Nous",
+"Je",
+"Il",
+"Ils"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"pas",
+"en",
+"encore",
+"leur",
+"plus"
+]
+},
+{
+"correct": "cherche",
+"distractors": [
+"chercher",
+"cherchez",
+"cherches",
+"cherchais",
+"cherchons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:09",
+"target": "Elle les cherche.",
+"ru": "Она ищет их.",
+"uk": "Вона шукає їх.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"On",
+"Nous",
+"Il",
+"Tu",
+"Elles"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"encore",
+"y",
+"jamais",
+"pas",
+"que"
+]
+},
+{
+"correct": "cherche",
+"distractors": [
+"cherches",
+"cherchez",
+"cherchais",
+"cherchons",
+"cherchent"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:10",
+"target": "Nous les attendons.",
+"ru": "Мы ждём их.",
+"uk": "Ми чекаємо на них.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"On",
+"Il",
+"Je",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"me",
+"te",
+"leur",
+"plus",
+"en"
+]
+},
+{
+"correct": "attendons",
+"distractors": [
+"portefeuille",
+"palier",
+"acheter",
+"légumes",
+"porte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:11",
+"target": "La porte, je la ferme.",
+"ru": "Дверь — я её закрываю.",
+"uk": "Двері - я її закриваю.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Te",
+"Jamais",
+"Plus",
+"Leur",
+"Encore"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"portefeuille",
+"range",
+"lire",
+"trouve",
+"allons"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"vous",
+"il",
+"ils",
+"elles",
+"nous"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"se",
+"te",
+"me",
+"les",
+"y"
+]
+},
+{
+"correct": "ferme",
+"distractors": [
+"fermes",
+"fermé",
+"fermer",
+"ferment",
+"fermés"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:12",
+"target": "Le sac, je le garde.",
+"ru": "Сумку я оставляю у себя.",
+"uk": "Сумку я залишаю у себе.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Les",
+"Plus",
+"Ne",
+"Y",
+"La"
+]
+},
+{
+"correct": "sac",
+"distractors": [
+"pull",
+"écharpe",
+"valise",
+"lunettes",
+"veste"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"nous",
+"elles",
+"tu",
+"ils"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"me",
+"leur",
+"les",
+"jamais",
+"ne"
+]
+},
+{
+"correct": "garde",
+"distractors": [
+"garder",
+"journal",
+"matin",
+"préfère",
+"demain"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:13",
+"target": "Les clés, je les prends.",
+"ru": "Ключи я беру с собой.",
+"uk": "Ключі я беру із собою.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Pas",
+"Plus",
+"Ne",
+"En",
+"La"
+]
+},
+{
+"correct": "clés",
+"distractors": [
+"note",
+"colis",
+"batterie",
+"journal",
+"rappeler"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"vous",
+"nous",
+"tu",
+"elle",
+"elles"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"en",
+"plus",
+"me",
+"leur",
+"la"
+]
+},
+{
+"correct": "prends",
+"distractors": [
+"prend",
+"prennent",
+"pris",
+"prenons",
+"prenez"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:14",
+"target": "La veste, je la range.",
+"ru": "Куртку я убираю на место.",
+"uk": "Куртку я прибираю на місце.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"En",
+"Me",
+"Le",
+"Pas",
+"Te"
+]
+},
+{
+"correct": "veste",
+"distractors": [
+"écharpe",
+"gants",
+"boîte",
+"pull",
+"valise"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"nous",
+"on",
+"elles",
+"ils",
+"elle"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"pas",
+"plus",
+"ne",
+"que"
+]
+},
+{
+"correct": "range",
+"distractors": [
+"veut",
+"pull",
+"reçu",
+"portefeuille",
+"sac"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:15",
+"target": "Le pain, je le coupe.",
+"ru": "Я режу хлеб.",
+"uk": "Я ріжу хліб.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Encore",
+"Jamais",
+"Ne",
+"Pas",
+"Leur"
+]
+},
+{
+"correct": "pain",
+"distractors": [
+"soupe",
+"farine",
+"lait",
+"miel",
+"thé"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"tu",
+"il",
+"ils",
+"vous"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"les",
+"te",
+"ne",
+"plus",
+"me"
+]
+},
+{
+"correct": "coupe",
+"distractors": [
+"cours",
+"pouvez",
+"peux",
+"porte",
+"montre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:16",
+"target": "Les verres, je les lave.",
+"ru": "Я мою стаканы.",
+"uk": "Я мию склянки.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Te",
+"Le",
+"Encore",
+"Jamais",
+"Se"
+]
+},
+{
+"correct": "verres",
+"distractors": [
+"nous",
+"frais",
+"brancher",
+"cette",
+"le"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"on",
+"elles",
+"ils",
+"il",
+"nous"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"lui",
+"ne",
+"se",
+"y",
+"me"
+]
+},
+{
+"correct": "lave",
+"distractors": [
+"brancher",
+"range",
+"photos",
+"pain",
+"rendre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:17",
+"target": "Les billets, je les imprime.",
+"ru": "Я распечатываю билеты.",
+"uk": "Я друкую квитки.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Le",
+"Y",
+"En",
+"Se",
+"Me"
+]
+},
+{
+"correct": "billets",
+"distractors": [
+"colis",
+"acheter",
+"pouvez",
+"retirons",
+"légumes"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"on",
+"elle",
+"ils",
+"tu"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"y",
+"me",
+"encore",
+"pas",
+"te"
+]
+},
+{
+"correct": "imprime",
+"distractors": [
+"pull",
+"cours",
+"goûte",
+"colis",
+"voyons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:18",
+"target": "La soupe, je la goûte.",
+"ru": "Суп — я его пробую.",
+"uk": "Суп - я його пробую.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Encore",
+"Jamais",
+"Me",
+"Pas",
+"Ce"
+]
+},
+{
+"correct": "soupe",
+"distractors": [
+"farine",
+"thé",
+"miel",
+"beurre",
+"lait"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"tu",
+"vous",
+"elles",
+"nous",
+"elle"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ne",
+"se",
+"en",
+"te",
+"me"
+]
+},
+{
+"correct": "goûte",
+"distractors": [
+"reconnaît",
+"rappeler",
+"porte",
+"enfants",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:19",
+"target": "Le pull, je l’essaie.",
+"ru": "Свитер — я его примеряю.",
+"uk": "Светр - я його приміряю.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Te",
+"Se",
+"Lui",
+"La",
+"Plus"
+]
+},
+{
+"correct": "pull",
+"distractors": [
+"veste",
+"boîte",
+"sac",
+"lunettes",
+"écharpe"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"on",
+"tu",
+"ils",
+"vous"
+]
+},
+{
+"correct": "l’essaie",
+"distractors": [
+"l’utilise",
+"l’entend",
+"l’essayer",
+"l’écoute",
+"est-ce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:20",
+"target": "Cette chanson, je l’écoute.",
+"ru": "Я слушаю эту песню.",
+"uk": "Я слухаю цю пісню.",
+"tiles": [
+{
+"correct": "Cette",
+"distractors": [
+"Ces",
+"Les",
+"Aux",
+"Le",
+"La"
+]
+},
+{
+"correct": "chanson",
+"distractors": [
+"monnaie",
+"colis",
+"journal",
+"attendons",
+"rappeler"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"ils",
+"nous",
+"tu",
+"elles",
+"vous"
+]
+},
+{
+"correct": "l’écoute",
+"distractors": [
+"l’utilise",
+"l’essayer",
+"l’essaie",
+"l’entend",
+"est-ce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:21",
+"target": "Je ne le trouve pas.",
+"ru": "Я его не нахожу.",
+"uk": "Я його не знаходжу.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Tu",
+"Ils",
+"Nous",
+"Il",
+"Elles"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"te",
+"me",
+"leur",
+"y",
+"lui"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"leur",
+"en",
+"lui",
+"la",
+"jamais"
+]
+},
+{
+"correct": "trouve",
+"distractors": [
+"prends",
+"soupe",
+"montre",
+"elle",
+"rendre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"leur",
+"lui",
+"y",
+"me",
+"la"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:22",
+"target": "Elle ne la reconnaît pas.",
+"ru": "Она её не узнаёт.",
+"uk": "Вона її не впізнає.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Nous",
+"Il",
+"Je",
+"Tu",
+"Ils"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"plus",
+"se",
+"encore",
+"me",
+"le"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"les",
+"leur",
+"en",
+"y",
+"que"
+]
+},
+{
+"correct": "reconnaît",
+"distractors": [
+"pouvez",
+"gants",
+"batterie",
+"matin",
+"demain"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"jamais",
+"y",
+"le",
+"lui",
+"les"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:23",
+"target": "Nous ne les voyons pas.",
+"ru": "Мы их не видим.",
+"uk": "Ми їх не бачимо.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"On",
+"Elles",
+"Ils",
+"Il",
+"Je"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"plus",
+"le",
+"leur",
+"se",
+"la"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"jamais",
+"me",
+"encore",
+"la",
+"que"
+]
+},
+{
+"correct": "voyons",
+"distractors": [
+"montre",
+"mets",
+"recharge",
+"billets",
+"mis"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"te",
+"jamais",
+"se",
+"y",
+"le"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:24",
+"target": "On ne l’entend pas.",
+"ru": "Мы его не слышим.",
+"uk": "Ми його не чуємо.",
+"tiles": [
+{
+"correct": "On",
+"distractors": [
+"Je",
+"Elles",
+"Nous",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"jamais",
+"plus",
+"les",
+"y",
+"le"
+]
+},
+{
+"correct": "l’entend",
+"distractors": [
+"l’écoute",
+"l’essayer",
+"l’utilise",
+"l’essaie",
+"est-ce"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"y",
+"lui",
+"me",
+"se",
+"le"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:25",
+"target": "Ils ne le prennent pas.",
+"ru": "Они его не берут.",
+"uk": "Вони його не беруть.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Tu",
+"Je",
+"Il",
+"Nous",
+"On"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"se",
+"encore",
+"me",
+"y",
+"lui"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"se",
+"leur",
+"jamais",
+"y",
+"que"
+]
+},
+{
+"correct": "prennent",
+"distractors": [
+"prenons",
+"pris",
+"prend",
+"prends",
+"prenez"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"te",
+"les",
+"la",
+"y"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:26",
+"target": "Tu les as ?",
+"ru": "Они у тебя есть?",
+"uk": "Вони у тебе є?",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Nous",
+"Elles",
+"Je",
+"On",
+"Ils"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"le",
+"pas",
+"te",
+"en",
+"lui"
+]
+},
+{
+"correct": "as",
+"distractors": [
+"avons",
+"avait",
+"ont",
+"avez",
+"a"
+]
+}
+],
+"alternatives": [
+"Est-ce que tu les as ?"
+]
+},
+{
+"lesson": 22,
+"id": "fr:22:27",
+"target": "Vous la voulez ?",
+"ru": "Вы её хотите?",
+"uk": "Ви її хочете?",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Je",
+"Ils",
+"Elles",
+"Nous",
+"On"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"leur",
+"en",
+"lui",
+"y"
+]
+},
+{
+"correct": "voulez",
+"distractors": [
+"voudrais",
+"chambre",
+"pouvez",
+"signer",
+"répéter"
+]
+}
+],
+"alternatives": [
+"Est-ce que vous la voulez ?"
+]
+},
+{
+"lesson": 22,
+"id": "fr:22:28",
+"target": "Est-ce que je peux le garder ?",
+"ru": "Можно я его оставлю себе?",
+"uk": "Чи можна я його залишу собі?",
+"tiles": [
+{
+"correct": "Est-ce",
+"distractors": [
+"Est-elle",
+"Es-tu",
+"Avez-vous",
+"Est-il",
+"Sont-ils"
+]
+},
+{
+"correct": "que",
+"distractors": [
+"quand",
+"comme",
+"mais",
+"car",
+"si"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"elles",
+"on",
+"ils",
+"tu"
+]
+},
+{
+"correct": "peux",
+"distractors": [
+"peuvent",
+"pouvons",
+"peut",
+"pouvez",
+"place"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"leur",
+"se",
+"te",
+"me",
+"pas"
+]
+},
+{
+"correct": "garder",
+"distractors": [
+"garde",
+"veste",
+"clés",
+"ferme",
+"prête"
+]
+}
+],
+"alternatives": [
+"Je peux le garder ?"
+]
+},
+{
+"lesson": 22,
+"id": "fr:22:29",
+"target": "Tu vas les chercher ?",
+"ru": "Ты собираешься их забрать?",
+"uk": "Ти збираєшся їх забрати?",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Elles",
+"Il",
+"Nous",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "vas",
+"distractors": [
+"allons",
+"allais",
+"vont",
+"vais",
+"va"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"ne",
+"pas",
+"encore",
+"me",
+"se"
+]
+},
+{
+"correct": "chercher",
+"distractors": [
+"cherchent",
+"cherchais",
+"cherches",
+"cherchez",
+"cherchons"
+]
+}
+],
+"alternatives": [
+"Est-ce que tu vas les chercher ?",
+"Vas-tu les chercher ?"
+]
+},
+{
+"lesson": 22,
+"id": "fr:22:30",
+"target": "Je voudrais l’essayer.",
+"ru": "Я хотел бы его примерить.",
+"uk": "Я хотів би його приміряти.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Tu",
+"Elles",
+"Nous",
+"Ils"
+]
+},
+{
+"correct": "voudrais",
+"distractors": [
+"veut",
+"veux",
+"voulez",
+"veulent",
+"voulons"
+]
+},
+{
+"correct": "l’essayer",
+"distractors": [
+"l’écoute",
+"l’entend",
+"l’utilise",
+"l’essaie",
+"est-ce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:31",
+"target": "Je vais la rappeler.",
+"ru": "Я ей перезвоню.",
+"uk": "Я передзвоню їй.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Ils",
+"Tu",
+"Nous",
+"On",
+"Elles"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"va",
+"vont",
+"allais",
+"allez",
+"allons"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"se",
+"lui",
+"jamais",
+"y",
+"le"
+]
+},
+{
+"correct": "rappeler",
+"distractors": [
+"câble",
+"soupe",
+"ligne",
+"retirons",
+"attendons"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:32",
+"target": "Nous allons le réparer.",
+"ru": "Мы собираемся его починить.",
+"uk": "Ми збираємося його відремонтувати.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"On",
+"Tu",
+"Il",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "allons",
+"distractors": [
+"allez",
+"allais",
+"va",
+"vais",
+"vont"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"plus",
+"te",
+"ne",
+"en",
+"que"
+]
+},
+{
+"correct": "réparer",
+"distractors": [
+"chargeur",
+"garder",
+"peut",
+"connais",
+"voudrais"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:33",
+"target": "Elle doit les rendre.",
+"ru": "Она должна их вернуть.",
+"uk": "Вона має їх повернути.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Elles",
+"On",
+"Nous",
+"Ils",
+"Je"
+]
+},
+{
+"correct": "doit",
+"distractors": [
+"doivent",
+"dois",
+"devons",
+"devez",
+"faut"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"en",
+"se",
+"jamais",
+"le",
+"pas"
+]
+},
+{
+"correct": "rendre",
+"distractors": [
+"prennent",
+"gants",
+"matin",
+"vois",
+"nous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:34",
+"target": "Tu peux la laisser ici.",
+"ru": "Ты можешь оставить её здесь.",
+"uk": "Ти можеш залишити її тут.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Il",
+"Nous",
+"Elles",
+"Ils",
+"Je"
+]
+},
+{
+"correct": "peux",
+"distractors": [
+"peut",
+"peuvent",
+"pouvons",
+"pouvez",
+"place"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"encore",
+"lui",
+"pas",
+"le",
+"en"
+]
+},
+{
+"correct": "laisser",
+"distractors": [
+"laisse",
+"laissé",
+"laissez",
+"ouvre",
+"prendre"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:35",
+"target": "Le journal, je préfère le lire demain.",
+"ru": "Я предпочитаю завтра почитать газету.",
+"uk": "Я волію почитати газету завтра.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Leur",
+"Y",
+"Me",
+"Pas",
+"Jamais"
+]
+},
+{
+"correct": "journal",
+"distractors": [
+"coupe",
+"ferme",
+"trouve",
+"peux",
+"légumes"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"elle",
+"elles",
+"on",
+"vous"
+]
+},
+{
+"correct": "préfère",
+"distractors": [
+"montre",
+"laisser",
+"message",
+"coupe",
+"laissez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"pas",
+"y",
+"me",
+"encore",
+"jamais"
+]
+},
+{
+"correct": "lire",
+"distractors": [
+"adresse",
+"lave",
+"billets",
+"note",
+"guichet"
+]
+},
+{
+"correct": "demain",
+"distractors": [
+"jamais",
+"aujourd’hui",
+"hier",
+"souvent",
+"toujours"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:36",
+"target": "On peut les acheter en ligne.",
+"ru": "Мы можем купить их онлайн.",
+"uk": "Ми можемо купити їх онлайн.",
+"tiles": [
+{
+"correct": "On",
+"distractors": [
+"Tu",
+"Ils",
+"Elles",
+"Je",
+"Il"
+]
+},
+{
+"correct": "peut",
+"distractors": [
+"pouvez",
+"peuvent",
+"pouvons",
+"peux",
+"place"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"encore",
+"ne",
+"lui",
+"jamais",
+"que"
+]
+},
+{
+"correct": "acheter",
+"distractors": [
+"cette",
+"clés",
+"nous",
+"billets",
+"le"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "ligne",
+"distractors": [
+"porte",
+"pain",
+"voyons",
+"lire",
+"pull"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:37",
+"target": "La pièce de monnaie, tu peux la laisser sur le palier.",
+"ru": "Монету ты можешь оставить на лестничной площадке.",
+"uk": "Монету ти можеш залишити на сходовому майданчику.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Lui",
+"Pas",
+"Les",
+"Encore",
+"Te"
+]
+},
+{
+"correct": "pièce",
+"distractors": [
+"trouve",
+"pouvez",
+"enfants",
+"préfère",
+"rendre"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "monnaie",
+"distractors": [
+"cours",
+"vais",
+"allons",
+"prends",
+"veste"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"nous",
+"elles",
+"elle",
+"ils",
+"vous"
+]
+},
+{
+"correct": "peux",
+"distractors": [
+"pouvons",
+"peuvent",
+"peut",
+"pouvez",
+"place"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"te",
+"jamais",
+"y",
+"pas",
+"que"
+]
+},
+{
+"correct": "laisser",
+"distractors": [
+"laissez",
+"laissé",
+"laisse",
+"ouvre",
+"prendre"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"devant",
+"à",
+"en",
+"dans",
+"chez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"plus",
+"encore",
+"pas",
+"ne",
+"que"
+]
+},
+{
+"correct": "palier",
+"distractors": [
+"préfère",
+"veut",
+"poche",
+"voyage",
+"vous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:38",
+"target": "Vous pouvez les poser là.",
+"ru": "Можете положить их туда.",
+"uk": "Можете покласти їх туди.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Il",
+"Elles",
+"On",
+"Tu",
+"Je"
+]
+},
+{
+"correct": "pouvez",
+"distractors": [
+"peux",
+"peut",
+"pouvons",
+"peuvent",
+"place"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"plus",
+"y",
+"leur",
+"me",
+"ne"
+]
+},
+{
+"correct": "poser",
+"distractors": [
+"connais",
+"voulez",
+"message",
+"recharge",
+"rendre"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"porte",
+"n’est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:39",
+"target": "Ce câble, je vais le brancher.",
+"ru": "Я собираюсь подключить этот кабель.",
+"uk": "Я підключу цей кабель.",
+"tiles": [
+{
+"correct": "Ce",
+"distractors": [
+"Aux",
+"Cette",
+"La",
+"Une",
+"Les"
+]
+},
+{
+"correct": "câble",
+"distractors": [
+"laisser",
+"gants",
+"portefeuille",
+"connais",
+"pouvez"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"ils",
+"il",
+"vous",
+"tu",
+"elle"
+]
+},
+{
+"correct": "vais",
+"distractors": [
+"allons",
+"va",
+"vas",
+"vont",
+"allez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"en",
+"ne",
+"la",
+"me",
+"que"
+]
+},
+{
+"correct": "brancher",
+"distractors": [
+"note",
+"soupe",
+"ligne",
+"colis",
+"lait"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:40",
+"target": "Elle veut la garder au frais.",
+"ru": "Она хочет хранить её в прохладе.",
+"uk": "Вона хоче зберігати її в прохолоді.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Tu",
+"Nous",
+"Ils",
+"On",
+"Je"
+]
+},
+{
+"correct": "veut",
+"distractors": [
+"veulent",
+"voudrais",
+"voulons",
+"veux",
+"voulez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"les",
+"me",
+"lui",
+"jamais",
+"plus"
+]
+},
+{
+"correct": "garder",
+"distractors": [
+"garde",
+"adresse",
+"matin",
+"vois",
+"soir"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"une",
+"les",
+"ce",
+"le",
+"un"
+]
+},
+{
+"correct": "frais",
+"distractors": [
+"monnaie",
+"chercher",
+"lire",
+"réparer",
+"demain"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:41",
+"target": "Ces photos, je les montre à ma sœur.",
+"ru": "Я показываю эти фотографии своей сестре.",
+"uk": "Я показую ці фотографії своїй сестрі.",
+"tiles": [
+{
+"correct": "Ces",
+"distractors": [
+"Du",
+"Un",
+"Ce",
+"Le",
+"La"
+]
+},
+{
+"correct": "photos",
+"distractors": [
+"voulez",
+"garder",
+"demain",
+"préfère",
+"vous"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"nous",
+"il",
+"ils",
+"vous"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"y",
+"te",
+"le",
+"plus",
+"que"
+]
+},
+{
+"correct": "montre",
+"distractors": [
+"recharge",
+"retrouve",
+"retirons",
+"palier",
+"verres"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "ma",
+"distractors": [
+"tes",
+"leur",
+"ton",
+"son",
+"leurs"
+]
+},
+{
+"correct": "sœur",
+"distractors": [
+"voudrais",
+"coupe",
+"journal",
+"goûte",
+"poche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:42",
+"target": "Cette adresse, je la note sur le reçu.",
+"ru": "Я пишу этот адрес на чеке.",
+"uk": "Я пишу цю адресу на чеку.",
+"tiles": [
+{
+"correct": "Cette",
+"distractors": [
+"Une",
+"Au",
+"Un",
+"Les",
+"Ces"
+]
+},
+{
+"correct": "adresse",
+"distractors": [
+"cours",
+"voyage",
+"électronique",
+"ligne",
+"attendons"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elle",
+"nous",
+"il",
+"elles",
+"vous"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"me",
+"encore",
+"les",
+"jamais",
+"se"
+]
+},
+{
+"correct": "note",
+"distractors": [
+"ligne",
+"rendre",
+"trouve",
+"pull",
+"prête"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"entre",
+"à",
+"de",
+"en",
+"dans"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"encore",
+"ne",
+"lui",
+"y",
+"que"
+]
+},
+{
+"correct": "reçu",
+"distractors": [
+"badge",
+"dossier",
+"passeport",
+"ticket",
+"formulaire"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:43",
+"target": "Ton message, je le lis dans le bus.",
+"ru": "Твоё сообщение я читаю в автобусе.",
+"uk": "Твоє повідомлення я читаю в автобусі.",
+"tiles": [
+{
+"correct": "Ton",
+"distractors": [
+"Sa",
+"Mon",
+"Nos",
+"Tes",
+"Votre"
+]
+},
+{
+"correct": "message",
+"distractors": [
+"coupe",
+"voudrais",
+"journal",
+"imprime",
+"portefeuille"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"on",
+"elle",
+"il",
+"ils",
+"tu"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"te",
+"plus",
+"leur",
+"la",
+"ne"
+]
+},
+{
+"correct": "lis",
+"distractors": [
+"la",
+"as",
+"on",
+"les",
+"un"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"par",
+"sur",
+"en",
+"pour",
+"chez"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"en",
+"leur",
+"te",
+"lui",
+"plus"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"métro",
+"train",
+"vélo",
+"taxi",
+"voiture"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:44",
+"target": "Ce chargeur, je le prête à Paul.",
+"ru": "Эту зарядку я одалживаю Полю.",
+"uk": "Цю зарядку я позичаю Полю.",
+"tiles": [
+{
+"correct": "Ce",
+"distractors": [
+"Du",
+"Au",
+"La",
+"Cette",
+"Une"
+]
+},
+{
+"correct": "chargeur",
+"distractors": [
+"allons",
+"mets",
+"cours",
+"manger",
+"vais"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"tu",
+"vous",
+"nous",
+"il",
+"elle"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"jamais",
+"se",
+"pas",
+"te",
+"que"
+]
+},
+{
+"correct": "prête",
+"distractors": [
+"prêts",
+"libres",
+"calme",
+"libre",
+"prêtes"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "Paul",
+"distractors": [
+"Léa",
+"Anna",
+"Tom",
+"Julie",
+"Marie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:45",
+"target": "Les gants, je les mets dans ma poche.",
+"ru": "Я кладу перчатки в карман.",
+"uk": "Я кладу рукавички в кишеню.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Leur",
+"Lui",
+"Jamais",
+"Plus",
+"Le"
+]
+},
+{
+"correct": "gants",
+"distractors": [
+"boîte",
+"pull",
+"veste",
+"sac",
+"écharpe"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elle",
+"tu",
+"nous",
+"elles",
+"vous"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"la",
+"te",
+"me",
+"encore",
+"en"
+]
+},
+{
+"correct": "mets",
+"distractors": [
+"mis",
+"billets",
+"elle",
+"garde",
+"pomme"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"sans",
+"de",
+"à",
+"avec",
+"sur"
+]
+},
+{
+"correct": "ma",
+"distractors": [
+"notre",
+"sa",
+"nos",
+"mes",
+"leurs"
+]
+},
+{
+"correct": "poche",
+"distractors": [
+"palier",
+"connais",
+"voyons",
+"lave",
+"ferme"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:46",
+"target": "La batterie, je la recharge le matin.",
+"ru": "Я заряжаю батарею утром.",
+"uk": "Я заряджаю акумулятор вранці.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Jamais",
+"Y",
+"Me",
+"Ce",
+"Que"
+]
+},
+{
+"correct": "batterie",
+"distractors": [
+"sœur",
+"monnaie",
+"manger",
+"cherche",
+"cherchons"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"elles",
+"il",
+"elle",
+"vous",
+"nous"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ne",
+"lui",
+"te",
+"jamais",
+"que"
+]
+},
+{
+"correct": "recharge",
+"distractors": [
+"cette",
+"pain",
+"veut",
+"sœur",
+"lire"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"plus",
+"y",
+"en",
+"se",
+"que"
+]
+},
+{
+"correct": "matin",
+"distractors": [
+"lundi",
+"minuit",
+"soir",
+"midi",
+"dimanche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:47",
+"target": "Les légumes, je les coupe avant de manger.",
+"ru": "Я нарезаю овощи перед едой.",
+"uk": "Я нарізаю овочі перед їжею.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Leur",
+"Ne",
+"Encore",
+"Plus",
+"La"
+]
+},
+{
+"correct": "légumes",
+"distractors": [
+"acheter",
+"elle",
+"cette",
+"chercher",
+"le"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"tu",
+"elle",
+"nous",
+"ils"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"me",
+"le",
+"encore",
+"en",
+"pas"
+]
+},
+{
+"correct": "coupe",
+"distractors": [
+"cours",
+"prennent",
+"voudrais",
+"adresse",
+"vois"
+]
+},
+{
+"correct": "avant",
+"distractors": [
+"à",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "manger",
+"distractors": [
+"mange",
+"mangent",
+"mangions",
+"mangeons",
+"manges"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:48",
+"target": "Le colis, nous le retirons au guichet.",
+"ru": "Посылку мы забираем в окошке выдачи.",
+"uk": "Посилку ми забираємо у віконці видачі.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Jamais",
+"Y",
+"Te",
+"En",
+"Ce"
+]
+},
+{
+"correct": "colis",
+"distractors": [
+"montre",
+"frais",
+"palier",
+"message",
+"cherche"
+]
+},
+{
+"correct": "nous",
+"distractors": [
+"elles",
+"tu",
+"je",
+"il",
+"ils"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"me",
+"encore",
+"y",
+"se",
+"en"
+]
+},
+{
+"correct": "retirons",
+"distractors": [
+"cherche",
+"imprime",
+"garde",
+"mets",
+"chercher"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"du",
+"cette",
+"aux",
+"un",
+"la"
+]
+},
+{
+"correct": "guichet",
+"distractors": [
+"palier",
+"voudrais",
+"monnaie",
+"attendons",
+"journal"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:49",
+"target": "Mon portefeuille électronique, je l’utilise en voyage.",
+"ru": "Я использую свой электронный кошелек, когда путешествую.",
+"uk": "Я використовую свій електронний гаманець, коли подорожую.",
+"tiles": [
+{
+"correct": "Mon",
+"distractors": [
+"Nos",
+"Ses",
+"Ta",
+"Leurs",
+"Votre"
+]
+},
+{
+"correct": "portefeuille",
+"distractors": [
+"porte",
+"batterie",
+"cherche",
+"prennent",
+"prends"
+]
+},
+{
+"correct": "électronique",
+"distractors": [
+"mets",
+"brancher",
+"chercher",
+"lave",
+"billets"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"il",
+"nous",
+"elles",
+"vous",
+"elle"
+]
+},
+{
+"correct": "l’utilise",
+"distractors": [
+"l’écoute",
+"l’entend",
+"l’essayer",
+"l’essaie",
+"est-ce"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "voyage",
+"distractors": [
+"poser",
+"peux",
+"message",
+"gants",
+"colis"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "fr:22:50",
+"target": "Les enfants, je les retrouve après le cours.",
+"ru": "Я встречаю детей после занятий.",
+"uk": "Я зустрічаюся з дітьми після уроків.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Me",
+"Jamais",
+"Leur",
+"Lui",
+"Ce"
+]
+},
+{
+"correct": "enfants",
+"distractors": [
+"chanson",
+"adresse",
+"vais",
+"brancher",
+"poser"
+]
+},
+{
+"correct": "je",
+"distractors": [
+"vous",
+"on",
+"il",
+"elle",
+"nous"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"encore",
+"y",
+"jamais",
+"me",
+"la"
+]
+},
+{
+"correct": "retrouve",
+"distractors": [
+"message",
+"ferme",
+"chanson",
+"guichet",
+"verres"
+]
+},
+{
+"correct": "après",
+"distractors": [
+"à",
+"de",
+"en",
+"sur",
+"dans"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"y",
+"plus",
+"pas",
+"encore",
+"que"
+]
+},
+{
+"correct": "cours",
+"distractors": [
+"coupe",
+"poche",
+"matin",
+"message",
+"soir"
+]
+}
+],
+"alternatives": []
+}
+]

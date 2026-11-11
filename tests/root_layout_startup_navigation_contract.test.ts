@@ -9,15 +9,15 @@ describe('root layout startup navigation contract', () => {
   it('mounts the root stack on first render and keeps startup states as overlays', () => {
     expect(source).not.toMatch(/if\s*\(!ready\)\s*\{\s*return\s*\(/);
     expect(source).not.toMatch(/if\s*\(isBanned\)\s*\{\s*return\s*\(/);
-    expect(source).toContain('const startupSplashVisible = !fontsReady || !ready');
-    expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
+    expect(source).toContain('const nativeSplashCanHide = fontsReady && ready');
+    expect(source).toContain('&& (effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady))');
     // зачем (PM-220): форма таймера изменилась (колбэк с bootMark), но правило то же — у флага
     // firstContentReady есть потолок FIRST_CONTENT_READY_FALLBACK_MS, который его выставляет.
     // зачем (05.10): в теле таймера теперь bootMark с объектом и отметка времени — шаблон допускает их, потолок тот же.
     expect(source).toMatch(/setTimeout\(\(\) => \{(?:(?!setTimeout\()[\s\S])*?setFirstContentReady\(true\);\s*\}, FIRST_CONTENT_READY_FALLBACK_MS\)/);
     expect(source.indexOf('<Stack')).toBeGreaterThan(-1);
     expect(source.indexOf('<Stack')).toBeLessThan(
-      source.indexOf('<StartupSplashHold visible={startupSplashVisible}'),
+      source.indexOf('{ready && effectiveShowOnboarding && ('),
     );
   });
 
@@ -27,7 +27,7 @@ describe('root layout startup navigation contract', () => {
   // строки) бесконечно — поэтому прошлые починки, ставившие потолки соседям,
   // не давали эффекта. Этот сторож охраняет ПРАВИЛО, а не конкретные числа:
   // менять значения можно, убирать потолок или выходить за секунду — нельзя.
-  it('каждый флаг гейта сплеша имеет потолок, и вход укладывается в 1 секунду', () => {
+  it('сохраняет потолки ожидания bootstrap, контента и Главной', () => {
     const readMs = (name: string): number => {
       const match = source.match(new RegExp(`const ${name} = ([\\d_]+);`));
       expect(match).toBeTruthy();

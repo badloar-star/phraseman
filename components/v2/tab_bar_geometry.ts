@@ -58,12 +58,37 @@ export function computeTabBarGeometry(input: Readonly<{
   return { left, right, width, slotW, overflow };
 }
 
-/** Левый край плашки активной вкладки (в координатах капсулы). */
+/** Левый край ЯЧЕЙКИ активной вкладки (в координатах капсулы). */
 export function tabCapLeft(slotW: number, index: number): number {
   return TAB_BAR_PAD + Math.max(0, index) * slotW;
 }
 
-/** Правый край плашки не должен выходить за внутренний правый край капсулы. */
+/**
+ * Предельная ширина плашки активной вкладки.
+ * зачем (владелец, фото планшета Samsung Galaxy Tab, 06.11: «фон вкладки справа обрезан, слева скруглён»): на планшете ячейка 150–250 dp, а плашка
+ * растягивалась на всю ячейку запечённой маской 128×64 с градиентом от яркого левого края к бледному правому — правый край таял и казался срезанным.
+ * Теперь плашка не шире TAB_CAP_MAX_W и стоит ПО ЦЕНТРУ ячейки с равными отступами слева и справа; на телефоне (ячейка ≤ 120 dp) всё как раньше.
+ */
+export const TAB_CAP_MAX_W = 120;
+
+export type TabCapMetrics = Readonly<{ capW: number; inset: number }>;
+
+/** Ширина плашки и отступ слева/справа от краёв ячейки (равные). */
+export function tabCapMetrics(slotW: number): TabCapMetrics {
+  const safe = Math.max(0, slotW);
+  const capW = Math.min(safe, TAB_CAP_MAX_W);
+  return { capW, inset: (safe - capW) / 2 };
+}
+
+/** Левый край самой ПЛАШКИ (в координатах капсулы): ячейка + равный отступ. */
+export function tabCapPillLeft(slotW: number, index: number): number {
+  return tabCapLeft(slotW, index) + tabCapMetrics(slotW).inset;
+}
+
+/** Плашка целиком внутри своей ячейки (с равными отступами) и внутри внутреннего правого края капсулы. */
 export function tabCapRightFits(width: number, slotW: number, index: number): boolean {
-  return tabCapLeft(slotW, index) + slotW <= width - TAB_BAR_PAD + 0.001;
+  const { capW, inset } = tabCapMetrics(slotW);
+  const pillLeft = tabCapLeft(slotW, index) + inset;
+  const cellRight = tabCapLeft(slotW, index) + slotW;
+  return pillLeft >= tabCapLeft(slotW, index) - 0.001 && pillLeft + capW <= cellRight + 0.001 && pillLeft + capW <= width - TAB_BAR_PAD + 0.001;
 }

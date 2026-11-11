@@ -7,8 +7,6 @@ export type DevToolAction =
   | 'preview-first-purchase-lesson'
   | 'run-onboarding'
   | 'open-motion-showcase'
-  | 'open-learning-v2-modes-showcase'
-  | 'open-learning-v2-authoring-preview'
   | 'open-shop'
   | 'open-paywall-plus'
   | 'preview-lesson-results'
@@ -285,47 +283,6 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-motion-showcase',
         icon: 'color-wand-outline',
         testID: 'dev-open-motion-showcase',
-      },
-    ],
-  },
-  // зачем (владелец, 25.08): ОТДЕЛЬНЫЙ подраздел от «Движение · все
-  // поверхности» — 7 одобренных режимов Learning V2 (docs/v2/mockups/
-  // index.html), каждый открывается ПОЛНОЭКРАННЫМ пробным мини-уроком.
-  {
-    id: 'learning-v2-modes-showcase',
-    order: 3,
-    title: 'Learning V2 · 7 режимов',
-    icon: 'school-outline',
-    testID: 'dev-hub-section-learning-v2-modes-showcase',
-    tools: [
-      {
-        id: 'learning-v2-modes-showcase',
-        order: 10,
-        title: 'Пробный мини-урок · 7 режимов',
-        detail: 'Каждый режим — полноэкранный работающий экран с той же анимацией смены задания, что в боевом уроке.',
-        actionLabel: 'Открыть',
-        action: 'open-learning-v2-modes-showcase',
-        icon: 'school-outline',
-        testID: 'dev-open-learning-v2-modes-showcase',
-      },
-    ],
-  },
-  {
-    id: 'learning-v2-authoring-preview',
-    order: 4,
-    title: 'Learning V2 · проверка сессий',
-    icon: 'school-outline',
-    testID: 'dev-hub-section-learning-v2-authoring-preview',
-    tools: [
-      {
-        id: 'learning-v2-authoring-preview',
-        order: 10,
-        title: 'Сессии на телефоне',
-        detail: 'Реальный текущий черновик из source-пакета. Прогресс, энергия и звёзды не записываются.',
-        actionLabel: 'Проверить',
-        action: 'open-learning-v2-authoring-preview',
-        icon: 'school-outline',
-        testID: 'dev-open-learning-v2-authoring-preview',
       },
     ],
   },

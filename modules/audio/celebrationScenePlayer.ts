@@ -22,6 +22,7 @@
  * единственный источник правды, не дублируем require() второй раз.
  */
 import { createAudioPlayer } from 'expo-audio';
+import { isProductionSfxMusicAllowed } from './sfx_music_policy';
 import { SOUND_EVENTS, type SoundEventId } from './sound_events';
 import {
   acquireCelebrationAudioSession,
@@ -56,6 +57,7 @@ function disposePlayer(player: PlayerLike): void {
  * из SOUND_EVENTS вида 'pm.celebration.energy_break'.
  */
 export function playCelebrationSceneSound(eventId: SoundEventId): void {
+  if (!isProductionSfxMusicAllowed()) return;
   const def = SOUND_EVENTS[eventId];
   if (!def || !def.source) return;
   const releaseSession = acquireCelebrationAudioSession();

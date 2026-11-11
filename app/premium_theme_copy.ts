@@ -30,7 +30,7 @@ const COPY: Readonly<Record<PremiumThemeId, ThemeCopy>> = Object.freeze({
   },
   grad_full_ref_gravity_blue: {
     title: all('Сингулярность открыта', 'Сингулярність відкрито', 'Singularity unlocked', 'Singularidad desbloqueada', 'Singularidade desbloqueada', 'Singularity unlocked', 'Singularitas terbuka', 'Tekillik açıldı', 'Osobliwość odblokowana'),
-    joke: all('Весь Learning V2 пройден. Гравитация пыталась остановить тебя. Не вышло.', 'Увесь Learning V2 пройдено. Гравітація намагалася тебе зупинити. Не вийшло.', 'Learning V2 complete. Gravity tried to stop you. It failed.', 'Learning V2 completado. La gravedad intentó detenerte. Falló.', 'Learning V2 concluído. A gravidade tentou parar você. Falhou.', 'Đã hoàn thành Learning V2. Trọng lực đã cố ngăn bạn. Không thành.', 'Learning V2 selesai. Gravitasi mencoba menghentikanmu. Gagal.', 'Learning V2 tamamlandı. Yerçekimi seni durdurmaya çalıştı. Başaramadı.', 'Learning V2 ukończony. Grawitacja próbowała cię zatrzymać. Nie dała rady.'),
+    joke: all('Гравитация пыталась остановить тебя. Не вышло.', 'Гравітація намагалася тебе зупинити. Не вийшло.', 'Gravity tried to stop you. It failed.', 'La gravedad intentó detenerte. Falló.', 'A gravidade tentou parar você. Falhou.', 'Trọng lực đã cố ngăn bạn. Không thành.', 'Gravitasi mencoba menghentikanmu. Gagal.', 'Yerçekimi seni durdurmaya çalıştı. Başaramadı.', 'Grawitacja próbowała cię zatrzymać. Nie dała rady.'),
   },
 });
 
@@ -46,7 +46,8 @@ const REQUIREMENT: Readonly<Record<PremiumThemeId, Copy>> = Object.freeze({
   // зачем (Ревизор 25.10, spire_old_names_guard): раздел называется «Пик» (D-решение 13.10), имена — как в spire_game_strings.toSpire
   grad_full_titanium: all('Подняться на вершину Пика', 'Піднятися на вершину Піку', 'Reach the top of Peak', 'Llega a la cima del Pico', 'Chegue ao topo do Pico', 'Chinh phục Đỉnh', 'Taklukkan Puncak', "Zirve'nin en üstüne çık", 'Zdobądź Szczyt'),
   grad_full_horizon: all('200 часов видео', '200 годин відео', 'Watch 200 hours of video', 'Mira 200 horas de vídeo', 'Assista a 200 horas de vídeo', 'Xem 200 giờ video', 'Tonton 200 jam video', '200 saat video izle', 'Obejrzyj 200 godzin wideo'),
-  grad_full_ref_gravity_blue: all('Пройти весь Learning V2', 'Пройти весь Learning V2', 'Complete all of Learning V2', 'Completa todo Learning V2', 'Conclua todo o Learning V2', 'Hoàn thành toàn bộ Learning V2', 'Selesaikan seluruh Learning V2', 'Learning V2’nin tamamını bitir', 'Ukończ cały Learning V2'),
+  // зачем: условие этой темы (прохождение удалённого курса занятий) снято — строка нужна только для полноты таблицы.
+  grad_full_ref_gravity_blue: all('Больше не выдаётся', 'Більше не видається', 'No longer available', 'Ya no está disponible', 'Não está mais disponível', 'Không còn được trao', 'Tidak lagi tersedia', 'Artık verilmiyor', 'Już niedostępna'),
 });
 
 export function premiumThemeRequirement(themeId: PremiumThemeId, lang: Lang): string {

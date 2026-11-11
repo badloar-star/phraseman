@@ -1,0 +1,2 @@
+const parser = require('C:/appsprojects/phraseman/node_modules/@typescript-eslint/parser/dist/index.js');
+module.exports = [{ files: ['**/*.ts', '**/*.tsx'], languageOptions: { parser, parserOptions: { ecmaVersion: 'latest', sourceType: 'module', ecmaFeatures: { jsx: true } } }, rules: { 'no-constant-condition': 'error', 'no-unreachable': 'error', 'constructor-super': 'error', 'valid-typeof': 'error' } }];

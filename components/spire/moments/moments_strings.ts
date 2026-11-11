@@ -36,6 +36,8 @@ const S = {
   placeBadge: ['{n} место', '{n} місце', 'Place {n}', 'Puesto {n}', '{n}º lugar', 'Hạng {n}', 'Ke-{n}', '{n}. sıra', '{n}. msc.'],
   floorTag: ['Этаж {n}', 'Поверх {n}', 'Floor {n}', 'Piso {n}', 'Andar {n}', 'Tầng {n}', 'Lantai {n}', 'Kat {n}', 'Piętro {n}'],
   promoBonus: ['+{n} {nw} за повышение', '+{n} {nw} за підвищення', '+{n} {nw} for moving up', '+{n} {nw} por subir', '+{n} {nw} por subir', '+{n} {nw} vì thăng hạng', '+{n} {nw} karena naik', 'Yükseldiğin için +{n} {nw}', '+{n} {nw} za awans'],
+  placeBonus: ['+{n} {nw} за {place} место', '+{n} {nw} за {place} місце', '+{n} {nw} for place {place}', '+{n} {nw} por el puesto {place}', '+{n} {nw} pelo {place}º lugar', '+{n} {nw} cho hạng {place}', '+{n} {nw} untuk peringkat {place}', '{place}. sıra için +{n} {nw}', '+{n} {nw} za {place}. miejsce'],
+  placeBonusNoRank: ['+{n} {nw} за место', '+{n} {nw} за місце', '+{n} {nw} for your place', '+{n} {nw} por tu puesto', '+{n} {nw} pela sua posição', '+{n} {nw} cho thứ hạng', '+{n} {nw} untuk peringkat', 'Sıralama için +{n} {nw}', '+{n} {nw} za miejsce'],
   // зачем (ночной выпуск 05.11, «энергия от Пика»): каждое повышение даёт +1 к запасу энергии (сервер пишет в той же транзакции, что и награду) — строка в существующих окнах повышения; 9 языков — Переводчик (peakEnergyPlus, docs/work/peak_energy_strings_9lang.md, 1336993b7).
   promoEnergy: ['+1 к запасу энергии', '+1 до запасу енергії', '+1 to energy', '+1 a la energía', '+1 na energia', '+1 năng lượng', '+1 energi', 'Enerjiye +1', '+1 do energii'],
   // зачем (энергия от Пика, строки Переводчика peakEnergyMinus): понижение снимает −1 к запасу энергии — одна строка в «Итоге недели», только если было что снимать

@@ -1,0 +1,958 @@
+[
+{
+"lesson": 1,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:01:01",
+"de:01:02"
+],
+"textByLocale": {
+"en": "Why do you need a verb? The first message to a friend can consist of just three words. One identifies the speaker, another connects them to the place, and the third describes the place itself. In a full German statement, don't omit the middle word.",
+"ru": "Зачем нужен глагол? Первое сообщение другу может состоять всего из трёх слов. Одно указывает на говорящего, другое связывает его с местом, третье сообщает само место. В полном немецком утверждении не выбрасывай среднее слово.",
+"uk": "Навіщо потрібен дієслово? Перше повідомлення другові може складатися лише з трьох слів. Одне вказує на того, хто говорить, інше пов'язує його з місцем, третє повідомляє саме місце. У повному німецькому твердженні не викидай середнього слова."
+}
+},
+{
+"exampleIds": [
+"de:01:02",
+"de:01:03"
+],
+"textByLocale": {
+"en": "Who is speaking? When the person changes, the short phrase changes. The words about the place and how you feel can remain the same. First, say the pair `ich bin` and `du bist` as a single unit.",
+"ru": "Кто говорит? Меняется человек — меняется короткая связка. Слова о месте и самочувствии могут остаться на прежнем месте. Сначала произнеси пару `ich bin` и `du bist` как единое целое.",
+"uk": "Хто каже? Змінюється людина – змінюється коротка зв'язка. Слова про місце та самопочуття можуть залишитися на колишньому місці. Спочатку вимови пару `ich bin` та `du bist` як єдине ціле."
+}
+},
+{
+"exampleIds": [
+"de:01:05",
+"de:01:07"
+],
+"textByLocale": {
+"en": "One or more? The name of one person behaves like `er` or `sie`: you need the form `ist`.\" Two people together are already plural. Don't look at the last word of the phrase to choose the verb.",
+"ru": "Один или несколько? Имя одного человека ведёт себя как `er` или `sie`: нужна форма `ist`. Два человека вместе — уже множественное число. Не смотри на последнее слово фразы, чтобы выбрать глагол.",
+"uk": "Один чи кілька? Ім'я однієї людини поводиться як `er` чи `sie`: потрібна форма `ist`. Дві людини разом — уже множина. Не дивися на останнє слово фрази, щоб вибрати дієслово."
+}
+},
+{
+"exampleIds": [
+"de:01:08",
+"de:01:09"
+],
+"textByLocale": {
+"en": "Who are you addressing? A friend is called `du bist`,\" and several friends are called `ihr seid`.\" The form `wir sind` includes the speaker. If the translation of the word \"you\" does not distinguish between these cases, look at the recipient's note.",
+"ru": "К кому обращаются? Другу говорят `du bist`, нескольким друзьям — `ihr seid`. Форма `wir sind` включает говорящего. Если перевод слова «вы» не различает этих случаев, посмотри на пометку адресата.",
+"uk": "До кого звертаються? Другу кажуть `du bist`, кільком друзям – `ihr seid`. Форма `wir sind` включає мовця. Якщо переклад слова «ви» не розрізняє цих випадків, подивися на позначку адресата."
+}
+},
+{
+"exampleIds": [
+"de:01:11",
+"de:01:12"
+],
+"textByLocale": {
+"en": "A place in one piece. `Zu Hause` means \"at home,\" not \"home.\" It's a ready-made place designation. Don't insert an additional article before `Hause`.\"",
+"ru": "Место одним кусочком. `Zu Hause` означает «дома», а не «домой». Это готовое обозначение места. Не вставляй дополнительный артикль перед словом `Hause`.",
+"uk": "Місце одним шматочком. `Zu Hause` означає \"вдома\", а не \"додому\". Це готове позначення місця. Не вставляйте додатковий артикль перед словом `Hause`."
+}
+},
+{
+"exampleIds": [
+"de:01:31",
+"de:01:33"
+],
+"textByLocale": {
+"en": "What's changed? When talking about an object, it can also be the subject. One window is `ist`,\" several windows are `sind`.\" The description `offen` after the copula doesn't need to be consistent in number.",
+"ru": "Что изменилось? Когда рассказываешь о предмете, он тоже может быть подлежащим. Одно окно — `ist`, несколько окон — `sind`. Описание `offen` после связки не нужно согласовывать по числу.",
+"uk": "Що змінилося? Коли розповідаєш про предмет, він теж може бути таким, що підлягає. Одне вікно – `ist`, кілька вікон – `sind`. Опис `offen` після зв'язки не потрібно узгоджувати за кількістю."
+}
+},
+{
+"exampleIds": [
+"de:01:41",
+"de:01:50"
+],
+"textByLocale": {
+"en": "Transfer to a new phrase. Cover the German answer and find the person being talked about. If there are several objects, belonging to the same person doesn't change anything: there are many keys, hence `sind`.\"",
+"ru": "Перенос на новую фразу. Закрой немецкий ответ и найди того, о ком идёт речь. Если предметов несколько, принадлежность одному человеку ничего не меняет: ключей много, поэтому `sind`.",
+"uk": "Перенесення на нову фразу. Закрий німецьку відповідь і знайди того, про кого йдеться. Якщо предметів кілька, приналежність до однієї людини нічого не змінює: ключів багато, тому `sind`."
+}
+}
+],
+"lab": [
+{
+"bad": "wäre",
+"chapter": 1,
+"id": "de:01:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"seid",
+"wäre",
+"bin"
+],
+"slot": 1
+},
+{
+"bad": "sein",
+"chapter": 1,
+"id": "de:01:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"wäre",
+"bist",
+"sein"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 1,
+"id": "de:01:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"seid",
+"bin",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "bist",
+"chapter": 2,
+"id": "de:01:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"sind",
+"bist",
+"sein"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 2,
+"id": "de:01:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 23,
+"options": [
+"seid",
+"ist",
+"war"
+],
+"slot": 1
+},
+{
+"bad": "bin",
+"chapter": 2,
+"id": "de:01:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 16,
+"options": [
+"bin",
+"sein",
+"bist"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 3,
+"id": "de:01:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 18,
+"options": [
+"bist",
+"sind",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 3,
+"id": "de:01:17:lab",
+"item": 17,
+"kind": "match",
+"near": 27,
+"options": [
+"ist",
+"seid",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "sind",
+"chapter": 3,
+"id": "de:01:19:lab",
+"item": 19,
+"kind": "build",
+"near": 25,
+"options": [
+"sind",
+"seid",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "ist",
+"chapter": 4,
+"id": "de:01:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 16,
+"options": [
+"bist",
+"wäre",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "bist",
+"chapter": 4,
+"id": "de:01:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 28,
+"options": [
+"bist",
+"sind",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 4,
+"id": "de:01:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"sind",
+"seid",
+"bist"
+],
+"slot": 2
+},
+{
+"bad": "ist",
+"chapter": 5,
+"id": "de:01:29:lab",
+"item": 29,
+"kind": "match",
+"near": 21,
+"options": [
+"bin",
+"sein",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "war",
+"chapter": 5,
+"id": "de:01:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"ist",
+"war",
+"bin"
+],
+"slot": 2
+},
+{
+"bad": "war",
+"chapter": 5,
+"id": "de:01:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"ist",
+"bist",
+"war"
+],
+"slot": 2
+},
+{
+"bad": "sind",
+"chapter": 6,
+"id": "de:01:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 39,
+"options": [
+"ist",
+"bist",
+"sind"
+],
+"slot": 2
+},
+{
+"bad": "sein",
+"chapter": 6,
+"id": "de:01:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 37,
+"options": [
+"ist",
+"sein",
+"bin"
+],
+"slot": 2
+},
+{
+"bad": "bist",
+"chapter": 6,
+"id": "de:01:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"sind",
+"bist",
+"war"
+],
+"slot": 3
+},
+{
+"bad": "sein",
+"chapter": 7,
+"id": "de:01:45:lab",
+"item": 45,
+"kind": "build",
+"near": 48,
+"options": [
+"ist",
+"sein",
+"wäre"
+],
+"slot": 2
+},
+{
+"bad": "bist",
+"chapter": 7,
+"id": "de:01:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"bist",
+"wäre",
+"ist"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"ich",
+"bin"
+],
+[
+"du",
+"bist"
+],
+[
+"er / sie / es",
+"ist"
+],
+[
+"wir / sie / Sie",
+"sind"
+],
+[
+"ihr",
+"seid"
+]
+],
+"title": {
+"en": "Saying where you are with `sein`",
+"ru": "Я здесь: формы `sein`",
+"uk": "Бути десь: `ich bin`, `du bist`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "de:01:02",
+"target": "Du bist hier.",
+"ru": "Ты здесь.",
+"uk": "Ти тут."
+},
+{
+"id": "de:01:03",
+"target": "Du bist müde.",
+"ru": "Ты устал.",
+"uk": "Ти втомився."
+},
+{
+"id": "de:01:05",
+"target": "Anna ist hier.",
+"ru": "Анна здесь.",
+"uk": "Анна тут."
+},
+{
+"id": "de:01:07",
+"target": "Wir sind hier.",
+"ru": "Мы здесь.",
+"uk": "Ми тут."
+},
+{
+"id": "de:01:08",
+"target": "Wir sind wach.",
+"ru": "Мы не спим.",
+"uk": "Ми не спимо."
+},
+{
+"id": "de:01:09",
+"target": "Ihr seid wach.",
+"ru": "Вы не спите.",
+"uk": "Ви не спите."
+},
+{
+"id": "de:01:11",
+"target": "Ich bin zu Hause.",
+"ru": "Я дома.",
+"uk": "Я вдома."
+},
+{
+"id": "de:01:12",
+"target": "Du bist zu Hause.",
+"ru": "Ты дома.",
+"uk": "Ти вдома."
+},
+{
+"id": "de:01:31",
+"target": "Die Tür ist offen.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені."
+},
+{
+"id": "de:01:33",
+"target": "Die Fenster sind offen.",
+"ru": "Окна открыты.",
+"uk": "Вікна відчинені."
+},
+{
+"id": "de:01:41",
+"target": "Anna und Tom sind hier.",
+"ru": "Анна и Том здесь.",
+"uk": "Анна та Том тут."
+},
+{
+"id": "de:01:50",
+"target": "Deine Schlüssel sind hier.",
+"ru": "Твои ключи здесь.",
+"uk": "Твої ключі тут."
+}
+]
+},
+{
+"lesson": 2,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:02:01",
+"de:02:02"
+],
+"textByLocale": {
+"en": "Imagine a table with forgotten things. You don't show any object, but recognize the right key or bag. Learn `der Schlüssel` and `die Tasche` as small signatures on the items themselves.",
+"ru": "Представь стол с забытыми вещами. Ты показываешь не любой предмет, а узнаёшь нужный ключ или сумку. Разучивай `der Schlüssel` и `die Tasche` как маленькие подписи на самих вещах.",
+"uk": "Уяви стіл із забутими речами. Ти показуєш не будь-який предмет, а дізнаєшся потрібний ключ чи сумку. Розучивай `der Schlüssel` та `die Tasche` як маленькі підписи на самих речах."
+}
+},
+{
+"exampleIds": [
+"de:02:03",
+"de:02:10"
+],
+"textByLocale": {
+"en": "Two different `das`. At the beginning of `Das ist`, you indicate: this. Further on, the name has its own article, even if it is also `das`. Therefore, two identical words in one phrase are not an error.",
+"ru": "Два разных `das`. В начале `Das ist` ты показываешь: вот это. Дальше у названия есть собственный артикль, даже если он тоже `das`. Поэтому два одинаковых слова в одной фразе не ошибка.",
+"uk": "Два різні `das`. На початку `Das ist` ти показуєш: ось це. Далі назва має власний артикль, навіть якщо вона теж `das`. Тому два однакові слова в одній фразі не помилка."
+}
+},
+{
+"exampleIds": [
+"de:02:04",
+"de:02:06"
+],
+"textByLocale": {
+"en": "What changes after `hier`? First, you can indicate the place: here is the thing you need. The verb remains before the name. Don't automatically assume the first word is the subject.",
+"ru": "Что меняется после `hier`? Сначала можно указать на место: вот здесь нужная вещь. Глагол остаётся перед названием. Не считай первое слово автоматически подлежащим.",
+"uk": "Що змінюється після `hier`? Спочатку можна зазначити місце: ось тут потрібна річ. Дієслово залишається перед назвою. Не вважай перше слово таким, що автоматично підлягає."
+}
+},
+{
+"exampleIds": [
+"de:02:16",
+"de:02:19"
+],
+"textByLocale": {
+"en": "How do you determine the gender? Gender can't be guessed from translation. Write the noun with the article and practice it in a completed phrase. Later, case may change the spelling of the article, but this does not change the word's gender.",
+"ru": "Как узнать род? По переводу род не угадывают. Запиши существительное с артиклем и учи его в готовой фразе. Позднее падеж может изменить написание артикля, но это не превращает слово в другой род.",
+"uk": "Як дізнатися рід? З перекладу рід не вгадують. Запиши іменник з артиклем і вчи його у готовій фразі. Пізніше відмінок може змінити написання артикля, але це не перетворює слово на інший рід."
+}
+},
+{
+"exampleIds": [
+"de:02:21",
+"de:02:26"
+],
+"textByLocale": {
+"en": "Plural. In the nominative case, for the group, we take `die` regardless of the gender in the singular. The word itself can also change: compare `Bank` and `Bänke`, they are talking about benches.",
+"ru": "Множественное число. В именительном падеже для группы берём `die` независимо от рода в единственном. Само слово тоже может измениться: сравни `Bank` и `Bänke`, речь здесь о скамейках.",
+"uk": "Множина. У називному відмінку для групи беремо `die` незалежно від роду в єдиному. Саме слово теж може змінитися: порівняй `Bank` та `Bänke`, мова тут про лави."
+}
+},
+{
+"exampleIds": [
+"de:02:27",
+"de:02:30"
+],
+"textByLocale": {
+"en": "How to describe a malfunction? Choose an object and associate it with `kaputt`.\" For one chair, use `ist`,\" for several, `sind`.\" The ending of the description remains the same.",
+"ru": "Как описать неисправность? Выбери предмет и свяжи его с `kaputt`. При одном стуле нужна форма `ist`, при нескольких — `sind`. Окончание описания при этом остаётся прежним.",
+"uk": "Як описати несправність? Вибери предмет та зв'яжи його з `kaputt`. За одного стільця потрібна форма `ist`, за кількох — `sind`. Закінчення опису при цьому залишається незмінним."
+}
+},
+{
+"exampleIds": [
+"de:02:34",
+"de:02:48"
+],
+"textByLocale": {
+"en": "Don't confuse number with the feminine gender. `Die` before one word doesn't necessarily indicate there are multiple objects. Look at the noun and verb together: `die Kiste ist`,\" but `die Kisten sind`.\"",
+"ru": "Не путай число с женским родом. `Die` перед одним словом ещё не говорит, что предметов много. Посмотри на существительное и глагол вместе: `die Kiste ist`, но `die Kisten sind`.",
+"uk": "Не плутай число з жіночим родом. `Die` перед одним словом ще не каже, що предметів багато. Подивись на іменник і дієслово разом: `die Kiste ist`, але `die Kisten sind`."
+}
+}
+],
+"lab": [
+{
+"bad": "die",
+"chapter": 1,
+"id": "de:02:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"der",
+"den",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 1,
+"id": "de:02:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 6,
+"options": [
+"den",
+"das",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "den",
+"chapter": 1,
+"id": "de:02:05:lab",
+"item": 5,
+"kind": "match",
+"near": 2,
+"options": [
+"den",
+"das",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "Den",
+"chapter": 2,
+"id": "de:02:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Die",
+"Den",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "den",
+"chapter": 2,
+"id": "de:02:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 34,
+"options": [
+"die",
+"den",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "Dem",
+"chapter": 2,
+"id": "de:02:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Die",
+"Des",
+"Dem"
+],
+"slot": 0
+},
+{
+"bad": "Der",
+"chapter": 3,
+"id": "de:02:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"Des",
+"Der",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "Der",
+"chapter": 3,
+"id": "de:02:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"Das",
+"Den",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "Der",
+"chapter": 3,
+"id": "de:02:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Der",
+"Dem",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "Das",
+"chapter": 4,
+"id": "de:02:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Das",
+"Des",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "Den",
+"chapter": 4,
+"id": "de:02:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"Den",
+"Dem",
+"Die"
+],
+"slot": 0
+},
+{
+"bad": "Den",
+"chapter": 4,
+"id": "de:02:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Das",
+"Die",
+"Den"
+],
+"slot": 0
+},
+{
+"bad": "Der",
+"chapter": 5,
+"id": "de:02:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Des",
+"Der",
+"Das"
+],
+"slot": 0
+},
+{
+"bad": "des",
+"chapter": 5,
+"id": "de:02:31:lab",
+"item": 31,
+"kind": "build",
+"near": 1,
+"options": [
+"der",
+"des",
+"die"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 5,
+"id": "de:02:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 10,
+"options": [
+"die",
+"der",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 6,
+"id": "de:02:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 5,
+"options": [
+"das",
+"die",
+"des"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 6,
+"id": "de:02:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 40,
+"options": [
+"des",
+"der",
+"das"
+],
+"slot": 2
+},
+{
+"bad": "Den",
+"chapter": 6,
+"id": "de:02:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Den",
+"Die",
+"Dem"
+],
+"slot": 0
+},
+{
+"bad": "Das",
+"chapter": 7,
+"id": "de:02:45:lab",
+"item": 45,
+"kind": "build",
+"near": 46,
+"options": [
+"Die",
+"Das",
+"Der"
+],
+"slot": 0
+},
+{
+"bad": "Des",
+"chapter": 7,
+"id": "de:02:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"Des",
+"Die",
+"Dem"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"der Schlüssel",
+"die Schlüssel"
+],
+[
+"die Tasche",
+"die Taschen"
+],
+[
+"das Handy",
+"die Handys"
+],
+[
+"die Bank",
+"die Bänke"
+],
+[
+"der Stuhl",
+"die Stühle"
+],
+[
+"das Zimmer",
+"die Zimmer"
+]
+],
+"title": {
+"en": "Naming things: `der`, `die`, `das`",
+"ru": "Как узнать предмет: `der`, `die`, `das`",
+"uk": "Назва предмета разом з артиклем"
+}
+},
+"exampleResolved": [
+{
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "de:02:02",
+"target": "Das ist die Tasche.",
+"ru": "Это сумка.",
+"uk": "Це сумка."
+},
+{
+"id": "de:02:03",
+"target": "Das ist das Handy.",
+"ru": "Это телефон.",
+"uk": "Це телефон."
+},
+{
+"id": "de:02:10",
+"target": "Das sind die Schlüssel.",
+"ru": "Это ключи.",
+"uk": "Це ключі."
+},
+{
+"id": "de:02:04",
+"target": "Hier ist der Schlüssel.",
+"ru": "Вот ключ.",
+"uk": "Ось ключ."
+},
+{
+"id": "de:02:06",
+"target": "Hier ist das Handy.",
+"ru": "Вот телефон.",
+"uk": "Ось телефон."
+},
+{
+"id": "de:02:16",
+"target": "Die Haltestelle ist dort.",
+"ru": "Остановка там.",
+"uk": "Зупинка там."
+},
+{
+"id": "de:02:19",
+"target": "Die Kasse ist hier.",
+"ru": "Касса здесь.",
+"uk": "Каса тут."
+},
+{
+"id": "de:02:21",
+"target": "Der Tisch ist frei.",
+"ru": "Стол свободен.",
+"uk": "Стіл вільний."
+},
+{
+"id": "de:02:26",
+"target": "Die Zimmer sind frei.",
+"ru": "Комнаты свободны.",
+"uk": "Кімнати вільні."
+},
+{
+"id": "de:02:27",
+"target": "Der Stuhl ist kaputt.",
+"ru": "Стул сломан.",
+"uk": "Стілець зламаний."
+},
+{
+"id": "de:02:30",
+"target": "Die Stühle sind kaputt.",
+"ru": "Стулья сломаны.",
+"uk": "Стільці зламані."
+},
+{
+"id": "de:02:34",
+"target": "Das sind die Karten.",
+"ru": "Это карты.",
+"uk": "Це карти."
+},
+{
+"id": "de:02:48",
+"target": "Die Kisten sind schwer.",
+"ru": "Ящики тяжёлые.",
+"uk": "Ящики важкі."
+}
+]
+}
+]

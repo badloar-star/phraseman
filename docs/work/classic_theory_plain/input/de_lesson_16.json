@@ -1,0 +1,686 @@
+{
+ "lang": "de",
+ "lesson": 16,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:16:01",
+   "target": "Ich habe heute gekocht.",
+   "ru": "Я сегодня готовил.",
+   "uk": "Я сьогодні готував."
+  },
+  {
+   "id": "de:16:02",
+   "target": "Du hast gestern gekocht.",
+   "ru": "Ты вчера готовил.",
+   "uk": "Ти вчора готував."
+  },
+  {
+   "id": "de:16:03",
+   "target": "Anna hat Kaffee gemacht.",
+   "ru": "Анна приготовила кофе.",
+   "uk": "Анна приготувала каву."
+  },
+  {
+   "id": "de:16:04",
+   "target": "Tom hat Brot gekauft.",
+   "ru": "Том купил хлеб.",
+   "uk": "Том купив хліб."
+  },
+  {
+   "id": "de:16:05",
+   "target": "Wir haben zusammen gelernt.",
+   "ru": "Мы занимались вместе.",
+   "uk": "Ми займалися разом."
+  },
+  {
+   "id": "de:16:06",
+   "target": "Ihr habt draußen gespielt.",
+   "ru": "Вы играли на улице.",
+   "uk": "Ви грали на вулиці."
+  },
+  {
+   "id": "de:16:07",
+   "target": "Die Kinder haben gelacht.",
+   "ru": "Дети смеялись.",
+   "uk": "Діти сміялися."
+  },
+  {
+   "id": "de:16:08",
+   "target": "Ich habe auf den Bus gewartet.",
+   "ru": "Я ждал автобус.",
+   "uk": "Я чекав на автобус."
+  },
+  {
+   "id": "de:16:09",
+   "target": "Anna hat im Hotel gearbeitet.",
+   "ru": "Анна работала в гостинице.",
+   "uk": "Анна працювала у готелі."
+  },
+  {
+   "id": "de:16:10",
+   "target": "Wir haben den Termin gebucht.",
+   "ru": "Мы записались на приём.",
+   "uk": "Ми записалися на прийом."
+  },
+  {
+   "id": "de:16:11",
+   "target": "Ich habe den Schlüssel gesucht.",
+   "ru": "Я искал ключ.",
+   "uk": "Я шукав ключ."
+  },
+  {
+   "id": "de:16:12",
+   "target": "Du hast die Karte gefunden.",
+   "ru": "Ты нашёл карту.",
+   "uk": "Ти знайшов мапу."
+  },
+  {
+   "id": "de:16:13",
+   "target": "Tom hat den Rucksack gefunden.",
+   "ru": "Том нашёл рюкзак.",
+   "uk": "Том знайшов рюкзак."
+  },
+  {
+   "id": "de:16:14",
+   "target": "Anna hat ihren Namen geschrieben.",
+   "ru": "Анна написала своё имя.",
+   "uk": "Анна написала своє ім'я."
+  },
+  {
+   "id": "de:16:15",
+   "target": "Wir haben Tee getrunken.",
+   "ru": "Мы пили чай.",
+   "uk": "Ми пили чай."
+  },
+  {
+   "id": "de:16:16",
+   "target": "Ihr habt die Suppe gegessen.",
+   "ru": "Вы съели суп.",
+   "uk": "Ви з'їли суп."
+  },
+  {
+   "id": "de:16:17",
+   "target": "Ich habe die Tür geschlossen.",
+   "ru": "Я закрыл дверь.",
+   "uk": "Я зачинив двері."
+  },
+  {
+   "id": "de:16:18",
+   "target": "Anna hat die Bahn genommen.",
+   "ru": "Анна поехала на электричке.",
+   "uk": "Анна поїхала електричкою."
+  },
+  {
+   "id": "de:16:19",
+   "target": "Tom hat seine Tasche getragen.",
+   "ru": "Том нёс свою сумку.",
+   "uk": "Том ніс свою сумку."
+  },
+  {
+   "id": "de:16:20",
+   "target": "Wir haben den Arzt gesehen.",
+   "ru": "Мы видели врача.",
+   "uk": "Ми бачили лікаря."
+  },
+  {
+   "id": "de:16:21",
+   "target": "Ich habe dich angerufen.",
+   "ru": "Я тебе звонил.",
+   "uk": "Я тобі дзвонив."
+  },
+  {
+   "id": "de:16:22",
+   "target": "Du hast das Formular ausgefüllt.",
+   "ru": "Ты заполнил бланк.",
+   "uk": "Ти заповнив бланк."
+  },
+  {
+   "id": "de:16:23",
+   "target": "Anna hat ein Paket abgeholt.",
+   "ru": "Анна забрала посылку.",
+   "uk": "Анна забрала посилку."
+  },
+  {
+   "id": "de:16:24",
+   "target": "Tom hat den Herd ausgeschaltet.",
+   "ru": "Том выключил плиту.",
+   "uk": "Том вимкнув плиту."
+  },
+  {
+   "id": "de:16:25",
+   "target": "Wir haben den Tisch abgeräumt.",
+   "ru": "Мы убрали со стола.",
+   "uk": "Ми прибрали зі столу."
+  },
+  {
+   "id": "de:16:26",
+   "target": "Ihr habt die Küche aufgeräumt.",
+   "ru": "Вы прибрались на кухне.",
+   "uk": "Ви прибралися на кухні."
+  },
+  {
+   "id": "de:16:27",
+   "target": "Ich habe die Adresse aufgeschrieben.",
+   "ru": "Я записал адрес.",
+   "uk": "Я записав адресу."
+  },
+  {
+   "id": "de:16:28",
+   "target": "Sie hat Obst mitgebracht.",
+   "ru": "Она принесла фрукты.",
+   "uk": "Вона принесла фрукти."
+  },
+  {
+   "id": "de:16:29",
+   "target": "Er hat die Jacke angezogen.",
+   "ru": "Он надел куртку.",
+   "uk": "Він одягнув куртку."
+  },
+  {
+   "id": "de:16:30",
+   "target": "Die Kinder haben gut zugehört.",
+   "ru": "Дети внимательно слушали.",
+   "uk": "Діти уважно слухали."
+  },
+  {
+   "id": "de:16:31",
+   "target": "Ich habe bar bezahlt.",
+   "ru": "Я заплатил наличными.",
+   "uk": "Я заплатив готівкою."
+  },
+  {
+   "id": "de:16:32",
+   "target": "Du hast die Frage verstanden.",
+   "ru": "Ты понял вопрос.",
+   "uk": "Ти зрозумів питання."
+  },
+  {
+   "id": "de:16:33",
+   "target": "Anna hat das Frühstück bestellt.",
+   "ru": "Анна заказала завтрак.",
+   "uk": "Анна замовила сніданок."
+  },
+  {
+   "id": "de:16:34",
+   "target": "Wir haben unsere Freunde besucht.",
+   "ru": "Мы навестили друзей.",
+   "uk": "Ми відвідали друзів."
+  },
+  {
+   "id": "de:16:35",
+   "target": "Tom hat das Essen vorbereitet.",
+   "ru": "Том приготовил еду.",
+   "uk": "Том приготував їжу."
+  },
+  {
+   "id": "de:16:36",
+   "target": "Ich habe mit der Bank telefoniert.",
+   "ru": "Я поговорил по телефону с банком.",
+   "uk": "Я поговорив телефоном з банком."
+  },
+  {
+   "id": "de:16:37",
+   "target": "Anna hat das Radio repariert.",
+   "ru": "Анна починила радио.",
+   "uk": "Анна полагодила радіо."
+  },
+  {
+   "id": "de:16:38",
+   "target": "Wir haben das Zimmer reserviert.",
+   "ru": "Мы забронировали комнату.",
+   "uk": "Ми забронювали кімнату."
+  },
+  {
+   "id": "de:16:39",
+   "target": "Ihr habt das Bild fotografiert.",
+   "ru": "Вы сфотографировали картину.",
+   "uk": "Ви сфотографували картину."
+  },
+  {
+   "id": "de:16:40",
+   "target": "Tom hat die Schlüssel verloren.",
+   "ru": "Том потерял ключи.",
+   "uk": "Том втратив ключі."
+  },
+  {
+   "id": "de:16:41",
+   "target": "Hast du schon gegessen?",
+   "ru": "Ты уже поел?",
+   "uk": "Ти вже поїв?"
+  },
+  {
+   "id": "de:16:42",
+   "target": "Hat Anna den Brief bekommen?",
+   "ru": "Анна получила письмо?",
+   "uk": "Анна отримала листа?"
+  },
+  {
+   "id": "de:16:43",
+   "target": "Habt ihr den Zug verpasst?",
+   "ru": "Вы опоздали на поезд?",
+   "uk": "Ви запізнилися на поїзд?"
+  },
+  {
+   "id": "de:16:44",
+   "target": "Wer hat die Rechnung bezahlt?",
+   "ru": "Кто оплатил счёт?",
+   "uk": "Хто сплатив рахунок?"
+  },
+  {
+   "id": "de:16:45",
+   "target": "Was hast du bestellt?",
+   "ru": "Что ты заказал?",
+   "uk": "Що ти замовив?"
+  },
+  {
+   "id": "de:16:46",
+   "target": "Ich habe noch nicht gefrühstückt.",
+   "ru": "Я ещё не завтракал.",
+   "uk": "Я ще не снідав."
+  },
+  {
+   "id": "de:16:47",
+   "target": "Tom hat den Wecker nicht gehört.",
+   "ru": "Том не услышал будильник.",
+   "uk": "Том не почув будильника."
+  },
+  {
+   "id": "de:16:48",
+   "target": "Gestern haben wir den Nachbarn geholfen.",
+   "ru": "Вчера мы помогли соседям.",
+   "uk": "Вчора ми допомогли сусідам."
+  },
+  {
+   "id": "de:16:49",
+   "target": "Heute habe ich viel geschafft.",
+   "ru": "Сегодня я многое успел.",
+   "uk": "Сьогодні я багато чого встиг."
+  },
+  {
+   "id": "de:16:50",
+   "target": "Wir haben die Nummer leider vergessen.",
+   "ru": "К сожалению, мы забыли номер.",
+   "uk": "На жаль, ми забули номер."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "verpassen",
+   "ru": "пропускать, не успевать",
+   "uk": "пропускати, не встигати"
+  },
+  {
+   "lemma": "der Wecker",
+   "ru": "будильник",
+   "uk": "будильник"
+  },
+  {
+   "lemma": "reparieren",
+   "ru": "чинить",
+   "uk": "лагодити"
+  },
+  {
+   "lemma": "verlieren",
+   "ru": "терять",
+   "uk": "втрачати"
+  },
+  {
+   "lemma": "gestern",
+   "ru": "вчера",
+   "uk": "учора"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  }
+ ],
+ "oldTopicTitle": "Что уже сделано: Perfekt с `haben`",
+ "oldTheoryRu": "Сообщить о том, что приготовил или купил, можно двумя частями. Первая меняется по лицам; вторая хранит само действие. Одного `habe` недостаточно, оно пока не объясняет, что произошло. У многих правильных глаголов причастие начинается с `ge-` и заканчивается на `-t`. После некоторых основ легче произнести `-et`, как в `gewartet`. Не переноси автоматически этот образец на каждый немецкий глагол. У частых сильных глаголов причастие заканчивается на `-en`, а основа нередко меняется: `essen – gegessen`, `finden – gefunden`, `trinken – getrunken`. Не путай с правильными глаголами: `suchen – gesucht`. У отделяемого глагола `ge` может оказаться между приставкой и основой. Звонок — `angerufen`, заполнили бланк — `ausgefüllt`. В результате причастие собирается одной плиткой. У слов на `-ieren` нет дополнительного `ge-`: `telefoniert`, `repariert`. Оно также не появляется у многих глаголов с неотделяемой приставкой, например у `bezahlt` и `besucht`. В общем вопросе `hast` или `hat` выйдет вперёд. Причастие останется в конце. В вопросе со словом «что?» сначала идёт вопросительное слово, а за ним вспомогательный глагол. Не всякое прошедшее строится с `haben`; следующая тема покажет и `sein`. Пока опирайся на пары из урока, а не на догадку, что прошедшее время всегда строится по одному шаблону."
+}

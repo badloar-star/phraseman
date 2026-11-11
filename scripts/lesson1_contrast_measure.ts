@@ -18,7 +18,7 @@ import { mpColors } from '../components/mistakes-panel/panelPaint';
 const ROOT = path.join(__dirname, '..');
 const DIRS = ['components/practice', 'components/speech', 'components/feedback', 'components/session_attempts', 'components/results',
   'components/lesson_exit', 'components/lesson_moments', 'components/mistakes-panel', 'components/mistake-practice'];
-const FILES = ['app/lesson1.tsx', ...['LessonReviewSheet', 'AiMistakeCard', 'BilingualMistakeText', 'MistakeEli5Modal', 'MistakeEli5ModalHybrid', 'ExplainSheet',
+const FILES = ['app/lesson1.tsx', ...['LessonReviewSheet', 'AiMistakeCard', 'BilingualMistakeText',
   'NoEnergyModal', 'SpeechUnavailableNote', 'MicAllowanceBadge', 'PracticeRuneCounter', 'EnergyBar', 'SpeakingInlineSlot', 'SpeakingInlineResultStars',
   'LessonEnergyLightning', 'LessonLoadingSkeleton'].map((n) => `components/${n}.tsx`)];
 for (const d of DIRS) {

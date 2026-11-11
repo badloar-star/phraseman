@@ -1,0 +1,93 @@
+[
+ {
+  "id": "lesson-3/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "uk «німецької зараз достатньо» — машинный мусор вместо «теперішнього часу»",
+  "fix": "Коли просто повідомляють факт, німецького теперішнього часу достатньо. Уяви, що ти пояснюєш сусідові, де живеш. Тут немає другої дії і не потрібне додаткове дієслово перед `wohne`."
+ },
+ {
+  "id": "lesson-3/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "When simply stating a fact, the German present tense is sufficient. Imagine you're explaining to your neighbor where you live. There's no second action here, and no additional verb is needed before `wohne`."
+ },
+ {
+  "id": "lesson-3/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "From vocabulary to speech. Remove the ending `-en` from `lernen`. To the remaining part, add `-e` for yourself, and `-st` for a familiar interlocutor. The action itself remains unchanged."
+ },
+ {
+  "id": "lesson-3/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Why is there an additional `e`? After a stem ending in `-t`, for example, `arbeit-`, the combination with the ending would be difficult to pronounce. Compare `du arbeitest` and `er arbeitet`. Don't make `du arbeitst`."
+ },
+ {
+  "id": "lesson-3/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "uk «з’ясуй, говориш ти про когось або звертаєшся» — неграмматичный косвенный вопрос (нужно «чи … чи»)",
+  "fix": "Перевір звернення. У групі друзів `ihr arbeitet` збігається за дієсловом із `Anna arbeitet`, але сенс інший. Перш ніж натиснути першу плитку, з'ясуй, чи говориш ти про когось, чи звертаєшся до нього."
+ },
+ {
+  "id": "lesson-3/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "en «Check your address» (=адрес) и «In the friends group» искажают смысл, лишние кавычки",
+  "fix": "Check who you are addressing. In a group of friends, `ihr arbeitet` has the same verb form as `Anna arbeitet`, but the meaning is different. Before tapping the first tile, figure out whether you're talking about someone or addressing them."
+ },
+ {
+  "id": "lesson-4/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "uk «ставь» — русизм (нужно «став»), «особисте дієслово» вместо термина «особове дієслово»",
+  "fix": "Друге місце – не друге слово. `Am Montag` складається з двох слів, але разом відповідає на одне запитання. Воно посідає одну позицію. Тільки після всієї групи став особове дієслово."
+ },
+ {
+  "id": "lesson-4/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en «personal verb» — неверный термин (finite verb)",
+  "fix": "Second place is not the second word. `Am Montag` consists of two words, but together they answer one question. It occupies one position. Only place the finite verb after the entire group."
+ },
+ {
+  "id": "lesson-4/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "uk «Годинник займає» (годинник = прибор), «підлягає не зникає» — машинная калька вместо «підмет»",
+  "fix": "Час займає одну позицію. У `um acht` прийменник і число не треба розривати. Якщо час перенести на початок, підмет не зникає: він іде слідом за дієсловом."
+ },
+ {
+  "id": "lesson-4/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "en «The clock occupies» — прибор вместо времени по часам, лишние кавычки",
+  "fix": "Clock time occupies one position. In `um acht`, the preposition and the number should not be separated. If you move the time to the beginning, the subject doesn't disappear: it follows the verb."
+ },
+ {
+  "id": "lesson-4/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «по магазині» — неграмматично; «особистим» вместо «особовим»",
+  "fix": "Якщо дії немає, правило зберігається. Зв'язка `ist` або `sind` теж є особовим дієсловом. Число вибирай за магазином чи вікнами, а не за словом «сьогодні»."
+ },
+ {
+  "id": "lesson-4/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en «The conjunction `ist`» — ist не союз, а глагол-связка",
+  "fix": "If there is no action, the rule still applies. The linking verb `ist` or `sind` is also a finite verb. Choose the number based on the store or the windows, not on the word \"today.\""
+ },
+ {
+  "id": "lesson-4/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "uk «другого того, хто підлягає» — машинная калька «подлежащего»; «перезбирати» вместо «перезібрати»",
+  "fix": "Як перезібрати самостійно. Почни з людини і скажи фразу повністю. Тепер винеси час на початок, залиш дієслово на другому місці і постав людину після нього. Перевір, що не залишилося другого підмета."
+ }
+]

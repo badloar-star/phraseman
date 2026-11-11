@@ -16,7 +16,7 @@ import type { Lang } from '../../constants/i18n';
 import type { SpireClock } from '../../app/spire/use_spire_step_runner';
 import type { SpireGhostView } from '../../app/spire/use_spire_ghost';
 import { SPIRE_GHOST_TASKS_PER_STEP, spireGhostAhead, spireGhostTrackFrac } from '../../modules/spire/ghost';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../practice/PracticeGlass';
 import { SPIRE_RING_R, SPIRE_RING_SIZE } from './SpireTimerRing';
 import { spireClock } from './spire_game_strings';
 import { spireGhostShortName, spireGhostText } from './spire_ghost_strings';

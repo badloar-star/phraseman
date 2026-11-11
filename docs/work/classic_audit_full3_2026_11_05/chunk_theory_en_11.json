@@ -1,0 +1,1171 @@
+[
+{
+"lesson": 23,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 23,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что сделали с предметом",
+"formula": "[то, над чем выполняют действие] + [am/is/are · was/were · be] + [третья форма глагола]",
+"story": "Покупателя интересуют билеты, а не продавец: The tickets are sold online. Начни с билетов, выбери are и форму sold, а не sell.",
+"use": "Поставьте комнату, билет или посылку на первое место, когда действие важнее, чем человек, его совершающий. В английском языке можно опустить субъект действия, вместо того чтобы придумывать расплывчатое лицо, ответственное за действие.",
+"choose": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"nuance": "В вопросе вынеси первый вспомогательный глагол вперёд: `Are the doors locked every evening?` Слово `locked` может описывать и состояние двери. Время или исполнитель помогают понять, что речь о действии.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Поставьте комнату, билет или посылку на первое место, когда действие важнее, чем человек, его совершающий. В английском языке можно опустить субъект действия, вместо того чтобы придумывать расплывчатое лицо, ответственное за действие.",
+"samples": [
+"23.03",
+"23.07"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"samples": [
+"23.07",
+"23.15"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В вопросе вынеси первый вспомогательный глагол вперёд: `Are the doors locked every evening?` Слово `locked` может описывать и состояние двери. Время или исполнитель помогают понять, что речь о действии.",
+"samples": [
+"23.15",
+"23.21"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Укажите, что не было сделано",
+"samples": [
+"23.33",
+"23.35",
+"23.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Ваша посылка пропала. Спросите, что с ней случилось, не гадая, кто допустил ошибку. Ознакомьтесь со временем доставки, прежде чем выбирать форму `be`.",
+"samples": [
+"23.42",
+"23.45",
+"23.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Измените время или первый вспомогательный глагол",
+"samples": [
+"23.50"
+],
+"tokenWalk": "23.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що зробили з предметом",
+"formula": "[те, на що спрямовано дію] + [am/is/are · was/were · be] + [третя форма дієслова]",
+"story": "Покупцеві важливі квитки, а не продавець: The tickets are sold online. Почни з квитків, обери are та форму sold, не sell.",
+"use": "Поставте кімнату, квиток або посилку на перше місце, коли дія важливіша за людину, яка її виконує. Англійська мова може не включати агента, а не вигадувати розпливчасту відповідальну особу.",
+"choose": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"nuance": "У запитанні постав перше допоміжне дієслово перед підметом: `Are the doors locked every evening?` Слово `locked` може також описувати стан дверей. Час або виконавець підказують, що йдеться про дію.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Поставте кімнату, квиток або посилку на перше місце, коли дія важливіша за людину, яка її виконує. Англійська мова може не включати агента, а не вигадувати розпливчасту відповідальну особу.",
+"samples": [
+"23.03",
+"23.07"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"samples": [
+"23.07",
+"23.15"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "У запитанні постав перше допоміжне дієслово перед підметом: `Are the doors locked every evening?` Слово `locked` може також описувати стан дверей. Час або виконавець підказують, що йдеться про дію.",
+"samples": [
+"23.15",
+"23.21"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Вказати, що не було зроблено",
+"samples": [
+"23.33",
+"23.35",
+"23.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ваша посилка зникла. Запитайте, що з нею сталося, не здогадуючись, хто припустився помилки. Прочитайте час доставки, перш ніж вибрати форму `be`.",
+"samples": [
+"23.42",
+"23.45",
+"23.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Змінити час або першу допоміжну дію",
+"samples": [
+"23.50"
+],
+"tokenWalk": "23.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Describe what happens to something",
+"formula": "[receiver] + [form of be] + [past participle]",
+"story": "The buyer cares about the tickets, not the seller: The tickets are sold online. Start with the tickets; follow are with sold, not sell.",
+"use": "Put the room, ticket or parcel first when the action matters more than the person doing it. English can leave the agent out rather than inventing a vague person responsible.",
+"choose": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`.",
+"nuance": "To ask, move the first auxiliary before the subject. A label like `closed` can also describe a state. An expression such as `every evening` or `by the manager` makes an action reading clearer.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Put the room, ticket or parcel first when the action matters more than the person doing it. English can leave the agent out rather than inventing a vague person responsible.",
+"samples": [
+"23.03",
+"23.07"
+]
+},
+{
+"title": "How to choose",
+"body": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`.",
+"samples": [
+"23.07",
+"23.15"
+]
+},
+{
+"title": "A useful contrast",
+"body": "To ask, move the first auxiliary before the subject. A label like `closed` can also describe a state. An expression such as `every evening` or `by the manager` makes an action reading clearer.",
+"samples": [
+"23.15",
+"23.21"
+]
+},
+{
+"title": "Common mistake",
+"body": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`.",
+"wrong": "The tickets are sell online.",
+"right": "The tickets are sold online.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Say what was not done",
+"samples": [
+"23.33",
+"23.35",
+"23.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Your parcel is missing. Ask what happened to it without guessing who made the mistake. Read the delivery time before choosing a form of `be`.",
+"samples": [
+"23.42",
+"23.45",
+"23.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Change the time or first auxiliary",
+"samples": [
+"23.50"
+],
+"tokenWalk": "23.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "23.01",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"gate",
+"is",
+"locked",
+"at",
+"night"
+],
+"i": 0,
+"kind": "form",
+"key": "en23/lab/form1",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.13",
+"index": 2,
+"right": "was",
+"near": "were",
+"seq": [
+"The",
+"door",
+"was",
+"repaired",
+"on",
+"Friday"
+],
+"i": 12,
+"kind": "form",
+"key": "en23/lab/form2",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.25",
+"index": 0,
+"right": "Were",
+"near": "Was",
+"seq": [
+"Were",
+"the",
+"forms",
+"signed"
+],
+"i": 24,
+"kind": "form",
+"key": "en23/lab/form3",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.32",
+"index": 2,
+"right": "are",
+"near": "is",
+"seq": [
+"These",
+"shoes",
+"are",
+"not",
+"made",
+"of",
+"leather"
+],
+"i": 31,
+"kind": "form",
+"key": "en23/lab/form4",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.07",
+"index": 2,
+"right": "are",
+"near": "is",
+"seq": [
+"The",
+"tickets",
+"are",
+"sold",
+"online"
+],
+"i": 6,
+"kind": "spot",
+"key": "en23/lab/spot1",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.20",
+"index": 2,
+"right": "was",
+"near": "were",
+"seq": [
+"The",
+"receipt",
+"was",
+"sent",
+"to",
+"the",
+"wrong",
+"email",
+"address"
+],
+"i": 19,
+"kind": "spot",
+"key": "en23/lab/spot2",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.31",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"garage",
+"is",
+"not",
+"included",
+"in",
+"the",
+"rent"
+],
+"i": 30,
+"kind": "spot",
+"key": "en23/lab/spot3",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"id": "23.45",
+"index": 4,
+"right": "replaced",
+"near": "replace",
+"seq": [
+"The",
+"screen",
+"can",
+"be",
+"replaced"
+],
+"i": 44,
+"kind": "spot",
+"key": "en23/lab/spot4",
+"feedback": {
+"ru": "Первым назови то, над чем выполняют действие. Формой `be` покажи время и число, затем добавь третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен.",
+"uk": "Спершу назви те, над чим виконують дію. Формою `be` покажи час і число, а потім додай третю форму: `The tickets are sold online`. Виконавця тут можна не називати.",
+"en": "Choose a form of `be` for the time and the receiver. Then use the past participle. For regular verbs it looks like the past form; for some common verbs it is different, for example `written` or `shown`."
+}
+},
+{
+"kind": "match",
+"key": "en23/lab/match1",
+"id": "23.02",
+"other": "23.01"
+},
+{
+"kind": "match",
+"key": "en23/lab/match2",
+"id": "23.17",
+"other": "23.16"
+},
+{
+"kind": "match",
+"key": "en23/lab/match3",
+"id": "23.33",
+"other": "23.34"
+},
+{
+"kind": "match",
+"key": "en23/lab/match4",
+"id": "23.46",
+"other": "23.45"
+},
+{
+"kind": "build",
+"key": "en23/lab/build1",
+"id": "23.04"
+},
+{
+"kind": "build",
+"key": "en23/lab/build2",
+"id": "23.15"
+},
+{
+"kind": "build",
+"key": "en23/lab/build3",
+"id": "23.29"
+},
+{
+"kind": "build",
+"key": "en23/lab/build4",
+"id": "23.42"
+},
+{
+"kind": "transform",
+"id": "23.07",
+"base": "23.02",
+"diff": [
+{
+"before": [
+"rooms"
+],
+"after": [
+"tickets"
+]
+},
+{
+"before": [
+"cleaned",
+"daily"
+],
+"after": [
+"sold",
+"online"
+]
+}
+],
+"key": "en23/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "23.35",
+"base": "23.16",
+"diff": [
+{
+"before": [
+"wrong",
+"address",
+"was"
+],
+"after": [
+"names",
+"were",
+"not"
+]
+},
+{
+"before": [
+"label"
+],
+"after": [
+"tickets"
+]
+}
+],
+"key": "en23/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "23.50",
+"base": "23.39",
+"diff": [
+{
+"before": [
+"report",
+"was",
+"not",
+"sent"
+],
+"after": [
+"message",
+"has",
+"been",
+"forwarded"
+]
+}
+],
+"key": "en23/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "23.40",
+"base": "23.38",
+"diff": [
+{
+"before": [
+"water"
+],
+"after": [
+"parcel"
+]
+},
+{
+"before": [
+"turned",
+"off"
+],
+"after": [
+"damaged"
+]
+}
+],
+"key": "en23/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+4,
+16
+],
+[
+13,
+1
+],
+[
+5,
+9
+],
+[
+2,
+14
+],
+[
+10,
+17
+],
+[
+7,
+15
+],
+[
+18,
+11
+]
+],
+"worked": [
+"23.05",
+"23.18",
+"23.33",
+"23.48"
+],
+"reflection": [
+"23.01",
+"23.02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 24,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 24,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Прошлое событие и его результат сейчас",
+"formula": "[have / has] + [третья форма глагола] · past simple + [законченное время в прошлом]",
+"story": "Стоишь перед закрытой дверью: I’ve lost my keys — сейчас ключей нет. Уточняешь, когда это случилось: I lost them yesterday. Вторая фраза говорит о законченном вчерашнем событии.",
+"use": "Используйте настоящее совершенное время для результата, имеющего значение сейчас, события, произошедшего ранее, или периода, продолжающегося до настоящего времени. Для явно завершившегося времени, такого как вчера, в этих задачах требуется прошедшее простое время.",
+"choose": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"nuance": "`Yet` часто используется в конце вопроса или отрицания. `Already` и `just` часто встречаются между вспомогательным глаголом и причастием. В американском варианте также может использоваться прошедшее простое время с недавними событиями; время и цель практики имеют значение.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте настоящее совершенное время для результата, имеющего значение сейчас, события, произошедшего ранее, или периода, продолжающегося до настоящего времени. Для явно завершившегося времени, такого как вчера, в этих задачах требуется прошедшее простое время.",
+"samples": [
+"24.01",
+"24.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"samples": [
+"24.11",
+"24.20"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Yet` часто используется в конце вопроса или отрицания. `Already` и `just` часто встречаются между вспомогательным глаголом и причастием. В американском варианте также может использоваться прошедшее простое время с недавними событиями; время и цель практики имеют значение.",
+"samples": [
+"24.20",
+"24.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Укажите продолжительность или отправную точку",
+"samples": [
+"24.33",
+"24.35",
+"24.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Билет пропал прямо сейчас. Объясните результат. Затем добавьте точное время окончания и обратите внимание, почему подходит другое время.",
+"samples": [
+"24.42",
+"24.45",
+"24.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Сравните завершенное время с текущим результатом",
+"samples": [
+"24.50"
+],
+"tokenWalk": "24.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Минула подія та її результат зараз",
+"formula": "[have / has] + [третя форма дієслова] · past simple + [завершений час у минулому]",
+"story": "Стоїш перед зачиненими дверима: I’ve lost my keys — ключів зараз нема. Уточнюєш час: I lost them yesterday. Це завершена вчорашня подія.",
+"use": "Використовуйте теперішній доконаний час для позначення результату, який має значення зараз, подій до теперішнього часу або періоду, що триває до теперішнього часу. Чітко завершений час, такий як вчора, вимагає використання минулого простого часу в цих завданнях.",
+"choose": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"nuance": "`Yet` поширене в кінці питального або заперечного дієслова. `Already` та `just` часто зустрічаються між допоміжним дієсловом та дієприкметником. В американському вжитку також може використовуватися минулий простий час з нещодавніми подіями; час та мета практики мають значення.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте теперішній доконаний час для позначення результату, який має значення зараз, подій до теперішнього часу або періоду, що триває до теперішнього часу. Чітко завершений час, такий як вчора, вимагає використання минулого простого часу в цих завданнях.",
+"samples": [
+"24.01",
+"24.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"samples": [
+"24.11",
+"24.20"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Yet` поширене в кінці питального або заперечного дієслова. `Already` та `just` часто зустрічаються між допоміжним дієсловом та дієприкметником. В американському вжитку також може використовуватися минулий простий час з нещодавніми подіями; час та мета практики мають значення.",
+"samples": [
+"24.20",
+"24.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Вказати тривалість або початкову точку",
+"samples": [
+"24.33",
+"24.35",
+"24.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Квитка зараз бракує. Поясніть результат. Потім додайте точний час закінчення та зверніть увагу, чому підходить інший час.",
+"samples": [
+"24.42",
+"24.45",
+"24.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Зіставити завершений час із теперішнім результатом",
+"samples": [
+"24.50"
+],
+"tokenWalk": "24.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Connect past events to now",
+"formula": "[have / has] + [past participle] · past simple + [finished time]",
+"story": "At a locked door: I’ve lost my keys explains the problem now. I lost them yesterday dates the event. A finished time changes how you tell it.",
+"use": "Use the present perfect for a result that matters now, experience before now, or a period continuing up to now. A clearly finished time such as yesterday calls for the past simple in these tasks.",
+"choose": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts.",
+"nuance": "`Yet` is common at the end of a question or negative. `Already` and `just` often appear between the auxiliary and participle. American usage may also use a past simple with recent events; the time and practice goal matter.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use the present perfect for a result that matters now, experience before now, or a period continuing up to now. A clearly finished time such as yesterday calls for the past simple in these tasks.",
+"samples": [
+"24.01",
+"24.11"
+]
+},
+{
+"title": "How to choose",
+"body": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts.",
+"samples": [
+"24.11",
+"24.20"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Yet` is common at the end of a question or negative. `Already` and `just` often appear between the auxiliary and participle. American usage may also use a past simple with recent events; the time and practice goal matter.",
+"samples": [
+"24.20",
+"24.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts.",
+"wrong": "I have lost my pass yesterday.",
+"right": "I lost my pass yesterday.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "State a duration or starting point",
+"samples": [
+"24.33",
+"24.35",
+"24.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A ticket is missing right now. Explain the result. Then add the precise finished time and notice why a different tense fits.",
+"samples": [
+"24.42",
+"24.45",
+"24.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Contrast a finished time with a present result",
+"samples": [
+"24.50"
+],
+"tokenWalk": "24.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "24.01",
+"index": 1,
+"right": "have",
+"near": "has",
+"seq": [
+"I",
+"have",
+"lost",
+"my",
+"keys"
+],
+"i": 0,
+"kind": "form",
+"key": "en24/lab/form1",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.12",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"She",
+"has",
+"just",
+"called",
+"back"
+],
+"i": 11,
+"kind": "form",
+"key": "en24/lab/form2",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.26",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"He",
+"has",
+"never",
+"used",
+"a",
+"locker"
+],
+"i": 25,
+"kind": "form",
+"key": "en24/lab/form3",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.41",
+"index": 1,
+"right": "lost",
+"near": "lose",
+"seq": [
+"I",
+"lost",
+"my",
+"library",
+"pass",
+"yesterday"
+],
+"i": 40,
+"kind": "form",
+"key": "en24/lab/form4",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.06",
+"index": 1,
+"right": "have",
+"near": "has",
+"seq": [
+"I",
+"have",
+"sent",
+"the",
+"form"
+],
+"i": 5,
+"kind": "spot",
+"key": "en24/lab/spot1",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.20",
+"index": 0,
+"right": "Have",
+"near": "Has",
+"seq": [
+"Have",
+"you",
+"finished",
+"yet"
+],
+"i": 19,
+"kind": "spot",
+"key": "en24/lab/spot2",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.32",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"She",
+"has",
+"worked",
+"here",
+"since",
+"March"
+],
+"i": 31,
+"kind": "spot",
+"key": "en24/lab/spot3",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"id": "24.46",
+"index": 1,
+"right": "have",
+"near": "has",
+"seq": [
+"We",
+"have",
+"booked",
+"the",
+"room",
+"so",
+"you",
+"can",
+"stop",
+"looking"
+],
+"i": 45,
+"kind": "spot",
+"key": "en24/lab/spot4",
+"feedback": {
+"ru": "Посмотри на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала.",
+"uk": "Подивися на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку.",
+"en": "Choose `have` or `has` for the subject before selecting the past participle. `For` gives a duration; `since` points to its start. `Been` and `gone` are not interchangeable in all contexts."
+}
+},
+{
+"kind": "match",
+"key": "en24/lab/match1",
+"id": "24.02",
+"other": "24.04"
+},
+{
+"kind": "match",
+"key": "en24/lab/match2",
+"id": "24.17",
+"other": "24.18"
+},
+{
+"kind": "match",
+"key": "en24/lab/match3",
+"id": "24.33",
+"other": "24.35"
+},
+{
+"kind": "match",
+"key": "en24/lab/match4",
+"id": "24.46",
+"other": "24.45"
+},
+{
+"kind": "build",
+"key": "en24/lab/build1",
+"id": "24.04"
+},
+{
+"kind": "build",
+"key": "en24/lab/build2",
+"id": "24.15"
+},
+{
+"kind": "build",
+"key": "en24/lab/build3",
+"id": "24.29"
+},
+{
+"kind": "build",
+"key": "en24/lab/build4",
+"id": "24.42"
+},
+{
+"kind": "transform",
+"id": "24.07",
+"base": "24.02",
+"diff": [
+{
+"before": [
+"found"
+],
+"after": [
+"renewed"
+]
+},
+{
+"before": [
+"card"
+],
+"after": [
+"passport"
+]
+}
+],
+"key": "en24/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "24.27",
+"base": "24.03",
+"diff": [
+{
+"before": [
+"finished",
+"lunch"
+],
+"after": [
+"moved",
+"house",
+"twice"
+]
+}
+],
+"key": "en24/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "24.24",
+"base": "24.21",
+"diff": [
+{
+"before": [
+"worked",
+"nights"
+],
+"after": [
+"tried",
+"this",
+"soup"
+]
+}
+],
+"key": "en24/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "24.49",
+"base": "24.11",
+"diff": [
+{
+"before": [
+"parked"
+],
+"after": [
+"found"
+]
+},
+{
+"before": [
+"van"
+],
+"after": [
+"receipt",
+"you",
+"asked",
+"for"
+]
+}
+],
+"key": "en24/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+5,
+1
+],
+[
+6,
+10
+],
+[
+2,
+18
+],
+[
+3,
+14
+],
+[
+15,
+11
+],
+[
+19,
+7
+]
+],
+"worked": [
+"24.05",
+"24.18",
+"24.33",
+"24.48"
+],
+"reflection": [
+"24.01",
+"24.02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

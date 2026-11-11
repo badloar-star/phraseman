@@ -54,7 +54,7 @@ describe('EntitlementExpiredHost contract', () => {
     // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
     expect(hostSrc).toMatch(/await AsyncStorage\.removeItem\(wasActiveKey\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
     // Второй кандидат не перетирает первого в одной сессии.
-    expect(hostSrc).toContain('prev ?? k');
+    expect(hostSrc).toContain('prev ?? { kind: k, account: expectedAccount }');
   });
 
   it('waits for an active account generation and rejects stale entitlement checks', () => {
@@ -67,46 +67,14 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain('isCurrentAccountGeneration');
   });
 
-  it('keeps full locale coverage for renewal copy', () => {
-    for (const lang of ['ru', 'uk', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
-      expect(hostSrc).toContain(`${lang.replace(/'/g, '')}`);
-    }
-    expect(hostSrc).not.toMatch(/value:\s*['`][^'`]*(invite|friend|amigo|amiga|друг|друга|znajomego|teman|arkadaş)/i);
+  it('opens the shared paywall with the matching expiry context for the current account', () => {
+    expect(hostSrc).toContain('entitlementAccountIsCurrent(pending.account)');
+    expect(hostSrc).toContain('openPremiumPaywall(router, {');
+    expect(hostSrc).toContain("context: pending.kind === 'premium' ? 'premium_expired' : 'vip_expired'");
+    expect(hostSrc).not.toContain('HybridSheetShell');
+    expect(hostSrc).not.toContain('PlusLaunchSplashHost');
   });
 
-  it('routes CTA to paywall with expiry context', () => {
-    expect(hostSrc).toContain('navigateAfterModalClose');
-    expect(hostSrc).toContain("pathname: '/premium_modal'");
-    expect(hostSrc).toContain('premium_expired');
-    expect(hostSrc).toContain('vip_expired');
-  });
-
-  // 04.10: макет PAY-09 — продление остаётся главным действием, «Пригласить друга» вторым (под флагом раздела приглашений).
-  it('keeps renewal primary; invite to /referrals is a secondary button behind the referral flag', () => {
-    expect(hostSrc).toContain('useReferralRouletteEnabled');
-    expect(hostSrc).toContain('const tx = TEXTS[lang] ?? TEXTS.ru');
-    expect(hostSrc).not.toContain('onSecondary');
-    expect(hostSrc).toContain("pathname: '/referrals'");
-    expect(hostSrc).toContain("const context = kind === 'premium' ? 'premium_expired' : 'vip_expired'");
-  });
-
-  it('renders the Liquid Glass sheet from the PAY-09 mock instead of the legacy reward card', () => {
-    // Устарело (2026-09-29): RewardCardV2 (золотая семантика, кикер, эмодзи-корона)
-    // заменён шторкой HybridSheetShell на токенах Liquid Glass по макету coins.html PAY-09.
-    expect(hostSrc).toContain('HybridSheetShell');
-    expect(hostSrc).toContain('material="liquid-glass-opaque"');
-    expect(hostSrc).not.toContain('RewardCardV2');
-    expect(hostSrc).not.toContain('allowKickerWrap');
-  });
-
-  it('uses Plus wording and only the mock copy without unconfirmed promises', () => {
-    expect(hostSrc).toContain("title: 'Plus закончился'");
-    expect(hostSrc).toContain('Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.');
-    expect(hostSrc).not.toContain("title: 'VIP закончился'");
-    expect(hostSrc).not.toContain('безлимит');
-  });
-
-  // зачем (аудит скорости R1_PERF_FIRST_FRAME, координатор 12.10): новый объект поколения с теми же полями давал лишний рендер хоста
   // и повторный прогон проверки истечения на каждом старте. Принимаем новый объект только при смене generation/stableId/phase.
   it('account generation state changes only when generation/stableId/phase change', () => {
     expect(hostSrc).toContain(

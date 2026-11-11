@@ -14,7 +14,7 @@ import { KIT_MOTION } from '../../constants/motionHybrid';
 import { shadowSheetGradient } from '../v2/shadow_sheet_paint';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import SheetSwipeClose from '../modal_fx/SheetSwipeClose';

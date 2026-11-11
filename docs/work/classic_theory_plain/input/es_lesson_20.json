@@ -1,0 +1,676 @@
+{
+ "lang": "es",
+ "lesson": 20,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:20:01",
+   "target": "Ya he llamado al hotel.",
+   "ru": "Я уже позвонил в отель.",
+   "uk": "Я вже зателефонував до готелю."
+  },
+  {
+   "id": "es:20:02",
+   "target": "Ya has llamado a Ana.",
+   "ru": "Ты уже позвонил Ане.",
+   "uk": "Ти вже зателефонував Ані."
+  },
+  {
+   "id": "es:20:03",
+   "target": "Ya he abierto la puerta.",
+   "ru": "Я уже открыл дверь.",
+   "uk": "Я вже відчинив двері."
+  },
+  {
+   "id": "es:20:04",
+   "target": "Ya has abierto la ventana.",
+   "ru": "Ты уже открыл окно.",
+   "uk": "Ти вже відчинив вікно."
+  },
+  {
+   "id": "es:20:05",
+   "target": "Ana ya ha comprado un billete.",
+   "ru": "Ана уже купила билет.",
+   "uk": "Ана вже купила квиток."
+  },
+  {
+   "id": "es:20:06",
+   "target": "Ya hemos comprado pan.",
+   "ru": "Мы уже купили хлеб.",
+   "uk": "Ми вже купили хліб."
+  },
+  {
+   "id": "es:20:07",
+   "target": "Ya he escrito una carta.",
+   "ru": "Я уже написал письмо.",
+   "uk": "Я вже написав листа."
+  },
+  {
+   "id": "es:20:08",
+   "target": "Ya has escrito un mensaje.",
+   "ru": "Ты уже написал сообщение.",
+   "uk": "Ти вже написав повідомлення."
+  },
+  {
+   "id": "es:20:09",
+   "target": "Luis ya ha leído el libro.",
+   "ru": "Луис уже прочитал книгу.",
+   "uk": "Луїс вже прочитав книжку."
+  },
+  {
+   "id": "es:20:10",
+   "target": "Ya hemos leído el mensaje.",
+   "ru": "Мы уже прочитали сообщение.",
+   "uk": "Ми вже прочитали повідомлення."
+  },
+  {
+   "id": "es:20:11",
+   "target": "He mandado la foto hoy.",
+   "ru": "Я сегодня отправил фотографию.",
+   "uk": "Я сьогодні надіслав фотографію."
+  },
+  {
+   "id": "es:20:12",
+   "target": "Ana ya ha confirmado la reserva.",
+   "ru": "Ана уже подтвердила бронь.",
+   "uk": "Ана вже підтвердила бронювання."
+  },
+  {
+   "id": "es:20:13",
+   "target": "Luis ha preparado la cena hoy.",
+   "ru": "Луис сегодня приготовил ужин.",
+   "uk": "Луїс сьогодні приготував вечерю."
+  },
+  {
+   "id": "es:20:14",
+   "target": "Has preparado la mochila hoy.",
+   "ru": "Ты сегодня собрал рюкзак.",
+   "uk": "Ти сьогодні зібрав рюкзак."
+  },
+  {
+   "id": "es:20:15",
+   "target": "He pagado en efectivo hoy.",
+   "ru": "Я сегодня заплатил наличными.",
+   "uk": "Я сьогодні заплатив готівкою."
+  },
+  {
+   "id": "es:20:16",
+   "target": "Hemos pagado con tarjeta hoy.",
+   "ru": "Мы сегодня заплатили картой.",
+   "uk": "Ми сьогодні заплатили карткою."
+  },
+  {
+   "id": "es:20:17",
+   "target": "Ana ha entrado en la tienda hoy.",
+   "ru": "Ана сегодня вошла в магазин.",
+   "uk": "Ана сьогодні зайшла до магазину."
+  },
+  {
+   "id": "es:20:18",
+   "target": "Hemos recibido el pedido hoy.",
+   "ru": "Мы сегодня получили заказ.",
+   "uk": "Ми сьогодні отримали замовлення."
+  },
+  {
+   "id": "es:20:19",
+   "target": "Mis hermanos han vuelto a casa hoy.",
+   "ru": "Мои братья сегодня вернулись домой.",
+   "uk": "Мої брати сьогодні повернулися додому."
+  },
+  {
+   "id": "es:20:20",
+   "target": "Has vuelto a la estación hoy.",
+   "ru": "Ты сегодня вернулся на вокзал.",
+   "uk": "Ти сьогодні повернувся на вокзал."
+  },
+  {
+   "id": "es:20:21",
+   "target": "Hemos leído el libro esta semana.",
+   "ru": "Мы на этой неделе прочитали книгу.",
+   "uk": "Ми цього тижня прочитали книжку."
+  },
+  {
+   "id": "es:20:22",
+   "target": "Habéis leído el mensaje esta semana.",
+   "ru": "Вы на этой неделе прочитали сообщение.",
+   "uk": "Ви цього тижня прочитали повідомлення."
+  },
+  {
+   "id": "es:20:23",
+   "target": "Ya he recogido el paquete.",
+   "ru": "Я уже забрал посылку.",
+   "uk": "Я вже забрав посилку."
+  },
+  {
+   "id": "es:20:24",
+   "target": "Ya he pagado la factura.",
+   "ru": "Я уже оплатил счёт.",
+   "uk": "Я вже оплатив рахунок."
+  },
+  {
+   "id": "es:20:25",
+   "target": "Mis hermanas han abierto la ventana esta semana.",
+   "ru": "Мои сёстры на этой неделе открыли окно.",
+   "uk": "Мої сестри цього тижня відчинили вікно."
+  },
+  {
+   "id": "es:20:26",
+   "target": "Mis hermanos han vuelto a casa esta semana.",
+   "ru": "Мои братья на этой неделе вернулись домой.",
+   "uk": "Мої брати цього тижня повернулися додому."
+  },
+  {
+   "id": "es:20:27",
+   "target": "¿Has recibido mi correo?",
+   "ru": "Ты получил моё электронное письмо?",
+   "uk": "Ти отримав мого електронного листа?"
+  },
+  {
+   "id": "es:20:28",
+   "target": "Hemos mandado la foto esta semana.",
+   "ru": "Мы на этой неделе отправили фотографию.",
+   "uk": "Ми цього тижня надіслали фотографію."
+  },
+  {
+   "id": "es:20:29",
+   "target": "Ya he comprado los huevos en el supermercado.",
+   "ru": "Я уже купил яйца в супермаркете.",
+   "uk": "Я вже купив яйця в супермаркеті."
+  },
+  {
+   "id": "es:20:30",
+   "target": "Habéis llevado la bolsa esta semana.",
+   "ru": "Вы на этой неделе отнесли пакет.",
+   "uk": "Ви цього тижня віднесли пакет."
+  },
+  {
+   "id": "es:20:31",
+   "target": "No he escrito un mensaje esta mañana.",
+   "ru": "Я сегодня утром не написал сообщение.",
+   "uk": "Я сьогодні вранці не написав повідомлення."
+  },
+  {
+   "id": "es:20:32",
+   "target": "No hemos recibido la factura.",
+   "ru": "Мы не получили счёт.",
+   "uk": "Ми не отримали рахунок."
+  },
+  {
+   "id": "es:20:33",
+   "target": "Ana no ha mandado el mapa esta mañana.",
+   "ru": "Ана сегодня утром не отправила карту.",
+   "uk": "Ана сьогодні вранці не надіслала мапу."
+  },
+  {
+   "id": "es:20:34",
+   "target": "No hemos llamado al hotel esta mañana.",
+   "ru": "Мы сегодня утром не позвонили в отель.",
+   "uk": "Ми сьогодні вранці не зателефонували до готелю."
+  },
+  {
+   "id": "es:20:35",
+   "target": "Luis no ha comprado un billete esta mañana.",
+   "ru": "Луис сегодня утром не купил билет.",
+   "uk": "Луїс сьогодні вранці не купив квиток."
+  },
+  {
+   "id": "es:20:36",
+   "target": "Hoy no he recibido tu carta.",
+   "ru": "Сегодня я не получил твоё письмо.",
+   "uk": "Сьогодні я не отримав твого листа."
+  },
+  {
+   "id": "es:20:37",
+   "target": "No hemos preparado la cena esta mañana.",
+   "ru": "Мы сегодня утром не приготовили ужин.",
+   "uk": "Ми сьогодні вранці не приготували вечерю."
+  },
+  {
+   "id": "es:20:38",
+   "target": "Luis ha mandado el paquete hoy.",
+   "ru": "Луис сегодня отправил посылку.",
+   "uk": "Луїс сьогодні відправив посилку."
+  },
+  {
+   "id": "es:20:39",
+   "target": "No he terminado de fregar los platos.",
+   "ru": "Я ещё не закончил мыть посуду.",
+   "uk": "Я ще не закінчив мити посуд."
+  },
+  {
+   "id": "es:20:40",
+   "target": "Mis hermanos no han llevado la maleta esta mañana.",
+   "ru": "Мои братья сегодня утром не отнесли чемодан.",
+   "uk": "Мої брати сьогодні вранці не віднесли валізу."
+  },
+  {
+   "id": "es:20:41",
+   "target": "¿Has llamado a Ana hoy?",
+   "ru": "Ты сегодня позвонил Ане?",
+   "uk": "Ти сьогодні зателефонував Ані?"
+  },
+  {
+   "id": "es:20:42",
+   "target": "¿Has confirmado el pedido?",
+   "ru": "Ты подтвердил заказ?",
+   "uk": "Ти підтвердив замовлення?"
+  },
+  {
+   "id": "es:20:43",
+   "target": "¿Hemos vuelto a casa hoy?",
+   "ru": "Мы сегодня вернулись домой?",
+   "uk": "Ми сьогодні повернулися додому?"
+  },
+  {
+   "id": "es:20:44",
+   "target": "¿Has leído el libro hoy?",
+   "ru": "Ты сегодня прочитал книгу?",
+   "uk": "Ти сьогодні прочитав книжку?"
+  },
+  {
+   "id": "es:20:45",
+   "target": "¿Luis ha leído el mensaje hoy?",
+   "ru": "Луис сегодня прочитал сообщение?",
+   "uk": "Луїс сьогодні прочитав повідомлення?"
+  },
+  {
+   "id": "es:20:46",
+   "target": "¿Ana ha abierto la puerta hoy?",
+   "ru": "Ана сегодня открыла дверь?",
+   "uk": "Ана сьогодні відчинила двері?"
+  },
+  {
+   "id": "es:20:47",
+   "target": "¿Hemos mandado la foto hoy?",
+   "ru": "Мы сегодня отправили фотографию?",
+   "uk": "Ми сьогодні надіслали фотографію?"
+  },
+  {
+   "id": "es:20:48",
+   "target": "¿Has leído el correo del hotel?",
+   "ru": "Ты прочитал электронное письмо из отеля?",
+   "uk": "Ти прочитав електронного листа з готелю?"
+  },
+  {
+   "id": "es:20:49",
+   "target": "¿Mis hermanas han preparado la cena hoy?",
+   "ru": "Мои сёстры сегодня приготовили ужин?",
+   "uk": "Мої сестри сьогодні приготували вечерю?"
+  },
+  {
+   "id": "es:20:50",
+   "target": "¿Habéis entrado en la oficina hoy?",
+   "ru": "Вы сегодня вошли в офис?",
+   "uk": "Ви сьогодні зайшли до офісу?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "ya",
+   "ru": "уже",
+   "uk": "вже"
+  },
+  {
+   "lemma": "confirmar",
+   "ru": "подтверждать",
+   "uk": "підтверджувати"
+  },
+  {
+   "lemma": "correo",
+   "ru": "электронное письмо (в этих примерах)",
+   "uk": "електронний лист (у цих прикладах)"
+  },
+  {
+   "lemma": "factura",
+   "ru": "счёт на оплату",
+   "uk": "рахунок на оплату"
+  },
+  {
+   "lemma": "huevo",
+   "ru": "яйцо",
+   "uk": "яйце"
+  },
+  {
+   "lemma": "paquete",
+   "ru": "посылка, свёрток",
+   "uk": "посилка, пакунок"
+  },
+  {
+   "lemma": "pedido",
+   "ru": "заказ",
+   "uk": "замовлення"
+  },
+  {
+   "lemma": "semana",
+   "ru": "неделя",
+   "uk": "тиждень"
+  },
+  {
+   "lemma": "recibir",
+   "ru": "получать",
+   "uk": "отримувати"
+  },
+  {
+   "lemma": "terminar",
+   "ru": "заканчивать",
+   "uk": "закінчувати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  }
+ ],
+ "oldTopicTitle": "Уже сделал сегодня: he + причастие",
+ "oldTheoryRu": "Звонок уже сделан: he llamado. Звонила Ана: ha llamado. Лицо показывает he или ha; llamado в этой конструкции остаётся тем же. Соедини результат с текущим отрезком времени — так, как принято в испанском варианте этого урока. В отчёте «сегодня я уже звонил» говорящий смотрит назад из ещё актуального периода. Для такой подачи здесь выбран he llamado. Это не утверждение, будто другое прошедшее время невозможно. Tengo un libro называет владельца. He leído el libro называет завершённое действие. He, has, ha, hemos, habéis, han служат для построения времени, отдельно их не переводим. В правильных формах заменяем -ar на -ado и -er/-ir на -ido: llamado, comido, vivido. В leído ударение на í отмечено письменно; в comprado ударения на письме нет. Открыть — abrir, но «открыл» в этой конструкции — he abierto. Аналогично escribir → escrito и volver → vuelto. Эти формы удобнее хранить внутри карточки глагола. La puerta está abierta — дверь открыта: мы описываем её состояние. Ana ha abierto la puerta — Ана открыла дверь: мы называем действие. После ha остаётся abierto, хотя и Ana, и puerta женского рода. Сравни: Ana ha abierto dos puertas — дверей две, а abierto не меняется. Сравни два задания: «Ты сегодня вернулся на вокзал.» / «Мы на этой неделе прочитали книгу.». Личное окончание у haber, причастие не согласуется с предметом. Смысловые опоры: «estación» — станция. Сравни два задания: «Ты сегодня прочитал книгу?» / «Вы сегодня вошли в офис?». Личное окончание у haber, причастие не согласуется с предметом. Соедини результат с текущим отрезком времени — так, как принято в испанском варианте этого урока."
+}

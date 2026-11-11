@@ -1,9 +1,0 @@
-{
-  "session": "en/l02/s20",
-  "sourceSha256": "6d438fd0a4a346bd426b201e98bdf0e8aa3febeac0951be2c2d694cb37b34cad",
-  "converged": true,
-  "needsHumanReview": false,
-  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
-  "audioReviewed": false,
-  "visualReviewed": false
-}

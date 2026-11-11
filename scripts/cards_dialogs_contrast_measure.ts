@@ -8,7 +8,7 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 import { dialogsHubTokens, dialogsWorldArt } from '../components/dialogs/scene/dialogs_hub_tokens';
-import { hexHue } from '../components/learning-v2/season/season_art';
+import { hexHue } from '../constants/oklch';
 
 type G = ReturnType<typeof liquidGlassTokens>;
 // копии формул экранов (их модули тянут React Native); скрипт падает, если исходник изменился
@@ -22,7 +22,7 @@ for (const [file, line] of [
   ['components/dialogs/DialogBubbleActions.tsx', 'backgroundColor: options?.active ? t.accentBg : t.bgSurface2,'],
   ['components/dialogs/DialogBubbleActions.tsx', "color={options?.active ? t.accentText : t.textMuted}"],
   ['app/flashcards/CollectionListView.tsx', 'backgroundColor: LV2_BAD,'],
-  ['components/learning-v2/LearningV2Glass.tsx', "export const LV2_BAD = '#F2766B';"],
+  ['components/practice/PracticeGlass.tsx', "export const LV2_BAD = '#F2766B';"],
   ['components/dialogs/glass/DialogueGlassSessionParts.tsx', 'style={[styles.fixButtonText, { color: glass.secondary }]}'],
 ] as const) if (!SRC(file).includes(line)) throw new Error(`исходник изменился: в ${file} нет «${line}» — обнови копию в этом скрипте`);
 const mixDark = (hex: string, base: string, t: number): string => {

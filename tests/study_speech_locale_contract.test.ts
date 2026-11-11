@@ -44,7 +44,6 @@ describe('speech surfaces: no hard-coded en-US, every speaking panel gets a loca
     'app/flashcards/ExpandedCardV2.tsx',
     'components/onboarding_aha/SpeechBeat.tsx',
     // Ревизор 15.10: предпросмотр слова в плеере V2 — языком курса (previewSpeechLocaleRef), не en-US
-    'app/learning_v2_direct_session_player_v1.tsx',
   ];
 
   it.each(NO_LITERAL)('%s has no literal en-US', (file) => {
@@ -55,7 +54,6 @@ describe('speech surfaces: no hard-coded en-US, every speaking panel gets a loca
     'app/lesson1.tsx',
     'app/mistake_practice_session.tsx',
     'app/flashcards_speaking_session.tsx',
-    'app/learning_v2_direct_session_player_v1.tsx',
   ])('%s passes recognitionLocale to every <SpeakingPanel>', (file) => {
     const src = read(file);
     const panels = src.split(/<SpeakingPanel\s/).slice(1).map((chunk) => chunk.slice(0, chunk.indexOf('/>') > 0 ? chunk.indexOf('/>') : 1500));

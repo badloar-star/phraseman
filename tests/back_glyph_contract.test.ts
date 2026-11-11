@@ -32,7 +32,6 @@ describe('значок «назад»: один контур — как в ма�
 
   // Места, где системная стрелка ещё стоит: разработческие экраны (подчёркивание в имени), демо лаборатории и текстовая кнопка «Назад» с глифом. Список только УМЕНЬШАЕТСЯ.
   const ALLOWED_DIRECT = new Set<string>([
-    'components/learning-v2-lab/ModeDemoPlayer.tsx',
     'app/flashcards_speaking_session.tsx',
   ]);
   const walk = (dir: string): string[] => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap((e) => {
@@ -76,7 +75,6 @@ describe('значок «назад»: один контур — как в ма�
       'components/lessons/LessonMenuGlass.tsx',
       'components/packs/PackScreenKit.tsx',
       'app/flashcards/CardsGlassKit.tsx',
-      'components/learning-v2/horizons/LearningV2Horizons.tsx',
     ]) {
       expect(read(rel)).toContain('NavIcon');
     }

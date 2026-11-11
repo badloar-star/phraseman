@@ -1,0 +1,964 @@
+[
+{
+"lesson": 7,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:07:01",
+"de:07:03"
+],
+"textByLocale": {
+"en": "Imagine someone at the counter asking for a key. One person owns the thing, and the other part of the message names that thing. It is the second part that receives the accusative case, and the verb agrees with the owner.",
+"ru": "Представь, что на стойке просят ключ. Один человек владеет вещью, другая часть сообщения называет эту вещь. Именно вторая часть получает винительный падеж, а глагол согласуется с владельцем.",
+"uk": "Уяви, що на стійці просять ключ. Одна людина має річ, інша частина повідомлення називає цю річ. Саме друга частина отримує знахідний відмінок, а дієслово узгоджується з власником."
+}
+},
+{
+"exampleIds": [
+"de:07:04",
+"de:07:06"
+],
+"textByLocale": {
+"en": "Compare three types of objects. For one unspecified object, you get `einen`, `eine`,\" and `ein`.\" In the masculine gender, the ending `-en` is easy to spot; it cannot be added mechanically in each gender.",
+"ru": "Сравни три вида предметов. Для одного неопределённого предмета получаются `einen`, `eine`, `ein`. В мужском роде легко заметить окончание `-en`; механически добавлять его в каждом роде нельзя.",
+"uk": "Порівняй три види предметів. Для одного невизначеного предмета виходять `einen`, `eine`, `ein`. У чоловічому роді легко помітити закінчення `-en`; механічно додавати його у кожному роді не можна."
+}
+},
+{
+"exampleIds": [
+"de:07:11",
+"de:07:14"
+],
+"textByLocale": {
+"en": "A well-known thing. A needed key or a previously mentioned ticket is often referred to with the definite article. The masculine `der` becomes `den`; the feminine `die` and the neuter `das` remain the same.",
+"ru": "Известная вещь. О нужном ключе или уже названном билете часто говорят с определённым артиклем. Мужской `der` превращается в `den`; женский `die` и средний `das` выглядят как прежде.",
+"uk": "Відома річ. Про потрібний ключ або вже названий квиток часто говорять з певним артиклем. Чоловічий `der` перетворюється на `den`; жіночий `die` та середній `das` виглядають як раніше."
+}
+},
+{
+"exampleIds": [
+"de:07:16",
+"de:07:18"
+],
+"textByLocale": {
+"en": "The question \"Who or what are they looking for?\" helps identify the object. The verb `suchen` doesn't require a separate preposition before the object itself. First, form `Ich suche`,\" then add who or what.",
+"ru": "Вопрос «кого или что ищут?» помогает увидеть объект. Глагол `suchen` не требует отдельного предлога перед самим объектом. Сначала составь `Ich suche`, затем добавь, кого или что.",
+"uk": "Питання «кого чи що шукають?» допомагає побачити об'єкт. Дієслово `suchen` не вимагає окремого приводу перед самим об'єктом. Спочатку склади `Ich suche`, потім додай, кого чи що."
+}
+},
+{
+"exampleIds": [
+"de:07:21",
+"de:07:25"
+],
+"textByLocale": {
+"en": "Transportation can also be an object: `den Bus nehmen` means to go by bus, literally to choose it. Don't confuse this way of expressing a trip with the construction `mit dem Bus`,\" where the case determines the preposition.",
+"ru": "Транспорт тоже бывает объектом: `den Bus nehmen` — поехать автобусом, буквально выбрать его. Не путай этот способ выразить поездку с конструкцией `mit dem Bus`, где падеж задаёт предлог.",
+"uk": "Транспорт теж буває об'єктом: `den Bus nehmen` - поїхати автобусом, буквально вибрати його. Не плутай цей спосіб висловити поїздку з конструкцією `mit dem Bus`, де відмінок задає прийменник."
+}
+},
+{
+"exampleIds": [
+"de:07:31",
+"de:07:36"
+],
+"textByLocale": {
+"en": "Don't forget the verb form. While the article depends on the object, `liest` or `trägt` is chosen based on the performer. These two decisions are independent.",
+"ru": "Не забывай про форму глагола. В то время как артикль зависит от объекта, `liest` или `trägt` выбирается по исполнителю. Эти два решения независимы.",
+"uk": "Не забувай про форму дієслова. Коли артикль залежить від об'єкта, `liest` або `trägt` вибирається за виконавцем. Ці два рішення є незалежними."
+}
+},
+{
+"exampleIds": [
+"de:07:44",
+"de:07:50"
+],
+"textByLocale": {
+"en": "Practice test. A check, a certificate, and a receipt can be different types, although the situation is the same. Learn each word with an article, and then transform this vocabulary pair into an object of action.",
+"ru": "Практическая проверка. Чек, удостоверение и квитанция могут быть разного рода, хотя ситуация одна и та же. Выучи каждое слово с артиклем, а затем преврати эту словарную пару в объект действия.",
+"uk": "Практична перевірка. Чек, посвідчення та квитанція можуть бути різного роду, хоча ситуація одна й та сама. Вивчіть кожне слово з артиклем, а потім перетворіть цю словникову пару на об'єкт дії."
+}
+}
+],
+"lab": [
+{
+"bad": "einer",
+"chapter": 1,
+"id": "de:07:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"einen",
+"einer",
+"einem"
+],
+"slot": 2
+},
+{
+"bad": "eine",
+"chapter": 1,
+"id": "de:07:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"eines",
+"einen",
+"eine"
+],
+"slot": 2
+},
+{
+"bad": "eine",
+"chapter": 1,
+"id": "de:07:05:lab",
+"item": 5,
+"kind": "match",
+"near": 9,
+"options": [
+"ein",
+"einer",
+"eine"
+],
+"slot": 2
+},
+{
+"bad": "einer",
+"chapter": 2,
+"id": "de:07:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"einer",
+"eine",
+"ein"
+],
+"slot": 2
+},
+{
+"bad": "einem",
+"chapter": 2,
+"id": "de:07:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 30,
+"options": [
+"einen",
+"einem",
+"ein"
+],
+"slot": 3
+},
+{
+"bad": "des",
+"chapter": 2,
+"id": "de:07:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 22,
+"options": [
+"des",
+"dem",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "holen",
+"chapter": 3,
+"id": "de:07:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 24,
+"options": [
+"öffnen",
+"brauchen",
+"holen"
+],
+"slot": 1
+},
+{
+"bad": "einem",
+"chapter": 3,
+"id": "de:07:17:lab",
+"item": 17,
+"kind": "match",
+"near": 8,
+"options": [
+"einen",
+"einem",
+"eine"
+],
+"slot": 2
+},
+{
+"bad": "einem",
+"chapter": 3,
+"id": "de:07:19:lab",
+"item": 19,
+"kind": "build",
+"near": 16,
+"options": [
+"eine",
+"einem",
+"einen"
+],
+"slot": 2
+},
+{
+"bad": "das",
+"chapter": 4,
+"id": "de:07:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 12,
+"options": [
+"dem",
+"das",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "nehme",
+"chapter": 4,
+"id": "de:07:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 33,
+"options": [
+"nimmt",
+"nehme",
+"nehmen"
+],
+"slot": 1
+},
+{
+"bad": "einem",
+"chapter": 4,
+"id": "de:07:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"einem",
+"einer",
+"einen"
+],
+"slot": 2
+},
+{
+"bad": "dem",
+"chapter": 5,
+"id": "de:07:29:lab",
+"item": 29,
+"kind": "match",
+"near": 31,
+"options": [
+"das",
+"den",
+"dem"
+],
+"slot": 2
+},
+{
+"bad": "das",
+"chapter": 5,
+"id": "de:07:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"den",
+"dem",
+"das"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 5,
+"id": "de:07:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"dem",
+"der",
+"den"
+],
+"slot": 2
+},
+{
+"bad": "öffnet",
+"chapter": 6,
+"id": "de:07:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"trägt",
+"öffnet",
+"öffnen"
+],
+"slot": 1
+},
+{
+"bad": "einen",
+"chapter": 6,
+"id": "de:07:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"einen",
+"nehmen",
+"öffnen"
+],
+"slot": 1
+},
+{
+"bad": "einer",
+"chapter": 6,
+"id": "de:07:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"einer",
+"eine",
+"einen"
+],
+"slot": 2
+},
+{
+"bad": "eines",
+"chapter": 7,
+"id": "de:07:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"ein",
+"eines",
+"eine"
+],
+"slot": 2
+},
+{
+"bad": "der",
+"chapter": 7,
+"id": "de:07:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 37,
+"options": [
+"die",
+"den",
+"der"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"der Schlüssel",
+"den Schlüssel"
+],
+[
+"ein Schlüssel",
+"einen Schlüssel"
+],
+[
+"die Karte",
+"die Karte"
+],
+[
+"das Ticket",
+"das Ticket"
+],
+[
+"eine Tasche",
+"eine Tasche"
+]
+],
+"title": {
+"en": "What I have and what I need: Accusative",
+"ru": "Что у меня есть и что мне нужно: Akkusativ",
+"uk": "Що у мене є і що мені потрібно: Akkusativ"
+}
+},
+"exampleResolved": [
+{
+"id": "de:07:01",
+"target": "Ich habe einen Schlüssel.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "de:07:03",
+"target": "Anna hat einen Schlüssel.",
+"ru": "У Анны есть ключ.",
+"uk": "Анна має ключ."
+},
+{
+"id": "de:07:04",
+"target": "Wir haben eine Tasche.",
+"ru": "У нас есть сумка.",
+"uk": "У нас є сумка."
+},
+{
+"id": "de:07:06",
+"target": "Tom hat einen Stift.",
+"ru": "У Тома есть ручка.",
+"uk": "Том має ручку."
+},
+{
+"id": "de:07:11",
+"target": "Ich brauche den Schlüssel.",
+"ru": "Мне нужен ключ.",
+"uk": "Мені потрібний ключ."
+},
+{
+"id": "de:07:14",
+"target": "Wir brauchen das Ticket.",
+"ru": "Нам нужен билет.",
+"uk": "Нам потрібний квиток."
+},
+{
+"id": "de:07:16",
+"target": "Ich suche einen Arzt.",
+"ru": "Я ищу врача.",
+"uk": "Я шукаю лікаря."
+},
+{
+"id": "de:07:18",
+"target": "Tom sucht ein Hotel.",
+"ru": "Том ищет гостиницу.",
+"uk": "Том шукає готель."
+},
+{
+"id": "de:07:21",
+"target": "Ich nehme den Bus.",
+"ru": "Я еду на автобусе.",
+"uk": "Я їду автобусом."
+},
+{
+"id": "de:07:25",
+"target": "Ihr nehmt die Treppe.",
+"ru": "Вы идёте по лестнице.",
+"uk": "Ви йдете сходами."
+},
+{
+"id": "de:07:31",
+"target": "Ich lese den Brief.",
+"ru": "Я читаю письмо.",
+"uk": "Я читаю листа."
+},
+{
+"id": "de:07:36",
+"target": "Tom trägt das Paket.",
+"ru": "Том несёт посылку.",
+"uk": "Том несе посилку."
+},
+{
+"id": "de:07:44",
+"target": "Brauchen Sie einen Beleg?",
+"ru": "Вам нужен чек?",
+"uk": "Вам потрібний чек?"
+},
+{
+"id": "de:07:50",
+"target": "Wir holen das Fahrrad.",
+"ru": "Мы забираем велосипед.",
+"uk": "Ми забираємо велосипед."
+}
+]
+},
+{
+"lesson": 8,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:08:01",
+"de:08:05"
+],
+"textByLocale": {
+"en": "If a description is incorrect, the negation comes before it. Compare \"tired\" and \"not tired\": we are still talking about a person, not about the absence of an object.",
+"ru": "Если неверно описание, отрицание стоит перед этим описанием. Сравни «устал» и «не устал»: речь всё ещё о человеке, а не об отсутствии какого-то предмета.",
+"uk": "Якщо неправильний опис, заперечення стоїть перед цим описом. Порівняй \"втомився\" і \"не втомився\": мова все ще про людину, а не про відсутність якогось предмета."
+}
+},
+{
+"exampleIds": [
+"de:08:11",
+"de:08:14"
+],
+"textByLocale": {
+"en": "To say you don't have a ticket, use the negative article. Imagine the positive `ein Ticket` and replace the article: `kein Ticket`.\" Don't add a second indefinite article.",
+"ru": "Чтобы сказать, что у тебя нет билета, используется отрицательный артикль. Представь положительное `ein Ticket` и замени артикль: `kein Ticket`. Не добавляй второй неопределённый артикль.",
+"uk": "Щоб сказати, що не маєш квитка, використовується негативний артикль. Уяви позитивне `ein Ticket` та заміни артикль: `kein Ticket`. Не додай другий невизначений артикль."
+}
+},
+{
+"exampleIds": [
+"de:08:16",
+"de:08:20"
+],
+"textByLocale": {
+"en": "Why is it `keinen`? The ending of the negative article depends on the same gender, number, and case as other determiners. For a masculine object, `haben` requires `keinen`.\"",
+"ru": "Почему бывает `keinen`? Окончание отрицательного артикля зависит от того же рода, числа и падежа, что и у других определителей. У мужского объекта после `haben` нужен `keinen`.",
+"uk": "Чому буває `keinen`? Закінчення негативного артикля залежить від такого ж роду, числа і відмінка, як і в інших визначників. У чоловічого об'єкта після `haben` потрібен `keinen`."
+}
+},
+{
+"exampleIds": [
+"de:08:21",
+"de:08:25"
+],
+"textByLocale": {
+"en": "The names of products and activities often go without an article in a positive phrase. When negating quantity, such as \"no coffee, no music,\" you can use `kein` with a suitable ending.",
+"ru": "Названия продуктов и занятий часто идут без артикля в положительной фразе. При отрицании количества «никакого кофе, никакой музыки» можно поставить `kein` с подходящим окончанием.",
+"uk": "Назви продуктів та занять часто йдуть без артикля у позитивній фразі. При запереченні кількості «ніякої кави, ніякої музики» можна поставити `kein` з відповідним закінченням."
+}
+},
+{
+"exampleIds": [
+"de:08:31",
+"de:08:36"
+],
+"textByLocale": {
+"en": "The place `nicht` is not fixed forever. Before the contrasting place—before the place group. When negating a simple action with an already known object, `nicht` often appears near the end.",
+"ru": "Место `nicht` не фиксировано навсегда. Перед противопоставленным местом — перед группой места. Когда отрицается простое действие с уже известным предметом, `nicht` нередко оказывается ближе к концу.",
+"uk": "Місце `nicht` не фіксоване назавжди. Перед протипоставленим місцем перед групою місця. Коли заперечується просте дію з відомим предметом, `nicht` нерідко виявляється ближче до кінця."
+}
+},
+{
+"exampleIds": [
+"de:08:41",
+"de:08:45"
+],
+"textByLocale": {
+"en": "This is not my suitcase. It already contains the determiner `mein`,\" so you can't simultaneously use `kein mein`.\" Negate possession with `nicht` before the group with `mein`.\"",
+"ru": "Это не мой чемодан. Здесь уже есть определитель `mein`, поэтому нельзя одновременно поставить `kein mein`. Отрицай принадлежность с помощью `nicht` перед группой с `mein`.",
+"uk": "Це не моя валіза. Тут уже є визначник `mein`, тому не можна одночасно поставити `kein mein`. Заперечуй належність за допомогою `nicht` перед групою з `mein`."
+}
+},
+{
+"exampleIds": [
+"de:08:47",
+"de:08:50"
+],
+"textByLocale": {
+"en": "Compare two stories: there is no key at all, or you can't find a specific key. In the first situation, deny the presence of the object; in the second, deny the result of the action on a specific object.",
+"ru": "Сравни две истории: ключа вообще нет или конкретный ключ ты не находишь. В первой ситуации отрицай наличие предмета, во второй — результат действия над определённым предметом.",
+"uk": "Порівняй дві історії: ключа взагалі немає або конкретний ключ ти не знаходиш. У першій ситуації заперечи наявність предмета, у другій — результат дії над певним предметом."
+}
+}
+],
+"lab": [
+{
+"bad": "wieder",
+"chapter": 1,
+"id": "de:08:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 31,
+"options": [
+"nicht",
+"wieder",
+"schon"
+],
+"slot": 2
+},
+{
+"bad": "schon",
+"chapter": 1,
+"id": "de:08:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 32,
+"options": [
+"schon",
+"nicht",
+"noch"
+],
+"slot": 2
+},
+{
+"bad": "schon",
+"chapter": 1,
+"id": "de:08:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"schon",
+"nicht",
+"nur"
+],
+"slot": 3
+},
+{
+"bad": "nie",
+"chapter": 2,
+"id": "de:08:08:lab",
+"item": 8,
+"kind": "build",
+"near": 33,
+"options": [
+"nicht",
+"auch",
+"nie"
+],
+"slot": 2
+},
+{
+"bad": "wieder",
+"chapter": 2,
+"id": "de:08:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 35,
+"options": [
+"wieder",
+"nicht",
+"schon"
+],
+"slot": 3
+},
+{
+"bad": "kein",
+"chapter": 2,
+"id": "de:08:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 26,
+"options": [
+"keinen",
+"kein",
+"keine"
+],
+"slot": 2
+},
+{
+"bad": "keinen",
+"chapter": 3,
+"id": "de:08:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 23,
+"options": [
+"kein",
+"keine",
+"keinen"
+],
+"slot": 2
+},
+{
+"bad": "keinem",
+"chapter": 3,
+"id": "de:08:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"keinen",
+"keinem",
+"kein"
+],
+"slot": 2
+},
+{
+"bad": "keines",
+"chapter": 3,
+"id": "de:08:19:lab",
+"item": 19,
+"kind": "build",
+"near": 22,
+"options": [
+"kein",
+"keines",
+"keinen"
+],
+"slot": 2
+},
+{
+"bad": "keinen",
+"chapter": 4,
+"id": "de:08:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 13,
+"options": [
+"kein",
+"keinen",
+"keine"
+],
+"slot": 2
+},
+{
+"bad": "keinem",
+"chapter": 4,
+"id": "de:08:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"keinen",
+"keinem",
+"keines"
+],
+"slot": 2
+},
+{
+"bad": "keinen",
+"chapter": 4,
+"id": "de:08:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 12,
+"options": [
+"kein",
+"keinen",
+"keine"
+],
+"slot": 2
+},
+{
+"bad": "kein",
+"chapter": 5,
+"id": "de:08:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"keinen",
+"keinem",
+"kein"
+],
+"slot": 3
+},
+{
+"bad": "immer",
+"chapter": 5,
+"id": "de:08:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"immer",
+"noch",
+"nicht"
+],
+"slot": 3
+},
+{
+"bad": "nur",
+"chapter": 5,
+"id": "de:08:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 9,
+"options": [
+"nicht",
+"wieder",
+"nur"
+],
+"slot": 2
+},
+{
+"bad": "schon",
+"chapter": 6,
+"id": "de:08:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"nie",
+"nicht",
+"schon"
+],
+"slot": 2
+},
+{
+"bad": "nie",
+"chapter": 6,
+"id": "de:08:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 7,
+"options": [
+"nicht",
+"nie",
+"schon"
+],
+"slot": 3
+},
+{
+"bad": "kein",
+"chapter": 6,
+"id": "de:08:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"kein",
+"keine",
+"keiner"
+],
+"slot": 2
+},
+{
+"bad": "nur",
+"chapter": 7,
+"id": "de:08:45:lab",
+"item": 45,
+"kind": "build",
+"near": 46,
+"options": [
+"immer",
+"nicht",
+"nur"
+],
+"slot": 2
+},
+{
+"bad": "schon",
+"chapter": 7,
+"id": "de:08:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 32,
+"options": [
+"auch",
+"nicht",
+"schon"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"ein Ticket",
+"kein Ticket"
+],
+[
+"einen Termin",
+"keinen Termin"
+],
+[
+"eine Tasche",
+"keine Tasche"
+],
+[
+"Tickets",
+"keine Tickets"
+],
+[
+"frei",
+"nicht frei"
+],
+[
+"mein Koffer",
+"nicht mein Koffer"
+]
+],
+"title": {
+"en": "Saying no: `nicht` or `kein`?",
+"ru": "`nicht` или `kein`: что именно отрицаем?",
+"uk": "Що саме заперечуємо: `nicht` чи `kein`?"
+}
+},
+"exampleResolved": [
+{
+"id": "de:08:01",
+"target": "Ich bin nicht müde.",
+"ru": "Я не устал.",
+"uk": "Я не втомився."
+},
+{
+"id": "de:08:05",
+"target": "Die Tür ist nicht zu.",
+"ru": "Дверь не закрыта.",
+"uk": "Двері не зачинені."
+},
+{
+"id": "de:08:11",
+"target": "Ich habe keinen Schlüssel.",
+"ru": "У меня нет ключа.",
+"uk": "У мене немає ключа."
+},
+{
+"id": "de:08:14",
+"target": "Wir haben keine Tickets.",
+"ru": "У нас нет билетов.",
+"uk": "У нас немає квитків."
+},
+{
+"id": "de:08:16",
+"target": "Tom hat keine Zeit.",
+"ru": "У Тома нет времени.",
+"uk": "У Тома немає часу."
+},
+{
+"id": "de:08:20",
+"target": "Die Kinder haben keinen Hunger.",
+"ru": "Дети не голодны.",
+"uk": "Діти не голодні."
+},
+{
+"id": "de:08:21",
+"target": "Ich trinke keinen Kaffee.",
+"ru": "Я не пью кофе.",
+"uk": "Я не п'ю кави."
+},
+{
+"id": "de:08:25",
+"target": "Ich höre keine Musik.",
+"ru": "Я не слушаю музыку.",
+"uk": "Я не слухаю музику."
+},
+{
+"id": "de:08:31",
+"target": "Ich arbeite heute nicht.",
+"ru": "Я сегодня не работаю.",
+"uk": "Я сьогодні не працюю."
+},
+{
+"id": "de:08:36",
+"target": "Wir bezahlen nicht mit Karte.",
+"ru": "Мы платим не картой.",
+"uk": "Ми платимо не карткою."
+},
+{
+"id": "de:08:41",
+"target": "Das ist kein Eingang.",
+"ru": "Это не вход.",
+"uk": "Це не вхід."
+},
+{
+"id": "de:08:45",
+"target": "Das ist nicht mein Koffer.",
+"ru": "Это не мой чемодан.",
+"uk": "Це не моя валіза."
+},
+{
+"id": "de:08:47",
+"target": "Ich finde den Parkplatz nicht.",
+"ru": "Я не могу найти парковочное место.",
+"uk": "Я не можу знайти місце для паркування."
+},
+{
+"id": "de:08:50",
+"target": "Ich habe leider kein Kleingeld.",
+"ru": "К сожалению, у меня нет мелочи.",
+"uk": "На жаль, у мене немає дрібних грошей."
+}
+]
+}
+]

@@ -309,21 +309,6 @@ test('no_release_surface без доказательства — нарушен�
   assert.deepEqual(codes(result), ['release_surface_proof_missing']);
 });
 
-test('no_release_surface без ревью координатора — нарушение', () => {
-  const dir = sandbox();
-  fs.writeFileSync(path.join(dir, 'app/learning_v2_demo.tsx'), 'export default 1;\n');
-  const proof = { kind: 'store_route_excluded', routes: ['app/learning_v2_demo.tsx'] };
-  assert.ok(codes(runHidden(dir, [hiddenRow({ reviewed_by: null, release_surface_proof: proof })])).includes('review_missing'));
-});
-
-test('no_release_surface с маршрутом, вырезанным в стор-режиме, проходит', () => {
-  const dir = sandbox();
-  fs.writeFileSync(path.join(dir, 'app/learning_v2_demo.tsx'), 'export default 1;\n');
-  const result = runHidden(dir, [hiddenRow({ release_surface_proof: { kind: 'store_route_excluded', routes: ['app/learning_v2_demo.tsx'] } })]);
-  assert.equal(result.ok, true, JSON.stringify(result.violations));
-  assert.equal(result.counts.no_release_surface, 1);
-});
-
 test('no_release_surface с маршрутом, который стор-сборка видит, — нарушение', () => {
   const result = runHidden(sandbox(), [hiddenRow({ release_surface_proof: { kind: 'store_route_excluded', routes: ['app/screen.tsx'] } })]);
   assert.deepEqual(codes(result), ['release_surface_route_reachable']);
@@ -339,19 +324,6 @@ test('no_release_surface за флагом: нужен флаг по умолч�
   assert.deepEqual(codes(runHidden(dir, [hiddenRow({ release_surface_proof: { ...proof, guard_test: 'tests/none.test.mjs' } })])), ['release_surface_guard_missing']);
   fs.writeFileSync(path.join(dir, 'app/flag.ts'), "const KEY = 'demo_tab_enabled'; export const on = (b) => Boolean(b?.[KEY]);\n");
   assert.deepEqual(codes(runHidden(dir, [hiddenRow({ release_surface_proof: proof })])), ['release_surface_flag_not_default_off']);
-});
-
-// зачем (Макеты 12.10, красный на HEAD): коммит caafa92ab снял вырез Learning V2 из стор-сборки, а тест всё ещё требовал его вырезанным.
-// Сторожим то, что стор-сборка вырезает сейчас (превью Шпиля на моках и dev_state — 42bfeb63c, ba16e10c5), и что Главная и Learning V2 в ней остаются.
-// ВАЖНО: вырез Learning V2 — решение владельца на утро (handoff/r1_cut_v2.patch). Если владелец скажет «вырезать» и патч применят,
-// последнее утверждение (learning_v2_direct_session_player_v1.tsx → false) надо вернуть в `true` в ТОМ ЖЕ коммите, что и патч.
-test('настоящий router.ctx.js: стор-сборка вырезает dev-превью и оставляет Главную и Learning V2', () => {
-  const regex = storeRouteRegex(ROOT);
-  assert.ok(regex, 'регулярка стор-режима не найдена в router.ctx.js');
-  assert.equal(isRouteExcludedInStore(regex, 'app/dev_spire_preview.tsx'), true);
-  assert.equal(isRouteExcludedInStore(regex, 'app/dev_state.tsx'), true);
-  assert.equal(isRouteExcludedInStore(regex, 'app/(tabs)/home.tsx'), false);
-  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), false);
 });
 
 // зачем (координатор 12.10, решение владельца «гейт только по r1» — утром): `--release=r1` считает только строки выпуска R1;

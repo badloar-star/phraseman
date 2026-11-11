@@ -1,0 +1,715 @@
+{
+ "lang": "fr",
+ "lesson": 15,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:15:01",
+   "target": "Je vais partir.",
+   "ru": "Я собираюсь уйти.",
+   "uk": "Я збираюся йти."
+  },
+  {
+   "id": "fr:15:02",
+   "target": "Tu vas partir.",
+   "ru": "Ты собираешься уйти.",
+   "uk": "Ти збираєшся йти."
+  },
+  {
+   "id": "fr:15:03",
+   "target": "Elle va téléphoner.",
+   "ru": "Она собирается позвонить.",
+   "uk": "Вона збирається подзвонити."
+  },
+  {
+   "id": "fr:15:04",
+   "target": "Nous allons marcher.",
+   "ru": "Мы собираемся пойти пешком.",
+   "uk": "Ми збираємося піти пішки."
+  },
+  {
+   "id": "fr:15:05",
+   "target": "Vous allez rester.",
+   "ru": "Вы собираетесь остаться.",
+   "uk": "Ви маєте намір залишитися."
+  },
+  {
+   "id": "fr:15:06",
+   "target": "Ils vont rentrer.",
+   "ru": "Они пойдут домой.",
+   "uk": "Вони підуть додому."
+  },
+  {
+   "id": "fr:15:07",
+   "target": "Je vais réserver une chambre.",
+   "ru": "Я забронирую номер.",
+   "uk": "Я забронюю кімнату."
+  },
+  {
+   "id": "fr:15:08",
+   "target": "Tu vas prendre le bus.",
+   "ru": "Ты поедешь на автобусе.",
+   "uk": "Ти поїдеш автобусом."
+  },
+  {
+   "id": "fr:15:09",
+   "target": "Léa va préparer le déjeuner.",
+   "ru": "Леа собирается приготовить обед.",
+   "uk": "Леа приготує обід."
+  },
+  {
+   "id": "fr:15:10",
+   "target": "Paul va ouvrir le magasin.",
+   "ru": "Поль собирается открыть магазин.",
+   "uk": "Пол відкриє магазин."
+  },
+  {
+   "id": "fr:15:11",
+   "target": "Je vais acheter du pain.",
+   "ru": "Я собираюсь купить хлеб.",
+   "uk": "Я куплю хліба."
+  },
+  {
+   "id": "fr:15:12",
+   "target": "Elle va chercher ses lunettes.",
+   "ru": "Она собирается поискать свои очки.",
+   "uk": "Вона збирається пошукати свої окуляри."
+  },
+  {
+   "id": "fr:15:13",
+   "target": "Nous allons inviter nos voisins.",
+   "ru": "Мы собираемся пригласить наших соседей.",
+   "uk": "Ми збираємося запросити наших сусідів."
+  },
+  {
+   "id": "fr:15:14",
+   "target": "Vous allez changer de train.",
+   "ru": "Вы собираетесь пересесть на другой поезд.",
+   "uk": "Ви збираєтеся пересісти на інший поїзд."
+  },
+  {
+   "id": "fr:15:15",
+   "target": "Ils vont livrer le colis.",
+   "ru": "Они доставят посылку.",
+   "uk": "Вони збираються доставити посилку."
+  },
+  {
+   "id": "fr:15:16",
+   "target": "Je vais imprimer le billet.",
+   "ru": "Я собираюсь распечатать билет.",
+   "uk": "Я збираюся роздрукувати квиток."
+  },
+  {
+   "id": "fr:15:17",
+   "target": "Tu vas remplir le formulaire.",
+   "ru": "Ты собираешься заполнить бланк.",
+   "uk": "Ти збираєшся заповнити бланк."
+  },
+  {
+   "id": "fr:15:18",
+   "target": "On va passer à la banque.",
+   "ru": "Мы собираемся зайти в банк.",
+   "uk": "Ми збираємося зайти до банку."
+  },
+  {
+   "id": "fr:15:19",
+   "target": "Le bus va tourner à gauche.",
+   "ru": "Автобус повернет налево.",
+   "uk": "Автобус поверне ліворуч."
+  },
+  {
+   "id": "fr:15:20",
+   "target": "Le film va commencer.",
+   "ru": "Фильм начнётся.",
+   "uk": "Фільм почнеться."
+  },
+  {
+   "id": "fr:15:21",
+   "target": "Demain, je vais voir Léa.",
+   "ru": "Завтра я собираюсь повидаться с Леа.",
+   "uk": "Завтра я збираюся побачитися з Леа."
+  },
+  {
+   "id": "fr:15:22",
+   "target": "Ce soir, nous allons dîner ensemble.",
+   "ru": "Сегодня вечером мы будем ужинать вместе.",
+   "uk": "Сьогодні ввечері ми повечеряємо разом."
+  },
+  {
+   "id": "fr:15:23",
+   "target": "Après le cours, je vais rentrer à pied.",
+   "ru": "После занятий я пойду домой пешком.",
+   "uk": "Після уроків я піду додому пішки."
+  },
+  {
+   "id": "fr:15:24",
+   "target": "Samedi, ils vont visiter le marché.",
+   "ru": "В субботу они пойдут на рынок.",
+   "uk": "У суботу вони збираються відвідати ринок."
+  },
+  {
+   "id": "fr:15:25",
+   "target": "Dans deux minutes, le train va partir.",
+   "ru": "Поезд отправится через две минуты.",
+   "uk": "Поїзд відправляється через дві хвилини."
+  },
+  {
+   "id": "fr:15:26",
+   "target": "Tu vas travailler demain ?",
+   "ru": "Ты завтра пойдешь на работу?",
+   "uk": "Ти завтра підеш на роботу?"
+  },
+  {
+   "id": "fr:15:27",
+   "target": "Vous allez prendre un dessert ?",
+   "ru": "Вы возьмёте десерт?",
+   "uk": "Ви візьмете десерт?"
+  },
+  {
+   "id": "fr:15:28",
+   "target": "Est-ce qu’elle va conduire ?",
+   "ru": "Она поедет за рулем?",
+   "uk": "Вона сідатиме за кермо?"
+  },
+  {
+   "id": "fr:15:29",
+   "target": "Qu’est-ce que tu vas commander ?",
+   "ru": "Что ты собираешься заказать?",
+   "uk": "Що ти замовиш?"
+  },
+  {
+   "id": "fr:15:30",
+   "target": "Où allez-vous dormir ?",
+   "ru": "Где вы будете спать?",
+   "uk": "Де ви спатимете?"
+  },
+  {
+   "id": "fr:15:31",
+   "target": "Je ne vais pas sortir ce soir.",
+   "ru": "Сегодня вечером я никуда не пойду.",
+   "uk": "Сьогодні ввечері я нікуди не піду."
+  },
+  {
+   "id": "fr:15:32",
+   "target": "Tu ne vas pas perdre ta place.",
+   "ru": "Ты не потеряешь своё место.",
+   "uk": "Ти не втратиш свого місця."
+  },
+  {
+   "id": "fr:15:33",
+   "target": "Il ne va pas pleuvoir aujourd’hui.",
+   "ru": "Сегодня дождя не будет.",
+   "uk": "Сьогодні дощу не буде."
+  },
+  {
+   "id": "fr:15:34",
+   "target": "Nous n’allons pas déménager.",
+   "ru": "Мы не собираемся переезжать.",
+   "uk": "Ми не збираємося переїжджати."
+  },
+  {
+   "id": "fr:15:35",
+   "target": "Vous n’allez pas attendre longtemps.",
+   "ru": "Вам не придётся долго ждать.",
+   "uk": "Вам не доведеться довго чекати."
+  },
+  {
+   "id": "fr:15:36",
+   "target": "Elles ne vont pas prendre de taxi.",
+   "ru": "Они не будут брать такси.",
+   "uk": "Вони не збираються брати таксі."
+  },
+  {
+   "id": "fr:15:37",
+   "target": "Je vais garder la facture.",
+   "ru": "Я сохраню квитанцию.",
+   "uk": "Я збережу квитанцію."
+  },
+  {
+   "id": "fr:15:38",
+   "target": "Elle va reporter son voyage.",
+   "ru": "Она отложит свою поездку.",
+   "uk": "Вона відкладе свою поїздку."
+  },
+  {
+   "id": "fr:15:39",
+   "target": "Nous allons vérifier l’adresse.",
+   "ru": "Мы проверим адрес.",
+   "uk": "Ми перевіримо адресу."
+  },
+  {
+   "id": "fr:15:40",
+   "target": "Je vais ranger le garage.",
+   "ru": "Я приведу гараж в порядок.",
+   "uk": "Я приберу в гаражі."
+  },
+  {
+   "id": "fr:15:41",
+   "target": "Je vais rappeler le médecin après midi.",
+   "ru": "Я перезвоню врачу после полудня.",
+   "uk": "Я передзвоню лікарю після полудня."
+  },
+  {
+   "id": "fr:15:42",
+   "target": "Le facteur va passer dans la matinée.",
+   "ru": "Почтальон зайдёт утром.",
+   "uk": "Листоноша зайде вранці."
+  },
+  {
+   "id": "fr:15:43",
+   "target": "Nous allons apporter des serviettes.",
+   "ru": "Мы принесём полотенца.",
+   "uk": "Ми принесемо рушники."
+  },
+  {
+   "id": "fr:15:44",
+   "target": "Les enfants vont jouer dans la cour.",
+   "ru": "Дети будут играть во дворе.",
+   "uk": "Діти гратимуться у дворі."
+  },
+  {
+   "id": "fr:15:45",
+   "target": "Tu vas essayer la veste bleue ?",
+   "ru": "Ты собираешься примерить синюю куртку?",
+   "uk": "Ти збираєшся приміряти синю куртку?"
+  },
+  {
+   "id": "fr:15:46",
+   "target": "Je vais laisser la clé à l’accueil.",
+   "ru": "Я оставлю ключ на ресепшене.",
+   "uk": "Я залишу ключ на рецепції."
+  },
+  {
+   "id": "fr:15:47",
+   "target": "Elle va nous envoyer une photo.",
+   "ru": "Она пришлет нам фотографию.",
+   "uk": "Вона надішле нам фото."
+  },
+  {
+   "id": "fr:15:48",
+   "target": "Nous allons lire l’étiquette avant de choisir la farine.",
+   "ru": "Мы прочитаем этикетку, прежде чем выбирать муку.",
+   "uk": "Ми збираємося прочитати етикетку, перш ніж вибрати борошно."
+  },
+  {
+   "id": "fr:15:49",
+   "target": "Vous allez trouver la sortie à droite.",
+   "ru": "Вы увидите выход справа.",
+   "uk": "Ви побачите вихід праворуч."
+  },
+  {
+   "id": "fr:15:50",
+   "target": "Ce week-end, je vais réparer mon vélo.",
+   "ru": "В эти выходные я собираюсь починить свой велосипед.",
+   "uk": "Цих вихідних я збираюся полагодити свій велосипед."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le facteur / la factrice",
+   "ru": "почтальон",
+   "uk": "листоноша"
+  },
+  {
+   "lemma": "le voyage",
+   "ru": "поездка, путешествие",
+   "uk": "поїздка, подорож"
+  },
+  {
+   "lemma": "le dessert",
+   "ru": "десерт",
+   "uk": "десерт"
+  },
+  {
+   "lemma": "réparer",
+   "ru": "чинить",
+   "uk": "лагодити"
+  },
+  {
+   "lemma": "vérifier",
+   "ru": "проверять",
+   "uk": "перевіряти"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  }
+ ],
+ "oldTopicTitle": "План на ближайшее время: `aller` + действие",
+ "oldTheoryRu": "Сравни `je vais à la gare` и `je vais partir`. В первом случае после `vais` есть место, во втором — ещё одно действие. Не вставляй между двумя глаголами `à`. Именно `aller` показывает лицо. Если за дело берутся несколько людей, меняй `vais` на `allons` или `vont`, а второй глагол сохрани в словарной форме. Второй глагол называет будущее действие. Настоящее время формы `va` само по себе не значит, что фильм уже идёт: `le film va commencer` указывает на предстоящее действие. Обстоятельства времени можно поставить перед основой фразы. В них нет глагола, поэтому `demain` не освобождает от выбора между `vais`, `vas`, `va`. В знакомом отрицании `ne … pas` охватывает первый глагол: `je ne vais pas sortir`. Не загоняй `pas` за второй глагол просто потому, что он последний. Перед дополнениями обрати внимание на местоимения. Образец `elle va nous envoyer` различает того, кто отправит, и тех, кому отправят. Союз и предлог не заменяют местоимение. Проверка: оставь тот же план, но измени день или исполнителя. День меняет время, исполнитель — форму `aller`. Не меняй сразу и время, и глагол, и предмет."
+}

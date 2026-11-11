@@ -109,10 +109,6 @@ export const PAYWALL_SOURCE_VALUES = [
   'dialogs_tutor_poster',
   // Дневной лимит реплик у ИИ-компаньона (ai_companion_session).
   'ai_companion_daily_limit',
-  // «Работа над ошибками» внутри урока Learning V2.
-  'learning_v2',
-  // зачем (D194, Дизайн 15.10): исчерпан дневной лимит голоса на микрофоне занятия нового курса — пейвол ai_voice_input.
-  'learning_v2_course_voice',
   // зачем (30.09): живые точки входа 2.0, которых не было в списке — без них
   // rejectUnknown превращал кнопку Plus в «закрыть». Диалоги V2 (хаб, сессия,
   // свободный разговор, память), компаньон диалогов и «нет энергии» в Шпиле.
@@ -131,17 +127,14 @@ export const PAYWALL_SOURCE_VALUES = [
   // зачем (координатор 22.10, красный paywall_entry_callsite_registry; причина по логу сторожа — три живых вызова с неучтёнными source):
   // — 'dialogue_v2_hub_scene': кнопка «Plus снимает лимит» и алмаз сцены хаба Диалогов (DialogsSceneHub); без записи rejectUnknown в стор-сборке молча закрывал бы окно вместо продажи,
   //   а сцену включаем всем (решение владельца 22.10) — это был бы живой баг;
-  // — 'dev_dialogs_scene_preview' и 'learning_v2_dictionary': dev-экраны (превью сцены Диалогов и словарь Learning V2), в стор-сборке недоступны.
+  // — 'dev_dialogs_scene_preview': dev-экран (превью сцены Диалогов), в стор-сборке недоступен.
   'dialogue_v2_hub_scene',
   'dev_dialogs_scene_preview',
-  'learning_v2_dictionary',
-  // зачем (координатор 25.10, инвентарь Макетов): три живых входа без записи — в стор-сборке rejectUnknown молча закрывал окно:
+  // зачем (координатор 25.10, инвентарь Макетов): два живых входа без записи — в стор-сборке rejectUnknown молча закрывал окно:
   // — 'ai_explain_limit_card': «Посмотреть Plus» на карточке «разбор на сегодня закончился» (AiMistakeCard → AiLimitUpsellCard) — в бою;
   // — 'dialogue_v2_freeform_server': свободный разговор, сервер отказал «нужен Plus» (36eba41a0);
-  // — 'phrase_workshop': «Мастерская фраз» за Plus (список «Все уроки» и вход урока), за флагом.
   'ai_explain_limit_card',
   'dialogue_v2_freeform_server',
-  'phrase_workshop',
   // зачем (Ревизор 28.10, ae0261b1b): кнопка «Открыть Plus» в объявлении историй (шаблон plus, StoryViewer → use_story_cta_action) — свой
   // source, чтобы воронка отличала вход из историй; без записи rejectUnknown в стор-сборке закрывал окно Plus сразу после открытия.
   'story_announcement',

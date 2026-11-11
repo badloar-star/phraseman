@@ -7,20 +7,20 @@
  *
  * Поток (см. шапку, которую админка вшивает в «📋 Копировать все репорты»):
  *   1) Админ копирует пачку репортов из админки → вставляет в ЛЛМ.
- *   2) ЛЛМ чинит подтверждённые баги в коде, готовит вежливые ответы юзерам,
- *      пишет replies.json и запускает этот скрипт.
+ *   2) ЛЛМ чинит подтверждённые баги в коде, готовит вежливые ответы юзерам
+ *      и запускает только offline dry-run. --send остаётся операторским режимом.
  *   3) Каждый юзер получает ответ в приложении; если проблема подтверждена и
  *      исправлена — с кнопкой «Получить» (клейм через CF claimReportReward).
  *
  * Запуск (зачем, D109 04.10: по умолчанию ничего не пишется — запись только явным флагом):
  *   node scripts/reply_to_reports.mjs replies.json             - предпросмотр: кому и что уйдёт, без записи
  *   node scripts/reply_to_reports.mjs replies.json --dry-run   - то же
- *   node scripts/reply_to_reports.mjs replies.json --send      - реальная отправка (после ручной проверки предпросмотра)
+ *   node scripts/reply_to_reports.mjs replies.json --send      - операторская отправка; ЛЛМ/Codex не запускает
  *
  * Формат replies.json — массив объектов:
  *   {
  *     "reportId": "abc123",              // id документа репорта (поле id из выгрузки)
- *     "uid": "stable-uid-юзера",         // поле uid из выгрузки
+ *     "uid": "stable-uid-юзера",         // обязательно для --send; в dry-run может отсутствовать
  *     "title": "Спасибо за репорт!",     // заголовок уведомления НА ЯЗЫКЕ ЮЗЕРА
  *     "body": "Ошибка исправлена…",      // 2-4 предложения, вежливо, на языке юзера
  *     "resolution": "confirmed_fixed",   // подтверждённая и уже исправленная проблема
@@ -119,7 +119,8 @@ function fail(msg) {
 }
 
 const fileArg = process.argv[2];
-const dryRun = resolveRunMode(process.argv.slice(3)) === 'dry-run';
+const runMode = resolveRunMode(process.argv.slice(3));
+const dryRun = runMode === 'dry-run';
 if (!fileArg || fileArg.startsWith('--')) fail('Usage: node scripts/reply_to_reports.mjs <replies_batch.json> [--dry-run|--send]');
 
 let rows;
@@ -132,7 +133,7 @@ if (!Array.isArray(rows) || rows.length === 0) fail('replies.json: ожидае�
 
 // Валидация ДО любых записей: один битый элемент — не шлём ничего (fail fast).
 const clean = rows.map((row, i) => {
-  const result = normalizeReplyRow(row, i);
+  const result = normalizeReplyRow(row, i, { mode: runMode });
   if (result.error) fail(result.error);
   if (result.warning) console.warn(`⚠️ ${result.warning}`);
   return result.item;
@@ -141,7 +142,7 @@ const clean = rows.map((row, i) => {
 if (dryRun) {
   console.log(`🔍 DRY-RUN: ${clean.length} ответ(ов)\n`);
   for (const item of clean) {
-    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… · ${item.resolution} · ${rewardLabel(item.rewardBundle)}`);
+    console.log(`  · ${item.reportCollection}/${item.reportId} · ${item.resolution} · ${rewardLabel(item.rewardBundle)}`);
     console.log(`    «${item.title}» — ${item.body.slice(0, 120)}${item.body.length > 120 ? '…' : ''}`);
   }
   console.log('\n🔍 DRY-RUN завершён — ничего не записано и Firebase Admin не инициализирован.');

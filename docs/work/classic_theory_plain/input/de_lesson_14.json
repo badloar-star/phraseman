@@ -1,0 +1,672 @@
+{
+ "lang": "de",
+ "lesson": 14,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:14:01",
+   "target": "Ich kann hier warten.",
+   "ru": "Я могу подождать здесь.",
+   "uk": "Я можу зачекати тут."
+  },
+  {
+   "id": "de:14:02",
+   "target": "Du kannst hier warten.",
+   "ru": "Ты можешь подождать здесь.",
+   "uk": "Ти можеш зачекати тут."
+  },
+  {
+   "id": "de:14:03",
+   "target": "Anna kann heute kommen.",
+   "ru": "Анна может сегодня прийти.",
+   "uk": "Анна може сьогодні прийти."
+  },
+  {
+   "id": "de:14:04",
+   "target": "Tom kann gut schwimmen.",
+   "ru": "Том умеет хорошо плавать.",
+   "uk": "Том уміє добре плавати."
+  },
+  {
+   "id": "de:14:05",
+   "target": "Wir können helfen.",
+   "ru": "Мы можем помочь.",
+   "uk": "Ми можемо допомогти."
+  },
+  {
+   "id": "de:14:06",
+   "target": "Ihr könnt mitkommen.",
+   "ru": "Вы можете пойти с нами.",
+   "uk": "Ви можете піти з нами."
+  },
+  {
+   "id": "de:14:07",
+   "target": "Kannst du mich hören?",
+   "ru": "Ты меня слышишь?",
+   "uk": "Ти мене чуєш?"
+  },
+  {
+   "id": "de:14:08",
+   "target": "Können Sie mir helfen?",
+   "ru": "Вы можете мне помочь?",
+   "uk": "Ви можете мені допомогти?"
+  },
+  {
+   "id": "de:14:09",
+   "target": "Kann ich mit Karte zahlen?",
+   "ru": "Могу я заплатить картой?",
+   "uk": "Чи можу я заплатити карткою?"
+  },
+  {
+   "id": "de:14:10",
+   "target": "Können wir morgen telefonieren?",
+   "ru": "Мы можем созвониться завтра?",
+   "uk": "Ми можемо зідзвонитися завтра?"
+  },
+  {
+   "id": "de:14:11",
+   "target": "Ich muss zur Arbeit gehen.",
+   "ru": "Мне нужно идти на работу.",
+   "uk": "Мені потрібно йти на роботу."
+  },
+  {
+   "id": "de:14:12",
+   "target": "Du musst früh aufstehen.",
+   "ru": "Тебе надо рано встать.",
+   "uk": "Тобі треба рано встати."
+  },
+  {
+   "id": "de:14:13",
+   "target": "Anna muss das Formular ausfüllen.",
+   "ru": "Анне нужно заполнить бланк.",
+   "uk": "Анні потрібно заповнити бланк."
+  },
+  {
+   "id": "de:14:14",
+   "target": "Tom muss sein Ticket zeigen.",
+   "ru": "Том должен показать свой билет.",
+   "uk": "Том має показати свій квиток."
+  },
+  {
+   "id": "de:14:15",
+   "target": "Wir müssen hier aussteigen.",
+   "ru": "Нам надо выйти здесь.",
+   "uk": "Нам треба вийти тут."
+  },
+  {
+   "id": "de:14:16",
+   "target": "Ihr müsst den Bus nehmen.",
+   "ru": "Вам надо ехать автобусом.",
+   "uk": "Вам треба їхати автобусом."
+  },
+  {
+   "id": "de:14:17",
+   "target": "Muss ich einen Termin buchen?",
+   "ru": "Мне нужно записаться на приём?",
+   "uk": "Мені потрібно записатися на прийом?"
+  },
+  {
+   "id": "de:14:18",
+   "target": "Müssen wir die Schuhe ausziehen?",
+   "ru": "Нам нужно снять обувь?",
+   "uk": "Нам треба зняти взуття?"
+  },
+  {
+   "id": "de:14:19",
+   "target": "Ich muss die Adresse aufschreiben.",
+   "ru": "Мне нужно записать адрес.",
+   "uk": "Мені треба записати адресу."
+  },
+  {
+   "id": "de:14:20",
+   "target": "Der Arzt muss kurz telefonieren.",
+   "ru": "Врачу нужно сделать короткий звонок.",
+   "uk": "Лікарю потрібно зробити короткий дзвінок."
+  },
+  {
+   "id": "de:14:21",
+   "target": "Ich darf hier parken.",
+   "ru": "Мне разрешено здесь парковаться.",
+   "uk": "Мені дозволено паркуватися тут."
+  },
+  {
+   "id": "de:14:22",
+   "target": "Du darfst den Aufzug benutzen.",
+   "ru": "Тебе можно пользоваться лифтом.",
+   "uk": "Тобі можна користуватися ліфтом."
+  },
+  {
+   "id": "de:14:23",
+   "target": "Die Kinder dürfen draußen spielen.",
+   "ru": "Детям можно играть на улице.",
+   "uk": "Дітям можна грати на вулиці."
+  },
+  {
+   "id": "de:14:24",
+   "target": "Kann ich mit Kleingeld bezahlen?",
+   "ru": "Я могу заплатить мелочью?",
+   "uk": "Чи можу я розплатитися дрібними грошима?"
+  },
+  {
+   "id": "de:14:25",
+   "target": "Dürfen wir hier sitzen?",
+   "ru": "Нам можно здесь сидеть?",
+   "uk": "Нам тут можна сидіти?"
+  },
+  {
+   "id": "de:14:26",
+   "target": "Hier darf man nicht rauchen.",
+   "ru": "Здесь нельзя курить.",
+   "uk": "Тут не можна курити."
+  },
+  {
+   "id": "de:14:27",
+   "target": "Ihr dürft das Fahrrad mitnehmen.",
+   "ru": "Вам разрешено взять велосипед с собой.",
+   "uk": "Вам дозволено взяти велосипед із собою."
+  },
+  {
+   "id": "de:14:28",
+   "target": "Darf ich Ihnen eine Frage stellen?",
+   "ru": "Можно задать вам вопрос?",
+   "uk": "Можна запитати Вас?"
+  },
+  {
+   "id": "de:14:29",
+   "target": "Darf der Hund mitkommen?",
+   "ru": "Можно взять с собой собаку?",
+   "uk": "Чи можна взяти з собою собаку?"
+  },
+  {
+   "id": "de:14:30",
+   "target": "Hier dürfen Gäste übernachten.",
+   "ru": "Здесь гостям можно оставаться на ночь.",
+   "uk": "Тут гостям можна залишатися на ніч."
+  },
+  {
+   "id": "de:14:31",
+   "target": "Ich will Deutsch lernen.",
+   "ru": "Я хочу учить немецкий.",
+   "uk": "Я хочу вчити німецьку."
+  },
+  {
+   "id": "de:14:32",
+   "target": "Anna will morgen anrufen.",
+   "ru": "Анна хочет позвонить завтра.",
+   "uk": "Анна хоче зателефонувати завтра."
+  },
+  {
+   "id": "de:14:33",
+   "target": "Tom will zu Fuß gehen.",
+   "ru": "Том хочет пойти пешком.",
+   "uk": "Том хоче піти пішки."
+  },
+  {
+   "id": "de:14:34",
+   "target": "Wir wollen am See bleiben.",
+   "ru": "Мы хотим остаться у озера.",
+   "uk": "Ми хочемо залишитися біля озера."
+  },
+  {
+   "id": "de:14:35",
+   "target": "Wollt ihr zusammen kochen?",
+   "ru": "Хотите готовить вместе?",
+   "uk": "Бажаєте готувати разом?"
+  },
+  {
+   "id": "de:14:36",
+   "target": "Ich möchte ein Zimmer buchen.",
+   "ru": "Я хотел бы забронировать номер.",
+   "uk": "Я хотів би забронювати номер."
+  },
+  {
+   "id": "de:14:37",
+   "target": "Möchten Sie etwas trinken?",
+   "ru": "Хотите что-нибудь выпить?",
+   "uk": "Хочете щось випити?"
+  },
+  {
+   "id": "de:14:38",
+   "target": "Wir möchten die Rechnung bezahlen.",
+   "ru": "Мы хотели бы оплатить счёт.",
+   "uk": "Ми хотіли б сплатити рахунок."
+  },
+  {
+   "id": "de:14:39",
+   "target": "Ich möchte meinen Termin verschieben.",
+   "ru": "Я хотел бы перенести свою встречу.",
+   "uk": "Я хотів би перенести свою зустріч."
+  },
+  {
+   "id": "de:14:40",
+   "target": "Möchtest du die Jacke anprobieren?",
+   "ru": "Хочешь примерить куртку?",
+   "uk": "Хочеш приміряти куртку?"
+  },
+  {
+   "id": "de:14:41",
+   "target": "Du sollst den Arzt anrufen.",
+   "ru": "Тебе велели позвонить врачу.",
+   "uk": "Тобі наказали зателефонувати лікарю."
+  },
+  {
+   "id": "de:14:42",
+   "target": "Ich soll am Eingang warten.",
+   "ru": "Мне сказали подождать у входа.",
+   "uk": "Мені сказали почекати біля входу."
+  },
+  {
+   "id": "de:14:43",
+   "target": "Wir sollen unsere Pässe mitbringen.",
+   "ru": "Нам сказали принести паспорта.",
+   "uk": "Нам сказали принести паспорти."
+  },
+  {
+   "id": "de:14:44",
+   "target": "Soll ich das Licht ausschalten?",
+   "ru": "Мне выключить свет?",
+   "uk": "Мені вимкнути світло?"
+  },
+  {
+   "id": "de:14:45",
+   "target": "Sollen wir einen Tisch reservieren?",
+   "ru": "Может, забронируем столик?",
+   "uk": "Може, забронюємо столик?"
+  },
+  {
+   "id": "de:14:46",
+   "target": "Du musst nicht alles kaufen.",
+   "ru": "Тебе необязательно всё покупать.",
+   "uk": "Тобі необов'язково купувати все."
+  },
+  {
+   "id": "de:14:47",
+   "target": "Du darfst hier nicht fotografieren.",
+   "ru": "Здесь тебе нельзя фотографировать.",
+   "uk": "Тут тобі не можна фотографувати."
+  },
+  {
+   "id": "de:14:48",
+   "target": "Ich kann das Paket heute nicht abholen.",
+   "ru": "Я не могу забрать посылку сегодня.",
+   "uk": "Я не можу забрати посилку сьогодні."
+  },
+  {
+   "id": "de:14:49",
+   "target": "Können Sie bitte etwas langsamer sprechen?",
+   "ru": "Вы можете говорить немного медленнее?",
+   "uk": "Ви можете говорити трохи повільніше?"
+  },
+  {
+   "id": "de:14:50",
+   "target": "Wir müssen morgen nicht arbeiten.",
+   "ru": "Завтра нам не надо работать.",
+   "uk": "Завтра нам не треба працювати."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "dürfen",
+   "ru": "иметь разрешение",
+   "uk": "мати дозвіл"
+  },
+  {
+   "lemma": "müssen",
+   "ru": "быть обязанным",
+   "uk": "бути зобов'язаним"
+  },
+  {
+   "lemma": "parken",
+   "ru": "парковаться",
+   "uk": "паркуватися"
+  },
+  {
+   "lemma": "verschieben",
+   "ru": "переносить на другое время",
+   "uk": "переносити на інший час"
+  },
+  {
+   "lemma": "reservieren",
+   "ru": "резервировать",
+   "uk": "резервувати"
+  },
+  {
+   "lemma": "helfen",
+   "ru": "помогать",
+   "uk": "допомагати"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  }
+ ],
+ "oldTopicTitle": "Могу, должен, разрешено: модальная рамка",
+ "oldTheoryRu": "Друг умеет плавать или просто может прийти сегодня. Оба смысла допускает `können`: умение и возможность в данной ситуации. Слова после него уточняют, что именно человек может сделать. У обязанности своя форма: `ich muss`, но `wir müssen`. Меняется первый глагол. Не согласовывай с человеком ещё и второй: остаётся `gehen`, `nehmen` или `zeigen`. Второй глагол стоит в конце в начальной форме: `buchen`, `telefonieren`. Если он отделяемый, приставка в инфинитиве остаётся с ним: `anrufen`. Теперь именно модальный глагол занимает место личной формы. Сравни с предыдущим уроком, где приставку приходилось отделять. Просьба о разрешении не равна вопросу об умении. В музее вопрос с `dürfen` означает: допускают ли это правила? Человек не экзаменует собеседника на способность поднять камеру. Что предпочесть в обслуживании? `Ich möchte` мягче сообщает о желании, чем прямое `ich will`. Официанту или администратору можно вежливо сообщить, что хотелось бы заказать или забронировать. Указание со стороны. `Sollen` удобно, когда пересказываешь просьбу или совет. Вопрос `Soll ich …?` предлагает сделать что-то для другого человека, а не просто спрашивает, физически ли это возможно. Важная граница отрицания: `nicht müssen` значит, что обязанности нет; `nicht dürfen` — что это не разрешено. Сравни эти две ситуации прежде, чем нажать на форму модального глагола."
+}

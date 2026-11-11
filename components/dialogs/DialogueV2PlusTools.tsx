@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import V2Pressable from '../v2/V2Pressable';
 import { dialogsHubTokens } from './scene/dialogs_hub_tokens';
 

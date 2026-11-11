@@ -12,13 +12,14 @@ import {
 } from '../modules/story_events/story_events_store';
 import * as fs from 'fs';
 import * as path from 'path';
-import { markSpireWeekStoryShown, recordAchievementStories, recordSpireWeekStory, recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
-import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
+import { markSpireWeekStoryShown, recordAchievementStories, recordCoinRankStory, recordSpireWeekStory, recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
+import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 
 let mockStore: Record<string, string> = {};
 let mockFlagOn = true;
 let mockWarns: string[] = [];
 let mockFailWrites = false;
+const mockPremiumThemeProgress = jest.fn();
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
@@ -34,6 +35,7 @@ jest.mock('../app/remote_config_client', () => ({
 // зачем: предупреждения модуля копятся — при падении тест печатает настоящую причину, а не голое storage_failed.
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: (_c: string, m: string) => { mockWarns.push(m); }, error: jest.fn() } }));
 jest.mock('../app/events', () => ({ onAppEvent: () => ({ remove: () => undefined }), emitAppEvent: () => undefined }));
+jest.mock('../app/premium_theme_progress', () => ({ notePremiumThemeProgress: (...args: unknown[]) => mockPremiumThemeProgress(...args) }));
 
 describe('story_events_store', () => {
   it('repairs a failed story write on duplicate retry without creating a second event', async () => {
@@ -54,11 +56,19 @@ describe('story_events_store', () => {
     expect(await pending).toMatchObject({ reason: 'account_changed' });
     expect(mockStore).toEqual({});
   });
+
+  it('coin-rank source keeps the original account token and cannot attribute A history to B', async () => {
+    const tokenA = captureAccountGeneration();
+    beginAccountGeneration('stable-b');
+    await expect(recordCoinRankStory(2, 1100, tokenA)).resolves.toMatchObject({ reason: 'account_changed' });
+    expect(mockStore).toEqual({});
+  });
   beforeEach(() => {
     mockStore = {};
     mockFlagOn = true;
     mockWarns = [];
     mockFailWrites = false;
+    mockPremiumThemeProgress.mockClear();
     __resetStoryEventsForTests();
     __resetAccountGenerationForTests();
     beginAccountGeneration('stable-a');
@@ -129,16 +139,24 @@ describe('story_events_store', () => {
 
   it('a week result already shown in the D191 window lands as seen, whichever comes first', async () => {
     await markSpireWeekStoryShown(WEEK);
-    await recordSpireWeekStory(WEEK);
+    await recordSpireWeekStory(WEEK, captureAccountGeneration());
     expect(peekStoryEventsSnapshot()).toMatchObject({ unseenCount: 0 });
     expect(peekStoryEventsSnapshot().stories).toHaveLength(1);
 
     beginAccountGeneration('stable-c');
-    await recordSpireWeekStory(WEEK);
+    await recordSpireWeekStory(WEEK, captureAccountGeneration());
     expect(peekStoryEventsSnapshot()).toMatchObject({ owner: 'stable-c', unseenCount: 1 });
     await markSpireWeekStoryShown(WEEK);
     expect(peekStoryEventsSnapshot()).toMatchObject({ unseenCount: 0 });
     expect(peekStoryEventsSnapshot().stories[0]).toMatchObject({ id: 'spire_week:2026-W41:en', seen: true });
+  });
+
+  it('spire week source keeps A token and cannot start story or premium work for B', async () => {
+    const tokenA = captureAccountGeneration();
+    beginAccountGeneration('stable-b');
+    await expect(recordSpireWeekStory(WEEK, tokenA)).resolves.toMatchObject({ reason: 'account_changed' });
+    expect(mockPremiumThemeProgress).not.toHaveBeenCalled();
+    expect(mockStore).toEqual({});
   });
 
   it('records only real streak milestones', async () => {

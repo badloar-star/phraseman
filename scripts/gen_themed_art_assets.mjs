@@ -22,8 +22,6 @@ const ART_CORNER_MAX_ALPHA = 16;
 // (accent_misaligned). Файлы ниже — ИЗВЕСТНЫЙ ДОЛГ: лежат в assets до замены (аудит 12.10: intro_* — заглушки; слои lessons/dialogs/intro_cards_hub/intro_cards_swipe(тёмный) заменены вырезкой из основы 12.10 и из долга убраны).
 // Список может только УМЕНЬШАТЬСЯ (убирать строку при замене слоя); добавлять сюда новое — нельзя, это отключает сторож.
 export const ACCENT_MISALIGNED_DEBT = new Set([
-  'light/intro_cards_swipe.accent.webp', // светлая стрелка не вырезается автоматически (сливается с тенью) — пересдача Codex
-  'dark/intro_legacy_lessons.accent.webp', 'light/intro_legacy_lessons.accent.webp',
   // зачем (координатор 22.10): порог сторожа ужесточён до 12 %; эти два слоя от Codex дают 12,2 % и 13,4 % и ждут перерисовки — убрать из долга после замены
   // зачем (05.11): dark/mistakes_entry.accent.webp (12,2 %) прошёл после порога 12,5 % (scripts/accent_alignment.mjs) — убран из долга по ратчету; остаётся spire_rank_6 (13,4 %)
   'dark/spire_rank_6.accent.webp',

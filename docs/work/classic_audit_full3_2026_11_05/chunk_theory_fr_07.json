@@ -1,0 +1,1056 @@
+[
+{
+"lesson": 15,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:15:01",
+"fr:15:02",
+"fr:15:03"
+],
+"textByLocale": {
+"en": "Compare `je vais à la gare` and `je vais partir`. In the first case, `vais` is followed by a place; in the second, by another action. Don't insert `à` between the two verbs.",
+"ru": "Сравни `je vais à la gare` и `je vais partir`. В первом случае после `vais` есть место, во втором — ещё одно действие. Не вставляй между двумя глаголами `à`.",
+"uk": "Порівняй `je vais à la gare` і `je vais partir`. У першому випадку після `vais` є місце, у другому ще одна дія. Чи не вставляй між двома дієсловами `à`."
+}
+},
+{
+"exampleIds": [
+"fr:15:04",
+"fr:15:05",
+"fr:15:06"
+],
+"textByLocale": {
+"en": "It's `aller` that shows the face. If several people are involved, change `vais` to `allons` or `vont`, and keep the second verb in its dictionary form.",
+"ru": "Именно `aller` показывает лицо. Если за дело берутся несколько людей, меняй `vais` на `allons` или `vont`, а второй глагол сохрани в словарной форме.",
+"uk": "Саме `aller` показує особу. Якщо за справу беруться кілька людей, змінюй `vais` на `allons` або `vont`, а друге дієслово збережи у словниковій формі."
+}
+},
+{
+"exampleIds": [
+"fr:15:11",
+"fr:15:15",
+"fr:15:20"
+],
+"textByLocale": {
+"en": "The second verb names the future result. The present tense of `va` doesn't mean the bus is already turning: `va tourner` indicates an upcoming action.",
+"ru": "Второй глагол называет будущий результат. Настоящее время формы `va` само по себе не значит, что автобус уже поворачивает: `va tourner` указывает на предстоящее действие.",
+"uk": "Друге дієслово називає майбутній результат. На даний час форми `va` само по собі не означає, що автобус вже повертає: `va tourner` вказує на майбутню дію."
+}
+},
+{
+"exampleIds": [
+"fr:15:21",
+"fr:15:22",
+"fr:15:25"
+],
+"textByLocale": {
+"en": "Adverbs of time can be placed before the base phrase. They don't contain a verb, so `demain` doesn't free you from choosing between `vais`, `vas`, or `va`.",
+"ru": "Обстоятельства времени можно поставить перед основой фразы. В них нет глагола, поэтому `demain` не освобождает от выбора между `vais`, `vas`, `va`.",
+"uk": "Перед початком фрази можна поставити обставини часу. Вони немає дієслова, тому `demain` не звільняє від вибору між `vais`, `vas`, `va`."
+}
+},
+{
+"exampleIds": [
+"fr:15:31",
+"fr:15:32",
+"fr:15:34"
+],
+"textByLocale": {
+"en": "In the familiar negation, `ne … pas` encompasses the first verb: `je ne vais pas sortir`. Don't force `pas` into the second verb simply because it's the last one.",
+"ru": "В знакомом отрицании `ne … pas` охватывает первый глагол: `je ne vais pas sortir`. Не загоняй `pas` за второй глагол просто потому, что он последний.",
+"uk": "У знайомому запереченні `ne … pas` охоплює перше дієслово: `je ne vais pas sortir`. Не заганяй `pas` за друге дієслово просто тому, що він останній."
+}
+},
+{
+"exampleIds": [
+"fr:15:36",
+"fr:15:39",
+"fr:15:47"
+],
+"textByLocale": {
+"en": "Before adding additions, pay attention to pronouns. Example `elle va nous envoyer` distinguishes between the one who sends and those to whom it is sent. A conjunction and a preposition do not replace a pronoun.",
+"ru": "Перед дополнениями обрати внимание на местоимения. Образец `elle va nous envoyer` различает того, кто отправит, и тех, кому отправят. Союз и предлог не заменяют местоимение.",
+"uk": "Перед доповненням зверніть увагу на займенники. Зразок `elle va nous envoyer` розрізняє того, хто відправить і тих, кому відправлять. Спілка та прийменник не замінюють займенник."
+}
+},
+{
+"exampleIds": [
+"fr:15:44",
+"fr:15:47",
+"fr:15:50"
+],
+"textByLocale": {
+"en": "Test: Keep the same plan, but change the day or the performer. The day changes the time, the performer changes the form `aller`. Don't change the tense, the verb, and the subject all at once.",
+"ru": "Проверка: оставь тот же план, но измени день или исполнителя. День меняет время, исполнитель — форму `aller`. Не меняй сразу и время, и глагол, и предмет.",
+"uk": "Перевірка: залиш же план, але змінити день або виконавця. День змінює час, виконавець — форму `aller`. Не змінюй одразу і час, і дієслово, і предмет."
+}
+}
+],
+"drills": [
+{
+"bad": "allez",
+"chapter": 1,
+"id": "fr:15:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"vais",
+"allez",
+"vas"
+],
+"slot": 1
+},
+{
+"bad": "allais",
+"chapter": 1,
+"id": "fr:15:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 12,
+"options": [
+"aille",
+"allais",
+"va"
+],
+"slot": 1
+},
+{
+"bad": "allions",
+"chapter": 1,
+"id": "fr:15:05:lab",
+"item": 5,
+"kind": "match",
+"near": 14,
+"options": [
+"allions",
+"vais",
+"allez"
+],
+"slot": 1
+},
+{
+"bad": "vont",
+"chapter": 2,
+"id": "fr:15:08:lab",
+"item": 8,
+"kind": "build",
+"near": 17,
+"options": [
+"allez",
+"vont",
+"vas"
+],
+"slot": 1
+},
+{
+"bad": "aillent",
+"chapter": 2,
+"id": "fr:15:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"va",
+"vais",
+"aillent"
+],
+"slot": 1
+},
+{
+"bad": "vais",
+"chapter": 2,
+"id": "fr:15:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 3,
+"options": [
+"irait",
+"vais",
+"va"
+],
+"slot": 1
+},
+{
+"bad": "vont",
+"chapter": 3,
+"id": "fr:15:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 5,
+"options": [
+"allons",
+"allez",
+"vont"
+],
+"slot": 1
+},
+{
+"bad": "allons",
+"chapter": 3,
+"id": "fr:15:17:lab",
+"item": 17,
+"kind": "match",
+"near": 8,
+"options": [
+"allons",
+"vais",
+"vas"
+],
+"slot": 1
+},
+{
+"bad": "aillent",
+"chapter": 3,
+"id": "fr:15:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"vais",
+"aillent",
+"va"
+],
+"slot": 2
+},
+{
+"bad": "aille",
+"chapter": 4,
+"id": "fr:15:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 4,
+"options": [
+"aille",
+"allons",
+"vont"
+],
+"slot": 3
+},
+{
+"bad": "vas",
+"chapter": 4,
+"id": "fr:15:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 15,
+"options": [
+"vas",
+"vont",
+"allons"
+],
+"slot": 2
+},
+{
+"bad": "irait",
+"chapter": 4,
+"id": "fr:15:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 2,
+"options": [
+"allez",
+"irait",
+"vas"
+],
+"slot": 1
+},
+{
+"bad": "allais",
+"chapter": 5,
+"id": "fr:15:29:lab",
+"item": 29,
+"kind": "match",
+"near": 2,
+"options": [
+"allais",
+"allez",
+"vas"
+],
+"slot": 3
+},
+{
+"bad": "allions",
+"chapter": 5,
+"id": "fr:15:31:lab",
+"item": 31,
+"kind": "build",
+"near": 1,
+"options": [
+"allions",
+"allais",
+"vais"
+],
+"slot": 2
+},
+{
+"bad": "n’allez",
+"chapter": 5,
+"id": "fr:15:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 4,
+"options": [
+"n’allez",
+"n’allons",
+"l’étiquette"
+],
+"slot": 1
+},
+{
+"bad": "irai",
+"chapter": 6,
+"id": "fr:15:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"allons",
+"vont",
+"irai"
+],
+"slot": 2
+},
+{
+"bad": "vais",
+"chapter": 6,
+"id": "fr:15:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 4,
+"options": [
+"allons",
+"vont",
+"vais"
+],
+"slot": 1
+},
+{
+"bad": "allez",
+"chapter": 6,
+"id": "fr:15:42:lab",
+"item": 42,
+"kind": "match",
+"near": 18,
+"options": [
+"va",
+"aille",
+"allez"
+],
+"slot": 2
+},
+{
+"bad": "va",
+"chapter": 7,
+"id": "fr:15:45:lab",
+"item": 45,
+"kind": "build",
+"near": 2,
+"options": [
+"vas",
+"allez",
+"va"
+],
+"slot": 1
+},
+{
+"bad": "aillent",
+"chapter": 7,
+"id": "fr:15:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 4,
+"options": [
+"allons",
+"aillent",
+"vais"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"aller à + lieu",
+"Je vais au marché."
+],
+[
+"aller + infinitif",
+"Je vais partir."
+],
+[
+"négation",
+"Je ne vais pas sortir."
+],
+[
+"vous",
+"Vous allez prendre un dessert ?"
+],
+[
+"demain",
+"Demain, je vais voir Léa."
+]
+],
+"title": {
+"en": "Plan for the near future: `aller` + action",
+"ru": "План на ближайшее время: `aller` + действие",
+"uk": "План на найближчий час: `aller` + дія"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:15:01",
+"target": "Je vais partir.",
+"ru": "Я собираюсь уйти.",
+"uk": "Я збираюся йти."
+},
+{
+"id": "fr:15:02",
+"target": "Tu vas partir.",
+"ru": "Ты собираешься уйти.",
+"uk": "Ти збираєшся йти."
+},
+{
+"id": "fr:15:03",
+"target": "Elle va téléphoner.",
+"ru": "Она собирается позвонить.",
+"uk": "Вона збирається подзвонити."
+},
+{
+"id": "fr:15:04",
+"target": "Nous allons marcher.",
+"ru": "Мы собираемся пойти пешком.",
+"uk": "Ми збираємося піти пішки."
+},
+{
+"id": "fr:15:05",
+"target": "Vous allez rester.",
+"ru": "Вы собираетесь остаться.",
+"uk": "Ви маєте намір залишитися."
+},
+{
+"id": "fr:15:06",
+"target": "Ils vont rentrer.",
+"ru": "Они пойдут домой.",
+"uk": "Вони підуть додому."
+},
+{
+"id": "fr:15:11",
+"target": "Je vais acheter du pain.",
+"ru": "Я собираюсь купить хлеб.",
+"uk": "Я куплю хліба."
+},
+{
+"id": "fr:15:15",
+"target": "Ils vont livrer le colis.",
+"ru": "Они доставят посылку.",
+"uk": "Вони збираються доставити посилку."
+},
+{
+"id": "fr:15:20",
+"target": "Le film va commencer.",
+"ru": "Фильм начнётся.",
+"uk": "Фільм почнеться."
+},
+{
+"id": "fr:15:21",
+"target": "Demain, je vais voir Léa.",
+"ru": "Завтра я собираюсь повидаться с Леа.",
+"uk": "Завтра я збираюся побачитися з Леа."
+},
+{
+"id": "fr:15:22",
+"target": "Ce soir, nous allons dîner ensemble.",
+"ru": "Сегодня вечером мы будем ужинать вместе.",
+"uk": "Сьогодні ввечері ми повечеряємо разом."
+},
+{
+"id": "fr:15:25",
+"target": "Dans deux minutes, le train va partir.",
+"ru": "Поезд отправится через две минуты.",
+"uk": "Поїзд відправляється через дві хвилини."
+},
+{
+"id": "fr:15:31",
+"target": "Je ne vais pas sortir ce soir.",
+"ru": "Сегодня вечером я никуда не пойду.",
+"uk": "Сьогодні ввечері я нікуди не піду."
+},
+{
+"id": "fr:15:32",
+"target": "Tu ne vas pas perdre ta place.",
+"ru": "Ты не потеряешь своё место.",
+"uk": "Ти не втратиш свого місця."
+},
+{
+"id": "fr:15:34",
+"target": "Nous n’allons pas déménager.",
+"ru": "Мы не собираемся переезжать.",
+"uk": "Ми не збираємося переїжджати."
+},
+{
+"id": "fr:15:36",
+"target": "Elles ne vont pas prendre de taxi.",
+"ru": "Они не будут брать такси.",
+"uk": "Вони не збираються брати таксі."
+},
+{
+"id": "fr:15:39",
+"target": "Nous allons vérifier l’adresse.",
+"ru": "Мы проверим адрес.",
+"uk": "Ми перевіримо адресу."
+},
+{
+"id": "fr:15:47",
+"target": "Elle va nous envoyer une photo.",
+"ru": "Она пришлет нам фотографию.",
+"uk": "Вона надішле нам фото."
+},
+{
+"id": "fr:15:44",
+"target": "Les enfants vont jouer dans la cour.",
+"ru": "Дети будут играть во дворе.",
+"uk": "Діти гратимуться у дворі."
+},
+{
+"id": "fr:15:50",
+"target": "Ce week-end, je vais réparer mon vélo.",
+"ru": "В эти выходные я собираюсь починить свой велосипед.",
+"uk": "Цих вихідних я збираюся полагодити свій велосипед."
+}
+]
+},
+{
+"lesson": 16,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:16:01",
+"fr:16:02",
+"fr:16:03"
+],
+"textByLocale": {
+"en": "In orders, requests, and invitations, the interlocutor is usually not referred to by a separate pronoun. Therefore, the first verb here is a full personal form, not a dictionary infinitive.",
+"ru": "В приказе, просьбе и приглашении собеседник обычно не называется отдельным местоимением. Поэтому первый глагол здесь — полноценная личная форма, а не инфинитив из словаря.",
+"uk": "У наказі, проханні та запрошенні співрозмовник зазвичай не називається окремим займенником. Тому перше дієслово тут — повноцінна особиста форма, а не інфінітив зі словника."
+}
+},
+{
+"exampleIds": [
+"fr:16:05",
+"fr:16:06",
+"fr:16:08"
+],
+"textByLocale": {
+"en": "The address influences the spelling. For an acquaintance, `reste`; for a polite or plural addressee, `restez`. Don't punish yourself for not adding `vous` before the verb: it's not required in the instructions.",
+"ru": "Обращение влияет на написание. Для знакомого `reste`, для вежливого или множественного адресата `restez`. Не наказывай себя за отсутствие `vous` перед глаголом: в инструкции оно как раз не требуется.",
+"uk": "Звернення впливає на написання. Для знайомого `reste`, для ввічливого чи множинного адресата `restez`. Не карай себе за відсутність `vous` перед дієсловом: в інструкції воно не потрібно."
+}
+},
+{
+"exampleIds": [
+"fr:16:11",
+"fr:16:13",
+"fr:16:16"
+],
+"textByLocale": {
+"en": "Many verbs ending in `-er` have no final `s` in the form for an acquaintance: `ferme`. Don't transfer the ending from statement `tu fermes` here.",
+"ru": "У многих глаголов на `-er` у формы для одного знакомого нет конечного `s`: `ferme`. Не переноси сюда окончание из утверждения `tu fermes`.",
+"uk": "Багато дієслів на `-er` у форми для одного знайомого немає кінцевого `s`: `ferme`. Не переноси сюди закінчення із затвердження `tu fermes`."
+}
+},
+{
+"exampleIds": [
+"fr:16:15",
+"fr:16:21",
+"fr:16:25"
+],
+"textByLocale": {
+"en": "Important forms must be memorized in their entirety: `prends`, `prenez`. Polite words soften the request but do not change the number and person of the chosen imperative verb.",
+"ru": "Важные формы нужно запомнить целиком: `prends`, `prenez`. Слова вежливости смягчают просьбу, но не меняют число и лицо выбранного повелительного глагола.",
+"uk": "Важливі форми потрібно запам'ятати цілком: `prends`, `prenez`. Слова ввічливості пом'якшують прохання, але не змінюють число та обличчя обраного наказового дієслова."
+}
+},
+{
+"exampleIds": [
+"fr:16:31",
+"fr:16:32",
+"fr:16:33"
+],
+"textByLocale": {
+"en": "To prohibit, put `ne` or `n’` before the command and `pas` after. Compare a simple request to close and a request not to close. The position of the words after the verb remains recognizable.",
+"ru": "Для запрета поставь `ne` или `n’` перед приказом и `pas` после. Сравни простую просьбу закрыть и просьбу не закрывать. Положение слов после глагола остаётся узнаваемым.",
+"uk": "Для заборони постав `ne` або `n’` перед наказом та `pas` після. Порівняй просте прохання закрити і прохання не закривати. Становище слів після дієслова залишається пізнаваним."
+}
+},
+{
+"exampleIds": [
+"fr:16:41",
+"fr:16:42",
+"fr:16:43"
+],
+"textByLocale": {
+"en": "When asking someone to do something together, we begin with the form for `nous`, but without `nous` itself: `allons`, `faisons`, `restons`. This is a suggestion to the group, not a message about a habit.",
+"ru": "Когда зовём сделать вместе, начинаем с формы для `nous`, но без самого `nous`: `allons`, `faisons`, `restons`. Это предложение группе, а не сообщение о привычке.",
+"uk": "Коли закликаємо зробити разом, починаємо з форми для `nous`, але без самого `nous`: `allons`, `faisons`, `restons`. Це пропозиція групі, а не повідомлення про звичку."
+}
+},
+{
+"exampleIds": [
+"fr:16:46",
+"fr:16:47",
+"fr:16:48"
+],
+"textByLocale": {
+"en": "When reading instructions, first find the action, then the object. `Fermez` and `ferme` may convey the same order, but they are addressed differently to one close person and to an unfamiliar group.",
+"ru": "Читая инструкцию, первым делом найди действие, затем предмет. `Fermez` и `ferme` могут передавать один приказ, но одному близкому человеку и незнакомой группе они адресованы по-разному.",
+"uk": "Читаючи інструкцію, перш за все знайди дію, потім предмет. `Fermez` та `ferme` можуть передавати один наказ, але одній близькій людині та незнайомій групі вони адресовані по-різному."
+}
+}
+],
+"drills": [
+{
+"bad": "Sur",
+"chapter": 1,
+"id": "fr:16:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"Sous",
+"Entre",
+"Sur"
+],
+"slot": 0
+},
+{
+"bad": "Restons",
+"chapter": 1,
+"id": "fr:16:06:lab",
+"item": 6,
+"kind": "spot",
+"near": 13,
+"options": [
+"Reste",
+"Restez",
+"Restons"
+],
+"slot": 0
+},
+{
+"bad": "Restons",
+"chapter": 1,
+"id": "fr:16:05:lab",
+"item": 5,
+"kind": "match",
+"near": 13,
+"options": [
+"Restez",
+"Restons",
+"Reste"
+],
+"slot": 0
+},
+{
+"bad": "regarde",
+"chapter": 2,
+"id": "fr:16:08:lab",
+"item": 8,
+"kind": "build",
+"near": 9,
+"options": [
+"fenêtre",
+"regarde",
+"bien"
+],
+"slot": 1
+},
+{
+"bad": "là",
+"chapter": 2,
+"id": "fr:16:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 27,
+"options": [
+"entre",
+"devant",
+"là"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 2,
+"id": "fr:16:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"pas",
+"la",
+"lui"
+],
+"slot": 1
+},
+{
+"bad": "Gardez",
+"chapter": 3,
+"id": "fr:16:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 19,
+"options": [
+"Garde",
+"Gardez",
+"Baissez"
+],
+"slot": 0
+},
+{
+"bad": "ces",
+"chapter": 3,
+"id": "fr:16:17:lab",
+"item": 17,
+"kind": "match",
+"near": 34,
+"options": [
+"à",
+"ces",
+"cette"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 3,
+"id": "fr:16:19:lab",
+"item": 19,
+"kind": "build",
+"near": 14,
+"options": [
+"lui",
+"en",
+"le"
+],
+"slot": 1
+},
+{
+"bad": "notre",
+"chapter": 4,
+"id": "fr:16:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"tes",
+"notre",
+"votre"
+],
+"slot": 1
+},
+{
+"bad": "Prend",
+"chapter": 4,
+"id": "fr:16:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 17,
+"options": [
+"Prend",
+"Prenez",
+"Prenne"
+],
+"slot": 0
+},
+{
+"bad": "Restons",
+"chapter": 4,
+"id": "fr:16:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 6,
+"options": [
+"Reste",
+"Restons",
+"Restez"
+],
+"slot": 0
+},
+{
+"bad": "me",
+"chapter": 5,
+"id": "fr:16:29:lab",
+"item": 29,
+"kind": "match",
+"near": 19,
+"options": [
+"me",
+"le",
+"lui"
+],
+"slot": 1
+},
+{
+"bad": "Pas",
+"chapter": 5,
+"id": "fr:16:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"Ne",
+"Pas",
+"Jamais"
+],
+"slot": 0
+},
+{
+"bad": "Lui",
+"chapter": 5,
+"id": "fr:16:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"Ne",
+"Lui",
+"Les"
+],
+"slot": 0
+},
+{
+"bad": "Me",
+"chapter": 6,
+"id": "fr:16:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"En",
+"Ne",
+"Me"
+],
+"slot": 0
+},
+{
+"bad": "te",
+"chapter": 6,
+"id": "fr:16:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 40,
+"options": [
+"pas",
+"y",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "ces",
+"chapter": 6,
+"id": "fr:16:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"cet",
+"une",
+"ces"
+],
+"slot": 1
+},
+{
+"bad": "prends",
+"chapter": 7,
+"id": "fr:16:45:lab",
+"item": 45,
+"kind": "build",
+"near": 12,
+"options": [
+"avant",
+"cherchons",
+"prends"
+],
+"slot": 1
+},
+{
+"bad": "Fermait",
+"chapter": 7,
+"id": "fr:16:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 29,
+"options": [
+"Ferme",
+"Fermait",
+"Fermes"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"tu regardes",
+"Regarde !"
+],
+[
+"vous regardez",
+"Regardez !"
+],
+[
+"nous allons",
+"Allons !"
+],
+[
+"tu prends",
+"Prends !"
+],
+[
+"vous signez",
+"Signez !"
+],
+[
+"négation",
+"N’oublie pas ton parapluie !"
+]
+],
+"title": {
+"en": "Short instructions: imperative form",
+"ru": "Короткие инструкции: повелительная форма",
+"uk": "Короткі інструкції: наказова форма"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:16:01",
+"target": "Entre !",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "fr:16:02",
+"target": "Entrez !",
+"ru": "Заходите!",
+"uk": "Заходьте!"
+},
+{
+"id": "fr:16:03",
+"target": "Attends !",
+"ru": "Подожди!",
+"uk": "Почекай!"
+},
+{
+"id": "fr:16:05",
+"target": "Reste ici !",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!"
+},
+{
+"id": "fr:16:06",
+"target": "Restez ici !",
+"ru": "Останьтесь здесь!",
+"uk": "Залишайтеся тут!"
+},
+{
+"id": "fr:16:08",
+"target": "Écoutez bien !",
+"ru": "Слушайте внимательно!",
+"uk": "Слухайте уважно!"
+},
+{
+"id": "fr:16:11",
+"target": "Ferme la porte !",
+"ru": "Закрой дверь!",
+"uk": "Зачини двері!"
+},
+{
+"id": "fr:16:13",
+"target": "Pose le sac ici !",
+"ru": "Поставь сумку сюда!",
+"uk": "Постав сумку сюди!"
+},
+{
+"id": "fr:16:16",
+"target": "Range tes chaussures !",
+"ru": "Убери свою обувь!",
+"uk": "Прибери своє взуття!"
+},
+{
+"id": "fr:16:15",
+"target": "Prends ta veste !",
+"ru": "Возьми свою куртку!",
+"uk": "Візьми свою куртку!"
+},
+{
+"id": "fr:16:21",
+"target": "Signez en bas, s’il vous plaît.",
+"ru": "Распишитесь внизу, пожалуйста.",
+"uk": "Розпишіться внизу, будь ласка."
+},
+{
+"id": "fr:16:25",
+"target": "Appuyez sur le bouton vert.",
+"ru": "Нажмите зелёную кнопку.",
+"uk": "Натисніть зелену кнопку."
+},
+{
+"id": "fr:16:31",
+"target": "Ne cours pas !",
+"ru": "Не беги!",
+"uk": "Не біжи!"
+},
+{
+"id": "fr:16:32",
+"target": "Ne touchez pas à la vitre !",
+"ru": "Не прикасайтесь к стеклу!",
+"uk": "Не торкайтеся скла!"
+},
+{
+"id": "fr:16:33",
+"target": "N’oublie pas ton parapluie !",
+"ru": "Не забудь свой зонт!",
+"uk": "Не забудь свою парасольку!"
+},
+{
+"id": "fr:16:41",
+"target": "Allons au marché !",
+"ru": "Пойдём на рынок!",
+"uk": "Підемо на ринок!"
+},
+{
+"id": "fr:16:42",
+"target": "Faisons une pause !",
+"ru": "Давайте сделаем перерыв!",
+"uk": "Давайте зробимо перерву!"
+},
+{
+"id": "fr:16:43",
+"target": "Restons ensemble !",
+"ru": "Давайте держаться вместе!",
+"uk": "Давайте триматися разом!"
+},
+{
+"id": "fr:16:46",
+"target": "Attache ta ceinture !",
+"ru": "Пристегни ремень!",
+"uk": "Пристебни ремінь!"
+},
+{
+"id": "fr:16:47",
+"target": "Baissez le volume, s’il vous plaît.",
+"ru": "Убавьте громкость, пожалуйста.",
+"uk": "Зменште гучність, будь ласка."
+},
+{
+"id": "fr:16:48",
+"target": "Ferme le robinet !",
+"ru": "Закрой кран!",
+"uk": "Закрий кран!"
+}
+]
+}
+]

@@ -7,7 +7,7 @@ const home = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'home.t
 
 describe('Главная: раннее решение карточки «Продолжить»', () => {
   it('читает ТОЛЬКО ключ «последний урок», при отсутствии записи снимает заготовку плавно и логирует решение', () => {
-    expect(home).toContain('void AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');
+    expect(home).toContain('void readStoredItem(lastOpenedLessonKey(studyTarget))');
     expect(home).toContain('[HOME-CONTINUE] early: ключ «последний урок» raw=');
     expect(home).toMatch(/if \(hasLesson\) return;\n\s*animateNextLayoutTransition\(\);\n\s*setLastLesson\(null\);\n\s*setContinueResolved\(true\);/);
   });

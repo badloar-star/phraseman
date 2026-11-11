@@ -120,10 +120,9 @@ describe('guest clean handoff matrix', () => {
     }
   });
 
-  it('retry cursor prefix in the classifier equals the cursor module export', () => {
+  it('recognizes the persisted retry cursor prefix', () => {
     const { LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX } = require('../app/guest_clean_classifier');
-    const { LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX } = require('../app/learning_v2_completion_retry_cursor');
-    expect(LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX).toBe(LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX);
+    expect(LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX).toBe('v2:required-session-completion-scheduler:v1:');
   });
 
   it('guest with a chosen avatar and frame is still clean', async () => {

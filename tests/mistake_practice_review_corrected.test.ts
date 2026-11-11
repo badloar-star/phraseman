@@ -90,7 +90,8 @@ function event(type: MistakeEvent['type'], occurredAtMs: number, payload: Record
 }
 
 const answer = (at: number, day: string, mode: string, extra: Record<string, unknown> = {}) =>
-  event('practice_answered', at, { correct: true, independent: true, localDay: day, mode, support: 'production', ...extra });
+  // зачем (D203, 11.11): ответы помечены правилом «три шага + проверка», как их пишет экран отработки.
+  event('practice_answered', at, { correct: true, independent: true, localDay: day, mode, support: 'production', rule: 3, ...extra });
 
 const CORRECTED_HISTORY: MistakeEvent[] = [
   event('captured', T0, { lessonId: 'lesson-1', facet: 'word_order', canonicalTarget: 'I am ready.' }),
@@ -109,7 +110,8 @@ describe('журнал: повтор исправленной ошибки', () 
       ...CORRECTED_HISTORY,
       answer(T0 + DAY * 5, '2026-08-25', 'lesson_typing', { review: true }),
     ]).items.get('mistake:v1:one');
-    expect(item).toMatchObject({ status: 'corrected', correctedAtMs: T0 + DAY * 2 });
+    // D203: верный ответ в повторе — пройденная проверка: ошибка закреплена, срок проверки снят.
+    expect(item).toMatchObject({ status: 'corrected', correctedAtMs: T0 + DAY * 2, checkPassedAtMs: T0 + DAY * 5, checkDueAtMs: null });
   });
 
   test('ошибка в повторе возвращает в активные: срок сейчас, путь к исправлению заново', () => {
@@ -136,6 +138,7 @@ describe('журнал: повтор исправленной ошибки', () 
       answer(T0 + DAY * 6, '2026-08-26', 'lesson_scripted_speech'),
     ]).items.get('mistake:v1:one');
     expect(item?.status).toBe('active');
+    expect(item?.supportPassCount).toBe(1);
     expect(item?.qualifyingDays).toEqual(['2026-08-26']);
   });
 

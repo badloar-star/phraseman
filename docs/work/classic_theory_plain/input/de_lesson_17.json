@@ -1,0 +1,695 @@
+{
+ "lang": "de",
+ "lesson": 17,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:17:01",
+   "target": "Ich bin angekommen.",
+   "ru": "Я приехал.",
+   "uk": "Я приїхав."
+  },
+  {
+   "id": "de:17:02",
+   "target": "Du bist angekommen.",
+   "ru": "Ты приехал.",
+   "uk": "Ти приїхав."
+  },
+  {
+   "id": "de:17:03",
+   "target": "Anna ist angekommen.",
+   "ru": "Анна приехала.",
+   "uk": "Ганна приїхала."
+  },
+  {
+   "id": "de:17:04",
+   "target": "Wir sind angekommen.",
+   "ru": "Мы приехали.",
+   "uk": "Ми приїхали."
+  },
+  {
+   "id": "de:17:05",
+   "target": "Ihr seid angekommen.",
+   "ru": "Вы приехали.",
+   "uk": "Ви приїхали."
+  },
+  {
+   "id": "de:17:06",
+   "target": "Die Gäste sind angekommen.",
+   "ru": "Гости приехали.",
+   "uk": "Гості приїхали."
+  },
+  {
+   "id": "de:17:07",
+   "target": "Ich bin früh aufgestanden.",
+   "ru": "Я рано встал.",
+   "uk": "Я рано встав."
+  },
+  {
+   "id": "de:17:08",
+   "target": "Tom ist spät aufgestanden.",
+   "ru": "Том поздно встал.",
+   "uk": "Том пізно встав."
+  },
+  {
+   "id": "de:17:09",
+   "target": "Die Kinder sind früh aufgewacht.",
+   "ru": "Дети рано проснулись.",
+   "uk": "Діти рано прокинулися."
+  },
+  {
+   "id": "de:17:10",
+   "target": "Anna ist sofort eingeschlafen.",
+   "ru": "Анна сразу уснула.",
+   "uk": "Анна одразу заснула."
+  },
+  {
+   "id": "de:17:11",
+   "target": "Ich bin nach Hause gegangen.",
+   "ru": "Я пошёл домой.",
+   "uk": "Я пішов додому."
+  },
+  {
+   "id": "de:17:12",
+   "target": "Tom ist zur Arbeit gelaufen.",
+   "ru": "Том отправился на работу пешком.",
+   "uk": "Том вирушив на роботу пішки."
+  },
+  {
+   "id": "de:17:13",
+   "target": "Anna ist mit dem Bus gefahren.",
+   "ru": "Анна поехала на автобусе.",
+   "uk": "Анна поїхала автобусом."
+  },
+  {
+   "id": "de:17:14",
+   "target": "Wir sind nach Berlin geflogen.",
+   "ru": "Мы полетели в Берлин.",
+   "uk": "Ми полетіли до Берліна."
+  },
+  {
+   "id": "de:17:15",
+   "target": "Ihr seid zum Bahnhof geradelt.",
+   "ru": "Вы доехали до вокзала на велосипеде.",
+   "uk": "Ви доїхали до вокзалу велосипедом."
+  },
+  {
+   "id": "de:17:16",
+   "target": "Die Kinder sind ins Wasser gesprungen.",
+   "ru": "Дети прыгнули в воду.",
+   "uk": "Діти стрибнули у воду."
+  },
+  {
+   "id": "de:17:17",
+   "target": "Der Hund ist in den Garten gerannt.",
+   "ru": "Собака забежала в сад.",
+   "uk": "Собака забіг у сад."
+  },
+  {
+   "id": "de:17:18",
+   "target": "Das Glas ist vom Tisch gefallen.",
+   "ru": "Стакан упал со стола.",
+   "uk": "Склянка впала зі столу."
+  },
+  {
+   "id": "de:17:19",
+   "target": "Der Ball ist ins Wasser gerollt.",
+   "ru": "Мяч закатился в воду.",
+   "uk": "М'яч закотився у воду."
+  },
+  {
+   "id": "de:17:20",
+   "target": "Der Zug ist schon abgefahren.",
+   "ru": "Поезд уже ушёл.",
+   "uk": "Поїзд уже відійшов."
+  },
+  {
+   "id": "de:17:21",
+   "target": "Ich bin vorne eingestiegen.",
+   "ru": "Я вошёл через переднюю дверь.",
+   "uk": "Я увійшов через передні двері."
+  },
+  {
+   "id": "de:17:22",
+   "target": "Anna ist am Markt ausgestiegen.",
+   "ru": "Анна вышла у рынка.",
+   "uk": "Анна вийшла біля ринку."
+  },
+  {
+   "id": "de:17:23",
+   "target": "Tom ist in Köln umgestiegen.",
+   "ru": "Том пересел в Кёльне.",
+   "uk": "Том пересів у Кельні."
+  },
+  {
+   "id": "de:17:24",
+   "target": "Wir sind am falschen Bahnhof ausgestiegen.",
+   "ru": "Мы вышли не на том вокзале.",
+   "uk": "Ми вийшли не на тому вокзалі."
+  },
+  {
+   "id": "de:17:25",
+   "target": "Ihr seid rechtzeitig losgefahren.",
+   "ru": "Вы выехали вовремя.",
+   "uk": "Ви вчасно виїхали."
+  },
+  {
+   "id": "de:17:26",
+   "target": "Die Gäste sind gestern abgereist.",
+   "ru": "Гости вчера уехали.",
+   "uk": "Гості вчора виїхали."
+  },
+  {
+   "id": "de:17:27",
+   "target": "Mein Bruder ist aus Wien zurückgekommen.",
+   "ru": "Мой брат вернулся из Вены.",
+   "uk": "Мій брат повернувся з Відня."
+  },
+  {
+   "id": "de:17:28",
+   "target": "Meine Schwester ist nach Hamburg gezogen.",
+   "ru": "Моя сестра переехала в Гамбург.",
+   "uk": "Моя сестра переїхала до Гамбурга."
+  },
+  {
+   "id": "de:17:29",
+   "target": "Wir sind in die neue Wohnung eingezogen.",
+   "ru": "Мы въехали в новую квартиру.",
+   "uk": "Ми в'їхали до нової квартири."
+  },
+  {
+   "id": "de:17:30",
+   "target": "Die Nachbarn sind letzte Woche ausgezogen.",
+   "ru": "Соседи съехали на прошлой неделе.",
+   "uk": "Сусіди з'їхали минулого тижня."
+  },
+  {
+   "id": "de:17:31",
+   "target": "Bist du zu Fuß gekommen?",
+   "ru": "Ты пришёл пешком?",
+   "uk": "Ти прийшов пішки?"
+  },
+  {
+   "id": "de:17:32",
+   "target": "Ist Anna mit dem Zug gefahren?",
+   "ru": "Анна ездила на поезде?",
+   "uk": "Анна їздила поїздом?"
+  },
+  {
+   "id": "de:17:33",
+   "target": "Seid ihr lange geblieben?",
+   "ru": "Вы надолго остались?",
+   "uk": "Ви надовго залишилися?"
+  },
+  {
+   "id": "de:17:34",
+   "target": "Sind die Kinder gut eingeschlafen?",
+   "ru": "Дети хорошо уснули?",
+   "uk": "Діти добре заснули?"
+  },
+  {
+   "id": "de:17:35",
+   "target": "Wann bist du aufgestanden?",
+   "ru": "Когда ты встал?",
+   "uk": "Коли ти встав?"
+  },
+  {
+   "id": "de:17:36",
+   "target": "Wo ist Tom ausgestiegen?",
+   "ru": "Где вышел Том?",
+   "uk": "Де вийшов Том?"
+  },
+  {
+   "id": "de:17:37",
+   "target": "Wohin seid ihr gefahren?",
+   "ru": "Куда вы ездили?",
+   "uk": "Куди ви їздили?"
+  },
+  {
+   "id": "de:17:38",
+   "target": "Wer ist aus dem Bus gestiegen?",
+   "ru": "Кто вышел из автобуса?",
+   "uk": "Хто вийшов із автобуса?"
+  },
+  {
+   "id": "de:17:39",
+   "target": "Wann ist das Paket angekommen?",
+   "ru": "Когда пришла посылка?",
+   "uk": "Коли надійшла посилка?"
+  },
+  {
+   "id": "de:17:40",
+   "target": "Ist der Schlüssel ins Wasser gefallen?",
+   "ru": "Ключ упал в воду?",
+   "uk": "Ключ упав у воду?"
+  },
+  {
+   "id": "de:17:41",
+   "target": "Ich bin heute zu Hause geblieben.",
+   "ru": "Я сегодня остался дома.",
+   "uk": "Я сьогодні залишився вдома."
+  },
+  {
+   "id": "de:17:42",
+   "target": "Wir sind drei Tage im Hotel geblieben.",
+   "ru": "Мы оставались в гостинице три дня.",
+   "uk": "Ми залишалися у готелі три дні."
+  },
+  {
+   "id": "de:17:43",
+   "target": "Anna ist bis zum Ende geblieben.",
+   "ru": "Анна осталась до конца.",
+   "uk": "Анна залишилася до кінця."
+  },
+  {
+   "id": "de:17:44",
+   "target": "Der Tee ist kalt geworden.",
+   "ru": "Чай остыл.",
+   "uk": "Чай охолонув."
+  },
+  {
+   "id": "de:17:45",
+   "target": "Unser Kind ist groß geworden.",
+   "ru": "Наш ребёнок вырос.",
+   "uk": "Наша дитина виросла."
+  },
+  {
+   "id": "de:17:46",
+   "target": "Es ist dunkel geworden.",
+   "ru": "Стало темно.",
+   "uk": "Стало темно."
+  },
+  {
+   "id": "de:17:47",
+   "target": "Auf der Fahrt ist mir schlecht geworden.",
+   "ru": "В дороге мне стало нехорошо.",
+   "uk": "У дорозі мені стало недобре."
+  },
+  {
+   "id": "de:17:48",
+   "target": "Nach dem Kurs bin ich direkt nach Hause gegangen.",
+   "ru": "После занятия я сразу пошёл домой.",
+   "uk": "Після заняття я одразу пішов додому."
+  },
+  {
+   "id": "de:17:49",
+   "target": "Gestern ist mein Fahrrad kaputtgegangen.",
+   "ru": "Вчера у меня сломался велосипед.",
+   "uk": "Учора у мене зламався велосипед."
+  },
+  {
+   "id": "de:17:50",
+   "target": "Zum Glück ist niemand hingefallen.",
+   "ru": "К счастью, никто не упал.",
+   "uk": "На щастя, ніхто не впав."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "aufwachen",
+   "ru": "просыпаться",
+   "uk": "прокидатися"
+  },
+  {
+   "lemma": "einschlafen",
+   "ru": "засыпать",
+   "uk": "засипати"
+  },
+  {
+   "lemma": "abreisen",
+   "ru": "уезжать, отбывать",
+   "uk": "їхати, відбувати"
+  },
+  {
+   "lemma": "die Wohnung",
+   "ru": "квартира",
+   "uk": "квартира"
+  },
+  {
+   "lemma": "dunkel",
+   "ru": "тёмный, темно",
+   "uk": "темний, темно"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  }
+ ],
+ "oldTopicTitle": "Пришёл, уехал, остался: Perfekt с `sein`",
+ "oldTheoryRu": "Поездка закончилась, человек уже здесь. В `ich bin angekommen` слово `bin` не значит, что действие происходит сейчас: оно помогает построить прошедшее. Сравни с простым сообщением о местонахождении. Перемена состояния тоже важна: проснуться, уснуть, встать. Никакого путешествия по карте может не быть, однако эти действия в нашем банке строятся с `sein`. Когда человек сам переместился в новое место, часто нужен `sein`. Но это не правило «все глаголы движения без исключений». Запоминай употребление в конкретном значении и с конкретными участниками. Приставка определяет участок поездки: вход, выход, пересадку, возвращение. Сравни формы как целые слова с `ge` внутри; вспомогательный глагол при этом остаётся отдельным. В вопросе проверь не только причастие, но и число людей. Вопрос к группе начинается с `seid ihr`. К одному другу — с `bist du`; менять при этом причастие не надо. `Bleiben` — полезное исключение из картинки движения: человек как раз никуда не ушёл, но говорит `ich bin geblieben`. Изменение свойства передаёт `geworden`: например, ребёнок вырос. Кто является подлежащим? В `Es ist dunkel geworden` и `niemand ist hingefallen` подлежащее само меняет состояние или положение, и никто не действует над другим предметом — поэтому `sein`. Не путай `geworden` в изменении состояния с формой `worden` в других конструкциях."
+}

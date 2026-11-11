@@ -27,10 +27,15 @@
    "es": "hermano"
   },
   "une": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "a, an (before a thing's name)",
-   "es": "una"
+   "ru": "Одна соседка, о которой ещё не говорили (___ voisine)",
+   "uk": "Одна сусідка, про яку ще не говорили (___ voisine)",
+   "en": "A neighbor mentioned for the first time (___ voisine)",
+   "es": "Una vecina que se menciona por primera vez (___ voisine)",
+   "pt-BR": "Uma vizinha mencionada pela primeira vez (___ voisine)",
+   "vi": "Một cô hàng xóm được nhắc đến lần đầu (___ voisine)",
+   "id": "Seorang tetangga perempuan yang baru disebut (___ voisine)",
+   "tr": "İlk kez bahsedilen bir kadın komşu (___ voisine)",
+   "pl": "Pewna sąsiadka, wspomniana po raz pierwszy (___ voisine)"
   },
   "amie": {
    "ru": "подруга",
@@ -39,10 +44,15 @@
    "es": "amiga"
   },
   "un": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "a, an (before a thing's name)",
-   "es": "un"
+   "ru": "Один сосед, о котором ещё не говорили (___ voisin)",
+   "uk": "Один сусід, про якого ще не говорили (___ voisin)",
+   "en": "A neighbor mentioned for the first time (___ voisin)",
+   "es": "Un vecino que se menciona por primera vez (___ voisin)",
+   "pt-BR": "Um vizinho mencionado pela primeira vez (___ voisin)",
+   "vi": "Một anh hàng xóm được nhắc đến lần đầu (___ voisin)",
+   "id": "Seorang tetangga laki-laki yang baru disebut (___ voisin)",
+   "tr": "İlk kez bahsedilen bir erkek komşu (___ voisin)",
+   "pl": "Pewien sąsiad, wspomniany po raz pierwszy (___ voisin)"
   },
   "ami": {
    "ru": "друг",
@@ -141,10 +151,15 @@
    "es": "nuestros"
   },
   "des": {
-   "ru": "слово перед названиями вещей; по-русски нет",
-   "uk": "слово перед назвами речей; українською немає",
-   "en": "some (before several things)",
-   "es": "unos, unas"
+   "ru": "Несколько фотографий, без уточнения каких (___ photos)",
+   "uk": "Кілька фотографій, без уточнення яких (___ photos)",
+   "en": "Some photos, without saying which ones (___ photos)",
+   "es": "Unas fotos, sin decir cuáles (___ photos)",
+   "pt-BR": "Algumas fotos, sem dizer quais (___ photos)",
+   "vi": "Vài bức ảnh, không nói rõ ảnh nào (___ photos)",
+   "id": "Beberapa foto tanpa menyebut foto yang mana (___ photos)",
+   "tr": "Hangi fotoğraflar olduğu belirtilmeden birkaç fotoğraf (___ photos)",
+   "pl": "Jakieś zdjęcia, bez wskazania których (___ photos)"
   },
   "voisins": {
    "ru": "соседи",

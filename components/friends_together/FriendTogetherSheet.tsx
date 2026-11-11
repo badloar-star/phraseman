@@ -7,7 +7,7 @@ import AvatarView from '../AvatarView';
 import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
 import { useTheme } from '../ThemeContext';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import { useLang } from '../LangContext';
 import { type Lang, triLang } from '../../constants/i18n';
 import { buttonForegroundForBackground } from '../../constants/color_contrast';

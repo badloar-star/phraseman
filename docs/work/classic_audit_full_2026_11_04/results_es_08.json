@@ -1,0 +1,7 @@
+[
+  {"id": "es:27:04", "type": "B2", "field": "ru", "problem": "aquí («здесь») передано как «сейчас» — потерян «здесь», добавлен «сейчас»", "fix": "Книга, которая у меня здесь, новая."},
+  {"id": "es:27:04", "type": "B2", "field": "uk", "problem": "aquí («тут») передано як «зараз» — втрачено «тут», додано «зараз»", "fix": "Книжка, яка в мене тут, нова."},
+  {"id": "es:28:19", "type": "B3", "field": "alternatives", "problem": "Подсказка начинается с «В мастерской…»; естественный порядок En el taller repararán mi bicicleta не засчитывается", "fix": {"add": ["En el taller repararán mi bicicleta."], "remove": []}},
+  {"id": "es:28:26", "type": "B3", "field": "alternatives", "problem": "Подсказка начинается с «После школы…»; естественный порядок Después del colegio pasaré por el parque не засчитывается", "fix": {"add": ["Después del colegio pasaré por el parque."], "remove": []}},
+  {"id": "es:28:45", "type": "B1", "field": "tiles", "problem": "Соблазн «va» даёт естественную фразу «Llevaré el paraguas si va a llover» (= если будет дождь), не в alternatives", "fix": {"position": 4, "replace_distractor": "va", "with": "empezamos"}}
+]

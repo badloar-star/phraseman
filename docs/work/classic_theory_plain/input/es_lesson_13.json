@@ -1,0 +1,566 @@
+{
+ "lang": "es",
+ "lesson": 13,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:13:01",
+   "target": "Estoy cansado.",
+   "ru": "Я устал.",
+   "uk": "Я втомився."
+  },
+  {
+   "id": "es:13:02",
+   "target": "Estás cansado.",
+   "ru": "Ты устал.",
+   "uk": "Ти втомився."
+  },
+  {
+   "id": "es:13:03",
+   "target": "Luis está cansado.",
+   "ru": "Луис устал.",
+   "uk": "Луїс втомився."
+  },
+  {
+   "id": "es:13:04",
+   "target": "Estamos cansados.",
+   "ru": "Мы устали.",
+   "uk": "Ми втомилися."
+  },
+  {
+   "id": "es:13:05",
+   "target": "Mis hermanos están cansados.",
+   "ru": "Мои братья устали.",
+   "uk": "Мої брати втомилися."
+  },
+  {
+   "id": "es:13:06",
+   "target": "Ana está cansada.",
+   "ru": "Ана устала.",
+   "uk": "Ана втомилася."
+  },
+  {
+   "id": "es:13:07",
+   "target": "Mi madre está cansada.",
+   "ru": "Моя мама устала.",
+   "uk": "Моя мама втомилася."
+  },
+  {
+   "id": "es:13:08",
+   "target": "Mi hermana está cansada.",
+   "ru": "Моя сестра устала.",
+   "uk": "Моя сестра втомилася."
+  },
+  {
+   "id": "es:13:09",
+   "target": "La médica está cansada.",
+   "ru": "Врач устала.",
+   "uk": "Лікарка втомилася."
+  },
+  {
+   "id": "es:13:10",
+   "target": "La profesora está cansada.",
+   "ru": "Преподавательница устала.",
+   "uk": "Викладачка втомилася."
+  },
+  {
+   "id": "es:13:11",
+   "target": "Hoy estoy ocupado.",
+   "ru": "Сегодня я занят.",
+   "uk": "Сьогодні я зайнятий."
+  },
+  {
+   "id": "es:13:12",
+   "target": "Hoy estás ocupada.",
+   "ru": "Сегодня ты занята.",
+   "uk": "Сьогодні ти зайнята."
+  },
+  {
+   "id": "es:13:13",
+   "target": "Hoy Luis está ocupado.",
+   "ru": "Сегодня Луис занят.",
+   "uk": "Сьогодні Луїс зайнятий."
+  },
+  {
+   "id": "es:13:14",
+   "target": "Hoy estamos ocupados.",
+   "ru": "Сегодня мы заняты.",
+   "uk": "Сьогодні ми зайняті."
+  },
+  {
+   "id": "es:13:15",
+   "target": "Hoy mis hermanas están ocupadas.",
+   "ru": "Сегодня мои сёстры заняты.",
+   "uk": "Сьогодні мої сестри зайняті."
+  },
+  {
+   "id": "es:13:16",
+   "target": "¿Estás lista?",
+   "ru": "Ты готова?",
+   "uk": "Ти готова?"
+  },
+  {
+   "id": "es:13:17",
+   "target": "¿Está Ana lista?",
+   "ru": "Ана готова?",
+   "uk": "Ана готова?"
+  },
+  {
+   "id": "es:13:18",
+   "target": "¿Está Luis listo?",
+   "ru": "Луис готов?",
+   "uk": "Луїс готовий?"
+  },
+  {
+   "id": "es:13:19",
+   "target": "¿Estáis listos?",
+   "ru": "Вы готовы?",
+   "uk": "Ви готові?"
+  },
+  {
+   "id": "es:13:20",
+   "target": "¿Están tus hermanas listas?",
+   "ru": "Твои сёстры готовы?",
+   "uk": "Твої сестри готові?"
+  },
+  {
+   "id": "es:13:21",
+   "target": "La puerta está abierta.",
+   "ru": "Дверь открыта.",
+   "uk": "Двері відчинені."
+  },
+  {
+   "id": "es:13:22",
+   "target": "La ventana está abierta.",
+   "ru": "Окно открыто.",
+   "uk": "Вікно відчинене."
+  },
+  {
+   "id": "es:13:23",
+   "target": "La tienda está abierta.",
+   "ru": "Магазин открыт.",
+   "uk": "Магазин відчинений."
+  },
+  {
+   "id": "es:13:24",
+   "target": "Las ventanas están abiertas.",
+   "ru": "Окна открыты.",
+   "uk": "Вікна відчинені."
+  },
+  {
+   "id": "es:13:25",
+   "target": "Los hoteles están abiertos.",
+   "ru": "Отели открыты.",
+   "uk": "Готелі відкриті."
+  },
+  {
+   "id": "es:13:26",
+   "target": "La tienda está cerrada hoy.",
+   "ru": "Магазин сегодня закрыт.",
+   "uk": "Магазин сьогодні зачинений."
+  },
+  {
+   "id": "es:13:27",
+   "target": "La farmacia está cerrada.",
+   "ru": "Аптека закрыта.",
+   "uk": "Аптека зачинена."
+  },
+  {
+   "id": "es:13:28",
+   "target": "La puerta está cerrada hoy.",
+   "ru": "Дверь сегодня закрыта.",
+   "uk": "Двері сьогодні зачинені."
+  },
+  {
+   "id": "es:13:29",
+   "target": "Las tiendas están cerradas hoy.",
+   "ru": "Магазины сегодня закрыты.",
+   "uk": "Магазини сьогодні зачинені."
+  },
+  {
+   "id": "es:13:30",
+   "target": "Los hoteles están cerrados hoy.",
+   "ru": "Отели сегодня закрыты.",
+   "uk": "Готелі сьогодні зачинені."
+  },
+  {
+   "id": "es:13:31",
+   "target": "Mi madre no está nerviosa.",
+   "ru": "Моя мама не нервничает.",
+   "uk": "Моя мама не нервує."
+  },
+  {
+   "id": "es:13:32",
+   "target": "Mi hermana no está nerviosa.",
+   "ru": "Моя сестра не нервничает.",
+   "uk": "Моя сестра не нервує."
+  },
+  {
+   "id": "es:13:33",
+   "target": "Ana no está nerviosa.",
+   "ru": "Ана не нервничает.",
+   "uk": "Ана не нервує."
+  },
+  {
+   "id": "es:13:34",
+   "target": "Luis no está nervioso.",
+   "ru": "Луис не нервничает.",
+   "uk": "Луїс не нервує."
+  },
+  {
+   "id": "es:13:35",
+   "target": "¿Está libre el baño?",
+   "ru": "Туалет свободен?",
+   "uk": "Туалет вільний?"
+  },
+  {
+   "id": "es:13:36",
+   "target": "¿Está libre la mesa?",
+   "ru": "Стол свободен?",
+   "uk": "Стіл вільний?"
+  },
+  {
+   "id": "es:13:37",
+   "target": "¿Está libre el médico?",
+   "ru": "Врач свободен?",
+   "uk": "Лікар вільний?"
+  },
+  {
+   "id": "es:13:38",
+   "target": "¿Están libres las mesas?",
+   "ru": "Столы свободны?",
+   "uk": "Столи вільні?"
+  },
+  {
+   "id": "es:13:39",
+   "target": "¿Está libre la médica?",
+   "ru": "Врач свободна?",
+   "uk": "Лікарка вільна?"
+  },
+  {
+   "id": "es:13:40",
+   "target": "¿Están libres los profesores?",
+   "ru": "Преподаватели свободны?",
+   "uk": "Викладачі вільні?"
+  },
+  {
+   "id": "es:13:41",
+   "target": "Estamos contentas hoy.",
+   "ru": "Сегодня мы рады.",
+   "uk": "Сьогодні ми раді."
+  },
+  {
+   "id": "es:13:42",
+   "target": "Están contentos hoy.",
+   "ru": "Сегодня они рады.",
+   "uk": "Сьогодні вони раді."
+  },
+  {
+   "id": "es:13:43",
+   "target": "Estoy contento hoy.",
+   "ru": "Сегодня я рад.",
+   "uk": "Сьогодні я радий."
+  },
+  {
+   "id": "es:13:44",
+   "target": "Estáis contentas hoy.",
+   "ru": "Сегодня вы рады.",
+   "uk": "Сьогодні ви раді."
+  },
+  {
+   "id": "es:13:45",
+   "target": "Estás contenta hoy.",
+   "ru": "Сегодня ты рада.",
+   "uk": "Сьогодні ти рада."
+  },
+  {
+   "id": "es:13:46",
+   "target": "El café está frío.",
+   "ru": "Кофе холодный.",
+   "uk": "Кава холодна."
+  },
+  {
+   "id": "es:13:47",
+   "target": "El agua está fría.",
+   "ru": "Вода холодная.",
+   "uk": "Вода холодна."
+  },
+  {
+   "id": "es:13:48",
+   "target": "La cocina está limpia.",
+   "ru": "Кухня чистая.",
+   "uk": "Кухня чиста."
+  },
+  {
+   "id": "es:13:49",
+   "target": "La bufanda está limpia.",
+   "ru": "Шарф чистый.",
+   "uk": "Шарф чистий."
+  },
+  {
+   "id": "es:13:50",
+   "target": "Las mesas están limpias.",
+   "ru": "Столы чистые.",
+   "uk": "Столи чисті."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "abierto",
+   "ru": "открытый",
+   "uk": "відчинений; відкритий"
+  },
+  {
+   "lemma": "cansado",
+   "ru": "уставший",
+   "uk": "втомлений"
+  },
+  {
+   "lemma": "cerrado",
+   "ru": "закрытый",
+   "uk": "зачинений; закритий"
+  },
+  {
+   "lemma": "contento",
+   "ru": "довольный, рад",
+   "uk": "задоволений, радий"
+  },
+  {
+   "lemma": "frío",
+   "ru": "холодный",
+   "uk": "холодний"
+  },
+  {
+   "lemma": "libre",
+   "ru": "свободный",
+   "uk": "вільний"
+  },
+  {
+   "lemma": "limpio",
+   "ru": "чистый",
+   "uk": "чистий"
+  },
+  {
+   "lemma": "listo",
+   "ru": "готовый",
+   "uk": "готовий"
+  },
+  {
+   "lemma": "nervioso",
+   "ru": "взволнованный",
+   "uk": "схвильований"
+  },
+  {
+   "lemma": "ocupado",
+   "ru": "занятый",
+   "uk": "зайнятий"
+  },
+  {
+   "lemma": "estar",
+   "ru": "быть в определённом состоянии; вспомогательный глагол действия в процессе",
+   "uk": "перебувати в певному стані; допоміжне дієслово тривалої дії"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  }
+ ],
+ "oldTopicTitle": "Как я себя чувствую: estar + состояние",
+ "oldTheoryRu": "После долгой прогулки Ана говорит Estoy cansada. Луис говорит Estoy cansado. Estoy одинаково; слово о самочувствии меняет окончание. Опиши самочувствие человека или состояние знакомой вещи в данной ситуации. В Estoy en casa после глагола шло место. В Estoy cansado там стоит состояние. Один глагол, но теперь последнее слово отвечает не на «где?», а на «как себя чувствую?». Глагол показывает лицо и число, а прилагательное — род и число. Женщина и мужчина скажут одинаковое estoy, но выберут cansada и cansado соответственно. Для группы говорящих нужно estamos, для группы людей, о которых говорят, — están. Затем согласуй прилагательное: estamos listos или estamos listas по составу группы. Окончание abierto берётся у испанского существительного. La tienda — женский род, один магазин: La tienda está abierta. Las ventanas — женский род, несколько окон: Las ventanas están abiertas. Русский род «магазина» или «окна» здесь не важен. Не выбирай связку по секундомеру. В этих фразах важно, что мы сообщаем о состоянии. Для профессии из урока 4 остаётся ser, даже если человек сменит работу завтра. Сравни два задания: «Твои сёстры готовы?» / «Дверь открыта». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Смысловые опоры: «hermanas» — сёстры; «listas» — готовы. Сравни два задания: «Сегодня вы рады.» / «Столы чистые». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Опиши самочувствие человека или состояние знакомой вещи в данной ситуации."
+}

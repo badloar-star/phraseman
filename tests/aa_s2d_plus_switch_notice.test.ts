@@ -1,9 +1,4 @@
-/*
- * AA S2d раунд 2 (координатор, дополнение к 28b021548): строка «Plus перейдёт на
- * новый аккаунт» в окне «Сменить аккаунт?» показывается только при РЕАЛЬНОМ
- * переносе store-Plus. VIP/промо-Plus (без покупки в сторе) через RevenueCat не
- * переносится — им предупреждение не нужно. Флаг выключен → строки нет.
- */
+/* Account-only regression: the obsolete copy promising a Plus transfer is never shown. */
 jest.mock('../app/debug-logger', () => ({
   DebugLogger: { error: jest.fn(), warn: jest.fn(), info: jest.fn() },
   reportSwallowed: jest.fn(),
@@ -26,14 +21,16 @@ function load() {
   };
 }
 
-test('the notice ships enabled together with the silent Plus transfer', () => {
-  expect(load().copy.PLUS_TRANSFER_SWITCH_NOTICE_ENABLED).toBe(true);
+test('the legacy feature flag cannot make the obsolete transfer promise visible', () => {
+  const { copy } = load();
+  expect(copy.PLUS_TRANSFER_SWITCH_NOTICE_ENABLED).toBe(true);
+  expect(copy.shouldShowPlusTransferSwitchNotice(true, STABLE_A)).toBe(false);
 });
 
-test('store Plus on the current account → notice is shown', () => {
+test('store Plus on the current account still does not show a transfer promise', () => {
   const { copy, hold } = load();
   hold.notePlusStoreAccessEvidence(STABLE_A, true, 'yearly');
-  expect(copy.shouldShowPlusTransferSwitchNotice(true, STABLE_A)).toBe(true);
+  expect(copy.shouldShowPlusTransferSwitchNotice(true, STABLE_A)).toBe(false);
 });
 
 test('VIP/promo Plus without a store purchase → no notice', () => {

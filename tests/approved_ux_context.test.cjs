@@ -85,7 +85,6 @@ test('approved recovery copy explains causes and a way back without promises of 
     // 05.10 (решение 3, cards-section): итог Карточек без ошибок говорит «Без единой ошибки» вместо общего «Тренировка завершена».
     ['app/flashcards/CardsSessionResultV2.tsx', 'Без единой ошибки'],
     // 30.09: personal_plan_theory удалён вместе с «Личным планом» (970f8e7b8).
-    ['app/survey_screen.tsx', 'Можно вернуться в приложение'],
     // 01.10: описание «Устно» сокращено по скрину владельца — строка про паузу убрана.
   ]) assert.ok(read(file).includes(copy), file);
 });

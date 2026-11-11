@@ -1,0 +1,78 @@
+[
+ {
+  "id": "lesson-11/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "Калька «завершенное событие в завершенное время» / «у час, що закінчився»; «вы» при «ты».",
+  "fix": {
+   "ru": "Прошедшее простое время — для действия, которое закончилось в прошлом: вчера, в понедельник, на прошлой неделе. У большинства правильных глаголов эта форма одна для всех лиц: I walked, she walked.",
+   "uk": "Простий минулий час — для дії, яка завершилася в минулому: учора, у понеділок, минулого тижня. У більшості правильних дієслів ця форма однакова для всіх осіб: I walked, she walked."
+  }
+ },
+ {
+  "id": "lesson-11/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru|uk|en.chapters[5].body",
+  "problem": "Текст про возврат посылки и деньги за доставку, а примеры главы 11.42, 11.45, 11.48 — про поломку техники (экран, файл, принтер).",
+  "fix": {
+   "ru": "Вчера всё работало, а сегодня нет. Расскажи по шагам, что произошло и что ты уже сделал: The screen flashed twice. She copied the file.",
+   "uk": "Учора все працювало, а сьогодні ні. Розкажи по кроках, що сталося і що ти вже зробив: The screen flashed twice. She copied the file.",
+   "en": "Yesterday everything worked, today it does not. Say step by step what happened and what you did: The screen flashed twice. She copied the file."
+  }
+ },
+ {
+  "id": "lesson-11/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru|uk|en.chapters[6].body",
+  "problem": "Текст про неполадки, а фраза 11.50 — вопрос о возврате денег; uk «Виправити неполадки, які працювали вчора» бессмысленно.",
+  "fix": {
+   "ru": "Спроси, вернул ли магазин деньги: Did + подлежащее + глагол без -ed.",
+   "uk": "Запитай, чи повернув магазин гроші: Did + підмет + дієслово без -ed.",
+   "en": "Ask whether the shop gave the money back: Did + subject + verb without -ed."
+  }
+ },
+ {
+  "id": "lesson-12/use",
+  "type": "T2",
+  "field": "localized.ru|uk.use (+chapters[0].body)",
+  "problem": "Калька «Изучите форму на примере полезного предмета: автобуса, потерянной вещи…»; «вы» при «ты».",
+  "fix": {
+   "ru": "У многих частых глаголов прошедшее время — особое слово, а не окончание -ed: take → took, buy → bought. Запоминай такую форму сразу в короткой фразе: We took the bus home.",
+   "uk": "У багатьох поширених дієслів минулий час — окреме слово, а не закінчення -ed: take → took, buy → bought. Запам'ятовуй таку форму одразу в короткій фразі: We took the bus home."
+  }
+ },
+ {
+  "id": "lesson-12/nuance",
+  "type": "T1",
+  "field": "localized.ru|uk|en.nuance (+chapters[2].body)",
+  "problem": "«Можно использовать без did» неточно: если who — подлежащее, did в нейтральном вопросе не ставят; калька «выглядят неизменными на странице».",
+  "fix": {
+   "ru": "Некоторые формы пишутся так же, как начальная: read — read, но в прошедшем времени читается [red]. Если who — подлежащее (кто сделал?), did не нужен: Who took the last cup?",
+   "uk": "Деякі форми пишуться так само, як початкова: read — read, але в минулому часі читається [red]. Якщо who — підмет (хто зробив?), did не потрібне: Who took the last cup?",
+   "en": "Some past forms are spelt like the base form: past read is pronounced [red]. When who is the subject (who did it?), the question takes no did: Who took the last cup?"
+  }
+ },
+ {
+  "id": "lesson-12/chapters[5]",
+  "type": "T1",
+  "field": "chapters[5].samples",
+  "problem": "Текст «пропала сумка, кто её взял», а примеры 12.42, 12.45, 12.48 (ушла из офиса, цена такси, стояли на улице) не по теме.",
+  "fix": [
+   "12.43",
+   "12.41",
+   "12.44"
+  ]
+ },
+ {
+  "id": "lesson-12/chapters[6]",
+  "type": "T1",
+  "field": "chapters[6].samples + tokenWalk",
+  "problem": "«Выяснять, кто что сделал», а разбирается 12.50 I told the driver my address — вопроса «кто» нет.",
+  "fix": {
+   "samples": [
+    "12.43"
+   ],
+   "tokenWalk": "12.43"
+  }
+ }
+]

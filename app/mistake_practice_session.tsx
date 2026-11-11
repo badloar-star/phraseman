@@ -42,13 +42,13 @@ import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../components/practice/PracticeGlass';
 import ContentReportFlag from '../components/ContentReportFlag';
 import { matchesMistakePracticeAnswer } from './mistake_practice_answer_match';
 import { mistakePracticeTokenOrder } from './mistake_practice_token_order';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { triLang, type Lang } from '../constants/i18n';
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import { MISTAKE_EXERCISE_MODE_REGISTRY } from '../modules/mistake-practice/exercise_mode_registry';
 import {
   classifyMistakeVoiceVerdict,
@@ -73,7 +73,6 @@ import {
 import { appendMistakeEvent } from './mistake_practice_store';
 import { createMistakeAnswerJournal, type MistakeAnswerJournal } from './mistake_practice_answer_journal';
 import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
-import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
@@ -1571,7 +1570,7 @@ function MistakePracticeSessionScreen() {
             </View>
           </Panel>
           <View style={[styles.trayRow, styles.trayRowGap]}>
-            {liveExplanation ? <PanelCta g={g} ghost flex testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
+            {/* зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… обе удалить»): упрощённого разбора нет — в строке одна кнопка «Понятно» */}
             <PanelCta g={g} flex label={pcopy.understood} onPress={() => setWhyOpen(false)} />
           </View>
         </Tray>
@@ -1782,16 +1781,6 @@ function MistakePracticeSessionScreen() {
 OK: ${entry.exercise.correctAnswer}`}
         userAnswer={feedback?.userAnswer || undefined}
         testID="mistake-practice-report-form"
-      />
-      <MistakeEli5Modal
-        visible={mistakeExplain.eli5.open}
-        onClose={mistakeExplain.eli5.onClose}
-        lang={lang}
-        state={mistakeExplain.eli5.state}
-        text={mistakeExplain.eli5.text}
-        onRetry={mistakeExplain.eli5.onRetry}
-        fallback={mistakeExplain.eli5.fallback}
-        onRefresh={mistakeExplain.eli5.onRefresh}
       />
       <AiExplainConsentModal
         visible={mistakeExplain.consentGate.visible}

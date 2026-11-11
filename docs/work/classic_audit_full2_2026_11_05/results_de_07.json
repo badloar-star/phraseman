@@ -1,0 +1,9 @@
+[
+{"id": "de:15:03", "type": "B1", "field": "tiles", "problem": "Соблазн «etwas» даёт верную фразу «Warte etwas!» = «Подожди немного!», засчитается ошибкой", "fix": {"position": 1, "replace_distractor": "etwas", "with": "pünktlich"}},
+{"id": "de:15:05", "type": "M", "field": "ru", "problem": "«Оставайся сидеть» — калька с немецкого, по-русски так не говорят", "fix": "Не вставай, пожалуйста!"},
+{"id": "de:15:05", "type": "M", "field": "uk", "problem": "«Залишайся сидіти» — калька, неприродно українською", "fix": "Не вставай, будь ласка!"},
+{"id": "de:15:36", "type": "M", "field": "uk", "problem": "«Слідуйте за мною» — калька/канцелярит, природно «Ідіть за мною»", "fix": "Ідіть за мною, будь ласка!"},
+{"id": "de:15:46", "type": "B1", "field": "tiles", "problem": "Соблазн «ruhig» (спокойно/тихо) подставляется по смыслу: «Schließ die Tür ruhig!» ученик прочтёт как «закрой дверь тихо»", "fix": {"position": 3, "replace_distractor": "ruhig", "with": "satt"}},
+{"id": "de:16:17", "type": "B1", "field": "tiles", "problem": "Соблазн «Türen» даёт «Ich habe die Türen geschlossen.» — верно для uk «Я зачинив двері» (двері = и одна, и несколько)", "fix": {"position": 3, "replace_distractor": "Türen", "with": "Bahn"}},
+{"id": "de:16:27", "type": "B1", "field": "tiles", "problem": "Соблазн «geschrieben» даёт грамматичную и по смыслу подходящую фразу «Ich habe die Adresse geschrieben.» (записал/написал адрес)", "fix": {"position": 4, "replace_distractor": "geschrieben", "with": "gekocht"}}
+]

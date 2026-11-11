@@ -103,3 +103,22 @@ No architecture change. Зафиксированная цепочка (по ко
     }
 
 После подключения: тест в `stars_ledger.test.ts` (grant из списка растит weekEarned и не растит earnedTotal), выкладка функций — словом владельца.
+
+## Дополнение 4 — подключение правила в журнале (11.11, слово владельца в этой сессии: «сейчас делай сервер, сборку потом»)
+
+Governance-ID: TG-162BBD053589
+Status: правка в рабочем дереве, коммит своих кусков отдельно от чужих незакоммиченных правок тех же файлов
+
+Outcome: бонусы за действия (level_spin_grant и др. из `stars_week_policy.ts`) растят монеты недели Пика; мерило — тесты журнала и симуляция (`scripts/spire_week_u35_simulation.ts`: видео +90, друг +500, колесо +200 теперь «дошли», рассылка — нет).
+
+Scope: `functions/src/stars_ledger.ts` (импорт + блок `starOpCountsForWeek` в `prepareStarOperations`), `functions/src/stars_ledger.test.ts` (два ожидания прежнего правила: 0→250, 0→7), `functions/src/level_spin_star_grant.test.ts:171` (0→500), новый `functions/src/stars_ledger_week_policy.test.ts`. Out of scope: чужие незакоммиченные правки этих файлов (снятие learning_v2_*, экзамен главы) — в коммит не входят; клиент; выкладка без сухого прогона.
+
+Architecture: единственное место решения — журнал; читатели недели (снимок комнаты, итог недели, starsWeek) не меняются. `earnedTotal`, `seasonEarned`, `grantedTotal`, `bySource` — по классу, как были.
+
+Security and privacy: новых данных нет. Суммы `level_spin_grant` приходят с телефона и теперь влияют на место — защита: серверная политика кошелька (`coin_wallet_policy.ts`, дневные потолки), потолок недели 20 000. Награда за жалобу (`excluded_compensation`, до 1000) тоже считается — входит в утверждённый владельцем список.
+
+Technical debt: Contain — коммит только своих кусков собран из HEAD + точечные замены (скрипт в scratchpad), потому что в файлах лежат чужие правки; выход — их широкий коммит. Accept temporarily — проверка типов не прогонялась (память ПК), владелец — эта сессия, пересмотр — сухой прогон выкладки (он собирает functions целиком).
+
+Verification: `npm --prefix functions test -- --runInBand` по 8 файлам (журнал, правило, кошелёк, ранжирование, монеты уроков, закрытие недели) через светофор; сухой прогон `bash scripts/deploy_from_clean_head.sh --only "functions:default:levelSpinStarGrant,…"`.
+
+Rollback: вернуть условие `cls === 'earn'` для недельного счётчика и три ожидания тестов; выложить те же функции заново. Уже накопленные недельные суммы не пересчитываются.

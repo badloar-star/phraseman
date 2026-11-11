@@ -22,12 +22,6 @@ describe('гейты по умолчанию выключены', () => {
     // зачем (05.11): значение по умолчанию живёт в app/remote_flags.ts (true); подпись/дефолт тумблера в Пульте обновит выкладка админки — тест проверяет, что ключ в Пульте есть
     expect(read('admin/v2/legacy.html')).toMatch(/key: 'rank_gates_enabled',\s+label: 'Главная по рангам/);
   });
-
-  it('бонус +500 не читает флаг гейтов ни в классике, ни в плеере V2', () => {
-    for (const file of ['app/lesson_complete.tsx', 'app/learning_v2_direct_session_player_v1.tsx']) {
-      expect(read(file)).toMatch(/maybeGrantFirstLessonBonus\(defaultFirstLessonBonusDeps\(\(\) => true/);
-    }
-  });
 });
 
 describe('dev-принуждение флагов для E2E Сверки (без записи в боевой Пульт)', () => {

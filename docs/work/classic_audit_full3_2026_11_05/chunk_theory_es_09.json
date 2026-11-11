@@ -1,0 +1,1561 @@
+[
+{
+"lesson": 19,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 19,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Действие прямо сейчас",
+"formula": "личная форма estar + герундий",
+"story": "Смотришь на действие, пока оно идёт: Estoy leyendo. Теперь читаешь ты: Estás leyendo. За человека отвечает первая часть.",
+"use": "Опиши действие изнутри, пока оно идёт, а не как привычку или план.",
+"choose": "Для «я» — estoy, для «мы» — estamos. Меняется только этот помощник. Форма leyendo одинаковая у одного человека и у целой группы.",
+"nuance": "Опиши действие изнутри, пока оно идёт, а не как привычку или план. Лицо выражает estar, процесс — герундий.",
+"wrong": "Estoy leer el libro.",
+"right": "Estoy leyendo el libro.",
+"chapters": [
+{
+"title": "Стоп-кадр",
+"body": "Leo может описывать привычку. В estoy leyendo ты как будто включаешь камеру посреди чтения. «Сейчас» в подсказке задаёт ситуацию; оно не требует отдельного ahora в каждой испанской фразе.",
+"note": "Глагольная группа: Estoy leyendo. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "Что меняется",
+"body": "Для «я» — estoy, для «мы» — estamos. Меняется только этот помощник. Форма leyendo одинаковая у одного человека и у целой группы.",
+"note": "Глагольная группа: Estás leyendo. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:02",
+"es:19:03"
+],
+"focusId": "es:19:02"
+},
+{
+"title": "Два окончания",
+"body": "Trabajar даёт trabajando, а comer и escribir дают comiendo и escribiendo. Это не личная форма и не инфинитив: к estoy добавляется именно форма на -ando или -iendo.",
+"note": "Глагольная группа: Estamos comiendo. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:10",
+"es:19:11"
+],
+"focusId": "es:19:10"
+},
+{
+"title": "Пишем leyendo",
+"body": "В leer появляется y: leyendo, не leiendo. Volver даёт volviendo, не vuelviendo: форма vuelvo сама по себе не образец для всех форм глагола.",
+"note": "Глагольная группа: Estoy leyendo. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "Границы модели",
+"body": "Для «я дома» достаточно estoy en casa, а намерение «собираюсь работать» передаётся voy a trabajar. «Нахожусь», «планирую» и «делаю сейчас» — разные сообщения.",
+"note": "Глагольная группа: Estás trabajando. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:41",
+"es:19:42"
+],
+"focusId": "es:19:41"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты сейчас платишь картой.» / «Мы сейчас читаем книгу.». Лицо выражает estar, процесс — герундий. Смысловые опоры: «tarjeta» — карта для оплаты.",
+"note": "Глагольная группа: Estamos leyendo. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:20",
+"es:19:21"
+],
+"focusId": "es:19:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты сейчас читаешь книгу?» / «Ты сейчас ищешь мои ключи?». Лицо выражает estar, процесс — герундий. Опиши действие изнутри, пока оно идёт, а не как привычку или план.",
+"note": "Глагольная группа: Estás buscando. Лицо выражает estar, процесс — герундий.",
+"samples": [
+"es:19:44",
+"es:19:50"
+],
+"focusId": "es:19:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": "es:19:02",
+"sample": "Estás leyendo el libro."
+},
+{
+"es": "él · está",
+"gloss": "он/она/Вы",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "мы",
+"id": "es:19:06",
+"sample": "Estamos escribiendo una carta."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:19:22",
+"sample": "Estáis leyendo el mensaje ahora."
+},
+{
+"es": "ellos · están",
+"gloss": "они/вы (ustedes)",
+"id": "es:19:19",
+"sample": "Mis hermanos están pagando en efectivo."
+}
+],
+"title": "estar · Настоящее"
+},
+{
+"rows": [
+{
+"es": "leyendo",
+"gloss": "читать сейчас: особая форма с y",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "escribiendo",
+"gloss": "писать сейчас: -iendo",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Дія просто зараз",
+"formula": "особова форма estar + герундій",
+"story": "Дію видно саме зараз: Estoy leyendo. Тепер читаєш ти: Estás leyendo. Особу показує перша частина.",
+"use": "Опиши дію зсередини, поки вона триває, а не як звичку чи план.",
+"choose": "Для «я» — estoy, для «ми» — estamos. Змінюється лише це допоміжне дієслово. Форма leyendo однакова для однієї людини й для групи.",
+"nuance": "Опиши дію зсередини, поки вона триває, а не як звичку чи план. Особу передає estar, процес — герундій.",
+"wrong": "Estoy leer el libro.",
+"right": "Estoy leyendo el libro.",
+"chapters": [
+{
+"title": "Стоп-кадр",
+"body": "Leo може описувати звичку. В estoy leyendo ти ніби вмикаєш камеру посеред читання. «Зараз» у підказці задає ситуацію, але не завжди вимагає окремого ahora.",
+"note": "Дієслівна група: Estoy leyendo. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "Що змінюється",
+"body": "Для «я» — estoy, для «ми» — estamos. Змінюється лише це допоміжне дієслово. Форма leyendo однакова для однієї людини й для групи.",
+"note": "Дієслівна група: Estás leyendo. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:02",
+"es:19:03"
+],
+"focusId": "es:19:02"
+},
+{
+"title": "Два закінчення",
+"body": "Trabajar дає trabajando, а comer й escribir — comiendo та escribiendo. Це не особова форма й не інфінітив: до estoy додаємо форму на -ando або -iendo.",
+"note": "Дієслівна група: Estamos comiendo. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:10",
+"es:19:11"
+],
+"focusId": "es:19:10"
+},
+{
+"title": "Пишемо leyendo",
+"body": "У leer з’являється y: leyendo, а не leiendo. Volver дає volviendo, а не vuelviendo: форма vuelvo не є зразком для всіх форм дієслова.",
+"note": "Дієслівна група: Estoy leyendo. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "Межі моделі",
+"body": "Для «я вдома» досить estoy en casa, намір «збираюся працювати» — voy a trabajar. Перебування, намір і дія в процесі передають різне.",
+"note": "Дієслівна група: Estás trabajando. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:41",
+"es:19:42"
+],
+"focusId": "es:19:41"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти зараз платиш карткою.» / «Ми зараз читаємо книжку.». Особу передає estar, процес — герундій. Смислові опори: «tarjeta» — платіжна картка.",
+"note": "Дієслівна група: Estamos leyendo. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:20",
+"es:19:21"
+],
+"focusId": "es:19:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти зараз читаєш книжку?» / «Ти зараз шукаєш мої ключі?». Особу передає estar, процес — герундій. Опиши дію зсередини, поки вона триває, а не як звичку чи план.",
+"note": "Дієслівна група: Estás buscando. Особу передає estar, процес — герундій.",
+"samples": [
+"es:19:44",
+"es:19:50"
+],
+"focusId": "es:19:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": "es:19:02",
+"sample": "Estás leyendo el libro."
+},
+{
+"es": "él · está",
+"gloss": "він/вона/Ви",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "ми",
+"id": "es:19:06",
+"sample": "Estamos escribiendo una carta."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:19:22",
+"sample": "Estáis leyendo el mensaje ahora."
+},
+{
+"es": "ellos · están",
+"gloss": "вони/ви (ustedes)",
+"id": "es:19:19",
+"sample": "Mis hermanos están pagando en efectivo."
+}
+],
+"title": "estar · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "leyendo",
+"gloss": "читати зараз: особлива форма з y",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "escribiendo",
+"gloss": "писати зараз: -iendo",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "What is happening now: estar + gerund",
+"formula": "estar (estoy, estás…) + gerund: estoy leyendo",
+"story": "Picture reading in progress: Estoy leyendo. Now the other person is reading: Estás leyendo. The first word tells you who.",
+"use": "Describe the action from the inside, while it's happening, not as a habit or plan.",
+"choose": "For \"I\" — estoy, for \"we\" — estamos. Only this assistant changes. The form leyendo is the same for one person and for an entire group.",
+"nuance": "Describe the action from the inside, while it's happening, not as a habit or plan. The person is expressed by estar, the process is expressed by the gerund.",
+"wrong": "Estoy leer el libro.",
+"right": "Estoy leyendo el libro.",
+"chapters": [
+{
+"title": "What would a snapshot show right now?",
+"body": "Leo can describe a habit. In estoy leyendo, you're like turning on the camera in the middle of reading. The \"now\" in the clue sets the situation; it doesn't require a separate ahora in each Spanish phrase.",
+"note": "Verb phrase: Estoy leyendo. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "Which word changes for I, you or they?",
+"body": "For \"I\" — estoy, for \"we\" — estamos. Only this assistant changes. The form leyendo is the same for one person and for an entire group.",
+"note": "Verb phrase: Estás leyendo. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:02",
+"es:19:03"
+],
+"focusId": "es:19:02"
+},
+{
+"title": "Which ending follows the stem?",
+"body": "Trabajar yields trabajando, and comer and escribir yield comiendo and escribiendo. This is neither a finite form nor an infinitive: the form ending in - ando or - iendo is added to estoy.",
+"note": "Verb phrase: Estamos comiendo. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:10",
+"es:19:11"
+],
+"focusId": "es:19:10"
+},
+{
+"title": "Why leyendo rather than leiendo?",
+"body": "In leer, y appears: leyendo, not leiendo. Volver yields volviendo, not vuelviendo: the form vuelvo itself is not a model for all verb forms.",
+"note": "Verb phrase: Estoy leyendo. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:01",
+"es:19:02"
+],
+"focusId": "es:19:01"
+},
+{
+"title": "When is this pattern a poor fit?",
+"body": "For \"I'm home,\" estoy en casa is sufficient, while the intention of \"going to work\" is conveyed by voy a trabajar. \"I'm here,\" \"planning,\" and \"doing now\" are different messages.",
+"note": "Verb phrase: Estás trabajando. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:41",
+"es:19:42"
+],
+"focusId": "es:19:41"
+},
+{
+"title": "How do I put the two parts together?",
+"body": "Compare two tasks: \"You are now paying with a card.\" / \"We are now reading a book.\" estar expresses the person, the gerund expresses the process. Semantic supports: \" tarjeta \" is a payment card.",
+"note": "Verb phrase: Estamos leyendo. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:20",
+"es:19:21"
+],
+"focusId": "es:19:21"
+},
+{
+"title": "Can I describe a different action in progress?",
+"body": "Compare the two tasks: \"Are you reading a book now?\" / \"Are you looking for my keys now?\" estar expresses the person, the gerund expresses the process. Describe the action from the inside, while it is happening, and not as a habit or plan.",
+"note": "Verb phrase: Estás buscando. The person expresses estar, the process is the gerund.",
+"samples": [
+"es:19:44",
+"es:19:50"
+],
+"focusId": "es:19:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": "es:19:02",
+"sample": "Estás leyendo el libro."
+},
+{
+"es": "él · está",
+"gloss": "he/she/you",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "we",
+"id": "es:19:06",
+"sample": "Estamos escribiendo una carta."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "you (friends, Spain)",
+"id": "es:19:22",
+"sample": "Estáis leyendo el mensaje ahora."
+},
+{
+"es": "ellos · están",
+"gloss": "they/you (ustedes)",
+"id": "es:19:19",
+"sample": "Mis hermanos están pagando en efectivo."
+}
+],
+"title": "estar Present"
+},
+{
+"rows": [
+{
+"es": "leyendo",
+"gloss": "read now: special form with y",
+"id": "es:19:01",
+"sample": "Estoy leyendo el libro."
+},
+{
+"es": "escribiendo",
+"gloss": "write now: - iendo",
+"id": "es:19:05",
+"sample": "Ana está escribiendo una carta."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:19:01",
+"index": 1,
+"right": "leyendo",
+"near": "leer",
+"seq": [
+"Estoy",
+"leyendo",
+"el",
+"libro"
+],
+"i": 0,
+"kind": "form",
+"key": "es19/lab/form1",
+"feedback": {
+"ru": "Глагол: leer — читать.",
+"uk": "Дієслово: leer — читати.",
+"en": "Verb: leer — read."
+}
+},
+{
+"id": "es:19:13",
+"index": 1,
+"right": "preparando",
+"near": "preparar",
+"seq": [
+"Estás",
+"preparando",
+"la",
+"cena"
+],
+"i": 12,
+"kind": "form",
+"key": "es19/lab/form2",
+"feedback": {
+"ru": "Глагол: preparar — готовить.",
+"uk": "Дієслово: preparar — готувати.",
+"en": "Verb: preparar — to cook."
+}
+},
+{
+"id": "es:19:26",
+"index": 3,
+"right": "esperando",
+"near": "esperar",
+"seq": [
+"Mis",
+"hermanos",
+"están",
+"esperando",
+"fuera",
+"ahora"
+],
+"i": 25,
+"kind": "form",
+"key": "es19/lab/form3",
+"feedback": {
+"ru": "Глагол: esperar — ждать.",
+"uk": "Дієслово: esperar — чекати.",
+"en": "Verb: esperar — to wait."
+}
+},
+{
+"id": "es:19:36",
+"index": 2,
+"right": "bebiendo",
+"near": "beber",
+"seq": [
+"No",
+"estamos",
+"bebiendo",
+"café",
+"ahora"
+],
+"i": 35,
+"kind": "form",
+"key": "es19/lab/form4",
+"feedback": {
+"ru": "Глагол: beber — пить.",
+"uk": "Дієслово: beber — пити.",
+"en": "Verb: beber — to drink."
+}
+},
+{
+"id": "es:19:07",
+"index": 1,
+"right": "cortando",
+"near": "cortar",
+"seq": [
+"Estoy",
+"cortando",
+"una",
+"cebolla"
+],
+"i": 6,
+"kind": "spot",
+"key": "es19/lab/spot1",
+"feedback": {
+"ru": "Глагол: cortar — резать.",
+"uk": "Дієслово: cortar — різати.",
+"en": "Verb: cortar — to cut."
+}
+},
+{
+"id": "es:19:20",
+"index": 1,
+"right": "pagando",
+"near": "pagar",
+"seq": [
+"Estás",
+"pagando",
+"con",
+"tarjeta"
+],
+"i": 19,
+"kind": "spot",
+"key": "es19/lab/spot2",
+"feedback": {
+"ru": "Глагол: pagar — платить.",
+"uk": "Дієслово: pagar — платити.",
+"en": "Verb: pagar — to pay."
+}
+},
+{
+"id": "es:19:32",
+"index": 2,
+"right": "escribiendo",
+"near": "escribir",
+"seq": [
+"No",
+"estás",
+"escribiendo",
+"una",
+"carta",
+"ahora"
+],
+"i": 31,
+"kind": "spot",
+"key": "es19/lab/spot3",
+"feedback": {
+"ru": "Глагол: escribir — писать.",
+"uk": "Дієслово: escribir — писати.",
+"en": "Verb: escribir — to write."
+}
+},
+{
+"id": "es:19:50",
+"index": 1,
+"right": "buscando",
+"near": "buscar",
+"seq": [
+"Estás",
+"buscando",
+"mis",
+"llaves"
+],
+"i": 49,
+"kind": "spot",
+"key": "es19/lab/spot4",
+"feedback": {
+"ru": "Глагол: buscar — искать.",
+"uk": "Дієслово: buscar — шукати.",
+"en": "Verb: buscar — to search."
+}
+},
+{
+"kind": "match",
+"key": "es19/lab/match1",
+"id": "es:19:02",
+"other": "es:19:03"
+},
+{
+"kind": "match",
+"key": "es19/lab/match2",
+"id": "es:19:17",
+"other": "es:19:18"
+},
+{
+"kind": "match",
+"key": "es19/lab/match3",
+"id": "es:19:33",
+"other": "es:19:32"
+},
+{
+"kind": "match",
+"key": "es19/lab/match4",
+"id": "es:19:46",
+"other": "es:19:45"
+},
+{
+"kind": "build",
+"key": "es19/lab/build1",
+"id": "es:19:04"
+},
+{
+"kind": "build",
+"key": "es19/lab/build2",
+"id": "es:19:15"
+},
+{
+"kind": "build",
+"key": "es19/lab/build3",
+"id": "es:19:29"
+},
+{
+"kind": "build",
+"key": "es19/lab/build4",
+"id": "es:19:42"
+},
+{
+"kind": "transform",
+"id": "es:19:04",
+"base": "es:19:03",
+"diff": [
+{
+"before": [
+"Estoy"
+],
+"after": [
+"Estás"
+]
+}
+],
+"key": "es19/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:19:44",
+"base": "es:19:01",
+"diff": [
+{
+"before": [
+"Estoy"
+],
+"after": [
+"Estás"
+]
+}
+],
+"key": "es19/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:19:43",
+"base": "es:19:08",
+"diff": [
+{
+"before": [
+"Estás"
+],
+"after": [
+"Estamos"
+]
+}
+],
+"key": "es19/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:19:39",
+"base": "es:19:22",
+"diff": [
+{
+"before": [
+"Estáis"
+],
+"after": [
+"No",
+"estás"
+]
+}
+],
+"key": "es19/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+12
+],
+[
+1,
+4
+],
+[
+13,
+9
+],
+[
+15,
+18
+],
+[
+5,
+2
+],
+[
+7,
+17
+]
+],
+"worked": [
+"es:19:05",
+"es:19:18",
+"es:19:33",
+"es:19:48"
+],
+"reflection": [
+"es:19:01",
+"es:19:02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 20,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 20,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Уже сделал сегодня: he + причастие",
+"formula": "форма haber + неизменное причастие",
+"story": "Звонок уже сделан: he llamado. Звонила Ана: ha llamado. Лицо показывает he или ha; llamado в этой конструкции остаётся тем же.",
+"use": "Соедини результат с текущим отрезком времени в принятом для этого урока варианте Испании.",
+"choose": "Tengo un libro называет владельца. He leído el libro называет завершённое действие. He, has, ha, hemos, habéis, han служат для построения времени, отдельно их не переводим.",
+"nuance": "Соедини результат с текущим отрезком времени в принятом для этого урока варианте Испании. Личное окончание у haber, причастие не согласуется с предметом.",
+"wrong": "Ya he llamar al hotel.",
+"right": "Ya he llamado al hotel.",
+"chapters": [
+{
+"title": "Точка отсчёта — сейчас",
+"body": "В отчёте «сегодня я уже звонил» говорящий смотрит назад из ещё актуального периода. Для такой подачи здесь выбран he llamado. Это не утверждение, будто другое прошедшее время невозможно.",
+"note": "Глагольная группа: he llamado. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:01",
+"es:20:02"
+],
+"focusId": "es:20:01"
+},
+{
+"title": "Haber не означает «иметь вещь»",
+"body": "Tengo un libro называет владельца. He leído el libro называет завершённое действие. He, has, ha, hemos, habéis, han служат для построения времени, отдельно их не переводим.",
+"note": "Глагольная группа: has llamado. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:02",
+"es:20:03"
+],
+"focusId": "es:20:02"
+},
+{
+"title": "Как образовать причастие",
+"body": "В правильных формах заменяем -ar на -ado и -er/-ir на -ido: llamado, comido, vivido. В leído ударение на í отмечено письменно; в comprado ударения на письме нет.",
+"note": "Глагольная группа: ha comprado. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:05",
+"es:20:06"
+],
+"focusId": "es:20:05"
+},
+{
+"title": "Три полезных исключения",
+"body": "Открыть — abrir, но «открыл» в этой конструкции — he abierto. Аналогично escribir → escrito и volver → vuelto. Эти формы удобнее хранить внутри карточки глагола.",
+"note": "Глагольная группа: han abierto. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:25",
+"es:20:26"
+],
+"focusId": "es:20:25"
+},
+{
+"title": "После haber причастие не меняется",
+"body": "La puerta está abierta — дверь открыта: мы описываем её состояние. Ana ha abierto la puerta — Ана открыла дверь: мы называем действие. После ha остаётся abierto, хотя и Ana, и puerta женского рода. Сравни: Ana ha abierto dos puertas — дверей две, а abierto не меняется.",
+"note": "Глагольная группа: He pagado. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:15",
+"es:20:16"
+],
+"focusId": "es:20:15"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты сегодня вернулся на вокзал.» / «Мы на этой неделе прочитали книгу.». Личное окончание у haber, причастие не согласуется с предметом. Смысловые опоры: «estación» — станция.",
+"note": "Глагольная группа: Hemos leído. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:20",
+"es:20:21"
+],
+"focusId": "es:20:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты сегодня прочитал книгу?» / «Вы сегодня вошли в офис?». Личное окончание у haber, причастие не согласуется с предметом. Соедини результат с текущим отрезком времени в принятом для этого урока варианте Испании.",
+"note": "Глагольная группа: Habéis entrado. Личное окончание у haber, причастие не согласуется с предметом.",
+"samples": [
+"es:20:44",
+"es:20:50"
+],
+"focusId": "es:20:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · he",
+"gloss": "я",
+"id": "es:20:01",
+"sample": "Ya he llamado al hotel."
+},
+{
+"es": "tú · has",
+"gloss": "ты",
+"id": "es:20:02",
+"sample": "Ya has llamado a Ana."
+},
+{
+"es": "él · ha",
+"gloss": "он/она/Вы",
+"id": "es:20:05",
+"sample": "Ana ya ha comprado un billete."
+},
+{
+"es": "nosotros · hemos",
+"gloss": "мы",
+"id": "es:20:06",
+"sample": "Ya hemos comprado pan."
+},
+{
+"es": "vosotros · habéis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:20:22",
+"sample": "Habéis leído el mensaje esta semana."
+},
+{
+"es": "ellos · han",
+"gloss": "они/вы (ustedes)",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "haber · Настоящее"
+},
+{
+"rows": [
+{
+"es": "abierto",
+"gloss": "abrir: открыть",
+"id": "es:20:03",
+"sample": "Ya he abierto la puerta."
+},
+{
+"es": "escrito",
+"gloss": "escribir: написать",
+"id": "es:20:07",
+"sample": "Ya he escrito una carta."
+},
+{
+"es": "vuelto",
+"gloss": "volver: вернуться",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Уже зробив сьогодні: he + дієприкметник",
+"formula": "форма haber + незмінний дієприкметник",
+"story": "Дзвінок уже зроблено: he llamado. Телефонувала Ана: ha llamado. Особу показує he або ha; llamado не змінюється.",
+"use": "Поєднай результат з поточним часовим проміжком у варіанті іспанської, обраному для цього уроку.",
+"choose": "Tengo un libro називає власника. He leído el libro називає завершену дію. He, has, ha, hemos, habéis, han будують час; окремо їх не перекладаємо.",
+"nuance": "Поєднай результат з поточним часовим проміжком у варіанті іспанської, обраному для цього уроку. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"wrong": "Ya he llamar al hotel.",
+"right": "Ya he llamado al hotel.",
+"chapters": [
+{
+"title": "Точка відліку — зараз",
+"body": "У звіті «сьогодні я вже телефонував» мовець дивиться назад із іще актуального періоду. Для такої подачі тут обрано he llamado; це не заборона інших минулих форм.",
+"note": "Дієслівна група: he llamado. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:01",
+"es:20:02"
+],
+"focusId": "es:20:01"
+},
+{
+"title": "Haber не означає «мати річ»",
+"body": "Tengo un libro називає власника. He leído el libro називає завершену дію. He, has, ha, hemos, habéis, han будують час; окремо їх не перекладаємо.",
+"note": "Дієслівна група: has llamado. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:02",
+"es:20:03"
+],
+"focusId": "es:20:02"
+},
+{
+"title": "Як утворити дієприкметник",
+"body": "У правильних формах замінюємо -ar на -ado, а -er/-ir на -ido: llamado, comido, vivido. У leído наголос на í позначений письмово, у comprado знака немає.",
+"note": "Дієслівна група: ha comprado. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:05",
+"es:20:06"
+],
+"focusId": "es:20:05"
+},
+{
+"title": "Три корисні винятки",
+"body": "Відчинити — abrir, але «відчинив» у цій конструкції — he abierto. Так само escribir → escrito та volver → vuelto. Це форми тієї самої словникової картки.",
+"note": "Дієслівна група: han abierto. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:25",
+"es:20:26"
+],
+"focusId": "es:20:25"
+},
+{
+"title": "Після haber дієприкметник не змінюється",
+"body": "La puerta está abierta — двері відчинені: це їхній стан. Ana ha abierto la puerta — Ана відчинила двері: це дія. Після ha залишається abierto, хоча Ana та puerta жіночого роду. У Ana ha abierto dos puertas слово abierto також не змінюється.",
+"note": "Дієслівна група: He pagado. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:15",
+"es:20:16"
+],
+"focusId": "es:20:15"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти сьогодні повернувся на вокзал.» / «Ми цього тижня прочитали книжку.». Особове закінчення має haber, дієприкметник не узгоджується з предметом. Смислові опори: «estación» — станція.",
+"note": "Дієслівна група: Hemos leído. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:20",
+"es:20:21"
+],
+"focusId": "es:20:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти сьогодні прочитав книжку?» / «Ви сьогодні зайшли до офісу?». Особове закінчення має haber, дієприкметник не узгоджується з предметом. Поєднай результат з поточним часовим проміжком у варіанті іспанської, обраному для цього уроку.",
+"note": "Дієслівна група: Habéis entrado. Особове закінчення має haber, дієприкметник не узгоджується з предметом.",
+"samples": [
+"es:20:44",
+"es:20:50"
+],
+"focusId": "es:20:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · he",
+"gloss": "я",
+"id": "es:20:01",
+"sample": "Ya he llamado al hotel."
+},
+{
+"es": "tú · has",
+"gloss": "ти",
+"id": "es:20:02",
+"sample": "Ya has llamado a Ana."
+},
+{
+"es": "él · ha",
+"gloss": "він/вона/Ви",
+"id": "es:20:05",
+"sample": "Ana ya ha comprado un billete."
+},
+{
+"es": "nosotros · hemos",
+"gloss": "ми",
+"id": "es:20:06",
+"sample": "Ya hemos comprado pan."
+},
+{
+"es": "vosotros · habéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:20:22",
+"sample": "Habéis leído el mensaje esta semana."
+},
+{
+"es": "ellos · han",
+"gloss": "вони/ви (ustedes)",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "haber · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "abierto",
+"gloss": "abrir: відчинити",
+"id": "es:20:03",
+"sample": "Ya he abierto la puerta."
+},
+{
+"es": "escrito",
+"gloss": "escribir: написати",
+"id": "es:20:07",
+"sample": "Ya he escrito una carta."
+},
+{
+"es": "vuelto",
+"gloss": "volver: повернутися",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "What you have done today: haber + participle",
+"formula": "haber (he, has…) + past participle: he llamado",
+"story": "The call has been made: he llamado. If Ana made it: ha llamado. The first word changes; llamado does not agree with Ana.",
+"use": "Match the result with the current time period in the Spanish variant accepted for this lesson.",
+"choose": "Tengo un libro names the owner. He leído el libro names the completed action. He, has, ha, hemos, habéis, han are used to construct tense and are not translated separately.",
+"nuance": "Match the result with the current time period in the Spanish variant accepted for this lesson. The personal ending is haber, and the participle does not agree with the subject.",
+"wrong": "Ya he llamar al hotel.",
+"right": "Ya he llamado al hotel.",
+"chapters": [
+{
+"title": "How does this past event connect to now?",
+"body": "In the report \"today I already called,\" the speaker looks back from a still-current period. he llamado is chosen for this presentation. This is not a statement that another past tense is impossible.",
+"note": "Verb phrase: he llamado. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:01",
+"es:20:02"
+],
+"focusId": "es:20:01"
+},
+{
+"title": "Why haber rather than tener?",
+"body": "Tengo un libro names the owner. He leído el libro names the completed action. He, has, ha, hemos, habéis, han are used to construct tense and are not translated separately.",
+"note": "Verb phrase: has llamado. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:02",
+"es:20:03"
+],
+"focusId": "es:20:02"
+},
+{
+"title": "How do I make a regular past participle?",
+"body": "In the correct forms, replace - ar with - ado and - er /- ir with - ido: llamado, comido, vivido. In leído, the stress on í is marked in writing; in comprado, there is no stress in writing.",
+"note": "Verb phrase: ha comprado. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:05",
+"es:20:06"
+],
+"focusId": "es:20:05"
+},
+{
+"title": "Which useful participles are irregular?",
+"body": "Open — abrir, but \"opened\" in this construction — he abierto. Similarly, escribir → escrito and volver → vuelto. These forms are more conveniently stored inside the verb card.",
+"note": "Verb phrase: han abierto. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:25",
+"es:20:26"
+],
+"focusId": "es:20:25"
+},
+{
+"title": "Keep the participle unchanged after haber",
+"body": "La puerta está abierta means “the door is open”: abierta describes the door. Ana ha abierto la puerta means “Ana has opened the door”: ha abierto names the action. After ha, keep abierto even though Ana and puerta are both feminine. Even in Ana ha abierto dos puertas, abierto stays the same.",
+"note": "Verb phrase: He pagado. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:15",
+"es:20:16"
+],
+"focusId": "es:20:15"
+},
+{
+"title": "How do I put haber and the participle together?",
+"body": "Compare two tasks: \"You returned to the station today.\" / \"We read a book this week.\" The personal ending of haber, the participle does not agree with the subject. Semantic supports: \" estación \" - station.",
+"note": "Verb phrase: Hemos leído. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:20",
+"es:20:21"
+],
+"focusId": "es:20:21"
+},
+{
+"title": "Can I use the pattern for another completed action?",
+"body": "Compare two tasks: \"Did you read a book today?\" / \"Did you enter the office today?\" The personal ending of haber, the participle does not agree with the subject. Connect the result with the current time period in the Spanish version accepted for this lesson.",
+"note": "Verb phrase: Habéis entrado. The personal ending of haber, the participle does not agree with the subject.",
+"samples": [
+"es:20:44",
+"es:20:50"
+],
+"focusId": "es:20:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · he",
+"gloss": "I",
+"id": "es:20:01",
+"sample": "Ya he llamado al hotel."
+},
+{
+"es": "tú · has",
+"gloss": "you",
+"id": "es:20:02",
+"sample": "Ya has llamado a Ana."
+},
+{
+"es": "él · ha",
+"gloss": "he/she/you",
+"id": "es:20:05",
+"sample": "Ana ya ha comprado un billete."
+},
+{
+"es": "nosotros · hemos",
+"gloss": "we",
+"id": "es:20:06",
+"sample": "Ya hemos comprado pan."
+},
+{
+"es": "vosotros · habéis",
+"gloss": "you (friends, Spain)",
+"id": "es:20:22",
+"sample": "Habéis leído el mensaje esta semana."
+},
+{
+"es": "ellos · han",
+"gloss": "they/you (ustedes)",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "haber Present"
+},
+{
+"rows": [
+{
+"es": "abierto",
+"gloss": "abrir: open",
+"id": "es:20:03",
+"sample": "Ya he abierto la puerta."
+},
+{
+"es": "escrito",
+"gloss": "escribir: write",
+"id": "es:20:07",
+"sample": "Ya he escrito una carta."
+},
+{
+"es": "vuelto",
+"gloss": "volver: return",
+"id": "es:20:19",
+"sample": "Mis hermanos han vuelto a casa hoy."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:20:01",
+"index": 2,
+"right": "llamado",
+"near": "llamando",
+"seq": [
+"Ya",
+"he",
+"llamado",
+"al",
+"hotel"
+],
+"i": 0,
+"kind": "form",
+"key": "es20/lab/form1",
+"feedback": {
+"ru": "llamado ← llamar (звонить); причастие после haber.",
+"uk": "llamado ← llamar (телефонувати); дієприкметник після haber.",
+"en": "llamado ← llamar (to call); participle after haber."
+}
+},
+{
+"id": "es:20:13",
+"index": 2,
+"right": "preparado",
+"near": "preparando",
+"seq": [
+"Luis",
+"ha",
+"preparado",
+"la",
+"cena",
+"hoy"
+],
+"i": 12,
+"kind": "form",
+"key": "es20/lab/form2",
+"feedback": {
+"ru": "preparado ← preparar (готовить); причастие после haber.",
+"uk": "preparado ← preparar (готувати); дієприкметник після haber.",
+"en": "preparado ← preparar (cook); participle after haber."
+}
+},
+{
+"id": "es:20:26",
+"index": 3,
+"right": "vuelto",
+"near": "volviendo",
+"seq": [
+"Mis",
+"hermanos",
+"han",
+"vuelto",
+"a",
+"casa",
+"esta",
+"semana"
+],
+"i": 25,
+"kind": "form",
+"key": "es20/lab/form3",
+"feedback": {
+"ru": "vuelto ← volver (возвращаться); причастие после haber.",
+"uk": "vuelto ← volver (повертатися); дієприкметник після haber.",
+"en": "vuelto ← volver (to return); participle after haber."
+}
+},
+{
+"id": "es:20:38",
+"index": 2,
+"right": "mandado",
+"near": "mandando",
+"seq": [
+"Luis",
+"ha",
+"mandado",
+"el",
+"paquete",
+"hoy"
+],
+"i": 37,
+"kind": "form",
+"key": "es20/lab/form4",
+"feedback": {
+"ru": "mandado ← mandar (отправлять); причастие после haber.",
+"uk": "mandado ← mandar (надсилати); дієприкметник після haber.",
+"en": "mandado ← mandar (to send); participle after haber."
+}
+},
+{
+"id": "es:20:07",
+"index": 2,
+"right": "escrito",
+"near": "escribiendo",
+"seq": [
+"Ya",
+"he",
+"escrito",
+"una",
+"carta"
+],
+"i": 6,
+"kind": "spot",
+"key": "es20/lab/spot1",
+"feedback": {
+"ru": "escrito ← escribir (писать); причастие после haber.",
+"uk": "escrito ← escribir (писати); дієприкметник після haber.",
+"en": "escrito ← escribir (write); participle after haber."
+}
+},
+{
+"id": "es:20:21",
+"index": 1,
+"right": "leído",
+"near": "leyendo",
+"seq": [
+"Hemos",
+"leído",
+"el",
+"libro",
+"esta",
+"semana"
+],
+"i": 20,
+"kind": "spot",
+"key": "es20/lab/spot2",
+"feedback": {
+"ru": "leído ← leer (читать); причастие после haber.",
+"uk": "leído ← leer (читати); дієприкметник після haber.",
+"en": "leído ← leer (read); participle after haber."
+}
+},
+{
+"id": "es:20:30",
+"index": 1,
+"right": "llevado",
+"near": "llevando",
+"seq": [
+"Habéis",
+"llevado",
+"la",
+"bolsa",
+"esta",
+"semana"
+],
+"i": 29,
+"kind": "spot",
+"key": "es20/lab/spot3",
+"feedback": {
+"ru": "llevado ← llevar (нести); причастие после haber.",
+"uk": "llevado ← llevar (нести); дієприкметник після haber.",
+"en": "llevado ← llevar (to carry); participle after haber."
+}
+},
+{
+"id": "es:20:46",
+"index": 2,
+"right": "abierto",
+"near": "abriendo",
+"seq": [
+"Ana",
+"ha",
+"abierto",
+"la",
+"puerta",
+"hoy"
+],
+"i": 45,
+"kind": "spot",
+"key": "es20/lab/spot4",
+"feedback": {
+"ru": "abierto ← abrir (открывать); причастие после haber.",
+"uk": "abierto ← abrir (відчиняти; відкривати); дієприкметник після haber.",
+"en": "abierto ← abrir (to open); participle after haber."
+}
+},
+{
+"kind": "match",
+"key": "es20/lab/match1",
+"id": "es:20:02",
+"other": "es:20:01"
+},
+{
+"kind": "match",
+"key": "es20/lab/match2",
+"id": "es:20:17",
+"other": "es:20:15"
+},
+{
+"kind": "match",
+"key": "es20/lab/match3",
+"id": "es:20:33",
+"other": "es:20:34"
+},
+{
+"kind": "match",
+"key": "es20/lab/match4",
+"id": "es:20:46",
+"other": "es:20:45"
+},
+{
+"kind": "build",
+"key": "es20/lab/build1",
+"id": "es:20:04"
+},
+{
+"kind": "build",
+"key": "es20/lab/build2",
+"id": "es:20:15"
+},
+{
+"kind": "build",
+"key": "es20/lab/build3",
+"id": "es:20:29"
+},
+{
+"kind": "build",
+"key": "es20/lab/build4",
+"id": "es:20:42"
+},
+{
+"kind": "transform",
+"id": "es:20:26",
+"base": "es:20:19",
+"diff": [
+{
+"before": [
+"hoy"
+],
+"after": [
+"esta",
+"semana"
+]
+}
+],
+"key": "es20/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:20:47",
+"base": "es:20:11",
+"diff": [
+{
+"before": [
+"He"
+],
+"after": [
+"Hemos"
+]
+}
+],
+"key": "es20/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:20:41",
+"base": "es:20:02",
+"diff": [
+{
+"before": [
+"Ya"
+],
+"after": []
+},
+{
+"before": [],
+"after": [
+"hoy"
+]
+}
+],
+"key": "es20/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:20:45",
+"base": "es:20:38",
+"diff": [
+{
+"before": [
+"mandado"
+],
+"after": [
+"leído"
+]
+},
+{
+"before": [
+"paquete"
+],
+"after": [
+"mensaje"
+]
+}
+],
+"key": "es20/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+1,
+13
+],
+[
+2,
+16
+],
+[
+9,
+5
+],
+[
+14,
+6
+],
+[
+19,
+7
+]
+],
+"worked": [
+"es:20:05",
+"es:20:18",
+"es:20:33",
+"es:20:48"
+],
+"reflection": [
+"es:20:01",
+"es:20:03"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

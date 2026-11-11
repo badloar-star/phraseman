@@ -1,0 +1,823 @@
+{
+ "lang": "fr",
+ "lesson": 27,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:27:01",
+   "target": "Je partirai demain.",
+   "ru": "Я уеду завтра.",
+   "uk": "Я поїду завтра."
+  },
+  {
+   "id": "fr:27:02",
+   "target": "Tu partiras demain.",
+   "ru": "Ты уедешь завтра.",
+   "uk": "Ти поїдеш завтра."
+  },
+  {
+   "id": "fr:27:03",
+   "target": "Elle partira demain.",
+   "ru": "Она уедет завтра.",
+   "uk": "Вона поїде завтра."
+  },
+  {
+   "id": "fr:27:04",
+   "target": "Nous partirons ensemble.",
+   "ru": "Мы уедем вместе.",
+   "uk": "Ми поїдемо разом."
+  },
+  {
+   "id": "fr:27:05",
+   "target": "Vous partirez ensemble.",
+   "ru": "Вы уйдете вместе.",
+   "uk": "Ви підете разом."
+  },
+  {
+   "id": "fr:27:06",
+   "target": "Ils partiront à midi.",
+   "ru": "Они уйдут в полдень.",
+   "uk": "Вони підуть опівдні."
+  },
+  {
+   "id": "fr:27:07",
+   "target": "Je brancherai la lampe quand le courant reviendra.",
+   "ru": "Я включу лампу, когда снова включат электричество.",
+   "uk": "Я ввімкну лампу, коли знову з'явиться електрика."
+  },
+  {
+   "id": "fr:27:08",
+   "target": "Tu passeras à l’atelier après l’exposition.",
+   "ru": "Ты зайдёшь в мастерскую после выставки.",
+   "uk": "Ти зайдеш до майстерні після виставки."
+  },
+  {
+   "id": "fr:27:09",
+   "target": "Paul appellera la banque.",
+   "ru": "Поль позвонит в банк.",
+   "uk": "Пол зателефонує в банк."
+  },
+  {
+   "id": "fr:27:10",
+   "target": "Léa préparera le repas.",
+   "ru": "Леа приготовит еду.",
+   "uk": "Леа приготує їжу."
+  },
+  {
+   "id": "fr:27:11",
+   "target": "Je serai à la maison à six heures.",
+   "ru": "Я буду дома в шесть часов.",
+   "uk": "Я буду вдома о шостій годині."
+  },
+  {
+   "id": "fr:27:12",
+   "target": "Tu seras au bureau demain.",
+   "ru": "Завтра ты будешь в офисе.",
+   "uk": "Завтра ти будеш в офісі."
+  },
+  {
+   "id": "fr:27:13",
+   "target": "Il aura le résultat lundi.",
+   "ru": "Он получит результат в понедельник.",
+   "uk": "Він отримає результат у понеділок."
+  },
+  {
+   "id": "fr:27:14",
+   "target": "Nous aurons assez de place.",
+   "ru": "У нас будет достаточно места.",
+   "uk": "У нас буде достатньо місця."
+  },
+  {
+   "id": "fr:27:15",
+   "target": "Vous pourrez payer sur place.",
+   "ru": "Вы сможете оплатить на месте.",
+   "uk": "Ви зможете заплатити на місці."
+  },
+  {
+   "id": "fr:27:16",
+   "target": "Elles feront le trajet en bus.",
+   "ru": "Они поедут на автобусе.",
+   "uk": "Вони поїдуть автобусом."
+  },
+  {
+   "id": "fr:27:17",
+   "target": "J’irai au marché samedi.",
+   "ru": "Я пойду на рынок в субботу.",
+   "uk": "Я піду на ринок у суботу."
+  },
+  {
+   "id": "fr:27:18",
+   "target": "Je t’enverrai un lien pour le paiement avec ton portefeuille électronique.",
+   "ru": "Я пришлю тебе ссылку для оплаты с помощью твоего электронного кошелька.",
+   "uk": "Я надішлю тобі посилання для оплати за допомогою твого електронного гаманця."
+  },
+  {
+   "id": "fr:27:19",
+   "target": "Je t’enverrai le reçu.",
+   "ru": "Я пришлю тебе чек.",
+   "uk": "Я надішлю тобі чек."
+  },
+  {
+   "id": "fr:27:20",
+   "target": "Il viendra avec sa fille.",
+   "ru": "Он приедет со своей дочерью.",
+   "uk": "Він приїде зі своєю дочкою."
+  },
+  {
+   "id": "fr:27:21",
+   "target": "Le train arrivera sur le quai deux.",
+   "ru": "Поезд прибудет на вторую платформу.",
+   "uk": "Поїзд прибуде на платформу два."
+  },
+  {
+   "id": "fr:27:22",
+   "target": "Le magasin ouvrira à neuf heures.",
+   "ru": "Магазин откроется в девять часов.",
+   "uk": "Магазин відкриється о дев'ятій годині."
+  },
+  {
+   "id": "fr:27:23",
+   "target": "L’ascenseur fonctionnera demain.",
+   "ru": "Лифт будет работать завтра.",
+   "uk": "Ліфт працюватиме завтра."
+  },
+  {
+   "id": "fr:27:24",
+   "target": "Le colis arrivera avant midi.",
+   "ru": "Посылка прибудет до полудня.",
+   "uk": "Посилка прибуде до полудня."
+  },
+  {
+   "id": "fr:27:25",
+   "target": "Le plombier passera dans la matinée.",
+   "ru": "Сантехник приедет утром.",
+   "uk": "Сантехнік приїде вранці."
+  },
+  {
+   "id": "fr:27:26",
+   "target": "Votre commande sera prête vendredi.",
+   "ru": "Ваш заказ будет готов в пятницу.",
+   "uk": "Ваше замовлення буде готове в п'ятницю."
+  },
+  {
+   "id": "fr:27:27",
+   "target": "La banque fermera plus tôt ce soir.",
+   "ru": "Сегодня вечером банк закроется раньше.",
+   "uk": "Банк сьогодні ввечері закриється раніше."
+  },
+  {
+   "id": "fr:27:28",
+   "target": "Le médecin vous rappellera demain.",
+   "ru": "Врач перезвонит вам завтра.",
+   "uk": "Лікар передзвонить вам завтра."
+  },
+  {
+   "id": "fr:27:29",
+   "target": "Il fera plus frais cette nuit.",
+   "ru": "Этой ночью будет прохладнее.",
+   "uk": "Цієї ночі буде прохолодніше."
+  },
+  {
+   "id": "fr:27:30",
+   "target": "Les travaux dureront trois jours.",
+   "ru": "Работы продлятся три дня.",
+   "uk": "Роботи триватимуть три дні."
+  },
+  {
+   "id": "fr:27:31",
+   "target": "Je ne resterai pas longtemps.",
+   "ru": "Я не задержусь надолго.",
+   "uk": "Я не затримаюся надовго."
+  },
+  {
+   "id": "fr:27:32",
+   "target": "Elle ne prendra pas la voiture.",
+   "ru": "Она не возьмет машину.",
+   "uk": "Вона не візьме машину."
+  },
+  {
+   "id": "fr:27:33",
+   "target": "Nous n’oublierons pas les billets.",
+   "ru": "Мы не забудем билеты.",
+   "uk": "Ми не забудемо квитки."
+  },
+  {
+   "id": "fr:27:34",
+   "target": "Ils ne seront pas là dimanche.",
+   "ru": "Их не будет здесь в воскресенье.",
+   "uk": "Їх тут не буде в неділю."
+  },
+  {
+   "id": "fr:27:35",
+   "target": "Tu ne perdras pas ta réservation.",
+   "ru": "Ты не потеряешь свою бронь.",
+   "uk": "Ти не втратиш своє бронювання."
+  },
+  {
+   "id": "fr:27:36",
+   "target": "Vous aurez besoin d’une pièce d’identité.",
+   "ru": "Вам понадобится удостоверение личности.",
+   "uk": "Вам знадобиться посвідчення особи."
+  },
+  {
+   "id": "fr:27:37",
+   "target": "Quand recevrai-je la facture ?",
+   "ru": "Когда я получу счет?",
+   "uk": "Коли я отримаю рахунок?"
+  },
+  {
+   "id": "fr:27:38",
+   "target": "À quelle heure arriverez-vous ?",
+   "ru": "Во сколько вы приедете?",
+   "uk": "О котрій годині ви приїдете?"
+  },
+  {
+   "id": "fr:27:39",
+   "target": "Tu m’aideras à porter les cartons ?",
+   "ru": "Поможешь мне донести коробки?",
+   "uk": "Чи допоможеш мені донести коробки?"
+  },
+  {
+   "id": "fr:27:40",
+   "target": "Qui gardera les enfants demain ?",
+   "ru": "Кто присмотрит за детьми завтра?",
+   "uk": "Хто завтра догляне дітей?"
+  },
+  {
+   "id": "fr:27:41",
+   "target": "Je garderai ta valise jusqu’à ce soir.",
+   "ru": "Я подержу твой чемодан у себя до вечера.",
+   "uk": "Я потримаю твою валізу у себе до вечора."
+  },
+  {
+   "id": "fr:27:42",
+   "target": "Elle vous montrera le nouvel appartement.",
+   "ru": "Она покажет вам новую квартиру.",
+   "uk": "Вона покаже вам нову квартиру."
+  },
+  {
+   "id": "fr:27:43",
+   "target": "Je lui demanderai conseil pour la fuite sous le robinet.",
+   "ru": "Я спрошу у него совета по поводу протечки под краном.",
+   "uk": "Я попрошу його поради щодо витоку під краном."
+  },
+  {
+   "id": "fr:27:44",
+   "target": "Je rentrerai à pied après le concert.",
+   "ru": "После концерта я пойду домой пешком.",
+   "uk": "Я піду додому пішки після концерту."
+  },
+  {
+   "id": "fr:27:45",
+   "target": "Ils enverront le dossier par courrier.",
+   "ru": "Они отправят документы по почте.",
+   "uk": "Вони надішлють документи поштою."
+  },
+  {
+   "id": "fr:27:46",
+   "target": "On choisira une date après la réunion.",
+   "ru": "Дату мы выберем после встречи.",
+   "uk": "Ми оберемо дату після зустрічі."
+  },
+  {
+   "id": "fr:27:47",
+   "target": "Je laisserai une couverture dans la chambre.",
+   "ru": "Я оставлю одеяло в комнате.",
+   "uk": "Я залишу ковдру в кімнаті."
+  },
+  {
+   "id": "fr:27:48",
+   "target": "Tu trouveras la clé sous le pot.",
+   "ru": "Ты найдёшь ключ под горшком.",
+   "uk": "Ти знайдеш ключ під горщиком."
+  },
+  {
+   "id": "fr:27:49",
+   "target": "La livraison coûtera moins cher cette fois.",
+   "ru": "Доставка на этот раз будет стоить дешевле.",
+   "uk": "Цього разу доставка коштуватиме менше."
+  },
+  {
+   "id": "fr:27:50",
+   "target": "Nous vous attendrons devant la pharmacie.",
+   "ru": "Мы будем ждать вас перед аптекой.",
+   "uk": "Ми чекатимемо на вас перед аптекою."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le plombier",
+   "ru": "сантехник",
+   "uk": "сантехнік"
+  },
+  {
+   "lemma": "le résultat",
+   "ru": "результат",
+   "uk": "результат"
+  },
+  {
+   "lemma": "le repas",
+   "ru": "приём пищи",
+   "uk": "прийом їжі"
+  },
+  {
+   "lemma": "la pièce d’identité",
+   "ru": "удостоверение личности",
+   "uk": "посвідчення особи"
+  },
+  {
+   "lemma": "le pot",
+   "ru": "горшок, ёмкость",
+   "uk": "горщик, ємність"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon",
+  "l’œuf (m.)",
+  "le bol",
+  "la barquette",
+  "la moitié",
+  "le carton",
+  "le fauteuil",
+  "l’échelle (f.)",
+  "le meilleur souvenir",
+  "la portion",
+  "l’effort (m.)"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  },
+  {
+   "lesson": 25,
+   "title": "Сколько из них: местоимение `en`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнить: больше, меньше или так же"
+  }
+ ],
+ "oldTopicTitle": "Сообщить о будущем: `futur simple`",
+ "oldTheoryRu": "В отличие от схемы с `aller`, в простом будущем достаточно одного личного глагола. Не считай эти способы всегда взаимозаменяемыми: здесь тренируем обещания, прогнозы и расписание. Поменяй только лицо: `partirai`, `partiras`, `partira`. На письме различия видны и тогда, когда окончания звучат одинаково. В форме множественного числа добавь соответствующее окончание. Частые глаголы имеют особые основы: `être → ser-`, `avoir → aur-`, `aller → ir-`, `faire → fer-`. Окончания будущего не меняются от того, обычна ли основа. В объявлениях о будущем часто сначала называют предмет: поезд, посылку, заказ. Выбирай лицо по нему, а не по человеку, который слышит объявление. Отрицание окружает одну личную форму. В вопросе `recevrai-je` после дефиса добавлено местоимение. Не превращай его в новое окончание самого глагола. После `si` в реальном условии здесь стоит настоящее: `si le temps le permet`. Будущее относится к основной части, которая сообщает предполагаемый результат. Сравни обещание «я оставлю» и предположение «я бы оставил». Нужное время определяется смыслом сообщения. Не добавляй `-s` к первому лицу будущего только по сходству с условной формой."
+}

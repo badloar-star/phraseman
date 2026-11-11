@@ -443,10 +443,6 @@ const RU = {
   ai_dialog_briefing_title: 'AI-диалог: брифинг перед сессией',
   ai_dialog_session_title: 'AI-диалог: сессия чата',
   ai_companion_session_title: 'AI-компаньон: голосовая сессия',
-  learning_v2_course_title: 'Курс V2 (карта уроков)',
-  learning_v2_session_intro_title: 'Курс V2: интро перед сессией',
-  learning_v2_session_intro_check_title: 'Курс V2: проверка перед сессией',
-  learning_v2_direct_session_player_title: 'Курс V2: прямой плеер сессии',
   lingman_videos_title: 'Lingman: список видео',
   lingman_playlist_title: 'Lingman: плейлист',
 
@@ -525,18 +521,6 @@ const RU = {
   mark_pending: 'ждёт',
   screen_title: 'Движение · гибриды',
 
-  // ── learning_v2_modes_showcase: отдельный подраздел DEV Hub, 7 режимов ──
-  lv2_showcase_back: 'Назад',
-  lv2_showcase_title: 'Learning V2 · 7 режимов',
-  lv2_showcase_tally: 'каждый пункт — полноэкранный работающий режим',
-  lv2_showcase_close: 'Закрыть',
-  lv2_showcase_next: 'Дальше',
-  lv2_showcase_check: 'Проверить',
-  lv2_showcase_voice_next: 'Дальше (голос — превью)',
-  lv2_showcase_done_title: 'Пробный урок пройден',
-  lv2_showcase_done_subtitle: 'Все 7 режимов показаны подряд, как в настоящем уроке.',
-  lv2_showcase_done_status: 'готово',
-  lv2_showcase_again: 'Ещё раз',
 
   // ── level_up_mint: церемония повышения уровня 2.0 «Монетный двор» (PM-077, D49) ──
   level_up_mint_section_title: 'Повышение уровня 2.0',

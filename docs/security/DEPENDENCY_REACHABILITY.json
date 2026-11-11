@@ -20,51 +20,16 @@
     {
       "name": "@grpc/grpc-js",
       "version": "1.9.15",
-      "path": "@firebase/firestore > @grpc/grpc-js",
-      "topLevel": "@firebase/firestore",
-      "category": "unknown"
-    },
-    {
-      "name": "@grpc/grpc-js",
-      "version": "1.9.15",
-      "path": "@grpc/grpc-js",
-      "topLevel": "@grpc/grpc-js",
-      "category": "unknown"
-    },
-    {
-      "name": "@grpc/grpc-js",
-      "version": "1.9.16",
       "path": "@react-native-firebase/app > firebase > @firebase/firestore > @grpc/grpc-js",
       "topLevel": "@react-native-firebase/app",
       "category": "runtime-or-platform"
     },
     {
       "name": "@grpc/grpc-js",
-      "version": "1.9.16",
-      "path": "@react-native-firebase/app > firebase > @firebase/firestore-compat > @firebase/firestore > @grpc/grpc-js",
-      "topLevel": "@react-native-firebase/app",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "@grpc/grpc-js",
-      "version": "1.14.6",
+      "version": "1.14.3",
       "path": "firebase-admin > @google-cloud/firestore > google-gax > @grpc/grpc-js",
       "topLevel": "firebase-admin",
       "category": "runtime-or-platform"
-    },
-    {
-      "name": "@grpc/grpc-js",
-      "version": "1.9.16",
-      "path": "firebase-admin > @google-cloud/storage > @grpc/grpc-js",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "@grpc/grpc-js",
-      "version": "1.14.3",
-      "path": "google-gax > @grpc/grpc-js",
-      "topLevel": "google-gax",
-      "category": "unknown"
     },
     {
       "name": "@xmldom/xmldom",
@@ -75,147 +40,28 @@
     },
     {
       "name": "@xmldom/xmldom",
-      "version": "0.9.12",
-      "path": "@bacons/apple-targets > @bacons/xcode > xcode > simple-plist > plist > @xmldom/xmldom",
-      "topLevel": "@bacons/apple-targets",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.8.15",
-      "path": "@bacons/apple-targets > @expo/config-plugins > @expo/plist > @xmldom/xmldom",
-      "topLevel": "@bacons/apple-targets",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.8.15",
-      "path": "@bacons/apple-targets > @expo/plist > @xmldom/xmldom",
-      "topLevel": "@bacons/apple-targets",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.7.13",
-      "path": "@bacons/xcode > @expo/plist > @xmldom/xmldom",
-      "topLevel": "@bacons/xcode",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.7.13",
-      "path": "@bacons/xcode > @xmldom/xmldom",
-      "topLevel": "@bacons/xcode",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
       "version": "0.8.13",
-      "path": "@expo/plist > @xmldom/xmldom",
-      "topLevel": "@expo/plist",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.9.12",
       "path": "@react-native-firebase/auth > plist > @xmldom/xmldom",
       "topLevel": "@react-native-firebase/auth",
       "category": "runtime-or-platform"
     },
     {
       "name": "@xmldom/xmldom",
-      "version": "0.9.12",
-      "path": "@react-navigation/bottom-tabs > sf-symbols-typescript > plist > @xmldom/xmldom",
-      "topLevel": "@react-navigation/bottom-tabs",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
       "version": "0.8.13",
-      "path": "@xmldom/xmldom",
-      "topLevel": "@xmldom/xmldom",
-      "category": "unknown"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.8.15",
-      "path": "expo > @expo/cli > @expo/plist > @xmldom/xmldom",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "@xmldom/xmldom",
-      "version": "0.8.15",
       "path": "expo-updates > @expo/plist > @xmldom/xmldom",
       "topLevel": "expo-updates",
       "category": "unknown"
     },
     {
-      "name": "@xmldom/xmldom",
-      "version": "0.8.13",
-      "path": "plist > @xmldom/xmldom",
-      "topLevel": "plist",
-      "category": "unknown"
-    },
-    {
       "name": "brace-expansion",
-      "version": "2.1.7",
+      "version": "2.1.1",
       "path": "@bacons/apple-targets > glob > minimatch > brace-expansion",
       "topLevel": "@bacons/apple-targets",
       "category": "unknown"
     },
     {
       "name": "brace-expansion",
-      "version": "5.0.5",
-      "path": "@expo/fingerprint > brace-expansion",
-      "topLevel": "@expo/fingerprint",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.5",
-      "path": "@expo/fingerprint > minimatch > brace-expansion",
-      "topLevel": "@expo/fingerprint",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.12",
-      "path": "@react-native-community/netinfo > @typescript-eslint/parser > @typescript-eslint/typescript-estree > minimatch > brace-expansion",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "@react-native-community/netinfo > babel-jest > babel-plugin-istanbul > test-exclude > minimatch > brace-expansion",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "@react-native-community/slider > eslint-plugin-react > minimatch > brace-expansion",
-      "topLevel": "@react-native-community/slider",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
       "version": "5.0.6",
-      "path": "@typescript-eslint/typescript-estree > brace-expansion",
-      "topLevel": "@typescript-eslint/typescript-estree",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.6",
-      "path": "@typescript-eslint/typescript-estree > minimatch > brace-expansion",
-      "topLevel": "@typescript-eslint/typescript-estree",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.12",
       "path": "archiver > readdir-glob > minimatch > brace-expansion",
       "topLevel": "archiver",
       "category": "build-or-tooling"
@@ -223,146 +69,48 @@
     {
       "name": "brace-expansion",
       "version": "1.1.14",
-      "path": "brace-expansion",
-      "topLevel": "brace-expansion",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "eslint > @eslint/config-array > minimatch > brace-expansion",
-      "topLevel": "eslint",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "eslint > @eslint/eslintrc > minimatch > brace-expansion",
-      "topLevel": "eslint",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
       "path": "eslint > minimatch > brace-expansion",
       "topLevel": "eslint",
       "category": "build-or-tooling"
     },
     {
       "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "eslint-config-expo > eslint-plugin-import > minimatch > brace-expansion",
+      "version": "5.0.6",
+      "path": "eslint-config-expo > @typescript-eslint/parser > @typescript-eslint/typescript-estree > minimatch > brace-expansion",
       "topLevel": "eslint-config-expo",
       "category": "unknown"
     },
     {
       "name": "brace-expansion",
-      "version": "2.1.7",
+      "version": "2.1.4",
       "path": "expo > @expo/cli > minimatch > brace-expansion",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "brace-expansion",
-      "version": "5.0.12",
+      "version": "5.0.5",
       "path": "expo > @expo/fingerprint > minimatch > brace-expansion",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "expo > web-streams-polyfill > micromatch > minimatch > brace-expansion",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.12",
+      "version": "5.0.6",
       "path": "expo-updates > glob > minimatch > brace-expansion",
       "topLevel": "expo-updates",
       "category": "unknown"
     },
     {
-      "name": "brace-expansion",
-      "version": "5.0.6",
-      "path": "glob > brace-expansion",
-      "topLevel": "glob",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.6",
-      "path": "glob > minimatch > brace-expansion",
-      "topLevel": "glob",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.14",
-      "path": "minimatch > brace-expansion",
-      "topLevel": "minimatch",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "1.1.21",
-      "path": "react-native > glob > minimatch > brace-expansion",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.6",
-      "path": "readdir-glob > brace-expansion",
-      "topLevel": "readdir-glob",
-      "category": "unknown"
-    },
-    {
-      "name": "brace-expansion",
-      "version": "5.0.6",
-      "path": "readdir-glob > minimatch > brace-expansion",
-      "topLevel": "readdir-glob",
-      "category": "unknown"
-    },
-    {
-      "name": "fast-uri",
-      "version": "3.1.8",
-      "path": "@react-native-community/netinfo > webpack > schema-utils > ajv > fast-uri",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "fast-uri",
-      "version": "3.1.8",
-      "path": "@react-native-community/netinfo > webpack > schema-utils > ajv-keywords > ajv > fast-uri",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
       "name": "fast-uri",
       "version": "3.1.2",
-      "path": "ajv-formats > ajv > fast-uri",
-      "topLevel": "ajv-formats",
-      "category": "unknown"
-    },
-    {
-      "name": "fast-uri",
-      "version": "3.1.8",
-      "path": "expo-build-properties > ajv > ajv-formats > ajv > fast-uri",
-      "topLevel": "expo-build-properties",
-      "category": "unknown"
-    },
-    {
-      "name": "fast-uri",
-      "version": "3.1.8",
       "path": "expo-build-properties > ajv > fast-uri",
       "topLevel": "expo-build-properties",
       "category": "unknown"
     },
     {
       "name": "fast-uri",
-      "version": "3.1.8",
+      "version": "3.1.2",
       "path": "expo-dev-client > expo-dev-launcher > ajv > fast-uri",
       "topLevel": "expo-dev-client",
       "category": "unknown"
@@ -370,258 +118,62 @@
     {
       "name": "fast-uri",
       "version": "3.1.2",
-      "path": "expo-dev-launcher > ajv > fast-uri",
-      "topLevel": "expo-dev-launcher",
+      "path": "expo-quick-actions > schema-utils > ajv > fast-uri",
+      "topLevel": "expo-quick-actions",
       "category": "unknown"
     },
     {
       "name": "fast-uri",
       "version": "3.1.2",
-      "path": "fast-uri",
-      "topLevel": "fast-uri",
-      "category": "unknown"
-    },
-    {
-      "name": "fast-uri",
-      "version": "3.1.2",
-      "path": "schema-utils > ajv > fast-uri",
-      "topLevel": "schema-utils",
+      "path": "expo-quick-actions > schema-utils > ajv-formats > ajv > fast-uri",
+      "topLevel": "expo-quick-actions",
       "category": "unknown"
     },
     {
       "name": "image-size",
       "version": "1.2.1",
-      "path": "babel-preset-expo > @expo/metro > metro > image-size",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "image-size",
-      "version": "1.2.1",
-      "path": "babel-preset-expo > @expo/metro > metro-config > metro > image-size",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "image-size",
-      "version": "1.2.1",
-      "path": "babel-preset-expo > @expo/metro > metro-transform-worker > metro > image-size",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "image-size",
-      "version": "1.2.1",
-      "path": "image-size",
-      "topLevel": "image-size",
-      "category": "unknown"
-    },
-    {
-      "name": "image-size",
-      "version": "1.2.1",
-      "path": "metro > image-size",
-      "topLevel": "metro",
-      "category": "unknown"
-    },
-    {
-      "name": "image-size",
-      "version": "1.2.1",
-      "path": "posthog-react-native > metro > image-size",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "@bacons/apple-targets > @expo/config > resolve-workspace-root > js-yaml",
-      "topLevel": "@bacons/apple-targets",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.1.1",
-      "path": "@eslint/eslintrc > js-yaml",
-      "topLevel": "@eslint/eslintrc",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.1.1",
-      "path": "@expo/xcpretty > js-yaml",
-      "topLevel": "@expo/xcpretty",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "3.14.2",
-      "path": "@istanbuljs/load-nyc-config > js-yaml",
-      "topLevel": "@istanbuljs/load-nyc-config",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "3.15.2",
-      "path": "@react-native-community/netinfo > babel-jest > babel-plugin-istanbul > @istanbuljs/load-nyc-config > js-yaml",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "@react-native-community/netinfo > babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > js-yaml",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "@remotion/cli > @remotion/studio-server > @svgr/core > cosmiconfig > js-yaml",
-      "topLevel": "@remotion/cli",
+      "path": "expo > @expo/metro > metro > image-size",
+      "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "js-yaml",
-      "version": "4.3.2",
+      "version": "4.1.1",
       "path": "eslint > @eslint/eslintrc > js-yaml",
       "topLevel": "eslint",
       "category": "build-or-tooling"
     },
     {
       "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "expo > @expo/cli > @expo/package-manager > resolve-workspace-root > js-yaml",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
+      "version": "4.1.1",
       "path": "expo > @expo/cli > @expo/xcpretty > js-yaml",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "expo-updates > js-yaml",
-      "topLevel": "expo-updates",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "jest > @jest/core > @jest/reporters > istanbul-lib-instrument > js-yaml",
-      "topLevel": "jest",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.1.1",
-      "path": "js-yaml",
-      "topLevel": "js-yaml",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "posthog-react-native > expo-updates > js-yaml",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "ts-jest > @eslint/eslintrc > js-yaml",
-      "topLevel": "ts-jest",
-      "category": "unknown"
-    },
-    {
-      "name": "js-yaml",
-      "version": "4.3.2",
-      "path": "ts-jest > js-yaml",
-      "topLevel": "ts-jest",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > icss-utils > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-extract-imports > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-local-by-default > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-scope > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-values > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-native-community/netinfo > webpack > terser-webpack-plugin > postcss > nanoid",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-navigation/bottom-tabs > @react-navigation/native > nanoid",
-      "topLevel": "@react-navigation/bottom-tabs",
-      "category": "unknown"
+      "version": "3.14.2",
+      "path": "react-native > babel-jest > babel-plugin-istanbul > @istanbuljs/load-nyc-config > js-yaml",
+      "topLevel": "react-native",
+      "category": "build-or-tooling"
     },
     {
       "name": "nanoid",
       "version": "3.3.11",
-      "path": "@react-navigation/core > nanoid",
-      "topLevel": "@react-navigation/core",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "@react-navigation/elements > @react-navigation/native > nanoid",
-      "topLevel": "@react-navigation/elements",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
       "path": "@react-navigation/native > @react-navigation/core > @react-navigation/routers > nanoid",
       "topLevel": "@react-navigation/native",
       "category": "unknown"
     },
     {
       "name": "nanoid",
-      "version": "3.3.20",
+      "version": "3.3.11",
+      "path": "@react-navigation/native > @react-navigation/core > nanoid",
+      "topLevel": "@react-navigation/native",
+      "category": "unknown"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
       "path": "@react-navigation/native > nanoid",
       "topLevel": "@react-navigation/native",
       "category": "unknown"
@@ -629,160 +181,27 @@
     {
       "name": "nanoid",
       "version": "3.3.11",
-      "path": "@react-navigation/routers > nanoid",
-      "topLevel": "@react-navigation/routers",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "expo > @expo/cli > expo-router > nanoid",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "expo > @expo/metro-config > lightningcss > postcss > nanoid",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
       "path": "expo > @expo/metro-config > postcss > nanoid",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "nanoid",
-      "version": "3.3.20",
-      "path": "expo-router > @react-navigation/native > nanoid",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "expo-router > @react-navigation/native-stack > @react-navigation/native > nanoid",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
+      "version": "3.3.11",
       "path": "expo-router > nanoid",
       "topLevel": "expo-router",
       "category": "build-or-tooling"
     },
     {
-      "name": "nanoid",
-      "version": "3.3.11",
-      "path": "nanoid",
-      "topLevel": "nanoid",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.11",
-      "path": "postcss > nanoid",
-      "topLevel": "postcss",
-      "category": "unknown"
-    },
-    {
-      "name": "nanoid",
-      "version": "3.3.20",
-      "path": "posthog-react-native > @react-navigation/native > nanoid",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > icss-utils > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
     },
     {
       "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > icss-utils > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-extract-imports > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-local-by-default > icss-utils > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-local-by-default > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.4.49",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-local-by-default > postcss-selector-parser > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-scope > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.4.49",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-scope > postcss-selector-parser > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-values > icss-utils > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > css-loader > postcss-modules-values > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.4.49",
-      "path": "@react-native-community/netinfo > webpack > terser-webpack-plugin > lightningcss > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
-      "path": "@react-native-community/netinfo > webpack > terser-webpack-plugin > postcss",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.29",
+      "version": "8.5.14",
       "path": "@remotion/cli > @remotion/bundler > css-loader > postcss",
       "topLevel": "@remotion/cli",
       "category": "build-or-tooling"
@@ -790,814 +209,128 @@
     {
       "name": "postcss",
       "version": "8.5.14",
-      "path": "css-loader > postcss",
-      "topLevel": "css-loader",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.4.49",
-      "path": "expo > @expo/cli > @expo/metro-config > postcss",
-      "topLevel": "expo",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-extract-imports > postcss",
+      "topLevel": "@remotion/cli",
       "category": "build-or-tooling"
     },
     {
       "name": "postcss",
-      "version": "8.4.49",
-      "path": "expo > @expo/metro-config > lightningcss > postcss",
-      "topLevel": "expo",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-local-by-default > postcss",
+      "topLevel": "@remotion/cli",
       "category": "build-or-tooling"
     },
     {
       "name": "postcss",
-      "version": "8.4.49",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-scope > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-values > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
       "path": "expo > @expo/metro-config > postcss",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "icss-utils > postcss",
-      "topLevel": "icss-utils",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "postcss",
-      "topLevel": "postcss",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "postcss-modules-extract-imports > postcss",
-      "topLevel": "postcss-modules-extract-imports",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "postcss-modules-local-by-default > postcss",
-      "topLevel": "postcss-modules-local-by-default",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "postcss-modules-scope > postcss",
-      "topLevel": "postcss-modules-scope",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.5.14",
-      "path": "postcss-modules-values > postcss",
-      "topLevel": "postcss-modules-values",
-      "category": "unknown"
-    },
-    {
-      "name": "postcss",
-      "version": "8.4.49",
-      "path": "posthog-react-native > @expo/metro-config > postcss",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "@bacons/apple-targets > @expo/config > sucrase > ts-interface-checker > protobufjs",
-      "topLevel": "@bacons/apple-targets",
-      "category": "unknown"
-    },
-    {
       "name": "protobufjs",
       "version": "7.5.8",
-      "path": "@google-cloud/firestore > protobufjs",
-      "topLevel": "@google-cloud/firestore",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.5.8",
-      "path": "@grpc/proto-loader > protobufjs",
-      "topLevel": "@grpc/proto-loader",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
       "path": "@react-native-firebase/app > firebase > @firebase/firestore > @grpc/proto-loader > protobufjs",
       "topLevel": "@react-native-firebase/app",
       "category": "runtime-or-platform"
     },
     {
       "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "@react-native-firebase/app > firebase > @firebase/firestore > protobufjs",
-      "topLevel": "@react-native-firebase/app",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "@react-native-firebase/app > firebase > @firebase/firestore-compat > @firebase/firestore > protobufjs",
-      "topLevel": "@react-native-firebase/app",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
+      "version": "7.5.8",
       "path": "firebase-admin > @google-cloud/firestore > google-gax > @grpc/grpc-js > @grpc/proto-loader > protobufjs",
       "topLevel": "firebase-admin",
       "category": "runtime-or-platform"
     },
     {
       "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "firebase-admin > @google-cloud/firestore > google-gax > @grpc/proto-loader > protobufjs",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
+      "version": "7.5.8",
       "path": "firebase-admin > @google-cloud/firestore > google-gax > proto3-json-serializer > protobufjs",
       "topLevel": "firebase-admin",
       "category": "runtime-or-platform"
     },
     {
       "name": "protobufjs",
-      "version": "7.6.6",
+      "version": "7.5.8",
       "path": "firebase-admin > @google-cloud/firestore > google-gax > protobufjs",
       "topLevel": "firebase-admin",
       "category": "runtime-or-platform"
     },
     {
       "name": "protobufjs",
-      "version": "7.6.6",
+      "version": "7.5.8",
       "path": "firebase-admin > @google-cloud/firestore > protobufjs",
       "topLevel": "firebase-admin",
       "category": "runtime-or-platform"
     },
     {
-      "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "firebase-admin > @google-cloud/storage > @grpc/grpc-js > @grpc/proto-loader > protobufjs",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.6.6",
-      "path": "firebase-admin > @google-cloud/storage > @grpc/proto-loader > protobufjs",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.5.8",
-      "path": "google-gax > @grpc/grpc-js > @grpc/proto-loader > protobufjs",
-      "topLevel": "google-gax",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.5.8",
-      "path": "google-gax > protobufjs",
-      "topLevel": "google-gax",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.5.8",
-      "path": "proto3-json-serializer > protobufjs",
-      "topLevel": "proto3-json-serializer",
-      "category": "unknown"
-    },
-    {
-      "name": "protobufjs",
-      "version": "7.5.8",
-      "path": "protobufjs",
-      "topLevel": "protobufjs",
-      "category": "unknown"
-    },
-    {
       "name": "shell-quote",
       "version": "1.8.3",
-      "path": "react-devtools-core > shell-quote",
-      "topLevel": "react-devtools-core",
-      "category": "unknown"
-    },
-    {
-      "name": "shell-quote",
-      "version": "1.12.0",
       "path": "react-native > react-devtools-core > shell-quote",
       "topLevel": "react-native",
       "category": "build-or-tooling"
     },
     {
-      "name": "shell-quote",
-      "version": "1.8.3",
-      "path": "shell-quote",
-      "topLevel": "shell-quote",
-      "category": "unknown"
-    },
-    {
       "name": "websocket-driver",
-      "version": "0.7.5",
+      "version": "0.7.4",
       "path": "@react-native-firebase/app > firebase > @firebase/database > faye-websocket > websocket-driver",
       "topLevel": "@react-native-firebase/app",
       "category": "runtime-or-platform"
     },
     {
-      "name": "websocket-driver",
-      "version": "0.7.4",
-      "path": "faye-websocket > websocket-driver",
-      "topLevel": "faye-websocket",
-      "category": "unknown"
-    },
-    {
-      "name": "websocket-driver",
-      "version": "0.7.5",
-      "path": "firebase-admin > @firebase/database-compat > @firebase/database > faye-websocket > websocket-driver",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "websocket-driver",
-      "version": "0.7.4",
-      "path": "websocket-driver",
-      "topLevel": "websocket-driver",
-      "category": "unknown"
-    },
-    {
       "name": "ws",
-      "version": "6.2.6",
-      "path": "@expo/vector-icons > react-native > ws",
-      "topLevel": "@expo/vector-icons",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-native-async-storage/async-storage > react-native > ws",
-      "topLevel": "@react-native-async-storage/async-storage",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-native-community/netinfo > react-native > ws",
-      "topLevel": "@react-native-community/netinfo",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-native-firebase/app > react-native > ws",
-      "topLevel": "@react-native-firebase/app",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-native-google-signin/google-signin > react-native > ws",
-      "topLevel": "@react-native-google-signin/google-signin",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-native-masked-view/masked-view > react-native > ws",
-      "topLevel": "@react-native-masked-view/masked-view",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.3",
-      "path": "@react-native/dev-middleware > ws",
-      "topLevel": "@react-native/dev-middleware",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-navigation/bottom-tabs > react-native > ws",
-      "topLevel": "@react-navigation/bottom-tabs",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-navigation/elements > react-native > ws",
-      "topLevel": "@react-navigation/elements",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@react-navigation/native > react-native > ws",
-      "topLevel": "@react-navigation/native",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "8.21.0",
+      "version": "8.20.1",
       "path": "@remotion/cli > @remotion/renderer > ws",
       "topLevel": "@remotion/cli",
       "category": "build-or-tooling"
     },
     {
       "name": "ws",
-      "version": "8.21.0",
-      "path": "@remotion/cli > @remotion/studio > @remotion/renderer > ws",
-      "topLevel": "@remotion/cli",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "8.21.0",
-      "path": "@remotion/cli > @remotion/studio-server > @remotion/renderer > ws",
-      "topLevel": "@remotion/cli",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "8.21.0",
-      "path": "@remotion/cli > @remotion/studio-shared > @remotion/renderer > ws",
-      "topLevel": "@remotion/cli",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "8.20.1",
-      "path": "@remotion/renderer > ws",
-      "topLevel": "@remotion/renderer",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@shopify/flash-list > react-native > ws",
-      "topLevel": "@shopify/flash-list",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "@testing-library/react-native > react-native > ws",
-      "topLevel": "@testing-library/react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "archiver > readable-stream > undici > ws",
-      "topLevel": "archiver",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "babel-preset-expo > @expo/metro > metro > ws",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "babel-preset-expo > @expo/metro > metro-cache > https-proxy-agent > agent-base > ws",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "babel-preset-expo > @expo/metro > metro-config > metro > ws",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "babel-preset-expo > @expo/metro > metro-transform-worker > metro > ws",
-      "topLevel": "babel-preset-expo",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > @expo/cli > @expo/ws-tunnel > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
+      "version": "6.2.3",
       "path": "expo > @expo/cli > @react-native/dev-middleware > ws",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > @expo/cli > react-native > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > @expo/cli > undici > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "8.22.0",
+      "version": "8.21.3",
       "path": "expo > @expo/cli > ws",
       "topLevel": "expo",
       "category": "build-or-tooling"
     },
     {
       "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > @expo/devtools > react-native > ws",
+      "version": "7.5.10",
+      "path": "expo > @expo/metro > metro > ws",
       "topLevel": "expo",
       "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > @expo/devtools > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > expo-modules-core > react-native > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo > react-native > ws",
-      "topLevel": "expo",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-apple-authentication > react-native > ws",
-      "topLevel": "expo-apple-authentication",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-asset > react-native > ws",
-      "topLevel": "expo-asset",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-audio > react-native > ws",
-      "topLevel": "expo-audio",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-blur > react-native > ws",
-      "topLevel": "expo-blur",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-clipboard > react-native > ws",
-      "topLevel": "expo-clipboard",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-constants > react-native > ws",
-      "topLevel": "expo-constants",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-file-system > react-native > ws",
-      "topLevel": "expo-file-system",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-font > react-native > ws",
-      "topLevel": "expo-font",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-image > react-native > ws",
-      "topLevel": "expo-image",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-linear-gradient > react-native > ws",
-      "topLevel": "expo-linear-gradient",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-linking > react-native > ws",
-      "topLevel": "expo-linking",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-notifications > react-native > ws",
-      "topLevel": "expo-notifications",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-router > @expo/metro-runtime > react-native > ws",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-router > @react-navigation/native-stack > react-native > ws",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-router > react-native > ws",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-router > react-native-is-edge-to-edge > react-native > ws",
-      "topLevel": "expo-router",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-speech-recognition > react-native > ws",
-      "topLevel": "expo-speech-recognition",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-sqlite > react-native > ws",
-      "topLevel": "expo-sqlite",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-status-bar > react-native > ws",
-      "topLevel": "expo-status-bar",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-store-review > react-native > ws",
-      "topLevel": "expo-store-review",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-symbols > react-native > ws",
-      "topLevel": "expo-symbols",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-system-ui > react-native > ws",
-      "topLevel": "expo-system-ui",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-task-manager > react-native > ws",
-      "topLevel": "expo-task-manager",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-updates > react-native > ws",
-      "topLevel": "expo-updates",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "expo-web-browser > react-native > ws",
-      "topLevel": "expo-web-browser",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "firebase-admin > @google-cloud/storage > teeny-request > http-proxy-agent > agent-base > ws",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "firebase-admin > @google-cloud/storage > teeny-request > https-proxy-agent > agent-base > ws",
-      "topLevel": "firebase-admin",
-      "category": "runtime-or-platform"
     },
     {
       "name": "ws",
       "version": "7.5.10",
-      "path": "metro > ws",
-      "topLevel": "metro",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "posthog-react-native > metro > ws",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "posthog-react-native > react-native-svg > ws",
-      "topLevel": "posthog-react-native",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.10",
-      "path": "react-devtools-core > ws",
-      "topLevel": "react-devtools-core",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native > @react-native/community-cli-plugin > @react-native/dev-middleware > ws",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "react-native > @react-native/community-cli-plugin > metro > metro-transform-worker > metro > ws",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "react-native > @react-native/community-cli-plugin > metro > ws",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
-      "path": "react-native > @react-native/community-cli-plugin > metro-config > metro > ws",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native > @react-native/virtualized-lists > react-native > ws",
-      "topLevel": "react-native",
-      "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.13",
       "path": "react-native > react-devtools-core > ws",
       "topLevel": "react-native",
       "category": "build-or-tooling"
     },
     {
       "name": "ws",
-      "version": "6.2.6",
+      "version": "6.2.3",
       "path": "react-native > ws",
       "topLevel": "react-native",
       "category": "build-or-tooling"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-gesture-handler > react-native > ws",
-      "topLevel": "react-native-gesture-handler",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-purchases > react-native > ws",
-      "topLevel": "react-native-purchases",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-reanimated > react-native > ws",
-      "topLevel": "react-native-reanimated",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-safe-area-context > react-native > ws",
-      "topLevel": "react-native-safe-area-context",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-screens > react-native > ws",
-      "topLevel": "react-native-screens",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-svg > react-native > ws",
-      "topLevel": "react-native-svg",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-svg > ws",
-      "topLevel": "react-native-svg",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-view-shot > react-native > ws",
-      "topLevel": "react-native-view-shot",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-webview > react-native > ws",
-      "topLevel": "react-native-webview",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "react-native-worklets > react-native > ws",
-      "topLevel": "react-native-worklets",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "6.2.6",
-      "path": "whisper.rn > react-native > ws",
-      "topLevel": "whisper.rn",
-      "category": "unknown"
-    },
-    {
-      "name": "ws",
-      "version": "7.5.10",
-      "path": "ws",
-      "topLevel": "ws",
-      "category": "unknown"
     }
   ],
   "unknownTargets": []

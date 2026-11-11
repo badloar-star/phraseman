@@ -2,34 +2,6 @@
   "schemaVersion": 1,
   "groups": [
     {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "SeasonCourseView",
-      "ownerPath": "SeasonCourseView",
-      "ancestorPath": [
-        "ScrollView",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "033b445feb01cb5c3452f848fccb1b2fd0ab2cda9dfecb3be916f657f021380a",
-      "count": 1,
-      "lineHints": [
-        355
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/youtube/YoutubeVideoGridCard.tsx",
       "ownerName": "YoutubeVideoGridCardBase",
       "ownerPath": "YoutubeVideoGridCardBase",
@@ -319,34 +291,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
-      "ownerName": "SeasonListHeader",
-      "ownerPath": "SeasonListHeader",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "1297f0ac6ecf3621f68931a92942b5b91244d1c10e0814f77d66833a6eb1d8d3",
-      "count": 1,
-      "lineHints": [
-        53
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/_pos_analytics_audit.tsx",
       "ownerName": "CompactRows",
       "ownerPath": "CompactRows",
@@ -578,33 +522,6 @@
       }
     },
     {
-      "file": "components/ExplainButton.tsx",
-      "ownerName": "ExplainButton",
-      "ownerPath": "ExplainButton",
-      "ancestorPath": [
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "26306cf928a8d31111bb693d2fb505a9321a43d557f808c95ae22f5a639fe87a",
-      "count": 1,
-      "lineHints": [
-        97
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/dialogs/hints/DialogSayHints.tsx",
       "ownerName": "DialogSayHints",
       "ownerPath": "DialogSayHints",
@@ -623,34 +540,6 @@
       "count": 1,
       "lineHints": [
         71
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
-      "ownerName": "SeasonListHeader",
-      "ownerPath": "SeasonListHeader",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "2b05ae3352a7c753148912b94b87a6aeb89c382ccc10d1c1172bfdb16c920571",
-      "count": 1,
-      "lineHints": [
-        52
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1259,34 +1148,6 @@
       }
     },
     {
-      "file": "components/learning-v2/placement/PlacementChrome.tsx",
-      "ownerName": "PlacementTopicCard",
-      "ownerPath": "PlacementTopicCard",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "48f537a3b07fb927620b00bf479689f420565022cbb1e5ef07d6a58300f0e27c",
-      "count": 1,
-      "lineHints": [
-        75
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/spire/moments/MomentPromotion.tsx",
       "ownerName": "LadderRow",
       "ownerPath": "LadderRow",
@@ -1825,34 +1686,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
-      "ownerName": "Row",
-      "ownerPath": "Row",
-      "ancestorPath": [
-        "V2Pressable",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "67d72e619da77df68e91d3ac2cfc13ade68d4ddce12ca616a842676682786a34",
-      "count": 1,
-      "lineHints": [
-        96
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/CleanOnboarding.tsx",
       "ownerName": "PhoneMock",
       "ownerPath": "PhoneMock",
@@ -2056,36 +1889,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "SeasonCourseView",
-      "ownerPath": "SeasonCourseView",
-      "ancestorPath": [
-        "ScrollView",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "72763c70a4bf97dcd05eccb4204ed7136814b8eebc56dc1013ea262befdbc33b",
-      "count": 1,
-      "lineHints": [
-        334
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/NotificationCenterButton.tsx",
       "ownerName": "NotificationCenterButton",
       "ownerPath": "NotificationCenterButton",
@@ -2216,34 +2019,6 @@
       "count": 1,
       "lineHints": [
         105
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
-      "ownerName": "Row",
-      "ownerPath": "Row",
-      "ancestorPath": [
-        "V2Pressable",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "77fe7d39f38356330b15af854b3b0e8a3991a17859fe5a0768612178f10045b9",
-      "count": 1,
-      "lineHints": [
-        97
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2783,35 +2558,6 @@
       }
     },
     {
-      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
-      "ownerName": "LearningV2DictionaryV2",
-      "ownerPath": "LearningV2DictionaryV2",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "88ce5591c7d33eb71895ad1cf0a668bda1f0cd6d4f6d9ee834c18cf0f4e0bfdb",
-      "count": 1,
-      "lineHints": [
-        398
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/learning-v2/workshop/PhraseWorkshopTheorySheet.tsx",
       "ownerName": "PhraseWorkshopTheorySheetBase",
       "ownerPath": "PhraseWorkshopTheorySheetBase",
@@ -3145,35 +2891,6 @@
       "count": 1,
       "lineHints": [
         291
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
-      "ownerName": "LearningV2DictionaryV2",
-      "ownerPath": "LearningV2DictionaryV2",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a30848ca5f47e9c5ac725e3ba5d9be53d15e54f45d5b7c8a725df4802de0e35a",
-      "count": 1,
-      "lineHints": [
-        297
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4001,72 +3718,6 @@
       }
     },
     {
-      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
-      "ownerName": "LearningV2DictionaryV2",
-      "ownerPath": "LearningV2DictionaryV2",
-      "ancestorPath": [
-        "View",
-        "Modal",
-        "SheetSwipeRoot",
-        "SheetSwipeClose",
-        "View",
-        "View",
-        "Pressable",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "c40681135dd7bccdd76ad811ec3f1b153307a58c28b661f7b647d28770d71dae",
-      "count": 1,
-      "lineHints": [
-        468
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "SeasonCourseView",
-      "ownerPath": "SeasonCourseView",
-      "ancestorPath": [
-        "ScrollView",
-        "SceneBlockShadow",
-        "View",
-        "View",
-        "View",
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "c44726883cbd97a2e5754db0a2b2c71a358f3e5da73f45016af75b5d09bdfae9",
-      "count": 1,
-      "lineHints": [
-        300
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/achievements_screen.tsx",
       "ownerName": "AchievementsScreen",
       "ownerPath": "AchievementsScreen",
@@ -4118,33 +3769,6 @@
       "count": 1,
       "lineHints": [
         491
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonCardFace.tsx",
-      "ownerName": "SeasonCardFace",
-      "ownerPath": "SeasonCardFace",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "cadf1988331f42fd1e2ebd9b3d5940f5ce22f905f3a4d4db9eda4089e4ad6aa5",
-      "count": 1,
-      "lineHints": [
-        79
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4269,35 +3893,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonLockHint.tsx",
-      "ownerName": "SeasonLockHint",
-      "ownerPath": "SeasonLockHint",
-      "ancestorPath": [
-        "Animated.View",
-        "View",
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "d58c55f7e673f325e000a3b43a7459aa8d4e9011edd2fd4abe71c0ea6de6f9d7",
-      "count": 1,
-      "lineHints": [
-        126
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/spire/SpireFloorInfo.tsx",
       "ownerName": "SpireFloorInfo",
       "ownerPath": "SpireFloorInfo",
@@ -4314,62 +3909,6 @@
       "count": 1,
       "lineHints": [
         67
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonNavTiles.tsx",
-      "ownerName": "Tile",
-      "ownerPath": "Tile",
-      "ancestorPath": [
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "d70f303f3f310463aa6ed98a4d8d7c93fcefdf8e03b7b82dc91efedb7e7d686d",
-      "count": 1,
-      "lineHints": [
-        59
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/workshop/PhraseWorkshopRowButton.tsx",
-      "ownerName": "PhraseWorkshopRowButtonBase",
-      "ownerPath": "PhraseWorkshopRowButtonBase",
-      "ancestorPath": [
-        "View",
-        "PressableHybrid",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "d97f043b802cdec86646ba38109d50ee6d3d2b2823b4f24545104ef8cb7bfb18",
-      "count": 1,
-      "lineHints": [
-        58
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4433,33 +3972,6 @@
       "count": 1,
       "lineHints": [
         551
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "HeroTile",
-      "ownerPath": "HeroTile",
-      "ancestorPath": [
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "de811ed2d4ff547e50102a3596cb2cf4832298c21b8719c44dfcbe6542f7668c",
-      "count": 1,
-      "lineHints": [
-        388
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4619,37 +4131,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "SeasonCourseView",
-      "ownerPath": "SeasonCourseView",
-      "ancestorPath": [
-        "ScrollView",
-        "SceneBlockShadow",
-        "View",
-        "View",
-        "V2Pressable",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "e8eca6c59c58d6696d6c726e949f050374b7079e6f8e37a80af72af29e4516f5",
-      "count": 1,
-      "lineHints": [
-        312
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/paywall/PaywallProofCards.tsx",
       "ownerName": "MirrorCard",
       "ownerPath": "MirrorCard",
@@ -4737,34 +4218,6 @@
       }
     },
     {
-      "file": "components/learning-v2/season/SeasonNavTiles.tsx",
-      "ownerName": "Tile",
-      "ownerPath": "Tile",
-      "ancestorPath": [
-        "V2Pressable",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": "`${testID}-value`",
-      "fingerprint": "f45233084e45ea0cb3bf2037c505ffc7da908fa583a431fa258ee5b28ff78e2b",
-      "count": 1,
-      "lineHints": [
-        56
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/CleanOnboarding.tsx",
       "ownerName": "PhoneMock",
       "ownerPath": "PhoneMock",
@@ -4814,33 +4267,6 @@
       "count": 1,
       "lineHints": [
         104
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/learning-v2/season/SeasonCourseView.tsx",
-      "ownerName": "SeasonCourseView",
-      "ownerPath": "SeasonCourseView",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "f791e3f4b7a6caebe1e21fc3a313b2e79a09a10b75cdeef05ea574155b9b16ed",
-      "count": 1,
-      "lineHints": [
-        266
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

@@ -174,7 +174,7 @@ test('L-R3-3 support: restore can give up quickly when the account transition lo
 
 // L-R3-1 для постраничной копии v3 (основной формат новых копий).
 test('L-R3-1 (v3): graph conflict under the alias skips the whole graph, restores the rest, removes copy, pages and alias', async () => {
-  const { canonicalJsonV1, hashCanonicalBody, utf8ByteLengthV1 } = require('../modules/learning-v2/policies/decision_registry');
+  const { canonicalJsonV1, hashCanonicalBody, utf8ByteLengthV1 } = require('../modules/canonical_json');
   const backupId = 'r4-v3-conflict';
   const pairs: [string, string][] = [
     ['streak_count', '7'],

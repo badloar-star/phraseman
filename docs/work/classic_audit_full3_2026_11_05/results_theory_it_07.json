@@ -1,0 +1,97 @@
+[
+ {
+  "id": "lesson-15/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«простого сьогодення» — нужно «простого теперішнього часу»",
+  "fix": "Використовуй цю форму, коли дивишся на дію зсередини: вона вже почалася і ще йде. Це не обов'язковий переклад будь-якого теперішнього часу. Для звичного заняття часто досить простого теперішнього часу."
+ },
+ {
+  "id": "lesson-15/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "«при любом человеке» — грамматическое «лицо», не «человек»",
+  "fix": "Спрягается `stare`, а герундий одинаков при любом лице. Сравни `sto bevendo` и `sta bevendo`: изменение лица не должно менять окончание `bevendo`."
+ },
+ {
+  "id": "lesson-15/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«при будь-якій людині» — нужно «особі»",
+  "fix": "Відмінюється `stare`, а герундій однаковий для будь-якої особи. Порівняй `sto bevendo` та `sta bevendo`: зміна особи не повинна змінювати закінчення `bevendo`."
+ },
+ {
+  "id": "lesson-15/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "«Conjugates `stare`» — оборванное предложение без подлежащего",
+  "fix": "Only `stare` is conjugated; the gerund is the same for every person. Compare `sto bevendo` and `sta bevendo`: a change of person should not change the ending of `bevendo`."
+ },
+ {
+  "id": "lesson-15/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«особистою групою» — нужно «особовою»",
+  "fix": "Заперечення зазвичай йде перед особовою групою: `non sto scrivendo`. Зі зворотним займенником можливі `mi sto lavando` і `sto lavandomi`. Обидва способи не потрібно з'єднувати в одну відповідь."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«а чи не вмієш ти» — смысл перевёрнут (≠ ru «а не умеешь ли ты»)",
+  "fix": "Для питання знак ставиться наприкінці, а основа залишається знайомою. Почув `Stai leggendo?` — запитують, що відбувається зараз, а не те, чи вмієш ти взагалі читати."
+ },
+ {
+  "id": "lesson-16/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Не додай» — нужно «Не додавай»",
+  "fix": "У наказу та запрошення одна граматична форма, але різний тон. `Entra!` може бути дружнім запрошенням увійти. Не додавай «негайно», якщо цього немає у підказці."
+ },
+ {
+  "id": "lesson-16/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«Ввічлива форма має починатися із самого слова Lei» — смысл противоположен ru («не обязана»)",
+  "fix": "Звернення на `tu` та ввічливе `Lei` дають різні закінчення. Ввічлива форма не обов'язково починається із самого слова `Lei`: адресат зрозумілий із ситуації."
+ },
+ {
+  "id": "lesson-16/chapter-1",
+  "type": "T1",
+  "field": "theory.chapters[1].exampleIds",
+  "problem": "глава о разнице tu/Lei, но все примеры (16:05, 16:07, 16:11) — только tu; есть пары it:16:02 «Entri!», it:16:04 «Aspetti!»",
+  "fix": [
+   "it:16:01",
+   "it:16:02",
+   "it:16:04"
+  ]
+ },
+ {
+  "id": "lesson-16/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«це вказує ситуація» — неграмматично, нужно «на це вказує»",
+  "fix": "`Per favore` пом'якшує прохання і може стояти на початку або наприкінці. Сам вираз ввічливості не змінює автоматично `tu` на `Lei`; на це вказує ситуація."
+ },
+ {
+  "id": "lesson-16/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«негативній команді» — калька, нужно «заперечній»",
+  "fix": "У заперечній команді одному знайомому `non` йде з інфінітивом: `Non correre!` Не бери стверджувальне `corri` після `non` у цьому зразку."
+ },
+ {
+  "id": "lesson-16/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[6].exampleIds",
+  "problem": "глава про voi/Lei, но it:16:46 «Allaccia» и it:16:48 «Chiudi» — формы tu; формы voi нет ни в одном примере",
+  "fix": "Заменить it:16:46 и it:16:48 на фразу урока с формой voi (если её нет — добавить, напр. «Allacciate la cintura!») и на вежливую it:16:47 «Abbassi il volume, per favore.»; оставить it:16:49"
+ },
+ {
+  "id": "lesson-16/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«because the subject is the same» ≠ ru «речь идёт об одном предмете»",
+  "fix": "For a group, the `voi` form is appropriate; for a single client, the polite `Lei`. If the command is addressed to a group, don't choose the singular just because it is about one item."
+ }
+]

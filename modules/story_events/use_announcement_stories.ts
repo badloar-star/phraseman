@@ -149,7 +149,7 @@ export function useAnnouncementStories(enabled: boolean) {
           throw new Error("invalid_story_response");
         offset = response.data.nowMs - Date.now();
         const before = new Map(rows.map((a) => [a.id, a.revision]));
-        rows = liveAnnouncements(response.data.items, response.data.nowMs);
+        rows = liveAnnouncements(response.data.items, response.data.nowMs).filter((item) => item.design !== 'poll');
         const revBefore = feedRev;
         feedRev = storyFeedRevOf({ rev: response.data.feedRev });
         const fetchedAtMs = Date.now();
@@ -159,7 +159,7 @@ export function useAnnouncementStories(enabled: boolean) {
         console.log(LOG, "ответ получен", JSON.stringify({ why, items: response.data.items.length, live: rows.length, tookMs: Date.now() - startedAt, sinceLastFetchMs: sinceLastMs, clockOffsetMs: offset, feedRevBefore: revBefore, feedRev,
           added: rows.filter((a) => !before.has(a.id)).map(brief), revised: rows.filter((a) => before.has(a.id) && before.get(a.id) !== a.revision).map(brief),
           gone: [...before.keys()].filter((id) => !rows.some((a) => a.id === id)).map((id) => id.slice(0, 8)), all: rows.map(brief) })); // guard-ok: что вернулось и сколько заняло
-        const cacheValue = serializeAnnouncementsCache({ fetchedAtMs, serverNowMs: response.data.nowMs, items: response.data.items, ...(feedRev > 0 ? { feedRev } : {}) });
+        const cacheValue = serializeAnnouncementsCache({ fetchedAtMs, serverNowMs: response.data.nowMs, items: rows, ...(feedRev > 0 ? { feedRev } : {}) });
         writes = writes
           .then(() => AsyncStorage.setItem(cacheKey, cacheValue))
           .catch((error) => console.warn(LOG, "кэш не записан", String(error)));
@@ -197,7 +197,7 @@ export function useAnnouncementStories(enabled: boolean) {
           lastFetchedAtMs = cache.fetchedAtMs;
           feedRev = cache.feedRev ?? 0;
           offset = cache.serverNowMs - cache.fetchedAtMs;
-          rows = liveAnnouncements(cache.items, Date.now() + offset);
+          rows = liveAnnouncements(cache.items, Date.now() + offset).filter((item) => item.design !== 'poll');
           console.log(LOG, "кэш прочитан", JSON.stringify({ ageMs: Date.now() - cache.fetchedAtMs, live: rows.length, feedRev, all: rows.map(brief) })); // guard-ok: показываем кэш с первого кадра
           emit();
         } else if (cacheRaw) {

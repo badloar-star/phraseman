@@ -23,9 +23,9 @@ describe('цель кнопки «Сцены»', () => {
 });
 
 describe('«день засчитан»: надпись = цель', () => {
-  it('V2 — «Ещё эпизод»; старый урок — «Продолжить урок N», а не «Ещё эпизод»', () => {
+  it('подписывает кнопку сохранённого урока без номера', () => {
     expect(cta('v2')).toBe('Ещё эпизод');
-    expect(cta('legacy', 1)).toBe('Продолжить урок 1');
+    expect(cta('legacy', 1)).toBe('Продолжить урок');
     expect(cta('legacy', 1)).not.toBe('Ещё эпизод');
     expect(cta('legacy', null)).toBe('Продолжить');
   });
@@ -40,34 +40,36 @@ describe('«день засчитан»: надпись = цель', () => {
     const steps = [
       { v2: false, legacy: false, expected: 'Продолжить' },
       { v2: true, legacy: false, expected: 'Ещё эпизод' },
-      { v2: false, legacy: true, expected: 'Продолжить урок 1' },
+      { v2: false, legacy: true, expected: 'Продолжить урок' },
     ];
     for (const step of steps) {
       const target = homeSceneCtaTarget({ section: false, place: false, start: false, v2: step.v2, legacy: step.legacy });
       expect(cta(target, target === 'legacy' ? 1 : null)).toBe(step.expected);
     }
   });
-  it('«Продолжить урок N» есть на 9 языках', () => {
+  it('«Продолжить урок» есть на 9 языках без номера', () => {
     const langs = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
     const texts = langs.map((lang) => buildHomeSceneCopy({ ...base, lang, ctaTarget: 'legacy', lessonNo: 7 }).cta ?? '');
     expect(new Set(texts).size).toBe(9);
-    for (const text of texts) expect(text).toContain('7');
+    for (const text of texts) expect(text).not.toContain('7');
+  });
+  it('подпись сохранённого урока одинакова в обычном и вечернем состоянии', () => {
+    for (const state of ['continue', 'offline', 'streak_risk', 'welcome_back'] as const) {
+      expect(buildHomeSceneCopy({ ...base, state, ctaTarget: 'legacy', lessonNo: 3 }).cta).toBe('Продолжить урок');
+    }
   });
 });
 
 describe('Главная: обработчик и надпись из одной цели', () => {
   const home = readSource('app/(tabs)/home.tsx');
-  it('одна переменная цели идёт и в обработчик тапа, и в сцену', () => {
-    expect(home).toContain('const homeSceneCta = homeSceneCtaTarget({');
-    expect(home).toContain("const homeSceneOnContinue = homeSceneCta === 'section' ? openHomeSceneSection");
-    expect(home).toContain("homeSceneCta === 'place' || homeSceneCta === 'start' ? openHomeContinuePlace");
-    expect(home).toContain(': openHomeContinuePriority;');
-    expect(home).toContain('ctaTarget: homeSceneCta,');
-    expect(home).toContain('onContinue={homeSceneOnContinue}');
+  it('сцена приложения привязана к одному обработчику последнего урока', () => {
+    expect(home).toContain("pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' }");
+    expect(home).toContain("pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' }");
   });
   it('в момент тапа журнал пишет состояние, цель и надпись', () => {
     const scene = readSource('components/home/v2/scene/HomeScene.tsx');
     expect(scene).toContain("console.log('[HOME-CONTINUE] tap', JSON.stringify({ state: decision.state, target: ctaTarget ?? 'v2_default', cta: copy.cta");
-    expect(scene).toContain('onCta={onCta}');
+    // зачем (владелец 11.11): на настоящей Главной кнопка — только «Продолжить урок»; прежний обработчик сцены живёт для dev-«Сверки»
+    expect(scene).toContain('onCta={p.continueOnly ? onContinueLesson : onCta}');
   });
 });

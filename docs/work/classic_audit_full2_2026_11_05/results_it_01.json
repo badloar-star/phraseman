@@ -1,0 +1,13 @@
+[
+  {"id": "it:03:07", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную естественную фразу «Siete in casa?» (= Вы дома?), которой нет в alternatives", "fix": {"position": 1, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:03:10", "type": "B4", "field": "alternatives", "problem": "«Sei libero?» = «Ты свободен?», а подсказка «Вы свободны?» / «Ви вільні?» — меняет лицо (ты↔вы)", "fix": {"add": [], "remove": ["Sei libero?"]}},
+  {"id": "it:03:14", "type": "M", "field": "ru", "problem": "sala = зал, не «комната» (комната в курсе = camera/stanza); неточный перевод создаёт путаницу с it:03:20 и it:03:38", "fix": "Зал свободен?"},
+  {"id": "it:03:14", "type": "M", "field": "uk", "problem": "sala = зала, не «кімната» (кімната в курсі = camera/stanza)", "fix": "Зала вільна?"},
+  {"id": "it:03:17", "type": "M", "field": "ru", "problem": "«in anticipo» = раньше времени/заранее; «Вы пришли раньше?» двусмысленно (раньше кого/чего?)", "fix": "Вы пришли раньше времени?"},
+  {"id": "it:03:17", "type": "M", "field": "uk", "problem": "«in anticipo» = завчасно; «Ви прийшли раніше?» двозначно (раніше за кого?)", "fix": "Ви прийшли завчасно?"},
+  {"id": "it:03:20", "type": "B1", "field": "tiles", "problem": "Соблазн «sala» даёт «La sala è pulita?», а в курсе (it:03:14) sala переведена как «комната» — ученик ответит верно по курсу и получит ошибку", "fix": {"position": 1, "replace_distractor": "sala", "with": "fermata"}},
+  {"id": "it:03:28", "type": "M", "field": "ru", "problem": "«Туалеты в глубине помещения?» — канцелярит, так не говорят", "fix": "Туалеты в самом конце?"},
+  {"id": "it:03:28", "type": "M", "field": "uk", "problem": "«Туалети у глибині приміщення?» — канцелярит, так не кажуть", "fix": "Туалети в самому кінці?"},
+  {"id": "it:03:38", "type": "B1", "field": "tiles", "problem": "Соблазн «camera» даёт «La camera è vuota?» = «Комната пуста?» (camera = комната в it:03:20, it:03:48) — верная фраза, которой нет в alternatives", "fix": {"position": 1, "replace_distractor": "camera", "with": "fermata"}},
+  {"id": "it:04:50", "type": "B2", "field": "uk", "problem": "ru «выезд с парковки», uk «вихід з парковки» — разный смысл ru и uk (выезд для машин vs выход)", "fix": "Це виїзд з парковки."}
+]

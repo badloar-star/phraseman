@@ -15,7 +15,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useTheme } from '../ThemeContext';
 import { KitTouchable } from '../KitTouchable';
 
-import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../practice/PracticeGlass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { mpColors } from './panelPaint';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';

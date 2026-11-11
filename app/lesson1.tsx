@@ -30,7 +30,8 @@ import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
-import { theoryEntryFor, triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
+import { theoryEntryRouteForTarget } from './theory_entry_route';
 import { FONT_SCALE, getCardShadow, useTheme } from '../components/ThemeContext';
 import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -41,12 +42,6 @@ import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { bumpStatsDaily } from './stats_daily_breakdown';
-import { usePhraseWorkshopSession } from './use_phrase_workshop_session';
-import { bumpPhraseWorkshopPassCount, readPhraseWorkshopPassCount } from './phrase_workshop_progress_v1';
-import { touchStreakForToday } from './hall_of_fame_utils';
-import { phraseWorkshopText } from '../components/learning-v2/workshop/phrase_workshop_copy';
-import { PhraseWorkshopTheorySheet } from '../components/learning-v2/workshop/PhraseWorkshopTheorySheet';
-import { phraseWorkshopTheoryFor, phraseWorkshopTheoryLocale, type PhraseWorkshopTheoryPage } from './phrase_workshop_theory_v1';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
@@ -108,7 +103,7 @@ import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зач
 const NATIVE_LESSON_DISMISS_ENABLED =
   typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
-import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
+import { frenchStudyActive, spanishLessonUiStringsActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import { classicCourseActiveFor } from './classic_course_phrases';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -117,6 +112,7 @@ import { getMedalTier, getProgressCellColor, loadMedalInfo } from './medal_utils
 import type { MedalTier } from './medal_utils';
 
 import { grammarHintLine } from './lesson_locale_utils';
+import { lessonPhraseMeaningForLang } from './lesson_phrase_meaning';
 import {
   getContractionFor,
   getPerWordDistracts,
@@ -133,9 +129,7 @@ import {
 } from './lesson_screen_bootstrap';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
-import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
-import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import { MOMENT_QUEUE_LOG, comboMomentBusyLeftMs } from '../components/feedback/combo_moment_gate';
@@ -155,14 +149,12 @@ import { markNextNavigationAsReplace, dismissToTabRoute, safeRouterBack } from '
 import { emitAppEvent } from './events';
 import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
-import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
-import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import SessionAttemptsHud, { type SessionAttemptsEnergyModel } from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import EnergyBar from '../components/EnergyBar';
-import { lv2Alpha } from '../components/learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../components/practice/PracticeGlass';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
@@ -171,7 +163,7 @@ import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface'
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { KIT_MOTION, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
@@ -207,27 +199,6 @@ const GRAMMAR_HINTS = [
       'The words some and any show up here before lesson 21, where we go through them in detail. For now, just use them as shown.',
   },
 ];
-
-function isPlannedLessonSourceLang(lang: Lang): lang is 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl' {
-  return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl';
-}
-
-function lessonPhraseMeaningForLang(
-  phrase: Pick<LessonPhrase, 'russian' | 'ukrainian' | 'spanish' | 'english' | 'sourceLocales'>,
-  lang: Lang,
-  studyTarget: StudyTargetLang,
-): string {
-  if (isPlannedLessonSourceLang(lang)) {
-    return phrase.sourceLocales?.[lang]?.trim() || phrase.russian || phrase.ukrainian || phrase.spanish || '';
-  }
-  if (lang === 'uk') return phrase.ukrainian || phrase.russian || '';
-  if (spanishStudyActive(studyTarget)) {
-    if (lang === 'es') return phrase.spanish ?? phrase.russian ?? '';
-    return phrase.russian ?? '';
-  }
-  if (lang === 'es') return phrase.russian || phrase.ukrainian || phrase.english || '';
-  return phrase.russian ?? '';
-}
 
 // Strip special article/marker symbols from display text.
 // Bare standalone '-' (zero-article marker) → '' (empty, skip).
@@ -467,6 +438,8 @@ interface LessonContentProps {
    * открывать тему показанной фразы, а не тему из маршрута.
    */
   topicLessonId: number;
+  /** зачем (владелец 06.11, TestFlight 150): в комбинированном уроке нет вступления и нет кнопки «Теория» — вход сразу в первое задание. */
+  isComboLesson: boolean;
   // All the main lesson UI props
   compact: boolean;
   isSmallScreen: boolean;
@@ -499,10 +472,6 @@ interface LessonContentProps {
   attemptsRemaining: 0 | 1 | 2 | 3;
   /** Режим энергии Б (Ядро 11.10): объект `useSessionAttempts` целиком — шапка сама решает, рисовать сердечки или энергию. */
   attemptsEnergy?: SessionAttemptsEnergyModel;
-  /** «Мастерская фраз» (владелец 25.10): название вместо «Урок N»; в шапке нет энергии и сердечек, нет кнопки теории старого урока. */
-  workshopTitle?: string;
-  /** «Мастерская фраз»: страницы теории того занятия, откуда пришла текущая фраза (только ru/uk); нет — кнопки «Теория» нет. */
-  workshopTheory?: Readonly<{ pages: readonly PhraseWorkshopTheoryPage[]; lang: 'ru' | 'uk' }> | null;
   /** Руны, накопленные в этой сессии урока (владелец, 2026-08-27). */
   practiceRunesEarned: number;
   /** Источник/цель полёта руны (владелец, 2026-08-28): та же механика, что на
@@ -558,6 +527,7 @@ const LessonContent = React.memo(function LessonContent({
   introGateReady,
   lessonId,
   topicLessonId,
+  isComboLesson,
   compact,
   isSmallScreen,
   phrase,
@@ -585,8 +555,6 @@ const LessonContent = React.memo(function LessonContent({
   currentMaxEnergy,
   attemptsRemaining,
   attemptsEnergy,
-  workshopTitle,
-  workshopTheory,
   practiceRunesEarned,
   runeFlightOriginRef,
   runeFlightCounterRef,
@@ -643,8 +611,6 @@ const LessonContent = React.memo(function LessonContent({
   const { liquidGlassThemeId, fontSize: appFontSize, uiScale } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const progressCellTheme = useMemo(() => ({ ...t, bgSurface2: glass.line }), [t, glass.line]);
-  // зачем (мастерская фраз, вердикт Макетов v4): шторка теории поверх раунда — раунд не теряется
-  const [workshopTheoryOpen, setWorkshopTheoryOpen] = useState(false);
   // зачем (Сверка learn-028/029, макет learn.html .pill.hearts): попытки — нейтральная пилюля стекла (светлые сердца, потерянные гаснут до 22 %), как в занятии Learning V2
   const heartsPill = useMemo(() => ({ fill: glass.text, empty: lv2Alpha(glass.text, 0.22), plate: glass.opaqueControl }), [glass.text, glass.opaqueControl]);
   const toolChip = {
@@ -777,31 +743,9 @@ const LessonContent = React.memo(function LessonContent({
     setFiftyFiftyActive(false);
     setFiftyFiftyDimmed(new Set());
   }, [status, phraseWordIdx, contrExpanded, shuffled]);
-  // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
-  const [explainOpen, setExplainOpen] = useState(false);
-  const __explainTileLogged = useRef<string | null>(null);
-  // Флаг-гейт фичи «Объясни проще» (kill-switch из «Пульта»/env). Кнопка в футере
-  // видна на экране результата НЕЗАВИСИМО от того, верно ответил юзер или нет —
-  // объясняет САМУ фразу простыми словами (CF explainPhrase, кэш per-(фраза+язык)).
-  // зачем (владелец 17.10): «кнопки Объяснить вообще не должно быть» — плитка «Объяснить» (лампочка) скрыта общим флагом ИИ-объяснений
-  const explainFeatureOn = MISTAKE_EXPLAIN_ENABLED && isExplainEnabled();
-  if (!explainFeatureOn && __explainTileLogged.current !== 'off') {
-    __explainTileLogged.current = 'off';
-    console.log(`[MISTAKE-EXPLAIN] disabled lesson tile hidden flag=${String(MISTAKE_EXPLAIN_ENABLED)} env=${String(isExplainEnabled())}`); // guard-ok: плитка «Объяснить» отключена владельцем
-  }
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… обе удалить», плюс лампочку «Объяснить»): плитки «Объяснить» и её шторки в уроке больше нет;
+  // счётчик ниже остался — это дневной запас подсказки 50/50.
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
-  // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
-  // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный
-  // кэш-хит или сетевая ошибка кредит НЕ тратят.
-  // Резолв запроса шторки. Списываем кредит только за live-генерацию без ошибки.
-  const onExplainResolved = useCallback(
-    (info: { fromCache: boolean; status: string; error: boolean }) => {
-      if (info.error || info.fromCache) return;
-      if (info.status !== 'ok') return; // rejected/exhausted/pending do not spend a credit
-      onConsumeExplainCredit();
-    },
-    [onConsumeExplainCredit],
-  );
   // [ARROW] Анимированная стрелка над прогресс-баром
   const arrowAnim  = useRef(new Animated.Value(0)).current;
   const [barWidth, setBarWidth] = useState(0);
@@ -849,6 +793,9 @@ const LessonContent = React.memo(function LessonContent({
       : null;
     return shuffled.map((word, i) => {
       const optionKey = `${phraseEnterKey}:${phraseWordIdx}:${i}:${word}`;
+      // Layout slots retain animation hooks; optionKey separately remounts the
+      // native press target so an old held gesture cannot select a new word.
+      const presentationSlotKey = i;
       const strippedRaw = stripMarkers(word);
       const stripped = strippedRaw.toLowerCase();
       // ВАЖНО: подлинно правильное слово (currentCorrectWord) считаем верным в ЛЮБОМ
@@ -875,6 +822,7 @@ const LessonContent = React.memo(function LessonContent({
       })();
       return {
         optionKey,
+        presentationSlotKey,
         word,
         index: i,
         isCorrectOption,
@@ -1069,10 +1017,6 @@ const LessonContent = React.memo(function LessonContent({
   const aiMistakeText = mistakeExplain.aiMistakeText;
   const aiMistakeRemaining = mistakeExplain.aiMistakeRemaining;
   const explainCurrentMistake = mistakeExplain.explain;
-  const openEli5Modal = mistakeExplain.eli5.onOpen;
-  const eli5ModalOpen = mistakeExplain.eli5.open;
-  const eli5State = mistakeExplain.eli5.state;
-  const eli5Text = mistakeExplain.eli5.text;
 
   // зачем: раньше тут был голый <View flex:1/> без фона (белая/чёрная вспышка
   // между экраном списка уроков и загруженным уроком) — теперь тот же скелетон,
@@ -1126,7 +1070,7 @@ const LessonContent = React.memo(function LessonContent({
         <PracticeHeaderTitle
           glass={glass}
           oneLine
-          title={workshopTitle ?? `${triLang(lang, {
+          title={`${triLang(lang, {
             uk: 'Урок',
             ru: 'Урок',
             en: 'Lesson',
@@ -1153,10 +1097,9 @@ const LessonContent = React.memo(function LessonContent({
           }}
         >
           {/* зачем (режим энергии Б, ревью Ядра п.3): в режиме Б энергию показывает сама шапка попыток (EnergyMistakeHud) — вторая пилюля была бы дублем. */}
-          {/* зачем (мастерская фраз, решение владельца 25.10): энергии и сердечек в режиме нет совсем — монеты остаются */}
-          {workshopTitle !== undefined || attemptsEnergy?.mistakeChargeActive ? null : <LessonEnergyPill />}
+          {attemptsEnergy?.mistakeChargeActive ? null : <LessonEnergyPill />}
 
-          {workshopTitle !== undefined ? null : (
+          {(
             <SessionAttemptsHud
               remaining={attemptsRemaining}
               attempts={attemptsEnergy}
@@ -1431,7 +1374,6 @@ const LessonContent = React.memo(function LessonContent({
                     fallback={mistakeExplain.aiMistakeFallback}
                     onRefresh={mistakeExplain.refreshMistakeExplain}
                     onExplain={explainCurrentMistake}
-                    onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}
                     userAnswer={aiMistakeAnswerLine}
                   />
@@ -1522,10 +1464,10 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ optionKey, word, index: i, isCorrectOption, displayText }) => {
+              {wordOptionItems.map(({ optionKey, presentationSlotKey, word, index: i, isCorrectOption, displayText }) => {
                 return (
                   <Animated.View
-                    key={optionKey}
+                    key={presentationSlotKey}
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
@@ -1539,6 +1481,7 @@ const LessonContent = React.memo(function LessonContent({
                       const isFlashing = flashWord?.optionKey === optionKey;
                       return (
                     <DuoPressable
+                      pressTargetKey={optionKey}
                       // зачем (координатор 12.10, съёмка R1 energy-modes-002…005/016): робот не знает, какой номер неверный —
                       // в dev первый неверный вариант помечен `lesson1-word-option-wrong` (ошибка по шагу). В стор-сборке __DEV__ = false.
                       // зачем (координатор 05.11, Maestro-проход урока до итога): помеченные плитки нужны роботу ТОЛЬКО в dev; в релизе плитки
@@ -1698,26 +1641,14 @@ const LessonContent = React.memo(function LessonContent({
 
           {/* Theory Button */}
           {/* зачем (координатор 12.10): своей теории для языка интерфейса нет (английский) — кнопку не показываем; pt-BR/vi/id/tr/pl — в lesson_help на их языке. */}
-          {workshopTitle === undefined && !lessonTheorySupportBlocked && theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden' && (
-          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); if (!navOnce(`lesson1:theory:${topicLessonId}`)) return; /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
+          {!isComboLesson && !lessonTheorySupportBlocked && theoryEntryRouteForTarget({ uiLang: lang, studyTarget, interactive: isInteractiveTheoryLesson(topicLessonId), origin: 'lesson1' }) !== 'hidden' && (
+          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); if (!navOnce(`lesson1:theory:${topicLessonId}`)) return; /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } /* зачем (владелец 11.11: из теории fr/es/de/it не выйти): маршрут теории зависит от КУРСА — раньше тут шёл /hint, он делал replace на /lesson_help, и «назад» возвращало в скрытый /hint, который снова открывал «Теорию». */ const entry = theoryEntryRouteForTarget({ uiLang: lang, studyTarget, interactive: isInteractiveTheoryLesson(topicLessonId), origin: 'lesson1' }); console.log('[THEORY-NAV] open', JSON.stringify({ from: 'lesson1', lessonId: topicLessonId, entry, studyTarget: String(studyTarget), uiLang: lang })); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
             <Ionicons name="book-outline" size={26} color={glass.text} />
             <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
               {s.lesson.theory}
             </Text>
           </LessonPressable>
           )}
-
-          {/* зачем (мастерская фраз, вердикт Макетов v4): ряд «50/50 · Теория · Устно · Отменить»; теория — вступление занятия,
-              откуда пришла фраза (ru/uk); на остальных языках кнопки нет совсем */}
-          {workshopTitle !== undefined && workshopTheory ? (
-            <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); setWorkshopTheoryOpen(true); }}>
-              <Ionicons name="book-outline" size={26} color={glass.text} />
-              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>{s.lesson.theory}</Text>
-            </LessonPressable>
-          ) : null}
-          {workshopTitle !== undefined && workshopTheory ? (
-            <PhraseWorkshopTheorySheet visible={workshopTheoryOpen} onClose={() => setWorkshopTheoryOpen(false)} pages={workshopTheory.pages} lang={workshopTheory.lang} />
-          ) : null}
 
           {/* [SPEAKING] "Устно" — premium: произнести фразу вслух (микрофон + эквалайзер) */}
           {speakingFeatureEnabled && status === 'playing' && !!gradeTarget && (
@@ -1796,47 +1727,6 @@ const LessonContent = React.memo(function LessonContent({
                   id: 'Kembali',
                   tr: 'Geri',
                   pl: 'Wstecz',
-                })}
-              </Text>
-            </LessonPressable>
-          )}
-
-          {/* [EXPLAIN] «Объясни проще» — в футере на экране результата, НЕЗАВИСИМО от того,
-              верно ответил юзер или нет. Объясняет саму фразу простыми словами через общую
-              шторку ExplainSheet (CF explainPhrase, глобальный кэш per-(фраза+язык)). */}
-          {status === 'result' && explainFeatureOn && (
-            <LessonPressable
-              testID="lesson1-explain"
-              accessibilityRole="button"
-              accessibilityLabel={triLang(lang, {
-                ru: 'Объяснить фразу простыми словами',
-                uk: 'Пояснити вислів простими словами',
-                en: 'Explain the phrase simply',
-                es: 'Explicar la frase con palabras simples',
-                'pt-BR': 'Explicar a frase em palavras simples',
-                vi: 'Giải thích câu bằng lời đơn giản',
-                id: 'Jelaskan frasa dengan kata sederhana',
-                tr: 'Cümleyi basit kelimelerle açıkla',
-                pl: 'Wyjaśnij frazę prościej',
-              })}
-              style={toolChip}
-              onPress={() => {
-                fk.tap();
-                setExplainOpen(true);
-              }}
-            >
-              <Ionicons name="bulb-outline" size={26} color={glass.text} />
-              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }} numberOfLines={1}>
-                {triLang(lang, {
-                  ru: 'Объяснить',
-                  uk: 'Пояснити',
-                  en: 'Explain',
-                  es: 'Explicar',
-                  'pt-BR': 'Explicar',
-                  vi: 'Giải thích',
-                  id: 'Jelaskan',
-                  tr: 'Açıkla',
-                  pl: 'Wyjaśnij',
                 })}
               </Text>
             </LessonPressable>
@@ -1942,18 +1832,6 @@ const LessonContent = React.memo(function LessonContent({
           </TapScale>
         )}
 
-        {/* [EXPLAIN] Общая шторка «Объясни проще» из футера. Объясняет английскую фразу/грамматику, НЕ русский смысл. */}
-        {phrase && (
-          <ExplainSheet
-            visible={explainOpen}
-            onClose={() => setExplainOpen(false)}
-            onResolved={onExplainResolved}
-            phraseEn={aiMistakeTargetLine || ((status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang))}
-            phraseMeaning={lessonPhraseMeaningForLang(phrase, lang, studyTarget)}
-            lang={lang}
-          />
-        )}
-
         {/* [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз (read-only, свайп/стрелки).
             Очки НЕ начисляются, текущий ответ не сбивается — это чистое чтение для сравнения. */}
         {/* зачем: шторка вынесена в LessonReviewSheet (Liquid Glass, learn.html D9); логика и обработчики прежние. */}
@@ -1967,17 +1845,6 @@ const LessonContent = React.memo(function LessonContent({
           onPrev={reviewGoPrev}
           onNext={reviewGoNext}
           onPlay={onPlayReviewAudio}
-        />
-
-        <MistakeEli5Modal
-          visible={eli5ModalOpen}
-          onClose={mistakeExplain.eli5.onClose}
-          lang={lang}
-          state={eli5State}
-          text={eli5Text}
-          onRetry={mistakeExplain.eli5.onRetry}
-          fallback={mistakeExplain.eli5.fallback}
-          onRefresh={mistakeExplain.eli5.onRefresh}
         />
 
         <AiExplainConsentModal
@@ -2023,7 +1890,6 @@ function LessonScreen() {
     serverAttemptId: serverAttemptIdParam,
     devRunesSeed: devRunesSeedParam,
     combo: comboParam,
-    workshop: workshopParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
@@ -2033,8 +1899,6 @@ function LessonScreen() {
     devRunesSeed?: string | string[];
     /** Комбинированный урок: id тем через запятую, напр. "3,10,20". */
     combo?: string | string[];
-    /** «Мастерская фраз» (владелец 25.10): "1" — фразы банка урока V2 вместо старого урока. */
-    workshop?: string | string[];
   }>();
   // зачем (владелец 2026-09-17): «комбинированный урок» — фразы нескольких тем
   // вперемешку. Экран остаётся ТЕМ ЖЕ (копия на 4000 строк разошлась бы с
@@ -2058,21 +1922,12 @@ function LessonScreen() {
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
-  // зачем (владелец 25.10, «Мастерская фраз», макет «Да, так»): тот же экран, источник фраз — банк урока V2, песочница без зачёта
-  // старого курса, без энергии и сердец. Все ветки ниже проверяют workshopActive; при выключенном флаге он всегда false.
-  const workshop = usePhraseWorkshopSession(workshopParam, lessonId, String(studyTarget));
-  const workshopActive = workshop.active;
-  // зачем (мастерская фраз): прямая ссылка при тонком банке не должна открыть пустой режим — выходим с причиной в журнале хука
-  useEffect(() => {
-    if (workshop.closed) safeRouterBack(router, '/(tabs)/lessons' as never);
-  }, [workshop.closed, router]);
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    // зачем (мастерская фраз): префикс не «lesson» — энергия за ошибку (режим Б) и сердечки к мастерской не относятся
-    sessionId: `${workshopActive ? 'workshop' : 'lesson'}:${studyTarget}:${lessonId}`,
-    initialQuestionId: `${workshopActive ? 'workshop' : 'lesson'}:${lessonId}:loading`,
+    sessionId: `lesson:${studyTarget}:${lessonId}`,
+    initialQuestionId: `lesson:${lessonId}:loading`,
   });
   const [showAttemptsModal, setShowAttemptsModal] = useState(false);
   const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -2112,9 +1967,7 @@ function LessonScreen() {
   // ключи тем («зачёт только в комбо») затёрла бы честно заработанные медали и
   // проценты — это единственная точка, через которую идут ВСЕ ключи ниже,
   // поэтому изоляция делается здесь, а не в каждом ключе отдельно.
-  // зачем (мастерская фраз): свои ключи на каждый вход (seed в id) — прогресс песочницы не пересекается с уроком N и не «воскресает»
-  // на другой выборке фраз; прежние ключи стирает usePhraseWorkshopSession.
-  const lessonStorageId = workshopActive ? workshop.storageId : comboActive ? `combo_${comboTopicIds.join('_')}` : lessonId;
+  const lessonStorageId = comboActive ? `combo_${comboTopicIds.join('_')}` : lessonId;
   const LESSON_KEY = lessonProgressKey(lessonStorageId, studyTarget);
   const CELL_KEY   = lessonSessionKey(lessonStorageId, 'cellIndex', studyTarget);
   const ORDER_KEY  = lessonSessionKey(lessonStorageId, 'phraseOrder', studyTarget);
@@ -2144,25 +1997,21 @@ function LessonScreen() {
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
     () => {
-      // зачем (мастерская фраз): фразы прохода из банка урока V2; пока банк читается — пусто (экран ждёт как при загрузке)
-      const rows = workshopActive
-        ? workshop.rows
-        : comboPlan
-          ? comboPlan.entries.map((entry) => entry.phrase)
-          : (remoteFrenchLessonRows ?? getLessonData(lessonId, studyTarget));
+      const rows = comboPlan
+        ? comboPlan.entries.map((entry) => entry.phrase)
+        : (remoteFrenchLessonRows ?? getLessonData(lessonId, studyTarget));
       return rows.filter(p => {
         if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
         return p.words && p.words.length > 0;
       });
     },
-    [comboPlan, remoteFrenchLessonRows, lessonId, studyTarget, workshopActive, workshop.rows],
+    [comboPlan, remoteFrenchLessonRows, lessonId, studyTarget],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, lessonTotal());
   const hasPlayableLessonRows = effectiveTotal > 0;
   const lessonTheorySupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
-  // зачем (мастерская фраз): подсказки-грамматика принадлежат старому уроку N — у фраз банка их нет
-  const lessonHintSupportBlocked = workshopActive || !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
+  const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonStorageId, LESSON_DATA.length, effectiveTotal, studyTarget);
   const initialOverridePhraseCell = getInitialOverridePhraseCell(lessonStorageId, effectiveTotal, studyTarget);
   const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, energyReady } = useEnergy();
@@ -2205,11 +2054,8 @@ function LessonScreen() {
   // текущего прохождения для серверной расписки.
   const practiceRunes = usePracticeRunes({
     activity: 'lesson',
-    // зачем (мастерская фраз, решение владельца 25.10: «монеты как практика»): существующая активность lesson (список активностей
-    // сервера фиксирован — новая потребовала бы выкладки функций) со своим ключом сессии и ценой повтора (1 за ответ, не ферма)
-    sessionKey: workshopActive ? `v2cl_l${lessonId}` : RUNE_SESSION_KEY,
+    sessionKey: RUNE_SESSION_KEY,
     completionOrdinal: passCount + 1,
-    repeatPriceOnly: workshopActive || undefined,
     devFakeStartRunes: devRunesFake?.runes,
   });
   // зачем (владелец, 2026-08-28): на самом Уроке полёта руны не было вообще —
@@ -2223,7 +2069,12 @@ function LessonScreen() {
   const [testerNoLimits, setTesterNoLimits] = useState(false); // Тестерская функция - без ограничений
   // ==================== NEW: Intro & Encouragement Screens ====================
   const [showIntroScreens, setShowIntroScreens] = useState(false);
-  const [introGateReady, setIntroGateReady] = useState(false);
+  // зачем (аудит загрузок 11.11, «урок без кадра-заготовки»): было useState(false) — даже урок БЕЗ вступления рисовал
+  // LessonFirstFrame до первого эффекта. Когда ответ известен без чтения диска (комби, нет экранов вступления, dev-пропуск),
+  // ворота открыты с первого рендера. Условие — то же, что в эффекте ниже; с вступлением по-прежнему ждём отметку с диска.
+  const [introGateReady, setIntroGateReady] = useState<boolean>(
+    () => comboActive || isDevLessonIntroSkip() || getLessonIntroScreens(lessonId, studyTarget).length === 0,
+  );
   const consumedReplayIntroTokenRef = useRef<string | null>(null);
   // No energy modal after 3 failed taps
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
@@ -2339,16 +2190,6 @@ function LessonScreen() {
   // Фраза определяется позицией ячейки с учётом shuffle и возможного replay ошибки
   const phrase = getPhraseForCell(overridePhraseCell ?? cellIndex);
 
-  // зачем (мастерская фраз, вердикт Макетов v4): теория = вступление ТОГО занятия V2, откуда пришла текущая фраза; читается из бандла
-  // при показе (0 сети, без копии в банке); только ru/uk — на остальных языках кнопки нет (null)
-  const workshopTheory = useMemo(() => {
-    if (!workshopActive || !phrase) return null;
-    const locale = phraseWorkshopTheoryLocale(lang);
-    const session = workshop.sessionByPhraseId.get(String(phrase.id));
-    if (!locale || !session) return null;
-    const pages = phraseWorkshopTheoryFor(lessonId, session, lang);
-    return pages ? { pages, lang: locale } : null;
-  }, [workshopActive, phrase, lang, lessonId, workshop.sessionByPhraseId]);
 
   // зачем (владелец 2026-09-17): карта «id фразы → её тема». Экран перемешивает
   // порядок сам (phraseOrderRef), поэтому определять тему по позиции нельзя —
@@ -2409,8 +2250,9 @@ function LessonScreen() {
   }, [shuffled, studyTarget]);
 
   // CHANGE v5: cursor blinks only when no words are selected yet; stays solid while composing
+  const hasSelectedWords = selectedWords.length > 0;
   useEffect(() => {
-    if (!lessonRuntimeActive || selectedWords.length > 0) {
+    if (!lessonRuntimeActive || hasSelectedWords) {
       cursorAnim.stopAnimation();
       cursorAnim.setValue(1);
       return;
@@ -2421,7 +2263,7 @@ function LessonScreen() {
     ]));
     blink.start();
     return () => blink.stop();
-  }, [cursorAnim, lessonRuntimeActive, selectedWords.length]);
+  }, [cursorAnim, lessonRuntimeActive, hasSelectedWords]);
 
 
   useEffect(() => {
@@ -2444,7 +2286,11 @@ function LessonScreen() {
     let cancelled = false;
     const introKey = lessonIntroShownKey(lessonId, studyTarget);
     // зачем (мастерская фраз): вступления принадлежат старому уроку N — в мастерской их нет
-    const hasIntroScreens = !workshopActive && getLessonIntroScreens(lessonId, studyTarget).length > 0;
+    // зачем (владелец 06.11, TestFlight 150): комби-урок — смесь тем, вступления одной темы в нём нет вообще (ни первый раз, ни повтор)
+    const hasIntroScreens = !comboActive && getLessonIntroScreens(lessonId, studyTarget).length > 0;
+    if (comboActive) {
+      console.log('[COMBO-LESSON] start', JSON.stringify({ isCombo: true, introShown: false, theoryButton: false, lessonId, topics: comboTopicIds }));
+    }
     if (!hasIntroScreens) {
       setShowIntroScreens(false);
       setIntroGateReady(true);
@@ -2494,7 +2340,7 @@ function LessonScreen() {
     return () => {
       cancelled = true;
     };
-  }, [lessonId, replayIntro, replayIntroToken, studyTarget, workshopActive]);
+  }, [comboActive, comboTopicIds, lessonId, replayIntro, replayIntroToken, studyTarget]);
 
   // Показываем подсказку один раз за сессию
   useEffect(() => {
@@ -2796,12 +2642,12 @@ function LessonScreen() {
     // (LESSON_KEY + CELL_KEY после каждого ответа), повторный вход продолжает с этого места; не сохраняется только недособранный ответ.
     traceLessonExit('headerBack:exit', { lessonId, cellIndex, effectiveTotal, place: `${cellIndex + 1}/${effectiveTotal}`, saved: 'answers+position' });
     const attempt = lessonAnalyticsAttemptRef.current!;
-    if (!workshopActive && markLessonAttemptTerminal(attempt, 'abandon')) {
+    if (markLessonAttemptTerminal(attempt, 'abandon')) {
       logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
     }
-    if (!workshopActive) trackLessonAbandoned().catch(noteSwallowedHandler('lesson1:useCallback.trackLessonAbandoned'));
+    trackLessonAbandoned().catch(noteSwallowedHandler('lesson1:useCallback.trackLessonAbandoned'));
     navigateUpFromLessonScreen();
-  }, [beginLessonExit, finishPendingCompletionNow, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen, workshopActive]);
+  }, [beginLessonExit, finishPendingCompletionNow, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
   const momentsV3 = useMomentsV3Enabled();
   // зачем (владелец 15.10, m08 «Молния»: монета «НЕ УБИРАЕМ А ОСТАВЛЯЕМ»): молния, вспышка, холодная виньетка и монета поверх урока — только при флаге, модуль require'ом
@@ -2894,8 +2740,7 @@ function LessonScreen() {
   // готов и интро закрыто = первое задание на экране → −1 один раз на попытку
   // (operationId попытки; ре-рендеры от смены баланса больше не гасят ack);
   // уход/падение до показа — возврат. Plus — без списания (D07).
-  // зачем (мастерская фраз, решение владельца 25.10): энергию за вход в режим не списываем — гейт не получает «первый вопрос виден»
-  const lessonFirstQuestionVisible = !workshopActive && canChargeClassicLessonEntry({
+  const lessonFirstQuestionVisible = canChargeClassicLessonEntry({
     energyReady,
     lessonHydrated,
     introGateReady,
@@ -2978,11 +2823,10 @@ function LessonScreen() {
     }
     try {
       const attempt = lessonAnalyticsAttemptRef.current!;
-      // зачем (мастерская фраз): это не урок — запуск/«брошен»/«завершён» в аналитику уроков не идут
-      if (!workshopActive && markLessonAttemptStarted(attempt)) {
+      if (markLessonAttemptStarted(attempt)) {
         logLessonStart(lessonId, effectiveTotal, attempt.id);
       }
-      if (!workshopActive) trackLessonStart().catch(noteSwallowedHandler('lesson1:loadData.trackLessonStart'));
+      trackLessonStart().catch(noteSwallowedHandler('lesson1:loadData.trackLessonStart'));
       if (!hasPlayableLessonRows) {
         phraseOrderRef.current = [];
         errorQueueRef.current = [];
@@ -3011,7 +2855,10 @@ function LessonScreen() {
       // всё уже готово.
       const introKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
       const introShownRaw = await AsyncStorage.getItem(introKey);
-      if (!workshopActive && !introShownRaw && !isDevLessonIntroSkip() && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
+      // зачем (владелец 11.11, U01): это ВТОРОЙ путь показа вступления (первый — эффект с hasIntroScreens выше). Без !comboActive комби при первом
+      // входе показывал вступление темы из маршрута и вдобавок помечал его «показанным» — обычный урок потом открывался уже без вступления.
+      if (comboActive) console.log('[COMBO-LESSON] loadData: вступление пропущено', JSON.stringify({ lessonId, introSeenBefore: !!introShownRaw })); // guard-ok: ветка пропуска
+      if (!introShownRaw && !isDevLessonIntroSkip() && !comboActive && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
         await AsyncStorage.setItem(introKey, 'true').catch(noteSwallowedHandler('lesson1:loadData.setItem'));
         syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);
@@ -3023,9 +2870,7 @@ function LessonScreen() {
       setTesterNoLimits(noLimits);
       // energy state comes from EnergyContext — no local load needed
 
-      // зачем (мастерская фраз): медали и число проходов — старого урока N; у мастерской свой счётчик проходов (для расписки монет)
-      if (workshopActive) void readPhraseWorkshopPassCount(lessonId, studyTargetRef.current).then(setPassCount).catch(noteSwallowedHandler('lesson1:workshopPassCount'));
-      else loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
+      loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
       // зачем (владелец 05.11, «очистить ошибки у всех»): очередь повтора ошибок классики хранится по старым позиционным номерам фраз;
       // одноразовая миграция гасит ТОЛЬКО её (флаг в хранилище, без сети) ДО чтения очереди ниже. Не бросает; прогресс/медали/счётчики не трогает.
       await ensureClassicErrorQueueMigrated();
@@ -3290,8 +3135,7 @@ function LessonScreen() {
         String(overridePhraseCell ?? cellIndex),
         String(sessionAnswerCount.current),
       ].join(':'),
-      // зачем (мастерская фраз, «сердечек нет»): ошибка не тратит попытку — иначе исчерпание сердечек остановило бы раунд
-      verdict: isRight || workshopActive ? 'correct' : 'pedagogical_wrong',
+      verdict: isRight ? 'correct' : 'pedagogical_wrong',
     });
     // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
@@ -3314,7 +3158,7 @@ function LessonScreen() {
       np[progressCell] = isReplayRef.current ? 'replay_correct' : 'correct';
       const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
       // зачем (PM-190-A1, координатор 13.10): без языка учёт шёл в ключ по умолчанию (en) — фразы es/fr/de/it попадали в английскую статистику
-      if (!wasLearned && !workshopActive) void bumpStatsDaily('phrases_learned', 1, studyTargetRef.current);
+      if (!wasLearned) void bumpStatsDaily('phrases_learned', 1, studyTargetRef.current);
     } else {
       // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
       np[progressCell] = 'wrong';
@@ -3357,11 +3201,10 @@ function LessonScreen() {
             picked: resolvedToken?.picked,
             rawCategory: tokenRow?.category,
           };
-          // зачем (мастерская фраз): фразы банка не из каталога старого курса — «Мои ошибки» и итог не должны их получать
-          if (!workshopActive) lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
+          lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
           // зачем (22.09): узкий список языков не пускал запись ошибки для
           // испанского и немецкого — урок не пополнял «Мои ошибки».
-          if (!workshopActive && isMistakeStudyTargetValue(stRm)) {
+          if (isMistakeStudyTargetValue(stRm)) {
             const mistakeFacetKind = lessonMistakeFacet({ expectedPhrase: canonKey, answeredPhrase: answer });
             console.log('[MISTAKE-CAPTURE] facet', JSON.stringify({ phraseId: phrase.id, answer, answerSource: 'checkAnswer.arg', staleSelectedWords: selectedWords.join(' '), facet: mistakeFacetKind, tokenIndex, errWord })); // guard-ok: одна строка на неверный ответ, видно по какому ответу считан тип ошибки
             const attemptScope = serverAttemptIdRef.current
@@ -3514,7 +3357,7 @@ function LessonScreen() {
       const nextAttemptId = makeLessonServerAttemptId();
       serverAttemptIdRef.current = nextAttemptId;
       AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(noteSwallowedHandler('lesson1:useCallback.setItem_5'));
-      if (!workshopActive) void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
+      void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
       isCompletingRef.current = true;
@@ -3586,8 +3429,7 @@ function LessonScreen() {
           bypassCache: true,
           allowCloudRefresh: false,
         }).catch(noteSwallowedAs('lesson1:runLessonCompletionNavigation.getVerifiedPremiumAccessStatus', false));
-        // зачем (мастерская фраз, песочница): зачёт старого курса — разблокировка следующего урока — не выдаётся
-        const didUnlock = workshopActive ? false : await tryUnlockNextLesson(
+        const didUnlock = await tryUnlockNextLesson(
           lessonId,
           finalScore,
           studyTarget,
@@ -3601,16 +3443,10 @@ function LessonScreen() {
         }
 
         const analyticsAttempt = lessonAnalyticsAttemptRef.current!;
-        if (!workshopActive && markLessonAttemptTerminal(analyticsAttempt, 'complete')) {
+        if (markLessonAttemptTerminal(analyticsAttempt, 'complete')) {
           logLessonComplete(lessonId, analyticsAttempt.id, lessonAttemptElapsedMs(analyticsAttempt));
         }
-        if (workshopActive) {
-          // зачем (мастерская фраз, «серия как за практику»): день засчитывается учебным действием; следующий вход получит
-          // новый номер прохода (расписка монет идемпотентна по номеру). Аналитики урока и «уроков завершено» нет — это не урок.
-          void touchStreakForToday('activity:lesson');
-          void bumpPhraseWorkshopPassCount(lessonId, studyTargetRef.current).catch(noteSwallowedHandler('lesson1:workshopPassBump'));
-          console.log('[PHRASE-WORKSHOP] complete', JSON.stringify({ lessonId, correct, effectiveTotal, passCount, finalScore })); // guard-ok: итог прохода мастерской
-        } else if (completionStatsCounted) {
+        if (completionStatsCounted) {
           console.log('[LESSON-RESULT] retry_skip_stats', JSON.stringify({ lessonId })); // guard-ok: повтор перехода
         } else {
           completionStatsCounted = true;
@@ -3640,7 +3476,7 @@ function LessonScreen() {
             }
           }
           // зачем (владелец 13.10, «почему на итоге нет всех элементов»): список «Ошибки» итога урока (макет practice.html#done) берёт промахи прохода отсюда — до обнуления.
-          if (!workshopActive) rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
+          rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];
           markNextNavigationAsReplace();
           router.replace({
@@ -3656,7 +3492,6 @@ function LessonScreen() {
               // копилку по (lessonId, studyTarget, completionOrdinal) и сам
               // зовёт settle() при монтировании.
               runeCompletionOrdinal: String(passCount + 1),
-              ...(workshopActive ? { workshop: '1' } : {}),
               // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
               resultCorrect: String(correct),
               resultTotal: String(effectiveTotal),
@@ -3673,7 +3508,7 @@ function LessonScreen() {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
           resetShuffleForNextPass();
-          if (!workshopActive) rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
+          rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];
           try {
             markNextNavigationAsReplace();
@@ -3686,7 +3521,6 @@ function LessonScreen() {
                 repeatAttemptId: nextAttemptId,
                 passed: finalScore >= 2.5 ? '1' : '0',
                 runeCompletionOrdinal: String(passCount + 1),
-                ...(workshopActive ? { workshop: '1' } : {}),
                 // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
                 resultCorrect: String(correct),
                 resultTotal: String(effectiveTotal),
@@ -4054,10 +3888,9 @@ function LessonScreen() {
   useEffect(() => {
     if (lessonId < 1 || lessonId > 32) return;
     lastOpenedSyncedRef.current = false;
-  }, [lessonId]);
+  }, [lessonId, studyTarget]);
   useEffect(() => {
-    // зачем (мастерская фраз): «последний открытый урок» и карточка «Продолжить» на Главной — про старый курс, не про мастерскую
-    if (workshopActive || lessonId < 1 || lessonId > 32) return;
+    if (lessonId < 1 || lessonId > 32 || !isCurrentAccountGeneration(accountToken)) return;
     // зачем (аудит R58 #7, координатор 15.10): прежде ранний выход по lastOpenedSyncedRef глушил ВСЕ обновления после входа —
     // карточка «Продолжить» на Главной оставалась с прогрессом момента входа. Диск и отметка времени — один раз на урок,
     // а снимок в памяти и событие для живой Главной — на каждое изменение correctCount (дёшево: без диска и сети).
@@ -4078,7 +3911,7 @@ function LessonScreen() {
       score: homeScore,
       studyTarget,
     });
-  }, [lessonId, studyTarget, correctCount, workshopActive]);
+  }, [accountToken, lessonId, studyTarget, correctCount]);
 
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');
@@ -4138,7 +3971,6 @@ function LessonScreen() {
   }, [medalToastAnim]);
 
   useEffect(() => {
-    if (workshopActive) return; // зачем (мастерская фраз): медали — часть старого курса
     const current = getMedalTier(score);
     if (!medalToastInitializedRef.current) {
       // On screen open/restored progress, sync baseline without showing toast.
@@ -4159,7 +3991,7 @@ function LessonScreen() {
       }
       prevMedalTierRef.current = current;
     }
-  }, [score, correctCount, showMedalToast, workshopActive]);
+  }, [score, correctCount, showMedalToast]);
   // ────────────────────────────────────────────────────────────────────────────
 
   // Жёлтая подсветка для поля ввода когда 0 слов + тап
@@ -4257,6 +4089,7 @@ function LessonScreen() {
             introGateReady={introGateReady}
             lessonId={lessonId}
             topicLessonId={activeTopicLessonId}
+            isComboLesson={comboActive}
             compact={compact}
             isSmallScreen={isSmallScreen}
             phrase={lessonHydrated ? phrase : null}
@@ -4283,8 +4116,6 @@ function LessonScreen() {
             currentMaxEnergy={currentMaxEnergy}
             attemptsRemaining={attempts.state.remainingAttempts}
             attemptsEnergy={attempts}
-            workshopTitle={workshopActive ? phraseWorkshopText(lang, 'title') : undefined}
-            workshopTheory={workshopTheory}
             practiceRunesEarned={practiceRunes.runes}
             runeFlightOriginRef={runeFlight.originRef}
             runeFlightCounterRef={runeFlight.counterRef}

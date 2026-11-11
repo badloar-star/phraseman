@@ -155,25 +155,6 @@
    ]
   },
   {
-   "form": "ana",
-   "surface": "Ana",
-   "count": 4,
-   "examples": [
-    {
-     "id": "es:01:13",
-     "target": "Ana está en casa",
-     "ru": "Ана дома.",
-     "en": "Ana is at home."
-    },
-    {
-     "id": "es:01:29",
-     "target": "Ana y Luis están aquí",
-     "ru": "Ана и Луис здесь.",
-     "en": "Ana and Luis are here."
-    }
-   ]
-  },
-  {
    "form": "ella",
    "surface": "Ella",
    "count": 3,
@@ -189,25 +170,6 @@
      "target": "Ella está allí",
      "ru": "Она вон там.",
      "en": "She is over there."
-    }
-   ]
-  },
-  {
-   "form": "luis",
-   "surface": "Luis",
-   "count": 4,
-   "examples": [
-    {
-     "id": "es:01:14",
-     "target": "Luis está en clase",
-     "ru": "Луис на занятии.",
-     "en": "Luis is in class."
-    },
-    {
-     "id": "es:01:29",
-     "target": "Ana y Luis están aquí",
-     "ru": "Ана и Луис здесь.",
-     "en": "Ana and Luis are here."
     }
    ]
   },

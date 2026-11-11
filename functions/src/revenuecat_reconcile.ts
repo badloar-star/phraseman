@@ -128,7 +128,6 @@ function mapSubscriptionToSyntheticEvent(
     type: 'RENEWAL',
     app_id: authoritativeAppId,
     app_user_id: ownerUid,
-    original_app_user_id: ownerUid,
     aliases: [],
     product_id: productId,
     entitlement_ids: ['premium'],
@@ -224,7 +223,6 @@ function mapLifetimePurchaseToSyntheticEvent(
     type: 'NON_RENEWING_PURCHASE',
     app_id: authoritativeAppId,
     app_user_id: ownerUid,
-    original_app_user_id: ownerUid,
     aliases: [],
     product_id: productId,
     entitlement_ids: ['premium'],
@@ -296,7 +294,11 @@ async function reconcileLifetimePurchase(
     return { applied: false, reason: 'no_verified_subscription_or_lifetime' };
   }
   const event = mapLifetimePurchaseToSyntheticEvent(stableUid, found.purchase, storeIdentifier, text(productPayload?.app_id, 128));
-  const outcome = await apply(event, String(event.type), String(event.product_id));
+  const outcome = await apply(event, String(event.type), String(event.product_id), {
+    kind: 'synthetic_reconcile',
+    requesterCanonicalUid: stableUid,
+    source: 'lifetime',
+  });
   const existingStoreProjectionActive = outcome.statusCode === 200
     && outcome.body.reason === 'duplicate'
     && await hasActiveStorePremiumProjection(db, stableUid, Date.now());
@@ -545,6 +547,11 @@ async function reconcileMine(
       event,
       String(event.type),
       String(event.product_id),
+      {
+        kind: 'synthetic_reconcile',
+        requesterCanonicalUid: stableUid,
+        source: 'subscription',
+      },
     );
     const existingStoreProjectionActive = outcome.statusCode === 200
       && outcome.body.reason === 'duplicate'

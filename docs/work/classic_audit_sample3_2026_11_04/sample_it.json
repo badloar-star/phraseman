@@ -19,11 +19,11 @@
 {
 "correct": "a",
 "distractors": [
-"in",
 "di",
 "per",
 "su",
-"da"
+"da",
+"sotto"
 ]
 },
 {
@@ -51,11 +51,11 @@
 {
 "correct": "Loro",
 "distractors": [
-"Lei",
 "Mia",
 "Tuo",
 "Mio",
-"Sua"
+"Sua",
+"Io"
 ]
 },
 {
@@ -103,11 +103,11 @@
 {
 "correct": "Le",
 "distractors": [
+"Il",
+"La",
 "Ci",
-"Mi",
-"Si",
-"Ti",
-"È"
+"Un",
+"Una"
 ]
 },
 {
@@ -141,11 +141,7 @@
 ]
 }
 ],
-"alternatives": [
-"Le porti sono aperte.",
-"Le porte siete aperte.",
-"Le porte sono aperti."
-]
+"alternatives": []
 },
 {
 "lesson": 1,
@@ -170,8 +166,8 @@
 "lì",
 "qui",
 "fuori",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 },
 {
@@ -187,11 +183,11 @@
 {
 "correct": "porta",
 "distractors": [
-"porti",
 "casa",
 "borsa",
 "strada",
-"cena"
+"cena",
+"zuppa"
 ]
 }
 ],
@@ -212,8 +208,8 @@
 "Già",
 "Ancora",
 "Lavora",
-"Posto",
-"Alla"
+"Mia",
+"Posto"
 ]
 },
 {
@@ -230,10 +226,10 @@
 "correct": "pronto",
 "distractors": [
 "pronti",
-"pronta",
 "stanco",
 "stanchi",
-"stanca"
+"stanca",
+"pronte"
 ]
 }
 ],
@@ -246,7 +242,7 @@
 "id": "it:02:19",
 "target": "Non siete in ritardo.",
 "ru": "Вы не опоздали.",
-"uk": "Ти не запізнився.",
+"uk": "Ви не запізнилися.",
 "tiles": [
 {
 "correct": "Non",
@@ -254,8 +250,8 @@
 "Già",
 "Ancora",
 "Lavora",
-"Posto",
-"Alla"
+"Mia",
+"Posto"
 ]
 },
 {
@@ -290,9 +286,7 @@
 }
 ],
 "alternatives": [
-"Voi non siete in ritardo.",
-"Non sono in ritardo.",
-"Voi non sono in ritardo."
+"Voi non siete in ritardo."
 ]
 },
 {
@@ -305,11 +299,11 @@
 {
 "correct": "I",
 "distractors": [
-"Ci",
-"Mi",
-"Si",
-"Ti",
-"Lì"
+"Il",
+"La",
+"Gli",
+"Una",
+"Un"
 ]
 },
 {
@@ -327,9 +321,9 @@
 "distractors": [
 "già",
 "ancora",
-"che",
-"di",
-"po’"
+"po’",
+"molto",
+"quante"
 ]
 },
 {
@@ -363,9 +357,7 @@
 ]
 }
 ],
-"alternatives": [
-"I bagni non siete in fondo."
-]
+"alternatives": []
 },
 {
 "lesson": 2,
@@ -377,11 +369,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
+"Un",
+"I",
 "Ci",
-"Ti",
-"Si",
-"Mi",
-"Sei"
+"Ti"
 ]
 },
 {
@@ -399,9 +391,9 @@
 "distractors": [
 "già",
 "ancora",
-"che",
-"di",
-"po’"
+"po’",
+"molto",
+"quante"
 ]
 },
 {
@@ -420,14 +412,12 @@
 "qui",
 "vicino",
 "lì",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 }
 ],
-"alternatives": [
-"La bicicletta non sei fuori."
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -439,11 +429,11 @@
 {
 "correct": "La",
 "distractors": [
-"Ci",
-"Mi",
-"Si",
-"Ti",
-"Ai"
+"Il",
+"Un",
+"I",
+"Le",
+"Che"
 ]
 },
 {
@@ -460,10 +450,10 @@
 "correct": "è",
 "distractors": [
 "siamo",
-"con",
-"di",
-"in",
-"per"
+"ci",
+"c’è",
+"stazione",
+"chiavi"
 ]
 },
 {
@@ -477,11 +467,7 @@
 ]
 }
 ],
-"alternatives": [
-"La porti è aperta?",
-"La porta sei aperta?",
-"La porta è aperti?"
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -493,11 +479,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
 "Si",
-"Ci",
-"Mi",
-"Ti",
-"Ai"
+"Un",
+"Che",
+"E"
 ]
 },
 {
@@ -531,10 +517,7 @@
 ]
 }
 ],
-"alternatives": [
-"La camera sei pulita?",
-"La camera è puliti?"
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -546,11 +529,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
+"I",
 "Si",
-"Ci",
-"Mi",
-"Ti",
-"Ai"
+"Che",
+"E"
 ]
 },
 {
@@ -584,9 +567,7 @@
 ]
 }
 ],
-"alternatives": [
-"La borsa sei sull’autobus?"
-]
+"alternatives": []
 },
 {
 "lesson": 3,
@@ -598,11 +579,11 @@
 {
 "correct": "Il",
 "distractors": [
-"Ci",
-"Si",
-"Mi",
-"Ti",
-"Del"
+"La",
+"Gli",
+"Le",
+"I",
+"Che"
 ]
 },
 {
@@ -619,20 +600,20 @@
 "correct": "è",
 "distractors": [
 "siamo",
-"per",
-"di",
-"in",
-"a"
+"ci",
+"c’è",
+"stazione",
+"chiavi"
 ]
 },
 {
 "correct": "su",
 "distractors": [
 "in",
-"a",
 "di",
 "per",
-"da"
+"da",
+"con"
 ]
 },
 {
@@ -656,9 +637,7 @@
 ]
 }
 ],
-"alternatives": [
-"Il treno sei su questo binario?"
-]
+"alternatives": []
 },
 {
 "lesson": 4,
@@ -671,10 +650,10 @@
 "correct": "Questa",
 "distractors": [
 "Qui",
-"Vicino",
-"Borsa",
-"Fuori",
-"Lì"
+"Quanto",
+"Chi",
+"Cosa",
+"Quale"
 ]
 },
 {
@@ -691,10 +670,10 @@
 "correct": "mia",
 "distractors": [
 "tuo",
-"mio",
 "sua",
 "nostra",
-"suo"
+"suo",
+"miei"
 ]
 },
 {
@@ -708,10 +687,7 @@
 ]
 }
 ],
-"alternatives": [
-"Questi è mia sorella.",
-"Questa sei mia sorella."
-]
+"alternatives": []
 },
 {
 "lesson": 4,
@@ -724,10 +700,10 @@
 "correct": "Queste",
 "distractors": [
 "Qui",
-"Vicino",
-"Fuori",
-"Lì",
-"Sotto"
+"Quanto",
+"Chi",
+"Cosa",
+"Quale"
 ]
 },
 {
@@ -744,10 +720,10 @@
 "correct": "delle",
 "distractors": [
 "del",
+"dei",
+"degli",
 "che",
-"per",
-"con",
-"in"
+"e"
 ]
 },
 {
@@ -761,10 +737,7 @@
 ]
 }
 ],
-"alternatives": [
-"Questi sono delle foto.",
-"Queste siete delle foto."
-]
+"alternatives": []
 },
 {
 "lesson": 4,
@@ -777,10 +750,10 @@
 "correct": "Questo",
 "distractors": [
 "Qui",
-"Vicino",
-"Borsa",
-"Fuori",
-"Lì"
+"Quanto",
+"Chi",
+"Cosa",
+"Quale"
 ]
 },
 {
@@ -814,9 +787,7 @@
 ]
 }
 ],
-"alternatives": [
-"Questo sei l’indirizzo giusto."
-]
+"alternatives": []
 },
 {
 "lesson": 4,
@@ -829,10 +800,10 @@
 "correct": "Questa",
 "distractors": [
 "Qui",
-"Vicino",
-"Fuori",
-"Lì",
-"Sotto"
+"Quanto",
+"Chi",
+"Cosa",
+"Quale"
 ]
 },
 {
@@ -840,9 +811,9 @@
 "distractors": [
 "già",
 "ancora",
-"che",
-"di",
-"po’"
+"po’",
+"molto",
+"quante"
 ]
 },
 {
@@ -858,21 +829,21 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"i",
+"un",
 "mi",
-"che",
-"per",
-"con",
-"di"
+"che"
 ]
 },
 {
 "correct": "mia",
 "distractors": [
-"mio",
 "tuo",
 "nostri",
 "nostra",
-"loro"
+"loro",
+"sua"
 ]
 },
 {
@@ -886,10 +857,7 @@
 ]
 }
 ],
-"alternatives": [
-"Questi non è la mia borsa.",
-"Questa non sei la mia borsa."
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -929,9 +897,7 @@
 ]
 }
 ],
-"alternatives": [
-"Paolo hai paura."
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -976,8 +942,8 @@
 "anni",
 "posti",
 "hai",
-"bambini",
-"occhiali"
+"occhiali",
+"abbiamo"
 ]
 }
 ],
@@ -1017,9 +983,9 @@
 "distractors": [
 "in",
 "a",
-"che",
 "per",
-"con"
+"con",
+"da"
 ]
 },
 {
@@ -1047,11 +1013,11 @@
 {
 "correct": "Lo",
 "distractors": [
-"Ci",
-"Si",
-"Mi",
-"Ti",
-"Sei"
+"Il",
+"La",
+"I",
+"Una",
+"Ci"
 ]
 },
 {
@@ -1095,9 +1061,7 @@
 ]
 }
 ],
-"alternatives": [
-"Lo zaino sei sulla sedia."
-]
+"alternatives": []
 },
 {
 "lesson": 6,
@@ -1109,11 +1073,11 @@
 {
 "correct": "I",
 "distractors": [
-"Ci",
-"Mi",
-"Si",
-"Ti",
-"Lì"
+"Il",
+"La",
+"Le",
+"Un",
+"Che"
 ]
 },
 {
@@ -1157,9 +1121,7 @@
 ]
 }
 ],
-"alternatives": [
-"I guanti siete nella borsa."
-]
+"alternatives": []
 },
 {
 "lesson": 6,
@@ -1219,25 +1181,23 @@
 ]
 }
 ],
-"alternatives": [
-"L’ultimo treno sei al binario."
-]
+"alternatives": []
 },
 {
 "lesson": 7,
 "id": "it:07:18",
 "target": "Tu ascolti la radio.",
 "ru": "Ты слушаешь радио.",
-"uk": "Ви слухаєте радіо.",
+"uk": "Ти слухаєш радіо.",
 "tiles": [
 {
 "correct": "Tu",
 "distractors": [
-"Lei",
 "Loro",
 "Lui",
 "Io",
-"Noi"
+"Noi",
+"Voi"
 ]
 },
 {
@@ -1253,11 +1213,11 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"un",
 "ci",
 "si",
-"che",
-"per",
-"con"
+"i"
 ]
 },
 {
@@ -1296,10 +1256,10 @@
 "correct": "cerca",
 "distractors": [
 "cerchi",
-"cerco",
 "cercano",
 "cerchiamo",
-"cercate"
+"casa",
+"camera"
 ]
 },
 {
@@ -1328,20 +1288,20 @@
 "correct": "Lascio",
 "distractors": [
 "Fondo",
+"Biglietto",
 "L’ufficio",
 "Pronto",
-"Libero",
-"Silenzioso"
+"Libero"
 ]
 },
 {
 "correct": "un",
 "distractors": [
+"la",
+"una",
+"i",
 "che",
-"con",
-"di",
-"in",
-"a"
+"e"
 ]
 },
 {
@@ -1357,11 +1317,11 @@
 {
 "correct": "per",
 "distractors": [
-"a",
 "in",
 "di",
 "con",
-"da"
+"da",
+"sotto"
 ]
 },
 {
@@ -1390,10 +1350,10 @@
 "correct": "Quando",
 "distractors": [
 "Se",
-"Chi",
 "Che",
-"Prima",
-"Dopo"
+"Come",
+"Perché",
+"E"
 ]
 },
 {
@@ -1413,7 +1373,7 @@
 "di",
 "per",
 "da",
-"che"
+"sotto"
 ]
 },
 {
@@ -1437,9 +1397,7 @@
 ]
 }
 ],
-"alternatives": [
-"Quando torni a casa Lea?"
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -1471,11 +1429,11 @@
 {
 "correct": "il",
 "distractors": [
-"che",
-"per",
-"con",
-"di",
-"in"
+"una",
+"la",
+"i",
+"gli",
+"che"
 ]
 },
 {
@@ -1515,17 +1473,17 @@
 "Di",
 "Per",
 "Senza",
-"Che"
+"Da"
 ]
 },
 {
 "correct": "chi",
 "distractors": [
-"quando",
-"come",
 "quanto",
 "quale",
-"perché"
+"dove",
+"prima",
+"cosa"
 ]
 },
 {
@@ -1551,11 +1509,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
+"Le",
+"Gli",
 "Si",
-"Ci",
-"Mi",
-"Ti",
-"Ai"
+"Che"
 ]
 },
 {
@@ -1594,8 +1552,8 @@
 "lì",
 "qui",
 "vicino",
-"sopra",
-"sotto"
+"lontano",
+"questo"
 ]
 }
 ],
@@ -1605,27 +1563,27 @@
 "lesson": 9,
 "id": "it:09:43",
 "target": "Il mio posto è accanto al tuo.",
-"ru": "Моё место рядом с вашим.",
+"ru": "Моё место рядом с твоим.",
 "uk": "Моє місце поруч з твоїм.",
 "tiles": [
 {
 "correct": "Il",
 "distractors": [
-"Ci",
-"Si",
-"Mi",
-"Ti",
-"Del"
+"La",
+"Le",
+"I",
+"Una",
+"Che"
 ]
 },
 {
 "correct": "mio",
 "distractors": [
-"mia",
 "vostri",
 "sua",
 "loro",
-"tua"
+"tua",
+"suo"
 ]
 },
 {
@@ -1662,10 +1620,10 @@
 "correct": "al",
 "distractors": [
 "alla",
-"allo",
 "ai",
 "casa",
-"borsa"
+"borsa",
+"stanza"
 ]
 },
 {
@@ -1701,11 +1659,11 @@
 {
 "correct": "le",
 "distractors": [
+"il",
+"la",
+"una",
 "ci",
-"si",
-"che",
-"per",
-"con"
+"si"
 ]
 },
 {
@@ -1833,11 +1791,11 @@
 {
 "correct": "una",
 "distractors": [
+"il",
+"un",
+"i",
 "che",
-"e",
-"per",
-"con",
-"in"
+"e"
 ]
 },
 {
@@ -1855,9 +1813,9 @@
 "distractors": [
 "in",
 "a",
-"che",
-"come",
-"più"
+"per",
+"con",
+"da"
 ]
 },
 {
@@ -1876,8 +1834,8 @@
 "qui",
 "lì",
 "fuori",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 },
 {
@@ -1913,11 +1871,11 @@
 {
 "correct": "Tu",
 "distractors": [
-"Lei",
 "Loro",
 "Lui",
 "Io",
-"Noi"
+"Noi",
+"Voi"
 ]
 },
 {
@@ -2017,11 +1975,11 @@
 {
 "correct": "Loro",
 "distractors": [
-"Lei",
 "Mia",
 "Suo",
 "Io",
-"Nostra"
+"Nostra",
+"Tu"
 ]
 },
 {
@@ -2069,21 +2027,21 @@
 {
 "correct": "Lui",
 "distractors": [
-"Lei",
 "Loro",
 "Io",
 "Tu",
-"Voi"
+"Voi",
+"Noi"
 ]
 },
 {
 "correct": "compra",
 "distractors": [
 "compriamo",
-"compro",
 "compri",
-"riso",
-"farina"
+"farina",
+"zuppa",
+"rimasta"
 ]
 },
 {
@@ -2124,8 +2082,8 @@
 "del",
 "dei",
 "delle",
-"dello",
-"degli"
+"degli",
+"siamo"
 ]
 },
 {
@@ -2186,18 +2144,18 @@
 "in",
 "di",
 "per",
-"da",
-"che"
+"fra",
+"da"
 ]
 },
 {
 "correct": "il",
 "distractors": [
-"che",
-"e",
-"per",
-"di",
-"in"
+"la",
+"le",
+"una",
+"lo",
+"che"
 ]
 },
 {
@@ -2225,11 +2183,11 @@
 {
 "correct": "Il",
 "distractors": [
-"E",
-"Ci",
-"Si",
-"Mi",
-"Ti"
+"La",
+"Le",
+"I",
+"Una",
+"Che"
 ]
 },
 {
@@ -2263,9 +2221,7 @@
 ]
 }
 ],
-"alternatives": [
-"Il lenzuolo sei bianco."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -2277,11 +2233,11 @@
 {
 "correct": "Lavora",
 "distractors": [
-"Lavoro",
 "Lavori",
 "Lavoriamo",
 "Lavorano",
-"Lavorate"
+"Lavorate",
+"Ascoltiamo"
 ]
 },
 {
@@ -2297,11 +2253,11 @@
 {
 "correct": "una",
 "distractors": [
+"il",
+"un",
+"i",
 "che",
-"e",
-"per",
-"con",
-"di"
+"e"
 ]
 },
 {
@@ -2337,11 +2293,11 @@
 {
 "correct": "Le",
 "distractors": [
+"Il",
+"La",
+"Un",
 "Si",
-"E",
-"Ci",
-"Mi",
-"Ti"
+"Che"
 ]
 },
 {
@@ -2385,9 +2341,7 @@
 ]
 }
 ],
-"alternatives": [
-"Le nuove sedie siete robuste."
-]
+"alternatives": []
 },
 {
 "lesson": 14,
@@ -2435,7 +2389,7 @@
 "Puoi",
 "Potete",
 "Possono",
-"Potremmo"
+"Bisogno"
 ]
 },
 {
@@ -2463,11 +2417,11 @@
 {
 "correct": "Non",
 "distractors": [
+"Più",
 "Già",
 "Ancora",
-"Lavora",
-"Posto",
-"Stanno"
+"Quante",
+"Chi"
 ]
 },
 {
@@ -2503,11 +2457,11 @@
 {
 "correct": "il",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"di"
+"la",
+"lo",
+"le",
+"i",
+"che"
 ]
 },
 {
@@ -2517,7 +2471,7 @@
 "pagare",
 "restare",
 "camicie",
-"bene"
+"insieme"
 ]
 }
 ],
@@ -2553,11 +2507,11 @@
 {
 "correct": "i",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"di"
+"il",
+"la",
+"un",
+"una",
+"gli"
 ]
 },
 {
@@ -2598,18 +2552,18 @@
 "più",
 "ancora",
 "già",
-"mai",
-"che"
+"po’",
+"molto"
 ]
 },
 {
 "correct": "sta",
 "distractors": [
 "stiamo",
-"sto",
 "mangiando",
 "aspettando",
-"cercando"
+"cercando",
+"mappa"
 ]
 },
 {
@@ -2625,11 +2579,11 @@
 {
 "correct": "la",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"di"
+"il",
+"un",
+"i",
+"lo",
+"le"
 ]
 },
 {
@@ -2643,10 +2597,7 @@
 ]
 }
 ],
-"alternatives": [
-"Luis non stai aprendo la porta.",
-"Luis non sta aprendo la porti."
-]
+"alternatives": []
 },
 {
 "lesson": 15,
@@ -2669,10 +2620,10 @@
 "correct": "sta",
 "distractors": [
 "stiamo",
-"sto",
 "mangiando",
 "aspettando",
-"cercando"
+"cercando",
+"mappa"
 ]
 },
 {
@@ -2688,11 +2639,11 @@
 {
 "correct": "il",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"di"
+"la",
+"i",
+"una",
+"lo",
+"che"
 ]
 },
 {
@@ -2706,9 +2657,7 @@
 ]
 }
 ],
-"alternatives": [
-"Luis stai portando il sacchetto?"
-]
+"alternatives": []
 },
 {
 "lesson": 16,
@@ -2723,8 +2672,8 @@
 "Questa",
 "Questo",
 "Queste",
-"Bagni",
-"Chiavi"
+"Quanto",
+"Bagni"
 ]
 },
 {
@@ -2733,15 +2682,13 @@
 "lì",
 "vicino",
 "fuori",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 }
 ],
 "alternatives": [
-"Resti qua!",
-"Resta qui!",
-"Resta qua!"
+"Resti qua!"
 ]
 },
 {
@@ -2764,11 +2711,11 @@
 {
 "correct": "la",
 "distractors": [
-"ci",
-"che",
-"e",
-"per",
-"con"
+"il",
+"un",
+"gli",
+"i",
+"ci"
 ]
 },
 {
@@ -2812,25 +2759,23 @@
 ]
 }
 ],
-"alternatives": [
-"Prendi la seconda strada a destra."
-]
+"alternatives": []
 },
 {
 "lesson": 16,
 "id": "it:16:39",
 "target": "Non aspetti vicino all’uscita!",
-"ru": "Не ждите перед выходом!",
-"uk": "Не чекайте перед виходом!",
+"ru": "Не ждите возле выхода!",
+"uk": "Не чекайте біля виходу!",
 "tiles": [
 {
 "correct": "Non",
 "distractors": [
+"Più",
 "Già",
 "Ancora",
 "Mai",
-"Lavora",
-"Posto"
+"Quante"
 ]
 },
 {
@@ -2849,8 +2794,8 @@
 "lì",
 "qui",
 "fuori",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 },
 {
@@ -2864,9 +2809,7 @@
 ]
 }
 ],
-"alternatives": [
-"Non aspetta vicino all’uscita!"
-]
+"alternatives": []
 },
 {
 "lesson": 17,
@@ -2972,7 +2915,7 @@
 "più",
 "ancora",
 "mai",
-"che"
+"po’"
 ]
 },
 {
@@ -3020,11 +2963,11 @@
 {
 "correct": "Non",
 "distractors": [
+"Più",
 "Già",
 "Ancora",
-"Lavora",
-"Posto",
-"Stanno"
+"Quante",
+"Chi"
 ]
 },
 {
@@ -3053,8 +2996,8 @@
 "già",
 "più",
 "ancora",
-"che",
-"di"
+"po’",
+"molto"
 ]
 }
 ],
@@ -3090,11 +3033,11 @@
 {
 "correct": "un",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"la",
+"una",
+"gli",
+"i",
+"che"
 ]
 },
 {
@@ -3116,8 +3059,8 @@
 "lesson": 18,
 "id": "it:18:17",
 "target": "Ho dimenticato l’ombrello.",
-"ru": "Я забыла зонт.",
-"uk": "Я забув свою парасольку.",
+"ru": "Я забыл зонт.",
+"uk": "Я забув парасольку.",
 "tiles": [
 {
 "correct": "Ho",
@@ -3184,11 +3127,11 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"le",
+"un",
 "ci",
-"che",
-"e",
-"per",
-"con"
+"che"
 ]
 },
 {
@@ -3213,8 +3156,7 @@
 }
 ],
 "alternatives": [
-"Voi avete scelto la camera blu.",
-"Hanno scelto la camera blu."
+"Voi avete scelto la camera blu."
 ]
 },
 {
@@ -3227,11 +3169,11 @@
 {
 "correct": "Le",
 "distractors": [
-"E",
-"Ci",
-"Mi",
-"Si",
-"Ti"
+"Il",
+"Un",
+"La",
+"Gli",
+"Che"
 ]
 },
 {
@@ -3295,11 +3237,7 @@
 ]
 }
 ],
-"alternatives": [
-"Le mie sorelle siete andate al concerto.",
-"Le mie sorelle sono vanno al concerto.",
-"Le mie sorelle sono andati al concerto."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
@@ -3359,25 +3297,23 @@
 ]
 }
 ],
-"alternatives": [
-"Paolo sei entrato in garage."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
 "id": "it:19:34",
 "target": "I clienti non sono entrati.",
-"ru": "Клиентки не вошли.",
-"uk": "Клієнтки не увійшли.",
+"ru": "Клиенты не вошли.",
+"uk": "Клієнти не увійшли.",
 "tiles": [
 {
 "correct": "I",
 "distractors": [
-"E",
-"Ci",
-"Mi",
-"Si",
-"Ti"
+"Il",
+"La",
+"Una",
+"Le",
+"Lo"
 ]
 },
 {
@@ -3421,10 +3357,7 @@
 ]
 }
 ],
-"alternatives": [
-"I clienti non siete entrati.",
-"I clienti non sono entrata."
-]
+"alternatives": []
 },
 {
 "lesson": 20,
@@ -3436,11 +3369,11 @@
 {
 "correct": "Il",
 "distractors": [
-"E",
-"Ci",
-"Si",
-"Mi",
-"Ti"
+"La",
+"Gli",
+"Una",
+"I",
+"Le"
 ]
 },
 {
@@ -3456,11 +3389,11 @@
 {
 "correct": "era",
 "distractors": [
-"ero",
 "eravamo",
-"siamo",
 "casa",
-"nella"
+"nella",
+"stava",
+"siamo"
 ]
 },
 {
@@ -3486,11 +3419,11 @@
 {
 "correct": "Il",
 "distractors": [
-"E",
-"Ci",
-"Si",
-"Mi",
-"Ti"
+"La",
+"Una",
+"Gli",
+"Le",
+"Che"
 ]
 },
 {
@@ -3516,11 +3449,11 @@
 {
 "correct": "i",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"la",
+"le",
+"un",
+"lo",
+"che"
 ]
 },
 {
@@ -3658,9 +3591,9 @@
 "distractors": [
 "che",
 "se",
-"chi",
-"dove",
-"prima"
+"come",
+"perché",
+"e"
 ]
 },
 {
@@ -3690,7 +3623,7 @@
 "per",
 "di",
 "da",
-"che"
+"sotto"
 ]
 },
 {
@@ -3718,11 +3651,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
 "Ci",
 "Si",
 "Mi",
-"E",
-"Ti"
+"Che"
 ]
 },
 {
@@ -3758,11 +3691,11 @@
 {
 "correct": "una",
 "distractors": [
+"il",
+"le",
 "che",
 "e",
-"per",
-"con",
-"senza"
+"per"
 ]
 },
 {
@@ -3779,10 +3712,10 @@
 "correct": "quando",
 "distractors": [
 "che",
-"chi",
-"prima",
-"dove",
-"se"
+"se",
+"come",
+"perché",
+"e"
 ]
 },
 {
@@ -3818,11 +3751,11 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"le",
+"lo",
 "che",
-"e",
-"per",
-"con",
-"senza"
+"e"
 ]
 },
 {
@@ -3836,11 +3769,7 @@
 ]
 }
 ],
-"alternatives": [
-"La radio stavi trasmettendo una canzone quando è andata via la corrente.",
-"La radio stava trasmettendo una canzone quando sei andata via la corrente.",
-"La radio stava trasmettendo una canzone quando è andati via la corrente."
-]
+"alternatives": []
 },
 {
 "lesson": 21,
@@ -3852,11 +3781,11 @@
 {
 "correct": "Il",
 "distractors": [
-"E",
-"Ci",
-"Si",
-"Mi",
-"Ti"
+"La",
+"I",
+"Una",
+"Uno",
+"Che"
 ]
 },
 {
@@ -3873,10 +3802,10 @@
 "correct": "era",
 "distractors": [
 "erano",
-"ero",
 "eravamo",
-"siamo",
-"casa"
+"casa",
+"nella",
+"libero"
 ]
 },
 {
@@ -3903,10 +3832,10 @@
 "correct": "quando",
 "distractors": [
 "che",
-"dove",
-"chi",
-"prima",
-"se"
+"se",
+"come",
+"perché",
+"e"
 ]
 },
 {
@@ -3942,11 +3871,11 @@
 {
 "correct": "Le",
 "distractors": [
+"La",
+"Il",
 "Ti",
 "Ci",
-"E",
-"Ma",
-"Mi"
+"Che"
 ]
 },
 {
@@ -3962,21 +3891,21 @@
 {
 "correct": "le",
 "distractors": [
+"il",
+"la",
 "mi",
-"che",
-"e",
-"per",
-"senza"
+"un",
+"che"
 ]
 },
 {
 "correct": "porto",
 "distractors": [
-"porta",
 "portano",
 "porti",
-"casa",
-"borsa"
+"aperta",
+"chiusa",
+"chiuso"
 ]
 },
 {
@@ -3986,7 +3915,7 @@
 "di",
 "per",
 "da",
-"che"
+"sotto"
 ]
 },
 {
@@ -4045,11 +3974,11 @@
 {
 "correct": "La",
 "distractors": [
+"Il",
 "Ci",
+"Gli",
 "Si",
-"Ti",
-"E",
-"Ma"
+"Ti"
 ]
 },
 {
@@ -4117,11 +4046,11 @@
 {
 "correct": "Le",
 "distractors": [
-"Ne",
+"La",
+"Il",
 "Ti",
 "Ci",
-"E",
-"Ma"
+"Che"
 ]
 },
 {
@@ -4137,11 +4066,11 @@
 {
 "correct": "una",
 "distractors": [
+"il",
 "che",
 "e",
 "per",
-"con",
-"senza"
+"con"
 ]
 },
 {
@@ -4157,21 +4086,21 @@
 {
 "correct": "prima",
 "distractors": [
-"che",
-"quando",
-"perché",
-"se",
-"dopo"
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
 ]
 },
 {
 "correct": "di",
 "distractors": [
 "in",
-"che",
-"più",
-"come",
-"per"
+"per",
+"con",
+"da",
+"sotto"
 ]
 },
 {
@@ -4191,7 +4120,7 @@
 "per",
 "senza",
 "da",
-"su"
+"sotto"
 ]
 },
 {
@@ -4220,10 +4149,10 @@
 "correct": "Non",
 "distractors": [
 "Già",
+"Più",
 "Ancora",
 "Anche",
-"Mai",
-"Sempre"
+"Mai"
 ]
 },
 {
@@ -4254,7 +4183,7 @@
 "id": "it:23:42",
 "target": "Abbiamo proposto loro un’altra data.",
 "ru": "Мы предложили им другую дату.",
-"uk": "Ми запропонували їм інше побачення.",
+"uk": "Ми запропонували їм іншу дату.",
 "tiles": [
 {
 "correct": "Abbiamo",
@@ -4371,11 +4300,11 @@
 {
 "correct": "Il",
 "distractors": [
-"Ma",
-"Ne",
-"Si",
-"Mi",
-"Ti"
+"Una",
+"La",
+"Le",
+"Lo",
+"Che"
 ]
 },
 {
@@ -4411,11 +4340,11 @@
 {
 "correct": "e",
 "distractors": [
-"questo",
-"miei",
-"bene",
-"quartiere",
-"pane"
+"che",
+"se",
+"quando",
+"mentre",
+"come"
 ]
 },
 {
@@ -4431,11 +4360,11 @@
 {
 "correct": "torno",
 "distractors": [
-"torna",
 "torni",
-"banca",
-"casa",
-"chiavi"
+"chiavi",
+"qui",
+"lui",
+"parco"
 ]
 },
 {
@@ -4461,11 +4390,11 @@
 {
 "correct": "Il",
 "distractors": [
-"Ma",
-"Ci",
-"Ne",
-"Si",
-"Mi"
+"La",
+"I",
+"Le",
+"Una",
+"Che"
 ]
 },
 {
@@ -4481,11 +4410,11 @@
 {
 "correct": "chiude",
 "distractors": [
-"chiudi",
 "chiudo",
 "chiudono",
 "piace",
-"chiave"
+"chiave",
+"pane"
 ]
 },
 {
@@ -4501,11 +4430,11 @@
 {
 "correct": "e",
 "distractors": [
-"dormo",
-"bene",
-"parco",
-"pane",
-"restarci"
+"che",
+"se",
+"quando",
+"mentre",
+"come"
 ]
 },
 {
@@ -4553,9 +4482,9 @@
 "distractors": [
 "In",
 "A",
-"Che",
-"Come",
-"Meno"
+"Per",
+"Con",
+"Da"
 ]
 },
 {
@@ -4643,9 +4572,9 @@
 "distractors": [
 "del",
 "della",
-"dello",
-"che",
-"e"
+"delle",
+"degli",
+"dello"
 ]
 },
 {
@@ -4671,11 +4600,11 @@
 {
 "correct": "il",
 "distractors": [
-"che",
-"e",
-"con",
-"senza",
-"ma"
+"i",
+"la",
+"una",
+"le",
+"uno"
 ]
 },
 {
@@ -4734,8 +4663,8 @@
 "Altri",
 "Qui",
 "Scatoloni",
-"Vicino",
-"Fuori"
+"Quanto",
+"Vicino"
 ]
 },
 {
@@ -4791,22 +4720,15 @@
 {
 "correct": "uno",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"il",
+"la",
+"le",
+"un",
+"che"
 ]
 }
 ],
-"alternatives": [
-"Questa asciugamani sono puliti: puoi prenderne uno.",
-"Queste asciugamani sono puliti: puoi prenderne uno.",
-"Questi asciugamani siete puliti: puoi prenderne uno.",
-"Questi asciugamani sono pulita: puoi prenderne uno.",
-"Questi asciugamani sono pulite: puoi prenderne uno.",
-"Questi asciugamani sono puliti: può prenderne uno."
-]
+"alternatives": []
 },
 {
 "lesson": 26,
@@ -4839,10 +4761,10 @@
 "correct": "più",
 "distractors": [
 "non",
-"che",
 "molto",
 "po’",
-"poco"
+"poco",
+"già"
 ]
 },
 {
@@ -4860,9 +4782,9 @@
 "distractors": [
 "a",
 "in",
-"che",
-"quanto",
-"per"
+"per",
+"con",
+"da"
 ]
 },
 {
@@ -4919,10 +4841,10 @@
 "correct": "più",
 "distractors": [
 "non",
-"che",
-"di",
 "molto",
-"quanto"
+"quanto",
+"già",
+"ancora"
 ]
 },
 {
@@ -4956,9 +4878,7 @@
 ]
 }
 ],
-"alternatives": [
-"Questo maglione sei più economico del cappotto."
-]
+"alternatives": []
 },
 {
 "lesson": 26,
@@ -4980,11 +4900,11 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"le",
 "si",
-"che",
-"e",
-"per",
-"con"
+"un",
+"che"
 ]
 },
 {
@@ -5001,10 +4921,10 @@
 "correct": "più",
 "distractors": [
 "non",
-"che",
-"di",
 "poco",
-"quante"
+"quante",
+"già",
+"ancora"
 ]
 },
 {
@@ -5054,19 +4974,19 @@
 "distractors": [
 "a",
 "in",
-"che",
-"meno",
-"quante"
+"per",
+"con",
+"da"
 ]
 },
 {
 "correct": "un",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"la",
+"le",
+"i",
+"gli",
+"che"
 ]
 },
 {
@@ -5104,29 +5024,29 @@
 "distractors": [
 "Che",
 "Se",
-"Chi",
-"Dove",
-"Cosa"
+"Come",
+"Perché",
+"E"
 ]
 },
 {
 "correct": "riceverò",
 "distractors": [
-"riceverà",
-"biglietti",
 "comprerò",
+"chiederò",
+"biglietti",
 "troverai",
-"verrà"
+"partirò"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"il",
+"i",
 "ci",
-"che",
-"e",
-"per",
-"con"
+"gli",
+"che"
 ]
 },
 {
@@ -5172,11 +5092,11 @@
 {
 "correct": "una",
 "distractors": [
-"che",
-"e",
-"con",
-"senza",
-"ma"
+"il",
+"i",
+"un",
+"le",
+"che"
 ]
 },
 {
@@ -5202,11 +5122,11 @@
 {
 "correct": "la",
 "distractors": [
+"il",
+"un",
 "ci",
 "mi",
-"si",
-"che",
-"e"
+"si"
 ]
 },
 {
@@ -5226,8 +5146,8 @@
 "lesson": 28,
 "id": "it:28:03",
 "target": "Desidera del latte?",
-"ru": "Хочешь молока?",
-"uk": "Хочеш молока?",
+"ru": "Хотите молока?",
+"uk": "Хочете молока?",
 "tiles": [
 {
 "correct": "Desidera",
@@ -5260,16 +5180,14 @@
 ]
 }
 ],
-"alternatives": [
-"Desideri del latte?"
-]
+"alternatives": []
 },
 {
 "lesson": 28,
 "id": "it:28:38",
 "target": "Potrebbe passare dopo la lezione.",
 "ru": "Вы могли бы зайти после занятия.",
-"uk": "Ви можете зайти після заняття.",
+"uk": "Ви могли б зайти після заняття.",
 "tiles": [
 {
 "correct": "Potrebbe",
@@ -5278,7 +5196,7 @@
 "Potremmo",
 "Potrei",
 "Posso",
-"Potessi"
+"Può"
 ]
 },
 {
@@ -5294,21 +5212,21 @@
 {
 "correct": "dopo",
 "distractors": [
-"che",
-"quando",
-"prima",
-"se",
-"perché"
+"di",
+"per",
+"con",
+"a",
+"in"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"il",
 "ne",
+"i",
 "ci",
-"che",
-"e",
-"per"
+"che"
 ]
 },
 {
@@ -5322,9 +5240,7 @@
 ]
 }
 ],
-"alternatives": [
-"Potrebbe passare dopo la lezioni."
-]
+"alternatives": []
 },
 {
 "lesson": 28,
@@ -5340,7 +5256,7 @@
 "Potrei",
 "Potremmo",
 "Posso",
-"Potreste"
+"Può"
 ]
 },
 {
@@ -5356,21 +5272,21 @@
 {
 "correct": "dopo",
 "distractors": [
-"se",
-"che",
-"mentre",
-"prima",
-"quando"
+"di",
+"per",
+"con",
+"a",
+"in"
 ]
 },
 {
 "correct": "le",
 "distractors": [
+"il",
+"la",
 "ne",
-"che",
-"e",
-"per",
-"con"
+"una",
+"gli"
 ]
 },
 {
@@ -5396,11 +5312,11 @@
 {
 "correct": "Il",
 "distractors": [
-"E",
-"Ma",
-"Ci",
-"Ne",
-"Si"
+"La",
+"Una",
+"I",
+"Le",
+"E"
 ]
 },
 {
@@ -5419,8 +5335,8 @@
 "quando",
 "se",
 "mentre",
-"dopo",
-"perché"
+"perché",
+"come"
 ]
 },
 {
@@ -5486,11 +5402,11 @@
 {
 "correct": "I",
 "distractors": [
-"E",
-"Ma",
-"Ci",
-"Ne",
-"Mi"
+"Il",
+"La",
+"Le",
+"Una",
+"Un"
 ]
 },
 {
@@ -5507,20 +5423,20 @@
 "correct": "che",
 "distractors": [
 "se",
-"prima",
 "quando",
 "mentre",
-"dopo"
+"come",
+"perché"
 ]
 },
 {
 "correct": "indosso",
 "distractors": [
-"indossa",
-"stanza",
-"bicicletta",
 "prendo",
-"calda"
+"leggendo",
+"prenotato",
+"dato",
+"cuocendo"
 ]
 },
 {
@@ -5550,17 +5466,17 @@
 "lesson": 29,
 "id": "it:29:40",
 "target": "L’autobus che ci segue è quasi vuoto.",
-"ru": "Следующий автобус почти пустой.",
-"uk": "Автобус, що їде слідом, майже порожній.",
+"ru": "Автобус, который едет за нами, почти пустой.",
+"uk": "Автобус, що їде за нами, майже порожній.",
 "tiles": [
 {
 "correct": "L’autobus",
 "distractors": [
-"Treno",
 "Finestra",
 "Apre",
 "Indosso",
-"Prezzi"
+"Prezzi",
+"Camera"
 ]
 },
 {
@@ -5569,8 +5485,8 @@
 "se",
 "quando",
 "perché",
-"prima",
-"di"
+"mentre",
+"come"
 ]
 },
 {
@@ -5658,9 +5574,9 @@
 "distractors": [
 "se",
 "quando",
-"meno",
-"più",
-"di"
+"mentre",
+"come",
+"perché"
 ]
 },
 {
@@ -5689,8 +5605,8 @@
 "qui",
 "vicino",
 "fuori",
-"sotto",
-"lontano"
+"lontano",
+"questo"
 ]
 }
 ],
@@ -5724,7 +5640,7 @@
 "come",
 "quando",
 "mentre",
-"dopo"
+"perché"
 ]
 },
 {
@@ -5760,21 +5676,21 @@
 {
 "correct": "prima",
 "distractors": [
-"se",
-"mentre",
-"quando",
-"dopo",
-"perché"
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
 ]
 },
 {
 "correct": "di",
 "distractors": [
 "a",
-"meno",
-"più",
 "per",
-"con"
+"con",
+"da",
+"sotto"
 ]
 },
 {
@@ -5812,11 +5728,11 @@
 {
 "correct": "che",
 "distractors": [
-"meno",
-"quante",
-"di",
-"più",
-"se"
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
 ]
 },
 {
@@ -5832,11 +5748,11 @@
 {
 "correct": "un",
 "distractors": [
-"e",
-"per",
-"con",
-"senza",
-"ma"
+"la",
+"le",
+"una",
+"i",
+"e"
 ]
 },
 {
@@ -5858,17 +5774,17 @@
 "lesson": 31,
 "id": "it:31:09",
 "target": "I clienti erano già usciti.",
-"ru": "Клиентки к тому моменту уже вышли.",
-"uk": "Клієнтки на той момент вже вийшли.",
+"ru": "Клиенты к тому моменту уже вышли.",
+"uk": "Клієнти на той момент уже вийшли.",
 "tiles": [
 {
 "correct": "I",
 "distractors": [
-"E",
-"Ma",
-"Ci",
-"Ne",
-"Mi"
+"Il",
+"La",
+"Un",
+"Una",
+"Le"
 ]
 },
 {
@@ -5912,34 +5828,32 @@
 ]
 }
 ],
-"alternatives": [
-"I clienti erano già uscita."
-]
+"alternatives": []
 },
 {
 "lesson": 31,
 "id": "it:31:21",
 "target": "Non avevo visto il cartello.",
-"ru": "Я не видела табличку.",
+"ru": "Я не видел табличку.",
 "uk": "Я не бачив знака.",
 "tiles": [
 {
 "correct": "Non",
 "distractors": [
+"Più",
 "Già",
 "Ancora",
 "Mai",
-"Anche",
-"Sempre"
+"Anche"
 ]
 },
 {
 "correct": "avevo",
 "distractors": [
 "avevamo",
-"aveva",
 "avevi",
 "avevano",
+"avevate",
 "avesse"
 ]
 },
@@ -5956,11 +5870,11 @@
 {
 "correct": "il",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"la",
+"le",
+"gli",
+"i",
+"che"
 ]
 },
 {
@@ -5983,7 +5897,7 @@
 "id": "it:31:27",
 "target": "Lea non era mai scesa in cantina.",
 "ru": "Леа никогда не спускалась в подвал.",
-"uk": "Леа ніколи не ходила до підвалу.",
+"uk": "Леа ніколи не спускалася до підвалу.",
 "tiles": [
 {
 "correct": "Lea",
@@ -6008,11 +5922,11 @@
 {
 "correct": "era",
 "distractors": [
-"ero",
 "eravamo",
-"sarebbe",
-"fossero",
-"fossi"
+"casa",
+"nella",
+"stava",
+"siamo"
 ]
 },
 {
@@ -6056,9 +5970,7 @@
 ]
 }
 ],
-"alternatives": [
-"Lea non era mai scesi in cantina."
-]
+"alternatives": []
 },
 {
 "lesson": 32,
@@ -6072,9 +5984,9 @@
 "distractors": [
 "Che",
 "Quando",
-"Prima",
-"Dopo",
-"Mentre"
+"Mentre",
+"Come",
+"Perché"
 ]
 },
 {
@@ -6124,19 +6036,19 @@
 "distractors": [
 "Che",
 "Mentre",
-"Prima",
-"Dopo",
-"Quando"
+"Quando",
+"Come",
+"Perché"
 ]
 },
 {
 "correct": "il",
 "distractors": [
+"la",
+"una",
+"le",
 "che",
-"e",
-"per",
-"con",
-"senza"
+"e"
 ]
 },
 {
@@ -6152,11 +6064,11 @@
 {
 "correct": "fosse",
 "distractors": [
-"fossi",
 "fossero",
 "fossimo",
 "sarebbe",
-"ero"
+"ero",
+"te"
 ]
 },
 {
@@ -6192,11 +6104,11 @@
 {
 "correct": "i",
 "distractors": [
-"che",
-"e",
-"per",
-"con",
-"senza"
+"la",
+"un",
+"una",
+"lo",
+"che"
 ]
 },
 {
@@ -6225,20 +6137,20 @@
 "correct": "Se",
 "distractors": [
 "Che",
-"Prima",
 "Quando",
 "Perché",
-"Dopo"
+"Mentre",
+"Come"
 ]
 },
 {
 "correct": "le",
 "distractors": [
+"il",
+"un",
+"la",
 "si",
-"ne",
-"che",
-"e",
-"per"
+"ne"
 ]
 },
 {
@@ -6256,9 +6168,9 @@
 "distractors": [
 "in",
 "a",
-"che",
-"meno",
-"quante"
+"per",
+"con",
+"da"
 ]
 },
 {
@@ -6285,10 +6197,10 @@
 "correct": "più",
 "distractors": [
 "non",
-"che",
 "troppo",
 "tante",
-"po’"
+"po’",
+"già"
 ]
 },
 {

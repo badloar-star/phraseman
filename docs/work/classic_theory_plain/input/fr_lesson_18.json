@@ -1,0 +1,742 @@
+{
+ "lang": "fr",
+ "lesson": 18,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:18:01",
+   "target": "J’ai fermé la porte.",
+   "ru": "Я закрыл дверь.",
+   "uk": "Я зачинив двері."
+  },
+  {
+   "id": "fr:18:02",
+   "target": "Tu as fermé la porte.",
+   "ru": "Ты закрыл дверь.",
+   "uk": "Ти зачинив двері."
+  },
+  {
+   "id": "fr:18:03",
+   "target": "Elle a fermé la fenêtre.",
+   "ru": "Она закрыла окно.",
+   "uk": "Вона зачинила вікно."
+  },
+  {
+   "id": "fr:18:04",
+   "target": "Nous avons fermé le magasin.",
+   "ru": "Мы закрыли магазин.",
+   "uk": "Ми зачинили магазин."
+  },
+  {
+   "id": "fr:18:05",
+   "target": "Vous avez fermé le garage.",
+   "ru": "Вы закрыли гараж.",
+   "uk": "Ви закрили гараж."
+  },
+  {
+   "id": "fr:18:06",
+   "target": "Ils ont fermé la salle.",
+   "ru": "Они закрыли зал.",
+   "uk": "Вони закрили зал."
+  },
+  {
+   "id": "fr:18:07",
+   "target": "J’ai acheté du pain.",
+   "ru": "Я купил хлеб.",
+   "uk": "Я купив хліб."
+  },
+  {
+   "id": "fr:18:08",
+   "target": "Paul a acheté du café.",
+   "ru": "Поль купил кофе.",
+   "uk": "Пол купив каву."
+  },
+  {
+   "id": "fr:18:09",
+   "target": "Nous avons acheté deux billets.",
+   "ru": "Мы купили два билета.",
+   "uk": "Ми купили два квитки."
+  },
+  {
+   "id": "fr:18:10",
+   "target": "Elle a acheté une écharpe.",
+   "ru": "Она купила шарф.",
+   "uk": "Вона купила шарф."
+  },
+  {
+   "id": "fr:18:11",
+   "target": "J’ai réservé une table.",
+   "ru": "Я забронировал столик.",
+   "uk": "Я забронював столик."
+  },
+  {
+   "id": "fr:18:12",
+   "target": "Tu as réservé une chambre.",
+   "ru": "Ты забронировал номер.",
+   "uk": "Ти забронював номер."
+  },
+  {
+   "id": "fr:18:13",
+   "target": "Il a payé l’addition.",
+   "ru": "Он оплатил счет.",
+   "uk": "Він оплатив рахунок."
+  },
+  {
+   "id": "fr:18:14",
+   "target": "Nous avons commandé le dessert.",
+   "ru": "Мы заказали десерт.",
+   "uk": "Ми замовили десерт."
+  },
+  {
+   "id": "fr:18:15",
+   "target": "Vous avez gardé le reçu.",
+   "ru": "Вы сохранили чек.",
+   "uk": "Ви зберегли чек."
+  },
+  {
+   "id": "fr:18:16",
+   "target": "Elles ont partagé un taxi.",
+   "ru": "Они ехали в одном такси.",
+   "uk": "Вони їхали одним таксі."
+  },
+  {
+   "id": "fr:18:17",
+   "target": "J’ai oublié mon parapluie.",
+   "ru": "Я забыл зонт.",
+   "uk": "Я забув свою парасольку."
+  },
+  {
+   "id": "fr:18:18",
+   "target": "Elle a retrouvé ses clés.",
+   "ru": "Она нашла свои ключи.",
+   "uk": "Вона знайшла свої ключі."
+  },
+  {
+   "id": "fr:18:19",
+   "target": "Il a laissé son manteau ici.",
+   "ru": "Он оставил здесь своё пальто.",
+   "uk": "Він залишив тут своє пальто."
+  },
+  {
+   "id": "fr:18:20",
+   "target": "Nous avons rangé les chaises.",
+   "ru": "Мы убрали стулья.",
+   "uk": "Ми прибрали стільці."
+  },
+  {
+   "id": "fr:18:21",
+   "target": "J’ai pris le train.",
+   "ru": "Я поехал на поезде.",
+   "uk": "Я поїхав поїздом."
+  },
+  {
+   "id": "fr:18:22",
+   "target": "Tu as pris mon sac ?",
+   "ru": "Ты взял мою сумку?",
+   "uk": "Ти взяв мою сумку?"
+  },
+  {
+   "id": "fr:18:23",
+   "target": "Léa a lu le message.",
+   "ru": "Леа прочитала сообщение.",
+   "uk": "Леа прочитала повідомлення."
+  },
+  {
+   "id": "fr:18:24",
+   "target": "Nous avons vu le film.",
+   "ru": "Мы посмотрели фильм.",
+   "uk": "Ми подивилися фільм."
+  },
+  {
+   "id": "fr:18:25",
+   "target": "Ils ont bu le jus de pomme.",
+   "ru": "Они выпили яблочный сок.",
+   "uk": "Вони випили яблучний сік."
+  },
+  {
+   "id": "fr:18:26",
+   "target": "Vous avez écrit votre nom ?",
+   "ru": "Вы написали своё имя?",
+   "uk": "Ви написали своє ім'я?"
+  },
+  {
+   "id": "fr:18:27",
+   "target": "J’ai reçu le colis.",
+   "ru": "Я получил посылку.",
+   "uk": "Я отримав посилку."
+  },
+  {
+   "id": "fr:18:28",
+   "target": "Elle a fait une copie.",
+   "ru": "Она сделала копию.",
+   "uk": "Вона зробила копію."
+  },
+  {
+   "id": "fr:18:29",
+   "target": "Il a mis la table.",
+   "ru": "Он накрыл стол.",
+   "uk": "Він накрив на стіл."
+  },
+  {
+   "id": "fr:18:30",
+   "target": "Nous avons dit merci.",
+   "ru": "Мы сказали спасибо.",
+   "uk": "Ми подякували."
+  },
+  {
+   "id": "fr:18:31",
+   "target": "Je n’ai pas entendu la sonnette.",
+   "ru": "Я не слышал звонка в дверь.",
+   "uk": "Я не чув дзвінка у двері."
+  },
+  {
+   "id": "fr:18:32",
+   "target": "Tu n’as pas répondu au téléphone.",
+   "ru": "Ты не ответил на звонок.",
+   "uk": "Ти не відповів на дзвінок."
+  },
+  {
+   "id": "fr:18:33",
+   "target": "Elle n’a pas trouvé son badge.",
+   "ru": "Она не нашла свой пропуск.",
+   "uk": "Вона не знайшла своєї перепустки."
+  },
+  {
+   "id": "fr:18:34",
+   "target": "Nous n’avons pas oublié la ceinture.",
+   "ru": "Мы не забыли ремень.",
+   "uk": "Ми не забули про ремінь."
+  },
+  {
+   "id": "fr:18:35",
+   "target": "Ils n’ont pas compris la consigne.",
+   "ru": "Они не поняли инструкции.",
+   "uk": "Вони не зрозуміли інструкцій."
+  },
+  {
+   "id": "fr:18:36",
+   "target": "Vous n’avez pas encore signé.",
+   "ru": "Вы еще не подписали.",
+   "uk": "Ви ще не підписалися."
+  },
+  {
+   "id": "fr:18:37",
+   "target": "Est-ce que tu as vérifié l’adresse ?",
+   "ru": "Ты проверил адрес?",
+   "uk": "Ти перевірив адресу?"
+  },
+  {
+   "id": "fr:18:38",
+   "target": "Vous avez goûté la soupe ?",
+   "ru": "Вы попробовали суп?",
+   "uk": "Ви скуштували суп?"
+  },
+  {
+   "id": "fr:18:39",
+   "target": "Qui a cassé le verre ?",
+   "ru": "Кто разбил стакан?",
+   "uk": "Хто розбив склянку?"
+  },
+  {
+   "id": "fr:18:40",
+   "target": "Quand avez-vous envoyé le dossier ?",
+   "ru": "Когда вы отправили документы?",
+   "uk": "Коли ви надіслали документи?"
+  },
+  {
+   "id": "fr:18:41",
+   "target": "Hier, j’ai lavé les serviettes.",
+   "ru": "Вчера я постирал полотенца.",
+   "uk": "Вчора я виправ рушники."
+  },
+  {
+   "id": "fr:18:42",
+   "target": "Ce matin, elle a changé la pile.",
+   "ru": "Сегодня утром она поменяла батарейку.",
+   "uk": "Сьогодні вранці вона замінила батарейку."
+  },
+  {
+   "id": "fr:18:43",
+   "target": "Paul a réparé la serrure.",
+   "ru": "Поль починил замок.",
+   "uk": "Пол полагодив замок."
+  },
+  {
+   "id": "fr:18:44",
+   "target": "Nous avons attendu une heure au guichet.",
+   "ru": "Мы прождали час у стойки.",
+   "uk": "Ми чекали годину біля стійки."
+  },
+  {
+   "id": "fr:18:45",
+   "target": "J’ai noté le numéro sur l’enveloppe.",
+   "ru": "Я написал номер на конверте.",
+   "uk": "Я написав номер на конверті."
+  },
+  {
+   "id": "fr:18:46",
+   "target": "Tu as oublié de prendre la facture.",
+   "ru": "Ты забыл взять счёт.",
+   "uk": "Ти забув взяти рахунок."
+  },
+  {
+   "id": "fr:18:47",
+   "target": "Ils ont annulé la livraison.",
+   "ru": "Они отменили доставку.",
+   "uk": "Вони скасували доставку."
+  },
+  {
+   "id": "fr:18:48",
+   "target": "Vous avez choisi la chambre bleue.",
+   "ru": "Вы выбрали синюю комнату.",
+   "uk": "Ви обрали синю кімнату."
+  },
+  {
+   "id": "fr:18:49",
+   "target": "Elle a rempli sa bouteille avant le départ.",
+   "ru": "Она наполнила свою бутылку перед уходом.",
+   "uk": "Вона наповнила свою пляшку перед тим, як піти."
+  },
+  {
+   "id": "fr:18:50",
+   "target": "Nous avons fini le travail à midi.",
+   "ru": "Мы закончили работу в полдень.",
+   "uk": "Ми закінчили роботу опівдні."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la sonnette",
+   "ru": "дверной звонок",
+   "uk": "дверний дзвінок"
+  },
+  {
+   "lemma": "le dossier",
+   "ru": "папка, комплект документов",
+   "uk": "папка, комплект документів"
+  },
+  {
+   "lemma": "l’addition (f.)",
+   "ru": "счёт в ресторане",
+   "uk": "рахунок у ресторані"
+  },
+  {
+   "lemma": "la copie",
+   "ru": "копия",
+   "uk": "копія"
+  },
+  {
+   "lemma": "le départ",
+   "ru": "отправление",
+   "uk": "відправлення"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  }
+ ],
+ "oldTopicTitle": "Что уже произошло: прошедшее с `avoir`",
+ "oldTheoryRu": "Прошедшее в этой схеме состоит из двух частей. Первая меняется по лицу, вторая несёт смысл. Не переводим `ai` отдельно как «имею»: здесь оно помогает сказать «закрыл». Сравни `j’ai fermé` и `nous avons fermé`. Поменяй помощника, но не ставь `fermons` после `avons`: это была бы личная форма вместо причастия. У многих глаголов на `-er` причастие кончается на `-é`. В словаре стоит `acheter`, а сделанная покупка — `acheté`. Акцент на `é` в письменном французском важен. Не все формы создаются по образцу `fermé`. Запоминай маленькими парами: `prendre → pris`, `lire → lu`, `recevoir → reçu`, `faire → fait`. При отрицании `ne … pas` окружают вспомогательный глагол: `je n’ai pas entendu`. Причастие идёт дальше. В `n’ai` апостроф обязателен. Вопрос может менять начало, но прошедшее не распадается. В `avez-vous envoyé` между помощником и причастием оказалось местоимение из-за инверсии. Не прибавляй женское окончание только потому, что действует женщина: с `avoir` подлежащее само по себе не запускает согласование. Отдельный случай с прямым дополнением перед глаголом будет разобран позже."
+}

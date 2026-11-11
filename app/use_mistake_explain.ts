@@ -53,15 +53,15 @@ import { AI_EXPLAIN_AUTO_RETRIES, AI_EXPLAIN_RETRY_PAUSE_MS } from './load_gate_
 import { buildMistakeExplainFallbackText } from './mistake_explain_fallback';
 import { getDevAiExplainDemoText, isDevAiExplainLimit } from './dev_paywall_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
-
 /**
- * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`) and
- * the «Объяснить проще» ELI5 modal (`MistakeEli5Modal`).
+ * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`).
  *
  * Extracted from lesson1.tsx so every lesson surface drives
- * the exact same behaviour: inline breakdown auto-loads on a wrong answer, the
- * footer button opens a simpler explanation, both hit the cached `explainMistake`
+ * the exact same behaviour: the inline breakdown hits the cached `explainMistake`
  * Cloud Function. The pure UI components + client + server cache are reused as-is.
+ *
+ * зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить»): упрощённого разбора
+ * («Объяснить проще», вариант eli5) в хуке больше нет — ни состояния, ни запроса, ни повторов.
  *
  * The hook is intentionally generic: callers pass a synthetic `lessonId` (e.g. a
  * plan-mode id) and a `phraseKey` that changes whenever the active phrase/result
@@ -112,19 +112,6 @@ export interface UseMistakeExplainResult {
   refreshMistakeExplain: () => void;
   /** Retry the inline breakdown (also the card's onExplain). */
   explain: () => void;
-  /** Props for <MistakeEli5Modal> + the card's onOpenSimple. */
-  eli5: {
-    open: boolean;
-    state: 'idle' | 'loading' | 'ready';
-    text: string | null;
-    /** D158: true - text это локальный шаблон (ИИ не ответил); шторка показывает «Обновить». */
-    fallback: boolean;
-    onOpen: () => void;
-    onClose: () => void;
-    onRetry: () => void;
-    /** Ручная «Обновить»: ровно ОДНА новая попытка ИИ. */
-    onRefresh: () => void;
-  };
   /**
    * Props for <AiExplainConsentModal>. Shown ONCE, before the very first
    * autoload of the inline breakdown, when the user has no consent decision
@@ -205,14 +192,8 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
   const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
 
-  const [eli5Open, setEli5Open] = useState(false);
-  const [eli5State, setEli5State] = useState<'idle' | 'loading' | 'ready'>('idle');
-  const [eli5Text, setEli5Text] = useState<string | null>(null);
   // зачем: D158 - признак «в тексте локальный шаблон, не ИИ» (см. UseMistakeExplainResult).
   const [aiMistakeFallback, setAiMistakeFallback] = useState(false);
-  const [eli5Fallback, setEli5Fallback] = useState(false);
-  const eli5InFlightTokenRef = useRef<number | null>(null);
-  const eli5RequestSeqRef = useRef(0);
   const mistakeInFlightTokenRef = useRef<number | null>(null);
   const mistakeRequestSeqRef = useRef(0);
 
@@ -275,9 +256,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   phraseIdRef.current = phraseId;
   const activeRef = useRef(active);
   activeRef.current = active;
-  // зачем: D158 - «шторка закрыта → повторов нет»: платные повторы не идут вслепую за закрытой шторкой.
-  const eli5OpenRef = useRef(false);
-  eli5OpenRef.current = eli5Open;
   const renderedAccountGeneration = captureAccountGeneration();
   const renderScopeRef = useRef({ phraseKey, active, accountGeneration: renderedAccountGeneration });
   if (renderScopeRef.current.phraseKey !== phraseKey || renderScopeRef.current.active !== active) {
@@ -288,22 +266,16 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   const mountedRef = useRef(true);
   const mistakeRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const eli5RetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mistakeRetryAttemptRef = useRef(0);
-  const eli5RetryAttemptRef = useRef(0);
   const explainRef = useRef<(withHaptic?: boolean, backgroundRetry?: boolean) => void>(() => {});
-  const openEli5Ref = useRef<(backgroundRetry?: boolean) => void>(() => {});
 
   const clearRetryTimers = useCallback(() => {
     if (mistakeRetryTimerRef.current) clearTimeout(mistakeRetryTimerRef.current);
-    if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
     mistakeRetryTimerRef.current = null;
-    eli5RetryTimerRef.current = null;
   }, []);
 
   const invalidateRequests = useCallback(() => {
     mistakeInFlightTokenRef.current = null;
-    eli5InFlightTokenRef.current = null;
   }, []);
 
   const isExplanationScopeCurrent = useCallback((scope: ExplanationRequestScope): boolean => (
@@ -319,15 +291,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     clearRetryTimers();
     invalidateRequests();
     mistakeRetryAttemptRef.current = 0;
-    eli5RetryAttemptRef.current = 0;
     setAiMistakeState('hidden');
     setAiMistakeText(null);
     setAiMistakeRemaining(null);
-    setEli5Open(false);
-    setEli5State('idle');
-    setEli5Text(null);
     setAiMistakeFallback(false);
-    setEli5Fallback(false);
     setWaitStage('start');
     setConsentGateVisible(false);
   }, [clearRetryTimers, invalidateRequests]);
@@ -351,9 +318,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     clearRetryTimers();
     invalidateRequests();
     mistakeRetryAttemptRef.current = 0;
-    eli5RetryAttemptRef.current = 0;
     setAiMistakeState((state) => state === 'loading' ? 'idle' : state);
-    setEli5State((state) => state === 'loading' ? 'idle' : state);
     setWaitStage('start');
   }, [clearRetryTimers, invalidateRequests, netStatus]);
 
@@ -362,7 +327,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     clearRetryTimers();
     invalidateRequests();
     mistakeRetryAttemptRef.current = 0;
-    eli5RetryAttemptRef.current = 0;
     const renderedGeneration = renderScopeRef.current.accountGeneration;
     const currentGeneration = captureAccountGeneration();
     const generationMatchesRender = isSameAccountGeneration(renderedGeneration, currentGeneration);
@@ -377,11 +341,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     );
     setAiMistakeText(null);
     setAiMistakeRemaining(null);
-    setEli5Open(false);
-    setEli5State('idle');
-    setEli5Text(null);
     setAiMistakeFallback(false);
-    setEli5Fallback(false);
     setWaitStage('start');
     setConsentGateVisible(false);
   }, [phraseKey, active, clearRetryTimers, invalidateRequests]);
@@ -460,35 +420,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     }, delayMs);
   }, [isExplanationScopeCurrent]);
 
-  const scheduleEli5Retry = useCallback((scope: ExplanationRequestScope) => {
-    if (netStatusRef.current !== 'online') return;
-    if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
-    const attempt = eli5RetryAttemptRef.current + 1;
-    eli5RetryAttemptRef.current = attempt;
-    const delayMs = AI_EXPLAIN_RETRY_PAUSE_MS; // зачем: D158 - см. scheduleMistakeRetry
-    console.log(`[AI-EXPLAIN] eli5:retry_scheduled attempt=${attempt}/${AI_EXPLAIN_AUTO_RETRIES} delayMs=${delayMs} phrase=${phraseIdRef.current}`); // guard-ok
-    eli5RetryTimerRef.current = setTimeout(() => {
-      eli5RetryTimerRef.current = null;
-      if (!eli5OpenRef.current) {
-        // зачем: D158 - шторку закрыли, пока ждали паузу: платный повтор не уходит; следующий показ начнёт заново.
-        console.log(`[AI-EXPLAIN] eli5:retry_skipped reason=sheet_closed phrase=${phraseIdRef.current}`); // guard-ok: ранний выход
-        eli5RetryAttemptRef.current = 0;
-        setEli5State((state) => state === 'loading' ? 'idle' : state);
-        return;
-      }
-      if (netStatusRef.current === 'online' && isExplanationScopeCurrent(scope)) {
-        console.log(`[AI-EXPLAIN] eli5:retry_fire attempt=${attempt}/${AI_EXPLAIN_AUTO_RETRIES} phrase=${phraseIdRef.current}`); // guard-ok
-        openEli5Ref.current(true);
-      } else {
-        console.log(`[AI-EXPLAIN] eli5:retry_skipped net=${netStatusRef.current} scopeCurrent=${isExplanationScopeCurrent(scope)} phrase=${phraseIdRef.current}`); // guard-ok: ранний выход
-      }
-    }, delayMs);
-  }, [isExplanationScopeCurrent]);
-
   // Тик подписи под скелетоном. Живёт ровно пока идёт ожидание: два таймера на
   // весь цикл, оба гасятся при уходе — фоновых таймеров экран не оставляет.
   useEffect(() => {
-    const busy = aiMistakeState === 'loading' || eli5State === 'loading';
+    const busy = aiMistakeState === 'loading';
     if (!busy) return;
     const toWorking = setTimeout(() => setWaitStage('working'), AI_WAIT_SECOND_STAGE_MS);
     const toLong = setTimeout(() => setWaitStage('long'), AI_WAIT_THIRD_STAGE_MS);
@@ -496,10 +431,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       clearTimeout(toWorking);
       clearTimeout(toLong);
     };
-  }, [aiMistakeState, eli5State]);
+  }, [aiMistakeState]);
 
   const buildArgs = useCallback(
-    (variant: 'full' | 'eli5') => {
+    (variant: 'full') => {
       const diffPairs = resolveAllMistakeTokens(targetAnswer, userAnswer);
       const mismatch = resolvePhraseMistakeToken(targetAnswer, userAnswer);
       return {
@@ -624,19 +559,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         } else {
           console.log(`[MISTAKE-EXPLAIN] consume:skipped premium=${hasPremiumAccess} paidPhrase=${paidUnlockedForPhrase === phraseKey}`); // guard-ok: ветка лимита логируется и в релизе
         }
-        const bundledEli5 = typeof res.eli5Text === 'string' ? res.eli5Text.trim() : '';
-        if (bundledEli5) {
-          if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
-          eli5RetryTimerRef.current = null;
-          // The bundled response wins ownership over any separately pending ELI5
-          // request. Its late success/catch/finally must not replace this result,
-          // schedule a retry, or clear ownership of future work.
-          eli5InFlightTokenRef.current = null;
-          eli5RetryAttemptRef.current = 0;
-          setEli5Text(bundledEli5);
-          setEli5Fallback(false);
-          setEli5State('ready');
-        }
       } catch (error) {
         const errCode = String((error as { code?: unknown })?.code ?? 'unknown');
         if (!isCurrentRequest()) {
@@ -683,99 +605,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   explainRef.current = (withHaptic = true, backgroundRetry = false) => {
     void explain(withHaptic, backgroundRetry);
   };
-
-  const openEli5 = useCallback(async (backgroundRetry = false, forceRefresh = false) => {
-    if (
-      !activeRef.current
-      || netStatusRef.current !== 'online'
-      || !isAiExplainConsentGranted()
-      || accountScopeBlockedRef.current
-      || !isCurrentAccountGeneration(accountGenerationRef.current)
-    ) return;
-    if (!backgroundRetry) hapticTap();
-    // A silent retry may finish a dismissed request, but must never reopen a modal
-    // the learner explicitly closed.
-    // зачем: D158 - ref обновляем сразу, не дожидаясь рендера: мгновенный сбой иначе увидел бы шторку «закрытой».
-    if (!backgroundRetry) { eli5OpenRef.current = true; setEli5Open(true); }
-    if (eli5State === 'ready' && eli5Text && !forceRefresh) return;
-    if (eli5InFlightTokenRef.current !== null) return;
-    const requestScope: ExplanationRequestScope = {
-      phraseKey,
-      accountGeneration: accountGenerationRef.current,
-    };
-    const requestToken = ++eli5RequestSeqRef.current;
-    eli5InFlightTokenRef.current = requestToken;
-    const isCurrentRequest = () => (
-      eli5InFlightTokenRef.current === requestToken
-      && isExplanationScopeCurrent(requestScope)
-    );
-    setEli5State('loading');
-    setEli5Text(null);
-    setEli5Fallback(false);
-    setWaitStage('start');
-    console.log(`[AI-EXPLAIN] eli5:call attempt=${eli5RetryAttemptRef.current + 1}/${AI_EXPLAIN_AUTO_RETRIES + 1} background=${backgroundRetry} manual=${forceRefresh} phrase=${phraseId}`); // guard-ok: каждый платный вызов ИИ виден в логе
-    try {
-      const res = await callExplainMistake(buildArgs('eli5'), {
-        onRetryStart: () => {
-          if (isCurrentRequest()) {
-            setWaitStage('working');
-          }
-        },
-      });
-      if (!isCurrentRequest()) return;
-      setEli5Text(res.text);
-      setEli5State('ready');
-      console.log(`[AI-EXPLAIN] eli5:success afterFailures=${eli5RetryAttemptRef.current} fromCache=${res.fromCache === true} phrase=${phraseId}`); // guard-ok
-      eli5RetryAttemptRef.current = 0;
-    } catch (error) {
-      const errCode = String((error as { code?: unknown })?.code ?? 'unknown');
-      if (!isCurrentRequest()) {
-        console.log(`[AI-EXPLAIN] eli5:failure_stale code=${errCode} phrase=${phraseId}`); // guard-ok: ранний выход
-        return;
-      }
-      setEli5Text(null);
-      if (isFreeDailyLimitError(error)) {
-        await markAiMistakeLimitNoticeShownToday();
-        if (!isCurrentRequest()) return;
-        if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
-        eli5RetryTimerRef.current = null;
-        eli5RetryAttemptRef.current = 0;
-        setEli5Open(false);
-        setEli5State('idle');
-        setAiMistakeText(null);
-        setAiMistakeState('limit');
-        return;
-      }
-      if (isMistakeExplainOfflineError(error) || getNetStatus() !== 'online') {
-        console.log(`[AI-EXPLAIN] eli5:offline code=${errCode} net=${getNetStatus()} phrase=${phraseId}`); // guard-ok
-        setEli5State('idle');
-        return;
-      }
-      if (!eli5OpenRef.current) {
-        // зачем: D158 - шторка закрыта: повторов нет (платные вызовы). Следующее открытие начнёт заново.
-        console.log(`[AI-EXPLAIN] eli5:failure_sheet_closed->stop code=${errCode} phrase=${phraseId}`); // guard-ok: ранний выход
-        eli5RetryAttemptRef.current = 0;
-        setEli5State('idle');
-        return;
-      }
-      if (eli5RetryAttemptRef.current < AI_EXPLAIN_AUTO_RETRIES) {
-        console.log(`[AI-EXPLAIN] eli5:failure code=${errCode} retriesUsed=${eli5RetryAttemptRef.current}/${AI_EXPLAIN_AUTO_RETRIES} phrase=${phraseId}`); // guard-ok
-        setEli5State('loading');
-        scheduleEli5Retry(requestScope);
-      } else {
-        // зачем: D158 - исчерпано: локальный шаблон + «Обновить», а не скелетон навсегда.
-        console.log(`[AI-EXPLAIN] eli5:exhausted->template code=${errCode} phrase=${phraseId}`); // guard-ok
-        setEli5Text(buildFallbackText());
-        setEli5Fallback(true);
-        setEli5State('ready');
-      }
-      return;
-    } finally {
-      if (isCurrentRequest()) eli5InFlightTokenRef.current = null;
-    }
-  }, [eli5State, eli5Text, phraseKey, phraseId, buildArgs, buildFallbackText, isExplanationScopeCurrent, scheduleEli5Retry]);
-
-  openEli5Ref.current = (backgroundRetry = false) => { void openEli5(backgroundRetry); };
 
   // зачем (владелец 11.10, журнал 15; макет learn D5): ИИ-разбор ошибки запускается ТОЛЬКО по тапу «Разобрать мой ответ» — автозапуска на экране
   // результата «Неверно» больше нет (квота/энергия тратятся только по выбору человека). Бывшая автозагрузка (согласие → лимит → запрос)
@@ -912,12 +741,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     void explain(true);
   }, [explain, phraseId]);
 
-  const refreshEli5 = useCallback(() => {
-    console.log(`[AI-EXPLAIN] eli5:manual_refresh phrase=${phraseId}`); // guard-ok
-    eli5RetryAttemptRef.current = AI_EXPLAIN_AUTO_RETRIES;
-    void openEli5(false, true);
-  }, [openEli5, phraseId]);
-
   // зачем (журнал 15): без автозапуска согласие спрашивается по тапу, поэтому карточка с кнопками видна и тем, кто ещё не решил;
   // скрываем её только у тех, кто согласие явно отклонил.
   const consentBlocksCard = active && !isAiExplainConsentGranted() && (autoStart || hasAiExplainConsentDecision());
@@ -934,16 +757,6 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     aiMistakeFallback,
     refreshMistakeExplain,
     explain: requestMistakeExplanation,
-    eli5: {
-      open: eli5Open,
-      state: eli5State,
-      text: eli5Text,
-      fallback: eli5Fallback,
-      onOpen: () => void openEli5(),
-      onClose: () => { eli5OpenRef.current = false; setEli5Open(false); },
-      onRetry: () => void openEli5(),
-      onRefresh: refreshEli5,
-    },
     consentGate: {
       visible: consentGateVisible,
       onAccept: onConsentAccept,

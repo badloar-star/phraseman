@@ -8,11 +8,6 @@ import {
 } from '../app/mistake_practice_store';
 import { settleMistakePracticeAnswerRewards } from '../app/mistake_practice_rewards';
 
-// зачем: репозиторий Learning V2 тянет озвучку на expo-asset (ESM), которую jest не
-// парсит. Тест передаёт свой claimCorrectionStar, поэтому боевая запись кошелька не нужна.
-jest.mock('../app/learning_v2_owner_repository_runtime', () => ({
-  commitMistakeCorrectionWalletComposite: jest.fn(async () => ({ granted: false })),
-}));
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,

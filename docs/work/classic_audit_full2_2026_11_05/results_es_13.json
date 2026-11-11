@@ -1,0 +1,411 @@
+[
+ {
+  "id": "es:27:08",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "La mochila que Ana compró es roja."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:18",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "Las llaves que Ana lleva están en la mesa."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:20",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "Las llaves que Luis me dio están en la mesa."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:22",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "No encuentro el mensaje que Ana mandó."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:25",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "No encuentro el mensaje que Luis busca."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:29",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "¿Dónde está la foto que mi madre busca?"
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:36",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "Me gustan las cartas que Ana escribe."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:39",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "естественный порядок с подлежащим перед глаголом в придаточном (как в alternatives у es:27:49) не принят; подсказка его не исключает",
+  "fix": {
+   "add": [
+    "Me gusta la canción que Ana canta."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:46",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "подсказка повторяет порядок «X, который…, твой?» — естественный вариант «¿El … es tuyo?» (как в alternatives у es:27:49) не принят",
+  "fix": {
+   "add": [
+    "¿El bolso que está en la silla es tuyo?"
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:47",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "подсказка повторяет порядок «X, который…, твой?» — естественный вариант «¿El … es tuyo?» (как в alternatives у es:27:49) не принят",
+  "fix": {
+   "add": [
+    "¿El reloj que encontramos es tuyo?"
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:48",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "подсказка повторяет порядок «X, который…, твой?» — естественный вариант «¿El … es tuyo?» (как в alternatives у es:27:49) не принят",
+  "fix": {
+   "add": [
+    "¿El bolso que encontramos es tuyo?"
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:50",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "подсказка повторяет порядок «X, который…, твой?» — естественный вариант «¿El … es tuyo?» (как в alternatives у es:27:49) не принят",
+  "fix": {
+   "add": [
+    "¿El bolso que lleva tu hermana es tuyo?",
+    "¿Es tuyo el bolso que tu hermana lleva?"
+   ],
+   "remove": []
+  }
+ },
+ {
+  "id": "es:27:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:27:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:27:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:27:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ },
+ {
+  "id": "es:28:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:28:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:28:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:28:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ },
+ {
+  "id": "es:28:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:28:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:28:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:28:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ },
+ {
+  "id": "es:28:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:28:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:28:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:28:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ },
+ {
+  "id": "es:28:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:28:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:28:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:28:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ },
+ {
+  "id": "es:28:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «grandes» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "grandes",
+   "with": "en"
+  }
+ },
+ {
+  "id": "es:28:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «coche» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "coche",
+   "with": "a"
+  }
+ },
+ {
+  "id": "es:28:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «libro» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "libro",
+   "with": "para"
+  }
+ },
+ {
+  "id": "es:28:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции предлога «al» соблазн «número» — другая часть речи, отсеивается без знания грамматики (4 из 5 соблазнов — существительные/прилагательное)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "número",
+   "with": "por"
+  }
+ }
+]

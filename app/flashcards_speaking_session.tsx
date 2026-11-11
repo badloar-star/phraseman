@@ -115,7 +115,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
+import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -416,7 +416,7 @@ export default function FlashcardsSpeakingSession() {
   // попытки по оставшимся ошибочным карточкам, не новое прохождение — ordinal
   // фиксирован, копилка продолжает жить через оба раунда без сброса.
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
-  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'speaking_practice',
     sessionKey: attemptSessionId,

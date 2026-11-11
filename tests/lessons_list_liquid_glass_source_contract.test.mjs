@@ -44,10 +44,8 @@ test('legacy catalog renders the glass card, level header, exam and attestation'
   assert.match(lessons, /<LessonsListLevelHeader\b/);
   assert.match(lessons, /<LessonsListGlassExamCard\b/);
   assert.match(lessons, /<LessonsListGlassAttestationCard\b/);
-  // Learning V2 page keeps its own card; only the legacy page switches to glass.
-  assert.match(lessons, /if \(page !== "v2"\) \{[\s\S]*?<LessonsListGlassCard/);
   const renderItemStart = lessons.indexOf('renderItem={({ item, index: i }) => {');
-  const renderItemEnd = lessons.indexOf('Legacy accordion renderer retained below', renderItemStart);
+  const renderItemEnd = lessons.indexOf('return null;', renderItemStart);
   const renderItem = lessons.slice(renderItemStart, renderItemEnd);
   assert.ok(renderItemStart >= 0 && renderItemEnd > renderItemStart, 'renderItem block is present');
   assert.doesNotMatch(renderItem, /goldCardGradient|GoldBevel|attestationAccent|item\.color/, 'old accent strip/gradient is gone');
@@ -89,8 +87,7 @@ test('header title stays on one line without squeezing; back button only outside
   // зачем (владелец 04.10, раунд 2 → «Обучение B»): заголовок 34, подзаголовок убран.
   assert.match(title, /fontSize: 34/);
   assert.match(header, /flexWrap: "wrap"/, 'the HUD wraps under the title when space runs out');
-  // зачем (владелец 17.10): в корневой вкладке старый список открыт кнопкой с карты V2 — стрелка «назад» возвращает на карту; без карты (рубильник) стрелки нет, как раньше
-  assert.match(header, /\{!isRetainedTab \|\| learningV2CanOpen \? \(\s*<PressableHybrid\s+testID="legacy-lessons-back-home"/, 'root tab shows back only when the new-lessons map exists');
+  assert.match(header, /\{!isRetainedTab \? \(\s*<PressableHybrid\s+testID="legacy-lessons-back-home"/, 'back arrow is available on the push screen');
   assert.doesNotMatch(header, /lessonsListCopy\.subtitle\(lang\)/);
   assert.doesNotMatch(lessons, /adjustsFontSizeToFit/);
 });

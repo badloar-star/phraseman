@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1 } from '../modules/canonical_json';
 import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import type { MistakePracticePool, MistakePracticeSession } from '../modules/mistake-practice/session';
 import type { MistakePracticeStorage } from './mistake_practice_store';

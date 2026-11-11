@@ -62,10 +62,11 @@ describe('two actual startup settings consumers', () => {
       hydratePersonalProgress: () => { calls.push('primeAppSnapshotFromStorage'); return progress.promise; },
       migrateLegacyVipSnapshotOnce: async () => false,
       readVipSnapshotForGeneration: async () => null,
+      readRealPremiumSnapshotForGeneration: async () => null,
       lastOpenedLessonKey: () => 'last_lesson',
       BOOT_PROFILE_KEYS: [], BOOT_PROGRESS_KEYS: [], CUSTOMIZATION_STORAGE_KEYS: [], BOOT_SETTINGS_KEYS: [],
       BOOT_LANG_KEY: 'lang', BOOT_STUDY_TARGET_KEY: 'target', BOOT_LEAGUE_STATE_KEY: 'league', REFERRAL_STATE_STORAGE_KEY: 'referral',
-      AsyncStorage: { multiGet: async () => [] },
+      readStoredItems: async () => [],
       primeFriendsSnapshot: async () => null,
       readAvatarDNAState: async () => null,
       require: () => ({ peekStoredLevelSpinStarsForBoot: async () => null }),
@@ -107,9 +108,17 @@ describe('two actual startup settings consumers', () => {
     await Promise.resolve();
     expect(boot.store.getUserSettingsSnapshot().speechRate).toBe(1.3);
     expect(boot.scope.peek()).not.toBeNull();
-    // зачем (координатор 18.10, разбор холодного старта (а)): снапшоты экранов, кэш статистики серии и выбор YouTube-канала
-    // ушли из стартовой пачки на idle после кадра Главной — в пачке 8 мгновенных задач + снапшот приложения.
-    expect(boot.calls).toHaveLength(9);
+    // The actual settings reader is tracked through the storage mock below.
+    expect(boot.calls).toEqual([
+      'primeAppSnapshotFromStorage',
+      'hydrateDailyPhrasePeekFromStorage',
+      'primeRemoteConfigCacheFromStorage',
+      'hydrateHapticsTapFromStorage',
+      'hydrateAnalyticsConsentFromStorage',
+      'hydrateAiExplainConsentFromStorage',
+      'hydrateAiDialogConsentFromStorage',
+      'hydrateAgeGateFromStorage',
+    ]);
     expect(boot.calls).not.toEqual(expect.arrayContaining(['primeScreenSnapshotsFromStorage']));
     expect(boot.calls).not.toEqual(expect.arrayContaining(['hydrateStatsCacheFromStorage']));
     expect(boot.calls).not.toEqual(expect.arrayContaining(['hydrateYoutubeChannelPreference']));

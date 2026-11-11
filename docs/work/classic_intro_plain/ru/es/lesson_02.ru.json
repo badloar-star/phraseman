@@ -1,0 +1,43 @@
+{
+  "lang": "es",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что нужно знать"
+      },
+      "text": {
+        "ru": "Чтобы сказать «не», ставьте слово no перед глаголом estar. No estoy en casa — я не дома."
+      },
+      "exampleIds": [
+        "es:02:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Порядок такой: кто — no — форма estar — где. Слово estamos значит «мы». Пример: No estamos aquí — мы здесь не. No estoy en casa — я не дома."
+      },
+      "exampleIds": [
+        "es:02:01",
+        "es:02:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Типичные ошибки и примеры"
+      },
+      "text": {
+        "ru": "Ошибка: Ana está no aquí. Верно: Ana no está aquí — Аны здесь нет. No ставится перед глаголом."
+      },
+      "exampleIds": [
+        "es:02:08"
+      ]
+    }
+  ]
+}

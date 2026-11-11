@@ -5,6 +5,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
 import { isPremiumThemeId, type PremiumThemeId } from '../../app/premium_theme_catalog';
 import { notePremiumThemeProgress } from '../../app/premium_theme_progress';
+import { isCurrentAccountGeneration, type AccountGenerationToken } from '../../app/account_generation';
 
 type SpireWeekFact = Readonly<{
   weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
@@ -23,10 +24,11 @@ function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string
   };
 }
 
-export function recordSpireWeekStory(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
+export function recordSpireWeekStory(result: SpireWeekFact | null, accountToken: AccountGenerationToken): Promise<StoryRecordResult> | undefined {
   if (!result) return undefined;
-  notePremiumThemeProgress('final_spire', result.newTier);
-  return recordStoryEvent('spire_week', spireWeekPayload(result));
+  if (!isCurrentAccountGeneration(accountToken)) return Promise.resolve({ recorded: false, reason: 'account_changed' });
+  notePremiumThemeProgress('final_spire', result.newTier, accountToken);
+  return recordStoryEvent('spire_week', spireWeekPayload(result), undefined, { accountToken });
 }
 
 /**
@@ -46,9 +48,9 @@ export function recordStreakMilestoneStory(days: number, dayKey: string): Promis
 }
 
 /** Повышение ранга монеты — после состоявшейся покупки (трата и ранг уже на диске). */
-export function recordCoinRankStory(toRank: number): Promise<StoryRecordResult> {
-  notePremiumThemeProgress('final_coin_rank', toRank);
-  return recordStoryEvent('coin_rank_up', { toRank });
+export function recordCoinRankStory(toRank: number, paidPrice: number, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
+  notePremiumThemeProgress('final_coin_rank', toRank, accountToken);
+  return recordStoryEvent('coin_rank_up', { toRank, paidPrice }, undefined, { accountToken });
 }
 
 /** Открытые живым действием ачивки (тихий backfill сюда не попадает — это не новость). */

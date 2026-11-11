@@ -1,0 +1,18 @@
+[
+{"id": "it:15:09", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную фразу «Luis sta mangiando in casa.» (in casa = дома), её нет в alternatives", "fix": {"position": 3, "replace_distractor": "in", "with": "con"}},
+{"id": "it:15:10", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную фразу «Stiamo mangiando in casa.» (= едим дома), её нет в alternatives", "fix": {"position": 2, "replace_distractor": "in", "with": "con"}},
+{"id": "it:15:29", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верную фразу «I miei fratelli stanno mangiando in casa.» (= едят дома), её нет в alternatives", "fix": {"position": 5, "replace_distractor": "in", "with": "con"}},
+{"id": "it:15:41", "type": "B1", "field": "tiles", "problem": "Соблазн «da» даёт естественную фразу «Stai lavorando da casa?» (= работаешь из дома / дома), соответствует подсказке, её нет в alternatives", "fix": {"position": 2, "replace_distractor": "da", "with": "con"}},
+{"id": "it:16:05", "type": "B1", "field": "tiles", "problem": "Соблазн «Stai» даёт верную естественную фразу «Stai qui!» (= Останься здесь!), её нет в alternatives", "fix": {"position": 0, "replace_distractor": "Stai", "with": "Resto"}},
+{"id": "it:16:15", "type": "B2", "field": "ru", "problem": "Добавлено притяжательное «свою», в target его нет (Prendi la giacca, а не la tua giacca)", "fix": "Возьми куртку!"},
+{"id": "it:16:15", "type": "B2", "field": "uk", "problem": "Додано присвійне «свою», у target його немає", "fix": "Візьми куртку!"},
+{"id": "it:16:16", "type": "B2", "field": "ru", "problem": "Добавлено притяжательное «свою», в target его нет", "fix": "Убери обувь!"},
+{"id": "it:16:16", "type": "B2", "field": "uk", "problem": "Додано «своє», у target його немає; «Забери» = «забери з собою», для metti via природніше «Прибери»", "fix": "Прибери взуття!"},
+{"id": "it:16:19", "type": "M", "field": "ru", "problem": "percorso = маршрут/путь, а не «тропинка» (тропинка = sentiero); перевод неточен", "fix": "Следуй по маршруту!"},
+{"id": "it:16:19", "type": "M", "field": "uk", "problem": "percorso = маршрут, а не «стежка» (стежка = sentiero)", "fix": "Іди за маршрутом!"},
+{"id": "it:16:22", "type": "B2", "field": "ru", "problem": "Добавлено притяжательное «свой», в target его нет (il biglietto)", "fix": "Покажите билет, пожалуйста."},
+{"id": "it:16:22", "type": "B2", "field": "uk", "problem": "Додано присвійне «свій», у target його немає", "fix": "Покажіть квиток, будь ласка."},
+{"id": "it:16:30", "type": "B2", "field": "ru", "problem": "Добавлено «свою», в target его нет; к тому же расходится с uk («Заберіть картку» без притяжательного)", "fix": "Заберите карту."},
+{"id": "it:16:33", "type": "B2", "field": "ru", "problem": "Добавлено притяжательное «свой», в target его нет (l’ombrello)", "fix": "Не забудь зонт!"},
+{"id": "it:16:33", "type": "B2", "field": "uk", "problem": "Додано присвійне «свою», у target його немає", "fix": "Не забудь парасольку!"}
+]

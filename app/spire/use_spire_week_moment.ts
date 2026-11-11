@@ -11,6 +11,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { DebugLogger } from '../debug-logger';
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
+import { asSpireLang } from '../../components/spire/spire_home_week';
 import { markSpireWeekMomentShown, resolveSpireWeekMoment, type SpireWeekMomentShow } from './spire_week_moment_gate';
 import { scheduleSpireWeekRemindWithFeedback, spireWeekRemindAvailability } from './spire_week_remind';
 
@@ -32,39 +39,75 @@ export type UseSpireWeekMomentResult = Readonly<{
 
 export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeekMomentResult {
   const { uiLang, studyTarget, tabEnabled, active } = input;
+  const [accountToken, setAccountToken] = useState(() => captureAccountGeneration());
+  const accountTokenRef = useRef(accountToken);
   const [decision, setDecision] = useState<SpireWeekMomentShow | null>(null);
-  const visible = useOverlayVisible('spireWeekMoment', decision !== null);
+  const decisionIsCurrent = decision !== null
+    && decision.lang === asSpireLang(studyTarget)
+    && isCurrentAccountGeneration(decision.accountToken, decision.uid);
+  const visible = useOverlayVisible('spireWeekMoment', decisionIsCurrent);
   const markedRef = useRef<string | null>(null);
   // зачем (координатор 15.10, аудит Optimistic UI): «Напомнить позже» — синхронная защёлка: два быстрых тапа до размонтирования окна ставили напоминание дважды (оба читали прежний id до записи первого)
   const remindFiredRef = useRef(false);
   const [remindAvailable, setRemindAvailable] = useState(false);
 
   useEffect(() => {
-    if (!active) return undefined;
+    const reconcile = (next: AccountGenerationToken): void => {
+      const previous = accountTokenRef.current;
+      if (previous.generation === next.generation
+        && previous.stableId === next.stableId
+        && previous.phase === next.phase) return;
+      accountTokenRef.current = next;
+      setAccountToken(next);
+      setDecision(null);
+      setRemindAvailable(false);
+      markedRef.current = null;
+      remindFiredRef.current = false;
+    };
+    const subscription = subscribeAccountGeneration(reconcile);
+    // Subscribe first, then reconcile the current store snapshot: this closes the render→effect missed-update window.
+    reconcile(captureAccountGeneration());
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    setDecision(null);
+    setRemindAvailable(false);
+    markedRef.current = null;
+    remindFiredRef.current = false;
+    if (!active || !accountToken.stableId || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return undefined;
     let cancelled = false;
-    const cancelTask = runAfterHomeFirstFrame('spire_week_moment_gate', () => resolveSpireWeekMoment({ uiLang, studyTarget, tabEnabled }).then((next) => {
-      if (cancelled) { DebugLogger.info('[SPIRE]', '[D191-GATE] решение пришло после ухода с Главной — не показываем'); return; }
+    const cancelTask = runAfterHomeFirstFrame('spire_week_moment_gate', () => resolveSpireWeekMoment({ uiLang, studyTarget, tabEnabled, accountToken }).then((next) => {
+      if (cancelled || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) { DebugLogger.info('[SPIRE]', '[D191-GATE] решение пришло после ухода/смены аккаунта — не показываем'); return; }
+      if (next.show && (next.accountToken.generation !== accountToken.generation || next.accountToken.stableId !== accountToken.stableId || next.lang !== asSpireLang(studyTarget))) {
+        DebugLogger.info('[SPIRE]', '[D191-GATE] решение не совпало с владельцем/языком текущего запроса — не показываем');
+        return;
+      }
       if (next.show) setDecision(next);
     }), { holdDuringOnboarding: true });
     return () => { cancelled = true; cancelTask(); };
-  }, [active, uiLang, studyTarget, tabEnabled]);
+  }, [active, uiLang, studyTarget, tabEnabled, accountToken]);
 
   // зачем: доступность кнопки считается, пока окно ждёт слот — к показу ответ уже есть, первый кадр окна не ждёт.
   useEffect(() => {
-    if (!decision || decision.outcome !== 'demoted') { setRemindAvailable(false); return undefined; }
+    if (!decision || !decisionIsCurrent || decision.outcome !== 'demoted') { setRemindAvailable(false); return undefined; }
     let cancelled = false;
-    void spireWeekRemindAvailability().then((a) => { if (!cancelled) setRemindAvailable(a.available); });
+    void spireWeekRemindAvailability().then((a) => {
+      if (!cancelled && isCurrentAccountGeneration(decision.accountToken, decision.uid) && decision.lang === asSpireLang(studyTarget)) {
+        setRemindAvailable(a.available);
+      }
+    });
     return () => { cancelled = true; };
-  }, [decision]);
+  }, [decision, decisionIsCurrent, studyTarget]);
 
   useEffect(() => {
-    if (!visible || !decision) return;
+    if (!visible || !decision || !decisionIsCurrent) return;
     const key = `${decision.uid}:${decision.lang}:${decision.weekId}`;
     if (markedRef.current === key) return;
     markedRef.current = key;
     DebugLogger.info('[SPIRE]', `[D191-GATE] слот получен — окно на экране: weekId=${decision.weekId} outcome=${decision.outcome}`);
     void markSpireWeekMomentShown(decision);
-  }, [visible, decision]);
+  }, [visible, decision, decisionIsCurrent]);
 
   useEffect(() => { if (decision) remindFiredRef.current = false; }, [decision]);
 
@@ -74,21 +117,26 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
   }, []);
 
   const scheduleRemind = useCallback(() => {
+    if (!decision || decision.outcome !== 'demoted' || decision.lang !== asSpireLang(studyTarget)
+      || !isCurrentAccountGeneration(decision.accountToken, decision.uid)) {
+      DebugLogger.info('[SPIRE]', '[D191-REMIND] устаревшее решение погашено');
+      return;
+    }
     if (remindFiredRef.current) {
       DebugLogger.info('[SPIRE]', '[D191-REMIND] повторное нажатие погашено');
       return;
     }
     remindFiredRef.current = true;
     // Окно закрывается сразу (мгновенный отклик), напоминание ставится фоном; итог — в [D191-REMIND].
-    void scheduleSpireWeekRemindWithFeedback(uiLang);
+    void scheduleSpireWeekRemindWithFeedback(uiLang, Date.now(), decision.accountToken);
     setDecision(null);
-  }, [uiLang]);
+  }, [decision, studyTarget, uiLang]);
 
   return {
-    visible: visible && decision !== null,
-    decision,
+    visible: visible && decisionIsCurrent,
+    decision: decisionIsCurrent ? decision : null,
     close,
-    remind: { available: remindAvailable && decision?.outcome === 'demoted', schedule: scheduleRemind },
+    remind: { available: remindAvailable && decisionIsCurrent && decision?.outcome === 'demoted', schedule: scheduleRemind },
   };
 }
 

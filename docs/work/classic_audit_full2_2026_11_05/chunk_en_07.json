@@ -1,0 +1,6094 @@
+[
+{
+"lesson": 15,
+"id": "en-classic-r1:15.01",
+"target": "This is my coat.",
+"ru": "Это моё пальто.",
+"uk": "Це моє пальто.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"A",
+"No",
+"An",
+"Much"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"saw",
+"meet"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"her",
+"our",
+"their",
+"his"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"parcel",
+"package",
+"shoes",
+"envelope",
+"towel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.02",
+"target": "This coat is mine.",
+"ru": "Это моё пальто.",
+"uk": "Це пальто моє.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"A",
+"An",
+"Every",
+"No"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"parcel",
+"shoes",
+"towel",
+"jacket"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"have",
+"be"
+]
+},
+{
+"correct": "mine",
+"distractors": [
+"my",
+"your",
+"her",
+"printer",
+"paper"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.03",
+"target": "That is your bag.",
+"ru": "Это твоя сумка.",
+"uk": "Це твоя сумка.",
+"tiles": [
+{
+"correct": "That",
+"distractors": [
+"The",
+"Who",
+"Elevator",
+"A",
+"An"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"think",
+"am",
+"be"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"her",
+"yours",
+"his"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"box",
+"locker",
+"date",
+"was",
+"kettle"
+]
+}
+],
+"alternatives": [
+"That's your bag."
+]
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.04",
+"target": "That bag is yours.",
+"ru": "Вон та сумка твоя.",
+"uk": "Он та сумка твоя.",
+"tiles": [
+{
+"correct": "That",
+"distractors": [
+"The",
+"How",
+"Whose",
+"A",
+"An"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"kettle",
+"drawer",
+"parcel",
+"box",
+"photo"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"was",
+"are",
+"run",
+"am",
+"be"
+]
+},
+{
+"correct": "yours",
+"distractors": [
+"my",
+"your",
+"we",
+"you",
+"she"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.05",
+"target": "This is her key.",
+"ru": "Это её ключ.",
+"uk": "Це її ключ.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"A",
+"An",
+"No",
+"Much"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"she",
+"he's",
+"he",
+"we'll",
+"we"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"door",
+"station",
+"open",
+"early",
+"late"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.06",
+"target": "This key is hers.",
+"ru": "Этот ключ её.",
+"uk": "Цей ключ її.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"A",
+"Every",
+"An",
+"No"
+]
+},
+{
+"correct": "key",
+"distractors": [
+"water",
+"kitchen",
+"wrong",
+"letter",
+"expensive"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "hers",
+"distractors": [
+"my",
+"your",
+"our",
+"she",
+"we"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.07",
+"target": "Those are our seats.",
+"ru": "Это наши места.",
+"uk": "Це наші місця.",
+"tiles": [
+{
+"correct": "Those",
+"distractors": [
+"The",
+"A",
+"An",
+"No",
+"Much"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"am",
+"have"
+]
+},
+{
+"correct": "our",
+"distractors": [
+"my",
+"your",
+"mine",
+"her",
+"theirs"
+]
+},
+{
+"correct": "seats",
+"distractors": [
+"keys",
+"days",
+"towels",
+"lockers",
+"bags"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.08",
+"target": "These seats are ours.",
+"ru": "Эти места наши.",
+"uk": "Ці місця наші.",
+"tiles": [
+{
+"correct": "These",
+"distractors": [
+"The",
+"A",
+"Each",
+"An",
+"No"
+]
+},
+{
+"correct": "seats",
+"distractors": [
+"keys",
+"doors",
+"boxes",
+"nights",
+"tickets"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"put",
+"be"
+]
+},
+{
+"correct": "ours",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"his"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.09",
+"target": "These are their tickets.",
+"ru": "Это их билеты.",
+"uk": "Це їхні квитки.",
+"tiles": [
+{
+"correct": "These",
+"distractors": [
+"The",
+"A",
+"Both",
+"An",
+"No"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"swim",
+"am"
+]
+},
+{
+"correct": "their",
+"distractors": [
+"my",
+"your",
+"her",
+"his",
+"our"
+]
+},
+{
+"correct": "tickets",
+"distractors": [
+"bags",
+"seats",
+"cups",
+"children",
+"boxes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.10",
+"target": "These tickets are theirs.",
+"ru": "Эти билеты принадлежат им.",
+"uk": "Ці квитки їхні.",
+"tiles": [
+{
+"correct": "These",
+"distractors": [
+"The",
+"A",
+"An",
+"No",
+"Much"
+]
+},
+{
+"correct": "tickets",
+"distractors": [
+"keys",
+"doors",
+"minutes",
+"glasses",
+"shoes"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"booking",
+"am"
+]
+},
+{
+"correct": "theirs",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"his"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.11",
+"target": "My gloves are wet.",
+"ru": "Мои перчатки мокрые.",
+"uk": "Мої рукавички мокрі.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Our",
+"Her",
+"Their",
+"His"
+]
+},
+{
+"correct": "gloves",
+"distractors": [
+"shoes",
+"jacket",
+"boots",
+"uniform",
+"helmet"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"be",
+"am",
+"have"
+]
+},
+{
+"correct": "wet",
+"distractors": [
+"hot",
+"warm",
+"spare",
+"damp",
+"open"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.12",
+"target": "Your scarf is on the chair.",
+"ru": "Твой шарф лежит на стуле.",
+"uk": "Твій шарф на стільці.",
+"tiles": [
+{
+"correct": "Your",
+"distractors": [
+"My",
+"Her",
+"Our",
+"His",
+"Their"
+]
+},
+{
+"correct": "scarf",
+"distractors": [
+"shoes",
+"jacket",
+"helmet",
+"uniform",
+"gloves"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"drink",
+"cancel",
+"am"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"by",
+"with",
+"for",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"both",
+"and",
+"but"
+]
+},
+{
+"correct": "chair",
+"distractors": [
+"table",
+"seat",
+"desk",
+"week",
+"shelf"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.13",
+"target": "Her helmet is on the shelf.",
+"ru": "Ее шлем на полке.",
+"uk": "Її шолом на полиці.",
+"tiles": [
+{
+"correct": "Her",
+"distractors": [
+"I",
+"You",
+"They",
+"They'll",
+"We"
+]
+},
+{
+"correct": "helmet",
+"distractors": [
+"boots",
+"shoes",
+"uniform",
+"scarf",
+"gloves"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"leave",
+"be"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"under",
+"for",
+"by",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"each",
+"and"
+]
+},
+{
+"correct": "shelf",
+"distractors": [
+"box",
+"drawer",
+"table",
+"luggage",
+"kettle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.14",
+"target": "His jacket is in the hall.",
+"ru": "Его куртка в холле.",
+"uk": "Його куртка в коридорі.",
+"tiles": [
+{
+"correct": "His",
+"distractors": [
+"My",
+"Your",
+"Our",
+"Her",
+"Ours"
+]
+},
+{
+"correct": "jacket",
+"distractors": [
+"boots",
+"shoes",
+"uniform",
+"helmet",
+"scarf"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"did",
+"be"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"of",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"both",
+"each",
+"and"
+]
+},
+{
+"correct": "hall",
+"distractors": [
+"flat",
+"card",
+"kitchen",
+"lamp",
+"room"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.15",
+"target": "Our towels are still damp.",
+"ru": "Наши полотенца все еще влажные.",
+"uk": "Наші рушники ще вологі.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"His",
+"Theirs",
+"Her"
+]
+},
+{
+"correct": "towels",
+"distractors": [
+"trains",
+"keys",
+"receipts",
+"seats",
+"bags"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "still",
+"distractors": [
+"not",
+"here",
+"well",
+"back",
+"home"
+]
+},
+{
+"correct": "damp",
+"distractors": [
+"cold",
+"please",
+"sink",
+"open",
+"lift"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.16",
+"target": "Their boots are outside.",
+"ru": "Их ботинки снаружи.",
+"uk": "Їхні чоботи надворі.",
+"tiles": [
+{
+"correct": "Their",
+"distractors": [
+"My",
+"Your",
+"His",
+"Her",
+"Our"
+]
+},
+{
+"correct": "boots",
+"distractors": [
+"shoes",
+"helmet",
+"scarf",
+"uniform",
+"gloves"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"bag",
+"need",
+"carry"
+]
+},
+{
+"correct": "outside",
+"distractors": [
+"home",
+"here",
+"there",
+"upstairs",
+"not"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.17",
+"target": "I found my umbrella.",
+"ru": "Я нашел свой зонтик.",
+"uk": "Я знайшов свою парасольку.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"You",
+"It",
+"Us",
+"They"
+]
+},
+{
+"correct": "found",
+"distractors": [
+"find",
+"have",
+"does",
+"do",
+"is"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"our",
+"her",
+"yours",
+"his"
+]
+},
+{
+"correct": "umbrella",
+"distractors": [
+"ticket",
+"door",
+"fridays",
+"friend",
+"notebook"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.18",
+"target": "She lost her badge.",
+"ru": "Она потеряла свой значок.",
+"uk": "Вона загубила свій бейдж.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"We",
+"You",
+"We're"
+]
+},
+{
+"correct": "lost",
+"distractors": [
+"is",
+"arrived",
+"sit",
+"told",
+"was"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"we",
+"he",
+"you",
+"they",
+"me"
+]
+},
+{
+"correct": "badge",
+"distractors": [
+"shop",
+"bus",
+"hotel",
+"email",
+"class"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.19",
+"target": "He left his notebook here.",
+"ru": "Он оставил здесь свой блокнот.",
+"uk": "Він залишив тут свій блокнот.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"They",
+"I'm",
+"We"
+]
+},
+{
+"correct": "left",
+"distractors": [
+"leave",
+"leaves",
+"up",
+"down",
+"is"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"their"
+]
+},
+{
+"correct": "notebook",
+"distractors": [
+"work",
+"phone",
+"friend",
+"bus",
+"train"
+]
+},
+{
+"correct": "here",
+"distractors": [
+"not",
+"there",
+"home",
+"downstairs",
+"upstairs"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.20",
+"target": "We checked our booking.",
+"ru": "Мы проверили наше бронирование.",
+"uk": "Ми перевірили наше бронювання.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"You",
+"She",
+"They"
+]
+},
+{
+"correct": "checked",
+"distractors": [
+"check",
+"is",
+"have",
+"take",
+"are"
+]
+},
+{
+"correct": "our",
+"distractors": [
+"my",
+"your",
+"his",
+"mine",
+"her"
+]
+},
+{
+"correct": "booking",
+"distractors": [
+"booked",
+"book",
+"quiet",
+"is",
+"parcel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.21",
+"target": "Whose coat is this?",
+"ru": "Чье это пальто?",
+"uk": "Чиє це пальто?",
+"tiles": [
+{
+"correct": "Whose",
+"distractors": [
+"Who",
+"What",
+"Which",
+"Where",
+"How"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"parcel",
+"shoes",
+"jacket",
+"helmet"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"borrow",
+"locked",
+"am"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"each",
+"an",
+"no"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.22",
+"target": "Whose keys are these?",
+"ru": "Чьи это ключи?",
+"uk": "Чиї це ключі?",
+"tiles": [
+{
+"correct": "Whose",
+"distractors": [
+"Who",
+"Which",
+"Where",
+"Why",
+"How"
+]
+},
+{
+"correct": "keys",
+"distractors": [
+"bags",
+"towels",
+"stairs",
+"tickets",
+"seats"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "these",
+"distractors": [
+"the",
+"a",
+"no",
+"an",
+"much"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.23",
+"target": "Is this umbrella yours?",
+"ru": "Этот зонт твой?",
+"uk": "Ця парасолька твоя?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Am",
+"Does",
+"Broken"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"some",
+"no"
+]
+},
+{
+"correct": "umbrella",
+"distractors": [
+"work",
+"ticket",
+"weather",
+"address",
+"bus"
+]
+},
+{
+"correct": "yours",
+"distractors": [
+"my",
+"your",
+"our",
+"his",
+"her"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.24",
+"target": "Are those gloves hers?",
+"ru": "Эти перчатки ее?",
+"uk": "Ці рукавички її?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Bag",
+"Have",
+"Am"
+]
+},
+{
+"correct": "those",
+"distractors": [
+"the",
+"a",
+"no",
+"an",
+"much"
+]
+},
+{
+"correct": "gloves",
+"distractors": [
+"scarf",
+"shoes",
+"coat",
+"helmet",
+"uniform"
+]
+},
+{
+"correct": "hers",
+"distractors": [
+"my",
+"your",
+"our",
+"yours",
+"her"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.25",
+"target": "Is the blue bike his?",
+"ru": "Синий велосипед его?",
+"uk": "Синій велосипед його?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Put",
+"Canceled",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"some",
+"and"
+]
+},
+{
+"correct": "blue",
+"distractors": [
+"phone",
+"bus",
+"more",
+"long",
+"room"
+]
+},
+{
+"correct": "bike",
+"distractors": [
+"bus",
+"taxi",
+"pen",
+"train",
+"driver"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"her",
+"our",
+"mine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.26",
+"target": "Are the seats by the window ours?",
+"ru": "Сиденья у окна наши?",
+"uk": "Місця біля вікна наші?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Be",
+"Starts",
+"Am"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "seats",
+"distractors": [
+"bags",
+"instructions",
+"eggs",
+"keys",
+"tickets"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"on",
+"in",
+"from",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "window",
+"distractors": [
+"lift",
+"light",
+"brother",
+"handle",
+"door"
+]
+},
+{
+"correct": "ours",
+"distractors": [
+"my",
+"your",
+"our",
+"his",
+"her"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.27",
+"target": "Is this booking theirs?",
+"ru": "Это их бронирование?",
+"uk": "Це бронювання їхнє?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Be",
+"Am",
+"Wear"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"no",
+"an",
+"much"
+]
+},
+{
+"correct": "booking",
+"distractors": [
+"booked",
+"book",
+"went",
+"walk",
+"parcel"
+]
+},
+{
+"correct": "theirs",
+"distractors": [
+"my",
+"your",
+"you",
+"we",
+"she"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.28",
+"target": "Whose name is on the envelope?",
+"ru": "Чье имя на конверте?",
+"uk": "Чиє ім'я на конверті?",
+"tiles": [
+{
+"correct": "Whose",
+"distractors": [
+"Which",
+"What",
+"Where",
+"Who",
+"How"
+]
+},
+{
+"correct": "name",
+"distractors": [
+"water",
+"key",
+"cable",
+"door",
+"bus"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"stop",
+"studies",
+"am"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"by",
+"of",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"no",
+"and"
+]
+},
+{
+"correct": "envelope",
+"distractors": [
+"package",
+"parcel",
+"receipt",
+"message",
+"pass"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.29",
+"target": "Is that your locker?",
+"ru": "Это твой шкафчик?",
+"uk": "Це твоя шафка?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Am",
+"Be",
+"Bag"
+]
+},
+{
+"correct": "that",
+"distractors": [
+"the",
+"who",
+"where",
+"which",
+"a"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"her",
+"our",
+"mine",
+"yours"
+]
+},
+{
+"correct": "locker",
+"distractors": [
+"drawer",
+"box",
+"need",
+"shelf",
+"kettle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.30",
+"target": "Are these your headphones?",
+"ru": "Это твои наушники?",
+"uk": "Це твої навушники?",
+"tiles": [
+{
+"correct": "Are",
+"distractors": [
+"Is",
+"Was",
+"Called",
+"Meet",
+"Have"
+]
+},
+{
+"correct": "these",
+"distractors": [
+"the",
+"a",
+"an",
+"no",
+"much"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"her",
+"our",
+"his",
+"their"
+]
+},
+{
+"correct": "headphones",
+"distractors": [
+"keys",
+"trains",
+"tickets",
+"windows",
+"children"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.31",
+"target": "I have my ticket, but she needs hers.",
+"ru": "У меня есть свой билет, а ей нужен её.",
+"uk": "У мене є мій квиток, але їй потрібен її.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"He",
+"Him",
+"We're",
+"You"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"do",
+"did",
+"does",
+"is"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"her",
+"our",
+"their",
+"his"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"number",
+"receipt",
+"label",
+"pass",
+"english"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"and",
+"because",
+"unless"
+]
+},
+{
+"correct": "she",
+"distractors": [
+"we",
+"me",
+"it",
+"he'll",
+"you"
+]
+},
+{
+"correct": "needs",
+"distractors": [
+"need",
+"buy",
+"change",
+"is",
+"do"
+]
+},
+{
+"correct": "hers",
+"distractors": [
+"your",
+"our",
+"we",
+"you",
+"he"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.32",
+"target": "Your bag is heavier than mine.",
+"ru": "Ваша сумка тяжелее моей.",
+"uk": "Ваша сумка важча за мою.",
+"tiles": [
+{
+"correct": "Your",
+"distractors": [
+"My",
+"Our",
+"Her",
+"Ours",
+"His"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"box",
+"fridge",
+"heating",
+"was",
+"kettle"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"be",
+"am",
+"stop"
+]
+},
+{
+"correct": "heavier",
+"distractors": [
+"more",
+"light",
+"blue",
+"less",
+"last"
+]
+},
+{
+"correct": "than",
+"distractors": [
+"off",
+"up",
+"out",
+"not",
+"back"
+]
+},
+{
+"correct": "mine",
+"distractors": [
+"my",
+"charger",
+"colour",
+"zip",
+"her"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.33",
+"target": "His shift starts later than ours.",
+"ru": "Его смена начинается позже нашей.",
+"uk": "Його зміна починається пізніше за нашу.",
+"tiles": [
+{
+"correct": "His",
+"distractors": [
+"My",
+"Your",
+"Her",
+"Our",
+"Theirs"
+]
+},
+{
+"correct": "shift",
+"distractors": [
+"work",
+"door",
+"room",
+"cafe",
+"road"
+]
+},
+{
+"correct": "starts",
+"distractors": [
+"start",
+"lock",
+"has",
+"help",
+"is"
+]
+},
+{
+"correct": "later",
+"distractors": [
+"last",
+"next",
+"not",
+"first",
+"second"
+]
+},
+{
+"correct": "than",
+"distractors": [
+"off",
+"up",
+"out",
+"not",
+"back"
+]
+},
+{
+"correct": "ours",
+"distractors": [
+"my",
+"your",
+"our",
+"he",
+"her"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.34",
+"target": "Our door is blue; theirs is green.",
+"ru": "Наша дверь синяя, их — зелёная.",
+"uk": "Наші двері сині; їхні – зелені.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"Ours",
+"Her",
+"His"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"handle",
+"label",
+"screen",
+"gate"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"stop",
+"got",
+"am"
+]
+},
+{
+"correct": "blue",
+"distractors": [
+"key",
+"room",
+"last",
+"original",
+"bus"
+]
+},
+{
+"correct": "theirs",
+"distractors": [
+"my",
+"your",
+"we",
+"you",
+"she"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"collect",
+"be",
+"am"
+]
+},
+{
+"correct": "green",
+"distractors": [
+"work",
+"seat",
+"comfortable",
+"bus",
+"worked"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.35",
+"target": "I know my postcode, but not yours.",
+"ru": "Я знаю свой почтовый индекс, но не ваш.",
+"uk": "Я знаю свій поштовий індекс, але не ваш.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"She's",
+"I'll",
+"You"
+]
+},
+{
+"correct": "know",
+"distractors": [
+"knew",
+"is",
+"missed",
+"take",
+"are"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"our",
+"his",
+"theirs",
+"her"
+]
+},
+{
+"correct": "postcode",
+"distractors": [
+"number",
+"receipt",
+"elevator",
+"map",
+"label"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"because",
+"unless",
+"and"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"still",
+"usually",
+"back",
+"home"
+]
+},
+{
+"correct": "yours",
+"distractors": [
+"your",
+"we",
+"her",
+"you",
+"she"
+]
+}
+],
+"alternatives": [
+"I know my postal code, but not yours."
+]
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.36",
+"target": "Her bike is older than his.",
+"ru": "Её велосипед старше его.",
+"uk": "Її велосипед старший за його.",
+"tiles": [
+{
+"correct": "Her",
+"distractors": [
+"I",
+"She",
+"We",
+"He",
+"You"
+]
+},
+{
+"correct": "bike",
+"distractors": [
+"bus",
+"taxi",
+"fridays",
+"luggage",
+"train"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"meet",
+"be"
+]
+},
+{
+"correct": "older",
+"distractors": [
+"seat",
+"shop",
+"last",
+"open",
+"late"
+]
+},
+{
+"correct": "than",
+"distractors": [
+"off",
+"up",
+"out",
+"not",
+"back"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"yours",
+"their"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.37",
+"target": "Your towel is dry; mine is wet.",
+"ru": "Ваше полотенце сухое, моё мокрое.",
+"uk": "Ваш рушник сухий; мій мокрий.",
+"tiles": [
+{
+"correct": "Your",
+"distractors": [
+"My",
+"Our",
+"His",
+"Her",
+"Yours"
+]
+},
+{
+"correct": "towel",
+"distractors": [
+"package",
+"parcel",
+"salt",
+"coat",
+"book"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"lights",
+"am",
+"be"
+]
+},
+{
+"correct": "dry",
+"distractors": [
+"warm",
+"cold",
+"busy",
+"empty",
+"open"
+]
+},
+{
+"correct": "mine",
+"distractors": [
+"my",
+"fridays",
+"rota",
+"daughter",
+"her"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"left",
+"be"
+]
+},
+{
+"correct": "wet",
+"distractors": [
+"hot",
+"warm",
+"early",
+"spare",
+"cheaper"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.38",
+"target": "We brought our own cups.",
+"ru": "Мы принесли свои чашки.",
+"uk": "Ми принесли свої власні чашки.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He",
+"You",
+"Me",
+"I'll"
+]
+},
+{
+"correct": "brought",
+"distractors": [
+"bring",
+"is",
+"put",
+"leave",
+"are"
+]
+},
+{
+"correct": "our",
+"distractors": [
+"my",
+"your",
+"her",
+"his",
+"mine"
+]
+},
+{
+"correct": "own",
+"distractors": [
+"work",
+"ticket",
+"green",
+"fresh",
+"bus"
+]
+},
+{
+"correct": "cups",
+"distractors": [
+"keys",
+"seats",
+"children",
+"instructions",
+"bags"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.39",
+"target": "They forgot their own bags.",
+"ru": "Они забыли свои сумки.",
+"uk": "Вони забули свої сумки.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"She's",
+"Me",
+"He's"
+]
+},
+{
+"correct": "forgot",
+"distractors": [
+"forget",
+"have",
+"do",
+"call",
+"driving"
+]
+},
+{
+"correct": "their",
+"distractors": [
+"my",
+"your",
+"our",
+"yours",
+"her"
+]
+},
+{
+"correct": "own",
+"distractors": [
+"ticket",
+"work",
+"long",
+"early",
+"cheaper"
+]
+},
+{
+"correct": "bags",
+"distractors": [
+"keys",
+"doors",
+"tickets",
+"nights",
+"cups"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.40",
+"target": "She has her own desk.",
+"ru": "У неё свой стол.",
+"uk": "У неї свій власний стіл.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"We",
+"You",
+"They're"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"have",
+"do",
+"is",
+"does",
+"are"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"we",
+"they",
+"she'll",
+"you",
+"he"
+]
+},
+{
+"correct": "own",
+"distractors": [
+"work",
+"spare",
+"door",
+"worked",
+"bus"
+]
+},
+{
+"correct": "desk",
+"distractors": [
+"chair",
+"evening",
+"shelf",
+"road",
+"seat"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.41",
+"target": "Please use your own charger.",
+"ru": "Пожалуйста, используйте своё зарядное устройство.",
+"uk": "Будь ласка, користуйтеся своїм власним зарядним пристроєм.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Uses",
+"Lift",
+"Ticket",
+"Price",
+"Door"
+]
+},
+{
+"correct": "use",
+"distractors": [
+"left",
+"see",
+"is",
+"was",
+"are"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"his",
+"her",
+"our",
+"mine"
+]
+},
+{
+"correct": "own",
+"distractors": [
+"desk",
+"letter",
+"more",
+"old",
+"comfortable"
+]
+},
+{
+"correct": "charger",
+"distractors": [
+"station",
+"room",
+"week",
+"bill",
+"address"
+]
+}
+],
+"alternatives": [
+"Use your own charger, please."
+]
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.42",
+"target": "Is that your sister's coat?",
+"ru": "Это пальто вашей сестры?",
+"uk": "Це пальто вашої сестри?",
+"tiles": [
+{
+"correct": "Is",
+"distractors": [
+"Are",
+"Was",
+"Am",
+"Be",
+"Called"
+]
+},
+{
+"correct": "that",
+"distractors": [
+"the",
+"a",
+"an",
+"no",
+"much"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"our",
+"her",
+"yours",
+"his"
+]
+},
+{
+"correct": "sister's",
+"distractors": [
+"keys",
+"trains",
+"doesn't",
+"apartment",
+"anybody"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"parcel",
+"package",
+"shoes",
+"towel",
+"jacket"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.43",
+"target": "This is my brother's helmet.",
+"ru": "Это шлем моего брата.",
+"uk": "Це шолом мого брата.",
+"tiles": [
+{
+"correct": "This",
+"distractors": [
+"The",
+"A",
+"Any",
+"Every",
+"An"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"have",
+"sign",
+"waiting"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"our",
+"her",
+"their",
+"hers"
+]
+},
+{
+"correct": "brother's",
+"distractors": [
+"trains",
+"seats",
+"doesn't",
+"apartment",
+"aren't"
+]
+},
+{
+"correct": "helmet",
+"distractors": [
+"shoes",
+"jacket",
+"parcel",
+"bag",
+"was"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.44",
+"target": "The children's boots are by the door.",
+"ru": "Детские ботинки лежат у двери.",
+"uk": "Дитячі черевики біля дверей.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Any",
+"All",
+"And"
+]
+},
+{
+"correct": "children's",
+"distractors": [
+"seats",
+"doors",
+"can't",
+"keys",
+"bags"
+]
+},
+{
+"correct": "boots",
+"distractors": [
+"jacket",
+"shoes",
+"uniform",
+"lockers",
+"helmet"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"do",
+"pay"
+]
+},
+{
+"correct": "by",
+"distractors": [
+"to",
+"for",
+"on",
+"with",
+"in"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "door",
+"distractors": [
+"lift",
+"handle",
+"heater",
+"gate",
+"window"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.45",
+"target": "Our neighbour's gate is open.",
+"ru": "Ворота нашего соседа открыты.",
+"uk": "Ворота нашого сусіда відчинені.",
+"tiles": [
+{
+"correct": "Our",
+"distractors": [
+"My",
+"Your",
+"His",
+"Her",
+"Hers"
+]
+},
+{
+"correct": "neighbour's",
+"distractors": [
+"seats",
+"shops",
+"there's",
+"apartment",
+"store"
+]
+},
+{
+"correct": "gate",
+"distractors": [
+"lift",
+"entrance",
+"exit",
+"platform",
+"name"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"worry",
+"am",
+"be"
+]
+},
+{
+"correct": "open",
+"distractors": [
+"opens",
+"opened",
+"warm",
+"cold",
+"free"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.46",
+"target": "I have the driver's number.",
+"ru": "У меня есть номер водителя.",
+"uk": "У мене є номер водія.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"She",
+"We",
+"He",
+"I'll"
+]
+},
+{
+"correct": "have",
+"distractors": [
+"has",
+"does",
+"do",
+"did",
+"is"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"any",
+"and",
+"but"
+]
+},
+{
+"correct": "driver's",
+"distractors": [
+"keys",
+"bags",
+"there's",
+"won't",
+"anybody"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"label",
+"code",
+"button",
+"pass"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.47",
+"target": "My seat is free, but yours is taken.",
+"ru": "Мое место свободно, а ваше занято.",
+"uk": "Моє місце вільне, але ваше зайняте.",
+"tiles": [
+{
+"correct": "My",
+"distractors": [
+"Your",
+"Our",
+"His",
+"Their",
+"Her"
+]
+},
+{
+"correct": "seat",
+"distractors": [
+"table",
+"desk",
+"saturdays",
+"chair",
+"shelf"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "free",
+"distractors": [
+"open",
+"closed",
+"warm",
+"late",
+"wrong"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"unless",
+"because",
+"so"
+]
+},
+{
+"correct": "yours",
+"distractors": [
+"your",
+"her",
+"his",
+"our",
+"their"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "taken",
+"distractors": [
+"takes",
+"took",
+"take",
+"have",
+"keep"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.48",
+"target": "His name is on the label, not hers.",
+"ru": "На этикетке написано его имя, а не ее.",
+"uk": "Його ім'я на етикетці, а не її.",
+"tiles": [
+{
+"correct": "His",
+"distractors": [
+"My",
+"Your",
+"Her",
+"Our",
+"Yours"
+]
+},
+{
+"correct": "name",
+"distractors": [
+"key",
+"kitchen",
+"coat",
+"desk",
+"home"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"heard",
+"break",
+"bring"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"for",
+"with",
+"by",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"much",
+"those",
+"and"
+]
+},
+{
+"correct": "label",
+"distractors": [
+"receipt",
+"number",
+"envelope",
+"timetable",
+"message"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"together",
+"home",
+"there",
+"back"
+]
+},
+{
+"correct": "hers",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"yours"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.49",
+"target": "Their keys work, but ours do not.",
+"ru": "Их ключи работают, а наши нет.",
+"uk": "Їхні ключі працюють, а наші ні.",
+"tiles": [
+{
+"correct": "Their",
+"distractors": [
+"My",
+"Your",
+"Our",
+"His",
+"Her"
+]
+},
+{
+"correct": "keys",
+"distractors": [
+"bags",
+"rooms",
+"children",
+"coins",
+"seats"
+]
+},
+{
+"correct": "work",
+"distractors": [
+"worked",
+"works",
+"is",
+"told",
+"are"
+]
+},
+{
+"correct": "but",
+"distractors": [
+"if",
+"when",
+"unless",
+"and",
+"because"
+]
+},
+{
+"correct": "ours",
+"distractors": [
+"my",
+"your",
+"we",
+"she",
+"you"
+]
+},
+{
+"correct": "do",
+"distractors": [
+"does",
+"did",
+"can",
+"bought",
+"are"
+]
+},
+{
+"correct": "not",
+"distractors": [
+"here",
+"well",
+"together",
+"home",
+"there"
+]
+}
+],
+"alternatives": [
+"Their keys work, but ours don't."
+]
+},
+{
+"lesson": 15,
+"id": "en-classic-r1:15.50",
+"target": "I think this umbrella is yours.",
+"ru": "Думаю, этот зонт твой.",
+"uk": "Я думаю, що ця парасолька твоя.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"We",
+"We've",
+"Us",
+"She"
+]
+},
+{
+"correct": "think",
+"distractors": [
+"thought",
+"drive",
+"have",
+"change",
+"do"
+]
+},
+{
+"correct": "this",
+"distractors": [
+"the",
+"a",
+"an",
+"some",
+"no"
+]
+},
+{
+"correct": "umbrella",
+"distractors": [
+"work",
+"ticket",
+"rota",
+"bus",
+"door"
+]
+},
+{
+"correct": "is",
+"distractors": [
+"are",
+"was",
+"am",
+"be",
+"have"
+]
+},
+{
+"correct": "yours",
+"distractors": [
+"my",
+"your",
+"we",
+"our",
+"you"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.01",
+"target": "Wake up, Tom.",
+"ru": "Проснись, Том.",
+"uk": "Прокидайся, Томе.",
+"tiles": [
+{
+"correct": "Wake",
+"distractors": [
+"Is",
+"Prefer",
+"Standing",
+"Was",
+"Are"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"out",
+"leave",
+"down"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"You",
+"Me",
+"Us",
+"Him"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.02",
+"target": "I get up at seven.",
+"ru": "Я встаю в семь.",
+"uk": "Я встаю о сьомій.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"You",
+"It",
+"You're",
+"They're"
+]
+},
+{
+"correct": "get",
+"distractors": [
+"got",
+"getting",
+"gets",
+"is",
+"checked"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"than",
+"out",
+"leave"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"after",
+"before"
+]
+},
+{
+"correct": "seven",
+"distractors": [
+"two",
+"four",
+"six",
+"three",
+"eight"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.03",
+"target": "She gets up before six.",
+"ru": "Она встает до шести.",
+"uk": "Вона встає раніше шостої.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"I'll",
+"We're",
+"He's"
+]
+},
+{
+"correct": "gets",
+"distractors": [
+"get",
+"got",
+"getting",
+"saw",
+"post"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"out",
+"back",
+"not"
+]
+},
+{
+"correct": "before",
+"distractors": [
+"to",
+"at",
+"in",
+"on",
+"by"
+]
+},
+{
+"correct": "six",
+"distractors": [
+"eight",
+"two",
+"nine",
+"ten",
+"seven"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.04",
+"target": "The children wake up early.",
+"ru": "Дети просыпаются рано.",
+"uk": "Діти прокидаються рано.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Any",
+"And",
+"But"
+]
+},
+{
+"correct": "children",
+"distractors": [
+"room",
+"coat",
+"evenings",
+"receipts",
+"flat"
+]
+},
+{
+"correct": "wake",
+"distractors": [
+"is",
+"lost",
+"read",
+"walk",
+"was"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"leave",
+"out",
+"down"
+]
+},
+{
+"correct": "early",
+"distractors": [
+"yesterday",
+"today",
+"tomorrow",
+"wrong",
+"late"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.05",
+"target": "We set off for the harbour before lunch.",
+"ru": "Мы отправились в порт до обеда.",
+"uk": "Ми вирушили до гавані до обіду.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"They",
+"She",
+"We've"
+]
+},
+{
+"correct": "set",
+"distractors": [
+"use",
+"take",
+"is",
+"like",
+"show"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"down",
+"not",
+"left",
+"back"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"with",
+"on",
+"in",
+"at",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"these",
+"much",
+"and"
+]
+},
+{
+"correct": "harbour",
+"distractors": [
+"entrance",
+"exit",
+"license",
+"haven't",
+"station"
+]
+},
+{
+"correct": "before",
+"distractors": [
+"to",
+"on",
+"at",
+"by",
+"in"
+]
+},
+{
+"correct": "lunch",
+"distractors": [
+"shop",
+"ticket",
+"driver",
+"cork",
+"link"
+]
+}
+],
+"alternatives": [
+"We set off for the harbor before lunch."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.06",
+"target": "The train pulls in at noon.",
+"ru": "Поезд прибывает в полдень.",
+"uk": "Поїзд прибуває опівдні.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"Many",
+"Some",
+"And"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"bike",
+"way",
+"umbrella",
+"drive"
+]
+},
+{
+"correct": "pulls",
+"distractors": [
+"keys",
+"doors",
+"lasts",
+"seats",
+"bags"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"by",
+"with",
+"for",
+"of"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"of",
+"for",
+"on",
+"after"
+]
+},
+{
+"correct": "noon",
+"distractors": [
+"morning",
+"evening",
+"night",
+"midnight",
+"lunchtime"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.07",
+"target": "Please come in.",
+"ru": "Пожалуйста, войдите.",
+"uk": "Будь ласка, заходьте.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Came",
+"Coming",
+"Coat",
+"Price",
+"Parcel"
+]
+},
+{
+"correct": "come",
+"distractors": [
+"came",
+"coming",
+"is",
+"spell",
+"was"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"after",
+"for",
+"by"
+]
+}
+],
+"alternatives": [
+"Come in, please."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.08",
+"target": "Come back after the rehearsal.",
+"ru": "Вернитесь после репетиции.",
+"uk": "Повертайтеся після репетиції.",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Came",
+"Coming",
+"Made",
+"Tried",
+"Is"
+]
+},
+{
+"correct": "back",
+"distractors": [
+"off",
+"not",
+"up",
+"here",
+"now"
+]
+},
+{
+"correct": "after",
+"distractors": [
+"to",
+"in",
+"on",
+"at",
+"before"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"and",
+"but"
+]
+},
+{
+"correct": "rehearsal",
+"distractors": [
+"bus",
+"work",
+"station",
+"street",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.09",
+"target": "I get on at the station.",
+"ru": "Я сажусь на станции.",
+"uk": "Я сідаю на станції.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"It",
+"It's",
+"Them"
+]
+},
+{
+"correct": "get",
+"distractors": [
+"got",
+"getting",
+"gets",
+"is",
+"tried"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"for",
+"by",
+"of",
+"after",
+"before"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"in",
+"for",
+"of",
+"after"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"much",
+"and"
+]
+},
+{
+"correct": "station",
+"distractors": [
+"entrance",
+"exit",
+"photo",
+"breakfast",
+"tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.10",
+"target": "She gets off at the next stop.",
+"ru": "Она выходит на следующей остановке.",
+"uk": "Вона виходить на наступній зупинці.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"They",
+"We'll",
+"He"
+]
+},
+{
+"correct": "gets",
+"distractors": [
+"got",
+"get",
+"getting",
+"is",
+"bring"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"than",
+"left",
+"not",
+"back"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"for",
+"on",
+"between",
+"in"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "next",
+"distractors": [
+"last",
+"first",
+"original",
+"older",
+"safer"
+]
+},
+{
+"correct": "stop",
+"distractors": [
+"stops",
+"stopped",
+"has",
+"cancelled",
+"sign"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.11",
+"target": "Turn on the lamp.",
+"ru": "Включите лампу.",
+"uk": "Увімкніть лампу.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Is",
+"Called",
+"Arrive",
+"Was",
+"Are"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"over",
+"at",
+"of",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "lamp",
+"distractors": [
+"price",
+"key",
+"july",
+"stove",
+"door"
+]
+}
+],
+"alternatives": [
+"Turn the lamp on."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.12",
+"target": "Turn the oven on.",
+"ru": "Включите духовку.",
+"uk": "Увімкніть духовку.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Is",
+"Take",
+"Quiet",
+"Was",
+"Are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"to",
+"by",
+"at",
+"through",
+"and"
+]
+},
+{
+"correct": "oven",
+"distractors": [
+"room",
+"bus",
+"son",
+"train",
+"work"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"by",
+"for",
+"of",
+"after"
+]
+}
+],
+"alternatives": [
+"Turn on the oven."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.13",
+"target": "Turn it on.",
+"ru": "Включите её.",
+"uk": "Увімкніть її.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Is",
+"Park",
+"Was",
+"Are",
+"Am"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"you",
+"he's",
+"me",
+"we",
+"she"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"at",
+"after",
+"for",
+"by",
+"of"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.14",
+"target": "Turn off the fan.",
+"ru": "Выключите вентилятор.",
+"uk": "Вимкніть вентилятор.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Is",
+"Got",
+"Are",
+"Was",
+"Am"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"a",
+"that",
+"this",
+"an",
+"no"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "fan",
+"distractors": [
+"work",
+"door",
+"bus",
+"letter",
+"shop"
+]
+}
+],
+"alternatives": [
+"Turn the fan off."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.15",
+"target": "Turn the heater off.",
+"ru": "Выключите обогреватель.",
+"uk": "Вимкніть обігрівач.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Help",
+"Staying",
+"Is",
+"Helped",
+"Helping"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"on",
+"if",
+"up",
+"and",
+"but"
+]
+},
+{
+"correct": "heater",
+"distractors": [
+"key",
+"bus",
+"oven",
+"sundays",
+"train"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"back",
+"than",
+"not",
+"left"
+]
+}
+],
+"alternatives": [
+"Turn off the heater."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.16",
+"target": "Turn it off.",
+"ru": "Выключите его.",
+"uk": "Вимкніть його.",
+"tiles": [
+{
+"correct": "Turn",
+"distractors": [
+"Fixed",
+"Smoke",
+"Is",
+"Take",
+"Has"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"we",
+"she",
+"they",
+"us",
+"you"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"back",
+"not",
+"left",
+"here"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.17",
+"target": "Pick up the phone.",
+"ru": "Поднимите трубку.",
+"uk": "Візьміть слухавку.",
+"tiles": [
+{
+"correct": "Pick",
+"distractors": [
+"Got",
+"Finish",
+"Wait",
+"Is",
+"Do"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"leave",
+"out",
+"down"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"much",
+"and"
+]
+},
+{
+"correct": "phone",
+"distractors": [
+"keep",
+"take",
+"is",
+"set",
+"are"
+]
+}
+],
+"alternatives": [
+"Pick the phone up."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.18",
+"target": "Pick it up.",
+"ru": "Возьмите её.",
+"uk": "Візьміть її.",
+"tiles": [
+{
+"correct": "Pick",
+"distractors": [
+"Park",
+"Feel",
+"Post",
+"Is",
+"Parked"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"you",
+"she's",
+"they",
+"we",
+"she"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"down",
+"not",
+"leave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.19",
+"target": "Put down the box.",
+"ru": "Поставьте коробку.",
+"uk": "Покладіть коробку.",
+"tiles": [
+{
+"correct": "Put",
+"distractors": [
+"Putting",
+"Use",
+"Set",
+"Is",
+"Turn"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"not",
+"off",
+"up",
+"here",
+"back"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"no",
+"and",
+"but"
+]
+},
+{
+"correct": "box",
+"distractors": [
+"fridge",
+"shelf",
+"storage",
+"cash",
+"front"
+]
+}
+],
+"alternatives": [
+"Put the box down."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.20",
+"target": "Put it down here.",
+"ru": "Поставьте её сюда.",
+"uk": "Покладіть її сюди.",
+"tiles": [
+{
+"correct": "Put",
+"distractors": [
+"Putting",
+"Use",
+"Is",
+"Have",
+"Are"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"she",
+"me",
+"we",
+"you",
+"he"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"off",
+"not",
+"left",
+"up",
+"now"
+]
+},
+{
+"correct": "here",
+"distractors": [
+"not",
+"there",
+"home",
+"downstairs",
+"nearby"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.21",
+"target": "I wrote down the number.",
+"ru": "Я записал номер.",
+"uk": "Я записав номер.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"You",
+"She",
+"He",
+"Us",
+"He's"
+]
+},
+{
+"correct": "wrote",
+"distractors": [
+"write",
+"writing",
+"written",
+"pay",
+"take"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"off",
+"left",
+"not",
+"out",
+"here"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"no",
+"and"
+]
+},
+{
+"correct": "number",
+"distractors": [
+"receipt",
+"timetable",
+"ticket",
+"code",
+"label"
+]
+}
+],
+"alternatives": [
+"I wrote the number down."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.22",
+"target": "She wrote it down.",
+"ru": "Она записала его.",
+"uk": "Вона записала його.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"We'll",
+"You",
+"He"
+]
+},
+{
+"correct": "wrote",
+"distractors": [
+"write",
+"writing",
+"booked",
+"send",
+"is"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"we",
+"you",
+"they",
+"he",
+"me"
+]
+},
+{
+"correct": "down",
+"distractors": [
+"off",
+"not",
+"left",
+"out",
+"here"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.23",
+"target": "We looked up the address.",
+"ru": "Мы поискали адрес.",
+"uk": "Ми пошукали адресу.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"They",
+"We're",
+"You"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"look",
+"use",
+"looks",
+"is"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"off",
+"left",
+"out",
+"leave",
+"down"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "address",
+"distractors": [
+"doors",
+"rooms",
+"oven",
+"storage",
+"keys"
+]
+}
+],
+"alternatives": [
+"We looked the address up."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.24",
+"target": "He looked it up.",
+"ru": "Он это поискал.",
+"uk": "Він це пошукав.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"You",
+"They",
+"She"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"looks",
+"use",
+"look",
+"is"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"we",
+"she",
+"us",
+"you",
+"they"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"out",
+"off",
+"left",
+"than",
+"leave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.25",
+"target": "They filled in the form.",
+"ru": "Они заполнили форму.",
+"uk": "Вони заповнили форму.",
+"tiles": [
+{
+"correct": "They",
+"distractors": [
+"I",
+"You",
+"He",
+"She",
+"Us"
+]
+},
+{
+"correct": "filled",
+"distractors": [
+"is",
+"park",
+"washed",
+"are",
+"was"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"by",
+"for",
+"of"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"no",
+"and"
+]
+},
+{
+"correct": "form",
+"distractors": [
+"receipt",
+"message",
+"ticket",
+"pass",
+"morning"
+]
+}
+],
+"alternatives": [
+"They filled out the form.",
+"They filled the form in.",
+"They filled the form out."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.26",
+"target": "I filled it in.",
+"ru": "Я заполнил её.",
+"uk": "Я її заповнив.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"You",
+"They",
+"You're",
+"She's"
+]
+},
+{
+"correct": "filled",
+"distractors": [
+"made",
+"lives",
+"told",
+"stay",
+"is"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"she",
+"you",
+"he",
+"we",
+"they"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"for",
+"of",
+"by"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.27",
+"target": "She handed in the keys.",
+"ru": "Она сдала ключи.",
+"uk": "Вона передала ключі.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"You",
+"We",
+"He",
+"It's"
+]
+},
+{
+"correct": "handed",
+"distractors": [
+"hands",
+"speak",
+"lost",
+"waiting",
+"is"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"at",
+"after",
+"by",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"all",
+"and"
+]
+},
+{
+"correct": "keys",
+"distractors": [
+"bags",
+"instructions",
+"chairs",
+"messages",
+"seats"
+]
+}
+],
+"alternatives": [
+"She handed the keys in."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.28",
+"target": "He handed them in.",
+"ru": "Он сдал их.",
+"uk": "Він їх передав.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"You",
+"We",
+"They"
+]
+},
+{
+"correct": "handed",
+"distractors": [
+"hands",
+"starts",
+"filled",
+"saved",
+"is"
+]
+},
+{
+"correct": "them",
+"distractors": [
+"we",
+"you",
+"she",
+"they",
+"me"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"to",
+"with",
+"at",
+"before",
+"for"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.29",
+"target": "I tried on the jacket.",
+"ru": "Я примерил куртку.",
+"uk": "Я приміряв куртку.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"She",
+"We",
+"You",
+"Me",
+"Them"
+]
+},
+{
+"correct": "tried",
+"distractors": [
+"is",
+"quiet",
+"cover",
+"was",
+"are"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"under",
+"after",
+"at",
+"for",
+"by"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"every",
+"many",
+"and"
+]
+},
+{
+"correct": "jacket",
+"distractors": [
+"shoes",
+"coat",
+"photo",
+"delivery",
+"uniform"
+]
+}
+],
+"alternatives": [
+"I tried the jacket on."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.30",
+"target": "She tried it on.",
+"ru": "Она примерила её.",
+"uk": "Вона приміряла її.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"We'll",
+"Me",
+"Us"
+]
+},
+{
+"correct": "tried",
+"distractors": [
+"is",
+"bring",
+"has",
+"are",
+"was"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"we",
+"you",
+"he",
+"they",
+"me"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"by",
+"at",
+"of",
+"for",
+"after"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.31",
+"target": "I look after my nephew.",
+"ru": "Я присматриваю за своим племянником.",
+"uk": "Я доглядаю за своїм племінником.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"Me",
+"He",
+"I've",
+"She's"
+]
+},
+{
+"correct": "look",
+"distractors": [
+"looked",
+"looking",
+"use",
+"looks",
+"is"
+]
+},
+{
+"correct": "after",
+"distractors": [
+"to",
+"in",
+"from",
+"on",
+"before"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"her",
+"our",
+"his",
+"yours"
+]
+},
+{
+"correct": "nephew",
+"distractors": [
+"lunch",
+"water",
+"alarm",
+"key",
+"door"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.32",
+"target": "She looks after the children.",
+"ru": "Она присматривает за детьми.",
+"uk": "Вона доглядає за дітьми.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"Me",
+"We'll",
+"You"
+]
+},
+{
+"correct": "looks",
+"distractors": [
+"looked",
+"looking",
+"use",
+"look",
+"do"
+]
+},
+{
+"correct": "after",
+"distractors": [
+"to",
+"on",
+"at",
+"in",
+"for"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "children",
+"distractors": [
+"book",
+"desk",
+"room",
+"bag",
+"water"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.33",
+"target": "We are looking for a flat.",
+"ru": "Мы ищем квартиру.",
+"uk": "Ми шукаємо квартиру.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"She",
+"You",
+"They're",
+"He"
+]
+},
+{
+"correct": "are",
+"distractors": [
+"is",
+"was",
+"am",
+"do",
+"know"
+]
+},
+{
+"correct": "looking",
+"distractors": [
+"looked",
+"look",
+"use",
+"looks",
+"have"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"at",
+"by",
+"in"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"this",
+"that",
+"some",
+"these",
+"and"
+]
+},
+{
+"correct": "flat",
+"distractors": [
+"shop",
+"new",
+"busier",
+"shorter",
+"room"
+]
+}
+],
+"alternatives": [
+"We're looking for a flat.",
+"We're looking for an apartment.",
+"We are looking for an apartment."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.34",
+"target": "He looked for his wallet.",
+"ru": "Он искал свой бумажник.",
+"uk": "Він шукав свій гаманець.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"She",
+"It",
+"You",
+"We"
+]
+},
+{
+"correct": "looked",
+"distractors": [
+"looking",
+"look",
+"is",
+"pay",
+"use"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"in",
+"at",
+"by"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"her",
+"hers"
+]
+},
+{
+"correct": "wallet",
+"distractors": [
+"coat",
+"key",
+"glass",
+"bus",
+"door"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.35",
+"target": "Can you look after my bag?",
+"ru": "Вы можете присмотреть за моей сумкой?",
+"uk": "Ви можете наглянути за моєю сумкою?",
+"tiles": [
+{
+"correct": "Can",
+"distractors": [
+"Cannot",
+"Must",
+"Should",
+"Train",
+"There's"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"we",
+"me",
+"he",
+"she'll",
+"she"
+]
+},
+{
+"correct": "look",
+"distractors": [
+"looked",
+"looking",
+"use",
+"call",
+"has"
+]
+},
+{
+"correct": "after",
+"distractors": [
+"to",
+"on",
+"at",
+"for",
+"near"
+]
+},
+{
+"correct": "my",
+"distractors": [
+"your",
+"our",
+"her",
+"theirs",
+"yours"
+]
+},
+{
+"correct": "bag",
+"distractors": [
+"box",
+"locker",
+"fridge",
+"kettle",
+"drawer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.36",
+"target": "Did you look for it downstairs?",
+"ru": "Ты искал её внизу?",
+"uk": "Ти шукав її внизу?",
+"tiles": [
+{
+"correct": "Did",
+"distractors": [
+"Do",
+"Does",
+"Met",
+"Starts",
+"Saw"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"she",
+"me",
+"he",
+"we",
+"they"
+]
+},
+{
+"correct": "look",
+"distractors": [
+"looked",
+"looking",
+"use",
+"looks",
+"is"
+]
+},
+{
+"correct": "for",
+"distractors": [
+"to",
+"on",
+"in",
+"at",
+"with"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"we",
+"she",
+"him",
+"he",
+"they"
+]
+},
+{
+"correct": "downstairs",
+"distractors": [
+"there",
+"home",
+"driver",
+"here",
+"upstairs"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.37",
+"target": "We ran out of milk.",
+"ru": "У нас закончилось молоко.",
+"uk": "У нас закінчилося молоко.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"You",
+"They",
+"He",
+"He's"
+]
+},
+{
+"correct": "ran",
+"distractors": [
+"run",
+"is",
+"go",
+"was",
+"are"
+]
+},
+{
+"correct": "out",
+"distractors": [
+"up",
+"left",
+"not",
+"back",
+"down"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"in",
+"at",
+"for",
+"on"
+]
+},
+{
+"correct": "milk",
+"distractors": [
+"rain",
+"soup",
+"water",
+"coffee",
+"bread"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.38",
+"target": "She ran out of paper.",
+"ru": "У неё закончилась бумага.",
+"uk": "У неї закінчився папір.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"We",
+"It",
+"You",
+"They're"
+]
+},
+{
+"correct": "ran",
+"distractors": [
+"run",
+"fixing",
+"waiting",
+"went",
+"is"
+]
+},
+{
+"correct": "out",
+"distractors": [
+"than",
+"up",
+"left",
+"not",
+"back"
+]
+},
+{
+"correct": "of",
+"distractors": [
+"to",
+"at",
+"on",
+"for",
+"with"
+]
+},
+{
+"correct": "paper",
+"distractors": [
+"desk",
+"work",
+"ticket",
+"cafe",
+"bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.39",
+"target": "I came across an old photo.",
+"ru": "Я наткнулся на старую фотографию.",
+"uk": "Я натрапив на стару фотографію.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"She",
+"They",
+"You",
+"He"
+]
+},
+{
+"correct": "came",
+"distractors": [
+"come",
+"coming",
+"is",
+"has",
+"are"
+]
+},
+{
+"correct": "across",
+"distractors": [
+"to",
+"on",
+"in",
+"for",
+"with"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"this",
+"that",
+"much",
+"and",
+"but"
+]
+},
+{
+"correct": "old",
+"distractors": [
+"time",
+"station",
+"shorter",
+"smallest",
+"bus"
+]
+},
+{
+"correct": "photo",
+"distractors": [
+"price",
+"seat",
+"home",
+"driver",
+"tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.40",
+"target": "He got over his cold.",
+"ru": "Он выздоровел от простуды.",
+"uk": "Він одужав від застуди.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"I",
+"We",
+"She",
+"They",
+"You"
+]
+},
+{
+"correct": "got",
+"distractors": [
+"get",
+"getting",
+"gets",
+"is",
+"are"
+]
+},
+{
+"correct": "over",
+"distractors": [
+"to",
+"at",
+"on",
+"by",
+"for"
+]
+},
+{
+"correct": "his",
+"distractors": [
+"my",
+"your",
+"our",
+"ours",
+"her"
+]
+},
+{
+"correct": "cold",
+"distractors": [
+"glasses",
+"late",
+"free",
+"open",
+"closed"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.41",
+"target": "Please take your shoes off.",
+"ru": "Пожалуйста, снимите обувь.",
+"uk": "Будь ласка, зніміть взуття.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Takes",
+"Took",
+"Taking",
+"Desk",
+"Price"
+]
+},
+{
+"correct": "take",
+"distractors": [
+"takes",
+"took",
+"taking",
+"is",
+"starts"
+]
+},
+{
+"correct": "your",
+"distractors": [
+"my",
+"up",
+"out",
+"his",
+"her"
+]
+},
+{
+"correct": "shoes",
+"distractors": [
+"jacket",
+"boots",
+"gloves",
+"uniform",
+"scarf"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"than",
+"up",
+"not",
+"back",
+"left"
+]
+}
+],
+"alternatives": [
+"Please take off your shoes.",
+"Take your shoes off, please."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.42",
+"target": "She put her coat on.",
+"ru": "Она надела пальто.",
+"uk": "Вона одягла пальто.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"We",
+"You",
+"She's"
+]
+},
+{
+"correct": "put",
+"distractors": [
+"putting",
+"use",
+"is",
+"run",
+"found"
+]
+},
+{
+"correct": "her",
+"distractors": [
+"he",
+"we",
+"they",
+"you",
+"me"
+]
+},
+{
+"correct": "coat",
+"distractors": [
+"package",
+"parcel",
+"shoes",
+"towel",
+"uniform"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"of",
+"before",
+"at",
+"for",
+"by"
+]
+}
+],
+"alternatives": [
+"She put on her coat."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.43",
+"target": "Can you pick me up at six?",
+"ru": "Можешь забрать меня в шесть?",
+"uk": "Можеш заїхати за мною о шостій?",
+"tiles": [
+{
+"correct": "Can",
+"distractors": [
+"Must",
+"Should",
+"Cannot",
+"Don't",
+"There's"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"it's",
+"he",
+"we",
+"we'll",
+"she"
+]
+},
+{
+"correct": "pick",
+"distractors": [
+"is",
+"ringing",
+"noticed",
+"was",
+"are"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"we",
+"they",
+"she's",
+"she",
+"he"
+]
+},
+{
+"correct": "up",
+"distractors": [
+"left",
+"off",
+"out",
+"leave",
+"down"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"for",
+"on",
+"near",
+"in"
+]
+},
+{
+"correct": "six",
+"distractors": [
+"two",
+"four",
+"nine",
+"thirty",
+"ten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.44",
+"target": "I will drop you off outside.",
+"ru": "Я высажу тебя у дома.",
+"uk": "Я висаджу тебе біля будинку.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"We",
+"Me",
+"We've",
+"He",
+"She"
+]
+},
+{
+"correct": "will",
+"distractors": [
+"should",
+"must",
+"cannot",
+"may",
+"does"
+]
+},
+{
+"correct": "drop",
+"distractors": [
+"is",
+"break",
+"stop",
+"was",
+"are"
+]
+},
+{
+"correct": "you",
+"distractors": [
+"she",
+"we",
+"they're",
+"me",
+"he"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"than",
+"back",
+"not",
+"left"
+]
+},
+{
+"correct": "outside",
+"distractors": [
+"home",
+"here",
+"there",
+"upstairs",
+"not"
+]
+}
+],
+"alternatives": [
+"I'll drop you off outside."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.45",
+"target": "We need to find out the fare.",
+"ru": "Нам нужно узнать стоимость проезда.",
+"uk": "Нам потрібно дізнатися вартість проїзду.",
+"tiles": [
+{
+"correct": "We",
+"distractors": [
+"I",
+"He's",
+"She'll",
+"She",
+"They"
+]
+},
+{
+"correct": "need",
+"distractors": [
+"needs",
+"take",
+"lost",
+"is",
+"have"
+]
+},
+{
+"correct": "to",
+"distractors": [
+"at",
+"behind",
+"by",
+"for",
+"in"
+]
+},
+{
+"correct": "find",
+"distractors": [
+"found",
+"is",
+"heard",
+"lock",
+"missing"
+]
+},
+{
+"correct": "out",
+"distractors": [
+"than",
+"up",
+"left",
+"not",
+"back"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"that",
+"this",
+"these",
+"and",
+"but"
+]
+},
+{
+"correct": "fare",
+"distractors": [
+"list",
+"rent",
+"charging",
+"driver",
+"is"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.46",
+"target": "She gave the book back.",
+"ru": "Она вернула книгу.",
+"uk": "Вона повернула книгу.",
+"tiles": [
+{
+"correct": "She",
+"distractors": [
+"I",
+"He",
+"You",
+"He's",
+"I'm"
+]
+},
+{
+"correct": "gave",
+"distractors": [
+"give",
+"told",
+"have",
+"live",
+"has"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"off",
+"up",
+"not",
+"on",
+"and"
+]
+},
+{
+"correct": "book",
+"distractors": [
+"booked",
+"booking",
+"package",
+"parcel",
+"towel"
+]
+},
+{
+"correct": "back",
+"distractors": [
+"off",
+"up",
+"not",
+"here",
+"now"
+]
+}
+],
+"alternatives": [
+"She gave back the book."
+]
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.47",
+"target": "Can I give it back tomorrow?",
+"ru": "Могу я вернуть её завтра?",
+"uk": "Чи можу я повернути її завтра?",
+"tiles": [
+{
+"correct": "Can",
+"distractors": [
+"Should",
+"Cannot",
+"Must",
+"Train",
+"Don't"
+]
+},
+{
+"correct": "I",
+"distractors": [
+"She",
+"We",
+"He",
+"You",
+"They"
+]
+},
+{
+"correct": "give",
+"distractors": [
+"gave",
+"restart",
+"need",
+"is",
+"do"
+]
+},
+{
+"correct": "it",
+"distractors": [
+"she",
+"me",
+"she's",
+"we",
+"you"
+]
+},
+{
+"correct": "back",
+"distractors": [
+"off",
+"up",
+"not",
+"here",
+"now"
+]
+},
+{
+"correct": "tomorrow",
+"distractors": [
+"early",
+"today",
+"yesterday",
+"late",
+"tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.48",
+"target": "The meeting went on until lunch.",
+"ru": "Встреча продолжалась до обеда.",
+"uk": "Зустріч тривала до обіду.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"This",
+"That",
+"No",
+"And",
+"But"
+]
+},
+{
+"correct": "meeting",
+"distractors": [
+"met",
+"meet",
+"is",
+"close",
+"driving"
+]
+},
+{
+"correct": "went",
+"distractors": [
+"goes",
+"go",
+"is",
+"was",
+"are"
+]
+},
+{
+"correct": "on",
+"distractors": [
+"for",
+"by",
+"at",
+"of",
+"after"
+]
+},
+{
+"correct": "until",
+"distractors": [
+"outside",
+"coat",
+"key",
+"phone",
+"gate"
+]
+},
+{
+"correct": "lunch",
+"distractors": [
+"form",
+"letter",
+"toilet",
+"route",
+"date"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.49",
+"target": "The alarm went off at five.",
+"ru": "Будильник зазвонил в пять.",
+"uk": "Будильник задзвонив о п'ятій.",
+"tiles": [
+{
+"correct": "The",
+"distractors": [
+"That",
+"This",
+"Some",
+"And",
+"But"
+]
+},
+{
+"correct": "alarm",
+"distractors": [
+"room",
+"work",
+"forecast",
+"bus",
+"door"
+]
+},
+{
+"correct": "went",
+"distractors": [
+"go",
+"goes",
+"have",
+"is",
+"are"
+]
+},
+{
+"correct": "off",
+"distractors": [
+"up",
+"left",
+"than",
+"not",
+"back"
+]
+},
+{
+"correct": "at",
+"distractors": [
+"to",
+"on",
+"in",
+"for",
+"of"
+]
+},
+{
+"correct": "five",
+"distractors": [
+"ten",
+"six",
+"eleven",
+"two",
+"nine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "en-classic-r1:16.50",
+"target": "Please put the milk away.",
+"ru": "Пожалуйста, убери молоко.",
+"uk": "Будь ласка, прибери молоко.",
+"tiles": [
+{
+"correct": "Please",
+"distractors": [
+"Putting",
+"Use",
+"Price",
+"Coat",
+"Bag"
+]
+},
+{
+"correct": "put",
+"distractors": [
+"putting",
+"use",
+"is",
+"have",
+"are"
+]
+},
+{
+"correct": "the",
+"distractors": [
+"off",
+"up",
+"not",
+"on",
+"and"
+]
+},
+{
+"correct": "milk",
+"distractors": [
+"bread",
+"tea",
+"date",
+"parking",
+"work"
+]
+},
+{
+"correct": "away",
+"distractors": [
+"off",
+"not",
+"out",
+"up",
+"here"
+]
+}
+],
+"alternatives": [
+"Please put away the milk.",
+"Put the milk away, please."
+]
+}
+]

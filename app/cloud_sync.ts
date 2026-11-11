@@ -24,7 +24,7 @@ import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { isDevFixtureNoUploadActive, omitDevFixtureCardKeys } from './dev_fixture_upload_guard';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
-import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
+import { getRealPremiumProgressState, getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { mergeStreakByActivityDate, normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 import { mergeActiveDays } from './friends_together/together_days';
 import {
@@ -106,6 +106,13 @@ import {
   writeVipSnapshotForGeneration,
 } from './premium_vip_storage';
 import {
+  REAL_PREMIUM_SNAPSHOT_PREFIX,
+  isRealPremiumSnapshotStorageKey,
+  replaceRealPremiumSnapshotForGeneration,
+  type RealPremiumPlan,
+  type RealPremiumSnapshotV1,
+} from './premium_real_storage';
+import {
   extractExamBestPctOverlay,
   publishExamBestPctOverlay,
 } from './exam_best_pct_overlay';
@@ -138,7 +145,7 @@ import {
   hashCanonicalBody,
   sha256Utf8,
   utf8ByteLengthV1,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 // зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
 // истории остаётся на устройствах прежних версий. Держим его в списке очистки
 // при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
@@ -188,6 +195,63 @@ export async function writeMergedCloudVipSnapshot(
   const local = await dependencies.read(generation);
   if (!isCurrentAccountGeneration(generation, stableId)) return false;
   return dependencies.write(generation, mergeCloudVipWithLocalSpinGrant(cloud, local));
+}
+
+type RealPremiumServerProjection = Omit<
+  RealPremiumSnapshotV1,
+  'version' | 'ownerStableId' | 'updatedAtMs'
+>;
+
+const safePremiumProjectionMs = (value: unknown): number => {
+  const parsed = parsePremiumProgressMs(value);
+  return Number.isSafeInteger(parsed) ? parsed : 0;
+};
+
+const safePremiumProjectionText = (value: unknown, maxLength: number): string | null => {
+  if (value === null || value === undefined) return null;
+  const text = String(value).trim();
+  return text && text.length <= maxLength ? text : null;
+};
+
+/** Authenticated cloud progress may recover a local store cache, but only an
+ * unambiguous, currently-active store plan is accepted. Admin and VIP data
+ * remain in the separate owner-scoped VIP authority. */
+export function deriveRealPremiumServerProjection(
+  progress: Record<string, unknown>,
+  now = Date.now(),
+): RealPremiumServerProjection | null {
+  if (!Number.isSafeInteger(now) || now < 0) return null;
+  const state = getRealPremiumProgressState(progress, now);
+  if (!state?.active) return null;
+  const plan: RealPremiumPlan = state.plan === 'annual' ? 'yearly' : state.plan as RealPremiumPlan;
+  if (plan !== 'monthly' && plan !== 'yearly' && plan !== 'lifetime') return null;
+  return {
+    active: true,
+    plan,
+    premiumExpiryMs: safePremiumProjectionMs(progress.premium_expiry),
+    rcExpiryMs: safePremiumProjectionMs(progress.premium_rc_expiry_ms),
+    rcLastSeenAtMs: now,
+    rcProductId: safePremiumProjectionText(progress.premium_rc_product_id, 256),
+    rcPeriodType: safePremiumProjectionText(progress.premium_rc_period_type, 64),
+    rcStore: safePremiumProjectionText(progress.premium_rc_store, 64),
+    rcPurchasedAtMs: safePremiumProjectionMs(progress.premium_rc_purchased_at_ms),
+    rcUpdatedAtMs: safePremiumProjectionMs(progress.premium_rc_updated_at),
+    evidenceSource: 'server_projection',
+  };
+}
+
+export async function writeRealPremiumServerProjection(
+  generation: AccountGenerationToken,
+  progress: Record<string, unknown>,
+  now = Date.now(),
+  write: typeof replaceRealPremiumSnapshotForGeneration = replaceRealPremiumSnapshotForGeneration,
+): Promise<boolean> {
+  const stableId = generation.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return false;
+  const projection = deriveRealPremiumServerProjection(progress, now);
+  if (!projection || !isCurrentAccountGeneration(generation, stableId)) return false;
+  const written = await write(generation, projection);
+  return written && isCurrentAccountGeneration(generation, stableId);
 }
 import {
   achievementStateKey,
@@ -315,17 +379,6 @@ import { gcDelta, gcSnapshot } from './mem_probe';
 import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
 import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
 import { mergeNumericMaxRestoreValue } from './restore_numeric_max_merge';
-import {
-  LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
-  LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
-  LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
-  mergeChapterExamSyncRestoreValueV1,
-  mergeCourseProgressSyncRestoreValueV1,
-  mergeSessionStarsSyncRestoreValueV1,
-} from '../modules/learning-v2/progress/progress_sync_v1';
-import { LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, mergeCourseMasksRestoreValueV1 } from '../modules/learning-v2/progress/course_progress_masks_v1';
-import { LEARNING_V2_COURSE_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
-import { learningV2LanguageScopedStorageKeyV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
 import {
   isDeferredBootRestoreWaiting,
   onDeferredBootRestoreSettled,
@@ -548,19 +601,6 @@ function mergeTruthyFlagRestoreValue(localRaw: string | null | undefined, cloudR
   return !isTruthyFlag(cloudRaw) && isTruthyFlag(localRaw) ? (localRaw as string) : cloudRaw;
 }
 
-// зачем (координатор 29.10): прогресс испанского курса хранится под ключами с суффиксом «:target:es» и до сих пор не уезжал в облако —
-// при смене телефона или переустановке испанец терял весь курс. Имена строит тот же помощник, что пишет их на телефоне.
-export const LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1 = Object.freeze({
-  courseProgress: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1, 'es'),
-  masks: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, 'es'),
-  stars: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, 'es'),
-});
-
-function logLearningV2EsMerge(kind: 'progress' | 'masks' | 'stars', localRaw: string | null | undefined, cloudRaw: string, merged: string): string {
-  console.log('[CLOUD-SYNC] es_progress:merge', JSON.stringify({ kind, localLen: localRaw?.length ?? null, cloudLen: cloudRaw.length, mergedLen: merged.length, changedLocal: merged !== (localRaw ?? null) })); // guard-ok: одна строка на слияние ключа es
-  return merged;
-}
-
 const FC_RESTORE_MERGE_STRATEGIES: Record<
   string,
   (localRaw: string | null | undefined, cloudRaw: string) => string
@@ -586,23 +626,6 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   phraseman_foreground_usage_ms_v1: mergeNumericMaxRestoreValue,
   phraseman_foreground_daily_ms_v1: mergeNumericMaxRestoreValue,
   ...Object.fromEntries(SYNC_STUDY_TARGETS.map((target) => [userStatsKey(target), mergeNumericMaxRestoreValue])),
-  // зачем (координатор 22.10, вариант А): прогресс курса — максимум пройденных подряд; экзамен — «сдан» побеждает, лучший счёт
-  // сохраняется. Пустой телефон облако не уменьшает: пустая сторона ничего не стирает. Журнал [V2-PROGRESS-SYNC].
-  [LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1]: mergeCourseProgressSyncRestoreValueV1,
-  [LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1]: mergeChapterExamSyncRestoreValueV1,
-  [LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,
-  // зачем (владелец 21.10 №8/№10 «просто открыты»; координатор 22.10, прогресс v2): маски пройденного и открытого — только
-  // побитовое ИЛИ, ни одна сторона ничего не стирает. Старое число LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1 едет как прежде.
-  [LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1]: (localRaw, cloudRaw) => mergeCourseMasksRestoreValueV1(localRaw, cloudRaw, LEARNING_V2_COURSE_SESSION_COUNT_V1),
-  learning_v2_not_from_start_used_v1: mergeTruthyFlagRestoreValue,
-  // зачем (координатор 29.10): испанский прогресс курса — те же правила слияния, что у английского (ничего не теряется);
-  // ключи свои (суффикс «:target:es»), поэтому с английским не смешиваются. Журнал [CLOUD-SYNC] — что пришло и что вышло.
-  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.courseProgress]: (localRaw, cloudRaw) =>
-    logLearningV2EsMerge('progress', localRaw, cloudRaw, mergeCourseProgressSyncRestoreValueV1(localRaw, cloudRaw)),
-  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.masks]: (localRaw, cloudRaw) =>
-    logLearningV2EsMerge('masks', localRaw, cloudRaw, mergeCourseMasksRestoreValueV1(localRaw, cloudRaw, LEARNING_V2_COURSE_SESSION_COUNT_V1)),
-  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.stars]: (localRaw, cloudRaw) =>
-    logLearningV2EsMerge('stars', localRaw, cloudRaw, mergeSessionStarsSyncRestoreValueV1(localRaw, cloudRaw)),
 };
 
 export const SYNC_KEYS = [
@@ -782,24 +805,6 @@ export const SYNC_KEYS = [
   //    низкий. Полную защиту (CF-выдача + blocked-ключи) делать отдельно.
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
-  // ── Learning V2 (координатор 22.10, вариант А): пройденные эпизоды и экзамены глав жили только на телефоне и пропадали
-  //    при переустановке. Облачная копия компактная: число пройденных подряд занятий (строка из цифр) и записи экзаменов
-  //    без текстов (≤ ~13 КБ на весь курс из 224 глав). Слияние — FC_RESTORE_MERGE_STRATEGIES ниже: пройденное не теряется.
-  LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
-  LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
-  // звёзды эпизодов: строка цифр 0–3 по порядку курса (≤ 1792 байт), слияние — лучшая звезда по каждому занятию
-  LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
-  // прогресс v2 (координатор 22.10): маски пройденного и открытого по порядку курса, ≤ 448 символов каждая, в той же записи
-  // синка — новых чтений и записей нет; слияние — побитовое ИЛИ (FC_RESTORE_MERGE_STRATEGIES)
-  LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1,
-  // зачем (владелец 22.10): «Не хочу с начала» — один раз на аккаунт; флаг ставит телефон, облако хранит, чтобы он пережил
-  // переустановку (app/learning_v2_not_from_start_once_v1.ts). Слияние ИЛИ — снять флаг нельзя.
-  'learning_v2_not_from_start_used_v1',
-  // зачем (координатор 29.10): испанский прогресс курса — число, маски и звёзды (экзамены глав у испанского выключены); та же
-  // запись документа, новых чтений и записей нет, документ растёт максимум на ~3 КБ при полном курсе
-  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.courseProgress,
-  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.masks,
-  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.stars,
 ] as const;
 
 export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {
@@ -833,6 +838,17 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   // wipe and residue verification as the owner-scoped grant journals below.
   'pending_shard_grants_v1',
   'pending_shard_grants_v1_quarantine_owner_v1',
+  // зачем: курс занятий удалён, эти ключи больше не синхронизируются с облаком (облачная копия остаётся нетронутой).
+  // Локальные копии прежних ключей синка обязаны стираться при смене аккаунта, иначе достались бы следующему человеку.
+  // Имена — те, под которыми их писали выпущенные версии; менять нельзя.
+  'learning_v2_course_progress_sync_v1',
+  'learning_v2_chapter_exam_sync_v1',
+  'learning_v2_session_stars_sync_v1',
+  'learning_v2_course_masks_sync_v1',
+  'learning_v2_not_from_start_used_v1',
+  'learning_v2_course_progress_sync_v1:target:es',
+  'learning_v2_course_masks_sync_v1:target:es',
+  'learning_v2_session_stars_sync_v1:target:es',
 ] as const;
 
 // Ключи снятых в 2.0 XP/лиги стираются вместе с аккаунтом — см. retired_account_local_keys.ts.
@@ -851,8 +867,6 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'mistake_practice_v2::',
   // Журнал дней удалённого личного плана (см. RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS).
   'personal_plan_day_runtime_v1:',
-  'learning_v2_lesson1_progress:',
-  'learning_v2_progress:',
   'v2:outbox:v1:',
   'v2:outbox:v2:',
   'v2:required-session-local-commit:v1:',
@@ -867,21 +881,13 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   // One privacy-minimal owner milestone receipt per account + study language.
   // It must travel/wipe with the card library and must never cross accounts.
   'custom_card_milestone_outbox_v1:',
-  'learning_v2_owner_repository:v1:',
-  'learning_v2_coin_exchange_outbox:v1:',
-  // зачем (Ревизор к 69aeaff8d): сохранённый эпизод «продолжить с задания N из M» (до 7 дней), колоды словаря для
-  // тренировки и срок режима «Не могу говорить» — данные этого человека: стираются и переносятся вместе с аккаунтом,
-  // иначе после удаления аккаунта эпизод жил бы на телефоне до 7 дней и достался следующему.
-  'learning_v2_episode_resume_v1:',
-  'learning_v2_dictionary_training_decks_v1',
-  'learning_v2_cant_speak_until_v1',
-  // зачем (координатор 22.10, вариант А): локальный прогресс курса и результаты экзаменов — по отпечатку аккаунта; переносятся и
-  // стираются вместе с аккаунтом (облачная копия — ключи learning_v2_*_sync_v1 в SYNC_KEYS, стираются при смене как все ключи синка).
-  'learning-v2:course-local-progress:v1:',
-  // прогресс v2 (22.10): маски пройденного и открытого этого аккаунта — стираются и переносятся вместе с цепочкой
-  'learning-v2:course-local-progress:masks:v1:',
+  // зачем: курс занятий удалён, но выпущенные версии оставили на телефонах его локальные ключи (прогресс, звёзды,
+  // кошелёк курса, очереди, эпизод «продолжить», колоды словаря, «Мастерская фраз»). Это данные человека: стираются
+  // и переносятся вместе с аккаунтом. Два общих префикса покрывают все их имена; новых записей под ними нет,
+  // кроме чтения ранее сохранённых колод словаря (app/flashcards/dictionary_training_deck.ts).
+  'learning_v2_',
+  'learning-v2:',
   'v2:chapter-exam:v1:',
-  'learning-v2:session-star-results:v1:',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.
   'client_shard_operation_v1:',
   'client_shard_ledger_state_v1:',
@@ -964,7 +970,7 @@ export function isAccountLocalJournalStorageKey(key: string): boolean {
     || ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
 }
 
-function isLearningV2AccountLocalKey(key: string): boolean {
+function isRetiredOrJournalAccountLocalKey(key: string): boolean {
   return isAccountLocalJournalStorageKey(key);
 }
 
@@ -977,19 +983,19 @@ async function listAllAccountLocalStorageKeys(): Promise<string[]> {
     }
     // Preserve the established fail-closed error contract used by account
     // switch and clean-install recovery callers.
-    throw new Error('learning_v2_account_key_scan_failed');
+    throw new Error('account_key_scan_failed');
   }
 }
 
-function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
+function journalAccountLocalKeysFrom(allKeys: readonly string[]): string[] {
   return Array.from(new Set([
     ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
-    ...allKeys.filter(isLearningV2AccountLocalKey),
+    ...allKeys.filter(isRetiredOrJournalAccountLocalKey),
   ]));
 }
 
-async function listLearningV2AccountLocalKeys(): Promise<string[]> {
-  return learningV2AccountLocalKeysFrom(await listAllAccountLocalStorageKeys());
+async function listJournalAccountLocalKeys(): Promise<string[]> {
+  return journalAccountLocalKeysFrom(await listAllAccountLocalStorageKeys());
 }
 
 /**
@@ -1060,9 +1066,12 @@ export function accountOwnedStorageKeysFrom(
 ): string[] {
   return Array.from(new Set([
     ...accountLocalDataKeysForToday(todayKey),
-    ...learningV2AccountLocalKeysFrom(allKeys),
+    ...journalAccountLocalKeysFrom(allKeys),
     ...customizationAccountLocalKeysFrom(allKeys),
     ...allKeys.filter(isVipSnapshotStorageKey),
+    ...allKeys.filter((key) => (
+      key.startsWith(REAL_PREMIUM_SNAPSHOT_PREFIX) && isRealPremiumSnapshotStorageKey(key)
+    )),
   ]));
 }
 
@@ -1576,7 +1585,7 @@ const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
   'referral_vip_last_source', 'promo_vip_last_code',
   'lesson1_pass_live', 'lesson_progress_v2::fr::lesson1_pass_live',
   'lesson_progress_v2::es::lesson1_pass_live', 'lesson_progress_v2::de::lesson1_pass_live', 'lesson_progress_v2::it::lesson1_pass_live',
-  // лесенка C (29.10): серверные дни итогов Learning V2 — пишет только сервер, правила режут клиенту
+  // серверные метки удалённого курса занятий: клиент их не выгружает (прежде писал только сервер)
   'lv2_srv_day1', 'lv2_srv_day2',
   'collectibles_owned_v1', 'collectibles_state_v1',
   'profile_card_level', 'shard_survey_last_at_ms',
@@ -4369,6 +4378,16 @@ async function applyRestoreFromUserDocTraced(
     'vip_admin_override', 'vip_admin_grant_at', 'vip_grant_at',
   ]);
 
+  // The authenticated user document is the only legacy-cloud source allowed
+  // to seed the real-store cache. Missing, expired, admin, and VIP-only data do
+  // not write anything and therefore cannot adopt ownerless compatibility keys.
+  if (!stripPremiumActive && vipGeneration && vipOwnerStableId) {
+    assertCurrent();
+    applyMark('at:real_premium_snapshot');
+    await writeRealPremiumServerProjection(vipGeneration, cloudData);
+    assertCurrent();
+  }
+
   let localStreakRaw: string | null;
   let localLastActiveRaw: string | null;
   let localStreakLastRaw: string | null;
@@ -6782,10 +6801,10 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode, keepConsent
   console.log(`[ACC-WIPE] app_messages ${JSON.stringify(countWipeOnlyKeysByPrefix(wipeOnlyKeys))}`); // guard-ok: одна строка на стирание, только префиксы и числа
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
-  const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
+  const lateJournalKeys = (await listJournalAccountLocalKeys())
     .filter((key) => !KEEP.has(key));
-  await removeExactly(lateLearningV2Keys);
-  markWipeStage('lateLearningV2', lateLearningV2Keys.length);
+  await removeExactly(lateJournalKeys);
+  markWipeStage('lateJournal', lateJournalKeys.length);
   if (receiptOwnerStableId) {
     await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
   }
@@ -6794,9 +6813,10 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode, keepConsent
   const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
     !KEEP.has(key) && (
       knownAccountKeys.has(key)
-      || isLearningV2AccountLocalKey(key)
+      || isRetiredOrJournalAccountLocalKey(key)
       || isCustomizationAccountLocalKey(key)
       || isVipSnapshotStorageKey(key)
+      || isRealPremiumSnapshotStorageKey(key)
     ));
   markWipeStage('finalScan');
   // зачем (PRIVACY_DELTA_R1 п.5): живой загрузчик сообщений мог дописать кэш старого владельца во время выхода — убираем тихо,

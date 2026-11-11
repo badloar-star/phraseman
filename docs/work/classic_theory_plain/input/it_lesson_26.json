@@ -1,0 +1,836 @@
+{
+ "lang": "it",
+ "lesson": 26,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:26:01",
+   "target": "Paolo è più alto di me.",
+   "ru": "Паоло выше меня.",
+   "uk": "Паоло вищий за мене."
+  },
+  {
+   "id": "it:26:02",
+   "target": "Lea è più alta di me.",
+   "ru": "Леа выше меня.",
+   "uk": "Леа вища за мене."
+  },
+  {
+   "id": "it:26:03",
+   "target": "Questa borsa è più leggera dell’altra.",
+   "ru": "Эта сумка легче другой.",
+   "uk": "Ця сумка легша за іншу."
+  },
+  {
+   "id": "it:26:04",
+   "target": "Questa valigia è meno pesante dell’altra.",
+   "ru": "Этот чемодан легче другого.",
+   "uk": "Ця валіза легша за іншу."
+  },
+  {
+   "id": "it:26:05",
+   "target": "Il tè è caldo come il caffè.",
+   "ru": "Чай такой же горячий, как кофе.",
+   "uk": "Чай такий же гарячий, як кава."
+  },
+  {
+   "id": "it:26:06",
+   "target": "La zuppa è calda come il tè.",
+   "ru": "Суп такой же горячий, как чай.",
+   "uk": "Суп такий же гарячий, як чай."
+  },
+  {
+   "id": "it:26:07",
+   "target": "L’autobus è più lento del treno.",
+   "ru": "Автобус медленнее поезда.",
+   "uk": "Автобус повільніший за поїзд."
+  },
+  {
+   "id": "it:26:08",
+   "target": "La metropolitana è più veloce dell’autobus.",
+   "ru": "Метро быстрее автобуса.",
+   "uk": "Метро швидше за автобус."
+  },
+  {
+   "id": "it:26:09",
+   "target": "La strada è più stretta della piazza.",
+   "ru": "Улица уже, чем площадь.",
+   "uk": "Вулиця вужча за площу."
+  },
+  {
+   "id": "it:26:10",
+   "target": "Il nuovo modulo è più chiaro di quello vecchio.",
+   "ru": "Новый бланк понятнее старого.",
+   "uk": "Новий бланк зрозуміліший за старий."
+  },
+  {
+   "id": "it:26:11",
+   "target": "Questo cappotto è più costoso della giacca.",
+   "ru": "Это пальто дороже куртки.",
+   "uk": "Це пальто дорожче за куртку."
+  },
+  {
+   "id": "it:26:12",
+   "target": "Questo maglione è più economico del cappotto.",
+   "ru": "Этот свитер дешевле пальто.",
+   "uk": "Цей светр дешевший за пальто."
+  },
+  {
+   "id": "it:26:13",
+   "target": "Il nuovo letto è più comodo.",
+   "ru": "Новая кровать удобнее.",
+   "uk": "Нове ліжко зручніше."
+  },
+  {
+   "id": "it:26:14",
+   "target": "La vecchia poltrona è più bassa.",
+   "ru": "Старое кресло ниже.",
+   "uk": "Старе крісло нижче."
+  },
+  {
+   "id": "it:26:15",
+   "target": "La mia stanza è più luminosa della tua.",
+   "ru": "Моя комната светлее твоей.",
+   "uk": "Моя кімната світліша за твою."
+  },
+  {
+   "id": "it:26:16",
+   "target": "La terrazza è più fresca del soggiorno.",
+   "ru": "На террасе прохладнее, чем в гостиной.",
+   "uk": "На терасі прохолодніше, ніж у вітальні."
+  },
+  {
+   "id": "it:26:17",
+   "target": "Questo giornale costa meno dell’altro.",
+   "ru": "Эта газета дешевле, чем другая.",
+   "uk": "Ця газета дешевша за іншу."
+  },
+  {
+   "id": "it:26:18",
+   "target": "Gli asciugamani blu sono più morbidi.",
+   "ru": "Синие полотенца мягче.",
+   "uk": "Сині рушники м’якші."
+  },
+  {
+   "id": "it:26:19",
+   "target": "La seconda scatola è piena quanto la prima.",
+   "ru": "Вторая коробка такая же полная, как и первая.",
+   "uk": "Друга коробка така ж повна, як і перша."
+  },
+  {
+   "id": "it:26:20",
+   "target": "Questa scala a pioli è più stabile.",
+   "ru": "Эта приставная лестница устойчивее.",
+   "uk": "Ці приставні сходи стійкіші."
+  },
+  {
+   "id": "it:26:21",
+   "target": "Cammino più velocemente di te.",
+   "ru": "Я хожу быстрее тебя.",
+   "uk": "Я ходжу швидше за тебе."
+  },
+  {
+   "id": "it:26:22",
+   "target": "Parli più lentamente di Paolo.",
+   "ru": "Ты говоришь медленнее Паоло.",
+   "uk": "Ти говориш повільніше за Паоло."
+  },
+  {
+   "id": "it:26:23",
+   "target": "Lavora bene quanto suo fratello.",
+   "ru": "Она работает так же хорошо, как и её брат.",
+   "uk": "Вона працює так само добре, як і її брат."
+  },
+  {
+   "id": "it:26:24",
+   "target": "Guida con meno prudenza di Lea.",
+   "ru": "Он водит машину менее аккуратно, чем Леа.",
+   "uk": "Він водить машину менш обережно, ніж Леа."
+  },
+  {
+   "id": "it:26:25",
+   "target": "Dormo meglio qui.",
+   "ru": "Я здесь лучше сплю.",
+   "uk": "Я тут краще сплю."
+  },
+  {
+   "id": "it:26:26",
+   "target": "Sentiamo meglio vicino al palco.",
+   "ru": "Мы лучше слышим возле сцены.",
+   "uk": "Ми краще чуємо біля сцени."
+  },
+  {
+   "id": "it:26:27",
+   "target": "Cucini meglio di me.",
+   "ru": "Ты готовишь лучше, чем я.",
+   "uk": "Ти готуєш краще за мене."
+  },
+  {
+   "id": "it:26:28",
+   "target": "Questa torta è migliore dell’altra.",
+   "ru": "Этот пирог вкуснее другого.",
+   "uk": "Цей пиріг смачніший за інший."
+  },
+  {
+   "id": "it:26:29",
+   "target": "Oggi il pane è migliore.",
+   "ru": "Хлеб сегодня лучше.",
+   "uk": "Хліб сьогодні кращий."
+  },
+  {
+   "id": "it:26:30",
+   "target": "Queste fragole sono più buone a giugno.",
+   "ru": "Эта клубника лучше в июне.",
+   "uk": "Ця полуниця краща в червні."
+  },
+  {
+   "id": "it:26:31",
+   "target": "Il sabato c’è più gente.",
+   "ru": "По субботам людей больше.",
+   "uk": "У суботу людей більше."
+  },
+  {
+   "id": "it:26:32",
+   "target": "Ho meno bagagli di te.",
+   "ru": "У меня меньше багажа, чем у тебя.",
+   "uk": "У мене менше багажу, ніж у тебе."
+  },
+  {
+   "id": "it:26:33",
+   "target": "Abbiamo tanto tempo quanto loro.",
+   "ru": "У нас столько же времени, сколько и у них.",
+   "uk": "У нас стільки ж часу, скільки й у них."
+  },
+  {
+   "id": "it:26:34",
+   "target": "Lei legge più libri di me.",
+   "ru": "Она читает больше книг, чем я.",
+   "uk": "Вона читає більше книжок, ніж я."
+  },
+  {
+   "id": "it:26:35",
+   "target": "Questo viaggio richiede meno sforzo.",
+   "ru": "Эта поездка требует меньше усилий.",
+   "uk": "Ця подорож вимагає менше зусиль."
+  },
+  {
+   "id": "it:26:36",
+   "target": "Il treno fa meno rumore dell’autobus.",
+   "ru": "Поезд шумит меньше, чем автобус.",
+   "uk": "Поїзд шумить менше, ніж автобус."
+  },
+  {
+   "id": "it:26:37",
+   "target": "Questo biglietto costa due euro in più.",
+   "ru": "Этот билет стоит на два евро дороже.",
+   "uk": "Цей квиток коштує на два євро дорожче."
+  },
+  {
+   "id": "it:26:38",
+   "target": "Paolo beve meno caffè adesso.",
+   "ru": "Паоло теперь пьет меньше кофе.",
+   "uk": "Паоло тепер п’є менше кави."
+  },
+  {
+   "id": "it:26:39",
+   "target": "Ci sono tante sedie quante sono le persone.",
+   "ru": "Здесь столько же стульев, сколько и людей.",
+   "uk": "Стільців стільки ж, скільки й людей."
+  },
+  {
+   "id": "it:26:40",
+   "target": "Vicino alla finestra hai più spazio.",
+   "ru": "У тебя больше места у окна.",
+   "uk": "У тебе більше місця біля вікна."
+  },
+  {
+   "id": "it:26:41",
+   "target": "Questo è il percorso più breve.",
+   "ru": "Это самый короткий маршрут.",
+   "uk": "Це найкоротший маршрут."
+  },
+  {
+   "id": "it:26:42",
+   "target": "Questa è la strada più tranquilla.",
+   "ru": "Это самая тихая улица.",
+   "uk": "Це найтихіша вулиця."
+  },
+  {
+   "id": "it:26:43",
+   "target": "Questo è il biglietto più economico.",
+   "ru": "Это самый дешевый билет.",
+   "uk": "Це найдешевший квиток."
+  },
+  {
+   "id": "it:26:44",
+   "target": "Questa è la stanza più luminosa.",
+   "ru": "Это самая светлая комната.",
+   "uk": "Це найсвітліша кімната."
+  },
+  {
+   "id": "it:26:45",
+   "target": "È il mio ricordo più bello.",
+   "ru": "Это мое лучшее воспоминание.",
+   "uk": "Це мій найкращий спогад."
+  },
+  {
+   "id": "it:26:46",
+   "target": "Questi sono i posti migliori.",
+   "ru": "Это лучшие места.",
+   "uk": "Це найкращі місця."
+  },
+  {
+   "id": "it:26:47",
+   "target": "Lei sceglie la borsa più robusta.",
+   "ru": "Она выбирает самую прочную сумку.",
+   "uk": "Вона вибирає найміцнішу сумку."
+  },
+  {
+   "id": "it:26:48",
+   "target": "Prendo la porzione più piccola.",
+   "ru": "Я беру самую маленькую порцию.",
+   "uk": "Я беру найменшу порцію."
+  },
+  {
+   "id": "it:26:49",
+   "target": "La strada è meno trafficata al mattino.",
+   "ru": "Утром на дороге меньше пробок.",
+   "uk": "Вранці на дорозі менше заторів."
+  },
+  {
+   "id": "it:26:50",
+   "target": "Il tè si raffredda più velocemente in questa tazza.",
+   "ru": "Чай быстрее остывает в этой чашке.",
+   "uk": "Чай швидше остигає в цій чашці."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la poltrona",
+   "ru": "кресло",
+   "uk": "крісло"
+  },
+  {
+   "lemma": "la scala a pioli",
+   "ru": "приставная лестница",
+   "uk": "приставні сходи"
+  },
+  {
+   "lemma": "il ricordo più bello",
+   "ru": "лучшее воспоминание",
+   "uk": "найкращий спогад"
+  },
+  {
+   "lemma": "la porzione",
+   "ru": "порция",
+   "uk": "порція"
+  },
+  {
+   "lemma": "lo sforzo",
+   "ru": "усилие",
+   "uk": "зусилля"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno",
+  "l’uovo",
+  "la ciotola",
+  "la vaschetta",
+  "la metà",
+  "lo scatolone"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  },
+  {
+   "lesson": 25,
+   "title": "Часть известного количества: `ne`"
+  }
+ ],
+ "oldTopicTitle": "Сравнивать: `più`, `meno`, `come`",
+ "oldTheoryRu": "У обычного прилагательного меняется согласование, а `più` и `meno` нет. В сочетании `più alta` окончание относится к женщине, которую описывают. Перед человеком или названием второго предмета часто стоит `di`. Когда сравнивают два качества или действия внутри одной конструкции, встречается `che`. Не учи «всегда di». Не путай сравнение и усиление: `molto comodo` — очень удобный; `più comodo` — удобнее другого. Слово «очень» не отвечает, какой из двух вариантов удобнее. Для равенства подойдут `come` и, в соответствующей модели, `quanto`. Сначала уточни, сравнивают ли предметы или качество действия, чтобы подобрать естественную фразу. `Migliore` обычно оценивает человека или предмет, `meglio` — как выполняется действие. Не складывай их с `più` в выражении «лучше». Фраза о самом дешёвом билете выбирает его из группы: `il biglietto meno caro`. Это отличается от простого «дешевле другого». Артикль помогает обозначить выбранный предмет. Проверь направление мысленно: если поменять два предмета местами, потребуется ли противоположное слово? Если да, ты понял сравнение, а не просто узнал окончание."
+}

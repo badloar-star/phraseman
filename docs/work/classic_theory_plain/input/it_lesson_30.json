@@ -1,0 +1,872 @@
+{
+ "lang": "it",
+ "lesson": 30,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:30:01",
+   "target": "Bisogna che io parta.",
+   "ru": "Мне нужно уйти.",
+   "uk": "Я маю піти."
+  },
+  {
+   "id": "it:30:02",
+   "target": "Bisogna che tu parta.",
+   "ru": "Тебе нужно уйти.",
+   "uk": "Тобі треба піти."
+  },
+  {
+   "id": "it:30:03",
+   "target": "Bisogna che lei parta.",
+   "ru": "Ей нужно уйти.",
+   "uk": "Вона має піти."
+  },
+  {
+   "id": "it:30:04",
+   "target": "Bisogna che partiamo.",
+   "ru": "Нам нужно уйти.",
+   "uk": "Ми маємо піти."
+  },
+  {
+   "id": "it:30:05",
+   "target": "Bisogna che partiate.",
+   "ru": "Вам (мн.) нужно уехать.",
+   "uk": "Вам (мн.) треба поїхати."
+  },
+  {
+   "id": "it:30:06",
+   "target": "Bisogna che partano.",
+   "ru": "Им нужно уйти.",
+   "uk": "Вони мають піти."
+  },
+  {
+   "id": "it:30:07",
+   "target": "È necessario che io sia lì.",
+   "ru": "Мне нужно быть там.",
+   "uk": "Мені потрібно бути там."
+  },
+  {
+   "id": "it:30:08",
+   "target": "Bisogna che tu sia pronto.",
+   "ru": "Нужно, чтобы ты был готов.",
+   "uk": "Потрібно, щоб ти був готовий."
+  },
+  {
+   "id": "it:30:09",
+   "target": "Bisogna che lei sia pronta.",
+   "ru": "Ей нужно быть готовой.",
+   "uk": "Їй потрібно бути готовою."
+  },
+  {
+   "id": "it:30:10",
+   "target": "È necessario che siamo puntuali.",
+   "ru": "Нам нужно быть вовремя.",
+   "uk": "Нам потрібно бути вчасно."
+  },
+  {
+   "id": "it:30:11",
+   "target": "Bisogna che io abbia con me un documento d’identità.",
+   "ru": "Мне нужно иметь при себе удостоверение личности.",
+   "uk": "Мені потрібно мати при собі посвідчення особи."
+  },
+  {
+   "id": "it:30:12",
+   "target": "Bisogna che tu abbia con te il badge.",
+   "ru": "Нужно, чтобы у тебя был с собой пропуск.",
+   "uk": "Потрібно, щоб у тебе була з собою перепустка."
+  },
+  {
+   "id": "it:30:13",
+   "target": "È necessario che lei abbia un biglietto.",
+   "ru": "Ей нужен билет.",
+   "uk": "Їй потрібно мати квиток."
+  },
+  {
+   "id": "it:30:14",
+   "target": "Bisogna che Lei abbia con sé la ricevuta.",
+   "ru": "Нужно, чтобы у вас был с собой чек.",
+   "uk": "Потрібно, щоб у вас був із собою чек."
+  },
+  {
+   "id": "it:30:15",
+   "target": "Bisogna che abbiano abbastanza spazio.",
+   "ru": "Им нужно достаточно места.",
+   "uk": "Їм потрібно достатньо місця."
+  },
+  {
+   "id": "it:30:16",
+   "target": "Bisogna che io faccia una copia.",
+   "ru": "Мне нужно сделать копию.",
+   "uk": "Мені потрібно зробити копію."
+  },
+  {
+   "id": "it:30:17",
+   "target": "Bisogna che tu faccia attenzione.",
+   "ru": "Тебе нужно быть внимательным.",
+   "uk": "Тобі потрібно бути уважним."
+  },
+  {
+   "id": "it:30:18",
+   "target": "Bisogna che facciamo una pausa.",
+   "ru": "Нам нужно сделать перерыв.",
+   "uk": "Нам потрібно зробити перерву."
+  },
+  {
+   "id": "it:30:19",
+   "target": "Bisogna che facciate una scelta.",
+   "ru": "Вам нужно сделать выбор.",
+   "uk": "Вам потрібно зробити вибір."
+  },
+  {
+   "id": "it:30:20",
+   "target": "Bisogna che preparino le valigie.",
+   "ru": "Им нужно собрать чемоданы.",
+   "uk": "Їм потрібно зібрати валізи."
+  },
+  {
+   "id": "it:30:21",
+   "target": "Bisogna che io vada alla posta.",
+   "ru": "Мне нужно сходить на почту.",
+   "uk": "Мені потрібно йти на пошту."
+  },
+  {
+   "id": "it:30:22",
+   "target": "Bisogna che tu vada in banca.",
+   "ru": "Тебе нужно сходить в банк.",
+   "uk": "Тобі треба сходити до банку."
+  },
+  {
+   "id": "it:30:23",
+   "target": "Bisogna che lui vada dal medico.",
+   "ru": "Ему нужно сходить к врачу.",
+   "uk": "Йому потрібно йти до лікаря."
+  },
+  {
+   "id": "it:30:24",
+   "target": "Bisogna che andiamo in ufficio prima di pranzo.",
+   "ru": "Нам нужно сходить в офис до обеда.",
+   "uk": "Нам потрібно піти в офіс до обіду."
+  },
+  {
+   "id": "it:30:25",
+   "target": "È necessario che Lei vada alla reception.",
+   "ru": "Вам нужно подойти к стойке регистрации.",
+   "uk": "Вам потрібно підійти до стійки реєстрації."
+  },
+  {
+   "id": "it:30:26",
+   "target": "Bisogna che vadano in ufficio.",
+   "ru": "Им нужно идти в офис.",
+   "uk": "Їм потрібно йти до офісу."
+  },
+  {
+   "id": "it:30:27",
+   "target": "Bisogna che io prenda una porzione piccola.",
+   "ru": "Мне нужно взять небольшую порцию.",
+   "uk": "Мені потрібно взяти невелику порцію."
+  },
+  {
+   "id": "it:30:28",
+   "target": "Bisogna che lei prenda la sua ricetta.",
+   "ru": "Ей нужно взять свой рецепт.",
+   "uk": "Їй треба взяти свій рецепт."
+  },
+  {
+   "id": "it:30:29",
+   "target": "Bisogna che compriamo un biglietto.",
+   "ru": "Нам нужно купить билет.",
+   "uk": "Нам потрібно купити квиток."
+  },
+  {
+   "id": "it:30:30",
+   "target": "È necessario che Lei prenda appuntamento.",
+   "ru": "Вам нужно записаться на прием.",
+   "uk": "Вам потрібно записатися на прийом."
+  },
+  {
+   "id": "it:30:31",
+   "target": "È necessario che il pavimento sia asciutto.",
+   "ru": "Нужно, чтобы пол был сухим.",
+   "uk": "Потрібно, щоб підлога була сухою."
+  },
+  {
+   "id": "it:30:32",
+   "target": "È necessario che il risultato sia leggibile.",
+   "ru": "Результат должен быть разборчивым.",
+   "uk": "Результат має бути розбірливим."
+  },
+  {
+   "id": "it:30:33",
+   "target": "Bisogna che il preventivo sia leggibile.",
+   "ru": "Смета должна быть разборчивой.",
+   "uk": "Кошторис має бути розбірливим."
+  },
+  {
+   "id": "it:30:34",
+   "target": "Bisogna che i bambini restino insieme.",
+   "ru": "Дети должны оставаться вместе.",
+   "uk": "Діти мають залишатися разом."
+  },
+  {
+   "id": "it:30:35",
+   "target": "Bisogna che la stanza sia vuota.",
+   "ru": "Комната должна быть пустой.",
+   "uk": "Кімната має бути порожньою."
+  },
+  {
+   "id": "it:30:36",
+   "target": "Bisogna che tu controlli la data.",
+   "ru": "Тебе нужно проверить дату.",
+   "uk": "Тобі потрібно перевірити дату."
+  },
+  {
+   "id": "it:30:37",
+   "target": "Bisogna che conserviamo il foglio con il codice.",
+   "ru": "Нам нужно сохранить листок с кодом.",
+   "uk": "Нам потрібно зберегти аркуш із кодом."
+  },
+  {
+   "id": "it:30:38",
+   "target": "Bisogna che Lei firmi in fondo.",
+   "ru": "Вы должны расписаться внизу.",
+   "uk": "Ви повинні підписатися внизу."
+  },
+  {
+   "id": "it:30:39",
+   "target": "Bisogna che confermiamo le date del soggiorno.",
+   "ru": "Нам нужно подтвердить даты пребывания.",
+   "uk": "Нам потрібно підтвердити дати перебування."
+  },
+  {
+   "id": "it:30:40",
+   "target": "Bisogna che lei controlli la disponibilità entro venerdì.",
+   "ru": "Ей нужно проверить наличие мест до пятницы.",
+   "uk": "Їй потрібно перевірити наявність місць до п’ятниці."
+  },
+  {
+   "id": "it:30:41",
+   "target": "È meglio che tu non parta da solo.",
+   "ru": "Тебе лучше не уходить одному.",
+   "uk": "Тобі краще не йти одному."
+  },
+  {
+   "id": "it:30:42",
+   "target": "Bisogna che il latte non trabocchi.",
+   "ru": "Молоко не должно выкипеть.",
+   "uk": "Молоко не повинно википіти."
+  },
+  {
+   "id": "it:30:43",
+   "target": "Bisogna che non perdiamo la ricevuta.",
+   "ru": "Мы не должны потерять чек.",
+   "uk": "Ми не повинні загубити чек."
+  },
+  {
+   "id": "it:30:44",
+   "target": "Bisogna che qualcuno avvisi il custode.",
+   "ru": "Кто-то должен сообщить охраннику.",
+   "uk": "Хтось повинен сказати охоронцю."
+  },
+  {
+   "id": "it:30:45",
+   "target": "È necessario che gli alunni restino in classe.",
+   "ru": "Нужно, чтобы ученики остались в классе.",
+   "uk": "Потрібно, щоб учні залишилися у класі."
+  },
+  {
+   "id": "it:30:46",
+   "target": "Bisogna che Lei venga domani mattina.",
+   "ru": "Вам нужно прийти завтра утром.",
+   "uk": "Вам потрібно прийти завтра вранці."
+  },
+  {
+   "id": "it:30:47",
+   "target": "Bisogna che sappiamo il prezzo prima di firmare.",
+   "ru": "Нам нужно знать цену до подписания.",
+   "uk": "Нам потрібно знати ціну перед підписанням."
+  },
+  {
+   "id": "it:30:48",
+   "target": "Bisogna che tu scelga un posto lato corridoio.",
+   "ru": "Тебе нужно выбрать место у прохода.",
+   "uk": "Тобі потрібно вибрати місце біля проходу."
+  },
+  {
+   "id": "it:30:49",
+   "target": "È necessario che la riparazione sia finita entro lunedì.",
+   "ru": "Ремонт должен быть завершен к понедельнику.",
+   "uk": "Ремонт потрібно завершити до понеділка."
+  },
+  {
+   "id": "it:30:50",
+   "target": "Bisogna che io spenga la luce quando esco.",
+   "ru": "Мне нужно выключить свет, когда я ухожу.",
+   "uk": "Мені потрібно вимкнути світло, коли я піду."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il custode",
+   "ru": "смотритель, сторож",
+   "uk": "доглядач, сторож"
+  },
+  {
+   "lemma": "il pavimento",
+   "ru": "пол",
+   "uk": "підлога"
+  },
+  {
+   "lemma": "leggibile",
+   "ru": "разборчивый",
+   "uk": "розбірливий"
+  },
+  {
+   "lemma": "la riparazione",
+   "ru": "ремонт (как существительное)",
+   "uk": "ремонт (як іменник)"
+  },
+  {
+   "lemma": "traboccare",
+   "ru": "переливаться через край",
+   "uk": "переливатися через край"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno",
+  "l’uovo",
+  "la ciotola",
+  "la vaschetta",
+  "la metà",
+  "lo scatolone",
+  "la poltrona",
+  "la scala a pioli",
+  "il ricordo più bello",
+  "la porzione",
+  "lo sforzo",
+  "l’idraulico",
+  "il risultato",
+  "il pasto",
+  "il documento d’identità",
+  "il vaso",
+  "il soggiorno (permanenza)",
+  "il posto lato corridoio",
+  "la disponibilità",
+  "la conferma",
+  "il preventivo",
+  "la cantina",
+  "il codice",
+  "il foglio",
+  "la menta",
+  "il piatto (pietanza)"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  },
+  {
+   "lesson": 25,
+   "title": "Часть известного количества: `ne`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнивать: `più`, `meno`, `come`"
+  },
+  {
+   "lesson": 27,
+   "title": "Будущее: `partirò`, `partirai`"
+  },
+  {
+   "lesson": 28,
+   "title": "Смягчить просьбу: `vorrei`, `potrebbe`"
+  },
+  {
+   "lesson": 29,
+   "title": "Какой именно: относительное `che`"
+  }
+ ],
+ "oldTopicTitle": "Необходимость: `bisogna che` + `congiuntivo`",
+ "oldTheoryRu": "В главной части уже есть `bisogna`, которое не меняется в зависимости от того, кому нужно действовать. Лицо и число выбираются в части после `che`. Сравни `parta`, `partiamo`, `partiate`, `partano`. Некоторые формы совпадают с настоящим изъявительным. Тогда нужное значение определяет вся конструкция, а не необычная буква. У частых глаголов особые формы: `essere` → `sia`, `avere` → `abbia`. Их стоит учить на полезной реплике про документы или время, а не как пустые окончания. `Fare` даёт `faccia`, `andare` — `vada`. Когда говорящему важно назвать исполнителя, имя или местоимение после `che` делает требование понятным без догадок. Необходимость может касаться состояния предмета: чтобы пол был сухим или текст был разборчивым. Подбери не только `sia`, но и описание того же предмета. У отрицания есть область действия. `Bisogna che non …` передаёт необходимость НЕ совершать действие. Не переставляй `non` в начало всего предложения без проверки смысла. В разговоре часто проще сказать `devo partire`. Это хороший перевод необходимости, а не ошибка. Здесь специально тренируется более развёрнутая конструкция с `che` и явным исполнителем."
+}

@@ -117,25 +117,6 @@
    ]
   },
   {
-   "form": "léa",
-   "surface": "Léa",
-   "count": 4,
-   "examples": [
-    {
-     "id": "fr:01:05",
-     "target": "Léa est ici",
-     "ru": "Леа здесь.",
-     "en": "Léa is here."
-    },
-    {
-     "id": "fr:01:14",
-     "target": "Léa est à la gare",
-     "ru": "Леа на вокзале.",
-     "en": "Léa's at the station."
-    }
-   ]
-  },
-  {
    "form": "est",
    "surface": "est",
    "count": 20,
@@ -151,25 +132,6 @@
      "target": "Paul est là",
      "ru": "Поль там.",
      "en": "Paul is there."
-    }
-   ]
-  },
-  {
-   "form": "paul",
-   "surface": "Paul",
-   "count": 4,
-   "examples": [
-    {
-     "id": "fr:01:06",
-     "target": "Paul est là",
-     "ru": "Поль там.",
-     "en": "Paul is there."
-    },
-    {
-     "id": "fr:01:13",
-     "target": "Paul est à la maison",
-     "ru": "Поль дома.",
-     "en": "Paul's home."
     }
    ]
   },
@@ -570,7 +532,7 @@
      "id": "fr:01:50",
      "target": "Je suis près de la porte",
      "ru": "Я возле двери.",
-     "en": "I'm at the door."
+     "en": "I'm near the door."
     }
    ]
   },
@@ -912,7 +874,7 @@
      "id": "fr:01:50",
      "target": "Je suis près de la porte",
      "ru": "Я возле двери.",
-     "en": "I'm at the door."
+     "en": "I'm near the door."
     }
    ]
   },
@@ -931,7 +893,7 @@
      "id": "fr:01:50",
      "target": "Je suis près de la porte",
      "ru": "Я возле двери.",
-     "en": "I'm at the door."
+     "en": "I'm near the door."
     }
    ]
   },

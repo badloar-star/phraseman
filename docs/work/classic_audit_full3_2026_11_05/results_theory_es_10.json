@@ -1,0 +1,149 @@
+[
+ {
+  "id": "lesson-21/use",
+  "type": "T2",
+  "field": "en.use",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Imagine the event as a complete episode in the past. The ending shows who acted."
+ },
+ {
+  "id": "lesson-21/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "For -ar, the speaker chooses -é, and for él/ella, -ó is used. Llamé and llamó are not interchangeable. The spelling shows who called."
+ },
+ {
+  "id": "lesson-21/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Imagine the event as a complete episode in the past. The ending shows who acted. Choose the person and the correct ending of the completed event."
+ },
+ {
+  "id": "lesson-21/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "For -ar, the speaker chooses -é, and for él/ella, -ó is used. Llamé and llamó are not interchangeable. The spelling shows who called."
+ },
+ {
+  "id": "lesson-21/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "For tú, for -ar, we put -aste, for -er/-ir, we put -iste. Don't add the final s, as in the present: llamaste, escribiste."
+ },
+ {
+  "id": "lesson-21/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Compramos can mean \"we buy\" or \"we bought.\" ayer or a complete situation helps here. With escribir, escribimos is also the same in both tenses."
+ },
+ {
+  "id": "lesson-21/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Compare two tasks: \"You took the bag yesterday evening.\" / \"We paid in cash yesterday.\" Choose the person and the correct ending of the completed event. Semantic supports: \"bolsa\" — bag."
+ },
+ {
+  "id": "lesson-21/wrong",
+  "type": "T1",
+  "field": "ru.wrong",
+  "problem": "«Llamó al hotel ayer» — правильная испанская фраза («он позвонил»), как пример ошибки вводит в заблуждение; типичная ошибка урока — he + претерит (см. главу 0)",
+  "fix": "He llamé al hotel ayer."
+ },
+ {
+  "id": "lesson-21/wrong",
+  "type": "T1",
+  "field": "uk.wrong",
+  "problem": "«Llamó al hotel ayer» граматично правильна фраза, не є помилкою",
+  "fix": "He llamé al hotel ayer."
+ },
+ {
+  "id": "lesson-21/wrong",
+  "type": "T1",
+  "field": "en.wrong",
+  "problem": "«Llamó al hotel ayer» is a correct Spanish sentence, not an error",
+  "fix": "He llamé al hotel ayer."
+ },
+ {
+  "id": "lesson-21/chapters[1]",
+  "type": "T1",
+  "field": "ru.chapters[1].title",
+  "problem": "Неверное правило: в llamé и llamó ударение одинаковое (на последнем слоге), различаются гласные -é/-ó",
+  "fix": "Я и он: -é и -ó"
+ },
+ {
+  "id": "lesson-21/chapters[1]",
+  "type": "T1",
+  "field": "uk.chapters[1].title",
+  "problem": "Неправильно: у llamé і llamó наголос однаковий, різняться голосні",
+  "fix": "Я і він: -é та -ó"
+ },
+ {
+  "id": "lesson-21/chapters[4]",
+  "type": "T1",
+  "field": "ru.chapters[4].note",
+  "problem": "Глава про pagué, а ключевая форма entramos не иллюстрирует смену написания",
+  "fix": "Ключевая форма: entramos. У entrar написание не меняется; gu появляется только у глаголов на -gar: pagué."
+ },
+ {
+  "id": "lesson-21/chapters[4]",
+  "type": "T1",
+  "field": "uk.chapters[4].note",
+  "problem": "Розділ про pagué, а ключова форма entramos не ілюструє правило",
+  "fix": "Ключова форма: entramos. У entrar написання не змінюється; gu з’являється лише в дієсловах на -gar: pagué."
+ },
+ {
+  "id": "lesson-21/chapters[4]",
+  "type": "T1",
+  "field": "en.chapters[4].note",
+  "problem": "Chapter is about pagué; key form entramos does not illustrate it",
+  "fix": "Key form: entramos. entrar keeps its spelling; gu appears only in -gar verbs: pagué."
+ },
+ {
+  "id": "lesson-22/choose",
+  "type": "T2",
+  "field": "en.choose",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Tuve and pude end in -e without a written accent. Don't add the usual -í to the infinitive: these are special stems, not tenerí or poderí."
+ },
+ {
+  "id": "lesson-22/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].body",
+  "problem": "en не соответствует ru / ошибка перевода",
+  "fix": "Fui al médico — I went to the doctor. Fui matches the past tense of ser, but the direction of al médico and the context choose ir. The future form iré is not suitable for the story about yesterday's visit."
+ },
+ {
+  "id": "lesson-22/chapters[1]",
+  "type": "T2",
+  "field": "en.chapters[1].body",
+  "problem": "en не соответствует ru / ошибка перевода; служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Tuve and pude end in -e without a written accent. Don't add the usual -í to the infinitive: these are special stems, not tenerí or poderí."
+ },
+ {
+  "id": "lesson-22/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "служебные пробелы в кавычках/дефисах (обрыв форматирования: \" el café \", - n)",
+  "fix": "Compare the two tasks: \"Did you have a problem yesterday?\" / \"I did the shopping yesterday.\" The simple past requires a special stem here. Semantic supports: \"problema\" — problem."
+ },
+ {
+  "id": "lesson-22/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es22/lab/form1].feedback.en",
+  "problem": "ir не значит «to drive»; ru «идти, ехать» = to go",
+  "fix": "Verb: ir — to go."
+ },
+ {
+  "id": "lesson-22/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[key=es22/lab/spot1].feedback.en",
+  "problem": "ir не значит «to drive»; ru «идти, ехать» = to go",
+  "fix": "Verb: ir — to go."
+ }
+]

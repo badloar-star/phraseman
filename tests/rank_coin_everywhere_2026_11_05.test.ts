@@ -12,7 +12,6 @@ const CONSUMERS = [
   'components/completion/V2DoneChain.tsx',
   'components/completion/V2DoneScreen.tsx',
   'components/feedback/ResultsSequence.tsx',
-  'components/learning-v2/horizons/HorizonResultGlass.tsx',
   'components/legacy_bonus/LegacyBonusFlyLayer.tsx',
   'components/rewards/CoinRewardFlight.tsx',
   'components/PracticeRuneCounter.tsx',
@@ -21,7 +20,6 @@ const CONSUMERS = [
   'components/spire/SpireGoldReward.tsx',
   'components/FirstPurchaseSealCelebration.tsx',
   'app/flashcards/CardsSessionResultV2.tsx',
-  'app/learning_v2_direct_session_player_v1.tsx',
 ];
 
 describe('монета строго по рангу — везде', () => {

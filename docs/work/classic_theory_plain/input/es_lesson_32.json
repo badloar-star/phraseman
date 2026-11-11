@@ -1,0 +1,845 @@
+{
+ "lang": "es",
+ "lesson": 32,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:32:01",
+   "target": "Si tuviera tiempo, iría contigo.",
+   "ru": "Если бы у меня было время, я бы пошёл с тобой.",
+   "uk": "Якби я мав час, я б пішов із тобою."
+  },
+  {
+   "id": "es:32:02",
+   "target": "Iría contigo si tuviera dinero.",
+   "ru": "Я бы пошёл с тобой, если бы у меня были деньги.",
+   "uk": "Я б пішов із тобою, якби я мав гроші."
+  },
+  {
+   "id": "es:32:03",
+   "target": "Si estuviera libre, iría contigo.",
+   "ru": "Если бы я был свободен, я бы пошёл с тобой.",
+   "uk": "Якби я був вільний, я б пішов із тобою."
+  },
+  {
+   "id": "es:32:04",
+   "target": "Si viviera más cerca, iría contigo.",
+   "ru": "Если бы я жил ближе, я бы пошёл с тобой.",
+   "uk": "Якби я жив ближче, я б пішов із тобою."
+  },
+  {
+   "id": "es:32:05",
+   "target": "Iría contigo si hubiera un tren directo.",
+   "ru": "Я бы поехал с тобой, если бы был прямой поезд.",
+   "uk": "Я б поїхав із тобою, якби був прямий потяг."
+  },
+  {
+   "id": "es:32:06",
+   "target": "Te visitaría si tuviera tiempo.",
+   "ru": "Я бы тебя навестил, если бы у меня было время.",
+   "uk": "Я б тебе відвідав, якби я мав час."
+  },
+  {
+   "id": "es:32:07",
+   "target": "Si tuviera coche, te visitaría.",
+   "ru": "Если бы у меня была машина, я бы тебя навестил.",
+   "uk": "Якби я мав машину, я б тебе відвідав."
+  },
+  {
+   "id": "es:32:08",
+   "target": "Si viviera más cerca, te visitaría.",
+   "ru": "Если бы я жил ближе, я бы тебя навестил.",
+   "uk": "Якби я жив ближче, я б тебе відвідав."
+  },
+  {
+   "id": "es:32:09",
+   "target": "Te visitaría si supiera la dirección.",
+   "ru": "Я бы тебя навестил, если бы я знал адрес.",
+   "uk": "Я б тебе відвідав, якби я знав адресу."
+  },
+  {
+   "id": "es:32:10",
+   "target": "Si tuviera un balcón, pondría la mesa fuera.",
+   "ru": "Будь у меня балкон, я бы поставил стол снаружи.",
+   "uk": "Якби в мене був балкон, я б поставив стіл надворі."
+  },
+  {
+   "id": "es:32:11",
+   "target": "Si tuviera dinero, compraría el billete.",
+   "ru": "Если бы у меня были деньги, я бы купил билет.",
+   "uk": "Якби я мав гроші, я б купив квиток."
+  },
+  {
+   "id": "es:32:12",
+   "target": "Si costara menos, alquilaría la habitación.",
+   "ru": "Если бы комната стоила дешевле, я бы её снял.",
+   "uk": "Якби кімната коштувала дешевше, я б її винайняв."
+  },
+  {
+   "id": "es:32:13",
+   "target": "Compraría el billete si hubiera un tren directo.",
+   "ru": "Я бы купил билет, если бы был прямой поезд.",
+   "uk": "Я б купив квиток, якби був прямий потяг."
+  },
+  {
+   "id": "es:32:14",
+   "target": "Compraría ese billete si fuera más barato.",
+   "ru": "Я бы купил этот билет, если бы он был дешевле.",
+   "uk": "Я б купив цей квиток, якби він був дешевшим."
+  },
+  {
+   "id": "es:32:15",
+   "target": "Compraría el piso si el barrio fuera tranquilo.",
+   "ru": "Я бы купил квартиру, если бы район был тихим.",
+   "uk": "Я б купив квартиру, якби район був тихим."
+  },
+  {
+   "id": "es:32:16",
+   "target": "Si tuviera coche, iríamos al centro.",
+   "ru": "Если бы у меня была машина, мы бы поехали в центр.",
+   "uk": "Якби я мав машину, ми б поїхали до центру."
+  },
+  {
+   "id": "es:32:17",
+   "target": "Si supiera la contraseña, copiaría el archivo.",
+   "ru": "Если бы я знал пароль, я бы скопировал файл.",
+   "uk": "Якби я знав пароль, я б скопіював файл."
+  },
+  {
+   "id": "es:32:18",
+   "target": "Si pudieras venir, iríamos al centro.",
+   "ru": "Если бы ты мог прийти, мы бы поехали в центр.",
+   "uk": "Якби ти міг прийти, ми б поїхали до центру."
+  },
+  {
+   "id": "es:32:19",
+   "target": "Si hubiera una avería, llamaría al taller.",
+   "ru": "Если бы что-то сломалось, я бы позвонил в мастерскую.",
+   "uk": "Якби щось зламалося, я б зателефонував до майстерні."
+  },
+  {
+   "id": "es:32:20",
+   "target": "Iríamos al centro si hubiera un tren directo.",
+   "ru": "Мы бы поехали в центр, если бы был прямой поезд.",
+   "uk": "Ми б поїхали до центру, якби був прямий потяг."
+  },
+  {
+   "id": "es:32:21",
+   "target": "Hablaría con Luis si tuviera su número.",
+   "ru": "Я бы поговорил с Луисом, если бы у меня был его номер.",
+   "uk": "Я б поговорив із Луїсом, якби я мав його номер."
+  },
+  {
+   "id": "es:32:22",
+   "target": "Si tuviera cobertura, mandaría la ubicación.",
+   "ru": "Если бы была связь, я бы отправил геолокацию.",
+   "uk": "Якби був зв’язок, я б надіслав геолокацію."
+  },
+  {
+   "id": "es:32:23",
+   "target": "Si tuviera tu número, te enviaría la receta.",
+   "ru": "Если бы у меня был твой номер, я бы отправил тебе рецепт.",
+   "uk": "Якби я мав твій номер, я б надіслав тобі рецепт."
+  },
+  {
+   "id": "es:32:24",
+   "target": "Hablaría con Luis si viviera más cerca.",
+   "ru": "Я бы поговорил с Луисом, если бы я жил ближе.",
+   "uk": "Я б поговорив із Луїсом, якби я жив ближче."
+  },
+  {
+   "id": "es:32:25",
+   "target": "Si tuviera su número, le escribiría.",
+   "ru": "Если бы у меня был его номер, я бы ему написал.",
+   "uk": "Якби я мав його номер, я б йому написав."
+  },
+  {
+   "id": "es:32:26",
+   "target": "Si tuviera coche, volvería mañana.",
+   "ru": "Если бы у меня была машина, я бы вернулся завтра.",
+   "uk": "Якби я мав машину, я б повернувся завтра."
+  },
+  {
+   "id": "es:32:27",
+   "target": "Volvería en taxi si perdiera el autobús.",
+   "ru": "Если бы я опоздал на автобус, то вернулся бы на такси.",
+   "uk": "Я б повернувся на таксі, якби запізнився на автобус."
+  },
+  {
+   "id": "es:32:28",
+   "target": "Volvería mañana si tuviera dinero.",
+   "ru": "Я бы вернулся завтра, если бы у меня были деньги.",
+   "uk": "Я б повернувся завтра, якби я мав гроші."
+  },
+  {
+   "id": "es:32:29",
+   "target": "Si estuviera libre, volvería mañana.",
+   "ru": "Если бы я был свободен, я бы вернулся завтра.",
+   "uk": "Якби я був вільний, я б повернувся завтра."
+  },
+  {
+   "id": "es:32:30",
+   "target": "Si la batería estuviera cargada, usaría el mapa.",
+   "ru": "Если бы аккумулятор был заряжен, я бы воспользовался картой.",
+   "uk": "Якби акумулятор був заряджений, я б скористався мапою."
+  },
+  {
+   "id": "es:32:31",
+   "target": "Si tuviera la llave, entraría ahora.",
+   "ru": "Если бы у меня был ключ, я бы сейчас вошёл.",
+   "uk": "Якби я мав ключ, я б зараз зайшов."
+  },
+  {
+   "id": "es:32:32",
+   "target": "Entraría ahora si la tienda estuviera abierta.",
+   "ru": "Я бы сейчас вошёл, если бы магазин был открыт.",
+   "uk": "Я б зараз зайшов, якби магазин був відчинений."
+  },
+  {
+   "id": "es:32:33",
+   "target": "No alquilaría ese piso si fuera tan ruidoso.",
+   "ru": "Я бы не снял ту квартиру, если бы она была такой шумной.",
+   "uk": "Я б не винайняв ту квартиру, якби вона була такою шумною."
+  },
+  {
+   "id": "es:32:34",
+   "target": "Si supiera la contraseña, abriría el archivo.",
+   "ru": "Если бы я знал пароль, я бы открыл файл.",
+   "uk": "Якби я знав пароль, я б відкрив файл."
+  },
+  {
+   "id": "es:32:35",
+   "target": "Si la puerta estuviera abierta, entraría.",
+   "ru": "Если бы дверь была открыта, я бы вошёл.",
+   "uk": "Якби двері були відчинені, я б зайшов."
+  },
+  {
+   "id": "es:32:36",
+   "target": "Te acompañaría si tuviera tiempo.",
+   "ru": "Я бы тебя проводил, если бы у меня было время.",
+   "uk": "Я б тебе провів, якби я мав час."
+  },
+  {
+   "id": "es:32:37",
+   "target": "Si hubiera una avería, usaríamos la bicicleta.",
+   "ru": "Если бы произошла поломка, мы бы поехали на велосипеде.",
+   "uk": "Якби сталася поломка, ми б поїхали велосипедом."
+  },
+  {
+   "id": "es:32:38",
+   "target": "Si tuviera coche, te acompañaría.",
+   "ru": "Если бы у меня была машина, я бы тебя проводил.",
+   "uk": "Якби я мав машину, я б тебе провів."
+  },
+  {
+   "id": "es:32:39",
+   "target": "Si el túnel estuviera cerrado, volvería al pueblo.",
+   "ru": "Если бы тоннель был закрыт, я бы вернулся в посёлок.",
+   "uk": "Якби тунель був закритий, я б повернувся до селища."
+  },
+  {
+   "id": "es:32:40",
+   "target": "Si pudieras venir, te acompañaría.",
+   "ru": "Если бы ты мог прийти, я бы тебя проводил.",
+   "uk": "Якби ти міг прийти, я б тебе провів."
+  },
+  {
+   "id": "es:32:41",
+   "target": "Si tuviera tiempo, me quedaría aquí.",
+   "ru": "Если бы у меня было время, я бы остался здесь.",
+   "uk": "Якби я мав час, я б залишився тут."
+  },
+  {
+   "id": "es:32:42",
+   "target": "Cargaría el móvil si tuviera tiempo.",
+   "ru": "Я бы зарядил телефон, если бы у меня было время.",
+   "uk": "Я б зарядив телефон, якби мав час."
+  },
+  {
+   "id": "es:32:43",
+   "target": "Si tuviera tu dirección, también te mandaría una carta.",
+   "ru": "Если бы я знал твой адрес, я бы ещё и отправил тебе письмо.",
+   "uk": "Якби я знав твою адресу, я б ще й надіслав тобі листа."
+  },
+  {
+   "id": "es:32:44",
+   "target": "Si tuviera señal, te enviaría el archivo.",
+   "ru": "Если бы был сигнал, я бы отправил тебе файл.",
+   "uk": "Якби був сигнал, я б надіслав тобі файл."
+  },
+  {
+   "id": "es:32:45",
+   "target": "Si pudiera ayudarte, me quedaría aquí.",
+   "ru": "Если бы я мог тебе помочь, я бы остался здесь.",
+   "uk": "Якби я міг тобі допомогти, я б залишився тут."
+  },
+  {
+   "id": "es:32:46",
+   "target": "Si viviera en el pueblo, necesitaría un coche.",
+   "ru": "Если бы я жил в посёлке, мне бы понадобилась машина.",
+   "uk": "Якби я жив у селищі, мені б знадобилася машина."
+  },
+  {
+   "id": "es:32:47",
+   "target": "Pagaría hoy si costara menos.",
+   "ru": "Я бы заплатил сегодня, если бы это стоило дешевле.",
+   "uk": "Я б заплатив сьогодні, якби це коштувало дешевше."
+  },
+  {
+   "id": "es:32:48",
+   "target": "Si tuviera el horario, te mandaría una foto.",
+   "ru": "Если бы у меня было расписание, я бы прислал тебе фотографию.",
+   "uk": "Якби я мав розклад, я б надіслав тобі фотографію."
+  },
+  {
+   "id": "es:32:49",
+   "target": "Si perdiera las llaves, llamaría a mi vecino.",
+   "ru": "Если бы я потерял ключи, я бы позвонил соседу.",
+   "uk": "Якби я загубив ключі, я б зателефонував сусідові."
+  },
+  {
+   "id": "es:32:50",
+   "target": "Si tuviera el dinero, pagaría hoy.",
+   "ru": "Если бы у меня были эти деньги, я бы заплатил сегодня.",
+   "uk": "Якби я мав ці гроші, я б заплатив сьогодні."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "acompañar",
+   "ru": "сопровождать",
+   "uk": "супроводжувати"
+  },
+  {
+   "lemma": "directo",
+   "ru": "прямой, без пересадки",
+   "uk": "прямий, без пересадки"
+  },
+  {
+   "lemma": "menos",
+   "ru": "меньше, дешевле в costar menos",
+   "uk": "менше, дешевше в costar menos"
+  },
+  {
+   "lemma": "ayudar",
+   "ru": "помогать",
+   "uk": "допомагати"
+  },
+  {
+   "lemma": "archivo",
+   "ru": "файл",
+   "uk": "файл"
+  },
+  {
+   "lemma": "avería",
+   "ru": "поломка",
+   "uk": "поломка"
+  },
+  {
+   "lemma": "perder",
+   "ru": "терять; опаздывать на транспорт",
+   "uk": "губити; запізнюватися на транспорт"
+  },
+  {
+   "lemma": "pueblo",
+   "ru": "посёлок, деревня",
+   "uk": "селище, село"
+  },
+  {
+   "lemma": "contigo",
+   "ru": "с тобой",
+   "uk": "з тобою"
+  },
+  {
+   "lemma": "quedarse",
+   "ru": "остаться",
+   "uk": "залишитися"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar",
+  "corto",
+  "tuyo",
+  "encontrar",
+  "mío",
+  "silla",
+  "que",
+  "salir",
+  "vender",
+  "ver",
+  "visitar",
+  "freno",
+  "mecánico",
+  "reparar",
+  "revisar",
+  "rueda",
+  "taller",
+  "usar",
+  "noche",
+  "alquilar",
+  "balcón",
+  "barato",
+  "elegir",
+  "habitación",
+  "natural",
+  "piso",
+  "poner",
+  "ruidoso",
+  "tan",
+  "tanto",
+  "sin",
+  "despacio",
+  "apuntar",
+  "avisar",
+  "contraseña",
+  "copiar",
+  "pantalla",
+  "texto",
+  "dirección",
+  "querer",
+  "batería",
+  "cargado",
+  "cargar",
+  "cobertura",
+  "enviar",
+  "horario",
+  "señal",
+  "túnel",
+  "ubicación",
+  "dinero",
+  "hora",
+  "saber"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  },
+  {
+   "lesson": 27,
+   "title": "Книга, которую…: относительное que"
+  },
+  {
+   "lesson": 28,
+   "title": "Завтра позвоню: простое будущее"
+  },
+  {
+   "lesson": 29,
+   "title": "Я бы позвонил: condicional simple"
+  },
+  {
+   "lesson": 30,
+   "title": "Хочу, чтобы ты…: querer que"
+  },
+  {
+   "lesson": 31,
+   "title": "Когда придёшь: будущее событие с cuando"
+  }
+ ],
+ "oldTopicTitle": "Если бы…: условие и следствие",
+ "oldTheoryRu": "Вообрази свободный день. Si tuviera tiempo — условие, iría contigo — что я тогда сделал бы. В первой части не ставь tendría. Собери две разные формы: предположи обстоятельство, затем скажи, что произошло бы при нём. Мы не обещаем, что условие исполнится. Говорящий мысленно меняет нынешние обстоятельства: сейчас времени нет или возможность лишь воображается. Отсюда si tuviera tiempo. Формы tuviera и tuviese в таком условии равно допустимы. Кнопки принимают оба варианта. В этой модели после si выбираем tuviera, pudiera, supiera, viviera. Не si tendría. Condicional оставь для следствия. Si без графического ударения означает «если». Iría contigo — «пошёл бы с тобой». Это техника из урока 29. Сначала мысленно разметь части как «при каком условии?» и «что тогда сделал бы?», а потом выбирай окончания. Если следствие стоит первым, глаголы не меняются местами по форме: iría contigo si tuviera tiempo. Перед конечной частью с si в нейтральном порядке запятая не нужна. В испанском существует и ряд -se (tuviese), здесь тренируем ряд -ra. Реальное условие si tengo tiempo и сожаление о прошлом si hubiera tenido tiempo — другие задачи, не замены окончания в этом упражнении. Сравни два задания: «Мы бы поехали в центр, если бы был прямой поезд.» / «Я бы поговорил с Луисом, если бы у меня был его номер.». После si стоит форма на -ra, в следствии — condicional. Две части: Iríamos al centro  /  si hubiera un tren directo. Сравни два задания: «Если бы был сигнал, я бы отправил тебе файл.» / «Если бы у меня были эти деньги, я бы заплатил сегодня.». После si стоит форма на -ra, в следствии — condicional. Собери две разные формы: предположи обстоятельство, затем скажи, что произошло бы при нём."
+}

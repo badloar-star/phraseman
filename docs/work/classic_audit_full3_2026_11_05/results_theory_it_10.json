@@ -1,0 +1,128 @@
+[
+ {
+  "id": "lesson-21/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«справжнє закінчення» (= подлинное) вместо «теперішнє»; «обоє минулих» — неверная форма",
+  "fix": "Дві події можуть належати різним людям. Вибирай особу окремо в кожній частині: `leggevo` — я, `hai chiamato` — ти. Одне закінчення теперішнього часу не замінює обидва минулі."
+ },
+ {
+  "id": "lesson-21/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Не став сьогодення `sto`» — «сьогодення» (= современность) вместо «теперішнє»",
+  "fix": "Для дії в процесі можливе і `stavo leggendo`. Помічник `stavo` сам стоїть у минулому. Не став теперішнє `sto`, коли обидва моменти залишилися в минулому."
+ },
+ {
+  "id": "lesson-21/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«Assistant `stavo`» — неверный термин",
+  "fix": "For an action in progress, `stavo leggendo` is also possible. The auxiliary `stavo` is itself in the past. Do not use the present `sto` when both moments are in the past."
+ },
+ {
+  "id": "lesson-21/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "«check the assistant» — неверный термин",
+  "fix": "With verbs of arriving or falling, check the auxiliary separately in the completed part. The presence of `mentre` in the neighboring part does not by itself choose `avere` or `essere`."
+ },
+ {
+  "id": "lesson-21/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Її описує тло» — ошибка рода (зображення — ср. р.); «Ця подія» вместо «Це подія»",
+  "fix": "Швидкий спосіб самоперевірки: яку картину вже було видно до дзвінка, падіння або відчинення дверей? Її описує фон. Що змінилося в цей момент? Це подія."
+ },
+ {
+  "id": "lesson-21/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«It describes the background» — перевёрнут смысл (ru: «Её описывает фон»); «This is the event» в ответ на вопрос",
+  "fix": "A quick self-check: what picture was already visible before the bell, the fall, or the door opening? That is what the background describes. What changed at that moment? That is the event."
+ },
+ {
+  "id": "lesson-22/title",
+  "type": "T2",
+  "field": "title.en",
+  "problem": "«subject» (подлежащее) вместо object — противоречит теме (прямой объект)",
+  "fix": "Don't repeat the object: `lo`, `la`, `li`, `le`"
+ },
+ {
+  "id": "lesson-22/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Воно опиняється» — займенник м. р. → «Він»; «особистим дієсловом» — неверный термин (особова форма)",
+  "fix": "На запитання «бачу кого чи що?» відповідає прямий додаток. Для знайомого предмета чи людини замість іменника можна поставити короткий займенник. Він стоїть перед особовою формою дієслова."
+ },
+ {
+  "id": "lesson-22/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«особистої форми» (= личной, приватной) вместо «особової»",
+  "fix": "`Lo conosco` та `la conosco` відрізняються тим, кого я знаю. Не приєднуй займенник після простої особової форми, ніби це інфінітив."
+ },
+ {
+  "id": "lesson-22/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«Займенник … надсилає до названої теми» — «надсилає» (= отправляет) вместо «відсилає»",
+  "fix": "У розмові предмет можуть винести на початок: `Le chiavi, le prendo io`. Займенник усередині повідомлення відсилає до названої теми. Кома не є окремою плиткою."
+ },
+ {
+  "id": "lesson-22/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.en",
+  "problem": "«the subject can be brought to the beginning» — выносится объект, а не подлежащее",
+  "fix": "In conversation, the object can be moved to the beginning: `Le chiavi, le prendo io`. The pronoun inside the message refers back to the named topic. A comma is not a separate tile."
+ },
+ {
+  "id": "lesson-22/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«особиста форма» вместо «особова форма»",
+  "fix": "Із запереченням порядок такий: `non` + займенник + особова форма. У `non lo trovo` жодного слова між `lo` та `trovo` додавати не потрібно."
+ },
+ {
+  "id": "lesson-22/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.ru",
+  "problem": "«Полное упоминание объекта должно присутствовать ровно один раз» — неверно: правило о том, что местоимение ставится ровно один раз (либо перед модальным, либо после инфинитива); полного упоминания в примерах нет",
+  "fix": "С модальным глаголом доступны две позиции: `li possiamo comprare` и `possiamo comprarli`. В каждой версии местоимение стоит ровно один раз — либо перед модальным глаголом, либо в конце инфинитива."
+ },
+ {
+  "id": "lesson-22/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "то же неверное правило, что и в ru",
+  "fix": "З модальним дієсловом доступні дві позиції: `li possiamo comprare` і `possiamo comprarli`. У кожній версії займенник стоїть рівно один раз — або перед модальним дієсловом, або в кінці інфінітива."
+ },
+ {
+  "id": "lesson-22/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "то же неверное правило, что и в ru",
+  "fix": "With a modal verb, two positions are available: `li possiamo comprare` and `possiamo comprarli`. In each version the pronoun appears exactly once — either before the modal verb or attached to the end of the infinitive."
+ },
+ {
+  "id": "lesson-22/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«згодна» вместо «приголосний» (согласный звук); «складової форми» вместо «складеної»",
+  "fix": "У складеній формі `l’ho vista` перед голосним видно скорочений запис, а закінчення дієприкметника іноді допомагає відновити рід. Не переноси це скорочення туди, де після займенника стоїть приголосний."
+ },
+ {
+  "id": "lesson-22/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].exampleIds",
+  "problem": "глава про l’ho + причастие, но ни один пример (it:22:37 lasciarla, it:22:39 collegarlo, it:22:41 le mostro) не содержит l’ + avere и согласования причастия",
+  "fix": "Заменить exampleIds на фразы урока 22 вида `l’ho vista` / `l’ho preso`; если их нет в курсе — переписать главу под имеющиеся примеры (присоединение к инфинитиву при вынесенном объекте)."
+ },
+ {
+  "id": "lesson-22/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«повне іменник» — ошибка рода",
+  "fix": "Форма вибирається за італійською назвою речі, не за перекладом. `Il cavo` — `lo`, `la presa` — `la`. Спочатку віднови повний іменник, потім вирішуй, який чип його замінить."
+ }
+]

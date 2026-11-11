@@ -19,31 +19,17 @@ describe('semantic explanation UI contract', () => {
   it('uses shared semantic blocks on mistake and quiz explanation surfaces only', () => {
     expect(read('components/AiMistakeCard.tsx')).toContain('buildMistakeExplanationBlocks');
     expect(read('components/AiMistakeCard.tsx')).toContain('LearningSemanticBlock');
-    expect(read('components/MistakeEli5Modal.tsx')).toContain('buildMistakeExplanationBlocks');
-    expect(read('components/MistakeEli5Modal.tsx')).toContain('LearningSemanticBlock');
     // зачем: строки про app/(tabs)/quizzes.tsx убраны — экран удалён вместе с квизами.
-  });
-
-  it('keeps the simple phrase ExplainSheet out of the semantic-cloud redesign', () => {
-    const explainSheet = read('components/ExplainSheet.tsx');
-
-    expect(explainSheet).not.toContain('LearningSemanticBlock');
-    expect(explainSheet).not.toContain('buildExplainSheetBlocks');
-    expect(explainSheet).toContain('splitExplainParagraphs(display.text)');
   });
 
   it('does not route long mistake explanation prose through bilingual latin coloring', () => {
     const aiCard = read('components/AiMistakeCard.tsx');
-    const eli5 = read('components/MistakeEli5Modal.tsx');
 
     expect(aiCard).not.toContain('BilingualMistakeText');
-    expect(eli5).not.toContain('BilingualMistakeText');
   });
 
   it('uses one Liquid Glass surface family for explanation sheets without changing their semantic body rendering', () => {
-    // ExplainSheet и ExplainReportButton перенесены на liquidGlassTokens (learn.html D10, overlays-campaigns OS-EXPLAIN-REPORT-*).
-    expect(read('components/ExplainSheet.tsx')).toContain('liquidGlassTokens(liquidGlassThemeId)');
-    expect(read('components/MistakeEli5Modal.tsx')).toContain('TonalSurface');
+    // ExplainReportButton на liquidGlassTokens (overlays-campaigns OS-EXPLAIN-REPORT-*); шторки «Объяснить» и «Объясни проще» удалены владельцем 11.11.
     expect(read('components/ExplainReportButton.tsx')).toContain('liquidGlassTokens(liquidGlassThemeId)');
   });
 });

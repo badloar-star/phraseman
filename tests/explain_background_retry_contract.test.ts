@@ -21,12 +21,9 @@ describe('explanation delivery is waiting -> ready only', () => {
     expect(server).toContain("cached?.status === 'pending'");
   });
 
-  it('never renders error copy in phrase or mistake explanation surfaces', () => {
-    const phraseSheet = read('components/ExplainSheet.tsx');
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): шторок «Объяснить» и «Объясни проще» нет — остаётся карточка разбора.
+  it('never renders error copy in the mistake explanation surface', () => {
     const mistakeCard = read('components/AiMistakeCard.tsx');
-    const eli5 = read('components/MistakeEli5Modal.tsx');
-    expect(phraseSheet).not.toContain('state.retry()');
     expect(mistakeCard).not.toContain("state === 'error'");
-    expect(eli5).not.toContain("state === 'error'");
   });
 });

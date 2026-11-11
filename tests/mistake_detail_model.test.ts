@@ -28,7 +28,8 @@ const answered = (id: string, atMs: number, correct: boolean, mode: string, loca
   type: 'practice_answered',
   occurredAtMs: atMs,
   studyTarget: 'en',
-  payload: { correct, independent: true, mode, localDay, exerciseId: `e-${atMs}`, sessionId: 's' },
+  // зачем (D203, 11.11): ответы помечены правилом «три шага + проверка», как их пишет экран отработки.
+  payload: { correct, independent: true, mode, localDay, exerciseId: `e-${atMs}`, sessionId: 's', rule: 3 },
 });
 
 // зачем (владелец 2026-09-14, макет карточки Б): хроника, остаток пути и

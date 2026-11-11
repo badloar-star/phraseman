@@ -1,0 +1,1010 @@
+[
+{
+"lesson": 25,
+"blocks": [
+{
+"textES": "Hay entradas en el mostrador. Te ofrecen varias, pero solo quieres una. Si la persona con la que hablas ya sabe a qué entradas se refiere, puedes decir simplemente: «Quiero una de estas», sin repetir el nombre.\nSi se conoce el artículo, en elimina la necesidad de repetirlo en la respuesta sobre la cantidad. El número se conserva: uno, dos, cuatro. Para un artículo femenino, \"uno\" es une.",
+"textId": "Ada tiket di loket. Anda ditawari beberapa tiket, tetapi Anda hanya ingin satu. Jika orang yang Anda ajak bicara sudah tahu tiket mana yang mereka maksud, Anda cukup mengatakan, \"Saya ingin satu tiket ini,\" tanpa mengulangi namanya.\nJika barang tersebut diketahui, en menghilangkan kebutuhan untuk mengulanginya dalam jawaban tentang jumlah. Jumlahnya dipertahankan: satu, dua, empat. Untuk barang feminin, \"satu\" adalah une.",
+"textPl": "Na ladzie leżą bilety. Dostajesz kilka, ale chcesz tylko jeden. Jeśli osoba, z którą rozmawiasz, wie już, o jakich biletach mówi, możesz po prostu powiedzieć: „Chcę jeden z tych”, nie powtarzając imienia i nazwiska.\nJeśli przedmiot jest znany, en eliminuje potrzebę powtarzania go w odpowiedzi na pytanie o ilość. Liczba jest zachowana: jeden, dwa, cztery. Dla przedmiotu żeńskiego „jeden” to une.",
+"textPtBr": "Há ingressos no balcão. Oferecem-lhe vários, mas você quer apenas um. Se a pessoa com quem você está falando já souber de quais ingressos estão falando, você pode simplesmente dizer: \"Eu quero um destes\", sem repetir o nome.\nSe o item for conhecido, en elimina a necessidade de repeti-lo na resposta sobre a quantidade. O número é preservado: um, dois, quatro. Para um item feminino, \"um\" é une.",
+"textRU": "На прилавке лежат билеты. Тебе предлагают несколько, но ты хочешь один. Если собеседник уже знает, о каких билетах речь, можно сказать буквально «хочу один из них» и не повторять название.\nЕсли предмет известен, en позволяет не повторять его в ответе о количестве. Число сохраняется: один, два, четыре. Для женского предмета «одна» — une.",
+"textTr": "Tezgahta biletler var. Size birkaç tane teklif ediliyor, ama siz sadece bir tane istiyorsunuz. Eğer konuştuğunuz kişi hangi biletlerden bahsettiğini zaten biliyorsa, ismini tekrarlamadan sadece \"Bunlardan birini istiyorum\" diyebilirsiniz.\nÖğe biliniyorsa, en miktar hakkındaki cevapta tekrar etme ihtiyacını ortadan kaldırır. Sayı korunur: bir, iki, dört. Dişil bir öğe için \"bir\" une'dir.",
+"textUK": "На прилавку лежать квитки. Тобі пропонують кілька, але хочеш один. Якщо співрозмовник уже знає, про які квитки йдеться, можна сказати буквально «хочу один із них» і не повторювати назву.\nЯкщо предмет відомий, en дозволяє не повторювати його у відповіді про кількість. Число зберігається: один, два, чотири. Для жіночого предмета \"одна\" - une.",
+"textVi": "Trên quầy có vài tấm vé. Nhân viên chào bán đưa cho bạn vài tấm, nhưng bạn chỉ muốn mua một tấm. Nếu người bạn đang nói chuyện đã biết họ đang nói về loại vé nào, bạn chỉ cần nói, \"Tôi muốn mua một vé này,\" mà không cần nhắc lại tên vé.\nNếu biết mặt hàng, en loại bỏ sự cần thiết phải lặp lại nó trong câu trả lời về số lượng. Số lượng được giữ nguyên: một, hai, bốn. Đối với mặt hàng giống cái, \"một\" là une.",
+"titleES": "¿Cuántos de ellos?: pronombre en",
+"titleId": "Berapa banyak dari mereka: kata ganti en",
+"titlePl": "Ile ich jest: zaimek en",
+"titlePtBr": "Quantos deles: pronome en",
+"titleRU": "Сколько из них: местоимение en",
+"titleTr": "Kaç tane: zamir en",
+"titleUK": "Скільки з них: займенник en",
+"titleVi": "Có bao nhiêu trong số chúng: đại từ en",
+"titleByLocale": {
+"en": "How many of them: pronoun en",
+"es": "¿Cuántos de ellos?: pronombre en",
+"id": "Berapa banyak dari mereka: kata ganti en",
+"pl": "Ile ich jest: zaimek en",
+"pt-BR": "Quantos deles: pronome en",
+"ru": "Сколько из них: местоимение en",
+"tr": "Kaç tane: zamir en",
+"uk": "Скільки з них: займенник en",
+"vi": "Có bao nhiêu trong số chúng: đại từ en"
+},
+"textByLocale": {
+"en": [
+"There are tickets on the counter. You're offered several, but you want just one. If the person you're talking to already knows what tickets they're talking about, you can simply say, \"I want one of these,\" without repeating the name.",
+"If the item is known, «en» eliminates the need to repeat it in the answer about quantity. The number is preserved: one, two, four. For a feminine item, \"one\" is «une»."
+],
+"es": [
+"Hay entradas en el mostrador. Te ofrecen varias, pero solo quieres una. Si la persona con la que hablas ya sabe a qué entradas se refiere, puedes decir simplemente: «Quiero una de estas», sin repetir el nombre.",
+"Si se conoce el artículo, «en» elimina la necesidad de repetirlo en la respuesta sobre la cantidad. El número se conserva: uno, dos, cuatro. Para un artículo femenino, \"uno\" es «une»."
+],
+"id": [
+"Ada tiket di loket. Anda ditawari beberapa tiket, tetapi Anda hanya ingin satu. Jika orang yang Anda ajak bicara sudah tahu tiket mana yang mereka maksud, Anda cukup mengatakan, \"Saya ingin satu tiket ini,\" tanpa mengulangi namanya.",
+"Jika barang tersebut diketahui, «en» menghilangkan kebutuhan untuk mengulanginya dalam jawaban tentang jumlah. Jumlahnya dipertahankan: satu, dua, empat. Untuk barang feminin, \"satu\" adalah «une»."
+],
+"pl": [
+"Na ladzie leżą bilety. Dostajesz kilka, ale chcesz tylko jeden. Jeśli osoba, z którą rozmawiasz, wie już, o jakich biletach mówi, możesz po prostu powiedzieć: „Chcę jeden z tych”, nie powtarzając imienia i nazwiska.",
+"Jeśli przedmiot jest znany, «en» eliminuje potrzebę powtarzania go w odpowiedzi na pytanie o ilość. Liczba jest zachowana: jeden, dwa, cztery. Dla przedmiotu żeńskiego „jeden” to «une»."
+],
+"pt-BR": [
+"Há ingressos no balcão. Oferecem-lhe vários, mas você quer apenas um. Se a pessoa com quem você está falando já souber de quais ingressos estão falando, você pode simplesmente dizer: \"Eu quero um destes\", sem repetir o nome.",
+"Se o item for conhecido, «en» elimina a necessidade de repeti-lo na resposta sobre a quantidade. O número é preservado: um, dois, quatro. Para um item feminino, \"um\" é «une»."
+],
+"ru": [
+"На прилавке лежат билеты. Тебе предлагают несколько, но ты хочешь один. Если собеседник уже знает, о каких билетах речь, можно сказать буквально «хочу один из них» и не повторять название.",
+"Если предмет известен, «en» позволяет не повторять его в ответе о количестве. Число сохраняется: один, два, четыре. Для женского предмета «одна» — «une»."
+],
+"tr": [
+"Tezgahta biletler var. Size birkaç tane teklif ediliyor, ama siz sadece bir tane istiyorsunuz. Eğer konuştuğunuz kişi hangi biletlerden bahsettiğini zaten biliyorsa, ismini tekrarlamadan sadece \"Bunlardan birini istiyorum\" diyebilirsiniz.",
+"Öğe biliniyorsa, «en» miktar hakkındaki cevapta tekrar etme ihtiyacını ortadan kaldırır. Sayı korunur: bir, iki, dört. Dişil bir öğe için \"bir\" «une»'dir."
+],
+"uk": [
+"На прилавку лежать квитки. Тобі пропонують кілька, але хочеш один. Якщо співрозмовник уже знає, про які квитки йдеться, можна сказати буквально «хочу один із них» і не повторювати назву.",
+"Якщо предмет відомий, «en» дозволяє не повторювати його у відповіді про кількість. Число зберігається: один, два, чотири. Для жіночого предмета \"одна\" - «une»."
+],
+"vi": [
+"Trên quầy có vài tấm vé. Nhân viên chào bán đưa cho bạn vài tấm, nhưng bạn chỉ muốn mua một tấm. Nếu người bạn đang nói chuyện đã biết họ đang nói về loại vé nào, bạn chỉ cần nói, \"Tôi muốn mua một vé này,\" mà không cần nhắc lại tên vé.",
+"Nếu biết mặt hàng, «en» loại bỏ sự cần thiết phải lặp lại nó trong câu trả lời về số lượng. Số lượng được giữ nguyên: một, hai, bốn. Đối với mặt hàng giống cái, \"một\" là «une»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:25:01"
+]
+},
+{
+"textES": "quién + en + verbo + cantidad restante\nEn J’en veux un, la palabra en recuerda lo que ya se ha dicho, y un indica la cantidad. Para dos, solo cambia el número: J’en veux deux. No elimine el número solo porque ya se haya elegido en.\nUna sustancia puede no tener número. J’en prends un peu indica que se toma una pequeña cantidad del producto mencionado. Sustituya mentalmente el nombre para comprobar el significado.",
+"textId": "siapa + en + kata kerja + jumlah yang tersisa\nPada J’en veux un, kata en mengingatkan kita pada apa yang telah dikatakan sebelumnya, dan un menunjukkan kuantitasnya. Untuk angka dua, hanya angkanya yang berubah: J’en veux deux. Jangan hilangkan angkanya hanya karena en telah dipilih.\nSuatu zat mungkin tidak memiliki angka. J’en prends un peu menunjukkan bahwa Anda mengambil sejumlah kecil produk yang disebutkan. Gantikan namanya secara mental untuk memeriksa artinya.",
+"textPl": "kto + en + czasownik + pozostała ilość\nW kodzie J’en veux un słowo en przypomina to, co już powiedziano, a un wskazuje ilość. W przypadku dwóch zmienia się tylko liczba: J’en veux deux. Nie usuwaj liczby tylko dlatego, że en zostało już wybrane.\nSubstancja może nie mieć numeru. J’en prends un peu oznacza, że ​​przyjmujesz niewielką ilość wspomnianego produktu. W myślach zastąp nazwę, aby sprawdzić znaczenie.",
+"textPtBr": "quem + en + verbo + quantidade restante\nEm J’en veux un, a palavra en remete ao que já foi dito, e un indica a quantidade. Para dois, apenas o número muda: J’en veux deux. Não remova o número só porque en já foi escolhido.\nUma substância pode não ter um número. J’en prends un peu indica que você está tomando uma pequena quantidade do produto mencionado. Substitua mentalmente o nome para verificar o significado.",
+"textRU": "кто + en + глагол + оставшееся количество\nВ J’en veux un слово en напоминает об уже названном, а un сообщает количество. Для двух меняется только число: J’en veux deux. Не убирай число лишь потому, что уже выбрано en.\nУ вещества может не быть числа. J’en prends un peu сообщает, что берёшь немного упомянутого продукта. Подставь мысленно название, чтобы проверить смысл.",
+"textTr": "kim + en + fiil + kalan miktar\nJ’en veux un'de, en kelimesi daha önce söylenenleri hatırlatır ve un miktarı gösterir. İki için sadece sayı değişir: J’en veux deux. en zaten seçilmiş diye sayıyı kaldırmayın.\nBir maddenin numarası olmayabilir. J’en prends un peu, belirtilen üründen az miktarda aldığınızı gösterir. Anlamını kontrol etmek için zihninizde ismi yerine koyun.",
+"textUK": "хто + en + дієслово + решта\nУ J’en veux un слово en нагадує про вже назване, а un повідомляє кількість. Для двох змінюється лише число: J’en veux deux. Не прибирай число лише тому, що вже вибрано en.\nРечовина може не мати числа. J’en prends un peu повідомляє, що береш трохи згаданого продукту. Підстав подумки назву, щоб перевірити зміст.",
+"textVi": "ai + en + động từ + số lượng còn lại\nTrong J’en veux un, từ en nhắc nhở người ta về những gì đã được nói trước đó, và un chỉ số lượng. Đối với số hai, chỉ có con số thay đổi: J’en veux deux. Đừng bỏ con số chỉ vì en đã được chọn.\nMột chất có thể không có số. J’en prends un peu cho biết bạn đang dùng một lượng nhỏ sản phẩm được đề cập. Hãy tự thay thế tên để kiểm tra nghĩa.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + «en» + verb + remaining quantity",
+"In «J’en veux un», the word «en» reminds one of what's already been said, and «un» indicates the quantity. For two, only the number changes: «J’en veux deux». Don't remove the number just because «en» has already been chosen.",
+"A substance may not have a number. «J’en prends un peu» indicates that you are taking a small amount of the mentioned product. Mentally substitute the name to check the meaning."
+],
+"es": [
+"quién + «en» + verbo + cantidad restante",
+"En «J’en veux un», la palabra «en» recuerda lo que ya se ha dicho, y «un» indica la cantidad. Para dos, solo cambia el número: «J’en veux deux». No elimine el número solo porque ya se haya elegido «en».",
+"Una sustancia puede no tener número. «J’en prends un peu» indica que se toma una pequeña cantidad del producto mencionado. Sustituya mentalmente el nombre para comprobar el significado."
+],
+"id": [
+"siapa + «en» + kata kerja + jumlah yang tersisa",
+"Pada «J’en veux un», kata «en» mengingatkan kita pada apa yang telah dikatakan sebelumnya, dan «un» menunjukkan kuantitasnya. Untuk angka dua, hanya angkanya yang berubah: «J’en veux deux». Jangan hilangkan angkanya hanya karena «en» telah dipilih.",
+"Suatu zat mungkin tidak memiliki angka. «J’en prends un peu» menunjukkan bahwa Anda mengambil sejumlah kecil produk yang disebutkan. Gantikan namanya secara mental untuk memeriksa artinya."
+],
+"pl": [
+"kto + «en» + czasownik + pozostała ilość",
+"W kodzie «J’en veux un» słowo «en» przypomina to, co już powiedziano, a «un» wskazuje ilość. W przypadku dwóch zmienia się tylko liczba: «J’en veux deux». Nie usuwaj liczby tylko dlatego, że «en» zostało już wybrane.",
+"Substancja może nie mieć numeru. «J’en prends un peu» oznacza, że ​​przyjmujesz niewielką ilość wspomnianego produktu. W myślach zastąp nazwę, aby sprawdzić znaczenie."
+],
+"pt-BR": [
+"quem + «en» + verbo + quantidade restante",
+"Em «J’en veux un», a palavra «en» remete ao que já foi dito, e «un» indica a quantidade. Para dois, apenas o número muda: «J’en veux deux». Não remova o número só porque «en» já foi escolhido.",
+"Uma substância pode não ter um número. «J’en prends un peu» indica que você está tomando uma pequena quantidade do produto mencionado. Substitua mentalmente o nome para verificar o significado."
+],
+"ru": [
+"кто + «en» + глагол + оставшееся количество",
+"В «J’en veux un» слово «en» напоминает об уже названном, а «un» сообщает количество. Для двух меняется только число: «J’en veux deux». Не убирай число лишь потому, что уже выбрано «en».",
+"У вещества может не быть числа. «J’en prends un peu» сообщает, что берёшь немного упомянутого продукта. Подставь мысленно название, чтобы проверить смысл."
+],
+"tr": [
+"kim + «en» + fiil + kalan miktar",
+"«J’en veux un»'de, «en» kelimesi daha önce söylenenleri hatırlatır ve «un» miktarı gösterir. İki için sadece sayı değişir: «J’en veux deux». «en» zaten seçilmiş diye sayıyı kaldırmayın.",
+"Bir maddenin numarası olmayabilir. «J’en prends un peu», belirtilen üründen az miktarda aldığınızı gösterir. Anlamını kontrol etmek için zihninizde ismi yerine koyun."
+],
+"uk": [
+"хто + «en» + дієслово + решта",
+"У «J’en veux un» слово «en» нагадує про вже назване, а «un» повідомляє кількість. Для двох змінюється лише число: «J’en veux deux». Не прибирай число лише тому, що вже вибрано «en».",
+"Речовина може не мати числа. «J’en prends un peu» повідомляє, що береш трохи згаданого продукту. Підстав подумки назву, щоб перевірити зміст."
+],
+"vi": [
+"ai + «en» + động từ + số lượng còn lại",
+"Trong «J’en veux un», từ «en» nhắc nhở người ta về những gì đã được nói trước đó, và «un» chỉ số lượng. Đối với số hai, chỉ có con số thay đổi: «J’en veux deux». Đừng bỏ con số chỉ vì «en» đã được chọn.",
+"Một chất có thể không có số. «J’en prends un peu» cho biết bạn đang dùng một lượng nhỏ sản phẩm được đề cập. Hãy tự thay thế tên để kiểm tra nghĩa."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:25:11",
+"fr:25:12"
+]
+},
+{
+"textES": "Te ofrecen boletos. Quieres uno. J’en veux un: en reemplaza boletos, un mantiene la cantidad. No repitas el nombre después de un que ya ha sido reemplazado.",
+"textId": "Anda ditawari tiket. Anda menginginkan salah satunya. J’en veux un: en menggantikan tiket, un mempertahankan jumlahnya. Jangan ulangi nama setelah un yang telah diganti.",
+"textPl": "Dostajesz bilety. Chcesz jeden z nich. J’en veux un: en zastępuje bilety, un utrzymuje ilość. Nie powtarzaj nazwy po un, która została już zastąpiona.",
+"textPtBr": "Você recebe ingressos. Você quer um deles. J’en veux un: en substitui os ingressos, un mantém a quantidade. Não repita o nome após un que já foi substituído.",
+"textRU": "Тебе предлагают билеты. Ты хочешь один из них. J’en veux un: en заменяет билеты, un оставляет количество. Не повторяй после un название, которое уже заменил.",
+"textTr": "Size bilet teklif ediliyor. Bir tanesini istiyorsunuz. J’en veux un: en biletlerin yerini alır, un miktarı korur. Zaten değiştirilmiş olan un'ten sonra ismi tekrarlamayın.",
+"textUK": "Тобі пропонують квитки. Ти хочеш один із них. J’en veux un: en замінює згадку про квитки, un указує на кількість. Не повторюй назву після un.",
+"textVi": "Bạn được mời mua vé. Bạn muốn một trong số chúng. J’en veux un: en thay thế vé, un giữ nguyên số lượng. Không lặp lại tên sau un vì tên đó đã được thay thế.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You are offered tickets. You want one of them. «J’en veux un»: «en» replaces tickets, «un» maintains the quantity. Do not repeat the name after «un» that has already been replaced."
+],
+"es": [
+"Te ofrecen boletos. Quieres uno. «J’en veux un»: «en» reemplaza boletos, «un» mantiene la cantidad. No repitas el nombre después de «un» que ya ha sido reemplazado."
+],
+"id": [
+"Anda ditawari tiket. Anda menginginkan salah satunya. «J’en veux un»: «en» menggantikan tiket, «un» mempertahankan jumlahnya. Jangan ulangi nama setelah «un» yang telah diganti."
+],
+"pl": [
+"Dostajesz bilety. Chcesz jeden z nich. «J’en veux un»: «en» zastępuje bilety, «un» utrzymuje ilość. Nie powtarzaj nazwy po «un», która została już zastąpiona."
+],
+"pt-BR": [
+"Você recebe ingressos. Você quer um deles. «J’en veux un»: «en» substitui os ingressos, «un» mantém a quantidade. Não repita o nome após «un» que já foi substituído."
+],
+"ru": [
+"Тебе предлагают билеты. Ты хочешь один из них. «J’en veux un»: «en» заменяет билеты, «un» оставляет количество. Не повторяй после «un» название, которое уже заменил."
+],
+"tr": [
+"Size bilet teklif ediliyor. Bir tanesini istiyorsunuz. «J’en veux un»: «en» biletlerin yerini alır, «un» miktarı korur. Zaten değiştirilmiş olan «un»'ten sonra ismi tekrarlamayın."
+],
+"uk": [
+"Тобі пропонують квитки. Ти хочеш один із них. «J’en veux un»: «en» замінює згадку про квитки, «un» указує на кількість. Не повторюй назву після «un»."
+],
+"vi": [
+"Bạn được mời mua vé. Bạn muốn một trong số chúng. «J’en veux un»: «en» thay thế vé, «un» giữ nguyên số lượng. Không lặp lại tên sau «un» vì tên đó đã được thay thế."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:25:01",
+"fr:25:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:25:01",
+"target": "J’en veux un.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "fr:25:11",
+"target": "Du pain, j’en prends un peu.",
+"ru": "Хлеба я возьму немного.",
+"uk": "Хліба я візьму небагато."
+},
+{
+"id": "fr:25:12",
+"target": "Du fromage, elle en mange souvent.",
+"ru": "Она часто ест сыр.",
+"uk": "Вона часто їсть сир."
+},
+{
+"id": "fr:25:01",
+"target": "J’en veux un.",
+"ru": "Я хочу один из них.",
+"uk": "Я хочу один із них."
+},
+{
+"id": "fr:25:04",
+"target": "Tu en prends deux.",
+"ru": "Ты берёшь два.",
+"uk": "Ти береш два."
+}
+]
+},
+{
+"lesson": 26,
+"blocks": [
+{
+"textES": "Hay dos maletas, y una es más ligera que la otra. La tarea no consiste simplemente en decir \"ligera\", sino en colocar los dos objetos uno al lado del otro e identificar la diferencia. El segundo objeto es necesario para que el oyente comprenda el punto de comparación.\nElige la dirección: más grande, más pequeño, igual. Que conecta el atributo con el objeto o cosa que se compara. Esta última parte a veces se deduce de la conversación y no se menciona explícitamente.",
+"textId": "Ada dua koper, dan satu lebih ringan daripada yang lain. Tugasnya bukan hanya mengatakan \"ringan,\" tetapi menempatkan kedua benda tersebut berdampingan dan mengidentifikasi perbedaannya. Benda kedua diperlukan agar pendengar memahami maksud perbandingan tersebut.\nPilih arahnya: lebih besar, lebih kecil, sama. Que menghubungkan atribut dengan orang atau hal yang dibandingkan. Bagian terakhir terkadang jelas dari percakapan dan tidak dinyatakan secara eksplisit.",
+"textPl": "Są dwie walizki, a jedna jest lżejsza od drugiej. Zadaniem nie jest samo powiedzenie „lekka”, ale umieszczenie tych dwóch przedmiotów obok siebie i wskazanie różnicy. Drugi przedmiot jest potrzebny, aby słuchacz zrozumiał istotę porównania.\nWybierz kierunek: większy, mniejszy, równy. Que łączy cechę z porównywaną osobą lub rzeczą. Ta ostatnia część jest czasami oczywista z rozmowy i nie jest wyraźnie określona.",
+"textPtBr": "Há duas malas, e uma é mais leve que a outra. A tarefa não é apenas dizer \"leve\", mas colocar os dois objetos lado a lado e identificar a diferença. O segundo objeto é necessário para que o ouvinte entenda o ponto de comparação.\nEscolha a direção: maior, menor, igual. Que conecta o atributo com o objeto ou coisa que está sendo comparada. A última parte às vezes fica clara na conversa e não é explicitamente declarada.",
+"textRU": "Есть два чемодана, и один легче другого. Задача — не просто сказать «лёгкий», а поставить два предмета рядом и назвать разницу. Второй предмет нужен, чтобы слушатель понял точку сравнения.\nВыбери направление: больше, меньше, наравне. Que соединяет признак с тем, с кем или чем сравнивают. Последняя часть иногда понятна из разговора и явно не произнесена.",
+"textTr": "İki bavul var ve biri diğerinden daha hafif. Görev sadece \"hafif\" demek değil, iki nesneyi yan yana koyup aralarındaki farkı belirlemektir. İkinci nesneye ihtiyaç duyulmasının nedeni, dinleyicinin karşılaştırmanın amacını anlamasıdır.\nYönü seçin: daha büyük, daha küçük, eşit. Que, niteliği karşılaştırılan şeyle ilişkilendirir. İkinci kısım bazen konuşmadan anlaşılır ve açıkça belirtilmez.",
+"textUK": "Є дві валізи, і одна легша за іншу. Завдання - не просто сказати \"легкий\", а поставити два предмети поряд і назвати різницю. Другий предмет потрібний, щоб слухач зрозумів точку порівняння.\nВиберіть напрямок: більше, менше, на рівні. Que поєднує ознаку з тим, з ким чи чим порівнюють. Остання частина іноді зрозуміла з розмови і явно не сказана.",
+"textVi": "Có hai chiếc vali, và một chiếc nhẹ hơn chiếc kia. Nhiệm vụ không chỉ là nói \"nhẹ\", mà là đặt hai vật đó cạnh nhau và xác định sự khác biệt. Cần có vật thứ hai để người nghe hiểu được điểm so sánh.\nChọn hướng: lớn hơn, nhỏ hơn, bằng nhau. Que kết nối thuộc tính với đối tượng hoặc vật thể đang được so sánh. Phần sau đôi khi rõ ràng qua cuộc hội thoại và không được nêu rõ ràng.",
+"titleES": "Comparar: más, menos o lo mismo",
+"titleId": "Bandingkan: lebih banyak, lebih sedikit, atau sama",
+"titlePl": "Porównaj: więcej, mniej lub to samo",
+"titlePtBr": "Compare: mais, menos ou o mesmo",
+"titleRU": "Сравнить: больше, меньше или так же",
+"titleTr": "Karşılaştırın: daha fazla, daha az veya aynı",
+"titleUK": "Порівняти: більше, менше або так само",
+"titleVi": "So sánh: nhiều hơn, ít hơn hoặc giống nhau",
+"titleByLocale": {
+"en": "Compare: more, less, or the same",
+"es": "Comparar: más, menos o lo mismo",
+"id": "Bandingkan: lebih banyak, lebih sedikit, atau sama",
+"pl": "Porównaj: więcej, mniej lub to samo",
+"pt-BR": "Compare: mais, menos ou o mesmo",
+"ru": "Сравнить: больше, меньше или так же",
+"tr": "Karşılaştırın: daha fazla, daha az veya aynı",
+"uk": "Порівняти: більше, менше або так само",
+"vi": "So sánh: nhiều hơn, ít hơn hoặc giống nhau"
+},
+"textByLocale": {
+"en": [
+"There are two suitcases, and one is lighter than the other. The task is not just to say \"light,\" but to place the two objects side by side and identify the difference. The second object is needed so the listener understands the point of comparison.",
+"Choose the direction: bigger, smaller, equal. «Que» connects the attribute with the one or thing being compared. The latter part is sometimes clear from conversation and not explicitly stated."
+],
+"es": [
+"Hay dos maletas, y una es más ligera que la otra. La tarea no consiste simplemente en decir \"ligera\", sino en colocar los dos objetos uno al lado del otro e identificar la diferencia. El segundo objeto es necesario para que el oyente comprenda el punto de comparación.",
+"Elige la dirección: más grande, más pequeño, igual. «Que» conecta el atributo con el objeto o cosa que se compara. Esta última parte a veces se deduce de la conversación y no se menciona explícitamente."
+],
+"id": [
+"Ada dua koper, dan satu lebih ringan daripada yang lain. Tugasnya bukan hanya mengatakan \"ringan,\" tetapi menempatkan kedua benda tersebut berdampingan dan mengidentifikasi perbedaannya. Benda kedua diperlukan agar pendengar memahami maksud perbandingan tersebut.",
+"Pilih arahnya: lebih besar, lebih kecil, sama. «Que» menghubungkan atribut dengan orang atau hal yang dibandingkan. Bagian terakhir terkadang jelas dari percakapan dan tidak dinyatakan secara eksplisit."
+],
+"pl": [
+"Są dwie walizki, a jedna jest lżejsza od drugiej. Zadaniem nie jest samo powiedzenie „lekka”, ale umieszczenie tych dwóch przedmiotów obok siebie i wskazanie różnicy. Drugi przedmiot jest potrzebny, aby słuchacz zrozumiał istotę porównania.",
+"Wybierz kierunek: większy, mniejszy, równy. «Que» łączy cechę z porównywaną osobą lub rzeczą. Ta ostatnia część jest czasami oczywista z rozmowy i nie jest wyraźnie określona."
+],
+"pt-BR": [
+"Há duas malas, e uma é mais leve que a outra. A tarefa não é apenas dizer \"leve\", mas colocar os dois objetos lado a lado e identificar a diferença. O segundo objeto é necessário para que o ouvinte entenda o ponto de comparação.",
+"Escolha a direção: maior, menor, igual. «Que» conecta o atributo com o objeto ou coisa que está sendo comparada. A última parte às vezes fica clara na conversa e não é explicitamente declarada."
+],
+"ru": [
+"Есть два чемодана, и один легче другого. Задача — не просто сказать «лёгкий», а поставить два предмета рядом и назвать разницу. Второй предмет нужен, чтобы слушатель понял точку сравнения.",
+"Выбери направление: больше, меньше, наравне. «Que» соединяет признак с тем, с кем или чем сравнивают. Последняя часть иногда понятна из разговора и явно не произнесена."
+],
+"tr": [
+"İki bavul var ve biri diğerinden daha hafif. Görev sadece \"hafif\" demek değil, iki nesneyi yan yana koyup aralarındaki farkı belirlemektir. İkinci nesneye ihtiyaç duyulmasının nedeni, dinleyicinin karşılaştırmanın amacını anlamasıdır.",
+"Yönü seçin: daha büyük, daha küçük, eşit. «Que», niteliği karşılaştırılan şeyle ilişkilendirir. İkinci kısım bazen konuşmadan anlaşılır ve açıkça belirtilmez."
+],
+"uk": [
+"Є дві валізи, і одна легша за іншу. Завдання - не просто сказати \"легкий\", а поставити два предмети поряд і назвати різницю. Другий предмет потрібний, щоб слухач зрозумів точку порівняння.",
+"Виберіть напрямок: більше, менше, на рівні. «Que» поєднує ознаку з тим, з ким чи чим порівнюють. Остання частина іноді зрозуміла з розмови і явно не сказана."
+],
+"vi": [
+"Có hai chiếc vali, và một chiếc nhẹ hơn chiếc kia. Nhiệm vụ không chỉ là nói \"nhẹ\", mà là đặt hai vật đó cạnh nhau và xác định sự khác biệt. Cần có vật thứ hai để người nghe hiểu được điểm so sánh.",
+"Chọn hướng: lớn hơn, nhỏ hơn, bằng nhau. «Que» kết nối thuộc tính với đối tượng hoặc vật thể đang được so sánh. Phần sau đôi khi rõ ràng qua cuộc hội thoại và không được nêu rõ ràng."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:26:01"
+]
+},
+{
+"textES": "plus, moins, aussi + atributo + que + objeto de comparación\nPara una característica, pruebe tres pasos: plus lourd - más pesado, moins lourd - menos pesado, aussi lourd - igual de pesado. Después de que, se nombra otro objeto o persona.\nEl adjetivo sigue concordando con lo que describe. La maleta es lourde, la bolsa es lourd en estos ejemplos en francés. Plus y moins no anulan esta concordancia.",
+"textId": "plus, moins, aussi + atribut + que + objek perbandingan\nUntuk satu karakteristik, coba tiga langkah: plus lourd - lebih berat, moins lourd - kurang berat, aussi lourd - sama beratnya. Setelah que, objek atau orang lain disebutkan.\nKata sifat masih sesuai dengan apa yang dijelaskannya. Koper adalah lourde, tas adalah lourd dalam contoh bahasa Prancis ini. Plus dan moins tidak membatalkan hal ini.",
+"textPl": "plus, moins, aussi + atrybut + que + obiekt porównania\nDla jednej cechy wypróbuj trzy kroki: plus lourd – cięższy, moins lourd – lżejszy, aussi lourd – równie ciężki. Po que wymieniany jest inny obiekt lub osoba.\nPrzymiotnik nadal zgadza się z tym, co opisuje. Walizka ma numer lourde, torba ma numer lourd w tych francuskich przykładach. Plus i moins tego nie negują.",
+"textPtBr": "plus, moins, aussi + atributo + que + objeto de comparação\nPara uma característica, tente três etapas: plus lourd - mais pesado, moins lourd - menos pesado, aussi lourd - igualmente pesado. Após que, outro objeto ou pessoa é mencionado.\nO adjetivo ainda concorda com o que descreve. A mala é lourde, a bolsa é lourd nestes exemplos em francês. Plus e moins não anulam isso.",
+"textRU": "plus, moins, aussi + признак + que + объект сравнения\nДля одного признака попробуй три ступени: plus lourd — тяжелее, moins lourd — менее тяжёлый, aussi lourd — столь же тяжёлый. После que называется другой предмет или человек.\nПрилагательное по-прежнему согласуется с тем, что описывает. У чемодана lourde, у сумки lourd в этих французских примерах. Plus и moins этого не отменяют.",
+"textTr": "plus, moins, aussi + özellik + que + karşılaştırma nesnesi\nBir özellik için üç adım deneyin: plus lourd - daha ağır, moins lourd - daha hafif, aussi lourd - eşit ağırlıkta. que'ten sonra başka bir nesne veya kişi belirtilir.\nSıfat hala tanımladığı şeyle uyumludur. Bu Fransızca örneklerde bavul lourde, çanta lourd'dir. Plus ve moins bunu ortadan kaldırmaz.",
+"textUK": "plus, moins, aussi + ознака + que + об'єкт порівняння\nДля однієї ознаки спробуй три ступені: plus lourd – важчий, moins lourd – менш важкий, aussi lourd – настільки ж важкий. Після que називається інший предмет чи людина.\nПрикметник, як і раніше, узгоджується з описом. У валізи lourde, сумки lourd у цих французьких прикладах. Plus та moins цього не скасовують.",
+"textVi": "plus, moins, aussi + thuộc tính + que + đối tượng so sánh\nĐối với một đặc điểm, hãy thử ba bước: plus lourd - nặng hơn, moins lourd - nhẹ hơn, aussi lourd - nặng bằng nhau. Sau que, một vật thể hoặc người khác được nêu tên.\nTính từ vẫn phù hợp với những gì nó mô tả. Chiếc vali là lourde, chiếc túi là lourd trong các ví dụ tiếng Pháp này. Plus và moins không triệt tiêu điều này.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«plus», «moins», «aussi» + attribute + «que» + object of comparison",
+"For one characteristic, try three steps: «plus lourd» - heavier, «moins lourd» - less heavy, «aussi lourd» - equally heavy. After «que», another object or person is named.",
+"The adjective still agrees with what it describes. The suitcase is «lourde», the bag is «lourd» in these French examples. «Plus» and «moins» don't cancel this out."
+],
+"es": [
+"«plus», «moins», «aussi» + atributo + «que» + objeto de comparación",
+"Para una característica, pruebe tres pasos: «plus lourd» - más pesado, «moins lourd» - menos pesado, «aussi lourd» - igual de pesado. Después de «que», se nombra otro objeto o persona.",
+"El adjetivo sigue concordando con lo que describe. La maleta es «lourde», la bolsa es «lourd» en estos ejemplos en francés. «Plus» y «moins» no anulan esta concordancia."
+],
+"id": [
+"«plus», «moins», «aussi» + atribut + «que» + objek perbandingan",
+"Untuk satu karakteristik, coba tiga langkah: «plus lourd» - lebih berat, «moins lourd» - kurang berat, «aussi lourd» - sama beratnya. Setelah «que», objek atau orang lain disebutkan.",
+"Kata sifat masih sesuai dengan apa yang dijelaskannya. Koper adalah «lourde», tas adalah «lourd» dalam contoh bahasa Prancis ini. «Plus» dan «moins» tidak membatalkan hal ini."
+],
+"pl": [
+"«plus», «moins», «aussi» + atrybut + «que» + obiekt porównania",
+"Dla jednej cechy wypróbuj trzy kroki: «plus lourd» – cięższy, «moins lourd» – lżejszy, «aussi lourd» – równie ciężki. Po «que» wymieniany jest inny obiekt lub osoba.",
+"Przymiotnik nadal zgadza się z tym, co opisuje. Walizka ma numer «lourde», torba ma numer «lourd» w tych francuskich przykładach. «Plus» i «moins» tego nie negują."
+],
+"pt-BR": [
+"«plus», «moins», «aussi» + atributo + «que» + objeto de comparação",
+"Para uma característica, tente três etapas: «plus lourd» - mais pesado, «moins lourd» - menos pesado, «aussi lourd» - igualmente pesado. Após «que», outro objeto ou pessoa é mencionado.",
+"O adjetivo ainda concorda com o que descreve. A mala é «lourde», a bolsa é «lourd» nestes exemplos em francês. «Plus» e «moins» não anulam isso."
+],
+"ru": [
+"«plus», «moins», «aussi» + признак + «que» + объект сравнения",
+"Для одного признака попробуй три ступени: «plus lourd» — тяжелее, «moins lourd» — менее тяжёлый, «aussi lourd» — столь же тяжёлый. После «que» называется другой предмет или человек.",
+"Прилагательное по-прежнему согласуется с тем, что описывает. У чемодана «lourde», у сумки «lourd» в этих французских примерах. «Plus» и «moins» этого не отменяют."
+],
+"tr": [
+"«plus», «moins», «aussi» + özellik + «que» + karşılaştırma nesnesi",
+"Bir özellik için üç adım deneyin: «plus lourd» - daha ağır, «moins lourd» - daha hafif, «aussi lourd» - eşit ağırlıkta. «que»'ten sonra başka bir nesne veya kişi belirtilir.",
+"Sıfat hala tanımladığı şeyle uyumludur. Bu Fransızca örneklerde bavul «lourde», çanta «lourd»'dir. «Plus» ve «moins» bunu ortadan kaldırmaz."
+],
+"uk": [
+"«plus», «moins», «aussi» + ознака + «que» + об'єкт порівняння",
+"Для однієї ознаки спробуй три ступені: «plus lourd» – важчий, «moins lourd» – менш важкий, «aussi lourd» – настільки ж важкий. Після «que» називається інший предмет чи людина.",
+"Прикметник, як і раніше, узгоджується з описом. У валізи «lourde», сумки «lourd» у цих французьких прикладах. «Plus» та «moins» цього не скасовують."
+],
+"vi": [
+"«plus», «moins», «aussi» + thuộc tính + «que» + đối tượng so sánh",
+"Đối với một đặc điểm, hãy thử ba bước: «plus lourd» - nặng hơn, «moins lourd» - nhẹ hơn, «aussi lourd» - nặng bằng nhau. Sau «que», một vật thể hoặc người khác được nêu tên.",
+"Tính từ vẫn phù hợp với những gì nó mô tả. Chiếc vali là «lourde», chiếc túi là «lourd» trong các ví dụ tiếng Pháp này. «Plus» và «moins» không triệt tiêu điều này."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:26:02",
+"fr:26:04"
+]
+},
+{
+"textES": "Estás comparando la altura de Paul con la tuya. Nombra a Paul, elige est plus grand, luego que y elige moi. No confundas plus grand con el valor absoluto de \"muy alto\": hay una segunda comparación.",
+"textId": "Anda membandingkan tinggi badan Paul dengan tinggi badan Anda sendiri. Sebutkan nama Paul, pilih est plus grand, lalu que, pilih moi. Jangan bingung antara plus grand dengan \"sangat tinggi\" absolut: ada perbandingan kedua.",
+"textPl": "Porównujesz wzrost Paula ze swoim. Nazwij Paul, wybierz est plus grand, a następnie que, wybierz moi. Nie myl plus grand z absolutnym „bardzo wysokim”: istnieje drugie porównanie.",
+"textPtBr": "Você está comparando a altura de Paul com a sua. Nomeie Paul, escolha est plus grand e, em seguida, que, escolha moi. Não confunda plus grand com o absoluto \"muito alto\": há uma segunda comparação.",
+"textRU": "Ты сравниваешь рост Поля со своим. Назови Поля, выбери est plus grand, а после que — moi. Не путай plus grand с абсолютным «очень высокий»: здесь есть второй участник сравнения.",
+"textTr": "Paul'ün boyunu kendi boyunuzla karşılaştırıyorsunuz. Paul'ün adını söyleyin, est plus grand'i seçin, sonra que'yi seçin, moi'ü seçin. plus grand'ü mutlak \"çok uzun\" ile karıştırmayın: ikinci bir karşılaştırma var.",
+"textUK": "Ти порівнюєш зростання Поля зі своїм. Назви Поля, вибери est plus grand, а після que – moi. Не плутай plus grand з абсолютним «дуже високим»: тут є другий учасник порівняння.",
+"textVi": "Bạn đang so sánh chiều cao của Paul với chiều cao của chính mình. Hãy nêu tên Paul, chọn est plus grand, sau đó chọn que, rồi chọn moi. Đừng nhầm lẫn plus grand với nghĩa tuyệt đối \"rất cao\": có một sự so sánh thứ hai.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're comparing Paul's height with your own. Name Paul, choose «est plus grand», and then «que», choose «moi». Don't confuse «plus grand» with the absolute \"very tall\": there's a second comparison."
+],
+"es": [
+"Estás comparando la altura de Paul con la tuya. Nombra a Paul, elige «est plus grand», luego «que» y elige «moi». No confundas «plus grand» con el valor absoluto de \"muy alto\": hay una segunda comparación."
+],
+"id": [
+"Anda membandingkan tinggi badan Paul dengan tinggi badan Anda sendiri. Sebutkan nama Paul, pilih «est plus grand», lalu «que», pilih «moi». Jangan bingung antara «plus grand» dengan \"sangat tinggi\" absolut: ada perbandingan kedua."
+],
+"pl": [
+"Porównujesz wzrost Paula ze swoim. Nazwij Paul, wybierz «est plus grand», a następnie «que», wybierz «moi». Nie myl «plus grand» z absolutnym „bardzo wysokim”: istnieje drugie porównanie."
+],
+"pt-BR": [
+"Você está comparando a altura de Paul com a sua. Nomeie Paul, escolha «est plus grand» e, em seguida, «que», escolha «moi». Não confunda «plus grand» com o absoluto \"muito alto\": há uma segunda comparação."
+],
+"ru": [
+"Ты сравниваешь рост Поля со своим. Назови Поля, выбери «est plus grand», а после «que» — «moi». Не путай «plus grand» с абсолютным «очень высокий»: здесь есть второй участник сравнения."
+],
+"tr": [
+"Paul'ün boyunu kendi boyunuzla karşılaştırıyorsunuz. Paul'ün adını söyleyin, «est plus grand»'i seçin, sonra «que»'yi seçin, «moi»'ü seçin. «plus grand»'ü mutlak \"çok uzun\" ile karıştırmayın: ikinci bir karşılaştırma var."
+],
+"uk": [
+"Ти порівнюєш зростання Поля зі своїм. Назви Поля, вибери «est plus grand», а після «que» – «moi». Не плутай «plus grand» з абсолютним «дуже високим»: тут є другий учасник порівняння."
+],
+"vi": [
+"Bạn đang so sánh chiều cao của Paul với chiều cao của chính mình. Hãy nêu tên Paul, chọn «est plus grand», sau đó chọn «que», rồi chọn «moi». Đừng nhầm lẫn «plus grand» với nghĩa tuyệt đối \"rất cao\": có một sự so sánh thứ hai."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:26:01",
+"fr:26:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:26:01",
+"target": "Paul est plus grand que moi.",
+"ru": "Поль выше меня.",
+"uk": "Пол вищий за мене."
+},
+{
+"id": "fr:26:02",
+"target": "Léa est plus grande que moi.",
+"ru": "Леа выше меня.",
+"uk": "Леа вища за мене."
+},
+{
+"id": "fr:26:04",
+"target": "Cette valise est moins lourde que l’autre.",
+"ru": "Этот чемодан легче другого.",
+"uk": "Ця валіза легша за іншу."
+},
+{
+"id": "fr:26:01",
+"target": "Paul est plus grand que moi.",
+"ru": "Поль выше меня.",
+"uk": "Пол вищий за мене."
+},
+{
+"id": "fr:26:04",
+"target": "Cette valise est moins lourde que l’autre.",
+"ru": "Этот чемодан легче другого.",
+"uk": "Ця валіза легша за іншу."
+}
+]
+},
+{
+"lesson": 27,
+"blocks": [
+{
+"textES": "Concertaste una cita para mañana y prometiste asistir. En este capítulo, el futuro se expresa en una sola palabra: la raíz se une a la terminación. Anteriormente, usaste dos palabras para el plan; esta es una forma diferente de hablar del futuro.\nA diferencia del esquema aller, en el futuro simple, un verbo en primera persona es suficiente. No consideres estos métodos intercambiables: aquí practicamos promesas, pronósticos y horarios.",
+"textId": "Anda membuat janji untuk besok dan berjanji untuk datang. Dalam bab ini, masa depan diungkapkan dalam satu kata: kata dasar digabungkan dengan kata akhiran. Sebelumnya, Anda menggunakan dua kata untuk rencana tersebut—ini adalah cara berbeda untuk membicarakan masa depan.\nTidak seperti skema aller, dalam bentuk masa depan sederhana, satu kata kerja personal sudah cukup. Jangan selalu menganggap metode ini dapat dipertukarkan: di sini kita berlatih janji, perkiraan, dan jadwal.",
+"textPl": "Umawiasz się na spotkanie na jutro i obiecujesz przyjść. W tym rozdziale przyszłość jest wyrażona jednym słowem: temat jest połączony z końcówką. Wcześniej używałeś dwóch słów na określenie planu – to inny sposób mówienia o przyszłości.\nW przeciwieństwie do schematu aller, w czasie przyszłym prostym wystarczy jeden czasownik w formie osobowej. Nie zawsze traktuj te metody zamiennie: tutaj ćwiczymy obietnice, prognozy i harmonogramy.",
+"textPtBr": "Você marca um compromisso para amanhã e promete comparecer. Neste capítulo, o futuro é expresso em uma única palavra: o radical é unido à terminação. Anteriormente, você usava duas palavras para o plano — esta é uma maneira diferente de falar sobre o futuro.\nAo contrário do esquema aller, no futuro simples, um verbo pessoal é suficiente. Não considere esses métodos sempre intercambiáveis: aqui praticamos promessas, previsões e cronogramas.",
+"textRU": "Записываешься на завтра и обещаешь, что придёшь. В этой главе будущее выражается внутри одного слова: к основе присоединяется окончание. Раньше для плана ты использовал два слова — это иной способ сказать о будущем.\nВ отличие от схемы с aller, в простом будущем достаточно одного личного глагола. Не считай эти способы всегда взаимозаменяемыми: здесь тренируем обещания, прогнозы и расписание.",
+"textTr": "Yarın için randevu alıyorsunuz ve geleceğinize söz veriyorsunuz. Bu bölümde gelecek, tek bir kelimeyle ifade ediliyor: kök, son ekle birleştiriliyor. Daha önce plan için iki kelime kullanmıştınız; bu, geleceği anlatmanın farklı bir yolu.\naller şemasının aksine, basit gelecek zamanda tek bir şahıs fiili yeterlidir. Bu yöntemleri her zaman birbirinin yerine kullanılabilir olarak düşünmeyin: burada sözler, tahminler ve programlar üzerinde çalışıyoruz.",
+"textUK": "Записуєшся на завтра і обіцяєш, що прийдеш. У цьому розділі майбутнє виражається всередині одного слова: до основи приєднується закінчення. Раніше для плану ти використав два слова – це інший спосіб сказати про майбутнє.\nНа відміну від схеми з aller, у простому майбутньому достатньо одного особистого дієслова. Не вважай ці способи завжди взаємозамінними: тут тренуємо обіцянки, прогнози та розклад.",
+"textVi": "Bạn hẹn gặp vào ngày mai và hứa sẽ đến. Trong chương này, tương lai được diễn đạt bằng một từ duy nhất: gốc từ được nối liền với hậu tố. Trước đây, bạn đã sử dụng hai từ để diễn tả kế hoạch—đây là một cách nói khác về tương lai.\nKhông giống như sơ đồ aller, trong thì tương lai đơn, chỉ cần một động từ nhân xưng là đủ. Đừng luôn coi những phương pháp này là có thể thay thế cho nhau: ở đây chúng ta thực hành lời hứa, dự báo và lịch trình.",
+"titleES": "Habla del futuro: futur simple",
+"titleId": "Ceritakan tentang masa depan: futur simple",
+"titlePl": "Opowiedz o przyszłości: futur simple",
+"titlePtBr": "Fale sobre o futuro: futur simple",
+"titleRU": "Сообщить о будущем: futur simple",
+"titleTr": "Gelecekten bahsedin: futur simple",
+"titleUK": "Повідомити про майбутнє: futur simple",
+"titleVi": "Kể về tương lai: futur simple",
+"titleByLocale": {
+"en": "Tell about the future: futur simple",
+"es": "Habla del futuro: futur simple",
+"id": "Ceritakan tentang masa depan: futur simple",
+"pl": "Opowiedz o przyszłości: futur simple",
+"pt-BR": "Fale sobre o futuro: futur simple",
+"ru": "Сообщить о будущем: futur simple",
+"tr": "Gelecekten bahsedin: futur simple",
+"uk": "Повідомити про майбутнє: futur simple",
+"vi": "Kể về tương lai: futur simple"
+},
+"textByLocale": {
+"en": [
+"You make an appointment for tomorrow and promise to come. In this chapter, the future is expressed within a single word: the stem is joined with the ending. Previously, you used two words for the plan—this is a different way of talking about the future.",
+"Unlike the «aller» scheme, in the simple future, one personal verb is enough. Don't always consider these methods interchangeable: here we practice promises, forecasts, and schedules."
+],
+"es": [
+"Concertaste una cita para mañana y prometiste asistir. En este capítulo, el futuro se expresa en una sola palabra: la raíz se une a la terminación. Anteriormente, usaste dos palabras para el plan; esta es una forma diferente de hablar del futuro.",
+"A diferencia del esquema «aller», en el futuro simple, un verbo en primera persona es suficiente. No consideres estos métodos intercambiables: aquí practicamos promesas, pronósticos y horarios."
+],
+"id": [
+"Anda membuat janji untuk besok dan berjanji untuk datang. Dalam bab ini, masa depan diungkapkan dalam satu kata: kata dasar digabungkan dengan kata akhiran. Sebelumnya, Anda menggunakan dua kata untuk rencana tersebut—ini adalah cara berbeda untuk membicarakan masa depan.",
+"Tidak seperti skema «aller», dalam bentuk masa depan sederhana, satu kata kerja personal sudah cukup. Jangan selalu menganggap metode ini dapat dipertukarkan: di sini kita berlatih janji, perkiraan, dan jadwal."
+],
+"pl": [
+"Umawiasz się na spotkanie na jutro i obiecujesz przyjść. W tym rozdziale przyszłość jest wyrażona jednym słowem: temat jest połączony z końcówką. Wcześniej używałeś dwóch słów na określenie planu – to inny sposób mówienia o przyszłości.",
+"W przeciwieństwie do schematu «aller», w czasie przyszłym prostym wystarczy jeden czasownik w formie osobowej. Nie zawsze traktuj te metody zamiennie: tutaj ćwiczymy obietnice, prognozy i harmonogramy."
+],
+"pt-BR": [
+"Você marca um compromisso para amanhã e promete comparecer. Neste capítulo, o futuro é expresso em uma única palavra: o radical é unido à terminação. Anteriormente, você usava duas palavras para o plano — esta é uma maneira diferente de falar sobre o futuro.",
+"Ao contrário do esquema «aller», no futuro simples, um verbo pessoal é suficiente. Não considere esses métodos sempre intercambiáveis: aqui praticamos promessas, previsões e cronogramas."
+],
+"ru": [
+"Записываешься на завтра и обещаешь, что придёшь. В этой главе будущее выражается внутри одного слова: к основе присоединяется окончание. Раньше для плана ты использовал два слова — это иной способ сказать о будущем.",
+"В отличие от схемы с «aller», в простом будущем достаточно одного личного глагола. Не считай эти способы всегда взаимозаменяемыми: здесь тренируем обещания, прогнозы и расписание."
+],
+"tr": [
+"Yarın için randevu alıyorsunuz ve geleceğinize söz veriyorsunuz. Bu bölümde gelecek, tek bir kelimeyle ifade ediliyor: kök, son ekle birleştiriliyor. Daha önce plan için iki kelime kullanmıştınız; bu, geleceği anlatmanın farklı bir yolu.",
+"«aller» şemasının aksine, basit gelecek zamanda tek bir şahıs fiili yeterlidir. Bu yöntemleri her zaman birbirinin yerine kullanılabilir olarak düşünmeyin: burada sözler, tahminler ve programlar üzerinde çalışıyoruz."
+],
+"uk": [
+"Записуєшся на завтра і обіцяєш, що прийдеш. У цьому розділі майбутнє виражається всередині одного слова: до основи приєднується закінчення. Раніше для плану ти використав два слова – це інший спосіб сказати про майбутнє.",
+"На відміну від схеми з «aller», у простому майбутньому достатньо одного особистого дієслова. Не вважай ці способи завжди взаємозамінними: тут тренуємо обіцянки, прогнози та розклад."
+],
+"vi": [
+"Bạn hẹn gặp vào ngày mai và hứa sẽ đến. Trong chương này, tương lai được diễn đạt bằng một từ duy nhất: gốc từ được nối liền với hậu tố. Trước đây, bạn đã sử dụng hai từ để diễn tả kế hoạch—đây là một cách nói khác về tương lai.",
+"Không giống như sơ đồ «aller», trong thì tương lai đơn, chỉ cần một động từ nhân xưng là đủ. Đừng luôn coi những phương pháp này là có thể thay thế cho nhau: ở đây chúng ta thực hành lời hứa, dự báo và lịch trình."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:27:01"
+]
+},
+{
+"textES": "futuro simple + -ai, -as, -a, -ons, -ez, -ont\n, je partirai y tu partiras comparten la misma raíz. La terminación sugiere quién se irá. La palabra que indica el tiempo, por ejemplo demain, especifica la fecha pero no reemplaza al verbo.\nCambie solo la persona: partirai, partiras, partira. En la escritura, las diferencias son visibles incluso cuando las terminaciones suenan igual. En plural, añada la terminación apropiada.",
+"textId": "bentuk dasar masa depan + -ai, -as, -a, -ons, -ez, -ont\nje partirai dan tu partiras memiliki akar kata yang sama. Akhiran tersebut mengisyaratkan siapa yang akan pergi. Kata penunjuk waktu, misalnya demain, menentukan tanggal tetapi tidak menggantikan kata kerja.\nUbah hanya orangnya: partirai, partiras, partira. Dalam tulisan, perbedaannya terlihat meskipun akhiran terdengar sama. Dalam bentuk jamak, tambahkan akhiran yang sesuai.",
+"textPl": "podstawa czasu przyszłego + -ai, -as, -a, -ons, -ez, -ont\nje partirai i tu partiras mają ten sam temat. Końcówka wskazuje, kto będzie wyjeżdżał. Słowo określające czas, na przykład demain, określa datę, ale nie zastępuje czasownika.\nZmień tylko osobę: partirai, partiras, partira. W piśmie różnice są widoczne nawet wtedy, gdy końcówki brzmią tak samo. W liczbie mnogiej dodaj odpowiednią końcówkę.",
+"textPtBr": "futuro base + -ai, -as, -a, -ons, -ez, -ont\n, je partirai e tu partiras compartilham o mesmo radical. A terminação indica quem estará saindo. O termo de tempo, por exemplo, demain, especifica a data, mas não substitui o verbo.\nAltere apenas a pessoa: partirai, partiras, partira. Na escrita, as diferenças são visíveis mesmo quando as terminações soam iguais. Na forma plural, adicione a terminação apropriada.",
+"textRU": "основа будущего + -ai, -as, -a, -ons, -ez, -ont\nУ je partirai и tu partiras общая основа. Конец подсказывает, кто уедет. Слово времени, например demain, уточняет дату, но не заменяет глагол.\nПоменяй только лицо: partirai, partiras, partira. На письме различия видны и тогда, когда окончания звучат одинаково. В форме множественного числа добавь соответствующее окончание.",
+"textTr": "gelecek zaman fiili + -ai, -as, -a, -ons, -ez, -ont\n, je partirai ve tu partiras aynı köke sahiptir. Sondaki ek, kimin ayrılacağına dair ipucu verir. Örneğin demain'teki zaman kelimesi tarihi belirtir ancak fiilin yerini almaz.\nSadece kişiyi değiştirin: partirai, partiras, partira. Yazılı metinde, ekler aynı şekilde telaffuz edilse bile farklılıklar görünür. Çoğul formda, uygun eki ekleyin.",
+"textUK": "основа майбутнього + -ai, -as, -a, -ons, -ez, -ont\nУ je partirai та tu partiras загальна основа. Кінець підказує, хто виїде. Слово часу, наприклад, demain, уточнює дату, але не замінює дієслово.\nПоміняй тільки обличчя: partirai, partiras, partira. На листі відмінності видно і тоді, коли закінчення звучать однаково. У формі множини додай відповідне закінчення.",
+"textVi": "thì tương lai cơ bản + -ai, -as, -a, -ons, -ez, -ont\n, je partirai và tu partiras có cùng gốc từ. Phần cuối gợi ý về người sẽ rời đi. Từ chỉ thời gian, ví dụ như demain, chỉ rõ ngày tháng nhưng không thay thế động từ.\nChỉ thay đổi ngôi: partirai, partiras, partira. Trong văn viết, sự khác biệt vẫn có thể nhận thấy ngay cả khi các đuôi phát âm giống nhau. Ở dạng số nhiều, hãy thêm đuôi thích hợp.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"future base + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+"«je partirai» and «tu partiras» share the same stem. The ending hints at who will be leaving. The time word, for example «demain», specifies the date but does not replace the verb.",
+"Change only the person: «partirai», «partiras», «partira». In writing, differences are visible even when the endings sound the same. In the plural form, add the appropriate ending."
+],
+"es": [
+"futuro simple + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+", «je partirai» y «tu partiras» comparten la misma raíz. La terminación sugiere quién se irá. La palabra que indica el tiempo, por ejemplo «demain», especifica la fecha pero no reemplaza al verbo.",
+"Cambie solo la persona: «partirai», «partiras», «partira». En la escritura, las diferencias son visibles incluso cuando las terminaciones suenan igual. En plural, añada la terminación apropiada."
+],
+"id": [
+"bentuk dasar masa depan + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+"«je partirai» dan «tu partiras» memiliki akar kata yang sama. Akhiran tersebut mengisyaratkan siapa yang akan pergi. Kata penunjuk waktu, misalnya «demain», menentukan tanggal tetapi tidak menggantikan kata kerja.",
+"Ubah hanya orangnya: «partirai», «partiras», «partira». Dalam tulisan, perbedaannya terlihat meskipun akhiran terdengar sama. Dalam bentuk jamak, tambahkan akhiran yang sesuai."
+],
+"pl": [
+"podstawa czasu przyszłego + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+"«je partirai» i «tu partiras» mają ten sam temat. Końcówka wskazuje, kto będzie wyjeżdżał. Słowo określające czas, na przykład «demain», określa datę, ale nie zastępuje czasownika.",
+"Zmień tylko osobę: «partirai», «partiras», «partira». W piśmie różnice są widoczne nawet wtedy, gdy końcówki brzmią tak samo. W liczbie mnogiej dodaj odpowiednią końcówkę."
+],
+"pt-BR": [
+"futuro base + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+", «je partirai» e «tu partiras» compartilham o mesmo radical. A terminação indica quem estará saindo. O termo de tempo, por exemplo, «demain», especifica a data, mas não substitui o verbo.",
+"Altere apenas a pessoa: «partirai», «partiras», «partira». Na escrita, as diferenças são visíveis mesmo quando as terminações soam iguais. Na forma plural, adicione a terminação apropriada."
+],
+"ru": [
+"основа будущего + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+"У «je partirai» и «tu partiras» общая основа. Конец подсказывает, кто уедет. Слово времени, например «demain», уточняет дату, но не заменяет глагол.",
+"Поменяй только лицо: «partirai», «partiras», «partira». На письме различия видны и тогда, когда окончания звучат одинаково. В форме множественного числа добавь соответствующее окончание."
+],
+"tr": [
+"gelecek zaman fiili + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+", «je partirai» ve «tu partiras» aynı köke sahiptir. Sondaki ek, kimin ayrılacağına dair ipucu verir. Örneğin «demain»'teki zaman kelimesi tarihi belirtir ancak fiilin yerini almaz.",
+"Sadece kişiyi değiştirin: «partirai», «partiras», «partira». Yazılı metinde, ekler aynı şekilde telaffuz edilse bile farklılıklar görünür. Çoğul formda, uygun eki ekleyin."
+],
+"uk": [
+"основа майбутнього + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+"У «je partirai» та «tu partiras» загальна основа. Кінець підказує, хто виїде. Слово часу, наприклад, «demain», уточнює дату, але не замінює дієслово.",
+"Поміняй тільки обличчя: «partirai», «partiras», «partira». На листі відмінності видно і тоді, коли закінчення звучать однаково. У формі множини додай відповідне закінчення."
+],
+"vi": [
+"thì tương lai cơ bản + «-ai», «-as», «-a», «-ons», «-ez», «-ont»",
+", «je partirai» và «tu partiras» có cùng gốc từ. Phần cuối gợi ý về người sẽ rời đi. Từ chỉ thời gian, ví dụ như «demain», chỉ rõ ngày tháng nhưng không thay thế động từ.",
+"Chỉ thay đổi ngôi: «partirai», «partiras», «partira». Trong văn viết, sự khác biệt vẫn có thể nhận thấy ngay cả khi các đuôi phát âm giống nhau. Ở dạng số nhiều, hãy thêm đuôi thích hợp."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:27:04",
+"fr:27:05"
+]
+},
+{
+"textES": "Prometes irte mañana. Je indica al hablante. Partirai expresa tanto la acción como el futuro en una sola palabra. Demain añade un día. No insertes otro infinitivo después de partirai.",
+"textId": "Anda berjanji untuk pergi besok. Je menunjukkan pembicara. Partirai menyampaikan tindakan dan masa depan dalam satu kata. Demain menambahkan satu hari. Jangan memasukkan infinitif lain setelah partirai.",
+"textPl": "Obiecujesz wyjechać jutro. Je wskazuje na osobę mówiącą. Partirai jednym słowem wyraża zarówno czynność, jak i przyszłość. Demain dodaje dzień. Nie wstawiaj kolejnego bezokolicznika po partirai.",
+"textPtBr": "Você promete partir amanhã. Je indica o falante. Partirai transmite tanto a ação quanto o futuro em uma palavra. Demain adiciona um dia. Não insira outro infinitivo após partirai.",
+"textRU": "Ты обещаешь уехать завтра. Je указывает на говорящего. Partirai одним словом несёт и действие, и будущее. Demain добавляет день. Не вставляй после partirai ещё один инфинитив.",
+"textTr": "Yarın ayrılacağınıza söz veriyorsunuz. Je konuşmacıyı belirtir. Partirai hem eylemi hem de geleceği tek kelimeyle ifade eder. Demain bir gün ekler. partirai'ten sonra başka bir mastar eklemeyin.",
+"textUK": "Ти обіцяєш поїхати завтра. Je вказує на того, хто говорить. Partirai словом несе і дію, і майбутнє. Demain додає день. Чи не вставляй після partirai ще один інфінітив.",
+"textVi": "Bạn hứa sẽ rời đi vào ngày mai. Je chỉ người nói. Partirai diễn đạt cả hành động và tương lai trong một từ. Demain thêm một ngày. Không chèn thêm động từ nguyên mẫu nào khác sau partirai.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You promise to leave tomorrow. «Je» indicates the speaker. «Partirai» conveys both the action and the future in one word. «Demain» adds a day. Don't insert another infinitive after «partirai»."
+],
+"es": [
+"Prometes irte mañana. «Je» indica al hablante. «Partirai» expresa tanto la acción como el futuro en una sola palabra. «Demain» añade un día. No insertes otro infinitivo después de «partirai»."
+],
+"id": [
+"Anda berjanji untuk pergi besok. «Je» menunjukkan pembicara. «Partirai» menyampaikan tindakan dan masa depan dalam satu kata. «Demain» menambahkan satu hari. Jangan memasukkan infinitif lain setelah «partirai»."
+],
+"pl": [
+"Obiecujesz wyjechać jutro. «Je» wskazuje na osobę mówiącą. «Partirai» jednym słowem wyraża zarówno czynność, jak i przyszłość. «Demain» dodaje dzień. Nie wstawiaj kolejnego bezokolicznika po «partirai»."
+],
+"pt-BR": [
+"Você promete partir amanhã. «Je» indica o falante. «Partirai» transmite tanto a ação quanto o futuro em uma palavra. «Demain» adiciona um dia. Não insira outro infinitivo após «partirai»."
+],
+"ru": [
+"Ты обещаешь уехать завтра. «Je» указывает на говорящего. «Partirai» одним словом несёт и действие, и будущее. «Demain» добавляет день. Не вставляй после «partirai» ещё один инфинитив."
+],
+"tr": [
+"Yarın ayrılacağınıza söz veriyorsunuz. «Je» konuşmacıyı belirtir. «Partirai» hem eylemi hem de geleceği tek kelimeyle ifade eder. «Demain» bir gün ekler. «partirai»'ten sonra başka bir mastar eklemeyin."
+],
+"uk": [
+"Ти обіцяєш поїхати завтра. «Je» вказує на того, хто говорить. «Partirai» словом несе і дію, і майбутнє. «Demain» додає день. Чи не вставляй після «partirai» ще один інфінітив."
+],
+"vi": [
+"Bạn hứa sẽ rời đi vào ngày mai. «Je» chỉ người nói. «Partirai» diễn đạt cả hành động và tương lai trong một từ. «Demain» thêm một ngày. Không chèn thêm động từ nguyên mẫu nào khác sau «partirai»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:27:01",
+"fr:27:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:27:01",
+"target": "Je partirai demain.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "fr:27:04",
+"target": "Nous partirons ensemble.",
+"ru": "Мы уедем вместе.",
+"uk": "Ми поїдемо разом."
+},
+{
+"id": "fr:27:05",
+"target": "Vous partirez ensemble.",
+"ru": "Вы уйдете вместе.",
+"uk": "Ви підете разом."
+},
+{
+"id": "fr:27:01",
+"target": "Je partirai demain.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "fr:27:04",
+"target": "Nous partirons ensemble.",
+"ru": "Мы уедем вместе.",
+"uk": "Ми поїдемо разом."
+}
+]
+},
+{
+"lesson": 28,
+"blocks": [
+{
+"textES": "En una cafetería, puedes exigir una bebida o pedirla cortésmente. La bebida es la misma; la diferencia radica en cómo suena la petición para la otra persona. Aquí, la formalidad sirve de cortesía, no necesariamente a la condición real.\nLa cortesía se puede expresar mediante la forma verbal, no solo añadiendo \"por favor\". Compare un deseo directo con una petición expresada como un deseo. Ambas opciones son gramaticales, pero el registro es diferente.",
+"textId": "Di sebuah kafe, Anda bisa meminta minuman dengan tegas, atau Anda bisa meminta dengan sopan. Minumannya tetap sama; perbedaannya terletak pada bagaimana permintaan itu terdengar bagi orang lain. Di sini, formalitas berfungsi untuk kesopanan, bukan untuk kondisi sebenarnya.\nKesopanan dapat diungkapkan dengan bentuk kata kerja, bukan hanya dengan menambahkan \"tolong.\" Bandingkan keinginan langsung dan permintaan sebagai sebuah keinginan. Kedua pilihan tersebut gramatikal, tetapi registernya berbeda.",
+"textPl": "W kawiarni można zażądać drinka lub grzecznie o niego poprosić. Napój pozostaje ten sam; różnica polega na tym, jak prośba brzmi dla drugiej osoby. W tym przypadku formalność służy uprzejmości, a niekoniecznie stanowi stan faktyczny.\nUprzejmość można wyrazić za pomocą formy czasownika, a nie tylko dodając „proszę”. Porównaj bezpośrednie życzenie i prośbę jako życzenie. Obie opcje są gramatyczne, ale rejestr jest inny.",
+"textPtBr": "Em um café, você pode exigir uma bebida ou pode pedi-la educadamente. A bebida em si é a mesma; a diferença está em como o pedido soa para a outra pessoa. Aqui, a formalidade serve à cortesia, não necessariamente à condição em si.\nA polidez pode ser expressa pela forma verbal, não apenas adicionando \"por favor\". Compare um desejo direto e um pedido como um desejo. Ambas as opções são gramaticais, mas o registro é diferente.",
+"textRU": "В кафе можно потребовать напиток, а можно вежливо его попросить. Напиток остаётся тем же; разница — в том, как просьба звучит для собеседника. Здесь форма служит вежливости, не обязательно настоящему условию.\nВежливость можно выразить формой глагола, а не только добавлением «пожалуйста». Сравни желание, заявленное прямо, и просьбу как пожелание. Оба варианта грамматичны, регистр разный.",
+"textTr": "Bir kafede, içecek sipariş edebilirsiniz veya kibarca rica edebilirsiniz. İçecek aynı kalır; fark, isteğin karşıdaki kişi tarafından nasıl algılandığıdır. Burada, resmiyet, gerçek durumu değil, nezaketi ifade eder.\nNezaket, sadece \"lütfen\" ekleyerek değil, fiil biçimiyle de ifade edilebilir. Doğrudan bir dilek ile bir ricayı dilek olarak karşılaştırın. Her iki seçenek de dilbilgisel olarak doğrudur, ancak üslup farklıdır.",
+"textUK": "У кафе можна вимагати напій, а можна ввічливо його попросити. Напій залишається тим самим; різниця в тому, як прохання звучить для співрозмовника. Тут форма служить ввічливості, необов'язково справжній умові.\nВвічливість можна висловити формою дієслова, а не лише додаванням «будь ласка». Порівняй бажання, заявлене прямо, та прохання як побажання. Обидва варіанти граматичні, регістр різний.",
+"textVi": "Trong quán cà phê, bạn có thể yêu cầu đồ uống hoặc lịch sự đề nghị. Đồ uống vẫn vậy; sự khác biệt nằm ở cách lời đề nghị nghe như thế nào đối với người khác. Ở đây, hình thức trang trọng nhằm thể hiện sự lịch sự, chứ không nhất thiết phản ánh đúng thực tế.\nSự lịch sự có thể được thể hiện bằng hình thức động từ, không chỉ bằng cách thêm \"làm ơn\". So sánh một mong muốn trực tiếp và một yêu cầu được thể hiện dưới dạng mong muốn. Cả hai lựa chọn đều đúng ngữ pháp, nhưng mức độ trang trọng khác nhau.",
+"titleES": "Petición cortés: je voudrais, pourriez-vous",
+"titleId": "Permintaan sopan: je voudrais, pourriez-vous",
+"titlePl": "Uprzejma prośba: je voudrais, pourriez-vous",
+"titlePtBr": "Pedido educado: je voudrais, pourriez-vous",
+"titleRU": "Вежливая просьба: je voudrais, pourriez-vous",
+"titleTr": "Kibar rica: je voudrais, pourriez-vous",
+"titleUK": "Ввічливе прохання: je voudrais, pourriez-vous",
+"titleVi": "Yêu cầu lịch sự: je voudrais, pourriez-vous",
+"titleByLocale": {
+"en": "Polite request: je voudrais, pourriez-vous",
+"es": "Petición cortés: je voudrais, pourriez-vous",
+"id": "Permintaan sopan: je voudrais, pourriez-vous",
+"pl": "Uprzejma prośba: je voudrais, pourriez-vous",
+"pt-BR": "Pedido educado: je voudrais, pourriez-vous",
+"ru": "Вежливая просьба: je voudrais, pourriez-vous",
+"tr": "Kibar rica: je voudrais, pourriez-vous",
+"uk": "Ввічливе прохання: je voudrais, pourriez-vous",
+"vi": "Yêu cầu lịch sự: je voudrais, pourriez-vous"
+},
+"textByLocale": {
+"en": [
+"In a café, you can demand a drink, or you can politely ask for one. The drink remains the same; the difference is in how the request sounds to the other person. Here, the formality serves politeness, not necessarily the actual condition.",
+"Politeness can be expressed by the verb form, not just by adding \"please.\" Compare a direct wish and a request as a wish. Both options are grammatical, but the register is different."
+],
+"es": [
+"En una cafetería, puedes exigir una bebida o pedirla cortésmente. La bebida es la misma; la diferencia radica en cómo suena la petición para la otra persona. Aquí, la formalidad sirve de cortesía, no necesariamente a la condición real.",
+"La cortesía se puede expresar mediante la forma verbal, no solo añadiendo \"por favor\". Compare un deseo directo con una petición expresada como un deseo. Ambas opciones son gramaticales, pero el registro es diferente."
+],
+"id": [
+"Di sebuah kafe, Anda bisa meminta minuman dengan tegas, atau Anda bisa meminta dengan sopan. Minumannya tetap sama; perbedaannya terletak pada bagaimana permintaan itu terdengar bagi orang lain. Di sini, formalitas berfungsi untuk kesopanan, bukan untuk kondisi sebenarnya.",
+"Kesopanan dapat diungkapkan dengan bentuk kata kerja, bukan hanya dengan menambahkan \"tolong.\" Bandingkan keinginan langsung dan permintaan sebagai sebuah keinginan. Kedua pilihan tersebut gramatikal, tetapi registernya berbeda."
+],
+"pl": [
+"W kawiarni można zażądać drinka lub grzecznie o niego poprosić. Napój pozostaje ten sam; różnica polega na tym, jak prośba brzmi dla drugiej osoby. W tym przypadku formalność służy uprzejmości, a niekoniecznie stanowi stan faktyczny.",
+"Uprzejmość można wyrazić za pomocą formy czasownika, a nie tylko dodając „proszę”. Porównaj bezpośrednie życzenie i prośbę jako życzenie. Obie opcje są gramatyczne, ale rejestr jest inny."
+],
+"pt-BR": [
+"Em um café, você pode exigir uma bebida ou pode pedi-la educadamente. A bebida em si é a mesma; a diferença está em como o pedido soa para a outra pessoa. Aqui, a formalidade serve à cortesia, não necessariamente à condição em si.",
+"A polidez pode ser expressa pela forma verbal, não apenas adicionando \"por favor\". Compare um desejo direto e um pedido como um desejo. Ambas as opções são gramaticais, mas o registro é diferente."
+],
+"ru": [
+"В кафе можно потребовать напиток, а можно вежливо его попросить. Напиток остаётся тем же; разница — в том, как просьба звучит для собеседника. Здесь форма служит вежливости, не обязательно настоящему условию.",
+"Вежливость можно выразить формой глагола, а не только добавлением «пожалуйста». Сравни желание, заявленное прямо, и просьбу как пожелание. Оба варианта грамматичны, регистр разный."
+],
+"tr": [
+"Bir kafede, içecek sipariş edebilirsiniz veya kibarca rica edebilirsiniz. İçecek aynı kalır; fark, isteğin karşıdaki kişi tarafından nasıl algılandığıdır. Burada, resmiyet, gerçek durumu değil, nezaketi ifade eder.",
+"Nezaket, sadece \"lütfen\" ekleyerek değil, fiil biçimiyle de ifade edilebilir. Doğrudan bir dilek ile bir ricayı dilek olarak karşılaştırın. Her iki seçenek de dilbilgisel olarak doğrudur, ancak üslup farklıdır."
+],
+"uk": [
+"У кафе можна вимагати напій, а можна ввічливо його попросити. Напій залишається тим самим; різниця в тому, як прохання звучить для співрозмовника. Тут форма служить ввічливості, необов'язково справжній умові.",
+"Ввічливість можна висловити формою дієслова, а не лише додаванням «будь ласка». Порівняй бажання, заявлене прямо, та прохання як побажання. Обидва варіанти граматичні, регістр різний."
+],
+"vi": [
+"Trong quán cà phê, bạn có thể yêu cầu đồ uống hoặc lịch sự đề nghị. Đồ uống vẫn vậy; sự khác biệt nằm ở cách lời đề nghị nghe như thế nào đối với người khác. Ở đây, hình thức trang trọng nhằm thể hiện sự lịch sự, chứ không nhất thiết phản ánh đúng thực tế.",
+"Sự lịch sự có thể được thể hiện bằng hình thức động từ, không chỉ bằng cách thêm \"làm ơn\". So sánh một mong muốn trực tiếp và một yêu cầu được thể hiện dưới dạng mong muốn. Cả hai lựa chọn đều đúng ngữ pháp, nhưng mức độ trang trọng khác nhau."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:28:01"
+]
+},
+{
+"textES": "condicional + objeto o infinitivo\nJe veux expresa un deseo directo; je voudrais suaviza la redacción. Para una solicitud de acción, pourriez-vous es útil. No se debe agregar ningún \"si\" faltante a cada una de estas frases.\nPara \"Me gustaría hacer\", aimerais va seguido del infinitivo. No utilice la forma personal del segundo verbo: la persona ya está expresada por el primero.",
+"textId": "kondisional + objek atau infinitif\nJe veux menyatakan keinginan langsung; je voudrais melembutkan kata-katanya. Untuk permintaan tindakan, pourriez-vous berguna. Tidak ada kata \"jika\" yang hilang yang perlu ditambahkan ke setiap frasa tersebut.\nUntuk \"Saya ingin melakukan,\" aimerais diikuti oleh infinitif. Jangan gunakan bentuk personal dari kata kerja kedua: orang tersebut sudah diungkapkan oleh kata kerja pertama.",
+"textPl": "tryb warunkowy + dopełnienie lub bezokolicznik\nJe veux wyraża bezpośrednie pragnienie; je voudrais łagodzi sformułowanie. W przypadku prośby o działanie, pourriez-vous jest przydatne. Do każdego takiego sformułowania nie należy dodawać brakującego „jeśli”.\nW przypadku „Chciałbym zrobić” po aimerais następuje bezokolicznik. Nie używaj formy osobowej drugiego czasownika: osoba jest już wyrażona w pierwszym.",
+"textPtBr": "condicional + objeto ou infinitivo\nJe veux expressa um desejo direto; je voudrais suaviza a redação. Para um pedido de ação, pourriez-vous é útil. Não se deve adicionar o \"se\" ausente a cada uma dessas frases.\nPara \"Eu gostaria de fazer,\" aimerais é seguido pelo infinitivo. Não use a forma pessoal do segundo verbo: a pessoa já está expressa pelo primeiro.",
+"textRU": "условная форма + предмет или инфинитив\nJe veux выражает прямое желание; je voudrais делает формулировку мягче. Для просьбы о действии пригодится pourriez-vous. Никакого пропущенного «если» добавлять к каждой такой фразе не нужно.\nДля «я хотел бы сделать» после aimerais идёт инфинитив. Не подставляй личную форму второго глагола: лицо уже выражено первым.",
+"textTr": "koşullu + nesne veya mastar\nJe veux doğrudan bir isteği ifade eder; je voudrais ifadeyi yumuşatır. Bir eylem talebi için pourriez-vous kullanışlıdır. Bu tür ifadelerin her birine eksik \"eğer\" eklenmemelidir.\n\"Yapmak isterim\" için, aimerais'den sonra mastar gelir. İkinci fiilin şahıs biçimini kullanmayın: şahıs zaten birincisi tarafından ifade edilmiştir.",
+"textUK": "умовна форма + предмет чи інфінітив\nJe veux висловлює пряме бажання; je voudrais робить м'якше формулювання. Для прохання про дію знадобиться pourriez-vous. Жодного пропущеного «якщо» додавати до кожної такої фрази не потрібно.\nДля \"я хотів би зробити\" після aimerais йде інфінітив. Чи не підставляй особисту форму другого дієслова: обличчя вже виражене першим.",
+"textVi": "điều kiện + tân ngữ hoặc động từ nguyên mẫu\nJe veux thể hiện một mong muốn trực tiếp; je voudrais làm dịu giọng điệu. Đối với yêu cầu hành động, pourriez-vous rất hữu ích. Không nên thêm từ \"nếu\" bị thiếu vào mỗi cụm từ như vậy.\nĐối với \"Tôi muốn làm\", aimerais được theo sau bởi động từ nguyên mẫu. Không sử dụng dạng ngôi của động từ thứ hai: ngôi đã được thể hiện bởi ngôi thứ nhất.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"conditional + object or infinitive",
+"«Je veux» expresses a direct desire; «je voudrais» softens the wording. For a request for action, «pourriez-vous» is useful. No missing \"if\" should be added to each such phrase.",
+"For \"I'd like to do,\" «aimerais» is followed by the infinitive. Don't use the personal form of the second verb: the person is already expressed by the first."
+],
+"es": [
+"condicional + objeto o infinitivo",
+"«Je veux» expresa un deseo directo; «je voudrais» suaviza la redacción. Para una solicitud de acción, «pourriez-vous» es útil. No se debe agregar ningún \"si\" faltante a cada una de estas frases.",
+"Para \"Me gustaría hacer\", «aimerais» va seguido del infinitivo. No utilice la forma personal del segundo verbo: la persona ya está expresada por el primero."
+],
+"id": [
+"kondisional + objek atau infinitif",
+"«Je veux» menyatakan keinginan langsung; «je voudrais» melembutkan kata-katanya. Untuk permintaan tindakan, «pourriez-vous» berguna. Tidak ada kata \"jika\" yang hilang yang perlu ditambahkan ke setiap frasa tersebut.",
+"Untuk \"Saya ingin melakukan,\" «aimerais» diikuti oleh infinitif. Jangan gunakan bentuk personal dari kata kerja kedua: orang tersebut sudah diungkapkan oleh kata kerja pertama."
+],
+"pl": [
+"tryb warunkowy + dopełnienie lub bezokolicznik",
+"«Je veux» wyraża bezpośrednie pragnienie; «je voudrais» łagodzi sformułowanie. W przypadku prośby o działanie, «pourriez-vous» jest przydatne. Do każdego takiego sformułowania nie należy dodawać brakującego „jeśli”.",
+"W przypadku „Chciałbym zrobić” po «aimerais» następuje bezokolicznik. Nie używaj formy osobowej drugiego czasownika: osoba jest już wyrażona w pierwszym."
+],
+"pt-BR": [
+"condicional + objeto ou infinitivo",
+"«Je veux» expressa um desejo direto; «je voudrais» suaviza a redação. Para um pedido de ação, «pourriez-vous» é útil. Não se deve adicionar o \"se\" ausente a cada uma dessas frases.",
+"Para \"Eu gostaria de fazer,\" «aimerais» é seguido pelo infinitivo. Não use a forma pessoal do segundo verbo: a pessoa já está expressa pelo primeiro."
+],
+"ru": [
+"условная форма + предмет или инфинитив",
+"«Je veux» выражает прямое желание; «je voudrais» делает формулировку мягче. Для просьбы о действии пригодится «pourriez-vous». Никакого пропущенного «если» добавлять к каждой такой фразе не нужно.",
+"Для «я хотел бы сделать» после «aimerais» идёт инфинитив. Не подставляй личную форму второго глагола: лицо уже выражено первым."
+],
+"tr": [
+"koşullu + nesne veya mastar",
+"«Je veux» doğrudan bir isteği ifade eder; «je voudrais» ifadeyi yumuşatır. Bir eylem talebi için «pourriez-vous» kullanışlıdır. Bu tür ifadelerin her birine eksik \"eğer\" eklenmemelidir.",
+"\"Yapmak isterim\" için, «aimerais»'den sonra mastar gelir. İkinci fiilin şahıs biçimini kullanmayın: şahıs zaten birincisi tarafından ifade edilmiştir."
+],
+"uk": [
+"умовна форма + предмет чи інфінітив",
+"«Je veux» висловлює пряме бажання; «je voudrais» робить м'якше формулювання. Для прохання про дію знадобиться «pourriez-vous». Жодного пропущеного «якщо» додавати до кожної такої фрази не потрібно.",
+"Для \"я хотів би зробити\" після «aimerais» йде інфінітив. Чи не підставляй особисту форму другого дієслова: обличчя вже виражене першим."
+],
+"vi": [
+"điều kiện + tân ngữ hoặc động từ nguyên mẫu",
+"«Je veux» thể hiện một mong muốn trực tiếp; «je voudrais» làm dịu giọng điệu. Đối với yêu cầu hành động, «pourriez-vous» rất hữu ích. Không nên thêm từ \"nếu\" bị thiếu vào mỗi cụm từ như vậy.",
+"Đối với \"Tôi muốn làm\", «aimerais» được theo sau bởi động từ nguyên mẫu. Không sử dụng dạng ngôi của động từ thứ hai: ngôi đã được thể hiện bởi ngôi thứ nhất."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:28:07",
+"fr:28:09"
+]
+},
+{
+"textES": "En el mostrador, diga que desea un café. Je voudrais suena más suave que el directo je veux. Añada un café cuando solo necesite un pedido. La cláusula \"if\" no es necesaria aquí.",
+"textId": "Di konter, katakan Anda ingin kopi. Je voudrais terdengar lebih lembut daripada je veux yang langsung. Tambahkan un café jika Anda hanya perlu satu pesanan. Klausa \"jika\" tidak diperlukan di sini.",
+"textPl": "Przy ladzie powiedz, że chcesz kawę. Je voudrais brzmi łagodniej niż bezpośrednie je veux. Dodaj un café, gdy potrzebujesz tylko jednego zamówienia. Zdanie podrzędne „jeśli” nie jest tutaj wymagane.",
+"textPtBr": "No balcão, diga que gostaria de um café. Je voudrais soa mais suave do que o direto je veux. Adicione un café quando precisar apenas de um pedido. A oração com \"se\" não é necessária aqui.",
+"textRU": "За стойкой скажи, что ты хотел бы кофе. Je voudrais звучит мягче прямого je veux. Добавь un café, когда нужен один заказ. Само условие с «если» здесь не требуется.",
+"textTr": "Tezgahta, kahve istediğinizi söyleyin. Je voudrais, doğrudan je veux'den daha yumuşak geliyor. Sadece bir siparişe ihtiyacınız olduğunda un café ekleyin. Burada \"eğer\" cümlesi gerekli değildir.",
+"textUK": "За стійкою скажи, що ти хотів би кави. Je voudrais звучить м'якше прямого je veux. Додай un café, коли потрібне одне замовлення. Сама умова з «якщо» тут не потрібна.",
+"textVi": "Tại quầy, hãy nói bạn muốn cà phê. Je voudrais nghe nhẹ nhàng hơn so với cách nói trực tiếp je veux. Thêm un café khi bạn chỉ cần gọi một món. Mệnh đề \"nếu\" không bắt buộc ở đây.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"At the counter, say you'd like coffee. «Je voudrais» sounds softer than the direct «je veux». Add «un café» when you only need one order. The \"if\" clause is not required here."
+],
+"es": [
+"En el mostrador, diga que desea un café. «Je voudrais» suena más suave que el directo «je veux». Añada «un café» cuando solo necesite un pedido. La cláusula \"if\" no es necesaria aquí."
+],
+"id": [
+"Di konter, katakan Anda ingin kopi. «Je voudrais» terdengar lebih lembut daripada «je veux» yang langsung. Tambahkan «un café» jika Anda hanya perlu satu pesanan. Klausa \"jika\" tidak diperlukan di sini."
+],
+"pl": [
+"Przy ladzie powiedz, że chcesz kawę. «Je voudrais» brzmi łagodniej niż bezpośrednie «je veux». Dodaj «un café», gdy potrzebujesz tylko jednego zamówienia. Zdanie podrzędne „jeśli” nie jest tutaj wymagane."
+],
+"pt-BR": [
+"No balcão, diga que gostaria de um café. «Je voudrais» soa mais suave do que o direto «je veux». Adicione «un café» quando precisar apenas de um pedido. A oração com \"se\" não é necessária aqui."
+],
+"ru": [
+"За стойкой скажи, что ты хотел бы кофе. «Je voudrais» звучит мягче прямого «je veux». Добавь «un café», когда нужен один заказ. Само условие с «если» здесь не требуется."
+],
+"tr": [
+"Tezgahta, kahve istediğinizi söyleyin. «Je voudrais», doğrudan «je veux»'den daha yumuşak geliyor. Sadece bir siparişe ihtiyacınız olduğunda «un café» ekleyin. Burada \"eğer\" cümlesi gerekli değildir."
+],
+"uk": [
+"За стійкою скажи, що ти хотів би кави. «Je voudrais» звучить м'якше прямого «je veux». Додай «un café», коли потрібне одне замовлення. Сама умова з «якщо» тут не потрібна."
+],
+"vi": [
+"Tại quầy, hãy nói bạn muốn cà phê. «Je voudrais» nghe nhẹ nhàng hơn so với cách nói trực tiếp «je veux». Thêm «un café» khi bạn chỉ cần gọi một món. Mệnh đề \"nếu\" không bắt buộc ở đây."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:28:01",
+"fr:28:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:28:01",
+"target": "Je voudrais un café.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "fr:28:07",
+"target": "J’aimerais partir tôt.",
+"ru": "Я хотел бы уйти пораньше.",
+"uk": "Я хотів би піти раніше."
+},
+{
+"id": "fr:28:09",
+"target": "Paul aimerait apprendre à conduire.",
+"ru": "Поль хотел бы научиться водить машину.",
+"uk": "Пол хотів би навчитися водити."
+},
+{
+"id": "fr:28:01",
+"target": "Je voudrais un café.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "fr:28:04",
+"target": "Elle voudrait une chambre calme.",
+"ru": "Она хотела бы тихую комнату.",
+"uk": "Вона хотіла б тиху кімнату."
+}
+]
+}
+]

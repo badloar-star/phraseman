@@ -4,7 +4,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { triLang, type Lang } from '../constants/i18n';
 import type { MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import { isAiExplainConsentGranted } from './ai_explain_consent';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { getNetStatus } from './net_status';

@@ -19,7 +19,7 @@ const SCREENS = [
   ['5. Сообщество', ['app/(tabs)/community.tsx', 'app/flashcards_packs.tsx', 'components/v2/V2SegmentedControl.tsx', 'components/spire']],
   ['6. Профиль и настройки', ['app/(tabs)/settings.tsx', 'components/settings', 'app/account_details.tsx', 'components/profile-card']],
   ['7. Монеты', ['app/coin_rank.tsx', 'components/coins', 'components/RankChangeBanner.tsx']],
-  ['8. Урок', ['app/(tabs)/lessons.tsx', 'components/lessons', 'app/lesson1.tsx', 'app/lesson_complete.tsx', 'app/learning_v2_direct_session_player_v1.tsx', 'components/LearningV2SessionOutcomeSheet.tsx', 'components/learning-v2']],
+  ['8. Урок', ['app/(tabs)/lessons.tsx', 'components/lessons', 'app/lesson1.tsx', 'app/lesson_complete.tsx']],
 ];
 
 const NAMED = 'white|black|red|green|blue|yellow|orange|gray|grey|purple|pink|gold|silver|cyan|magenta|navy|teal';

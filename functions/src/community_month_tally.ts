@@ -8,45 +8,15 @@
 // Правила:
 //  1. участвуют наборы, опубликованные в этом месяце (published / update_pending);
 //  2. голос засчитывается, если аккаунту на момент голоса ≥ 72 ч (created_at, иначе дата Firebase Auth — решает вызывающий);
-//  3. у голосующего пройден ≥ 1 урок: классика ИЛИ занятие Learning V2;
+//  3. у голосующего пройден ≥ 1 урок классического курса;
 //  4. у человека засчитываются 10 действующих голосов месяца (самые ранние по времени последнего изменения);
 //     снятый лайк перестаёт быть действующим и возвращает голос.
 
 export const CONTEST_MIN_ACCOUNT_AGE_MS = 3 * 24 * 60 * 60 * 1000;
 export const CONTEST_MIN_LESSONS = 1;
 export const CONTEST_MAX_VOTES_PER_MONTH = 10;
-export const CONTEST_TALLY_RULE_VERSION = 3;
-/** Ключ облачной копии прогресса Learning V2 в users.progress (modules/learning-v2/progress/progress_sync_v1.ts). */
-export const LEARNING_V2_PROGRESS_SYNC_FIELD = 'learning_v2_course_progress_sync_v1';
-/**
- * Маска пройденных занятий V2 (course_progress_masks_v1.ts, JSON {v, c, o, s}; c — hex «пройдено»). Ловит прохождение
- * не с начала, которого нет в числе «подряд» (Learning V2 29.10). «o» (открыто) ≠ пройдено — не считаем.
- */
-export const LEARNING_V2_MASKS_SYNC_FIELD = 'learning_v2_course_masks_sync_v1';
-/** Испанский курс синкается теми же ключами с суффиксом (learningV2LanguageScopedStorageKeyV1, Learning V2 29.10, c474f64c9). */
-export const LEARNING_V2_ES_SYNC_SUFFIX = ':target:es';
-
-const HEX_BITS = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];
-
-/** Сколько занятий отмечено пройденными в маске V2; битое значение — 0 (не повод отказать, просто нет данных). */
-export function learningV2CompletedFromMasks(raw: unknown): number {
-  if (typeof raw !== 'string' || !raw || raw.length > 4096) return 0;
-  try {
-    const value = JSON.parse(raw) as { c?: unknown };
-    if (typeof value?.c !== 'string') return 0;
-    let bits = 0;
-    for (const ch of value.c.toLowerCase()) {
-      const n = parseInt(ch, 16);
-      if (Number.isNaN(n)) return 0;
-      bits += HEX_BITS[n];
-    }
-    return bits;
-  } catch {
-    // зачем: битая маска у одного человека не должна валить подсчёт — считаем «данных нет», причина видна в noLesson
-    return 0;
-  }
-}
-
+// зачем: с версии 4 занятия удалённого курса не считаются «пройденным уроком» — только уроки классического курса.
+export const CONTEST_TALLY_RULE_VERSION = 4;
 export type TallyMonth = Readonly<{ id: string; startMs: number; endMs: number }>;
 export type TallyPack = Readonly<{ id: string; authorId: string; title: string; publishedAtMs: number; status: string }>;
 export type TallyVote = Readonly<{ packId: string; voterId: string; liked: boolean; atMs: number; voteId: string }>;
@@ -65,24 +35,14 @@ function count(value: unknown): number {
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
-/**
- * «Пройденный урок» = любой (владелец 29.10): классический (lessons_completed или completed_lessons)
- * ИЛИ занятие Learning V2 (облачная копия числа пройденных подряд занятий). Испанский курс V2 пока не синхронизирует
- * своё число в облако (ключ с суффиксом :target:es) — такие люди засчитываются, если прошли хоть что-то из названного.
- */
+/** «Пройденный урок» — урок классического курса: lessons_completed или completed_lessons. */
 export function contestLessonsCompleted(progress: Readonly<Record<string, unknown>> | null | undefined): number {
   if (!progress) return 0;
   const classicDirect = count(progress.lessons_completed);
   const completed = progress.completed_lessons;
   const classicList = Array.isArray(completed) ? completed.length
     : completed && typeof completed === 'object' ? Object.keys(completed).length : 0;
-  const v2Course = (suffix: string) => Math.max(
-    count(progress[LEARNING_V2_PROGRESS_SYNC_FIELD + suffix]),
-    learningV2CompletedFromMasks(progress[LEARNING_V2_MASKS_SYNC_FIELD + suffix]),
-  );
-  // зачем (владелец 29.10: «урок любой»): испанский курс — такой же урок, как английский; курсы разные, поэтому сумма
-  const v2 = v2Course('') + v2Course(LEARNING_V2_ES_SYNC_SUFFIX);
-  return Math.max(classicDirect, classicList) + v2;
+  return Math.max(classicDirect, classicList);
 }
 
 /** Возраст аккаунта: created_at профиля, а если пусто — дата создания в Firebase Auth (владелец 29.10). */

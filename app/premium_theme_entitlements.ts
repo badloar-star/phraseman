@@ -2,7 +2,12 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { useSyncExternalStore } from 'react';
 
-import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 import { DebugLogger } from './debug-logger';
 import {
   PREMIUM_THEME_IDS,
@@ -95,16 +100,22 @@ function parseConditions(value: unknown): readonly PremiumThemeUnlockCondition[]
   return Object.freeze([...new Set(value.filter((entry): entry is PremiumThemeUnlockCondition => typeof entry === 'string' && allowed.has(entry as PremiumThemeUnlockCondition)))]);
 }
 
-async function applyServerSideEffects(envelope: ServerEnvelope): Promise<void> {
+async function applyServerSideEffects(
+  envelope: ServerEnvelope,
+  accountToken: AccountGenerationToken,
+  stableId: string,
+): Promise<void> {
   const newlyGranted = parseThemeIds(envelope.newlyGranted);
   const nearUnlock = parseConditions(envelope.nearUnlockConditions)
     .map((entry) => premiumThemeByCondition(entry).id)
     .filter((themeId) => !snapshot.unlocked.has(themeId));
   if (newlyGranted.length === 0 && nearUnlock.length === 0) return;
+  if (!isCurrentAccountGeneration(accountToken, stableId)) return;
   const [{ recordThemeUnlockStory }, { ensurePremiumThemePack }] = await Promise.all([
     import('../modules/story_events/story_event_sources'),
     import('./premium_theme_pack_cache'),
   ]);
+  if (!isCurrentAccountGeneration(accountToken, stableId)) return;
   for (const themeId of newlyGranted) {
     void recordThemeUnlockStory(themeId);
     void ensurePremiumThemePack(themeId, 'unlock');
@@ -213,7 +224,7 @@ export async function primePremiumThemeEntitlements(options: Readonly<{ maxAgeMs
       cachedAtMs = now;
       publish(stableId, unlocked, progress);
       void writeCache(stableId, unlocked, progress, now);
-      void applyServerSideEffects(response.data);
+      void applyServerSideEffects(response.data, token, stableId);
     } catch (error) {
       if (!isCurrentAccountGeneration(token, stableId)) return;
       loadedOwner = null;
@@ -225,28 +236,34 @@ export async function primePremiumThemeEntitlements(options: Readonly<{ maxAgeMs
   return loadPromise;
 }
 
-export async function claimPremiumThemeCondition(condition: PremiumThemeUnlockCondition): Promise<Readonly<{ granted: boolean; themeId: PremiumThemeId | null }>> {
-  const stableId = owner();
-  const token = captureAccountGeneration();
-  if (!stableId) return { granted: false, themeId: null };
+export async function claimPremiumThemeCondition(
+  condition: PremiumThemeUnlockCondition,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<Readonly<{ granted: boolean; themeId: PremiumThemeId | null }>> {
+  const stableId = accountToken.stableId?.trim() || null;
+  if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return { granted: false, themeId: null };
   const before = snapshot.unlocked;
   try {
     const callable = httpsCallable<{ condition: PremiumThemeUnlockCondition }, ServerEnvelope>(getFunctions(getApp(), REGION), 'premiumThemeConditionClaim', { timeout: 15_000 });
     const response = await callable({ condition });
-    if (!isCurrentAccountGeneration(token, stableId) || response.data.schemaVersion !== 'premium-theme-claim.v1') return { granted: false, themeId: null };
+    if (!isCurrentAccountGeneration(accountToken, stableId) || response.data.schemaVersion !== 'premium-theme-claim.v1') return { granted: false, themeId: null };
     loadedOwner = stableId;
-    publish(stableId, parseServerEntitlements(response.data.entitlements), parseProgressByCondition(response.data.progressByCondition));
+    const unlocked = parseServerEntitlements(response.data.entitlements);
+    publish(stableId, unlocked, parseProgressByCondition(response.data.progressByCondition));
     const expected = premiumThemeByCondition(condition).id;
-    const fresh = !before.has(expected) && snapshot.unlocked.has(expected);
+    const fresh = !before.has(expected) && unlocked.has(expected);
     if (fresh) {
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return { granted: false, themeId: null };
       const [{ recordThemeUnlockStory }, { ensurePremiumThemePack }] = await Promise.all([
         import('../modules/story_events/story_event_sources'),
         import('./premium_theme_pack_cache'),
       ]);
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return { granted: false, themeId: null };
       void recordThemeUnlockStory(expected);
       void ensurePremiumThemePack(expected, 'unlock');
     }
-    return { granted: fresh || response.data.granted === true, themeId: snapshot.unlocked.has(expected) ? expected : null };
+    if (!isCurrentAccountGeneration(accountToken, stableId)) return { granted: false, themeId: null };
+    return { granted: fresh || response.data.granted === true, themeId: unlocked.has(expected) ? expected : null };
   } catch (error) {
     DebugLogger.error(`${LOG}:claim:${condition}`, error instanceof Error ? error : new Error(String(error)), 'warning');
     return { granted: false, themeId: null };

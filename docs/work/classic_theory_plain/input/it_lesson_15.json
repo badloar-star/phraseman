@@ -1,0 +1,737 @@
+{
+ "lang": "it",
+ "lesson": 15,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:15:01",
+   "target": "Sto leggendo il libro.",
+   "ru": "Я сейчас читаю книгу.",
+   "uk": "Я зараз читаю книжку."
+  },
+  {
+   "id": "it:15:02",
+   "target": "Stai leggendo il libro.",
+   "ru": "Ты сейчас читаешь книгу.",
+   "uk": "Ти зараз читаєш книжку."
+  },
+  {
+   "id": "it:15:03",
+   "target": "Sto leggendo il messaggio.",
+   "ru": "Я сейчас читаю сообщение.",
+   "uk": "Я зараз читаю повідомлення."
+  },
+  {
+   "id": "it:15:04",
+   "target": "Stai leggendo il messaggio.",
+   "ru": "Ты сейчас читаешь сообщение.",
+   "uk": "Ти зараз читаєш повідомлення."
+  },
+  {
+   "id": "it:15:05",
+   "target": "Ana sta scrivendo una lettera.",
+   "ru": "Ана сейчас пишет письмо.",
+   "uk": "Ана зараз пише листа."
+  },
+  {
+   "id": "it:15:06",
+   "target": "Stiamo scrivendo una lettera.",
+   "ru": "Мы сейчас пишем письмо.",
+   "uk": "Ми зараз пишемо листа."
+  },
+  {
+   "id": "it:15:07",
+   "target": "Sto tagliando una cipolla.",
+   "ru": "Я сейчас режу луковицу.",
+   "uk": "Я зараз ріжу цибулину."
+  },
+  {
+   "id": "it:15:08",
+   "target": "Stai scrivendo un messaggio.",
+   "ru": "Ты сейчас пишешь сообщение.",
+   "uk": "Ти зараз пишеш повідомлення."
+  },
+  {
+   "id": "it:15:09",
+   "target": "Luis sta mangiando a casa.",
+   "ru": "Луис сейчас ест дома.",
+   "uk": "Луїс зараз їсть вдома."
+  },
+  {
+   "id": "it:15:10",
+   "target": "Stiamo mangiando a casa.",
+   "ru": "Мы сейчас едим дома.",
+   "uk": "Ми зараз їмо вдома."
+  },
+  {
+   "id": "it:15:11",
+   "target": "Sto bevendo acqua.",
+   "ru": "Я сейчас пью воду.",
+   "uk": "Я зараз п’ю воду."
+  },
+  {
+   "id": "it:15:12",
+   "target": "Ana sta bevendo un caffè.",
+   "ru": "Ана сейчас пьёт кофе.",
+   "uk": "Ана зараз п’є каву."
+  },
+  {
+   "id": "it:15:13",
+   "target": "Stai preparando la cena.",
+   "ru": "Ты сейчас готовишь ужин.",
+   "uk": "Ти зараз готуєш вечерю."
+  },
+  {
+   "id": "it:15:14",
+   "target": "Luis sta preparando la zuppa.",
+   "ru": "Луис сейчас варит суп.",
+   "uk": "Луїс зараз варить суп."
+  },
+  {
+   "id": "it:15:15",
+   "target": "Sto aprendo la porta.",
+   "ru": "Я сейчас открываю дверь.",
+   "uk": "Я зараз відчиняю двері."
+  },
+  {
+   "id": "it:15:16",
+   "target": "Stiamo aprendo la finestra.",
+   "ru": "Мы сейчас открываем окно.",
+   "uk": "Ми зараз відчиняємо вікно."
+  },
+  {
+   "id": "it:15:17",
+   "target": "Ana sta portando la valigia.",
+   "ru": "Ана сейчас несёт чемодан.",
+   "uk": "Ана зараз несе валізу."
+  },
+  {
+   "id": "it:15:18",
+   "target": "Ana sta asciugando i piatti.",
+   "ru": "Ана сейчас вытирает тарелки.",
+   "uk": "Ана зараз витирає тарілки."
+  },
+  {
+   "id": "it:15:19",
+   "target": "I miei fratelli stanno pagando in contanti.",
+   "ru": "Мои братья сейчас платят наличными.",
+   "uk": "Мої брати зараз платять готівкою."
+  },
+  {
+   "id": "it:15:20",
+   "target": "Stai pagando con la carta.",
+   "ru": "Ты сейчас платишь картой.",
+   "uk": "Ти зараз платиш карткою."
+  },
+  {
+   "id": "it:15:21",
+   "target": "Stiamo leggendo il libro.",
+   "ru": "Мы сейчас читаем книгу.",
+   "uk": "Ми зараз читаємо книжку."
+  },
+  {
+   "id": "it:15:22",
+   "target": "State leggendo il messaggio.",
+   "ru": "Вы сейчас читаете сообщение.",
+   "uk": "Ви зараз читаєте повідомлення."
+  },
+  {
+   "id": "it:15:23",
+   "target": "Stiamo lavando i piatti.",
+   "ru": "Мы сейчас моем посуду.",
+   "uk": "Ми зараз миємо посуд."
+  },
+  {
+   "id": "it:15:24",
+   "target": "Sto assaggiando la zuppa.",
+   "ru": "Я сейчас пробую суп.",
+   "uk": "Я зараз куштую суп."
+  },
+  {
+   "id": "it:15:25",
+   "target": "Le mie sorelle stanno aspettando qui.",
+   "ru": "Мои сёстры сейчас ждут здесь.",
+   "uk": "Мої сестри зараз чекають тут."
+  },
+  {
+   "id": "it:15:26",
+   "target": "I miei fratelli stanno aspettando fuori.",
+   "ru": "Мои братья сейчас ждут снаружи.",
+   "uk": "Мої брати зараз чекають надворі."
+  },
+  {
+   "id": "it:15:27",
+   "target": "Stai tagliando le verdure.",
+   "ru": "Ты сейчас режешь овощи.",
+   "uk": "Ти зараз нарізаєш овочі."
+  },
+  {
+   "id": "it:15:28",
+   "target": "Stiamo lavorando in albergo.",
+   "ru": "Мы сейчас работаем в отеле.",
+   "uk": "Ми зараз працюємо у готелі."
+  },
+  {
+   "id": "it:15:29",
+   "target": "I miei fratelli stanno mangiando a casa.",
+   "ru": "Мои братья сейчас едят дома.",
+   "uk": "Мої брати зараз їдять вдома."
+  },
+  {
+   "id": "it:15:30",
+   "target": "State mangiando in cucina.",
+   "ru": "Вы сейчас едите на кухне.",
+   "uk": "Ви зараз їсте на кухні."
+  },
+  {
+   "id": "it:15:31",
+   "target": "Stiamo incartando un regalo.",
+   "ru": "Мы сейчас заворачиваем подарок.",
+   "uk": "Ми зараз загортаємо подарунок."
+  },
+  {
+   "id": "it:15:32",
+   "target": "Non stai scrivendo una lettera.",
+   "ru": "Ты сейчас не пишешь письмо.",
+   "uk": "Ти зараз не пишеш листа."
+  },
+  {
+   "id": "it:15:33",
+   "target": "Ana non sta mandando una foto.",
+   "ru": "Ана сейчас не отправляет фотографию.",
+   "uk": "Ана зараз не надсилає фотографію."
+  },
+  {
+   "id": "it:15:34",
+   "target": "Mi sto lavando le mani.",
+   "ru": "Я сейчас мою руки.",
+   "uk": "Я зараз мию руки."
+  },
+  {
+   "id": "it:15:35",
+   "target": "Luis sta cercando il suo orologio.",
+   "ru": "Луис сейчас ищет свои часы.",
+   "uk": "Луїс зараз шукає свій годинник."
+  },
+  {
+   "id": "it:15:36",
+   "target": "Non stiamo bevendo caffè.",
+   "ru": "Мы сейчас не пьём кофе.",
+   "uk": "Ми зараз не п’ємо каву."
+  },
+  {
+   "id": "it:15:37",
+   "target": "Mia sorella sta lavando una maglietta.",
+   "ru": "Моя сестра сейчас стирает футболку.",
+   "uk": "Моя сестра зараз пере футболку."
+  },
+  {
+   "id": "it:15:38",
+   "target": "Non stiamo tornando a casa.",
+   "ru": "Мы сейчас не возвращаемся домой.",
+   "uk": "Ми зараз не повертаємося додому."
+  },
+  {
+   "id": "it:15:39",
+   "target": "Non stai leggendo il messaggio.",
+   "ru": "Ты сейчас не читаешь сообщение.",
+   "uk": "Ти зараз не читаєш повідомлення."
+  },
+  {
+   "id": "it:15:40",
+   "target": "Luis non sta aprendo la porta.",
+   "ru": "Луис сейчас не открывает дверь.",
+   "uk": "Луїс зараз не відчиняє двері."
+  },
+  {
+   "id": "it:15:41",
+   "target": "Stai lavorando a casa?",
+   "ru": "Ты сейчас работаешь дома?",
+   "uk": "Ти зараз працюєш вдома?"
+  },
+  {
+   "id": "it:15:42",
+   "target": "Stai asciugando il piatto?",
+   "ru": "Ты сейчас вытираешь тарелку?",
+   "uk": "Ти зараз витираєш тарілку?"
+  },
+  {
+   "id": "it:15:43",
+   "target": "Stiamo scrivendo un messaggio?",
+   "ru": "Мы сейчас пишем сообщение?",
+   "uk": "Ми зараз пишемо повідомлення?"
+  },
+  {
+   "id": "it:15:44",
+   "target": "Stai leggendo il libro?",
+   "ru": "Ты сейчас читаешь книгу?",
+   "uk": "Ти зараз читаєш книжку?"
+  },
+  {
+   "id": "it:15:45",
+   "target": "Luis sta portando il sacchetto?",
+   "ru": "Луис сейчас несёт пакет?",
+   "uk": "Луїс зараз несе пакет?"
+  },
+  {
+   "id": "it:15:46",
+   "target": "Ana sta ritirando la bici?",
+   "ru": "Ана сейчас забирает велосипед?",
+   "uk": "Ана зараз забирає велосипед?"
+  },
+  {
+   "id": "it:15:47",
+   "target": "Stiamo aspettando qui?",
+   "ru": "Мы сейчас ждём здесь?",
+   "uk": "Ми зараз чекаємо тут?"
+  },
+  {
+   "id": "it:15:48",
+   "target": "Luis sta tornando in stazione?",
+   "ru": "Луис сейчас возвращается на вокзал?",
+   "uk": "Луїс зараз повертається на вокзал?"
+  },
+  {
+   "id": "it:15:49",
+   "target": "Le mie sorelle stanno bevendo un caffè?",
+   "ru": "Мои сёстры сейчас пьют кофе?",
+   "uk": "Мої сестри зараз п’ють каву?"
+  },
+  {
+   "id": "it:15:50",
+   "target": "Stai cercando le mie chiavi?",
+   "ru": "Ты сейчас ищешь мои ключи?",
+   "uk": "Ти зараз шукаєш мої ключі?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la cipolla",
+   "ru": "луковица",
+   "uk": "цибулина"
+  },
+  {
+   "lemma": "asciugare",
+   "ru": "вытирать, сушить",
+   "uk": "витирати, сушити"
+  },
+  {
+   "lemma": "assaggiare",
+   "ru": "пробовать на вкус",
+   "uk": "пробувати на смак"
+  },
+  {
+   "lemma": "incartare",
+   "ru": "заворачивать в бумагу",
+   "uk": "загортати в папір"
+  },
+  {
+   "lemma": "la maglietta",
+   "ru": "футболка",
+   "uk": "футболка"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  }
+ ],
+ "oldTopicTitle": "Прямо сейчас: `stare` + герундий",
+ "oldTheoryRu": "Используй эту форму, когда смотришь на действие изнутри: оно уже началось и ещё идёт. Это не обязательный перевод любого настоящего времени. Для привычного занятия часто достаточно простого настоящего. У глаголов на `-are` герундий обычно на `-ando`: `tagliare` → `tagliando`. У `leggere` и `scrivere` здесь `leggendo`, `scrivendo`. Не ставь инфинитив после `sto` в этой модели. Спрягается `stare`, а герундий одинаков при любом лице. Сравни `sto bevendo` и `sta bevendo`: изменение лица не должно менять окончание `bevendo`. Длинное дополнение не отменяет форму процесса. Сначала собери связку «кто сейчас что делает», затем укажи предмет или способ оплаты, если они есть в подсказке. В формах для группы различай `stiamo`, `state`, `stanno`. Выбирай по участникам действия, а не по количеству книг, чашек или вещей у них в руках. Отрицание обычно идёт перед личной группой: `non sto scrivendo`. С возвратным местоимением возможны `mi sto lavando` и `sto lavandomi`. Оба способа не нужно соединять в один ответ. Для вопроса знак ставится в самом конце, а основа остаётся знакомой. Услышал `Stai leggendo?` — спрашивают, что происходит сейчас, а не умеешь ли ты вообще читать."
+}

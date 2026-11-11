@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 23,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:23:01",
+"it:23:02",
+"it:23:03"
+],
+"textByLocale": {
+"en": "The short pronoun here asks \"to whom?\" When replacing the speaker, change the verb, not the addressee's pronoun: `gli parlo` and `gli parli`.",
+"ru": "У короткого местоимения здесь вопрос «кому?». Заменяя говорящего, меняй глагол, а не местоимение адресата: `gli parlo` и `gli parli`.",
+"uk": "У короткого займенника тут питання «кому?». Замінюючи того, хто говорить, змінюй дієслово, а не займенник адресата: `gli parlo` і `gli parli`."
+}
+},
+{
+"exampleIds": [
+"it:23:07",
+"it:23:09",
+"it:23:13"
+],
+"textByLocale": {
+"en": "Divide the two roles with the subject and the recipient. In \"I'm sending her a message,\" the message is what I'm sending, and she is the recipient. Don't use the direct object form just because of the word \"she.\"",
+"ru": "С предметом и получателем раздели две роли. В «посылаю ей сообщение» сообщение — что посылаю, а она — кому. Не используй форму для прямого дополнения только из-за слова «она».",
+"uk": "З предметом та одержувачем розділи дві ролі. У «посилаю їй повідомлення» повідомлення – що посилаю, а вона – кому. Не використовуй форму для прямого доповнення лише через слово \"вона\"."
+}
+},
+{
+"exampleIds": [
+"it:23:17",
+"it:23:19",
+"it:23:23"
+],
+"textByLocale": {
+"en": "`Le` can mean both the polite \"you\" and \"her.\" A capital letter in polite notation is possible, but not required. The specific situation should clarify whether the addressee is in front of us or we are talking about them.",
+"ru": "`Le` может означать и вежливое «Вам», и «ей». Большая буква в вежливой записи возможна, но не обязательна. Отдельная ситуация должна объяснять, адресат перед нами или мы о нём говорим.",
+"uk": "`Le` може означати і ввічливе \"Вам\", і \"їй\". Велика літера у ввічливому записі можлива, але не обов'язкова. Окрема ситуація має пояснювати, адресат перед нами чи ми про нього говоримо."
+}
+},
+{
+"exampleIds": [
+"it:23:25",
+"it:23:28",
+"it:23:29"
+],
+"textByLocale": {
+"en": "In modern everyday usage, `gli` can also refer to a group of recipients. When the form is ambiguous, the expanded `a loro` makes the addressee explicit. Don't derive the number from just one tile.",
+"ru": "В современном повседневном употреблении `gli` может относиться и к группе получателей. Когда форма двусмысленна, развёрнутое `a loro` делает адресата явным. Не выводи число лишь из одной плитки.",
+"uk": "У сучасному повсякденному вживанні `gli` може ставитись і до групи одержувачів. Коли форма двозначна, розгорнуте `a loro` робить адресата очевидним. Не виводь число лише з однієї плитки."
+}
+},
+{
+"exampleIds": [
+"it:23:31",
+"it:23:33",
+"it:23:36"
+],
+"textByLocale": {
+"en": "With an infinitive, a short pronoun can be added at the end. In `devo scriverle`, the reference is still to the recipient; `devo scriverla` would mean \"must write her,\" for example, a note.",
+"ru": "С инфинитивом короткое местоимение можно присоединить в конце. В `devo scriverle` речь всё ещё о том, кому пишут; `devo scriverla` означало бы «должен написать её», например записку.",
+"uk": "З інфінітивом короткий займенник можна приєднати наприкінці. У `devo scriverle` мова все ще про те, кому пишуть; `devo scriverla` означало б «має написати її», наприклад записку."
+}
+},
+{
+"exampleIds": [
+"it:23:38",
+"it:23:41",
+"it:23:43"
+],
+"textByLocale": {
+"en": "After the name or full addressee, the word `a` may be necessary. If you replace the entire group with a short form, don't precede it with another `a`.",
+"ru": "После имени или полного адресата слово `a` может быть необходимо. Если заменяешь всю группу короткой формой, не ставь перед ней ещё одно `a`.",
+"uk": "Після імені або повного адресата слово `a` може бути необхідним. Якщо замінюєш всю групу короткою формою, не став перед нею ще одне `a`."
+}
+},
+{
+"exampleIds": [
+"it:23:46",
+"it:23:48",
+"it:23:50"
+],
+"textByLocale": {
+"en": "Consider the government of the specific Italian verb. `Aiutare qualcuno` is to help someone in meaning, but in Italian, the object is direct: `lo aiuto`. You can't automatically transfer the original case to Italian.",
+"ru": "Учти управление конкретного итальянского глагола. `Aiutare qualcuno` — помочь кому-то по смыслу, но в итальянском объект прямой: `lo aiuto`. Нельзя переносить исходный падеж в итальянский автоматически.",
+"uk": "Врахуй управління конкретного італійського дієслова. `Aiutare qualcuno` - допомогти комусь за змістом, але в італійському об'єкт прямий: `lo aiuto`. Не можна переносити вихідний відмінок в італійський автоматично."
+}
+}
+],
+"drills": [
+{
+"bad": "Il",
+"chapter": 1,
+"id": "it:23:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Gli",
+"La",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 1,
+"id": "it:23:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 11,
+"options": [
+"La",
+"Il",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "parlo",
+"chapter": 1,
+"id": "it:23:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"parla",
+"parlo",
+"parliamo"
+],
+"slot": 1
+},
+{
+"bad": "Ci",
+"chapter": 2,
+"id": "it:23:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"Gli",
+"Ci",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "Paolo",
+"chapter": 2,
+"id": "it:23:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 6,
+"options": [
+"Lea",
+"Paolo",
+"Ana"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 2,
+"id": "it:23:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 8,
+"options": [
+"Gli",
+"Mi",
+"Il"
+],
+"slot": 0
+},
+{
+"bad": "il",
+"chapter": 3,
+"id": "it:23:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 34,
+"options": [
+"la",
+"il",
+"gli"
+],
+"slot": 1
+},
+{
+"bad": "Il",
+"chapter": 3,
+"id": "it:23:17:lab",
+"item": 17,
+"kind": "match",
+"near": 8,
+"options": [
+"La",
+"Il",
+"Gli"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 3,
+"id": "it:23:19:lab",
+"item": 19,
+"kind": "build",
+"near": 27,
+"options": [
+"Il",
+"La",
+"Gli"
+],
+"slot": 0
+},
+{
+"bad": "Ci",
+"chapter": 4,
+"id": "it:23:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 8,
+"options": [
+"Gli",
+"Ci",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 4,
+"id": "it:23:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 28,
+"options": [
+"Il",
+"Le",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "Il",
+"chapter": 4,
+"id": "it:23:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 13,
+"options": [
+"Le",
+"Il",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 5,
+"id": "it:23:29:lab",
+"item": 29,
+"kind": "match",
+"near": 3,
+"options": [
+"Il",
+"Le",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:23:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"la",
+"mi",
+"le"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:23:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 8,
+"options": [
+"il",
+"la",
+"gli"
+],
+"slot": 1
+},
+{
+"bad": "risponde",
+"chapter": 6,
+"id": "it:23:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 47,
+"options": [
+"chiederle",
+"risponde",
+"regole"
+],
+"slot": 3
+},
+{
+"bad": "rispondergli",
+"chapter": 6,
+"id": "it:23:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"passargli",
+"restituirgli",
+"rispondergli"
+],
+"slot": 1
+},
+{
+"bad": "Ha",
+"chapter": 6,
+"id": "it:23:42:lab",
+"item": 42,
+"kind": "match",
+"near": 6,
+"options": [
+"Ha",
+"Abbiamo",
+"Ho"
+],
+"slot": 0
+},
+{
+"bad": "Ho",
+"chapter": 7,
+"id": "it:23:45:lab",
+"item": 45,
+"kind": "build",
+"near": 6,
+"options": [
+"Abbiamo",
+"Ho",
+"Ha"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 7,
+"id": "it:23:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 47,
+"options": [
+"La",
+"Ci",
+"Ti"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"a Paolo",
+"gli parlo"
+],
+[
+"a Lea",
+"le parlo"
+],
+[
+"a me",
+"mi scrivi"
+],
+[
+"a te",
+"ti scrivo"
+],
+[
+"a noi",
+"ci scrive"
+],
+[
+"a voi",
+"vi scrivo"
+]
+],
+"title": {
+"en": "Recipient of the action: `gli` and `le`",
+"ru": "Получатель действия: `gli` и `le`",
+"uk": "Одержувач дії: `gli` та `le`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:23:01",
+"target": "Gli parlo.",
+"ru": "Я разговариваю с ним.",
+"uk": "Я розмовляю з ним."
+},
+{
+"id": "it:23:02",
+"target": "Gli parli.",
+"ru": "Ты разговариваешь с ним.",
+"uk": "Ти розмовляєш з ним."
+},
+{
+"id": "it:23:03",
+"target": "Le parliamo.",
+"ru": "Мы разговариваем с ней.",
+"uk": "Ми розмовляємо з нею."
+},
+{
+"id": "it:23:07",
+"target": "Io le scrivo.",
+"ru": "Я ей пишу.",
+"uk": "Я пишу їй."
+},
+{
+"id": "it:23:09",
+"target": "Paolo le risponde.",
+"ru": "Паоло ей отвечает.",
+"uk": "Паоло відповідає їй."
+},
+{
+"id": "it:23:13",
+"target": "Le descrivo il tragitto a piedi.",
+"ru": "Я объясняю ей, как пройти пешком.",
+"uk": "Я пояснюю їй, як пройти пішки."
+},
+{
+"id": "it:23:17",
+"target": "Gli diamo appuntamento.",
+"ru": "Мы назначаем ему встречу.",
+"uk": "Ми призначаємо йому зустріч."
+},
+{
+"id": "it:23:19",
+"target": "Gli portano un bicchiere d’acqua.",
+"ru": "Они приносят ему стакан воды.",
+"uk": "Вони приносять йому склянку води."
+},
+{
+"id": "it:23:23",
+"target": "Le lascio la mia chiave alla reception.",
+"ru": "Я оставляю ей свой ключ на ресепшене.",
+"uk": "Я залишаю їй свій ключ на рецепції."
+},
+{
+"id": "it:23:25",
+"target": "Gli spiego le regole del gioco.",
+"ru": "Я объясняю им правила игры.",
+"uk": "Я пояснюю їм правила гри."
+},
+{
+"id": "it:23:28",
+"target": "Le leggo una storia prima di andare a letto.",
+"ru": "Я читаю ей сказку перед сном.",
+"uk": "Я читаю їй казку перед сном."
+},
+{
+"id": "it:23:29",
+"target": "Le parlo della perdita in cucina.",
+"ru": "Я рассказываю ей о протечке на кухне.",
+"uk": "Я розповідаю їй про витік на кухні."
+},
+{
+"id": "it:23:31",
+"target": "Non le rispondo subito.",
+"ru": "Я не отвечаю ей сразу.",
+"uk": "Я не відповідаю їй одразу."
+},
+{
+"id": "it:23:33",
+"target": "Non le diciamo niente.",
+"ru": "Мы ей ничего не говорим.",
+"uk": "Ми їй нічого не кажемо."
+},
+{
+"id": "it:23:36",
+"target": "Ho intenzione di chiederle l’ora.",
+"ru": "Я собираюсь спросить у неё время.",
+"uk": "Я збираюся запитати в неї, котра година."
+},
+{
+"id": "it:23:38",
+"target": "Dobbiamo restituirgli il badge.",
+"ru": "Нам нужно вернуть ему пропуск.",
+"uk": "Нам потрібно повернути йому перепустку."
+},
+{
+"id": "it:23:41",
+"target": "Gli ho inviato il conto.",
+"ru": "Я отправил ему счет.",
+"uk": "Я надіслав йому рахунок."
+},
+{
+"id": "it:23:43",
+"target": "Mia sorella gli ha prestato la sua bicicletta.",
+"ru": "Моя сестра одолжила ему свой велосипед.",
+"uk": "Моя сестра позичила йому свій велосипед."
+},
+{
+"id": "it:23:46",
+"target": "Chi le ha regalato questa sciarpa?",
+"ru": "Кто подарил ей этот шарф?",
+"uk": "Хто подарував їй цей шарф?"
+},
+{
+"id": "it:23:48",
+"target": "Ti fidi di lei?",
+"ru": "Ты ей доверяешь?",
+"uk": "Ти їй довіряєш?"
+},
+{
+"id": "it:23:50",
+"target": "Lei gli ricorda l’appuntamento.",
+"ru": "Она напоминает ему о встрече.",
+"uk": "Вона нагадує йому про зустріч."
+}
+]
+},
+{
+"lesson": 24,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:24:01",
+"it:24:02",
+"it:24:04"
+],
+"textByLocale": {
+"en": "The short `ci` can refer to a place introduced by different prepositions. See if you can replace it with a full place-name phrase and save the message.",
+"ru": "Короткое `ci` может относиться к месту, введённому разными предлогами. Проверь, можешь ли заменить его полной группой с названием места и сохранить сообщение.",
+"uk": "Короткий `ci` може стосуватися місця, введеного різними приводами. Перевір, чи можеш замінити його повною групою з назвою місця та зберегти повідомлення."
+}
+},
+{
+"exampleIds": [
+"it:24:07",
+"it:24:09",
+"it:24:12"
+],
+"textByLocale": {
+"en": "`Ci` isn't \"masculine\" or \"feminine\" because of the place name. Whether you're heading to the store or the pharmacy, the `ci` form remains the same.",
+"ru": "`Ci` не бывает «мужским» или «женским» из-за названия места. Направляешься в магазин или в аптеку — форма `ci` остаётся прежней.",
+"uk": "`Ci` не буває \"чоловічим\" або \"жіночим\" через назву місця. Прямуєш до магазину або в аптеку — форма `ci` залишається незмінною."
+}
+},
+{
+"exampleIds": [
+"it:24:15",
+"it:24:17",
+"it:24:20"
+],
+"textByLocale": {
+"en": "Before a simple finite verb, `ci` usually stands alone. Without the preceding scene, the short `ci torno` isn't completely clear: \"I'll return there,\" but where exactly?",
+"ru": "Перед простым личным глаголом `ci` обычно стоит отдельно. Без предыдущей сцены короткое `ci torno` понятно не полностью: «я туда вернусь», но куда именно?",
+"uk": "Перед простим особистим дієсловом `ci` зазвичай стоїть окремо. Без попередньої сцени короткий `ci torno` зрозуміло не повністю: «я туди повернуся», але куди саме?"
+}
+},
+{
+"exampleIds": [
+"it:24:21",
+"it:24:23",
+"it:24:26"
+],
+"textByLocale": {
+"en": "In the past, `ci` is placed before the assistant: `ci siamo rimasti`. Part `siamo rimasti` tells who remained and when, while `ci` only points back to the place.",
+"ru": "В прошлом `ci` ставится перед помощником: `ci siamo rimasti`. Часть `siamo rimasti` сообщает, кто остался и когда, а `ci` только указывает обратно на место.",
+"uk": "В минулому `ci` ставиться перед помічником: `ci siamo rimasti`. Частина `siamo rimasti` повідомляє, хто залишився і коли, а `ci` тільки вказує на місце."
+}
+},
+{
+"exampleIds": [
+"it:24:28",
+"it:24:31",
+"it:24:34"
+],
+"textByLocale": {
+"en": "In negation, the beginning of `non ci` is retained. Don't confuse it with the presence of `non c’è`: the entire phrase determines whether we're returning to the place or saying that something is missing.",
+"ru": "В отрицании начало `non ci` сохраняется. Не путай с наличием `non c’è`: целая фраза определяет, возвращаемся ли мы к месту или говорим, что чего-то нет.",
+"uk": "Заперечення початок `non ci` зберігається. Не плутай з наявністю `non c’è`: ціла фраза визначає, чи ми повертаємося до місця або говоримо, що чогось немає."
+}
+},
+{
+"exampleIds": [
+"it:24:36",
+"it:24:37",
+"it:24:39"
+],
+"textByLocale": {
+"en": "With an infinitive, we get `tornarci`. With a modal, `voglio tornarci` and `ci voglio tornare` can express the same meaning. Don't use both copies of `ci` at the same time.",
+"ru": "С инфинитивом получаем `tornarci`. С модальным `voglio tornarci` и `ci voglio tornare` могут выразить один смысл. Не используй обе копии `ci` одновременно.",
+"uk": "З інфінітивом отримуємо `tornarci`. З модальним `voglio tornarci` та `ci voglio tornare` можуть висловити один сенс. Не використовуй обидві копії `ci` одночасно."
+}
+},
+{
+"exampleIds": [
+"it:24:42",
+"it:24:46",
+"it:24:49"
+],
+"textByLocale": {
+"en": "Sometimes it's more natural to say a regular Italian sentence without repeating the place. In the training example, we retain `ci` when the goal is to explicitly refer \"there\" or \"there.\"",
+"ru": "Иногда обычное итальянское предложение естественнее произнести без повторения места. В учебном образце сохраняем `ci`, когда задача именно в явной отсылке «там» или «туда».",
+"uk": "Іноді звичайна італійська пропозиція природніше вимовити без повторення місця. У навчальному зразку зберігаємо `ci`, коли завдання саме у явному посиланні «там» чи «туди»."
+}
+}
+],
+"drills": [
+{
+"bad": "la",
+"chapter": 1,
+"id": "it:24:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"la",
+"ci",
+"ti"
+],
+"slot": 4
+},
+{
+"bad": "si",
+"chapter": 1,
+"id": "it:24:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"si",
+"la",
+"ci"
+],
+"slot": 5
+},
+{
+"bad": "la",
+"chapter": 1,
+"id": "it:24:05:lab",
+"item": 5,
+"kind": "match",
+"near": 2,
+"options": [
+"ci",
+"la",
+"si"
+],
+"slot": 4
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:24:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Le",
+"La",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 2,
+"id": "it:24:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 37,
+"options": [
+"Ti",
+"La",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 2,
+"id": "it:24:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 22,
+"options": [
+"ne",
+"ci",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:24:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 41,
+"options": [
+"la",
+"ci",
+"si"
+],
+"slot": 5
+},
+{
+"bad": "ne",
+"chapter": 3,
+"id": "it:24:17:lab",
+"item": 17,
+"kind": "match",
+"near": 33,
+"options": [
+"ne",
+"la",
+"ci"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "it:24:19:lab",
+"item": 19,
+"kind": "build",
+"near": 14,
+"options": [
+"mi",
+"ci",
+"la"
+],
+"slot": 8
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "it:24:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 12,
+"options": [
+"mi",
+"la",
+"ci"
+],
+"slot": 1
+},
+{
+"bad": "Mi",
+"chapter": 4,
+"id": "it:24:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"Mi",
+"La",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "Mi",
+"chapter": 4,
+"id": "it:24:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 18,
+"options": [
+"Ti",
+"Mi",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "La",
+"chapter": 5,
+"id": "it:24:29:lab",
+"item": 29,
+"kind": "match",
+"near": 18,
+"options": [
+"Ci",
+"Mi",
+"La"
+],
+"slot": 0
+},
+{
+"bad": "le",
+"chapter": 5,
+"id": "it:24:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"le",
+"la",
+"ci"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 5,
+"id": "it:24:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"le",
+"la",
+"ci"
+],
+"slot": 1
+},
+{
+"bad": "passi",
+"chapter": 6,
+"id": "it:24:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"tornarci",
+"passi",
+"passarci"
+],
+"slot": 1
+},
+{
+"bad": "La",
+"chapter": 6,
+"id": "it:24:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 10,
+"options": [
+"La",
+"Gli",
+"Ci"
+],
+"slot": 0
+},
+{
+"bad": "la",
+"chapter": 6,
+"id": "it:24:42:lab",
+"item": 42,
+"kind": "match",
+"near": 47,
+"options": [
+"si",
+"ci",
+"la"
+],
+"slot": 5
+},
+{
+"bad": "passarci",
+"chapter": 7,
+"id": "it:24:45:lab",
+"item": 45,
+"kind": "build",
+"near": 50,
+"options": [
+"conosci",
+"passarci",
+"entrarci"
+],
+"slot": 6
+},
+{
+"bad": "bambini",
+"chapter": 7,
+"id": "it:24:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 14,
+"options": [
+"andarci",
+"bambini",
+"piedi"
+],
+"slot": 6
+}
+],
+"table": [
+[
+"al mercato",
+"ci vado"
+],
+[
+"a scuola",
+"ci torno"
+],
+[
+"in questa stanza",
+"ci resto"
+],
+[
+"in quel quartiere",
+"ci abito"
+],
+[
+"tornare + ci",
+"tornarci"
+]
+],
+"title": {
+"en": "Return to place: `ci`",
+"ru": "Вернуться к месту: `ci`",
+"uk": "Повернутися до місця: `ci`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:24:01",
+"target": "Vado al mercato e ci va anche Paolo.",
+"ru": "Я иду на рынок, и Паоло тоже.",
+"uk": "Я йду на ринок, і Паоло теж йде."
+},
+{
+"id": "it:24:02",
+"target": "Vado in stazione e ci va anche Lea.",
+"ru": "Я иду на вокзал, и Леа тоже.",
+"uk": "Я йду на вокзал, і Леа теж йде."
+},
+{
+"id": "it:24:04",
+"target": "Lei va al museo e ci andiamo anche noi.",
+"ru": "Она идёт в музей, и мы тоже.",
+"uk": "Вона йде до музею, і ми теж йдемо."
+},
+{
+"id": "it:24:07",
+"target": "Ci vado adesso.",
+"ru": "Я иду туда сейчас.",
+"uk": "Я йду туди зараз."
+},
+{
+"id": "it:24:09",
+"target": "Lui ci va a piedi.",
+"ru": "Он идёт туда пешком.",
+"uk": "Він йде туди пішки."
+},
+{
+"id": "it:24:12",
+"target": "Lei ci abita con sua sorella.",
+"ru": "Она живёт там со своей сестрой.",
+"uk": "Вона живе там зі своєю сестрою."
+},
+{
+"id": "it:24:15",
+"target": "Ci resta a lungo?",
+"ru": "Вы надолго там останетесь?",
+"uk": "Ви надовго там залишитеся?"
+},
+{
+"id": "it:24:17",
+"target": "Le infermiere ci passano dopo il turno.",
+"ru": "Медсёстры заходят туда после дежурства.",
+"uk": "Медсестри заходять туди після чергування."
+},
+{
+"id": "it:24:20",
+"target": "I bambini ci giocano dopo la scuola.",
+"ru": "Дети играют там после школы.",
+"uk": "Діти граються там після школи."
+},
+{
+"id": "it:24:21",
+"target": "Ci sono già stato.",
+"ru": "Я уже там был.",
+"uk": "Я вже там був."
+},
+{
+"id": "it:24:23",
+"target": "Ci siamo rimasti una notte.",
+"ru": "Мы переночевали там.",
+"uk": "Ми залишилися там на одну ніч."
+},
+{
+"id": "it:24:26",
+"target": "Ci hai trovato posto?",
+"ru": "Ты нашёл там место?",
+"uk": "Ти знайшов там місце?"
+},
+{
+"id": "it:24:28",
+"target": "Ci ha lasciato la sua borsa.",
+"ru": "Она оставила там свою сумку.",
+"uk": "Вона залишила там свою сумку."
+},
+{
+"id": "it:24:31",
+"target": "Non ci vado la sera.",
+"ru": "Я не хожу туда по вечерам.",
+"uk": "Я не ходжу туди ввечері."
+},
+{
+"id": "it:24:34",
+"target": "Non ci sono mai stati.",
+"ru": "Они там никогда не были.",
+"uk": "Вони там ніколи не були."
+},
+{
+"id": "it:24:36",
+"target": "Vuoi tornarci?",
+"ru": "Ты хочешь туда вернуться?",
+"uk": "Ти хочеш туди повернутись?"
+},
+{
+"id": "it:24:37",
+"target": "Ci andiamo a pranzo.",
+"ru": "Мы идём туда на обед.",
+"uk": "Ми йдемо туди на обід."
+},
+{
+"id": "it:24:39",
+"target": "Ci può andare in bici.",
+"ru": "Вы можете доехать туда на велосипеде.",
+"uk": "Ви можете поїхати туди на велосипеді."
+},
+{
+"id": "it:24:42",
+"target": "Il mercato è lontano, ma ci andremo a piedi.",
+"ru": "Рынок далеко, но мы дойдём пешком.",
+"uk": "Ринок далеко, але ми пройдемося туди пішки."
+},
+{
+"id": "it:24:46",
+"target": "Conosco la stazione e posso incontrarla lì.",
+"ru": "Я знаю этот вокзал и могу вас там встретить.",
+"uk": "Я знаю цей вокзал і можу вас там зустріти."
+},
+{
+"id": "it:24:49",
+"target": "Conosci questa città e ci hai dei parenti.",
+"ru": "Ты знаешь этот город, и у тебя там родственники.",
+"uk": "Ти знаєш це місто, і у тебе там родичі."
+}
+]
+}
+]

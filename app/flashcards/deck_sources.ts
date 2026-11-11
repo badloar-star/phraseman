@@ -29,7 +29,7 @@ import { splitDeckParam } from './deck_selection';
 import { videoIdFromOwnedCommunityId } from './my_packs_video_meta';
 import { missingPackCache } from './my_packs_missing_cache';
 import { STARTER_FIRST_50_PACK_ID, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
-import { loadLearningV2DictionaryTrainingDeckV1 } from '../learning_v2_dictionary_training_deck_v1';
+import { loadDictionaryTrainingDeck } from './dictionary_training_deck';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
@@ -484,7 +484,7 @@ export async function loadDeckCards(
     return deckCardsFromSaved(saved, lang);
   }
   if (deck.kind === 'lv2') {
-    return loadLearningV2DictionaryTrainingDeckV1(deck.deckId, lang).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:lv2_dictionary', swallowedError); return []; });
+    return loadDictionaryTrainingDeck(deck.deckId, lang).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:lv2_dictionary', swallowedError); return []; });
   }
   if (deck.kind === 'custom') {
     const custom = await listCustomCards(studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('deck_sources:promise_3', swallowedError); return []; });

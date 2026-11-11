@@ -1,4 +1,4 @@
-// зачем (слово владельца 17.10 через координатора): над плитками Главной — карточка «последнее место»: урок, занятие V2, диалог или набор карточек, что свежее;
+// зачем (слово владельца 17.10 через координатора): над плитками Главной — карточка «последнее место»: урок, диалог или набор карточек, что свежее;
 // метка только локальная; нет меток — «Начать урок 1»; устаревшая метка тихо отпадает с журналом [HOME-CONTINUE] stale; тап ведёт на экран-вход раздела.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,35 +27,30 @@ import {
   loadHomeContinueMarks,
   peekHomeContinueMarks,
   pickHomeContinue,
+  recordHomeContinueLegacy,
   recordHomeContinuePlace,
   resetHomeContinueMarksForTests,
   resolveHomeContinuePlaces,
   type HomeContinuePlaceMark,
-  type HomeContinueV2Mark,
 } from '../app/home_continue_mark';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
-const v2 = (atMs: number): HomeContinueV2Mark => ({ lessonOrdinal: 1, sessionOrdinal: 4, sessionId: 'lesson-01:session:04', route: { id: 'lesson-01:session:04' }, atMs });
 const dialog = (atMs: number, id = 'coffee'): HomeContinuePlaceMark => ({ id, title: 'Coffee', subtitle: null, route: { pathname: '/ai_dialog_briefing', params: { scenarioId: id } }, atMs });
 const cards = (atMs: number): HomeContinuePlaceMark => ({ id: 'saved', title: 'Сохранённые', subtitle: null, route: { pathname: '/flashcards_training_setup', params: { mode: 'swipe' } }, atMs });
 
-describe('выбор «последнего места»: самое свежее из четырёх', () => {
+describe('выбор «последнего места»: самое свежее из трёх', () => {
   it('одно место — оно', () => {
-    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null, v2: null, dialog: dialog(10) })).toEqual({ kind: 'dialog', reason: 'dialog_only' });
-    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null, v2: null, cards: cards(10) })).toEqual({ kind: 'cards', reason: 'cards_only' });
+    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null, dialog: dialog(10) })).toEqual({ kind: 'dialog', reason: 'dialog_only' });
+    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null, cards: cards(10) })).toEqual({ kind: 'cards', reason: 'cards_only' });
   });
   it('побеждает свежее по времени; старый урок без метки времени проигрывает всем', () => {
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 100, v2: v2(200), dialog: dialog(300), cards: cards(250) }).kind).toBe('dialog');
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 100, v2: v2(200), dialog: dialog(150), cards: cards(250) }).kind).toBe('cards');
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 900, v2: v2(200), dialog: dialog(150), cards: cards(250) }).kind).toBe('legacy');
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: null, v2: null, cards: cards(1) }).kind).toBe('cards');
-  });
-  it('прежнее поведение «урок против V2» не изменилось (без диалога и карточек)', () => {
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 1000, v2: v2(2000) })).toEqual({ kind: 'v2', reason: 'v2_newer' });
-    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 3000, v2: v2(2000) })).toEqual({ kind: 'legacy', reason: 'legacy_newer' });
+    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 100, dialog: dialog(300), cards: cards(250) }).kind).toBe('dialog');
+    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 100, dialog: dialog(150), cards: cards(250) }).kind).toBe('cards');
+    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: 900, dialog: dialog(150), cards: cards(250) }).kind).toBe('legacy');
+    expect(pickHomeContinue({ hasLegacyLesson: true, legacyAtMs: null, cards: cards(1) }).kind).toBe('cards');
   });
   it('ничего нет — «none» (Главная покажет «Начать урок 1»)', () => {
-    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null, v2: null })).toEqual({ kind: 'none', reason: 'none' });
+    expect(pickHomeContinue({ hasLegacyLesson: false, legacyAtMs: null })).toEqual({ kind: 'none', reason: 'none' });
   });
 });
 
@@ -72,12 +67,20 @@ describe('метки диалога и карточек: локально, с д
     expect(marks.dialog).toEqual(dialog(500));
     expect(marks.cards).toEqual(cards(600));
   });
-  it('запись диалога не стирает метку V2 и время урока', async () => {
+  it('запись диалога сохраняет метку карточек и время урока', async () => {
     jest.spyOn(console, 'log').mockImplementation(() => undefined);
     recordHomeContinuePlace('cards', 'en', cards(5));
-    expect(peekHomeContinueMarks('en')?.v2).toBeNull();
+    recordHomeContinueLegacy('en', 4);
     recordHomeContinuePlace('dialog', 'en', dialog(6));
-    expect(peekHomeContinueMarks('en')?.cards).toEqual(cards(5));
+    expect(peekHomeContinueMarks('en')).toMatchObject({ legacyAtMs: 4, cards: cards(5) });
+  });
+  it('урок, начатый во время чтения с диска, сохраняет последние диалог и набор', async () => {
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    mockStore.set(`${lastOpenedLessonKey('en')}__continue_dialog`, JSON.stringify(dialog(3)));
+    mockStore.set(`${lastOpenedLessonKey('en')}__continue_cards`, JSON.stringify(cards(4)));
+    const reading = loadHomeContinueMarks('en');
+    recordHomeContinueLegacy('en', 5);
+    await expect(reading).resolves.toMatchObject({ legacyAtMs: 5, dialog: dialog(3), cards: cards(4) });
   });
   it('пустое название / маршрут без слэша — не записывается, причина в журнале', () => {
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
@@ -109,7 +112,7 @@ describe('метки диалога и карточек: локально, с д
 });
 
 describe('устаревшая метка тихо отпадает, причина — в журнале [HOME-CONTINUE] stale', () => {
-  const marks = (d: HomeContinuePlaceMark | null, c: HomeContinuePlaceMark | null) => ({ v2: null, legacyAtMs: null, dialog: d, cards: c });
+  const marks = (d: HomeContinuePlaceMark | null, c: HomeContinuePlaceMark | null) => ({ legacyAtMs: null, dialog: d, cards: c });
   let log: jest.SpyInstance;
   beforeEach(() => { log = jest.spyOn(console, 'log').mockImplementation(() => undefined); });
   afterEach(() => { log.mockRestore(); });
@@ -157,20 +160,11 @@ describe('подключение: точки входа пишут метку, �
     expect(fc).toContain('if (viewLang === studyTarget) {\n      const pickedDecks');
   });
 
-  it('Главная: свежее из четырёх, проверка устаревания до выбора, «Начать урок 1» без меток, прежняя ветка урока/V2 нетронута', () => {
+  it('Главная передаёт в истории только статус сцены, кнопка открывает сохранённый урок', () => {
     const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain('resolveHomeContinuePlaces({ marks: continueMarks, dialoguesVisible: homeDialoguesVisible, flashcardsVisible: homeFlashcardsVisible, lang })');
-    expect(home).toContain('dialog: continuePlaces.dialog, cards: continuePlaces.cards };');
-    expect(home).toContain("const continueStart = continueChoice.kind === 'none' && continueResolved && homeLearnVisible;");
-    expect(home).toContain('{continuePlace === null && !continueStart ? (');
-    expect(home).toContain('{continuePlace !== null || continueStart ? (');
-    expect(home).toContain('hideProgress');
-    // перепин 29.10 (координатор): «Начать урок 1» — вкладка «Уроки» + запрос карты V2, а не экран-перенаправление курса
-    expect(home).toContain("openLessonsTabFromHome('home_continue_first');");
-    expect(home).not.toContain("go('/learning-v2/course');");
-    expect(home).toContain("nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);");
-    // прежняя карточка урока и V2 — как была (строки закреплены другими сторожами)
-    expect(home).toContain('{priorityCardVisible || continueCardPending ? (');
+    expect(home).toContain("homeStories={sceneStory && mistakeAccountGeneration.phase === 'active' ? [sceneStory] : undefined}");
+    expect(home).toContain("pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' }");
+    expect(home).toContain('if (sceneLesson) openLastLesson();');
   });
 
   // зачем (владелец 18.10 «вариант Г»): полосы и стрелки больше нет — прогресс в кольце; у диалога/набора (hideProgress) дуги и «done / total» нет, высота та же

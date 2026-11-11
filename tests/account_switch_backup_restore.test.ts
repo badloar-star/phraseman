@@ -13,7 +13,7 @@ import {
   canonicalJsonV1,
   hashCanonicalBody,
   utf8ByteLengthV1,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(),

@@ -20,6 +20,7 @@
 // лениво — только когда флаг включён и событие прошло проверки.
 
 import { isCorrectAnswerSoundSilenced } from '../audio/correct_answer_silence';
+import { isProductionSfxMusicAllowed } from '../audio/sfx_music_policy';
 import {
   SOUND_V2_CATALOG,
   SOUND_V2_RESET_ON_ERROR_EVENT,
@@ -643,6 +644,10 @@ function getBank(): SoundBank {
 export function playEvent(event: SoundV2EventId, options?: PlayEventOptions): SoundV2PlayResult {
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «удалить звук … при правильных ответах в любых режимах»): единая точка для всех прямых вызовов банка
   if (isCorrectAnswerSoundSilenced(String(event), 'sound_bank')) return { event: String(event), played: false, reason: 'correct_answer_silenced' };
+  if (!isProductionSfxMusicAllowed()) {
+    if (event === SOUND_V2_RESET_ON_ERROR_EVENT) streakBook.resetMany(SOUND_V2_STREAKS_RESET_BY_ERROR);
+    return { event: String(event), played: false, reason: 'flag_off' };
+  }
   try {
     const result = getBank().playEvent(event, options);
     // зачем (координатор 18.10, «ни одного звука»): СПЕРВА ЛОГИ — флаг V2 и итог каждого события ([SOUND-AUDIT] v2)
@@ -680,6 +685,10 @@ export function getStreakStep(event: SoundV2EventId): number {
 
 /** Прогреть плееры событий заранее (по одному, с паузой). Ничего не делает при выключенном флаге. */
 export function prewarmSoundV2(events: readonly SoundV2EventId[]): void {
+  if (!isProductionSfxMusicAllowed()) {
+    for (const event of events) console.log(`${LOG} skip event=${String(event)} reason=flag_off`);
+    return;
+  }
   if (!isSoundV2Enabled()) return;
   try {
     getBank().prewarm(events);

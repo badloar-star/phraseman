@@ -1,0 +1,2036 @@
+[
+{
+"lesson": 29,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 29,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Я бы позвонил: condicional simple",
+"formula": "инфинитив + ía / ías / ía / íamos / íais / ían",
+"story": "Представляешь покупку: я купил бы хлеб: Compraría pan. Не сказал ни «точно куплю», ни «надо было купить». Возможность передаёт окончание -ía.",
+"use": "Сообщи, что человек сделал бы при подходящих обстоятельствах, не превращая возможность в обещание.",
+"choose": "Для правильного глагола сохрани инфинитив целиком: llamar-é «позвоню», llamar-ía «позвонил бы». Смена окончания меняет отношение говорящего к действию.",
+"nuance": "Сообщи, что человек сделал бы при подходящих обстоятельствах, не превращая возможность в обещание. Окончание -ía и его личные варианты передают смысл «бы».",
+"wrong": "Llamaré al hotel.",
+"right": "Llamaría al hotel.",
+"chapters": [
+{
+"title": "Смысл частицы «бы»",
+"body": "Сравни: llamaré — позвоню, llamaría — позвонил бы. Во второй фразе ты представляешь решение, а не обещаешь звонок. Это изменение смысла уже передаёт окончание -ía; отдельная плитка не нужна.",
+"note": "Ключевая форма: llamaría. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:01",
+"es:29:02"
+],
+"focusId": "es:29:01"
+},
+{
+"title": "Та же база, что в будущем",
+"body": "Для правильного глагола сохрани инфинитив целиком: llamar-é «позвоню», llamar-ía «позвонил бы». Смена окончания меняет отношение говорящего к действию.",
+"note": "Ключевая форма: llamarías. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:02",
+"es:29:03"
+],
+"focusId": "es:29:02"
+},
+{
+"title": "Одна форма для yo, él, ella и usted",
+"body": "Yo и él/ella/usted получают -ía. После имени Ana тот же испанский глагол переводится женской формой. К окончанию не прибавляется -a ради женского рода.",
+"note": "Ключевая форма: compraría. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:07",
+"es:29:08"
+],
+"focusId": "es:29:07"
+},
+{
+"title": "Не спутай с vivía",
+"body": "Vivía — «раньше жил», основа viv-. Viviría — «жил бы», видна целая основа vivir-. Посмотри не только на -ía, но и на r перед ним.",
+"note": "Ключевая форма: mandaría. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:13",
+"es:29:14"
+],
+"focusId": "es:29:13"
+},
+{
+"title": "Условие может быть известно",
+"body": "Фраза «Я бы позвонил» полноценна в ответ на «Как бы ты поступил?». Не надо вставлять si там, где условие не названо. Явное условие появится в последнем уроке.",
+"note": "Ключевая форма: llamarías. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:41",
+"es:29:42"
+],
+"focusId": "es:29:41"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты вошёл бы в офис.» / «Я бы сегодня вечером приготовил еду дома.». Окончание -ía и его личные варианты передают смысл «бы». Смысловые опоры: «oficina» — офис.",
+"note": "Ключевая форма: Cocinaría. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:20",
+"es:29:21"
+],
+"focusId": "es:29:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты заплатил бы картой?» / «Вы отправили бы фотографию?». Окончание -ía и его личные варианты передают смысл «бы». Сообщи, что человек сделал бы при подходящих обстоятельствах, не превращая возможность в обещание.",
+"note": "Ключевая форма: mandaríais. Окончание -ía и его личные варианты передают смысл «бы».",
+"samples": [
+"es:29:44",
+"es:29:50"
+],
+"focusId": "es:29:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaría",
+"gloss": "я",
+"id": "es:29:01",
+"sample": "Llamaría al hotel."
+},
+{
+"es": "tú · llamarías",
+"gloss": "ты",
+"id": "es:29:02",
+"sample": "Llamarías al hotel."
+},
+{
+"es": "él · llamaría",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamaríamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaríais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar · Условное наклонение"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "я",
+"id": "es:29:07",
+"sample": "Compraría pan."
+},
+{
+"es": "tú · comprarías",
+"gloss": "ты",
+"id": "es:29:08",
+"sample": "Comprarías pan."
+},
+{
+"es": "él · compraría",
+"gloss": "он/она/Вы",
+"id": "es:29:05",
+"sample": "Ana compraría un billete."
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "вы (друзья, Испания)",
+"id": "es:29:39",
+"sample": "No compraríais un billete hoy."
+},
+{
+"es": "ellos · comprarían",
+"gloss": "они/вы (ustedes)",
+"id": "es:29:36",
+"sample": "Mis hermanas no comprarían un coche tan barato."
+}
+],
+"title": "comprar · Условное наклонение"
+},
+{
+"rows": [
+{
+"es": "yo · volvería",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverías",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · volvería",
+"gloss": "он/она/Вы",
+"id": "es:29:09",
+"sample": "Luis volvería a casa."
+},
+{
+"es": "nosotros · volveríamos",
+"gloss": "мы",
+"id": "es:29:34",
+"sample": "No volveríamos a casa hoy."
+},
+{
+"es": "vosotros · volveríais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverían",
+"gloss": "они/вы (ustedes)",
+"id": "es:29:23",
+"sample": "Mis hermanos volverían a casa."
+}
+],
+"title": "volver · Условное наклонение"
+}
+]
+},
+"uk": {
+"title": "Я б зателефонував: condicional simple",
+"formula": "інфінітив + ía / ías / ía / íamos / íais / ían",
+"story": "За відповідних обставин купив би хліб: Compraría pan. Це не обіцянка й не жаль про минуле. Можливість передає -ía.",
+"use": "Скажи, що людина зробила б за відповідних обставин, не перетворюючи можливість на обіцянку.",
+"choose": "У правильного дієслова збережи інфінітив повністю: llamar-é «зателефоную», llamar-ía «зателефонував би». Закінчення змінює ставлення мовця до дії.",
+"nuance": "Скажи, що людина зробила б за відповідних обставин, не перетворюючи можливість на обіцянку. Закінчення -ía та його особові варіанти передають зміст «б».",
+"wrong": "Llamaré al hotel.",
+"right": "Llamaría al hotel.",
+"chapters": [
+{
+"title": "Зміст частки «б»",
+"body": "Порівняй: llamaré — подзвоню, llamaría — подзвонив би. У другій фразі ти уявляєш рішення, а не обіцяєш дзвінок. Зміну значення вже передає закінчення -ía; окрема плитка не потрібна.",
+"note": "Ключова форма: llamaría. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:01",
+"es:29:02"
+],
+"focusId": "es:29:01"
+},
+{
+"title": "Та сама основа, що в майбутньому",
+"body": "У правильного дієслова збережи інфінітив повністю: llamar-é «зателефоную», llamar-ía «зателефонував би». Закінчення змінює ставлення мовця до дії.",
+"note": "Ключова форма: llamarías. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:02",
+"es:29:03"
+],
+"focusId": "es:29:02"
+},
+{
+"title": "Одна форма для yo, él, ella та usted",
+"body": "Yo та él/ella/usted мають -ía. Після імені Ana те саме дієслово перекладаємо жіночою формою. Не додавай -a через жіночий рід перекладу.",
+"note": "Ключова форма: compraría. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:07",
+"es:29:08"
+],
+"focusId": "es:29:07"
+},
+{
+"title": "Не сплутай з vivía",
+"body": "Vivía — «раніше жив», основа viv-. Viviría — «жив би», видно цілу основу vivir-. Дивись не лише на -ía, а й на r перед ним.",
+"note": "Ключова форма: mandaría. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:13",
+"es:29:14"
+],
+"focusId": "es:29:13"
+},
+{
+"title": "Умова може бути відомою",
+"body": "Речення «Я б зателефонував» повноцінне як відповідь на «Як би ти вчинив?». Не треба вставляти si, якщо умову не названо. Явна умова буде в останньому уроці.",
+"note": "Ключова форма: llamarías. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:41",
+"es:29:42"
+],
+"focusId": "es:29:41"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти зайшов би до офісу.» / «Я б сьогодні ввечері приготував їжу вдома.». Закінчення -ía та його особові варіанти передають зміст «б». Смислові опори: «oficina» — офіс.",
+"note": "Ключова форма: Cocinaría. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:20",
+"es:29:21"
+],
+"focusId": "es:29:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти заплатив би карткою?» / «Ви надіслали б фотографію?». Закінчення -ía та його особові варіанти передають зміст «б». Скажи, що людина зробила б за відповідних обставин, не перетворюючи можливість на обіцянку.",
+"note": "Ключова форма: mandaríais. Закінчення -ía та його особові варіанти передають зміст «б».",
+"samples": [
+"es:29:44",
+"es:29:50"
+],
+"focusId": "es:29:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaría",
+"gloss": "я",
+"id": "es:29:01",
+"sample": "Llamaría al hotel."
+},
+{
+"es": "tú · llamarías",
+"gloss": "ти",
+"id": "es:29:02",
+"sample": "Llamarías al hotel."
+},
+{
+"es": "él · llamaría",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamaríamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar · Умовний спосіб"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "я",
+"id": "es:29:07",
+"sample": "Compraría pan."
+},
+{
+"es": "tú · comprarías",
+"gloss": "ти",
+"id": "es:29:08",
+"sample": "Comprarías pan."
+},
+{
+"es": "él · compraría",
+"gloss": "він/вона/Ви",
+"id": "es:29:05",
+"sample": "Ana compraría un billete."
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:29:39",
+"sample": "No compraríais un billete hoy."
+},
+{
+"es": "ellos · comprarían",
+"gloss": "вони/ви (ustedes)",
+"id": "es:29:36",
+"sample": "Mis hermanas no comprarían un coche tan barato."
+}
+],
+"title": "comprar · Умовний спосіб"
+},
+{
+"rows": [
+{
+"es": "yo · volvería",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverías",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · volvería",
+"gloss": "він/вона/Ви",
+"id": "es:29:09",
+"sample": "Luis volvería a casa."
+},
+{
+"es": "nosotros · volveríamos",
+"gloss": "ми",
+"id": "es:29:34",
+"sample": "No volveríamos a casa hoy."
+},
+{
+"es": "vosotros · volveríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverían",
+"gloss": "вони/ви (ustedes)",
+"id": "es:29:23",
+"sample": "Mis hermanos volverían a casa."
+}
+],
+"title": "volver · Умовний спосіб"
+}
+]
+},
+"en": {
+"title": "What you would do: the simple conditional",
+"formula": "infinitive + -ía / -ías / -ía / -íamos / -íais / -ían",
+"story": "Imagine what you would buy: Compraría pan means “I would buy bread”, not “I should have bought bread”. The ending marks a hypothetical choice.",
+"use": "State what someone would do under the right circumstances, without making a promise out of possibility.",
+"choose": "For a regular verb, keep the entire infinitive: llamar-é \"will call,\" llamar-ía \"would call.\" Changing the ending changes the speaker's attitude toward the action.",
+"nuance": "State what someone would do under the right circumstances, without making a promise out of possibility. The ending - ía and its personal variants convey the meaning of \"would.\"",
+"wrong": "Llamaré al hotel.",
+"right": "Llamaría al hotel.",
+"chapters": [
+{
+"title": "Am I promising an action or imagining a choice?",
+"body": "Llamaría means “I would call” or, with another subject, “he/she would call”. Spanish packs the conditional meaning into the verb ending. Compare llamaré (I will call).",
+"note": "Key form: llamaría. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:01",
+"es:29:02"
+],
+"focusId": "es:29:01"
+},
+{
+"title": "How is the stem related to the future?",
+"body": "For a regular verb, keep the entire infinitive: llamar-é \"will call,\" llamar-ía \"would call.\" Changing the ending changes the speaker's attitude toward the action.",
+"note": "Key form: llamarías. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:02",
+"es:29:03"
+],
+"focusId": "es:29:02"
+},
+{
+"title": "When different subjects share one verb form",
+"body": "Yo and él/ella/usted take the same conditional ending, -ía. The ending does not change to mark the speaker’s gender.",
+"note": "Key form: compraría. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:07",
+"es:29:08"
+],
+"focusId": "es:29:07"
+},
+{
+"title": "How is llamaría different from vivía?",
+"body": "Vivía — \"used to live,\" the stem is viv -. Viviría — \"would live,\" the entire stem vivir - is visible. Look not only at - ía, but also at r before it.",
+"note": "Key form: mandaría. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:13",
+"es:29:14"
+],
+"focusId": "es:29:13"
+},
+{
+"title": "Must the condition be said out loud?",
+"body": "The phrase \"I would call\" is a complete response to \"What would you do?\" Don't insert si where the condition isn't stated. An explicit condition will appear in the last lesson.",
+"note": "Key form: llamarías. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:41",
+"es:29:42"
+],
+"focusId": "es:29:41"
+},
+{
+"title": "How do I build a hypothetical answer?",
+"body": "Compare two tasks: \"You would have entered the office.\" / \"I would have cooked at home tonight.\" The ending - ía and its personal variants convey the meaning \"would.\" Semantic supports: \" oficina \" — office.",
+"note": "Key form: Cocinaría. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:20",
+"es:29:21"
+],
+"focusId": "es:29:21"
+},
+{
+"title": "Can I use it for a different choice?",
+"body": "Compare two tasks: \"Would you pay by card?\" / \"Would you send a photo?\" The ending - ía and its personal variants convey the meaning of \"would.\" State what the person would do under suitable circumstances, without turning possibility into a promise.",
+"note": "Key form: mandaríais. The ending - ía and its personal variants convey the meaning \"would\".",
+"samples": [
+"es:29:44",
+"es:29:50"
+],
+"focusId": "es:29:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaría",
+"gloss": "I",
+"id": "es:29:01",
+"sample": "Llamaría al hotel."
+},
+{
+"es": "tú · llamarías",
+"gloss": "you",
+"id": "es:29:02",
+"sample": "Llamarías al hotel."
+},
+{
+"es": "él · llamaría",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · llamaríamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaríais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llamar Conditional Mood"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "I",
+"id": "es:29:07",
+"sample": "Compraría pan."
+},
+{
+"es": "tú · comprarías",
+"gloss": "you",
+"id": "es:29:08",
+"sample": "Comprarías pan."
+},
+{
+"es": "él · compraría",
+"gloss": "he/she/you",
+"id": "es:29:05",
+"sample": "Ana compraría un billete."
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "you (friends, Spain)",
+"id": "es:29:39",
+"sample": "No compraríais un billete hoy."
+},
+{
+"es": "ellos · comprarían",
+"gloss": "they/you (ustedes)",
+"id": "es:29:36",
+"sample": "Mis hermanas no comprarían un coche tan barato."
+}
+],
+"title": "comprar Conditional Mood"
+},
+{
+"rows": [
+{
+"es": "yo · volvería",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverías",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · volvería",
+"gloss": "he/she/you",
+"id": "es:29:09",
+"sample": "Luis volvería a casa."
+},
+{
+"es": "nosotros · volveríamos",
+"gloss": "we",
+"id": "es:29:34",
+"sample": "No volveríamos a casa hoy."
+},
+{
+"es": "vosotros · volveríais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverían",
+"gloss": "they/you (ustedes)",
+"id": "es:29:23",
+"sample": "Mis hermanos volverían a casa."
+}
+],
+"title": "volver Conditional Mood"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:29:01",
+"index": 0,
+"right": "Llamaría",
+"near": "Llamarías",
+"seq": [
+"Llamaría",
+"al",
+"hotel"
+],
+"i": 0,
+"kind": "form",
+"key": "es29/lab/form1",
+"feedback": {
+"ru": "Llamaría ← llamar (звонить); yo, él.",
+"uk": "Llamaría ← llamar (телефонувати); yo, él.",
+"en": "Llamaría ← llamar (call); yo, él."
+}
+},
+{
+"id": "es:29:13",
+"index": 1,
+"right": "mandaría",
+"near": "mandarías",
+"seq": [
+"Luis",
+"mandaría",
+"la",
+"foto"
+],
+"i": 12,
+"kind": "form",
+"key": "es29/lab/form2",
+"feedback": {
+"ru": "mandaría ← mandar (отправлять); yo, él.",
+"uk": "mandaría ← mandar (надсилати); yo, él.",
+"en": "mandaría ← mandar (to send); yo, él."
+}
+},
+{
+"id": "es:29:12",
+"index": 1,
+"right": "elegiría",
+"near": "elegirías",
+"seq": [
+"Yo",
+"elegiría",
+"la",
+"habitación",
+"con",
+"balcón"
+],
+"i": 11,
+"kind": "form",
+"key": "es29/lab/form3",
+"feedback": {
+"ru": "Глагол: elegir — выбирать.",
+"uk": "Дієслово: elegir — обирати.",
+"en": "Verb: elegir — to choose."
+}
+},
+{
+"id": "es:29:41",
+"index": 0,
+"right": "Llamarías",
+"near": "Llamaría",
+"seq": [
+"Llamarías",
+"al",
+"hotel"
+],
+"i": 40,
+"kind": "form",
+"key": "es29/lab/form4",
+"feedback": {
+"ru": "Llamarías ← llamar (звонить); tú.",
+"uk": "Llamarías ← llamar (телефонувати); tú.",
+"en": "Llamarías ← llamar (call); tú."
+}
+},
+{
+"id": "es:29:07",
+"index": 0,
+"right": "Compraría",
+"near": "Comprarías",
+"seq": [
+"Compraría",
+"pan"
+],
+"i": 6,
+"kind": "spot",
+"key": "es29/lab/spot1",
+"feedback": {
+"ru": "Compraría ← comprar (покупать); yo, él.",
+"uk": "Compraría ← comprar (купувати); yo, él.",
+"en": "Compraría ← comprar (buy); yo, él."
+}
+},
+{
+"id": "es:29:10",
+"index": 0,
+"right": "Esperaríamos",
+"near": "Esperaríais",
+"seq": [
+"Esperaríamos",
+"aquí"
+],
+"i": 9,
+"kind": "spot",
+"key": "es29/lab/spot2",
+"feedback": {
+"ru": "Esperaríamos ← esperar (ждать); nosotros.",
+"uk": "Esperaríamos ← esperar (чекати); nosotros.",
+"en": "Esperaríamos ← esperar (to wait); nosotros."
+}
+},
+{
+"id": "es:29:09",
+"index": 1,
+"right": "volvería",
+"near": "volverían",
+"seq": [
+"Luis",
+"volvería",
+"a",
+"casa"
+],
+"i": 8,
+"kind": "spot",
+"key": "es29/lab/spot3",
+"feedback": {
+"ru": "volvería ← volver (возвращаться); yo, él.",
+"uk": "volvería ← volver (повертатися); yo, él.",
+"en": "volvería ← volver (to return); yo, él."
+}
+},
+{
+"id": "es:29:08",
+"index": 0,
+"right": "Comprarías",
+"near": "Compraría",
+"seq": [
+"Comprarías",
+"pan"
+],
+"i": 7,
+"kind": "spot",
+"key": "es29/lab/spot4",
+"feedback": {
+"ru": "Comprarías ← comprar (покупать); tú.",
+"uk": "Comprarías ← comprar (купувати); tú.",
+"en": "Comprarías ← comprar (to buy); tú."
+}
+},
+{
+"kind": "match",
+"key": "es29/lab/match1",
+"id": "es:29:02",
+"other": "es:29:04"
+},
+{
+"kind": "match",
+"key": "es29/lab/match2",
+"id": "es:29:17",
+"other": "es:29:20"
+},
+{
+"kind": "match",
+"key": "es29/lab/match3",
+"id": "es:29:33",
+"other": "es:29:34"
+},
+{
+"kind": "match",
+"key": "es29/lab/match4",
+"id": "es:29:46",
+"other": "es:29:50"
+},
+{
+"kind": "build",
+"key": "es29/lab/build1",
+"id": "es:29:04"
+},
+{
+"kind": "build",
+"key": "es29/lab/build2",
+"id": "es:29:15"
+},
+{
+"kind": "build",
+"key": "es29/lab/build3",
+"id": "es:29:29"
+},
+{
+"kind": "build",
+"key": "es29/lab/build4",
+"id": "es:29:42"
+},
+{
+"kind": "transform",
+"id": "es:29:04",
+"base": "es:29:03",
+"diff": [
+{
+"before": [
+"Llamaría"
+],
+"after": [
+"Llamarías"
+]
+}
+],
+"key": "es29/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:29:41",
+"base": "es:29:01",
+"diff": [
+{
+"before": [
+"Llamaría"
+],
+"after": [
+"Llamarías"
+]
+}
+],
+"key": "es29/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:29:50",
+"base": "es:29:13",
+"diff": [
+{
+"before": [
+"Luis",
+"mandaría"
+],
+"after": [
+"Mandaríais"
+]
+}
+],
+"key": "es29/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:29:38",
+"base": "es:29:37",
+"diff": [
+{
+"before": [
+"una",
+"habitación",
+"ruidosa"
+],
+"after": [
+"ese",
+"hotel"
+]
+}
+],
+"key": "es29/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+12
+],
+[
+4,
+2
+],
+[
+1,
+13
+],
+[
+3,
+15
+],
+[
+9,
+14
+],
+[
+18,
+11
+]
+],
+"worked": [
+"es:29:05",
+"es:29:18",
+"es:29:33",
+"es:29:48"
+],
+"reflection": [
+"es:29:01",
+"es:29:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 30,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 30,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Хочу, чтобы ты…: querer que",
+"formula": "querer (кто хочет) + que + subjuntivo (кто сделает)",
+"story": "Желание моё, приходит другой человек. Quiero venir — хочу прийти сам. Quiero que vengas — хочу, чтобы пришёл ты.",
+"use": "Вырази пожелание относительно другого исполнителя. После que выбирается форма subjuntivo.",
+"choose": "Говорящий не утверждает «ты придёшь». Он говорит, что хочет этого. Поэтому после quiero que в этой конструкции берём vengas, а не vienes или vendrás.",
+"nuance": "Вырази пожелание относительно другого исполнителя. После que выбирается форма subjuntivo. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"wrong": "Quiero que vienes mañana.",
+"right": "Quiero que vengas mañana.",
+"chapters": [
+{
+"title": "Два действующих лица",
+"body": "Quiero venir — я сам хочу прийти. Quiero que vengas — хочу, чтобы пришёл ты. Именно смена исполнителя объясняет появление que и отдельной личной формы.",
+"note": "Quiero — кто хочет; vengas — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:01",
+"es:30:02"
+],
+"focusId": "es:30:01"
+},
+{
+"title": "Не сообщение о факте",
+"body": "Говорящий не утверждает «ты придёшь». Он говорит, что хочет этого. Поэтому после quiero que в этой конструкции берём vengas, а не vienes или vendrás.",
+"note": "Quiero — кто хочет; entres — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:02",
+"es:30:03"
+],
+"focusId": "es:30:02"
+},
+{
+"title": "Окончания с другой гласной",
+"body": "У обычного -ar появляются e, es, e, emos, éis, en: hablar → hable. У -er/-ir появляются a, as, a, amos, áis, an: abrir → abra. Лицо задаёт исполнитель желания.",
+"note": "Quiero — кто хочет; abra — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:03",
+"es:30:04"
+],
+"focusId": "es:30:03"
+},
+{
+"title": "Основа не всегда словарная",
+"body": "Venir даёт venga, vengas; cerrar — cierre, cierres. Не приклеивай окончание к первой попавшейся основе. В справочнике показаны реальные формы вместе с примерами.",
+"note": "Quiero — кто хочет; cierres — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:07",
+"es:30:08"
+],
+"focusId": "es:30:07"
+},
+{
+"title": "Не прошедшее из-за перевода",
+"body": "В Quiero que vengas я хочу, чтобы ты пришёл: желаемое действие ещё не свершилось. Не принимай vengas за прошедшее время; это форма для того, чего я сейчас хочу.",
+"note": "Quieres — кто хочет; volvamos — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:45",
+"es:30:46"
+],
+"focusId": "es:30:45"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мы хотим, чтобы ты пришёл завтра.» / «Ана хочет, чтобы механик починил колесо.». Первый глагол называет желающего, второй — исполнителя желаемого действия. Две части: Queremos  /  que vengas mañana.",
+"note": "quiere — кто хочет; repare — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:20",
+"es:30:21"
+],
+"focusId": "es:30:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты хочешь, чтобы преподавательница говорила помедленнее?» / «Ты хочешь, чтобы я прочитал сообщение?». Первый глагол называет желающего, второй — исполнителя желаемого действия. Вырази пожелание относительно другого исполнителя. После que выбирается форма subjuntivo.",
+"note": "Quieres — кто хочет; lea — желаемое действие. Первый глагол называет желающего, второй — исполнителя желаемого действия.",
+"samples": [
+"es:30:44",
+"es:30:50"
+],
+"focusId": "es:30:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "ты",
+"id": "es:30:01",
+"sample": "Quiero que vengas mañana."
+},
+{
+"es": "él · venga",
+"gloss": "он/она/Вы",
+"id": "es:30:10",
+"sample": "Quiero que el médico venga hoy."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir · Настоящее сослагательное"
+},
+{
+"rows": [
+{
+"es": "yo · abra",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abras",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abra",
+"gloss": "он/она/Вы",
+"id": "es:30:03",
+"sample": "Quiero que Luis abra la puerta."
+},
+{
+"es": "nosotros · abramos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · abráis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abran",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir · Настоящее сослагательное"
+},
+{
+"rows": [
+{
+"es": "yo · lea",
+"gloss": "я",
+"id": "es:30:50",
+"sample": "¿Quieres que lea el mensaje?"
+},
+{
+"es": "tú · leas",
+"gloss": "ты",
+"id": "es:30:04",
+"sample": "Quiero que leas el mensaje."
+},
+{
+"es": "él · lea",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leáis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lean",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer · Настоящее сослагательное"
+},
+{
+"rows": [
+{
+"es": "yo · vuelva",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vuelvas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · vuelva",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · volvamos",
+"gloss": "мы",
+"id": "es:30:09",
+"sample": "Quiero que volvamos juntos."
+},
+{
+"es": "vosotros · volváis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:30:18",
+"sample": "Queremos que volváis juntos."
+},
+{
+"es": "ellos · vuelvan",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "volver · Настоящее сослагательное"
+}
+]
+},
+"uk": {
+"title": "Хочу, щоб ти…: querer que",
+"formula": "querer (хто хоче) + que + subjuntivo (хто зробить)",
+"story": "Бажання моє, приходить інша людина. Quiero venir — хочу прийти сам. Quiero que vengas — хочу, щоб прийшов ти.",
+"use": "Вислови побажання щодо іншого виконавця. Після que обираємо форму subjuntivo.",
+"choose": "Мовець не стверджує «ти прийдеш». Він цього хоче. Тому після quiero que тут беремо vengas, а не vienes чи vendrás.",
+"nuance": "Вислови побажання щодо іншого виконавця. Після que обираємо форму subjuntivo. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"wrong": "Quiero que vienes mañana.",
+"right": "Quiero que vengas mañana.",
+"chapters": [
+{
+"title": "Два виконавці",
+"body": "Quiero venir — я сам хочу прийти. Quiero que vengas — хочу, щоб прийшов ти. Саме зміна виконавця пояснює появу que й окремої особової форми.",
+"note": "Quiero — хто бажає; vengas — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:01",
+"es:30:02"
+],
+"focusId": "es:30:01"
+},
+{
+"title": "Не повідомлення про факт",
+"body": "Мовець не стверджує «ти прийдеш». Він цього хоче. Тому після quiero que тут беремо vengas, а не vienes чи vendrás.",
+"note": "Quiero — хто бажає; entres — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:02",
+"es:30:03"
+],
+"focusId": "es:30:02"
+},
+{
+"title": "Закінчення з іншою голосною",
+"body": "У звичайного -ar з’являються e, es, e, emos, éis, en: hablar → hable. У -er/-ir — a, as, a, amos, áis, an: abrir → abra. Особу визначає виконавець бажаного.",
+"note": "Quiero — хто бажає; abra — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:03",
+"es:30:04"
+],
+"focusId": "es:30:03"
+},
+{
+"title": "Основа не завжди словникова",
+"body": "Venir дає venga, vengas; cerrar — cierre, cierres. Не додавай закінчення до першої-ліпшої основи. Дивись фактичні форми разом із прикладами.",
+"note": "Quiero — хто бажає; cierres — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:07",
+"es:30:08"
+],
+"focusId": "es:30:07"
+},
+{
+"title": "Не минуле через переклад",
+"body": "У Quiero que vengas я хочу, щоб ти прийшов: бажана дія ще не відбулася. Не сприймай vengas як минулий час; це форма для того, чого я зараз хочу.",
+"note": "Quieres — хто бажає; volvamos — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:45",
+"es:30:46"
+],
+"focusId": "es:30:45"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ми хочемо, щоб ти прийшов завтра.» / «Ана хоче, щоб механік полагодив колесо.». Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії. Дві частини: Queremos  /  que vengas mañana.",
+"note": "quiere — хто бажає; repare — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:20",
+"es:30:21"
+],
+"focusId": "es:30:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти хочеш, щоб викладачка говорила повільніше?» / «Ти хочеш, щоб я прочитав повідомлення?». Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії. Вислови побажання щодо іншого виконавця. Після que обираємо форму subjuntivo.",
+"note": "Quieres — хто бажає; lea — бажана дія. Перше дієслово називає того, хто бажає, друге — виконавця бажаної дії.",
+"samples": [
+"es:30:44",
+"es:30:50"
+],
+"focusId": "es:30:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "ти",
+"id": "es:30:01",
+"sample": "Quiero que vengas mañana."
+},
+{
+"es": "él · venga",
+"gloss": "він/вона/Ви",
+"id": "es:30:10",
+"sample": "Quiero que el médico venga hoy."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir · Теперішній субхунтив"
+},
+{
+"rows": [
+{
+"es": "yo · abra",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abras",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abra",
+"gloss": "він/вона/Ви",
+"id": "es:30:03",
+"sample": "Quiero que Luis abra la puerta."
+},
+{
+"es": "nosotros · abramos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · abráis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abran",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir · Теперішній субхунтив"
+},
+{
+"rows": [
+{
+"es": "yo · lea",
+"gloss": "я",
+"id": "es:30:50",
+"sample": "¿Quieres que lea el mensaje?"
+},
+{
+"es": "tú · leas",
+"gloss": "ти",
+"id": "es:30:04",
+"sample": "Quiero que leas el mensaje."
+},
+{
+"es": "él · lea",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lean",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer · Теперішній субхунтив"
+},
+{
+"rows": [
+{
+"es": "yo · vuelva",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vuelvas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · vuelva",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · volvamos",
+"gloss": "ми",
+"id": "es:30:09",
+"sample": "Quiero que volvamos juntos."
+},
+{
+"es": "vosotros · volváis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:30:18",
+"sample": "Queremos que volváis juntos."
+},
+{
+"es": "ellos · vuelvan",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "volver · Теперішній субхунтив"
+}
+]
+},
+"en": {
+"title": "Wanting someone else to do something: querer que",
+"formula": "querer (quiero, quieres…) + que + presente de subjuntivo",
+"story": "Quiero venir: I want to come myself. Quiero que vengas: I want you to come. Two different people, so the second action gets its own verb form.",
+"use": "Express a wish regarding another performer. After que, choose the form subjuntivo.",
+"choose": "The speaker doesn't state \"you will come.\" He says he wants it. Therefore, after quiero que in this construction, we take vengas, not vienes or vendrás.",
+"nuance": "Express a wish regarding another performer. After que, choose the form subjuntivo. The first verb names the one who wishes, the second, the one who performs the desired action.",
+"wrong": "Quiero que vienes mañana.",
+"right": "Quiero que vengas mañana.",
+"chapters": [
+{
+"title": "Does the same person do both things?",
+"body": "Quiero venir — I want to come myself. Quiero que vengas — I want you to come. It is the change in performer that explains the appearance of que and a separate personal form.",
+"note": "Quiero — whoever wants; vengas — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:01",
+"es:30:02"
+],
+"focusId": "es:30:01"
+},
+{
+"title": "A wish or an established fact?",
+"body": "The speaker doesn't state \"you will come.\" He says he wants it. Therefore, after quiero que in this construction, we take vengas, not vienes or vendrás.",
+"note": "Quiero — whoever wants; entres — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:02",
+"es:30:03"
+],
+"focusId": "es:30:02"
+},
+{
+"title": "Which vowel changes in the ending?",
+"body": "For normal - ar, e, es, e, emos, éis, en appears: hablar → hable. For - er /- ir, a, as, a, amos, áis, an appears: abrir → abra. The face determines the wish-fulfiller.",
+"note": "Quiero — whoever wants; abra — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:03",
+"es:30:04"
+],
+"focusId": "es:30:03"
+},
+{
+"title": "Do all the verbs keep their usual stem?",
+"body": "Venir yields venga, vengas; cerrar yields cierre, cierres. Don't attach the ending to the first stem you come across. The dictionary shows the actual forms along with examples.",
+"note": "Quiero — whoever wants; cierres — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:07",
+"es:30:08"
+],
+"focusId": "es:30:07"
+},
+{
+"title": "Does the wish refer to the past?",
+"body": "Quiero que venga expresses a wish, not a report of something that already happened. Venga is the present subjunctive of venir.",
+"note": "Quieres — whoever wants; volvamos — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:45",
+"es:30:46"
+],
+"focusId": "es:30:45"
+},
+{
+"title": "How do I connect the two people’s actions?",
+"body": "Compare the two tasks: \"We want you to come tomorrow.\" / \"Ana wants the mechanic to fix the tire.\" The first verb names the one who wants the desired action, the second one names the one who performs the desired action. Two parts: Queremos / que vengas mañana.",
+"note": "quiere — whoever wants; repare — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:20",
+"es:30:21"
+],
+"focusId": "es:30:21"
+},
+{
+"title": "Can I express another wish?",
+"body": "Compare the two tasks: \"Do you want the teacher to speak more slowly?\" / \"Do you want me to read the message?\" The first verb names the person who wishes the desired action, the second one names the person who performs the desired action. Express your wish regarding the other person who performs it. After que, choose the form subjuntivo.",
+"note": "Quieres — whoever wants; lea — the desired action. The first verb names the desiring party, the second — the performer of the desired action.",
+"samples": [
+"es:30:44",
+"es:30:50"
+],
+"focusId": "es:30:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "you",
+"id": "es:30:01",
+"sample": "Quiero que vengas mañana."
+},
+{
+"es": "él · venga",
+"gloss": "he/she/you",
+"id": "es:30:10",
+"sample": "Quiero que el médico venga hoy."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir Present Subjunctive"
+},
+{
+"rows": [
+{
+"es": "yo · abra",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · abras",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · abra",
+"gloss": "he/she/you",
+"id": "es:30:03",
+"sample": "Quiero que Luis abra la puerta."
+},
+{
+"es": "nosotros · abramos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · abráis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · abran",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "abrir Present Subjunctive"
+},
+{
+"rows": [
+{
+"es": "yo · lea",
+"gloss": "I",
+"id": "es:30:50",
+"sample": "¿Quieres que lea el mensaje?"
+},
+{
+"es": "tú · leas",
+"gloss": "you",
+"id": "es:30:04",
+"sample": "Quiero que leas el mensaje."
+},
+{
+"es": "él · lea",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · leamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · leáis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lean",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "leer Present Subjunctive"
+},
+{
+"rows": [
+{
+"es": "yo · vuelva",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vuelvas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · vuelva",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · volvamos",
+"gloss": "we",
+"id": "es:30:09",
+"sample": "Quiero que volvamos juntos."
+},
+{
+"es": "vosotros · volváis",
+"gloss": "you (friends, Spain)",
+"id": "es:30:18",
+"sample": "Queremos que volváis juntos."
+},
+{
+"es": "ellos · vuelvan",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "volver Present Subjunctive"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:30:01",
+"index": 2,
+"right": "vengas",
+"near": "vienes",
+"seq": [
+"Quiero",
+"que",
+"vengas",
+"mañana"
+],
+"i": 0,
+"kind": "form",
+"key": "es30/lab/form1",
+"feedback": {
+"ru": "Глагол: venir — приходить, приезжать.",
+"uk": "Дієслово: venir — приходити, приїжджати.",
+"en": "Verb: venir — to arrive, to come."
+}
+},
+{
+"id": "es:30:14",
+"index": 2,
+"right": "llames",
+"near": "llamas",
+"seq": [
+"Queremos",
+"que",
+"llames",
+"al",
+"hotel"
+],
+"i": 13,
+"kind": "form",
+"key": "es30/lab/form2",
+"feedback": {
+"ru": "Глагол: llamar — звонить.",
+"uk": "Дієслово: llamar — телефонувати.",
+"en": "Verb: llamar — to ring."
+}
+},
+{
+"id": "es:30:26",
+"index": 5,
+"right": "hable",
+"near": "habla",
+"seq": [
+"Ana",
+"quiere",
+"que",
+"la",
+"profesora",
+"hable",
+"más",
+"despacio"
+],
+"i": 25,
+"kind": "form",
+"key": "es30/lab/form3",
+"feedback": {
+"ru": "Глагол: hablar — говорить.",
+"uk": "Дієслово: hablar — говорити.",
+"en": "Verb: hablar — to speak."
+}
+},
+{
+"id": "es:30:37",
+"index": 7,
+"right": "venga",
+"near": "viene",
+"seq": [
+"Mi",
+"madre",
+"no",
+"quiere",
+"que",
+"el",
+"médico",
+"venga",
+"hoy"
+],
+"i": 36,
+"kind": "form",
+"key": "es30/lab/form4",
+"feedback": {
+"ru": "Глагол: venir — приходить, приезжать.",
+"uk": "Дієслово: venir — приходити, приїжджати.",
+"en": "Verb: venir — to arrive, to come."
+}
+},
+{
+"id": "es:30:07",
+"index": 2,
+"right": "cierres",
+"near": "cierras",
+"seq": [
+"Quiero",
+"que",
+"cierres",
+"la",
+"ventana"
+],
+"i": 6,
+"kind": "spot",
+"key": "es30/lab/spot1",
+"feedback": {
+"ru": "Глагол: cerrar — закрывать.",
+"uk": "Дієслово: cerrar — зачиняти, закривати.",
+"en": "Verb: cerrar — to close."
+}
+},
+{
+"id": "es:30:22",
+"index": 3,
+"right": "leas",
+"near": "lees",
+"seq": [
+"Ana",
+"quiere",
+"que",
+"leas",
+"el",
+"mensaje"
+],
+"i": 21,
+"kind": "spot",
+"key": "es30/lab/spot2",
+"feedback": {
+"ru": "Глагол: leer — читать.",
+"uk": "Дієслово: leer — читати.",
+"en": "Verb: leer — read."
+}
+},
+{
+"id": "es:30:32",
+"index": 4,
+"right": "copies",
+"near": "copias",
+"seq": [
+"Mi",
+"madre",
+"quiere",
+"que",
+"copies",
+"el",
+"texto"
+],
+"i": 31,
+"kind": "spot",
+"key": "es30/lab/spot3",
+"feedback": {
+"ru": "Глагол: copiar — копировать.",
+"uk": "Дієслово: copiar — копіювати.",
+"en": "Verb: copiar — to copy."
+}
+},
+{
+"id": "es:30:45",
+"index": 2,
+"right": "volvamos",
+"near": "volvemos",
+"seq": [
+"Quieres",
+"que",
+"volvamos",
+"juntos"
+],
+"i": 44,
+"kind": "spot",
+"key": "es30/lab/spot4",
+"feedback": {
+"ru": "Глагол: volver — возвращаться.",
+"uk": "Дієслово: volver — повертатися.",
+"en": "Verb: volver — to return."
+}
+},
+{
+"kind": "match",
+"key": "es30/lab/match1",
+"id": "es:30:02",
+"other": "es:30:03"
+},
+{
+"kind": "match",
+"key": "es30/lab/match2",
+"id": "es:30:17",
+"other": "es:30:18"
+},
+{
+"kind": "match",
+"key": "es30/lab/match3",
+"id": "es:30:33",
+"other": "es:30:34"
+},
+{
+"kind": "match",
+"key": "es30/lab/match4",
+"id": "es:30:46",
+"other": "es:30:47"
+},
+{
+"kind": "build",
+"key": "es30/lab/build1",
+"id": "es:30:04"
+},
+{
+"kind": "build",
+"key": "es30/lab/build2",
+"id": "es:30:15"
+},
+{
+"kind": "build",
+"key": "es30/lab/build3",
+"id": "es:30:29"
+},
+{
+"kind": "build",
+"key": "es30/lab/build4",
+"id": "es:30:42"
+},
+{
+"kind": "transform",
+"id": "es:30:17",
+"base": "es:30:08",
+"diff": [
+{
+"before": [
+"Quiero"
+],
+"after": [
+"Queremos"
+]
+}
+],
+"key": "es30/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:30:19",
+"base": "es:30:10",
+"diff": [
+{
+"before": [
+"Quiero"
+],
+"after": [
+"Queremos"
+]
+}
+],
+"key": "es30/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:30:49",
+"base": "es:30:03",
+"diff": [
+{
+"before": [
+"Quiero"
+],
+"after": [
+"Quieres"
+]
+}
+],
+"key": "es30/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:30:44",
+"base": "es:30:26",
+"diff": [
+{
+"before": [
+"Ana",
+"quiere"
+],
+"after": [
+"Quieres"
+]
+}
+],
+"key": "es30/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+1,
+13
+],
+[
+16,
+9
+],
+[
+7,
+11
+],
+[
+5,
+17
+],
+[
+19,
+15
+]
+],
+"worked": [
+"es:30:05",
+"es:30:18",
+"es:30:33",
+"es:30:48"
+],
+"reflection": [
+"es:30:01",
+"es:30:02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

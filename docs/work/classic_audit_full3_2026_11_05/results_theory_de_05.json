@@ -1,0 +1,128 @@
+[
+ {
+  "id": "lesson-11/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "\"you're helping it find it\" — garbled",
+  "fix": "Describing a place is like a caption under a photo. You're not moving the object, you're helping someone find it. The key is on the table, the passport is inside the bag. Choose the preposition based on where exactly to look."
+ },
+ {
+  "id": "lesson-11/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Вибирай прийменник того, де…» — пропущено «залежно від»",
+  "fix": "Опис місця – як підпис під фотографією. Ти не переносиш предмет, а допомагаєш його знайти. Ключ лежить на столі, паспорт лежить усередині сумки. Вибирай прийменник залежно від того, де саме треба шукати."
+ },
+ {
+  "id": "lesson-11/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«відносне становище» (=ситуация) вместо «положення»; «дальний» вместо «давальний»",
+  "fix": "В одного предмета різні сусіди: перед дверима, поруч із ними, за шафою. Міняй прийменник, коли змінюється відносне положення, але для відповіді на `wo` у цих прийменників зберігай давальний відмінок."
+ },
+ {
+  "id": "lesson-11/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "One object has different neighbors: in front of the door, next to it, behind the cabinet. Change the preposition when the relative position changes, but when responding to `wo`, keep the dative case for these prepositions."
+ },
+ {
+  "id": "lesson-11/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.ru",
+  "problem": "Пример de:11:20 — vor dem Sofa, а текст только про über",
+  "fix": "Если зеркало висит над раковиной, оно не движется вверх. `Über`, `vor` и другие такие предлоги передают взаимное положение двух вещей. Объект, относительно которого ориентируются, идёт после предлога в дательном: `über dem Waschbecken`, `vor dem Sofa`."
+ },
+ {
+  "id": "lesson-11/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«взаємне становище» вместо «положення»; пример vor не охвачен текстом",
+  "fix": "Якщо дзеркало висить над раковиною, воно не рухається вгору. `Über`, `vor` та інші такі прийменники передають взаємне положення двох речей. Об'єкт, щодо якого орієнтуються, йде після прийменника в давальному: `über dem Waschbecken`, `vor dem Sofa`."
+ },
+ {
+  "id": "lesson-11/chapter-4",
+  "type": "T1",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "Example de:11:20 is vor, text covers only über",
+  "fix": "If a mirror hangs above the sink, it doesn't move upward. `Über`, `vor` and similar prepositions convey the relative position of two things. The reference object comes after the preposition in the dative: `über dem Waschbecken`, `vor dem Sofa`."
+ },
+ {
+  "id": "lesson-11/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "The preposition `in` has a common abbreviation `im` for `in dem`. `im` is not followed by `dem`. To refer to a feminine kitchen, the full form `in der` remains."
+ },
+ {
+  "id": "lesson-11/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«це ще питання» = «это ещё вопрос (сомнительно)», смысл ≠ ru",
+  "fix": "Рух ще не означає знахідний відмінок. Собака може бігати всередині саду, а людина — плавати в озері. Якщо повідомляєш, де відбувається рух, це все одно питання «де?»."
+ },
+ {
+  "id": "lesson-11/chapter-7",
+  "type": "T1",
+  "field": "theory.chapters[6].textByLocale.ru",
+  "problem": "Текст: «под диваном спит собака», «в ящике ложка» — а примеры: unter dem Tisch и zwischen der Bank und dem Hotel",
+  "fix": "Восстанови картину по словам: найди вещь и ориентир. Почта находится между банком и гостиницей, собака спит под столом. Глагол описывает первую вещь, а дательный падеж ориентира показывает, где она."
+ },
+ {
+  "id": "lesson-11/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«ставить місцеве ставлення» — калька; текст не совпадает с примерами (под столом, между банком и отелем)",
+  "fix": "Віднови картину за словами: знайди річ та орієнтир. Пошта знаходиться між банком і готелем, собака спить під столом. Дієслово описує першу річ, а давальний відмінок орієнтира показує, де вона."
+ },
+ {
+  "id": "lesson-11/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "\"the second case group\" — garbled; text ≠ examples",
+  "fix": "Rebuild the picture from the words: find the object and the landmark. The post office is between the bank and the hotel, the dog is sleeping under the table. The verb describes the first object, and the dative of the landmark shows where it is."
+ },
+ {
+  "id": "lesson-12/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "Garbled: \"a cup or chair is placed down\" = same as flat object; meaning of ru lost",
+  "fix": "German often distinguishes how a thing will end up: standing or lying. A small flat object is usually laid down (`legen`), while a cup or a chair is stood up (`stellen`). First choose the action, and only then the article of the destination."
+ },
+ {
+  "id": "lesson-12/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Compare `auf dem Tisch` and `auf den Tisch`. In the first case, we are looking on the table; in the second, we are placing the object there. In this lesson, the masculine article form helps us notice the difference both aurally and in writing."
+ },
+ {
+  "id": "lesson-12/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«Вже висить картина описувалася б» — обрыв синтаксиса",
+  "fix": "`An` пов'язує предмет з поверхнею або точкою кріплення. Коли вішаєш картину на стіну, вона переміщається на цю поверхню. Картину, що вже висить, описували б інакше."
+ },
+ {
+  "id": "lesson-12/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Людина… він» — несогласование рода",
+  "fix": "Людина теж може сама змінити місце. `In den Garten` означає, що вона потрапить усередину саду. `Im Garten` називало б простір, у якому вона вже гуляє чи бігає."
+ },
+ {
+  "id": "lesson-12/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«приводу» (=повод) вместо «прийменника»; «зберігає давальне» без «відмінок»",
+  "fix": "Це не правило для будь-якого прийменника зі значенням напрямку. `Zu` зберігає давальний відмінок навіть при русі до лікаря. Тут порівнюються лише прийменники, здатні змінювати відмінок залежно від місця та мети."
+ },
+ {
+  "id": "lesson-12/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«де виявився предмет» (=выяснилось) вместо «опинився»",
+  "fix": "Перевір себе словами «де опинився предмет?». М'яч не просто котиться десь під диваном: у заключній фразі він закочується під нього. Загальний зміст важливіший за механічний підрахунок дієслів руху."
+ }
+]

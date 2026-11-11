@@ -72,7 +72,6 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: оценку без текста 
   it('все экраны завершения показывают общую карточку: Уроки, Learning V2, Словарь, Диалоги ×2', () => {
     for (const rel of [
       'app/lesson_complete.tsx',
-      'components/learning-v2/horizons/HorizonSessionResult.tsx',
       'app/flashcards/SessionResultScreen.tsx',
       'app/dialogue_v2_completion.tsx',
       'app/ai_dialog_session.tsx',

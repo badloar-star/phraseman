@@ -1,0 +1,679 @@
+{
+ "lang": "fr",
+ "lesson": 11,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:11:01",
+   "target": "Je vais à la gare.",
+   "ru": "Я иду на вокзал.",
+   "uk": "Я йду на залізничний вокзал."
+  },
+  {
+   "id": "fr:11:02",
+   "target": "Tu vas à la gare.",
+   "ru": "Ты идешь на вокзал.",
+   "uk": "Ти йдеш на вокзал."
+  },
+  {
+   "id": "fr:11:03",
+   "target": "Elle va au marché.",
+   "ru": "Она идет на рынок.",
+   "uk": "Вона йде на ринок."
+  },
+  {
+   "id": "fr:11:04",
+   "target": "Il va au marché.",
+   "ru": "Он идет на рынок.",
+   "uk": "Він йде на ринок."
+  },
+  {
+   "id": "fr:11:05",
+   "target": "Nous allons à l’école.",
+   "ru": "Мы идём в школу.",
+   "uk": "Ми йдемо до школи."
+  },
+  {
+   "id": "fr:11:06",
+   "target": "Vous allez à l’école.",
+   "ru": "Вы идёте в школу.",
+   "uk": "Ви йдете до школи."
+  },
+  {
+   "id": "fr:11:07",
+   "target": "Ils vont au bureau.",
+   "ru": "Они идут в офис.",
+   "uk": "Вони йдуть до офісу."
+  },
+  {
+   "id": "fr:11:08",
+   "target": "Elles vont à la banque.",
+   "ru": "Они идут в банк.",
+   "uk": "Вони йдуть до банку."
+  },
+  {
+   "id": "fr:11:09",
+   "target": "Je vais au cinéma.",
+   "ru": "Я иду в кино.",
+   "uk": "Я йду в кіно."
+  },
+  {
+   "id": "fr:11:10",
+   "target": "Tu vas à la piscine.",
+   "ru": "Ты идёшь в бассейн.",
+   "uk": "Ти йдеш до басейну."
+  },
+  {
+   "id": "fr:11:11",
+   "target": "Léa va chez le médecin.",
+   "ru": "Леа идёт к врачу.",
+   "uk": "Леа йде до лікаря."
+  },
+  {
+   "id": "fr:11:12",
+   "target": "Paul va chez le dentiste.",
+   "ru": "Поль идёт к стоматологу.",
+   "uk": "Поль йде до стоматолога."
+  },
+  {
+   "id": "fr:11:13",
+   "target": "Je vais chez ma sœur.",
+   "ru": "Я иду к сестре.",
+   "uk": "Я йду до сестри."
+  },
+  {
+   "id": "fr:11:14",
+   "target": "Tu vas chez ton frère.",
+   "ru": "Ты идёшь к брату.",
+   "uk": "Ти йдеш до брата."
+  },
+  {
+   "id": "fr:11:15",
+   "target": "Nous allons chez des amis.",
+   "ru": "Мы идём к друзьям.",
+   "uk": "Ми йдемо до друзів."
+  },
+  {
+   "id": "fr:11:16",
+   "target": "Ils vont chez leurs parents.",
+   "ru": "Они идут к родителям.",
+   "uk": "Вони йдуть до батьків."
+  },
+  {
+   "id": "fr:11:17",
+   "target": "Vous allez chez vous ?",
+   "ru": "Вы идёте к себе домой?",
+   "uk": "Ви йдете до себе додому?"
+  },
+  {
+   "id": "fr:11:18",
+   "target": "Je vais à la pharmacie.",
+   "ru": "Я иду в аптеку.",
+   "uk": "Я йду до аптеки."
+  },
+  {
+   "id": "fr:11:19",
+   "target": "Elle va à l’hôpital.",
+   "ru": "Она идёт в больницу.",
+   "uk": "Вона йде до лікарні."
+  },
+  {
+   "id": "fr:11:20",
+   "target": "Il va au garage.",
+   "ru": "Он идёт в гараж.",
+   "uk": "Він йде до гаража."
+  },
+  {
+   "id": "fr:11:21",
+   "target": "Je vais à Lyon.",
+   "ru": "Я еду в Лион.",
+   "uk": "Я їду до Ліона."
+  },
+  {
+   "id": "fr:11:22",
+   "target": "Elle va à Paris.",
+   "ru": "Она едет в Париж.",
+   "uk": "Вона їде до Парижа."
+  },
+  {
+   "id": "fr:11:23",
+   "target": "Nous allons en France.",
+   "ru": "Мы едем во Францию.",
+   "uk": "Ми їдемо до Франції."
+  },
+  {
+   "id": "fr:11:24",
+   "target": "Ils vont en Belgique.",
+   "ru": "Они едут в Бельгию.",
+   "uk": "Вони їдуть до Бельгії."
+  },
+  {
+   "id": "fr:11:25",
+   "target": "Tu vas au Canada.",
+   "ru": "Ты едешь в Канаду.",
+   "uk": "Ти їдеш до Канади."
+  },
+  {
+   "id": "fr:11:26",
+   "target": "Vous allez au Portugal.",
+   "ru": "Вы едете в Португалию.",
+   "uk": "Ви їдете до Португалії."
+  },
+  {
+   "id": "fr:11:27",
+   "target": "Paul va en Italie.",
+   "ru": "Поль едет в Италию.",
+   "uk": "Поль їде до Італії."
+  },
+  {
+   "id": "fr:11:28",
+   "target": "Ma sœur va aux Pays-Bas.",
+   "ru": "Моя сестра едет в Нидерланды.",
+   "uk": "Моя сестра їде до Нідерландів."
+  },
+  {
+   "id": "fr:11:29",
+   "target": "Nous allons aux États-Unis.",
+   "ru": "Мы едем в Соединенные Штаты.",
+   "uk": "Ми їдемо до Сполучених Штатів."
+  },
+  {
+   "id": "fr:11:30",
+   "target": "Je vais en Espagne.",
+   "ru": "Я еду в Испанию.",
+   "uk": "Я їду до Іспанії."
+  },
+  {
+   "id": "fr:11:31",
+   "target": "Je vais au travail à pied.",
+   "ru": "Я иду на работу пешком.",
+   "uk": "Я йду на роботу пішки."
+  },
+  {
+   "id": "fr:11:32",
+   "target": "Elle va au musée en bus.",
+   "ru": "Она едет в музей на автобусе.",
+   "uk": "Вона їде до музею автобусом."
+  },
+  {
+   "id": "fr:11:33",
+   "target": "Nous allons au parc à vélo.",
+   "ru": "Мы едем в парк на велосипедах.",
+   "uk": "Ми їдемо до парку на велосипеді."
+  },
+  {
+   "id": "fr:11:34",
+   "target": "Tu vas à la gare en voiture.",
+   "ru": "Ты едешь на вокзал на машине.",
+   "uk": "Ти їдеш на вокзал машиною."
+  },
+  {
+   "id": "fr:11:35",
+   "target": "Vous allez à la plage en train ?",
+   "ru": "Вы едете на пляж на поезде?",
+   "uk": "Ви їдете на пляж поїздом?"
+  },
+  {
+   "id": "fr:11:36",
+   "target": "Il va au stade en métro.",
+   "ru": "Он едет на стадион на метро.",
+   "uk": "Він їде на стадіон метро."
+  },
+  {
+   "id": "fr:11:37",
+   "target": "Les enfants vont au collège à pied.",
+   "ru": "Дети идут в школу пешком.",
+   "uk": "Діти йдуть до школи пішки."
+  },
+  {
+   "id": "fr:11:38",
+   "target": "Je vais chez Léa ce soir.",
+   "ru": "Я иду к Леа сегодня вечером.",
+   "uk": "Я йду до Леа сьогодні ввечері."
+  },
+  {
+   "id": "fr:11:39",
+   "target": "Nous allons à la mairie demain.",
+   "ru": "Завтра мы идём в мэрию.",
+   "uk": "Завтра ми йдемо до мерії."
+  },
+  {
+   "id": "fr:11:40",
+   "target": "Ils vont au concert ensemble.",
+   "ru": "Они вместе идут на концерт.",
+   "uk": "Вони йдуть разом на концерт."
+  },
+  {
+   "id": "fr:11:41",
+   "target": "Où allez-vous après le cours ?",
+   "ru": "Куда вы идёте после занятия?",
+   "uk": "Куди ви йдете після заняття?"
+  },
+  {
+   "id": "fr:11:42",
+   "target": "Est-ce que tu vas à la poste ?",
+   "ru": "Ты идёшь на почту?",
+   "uk": "Ти йдеш на пошту?"
+  },
+  {
+   "id": "fr:11:43",
+   "target": "Je ne vais pas au magasin aujourd’hui.",
+   "ru": "Я сегодня не иду в магазин.",
+   "uk": "Я не піду сьогодні до магазину."
+  },
+  {
+   "id": "fr:11:44",
+   "target": "Paul ne va pas à la réunion.",
+   "ru": "Поль не идёт на собрание.",
+   "uk": "Поль не йде на зустріч."
+  },
+  {
+   "id": "fr:11:45",
+   "target": "Nous n’allons pas au centre-ville.",
+   "ru": "Мы не едем в центр города.",
+   "uk": "Ми не їдемо в центр міста."
+  },
+  {
+   "id": "fr:11:46",
+   "target": "Vous allez à l’accueil ou au guichet ?",
+   "ru": "Вы идёте к стойке информации или в кассу?",
+   "uk": "Ви йдете до стійки інформації або до каси?"
+  },
+  {
+   "id": "fr:11:47",
+   "target": "Je vais au rayon des chaussures.",
+   "ru": "Я иду в обувной отдел.",
+   "uk": "Я йду до відділу взуття."
+  },
+  {
+   "id": "fr:11:48",
+   "target": "Elle va à l’arrêt de bus.",
+   "ru": "Она идёт на автобусную остановку.",
+   "uk": "Вона йде на автобусну зупинку."
+  },
+  {
+   "id": "fr:11:49",
+   "target": "Nous allons au bout de la rue.",
+   "ru": "Мы идём до конца улицы.",
+   "uk": "Ми йдемо до кінця вулиці."
+  },
+  {
+   "id": "fr:11:50",
+   "target": "Après le travail, je vais chez mes parents.",
+   "ru": "После работы я иду к родителям.",
+   "uk": "Після роботи я йду до батьків."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le médecin",
+   "ru": "врач",
+   "uk": "лікар"
+  },
+  {
+   "lemma": "le travail",
+   "ru": "работа (как существительное)",
+   "uk": "робота (як іменник)"
+  },
+  {
+   "lemma": "le métro",
+   "ru": "метро",
+   "uk": "метро"
+  },
+  {
+   "lemma": "la réunion",
+   "ru": "совещание, встреча",
+   "uk": "нарада, зустріч"
+  },
+  {
+   "lemma": "la poste",
+   "ru": "почта",
+   "uk": "пошта"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  }
+ ],
+ "oldTopicTitle": "Куда иду: `aller` и место назначения",
+ "oldTheoryRu": "`Aller` означает направляться куда-либо. Сравни `je suis à la gare` — уже там — и `je vais à la gare` — это пункт назначения. Нельзя вывести `vais` из окончания словарного `aller`. Вспомни артикли. `À` с `le` сливается в `au`, с `les` — в `aux`. Перед `la` остаются два слова, а перед `l’` получаем `à l’`. Форма `à le marché` неверна — только `au marché`. Идёшь к человеку, домой к друзьям или на приём к специалисту? Используй `chez`. К зданию больницы идём `à l’hôpital`, к врачу — `chez le médecin`. С городами здесь употребляется `à`. Для стран учи сочетания целиком: `en France`, `au Canada`, `aux Pays-Bas`. Не ставь `à` перед любой страной: предлог зависит от самой страны. Куда и каким способом — две разные части. В `au travail à pied` первая группа указывает цель, вторая — способ передвижения. Не добавляй артикль перед `pied` в этом выражении. В отрицании `ne … pas` окружает спрягаемую форму. В вопросе `Où allez-vous ?` названы адресат и действие, но место как раз просит назвать собеседник. Проверь каждое короткое слово по отдельности. В `au bout de la rue` первый предлог ведёт к точке назначения, второй помогает уточнить, концом чего она является."
+}

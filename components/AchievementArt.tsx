@@ -33,7 +33,9 @@ interface AchievementArtProps {
   fallbackIconName?: string;
   /** Цвет щита-заглушки — обычно цвет категории достижения. */
   tintColor?: string;
-  /** Цвет векторной иконки внутри щита. */
+  /** Показывать щит под заглушкой, пока арт загружается или недоступен. */
+  showFallbackShield?: boolean;
+  /** Цвет векторной иконки заглушки. */
   iconColor?: string;
   /** Прозрачность арта (заблокированные/в процессе достижения приглушены). */
   opacity?: number;
@@ -47,6 +49,7 @@ export default function AchievementArt({
   bodyHeight,
   fallbackIconName = 'star',
   tintColor = '#6E6E7A', // theme-exempt: значения по умолчанию пропсов арта — вызывающий код задаёт цвет
+  showFallbackShield = true,
   iconColor = '#FFFFFF', // theme-exempt: значения по умолчанию пропсов арта — вызывающий код задаёт цвет
   opacity = 1,
   accessibilityLabel,
@@ -68,18 +71,18 @@ export default function AchievementArt({
 
   return (
     <View style={{ width: size, height: h, alignItems: 'center', justifyContent: 'center' }}>
-      {/* Слой заглушки: виден, пока арт не загрузился или не смог загрузиться. */}
-      {(!showArt || !loaded) && (
+      {/* Без щита иконка нужна только при недоступном арте. */}
+      {(!showArt || (showFallbackShield && !loaded)) && (
         <View
           pointerEvents="none"
           style={{ position: 'absolute', width: size, height: h, alignItems: 'center', justifyContent: 'center' }}
         >
-          <RNImage
+          {showFallbackShield && <RNImage
             source={SHIELD}
             style={{ width: size, height: h, tintColor, opacity: 0.82 }}
             resizeMode="contain"
             fadeDuration={0}
-          />
+          />}
           <Ionicons
             name={fallbackIconName as any}
             size={Math.round(size * 0.42)}

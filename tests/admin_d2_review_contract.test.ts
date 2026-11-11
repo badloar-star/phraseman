@@ -38,7 +38,7 @@ describe('Admin D2 review truth and server-boundary contract', () => {
   });
 
   test('global broadcasts use only the authenticated callable transport', () => {
-    const source = block('let _fnAdminListGlobalBroadcasts', 'const VIP_SURVEY_ID');
+    const source = block('let _fnAdminListGlobalBroadcasts', 'window.addTestReport');
     for (const callable of [
       'adminListGlobalBroadcasts',
       'adminPublishGlobalBroadcast',
@@ -105,10 +105,8 @@ describe('Admin D2 review truth and server-boundary contract', () => {
   });
 
   // зачем: D54 — раздел «Лиги» и архив корон удалены из админки 2.0, их проверки сняты.
-  test('cancellation surveys and nav cache only after complete success', () => {
-    const cancel = block('window.loadCancelSurveys = async function', '/**');
+  test('nav cache is set only after complete success', () => {
     const nav = block('window.loadAdminNavLayout = async function', 'function decodeAdminMojibake');
-    expect(cancel).toContain('if (!truncated) window._cancelSurveysLoaded = true');
     expect(nav.indexOf('window._adminNavLayoutLoaded = true')).toBeGreaterThan(nav.indexOf('await getAdminGetAdminConfigWorkspaceCallable'));
     expect(nav).toContain('window._adminNavLayoutLoaded = false');
   });
@@ -154,15 +152,13 @@ describe('Admin D2 review truth and server-boundary contract', () => {
 
   test('bounded zero states never claim global emptiness from a partial sample', () => {
     const bans = block('window.renderBanList = function', 'function applyCleanPremiumChrome');
-    const cancel = block('window.renderCancelSurveys = function', 'window.loadUgcPurchases = async function');
     const daily = block('window.renderDailyPhrases = function', 'window.dpDrop = async function');
     // зачем: D68 — раздел официальных наборов удалён, его рендер больше не проверяется.
-    for (const source of [bans, cancel, daily]) {
+    for (const source of [bans, daily]) {
       expect(source).toContain('загруженной выборке');
       expect(source).toMatch(/complete|SourceHealth/);
     }
     expect(bans).not.toContain("list.innerHTML = '<div class=\"reports-empty\">No users in the ban list.</div>'");
-    expect(cancel).not.toContain("list.innerHTML = '<div class=\"reports-empty\">No cancel surveys for this filter.</div>'");
     expect(daily).not.toContain("empty.textContent = 'No daily phrases for this filter.'");
   });
 });

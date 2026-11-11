@@ -5,7 +5,7 @@ const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'home.t
 
 describe('Home return stability', () => {
   it('does not run the full Home refresh again merely because the user returned to the tab', () => {
-    expect(source).toContain('const homeRefreshKey = `${studyTarget}:${lang}`;');
+    expect(source).toContain('const homeRefreshKey = `${studyTarget}:${lang}:${mistakeAccountGenerationKey}`;');
     expect(source).toContain('if (homeRefreshKeyRef.current === homeRefreshKey) return;');
     expect(source).toContain('homeRefreshKeyRef.current = homeRefreshKey;');
   });

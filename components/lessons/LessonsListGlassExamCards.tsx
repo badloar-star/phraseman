@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
-import { lessonsGlassCardStyle, type LessonsListGlass } from './LessonsListGlassKit';
+import { CLASSIC_LESSONS_GUTTER, lessonsGlassCardStyle, type LessonsListGlass } from './LessonsListGlassKit';
 
 // зачем (владелец 2026-09-30): карточки конца уровня из learn.html — `.exc` (экзамен уровня:
 // плашка 46 со значком документа, «Экзамен A1», строка состояния, шеврон; недоступный — приглушён)
@@ -64,7 +64,7 @@ export const LessonsListGlassExamCard = React.memo(function LessonsListGlassExam
       withHaptic={false}
       variant="card"
       pressScaleTo={0.975}
-      style={{ marginHorizontal: 20, marginTop: 9 }}
+      style={{ marginHorizontal: CLASSIC_LESSONS_GUTTER, marginTop: 9 }}
       contentStyle={[
         lessonsGlassCardStyle(glass, 22),
         { minHeight: 84, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 14 },
@@ -102,7 +102,7 @@ export const LessonsListGlassAttestationCard = React.memo(function LessonsListGl
       withHaptic={false}
       variant="card"
       pressScaleTo={0.975}
-      style={{ marginHorizontal: 20, marginTop: 12 }}
+      style={{ marginHorizontal: CLASSIC_LESSONS_GUTTER, marginTop: 12 }}
       contentStyle={[
         lessonsGlassCardStyle(glass, 22),
         { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 18, paddingHorizontal: 16 },

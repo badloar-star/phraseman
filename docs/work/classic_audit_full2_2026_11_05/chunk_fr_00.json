@@ -1,0 +1,5656 @@
+[
+{
+"lesson": 1,
+"id": "fr:01:01",
+"target": "Je suis ici.",
+"ru": "Я здесь.",
+"uk": "Я тут.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Ils",
+"Tu",
+"Nous",
+"On",
+"Il"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sont",
+"êtes",
+"es",
+"sommes",
+"est"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": [
+"Je suis là."
+]
+},
+{
+"lesson": 1,
+"id": "fr:01:02",
+"target": "Tu es ici.",
+"ru": "Ты здесь.",
+"uk": "Ти тут.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Ils",
+"Je",
+"Elles",
+"Nous",
+"Il"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"est",
+"êtes",
+"suis",
+"sont",
+"sommes"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:03",
+"target": "Tu es là.",
+"ru": "Ты там.",
+"uk": "Ти там.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Elles",
+"Je",
+"Ils",
+"Nous",
+"Il"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"sommes",
+"est",
+"suis",
+"êtes",
+"sont"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"dehors",
+"loin",
+"près",
+"porte",
+"portes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:04",
+"target": "Je suis là.",
+"ru": "Я там.",
+"uk": "Я там.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"On",
+"Tu",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"es",
+"sommes",
+"sont",
+"êtes",
+"est"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:05",
+"target": "Léa est ici.",
+"ru": "Леа здесь.",
+"uk": "Леа тут.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Julie",
+"Marie",
+"Tom",
+"Anna",
+"Paul"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"loin",
+"dehors",
+"près",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:06",
+"target": "Paul est là.",
+"ru": "Поль там.",
+"uk": "Поль там.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Anna",
+"Marie",
+"Julie",
+"Tom",
+"Léa"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:07",
+"target": "Nous sommes ici.",
+"ru": "Мы здесь.",
+"uk": "Ми тут.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Je",
+"Tu",
+"Il",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"êtes",
+"est",
+"suis",
+"sont",
+"es"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"loin",
+"près",
+"porte",
+"n’est"
+]
+}
+],
+"alternatives": [
+"On est ici."
+]
+},
+{
+"lesson": 1,
+"id": "fr:01:08",
+"target": "Vous êtes ici.",
+"ru": "Вы здесь.",
+"uk": "Ви тут.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"On",
+"Il",
+"Elles",
+"Nous",
+"Je"
+]
+},
+{
+"correct": "êtes",
+"distractors": [
+"sommes",
+"suis",
+"clés",
+"fenêtre",
+"fermés"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:09",
+"target": "Ils sont là.",
+"ru": "Они там.",
+"uk": "Вони там.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Je",
+"Nous",
+"Il",
+"On",
+"Tu"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"est",
+"es",
+"êtes"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"loin",
+"dehors",
+"porte",
+"n’est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:10",
+"target": "Elles sont ici.",
+"ru": "Они здесь.",
+"uk": "Вони тут.",
+"tiles": [
+{
+"correct": "Elles",
+"distractors": [
+"Tu",
+"Je",
+"Il",
+"Nous",
+"On"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"suis",
+"êtes",
+"est",
+"es",
+"sommes"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:11",
+"target": "Je suis à la maison.",
+"ru": "Я дома.",
+"uk": "Я вдома.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"Ils",
+"On",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sont",
+"sommes",
+"es",
+"est",
+"êtes"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"du",
+"le",
+"ce",
+"cette",
+"que"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"chambre",
+"banque",
+"rue",
+"salle",
+"gare"
+]
+}
+],
+"alternatives": [
+"Je suis chez moi."
+]
+},
+{
+"lesson": 1,
+"id": "fr:01:12",
+"target": "Tu es à la maison.",
+"ru": "Ты дома.",
+"uk": "Ти вдома.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Nous",
+"Il",
+"Je",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"êtes",
+"sommes",
+"sont",
+"est",
+"suis"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"les",
+"des",
+"un",
+"que",
+"et"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"salle",
+"sortie",
+"gare",
+"chambre",
+"rue"
+]
+}
+],
+"alternatives": [
+"Tu es chez toi."
+]
+},
+{
+"lesson": 1,
+"id": "fr:01:13",
+"target": "Paul est à la maison.",
+"ru": "Поль дома.",
+"uk": "Поль вдома.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Marie",
+"Julie",
+"Léa",
+"Anna",
+"Tom"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"les",
+"ces",
+"des",
+"que"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"chambre",
+"rue",
+"gare",
+"salle",
+"sortie"
+]
+}
+],
+"alternatives": [
+"Paul est chez lui."
+]
+},
+{
+"lesson": 1,
+"id": "fr:01:14",
+"target": "Léa est à la gare.",
+"ru": "Леа на вокзале.",
+"uk": "Леа на вокзалі.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Julie",
+"Paul",
+"Tom",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"vers",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"du",
+"ces",
+"de",
+"des",
+"que"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"salle",
+"maison",
+"rue",
+"chambre",
+"sortie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:15",
+"target": "Nous sommes à la gare.",
+"ru": "Мы на вокзале.",
+"uk": "Ми на вокзалі.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Il",
+"On",
+"Je",
+"Ils",
+"Tu"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"sont",
+"est",
+"es",
+"êtes",
+"suis"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ce",
+"de",
+"que",
+"et",
+"pour"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"maison",
+"chambre",
+"salle",
+"rue",
+"sortie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:16",
+"target": "Vous êtes à la gare.",
+"ru": "Вы на вокзале.",
+"uk": "Ви на вокзалі.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Il",
+"On",
+"Je",
+"Ils",
+"Nous"
+]
+},
+{
+"correct": "êtes",
+"distractors": [
+"sommes",
+"suis",
+"clés",
+"fenêtre",
+"fermés"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"des",
+"un",
+"que",
+"et"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"chambre",
+"sortie",
+"rue",
+"banque",
+"salle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:17",
+"target": "Ils sont au bureau.",
+"ru": "Они в офисе.",
+"uk": "Вони в офісі.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Il",
+"Je",
+"Nous",
+"On",
+"Tu"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"es",
+"sommes",
+"suis",
+"est",
+"êtes"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"un",
+"les",
+"ce",
+"le",
+"la"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"êtes",
+"fatigué",
+"proche",
+"encore",
+"enfants"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:18",
+"target": "Elle est au bureau.",
+"ru": "Она в офисе.",
+"uk": "Вона в офісі.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Il",
+"Elles",
+"On",
+"Nous",
+"Je"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sont",
+"suis",
+"sommes",
+"es",
+"êtes"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"ces",
+"cette",
+"la",
+"le",
+"une"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"fatiguée",
+"encore",
+"elles",
+"magasins",
+"je"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:19",
+"target": "Je suis au bureau.",
+"ru": "Я в офисе.",
+"uk": "Я в офісі.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"On",
+"Elles",
+"Ils",
+"Nous",
+"Il"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"est",
+"sont",
+"êtes",
+"es",
+"sommes"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"la",
+"ce",
+"un",
+"le",
+"les"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"prêts",
+"prête",
+"portes",
+"loin",
+"prêt"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:20",
+"target": "Tu es au bureau.",
+"ru": "Ты в офисе.",
+"uk": "Ти в офісі.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Je",
+"Ils",
+"Il",
+"Nous",
+"Elles"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"est",
+"sont",
+"suis",
+"êtes",
+"sommes"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"ce",
+"des",
+"du",
+"le",
+"la"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"magasin",
+"clés",
+"ouvert",
+"nous",
+"maison"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:21",
+"target": "Je suis prêt.",
+"ru": "Я готов.",
+"uk": "Я готовий.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Tu",
+"On",
+"Elles",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"es",
+"êtes",
+"sont",
+"sommes",
+"est"
+]
+},
+{
+"correct": "prêt",
+"distractors": [
+"libre",
+"prêts",
+"prêtes",
+"calme",
+"magasins"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:22",
+"target": "Tu es prêt.",
+"ru": "Ты готов.",
+"uk": "Ти готовий.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Je",
+"Elles",
+"Nous",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"suis",
+"êtes",
+"est",
+"sommes",
+"sont"
+]
+},
+{
+"correct": "prêt",
+"distractors": [
+"prêts",
+"libre",
+"calme",
+"prêtes",
+"seul"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:23",
+"target": "Elle est prête.",
+"ru": "Она готова.",
+"uk": "Вона готова.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Nous",
+"Je",
+"Il",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"êtes",
+"suis",
+"es",
+"sommes",
+"sont"
+]
+},
+{
+"correct": "prête",
+"distractors": [
+"prêtes",
+"calme",
+"prêts",
+"libre",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:24",
+"target": "Paul est fatigué.",
+"ru": "Поль устал.",
+"uk": "Поль втомився.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Anna",
+"Léa",
+"Julie",
+"Tom",
+"Marie"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "fatigué",
+"distractors": [
+"encore",
+"sont",
+"prêtes",
+"suis",
+"sommes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:25",
+"target": "Léa est fatiguée.",
+"ru": "Леа устала.",
+"uk": "Леа втомилася.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Marie",
+"Julie",
+"Anna",
+"Paul",
+"Tom"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "fatiguée",
+"distractors": [
+"elle",
+"porte",
+"prêts",
+"je",
+"vous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:26",
+"target": "Nous sommes prêts.",
+"ru": "Мы готовы.",
+"uk": "Ми готові.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Vous",
+"Ils",
+"Je",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"est",
+"es",
+"êtes",
+"suis",
+"sont"
+]
+},
+{
+"correct": "prêts",
+"distractors": [
+"calme",
+"prêt",
+"prête",
+"libre",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:27",
+"target": "Vous êtes prêts.",
+"ru": "Вы готовы.",
+"uk": "Ви готові.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Nous",
+"Ils",
+"Elles",
+"Je",
+"Il"
+]
+},
+{
+"correct": "êtes",
+"distractors": [
+"sommes",
+"suis",
+"clés",
+"fenêtre",
+"fermés"
+]
+},
+{
+"correct": "prêts",
+"distractors": [
+"calme",
+"libre",
+"bureau",
+"fatigué",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:28",
+"target": "Ils sont fatigués.",
+"ru": "Они устали.",
+"uk": "Вони втомилися.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Nous",
+"Tu",
+"Je",
+"Il",
+"On"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"est",
+"es",
+"sommes",
+"êtes",
+"suis"
+]
+},
+{
+"correct": "fatigués",
+"distractors": [
+"fatiguée",
+"fatigué",
+"ouvertes",
+"ouverte",
+"seul"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:29",
+"target": "Elles sont prêtes.",
+"ru": "Они готовы.",
+"uk": "Вони готові.",
+"tiles": [
+{
+"correct": "Elles",
+"distractors": [
+"Nous",
+"On",
+"Je",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"es",
+"sommes",
+"suis",
+"êtes",
+"est"
+]
+},
+{
+"correct": "prêtes",
+"distractors": [
+"prête",
+"calme",
+"libre",
+"prêt",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:30",
+"target": "Je suis libre.",
+"ru": "Я свободен.",
+"uk": "Я вільний.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Il",
+"Tu",
+"On",
+"Ils",
+"Nous"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"es",
+"sont",
+"est",
+"sommes",
+"êtes"
+]
+},
+{
+"correct": "libre",
+"distractors": [
+"prête",
+"calme",
+"prêt",
+"prêts",
+"prêtes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:31",
+"target": "La porte est ouverte.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"De",
+"Du",
+"Un",
+"Les",
+"Que"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"fatiguée",
+"loin",
+"proche",
+"ici",
+"dehors"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "ouverte",
+"distractors": [
+"ouvre",
+"fatigué",
+"elle",
+"fenêtre",
+"sommes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:32",
+"target": "La fenêtre est ouverte.",
+"ru": "Окно открыто.",
+"uk": "Вікно відчинене.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Des",
+"Au",
+"Cette",
+"Les",
+"Le"
+]
+},
+{
+"correct": "fenêtre",
+"distractors": [
+"maison",
+"encore",
+"prête",
+"seul",
+"fermée"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"clé",
+"clés"
+]
+},
+{
+"correct": "ouverte",
+"distractors": [
+"ouvre",
+"fatigué",
+"elle",
+"dehors",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:33",
+"target": "Le magasin est ouvert.",
+"ru": "Магазин открыт.",
+"uk": "Магазин відкрито.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ces",
+"Des",
+"Les",
+"Du",
+"Que"
+]
+},
+{
+"correct": "magasin",
+"distractors": [
+"suis",
+"fermés",
+"café",
+"sont",
+"sommes"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "ouvert",
+"distractors": [
+"ouvre",
+"nous",
+"gants",
+"bureau",
+"clés"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:34",
+"target": "La gare est loin.",
+"ru": "Вокзал далеко.",
+"uk": "Вокзал далеко.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"De",
+"Un",
+"Le",
+"Des",
+"Que"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"chambre",
+"maison",
+"sortie",
+"salle",
+"rue"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "loin",
+"distractors": [
+"dehors",
+"ici",
+"près",
+"là",
+"porte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:35",
+"target": "La maison est proche.",
+"ru": "Дом рядом.",
+"uk": "Будинок поряд.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ces",
+"Ce",
+"Les",
+"Que",
+"Et"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"banque",
+"gare",
+"salle",
+"chambre",
+"rue"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "proche",
+"distractors": [
+"près",
+"calme",
+"porte",
+"loin",
+"sont"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:36",
+"target": "Le café est fermé.",
+"ru": "Кафе закрыто.",
+"uk": "Кафе зачинено.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Au",
+"Ces",
+"Une",
+"Que"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"soupe",
+"pain",
+"thé",
+"vous",
+"elle"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "fermé",
+"distractors": [
+"ferme",
+"loin",
+"maison",
+"message",
+"musée"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:37",
+"target": "La fenêtre est fermée.",
+"ru": "Окно закрыто.",
+"uk": "Вікно закрите.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Le",
+"Que",
+"Et",
+"Pour",
+"Avec"
+]
+},
+{
+"correct": "fenêtre",
+"distractors": [
+"ouverte",
+"calme",
+"ouvert",
+"fatigué",
+"dehors"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"clé",
+"clés"
+]
+},
+{
+"correct": "fermée",
+"distractors": [
+"magasins",
+"ouverte",
+"sommes",
+"sont",
+"suis"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:38",
+"target": "Les portes sont ouvertes.",
+"ru": "Двери открыты.",
+"uk": "Двері відчинені.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Ces",
+"Ce",
+"Un",
+"Cette",
+"À"
+]
+},
+{
+"correct": "portes",
+"distractors": [
+"fermés",
+"fermé",
+"près",
+"seul",
+"ici"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "ouvertes",
+"distractors": [
+"ouvre",
+"ticket",
+"clés",
+"cours",
+"gauche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:39",
+"target": "Les magasins sont fermés.",
+"ru": "Магазины закрыты.",
+"uk": "Магазини закриті.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Cette",
+"Du",
+"Ce",
+"Que",
+"Et"
+]
+},
+{
+"correct": "magasins",
+"distractors": [
+"seul",
+"gare",
+"libre",
+"salle",
+"chambre"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "fermés",
+"distractors": [
+"maison",
+"êtes",
+"portes",
+"est",
+"suis"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:40",
+"target": "Le bureau est calme.",
+"ru": "В офисе тихо.",
+"uk": "В офісі тихо.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Au",
+"Ces",
+"Cette",
+"Que"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"fatiguée",
+"sommes",
+"fatigués",
+"gare",
+"seul"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "calme",
+"distractors": [
+"libre",
+"prête",
+"prêtes",
+"prêt",
+"prêts"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:41",
+"target": "Léa est déjà là.",
+"ru": "Леа уже здесь.",
+"uk": "Леа вже тут.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Tom",
+"Marie",
+"Anna",
+"Julie",
+"Paul"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "déjà",
+"distractors": [
+"prête",
+"maison",
+"fatigué",
+"porte",
+"salle"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"loin",
+"dehors",
+"porte",
+"n’est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:42",
+"target": "Je suis encore au bureau.",
+"ru": "Я всё ещё в офисе.",
+"uk": "Я все ще в офісі.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"Ils",
+"Il",
+"Tu",
+"Nous"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"êtes",
+"es",
+"est",
+"sont",
+"sommes"
+]
+},
+{
+"correct": "encore",
+"distractors": [
+"lui",
+"pas",
+"ne",
+"le",
+"la"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"la",
+"une",
+"des",
+"le",
+"un"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"prête",
+"fenêtre",
+"loin",
+"portes",
+"dehors"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:43",
+"target": "Paul est seul.",
+"ru": "Поль один.",
+"uk": "Поль один.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Anna",
+"Tom",
+"Marie",
+"Julie",
+"Léa"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"suis",
+"sommes",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "seul",
+"distractors": [
+"bureau",
+"fatigué",
+"ensemble",
+"fermée",
+"prête"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:44",
+"target": "Nous sommes ensemble.",
+"ru": "Мы вместе.",
+"uk": "Ми разом.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Il",
+"Vous",
+"Ils",
+"Elles",
+"Je"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"es",
+"sont",
+"suis",
+"êtes",
+"est"
+]
+},
+{
+"correct": "ensemble",
+"distractors": [
+"fermée",
+"prêt",
+"près",
+"seul",
+"ici"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:45",
+"target": "La clé est ici.",
+"ru": "Ключ здесь.",
+"uk": "Ключ тут.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Du",
+"Des",
+"Cette",
+"De",
+"Que"
+]
+},
+{
+"correct": "clé",
+"distractors": [
+"les",
+"tu",
+"sac",
+"le",
+"un"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clés"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:46",
+"target": "Les clés sont là.",
+"ru": "Ключи там.",
+"uk": "Ключі там.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Un",
+"Ces",
+"La",
+"De",
+"Au"
+]
+},
+{
+"correct": "clés",
+"distractors": [
+"suis",
+"sommes",
+"elle",
+"fenêtre",
+"est"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"loin",
+"dehors",
+"tu",
+"clé"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:47",
+"target": "Le sac est à la maison.",
+"ru": "Сумка дома.",
+"uk": "Сумка вдома.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Cette",
+"De",
+"Une",
+"Que",
+"Et"
+]
+},
+{
+"correct": "sac",
+"distractors": [
+"veste",
+"lunettes",
+"gants",
+"clés",
+"clé"
+]
+},
+{
+"correct": "est",
+"distractors": [
+"sommes",
+"suis",
+"bus",
+"fenêtre",
+"clé"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"de",
+"des",
+"les",
+"que",
+"et"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"chambre",
+"rue",
+"banque",
+"salle",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:48",
+"target": "Vous êtes près de la gare.",
+"ru": "Вы рядом с вокзалом.",
+"uk": "Ви поряд із вокзалом.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Nous",
+"Ils",
+"Elles",
+"Il",
+"Je"
+]
+},
+{
+"correct": "êtes",
+"distractors": [
+"suis",
+"sommes",
+"clés",
+"fenêtre",
+"fermés"
+]
+},
+{
+"correct": "près",
+"distractors": [
+"ici",
+"là",
+"loin",
+"dehors",
+"n’est"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"ces",
+"du",
+"au",
+"que",
+"et"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"banque",
+"rue",
+"maison",
+"chambre",
+"salle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:49",
+"target": "Les enfants sont dehors.",
+"ru": "Дети на улице.",
+"uk": "Діти на вулиці.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Au",
+"Ces",
+"Cette",
+"De",
+"Que"
+]
+},
+{
+"correct": "enfants",
+"distractors": [
+"fatigués",
+"proche",
+"fermée",
+"seul",
+"elle"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"suis",
+"sommes",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "dehors",
+"distractors": [
+"ici",
+"près",
+"loin",
+"là",
+"n’est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "fr:01:50",
+"target": "Je suis près de la porte.",
+"ru": "Я возле двери.",
+"uk": "Я біля дверей.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Ils",
+"Elles",
+"Il",
+"Tu",
+"Nous"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sont",
+"êtes",
+"es",
+"sommes",
+"est"
+]
+},
+{
+"correct": "près",
+"distractors": [
+"loin",
+"ici",
+"dehors",
+"là",
+"n’est"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"à",
+"pour",
+"avec",
+"sans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"à",
+"ce",
+"cette",
+"que"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"portes",
+"vous",
+"magasins",
+"prêtes",
+"ensemble"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:01",
+"target": "Je ne suis pas là.",
+"ru": "Меня здесь нет.",
+"uk": "Мене тут немає.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"On",
+"Tu",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"les",
+"le",
+"la",
+"lui",
+"un"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sont",
+"es",
+"êtes",
+"est",
+"sommes"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"les",
+"le",
+"la",
+"lui",
+"encore"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"loin",
+"dehors",
+"tu",
+"clé"
+]
+}
+],
+"alternatives": [
+"Je ne suis pas ici."
+]
+},
+{
+"lesson": 2,
+"id": "fr:02:02",
+"target": "Tu n’es pas ici.",
+"ru": "Тебя здесь нет.",
+"uk": "Тебе тут немає.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Nous",
+"Il",
+"Je",
+"On",
+"Ils"
+]
+},
+{
+"correct": "n’es",
+"distractors": [
+"n’êtes",
+"n’est",
+"train",
+"gare",
+"porte"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"ne",
+"les",
+"le",
+"la"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"loin",
+"dehors",
+"près",
+"n’est",
+"n’êtes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:03",
+"target": "Tu n’es pas là.",
+"ru": "Тебя там нет.",
+"uk": "Тебе там немає.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"On",
+"Nous",
+"Il",
+"Je",
+"Ils"
+]
+},
+{
+"correct": "n’es",
+"distractors": [
+"n’est",
+"n’êtes",
+"train",
+"porte",
+"ici"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"les",
+"le",
+"la",
+"ne",
+"lui"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"dehors",
+"loin",
+"près",
+"porte",
+"sont"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:04",
+"target": "Elle n’est pas là.",
+"ru": "Её там нет.",
+"uk": "Її там немає.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Elles",
+"Nous",
+"Je",
+"Il",
+"On"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’es",
+"n’êtes",
+"près",
+"ici",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"les",
+"le",
+"la",
+"ne"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"dehors",
+"loin",
+"près",
+"porte",
+"sont"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:05",
+"target": "Paul n’est pas au bureau.",
+"ru": "Поля нет в офисе.",
+"uk": "Пола немає в офісі.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Anna",
+"Léa",
+"Tom",
+"Julie",
+"Marie"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"gare",
+"train",
+"bus",
+"vélo"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"encore",
+"la",
+"les",
+"ne"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"du",
+"une",
+"le",
+"la",
+"un"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"libre",
+"téléphone",
+"ensemble",
+"ouverts",
+"dehors"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:06",
+"target": "Je ne suis pas au bureau.",
+"ru": "Меня нет в офисе.",
+"uk": "Мене немає в офісі.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Elles",
+"Tu",
+"Ils",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"les",
+"le",
+"la",
+"encore"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"est",
+"es",
+"sommes",
+"êtes",
+"sont"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"les",
+"le",
+"un",
+"une"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"une",
+"cette",
+"des",
+"ces",
+"le"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"porte",
+"vous",
+"prêt",
+"propre",
+"salle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:07",
+"target": "Nous ne sommes pas à la gare.",
+"ru": "Нас нет на станции.",
+"uk": "Нас немає на станції.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"On",
+"Je",
+"Elles",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"le",
+"les",
+"un",
+"lui",
+"une"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"suis",
+"est",
+"es",
+"êtes",
+"sont"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"les",
+"le",
+"lui",
+"un"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"encore",
+"que",
+"et",
+"pour",
+"avec"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"salle",
+"rue",
+"chambre",
+"maison",
+"sortie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:08",
+"target": "Vous n’êtes pas à la maison.",
+"ru": "Вас нет дома.",
+"uk": "Вас немає вдома.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Je",
+"Ils",
+"Nous",
+"On",
+"Il"
+]
+},
+{
+"correct": "n’êtes",
+"distractors": [
+"n’es",
+"n’est",
+"train",
+"près",
+"ici"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"ne",
+"le",
+"lui",
+"les"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"les",
+"lui",
+"en",
+"que",
+"et"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"banque",
+"salle",
+"gare",
+"rue",
+"chambre"
+]
+}
+],
+"alternatives": [
+"Vous n’êtes pas chez vous."
+]
+},
+{
+"lesson": 2,
+"id": "fr:02:09",
+"target": "Ils ne sont pas dehors.",
+"ru": "Их нет на улице.",
+"uk": "Їх немає надворі.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"Tu",
+"Il",
+"On",
+"Je",
+"Nous"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"encore",
+"le",
+"lui",
+"la",
+"les"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"est",
+"es",
+"suis",
+"êtes",
+"sommes"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"les",
+"le",
+"la",
+"encore"
+]
+},
+{
+"correct": "dehors",
+"distractors": [
+"près",
+"là",
+"ici",
+"loin",
+"n’est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:10",
+"target": "Elles ne sont pas ici.",
+"ru": "Их здесь нет.",
+"uk": "Їх немає тут.",
+"tiles": [
+{
+"correct": "Elles",
+"distractors": [
+"On",
+"Tu",
+"Je",
+"Il",
+"Nous"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"le",
+"lui",
+"la",
+"encore",
+"les"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"êtes",
+"est",
+"suis",
+"sommes",
+"es"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"la",
+"les",
+"lui",
+"un"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"loin",
+"près",
+"dehors",
+"n’est",
+"porte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:11",
+"target": "Je ne suis pas prêt.",
+"ru": "Я не готов.",
+"uk": "Я не готовий.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"Tu",
+"Elles",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"encore",
+"la",
+"lui",
+"le",
+"les"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sommes",
+"est",
+"êtes",
+"sont",
+"es"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"le",
+"les",
+"un",
+"lui"
+]
+},
+{
+"correct": "prêt",
+"distractors": [
+"prêtes",
+"calme",
+"prêts",
+"libre",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:12",
+"target": "Elle n’est pas prête.",
+"ru": "Она не готова.",
+"uk": "Вона не готова.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Tu",
+"Je",
+"Ils",
+"On",
+"Il"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’es",
+"n’êtes",
+"gare",
+"ici",
+"près"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"ne",
+"la",
+"les",
+"lui"
+]
+},
+{
+"correct": "prête",
+"distractors": [
+"calme",
+"prêts",
+"libre",
+"prêtes",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:13",
+"target": "Nous ne sommes pas prêts.",
+"ru": "Мы не готовы.",
+"uk": "Ми не готові.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Elles",
+"Tu",
+"On",
+"Ils",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"la",
+"le",
+"les",
+"un",
+"lui"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"est",
+"sont",
+"suis",
+"es",
+"êtes"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"la",
+"le",
+"les",
+"lui"
+]
+},
+{
+"correct": "prêts",
+"distractors": [
+"calme",
+"prête",
+"prêt",
+"libre",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:14",
+"target": "Tu n’es pas seul.",
+"ru": "Ты не один.",
+"uk": "Ти не один.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Elles",
+"Il",
+"Ils",
+"Je",
+"Nous"
+]
+},
+{
+"correct": "n’es",
+"distractors": [
+"n’êtes",
+"n’est",
+"ici",
+"près",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"le",
+"la",
+"les",
+"lui"
+]
+},
+{
+"correct": "seul",
+"distractors": [
+"seuls",
+"couloir",
+"vous",
+"fatigué",
+"je"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:15",
+"target": "Léa n’est pas seule.",
+"ru": "Леа не одна.",
+"uk": "Леа не сама.",
+"tiles": [
+{
+"correct": "Léa",
+"distractors": [
+"Julie",
+"Tom",
+"Anna",
+"Paul",
+"Marie"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"train",
+"gare",
+"bus",
+"vélo"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"les",
+"le",
+"la",
+"ne",
+"lui"
+]
+},
+{
+"correct": "seule",
+"distractors": [
+"sont",
+"suis",
+"prêt",
+"est",
+"sommes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:16",
+"target": "Ils ne sont pas ensemble.",
+"ru": "Они не вместе.",
+"uk": "Вони не разом.",
+"tiles": [
+{
+"correct": "Ils",
+"distractors": [
+"On",
+"Nous",
+"Je",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"les",
+"la",
+"le",
+"un",
+"une"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"es",
+"êtes",
+"suis",
+"est",
+"sommes"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"la",
+"lui",
+"encore",
+"les"
+]
+},
+{
+"correct": "ensemble",
+"distractors": [
+"sombre",
+"suis",
+"seule",
+"prête",
+"très"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:17",
+"target": "Je ne suis pas fatigué.",
+"ru": "Я не устал.",
+"uk": "Я не втомився.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"Tu",
+"Ils",
+"Il",
+"Elles"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"les",
+"le",
+"la",
+"lui",
+"un"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"est",
+"es",
+"sont",
+"sommes",
+"êtes"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"le",
+"la",
+"les",
+"encore"
+]
+},
+{
+"correct": "fatigué",
+"distractors": [
+"encore",
+"chambre",
+"table",
+"prêts",
+"le"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:18",
+"target": "Paul n’est pas libre.",
+"ru": "Поль не свободен.",
+"uk": "Пол не вільний.",
+"tiles": [
+{
+"correct": "Paul",
+"distractors": [
+"Marie",
+"Anna",
+"Julie",
+"Tom",
+"Léa"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"gare",
+"salle",
+"chambre",
+"rue"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"encore",
+"le",
+"lui",
+"la"
+]
+},
+{
+"correct": "libre",
+"distractors": [
+"calme",
+"prête",
+"prêtes",
+"prêts",
+"prêt"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:19",
+"target": "Vous n’êtes pas en retard.",
+"ru": "Вы не опоздали.",
+"uk": "Ви не запізнилися.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Ils",
+"Il",
+"Je",
+"Nous",
+"Elles"
+]
+},
+{
+"correct": "n’êtes",
+"distractors": [
+"n’es",
+"n’est",
+"ici",
+"porte",
+"près"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"la",
+"le",
+"les",
+"ne"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "retard",
+"distractors": [
+"ticket",
+"chaussures",
+"prêt",
+"propres",
+"elles"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:20",
+"target": "Nous ne sommes pas en avance.",
+"ru": "Мы не пришли заранее.",
+"uk": "Ми не прийшли заздалегідь.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Je",
+"Il",
+"Tu",
+"Elles",
+"Ils"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"encore",
+"la",
+"le",
+"les",
+"lui"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"suis",
+"es",
+"sont",
+"êtes",
+"est"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"le",
+"les",
+"un",
+"lui"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "avance",
+"distractors": [
+"fenêtre",
+"prêt",
+"dehors",
+"vous",
+"je"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:21",
+"target": "La porte n’est pas ouverte.",
+"ru": "Дверь не открыта.",
+"uk": "Двері не відчинені.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Lui",
+"En",
+"Le",
+"Encore",
+"Que"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"gare",
+"sombre",
+"nous",
+"table",
+"propre"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"ici",
+"près",
+"dehors",
+"loin"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"ne",
+"le",
+"encore",
+"les"
+]
+},
+{
+"correct": "ouverte",
+"distractors": [
+"ouvre",
+"fatigué",
+"elle",
+"fenêtre",
+"sommes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:22",
+"target": "Le café n’est pas fermé.",
+"ru": "Кафе не закрыто.",
+"uk": "Кафе не зачинене.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Les",
+"Que",
+"Et",
+"Pour",
+"Avec"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"soupe",
+"pain",
+"thé",
+"vous",
+"elle"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"porte",
+"ici",
+"train",
+"gare"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"les",
+"lui",
+"la",
+"ne",
+"un"
+]
+},
+{
+"correct": "fermé",
+"distractors": [
+"ferme",
+"loin",
+"maison",
+"message",
+"musée"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:23",
+"target": "Les magasins ne sont pas ouverts.",
+"ru": "Магазины не открыты.",
+"uk": "Магазини не відкриті.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"La",
+"Le",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "magasins",
+"distractors": [
+"libre",
+"loin",
+"couloir",
+"enfants",
+"vélo"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"encore",
+"lui",
+"le",
+"la",
+"clé"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"le",
+"la",
+"lui",
+"enfants"
+]
+},
+{
+"correct": "ouverts",
+"distractors": [
+"ouvre",
+"dehors",
+"bureau",
+"libre",
+"téléphone"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:24",
+"target": "La fenêtre n’est pas fermée.",
+"ru": "Окно не закрыто.",
+"uk": "Вікно не зачинене.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Lui",
+"Ne",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "fenêtre",
+"distractors": [
+"musée",
+"déjeuner",
+"elles",
+"prête",
+"suis"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"ici",
+"porte",
+"près",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"les",
+"ne",
+"le",
+"encore"
+]
+},
+{
+"correct": "fermée",
+"distractors": [
+"large",
+"pharmacie",
+"magasins",
+"sont",
+"est"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:25",
+"target": "La salle n’est pas vide.",
+"ru": "Комната не пуста.",
+"uk": "Кімната не порожня.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Lui",
+"Que",
+"Et",
+"Pour",
+"Avec"
+]
+},
+{
+"correct": "salle",
+"distractors": [
+"gare",
+"banque",
+"rue",
+"sortie",
+"maison"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"près",
+"porte",
+"ici",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"le",
+"lui",
+"encore",
+"les"
+]
+},
+{
+"correct": "vide",
+"distractors": [
+"toilettes",
+"sombre",
+"propres",
+"table",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:26",
+"target": "Le couloir n’est pas sombre.",
+"ru": "В коридоре не темно.",
+"uk": "Коридор не темний.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Les",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "couloir",
+"distractors": [
+"fatigué",
+"seul",
+"déjeuner",
+"très",
+"elles"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"porte",
+"train",
+"bus",
+"vélo"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"ne",
+"lui",
+"la",
+"les"
+]
+},
+{
+"correct": "sombre",
+"distractors": [
+"propre",
+"ensemble",
+"sale",
+"dehors",
+"fatigué"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:27",
+"target": "Les clés ne sont pas ici.",
+"ru": "Ключей здесь нет.",
+"uk": "Ключів тут немає.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"En",
+"Encore",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "clés",
+"distractors": [
+"déjeuner",
+"prêt",
+"fenêtre",
+"pharmacie",
+"magasins"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"la",
+"le",
+"un",
+"lui",
+"au"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"la",
+"lui",
+"un",
+"encore"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:28",
+"target": "Le sac n’est pas là.",
+"ru": "Сумки там нет.",
+"uk": "Сумки там немає.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Que",
+"Et",
+"Pour",
+"Avec",
+"Sans"
+]
+},
+{
+"correct": "sac",
+"distractors": [
+"lunettes",
+"gants",
+"veste",
+"clé",
+"clés"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"train",
+"bus",
+"vélo",
+"voiture"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"la",
+"les",
+"lui",
+"ne",
+"un"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"dehors",
+"près",
+"loin",
+"porte",
+"train"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:29",
+"target": "La table n’est pas propre.",
+"ru": "Стол не чистый.",
+"uk": "Стіл не чистий.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Que",
+"Et",
+"Pour",
+"Avec",
+"Sans"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"clés",
+"téléphone",
+"sombre",
+"train",
+"avance"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"ici",
+"porte",
+"train",
+"gare"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"les",
+"ne",
+"lui",
+"un"
+]
+},
+{
+"correct": "propre",
+"distractors": [
+"seuls",
+"maison",
+"fermé",
+"gare",
+"salle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:30",
+"target": "Le verre n’est pas sale.",
+"ru": "Стакан не грязный.",
+"uk": "Склянка не брудна.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"En",
+"Ne",
+"Que",
+"Et"
+]
+},
+{
+"correct": "verre",
+"distractors": [
+"bureau",
+"elles",
+"dehors",
+"seuls",
+"je"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"porte",
+"gare",
+"salle",
+"train"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"lui",
+"la",
+"encore",
+"les"
+]
+},
+{
+"correct": "sale",
+"distractors": [
+"salle",
+"maison",
+"prête",
+"sombre",
+"gare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:31",
+"target": "Le bus n’est pas loin.",
+"ru": "Автобус недалеко.",
+"uk": "Автобус недалеко.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ne",
+"Lui",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"vélo",
+"voiture",
+"train",
+"gare",
+"porte"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"près",
+"ici",
+"dehors",
+"là"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"les",
+"la",
+"ne",
+"encore"
+]
+},
+{
+"correct": "loin",
+"distractors": [
+"dehors",
+"ici",
+"près",
+"là",
+"porte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:32",
+"target": "Les toilettes ne sont pas au fond.",
+"ru": "Туалеты не в глубине помещения.",
+"uk": "Туалети не в глибині приміщення.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"La",
+"Le",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "toilettes",
+"distractors": [
+"vide",
+"avance",
+"bureau",
+"ticket",
+"maison"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"le",
+"lui",
+"la",
+"encore",
+"clé"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"suis",
+"sommes",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"lui",
+"le",
+"la",
+"un"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"le",
+"une",
+"un",
+"la",
+"du"
+]
+},
+{
+"correct": "fond",
+"distractors": [
+"train",
+"café",
+"ticket",
+"gare",
+"ensemble"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:33",
+"target": "Le ticket n’est pas dans le sac.",
+"ru": "Билета нет в сумке.",
+"uk": "Квитка немає в сумці.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"En",
+"La",
+"Lui",
+"Que",
+"Et"
+]
+},
+{
+"correct": "ticket",
+"distractors": [
+"passeport",
+"reçu",
+"vous",
+"téléphone",
+"chambre"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"gare",
+"salle",
+"chambre",
+"rue"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"la",
+"les",
+"ne",
+"lui"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"sans",
+"vers",
+"par",
+"sur",
+"en"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"les",
+"que",
+"et",
+"pour",
+"avec"
+]
+},
+{
+"correct": "sac",
+"distractors": [
+"lunettes",
+"gants",
+"veste",
+"clé",
+"clés"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:34",
+"target": "Les enfants ne sont pas dans la salle.",
+"ru": "Детей нет в комнате.",
+"uk": "Дітей немає в кімнаті.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"En",
+"Le",
+"Lui",
+"Que",
+"Et"
+]
+},
+{
+"correct": "enfants",
+"distractors": [
+"très",
+"clés",
+"propre",
+"chaussures",
+"clé"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"le",
+"encore",
+"un",
+"une"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"lui",
+"encore",
+"un",
+"tu"
+]
+},
+{
+"correct": "dans",
+"distractors": [
+"vers",
+"sur",
+"en",
+"pour",
+"avec"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"en",
+"que",
+"et",
+"pour",
+"avec"
+]
+},
+{
+"correct": "salle",
+"distractors": [
+"rue",
+"sortie",
+"gare",
+"banque",
+"maison"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:35",
+"target": "Le vélo n’est pas dehors.",
+"ru": "Велосипед не на улице.",
+"uk": "Велосипед не на вулиці.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Lui",
+"En",
+"Que",
+"Et"
+]
+},
+{
+"correct": "vélo",
+"distractors": [
+"train",
+"voiture",
+"bus",
+"gare",
+"porte"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"train",
+"porte",
+"bus",
+"voiture"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"la",
+"lui",
+"encore",
+"les"
+]
+},
+{
+"correct": "dehors",
+"distractors": [
+"ici",
+"loin",
+"près",
+"là",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:36",
+"target": "Mon téléphone n’est pas ici.",
+"ru": "Моего телефона здесь нет.",
+"uk": "Мого телефону тут немає.",
+"tiles": [
+{
+"correct": "Mon",
+"distractors": [
+"Votre",
+"Nos",
+"Ma",
+"Leurs",
+"Ses"
+]
+},
+{
+"correct": "téléphone",
+"distractors": [
+"chambre",
+"encore",
+"prêt",
+"magasins",
+"le"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"près",
+"porte",
+"dehors",
+"loin"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"la",
+"les",
+"ne",
+"lui"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"dehors",
+"loin",
+"près",
+"n’es",
+"n’êtes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:37",
+"target": "Le musée n’est pas ouvert.",
+"ru": "Музей не открыт.",
+"uk": "Музей не відкритий.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ne",
+"En",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "musée",
+"distractors": [
+"large",
+"fatigué",
+"elle",
+"train",
+"ouverte"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"porte",
+"ici",
+"train",
+"gare"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"ne",
+"la",
+"lui",
+"les"
+]
+},
+{
+"correct": "ouvert",
+"distractors": [
+"ouvre",
+"clés",
+"carte",
+"gauche",
+"nous"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:38",
+"target": "La pharmacie n’est pas loin.",
+"ru": "Аптека недалеко.",
+"uk": "Аптека недалеко.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"En",
+"Que",
+"Et",
+"Pour",
+"Avec"
+]
+},
+{
+"correct": "pharmacie",
+"distractors": [
+"seuls",
+"sont",
+"toilettes",
+"avance",
+"encore"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"près",
+"ici",
+"dehors",
+"là"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"lui",
+"ne",
+"les",
+"encore"
+]
+},
+{
+"correct": "loin",
+"distractors": [
+"dehors",
+"là",
+"ici",
+"près",
+"porte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:39",
+"target": "Les billets ne sont pas sur la table.",
+"ru": "Билетов нет на столе.",
+"uk": "Квитки не на столі.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Lui",
+"Que",
+"Et",
+"Pour",
+"Avec"
+]
+},
+{
+"correct": "billets",
+"distractors": [
+"téléphone",
+"chambre",
+"fermée",
+"propres",
+"vous"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"le",
+"encore",
+"clé",
+"mon"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"lui",
+"un",
+"encore",
+"une"
+]
+},
+{
+"correct": "sur",
+"distractors": [
+"derrière",
+"à",
+"de",
+"en",
+"dans"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"encore",
+"que",
+"et",
+"pour"
+]
+},
+{
+"correct": "table",
+"distractors": [
+"ensemble",
+"retard",
+"seul",
+"toilettes",
+"magasins"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:40",
+"target": "Le train n’est pas en retard.",
+"ru": "Поезд не опаздывает.",
+"uk": "Поїзд не запізнюється.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Encore",
+"Lui",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "train",
+"distractors": [
+"bus",
+"vélo",
+"voiture",
+"gare",
+"porte"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"ici",
+"gare",
+"près",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"la",
+"lui",
+"encore",
+"les"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"à",
+"de",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "retard",
+"distractors": [
+"téléphone",
+"café",
+"magasins",
+"libre",
+"fenêtre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:41",
+"target": "Je ne suis pas encore à la maison.",
+"ru": "Меня ещё нет дома.",
+"uk": "Я ще не вдома.",
+"tiles": [
+{
+"correct": "Je",
+"distractors": [
+"Nous",
+"Tu",
+"Ils",
+"Il",
+"Elles"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"le",
+"les",
+"un",
+"une"
+]
+},
+{
+"correct": "suis",
+"distractors": [
+"sommes",
+"êtes",
+"est",
+"es",
+"sont"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"lui",
+"les",
+"un",
+"tu"
+]
+},
+{
+"correct": "encore",
+"distractors": [
+"le",
+"lui",
+"les",
+"enfants",
+"elle"
+]
+},
+{
+"correct": "à",
+"distractors": [
+"de",
+"en",
+"sur",
+"dans",
+"chez"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"le",
+"que",
+"et",
+"pour"
+]
+},
+{
+"correct": "maison",
+"distractors": [
+"rue",
+"gare",
+"sortie",
+"chambre",
+"salle"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:42",
+"target": "Elle n’est pas encore au bureau.",
+"ru": "Её ещё нет в офисе.",
+"uk": "Вона ще не в офісі.",
+"tiles": [
+{
+"correct": "Elle",
+"distractors": [
+"Je",
+"Ils",
+"Nous",
+"Il",
+"Tu"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’es",
+"n’êtes",
+"gare",
+"ici",
+"près"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"les",
+"la",
+"un",
+"une"
+]
+},
+{
+"correct": "encore",
+"distractors": [
+"ne",
+"le",
+"lui",
+"la",
+"les"
+]
+},
+{
+"correct": "au",
+"distractors": [
+"une",
+"le",
+"la",
+"les",
+"un"
+]
+},
+{
+"correct": "bureau",
+"distractors": [
+"seuls",
+"large",
+"billets",
+"sont",
+"pharmacie"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:43",
+"target": "Le déjeuner n’est pas prêt.",
+"ru": "Обед не готов.",
+"uk": "Обід не готовий.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"En",
+"Encore",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "déjeuner",
+"distractors": [
+"vous",
+"près",
+"téléphone",
+"verre",
+"très"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"train",
+"ici",
+"près",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"ne",
+"la",
+"encore",
+"les"
+]
+},
+{
+"correct": "prêt",
+"distractors": [
+"libre",
+"calme",
+"bureau",
+"fenêtre",
+"magasins"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:44",
+"target": "La chambre n’est pas libre.",
+"ru": "Номер не свободен.",
+"uk": "Номер не вільний.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Les",
+"Ne",
+"Lui",
+"Que",
+"Et"
+]
+},
+{
+"correct": "chambre",
+"distractors": [
+"banque",
+"gare",
+"rue",
+"sortie",
+"maison"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"ici",
+"porte",
+"près",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"le",
+"les",
+"ne",
+"lui"
+]
+},
+{
+"correct": "libre",
+"distractors": [
+"prêt",
+"prêtes",
+"prête",
+"prêts",
+"calme"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:45",
+"target": "La gare n’est pas près du musée.",
+"ru": "Железнодорожный вокзал находится не рядом с музеем.",
+"uk": "Залізнична станція не поруч з музеєм.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ne",
+"Les",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"chambre",
+"sortie",
+"banque",
+"salle",
+"rue"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"train",
+"ici",
+"dehors",
+"loin"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"les",
+"un",
+"une",
+"ne"
+]
+},
+{
+"correct": "près",
+"distractors": [
+"ici",
+"dehors",
+"loin",
+"là",
+"n’es"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"cette",
+"des",
+"à",
+"que",
+"et"
+]
+},
+{
+"correct": "musée",
+"distractors": [
+"vous",
+"fond",
+"clés",
+"loin",
+"bureau"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:46",
+"target": "Les chaussures ne sont pas propres.",
+"ru": "Обувь не чистая.",
+"uk": "Взуття не чисте.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"En",
+"Le",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "chaussures",
+"distractors": [
+"suis",
+"prêts",
+"fermée",
+"prêt",
+"couloir"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"lui",
+"la",
+"le",
+"encore",
+"un"
+]
+},
+{
+"correct": "sont",
+"distractors": [
+"sommes",
+"suis",
+"porte",
+"bureau",
+"fenêtre"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"le",
+"la",
+"lui",
+"un",
+"encore"
+]
+},
+{
+"correct": "propres",
+"distractors": [
+"chambre",
+"bureau",
+"vide",
+"gare",
+"rue"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:47",
+"target": "Le couloir n’est pas très large.",
+"ru": "Коридор не очень широкий.",
+"uk": "Коридор не дуже широкий.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Encore",
+"Les",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "couloir",
+"distractors": [
+"verre",
+"ouvert",
+"ensemble",
+"porte",
+"clés"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"gare",
+"près",
+"ici",
+"dehors"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"lui",
+"la",
+"encore",
+"les"
+]
+},
+{
+"correct": "très",
+"distractors": [
+"vous",
+"chambre",
+"elle",
+"gare",
+"avance"
+]
+},
+{
+"correct": "large",
+"distractors": [
+"clés",
+"chambre",
+"seuls",
+"table",
+"propres"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:48",
+"target": "Vous n’êtes pas seuls ici.",
+"ru": "Вы здесь не одни.",
+"uk": "Ви тут не самі.",
+"tiles": [
+{
+"correct": "Vous",
+"distractors": [
+"Elles",
+"Ils",
+"Il",
+"On",
+"Je"
+]
+},
+{
+"correct": "n’êtes",
+"distractors": [
+"n’est",
+"n’es",
+"près",
+"dehors",
+"porte"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"encore",
+"la",
+"le",
+"les",
+"ne"
+]
+},
+{
+"correct": "seuls",
+"distractors": [
+"libre",
+"prêts",
+"gare",
+"prêt",
+"calme"
+]
+},
+{
+"correct": "ici",
+"distractors": [
+"loin",
+"dehors",
+"près",
+"n’est",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:49",
+"target": "Le bus n’est pas encore là.",
+"ru": "Автобуса ещё нет.",
+"uk": "Автобус ще не прибув.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Ne",
+"En",
+"Que",
+"Et",
+"Pour"
+]
+},
+{
+"correct": "bus",
+"distractors": [
+"vélo",
+"voiture",
+"train",
+"gare",
+"porte"
+]
+},
+{
+"correct": "n’est",
+"distractors": [
+"n’êtes",
+"porte",
+"ici",
+"train",
+"gare"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"ne",
+"la",
+"lui",
+"les",
+"un"
+]
+},
+{
+"correct": "encore",
+"distractors": [
+"les",
+"la",
+"un",
+"une",
+"au"
+]
+},
+{
+"correct": "là",
+"distractors": [
+"près",
+"dehors",
+"loin",
+"train",
+"n’es"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "fr:02:50",
+"target": "Nous ne sommes pas loin de la gare.",
+"ru": "Мы недалеко от вокзала.",
+"uk": "Ми недалеко від станції.",
+"tiles": [
+{
+"correct": "Nous",
+"distractors": [
+"Je",
+"Ils",
+"Tu",
+"Elles",
+"Il"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"le",
+"les",
+"un",
+"lui",
+"une"
+]
+},
+{
+"correct": "sommes",
+"distractors": [
+"es",
+"sont",
+"est",
+"êtes",
+"suis"
+]
+},
+{
+"correct": "pas",
+"distractors": [
+"lui",
+"le",
+"les",
+"encore",
+"un"
+]
+},
+{
+"correct": "loin",
+"distractors": [
+"là",
+"dehors",
+"ici",
+"près",
+"porte"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lui",
+"les",
+"que",
+"et",
+"pour"
+]
+},
+{
+"correct": "gare",
+"distractors": [
+"salle",
+"banque",
+"chambre",
+"sortie",
+"rue"
+]
+}
+],
+"alternatives": []
+}
+]

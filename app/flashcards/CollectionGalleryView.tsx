@@ -18,7 +18,7 @@ import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
 import { StickySearchBar } from '../../components/cards-grid/StickySearchBar';
 import { strengthDotCount, type WordStrength } from './word_strength';
 import ReportErrorButton from '../../components/ReportErrorButton';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { flattenOver, legibleOn } from '../../constants/liquidGlassSurfaceRoles';
 import { PanelCta, PanelDock, SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { actionBoxShadow } from '../../components/v2/ShadowSurface';

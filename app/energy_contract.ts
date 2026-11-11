@@ -159,30 +159,12 @@ export function canChargeClassicLessonEntry(state: Readonly<{
     && state.remoteSourceReady;
 }
 
-/** Direct Learning V2 cannot charge when the prepared session handoff is absent. */
-export function isLearningV2DirectSessionUnready(state: Readonly<{
-  directMode: boolean;
-  sessionId: string;
-  sessionRunId: string;
-  hasReadyHandle: boolean;
-  routeCoordinatesReady: boolean;
-}>): boolean {
-  return state.directMode && (!state.sessionId || !state.sessionRunId || !state.hasReadyHandle || !state.routeCoordinatesReady);
-}
-
 /** Training charges only after a playable queue and the live energy balance are ready. */
 export function canChargePreparedTrainingEntry(state: Readonly<{
   energyReady: boolean;
   hasPlayableItems: boolean;
 }>): boolean {
   return state.energyReady && state.hasPlayableItems;
-}
-
-export function isLearningV2LegacySessionUnready(state: Readonly<{
-  directMode: boolean;
-  sessionIdKnown: boolean;
-}>): boolean {
-  return !state.directMode && !state.sessionIdKnown;
 }
 
 /** Bridges durable legacy intent names to the one canonical price catalog. */

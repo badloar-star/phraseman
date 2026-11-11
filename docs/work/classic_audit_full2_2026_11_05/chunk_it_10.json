@@ -1,0 +1,6891 @@
+[
+{
+"lesson": 21,
+"id": "it:21:01",
+"target": "Leggevo quando hai chiamato.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував.",
+"tiles": [
+{
+"correct": "Leggevo",
+"distractors": [
+"Aveva",
+"Avevamo",
+"Avevano",
+"Deve",
+"Devi"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"abbiamo",
+"ho",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "chiamato",
+"distractors": [
+"addormentarmi",
+"prezzi",
+"caduto",
+"sentito",
+"bello"
+]
+}
+],
+"alternatives": [
+"Io leggevo quando hai chiamato."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:02",
+"target": "Dormivo quando hai chiamato.",
+"ru": "Я спала, когда ты позвонила.",
+"uk": "Я спала, коли ти подзвонив.",
+"tiles": [
+{
+"correct": "Dormivo",
+"distractors": [
+"Dormivano",
+"All’aperto",
+"Arrivate",
+"Arrivi",
+"Camminavo"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"ho",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "chiamato",
+"distractors": [
+"radio",
+"campanello",
+"lavorando",
+"pagando",
+"bello"
+]
+}
+],
+"alternatives": [
+"Io dormivo quando hai chiamato."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:03",
+"target": "Cucinava quando è squillato il telefono.",
+"ru": "Она готовила, когда зазвонил телефон.",
+"uk": "Вона готувала, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Cucinava",
+"distractors": [
+"Piazza",
+"Via",
+"Scoppiata",
+"Sorella",
+"Saliva"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siete",
+"siamo",
+"l’etichetta"
+]
+},
+{
+"correct": "squillato",
+"distractors": [
+"radio",
+"scrivendo",
+"mangiando",
+"aspettando",
+"chiamato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"stavo",
+"uscendo",
+"annotato",
+"scontrino",
+"suonato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:04",
+"target": "Stavamo mangiando quando è arrivato Paolo.",
+"ru": "Мы ели, когда приехал Паоло.",
+"uk": "Ми їли, коли прийшов Паоло.",
+"tiles": [
+{
+"correct": "Stavamo",
+"distractors": [
+"Stavo",
+"Stava",
+"Stavi",
+"Stavano",
+"Ha"
+]
+},
+{
+"correct": "mangiando",
+"distractors": [
+"trasmettendo",
+"controllando",
+"iniziato",
+"specchio",
+"campanello"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"lungo",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"arrivate",
+"cucinava",
+"aspettando",
+"squillato",
+"scrivendo"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+}
+],
+"alternatives": [
+"Noi stavamo mangiando quando è arrivato Paolo."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:05",
+"target": "Stavi scrivendo quando sono entrato.",
+"ru": "Ты писал, когда я вошёл.",
+"uk": "Ти писав, коли я увійшов.",
+"tiles": [
+{
+"correct": "Stavi",
+"distractors": [
+"Stavamo",
+"Stavo",
+"Stava",
+"Stavano",
+"Biglietti"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"trasmettendo",
+"cercando",
+"schermo",
+"aspettando",
+"chiamato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"faceva",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "entrato",
+"distractors": [
+"perso",
+"squillato",
+"scontrino",
+"partito",
+"aspettando"
+]
+}
+],
+"alternatives": [
+"Tu stavi scrivendo quando sono entrato."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:06",
+"target": "Stavano parlando quando è andata via la luce.",
+"ru": "Они разговаривали, когда погас свет.",
+"uk": "Вони розмовляли, коли згасло світло.",
+"tiles": [
+{
+"correct": "Stavano",
+"distractors": [
+"Stavo",
+"Stavamo",
+"Stava",
+"Stavi",
+"Era"
+]
+},
+{
+"correct": "parlando",
+"distractors": [
+"pagando",
+"perso",
+"lavorando",
+"uscito",
+"arieggiando"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siamo",
+"postino",
+"siete"
+]
+},
+{
+"correct": "andata",
+"distractors": [
+"notizia",
+"pioveva",
+"erano",
+"andati",
+"ero"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"doccia",
+"caduta",
+"stava",
+"sala",
+"porta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"uno",
+"mi",
+"che"
+]
+},
+{
+"correct": "luce",
+"distractors": [
+"fame",
+"dottore",
+"scale",
+"canzone",
+"piovere"
+]
+}
+],
+"alternatives": [
+"Loro stavano parlando quando è andata via la luce."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:07",
+"target": "Stavo lavorando quando è passata.",
+"ru": "Я работала, когда она проходила мимо.",
+"uk": "Я працювала, коли вона проходила повз.",
+"tiles": [
+{
+"correct": "Stavo",
+"distractors": [
+"Stavamo",
+"Stavi",
+"Stavano",
+"All’aperto",
+"Lava"
+]
+},
+{
+"correct": "lavorando",
+"distractors": [
+"salivo",
+"pagando",
+"tagliato",
+"passato",
+"trovato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"scoppiata",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "passata",
+"distractors": [
+"saliva",
+"deserta",
+"piazza",
+"andata",
+"via"
+]
+}
+],
+"alternatives": [
+"Io stavo lavorando quando è passata."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:08",
+"target": "Lea camminava quando ha cominciato a piovere.",
+"ru": "Леа шла, когда начался дождь.",
+"uk": "Леа йшла, коли почався дощ.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "camminava",
+"distractors": [
+"panchina",
+"porta",
+"strada",
+"valigia",
+"arrivata"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "cominciato",
+"distractors": [
+"scrivendo",
+"lavorando",
+"mangiando",
+"specchio",
+"trasmettendo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "piovere",
+"distractors": [
+"te",
+"scale",
+"luce",
+"stazione",
+"fame"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:09",
+"target": "Stavamo aspettando quando è arrivato l’autobus.",
+"ru": "Мы ждали, когда подъехал автобус.",
+"uk": "Ми чекали, коли під’їхав автобус.",
+"tiles": [
+{
+"correct": "Stavamo",
+"distractors": [
+"Stavo",
+"Stava",
+"Stavano",
+"Stavi",
+"Ha"
+]
+},
+{
+"correct": "aspettando",
+"distractors": [
+"trasmettendo",
+"uscendo",
+"parlando",
+"giocavano",
+"scrivendo"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"parlava",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"suonata",
+"messaggio",
+"parlando",
+"mangiando",
+"cercando"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"riordinavo",
+"panchina",
+"campanello",
+"cambiate",
+"hai"
+]
+}
+],
+"alternatives": [
+"Noi stavamo aspettando quando è arrivato l’autobus."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:10",
+"target": "Stavo pagando quando mi è caduta la carta.",
+"ru": "Я расплачивалась, когда моя карта упала.",
+"uk": "Я розплачувалася, коли моя картка випала.",
+"tiles": [
+{
+"correct": "Stavo",
+"distractors": [
+"Stavamo",
+"Stavi",
+"Stavano",
+"All’aperto",
+"Lava"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"scrivendo",
+"l’ho",
+"sta",
+"preso",
+"arrivato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"ci",
+"ti",
+"le",
+"il",
+"un"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"canzone",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "caduta",
+"distractors": [
+"cadute",
+"sveglia",
+"piazza",
+"sorella",
+"doccia"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"un",
+"lo",
+"le"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"via",
+"una",
+"valigia",
+"zuppa",
+"sorella"
+]
+}
+],
+"alternatives": [
+"Io stavo pagando quando mi è caduta la carta."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:11",
+"target": "Pioveva quando siamo usciti.",
+"ru": "Когда мы уходили, шел дождь.",
+"uk": "Коли ми вийшли, йшов дощ.",
+"tiles": [
+{
+"correct": "Pioveva",
+"distractors": [
+"Notizia",
+"Sala",
+"Alla",
+"Piazza",
+"Piena"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sono",
+"sei",
+"siete",
+"ci"
+]
+},
+{
+"correct": "usciti",
+"distractors": [
+"uscito",
+"zuppa",
+"uscita",
+"studenti",
+"bici"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:12",
+"target": "Il tempo era bello quando è arrivato il treno.",
+"ru": "Погода была хорошая, когда прибыл поезд.",
+"uk": "Погода була гарною, коли прибув поїзд.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Le",
+"Una",
+"Che"
+]
+},
+{
+"correct": "tempo",
+"distractors": [
+"chiamato",
+"annotato",
+"letto",
+"preso",
+"telefono"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "bello",
+"distractors": [
+"gatto",
+"preso",
+"radio",
+"letto",
+"meglio"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stavano",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"negozio",
+"vibrato",
+"cenando",
+"ufficio",
+"posto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"facevo",
+"l’ho",
+"chiamato",
+"cercando",
+"radio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:13",
+"target": "La strada era deserta quando Paolo è uscito.",
+"ru": "Улица была пуста, когда вышел Паоло.",
+"uk": "Вулиця була порожня, коли вийшов Паоло.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Un",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"arrivata",
+"carta",
+"via",
+"sorella",
+"caduta"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "deserta",
+"distractors": [
+"camminava",
+"porta",
+"valigia",
+"panchina",
+"casa"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"uscendo",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "uscito",
+"distractors": [
+"cinema",
+"passato",
+"lavorando",
+"pagando",
+"mangiando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:14",
+"target": "Le persiane erano chiuse quando sono passato.",
+"ru": "Ставни были закрыты, когда я проходил мимо.",
+"uk": "Віконниці були зачинені, коли я проходив повз.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"Una",
+"I",
+"Che"
+]
+},
+{
+"correct": "persiane",
+"distractors": [
+"scale",
+"stazione",
+"canzone",
+"insieme",
+"piovere"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"era",
+"ero",
+"eravamo",
+"siamo",
+"casa"
+]
+},
+{
+"correct": "chiuse",
+"distractors": [
+"chiuso",
+"aperta",
+"chiusa",
+"aperto",
+"aperti"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"vestivo",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "passato",
+"distractors": [
+"aspettavamo",
+"mangiando",
+"pagando",
+"bussato",
+"lavorando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:15",
+"target": "Faceva freddo quando la porta si è aperta.",
+"ru": "Было холодно, когда открылась дверь.",
+"uk": "Було холодно, коли двері відчинилися.",
+"tiles": [
+{
+"correct": "Faceva",
+"distractors": [
+"Bilancia",
+"Scuola",
+"Allora",
+"Preparava",
+"Pioveva"
+]
+},
+{
+"correct": "freddo",
+"distractors": [
+"annotato",
+"salivo",
+"giocavano",
+"scrivendo",
+"squillato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"li",
+"che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"le",
+"ti",
+"gli",
+"il",
+"un"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"gatto",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "aperta",
+"distractors": [
+"chiuso",
+"chiuse",
+"chiusi",
+"chiusa",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:16",
+"target": "La sala era piena quando è iniziato il concerto.",
+"ru": "Зал был полон, когда начался концерт.",
+"uk": "Зал був повний, коли почався концерт.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Un",
+"Le",
+"Si",
+"Che",
+"E"
+]
+},
+{
+"correct": "sala",
+"distractors": [
+"caduta",
+"cinema",
+"stava",
+"casa",
+"porta"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "piena",
+"distractors": [
+"strada",
+"panchina",
+"stanza",
+"valigia",
+"doccia"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"strada",
+"siamo",
+"ci",
+"c’è",
+"casa"
+]
+},
+{
+"correct": "iniziato",
+"distractors": [
+"scrivendo",
+"perso",
+"lavorando",
+"salivo",
+"postino"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"i",
+"le",
+"una",
+"che",
+"e"
+]
+},
+{
+"correct": "concerto",
+"distractors": [
+"cominciato",
+"aspettando",
+"numero",
+"scrivendo",
+"facevo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:17",
+"target": "Ero alla stazione quando hai scritto.",
+"ru": "Я был на вокзале, когда ты написала.",
+"uk": "Я був на вокзалі, коли ти написав.",
+"tiles": [
+{
+"correct": "Ero",
+"distractors": [
+"Erano",
+"Eravamo",
+"Libera",
+"Libere",
+"Liberi"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"alle",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"piovere",
+"scale",
+"dottore",
+"canzone",
+"rumore"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"ho",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "scritto",
+"distractors": [
+"trovato",
+"numero",
+"campanello",
+"radevo",
+"cercavo"
+]
+}
+],
+"alternatives": [
+"Io ero alla stazione quando hai scritto."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:18",
+"target": "Avevamo fame quando è arrivata la zuppa.",
+"ru": "Когда принесли суп, мы были голодны.",
+"uk": "Коли принесли суп, ми були голодні.",
+"tiles": [
+{
+"correct": "Avevamo",
+"distractors": [
+"Aveva",
+"Avevano",
+"Barche",
+"Pallone",
+"D’estate"
+]
+},
+{
+"correct": "fame",
+"distractors": [
+"rumore",
+"scale",
+"pane",
+"piovere",
+"dottore"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"leggeva",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "arrivata",
+"distractors": [
+"arrivati",
+"notizia",
+"schermo",
+"l’etichetta",
+"carta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"ci",
+"uno",
+"che"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"cinema",
+"deserta",
+"scaldava",
+"cucinava",
+"passata"
+]
+}
+],
+"alternatives": [
+"Noi avevamo fame quando è arrivata la zuppa."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:19",
+"target": "Gli studenti aspettavano quando hanno annunciato la partenza.",
+"ru": "Ученики ждали, когда объявили отправление.",
+"uk": "Учні чекали, коли оголосили відправлення.",
+"tiles": [
+{
+"correct": "Gli",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Che",
+"E"
+]
+},
+{
+"correct": "studenti",
+"distractors": [
+"bambini",
+"prezzi",
+"usciti",
+"passeggeri",
+"guidavi"
+]
+},
+{
+"correct": "aspettavano",
+"distractors": [
+"aspettavamo",
+"mangiando",
+"messaggio",
+"cercando",
+"negozio"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "hanno",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "annunciato",
+"distractors": [
+"frenato",
+"annotato",
+"vestivo",
+"cominciato",
+"bussato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "partenza",
+"distractors": [
+"porta",
+"piazza",
+"tavola",
+"doccia",
+"passata"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:20",
+"target": "Erano in viaggio quando ho ricevuto la notizia.",
+"ru": "Они были в пути, когда я получил известие.",
+"uk": "Вони були в дорозі, коли я отримав новину.",
+"tiles": [
+{
+"correct": "Erano",
+"distractors": [
+"Era",
+"Ero",
+"Eravamo",
+"Aspettavamo",
+"Libro"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"senza"
+]
+},
+{
+"correct": "viaggio",
+"distractors": [
+"questo",
+"gatto",
+"percorso",
+"fratello",
+"tempo"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "ricevuto",
+"distractors": [
+"leggeva",
+"guanto",
+"uscendo",
+"cominciato",
+"bussato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"le",
+"si",
+"che"
+]
+},
+{
+"correct": "notizia",
+"distractors": [
+"parlava",
+"arrivata",
+"pioveva",
+"scoppiata",
+"dormiva"
+]
+}
+],
+"alternatives": [
+"Loro erano in viaggio quando ho ricevuto la notizia."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:21",
+"target": "Mentre riordinavo, Lea ha trovato lo scontrino.",
+"ru": "Пока я убирался, Леа нашла квитанцию.",
+"uk": "Поки я прибирав, Леа знайшла чек.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "riordinavo",
+"distractors": [
+"hai",
+"scritto",
+"panchina",
+"campanello",
+"iniziato"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "trovato",
+"distractors": [
+"cercavo",
+"attraversava",
+"apparecchiato",
+"specchio",
+"visto"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"la",
+"un",
+"mi",
+"che"
+]
+},
+{
+"correct": "scontrino",
+"distractors": [
+"tagliato",
+"scrivendo",
+"iniziato",
+"annunciato",
+"stavamo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:22",
+"target": "Mentre aspettavamo, è uscito il dottore.",
+"ru": "Пока мы ждали, вышел врач.",
+"uk": "Поки ми чекали, вийшов лікар.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "aspettavamo",
+"distractors": [
+"aspettavano",
+"mangiando",
+"messaggio",
+"cercando",
+"negozio"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"occhiali",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "uscito",
+"distractors": [
+"usciti",
+"cercando",
+"letto",
+"treno",
+"tavolo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"uno",
+"una",
+"che"
+]
+},
+{
+"correct": "dottore",
+"distractors": [
+"luce",
+"scale",
+"corrente",
+"persiane",
+"piovere"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:23",
+"target": "Mentre guidavi, ho letto il messaggio.",
+"ru": "Пока ты вела машину, я прочитал сообщение.",
+"uk": "Поки ти їхав, я прочитав повідомлення.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Se",
+"Che",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "guidavi",
+"distractors": [
+"bambini",
+"prezzi",
+"usciti",
+"passeggeri",
+"occhiali"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "letto",
+"distractors": [
+"stavamo",
+"bussato",
+"tempo",
+"negozio",
+"frenato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"sentito",
+"controllando",
+"mangiando",
+"telefono",
+"arrivato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:24",
+"target": "Mentre pioveva, abbiamo preso il caffè.",
+"ru": "Пока шел дождь, мы пили кофе.",
+"uk": "Поки йшов дощ, ми пили каву.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "pioveva",
+"distractors": [
+"dalla",
+"aperta",
+"dormiva",
+"suonata",
+"doccia"
+]
+},
+{
+"correct": "abbiamo",
+"distractors": [
+"ha",
+"ho",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "preso",
+"distractors": [
+"entrato",
+"ricevuto",
+"lungo",
+"numero",
+"scritto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"una",
+"che"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"scoppiata",
+"suo",
+"guanto",
+"aperta",
+"negozio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:25",
+"target": "Mentre Paolo parlava, ho annotato il suo numero.",
+"ru": "Пока Паоло говорил, я записал его номер.",
+"uk": "Поки Паоло розмовляв, я записав його номер.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "parlava",
+"distractors": [
+"pioveva",
+"scaldava",
+"notizia",
+"siamo",
+"sei"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hanno",
+"hai",
+"avete"
+]
+},
+{
+"correct": "annotato",
+"distractors": [
+"arieggiando",
+"giocavano",
+"mangiando",
+"iniziato",
+"arrivato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"lo",
+"una",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"mio",
+"mia",
+"tua",
+"nostro",
+"sue"
+]
+},
+{
+"correct": "numero",
+"distractors": [
+"dormivo",
+"giocavano",
+"camminavo",
+"specchio",
+"lavorando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:26",
+"target": "Mentre la zuppa si scaldava, ho apparecchiato la tavola.",
+"ru": "Пока суп разогревался, я накрыл на стол.",
+"uk": "Поки суп нагрівався, я накрив на стіл.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"un",
+"gli",
+"che"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"sorella",
+"doccia",
+"piazza",
+"strada",
+"piena"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"gli",
+"li",
+"ti",
+"il",
+"ci"
+]
+},
+{
+"correct": "scaldava",
+"distractors": [
+"pioveva",
+"l’etichetta",
+"parlava",
+"partenza",
+"arrivata"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "apparecchiato",
+"distractors": [
+"trovato",
+"annunciato",
+"aspettando",
+"perso",
+"visto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"le",
+"un",
+"che"
+]
+},
+{
+"correct": "tavola",
+"distractors": [
+"doccia",
+"dormiva",
+"alla",
+"piena",
+"sveglia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:27",
+"target": "Mentre i bambini giocavano, la palla è scoppiata.",
+"ru": "Пока дети играли, мяч лопнул.",
+"uk": "Поки діти гралися, м’яч лопнув.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"un",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"bici",
+"studenti",
+"passeggeri",
+"prezzi",
+"occhiali"
+]
+},
+{
+"correct": "giocavano",
+"distractors": [
+"cercavo",
+"cercando",
+"entrato",
+"aspettavamo",
+"parlando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"che",
+"e"
+]
+},
+{
+"correct": "palla",
+"distractors": [
+"panchina",
+"zuppa",
+"arrivata",
+"cinema",
+"faceva"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"saliva",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "scoppiata",
+"distractors": [
+"pioveva",
+"usciti",
+"partenza",
+"arrivato",
+"passata"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:28",
+"target": "Mentre cercavo gli occhiali, l’autobus è partito.",
+"ru": "Пока я искал свои очки, автобус уехал.",
+"uk": "Поки я шукав свої окуляри, автобус поїхав.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "cercavo",
+"distractors": [
+"trovato",
+"cercando",
+"numero",
+"entrato",
+"scritto"
+]
+},
+{
+"correct": "gli",
+"distractors": [
+"il",
+"la",
+"i",
+"lo",
+"mi"
+]
+},
+{
+"correct": "occhiali",
+"distractors": [
+"prezzi",
+"usciti",
+"bambini",
+"passeggeri",
+"guidavi"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"l’etichetta",
+"leggeva",
+"luce",
+"ero",
+"siamo"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"tuo",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "partito",
+"distractors": [
+"parlando",
+"partenza",
+"vibrato",
+"pagando",
+"tagliato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:29",
+"target": "Mentre Lea leggeva l’etichetta, è squillato il telefono.",
+"ru": "Пока Леа читала этикетку, зазвонил телефон.",
+"uk": "Поки Леа читала етикетку, задзвонив телефон.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "leggeva",
+"distractors": [
+"siamo",
+"sei",
+"siete",
+"sono",
+"ero"
+]
+},
+{
+"correct": "l’etichetta",
+"distractors": [
+"cucinava",
+"arrivata",
+"camminava",
+"panchina",
+"partenza"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"camminavo",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "squillato",
+"distractors": [
+"trasmettendo",
+"vibrato",
+"arrivato",
+"salivo",
+"arieggiando"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"lo",
+"una",
+"che"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"viaggio",
+"gatto",
+"preso",
+"annunciato",
+"pagando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:30",
+"target": "Mentre dormiva, è arrivato il postino.",
+"ru": "Пока вы спали, приходил почтальон.",
+"uk": "Поки ви спали, приходив листоноша.",
+"tiles": [
+{
+"correct": "Mentre",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "dormiva",
+"distractors": [
+"dormivano",
+"doccia",
+"pioveva",
+"scoppiata",
+"alla"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"caffè",
+"siamo",
+"c’è",
+"ci",
+"tè"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"radio",
+"suonato",
+"chiamato",
+"cercando",
+"dimenticato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"lo",
+"i",
+"una",
+"che"
+]
+},
+{
+"correct": "postino",
+"distractors": [
+"chiuso",
+"chiamato",
+"giocavano",
+"bussato",
+"scrivendo"
+]
+}
+],
+"alternatives": [
+"Mentre dormiva, sei arrivato il postino."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:31",
+"target": "Ho sentito un rumore mentre leggevo.",
+"ru": "Я услышал шум, когда читал.",
+"uk": "Я почув шум, коли читав.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hanno",
+"Hai",
+"Avete"
+]
+},
+{
+"correct": "sentito",
+"distractors": [
+"iniziato",
+"freddo",
+"suonato",
+"ricevuto",
+"telefono"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "rumore",
+"distractors": [
+"piovere",
+"fame",
+"stazione",
+"persiane",
+"insieme"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "leggevo",
+"distractors": [
+"ricevuto",
+"freddo",
+"iniziato",
+"suonato",
+"aveva"
+]
+}
+],
+"alternatives": [
+"Io ho sentito un rumore mentre leggevo."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:32",
+"target": "Lo specchio è caduto mentre mi radevo.",
+"ru": "Зеркало упало, когда я брился.",
+"uk": "Дзеркало впало, поки я голився.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Il",
+"La",
+"I",
+"Un",
+"Una"
+]
+},
+{
+"correct": "specchio",
+"distractors": [
+"ricevuto",
+"telefono",
+"aspettando",
+"tagliato",
+"cercando"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siamo",
+"dormivo",
+"siete"
+]
+},
+{
+"correct": "caduto",
+"distractors": [
+"scale",
+"cadute",
+"pagando",
+"suonato",
+"preso"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"la",
+"ci",
+"si",
+"il",
+"le"
+]
+},
+{
+"correct": "radevo",
+"distractors": [
+"squillato",
+"passato",
+"facevo",
+"visto",
+"vestivo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:33",
+"target": "La sveglia è suonata mentre mi vestivo.",
+"ru": "Будильник сработал, пока я одевалась.",
+"uk": "Будильник задзвонив, поки я одягалася.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Che",
+"E"
+]
+},
+{
+"correct": "sveglia",
+"distractors": [
+"parlava",
+"scaldava",
+"sala",
+"pioveva",
+"doccia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"mangiando",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "suonata",
+"distractors": [
+"salivo",
+"panchina",
+"doccia",
+"arrivata",
+"guidavi"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"che",
+"se",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"ci",
+"gli",
+"si",
+"vi",
+"il"
+]
+},
+{
+"correct": "vestivo",
+"distractors": [
+"suonato",
+"riordinavo",
+"radevo",
+"iniziato",
+"scritto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:34",
+"target": "Mia sorella è arrivata mentre facevo la doccia.",
+"ru": "Моя сестра приехала, пока я принимала душ.",
+"uk": "Моя сестра прийшла, поки я приймала душ.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Sua",
+"Tua",
+"Miei",
+"Loro",
+"Suo"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"parlava",
+"notizia",
+"suonata",
+"caduta",
+"piena"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"mangiando",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "arrivata",
+"distractors": [
+"cenando",
+"saliva",
+"scaldava",
+"partenza",
+"arrivati"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"che",
+"se",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "facevo",
+"distractors": [
+"treno",
+"cercando",
+"numero",
+"concerto",
+"radio"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"gli",
+"ci",
+"che"
+]
+},
+{
+"correct": "doccia",
+"distractors": [
+"deserta",
+"scoppiata",
+"cucinava",
+"via",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:35",
+"target": "Il gatto è entrato mentre stavamo arieggiando la stanza.",
+"ru": "Кошка вошла, пока мы проветривали комнату.",
+"uk": "Кіт зайшов, поки ми провітрювали кімнату.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"I",
+"Una",
+"Le",
+"Che",
+"E"
+]
+},
+{
+"correct": "gatto",
+"distractors": [
+"correvo",
+"letto",
+"trovato",
+"vestivo",
+"suonato"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"iniziato",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "entrato",
+"distractors": [
+"preso",
+"messaggio",
+"trovato",
+"scrivendo",
+"perso"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"se",
+"che",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "stavamo",
+"distractors": [
+"stavo",
+"stava",
+"stavi",
+"stavano",
+"scrivendo"
+]
+},
+{
+"correct": "arieggiando",
+"distractors": [
+"controllando",
+"campanello",
+"annunciato",
+"stai",
+"scrivendo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"panchina",
+"deserta",
+"palla",
+"partenza",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:36",
+"target": "Il telefono ha vibrato mentre stavo pagando.",
+"ru": "Телефон завибрировал, пока я расплачивалась.",
+"uk": "Телефон вібрував, поки я розраховувалась.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Le",
+"I",
+"Uno",
+"Che"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"sentito",
+"entrato",
+"freddo",
+"mangiando",
+"bisogno"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "vibrato",
+"distractors": [
+"suonato",
+"messaggio",
+"passato",
+"scrivendo",
+"biglietto"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "stavo",
+"distractors": [
+"stavamo",
+"stavi",
+"stavano",
+"scrivendo",
+"tempo"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"cercando",
+"lavorando",
+"vestivo",
+"pensando",
+"frenato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:37",
+"target": "Ho perso il guanto mentre correvo.",
+"ru": "Я потерял перчатку, когда бежал.",
+"uk": "Я загубив рукавичку, коли бігав.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "perso",
+"distractors": [
+"visto",
+"passato",
+"trovato",
+"numero",
+"treno"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "guanto",
+"distractors": [
+"stavo",
+"mangiando",
+"numero",
+"radio",
+"treno"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "correvo",
+"distractors": [
+"trovato",
+"letto",
+"numero",
+"mangiando",
+"gatto"
+]
+}
+],
+"alternatives": [
+"Io ho perso il guanto mentre correvo."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:38",
+"target": "Un vicino ha bussato mentre stavamo cenando.",
+"ru": "Сосед постучал, пока мы ужинали.",
+"uk": "Сусід постукав, коли ми вечеряли.",
+"tiles": [
+{
+"correct": "Un",
+"distractors": [
+"La",
+"I",
+"Una",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "bussato",
+"distractors": [
+"radevo",
+"iniziato",
+"scritto",
+"preso",
+"bello"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "stavamo",
+"distractors": [
+"stavo",
+"stava",
+"stavi",
+"stavano",
+"scrivendo"
+]
+},
+{
+"correct": "cenando",
+"distractors": [
+"pagando",
+"suonato",
+"entrato",
+"aspettando",
+"lavorando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:39",
+"target": "Il treno ha frenato mentre camminavo lungo il corridoio.",
+"ru": "Поезд затормозил, пока я шла по коридору.",
+"uk": "Поїзд загальмував, коли я йшла коридором.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Uno",
+"Che"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"stavo",
+"pensando",
+"freddo",
+"concerto",
+"ufficio"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "frenato",
+"distractors": [
+"scontrino",
+"apparecchiato",
+"lavorando",
+"bussato",
+"l’ho"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "camminavo",
+"distractors": [
+"siamo",
+"sei",
+"siete",
+"sono",
+"è"
+]
+},
+{
+"correct": "lungo",
+"distractors": [
+"pagando",
+"entrato",
+"radevo",
+"passato",
+"stavamo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "corridoio",
+"distractors": [
+"postino",
+"scrivendo",
+"stavamo",
+"vibrato",
+"controllando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:40",
+"target": "Il campanello ha suonato mentre salivo le scale.",
+"ru": "Когда я поднимался по лестнице, зазвонил дверной звонок.",
+"uk": "Дзвінок у двері продзвенів, коли я піднімався сходами.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"I",
+"Che",
+"E"
+]
+},
+{
+"correct": "campanello",
+"distractors": [
+"viaggio",
+"lavorando",
+"mangiando",
+"gatto",
+"entrato"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "suonato",
+"distractors": [
+"stavo",
+"scrivendo",
+"tempo",
+"trovato",
+"preso"
+]
+},
+{
+"correct": "mentre",
+"distractors": [
+"se",
+"che",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "salivo",
+"distractors": [
+"camminavo",
+"stavamo",
+"preso",
+"chiuso",
+"trovato"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"i",
+"la",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "scale",
+"distractors": [
+"cambiate",
+"stazione",
+"persiane",
+"piovere",
+"dottore"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:41",
+"target": "Stavo cercando una panchina quando ho visto Lea.",
+"ru": "Я искал скамейку, когда увидел Леа.",
+"uk": "Я шукав лаву, коли побачив Леа.",
+"tiles": [
+{
+"correct": "Stavo",
+"distractors": [
+"Stavamo",
+"Stavi",
+"Stavano",
+"All’aperto",
+"Lava"
+]
+},
+{
+"correct": "cercando",
+"distractors": [
+"frenato",
+"pensando",
+"lavorando",
+"lungo",
+"cenando"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"le",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "panchina",
+"distractors": [
+"dormiva",
+"l’etichetta",
+"scoppiata",
+"piazza",
+"palla"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"se",
+"che",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "visto",
+"distractors": [
+"stavamo",
+"radio",
+"specchio",
+"preso",
+"trovato"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+}
+],
+"alternatives": [
+"Io stavo cercando una panchina quando ho visto Lea."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:42",
+"target": "Paolo attraversava la piazza quando è caduto dalla bici.",
+"ru": "Паоло пересекал площадь, когда упал с велосипеда.",
+"uk": "Паоло перетинав площу, коли впав з велосипеда.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "attraversava",
+"distractors": [
+"trovato",
+"specchio",
+"apparecchiato",
+"cercavo",
+"metteva"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"un",
+"gli",
+"mi"
+]
+},
+{
+"correct": "piazza",
+"distractors": [
+"via",
+"doccia",
+"valigia",
+"strada",
+"carta"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"era",
+"ero",
+"erano",
+"eravamo"
+]
+},
+{
+"correct": "caduto",
+"distractors": [
+"sala",
+"arrivato",
+"cercando",
+"mangiando",
+"arrivata"
+]
+},
+{
+"correct": "dalla",
+"distractors": [
+"dal",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "bici",
+"distractors": [
+"usciti",
+"bambini",
+"prezzi",
+"guidavi",
+"stavi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:43",
+"target": "Stavo pensando a te quando è arrivato il tuo messaggio.",
+"ru": "Я думал о тебе, когда пришло твое сообщение.",
+"uk": "Я думав про тебе, коли прийшло твоє повідомлення.",
+"tiles": [
+{
+"correct": "Stavo",
+"distractors": [
+"Stavamo",
+"Stavano",
+"Stavi",
+"All’aperto",
+"Lava"
+]
+},
+{
+"correct": "pensando",
+"distractors": [
+"passato",
+"parlando",
+"cenando",
+"guanto",
+"squillato"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"fame",
+"scale",
+"luce",
+"stanza",
+"pane"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siete",
+"siamo",
+"palla"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"era",
+"arrivate",
+"scrivendo",
+"trovato",
+"ero"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"gli",
+"una"
+]
+},
+{
+"correct": "tuo",
+"distractors": [
+"suo",
+"sua",
+"miei",
+"nostro",
+"vostre"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"aspettavano",
+"squillato",
+"mangiando",
+"negozio",
+"biglietto"
+]
+}
+],
+"alternatives": [
+"Io stavo pensando a te quando è arrivato il tuo messaggio."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:44",
+"target": "Stavamo uscendo dal cinema quando ha iniziato a piovere.",
+"ru": "Мы выходили из кинотеатра, когда начался дождь.",
+"uk": "Ми виходили з кінотеатру, коли почався дощ.",
+"tiles": [
+{
+"correct": "Stavamo",
+"distractors": [
+"Stavo",
+"Stava",
+"Stavi",
+"Stavano",
+"Hai"
+]
+},
+{
+"correct": "uscendo",
+"distractors": [
+"aspettando",
+"trovato",
+"pagando",
+"qualcuno",
+"chiamato"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "cinema",
+"distractors": [
+"pioveva",
+"caduta",
+"faceva",
+"piazza",
+"arrivata"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "iniziato",
+"distractors": [
+"dormivo",
+"radio",
+"specchio",
+"aspettando",
+"chiamato"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"da",
+"sotto"
+]
+},
+{
+"correct": "piovere",
+"distractors": [
+"te",
+"fame",
+"corrente",
+"luce",
+"rumore"
+]
+}
+],
+"alternatives": [
+"Noi stavamo uscendo dal cinema quando ha iniziato a piovere."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:45",
+"target": "La radio stava trasmettendo una canzone quando è andata via la corrente.",
+"ru": "По радио играла песня, когда отключилось электричество.",
+"uk": "Радіо грало пісню, коли зникло світло.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"Si",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"uscendo",
+"suonato",
+"uscito",
+"visto",
+"passato"
+]
+},
+{
+"correct": "stava",
+"distractors": [
+"stavamo",
+"stavano",
+"porta",
+"scrivendo",
+"preso"
+]
+},
+{
+"correct": "trasmettendo",
+"distractors": [
+"mangiando",
+"squillato",
+"sta",
+"aspettando",
+"annunciato"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"le",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "canzone",
+"distractors": [
+"fame",
+"scale",
+"cambiate",
+"dottore",
+"piovere"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"palla",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "andata",
+"distractors": [
+"carta",
+"passata",
+"tavola",
+"valigia",
+"deserta"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"saliva",
+"carta",
+"dalla",
+"palla",
+"casa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "corrente",
+"distractors": [
+"stazione",
+"piovere",
+"scale",
+"dottore",
+"insieme"
+]
+}
+],
+"alternatives": [
+"La radio stava trasmettendo una canzone quando la corrente è andata via."
+]
+},
+{
+"lesson": 21,
+"id": "it:21:46",
+"target": "Saliva le scale quando gli è caduta la valigia.",
+"ru": "Он поднимался по лестнице, когда уронил чемодан.",
+"uk": "Він піднімався сходами, коли впустив валізу.",
+"tiles": [
+{
+"correct": "Saliva",
+"distractors": [
+"Via",
+"Cucinava",
+"Sorella",
+"Scoppiata",
+"Piazza"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"mi",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "scale",
+"distractors": [
+"persiane",
+"canzone",
+"fame",
+"piovere",
+"dottore"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"perché",
+"come",
+"e"
+]
+},
+{
+"correct": "gli",
+"distractors": [
+"il",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"mia",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "caduta",
+"distractors": [
+"carta",
+"andata",
+"sala",
+"strada",
+"casa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"ci",
+"li"
+]
+},
+{
+"correct": "valigia",
+"distractors": [
+"faceva",
+"cinema",
+"scaldava",
+"suonata",
+"sorella"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:47",
+"target": "Stava controllando i prezzi quando il negozio ha chiuso.",
+"ru": "Она проверяла цены, когда магазин закрылся.",
+"uk": "Вона перевіряла ціни, коли магазин зачинився.",
+"tiles": [
+{
+"correct": "Stava",
+"distractors": [
+"Stavamo",
+"Stavi",
+"Stavano",
+"Metteva",
+"C’era"
+]
+},
+{
+"correct": "controllando",
+"distractors": [
+"scontrino",
+"aspettando",
+"sta",
+"mangiando",
+"squillato"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"le",
+"una",
+"un",
+"che"
+]
+},
+{
+"correct": "prezzi",
+"distractors": [
+"guidavi",
+"usciti",
+"occhiali",
+"passeggeri",
+"bambini"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "negozio",
+"distractors": [
+"bello",
+"cominciato",
+"l’ho",
+"messaggio",
+"guanto"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hanno",
+"hai",
+"avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"chiusi",
+"chiuse",
+"aperti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:48",
+"target": "Il pane era ancora caldo quando l’ho tagliato.",
+"ru": "Хлеб был еще теплым, когда я его разрезал.",
+"uk": "Хліб був ще теплим, коли я його різав.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Uno",
+"Che"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"fame",
+"piovere",
+"dottore",
+"rumore",
+"canzone"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"non",
+"più",
+"già",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "caldo",
+"distractors": [
+"cenando",
+"qualcuno",
+"guanto",
+"uscito",
+"ricevuto"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "l’ho",
+"distractors": [
+"sentito",
+"bello",
+"treno",
+"gatto",
+"radio"
+]
+},
+{
+"correct": "tagliato",
+"distractors": [
+"scale",
+"arrivato",
+"mangiando",
+"cominciato",
+"squillato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:49",
+"target": "I passeggeri aspettavano quando sono cambiate le informazioni sullo schermo.",
+"ru": "Пассажиры ждали, когда информация на экране изменилась.",
+"uk": "Пасажири чекали, коли інформація на екрані змінилася.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Un",
+"Lo"
+]
+},
+{
+"correct": "passeggeri",
+"distractors": [
+"studenti",
+"guidavi",
+"bambini",
+"occhiali",
+"chiavi"
+]
+},
+{
+"correct": "aspettavano",
+"distractors": [
+"aspettavamo",
+"mangiando",
+"messaggio",
+"cercando",
+"negozio"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"luce",
+"siamo",
+"c’è",
+"ci",
+"stazione"
+]
+},
+{
+"correct": "cambiate",
+"distractors": [
+"dottore",
+"piovere",
+"scale",
+"qui",
+"hai"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"un",
+"ci",
+"che"
+]
+},
+{
+"correct": "informazioni",
+"distractors": [
+"addormentarmi",
+"sentito",
+"concerto",
+"specchio",
+"treno"
+]
+},
+{
+"correct": "sullo",
+"distractors": [
+"sul",
+"del",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "schermo",
+"distractors": [
+"l’ho",
+"parlando",
+"arrivato",
+"pagando",
+"telefono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "it:21:50",
+"target": "Stavo per addormentarmi quando qualcuno ha suonato il campanello.",
+"ru": "Я засыпал, когда кто-то позвонил в звонок.",
+"uk": "Я засинав, коли хтось подзвонив у дзвінок.",
+"tiles": [
+{
+"correct": "Stavo",
+"distractors": [
+"Stavamo",
+"Stavi",
+"Stavano",
+"All’aperto",
+"Lava"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"a",
+"in",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "addormentarmi",
+"distractors": [
+"aspettavano",
+"informazioni",
+"suonata",
+"arieggiando",
+"passeggeri"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "qualcuno",
+"distractors": [
+"correvo",
+"frenato",
+"trovato",
+"mangiando",
+"pensando"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "suonato",
+"distractors": [
+"pagando",
+"passato",
+"alla",
+"chiamato",
+"ai"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "campanello",
+"distractors": [
+"arieggiando",
+"vibrato",
+"apparecchiato",
+"corridoio",
+"annotato"
+]
+}
+],
+"alternatives": [
+"Io stavo per addormentarmi quando qualcuno ha suonato il campanello."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:01",
+"target": "Lo vedo.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"La",
+"Il",
+"Ci",
+"Ti",
+"Le"
+]
+},
+{
+"correct": "vedo",
+"distractors": [
+"vediamo",
+"sono",
+"questo",
+"porta",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Io lo vedo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:02",
+"target": "La vedo.",
+"ru": "Я вижу её.",
+"uk": "Я бачу її.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Mi",
+"Ci",
+"Vi",
+"Che"
+]
+},
+{
+"correct": "vedo",
+"distractors": [
+"vediamo",
+"sono",
+"questo",
+"porta",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Io la vedo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:03",
+"target": "Li vedo.",
+"ru": "Я вижу их.",
+"uk": "Я бачу їх.",
+"tiles": [
+{
+"correct": "Li",
+"distractors": [
+"Ci",
+"La",
+"Gli",
+"Mi",
+"Il"
+]
+},
+{
+"correct": "vedo",
+"distractors": [
+"vediamo",
+"sono",
+"questo",
+"porta",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Io li vedo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:04",
+"target": "Lo conosci.",
+"ru": "Ты его знаешь.",
+"uk": "Ти знаєш його.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"La",
+"Il",
+"Si",
+"Ti",
+"Ci"
+]
+},
+{
+"correct": "conosci",
+"distractors": [
+"vorrei",
+"comprarli",
+"biglietti",
+"guanti",
+"lezioni"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:05",
+"target": "La conosci.",
+"ru": "Ты её знаешь.",
+"uk": "Ти її знаєш.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ci",
+"Il",
+"Le",
+"Si",
+"Che"
+]
+},
+{
+"correct": "conosci",
+"distractors": [
+"domani",
+"chiavi",
+"guanti",
+"bambini",
+"metterli"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:06",
+"target": "Li conosci.",
+"ru": "Ты их знаешь.",
+"uk": "Ти знаєш їх.",
+"tiles": [
+{
+"correct": "Li",
+"distractors": [
+"La",
+"Ci",
+"Ti",
+"Gli",
+"Il"
+]
+},
+{
+"correct": "conosci",
+"distractors": [
+"vorrei",
+"domani",
+"chiavi",
+"biglietti",
+"bicchieri"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:07",
+"target": "Lei lo cerca.",
+"ru": "Она ищет его.",
+"uk": "Вона шукає його.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Tu",
+"Io",
+"Loro",
+"Lui",
+"Voi"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"ci",
+"la",
+"si",
+"che"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"cerchiamo",
+"cerchi",
+"cercano",
+"cercate",
+"casa"
+]
+}
+],
+"alternatives": [
+"Lo cerca."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:08",
+"target": "Lei la cerca.",
+"ru": "Она ищет её.",
+"uk": "Вона шукає її.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Lui",
+"Voi"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ti",
+"mi",
+"si",
+"che"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"cercano",
+"cerchiamo",
+"cerchi",
+"cercate",
+"casa"
+]
+}
+],
+"alternatives": [
+"La cerca."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:09",
+"target": "Lei li cerca.",
+"ru": "Она ищет их.",
+"uk": "Вона шукає їх.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Noi",
+"Tu"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"ci",
+"gli",
+"mi",
+"lo"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"cercano",
+"cerchiamo",
+"cerchi",
+"cercate",
+"casa"
+]
+}
+],
+"alternatives": [
+"Li cerca."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:10",
+"target": "Li aspettiamo.",
+"ru": "Мы ждём их.",
+"uk": "Ми чекаємо на них.",
+"tiles": [
+{
+"correct": "Li",
+"distractors": [
+"La",
+"Mi",
+"Gli",
+"Si",
+"Ci"
+]
+},
+{
+"correct": "aspettiamo",
+"distractors": [
+"aspettano",
+"aspetti",
+"aspetta",
+"l’appuntamento",
+"appuntamento"
+]
+}
+],
+"alternatives": [
+"Noi li aspettiamo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:11",
+"target": "La porta, la chiudo io.",
+"ru": "Дверь — я её закрываю.",
+"uk": "Двері - я її закриваю.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Le",
+"Ti",
+"Li",
+"Che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"portano",
+"porti",
+"casa",
+"borsa",
+"strada"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"li",
+"ci",
+"mi",
+"che"
+]
+},
+{
+"correct": "chiudo",
+"distractors": [
+"chiudi",
+"chiude",
+"chiudono",
+"piace",
+"chiave"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"tu",
+"lui",
+"noi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:12",
+"target": "La borsa, la tengo io.",
+"ru": "Сумку я оставляю у себя.",
+"uk": "Сумку я залишаю у себе.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Gli",
+"Le",
+"Ci",
+"Che"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"giacca",
+"via",
+"porta",
+"tenerla",
+"sulla"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"gli",
+"si",
+"che"
+]
+},
+{
+"correct": "tengo",
+"distractors": [
+"tieni",
+"mostro",
+"provarlo",
+"provo",
+"sono"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"tu",
+"lui",
+"noi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:13",
+"target": "Le chiavi, le porto con me.",
+"ru": "Ключи я беру с собой.",
+"uk": "Ключі я беру із собою.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"Ti",
+"Ci",
+"Che"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"vorrei",
+"conosci",
+"biglietti",
+"bambini",
+"comprarli"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"mi",
+"un",
+"che"
+]
+},
+{
+"correct": "porto",
+"distractors": [
+"portano",
+"porti",
+"aperta",
+"chiusa",
+"chiuso"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"l’assaggio",
+"vuole",
+"deve",
+"stampo",
+"pane"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:14",
+"target": "La giacca, la metto via.",
+"ru": "Куртку я убираю на место.",
+"uk": "Куртку я прибираю на місце.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Mi",
+"Ci",
+"Le",
+"Ti"
+]
+},
+{
+"correct": "giacca",
+"distractors": [
+"lasciarla",
+"sulla",
+"crostata",
+"batteria",
+"tenerla"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"mi",
+"ci",
+"le",
+"si"
+]
+},
+{
+"correct": "metto",
+"distractors": [
+"metti",
+"occhiali",
+"guanti",
+"riso",
+"burro"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"moneta",
+"cena",
+"zuppa",
+"tasca",
+"questa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:15",
+"target": "Il pane, lo taglio io.",
+"ru": "Я режу хлеб.",
+"uk": "Я ріжу хліб.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Gli",
+"Una",
+"Uno",
+"Che"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"deve",
+"vuole",
+"caricabatterie",
+"queste",
+"canzone"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"ti",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "taglio",
+"distractors": [
+"mostro",
+"messaggio",
+"provarlo",
+"tagliato",
+"l’ascolto"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"tu",
+"lui",
+"voi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:16",
+"target": "I bicchieri, li lavo io.",
+"ru": "Я мою стаканы.",
+"uk": "Я мию склянки.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Le",
+"Una",
+"Un"
+]
+},
+{
+"correct": "bicchieri",
+"distractors": [
+"restituirli",
+"vorrei",
+"domani",
+"bambini",
+"biglietti"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"ci",
+"mi",
+"ti",
+"il"
+]
+},
+{
+"correct": "lavo",
+"distractors": [
+"lavano",
+"mattino",
+"questo",
+"radio",
+"specchio"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"lui",
+"tu",
+"noi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:17",
+"target": "I biglietti, li stampo io.",
+"ru": "Я распечатываю билеты.",
+"uk": "Я друкую квитки.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Le",
+"Un",
+"Uno"
+]
+},
+{
+"correct": "biglietti",
+"distractors": [
+"domani",
+"guanti",
+"metterli",
+"chiavi",
+"bambini"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"le",
+"mi",
+"si",
+"il"
+]
+},
+{
+"correct": "stampo",
+"distractors": [
+"questo",
+"pane",
+"ufficio",
+"foto",
+"vuole"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"lui",
+"tu",
+"loro",
+"voi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:18",
+"target": "La zuppa, l’assaggio io.",
+"ru": "Суп — я его пробую.",
+"uk": "Суп - я його пробую.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Le",
+"Si",
+"Un",
+"Che"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"tenerla",
+"cerca",
+"porta",
+"crostata",
+"tasca"
+]
+},
+{
+"correct": "l’assaggio",
+"distractors": [
+"ricarico",
+"tenerlo",
+"ripararlo",
+"fascicolo",
+"dividiamo"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"tu",
+"lui",
+"voi"
+]
+}
+],
+"alternatives": [
+"La zuppa, la assaggio io."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:19",
+"target": "Il maglione, lo provo io.",
+"ru": "Свитер — я его примеряю.",
+"uk": "Светр - я його приміряю.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"I",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "maglione",
+"distractors": [
+"intenzione",
+"online",
+"canzone",
+"giornale",
+"riconosce"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"mi",
+"ti",
+"che",
+"e"
+]
+},
+{
+"correct": "provo",
+"distractors": [
+"stampo",
+"chiudo",
+"tenerlo",
+"questo",
+"questa"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"lui",
+"tu",
+"loro",
+"noi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:20",
+"target": "Questa canzone, l’ascolto io.",
+"ru": "Я слушаю эту песню.",
+"uk": "Я слухаю цю пісню.",
+"tiles": [
+{
+"correct": "Questa",
+"distractors": [
+"Qui",
+"Queste",
+"Questi",
+"Quanto",
+"Chi"
+]
+},
+{
+"correct": "canzone",
+"distractors": [
+"deve",
+"intenzione",
+"maglione",
+"vuole",
+"riconosce"
+]
+},
+{
+"correct": "l’ascolto",
+"distractors": [
+"dividiamo",
+"messaggio",
+"taglio",
+"pianerottolo",
+"vediamo"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"loro",
+"lui",
+"tu",
+"noi"
+]
+}
+],
+"alternatives": [
+"Questa canzone, la ascolto io."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:21",
+"target": "Non lo trovo.",
+"ru": "Я его не нахожу.",
+"uk": "Я його не знаходжу.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Sempre"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"le",
+"la",
+"ci",
+"che"
+]
+},
+{
+"correct": "trovo",
+"distractors": [
+"troviamo",
+"trovano",
+"questo",
+"burro",
+"mercato"
+]
+}
+],
+"alternatives": [
+"Io non lo trovo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:22",
+"target": "Lei non la riconosce.",
+"ru": "Она её не узнаёт.",
+"uk": "Вона її не впізнає.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Io",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"sempre",
+"mai"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"si",
+"ci",
+"mi",
+"che"
+]
+},
+{
+"correct": "riconosce",
+"distractors": [
+"intenzione",
+"online",
+"maglione",
+"giornale",
+"canzone"
+]
+}
+],
+"alternatives": [
+"Non la riconosce."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:23",
+"target": "Non li vediamo.",
+"ru": "Мы их не видим.",
+"uk": "Ми їх не бачимо.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Sempre"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"ti",
+"mi",
+"gli",
+"il"
+]
+},
+{
+"correct": "vediamo",
+"distractors": [
+"vedo",
+"sono",
+"questo",
+"porta",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Noi non li vediamo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:24",
+"target": "Non lo sentiamo.",
+"ru": "Мы его не слышим.",
+"uk": "Ми його не чуємо.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Sempre",
+"Mai"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"la",
+"ti",
+"ci",
+"che"
+]
+},
+{
+"correct": "sentiamo",
+"distractors": [
+"sente",
+"biglietto",
+"giugno",
+"rade",
+"treno"
+]
+}
+],
+"alternatives": [
+"Noi non lo sentiamo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:25",
+"target": "Loro non lo prendono.",
+"ru": "Они его не берут.",
+"uk": "Вони його не беруть.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Tua",
+"Suo",
+"Mia",
+"Nostro",
+"Io"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"il",
+"li",
+"mi",
+"che"
+]
+},
+{
+"correct": "prendono",
+"distractors": [
+"prendi",
+"prende",
+"prendiamo",
+"prendo",
+"prendete"
+]
+}
+],
+"alternatives": [
+"Non lo prendono."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:26",
+"target": "Ce li hai?",
+"ru": "Они у тебя есть?",
+"uk": "Вони у тебе є?",
+"tiles": [
+{
+"correct": "Ce",
+"distractors": [
+"Vorrei",
+"Deve",
+"Vuole",
+"Leggo",
+"Devono"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"mi",
+"lo",
+"ti",
+"il"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"ho",
+"abbiamo",
+"hanno",
+"avete"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:27",
+"target": "La vuole?",
+"ru": "Вы её хотите?",
+"uk": "Ви її хочете?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"Le",
+"I",
+"Che"
+]
+},
+{
+"correct": "vuole",
+"distractors": [
+"voglio",
+"vogliamo",
+"pane",
+"deve",
+"canzone"
+]
+}
+],
+"alternatives": [
+"La vuoi?"
+]
+},
+{
+"lesson": 22,
+"id": "it:22:28",
+"target": "Posso tenerlo?",
+"ru": "Можно я его оставлю себе?",
+"uk": "Чи можна я його залишу собі?",
+"tiles": [
+{
+"correct": "Posso",
+"distractors": [
+"Può",
+"Puoi",
+"Possiamo",
+"Possono",
+"Potete"
+]
+},
+{
+"correct": "tenerlo",
+"distractors": [
+"preferisco",
+"ricarico",
+"provarlo",
+"foto",
+"posto"
+]
+}
+],
+"alternatives": [
+"Io posso tenerlo?",
+"Lo posso tenere?"
+]
+},
+{
+"lesson": 22,
+"id": "it:22:29",
+"target": "Il fascicolo, lo porto io in ufficio.",
+"ru": "Папку с документами я сам отнесу в офис.",
+"uk": "Папку з документами я сам віднесу до офісу.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Le",
+"Che",
+"E"
+]
+},
+{
+"correct": "fascicolo",
+"distractors": [
+"sentiamo",
+"viaggio",
+"pianerottolo",
+"ripararlo",
+"ritiriamo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"ci",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "porto",
+"distractors": [
+"portano",
+"porti",
+"aperta",
+"chiusa",
+"chiuso"
+]
+},
+{
+"correct": "io",
+"distractors": [
+"lei",
+"lui",
+"loro",
+"tu",
+"noi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"taglio",
+"preferisco",
+"l’assaggio",
+"mostro",
+"mattino"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:30",
+"target": "Vorrei provarlo.",
+"ru": "Я хотел бы его примерить.",
+"uk": "Я хотів би його приміряти.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Deve",
+"Prende",
+"Prendi",
+"Vuole",
+"Compri"
+]
+},
+{
+"correct": "provarlo",
+"distractors": [
+"mostro",
+"pacco",
+"taglio",
+"questo",
+"l’ascolto"
+]
+}
+],
+"alternatives": [
+"Io vorrei provarlo.",
+"Lo vorrei provare."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:31",
+"target": "La richiamerò.",
+"ru": "Я ей перезвоню.",
+"uk": "Я передзвоню їй.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ti",
+"Si",
+"Un",
+"Mi"
+]
+},
+{
+"correct": "richiamerò",
+"distractors": [
+"pianerottolo",
+"caricabatterie",
+"metto",
+"foto",
+"comprarli"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:32",
+"target": "Abbiamo intenzione di ripararlo.",
+"ru": "Мы собираемся его починить.",
+"uk": "Ми збираємося його відремонтувати.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hanno",
+"Hai",
+"Avete"
+]
+},
+{
+"correct": "intenzione",
+"distractors": [
+"maglione",
+"riconosce",
+"giornale",
+"canzone",
+"mio"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ripararlo",
+"distractors": [
+"ufficio",
+"preferisco",
+"leggerlo",
+"aspettiamo",
+"collegarlo"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo intenzione di ripararlo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:33",
+"target": "Lei deve restituirli.",
+"ru": "Она должна их вернуть.",
+"uk": "Вона має їх повернути.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Lui",
+"Noi"
+]
+},
+{
+"correct": "deve",
+"distractors": [
+"devo",
+"dobbiamo",
+"devono",
+"riso",
+"posto"
+]
+},
+{
+"correct": "restituirli",
+"distractors": [
+"comprarli",
+"metterli",
+"bicchieri",
+"biglietti",
+"leggo"
+]
+}
+],
+"alternatives": [
+"Deve restituirli.",
+"Lei li deve restituire.",
+"Li deve restituire."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:34",
+"target": "Puoi lasciarla qui.",
+"ru": "Ты можешь оставить её здесь.",
+"uk": "Ти можеш залишити її тут.",
+"tiles": [
+{
+"correct": "Puoi",
+"distractors": [
+"Può",
+"Possiamo",
+"Posso",
+"Possono",
+"Potete"
+]
+},
+{
+"correct": "lasciarla",
+"distractors": [
+"moneta",
+"tenerla",
+"questa",
+"sorella",
+"crostata"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"fuori",
+"lì",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu puoi lasciarla qui.",
+"Puoi lasciarla qua.",
+"La puoi lasciare qui.",
+"Tu puoi lasciarla qua.",
+"La puoi lasciare qua."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:35",
+"target": "Il giornale, preferisco leggerlo domani.",
+"ru": "Я предпочитаю завтра почитать газету.",
+"uk": "Я волію почитати газету завтра.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Le",
+"Gli",
+"Lo"
+]
+},
+{
+"correct": "giornale",
+"distractors": [
+"intenzione",
+"vuole",
+"canzone",
+"caricabatterie",
+"maglione"
+]
+},
+{
+"correct": "preferisco",
+"distractors": [
+"preferisci",
+"ufficio",
+"vorrei",
+"pianerottolo",
+"l’assaggio"
+]
+},
+{
+"correct": "leggerlo",
+"distractors": [
+"collegarlo",
+"elettronico",
+"scrivo",
+"presto",
+"spesso"
+]
+},
+{
+"correct": "domani",
+"distractors": [
+"spesso",
+"stasera",
+"tardi",
+"presto",
+"oggi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:36",
+"target": "Possiamo comprarli online.",
+"ru": "Мы можем купить их онлайн.",
+"uk": "Ми можемо купити їх онлайн.",
+"tiles": [
+{
+"correct": "Possiamo",
+"distractors": [
+"Può",
+"Puoi",
+"Posso",
+"Possono",
+"Potete"
+]
+},
+{
+"correct": "comprarli",
+"distractors": [
+"metterli",
+"restituirli",
+"lezioni",
+"biglietti",
+"conosci"
+]
+},
+{
+"correct": "online",
+"distractors": [
+"vuole",
+"riconosce",
+"deve",
+"pane",
+"queste"
+]
+}
+],
+"alternatives": [
+"Noi possiamo comprarli online.",
+"Li possiamo comprare online."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:37",
+"target": "La moneta, puoi lasciarla sul pianerottolo.",
+"ru": "Монету ты можешь оставить на лестничной площадке.",
+"uk": "Монету ти можеш залишити на сходовому майданчику.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"Gli",
+"Si",
+"Ti"
+]
+},
+{
+"correct": "moneta",
+"distractors": [
+"cena",
+"mia",
+"giacca",
+"crostata",
+"ricevuta"
+]
+},
+{
+"correct": "puoi",
+"distractors": [
+"può",
+"posso",
+"possiamo",
+"possono",
+"potete"
+]
+},
+{
+"correct": "lasciarla",
+"distractors": [
+"crostata",
+"sorella",
+"batteria",
+"giacca",
+"borsa"
+]
+},
+{
+"correct": "sul",
+"distractors": [
+"sulla",
+"sullo",
+"borsa",
+"giacca",
+"mappa"
+]
+},
+{
+"correct": "pianerottolo",
+"distractors": [
+"l’assaggio",
+"messaggio",
+"preferisco",
+"sportello",
+"elettronico"
+]
+}
+],
+"alternatives": [
+"La moneta, la puoi lasciare sul pianerottolo."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:38",
+"target": "Può metterli lì.",
+"ru": "Можете положить их туда.",
+"uk": "Можете покласти їх туди.",
+"tiles": [
+{
+"correct": "Può",
+"distractors": [
+"Posso",
+"Puoi",
+"Possiamo",
+"Possono",
+"Vuoi"
+]
+},
+{
+"correct": "metterli",
+"distractors": [
+"vorrei",
+"lezioni",
+"conosci",
+"chiavi",
+"restituirli"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Li può mettere lì.",
+"Può metterli là.",
+"Li può mettere là."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:39",
+"target": "Questo cavo, ho intenzione di collegarlo.",
+"ru": "Я собираюсь подключить этот кабель.",
+"uk": "Я збираюся підключити цей кабель.",
+"tiles": [
+{
+"correct": "Questo",
+"distractors": [
+"Dividiamo",
+"Mattino",
+"Mostro",
+"Qui",
+"Queste"
+]
+},
+{
+"correct": "cavo",
+"distractors": [
+"trovo",
+"tenerlo",
+"pacco",
+"chiudo",
+"foto"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "intenzione",
+"distractors": [
+"giornale",
+"riconosce",
+"leggo",
+"canzone",
+"maglione"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "collegarlo",
+"distractors": [
+"incontro",
+"dividiamo",
+"fascicolo",
+"mattino",
+"ripararlo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:40",
+"target": "Vuole tenerla al fresco.",
+"ru": "Она хочет хранить её в прохладе.",
+"uk": "Вона хоче зберігати її в прохолоді.",
+"tiles": [
+{
+"correct": "Vuole",
+"distractors": [
+"Voglio",
+"Vuoi",
+"Vogliamo",
+"Vogliono",
+"Deve"
+]
+},
+{
+"correct": "tenerla",
+"distractors": [
+"moneta",
+"sorella",
+"sulla",
+"porta",
+"cena"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "fresco",
+"distractors": [
+"sportello",
+"l’ascolto",
+"cavo",
+"foto",
+"ricarico"
+]
+}
+],
+"alternatives": [
+"La vuole tenere al fresco."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:41",
+"target": "Queste foto, le mostro a mia sorella.",
+"ru": "Я показываю эти фотографии своей сестре.",
+"uk": "Я показую ці фотографії своїй сестрі.",
+"tiles": [
+{
+"correct": "Queste",
+"distractors": [
+"Riconosce",
+"Canzone",
+"Questo",
+"Questa",
+"Maglione"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"cavo",
+"provo",
+"fresco",
+"pacco",
+"tenerlo"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"il",
+"mi",
+"si",
+"ti"
+]
+},
+{
+"correct": "mostro",
+"distractors": [
+"lavo",
+"provo",
+"tengo",
+"incontro",
+"provarlo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"mie",
+"tuo",
+"suoi",
+"tue",
+"sua"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"porta",
+"batteria",
+"tenerla",
+"lasciarla",
+"ricevuta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:42",
+"target": "Questo indirizzo, lo scrivo sulla ricevuta.",
+"ru": "Я пишу этот адрес на чеке.",
+"uk": "Я пишу цю адресу на чеку.",
+"tiles": [
+{
+"correct": "Questo",
+"distractors": [
+"Messaggio",
+"Ripararlo",
+"Ritiriamo",
+"Fascicolo",
+"Qui"
+]
+},
+{
+"correct": "indirizzo",
+"distractors": [
+"pianerottolo",
+"tenerlo",
+"ritiriamo",
+"l’ascolto",
+"cavo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"la",
+"ci",
+"si",
+"gli"
+]
+},
+{
+"correct": "scrivo",
+"distractors": [
+"scrivi",
+"scrivendo",
+"scritto",
+"domani",
+"letto"
+]
+},
+{
+"correct": "sulla",
+"distractors": [
+"sul",
+"borsa",
+"giacca",
+"mappa",
+"sorella"
+]
+},
+{
+"correct": "ricevuta",
+"distractors": [
+"vedo",
+"lasciarla",
+"ricevute",
+"porta",
+"portano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:43",
+"target": "Il tuo messaggio, lo leggo sull’autobus.",
+"ru": "Твоё сообщение я читаю в автобусе.",
+"uk": "Твоє повідомлення я читаю в автобусі.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Le",
+"I",
+"Una",
+"Che"
+]
+},
+{
+"correct": "tuo",
+"distractors": [
+"loro",
+"mia",
+"miei",
+"sua",
+"vostri"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"leggerlo",
+"provarlo",
+"mostro",
+"taglio",
+"collegarlo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"si",
+"mi",
+"ci",
+"che"
+]
+},
+{
+"correct": "leggo",
+"distractors": [
+"letto",
+"leggendo",
+"leggere",
+"biglietti",
+"maglione"
+]
+},
+{
+"correct": "sull’autobus",
+"distractors": [
+"sentiamo",
+"dividiamo",
+"metto",
+"ricevuta",
+"sorella"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:44",
+"target": "Questo caricabatterie, lo presto a Paolo.",
+"ru": "Эту зарядку я одалживаю Паоло.",
+"uk": "Цю зарядку я позичаю Паоло.",
+"tiles": [
+{
+"correct": "Questo",
+"distractors": [
+"Qui",
+"Indirizzo",
+"Fascicolo",
+"Queste",
+"Questi"
+]
+},
+{
+"correct": "caricabatterie",
+"distractors": [
+"trovo",
+"borsa",
+"chiudo",
+"giornale",
+"maglione"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"la",
+"mi",
+"si",
+"ti"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"spesso",
+"domani",
+"presti",
+"ieri",
+"stasera"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"su",
+"da"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:45",
+"target": "I guanti, li metto in tasca.",
+"ru": "Я кладу перчатки в карман.",
+"uk": "Я кладу рукавички в кишеню.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Una",
+"Lo"
+]
+},
+{
+"correct": "guanti",
+"distractors": [
+"comprarli",
+"bicchieri",
+"biglietti",
+"conosci",
+"puoi"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"mi",
+"ti",
+"gli",
+"ci"
+]
+},
+{
+"correct": "metto",
+"distractors": [
+"metti",
+"occhiali",
+"riso",
+"burro",
+"chilo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "tasca",
+"distractors": [
+"moneta",
+"batteria",
+"giacca",
+"tenerla",
+"via"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:46",
+"target": "La batteria, la ricarico al mattino.",
+"ru": "Я заряжаю батарею утром.",
+"uk": "Я заряджаю акумулятор вранці.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"Vi",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "batteria",
+"distractors": [
+"borsa",
+"questa",
+"zuppa",
+"giacca",
+"tasca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"si",
+"ci",
+"le",
+"i"
+]
+},
+{
+"correct": "ricarico",
+"distractors": [
+"provo",
+"mostro",
+"leggerlo",
+"l’assaggio",
+"tengo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "mattino",
+"distractors": [
+"provo",
+"l’ascolto",
+"provarlo",
+"fresco",
+"ripararlo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:47",
+"target": "La crostata, la dividiamo dopo cena.",
+"ru": "Пирог из песочного теста мы разделим после ужина.",
+"uk": "Пиріг із пісочного тіста ми розділимо після вечері.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ti",
+"Ci",
+"Mi",
+"Si"
+]
+},
+{
+"correct": "crostata",
+"distractors": [
+"bambini",
+"mattino",
+"lasciarla",
+"zuppa",
+"questa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"si",
+"i",
+"ti"
+]
+},
+{
+"correct": "dividiamo",
+"distractors": [
+"prendono",
+"ufficio",
+"stampo",
+"foto",
+"elettronico"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"mia",
+"tasca",
+"borsa",
+"zuppa",
+"questa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:48",
+"target": "Il pacco, lo ritiriamo allo sportello.",
+"ru": "Посылку мы забираем в окошке выдачи.",
+"uk": "Посилку ми забираємо у віконці видачі.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Gli",
+"Le"
+]
+},
+{
+"correct": "pacco",
+"distractors": [
+"trovo",
+"cavo",
+"tengo",
+"provarlo",
+"scrivo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"ci",
+"gli",
+"che",
+"e"
+]
+},
+{
+"correct": "ritiriamo",
+"distractors": [
+"viaggio",
+"tenerlo",
+"l’ascolto",
+"provo",
+"l’assaggio"
+]
+},
+{
+"correct": "allo",
+"distractors": [
+"al",
+"alle",
+"ai",
+"pane",
+"bene"
+]
+},
+{
+"correct": "sportello",
+"distractors": [
+"collegarlo",
+"leggerlo",
+"ricarico",
+"l’assaggio",
+"preferisco"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "it:22:49",
+"target": "Il mio portafoglio elettronico, lo uso quando viaggio.",
+"ru": "Я использую свой электронный кошелек, когда путешествую.",
+"uk": "Я використовую свій електронний гаманець, коли подорожую.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Le",
+"Uno",
+"Che"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"tuo",
+"sua",
+"suo",
+"miei",
+"tua"
+]
+},
+{
+"correct": "portafoglio",
+"distractors": [
+"preferisco",
+"ritiriamo",
+"ricarico",
+"leggerlo",
+"pianerottolo"
+]
+},
+{
+"correct": "elettronico",
+"distractors": [
+"sportello",
+"messaggio",
+"provarlo",
+"pianerottolo",
+"dividiamo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"ci",
+"ti",
+"le",
+"che"
+]
+},
+{
+"correct": "uso",
+"distractors": [
+"burro",
+"siamo",
+"sei",
+"siete",
+"sono"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "viaggio",
+"distractors": [
+"questo",
+"gatto",
+"percorso",
+"fratello",
+"tempo"
+]
+}
+],
+"alternatives": [
+"Il mio portafoglio elettronico, l’uso quando viaggio."
+]
+},
+{
+"lesson": 22,
+"id": "it:22:50",
+"target": "I bambini, li incontro dopo le lezioni.",
+"ru": "Я встречаю детей после занятий.",
+"uk": "Я зустрічаюся з дітьми після уроків.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Un",
+"Che"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"vorrei",
+"comprarli",
+"conosci",
+"chiavi",
+"biglietti"
+]
+},
+{
+"correct": "li",
+"distractors": [
+"la",
+"ci",
+"si",
+"mi",
+"il"
+]
+},
+{
+"correct": "incontro",
+"distractors": [
+"incontriamo",
+"posto",
+"fresco",
+"pane",
+"bene"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"ci",
+"la",
+"si",
+"mi"
+]
+},
+{
+"correct": "lezioni",
+"distractors": [
+"chiavi",
+"bicchieri",
+"domani",
+"metterli",
+"presto"
+]
+}
+],
+"alternatives": []
+}
+]

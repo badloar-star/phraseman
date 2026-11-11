@@ -1,0 +1,769 @@
+{
+ "lang": "fr",
+ "lesson": 21,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:21:01",
+   "target": "Je lisais quand tu as appelé.",
+   "ru": "Я читал, когда ты позвонил.",
+   "uk": "Я читав, коли ти зателефонував."
+  },
+  {
+   "id": "fr:21:02",
+   "target": "Je dormais quand tu as appelé.",
+   "ru": "Я спала, когда ты позвонила.",
+   "uk": "Я спала, коли ти подзвонила."
+  },
+  {
+   "id": "fr:21:03",
+   "target": "Elle cuisinait quand le téléphone a sonné.",
+   "ru": "Она готовила, когда зазвонил телефон.",
+   "uk": "Вона готувала, коли задзвонив телефон."
+  },
+  {
+   "id": "fr:21:04",
+   "target": "Nous mangions quand Paul est arrivé.",
+   "ru": "Мы ели, когда приехал Поль.",
+   "uk": "Ми їли, коли прийшов Пол."
+  },
+  {
+   "id": "fr:21:05",
+   "target": "Tu écrivais quand je suis entré.",
+   "ru": "Ты писал, когда я вошёл.",
+   "uk": "Ти писав, коли я увійшов."
+  },
+  {
+   "id": "fr:21:06",
+   "target": "Ils parlaient quand la lumière s’est éteinte.",
+   "ru": "Они разговаривали, когда погас свет.",
+   "uk": "Вони розмовляли, коли згасло світло."
+  },
+  {
+   "id": "fr:21:07",
+   "target": "Je travaillais quand elle est passée.",
+   "ru": "Я работала, когда она зашла.",
+   "uk": "Я працювала, коли вона зайшла."
+  },
+  {
+   "id": "fr:21:08",
+   "target": "Léa marchait quand il a commencé à pleuvoir.",
+   "ru": "Леа шла, когда начался дождь.",
+   "uk": "Леа йшла, коли почався дощ."
+  },
+  {
+   "id": "fr:21:09",
+   "target": "On attendait quand le bus est arrivé.",
+   "ru": "Мы ждали, когда подъехал автобус.",
+   "uk": "Ми чекали, коли під'їхав автобус."
+  },
+  {
+   "id": "fr:21:10",
+   "target": "Je payais quand ma carte est tombée.",
+   "ru": "Я расплачивалась, когда моя карта упала.",
+   "uk": "Я розплачувалася, коли моя картка впала."
+  },
+  {
+   "id": "fr:21:11",
+   "target": "Il pleuvait quand nous sommes partis.",
+   "ru": "Когда мы уходили, шел дождь.",
+   "uk": "Коли ми виходили, йшов дощ."
+  },
+  {
+   "id": "fr:21:12",
+   "target": "Il faisait beau quand le train est arrivé.",
+   "ru": "Погода была хорошая, когда прибыл поезд.",
+   "uk": "Погода була гарною, коли прибув поїзд."
+  },
+  {
+   "id": "fr:21:13",
+   "target": "La rue était vide quand Paul est sorti.",
+   "ru": "Улица была пуста, когда вышел Поль.",
+   "uk": "Вулиця була порожня, коли вийшов Пол."
+  },
+  {
+   "id": "fr:21:14",
+   "target": "Les volets étaient fermés quand je suis passé.",
+   "ru": "Ставни были закрыты, когда я проходил мимо.",
+   "uk": "Віконниці були зачинені, коли я проходив повз."
+  },
+  {
+   "id": "fr:21:15",
+   "target": "Il faisait froid quand la porte s’est ouverte.",
+   "ru": "Было холодно, когда открылась дверь.",
+   "uk": "Було холодно, коли двері відчинилися."
+  },
+  {
+   "id": "fr:21:16",
+   "target": "La salle était pleine quand le concert a commencé.",
+   "ru": "Зал был полон, когда начался концерт.",
+   "uk": "Зал був повний, коли почався концерт."
+  },
+  {
+   "id": "fr:21:17",
+   "target": "J’étais à la gare quand tu as écrit.",
+   "ru": "Я был на вокзале, когда ты написал.",
+   "uk": "Я був на вокзалі, коли ти написав."
+  },
+  {
+   "id": "fr:21:18",
+   "target": "Nous avions faim quand la soupe est arrivée.",
+   "ru": "Когда принесли суп, мы были голодны.",
+   "uk": "Коли принесли суп, ми були голодні."
+  },
+  {
+   "id": "fr:21:19",
+   "target": "Les élèves attendaient quand on a annoncé le départ.",
+   "ru": "Ученики ждали, когда объявили отправление.",
+   "uk": "Учні чекали, коли оголосили відправлення."
+  },
+  {
+   "id": "fr:21:20",
+   "target": "Ils étaient en route quand j’ai reçu la nouvelle.",
+   "ru": "Они были в пути, когда я получил известие.",
+   "uk": "Вони були в дорозі, коли я отримав новину."
+  },
+  {
+   "id": "fr:21:21",
+   "target": "Pendant que je rangeais, Léa a trouvé le reçu.",
+   "ru": "Пока я убирался, Леа нашла квитанцию.",
+   "uk": "Поки я прибирав, Леа знайшла чек."
+  },
+  {
+   "id": "fr:21:22",
+   "target": "Pendant que nous attendions, le médecin est sorti.",
+   "ru": "Пока мы ждали, вышел врач.",
+   "uk": "Поки ми чекали, вийшов лікар."
+  },
+  {
+   "id": "fr:21:23",
+   "target": "Pendant que tu conduisais, j’ai lu le message.",
+   "ru": "Пока ты вёл машину, я прочитал сообщение.",
+   "uk": "Поки ти був за кермом, я прочитав повідомлення."
+  },
+  {
+   "id": "fr:21:24",
+   "target": "Pendant qu’il pleuvait, nous avons pris un café.",
+   "ru": "Пока шел дождь, мы пили кофе.",
+   "uk": "Поки йшов дощ, ми пили каву."
+  },
+  {
+   "id": "fr:21:25",
+   "target": "Pendant que Paul parlait, j’ai noté son numéro.",
+   "ru": "Пока Поль говорил, я записал его номер.",
+   "uk": "Поки Пол розмовляв, я записав його номер."
+  },
+  {
+   "id": "fr:21:26",
+   "target": "Pendant que la soupe chauffait, j’ai mis la table.",
+   "ru": "Пока суп разогревался, я накрыл на стол.",
+   "uk": "Поки суп нагрівався, я накрив на стіл."
+  },
+  {
+   "id": "fr:21:27",
+   "target": "Pendant que les enfants jouaient, le ballon a crevé.",
+   "ru": "Пока дети играли, мяч лопнул.",
+   "uk": "Поки діти гралися, м'яч лопнув."
+  },
+  {
+   "id": "fr:21:28",
+   "target": "Pendant que je cherchais mes lunettes, le bus est parti.",
+   "ru": "Пока я искал свои очки, автобус уехал.",
+   "uk": "Поки я шукав свої окуляри, автобус поїхав."
+  },
+  {
+   "id": "fr:21:29",
+   "target": "Pendant qu’elle répondait, la ligne a coupé.",
+   "ru": "Пока она отвечала, связь прервалась.",
+   "uk": "Поки вона відповідала, зв'язок обірвався."
+  },
+  {
+   "id": "fr:21:30",
+   "target": "Pendant que vous dormiez, le facteur est passé.",
+   "ru": "Пока вы спали, приходил почтальон.",
+   "uk": "Поки ви спали, приходив листоноша."
+  },
+  {
+   "id": "fr:21:31",
+   "target": "J’ai entendu un bruit pendant que je lisais.",
+   "ru": "Я услышал шум, когда читал.",
+   "uk": "Я почув шум, коли читав."
+  },
+  {
+   "id": "fr:21:32",
+   "target": "Le miroir est tombé pendant que je me rasais.",
+   "ru": "Зеркало упало, когда я брился.",
+   "uk": "Дзеркало впало, поки я голився."
+  },
+  {
+   "id": "fr:21:33",
+   "target": "Le réveil a sonné alors que je m’habillais.",
+   "ru": "Будильник сработал, пока я одевалась.",
+   "uk": "Будильник задзвонив, поки я одягалася."
+  },
+  {
+   "id": "fr:21:34",
+   "target": "Ma sœur est arrivée pendant que je me douchais.",
+   "ru": "Моя сестра приехала, пока я принимала душ.",
+   "uk": "Моя сестра прийшла, поки я приймала душ."
+  },
+  {
+   "id": "fr:21:35",
+   "target": "Le chat est entré pendant que nous aérions.",
+   "ru": "Кошка вошла, пока мы проветривали комнату.",
+   "uk": "Кіт зайшов, поки ми провітрювали кімнату."
+  },
+  {
+   "id": "fr:21:36",
+   "target": "Le téléphone a vibré pendant que je payais.",
+   "ru": "Телефон завибрировал, пока я расплачивалась.",
+   "uk": "Телефон завібрував, поки я платила."
+  },
+  {
+   "id": "fr:21:37",
+   "target": "J’ai perdu mon gant pendant que je courais.",
+   "ru": "Я потерял перчатку, когда бежал.",
+   "uk": "Я загубив рукавичку, коли бігав."
+  },
+  {
+   "id": "fr:21:38",
+   "target": "Un voisin a frappé pendant que nous dînions.",
+   "ru": "Сосед постучал, пока мы ужинали.",
+   "uk": "Сусід постукав, коли ми вечеряли."
+  },
+  {
+   "id": "fr:21:39",
+   "target": "Le train a freiné pendant que je marchais dans le couloir.",
+   "ru": "Поезд затормозил, пока я шла по коридору.",
+   "uk": "Поїзд загальмував, коли я йшла коридором."
+  },
+  {
+   "id": "fr:21:40",
+   "target": "La sonnette a retenti pendant que je montais l’escalier.",
+   "ru": "Когда я поднимался по лестнице, зазвонил дверной звонок.",
+   "uk": "Дзвінок у двері продзвенів, коли я піднімався сходами."
+  },
+  {
+   "id": "fr:21:41",
+   "target": "Je cherchais un banc quand j’ai aperçu Léa.",
+   "ru": "Я искал скамейку, когда увидел Леа.",
+   "uk": "Я шукав лаву, коли побачив Леа."
+  },
+  {
+   "id": "fr:21:42",
+   "target": "Paul allait au garage quand son vélo a déraillé.",
+   "ru": "Поль ехал в мастерскую, когда на его велосипеде слетела цепь.",
+   "uk": "Поль їхав у майстерню, коли на його велосипеді злетів ланцюг."
+  },
+  {
+   "id": "fr:21:43",
+   "target": "Je pensais à toi quand ton message est arrivé.",
+   "ru": "Я думал о тебе, когда пришло твое сообщение.",
+   "uk": "Я думав про тебе, коли прийшло твоє повідомлення."
+  },
+  {
+   "id": "fr:21:44",
+   "target": "Nous sortions du cinéma quand la pluie a commencé.",
+   "ru": "Мы выходили из кинотеатра, когда начался дождь.",
+   "uk": "Ми виходили з кінотеатру, коли почався дощ."
+  },
+  {
+   "id": "fr:21:45",
+   "target": "La radio passait une chanson quand le courant a sauté.",
+   "ru": "По радио играла песня, когда отключилось электричество.",
+   "uk": "Радіо грало пісню, коли зникло світло."
+  },
+  {
+   "id": "fr:21:46",
+   "target": "Il montait l’escalier quand il a lâché sa valise.",
+   "ru": "Он поднимался по лестнице, когда уронил чемодан.",
+   "uk": "Він піднімався сходами, коли впустив свою валізу."
+  },
+  {
+   "id": "fr:21:47",
+   "target": "Elle vérifiait les prix quand le magasin a fermé.",
+   "ru": "Она проверяла цены, когда магазин закрылся.",
+   "uk": "Вона перевіряла ціни, коли магазин зачинився."
+  },
+  {
+   "id": "fr:21:48",
+   "target": "Le pain était encore chaud quand je l’ai coupé.",
+   "ru": "Хлеб был еще теплым, когда я его разрезал.",
+   "uk": "Хліб був ще теплим, коли я його різав."
+  },
+  {
+   "id": "fr:21:49",
+   "target": "Les passagers attendaient quand l’écran a changé.",
+   "ru": "Пассажиры ждали, когда информация на экране изменилась.",
+   "uk": "Пасажири чекали, коли інформація на екрані змінилася."
+  },
+  {
+   "id": "fr:21:50",
+   "target": "Je m’endormais quand quelqu’un a sonné.",
+   "ru": "Я засыпал, когда кто-то позвонил в звонок.",
+   "uk": "Я засинав, коли хтось подзвонив у дзвінок."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le réveil",
+   "ru": "будильник",
+   "uk": "будильник"
+  },
+  {
+   "lemma": "le courant",
+   "ru": "электричество (подача тока)",
+   "uk": "електрика (подача струму)"
+  },
+  {
+   "lemma": "le chat",
+   "ru": "кот, кошка",
+   "uk": "кіт, кішка"
+  },
+  {
+   "lemma": "l’escalier (m.)",
+   "ru": "лестница",
+   "uk": "сходи"
+  },
+  {
+   "lemma": "le volet",
+   "ru": "ставня",
+   "uk": "віконниця"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  }
+ ],
+ "oldTopicTitle": "Фон и событие: два времени в одной фразе",
+ "oldTheoryRu": "Сначала расскажи, что уже происходило. Затем назови новое событие. Французский показывает разницу грамматикой, а не обязательными словами «уже» и «вдруг». Меняя участников, спрягай каждую часть отдельно. Кто ел, не обязательно тот же человек, который пришёл. Не подставляй одно местоимение в обе части по инерции. Фоном может быть не только действие. Погода, пустая улица или полная комната — тоже обстановка. Новое событие выделяется на её фоне. В конструкции `pendant que` после соединителя часто следует именно длительное действие. Для `qu’il` и `qu’elle` сохраняй апостроф. В главной части может стоять единичное событие. Начни с события — смысл времён не изменится. Перемещая фон во вторую часть, не меняй его время на прошедшее завершённое просто потому, что он теперь стоит вторым. Не стоит подбирать время по длине действия в минутах. Даже длинный путь можно представить как законченный факт, а короткий звук — как фон, если так построен рассказ. После сборки перескажи фразу двумя вопросами: «Что было в процессе?» и «Что произошло?» Если события перепутались местами по смыслу, союз сам по себе не исправит ошибку."
+}

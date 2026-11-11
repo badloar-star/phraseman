@@ -1,0 +1,1054 @@
+[
+{
+"lesson": 9,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:09:01",
+"it:09:02",
+"it:09:03"
+],
+"textByLocale": {
+"en": "There are several forms for \"my\" and \"your.\" The easiest way to change the owner is to keep one item: `la mia borsa` and `la tua borsa`. The article does not change.",
+"ru": "Для «мой» и «твой» есть несколько форм. Сменить владельца проще всего, сохранив одну вещь: `la mia borsa` и `la tua borsa`. Артикль при этом не меняется.",
+"uk": "Для мій і твій є кілька форм. Змінити власника найпростіше, зберігши одну річ: `la mia borsa` та `la tua borsa`. Артикль при цьому не змінюється."
+}
+},
+{
+"exampleIds": [
+"it:09:05",
+"it:09:06",
+"it:09:09"
+],
+"textByLocale": {
+"en": "The plural refers to multiple items. `Le mie chiavi` is my keys, not multiple owners' keys. The article and possessive noun agree with `chiavi`.",
+"ru": "Множественное число относится к нескольким вещам. `Le mie chiavi` — мои ключи, а не ключи нескольких хозяев. Артикль и притяжательное слово согласованы с `chiavi`.",
+"uk": "Численна кількість відноситься до кількох речей. `Le mie chiavi` - мої ключі, а не ключі кількох господарів. Артикль та присвійне слово узгоджені з `chiavi`."
+}
+},
+{
+"exampleIds": [
+"it:09:07",
+"it:09:08",
+"it:09:12"
+],
+"textByLocale": {
+"en": "`Suo` and `sua` do not encode the owner's gender. `La sua giacca` could be his or her jacket. The name and situation provide clarity. Do not conclude from `sua` that the thing necessarily belongs to a woman.",
+"ru": "`Suo` и `sua` не кодируют пол владельца. `La sua giacca` может быть его или её курткой. Ясность дают имя и ситуация. Не выводи из `sua`, что вещь непременно принадлежит женщине.",
+"uk": "`Suo` та `sua` не кодують підлогу власника. `La sua giacca` може бути його курткою. Ясність дають ім'я та ситуація. Не виводь із `sua`, що річ неодмінно належить жінці."
+}
+},
+{
+"exampleIds": [
+"it:09:13",
+"it:09:14",
+"it:09:15"
+],
+"textByLocale": {
+"en": "For a group with one speaker, use `nostro` and its forms; for multiple speakers, use `vostro`. The group composition doesn't need to be repeated in each vocabulary card: match `i nostri` and `i vostri` on one thing.",
+"ru": "Для группы с говорящим используется `nostro` и его формы; для нескольких собеседников — `vostro`. Состав группы не нужно повторять в каждой словарной карточке: сопоставь `i nostri` и `i vostri` на одной вещи.",
+"uk": "Для групи з розмовляючим використовується `nostro` та його форми; для кількох співрозмовників - `vostro`. Склад групи не потрібно повторювати в кожній словниковій картці: зістав `i nostri` та `i vostri` на одній речі."
+}
+},
+{
+"exampleIds": [
+"it:09:21",
+"it:09:23",
+"it:09:25"
+],
+"textByLocale": {
+"en": "In a sentence about an action, the possessive remains part of the subject: \"I'm looking for my pass.\" First, choose the verb for the one looking, then the article and the form for the omission. These are two independent checks.",
+"ru": "В предложении о действии притяжательное остаётся частью предмета: «ищу свой пропуск». Сначала выбери глагол для того, кто ищет, затем артикль и форму для пропуска. Это две независимые проверки.",
+"uk": "У реченні про дію присвійне залишається частиною предмета: «шукаю свою перепустку». Спочатку вибери дієслово для того, хто шукає, потім артикль та форму для пропуску. Це дві незалежні перевірки."
+}
+},
+{
+"exampleIds": [
+"it:09:31",
+"it:09:34",
+"it:09:37"
+],
+"textByLocale": {
+"en": "For `loro`, the form doesn't change. The number and gender are still evident from the article and noun: `la loro casa`, `i loro figli`.",
+"ru": "У `loro` форма не меняется. Число и род по-прежнему видны по артиклю и существительному: `la loro casa`, `i loro figli`.",
+"uk": "У `loro` форма не змінюється. Число і рід, як і раніше, видно по артиклю і іменнику: `la loro casa`, `i loro figli`."
+}
+},
+{
+"exampleIds": [
+"it:09:46",
+"it:09:49",
+"it:09:50"
+],
+"textByLocale": {
+"en": "With a single name of a close relative without further specification, the article is often omitted: `mio fratello`. This is not a rule for any singular thing: `la mia borsa` still has an article.",
+"ru": "С одиночным названием близкого родственника без уточнений артикль часто опускают: `mio fratello`. Это не правило для любой вещи в единственном числе: `la mia borsa` по-прежнему с артиклем.",
+"uk": "З одиничною назвою близького родича без уточнень артикль часто опускають: `mio fratello`. Це не правило для будь-якої речі в однині: `la mia borsa`, як і раніше, з артиклем."
+}
+}
+],
+"drills": [
+{
+"bad": "sua",
+"chapter": 1,
+"id": "it:09:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"sue",
+"sua",
+"mia"
+],
+"slot": 1
+},
+{
+"bad": "mio",
+"chapter": 1,
+"id": "it:09:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"mio",
+"mia",
+"vostro"
+],
+"slot": 1
+},
+{
+"bad": "mia",
+"chapter": 1,
+"id": "it:09:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"mio",
+"mia",
+"mie"
+],
+"slot": 1
+},
+{
+"bad": "suoi",
+"chapter": 2,
+"id": "it:09:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"sua",
+"mio",
+"suoi"
+],
+"slot": 1
+},
+{
+"bad": "tua",
+"chapter": 2,
+"id": "it:09:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"tua",
+"vostro",
+"mia"
+],
+"slot": 1
+},
+{
+"bad": "mia",
+"chapter": 2,
+"id": "it:09:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"nostra",
+"mia",
+"vostro"
+],
+"slot": 1
+},
+{
+"bad": "sua",
+"chapter": 3,
+"id": "it:09:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"nostri",
+"sua",
+"vostri"
+],
+"slot": 1
+},
+{
+"bad": "suo",
+"chapter": 3,
+"id": "it:09:17:lab",
+"item": 17,
+"kind": "match",
+"near": 11,
+"options": [
+"nostro",
+"mia",
+"suo"
+],
+"slot": 1
+},
+{
+"bad": "tuo",
+"chapter": 3,
+"id": "it:09:19:lab",
+"item": 19,
+"kind": "build",
+"near": 5,
+"options": [
+"miei",
+"mie",
+"tuo"
+],
+"slot": 1
+},
+{
+"bad": "loro",
+"chapter": 4,
+"id": "it:09:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 24,
+"options": [
+"suo",
+"tua",
+"loro"
+],
+"slot": 3
+},
+{
+"bad": "mio",
+"chapter": 4,
+"id": "it:09:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 30,
+"options": [
+"sua",
+"tue",
+"mio"
+],
+"slot": 4
+},
+{
+"bad": "tua",
+"chapter": 4,
+"id": "it:09:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"mio",
+"tua",
+"vostri"
+],
+"slot": 2
+},
+{
+"bad": "mio",
+"chapter": 5,
+"id": "it:09:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"mio",
+"mia",
+"vostro"
+],
+"slot": 3
+},
+{
+"bad": "sua",
+"chapter": 5,
+"id": "it:09:31:lab",
+"item": 31,
+"kind": "build",
+"near": 43,
+"options": [
+"tuo",
+"sua",
+"mio"
+],
+"slot": 1
+},
+{
+"bad": "nostri",
+"chapter": 5,
+"id": "it:09:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 3,
+"options": [
+"mie",
+"nostri",
+"mia"
+],
+"slot": 1
+},
+{
+"bad": "sua",
+"chapter": 6,
+"id": "it:09:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"miei",
+"nostra",
+"sua"
+],
+"slot": 1
+},
+{
+"bad": "Nostri",
+"chapter": 6,
+"id": "it:09:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 46,
+"options": [
+"Suo",
+"Nostri",
+"Vostre"
+],
+"slot": 0
+},
+{
+"bad": "mia",
+"chapter": 6,
+"id": "it:09:42:lab",
+"item": 42,
+"kind": "match",
+"near": 47,
+"options": [
+"mia",
+"mie",
+"vostre"
+],
+"slot": 3
+},
+{
+"bad": "sua",
+"chapter": 7,
+"id": "it:09:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"nostra",
+"tuoi",
+"sua"
+],
+"slot": 2
+},
+{
+"bad": "lei",
+"chapter": 7,
+"id": "it:09:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 27,
+"options": [
+"lei",
+"loro",
+"mio"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"la mia borsa",
+"le mie borse"
+],
+[
+"il tuo amico",
+"i tuoi amici"
+],
+[
+"la nostra squadra",
+"le nostre squadre"
+],
+[
+"sua sorella",
+"le sue sorelle"
+],
+[
+"il loro figlio",
+"i loro figli"
+]
+],
+"title": {
+"en": "Whose things are these: `mio`, `mia`, `miei`, `mie`",
+"ru": "Чьи это вещи: `mio`, `mia`, `miei`, `mie`",
+"uk": "Чиї це речі: `mio`, `mia`, `miei`, `mie`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:09:01",
+"target": "La mia borsa è qui.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "it:09:02",
+"target": "La tua borsa è qui.",
+"ru": "Твоя сумка здесь.",
+"uk": "Твоя сумка тут."
+},
+{
+"id": "it:09:03",
+"target": "La mia chiave è lì.",
+"ru": "Мой ключ там.",
+"uk": "Мій ключ там."
+},
+{
+"id": "it:09:05",
+"target": "Le mie chiavi sono qui.",
+"ru": "Мои ключи здесь.",
+"uk": "Мої ключі тут."
+},
+{
+"id": "it:09:06",
+"target": "Le tue chiavi sono qui.",
+"ru": "Твои ключи здесь.",
+"uk": "Твої ключі тут."
+},
+{
+"id": "it:09:09",
+"target": "I suoi occhiali sono qui.",
+"ru": "Его очки здесь.",
+"uk": "Його окуляри тут."
+},
+{
+"id": "it:09:07",
+"target": "La sua borsa è fuori.",
+"ru": "Его сумка снаружи.",
+"uk": "Його сумка зовні."
+},
+{
+"id": "it:09:08",
+"target": "La sua giacca è fuori.",
+"ru": "Его куртка снаружи.",
+"uk": "Його куртка зовні."
+},
+{
+"id": "it:09:12",
+"target": "Il vostro treno è al binario.",
+"ru": "Ваш поезд на платформе.",
+"uk": "Ваш поїзд на платформі."
+},
+{
+"id": "it:09:13",
+"target": "I nostri biglietti sono pronti.",
+"ru": "Наши билеты готовы.",
+"uk": "Наші квитки готові."
+},
+{
+"id": "it:09:14",
+"target": "I vostri biglietti sono pronti.",
+"ru": "Ваши билеты готовы.",
+"uk": "Ваші квитки готові."
+},
+{
+"id": "it:09:15",
+"target": "La loro camera è libera.",
+"ru": "Их комната свободна.",
+"uk": "Їхня кімната вільна."
+},
+{
+"id": "it:09:21",
+"target": "Sto cercando il mio cappotto.",
+"ru": "Я ищу своё пальто.",
+"uk": "Я шукаю своє пальто."
+},
+{
+"id": "it:09:23",
+"target": "Paolo cerca il suo badge.",
+"ru": "Паоло ищет свой бейдж.",
+"uk": "Паоло шукає свій бейдж."
+},
+{
+"id": "it:09:25",
+"target": "Stiamo cercando i nostri posti.",
+"ru": "Мы ищем свои места.",
+"uk": "Ми шукаємо свої місця."
+},
+{
+"id": "it:09:31",
+"target": "Il mio indirizzo è sulla mappa.",
+"ru": "Мой адрес указан на карте.",
+"uk": "Моя адреса на карті."
+},
+{
+"id": "it:09:34",
+"target": "La mia busta è vuota.",
+"ru": "Мой конверт пуст.",
+"uk": "Мій конверт порожній."
+},
+{
+"id": "it:09:37",
+"target": "I miei colleghi sono in ufficio.",
+"ru": "Мои коллеги в офисе.",
+"uk": "Мої колеги в офісі."
+},
+{
+"id": "it:09:46",
+"target": "Mostri il Suo biglietto al controllore.",
+"ru": "Покажите свой билет контролёру.",
+"uk": "Покажіть свій квиток контролеру."
+},
+{
+"id": "it:09:49",
+"target": "Mio fratello ha dimenticato la sua chiave.",
+"ru": "Мой брат забыл свой ключ.",
+"uk": "Мій брат забув свій ключ."
+},
+{
+"id": "it:09:50",
+"target": "Nostra figlia prepara le sue cose.",
+"ru": "Наша дочь собирает свои вещи.",
+"uk": "Наша донька збирає свої речі."
+}
+]
+},
+{
+"lesson": 10,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:10:01",
+"it:10:02",
+"it:10:04"
+],
+"textByLocale": {
+"en": "`C’è` is used with one object and with an uncountable substance in the singular. `Ci sono` is used with several. First, decide whether it's one object or many, then choose the beginning.",
+"ru": "`C’è` употребляется с одним предметом и с неисчисляемым веществом в единственном числе. `Ci sono` — с несколькими. Сначала реши, один предмет или много, затем выбирай начало.",
+"uk": "`C’è` використовується з одним предметом і з необчислюваним речовиною в однині. `Ci sono` - з декількома. Спочатку виріши, один предмет чи багато, потім вибирай початок."
+}
+},
+{
+"exampleIds": [
+"it:10:06",
+"it:10:10",
+"it:10:13"
+],
+"textByLocale": {
+"en": "You can first indicate the location, then say what's in it. Or you can begin with the presence of the object. In both orders, maintain all the details and verb agreement.",
+"ru": "Можно сначала обозначить место, затем сказать, что в нём есть. А можно начать с наличия предмета. В обоих порядках сохраняй все детали и согласование глагола.",
+"uk": "Можна спочатку позначити місце, а потім сказати, що в ньому є. А можна розпочати з наявності предмета. В обох порядках зберігай усі деталі та узгодження дієслова."
+}
+},
+{
+"exampleIds": [
+"it:10:16",
+"it:10:19",
+"it:10:20"
+],
+"textByLocale": {
+"en": "The indefinite article helps introduce a single object for the first time. The numeral itself indicates quantity; there's no need for another `un` before \"two.\"",
+"ru": "Неопределённый артикль помогает впервые представить один предмет. Числительное само указывает количество; перед «два» не нужно ещё одно `un`.",
+"uk": "Невизначений артикль допомагає вперше уявити один предмет. Числівник сам показує кількість; перед «два» не потрібне ще одне `un`."
+}
+},
+{
+"exampleIds": [
+"it:10:21",
+"it:10:23",
+"it:10:27"
+],
+"textByLocale": {
+"en": "The question retains the same basis: `C’è una camera libera?` differs from the statement by intonation and sign, not by a new auxiliary particle.",
+"ru": "Вопрос сохраняет ту же основу: `C’è una camera libera?` отличается от утверждения интонацией и знаком, а не новой вспомогательной частицей.",
+"uk": "Питання зберігає ту ж основу: `C’è una camera libera?` відрізняється від затвердження інтонацією та знаком, а не новою допоміжною часткою."
+}
+},
+{
+"exampleIds": [
+"it:10:31",
+"it:10:34",
+"it:10:35"
+],
+"textByLocale": {
+"en": "The negation of `non` comes before the entire group: `Non c’è` or `Non ci sono`. The number of the object still matters, even when it's not there.",
+"ru": "Отрицание `non` стоит перед всей группой: `Non c’è` или `Non ci sono`. Число предмета по-прежнему имеет значение, даже когда его нет.",
+"uk": "Заперечення `non` стоїть перед усією групою: `Non c’è` або `Non ci sono`. Число предмета, як і раніше, має значення, навіть коли його немає."
+}
+},
+{
+"exampleIds": [
+"it:10:36",
+"it:10:37",
+"it:10:39"
+],
+"textByLocale": {
+"en": "`Ancora` and `più` change the meaning of presence: there are still some left or there aren't any more. `Molta gente` implies many people, but the Italian noun `gente` is singular.",
+"ru": "`Ancora` и `più` меняют смысл наличия: ещё осталось или больше нет. `Molta gente` — много людей по смыслу, но итальянское существительное `gente` стоит в единственном числе.",
+"uk": "`Ancora` та `più` змінюють сенс наявності: ще залишилося чи більше немає. `Molta gente` - багато людей за змістом, але італійське іменник `gente` стоїть в однині."
+}
+},
+{
+"exampleIds": [
+"it:10:41",
+"it:10:45",
+"it:10:49"
+],
+"textByLocale": {
+"en": "Check with your eyes if you can point out the objects one by one. A line may consist of many people, but `fila` itself is single. Therefore, when reporting the presence of a line, choose `c’è`.",
+"ru": "Проверь глазами, можно ли показать предметы по одному. Очередь может состоять из многих людей, но сама `fila` одна. Поэтому при сообщении о наличии очереди выбирай `c’è`.",
+"uk": "Перевір очима, чи можна показати предмети по одному. Черга може складатися з багатьох людей, але сама `fila` одна. Тому при повідомленні про наявність черги вибирай `c’è`."
+}
+}
+],
+"drills": [
+{
+"bad": "È",
+"chapter": 1,
+"id": "it:10:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 27,
+"options": [
+"Sono",
+"È",
+"C’è"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 1,
+"id": "it:10:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 37,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 1,
+"id": "it:10:05:lab",
+"item": 5,
+"kind": "match",
+"near": 48,
+"options": [
+"sono",
+"è",
+"c’è"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 2,
+"id": "it:10:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"È",
+"Sono",
+"C’è"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 2,
+"id": "it:10:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"Sono",
+"È",
+"C’è"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 2,
+"id": "it:10:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 5,
+"options": [
+"sono",
+"è",
+"c’è"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 3,
+"id": "it:10:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 32,
+"options": [
+"è",
+"c’è",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "È",
+"chapter": 3,
+"id": "it:10:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"C’è",
+"È",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 3,
+"id": "it:10:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"C’è",
+"È",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 4,
+"id": "it:10:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 25,
+"options": [
+"C’è",
+"Ci",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 4,
+"id": "it:10:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 7,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 1
+},
+{
+"bad": "È",
+"chapter": 4,
+"id": "it:10:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 2,
+"options": [
+"C’è",
+"È",
+"Sono"
+],
+"slot": 0
+},
+{
+"bad": "È",
+"chapter": 5,
+"id": "it:10:29:lab",
+"item": 29,
+"kind": "match",
+"near": 50,
+"options": [
+"È",
+"Sono",
+"C’è"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 5,
+"id": "it:10:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"c’è",
+"è",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 5,
+"id": "it:10:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 36,
+"options": [
+"sei",
+"è",
+"sono"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 6,
+"id": "it:10:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 34,
+"options": [
+"è",
+"sono",
+"sei"
+],
+"slot": 2
+},
+{
+"bad": "È",
+"chapter": 6,
+"id": "it:10:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 25,
+"options": [
+"Sono",
+"C’è",
+"È"
+],
+"slot": 0
+},
+{
+"bad": "è",
+"chapter": 6,
+"id": "it:10:42:lab",
+"item": 42,
+"kind": "match",
+"near": 35,
+"options": [
+"sono",
+"è",
+"c’è"
+],
+"slot": 2
+},
+{
+"bad": "è",
+"chapter": 7,
+"id": "it:10:45:lab",
+"item": 45,
+"kind": "build",
+"near": 37,
+"options": [
+"è",
+"sei",
+"sono"
+],
+"slot": 1
+},
+{
+"bad": "è",
+"chapter": 7,
+"id": "it:10:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"c’è",
+"sono",
+"è"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"una panchina",
+"c’è una panchina"
+],
+[
+"due panchine",
+"ci sono due panchine"
+],
+[
+"del pane",
+"c’è del pane"
+],
+[
+"più biglietti",
+"non ci sono più biglietti"
+]
+],
+"title": {
+"en": "What is in this place: `c’è` and `ci sono`",
+"ru": "Что есть в этом месте: `c’è` и `ci sono`",
+"uk": "Що є тут: `c’è` і `ci sono`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:10:01",
+"target": "C’è una panchina.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "it:10:02",
+"target": "C’è un tavolo.",
+"ru": "Есть стол.",
+"uk": "Є стіл."
+},
+{
+"id": "it:10:04",
+"target": "Ci sono tre sedie.",
+"ru": "Есть три стула.",
+"uk": "Є три стільці."
+},
+{
+"id": "it:10:06",
+"target": "C’è un parco vicino alla stazione ferroviaria.",
+"ru": "Рядом с железнодорожным вокзалом есть парк.",
+"uk": "Біля залізничного вокзалу є парк."
+},
+{
+"id": "it:10:10",
+"target": "C’è del caffè.",
+"ru": "Есть кофе.",
+"uk": "Є кава."
+},
+{
+"id": "it:10:13",
+"target": "In tasca c’è un biglietto.",
+"ru": "В кармане билет.",
+"uk": "У кишені є квиток."
+},
+{
+"id": "it:10:16",
+"target": "Nel cassetto ci sono delle pile.",
+"ru": "В ящике лежат батарейки.",
+"uk": "У шухляді є батарейки."
+},
+{
+"id": "it:10:19",
+"target": "C’è un posto a sedere in fondo.",
+"ru": "В конце есть сидячее место.",
+"uk": "У кінці є сидяче місце."
+},
+{
+"id": "it:10:20",
+"target": "C’è un ascensore in hotel.",
+"ru": "В отеле есть лифт.",
+"uk": "У готелі є ліфт."
+},
+{
+"id": "it:10:21",
+"target": "C’è un autobus stasera?",
+"ru": "Есть ли сегодня вечером автобус?",
+"uk": "Чи є автобус сьогодні ввечері?"
+},
+{
+"id": "it:10:23",
+"target": "C’è un deposito bagagli?",
+"ru": "Есть ли камера хранения багажа?",
+"uk": "Чи є камера схову багажу?"
+},
+{
+"id": "it:10:27",
+"target": "C’è una camera libera?",
+"ru": "Есть ли свободная комната?",
+"uk": "Чи є вільна кімната?"
+},
+{
+"id": "it:10:31",
+"target": "Non c’è nessuna panchina.",
+"ru": "Нет скамейки.",
+"uk": "Лавки немає."
+},
+{
+"id": "it:10:34",
+"target": "Non ci sono treni dopo mezzanotte.",
+"ru": "После полуночи поездов нет.",
+"uk": "Після півночі поїздів немає."
+},
+{
+"id": "it:10:35",
+"target": "Non c’è zucchero.",
+"ru": "Нет сахара.",
+"uk": "Цукру немає."
+},
+{
+"id": "it:10:36",
+"target": "Non ci sono più biglietti.",
+"ru": "Билетов больше нет.",
+"uk": "Квитків більше немає."
+},
+{
+"id": "it:10:37",
+"target": "Ci sono ancora due posti liberi.",
+"ru": "Ещё есть два свободных места.",
+"uk": "Ще є два вільних місця."
+},
+{
+"id": "it:10:39",
+"target": "C’è molta gente.",
+"ru": "Много людей.",
+"uk": "Багато людей."
+},
+{
+"id": "it:10:41",
+"target": "C’è una panetteria all’angolo.",
+"ru": "На углу есть пекарня.",
+"uk": "На розі є пекарня."
+},
+{
+"id": "it:10:45",
+"target": "Ci sono dei posti liberi sulla banchina.",
+"ru": "На платформе есть свободные места.",
+"uk": "На платформі є вільні місця."
+},
+{
+"id": "it:10:49",
+"target": "C’è una fila davanti alla biglietteria.",
+"ru": "Перед билетной кассой очередь.",
+"uk": "Перед касою черга."
+}
+]
+}
+]

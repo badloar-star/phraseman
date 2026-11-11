@@ -1,0 +1,1164 @@
+[
+{
+"lesson": 19,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 19,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Где именно лежит вещь",
+"formula": "[предмет] + be + [указание места]",
+"story": "Представь ключи: на полке — on the shelf, внутри ящика — in the drawer, под стулом — under the chair. Сначала определи положение, потом выбирай предлог.",
+"use": "Представьте, что слушателю нужно найти. Находится ли объект внутри чего-либо, лежит ли на поверхности или находится рядом с точкой? Изображение часто важнее, чем перевод одним словом.",
+"choose": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"nuance": "`Opposite` обращен к чему-либо; `behind` означает «за ним». `Between` нуждается в точках отсчета. Вложить ключ в ящик — это не то же самое, что положить его на ящик.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Представьте, что слушателю нужно найти. Находится ли объект внутри чего-либо, лежит ли на поверхности или находится рядом с точкой? Изображение часто важнее, чем перевод одним словом.",
+"samples": [
+"19.01",
+"19.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"samples": [
+"19.02",
+"19.11"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Opposite` обращен к чему-либо; `behind` означает «за ним». `Between` нуждается в точках отсчета. Вложить ключ в ящик — это не то же самое, что положить его на ящик.",
+"samples": [
+"19.11",
+"19.15"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Переместить или оставить объект",
+"samples": [
+"19.33",
+"19.35",
+"19.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Кто-то не может найти свои ключи. Используйте полку, ящик и стул, чтобы указать три действительно разных места, где могут находиться ключи.",
+"samples": [
+"19.42",
+"19.45",
+"19.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Предоставить достаточно подробную информацию, чтобы его можно было найти",
+"samples": [
+"19.50"
+],
+"tokenWalk": "19.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Де саме лежить річ",
+"formula": "[предмет] + be + [позначення місця]",
+"story": "Уяви ключі: на полиці — on the shelf, у шухляді — in the drawer, під стільцем — under the chair. Спершу визнач положення.",
+"use": "Уявіть, що слухачеві потрібно знайти. Чи знаходиться предмет всередині чогось, лежить на поверхні чи біля точки? Зображення часто має більше значення, ніж однослівний переклад.",
+"choose": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"nuance": "`Opposite` стоїть навпроти чогось; `behind` означає ззаду. `Between` потребує орієнтирів. Покласти ключ у шухляду — це не те саме, що покласти його на шухляду.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Уявіть, що слухачеві потрібно знайти. Чи знаходиться предмет всередині чогось, лежить на поверхні чи біля точки? Зображення часто має більше значення, ніж однослівний переклад.",
+"samples": [
+"19.01",
+"19.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"samples": [
+"19.02",
+"19.11"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Opposite` стоїть навпроти чогось; `behind` означає ззаду. `Between` потребує орієнтирів. Покласти ключ у шухляду — це не те саме, що покласти його на шухляду.",
+"samples": [
+"19.11",
+"19.15"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Перемістити або залишити об'єкт",
+"samples": [
+"19.33",
+"19.35",
+"19.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Хтось не може знайти свої ключі. Використайте полицю, шухляду та стілець, щоб вказати три дійсно різні місця, де можуть бути ключі.",
+"samples": [
+"19.42",
+"19.45",
+"19.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Навести достатньо деталей, щоб його можна було знайти",
+"samples": [
+"19.50"
+],
+"tokenWalk": "19.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Describe an exact location",
+"formula": "[thing] + be + [place expression]",
+"story": "Picture the keys: on the shelf, in the drawer, under the chair. Decide the physical relationship before you choose the small word.",
+"use": "Imagine what the listener needs to locate. Is the object inside something, resting on a surface, or near a point? The picture often matters more than a one-word translation.",
+"choose": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`.",
+"nuance": "`Opposite` faces something; `behind` means at its back. `Between` needs reference points. Putting a key in a drawer is different from putting it on the drawer.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Imagine what the listener needs to locate. Is the object inside something, resting on a surface, or near a point? The picture often matters more than a one-word translation.",
+"samples": [
+"19.01",
+"19.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`.",
+"samples": [
+"19.02",
+"19.11"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Opposite` faces something; `behind` means at its back. `Between` needs reference points. Putting a key in a drawer is different from putting it on the drawer.",
+"samples": [
+"19.11",
+"19.15"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`.",
+"wrong": "The sign is in the wall.",
+"right": "The sign is on the wall.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Move or leave an object",
+"samples": [
+"19.33",
+"19.35",
+"19.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Someone cannot find their keys. Use the shelf, drawer and chair to give three genuinely different places where the keys might be.",
+"samples": [
+"19.42",
+"19.45",
+"19.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Give enough detail to find it",
+"samples": [
+"19.50"
+],
+"tokenWalk": "19.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "19.01",
+"index": 3,
+"right": "on",
+"near": "under",
+"seq": [
+"The",
+"keys",
+"are",
+"on",
+"the",
+"shelf"
+],
+"i": 0,
+"kind": "form",
+"key": "en19/lab/form1",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.12",
+"index": 2,
+"right": "in",
+"near": "under",
+"seq": [
+"Meet",
+"me",
+"in",
+"the",
+"lobby"
+],
+"i": 11,
+"kind": "form",
+"key": "en19/lab/form2",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.26",
+"index": 4,
+"right": "beside",
+"near": "under",
+"seq": [
+"The",
+"cash",
+"machine",
+"is",
+"beside",
+"the",
+"entrance"
+],
+"i": 25,
+"kind": "form",
+"key": "en19/lab/form3",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.37",
+"index": 3,
+"right": "inside",
+"near": "under",
+"seq": [
+"Keep",
+"the",
+"receipt",
+"inside",
+"the",
+"cover"
+],
+"i": 36,
+"kind": "form",
+"key": "en19/lab/form4",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.07",
+"index": 3,
+"right": "under",
+"near": "above",
+"seq": [
+"The",
+"bill",
+"is",
+"under",
+"the",
+"menu"
+],
+"i": 6,
+"kind": "spot",
+"key": "en19/lab/spot1",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.23",
+"index": 4,
+"right": "behind",
+"near": "under",
+"seq": [
+"The",
+"car",
+"park",
+"is",
+"behind",
+"the",
+"hotel"
+],
+"i": 22,
+"kind": "spot",
+"key": "en19/lab/spot2",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.30",
+"index": 3,
+"right": "above",
+"near": "below",
+"seq": [
+"The",
+"mirror",
+"is",
+"above",
+"the",
+"sink"
+],
+"i": 29,
+"kind": "spot",
+"key": "en19/lab/spot3",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"id": "19.47",
+"index": 3,
+"right": "on",
+"near": "under",
+"seq": [
+"Is",
+"the",
+"room",
+"on",
+"the",
+"ground",
+"floor"
+],
+"i": 46,
+"kind": "spot",
+"key": "en19/lab/spot4",
+"feedback": {
+"ru": "`In` помогает представить предмет внутри, `on` — на поверхности, `at` — у ориентира. Не угадывай транспортный предлог по размеру: запомни сочетания `on the bus` и `in a taxi`.",
+"uk": "`In` підказує, що річ усередині, `on` — на поверхні, `at` — біля орієнтира. Не вгадуй прийменник із транспортом за розміром: запам’ятай `on the bus` та `in a taxi`.",
+"en": "Use `in` for an enclosure, `on` for a surface, `at` for a point such as an entrance. Learn common transport phrases as units: `on the bus`, but `in a taxi`."
+}
+},
+{
+"kind": "match",
+"key": "en19/lab/match1",
+"id": "19.02",
+"other": "19.01"
+},
+{
+"kind": "match",
+"key": "en19/lab/match2",
+"id": "19.17",
+"other": "19.18"
+},
+{
+"kind": "match",
+"key": "en19/lab/match3",
+"id": "19.33",
+"other": "19.32"
+},
+{
+"kind": "match",
+"key": "en19/lab/match4",
+"id": "19.46",
+"other": "19.47"
+},
+{
+"kind": "build",
+"key": "en19/lab/build1",
+"id": "19.04"
+},
+{
+"kind": "build",
+"key": "en19/lab/build2",
+"id": "19.15"
+},
+{
+"kind": "build",
+"key": "en19/lab/build3",
+"id": "19.29"
+},
+{
+"kind": "build",
+"key": "en19/lab/build4",
+"id": "19.42"
+},
+{
+"kind": "transform",
+"id": "19.04",
+"base": "19.03",
+"diff": [
+{
+"before": [
+"under"
+],
+"after": [
+"beside"
+]
+},
+{
+"before": [
+"chair"
+],
+"after": [
+"kettle"
+]
+}
+],
+"key": "en19/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "19.06",
+"base": "19.05",
+"diff": [
+{
+"before": [
+"on"
+],
+"after": [
+"inside"
+]
+},
+{
+"before": [
+"box"
+],
+"after": [
+"envelope"
+]
+}
+],
+"key": "en19/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "19.44",
+"base": "19.02",
+"diff": [
+{
+"before": [
+"keys"
+],
+"after": [
+"spare",
+"batteries"
+]
+},
+{
+"before": [],
+"after": [
+"top"
+]
+}
+],
+"key": "en19/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "19.43",
+"base": "19.41",
+"diff": [
+{
+"before": [
+"stain",
+"on"
+],
+"after": [
+"crack",
+"above"
+]
+},
+{
+"before": [
+"sleeve"
+],
+"after": [
+"window"
+]
+}
+],
+"key": "en19/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+12
+],
+[
+13,
+9
+],
+[
+2,
+5
+],
+[
+3,
+10
+],
+[
+15,
+7
+],
+[
+11,
+18
+]
+],
+"worked": [
+"19.05",
+"19.18",
+"19.33",
+"19.48"
+],
+"reflection": [
+"19.01",
+"19.02"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 20,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 20,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Предмет уже знаком или упомянут впервые?",
+"formula": "a / an + [один исчисляемый предмет] → the + [уже определённый предмет]",
+"story": "Впервые упоминаешь покупку: I bought a lamp. Теперь ясно, какую лампу обсуждаешь: The lamp is broken. Предмет тот же; слушатель уже его знает.",
+"use": "Выберите артикль, основываясь на том, что слушатель может определить. Предмет может быть идентифицируемым, потому что он был упомянут ранее или потому что обстановка ясно указывает, какой именно предмет вы имеете в виду.",
+"choose": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"nuance": "Для общих существительных во множественном числе или неисчисляемых веществ артикль может быть излишним. Сравните воду как напиток с конкретной водой в бутылке. Прочитайте оба предложения в паре как одну небольшую историю.",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Выберите артикль, основываясь на том, что слушатель может определить. Предмет может быть идентифицируемым, потому что он был упомянут ранее или потому что обстановка ясно указывает, какой именно предмет вы имеете в виду.",
+"samples": [
+"20.01",
+"20.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"samples": [
+"20.02",
+"20.12"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Для общих существительных во множественном числе или неисчисляемых веществ артикль может быть излишним. Сравните воду как напиток с конкретной водой в бутылке. Прочитайте оба предложения в паре как одну небольшую историю.",
+"samples": [
+"20.12",
+"20.24"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Сделать общее утверждение",
+"samples": [
+"20.33",
+"20.35",
+"20.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы нашли ключ. Покажите его тому, кто его не видел, а затем расскажите, что необычного в этом конкретном ключе.",
+"samples": [
+"20.42",
+"20.45",
+"20.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Выбрать по контексту и произношению",
+"samples": [
+"20.50"
+],
+"tokenWalk": "20.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Річ уже відома чи згадується вперше?",
+"formula": "a / an + [один злічуваний предмет] → the + [уже відомий предмет]",
+"story": "Уперше згадуєш покупку: I bought a lamp. Тепер зрозуміло, про яку лампу йдеться: The lamp is broken. Предмет той самий; він уже відомий слухачеві.",
+"use": "Виберіть артикль на основі того, що слухач може ідентифікувати. Предмет можна ідентифікувати, тому що він згадувався раніше або тому, що контекст чітко вказує, який саме ви маєте на увазі.",
+"choose": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"nuance": "Для загальних речей у множині або незліченних речовин артикль може бути зайвим. Порівняйте воду як напій з конкретною водою в пляшці. Прочитайте обидва речення в парному прикладі як одну невелику історію.",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Виберіть артикль на основі того, що слухач може ідентифікувати. Предмет можна ідентифікувати, тому що він згадувався раніше або тому, що контекст чітко вказує, який саме ви маєте на увазі.",
+"samples": [
+"20.01",
+"20.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"samples": [
+"20.02",
+"20.12"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Для загальних речей у множині або незліченних речовин артикль може бути зайвим. Порівняйте воду як напій з конкретною водою в пляшці. Прочитайте обидва речення в парному прикладі як одну невелику історію.",
+"samples": [
+"20.12",
+"20.24"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Зробити загальне твердження",
+"samples": [
+"20.33",
+"20.35",
+"20.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви знайшли ключ. Познайомте його з кимось, хто його не бачив, а потім розкажіть їм, що незвичайного в цьому конкретному ключі.",
+"samples": [
+"20.42",
+"20.45",
+"20.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Вибрати за контекстом та вимовою",
+"samples": [
+"20.50"
+],
+"tokenWalk": "20.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Introduce a thing and refer back to it",
+"formula": "a / an + [one countable item] → the + [identified item]",
+"story": "First mention: I bought a lamp. Now the listener knows which one: The lamp is broken. The object did not change; what the listener knows did.",
+"use": "Choose an article based on what the listener can identify. An item can be identifiable because it was mentioned earlier or because the setting makes it clear which one you mean.",
+"choose": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`.",
+"nuance": "For general plural things or an uncountable substance, an article may be unnecessary. Compare water as a drink with the specific water in a bottle. Read both sentences in a paired example as one little story.",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Choose an article based on what the listener can identify. An item can be identifiable because it was mentioned earlier or because the setting makes it clear which one you mean.",
+"samples": [
+"20.01",
+"20.02"
+]
+},
+{
+"title": "How to choose",
+"body": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`.",
+"samples": [
+"20.02",
+"20.12"
+]
+},
+{
+"title": "A useful contrast",
+"body": "For general plural things or an uncountable substance, an article may be unnecessary. Compare water as a drink with the specific water in a bottle. Read both sentences in a paired example as one little story.",
+"samples": [
+"20.12",
+"20.24"
+]
+},
+{
+"title": "Common mistake",
+"body": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`.",
+"wrong": "She wears an uniform.",
+"right": "She wears a uniform.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Make a general statement",
+"samples": [
+"20.33",
+"20.35",
+"20.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You found a key. Introduce it to someone who has not seen it, then tell them what is unusual about that particular key.",
+"samples": [
+"20.42",
+"20.45",
+"20.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Choose by context and pronunciation",
+"samples": [
+"20.50"
+],
+"tokenWalk": "20.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "20.01",
+"index": 2,
+"right": "a",
+"near": "an",
+"seq": [
+"I",
+"need",
+"a",
+"pen"
+],
+"i": 0,
+"kind": "form",
+"key": "en20/lab/form1",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.10",
+"index": 2,
+"right": "an",
+"near": "a",
+"seq": [
+"We",
+"bought",
+"an",
+"umbrella"
+],
+"i": 9,
+"kind": "form",
+"key": "en20/lab/form2",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.20",
+"index": 2,
+"right": "an",
+"near": "a",
+"seq": [
+"He",
+"found",
+"an",
+"envelope",
+"The",
+"envelope",
+"was",
+"sealed"
+],
+"i": 19,
+"kind": "form",
+"key": "en20/lab/form3",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.41",
+"index": 2,
+"right": "a",
+"near": "an",
+"seq": [
+"We",
+"need",
+"a",
+"hotel",
+"for",
+"the",
+"night"
+],
+"i": 40,
+"kind": "form",
+"key": "en20/lab/form4",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.07",
+"index": 2,
+"right": "a",
+"near": "an",
+"seq": [
+"She",
+"wants",
+"a",
+"sandwich"
+],
+"i": 6,
+"kind": "spot",
+"key": "en20/lab/spot1",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.17",
+"index": 2,
+"right": "an",
+"near": "a",
+"seq": [
+"She",
+"bought",
+"an",
+"alarm",
+"clock",
+"The",
+"clock",
+"is",
+"loud"
+],
+"i": 16,
+"kind": "spot",
+"key": "en20/lab/spot2",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.43",
+"index": 2,
+"right": "an",
+"near": "a",
+"seq": [
+"I",
+"had",
+"an",
+"egg",
+"for",
+"breakfast"
+],
+"i": 42,
+"kind": "spot",
+"key": "en20/lab/spot3",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"id": "20.45",
+"index": 2,
+"right": "a",
+"near": "an",
+"seq": [
+"He",
+"wears",
+"a",
+"uniform",
+"at",
+"work"
+],
+"i": 44,
+"kind": "spot",
+"key": "en20/lab/spot4",
+"feedback": {
+"ru": "Новый предмет, один из многих: `a key`. Тот же ключ, уже известный собеседнику: `the key`. Выбор `a/an` зависит от звука: `an hour`, но `a uniform` (первый звук похож на «й»).",
+"uk": "Новий предмет, один із багатьох: `a key`. Той самий ключ, про який уже знає співрозмовник: `the key`. Вибір `a/an` залежить від звука: `an hour`, але `a uniform` (перший звук схожий на «й»).",
+"en": "For one new countable item use `a` or `an`. Choose between them by the next sound, not the letter: `an hour`, but `a uniform`. On the next mention the same object often takes `the`."
+}
+},
+{
+"kind": "match",
+"key": "en20/lab/match1",
+"id": "20.02",
+"other": "20.01"
+},
+{
+"kind": "match",
+"key": "en20/lab/match2",
+"id": "20.17",
+"other": "20.19"
+},
+{
+"kind": "match",
+"key": "en20/lab/match3",
+"id": "20.33",
+"other": "20.41"
+},
+{
+"kind": "match",
+"key": "en20/lab/match4",
+"id": "20.46",
+"other": "20.44"
+},
+{
+"kind": "build",
+"key": "en20/lab/build1",
+"id": "20.04"
+},
+{
+"kind": "build",
+"key": "en20/lab/build2",
+"id": "20.15"
+},
+{
+"kind": "build",
+"key": "en20/lab/build3",
+"id": "20.29"
+},
+{
+"kind": "build",
+"key": "en20/lab/build4",
+"id": "20.42"
+},
+{
+"kind": "transform",
+"id": "20.02",
+"base": "20.01",
+"diff": [
+{
+"before": [
+"a",
+"pen"
+],
+"after": [
+"an",
+"envelope"
+]
+}
+],
+"key": "en20/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "20.41",
+"base": "20.05",
+"diff": [
+{
+"before": [
+"taxi"
+],
+"after": [
+"hotel",
+"for",
+"the",
+"night"
+]
+}
+],
+"key": "en20/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "20.45",
+"base": "20.37",
+"diff": [
+{
+"before": [
+"walks",
+"to"
+],
+"after": [
+"wears",
+"a",
+"uniform",
+"at"
+]
+}
+],
+"key": "en20/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "20.50",
+"base": "20.49",
+"diff": [
+{
+"before": [
+"paid"
+],
+"after": [
+"left",
+"a",
+"message"
+]
+},
+{
+"before": [
+"meal",
+"by",
+"card"
+],
+"after": [
+"manager"
+]
+}
+],
+"key": "en20/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+1
+],
+[
+13,
+2
+],
+[
+14,
+5
+],
+[
+10,
+18
+],
+[
+7,
+15
+],
+[
+19,
+11
+]
+],
+"worked": [
+"20.05",
+"20.18",
+"20.33",
+"20.48"
+],
+"reflection": [
+"20.01",
+"20.02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

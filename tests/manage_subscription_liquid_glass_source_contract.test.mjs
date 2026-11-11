@@ -24,12 +24,10 @@ const parse = candidate => ts.createSourceFile(SOURCE_PATH, candidate, ts.Script
 const PROTECTED = {
   named: {
     // зачем (13.10, перепин Авторизации; сверено по diff 92c6d2206): у причин отмены появился en — тип полный ManageSubscriptionCopy, ключи прежние.
-    CANCEL_REASONS: 'eac02528b352bfa352a7d717b8079fd6675ab10313491e22aae6432d628e4435',
     getStoreManageUrl: '889ed1b036067e1cf9398ee93d8f33a10cb2b54cddbb95066cf5bfb3de3bfd18',
     formatDate: '2b21987d10c5cbf17b7f4e4db7efb4ef404330f064c3cfeb903522c536472b5c',
     normalizeStoredPremiumPlan: '80b061538b95c3e412ca32d39839912a6145440350b67890e88d4370a7de0993',
     localPremiumPlan: '5bf00fdbbd770828440f955b2c054728a9017d8c04ec5fb9a7fa62191071d3bd',
-    saveOfferBusyRef: '11c098352306821bedbf7a32ef18b62ae645c019dda94b2b653918b9dc635837',
     screenAccountRef: 'a87c8a558d3d5d19cd493847ae71a1b398779e64459f4b2139345a25edf7fdd7',
     // зачем (15.10, красные сторожи; сверено по diff eb716d9a0 и 23a4eb6f7): только dev-подмены съёмки — план `plan=` в памяти (getDevPlanOverride) и прогресс оффера удержания (getDevSaveOfferProgress); покупка, отмена и сохранение плана без изменений.
     // зачем (13.10, e225091d5): dev-план с датой (plan/planUntil) важнее пустого ответа RevenueCat эмулятора; в сторе getDevPlanOverride() = null — источник даты прежний.
@@ -50,13 +48,9 @@ const PROTECTED = {
     // если магазин ответит позже, Plus применится как обычно. Вызов восстановления, активация и деньги не менялись.
     handleRestore: '366ec9ec060968586e365693c4145d52bf6099a3d746cb10930803c4df3cf933',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
-    closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
-    openStoreCancel: 'bc53a7375ec8a9bab103ec11d2302ff01c79fa2995cc4424cd17aaf5ccee8892',
-    submitCancel: '2516a18017d6460a9388c4195d80b6b710cce026bc673b3a51758fcfc723482a',
-    acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
-    declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
+    openStoreCancel: 'be12df45cdfe447a387469009907174fa93e7b2af12fb9446df1a13bb7f56bd4',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', 'b3091d0891fbae592d026f4372f11bca860a56a4dced41029055f47e9ccbb43c' /* перепин 13.10 (PM-214): +1 строка rememberPremiumPlan(storedPlan, …, 'manage_local') после локального чтения — память плана для первого кадра, покупка/RevenueCat не тронуты; ранее перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */, 'ccc451df72434a214e694912b540933642d696ea03a25d3897f45c762df945ce' /* добавлен 17.10 (84be74d0f): журнал [PLUS-MANAGE] и один router.replace на пейвол premium_expired, когда доступ выяснен и Plus нет — экран «Plus активирован» не рисуется без доступа; покупка/отмена/восстановление не тронуты */],
+  effects: ['25747d9b780f1671db0a24b0ca1dd04975b98396bc7219f22bcba431ee262ecd', 'b3091d0891fbae592d026f4372f11bca860a56a4dced41029055f47e9ccbb43c' /* перепин 13.10 (PM-214): +1 строка rememberPremiumPlan(storedPlan, …, 'manage_local') после локального чтения — память плана для первого кадра, покупка/RevenueCat не тронуты; ранее перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, 'ccc451df72434a214e694912b540933642d696ea03a25d3897f45c762df945ce' /* добавлен 17.10 (84be74d0f): журнал [PLUS-MANAGE] и один router.replace на пейвол premium_expired, когда доступ выяснен и Plus нет — экран «Plus активирован» не рисуется без доступа; покупка/отмена/восстановление не тронуты */],
 };
 
 function protectedSnapshot(candidate) {
@@ -93,27 +87,14 @@ function benefitRows(candidate) {
   });
 }
 
-function initializerHash(candidate, variableName) {
-  const file = parse(candidate);
-  let initializer = '';
-  const walk = node => {
-    if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.name.text === variableName) {
-      initializer = node.initializer?.getText(file) ?? '';
-    }
-    ts.forEachChild(node, walk);
-  };
-  walk(file);
-  return hash(initializer);
-}
-
-function reasonCopyDiagnostics(candidate) {
+function benefitCopyDiagnostics(candidate) {
   const file = parse(candidate);
   const declarations = [];
   const walk = node => {
-    if (ts.isTypeAliasDeclaration(node) && ['ManageSubscriptionCopy', 'ManageSubscriptionReasonCopy', 'ManageSubscriptionBenefit'].includes(node.name.text)) {
+    if (ts.isTypeAliasDeclaration(node) && ['ManageSubscriptionCopy', 'ManageSubscriptionBenefit'].includes(node.name.text)) {
       declarations.push(node.getText(file));
     }
-    if (ts.isVariableStatement(node) && node.declarationList.declarations.some(declaration => ts.isIdentifier(declaration.name) && ['INCLUDED', 'CANCEL_REASONS'].includes(declaration.name.text))) {
+    if (ts.isVariableStatement(node) && node.declarationList.declarations.some(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'INCLUDED')) {
       declarations.push(node.getText(file));
     }
     ts.forEachChild(node, walk);
@@ -214,18 +195,19 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './paywall_purchase': { storePriceTrim: value => value },
     './revenuecat_premium_access': { revenueCatCustomerInfoHasPremiumAccess: () => true },
     './premium_revenuecat_state': { inferPremiumPlanFromCustomerInfo: (info, fallback) => info?._plan ?? fallback, inferPremiumPlanFromProductId: (_id, fallback) => storePlan ?? fallback, revenueCatPremiumMetadata: info => info ? { productId: `plus_${info._plan}`, expiryMs } : {} },
-    './firebase': { logCancelSurvey: () => {}, logChangePlanStarted: () => {} },
+    './firebase': { logChangePlanStarted: () => {} },
     './analytics': { trackEvent: () => {} },
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.backs.push(fallback) },
     '../hooks/use-haptics': { hapticTap: () => { calls.haptics += 1; } },
     './events': { emitAppEvent: () => {} }, './premium_guard': { invalidatePremiumCache: () => {} },
     // зачем (10.10): ebc1a860d (S2d) обернул операции подписки в withPurchaseFlow — стенд выполняет операцию как есть.
     './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
+    './subscription_tier': { applyTierName: (value) => value },
+    '../components/plus/use_subscription_tier': { useSubscriptionTier: () => 'plus' },
+    './premium_real_storage': { readRealPremiumSnapshotForGeneration: async () => storePlan ? { active: true, plan: storePlan, rcProductId: 'plus_' + storePlan } : null },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => { calls.change += 1; return { status: 'changed', customerInfo: { _plan: 'yearly' }, plan: 'yearly' }; }, isManageSubscriptionOperationCurrent: () => true },
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => customerInfo },
-    './home_screen_hydration': { peekHomeScreenHydration: () => null },
-    './manage_subscription_save_offer': { resolveSaveOffer: () => 'none' },
     './dev_paywall_state': { isDevManageLoadingHold: () => false, isDevRestorePurchaseEmpty: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
     './debug-logger': { DebugLogger: { error: () => {} } },
     // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
@@ -237,7 +219,6 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './dev_vip_override': { getDevPlanOverride: () => null },
     // зачем (PM-214, 13.10): первый кадр «Подписки» без ?plan= берёт план из памяти процесса — в харнессе памяти нет (скелет, как раньше)
     './premium_plan_peek': { peekPremiumPlan: () => null, rememberPremiumPlan: () => undefined },
-    './dev_save_offer_progress': { getDevSaveOfferProgress: () => null, takeDevSaveOfferOpen: () => null, DEV_SAVE_OFFER_PROGRESS: { streak: 12, lessonsCompleted: 38 } }, // зачем (13.10, 92c6d2206): dev-эффект saveOffer — в харнессе выключен, как в сторе
     // зачем (17.10, 84be74d0f): экран спрашивает доступ до отрисовки (show / wait / paywall). Харнесс проверяет деньги на экране
     // Plus с выясненным доступом — то же состояние, что и раньше; сами исходы доступа держит tests/manage_subscription_access.test.ts.
     './manage_subscription_access': { decideManageAccess: () => ({ decision: 'show', reason: 'access_resolved_plus' }), MANAGE_NO_ACCESS_PAYWALL: { pathname: '/premium_modal', params: { context: 'premium_expired', source: 'notification_premium_expiry' } } },
@@ -253,22 +234,16 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
 
 const settle = async () => { await Promise.resolve(); await Promise.resolve(); await new Promise(resolve => setImmediate(resolve)); };
 
-test('protects all 21 payment/account/business declarations and both account effects', () => {
+test('protects the remaining payment and account declarations and effects', () => {
   assert.deepEqual(protectedSnapshot(source), PROTECTED);
 });
 
-test('requires English for benefits while keeping cancellation reasons type-safe and byte-stable', () => {
-  // зачем (13.10, 92c6d2206): у причин отмены теперь обязателен en (раньше английский интерфейс показывал их по-русски) — тип полный.
-  assert.match(source, /const CANCEL_REASONS: \(\{ key: string \} & ManageSubscriptionCopy\)\[\] = \[/);
-  assert.doesNotMatch(source, /type ManageSubscriptionReasonCopy/);
-  assert.equal(initializerHash(source, 'CANCEL_REASONS'), '0bbdeb97d5ac7f07e5ed9993f4680ff4988afa08021c8b1b6e915e12cb531b40');
-  assert.deepEqual(reasonCopyDiagnostics(source), []);
-  const missingReasonEnglish = source.replace(", en: 'Too expensive'", '');
-  assert.notEqual(missingReasonEnglish, source);
-  assert.ok(reasonCopyDiagnostics(missingReasonEnglish).some(message => message.includes("Property 'en' is missing")));
+test('requires English for benefits and excludes the former cancellation survey', () => {
+  assert.doesNotMatch(source, /CANCEL_REASONS|logCancelSurvey|showCancelSheet/);
+  assert.deepEqual(benefitCopyDiagnostics(source), []);
   const missingBenefitEnglish = source.replace(", en: 'Unlimited energy'", '');
   assert.notEqual(missingBenefitEnglish, source);
-  assert.ok(reasonCopyDiagnostics(missingBenefitEnglish).some(message => message.includes("Property 'en' is missing")));
+  assert.ok(benefitCopyDiagnostics(missingBenefitEnglish).some(message => message.includes("Property 'en' is missing")));
 });
 
 test('ships only the seven directly verified benefits with nine complete locales', () => {

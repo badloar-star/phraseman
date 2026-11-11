@@ -1,0 +1,93 @@
+[
+ {
+  "id": "lesson-27/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«особистого дієслова» — калька, нужно «особового»",
+  "fix": "На відміну від схеми з `aller`, у простому майбутньому достатньо одного особового дієслова. Не вважай ці способи завжди взаємозамінними: тут тренуємо обіцянки, прогнози та розклад."
+ },
+ {
+  "id": "lesson-27/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Поміняй тільки обличчя» (face вместо «особа»), «На листі» вместо «На письмі»",
+  "fix": "Зміни тільки особу: `partirai`, `partiras`, `partira`. На письмі відмінності видно і тоді, коли закінчення звучать однаково. У формі множини додай відповідне закінчення."
+ },
+ {
+  "id": "lesson-27/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Вибирай обличчя» — нужно «особу»",
+  "fix": "В оголошеннях про майбутнє часто спочатку називають предмет: поїзд, посилку, замовлення. Вибирай особу за ним, а не за людиною, яка чує оголошення."
+ },
+ {
+  "id": "lesson-27/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«особисту форму» — нужно «особову»",
+  "fix": "Заперечення оточує одну особову форму. У питанні `recevrai-je` після дефіса додано займенник. Не перетворюй його на нове закінчення самого дієслова."
+ },
+ {
+  "id": "lesson-27/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«стоїть сьогодення» — нужно «теперішній час»; «відноситься» калька",
+  "fix": "Після `si` в реальній умові стоїть теперішній час: `si le temps le permet`. Майбутній час стосується головної частини, яка повідомляє очікуваний результат."
+ },
+ {
+  "id": "lesson-27/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].exampleIds",
+  "problem": "Глава про `si` + настоящее, но ни один пример (27:41, 27:43, 27:47) не содержит `si` — примеры не иллюстрируют правило",
+  "fix": "Подобрать в exampleIds фразы курса с `si` + futur (в урок 27 добавить такую фразу) либо переписать главу под текущие примеры: будущее в обещаниях `je garderai`, `je demanderai`, `je laisserai`."
+ },
+ {
+  "id": "lesson-27/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Не додай» — неверная форма запрета",
+  "fix": "Порівняй обіцянку «я залишу» і припущення «я залишив би». Потрібний час визначається змістом повідомлення. Не додавай `-s` до першої особи майбутнього лише через подібність до умовної форми."
+ },
+ {
+  "id": "lesson-28/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«Чи не підставляй» — машинный мусор; «особисту», «обличчя»",
+  "fix": "Для «я хотів би зробити» після `aimerais` іде інфінітив. Не підставляй особову форму другого дієслова: особа вже виражена першим."
+ },
+ {
+  "id": "lesson-28/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«Питання інверсії» — неверно, нужно «Питальна інверсія»",
+  "fix": "З одним знайомим — `tu pourrais`; при ввічливому зверненні — `vous pourriez`. Питальна інверсія `pourriez-vous` пишеться з дефісом. Прохання може бути м'яким і без інверсії."
+ },
+ {
+  "id": "lesson-28/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.en",
+  "problem": "«soft or without inversion» искажает ru «мягкой и без инверсии»",
+  "fix": "With one acquaintance: `tu pourrais`; when addressing someone politely: `vous pourriez`. The question inversion `pourriez-vous` is written with a hyphen. A request can be soft even without inversion."
+ },
+ {
+  "id": "lesson-28/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "Обрыв: предложение начинается с «is built» без подлежащего; «the latter s» вместо «the final s»",
+  "fix": "The conditional is built from the future stem with endings familiar from `imparfait`. Compare `je prendrai` — I'll take — and `je prendrais` — I would take. In writing, the final `s` changes the meaning."
+ },
+ {
+  "id": "lesson-28/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«На листі» — нужно «На письмі»",
+  "fix": "Форма будується від основи майбутнього із закінченнями, знайомими за `imparfait`. Порівняй `je prendrai` — візьму і `je prendrais` — взяв би. На письмі кінцеве `s` змінює зміст."
+ },
+ {
+  "id": "lesson-28/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«вам стоїть» — неверно, нужно «вам варто»",
+  "fix": "`Devoir` в умовній формі пом'якшує пораду: «вам варто», не обов'язково «ви зобов'язані». Перевір, чи просиш ти співрозмовника про щось, чи даєш йому рекомендацію."
+ }
+]

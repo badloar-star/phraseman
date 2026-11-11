@@ -78,7 +78,7 @@ export default function SpireRecordAttempt({ lang, studyTarget, attempt, onFinis
           <Text style={[s.copy, { color: p.textSecondary }]}>{recordCopy(lang, 'failBody')}</Text>
           <V2Pressable onPress={onClose} accessibilityRole="button" style={[s.button, { backgroundColor: p.cta }]}><Text style={{ color: p.ctaText }}>{recordCopy(lang, 'backToRecord')}</Text></V2Pressable>
         </View> : <>
-          <ScrollView contentContainerStyle={s.tasks}>
+          <ScrollView contentContainerStyle={s.tasks} decelerationRate="fast">
             {foreground ? <SpireTaskView key={index} lang={lang} studyTarget={studyTarget} task={attempt.set.tasks[index]} feedback={null}
               disabled={done.current} onChoice={(selectedIndex) => submit({ selectedIndex })}
               onTokens={(tokens) => submit({ tokens })} onItems={(selectedIndexes) => submit({ selectedIndexes })} /> : null}

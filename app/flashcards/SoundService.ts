@@ -37,6 +37,7 @@ import {
 import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
 import { claimSpokenAudio } from '../../modules/audio/audio_runtime_arbiter';
 import { getSoundSettingsSnapshot } from '../../modules/audio/sound_settings';
+import { isProductionSfxMusicAllowed } from '../../modules/audio/sfx_music_policy';
 import { soundAudit } from '../../modules/audio/sound_audit';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowed, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -172,6 +173,7 @@ export async function setFcAutoSpeakEnabled(on: boolean): Promise<void> {
 
 /** Воспроизвести короткий SFX из пула. Синхронный fire-and-forget, ошибки глотаем. */
 export function playSfx(name: FcSfxName): void {
+  if (!isProductionSfxMusicAllowed()) return;
   // зачем 2026-08-30 (§R7): общий тумблер «Звуки» приложения обязан глушить и
   // карточки — раньше они слушали только свой fc_sfx_on и звенели при
   // выключенных звуках. Локальный тумблер остаётся дополнительным фильтром.
@@ -305,7 +307,7 @@ export function speakAfterSfx(text: string, opts?: FcSpeakOpts): void {
     pendingTtsTimer = null;
   }
   const sfxName = opts?.sfx === undefined ? null : opts.sfx;
-  const willPlaySfx = sfxName != null && isFcSfxEnabled();
+  const willPlaySfx = sfxName != null && isFcSfxEnabled() && isProductionSfxMusicAllowed();
   if (!willPlaySfx) {
     speakNow(normalized, opts);
     return;

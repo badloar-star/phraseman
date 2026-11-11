@@ -1,0 +1,3300 @@
+[
+{
+"lemma": "abholen",
+"meaning": {
+"ru": "забирать, встречать",
+"uk": "забирати, зустрічати",
+"en": "Pick up, meet",
+"es": "Recoger, reunirse",
+"pt-BR": "Buscar, encontrar-se",
+"vi": "Đón, gặp mặt",
+"id": "Jemput, bertemu",
+"tr": "Alma, buluşma",
+"pl": "Odbierz, spotkaj się"
+},
+"firstLesson": 13,
+"phrasesCount": 17,
+"examples": [
+{
+"id": "de:13:36",
+"target": "Ich hole dich am Bahnhof ab.",
+"ru": "Я встречу тебя на вокзале.",
+"uk": "Я зустріну тебе на вокзалі."
+},
+{
+"id": "de:13:37",
+"target": "Tom holt das Paket ab.",
+"ru": "Том забирает посылку.",
+"uk": "Том забирає посилку."
+},
+{
+"id": "de:13:38",
+"target": "Wir holen die Kinder ab.",
+"ru": "Мы забираем детей.",
+"uk": "Ми забираємо дітей."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Formular",
+"meaning": {
+"ru": "бланк, анкета",
+"uk": "бланк, анкета",
+"en": "Form",
+"es": "Formulario",
+"pt-BR": "Formulário",
+"vi": "Biểu mẫu",
+"id": "Formulir",
+"tr": "Form",
+"pl": "Formularz"
+},
+"firstLesson": 13,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "de:13:48",
+"target": "Wir füllen das Formular aus.",
+"ru": "Мы заполняем бланк.",
+"uk": "Ми заповнюємо бланк."
+},
+{
+"id": "de:14:13",
+"target": "Anna muss das Formular ausfüllen.",
+"ru": "Анне нужно заполнить бланк.",
+"uk": "Анні потрібно заповнити бланк."
+},
+{
+"id": "de:15:34",
+"target": "Füllen Sie bitte dieses Formular aus!",
+"ru": "Заполните, пожалуйста, этот бланк!",
+"uk": "Заповніть, будь ласка, цей бланк!"
+}
+],
+"other": {}
+},
+{
+"lemma": "der Herd",
+"meaning": {
+"ru": "кухонная плита",
+"uk": "кухонна плита",
+"en": "stove",
+"es": "estufa",
+"pt-BR": "fogão",
+"vi": "bếp lò",
+"id": "kompor",
+"tr": "ocak",
+"pl": "kuchenka"
+},
+"firstLesson": 13,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "de:13:20",
+"target": "Wer schaltet den Herd aus?",
+"ru": "Кто выключает плиту?",
+"uk": "Хто вимикає плиту?"
+},
+{
+"id": "de:15:28",
+"target": "Schaltet den Herd aus!",
+"ru": "Выключите плиту!",
+"uk": "Вимкніть плиту!"
+},
+{
+"id": "de:16:24",
+"target": "Tom hat den Herd ausgeschaltet.",
+"ru": "Том выключил плиту.",
+"uk": "Том вимкнув плиту."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Nummer",
+"meaning": {
+"ru": "номер",
+"uk": "номер",
+"en": "number",
+"es": "número",
+"pt-BR": "número",
+"vi": "số",
+"id": "nomor",
+"tr": "numara",
+"pl": "numer"
+},
+"firstLesson": 13,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "de:13:49",
+"target": "Anna schreibt die Nummer auf.",
+"ru": "Анна записывает номер.",
+"uk": "Анна записує номер."
+},
+{
+"id": "de:15:26",
+"target": "Schreibt die Nummer auf!",
+"ru": "Запишите номер!",
+"uk": "Запишіть номер!"
+},
+{
+"id": "de:16:50",
+"target": "Wir haben die Nummer leider vergessen.",
+"ru": "К сожалению, мы забыли номер.",
+"uk": "На жаль, ми забули номер."
+}
+],
+"other": {}
+},
+{
+"lemma": "dürfen",
+"meaning": {
+"ru": "иметь разрешение",
+"uk": "мати дозвіл",
+"en": "have permission",
+"es": "tener permiso",
+"pt-BR": "ter permissão",
+"vi": "được phép",
+"id": "memiliki izin",
+"tr": "izin almak",
+"pl": "mieć pozwolenie"
+},
+"firstLesson": 14,
+"phrasesCount": 17,
+"examples": [
+{
+"id": "de:14:21",
+"target": "Ich darf hier parken.",
+"ru": "Мне разрешено здесь парковаться.",
+"uk": "Мені дозволено паркуватися тут."
+},
+{
+"id": "de:14:22",
+"target": "Du darfst den Aufzug benutzen.",
+"ru": "Тебе можно пользоваться лифтом.",
+"uk": "Тобі можна користуватися ліфтом."
+},
+{
+"id": "de:14:23",
+"target": "Die Kinder dürfen draußen spielen.",
+"ru": "Детям можно играть на улице.",
+"uk": "Дітям можна грати на вулиці."
+}
+],
+"other": {}
+},
+{
+"lemma": "müssen",
+"meaning": {
+"ru": "быть обязанным",
+"uk": "бути зобов'язаним",
+"en": "be required",
+"es": "ser necesario",
+"pt-BR": "ser necessário",
+"vi": "được yêu cầu",
+"id": "diperlukan",
+"tr": "gerekli olmak",
+"pl": "być wymagane"
+},
+"firstLesson": 14,
+"phrasesCount": 30,
+"examples": [
+{
+"id": "de:14:11",
+"target": "Ich muss zur Arbeit gehen.",
+"ru": "Мне нужно идти на работу.",
+"uk": "Мені потрібно йти на роботу."
+},
+{
+"id": "de:14:12",
+"target": "Du musst früh aufstehen.",
+"ru": "Тебе надо рано встать.",
+"uk": "Тобі треба рано встати."
+},
+{
+"id": "de:14:13",
+"target": "Anna muss das Formular ausfüllen.",
+"ru": "Анне нужно заполнить бланк.",
+"uk": "Анні потрібно заповнити бланк."
+}
+],
+"other": {}
+},
+{
+"lemma": "parken",
+"meaning": {
+"ru": "парковаться",
+"uk": "паркуватися",
+"en": "park",
+"es": "parque",
+"pt-BR": "parque",
+"vi": "công viên",
+"id": "taman",
+"tr": "park",
+"pl": "parkować"
+},
+"firstLesson": 14,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "de:14:21",
+"target": "Ich darf hier parken.",
+"ru": "Мне разрешено здесь парковаться.",
+"uk": "Мені дозволено паркуватися тут."
+},
+{
+"id": "de:23:36",
+"target": "Wenn ihr hier parkt, müsst ihr bezahlen.",
+"ru": "Если вы здесь паркуетесь, вам нужно заплатить.",
+"uk": "Якщо ви паркуєтеся тут, вам потрібно заплатити."
+},
+{
+"id": "de:26:29",
+"target": "Es ist erlaubt, hier zu parken.",
+"ru": "Здесь разрешено парковаться.",
+"uk": "Тут дозволено паркуватися."
+}
+],
+"other": {}
+},
+{
+"lemma": "verschieben",
+"meaning": {
+"ru": "переносить на другое время",
+"uk": "переносити на інший час",
+"en": "reschedule",
+"es": "reprogramar",
+"pt-BR": "remarcar",
+"vi": "dời lịch",
+"id": "jadwalkan ulang",
+"tr": "yeniden planla",
+"pl": "przełóż"
+},
+"firstLesson": 14,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:14:39",
+"target": "Ich möchte meinen Termin verschieben.",
+"ru": "Я хотел бы перенести свою встречу.",
+"uk": "Я хотів би перенести свою зустріч."
+},
+{
+"id": "de:21:13",
+"target": "Wir verschieben den Termin, weil der Arzt krank ist.",
+"ru": "Мы переносим приём, потому что врач болеет.",
+"uk": "Ми переносимо прийом, бо лікар хворий."
+}
+],
+"other": {}
+},
+{
+"lemma": "reservieren",
+"meaning": {
+"ru": "резервировать",
+"uk": "резервувати",
+"en": "reserve",
+"es": "reservar",
+"pt-BR": "reservar",
+"vi": "đặt chỗ",
+"id": "pesan",
+"tr": "rezervasyon yap",
+"pl": "zarezerwuj"
+},
+"firstLesson": 14,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "de:14:45",
+"target": "Sollen wir einen Tisch reservieren?",
+"ru": "Может, забронируем столик?",
+"uk": "Може, забронюємо столик?"
+},
+{
+"id": "de:16:38",
+"target": "Wir haben das Zimmer reserviert.",
+"ru": "Мы забронировали комнату.",
+"uk": "Ми забронювали кімнату."
+},
+{
+"id": "de:29:26",
+"target": "Ich würde gern einen Tisch reservieren.",
+"ru": "Я хотел бы забронировать столик.",
+"uk": "Я хотів би забронювати столик."
+}
+],
+"other": {}
+},
+{
+"lemma": "helfen",
+"meaning": {
+"ru": "помогать",
+"uk": "допомагати",
+"en": "to help",
+"es": "ayudar",
+"pt-BR": "ajudar",
+"vi": "giúp đỡ",
+"id": "membantu",
+"tr": "yardım etmek",
+"pl": "pomagać"
+},
+"firstLesson": 14,
+"phrasesCount": 11,
+"examples": [
+{
+"id": "de:14:05",
+"target": "Wir können helfen.",
+"ru": "Мы можем помочь.",
+"uk": "Ми можемо допомогти."
+},
+{
+"id": "de:14:08",
+"target": "Können Sie mir helfen?",
+"ru": "Вы можете мне помочь?",
+"uk": "Ви можете мені допомогти?"
+},
+{
+"id": "de:16:48",
+"target": "Gestern haben wir den Nachbarn geholfen.",
+"ru": "Вчера мы помогли соседям.",
+"uk": "Вчора ми допомогли сусідам."
+}
+],
+"other": {}
+},
+{
+"lemma": "vorsichtig",
+"meaning": {
+"ru": "осторожно, осторожный",
+"uk": "обережно, обережний",
+"en": "be careful, cautious",
+"es": "tener cuidado, ser precavido",
+"pt-BR": "tenha cuidado, seja cauteloso",
+"vi": "cẩn thận, thận trọng",
+"id": "hati-hati, waspada",
+"tr": "dikkatli ol, temkinli ol",
+"pl": "zachowaj ostrożność"
+},
+"firstLesson": 15,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:15:19",
+"target": "Fahr vorsichtig!",
+"ru": "Езжай осторожно!",
+"uk": "Їдь обережно!"
+},
+{
+"id": "de:15:50",
+"target": "Seien Sie bitte vorsichtig!",
+"ru": "Будьте осторожны, пожалуйста!",
+"uk": "Будьте обережні, будь ласка!"
+},
+{
+"id": "de:21:17",
+"target": "Wir fahren vorsichtig, weil die Straße nass ist.",
+"ru": "Мы едем осторожно, потому что дорога мокрая.",
+"uk": "Ми їдемо обережно, бо дорога мокра."
+}
+],
+"other": {}
+},
+{
+"lemma": "unterschreiben",
+"meaning": {
+"ru": "подписывать",
+"uk": "підписувати",
+"en": "sign",
+"es": "firmar",
+"pt-BR": "assinar",
+"vi": "ký tên",
+"id": "tanda",
+"tr": "imzala",
+"pl": "znak"
+},
+"firstLesson": 15,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:15:35",
+"target": "Unterschreiben Sie bitte hier!",
+"ru": "Распишитесь здесь, пожалуйста!",
+"uk": "Розпишіться тут, будь ласка!"
+},
+{
+"id": "de:26:38",
+"target": "Wir bitten Sie, das Formular zu unterschreiben.",
+"ru": "Мы просим вас подписать бланк.",
+"uk": "Ми просимо вас підписати бланк."
+},
+{
+"id": "de:28:46",
+"target": "Das Formular muss hier unterschrieben werden.",
+"ru": "Бланк нужно подписать здесь.",
+"uk": "Бланк потрібно підписати тут."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Ampel",
+"meaning": {
+"ru": "светофор",
+"uk": "світлофор",
+"en": "Traffic light",
+"es": "Semáforo",
+"pt-BR": "Semáforo",
+"vi": "Đèn giao thông",
+"id": "Lampu lalu lintas",
+"tr": "Trafik ışığı",
+"pl": "Sygnalizacja świetlna"
+},
+"firstLesson": 15,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:15:39",
+"target": "Gehen Sie bis zur Ampel!",
+"ru": "Идите до светофора!",
+"uk": "Ідіть до світлофора!"
+},
+{
+"id": "de:21:50",
+"target": "Weil die Ampel rot ist, warten wir hier.",
+"ru": "Поскольку горит красный, мы ждём здесь.",
+"uk": "Оскільки горить червоний, ми чекаємо тут."
+},
+{
+"id": "de:24:43",
+"target": "Wir hielten an, als die Ampel rot wurde.",
+"ru": "Мы остановились, когда загорелся красный свет.",
+"uk": "Ми зупинилися, коли спалахнуло червоне світло."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Kühlschrank",
+"meaning": {
+"ru": "холодильник",
+"uk": "холодильник",
+"en": "Refrigerator",
+"es": "Refrigerador",
+"pt-BR": "Geladeira",
+"vi": "Tủ lạnh",
+"id": "Kulkas",
+"tr": "Buzdolabı",
+"pl": "Lodówka"
+},
+"firstLesson": 15,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:15:42",
+"target": "Stell die Milch in den Kühlschrank!",
+"ru": "Поставь молоко в холодильник!",
+"uk": "Постав молоко в холодильник!"
+},
+{
+"id": "de:27:30",
+"target": "Die Milch, die du brauchst, steht im Kühlschrank.",
+"ru": "Молоко, которое тебе нужно, в холодильнике.",
+"uk": "Молоко, яке тобі потрібне, в холодильнику."
+}
+],
+"other": {}
+},
+{
+"lemma": "pünktlich",
+"meaning": {
+"ru": "пунктуально, вовремя",
+"uk": "пунктуально, вчасно",
+"en": "Punctually, on time",
+"es": "Puntualmente, a tiempo",
+"pt-BR": "Pontualmente, na hora",
+"vi": "Đúng giờ",
+"id": "Tepat waktu",
+"tr": "Dakik bir şekilde, zamanında",
+"pl": "Punktualnie, na czas"
+},
+"firstLesson": 15,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "de:15:48",
+"target": "Sei bitte pünktlich!",
+"ru": "Пожалуйста, не опаздывай!",
+"uk": "Будь ласка, не запізнюйся!"
+},
+{
+"id": "de:18:05",
+"target": "Ihr wart pünktlich.",
+"ru": "Вы пришли вовремя.",
+"uk": "Ви прийшли вчасно."
+},
+{
+"id": "de:22:47",
+"target": "Es ist wichtig, dass wir pünktlich sind.",
+"ru": "Важно, чтобы мы пришли вовремя.",
+"uk": "Важливо, щоб ми прийшли вчасно."
+}
+],
+"other": {}
+},
+{
+"lemma": "verpassen",
+"meaning": {
+"ru": "пропускать, не успевать",
+"uk": "пропускати, не встигати",
+"en": "Miss, miss",
+"es": "Señorita, señorita",
+"pt-BR": "Senhorita, senhorita",
+"vi": "Sai, sai",
+"id": "Nona, nona",
+"tr": "Bayan, bayan",
+"pl": "Pani, pani"
+},
+"firstLesson": 16,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:16:43",
+"target": "Habt ihr den Zug verpasst?",
+"ru": "Вы опоздали на поезд?",
+"uk": "Ви запізнилися на поїзд?"
+},
+{
+"id": "de:21:34",
+"target": "Wir sind spät dran, weil wir den Zug verpasst haben.",
+"ru": "Мы опаздываем, потому что пропустили поезд.",
+"uk": "Ми запізнюємося, тому що пропустили поїзд."
+},
+{
+"id": "de:26:33",
+"target": "Sie hat Angst, den Zug zu verpassen.",
+"ru": "Она боится опоздать на поезд.",
+"uk": "Вона боїться запізнитися на поїзд."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Wecker",
+"meaning": {
+"ru": "будильник",
+"uk": "будильник",
+"en": "alarm clock",
+"es": "despertador",
+"pt-BR": "despertador",
+"vi": "đồng hồ báo thức",
+"id": "jam alarm",
+"tr": "çalar saat",
+"pl": "budzik"
+},
+"firstLesson": 16,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:16:47",
+"target": "Tom hat den Wecker nicht gehört.",
+"ru": "Том не услышал будильник.",
+"uk": "Том не почув будильника."
+},
+{
+"id": "de:24:08",
+"target": "Als der Wecker klingelte, schlief Tom noch.",
+"ru": "Когда зазвонил будильник, Том ещё спал.",
+"uk": "Коли задзвонив будильник, Том ще спав."
+},
+{
+"id": "de:32:28",
+"target": "Wenn der Wecker geklingelt hätte, wäre ich früher aufgestanden.",
+"ru": "Если бы будильник прозвенел, я бы встал раньше.",
+"uk": "Якби будильник продзвенів, я встав би раніше."
+}
+],
+"other": {}
+},
+{
+"lemma": "reparieren",
+"meaning": {
+"ru": "чинить",
+"uk": "лагодити",
+"en": "repair",
+"es": "reparación",
+"pt-BR": "consertar",
+"vi": "sửa chữa",
+"id": "perbaikan",
+"tr": "tamir",
+"pl": "naprawa"
+},
+"firstLesson": 16,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "de:16:37",
+"target": "Anna hat das Radio repariert.",
+"ru": "Анна починила радио.",
+"uk": "Анна полагодила радіо."
+},
+{
+"id": "de:25:46",
+"target": "Wir reparieren das hintere Fenster.",
+"ru": "Мы ремонтируем заднее окно.",
+"uk": "Ми ремонтуємо заднє вікно."
+},
+{
+"id": "de:26:34",
+"target": "Tom hat vor, das Fahrrad zu reparieren.",
+"ru": "Том намерен починить велосипед.",
+"uk": "Том має намір полагодити велосипед."
+}
+],
+"other": {}
+},
+{
+"lemma": "verlieren",
+"meaning": {
+"ru": "терять",
+"uk": "втрачати",
+"en": "lose",
+"es": "perder",
+"pt-BR": "perder",
+"vi": "bị mất",
+"id": "hilang",
+"tr": "kaybetmek",
+"pl": "zgubić"
+},
+"firstLesson": 16,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:16:40",
+"target": "Tom hat die Schlüssel verloren.",
+"ru": "Том потерял ключи.",
+"uk": "Том втратив ключі."
+},
+{
+"id": "de:21:40",
+"target": "Ich nehme den Ersatzschlüssel, weil ich meinen verloren habe.",
+"ru": "Я беру запасной ключ, потому что потерял свой.",
+"uk": "Я беру запасний ключ, тому що втратив свій."
+},
+{
+"id": "de:31:31",
+"target": "Ich fand die Karte, die ich verloren hatte.",
+"ru": "Я нашёл карту, которую раньше потерял.",
+"uk": "Я знайшов карту, яку раніше втратив."
+}
+],
+"other": {}
+},
+{
+"lemma": "gestern",
+"meaning": {
+"ru": "вчера",
+"uk": "учора",
+"en": "yesterday",
+"es": "ayer",
+"pt-BR": "ontem",
+"vi": "hôm qua",
+"id": "kemarin",
+"tr": "dün",
+"pl": "wczoraj"
+},
+"firstLesson": 16,
+"phrasesCount": 12,
+"examples": [
+{
+"id": "de:16:02",
+"target": "Du hast gestern gekocht.",
+"ru": "Ты вчера готовил.",
+"uk": "Ти вчора готував."
+},
+{
+"id": "de:16:48",
+"target": "Gestern haben wir den Nachbarn geholfen.",
+"ru": "Вчера мы помогли соседям.",
+"uk": "Вчора ми допомогли сусідам."
+},
+{
+"id": "de:17:26",
+"target": "Die Gäste sind gestern abgereist.",
+"ru": "Гости вчера уехали.",
+"uk": "Гості вчора виїхали."
+}
+],
+"other": {}
+},
+{
+"lemma": "aufwachen",
+"meaning": {
+"ru": "просыпаться",
+"uk": "прокидатися",
+"en": "wake up",
+"es": "despertar",
+"pt-BR": "acordar",
+"vi": "thức dậy",
+"id": "bangun tidur",
+"tr": "uyanmak",
+"pl": "obudź się"
+},
+"firstLesson": 17,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:17:09",
+"target": "Die Kinder sind früh aufgewacht.",
+"ru": "Дети рано проснулись.",
+"uk": "Діти рано прокинулися."
+},
+{
+"id": "de:24:07",
+"target": "Als ich aufwachte, war es noch dunkel.",
+"ru": "Когда я проснулся, было ещё темно.",
+"uk": "Коли я прокинувся, було ще темно."
+}
+],
+"other": {}
+},
+{
+"lemma": "einschlafen",
+"meaning": {
+"ru": "засыпать",
+"uk": "засипати",
+"en": "fall asleep",
+"es": "dormirse",
+"pt-BR": "adormecer",
+"vi": "ngủ thiếp đi",
+"id": "tertidur",
+"tr": "uykuya dalmak",
+"pl": "zasypiaj"
+},
+"firstLesson": 17,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:17:10",
+"target": "Anna ist sofort eingeschlafen.",
+"ru": "Анна сразу уснула.",
+"uk": "Анна одразу заснула."
+},
+{
+"id": "de:17:34",
+"target": "Sind die Kinder gut eingeschlafen?",
+"ru": "Дети хорошо уснули?",
+"uk": "Діти добре заснули?"
+},
+{
+"id": "de:31:05",
+"target": "Als es klingelte, war ich gerade eingeschlafen.",
+"ru": "Когда раздался звонок в дверь, я только что уснул.",
+"uk": "Коли пролунав дзвінок у двері, я щойно заснув."
+}
+],
+"other": {}
+},
+{
+"lemma": "abreisen",
+"meaning": {
+"ru": "уезжать, отбывать",
+"uk": "їхати, відбувати",
+"en": "leave, depart",
+"es": "irse, partir",
+"pt-BR": "sair, partir",
+"vi": "rời đi, khởi hành",
+"id": "pergi, berangkat",
+"tr": "ayrılmak, gitmek",
+"pl": "wyjdź, odejdź"
+},
+"firstLesson": 17,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:17:26",
+"target": "Die Gäste sind gestern abgereist.",
+"ru": "Гости вчера уехали.",
+"uk": "Гості вчора виїхали."
+},
+{
+"id": "de:31:41",
+"target": "Ich wusste nicht, dass Anna schon abgereist war.",
+"ru": "Я не знал, что Анна уже уехала.",
+"uk": "Я не знав, що Анна вже поїхала."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Wohnung",
+"meaning": {
+"ru": "квартира",
+"uk": "квартира",
+"en": "apartment",
+"es": "apartamento",
+"pt-BR": "apartamento",
+"vi": "căn hộ",
+"id": "apartemen",
+"tr": "apartman",
+"pl": "mieszkanie"
+},
+"firstLesson": 17,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "de:17:29",
+"target": "Wir sind in die neue Wohnung eingezogen.",
+"ru": "Мы въехали в новую квартиру.",
+"uk": "Ми в'їхали до нової квартири."
+},
+{
+"id": "de:18:29",
+"target": "Die Wohnung hatte keinen Balkon.",
+"ru": "В квартире не было балкона.",
+"uk": "У квартирі не було балкона."
+},
+{
+"id": "de:19:47",
+"target": "Ich schaue mir die Wohnung an.",
+"ru": "Я осматриваю квартиру.",
+"uk": "Я оглядаю квартиру."
+}
+],
+"other": {}
+},
+{
+"lemma": "dunkel",
+"meaning": {
+"ru": "тёмный, темно",
+"uk": "темний, темно",
+"en": "Dark, dark",
+"es": "Oscuro, oscuro",
+"pt-BR": "Escuro, escuro",
+"vi": "Tối, rất tối",
+"id": "Gelap, gelap",
+"tr": "Karanlık, karanlık",
+"pl": "Ciemno, ciemno"
+},
+"firstLesson": 17,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:17:46",
+"target": "Es ist dunkel geworden.",
+"ru": "Стало темно.",
+"uk": "Стало темно."
+},
+{
+"id": "de:23:37",
+"target": "Wenn es dunkel wird, musst du Licht anmachen.",
+"ru": "Когда стемнеет, тебе нужно включить свет.",
+"uk": "Коли стемніє, тобі потрібно ввімкнути світло."
+},
+{
+"id": "de:24:07",
+"target": "Als ich aufwachte, war es noch dunkel.",
+"ru": "Когда я проснулся, было ещё темно.",
+"uk": "Коли я прокинувся, було ще темно."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Empfang",
+"meaning": {
+"ru": "приём сигнала, связь",
+"uk": "прийом сигналу, зв'язок",
+"en": "Signal reception, communication",
+"es": "Recepción de señal, comunicación",
+"pt-BR": "Recepção de sinal, comunicação",
+"vi": "Tiếp nhận tín hiệu, liên lạc",
+"id": "Penerimaan sinyal, komunikasi",
+"tr": "Sinyal alımı, iletişim",
+"pl": "Odbiór sygnału, komunikacja"
+},
+"firstLesson": 18,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:18:28",
+"target": "Mein Handy hatte keinen Empfang.",
+"ru": "Мой телефон не ловил сеть.",
+"uk": "Мій телефон не ловив мережу."
+},
+{
+"id": "de:22:12",
+"target": "Tom sagt, dass der Empfang im Keller schlecht ist.",
+"ru": "Том говорит, что в подвале плохая связь.",
+"uk": "Том каже, що в підвалі поганий зв'язок."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Verspätung",
+"meaning": {
+"ru": "опоздание, задержка",
+"uk": "запізнення, затримка",
+"en": "Late, delay",
+"es": "Tarde, retraso",
+"pt-BR": "Atraso, demora",
+"vi": "Muộn, chậm trễ",
+"id": "Terlambat, penundaan",
+"tr": "Geç, gecikme",
+"pl": "Spóźniony, opóźnienie"
+},
+"firstLesson": 18,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:18:30",
+"target": "Der Bus hatte Verspätung.",
+"ru": "Автобус опаздывал.",
+"uk": "Автобус запізнювався."
+},
+{
+"id": "de:19:38",
+"target": "Wir entschuldigen uns für die Verspätung.",
+"ru": "Мы извиняемся за опоздание.",
+"uk": "Ми вибачаємось за запізнення."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Schicht",
+"meaning": {
+"ru": "рабочая смена",
+"uk": "робоча зміна",
+"en": "Work shift",
+"es": "Turno de trabajo",
+"pt-BR": "Turno de trabalho",
+"vi": "Ca làm việc",
+"id": "Shift kerja",
+"tr": "Çalışma vardiyası",
+"pl": "Zmiana robocza"
+},
+"firstLesson": 18,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:18:45",
+"target": "Nach der Schicht hatte Anna frei.",
+"ru": "После смены Анна была свободна.",
+"uk": "Після зміни Анна була вільна."
+},
+{
+"id": "de:31:47",
+"target": "Als wir den Laden erreichten, hatte die letzte Schicht schon begonnen.",
+"ru": "Когда мы добрались до магазина, последняя смена уже началась.",
+"uk": "Коли ми дісталися магазину, остання зміна вже почалася."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Schaden",
+"meaning": {
+"ru": "ущерб, повреждение",
+"uk": "збитки, пошкодження",
+"en": "damage, injury",
+"es": "daño, lesión",
+"pt-BR": "dano, lesão",
+"vi": "thiệt hại, thương tích",
+"id": "kerusakan, cedera",
+"tr": "hasar, yaralanma",
+"pl": "uszkodzenie, uraz"
+},
+"firstLesson": 18,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:18:47",
+"target": "Zum Glück war der Schaden klein.",
+"ru": "К счастью, ущерб был небольшим.",
+"uk": "На щастя, збитки були невеликими."
+},
+{
+"id": "de:22:13",
+"target": "Er sagt, dass der Schaden an der Dusche klein ist.",
+"ru": "Он говорит, что душ повреждён не сильно.",
+"uk": "Він каже, що пошкодження душу незначні."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Dusche",
+"meaning": {
+"ru": "душ",
+"uk": "душ",
+"en": "soul",
+"es": "alma",
+"pt-BR": "alma",
+"vi": "linh hồn",
+"id": "jiwa",
+"tr": "ruh",
+"pl": "dusza"
+},
+"firstLesson": 18,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:18:16",
+"target": "Die Dusche war kaputt.",
+"ru": "Душ был сломан.",
+"uk": "Душ був зламаний."
+},
+{
+"id": "de:22:13",
+"target": "Er sagt, dass der Schaden an der Dusche klein ist.",
+"ru": "Он говорит, что душ повреждён не сильно.",
+"uk": "Він каже, що пошкодження душу незначні."
+}
+],
+"other": {}
+},
+{
+"lemma": "sich beeilen",
+"meaning": {
+"ru": "торопиться",
+"uk": "поспішати",
+"en": "hurry",
+"es": "prisa",
+"pt-BR": "pressa",
+"vi": "vội vàng",
+"id": "terburu-buru",
+"tr": "acele",
+"pl": "pośpiech"
+},
+"firstLesson": 19,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:19:21",
+"target": "Ich beeile mich.",
+"ru": "Я тороплюсь.",
+"uk": "Я поспішаю."
+},
+{
+"id": "de:19:22",
+"target": "Beeilst du dich?",
+"ru": "Ты торопишься?",
+"uk": "Ти поспішаєш?"
+},
+{
+"id": "de:19:23",
+"target": "Wir müssen uns beeilen.",
+"ru": "Нам надо поторопиться.",
+"uk": "Нам треба поквапитися."
+}
+],
+"other": {}
+},
+{
+"lemma": "sich erholen",
+"meaning": {
+"ru": "отдыхать, восстанавливаться",
+"uk": "відпочивати, відновлюватися",
+"en": "rest, recover",
+"es": "descanso, recuperación",
+"pt-BR": "descanso, recuperação",
+"vi": "nghỉ ngơi, hồi phục",
+"id": "istirahat, pemulihan",
+"tr": "dinlenme, iyileşme",
+"pl": "odpoczynek, powrót do zdrowia"
+},
+"firstLesson": 19,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:19:19",
+"target": "Erholst du dich gut?",
+"ru": "Ты хорошо отдыхаешь?",
+"uk": "Ти добре відпочиваєш?"
+},
+{
+"id": "de:19:48",
+"target": "Sie hat sich gut erholt.",
+"ru": "Она хорошо отдохнула.",
+"uk": "Вона добре відпочила."
+},
+{
+"id": "de:22:15",
+"target": "Ich hoffe, dass sich die Kinder am Wochenende gut erholen.",
+"ru": "Я надеюсь, что дети хорошо отдохнут в выходные.",
+"uk": "Сподіваюся, діти добре відпочинуть на вихідних."
+}
+],
+"other": {}
+},
+{
+"lemma": "sich bedanken",
+"meaning": {
+"ru": "благодарить",
+"uk": "дякувати",
+"en": "thank",
+"es": "gracias",
+"pt-BR": "obrigado",
+"vi": "cảm ơn",
+"id": "terima kasih",
+"tr": "teşekkür",
+"pl": "dziękuję"
+},
+"firstLesson": 19,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:19:37",
+"target": "Ich bedanke mich für die Hilfe.",
+"ru": "Я благодарю за помощь.",
+"uk": "Я дякую за допомогу."
+},
+{
+"id": "de:22:42",
+"target": "Anna schreibt, dass sie sich für den Ersatzschlüssel bedanken möchte.",
+"ru": "Анна пишет, что хочет поблагодарить за запасной ключ.",
+"uk": "Анна пише, що хоче подякувати за запасний ключ."
+}
+],
+"other": {}
+},
+{
+"lemma": "sich erinnern",
+"meaning": {
+"ru": "вспоминать, помнить",
+"uk": "згадувати, пам'ятати",
+"en": "remember",
+"es": "recuerda",
+"pt-BR": "lembrar",
+"vi": "nhớ",
+"id": "ingat",
+"tr": "hatırlamak",
+"pl": "pamiętam"
+},
+"firstLesson": 19,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:19:39",
+"target": "Er erinnert sich an die Adresse.",
+"ru": "Он вспоминает адрес.",
+"uk": "Він згадує адресу."
+},
+{
+"id": "de:19:40",
+"target": "Erinnerst du dich an meinen Bruder?",
+"ru": "Ты помнишь моего брата?",
+"uk": "Ти пам'ятаєш мого брата?"
+},
+{
+"id": "de:31:45",
+"target": "Sie erinnerte sich, dass sie die Tür abgeschlossen hatte.",
+"ru": "Она вспомнила, что заперла дверь.",
+"uk": "Вона згадала, що замкнула двері."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Ferien",
+"meaning": {
+"ru": "каникулы",
+"uk": "канікули",
+"en": "vacation",
+"es": "vacaciones",
+"pt-BR": "férias",
+"vi": "kỳ nghỉ",
+"id": "liburan",
+"tr": "tatil",
+"pl": "wakacje"
+},
+"firstLesson": 19,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:19:30",
+"target": "Die Kinder freuen sich auf die Ferien.",
+"ru": "Дети с нетерпением ждут каникул.",
+"uk": "Діти з нетерпінням чекають на канікули."
+},
+{
+"id": "de:23:43",
+"target": "Wenn die Kinder Ferien haben, fahren wir ans Meer.",
+"ru": "Когда у детей каникулы, мы едем к морю.",
+"uk": "Коли у дітей канікули, ми їдемо до моря."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Wind",
+"meaning": {
+"ru": "ветер",
+"uk": "вітер",
+"en": "wind",
+"es": "viento",
+"pt-BR": "vento",
+"vi": "gió",
+"id": "angin",
+"tr": "rüzgar",
+"pl": "wiatr"
+},
+"firstLesson": 20,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:20:18",
+"target": "Der Wind ist heute stärker.",
+"ru": "Сегодня ветер сильнее.",
+"uk": "Сьогодні вітер сильніший."
+},
+{
+"id": "de:24:37",
+"target": "Als der Wind stärker wurde, verließen wir den Strand.",
+"ru": "Когда ветер усилился, мы ушли с пляжа.",
+"uk": "Коли вітер посилився, ми покинули пляж."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Strand",
+"meaning": {
+"ru": "пляж",
+"uk": "пляж",
+"en": "Beach",
+"es": "Playa",
+"pt-BR": "Praia",
+"vi": "Bãi biển",
+"id": "Pantai",
+"tr": "Plaj",
+"pl": "Plaża"
+},
+"firstLesson": 20,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:20:20",
+"target": "Der Strand ist hier schöner.",
+"ru": "Пляж здесь красивее.",
+"uk": "Пляж тут гарніший."
+},
+{
+"id": "de:24:37",
+"target": "Als der Wind stärker wurde, verließen wir den Strand.",
+"ru": "Когда ветер усилился, мы ушли с пляжа.",
+"uk": "Коли вітер посилився, ми покинули пляж."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Strom",
+"meaning": {
+"ru": "электричество",
+"uk": "електрика",
+"en": "Electricity",
+"es": "Electricidad",
+"pt-BR": "Eletricidade",
+"vi": "Điện",
+"id": "Listrik",
+"tr": "Elektrik",
+"pl": "Energia elektryczna"
+},
+"firstLesson": 20,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:20:30",
+"target": "Der neue Ofen braucht weniger Strom.",
+"ru": "Новая духовка расходует меньше электричества.",
+"uk": "Нова духовка витрачає менше електрики."
+},
+{
+"id": "de:24:40",
+"target": "Als der Strom ausfiel, holte ich eine Kerze.",
+"ru": "Когда отключили электричество, я принёс свечу.",
+"uk": "Коли відключили електрику, я приніс свічку."
+},
+{
+"id": "de:27:36",
+"target": "Sie sucht eine Lampe, die wenig Strom verbraucht.",
+"ru": "Она ищет лампу, которая расходует мало электричества.",
+"uk": "Вона шукає лампу, яка витрачає мало електрики."
+}
+],
+"other": {}
+},
+{
+"lemma": "weniger",
+"meaning": {
+"ru": "меньше, в меньшем количестве",
+"uk": "менше, у меншій кількості",
+"en": "Less, in smaller quantities",
+"es": "Menos, en cantidades menores",
+"pt-BR": "Menos, em quantidades menores",
+"vi": "Ít hơn, với số lượng nhỏ hơn",
+"id": "Lebih sedikit, dalam jumlah yang lebih kecil",
+"tr": "Daha az, daha küçük miktarlarda",
+"pl": "Mniej, w mniejszych ilościach"
+},
+"firstLesson": 20,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:20:30",
+"target": "Der neue Ofen braucht weniger Strom.",
+"ru": "Новая духовка расходует меньше электричества.",
+"uk": "Нова духовка витрачає менше електрики."
+},
+{
+"id": "de:20:32",
+"target": "Ich habe heute weniger Zeit.",
+"ru": "Сегодня у меня меньше времени.",
+"uk": "Сьогодні у мене менше часу."
+},
+{
+"id": "de:28:29",
+"target": "Mit diesen Lampen wird weniger Strom verbraucht.",
+"ru": "С этими лампами расходуется меньше электричества.",
+"uk": "Ці лампи споживають менше електроенергії."
+}
+],
+"other": {}
+},
+{
+"lemma": "lieber",
+"meaning": {
+"ru": "с большей охотой, предпочтительнее",
+"uk": "з більшим полюванням, краще",
+"en": "More willingly, preferable",
+"es": "Con más disposición, preferible",
+"pt-BR": "Mais voluntariamente, preferível",
+"vi": "Sẵn lòng hơn, được ưa thích hơn",
+"id": "Lebih rela, lebih disukai",
+"tr": "Daha isteyerek, tercih edilebilir",
+"pl": "Chętniej, preferowane"
+},
+"firstLesson": 20,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "de:20:21",
+"target": "Ich trinke lieber Tee.",
+"ru": "Я предпочитаю чай.",
+"uk": "Я віддаю перевагу чаю."
+},
+{
+"id": "de:20:22",
+"target": "Anna fährt lieber mit dem Zug.",
+"ru": "Анна предпочитает ездить поездом.",
+"uk": "Анна воліє їздити поїздом."
+},
+{
+"id": "de:20:23",
+"target": "Wir kochen lieber zu Hause.",
+"ru": "Мы предпочитаем готовить дома.",
+"uk": "Ми вважаємо за краще готувати вдома."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Schatten",
+"meaning": {
+"ru": "тень",
+"uk": "тінь",
+"en": "Shadow",
+"es": "Sombra",
+"pt-BR": "Sombra",
+"vi": "Bóng",
+"id": "Shadow",
+"tr": "Gölge",
+"pl": "Shadow"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:21:14",
+"target": "Tom sucht Schatten, weil die Sonne scheint.",
+"ru": "Том ищет тень, потому что светит солнце.",
+"uk": "Том шукає тінь, бо сонце світить."
+},
+{
+"id": "de:29:47",
+"target": "Ich hätte lieber einen Platz im Schatten.",
+"ru": "Я бы предпочёл место в тени.",
+"uk": "Я віддав би перевагу місцю в тіні."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Zahlung",
+"meaning": {
+"ru": "платёж",
+"uk": "платіж",
+"en": "Payment",
+"es": "Pago",
+"pt-BR": "Pagamento",
+"vi": "Thanh toán",
+"id": "Pembayaran",
+"tr": "Ödeme",
+"pl": "Płatność"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:21:36",
+"target": "Ich zahle noch einmal, weil die erste Zahlung nicht geklappt hat.",
+"ru": "Я плачу ещё раз, потому что первый платёж не прошёл.",
+"uk": "Я плачу ще раз, бо перший платіж не пройшов."
+},
+{
+"id": "de:23:17",
+"target": "Wenn die Zahlung klappt, bekommst du den Beleg.",
+"ru": "Если платёж пройдёт, ты получишь квитанцию.",
+"uk": "Якщо платіж пройде, ти отримаєш квитанцію."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Ersatzschlüssel",
+"meaning": {
+"ru": "запасной ключ",
+"uk": "запасний ключ",
+"en": "Spare Key",
+"es": "Llave de repuesto",
+"pt-BR": "Chave Reserva",
+"vi": "Chìa khóa dự phòng",
+"id": "Kunci Cadangan",
+"tr": "Yedek Anahtar",
+"pl": "Klucz zapasowy"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:21:40",
+"target": "Ich nehme den Ersatzschlüssel, weil ich meinen verloren habe.",
+"ru": "Я беру запасной ключ, потому что потерял свой.",
+"uk": "Я беру запасний ключ, тому що втратив свій."
+},
+{
+"id": "de:22:42",
+"target": "Anna schreibt, dass sie sich für den Ersatzschlüssel bedanken möchte.",
+"ru": "Анна пишет, что хочет поблагодарить за запасной ключ.",
+"uk": "Анна пише, що хоче подякувати за запасний ключ."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Akku",
+"meaning": {
+"ru": "аккумулятор",
+"uk": "акумулятор",
+"en": "Battery",
+"es": "Batería",
+"pt-BR": "Bateria",
+"vi": "Pin",
+"id": "Baterai",
+"tr": "Pil",
+"pl": "Akumulator"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:21:49",
+"target": "Weil der Akku leer ist, lade ich das Handy.",
+"ru": "Поскольку аккумулятор разряжен, я заряжаю телефон.",
+"uk": "Оскільки акумулятор розряджений, я заряджаю телефон."
+},
+{
+"id": "de:23:45",
+"target": "Wenn der Akku fast leer ist, lade ich ihn auf.",
+"ru": "Когда заряд почти закончился, я заряжаю аккумулятор.",
+"uk": "Коли заряд майже закінчився, я заряджаю акумулятор."
+}
+],
+"other": {}
+},
+{
+"lemma": "streiken",
+"meaning": {
+"ru": "бастовать",
+"uk": "страйкувати",
+"en": "to strike",
+"es": "hacer huelga",
+"pt-BR": "para atacar",
+"vi": "đình công",
+"id": "untuk menyerang",
+"tr": "vurmak",
+"pl": "uderzyć"
+},
+"firstLesson": 21,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:21:09",
+"target": "Wir gehen zu Fuß, weil die Bahn streikt.",
+"ru": "Мы идём пешком, потому что на железной дороге забастовка.",
+"uk": "Ми йдемо пішки, тому що на залізниці страйк."
+},
+{
+"id": "de:23:49",
+"target": "Wenn die Busfahrer streiken, gehe ich zu Fuß.",
+"ru": "Когда водители автобусов бастуют, я иду пешком.",
+"uk": "Коли водії автобусів страйкують, я йду пішки."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Rad",
+"meaning": {
+"ru": "велосипед (в этих примерах)",
+"uk": "велосипед (у цих прикладах)",
+"en": "bicycle (in these examples)",
+"es": "bicicleta (en estos ejemplos)",
+"pt-BR": "bicicleta (nestes exemplos)",
+"vi": "xe đạp (trong các ví dụ này)",
+"id": "sepeda (dalam contoh ini)",
+"tr": "bisiklet (bu örneklerde)",
+"pl": "rower (w tych przykładach)"
+},
+"firstLesson": 21,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "de:21:42",
+"target": "Weil der Bus ausfällt, fahre ich mit dem Rad.",
+"ru": "Поскольку автобус отменили, я поеду на велосипеде.",
+"uk": "Оскільки автобус скасували, я поїду велосипедом."
+},
+{
+"id": "de:23:40",
+"target": "Wenn der Preis stimmt, möchte ich das Rad kaufen.",
+"ru": "Если цена подойдёт, я хотел бы купить велосипед.",
+"uk": "Якщо ціна підійде, я хотів би купити велосипед."
+},
+{
+"id": "de:24:23",
+"target": "Als ich sechs war, bekam ich mein erstes Rad.",
+"ru": "Когда мне было шесть, мне подарили мой первый велосипед.",
+"uk": "Коли мені було шість, мені подарували перший велосипед."
+}
+],
+"other": {}
+},
+{
+"lemma": "hoffen",
+"meaning": {
+"ru": "надеяться",
+"uk": "сподіватися",
+"en": "to hope",
+"es": "esperar",
+"pt-BR": "para ter esperança",
+"vi": "hy vọng",
+"id": "untuk berharap",
+"tr": "ummak",
+"pl": "mieć nadzieję"
+},
+"firstLesson": 22,
+"phrasesCount": 9,
+"examples": [
+{
+"id": "de:22:15",
+"target": "Ich hoffe, dass sich die Kinder am Wochenende gut erholen.",
+"ru": "Я надеюсь, что дети хорошо отдохнут в выходные.",
+"uk": "Сподіваюся, діти добре відпочинуть на вихідних."
+},
+{
+"id": "de:22:16",
+"target": "Wir hoffen, dass es morgen trocken bleibt.",
+"ru": "Мы надеемся, что завтра обойдётся без дождя.",
+"uk": "Ми сподіваємось, що завтра обійдеться без дощу."
+},
+{
+"id": "de:22:17",
+"target": "Ich hoffe, dass der Schlüssel passt.",
+"ru": "Надеюсь, ключ подойдёт.",
+"uk": "Сподіваюся, ключ підійде."
+}
+],
+"other": {}
+},
+{
+"lemma": "bestätigen",
+"meaning": {
+"ru": "подтверждать",
+"uk": "підтверджувати",
+"en": "to confirm",
+"es": "confirmar",
+"pt-BR": "para confirmar",
+"vi": "xác nhận",
+"id": "untuk mengkonfirmasi",
+"tr": "onaylamak",
+"pl": "potwierdzić"
+},
+"firstLesson": 22,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "de:22:23",
+"target": "Sie bestätigt, dass das Zimmer frei ist.",
+"ru": "Она подтверждает, что номер свободен.",
+"uk": "Вона підтверджує, що номер вільний."
+},
+{
+"id": "de:26:46",
+"target": "Sie ruft an, um den Termin zu bestätigen.",
+"ru": "Она звонит, чтобы подтвердить запись.",
+"uk": "Вона дзвонить, щоб підтвердити запис."
+},
+{
+"id": "de:28:44",
+"target": "Wurde der Termin bestätigt?",
+"ru": "Встречу подтвердили?",
+"uk": "Зустріч підтвердили?"
+}
+],
+"other": {}
+},
+{
+"lemma": "versprechen",
+"meaning": {
+"ru": "обещать",
+"uk": "обіцяти",
+"en": "to promise",
+"es": "prometer",
+"pt-BR": "para prometer",
+"vi": "hứa",
+"id": "untuk berjanji",
+"tr": "söz vermek",
+"pl": "obiecać"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:22:27",
+"target": "Sie verspricht, dass sie morgen anruft.",
+"ru": "Она обещает, что позвонит завтра.",
+"uk": "Вона обіцяє, що подзвонить завтра."
+},
+{
+"id": "de:26:40",
+"target": "Ich verspreche dir, pünktlich zu sein.",
+"ru": "Обещаю тебе прийти вовремя.",
+"uk": "Обіцяю тобі прийти вчасно."
+}
+],
+"other": {}
+},
+{
+"lemma": "merken",
+"meaning": {
+"ru": "замечать",
+"uk": "помічати",
+"en": "notice",
+"es": "aviso",
+"pt-BR": "aviso",
+"vi": "thông báo",
+"id": "pemberitahuan",
+"tr": "bildirim",
+"pl": "ogłoszenie"
+},
+"firstLesson": 22,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:22:29",
+"target": "Er merkt, dass die Milch fehlt.",
+"ru": "Он замечает, что молока нет.",
+"uk": "Він зауважує, що молока немає."
+},
+{
+"id": "de:22:43",
+"target": "Tom merkt, dass er die Brille vergessen hat.",
+"ru": "Том замечает, что забыл очки.",
+"uk": "Том помічає, що забув окуляри."
+},
+{
+"id": "de:31:42",
+"target": "Tom merkte, dass er seinen Ausweis vergessen hatte.",
+"ru": "Том понял, что забыл удостоверение.",
+"uk": "Том зрозумів, що забув посвідчення."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Miete",
+"meaning": {
+"ru": "арендная плата",
+"uk": "орендна плата",
+"en": "rent",
+"es": "alquiler",
+"pt-BR": "aluguel",
+"vi": "tiền thuê nhà",
+"id": "sewa",
+"tr": "kira",
+"pl": "czynsz"
+},
+"firstLesson": 22,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:22:49",
+"target": "Es stimmt, dass die Miete steigt.",
+"ru": "Правда, что квартплата растёт.",
+"uk": "Правда, що квартплата зростає."
+},
+{
+"id": "de:30:14",
+"target": "Ich möchte wissen, ob die Miete steigt.",
+"ru": "Я хочу узнать, повысится ли арендная плата.",
+"uk": "Я хочу знати, чи зросте орендна плата."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Nachtschicht",
+"meaning": {
+"ru": "ночная смена",
+"uk": "нічна зміна",
+"en": "night shift",
+"es": "turno de noche",
+"pt-BR": "turno da noite",
+"vi": "ca đêm",
+"id": "shift malam",
+"tr": "gece vardiyası",
+"pl": "zmiana nocna"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:23:42",
+"target": "Wenn Tom Nachtschicht hat, schläft er tagsüber.",
+"ru": "Когда Том работает в ночную смену, он спит днём.",
+"uk": "Коли Том працює в нічну зміну, він спить вдень."
+},
+{
+"id": "de:25:14",
+"target": "Vor der langen Nachtschicht schläft Tom tagsüber.",
+"ru": "Перед долгой ночной сменой Том спит днём.",
+"uk": "Перед довгою нічною зміною Том спить удень."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Anschluss",
+"meaning": {
+"ru": "стыковка, пересадка",
+"uk": "стикування, пересадка",
+"en": "connection, transfer",
+"es": "conexión, transferencia",
+"pt-BR": "conexão, transferência",
+"vi": "kết nối, chuyển khoản",
+"id": "koneksi, transfer",
+"tr": "bağlantı, transfer",
+"pl": "połączenie, transfer"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:23:50",
+"target": "Wenn die Bahn pünktlich ist, schaffen wir den Anschluss.",
+"ru": "Если электричка придёт вовремя, мы успеем на пересадку.",
+"uk": "Якщо електричка прийде вчасно, ми встигнемо на пересадку."
+},
+{
+"id": "de:32:30",
+"target": "Wenn das Taxi früher gekommen wäre, hätten wir den Anschluss geschafft.",
+"ru": "Если бы такси приехало пораньше, мы бы успели на пересадку.",
+"uk": "Якби таксі приїхало раніше, ми встигли б на пересадку."
+}
+],
+"other": {}
+},
+{
+"lemma": "lüften",
+"meaning": {
+"ru": "проветривать",
+"uk": "провітрювати",
+"en": "Ventilate",
+"es": "Ventilar",
+"pt-BR": "Ventilar",
+"vi": "Thông gió",
+"id": "Ventilasi",
+"tr": "Havalandırma",
+"pl": "Wentyluj"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:23:20",
+"target": "Wir lüften, wenn das Wetter gut ist.",
+"ru": "Мы проветриваем, когда погода хорошая.",
+"uk": "Ми провітрюємо, коли погода хороша."
+},
+{
+"id": "de:26:20",
+"target": "Ich versuche, morgens und abends zu lüften.",
+"ru": "Я стараюсь проветривать утром и вечером.",
+"uk": "Я намагаюся провітрювати вранці та ввечері."
+}
+],
+"other": {}
+},
+{
+"lemma": "absagen",
+"meaning": {
+"ru": "отменять",
+"uk": "скасовувати",
+"en": "Cancel",
+"es": "Cancelar",
+"pt-BR": "Cancelar",
+"vi": "Hủy bỏ",
+"id": "Batal",
+"tr": "İptal",
+"pl": "Anuluj"
+},
+"firstLesson": 23,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:23:35",
+"target": "Wenn ich krank bin, muss ich den Termin absagen.",
+"ru": "Если я заболею, мне придётся отменить запись.",
+"uk": "Якщо я захворію, мені доведеться скасувати запис."
+},
+{
+"id": "de:27:46",
+"target": "Der Termin, den ich abgesagt habe, war am Montag.",
+"ru": "Встреча, которую я отменил, была назначена на понедельник.",
+"uk": "Зустріч, яку я скасував, було призначено на понеділок."
+},
+{
+"id": "de:28:37",
+"target": "Der Zug wurde kurzfristig abgesagt.",
+"ru": "Поезд отменили в последний момент.",
+"uk": "Потяг скасували в останній момент."
+}
+],
+"other": {}
+},
+{
+"lemma": "tagsüber",
+"meaning": {
+"ru": "в дневное время",
+"uk": "вдень",
+"en": "During Daytime",
+"es": "Durante el día",
+"pt-BR": "Durante o dia",
+"vi": "Ban ngày",
+"id": "Siang Hari",
+"tr": "Gündüz",
+"pl": "W ciągu dnia"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:23:42",
+"target": "Wenn Tom Nachtschicht hat, schläft er tagsüber.",
+"ru": "Когда Том работает в ночную смену, он спит днём.",
+"uk": "Коли Том працює в нічну зміну, він спить вдень."
+},
+{
+"id": "de:25:14",
+"target": "Vor der langen Nachtschicht schläft Tom tagsüber.",
+"ru": "Перед долгой ночной сменой Том спит днём.",
+"uk": "Перед довгою нічною зміною Том спить удень."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Alarm",
+"meaning": {
+"ru": "сигнал тревоги",
+"uk": "сигнал тривоги",
+"en": "Alarm",
+"es": "Alarma",
+"pt-BR": "Alarme",
+"vi": "Báo động",
+"id": "Alarm",
+"tr": "Alarm",
+"pl": "Alarm"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:24:36",
+"target": "Als der Alarm losging, verließen wir das Haus.",
+"ru": "Когда сработала сигнализация, мы вышли из дома.",
+"uk": "Коли спрацювала сигналізація, ми вийшли з дому."
+},
+{
+"id": "de:25:20",
+"target": "Der laute Alarm weckte uns um Mitternacht.",
+"ru": "Громкий сигнал тревоги разбудил нас в полночь.",
+"uk": "Гучна сигналізація розбудила нас опівночі."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Kerze",
+"meaning": {
+"ru": "свеча",
+"uk": "свічка",
+"en": "candle",
+"es": "vela",
+"pt-BR": "vela",
+"vi": "nến",
+"id": "lilin",
+"tr": "mum",
+"pl": "świeca"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:24:40",
+"target": "Als der Strom ausfiel, holte ich eine Kerze.",
+"ru": "Когда отключили электричество, я принёс свечу.",
+"uk": "Коли відключили електрику, я приніс свічку."
+},
+{
+"id": "de:31:30",
+"target": "Nachdem das Licht ausgegangen war, holten wir eine Kerze.",
+"ru": "После того как свет погас, мы принесли свечу.",
+"uk": "Після того, як світло згасло, ми принесли свічку."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Mitternacht",
+"meaning": {
+"ru": "полночь",
+"uk": "опівночі",
+"en": "midnight",
+"es": "medianoche",
+"pt-BR": "meia-noite",
+"vi": "nửa đêm",
+"id": "tengah malam",
+"tr": "gece yarısı",
+"pl": "północ"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:24:39",
+"target": "Als wir das Hotel fanden, war es fast Mitternacht.",
+"ru": "Когда мы нашли гостиницу, была почти полночь.",
+"uk": "Коли ми знайшли готель, була майже північ."
+},
+{
+"id": "de:25:20",
+"target": "Der laute Alarm weckte uns um Mitternacht.",
+"ru": "Громкий сигнал тревоги разбудил нас в полночь.",
+"uk": "Гучна сигналізація розбудила нас опівночі."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Schnee",
+"meaning": {
+"ru": "снег",
+"uk": "сніг",
+"en": "snow",
+"es": "nieve",
+"pt-BR": "neve",
+"vi": "tuyết",
+"id": "salju",
+"tr": "kar",
+"pl": "śnieg"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:24:49",
+"target": "Als ich gestern aus dem Haus ging, lag Schnee.",
+"ru": "Когда я вчера вышел из дома, лежал снег.",
+"uk": "Коли я вчора вийшов із дому, лежав сніг."
+},
+{
+"id": "de:25:39",
+"target": "Der feuchte Schnee schmilzt im warmen Flur.",
+"ru": "Мокрый снег тает в тёплом коридоре.",
+"uk": "Вологий сніг тане в теплому коридорі."
+}
+],
+"other": {}
+},
+{
+"lemma": "feucht",
+"meaning": {
+"ru": "сырой, влажный",
+"uk": "сирий, вологий",
+"en": "damp",
+"es": "humedad",
+"pt-BR": "úmido",
+"vi": "ẩm ướt",
+"id": "lembap",
+"tr": "nemli",
+"pl": "wilgoć"
+},
+"firstLesson": 24,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:24:47",
+"target": "Als wir den Keller öffneten, roch es feucht.",
+"ru": "Когда мы открыли подвал, запахло сыростью.",
+"uk": "Коли ми відкрили підвал, запахло вогкістю."
+},
+{
+"id": "de:25:39",
+"target": "Der feuchte Schnee schmilzt im warmen Flur.",
+"ru": "Мокрый снег тает в тёплом коридоре.",
+"uk": "Вологий сніг тане в теплому коридорі."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Kleid",
+"meaning": {
+"ru": "платье",
+"uk": "сукня",
+"en": "Dress",
+"es": "Vestido",
+"pt-BR": "Vestido",
+"vi": "Váy",
+"id": "Gaun",
+"tr": "Elbise",
+"pl": "Sukienka"
+},
+"firstLesson": 25,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:25:03",
+"target": "Das rote Kleid passt.",
+"ru": "Красное платье подходит.",
+"uk": "Червона сукня підходить."
+},
+{
+"id": "de:25:13",
+"target": "Anna kauft das rote Kleid.",
+"ru": "Анна покупает красное платье.",
+"uk": "Анна купує червону сукню."
+},
+{
+"id": "de:27:13",
+"target": "Das Kleid, das Anna trägt, ist neu.",
+"ru": "Платье, которое носит Анна, новое.",
+"uk": "Сукня, яку носить Анна, нова."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Baum",
+"meaning": {
+"ru": "дерево",
+"uk": "дерево",
+"en": "Tree",
+"es": "Árbol",
+"pt-BR": "Árvore",
+"vi": "Cây",
+"id": "Pohon",
+"tr": "Ağaç",
+"pl": "Drzewo"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:25:28",
+"target": "Vor der alten Schule steht ein Baum.",
+"ru": "Перед старой школой стоит дерево.",
+"uk": "Перед старою школою стоїть дерево."
+},
+{
+"id": "de:28:30",
+"target": "Im Garten wird ein Baum gepflanzt.",
+"ru": "В саду сажают дерево.",
+"uk": "У саду садять дерево."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Brötchen",
+"meaning": {
+"ru": "булочка",
+"uk": "булочка",
+"en": "Bun",
+"es": "Moño",
+"pt-BR": "Coque",
+"vi": "Búi tóc",
+"id": "Sanggul",
+"tr": "Topuz",
+"pl": "Kok"
+},
+"firstLesson": 25,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:25:37",
+"target": "Die frischen Brötchen sind noch warm.",
+"ru": "Свежие булочки ещё тёплые.",
+"uk": "Свіжі булочки ще теплі."
+},
+{
+"id": "de:25:38",
+"target": "Wir teilen die frischen Brötchen.",
+"ru": "Мы делим свежие булочки.",
+"uk": "Ми ділимо свіжі булочки."
+},
+{
+"id": "de:28:17",
+"target": "Die Brötchen werden morgens verkauft.",
+"ru": "Булочки продают по утрам.",
+"uk": "Булочки продають вранці."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Unterlage",
+"meaning": {
+"ru": "документ, материал",
+"uk": "документ, матеріал",
+"en": "Document, Material",
+"es": "Documento, Material",
+"pt-BR": "Documento, Material",
+"vi": "Tài liệu, Vật liệu",
+"id": "Dokumen, Material",
+"tr": "Belge, Malzeme",
+"pl": "Dokument, Materiał"
+},
+"firstLesson": 25,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "de:25:47",
+"target": "Die wichtigen Unterlagen liegen hier.",
+"ru": "Важные документы лежат здесь.",
+"uk": "Важливі документи лежать тут."
+},
+{
+"id": "de:25:48",
+"target": "Sie bringt die wichtigen Unterlagen zum Termin.",
+"ru": "Она приносит важные документы на встречу.",
+"uk": "Вона приносить важливі документи на зустріч."
+},
+{
+"id": "de:28:38",
+"target": "Die Unterlagen wurden schon verschickt.",
+"ru": "Документы уже отправили.",
+"uk": "Документи вже надіслали."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Gang",
+"meaning": {
+"ru": "проход, коридор",
+"uk": "прохід, коридор",
+"en": "Passage, corridor",
+"es": "Pasaje, corredor",
+"pt-BR": "Passagem, corredor",
+"vi": "Lối đi, hành lang",
+"id": "Lorong, koridor",
+"tr": "Geçit, koridor",
+"pl": "Przejście, korytarz"
+},
+"firstLesson": 25,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:25:50",
+"target": "Wir gehen durch den schmalen Gang zur Kasse.",
+"ru": "Мы идём к кассе по узкому проходу.",
+"uk": "Ми йдемо до каси вузьким проходом."
+},
+{
+"id": "de:27:22",
+"target": "Der Gang, der zum Notausgang führt, muss frei bleiben.",
+"ru": "Проход, который ведёт к аварийному выходу, должен оставаться свободным.",
+"uk": "Коридор, що веде до аварійного виходу, має залишатися вільним."
+},
+{
+"id": "de:28:27",
+"target": "Sonntags werden die Stühle im Gang abgestellt.",
+"ru": "По воскресеньям стулья ставят в коридоре.",
+"uk": "По неділях стільці ставлять у коридорі."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Lärm",
+"meaning": {
+"ru": "шум",
+"uk": "шум",
+"en": "Noise",
+"es": "Ruido",
+"pt-BR": "Ruído",
+"vi": "Tiếng ồn",
+"id": "Kebisingan",
+"tr": "Gürültü",
+"pl": "Hałas"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:26:22",
+"target": "Es ist schwer, im Lärm zu lernen.",
+"ru": "Учиться в шуме трудно.",
+"uk": "Вчитися в шумі важко."
+},
+{
+"id": "de:27:15",
+"target": "Das ist eine Wohnung, in der man den Lärm kaum hört.",
+"ru": "Это квартира, в которой почти не слышно шума.",
+"uk": "Це квартира, де шум ледь чутний."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Notausgang",
+"meaning": {
+"ru": "аварийный выход",
+"uk": "аварійний вихід",
+"en": "Emergency exit",
+"es": "Salida de emergencia",
+"pt-BR": "Saída de emergência",
+"vi": "Lối thoát hiểm",
+"id": "Pintu keluar darurat",
+"tr": "Acil çıkış",
+"pl": "Wyjście ewakuacyjne"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:26:30",
+"target": "Es ist verboten, den Notausgang zu blockieren.",
+"ru": "Загораживать аварийный выход запрещено.",
+"uk": "Загороджувати аварійний вихід заборонено."
+},
+{
+"id": "de:27:22",
+"target": "Der Gang, der zum Notausgang führt, muss frei bleiben.",
+"ru": "Проход, который ведёт к аварийному выходу, должен оставаться свободным.",
+"uk": "Коридор, що веде до аварійного виходу, має залишатися вільним."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Stau",
+"meaning": {
+"ru": "дорожная пробка",
+"uk": "дорожній затор",
+"en": "Traffic jam",
+"es": "Atasco de tráfico",
+"pt-BR": "Engarrafamento",
+"vi": "Tắc đường",
+"id": "Kemacetan lalu lintas",
+"tr": "Trafik sıkışıklığı",
+"pl": "Korek uliczny"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:26:43",
+"target": "Wir fahren früh los, um den Stau zu vermeiden.",
+"ru": "Мы выезжаем рано, чтобы избежать пробки.",
+"uk": "Ми виїжджаємо рано, щоб уникнути пробки."
+},
+{
+"id": "de:32:41",
+"target": "Ohne den Stau wären wir pünktlich gewesen.",
+"ru": "Без той пробки мы бы приехали вовремя.",
+"uk": "Без тієї пробки ми б приїхали вчасно."
+}
+],
+"other": {}
+},
+{
+"lemma": "vergleichen",
+"meaning": {
+"ru": "сравнивать",
+"uk": "порівнювати",
+"en": "compare",
+"es": "comparar",
+"pt-BR": "comparar",
+"vi": "so sánh",
+"id": "bandingkan",
+"tr": "karşılaştır",
+"pl": "porównaj"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:26:27",
+"target": "Es lohnt sich, die Preise zu vergleichen.",
+"ru": "Стоит сравнить цены.",
+"uk": "Варто порівняти ціни."
+},
+{
+"id": "de:29:43",
+"target": "Ich würde zuerst die Preise vergleichen.",
+"ru": "Сначала я бы сравнил цены.",
+"uk": "Спочатку я б порівняв ціни."
+}
+],
+"other": {}
+},
+{
+"lemma": "vermeiden",
+"meaning": {
+"ru": "избегать",
+"uk": "уникати",
+"en": "avoid",
+"es": "evitar",
+"pt-BR": "evitar",
+"vi": "tránh",
+"id": "hindari",
+"tr": "kaçın",
+"pl": "unikaj"
+},
+"firstLesson": 26,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:26:43",
+"target": "Wir fahren früh los, um den Stau zu vermeiden.",
+"ru": "Мы выезжаем рано, чтобы избежать пробки.",
+"uk": "Ми виїжджаємо рано, щоб уникнути пробки."
+},
+{
+"id": "de:28:23",
+"target": "Der Eingang wird verlegt, um Gedränge zu vermeiden.",
+"ru": "Вход переносят, чтобы избежать давки.",
+"uk": "Вхід переносять, щоб уникнути скупчення людей."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Kollege",
+"meaning": {
+"ru": "коллега",
+"uk": "колега",
+"en": "colleague",
+"es": "colega",
+"pt-BR": "colega",
+"vi": "đồng nghiệp",
+"id": "kolega",
+"tr": "meslektaş",
+"pl": "współpracownik"
+},
+"firstLesson": 27,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "de:27:41",
+"target": "Der Kollege, der mir hilft, heißt Paul.",
+"ru": "Коллегу, который мне помогает, зовут Пауль.",
+"uk": "Колегу, який мені допомагає, звуть Пауль."
+},
+{
+"id": "de:27:42",
+"target": "Der Kollege, den ich anrufe, heißt Paul.",
+"ru": "Коллегу, которому я звоню, зовут Пауль.",
+"uk": "Колегу, якому я дзвоню, звуть Пауль."
+},
+{
+"id": "de:28:32",
+"target": "Die Leute werden von einem Kollegen am Eingang begrüßt.",
+"ru": "У входа людей встречает один из коллег.",
+"uk": "Людей зустрічає колега біля входу."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Leute",
+"meaning": {
+"ru": "люди",
+"uk": "люди",
+"en": "people",
+"es": "personas",
+"pt-BR": "pessoas",
+"vi": "người",
+"id": "orang",
+"tr": "insanlar",
+"pl": "osoby"
+},
+"firstLesson": 27,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:27:04",
+"target": "Das sind die Leute, die hier wohnen.",
+"ru": "Это люди, которые здесь живут.",
+"uk": "Це люди, які тут мешкають."
+},
+{
+"id": "de:28:32",
+"target": "Die Leute werden von einem Kollegen am Eingang begrüßt.",
+"ru": "У входа людей встречает один из коллег.",
+"uk": "Людей зустрічає колега біля входу."
+}
+],
+"other": {}
+},
+{
+"lemma": "verbrauchen",
+"meaning": {
+"ru": "расходовать",
+"uk": "витрачати",
+"en": "spend",
+"es": "gastar",
+"pt-BR": "gastar",
+"vi": "chi tiêu",
+"id": "menghabiskan",
+"tr": "harcamak",
+"pl": "wydać"
+},
+"firstLesson": 27,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:27:36",
+"target": "Sie sucht eine Lampe, die wenig Strom verbraucht.",
+"ru": "Она ищет лампу, которая расходует мало электричества.",
+"uk": "Вона шукає лампу, яка витрачає мало електрики."
+},
+{
+"id": "de:28:29",
+"target": "Mit diesen Lampen wird weniger Strom verbraucht.",
+"ru": "С этими лампами расходуется меньше электричества.",
+"uk": "Ці лампи споживають менше електроенергії."
+}
+],
+"other": {}
+},
+{
+"lemma": "zusammenklappen",
+"meaning": {
+"ru": "складывать складную вещь",
+"uk": "складати складну річ",
+"en": "fold a foldable item",
+"es": "doblar un artículo plegable",
+"pt-BR": "dobrar um item dobrável",
+"vi": "gấp một vật có thể gấp lại",
+"id": "melipat barang yang dapat dilipat",
+"tr": "katlanabilir bir eşyayı katlamak",
+"pl": "złożyć składany przedmiot"
+},
+"firstLesson": 27,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:27:35",
+"target": "Ich möchte einen Tisch, den man zusammenklappen kann.",
+"ru": "Я хотел бы стол, который можно складывать.",
+"uk": "Я хотів би стіл, який можна складати."
+},
+{
+"id": "de:28:34",
+"target": "Der Tisch wird nach dem Kurs zusammengeklappt.",
+"ru": "После занятия стол складывают.",
+"uk": "Після заняття стіл складають."
+}
+],
+"other": {}
+},
+{
+"lemma": "sonntags",
+"meaning": {
+"ru": "по воскресеньям",
+"uk": "у неділю",
+"en": "on Sundays",
+"es": "los domingos",
+"pt-BR": "aos domingos",
+"vi": "vào Chủ nhật",
+"id": "pada hari Minggu",
+"tr": "Pazar günleri",
+"pl": "w niedziele"
+},
+"firstLesson": 27,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:27:38",
+"target": "Ich kenne einen Laden, der sonntags offen ist.",
+"ru": "Я знаю магазин, который открыт по воскресеньям.",
+"uk": "Я знаю магазин, який відкритий у неділю."
+},
+{
+"id": "de:28:27",
+"target": "Sonntags werden die Stühle im Gang abgestellt.",
+"ru": "По воскресеньям стулья ставят в коридоре.",
+"uk": "По неділях стільці ставлять у коридорі."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Müll",
+"meaning": {
+"ru": "мусор",
+"uk": "сміття",
+"en": "trash",
+"es": "tirar a la basura",
+"pt-BR": "lixo",
+"vi": "rác",
+"id": "membuang sampah",
+"tr": "çöp",
+"pl": "wyrzucić"
+},
+"firstLesson": 28,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:28:18",
+"target": "Der Müll wird am Dienstag abgeholt.",
+"ru": "Мусор забирают во вторник.",
+"uk": "Сміття забирають у вівторок."
+},
+{
+"id": "de:29:18",
+"target": "Könnten Sie dem Hausmeister sagen, wo der Müll steht?",
+"ru": "Не могли бы вы сказать смотрителю здания, где стоит мусор?",
+"uk": "Чи не могли б ви сказати доглядачеві, де стоїть сміття?"
+}
+],
+"other": {}
+},
+{
+"lemma": "der Hausmeister",
+"meaning": {
+"ru": "смотритель здания",
+"uk": "доглядач будівлі",
+"en": "building custodian",
+"es": "conserje de edificio",
+"pt-BR": "zelador do prédio",
+"vi": "người trông coi tòa nhà",
+"id": "penjaga gedung",
+"tr": "bina görevlisi",
+"pl": "dozorca budynku"
+},
+"firstLesson": 28,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:28:33",
+"target": "Der Schlüssel wird vom Hausmeister gebracht.",
+"ru": "Ключ приносит смотритель.",
+"uk": "Ключ приносить доглядач."
+},
+{
+"id": "de:29:18",
+"target": "Könnten Sie dem Hausmeister sagen, wo der Müll steht?",
+"ru": "Не могли бы вы сказать смотрителю здания, где стоит мусор?",
+"uk": "Чи не могли б ви сказати доглядачеві, де стоїть сміття?"
+}
+],
+"other": {}
+},
+{
+"lemma": "die Firma",
+"meaning": {
+"ru": "фирма",
+"uk": "фірма",
+"en": "company",
+"es": "empresa",
+"pt-BR": "empresa",
+"vi": "công ty",
+"id": "perusahaan",
+"tr": "şirket",
+"pl": "firma"
+},
+"firstLesson": 28,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:28:35",
+"target": "Die Rechnung wird von der Firma bezahlt.",
+"ru": "Счёт оплачивает фирма.",
+"uk": "Рахунок оплачує фірма."
+},
+{
+"id": "de:29:22",
+"target": "Könnte die Firma den Schrank morgen liefern?",
+"ru": "Могла бы фирма доставить шкаф завтра?",
+"uk": "Чи могла б фірма доставити шафу завтра?"
+}
+],
+"other": {}
+},
+{
+"lemma": "erstatten",
+"meaning": {
+"ru": "возмещать расходы",
+"uk": "відшкодовувати витрати",
+"en": "reimburse expenses",
+"es": "reembolso de gastos",
+"pt-BR": "reembolsar despesas",
+"vi": "hoàn trả chi phí",
+"id": "mengganti biaya",
+"tr": "masrafları karşılamak",
+"pl": "zwrot kosztów"
+},
+"firstLesson": 28,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:28:43",
+"target": "Werden die Kosten erstattet?",
+"ru": "Расходы возмещаются?",
+"uk": "Витрати відшкодовуються?"
+},
+{
+"id": "de:30:46",
+"target": "Sie fragt, ob die Kosten erstattet werden.",
+"ru": "Она спрашивает, возмещают ли расходы.",
+"uk": "Вона запитує, чи відшкодовують витрати."
+}
+],
+"other": {}
+},
+{
+"lemma": "liefern",
+"meaning": {
+"ru": "доставлять",
+"uk": "доставляти",
+"en": "deliver",
+"es": "entrega",
+"pt-BR": "entregar",
+"vi": "giao hàng",
+"id": "mengirimkan",
+"tr": "teslim etmek",
+"pl": "dostawa"
+},
+"firstLesson": 28,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:28:11",
+"target": "Das Paket wird heute geliefert.",
+"ru": "Посылку доставят сегодня.",
+"uk": "Посилку доставлять сьогодні."
+},
+{
+"id": "de:29:22",
+"target": "Könnte die Firma den Schrank morgen liefern?",
+"ru": "Могла бы фирма доставить шкаф завтра?",
+"uk": "Чи могла б фірма доставити шафу завтра?"
+}
+],
+"other": {}
+},
+{
+"lemma": "der Versand",
+"meaning": {
+"ru": "отправка, доставка",
+"uk": "відправка, доставка",
+"en": "shipping, delivery",
+"es": "envío, entrega",
+"pt-BR": "frete, entrega",
+"vi": "vận chuyển, giao hàng",
+"id": "pengiriman, pengantaran",
+"tr": "nakliye, teslimat",
+"pl": "wysyłka, dostawa"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:29:50",
+"target": "Könnten Sie mir sagen, was der Versand kostet?",
+"ru": "Не могли бы вы сказать, сколько стоит доставка?",
+"uk": "Не могли б ви сказати, скільки коштує доставка?"
+},
+{
+"id": "de:30:20",
+"target": "Weißt du, was der Versand kostet?",
+"ru": "Ты знаешь, сколько стоит доставка?",
+"uk": "Ти знаєш, скільки коштує доставка?"
+}
+],
+"other": {}
+},
+{
+"lemma": "das Salz",
+"meaning": {
+"ru": "соль",
+"uk": "сіль",
+"en": "salt",
+"es": "sal",
+"pt-BR": "sal",
+"vi": "muối",
+"id": "garam",
+"tr": "tuz",
+"pl": "sól"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:29:17",
+"target": "Könntest du mir das Salz geben?",
+"ru": "Не передашь мне соль?",
+"uk": "Чи не передаси мені сіль?"
+},
+{
+"id": "de:30:12",
+"target": "Weißt du, ob noch Salz im Schrank ist?",
+"ru": "Ты знаешь, осталась ли в шкафу соль?",
+"uk": "Ти знаєш, чи залишилася сіль у шафі?"
+}
+],
+"other": {}
+},
+{
+"lemma": "wiederholen",
+"meaning": {
+"ru": "повторять",
+"uk": "повторювати",
+"en": "repeat",
+"es": "repetir",
+"pt-BR": "repetir",
+"vi": "lặp lại",
+"id": "ulangi",
+"tr": "tekrarla",
+"pl": "powtórz"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:29:16",
+"target": "Könnten Sie die Adresse wiederholen?",
+"ru": "Не могли бы вы повторить адрес?",
+"uk": "Чи не могли б ви повторити адресу?"
+},
+{
+"id": "de:30:33",
+"target": "Anna fragt, ob sie den Namen wiederholen soll.",
+"ru": "Анна спрашивает, нужно ли ей повторить имя.",
+"uk": "Анна запитує, чи слід їй повторити ім'я."
+}
+],
+"other": {}
+},
+{
+"lemma": "behalten",
+"meaning": {
+"ru": "оставлять у себя",
+"uk": "залишати у себе",
+"en": "keep",
+"es": "conservar",
+"pt-BR": "manter",
+"vi": "giữ",
+"id": "simpan",
+"tr": "sakla",
+"pl": "zachowaj"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:29:42",
+"target": "An Ihrer Stelle würde ich den Beleg behalten.",
+"ru": "На вашем месте я бы сохранил чек.",
+"uk": "На вашому місці я зберіг би чек."
+},
+{
+"id": "de:30:22",
+"target": "Kannst du mir sagen, ob ich den Beleg behalten soll?",
+"ru": "Можешь сказать, нужно ли мне сохранить квитанцию?",
+"uk": "Можеш сказати, чи потрібно мені зберегти чек?"
+}
+],
+"other": {}
+},
+{
+"lemma": "dankbar",
+"meaning": {
+"ru": "благодарный",
+"uk": "вдячний",
+"en": "grateful",
+"es": "agradecido",
+"pt-BR": "grato",
+"vi": "biết ơn",
+"id": "bersyukur",
+"tr": "minnettar",
+"pl": "wdzięczny"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:29:38",
+"target": "Ich wäre dankbar, wenn Sie mir schreiben könnten.",
+"ru": "Я был бы благодарен, если бы вы мне написали.",
+"uk": "Я був би вдячний, якби ви написали мені."
+},
+{
+"id": "de:31:49",
+"target": "Ich war dankbar, weil Tom meine Tasche mitgebracht hatte.",
+"ru": "Я был благодарен, потому что Том принёс мою сумку.",
+"uk": "Я був вдячний, бо Том приніс мою сумку."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Antrag",
+"meaning": {
+"ru": "заявление, заявка",
+"uk": "заява, заявка",
+"en": "application",
+"es": "solicitud",
+"pt-BR": "aplicação",
+"vi": "ứng dụng",
+"id": "aplikasi",
+"tr": "başvuru",
+"pl": "aplikacja"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:30:40",
+"target": "Sie fragt, ob ihr Antrag bestätigt wurde.",
+"ru": "Она спрашивает, подтвердили ли её заявку.",
+"uk": "Вона запитує, чи її заявку підтвердили."
+},
+{
+"id": "de:31:12",
+"target": "Anna hatte den Antrag abgegeben, bevor ihr Ausweis ablief.",
+"ru": "Анна подала заявление до того, как истёк срок действия её удостоверения.",
+"uk": "Анна подала заявку до закінчення терміну дії її посвідчення особи."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Unfall",
+"meaning": {
+"ru": "несчастный случай, авария",
+"uk": "нещасний випадок, аварія",
+"en": "accident",
+"es": "accidente",
+"pt-BR": "acidente",
+"vi": "tai nạn",
+"id": "kecelakaan",
+"tr": "kaza",
+"pl": "wypadek"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:30:39",
+"target": "Er möchte wissen, wo der Unfall passiert ist.",
+"ru": "Он хочет знать, где произошла авария.",
+"uk": "Він хоче знати, де сталася аварія."
+},
+{
+"id": "de:31:29",
+"target": "Als es zum Unfall kam, hatte Tom schon angehalten.",
+"ru": "Когда произошла авария, Том уже остановился.",
+"uk": "Том уже зупинився, коли сталася аварія."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Größe",
+"meaning": {
+"ru": "размер",
+"uk": "розмір",
+"en": "size",
+"es": "tamaño",
+"pt-BR": "tamanho",
+"vi": "kích thước",
+"id": "ukuran",
+"tr": "boyut",
+"pl": "rozmiar"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:30:45",
+"target": "Ich weiß nicht, welche Größe mir passt.",
+"ru": "Я не знаю, какой размер мне подходит.",
+"uk": "Я не знаю, який розмір мені підходить."
+},
+{
+"id": "de:31:34",
+"target": "Anna hatte die falsche Größe bestellt und brachte das Kleid zurück.",
+"ru": "Анна заказала не тот размер и вернула платье.",
+"uk": "Анна замовила не той розмір і повернула сукню."
+}
+],
+"other": {}
+},
+{
+"lemma": "nachsehen",
+"meaning": {
+"ru": "проверять, смотреть по записям",
+"uk": "перевіряти, дивитися за записами",
+"en": "Check, look at records",
+"es": "Comprobar, revisar registros",
+"pt-BR": "Verificar, consultar registros",
+"vi": "Kiểm tra, xem hồ sơ",
+"id": "Periksa, lihat catatan",
+"tr": "Kontrol edin, kayıtlara bakın",
+"pl": "Sprawdź, przejrzyj zapisy"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:30:50",
+"target": "Können Sie nachsehen, ob mein Termin im System steht?",
+"ru": "Не проверите, есть ли моя запись в системе?",
+"uk": "Чи не перевірите, чи є мій запис у системі?"
+},
+{
+"id": "de:31:27",
+"target": "Ich hatte im Kalender nachgesehen, bevor ich den Termin bestätigte.",
+"ru": "Я сверился с календарём, прежде чем подтвердить встречу.",
+"uk": "Я перевірив календар, перш ніж підтвердити зустріч."
+}
+],
+"other": {}
+},
+{
+"lemma": "gültig",
+"meaning": {
+"ru": "действительный",
+"uk": "дійсний",
+"en": "Valid",
+"es": "Válido",
+"pt-BR": "Válido",
+"vi": "Hợp lệ",
+"id": "Valid",
+"tr": "Geçerli",
+"pl": "Ważny"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:30:19",
+"target": "Ich weiß nicht, ob der Pass noch gültig ist.",
+"ru": "Я не знаю, действителен ли ещё паспорт.",
+"uk": "Я не знаю, чи ще дійсний паспорт."
+},
+{
+"id": "de:31:38",
+"target": "Mein Ausweis war beim Kauf noch gültig gewesen, aber bei der Abholung war er abgelaufen.",
+"ru": "При покупке моё удостоверение ещё было действительно, но к моменту получения срок уже истёк.",
+"uk": "Під час покупки моє посвідчення ще було дійсним, але на момент отримання його термін уже сплив."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Fieber",
+"meaning": {
+"ru": "повышенная температура",
+"uk": "підвищена температура",
+"en": "High temperature",
+"es": "Alta temperatura",
+"pt-BR": "Alta temperatura",
+"vi": "Nhiệt độ cao",
+"id": "Suhu tinggi",
+"tr": "Yüksek sıcaklık",
+"pl": "Wysoka temperatura"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:31:08",
+"target": "Als der Arzt kam, war das Fieber schon gesunken.",
+"ru": "К приходу врача температура уже спала.",
+"uk": "До приходу лікаря температура вже спала."
+},
+{
+"id": "de:32:18",
+"target": "Wenn das Fieber gesunken wäre, hätte ich besser geschlafen.",
+"ru": "Если бы температура спала, я бы лучше поспал.",
+"uk": "Якби температура спала, я б краще поспав."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Stecker",
+"meaning": {
+"ru": "штепсельная вилка",
+"uk": "штепсельна вилка",
+"en": "Plug",
+"es": "Enchufe",
+"pt-BR": "Plugue",
+"vi": "Phích cắm",
+"id": "Steker",
+"tr": "Fiş",
+"pl": "Wtyczka"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:31:46",
+"target": "Ich fragte mich, ob ich den Stecker gezogen hatte.",
+"ru": "Я задумался, выдернул ли я вилку из розетки.",
+"uk": "Я замислився, чи я висмикнув вилку з розетки."
+},
+{
+"id": "de:32:23",
+"target": "Wenn ich den Stecker gezogen hätte, wäre die Lampe ausgegangen.",
+"ru": "Если бы я вынул вилку из розетки, лампа бы погасла.",
+"uk": "Якби я витягнув вилку з розетки, лампа б згасла."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Gegend",
+"meaning": {
+"ru": "местность, район",
+"uk": "місцевість, район",
+"en": "locality, area",
+"es": "localidad, área",
+"pt-BR": "localidade, área",
+"vi": "địa phương, khu vực",
+"id": "lokasi, area",
+"tr": "yerleşim yeri, bölge",
+"pl": "miejscowość, obszar"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:31:18",
+"target": "Er war umgezogen und kannte die Gegend noch nicht.",
+"ru": "Он переехал и ещё не знал района.",
+"uk": "Він переїхав і ще не знав району."
+},
+{
+"id": "de:32:15",
+"target": "Wenn ich die Gegend besser kennen würde, könnte ich dir den Weg zeigen.",
+"ru": "Если бы я лучше знал этот район, я мог бы показать тебе дорогу.",
+"uk": "Якби я краще знав цю місцевість, я міг би показати тобі дорогу."
+}
+],
+"other": {}
+},
+{
+"lemma": "glatt",
+"meaning": {
+"ru": "скользкий",
+"uk": "слизький",
+"en": "slippery",
+"es": "resbaladizo",
+"pt-BR": "escorregadio",
+"vi": "trơn trượt",
+"id": "licin",
+"tr": "kaygan",
+"pl": "śliski"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:31:19",
+"target": "Das Wasser war gefroren und der Weg war glatt.",
+"ru": "Вода замёрзла, и дорога была скользкой.",
+"uk": "Вода змерзла, і дорога була слизькою."
+},
+{
+"id": "de:32:20",
+"target": "Wenn der Weg nicht glatt wäre, würde ich zu Fuß gehen.",
+"ru": "Если бы дорожка не была скользкой, я бы пошёл пешком.",
+"uk": "Якби стежка не була слизькою, я б пішов пішки."
+}
+],
+"other": {}
+},
+{
+"lemma": "speichern",
+"meaning": {
+"ru": "сохранять данные",
+"uk": "зберігати дані",
+"en": "save data",
+"es": "guardar datos",
+"pt-BR": "salvar dados",
+"vi": "lưu dữ liệu",
+"id": "simpan data",
+"tr": "veri kaydet",
+"pl": "zapisz dane"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "de:31:48",
+"target": "Ich war froh, weil ich die Adresse gespeichert hatte.",
+"ru": "Я был рад, потому что сохранил адрес.",
+"uk": "Я був радий, бо зберіг адресу."
+},
+{
+"id": "de:32:45",
+"target": "Hätte ich die Nummer gespeichert, könnte ich jetzt anrufen.",
+"ru": "Если бы я сохранил номер, я мог бы сейчас позвонить.",
+"uk": "Якби я зберіг номер, я б міг зателефонувати зараз."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Briefmarke",
+"meaning": {
+"ru": "почтовая марка",
+"uk": "поштова марка",
+"en": "postage stamp",
+"es": "sello postal",
+"pt-BR": "selo postal",
+"vi": "tem bưu chính",
+"id": "perangko",
+"tr": "posta pulu",
+"pl": "znaczek pocztowy"
+},
+"firstLesson": 32,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "de:32:39",
+"target": "Ich hätte den Brief geschickt, wenn ich eine Briefmarke gehabt hätte.",
+"ru": "Я бы тогда отправил письмо, если бы у меня была марка.",
+"uk": "Я б тоді відправив листа, якби у мене була марка."
+}
+],
+"other": {}
+},
+{
+"lemma": "die Verbindung",
+"meaning": {
+"ru": "соединение, связь",
+"uk": "з'єднання, зв'язок",
+"en": "Connection",
+"es": "Conexión",
+"pt-BR": "Conexão",
+"vi": "Kết nối",
+"id": "Koneksi",
+"tr": "Bağlantı",
+"pl": "Połączenie"
+},
+"firstLesson": 32,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "de:32:43",
+"target": "Mit einer besseren Verbindung hätte ich dich verstanden.",
+"ru": "При более качественной связи я бы тогда тебя понял.",
+"uk": "За більш якісного зв'язку я б тоді тебе зрозумів."
+}
+],
+"other": {}
+},
+{
+"lemma": "das Werkzeug",
+"meaning": {
+"ru": "инструмент",
+"uk": "інструмент",
+"en": "Tool",
+"es": "Herramienta",
+"pt-BR": "Ferramenta",
+"vi": "Công cụ",
+"id": "Alat",
+"tr": "Araç",
+"pl": "Narzędzie"
+},
+"firstLesson": 32,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "de:32:49",
+"target": "Mit dem richtigen Werkzeug hätten wir das Rad repariert.",
+"ru": "Если бы у нас был нужный инструмент, мы бы починили велосипед.",
+"uk": "Якби у нас був потрібний інструмент, ми полагодили б велосипед."
+}
+],
+"other": {}
+},
+{
+"lemma": "der Fehler",
+"meaning": {
+"ru": "ошибка",
+"uk": "помилка",
+"en": "Error",
+"es": "Error",
+"pt-BR": "Erro",
+"vi": "Lỗi",
+"id": "Kesalahan",
+"tr": "Hata",
+"pl": "Błąd"
+},
+"firstLesson": 32,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "de:32:33",
+"target": "Wir hätten die Rechnung geprüft, wenn wir den Fehler bemerkt hätten.",
+"ru": "Мы бы проверили счёт, если бы заметили ошибку.",
+"uk": "Ми б перевірили рахунок, якби помітили помилку."
+}
+],
+"other": {}
+}
+]

@@ -39,7 +39,4 @@ describe('проводка в озвучку', () => {
       expect(src).toContain(text);
     }
   });
-  it('список слов Learning V2 включает медленный повтор', () => {
-    expect(read('components/learning-v2/words/LearningV2WordsList.tsx')).toContain('slowRepeat: true');
-  });
 });

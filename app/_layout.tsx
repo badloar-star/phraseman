@@ -111,28 +111,12 @@ import { setManagedAudioMode } from './audio_session_coordinator';
 import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
 import { stopAllAudioOwnersOnResume } from '../modules/audio/audio_runtime_arbiter';
 import { soundDirector } from '../modules/audio/sound_director';
-import { isSessionEntryPath, lessonEndPrewarmPlan } from '../modules/audio/lesson_end_prewarm';
-import { scheduleStartupSfxPrewarm } from '../modules/audio/startup_sfx_prewarm';
-
-/**
- * Вторая волна прогрева — звуки конца урока. Раньше их не было вовсе, хотя они звучат в конце КАЖДОГО урока и по коду
- * встречаются чаще прочих (pm.reward.chest_open — самое частое событие в приложении). Когда греть — lesson_end_prewarm.ts.
- */
-function prewarmLessonEndSfx(reason: string): void {
-  console.log(`[SFX-PREWARM] lesson_end reason=${reason}`);
-  soundDirector.prewarm([
-    'pm.complete.micro',
-    'pm.reward.chest_open',
-    'pm.reward.small',
-    'pm.streak.saved',
-  ]);
-}
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Animated, Appearance, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Appearance, AppState, BackHandler, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { EnergyProvider } from '../components/EnergyContext';
@@ -155,7 +139,6 @@ import {
 } from './account_generation';
 import { isLevelUpAccountTokenCurrent } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
-import { peekLearningV2ProgressFootprint, refreshLearningV2ProgressGate } from './learning_v2_progress_gate';
 import { getStableId } from './stable_id';
 import type { Props as OnboardingProps } from '../components/onboarding';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
@@ -266,11 +249,12 @@ import {
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { useReduceMotion, useReduceMotionPreference } from '../hooks/use_reduce_motion';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 // зачем (слово владельца 05.11, «Г · Монета»): экранная заставка — монета катится и раскрывается в знак; бесконечный пульс убран
-import { SplashCoin, SPLASH_COIN_REDUCED_MS, SPLASH_COIN_TOTAL_MS, isSplashCoinFinished } from '../components/startup/SplashCoin';
+
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
+import { hydrateVideoSectionPreference } from './video_section_preference';
 import { createSettingsBootReadScope } from '../lib/startup_settings_read_scope';
 
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
@@ -282,7 +266,6 @@ import { FIRESTORE_CACHE_CLEAR_MARKER_KEY, runFirestoreCacheClearFromStartupRead
 import { registerRootNavProbe } from './nav_freeze_probe'; // зачем: [PAYWALL-CLOSE-FREEZE] — снимок стека после закрытия пейвола
 import { useTabsSingleInstanceGuard } from './tabs_single_instance';
 import { hydrateDailyPhrasePeekFromStorage } from './daily_phrase_system';
-import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
@@ -330,7 +313,6 @@ import { getLocalDayKey } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
 import { noteNavRoute } from './nav_paint_trace';
 import { trackPushedRoute } from './section_language';
-import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
   acknowledgeAppMessageModal,
   acknowledgePersonalAdminMessageModal,
@@ -442,24 +424,22 @@ installPhoneStateProductionRuntime();
 // зачем (координатор 04.10, холодный старт п.1, «сперва логи»): статические import исполняются до этой
 // строки — proc= здесь = цена всего графа импортов корня (включая модальные хосты), до первого рендера.
 coldStartMark('layout.module_imports:done', '_layout', { entryToImportsMs: msSinceJsEntry() });
-// зачем (координатор 04.10, замер №4): посев озвучки, отпущенный кадром Главной, занимал поток раньше, чем
-// корень успевал снять сплеш — сплеш висел ещё ~3 с поверх нарисованной Главной. Тяжёлая фоновая работа
-// ждёт и кадр Главной, и снятие сплеша.
-let resolveNativeSplashHidden: () => void = () => {};
-const nativeSplashHidden = new Promise<void>((resolve) => { resolveNativeSplashHidden = resolve; });
-// зачем (координатор 05.10, пакет 08:26: кадр Главной +13369, сплеш снят +15590 — ~2,2 с между setFirstContentReady и
-// коммитом корня, JS-поток занят): сплеш снимаем прямо в колбэке первого кадра Главной. JS-заставку гасим прозрачностью
-// на нативном драйвере — без React-рендера корня; размонтируется она позже обычным путём. Один раз за процесс.
-const startupHoldEarlyDismissOpacity = new Animated.Value(1);
-let splashEarlyHideDone = false;
-// зачем (пакет 11:54, прогон 1: гейт снял сплеш +6863, ранний путь снял ещё раз +6936): прежний гейт тоже отмечает,
-// что уже снял сплеш, — ранний путь тогда не зовёт hideAsync повторно.
-let splashGateHideDone = false;
-function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
-  return Promise.race([
-    nativeSplashHidden.then(() => 'hidden' as const),
-    new Promise<'ceiling'>((resolve) => setTimeout(() => resolve('ceiling'), ceilingMs)),
-  ]);
+let nativeSplashHideInFlight = false;
+let nativeSplashDismissed = false;
+
+function hideNativeStartupSplash(): void {
+  if (nativeSplashHideInFlight || nativeSplashDismissed) return;
+  nativeSplashHideInFlight = true;
+  void SplashScreen.hideAsync().catch((error: unknown) => {
+    noteSwallowedHandler('_layout:nativeStartupSplash.retry')(error);
+    return SplashScreen.hideAsync();
+  }).then(() => {
+    nativeSplashDismissed = true;
+    markNativeSplashHidden();
+    console.warn('[COLD-START] native_splash_hidden epochMs=' + Date.now());
+  }).catch(noteSwallowedHandler('_layout:nativeStartupSplash.hideAsync')).finally(() => {
+    nativeSplashHideInFlight = false;
+  });
 }
 // зачем (координатор 04.10, п.1): ~6 с импортов корня в деве — какие модули тяжёлые (только дев, один раз).
 {
@@ -544,41 +524,8 @@ DefaultText.defaultProps = {
   style: [{ fontFamily: APP_FONT_FAMILY }, DefaultText.defaultProps?.style],
 };
 
-// зачем (координатор 18.10, theme_boot): тёмный фон остаётся только запасным для тёмной системы; заставка красится startupSplashPalette
 const STARTUP_SPLASH_BG = STARTUP_SPLASH_DARK_BG;
-/** Смена фона заставки на фон прочитанной темы — плавно, как переход шторки kit (240 мс). */
-const SPLASH_THEME_FADE_MS = 240;
-// зачем (координатор 18.10, splash_night_6dab4 night no): нативную заставку снимаем только ПОСЛЕ того, как JS-заставка
-// отрисовала первый кадр в своём тоне (onLayout + один кадр) — иначе между ними виден фон окна. Потолок — чтобы сбой
-// разметки не держал нативную заставку вечно (тогда снимаем с пометкой reason=ceiling).
-const NATIVE_SPLASH_HIDE_WAIT_MAX_MS = 1500;
-let jsSplashPaintedAt = 0;
-let resolveJsSplashPainted: (() => void) | null = null;
-const jsSplashPainted = new Promise<void>((resolve) => { resolveJsSplashPainted = resolve; });
-function markJsSplashPainted(): void {
-  if (jsSplashPaintedAt !== 0) return;
-  jsSplashPaintedAt = Date.now();
-  resolveJsSplashPainted?.();
-}
-function hideNativeSplashAfterJsFrame(source: string): void {
-  const askedAt = Date.now();
-  let settled = false;
-  const go = (reason: 'painted' | 'ceiling') => {
-    if (settled) return;
-    settled = true;
-    bootMark('[THEME-BOOT] SplashScreen.hideAsync()', { source, reason, waitedMs: Date.now() - askedAt, jsSplashPaintedAt: jsSplashPaintedAt || null });
-    void SplashScreen.hideAsync().catch(noteSwallowedHandler(`_layout:${source}.hideAsync`));
-  };
-  if (jsSplashPaintedAt !== 0) { go('painted'); return; }
-  bootMark('[THEME-BOOT] hideAsync ждёт первый кадр JS-заставки', { source });
-  void jsSplashPainted.then(() => go('painted'));
-  setTimeout(() => go('ceiling'), NATIVE_SPLASH_HIDE_WAIT_MAX_MS);
-}
-/** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно.
- * зачем (владелец, 2026-08-25): срезано 2500→1000 — гейт живёт ТОЛЬКО в дев-сборках
- * (runtimeFontsExpected=false в проде, шрифты вшиты нативно), а при перегруженном
- * Metro (10+ параллельных сессий на ПК) дев-сплэш ждал шрифты до 2,5 с. Цена:
- * в деве первую секунду текст может мигнуть системным шрифтом — прод не затронут. */
+
 const APP_FONT_WAIT_MAX_MS = 1000;
 // зачем: аудит нагрева 2026-07-25 — flushQueue/intro/winback дёргались на КАЖДЫЙ
 // разворот приложения без троттла (AsyncStorage + premium-проверки). Событийные и
@@ -598,9 +545,7 @@ const FIRST_CONTENT_READY_FALLBACK_MS = 400;
  * зачем (владелец, 2026-09-21): см. развёрнутый комментарий у самого fallback
  * ниже — это был единственный флаг гейта вообще без потолка. */
 const HOME_SCREEN_READY_FALLBACK_MS = 550;
-// Пауза после кадра Главной и снятия сплеша перед установкой планировщика отправки завершений Learning V2
 // (его первый проход берёт замок аккаунта; пакет 00:30 — 3,4 с на старте).
-const LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS = 6_000;
 /** Потолок ожидания кадра Главной перед bootstrap phone-state (см. homePaintedForPhoneState). */
 const PHONE_STATE_BOOTSTRAP_FALLBACK_MS = 8_000;
 /**
@@ -626,7 +571,6 @@ function phoneStateBusyRoute(path: string | null | undefined): string | null {
 const BOOTSTRAP_READY_DEADLINE_MS = 1_000;
 /** Отложенная после кадра Главной гидрация: потолок ожидания кадра и потолок idle. */
 const STARTUP_DEFERRED_HYDRATION_CEILING_MS = 8_000;
-const STARTUP_DEFERRED_HYDRATION_IDLE_TIMEOUT_MS = 1_500;
 /** Столько ждём модуль онбординга, прежде чем перестать держать им сплеш.
  * зачем: в dev по LAN замерено `Bundled 34052ms components\onboarding.tsx` —
  * ровно этот модуль и держал экран 34 секунды; в проде тот же риск даёт
@@ -688,106 +632,6 @@ function buildNavigationPathSignature(
     .join('&');
 
   return query ? `${path}?${query}` : path;
-}
-
-const SPLASH_GLYPH_SIZE = 176;
-const SPLASH_WORDMARK_WIDTH = 232;
-const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.webp («Phraseman»)
-const SPLASH_WORDMARK_HEIGHT = Math.round(SPLASH_WORDMARK_WIDTH * SPLASH_WORDMARK_RATIO);
-const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
-
-/** Отсчёт минимального удержания заставки (1,8 с): общий для компонента и раннего скрытия по кадру Главной. */
-const splashMinHold = { startedAt: 0, ms: SPLASH_COIN_TOTAL_MS };
-
-/**
- * Анимированный стартовый сплэш поверх нативного: «Г · Монета» (слово владельца 05.11, макет splash_variants_2026-11-05.html) — монета катится и раскрывается
- * в знак, внизу «Phraseman» и «by Professor Lingman». Анимация (components/startup/SplashCoin.tsx) конечная, на нативном драйвере, стартует с первого кадра JS,
- * в финале стоит знак — бесконечного пульса больше нет. Заставка держится до готовности Главной, но не короче 1,8 с (SPLASH_COIN_TOTAL_MS).
- * Нативная заставка — только тёмный фон #101214 без картинки (app.json), поэтому до старта JS виден лишь тёмный экран.
- */
-function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: boolean; canHideNativeSplash?: boolean }) {
-  // Хуки должны вызываться безусловно — ранний return только после их объявления.
-  // зачем (координатор 18.10, theme_boot): при светлой системе заставка была тёмной ~4 с, потом вспышка светлой Главной.
-  // Фон и надпись — по сохранённой теме, пока её нет — по системной схеме (Appearance читается синхронно).
-  const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassChoiceReady } = useTheme();
-  const reducedMotion = useReduceMotionPreference();
-  const splashPalette = useMemo(
-    () => startupSplashPalette(Appearance.getColorScheme(), liquidGlassChoiceReady ? liquidGlassTokens(liquidGlassThemeId) : null),
-    // liquidGlassAppearance — смена оформления меняет токены той же темы
-    [liquidGlassChoiceReady, liquidGlassThemeId, liquidGlassAppearance],
-  );
-  useEffect(() => {
-    bootMark('[THEME-BOOT] splash-hold', { visible, canHideNativeSplash, bg: splashPalette.bg, light: splashPalette.light, source: splashPalette.source, systemScheme: Appearance.getColorScheme() ?? null, choiceReady: liquidGlassChoiceReady, theme: liquidGlassThemeId });
-  }, [visible, canHideNativeSplash, splashPalette, liquidGlassChoiceReady, liquidGlassThemeId]);
-  // зачем (координатор 18.10, вариант (б)): тема читается через ~0,3 с после старта — фон заставки сменялся скачком
-  // (#101214 → фон темы). Нижний слой держит первый цвет, слой темы проявляется за 240 мс прозрачностью на нативном драйвере (UI-поток, без setState в кадрах).
-  const splashFirstBgRef = useRef(splashPalette.bg);
-  const splashThemeFade = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (splashPalette.bg === splashFirstBgRef.current) return;
-    bootMark('[THEME-BOOT] splash-hold: плавная смена фона', { from: splashFirstBgRef.current, to: splashPalette.bg, ms: SPLASH_THEME_FADE_MS });
-    splashThemeFade.setValue(0);
-    Animated.timing(splashThemeFade, { toValue: 1, duration: SPLASH_THEME_FADE_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
-  }, [splashPalette.bg, splashThemeFade]);
-
-  // зачем (слово владельца 05.11, «анимация не короче 1,8 с»): Главная могла стать готовой раньше — заставка остаётся до конца анимации, затем уходит.
-  // Отсчёт — от первого показа; по истечении один раз переключаем флаг (без таймера в кадрах).
-  const holdStartedAtRef = useRef<number | null>(null);
-  const [minHoldDone, setMinHoldDone] = useState(isSplashCoinFinished());
-  if (visible && holdStartedAtRef.current === null) holdStartedAtRef.current = Date.now();
-  useEffect(() => {
-    if (minHoldDone || holdStartedAtRef.current === null) return undefined;
-    const total = reducedMotion === true ? SPLASH_COIN_REDUCED_MS : SPLASH_COIN_TOTAL_MS;
-    const left = Math.max(0, total - (Date.now() - holdStartedAtRef.current));
-    const id = setTimeout(() => { bootMark('[SPLASH-COIN] min-hold done', { total, reducedMotion }); setMinHoldDone(true); }, left);
-    return () => clearTimeout(id);
-  }, [visible, minHoldDone, reducedMotion]);
-  const shown = visible || (holdStartedAtRef.current !== null && !minHoldDone);
-
-  // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
-  // чтобы нативный тёмный фон сразу уступил место анимации (фон тот же #101214, мигания нет).
-  // Пока рантайм-шрифты не встали, нативный слой остаётся сверху: иначе первым
-  // кадром JS покажет текст системным начертанием и потом подменит его на Inter.
-  useEffect(() => {
-    if (!visible || !canHideNativeSplash) { bootMark('[THEME-BOOT] splash-hold: нативную заставку не снимаем', { visible, canHideNativeSplash }); return; }
-    const id = requestAnimationFrame(() => {
-      hideNativeSplashAfterJsFrame('useEffect');
-    });
-    return () => cancelAnimationFrame(id);
-  }, [visible, canHideNativeSplash]);
-
-  useEffect(() => {
-    // зачем: ранний показ Главной гасит заставку прозрачностью; при следующем показе заставка снова видна (сброс — когда она уже не показана, в удержании не трогаем)
-    if (!shown) startupHoldEarlyDismissOpacity.setValue(1);
-  }, [shown]);
-  // зачем: обработчик раннего скрытия по кадру Главной ждёт конец удержания (см. splashMinHold)
-  useEffect(() => {
-    splashMinHold.ms = reducedMotion === true ? SPLASH_COIN_REDUCED_MS : SPLASH_COIN_TOTAL_MS;
-    if (visible && splashMinHold.startedAt === 0) splashMinHold.startedAt = Date.now();
-  }, [visible, reducedMotion]);
-
-  if (!shown) return null;
-
-  return (
-    <Animated.View
-      pointerEvents="none"
-      onLayout={() => {
-        bootMark('[THEME-BOOT] splash-hold: первый кадр', { bg: splashPalette.bg });
-        // разметка готова — ещё один кадр, чтобы фон заставки точно ушёл на экран, и только потом можно снимать нативную
-        requestAnimationFrame(markJsSplashPainted);
-      }}
-      style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashFirstBgRef.current, opacity: startupHoldEarlyDismissOpacity }]}
-    >
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: splashPalette.bg, opacity: splashThemeFade }]} />
-      <SplashCoin
-        subtitleColor={splashPalette.subtitle}
-        wordmarkTint={splashPalette.wordmarkTint}
-        reducedMotion={reducedMotion}
-        fontFamily={APP_FONT_FAMILY}
-        onLog={bootMark}
-      />
-    </Animated.View>
-  );
 }
 
 async function preloadVectorIconFonts() {
@@ -1028,12 +872,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // Сперва логи: каждый setShow пишет сюда свою причину, эффект ниже печатает её при смене флага.
   const onboardingShowReasonRef = useRef('initial_state');
   const [onboardingComponent, setOnboardingComponent] = useState<React.ComponentType<OnboardingProps> | null>(null);
-  // зачем (владелец, 2026-09-14): ветка онбординга была ЕДИНСТВЕННОЙ в гейте
-  // сплеша без потолка времени — у firstContentReady fallback есть (900 мс), у
-  // неё не было. Замер в dev по LAN: модуль ехал 34 секунды, и всё это время
-  // человек смотрел на заставку. Флаг снимает право держать экран; сам модуль
-  // продолжает грузиться и подставится, как только доедет.
-  const [onboardingWaitElapsed, setOnboardingWaitElapsed] = useState(false);
+  const [onboardingLoadAttempt, setOnboardingLoadAttempt] = useState(0);
+  const [onboardingLoadFailed, setOnboardingLoadFailed] = useState(false);
   // Account deletion must tear down the complete native presentation tree.
   // Merely hiding the React Native confirmation modal leaves iOS pageSheet
   // routes (Account/Privacy over Settings) alive above the onboarding overlay.
@@ -1083,50 +923,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     void cleanupRetiredMistakePracticeStorage().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredMistakePracticeStorage'));
     void cleanupRetiredBlitzRecord().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredBlitzRecord'));
   }, []);
-  // зачем (D47, владелец): прогрев озвучки V2 (координатор + фоновая задача
-  // expo-background-task) удалён целиком — это и был источник «всё тормозит
-  // с момента входа» (22.09: 8 сессий вперёд + массовая закачка всех уроков,
-  // SHA-256 каждого файла в JS-потоке, плюс тот же прогрев каждые 15 минут в
-  // фоне). Файлы (`learning_v2_audio_prefetch_coordinator_v1` и соседи) больше
-  // не существуют — регистрировать/снимать нечего. Тем, у кого фоновая задача
-  // осталась зарегистрированной прошлой версией, ОС забудет её сама при
-  // следующем обновлении сборки (задача определяется только внутри удалённого
-  // модуля, TaskManager.defineTask для неё больше не вызывается никогда).
-  useEffect(() => {
-    // Load the completion transport only after the root has committed. This
-    // installs its lifecycle/connectivity scheduler on every app launch without
-    // adding the heavy sync module to the synchronous first-frame bundle.
-    // зачем (координатор 05.10, пакет 00:30): первый проход планировщика сразу брал замок аккаунта под курсор
-    // повтора (persist держал его 3,4 с), и за ним стояли кошелёк и курс — как раз на старте. Отправка завершённых
-    // занятий фоновая и офлайн-устойчивая: ставим планировщик после кадра Главной и снятия сплеша, плюс пауза.
-    // Если человек раньше откроет занятие, экран сессии поставит планировщик сам (enterInteractiveSurface).
-    let cancelled = false;
-    const cancelDeferred = runAfterHomeFirstFrame('lv2_completion_scheduler_install', () => new Promise<void>((resolve) => {
-      setTimeout(resolve, LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS);
-    }).then(() => (cancelled ? undefined : refreshLearningV2ProgressGate(captureAccountGeneration().stableId, 'scheduler_install')))
-      // зачем (владелец 04.11, заморозка V2): без единого пройденного занятия V2 досылать нечего — планировщик не ставим и модуль не грузим
-      .then((footprint) => {
-        if (cancelled || !footprint) return undefined;
-        if (footprint.completedSessions === 0) {
-          console.log('[V2-GATE] lv2_completion_scheduler_install: skip — у аккаунта нет следа V2'); // guard-ok: ранний выход называет причину
-          return undefined;
-        }
-        return import('./learning_v2_completion_background_scheduler');
-      })
-      .then((scheduler) => {
-        if (cancelled || !scheduler) {
-          console.log('[FIRST-FRAME] lv2_completion_scheduler_install: skip — эффект снят до установки');
-          return;
-        }
-        scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
-      })
-      .catch(noteSwallowedHandler('_layout:useEffect.call_3')), { holdDuringOnboarding: true });
-    return () => {
-      cancelled = true;
-      cancelDeferred();
-    };
-  }, []);
-
   // зачем (владелец 2026-09-22, «немедленно удалить все замеры»): здесь на
   // КАЖДОЙ смене раздела стоял замер probeStorageGrowth, делавший полный скан
   // индекса AsyncStorage (getAllKeys). Скан дорожает с возрастом установки и
@@ -1143,10 +939,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // зачем (пакет 07:26): когда вызван setFirstContentReady(true) — строка «splash gate» печатает, сколько прошло до фиксации.
   const firstContentReadySetAtRef = useRef<number | null>(null);
   const runHeavyInitRef = useRef<(() => void) | null>(null);
-  const heavyInitStartedRef = useRef(false);
   // зачем (12.10, [COLD-START-HOLD]): отличить «инициализация прошла» от «отменена до запуска и потеряна».
   const heavyInitRanRef = useRef(false);
-  const heavyInitCancelledBeforeRunRef = useRef(false);
   const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
   const [postOnboardingGoldBridgeVisible, setPostOnboardingGoldBridgeVisible] = useState(false);
   const [postOnboardingGoldBridgeArmed, setPostOnboardingGoldBridgeArmed] = useState(false);
@@ -1307,11 +1101,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (!effectiveShowOnboarding || onboardingComponent) return;
     let cancelled = false;
-    // Потолок ожидания модуля: истёк — сплеш отпускаем, загрузку НЕ отменяем.
+    setOnboardingLoadFailed(false);
     const waitTimer = setTimeout(() => {
-      if (cancelled) return;
-      bootMark('onboarding module WAIT ELAPSED — сплеш отпущен, модуль ещё едет');
-      setOnboardingWaitElapsed(true);
+      if (!cancelled) setOnboardingLoadFailed(true);
     }, ONBOARDING_MODULE_WAIT_MAX_MS);
     void import('../components/onboarding')
       .then(({ default: component }) => {
@@ -1320,10 +1112,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         setOnboardingComponent(() => component);
       })
       .catch((error) => {
-        // The onboarding route remains recoverable on the next render/retry;
-        // do not turn a deferred optional module into a boot crash.
-        // зачем: запрет немого catch — провал этого импорта раньше не оставлял
-        // НИ ОДНОГО следа, а держал сплеш вечно. Теперь причина видна всегда.
         if (cancelled) return;
         bootMark('onboarding module FAILED', String(error));
         DebugLogger.error(
@@ -1331,13 +1119,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           error instanceof Error ? error : new Error(String(error)),
           'warning',
         );
-        setOnboardingWaitElapsed(true);
+        setOnboardingLoadFailed(true);
       });
     return () => {
       cancelled = true;
       clearTimeout(waitTimer);
     };
-  }, [effectiveShowOnboarding, onboardingComponent]);
+  }, [effectiveShowOnboarding, onboardingComponent, onboardingLoadAttempt]);
 
   useEffect(() => {
     setRootNavigationReady(true);
@@ -1372,13 +1160,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     void import('./support_report_outbox')
       .then(({ resumePendingSupportReports }) => resumePendingSupportReports(stableId))
       .catch(noteSwallowedHandler('_layout:useEffect.call_5'));
-  }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
-
-  useEffect(() => {
-    // зачем (владелец 04.11, заморозка V2): V2 виден только при пройденном уроке целиком; проверка — один локальный multiGet без сети,
-    // на входе в аккаунт, при смене аккаунта и при возврате в приложение (подхватывает восстановление прогресса из облака).
-    if (!appIsActive) return;
-    void refreshLearningV2ProgressGate(accountGeneration.phase === 'active' ? accountGeneration.stableId : null, 'root_account_generation');
   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
 
   useEffect(() => {
@@ -1666,46 +1447,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void setManagedAudioMode(UI_SFX_AUDIO_MODE)
       .catch(noteSwallowedHandler('_layout:useEffect.setManagedAudioMode'));
-    // зачем прогрев (аудит §R8, 2026-08-30): expo-audio не буферизует до
-    // play(), и самый первый запуск каждого звука платил латентность создания
-    // нативного плеера. Греем самые частые события сильно ПОСЛЕ старта
-    // (3.5с — холодный старт и первый кадр уже позади), это ~5 лёгких
-    // createAudioPlayer в фоне.
-    //
-    // зачем две волны (владелец 2026-09-03, «звуки играют с паузой»): прежде
-    // ВСЁ грелось на 3.5с, а человек успевает нажать первую кнопку куда раньше
-    // — и этот тап платил полную латентность создания плеера. Звуки нажатий
-    // (самое частое, что слышно) греем на 1.2с: холодный старт и первый кадр
-    // уже позади, а это всего три лёгких createAudioPlayer.
-    // зачем (координатор 13.10, вариант «б», замер Сверки 57ecd26e6): прежний таймер 1,2 с от монтирования ставил первый —
-    // единственный дорогой (подъём нативного аудио, до 1,5 с) — плеер в окно премаунта вкладок. Теперь обе волны идут после
-    // кадра Главной + паузы под премаунт (modules/audio/startup_sfx_prewarm.ts), одной очередью: нажатия, затем конец урока.
-    // Ранний тап до прогрева звучит с задержкой — play() создаёт плеер сам.
-    const cancelStartupPrewarm = scheduleStartupSfxPrewarm({
-      whenHomePainted,
-      runAfterInteractions: (task) => InteractionManager.runAfterInteractions(task),
-      setTimer: (task, ms) => setTimeout(task, ms),
-      clearTimer: (timer) => clearTimeout(timer),
-      now: () => Date.now(),
-      prewarm: (reason) => {
-        soundDirector.prewarm([
-          'pm.ui.tap_soft',
-          'pm.ui.tap_primary',
-          'pm.ui.tap_blocked',
-        ]);
-        // Вторая волна — звуки конца урока; при DEFER_LESSON_END_SFX_PREWARM_TO_SESSION уходит на вход в занятие (эффект ниже).
-        const lessonEndPlan = lessonEndPrewarmPlan();
-        if (lessonEndPlan === 'startup_timer') prewarmLessonEndSfx(reason);
-        else console.log(`[SFX-PREWARM] lesson_end plan=${lessonEndPlan} — на старте не греем`);
-      },
-    });
-    return cancelStartupPrewarm;
+    // Production policy removes SFX/music, so no startup or session-entry SFX
+    // prewarm timer is planned. Speech and managed audio-session startup remain.
   }, []);
-
-  useEffect(() => {
-    if (lessonEndPrewarmPlan() !== 'on_session_entry' || !isSessionEntryPath(pathname)) return;
-    prewarmLessonEndSfx(`session_entry:${pathname}`);
-  }, [pathname]);
 
   useEffect(() => {
     rememberNavigationPath(navigationPathSignature);
@@ -1957,7 +1701,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   // зачем (темы 2.0): сплеш уходит только когда прочитан выбор темы/оформления — иначе у
-  // выбравших светлое первый кадр был бы тёмным. Чтение идёт параллельно, у флага потолок 400 мс.
+  // выбравших светлое первый кадр был бы тёмным. Чтение идёт параллельно, у темы свой потолок.
   const nativeSplashCanHide = fontsReady && ready && liquidGlassChoiceReady
     && (effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady));
   // зачем (трассировка 2026-08-31): печатаем, КАКОЙ из трёх флагов держит сплеш.
@@ -1980,43 +1724,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     const sub = onAppEvent('app_home_screen_ready', () => setHomeScreenReady(true));
     return () => sub.remove();
-  }, []);
-  // зачем (координатор 05.10, одобрено «после цифр»): снять сплеш в колбэке кадра Главной, не дожидаясь коммита корня.
-  // Флаги — значения последнего коммита. Онбординг/бан/не готово → не прятать и печатать, какой флаг держит;
-  // тогда сплеш снимет прежний гейт nativeSplashCanHide.
-  const splashGateRef = useRef({ fontsReady, ready, liquidGlassChoiceReady, effectiveShowOnboarding, isBanned });
-  splashGateRef.current = { fontsReady, ready, liquidGlassChoiceReady, effectiveShowOnboarding, isBanned };
-  useEffect(() => {
-    let cancelled = false;
-    void whenHomePainted(120_000).then((outcome) => {
-      if (cancelled) { bootMark('HOME-PAINT early hide: skip', { reason: 'unmounted' }); return; }
-      if (splashEarlyHideDone) { bootMark('HOME-PAINT early hide: skip', { reason: 'already_done' }); return; }
-      if (splashGateHideDone) { bootMark('HOME-PAINT early hide: skip', { reason: 'gate_already_hid' }); return; }
-      if (outcome !== 'painted') { bootMark('HOME-PAINT early hide: skip', { reason: outcome }); return; }
-      const gate = splashGateRef.current;
-      const holding = [
-        gate.fontsReady ? null : 'fontsReady',
-        gate.ready ? null : 'ready',
-        gate.liquidGlassChoiceReady ? null : 'liquidGlassChoiceReady',
-        gate.effectiveShowOnboarding ? 'effectiveShowOnboarding' : null,
-        gate.isBanned ? 'isBanned' : null,
-      ].filter((flag): flag is string => flag !== null);
-      if (holding.length > 0) { bootMark('HOME-PAINT early hide: held', { holding, ...gate }); return; }
-      splashEarlyHideDone = true;
-      bootMark('HOME-PAINT early hide — сплеш скрыт по кадру Главной', gate);
-      hideNativeSplashAfterJsFrame('homePaintEarlyHide');
-      // зачем (слово владельца 05.11): анимация заставки не короче 1,8 с — гасим её не раньше конца удержания
-      const holdLeft = Math.max(0, splashMinHold.ms - (splashMinHold.startedAt ? Date.now() - splashMinHold.startedAt : 0));
-      bootMark('[SPLASH-COIN] early hide ждёт конец анимации', { holdLeft });
-      setTimeout(() => {
-        Animated.timing(startupHoldEarlyDismissOpacity, {
-          toValue: 0, duration: 120, easing: Easing.out(Easing.cubic), useNativeDriver: true,
-        }).start();
-      }, holdLeft);
-      resolveNativeSplashHidden();
-      markNativeSplashHidden();
-    });
-    return () => { cancelled = true; };
   }, []);
   // зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ, мгновенно на 100%»):
   // homeScreenReady был ЕДИНСТВЕННЫМ флагом гейта без потолка времени. Все
@@ -2041,17 +1748,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     bootCommitWindowEndsAt = Date.now() + 3000;
-    // зачем (пакет 09:26: после early hide +9016 был ещё hideAsync +13112): сплеш уже снят по кадру Главной —
-    // повторный нативный вызов не нужен и может дать необработанный отказ.
-    if (splashEarlyHideDone) {
-      bootMark('SplashScreen.hideAsync() пропущен — сплеш уже снят по кадру Главной');
-    } else {
-      splashGateHideDone = true;
-      bootMark('SplashScreen.hideAsync() — сплеш скрыт');
-      hideNativeSplashAfterJsFrame('nativeSplashCanHide');
-    }
-    resolveNativeSplashHidden();
-    markNativeSplashHidden();
+    hideNativeStartupSplash();
   }, [nativeSplashCanHide]);
 
   useEffect(() => {
@@ -2100,20 +1797,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [effectiveShowOnboarding, ready]);
 
   useEffect(() => {
-    // зачем (координатор 12.10, сперва логи): у Сверки 8 раз `deferred:cancel label=heavy_init`. Флаг «начата» ставится до
-    // запуска, а отмена его не снимает — перезапуск эффекта тогда выходит здесь, и инициализация не идёт больше никогда.
-    // Печатаем значения, решившие ветку, и отдельно LOST, если прошлую отложенную инициализацию сняли до запуска.
-    const gate = { ready, effectiveShowOnboarding, isBanned, firstContentReady, started: heavyInitStartedRef.current, ran: heavyInitRanRef.current };
-    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) {
-      if (heavyInitStartedRef.current && !heavyInitRanRef.current && heavyInitCancelledBeforeRunRef.current) {
-        console.warn('[COLD-START-HOLD] heavy_init:LOST — прошлую отложенную инициализацию отменили до запуска, повтора не будет', JSON.stringify(gate)); // guard-ok: ранний выход логируется
-      } else {
-        console.log('[COLD-START-HOLD] heavy_init:skip', JSON.stringify(gate)); // guard-ok: ранний выход логируется
-      }
-      return;
-    }
-    heavyInitStartedRef.current = true;
-    console.warn('[COLD-START-HOLD] heavy_init:schedule', JSON.stringify({ ...gate, boot: `+${Date.now() - BOOT_T0}ms` })); // guard-ok: трассировка старта
+    const gate = { ready, effectiveShowOnboarding, isBanned, firstContentReady, ran: heavyInitRanRef.current };
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitRanRef.current) return;
+    console.log('[COLD-START-HOLD] heavy_init:schedule', JSON.stringify(gate));
     let timer: ReturnType<typeof setTimeout> | null = null;
     // зачем: PM-211 — firstContentReady может прийти запасным таймером (400 мс) раньше,
     // чем доедет чанк Главной; тогда прогрев друзей/магазина/аналитики делил поток с её
@@ -2128,7 +1814,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => {
       if (timer) clearTimeout(timer);
-      if (!heavyInitRanRef.current) heavyInitCancelledBeforeRunRef.current = true;
       console.warn('[COLD-START-HOLD] heavy_init:effect_cleanup', JSON.stringify({ ran: heavyInitRanRef.current, timerPending: timer !== null, boot: `+${Date.now() - BOOT_T0}ms` })); // guard-ok: трассировка старта
       cancelDeferred();
     };
@@ -2425,17 +2110,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
-    const pathname =
-      Platform.OS === 'web' && typeof window !== 'undefined'
-        ? window.location.pathname
-        : '';
-    if (!shouldRunFullAppBootstrap(Platform.OS, __DEV__, pathname)) {
-      // The local course preview has no full bootstrap to release its splash.
-      // Reveal the mounted player while retaining the font/theme readiness gates.
-      setReady(true);
-      return;
-    }
-
     // The normal reveal timer is armed only after crash-recovery proves that no
     // deleted account identity/data can reappear beneath the startup shell.
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
@@ -2944,6 +2618,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         void runHeavyInit();
       }
 
+      void hydrateVideoSectionPreference();
+
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
       closeStartupSettingsReadScope?.();
       const startupSettingsGeneration = captureAccountGeneration();
@@ -2953,7 +2629,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       closeStartupSettingsReadScope = () => startupSettingsReadScope.close();
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(noteSwallowedHandler('_layout:bootstrap.primeAppSnapshotFromStorage')),
-        primeSurveyOfferCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeSurveyOfferCacheFromStorage')),
         // зачем (ускорение сплэша): сегодняшняя «фраза дня» из peek-кэша — чтобы
         // первый кадр Главной НЕ поднимал каталог идиом (610 КБ JS) синхронно.
         hydrateDailyPhrasePeekFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateDailyPhrasePeekFromStorage')),
@@ -2989,25 +2664,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // в первые нажатия. Снапшоты других экранов (видео, друзья, приглашения), кэш статистики серии и выбор YouTube-канала не нужны
       // первому кадру Главной и корневым гейтам — они грузятся в простое после кадра Главной (раньше фонового премаунта вкладок, который
       // ждёт тишины), так что к первому заходу на эти экраны данные в памяти. Фраза дня, настройки, согласия, RC — остались выше.
-      void whenHomePainted(STARTUP_DEFERRED_HYDRATION_CEILING_MS).then((outcome) => {
-        const runDeferred = () => {
-          const deferred: ReadonlyArray<readonly [string, () => Promise<unknown>]> = [
-            ['screen_snapshots', () => primeScreenSnapshotsFromStorage()],
-            ['streak_stats_cache', () => hydrateStatsCacheFromStorage()],
-            ['youtube_channel_preference', () => hydrateYoutubeChannelPreference()],
-          ];
-          for (const [key, load] of deferred) {
-            const at = Date.now();
-            void load().then(
-              () => console.log(`[COLD-START] deferred ${JSON.stringify({ key, ms: Date.now() - at, homePaint: outcome })}`), // guard-ok: одна строка на ключ за старт
-              (e: unknown) => noteSwallowedHandler(`_layout:deferred.${key}`)(e),
-            );
-          }
-        };
-        const requestIdle = (globalThis as { requestIdleCallback?: (cb: () => void, o?: { timeout?: number }) => unknown }).requestIdleCallback;
-        if (requestIdle) requestIdle(runDeferred, { timeout: STARTUP_DEFERRED_HYDRATION_IDLE_TIMEOUT_MS });
-        else setTimeout(runDeferred, 0);
-      });
+      runAfterHomeFirstFrame('secondary_screen_caches', async () => {
+        const deferred: readonly (readonly [string, () => Promise<unknown>])[] = [
+          ['screen_snapshots', primeScreenSnapshotsFromStorage],
+          ['streak_stats_cache', hydrateStatsCacheFromStorage],
+          ['youtube_channel_preference', hydrateYoutubeChannelPreference],
+        ];
+        for (const [key, load] of deferred) {
+          if (effectDisposed || !isCurrentAccountGeneration(startupSettingsGeneration)) return;
+          await load().catch(noteSwallowedHandler(`_layout:deferred.${key}`));
+        }
+      }, { fallbackMs: STARTUP_DEFERRED_HYDRATION_CEILING_MS, holdDuringOnboarding: true });
       void startupLocalHydration.catch(noteSwallowedHandler('_layout:bootstrap.startupLocalHydration'));
       // зачем (Q106, координатор §62): достижения shards_100…10000 («Монетная заначка») по
       // названию про монеты, а считались по удалённому жемчугу. Теперь — баланс монет (руны,
@@ -3132,8 +2799,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // запросу, — поэтому посев идёт после первого кадра Главной.
       // Замер «после» (04.10): событие оболочки вкладок отпускало посев на 1–5 с РАНЬШЕ настоящего кадра ленивой
       // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
-      // зачем (координатор 14.10, п.2): звуки V2 — после первого кадра Главной; флаг выключен → ни файла, ни импорта движка (modules/sound_v2/sound_v2_boot.ts)
-      runAfterHomeFirstFrame('sound_v2_boot', () => import('../modules/sound_v2/sound_v2_boot').then(({ bootSoundV2 }) => bootSoundV2()));
+      // Production policy removes SFX/music, so V2 sound boot is not scheduled
+      // or imported during cold start. Speech startup below remains independent.
       // зачем (19.10, подтверждено владельцем 22.10: «аудио убрали и сменили на TTS»): посева записей Learning V2 после кадра
       // Главной больше нет — занятия говорят голосом телефона, записи не нужны (минус ≈1 с работы потока при каждом запуске).
       if (safetyTimer) clearTimeout(safetyTimer);
@@ -3637,16 +3304,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned && !devOverlaysOff;
-  const startupSplashVisible = !fontsReady || !ready || !liquidGlassChoiceReady
-    || (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))
-    // зачем (владелец, 2026-09-14): раньше здесь стояло голое
-    // `effectiveShowOnboarding && !onboardingComponent` — единственная ветка
-    // гейта без потолка времени. Модуль онбординга в dev по LAN ехал 34 секунды
-    // (замер `Bundled 34052ms components\onboarding.tsx`), и всё это время
-    // сплеш держался. Теперь ожидание ограничено: истёк потолок или импорт
-    // провалился — экран отпускаем. Загрузка при этом продолжается, и модуль
-    // подставится сам, как только доедет.
-    || (effectiveShowOnboarding && !onboardingComponent && !onboardingWaitElapsed);
   const OnboardingScreen = onboardingComponent;
   // OWNER 2026-08-25: route shell обязан сменяться без искусственной задержки.
   // Непрозрачный contentStyle ниже закрывает native-container на первом кадре;
@@ -3667,8 +3324,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         headerShown: false,
         // Фон стека — ВСЕГДА фон темы (константа), НЕ производная от appShellReady:
         // гонка 4 асинхронных флагов перекрашивала весь стек в почти-чёрный сплэш-цвет
-        // = «чёрный кадр» между переходами. Стартовый сплэш закрывает экран отдельным
-        // полноэкранным оверлеем (StartupSplashHold), фону стека он не нужен.
+        // = «чёрный кадр» между переходами.
         contentStyle: { backgroundColor: tTheme.bgPrimary },
         // Без native-stack slide-transitions: Android/Fabric падал на открытии вложенных
         // экранов и Back. ENABLE_SCREEN_TRANSITIONS включает slide только осознанно;
@@ -3697,8 +3353,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           его модалкой, и экран открывался «на пол-экрана» поверх списка уроков. */}
       <Stack.Screen name="combined_lesson_pick" />
       <Stack.Screen name="lesson_words" />
-      {/* зачем (владелец 22.10: «Слова» в Сезоне): слова урока Learning V2 — обычный push-экран, как «Слова урока» основного курса */}
-      <Stack.Screen name="learning_v2_lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />
       <Stack.Screen name="lesson_complete" />
 
@@ -3730,7 +3384,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="survey_screen" />
       {/* зачем: без Fragment — expo-router разворачивает только ПРЯМЫХ детей
           <Stack.Screen>, а <>…</> считает посторонним ребёнком и печатает
           «Layout children must be of type Screen» на каждый старт (дважды за
@@ -3959,7 +3612,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     {ready && effectiveShowOnboarding && (
       // зачем (Ревизор 18.10): оверлей онбординга был тёмным и на светлой теме — до первого кадра онбординга мигал тёмным; фон — как у заставки
-      <View style={[styles.appFullScreenOverlay, { backgroundColor: startupSplashPalette(Appearance.getColorScheme(), liquidGlassChoiceReady ? liquidGlassTokens(liquidGlassThemeId) : null).bg }]}>
+      <View style={[styles.appFullScreenOverlay, { backgroundColor: tTheme.bgPrimary }]}>
         {OnboardingScreen ? (
           <OnboardingScreen
             startAtNameStep={onboardingStartAtName}
@@ -3970,13 +3623,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
           />
         ) : (
-          // зачем (владелец, 2026-09-14): потолок ожидания отпустил сплеш, а
-          // модуль онбординга ещё едет. Показывать голый фон нельзя — человек
-          // решит, что приложение сломалось. Держим ТОТ ЖЕ анимированный сплеш
-          // (тот же фон, та же анимация): визуально ничего не дёргается, но
-          // нативный слой уже снят и интерфейс жив. Полноэкранный спиннер тут
-          // запрещён правилом владельца, а живая анимация — не спиннер.
-          <StartupSplashHold visible canHideNativeSplash />
+          <View style={styles.onboardingLoadState}>
+            <Text accessibilityLiveRegion="polite" style={{ color: tTheme.textPrimary }}>
+              {onboardingLoadFailed
+                ? triLang(lang, { ru: 'Не удалось открыть первый экран', uk: 'Не вдалося відкрити перший екран', en: 'Could not open the first screen', es: 'No se pudo abrir la primera pantalla', 'pt-BR': 'Não foi possível abrir a primeira tela', vi: 'Không thể mở màn hình đầu tiên', id: 'Tidak dapat membuka layar pertama', tr: 'İlk ekran açılamadı', pl: 'Nie udało się otworzyć pierwszego ekranu' })
+                : triLang(lang, { ru: 'Подготовка первого экрана…', uk: 'Підготовка першого екрана…', en: 'Preparing the first screen…', es: 'Preparando la primera pantalla…', 'pt-BR': 'Preparando a primeira tela…', vi: 'Đang chuẩn bị màn hình đầu tiên…', id: 'Menyiapkan layar pertama…', tr: 'İlk ekran hazırlanıyor…', pl: 'Przygotowywanie pierwszego ekranu…' })}
+            </Text>
+            {onboardingLoadFailed && (
+              <TouchableOpacity
+                accessibilityRole="button"
+                testID="onboarding-load-retry"
+                style={styles.onboardingLoadRetry}
+                onPress={() => setOnboardingLoadAttempt((attempt) => attempt + 1)}
+              >
+                <Text style={{ color: tTheme.textPrimary, fontWeight: '700' }}>
+                  {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
         )}
       </View>
     )}
@@ -4006,8 +3671,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         «нет сети» — экраны сами это не различают (NetInfo в проекте нет). */}
     {ready && <OfflineBanner lang={lang} />}
 
-    <StartupSplashHold visible={startupSplashVisible} canHideNativeSplash={fontsReady} />
-
     {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
     <ForceUpdateGate />
 
@@ -4016,29 +3679,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 }
 
 const styles = StyleSheet.create({
-  startupSplashAnimatedRoot: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    zIndex: 9999,
-    elevation: 9999,
-    backgroundColor: STARTUP_SPLASH_BG,
+  onboardingLoadState: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 24,
+    gap: 12,
   },
-  startupSplashGlyphPulse: {
-    width: SPLASH_GLYPH_SIZE,
-    height: SPLASH_GLYPH_SIZE,
-  },
-  startupSplashSubtitle: {
-    marginTop: 10,
-    fontSize: 16,
-    fontWeight: '700',
-    letterSpacing: 0.2,
-    color: 'rgb(174,170,161)',
-    fontFamily: APP_FONT_FAMILY,
+  onboardingLoadRetry: {
+    minHeight: 48,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   appFullScreenOverlay: {
     ...StyleSheet.absoluteFillObject,

@@ -3,12 +3,12 @@ import { join } from 'path';
 
 const html = readFileSync(join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 const owners = [
-  'dpDrop', 'loadBanList', 'loadCancelSurveys',
+  'dpDrop', 'loadBanList',
   'loadDailyPhrases', 'loadPremiumData', 'loadPushJobs',
-  'loadReferralsData', 'loadUgcPurchases', 'loadVipSurveyResponses',
-  'openDailyPhraseEditor', 'renderBanList', 'renderCancelSurveys',
+  'loadReferralsData', 'loadUgcPurchases',
+  'openDailyPhraseEditor', 'renderBanList',
   'renderDailyPhrases', 'renderPremiumList', 'renderReferralsTable', 'renderUgcPurchases',
-  'renderVipSurveyResponses', 'saveDailyPhraseEditor', 'seedDailyPhrasesFromBundle',
+  'saveDailyPhraseEditor', 'seedDailyPhrasesFromBundle',
   'submitPushJob', 'toggleDailyPhraseActive',
 ] as const;
 

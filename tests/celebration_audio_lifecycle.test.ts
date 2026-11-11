@@ -1,4 +1,5 @@
 jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
+jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true }));
 let mockEffectsEnabled = true;
 let mockSoundSettingsListener: (() => void) | null = null;
 jest.mock('../modules/audio/sound_settings', () => ({

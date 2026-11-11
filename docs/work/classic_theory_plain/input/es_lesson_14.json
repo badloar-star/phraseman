@@ -1,0 +1,621 @@
+{
+ "lang": "es",
+ "lesson": 14,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:14:01",
+   "target": "Me levanto temprano.",
+   "ru": "Я встаю рано.",
+   "uk": "Я встаю рано."
+  },
+  {
+   "id": "es:14:02",
+   "target": "Te levantas a las siete.",
+   "ru": "Ты встаёшь в семь.",
+   "uk": "Ти встаєш о сьомій."
+  },
+  {
+   "id": "es:14:03",
+   "target": "Ana se levanta temprano.",
+   "ru": "Ана встаёт рано.",
+   "uk": "Ана встає рано."
+  },
+  {
+   "id": "es:14:04",
+   "target": "Nos levantamos a las siete.",
+   "ru": "Мы встаём в семь.",
+   "uk": "Ми встаємо о сьомій."
+  },
+  {
+   "id": "es:14:05",
+   "target": "Luis se levanta temprano.",
+   "ru": "Луис встаёт рано.",
+   "uk": "Луїс встає рано."
+  },
+  {
+   "id": "es:14:06",
+   "target": "Mis hermanos se levantan a las siete.",
+   "ru": "Мои братья встают в семь.",
+   "uk": "Мої брати встають о сьомій."
+  },
+  {
+   "id": "es:14:07",
+   "target": "Os levantáis temprano.",
+   "ru": "Вы встаёте рано.",
+   "uk": "Ви встаєте рано."
+  },
+  {
+   "id": "es:14:08",
+   "target": "¿Te levantas a las siete?",
+   "ru": "Ты встаёшь в семь?",
+   "uk": "Ти встаєш о сьомій?"
+  },
+  {
+   "id": "es:14:09",
+   "target": "No me levanto temprano.",
+   "ru": "Я не встаю рано.",
+   "uk": "Я не встаю рано."
+  },
+  {
+   "id": "es:14:10",
+   "target": "¿Mis hermanas se levantan a las siete?",
+   "ru": "Мои сёстры встают в семь?",
+   "uk": "Мої сестри встають о сьомій?"
+  },
+  {
+   "id": "es:14:11",
+   "target": "Me ducho por la mañana.",
+   "ru": "Я принимаю душ по утрам.",
+   "uk": "Я приймаю душ вранці."
+  },
+  {
+   "id": "es:14:12",
+   "target": "Te duchas en casa.",
+   "ru": "Ты принимаешь душ дома.",
+   "uk": "Ти приймаєш душ вдома."
+  },
+  {
+   "id": "es:14:13",
+   "target": "Ana se ducha por la mañana.",
+   "ru": "Ана принимает душ по утрам.",
+   "uk": "Ана приймає душ вранці."
+  },
+  {
+   "id": "es:14:14",
+   "target": "Nos duchamos en casa.",
+   "ru": "Мы принимаем душ дома.",
+   "uk": "Ми приймаємо душ вдома."
+  },
+  {
+   "id": "es:14:15",
+   "target": "Luis se ducha por la mañana.",
+   "ru": "Луис принимает душ по утрам.",
+   "uk": "Луїс приймає душ вранці."
+  },
+  {
+   "id": "es:14:16",
+   "target": "Mis hermanos se duchan en casa.",
+   "ru": "Мои братья принимают душ дома.",
+   "uk": "Мої брати приймають душ вдома."
+  },
+  {
+   "id": "es:14:17",
+   "target": "Luis se ducha en el hotel.",
+   "ru": "Луис принимает душ в отеле.",
+   "uk": "Луїс приймає душ у готелі."
+  },
+  {
+   "id": "es:14:18",
+   "target": "¿Te duchas en casa?",
+   "ru": "Ты принимаешь душ дома?",
+   "uk": "Ти приймаєш душ вдома?"
+  },
+  {
+   "id": "es:14:19",
+   "target": "No me ducho por la mañana.",
+   "ru": "Я не принимаю душ по утрам.",
+   "uk": "Я не приймаю душ вранці."
+  },
+  {
+   "id": "es:14:20",
+   "target": "¿Mis hermanas se duchan en casa?",
+   "ru": "Мои сёстры принимают душ дома?",
+   "uk": "Мої сестри приймають душ вдома?"
+  },
+  {
+   "id": "es:14:21",
+   "target": "Me lavo las manos.",
+   "ru": "Я мою руки.",
+   "uk": "Я мию руки."
+  },
+  {
+   "id": "es:14:22",
+   "target": "Te lavas la cara.",
+   "ru": "Ты моешь лицо.",
+   "uk": "Ти миєш обличчя."
+  },
+  {
+   "id": "es:14:23",
+   "target": "Ana se lava las manos.",
+   "ru": "Ана моет руки.",
+   "uk": "Ана миє руки."
+  },
+  {
+   "id": "es:14:24",
+   "target": "Me lavo las manos en el baño.",
+   "ru": "Я мою руки в ванной.",
+   "uk": "Я мию руки у ванній."
+  },
+  {
+   "id": "es:14:25",
+   "target": "Luis se lava las manos.",
+   "ru": "Луис моет руки.",
+   "uk": "Луїс миє руки."
+  },
+  {
+   "id": "es:14:26",
+   "target": "Mis hermanos se lavan la cara.",
+   "ru": "Мои братья моют лицо.",
+   "uk": "Мої брати миють обличчя."
+  },
+  {
+   "id": "es:14:27",
+   "target": "Os laváis las manos.",
+   "ru": "Вы моете руки.",
+   "uk": "Ви миєте руки."
+  },
+  {
+   "id": "es:14:28",
+   "target": "¿Te lavas la cara?",
+   "ru": "Ты моешь лицо?",
+   "uk": "Ти миєш обличчя?"
+  },
+  {
+   "id": "es:14:29",
+   "target": "No me lavo las manos.",
+   "ru": "Я не мою руки.",
+   "uk": "Я не мию руки."
+  },
+  {
+   "id": "es:14:30",
+   "target": "¿Mis hermanas se lavan la cara?",
+   "ru": "Мои сёстры моют лицо?",
+   "uk": "Мої сестри миють обличчя?"
+  },
+  {
+   "id": "es:14:31",
+   "target": "Me siento aquí.",
+   "ru": "Я сажусь здесь.",
+   "uk": "Я сідаю тут."
+  },
+  {
+   "id": "es:14:32",
+   "target": "Te sientas cerca de la ventana.",
+   "ru": "Ты садишься у окна.",
+   "uk": "Ти сідаєш біля вікна."
+  },
+  {
+   "id": "es:14:33",
+   "target": "Ana se sienta aquí.",
+   "ru": "Ана садится здесь.",
+   "uk": "Ана сідає тут."
+  },
+  {
+   "id": "es:14:34",
+   "target": "Nos sentamos cerca de la ventana.",
+   "ru": "Мы садимся у окна.",
+   "uk": "Ми сідаємо біля вікна."
+  },
+  {
+   "id": "es:14:35",
+   "target": "Luis se sienta aquí.",
+   "ru": "Луис садится здесь.",
+   "uk": "Луїс сідає тут."
+  },
+  {
+   "id": "es:14:36",
+   "target": "Mis hermanos se sientan cerca de la ventana.",
+   "ru": "Мои братья садятся у окна.",
+   "uk": "Мої брати сідають біля вікна."
+  },
+  {
+   "id": "es:14:37",
+   "target": "Os sentáis aquí.",
+   "ru": "Вы садитесь здесь.",
+   "uk": "Ви сідаєте тут."
+  },
+  {
+   "id": "es:14:38",
+   "target": "¿Te sientas cerca de la ventana?",
+   "ru": "Ты садишься у окна?",
+   "uk": "Ти сідаєш біля вікна?"
+  },
+  {
+   "id": "es:14:39",
+   "target": "No me siento aquí.",
+   "ru": "Я не сажусь здесь.",
+   "uk": "Я не сідаю тут."
+  },
+  {
+   "id": "es:14:40",
+   "target": "¿Mis hermanas se sientan cerca de la ventana?",
+   "ru": "Мои сёстры садятся у окна?",
+   "uk": "Мої сестри сідають біля вікна?"
+  },
+  {
+   "id": "es:14:41",
+   "target": "Me preparo para la clase.",
+   "ru": "Я готовлюсь к занятию.",
+   "uk": "Я готуюся до заняття."
+  },
+  {
+   "id": "es:14:42",
+   "target": "Te preparas para el viaje.",
+   "ru": "Ты готовишься к поездке.",
+   "uk": "Ти готуєшся до поїздки."
+  },
+  {
+   "id": "es:14:43",
+   "target": "Ana se prepara para la clase.",
+   "ru": "Ана готовится к занятию.",
+   "uk": "Ана готується до заняття."
+  },
+  {
+   "id": "es:14:44",
+   "target": "Nos preparamos para el viaje.",
+   "ru": "Мы готовимся к поездке.",
+   "uk": "Ми готуємося до поїздки."
+  },
+  {
+   "id": "es:14:45",
+   "target": "Luis se prepara para la clase.",
+   "ru": "Луис готовится к занятию.",
+   "uk": "Луїс готується до заняття."
+  },
+  {
+   "id": "es:14:46",
+   "target": "Mis hermanos se preparan para el viaje.",
+   "ru": "Мои братья готовятся к поездке.",
+   "uk": "Мої брати готуються до поїздки."
+  },
+  {
+   "id": "es:14:47",
+   "target": "Os preparáis para la clase.",
+   "ru": "Вы готовитесь к занятию.",
+   "uk": "Ви готуєтеся до заняття."
+  },
+  {
+   "id": "es:14:48",
+   "target": "¿Te preparas para el viaje?",
+   "ru": "Ты готовишься к поездке?",
+   "uk": "Ти готуєшся до поїздки?"
+  },
+  {
+   "id": "es:14:49",
+   "target": "No me preparo para la clase.",
+   "ru": "Я не готовлюсь к занятию.",
+   "uk": "Я не готуюся до заняття."
+  },
+  {
+   "id": "es:14:50",
+   "target": "Mi hermana se prepara en casa.",
+   "ru": "Моя сестра собирается дома.",
+   "uk": "Моя сестра збирається вдома."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "temprano",
+   "ru": "рано",
+   "uk": "рано"
+  },
+  {
+   "lemma": "siete",
+   "ru": "семь",
+   "uk": "сім"
+  },
+  {
+   "lemma": "ducharse",
+   "ru": "принимать душ",
+   "uk": "приймати душ"
+  },
+  {
+   "lemma": "lavarse",
+   "ru": "мыться; мыть себе",
+   "uk": "митися; мити собі"
+  },
+  {
+   "lemma": "levantarse",
+   "ru": "вставать",
+   "uk": "вставати"
+  },
+  {
+   "lemma": "cara",
+   "ru": "лицо",
+   "uk": "обличчя"
+  },
+  {
+   "lemma": "mano",
+   "ru": "кисть руки",
+   "uk": "кисть руки"
+  },
+  {
+   "lemma": "mañana",
+   "ru": "утро; завтра",
+   "uk": "ранок; завтра"
+  },
+  {
+   "lemma": "viaje",
+   "ru": "поездка",
+   "uk": "поїздка"
+  },
+  {
+   "lemma": "prepararse",
+   "ru": "готовиться",
+   "uk": "готуватися"
+  },
+  {
+   "lemma": "para",
+   "ru": "для; чтобы",
+   "uk": "для; щоб"
+  },
+  {
+   "lemma": "por",
+   "ru": "по, в течение; часть оборота",
+   "uk": "по, протягом; частина звороту"
+  },
+  {
+   "lemma": "me",
+   "ru": "меня, мне; себя",
+   "uk": "мене, мені; себе"
+  },
+  {
+   "lemma": "nos",
+   "ru": "нас, нам; себя (мы)",
+   "uk": "нас, нам; себе (ми)"
+  },
+  {
+   "lemma": "os",
+   "ru": "вас, вам; себя (vosotros)",
+   "uk": "вас, вам; себе (vosotros)"
+  },
+  {
+   "lemma": "se",
+   "ru": "себя; показатель местоименной формы",
+   "uk": "себе; показник займенникової форми"
+  },
+  {
+   "lemma": "te",
+   "ru": "тебя, тебе; себя",
+   "uk": "тебе, тобі; себе"
+  },
+  {
+   "lemma": "a",
+   "ru": "в (о времени); к; показатель адресата или направления; связка перед инфинитивом",
+   "uk": "о (про час); до; показник адресата або напрямку; зв’язка перед інфінітивом"
+  },
+  {
+   "lemma": "sentarse",
+   "ru": "садиться",
+   "uk": "сідати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  }
+ ],
+ "oldTopicTitle": "Я встаю: me, te, se, nos, os",
+ "oldTheoryRu": "Рассказываешь о своём утре: Me levanto. Теперь о чужом: Ana se levanta. Поменялись и маленькое слово, и окончание глагола. Согласуй маленькое местоимение и глагол с одним и тем же человеком. Словарное levantarse означает «вставать». В личной форме окончание -se не остаётся на конце: для yo получаем два слова, me levanto. Ты говоришь о себе: Me levanto. Говоришь другу о нём: Te levantas. Говоришь об Ане: Ana se levanta. Меняются и короткое слово перед глаголом, и его окончание. Имя Ana — это «она», если ты рассказываешь о ней, а не обращаешься к ней. Мы встаём — nos levantamos. Для нескольких друзей в Испании — os levantáis. Ellos и ustedes берут se, хотя смысл «они» или «вы» может различаться. В me lavo las manos принадлежность рук уже ясна из me. Нейтральный испанский образец использует артикль las, а не кальку с «мои руки». Me siento aquí означает «я сажусь здесь»: исходный глагол sentarse, а не отдельное действие над собой. В отрицании no стоит перед всей группой: no me siento. Сравни два задания: «Мои сёстры принимают душ дома?» / «Я мою руки». Местоимение и окончание глагола указывают на одного исполнителя. Смысловые опоры: «hermanas» — сёстры; «casa» — дом; en casa — дома. Сравни два задания: «Мы готовимся к поездке.» / «Моя сестра собирается дома». Местоимение и окончание глагола указывают на одного исполнителя. Согласуй маленькое местоимение и глагол с одним и тем же человеком."
+}

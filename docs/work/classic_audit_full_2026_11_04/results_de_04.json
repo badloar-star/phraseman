@@ -1,0 +1,14 @@
+[
+  {"id": "de:14:36", "type": "B1", "field": "tiles", "problem": "Соблазн 'reservieren' даёт верную фразу 'Ich möchte ein Zimmer reservieren.' (= забронировать номер)", "fix": {"position": 4, "replace_distractor": "reservieren", "with": "kochen"}},
+  {"id": "de:14:47", "type": "B2", "field": "uk", "problem": "В uk потеряно 'тобі' (безличное 'не можна'), не передаёт du; ru содержит 'тебе'", "fix": "Тут тобі не можна фотографувати."},
+  {"id": "de:15:48", "type": "B2", "field": "uk", "problem": "Неверное написание 'Будь-ласка' (через дефис)", "fix": "Будь ласка, не запізнюйся!"},
+  {"id": "de:16:14", "type": "B1", "field": "tiles", "problem": "Соблазн 'aufgeschrieben' даёт естественную верную фразу 'Anna hat ihren Namen aufgeschrieben.' (= написала/записала своё имя)", "fix": {"position": 4, "replace_distractor": "aufgeschrieben", "with": "getrunken"}},
+  {"id": "de:16:50", "type": "B3", "field": "alternatives", "problem": "ru/uk начинаются с 'к сожалению'; естественные порядки 'Leider haben wir…' и 'Wir haben leider die Nummer vergessen' не засчитываются", "fix": {"add": ["Wir haben leider die Nummer vergessen.", "Leider haben wir die Nummer vergessen."], "remove": []}},
+  {"id": "de:17:13", "type": "B2", "field": "ru", "problem": "'gefahren' = поехала/ездила, а не 'приехала' (это angekommen/gekommen)", "fix": "Анна поехала на автобусе."},
+  {"id": "de:17:13", "type": "B2", "field": "uk", "problem": "'gefahren' = поїхала/їздила, а не 'приїхала'", "fix": "Анна поїхала автобусом."},
+  {"id": "de:17:20", "type": "B1", "field": "tiles", "problem": "Соблазн 'losgefahren' даёт верную фразу 'Der Zug ist schon losgefahren.' (= поезд уже ушёл)", "fix": {"position": 4, "replace_distractor": "losgefahren", "with": "aufgestanden"}},
+  {"id": "de:17:22", "type": "B1", "field": "tiles", "problem": "Соблазн 'beim' даёт естественную фразу 'Anna ist beim Markt ausgestiegen.' (= вышла у рынка)", "fix": {"position": 2, "replace_distractor": "beim", "with": "vom"}},
+  {"id": "de:17:26", "type": "B1", "field": "tiles", "problem": "Соблазн 'abgefahren' даёт верную фразу 'Die Gäste sind gestern abgefahren.' (= гости вчера уехали)", "fix": {"position": 4, "replace_distractor": "abgefahren", "with": "aufgewacht"}},
+  {"id": "de:17:32", "type": "B2", "field": "ru", "problem": "'gefahren' = поехала/ездила, а не 'приехала'", "fix": "Анна ездила на поезде?"},
+  {"id": "de:17:32", "type": "B2", "field": "uk", "problem": "'gefahren' = поїхала/їздила, а не 'приїхала'", "fix": "Анна їздила поїздом?"}
+]

@@ -6,8 +6,8 @@ import {
   normalizeProgressAuthUid,
   readProgressAccountBinding,
   type ProgressAccountBinding,
-} from './learning_v2/progress_event_callable';
-import { canonicalJsonV1 } from '../../modules/learning-v2/policies/decision_registry';
+} from './account_binding';
+import { canonicalJsonV1 } from '../../modules/canonical_json';
 
 export const MISTAKE_PRACTICE_EVENT_PAGE_MAX = 50;
 const EVENT_MAX_CHARS = 32_000;

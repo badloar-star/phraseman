@@ -11,7 +11,7 @@ import React, { memo, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
 import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import { KitSegment } from '../../components/cards-grid/CardsKit';

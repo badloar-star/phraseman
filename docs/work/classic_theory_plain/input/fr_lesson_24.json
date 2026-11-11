@@ -1,0 +1,796 @@
+{
+ "lang": "fr",
+ "lesson": 24,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:24:01",
+   "target": "Je vais au marché et Paul y va aussi.",
+   "ru": "Я иду на рынок, и Поль тоже.",
+   "uk": "Я йду на ринок, і Пол теж йде."
+  },
+  {
+   "id": "fr:24:02",
+   "target": "Je vais à la gare et Léa y va aussi.",
+   "ru": "Я иду на вокзал, и Леа тоже.",
+   "uk": "Я йду на вокзал, і Леа теж йде."
+  },
+  {
+   "id": "fr:24:03",
+   "target": "Tu vas au parc et j’y vais aussi.",
+   "ru": "Ты идёшь в парк, и я тоже.",
+   "uk": "Ти йдеш до парку, і я теж."
+  },
+  {
+   "id": "fr:24:04",
+   "target": "Elle va au musée et nous y allons aussi.",
+   "ru": "Она идёт в музей, и мы тоже.",
+   "uk": "Вона йде до музею, і ми теж йдемо."
+  },
+  {
+   "id": "fr:24:05",
+   "target": "Nous allons au bureau et vous y allez aussi.",
+   "ru": "Мы идём в офис, и вы тоже туда идёте.",
+   "uk": "Ми йдемо в офіс, і ви теж туди йдете."
+  },
+  {
+   "id": "fr:24:06",
+   "target": "Ils vont au stade et elles y vont aussi.",
+   "ru": "Они идут на стадион, и девушки тоже туда идут.",
+   "uk": "Вони йдуть на стадіон, і дівчата теж йдуть туди."
+  },
+  {
+   "id": "fr:24:07",
+   "target": "J’y vais maintenant.",
+   "ru": "Я иду туда сейчас.",
+   "uk": "Я йду туди зараз."
+  },
+  {
+   "id": "fr:24:08",
+   "target": "Tu y vas demain.",
+   "ru": "Ты пойдёшь туда завтра.",
+   "uk": "Ти підеш туди завтра."
+  },
+  {
+   "id": "fr:24:09",
+   "target": "Il y va à pied.",
+   "ru": "Он идёт туда пешком.",
+   "uk": "Він йде туди пішки."
+  },
+  {
+   "id": "fr:24:10",
+   "target": "Nous y allons en bus.",
+   "ru": "Мы едем туда на автобусе.",
+   "uk": "Ми їдемо туди автобусом."
+  },
+  {
+   "id": "fr:24:11",
+   "target": "J’y habite depuis un an.",
+   "ru": "Я живу там уже год.",
+   "uk": "Я живу там рік."
+  },
+  {
+   "id": "fr:24:12",
+   "target": "Elle y habite avec sa sœur.",
+   "ru": "Она живёт там со своей сестрой.",
+   "uk": "Вона живе там зі своєю сестрою."
+  },
+  {
+   "id": "fr:24:13",
+   "target": "Ils y vivent toute l’année.",
+   "ru": "Они живут там круглый год.",
+   "uk": "Вони живуть там цілий рік."
+  },
+  {
+   "id": "fr:24:14",
+   "target": "Cet atelier est lumineux et nous y travaillons ensemble.",
+   "ru": "В этой мастерской светло, и мы работаем здесь вместе.",
+   "uk": "Ця майстерня світла, і ми працюємо тут разом."
+  },
+  {
+   "id": "fr:24:15",
+   "target": "Vous y restez longtemps ?",
+   "ru": "Вы надолго там останетесь?",
+   "uk": "Ви надовго там залишитеся?"
+  },
+  {
+   "id": "fr:24:16",
+   "target": "J’aime cette terrasse et on y mange bien.",
+   "ru": "Мне нравится эта терраса, и еда здесь хорошая.",
+   "uk": "Мені подобається ця тераса, і тут смачно їсти."
+  },
+  {
+   "id": "fr:24:17",
+   "target": "Les infirmières y passent après leur garde.",
+   "ru": "Медсёстры заходят туда после дежурства.",
+   "uk": "Медсестри заходять туди після чергування."
+  },
+  {
+   "id": "fr:24:18",
+   "target": "Tu y passes souvent.",
+   "ru": "Ты часто там бываешь.",
+   "uk": "Ти часто там буваєш."
+  },
+  {
+   "id": "fr:24:19",
+   "target": "Notre salon est frais et j’y dors parfois.",
+   "ru": "В нашей гостиной прохладно, и я иногда там сплю.",
+   "uk": "У нашій вітальні прохолодно, і я іноді там сплю."
+  },
+  {
+   "id": "fr:24:20",
+   "target": "Les enfants y jouent après l’école.",
+   "ru": "Дети играют там после школы.",
+   "uk": "Діти граються там після школи."
+  },
+  {
+   "id": "fr:24:21",
+   "target": "J’y suis déjà allé.",
+   "ru": "Я уже там был.",
+   "uk": "Я вже там був."
+  },
+  {
+   "id": "fr:24:22",
+   "target": "Elle y est déjà allée.",
+   "ru": "Она уже там была.",
+   "uk": "Вона вже там була."
+  },
+  {
+   "id": "fr:24:23",
+   "target": "Nous y sommes restés une nuit.",
+   "ru": "Мы переночевали там.",
+   "uk": "Ми залишилися там на одну ніч."
+  },
+  {
+   "id": "fr:24:24",
+   "target": "Ils y sont arrivés à midi.",
+   "ru": "Они приехали туда в полдень.",
+   "uk": "Вони прибули туди опівдні."
+  },
+  {
+   "id": "fr:24:25",
+   "target": "Léa y a acheté du pain.",
+   "ru": "Леа купила там хлеб.",
+   "uk": "Леа купила там хліб."
+  },
+  {
+   "id": "fr:24:26",
+   "target": "Tu y as trouvé une place ?",
+   "ru": "Ты нашёл там место?",
+   "uk": "Ти знайшов там місце?"
+  },
+  {
+   "id": "fr:24:27",
+   "target": "Cette exposition est superbe et j’y retourne demain.",
+   "ru": "Эта выставка великолепна, и завтра я туда вернусь.",
+   "uk": "Ця виставка чудова, і завтра я туди повернуся."
+  },
+  {
+   "id": "fr:24:28",
+   "target": "Elle y a laissé son sac.",
+   "ru": "Она оставила там свою сумку.",
+   "uk": "Вона залишила там свою сумку."
+  },
+  {
+   "id": "fr:24:29",
+   "target": "Nous y avons habité avant de connaître ce quartier.",
+   "ru": "Мы жили там ещё до того, как узнали этот район.",
+   "uk": "Ми жили там ще до того, як познайомилися з цим районом."
+  },
+  {
+   "id": "fr:24:30",
+   "target": "Cette scène est grande : vous y avez déjà joué ?",
+   "ru": "Эта сцена большая: вы когда-нибудь выступали на ней?",
+   "uk": "Ця сцена велика: ви коли-небудь виступали на ній?"
+  },
+  {
+   "id": "fr:24:31",
+   "target": "Je n’y vais pas le soir.",
+   "ru": "Я не хожу туда по вечерам.",
+   "uk": "Я не ходжу туди ввечері."
+  },
+  {
+   "id": "fr:24:32",
+   "target": "Nous n’y habitons plus.",
+   "ru": "Мы там больше не живём.",
+   "uk": "Ми там більше не живемо."
+  },
+  {
+   "id": "fr:24:33",
+   "target": "Elle n’y travaille pas le lundi.",
+   "ru": "Она не работает там по понедельникам.",
+   "uk": "Вона не працює там по понеділках."
+  },
+  {
+   "id": "fr:24:34",
+   "target": "Ils n’y sont jamais allés.",
+   "ru": "Они там никогда не были.",
+   "uk": "Вони там ніколи не були."
+  },
+  {
+   "id": "fr:24:35",
+   "target": "Je ne peux pas y rester.",
+   "ru": "Я не могу там оставаться.",
+   "uk": "Я не можу там залишитися."
+  },
+  {
+   "id": "fr:24:36",
+   "target": "Tu veux y retourner ?",
+   "ru": "Ты хочешь туда вернуться?",
+   "uk": "Ти хочеш туди повернутись?"
+  },
+  {
+   "id": "fr:24:37",
+   "target": "Nous allons y déjeuner.",
+   "ru": "Мы идём туда на обед.",
+   "uk": "Ми йдемо туди на обід."
+  },
+  {
+   "id": "fr:24:38",
+   "target": "Il doit y passer demain.",
+   "ru": "Он должен зайти туда завтра.",
+   "uk": "Він має зайти туди завтра."
+  },
+  {
+   "id": "fr:24:39",
+   "target": "Vous pouvez y aller à vélo.",
+   "ru": "Вы можете доехать туда на велосипеде.",
+   "uk": "Ви можете поїхати туди на велосипеді."
+  },
+  {
+   "id": "fr:24:40",
+   "target": "Je préfère y aller seul.",
+   "ru": "Я предпочитаю пойти туда один.",
+   "uk": "Я вважаю за краще піти туди один."
+  },
+  {
+   "id": "fr:24:41",
+   "target": "Le musée est gratuit et j’y retourne souvent.",
+   "ru": "Музей бесплатный, и я часто туда возвращаюсь.",
+   "uk": "Музей безкоштовний, і я часто туди повертаюся."
+  },
+  {
+   "id": "fr:24:42",
+   "target": "Le marché est loin, mais nous y allons à pied.",
+   "ru": "Рынок далеко, но мы ходим туда пешком.",
+   "uk": "Ринок далеко, але ми ходимо туди пішки."
+  },
+  {
+   "id": "fr:24:43",
+   "target": "La cour est calme et les enfants y lisent.",
+   "ru": "Во дворе тихо, и дети читают там.",
+   "uk": "У дворі тихо, і діти там читають."
+  },
+  {
+   "id": "fr:24:44",
+   "target": "J’aime ce café et j’y retrouve mes amis.",
+   "ru": "Мне нравится это кафе, и я встречаюсь там с друзьями.",
+   "uk": "Мені подобається це кафе, і я зустрічаюся там з друзями."
+  },
+  {
+   "id": "fr:24:45",
+   "target": "Ce parc est ouvert et on peut y entrer.",
+   "ru": "Этот парк открыт, и в него можно войти.",
+   "uk": "Цей парк відкритий і до нього можна увійти."
+  },
+  {
+   "id": "fr:24:46",
+   "target": "Je connais la gare et je peux vous y retrouver.",
+   "ru": "Я знаю этот вокзал и могу вас там встретить.",
+   "uk": "Я знаю цей вокзал і можу вас там зустріти."
+  },
+  {
+   "id": "fr:24:47",
+   "target": "Mon bureau est petit, mais j’y travaille bien.",
+   "ru": "Мой офис небольшой, но мне там хорошо работается.",
+   "uk": "Мій офіс маленький, але мені там добре працюється."
+  },
+  {
+   "id": "fr:24:48",
+   "target": "Le garage ferme tôt et je dois y aller maintenant.",
+   "ru": "Мастерская закрывается рано, и мне надо идти туда сейчас.",
+   "uk": "Майстерня закривається рано, і мені треба йти туди зараз."
+  },
+  {
+   "id": "fr:24:49",
+   "target": "Tu connais cette ville et tu y as de la famille.",
+   "ru": "Ты знаешь этот город, и у тебя там родственники.",
+   "uk": "Ти знаєш це місто, і у тебе там родичі."
+  },
+  {
+   "id": "fr:24:50",
+   "target": "L’hôtel est complet et nous ne pouvons pas y dormir.",
+   "ru": "В гостинице нет мест, и мы не можем там переночевать.",
+   "uk": "У готелі немає місць, і ми не можемо там переночувати."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "l’exposition (f.)",
+   "ru": "выставка",
+   "uk": "виставка"
+  },
+  {
+   "lemma": "la scène",
+   "ru": "сцена",
+   "uk": "сцена"
+  },
+  {
+   "lemma": "la terrasse",
+   "ru": "терраса",
+   "uk": "тераса"
+  },
+  {
+   "lemma": "l’atelier (m.)",
+   "ru": "мастерская",
+   "uk": "майстерня"
+  },
+  {
+   "lemma": "le salon",
+   "ru": "гостиная",
+   "uk": "вітальня"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  }
+ ],
+ "oldTopicTitle": "Не повторять место: короткое `y`",
+ "oldTheoryRu": "`Y` работает, когда собеседники уже знают место. Оно может соответствовать «туда» или «там». Смотри, описывает ли глагол движение или пребывание. Перед согласной у обычного местоимения есть полная форма, а перед `y` получаются `j’y`, `n’y`. Пиши апостроф слитно, но глагол после него — отдельно. `Y` употребляется не только с `aller`. Можно там жить, работать, спать или оставить велосипед. Сравни целое предложение с названием места и предложение, где вместо него стоит `y`. В сложном прошедшем `y` стоит перед помощником: `j’y ai …`, `elle y est …`. Какой именно помощник нужен, выбираешь по глаголу, не по наличию `y`. С отрицанием собери `ne` / `n’`, затем `y`, затем личный глагол и `pas` или `plus`: `je n’y vais pas`. Если есть инфинитив, `y` стоит перед ним: `je ne peux pas y rester`. Не прибавляй ещё одно название того же места без особой причины. Перед инфинитивом сохраняется `y`: в группе «хочу туда вернуться» это `veux y retourner`. Плитки в середине короткие, но у каждой своё место. В предложениях с двумя частями найди, какое место было названо в первой. Если это музей, то во второй `y` именно про музей, не про людей в нём."
+}

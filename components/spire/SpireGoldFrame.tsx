@@ -12,7 +12,7 @@ import React, { memo, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../practice/PracticeGlass';
 import { useSpirePalette } from './useSpirePalette';
 
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);

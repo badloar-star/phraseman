@@ -1,0 +1,16 @@
+[
+  {"id": "es:14:37", "type": "B3", "field": "alternatives", "problem": "«Вы садитесь» допускает латиноамериканское ustedes; в остальных vosotros-записях курса ustedes-вариант принят, здесь нет", "fix": {"add": ["Se sientan aquí."], "remove": []}},
+  {"id": "es:14:47", "type": "B3", "field": "alternatives", "problem": "«Вы готовитесь» допускает ustedes (Латинская Америка), вариант не принят", "fix": {"add": ["Se preparan para la clase."], "remove": []}},
+  {"id": "es:15:10", "type": "B1", "field": "tiles", "problem": "соблазн «con» даёт «Podemos pagar con efectivo» — естественно в Латинской Америке, засчитается как ошибка", "fix": {"position": 2, "replace_distractor": "con", "with": "sobre"}},
+  {"id": "es:15:14", "type": "B1", "field": "tiles", "problem": "подсказка «Можно провезти...» безлична: «¿Podemos llevar la bicicleta en el tren?» тоже верно", "fix": {"position": 0, "replace_distractor": "Podemos", "with": "Comprar"}},
+  {"id": "es:15:33", "type": "B2", "field": "ru", "problem": "«Здесь нельзя заплатить» безлично, потеряно «мы» (target No podemos); подходят puedo/puede/pueden из соблазнов", "fix": "Мы не можем заплатить здесь наличными."},
+  {"id": "es:15:33", "type": "B2", "field": "uk", "problem": "«Тут не можна заплатити» безлично, потеряно «ми» (target No podemos)", "fix": "Ми не можемо заплатити тут готівкою."},
+  {"id": "es:15:34", "type": "B1", "field": "tiles", "problem": "соблазн «con» даёт «No podemos pagar con efectivo aquí» (Латинская Америка)", "fix": {"position": 3, "replace_distractor": "con", "with": "sobre"}},
+  {"id": "es:15:35", "type": "B1", "field": "tiles", "problem": "соблазн «con» даёт «Luis no puede pagar con efectivo» (Латинская Америка)", "fix": {"position": 4, "replace_distractor": "con", "with": "sobre"}},
+  {"id": "es:15:42", "type": "B1", "field": "tiles", "problem": "подсказка «Можно подождать...» безлична: «¿Podemos esperar en recepción?» тоже верно", "fix": {"position": 0, "replace_distractor": "Podemos", "with": "Comprar"}},
+  {"id": "es:16:21", "type": "B1", "field": "tiles", "problem": "соблазн «con» даёт «Vamos a pagar con efectivo mañana» (Латинская Америка)", "fix": {"position": 3, "replace_distractor": "con", "with": "sobre"}},
+  {"id": "es:17:29", "type": "B3", "field": "alternatives", "problem": "«Вам нравится» допускает ustedes (Латинская Америка), вариант не принят", "fix": {"add": ["¿Les gusta esta canción?"], "remove": []}},
+  {"id": "es:17:32", "type": "B1", "field": "tiles", "problem": "соблазн «en» даёт «Me gusta pasear en la playa» — естественная верная фраза", "fix": {"position": 3, "replace_distractor": "en", "with": "sin"}},
+  {"id": "es:17:38", "type": "B3", "field": "alternatives", "problem": "та же подсказка «Вам нравится здесь учиться?», что и у es:17:40 (usted); ustedes/usted не приняты", "fix": {"add": ["¿Les gusta estudiar aquí?", "¿Le gusta estudiar aquí?"], "remove": []}},
+  {"id": "es:17:40", "type": "B3", "field": "alternatives", "problem": "подсказка «Вам нравится здесь учиться?» совпадает с es:17:38 (vosotros); os/ustedes не приняты", "fix": {"add": ["¿Os gusta estudiar aquí?", "¿Les gusta estudiar aquí?"], "remove": []}}
+]

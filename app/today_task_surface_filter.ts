@@ -28,8 +28,9 @@ export function isTodayTaskKindAvailableForTarget(kind: TodayTaskKind, target: L
 
 const loggedDrops = new Set<string>();
 
-export function filterTodayTasksForTarget(tasks: readonly TodayTask[], target: LearningLanguageTarget): TodayTask[] {
+export function filterTodayTasksForTarget(tasks: readonly TodayTask[], target: LearningLanguageTarget, videoEnabled = true): TodayTask[] {
   return tasks.filter((task) => {
+    if (!videoEnabled && task.kind === 'video') return false;
     const available = isTodayTaskKindAvailableForTarget(task.kind, target);
     if (!available) {
       // Лог раз на пару «язык+тип»: функция зовётся в рендере Главной.

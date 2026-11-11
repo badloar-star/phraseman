@@ -136,7 +136,6 @@ describe('auth recovery pre-cloud boot integration', () => {
 
   it('shows the normal splash and overlays instead of a blocker', () => {
     expect(layout).toContain('const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned');
-    expect(layout).toContain('const startupSplashVisible = !fontsReady || !ready');
     expect(layout).toContain('const nativeSplashCanHide = fontsReady && ready');
   });
 

@@ -65,6 +65,8 @@ export interface BouncyScrollViewProps extends ScrollViewProps {
   dimension?: number;
   /** Optional UI-thread scroll consumer for screen chrome. */
   onScrollWorklet?: (y: number) => void;
+  /** Shares the Android bounce translation with a backdrop that draws above the scroll viewport. */
+  androidStretch?: SharedValue<number>;
 }
 
 type BouncyScroll = {
@@ -156,9 +158,14 @@ function applyEdgePull(
 export function useBouncy({
   dimension,
   onScrollWorklet,
+  androidStretch,
+  androidGestureDetectorEnabled = true,
 }: {
   dimension?: number;
   onScrollWorklet?: (y: number) => void;
+  androidStretch?: SharedValue<number>;
+  /** Android only: preserves the existing detector by default; callers may opt out for a native list conflict. */
+  androidGestureDetectorEnabled?: boolean;
   /**
    * Доп. worklet, вызывается из onAnimatedScroll на UI-потоке с текущим contentOffset.y.
    * Для экранов, которым помимо резинки нужен свой скролл-эффект (fade шапки и т.п.)
@@ -168,7 +175,9 @@ export function useBouncy({
   const { height: screenH } = useWindowDimensions();
   const dim = dimension ?? screenH;
   const isAndroid = Platform.OS === 'android';
-  const stretch = useSharedValue(0);
+  const attachAndroidGestureDetector = isAndroid && androidGestureDetectorEnabled;
+  const internalStretch = useSharedValue(0);
+  const stretch = isAndroid && androidStretch ? androidStretch : internalStretch;
   const scrollY = useSharedValue(0);
   const layoutHeight = useSharedValue(0);
   const contentHeight = useSharedValue(0);
@@ -263,6 +272,10 @@ export function useBouncy({
       if (!isAndroid) {
         return <Animated.View style={[{ flex: 1 }, style]}>{scrollChild}</Animated.View>;
       }
+
+      if (!attachAndroidGestureDetector) {
+        return <Animated.View style={[{ flex: 1 }, style]}>{scrollChild}</Animated.View>;
+      }
       // зачем (Сверка 22.10, Console Error «Invalid prop `collapsable` supplied to `React.Fragment`» при открытии списка «Обучение»): GestureDetector клонирует своего ребёнка с `collapsable={false}`;
       // если ребёнок — Фрагмент (обёртка <>…</>), React ругается. Фрагмент кладём в обычный View, который проп принимает; вид и раскладка те же (flex: 1)
       const detectorChild = isFragment ? <View style={{ flex: 1 }}>{scrollChild}</View> : scrollChild;
@@ -272,7 +285,7 @@ export function useBouncy({
         </Animated.View>
       );
     },
-    [isAndroid, scrollGesture],
+    [attachAndroidGestureDetector, isAndroid, scrollGesture],
   );
 
   return { stretch, scrollY, pan, onBouncyScroll, onAnimatedScroll, GestureWrap };
@@ -286,11 +299,15 @@ export function useBouncyStyle(stretch: SharedValue<number>) {
 }
 
 const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, onScrollWorklet, dimension, style, decelerationRate = 'fast', ...rest },
+  { children, onScroll, onScrollWorklet, androidStretch, dimension, style, decelerationRate = 'fast', ...rest },
   ref,
 ) {
-  const { stretch, onBouncyScroll, onAnimatedScroll, GestureWrap } = useBouncy({ dimension, onScrollWorklet });
+  const { stretch, onBouncyScroll, onAnimatedScroll, GestureWrap } = useBouncy({ dimension, onScrollWorklet, androidStretch });
   const animatedStyle = useBouncyStyle(stretch);
+  const androidBackdropStyle = useAnimatedStyle(() => ({
+    // The translated viewport must let the backdrop paint into the gap above it.
+    overflow: stretch.value > 0 ? 'visible' : 'scroll',
+  }));
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -310,7 +327,7 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
         bounces
         alwaysBounceVertical
         overScrollMode="never"
-        style={style}
+        style={androidStretch ? [style, androidBackdropStyle] : style}
         {...rest}
         decelerationRate={decelerationRate}
       >

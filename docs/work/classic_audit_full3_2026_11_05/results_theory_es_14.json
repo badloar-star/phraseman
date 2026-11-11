@@ -1,0 +1,37 @@
+[
+ {
+  "id": "lesson-29/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "Неверное время: «would have entered / would have cooked» (условное прошедшее) вместо простого condicional; «- ía», «\" oficina \"»",
+  "fix": "Compare two tasks: \"You would go into the office.\" / \"I would cook at home tonight.\" The ending -ía and its personal variants carry the meaning of \"would.\" Key word: \"oficina\" — office."
+ },
+ {
+  "id": "lesson-29/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "Разорванный дефис «- ía»",
+  "fix": "State what someone would do under the right circumstances, without turning a possibility into a promise. The ending -ía and its personal variants convey the meaning of \"would.\""
+ },
+ {
+  "id": "lesson-29/chapters[0..6]",
+  "type": "T2",
+  "field": "en.chapters[0..6].note",
+  "problem": "Во всех заметках разорванный дефис «The ending - ía»",
+  "fix": "Key form: <форма главы>. The ending -ía and its personal variants convey the meaning \"would\"."
+ },
+ {
+  "id": "lesson-29/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].body",
+  "problem": "Разорванные дефисы «viv -», «vivir -», «- ía»",
+  "fix": "Vivía — \"used to live,\" the stem is viv-. Viviría — \"would live,\" the whole stem vivir- is visible. Look not only at -ía, but also at the r before it."
+ },
+ {
+  "id": "lesson-30/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "«The face determines the wish-fulfiller» — «лицо» переведено как face (нужно grammatical person); «normal - ar», «- er /- ir»",
+  "fix": "Regular -ar verbs take e, es, e, emos, éis, en: hablar → hable. -er/-ir verbs take a, as, a, amos, áis, an: abrir → abra. The person of the verb is set by whoever is to do the wished-for action."
+ }
+]

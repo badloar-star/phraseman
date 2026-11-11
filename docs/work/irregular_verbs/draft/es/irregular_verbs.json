@@ -37,13 +37,19 @@
         "lemma": "estar",
         "meaning": {
           "ru": "быть (сейчас, где)",
-          "uk": "бути (зараз, де)"
+          "uk": "бути (зараз, де)",
+          "en": "to be (state, place)"
         },
         "forms": {
           "inf": "estar",
           "presente": "estoy / está",
           "preterito": "estuve / estuvo",
           "participio": "estado"
+        },
+        "train": {
+          "base": "estar",
+          "past": "estuve",
+          "pp": "estado"
         },
         "note": {
           "ru": "Место и состояние: где ты, как ты.",
@@ -61,13 +67,19 @@
         "lemma": "ser",
         "meaning": {
           "ru": "быть (постоянно)",
-          "uk": "бути (постійно)"
+          "uk": "бути (постійно)",
+          "en": "to be (permanent)"
         },
         "forms": {
           "inf": "ser",
           "presente": "soy / es",
           "preterito": "fui / fue",
           "participio": "sido"
+        },
+        "train": {
+          "base": "ser",
+          "past": "fui",
+          "pp": "sido"
         },
         "note": {
           "ru": "Постоянные свойства: кто ты, какой предмет.",
@@ -85,13 +97,19 @@
         "lemma": "costar",
         "meaning": {
           "ru": "стоить",
-          "uk": "коштувати"
+          "uk": "коштувати",
+          "en": "to cost"
         },
         "forms": {
           "inf": "costar",
           "presente": "cuesto / cuesta",
           "preterito": "costé / costó",
           "participio": "costado"
+        },
+        "train": {
+          "base": "costar",
+          "past": "costé",
+          "pp": "costado"
         },
         "note": {
           "ru": "o → ue: cuesta, cuestan.",
@@ -107,13 +125,19 @@
         "lemma": "haber",
         "meaning": {
           "ru": "иметься; вспомогательный",
-          "uk": "бути; допоміжне"
+          "uk": "бути; допоміжне",
+          "en": "to have (auxiliary); there is"
         },
         "forms": {
           "inf": "haber",
           "presente": "he / ha (hay)",
           "preterito": "hube / hubo",
           "participio": "habido"
+        },
+        "train": {
+          "base": "haber",
+          "past": "hube",
+          "pp": "habido"
         },
         "note": {
           "ru": "Помогает строить прошедшее: he comido. «Hay» — «есть, имеется».",
@@ -130,13 +154,19 @@
         "lemma": "leer",
         "meaning": {
           "ru": "читать",
-          "uk": "читати"
+          "uk": "читати",
+          "en": "to read"
         },
         "forms": {
           "inf": "leer",
           "presente": "leo / lee",
           "preterito": "leí / leyó",
           "participio": "leído"
+        },
+        "train": {
+          "base": "leer",
+          "past": "leí",
+          "pp": "leído"
         },
         "note": {
           "ru": "В прошедшем «i» между гласными становится «y»: leyó, leyendo.",
@@ -152,13 +182,19 @@
         "lemma": "abrir",
         "meaning": {
           "ru": "открывать",
-          "uk": "відчиняти"
+          "uk": "відчиняти",
+          "en": "to open"
         },
         "forms": {
           "inf": "abrir",
           "presente": "abro / abre",
           "preterito": "abrí / abrió",
           "participio": "abierto"
+        },
+        "train": {
+          "base": "abrir",
+          "past": "abrí",
+          "pp": "abierto"
         },
         "note": {
           "ru": "Причастие неправильное: abierto.",
@@ -174,13 +210,19 @@
         "lemma": "escribir",
         "meaning": {
           "ru": "писать",
-          "uk": "писати"
+          "uk": "писати",
+          "en": "to write"
         },
         "forms": {
           "inf": "escribir",
           "presente": "escribo / escribe",
           "preterito": "escribí / escribió",
           "participio": "escrito"
+        },
+        "train": {
+          "base": "escribir",
+          "past": "escribí",
+          "pp": "escrito"
         },
         "note": {
           "ru": "Причастие неправильное: escrito.",
@@ -198,13 +240,19 @@
         "lemma": "tener",
         "meaning": {
           "ru": "иметь",
-          "uk": "мати"
+          "uk": "мати",
+          "en": "to have"
         },
         "forms": {
           "inf": "tener",
           "presente": "tengo / tiene",
           "preterito": "tuve / tuvo",
           "participio": "tenido"
+        },
+        "train": {
+          "base": "tener",
+          "past": "tuve",
+          "pp": "tenido"
         },
         "note": {
           "ru": "В первом лице: tengo; в 3-м лице e → ie: tiene.",
@@ -222,13 +270,19 @@
         "lemma": "poder",
         "meaning": {
           "ru": "мочь",
-          "uk": "могти"
+          "uk": "могти",
+          "en": "can, to be able"
         },
         "forms": {
           "inf": "poder",
           "presente": "puedo / puede",
           "preterito": "pude / pudo",
           "participio": "podido"
+        },
+        "train": {
+          "base": "poder",
+          "past": "pude",
+          "pp": "podido"
         },
         "note": {
           "ru": "o → ue под ударением: puedo, puedes, puede.",
@@ -244,13 +298,19 @@
         "lemma": "volver",
         "meaning": {
           "ru": "возвращаться",
-          "uk": "повертатися"
+          "uk": "повертатися",
+          "en": "to return"
         },
         "forms": {
           "inf": "volver",
           "presente": "vuelvo / vuelve",
           "preterito": "volví / volvió",
           "participio": "vuelto"
+        },
+        "train": {
+          "base": "volver",
+          "past": "volví",
+          "pp": "vuelto"
         },
         "note": {
           "ru": "o → ue под ударением: vuelvo; причастие vuelto.",
@@ -267,13 +327,19 @@
         "lemma": "ir",
         "meaning": {
           "ru": "идти, ехать",
-          "uk": "йти, їхати"
+          "uk": "йти, їхати",
+          "en": "to go"
         },
         "forms": {
           "inf": "ir",
           "presente": "voy / va",
           "preterito": "fui / fue",
           "participio": "ido"
+        },
+        "train": {
+          "base": "ir",
+          "past": "fui",
+          "pp": "ido"
         },
         "note": {
           "ru": "Три разные основы: v-, fu-, i-.",
@@ -291,13 +357,19 @@
         "lemma": "hacer",
         "meaning": {
           "ru": "делать",
-          "uk": "робити"
+          "uk": "робити",
+          "en": "to do, to make"
         },
         "forms": {
           "inf": "hacer",
           "presente": "hago / hace",
           "preterito": "hice / hizo",
           "participio": "hecho"
+        },
+        "train": {
+          "base": "hacer",
+          "past": "hice",
+          "pp": "hecho"
         },
         "note": {
           "ru": "В первом лице: hago; причастие hecho.",
@@ -313,13 +385,19 @@
         "lemma": "venir",
         "meaning": {
           "ru": "приходить",
-          "uk": "приходити"
+          "uk": "приходити",
+          "en": "to come"
         },
         "forms": {
           "inf": "venir",
           "presente": "vengo / viene",
           "preterito": "vine / vino",
           "participio": "venido"
+        },
+        "train": {
+          "base": "venir",
+          "past": "vine",
+          "pp": "venido"
         },
         "note": {
           "ru": "В первом лице: vengo; e → ie: viene.",
@@ -337,13 +415,19 @@
         "lemma": "empezar",
         "meaning": {
           "ru": "начинать",
-          "uk": "починати"
+          "uk": "починати",
+          "en": "to begin"
         },
         "forms": {
           "inf": "empezar",
           "presente": "empiezo / empieza",
           "preterito": "empecé / empezó",
           "participio": "empezado"
+        },
+        "train": {
+          "base": "empezar",
+          "past": "empecé",
+          "pp": "empezado"
         },
         "note": {
           "ru": "e → ie: empiezo; в первом лице прошедшего z → c: empecé.",
@@ -358,13 +442,19 @@
         "lemma": "llover",
         "meaning": {
           "ru": "идти (о дожде)",
-          "uk": "іти (про дощ)"
+          "uk": "іти (про дощ)",
+          "en": "to rain"
         },
         "forms": {
           "inf": "llover",
           "presente": "llueve",
           "preterito": "llovió",
           "participio": "llovido"
+        },
+        "train": {
+          "base": "llover",
+          "past": "llovió",
+          "pp": "llovido"
         },
         "note": {
           "ru": "Только в 3-м лице: llueve — «идёт дождь».",
@@ -380,13 +470,19 @@
         "lemma": "cerrar",
         "meaning": {
           "ru": "закрывать",
-          "uk": "зачиняти"
+          "uk": "зачиняти",
+          "en": "to close"
         },
         "forms": {
           "inf": "cerrar",
           "presente": "cierro / cierra",
           "preterito": "cerré / cerró",
           "participio": "cerrado"
+        },
+        "train": {
+          "base": "cerrar",
+          "past": "cerré",
+          "pp": "cerrado"
         },
         "note": {
           "ru": "e → ie под ударением: cierro, cierras, cierra.",
@@ -403,13 +499,19 @@
         "lemma": "dar",
         "meaning": {
           "ru": "давать",
-          "uk": "давати"
+          "uk": "давати",
+          "en": "to give"
         },
         "forms": {
           "inf": "dar",
           "presente": "doy / da",
           "preterito": "di / dio",
           "participio": "dado"
+        },
+        "train": {
+          "base": "dar",
+          "past": "di",
+          "pp": "dado"
         },
         "note": {
           "ru": "В первом лице: doy; прошедшее без ударения: di, dio.",
@@ -424,13 +526,19 @@
         "lemma": "pedir",
         "meaning": {
           "ru": "просить, заказывать",
-          "uk": "просити, замовляти"
+          "uk": "просити, замовляти",
+          "en": "to ask for, to order"
         },
         "forms": {
           "inf": "pedir",
           "presente": "pido / pide",
           "preterito": "pedí / pidió",
           "participio": "pedido"
+        },
+        "train": {
+          "base": "pedir",
+          "past": "pedí",
+          "pp": "pedido"
         },
         "note": {
           "ru": "e → i: pido, pides, pide.",
@@ -445,13 +553,19 @@
         "lemma": "mostrar",
         "meaning": {
           "ru": "показывать",
-          "uk": "показувати"
+          "uk": "показувати",
+          "en": "to show"
         },
         "forms": {
           "inf": "mostrar",
           "presente": "muestro / muestra",
           "preterito": "mostré / mostró",
           "participio": "mostrado"
+        },
+        "train": {
+          "base": "mostrar",
+          "past": "mostré",
+          "pp": "mostrado"
         },
         "note": {
           "ru": "o → ue под ударением: muestro, muestras.",
@@ -467,13 +581,19 @@
         "lemma": "ver",
         "meaning": {
           "ru": "видеть",
-          "uk": "бачити"
+          "uk": "бачити",
+          "en": "to see"
         },
         "forms": {
           "inf": "ver",
           "presente": "veo / ve",
           "preterito": "vi / vio",
           "participio": "visto"
+        },
+        "train": {
+          "base": "ver",
+          "past": "vi",
+          "pp": "visto"
         },
         "note": {
           "ru": "В первом лице: veo; причастие visto.",
@@ -487,13 +607,19 @@
         "lemma": "salir",
         "meaning": {
           "ru": "выходить, уходить",
-          "uk": "виходити"
+          "uk": "виходити",
+          "en": "to go out, to leave"
         },
         "forms": {
           "inf": "salir",
           "presente": "salgo / sale",
           "preterito": "salí / salió",
           "participio": "salido"
+        },
+        "train": {
+          "base": "salir",
+          "past": "salí",
+          "pp": "salido"
         },
         "note": {
           "ru": "В первом лице: salgo; в будущем: saldré.",
@@ -508,13 +634,19 @@
         "lemma": "encontrar",
         "meaning": {
           "ru": "находить",
-          "uk": "знаходити"
+          "uk": "знаходити",
+          "en": "to find"
         },
         "forms": {
           "inf": "encontrar",
           "presente": "encuentro / encuentra",
           "preterito": "encontré / encontró",
           "participio": "encontrado"
+        },
+        "train": {
+          "base": "encontrar",
+          "past": "encontré",
+          "pp": "encontrado"
         },
         "note": {
           "ru": "o → ue под ударением: encuentro, encuentras.",
@@ -531,13 +663,19 @@
         "lemma": "poner",
         "meaning": {
           "ru": "класть, ставить",
-          "uk": "класти, ставити"
+          "uk": "класти, ставити",
+          "en": "to put"
         },
         "forms": {
           "inf": "poner",
           "presente": "pongo / pone",
           "preterito": "puse / puso",
           "participio": "puesto"
+        },
+        "train": {
+          "base": "poner",
+          "past": "puse",
+          "pp": "puesto"
         },
         "note": {
           "ru": "В первом лице: pongo; причастие puesto.",
@@ -553,13 +691,19 @@
         "lemma": "querer",
         "meaning": {
           "ru": "хотеть, любить",
-          "uk": "хотіти, любити"
+          "uk": "хотіти, любити",
+          "en": "to want, to love"
         },
         "forms": {
           "inf": "querer",
           "presente": "quiero / quiere",
           "preterito": "quise / quiso",
           "participio": "querido"
+        },
+        "train": {
+          "base": "querer",
+          "past": "quise",
+          "pp": "querido"
         },
         "note": {
           "ru": "e → ie под ударением: quiero, quieres, quiere.",
@@ -577,13 +721,19 @@
         "lemma": "saber",
         "meaning": {
           "ru": "знать, уметь",
-          "uk": "знати, вміти"
+          "uk": "знати, вміти",
+          "en": "to know (how)"
         },
         "forms": {
           "inf": "saber",
           "presente": "sé / sabe",
           "preterito": "supe / supo",
           "participio": "sabido"
+        },
+        "train": {
+          "base": "saber",
+          "past": "supe",
+          "pp": "sabido"
         },
         "note": {
           "ru": "В первом лице: sé (с ударением).",

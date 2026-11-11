@@ -1,0 +1,13 @@
+[
+  {"id": "de:01:44", "type": "B1", "field": "tiles", "problem": "Соблазн «ruhig» даёт верную фразу «Die Kinder sind ruhig.» = «Дети ведут себя тихо»", "fix": {"position": 3, "replace_distractor": "ruhig", "with": "wach"}},
+  {"id": "de:01:48", "type": "B2", "field": "uk", "problem": "Ложный друг: укр. «ванна» — это ванна (ёмкость), а не комната; нужно «ванна кімната»", "fix": "Ванна кімната вільна."},
+  {"id": "de:03:06", "type": "B2", "field": "uk", "problem": "«навчаю» = «я обучаю (кого-то)», а не «учу сам»", "fix": "Я вчу німецьку."},
+  {"id": "de:03:08", "type": "B2", "field": "ru", "problem": "В target Tom, а в подсказке «Анна»", "fix": "Том учит немецкий."},
+  {"id": "de:03:08", "type": "B2", "field": "uk", "problem": "В target Tom, а в подсказке «Анна»", "fix": "Том вчить німецьку."},
+  {"id": "de:03:39", "type": "B2", "field": "uk", "problem": "«чекаємо на кафе» = «ждём кафе», а не «ждём в кафе»", "fix": "Ми чекаємо в кафе."},
+  {"id": "de:04:18", "type": "B3", "field": "alternatives", "problem": "Порядок с подлежащим в начале одинаково естественен, а у соседних фраз урока он разрешён", "fix": {"add": ["Die Kinder spielen am Samstag draußen."], "remove": []}},
+  {"id": "de:04:21", "type": "B3", "field": "alternatives", "problem": "Нет прямого порядка, подсказка его не исключает", "fix": {"add": ["Der Kurs beginnt um acht."], "remove": []}},
+  {"id": "de:04:23", "type": "B3", "field": "alternatives", "problem": "Нет прямого порядка, подсказка его не исключает", "fix": {"add": ["Der Laden öffnet um zehn."], "remove": []}},
+  {"id": "de:04:24", "type": "B3", "field": "alternatives", "problem": "Нет прямого порядка, подсказка его не исключает", "fix": {"add": ["Die Küche schließt um sechs."], "remove": []}},
+  {"id": "de:04:25", "type": "B3", "field": "alternatives", "problem": "Нет прямого порядка, подсказка его не исключает", "fix": {"add": ["Der Bus kommt um sieben."], "remove": []}}
+]

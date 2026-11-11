@@ -4,7 +4,6 @@ import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
 import type * as PhraseAudioPlayer from './phrase_audio_player';
-import type * as LearningV2RecordedAudioPlayer from '../modules/learning-v2/audio/progressive_audio_player';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
   claimSpokenAudio,
@@ -32,7 +31,6 @@ export function preloadAudio() {}
 export function preloadSound(_text: string) {}
 
 let phraseAudioPlayerModulePromise: Promise<typeof PhraseAudioPlayer> | null = null;
-let learningV2RecordedAudioPlayerModulePromise: Promise<typeof LearningV2RecordedAudioPlayer> | null = null;
 
 function loadPhraseAudioPlayer(): Promise<typeof PhraseAudioPlayer> {
   phraseAudioPlayerModulePromise ??= import('./phrase_audio_player');
@@ -44,18 +42,6 @@ function stopPhraseAudioIfLoaded(): void {
   void phraseAudioPlayerModulePromise
     .then(({ stopPhraseAudio }) => stopPhraseAudio())
     .catch(noteSwallowedHandler('use-audio:promise_1'));
-}
-
-function loadLearningV2RecordedAudioPlayer(): Promise<typeof LearningV2RecordedAudioPlayer> {
-  learningV2RecordedAudioPlayerModulePromise ??= import('../modules/learning-v2/audio/progressive_audio_player');
-  return learningV2RecordedAudioPlayerModulePromise;
-}
-
-function stopLearningV2RecordedAudioIfLoaded(): void {
-  if (!learningV2RecordedAudioPlayerModulePromise) return;
-  void learningV2RecordedAudioPlayerModulePromise
-    .then(({ stopLearningV2RecordedAudio }) => stopLearningV2RecordedAudio())
-    .catch(noteSwallowedHandler('use-audio:learning-v2-recorded-stop'));
 }
 
 export type SpeakOpts = {
@@ -90,12 +76,6 @@ export type SpeakOpts = {
   slowRepeat?: boolean;
   /** Удобство №6 (04.11): явная команда «Послушать медленно» — сразу 0,7× через системный голос (без ожидания повтора и без тоста). */
   slowNow?: boolean;
-  /** Learning V2 may play only an already-verified durable local recording. */
-  learningV2Recorded?: Readonly<{
-    studyTarget: 'en' | 'es';
-    lessonOrdinal: number;
-    sessionOrdinal: number;
-  }>;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -118,8 +98,6 @@ const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
 // Значение покрывает обе стадии плюс смену audio session и выводится из общего
 // timing-контракта, поэтому три таймера больше не могут разъехаться.
 const CLIP_START_TIMEOUT_MS = phraseAudioClipStartTimeoutMs(Platform.OS);
-// зачем (жалоба 28.10 «не слышно»): запись занятия V2 из кэша на телефоне стартует быстро; не зазвучала за 4,5 с — говорит системный голос
-const LV2_RECORDED_START_TIMEOUT_MS = 4_500;
 type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
 
 function safeSpeechStop() {
@@ -214,7 +192,6 @@ export function useAudio() {
   const stopVoiceNow = useCallback(() => {
     stopSystemSpeechNow();
     stopPhraseAudioIfLoaded();
-    stopLearningV2RecordedAudioIfLoaded();
   }, [stopSystemSpeechNow]);
 
   useEffect(() => {
@@ -259,9 +236,8 @@ export function useAudio() {
     }
 
     // зачем (удобство №2, 04.11): осознанный повтор по кнопке в окне ~3 с — медленнее; готовые клипы играют в оригинальной длине, поэтому идём через системный голос.
-    // Явно заданную скорость и записи Learning V2 не трогаем.
-    const slowNow = opts?.slowNow === true && !opts.learningV2Recorded;
-    const slowByRepeat = !slowNow && opts?.slowRepeat === true && rate === undefined && !opts.learningV2Recorded
+    const slowNow = opts?.slowNow === true;
+    const slowByRepeat = !slowNow && opts?.slowRepeat === true && rate === undefined
       && isSlowRepeat({ sameText: dedupeKey === lastTextRef.current, sinceLastMs: now - lastSpeakAtRef.current });
     const slowRepeatActive = slowNow || slowByRepeat;
     if (slowRepeatActive) {
@@ -278,7 +254,6 @@ export function useAudio() {
     clipStartTimerRef.current = null;
     safeSpeechStop();
     stopPhraseAudioIfLoaded();
-    stopLearningV2RecordedAudioIfLoaded();
 
     lastTextRef.current = dedupeKey;
     lastSpeakAtRef.current = now;
@@ -315,10 +290,6 @@ export function useAudio() {
       opts.onError?.(new Error('strict_dialogue_voice_missing'));
       return;
     }
-    if (opts?.learningV2Recorded) {
-      void playLearningV2RecordedOrFallback();
-      return;
-    }
     if (opts?.systemTtsOnly) {
       speakWithSystemTts();
       return;
@@ -339,48 +310,6 @@ export function useAudio() {
     }
     runDefaultVoicePath();
 
-    async function playLearningV2RecordedOrFallback(): Promise<void> {
-      const recorded = opts!.learningV2Recorded!;
-      const trace = (stage: string, extra?: Record<string, unknown>) => console.log('[LV2-AUDIO]', stage, JSON.stringify({ gen: generation, study: recorded.studyTarget, lesson: recorded.lessonOrdinal, session: recorded.sessionOrdinal, text: spokenText.slice(0, 40), ...extra })); // guard-ok: жалоба «не слышно» (28.10) — каждая развилка звука занятия
-      let fellBack = false;
-      let started = false;
-      let startTimer: ReturnType<typeof setTimeout> | null = null;
-      const clearStartTimer = () => { if (startTimer) clearTimeout(startTimer); startTimer = null; };
-      // зачем (жалоба 28.10 «Урок 1 · Эпизод 1 — не слышно»): запись может молча не зазвучать (голос не выдан, «не готово» за 4 с) без onError —
-      // тогда человек оставался в тишине. Любой исход без звука → гасим запись и говорим системным голосом.
-      const fallback = (reason: string) => {
-        clearStartTimer();
-        if (fellBack || isStale()) { trace('fallback:skip', { reason, fellBack, stale: isStale() }); return; }
-        fellBack = true;
-        trace('fallback:system_tts', { reason });
-        stopLearningV2RecordedAudioIfLoaded();
-        speakWithSystemTts();
-      };
-      trace('recorded:enter');
-      try {
-        const { playLearningV2RecordedAudio } = await loadLearningV2RecordedAudioPlayer();
-        if (isStale()) { trace('recorded:stale_after_load'); return; }
-        startTimer = setTimeout(() => { startTimer = null; if (!started) fallback('start_timeout'); }, LV2_RECORDED_START_TIMEOUT_MS);
-        const played = await playLearningV2RecordedAudio(
-          { ...recorded, text: spokenText, rate: safeRate },
-          {
-            onStart: () => {
-              if (fellBack) { trace('recorded:late_start_stopped'); stopLearningV2RecordedAudioIfLoaded(); return; }
-              started = true; clearStartTimer(); trace('recorded:start'); opts?.onStart?.();
-            },
-            onDone: () => { clearStartTimer(); trace('recorded:done'); opts?.onDone?.(); },
-            onStopped: () => { clearStartTimer(); trace('recorded:stopped'); opts?.onStopped?.(); },
-            onError: (error: Error) => fallback(`player_error:${error.message}`),
-          },
-        );
-        trace('recorded:returned', { played, started });
-        if (!played) fallback('not_cached');
-      } catch (error) {
-        console.warn('[LV2-AUDIO] cached_playback_failed', error);
-        fallback(`catch:${error instanceof Error ? error.message : String(error)}`);
-      }
-    }
-
     function isStale(): boolean {
       return speechGenerationRef.current !== generation || !voicePlaybackPolicy.canStart(voicePolicyToken);
     }
@@ -393,6 +322,8 @@ export function useAudio() {
         console.warn('[CARD-TTS] target:hash_failed', JSON.stringify({ cardLang, error: e instanceof Error ? e.message : String(e) })); // guard-ok: проглоченная ошибка пишет причину
       }
       if (isStale()) return;
+      // зачем (владелец 06.11, «шипящая озвучка карточек»): на КАЖДОЕ нажатие — слово, язык, ключ клипа; по журналу видно, какие карточки шипят.
+      console.log('[CARD-AUDIO] tap', JSON.stringify({ cardLang, text: spokenText.slice(0, 60), chars: spokenText.length, key: target?.key ?? null, cacheKey: target?.cacheKey ?? null }));
       if (!target) {
         console.log('[CARD-TTS] clip:skip no_target', JSON.stringify({ cardLang, chars: spokenText.length }));
       } else if (isCardTtsKnownMissing(target.key)) {
@@ -420,6 +351,7 @@ export function useAudio() {
             onDone: opts?.onDone,
             onError: () => fallback('player_error'),
           });
+          console.log('[CARD-AUDIO] clip:result', JSON.stringify({ cardLang, key: target.key, cacheKey: target.cacheKey, played }));
           if (played) return;
           // Промах запоминаем только при живой сети: офлайн клип мог просто не скачаться.
           if (getNetStatus() !== 'offline') markCardTtsMissing(target.key);

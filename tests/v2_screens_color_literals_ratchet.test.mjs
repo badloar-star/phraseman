@@ -13,9 +13,8 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const BASELINE = join(ROOT, 'config', 'v2-screens-color-literals-baseline.json');
 const ZONE = [
   'components/home', 'components/DailyPhraseCard.tsx', 'components/v2', 'modules/today-tasks',
-  'modules/spire', 'components/spire', 'components/dialogs', 'components/learning-v2/season',
-  'components/learning-v2/LearningV2ChaptersCourse.tsx', 'components/learning-v2/LearningV2ChapterExam',
-  'components/learning-v2/learning_v2_task_theme_tokens.ts', 'components/streak', 'components/moments', 'components/friends_together',
+  'modules/spire', 'components/spire', 'components/dialogs',
+  'components/practice/practice_theme_tokens.ts', 'components/streak', 'components/moments', 'components/friends_together',
   // зона «Друзья / лента / Сообщество» (координатор → 8 · МОМЕНТЫ, аудит 4 · ТЕМЫ 22.10): вкладки, визитка игрока, наборы сообщества
   'app/(tabs)/friends.tsx', 'app/(tabs)/community.tsx', 'components/friends', 'app/community_packs', 'app/community_pack_create.tsx',
   'components/PlayerProfileModal.tsx', 'components/profile-card',
@@ -24,7 +23,7 @@ const ZONE = [
   'components/PersonalAdminMessageModal.tsx', 'components/NotificationPermissionModal', 'components/notification_center_tones.ts',
   // зона «Видео» (волна 3): вкладка, плеер, карточки и премьера YouTube, строка и набор видео в Карточках
   // зона «новые экраны 22.10» (координатор → 4 · ТЕМЫ): «Моя неделя», «Вместе» (app), экран темы Диалогов, «Слова» Сезона, окно согласия перед «Свободным разговором» — на момент добавления литералов 0
-  'app/friends_week_mine.tsx', 'app/friends_together', 'app/dialogue_v2_theme.tsx', 'app/learning_v2_lesson_words.tsx', 'components/AiDialogConsentModal.tsx',
+  'app/friends_week_mine.tsx', 'app/friends_together', 'app/dialogue_v2_theme.tsx', 'components/AiDialogConsentModal.tsx',
   'app/(tabs)/video.tsx', 'components/video', 'components/youtube', 'app/flashcards/VideoPackRow.tsx', 'app/flashcards/VideoSetView.tsx',
 ];
 const SKIP = /\.test\.|preview|fixtures|\.generated\.|v2_kit|KitLiquidGlass|plateTone/i;

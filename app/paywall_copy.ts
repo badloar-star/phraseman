@@ -89,8 +89,6 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   // механик (pack_create) — это про сборку из нескольких частей, а не про
   // следующий урок по порядку.
   combined_lesson: { accent: '#63E6BE', accent2: '#A78BFA', shardAmount: 180 },
-  // «Мастерская фраз» (координатор 25.10): по образцу комбинированного урока — тоже сборка из частей; свой цвет нарисуют Макеты.
-  phrase_workshop: { accent: '#63E6BE', accent2: '#A78BFA', shardAmount: 180 },
   // «Не видим твой Plus» (координатор 25.10): спокойный синий, без «наградных» тонов — это проверка доступа, а не продажа функции.
   plus_server_refused: { accent: '#74C0FC', accent2: '#A78BFA', shardAmount: 0 },
   // Бейдж скидки — единственный контекст, где ведёт цена, а не упущенная
@@ -1541,48 +1539,6 @@ CONTEXT_BENEFITS.plus_server_refused = [
 CONTEXT_BENEFITS_PLANNED.plus_server_refused = [
   { 'pt-BR': 'Restaurar compras com um toque', vi: 'Khôi phục giao dịch chỉ một chạm', id: 'Pulihkan pembelian sekali ketuk', tr: 'Tek dokunuşla satın alımları geri yükle', pl: 'Przywróć zakupy jednym dotknięciem' },
   { 'pt-BR': 'Conversa livre e análise de erros', vi: 'Trò chuyện tự do và phân tích lỗi', id: 'Obrolan bebas dan ulasan kesalahan', tr: 'Serbest sohbet ve hata analizi', pl: 'Swobodna rozmowa i omówienie błędów' },
-  { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
-];
-
-/**
- * «Мастерская фраз»: фразы из пройденных уроков собираются заново — раздел Plus.
- *
- * зачем (координатор 25.10): своего контекста не было, окно в стор-сборке молча закрывалось. Тон как у комбинированного урока:
- * человек сам нажал на раздел, лимита не было — говорим о самой возможности. Черновик Ядра по утверждённому названию
- * (phrase_workshop_copy.ts); вычитано Переводчиком 25.10: uk «вислів», tr «ifade» — как во всём приложении.
- */
-PAYWALL_COPY.phrase_workshop = {
-  titleRu: 'Мастерская фраз в Plus',
-  titleUk: 'Майстерня висловів у Plus',
-  titleEs: 'Taller de frases con Plus',
-  subtitleRu: 'Фразы из пройденных уроков собираются заново, пока не станут твоими. Вместе с этим открывается весь курс, разговоры вслух и тренировки.',
-  subtitleUk: 'Вислови з пройдених уроків складаються знову, доки не стануть твоїми. Разом із цим відкривається увесь курс, розмови вголос і тренування.',
-  subtitleEs: 'Las frases de las lecciones que hiciste se arman de nuevo hasta que sean tuyas. Junto con esto se abre el curso completo, la práctica oral y los entrenamientos.',
-};
-PAYWALL_PLANNED_COPY.phrase_workshop = {
-  title: {
-    en: 'Phrase workshop with Plus',
-    'pt-BR': 'Oficina de frases no Plus', vi: 'Xưởng ghép câu trong Plus',
-    id: 'Bengkel frasa di Plus', tr: 'Plus ile ifade atölyesi',
-    pl: 'Warsztat fraz w Plus',
-  },
-  subtitle: {
-    en: 'Phrases from the lessons you’ve done are built again until they’re yours. The whole course, speaking practice and training open up with it.',
-    'pt-BR': 'As frases das lições que você fez são montadas de novo até ficarem suas. Junto com isso abrem o curso inteiro, a prática de fala e os treinos.',
-    vi: 'Các câu từ bài đã học được ghép lại cho đến khi bạn thuộc. Cùng lúc đó mở ra trọn khóa học, luyện nói và luyện tập.',
-    id: 'Frasa dari pelajaran yang sudah kamu lewati disusun lagi sampai kamu kuasai. Bersamaan dengan itu terbuka seluruh kursus, latihan bicara, dan latihan kartu.',
-    tr: 'Bitirdiğin derslerdeki ifadeler senin olana kadar yeniden kurulur. Bununla birlikte kursun tamamı, konuşma pratiği ve antrenmanlar açılır.',
-    pl: 'Zwroty z przerobionych lekcji składasz od nowa, aż staną się twoje. Razem z tym otwiera się cały kurs, mówienie na głos i treningi.',
-  },
-};
-CONTEXT_BENEFITS.phrase_workshop = [
-  { ru: 'Мастерская фраз к каждому уроку', uk: 'Майстерня висловів до кожного уроку', es: 'Un taller de frases para cada lección', en: 'A phrase workshop for every lesson', 'pt-BR': 'Uma oficina de frases para cada lição', vi: 'Xưởng ghép câu cho mọi bài học', id: 'Bengkel frasa untuk setiap pelajaran', tr: 'Her ders için ifade atölyesi', pl: 'Warsztat fraz do każdej lekcji' },
-  { ru: 'Фразы закрепляются — пройденное не забывается', uk: 'Вислови закріплюються — пройдене не забувається', es: 'Las frases se afianzan: no olvidas lo aprendido', en: 'Phrases stick: what you learned stays', 'pt-BR': 'As frases se fixam: você não esquece o que aprendeu', vi: 'Câu được ghi nhớ — bài đã học không bị quên', id: 'Frasa makin melekat — yang sudah dipelajari tak terlupa', tr: 'İfadeler pekişir — öğrendiğin unutulmaz', pl: 'Zwroty się utrwalają — przerobione nie ucieka' },
-  { ru: 'Занятия и тренировки — без дневных стопов', uk: 'Заняття й тренування — без денних стопів', es: 'Lecciones y entrenamientos, sin bloqueos diarios', en: 'Lessons and training with no daily stops', 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
-];
-CONTEXT_BENEFITS_PLANNED.phrase_workshop = [
-  { 'pt-BR': 'Uma oficina de frases para cada lição', vi: 'Xưởng ghép câu cho mọi bài học', id: 'Bengkel frasa untuk setiap pelajaran', tr: 'Her ders için ifade atölyesi', pl: 'Warsztat fraz do każdej lekcji' },
-  { 'pt-BR': 'As frases se fixam: você não esquece o que aprendeu', vi: 'Câu được ghi nhớ — bài đã học không bị quên', id: 'Frasa makin melekat — yang sudah dipelajari tak terlupa', tr: 'İfadeler pekişir — öğrendiğin unutulmaz', pl: 'Zwroty się utrwalają — przerobione nie ucieka' },
   { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
 ];
 

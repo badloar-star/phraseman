@@ -1,0 +1,124 @@
+[
+ {
+  "id": "lesson-1/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«повідомляють про те, що говорить» — искажён смысл (должно: про того, хто говорить)",
+  "fix": "Форма дієслова показує людину: `io sono`, `tu sei`, `noi siamo`. Порівняй коротку та повну версії: `Sono qui` та `Io sono qui`. Обидві повідомляють про того, хто говорить. Окремий займенник особливо корисний у порівнянні «я тут, а ти там»."
+ },
+ {
+  "id": "lesson-1/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«відповідає питанням» — неграмматично (відповідає на питання)",
+  "fix": "Про одну людину говорять `è`. Над літерою стоїть наголос: `è` — форма «бути», а `e` без наголосу означає «і». Ім'я вже відповідає на питання «хто?», тому повторювати після імені займенник зайве."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T3",
+  "field": "chapters[3].textByLocale.ru",
+  "problem": "теория даёт `in stazione`, а фраза курса it:01:14 — `alla stazione`",
+  "fix": "`Qui` — готовое указание места. А «дома», «на вокзале» и «в офисе» запоминай как небольшие группы: `a casa`, `alla stazione`, `in ufficio`. Не добавляй `a` перед `qui` по образцу фразы про дом."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T3",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "`in stazione` противоречит фразе курса it:01:14 (`alla stazione`)",
+  "fix": "`Qui` is a ready-made location. Remember \"at home,\" \"at the station,\" and \"at the office\" as small groups: `a casa`, `alla stazione`, `in ufficio`. Don't add `a` before `qui`, as in the phrase about home."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T3",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "`in stazione` противоречит it:01:14; «Не додай» вместо «Не додавай»; «будинок» вместо «дім»; невидимые zero-width символы в «вказівка місця»",
+  "fix": "`Qui` — готова вказівка місця. А «вдома», «на вокзалі» та «в офісі» запам'ятовуй як невеликі групи: `a casa`, `alla stazione`, `in ufficio`. Не додавай `a` перед `qui` за зразком фрази про дім."
+ },
+ {
+  "id": "lesson-1/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«а чи не саме місце» — машинная ошибка (должно «а не»); «відноситься до» — калька",
+  "fix": "Стан приєднується до тієї ж зв'язки. Форма `pronto` стосується чоловіка, `pronta` — жінки, `pronti` — кількох чоловіків або змішаної групи. Це змінює закінчення опису, а не саме місце."
+ },
+ {
+  "id": "lesson-1/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«the same link» — неверный перевод «связка» (linking verb)",
+  "fix": "A state attaches to the same linking verb. The form `pronto` refers to a man, `pronta` to a woman, `pronti` to several men or a mixed group. This changes the ending of the description, not the location itself."
+ },
+ {
+  "id": "lesson-1/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«Двері одна» — двері только мн. ч.; «з того, що підлягає» — машинный перевод «подлежащего»",
+  "fix": "Двері одні — `la porta è`; дверей кілька — `le porte sono`. Вибирай форму за тим, про що повідомляєш, а не за останнім іменником у перекладі. `Sono` може означати і «я», і «вони»: різницю видно з підмета і контексту."
+ },
+ {
+  "id": "lesson-1/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.ru",
+  "problem": "«Под рукой должны меняться» — бессмыслица",
+  "fix": "Проверь перенос на другой предмет: сначала одна вещь, потом две, место то же. Меняться должны именно подлежащее и глагол. Если изменить ещё и `qui` на `lì`, сообщение уже будет про другое место."
+ },
+ {
+  "id": "lesson-1/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Перевір на інший предмет» — пропущено слово; «Під рукою … те, що підлягає» — бессмыслица/машинный перевод",
+  "fix": "Перевір перенесення на інший предмет: спочатку одна річ, потім дві, місце те саме. Змінюватися мають саме підмет і дієслово. Якщо змінити ще й `qui` на `lì`, повідомлення вже буде про інше місце."
+ },
+ {
+  "id": "lesson-1/chapter-7",
+  "type": "T1",
+  "field": "chapters[6].exampleIds",
+  "problem": "примеры it:01:42 (Sono ancora in ufficio) и it:01:50 (Sono vicino alla porta) не показывают перенос «одна вещь → две, место то же»",
+  "fix": [
+   "it:01:45",
+   "it:01:46"
+  ]
+ },
+ {
+  "id": "lesson-2/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«особистою формою» — калька (особовою); «відмінювання» для глагола — дієвідміна",
+  "fix": "Тут заперечується все повідомлення про місце або стан. Залиш уже знайому дієвідміну `essere` і постав `non` перед особовою формою. Це одне слово, а не дві частини, що оточують дієслово."
+ },
+ {
+  "id": "lesson-2/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«з розмовляючим» — неграмматично",
+  "fix": "`Non sono pronto` говорить про себе, `Non siamo pronti` — про групу разом із тим, хто говорить. Змінюються форма та узгодження. Саме `non` залишається однаковим у всіх особах."
+ },
+ {
+  "id": "lesson-2/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«speaks about itself» — искажение (речь о говорящем)",
+  "fix": "`Non sono pronto` is about the speaker, `Non siamo pronti` about a group that includes the speaker. The form and agreement change. `non` itself stays the same in all persons."
+ },
+ {
+  "id": "lesson-2/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«між підлягаючим і дієсловом» — неверный термин (підмет)",
+  "fix": "На початку може стояти предмет з артиклем. У поєднанні `La porta non è aperta` заперечення стоїть між підметом і дієсловом. Не розривай групу `la porta` і не став `non` одразу після артикля."
+ },
+ {
+  "id": "lesson-2/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Відповідь … не втрачає» — утверждение вместо указания (ru: «не теряй»), смысл расходится",
+  "fix": "У відповіді про місцезнаходження не втрачай конкретне місце. «Їх тут немає» і «їх там немає» відрізняються останньою частиною: `qui` і `lì`. Без такого слова відповідь у контексті може бути зрозумілою, але не передає потрібний контраст явно."
+ },
+ {
+  "id": "lesson-2/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«не скасовує привід» — неверное слово (прийменник); «відноситься до» — калька",
+  "fix": "Сталі вирази зберігають прийменник: `in ritardo` означає «із запізненням». Заперечення стосується того, що потяг спізнюється, а не скасовує прийменник усередині виразу."
+ }
+]

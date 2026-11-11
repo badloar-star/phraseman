@@ -1,0 +1,1052 @@
+[
+{
+"lesson": 29,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:29:01",
+"fr:29:02",
+"fr:29:03"
+],
+"textByLocale": {
+"en": "A relative pronoun links the name with the specification. `Qui` here does not ask the question \"who?\" It can also refer to the object if it is the subject of the following action.",
+"ru": "Относительное местоимение связывает название с уточнением. `Qui` здесь не задаёт вопрос «кто?». Оно может относиться и к предмету, если тот является подлежащим следующего действия.",
+"uk": "Відносний займенник пов'язує назву з уточненням. `Qui` тут не ставить питання «хто?». Воно може відноситися і до предмета, якщо той підлягає наступній дії."
+}
+},
+{
+"exampleIds": [
+"fr:29:03",
+"fr:29:04",
+"fr:29:06"
+],
+"textByLocale": {
+"en": "Mentally return the name inside the clarification. \"The key opens\" — `qui`; \"I'm looking for the key\" — `que`. This test is more reliable than choosing `qui` exclusively for people.",
+"ru": "Мысленно верни название внутрь уточнения. «Ключ открывает» — `qui`; «я ищу ключ» — `que`. Такой тест надёжнее, чем выбирать `qui` исключительно для людей.",
+"uk": "Подумки поверни назву всередину уточнення. \"Ключ відкриває\" - `qui`; \"Я шукаю ключ\" - `que`. Такий тест надійніше, ніж вибирати `qui` виключно для людей."
+}
+},
+{
+"exampleIds": [
+"fr:29:11",
+"fr:29:13",
+"fr:29:15"
+],
+"textByLocale": {
+"en": "After `qui` in ordinary examples, you can immediately name the verb. In the construction `c’est Léa qui …`, it was Leah who performed the action. Don't insert a second subject unnecessarily.",
+"ru": "После `qui` в обычных примерах сразу можно назвать глагол. В конструкции `c’est Léa qui …` именно Леа выполнила действие. Не вставляй второе подлежащее без необходимости.",
+"uk": "Після `qui` у звичайних прикладах відразу можна назвати дієслово. У конструкції `c’est Léa qui …` саме Леа виконала дію. Не вставляйте друге, що підлягає без необхідності."
+}
+},
+{
+"exampleIds": [
+"fr:29:21",
+"fr:29:23",
+"fr:29:26"
+],
+"textByLocale": {
+"en": "After `que`, the performer often appears with their own verb. The main message about bread or train continues after the insertion: don't forget to read the entire phrase.",
+"ru": "После `que` часто появляется исполнитель со своим глаголом. Основное сообщение о хлебе или поезде продолжается за вставкой: не забывай дочитать всю фразу.",
+"uk": "Після `que` часто з'являється виконавець зі своїм дієсловом. Основне повідомлення про хліб чи потяг продовжується за вставкою: не забувай дочитати всю фразу."
+}
+},
+{
+"exampleIds": [
+"fr:29:31",
+"fr:29:32",
+"fr:29:33"
+],
+"textByLocale": {
+"en": "`Que` before a vowel gives `qu’`. In `qui`, in neutral writing, `i` is retained. This is important even when spoken very quickly.",
+"ru": "`Que` перед гласной даёт `qu’`. У `qui` в нейтральном письме `i` сохраняется. Это важно даже тогда, когда разговорное произношение очень быстрое.",
+"uk": "`Que` перед голосною дає `qu’`. У `qui` у нейтральному листі `i` зберігається. Це важливо навіть тоді, коли розмовна вимова дуже швидка."
+}
+},
+{
+"exampleIds": [
+"fr:29:36",
+"fr:29:37",
+"fr:29:38"
+],
+"textByLocale": {
+"en": "Compare \"the person who helps me\" and \"the person I help.\" The verb `aider` in French is associated with the direct object: `que j’aide`, although the translation may be constructed differently.",
+"ru": "Сравни «человек, который мне помогает» и «человек, которому я помогаю». Глагол `aider` во французском связан с прямым объектом: `que j’aide`, хотя перевод может строиться иначе.",
+"uk": "Порівняй «людина, яка мені допомагає» і «людина, якій я допомагаю». Дієслово `aider` французькою пов'язане з прямим об'єктом: `que j’aide`, хоча переклад може будуватися інакше."
+}
+},
+{
+"exampleIds": [
+"fr:29:45",
+"fr:29:46",
+"fr:29:49"
+],
+"textByLocale": {
+"en": "When choosing `qui` or `que`, consider the role of the small clarification, not the main phrase. In the complex past, the front direct object is sometimes also visible from the participle agreement.",
+"ru": "Выбирая `qui` или `que`, смотри на роль в маленьком уточнении, а не в главной фразе. В сложном прошедшем передний прямой объект иногда виден и по согласованию причастия.",
+"uk": "Вибираючи `qui` або `que`, дивись на роль у маленькому уточненні, а не в головній фразі. У складному минулому передній прямий об'єкт іноді видно за погодженням причастя."
+}
+}
+],
+"drills": [
+{
+"bad": "quelle",
+"chapter": 1,
+"id": "fr:29:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 9,
+"options": [
+"quelle",
+"quel",
+"qui"
+],
+"slot": 3
+},
+{
+"bad": "quels",
+"chapter": 1,
+"id": "fr:29:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"quels",
+"combien",
+"qui"
+],
+"slot": 3
+},
+{
+"bad": "quoi",
+"chapter": 1,
+"id": "fr:29:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"où",
+"qui",
+"quoi"
+],
+"slot": 3
+},
+{
+"bad": "quoi",
+"chapter": 2,
+"id": "fr:29:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"que",
+"quoi",
+"pourquoi"
+],
+"slot": 3
+},
+{
+"bad": "quel",
+"chapter": 2,
+"id": "fr:29:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 2,
+"options": [
+"quel",
+"quelle",
+"que"
+],
+"slot": 3
+},
+{
+"bad": "comment",
+"chapter": 2,
+"id": "fr:29:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 41,
+"options": [
+"quoi",
+"qui",
+"comment"
+],
+"slot": 3
+},
+{
+"bad": "que",
+"chapter": 3,
+"id": "fr:29:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 33,
+"options": [
+"que",
+"quand",
+"qui"
+],
+"slot": 2
+},
+{
+"bad": "quelle",
+"chapter": 3,
+"id": "fr:29:17:lab",
+"item": 17,
+"kind": "match",
+"near": 50,
+"options": [
+"qui",
+"quoi",
+"quelle"
+],
+"slot": 2
+},
+{
+"bad": "quels",
+"chapter": 3,
+"id": "fr:29:19:lab",
+"item": 19,
+"kind": "build",
+"near": 16,
+"options": [
+"quels",
+"où",
+"qui"
+],
+"slot": 3
+},
+{
+"bad": "combien",
+"chapter": 4,
+"id": "fr:29:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 44,
+"options": [
+"combien",
+"que",
+"quel"
+],
+"slot": 2
+},
+{
+"bad": "combien",
+"chapter": 4,
+"id": "fr:29:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 29,
+"options": [
+"que",
+"qui",
+"combien"
+],
+"slot": 2
+},
+{
+"bad": "comment",
+"chapter": 4,
+"id": "fr:29:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"qui",
+"comment",
+"que"
+],
+"slot": 2
+},
+{
+"bad": "quel",
+"chapter": 5,
+"id": "fr:29:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"quoi",
+"que",
+"quel"
+],
+"slot": 2
+},
+{
+"bad": "qu’ils",
+"chapter": 5,
+"id": "fr:29:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"qu’on",
+"qu’ils",
+"qu’elle"
+],
+"slot": 3
+},
+{
+"bad": "qu’elle",
+"chapter": 5,
+"id": "fr:29:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 18,
+"options": [
+"qu’elle",
+"qu’on",
+"qu’il"
+],
+"slot": 2
+},
+{
+"bad": "quel",
+"chapter": 6,
+"id": "fr:29:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"quelles",
+"qui",
+"quel"
+],
+"slot": 2
+},
+{
+"bad": "qui",
+"chapter": 6,
+"id": "fr:29:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"quand",
+"qui",
+"que"
+],
+"slot": 1
+},
+{
+"bad": "quelles",
+"chapter": 6,
+"id": "fr:29:42:lab",
+"item": 42,
+"kind": "match",
+"near": 46,
+"options": [
+"que",
+"quelles",
+"pourquoi"
+],
+"slot": 2
+},
+{
+"bad": "quoi",
+"chapter": 7,
+"id": "fr:29:45:lab",
+"item": 45,
+"kind": "build",
+"near": 11,
+"options": [
+"quoi",
+"qui",
+"que"
+],
+"slot": 4
+},
+{
+"bad": "quelles",
+"chapter": 7,
+"id": "fr:29:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"qui",
+"quelles",
+"quoi"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"La clé ouvre la cave.",
+"la clé qui ouvre la cave"
+],
+[
+"Je cherche la clé.",
+"la clé que je cherche"
+],
+[
+"Le médecin travaille ici.",
+"le médecin qui travaille ici"
+],
+[
+"Je connais le médecin.",
+"le médecin que je connais"
+],
+[
+"Elle cherche le bureau.",
+"le bureau qu’elle cherche"
+]
+],
+"title": {
+"en": "How to specify the subject: `qui` or `que`",
+"ru": "Как уточнить предмет: `qui` или `que`",
+"uk": "Як уточнити предмет: `qui` або `que`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:29:01",
+"target": "C’est le bus qui va à la gare.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "fr:29:02",
+"target": "C’est le bus que je prends.",
+"ru": "Это автобус, на котором я еду.",
+"uk": "Це автобус, на якому я їду."
+},
+{
+"id": "fr:29:03",
+"target": "Voici la clé qui ouvre la cave.",
+"ru": "Вот ключ, который открывает подвал.",
+"uk": "Ось ключ, що відчиняє льох."
+},
+{
+"id": "fr:29:04",
+"target": "Voici la clé que je cherche.",
+"ru": "Вот ключ, который я ищу.",
+"uk": "Ось ключ, який я шукаю."
+},
+{
+"id": "fr:29:06",
+"target": "C’est la veste que je porte.",
+"ru": "Это куртка, которую я ношу.",
+"uk": "Це куртка, яку я ношу."
+},
+{
+"id": "fr:29:11",
+"target": "J’ai un voisin qui parle italien.",
+"ru": "У меня есть сосед, который говорит по-итальянски.",
+"uk": "У мене є сусід, який розмовляє італійською."
+},
+{
+"id": "fr:29:13",
+"target": "C’est Léa qui a réservé.",
+"ru": "Именно Леа всё забронировала.",
+"uk": "Саме Леа все забронювала."
+},
+{
+"id": "fr:29:15",
+"target": "La pharmacie qui ouvre le dimanche est loin.",
+"ru": "Аптека, которая открыта по воскресеньям, находится далеко.",
+"uk": "Аптека, яка працює в неділю, знаходиться далеко."
+},
+{
+"id": "fr:29:21",
+"target": "Le pain que tu prépares sent bon.",
+"ru": "Хлеб, который ты печёшь, вкусно пахнет.",
+"uk": "Хліб, який ти печеш, смачно пахне."
+},
+{
+"id": "fr:29:23",
+"target": "Le café que tu bois est très fort.",
+"ru": "Кофе, который ты пьёшь, очень крепкий.",
+"uk": "Кава, яку ти п'єш, дуже міцна."
+},
+{
+"id": "fr:29:26",
+"target": "Les prix que vous voyez comprennent la livraison.",
+"ru": "Цены, которые вы видите, включают доставку.",
+"uk": "Ціни, які ви бачите, включають доставку."
+},
+{
+"id": "fr:29:31",
+"target": "Voici le plan qu’on m’a donné.",
+"ru": "Вот карта, которую мне дали.",
+"uk": "Ось карта, яку мені дали."
+},
+{
+"id": "fr:29:32",
+"target": "Le ticket qu’il garde est valable demain.",
+"ru": "Билет, который он оставляет себе, действителен завтра.",
+"uk": "Квиток, який він зберігає, дійсний завтра."
+},
+{
+"id": "fr:29:33",
+"target": "Le bureau qu’elle cherche est en bas.",
+"ru": "Офис, который она ищет, находится внизу.",
+"uk": "Офіс, який вона шукає, знаходиться внизу."
+},
+{
+"id": "fr:29:36",
+"target": "La personne qui m’aide est ma voisine.",
+"ru": "Человек, который мне помогает, — моя соседка.",
+"uk": "Людина, яка мені допомагає, - моя сусідка."
+},
+{
+"id": "fr:29:37",
+"target": "La personne que j’aide est ma voisine.",
+"ru": "Человек, которому я помогаю, — моя соседка.",
+"uk": "Людина, якій я допомагаю, - моя сусідка."
+},
+{
+"id": "fr:29:38",
+"target": "L’enfant qui appelle sa mère est ici.",
+"ru": "Ребенок, зовущий свою маму, здесь.",
+"uk": "Дитина, яка кличе свою маму, тут."
+},
+{
+"id": "fr:29:45",
+"target": "J’ai perdu le papier qui indique le code.",
+"ru": "Я потерял клочок бумаги с кодом.",
+"uk": "Я загубив клаптик паперу з кодом."
+},
+{
+"id": "fr:29:46",
+"target": "Le pot que tu cherches est derrière la menthe.",
+"ru": "Горшок, который ты ищешь, стоит за мятой.",
+"uk": "Горщик, який ти шукаєш, стоїть за м’ятою."
+},
+{
+"id": "fr:29:49",
+"target": "La salle que nous avons réservée est lumineuse.",
+"ru": "Зал, который мы забронировали, светлый.",
+"uk": "Зал, який ми забронювали, світлий."
+}
+]
+},
+{
+"lesson": 30,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:30:01",
+"fr:30:02",
+"fr:30:03"
+],
+"textByLocale": {
+"en": "When it's important to name the performer, compare `il faut partir` and `il faut que je parte`. After `que`, a new clause begins with its own subject. The dictionary infinitive is not inserted there.",
+"ru": "Когда важно назвать исполнителя, сравни `il faut partir` и `il faut que je parte`. После `que` начинается новая часть со своим подлежащим. Словарный инфинитив туда не вставляют.",
+"uk": "Коли важливо назвати виконавця, порівняй `il faut partir` та `il faut que je parte`. Після `que` починається нова частина зі своїм підлеглим. Словниковий інфінітив туди не вставляють."
+}
+},
+{
+"exampleIds": [
+"fr:30:04",
+"fr:30:05",
+"fr:30:06"
+],
+"textByLocale": {
+"en": "The form depends on the person within the second clause. In `il faut que nous partions`, it's not the impersonal `il`, but `nous` that explains the ending. The point of choice is the word before the verb being verified.",
+"ru": "Форма зависит от лица внутри второй части. В `il faut que nous partions` не безличное `il`, а `nous` объясняет окончание. Точка выбора — слово перед проверяемым глаголом.",
+"uk": "Форма залежить від обличчя всередині другої частини. У `il faut que nous partions` не безособове `il`, а `nous` пояснює закінчення. Точка вибору — слово перед дієсловом, що перевіряється."
+}
+},
+{
+"exampleIds": [
+"fr:30:07",
+"fr:30:08",
+"fr:30:11"
+],
+"textByLocale": {
+"en": "The irregular forms are especially noticeable: `être → sois, soit, soyons`; `avoir → aie, aies, ait`. Do not replace them with the usual forms of the present `suis` and `ai`.",
+"ru": "Особенно заметны нерегулярные формы: `être → sois, soit, soyons`; `avoir → aie, aies, ait`. Не заменяй их привычными формами настоящего `suis` и `ai`.",
+"uk": "Особливо помітні нерегулярні форми: `être → sois, soit, soyons`; `avoir → aie, aies, ait`. Не замінюй їх звичними формами сьогодення `suis` та `ai`."
+}
+},
+{
+"exampleIds": [
+"fr:30:16",
+"fr:30:18",
+"fr:30:20"
+],
+"textByLocale": {
+"en": "Frequently used `faire` yields `fasse`, `fasses`, `fassent`. The final letters name different performers. This is not a narrative about what they are doing now.",
+"ru": "Частое `faire` даёт `fasse`, `fasses`, `fassent`. Конечные буквы называют разных исполнителей. Это не повествование о том, что они делают сейчас.",
+"uk": "Часте `faire` дає `fasse`, `fasses`, `fassent`. Кінцеві букви називають різних виконавців. Це не розповідь про те, що вони роблять зараз."
+}
+},
+{
+"exampleIds": [
+"fr:30:21",
+"fr:30:24",
+"fr:30:26"
+],
+"textByLocale": {
+"en": "For `aller`, compare `aille` and `allions`; for `prendre`, compare `prenne` and `prenions`. Remember the singular and plural pairs before trying to transfer the ending to a different stem.",
+"ru": "Для `aller` сравни `aille` и `allions`; для `prendre` — `prenne` и `prenions`. Запомни пару ед. и мн. числа, прежде чем пытаться переносить окончание на другую основу.",
+"uk": "Для `aller` порівняй `aille` та `allions`; для `prendre` - `prenne` та `prenions`. Запам'ятай пару од. та багато інших. числа, перш ніж намагатися переносити закінчення іншу основу."
+}
+},
+{
+"exampleIds": [
+"fr:30:31",
+"fr:30:35",
+"fr:30:36"
+],
+"textByLocale": {
+"en": "Not all verbs have a significantly different form from the present form. In `il faut que tu vérifies`, the spelling is familiar. The mode is still determined by the expression of necessity.",
+"ru": "Не у всех глаголов нужная форма заметно отличается от настоящего. В `il faut que tu vérifies` написание знакомо. Режим всё равно определяется выражением необходимости.",
+"uk": "Не у всіх дієслів потрібна форма помітно відрізняється від сьогодення. У `il faut que tu vérifies` написання знайоме. Режим все одно визначається виразом потреби."
+}
+},
+{
+"exampleIds": [
+"fr:30:41",
+"fr:30:42",
+"fr:30:47"
+],
+"textByLocale": {
+"en": "`Il ne faut pas que …` expresses a prohibition or undesirability of an action. The negation in `faut` and the negation within the action itself are not automatically the same thing. Reread what is being asked to avoid.",
+"ru": "`Il ne faut pas que …` выражает запрет или нежелательность действия. Отрицание у `faut` и отрицание внутри самого действия — не автоматически одно и то же. Перечитай, чего требуют избежать.",
+"uk": "`Il ne faut pas que …` виражає заборону чи небажаність дії. Заперечення у `faut` і заперечення всередині самої дії - не автоматично одне й те саме. Перечитай, чого вимагають уникнути."
+}
+}
+],
+"drills": [
+{
+"bad": "partez",
+"chapter": 1,
+"id": "fr:30:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"partez",
+"partions",
+"parte"
+],
+"slot": 4
+},
+{
+"bad": "partions",
+"chapter": 1,
+"id": "fr:30:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"partiez",
+"partions",
+"parte"
+],
+"slot": 3
+},
+{
+"bad": "partions",
+"chapter": 1,
+"id": "fr:30:05:lab",
+"item": 5,
+"kind": "match",
+"near": 30,
+"options": [
+"parte",
+"partions",
+"partiez"
+],
+"slot": 4
+},
+{
+"bad": "soit",
+"chapter": 2,
+"id": "fr:30:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"soyez",
+"soit",
+"sois"
+],
+"slot": 4
+},
+{
+"bad": "soit",
+"chapter": 2,
+"id": "fr:30:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"soit",
+"soyons",
+"est"
+],
+"slot": 4
+},
+{
+"bad": "ont",
+"chapter": 2,
+"id": "fr:30:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"ait",
+"ont",
+"aies"
+],
+"slot": 4
+},
+{
+"bad": "aies",
+"chapter": 3,
+"id": "fr:30:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 5,
+"options": [
+"a",
+"ayez",
+"aies"
+],
+"slot": 4
+},
+{
+"bad": "fassiez",
+"chapter": 3,
+"id": "fr:30:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"faites",
+"fasses",
+"fassiez"
+],
+"slot": 4
+},
+{
+"bad": "font",
+"chapter": 3,
+"id": "fr:30:19:lab",
+"item": 19,
+"kind": "build",
+"near": 5,
+"options": [
+"faites",
+"fassiez",
+"font"
+],
+"slot": 4
+},
+{
+"bad": "alliez",
+"chapter": 4,
+"id": "fr:30:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"alliez",
+"ailles",
+"va"
+],
+"slot": 4
+},
+{
+"bad": "vais",
+"chapter": 4,
+"id": "fr:30:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 4,
+"options": [
+"vais",
+"alliez",
+"allions"
+],
+"slot": 4
+},
+{
+"bad": "aille",
+"chapter": 4,
+"id": "fr:30:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 24,
+"options": [
+"aillent",
+"aille",
+"va"
+],
+"slot": 3
+},
+{
+"bad": "prends",
+"chapter": 5,
+"id": "fr:30:29:lab",
+"item": 29,
+"kind": "match",
+"near": 4,
+"options": [
+"prenez",
+"prenions",
+"prends"
+],
+"slot": 4
+},
+{
+"bad": "suis",
+"chapter": 5,
+"id": "fr:30:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"soit",
+"suis",
+"sont"
+],
+"slot": 5
+},
+{
+"bad": "resteraient",
+"chapter": 5,
+"id": "fr:30:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 5,
+"options": [
+"resteraient",
+"restent",
+"restions"
+],
+"slot": 5
+},
+{
+"bad": "vérifieriez",
+"chapter": 6,
+"id": "fr:30:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 22,
+"options": [
+"vérifiait",
+"vérifies",
+"vérifieriez"
+],
+"slot": 4
+},
+{
+"bad": "confirmation",
+"chapter": 6,
+"id": "fr:30:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 1,
+"options": [
+"nous",
+"retrouve",
+"confirmation"
+],
+"slot": 4
+},
+{
+"bad": "signiez",
+"chapter": 6,
+"id": "fr:30:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"signiez",
+"déborde",
+"partiez"
+],
+"slot": 7
+},
+{
+"bad": "sois",
+"chapter": 7,
+"id": "fr:30:45:lab",
+"item": 45,
+"kind": "build",
+"near": 35,
+"options": [
+"suis",
+"sois",
+"soit"
+],
+"slot": 4
+},
+{
+"bad": "sachions",
+"chapter": 7,
+"id": "fr:30:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 2,
+"options": [
+"sachions",
+"choisisses",
+"pause"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"il faut que…",
+"je sois / tu sois / elle soit"
+],
+[
+"il faut que…",
+"j’aie / tu aies / vous ayez"
+],
+[
+"il faut que…",
+"je fasse / vous fassiez"
+],
+[
+"il faut que…",
+"j’aille / nous allions"
+],
+[
+"il faut que…",
+"je prenne / nous prenions"
+]
+],
+"title": {
+"en": "What is needed: `il faut que` + `subjonctif`",
+"ru": "Что необходимо: `il faut que` + `subjonctif`",
+"uk": "Що необхідно: `il faut que` + `subjonctif`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:30:01",
+"target": "Il faut que je parte.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "fr:30:02",
+"target": "Il faut que tu partes.",
+"ru": "Тебе нужно уйти.",
+"uk": "Тобі треба піти."
+},
+{
+"id": "fr:30:03",
+"target": "Il faut qu’elle parte.",
+"ru": "Ей нужно уйти.",
+"uk": "Вона має піти."
+},
+{
+"id": "fr:30:04",
+"target": "Il faut que nous partions.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+},
+{
+"id": "fr:30:05",
+"target": "Il faut que vous partiez.",
+"ru": "Вам нужно уйти.",
+"uk": "Ви повинні піти."
+},
+{
+"id": "fr:30:06",
+"target": "Il faut qu’ils partent.",
+"ru": "Им нужно уйти.",
+"uk": "Вони мають піти."
+},
+{
+"id": "fr:30:07",
+"target": "Il faut que je sois là.",
+"ru": "Мне нужно быть там.",
+"uk": "Мені потрібно бути там."
+},
+{
+"id": "fr:30:08",
+"target": "Il faut que tu sois prêt.",
+"ru": "Нужно, чтобы ты был готов.",
+"uk": "Потрібно, щоб ти був готовий."
+},
+{
+"id": "fr:30:11",
+"target": "Il faut que j’aie une pièce d’identité.",
+"ru": "Мне нужно иметь при себе удостоверение личности.",
+"uk": "Мені потрібно мати при собі посвідчення особи."
+},
+{
+"id": "fr:30:16",
+"target": "Il faut que je fasse une copie.",
+"ru": "Мне нужно сделать копию.",
+"uk": "Мені потрібно зробити копію."
+},
+{
+"id": "fr:30:18",
+"target": "Il faut qu’on fasse une pause.",
+"ru": "Нам нужно сделать перерыв.",
+"uk": "Нам потрібно зробити перерву."
+},
+{
+"id": "fr:30:20",
+"target": "Il faut qu’elles fassent leurs valises.",
+"ru": "Им нужно собрать чемоданы.",
+"uk": "Їм потрібно зібрати валізи."
+},
+{
+"id": "fr:30:21",
+"target": "Il faut que j’aille à la poste.",
+"ru": "Мне нужно сходить на почту.",
+"uk": "Мені потрібно йти на пошту."
+},
+{
+"id": "fr:30:24",
+"target": "Il faut que nous allions au bureau avant le repas.",
+"ru": "Нам нужно сходить в офис до обеда.",
+"uk": "Нам потрібно піти в офіс до обіду."
+},
+{
+"id": "fr:30:26",
+"target": "Il faut qu’elles aillent au bureau.",
+"ru": "Им нужно идти в офис.",
+"uk": "Їм потрібно йти до офісу."
+},
+{
+"id": "fr:30:31",
+"target": "Il faut que le sol soit sec.",
+"ru": "Нужно, чтобы пол был сухим.",
+"uk": "Потрібно, щоб підлога була сухою."
+},
+{
+"id": "fr:30:35",
+"target": "Il faut que la salle soit vide.",
+"ru": "Комната должна быть пустой.",
+"uk": "Кімната має бути порожньою."
+},
+{
+"id": "fr:30:36",
+"target": "Il faut que tu vérifies la date.",
+"ru": "Тебе нужно проверить дату.",
+"uk": "Тобі потрібно перевірити дату."
+},
+{
+"id": "fr:30:41",
+"target": "Il ne faut pas que tu partes seul.",
+"ru": "Тебе не следует уходить одному.",
+"uk": "Тобі не слід йти одному."
+},
+{
+"id": "fr:30:42",
+"target": "Il ne faut pas que le lait déborde.",
+"ru": "Молоко не должно выкипеть.",
+"uk": "Молоко не повинно википіти."
+},
+{
+"id": "fr:30:47",
+"target": "Il faut que nous sachions le prix avant de signer.",
+"ru": "Нам нужно знать цену до подписания.",
+"uk": "Нам потрібно знати ціну перед підписанням."
+}
+]
+}
+]

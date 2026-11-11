@@ -1,0 +1,818 @@
+{
+ "lang": "it",
+ "lesson": 24,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:24:01",
+   "target": "Vado al mercato e ci va anche Paolo.",
+   "ru": "Я иду на рынок, и Паоло тоже.",
+   "uk": "Я йду на ринок, і Паоло теж йде."
+  },
+  {
+   "id": "it:24:02",
+   "target": "Vado in stazione e ci va anche Lea.",
+   "ru": "Я иду на вокзал, и Леа тоже.",
+   "uk": "Я йду на вокзал, і Леа теж йде."
+  },
+  {
+   "id": "it:24:03",
+   "target": "Tu vai al parco e ci vado anch’io.",
+   "ru": "Ты идёшь в парк, и я тоже.",
+   "uk": "Ти йдеш до парку, і я теж."
+  },
+  {
+   "id": "it:24:04",
+   "target": "Lei va al museo e ci andiamo anche noi.",
+   "ru": "Она идёт в музей, и мы тоже.",
+   "uk": "Вона йде до музею, і ми теж йдемо."
+  },
+  {
+   "id": "it:24:05",
+   "target": "Andiamo in ufficio e ci andate anche voi.",
+   "ru": "Мы идём в офис, и вы тоже туда идёте.",
+   "uk": "Ми йдемо в офіс, і ви теж туди йдете."
+  },
+  {
+   "id": "it:24:06",
+   "target": "Loro vanno allo stadio e ci vanno anche le ragazze.",
+   "ru": "Они идут на стадион, и девушки тоже туда идут.",
+   "uk": "Вони йдуть на стадіон, і дівчата теж йдуть туди."
+  },
+  {
+   "id": "it:24:07",
+   "target": "Ci vado adesso.",
+   "ru": "Я иду туда сейчас.",
+   "uk": "Я йду туди зараз."
+  },
+  {
+   "id": "it:24:08",
+   "target": "Ci vai domani.",
+   "ru": "Ты пойдёшь туда завтра.",
+   "uk": "Ти підеш туди завтра."
+  },
+  {
+   "id": "it:24:09",
+   "target": "Lui ci va a piedi.",
+   "ru": "Он идёт туда пешком.",
+   "uk": "Він йде туди пішки."
+  },
+  {
+   "id": "it:24:10",
+   "target": "Ci andiamo in autobus.",
+   "ru": "Мы едем туда на автобусе.",
+   "uk": "Ми їдемо туди автобусом."
+  },
+  {
+   "id": "it:24:11",
+   "target": "Ci abito da un anno.",
+   "ru": "Я живу там уже год.",
+   "uk": "Я живу там рік."
+  },
+  {
+   "id": "it:24:12",
+   "target": "Lei ci abita con sua sorella.",
+   "ru": "Она живёт там со своей сестрой.",
+   "uk": "Вона живе там зі своєю сестрою."
+  },
+  {
+   "id": "it:24:13",
+   "target": "Ci vivono tutto l’anno.",
+   "ru": "Они живут там круглый год.",
+   "uk": "Вони живуть там цілий рік."
+  },
+  {
+   "id": "it:24:14",
+   "target": "Il laboratorio è luminoso e ci lavoriamo insieme.",
+   "ru": "В мастерской светло, и мы там вместе работаем.",
+   "uk": "У майстерні світло, і ми там разом працюємо."
+  },
+  {
+   "id": "it:24:15",
+   "target": "Ci resta a lungo?",
+   "ru": "Вы надолго там останетесь?",
+   "uk": "Ви надовго там залишитеся?"
+  },
+  {
+   "id": "it:24:16",
+   "target": "Mi piace questa terrazza: ci si mangia bene.",
+   "ru": "Мне нравится эта терраса, и еда здесь хорошая.",
+   "uk": "Мені подобається ця тераса, і їжа тут смачна."
+  },
+  {
+   "id": "it:24:17",
+   "target": "Le infermiere ci passano dopo il turno.",
+   "ru": "Медсёстры заходят туда после дежурства.",
+   "uk": "Медсестри заходять туди після чергування."
+  },
+  {
+   "id": "it:24:18",
+   "target": "Ci passi spesso.",
+   "ru": "Ты часто там бываешь.",
+   "uk": "Ти часто там буваєш."
+  },
+  {
+   "id": "it:24:19",
+   "target": "Il nostro soggiorno è fresco e a volte ci dormo.",
+   "ru": "В нашей гостиной прохладно, и я иногда там сплю.",
+   "uk": "У нашій вітальні прохолодно, і я іноді там сплю."
+  },
+  {
+   "id": "it:24:20",
+   "target": "I bambini ci giocano dopo la scuola.",
+   "ru": "Дети играют там после школы.",
+   "uk": "Діти граються там після школи."
+  },
+  {
+   "id": "it:24:21",
+   "target": "Ci sono già stato.",
+   "ru": "Я уже там был.",
+   "uk": "Я вже там був."
+  },
+  {
+   "id": "it:24:22",
+   "target": "Lei ci è già stata.",
+   "ru": "Она уже там была.",
+   "uk": "Вона вже там була."
+  },
+  {
+   "id": "it:24:23",
+   "target": "Ci siamo rimasti una notte.",
+   "ru": "Мы переночевали там.",
+   "uk": "Ми залишилися там на одну ніч."
+  },
+  {
+   "id": "it:24:24",
+   "target": "Ci sono arrivati a mezzogiorno.",
+   "ru": "Они приехали туда в полдень.",
+   "uk": "Вони прибули туди опівдні."
+  },
+  {
+   "id": "it:24:25",
+   "target": "Lea ci ha comprato del pane.",
+   "ru": "Леа купила там хлеб.",
+   "uk": "Леа купила там хліб."
+  },
+  {
+   "id": "it:24:26",
+   "target": "Ci hai trovato posto?",
+   "ru": "Ты нашёл там место?",
+   "uk": "Ти знайшов там місце?"
+  },
+  {
+   "id": "it:24:27",
+   "target": "Questa mostra è bellissima e ci tornerò domani.",
+   "ru": "Эта выставка великолепна, и завтра я туда вернусь.",
+   "uk": "Ця виставка чудова, і завтра я туди повернуся."
+  },
+  {
+   "id": "it:24:28",
+   "target": "Ci ha lasciato la sua borsa.",
+   "ru": "Она оставила там свою сумку.",
+   "uk": "Вона залишила там свою сумку."
+  },
+  {
+   "id": "it:24:29",
+   "target": "Ci abitavamo prima di conoscere bene questo quartiere.",
+   "ru": "Мы жили там ещё до того, как хорошо узнали этот район.",
+   "uk": "Ми жили там ще до того, як добре пізнали цей район."
+  },
+  {
+   "id": "it:24:30",
+   "target": "Questo palco è grande: ci ha mai recitato?",
+   "ru": "Эта сцена большая: вы когда-нибудь выступали на ней?",
+   "uk": "Ця сцена велика: ви коли-небудь виступали на ній?"
+  },
+  {
+   "id": "it:24:31",
+   "target": "Non ci vado la sera.",
+   "ru": "Я не хожу туда по вечерам.",
+   "uk": "Я не ходжу туди ввечері."
+  },
+  {
+   "id": "it:24:32",
+   "target": "Non ci abitiamo più.",
+   "ru": "Мы там больше не живём.",
+   "uk": "Ми там більше не живемо."
+  },
+  {
+   "id": "it:24:33",
+   "target": "Lei non ci lavora il lunedì.",
+   "ru": "Она не работает там по понедельникам.",
+   "uk": "Вона не працює там по понеділках."
+  },
+  {
+   "id": "it:24:34",
+   "target": "Non ci sono mai stati.",
+   "ru": "Они там никогда не были.",
+   "uk": "Вони там ніколи не були."
+  },
+  {
+   "id": "it:24:35",
+   "target": "Non posso restarci.",
+   "ru": "Я не могу там оставаться.",
+   "uk": "Я не можу там залишитися."
+  },
+  {
+   "id": "it:24:36",
+   "target": "Vuoi tornarci?",
+   "ru": "Ты хочешь туда вернуться?",
+   "uk": "Ти хочеш туди повернутись?"
+  },
+  {
+   "id": "it:24:37",
+   "target": "Ci andiamo a pranzo.",
+   "ru": "Мы идём туда на обед.",
+   "uk": "Ми йдемо туди на обід."
+  },
+  {
+   "id": "it:24:38",
+   "target": "Dovrebbe andarci domani.",
+   "ru": "Он должен пойти туда завтра.",
+   "uk": "Він має піти туди завтра."
+  },
+  {
+   "id": "it:24:39",
+   "target": "Ci può andare in bici.",
+   "ru": "Вы можете доехать туда на велосипеде.",
+   "uk": "Ви можете поїхати туди на велосипеді."
+  },
+  {
+   "id": "it:24:40",
+   "target": "Preferisco andarci da solo.",
+   "ru": "Я предпочитаю пойти туда один.",
+   "uk": "Я вважаю за краще піти туди один."
+  },
+  {
+   "id": "it:24:41",
+   "target": "Il museo è gratuito e ci torno spesso.",
+   "ru": "Музей бесплатный, и я часто туда возвращаюсь.",
+   "uk": "Музей безкоштовний, і я часто туди повертаюся."
+  },
+  {
+   "id": "it:24:42",
+   "target": "Il mercato è lontano, ma ci andremo a piedi.",
+   "ru": "Рынок далеко, но мы дойдём пешком.",
+   "uk": "Ринок далеко, але ми пройдемося туди пішки."
+  },
+  {
+   "id": "it:24:43",
+   "target": "Il cortile è tranquillo e i bambini ci leggono.",
+   "ru": "Во дворе тихо, и дети читают там.",
+   "uk": "У дворі тихо, і діти там читають."
+  },
+  {
+   "id": "it:24:44",
+   "target": "Mi piace questo bar e ci incontro i miei amici.",
+   "ru": "Мне нравится это кафе, и я встречаюсь там с друзьями.",
+   "uk": "Мені подобається це кафе, і я зустрічаюся там з друзями."
+  },
+  {
+   "id": "it:24:45",
+   "target": "Questo parco è aperto e possiamo entrarci.",
+   "ru": "Этот парк открыт, и мы можем в него войти.",
+   "uk": "Цей парк відкритий, і ми можемо до нього увійти."
+  },
+  {
+   "id": "it:24:46",
+   "target": "Conosco la stazione e posso incontrarla lì.",
+   "ru": "Я знаю этот вокзал и могу вас там встретить.",
+   "uk": "Я знаю цей вокзал і можу вас там зустріти."
+  },
+  {
+   "id": "it:24:47",
+   "target": "Il mio ufficio è piccolo, ma ci lavoro bene.",
+   "ru": "Мой офис небольшой, но я хорошо там работаю.",
+   "uk": "Мій офіс маленький, але мені там добре працюється."
+  },
+  {
+   "id": "it:24:48",
+   "target": "Il laboratorio chiude presto e devo andarci adesso.",
+   "ru": "Мастерская рано закрывается, и мне нужно пойти туда сейчас.",
+   "uk": "Майстерня рано закривається, і мені треба піти туди зараз."
+  },
+  {
+   "id": "it:24:49",
+   "target": "Conosci questa città e ci hai dei parenti.",
+   "ru": "Ты знаешь этот город, и у тебя там родственники.",
+   "uk": "Ти знаєш це місто, і у тебе там родичі."
+  },
+  {
+   "id": "it:24:50",
+   "target": "L’albergo è al completo e non possiamo passarci la notte.",
+   "ru": "В гостинице нет мест, и мы не можем там переночевать.",
+   "uk": "У готелі немає місць, і ми не можемо там переночувати."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la mostra",
+   "ru": "выставка",
+   "uk": "виставка"
+  },
+  {
+   "lemma": "il palco",
+   "ru": "сцена",
+   "uk": "сцена"
+  },
+  {
+   "lemma": "la terrazza",
+   "ru": "терраса",
+   "uk": "тераса"
+  },
+  {
+   "lemma": "il laboratorio",
+   "ru": "мастерская",
+   "uk": "майстерня"
+  },
+  {
+   "lemma": "il soggiorno",
+   "ru": "гостиная",
+   "uk": "вітальня"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  }
+ ],
+ "oldTopicTitle": "Вернуться к месту: `ci`",
+ "oldTheoryRu": "Короткое `ci` может относиться к месту, введённому разными предлогами. Проверь, можешь ли заменить его полной группой с названием места и сохранить сообщение. `Ci` не бывает «мужским» или «женским» из-за названия места. Направляешься в магазин или в аптеку — форма `ci` остаётся прежней. Перед простым личным глаголом `ci` обычно стоит отдельно. Без предыдущей сцены короткое `ci torno` понятно не полностью: «я туда вернусь», но куда именно? В прошлом `ci` ставится перед помощником: `ci siamo rimasti`. Часть `siamo rimasti` сообщает, кто остался и когда, а `ci` только указывает обратно на место. В отрицании начало `non ci` сохраняется. Не путай с наличием `non c’è`: целая фраза определяет, возвращаемся ли мы к месту или говорим, что чего-то нет. С инфинитивом получаем `tornarci`. С модальным `voglio tornarci` и `ci voglio tornare` могут выразить один смысл. Не используй обе копии `ci` одновременно. Иногда обычное итальянское предложение естественнее произнести без повторения места. В учебном образце сохраняем `ci`, когда задача именно в явной отсылке «там» или «туда»."
+}

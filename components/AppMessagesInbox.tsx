@@ -25,7 +25,6 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import MotionModal from './MotionModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import { consumeVipCelebration } from '../app/vip_celebration_state';
 import {
   type AppMessageWithState,
   type AppMessagesSnapshot,
@@ -34,23 +33,15 @@ import {
   filterAppMessagesSnapshotForAudience,
   filterAppMessagesSnapshotForNotificationCenter,
   markAppMessageRead,
-  pickAppMessagePollOptionText,
-  pickAppMessagePollQuestion,
   pickAppMessageText,
   setAppMessageReaction,
-  setAppMessagePollVote,
   readAnimatedMessageIds,
   markMessageIdsAnimated,
   readCachedAppMessagesSnapshot,
   refreshAppMessagesSnapshotOnce,
   restoreAppMessage,
 } from '../app/app_messages';
-import VipSurveyModal from './VipSurveyModal';
-import VipCelebrationModal from './VipCelebrationModal';
-import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
-import { claimVipSurveyReviewPrompt } from '../app/vip_survey_review_prompt';
 import { VIP_SURVEY_ID } from '../app/vip_survey_content';
-import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { notificationBadgePaint } from './homeNotificationBadge';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
@@ -94,28 +85,11 @@ function inboxText(lang: Lang) {
     }),
     like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
     dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', en: 'Dislike', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
-    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Survei', tr: 'Anket', pl: 'Ankieta' }), // зачем (Сверка 13.10): «Jajak pendapat» в 2,3× длиннее ru в бейдже; «Survei» — как в остальных строках опроса
-    vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', en: 'Plus survey', es: 'Encuesta Plus', 'pt-BR': 'Pesquisa Plus', vi: 'Khảo sát Plus', id: 'Survei Plus', tr: 'Plus anketi', pl: 'Ankieta Plus' }),
-    vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', en: 'Take survey', es: 'Responder encuesta', 'pt-BR': 'Responder pesquisa', vi: 'Làm khảo sát', id: 'Ikuti survei', tr: 'Ankete katıl', pl: 'Wypełnij ankietę' }),
-    vipSurveyHint: triLang(lang, {
-      ru: 'Ответь на несколько вопросов и активируй месяц Plus.',
-      uk: 'Дай відповідь на кілька запитань і активуй місяць Plus.',
-      en: 'Answer a few questions and activate a month of Plus.',
-      es: 'Responde algunas preguntas y activa un mes de Plus.',
-      'pt-BR': 'Responda algumas perguntas e ative um mês de Plus.',
-      vi: 'Trả lời một vài câu hỏi và kích hoạt một tháng Plus.',
-      id: 'Jawab beberapa pertanyaan dan aktifkan satu bulan Plus.',
-      tr: 'Birkaç soruyu yanıtla ve bir aylık Plus’ı etkinleştir.',
-      pl: 'Odpowiedz na kilka pytań i aktywuj miesiąc Plus.',
-    }),
     dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', en: 'Dismiss notification', es: 'Descartar notificación', 'pt-BR': 'Descartar notificação', vi: 'Bỏ qua thông báo', id: 'Abaikan notifikasi', tr: 'Bildirimi kapat', pl: 'Odrzuć powiadomienie' }),
     team: triLang(lang, { ru: 'От команды', uk: 'Від команди', en: 'From the team', es: 'Del equipo', 'pt-BR': 'Da equipe', vi: 'Từ đội ngũ', id: 'Dari tim', tr: 'Ekipten', pl: 'Od zespołu' }),
     pinned: triLang(lang, { ru: 'Закреплено', uk: 'Закріплено', en: 'Pinned', es: 'Fijado', 'pt-BR': 'Fixado', vi: 'Đã ghim', id: 'Disematkan', tr: 'Sabitlendi', pl: 'Przypięte' }),
     deleted: triLang(lang, { ru: 'Сообщение удалено', uk: 'Повідомлення видалено', en: 'Message deleted', es: 'Mensaje eliminado', 'pt-BR': 'Mensagem removida', vi: 'Đã xóa tin nhắn', id: 'Pesan dihapus', tr: 'Mesaj silindi', pl: 'Wiadomość usunięta' }),
     undo: triLang(lang, { ru: 'Отменить', uk: 'Скасувати', en: 'Undo', es: 'Deshacer', 'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Urungkan', tr: 'Geri al', pl: 'Cofnij' }),
-    pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', en: 'votes', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
-    pollSelected: triLang(lang, { ru: 'Твой выбор', uk: 'Твій вибір', en: 'Your choice', es: 'Tu elección', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihanmu', tr: 'Seçimin', pl: 'Twój wybór' }),
-    pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', en: 'Results after voting', es: 'Resultados después de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
     inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', en: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Report reply', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claim: triLang(lang, { ru: 'Получить', uk: 'Отримати', en: 'Claim', es: 'Recibir', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' }),
@@ -173,15 +147,11 @@ function AppMessagesInbox({
   const [unreadCount, setUnreadCount] = useState(0);
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
-  const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
-  const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
   const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
   const [embeddedPage, setEmbeddedPage] = useState(0);
   const [renderButton, setRenderButton] = useState(runtimeActive);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
   const badgePulse = useRef(new Animated.Value(1)).current;
-  const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const blurRenderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const badgeRefreshInFlightRef = useRef(false);
 
@@ -316,15 +286,8 @@ function AppMessagesInbox({
       setRenderButton(false);
     }, BLUR_RENDER_GRACE_MS);
 
-    if (surveyOpenTimer.current) {
-      clearTimeout(surveyOpenTimer.current);
-      surveyOpenTimer.current = null;
-    }
     setVisible(false);
     setSelectedId(null);
-    setSurveyTarget(null);
-    setVipCelebrationVisible(false);
-    setVipSurveyReviewPromptVisible(false);
 
     return () => {
       if (blurRenderTimer.current) {
@@ -408,15 +371,6 @@ function AppMessagesInbox({
       appSub.remove();
     };
   }, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);
-
-  useEffect(() => {
-    if (!hasPremiumAccess || !surveyTarget) return;
-    const messageId = surveyTarget.id;
-    setSurveyTarget(null);
-    setVisible(false);
-    setSelectedId(null);
-    void dismissAppMessage(messageId);
-  }, [hasPremiumAccess, surveyTarget]);
 
   useEffect(() => {
     // зачем: если выбранное сообщение исчезло (удалили, отфильтровали по аудитории,
@@ -524,7 +478,6 @@ function AppMessagesInbox({
   }, [selected]);
 
   useEffect(() => () => {
-    if (surveyOpenTimer.current) clearTimeout(surveyOpenTimer.current);
     if (blurRenderTimer.current) clearTimeout(blurRenderTimer.current);
   }, []);
 
@@ -551,7 +504,6 @@ function AppMessagesInbox({
     setMessages((prev) => prev.filter((row) => row.id !== message.id));
     if (message.unread) setUnreadCount((prev) => Math.max(0, prev - 1));
     if (selectedId === message.id) setSelectedId(null);
-    if (surveyTarget?.id === message.id) setSurveyTarget(null);
     setUndoMessage(message);
     if (undoTimer.current) clearTimeout(undoTimer.current);
     undoTimer.current = setTimeout(() => {
@@ -587,82 +539,6 @@ function AppMessagesInbox({
     void setAppMessageReaction(selected.id, next);
   };
 
-  const voteOnSelectedPoll = (optionId: string) => {
-    if (!selected?.poll || selected.pollOptionId === optionId) return;
-    const previousOptionId = selected.pollOptionId;
-    setMessages((prev) =>
-      prev.map((message) => {
-        if (message.id !== selected.id || !message.poll) return message;
-        const counts = { ...message.poll.counts };
-        if (previousOptionId) {
-          counts[previousOptionId] = Math.max(0, (counts[previousOptionId] || 0) - 1);
-        }
-        counts[optionId] = (counts[optionId] || 0) + 1;
-        return {
-          ...message,
-          pollOptionId: optionId,
-          poll: {
-            ...message.poll,
-            counts,
-            voteCount: previousOptionId ? message.poll.voteCount : message.poll.voteCount + 1,
-          },
-        };
-      }),
-    );
-    hapticTap();
-    void setAppMessagePollVote(selected.id, optionId);
-  };
-
-  const dismissSurveyMessage = (messageId: string) => {
-    const target = messages.find((message) => message.id === messageId);
-    if (target) dismissMessage(target);
-  };
-
-  const openSurvey = (message: AppMessageWithState) => {
-    hapticTap();
-    if (hasPremiumAccess) {
-      dismissSurveyMessage(message.id);
-      return;
-    }
-    if (message.unread) {
-      setMessages((prev) => prev.map((m) => (m.id === message.id ? { ...m, unread: false, readAtMs: Date.now() } : m)));
-      setUnreadCount((prev) => Math.max(0, prev - 1));
-      void markAppMessageRead(message.id);
-    }
-    setSelectedId(null);
-    setVisible(false);
-    if (surveyOpenTimer.current) clearTimeout(surveyOpenTimer.current);
-    surveyOpenTimer.current = setTimeout(() => {
-      setSurveyTarget(message);
-      surveyOpenTimer.current = null;
-    }, 180);
-  };
-
-  // зачем (решение владельца 04.10): вернуть просьбу об отзыве после опроса Plus, снятую снимком 95eec1717.
-  // Показывать ли — решает claimVipSurveyReviewPrompt (уже оценил / уже показано), каждое решение в [VIP-REVIEW-PROMPT].
-  const requestVipSurveyReviewPrompt = (trigger: 'after_celebration' | 'already_granted') => {
-    void claimVipSurveyReviewPrompt(VIP_SURVEY_ID, trigger).then((decision) => {
-      if (decision.show) setVipSurveyReviewPromptVisible(true);
-    });
-  };
-
-  const handleSurveyCompleted = (result: SubmitVipSurveyResponse) => {
-    const messageId = surveyTarget?.id;
-    if (messageId) {
-      setMessages((prev) => prev.filter((message) => message.id !== messageId));
-      setSelectedId((current) => (current === messageId ? null : current));
-      void dismissAppMessage(messageId);
-    }
-    setSurveyTarget(null);
-    setVisible(false);
-    if (!result.alreadyGranted) {
-      void consumeVipCelebration(result.grantAt);
-      setVipCelebrationVisible(true);
-    } else {
-      requestVipSurveyReviewPrompt('already_granted');
-    }
-  };
-
   // Нейтральная палитра окна: строки — тонкий тон поверх непрозрачной основы, без рамок.
   const chrome = {
     bg: glass.bg,
@@ -674,9 +550,6 @@ function AppMessagesInbox({
     muted: glass.secondary,
     soft: glass.mutedText,
   };
-  const vipSurveyAccent = glass.cta;
-  const vipSurveyAccentText = glass.ctaInk;
-  const vipSurveyTint = glass.selected;
   // Награда (монеты) и «получено» — цвета темы приложения, как и раньше «награда».
   // Ошибка/«не нравится» остаётся красной.
   const dangerColor = theme?.wrong ?? glass.bad;
@@ -704,11 +577,7 @@ function AppMessagesInbox({
         <View style={styles.embeddedRows}>
           {embeddedMessages.map((message) => {
             const text = pickAppMessageText(message, lang);
-            const preview = message.kind === 'vip_survey'
-              ? copy.vipSurveyHint
-              : message.poll
-              ? pickAppMessagePollQuestion(message.poll, lang)
-              : buildAppMessagePreview(text.body, 120);
+            const preview = buildAppMessagePreview(text.body, 120);
             return (
               <KitTouchable
                 key={message.id}
@@ -828,11 +697,7 @@ function AppMessagesInbox({
           renderItem={({ item: message }) => {
             const messageRead = !message.unread;
             const text = pickAppMessageText(message, lang);
-            const preview = message.kind === 'vip_survey'
-              ? copy.vipSurveyHint
-              : message.poll
-              ? pickAppMessagePollQuestion(message.poll, lang)
-              : buildAppMessagePreview(text.body, 160);
+            const preview = buildAppMessagePreview(text.body, 160);
             const rowBackgroundColor = 'transparent';
             const rowTitleColor = chrome.text;
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
@@ -840,31 +705,20 @@ function AppMessagesInbox({
               <KitTouchable
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
-                testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
                 <RowDivider edge="bottom" color={glass.dividerTone} />{/* разделитель строк — тон темы: в светлом оформлении белая линия была невидима */}
                 {message.unread ? <View pointerEvents="none" style={[styles.unreadDot, { backgroundColor: badgeOnSheet.fill }]} /> : null}
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
-                  {message.kind === 'vip_survey' ? (
-                    <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint }]}>
-                      <Ionicons name="sparkles-outline" size={11} color={glass.accentText} />
-                      <Text style={[styles.vipSurveyBadgeText, { color: glass.accentText }]}>{copy.vipSurvey}</Text>
-                    </View>
-                  ) : message.kind === 'report_reply' ? (
+                  {message.kind === 'report_reply' ? (
                     <>
-                      <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
+                      <View style={[styles.reportReplyBadge, { backgroundColor: chrome.card }]}>
                         <Ionicons name="chatbox-ellipses-outline" size={11} color={chrome.soft} />
-                        <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
+                        <Text style={[styles.reportReplyBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
                       </View>
                       {/* зачем (координатор 13.10, D70/D104): «+N» старой награды не показываем — она ничего не начисляет */}
                     </>
-                  ) : message.poll ? (
-                    <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
-                      <Ionicons name="stats-chart-outline" size={11} color={chrome.soft} />
-                      <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
-                    </View>
                   ) : null}
                   <Text style={[styles.messageDate, { color: chrome.muted }]}>{message.unread ? copy.unread : formatMessageDate(message.createdAtMs)}</Text>
                 </View>
@@ -878,24 +732,6 @@ function AppMessagesInbox({
                 <Text style={[styles.messagePreview, messageRead && styles.messagePreviewRead, { color: rowMutedColor }]}>
                   {preview}
                 </Text>
-                {message.kind === 'vip_survey' ? (
-                  <View style={styles.messageRowActions}>
-                    <KitTouchable
-                      testID="vip-survey-inbox-cta"
-                      activeOpacity={0.86}
-                      accessibilityRole="button"
-                      accessibilityLabel={copy.vipSurveyCta}
-                      onPress={(event) => {
-                        event.stopPropagation?.();
-                        openSurvey(message);
-                      }}
-                      style={[styles.messageRowCta, { backgroundColor: vipSurveyAccent }]}
-                    >
-                      <Ionicons name="chatbubbles-outline" size={15} color={vipSurveyAccentText} />
-                      <Text style={[styles.messageRowCtaText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
-                    </KitTouchable>
-                  </View>
-                ) : null}
               </KitTouchable>
             );
           }}
@@ -903,102 +739,6 @@ function AppMessagesInbox({
       )}
     </>
   );
-
-  const renderPoll = (message: AppMessageWithState) => {
-    if (!message.poll) return null;
-    const poll = message.poll;
-    const showResults = Boolean(message.pollOptionId);
-    const totalVotes = Math.max(0, poll.voteCount);
-    return (
-      <View style={[styles.pollCard, { backgroundColor: chrome.card }]}>
-        <View style={styles.pollHeader}>
-          <View style={[styles.pollHeaderIcon, { backgroundColor: glass.opaqueControl }]}>
-            <Ionicons name="stats-chart" size={15} color={glass.lightTint} />
-          </View>
-          <View style={styles.pollHeaderText}>
-            <Text style={[styles.pollLabel, { color: chrome.soft }]}>{copy.poll}</Text>
-            <Text style={[styles.pollQuestion, { color: chrome.text }]}>{pickAppMessagePollQuestion(poll, lang)}</Text>
-          </View>
-        </View>
-        <View style={styles.pollOptions}>
-          {poll.options.map((option) => {
-            const selectedOption = message.pollOptionId === option.id;
-            const count = Math.max(0, poll.counts[option.id] || 0);
-            const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-            const optionColor = chrome.text;
-            const accent = selectedOption ? glass.text : chrome.soft;
-            return (
-              <KitTouchable
-                key={option.id}
-                activeOpacity={0.84}
-                onPress={() => voteOnSelectedPoll(option.id)}
-                style={[
-                  styles.pollOption,
-                  {
-                    // зачем (стиль «Тень», владелец 12.10): кромка выбора снята — выбранный вариант тоном и тенью поглубже, плюс радио слева
-                    backgroundColor: selectedOption ? glass.selected : glass.opaqueSheet,
-                    boxShadow: selectedOption ? raisedBoxShadow(glass) : nestedBoxShadow(glass),
-                  },
-                ]}
-              >
-                <View style={styles.pollOptionTop}>
-                  <Ionicons
-                    name={selectedOption ? 'radio-button-on' : 'radio-button-off'}
-                    size={17}
-                    color={accent}
-                  />
-                  <Text style={[styles.pollOptionText, { color: optionColor }]} numberOfLines={3}>
-                    {pickAppMessagePollOptionText(option, lang)}
-                  </Text>
-                  {showResults ? (
-                    <Text style={[styles.pollOptionMeta, { color: accent }]}>
-                      {pct}%
-                    </Text>
-                  ) : null}
-                </View>
-                {showResults ? (
-                  <View style={[styles.pollTrack, { backgroundColor: glass.line }]}>
-                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? glass.cta : glass.mutedText }]} />
-                  </View>
-                ) : null}
-              </KitTouchable>
-            );
-          })}
-        </View>
-        <Text style={[styles.pollFooter, { color: chrome.soft }]}>
-          {showResults ? `${copy.pollVotes}: ${totalVotes}` : copy.pollResultsHint}
-        </Text>
-      </View>
-    );
-  };
-
-  const renderVipSurveyCta = (message: AppMessageWithState) => {
-    if (message.kind !== 'vip_survey') return null;
-    return (
-      <View style={[styles.vipSurveyCard, { backgroundColor: chrome.card }]}>
-        <View style={styles.vipSurveyCardTop}>
-          <View style={[styles.vipSurveyIcon, { backgroundColor: vipSurveyTint }]}>
-            <Ionicons name="sparkles" size={18} color={glass.accentText} />
-          </View>
-          <View style={styles.vipSurveyTextWrap}>
-            <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>{copy.vipSurvey}</Text>
-            <Text style={[styles.vipSurveyBody, { color: chrome.muted }]}>{copy.vipSurveyHint}</Text>
-          </View>
-        </View>
-        <KitTouchable
-          testID="vip-survey-detail-cta"
-          activeOpacity={0.86}
-          accessibilityRole="button"
-          accessibilityLabel={copy.vipSurveyCta}
-          onPress={() => openSurvey(message)}
-          style={[styles.vipSurveyButton, { backgroundColor: vipSurveyAccent }]}
-        >
-          <Ionicons name="chatbubbles-outline" size={17} color={vipSurveyAccentText} />
-          <Text style={[styles.vipSurveyButtonText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
-        </KitTouchable>
-      </View>
-    );
-  };
 
   const renderDetail = () => {
     if (!selected) return null;
@@ -1024,10 +764,8 @@ function AppMessagesInbox({
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
-          {renderVipSurveyCta(selected)}
-          {renderPoll(selected)}
 
-          {selected.kind === 'vip_survey' ? null : <View style={styles.reactions}>
+          <View style={styles.reactions}>
             <KitTouchable
               activeOpacity={0.82}
               onPress={() => reactToSelected('like')}
@@ -1056,7 +794,7 @@ function AppMessagesInbox({
               <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? dangerColor : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
             </KitTouchable>
-          </View>}
+          </View>
         </ScrollView>
       </>
     );
@@ -1087,9 +825,6 @@ function AppMessagesInbox({
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
-          {renderVipSurveyCta(selected)}
-          {renderPoll(selected)}
-          {selected.kind === 'vip_survey' ? null : (
             <View style={styles.reactions}>
               <KitTouchable
                 activeOpacity={0.82}
@@ -1120,7 +855,6 @@ function AppMessagesInbox({
                 <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
               </KitTouchable>
             </View>
-          )}
         </View>
       </View>
     );
@@ -1237,23 +971,6 @@ function AppMessagesInbox({
         </View>
         </SheetSwipeRoot>
       </MotionModal>
-      <VipSurveyModal
-        visible={!!surveyTarget}
-        messageId={surveyTarget?.id ?? ''}
-        onClose={() => setSurveyTarget(null)}
-        onCompleted={handleSurveyCompleted}
-      />
-      <VipCelebrationModal
-        visible={vipCelebrationVisible}
-        onClose={() => {
-          setVipCelebrationVisible(false);
-          requestVipSurveyReviewPrompt('after_celebration');
-        }}
-      />
-      <VipSurveyReviewPromptModal
-        visible={vipSurveyReviewPromptVisible}
-        onClose={() => setVipSurveyReviewPromptVisible(false)}
-      />
     </>
   );
 }
@@ -1553,7 +1270,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
   },
-  pollBadge: {
+  reportReplyBadge: {
     height: 22,
     borderRadius: 11,
     borderWidth: 0,
@@ -1562,20 +1279,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
   },
-  pollBadgeText: {
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  vipSurveyBadge: {
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 0,
-    paddingHorizontal: 7,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  vipSurveyBadgeText: {
+  reportReplyBadgeText: {
     fontSize: 13,
     fontWeight: '700',
   },
@@ -1589,23 +1293,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '400',
-  },
-  messageRowActions: {
-    marginTop: 10,
-    alignItems: 'flex-start',
-  },
-  messageRowCta: {
-    minHeight: 44,
-    borderRadius: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 7,
-    paddingHorizontal: 12,
-  },
-  messageRowCtaText: {
-    fontSize: 13,
-    fontWeight: '700',
   },
   emptyState: {
     flex: 1,
@@ -1653,129 +1340,6 @@ const styles = StyleSheet.create({
   detailBody: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: '700',
-  },
-  vipSurveyCard: {
-    marginTop: 18,
-    borderRadius: 16,
-    borderWidth: 0,
-    padding: 14,
-    gap: 14,
-  },
-  vipSurveyCardTop: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 10,
-  },
-  vipSurveyIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  vipSurveyTextWrap: {
-    flex: 1,
-    minWidth: 0,
-  },
-  vipSurveyTitle: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: '700',
-    marginBottom: 4,
-  },
-  vipSurveyBody: {
-    fontSize: 13,
-    lineHeight: 19,
-    fontWeight: '600',
-  },
-  vipSurveyButton: {
-    minHeight: 44,
-    borderRadius: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 14,
-  },
-  vipSurveyButtonText: {
-    fontSize: 13,
-    fontWeight: '900',
-  },
-  pollCard: {
-    marginTop: 18,
-    borderRadius: 16,
-    borderWidth: 0,
-    padding: 14,
-  },
-  pollHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 10,
-    marginBottom: 12,
-  },
-  pollHeaderIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pollHeaderText: {
-    flex: 1,
-    minWidth: 0,
-  },
-  pollLabel: {
-    fontSize: 13,
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    marginBottom: 3,
-  },
-  pollQuestion: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: '700',
-  },
-  pollOptions: {
-    gap: 10, // зачем (стиль «Тень»): плашкам нужен зазор ≥10, чтобы тень «дышала»
-  },
-  pollOption: {
-    minHeight: 48,
-    borderRadius: 13,
-    paddingHorizontal: 11,
-    paddingVertical: 10,
-  },
-  pollOptionTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  pollOptionText: {
-    flex: 1,
-    minWidth: 0,
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '800',
-  },
-  pollOptionMeta: {
-    minWidth: 38,
-    textAlign: 'right',
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  pollTrack: {
-    height: 5,
-    borderRadius: 999,
-    overflow: 'hidden',
-    marginTop: 9,
-  },
-  pollFill: {
-    height: '100%',
-    borderRadius: 999,
-  },
-  pollFooter: {
-    marginTop: 10,
-    fontSize: 13,
     fontWeight: '700',
   },
   reactions: {

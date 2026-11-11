@@ -1,3 +1,4 @@
+import { assertVideoRequestActive } from './video_section_preference';
 import type { AccountGenerationToken } from './account_generation';
 import { getDevYoutubeCatalogReader } from './dev_youtube_demo';
 import { isCurrentAccountGeneration } from './account_generation';
@@ -116,6 +117,24 @@ export async function fetchYoutubeChannelCatalogWithReader(
   };
 }
 
+export function guardYoutubeCatalogReader(reader: YoutubeCatalogReader, signal?: AbortSignal): YoutubeCatalogReader {
+  if (!signal) return reader;
+  return {
+    get: async (path) => {
+      assertVideoRequestActive(signal);
+      const value = await reader.get(path);
+      assertVideoRequestActive(signal);
+      return value;
+    },
+    list: async (path) => {
+      assertVideoRequestActive(signal);
+      const value = await reader.list(path);
+      assertVideoRequestActive(signal);
+      return value;
+    },
+  };
+}
+
 async function createFirestoreReader(): Promise<YoutubeCatalogReader> {
   // зачем (координатор 12.10, video-001/004/008/009/011): dev `videopacks=catalog|catalog_upcoming` — каталог из памяти (ролики, плейлисты, премьера), Firestore не вызывается;
   // в стор-сборке getDevYoutubeCatalogReader() всегда null.
@@ -140,8 +159,8 @@ export async function fetchYoutubeChannelCatalog(channelId: string): Promise<You
   return fetchYoutubeChannelCatalogWithReader(channelId, await createFirestoreReader());
 }
 
-export async function fetchYoutubeCatalogManifest(): Promise<YoutubeCatalogManifest> {
-  return fetchYoutubeCatalogManifestWithReader(await createFirestoreReader());
+export async function fetchYoutubeCatalogManifest(signal?: AbortSignal): Promise<YoutubeCatalogManifest> {
+  return fetchYoutubeCatalogManifestWithReader(guardYoutubeCatalogReader(await createFirestoreReader(), signal));
 }
 
 export type YoutubeVideoIndexChannel = Readonly<{ channelId: string; videos: YoutubeVideoSnapshot[]; error?: string }>;
@@ -306,8 +325,9 @@ export async function fetchYoutubeHomeRailCatalog(
   channelId: string,
   knownManifest: YoutubeCatalogManifest,
   limit?: number,
+  signal?: AbortSignal,
 ): Promise<YoutubeHomeRailCatalog> {
-  return fetchYoutubeHomeRailWithReader(channelId, await createFirestoreReader(), knownManifest, limit);
+  return fetchYoutubeHomeRailWithReader(channelId, guardYoutubeCatalogReader(await createFirestoreReader(), signal), knownManifest, limit);
 }
 
 /**
@@ -365,6 +385,7 @@ export async function revalidateYoutubeChannelCatalog(options: {
   isCurrent?: () => boolean;
   /** Явное обновление пользователем (потянуть вниз): сутки кэша не действуют. */
   force?: boolean;
+  signal?: AbortSignal;
   /** Для тестов: «сейчас», мс. */
   nowMs?: number;
 }): Promise<YoutubeCatalogScreenSnapshot | null> {
@@ -380,7 +401,7 @@ export async function revalidateYoutubeChannelCatalog(options: {
   }
   const missReason = !options.previous ? 'no_cache' : !sameChannel ? 'other_channel' : options.force ? 'user_refresh' : premiereDue ? `premiere_started:${premiereDue}` : 'stale';
   console.log(`${COST_CUT_LOG} miss reason=${missReason} age=${ageMin}m channel=${options.channelId}`);
-  const reader = options.reader ?? await createFirestoreReader();
+  const reader = guardYoutubeCatalogReader(options.reader ?? await createFirestoreReader(), options.signal);
   // зачем (аудит стоимости Firebase 11.10): вкладка перечитывала весь каталог (корень, канал, до 100 видео и 50
   // плейлистов — до ~154 чтений) на КАЖДОМ заходе и возвращении в приложение. Сервер пишет каталог новым снимком
   // с новой версией и только потом переключает манифест, снимок одной версии не меняется — если на экране уже эта

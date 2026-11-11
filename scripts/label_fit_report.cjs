@@ -144,8 +144,6 @@ const ELEMENTS = [
   { id: 'Хаб Карточек: плитка «Мои наборы»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Мои наборы'), size: 19, weight: 700, avail: (SCREEN - 40 - 12) / 2 - 32, mode: 'tile', note: 'то же' },
   { id: 'Хаб Карточек: плитка «Из видео»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Из видео'), size: 19, weight: 700, avail: (SCREEN - 40 - 12) / 2 - 32, mode: 'tile', note: 'то же' },
   { id: 'Хаб Карточек: плитка «Сообщество»', file: 'app/flashcards/FlashcardsHubScreen.tsx', get: () => byRu('app/flashcards/FlashcardsHubScreen.tsx', 'Сообщество'), size: 19, weight: 700, avail: (SCREEN - 40 - 12) / 2 - 32, mode: 'tile', note: 'то же' },
-  { id: 'Шторка голоса: главная кнопка (Plus)', file: 'components/learning-v2/LearningV2VoiceHeadsupSheet.tsx', get: () => byLangField('components/learning-v2/LearningV2VoiceHeadsupSheet.tsx', 'plus'), size: 16, weight: 700, avail: SCREEN - 44 - 32, mode: 'wrap', note: 'Lv2Cta: лист с полями 22, кнопка 54' },
-  { id: 'Шторка голоса: «Начать всё равно»', file: 'components/learning-v2/LearningV2VoiceHeadsupSheet.tsx', get: () => byLangField('components/learning-v2/LearningV2VoiceHeadsupSheet.tsx', 'start'), size: 16, weight: 600, avail: SCREEN - 44, mode: 'wrap', note: 'тихая кнопка, высота 44' },
   { id: 'Пик: «Играть»', file: 'components/spire/spire_strings.ts', get: () => byArray('components/spire/spire_strings.ts', 'Играть'), size: 16, weight: 700, avail: SCREEN - 40 - 32, mode: 'wrap', note: 'SpireClimbDock ctaText 16/700, кнопка на всю ширину' },
 ];
 

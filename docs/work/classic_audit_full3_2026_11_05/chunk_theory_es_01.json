@@ -1,0 +1,1449 @@
+[
+{
+"lesson": 3,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 3,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Ты дома? Вопрос о месте",
+"formula": "¿ + форма estar + (кто или что) + где + ?",
+"story": "Не утверждаешь, а уточняешь? Estás en casa. → ¿Estás en casa? Слова те же, меняются знаки и интонация.",
+"use": "Уточни место, о котором догадываешься. Спроси так, чтобы собеседник мог ответить «да» или «нет».",
+"choose": "¿ открывает вопрос, а ? закрывает его. После конечного ? точка не нужна. В полной фразе ¿Estás cerca? выбирай только два слова. Знаки добавит приложение. Прочитай Estás cerca как сообщение, затем как просьбу подтвердить. В речи важна вопросительная интонация; единственная обязательная мелодия для всех вариантов испанского здесь не задаётся.",
+"nuance": "Вопросительная интонация не меняет число. Одна llave требует está; несколько llaves — están. Оба знака вопроса относятся ко всему предложению.",
+"wrong": "¿Están la llave en casa?",
+"right": "¿Está la llave en casa?",
+"chapters": [
+{
+"title": "Общий вопрос или вопрос «где»?",
+"body": "«Ты на станции?» — у тебя уже есть версия: станция. Ответом может быть просто «да» или «нет». В ¿Estás en la estación? на месте остаётся en la estación. А в «Где ты?» место неизвестно. Вопросы с dónde разберём отдельно; не ставь dónde в каждую вопросительную фразу.",
+"note": "Форма estás уже указывает на «ты»; отдельное местоимение не обязательно.",
+"samples": [
+"es:03:02",
+"es:03:05"
+],
+"focusId": "es:03:05"
+},
+{
+"title": "Как вопрос виден и как он звучит?",
+"body": "¿ открывает вопрос, а ? закрывает его. После конечного ? точка не нужна. В полной фразе ¿Estás cerca? выбирай только два слова. Знаки добавит приложение. Прочитай Estás cerca как сообщение, затем как просьбу подтвердить. В речи важна вопросительная интонация; единственная обязательная мелодия для всех вариантов испанского здесь не задаётся.",
+"note": "Форма estás уже указывает на «ты»; отдельное местоимение не обязательно.",
+"samples": [
+"es:03:01",
+"es:03:03",
+"es:03:04"
+],
+"focusId": "es:03:03"
+},
+{
+"title": "¿Está Ana…? или ¿Ana está…?",
+"body": "Оба порядка возможны. Спросить, дома ли Ана, можно фразой ¿Está Ana en casa? Если вы уже говорите об Ане, естественно переспросить и ¿Ana está en casa? Не учи правило «в каждом вопросе надо переставить слова». В конструкторе собираешь один образец; другой порядок указан в разборе и не объявляется плохим испанским.",
+"note": "«Ana» — один человек; поэтому está.",
+"samples": [
+"es:03:11",
+"es:03:18",
+"es:03:19"
+],
+"focusId": "es:03:18"
+},
+{
+"title": "Глагол первым, а согласование всё равно с предметом",
+"body": "Сравни ¿Está la llave en casa? и ¿Están las llaves en casa? Место не изменилось. Но в первом случае ищут один ключ, а во втором — несколько. Перед выбором первой плитки мысленно назови то, что ищешь. Не ставь está автоматически только потому, что глагол идёт первым.",
+"note": "«las llaves» — несколько предметов; поэтому están.",
+"samples": [
+"es:03:32",
+"es:03:33",
+"es:03:34",
+"es:03:35"
+],
+"focusId": "es:03:33"
+},
+{
+"title": "К кому обращено «Вы дома?»",
+"body": "Сколько собеседников и как ты к ним обращаешься? Один человек, вежливо: ¿Está en casa? Несколько человек с ustedes: ¿Están en casa? Для нескольких друзей с vosotros в Испании: ¿Estáis en casa?",
+"note": "Форма está уже указывает на «вы, один собеседник на usted»; отдельное местоимение не обязательно.",
+"samples": [
+"es:03:21",
+"es:03:22",
+"es:03:23"
+],
+"focusId": "es:03:23"
+},
+{
+"title": "Спроси о точном месте",
+"body": "Уже знаешь предмет и предполагаешь, где его искать. Скажи «Паспорт в сумке?» через ¿Está el pasaporte en el bolso? Перед названием сумки сохраняется en; в вопросе оно никуда не исчезает. А в ¿El hotel está aquí? aquí уже отвечает на «где?» и en не нужно.",
+"note": "«el pasaporte» — один предмет или одно место; поэтому está.",
+"samples": [
+"es:03:41",
+"es:03:42",
+"es:03:46"
+],
+"focusId": "es:03:41"
+},
+{
+"title": "Как ответить, не меняя тему",
+"body": "Тебя спрашивают ¿Estás en casa? Ты отвечаешь о себе: Sí, estoy en casa или No, no estoy en casa. В последней фразе первое No — самостоятельный ответ «нет», второе no отрицает глагол. В практических заданиях этого урока нужно собрать сам вопрос, не ответ на него.",
+"note": "Форма estás уже указывает на «ты»; отдельное местоимение не обязательно.",
+"samples": [
+"es:03:01",
+"es:03:21",
+"es:03:23"
+],
+"focusId": "es:03:01"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:03:07",
+"sample": "¿Estoy cerca?"
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": "es:03:01",
+"sample": "¿Estás en casa?"
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "он, она; Вы (один человек)",
+"id": "es:03:11",
+"sample": "¿Está Ana en casa?"
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "мы",
+"id": "es:03:06",
+"sample": "¿Estamos cerca?"
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "вы (группа на «ты» в Испании)",
+"id": "es:03:21",
+"sample": "¿Estáis en casa?"
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "они; вы (ustedes)",
+"id": "es:03:20",
+"sample": "¿Están Ana y Luis en casa?"
+}
+],
+"title": "Формы estar"
+}
+]
+},
+"uk": {
+"title": "Ти вдома? Запитання про місце",
+"formula": "¿ + форма estar + (хто або що) + де + ?",
+"story": "Не стверджуєш, а уточнюєш? Estás en casa. → ¿Estás en casa? Слова ті самі; змінюються інтонація й знаки.",
+"use": "Уточни місце, про яке здогадуєшся. Запитай так, щоби співрозмовник міг відповісти «так» або «ні».",
+"choose": "Знак ¿ відкриває запитання, а ? завершує його. Після кінцевого ? крапка не потрібна. У фразі ¿Estás cerca? обирай лише два слова. Знаки додасть застосунок. Вимов Estás cerca як повідомлення, а тоді перепитай. В усному мовленні важлива питальна інтонація; єдиної обов’язкової мелодії для всіх різновидів іспанської тут не задаємо.",
+"nuance": "Питальна інтонація не змінює числа. Одна llave потребує está; кілька llaves — están. Обидва знаки питання стосуються всього речення.",
+"wrong": "¿Están la llave en casa?",
+"right": "¿Está la llave en casa?",
+"chapters": [
+{
+"title": "Загальне запитання чи запитання «де»?",
+"body": "«Ти на станції?» — у тебе вже є припущення: станція. Відповісти можна просто «так» або «ні». У ¿Estás en la estación? сполучення en la estación залишається. А в «Де ти?» місце невідоме. Запитання з dónde розберемо окремо; не починай ним кожне запитання.",
+"note": "Форма estás уже вказує на «ти»; окремий займенник не обов’язковий.",
+"samples": [
+"es:03:02",
+"es:03:05"
+],
+"focusId": "es:03:05"
+},
+{
+"title": "Як побачити й почути запитання?",
+"body": "Знак ¿ відкриває запитання, а ? завершує його. Після кінцевого ? крапка не потрібна. У фразі ¿Estás cerca? обирай лише два слова. Знаки додасть застосунок. Вимов Estás cerca як повідомлення, а тоді перепитай. В усному мовленні важлива питальна інтонація; єдиної обов’язкової мелодії для всіх різновидів іспанської тут не задаємо.",
+"note": "Форма estás уже вказує на «ти»; окремий займенник не обов’язковий.",
+"samples": [
+"es:03:01",
+"es:03:03",
+"es:03:04"
+],
+"focusId": "es:03:03"
+},
+{
+"title": "¿Está Ana…? чи ¿Ana está…?",
+"body": "Можливі обидва порядки. Запитати, чи Ана вдома, можна фразою ¿Está Ana en casa? Коли вже йдеться про Ану, природно перепитати й ¿Ana está en casa? Не вчи правила «у кожному запитанні треба переставити слова». У конструкторі складаєш один зразок; інший порядок наведено в розборі як правильний.",
+"note": "«Ana» — одна людина; тому está.",
+"samples": [
+"es:03:11",
+"es:03:18",
+"es:03:19"
+],
+"focusId": "es:03:18"
+},
+{
+"title": "Дієслово на початку, а форму визначає предмет",
+"body": "Порівняй ¿Está la llave en casa? та ¿Están las llaves en casa? Місце не змінилося. У першому випадку шукають один ключ, у другому — кілька. До вибору першої плитки подумки назви те, що шукаєш. Не став está автоматично лише тому, що дієслово стоїть спочатку.",
+"note": "«las llaves» — кілька предметів; тому están.",
+"samples": [
+"es:03:32",
+"es:03:33",
+"es:03:34",
+"es:03:35"
+],
+"focusId": "es:03:33"
+},
+{
+"title": "До кого звернено «Ви вдома?»?",
+"body": "Скільки співрозмовників і як ти до них звертаєшся? Одна людина, ввічливо: ¿Está en casa? Кілька людей з ustedes: ¿Están en casa? До кількох друзів із vosotros в Іспанії: ¿Estáis en casa?",
+"note": "Форма está уже вказує на «ви, один співрозмовник на usted»; окремий займенник не обов’язковий.",
+"samples": [
+"es:03:21",
+"es:03:22",
+"es:03:23"
+],
+"focusId": "es:03:23"
+},
+{
+"title": "Запитай про точне місце",
+"body": "Уже знаєш предмет і припускаєш, де його шукати. Скажи «Паспорт у сумці?» через ¿Está el pasaporte en el bolso? Перед назвою сумки залишається en; у запитанні воно не зникає. А в ¿El hotel está aquí? слово aquí вже відповідає на «де?» й en не потрібне.",
+"note": "«el pasaporte» — один предмет або одне місце; тому está.",
+"samples": [
+"es:03:41",
+"es:03:42",
+"es:03:46"
+],
+"focusId": "es:03:41"
+},
+{
+"title": "Як відповісти, не змінюючи теми",
+"body": "Тебе питають ¿Estás en casa? Ти відповідаєш про себе: Sí, estoy en casa або No, no estoy en casa. У другій фразі перше No — самостійна відповідь «ні», друге no заперечує дієслово. У вправах цього уроку складаєш саме запитання, не відповідь на нього.",
+"note": "Форма estás уже вказує на «ти»; окремий займенник не обов’язковий.",
+"samples": [
+"es:03:01",
+"es:03:21",
+"es:03:23"
+],
+"focusId": "es:03:01"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:03:07",
+"sample": "¿Estoy cerca?"
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": "es:03:01",
+"sample": "¿Estás en casa?"
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "він, вона; Ви (одна людина)",
+"id": "es:03:11",
+"sample": "¿Está Ana en casa?"
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "ми",
+"id": "es:03:06",
+"sample": "¿Estamos cerca?"
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "ви (група на «ти» в Іспанії)",
+"id": "es:03:21",
+"sample": "¿Estáis en casa?"
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "вони; ви (ustedes)",
+"id": "es:03:20",
+"sample": "¿Están Ana y Luis en casa?"
+}
+],
+"title": "Форми estar"
+}
+]
+},
+"en": {
+"title": "Asking yes/no questions about location",
+"formula": "¿ + estar (está, están…) + (subject) + place + ?",
+"story": "Estás en casa tells someone they are at home. ¿Estás en casa? checks whether they are. The words can stay where they are.",
+"use": "Specify the place you're guessing. Ask so the other person can answer \"yes\" or \"no.\"",
+"choose": "¿opens the question, and? closes it. A period is not required after the final?. In the full phrase ¿Estás cerca?, choose only two words. The app will add the characters. Read Estás cerca as a message, then as a request for confirmation. Question intonation is important in speech; the only mandatory melody for all varieties of Spanish is not specified here.",
+"nuance": "Interrogative intonation doesn't change the number. One llave requires está; several llaves require están. Both question marks apply to the entire sentence.",
+"wrong": "¿Están la llave en casa?",
+"right": "¿Está la llave en casa?",
+"chapters": [
+{
+"title": "Do I need a yes/no answer or a place name?",
+"body": "\"Are you at the station?\" - you already have a version: station. The answer can be a simple \"yes\" or \"no.\" In \"¿Estás en la estación?\", en la estación remains in place. And in \"Where are you?\", the place is unknown. We'll look at questions with dónde separately; don't put dónde in every interrogative phrase.",
+"note": "Form estás already indicates \"you\"; a separate pronoun is not necessary.",
+"samples": [
+"es:03:02",
+"es:03:05"
+],
+"focusId": "es:03:05"
+},
+{
+"title": "How do I turn a statement into a question?",
+"body": "¿opens the question, and? closes it. A period is not required after the final?. In the full phrase ¿Estás cerca?, choose only two words. The app will add the characters. Read Estás cerca as a message, then as a request for confirmation. Question intonation is important in speech; the only mandatory melody for all varieties of Spanish is not specified here.",
+"note": "Form estás already indicates \"you\"; a separate pronoun is not necessary.",
+"samples": [
+"es:03:01",
+"es:03:03",
+"es:03:04"
+],
+"focusId": "es:03:03"
+},
+{
+"title": "Must the name come before the verb?",
+"body": "Both orders are possible. To ask if Ana is home, you can use the phrase ¿Está Ana en casa? If you are already talking about Ana, it is natural to ask again with ¿Ana está en casa? Don't learn the rule \"rearrange the words in every question.\" In the construction set, you assemble one example; the other order is indicated in the analysis and is not considered bad Spanish.",
+"note": "Ana names one person or thing here; use está.",
+"samples": [
+"es:03:11",
+"es:03:18",
+"es:03:19"
+],
+"focusId": "es:03:18"
+},
+{
+"title": "How do I match the verb when the subject comes later?",
+"body": "Compare ¿Está la llave en casa? and ¿Están las llaves en casa? The location hasn't changed. But in the first case, they're looking for one key, while in the second, they're looking for several. Before choosing the first tile, mentally name what you're looking for. Don't automatically put está just because the verb comes first.",
+"note": "las llaves names more than one person or thing here; use están.",
+"samples": [
+"es:03:32",
+"es:03:33",
+"es:03:34",
+"es:03:35"
+],
+"focusId": "es:03:33"
+},
+{
+"title": "Who exactly am I asking?",
+"body": "First identify the listener. Speaking formally to one person: ¿Está en casa? To a group using ustedes: ¿Están en casa? To friends using vosotros in Spain: ¿Estáis en casa?",
+"note": "Form está already indicates \"you, one interlocutor on usted \"; a separate pronoun is optional.",
+"samples": [
+"es:03:21",
+"es:03:22",
+"es:03:23"
+],
+"focusId": "es:03:23"
+},
+{
+"title": "How do I ask about a particular place?",
+"body": "You already know the object and have an idea where to look for it. Say, \"Is your passport in your bag?\" through ¿Está el pasaporte en el bolso? The en remains before the name of the bag; it doesn't disappear in the question. And in ¿El hotel está aquí?, aquí already answers \"where?\" and en is unnecessary.",
+"note": "el pasaporte names one person or thing here; use está.",
+"samples": [
+"es:03:41",
+"es:03:42",
+"es:03:46"
+],
+"focusId": "es:03:41"
+},
+{
+"title": "Whose point of view changes in the answer?",
+"body": "Are you being asked ¿Estás en casa? You answer about yourself: Sí, estoy en casa, or No, no estoy en casa. In the last sentence, the first No is an independent answer \"no,\" and the second no negates the verb. In the practical tasks of this lesson, you need to construct the question itself, not the answer.",
+"note": "Form estás already indicates \"you\"; a separate pronoun is not necessary.",
+"samples": [
+"es:03:01",
+"es:03:21",
+"es:03:23"
+],
+"focusId": "es:03:01"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": "es:03:07",
+"sample": "¿Estoy cerca?"
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": "es:03:01",
+"sample": "¿Estás en casa?"
+},
+{
+"es": "él, ella, usted · está",
+"gloss": "He, She; You (one person)",
+"id": "es:03:11",
+"sample": "¿Está Ana en casa?"
+},
+{
+"es": "nosotros, nosotras · estamos",
+"gloss": "we",
+"id": "es:03:06",
+"sample": "¿Estamos cerca?"
+},
+{
+"es": "vosotros, vosotras · estáis",
+"gloss": "you (several people you address informally in much of Spain)",
+"id": "es:03:21",
+"sample": "¿Estáis en casa?"
+},
+{
+"es": "ellos, ellas, ustedes · están",
+"gloss": "they; you (ustedes)",
+"id": "es:03:20",
+"sample": "¿Están Ana y Luis en casa?"
+}
+],
+"title": "Forms of estar"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:03:01",
+"index": 0,
+"right": "Estás",
+"near": "Estoy",
+"seq": [
+"Estás",
+"en",
+"casa"
+],
+"i": 0,
+"kind": "form",
+"key": "es03/lab/form1",
+"feedback": {
+"ru": "Форма estás уже указывает на «ты»; отдельное местоимение не обязательно.",
+"uk": "Форма estás уже вказує на «ти»; окремий займенник не обов’язковий.",
+"en": "Form estás already indicates \"you\"; a separate pronoun is not necessary."
+}
+},
+{
+"id": "es:03:13",
+"index": 0,
+"right": "Está",
+"near": "Están",
+"seq": [
+"Está",
+"Ana",
+"en",
+"clase"
+],
+"i": 12,
+"kind": "form",
+"key": "es03/lab/form2",
+"feedback": {
+"ru": "«Ana» — один человек; поэтому está.",
+"uk": "«Ana» — одна людина; тому está.",
+"en": "Ana names one person or thing here; use está."
+}
+},
+{
+"id": "es:03:26",
+"index": 0,
+"right": "Estamos",
+"near": "Estoy",
+"seq": [
+"Estamos",
+"en",
+"la",
+"parada"
+],
+"i": 25,
+"kind": "form",
+"key": "es03/lab/form3",
+"feedback": {
+"ru": "Форма estamos уже указывает на «мы»; отдельное местоимение не обязательно.",
+"uk": "Форма estamos уже вказує на «ми»; окремий займенник не обов’язковий.",
+"en": "Form estamos already indicates \"we\"; a separate pronoun is optional."
+}
+},
+{
+"id": "es:03:36",
+"index": 0,
+"right": "Están",
+"near": "Está",
+"seq": [
+"Están",
+"las",
+"llaves",
+"en",
+"la",
+"mochila"
+],
+"i": 35,
+"kind": "form",
+"key": "es03/lab/form4",
+"feedback": {
+"ru": "«las llaves» — несколько предметов; поэтому están.",
+"uk": "«las llaves» — кілька предметів; тому están.",
+"en": "las llaves names more than one person or thing here; use están."
+}
+},
+{
+"id": "es:03:07",
+"index": 0,
+"right": "Estoy",
+"near": "Estás",
+"seq": [
+"Estoy",
+"cerca"
+],
+"i": 6,
+"kind": "spot",
+"key": "es03/lab/spot1",
+"feedback": {
+"ru": "Форма estoy уже указывает на «я»; отдельное местоимение не обязательно.",
+"uk": "Форма estoy уже вказує на «я»; окремий займенник не обов’язковий.",
+"en": "Estoy is the first-person singular form. You can say Estoy aquí without yo."
+}
+},
+{
+"id": "es:03:21",
+"index": 0,
+"right": "Estáis",
+"near": "Estamos",
+"seq": [
+"Estáis",
+"en",
+"casa"
+],
+"i": 20,
+"kind": "spot",
+"key": "es03/lab/spot2",
+"feedback": {
+"ru": "Форма estáis уже указывает на «вы, друзья на vosotros»; отдельное местоимение не обязательно.",
+"uk": "Форма estáis уже вказує на «ви, друзі на vosotros»; окремий займенник не обов’язковий.",
+"en": "Form estáis already indicates \"you, friends on vosotros \"; a separate pronoun is optional."
+}
+},
+{
+"id": "es:03:32",
+"index": 0,
+"right": "Está",
+"near": "Están",
+"seq": [
+"Está",
+"la",
+"llave",
+"en",
+"casa"
+],
+"i": 31,
+"kind": "spot",
+"key": "es03/lab/spot3",
+"feedback": {
+"ru": "«la llave» — один предмет или одно место; поэтому está.",
+"uk": "«la llave» — один предмет або одне місце; тому está.",
+"en": "la llave names one person or thing here; use está."
+}
+},
+{
+"id": "es:03:45",
+"index": 0,
+"right": "Están",
+"near": "Está",
+"seq": [
+"Están",
+"los",
+"pasaportes",
+"en",
+"el",
+"coche"
+],
+"i": 44,
+"kind": "spot",
+"key": "es03/lab/spot4",
+"feedback": {
+"ru": "«los pasaportes» — несколько предметов; поэтому están.",
+"uk": "«los pasaportes» — кілька предметів; тому están.",
+"en": "los pasaportes names more than one person or thing here; use están."
+}
+},
+{
+"kind": "match",
+"key": "es03/lab/match1",
+"id": "es:03:02",
+"other": "es:03:03"
+},
+{
+"kind": "match",
+"key": "es03/lab/match2",
+"id": "es:03:17",
+"other": "es:03:16"
+},
+{
+"kind": "match",
+"key": "es03/lab/match3",
+"id": "es:03:33",
+"other": "es:03:34"
+},
+{
+"kind": "match",
+"key": "es03/lab/match4",
+"id": "es:03:46",
+"other": "es:03:45"
+},
+{
+"kind": "build",
+"key": "es03/lab/build1",
+"id": "es:03:04"
+},
+{
+"kind": "build",
+"key": "es03/lab/build2",
+"id": "es:03:15"
+},
+{
+"kind": "build",
+"key": "es03/lab/build3",
+"id": "es:03:29"
+},
+{
+"kind": "build",
+"key": "es03/lab/build4",
+"id": "es:03:42"
+},
+{
+"kind": "transform",
+"id": "es:03:08",
+"base": "es:03:05",
+"diff": [
+{
+"before": [
+"Estás"
+],
+"after": [
+"Estamos"
+]
+}
+],
+"key": "es03/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:03:23",
+"base": "es:03:11",
+"diff": [
+{
+"before": [
+"Ana"
+],
+"after": []
+}
+],
+"key": "es03/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:03:27",
+"base": "es:03:26",
+"diff": [
+{
+"before": [
+"Estamos"
+],
+"after": [
+"Estás"
+]
+}
+],
+"key": "es03/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:03:42",
+"base": "es:03:37",
+"diff": [
+{
+"before": [
+"móvil"
+],
+"after": [
+"pasaporte"
+]
+}
+],
+"key": "es03/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+8,
+16
+],
+[
+0,
+12
+],
+[
+17,
+9
+],
+[
+6,
+10
+],
+[
+5,
+2
+],
+[
+11,
+15
+],
+[
+18,
+4
+]
+],
+"worked": [
+"es:03:05",
+"es:03:18",
+"es:03:33",
+"es:03:48"
+],
+"reflection": [
+"es:03:01",
+"es:03:02"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 4,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 4,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Кто я: имя и профессия с ser",
+"formula": "(кто) + форма ser + имя или профессия",
+"story": "Ана представляется: Soy Ana. Друг представляет Ану: Es Ana. Для профессии того же человека тоже нужен ser, а не estar.",
+"use": "Представься и скажи, кем работает человек. Выбери форму ser по тому, о ком говоришь.",
+"choose": "Soy — я, eres — ты, es — он, она или вежливое вы к одному человеку. Во множественном числе somos — мы, sois — вы с vosotros в Испании, son — они или вы с ustedes. Не добавляй после soy ещё одно ser: soy уже является формой глагола.",
+"nuance": "Говорит не Ана о себе, а другой человек об Ане. Поэтому нужна es. Если Ана сама представляется, она скажет Soy médica.",
+"wrong": "Ana soy médica.",
+"right": "Ana es médica.",
+"chapters": [
+{
+"title": "Что мы сообщаем о человеке",
+"body": "Soy Ana отвечает на вопрос «Кто говорит?», а Soy estudiante — «Кто я по роду занятий?». Ни одна из фраз не сообщает, где я. Для «Я на занятии» по-прежнему нужно Estoy en clase. Не выбирай глагол по правилу «на время или навсегда»: профессия может измениться, но назвать её здесь помогает ser.",
+"note": "soy — форма для «я». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"samples": [
+"es:04:01",
+"es:04:07",
+"es:04:11"
+],
+"focusId": "es:04:07"
+},
+{
+"title": "Шесть форм одного ser",
+"body": "Soy — я, eres — ты, es — он, она или вежливое вы к одному человеку. Во множественном числе somos — мы, sois — вы с vosotros в Испании, son — они или вы с ustedes. Не добавляй после soy ещё одно ser: soy уже является формой глагола.",
+"note": "somos — форма для «мы». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"samples": [
+"es:04:01",
+"es:04:05",
+"es:04:12",
+"es:04:21",
+"es:04:26",
+"es:04:27"
+],
+"focusId": "es:04:21"
+},
+{
+"title": "Когда местоимение можно пропустить",
+"body": "Испанское Soy estudiante естественно без yo. Явное Yo soy estudiante тоже правильно: оно помогает выделить «именно я». В паре Él es estudiante / Ella es estudiante местоимение, наоборот, показывает, о ком речь: у es сама форма пола человека не указывает.",
+"note": "es — форма для «один человек или предмет». Ориентир в этом образце: «ella».",
+"samples": [
+"es:04:07",
+"es:04:15",
+"es:04:16"
+],
+"focusId": "es:04:15"
+},
+{
+"title": "Без артикля: просто назвать профессию",
+"body": "Для нейтрального «Я врач» здесь подходит Soy médico или Soy médica. Не переноси английское a из I am a doctor. Это не запрет на артикли навсегда: когда мы указываем на конкретного врача, выбираем другую конструкцию. Сначала проверь, описываешь ты профессию или указываешь на того самого человека.",
+"note": "soy — форма для «я». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"samples": [
+"es:04:03",
+"es:04:04",
+"es:04:31",
+"es:04:32"
+],
+"focusId": "es:04:03"
+},
+{
+"title": "Профессия и конкретная роль",
+"body": "В группе ищут врача. Soy médico сообщает «Я врач по профессии»; Soy el médico — «Я тот врач, которого вы ищете». Слово el связывает ответ с понятным собеседникам человеком. Так же Ana es profesora может быть ответом о профессии Аны, а Ana es la profesora — указанием на преподавательницу этой группы.",
+"note": "es — форма для «один человек или предмет». Ориентир в этом образце: «ana».",
+"samples": [
+"es:04:03",
+"es:04:31",
+"es:04:13",
+"es:04:33"
+],
+"focusId": "es:04:33"
+},
+{
+"title": "Что меняется в названии профессии",
+"body": "Сравни médico/médica, profesor/profesora, enfermero/enfermera. У estudiante и guía само слово одинаковое для мужчины и женщины: Ana es guía, Luis es guía. Во множественном числе добавляется окончание: estudiantes, guías, profesores. Не придумывай форму guío для мужчины-гида.",
+"note": "es — форма для «один человек или предмет». Ориентир в этом образце: «ana».",
+"samples": [
+"es:04:19",
+"es:04:20",
+"es:04:21",
+"es:04:24",
+"es:04:30"
+],
+"focusId": "es:04:19"
+},
+{
+"title": "Два имени — не всегда одна и та же форма",
+"body": "В Ana y Luis son estudiantes собеседник говорит о двух других людях: поэтому son. В Somos Ana y Luis эти же двое представляются сами: поэтому somos. Сначала реши, кто произносит фразу и о ком она. Имена останутся теми же, а форма изменится.",
+"note": "Говорят сами Ана и Луис: «мы» требует somos. Когда о них говорит кто-то другой, нужна форма son.",
+"samples": [
+"es:04:30",
+"es:04:49",
+"es:04:50"
+],
+"focusId": "es:04:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": "es:04:01",
+"sample": "Soy Ana."
+},
+{
+"es": "tú · eres",
+"gloss": "ты",
+"id": "es:04:05",
+"sample": "Eres médico."
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "один человек или предмет",
+"id": "es:04:11",
+"sample": "Ana es médica."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "мы",
+"id": "es:04:21",
+"sample": "Somos estudiantes."
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "вы, неформально к группе в Испании",
+"id": "es:04:27",
+"sample": "Sois estudiantes."
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "несколько людей или предметов",
+"id": "es:04:26",
+"sample": "Son estudiantes."
+}
+],
+"title": "Формы ser"
+}
+]
+},
+"uk": {
+"title": "Хто я: ім’я та професія із ser",
+"formula": "(хто) + форма ser + ім’я або професія",
+"story": "Ана представляється: Soy Ana. Друг представляє Ану: Es Ana. Про професію теж говоримо із ser, а не estar.",
+"use": "Представся й скажи, ким працює людина. Обери форму ser за тим, про кого говориш.",
+"choose": "Soy — я, eres — ти, es — він, вона або ввічливе ви до однієї людини. У множині somos — ми, sois — ви з vosotros в Іспанії, son — вони або ви з ustedes. Не додавай після soy ще одне ser: soy вже є формою дієслова.",
+"nuance": "Говорить не Ана про себе, а інша людина про Ану. Тому потрібне es. Якщо Ана представляється сама, вона скаже Soy médica.",
+"wrong": "Ana soy médica.",
+"right": "Ana es médica.",
+"chapters": [
+{
+"title": "Що ми повідомляємо про людину",
+"body": "Soy Ana відповідає на запитання «Хто говорить?», а Soy estudiante — «Хто я за родом занять?». Жодна фраза не каже, де я. Для «Я на занятті» й надалі потрібно Estoy en clase. Не обирай дієслово за правилом «тимчасово чи назавжди»: фах може змінитися, але тут його називаємо за допомогою ser.",
+"note": "soy — форма для «я». Займенник пропущено: потрібну особу підказує сама форма.",
+"samples": [
+"es:04:01",
+"es:04:07",
+"es:04:11"
+],
+"focusId": "es:04:07"
+},
+{
+"title": "Шість форм одного ser",
+"body": "Soy — я, eres — ти, es — він, вона або ввічливе ви до однієї людини. У множині somos — ми, sois — ви з vosotros в Іспанії, son — вони або ви з ustedes. Не додавай після soy ще одне ser: soy вже є формою дієслова.",
+"note": "somos — форма для «ми». Займенник пропущено: потрібну особу підказує сама форма.",
+"samples": [
+"es:04:01",
+"es:04:05",
+"es:04:12",
+"es:04:21",
+"es:04:26",
+"es:04:27"
+],
+"focusId": "es:04:21"
+},
+{
+"title": "Коли займенник можна опустити",
+"body": "Іспанське Soy estudiante природно звучить без yo. Повне Yo soy estudiante теж правильне: ним можна наголосити «саме я». У парі Él es estudiante / Ella es estudiante займенник, навпаки, вказує, про кого йдеться: форма es сама не показує статі людини.",
+"note": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «ella».",
+"samples": [
+"es:04:07",
+"es:04:15",
+"es:04:16"
+],
+"focusId": "es:04:15"
+},
+{
+"title": "Без артикля: просто назвати фах",
+"body": "Для нейтрального «Я лікар» тут підходить Soy médico або Soy médica. Не перенось англійське a з I am a doctor. Це не заборона на артиклі взагалі: коли вказуємо на конкретного лікаря, обираємо іншу конструкцію. Спершу визнач, ти називаєш фах чи вказуєш саме на цю людину.",
+"note": "soy — форма для «я». Займенник пропущено: потрібну особу підказує сама форма.",
+"samples": [
+"es:04:03",
+"es:04:04",
+"es:04:31",
+"es:04:32"
+],
+"focusId": "es:04:03"
+},
+{
+"title": "Фах і конкретна роль",
+"body": "У групі шукають лікаря. Soy médico означає «Я лікар за фахом»; Soy el médico — «Я той лікар, якого ви шукаєте». El пов’язує відповідь із конкретною людиною, про яку йдеться. Так само Ana es profesora називає фах Ани, а Ana es la profesora вказує на викладачку цієї групи.",
+"note": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «ana».",
+"samples": [
+"es:04:03",
+"es:04:31",
+"es:04:13",
+"es:04:33"
+],
+"focusId": "es:04:33"
+},
+{
+"title": "Що змінюється в назві професії",
+"body": "Порівняй médico/médica, profesor/profesora, enfermero/enfermera. У estudiante і guía саме слово однакове для чоловіка й жінки: Ana es guía, Luis es guía. У множині з’являється закінчення: estudiantes, guías, profesores. Не вигадуй форми guío для чоловіка-гіда.",
+"note": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «ana».",
+"samples": [
+"es:04:19",
+"es:04:20",
+"es:04:21",
+"es:04:24",
+"es:04:30"
+],
+"focusId": "es:04:19"
+},
+{
+"title": "Два імені — не завжди одна форма",
+"body": "В Ana y Luis son estudiantes співрозмовник говорить про двох інших людей: тому son. У Somos Ana y Luis ці двоє представляються самі: тому somos. Спочатку визнач, хто вимовляє фразу й про кого вона. Імена залишаться ті самі, а форма зміниться.",
+"note": "Говорять самі Ана та Луїс: для «ми» потрібне somos. Коли про них говорить інша людина, обираємо son.",
+"samples": [
+"es:04:30",
+"es:04:49",
+"es:04:50"
+],
+"focusId": "es:04:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": "es:04:01",
+"sample": "Soy Ana."
+},
+{
+"es": "tú · eres",
+"gloss": "ти",
+"id": "es:04:05",
+"sample": "Eres médico."
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "одна людина або річ",
+"id": "es:04:11",
+"sample": "Ana es médica."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "ми",
+"id": "es:04:21",
+"sample": "Somos estudiantes."
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "ви, неформально до групи в Іспанії",
+"id": "es:04:27",
+"sample": "Sois estudiantes."
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "кілька людей або предметів",
+"id": "es:04:26",
+"sample": "Son estudiantes."
+}
+],
+"title": "Форми ser"
+}
+]
+},
+"en": {
+"title": "Names and professions with ser",
+"formula": "(subject) + ser (soy, eres…) + name or profession",
+"story": "Ana introduces herself: Soy Ana. Someone identifies her: Es Ana. Use ser for a profession too; estar would answer a different question here.",
+"use": "Introduce yourself and say what this person does for a living. Choose the form ser for the person you are talking about.",
+"choose": "Use soy with yo, eres with tú, and es with él, ella or usted. In the plural: nosotros somos, vosotros sois, ellos/ustedes son. Soy is already a verb: say Soy Ana, not Soy ser Ana.",
+"nuance": "It's not Ana talking about herself, but someone else talking about Ana. Therefore, es is needed. If Ana introduces herself, she'll say Soy médica.",
+"wrong": "Ana soy médica.",
+"right": "Ana es médica.",
+"chapters": [
+{
+"title": "What can ser tell someone about a person?",
+"body": "Soy Ana answers the question \"Who is speaking?\", while Soy estudiante answers \"What is my occupation?\" Neither phrase tells us where I am. For \"I'm in class,\" we still need Estoy en clase. Don't choose a verb based on the \"temporarily or forever\" rule: the profession can change, but ser helps us name it here.",
+"note": "soy — the form for \"I.\" The pronoun is omitted: the correct person is suggested by the form itself.",
+"samples": [
+"es:04:01",
+"es:04:07",
+"es:04:11"
+],
+"focusId": "es:04:07"
+},
+{
+"title": "Which form of ser goes with whom?",
+"body": "Use soy with yo, eres with tú, and es with él, ella or usted. In the plural: nosotros somos, vosotros sois, ellos/ustedes son. Soy is already a verb: say Soy Ana, not Soy ser Ana.",
+"note": "somos is the form for \"we.\" The pronoun is omitted: the form itself suggests the correct person.",
+"samples": [
+"es:04:01",
+"es:04:05",
+"es:04:12",
+"es:04:21",
+"es:04:26",
+"es:04:27"
+],
+"focusId": "es:04:21"
+},
+{
+"title": "When can I leave out yo or tú?",
+"body": "Spanish Soy estudiante naturally does not include yo. An explicit Yo soy estudiante is also correct: it helps emphasize \"I.\" In the Él es estudiante / Ella es estudiante pair, the pronoun, on the contrary, indicates who is being referred to: in es, the pronoun itself does not indicate the gender of the person.",
+"note": "es is the form for \"one person or thing.\" The reference point in this pattern is \" ella.\"",
+"samples": [
+"es:04:07",
+"es:04:15",
+"es:04:16"
+],
+"focusId": "es:04:15"
+},
+{
+"title": "How do I state a profession without an article?",
+"body": "For the neutral \"I'm a doctor,\" use Soy médico or Soy médica. Don't transfer the English a from I am a doctor. This doesn't prohibit articles forever: when we refer to a specific doctor, we choose a different construction. First, check whether you're describing a profession or referring to the same person.",
+"note": "soy — the form for \"I.\" The pronoun is omitted: the correct person is suggested by the form itself.",
+"samples": [
+"es:04:03",
+"es:04:04",
+"es:04:31",
+"es:04:32"
+],
+"focusId": "es:04:03"
+},
+{
+"title": "A profession or a particular person: what changes?",
+"body": "The group is looking for a doctor. Soy médico says \"I am a doctor by profession\"; Soy el médico says \"I am the doctor you are looking for.\" The word el connects the answer to a person understandable to the interlocutors. Ana es profesora could also be an answer about Ana's profession, and Ana es la profesora could indicate the teacher of this group.",
+"note": "es is the form for \"one person or thing.\" The reference point in this pattern is \" ana.\"",
+"samples": [
+"es:04:03",
+"es:04:31",
+"es:04:13",
+"es:04:33"
+],
+"focusId": "es:04:33"
+},
+{
+"title": "Why médico in one sentence and médica in another?",
+"body": "Compare médico / médica, profesor / profesora, enfermero / enfermera. For estudiante and guía, the word itself is the same for both men and women: Ana es guía, Luis es guía. In the plural, the ending is added: estudiantes, guías, profesores. Don't make up the form guío for a male guide.",
+"note": "es is the form for \"one person or thing.\" The reference point in this pattern is \" ana.\"",
+"samples": [
+"es:04:19",
+"es:04:20",
+"es:04:21",
+"es:04:24",
+"es:04:30"
+],
+"focusId": "es:04:19"
+},
+{
+"title": "Two names: am I naming one person or two?",
+"body": "In Ana y Luis son estudiantes, the interlocutor is talking about two other people: therefore son. In Somos Ana y Luis, the same two introduce themselves: therefore somos. First, decide who is speaking and who it is about. The names will remain the same, but the form will change.",
+"note": "Ana and Luis are speaking: \"we\" requires somos. When someone else speaks about them, the form son is needed.",
+"samples": [
+"es:04:30",
+"es:04:49",
+"es:04:50"
+],
+"focusId": "es:04:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "I",
+"id": "es:04:01",
+"sample": "Soy Ana."
+},
+{
+"es": "tú · eres",
+"gloss": "you",
+"id": "es:04:05",
+"sample": "Eres médico."
+},
+{
+"es": "él/ella/usted · es",
+"gloss": "One person or object",
+"id": "es:04:11",
+"sample": "Ana es médica."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "we",
+"id": "es:04:21",
+"sample": "Somos estudiantes."
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "You, informally to a group in Spain",
+"id": "es:04:27",
+"sample": "Sois estudiantes."
+},
+{
+"es": "ellos/ellas/ustedes · son",
+"gloss": "several people or objects",
+"id": "es:04:26",
+"sample": "Son estudiantes."
+}
+],
+"title": "Forms ser"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:04:01",
+"index": 0,
+"right": "Soy",
+"near": "Eres",
+"seq": [
+"Soy",
+"Ana"
+],
+"i": 0,
+"kind": "form",
+"key": "es04/lab/form1",
+"feedback": {
+"ru": "soy — форма для «я». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "soy — форма для «я». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "soy — the form for \"I.\" The pronoun is omitted: the correct person is suggested by the form itself."
+}
+},
+{
+"id": "es:04:13",
+"index": 1,
+"right": "es",
+"near": "son",
+"seq": [
+"Ana",
+"es",
+"profesora"
+],
+"i": 12,
+"kind": "form",
+"key": "es04/lab/form2",
+"feedback": {
+"ru": "es — форма для «один человек или предмет». Ориентир в этом образце: «ana».",
+"uk": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «ana».",
+"en": "es is the form for \"one person or thing.\" The reference point in this pattern is \" ana.\""
+}
+},
+{
+"id": "es:04:26",
+"index": 0,
+"right": "Son",
+"near": "Es",
+"seq": [
+"Son",
+"estudiantes"
+],
+"i": 25,
+"kind": "form",
+"key": "es04/lab/form3",
+"feedback": {
+"ru": "son — форма для «несколько людей или предметов». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "son — форма для «кілька людей або предметів». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "son is the form for \"several people or things.\" The pronoun is omitted: the form itself suggests the correct person."
+}
+},
+{
+"id": "es:04:39",
+"index": 0,
+"right": "Somos",
+"near": "Soy",
+"seq": [
+"Somos",
+"los",
+"guías"
+],
+"i": 38,
+"kind": "form",
+"key": "es04/lab/form4",
+"feedback": {
+"ru": "somos — форма для «мы». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "somos — форма для «ми». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "somos is the form for \"we.\" The pronoun is omitted: the form itself suggests the correct person."
+}
+},
+{
+"id": "es:04:06",
+"index": 0,
+"right": "Eres",
+"near": "Soy",
+"seq": [
+"Eres",
+"médica"
+],
+"i": 5,
+"kind": "spot",
+"key": "es04/lab/spot1",
+"feedback": {
+"ru": "eres — форма для «ты». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "eres — форма для «ти». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "eres is the form for \"you.\" The pronoun is omitted: the form itself suggests the correct person."
+}
+},
+{
+"id": "es:04:20",
+"index": 1,
+"right": "es",
+"near": "son",
+"seq": [
+"Luis",
+"es",
+"guía"
+],
+"i": 19,
+"kind": "spot",
+"key": "es04/lab/spot2",
+"feedback": {
+"ru": "es — форма для «один человек или предмет». Ориентир в этом образце: «luis».",
+"uk": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «luis».",
+"en": "es is the form for \"one person or thing.\" The reference point in this pattern is \" luis.\""
+}
+},
+{
+"id": "es:04:27",
+"index": 0,
+"right": "Sois",
+"near": "Somos",
+"seq": [
+"Sois",
+"estudiantes"
+],
+"i": 26,
+"kind": "spot",
+"key": "es04/lab/spot3",
+"feedback": {
+"ru": "sois — форма для «вы, неформально к группе в Испании». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "sois — форма для «ви, неформально до групи в Іспанії». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "sois is the informal form for \"you, to a group in Spain.\" The pronoun is omitted: the correct person is suggested by the form itself."
+}
+},
+{
+"id": "es:04:47",
+"index": 0,
+"right": "Sois",
+"near": "Somos",
+"seq": [
+"Sois",
+"guías"
+],
+"i": 46,
+"kind": "spot",
+"key": "es04/lab/spot4",
+"feedback": {
+"ru": "sois — форма для «вы, неформально к группе в Испании». Местоимение опущено: нужное лицо подсказывает сама форма.",
+"uk": "sois — форма для «ви, неформально до групи в Іспанії». Займенник пропущено: потрібну особу підказує сама форма.",
+"en": "sois is the informal form for \"you, to a group in Spain.\" The pronoun is omitted: the correct person is suggested by the form itself."
+}
+},
+{
+"kind": "match",
+"key": "es04/lab/match1",
+"id": "es:04:02",
+"other": "es:04:12"
+},
+{
+"kind": "match",
+"key": "es04/lab/match2",
+"id": "es:04:17",
+"other": "es:04:18"
+},
+{
+"kind": "match",
+"key": "es04/lab/match3",
+"id": "es:04:33",
+"other": "es:04:32"
+},
+{
+"kind": "match",
+"key": "es04/lab/match4",
+"id": "es:04:46",
+"other": "es:04:44"
+},
+{
+"kind": "build",
+"key": "es04/lab/build1",
+"id": "es:04:04"
+},
+{
+"kind": "build",
+"key": "es04/lab/build2",
+"id": "es:04:15"
+},
+{
+"kind": "build",
+"key": "es04/lab/build3",
+"id": "es:04:29"
+},
+{
+"kind": "build",
+"key": "es04/lab/build4",
+"id": "es:04:42"
+},
+{
+"kind": "transform",
+"id": "es:04:33",
+"base": "es:04:13",
+"diff": [
+{
+"before": [],
+"after": [
+"la"
+]
+}
+],
+"key": "es04/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:04:34",
+"base": "es:04:14",
+"diff": [
+{
+"before": [],
+"after": [
+"el"
+]
+}
+],
+"key": "es04/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:04:49",
+"base": "es:04:30",
+"diff": [
+{
+"before": [
+"guías"
+],
+"after": [
+"estudiantes"
+]
+}
+],
+"key": "es04/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:04:32",
+"base": "es:04:04",
+"diff": [
+{
+"before": [],
+"after": [
+"la"
+]
+}
+],
+"key": "es04/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+4
+],
+[
+2,
+6
+],
+[
+13,
+9
+],
+[
+12,
+19
+],
+[
+1,
+10
+],
+[
+5,
+18
+],
+[
+14,
+7
+]
+],
+"worked": [
+"es:04:05",
+"es:04:18",
+"es:04:33",
+"es:04:48"
+],
+"reflection": [
+"es:04:01",
+"es:04:11"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

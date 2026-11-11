@@ -2742,61 +2742,80 @@
    "take"
   ],
   "fr:01:11": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:01:12": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:01:13": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:01:15": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:01:16": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:01:47": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:02:07": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:02:08": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:02:41": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:03:06": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:03:07": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:03:11": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:03:16": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:03:37": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:05:20": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:05:49": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:06:28": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:07:14": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:07:47": [
-   "dans"
+   "dans",
+   "vers"
   ],
   "fr:08:12": [
    "dans"
@@ -3197,6 +3216,9 @@
   ],
   "it:32:29": [
    "alcuni"
+  ],
+  "fr:01:14": [
+   "vers"
   ]
  },
  "answers": {

@@ -1,0 +1,960 @@
+[
+{
+"lesson": 5,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:05:01",
+"de:05:02"
+],
+"textByLocale": {
+"en": "Imagine you don't see a friend at the door. You don't ask where he is, but rather check: is he here or not? A question like this doesn't require a question word.",
+"ru": "Представь, что ты не видишь друга у входа. Ты не спрашиваешь, где он вообще, а проверяешь: он здесь или нет? Для такого вопроса не нужно вопросительное слово.",
+"uk": "Уяви, що ти не бачиш друга біля входу. Ти не питаєш, де він взагалі, а перевіряєш: чи він тут чи ні? Для такого питання не потрібне запитальне слово."
+}
+},
+{
+"exampleIds": [
+"de:05:03",
+"de:05:04"
+],
+"textByLocale": {
+"en": "Find the form before the rearrangement. Imagine the statement `Ihr seid bereit`.\" In the question, the same `seid` remains, only it comes first. Don't replace it with the infinitive `sein`.\"",
+"ru": "Найди форму до перестановки. Представь утверждение `Ihr seid bereit`. В вопросе остаётся та же `seid`, только она выходит вперёд. Не заменяй её инфинитивом `sein`.",
+"uk": "Знайди форму до перестановки. Уяви твердження `Ihr seid bereit`. У питанні залишається та сама `seid`, тільки вона виходить вперед. Не замінюй її інфінітивом `sein`."
+}
+},
+{
+"exampleIds": [
+"de:05:11",
+"de:05:14"
+],
+"textByLocale": {
+"en": "Ordinary actions work the same way. If you're asking about school or an address, the action verb itself comes first. A separate particle, similar to an auxiliary verb in some languages, is not required.",
+"ru": "Обычные действия устроены так же. Если спрашиваешь про учёбу или адрес, вперёд выходит уже сам глагол действия. Отдельная частица, аналогичная вспомогательному глаголу в некоторых языках, не требуется.",
+"uk": "Звичайні дії влаштовані так само. Якщо питаєш про навчання чи адресу, вперед виходить вже саме дієслово дії. Окрема частка, аналогічна допоміжному дієслову деяких мовах, не потрібна."
+}
+},
+{
+"exampleIds": [
+"de:05:21",
+"de:05:24"
+],
+"textByLocale": {
+"en": "The name of an object or event can be longer than one word. Put the entire phrase after the verb: the article should not be separated from the noun.",
+"ru": "Название предмета или события может быть длиннее одного слова. Ставь после глагола целую группу: артикль не следует отрывать от существительного.",
+"uk": "Назва предмета або події може бути довшою за одне слово. Став після дієслова цілу групу: артикль не слід відривати від іменника."
+}
+},
+{
+"exampleIds": [
+"de:05:31",
+"de:05:35"
+],
+"textByLocale": {
+"en": "Polite address. Ask an unfamiliar adult `Sie` and the appropriate verb form. The capitalization within the sentence is important here. Don't automatically make the other person into a set of people.",
+"ru": "Вежливое обращение. У незнакомого взрослого спрашивай с `Sie` и соответствующей формой глагола. Заглавная буква внутри предложения здесь важна. Не делай собеседника автоматически множеством людей.",
+"uk": "Чемне звернення. У незнайомого дорослого питай з `Sie` та відповідною формою дієслова. Велика літера всередині речення тут важлива. Не роби співрозмовника автоматично безліччю людей."
+}
+},
+{
+"exampleIds": [
+"de:05:41",
+"de:05:43"
+],
+"textByLocale": {
+"en": "A quick check before leaving. Compare `hast`, `hat`,\" and `habt`: who should have taken the ticket or the keys? The last noun doesn't decide which of the three options to take.",
+"ru": "Короткая проверка перед выходом. Сравни `hast`, `hat` и `habt`: кто должен был взять билет или ключи? Последнее существительное не решает, какой из трёх вариантов взять.",
+"uk": "Коротка перевірка перед виходом. Порівняй `hast`, `hat` та `habt`: хто мав взяти квиток чи ключі? Останнє іменник не вирішує, який із трьох варіантів взяти."
+}
+},
+{
+"exampleIds": [
+"de:05:49",
+"de:05:50"
+],
+"textByLocale": {
+"en": "Don't check intonation with punctuation. When constructing a regular written question, you choose the words; the mark will be added automatically. Even with a question mark, a regular neutral question in this lesson begins with a verb.",
+"ru": "Не проверяй интонацию пунктуацией. При сборке обычного письменного вопроса выбираешь слова, знак добавится автоматически. Даже с вопросительным знаком обычный нейтральный вопрос в этом уроке начинаем с глагола.",
+"uk": "Не перевіряй інтонацію пунктуацією. При складанні звичайного письмового питання вибираєш слова, знак автоматично додасться. Навіть із знаком питання звичайне нейтральне питання в цьому уроці починаємо з дієслова."
+}
+}
+],
+"lab": [
+{
+"bad": "Ist",
+"chapter": 1,
+"id": "de:05:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 5,
+"options": [
+"Bist",
+"Ist",
+"Seid"
+],
+"slot": 0
+},
+{
+"bad": "Bist",
+"chapter": 1,
+"id": "de:05:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 13,
+"options": [
+"Seid",
+"Sind",
+"Bist"
+],
+"slot": 0
+},
+{
+"bad": "Sein",
+"chapter": 1,
+"id": "de:05:05:lab",
+"item": 5,
+"kind": "match",
+"near": 1,
+"options": [
+"Sein",
+"Bist",
+"War"
+],
+"slot": 0
+},
+{
+"bad": "Bin",
+"chapter": 2,
+"id": "de:05:08:lab",
+"item": 8,
+"kind": "build",
+"near": 6,
+"options": [
+"Ist",
+"Seid",
+"Bin"
+],
+"slot": 0
+},
+{
+"bad": "Sein",
+"chapter": 2,
+"id": "de:05:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"Sein",
+"Ist",
+"Sind"
+],
+"slot": 0
+},
+{
+"bad": "Anna",
+"chapter": 2,
+"id": "de:05:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 13,
+"options": [
+"Anna",
+"Lukas",
+"Tom"
+],
+"slot": 1
+},
+{
+"bad": "sie",
+"chapter": 3,
+"id": "de:05:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 11,
+"options": [
+"du",
+"wir",
+"sie"
+],
+"slot": 1
+},
+{
+"bad": "Lena",
+"chapter": 3,
+"id": "de:05:17:lab",
+"item": 17,
+"kind": "match",
+"near": 19,
+"options": [
+"Tom",
+"Julia",
+"Lena"
+],
+"slot": 1
+},
+{
+"bad": "du",
+"chapter": 3,
+"id": "de:05:19:lab",
+"item": 19,
+"kind": "build",
+"near": 17,
+"options": [
+"du",
+"ihr",
+"wir"
+],
+"slot": 1
+},
+{
+"bad": "Kam",
+"chapter": 4,
+"id": "de:05:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 15,
+"options": [
+"Kommst",
+"Kam",
+"Kommt"
+],
+"slot": 0
+},
+{
+"bad": "die",
+"chapter": 4,
+"id": "de:05:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"die",
+"dem",
+"der"
+],
+"slot": 1
+},
+{
+"bad": "den",
+"chapter": 4,
+"id": "de:05:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 8,
+"options": [
+"dem",
+"den",
+"der"
+],
+"slot": 1
+},
+{
+"bad": "das",
+"chapter": 5,
+"id": "de:05:29:lab",
+"item": 29,
+"kind": "match",
+"near": 44,
+"options": [
+"der",
+"die",
+"das"
+],
+"slot": 1
+},
+{
+"bad": "ihr",
+"chapter": 5,
+"id": "de:05:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"Sie",
+"ihr",
+"ich"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 5,
+"id": "de:05:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 37,
+"options": [
+"es",
+"du",
+"Sie"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 6,
+"id": "de:05:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 34,
+"options": [
+"Sie",
+"es",
+"er"
+],
+"slot": 1
+},
+{
+"bad": "ihr",
+"chapter": 6,
+"id": "de:05:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"ihr",
+"Sie",
+"er"
+],
+"slot": 1
+},
+{
+"bad": "Julia",
+"chapter": 6,
+"id": "de:05:42:lab",
+"item": 42,
+"kind": "match",
+"near": 47,
+"options": [
+"Anna",
+"Lukas",
+"Julia"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 7,
+"id": "de:05:45:lab",
+"item": 45,
+"kind": "build",
+"near": 20,
+"options": [
+"ihr",
+"es",
+"er"
+],
+"slot": 1
+},
+{
+"bad": "sie",
+"chapter": 7,
+"id": "de:05:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 27,
+"options": [
+"ihr",
+"du",
+"sie"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Du bist hier.",
+"Bist du hier?"
+],
+[
+"Ihr seid bereit.",
+"Seid ihr bereit?"
+],
+[
+"Sie brauchen Hilfe.",
+"Brauchen Sie Hilfe?"
+],
+[
+"Der Bus kommt bald.",
+"Kommt der Bus bald?"
+]
+],
+"title": {
+"en": "A question that can be answered with \"yes\" or \"no\"",
+"ru": "Вопрос, на который можно ответить «да» или «нет»",
+"uk": "Питання, на яке можна відповісти «так» чи «ні»"
+}
+},
+"exampleResolved": [
+{
+"id": "de:05:01",
+"target": "Bist du hier?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+},
+{
+"id": "de:05:02",
+"target": "Ist Anna hier?",
+"ru": "Анна здесь?",
+"uk": "Анна тут?"
+},
+{
+"id": "de:05:03",
+"target": "Seid ihr bereit?",
+"ru": "Вы готовы?",
+"uk": "Ви готові?"
+},
+{
+"id": "de:05:04",
+"target": "Sind die Kinder bereit?",
+"ru": "Дети готовы?",
+"uk": "Діти готові?"
+},
+{
+"id": "de:05:11",
+"target": "Wohnst du hier?",
+"ru": "Ты здесь живёшь?",
+"uk": "Ти тут живеш?"
+},
+{
+"id": "de:05:14",
+"target": "Lernst du Deutsch?",
+"ru": "Ты учишь немецкий?",
+"uk": "Ти вчиш німецьку?"
+},
+{
+"id": "de:05:21",
+"target": "Kommt der Bus bald?",
+"ru": "Автобус скоро придёт?",
+"uk": "Автобус скоро прийде?"
+},
+{
+"id": "de:05:24",
+"target": "Beginnt der Kurs um neun?",
+"ru": "Занятие начинается в девять?",
+"uk": "Заняття починається о дев'ятій?"
+},
+{
+"id": "de:05:31",
+"target": "Brauchen Sie Hilfe?",
+"ru": "Вам нужна помощь?",
+"uk": "Вам потрібна допомога?"
+},
+{
+"id": "de:05:35",
+"target": "Bezahlen Sie mit Karte?",
+"ru": "Вы платите картой?",
+"uk": "Ви платите карткою?"
+},
+{
+"id": "de:05:41",
+"target": "Hast du das Ticket?",
+"ru": "У тебя билет?",
+"uk": "У тебе квиток?"
+},
+{
+"id": "de:05:43",
+"target": "Habt ihr die Schlüssel?",
+"ru": "У вас ключи?",
+"uk": "У вас ключі?"
+},
+{
+"id": "de:05:49",
+"target": "Ist das dein Handy?",
+"ru": "Это твой телефон?",
+"uk": "Це твій телефон?"
+},
+{
+"id": "de:05:50",
+"target": "Sind das deine Gäste?",
+"ru": "Это твои гости?",
+"uk": "Це твої гості?"
+}
+]
+},
+{
+"lesson": 6,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:06:01",
+"de:06:05"
+],
+"textByLocale": {
+"en": "What's unknown? If you need an address or location, start with `wo`.\" Unlike the question \"Are you here?\", answering \"yes\" is not enough: the other person must also provide a location.",
+"ru": "Что неизвестно? Если нужен адрес или место вещи, начни с `wo`. В отличие от вопроса «Ты здесь?», ответа «да» недостаточно: собеседнику надо назвать место.",
+"uk": "Що невідомо? Якщо потрібна адреса чи місце речі, почни з `wo`. На відміну від питання \"Ти тут?\", відповіді \"так\" недостатньо: співрозмовнику треба назвати місце."
+}
+},
+{
+"exampleIds": [
+"de:06:11",
+"de:06:15"
+],
+"textByLocale": {
+"en": "Time or duration? `Wann` asks about the start or arrival time. `Wie lange` asks how long an action lasts. These are two different questions, even though both are related to time.",
+"ru": "Время или длительность? `Wann` спрашивает момент начала или прибытия. `Wie lange` спрашивает, сколько продолжается действие. Это два разных вопроса, даже если оба связаны со временем.",
+"uk": "Час чи тривалість? `Wann` запитує момент початку чи прибуття. `Wie lange` запитує, скільки продовжується дія. Це два різні питання, навіть якщо обидва пов'язані з часом."
+}
+},
+{
+"exampleIds": [
+"de:06:21",
+"de:06:22"
+],
+"textByLocale": {
+"en": "Forms of address have consequences. When asking a friend's name, a different verb form is expected in the answer than when addressing a stranger. The question word itself remains the same.",
+"ru": "У формы обращения есть последствия. Когда спрашиваешь имя друга, в ответе ожидается другая форма глагола, чем при обращении к незнакомому взрослому. Само вопросительное слово остаётся тем же.",
+"uk": "Форма звернення має наслідки. Коли запитуєш ім'я друга, у відповіді очікується інша форма дієслова, ніж при зверненні до незнайомого дорослого. Саме запитальне слово залишається тим самим."
+}
+},
+{
+"exampleIds": [
+"de:06:28",
+"de:06:30"
+],
+"textByLocale": {
+"en": "Don't break the interrogative phrase. In `wie lange` or `wie spät`,\" both parts together occupy the first position. The personal verb comes after the entire phrase, not between its words.",
+"ru": "Не разрывай вопросительное выражение. В `wie lange` или `wie spät` обе части вместе занимают первую позицию. Личный глагол ставится после всей группы, а не между её словами.",
+"uk": "Не розривай запитання. У `wie lange` чи `wie spät` обидві частини займають першу позицію. Особисте дієслово ставиться після всієї групи, а чи не між її словами."
+}
+},
+{
+"exampleIds": [
+"de:06:34",
+"de:06:35"
+],
+"textByLocale": {
+"en": "Asking about price. `Was kostet` is the usual way to ask how much an item or a ticket costs. The subject comes after the verb. Don't combine two different interrogative constructions into one.",
+"ru": "Вопрос о цене. `Was kostet` — обычный способ спросить, сколько стоит товар или билет. Предмет стоит после глагола. Не соединяй две разные вопросительные конструкции в одну.",
+"uk": "Питання про ціну. `Was kostet` - звичайний спосіб запитати, скільки коштує товар або квиток. Предмет стоїть після дієслова. Не поєднуй дві різні питання конструкції в одну."
+}
+},
+{
+"exampleIds": [
+"de:06:41",
+"de:06:45"
+],
+"textByLocale": {
+"en": "When you ask \"who?\", `wer` already replaces the active person. There's no need to follow the verb with a pronoun. Compare this to asking about place, where the subject remains explicit.",
+"ru": "Когда спрашиваешь «кто?», `wer` уже замещает действующее лицо. После глагола не требуется дублировать его местоимением. Сравни с вопросом о месте, где подлежащее остаётся явным.",
+"uk": "Коли запитуєш «хто?», `wer` вже замінює дійову особу. Після дієслова не потрібно дублювати його займенником. Порівняй із питанням про місце, де підлягає залишається явним."
+}
+},
+{
+"exampleIds": [
+"de:06:46",
+"de:06:50"
+],
+"textByLocale": {
+"en": "Where from, where to, or how many? `Woher` asks the source, `wohin` the destination. For the number of guests being counted, `wie viele` is needed, and for the price, `wie viel`.\" Consider what type of answer would be helpful to the other person.",
+"ru": "Откуда, куда или сколько? `Woher` спрашивает источник, `wohin` — цель. Для количества считаемых гостей нужно `wie viele`, а для цены — `wie viel`. Посмотри, какого типа ответ был бы полезен собеседнику.",
+"uk": "Звідки, куди чи скільки? `Woher` запитує джерело, `wohin` - мета. Для кількості гостей потрібно `wie viele`, а для ціни - `wie viel`. Подивися, якого типу відповідь була б корисною співрозмовнику."
+}
+}
+],
+"lab": [
+{
+"bad": "Was",
+"chapter": 1,
+"id": "de:06:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Woher",
+"Wo",
+"Was"
+],
+"slot": 0
+},
+{
+"bad": "Wie",
+"chapter": 1,
+"id": "de:06:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Wohin",
+"Wo",
+"Wie"
+],
+"slot": 0
+},
+{
+"bad": "Wie",
+"chapter": 1,
+"id": "de:06:05:lab",
+"item": 5,
+"kind": "match",
+"near": 7,
+"options": [
+"Wo",
+"Wie",
+"Wer"
+],
+"slot": 0
+},
+{
+"bad": "Wie",
+"chapter": 2,
+"id": "de:06:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Wie",
+"Wo",
+"Wem"
+],
+"slot": 0
+},
+{
+"bad": "Wohin",
+"chapter": 2,
+"id": "de:06:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"Wo",
+"Wohin",
+"Woher"
+],
+"slot": 0
+},
+{
+"bad": "Wem",
+"chapter": 2,
+"id": "de:06:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"Wem",
+"Wann",
+"Wo"
+],
+"slot": 0
+},
+{
+"bad": "Wohin",
+"chapter": 3,
+"id": "de:06:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"Wohin",
+"Wann",
+"Wer"
+],
+"slot": 0
+},
+{
+"bad": "Wer",
+"chapter": 3,
+"id": "de:06:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"Wer",
+"Wann",
+"Woher"
+],
+"slot": 0
+},
+{
+"bad": "Wohin",
+"chapter": 3,
+"id": "de:06:19:lab",
+"item": 19,
+"kind": "build",
+"near": 33,
+"options": [
+"Woher",
+"Wann",
+"Wohin"
+],
+"slot": 0
+},
+{
+"bad": "Wer",
+"chapter": 4,
+"id": "de:06:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Wer",
+"Wem",
+"Wie"
+],
+"slot": 0
+},
+{
+"bad": "Was",
+"chapter": 4,
+"id": "de:06:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"Was",
+"Wer",
+"Wie"
+],
+"slot": 0
+},
+{
+"bad": "Wer",
+"chapter": 4,
+"id": "de:06:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 27,
+"options": [
+"Was",
+"Wer",
+"Wie"
+],
+"slot": 0
+},
+{
+"bad": "Woher",
+"chapter": 5,
+"id": "de:06:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Was",
+"Wie",
+"Woher"
+],
+"slot": 0
+},
+{
+"bad": "Wann",
+"chapter": 5,
+"id": "de:06:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"Wann",
+"Was",
+"Woher"
+],
+"slot": 0
+},
+{
+"bad": "Wann",
+"chapter": 5,
+"id": "de:06:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 40,
+"options": [
+"Wann",
+"Woher",
+"Was"
+],
+"slot": 0
+},
+{
+"bad": "Woher",
+"chapter": 6,
+"id": "de:06:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"Was",
+"Woher",
+"Wem"
+],
+"slot": 0
+},
+{
+"bad": "Wohin",
+"chapter": 6,
+"id": "de:06:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"Woher",
+"Was",
+"Wohin"
+],
+"slot": 0
+},
+{
+"bad": "Wohin",
+"chapter": 6,
+"id": "de:06:42:lab",
+"item": 42,
+"kind": "match",
+"near": 38,
+"options": [
+"Wer",
+"Wo",
+"Wohin"
+],
+"slot": 0
+},
+{
+"bad": "Wem",
+"chapter": 7,
+"id": "de:06:45:lab",
+"item": 45,
+"kind": "build",
+"near": 41,
+"options": [
+"Wie",
+"Wem",
+"Wer"
+],
+"slot": 0
+},
+{
+"bad": "Woher",
+"chapter": 7,
+"id": "de:06:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 39,
+"options": [
+"Wohin",
+"Woher",
+"Wann"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"hier",
+"wo?"
+],
+[
+"um neun",
+"wann?"
+],
+[
+"zwei Stunden",
+"wie lange?"
+],
+[
+"zehn Euro",
+"wie viel?"
+],
+[
+"aus Hamburg",
+"woher?"
+],
+[
+"zum Markt",
+"wohin?"
+]
+],
+"title": {
+"en": "Not \"yes or no,\" but where, when, who, and how many",
+"ru": "Не «да или нет», а где, когда, кто и сколько",
+"uk": "Не «так чи ні», а де, коли, хто і скільки"
+}
+},
+"exampleResolved": [
+{
+"id": "de:06:01",
+"target": "Wo wohnst du?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+},
+{
+"id": "de:06:05",
+"target": "Wo sind die Schlüssel?",
+"ru": "Где ключи?",
+"uk": "Де ключі?"
+},
+{
+"id": "de:06:11",
+"target": "Wann kommst du?",
+"ru": "Когда ты придёшь?",
+"uk": "Коли ти прийдеш?"
+},
+{
+"id": "de:06:15",
+"target": "Wann beginnt der Kurs?",
+"ru": "Когда начинается курс?",
+"uk": "Коли починається курс?"
+},
+{
+"id": "de:06:21",
+"target": "Wie heißt du?",
+"ru": "Как тебя зовут?",
+"uk": "Як тебе звати?"
+},
+{
+"id": "de:06:22",
+"target": "Wie heißen Sie?",
+"ru": "Как вас зовут?",
+"uk": "Як вас звати?"
+},
+{
+"id": "de:06:28",
+"target": "Wie lange dauert die Fahrt?",
+"ru": "Сколько длится поездка?",
+"uk": "Скільки триває подорож?"
+},
+{
+"id": "de:06:30",
+"target": "Wie spät ist es?",
+"ru": "Который час?",
+"uk": "Котра година?"
+},
+{
+"id": "de:06:34",
+"target": "Was kostet das Ticket?",
+"ru": "Сколько стоит билет?",
+"uk": "Скільки коштує квиток?"
+},
+{
+"id": "de:06:35",
+"target": "Was kostet die Suppe?",
+"ru": "Сколько стоит суп?",
+"uk": "Скільки коштує суп?"
+},
+{
+"id": "de:06:41",
+"target": "Wer wartet draußen?",
+"ru": "Кто ждёт на улице?",
+"uk": "Хто чекає на вулиці?"
+},
+{
+"id": "de:06:45",
+"target": "Wer hat den Schlüssel?",
+"ru": "У кого ключ?",
+"uk": "У кого ключ?"
+},
+{
+"id": "de:06:46",
+"target": "Woher kommst du?",
+"ru": "Ты откуда?",
+"uk": "Ти звідки?"
+},
+{
+"id": "de:06:50",
+"target": "Wie viele Gäste kommen?",
+"ru": "Сколько гостей придёт?",
+"uk": "Скільки гостей прийде?"
+}
+]
+}
+]

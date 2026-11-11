@@ -12,7 +12,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { alphaHex } from '../../../constants/v2Style';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
-import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../practice/PracticeGlass';
 import V2Pressable from '../../v2/V2Pressable';
 import { DIALOGS_SCENE_PANEL_GAP, DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
 import { contrastRatio } from './dialogs_scene_tokens';

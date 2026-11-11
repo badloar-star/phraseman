@@ -1,0 +1,1066 @@
+[
+{
+"lesson": 11,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:11:01",
+"it:11:02",
+"it:11:05"
+],
+"textByLocale": {
+"en": "`Andare` doesn't form the present tense by simply changing the ending: `vado`, `vai`, `va`, but `andiamo`. It's convenient to teach in pairs with the same destination.",
+"ru": "`Andare` не образует настоящее простой заменой окончания: `vado`, `vai`, `va`, но `andiamo`. Учить удобно парами с одной и той же точкой назначения.",
+"uk": "`Andare` не утворює справжнє простою заміною закінчення: `vado`, `vai`, `va`, але `andiamo`. Вчити зручно парами з однією і тією ж точкою призначення."
+}
+},
+{
+"exampleIds": [
+"it:11:04",
+"it:11:09",
+"it:11:36"
+],
+"textByLocale": {
+"en": "`A + il` yields `al`, and `a + lo` yields `allo`. In `al mercato`, the article is already hidden. Don't add the second `il`.",
+"ru": "`A + il` даёт `al`, а `a + lo` — `allo`. В `al mercato` артикль уже спрятан. Не добавляй второе `il`.",
+"uk": "`A + il` дає `al`, а `a + lo` - `allo`. У `al mercato` артикль вже захований. Не додай друге `il`."
+}
+},
+{
+"exampleIds": [
+"it:11:11",
+"it:11:12",
+"it:11:13"
+],
+"textByLocale": {
+"en": "People go to the doctor or to visit with `da`: `dal medico`, `da mia sorella`. Don't confuse `da` in this meaning with the starting point: the entire phrase helps to understand the role.",
+"ru": "К врачу или в гости идут с `da`: `dal medico`, `da mia sorella`. Не путай `da` в этом значении с обозначением исходной точки: понять роль помогает вся фраза.",
+"uk": "До лікаря або в гості йдуть з `da`: `dal medico`, `da mia sorella`. Не плутай `da` у цьому значенні з позначенням вихідної точки: зрозуміти роль допомагає вся фраза."
+}
+},
+{
+"exampleIds": [
+"it:11:21",
+"it:11:22",
+"it:11:23"
+],
+"textByLocale": {
+"en": "Cities are usually represented by `a`, and many country names by `in`: `a Roma`, `in Italia`. Plural names may use the article form: `negli Stati Uniti`.",
+"ru": "С городами обычно `a`, со многими названиями стран `in`: `a Roma`, `in Italia`. У множественных названий возможна форма с артиклем: `negli Stati Uniti`.",
+"uk": "З містами зазвичай `a`, з багатьма назвами країн `in`: `a Roma`, `in Italia`. У багатьох назвах можлива форма з артиклем: `negli Stati Uniti`."
+}
+},
+{
+"exampleIds": [
+"it:11:31",
+"it:11:32",
+"it:11:33"
+],
+"textByLocale": {
+"en": "How do we get there? `A piedi` — on foot, `in treno` — by train, `in bici` — by bike. Keep both the destination and the mode of transportation in your answer if both are given in the task.",
+"ru": "Чем добираемся? `A piedi` — пешком, `in treno` — поездом, `in bici` — на велосипеде. Сохрани в ответе и место назначения, и способ передвижения, если оба даны в задании.",
+"uk": "Чим добираємось? `A piedi` - пішки, `in treno` - поїздом, `in bici` - на велосипеді. Збережи у відповіді і місце призначення, і спосіб пересування, якщо обидва дані у завданні."
+}
+},
+{
+"exampleIds": [
+"it:11:38",
+"it:11:39",
+"it:11:41"
+],
+"textByLocale": {
+"en": "The present can be used with a clear tense of agreement: a plan for the evening doesn't necessarily require a future ending. But if the condition says \"after class,\" don't change it to \"before class.\"",
+"ru": "Настоящее можно использовать с ясным временем договорённости: план на вечер не обязательно требует будущего окончания. Но если в условии «после урока», не превращай его в «до урока».",
+"uk": "Сьогодення можна використовувати з ясним часом домовленості: план на вечір не обов'язково вимагає майбутнього закінчення. Але якщо за умови «після уроку», не перетворюй його на «до уроку»."
+}
+},
+{
+"exampleIds": [
+"it:11:44",
+"it:11:47",
+"it:11:50"
+],
+"textByLocale": {
+"en": "When negated, the entire route is preserved: `non va alla riunione`. Check that you didn't answer the question \"where does he live?\" instead of \"where is he going?\"",
+"ru": "При отрицании сохраняется весь маршрут: `non va alla riunione`. Проверь, не ответил ли ты на вопрос «где живёт?» вместо «куда идёт?».",
+"uk": "При запереченні зберігається весь маршрут: `non va alla riunione`. Перевір, чи не відповів ти на запитання «де живе?» замість «куди йде?»."
+}
+}
+],
+"drills": [
+{
+"bad": "a",
+"chapter": 1,
+"id": "it:11:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"a",
+"di",
+"in"
+],
+"slot": 1
+},
+{
+"bad": "alla",
+"chapter": 1,
+"id": "it:11:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 32,
+"options": [
+"al",
+"alla",
+"allo"
+],
+"slot": 2
+},
+{
+"bad": "in",
+"chapter": 1,
+"id": "it:11:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"di",
+"in",
+"a"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 2,
+"id": "it:11:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"di",
+"in",
+"a"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 2,
+"id": "it:11:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 25,
+"options": [
+"di",
+"a",
+"in"
+],
+"slot": 2
+},
+{
+"bad": "dalla",
+"chapter": 2,
+"id": "it:11:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"dallo",
+"dalla",
+"dal"
+],
+"slot": 2
+},
+{
+"bad": "in",
+"chapter": 3,
+"id": "it:11:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"in",
+"a",
+"di"
+],
+"slot": 1
+},
+{
+"bad": "in",
+"chapter": 3,
+"id": "it:11:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"in",
+"di",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "a",
+"chapter": 3,
+"id": "it:11:19:lab",
+"item": 19,
+"kind": "build",
+"near": 32,
+"options": [
+"di",
+"a",
+"in"
+],
+"slot": 2
+},
+{
+"bad": "in",
+"chapter": 4,
+"id": "it:11:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 19,
+"options": [
+"in",
+"a",
+"di"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 4,
+"id": "it:11:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 8,
+"options": [
+"in",
+"a",
+"di"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 4,
+"id": "it:11:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"a",
+"di",
+"in"
+],
+"slot": 1
+},
+{
+"bad": "nel",
+"chapter": 5,
+"id": "it:11:29:lab",
+"item": 29,
+"kind": "match",
+"near": 33,
+"options": [
+"nel",
+"negli",
+"nella"
+],
+"slot": 1
+},
+{
+"bad": "alla",
+"chapter": 5,
+"id": "it:11:31:lab",
+"item": 31,
+"kind": "build",
+"near": 47,
+"options": [
+"allo",
+"al",
+"alla"
+],
+"slot": 1
+},
+{
+"bad": "a",
+"chapter": 5,
+"id": "it:11:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 2,
+"options": [
+"in",
+"a",
+"di"
+],
+"slot": 1
+},
+{
+"bad": "al",
+"chapter": 6,
+"id": "it:11:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 20,
+"options": [
+"al",
+"allo",
+"alla"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 6,
+"id": "it:11:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 45,
+"options": [
+"in",
+"di",
+"a"
+],
+"slot": 2
+},
+{
+"bad": "Andiamo",
+"chapter": 6,
+"id": "it:11:42:lab",
+"item": 42,
+"kind": "match",
+"near": 2,
+"options": [
+"Va",
+"Andiamo",
+"Vai"
+],
+"slot": 0
+},
+{
+"bad": "a",
+"chapter": 7,
+"id": "it:11:45:lab",
+"item": 45,
+"kind": "build",
+"near": 39,
+"options": [
+"in",
+"a",
+"di"
+],
+"slot": 2
+},
+{
+"bad": "al",
+"chapter": 7,
+"id": "it:11:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 22,
+"options": [
+"al",
+"alla",
+"allo"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"io / tu",
+"vado / vai"
+],
+[
+"lui / noi",
+"va / andiamo"
+],
+[
+"voi / loro",
+"andate / vanno"
+],
+[
+"in + stazione",
+"in stazione"
+],
+[
+"da + il medico",
+"dal medico"
+],
+[
+"a + il cinema",
+"al cinema"
+]
+],
+"title": {
+"en": "Route: `andare` + location",
+"ru": "Маршрут: `andare` + место",
+"uk": "Маршрут: `andare` + місце"
+}
+},
+"exampleResolved": [
+{
+"id": "it:11:01",
+"target": "Vado in stazione.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "it:11:02",
+"target": "Vai in stazione.",
+"ru": "Ты идешь на вокзал.",
+"uk": "Ти йдеш на залізничний вокзал."
+},
+{
+"id": "it:11:05",
+"target": "Noi andiamo a scuola.",
+"ru": "Мы идём в школу.",
+"uk": "Ми йдемо до школи."
+},
+{
+"id": "it:11:04",
+"target": "Lui va al mercato.",
+"ru": "Он идет на рынок.",
+"uk": "Він іде на ринок."
+},
+{
+"id": "it:11:09",
+"target": "Io vado al cinema.",
+"ru": "Я иду в кино.",
+"uk": "Я йду в кіно."
+},
+{
+"id": "it:11:36",
+"target": "Lui va allo stadio in metropolitana.",
+"ru": "Он едет на стадион на метро.",
+"uk": "Він їде на стадіон метро."
+},
+{
+"id": "it:11:11",
+"target": "Lea va dal medico.",
+"ru": "Леа идёт к врачу.",
+"uk": "Леа йде до лікаря."
+},
+{
+"id": "it:11:12",
+"target": "Paolo va dal dentista.",
+"ru": "Паоло идёт к стоматологу.",
+"uk": "Паоло йде до стоматолога."
+},
+{
+"id": "it:11:13",
+"target": "Vado a casa di mia sorella.",
+"ru": "Я иду к сестре.",
+"uk": "Я йду до сестри."
+},
+{
+"id": "it:11:21",
+"target": "Io vado a Lione.",
+"ru": "Я еду в Лион.",
+"uk": "Я їду до Ліона."
+},
+{
+"id": "it:11:22",
+"target": "Lei va a Parigi.",
+"ru": "Она едет в Париж.",
+"uk": "Вона їде до Парижа."
+},
+{
+"id": "it:11:23",
+"target": "Noi andiamo in Francia.",
+"ru": "Мы едем во Францию.",
+"uk": "Ми їдемо до Франції."
+},
+{
+"id": "it:11:31",
+"target": "Vado al lavoro a piedi.",
+"ru": "Я иду на работу пешком.",
+"uk": "Я йду на роботу пішки."
+},
+{
+"id": "it:11:32",
+"target": "Lei va al museo in autobus.",
+"ru": "Она едет в музей на автобусе.",
+"uk": "Вона їде до музею автобусом."
+},
+{
+"id": "it:11:33",
+"target": "Andiamo al parco in bicicletta.",
+"ru": "Мы едем в парк на велосипедах.",
+"uk": "Ми їдемо до парку на велосипеді."
+},
+{
+"id": "it:11:38",
+"target": "Stasera vado a casa di Lea.",
+"ru": "Я иду к Леа сегодня вечером.",
+"uk": "Я йду до Леа сьогодні ввечері."
+},
+{
+"id": "it:11:39",
+"target": "Domani andiamo in municipio.",
+"ru": "Завтра мы идём в мэрию.",
+"uk": "Завтра ми йдемо до мерії."
+},
+{
+"id": "it:11:41",
+"target": "Dove va dopo la lezione?",
+"ru": "Куда вы идёте после занятия?",
+"uk": "Куди ви йдете після заняття?"
+},
+{
+"id": "it:11:44",
+"target": "Paolo non va alla riunione.",
+"ru": "Паоло не идёт на собрание.",
+"uk": "Паоло не йде на зустріч."
+},
+{
+"id": "it:11:47",
+"target": "Vado al reparto calzature.",
+"ru": "Я иду в обувной отдел.",
+"uk": "Я йду до відділу взуття."
+},
+{
+"id": "it:11:50",
+"target": "Dopo il lavoro, vado a casa dei miei genitori.",
+"ru": "После работы я иду к родителям.",
+"uk": "Після роботи я йду до батьків."
+}
+]
+},
+{
+"lesson": 12,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:12:01",
+"it:12:03",
+"it:12:05"
+],
+"textByLocale": {
+"en": "The partial article looks like a compound of `di` with a definite article, but in these phrases, it doesn't mean \"of.\" It introduces a certain quantity of the product.",
+"ru": "Частичный артикль выглядит как соединение `di` с определённым артиклем, но в этих фразах он не означает «из». Он вводит некоторое количество продукта.",
+"uk": "Частковий артикль виглядає як з'єднання `di` з певним артиклем, але в цих фразах він не означає \"з\". Він вводить кілька продуктів."
+}
+},
+{
+"exampleIds": [
+"it:12:09",
+"it:12:10",
+"it:12:12"
+],
+"textByLocale": {
+"en": "With butter, distinguish between `l’olio` and `il burro`. It's important not to mechanically substitute a familiar word, but to understand which butter is needed based on the situation. The article must match the chosen word.",
+"ru": "С маслом различай `l’olio` и `il burro`. Важно не механически подставить знакомое слово, а понять, какое масло нужно по ситуации. Артикль должен соответствовать выбранному слову.",
+"uk": "З маслом розрізняй `l’olio` і `il burro`. Важливо не механічно підставити знайоме слово, а зрозуміти, яке масло потрібно за ситуацією. Артикль повинен відповідати вибраному слову."
+}
+},
+{
+"exampleIds": [
+"it:12:17",
+"it:12:19",
+"it:12:20"
+],
+"textByLocale": {
+"en": "A substance is usually not counted without a unit of measurement, but berries can be named in the plural. `Delle fragole` does not refer to a specific, known package.",
+"ru": "Вещество обычно не считают без единицы измерения, но ягоды можно назвать во множественном числе. `Delle fragole` не означает определённую известную упаковку.",
+"uk": "Речовину зазвичай не вважають без одиниці виміру, але ягоди можна назвати у множині. `Delle fragole` не означає певну відому упаковку."
+}
+},
+{
+"exampleIds": [
+"it:12:21",
+"it:12:25",
+"it:12:26"
+],
+"textByLocale": {
+"en": "In Italian, it's often possible to omit the article altogether: `bevo acqua`. Unlike a rigid template, this is a fluid choice of context. Don't add the word \"a little\" where an exact portion is required.",
+"ru": "В итальянском нередко можно вовсе не указывать артикль: `bevo acqua`. В отличие от жёсткого шаблона, это живой выбор контекста. Не добавляй слово «немного» туда, где требуется точная порция.",
+"uk": "В італійському часто можна зовсім не вказувати артикль: `bevo acqua`. На відміну від жорсткого шаблону, це живий вибір контексту. Не додай слово \"трохи\" туди, де потрібна точна порція."
+}
+},
+{
+"exampleIds": [
+"it:12:31",
+"it:12:34",
+"it:12:38"
+],
+"textByLocale": {
+"en": "In the negative phrase `non bevo latte`, the noun can be without an article. Don't automatically insert `di` after each negative.",
+"ru": "В отрицательной фразе `non bevo latte` существительное может стоять без артикля. После каждого отрицания не нужно автоматически вставлять `di`.",
+"uk": "У негативній фразі `non bevo latte` іменник може стояти без артикля. Після кожного заперечення не потрібно автоматично вставляти `di`."
+}
+},
+{
+"exampleIds": [
+"it:12:39",
+"it:12:41",
+"it:12:43"
+],
+"textByLocale": {
+"en": "The unit of measurement is `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. We count the entire unit: one bottle, two glasses.",
+"ru": "С единицей измерения идёт `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. Единицу считаем целиком: одна бутылка, два стакана.",
+"uk": "З одиницею вимірювання йде `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. Одиницю вважаємо цілком: одна пляшка, дві склянки."
+}
+},
+{
+"exampleIds": [
+"it:12:44",
+"it:12:45",
+"it:12:50"
+],
+"textByLocale": {
+"en": "Distinguish between the product and the utensils. If someone asks for a cup of tea, `una tazza di tè` preserves both the cup and the drink. The general phrase \"I drink tea\" loses its specific request.",
+"ru": "Отличай продукт от посуды. Если просят чашку чая, `una tazza di tè` сохраняет и чашку, и напиток. Общая фраза «я пью чай» теряет конкретный заказ.",
+"uk": "Відрізняй продукт від посуду. Якщо просять чашку чаю, `una tazza di tè` зберігає чашку і напій. Загальна фраза \"я п'ю чай\" втрачає конкретне замовлення."
+}
+}
+],
+"drills": [
+{
+"bad": "della",
+"chapter": 1,
+"id": "it:12:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"della",
+"dei",
+"del"
+],
+"slot": 1
+},
+{
+"bad": "del",
+"chapter": 1,
+"id": "it:12:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"del",
+"della",
+"dei"
+],
+"slot": 1
+},
+{
+"bad": "dell’insalata",
+"chapter": 1,
+"id": "it:12:05:lab",
+"item": 5,
+"kind": "match",
+"near": 22,
+"options": [
+"dell’insalata",
+"dell’acqua",
+"d’acqua"
+],
+"slot": 1
+},
+{
+"bad": "prendo",
+"chapter": 2,
+"id": "it:12:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"prendo",
+"bevo",
+"dell’insalata"
+],
+"slot": 1
+},
+{
+"bad": "beviamo",
+"chapter": 2,
+"id": "it:12:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"beviamo",
+"dell’olio",
+"prendo"
+],
+"slot": 1
+},
+{
+"bad": "del",
+"chapter": 2,
+"id": "it:12:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"della",
+"del",
+"dei"
+],
+"slot": 1
+},
+{
+"bad": "del",
+"chapter": 3,
+"id": "it:12:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"del",
+"della",
+"dei"
+],
+"slot": 1
+},
+{
+"bad": "dei",
+"chapter": 3,
+"id": "it:12:17:lab",
+"item": 17,
+"kind": "match",
+"near": 13,
+"options": [
+"dei",
+"del",
+"della"
+],
+"slot": 1
+},
+{
+"bad": "del",
+"chapter": 3,
+"id": "it:12:19:lab",
+"item": 19,
+"kind": "build",
+"near": 14,
+"options": [
+"del",
+"della",
+"dei"
+],
+"slot": 1
+},
+{
+"bad": "dell’insalata",
+"chapter": 4,
+"id": "it:12:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 5,
+"options": [
+"dell’acqua",
+"rimasta",
+"dell’insalata"
+],
+"slot": 2
+},
+{
+"bad": "dei",
+"chapter": 4,
+"id": "it:12:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"della",
+"dei",
+"del"
+],
+"slot": 1
+},
+{
+"bad": "della",
+"chapter": 4,
+"id": "it:12:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"della",
+"dei",
+"del"
+],
+"slot": 2
+},
+{
+"bad": "del",
+"chapter": 5,
+"id": "it:12:29:lab",
+"item": 29,
+"kind": "match",
+"near": 30,
+"options": [
+"dei",
+"della",
+"del"
+],
+"slot": 2
+},
+{
+"bad": "Già",
+"chapter": 5,
+"id": "it:12:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"Già",
+"Più",
+"Non"
+],
+"slot": 0
+},
+{
+"bad": "Loro",
+"chapter": 5,
+"id": "it:12:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 16,
+"options": [
+"Lei",
+"Loro",
+"Tu"
+],
+"slot": 0
+},
+{
+"bad": "Più",
+"chapter": 6,
+"id": "it:12:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"Già",
+"Non",
+"Più"
+],
+"slot": 0
+},
+{
+"bad": "tanto",
+"chapter": 6,
+"id": "it:12:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 50,
+"options": [
+"più",
+"po’",
+"tanto"
+],
+"slot": 2
+},
+{
+"bad": "a",
+"chapter": 6,
+"id": "it:12:42:lab",
+"item": 42,
+"kind": "match",
+"near": 39,
+"options": [
+"di",
+"in",
+"a"
+],
+"slot": 3
+},
+{
+"bad": "a",
+"chapter": 7,
+"id": "it:12:45:lab",
+"item": 45,
+"kind": "build",
+"near": 42,
+"options": [
+"di",
+"a",
+"in"
+],
+"slot": 3
+},
+{
+"bad": "della",
+"chapter": 7,
+"id": "it:12:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 13,
+"options": [
+"della",
+"del",
+"dei"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"di + il",
+"del pane"
+],
+[
+"di + la",
+"della farina"
+],
+[
+"di + l’",
+"dell’acqua"
+],
+[
+"di + i",
+"dei biscotti"
+],
+[
+"di + gli",
+"degli spinaci"
+],
+[
+"di + le",
+"delle uova"
+]
+],
+"title": {
+"en": "Indefinite quantity: `del pane`, `dell’acqua`",
+"ru": "Неопределённое количество: `del pane`, `dell’acqua`",
+"uk": "Невизначена кількість: `del pane`, `dell’acqua`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:12:01",
+"target": "Prendo del pane.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "it:12:03",
+"target": "Prendo della zuppa.",
+"ru": "Я беру суп.",
+"uk": "Я беру суп."
+},
+{
+"id": "it:12:05",
+"target": "Prendiamo dell’acqua.",
+"ru": "Мы берём воду.",
+"uk": "Ми беремо воду."
+},
+{
+"id": "it:12:09",
+"target": "Vorrei del riso.",
+"ru": "Я бы хотел риса.",
+"uk": "Я хотів би трохи рису."
+},
+{
+"id": "it:12:10",
+"target": "Vorrei dell’olio.",
+"ru": "Я бы хотел растительного масла.",
+"uk": "Я б хотів рослинної олії."
+},
+{
+"id": "it:12:12",
+"target": "Compro della farina.",
+"ru": "Я покупаю муку.",
+"uk": "Я купую борошно."
+},
+{
+"id": "it:12:17",
+"target": "Mangio del pollo.",
+"ru": "Я ем курицу.",
+"uk": "Я їм курку."
+},
+{
+"id": "it:12:19",
+"target": "Mangiamo della pasta.",
+"ru": "Мы едим макароны.",
+"uk": "Ми їмо макарони."
+},
+{
+"id": "it:12:20",
+"target": "Mangiano delle fragole.",
+"ru": "Они едят клубнику.",
+"uk": "Вони їдять полуницю."
+},
+{
+"id": "it:12:21",
+"target": "Bevo del tè.",
+"ru": "Я пью чай.",
+"uk": "Я п’ю чай."
+},
+{
+"id": "it:12:25",
+"target": "Aggiungo del sale.",
+"ru": "Я добавляю соль.",
+"uk": "Я додаю сіль."
+},
+{
+"id": "it:12:26",
+"target": "Lei aggiunge del pepe.",
+"ru": "Она добавляет перец.",
+"uk": "Вона додає перець."
+},
+{
+"id": "it:12:31",
+"target": "Non bevo latte.",
+"ru": "Я не пью молоко.",
+"uk": "Я не п’ю молока."
+},
+{
+"id": "it:12:34",
+"target": "Lei non compra burro.",
+"ru": "Она не покупает сливочное масло.",
+"uk": "Вона не купує вершкове масло."
+},
+{
+"id": "it:12:38",
+"target": "Non c’è più riso.",
+"ru": "Риса не осталось.",
+"uk": "Рису не залишилося."
+},
+{
+"id": "it:12:39",
+"target": "Vorrei un po’ di zuppa.",
+"ru": "Я бы хотел немного супа.",
+"uk": "Я б хотів трохи супу."
+},
+{
+"id": "it:12:41",
+"target": "Vorrei un bicchiere d’acqua.",
+"ru": "Я бы хотел стакан воды.",
+"uk": "Я б хотів склянку води."
+},
+{
+"id": "it:12:43",
+"target": "Prendiamo una bottiglia di latte.",
+"ru": "Мы берём бутылку молока.",
+"uk": "Ми беремо пляшку молока."
+},
+{
+"id": "it:12:44",
+"target": "Vuoi una tazza di tè?",
+"ru": "Хочешь чашку чая?",
+"uk": "Хочеш чашку чаю?"
+},
+{
+"id": "it:12:45",
+"target": "Aggiunge un cucchiaio di miele.",
+"ru": "Она добавляет ложку меда.",
+"uk": "Вона додає ложку меду."
+},
+{
+"id": "it:12:50",
+"target": "Metto un po’ di latte nel caffè.",
+"ru": "Я добавляю немного молока в кофе.",
+"uk": "Я додаю трохи молока до кави."
+}
+]
+}
+]

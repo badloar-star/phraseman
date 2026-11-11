@@ -8,19 +8,16 @@
 // стирает — это деньги, а причина расхождения (песочница, другая запись, удержание переноса) ещё не доказана.
 // За переключателем «Пульта» plus_server_recheck_enabled (по умолчанию ВЫКЛ). Префикс журнала: [PLUS-RECHECK].
 // ═══════════════════════════════════════════════════════════════════════════
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { forcePremiumAccessCloudRestore, getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import { getRemoteBool } from './remote_flags';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { readRealPremiumSnapshotForGeneration } from './premium_real_storage';
+import { readVipSnapshotForGeneration } from './premium_vip_storage';
 
 const LOG = '[PLUS-RECHECK]';
 /** Не чаще раза в 10 мин на процесс: защита от круга «отказ → перепроверка → отказ» (облако само ограничено 2 мин). */
 export const PLUS_RECHECK_MIN_INTERVAL_MS = 10 * 60 * 1000;
-const ACCESS_KEYS = [
-  'premium_active', 'premium_plan', 'premium_expiry', 'premium_rc_expiry_ms', 'admin_premium_override',
-  'vip_active', 'vip_plan', 'vip_until',
-] as const;
-
 let lastRunAt = 0;
 let inFlight: Promise<void> | null = null;
 
@@ -28,22 +25,25 @@ type LocalEvidence = Readonly<Record<string, string | number | boolean | null>>;
 
 /** Что телефон хранит про доступ: названия планов и «срок в будущем» (мс до конца), без идентификаторов. */
 async function readLocalEvidence(nowMs: number): Promise<LocalEvidence> {
-  const pairs = await AsyncStorage.multiGet([...ACCESS_KEYS]);
-  const get = (key: string): string | null => pairs.find(([k]) => k === key)?.[1] ?? null;
-  const leftMs = (raw: string | null): number | null => {
-    const n = Number(raw);
-    if (!raw || !Number.isFinite(n) || n <= 0) return null;
+  const token = captureAccountGeneration();
+  const [real, vip] = await Promise.all([
+    readRealPremiumSnapshotForGeneration(token),
+    readVipSnapshotForGeneration(token),
+  ]);
+  if (!token.stableId || !isCurrentAccountGeneration(token, token.stableId)) return {};
+  const leftMs = (value: number | string | null | undefined): number | null => {
+    const n = Number(value);
+    if (!Number.isFinite(n) || n <= 0) return null;
     return n - nowMs;
   };
   return {
-    premium_active: get('premium_active'),
-    premium_plan: get('premium_plan'),
-    premium_expiry_left_ms: leftMs(get('premium_expiry')),
-    premium_rc_expiry_left_ms: leftMs(get('premium_rc_expiry_ms')),
-    admin_premium_override: get('admin_premium_override'),
-    vip_active: get('vip_active'),
-    vip_plan: get('vip_plan'),
-    vip_until_left_ms: leftMs(get('vip_until')),
+    premium_active: real?.active ?? null,
+    premium_plan: real?.plan ?? null,
+    premium_expiry_left_ms: leftMs(real?.premiumExpiryMs),
+    premium_rc_expiry_left_ms: leftMs(real?.rcExpiryMs),
+    vip_active: vip?.vip_active ?? null,
+    vip_plan: vip?.vip_plan ?? null,
+    vip_until_left_ms: leftMs(vip?.vip_until),
   };
 }
 

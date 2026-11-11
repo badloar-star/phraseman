@@ -1,0 +1,76 @@
+[
+ {
+  "id": "lesson-1/ch6",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].note",
+  "problem": "«вы, друзья на vosotros» — калька, неестественно",
+  "fix": "Форма estáis уже указывает на «вы» — группу друзей (vosotros); отдельное местоимение не обязательно."
+ },
+ {
+  "id": "lesson-1/ch6",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].note",
+  "problem": "«ви, друзі на vosotros» — калька, неприродно",
+  "fix": "Форма estáis уже вказує на «ви» — групу друзів (vosotros); окремий займенник не обов’язковий."
+ },
+ {
+  "id": "lesson-1/ch6",
+  "type": "T2",
+  "field": "localized.en.chapters[6].note",
+  "problem": "ломаный en: «you, friends on vosotros » (калька + лишний пробел)",
+  "fix": "Estáis already indicates “you” to a group of friends (vosotros); a separate pronoun is optional."
+ },
+ {
+  "id": "lesson-1/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[es01/lab/spot3].feedback",
+  "problem": "калька «друзья на vosotros»; в en ломаное «friends on vosotros » с лишним пробелом",
+  "fix": {
+   "ru": "Форма estáis уже указывает на «вы» — группу друзей (vosotros); отдельное местоимение не обязательно.",
+   "uk": "Форма estáis уже вказує на «ви» — групу друзів (vosotros); окремий займенник не обов’язковий.",
+   "en": "Estáis already indicates “you” to a group of friends (vosotros); a separate pronoun is optional."
+  }
+ },
+ {
+  "id": "lesson-2/ch4",
+  "type": "T2",
+  "field": "localized.ru.chapters[4].note",
+  "problem": "«вы, друзья на vosotros» — калька",
+  "fix": "Форма estáis уже указывает на «вы» — группу друзей (vosotros); отдельное местоимение не обязательно."
+ },
+ {
+  "id": "lesson-2/ch4",
+  "type": "T2",
+  "field": "localized.uk.chapters[4].note",
+  "problem": "«ви, друзі на vosotros» — калька",
+  "fix": "Форма estáis уже вказує на «ви» — групу друзів (vosotros); окремий займенник не обов’язковий."
+ },
+ {
+  "id": "lesson-2/ch4",
+  "type": "T2",
+  "field": "localized.en.chapters[4].note",
+  "problem": "ломаный en «friends on vosotros »",
+  "fix": "Estáis already indicates “you” to a group of friends (vosotros); a separate pronoun is optional."
+ },
+ {
+  "id": "lesson-2/ch4",
+  "type": "T2",
+  "field": "localized.en.chapters[4].body",
+  "problem": "калька «on usted/on ustedes/on vosotros», «simulator» вместо тренажёра — en не передаёт ru",
+  "fix": "To one person addressed as usted: No está en la estación. To several people addressed as ustedes: No están en la estación. To a group of friends addressed as vosotros in Spain: No estáis en la estación. The pronouns can be left out in these sentences. The practice screen shows who is being addressed before you build the sentence: without that, there is no single answer."
+ },
+ {
+  "id": "lesson-2/ch5",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "«The distance can also be average» — неверный перевод «средним» (промежуточное расстояние)",
+  "fix": "Both answers can reassure someone who is afraid of being late. But the first literally denies “far”, while the second directly states “near”. The distance may also be somewhere in between. When the task asks for a negative, build no + a form of estar + lejos — not because the other phrase is wrong, but because we are practising the negative."
+ },
+ {
+  "id": "lesson-2/ch6",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "«Several clues» вместо «keys» — ошибка перевода «ключи»; «in a bag» вместо «in the bag»",
+  "fix": "What are we looking for? Several keys: las llaves. Which guess is being rejected? That the keys are in the bag: no están en el bolso. There is only one bag, but it does not govern the verb. To talk about one key, the noun and the verb change, while no and the place stay the same."
+ }
+]

@@ -4,6 +4,8 @@ const hydrateReferralStateFromRaw = jest.fn();
 
 const storage = {
   getItem: jest.fn(async (key: string) => asyncStore[key] ?? null),
+  setItem: jest.fn(async (key: string, value: string) => { asyncStore[key] = value; }),
+  removeItem: jest.fn(async (key: string) => { delete asyncStore[key]; }),
   multiGet: jest.fn<Promise<Array<[string, string | null]>>, [string[]]>(
     async (keys: string[]) => keys.map((key) => [key, asyncStore[key] ?? null]),
   ),
@@ -41,6 +43,8 @@ describe('app snapshot bootstrap account boundary', () => {
     jest.clearAllMocks();
     Object.keys(asyncStore).forEach((key) => delete asyncStore[key]);
     storage.getItem.mockImplementation(async (key: string) => asyncStore[key] ?? null);
+    storage.setItem.mockImplementation(async (key: string, value: string) => { asyncStore[key] = value; });
+    storage.removeItem.mockImplementation(async (key: string) => { delete asyncStore[key]; });
     storage.multiGet.mockImplementation(async (keys: string[]) => keys.map((key) => [key, asyncStore[key] ?? null]));
     storage.multiSet.mockImplementation(async (pairs: Array<[string, string]>) => {
       pairs.forEach(([key, value]) => { asyncStore[key] = value; });
@@ -50,6 +54,7 @@ describe('app snapshot bootstrap account boundary', () => {
   it('does not publish A profile or VIP after B activates during startup storage hydration', async () => {
     const generation = await import('../app/account_generation');
     const vipStorage = await import('../app/premium_vip_storage');
+    const realStorage = await import('../app/premium_real_storage');
     generation.beginAccountGeneration('stable-A');
     await vipStorage.writeVipSnapshotForAccount('stable-A', {
       vip_active: 'true',
@@ -57,8 +62,20 @@ describe('app snapshot bootstrap account boundary', () => {
       vip_until: '9999999999999',
       vip_admin_override: 'true',
     });
+    await realStorage.replaceRealPremiumSnapshotForGeneration(generation.captureAccountGeneration(), {
+      active: true,
+      plan: 'lifetime',
+      premiumExpiryMs: 0,
+      rcExpiryMs: 0,
+      rcLastSeenAtMs: Date.now(),
+      rcProductId: 'pro_lifetime',
+      rcPeriodType: 'LIFETIME',
+      rcStore: 'PLAY_STORE',
+      rcPurchasedAtMs: Date.now(),
+      rcUpdatedAtMs: Date.now(),
+      evidenceSource: 'store_purchase',
+    });
     asyncStore.user_name = 'Account A';
-    asyncStore.premium_active = 'true';
 
     let releaseHydration!: () => void;
     let hydrationStarted!: () => void;
@@ -86,9 +103,21 @@ describe('app snapshot bootstrap account boundary', () => {
 
   it('hydrates the lifetime plan into the synchronous profile snapshot', async () => {
     const generation = await import('../app/account_generation');
+    const realStorage = await import('../app/premium_real_storage');
     generation.beginAccountGeneration('stable-pro');
-    asyncStore.premium_active = 'true';
-    asyncStore.premium_plan = 'lifetime';
+    await realStorage.replaceRealPremiumSnapshotForGeneration(generation.captureAccountGeneration(), {
+      active: true,
+      plan: 'lifetime',
+      premiumExpiryMs: 0,
+      rcExpiryMs: 0,
+      rcLastSeenAtMs: Date.now(),
+      rcProductId: 'pro_lifetime',
+      rcPeriodType: 'LIFETIME',
+      rcStore: 'PLAY_STORE',
+      rcPurchasedAtMs: Date.now(),
+      rcUpdatedAtMs: Date.now(),
+      evidenceSource: 'server_projection',
+    });
 
     const { primeAppSnapshotFromStorage } = await import('../app/app_snapshot_bootstrap');
     await primeAppSnapshotFromStorage('en');

@@ -1,0 +1,1046 @@
+[
+{
+"lesson": 23,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:23:01",
+"fr:23:04",
+"fr:23:07"
+],
+"textByLocale": {
+"en": "Look at the construction with the full name: `parler à Léa`, `écrire à Paul`. Once the name is clear, `lui` replaces it along with the preposition. `à` itself is not duplicated before `lui`.",
+"ru": "Посмотри на конструкцию с полным именем: `parler à Léa`, `écrire à Paul`. Когда имя уже понятно, его вместе с предлогом заменяет `lui`. Само `à` перед `lui` здесь не дублируется.",
+"uk": "Подивися на конструкцію з повним ім'ям: `parler à Léa`, `écrire à Paul`. Коли ім'я вже зрозуміло, його разом із прийменником замінює `lui`. Саме `à` перед `lui` тут не дублюється."
+}
+},
+{
+"exampleIds": [
+"fr:23:02",
+"fr:23:04",
+"fr:23:06"
+],
+"textByLocale": {
+"en": "One recipient of either gender is `lui`, several are `leur`. Don't add `s` to `leur`. The spelling `leurs` refers, for example, to their multiple things, not to \"them\" before the verb.",
+"ru": "Один адресат любого пола — `lui`, несколько — `leur`. Не добавляй `s` к этому `leur`. Написание `leurs` относится, например, к их нескольким вещам, а не к «им» перед глаголом.",
+"uk": "Один адресат будь-якої статі - `lui`, кілька - `leur`. Не додай `s` до цього `leur`. Написання `leurs` відноситься, наприклад, до їх кількох речей, а не до \"їх\" перед дієсловом."
+}
+},
+{
+"exampleIds": [
+"fr:23:11",
+"fr:23:13",
+"fr:23:17"
+],
+"textByLocale": {
+"en": "A single phrase can have a recipient and an object. First, state the recipient with a short pronoun, then the action with a verb, followed by what you send, give, or show.",
+"ru": "В одной фразе могут быть получатель и предмет. Сначала коротким местоимением назови, кому, затем глаголом — действие, после него — что отправляешь, даёшь или показываешь.",
+"uk": "В одній фразі можуть бути одержувач та предмет. Спочатку коротким займенником назви, кому, потім дієсловом – дію, після нього – що відправляєш, даєш чи показуєш."
+}
+},
+{
+"exampleIds": [
+"fr:23:21",
+"fr:23:24",
+"fr:23:27"
+],
+"textByLocale": {
+"en": "Check the meaning in a real-life situation. A gift for one birthday boy or girl and a card for several friends require different pronouns, even if the sender remains the same.",
+"ru": "Проверь смысл по реальной ситуации. Подарок для одного именинника и открытка для нескольких друзей требуют разных местоимений, даже если отправитель не меняется.",
+"uk": "Перевір сенс щодо реальної ситуації. Подарунок для одного іменинника та листівка для кількох друзів вимагають різних займенників, навіть якщо відправник не змінюється."
+}
+},
+{
+"exampleIds": [
+"fr:23:31",
+"fr:23:34",
+"fr:23:36"
+],
+"textByLocale": {
+"en": "Negation doesn't change the recipient. With an infinitive, `lui` comes before the infinitive. Find the specific action: ask, say, write.",
+"ru": "Отрицание не меняет получателя. С инфинитивом `lui` располагается перед этим инфинитивом. Найди конкретное действие: попросить, сказать, написать.",
+"uk": "Заперечення не змінює отримувача. З інфінітивом `lui` знаходиться перед цим інфінітивом. Знайди конкретну дію: попросити, сказати, написати."
+}
+},
+{
+"exampleIds": [
+"fr:23:41",
+"fr:23:42",
+"fr:23:45"
+],
+"textByLocale": {
+"en": "In the compound past, the pronoun usually comes before the assistant. It refers to the addressee, not the direct object. `lui` itself does not require participle agreement with the recipient's gender.",
+"ru": "В сложном прошедшем местоимение обычно стоит перед помощником. Оно обозначает адресата, а не прямой объект. Само `lui` не требует согласования причастия с полом получателя.",
+"uk": "У складному минулому займенник зазвичай стоїть перед помічником. Воно означає адресата, а чи не прямий об'єкт. Саме `lui` не вимагає узгодження причастя зі статтю одержувача."
+}
+},
+{
+"exampleIds": [
+"fr:23:46",
+"fr:23:48",
+"fr:23:50"
+],
+"textByLocale": {
+"en": "This rule does not replace all constructions with `à`. For example, with the verb `penser à`, a person is referred to as `je pense à elle`. Learn the control along with the verb.",
+"ru": "Это правило не заменяет все конструкции с `à`. У глагола `penser à`, например, о человеке говорят `je pense à elle`. Учи управление вместе с глаголом.",
+"uk": "Це правило не замінює всі конструкції з `à`. У дієслова `penser à`, наприклад, про людину говорять `je pense à elle`. Вчи управління разом з дієсловом."
+}
+}
+],
+"drills": [
+{
+"bad": "les",
+"chapter": 1,
+"id": "fr:23:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"leur",
+"les",
+"lui"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 1,
+"id": "fr:23:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 17,
+"options": [
+"le",
+"lui",
+"pas"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 1,
+"id": "fr:23:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"le",
+"ne",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "me",
+"chapter": 2,
+"id": "fr:23:08:lab",
+"item": 8,
+"kind": "build",
+"near": 34,
+"options": [
+"leur",
+"les",
+"me"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 2,
+"id": "fr:23:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"leur",
+"te",
+"les"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 2,
+"id": "fr:23:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 10,
+"options": [
+"leur",
+"lui",
+"pas"
+],
+"slot": 1
+},
+{
+"bad": "se",
+"chapter": 3,
+"id": "fr:23:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 42,
+"options": [
+"me",
+"se",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "ne",
+"chapter": 3,
+"id": "fr:23:17:lab",
+"item": 17,
+"kind": "match",
+"near": 3,
+"options": [
+"lui",
+"en",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "leur",
+"chapter": 3,
+"id": "fr:23:19:lab",
+"item": 19,
+"kind": "build",
+"near": 13,
+"options": [
+"se",
+"lui",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "me",
+"chapter": 4,
+"id": "fr:23:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 8,
+"options": [
+"leur",
+"plus",
+"me"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 4,
+"id": "fr:23:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 28,
+"options": [
+"lui",
+"te",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 4,
+"id": "fr:23:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 7,
+"options": [
+"le",
+"lui",
+"plus"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 5,
+"id": "fr:23:29:lab",
+"item": 29,
+"kind": "match",
+"near": 41,
+"options": [
+"lui",
+"en",
+"plus"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 5,
+"id": "fr:23:31:lab",
+"item": 31,
+"kind": "build",
+"near": 24,
+"options": [
+"plus",
+"te",
+"lui"
+],
+"slot": 2
+},
+{
+"bad": "te",
+"chapter": 5,
+"id": "fr:23:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 8,
+"options": [
+"te",
+"leur",
+"en"
+],
+"slot": 2
+},
+{
+"bad": "jamais",
+"chapter": 6,
+"id": "fr:23:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 7,
+"options": [
+"ne",
+"lui",
+"jamais"
+],
+"slot": 2
+},
+{
+"bad": "ne",
+"chapter": 6,
+"id": "fr:23:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 2,
+"options": [
+"lui",
+"en",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "le",
+"chapter": 6,
+"id": "fr:23:42:lab",
+"item": 42,
+"kind": "match",
+"near": 14,
+"options": [
+"leur",
+"le",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 7,
+"id": "fr:23:45:lab",
+"item": 45,
+"kind": "build",
+"near": 6,
+"options": [
+"y",
+"lui",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "jamais",
+"chapter": 7,
+"id": "fr:23:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 9,
+"options": [
+"jamais",
+"lui",
+"le"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"à Léa",
+"je lui parle"
+],
+[
+"à Paul",
+"je lui parle"
+],
+[
+"aux voisins",
+"je leur parle"
+],
+[
+"au médecin",
+"je vais lui écrire"
+],
+[
+"aux clients",
+"je leur ai répondu"
+]
+],
+"title": {
+"en": "To: `lui` and `leur` before the verb",
+"ru": "Кому: `lui` и `leur` перед глаголом",
+"uk": "Кому: `lui` та `leur` перед дієсловом"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:23:01",
+"target": "Je lui parle.",
+"ru": "Я разговариваю с ним.",
+"uk": "Я розмовляю з ним."
+},
+{
+"id": "fr:23:04",
+"target": "Je leur parle.",
+"ru": "Я разговариваю с ними.",
+"uk": "Я розмовляю з ними."
+},
+{
+"id": "fr:23:07",
+"target": "Je lui écris.",
+"ru": "Я ей пишу.",
+"uk": "Я пишу їй."
+},
+{
+"id": "fr:23:02",
+"target": "Tu lui parles.",
+"ru": "Ты разговариваешь с ним.",
+"uk": "Ти розмовляєш з ним."
+},
+{
+"id": "fr:23:06",
+"target": "Vous leur parlez.",
+"ru": "Вы разговариваете с ними.",
+"uk": "Ви розмовляєте з ними."
+},
+{
+"id": "fr:23:11",
+"target": "Je lui téléphone ce soir.",
+"ru": "Я позвоню ей сегодня вечером.",
+"uk": "Я зателефоную їй сьогодні ввечері."
+},
+{
+"id": "fr:23:13",
+"target": "Elle lui envoie un message.",
+"ru": "Она отправляет ему сообщение.",
+"uk": "Вона надсилає йому повідомлення."
+},
+{
+"id": "fr:23:17",
+"target": "Nous lui donnons rendez-vous.",
+"ru": "Мы назначаем ему встречу.",
+"uk": "Ми призначаємо йому зустріч."
+},
+{
+"id": "fr:23:21",
+"target": "Je lui offre un livre pour son anniversaire.",
+"ru": "Я дарю ей книгу на день рождения.",
+"uk": "Я дарую їй книгу на день народження."
+},
+{
+"id": "fr:23:24",
+"target": "Je lui demande conseil avant de signer.",
+"ru": "Я спрашиваю у нее совета перед тем, как подписать.",
+"uk": "Я прошу її поради перед тим, як підписати."
+},
+{
+"id": "fr:23:27",
+"target": "Je leur propose un café en attendant.",
+"ru": "Я предлагаю им кофе, пока они ждут.",
+"uk": "Я пропоную їм каву, поки вони чекають."
+},
+{
+"id": "fr:23:31",
+"target": "Je ne lui réponds pas tout de suite.",
+"ru": "Я не отвечаю ей сразу.",
+"uk": "Я не відповідаю їй одразу."
+},
+{
+"id": "fr:23:34",
+"target": "Tu ne leur écris jamais ?",
+"ru": "Ты никогда им не пишешь?",
+"uk": "Ти ніколи їм не пишеш?"
+},
+{
+"id": "fr:23:36",
+"target": "Je vais lui demander l’heure.",
+"ru": "Я собираюсь спросить у неё время.",
+"uk": "Я збираюся запитати в неї, котра година."
+},
+{
+"id": "fr:23:41",
+"target": "Je lui ai envoyé la facture.",
+"ru": "Я отправил ему счет.",
+"uk": "Я надіслав йому рахунок."
+},
+{
+"id": "fr:23:42",
+"target": "On leur a proposé une autre date.",
+"ru": "Мы предложили им другую дату.",
+"uk": "Ми запропонували їм іншу дату."
+},
+{
+"id": "fr:23:45",
+"target": "Vous leur avez expliqué le trajet ?",
+"ru": "Вы объяснили им маршрут?",
+"uk": "Ви пояснили їм маршрут?"
+},
+{
+"id": "fr:23:46",
+"target": "Qui lui a offert cette écharpe ?",
+"ru": "Кто подарил ей этот шарф?",
+"uk": "Хто подарував їй цей шарф?"
+},
+{
+"id": "fr:23:48",
+"target": "Est-ce que tu lui fais confiance ?",
+"ru": "Ты ей доверяешь?",
+"uk": "Ти їй довіряєш?"
+},
+{
+"id": "fr:23:50",
+"target": "Elle lui rappelle son rendez-vous.",
+"ru": "Она напоминает ему о встрече.",
+"uk": "Вона нагадує йому про його зустріч."
+}
+]
+},
+{
+"lesson": 24,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:24:01",
+"fr:24:02",
+"fr:24:04"
+],
+"textByLocale": {
+"en": "`Y` works when the interlocutors already know the place. It can correspond to \"there\" or \"there.\" Notice that the verb describes movement or stay.",
+"ru": "`Y` работает, когда собеседники уже знают место. Оно может соответствовать «туда» или «там». Смотри, глагол описывает движение или пребывание.",
+"uk": "`Y` працює, коли співрозмовники вже знають місце. Воно може відповідати «туди» чи «там». Дивись, дієслово описує рух чи перебування."
+}
+},
+{
+"exampleIds": [
+"fr:24:07",
+"fr:24:08",
+"fr:24:11"
+],
+"textByLocale": {
+"en": "Before a consonant, a regular pronoun has its full form, but before `y`, you get `j’y`, `n’y`. Write the apostrophe together, but the verb after it is separate.",
+"ru": "Перед согласной у обычного местоимения есть полная форма, а перед `y` получаются `j’y`, `n’y`. Пиши апостроф слитно, но глагол после него — отдельно.",
+"uk": "Перед згодою у звичайного займенника є повна форма, а перед `y` виходять `j’y`, `n’y`. Пиши апостроф разом, але дієслово після нього окремо."
+}
+},
+{
+"exampleIds": [
+"fr:24:11",
+"fr:24:14",
+"fr:24:18"
+],
+"textByLocale": {
+"en": "`Y` is used not only with `aller`. You can live, work, sleep, or leave your bike there. Compare the whole sentence with the name of the place and the sentence with `y` instead.",
+"ru": "`Y` употребляется не только с `aller`. Можно там жить, работать, спать или оставить велосипед. Сравни целое предложение с названием места и предложение, где вместо него стоит `y`.",
+"uk": "`Y` вживається не тільки з `aller`. Можна там жити, працювати, спати чи залишити велосипед. Порівняй цілу пропозицію з назвою місця та пропозицію, де замість нього стоїть `y`."
+}
+},
+{
+"exampleIds": [
+"fr:24:21",
+"fr:24:22",
+"fr:24:25"
+],
+"textByLocale": {
+"en": "In the complex past, `y` comes before the helper: `j’y ai …`, `elle y est …`. You choose which helper you need based on the verb, not on the presence of `y`.",
+"ru": "В сложном прошедшем `y` стоит перед помощником: `j’y ai …`, `elle y est …`. Какой именно помощник нужен, выбираешь по глаголу, не по наличию `y`.",
+"uk": "У складному минулому `y` стоїть перед помічником: `j’y ai …`, `elle y est …`. Який саме помічник потрібен, вибираєш дієслово, не за наявності `y`."
+}
+},
+{
+"exampleIds": [
+"fr:24:31",
+"fr:24:33",
+"fr:24:35"
+],
+"textByLocale": {
+"en": "With the negation, combine `ne` / `n’`, then `y`, then the finite verb and `pas` or `plus`. Don't add another name of the same place without a special reason.",
+"ru": "С отрицанием собери `ne` / `n’`, затем `y`, затем личный глагол и `pas` или `plus`. Не прибавляй ещё одно название того же места без специальной причины.",
+"uk": "З запереченням збери `ne`/`n’`, потім `y`, потім особисте дієслово і `pas` або `plus`. Не додай ще одну назву того ж місця без спеціальної причини."
+}
+},
+{
+"exampleIds": [
+"fr:24:36",
+"fr:24:37",
+"fr:24:39"
+],
+"textByLocale": {
+"en": "Before the infinitive, `y` remains: in the \"I want to go back there\" group, it's `veux y retourner`. The tiles in the middle are short, but each has its place.",
+"ru": "Перед инфинитивом сохраняется `y`: в группе «хочу туда вернуться» это `veux y retourner`. Плитки в середине короткие, но у каждой своё место.",
+"uk": "Перед інфінітивом зберігається `y`: у групі «хочу туди повернутися» це `veux y retourner`. Плитки в середині короткі, але у кожної своє місце."
+}
+},
+{
+"exampleIds": [
+"fr:24:41",
+"fr:24:45",
+"fr:24:50"
+],
+"textByLocale": {
+"en": "In sentences with two parts, find which place was named in the first. If it's a museum, then the second `y` is specifically about the museum, not about the people in it.",
+"ru": "В предложениях с двумя частями найди, какое место было названо в первой. Если это музей, то во второй `y` именно про музей, не про людей в нём.",
+"uk": "У реченнях із двома частинами знайди, яке місце було названо у першій. Якщо це музей, то в другій `y` саме про музей, не про людей у ​​ньому."
+}
+}
+],
+"drills": [
+{
+"bad": "les",
+"chapter": 1,
+"id": "fr:24:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"y",
+"leur",
+"les"
+],
+"slot": 6
+},
+{
+"bad": "j’aime",
+"chapter": 1,
+"id": "fr:24:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"n’y",
+"j’aime",
+"j’y"
+],
+"slot": 5
+},
+{
+"bad": "pas",
+"chapter": 1,
+"id": "fr:24:05:lab",
+"item": 5,
+"kind": "match",
+"near": 37,
+"options": [
+"leur",
+"y",
+"pas"
+],
+"slot": 6
+},
+{
+"bad": "jamais",
+"chapter": 2,
+"id": "fr:24:08:lab",
+"item": 8,
+"kind": "build",
+"near": 18,
+"options": [
+"y",
+"pas",
+"jamais"
+],
+"slot": 1
+},
+{
+"bad": "plus",
+"chapter": 2,
+"id": "fr:24:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 37,
+"options": [
+"leur",
+"y",
+"plus"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 2,
+"id": "fr:24:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 22,
+"options": [
+"y",
+"se",
+"pas"
+],
+"slot": 1
+},
+{
+"bad": "se",
+"chapter": 3,
+"id": "fr:24:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 50,
+"options": [
+"se",
+"les",
+"y"
+],
+"slot": 6
+},
+{
+"bad": "ne",
+"chapter": 3,
+"id": "fr:24:17:lab",
+"item": 17,
+"kind": "match",
+"near": 20,
+"options": [
+"lui",
+"ne",
+"y"
+],
+"slot": 2
+},
+{
+"bad": "j’aime",
+"chapter": 3,
+"id": "fr:24:19:lab",
+"item": 19,
+"kind": "build",
+"near": 27,
+"options": [
+"j’y",
+"n’y",
+"j’aime"
+],
+"slot": 5
+},
+{
+"bad": "te",
+"chapter": 4,
+"id": "fr:24:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 28,
+"options": [
+"y",
+"te",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "ne",
+"chapter": 4,
+"id": "fr:24:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 34,
+"options": [
+"y",
+"ne",
+"les"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 4,
+"id": "fr:24:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 18,
+"options": [
+"en",
+"jamais",
+"y"
+],
+"slot": 1
+},
+{
+"bad": "se",
+"chapter": 5,
+"id": "fr:24:29:lab",
+"item": 29,
+"kind": "match",
+"near": 37,
+"options": [
+"me",
+"y",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "j’y",
+"chapter": 5,
+"id": "fr:24:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"n’y",
+"plutôt",
+"j’y"
+],
+"slot": 1
+},
+{
+"bad": "j’y",
+"chapter": 5,
+"id": "fr:24:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 24,
+"options": [
+"j’y",
+"n’y",
+"tard"
+],
+"slot": 1
+},
+{
+"bad": "plus",
+"chapter": 6,
+"id": "fr:24:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"y",
+"plus",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "te",
+"chapter": 6,
+"id": "fr:24:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 15,
+"options": [
+"jamais",
+"y",
+"te"
+],
+"slot": 2
+},
+{
+"bad": "encore",
+"chapter": 6,
+"id": "fr:24:42:lab",
+"item": 42,
+"kind": "match",
+"near": 9,
+"options": [
+"lui",
+"encore",
+"y"
+],
+"slot": 6
+},
+{
+"bad": "jamais",
+"chapter": 7,
+"id": "fr:24:45:lab",
+"item": 45,
+"kind": "build",
+"near": 16,
+"options": [
+"y",
+"leur",
+"jamais"
+],
+"slot": 7
+},
+{
+"bad": "plus",
+"chapter": 7,
+"id": "fr:24:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"plus",
+"te",
+"y"
+],
+"slot": 7
+}
+],
+"table": [
+[
+"au marché",
+"j’y vais"
+],
+[
+"dans ce café",
+"j’y retrouve mes amis"
+],
+[
+"dans cet hôtel",
+"j’y suis déjà allé"
+],
+[
+"au parc",
+"je n’y vais pas"
+],
+[
+"retourner à la gare",
+"y retourner"
+]
+],
+"title": {
+"en": "Do not repeat the place: short `y`",
+"ru": "Не повторять место: короткое `y`",
+"uk": "Не повторювати місце: коротке `y`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:24:01",
+"target": "Je vais au marché et Paul y va aussi.",
+"ru": "Я иду на рынок, и Поль тоже.",
+"uk": "Я йду на ринок, і Пол теж йде."
+},
+{
+"id": "fr:24:02",
+"target": "Je vais à la gare et Léa y va aussi.",
+"ru": "Я иду на вокзал, и Леа тоже.",
+"uk": "Я йду на вокзал, і Леа теж йде."
+},
+{
+"id": "fr:24:04",
+"target": "Elle va au musée et nous y allons aussi.",
+"ru": "Она идёт в музей, и мы тоже.",
+"uk": "Вона йде до музею, і ми теж йдемо."
+},
+{
+"id": "fr:24:07",
+"target": "J’y vais maintenant.",
+"ru": "Я иду туда сейчас.",
+"uk": "Я йду туди зараз."
+},
+{
+"id": "fr:24:08",
+"target": "Tu y vas demain.",
+"ru": "Ты пойдёшь туда завтра.",
+"uk": "Ти підеш туди завтра."
+},
+{
+"id": "fr:24:11",
+"target": "J’y habite depuis un an.",
+"ru": "Я живу там уже год.",
+"uk": "Я живу там рік."
+},
+{
+"id": "fr:24:14",
+"target": "Cet atelier est lumineux et nous y travaillons ensemble.",
+"ru": "В этой мастерской светло, и мы работаем здесь вместе.",
+"uk": "Ця майстерня світла, і ми працюємо тут разом."
+},
+{
+"id": "fr:24:18",
+"target": "Tu y passes souvent.",
+"ru": "Ты часто там бываешь.",
+"uk": "Ти часто там буваєш."
+},
+{
+"id": "fr:24:21",
+"target": "J’y suis déjà allé.",
+"ru": "Я уже там был.",
+"uk": "Я вже там був."
+},
+{
+"id": "fr:24:22",
+"target": "Elle y est déjà allée.",
+"ru": "Она уже там была.",
+"uk": "Вона вже там була."
+},
+{
+"id": "fr:24:25",
+"target": "Léa y a acheté du pain.",
+"ru": "Леа купила там хлеб.",
+"uk": "Леа купила там хліб."
+},
+{
+"id": "fr:24:31",
+"target": "Je n’y vais pas le soir.",
+"ru": "Я не хожу туда по вечерам.",
+"uk": "Я не ходжу туди ввечері."
+},
+{
+"id": "fr:24:33",
+"target": "Elle n’y travaille pas le lundi.",
+"ru": "Она не работает там по понедельникам.",
+"uk": "Вона не працює там по понеділках."
+},
+{
+"id": "fr:24:35",
+"target": "Je ne peux pas y rester.",
+"ru": "Я не могу там оставаться.",
+"uk": "Я не можу там залишитися."
+},
+{
+"id": "fr:24:36",
+"target": "Tu veux y retourner ?",
+"ru": "Ты хочешь туда вернуться?",
+"uk": "Ти хочеш туди повернутись?"
+},
+{
+"id": "fr:24:37",
+"target": "Nous allons y déjeuner.",
+"ru": "Мы идём туда на обед.",
+"uk": "Ми йдемо туди на обід."
+},
+{
+"id": "fr:24:39",
+"target": "Vous pouvez y aller à vélo.",
+"ru": "Вы можете доехать туда на велосипеде.",
+"uk": "Ви можете поїхати туди на велосипеді."
+},
+{
+"id": "fr:24:41",
+"target": "Le musée est gratuit et j’y retourne souvent.",
+"ru": "Музей бесплатный, и я часто туда возвращаюсь.",
+"uk": "Музей безкоштовний, і я часто туди повертаюся."
+},
+{
+"id": "fr:24:45",
+"target": "Ce parc est ouvert et on peut y entrer.",
+"ru": "Этот парк открыт, и в него можно войти.",
+"uk": "Цей парк відкритий і до нього можна увійти."
+},
+{
+"id": "fr:24:50",
+"target": "L’hôtel est complet et nous ne pouvons pas y dormir.",
+"ru": "В гостинице нет мест, и мы не можем там переночевать.",
+"uk": "У готелі немає місць, і ми не можемо там переночувати."
+}
+]
+}
+]

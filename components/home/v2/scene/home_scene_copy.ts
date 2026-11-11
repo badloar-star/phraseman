@@ -95,7 +95,8 @@ const T = {
   cont: (lang: Lang) => triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
   contEp: (lang: Lang, n: number) => triLang(lang, { ru: `Продолжить эпизод ${n}`, uk: `Продовжити епізод ${n}`, en: `Continue episode ${n}`, es: `Continuar episodio ${n}`, 'pt-BR': `Continuar episódio ${n}`, vi: `Tiếp tục tập ${n}`, id: `Lanjutkan episode ${n}`, tr: `${n}. bölüme devam et`, pl: `Kontynuuj odcinek ${n}` }),
   // зачем (жалоба владельца 25.10): кнопка ведёт в урок старого курса — надпись про урок, а не «Ещё эпизод»; переводы — черновик для 10 · ПЕРЕВОДЧИКА
-  contLesson: (lang: Lang, n: number) => triLang(lang, { ru: `Продолжить урок ${n}`, uk: `Продовжити урок ${n}`, en: `Continue lesson ${n}`, es: `Continuar la lección ${n}`, 'pt-BR': `Continuar a lição ${n}`, vi: `Tiếp tục bài ${n}`, id: `Lanjutkan pelajaran ${n}`, tr: `${n}. derse devam et`, pl: `Kontynuuj lekcję ${n}` }),
+  // зачем (владелец 11.11: «и на кнопке написано „Продолжить урок"»): без номера урока — номер больше нигде на Главной не показывается
+  contLesson: (lang: Lang) => triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', en: 'Continue lesson', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjutkan pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' }),
   moreEp: (lang: Lang) => triLang(lang, { ru: 'Ещё эпизод', uk: 'Ще епізод', en: 'One more episode', es: 'Otro episodio', 'pt-BR': 'Mais um episódio', vi: 'Thêm một tập', id: 'Satu episode lagi', tr: 'Bir bölüm daha', pl: 'Jeszcze jeden odcinek' }),
   of: (lang: Lang, d: number, t: number) => triLang(lang, { ru: `${d} из ${t}`, uk: `${d} з ${t}`, en: `${d} of ${t}`, es: `${d} de ${t}`, 'pt-BR': `${d} de ${t}`, vi: `${d}/${t}`, id: `${d} dari ${t}`, tr: `${d}/${t}`, pl: `${d} z ${t}` }),
   streak: (lang: Lang, n: number) => triLang(lang, { ru: `Серия ${n} ${ruDays(n)}`, uk: `Серія ${n} ${ukDays(n)}`, en: `${n}-day streak`, es: `Racha de ${n} ${en1(n, 'día', 'días')}`, 'pt-BR': `Sequência de ${n} ${en1(n, 'dia', 'dias')}`, vi: `Chuỗi ${n} ngày`, id: `Rangkaian ${n} hari`, tr: `${n} günlük seri`, pl: `Seria ${n} ${plDays(n)}` }),
@@ -171,13 +172,18 @@ export function homeSceneOfflineLine(lang: Lang): Readonly<{ bold: string; rest:
 function dayDoneCta(i: HomeSceneCopyInput): string {
   switch (i.ctaTarget ?? 'v2') {
     case 'v2': return T.moreEp(i.lang);
-    case 'legacy': return i.lessonNo != null ? T.contLesson(i.lang, i.lessonNo) : T.cont(i.lang);
+    case 'legacy': return i.lessonNo != null ? T.contLesson(i.lang) : T.cont(i.lang);
     case 'start': return T.start(i.lang);
     case 'section':
     case 'place':
     case 'unknown':
     default: return T.cont(i.lang);
   }
+}
+
+/** Кнопка, ведущая в сохранённый урок, везде подписана одинаково — «Продолжить урок» (вечером, офлайн, «с возвращением»). */
+function lessonCta(i: HomeSceneCopyInput, other: string): string {
+  return i.ctaTarget === 'legacy' && i.lessonNo != null ? T.contLesson(i.lang) : other;
 }
 
 export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
@@ -194,17 +200,17 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
       return { ...base, kicker: i.badge ?? place, title: i.title, line: null, bar: null, cta: T.start(lang) };
     case 'continue':
     case 'offline':
-      return { ...base, kicker: place, title: i.title, line: progressLine, bar, cta: T.cont(lang) };
+      return { ...base, kicker: place, title: i.title, line: progressLine, bar, cta: lessonCta(i, T.cont(lang)) };
     case 'streak_risk':
       return { ...base, kicker: T.streak(lang, i.streakDays), title: T.untilMidnight(lang, i.minutesToMidnight), line: null, bar: null,
         warm: i.zeroEnergyNote && i.energyMinutes !== null ? T.energyBeforeMidnight(lang, i.energyMinutes) : T.keeps(lang),
-        cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
+        cta: lessonCta(i, i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang)) };
     case 'day_done':
       return { ...base, kicker: T.streak(lang, i.streakDays), title: T.dayCounted(lang), line: i.title ? T.next(lang, i.title) : null, bar: null, cta: dayDoneCta(i) };
     case 'no_energy':
       return { ...base, kicker: place, title: T.energyIn(lang, i.energyMinutes), line: T.noEnergyLine(lang), bar: null, cta: null, note: T.plusNoEnergy(lang) };
     case 'welcome_back':
-      return { ...base, kicker: T.welcome(lang), title: i.episode !== null ? T.resumeAt(lang, i.episode) : i.title, line: i.daysAway !== null ? T.away(lang, i.daysAway) : null, bar: null, cta: T.cont(lang) };
+      return { ...base, kicker: T.welcome(lang), title: i.episode !== null ? T.resumeAt(lang, i.episode) : i.title, line: i.daysAway !== null ? T.away(lang, i.daysAway) : null, bar: null, cta: lessonCta(i, T.cont(lang)) };
     case 'streak_lost':
       return { ...base, kicker: T.lost(lang), title: T.newStreak(lang), line: i.lostStreakDays !== null && i.lostStreakDays >= 2 ? `${T.wasDays(lang, i.lostStreakDays)} ${T.flameBack(lang)}` : T.flameBack(lang), bar: null, cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
     case 'exam_ready':

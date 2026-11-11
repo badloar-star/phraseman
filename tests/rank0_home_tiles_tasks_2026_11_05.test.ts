@@ -36,12 +36,14 @@ describe('Главная: ряд плиток и «Сегодня» по ран�
     expect(src).toContain('surveyRow={homeTodayRank0 ? null :');
   });
 
-  it('на ранге 0 (видео закрыто рангом) ленты «Видео» на Главной нет — обе точки показа проверяют !rankLockedVideo', () => {
-    const hits = src.split('isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel').length - 1;
-    expect(hits).toBe(2);
+  it('keeps the video rail gated by rank in both Home layouts', () => {
+    const guard = 'isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel';
+    expect(src.indexOf(guard)).toBeGreaterThan(src.indexOf('<HomeV2TodayCard'));
+    expect(src.split(guard)).toHaveLength(2);
   });
 
   it('на ранге 0 до первого пройденного занятия сцена — «newbie» (hasProgress=false): «Урок 1 + название + Начать», серия первого дня прогрессом не считается', () => {
-    expect(src).toContain('hasProgress={homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false :');
+    expect(src).toContain('const homeSceneHasProgress = homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false :');
+    expect(src).toContain('hasProgress={homeSceneHasProgress}');
   });
 });

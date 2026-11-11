@@ -390,9 +390,6 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
   );
 }
 
-/** Имя, под которым его ждёт плеер нового курса (Дизайн, D194): тот же хук, тот же общий счётчик. */
-export const useLearningV2VoiceAllowance = useVoiceDailyAllowance;
-
 /** Только для тестов. */
 export function resetVoiceDailyAllowanceForTests(): void {
   countedAttemptKeys.length = 0;

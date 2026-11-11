@@ -2,7 +2,7 @@
 // MomentPromotionShort.tsx — момент m01, вариант B «Короткая: для повторных повышений» (эталон engagement-moments-v3-all.html, m01 B; лист приёмки CHECKLIST_m01.md → «Вариант B»).
 //
 // зачем (владелец 14.10: «перенести точно по макетам»; координатор 15.10: вариант B утверждён; Ядро 4d5fefbcf: признак isRepeatPromotion = promoted && prevTier ≥ 1): кто поднимается из 1+ лиги, уже повышался — три акта
-// ему не нужны. Монета cheer + искры на 0,4 с; на 0,9 с — фейерверк и дрожь 700 мс; тексты по очереди (надпись «Топ-5 · {Лига}» 0,42 с · «Поднимаешься» 0,65 с · строка «5 место · 470 монет за неделю · +100» 0,81 с),
+// ему не нужны. Монета cheer + искры на 0,4 с; на 0,9 с — фейерверк и дрожь 700 мс; тексты по очереди (надпись «Топ-5 · {Лига}» 0,42 с · «Поднимаешься» 0,65 с · строка «5 место · 470 монет за неделю · +100 монет за повышение» 0,81 с),
 // кнопки «Играть» и «Поделиться» на 1,04 с. Монеты за повышение начисляет ночной крон — компонент ничего не начисляет и не пишет; «Поделиться» отдаёт готовый текст наружу (системное окно — на стороне хоста,
 // без отправки данных на наш сервер). reduceMotion — сразу итоговый кадр. Анимации на UI-потоке (Reanimated).
 // ═══════════════════════════════════════════════════════════════════════════
@@ -21,7 +21,7 @@ import MomentFirework, { useMomentRumble } from './moments_effects';
 import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
-import { momentCoinWord, momentNumber, momentText } from './moments_strings';
+import { momentNumber, momentText } from './moments_strings';
 import { getSpireEnergyBonus } from '../../../app/spire_energy_bonus_store';
 import { promotionEnergyLine } from '../spire_week_energy';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
@@ -51,17 +51,17 @@ export type MomentPromotionShortProps = Readonly<{
 }>;
 
 /**
- * Строка под заголовком: «5 место · 42 ступени за неделю · +100 монет»; комната по монетам — «5 место · 470 монет за неделю · +100».
+ * Строка под заголовком: «5 место · 42 · +100 монет за повышение»; комната по монетам — «5 место · 470 монет за неделю · +100 монет за повышение».
  * зачем (Макеты + владелец 25.10: комната недели — по СТУПЕНЯМ): место подкрепляем ступенями; монеты — только награда за повышение.
  */
 export function promotionShortBody(lang: Lang, place: number, weekCoins: number | undefined, bonusCoins: number, weekSteps?: number): string {
   if (weekSteps !== undefined && weekSteps > 0) {
     const base = momentText(lang, 'promoShortBodySteps', { place, steps: momentNumber(weekSteps) });
-    return bonusCoins > 0 ? `${base} · +${momentNumber(bonusCoins)} ${momentCoinWord(lang, bonusCoins)}` : base;
+    return bonusCoins > 0 ? `${base} · ${momentText(lang, 'promoBonus', { n: bonusCoins })}` : base;
   }
   if (weekCoins === undefined || weekCoins <= 0) return momentText(lang, 'promoShortPlaceOnly', { place });
   const base = momentText(lang, 'promoShortBody', { place, coins: momentNumber(weekCoins) });
-  return bonusCoins > 0 ? `${base} · +${momentNumber(bonusCoins)}` : base;
+  return bonusCoins > 0 ? `${base} · ${momentText(lang, 'promoBonus', { n: bonusCoins })}` : base;
 }
 
 function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, weekSteps, bonusCoins, onPlay, onShare, testID = 'moment-promotion-short' }: MomentPromotionShortProps) {

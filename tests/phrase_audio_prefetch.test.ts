@@ -9,11 +9,9 @@ let ensureImpl: (text: string, url: string) => Promise<boolean> = async (text) =
   return true;
 };
 
-jest.mock('../app/phrase_audio_url_map.generated', () => ({
-  PHRASE_AUDIO_URL_MAP: {},
-  getPhraseAudioUrl: (text: string) =>
+jest.mock('../modules/audio/phrase_audio_lookup', () => ({
+  getPlayablePhraseAudioUrl: (text: string) =>
     text.startsWith('нет-клипа') ? undefined : `https://cdn.test/${encodeURIComponent(text)}.mp3`,
-  normalizePhraseAudioKey: (t: string) => t.trim().toLowerCase(),
 }));
 
 jest.mock('../app/net_status', () => ({ getNetStatus: () => netStatus }));

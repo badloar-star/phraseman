@@ -9,10 +9,15 @@
    "es": "debajo"
   },
   "gli": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Те самые очки (___ occhiali)",
+   "uk": "Ті самі окуляри (___ occhiali)",
+   "en": "The specific glasses (___ occhiali)",
+   "es": "Las gafas de las que hablamos (___ occhiali)",
+   "pt-BR": "Os óculos de que estamos falando (___ occhiali)",
+   "vi": "Chiếc kính đang được nhắc đến (___ occhiali)",
+   "id": "Kacamata yang sedang dibicarakan (___ occhiali)",
+   "tr": "Sözünü ettiğimiz gözlük (___ occhiali)",
+   "pl": "Te konkretne okulary (___ occhiali)"
   },
   "letto": {
    "ru": "кровать",
@@ -207,10 +212,15 @@
    "es": "pequeño"
   },
   "lo": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Тот самый рюкзак (___ zaino)",
+   "uk": "Той самий рюкзак (___ zaino)",
+   "en": "The specific backpack (___ zaino)",
+   "es": "La mochila de la que hablamos (___ zaino)",
+   "pt-BR": "A mochila de que estamos falando (___ zaino)",
+   "vi": "Chiếc ba lô đang được nhắc đến (___ zaino)",
+   "id": "Tas ransel yang sedang dibicarakan (___ zaino)",
+   "tr": "Sözünü ettiğimiz sırt çantası (___ zaino)",
+   "pl": "Ten konkretny plecak (___ zaino)"
   },
   "zaino": {
    "ru": "рюкзак",

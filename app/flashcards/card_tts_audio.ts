@@ -1,42 +1,16 @@
 /**
- * D128: клипы OpenAI для карточек — клиентское зеркало functions/src/card_tts_core.ts.
+ * Голос карточки — только голос устройства нужного языка.
  *
- * зачем: карточка обязана звучать голосом нужного языка. Сервер кладёт клип по
- * детерминированному пути (хэш языка+голоса+модели+текста), клиент вычисляет ту
- * же ссылку сам — без единого чтения Firestore на карточку. Нет клипа → голос
- * устройства, но ТОЛЬКО если на устройстве есть голос ровно этого языка; иначе —
- * спокойное «Голос недоступен» (паттерн app/dialogue_voice_capability.ts),
- * никогда не чужой язык.
+ * зачем (владелец 11.11.2026, «удали всю озвучку»): заранее сгенерированных клипов карточек
+ * (D128, OpenAI TTS, папка card-audio в хранилище) больше нет. Карточку читает встроенный голос
+ * телефона, но ТОЛЬКО голос ровно этого языка; иначе — спокойное «Голос недоступен»
+ * (паттерн app/dialogue_voice_capability.ts), никогда не чужой язык.
  *
- * Константы держать равными серверным: сторож tests/card_tts_client_server_parity.test.ts.
+ * resolveCardTtsTarget и память промахов оставлены пустыми заглушками: их вызывает
+ * hooks/use-audio.ts, который сейчас правит другая сессия. «Клипа нет» → use-audio сразу
+ * идёт в speakCardWithDevice. Убрать заглушки вместе с веткой клипа в use-audio.
  */
-import * as Crypto from 'expo-crypto';
-
 export type CardTtsLanguage = 'en' | 'es' | 'fr' | 'de' | 'it';
-
-export const CARD_TTS_MODEL = 'gpt-4o-mini-tts';
-export const CARD_TTS_VOICE_BY_LANGUAGE: Readonly<Record<CardTtsLanguage, string>> = Object.freeze({
-  en: 'echo',
-  es: 'marin',
-  fr: 'marin',
-  de: 'marin',
-  it: 'marin',
-});
-export const CARD_TTS_STYLE_VERSION = 'v1';
-export const CARD_TTS_MAX_CHARS = 300;
-export const CARD_TTS_STORAGE_PREFIX = 'card-audio';
-export const CARD_TTS_DEFAULT_BUCKET = 'phraseman-ea0b3.firebasestorage.app';
-
-/** Промах «клипа нет» помним недолго: сервер мог озвучить набор за это время. */
-const MISSING_TTL_MS = 10 * 60 * 1000;
-const MISSING_MAX_ENTRIES = 500;
-
-type Sha256Hex = (material: string) => Promise<string>;
-
-const expoSha256: Sha256Hex = (material) =>
-  Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, material, {
-    encoding: Crypto.CryptoEncoding.HEX,
-  });
 
 /** 'es-ES' → 'es'; ru/uk/zxx и прочее → null (эти языки клипами не озвучиваются). */
 export function cardTtsLanguageFromSpeechLocale(locale: string | null | undefined): CardTtsLanguage | null {
@@ -45,73 +19,29 @@ export function cardTtsLanguageFromSpeechLocale(locale: string | null | undefine
   return base === 'en' || base === 'es' || base === 'fr' || base === 'de' || base === 'it' ? base : null;
 }
 
-export function normalizeCardTtsText(text: unknown): string {
-  let s = String(text ?? '');
-  try {
-    s = s.normalize('NFC');
-  } catch (error: unknown) {
-    // Движок без normalize — берём текст как есть; ключ совпадёт для уже NFC-текста.
-    console.warn('[CARD-TTS] normalize_unavailable', error instanceof Error ? error.message : String(error)); // guard-ok: проглоченная ошибка пишет причину
-  }
-  return s.trim().replace(/\s+/g, ' ');
-}
-
-function formatToken(hex: string): string {
-  return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20, 32)].join('-');
-}
-
 export type CardTtsTarget = Readonly<{
   language: CardTtsLanguage;
   text: string;
   key: string;
   objectPath: string;
   url: string;
-  /** Ключ дискового кэша плеера (hooks/phrase_audio_player.ts). */
   cacheKey: string;
 }>;
 
-/** null — текст пуст/слишком длинный: клипа по правилам сервера быть не может. */
+/** Клипов нет: всегда null → вызывающий говорит голосом устройства. */
 export async function resolveCardTtsTarget(
-  language: CardTtsLanguage,
-  rawText: string,
-  sha256Hex: Sha256Hex = expoSha256,
+  _language: CardTtsLanguage,
+  _rawText: string,
 ): Promise<CardTtsTarget | null> {
-  const text = normalizeCardTtsText(rawText);
-  if (!text || text.length > CARD_TTS_MAX_CHARS) return null;
-  const material = [
-    `card-tts-${CARD_TTS_STYLE_VERSION}`,
-    language,
-    CARD_TTS_VOICE_BY_LANGUAGE[language],
-    CARD_TTS_MODEL,
-    text,
-  ].join('\n');
-  const key = (await sha256Hex(material)).toLowerCase().slice(0, 40);
-  const objectPath = `${CARD_TTS_STORAGE_PREFIX}/${CARD_TTS_STYLE_VERSION}/${language}/${key}.mp3`;
-  const token = formatToken((await sha256Hex(`card-audio-token:${objectPath}`)).toLowerCase());
-  const url = `https://firebasestorage.googleapis.com/v0/b/${CARD_TTS_DEFAULT_BUCKET}`
-    + `/o/${encodeURIComponent(objectPath)}?alt=media&token=${token}`;
-  return { language, text, key, objectPath, url, cacheKey: `card_${language}_${key}` };
+  return null;
 }
 
-// ── Память промахов (без сети на каждый тап по неозвученной карточке) ────────
-
-const missingUntil = new Map<string, number>();
-
-export function isCardTtsKnownMissing(key: string, nowMs: number = Date.now()): boolean {
-  const until = missingUntil.get(key);
-  if (until == null) return false;
-  if (until > nowMs) return true;
-  missingUntil.delete(key);
+/** Клипов нет — помнить промахи незачем. */
+export function isCardTtsKnownMissing(_key: string, _nowMs: number = Date.now()): boolean {
   return false;
 }
 
-export function markCardTtsMissing(key: string, nowMs: number = Date.now()): void {
-  if (missingUntil.size >= MISSING_MAX_ENTRIES) {
-    const oldest = missingUntil.keys().next().value;
-    if (oldest !== undefined) missingUntil.delete(oldest);
-  }
-  missingUntil.set(key, nowMs + MISSING_TTL_MS);
-}
+export function markCardTtsMissing(_key: string, _nowMs: number = Date.now()): void {}
 
 // ── Голос устройства: только точное совпадение языка ─────────────────────────
 
@@ -130,7 +60,7 @@ const CANONICAL_LOCALE: Readonly<Record<CardTtsLanguage, string>> = Object.freez
  * список для не-английского языка = «не доказано» → недоступно: иначе движок
  * молча возьмёт голос по умолчанию и прочтёт испанское слово английским.
  * Английский оставляем доступным и при пустом списке — английский голос есть
- * на любом устройстве, и так вели себя карточки до D128.
+ * на любом устройстве.
  */
 export function resolveCardDeviceVoice(
   language: CardTtsLanguage,
@@ -186,7 +116,6 @@ export function notifyCardVoiceUnavailable(language: CardTtsLanguage, reason: st
 
 /** Только для тестов. */
 export function __resetCardTtsAudioForTests(): void {
-  missingUntil.clear();
   lastUnavailableNoticeAt = 0;
 }
 

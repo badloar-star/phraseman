@@ -282,11 +282,12 @@ import {
 // eslint-disable-next-line import/first
 import { mistakePracticeEventsKey } from '../app/target_storage_keys';
 // eslint-disable-next-line import/first
-import { createLearningV2CourseLocalProgressStoreV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
-// eslint-disable-next-line import/first
-import { deriveLocalOfflineProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
-// eslint-disable-next-line import/first
-import { buildLearningV2CourseTopologyV1 } from '../modules/learning-v2/content/course_topology_v1';
+import { sha256Utf8 } from '../modules/canonical_json';
+
+// зачем: курс занятий удалён, но его локальный ключ прогресса остался на телефонах выпущенных версий. Сценарий по-прежнему
+// проверяет, что такой ключ стирается с аккаунтом и возвращается из аварийной копии; имя ключа — как у выпущенных версий,
+// отпечаток аккаунта в нём для сценария условный (важно лишь, что он свой у каждого аккаунта).
+const retiredCourseScope = (stableId: string): string => sha256Utf8(`retired-course-scope:${stableId}`);
 
 // ── Аккаунты и их прогресс ──────────────────────────────────────────────────
 type Account = { stable: string; auth: string; sub: string; name: string };
@@ -343,7 +344,7 @@ function aProgressKeys(lv2Key: string, lv2Value: string): ProbeKey[] {
     { label: 'Руны: журнал практики', key: `practice_rune_journal_v1:${A.stable}:practice-op-a`, value: '{"version":1,"amount":5}' },
     { label: 'Ранг монеты', key: `coin_rank_v1:${A.stable}`, value: '{"schemaVersion":"coin-rank-state.v1","rank":3}' },
     { label: 'Визитка «Про»', key: `profile_card_pro_v1:${A.stable}`, value: '{"schemaVersion":"profile-card-pro.v1","owned":true}' },
-    { label: 'Карта Learning V2', key: lv2Key, value: lv2Value },
+    { label: 'Прогресс удалённого курса занятий', key: lv2Key, value: lv2Value },
     // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT): ключи без владельца в имени — раньше доставались Б; теперь стираются при выходе
     // и возвращаются к A из аварийной копии (лимит голоса без сброса перевходом, отложенная заморозка серии).
     { label: 'Голосовые попытки Диалогов (лимит дня)', key: 'dialogue_v2_voice_attempts_v1', value: '{"day":"2026-10-15","count":3}' },
@@ -436,11 +437,9 @@ async function seedAccountAOnPhone(): Promise<ProbeKey[]> {
   mockStable.id = A.stable;
   setProviderSession(A);
   beginAccountGeneration(A.stable);
-  const scope = deriveLocalOfflineProgressAccountScopeHash(A.stable);
-  const firstSession = buildLearningV2CourseTopologyV1().lessons[0].sessions[0].sessionId;
-  await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).complete(scope, firstSession);
+  const scope = retiredCourseScope(A.stable);
   const lv2Key = `learning-v2:course-local-progress:v1:${scope}`;
-  const lv2Value = (await AsyncStorage.getItem(lv2Key))!;
+  const lv2Value = '{"schemaVersion":"retired-course-local-progress","completedSessionIds":["session-1"]}';
   const keys = aProgressKeys(lv2Key, lv2Value);
   await AsyncStorage.multiSet(keys.map(({ key, value }) => [key, value]));
   return keys;
@@ -574,7 +573,7 @@ async function logoutLikeAccountLogoutFlow(): Promise<{ normal: unknown; forced:
 
 async function runScenario(withB: boolean, aReturnRace: SignInRace = {}): Promise<ScenarioResult> {
   const keys = await seedAccountAOnPhone();
-  const aScopeHash = deriveLocalOfflineProgressAccountScopeHash(A.stable);
+  const aScopeHash = retiredCourseScope(A.stable);
   const coinsSeeded = await peekCoins();
 
   // 1. Штатный выход A с сетью.
@@ -600,7 +599,7 @@ async function runScenario(withB: boolean, aReturnRace: SignInRace = {}): Promis
     aNamedKeysAtB = [...b.afterBackup.keys()].filter((key) => (
       key.includes(A.stable) || key.includes(aScopeHash)
     ));
-    const bLv2Key = `learning-v2:course-local-progress:v1:${deriveLocalOfflineProgressAccountScopeHash(B.stable)}`;
+    const bLv2Key = `learning-v2:course-local-progress:v1:${retiredCourseScope(B.stable)}`;
     bOwnLv2Key = b.afterBackup.get(bLv2Key) ?? null;
     // Б успел заработать своё, что живёт только локально (едет в его копию).
     await AsyncStorage.setItem(B_ONLY_KEY, B_ONLY_VALUE);
@@ -855,8 +854,8 @@ describe('AA: A → выход → Б → выход → A на том же те
   });
 
   // зачем (координатор 22.10, вариант А): ключ карты стирается с аккаунтом и возвращается из аварийной копии A (плюс облачная
-  // копия learning_v2_course_progress_sync_v1 в документе A) — потерь нет.
-  test('4. возврат A: карта Learning V2 — стирается с аккаунтом и возвращается из аварийной копии', () => {
+  // его прежняя облачная копия не трогается) — потерь нет.
+  test('4. возврат A: прогресс удалённого курса занятий — стирается с аккаунтом и возвращается из аварийной копии', () => {
     const item = row(result, LV2_PREFIX);
     expect(item.survivedAWipe).toBe(false);
     expect(item.inAFirstBackup).toBe(true);

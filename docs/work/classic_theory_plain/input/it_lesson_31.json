@@ -1,0 +1,881 @@
+{
+ "lang": "it",
+ "lesson": 31,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:31:01",
+   "target": "Avevo già mangiato quando hai chiamato.",
+   "ru": "Когда ты позвонил, я уже поел.",
+   "uk": "Коли ти подзвонив, я вже поїв."
+  },
+  {
+   "id": "it:31:02",
+   "target": "Avevi già pagato quando sono arrivato.",
+   "ru": "К тому моменту, как я пришёл, ты уже заплатил.",
+   "uk": "До того моменту, як я прийшов, ти вже заплатив."
+  },
+  {
+   "id": "it:31:03",
+   "target": "Lea aveva già asciugato il pavimento.",
+   "ru": "Леа уже вытерла пол.",
+   "uk": "Леа вже витерла підлогу."
+  },
+  {
+   "id": "it:31:04",
+   "target": "Avevamo già prenotato i nostri posti.",
+   "ru": "Мы уже забронировали свои места.",
+   "uk": "Ми вже забронювали наші місця."
+  },
+  {
+   "id": "it:31:05",
+   "target": "Aveva già letto il messaggio?",
+   "ru": "Вы уже прочитали сообщение?",
+   "uk": "Ви вже прочитали повідомлення?"
+  },
+  {
+   "id": "it:31:06",
+   "target": "Avevano già preso l’autobus.",
+   "ru": "Они уже сели на автобус.",
+   "uk": "Вони вже сіли на автобус."
+  },
+  {
+   "id": "it:31:07",
+   "target": "Paolo era già uscito quando sono entrato.",
+   "ru": "Когда я вошёл, Паоло уже ушёл.",
+   "uk": "Коли я увійшов, Паоло уже пішов."
+  },
+  {
+   "id": "it:31:08",
+   "target": "Lea era già uscita quando ho chiamato.",
+   "ru": "Леа уже ушла, когда я позвонил.",
+   "uk": "Леа вже пішла, коли я подзвонив."
+  },
+  {
+   "id": "it:31:09",
+   "target": "I clienti erano già usciti.",
+   "ru": "Клиенты к тому моменту уже вышли.",
+   "uk": "Клієнти на той момент уже вийшли."
+  },
+  {
+   "id": "it:31:10",
+   "target": "I miei genitori erano già tornati a casa.",
+   "ru": "Мои родители уже вернулись домой.",
+   "uk": "Мої батьки вже повернулися додому."
+  },
+  {
+   "id": "it:31:11",
+   "target": "Non riuscivo a trovare la chiave che avevo nascosto.",
+   "ru": "Я никак не мог найти ключ, который раньше спрятал.",
+   "uk": "Я ніяк не міг знайти ключ, який раніше сховав."
+  },
+  {
+   "id": "it:31:12",
+   "target": "Paolo stava cercando la borsa che aveva dimenticato.",
+   "ru": "Паоло искал сумку, которую раньше забыл.",
+   "uk": "Паоло шукав сумку, яку раніше забув."
+  },
+  {
+   "id": "it:31:13",
+   "target": "Lei ha riletto la lettera che aveva ricevuto.",
+   "ru": "Она перечитала письмо, которое до этого получила.",
+   "uk": "Вона перечитала листа, який до цього отримала."
+  },
+  {
+   "id": "it:31:14",
+   "target": "Ho riconosciuto la strada che avevamo attraversato.",
+   "ru": "Я узнал улицу, которую мы перешли.",
+   "uk": "Я впізнав вулицю, яку ми переходили."
+  },
+  {
+   "id": "it:31:15",
+   "target": "Hai ritrovato il badge che avevi perso.",
+   "ru": "Ты нашёл пропуск, который до этого потерял.",
+   "uk": "Ти знайшов перепустку, яку до цього втратив."
+  },
+  {
+   "id": "it:31:16",
+   "target": "Il pane che avevo comprato era ancora caldo.",
+   "ru": "Хлеб, который я купил, был ещё тёплым.",
+   "uk": "Хліб, який я купив, був ще теплим."
+  },
+  {
+   "id": "it:31:17",
+   "target": "Avevo già mangiato metà della zuppa.",
+   "ru": "Я уже съел половину супа.",
+   "uk": "Я вже з’їв половину супу."
+  },
+  {
+   "id": "it:31:18",
+   "target": "La giacca che avevo scelto era troppo grande.",
+   "ru": "Выбранная мной куртка оказалась слишком большой.",
+   "uk": "Куртка, яку я обрав, була завелика."
+  },
+  {
+   "id": "it:31:19",
+   "target": "Il vicino aveva riparato la serratura prima del nostro ritorno.",
+   "ru": "Сосед починил замок до нашего возвращения.",
+   "uk": "Сусід полагодив замок, перш ніж ми повернулися."
+  },
+  {
+   "id": "it:31:20",
+   "target": "La banca aveva già chiuso prima del mio arrivo.",
+   "ru": "Банк уже закрылся до моего приезда.",
+   "uk": "Банк уже закрився до мого приходу."
+  },
+  {
+   "id": "it:31:21",
+   "target": "Non avevo visto il cartello.",
+   "ru": "Я не видел табличку.",
+   "uk": "Я не бачив знака."
+  },
+  {
+   "id": "it:31:22",
+   "target": "Non aveva capito le istruzioni.",
+   "ru": "Она не поняла инструкции.",
+   "uk": "Вона не зрозуміла інструкцій."
+  },
+  {
+   "id": "it:31:23",
+   "target": "Non avevamo ricevuto il codice.",
+   "ru": "Мы не получили код.",
+   "uk": "Ми не отримали код."
+  },
+  {
+   "id": "it:31:24",
+   "target": "Non avevano ancora preparato il pasto.",
+   "ru": "Они ещё не приготовили еду.",
+   "uk": "Вони ще не приготували їжу."
+  },
+  {
+   "id": "it:31:25",
+   "target": "Non avevamo ancora ricevuto la conferma della prenotazione.",
+   "ru": "Мы ещё не получили подтверждение бронирования к тому моменту.",
+   "uk": "На той момент ми ще не отримали підтвердження бронювання."
+  },
+  {
+   "id": "it:31:26",
+   "target": "Non ero mai stato in questo museo.",
+   "ru": "До того я ни разу не заходил в этот музей.",
+   "uk": "До того я жодного разу не заходив до цього музею."
+  },
+  {
+   "id": "it:31:27",
+   "target": "Lea non era mai scesa in cantina.",
+   "ru": "Леа никогда не спускалась в подвал.",
+   "uk": "Леа ніколи не спускалася до підвалу."
+  },
+  {
+   "id": "it:31:28",
+   "target": "Paolo non si era svegliato in tempo.",
+   "ru": "Паоло не проснулся вовремя.",
+   "uk": "Паоло не прокинувся вчасно."
+  },
+  {
+   "id": "it:31:29",
+   "target": "Non avevamo mai assaggiato questa zuppa.",
+   "ru": "Мы никогда не пробовали этот суп.",
+   "uk": "Ми ніколи не куштували цього супу."
+  },
+  {
+   "id": "it:31:30",
+   "target": "Avevi promesso di controllare il cartello.",
+   "ru": "Ты обещал проверить табличку.",
+   "uk": "Ти обіцяв перевірити вивіску."
+  },
+  {
+   "id": "it:31:31",
+   "target": "Quando ho aperto la porta, il gatto era già uscito.",
+   "ru": "Когда я открыл дверь, кот уже вышел.",
+   "uk": "Коли я відчинив двері, кіт уже вийшов."
+  },
+  {
+   "id": "it:31:32",
+   "target": "Quando siamo arrivati, il film era già iniziato.",
+   "ru": "Когда мы приехали, фильм уже начался.",
+   "uk": "Коли ми прийшли, фільм уже почався."
+  },
+  {
+   "id": "it:31:33",
+   "target": "Quando ha guardato nella borsa, il portafoglio era sparito.",
+   "ru": "Когда она заглянула в сумку, кошелёк уже исчез.",
+   "uk": "Коли вона заглянула в сумку, гаманець уже зник."
+  },
+  {
+   "id": "it:31:34",
+   "target": "Quando Paolo ha richiamato, avevo trovato una soluzione.",
+   "ru": "Когда Паоло перезвонил, я уже нашёл решение.",
+   "uk": "Коли Паоло передзвонив, я вже знайшов рішення."
+  },
+  {
+   "id": "it:31:35",
+   "target": "Quando è arrivato il postino, Lea era già andata al lavoro.",
+   "ru": "Когда пришёл почтальон, Леа уже ушла на работу.",
+   "uk": "Коли прийшов листоноша, Леа вже пішла на роботу."
+  },
+  {
+   "id": "it:31:36",
+   "target": "Ero stanco perché non avevo dormito bene.",
+   "ru": "Я устал, потому что плохо спал.",
+   "uk": "Я втомився, бо погано спав."
+  },
+  {
+   "id": "it:31:37",
+   "target": "Era felice perché aveva avuto successo.",
+   "ru": "Она была счастлива, потому что ей это удалось.",
+   "uk": "Вона була щаслива, бо їй це вдалося."
+  },
+  {
+   "id": "it:31:38",
+   "target": "Sono tornato in ufficio perché avevo dimenticato il telefono lì.",
+   "ru": "Я вернулся в офис, потому что оставил там свой телефон.",
+   "uk": "Я повернувся до офісу, бо залишив там телефон."
+  },
+  {
+   "id": "it:31:39",
+   "target": "Abbiamo preso di nuovo l’autobus perché il treno era già partito.",
+   "ru": "Мы снова сели на автобус, потому что поезд уже уехал.",
+   "uk": "Ми знову поїхали автобусом, бо поїзд уже відійшов."
+  },
+  {
+   "id": "it:31:40",
+   "target": "Sei dovuto tornare a casa perché avevi dimenticato il passaporto.",
+   "ru": "Тебе пришлось ехать домой, потому что ты забыл свой паспорт.",
+   "uk": "Тобі довелося їхати додому, бо ти забув паспорт."
+  },
+  {
+   "id": "it:31:41",
+   "target": "Avevo preparato le valigie il giorno prima.",
+   "ru": "Я собрал чемоданы накануне.",
+   "uk": "Я зібрав валізи напередодні."
+  },
+  {
+   "id": "it:31:42",
+   "target": "Aveva impostato la sveglia alle sei.",
+   "ru": "Она поставила будильник на шесть часов.",
+   "uk": "Вона завела будильник на шосту годину."
+  },
+  {
+   "id": "it:31:43",
+   "target": "Avevamo steso i fogli sul pavimento prima di dipingere.",
+   "ru": "Перед покраской мы разложили листы бумаги на полу.",
+   "uk": "Перед фарбуванням ми розклали аркуші паперу на підлозі."
+  },
+  {
+   "id": "it:31:44",
+   "target": "Aveva preparato il tè alla menta e il mio piatto preferito.",
+   "ru": "Она заварила мятный чай и приготовила мое любимое блюдо.",
+   "uk": "Вона заварила м’ятний чай і приготувала мою улюблену страву."
+  },
+  {
+   "id": "it:31:45",
+   "target": "La riparazione aveva richiesto molto sforzo.",
+   "ru": "Ремонт потребовал больших усилий.",
+   "uk": "Ремонт потребував великих зусиль."
+  },
+  {
+   "id": "it:31:46",
+   "target": "L’idraulico aveva chiuso l’acqua prima di iniziare.",
+   "ru": "Сантехник перекрыл воду перед началом работы.",
+   "uk": "Сантехнік вимкнув воду перед початком робіт."
+  },
+  {
+   "id": "it:31:47",
+   "target": "Avevamo chiesto una stanza silenziosa.",
+   "ru": "Мы попросили тихую комнату.",
+   "uk": "Ми попросили тиху кімнату."
+  },
+  {
+   "id": "it:31:48",
+   "target": "Aveva abbassato il fuoco perché il latte era traboccato.",
+   "ru": "Он убавил огонь, потому что молоко выкипело.",
+   "uk": "Він зменшив вогонь, бо молоко википіло."
+  },
+  {
+   "id": "it:31:49",
+   "target": "Lea aveva già pagato quando le hanno presentato il conto.",
+   "ru": "Леа уже заплатила, когда ей вручили счет.",
+   "uk": "Леа вже заплатила, коли їй вручили рахунок."
+  },
+  {
+   "id": "it:31:50",
+   "target": "Sono riuscito ad entrare perché mi avevi lasciato la chiave.",
+   "ru": "Я смог войти, потому что ты оставил мне ключ.",
+   "uk": "Я зміг увійти, бо ти залишив мені ключ."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il giorno prima",
+   "ru": "накануне",
+   "uk": "напередодні"
+  },
+  {
+   "lemma": "il cartello",
+   "ru": "указатель, знак",
+   "uk": "вказівник, знак"
+  },
+  {
+   "lemma": "la soluzione",
+   "ru": "решение проблемы",
+   "uk": "вирішення проблеми"
+  },
+  {
+   "lemma": "promettere",
+   "ru": "обещать",
+   "uk": "обіцяти"
+  },
+  {
+   "lemma": "sparire",
+   "ru": "исчезать",
+   "uk": "зникати"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno",
+  "l’uovo",
+  "la ciotola",
+  "la vaschetta",
+  "la metà",
+  "lo scatolone",
+  "la poltrona",
+  "la scala a pioli",
+  "il ricordo più bello",
+  "la porzione",
+  "lo sforzo",
+  "l’idraulico",
+  "il risultato",
+  "il pasto",
+  "il documento d’identità",
+  "il vaso",
+  "il soggiorno (permanenza)",
+  "il posto lato corridoio",
+  "la disponibilità",
+  "la conferma",
+  "il preventivo",
+  "la cantina",
+  "il codice",
+  "il foglio",
+  "la menta",
+  "il piatto (pietanza)",
+  "il custode",
+  "il pavimento",
+  "leggibile",
+  "la riparazione",
+  "traboccare"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  },
+  {
+   "lesson": 25,
+   "title": "Часть известного количества: `ne`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнивать: `più`, `meno`, `come`"
+  },
+  {
+   "lesson": 27,
+   "title": "Будущее: `partirò`, `partirai`"
+  },
+  {
+   "lesson": 28,
+   "title": "Смягчить просьбу: `vorrei`, `potrebbe`"
+  },
+  {
+   "lesson": 29,
+   "title": "Какой именно: относительное `che`"
+  },
+  {
+   "lesson": 30,
+   "title": "Необходимость: `bisogna che` + `congiuntivo`"
+  }
+ ],
+ "oldTopicTitle": "До другого события: `trapassato prossimo`",
+ "oldTheoryRu": "Отметь две точки на мысленной линии. Что было раньше? Сначала оплата или звонок? Более раннее действие получает `avevo` с причастием; порядок самих частей в тексте может быть любым. Выбор помощника наследуется от глагола: `è uscita` превращается в `era uscita`. С `essere` согласование причастия сохраняется, даже когда мы отодвигаем действие ещё дальше в прошлое. Раннее событие может стоять в уточнении: ищу вещь, которую до этого забыл. Прежде чем выбирать форму, выясни, кто искал и кто забыл: это не обязательно один человек. Слово `già` помогает выделить завершённость, но необязательно при ясном контексте. Не превращай его в обязательную деталь каждого итальянского ответа. Отрицание ставится перед помощником. `Non avevo ancora finito` значит, что к тому моменту работа ещё не была закончена. Это отличается от утверждения, что она не закончена сейчас. Если предложение начинается со звонка или прибытия, временная логика не меняется. Найди в другой части то, что к этому моменту уже произошло. `Il giorno prima` отсчитывается от события в рассказе, а не обязательно от сегодняшнего дня. Слово «вчера» не всегда точная замена «накануне»."
+}

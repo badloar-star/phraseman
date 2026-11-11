@@ -1,0 +1,942 @@
+{
+ "lang": "en",
+ "lesson": 11,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:11.01",
+   "target": "I walked home yesterday.",
+   "ru": "Я вчера шел домой пешком.",
+   "uk": "Я вчора пішов додому пішки."
+  },
+  {
+   "id": "en-classic-r1:11.02",
+   "target": "She walked to the station.",
+   "ru": "Она дошла до станции пешком.",
+   "uk": "Вона пішла до станції пішки."
+  },
+  {
+   "id": "en-classic-r1:11.03",
+   "target": "We worked late yesterday.",
+   "ru": "Мы вчера работали допоздна.",
+   "uk": "Ми вчора працювали допізна."
+  },
+  {
+   "id": "en-classic-r1:11.04",
+   "target": "He worked from home on Monday.",
+   "ru": "Он работал из дома в понедельник.",
+   "uk": "Він працював з дому в понеділок."
+  },
+  {
+   "id": "en-classic-r1:11.05",
+   "target": "I called the office.",
+   "ru": "Я позвонил в офис.",
+   "uk": "Я подзвонив в офіс."
+  },
+  {
+   "id": "en-classic-r1:11.06",
+   "target": "She called a taxi.",
+   "ru": "Она вызвала такси.",
+   "uk": "Вона викликала таксі."
+  },
+  {
+   "id": "en-classic-r1:11.07",
+   "target": "They waited outside the shop.",
+   "ru": "Они ждали у магазина.",
+   "uk": "Вони чекали біля магазину."
+  },
+  {
+   "id": "en-classic-r1:11.08",
+   "target": "We waited for the driver.",
+   "ru": "Мы ждали водителя.",
+   "uk": "Ми чекали на водія."
+  },
+  {
+   "id": "en-classic-r1:11.09",
+   "target": "He helped me with the map.",
+   "ru": "Он помог мне с картой.",
+   "uk": "Він допоміг мені з картою."
+  },
+  {
+   "id": "en-classic-r1:11.10",
+   "target": "I helped her with the boxes.",
+   "ru": "Я помог ей с коробками.",
+   "uk": "Я допоміг їй з коробками."
+  },
+  {
+   "id": "en-classic-r1:11.11",
+   "target": "I opened the envelope.",
+   "ru": "Я открыл конверт.",
+   "uk": "Я відкрив конверт."
+  },
+  {
+   "id": "en-classic-r1:11.12",
+   "target": "She closed the gate.",
+   "ru": "Она закрыла ворота.",
+   "uk": "Вона зачинила ворота."
+  },
+  {
+   "id": "en-classic-r1:11.13",
+   "target": "We cleaned the kitchen.",
+   "ru": "Мы убрали кухню.",
+   "uk": "Ми прибрали на кухні."
+  },
+  {
+   "id": "en-classic-r1:11.14",
+   "target": "He washed the cups.",
+   "ru": "Он вымыл чашки.",
+   "uk": "Він помив чашки."
+  },
+  {
+   "id": "en-classic-r1:11.15",
+   "target": "They packed their bags.",
+   "ru": "Они собрали свои чемоданы.",
+   "uk": "Вони зібрали свої валізи."
+  },
+  {
+   "id": "en-classic-r1:11.16",
+   "target": "I checked the address.",
+   "ru": "Я проверил адрес.",
+   "uk": "Я перевірив адресу."
+  },
+  {
+   "id": "en-classic-r1:11.17",
+   "target": "She printed the label.",
+   "ru": "Она распечатала этикетку.",
+   "uk": "Вона роздрукувала етикетку."
+  },
+  {
+   "id": "en-classic-r1:11.18",
+   "target": "We posted the letter.",
+   "ru": "Мы отправили письмо.",
+   "uk": "Ми відправили листа."
+  },
+  {
+   "id": "en-classic-r1:11.19",
+   "target": "He signed the receipt.",
+   "ru": "Он подписал квитанцию.",
+   "uk": "Він підписав квитанцію."
+  },
+  {
+   "id": "en-classic-r1:11.20",
+   "target": "I locked the back door.",
+   "ru": "Я запер заднюю дверь.",
+   "uk": "Я замкнув задні двері."
+  },
+  {
+   "id": "en-classic-r1:11.21",
+   "target": "I booked a single room.",
+   "ru": "Я забронировал одноместный номер.",
+   "uk": "Я забронював одномісний номер."
+  },
+  {
+   "id": "en-classic-r1:11.22",
+   "target": "They booked two seats.",
+   "ru": "Они забронировали два места.",
+   "uk": "Вони забронювали два місця."
+  },
+  {
+   "id": "en-classic-r1:11.23",
+   "target": "We changed our booking.",
+   "ru": "Мы изменили своё бронирование.",
+   "uk": "Ми змінили наше бронювання."
+  },
+  {
+   "id": "en-classic-r1:11.24",
+   "target": "She cancelled the appointment.",
+   "ru": "Она отменила встречу.",
+   "uk": "Вона скасувала зустріч."
+  },
+  {
+   "id": "en-classic-r1:11.25",
+   "target": "He missed the last train.",
+   "ru": "Он опоздал на последний поезд.",
+   "uk": "Він пропустив останній поїзд."
+  },
+  {
+   "id": "en-classic-r1:11.26",
+   "target": "I reached the platform in time.",
+   "ru": "Я вовремя добрался до платформы.",
+   "uk": "Я встиг на платформу."
+  },
+  {
+   "id": "en-classic-r1:11.27",
+   "target": "We crossed the road at the lights.",
+   "ru": "Мы перешли дорогу на светофоре.",
+   "uk": "Ми перейшли дорогу на світлофорі."
+  },
+  {
+   "id": "en-classic-r1:11.28",
+   "target": "She parked behind the shop.",
+   "ru": "Она припарковалась за магазином.",
+   "uk": "Вона припаркувалася за магазином."
+  },
+  {
+   "id": "en-classic-r1:11.29",
+   "target": "The driver stopped by the gate.",
+   "ru": "Водитель остановился у ворот.",
+   "uk": "Водій зупинився біля воріт."
+  },
+  {
+   "id": "en-classic-r1:11.30",
+   "target": "The train arrived ten minutes late.",
+   "ru": "Поезд опоздал на десять минут.",
+   "uk": "Поїзд прибув із запізненням на десять хвилин."
+  },
+  {
+   "id": "en-classic-r1:11.31",
+   "target": "Did you call the office?",
+   "ru": "Вы звонили в офис?",
+   "uk": "Ви дзвонили в офіс?"
+  },
+  {
+   "id": "en-classic-r1:11.32",
+   "target": "Did she check the address?",
+   "ru": "Она проверила адрес?",
+   "uk": "Вона перевірила адресу?"
+  },
+  {
+   "id": "en-classic-r1:11.33",
+   "target": "Did they post the letter?",
+   "ru": "Они отправили письмо?",
+   "uk": "Вони відправили листа?"
+  },
+  {
+   "id": "en-classic-r1:11.34",
+   "target": "Did he lock the bike?",
+   "ru": "Он запер велосипед?",
+   "uk": "Він замкнув велосипед?"
+  },
+  {
+   "id": "en-classic-r1:11.35",
+   "target": "Did the bus arrive on time?",
+   "ru": "Автобус прибыл вовремя?",
+   "uk": "Автобус прибув вчасно?"
+  },
+  {
+   "id": "en-classic-r1:11.36",
+   "target": "I did not check the label.",
+   "ru": "Я не проверял этикетку.",
+   "uk": "Я не перевірив етикетку."
+  },
+  {
+   "id": "en-classic-r1:11.37",
+   "target": "She did not cancel the booking.",
+   "ru": "Она не отменила бронирование.",
+   "uk": "Вона не скасувала бронювання."
+  },
+  {
+   "id": "en-classic-r1:11.38",
+   "target": "They did not miss the flight.",
+   "ru": "Они не опоздали на рейс.",
+   "uk": "Вони не пропустили рейс."
+  },
+  {
+   "id": "en-classic-r1:11.39",
+   "target": "We did not stay long.",
+   "ru": "Мы недолго пробыли.",
+   "uk": "Ми недовго затрималися."
+  },
+  {
+   "id": "en-classic-r1:11.40",
+   "target": "He did not answer the door.",
+   "ru": "Он не открыл дверь.",
+   "uk": "Він не відчинив двері."
+  },
+  {
+   "id": "en-classic-r1:11.41",
+   "target": "The charger worked yesterday.",
+   "ru": "Зарядное устройство вчера работало.",
+   "uk": "Зарядний пристрій працював вчора."
+  },
+  {
+   "id": "en-classic-r1:11.42",
+   "target": "The screen flashed twice.",
+   "ru": "Экран дважды мигнул.",
+   "uk": "Екран блимнув двічі."
+  },
+  {
+   "id": "en-classic-r1:11.43",
+   "target": "I restarted the laptop.",
+   "ru": "Я перезагрузил ноутбук.",
+   "uk": "Я перезавантажив ноутбук."
+  },
+  {
+   "id": "en-classic-r1:11.44",
+   "target": "We tried a different cable.",
+   "ru": "Мы попробовали другой кабель.",
+   "uk": "Ми спробували інший кабель."
+  },
+  {
+   "id": "en-classic-r1:11.45",
+   "target": "She copied the file.",
+   "ru": "Она скопировала файл.",
+   "uk": "Вона скопіювала файл."
+  },
+  {
+   "id": "en-classic-r1:11.46",
+   "target": "He saved the wrong version.",
+   "ru": "Он сохранил неправильную версию.",
+   "uk": "Він зберіг неправильну версію."
+  },
+  {
+   "id": "en-classic-r1:11.47",
+   "target": "I noticed a missing page.",
+   "ru": "Я заметил, что не хватает страницы.",
+   "uk": "Я помітив, що бракує сторінки."
+  },
+  {
+   "id": "en-classic-r1:11.48",
+   "target": "They fixed the printer last week.",
+   "ru": "Они починили принтер на прошлой неделе.",
+   "uk": "Вони полагодили принтер минулого тижня."
+  },
+  {
+   "id": "en-classic-r1:11.49",
+   "target": "We returned the broken lamp.",
+   "ru": "Мы вернули сломанную лампу.",
+   "uk": "Ми повернули зламану лампу."
+  },
+  {
+   "id": "en-classic-r1:11.50",
+   "target": "Did the shop refund the delivery charge?",
+   "ru": "Возместил ли магазин стоимость доставки?",
+   "uk": "Чи повернув магазин кошти за доставку?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "yesterday",
+   "ru": "вчера",
+   "uk": "вчора"
+  },
+  {
+   "lemma": "taxi",
+   "ru": "такси",
+   "uk": "таксі"
+  },
+  {
+   "lemma": "envelope",
+   "ru": "конверт",
+   "uk": "конверт"
+  },
+  {
+   "lemma": "wash",
+   "ru": "мыть",
+   "uk": "мити"
+  },
+  {
+   "lemma": "pack",
+   "ru": "положить вещи в сумку или коробку",
+   "uk": "класти речі в сумку або коробку"
+  },
+  {
+   "lemma": "letter",
+   "ru": "письмо",
+   "uk": "лист"
+  },
+  {
+   "lemma": "cancel",
+   "ru": "отменить",
+   "uk": "скасувати"
+  },
+  {
+   "lemma": "miss",
+   "ru": "пропустить",
+   "uk": "пропустити"
+  },
+  {
+   "lemma": "reached",
+   "ru": "достиг",
+   "uk": "досяг"
+  },
+  {
+   "lemma": "cross",
+   "ru": "переходить",
+   "uk": "перейти"
+  },
+  {
+   "lemma": "road",
+   "ru": "дорога",
+   "uk": "дорога"
+  },
+  {
+   "lemma": "behind",
+   "ru": "позади",
+   "uk": "позаду"
+  },
+  {
+   "lemma": "minute",
+   "ru": "минута",
+   "uk": "хвилина"
+  },
+  {
+   "lemma": "flight",
+   "ru": "рейс",
+   "uk": "рейс"
+  },
+  {
+   "lemma": "answer",
+   "ru": "ответ",
+   "uk": "відповідь"
+  },
+  {
+   "lemma": "flash",
+   "ru": "флешка",
+   "uk": "прошивання"
+  },
+  {
+   "lemma": "twice",
+   "ru": "дважды",
+   "uk": "двічі"
+  },
+  {
+   "lemma": "laptop",
+   "ru": "ноутбук",
+   "uk": "ноутбук"
+  },
+  {
+   "lemma": "try",
+   "ru": "попробовать",
+   "uk": "спроба"
+  },
+  {
+   "lemma": "different",
+   "ru": "другой",
+   "uk": "інший"
+  },
+  {
+   "lemma": "copy",
+   "ru": "скопировать",
+   "uk": "копіювання"
+  },
+  {
+   "lemma": "file",
+   "ru": "файл",
+   "uk": "файл"
+  },
+  {
+   "lemma": "save",
+   "ru": "сохранить",
+   "uk": "збереження"
+  },
+  {
+   "lemma": "wrong",
+   "ru": "неправильно",
+   "uk": "неправильний"
+  },
+  {
+   "lemma": "version",
+   "ru": "версия",
+   "uk": "версія"
+  },
+  {
+   "lemma": "notice",
+   "ru": "уведомление или предупредить",
+   "uk": "повідомлення або повідомлення"
+  },
+  {
+   "lemma": "fix",
+   "ru": "отремонтировать",
+   "uk": "відремонтувати"
+  },
+  {
+   "lemma": "lamp",
+   "ru": "лампа",
+   "uk": "лампа"
+  },
+  {
+   "lemma": "refund",
+   "ru": "возврат средств",
+   "uk": "повернення коштів"
+  }
+ ],
+ "knownWords": [
+  "i",
+  "am",
+  "ready",
+  "you",
+  "are",
+  "busy",
+  "she",
+  "is",
+  "he",
+  "we",
+  "they",
+  "free",
+  "here",
+  "at",
+  "home",
+  "work",
+  "it",
+  "open",
+  "closed",
+  "the",
+  "door",
+  "shop",
+  "shops",
+  "doors",
+  "lights",
+  "on",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "buses",
+  "room",
+  "warm",
+  "rooms",
+  "coffee",
+  "cold",
+  "my",
+  "bag",
+  "your",
+  "keys",
+  "phone",
+  "kitchen",
+  "window",
+  "windows",
+  "hands",
+  "our",
+  "seats",
+  "not",
+  "yes",
+  "no",
+  "this",
+  "seat",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "these",
+  "station",
+  "last",
+  "tickets",
+  "waiting",
+  "office",
+  "her",
+  "train",
+  "time",
+  "nearby",
+  "works",
+  "live",
+  "alone",
+  "lives",
+  "start",
+  "starts",
+  "finish",
+  "finishes",
+  "walk",
+  "need",
+  "help",
+  "needs",
+  "want",
+  "wants",
+  "tea",
+  "like",
+  "likes",
+  "use",
+  "uses",
+  "speak",
+  "english",
+  "speaks",
+  "stops",
+  "opens",
+  "nine",
+  "leaves",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "closes",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "close",
+  "take",
+  "takes",
+  "share",
+  "a",
+  "shares",
+  "flat",
+  "check",
+  "email",
+  "checks",
+  "his",
+  "cash",
+  "to",
+  "walks",
+  "sister",
+  "nights",
+  "together",
+  "sometimes",
+  "studies",
+  "driver",
+  "knows",
+  "way",
+  "key",
+  "gate",
+  "do",
+  "drive",
+  "does",
+  "smoke",
+  "eat",
+  "meat",
+  "have",
+  "entrance",
+  "accept",
+  "cards",
+  "machine",
+  "coins",
+  "know",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "stop",
+  "charge",
+  "fit",
+  "shut",
+  "shoes",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "night",
+  "until",
+  "cook",
+  "fridays",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottled",
+  "water",
+  "messages",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "cork",
+  "son",
+  "milk",
+  "that",
+  "near",
+  "understand",
+  "word",
+  "card",
+  "in",
+  "sell",
+  "stamps",
+  "sundays",
+  "down",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "by",
+  "itself",
+  "parking",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "receipts",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next",
+  "where",
+  "when",
+  "what",
+  "how",
+  "why",
+  "wait",
+  "alarm",
+  "beep",
+  "leave",
+  "much",
+  "cost",
+  "which",
+  "long",
+  "journey",
+  "gates",
+  "goes",
+  "centre",
+  "often",
+  "trains",
+  "size",
+  "colour",
+  "prefer",
+  "batteries",
+  "sale",
+  "end",
+  "label",
+  "say",
+  "one",
+  "more",
+  "coat",
+  "restart",
+  "button",
+  "screen",
+  "dark",
+  "who",
+  "orders",
+  "call",
+  "has",
+  "leads",
+  "meet",
+  "after",
+  "spell",
+  "surname",
+  "mean",
+  "many",
+  "people",
+  "far",
+  "each",
+  "day",
+  "teaches",
+  "evening",
+  "belongs",
+  "foot",
+  "number",
+  "car",
+  "bicycle",
+  "question",
+  "sore",
+  "throat",
+  "cough",
+  "headache",
+  "appointment",
+  "daughter",
+  "block",
+  "nose",
+  "fever",
+  "prescription",
+  "health",
+  "insurance",
+  "doctor",
+  "charger",
+  "passport",
+  "enough",
+  "change",
+  "pen",
+  "shower",
+  "zip",
+  "small",
+  "booking",
+  "glasses",
+  "original",
+  "licence",
+  "bike",
+  "handle",
+  "chair",
+  "garden",
+  "two",
+  "three",
+  "page",
+  "blue",
+  "deep",
+  "pocket",
+  "afternoon",
+  "table",
+  "hotel",
+  "luggage",
+  "moment",
+  "everything",
+  "seven",
+  "noon",
+  "tuesday",
+  "travel",
+  "july",
+  "midnight",
+  "arrive",
+  "monday",
+  "morning",
+  "half",
+  "past",
+  "six",
+  "quarter",
+  "four",
+  "lunchtime",
+  "concert",
+  "fifteen",
+  "ring",
+  "thirty",
+  "bakery",
+  "dawn",
+  "bell",
+  "midday",
+  "public",
+  "holidays",
+  "wednesday",
+  "bill",
+  "due",
+  "thursday",
+  "market",
+  "saturdays",
+  "first",
+  "birthday",
+  "year",
+  "short",
+  "winter",
+  "course",
+  "september",
+  "hot",
+  "summer",
+  "spring",
+  "park",
+  "june",
+  "club",
+  "january",
+  "timetable",
+  "april",
+  "beautiful",
+  "autumn",
+  "week",
+  "film",
+  "tonight",
+  "see",
+  "eleven",
+  "dentist",
+  "queue",
+  "back",
+  "toilet",
+  "upstairs",
+  "downstairs",
+  "map",
+  "outside",
+  "inside",
+  "fridge",
+  "kettle",
+  "soup",
+  "stove",
+  "egg",
+  "cup",
+  "shelf",
+  "bread",
+  "spoons",
+  "drawer",
+  "rice",
+  "cupboard",
+  "clean",
+  "towel",
+  "soap",
+  "sink",
+  "locker",
+  "blankets",
+  "step",
+  "direct",
+  "sugar",
+  "space",
+  "forks",
+  "signal",
+  "floor",
+  "single",
+  "name",
+  "list",
+  "mistake",
+  "crack",
+  "still",
+  "swim",
+  "come",
+  "find",
+  "stay",
+  "sit",
+  "borrow",
+  "book",
+  "bring",
+  "friend",
+  "again",
+  "write",
+  "hold",
+  "link",
+  "move",
+  "pass",
+  "salt",
+  "rest",
+  "exit",
+  "password",
+  "advance",
+  "tell",
+  "helmet",
+  "touch",
+  "cable",
+  "print"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Как попросить, предложить и объяснить правило"
+  }
+ ],
+ "oldTopicTitle": "Что я сделал вчера",
+ "oldTheoryRu": "Ты вчера проверил адрес: You checked the address. Переспрашиваешь: Did you check the address? Прошедшее время уже показано в did. Для завершенного события в завершенное время используйте прошедшее простое время. Большинство правильных глаголов используют одну и ту же форму прошедшего времени для всех подлежащих. Для завершенного события в завершенное время используйте прошедшее простое время. Большинство правильных глаголов используют одну и ту же форму прошедшего времени для всех подлежащих. В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят. `Did` — вспомогательный глагол, который уже обозначает прошедшее время. Поэтому `Did she check…?`, а не `Did she checked…?`. Перед `last week` предлог не нужен. В утверждении прибавь `-ed`: `work → worked`; после конечной `e` хватит `-d`. Сравни `copy → copied` и `stop → stopped`. После `did` окончание больше не ставят. Задавать вопросы и отрицать в прошедшем времени Подробно расскажите сотрудникам на стойке регистрации, как вы вернули посылку. Затем спросите, возместил ли магазин стоимость доставки. Устранять неполадки в том, что работало вчера"
+}

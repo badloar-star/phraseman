@@ -9,7 +9,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import QuietEmptyState from '../../components/cards-grid/QuietEmptyState';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useLoadGate } from '../use_load_gate';

@@ -23,10 +23,11 @@ describe('manage subscription purchase account boundary', () => {
     jest.resetModules();
     jest.clearAllMocks();
     persistStorePremiumLocally.mockImplementation(async (
-      _plan: string,
-      _metadata: unknown,
-      isCurrent: () => boolean,
-    ) => isCurrent());
+      token: { stableId: string | null; generation: number },
+    ) => {
+      const generation = require('../app/account_generation');
+      return generation.isCurrentAccountGeneration(token, token.stableId);
+    });
   });
 
   it('drops a purchase result from A after B activates without persistence', async () => {
@@ -123,8 +124,8 @@ describe('manage subscription purchase account boundary', () => {
       fallbackPlan: 'monthly',
     })).resolves.toMatchObject({ status: 'purchased', plan: 'yearly' });
     expect(persistStorePremiumLocally).toHaveBeenCalledTimes(1);
-    const isCurrent = persistStorePremiumLocally.mock.calls[0][2] as () => boolean;
-    expect(isCurrent()).toBe(true);
+    expect(persistStorePremiumLocally.mock.calls[0][0]).toBe(tokenA);
+    expect(persistStorePremiumLocally.mock.calls[0][3]).toBe('store_plan_change');
   });
 
   it('does not let late A finally clear B changing state', async () => {

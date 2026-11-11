@@ -29,21 +29,21 @@
 {
 "correct": "à",
 "distractors": [
-"cette",
-"les",
-"une",
-"du",
-"le"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"du",
 "ces",
-"que",
-"pour",
-"avec",
-"chez"
+"de",
+"des",
+"que"
 ]
 },
 {
@@ -57,9 +57,7 @@
 ]
 }
 ],
-"alternatives": [
-"Léa es à la gare."
-]
+"alternatives": []
 },
 {
 "lesson": 1,
@@ -74,8 +72,8 @@
 "Je",
 "Elles",
 "Nous",
-"Vous",
-"Ils"
+"Ils",
+"Il"
 ]
 },
 {
@@ -92,10 +90,10 @@
 "correct": "prêt",
 "distractors": [
 "prêts",
-"prête",
 "libre",
-"libres",
-"calme"
+"calme",
+"prêtes",
+"seul"
 ]
 }
 ],
@@ -111,11 +109,11 @@
 {
 "correct": "La",
 "distractors": [
+"Le",
+"Que",
+"Et",
 "Pour",
-"Avec",
-"Dans",
-"Ce",
-"Ces"
+"Avec"
 ]
 },
 {
@@ -135,7 +133,7 @@
 "suis",
 "bus",
 "clé",
-"à"
+"clés"
 ]
 },
 {
@@ -149,11 +147,7 @@
 ]
 }
 ],
-"alternatives": [
-"La fenêtres est fermée.",
-"La fenêtre es fermée.",
-"La fenêtre est fermées."
-]
+"alternatives": []
 },
 {
 "lesson": 1,
@@ -166,10 +160,10 @@
 "correct": "Je",
 "distractors": [
 "Elles",
-"Elle",
 "Ils",
 "Il",
-"Tu"
+"Tu",
+"Nous"
 ]
 },
 {
@@ -189,7 +183,7 @@
 "pas",
 "ne",
 "le",
-"en"
+"la"
 ]
 },
 {
@@ -198,8 +192,8 @@
 "la",
 "une",
 "des",
-"à",
-"le"
+"le",
+"un"
 ]
 },
 {
@@ -225,21 +219,21 @@
 {
 "correct": "Elles",
 "distractors": [
-"Vous",
 "On",
-"Elle",
-"Ils",
-"Tu"
+"Tu",
+"Je",
+"Il",
+"Nous"
 ]
 },
 {
 "correct": "ne",
 "distractors": [
-"en",
 "le",
 "lui",
 "la",
-"encore"
+"encore",
+"les"
 ]
 },
 {
@@ -255,11 +249,11 @@
 {
 "correct": "pas",
 "distractors": [
-"en",
 "le",
 "la",
 "les",
-"lui"
+"lui",
+"un"
 ]
 },
 {
@@ -267,9 +261,9 @@
 "distractors": [
 "loin",
 "près",
-"sous",
 "dehors",
-"sur"
+"n’est",
+"porte"
 ]
 }
 ],
@@ -298,8 +292,8 @@
 "la",
 "le",
 "les",
-"à",
-"un"
+"un",
+"lui"
 ]
 },
 {
@@ -317,19 +311,19 @@
 "distractors": [
 "encore",
 "la",
-"en",
 "le",
-"les"
+"les",
+"lui"
 ]
 },
 {
 "correct": "prêts",
 "distractors": [
 "calme",
-"prêtes",
 "prête",
 "prêt",
-"libre"
+"libre",
+"bureau"
 ]
 }
 ],
@@ -345,11 +339,11 @@
 {
 "correct": "Le",
 "distractors": [
+"La",
 "Lui",
 "En",
-"Pour",
-"Avec",
-"Dans"
+"Que",
+"Et"
 ]
 },
 {
@@ -368,28 +362,28 @@
 "n’êtes",
 "train",
 "porte",
-"chez",
-"bus"
+"bus",
+"voiture"
 ]
 },
 {
 "correct": "pas",
 "distractors": [
-"en",
 "ne",
 "la",
 "lui",
-"encore"
+"encore",
+"les"
 ]
 },
 {
 "correct": "dehors",
 "distractors": [
 "ici",
-"sur",
 "loin",
 "près",
-"là"
+"là",
+"n’es"
 ]
 }
 ],
@@ -407,9 +401,9 @@
 "distractors": [
 "Encore",
 "Lui",
-"Pour",
-"Avec",
-"Dans"
+"Que",
+"Et",
+"Pour"
 ]
 },
 {
@@ -428,8 +422,8 @@
 "n’êtes",
 "ici",
 "gare",
-"chez",
-"près"
+"près",
+"dehors"
 ]
 },
 {
@@ -445,11 +439,11 @@
 {
 "correct": "en",
 "distractors": [
-"lui",
-"ne",
-"la",
-"les",
-"encore"
+"à",
+"de",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -485,11 +479,11 @@
 {
 "correct": "que",
 "distractors": [
-"combien",
 "quand",
-"quoi",
-"comment",
-"qui"
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -524,9 +518,7 @@
 }
 ],
 "alternatives": [
-"Paul est fatigué ?",
-"Est-ce que Paul es fatigué ?",
-"Paul es fatigué ?"
+"Paul est fatigué ?"
 ]
 },
 {
@@ -549,21 +541,21 @@
 {
 "correct": "que",
 "distractors": [
-"où",
-"quoi",
-"qui",
 "quand",
-"quel"
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
 "correct": "les",
 "distractors": [
 "à",
+"le",
+"de",
 "ce",
-"pour",
-"avec",
-"chez"
+"et"
 ]
 },
 {
@@ -590,10 +582,10 @@
 "correct": "dans",
 "distractors": [
 "pour",
+"par",
 "chez",
 "avec",
-"en",
-"à"
+"sans"
 ]
 },
 {
@@ -632,10 +624,10 @@
 "correct": "Le",
 "distractors": [
 "À",
-"Pour",
-"Avec",
-"Dans",
-"Au"
+"Des",
+"Que",
+"Et",
+"Pour"
 ]
 },
 {
@@ -661,11 +653,11 @@
 {
 "correct": "sur",
 "distractors": [
-"près",
+"entre",
+"derrière",
 "sous",
-"ici",
-"dehors",
-"loin"
+"à",
+"de"
 ]
 },
 {
@@ -674,8 +666,8 @@
 "un",
 "au",
 "la",
-"de",
-"une"
+"une",
+"les"
 ]
 },
 {
@@ -690,9 +682,7 @@
 }
 ],
 "alternatives": [
-"Est-ce que le train est sur ce quai ?",
-"Le train es sur ce quai ?",
-"Est-ce que le train es sur ce quai ?"
+"Est-ce que le train est sur ce quai ?"
 ]
 },
 {
@@ -707,9 +697,9 @@
 "distractors": [
 "Au",
 "Ces",
-"Pour",
-"Avec",
-"Dans"
+"Des",
+"La",
+"Que"
 ]
 },
 {
@@ -737,18 +727,15 @@
 "distractors": [
 "calme",
 "libre",
-"libres",
 "bureau",
-"fenêtre"
+"fenêtre",
+"magasins"
 ]
 }
 ],
 "alternatives": [
 "Est-ce que le déjeuner est prêt ?",
-"Le déjeuner est-il prêt ?",
-"Le déjeuner es prêt ?",
-"Est-ce que le déjeuner es prêt ?",
-"Le déjeuner es-il prêt ?"
+"Le déjeuner est-il prêt ?"
 ]
 },
 {
@@ -799,9 +786,7 @@
 ]
 }
 ],
-"alternatives": [
-"Ce êtes mes clés."
-]
+"alternatives": []
 },
 {
 "lesson": 4,
@@ -814,8 +799,8 @@
 "correct": "Ce",
 "distractors": [
 "Le",
-"De",
 "La",
+"C’est",
 "Les",
 "Ces"
 ]
@@ -865,29 +850,29 @@
 "distractors": [
 "N’est",
 "Est-ce",
-"Avez-vous",
-"Est-elle",
-"Est-il"
+"Près",
+"Train",
+"Ici"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"le",
+"des",
 "ce",
 "au",
-"que",
-"pour",
-"avec"
+"que"
 ]
 },
 {
 "correct": "bonne",
 "distractors": [
 "bon",
-"de",
 "mon",
 "voisins",
-"facture"
+"facture",
+"tu"
 ]
 },
 {
@@ -915,9 +900,9 @@
 "distractors": [
 "Au",
 "Cette",
-"De",
 "Une",
-"Le"
+"Le",
+"La"
 ]
 },
 {
@@ -927,7 +912,7 @@
 "lui",
 "le",
 "les",
-"en"
+"encore"
 ]
 },
 {
@@ -945,9 +930,9 @@
 "distractors": [
 "lui",
 "le",
-"en",
 "la",
-"encore"
+"encore",
+"les"
 ]
 },
 {
@@ -967,13 +952,11 @@
 "gants",
 "veste",
 "clé",
-"de"
+"clés"
 ]
 }
 ],
-"alternatives": [
-"Ce ne êtes pas mes lunettes."
-]
+"alternatives": []
 },
 {
 "lesson": 5,
@@ -988,8 +971,8 @@
 "Il",
 "Je",
 "On",
-"Elle",
-"Tu"
+"Tu",
+"Nous"
 ]
 },
 {
@@ -1006,20 +989,20 @@
 "correct": "un",
 "distractors": [
 "au",
+"des",
 "ce",
 "que",
-"pour",
-"avec"
+"et"
 ]
 },
 {
 "correct": "billet",
 "distractors": [
 "reçu",
-"ticket",
 "passeport",
 "vous",
-"téléphone"
+"téléphone",
+"place"
 ]
 }
 ],
@@ -1029,7 +1012,7 @@
 "lesson": 5,
 "id": "fr:05:10",
 "target": "J’ai mon téléphone.",
-"ru": "Мой телефон со мной.",
+"ru": "У меня с собой телефон.",
 "uk": "Мій телефон зі мною.",
 "tiles": [
 {
@@ -1070,7 +1053,7 @@
 "id": "fr:05:46",
 "target": "Vous avez le choix.",
 "ru": "У вас есть выбор.",
-"uk": "У тебе є вибір.",
+"uk": "У вас є вибір.",
 "tiles": [
 {
 "correct": "Vous",
@@ -1078,8 +1061,8 @@
 "On",
 "Elles",
 "Je",
-"Elle",
-"Nous"
+"Nous",
+"Ils"
 ]
 },
 {
@@ -1095,11 +1078,11 @@
 {
 "correct": "le",
 "distractors": [
+"de",
 "cette",
 "à",
-"que",
-"pour",
-"avec"
+"les",
+"que"
 ]
 },
 {
@@ -1126,10 +1109,10 @@
 "correct": "La",
 "distractors": [
 "Ces",
-"Pour",
-"Avec",
-"Dans",
-"Ce"
+"Le",
+"Du",
+"Que",
+"Et"
 ]
 },
 {
@@ -1148,8 +1131,8 @@
 "suis",
 "sommes",
 "bus",
-"à",
-"en"
+"je",
+"clé"
 ]
 },
 {
@@ -1159,14 +1142,11 @@
 "portefeuille",
 "petit",
 "première",
-"dans"
+"porte"
 ]
 }
 ],
-"alternatives": [
-"La banque es fermée.",
-"La banque est fermées."
-]
+"alternatives": []
 },
 {
 "lesson": 6,
@@ -1188,11 +1168,11 @@
 {
 "correct": "de",
 "distractors": [
-"ces",
-"au",
-"que",
 "pour",
-"avec"
+"avec",
+"sans",
+"chez",
+"dans"
 ]
 },
 {
@@ -1211,8 +1191,8 @@
 "sommes",
 "suis",
 "bus",
-"à",
-"radio"
+"radio",
+"clé"
 ]
 },
 {
@@ -1221,14 +1201,12 @@
 "près",
 "dehors",
 "loin",
-"sur",
-"sous"
+"n’est",
+"porte"
 ]
 }
 ],
-"alternatives": [
-"L’amie de Léa es ici."
-]
+"alternatives": []
 },
 {
 "lesson": 6,
@@ -1241,20 +1219,20 @@
 "correct": "Le",
 "distractors": [
 "Au",
+"De",
 "Ces",
-"Pour",
-"Avec",
-"Dans"
+"La",
+"Que"
 ]
 },
 {
 "correct": "nom",
 "distractors": [
-"de",
-"en",
 "tu",
 "bas",
-"la"
+"je",
+"nous",
+"il"
 ]
 },
 {
@@ -1263,18 +1241,18 @@
 "sommes",
 "suis",
 "bus",
-"à",
-"radio"
+"radio",
+"clé"
 ]
 },
 {
 "correct": "sur",
 "distractors": [
-"loin",
-"là",
-"dehors",
-"ici",
-"près"
+"derrière",
+"entre",
+"à",
+"de",
+"en"
 ]
 },
 {
@@ -1288,9 +1266,7 @@
 ]
 }
 ],
-"alternatives": [
-"Le nom es sur l’enveloppe."
-]
+"alternatives": []
 },
 {
 "lesson": 7,
@@ -1302,11 +1278,11 @@
 {
 "correct": "Vous",
 "distractors": [
-"Elle",
 "Elles",
 "Il",
 "On",
-"Ils"
+"Ils",
+"Je"
 ]
 },
 {
@@ -1343,10 +1319,10 @@
 "correct": "Je",
 "distractors": [
 "On",
-"Vous",
 "Elles",
 "Tu",
-"Elle"
+"Ils",
+"Il"
 ]
 },
 {
@@ -1383,20 +1359,20 @@
 "correct": "J’écoute",
 "distractors": [
 "J’habite",
+"J’achète",
 "Jusqu’à",
-"Écoutes",
-"Est-ce",
-"Fromage"
+"Près",
+"C’est"
 ]
 },
 {
 "correct": "la",
 "distractors": [
 "cette",
+"des",
 "au",
 "ce",
-"que",
-"pour"
+"le"
 ]
 },
 {
@@ -1423,10 +1399,10 @@
 "correct": "Qui",
 "distractors": [
 "Quoi",
-"Quels",
 "Combien",
 "Quelle",
-"Pourquoi"
+"Pourquoi",
+"Où"
 ]
 },
 {
@@ -1442,11 +1418,11 @@
 {
 "correct": "un",
 "distractors": [
+"la",
 "ce",
 "ces",
 "à",
-"que",
-"pour"
+"que"
 ]
 },
 {
@@ -1460,9 +1436,7 @@
 ]
 }
 ],
-"alternatives": [
-"Qui cherches un appartement ?"
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -1476,9 +1450,9 @@
 "distractors": [
 "Quel",
 "Comment",
-"Que",
 "Quoi",
-"Quand"
+"Combien",
+"Qui"
 ]
 },
 {
@@ -1486,9 +1460,9 @@
 "distractors": [
 "maison",
 "gare",
-"cuisine",
 "rue",
-"école"
+"école",
+"sortie"
 ]
 },
 {
@@ -1497,8 +1471,8 @@
 "sommes",
 "suis",
 "bus",
-"à",
-"radio"
+"radio",
+"clé"
 ]
 },
 {
@@ -1512,11 +1486,7 @@
 ]
 }
 ],
-"alternatives": [
-"Quelle chambres est libre ?",
-"Quelle chambre es libre ?",
-"Quelle chambre est libres ?"
-]
+"alternatives": []
 },
 {
 "lesson": 8,
@@ -1528,11 +1498,11 @@
 {
 "correct": "Pourquoi",
 "distractors": [
-"Que",
-"Quels",
 "Qui",
 "Combien",
-"Comment"
+"Comment",
+"Où",
+"Quoi"
 ]
 },
 {
@@ -1548,11 +1518,11 @@
 {
 "correct": "si",
 "distractors": [
-"quand",
-"que",
-"qui",
-"plus",
-"beaucoup"
+"mais",
+"car",
+"comme",
+"et",
+"quand"
 ]
 },
 {
@@ -1561,8 +1531,8 @@
 "a",
 "ce",
 "ici",
-"en",
-"qui"
+"qui",
+"le"
 ]
 }
 ],
@@ -1584,17 +1554,17 @@
 "Elles",
 "Il",
 "Nous",
-"Vous"
+"Ils"
 ]
 },
 {
 "correct": "prends",
 "distractors": [
-"allons",
 "elle",
 "avons",
 "veste",
-"voisin"
+"voisin",
+"couverture"
 ]
 },
 {
@@ -1660,21 +1630,21 @@
 {
 "correct": "près",
 "distractors": [
-"sous",
-"devant",
 "dehors",
 "loin",
-"ici"
+"ici",
+"là",
+"porte"
 ]
 },
 {
 "correct": "du",
 "distractors": [
+"un",
+"une",
 "ces",
-"que",
-"pour",
-"avec",
-"chez"
+"les",
+"que"
 ]
 },
 {
@@ -1723,8 +1693,8 @@
 "suis",
 "sommes",
 "bus",
-"à",
-"clé"
+"clé",
+"je"
 ]
 },
 {
@@ -1732,16 +1702,13 @@
 "distractors": [
 "valises",
 "leur",
-"dans",
 "reçus",
-"habite"
+"habite",
+"pas"
 ]
 }
 ],
-"alternatives": [
-"Mon enveloppe es vide.",
-"Mon enveloppe est vides."
-]
+"alternatives": []
 },
 {
 "lesson": 10,
@@ -1755,9 +1722,9 @@
 "distractors": [
 "Ils",
 "Elles",
-"Vous",
 "Je",
-"On"
+"On",
+"Tu"
 ]
 },
 {
@@ -1767,7 +1734,7 @@
 "ne",
 "pas",
 "le",
-"en"
+"la"
 ]
 },
 {
@@ -1786,8 +1753,8 @@
 "ces",
 "aux",
 "au",
-"que",
-"et"
+"les",
+"que"
 ]
 },
 {
@@ -1815,19 +1782,19 @@
 "distractors": [
 "Nous",
 "Ils",
-"Vous",
 "Elles",
-"On"
+"On",
+"Je"
 ]
 },
 {
 "correct": "y",
 "distractors": [
-"en",
 "ne",
 "encore",
 "plus",
-"pas"
+"pas",
+"le"
 ]
 },
 {
@@ -1843,11 +1810,11 @@
 {
 "correct": "une",
 "distractors": [
+"du",
 "au",
 "aux",
 "cette",
-"ces",
-"que"
+"ces"
 ]
 },
 {
@@ -1855,9 +1822,9 @@
 "distractors": [
 "lait",
 "carte",
-"pour",
 "face",
-"dans"
+"café",
+"soupe"
 ]
 },
 {
@@ -1865,9 +1832,9 @@
 "distractors": [
 "loin",
 "dehors",
-"devant",
-"sur",
-"près"
+"près",
+"porte",
+"n’est"
 ]
 }
 ],
@@ -1883,21 +1850,21 @@
 {
 "correct": "Il",
 "distractors": [
-"Vous",
 "Elles",
 "Je",
 "Nous",
-"Ils"
+"Ils",
+"Tu"
 ]
 },
 {
 "correct": "n’y",
 "distractors": [
 "ici",
-"chez",
 "gare",
-"sur",
-"près"
+"près",
+"dehors",
+"loin"
 ]
 },
 {
@@ -1917,27 +1884,27 @@
 "ne",
 "y",
 "le",
-"en"
+"la"
 ]
 },
 {
 "correct": "de",
 "distractors": [
-"ce",
-"ces",
-"que",
-"et",
-"pour"
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
 ]
 },
 {
 "correct": "billets",
 "distractors": [
 "boulangerie",
-"pour",
 "tache",
 "enfants",
-"coin"
+"coin",
+"vous"
 ]
 }
 ],
@@ -1954,10 +1921,10 @@
 "correct": "Tu",
 "distractors": [
 "On",
-"Vous",
 "Je",
 "Elles",
-"Ils"
+"Ils",
+"Il"
 ]
 },
 {
@@ -1977,7 +1944,7 @@
 "le",
 "des",
 "la",
-"de"
+"un"
 ]
 },
 {
@@ -1997,17 +1964,17 @@
 "lesson": 11,
 "id": "fr:11:38",
 "target": "Je vais chez Léa ce soir.",
-"ru": "Я иду к Лее сегодня вечером.",
-"uk": "Я йду до Леї сьогодні ввечері.",
+"ru": "Я иду к Леа сегодня вечером.",
+"uk": "Я йду до Леа сьогодні ввечері.",
 "tiles": [
 {
 "correct": "Je",
 "distractors": [
 "Tu",
-"Vous",
 "On",
 "Ils",
-"Elle"
+"Il",
+"Nous"
 ]
 },
 {
@@ -2024,10 +1991,10 @@
 "correct": "chez",
 "distractors": [
 "sur",
+"sans",
 "à",
 "en",
-"le",
-"de"
+"vers"
 ]
 },
 {
@@ -2075,11 +2042,11 @@
 {
 "correct": "Nous",
 "distractors": [
-"Vous",
 "Je",
 "Elles",
-"Elle",
-"On"
+"On",
+"Ils",
+"Il"
 ]
 },
 {
@@ -2115,11 +2082,11 @@
 {
 "correct": "de",
 "distractors": [
-"aux",
-"ce",
-"que",
-"et",
-"pour"
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
 ]
 },
 {
@@ -2128,8 +2095,8 @@
 "ces",
 "cette",
 "ce",
-"que",
-"et"
+"des",
+"que"
 ]
 },
 {
@@ -2155,11 +2122,11 @@
 {
 "correct": "Elles",
 "distractors": [
-"Ils",
 "Nous",
 "Il",
-"Vous",
-"Tu"
+"Tu",
+"Je",
+"On"
 ]
 },
 {
@@ -2175,21 +2142,21 @@
 {
 "correct": "de",
 "distractors": [
-"au",
-"que",
-"et",
 "pour",
-"avec"
+"avec",
+"sans",
+"chez",
+"dans"
 ]
 },
 {
 "correct": "la",
 "distractors": [
 "cette",
+"le",
 "ces",
-"que",
-"et",
-"pour"
+"les",
+"que"
 ]
 },
 {
@@ -2216,10 +2183,10 @@
 "correct": "Elle",
 "distractors": [
 "On",
-"Vous",
 "Ils",
 "Elles",
-"Il"
+"Il",
+"Je"
 ]
 },
 {
@@ -2235,21 +2202,21 @@
 {
 "correct": "pas",
 "distractors": [
-"en",
 "ne",
 "leur",
+"y",
 "le",
-"y"
+"lui"
 ]
 },
 {
 "correct": "de",
 "distractors": [
-"ce",
-"aux",
-"que",
-"et",
-"pour"
+"pour",
+"avec",
+"sans",
+"chez",
+"dans"
 ]
 },
 {
@@ -2319,17 +2286,17 @@
 "lesson": 13,
 "id": "fr:13:04",
 "target": "La veste est légère.",
-"ru": "Куртка легкая.",
-"uk": "Піджак легкий.",
+"ru": "Куртка лёгкая.",
+"uk": "Куртка легка.",
 "tiles": [
 {
 "correct": "La",
 "distractors": [
-"Cette",
-"Pour",
-"Avec",
-"Dans",
-"Ces"
+"Du",
+"Des",
+"Un",
+"Les",
+"Cette"
 ]
 },
 {
@@ -2348,8 +2315,8 @@
 "suis",
 "sommes",
 "bus",
-"à",
-"en"
+"je",
+"clé"
 ]
 },
 {
@@ -2363,9 +2330,7 @@
 ]
 }
 ],
-"alternatives": [
-"La veste es légère."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
@@ -2379,9 +2344,9 @@
 "distractors": [
 "À",
 "Cette",
-"Pour",
-"Avec",
-"Dans"
+"Les",
+"Que",
+"Et"
 ]
 },
 {
@@ -2398,10 +2363,10 @@
 "correct": "du",
 "distractors": [
 "à",
+"un",
 "aux",
-"que",
-"et",
-"pour"
+"une",
+"que"
 ]
 },
 {
@@ -2420,8 +2385,8 @@
 "sommes",
 "suis",
 "bus",
-"à",
-"radio"
+"radio",
+"clé"
 ]
 },
 {
@@ -2435,26 +2400,23 @@
 ]
 }
 ],
-"alternatives": [
-"La portes du garage est haute.",
-"La porte du garage es haute."
-]
+"alternatives": []
 },
 {
 "lesson": 13,
 "id": "fr:13:50",
 "target": "Je prends la petite boîte bleue.",
-"ru": "Я возьму маленькую синюю коробочку.",
-"uk": "Я візьму маленьку синю коробочку.",
+"ru": "Я беру маленькую синюю коробочку.",
+"uk": "Я беру маленьку синю коробочку.",
 "tiles": [
 {
 "correct": "Je",
 "distractors": [
 "Tu",
-"Vous",
 "Elles",
 "Ils",
-"Elle"
+"Il",
+"Nous"
 ]
 },
 {
@@ -2470,11 +2432,11 @@
 {
 "correct": "la",
 "distractors": [
+"de",
+"les",
 "ces",
 "que",
-"et",
-"pour",
-"avec"
+"et"
 ]
 },
 {
@@ -2482,9 +2444,9 @@
 "distractors": [
 "grande",
 "grand",
-"petit",
 "faut",
-"nous"
+"nous",
+"banque"
 ]
 },
 {
@@ -2500,11 +2462,11 @@
 {
 "correct": "bleue",
 "distractors": [
-"bleu",
 "pantalon",
 "garage",
 "étagères",
-"vert"
+"vert",
+"verre"
 ]
 }
 ],
@@ -2524,7 +2486,7 @@
 "Il",
 "Elles",
 "Nous",
-"Elle"
+"Ils"
 ]
 },
 {
@@ -2560,11 +2522,11 @@
 {
 "correct": "Je",
 "distractors": [
-"Elle",
 "Elles",
 "Tu",
 "Nous",
-"On"
+"On",
+"Ils"
 ]
 },
 {
@@ -2590,11 +2552,11 @@
 {
 "correct": "ce",
 "distractors": [
-"de",
 "un",
 "le",
 "du",
-"la"
+"la",
+"les"
 ]
 },
 {
@@ -2623,8 +2585,8 @@
 "On",
 "Il",
 "Elles",
-"Elle",
-"Ils"
+"Ils",
+"Je"
 ]
 },
 {
@@ -2651,10 +2613,10 @@
 "correct": "un",
 "distractors": [
 "ce",
+"des",
+"de",
 "aux",
-"que",
-"et",
-"pour"
+"que"
 ]
 },
 {
@@ -2684,7 +2646,7 @@
 "Il",
 "Elles",
 "Tu",
-"Vous"
+"Ils"
 ]
 },
 {
@@ -2710,11 +2672,11 @@
 {
 "correct": "une",
 "distractors": [
+"un",
 "à",
+"de",
 "que",
-"et",
-"pour",
-"avec"
+"et"
 ]
 },
 {
@@ -2743,18 +2705,18 @@
 "Les",
 "Ces",
 "La",
-"À",
-"Le"
+"Le",
+"Du"
 ]
 },
 {
 "correct": "soir",
 "distractors": [
-"nuit",
 "midi",
 "samedi",
+"dimanche",
 "matin",
-"dimanche"
+"minuit"
 ]
 },
 {
@@ -2812,21 +2774,21 @@
 {
 "correct": "Après",
 "distractors": [
-"Trouver",
-"Tourner",
-"Samedi",
-"Vérifier",
-"Chambre"
+"De",
+"En",
+"Sur",
+"Dans",
+"Chez"
 ]
 },
 {
 "correct": "le",
 "distractors": [
 "aux",
+"des",
 "ce",
 "que",
-"et",
-"pour"
+"et"
 ]
 },
 {
@@ -2872,11 +2834,11 @@
 {
 "correct": "à",
 "distractors": [
-"cette",
-"au",
-"une",
-"la",
-"de"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -2926,9 +2888,9 @@
 "distractors": [
 "reçu",
 "passeport",
-"dossier",
 "badge",
-"ticket"
+"formulaire",
+"faut"
 ]
 },
 {
@@ -2937,8 +2899,8 @@
 "n’ajoutez",
 "n’attendez",
 "n’oublie",
-"chez",
-"ici"
+"ici",
+"dehors"
 ]
 },
 {
@@ -3017,10 +2979,10 @@
 "correct": "Ne",
 "distractors": [
 "Lui",
+"Jamais",
 "Encore",
 "Se",
-"Le",
-"Les"
+"Le"
 ]
 },
 {
@@ -3030,37 +2992,37 @@
 "allons",
 "tourne",
 "écoute",
-"derrière"
+"vais"
 ]
 },
 {
 "correct": "pas",
 "distractors": [
-"en",
 "lui",
 "jamais",
 "se",
-"me"
+"me",
+"y"
 ]
 },
 {
 "correct": "à",
 "distractors": [
-"cette",
 "de",
-"une",
-"le",
-"aux"
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
 "correct": "la",
 "distractors": [
 "jamais",
+"le",
 "se",
 "y",
-"que",
-"et"
+"que"
 ]
 },
 {
@@ -3086,11 +3048,11 @@
 {
 "correct": "Tu",
 "distractors": [
-"Elle",
 "Ils",
 "Nous",
-"Vous",
-"Elles"
+"Elles",
+"Je",
+"Il"
 ]
 },
 {
@@ -3126,11 +3088,11 @@
 {
 "correct": "Tu",
 "distractors": [
-"Vous",
 "Il",
 "Ils",
 "Je",
-"Elles"
+"Elles",
+"Nous"
 ]
 },
 {
@@ -3150,7 +3112,7 @@
 "regardons",
 "regardez",
 "regarde",
-"après"
+"marché"
 ]
 },
 {
@@ -3166,11 +3128,11 @@
 {
 "correct": "le",
 "distractors": [
+"la",
 "lui",
 "y",
 "en",
-"que",
-"et"
+"que"
 ]
 },
 {
@@ -3198,9 +3160,9 @@
 "distractors": [
 "Elles",
 "Ils",
-"Elle",
 "Nous",
-"Tu"
+"Tu",
+"Il"
 ]
 },
 {
@@ -3246,11 +3208,11 @@
 {
 "correct": "avant",
 "distractors": [
-"nuit",
-"matin",
-"regardes",
-"reposer",
-"couche"
+"à",
+"de",
+"en",
+"sur",
+"dans"
 ]
 },
 {
@@ -3306,11 +3268,11 @@
 {
 "correct": "une",
 "distractors": [
+"du",
 "ces",
+"des",
 "ce",
-"que",
-"et",
-"pour"
+"de"
 ]
 },
 {
@@ -3346,11 +3308,11 @@
 {
 "correct": "que",
 "distractors": [
-"comment",
-"quelle",
-"où",
-"qui",
-"quand"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -3369,8 +3331,8 @@
 "avons",
 "ont",
 "a",
-"avait",
-"avez"
+"avez",
+"le"
 ]
 },
 {
@@ -3419,11 +3381,11 @@
 {
 "correct": "a",
 "distractors": [
-"avaient",
-"avions",
-"avait",
 "avons",
-"avant"
+"le",
+"tu",
+"clés",
+"clé"
 ]
 },
 {
@@ -3440,10 +3402,10 @@
 "correct": "la",
 "distractors": [
 "aux",
-"que",
-"et",
-"pour",
-"avec"
+"les",
+"un",
+"de",
+"que"
 ]
 },
 {
@@ -3457,9 +3419,7 @@
 ]
 }
 ],
-"alternatives": [
-"Paul as réparé la serrure."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
@@ -3471,11 +3431,11 @@
 {
 "correct": "Les",
 "distractors": [
+"Le",
 "À",
 "Au",
-"Pour",
-"Avec",
-"Sans"
+"Elles",
+"Que"
 ]
 },
 {
@@ -3495,7 +3455,7 @@
 "sommes",
 "suis",
 "était",
-"étais"
+"étiez"
 ]
 },
 {
@@ -3523,9 +3483,9 @@
 "distractors": [
 "ces",
 "au",
-"que",
-"et",
-"pour"
+"de",
+"un",
+"que"
 ]
 },
 {
@@ -3534,14 +3494,12 @@
 "cousins",
 "courrier",
 "voisine",
-"chez",
-"dehors"
+"dehors",
+"ici"
 ]
 }
 ],
-"alternatives": [
-"Les enfants êtes sortis dans la cour."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
@@ -3554,10 +3512,10 @@
 "correct": "Les",
 "distractors": [
 "Ce",
+"La",
 "Ces",
-"Pour",
-"Avec",
-"Sans"
+"Elles",
+"Que"
 ]
 },
 {
@@ -3565,9 +3523,9 @@
 "distractors": [
 "entrée",
 "heure",
-"après",
 "étage",
-"vous"
+"entré",
+"quelle"
 ]
 },
 {
@@ -3577,7 +3535,7 @@
 "te",
 "le",
 "lui",
-"en"
+"me"
 ]
 },
 {
@@ -3587,7 +3545,7 @@
 "suis",
 "sommes",
 "était",
-"étais"
+"étiez"
 ]
 },
 {
@@ -3595,42 +3553,39 @@
 "distractors": [
 "leur",
 "me",
-"en",
 "y",
-"le"
+"le",
+"la"
 ]
 },
 {
 "correct": "entrées",
 "distractors": [
-"quand",
 "passée",
 "allée",
-"que",
-"qui"
+"allés",
+"allées",
+"vont"
 ]
 }
 ],
-"alternatives": [
-"Les clientes ne êtes pas entrées.",
-"Les clientes ne sont pas entrée."
-]
+"alternatives": []
 },
 {
 "lesson": 19,
 "id": "fr:19:46",
 "target": "La voisine est descendue chercher le courrier.",
 "ru": "Соседка спустилась вниз за почтой.",
-"uk": "Сусід спустився вниз, щоб забрати пошту.",
+"uk": "Сусідка спустилася вниз по пошту.",
 "tiles": [
 {
 "correct": "La",
 "distractors": [
+"Les",
+"Des",
 "Ces",
 "Au",
-"Pour",
-"Avec",
-"Sans"
+"Que"
 ]
 },
 {
@@ -3646,11 +3601,11 @@
 {
 "correct": "est",
 "distractors": [
-"étais",
 "étiez",
 "suis",
 "sommes",
-"était"
+"était",
+"étaient"
 ]
 },
 {
@@ -3690,30 +3645,27 @@
 "partie",
 "étage",
 "venus",
-"que"
+"qui"
 ]
 }
 ],
-"alternatives": [
-"La voisines est descendue chercher le courrier.",
-"La voisine es descendue chercher le courrier."
-]
+"alternatives": []
 },
 {
 "lesson": 20,
 "id": "fr:20:11",
 "target": "Avant, je travaillais le samedi.",
 "ru": "Я раньше работал по субботам.",
-"uk": "Я працював по суботах.",
+"uk": "Раніше я працював по суботах.",
 "tiles": [
 {
 "correct": "Avant",
 "distractors": [
-"Avait",
-"Mère",
-"Facteur",
+"À",
 "De",
-"À"
+"En",
+"Sur",
+"Dans"
 ]
 },
 {
@@ -3739,11 +3691,11 @@
 {
 "correct": "le",
 "distractors": [
+"des",
+"les",
 "ce",
-"que",
-"et",
-"pour",
-"avec"
+"du",
+"que"
 ]
 },
 {
@@ -3772,10 +3724,10 @@
 "correct": "Les",
 "distractors": [
 "Ces",
+"Du",
+"Une",
 "Avant",
-"Pour",
-"Avec",
-"Sans"
+"Que"
 ]
 },
 {
@@ -3809,10 +3761,7 @@
 ]
 }
 ],
-"alternatives": [
-"Les fenêtre étaient ouvertes.",
-"Les fenêtres étaient ouverte."
-]
+"alternatives": []
 },
 {
 "lesson": 20,
@@ -3825,10 +3774,10 @@
 "correct": "À",
 "distractors": [
 "De",
-"Du",
-"Aux",
 "Avant",
-"Le"
+"En",
+"Sur",
+"Chez"
 ]
 },
 {
@@ -3848,7 +3797,7 @@
 "tu",
 "la",
 "rue",
-"de"
+"le"
 ]
 },
 {
@@ -3886,29 +3835,29 @@
 "distractors": [
 "habitaient",
 "vent",
-"sans",
 "enfants",
-"voisins"
+"voisins",
+"marché"
 ]
 },
 {
 "correct": "dans",
 "distractors": [
 "de",
+"vers",
 "par",
 "en",
-"pour",
-"le"
+"pour"
 ]
 },
 {
 "correct": "une",
 "distractors": [
+"les",
 "ces",
+"des",
 "ce",
-"que",
-"et",
-"pour"
+"que"
 ]
 },
 {
@@ -3937,50 +3886,50 @@
 "correct": "Ils",
 "distractors": [
 "Je",
-"Elles",
 "On",
-"Elle",
-"Nous"
+"Nous",
+"Il",
+"Tu"
 ]
 },
 {
 "correct": "parlaient",
 "distractors": [
 "parlait",
-"parlez",
 "parle",
 "parles",
-"parler"
+"parler",
+"parlons"
 ]
 },
 {
 "correct": "quand",
 "distractors": [
-"pendant",
+"car",
 "et",
 "que",
 "si",
-"qui"
+"comme"
 ]
 },
 {
 "correct": "la",
 "distractors": [
 "ces",
-"que",
-"et",
-"pour",
-"avec"
+"du",
+"le",
+"des",
+"que"
 ]
 },
 {
 "correct": "lumière",
 "distractors": [
-"dans",
 "numéro",
 "sauté",
-"pendant",
-"réveil"
+"réveil",
+"vous",
+"place"
 ]
 },
 {
@@ -4019,8 +3968,8 @@
 "Ce",
 "Aux",
 "Cette",
-"Pour",
-"Avec"
+"Les",
+"Que"
 ]
 },
 {
@@ -4058,19 +4007,19 @@
 "distractors": [
 "que",
 "si",
-"qui",
-"comment",
-"quelle"
+"car",
+"mais",
+"comme"
 ]
 },
 {
 "correct": "le",
 "distractors": [
+"les",
+"du",
 "au",
 "que",
-"et",
-"pour",
-"avec"
+"et"
 ]
 },
 {
@@ -4087,10 +4036,10 @@
 "correct": "a",
 "distractors": [
 "avait",
-"ai",
 "avons",
 "avaient",
-"avions"
+"avions",
+"encore"
 ]
 },
 {
@@ -4104,27 +4053,23 @@
 ]
 }
 ],
-"alternatives": [
-"La salle étais pleine quand le concert a commencé.",
-"La salle était pleines quand le concert a commencé.",
-"La salle était pleine quand le concert as commencé."
-]
+"alternatives": []
 },
 {
 "lesson": 21,
 "id": "fr:21:39",
 "target": "Le train a freiné pendant que je marchais dans le couloir.",
 "ru": "Поезд затормозил, пока я шла по коридору.",
-"uk": "Поїзд загальмував, коли я йшов коридором.",
+"uk": "Поїзд загальмував, коли я йшла коридором.",
 "tiles": [
 {
 "correct": "Le",
 "distractors": [
 "Ces",
+"Les",
 "Cette",
 "Ce",
-"Pour",
-"Avec"
+"Des"
 ]
 },
 {
@@ -4160,11 +4105,11 @@
 {
 "correct": "pendant",
 "distractors": [
-"quand",
-"et",
-"qui",
-"si",
-"comment"
+"à",
+"de",
+"en",
+"sur",
+"chez"
 ]
 },
 {
@@ -4172,9 +4117,9 @@
 "distractors": [
 "si",
 "quand",
-"qui",
-"comment",
-"quelle"
+"comme",
+"mais",
+"car"
 ]
 },
 {
@@ -4192,9 +4137,9 @@
 "distractors": [
 "marchait",
 "aperçu",
-"quand",
 "concert",
-"coupé"
+"coupé",
+"encore"
 ]
 },
 {
@@ -4210,11 +4155,11 @@
 {
 "correct": "le",
 "distractors": [
+"les",
+"une",
+"des",
 "et",
-"pour",
-"avec",
-"sans",
-"chez"
+"pour"
 ]
 },
 {
@@ -4282,11 +4227,11 @@
 {
 "correct": "Le",
 "distractors": [
+"Les",
 "Plus",
 "Ne",
 "Y",
-"Pour",
-"Avec"
+"La"
 ]
 },
 {
@@ -4314,9 +4259,9 @@
 "distractors": [
 "me",
 "leur",
+"les",
 "jamais",
-"ne",
-"que"
+"ne"
 ]
 },
 {
@@ -4343,10 +4288,10 @@
 "correct": "Cette",
 "distractors": [
 "Ces",
-"Cet",
 "Les",
-"De",
-"Aux"
+"Aux",
+"Le",
+"La"
 ]
 },
 {
@@ -4393,10 +4338,10 @@
 "correct": "Je",
 "distractors": [
 "Il",
-"Elle",
-"Vous",
 "Elles",
-"Ils"
+"Ils",
+"Tu",
+"Nous"
 ]
 },
 {
@@ -4416,7 +4361,7 @@
 "demain",
 "parlez",
 "vélo",
-"avant"
+"train"
 ]
 },
 {
@@ -4424,9 +4369,9 @@
 "distractors": [
 "aux",
 "à",
+"une",
 "au",
-"que",
-"et"
+"que"
 ]
 },
 {
@@ -4442,11 +4387,11 @@
 {
 "correct": "en",
 "distractors": [
-"lui",
-"plus",
-"jamais",
-"le",
-"te"
+"à",
+"de",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -4454,9 +4399,9 @@
 "distractors": [
 "téléphone",
 "répondre",
-"après",
 "sœur",
-"jamais"
+"jamais",
+"pas"
 ]
 }
 ],
@@ -4473,10 +4418,10 @@
 "correct": "Vous",
 "distractors": [
 "Nous",
-"Elle",
 "Ils",
 "Il",
-"Je"
+"Je",
+"Elles"
 ]
 },
 {
@@ -4515,8 +4460,8 @@
 "ces",
 "cet",
 "ce",
-"que",
-"et"
+"les",
+"du"
 ]
 },
 {
@@ -4582,11 +4527,11 @@
 {
 "correct": "la",
 "distractors": [
+"les",
 "se",
 "ne",
-"que",
-"et",
-"pour"
+"le",
+"que"
 ]
 },
 {
@@ -4595,8 +4540,8 @@
 "dormir",
 "raconte",
 "envoie",
-"derrière",
-"attendant"
+"attendant",
+"téléphone"
 ]
 }
 ],
@@ -4616,7 +4561,7 @@
 "Nous",
 "Je",
 "On",
-"Elle"
+"Tu"
 ]
 },
 {
@@ -4642,11 +4587,11 @@
 {
 "correct": "à",
 "distractors": [
-"les",
-"cette",
-"aux",
-"un",
-"le"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -4676,7 +4621,7 @@
 "Lui",
 "Plus",
 "Ce",
-"Pour"
+"Que"
 ]
 },
 {
@@ -4712,11 +4657,11 @@
 {
 "correct": "après",
 "distractors": [
-"entrer",
-"dors",
-"pied",
-"retrouve",
-"travaillons"
+"à",
+"de",
+"en",
+"sur",
+"dans"
 ]
 },
 {
@@ -4754,9 +4699,9 @@
 "distractors": [
 "Me",
 "Se",
-"Pour",
-"Avec",
-"Sans"
+"Le",
+"Que",
+"Pour"
 ]
 },
 {
@@ -4772,11 +4717,11 @@
 {
 "correct": "est",
 "distractors": [
-"étais",
 "suis",
 "sommes",
 "était",
-"étiez"
+"étiez",
+"étaient"
 ]
 },
 {
@@ -4793,10 +4738,10 @@
 "correct": "et",
 "distractors": [
 "quand",
-"pendant",
 "si",
+"car",
 "que",
-"qui"
+"comme"
 ]
 },
 {
@@ -4835,40 +4780,38 @@
 "lundi",
 "famille",
 "nous",
-"après",
-"quartier"
+"quartier",
+"je"
 ]
 }
 ],
-"alternatives": [
-"La cour es calme et les enfants y lisent."
-]
+"alternatives": []
 },
 {
 "lesson": 25,
 "id": "fr:25:04",
 "target": "Tu en prends deux.",
 "ru": "Ты берёшь два.",
-"uk": "Ти бери два.",
+"uk": "Ти береш два.",
 "tiles": [
 {
 "correct": "Tu",
 "distractors": [
-"Vous",
-"Elle",
 "Il",
 "Ils",
-"Je"
+"Je",
+"Nous",
+"Elles"
 ]
 },
 {
 "correct": "en",
 "distractors": [
 "chez",
-"aux",
+"vers",
 "dans",
 "à",
-"le"
+"de"
 ]
 },
 {
@@ -4898,17 +4841,17 @@
 "lesson": 25,
 "id": "fr:25:13",
 "target": "Des pommes, j’en achète un kilo.",
-"ru": "Куплю килограмм яблок.",
-"uk": "Я куплю кілограм яблук.",
+"ru": "Яблок я покупаю килограмм.",
+"uk": "Яблук я купую кілограм.",
 "tiles": [
 {
 "correct": "Des",
 "distractors": [
-"Pour",
-"Avec",
-"Sans",
-"Dans",
-"Ce"
+"Une",
+"De",
+"Le",
+"Que",
+"Et"
 ]
 },
 {
@@ -4938,17 +4881,17 @@
 "péniches",
 "combien",
 "fraises",
-"que"
+"qui"
 ]
 },
 {
 "correct": "un",
 "distractors": [
 "aux",
-"cet",
-"que",
-"et",
-"pour"
+"les",
+"une",
+"de",
+"cet"
 ]
 },
 {
@@ -4962,17 +4905,14 @@
 ]
 }
 ],
-"alternatives": [
-"Des pomme, j’en achète un kilo.",
-"Des pommes, j’en achètes un kilo."
-]
+"alternatives": []
 },
 {
 "lesson": 25,
 "id": "fr:25:32",
 "target": "Elle en a trouvé une.",
 "ru": "Она нашла одну.",
-"uk": "Вона знайшла один.",
+"uk": "Вона знайшла одну.",
 "tiles": [
 {
 "correct": "Elle",
@@ -4988,10 +4928,10 @@
 "correct": "en",
 "distractors": [
 "chez",
-"aux",
 "à",
-"au",
-"le"
+"vers",
+"de",
+"sur"
 ]
 },
 {
@@ -4999,9 +4939,9 @@
 "distractors": [
 "avons",
 "ont",
-"aurez",
+"avait",
 "avaient",
-"avait"
+"as"
 ]
 },
 {
@@ -5019,9 +4959,9 @@
 "distractors": [
 "aux",
 "au",
-"cet",
-"que",
-"et"
+"un",
+"des",
+"cet"
 ]
 }
 ],
@@ -5040,8 +4980,8 @@
 "Les",
 "Un",
 "Au",
-"À",
-"Du"
+"Du",
+"Le"
 ]
 },
 {
@@ -5087,11 +5027,11 @@
 {
 "correct": "que",
 "distractors": [
-"quoi",
-"quel",
-"combien",
-"comment",
-"qui"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -5105,10 +5045,7 @@
 ]
 }
 ],
-"alternatives": [
-"Cette valises est moins lourde que l’autre.",
-"Cette valise es moins lourde que l’autre."
-]
+"alternatives": []
 },
 {
 "lesson": 26,
@@ -5121,10 +5058,10 @@
 "correct": "La",
 "distractors": [
 "Leur",
+"Le",
 "Y",
 "Te",
-"Encore",
-"Pour"
+"Encore"
 ]
 },
 {
@@ -5142,9 +5079,9 @@
 "distractors": [
 "était",
 "suis",
-"serait",
 "sera",
-"sommes"
+"sommes",
+"serai"
 ]
 },
 {
@@ -5170,11 +5107,11 @@
 {
 "correct": "que",
 "distractors": [
-"quelle",
-"qui",
-"quel",
-"où",
-"quand"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -5182,9 +5119,9 @@
 "distractors": [
 "leur",
 "te",
+"les",
 "en",
-"se",
-"et"
+"se"
 ]
 },
 {
@@ -5198,10 +5135,7 @@
 ]
 }
 ],
-"alternatives": [
-"La rue es moins large que la place.",
-"La rue est moins large que la places."
-]
+"alternatives": []
 },
 {
 "lesson": 26,
@@ -5216,8 +5150,8 @@
 "Elles",
 "Il",
 "Nous",
-"Vous",
-"On"
+"On",
+"Je"
 ]
 },
 {
@@ -5253,11 +5187,11 @@
 {
 "correct": "que",
 "distractors": [
-"comment",
-"pourquoi",
-"combien",
-"quelle",
-"qui"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -5293,11 +5227,11 @@
 {
 "correct": "Elles",
 "distractors": [
-"Elle",
 "Je",
 "Nous",
 "On",
-"Vous"
+"Il",
+"Tu"
 ]
 },
 {
@@ -5313,11 +5247,11 @@
 {
 "correct": "le",
 "distractors": [
+"de",
+"une",
+"du",
 "à",
-"que",
-"et",
-"pour",
-"avec"
+"que"
 ]
 },
 {
@@ -5333,11 +5267,11 @@
 {
 "correct": "en",
 "distractors": [
-"leur",
-"les",
-"jamais",
-"la",
-"ne"
+"à",
+"de",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -5363,11 +5297,11 @@
 {
 "correct": "Le",
 "distractors": [
+"Du",
 "Au",
+"La",
 "Cet",
-"Pour",
-"Avec",
-"Sans"
+"Que"
 ]
 },
 {
@@ -5428,8 +5362,8 @@
 "Tu",
 "Il",
 "Ils",
-"Elle",
-"Je"
+"Je",
+"Elles"
 ]
 },
 {
@@ -5456,20 +5390,20 @@
 "correct": "devant",
 "distractors": [
 "sur",
-"près",
 "entre",
 "sous",
-"ici"
+"à",
+"de"
 ]
 },
 {
 "correct": "la",
 "distractors": [
+"du",
+"les",
+"de",
 "ces",
-"que",
-"et",
-"pour",
-"avec"
+"des"
 ]
 },
 {
@@ -5495,11 +5429,11 @@
 {
 "correct": "Tu",
 "distractors": [
-"Vous",
 "Je",
 "Ils",
-"Elle",
-"Elles"
+"Elles",
+"Il",
+"Nous"
 ]
 },
 {
@@ -5528,8 +5462,8 @@
 "cette",
 "ces",
 "aux",
-"au",
-"que"
+"des",
+"au"
 ]
 },
 {
@@ -5560,8 +5494,8 @@
 "Tu",
 "Elles",
 "Nous",
-"Vous",
-"Elle"
+"Je",
+"Ils"
 ]
 },
 {
@@ -5619,19 +5553,19 @@
 "distractors": [
 "Je",
 "On",
-"Vous",
 "Tu",
-"Ils"
+"Ils",
+"Nous"
 ]
 },
 {
 "correct": "me",
 "distractors": [
 "te",
-"en",
 "leur",
 "pas",
-"y"
+"y",
+"ne"
 ]
 },
 {
@@ -5648,10 +5582,10 @@
 "correct": "une",
 "distractors": [
 "ce",
+"du",
+"les",
 "aux",
-"à",
-"que",
-"et"
+"à"
 ]
 },
 {
@@ -5687,11 +5621,11 @@
 {
 "correct": "Voilà",
 "distractors": [
-"Voici",
 "Voisine",
 "Voisin",
 "Passe",
-"Lettre"
+"Lettre",
+"Chaussures"
 ]
 },
 {
@@ -5720,8 +5654,8 @@
 "comment",
 "quel",
 "pourquoi",
-"que",
-"quand"
+"quelle",
+"quoi"
 ]
 },
 {
@@ -5730,8 +5664,8 @@
 "travailler",
 "travaillent",
 "travaillez",
-"dans",
-"soir"
+"soir",
+"voisin"
 ]
 },
 {
@@ -5739,15 +5673,13 @@
 "distractors": [
 "loin",
 "près",
-"sur",
-"sous",
-"derrière"
+"dehors",
+"n’est",
+"n’es"
 ]
 }
 ],
-"alternatives": [
-"Voilà le médecin qui travailles ici."
-]
+"alternatives": []
 },
 {
 "lesson": 29,
@@ -5759,11 +5691,11 @@
 {
 "correct": "La",
 "distractors": [
+"Du",
 "Cet",
 "Ces",
-"Pour",
-"Avec",
-"Sans"
+"Les",
+"Et"
 ]
 },
 {
@@ -5779,11 +5711,11 @@
 {
 "correct": "que",
 "distractors": [
-"où",
-"combien",
-"qui",
-"comment",
-"pourquoi"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -5801,9 +5733,9 @@
 "distractors": [
 "sa",
 "une",
-"à",
 "un",
-"sac"
+"sac",
+"le"
 ]
 },
 {
@@ -5819,11 +5751,11 @@
 {
 "correct": "de",
 "distractors": [
-"aux",
-"et",
 "pour",
 "avec",
-"sans"
+"sans",
+"chez",
+"dans"
 ]
 },
 {
@@ -5849,11 +5781,11 @@
 {
 "correct": "La",
 "distractors": [
+"Un",
+"De",
 "Cette",
 "Au",
-"Ces",
-"Pour",
-"Avec"
+"Ces"
 ]
 },
 {
@@ -5872,8 +5804,8 @@
 "quel",
 "où",
 "quoi",
-"que",
-"quand"
+"comment",
+"quelle"
 ]
 },
 {
@@ -5890,10 +5822,10 @@
 "correct": "mal",
 "distractors": [
 "bon",
-"de",
 "mes",
-"le",
-"à"
+"mon",
+"son",
+"ma"
 ]
 },
 {
@@ -5909,11 +5841,11 @@
 {
 "correct": "sur",
 "distractors": [
-"loin",
-"près",
 "entre",
-"dehors",
-"là"
+"à",
+"de",
+"en",
+"dans"
 ]
 },
 {
@@ -5921,9 +5853,9 @@
 "distractors": [
 "ce",
 "aux",
+"un",
 "ces",
-"que",
-"et"
+"que"
 ]
 },
 {
@@ -5937,10 +5869,7 @@
 ]
 }
 ],
-"alternatives": [
-"La fenêtres qui ferme mal donne sur la rue.",
-"La fenêtre qui fermes mal donne sur la rue."
-]
+"alternatives": []
 },
 {
 "lesson": 30,
@@ -5955,28 +5884,28 @@
 "Tu",
 "Ils",
 "Nous",
-"Elle",
-"Vous"
+"Elles",
+"On"
 ]
 },
 {
 "correct": "faut",
 "distractors": [
-"avant",
 "retrouve",
 "ayez",
 "fassent",
-"allions"
+"allions",
+"allons"
 ]
 },
 {
 "correct": "que",
 "distractors": [
-"qui",
 "quand",
-"comment",
-"combien",
-"quelle"
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -6002,11 +5931,11 @@
 {
 "correct": "là",
 "distractors": [
-"devant",
 "loin",
 "dehors",
-"entre",
-"près"
+"près",
+"porte",
+"vous"
 ]
 }
 ],
@@ -6026,7 +5955,7 @@
 "Ils",
 "Tu",
 "Nous",
-"Vous"
+"On"
 ]
 },
 {
@@ -6042,11 +5971,11 @@
 {
 "correct": "que",
 "distractors": [
-"quoi",
-"quelle",
-"comment",
-"où",
-"qui"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -6072,11 +6001,11 @@
 {
 "correct": "une",
 "distractors": [
+"un",
+"les",
 "au",
 "aux",
-"et",
-"pour",
-"avec"
+"et"
 ]
 },
 {
@@ -6097,7 +6026,7 @@
 "id": "fr:30:25",
 "target": "Il faut que vous alliez à l’accueil.",
 "ru": "Вам нужно подойти к стойке регистрации.",
-"uk": "Тобі потрібно йти до стійки реєстрації.",
+"uk": "Вам потрібно піти до стійки реєстрації.",
 "tiles": [
 {
 "correct": "Il",
@@ -6122,11 +6051,11 @@
 {
 "correct": "que",
 "distractors": [
-"comment",
-"quoi",
-"combien",
-"quelle",
-"qui"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -6152,11 +6081,11 @@
 {
 "correct": "à",
 "distractors": [
-"des",
-"aux",
-"les",
-"la",
-"le"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -6183,10 +6112,10 @@
 "correct": "La",
 "distractors": [
 "Cette",
+"Du",
 "Ces",
-"Pour",
-"Avec",
-"Sans"
+"Que",
+"Et"
 ]
 },
 {
@@ -6222,11 +6151,11 @@
 {
 "correct": "avant",
 "distractors": [
-"avaient",
-"avais",
-"préféré",
-"a",
-"ont"
+"à",
+"de",
+"en",
+"sur",
+"dans"
 ]
 },
 {
@@ -6243,17 +6172,14 @@
 "correct": "arrivée",
 "distractors": [
 "arrivera",
-"dans",
 "parc",
 "quai",
-"valises"
+"valises",
+"père"
 ]
 }
 ],
-"alternatives": [
-"La banque avais fermé avant mon arrivée.",
-"La banque avait fermé avant mon arrivées."
-]
+"alternatives": []
 },
 {
 "lesson": 31,
@@ -6275,11 +6201,11 @@
 {
 "correct": "ne",
 "distractors": [
-"en",
 "les",
 "lui",
 "me",
-"le"
+"le",
+"la"
 ]
 },
 {
@@ -6315,11 +6241,11 @@
 {
 "correct": "à",
 "distractors": [
-"un",
-"une",
-"cet",
-"la",
-"le"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -6347,9 +6273,9 @@
 "distractors": [
 "Elles",
 "Ils",
-"Elle",
-"Vous",
-"Tu"
+"Tu",
+"Il",
+"Nous"
 ]
 },
 {
@@ -6378,8 +6304,8 @@
 "une",
 "la",
 "aux",
-"de",
-"le"
+"le",
+"un"
 ]
 },
 {
@@ -6395,21 +6321,21 @@
 {
 "correct": "parce",
 "distractors": [
-"et",
-"si",
-"quand",
 "qui",
-"mais"
+"cette",
+"avaient",
+"avons",
+"banque"
 ]
 },
 {
 "correct": "que",
 "distractors": [
-"comment",
-"quel",
-"quoi",
-"qui",
-"pourquoi"
+"quand",
+"comme",
+"mais",
+"car",
+"si"
 ]
 },
 {
@@ -6470,16 +6396,16 @@
 "id": "fr:32:12",
 "target": "Si je travaillais ici, je viendrais à pied.",
 "ru": "Если бы я работал здесь, я бы ходил пешком.",
-"uk": "Якби я працював тут, я б пішов пішки.",
+"uk": "Якби я працював тут, я б ходив пішки.",
 "tiles": [
 {
 "correct": "Si",
 "distractors": [
-"Parce",
 "Que",
-"Qui",
 "Mais",
-"Et"
+"Et",
+"Quand",
+"Comme"
 ]
 },
 {
@@ -6507,9 +6433,9 @@
 "distractors": [
 "dehors",
 "près",
-"entre",
 "loin",
-"sur"
+"n’est",
+"porte"
 ]
 },
 {
@@ -6535,11 +6461,11 @@
 {
 "correct": "à",
 "distractors": [
-"ce",
-"au",
-"aux",
-"cet",
-"cette"
+"de",
+"en",
+"sur",
+"dans",
+"chez"
 ]
 },
 {
@@ -6561,17 +6487,17 @@
 "lesson": 32,
 "id": "fr:32:13",
 "target": "Si le bus passait plus tôt, je le prendrais.",
-"ru": "Если бы автобус приезжал раньше, я бы поехал на нем.",
-"uk": "Якби автобус приїжджав раніше, я б ним сів.",
+"ru": "Если бы автобус приходил раньше, я бы на нём ездил.",
+"uk": "Якби автобус приходив раніше, я б ним їздив.",
 "tiles": [
 {
 "correct": "Si",
 "distractors": [
 "Comme",
-"Parce",
-"Pendant",
 "Car",
-"Mais"
+"Mais",
+"Quand",
+"Que"
 ]
 },
 {
@@ -6580,8 +6506,8 @@
 "ces",
 "au",
 "aux",
-"que",
-"et"
+"du",
+"que"
 ]
 },
 {
@@ -6610,8 +6536,8 @@
 "leur",
 "ne",
 "lui",
-"en",
-"me"
+"me",
+"y"
 ]
 },
 {
@@ -6637,11 +6563,11 @@
 {
 "correct": "le",
 "distractors": [
+"la",
 "au",
 "cet",
-"ces",
-"que",
-"et"
+"du",
+"ces"
 ]
 },
 {
@@ -6663,27 +6589,27 @@
 "lesson": 32,
 "id": "fr:32:15",
 "target": "Si le train coûtait moins cher, on voyagerait davantage.",
-"ru": "Если бы поезд был дешевле, мы бы проехали больше.",
+"ru": "Если бы поезд был дешевле, мы бы больше путешествовали.",
 "uk": "Якби поїзд був дешевшим, ми б подорожували більше.",
 "tiles": [
 {
 "correct": "Si",
 "distractors": [
-"Pendant",
-"Qui",
 "Mais",
 "Car",
-"Que"
+"Que",
+"Quand",
+"Comme"
 ]
 },
 {
 "correct": "le",
 "distractors": [
+"une",
 "ce",
 "au",
-"que",
-"et",
-"pour"
+"des",
+"que"
 ]
 },
 {
@@ -6700,10 +6626,10 @@
 "correct": "coûtait",
 "distractors": [
 "guider",
-"avant",
 "tenterais",
 "ouvrirait",
-"avait"
+"frais",
+"tournait"
 ]
 },
 {
@@ -6741,9 +6667,9 @@
 "distractors": [
 "mieux",
 "numéro",
-"avant",
 "venir",
-"préviendrions"
+"préviendrions",
+"peu"
 ]
 },
 {

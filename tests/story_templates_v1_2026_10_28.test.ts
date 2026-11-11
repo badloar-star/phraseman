@@ -20,10 +20,6 @@ import type { Lang } from '../constants/i18n';
 jest.mock('react-native-reanimated', () => ({ useSharedValue: (value: number) => ({ value }) }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn() } }));
 jest.mock('../app/achievements', () => ({ ALL_ACHIEVEMENTS: [{ id: 'streak_7' }, { id: 'streak_30' }, { id: 'streak_100' }, { id: 'lessons_10' }] }));
-jest.mock('../app/coin_rank_table_v1', () => ({
-  isValidCoinRank: (r: unknown) => typeof r === 'number' && r >= 0 && r <= 19,
-  coinRankRowForDisplay: (r: number) => ({ priceToReach: r * 1000 }),
-}));
 jest.mock('../components/spire/spire_tower_model', () => ({ SPIRE_TW: 390, SPIRE_TOWER_GEOM: { height: 900 } }));
 // палитра кадров берёт тему из контекста — для чистой функции mix() контекст и токены не нужны
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({}) }));
@@ -236,9 +232,20 @@ describe('шаблоны историй v1 — событие → кадр', () 
     expect(storyTemplateFromEvent(ev('spire_week', { outcome: 'up', floor: 2 }))).toMatchObject({ podium: null });
   });
 
-  it('ранг монеты — цена и следующая цена; тема — только особая; объявление — прежний кадр', () => {
-    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6 }))).toEqual({ id: 'rank', toRank: 6, price: 6000, nextPrice: 7000 });
+  it('ранг монеты — запечатанная цена, legacy-цена и следующая цена; новая битая цена не маскируется', () => {
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6, paidPrice: 1500 }))).toEqual({ id: 'rank', toRank: 6, price: 1500, nextPrice: 1600 });
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6 }))).toEqual({ id: 'rank', toRank: 6, price: 6000, nextPrice: 1600 });
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6, paidPrice: 0 }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6, paidPrice: '1500' }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { paidPrice: 1000 }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: '6', paidPrice: 1500 }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 6.9, paidPrice: 1500 }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 0, paidPrice: 1000 }))).toBeNull();
+    expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 20, paidPrice: 1000 }))).toBeNull();
     expect(storyTemplateFromEvent(ev('coin_rank_up', { toRank: 19 }))).toMatchObject({ nextPrice: null });
+  });
+
+  it('тема — только особая; объявление — прежний кадр', () => {
     expect(storyTemplateFromEvent(ev('theme_unlock', { themeId: 'grad_full_titanium' }))).toMatchObject({ id: 'theme', themeId: 'grad_full_titanium' });
     expect(storyTemplateFromEvent(ev('theme_unlock', { themeId: 'ink' }))).toBeNull();
     expect(storyTemplateFromEvent(ev('announcement', { title: 'x' }))).toBeNull();

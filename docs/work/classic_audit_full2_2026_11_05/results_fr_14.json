@@ -1,0 +1,7 @@
+[
+{"id": "fr:29:07", "type": "M", "field": "ru", "problem": "Voilà передано как «Это», хотя в соседней fr:29:08 Voilà = «Вот»; «Это врач» подталкивает к C’est", "fix": "Вот врач, который здесь работает."},
+{"id": "fr:29:07", "type": "M", "field": "uk", "problem": "Voilà передано як «Це», хоча у fr:29:08 Voilà = «Ось»; «Це лікар» підштовхує до C’est", "fix": "Ось лікар, який тут працює."},
+{"id": "fr:29:13", "type": "B1", "field": "tiles", "problem": "соблазн «avait» даёт естественную «C’est Léa qui avait réservé.» — по-русски/украински тоже «забронировала/забронювала», а засчитают ошибкой", "fix": {"position": 3, "replace_distractor": "avait", "with": "ont"}},
+{"id": "fr:29:32", "type": "B1", "field": "tiles", "problem": "соблазн «sera» даёт «Le ticket qu’il garde sera valable demain.» — естественно и точно соответствует «действителен завтра / дійсний завтра» (с «demain» будущее даже естественнее)", "fix": {"position": 4, "replace_distractor": "sera", "with": "suis"}},
+{"id": "fr:29:43", "type": "B1", "field": "tiles", "problem": "соблазн «avait» даёт грамматичную «La dame qui avait trouvé mes clés est à l’accueil.», по-русски/украински это тоже «нашла/знайшла»", "fix": {"position": 3, "replace_distractor": "avait", "with": "ont"}}
+]

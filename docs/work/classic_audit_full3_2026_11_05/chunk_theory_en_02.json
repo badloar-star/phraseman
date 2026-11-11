@@ -1,0 +1,1110 @@
+[
+{
+"lesson": 5,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 5,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как задать вопрос о действии",
+"formula": "[do / does] + [подлежащее] + [глагол без to]?",
+"story": "Ты водишь? Do you drive? А она? Does she drive? Меняй первое слово по человеку; последним всё равно будет drive.",
+"use": "Спросите о действии или услуге, поставив помощника на первое место. Это позволит вам проверить цену, расписание или то, что вам нужно взять с собой.",
+"choose": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"nuance": "Вопрос о состоянии с `be` отличается: используйте `Is the door open?` для его состояния, но `Does the door lock?` для описания того, как оно работает.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Спросите о действии или услуге, поставив помощника на первое место. Это позволит вам проверить цену, расписание или то, что вам нужно взять с собой.",
+"samples": [
+"05.01",
+"05.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"samples": [
+"05.02",
+"05.12"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Вопрос о состоянии с `be` отличается: используйте `Is the door open?` для его состояния, но `Does the door lock?` для описания того, как оно работает.",
+"samples": [
+"05.12",
+"05.22"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Спросите о новой работе",
+"samples": [
+"05.33",
+"05.35",
+"05.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы осматриваете квартиру. Узнайте, открываются ли окна и включена ли вода в арендную плату. Тема каждого вопроса разная.",
+"samples": [
+"05.42",
+"05.45",
+"05.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Проверьте доставку или поездку",
+"samples": [
+"05.50"
+],
+"tokenWalk": "05.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як запитати про дію",
+"formula": "[do / does] + [підмет] + [дієслово без to]?",
+"story": "Ти водиш? Do you drive? А вона? Does she drive? Зміни перше слово, а drive залиш без змін.",
+"use": "Запитайте про дію або послугу, поставивши помічника на перше місце. Це дозволяє вам перевірити ціну, розклад або те, що ви маєте принести.",
+"choose": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"nuance": "Запитання про стан з `be` відрізняється: використовуйте `Is the door open?` для його стану, але `Does the door lock?` для того, як він працює.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Запитайте про дію або послугу, поставивши помічника на перше місце. Це дозволяє вам перевірити ціну, розклад або те, що ви маєте принести.",
+"samples": [
+"05.01",
+"05.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"samples": [
+"05.02",
+"05.12"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Запитання про стан з `be` відрізняється: використовуйте `Is the door open?` для його стану, але `Does the door lock?` для того, як він працює.",
+"samples": [
+"05.12",
+"05.22"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитайте про нову роботу",
+"samples": [
+"05.33",
+"05.35",
+"05.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви переглядаєте квартиру. Дізнайтеся, чи відчиняються вікна та чи входить вода в орендну плату. Тема кожного питання різна.",
+"samples": [
+"05.42",
+"05.45",
+"05.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Перевірте доставку або подорож",
+"samples": [
+"05.50"
+],
+"tokenWalk": "05.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Ask about a service or routine",
+"formula": "[do / does] + [subject] + [base verb]?",
+"story": "Do you drive? → Does she drive? The helper changes with the person. Drive stays in its plain form.",
+"use": "Ask about an action or a service by putting the helper first. This lets you check a price, a timetable or what you have to bring.",
+"choose": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper.",
+"nuance": "A question about a state with `be` is different: use `Is the door open?` for its state, but `Does the door lock?` for how it works.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Ask about an action or a service by putting the helper first. This lets you check a price, a timetable or what you have to bring.",
+"samples": [
+"05.01",
+"05.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper.",
+"samples": [
+"05.02",
+"05.12"
+]
+},
+{
+"title": "A useful contrast",
+"body": "A question about a state with `be` is different: use `Is the door open?` for its state, but `Does the door lock?` for how it works.",
+"samples": [
+"05.12",
+"05.22"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper.",
+"wrong": "Does the key fits?",
+"right": "Does the key fit?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask about a new job",
+"samples": [
+"05.33",
+"05.35",
+"05.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You are viewing a flat. Find out whether the windows open and whether the rent includes water. The subject of each question is different.",
+"samples": [
+"05.42",
+"05.45",
+"05.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Check a delivery or journey",
+"samples": [
+"05.50"
+],
+"tokenWalk": "05.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "05.01",
+"index": 0,
+"right": "Do",
+"near": "Does",
+"seq": [
+"Do",
+"you",
+"drive"
+],
+"i": 0,
+"kind": "form",
+"key": "en05/lab/form1",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.13",
+"index": 0,
+"right": "Does",
+"near": "Do",
+"seq": [
+"Does",
+"this",
+"bus",
+"stop",
+"here"
+],
+"i": 12,
+"kind": "form",
+"key": "en05/lab/form2",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.26",
+"index": 0,
+"right": "Does",
+"near": "Do",
+"seq": [
+"Does",
+"the",
+"oven",
+"work"
+],
+"i": 25,
+"kind": "form",
+"key": "en05/lab/form3",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.37",
+"index": 0,
+"right": "Do",
+"near": "Does",
+"seq": [
+"Do",
+"we",
+"sign",
+"this",
+"form"
+],
+"i": 36,
+"kind": "form",
+"key": "en05/lab/form4",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.07",
+"index": 0,
+"right": "Do",
+"near": "Does",
+"seq": [
+"Do",
+"we",
+"need",
+"tickets"
+],
+"i": 6,
+"kind": "spot",
+"key": "en05/lab/spot1",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.19",
+"index": 0,
+"right": "Does",
+"near": "Do",
+"seq": [
+"Does",
+"the",
+"lift",
+"go",
+"down"
+],
+"i": 18,
+"kind": "spot",
+"key": "en05/lab/spot2",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.32",
+"index": 0,
+"right": "Does",
+"near": "Do",
+"seq": [
+"Does",
+"your",
+"team",
+"start",
+"early"
+],
+"i": 31,
+"kind": "spot",
+"key": "en05/lab/spot3",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"id": "05.47",
+"index": 0,
+"right": "Do",
+"near": "Does",
+"seq": [
+"Do",
+"I",
+"show",
+"my",
+"ticket",
+"at",
+"the",
+"gate"
+],
+"i": 46,
+"kind": "spot",
+"key": "en05/lab/spot4",
+"feedback": {
+"ru": "Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`.",
+"uk": "Постав `do` або `does` на початок, назви того, про кого запитуєш, а далі постав дієслово без закінчення: `Does the key fit?` Порівняй із твердженням `The key fits`.",
+"en": "Use `does` for a singular third-person subject and `do` for the others. Keep the base form after the subject. The meaning of the verb does not change the choice of helper."
+}
+},
+{
+"kind": "match",
+"key": "en05/lab/match1",
+"id": "05.02",
+"other": "05.01"
+},
+{
+"kind": "match",
+"key": "en05/lab/match2",
+"id": "05.17",
+"other": "05.18"
+},
+{
+"kind": "match",
+"key": "en05/lab/match3",
+"id": "05.33",
+"other": "05.31"
+},
+{
+"kind": "match",
+"key": "en05/lab/match4",
+"id": "05.46",
+"other": "05.47"
+},
+{
+"kind": "build",
+"key": "en05/lab/build1",
+"id": "05.04"
+},
+{
+"kind": "build",
+"key": "en05/lab/build2",
+"id": "05.15"
+},
+{
+"kind": "build",
+"key": "en05/lab/build3",
+"id": "05.29"
+},
+{
+"kind": "build",
+"key": "en05/lab/build4",
+"id": "05.42"
+},
+{
+"kind": "transform",
+"id": "05.30",
+"base": "05.04",
+"diff": [
+{
+"before": [
+"he"
+],
+"after": [
+"the",
+"landlord"
+]
+}
+],
+"key": "en05/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "05.29",
+"base": "05.07",
+"diff": [
+{
+"before": [
+"tickets"
+],
+"after": [
+"a",
+"parking",
+"permit"
+]
+}
+],
+"key": "en05/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "05.42",
+"base": "05.05",
+"diff": [
+{
+"before": [
+"a",
+"bag"
+],
+"after": [
+"my",
+"address"
+]
+}
+],
+"key": "en05/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "05.39",
+"base": "05.25",
+"diff": [
+{
+"before": [
+"share"
+],
+"after": [
+"keep"
+]
+},
+{
+"before": [
+"kitchen"
+],
+"after": [
+"receipts"
+]
+}
+],
+"key": "en05/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+12
+],
+[
+5,
+13
+],
+[
+2,
+14
+],
+[
+3,
+10
+],
+[
+15,
+18
+],
+[
+7,
+11
+]
+],
+"worked": [
+"05.05",
+"05.18",
+"05.33",
+"05.48"
+],
+"reflection": [
+"05.01",
+"05.02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 6,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 6,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как узнать нужную подробность",
+"formula": "[вопросительное слово] + [do / does] + [подлежащее] + [глагол без to]?",
+"story": "Кто звонит? Who calls? Само who выполняет действие. Кому ты звонишь? Who do you call? Теперь действие выполняет you.",
+"use": "Вопрос с ответами «да/нет» не может дать вам точную информацию о платформе или цене. Начните с того, какая информация вам нужна: место, время, цена, человек или выбор.",
+"choose": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"nuance": "Изучите целые начала вопросов, такие как `how much`, `how long` и `how often`. `Which` спрашивает о выборе; `where` спрашивает о месте.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Вопрос с ответами «да/нет» не может дать вам точную информацию о платформе или цене. Начните с того, какая информация вам нужна: место, время, цена, человек или выбор.",
+"samples": [
+"06.01",
+"06.13"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"samples": [
+"06.13",
+"06.16"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Изучите целые начала вопросов, такие как `how much`, `how long` и `how often`. `Which` спрашивает о выборе; `where` спрашивает о месте.",
+"samples": [
+"06.16",
+"06.38"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Спросите о работе: субъект или объект?",
+"samples": [
+"06.33",
+"06.35",
+"06.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "У вас есть одна минута у билетной кассы. Спросите цену и платформу, а не ответ «да/нет» о поезде.",
+"samples": [
+"06.42",
+"06.45",
+"06.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Выберите недостающую информацию самостоятельно",
+"samples": [
+"06.50"
+],
+"tokenWalk": "06.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як дізнатися потрібну подробицю",
+"formula": "[питальне слово] + [do / does] + [підмет] + [дієслово без to]?",
+"story": "Хто телефонує? Who calls? Дію виконує who. Кому ти телефонуєш? Who do you call? Тепер діє you.",
+"use": "Питання «так/ні» не може дати вам точну платформу чи ціну. Почніть з потрібної вам деталі: місце, час, ціна, особа чи вибір.",
+"choose": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"nuance": "Вивчіть цілі запитання для початку, такі як `how much`, `how long` та `how often`. `Which` запитує вибір; `where` запитує місце.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Питання «так/ні» не може дати вам точну платформу чи ціну. Почніть з потрібної вам деталі: місце, час, ціна, особа чи вибір.",
+"samples": [
+"06.01",
+"06.13"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"samples": [
+"06.13",
+"06.16"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Вивчіть цілі запитання для початку, такі як `how much`, `how long` та `how often`. `Which` запитує вибір; `where` запитує місце.",
+"samples": [
+"06.16",
+"06.38"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитайте про роботу: підмет чи додаток?",
+"samples": [
+"06.33",
+"06.35",
+"06.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "У вас є одна хвилина біля каси. Запитайте про ціну та платформу, а не дайте відповідь «так/ні» про поїзд.",
+"samples": [
+"06.42",
+"06.45",
+"06.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Виберіть відсутню інформацію самостійно",
+"samples": [
+"06.50"
+],
+"tokenWalk": "06.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Ask for the missing detail",
+"formula": "[question word] + [do / does] + [subject] + [base verb]?",
+"story": "Who calls? asks who makes the call. Who do you call? already names the caller: you. Now who stands for the other person.",
+"use": "A yes/no question cannot give you the exact platform or price. Start with the kind of detail you need: place, time, price, person or choice.",
+"choose": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`.",
+"nuance": "Learn whole question starters such as `how much`, `how long` and `how often`. `Which` asks for a choice; `where` asks for a place.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "A yes/no question cannot give you the exact platform or price. Start with the kind of detail you need: place, time, price, person or choice.",
+"samples": [
+"06.01",
+"06.13"
+]
+},
+{
+"title": "How to choose",
+"body": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`.",
+"samples": [
+"06.13",
+"06.16"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Learn whole question starters such as `how much`, `how long` and `how often`. `Which` asks for a choice; `where` asks for a place.",
+"samples": [
+"06.16",
+"06.38"
+]
+},
+{
+"title": "Common mistake",
+"body": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`.",
+"wrong": "Where you work?",
+"right": "Where do you work?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask about work: subject or object?",
+"samples": [
+"06.33",
+"06.35",
+"06.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You have one minute at the ticket desk. Ask for the price and platform rather than a yes/no answer about the train.",
+"samples": [
+"06.42",
+"06.45",
+"06.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Choose the missing information yourself",
+"samples": [
+"06.50"
+],
+"tokenWalk": "06.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "06.01",
+"index": 0,
+"right": "Where",
+"near": "When",
+"seq": [
+"Where",
+"do",
+"you",
+"work"
+],
+"i": 0,
+"kind": "form",
+"key": "en06/lab/form1",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.13",
+"index": 2,
+"right": "does",
+"near": "do",
+"seq": [
+"How",
+"much",
+"does",
+"a",
+"ticket",
+"cost"
+],
+"i": 12,
+"kind": "form",
+"key": "en06/lab/form2",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.25",
+"index": 0,
+"right": "When",
+"near": "Where",
+"seq": [
+"When",
+"does",
+"the",
+"sale",
+"end"
+],
+"i": 24,
+"kind": "form",
+"key": "en06/lab/form3",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.37",
+"index": 0,
+"right": "Why",
+"near": "When",
+"seq": [
+"Why",
+"does",
+"the",
+"screen",
+"go",
+"dark"
+],
+"i": 36,
+"kind": "form",
+"key": "en06/lab/form4",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.07",
+"index": 1,
+"right": "do",
+"near": "does",
+"seq": [
+"How",
+"do",
+"you",
+"pay"
+],
+"i": 6,
+"kind": "spot",
+"key": "en06/lab/spot1",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.22",
+"index": 0,
+"right": "What",
+"near": "Where",
+"seq": [
+"What",
+"size",
+"do",
+"you",
+"wear"
+],
+"i": 21,
+"kind": "spot",
+"key": "en06/lab/spot2",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.32",
+"index": 0,
+"right": "When",
+"near": "Where",
+"seq": [
+"When",
+"does",
+"your",
+"break",
+"start"
+],
+"i": 31,
+"kind": "spot",
+"key": "en06/lab/spot3",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"id": "06.46",
+"index": 2,
+"right": "do",
+"near": "does",
+"seq": [
+"How",
+"far",
+"do",
+"you",
+"walk",
+"each",
+"day"
+],
+"i": 45,
+"kind": "spot",
+"key": "en06/lab/spot4",
+"feedback": {
+"ru": "Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`.",
+"uk": "Спершу з’ясуй, чого саме не знаєш. «Хто перевіряє?» — `Who checks?`: саме `who` виконує дію. «Кому мені телефонувати?» — `Who do I call?`: підмет уже є, це `I`.",
+"en": "A question about the object usually keeps a helper. When `who` itself is the subject in a neutral question, use the ordinary verb instead: compare `Who checks the orders?` with `Who do I call?`."
+}
+},
+{
+"kind": "match",
+"key": "en06/lab/match1",
+"id": "06.02",
+"other": "06.01"
+},
+{
+"kind": "match",
+"key": "en06/lab/match2",
+"id": "06.17",
+"other": "06.16"
+},
+{
+"kind": "match",
+"key": "en06/lab/match3",
+"id": "06.33",
+"other": "06.34"
+},
+{
+"kind": "match",
+"key": "en06/lab/match4",
+"id": "06.46",
+"other": "06.43"
+},
+{
+"kind": "build",
+"key": "en06/lab/build1",
+"id": "06.04"
+},
+{
+"kind": "build",
+"key": "en06/lab/build2",
+"id": "06.15"
+},
+{
+"kind": "build",
+"key": "en06/lab/build3",
+"id": "06.29"
+},
+{
+"kind": "build",
+"key": "en06/lab/build4",
+"id": "06.42"
+},
+{
+"kind": "transform",
+"id": "06.33",
+"base": "06.28",
+"diff": [
+{
+"before": [
+"card"
+],
+"after": [
+"desk"
+]
+}
+],
+"key": "en06/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "06.26",
+"base": "06.13",
+"diff": [
+{
+"before": [
+"a",
+"ticket"
+],
+"after": [
+"delivery"
+]
+}
+],
+"key": "en06/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "06.44",
+"base": "06.36",
+"diff": [
+{
+"before": [
+"button",
+"do"
+],
+"after": [
+"word",
+"mean"
+]
+}
+],
+"key": "en06/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "06.19",
+"base": "06.11",
+"diff": [
+{
+"before": [
+"sign"
+],
+"after": [
+"get",
+"off"
+]
+}
+],
+"key": "en06/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+9
+],
+[
+3,
+13
+],
+[
+2,
+17
+],
+[
+10,
+16
+],
+[
+15,
+7
+],
+[
+11,
+18
+]
+],
+"worked": [
+"06.05",
+"06.18",
+"06.33",
+"06.48"
+],
+"reflection": [
+"06.01",
+"06.03"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

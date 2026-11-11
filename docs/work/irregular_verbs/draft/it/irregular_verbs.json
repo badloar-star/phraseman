@@ -30,11 +30,17 @@
         "lemma": "essere",
         "meaning": {
           "ru": "быть",
-          "uk": "бути"
+          "uk": "бути",
+          "en": "to be"
         },
         "forms": {
           "inf": "essere",
           "presente": "io sono / lui è",
+          "pp": "stato"
+        },
+        "train": {
+          "base": "essere",
+          "past": "sono",
           "pp": "stato"
         },
         "aux": "essere",
@@ -54,11 +60,17 @@
         "lemma": "avere",
         "meaning": {
           "ru": "иметь",
-          "uk": "мати"
+          "uk": "мати",
+          "en": "to have"
         },
         "forms": {
           "inf": "avere",
           "presente": "io ho / lui ha",
+          "pp": "avuto"
+        },
+        "train": {
+          "base": "avere",
+          "past": "ho",
           "pp": "avuto"
         },
         "aux": "avere",
@@ -76,11 +88,17 @@
         "lemma": "scegliere",
         "meaning": {
           "ru": "выбирать",
-          "uk": "вибирати"
+          "uk": "вибирати",
+          "en": "to choose"
         },
         "forms": {
           "inf": "scegliere",
           "presente": "io scelgo / lui sceglie",
+          "pp": "scelto"
+        },
+        "train": {
+          "base": "scegliere",
+          "past": "scelgo",
           "pp": "scelto"
         },
         "aux": "avere",
@@ -99,11 +117,17 @@
         "lemma": "piacere",
         "meaning": {
           "ru": "нравиться",
-          "uk": "подобатися"
+          "uk": "подобатися",
+          "en": "to please, to like"
         },
         "forms": {
           "inf": "piacere",
           "presente": "mi piace / mi piacciono",
+          "pp": "piaciuto"
+        },
+        "train": {
+          "base": "piacere",
+          "past": "piace",
           "pp": "piaciuto"
         },
         "aux": "essere",
@@ -122,11 +146,17 @@
         "lemma": "chiudere",
         "meaning": {
           "ru": "закрывать",
-          "uk": "зачиняти"
+          "uk": "зачиняти",
+          "en": "to close"
         },
         "forms": {
           "inf": "chiudere",
           "presente": "io chiudo / lui chiude",
+          "pp": "chiuso"
+        },
+        "train": {
+          "base": "chiudere",
+          "past": "chiudo",
           "pp": "chiuso"
         },
         "aux": "avere",
@@ -145,11 +175,17 @@
         "lemma": "stare",
         "meaning": {
           "ru": "находиться, чувствовать себя",
-          "uk": "перебувати, почуватися"
+          "uk": "перебувати, почуватися",
+          "en": "to stay, to feel"
         },
         "forms": {
           "inf": "stare",
           "presente": "io sto / lui sta",
+          "pp": "stato"
+        },
+        "train": {
+          "base": "stare",
+          "past": "sto",
           "pp": "stato"
         },
         "aux": "essere",
@@ -166,11 +202,17 @@
         "lemma": "aprire",
         "meaning": {
           "ru": "открывать",
-          "uk": "відчиняти"
+          "uk": "відчиняти",
+          "en": "to open"
         },
         "forms": {
           "inf": "aprire",
           "presente": "io apro / lui apre",
+          "pp": "aperto"
+        },
+        "train": {
+          "base": "aprire",
+          "past": "apro",
           "pp": "aperto"
         },
         "aux": "avere",
@@ -189,11 +231,17 @@
         "lemma": "prendere",
         "meaning": {
           "ru": "брать",
-          "uk": "брати"
+          "uk": "брати",
+          "en": "to take"
         },
         "forms": {
           "inf": "prendere",
           "presente": "io prendo / lui prende",
+          "pp": "preso"
+        },
+        "train": {
+          "base": "prendere",
+          "past": "prendo",
           "pp": "preso"
         },
         "aux": "avere",
@@ -210,11 +258,17 @@
         "lemma": "mettere",
         "meaning": {
           "ru": "класть, надевать",
-          "uk": "класти, одягати"
+          "uk": "класти, одягати",
+          "en": "to put, to put on"
         },
         "forms": {
           "inf": "mettere",
           "presente": "io metto / lui mette",
+          "pp": "messo"
+        },
+        "train": {
+          "base": "mettere",
+          "past": "metto",
           "pp": "messo"
         },
         "aux": "avere",
@@ -233,11 +287,17 @@
         "lemma": "andare",
         "meaning": {
           "ru": "идти, ехать",
-          "uk": "йти, їхати"
+          "uk": "йти, їхати",
+          "en": "to go"
         },
         "forms": {
           "inf": "andare",
           "presente": "io vado / lui va",
+          "pp": "andato"
+        },
+        "train": {
+          "base": "andare",
+          "past": "vado",
           "pp": "andato"
         },
         "aux": "essere",
@@ -257,11 +317,17 @@
         "lemma": "volere",
         "meaning": {
           "ru": "хотеть",
-          "uk": "хотіти"
+          "uk": "хотіти",
+          "en": "to want"
         },
         "forms": {
           "inf": "volere",
           "presente": "io voglio / lui vuole",
+          "pp": "voluto"
+        },
+        "train": {
+          "base": "volere",
+          "past": "voglio",
           "pp": "voluto"
         },
         "aux": "avere",
@@ -278,11 +344,17 @@
         "lemma": "bere",
         "meaning": {
           "ru": "пить",
-          "uk": "пити"
+          "uk": "пити",
+          "en": "to drink"
         },
         "forms": {
           "inf": "bere",
           "presente": "io bevo / lui beve",
+          "pp": "bevuto"
+        },
+        "train": {
+          "base": "bere",
+          "past": "bevo",
           "pp": "bevuto"
         },
         "aux": "avere",
@@ -300,11 +372,17 @@
         "lemma": "rimanere",
         "meaning": {
           "ru": "оставаться",
-          "uk": "залишатися"
+          "uk": "залишатися",
+          "en": "to remain"
         },
         "forms": {
           "inf": "rimanere",
           "presente": "io rimango / lui rimane",
+          "pp": "rimasto"
+        },
+        "train": {
+          "base": "rimanere",
+          "past": "rimango",
           "pp": "rimasto"
         },
         "aux": "essere",
@@ -323,11 +401,17 @@
         "lemma": "venire",
         "meaning": {
           "ru": "приходить",
-          "uk": "приходити"
+          "uk": "приходити",
+          "en": "to come"
         },
         "forms": {
           "inf": "venire",
           "presente": "io vengo / lui viene",
+          "pp": "venuto"
+        },
+        "train": {
+          "base": "venire",
+          "past": "vengo",
           "pp": "venuto"
         },
         "aux": "essere",
@@ -344,11 +428,17 @@
         "lemma": "potere",
         "meaning": {
           "ru": "мочь",
-          "uk": "могти"
+          "uk": "могти",
+          "en": "can, to be able"
         },
         "forms": {
           "inf": "potere",
           "presente": "io posso / lui può",
+          "pp": "potuto"
+        },
+        "train": {
+          "base": "potere",
+          "past": "posso",
           "pp": "potuto"
         },
         "aux": "avere",
@@ -366,11 +456,17 @@
         "lemma": "dovere",
         "meaning": {
           "ru": "быть должным",
-          "uk": "бути повинним"
+          "uk": "бути повинним",
+          "en": "must, to have to"
         },
         "forms": {
           "inf": "dovere",
           "presente": "io devo / lui deve",
+          "pp": "dovuto"
+        },
+        "train": {
+          "base": "dovere",
+          "past": "devo",
           "pp": "dovuto"
         },
         "aux": "avere",
@@ -388,11 +484,17 @@
         "lemma": "sapere",
         "meaning": {
           "ru": "знать, уметь",
-          "uk": "знати, вміти"
+          "uk": "знати, вміти",
+          "en": "to know (how)"
         },
         "forms": {
           "inf": "sapere",
           "presente": "io so / lui sa",
+          "pp": "saputo"
+        },
+        "train": {
+          "base": "sapere",
+          "past": "so",
           "pp": "saputo"
         },
         "aux": "avere",
@@ -409,11 +511,17 @@
         "lemma": "leggere",
         "meaning": {
           "ru": "читать",
-          "uk": "читати"
+          "uk": "читати",
+          "en": "to read"
         },
         "forms": {
           "inf": "leggere",
           "presente": "io leggo / lui legge",
+          "pp": "letto"
+        },
+        "train": {
+          "base": "leggere",
+          "past": "leggo",
           "pp": "letto"
         },
         "aux": "avere",
@@ -430,11 +538,17 @@
         "lemma": "perdere",
         "meaning": {
           "ru": "терять",
-          "uk": "губити"
+          "uk": "губити",
+          "en": "to lose"
         },
         "forms": {
           "inf": "perdere",
           "presente": "io perdo / lui perde",
+          "pp": "perso"
+        },
+        "train": {
+          "base": "perdere",
+          "past": "perdo",
           "pp": "perso"
         },
         "aux": "avere",
@@ -451,11 +565,17 @@
         "lemma": "rispondere",
         "meaning": {
           "ru": "отвечать",
-          "uk": "відповідати"
+          "uk": "відповідати",
+          "en": "to answer"
         },
         "forms": {
           "inf": "rispondere",
           "presente": "io rispondo / lui risponde",
+          "pp": "risposto"
+        },
+        "train": {
+          "base": "rispondere",
+          "past": "rispondo",
           "pp": "risposto"
         },
         "aux": "avere",
@@ -474,11 +594,17 @@
         "lemma": "scrivere",
         "meaning": {
           "ru": "писать",
-          "uk": "писати"
+          "uk": "писати",
+          "en": "to write"
         },
         "forms": {
           "inf": "scrivere",
           "presente": "io scrivo / lui scrive",
+          "pp": "scritto"
+        },
+        "train": {
+          "base": "scrivere",
+          "past": "scrivo",
           "pp": "scritto"
         },
         "aux": "avere",
@@ -497,11 +623,17 @@
         "lemma": "fare",
         "meaning": {
           "ru": "делать",
-          "uk": "робити"
+          "uk": "робити",
+          "en": "to do, to make"
         },
         "forms": {
           "inf": "fare",
           "presente": "io faccio / lui fa",
+          "pp": "fatto"
+        },
+        "train": {
+          "base": "fare",
+          "past": "faccio",
           "pp": "fatto"
         },
         "aux": "avere",
@@ -518,11 +650,17 @@
         "lemma": "tenere",
         "meaning": {
           "ru": "держать",
-          "uk": "тримати"
+          "uk": "тримати",
+          "en": "to hold"
         },
         "forms": {
           "inf": "tenere",
           "presente": "io tengo / lui tiene",
+          "pp": "tenuto"
+        },
+        "train": {
+          "base": "tenere",
+          "past": "tengo",
           "pp": "tenuto"
         },
         "aux": "avere",
@@ -541,11 +679,17 @@
         "lemma": "uscire",
         "meaning": {
           "ru": "выходить",
-          "uk": "виходити"
+          "uk": "виходити",
+          "en": "to go out"
         },
         "forms": {
           "inf": "uscire",
           "presente": "io esco / lui esce",
+          "pp": "uscito"
+        },
+        "train": {
+          "base": "uscire",
+          "past": "esco",
           "pp": "uscito"
         },
         "aux": "essere",
@@ -564,11 +708,17 @@
         "lemma": "dire",
         "meaning": {
           "ru": "говорить, сказать",
-          "uk": "казати"
+          "uk": "казати",
+          "en": "to say, to tell"
         },
         "forms": {
           "inf": "dire",
           "presente": "io dico / lui dice",
+          "pp": "detto"
+        },
+        "train": {
+          "base": "dire",
+          "past": "dico",
           "pp": "detto"
         },
         "aux": "avere",
@@ -585,11 +735,17 @@
         "lemma": "vedere",
         "meaning": {
           "ru": "видеть",
-          "uk": "бачити"
+          "uk": "бачити",
+          "en": "to see"
         },
         "forms": {
           "inf": "vedere",
           "presente": "io vedo / lui vede",
+          "pp": "visto"
+        },
+        "train": {
+          "base": "vedere",
+          "past": "vedo",
           "pp": "visto"
         },
         "aux": "avere",
@@ -608,11 +764,17 @@
         "lemma": "cadere",
         "meaning": {
           "ru": "падать",
-          "uk": "падати"
+          "uk": "падати",
+          "en": "to fall"
         },
         "forms": {
           "inf": "cadere",
           "presente": "io cado / lui cade",
+          "pp": "caduto"
+        },
+        "train": {
+          "base": "cadere",
+          "past": "cado",
           "pp": "caduto"
         },
         "aux": "essere",
@@ -629,11 +791,17 @@
         "lemma": "salire",
         "meaning": {
           "ru": "подниматься",
-          "uk": "підніматися"
+          "uk": "підніматися",
+          "en": "to go up, to get on"
         },
         "forms": {
           "inf": "salire",
           "presente": "io salgo / lui sale",
+          "pp": "salito"
+        },
+        "train": {
+          "base": "salire",
+          "past": "salgo",
           "pp": "salito"
         },
         "aux": "essere",
@@ -652,11 +820,17 @@
         "lemma": "conoscere",
         "meaning": {
           "ru": "знать (кого-то)",
-          "uk": "знати (когось)"
+          "uk": "знати (когось)",
+          "en": "to know (someone)"
         },
         "forms": {
           "inf": "conoscere",
           "presente": "io conosco / lui conosce",
+          "pp": "conosciuto"
+        },
+        "train": {
+          "base": "conoscere",
+          "past": "conosco",
           "pp": "conosciuto"
         },
         "aux": "avere",
@@ -673,11 +847,17 @@
         "lemma": "piovere",
         "meaning": {
           "ru": "идти (о дожде)",
-          "uk": "іти (про дощ)"
+          "uk": "іти (про дощ)",
+          "en": "to rain"
         },
         "forms": {
           "inf": "piovere",
           "presente": "piove",
+          "pp": "piovuto"
+        },
+        "train": {
+          "base": "piovere",
+          "past": "piove",
           "pp": "piovuto"
         },
         "aux": "essere",
@@ -696,11 +876,17 @@
         "lemma": "dare",
         "meaning": {
           "ru": "давать",
-          "uk": "давати"
+          "uk": "давати",
+          "en": "to give"
         },
         "forms": {
           "inf": "dare",
           "presente": "io do / lui dà",
+          "pp": "dato"
+        },
+        "train": {
+          "base": "dare",
+          "past": "do",
           "pp": "dato"
         },
         "aux": "avere",

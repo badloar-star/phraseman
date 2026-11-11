@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { createHash } = require('crypto');
 
 // Единственная публикуемая поверхность админки. Замороженные копии не могут
 // служить snapshot-источником для контрактов живого UI.
@@ -19,6 +20,8 @@ function readPreparedReplies() {
     shards: number;
     resolution: string;
     rewardGroup: string;
+    rewardBundle: { version: number; severity: string; coins: number };
+    uid?: string;
   }>;
 }
 
@@ -113,6 +116,36 @@ test('every row from the current replies.json batch is published exactly once in
     }));
   }
 
+});
+
+test('the 2026-11-10 ID-only dry-run batch is immutable and complete in the admin preview', () => {
+  const batch = readPreparedReplies().filter((row) =>
+    row.rewardGroup.startsWith('support-2026-11-10-'),
+  );
+
+  expect(batch).toHaveLength(22);
+  expect(new Set(batch.map((row) => row.reportId)).size).toBe(22);
+  for (const [index, row] of batch.entries()) {
+    expect(Object.prototype.hasOwnProperty.call(row, 'uid')).toBe(false);
+    expect(row.shards).toBe(0);
+    expect(row.rewardBundle).toEqual({ version: 2, severity: 'none', coins: 0 });
+    expect(row.rewardGroup).toBe(
+      `support-2026-11-10-r${String(index + 1).padStart(2, '0')}`,
+    );
+  }
+
+  const canonical = batch.map(({ reportId, title, body, resolution, rewardBundle }) => ({
+    reportId,
+    title,
+    body,
+    resolution,
+    rewardBundle,
+  }));
+  const digest = createHash('sha256')
+    .update(JSON.stringify(canonical), 'utf8')
+    .digest('hex')
+    .toUpperCase();
+  expect(digest).toBe('6824EF60A15CEF6A2C696EC382F02E601FBCA2CBD5222B97C4253D2A2C1CC798');
 });
 
 test('the published prepared replies contain readable UTF-8 text', () => {

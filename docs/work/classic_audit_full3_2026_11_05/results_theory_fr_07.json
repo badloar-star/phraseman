@@ -1,0 +1,107 @@
+[
+ {
+  "id": "lesson-15/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Чи не вставляй» — машинная ошибка; пропущено тире.",
+  "fix": "Порівняй `je vais à la gare` і `je vais partir`. У першому випадку після `vais` є місце, у другому — ще одна дія. Не вставляй між двома дієсловами `à`."
+ },
+ {
+  "id": "lesson-15/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«shows the face» — ошибка перевода, нужно «person».",
+  "fix": "It's `aller` that shows the person. If several people are involved, change `vais` to `allons` or `vont`, and keep the second verb in its dictionary form."
+ },
+ {
+  "id": "lesson-15/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "Пример `va tourner` / автобус не из курса и не из примеров главы (fr:15:11, 15:15, 15:20).",
+  "fix": "Второй глагол называет будущее действие. Настоящее время формы `va` само по себе не значит, что фильм уже идёт: `le film va commencer` указывает на предстоящее действие."
+ },
+ {
+  "id": "lesson-15/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "`va tourner` не з курсу; «На даний час форми `va` само по собі» — машинная ошибка.",
+  "fix": "Друге дієслово називає майбутню дію. Теперішній час форми `va` сам по собі не означає, що фільм уже йде: `le film va commencer` вказує на майбутню дію."
+ },
+ {
+  "id": "lesson-15/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "`va tourner` (bus) is not from the course examples.",
+  "fix": "The second verb names the future action. The present tense of `va` does not by itself mean the film is already on: `le film va commencer` points to an upcoming action."
+ },
+ {
+  "id": "lesson-15/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«Вони немає дієслова» — неграмматично.",
+  "fix": "Обставини часу можна поставити перед основою фрази. У них немає дієслова, тому `demain` не звільняє від вибору між `vais`, `vas`, `va`."
+ },
+ {
+  "id": "lesson-15/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«тому, що він останній» — дієслово среднего рода.",
+  "fix": "У знайомому запереченні `ne … pas` охоплює перше дієслово: `je ne vais pas sortir`. Не переноси `pas` за друге дієслово тільки тому, що воно останнє."
+ },
+ {
+  "id": "lesson-15/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "«force `pas` into the second verb» — смысл ru: «за второй глагол».",
+  "fix": "In the familiar negation, `ne … pas` surrounds the first verb: `je ne vais pas sortir`. Don't move `pas` after the second verb just because it comes last."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«Спілка» вместо «Сполучник» (машинная ошибка); «зверніть» — «ви» вместо «ти».",
+  "fix": "Перед доповненнями звертай увагу на займенники. Зразок `elle va nous envoyer` розрізняє того, хто надішле, і тих, кому надішлють. Сполучник і прийменник не замінюють займенник."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«Before adding additions» — бессмыслица.",
+  "fix": "Before the objects, pay attention to pronouns. The pattern `elle va nous envoyer` separates the one who sends from those it is sent to. A conjunction or preposition does not replace a pronoun."
+ },
+ {
+  "id": "lesson-15/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«залиш же план, але змінити день» — неграмматично.",
+  "fix": "Перевірка: залиш той самий план, але зміни день або виконавця. День змінює час, виконавець — форму `aller`. Не змінюй одразу і час, і дієслово, і предмет."
+ },
+ {
+  "id": "lesson-15/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«subject» вместо «object» (ru «предмет»); «performer» неестественно.",
+  "fix": "Check: keep the same plan but change the day or the person doing it. The day changes the time, the person changes the form of `aller`. Don't change the time, the verb and the object all at once."
+ },
+ {
+  "id": "lesson-16/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«із затвердження» — машинная ошибка (утверждение→ствердження).",
+  "fix": "У багатьох дієслів на `-er` у формі для одного знайомого немає кінцевого `s`: `ferme`. Не переноси сюди закінчення зі ствердження `tu fermes`."
+ },
+ {
+  "id": "lesson-16/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«число та обличчя» — нужно «особу».",
+  "fix": "Важливі форми потрібно запам'ятати цілком: `prends`, `prenez`. Слова ввічливості пом'якшують прохання, але не змінюють число та особу обраного наказового дієслова."
+ },
+ {
+  "id": "lesson-16/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Становище слів» — неверное слово, нужно «Порядок слів».",
+  "fix": "Для заборони постав `ne` або `n’` перед наказом і `pas` після. Порівняй просте прохання закрити і прохання не закривати. Порядок слів після дієслова залишається впізнаваним."
+ }
+]

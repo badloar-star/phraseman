@@ -1,0 +1,62 @@
+[
+  {"id": "it:07:46", "type": "B2", "field": "uk", "problem": "«куплю» — будущее время, а Compro — настоящее", "fix": "Я купую хліб."},
+
+  {"id": "it:08:05", "type": "B2", "field": "uk", "problem": "uk «ти» при ru «вы»; lavora = Lei (вы)", "fix": "Де ви працюєте?"},
+  {"id": "it:08:05", "type": "B1", "field": "tiles", "problem": "соблазн lavorate даёт верное «Dove lavorate?» = «Где вы работаете?»", "fix": {"position": 1, "replace_distractor": "lavorate", "with": "lavoro"}},
+  {"id": "it:08:05", "type": "B4", "field": "alternatives", "problem": "«Dove lavori?» — ты, а подсказка «вы»", "fix": {"add": [], "remove": ["Dove lavori?"]}},
+
+  {"id": "it:08:09", "type": "B2", "field": "uk", "problem": "uk «твій» при ru «ваш»; il suo = ваш (Lei)", "fix": "Де ваш готель?"},
+
+  {"id": "it:08:36", "type": "B2", "field": "uk", "problem": "arriveranno — будущее, uk в настоящем", "fix": "Скільки людей приїде?"},
+
+  {"id": "it:08:41", "type": "B2", "field": "ru", "problem": "partite = вы (voi), а в ru «ты»", "fix": "Почему вы так рано уходите?"},
+  {"id": "it:08:41", "type": "B2", "field": "uk", "problem": "partite = ви (voi), а в uk «ти»", "fix": "Чому ви так рано йдете?"},
+  {"id": "it:08:41", "type": "B1", "field": "tiles", "problem": "при подсказке «вы» соблазн parte даёт верное «Perché parte così presto?» (Lei)", "fix": {"position": 1, "replace_distractor": "parte", "with": "parto"}},
+
+  {"id": "it:08:42", "type": "B4", "field": "alternatives", "problem": "«Perché sei in ritardo?» — ты, а подсказка «вы»", "fix": {"add": [], "remove": ["Perché sei in ritardo?"]}},
+
+  {"id": "it:08:43", "type": "B4", "field": "alternatives", "problem": "«Come stai?» — ты, а подсказка «у вас»", "fix": {"add": [], "remove": ["Come stai?"]}},
+
+  {"id": "it:08:45", "type": "B2", "field": "uk", "problem": "uk «ти» при ru «вы»; torna = Lei", "fix": "Як ви доберетеся додому сьогодні ввечері?"},
+
+  {"id": "it:08:47", "type": "B2", "field": "uk", "problem": "uk «ти» при ru «вы»; prepara = Lei", "fix": "Що ви готуєте?"},
+  {"id": "it:08:47", "type": "B1", "field": "tiles", "problem": "соблазн preparate даёт верное «Che cosa preparate?» = «Что вы готовите?»", "fix": {"position": 2, "replace_distractor": "preparate", "with": "preparo"}},
+  {"id": "it:08:47", "type": "B4", "field": "alternatives", "problem": "«Che cosa prepari?» — ты, а подсказка «вы»", "fix": {"add": [], "remove": ["Che cosa prepari?"]}},
+
+  {"id": "it:09:23", "type": "B2", "field": "ru", "problem": "badge (it.) = пропуск/бейдж, а не «значок»", "fix": "Паоло ищет свой бейдж."},
+  {"id": "it:09:23", "type": "B2", "field": "uk", "problem": "badge (it.) = перепустка/бейдж, а не «значок»", "fix": "Паоло шукає свій бейдж."},
+
+  {"id": "it:09:24", "type": "B2", "field": "uk", "problem": "uk «візитівку» ≠ ru «карточку» (carta)", "fix": "Леа шукає свою картку."},
+
+  {"id": "it:09:29", "type": "B2", "field": "ru", "problem": "State … vostro = вы (voi), а в ru «ты»", "fix": "Вы берёте свой шлем."},
+  {"id": "it:09:29", "type": "B2", "field": "uk", "problem": "State … vostro = ви (voi), а в uk «ти»", "fix": "Ви берете свій шолом."},
+
+  {"id": "it:09:32", "type": "B2", "field": "ru", "problem": "Il tuo amico — мужской род, в ru «подруга приехала»", "fix": "Твой друг приехал."},
+  {"id": "it:09:32", "type": "B2", "field": "uk", "problem": "Il tuo amico — мужской род, в uk «подруга приїхала»", "fix": "Твій друг приїхав."},
+
+  {"id": "it:09:45", "type": "B4", "field": "alternatives", "problem": "«Tu metti…» — изъявительное «ты кладёшь», а подсказка — повелительное «Положи»", "fix": {"add": [], "remove": ["Tu metti i tuoi occhiali nella custodia."]}},
+
+  {"id": "it:09:49", "type": "B2", "field": "ru", "problem": "la sua chiave — один ключ, в ru «ключи»; потеряно «свой»", "fix": "Мой брат забыл свой ключ."},
+
+  {"id": "it:09:50", "type": "B2", "field": "uk", "problem": "uk «пакує свою сумку» ≠ le sue cose (свои вещи), расходится с ru", "fix": "Наша донька збирає свої речі."},
+
+  {"id": "it:10:17", "type": "B2", "field": "ru", "problem": "per te = для тебя, в ru «для вас»; расходится с uk", "fix": "Для тебя есть сообщение."},
+
+  {"id": "it:10:49", "type": "B2", "field": "ru", "problem": "davanti alla biglietteria = перед кассой, а не «в кассе»", "fix": "Перед билетной кассой очередь."},
+
+  {"id": "it:10:50", "type": "B2", "field": "ru", "problem": "proprio di fronte = прямо напротив; «перед кассой» выдумано", "fix": "Прямо напротив есть автобусная остановка."},
+  {"id": "it:10:50", "type": "B2", "field": "uk", "problem": "proprio di fronte = прямо навпроти; «перед автостанцією» выдумано", "fix": "Прямо навпроти є автобусна зупинка."},
+
+  {"id": "it:10:06", "type": "B3", "field": "alternatives", "problem": "ru/uk начинаются с места («Рядом с вокзалом…»), естественный порядок с местом в начале не засчитывается", "fix": {"add": ["Vicino alla stazione ferroviaria c’è un parco."], "remove": []}},
+  {"id": "it:10:07", "type": "B3", "field": "alternatives", "problem": "подсказка «На столе лежат книги» подталкивает к порядку с местом в начале", "fix": {"add": ["Sul tavolo ci sono dei libri."], "remove": []}},
+  {"id": "it:10:15", "type": "B3", "field": "alternatives", "problem": "подсказка «На кухне есть часы» подталкивает к порядку с местом в начале", "fix": {"add": ["In cucina c’è un orologio."], "remove": []}},
+  {"id": "it:10:19", "type": "B3", "field": "alternatives", "problem": "подсказка «Сзади есть сиденье» подталкивает к порядку с местом в начале", "fix": {"add": ["In fondo c’è un posto a sedere."], "remove": []}},
+  {"id": "it:10:20", "type": "B3", "field": "alternatives", "problem": "подсказка «В отеле есть лифт» подталкивает к порядку с местом в начале", "fix": {"add": ["In hotel c’è un ascensore."], "remove": []}},
+  {"id": "it:10:41", "type": "B3", "field": "alternatives", "problem": "подсказка «На углу есть пекарня» подталкивает к порядку с местом в начале", "fix": {"add": ["All’angolo c’è una panetteria."], "remove": []}},
+  {"id": "it:10:43", "type": "B3", "field": "alternatives", "problem": "подсказка «На стойке регистрации лежит пакет» подталкивает к порядку с местом в начале", "fix": {"add": ["Alla reception c’è un pacco."], "remove": []}},
+  {"id": "it:10:44", "type": "B3", "field": "alternatives", "problem": "подсказка «Перед музеем ведутся работы» подталкивает к порядку с местом в начале", "fix": {"add": ["Davanti al museo ci sono lavori in corso."], "remove": []}},
+  {"id": "it:10:45", "type": "B3", "field": "alternatives", "problem": "подсказка «На платформе есть свободные места» подталкивает к порядку с местом в начале", "fix": {"add": ["Sulla banchina ci sono dei posti liberi."], "remove": []}},
+  {"id": "it:10:46", "type": "B3", "field": "alternatives", "problem": "подсказка «В шкафу лежит одеяло» подталкивает к порядку с местом в начале", "fix": {"add": ["Nell’armadio c’è una coperta."], "remove": []}},
+  {"id": "it:10:47", "type": "B3", "field": "alternatives", "problem": "подсказка «На обороте карты есть номер» подталкивает к порядку с местом в начале", "fix": {"add": ["Sul retro della carta c’è un numero."], "remove": []}},
+  {"id": "it:10:49", "type": "B3", "field": "alternatives", "problem": "подсказка начинается с места, порядок с местом в начале не засчитывается", "fix": {"add": ["Davanti alla biglietteria c’è una fila."], "remove": []}}
+]

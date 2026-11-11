@@ -65,7 +65,7 @@
 "that",
 "much",
 "no",
-"for"
+"and"
 ]
 },
 {
@@ -114,8 +114,8 @@
 "this",
 "that",
 "every",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -378,9 +378,9 @@
 "distractors": [
 "this",
 "that",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -493,7 +493,7 @@
 "id": "en-classic-r1:03.24",
 "target": "The class starts at ten.",
 "ru": "Занятие начинается в десять.",
-"uk": "Заняття починаються о десятій.",
+"uk": "Заняття починається о десятій.",
 "tiles": [
 {
 "correct": "The",
@@ -501,8 +501,8 @@
 "this",
 "that",
 "these",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -532,7 +532,7 @@
 "on",
 "in",
 "after",
-"for"
+"with"
 ]
 },
 {
@@ -588,11 +588,11 @@
 {
 "correct": "phone",
 "distractors": [
-"take",
-"keep",
 "have",
 "is",
-"do"
+"do",
+"does",
+"has"
 ]
 }
 ],
@@ -663,8 +663,8 @@
 "this",
 "that",
 "much",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -726,7 +726,7 @@
 "that",
 "no",
 "these",
-"for"
+"and"
 ]
 },
 {
@@ -949,8 +949,8 @@
 "this",
 "that",
 "these",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1041,8 +1041,8 @@
 "which",
 "who",
 "what",
-"when",
-"why"
+"why",
+"how"
 ]
 },
 {
@@ -1098,11 +1098,11 @@
 {
 "correct": "When",
 "distractors": [
-"which",
-"who",
-"where",
-"how",
-"what"
+"if",
+"but",
+"while",
+"unless",
+"and"
 ]
 },
 {
@@ -1121,8 +1121,8 @@
 "that",
 "this",
 "these",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1158,11 +1158,11 @@
 {
 "correct": "Which",
 "distractors": [
-"when",
 "how",
 "who",
 "where",
-"why"
+"why",
+"the"
 ]
 },
 {
@@ -1240,9 +1240,9 @@
 "distractors": [
 "get",
 "gets",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1292,10 +1292,10 @@
 "correct": "not",
 "distractors": [
 "here",
-"still",
 "down",
-"back",
-"home"
+"home",
+"yes",
+"usually"
 ]
 },
 {
@@ -1378,8 +1378,8 @@
 "here",
 "alone",
 "home",
-"there",
-"back"
+"yes",
+"nearby"
 ]
 },
 {
@@ -1398,8 +1398,8 @@
 "this",
 "that",
 "no",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1416,10 +1416,10 @@
 "correct": "chair",
 "distractors": [
 "table",
-"shelf",
 "delivery",
 "seat",
-"desk"
+"desk",
+"bag"
 ]
 }
 ],
@@ -1440,10 +1440,10 @@
 "correct": "We",
 "distractors": [
 "I",
-"to",
 "she",
 "you",
-"he"
+"he",
+"they"
 ]
 },
 {
@@ -1461,9 +1461,9 @@
 "distractors": [
 "at",
 "near",
-"until",
 "for",
-"by"
+"by",
+"of"
 ]
 },
 {
@@ -1493,9 +1493,9 @@
 "distractors": [
 "I",
 "she",
-"me",
 "they",
-"we"
+"we",
+"you"
 ]
 },
 {
@@ -1523,9 +1523,9 @@
 "distractors": [
 "at",
 "by",
+"onto",
 "for",
-"of",
-"after"
+"of"
 ]
 },
 {
@@ -1593,9 +1593,9 @@
 "distractors": [
 "this",
 "that",
-"some",
-"with",
-"for"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1625,7 +1625,7 @@
 "that",
 "no",
 "every",
-"with"
+"and"
 ]
 },
 {
@@ -1671,11 +1671,11 @@
 {
 "correct": "clean",
 "distractors": [
-"cleaned",
 "know",
 "hear",
 "is",
-"do"
+"do",
+"have"
 ]
 },
 {
@@ -1754,8 +1754,8 @@
 "early",
 "today",
 "not",
-"yesterday",
-"late"
+"late",
+"here"
 ]
 }
 ],
@@ -1776,9 +1776,9 @@
 "distractors": [
 "home",
 "downstairs",
-"didn't",
 "roster",
-"here"
+"here",
+"upstairs"
 ]
 },
 {
@@ -1859,11 +1859,11 @@
 {
 "correct": "hear",
 "distractors": [
-"heard",
 "is",
-"made",
 "smoke",
-"are"
+"are",
+"am",
+"have"
 ]
 },
 {
@@ -1911,11 +1911,11 @@
 {
 "correct": "sit",
 "distractors": [
-"wrote",
 "take",
 "fixed",
 "wait",
-"is"
+"is",
+"have"
 ]
 },
 {
@@ -1965,7 +1965,7 @@
 "stop",
 "finish",
 "printed",
-"was"
+"are"
 ]
 },
 {
@@ -1984,8 +1984,8 @@
 "that",
 "this",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2044,8 +2044,8 @@
 "early",
 "advance",
 "today",
-"tomorrow",
-"not"
+"not",
+"soon"
 ]
 }
 ],
@@ -2065,9 +2065,9 @@
 "distractors": [
 "she",
 "we",
-"she'll",
 "I'm",
-"you"
+"you",
+"he"
 ]
 },
 {
@@ -2106,8 +2106,8 @@
 "this",
 "that",
 "much",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2158,8 +2158,8 @@
 "this",
 "that",
 "each",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2218,8 +2218,8 @@
 "this",
 "that",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2228,8 +2228,8 @@
 "form",
 "lunch",
 "valid",
-"busiest",
-"online"
+"online",
+"door"
 ]
 },
 {
@@ -2289,7 +2289,7 @@
 "that",
 "no",
 "each",
-"with"
+"and"
 ]
 },
 {
@@ -2338,8 +2338,8 @@
 "this",
 "that",
 "much",
-"with",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -2395,11 +2395,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"could",
 "should",
 "must",
-"cannot"
+"cannot",
+"may",
+"does"
 ]
 },
 {
@@ -2415,11 +2415,11 @@
 {
 "correct": "outside",
 "distractors": [
-"to",
-"at",
-"by",
-"on",
-"for"
+"home",
+"here",
+"there",
+"upstairs",
+"not"
 ]
 }
 ],
@@ -2441,7 +2441,7 @@
 "late",
 "yesterday",
 "today",
-"but"
+"and"
 ]
 },
 {
@@ -2457,11 +2457,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
 "don't",
 "doesn't",
-"could",
-"should"
+"should",
+"cannot",
+"must"
 ]
 },
 {
@@ -2519,7 +2519,7 @@
 "that",
 "each",
 "no",
-"but"
+"and"
 ]
 },
 {
@@ -2555,11 +2555,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
 "should",
 "must",
-"could",
-"cannot"
+"cannot",
+"may",
+"does"
 ]
 },
 {
@@ -2610,8 +2610,8 @@
 "this",
 "that",
 "much",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -2670,8 +2670,8 @@
 "this",
 "that",
 "these",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -2711,7 +2711,7 @@
 "that",
 "many",
 "any",
-"but"
+"and"
 ]
 },
 {
@@ -2760,8 +2760,8 @@
 "are",
 "was",
 "start",
-"looked",
-"am"
+"am",
+"be"
 ]
 },
 {
@@ -2897,11 +2897,11 @@
 {
 "correct": "than",
 "distractors": [
-"to",
-"of",
 "off",
-"on",
-"at"
+"up",
+"out",
+"not",
+"back"
 ]
 },
 {
@@ -2961,17 +2961,17 @@
 "spare",
 "door",
 "worked",
-"working"
+"bus"
 ]
 },
 {
 "correct": "desk",
 "distractors": [
-"table",
 "chair",
 "evening",
 "shelf",
-"road"
+"road",
+"seat"
 ]
 }
 ],
@@ -3011,7 +3011,7 @@
 "left",
 "out",
 "back",
-"on"
+"not"
 ]
 },
 {
@@ -3081,17 +3081,17 @@
 "lesson": 16,
 "id": "en-classic-r1:16.35",
 "target": "Can you look after my bag?",
-"ru": "Не могли бы вы присмотреть за моей сумкой?",
-"uk": "Ти можеш доглянути за моєю сумкою?",
+"ru": "Вы можете присмотреть за моей сумкой?",
+"uk": "Ви можете наглянути за моєю сумкою?",
 "tiles": [
 {
 "correct": "Can",
 "distractors": [
-"will",
 "cannot",
 "must",
 "should",
-"does"
+"train",
+"there's"
 ]
 },
 {
@@ -3324,8 +3324,8 @@
 "at",
 "in",
 "under",
-"for",
-"by"
+"into",
+"for"
 ]
 },
 {
@@ -3368,7 +3368,7 @@
 "id": "en-classic-r1:18.01",
 "target": "Come this way.",
 "ru": "Пройдите сюда.",
-"uk": "Сюди.",
+"uk": "Проходьте сюди.",
 "tiles": [
 {
 "correct": "Come",
@@ -3386,8 +3386,8 @@
 "the",
 "a",
 "an",
-"these",
-"no"
+"no",
+"much"
 ]
 },
 {
@@ -3408,7 +3408,7 @@
 "id": "en-classic-r1:18.06",
 "target": "Hold the handrail.",
 "ru": "Держитесь за поручень.",
-"uk": "Тримайтеся за поручні.",
+"uk": "Тримайтеся за поручень.",
 "tiles": [
 {
 "correct": "Hold",
@@ -3437,7 +3437,7 @@
 "desk",
 "path",
 "quarter",
-"bottle"
+"door"
 ]
 }
 ],
@@ -3534,10 +3534,10 @@
 "correct": "by",
 "distractors": [
 "to",
-"on",
 "in",
 "before",
-"for"
+"for",
+"of"
 ]
 },
 {
@@ -3677,7 +3677,7 @@
 "by",
 "for",
 "of",
-"with"
+"after"
 ]
 },
 {
@@ -3957,7 +3957,7 @@
 "anything",
 "repeat",
 "children's",
-"someone"
+"nobody"
 ]
 },
 {
@@ -4098,8 +4098,8 @@
 "made",
 "use",
 "saw",
-"asked",
-"is"
+"is",
+"have"
 ]
 },
 {
@@ -4239,7 +4239,7 @@
 "at",
 "on",
 "under",
-"above"
+"in"
 ]
 },
 {
@@ -4276,10 +4276,10 @@
 "correct": "off",
 "distractors": [
 "up",
-"in",
-"on",
 "than",
-"to"
+"left",
+"not",
+"back"
 ]
 }
 ],
@@ -4459,9 +4459,9 @@
 "distractors": [
 "at",
 "with",
-"outside",
 "after",
-"in"
+"in",
+"for"
 ]
 },
 {
@@ -4681,11 +4681,11 @@
 {
 "correct": "since",
 "distractors": [
-"to",
-"at",
-"on",
-"in",
-"after"
+"off",
+"than",
+"above",
+"as",
+"exit"
 ]
 },
 {
@@ -4775,9 +4775,9 @@
 "distractors": [
 "the",
 "which",
-"if",
 "how",
-"where"
+"where",
+"an"
 ]
 },
 {
@@ -4805,9 +4805,9 @@
 "distractors": [
 "how",
 "which",
-"when",
 "whose",
-"where"
+"where",
+"what"
 ]
 },
 {
@@ -4906,8 +4906,8 @@
 "to",
 "on",
 "in",
-"since",
-"across"
+"across",
+"for"
 ]
 },
 {
@@ -4923,11 +4923,11 @@
 {
 "correct": "phone",
 "distractors": [
-"take",
-"keep",
 "is",
 "told",
-"does"
+"does",
+"are",
+"do"
 ]
 }
 ],
@@ -4955,11 +4955,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"would",
-"could",
 "should",
-"cannot"
+"cannot",
+"must",
+"might",
+"may"
 ]
 },
 {
@@ -4978,8 +4978,8 @@
 "but",
 "when",
 "and",
-"without",
-"than"
+"while",
+"unless"
 ]
 },
 {
@@ -5039,11 +5039,11 @@
 {
 "correct": "Will",
 "distractors": [
-"can",
-"would",
-"could",
 "should",
-"might"
+"might",
+"cannot",
+"must",
+"may"
 ]
 },
 {
@@ -5071,9 +5071,9 @@
 "distractors": [
 "when",
 "but",
-"since",
-"after",
-"off"
+"while",
+"unless",
+"and"
 ]
 },
 {
@@ -5115,17 +5115,17 @@
 "lesson": 26,
 "id": "en-classic-r1:26.35",
 "target": "Will they charge us if we cancel today?",
-"ru": "Будет ли с нас взиматься плата, если мы отменим встречу сегодня?",
+"ru": "С нас возьмут плату, если мы отменим сегодня?",
 "uk": "Чи знімуть з нас плату, якщо ми скасуємо сьогодні?",
 "tiles": [
 {
 "correct": "Will",
 "distractors": [
-"can",
-"would",
 "cannot",
-"could",
-"should"
+"should",
+"must",
+"might",
+"may"
 ]
 },
 {
@@ -5163,9 +5163,9 @@
 "distractors": [
 "while",
 "but",
-"after",
 "when",
-"about"
+"unless",
+"and"
 ]
 },
 {
@@ -5241,11 +5241,11 @@
 {
 "correct": "was",
 "distractors": [
-"is",
-"are",
 "pay",
 "being",
-"am"
+"were",
+"be",
+"bag"
 ]
 },
 {
@@ -5284,10 +5284,10 @@
 "correct": "told",
 "distractors": [
 "tell",
-"is",
 "walk",
 "got",
-"have"
+"have",
+"do"
 ]
 },
 {
@@ -5313,11 +5313,11 @@
 {
 "correct": "was",
 "distractors": [
-"is",
-"are",
 "were",
 "being",
-"am"
+"be",
+"bag",
+"been"
 ]
 },
 {
@@ -5377,9 +5377,9 @@
 "distractors": [
 "says",
 "say",
-"is",
 "washing",
-"arrive"
+"arrive",
+"saying"
 ]
 },
 {
@@ -5395,21 +5395,21 @@
 {
 "correct": "would",
 "distractors": [
-"will",
-"can",
-"could",
 "should",
-"must"
+"must",
+"cannot",
+"might",
+"may"
 ]
 },
 {
 "correct": "send",
 "distractors": [
 "sent",
-"is",
 "sleep",
 "have",
-"are"
+"do",
+"has"
 ]
 },
 {
@@ -5552,18 +5552,18 @@
 "train",
 "phone",
 "dog",
-"person",
-"man"
+"bus",
+"work"
 ]
 },
 {
 "correct": "off",
 "distractors": [
 "up",
-"if",
 "than",
-"on",
-"to"
+"left",
+"not",
+"back"
 ]
 }
 ],
@@ -5778,7 +5778,7 @@
 "id": "en-classic-r1:29.27",
 "target": "I did not use to check the timetable.",
 "ru": "Я раньше не проверял расписание.",
-"uk": "Я не перевіряв розклад.",
+"uk": "Раніше я не перевіряв розклад.",
 "tiles": [
 {
 "correct": "I",
@@ -5817,7 +5817,7 @@
 "using",
 "report",
 "is",
-"slam"
+"was"
 ]
 },
 {
@@ -5825,9 +5825,9 @@
 "distractors": [
 "at",
 "of",
-"above",
 "in",
-"for"
+"for",
+"by"
 ]
 },
 {
@@ -5973,7 +5973,7 @@
 "id": "en-classic-r1:30.22",
 "target": "That is the desk where you collect your pass.",
 "ru": "Это стойка, где вы получаете свой пропуск.",
-"uk": "Це стійка, де ви отримуєте свій перепустку.",
+"uk": "Це стійка, де ви отримуєте свою перепустку.",
 "tiles": [
 {
 "correct": "That",
@@ -6008,11 +6008,11 @@
 {
 "correct": "desk",
 "distractors": [
-"table",
 "seat",
 "chair",
 "shelf",
-"bench"
+"bench",
+"work"
 ]
 },
 {
@@ -6022,7 +6022,7 @@
 "what",
 "which",
 "why",
-"when"
+"how"
 ]
 },
 {
@@ -6091,10 +6091,10 @@
 "correct": "that",
 "distractors": [
 "a",
-"if",
 "which",
 "an",
-"no"
+"no",
+"much"
 ]
 },
 {
@@ -6124,7 +6124,7 @@
 "which",
 "whose",
 "what",
-"when"
+"how"
 ]
 },
 {
@@ -6353,8 +6353,8 @@
 "if",
 "when",
 "because",
-"before",
-"than"
+"unless",
+"and"
 ]
 },
 {
@@ -6404,17 +6404,17 @@
 "lesson": 32,
 "id": "en-classic-r1:32.04",
 "target": "Can you tell me which gate I need?",
-"ru": "Подскажите, пожалуйста, какие ворота мне нужны?",
+"ru": "Вы можете подсказать, какой выход мне нужен?",
 "uk": "Чи можете ви сказати мені, який вихід мені потрібен?",
 "tiles": [
 {
 "correct": "Can",
 "distractors": [
-"will",
-"would",
 "must",
 "should",
-"cannot"
+"cannot",
+"might",
+"don't"
 ]
 },
 {
@@ -6453,8 +6453,8 @@
 "who",
 "whose",
 "whom",
-"when",
-"why"
+"why",
+"where"
 ]
 },
 {
@@ -6541,10 +6541,10 @@
 "correct": "on",
 "distractors": [
 "at",
-"since",
 "before",
 "for",
-"by"
+"by",
+"of"
 ]
 },
 {
@@ -6584,8 +6584,8 @@
 "lesson": 32,
 "id": "en-classic-r1:32.33",
 "target": "I saw the driver reverse the van into the garage.",
-"ru": "Я видела, как водитель задним ходом заехал в гараж.",
-"uk": "Я бачив, як водій заднім ходом заїхав на фургоні в гараж.",
+"ru": "Я видел, как водитель задним ходом загнал фургон в гараж.",
+"uk": "Я бачив, як водій заднім ходом загнав фургон у гараж.",
 "tiles": [
 {
 "correct": "I",

@@ -16,6 +16,11 @@ import { asSpireLang } from '../../components/spire/spire_home_week';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
 import { DebugLogger } from '../debug-logger';
 import { readMomentsV3Flag } from '../moments_v3_flag_read';
 import { getDevSpireWeekResultOverride } from '../dev_spire_tier';
@@ -31,11 +36,19 @@ export const SPIRE_WEEK_MOMENT_GRACE_MS = 60_000;
 
 export type SpireWeekMomentOutcome = 'promoted' | 'stayed' | 'demoted';
 
-export type SpireWeekMomentInput = Readonly<{ uiLang: string; studyTarget: string; tabEnabled: boolean; nowMs?: number }>;
+export type SpireWeekMomentInput = Readonly<{
+  uiLang: string;
+  studyTarget: string;
+  tabEnabled: boolean;
+  nowMs?: number;
+  /** Вызвавший код передаёт поколение, захваченное до отложенного запуска. */
+  accountToken?: AccountGenerationToken;
+}>;
 
 export type SpireWeekMomentShow = Readonly<{
   show: true;
   uid: string;
+  accountToken: AccountGenerationToken;
   lang: SpireLang;
   weekId: string;
   outcome: SpireWeekMomentOutcome;
@@ -55,7 +68,7 @@ export function spireIsRepeatPromotion(result: Pick<SpireWeekResultView, 'promot
 
 export type SpireWeekMomentSkipReason =
   | 'flag_off' | 'tab_off' | 'ui_lang' | 'study_lang' | 'no_uid' | 'week_not_closed' | 'already_shown'
-  | 'in_progress' | 'gate_closed' | 'no_result' | 'failed';
+  | 'in_progress' | 'gate_closed' | 'no_result' | 'account_changed' | 'failed';
 
 export type SpireWeekMomentDecision = SpireWeekMomentShow | Readonly<{ show: false; reason: SpireWeekMomentSkipReason }>;
 
@@ -100,9 +113,14 @@ let inFlightKey: string | null = null;
 
 /** Решить, показывать ли окно итога недели сейчас. Ничего не помечает — отметка ставится при реальном показе. */
 export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promise<SpireWeekMomentDecision> {
+  const accountToken = input.accountToken ?? captureAccountGeneration();
+  const accountOwner = accountToken.stableId?.trim() || null;
+  const accountIsCurrent = (): boolean => Boolean(accountOwner && isCurrentAccountGeneration(accountToken, accountOwner));
   const nowMs = input.nowMs ?? Date.now();
   log(`вход ui=${input.uiLang} study=${input.studyTarget} tab=${String(input.tabEnabled)} now=${new Date(nowMs).toISOString()}`);
+  if (!accountIsCurrent()) { log('не показываем: нет активного поколения аккаунта'); return { show: false, reason: 'no_uid' }; }
   if (!(await readMomentsFlag())) { log('не показываем: флаг moments_v3 выключен'); return { show: false, reason: 'flag_off' }; }
+  if (!accountIsCurrent()) { log('не показываем: аккаунт сменился при чтении флага'); return { show: false, reason: 'account_changed' }; }
   if (!input.tabEnabled) { log('не показываем: вкладка Пика выключена (spire_tab_enabled)'); return { show: false, reason: 'tab_off' }; }
   const ui = spireUiLangDecision(input.uiLang);
   if (!ui.allowed) { log(`не показываем: язык интерфейса ${input.uiLang} — Пика нет (${ui.reason})`); return { show: false, reason: 'ui_lang' }; }
@@ -111,6 +129,7 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
   const { getCanonicalUserId } = await import('../user_id_policy');
   const uid = await getCanonicalUserId();
   if (!uid) { log('не показываем: нет uid'); return { show: false, reason: 'no_uid' }; }
+  if (!accountIsCurrent() || uid !== accountOwner) { log('не показываем: uid/поколение аккаунта сменились'); return { show: false, reason: 'account_changed' }; }
   // зачем (координатор 15.10, сценарий Сверки моментов v3): итог недели с сервера бывает раз в неделю — на эмуляторе окно D191 не вызвать.
   // dev_state?spireWeek=up|stay|down|top|marble|obsidian подставляет готовый итог макета: без сети, без проверки времени. Только dev-сборка —
   // в стор-сборке getDevSpireWeekResultOverride() всегда null, ветка мёртвая. Флаг, вкладка и языки выше проверяются как в бою.
@@ -118,23 +137,27 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
   if (devResult) {
     const devOutcome = spireWeekMomentOutcome(devResult);
     log(`ПОКАЗЫВАЕМ (dev spireWeek): outcome=${devOutcome} tier ${devResult.prevTier}→${devResult.newTier} место=${devResult.roomRank}/${devResult.roomTotal}`);
-    return { show: true, uid, lang, weekId: devResult.weekId, outcome: devOutcome, result: devResult, isRepeatPromotion: spireIsRepeatPromotion(devResult) };
+    return { show: true, uid, accountToken, lang, weekId: devResult.weekId, outcome: devOutcome, result: devResult, isRepeatPromotion: spireIsRepeatPromotion(devResult) };
   }
   const shownWeek = await readShownWeek(uid, lang);
+  if (!accountIsCurrent()) { log('не показываем: аккаунт сменился при чтении отметки'); return { show: false, reason: 'account_changed' }; }
   const timing = decideSpireWeekMomentTiming(nowMs, shownWeek);
   if (!timing.ok) {
     log(`не показываем: ${timing.reason} weekId=${timing.weekId} отмечено=${shownWeek ?? '—'} сЗакрытия=${nowMs - spireWeekStartMs(nowMs)}мс`);
     return { show: false, reason: timing.reason };
   }
-  const flightKey = `${uid}:${lang}:${timing.weekId}`;
+  const flightKey = `${uid}:${accountToken.generation}:${lang}:${timing.weekId}`;
   if (inFlightKey === flightKey) { log(`не показываем: решение по ${timing.weekId} уже идёт в этом запуске`); return { show: false, reason: 'in_progress' }; }
   inFlightKey = flightKey;
   try {
     const configClient = await import('../spire_config_client');
+    if (!accountIsCurrent()) { log('не показываем: аккаунт сменился при загрузке конфигурации'); return { show: false, reason: 'account_changed' }; }
     const warmed = await configClient.warmSpireConfigFromDisk();
+    if (!accountIsCurrent()) { log('не показываем: аккаунт сменился при прогреве конфигурации'); return { show: false, reason: 'account_changed' }; }
     const gate = spireOpenLiveGate(configClient.peekSpireConfig(), 'home_week_moment');
     if (!gate) { log(`не показываем: ворота Пика закрыты (конфиг ${String(warmed)})`); return { show: false, reason: 'gate_closed' }; }
-    const result = await spireLoadWeekResult(gate, { uid, lang }, { markShown: false, where: 'home_week_moment' });
+    const result = await spireLoadWeekResult(gate, { uid, lang }, { markShown: false, where: 'home_week_moment', accountToken });
+    if (!accountIsCurrent()) { log('не показываем: аккаунт сменился при чтении итога'); return { show: false, reason: 'account_changed' }; }
     if (!result) {
       log(`не показываем: итога ${timing.weekId} нет (не играл / крон ещё не подвёл / уже видел карточку в Пике) lang=${lang}`);
       return { show: false, reason: 'no_result' };
@@ -142,27 +165,35 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
     const outcome = spireWeekMomentOutcome(result);
     const isRepeatPromotion = spireIsRepeatPromotion(result);
     log(`ПОКАЗЫВАЕМ: weekId=${result.weekId} lang=${lang} outcome=${outcome} tier ${result.prevTier}→${result.newTier} место=${result.roomRank}/${result.roomTotal} повторное=${String(isRepeatPromotion)}`);
-    return { show: true, uid, lang, weekId: result.weekId, outcome, result, isRepeatPromotion };
+    return { show: true, uid, accountToken, lang, weekId: result.weekId, outcome, result, isRepeatPromotion };
   } catch (error) {
     log(`не показываем: сбой (${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)})`);
     return { show: false, reason: 'failed' };
   } finally {
-    inFlightKey = null;
+    if (inFlightKey === flightKey) inFlightKey = null;
   }
 }
 
 /** Окно реально получило слот: больше на этой неделе не показываем; история итога недели ложится в сторис непросмотренной. */
 export async function markSpireWeekMomentShown(decision: SpireWeekMomentShow): Promise<void> {
+  if (!isCurrentAccountGeneration(decision.accountToken, decision.uid)) {
+    log(`не отмечаем показ: поколение ${decision.accountToken.generation} уже не текущее`);
+    return;
+  }
   try {
     await AsyncStorage.setItem(shownKeyOf(decision.uid, decision.lang), decision.weekId);
     log(`показано: отметка ${decision.weekId} lang=${decision.lang} записана`);
   } catch (error) {
     log(`показано, но отметка не записалась (${String(error).slice(0, 120)}) — при следующем открытии окно может повториться`);
   }
+  if (!isCurrentAccountGeneration(decision.accountToken, decision.uid)) {
+    log('не пишем историю показа: аккаунт сменился во время отметки');
+    return;
+  }
   // зачем (координатор 15.10, R21): раньше окно D191 помечало историю просмотренной — итог недели (понедельник 19.10) не зажигал
   // кольцо. Теперь окно и кольцо независимы: пишем историю как обычный факт (повтор уже записанного — тихий дубль).
   log(`показано: история итога недели ${decision.weekId} → сторис непросмотренной`);
-  void recordSpireWeekStory(decision.result);
+  void recordSpireWeekStory(decision.result, decision.accountToken);
 }
 
 export function __resetSpireWeekMomentGateForTests(): void {

@@ -1,0 +1,20 @@
+[
+{"id": "it:04:35", "type": "B2", "field": "uk", "problem": "target suo (Lei, вежливое «Ваша»), ru «Ваша», а uk «Твоя» (ти); вдобавок соблазн «tuo» даёт верную фразу под uk", "fix": "Ваша черга."},
+{"id": "it:05:31", "type": "B4", "field": "alternatives", "problem": "«Hai una penna?» — форма ты, а ru/uk «у вас»: допустимый ответ меняет лицо", "fix": {"add": [], "remove": ["Hai una penna?"]}},
+{"id": "it:05:39", "type": "B2", "field": "uk", "problem": "uk добавляет «із собою», которого нет в target и ru", "fix": "У Леа є зворотний квиток?"},
+{"id": "it:08:05", "type": "B2", "field": "uk", "problem": "target lavora (Lei, «вы»), ru «вы», а uk «ти»", "fix": "Де ви працюєте?"},
+{"id": "it:08:05", "type": "B1", "field": "tiles", "problem": "соблазн «lavorate» даёт «Dove lavorate?» = «Где вы работаете?» — верно под ru, нет в alternatives", "fix": {"position": 1, "replace_distractor": "lavorate", "with": "lavoro"}},
+{"id": "it:08:05", "type": "B4", "field": "alternatives", "problem": "«Dove lavori?» — форма ты при подсказке «вы» (после исправления uk)", "fix": {"add": [], "remove": ["Dove lavori?"]}},
+{"id": "it:12:30", "type": "B1", "field": "tiles", "problem": "соблазн «C’è» даёт естественную «C’è rimasta dell’acqua fresca.» = «Осталось немного свежей воды»", "fix": {"position": 0, "replace_distractor": "C’è", "with": "Sei"}},
+{"id": "it:14:35", "type": "B2", "field": "uk", "problem": "ru «Вам нельзя» (адресат Lei), uk безличное «Не можна» — потерян адресат", "fix": "Вам не можна торкатися цієї кнопки."},
+{"id": "it:14:35", "type": "B4", "field": "alternatives", "problem": "«Non devi toccare…» — форма ты при подсказке «Вам»", "fix": {"add": [], "remove": ["Non devi toccare quel pulsante."]}},
+{"id": "it:20:37", "type": "B2", "field": "uk", "problem": "target tua (ты), ru «твоя», uk «ваша»", "fix": "Де працювала твоя мама?"},
+{"id": "it:22:05", "type": "B2", "field": "uk", "problem": "target conosci (tu), ru «Ты», uk «Ви знаєте»", "fix": "Ти її знаєш."},
+{"id": "it:22:48", "type": "B2", "field": "uk", "problem": "«Посилання» = ссылка (ложный друг), нужна «посилка»", "fix": "Посилку ми забираємо у віконці видачі."},
+{"id": "it:25:03", "type": "B2", "field": "uk", "problem": "«Ти бери» — повелительное/неграмматично, target — настоящее время «prendi»", "fix": "Ти береш один."},
+{"id": "it:31:30", "type": "B2", "field": "ru", "problem": "род адресата расходится: ru «обещала», uk «обіцяв»", "fix": "Ты обещал проверить табличку."},
+{"id": "it:31:35", "type": "B2", "field": "uk", "problem": "потеряно «già» (вже), которое есть в ru", "fix": "Коли прийшов листоноша, Леа вже пішла на роботу."},
+{"id": "it:32:42", "type": "B2", "field": "ru", "problem": "gli = ему, а ru «ей» (под «ей» к тому же верен соблазн «le»)", "fix": "На твоём месте я бы написал ему."},
+{"id": "it:32:42", "type": "B2", "field": "uk", "problem": "gli = йому, а uk «їй»", "fix": "Якби я був на твоєму місці, я б написав йому."},
+{"id": "it:32:13", "type": "B2", "field": "uk", "problem": "«я б ним сів» неграмматично", "fix": "Якби автобус приїжджав раніше, я б на нього сів."}
+]

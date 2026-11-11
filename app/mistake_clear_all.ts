@@ -11,7 +11,7 @@
  * последнего события (+1 мс) — часы второго телефона, убежавшие вперёд, не воскресят её. Новая ошибка после очистки — событие
  * 'captured' позже по времени, и проекция возвращает её в активные как обычно.
  */
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import type { MistakeEvent, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import { loadMistakeEventJournal, mergeMistakeEvents, type MistakePracticeStorage } from './mistake_practice_store';

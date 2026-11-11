@@ -1,0 +1,8 @@
+[
+  {"id": "es:04:32", "type": "B2", "field": "ru", "problem": "Род говорящего: ru мужской («тот самый врач»), uk и target женский («та сама лікарка», la médica)", "fix": "Я та самая врач."},
+  {"id": "es:04:35", "type": "B1", "field": "tiles", "problem": "Соблазн «un» даёт «Soy un guía» — верная фраза для ru «Я гид» (род в ru не указан), её нет в alternatives", "fix": {"position": 1, "replace_distractor": "un", "with": "mi"}},
+  {"id": "es:04:35", "type": "B2", "field": "ru", "problem": "Потерян смысл определённого артикля (la guía = «та самая/и есть»), в соседних записях он передаётся", "fix": "Я и есть гид."},
+  {"id": "es:04:35", "type": "B2", "field": "uk", "problem": "Потерян смысл определённого артикля (la guía), как и в ru", "fix": "Я і є гідеса."},
+  {"id": "es:05:27", "type": "B1", "field": "tiles", "problem": "Соблазн «la» даёт «¿Quién es la guía?» — ru «Кто у нас гид?» род не различает, ответ верный, но не засчитают", "fix": {"position": 2, "replace_distractor": "la", "with": "mis"}},
+  {"id": "es:06:45", "type": "B1", "field": "tiles", "problem": "Соблазн «La» даёт «La guía está en el hotel.» — для ru «Гид в отеле» это тоже верно (ru в 06:46 точно такой же), не засчитают", "fix": {"position": 0, "replace_distractor": "La", "with": "Las"}}
+]

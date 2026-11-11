@@ -1,0 +1,682 @@
+[
+{
+"lesson": 21,
+"blocks": [
+{
+"textEN": "Start with two messages: “I’m staying here” and “I’m tired”. «weil» (“because”) turns the second into the reason for the first. The tiredness hasn’t changed. The word order has: «ich bin müde» becomes «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nI'm staying here because I'm tired.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"textES": "Parte de dos mensajes: «me quedo aquí» y «estoy cansado». «weil» («porque») convierte el segundo en motivo del primero. El cansancio no cambia; el orden sí: «ich bin müde» pasa a «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nMe quedo aquí porque estoy cansado.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"textId": "Mulai dari dua pesan: “aku tetap di sini” dan “aku lelah”. «weil» (karena) menjadikan pesan kedua alasan untuk yang pertama. Keadaannya sama, urutannya berbeda: «ich bin müde» menjadi «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nSaya tinggal di sini karena saya lelah.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"textPl": "Zacznij od dwóch wiadomości: „zostaję tutaj” oraz „jestem zmęczony”. «weil» („bo”) sprawia, że druga staje się powodem pierwszej. Stan się nie zmienia, lecz szyk tak: «ich bin müde» przechodzi w «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nZostaję tutaj, bo jestem zmęczony.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"textPtBr": "Comece com duas mensagens: “vou ficar aqui” e “estou cansado”. «weil» (“porque”) transforma a segunda no motivo da primeira. O cansaço é o mesmo; a ordem muda: «ich bin müde» vira «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nEstou ficando aqui porque estou cansado.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"textRU": "Есть два отдельных сообщения: «Я остаюсь здесь» и «Я устал». Слово «weil» («потому что») делает второе причиной первого. Самочувствие то же, но внутри причины связка меняет место: «ich bin müde» превращается в «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nЯ останусь здесь, потому что устал.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"textTr": "İki ayrı mesaj düşün: “burada kalıyorum” ve “yorgunum”. «weil» (çünkü) ikinci mesajı ilkinin gerekçesi yapar. Yorgunluk aynı, sıra farklıdır: «ich bin müde» yerine «weil ich müde bin» gelir.\n\nIch bleibe hier, weil ich müde bin.\n\nYorgun olduğum için burada kalıyorum.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"textUK": "Є два повідомлення: «Я залишаюся тут» і «Я втомився». «weil» («тому що») робить друге причиною першого. Стан той самий, але зв’язка змінює місце: «ich bin müde» стає «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nЯ залишусь тут, бо втомився.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"textVi": "Bắt đầu với hai ý: “tôi ở lại đây” và “tôi mệt”. «weil» (vì) biến ý thứ hai thành lý do của ý thứ nhất. Trạng thái không đổi, nhưng thứ tự thay đổi: «ich bin müde» thành «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nTôi ở lại đây vì tôi mệt.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Start with two messages: “I’m staying here” and “I’m tired”. «weil» (“because”) turns the second into the reason for the first. The tiredness hasn’t changed. The word order has: «ich bin müde» becomes «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nI'm staying here because I'm tired.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"es": "Parte de dos mensajes: «me quedo aquí» y «estoy cansado». «weil» («porque») convierte el segundo en motivo del primero. El cansancio no cambia; el orden sí: «ich bin müde» pasa a «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nMe quedo aquí porque estoy cansado.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"id": "Mulai dari dua pesan: “aku tetap di sini” dan “aku lelah”. «weil» (karena) menjadikan pesan kedua alasan untuk yang pertama. Keadaannya sama, urutannya berbeda: «ich bin müde» menjadi «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nSaya tinggal di sini karena saya lelah.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"pl": "Zacznij od dwóch wiadomości: „zostaję tutaj” oraz „jestem zmęczony”. «weil» („bo”) sprawia, że druga staje się powodem pierwszej. Stan się nie zmienia, lecz szyk tak: «ich bin müde» przechodzi w «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nZostaję tutaj, bo jestem zmęczony.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"pt-BR": "Comece com duas mensagens: “vou ficar aqui” e “estou cansado”. «weil» (“porque”) transforma a segunda no motivo da primeira. O cansaço é o mesmo; a ordem muda: «ich bin müde» vira «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nEstou ficando aqui porque estou cansado.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"ru": "Есть два отдельных сообщения: «Я остаюсь здесь» и «Я устал». Слово «weil» («потому что») делает второе причиной первого. Самочувствие то же, но внутри причины связка меняет место: «ich bin müde» превращается в «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nЯ останусь здесь, потому что устал.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"tr": "İki ayrı mesaj düşün: “burada kalıyorum” ve “yorgunum”. «weil» (çünkü) ikinci mesajı ilkinin gerekçesi yapar. Yorgunluk aynı, sıra farklıdır: «ich bin müde» yerine «weil ich müde bin» gelir.\n\nIch bleibe hier, weil ich müde bin.\n\nYorgun olduğum için burada kalıyorum.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"uk": "Є два повідомлення: «Я залишаюся тут» і «Я втомився». «weil» («тому що») робить друге причиною першого. Стан той самий, але зв’язка змінює місце: «ich bin müde» стає «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nЯ залишусь тут, бо втомився.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"vi": "Bắt đầu với hai ý: “tôi ở lại đây” và “tôi mệt”. «weil» (vì) biến ý thứ hai thành lý do của ý thứ nhất. Trạng thái không đổi, nhưng thứ tự thay đổi: «ich bin müde» thành «weil ich müde bin».\n\nIch bleibe hier, weil ich müde bin.\n\nTôi ở lại đây vì tôi mệt.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần."
+},
+"kind": "concept",
+"exampleIds": [
+"de:21:01"
+]
+},
+{
+"textEN": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nI am tired.\n\nIch bleibe hier, weil ich müde bin.\n\nI'm staying here because I'm tired.\n\nRead the reason on its own first: «Ich bin müde.» After «weil» the person is still «ich», but in the written model «bin» now comes after «müde». The main message keeps its usual order.",
+"textES": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nEstoy cansado.\n\nIch bleibe hier, weil ich müde bin.\n\nMe quedo aquí porque estoy cansado.\n\nLee primero solo la razón: «Ich bin müde.» Tras «weil», la persona sigue siendo «ich», pero en este modelo escrito «bin» va después de «müde». La parte principal conserva su orden.",
+"textId": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nSaya lelah.\n\nIch bleibe hier, weil ich müde bin.\n\nSaya tinggal di sini karena saya lelah.\n\nBaca alasannya sendiri: «Ich bin müde.» Sesudah «weil» orangnya tetap «ich», tetapi pada contoh tertulis ini «bin» berada setelah «müde». Bagian utama tetap berurutan biasa.",
+"textPl": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch bleibe hier, weil ich müde bin.\n\nZostaję tutaj, bo jestem zmęczony.\n\nPrzeczytaj sam powód: «Ich bin müde.» Po «weil» osobą nadal jest «ich», lecz w tym pisanym wzorze «bin» trafia po «müde». Część główna zachowuje zwykły szyk.",
+"textPtBr": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch bleibe hier, weil ich müde bin.\n\nEstou ficando aqui porque estou cansado.\n\nLeia a razão sozinha: «Ich bin müde.» Depois de «weil», a pessoa continua «ich», mas no modelo escrito «bin» vem após «müde». A parte principal mantém a ordem comum.",
+"textRU": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nЯ устал.\n\nIch bleibe hier, weil ich müde bin.\n\nЯ останусь здесь, потому что устал.\n\nСначала прочти только причину. В отдельном сообщении «Ich bin müde.» После «weil» говорящий остаётся «ich», но для нашего письменного образца «bin» ставится после «müde». В главном сообщении порядок обычный.",
+"textTr": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nBen yorgunum.\n\nIch bleibe hier, weil ich müde bin.\n\nYorgun olduğum için burada kalıyorum.\n\nGerekçeyi tek başına oku: «Ich bin müde.» «weil» sonrasında kişi yine «ich», ancak bu yazı dili örneğinde «bin», «müde» sonrasına gider. Ana bölüm normal sırayı korur.",
+"textUK": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nЯ втомився.\n\nIch bleibe hier, weil ich müde bin.\n\nЯ залишусь тут, бо втомився.\n\nПрочитай лише причину. Окремо — «Ich bin müde.» Після «weil» особа лишається «ich», але в нашому письмовому зразку «bin» стоїть після «müde». У головній частині звичайний порядок.",
+"textVi": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch bleibe hier, weil ich müde bin.\n\nTôi ở lại đây vì tôi mệt.\n\nĐọc riêng lý do: «Ich bin müde.» Sau «weil» người nói vẫn là «ich», nhưng trong mẫu viết này «bin» nằm sau «müde». Phần chính giữ thứ tự thông thường.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nI am tired.\n\nIch bleibe hier, weil ich müde bin.\n\nI'm staying here because I'm tired.\n\nRead the reason on its own first: «Ich bin müde.» After «weil» the person is still «ich», but in the written model «bin» now comes after «müde». The main message keeps its usual order.",
+"es": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nEstoy cansado.\n\nIch bleibe hier, weil ich müde bin.\n\nMe quedo aquí porque estoy cansado.\n\nLee primero solo la razón: «Ich bin müde.» Tras «weil», la persona sigue siendo «ich», pero en este modelo escrito «bin» va después de «müde». La parte principal conserva su orden.",
+"id": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nSaya lelah.\n\nIch bleibe hier, weil ich müde bin.\n\nSaya tinggal di sini karena saya lelah.\n\nBaca alasannya sendiri: «Ich bin müde.» Sesudah «weil» orangnya tetap «ich», tetapi pada contoh tertulis ini «bin» berada setelah «müde». Bagian utama tetap berurutan biasa.",
+"pl": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nJestem zmęczony.\n\nIch bleibe hier, weil ich müde bin.\n\nZostaję tutaj, bo jestem zmęczony.\n\nPrzeczytaj sam powód: «Ich bin müde.» Po «weil» osobą nadal jest «ich», lecz w tym pisanym wzorze «bin» trafia po «müde». Część główna zachowuje zwykły szyk.",
+"pt-BR": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nEu estou cansado(a).\n\nIch bleibe hier, weil ich müde bin.\n\nEstou ficando aqui porque estou cansado.\n\nLeia a razão sozinha: «Ich bin müde.» Depois de «weil», a pessoa continua «ich», mas no modelo escrito «bin» vem após «müde». A parte principal mantém a ordem comum.",
+"ru": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nЯ устал.\n\nIch bleibe hier, weil ich müde bin.\n\nЯ останусь здесь, потому что устал.\n\nСначала прочти только причину. В отдельном сообщении «Ich bin müde.» После «weil» говорящий остаётся «ich», но для нашего письменного образца «bin» ставится после «müde». В главном сообщении порядок обычный.",
+"tr": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nBen yorgunum.\n\nIch bleibe hier, weil ich müde bin.\n\nYorgun olduğum için burada kalıyorum.\n\nGerekçeyi tek başına oku: «Ich bin müde.» «weil» sonrasında kişi yine «ich», ancak bu yazı dili örneğinde «bin», «müde» sonrasına gider. Ana bölüm normal sırayı korur.",
+"uk": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nЯ втомився.\n\nIch bleibe hier, weil ich müde bin.\n\nЯ залишусь тут, бо втомився.\n\nПрочитай лише причину. Окремо — «Ich bin müde.» Після «weil» особа лишається «ich», але в нашому письмовому зразку «bin» стоїть після «müde». У головній частині звичайний порядок.",
+"vi": "«weil» + … + «ist» / «muss»\n\nIch bin müde.\n\nTôi mệt rồi.\n\nIch bleibe hier, weil ich müde bin.\n\nTôi ở lại đây vì tôi mệt.\n\nĐọc riêng lý do: «Ich bin müde.» Sau «weil» người nói vẫn là «ich», nhưng trong mẫu viết này «bin» nằm sau «müde». Phần chính giữ thứ tự thông thường."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:04",
+"de:21:01"
+]
+},
+{
+"textEN": "I'm staying here because I'm tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich bleibe» — I am staying: give the decision first.\n\n2. «hier» — Here: the answer to “where?”.\n\n3. «weil» — Because: begins the reason.\n\n4. «ich müde bin» — I’m tired. After weil the order is person → state → form of sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textES": "Me quedo aquí porque estoy cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich bleibe» — Me quedo: empieza por la decisión.\n\n2. «hier» — Aquí: responde a «¿dónde?».\n\n3. «weil» — Porque: introduce la razón.\n\n4. «ich müde bin» — Estoy cansado. Tras weil: persona → estado → forma de sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textId": "Saya tinggal di sini karena saya lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich bleibe» — Aku tetap tinggal: sebut keputusan dahulu.\n\n2. «hier» — Di sini: jawaban untuk “di mana?”.\n\n3. «weil» — Karena: memperkenalkan alasan.\n\n4. «ich müde bin» — Aku lelah. Setelah weil: orang → keadaan → bentuk sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textPl": "Zostaję tutaj, bo jestem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich bleibe» — Zostaję: najpierw podaj decyzję.\n\n2. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\n3. «weil» — Ponieważ: wprowadza przyczynę.\n\n4. «ich müde bin» — Jestem zmęczony. Po weil: osoba → stan → forma sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textPtBr": "Estou ficando aqui porque estou cansado.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich bleibe» — Vou ficar: comece pela decisão.\n\n2. «hier» — Aqui: responde a “onde?”.\n\n3. «weil» — Porque: apresenta o motivo.\n\n4. «ich müde bin» — Estou cansado. Depois de weil: pessoa → estado → forma de sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textRU": "Я останусь здесь, потому что устал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich bleibe» — Я остаюсь: сначала назови решение.\n\n2. «hier» — Здесь. Отвечает на вопрос «где?».\n\n3. «weil» — Потому что: открывает причину.\n\n4. «ich müde bin» — Я устал. В части с weil порядок: кто → состояние → форма sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textTr": "Yorgun olduğum için burada kalıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich bleibe» — Kalıyorum: önce kararı söyle.\n\n2. «hier» — Burada: “nerede?” sorusunun cevabı.\n\n3. «weil» — Çünkü: gerekçeyi başlatır.\n\n4. «ich müde bin» — Yorgunum. weil sonrasında kişi → durum → sein biçimi.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textUK": "Я залишусь тут, бо втомився.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich bleibe» — Я залишаюся: спочатку назви рішення.\n\n2. «hier» — Тут. Відповідає на запитання «де?».\n\n3. «weil» — Тому що: вводить причину.\n\n4. «ich müde bin» — Я втомився. Після weil порядок: хто → стан → форма sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"textVi": "Tôi ở lại đây vì tôi mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich bleibe» — Tôi ở lại: nói quyết định trước.\n\n2. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\n3. «weil» — Vì: mở đầu lý do.\n\n4. «ich müde bin» — Tôi mệt. Sau weil: người → trạng thái → dạng của sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I'm staying here because I'm tired.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich bleibe» — I am staying: give the decision first.\n\n2. «hier» — Here: the answer to “where?”.\n\n3. «weil» — Because: begins the reason.\n\n4. «ich müde bin» — I’m tired. After weil the order is person → state → form of sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"es": "Me quedo aquí porque estoy cansado.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich bleibe» — Me quedo: empieza por la decisión.\n\n2. «hier» — Aquí: responde a «¿dónde?».\n\n3. «weil» — Porque: introduce la razón.\n\n4. «ich müde bin» — Estoy cansado. Tras weil: persona → estado → forma de sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"id": "Saya tinggal di sini karena saya lelah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich bleibe» — Aku tetap tinggal: sebut keputusan dahulu.\n\n2. «hier» — Di sini: jawaban untuk “di mana?”.\n\n3. «weil» — Karena: memperkenalkan alasan.\n\n4. «ich müde bin» — Aku lelah. Setelah weil: orang → keadaan → bentuk sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"pl": "Zostaję tutaj, bo jestem zmęczony.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich bleibe» — Zostaję: najpierw podaj decyzję.\n\n2. «hier» — Tutaj: odpowiedź na pytanie „gdzie?”.\n\n3. «weil» — Ponieważ: wprowadza przyczynę.\n\n4. «ich müde bin» — Jestem zmęczony. Po weil: osoba → stan → forma sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"pt-BR": "Estou ficando aqui porque estou cansado.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich bleibe» — Vou ficar: comece pela decisão.\n\n2. «hier» — Aqui: responde a “onde?”.\n\n3. «weil» — Porque: apresenta o motivo.\n\n4. «ich müde bin» — Estou cansado. Depois de weil: pessoa → estado → forma de sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"ru": "Я останусь здесь, потому что устал.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich bleibe» — Я остаюсь: сначала назови решение.\n\n2. «hier» — Здесь. Отвечает на вопрос «где?».\n\n3. «weil» — Потому что: открывает причину.\n\n4. «ich müde bin» — Я устал. В части с weil порядок: кто → состояние → форма sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"tr": "Yorgun olduğum için burada kalıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich bleibe» — Kalıyorum: önce kararı söyle.\n\n2. «hier» — Burada: “nerede?” sorusunun cevabı.\n\n3. «weil» — Çünkü: gerekçeyi başlatır.\n\n4. «ich müde bin» — Yorgunum. weil sonrasında kişi → durum → sein biçimi.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"uk": "Я залишусь тут, бо втомився.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich bleibe» — Я залишаюся: спочатку назви рішення.\n\n2. «hier» — Тут. Відповідає на запитання «де?».\n\n3. «weil» — Тому що: вводить причину.\n\n4. «ich müde bin» — Я втомився. Після weil порядок: хто → стан → форма sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin.",
+"vi": "Tôi ở lại đây vì tôi mệt.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich bleibe» — Tôi ở lại: nói quyết định trước.\n\n2. «hier» — Ở đây: trả lời câu hỏi “ở đâu?”.\n\n3. «weil» — Vì: mở đầu lý do.\n\n4. «ich müde bin» — Tôi mệt. Sau weil: người → trạng thái → dạng của sein.\n\nIch → bleibe → hier → weil → ich → müde → bin\n\nIch bleibe hier, weil ich müde bin."
+},
+"kind": "practice",
+"exampleIds": [
+"de:21:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:21:01",
+"target": "Ich bleibe hier, weil ich müde bin.",
+"ru": "Я останусь здесь, потому что устал.",
+"uk": "Я залишусь тут, бо втомився."
+},
+{
+"id": "de:01:04",
+"target": "Ich bin müde.",
+"ru": "Я устал.",
+"uk": "Я втомився."
+},
+{
+"id": "de:21:01",
+"target": "Ich bleibe hier, weil ich müde bin.",
+"ru": "Я останусь здесь, потому что устал.",
+"uk": "Я залишусь тут, бо втомився."
+},
+{
+"id": "de:21:01",
+"target": "Ich bleibe hier, weil ich müde bin.",
+"ru": "Я останусь здесь, потому что устал.",
+"uk": "Я залишусь тут, бо втомився."
+}
+]
+},
+{
+"lesson": 22,
+"blocks": [
+{
+"textEN": "First, a fact: “Anna is here”. Now tell someone that you know it. «dass» introduces what you know, not why you know it. Inside that part, the name stays near the front and «ist» goes last: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nI know that Anna is here.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"textES": "Primero un hecho: «Ana está aquí». Ahora di que lo sabes. «dass» introduce lo que sabes, no por qué lo sabes. Dentro de esa parte, el nombre queda delante e «ist» pasa al final: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nSé que Anna está aquí.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"textId": "Faktanya: “Anna ada di sini”. Sekarang katakan kamu tahu hal itu. «dass» memperkenalkan apa yang kamu ketahui, bukan alasannya. Dalam bagian itu, nama ada di depan dan «ist» di akhir: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nAku tahu Anna ada di sini.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"textPl": "Najpierw fakt: „Anna tu jest”. Teraz chcesz powiedzieć, że o tym wiesz. «dass» wprowadza treść tego, co wiesz, nie przyczynę. W tej części imię stoi z przodu, a «ist» trafia na koniec: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nWiem, że Anna jest tutaj.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"textPtBr": "Primeiro um fato: “Anna está aqui”. Agora diga que você sabe disso. «dass» introduz o que você sabe, não o motivo. Nessa parte, o nome vem antes e «ist» vai para o fim: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nEu sei que a Anna está aqui.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"textRU": "Сначала факт: «Анна здесь». Теперь хочется сказать, что ты это знаешь. Добавь «я знаю, что…». Немецкое «dass» вводит содержание, а не причину. Внутри этой части имя остаётся впереди, а «ist» уходит в конец: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, что Анна здесь.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"textTr": "Önce bir bilgi: “Anna burada”. Şimdi bunu bildiğini söyle. «dass» bilmenin nedenini değil, bildiğin şeyi tanıtır. O bölümde isim önde kalır, «ist» sona gider: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nAnna'nın burada olduğunu biliyorum.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"textUK": "Спершу факт: «Анна тут». Тепер скажи, що ти це знаєш. Додай «я знаю, що…». Німецьке «dass» вводить зміст, а не причину. Усередині цієї частини ім’я стоїть попереду, а «ist» — у кінці: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, що Анна тут.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"textVi": "Trước hết là một sự việc: “Anna ở đây”. Giờ hãy nói rằng bạn biết điều đó. «dass» giới thiệu điều bạn biết, không phải lý do. Trong phần ấy, tên đứng trước còn «ist» về cuối: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nTôi biết Anna đang ở đây.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "First, a fact: “Anna is here”. Now tell someone that you know it. «dass» introduces what you know, not why you know it. Inside that part, the name stays near the front and «ist» goes last: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nI know that Anna is here.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"es": "Primero un hecho: «Ana está aquí». Ahora di que lo sabes. «dass» introduce lo que sabes, no por qué lo sabes. Dentro de esa parte, el nombre queda delante e «ist» pasa al final: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nSé que Anna está aquí.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"id": "Faktanya: “Anna ada di sini”. Sekarang katakan kamu tahu hal itu. «dass» memperkenalkan apa yang kamu ketahui, bukan alasannya. Dalam bagian itu, nama ada di depan dan «ist» di akhir: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nAku tahu Anna ada di sini.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"pl": "Najpierw fakt: „Anna tu jest”. Teraz chcesz powiedzieć, że o tym wiesz. «dass» wprowadza treść tego, co wiesz, nie przyczynę. W tej części imię stoi z przodu, a «ist» trafia na koniec: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nWiem, że Anna jest tutaj.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"pt-BR": "Primeiro um fato: “Anna está aqui”. Agora diga que você sabe disso. «dass» introduz o que você sabe, não o motivo. Nessa parte, o nome vem antes e «ist» vai para o fim: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nEu sei que a Anna está aqui.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"ru": "Сначала факт: «Анна здесь». Теперь хочется сказать, что ты это знаешь. Добавь «я знаю, что…». Немецкое «dass» вводит содержание, а не причину. Внутри этой части имя остаётся впереди, а «ist» уходит в конец: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, что Анна здесь.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"tr": "Önce bir bilgi: “Anna burada”. Şimdi bunu bildiğini söyle. «dass» bilmenin nedenini değil, bildiğin şeyi tanıtır. O bölümde isim önde kalır, «ist» sona gider: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nAnna'nın burada olduğunu biliyorum.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"uk": "Спершу факт: «Анна тут». Тепер скажи, що ти це знаєш. Додай «я знаю, що…». Німецьке «dass» вводить зміст, а не причину. Усередині цієї частини ім’я стоїть попереду, а «ist» — у кінці: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, що Анна тут.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"vi": "Trước hết là một sự việc: “Anna ở đây”. Giờ hãy nói rằng bạn biết điều đó. «dass» giới thiệu điều bạn biết, không phải lý do. Trong phần ấy, tên đứng trước còn «ist» về cuối: «dass Anna hier ist».\n\nIch weiß, dass Anna hier ist.\n\nTôi biết Anna đang ở đây.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần."
+},
+"kind": "concept",
+"exampleIds": [
+"de:22:01"
+]
+},
+{
+"textEN": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna is here.\n\nIch weiß, dass Anna hier ist.\n\nI know that Anna is here.\n\nKeep all three words from the short fact. After «dass», however, «Anna ist hier» becomes «Anna hier ist». The information about her location stays the same.",
+"textES": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna está aquí.\n\nIch weiß, dass Anna hier ist.\n\nSé que Anna está aquí.\n\nConserva las tres palabras del hecho. Tras «dass», «Anna ist hier» pasa a «Anna hier ist». Su ubicación no cambia.",
+"textId": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna di sini.\n\nIch weiß, dass Anna hier ist.\n\nAku tahu Anna ada di sini.\n\nPertahankan tiga kata dalam fakta singkat. Sesudah «dass», «Anna ist hier» menjadi «Anna hier ist». Informasi tempatnya tetap sama.",
+"textPl": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna jest tutaj.\n\nIch weiß, dass Anna hier ist.\n\nWiem, że Anna jest tutaj.\n\nZachowaj trzy słowa z krótkiego zdania. Po «dass» zamiast «Anna ist hier» będzie «Anna hier ist». Miejsce się nie zmienia.",
+"textPtBr": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna está aqui.\n\nIch weiß, dass Anna hier ist.\n\nEu sei que a Anna está aqui.\n\nMantenha as três palavras do fato. Após «dass», «Anna ist hier» vira «Anna hier ist». A localização dela continua igual.",
+"textRU": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nАнна здесь.\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, что Анна здесь.\n\nИз короткого сообщения берём те же три слова. Но теперь они следуют за «dass»: не «Anna ist hier», а «Anna hier ist». Смысл «Анна здесь» сохраняется.",
+"textTr": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna burada.\n\nIch weiß, dass Anna hier ist.\n\nAnna'nın burada olduğunu biliyorum.\n\nKısa bilginin üç kelimesi kalır. «dass» sonrasında ise «Anna ist hier», «Anna hier ist» olur. Bulunduğu yer değişmez.",
+"textUK": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nАнна тут.\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, що Анна тут.\n\nЗ короткого повідомлення беремо ті ж три слова. Після «dass» уже не «Anna ist hier», а «Anna hier ist». Зміст про місце не змінюється.",
+"textVi": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna ở đây.\n\nIch weiß, dass Anna hier ist.\n\nTôi biết Anna đang ở đây.\n\nGiữ ba từ của câu ngắn. Nhưng sau «dass», «Anna ist hier» đổi thành «Anna hier ist». Ý về vị trí không đổi.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna is here.\n\nIch weiß, dass Anna hier ist.\n\nI know that Anna is here.\n\nKeep all three words from the short fact. After «dass», however, «Anna ist hier» becomes «Anna hier ist». The information about her location stays the same.",
+"es": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna está aquí.\n\nIch weiß, dass Anna hier ist.\n\nSé que Anna está aquí.\n\nConserva las tres palabras del hecho. Tras «dass», «Anna ist hier» pasa a «Anna hier ist». Su ubicación no cambia.",
+"id": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna di sini.\n\nIch weiß, dass Anna hier ist.\n\nAku tahu Anna ada di sini.\n\nPertahankan tiga kata dalam fakta singkat. Sesudah «dass», «Anna ist hier» menjadi «Anna hier ist». Informasi tempatnya tetap sama.",
+"pl": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna jest tutaj.\n\nIch weiß, dass Anna hier ist.\n\nWiem, że Anna jest tutaj.\n\nZachowaj trzy słowa z krótkiego zdania. Po «dass» zamiast «Anna ist hier» będzie «Anna hier ist». Miejsce się nie zmienia.",
+"pt-BR": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna está aqui.\n\nIch weiß, dass Anna hier ist.\n\nEu sei que a Anna está aqui.\n\nMantenha as três palavras do fato. Após «dass», «Anna ist hier» vira «Anna hier ist». A localização dela continua igual.",
+"ru": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nАнна здесь.\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, что Анна здесь.\n\nИз короткого сообщения берём те же три слова. Но теперь они следуют за «dass»: не «Anna ist hier», а «Anna hier ist». Смысл «Анна здесь» сохраняется.",
+"tr": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna burada.\n\nIch weiß, dass Anna hier ist.\n\nAnna'nın burada olduğunu biliyorum.\n\nKısa bilginin üç kelimesi kalır. «dass» sonrasında ise «Anna ist hier», «Anna hier ist» olur. Bulunduğu yer değişmez.",
+"uk": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nАнна тут.\n\nIch weiß, dass Anna hier ist.\n\nЯ знаю, що Анна тут.\n\nЗ короткого повідомлення беремо ті ж три слова. Після «dass» уже не «Anna ist hier», а «Anna hier ist». Зміст про місце не змінюється.",
+"vi": "«Ich weiß, dass» + … + «ist»\n\nAnna ist hier.\n\nAnna ở đây.\n\nIch weiß, dass Anna hier ist.\n\nTôi biết Anna đang ở đây.\n\nGiữ ba từ của câu ngắn. Nhưng sau «dass», «Anna ist hier» đổi thành «Anna hier ist». Ý về vị trí không đổi."
+},
+"kind": "formula",
+"exampleIds": [
+"de:01:05",
+"de:22:01"
+]
+},
+{
+"textEN": "I know that Anna is here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich weiß» — I know. Here weiß is a verb, not the colour white.\n\n2. «dass» — That: introduces the information I know.\n\n3. «Anna hier ist» — Anna is here. Inside the dass part: name, place, then ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textES": "Sé que Anna está aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich weiß» — Yo sé. Aquí weiß es el verbo «sé», no el color blanco.\n\n2. «dass» — Que: introduce lo que sé.\n\n3. «Anna hier ist» — Ana está aquí. Dentro de la parte con dass: nombre, lugar, después ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textId": "Aku tahu Anna ada di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich weiß» — Aku tahu. Di sini weiß adalah kata kerja, bukan warna putih.\n\n2. «dass» — Bahwa: memperkenalkan hal yang kuketahui.\n\n3. «Anna hier ist» — Anna di sini. Di bagian dengan dass: nama, tempat, kemudian ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textPl": "Wiem, że Anna jest tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich weiß» — Wiem. Tutaj weiß to czasownik, nie kolor biały.\n\n2. «dass» — Że: wprowadza treść tego, co wiem.\n\n3. «Anna hier ist» — Anna jest tutaj. W części z dass: imię, miejsce, potem ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textPtBr": "Eu sei que a Anna está aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich weiß» — Eu sei. Aqui weiß é o verbo “sei”, não a cor branca.\n\n2. «dass» — Que: apresenta o que eu sei.\n\n3. «Anna hier ist» — Anna está aqui. Na parte com dass: nome, local, depois ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textRU": "Я знаю, что Анна здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich weiß» — Я знаю. Не путай weiß здесь с названием белого цвета: после ich это действие «знаю».\n\n2. «dass» — Что: дальше будет сказано, что именно мне известно.\n\n3. «Anna hier ist» — Анна здесь. Внутри части с dass — имя, место, затем ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textTr": "Anna'nın burada olduğunu biliyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich weiß» — Biliyorum. Burada weiß “beyaz” rengi değil, fiildir.\n\n2. «dass» — Bildiğim içeriği tanıtır: “… olduğunu”.\n\n3. «Anna hier ist» — Anna burada. dass bölümünde ad, yer, sonra ist gelir.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textUK": "Я знаю, що Анна тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich weiß» — Я знаю. Тут weiß після ich — «знаю», а не назва білого кольору.\n\n2. «dass» — Що: далі буде сказано, що саме мені відомо.\n\n3. «Anna hier ist» — Анна тут. Усередині частини з dass — ім’я, місце, тоді ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"textVi": "Tôi biết Anna đang ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich weiß» — Tôi biết. Ở đây weiß là “biết”, không phải màu trắng.\n\n2. «dass» — Rằng: dẫn vào thông tin tôi biết.\n\n3. «Anna hier ist» — Anna ở đây. Trong phần có dass: tên, nơi chốn, rồi ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I know that Anna is here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich weiß» — I know. Here weiß is a verb, not the colour white.\n\n2. «dass» — That: introduces the information I know.\n\n3. «Anna hier ist» — Anna is here. Inside the dass part: name, place, then ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"es": "Sé que Anna está aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich weiß» — Yo sé. Aquí weiß es el verbo «sé», no el color blanco.\n\n2. «dass» — Que: introduce lo que sé.\n\n3. «Anna hier ist» — Ana está aquí. Dentro de la parte con dass: nombre, lugar, después ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"id": "Aku tahu Anna ada di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich weiß» — Aku tahu. Di sini weiß adalah kata kerja, bukan warna putih.\n\n2. «dass» — Bahwa: memperkenalkan hal yang kuketahui.\n\n3. «Anna hier ist» — Anna di sini. Di bagian dengan dass: nama, tempat, kemudian ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"pl": "Wiem, że Anna jest tutaj.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich weiß» — Wiem. Tutaj weiß to czasownik, nie kolor biały.\n\n2. «dass» — Że: wprowadza treść tego, co wiem.\n\n3. «Anna hier ist» — Anna jest tutaj. W części z dass: imię, miejsce, potem ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"pt-BR": "Eu sei que a Anna está aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich weiß» — Eu sei. Aqui weiß é o verbo “sei”, não a cor branca.\n\n2. «dass» — Que: apresenta o que eu sei.\n\n3. «Anna hier ist» — Anna está aqui. Na parte com dass: nome, local, depois ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"ru": "Я знаю, что Анна здесь.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich weiß» — Я знаю. Не путай weiß здесь с названием белого цвета: после ich это действие «знаю».\n\n2. «dass» — Что: дальше будет сказано, что именно мне известно.\n\n3. «Anna hier ist» — Анна здесь. Внутри части с dass — имя, место, затем ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"tr": "Anna'nın burada olduğunu biliyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich weiß» — Biliyorum. Burada weiß “beyaz” rengi değil, fiildir.\n\n2. «dass» — Bildiğim içeriği tanıtır: “… olduğunu”.\n\n3. «Anna hier ist» — Anna burada. dass bölümünde ad, yer, sonra ist gelir.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"uk": "Я знаю, що Анна тут.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich weiß» — Я знаю. Тут weiß після ich — «знаю», а не назва білого кольору.\n\n2. «dass» — Що: далі буде сказано, що саме мені відомо.\n\n3. «Anna hier ist» — Анна тут. Усередині частини з dass — ім’я, місце, тоді ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist.",
+"vi": "Tôi biết Anna đang ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich weiß» — Tôi biết. Ở đây weiß là “biết”, không phải màu trắng.\n\n2. «dass» — Rằng: dẫn vào thông tin tôi biết.\n\n3. «Anna hier ist» — Anna ở đây. Trong phần có dass: tên, nơi chốn, rồi ist.\n\nIch → weiß → dass → Anna → hier → ist\n\nIch weiß, dass Anna hier ist."
+},
+"kind": "practice",
+"exampleIds": [
+"de:22:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:22:01",
+"target": "Ich weiß, dass Anna hier ist.",
+"ru": "Я знаю, что Анна здесь.",
+"uk": "Я знаю, що Анна тут."
+},
+{
+"id": "de:01:05",
+"target": "Anna ist hier.",
+"ru": "Анна здесь.",
+"uk": "Анна тут."
+},
+{
+"id": "de:22:01",
+"target": "Ich weiß, dass Anna hier ist.",
+"ru": "Я знаю, что Анна здесь.",
+"uk": "Я знаю, що Анна тут."
+},
+{
+"id": "de:22:01",
+"target": "Ich weiß, dass Anna hier ist.",
+"ru": "Я знаю, что Анна здесь.",
+"uk": "Я знаю, що Анна тут."
+}
+]
+},
+{
+"lesson": 23,
+"blocks": [
+{
+"textEN": "You’re planning a walk. You aren’t saying it’s raining now; you’re saying what you’ll do if it rains. «wenn» gives the condition. The whole “if it rains” part takes first position, so the result starts «bleibe ich», not «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nIf it rains, I stay home.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"textES": "Planeas un paseo. No dices que ya llueve, sino qué harás en ese caso. «wenn» introduce la condición. Toda la parte «si llueve» ocupa la primera posición; el resultado empieza por «bleibe ich», no por «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nSi llueve, me quedo en casa.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"textId": "Kamu merencanakan jalan-jalan. Bukan berarti sekarang hujan; kamu mengatakan apa yang akan dilakukan jika hujan. «wenn» memperkenalkan syarat. Seluruh bagian “jika hujan” mengisi posisi pertama, maka hasilnya mulai dengan «bleibe ich», bukan «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nJika hujan, saya tinggal di rumah.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"textPl": "Planujesz spacer. Nie twierdzisz, że już pada, tylko mówisz, co zrobisz, jeśli zacznie. «wenn» wprowadza warunek. Całe „jeśli będzie padać” zajmuje pierwsze miejsce, więc potem jest «bleibe ich», nie «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nJeśli pada deszcz, zostaję w domu.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"textPtBr": "Você planeja um passeio. Não está dizendo que já chove, mas o que fará se chover. «wenn» apresenta a condição. Toda a parte “se chover” ocupa a primeira posição; depois vem «bleibe ich», não «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nSe chover, eu fico em casa.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"textRU": "Намечается прогулка. Ты не говоришь, что дождь уже идёт: ты объясняешь, что сделаешь в таком случае. «wenn» вводит условие. Вся часть «если пойдёт дождь» уже занимает первое место перед результатом, поэтому дальше «bleibe ich», не «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nЕсли пойдёт дождь, я останусь дома.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"textTr": "Yürüyüş planlıyorsun. Şu anda yağmur yağdığını değil, yağarsa ne yapacağını söylüyorsun. «wenn» koşulu başlatır. “Yağmur yağarsa” bölümünün tamamı ilk konumu doldurduğu için ardından «ich bleibe» değil «bleibe ich» gelir.\n\nWenn es regnet, bleibe ich zu Hause.\n\nYağmur yağarsa evde kalırım.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"textUK": "Ви плануєте прогулянку. Ти не кажеш, що дощ уже йде, а пояснюєш, що зробиш у такому разі. «wenn» вводить умову. Уся частина «якщо піде дощ» займає першу позицію перед результатом, тому далі «bleibe ich», а не «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"textVi": "Bạn định đi dạo. Bạn không nói trời đang mưa mà nói sẽ làm gì nếu mưa. «wenn» mở đầu điều kiện. Cả cụm “nếu trời mưa” đã chiếm vị trí đầu, nên phần kết quả bắt đầu bằng «bleibe ich», không phải «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nNếu trời mưa, tôi ở nhà.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’re planning a walk. You aren’t saying it’s raining now; you’re saying what you’ll do if it rains. «wenn» gives the condition. The whole “if it rains” part takes first position, so the result starts «bleibe ich», not «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nIf it rains, I stay home.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"es": "Planeas un paseo. No dices que ya llueve, sino qué harás en ese caso. «wenn» introduce la condición. Toda la parte «si llueve» ocupa la primera posición; el resultado empieza por «bleibe ich», no por «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nSi llueve, me quedo en casa.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"id": "Kamu merencanakan jalan-jalan. Bukan berarti sekarang hujan; kamu mengatakan apa yang akan dilakukan jika hujan. «wenn» memperkenalkan syarat. Seluruh bagian “jika hujan” mengisi posisi pertama, maka hasilnya mulai dengan «bleibe ich», bukan «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nJika hujan, saya tinggal di rumah.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"pl": "Planujesz spacer. Nie twierdzisz, że już pada, tylko mówisz, co zrobisz, jeśli zacznie. «wenn» wprowadza warunek. Całe „jeśli będzie padać” zajmuje pierwsze miejsce, więc potem jest «bleibe ich», nie «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nJeśli pada deszcz, zostaję w domu.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"pt-BR": "Você planeja um passeio. Não está dizendo que já chove, mas o que fará se chover. «wenn» apresenta a condição. Toda a parte “se chover” ocupa a primeira posição; depois vem «bleibe ich», não «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nSe chover, eu fico em casa.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"ru": "Намечается прогулка. Ты не говоришь, что дождь уже идёт: ты объясняешь, что сделаешь в таком случае. «wenn» вводит условие. Вся часть «если пойдёт дождь» уже занимает первое место перед результатом, поэтому дальше «bleibe ich», не «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nЕсли пойдёт дождь, я останусь дома.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"tr": "Yürüyüş planlıyorsun. Şu anda yağmur yağdığını değil, yağarsa ne yapacağını söylüyorsun. «wenn» koşulu başlatır. “Yağmur yağarsa” bölümünün tamamı ilk konumu doldurduğu için ardından «ich bleibe» değil «bleibe ich» gelir.\n\nWenn es regnet, bleibe ich zu Hause.\n\nYağmur yağarsa evde kalırım.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"uk": "Ви плануєте прогулянку. Ти не кажеш, що дощ уже йде, а пояснюєш, що зробиш у такому разі. «wenn» вводить умову. Уся частина «якщо піде дощ» займає першу позицію перед результатом, тому далі «bleibe ich», а не «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"vi": "Bạn định đi dạo. Bạn không nói trời đang mưa mà nói sẽ làm gì nếu mưa. «wenn» mở đầu điều kiện. Cả cụm “nếu trời mưa” đã chiếm vị trí đầu, nên phần kết quả bắt đầu bằng «bleibe ich», không phải «ich bleibe».\n\nWenn es regnet, bleibe ich zu Hause.\n\nNếu trời mưa, tôi ở nhà.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần."
+},
+"kind": "concept",
+"exampleIds": [
+"de:23:01"
+]
+},
+{
+"textEN": "«Wenn» + … + verb, then the verb of the main clause\n\nWenn es regnet, bleibe ich zu Hause.\n\nIf it rains, I stay home.\n\nIch bleibe zu Hause, wenn es regnet.\n\nIf it rains, I stay home.\n\nBoth orders work. With the condition first, the words after the comma are «bleibe ich». Put the result first and it starts «Ich bleibe». Don’t splice the two patterns together.",
+"textES": "«Wenn» + … + verbo, luego el verbo de la oración principal.\n\nWenn es regnet, bleibe ich zu Hause.\n\nSi llueve, me quedo en casa.\n\nIch bleibe zu Hause, wenn es regnet.\n\nSi llueve, me quedo en casa.\n\nAmbos órdenes valen. Si empieza la condición, tras la coma va «bleibe ich». Si empieza el resultado, se abre con «Ich bleibe». No mezcles ambos modelos.",
+"textId": "«Wenn» + … + kata kerja, lalu kata kerja dari klausa utama\n\nWenn es regnet, bleibe ich zu Hause.\n\nJika hujan, saya tinggal di rumah.\n\nIch bleibe zu Hause, wenn es regnet.\n\nJika hujan, saya tinggal di rumah.\n\nKedua urutan bisa. Jika syarat dulu, setelah koma «bleibe ich». Jika hasil dulu, awalnya «Ich bleibe». Jangan campurkan setengah dari masing-masing pola.",
+"textPl": "«Wenn» + … + czasownik, a następnie czasownik zdania głównego\n\nWenn es regnet, bleibe ich zu Hause.\n\nJeśli pada deszcz, zostaję w domu.\n\nIch bleibe zu Hause, wenn es regnet.\n\nJeśli pada deszcz, zostaję w domu.\n\nOba szyki są poprawne. Jeśli najpierw jest warunek, po przecinku masz «bleibe ich». Jeśli najpierw skutek — zaczyna się od «Ich bleibe». Nie łącz połówek dwóch wzorów.",
+"textPtBr": "«Wenn» + … + verbo, seguido do verbo da oração principal\n\nWenn es regnet, bleibe ich zu Hause.\n\nSe chover, eu fico em casa.\n\nIch bleibe zu Hause, wenn es regnet.\n\nSe chover, eu fico em casa.\n\nAs duas ordens funcionam. Com a condição no início, após a vírgula vem «bleibe ich». Com o resultado primeiro, começa «Ich bleibe». Não misture os dois padrões.",
+"textRU": "«Wenn» + … + глагол, затем глагол главной части\n\nWenn es regnet, bleibe ich zu Hause.\n\nЕсли пойдёт дождь, я останусь дома.\n\nIch bleibe zu Hause, wenn es regnet.\n\nЕсли пойдёт дождь, я останусь дома.\n\nОба порядка верны. Когда условие стоит первым, за запятой идёт «bleibe ich». Когда первым идёт результат, он начинается «Ich bleibe». Не смешивай половины двух разных сборок.",
+"textTr": "«Wenn» + … + fiil, ardından ana cümlenin fiili\n\nWenn es regnet, bleibe ich zu Hause.\n\nYağmur yağarsa evde kalırım.\n\nIch bleibe zu Hause, wenn es regnet.\n\nYağmur yağarsa evde kalırım.\n\nİki sıra da doğru. Önce koşul varsa virgülden sonra «bleibe ich»; önce sonuç varsa başlangıç «Ich bleibe». Kalıpları birbirine karıştırma.",
+"textUK": "«Wenn» + … + дієслово, потім дієслово головної частини\n\nWenn es regnet, bleibe ich zu Hause.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nIch bleibe zu Hause, wenn es regnet.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nОбидва порядки правильні. Якщо умова перша, після коми йде «bleibe ich». Якщо перший результат, почни з «Ich bleibe». Не змішуй половини двох зразків.",
+"textVi": "«Wenn» + … + động từ, sau đó là động từ của mệnh đề chính\n\nWenn es regnet, bleibe ich zu Hause.\n\nNếu trời mưa, tôi ở nhà.\n\nIch bleibe zu Hause, wenn es regnet.\n\nNếu trời mưa, tôi ở nhà.\n\nCả hai thứ tự đều đúng. Điều kiện đứng đầu thì sau dấu phẩy là «bleibe ich». Nếu nêu kết quả trước thì bắt đầu bằng «Ich bleibe». Đừng ghép nhầm hai mẫu.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Wenn» + … + verb, then the verb of the main clause\n\nWenn es regnet, bleibe ich zu Hause.\n\nIf it rains, I stay home.\n\nIch bleibe zu Hause, wenn es regnet.\n\nIf it rains, I stay home.\n\nBoth orders work. With the condition first, the words after the comma are «bleibe ich». Put the result first and it starts «Ich bleibe». Don’t splice the two patterns together.",
+"es": "«Wenn» + … + verbo, luego el verbo de la oración principal.\n\nWenn es regnet, bleibe ich zu Hause.\n\nSi llueve, me quedo en casa.\n\nIch bleibe zu Hause, wenn es regnet.\n\nSi llueve, me quedo en casa.\n\nAmbos órdenes valen. Si empieza la condición, tras la coma va «bleibe ich». Si empieza el resultado, se abre con «Ich bleibe». No mezcles ambos modelos.",
+"id": "«Wenn» + … + kata kerja, lalu kata kerja dari klausa utama\n\nWenn es regnet, bleibe ich zu Hause.\n\nJika hujan, saya tinggal di rumah.\n\nIch bleibe zu Hause, wenn es regnet.\n\nJika hujan, saya tinggal di rumah.\n\nKedua urutan bisa. Jika syarat dulu, setelah koma «bleibe ich». Jika hasil dulu, awalnya «Ich bleibe». Jangan campurkan setengah dari masing-masing pola.",
+"pl": "«Wenn» + … + czasownik, a następnie czasownik zdania głównego\n\nWenn es regnet, bleibe ich zu Hause.\n\nJeśli pada deszcz, zostaję w domu.\n\nIch bleibe zu Hause, wenn es regnet.\n\nJeśli pada deszcz, zostaję w domu.\n\nOba szyki są poprawne. Jeśli najpierw jest warunek, po przecinku masz «bleibe ich». Jeśli najpierw skutek — zaczyna się od «Ich bleibe». Nie łącz połówek dwóch wzorów.",
+"pt-BR": "«Wenn» + … + verbo, seguido do verbo da oração principal\n\nWenn es regnet, bleibe ich zu Hause.\n\nSe chover, eu fico em casa.\n\nIch bleibe zu Hause, wenn es regnet.\n\nSe chover, eu fico em casa.\n\nAs duas ordens funcionam. Com a condição no início, após a vírgula vem «bleibe ich». Com o resultado primeiro, começa «Ich bleibe». Não misture os dois padrões.",
+"ru": "«Wenn» + … + глагол, затем глагол главной части\n\nWenn es regnet, bleibe ich zu Hause.\n\nЕсли пойдёт дождь, я останусь дома.\n\nIch bleibe zu Hause, wenn es regnet.\n\nЕсли пойдёт дождь, я останусь дома.\n\nОба порядка верны. Когда условие стоит первым, за запятой идёт «bleibe ich». Когда первым идёт результат, он начинается «Ich bleibe». Не смешивай половины двух разных сборок.",
+"tr": "«Wenn» + … + fiil, ardından ana cümlenin fiili\n\nWenn es regnet, bleibe ich zu Hause.\n\nYağmur yağarsa evde kalırım.\n\nIch bleibe zu Hause, wenn es regnet.\n\nYağmur yağarsa evde kalırım.\n\nİki sıra da doğru. Önce koşul varsa virgülden sonra «bleibe ich»; önce sonuç varsa başlangıç «Ich bleibe». Kalıpları birbirine karıştırma.",
+"uk": "«Wenn» + … + дієслово, потім дієслово головної частини\n\nWenn es regnet, bleibe ich zu Hause.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nIch bleibe zu Hause, wenn es regnet.\n\nЯкщо йтиме дощ, я залишуся вдома.\n\nОбидва порядки правильні. Якщо умова перша, після коми йде «bleibe ich». Якщо перший результат, почни з «Ich bleibe». Не змішуй половини двох зразків.",
+"vi": "«Wenn» + … + động từ, sau đó là động từ của mệnh đề chính\n\nWenn es regnet, bleibe ich zu Hause.\n\nNếu trời mưa, tôi ở nhà.\n\nIch bleibe zu Hause, wenn es regnet.\n\nNếu trời mưa, tôi ở nhà.\n\nCả hai thứ tự đều đúng. Điều kiện đứng đầu thì sau dấu phẩy là «bleibe ich». Nếu nêu kết quả trước thì bắt đầu bằng «Ich bleibe». Đừng ghép nhầm hai mẫu."
+},
+"kind": "formula",
+"exampleIds": [
+"de:23:01",
+"de:23:01"
+]
+},
+{
+"textEN": "If it rains, I stay home.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Wenn es regnet» — If it rains. German uses es here; it does not point to an object.\n\n2. «bleibe ich» — I stay. After the opening condition comes bleibe before ich.\n\n3. «zu Hause» — At home: where, not where to. Learn it as a unit.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textES": "Si llueve, me quedo en casa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Wenn es regnet» — Si llueve. En alemán hace falta es, aunque no señale ningún objeto.\n\n2. «bleibe ich» — Me quedo. Tras la condición inicial, primero bleibe y luego ich.\n\n3. «zu Hause» — En casa: lugar, no destino. Aprende la expresión completa.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textId": "Jika hujan, saya tinggal di rumah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Wenn es regnet» — Jika hujan. es diperlukan di sini, bukan penunjuk benda.\n\n2. «bleibe ich» — Aku tetap tinggal. Setelah syarat di awal, bleibe mendahului ich.\n\n3. «zu Hause» — Di rumah: lokasi, bukan tujuan. Ingat sebagai satu ungkapan.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textPl": "Jeśli pada deszcz, zostaję w domu.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Wenn es regnet» — Jeśli pada. Niemieckie es jest tu potrzebne, choć nie wskazuje rzeczy.\n\n2. «bleibe ich» — Zostaję. Po warunku na początku: najpierw bleibe, potem ich.\n\n3. «zu Hause» — W domu: gdzie, nie dokąd. Zapamiętaj cały zwrot.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textPtBr": "Se chover, eu fico em casa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Wenn es regnet» — Se chover. O alemão usa es aqui, sem indicar nenhum objeto.\n\n2. «bleibe ich» — Eu fico. Depois da condição inicial: bleibe antes de ich.\n\n3. «zu Hause» — Em casa: lugar, não destino. Aprenda a expressão inteira.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textRU": "Если пойдёт дождь, я останусь дома.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Wenn es regnet» — Если идёт дождь. В этом немецком выражении es нужно, хотя это не название предмета.\n\n2. «bleibe ich» — Я остаюсь. После начального условия сначала bleibe, потом ich.\n\n3. «zu Hause» — Дома: где, а не куда. Запомни выражение целиком.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textTr": "Yağmur yağarsa evde kalırım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Wenn es regnet» — Yağmur yağarsa. Burada es gerekir ama bir eşyayı göstermez.\n\n2. «bleibe ich» — Kalırım. Baştaki koşuldan sonra önce bleibe, sonra ich.\n\n3. «zu Hause» — Evde: nerede, nereye değil. Kalıp olarak öğren.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textUK": "Якщо йтиме дощ, я залишуся вдома.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Wenn es regnet» — Якщо йде дощ. У цьому німецькому вислові es потрібне, хоч і не називає предмета.\n\n2. «bleibe ich» — Я залишаюся. Після умови спершу bleibe, потім ich.\n\n3. «zu Hause» — Удома: де, не куди. Запам’ятай вислів разом.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"textVi": "Nếu trời mưa, tôi ở nhà.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Wenn es regnet» — Nếu trời mưa. Tiếng Đức dùng es ở đây; nó không chỉ đồ vật nào.\n\n2. «bleibe ich» — Tôi ở lại. Sau điều kiện đứng đầu, bleibe đứng trước ich.\n\n3. «zu Hause» — Ở nhà: vị trí chứ không phải hướng đến. Học cả cụm.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "If it rains, I stay home.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Wenn es regnet» — If it rains. German uses es here; it does not point to an object.\n\n2. «bleibe ich» — I stay. After the opening condition comes bleibe before ich.\n\n3. «zu Hause» — At home: where, not where to. Learn it as a unit.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"es": "Si llueve, me quedo en casa.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Wenn es regnet» — Si llueve. En alemán hace falta es, aunque no señale ningún objeto.\n\n2. «bleibe ich» — Me quedo. Tras la condición inicial, primero bleibe y luego ich.\n\n3. «zu Hause» — En casa: lugar, no destino. Aprende la expresión completa.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"id": "Jika hujan, saya tinggal di rumah.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Wenn es regnet» — Jika hujan. es diperlukan di sini, bukan penunjuk benda.\n\n2. «bleibe ich» — Aku tetap tinggal. Setelah syarat di awal, bleibe mendahului ich.\n\n3. «zu Hause» — Di rumah: lokasi, bukan tujuan. Ingat sebagai satu ungkapan.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"pl": "Jeśli pada deszcz, zostaję w domu.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Wenn es regnet» — Jeśli pada. Niemieckie es jest tu potrzebne, choć nie wskazuje rzeczy.\n\n2. «bleibe ich» — Zostaję. Po warunku na początku: najpierw bleibe, potem ich.\n\n3. «zu Hause» — W domu: gdzie, nie dokąd. Zapamiętaj cały zwrot.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"pt-BR": "Se chover, eu fico em casa.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Wenn es regnet» — Se chover. O alemão usa es aqui, sem indicar nenhum objeto.\n\n2. «bleibe ich» — Eu fico. Depois da condição inicial: bleibe antes de ich.\n\n3. «zu Hause» — Em casa: lugar, não destino. Aprenda a expressão inteira.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Wenn es regnet» — Если идёт дождь. В этом немецком выражении es нужно, хотя это не название предмета.\n\n2. «bleibe ich» — Я остаюсь. После начального условия сначала bleibe, потом ich.\n\n3. «zu Hause» — Дома: где, а не куда. Запомни выражение целиком.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"tr": "Yağmur yağarsa evde kalırım.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Wenn es regnet» — Yağmur yağarsa. Burada es gerekir ama bir eşyayı göstermez.\n\n2. «bleibe ich» — Kalırım. Baştaki koşuldan sonra önce bleibe, sonra ich.\n\n3. «zu Hause» — Evde: nerede, nereye değil. Kalıp olarak öğren.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"uk": "Якщо йтиме дощ, я залишуся вдома.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Wenn es regnet» — Якщо йде дощ. У цьому німецькому вислові es потрібне, хоч і не називає предмета.\n\n2. «bleibe ich» — Я залишаюся. Після умови спершу bleibe, потім ich.\n\n3. «zu Hause» — Удома: де, не куди. Запам’ятай вислів разом.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause.",
+"vi": "Nếu trời mưa, tôi ở nhà.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Wenn es regnet» — Nếu trời mưa. Tiếng Đức dùng es ở đây; nó không chỉ đồ vật nào.\n\n2. «bleibe ich» — Tôi ở lại. Sau điều kiện đứng đầu, bleibe đứng trước ich.\n\n3. «zu Hause» — Ở nhà: vị trí chứ không phải hướng đến. Học cả cụm.\n\nWenn → es → regnet → bleibe → ich → zu → Hause\n\nWenn es regnet, bleibe ich zu Hause."
+},
+"kind": "practice",
+"exampleIds": [
+"de:23:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома."
+},
+{
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома."
+},
+{
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома."
+},
+{
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома."
+}
+]
+},
+{
+"lesson": 24,
+"blocks": [
+{
+"textEN": "Think of one particular arrival: you got there and found the door open. «als» pins the story to that occasion in the past. Here it means “when”, not the “than” you saw in comparisons, although the German word looks identical.\n\nAls ich ankam, war die Tür offen.\n\nWhen I arrived, the door was open.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"textES": "Recuerda una llegada concreta: llegaste y encontraste la puerta abierta. «als» sitúa la historia en aquel momento del pasado. Aquí significa «cuando», no el «que» de una comparación, aunque en alemán se escriba igual.\n\nAls ich ankam, war die Tür offen.\n\nCuando llegué, la puerta estaba abierta.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"textId": "Ingat satu kedatangan tertentu: kamu sampai dan mendapati pintunya terbuka. «als» menempatkan cerita pada kejadian lampau itu. Di sini artinya “ketika”, bukan “daripada” seperti dalam perbandingan, meski tulisannya sama.\n\nAls ich ankam, war die Tür offen.\n\nSaat aku tiba, pintunya terbuka.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"textPl": "Przypomnij sobie jedno konkretne przyjście: przyszedłeś i zastałeś otwarte drzwi. «als» umieszcza historię w tamtym momencie w przeszłości. Tutaj znaczy „kiedy”, nie „niż” jak w porównaniu, chociaż zapis jest identyczny.\n\nAls ich ankam, war die Tür offen.\n\nKiedy przyjechałem, drzwi były otwarte.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"textPtBr": "Lembre uma chegada específica: você chegou e encontrou a porta aberta. «als» situa a história naquela ocasião passada. Aqui significa “quando”, não o “do que” de uma comparação, embora a palavra alemã seja a mesma.\n\nAls ich ankam, war die Tür offen.\n\nQuando cheguei, a porta estava aberta.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"textRU": "Вспомни один конкретный случай: ты пришёл и застал дверь открытой. Не ты открывал дверь — ты только увидел, какой она была в тот момент. Для времени одного такого случая служит «als». Это не сравнение «чем», хотя в немецком оба слова пишутся одинаково.\n\nAls ich ankam, war die Tür offen.\n\nКогда я приехал, дверь была открыта.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"textTr": "Belirli bir anı düşün: vardın ve kapıyı açık buldun. «als» olayı geçmişteki o ana bağlar. Buradaki anlamı “-dığında”dır; karşılaştırmadaki anlamı değildir, yazılışları aynı olsa da.\n\nAls ich ankam, war die Tür offen.\n\nVardığımda kapı açıktı.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"textUK": "Згадай один конкретний прихід: ти прийшов і побачив, що двері були відчинені. Час такого окремого випадку вводить «als». Це не порівняння «ніж», хоча в німецькій обидва значення має те саме слово.\n\nAls ich ankam, war die Tür offen.\n\nКоли я приїхав, двері були відчинені.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"textVi": "Hãy nhớ một lần đến cụ thể: bạn đến và thấy cửa đang mở. «als» đặt câu chuyện vào lần ấy trong quá khứ. Ở đây nó là “khi”, không phải từ chỉ đối tượng so sánh, dù chữ Đức giống hệt.\n\nAls ich ankam, war die Tür offen.\n\nKhi tôi đến, cửa đã mở.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Think of one particular arrival: you got there and found the door open. «als» pins the story to that occasion in the past. Here it means “when”, not the “than” you saw in comparisons, although the German word looks identical.\n\nAls ich ankam, war die Tür offen.\n\nWhen I arrived, the door was open.\n\nA subordinate clause is a small message inside a larger one. In these examples a short word introduces it and a comma separates it. Understand each message first, then put its own words in order.",
+"es": "Recuerda una llegada concreta: llegaste y encontraste la puerta abierta. «als» sitúa la historia en aquel momento del pasado. Aquí significa «cuando», no el «que» de una comparación, aunque en alemán se escriba igual.\n\nAls ich ankam, war die Tür offen.\n\nCuando llegué, la puerta estaba abierta.\n\nUna subordinada es un pequeño mensaje dentro de otro. Aquí una palabra corta la introduce y una coma la separa de la otra parte. Entiende cada mensaje y después ordena sus palabras.",
+"id": "Ingat satu kedatangan tertentu: kamu sampai dan mendapati pintunya terbuka. «als» menempatkan cerita pada kejadian lampau itu. Di sini artinya “ketika”, bukan “daripada” seperti dalam perbandingan, meski tulisannya sama.\n\nAls ich ankam, war die Tür offen.\n\nSaat aku tiba, pintunya terbuka.\n\nAnak kalimat adalah pesan kecil di dalam pesan lebih besar. Pada contoh ini ada kata pengantar pendek dan koma pemisah. Pahami masing-masing pesan, lalu susun katanya sendiri-sendiri.",
+"pl": "Przypomnij sobie jedno konkretne przyjście: przyszedłeś i zastałeś otwarte drzwi. «als» umieszcza historię w tamtym momencie w przeszłości. Tutaj znaczy „kiedy”, nie „niż” jak w porównaniu, chociaż zapis jest identyczny.\n\nAls ich ankam, war die Tür offen.\n\nKiedy przyjechałem, drzwi były otwarte.\n\nZdanie podrzędne to mała wiadomość wewnątrz większej. W przykładach wprowadza je krótkie słowo, a przecinek oddziela od reszty. Najpierw zrozum każdą część, potem ułóż jej słowa.",
+"pt-BR": "Lembre uma chegada específica: você chegou e encontrou a porta aberta. «als» situa a história naquela ocasião passada. Aqui significa “quando”, não o “do que” de uma comparação, embora a palavra alemã seja a mesma.\n\nAls ich ankam, war die Tür offen.\n\nQuando cheguei, a porta estava aberta.\n\nUma oração subordinada é uma pequena mensagem dentro de outra. Aqui uma palavra curta a introduz e uma vírgula a separa da outra parte. Entenda cada mensagem antes de ordenar suas palavras.",
+"ru": "Вспомни один конкретный случай: ты пришёл и застал дверь открытой. Не ты открывал дверь — ты только увидел, какой она была в тот момент. Для времени одного такого случая служит «als». Это не сравнение «чем», хотя в немецком оба слова пишутся одинаково.\n\nAls ich ankam, war die Tür offen.\n\nКогда я приехал, дверь была открыта.\n\nПридаточная часть — маленькое сообщение внутри большого. В образце её вводит короткое слово и она отделена запятой. Сначала пойми, что сообщает каждая половина; затем ставь слова в нужном порядке внутри каждой.",
+"tr": "Belirli bir anı düşün: vardın ve kapıyı açık buldun. «als» olayı geçmişteki o ana bağlar. Buradaki anlamı “-dığında”dır; karşılaştırmadaki anlamı değildir, yazılışları aynı olsa da.\n\nAls ich ankam, war die Tür offen.\n\nVardığımda kapı açıktı.\n\nYan cümle, daha büyük bir cümledeki küçük mesajdır. Bu örneklerde başında kısa bir kelime vardır ve diğer bölümden virgülle ayrılır. Önce her bölümün anlamını bul, sonra içindeki kelimeleri sırala.",
+"uk": "Згадай один конкретний прихід: ти прийшов і побачив, що двері були відчинені. Час такого окремого випадку вводить «als». Це не порівняння «ніж», хоча в німецькій обидва значення має те саме слово.\n\nAls ich ankam, war die Tür offen.\n\nКоли я приїхав, двері були відчинені.\n\nПідрядна частина — маленьке повідомлення всередині більшого. У зразку її вводить коротке слово, а від решти відділяє кома. Спочатку зрозумій зміст кожної частини, потім складай слова всередині неї.",
+"vi": "Hãy nhớ một lần đến cụ thể: bạn đến và thấy cửa đang mở. «als» đặt câu chuyện vào lần ấy trong quá khứ. Ở đây nó là “khi”, không phải từ chỉ đối tượng so sánh, dù chữ Đức giống hệt.\n\nAls ich ankam, war die Tür offen.\n\nKhi tôi đến, cửa đã mở.\n\nMệnh đề phụ là một ý nhỏ nằm trong câu lớn hơn. Trong các ví dụ này, nó có từ mở đầu và dấu phẩy ngăn cách. Hiểu từng ý trước, rồi xếp từ trong từng phần."
+},
+"kind": "concept",
+"exampleIds": [
+"de:24:01"
+]
+},
+{
+"textEN": "«Als» + ... + verb, then the main event\n\nAls ich ankam, war die Tür offen.\n\nWhen I arrived, the door was open.\n\nAls Anna ankam, war ich schon da.\n\nWhen Anna arrived, I was already there.\n\n«Als … ankam» gives you a point in time. What was the situation at that point? Put «war» right after that opening unit and then name what you’re describing.",
+"textES": "«Als» + ... + verbo, luego el evento principal\n\nAls ich ankam, war die Tür offen.\n\nCuando llegué, la puerta estaba abierta.\n\nAls Anna ankam, war ich schon da.\n\nCuando Anna llegó, yo ya estaba allí.\n\n«Als … ankam» fija un momento. ¿Cómo estaban las cosas entonces? Pon «war» justo tras el bloque inicial y luego nombra lo que describes.",
+"textId": "«Als» + ... + kata kerja, lalu peristiwa utama\n\nAls ich ankam, war die Tür offen.\n\nSaat aku tiba, pintunya terbuka.\n\nAls Anna ankam, war ich schon da.\n\nSaat Anna tiba, aku sudah ada di sana.\n\n«Als … ankam» menentukan satu titik waktu. Bagaimana keadaannya saat itu? Taruh «war» tepat setelah seluruh pembuka, lalu sebut apa yang dijelaskan.",
+"textPl": "«Als» + ... + czasownik, a następnie zdarzenie główne\n\nAls ich ankam, war die Tür offen.\n\nKiedy przyjechałem, drzwi były otwarte.\n\nAls Anna ankam, war ich schon da.\n\nKiedy Anna przyjechała, ja już tam byłem.\n\n«Als … ankam» wyznacza moment. Jaka była wtedy sytuacja? Tuż po całej części początkowej umieść «war», potem nazwij to, co opisujesz.",
+"textPtBr": "«Als» + ... + verbo, então o evento principal\n\nAls ich ankam, war die Tür offen.\n\nQuando cheguei, a porta estava aberta.\n\nAls Anna ankam, war ich schon da.\n\nQuando Anna chegou, eu já estava lá.\n\n«Als … ankam» marca um momento. Qual era a situação então? Ponha «war» logo após o bloco inicial e depois nomeie o que você descreve.",
+"textRU": "«Als» + … + глагол, затем главное событие\n\nAls ich ankam, war die Tür offen.\n\nКогда я приехал, дверь была открыта.\n\nAls Anna ankam, war ich schon da.\n\nКогда приехала Анна, я уже был на месте.\n\nУ двери было одно состояние именно в момент прихода. «Als … ankam» задаёт ориентир во времени. После всей этой первой части идёт «war», а затем название того, что описываешь.",
+"textTr": "«Als» + ... + fiil, ardından ana olay\n\nAls ich ankam, war die Tür offen.\n\nVardığımda kapı açıktı.\n\nAls Anna ankam, war ich schon da.\n\nAnna vardığında ben zaten oradaydım.\n\n«Als … ankam» bir zaman noktası verir. O an durum neydi? Açılış bölümünün hemen ardından «war», sonra anlattığın şey gelir.",
+"textUK": "«Als» + … + дієслово, потім головна подія\n\nAls ich ankam, war die Tür offen.\n\nКоли я приїхав, двері були відчинені.\n\nAls Anna ankam, war ich schon da.\n\nКоли приїхала Ганна, я вже був на місці.\n\nДвері мали певний стан у момент приходу. «Als … ankam» — орієнтир у часі. Після всієї цієї першої частини йде «war», а потім назва того, що описуєш.",
+"textVi": "«Als» + ... + động từ, sau đó là sự kiện chính\n\nAls ich ankam, war die Tür offen.\n\nKhi tôi đến, cửa đã mở.\n\nAls Anna ankam, war ich schon da.\n\nKhi Anna đến, tôi đã ở đó rồi.\n\n«Als … ankam» xác định một thời điểm. Lúc đó tình trạng thế nào? Đặt «war» ngay sau toàn bộ phần đầu rồi nêu đối tượng được mô tả.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Als» + ... + verb, then the main event\n\nAls ich ankam, war die Tür offen.\n\nWhen I arrived, the door was open.\n\nAls Anna ankam, war ich schon da.\n\nWhen Anna arrived, I was already there.\n\n«Als … ankam» gives you a point in time. What was the situation at that point? Put «war» right after that opening unit and then name what you’re describing.",
+"es": "«Als» + ... + verbo, luego el evento principal\n\nAls ich ankam, war die Tür offen.\n\nCuando llegué, la puerta estaba abierta.\n\nAls Anna ankam, war ich schon da.\n\nCuando Anna llegó, yo ya estaba allí.\n\n«Als … ankam» fija un momento. ¿Cómo estaban las cosas entonces? Pon «war» justo tras el bloque inicial y luego nombra lo que describes.",
+"id": "«Als» + ... + kata kerja, lalu peristiwa utama\n\nAls ich ankam, war die Tür offen.\n\nSaat aku tiba, pintunya terbuka.\n\nAls Anna ankam, war ich schon da.\n\nSaat Anna tiba, aku sudah ada di sana.\n\n«Als … ankam» menentukan satu titik waktu. Bagaimana keadaannya saat itu? Taruh «war» tepat setelah seluruh pembuka, lalu sebut apa yang dijelaskan.",
+"pl": "«Als» + ... + czasownik, a następnie zdarzenie główne\n\nAls ich ankam, war die Tür offen.\n\nKiedy przyjechałem, drzwi były otwarte.\n\nAls Anna ankam, war ich schon da.\n\nKiedy Anna przyjechała, ja już tam byłem.\n\n«Als … ankam» wyznacza moment. Jaka była wtedy sytuacja? Tuż po całej części początkowej umieść «war», potem nazwij to, co opisujesz.",
+"pt-BR": "«Als» + ... + verbo, então o evento principal\n\nAls ich ankam, war die Tür offen.\n\nQuando cheguei, a porta estava aberta.\n\nAls Anna ankam, war ich schon da.\n\nQuando Anna chegou, eu já estava lá.\n\n«Als … ankam» marca um momento. Qual era a situação então? Ponha «war» logo após o bloco inicial e depois nomeie o que você descreve.",
+"ru": "«Als» + … + глагол, затем главное событие\n\nAls ich ankam, war die Tür offen.\n\nКогда я приехал, дверь была открыта.\n\nAls Anna ankam, war ich schon da.\n\nКогда приехала Анна, я уже был на месте.\n\nУ двери было одно состояние именно в момент прихода. «Als … ankam» задаёт ориентир во времени. После всей этой первой части идёт «war», а затем название того, что описываешь.",
+"tr": "«Als» + ... + fiil, ardından ana olay\n\nAls ich ankam, war die Tür offen.\n\nVardığımda kapı açıktı.\n\nAls Anna ankam, war ich schon da.\n\nAnna vardığında ben zaten oradaydım.\n\n«Als … ankam» bir zaman noktası verir. O an durum neydi? Açılış bölümünün hemen ardından «war», sonra anlattığın şey gelir.",
+"uk": "«Als» + … + дієслово, потім головна подія\n\nAls ich ankam, war die Tür offen.\n\nКоли я приїхав, двері були відчинені.\n\nAls Anna ankam, war ich schon da.\n\nКоли приїхала Ганна, я вже був на місці.\n\nДвері мали певний стан у момент приходу. «Als … ankam» — орієнтир у часі. Після всієї цієї першої частини йде «war», а потім назва того, що описуєш.",
+"vi": "«Als» + ... + động từ, sau đó là sự kiện chính\n\nAls ich ankam, war die Tür offen.\n\nKhi tôi đến, cửa đã mở.\n\nAls Anna ankam, war ich schon da.\n\nKhi Anna đến, tôi đã ở đó rồi.\n\n«Als … ankam» xác định một thời điểm. Lúc đó tình trạng thế nào? Đặt «war» ngay sau toàn bộ phần đầu rồi nêu đối tượng được mô tả."
+},
+"kind": "formula",
+"exampleIds": [
+"de:24:01",
+"de:24:02"
+]
+},
+{
+"textEN": "When I arrived, the door was open.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Als ich ankam» — When I arrived: als places one occasion in the past; ankam means “arrived”.\n\n2. «war die Tür» — The door was. After the opening time clause war goes before die Tür.\n\n3. «offen» — Open: describes the state, not who opened the door.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textES": "Cuando llegué, la puerta estaba abierta.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Als ich ankam» — Cuando llegué: als señala una ocasión pasada y ankam significa «llegué».\n\n2. «war die Tür» — La puerta estaba. Tras la parte del tiempo, war precede a die Tür.\n\n3. «offen» — Abierta: es un estado; no dices quién abrió la puerta.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textId": "Saat aku tiba, pintunya terbuka.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Als ich ankam» — Ketika aku tiba: als menunjukkan satu kejadian lampau, ankam berarti tiba.\n\n2. «war die Tür» — Pintunya saat itu… Setelah keterangan waktu, war mendahului die Tür.\n\n3. «offen» — Terbuka: keadaan, bukan siapa yang membuka.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textPl": "Kiedy przyjechałem, drzwi były otwarte.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Als ich ankam» — Kiedy dotarłem: als wskazuje tamtą okazję, ankam — przybycie.\n\n2. «war die Tür» — Drzwi były. Po zdaniu określającym czas war poprzedza die Tür.\n\n3. «offen» — Otwarte: stan, nie informacja o tym, kto je otworzył.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textPtBr": "Quando cheguei, a porta estava aberta.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Als ich ankam» — Quando cheguei: als marca uma ocasião passada e ankam indica a chegada.\n\n2. «war die Tür» — A porta estava. Depois da parte do tempo, war vem antes de die Tür.\n\n3. «offen» — Aberta: é o estado; não diz quem abriu a porta.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textRU": "Когда я приехал, дверь была открыта.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Als ich ankam» — Когда я пришёл. als задаёт один момент в прошлом, ankam — «прибыл».\n\n2. «war die Tür» — Дверь была. Когда сначала назван момент, war идёт перед die Tür.\n\n3. «offen» — Открыта. Это состояние: не говорится, кто открыл дверь.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textTr": "Vardığımda kapı açıktı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Als ich ankam» — Ben vardığımda: als geçmişteki anı, ankam varışı belirtir.\n\n2. «war die Tür» — Kapı … idi. Baştaki zaman bölümünden sonra war, die Tür önüne geçer.\n\n3. «offen» — Açık: kapının durumu, kimin açtığı değil.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textUK": "Коли я приїхав, двері були відчинені.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Als ich ankam» — Коли я прийшов. als вказує на момент у минулому, ankam — «прибув».\n\n2. «war die Tür» — Двері були. Після початкової згадки часу war стоїть перед die Tür.\n\n3. «offen» — Відчинені. Це стан: не сказано, хто відчинив двері.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"textVi": "Khi tôi đến, cửa đã mở.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Als ich ankam» — Khi tôi đến: als chỉ một dịp trong quá khứ, ankam là “đã đến”.\n\n2. «war die Tür» — Cánh cửa lúc ấy ở trạng thái… Sau mệnh đề thời gian, war đi trước die Tür.\n\n3. «offen» — Mở: tả trạng thái, không nói ai mở cửa.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "When I arrived, the door was open.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Als ich ankam» — When I arrived: als places one occasion in the past; ankam means “arrived”.\n\n2. «war die Tür» — The door was. After the opening time clause war goes before die Tür.\n\n3. «offen» — Open: describes the state, not who opened the door.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"es": "Cuando llegué, la puerta estaba abierta.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Als ich ankam» — Cuando llegué: als señala una ocasión pasada y ankam significa «llegué».\n\n2. «war die Tür» — La puerta estaba. Tras la parte del tiempo, war precede a die Tür.\n\n3. «offen» — Abierta: es un estado; no dices quién abrió la puerta.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"id": "Saat aku tiba, pintunya terbuka.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Als ich ankam» — Ketika aku tiba: als menunjukkan satu kejadian lampau, ankam berarti tiba.\n\n2. «war die Tür» — Pintunya saat itu… Setelah keterangan waktu, war mendahului die Tür.\n\n3. «offen» — Terbuka: keadaan, bukan siapa yang membuka.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"pl": "Kiedy przyjechałem, drzwi były otwarte.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Als ich ankam» — Kiedy dotarłem: als wskazuje tamtą okazję, ankam — przybycie.\n\n2. «war die Tür» — Drzwi były. Po zdaniu określającym czas war poprzedza die Tür.\n\n3. «offen» — Otwarte: stan, nie informacja o tym, kto je otworzył.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"pt-BR": "Quando cheguei, a porta estava aberta.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Als ich ankam» — Quando cheguei: als marca uma ocasião passada e ankam indica a chegada.\n\n2. «war die Tür» — A porta estava. Depois da parte do tempo, war vem antes de die Tür.\n\n3. «offen» — Aberta: é o estado; não diz quem abriu a porta.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Als ich ankam» — Когда я пришёл. als задаёт один момент в прошлом, ankam — «прибыл».\n\n2. «war die Tür» — Дверь была. Когда сначала назван момент, war идёт перед die Tür.\n\n3. «offen» — Открыта. Это состояние: не говорится, кто открыл дверь.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"tr": "Vardığımda kapı açıktı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Als ich ankam» — Ben vardığımda: als geçmişteki anı, ankam varışı belirtir.\n\n2. «war die Tür» — Kapı … idi. Baştaki zaman bölümünden sonra war, die Tür önüne geçer.\n\n3. «offen» — Açık: kapının durumu, kimin açtığı değil.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"uk": "Коли я приїхав, двері були відчинені.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Als ich ankam» — Коли я прийшов. als вказує на момент у минулому, ankam — «прибув».\n\n2. «war die Tür» — Двері були. Після початкової згадки часу war стоїть перед die Tür.\n\n3. «offen» — Відчинені. Це стан: не сказано, хто відчинив двері.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen.",
+"vi": "Khi tôi đến, cửa đã mở.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Als ich ankam» — Khi tôi đến: als chỉ một dịp trong quá khứ, ankam là “đã đến”.\n\n2. «war die Tür» — Cánh cửa lúc ấy ở trạng thái… Sau mệnh đề thời gian, war đi trước die Tür.\n\n3. «offen» — Mở: tả trạng thái, không nói ai mở cửa.\n\nAls → ich → ankam → war → die → Tür → offen\n\nAls ich ankam, war die Tür offen."
+},
+"kind": "practice",
+"exampleIds": [
+"de:24:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:24:01",
+"target": "Als ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.",
+"uk": "Коли я приїхав, двері були відчинені."
+},
+{
+"id": "de:24:01",
+"target": "Als ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.",
+"uk": "Коли я приїхав, двері були відчинені."
+},
+{
+"id": "de:24:02",
+"target": "Als Anna ankam, war ich schon da.",
+"ru": "Когда приехала Анна, я уже был на месте.",
+"uk": "Коли приїхала Ганна, я вже був на місці."
+},
+{
+"id": "de:24:01",
+"target": "Als ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.",
+"uk": "Коли я приїхав, двері були відчинені."
+}
+]
+}
+]

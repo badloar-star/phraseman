@@ -1,0 +1,16 @@
+[
+{"id": "it:07:05", "type": "B1", "field": "tiles", "problem": "Соблазн «Lavora» даёт «Lavora insieme.» — вежливое «Вы работаете вместе», подсказка «Вы» без пометки (мн.) это допускает", "fix": {"position": 0, "replace_distractor": "Lavora", "with": "Lavoro"}},
+{"id": "it:07:15", "type": "B1", "field": "tiles", "problem": "Соблазн «Abita» даёт «Abita in città.» — вежливое «Вы живёте в городе», совпадает с подсказкой", "fix": {"position": 0, "replace_distractor": "Abita", "with": "Abito"}},
+{"id": "it:07:35", "type": "B1", "field": "tiles", "problem": "Соблазн «Prepara» даёт «Prepara il pranzo.» — вежливое «Вы готовите обед», совпадает с подсказкой", "fix": {"position": 0, "replace_distractor": "Prepara", "with": "Preparo"}},
+{"id": "it:08:05", "type": "B1", "field": "tiles", "problem": "Соблазн «lavorate» даёт «Dove lavorate?» = «Где вы работаете?» (мн.), совпадает с подсказкой и нет в alternatives", "fix": {"position": 1, "replace_distractor": "lavorate", "with": "lavoro"}},
+{"id": "it:07:40", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — не глаголы (Quante/Quanti/Domani/Quanto/Oggi), позиция решается без знания слова", "fix": {"position": 0, "replace_distractor": "Domani", "with": "Chiude"}},
+{"id": "it:07:47", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — не глаголы (Chiavi/Presto/Stasera/Biglietti/Oggi), позиция решается без знания слова", "fix": {"position": 0, "replace_distractor": "Presto", "with": "Torna"}},
+{"id": "it:07:50", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — не глаголы (Fondo/Biglietto/L’ufficio/Pronto/Libero), позиция решается без знания слова", "fix": {"position": 0, "replace_distractor": "Fondo", "with": "Lasci"}},
+{"id": "it:08:14", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — существительные (casa/finestra/zuppa/musica/borsa), позиция решается без знания слова", "fix": {"position": 1, "replace_distractor": "casa", "with": "parli"}},
+{"id": "it:08:17", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — не глаголы (l’uscita/una/casa/questo/finestra), позиция решается без знания слова", "fix": {"position": 1, "replace_distractor": "casa", "with": "ascolti"}},
+{"id": "it:08:26", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — существительные (banca/sorella/strada/bicicletta/cinema), позиция решается без знания слова", "fix": {"position": 1, "replace_distractor": "banca", "with": "tornano"}},
+{"id": "it:08:45", "type": "B1", "field": "tiles", "problem": "На позиции глагола все соблазны — существительные (banca/sorella/strada/bicicletta/cinema), позиция решается без знания слова", "fix": {"position": 1, "replace_distractor": "banca", "with": "tornano"}},
+{"id": "it:08:35", "type": "M", "field": "ru", "problem": "«Сколько ночей вы остаетесь?» — неестественно, по-русски «На сколько ночей…»", "fix": "На сколько ночей вы остаётесь?"},
+{"id": "it:08:35", "type": "M", "field": "uk", "problem": "«Скільки ночей ви зупиняєтесь?» — неестественно, нужно «На скільки ночей…»", "fix": "На скільки ночей ви зупиняєтеся?"},
+{"id": "it:07:49", "type": "M", "field": "uk", "problem": "«до залізничного вокзалу» — канцелярит, расходится с ru «к вокзалу»", "fix": "Ми йдемо до вокзалу."}
+]

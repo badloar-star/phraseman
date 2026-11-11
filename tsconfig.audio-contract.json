@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "commonjs", "strict": true,
+    "skipLibCheck": true, "esModuleInterop": true, "noEmit": true,
+    "typeRoots": ["C:/appsprojects/phraseman/node_modules/@types"], "types": ["node"],
+    "paths": { "./debug-logger": ["./tests/scoped_audio_types.d.ts"] }
+  },
+  "files": ["tests/scoped_audio_types.d.ts", "app/dev_diag_gate.ts", "app/pcm_wav.ts", "app/speaking_hold_recorder.ts", "modules/dev/native_audio_safe_fixture.ts", "modules/dev/native_audio_hub_controller.ts"]
+}

@@ -1,0 +1,1432 @@
+[
+{
+"lesson": 15,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 15,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Я могу: poder + инфинитив",
+"formula": "личная форма poder + действие в инфинитиве",
+"story": "Могу войти — puedo entrar. Можешь войти — puedes entrar. Меняется только poder; второе действие остаётся в словарной форме.",
+"use": "Скажи, кто может выполнить действие, не спрягая второе слово ещё раз.",
+"choose": "В puedo, puedes, puede, pueden слышно ue. Но для nosotros и vosotros нужны podemos, podéis. Это формы одного poder, а не четыре новых словарных глагола.",
+"nuance": "Скажи, кто может выполнить действие, не спрягая второе слово ещё раз. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"wrong": "Puedo entro en la tienda.",
+"right": "Puedo entrar en la tienda.",
+"chapters": [
+{
+"title": "Могу что сделать?",
+"body": "Первый глагол сообщает о возможности или разрешении. Второй называет действие. Упаковка простая: puedo + entrar — могу войти.",
+"note": "Глагольная группа: Puedo entrar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:01",
+"es:15:02"
+],
+"focusId": "es:15:01"
+},
+{
+"title": "Основа меняется не везде",
+"body": "В puedo, puedes, puede, pueden слышно ue. Но для nosotros и vosotros нужны podemos, podéis. Это формы одного poder, а не четыре новых словарных глагола.",
+"note": "Глагольная группа: Podemos esperar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:06",
+"es:15:07"
+],
+"focusId": "es:15:06"
+},
+{
+"title": "Второй глагол неподвижен",
+"body": "Сравни puedo pagar и podemos pagar. Действующее лицо уже выражено в poder. Сохрани -ar, -er или -ir у второго глагола и не вставляй между ними a.",
+"note": "Глагольная группа: Puedes pagar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:45",
+"es:15:46"
+],
+"focusId": "es:15:45"
+},
+{
+"title": "Разрешение и просьба",
+"body": "¿Puedo entrar? — прошу разрешить мне войти. ¿Puedes entrar? — спрашиваю, можешь ли войти ты. Разницу обозначает форма первого глагола, а не знак вопроса.",
+"note": "Глагольная группа: Puedo pagar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:48",
+"es:15:49"
+],
+"focusId": "es:15:48"
+},
+{
+"title": "Где поставить no",
+"body": "Чтобы сказать «не могу заплатить», отрицай возможность: no puedo pagar. Начни с no, затем собери ту же пару, что и в утверждении.",
+"note": "Глагольная группа: puede pagar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:35",
+"es:15:36"
+],
+"focusId": "es:15:35"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мои сёстры могут отнести пакет.» / «Я сегодня могу заплатить наличными.». Спрягается poder; второй глагол остаётся в инфинитиве. Смысловые опоры: «hermanas» — брат / сестра; «bolsa» — пакет, сумка.",
+"note": "Глагольная группа: Puedo pagar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:20",
+"es:15:21"
+],
+"focusId": "es:15:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты можешь подождать снаружи?» / «Ты можешь отнести пакет?». Спрягается poder; второй глагол остаётся в инфинитиве. Скажи, кто может выполнить действие, не спрягая второе слово ещё раз.",
+"note": "Глагольная группа: Puedes llevar. Спрягается poder; второй глагол остаётся в инфинитиве.",
+"samples": [
+"es:15:44",
+"es:15:50"
+],
+"focusId": "es:15:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · puedo",
+"gloss": "я",
+"id": "es:15:01",
+"sample": "Puedo entrar en la tienda."
+},
+{
+"es": "tú · puedes",
+"gloss": "ты",
+"id": "es:15:02",
+"sample": "Puedes entrar en la tienda."
+},
+{
+"es": "él · puede",
+"gloss": "он/она/Вы",
+"id": "es:15:05",
+"sample": "Ana puede esperar aquí."
+},
+{
+"es": "nosotros · podemos",
+"gloss": "мы",
+"id": "es:15:06",
+"sample": "Podemos esperar aquí."
+},
+{
+"es": "vosotros · podéis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:15:28",
+"sample": "Podéis leer el mensaje hoy."
+},
+{
+"es": "ellos · pueden",
+"gloss": "они/вы (ustedes)",
+"id": "es:15:19",
+"sample": "Mis hermanos pueden llevar la maleta."
+}
+],
+"title": "poder · Настоящее"
+}
+]
+},
+"uk": {
+"title": "Я можу: poder + інфінітив",
+"formula": "особова форма poder + дія в інфінітиві",
+"story": "Можу ввійти — puedo entrar. Можеш увійти — puedes entrar. Змінюється лише poder; друге дієслово лишається в інфінітиві.",
+"use": "Скажи, хто може виконати дію, не відмінюючи друге дієслово ще раз.",
+"choose": "У puedo, puedes, puede, pueden чуємо ue. Для nosotros і vosotros потрібні podemos, podéis. Це форми одного poder, а не нові словникові дієслова.",
+"nuance": "Скажи, хто може виконати дію, не відмінюючи друге дієслово ще раз. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"wrong": "Puedo entro en la tienda.",
+"right": "Puedo entrar en la tienda.",
+"chapters": [
+{
+"title": "Можу що зробити?",
+"body": "Перше дієслово повідомляє про можливість або дозвіл. Друге називає дію. Модель проста: puedo + entrar — можу зайти.",
+"note": "Дієслівна група: Puedo entrar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:01",
+"es:15:02"
+],
+"focusId": "es:15:01"
+},
+{
+"title": "Основа змінюється не скрізь",
+"body": "У puedo, puedes, puede, pueden чуємо ue. Для nosotros і vosotros потрібні podemos, podéis. Це форми одного poder, а не нові словникові дієслова.",
+"note": "Дієслівна група: Podemos esperar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:06",
+"es:15:07"
+],
+"focusId": "es:15:06"
+},
+{
+"title": "Друге дієслово незмінне",
+"body": "Порівняй puedo pagar та podemos pagar. Особу вже виражає poder. Залиш -ar, -er або -ir у другого дієслова й не вставляй між ними a.",
+"note": "Дієслівна група: Puedes pagar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:45",
+"es:15:46"
+],
+"focusId": "es:15:45"
+},
+{
+"title": "Дозвіл і прохання",
+"body": "¿Puedo entrar? — питаю дозволу зайти. ¿Puedes entrar? — питаю, чи можеш зайти ти. Різницю показує форма першого дієслова, а не знак питання.",
+"note": "Дієслівна група: Puedo pagar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:48",
+"es:15:49"
+],
+"focusId": "es:15:48"
+},
+{
+"title": "Де поставити no",
+"body": "Щоб сказати «не можу заплатити», запереч можливість: no puedo pagar. Почни з no, тоді склади ту саму пару, що у ствердженні.",
+"note": "Дієслівна група: puede pagar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:35",
+"es:15:36"
+],
+"focusId": "es:15:35"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Мої сестри можуть віднести пакет.» / «Я сьогодні можу заплатити готівкою.». Відмінюємо poder; друге дієслово лишається в інфінітиві. Смислові опори: «hermanas» — брат / сестра; «bolsa» — пакет, сумка.",
+"note": "Дієслівна група: Puedo pagar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:20",
+"es:15:21"
+],
+"focusId": "es:15:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти можеш почекати надворі?» / «Ти можеш віднести пакет?». Відмінюємо poder; друге дієслово лишається в інфінітиві. Скажи, хто може виконати дію, не відмінюючи друге дієслово ще раз.",
+"note": "Дієслівна група: Puedes llevar. Відмінюємо poder; друге дієслово лишається в інфінітиві.",
+"samples": [
+"es:15:44",
+"es:15:50"
+],
+"focusId": "es:15:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · puedo",
+"gloss": "я",
+"id": "es:15:01",
+"sample": "Puedo entrar en la tienda."
+},
+{
+"es": "tú · puedes",
+"gloss": "ти",
+"id": "es:15:02",
+"sample": "Puedes entrar en la tienda."
+},
+{
+"es": "él · puede",
+"gloss": "він/вона/Ви",
+"id": "es:15:05",
+"sample": "Ana puede esperar aquí."
+},
+{
+"es": "nosotros · podemos",
+"gloss": "ми",
+"id": "es:15:06",
+"sample": "Podemos esperar aquí."
+},
+{
+"es": "vosotros · podéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:15:28",
+"sample": "Podéis leer el mensaje hoy."
+},
+{
+"es": "ellos · pueden",
+"gloss": "вони/ви (ustedes)",
+"id": "es:15:19",
+"sample": "Mis hermanos pueden llevar la maleta."
+}
+],
+"title": "poder · Теперішній час"
+}
+]
+},
+"en": {
+"title": "Saying what you can do: poder + infinitive",
+"formula": "poder (puedo, puedes…) + infinitive",
+"story": "Puedo entrar → puedes entrar. The person who can enter changes; entrar does not need a second personal ending.",
+"use": "Say who can perform the action without conjugating the second word again.",
+"choose": "In puedo, puedes, puede, and pueden, ue is heard. But for nosotros and vosotros, podemos and podéis are needed. These are forms of the same poder, not four new vocabulary verbs.",
+"nuance": "Say who can perform the action without conjugating the second word again. Conjugate poder; the second verb remains in the infinitive.",
+"wrong": "Puedo entro en la tienda.",
+"right": "Puedo entrar en la tienda.",
+"chapters": [
+{
+"title": "How do I say what someone can do?",
+"body": "The first verb communicates possibility or permission. The second names the action. The packaging is simple: puedo + entrar — I can enter.",
+"note": "Verb phrase: Puedo entrar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:01",
+"es:15:02"
+],
+"focusId": "es:15:01"
+},
+{
+"title": "Which forms of poder change their stem?",
+"body": "In puedo, puedes, puede, and pueden, ue is heard. But for nosotros and vosotros, podemos and podéis are needed. These are forms of the same poder, not four new vocabulary verbs.",
+"note": "Verb phrase: Podemos esperar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:06",
+"es:15:07"
+],
+"focusId": "es:15:06"
+},
+{
+"title": "Why does the second verb stay in the infinitive?",
+"body": "Compare puedo pagar and podemos pagar. The active person is already expressed in poder. Keep - ar, - er, or - ir for the second verb and don't insert a between them.",
+"note": "Verb phrase: Puedes pagar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:45",
+"es:15:46"
+],
+"focusId": "es:15:45"
+},
+{
+"title": "Is the speaker asking permission or asking for help?",
+"body": "¿Puedo entrar? — I'm asking for permission to enter. ¿Puedes entrar? — I'm asking if you can enter. The difference is indicated by the form of the first verb, not the question mark.",
+"note": "Verb phrase: Puedo pagar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:48",
+"es:15:49"
+],
+"focusId": "es:15:48"
+},
+{
+"title": "Where does no belong?",
+"body": "To say \"I can't pay,\" negate the possibility: no puedo pagar. Start with no, then create the same pair as in the statement.",
+"note": "Verb phrase: puede pagar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:35",
+"es:15:36"
+],
+"focusId": "es:15:35"
+},
+{
+"title": "How do I put the two verbs together?",
+"body": "Compare the two tasks: \"My sisters can deliver the package.\" / \"I can pay cash today.\" Conjugate poder; the second verb remains in the infinitive. Semantic supports: \" hermanas \" - brother / sister; \" bolsa \" - package, bag.",
+"note": "Verb phrase: Puedo pagar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:20",
+"es:15:21"
+],
+"focusId": "es:15:21"
+},
+{
+"title": "Can I use poder with another action?",
+"body": "Compare the two tasks: \"Can you wait outside?\" / \"Can you carry the package?\" Conjugate poder; the second verb remains in the infinitive. Tell me who can perform the action without conjugating the second word again.",
+"note": "Verb phrase: Puedes llevar. Conjugate poder; the second verb remains in the infinitive.",
+"samples": [
+"es:15:44",
+"es:15:50"
+],
+"focusId": "es:15:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · puedo",
+"gloss": "I",
+"id": "es:15:01",
+"sample": "Puedo entrar en la tienda."
+},
+{
+"es": "tú · puedes",
+"gloss": "you",
+"id": "es:15:02",
+"sample": "Puedes entrar en la tienda."
+},
+{
+"es": "él · puede",
+"gloss": "he/she/you",
+"id": "es:15:05",
+"sample": "Ana puede esperar aquí."
+},
+{
+"es": "nosotros · podemos",
+"gloss": "we",
+"id": "es:15:06",
+"sample": "Podemos esperar aquí."
+},
+{
+"es": "vosotros · podéis",
+"gloss": "you (friends, Spain)",
+"id": "es:15:28",
+"sample": "Podéis leer el mensaje hoy."
+},
+{
+"es": "ellos · pueden",
+"gloss": "they/you (ustedes)",
+"id": "es:15:19",
+"sample": "Mis hermanos pueden llevar la maleta."
+}
+],
+"title": "poder Present"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:15:01",
+"index": 1,
+"right": "entrar",
+"near": "entras",
+"seq": [
+"Puedo",
+"entrar",
+"en",
+"la",
+"tienda"
+],
+"i": 0,
+"kind": "form",
+"key": "es15/lab/form1",
+"feedback": {
+"ru": "entrar — инфинитив «входить». В этой позиции не добавляй личное окончание.",
+"uk": "entrar — інфінітив «заходити». У цій позиції не додавай особового закінчення.",
+"en": "entrar is the infinitive \"to enter.\" Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:13",
+"index": 2,
+"right": "comprar",
+"near": "compras",
+"seq": [
+"Ana",
+"puede",
+"comprar",
+"un",
+"billete"
+],
+"i": 12,
+"kind": "form",
+"key": "es15/lab/form2",
+"feedback": {
+"ru": "comprar — инфинитив «покупать». В этой позиции не добавляй личное окончание.",
+"uk": "comprar — інфінітив «купувати». У цій позиції не додавай особового закінчення.",
+"en": "comprar — Infinitive \"to buy\". Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:26",
+"index": 3,
+"right": "volver",
+"near": "vuelves",
+"seq": [
+"Mis",
+"hermanas",
+"pueden",
+"volver",
+"a",
+"la",
+"estación",
+"hoy"
+],
+"i": 25,
+"kind": "form",
+"key": "es15/lab/form3",
+"feedback": {
+"ru": "volver — инфинитив «возвращаться». В этой позиции не добавляй личное окончание.",
+"uk": "volver — інфінітив «повертатися». У цій позиції не додавай особового закінчення.",
+"en": "volver is the infinitive \"to return.\" Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:38",
+"index": 3,
+"right": "abrir",
+"near": "abres",
+"seq": [
+"Luis",
+"no",
+"puede",
+"abrir",
+"la",
+"ventana"
+],
+"i": 37,
+"kind": "form",
+"key": "es15/lab/form4",
+"feedback": {
+"ru": "abrir — инфинитив «открывать». В этой позиции не добавляй личное окончание.",
+"uk": "abrir — інфінітив «відчиняти; відкривати». У цій позиції не додавай особового закінчення.",
+"en": "abrir — infinitive \"to open\". Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:07",
+"index": 1,
+"right": "esperar",
+"near": "esperas",
+"seq": [
+"Puedo",
+"esperar",
+"fuera"
+],
+"i": 6,
+"kind": "spot",
+"key": "es15/lab/spot1",
+"feedback": {
+"ru": "esperar — инфинитив «ждать». В этой позиции не добавляй личное окончание.",
+"uk": "esperar — інфінітив «чекати». У цій позиції не додавай особового закінчення.",
+"en": "esperar — Infinitive \"to wait.\" Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:20",
+"index": 3,
+"right": "llevar",
+"near": "llevas",
+"seq": [
+"Mis",
+"hermanas",
+"pueden",
+"llevar",
+"la",
+"bolsa"
+],
+"i": 19,
+"kind": "spot",
+"key": "es15/lab/spot2",
+"feedback": {
+"ru": "llevar — инфинитив «нести». В этой позиции не добавляй личное окончание.",
+"uk": "llevar — інфінітив «нести». У цій позиції не додавай особового закінчення.",
+"en": "llevar — infinitive \"to carry\". Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:33",
+"index": 2,
+"right": "pagar",
+"near": "pagas",
+"seq": [
+"No",
+"podemos",
+"pagar",
+"en",
+"efectivo",
+"aquí"
+],
+"i": 32,
+"kind": "spot",
+"key": "es15/lab/spot3",
+"feedback": {
+"ru": "pagar — инфинитив «платить». В этой позиции не добавляй личное окончание.",
+"uk": "pagar — інфінітив «платити». У цій позиції не додавай особового закінчення.",
+"en": "pagar — Infinitive \"to pay\". Do not add a personal ending in this position."
+}
+},
+{
+"id": "es:15:48",
+"index": 1,
+"right": "pagar",
+"near": "pagas",
+"seq": [
+"Puedo",
+"pagar",
+"aquí"
+],
+"i": 47,
+"kind": "spot",
+"key": "es15/lab/spot4",
+"feedback": {
+"ru": "pagar — инфинитив «платить». В этой позиции не добавляй личное окончание.",
+"uk": "pagar — інфінітив «платити». У цій позиції не додавай особового закінчення.",
+"en": "pagar — Infinitive \"to pay\". Do not add a personal ending in this position."
+}
+},
+{
+"kind": "match",
+"key": "es15/lab/match1",
+"id": "es:15:02",
+"other": "es:15:03"
+},
+{
+"kind": "match",
+"key": "es15/lab/match2",
+"id": "es:15:17",
+"other": "es:15:18"
+},
+{
+"kind": "match",
+"key": "es15/lab/match3",
+"id": "es:15:33",
+"other": "es:15:32"
+},
+{
+"kind": "match",
+"key": "es15/lab/match4",
+"id": "es:15:46",
+"other": "es:15:47"
+},
+{
+"kind": "build",
+"key": "es15/lab/build1",
+"id": "es:15:04"
+},
+{
+"kind": "build",
+"key": "es15/lab/build2",
+"id": "es:15:15"
+},
+{
+"kind": "build",
+"key": "es15/lab/build3",
+"id": "es:15:29"
+},
+{
+"kind": "build",
+"key": "es15/lab/build4",
+"id": "es:15:42"
+},
+{
+"kind": "transform",
+"id": "es:15:35",
+"base": "es:15:09",
+"diff": [
+{
+"before": [],
+"after": [
+"no"
+]
+}
+],
+"key": "es15/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:15:34",
+"base": "es:15:06",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es15/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:15:45",
+"base": "es:15:22",
+"diff": [
+{
+"before": [
+"hoy"
+],
+"after": []
+}
+],
+"key": "es15/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:15:49",
+"base": "es:15:18",
+"diff": [
+{
+"before": [
+"Podemos"
+],
+"after": [
+"Puedes"
+]
+}
+],
+"key": "es15/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+12
+],
+[
+11,
+18
+],
+[
+7,
+19
+],
+[
+16,
+3
+],
+[
+5,
+9
+],
+[
+15,
+17
+]
+],
+"worked": [
+"es:15:05",
+"es:15:18",
+"es:15:33",
+"es:15:48"
+],
+"reflection": [
+"es:15:01",
+"es:15:02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 16,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 16,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Собираюсь сделать: ir a + инфинитив",
+"formula": "форма ir + a + инфинитив",
+"story": "У тебя план, а не поездка в отель: Voy a llamar al hotel. После voy a назови действие, не место назначения.",
+"use": "Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами.",
+"choose": "Учитель и ученики строят план по-разному: el profesor va…, los estudiantes van… . Формы ir в настоящем не похожи на инфинитив: voy, vas, va, vamos, vais, van.",
+"nuance": "Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"wrong": "Voy llamar al hotel.",
+"right": "Voy a llamar al hotel.",
+"chapters": [
+{
+"title": "Намерение, не маршрут",
+"body": "Voy al hotel — иду в отель. Voy a llamar al hotel — собираюсь позвонить в отель. После a теперь стоит действие, поэтому идти куда-либо необязательно.",
+"note": "Глагольная группа: Voy a llamar. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:01",
+"es:16:02"
+],
+"focusId": "es:16:01"
+},
+{
+"title": "Выбираем лицо",
+"body": "Учитель и ученики строят план по-разному: el profesor va…, los estudiantes van… . Формы ir в настоящем не похожи на инфинитив: voy, vas, va, vamos, vais, van.",
+"note": "Глагольная группа: va a escribir. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:11",
+"es:16:12"
+],
+"focusId": "es:16:11"
+},
+{
+"title": "Зачем отдельное a",
+"body": "У poder перед инфинитивом нет предлога. У ir для плана он обязателен: puedo llamar, но voy a llamar. На экране a занимает отдельную позицию.",
+"note": "Глагольная группа: Vais a pagar. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:22",
+"es:16:23"
+],
+"focusId": "es:16:22"
+},
+{
+"title": "Когда произойдёт действие",
+"body": "Hoy, mañana и más tarde уточняют план, но не меняют форму инфинитива. Mañana в значении «завтра» не имеет артикля; la mañana — «утро».",
+"note": "Глагольная группа: Vamos a pagar. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:21",
+"es:16:22"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "Не собираюсь",
+"body": "No перед va или voy отрицает именно план. No voy a llamar — я не собираюсь звонить; это не сообщение о том, что звонок технически невозможен.",
+"note": "Глагольная группа: va a escribir. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:36",
+"es:16:37"
+],
+"focusId": "es:16:36"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мы позже собираемся приготовить рюкзак.» / «Мы завтра собираемся заплатить наличными.». Меняется ir, а между ним и инфинитивом сохраняется a. Смысловые опоры: «mochila» — рюкзак.",
+"note": "Глагольная группа: Vamos a pagar. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:20",
+"es:16:21"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты собираешься поесть дома?» / «Луис собирается купить билет?». Меняется ir, а между ним и инфинитивом сохраняется a. Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами.",
+"note": "Глагольная группа: va a comprar. Меняется ir, а между ним и инфинитивом сохраняется a.",
+"samples": [
+"es:16:44",
+"es:16:50"
+],
+"focusId": "es:16:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · voy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · va",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · van",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir · Настоящее"
+}
+]
+},
+"uk": {
+"title": "Збираюся зробити: ir a + інфінітив",
+"formula": "форма ir + a + інфінітив",
+"story": "Це план, а не поїздка до готелю: Voy a llamar al hotel. Після voy a назви дію, не місце призначення.",
+"use": "Назви план: хто збирається що зробити. Не пропусти a між двома дієсловами.",
+"choose": "Учитель і учні будують план по-різному: el profesor va…, los estudiantes van… . Форми ir не схожі на інфінітив: voy, vas, va, vamos, vais, van.",
+"nuance": "Назви план: хто збирається що зробити. Не пропусти a між двома дієсловами. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"wrong": "Voy llamar al hotel.",
+"right": "Voy a llamar al hotel.",
+"chapters": [
+{
+"title": "Намір, не маршрут",
+"body": "Voy al hotel — іду до готелю. Voy a llamar al hotel — збираюся зателефонувати до готелю. Після a тепер дія, тож нікуди йти не обов’язково.",
+"note": "Дієслівна група: Voy a llamar. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:01",
+"es:16:02"
+],
+"focusId": "es:16:01"
+},
+{
+"title": "Обираємо особу",
+"body": "Учитель і учні будують план по-різному: el profesor va…, los estudiantes van… . Форми ir не схожі на інфінітив: voy, vas, va, vamos, vais, van.",
+"note": "Дієслівна група: va a escribir. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:11",
+"es:16:12"
+],
+"focusId": "es:16:11"
+},
+{
+"title": "Навіщо окреме a",
+"body": "У poder перед інфінітивом немає прийменника. В ir на позначення плану він обов’язковий: puedo llamar, але voy a llamar. На екрані a — окрема позиція.",
+"note": "Дієслівна група: Vais a pagar. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:22",
+"es:16:23"
+],
+"focusId": "es:16:22"
+},
+{
+"title": "Коли відбудеться дія?",
+"body": "Hoy, mañana та más tarde уточнюють план, не змінюючи інфінітив. Mañana у значенні «завтра» не має артикля; la mañana — «ранок».",
+"note": "Дієслівна група: Vamos a pagar. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:21",
+"es:16:22"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "Не збираюся",
+"body": "No перед va чи voy заперечує саме план. No voy a llamar — я не збираюся телефонувати; це не твердження, що дзвінок технічно неможливий.",
+"note": "Дієслівна група: va a escribir. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:36",
+"es:16:37"
+],
+"focusId": "es:16:36"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ми пізніше збираємося приготувати рюкзак.» / «Ми завтра збираємося заплатити готівкою.». Змінюється ir, а між ним та інфінітивом зберігається a. Смислові опори: «mochila» — рюкзак.",
+"note": "Дієслівна група: Vamos a pagar. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:20",
+"es:16:21"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти збираєшся поїсти вдома?» / «Луїс збирається купити квиток?». Змінюється ir, а між ним та інфінітивом зберігається a. Назви план: хто збирається що зробити. Не пропусти a між двома дієсловами.",
+"note": "Дієслівна група: va a comprar. Змінюється ir, а між ним та інфінітивом зберігається a.",
+"samples": [
+"es:16:44",
+"es:16:50"
+],
+"focusId": "es:16:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · voy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · va",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · van",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir · Теперішній час"
+}
+]
+},
+"en": {
+"title": "Plans: ir a + infinitive",
+"formula": "ir (voy, vas…) + a + infinitive",
+"story": "Voy a llamar al hotel means you plan to phone the hotel, not travel there. After voy a, look for the action word llamar.",
+"use": "Name the plan: who is going to do what. Don't lose a between the two verbs.",
+"choose": "The teacher and students construct their plans differently: el profesor va …, los estudiantes van …. The forms of ir in the present are not similar to the infinitive: voy, vas, va, vamos, vais, van.",
+"nuance": "Name the plan: who is going to do what. Don't lose a between the two verbs. ir changes, but a remains between it and the infinitive.",
+"wrong": "Voy llamar al hotel.",
+"right": "Voy a llamar al hotel.",
+"chapters": [
+{
+"title": "Am I going somewhere or saying what I plan to do?",
+"body": "Voy al hotel — going to the hotel. Voy a llamar al hotel — going to call the hotel. a is now followed by an action, so going anywhere isn't necessary.",
+"note": "Verb phrase: Voy a llamar. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:01",
+"es:16:02"
+],
+"focusId": "es:16:01"
+},
+{
+"title": "Which form of ir fits the person?",
+"body": "The teacher and students construct their plans differently: el profesor va …, los estudiantes van …. The forms of ir in the present are not similar to the infinitive: voy, vas, va, vamos, vais, van.",
+"note": "Verb phrase: va a escribir. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:11",
+"es:16:12"
+],
+"focusId": "es:16:11"
+},
+{
+"title": "Why is a a separate word?",
+"body": "poder doesn't have a preposition before the infinitive. For ir, it's required for the plan: puedo llamar, but voy a llamar. On the screen, a occupies a separate position.",
+"note": "Verb phrase: Vais a pagar. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:22",
+"es:16:23"
+],
+"focusId": "es:16:22"
+},
+{
+"title": "Which words say when the plan will happen?",
+"body": "Hoy, mañana, and más tarde clarify the plan but do not change the form of the infinitive. Mañana meaning \"tomorrow\" has no article; la mañana means \"morning.\"",
+"note": "Verb phrase: Vamos a pagar. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:21",
+"es:16:22"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "How do I say that I am not going to do it?",
+"body": "No before va or voy denies the plan. No voy a llamar — I'm not going to call; this is not a message that calling is technically impossible.",
+"note": "Verb phrase: va a escribir. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:36",
+"es:16:37"
+],
+"focusId": "es:16:36"
+},
+{
+"title": "How do I assemble the plan?",
+"body": "Compare the two tasks: \"We are going to prepare the backpack later.\" / \"We are going to pay in cash tomorrow.\" ir changes, but a remains between it and the infinitive. Semantic supports: \" mochila \" — backpack.",
+"note": "Verb phrase: Vamos a pagar. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:20",
+"es:16:21"
+],
+"focusId": "es:16:21"
+},
+{
+"title": "Can I use the same pattern with another plan?",
+"body": "Compare the two tasks: \"Are you going to eat at home?\" / \"Is Louis going to buy a ticket?\" ir changes, but a remains between it and the infinitive. Name the plan: who is going to do what. Don't lose a between the two verbs.",
+"note": "Verb phrase: va a comprar. ir changes, and a remains between it and the infinitive.",
+"samples": [
+"es:16:44",
+"es:16:50"
+],
+"focusId": "es:16:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · voy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · va",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · vamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · van",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir Present"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:16:01",
+"index": 1,
+"right": "a",
+"near": "en",
+"seq": [
+"Voy",
+"a",
+"llamar",
+"al",
+"hotel"
+],
+"i": 0,
+"kind": "form",
+"key": "es16/lab/form1",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: llamar.",
+"uk": "a пов’язує особову форму та інфінітив: llamar.",
+"en": "a links the personal form and the infinitive: llamar."
+}
+},
+{
+"id": "es:16:13",
+"index": 2,
+"right": "a",
+"near": "en",
+"seq": [
+"Luis",
+"va",
+"a",
+"leer",
+"el",
+"libro",
+"más",
+"tarde"
+],
+"i": 12,
+"kind": "form",
+"key": "es16/lab/form2",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: leer.",
+"uk": "a пов’язує особову форму та інфінітив: leer.",
+"en": "a links the personal form and the infinitive: leer."
+}
+},
+{
+"id": "es:16:26",
+"index": 3,
+"right": "a",
+"near": "en",
+"seq": [
+"Mis",
+"hermanos",
+"van",
+"a",
+"entrar",
+"en",
+"la",
+"oficina",
+"mañana"
+],
+"i": 25,
+"kind": "form",
+"key": "es16/lab/form3",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: entrar.",
+"uk": "a пов’язує особову форму та інфінітив: entrar.",
+"en": "a links the personal form and the infinitive: entrar."
+}
+},
+{
+"id": "es:16:38",
+"index": 2,
+"right": "a",
+"near": "en",
+"seq": [
+"No",
+"vamos",
+"a",
+"llevar",
+"el",
+"coche"
+],
+"i": 37,
+"kind": "form",
+"key": "es16/lab/form4",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: llevar.",
+"uk": "a пов’язує особову форму та інфінітив: llevar.",
+"en": "a links the personal form and the infinitive: llevar."
+}
+},
+{
+"id": "es:16:07",
+"index": 2,
+"right": "a",
+"near": "en",
+"seq": [
+"Ana",
+"va",
+"a",
+"entrar",
+"en",
+"la",
+"tienda"
+],
+"i": 6,
+"kind": "spot",
+"key": "es16/lab/spot1",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: entrar.",
+"uk": "a пов’язує особову форму та інфінітив: entrar.",
+"en": "a links the personal form and the infinitive: entrar."
+}
+},
+{
+"id": "es:16:20",
+"index": 1,
+"right": "a",
+"near": "en",
+"seq": [
+"Vamos",
+"a",
+"preparar",
+"la",
+"mochila",
+"más",
+"tarde"
+],
+"i": 19,
+"kind": "spot",
+"key": "es16/lab/spot2",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: preparar.",
+"uk": "a пов’язує особову форму та інфінітив: preparar.",
+"en": "a links the personal form and the infinitive: preparar."
+}
+},
+{
+"id": "es:16:32",
+"index": 1,
+"right": "a",
+"near": "en",
+"seq": [
+"Voy",
+"a",
+"esperar",
+"porque",
+"estás",
+"ocupado"
+],
+"i": 31,
+"kind": "spot",
+"key": "es16/lab/spot3",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: esperar.",
+"uk": "a пов’язує особову форму та інфінітив: esperar.",
+"en": "a links the personal form and the infinitive: esperar."
+}
+},
+{
+"id": "es:16:47",
+"index": 1,
+"right": "a",
+"near": "en",
+"seq": [
+"Vas",
+"a",
+"llevar",
+"la",
+"lista"
+],
+"i": 46,
+"kind": "spot",
+"key": "es16/lab/spot4",
+"feedback": {
+"ru": "a связывает личную форму и инфинитив: llevar.",
+"uk": "a пов’язує особову форму та інфінітив: llevar.",
+"en": "a links the personal form and the infinitive: llevar."
+}
+},
+{
+"kind": "match",
+"key": "es16/lab/match1",
+"id": "es:16:02",
+"other": "es:16:03"
+},
+{
+"kind": "match",
+"key": "es16/lab/match2",
+"id": "es:16:17",
+"other": "es:16:18"
+},
+{
+"kind": "match",
+"key": "es16/lab/match3",
+"id": "es:16:33",
+"other": "es:16:34"
+},
+{
+"kind": "match",
+"key": "es16/lab/match4",
+"id": "es:16:46",
+"other": "es:16:49"
+},
+{
+"kind": "build",
+"key": "es16/lab/build1",
+"id": "es:16:04"
+},
+{
+"kind": "build",
+"key": "es16/lab/build2",
+"id": "es:16:15"
+},
+{
+"kind": "build",
+"key": "es16/lab/build3",
+"id": "es:16:29"
+},
+{
+"kind": "build",
+"key": "es16/lab/build4",
+"id": "es:16:42"
+},
+{
+"kind": "transform",
+"id": "es:16:04",
+"base": "es:16:03",
+"diff": [
+{
+"before": [
+"Voy"
+],
+"after": [
+"Vas"
+]
+}
+],
+"key": "es16/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:16:41",
+"base": "es:16:01",
+"diff": [
+{
+"before": [
+"Voy"
+],
+"after": [
+"Vas"
+]
+}
+],
+"key": "es16/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:16:50",
+"base": "es:16:09",
+"diff": [
+{
+"before": [
+"Voy"
+],
+"after": [
+"Luis",
+"va"
+]
+}
+],
+"key": "es16/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:16:48",
+"base": "es:16:47",
+"diff": [
+{
+"before": [
+"lista"
+],
+"after": [
+"bolsa"
+]
+}
+],
+"key": "es16/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+13
+],
+[
+5,
+2
+],
+[
+9,
+14
+],
+[
+3,
+10
+],
+[
+6,
+12
+],
+[
+18,
+11
+]
+],
+"worked": [
+"es:16:05",
+"es:16:18",
+"es:16:33",
+"es:16:48"
+],
+"reflection": [
+"es:16:01",
+"es:16:02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

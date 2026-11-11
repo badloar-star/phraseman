@@ -1,0 +1,118 @@
+[
+ {
+  "id": "lesson-5/nuance",
+  "type": "T1",
+  "field": "localized.ru.nuance",
+  "problem": "«Когда личность неизвестна… quién está» противоречит ch2 (для «кто он/она» нужен ser); смысл правила — неизвестное число людей → está в ед. ч.",
+  "fix": "Когда неизвестно, сколько там людей, нейтральный вопрос — quién + está в единственном числе: ¿Quién está en casa? Если спрашиваешь, кто эти несколько людей, используй согласованную пару quiénes son."
+ },
+ {
+  "id": "lesson-5/nuance",
+  "type": "T1",
+  "field": "localized.uk.nuance",
+  "problem": "та сама неточність, що в ru",
+  "fix": "Коли невідомо, скільки там людей, нейтральне запитання — quién + está в однині: ¿Quién está en casa? Якщо питаєш, хто ці кілька людей, використай узгоджену пару quiénes son."
+ },
+ {
+  "id": "lesson-5/nuance",
+  "type": "T1",
+  "field": "localized.en.nuance",
+  "problem": "та же неточность, что в ru",
+  "fix": "When you don't know how many people are there, the neutral question uses quién + singular está: ¿Quién está en casa? If you're asking who several people are, use the matching pair quiénes son."
+ },
+ {
+  "id": "lesson-5/ch2",
+  "type": "T1",
+  "field": "localized.ru.chapters[2].note",
+  "problem": "«собеседник или названная группа определяют форму es» — неверно: es выбрано по ella (один человек)",
+  "fix": "«ella» — один человек; поэтому es: ¿Quién es ella?"
+ },
+ {
+  "id": "lesson-5/ch2",
+  "type": "T1",
+  "field": "localized.uk.chapters[2].note",
+  "problem": "та сама помилка: форму es визначає ella",
+  "fix": "«ella» — одна людина; тому es: ¿Quién es ella?"
+ },
+ {
+  "id": "lesson-5/ch2",
+  "type": "T1",
+  "field": "localized.en.chapters[2].note",
+  "problem": "same error: es is chosen by ella",
+  "fix": "ella is one person, so use es: ¿Quién es ella?"
+ },
+ {
+  "id": "lesson-5/ch6",
+  "type": "T1",
+  "field": "localized.ru.chapters[6].note; localized.uk.chapters[6].note; localized.en.chapters[6].note",
+  "problem": "ориентиром для es указано «qué»; в ¿Qué es esto? форму es определяет esto",
+  "fix": {
+   "ru": "es — форма для «один человек или предмет». Ориентир в этом образце: «esto».",
+   "uk": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «esto».",
+   "en": "es is the form for “one person or thing”. The reference point in this pattern is “esto”."
+  }
+ },
+ {
+  "id": "lesson-5/ch6",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "«Сохраняй его и у прописной буквы внутри слова» — бессмыслица (в Dónde ударная o не прописная); uk говорит «на початку речення» — ru≠uk",
+  "fix": "В вопросительных dónde, quién, quiénes и qué над гласной пишется знак ударения. Сохраняй его и в начале предложения, когда слово пишется с прописной буквы: Dónde, а не Donde. Слова quién и qué односложные: знак здесь отличает вопросительные формы на письме. Весь прямой вопрос обрамляется ¿ и ?. В конструкторе знаки не требуют отдельного выбора."
+ },
+ {
+  "id": "lesson-5/ch6",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "«Keep it in the capital letter inside the word», «framed by ¿and?.» — ошибочно и ломано",
+  "fix": "In the question words dónde, quién, quiénes and qué, a written accent goes over the vowel. Keep it at the start of a sentence too, when the word is capitalised: Dónde, not Donde. Quién and qué are one-syllable words: here the accent mark distinguishes the question forms in writing. A direct question is framed by ¿ and ?. In the builder, you don't need to choose these marks separately."
+ },
+ {
+  "id": "lesson-5/choose",
+  "type": "T2",
+  "field": "localized.en.choose",
+  "problem": "«One clue requires está» — clue вместо key",
+  "fix": "In the pair ¿Dónde está la llave? and ¿Dónde están las llaves?, the word dónde remains the same. One key requires está, several keys require están. You are clarifying the location of an already known object, not asking whether it exists. The location in the answer can be short: En el bolso."
+ },
+ {
+  "id": "lesson-5/ch1",
+  "type": "T2",
+  "field": "localized.en.chapters[1].body",
+  "problem": "«One clue requires está» — clue вместо key",
+  "fix": "In the pair ¿Dónde está la llave? and ¿Dónde están las llaves?, the word dónde remains the same. One key requires está, several keys require están. You are clarifying the location of an already known object, not asking whether it exists. The location in the answer can be short: En el bolso."
+ },
+ {
+  "id": "lesson-5/ch5",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "«The space before libro», «don't collect qué el libro», заглавная после «…?» — en ломаный и неточный",
+  "fix": "In the pattern ¿Dónde está Ana? the order is: what is unknown → verb → who the question is about. If you are asking about a familiar thing, keep its article: ¿Dónde está el móvil? But in ¿Qué libro…? the slot before libro is already taken by qué: don't build qué el libro. These are neutral practice patterns, not a ban on other word orders in every context."
+ },
+ {
+  "id": "lesson-5/tables",
+  "type": "T2",
+  "field": "localized.en.tables[0].title",
+  "problem": "неграмматично «Forms ser»",
+  "fix": "Forms of ser"
+ },
+ {
+  "id": "lesson-6/ch3",
+  "type": "T2",
+  "field": "localized.ru.chapters[3].body",
+  "problem": "«Перестановка второго артикля из первой группы» — бессвязно, смысл не передан (uk сформулирован верно)",
+  "fix": "Раздели Los pasaportes están en la maleta на две группы. О чём говорим? Los pasaportes — мужской род, несколько. Где они? En la maleta — женский род, один чемодан. Каждое существительное определяет свой артикль. Если перенести артикль из первой группы во вторую, получится ошибочное en los maleta."
+ },
+ {
+  "id": "lesson-6/ch3",
+  "type": "T2",
+  "field": "localized.en.chapters[3].body",
+  "problem": "«Rearranging the second article from the first group» — бессвязно",
+  "fix": "Divide Los pasaportes están en la maleta into two groups. What are we talking about? Los pasaportes is masculine, several. Where are they? En la maleta is feminine, one suitcase. Each noun determines its own article. Copying the article from the first group into the second would give the incorrect en los maleta."
+ },
+ {
+  "id": "lesson-6/ch2",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "«this is the short title of the photo» — неверный перевод (foto — сокращение от fotografía)",
+  "fix": "Gender is a property of the Spanish word, not of the thing. Learn even familiar objects in small pairs: la llave, el mapa, la foto. Mapa ends in -a, but takes el. Foto ends in -o, but takes la (it is short for fotografía). In the plural, the gender stays the same: los mapas, las fotos."
+ }
+]

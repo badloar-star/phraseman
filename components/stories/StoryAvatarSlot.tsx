@@ -3,7 +3,7 @@
 //
 // зачем (владелец 14.10: «на Главной иконка аватарки с кругом, как история в Instagram, когда есть хоть одно событие»): один компонент вместо прежней разметки кнопки в home.tsx.
 // Событий нет или флаг выключен → ровно прежняя кнопка (те же testID, тот же обработчик, тап ведёт в профиль) — поведение «как раньше» гарантировано. Есть непросмотренные →
-// кольцо вокруг монеты, тап открывает просмотр; всё просмотрено → тап открывает визитку, удержание 2 секунды повторяет истории. Просмотр живёт отдельно от кольца: когда события просмотрены, кольцо гаснет, а открытый просмотр дорабатывает до конца.
+// кольцо вокруг монеты, тап открывает просмотр; всё просмотрено → тап открывает визитку. Удержание секунду открывает недавние истории и текущую активность.
 // Данные — useStoryEvents() Ядра (память процесса, первый кадр синхронно, сети нет). Логи: [STORY-RING] (что решило: кольцо/профиль, откуда origin).
 // Холодный старт (координатор 14.10): StoryRing (Svg + Reanimated) и StoryViewer (жесты, Modal, слайды) подключаются через require ВНУТРИ функций — только когда кольцо нужно (есть непросмотренное)
 // или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
@@ -15,7 +15,7 @@ import type { Lang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
 import { sceneTouchTrace } from '../../app/scene_touch_trace';
 import { useStoryEvents } from '../../modules/story_events/use_story_events';
-import type { StoryEventList } from '../../modules/story_events/story_events_core';
+import { storyRecentQueue, type StoryEventList } from '../../modules/story_events/story_events_core';
 import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
 import type { StoryOrigin } from './StoryViewer';
 import { storyText } from './story_strings';
@@ -64,21 +64,32 @@ export type StoryAvatarSlotProps = Readonly<{
   plusSurface?: string | null;
   /** Уровень подписки для кольца на Главной: plus (месячная) / ultra (годовая). По умолчанию plus. */
   plusTier?: SubscriptionTier;
+  homeStories?: StoryEventList;
 }>;
 
 type ViewerState = Readonly<{ events: StoryEventList; origin: StoryOrigin | null }>;
 
-function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel, plusSurface = null, plusTier = 'plus' }: StoryAvatarSlotProps) {
+function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel, plusSurface = null, plusTier = 'plus', homeStories }: StoryAvatarSlotProps) {
   const { enabled, unseenCount, playback, stories, markSeen } = useStoryEvents();
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
-  const ring = enabled && unseenCount > 0;
+  const [seenHomeIds, setSeenHomeIds] = useState<ReadonlySet<string>>(() => new Set());
+  const sceneStories = useMemo(() => (homeStories ?? []).filter((event) =>
+    event.type === 'home_activity' && typeof event.payload.state === 'string' && typeof event.payload.status === 'string'
+  ), [homeStories]);
+  const liveHomeStoryIds = useMemo(() => sceneStories.map((event) => event.id), [sceneStories]);
+  const openingRef = useRef(false);
+  const unreadQueue = useMemo(() => storyRecentQueue([
+    ...(enabled ? playback : []),
+    ...sceneStories.filter((event) => !seenHomeIds.has(event.id)),
+  ]), [enabled, sceneStories, playback, seenHomeIds]);
+  const ring = unreadQueue.length > 0 || (enabled && unseenCount > 0);
   // ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05: одно кольцо. Есть непросмотренная история → только кольцо историй; иначе кольцо Plus по статусу; иначе без кольца.
   const ringKind: 'story' | 'plus' | 'none' = ring ? 'story' : plusSurface !== null ? 'plus' : 'none';
   // Владелец 26.10: новые истории — обычным тапом; просмотренные повторяются удержанием.
   // Повтор идёт от старых к новым: список хранилища отдаёт новые первыми.
-  const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
-  const opensStories = queue.length > 0;
+  const replayQueue = useMemo(() => storyRecentQueue([...(enabled ? stories : []), ...sceneStories]), [enabled, sceneStories, stories]);
+  const opensStories = replayQueue.length > 0;
   // зачем (аудит Optimistic UI 24.10, п.2 «кольцо открывает истории сразу»): просмотр подключается лениво (холодный старт), и первое нажатие платило за загрузку Reanimated-жестов — задержка перед раскрытием.
   // Пока есть что смотреть, прогреваем модуль после первых взаимодействий, вне пути запуска; require кэшируется, повторный вызов бесплатен.
   useEffect(() => {
@@ -89,7 +100,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
     return () => { task.cancel(); };
   }, [opensStories]);
   // зачем (владелец 24.10: «истории должны открываться»; правило «сперва логи»): почему кольцо есть или его нет — флаг, число непросмотренных, очередь просмотра и живых событий; одной строкой на изменение
-  const decisionKey = `${String(enabled)}|${unseenCount}|${playback.length}|${stories.length}|${String(ring)}|${queue.length}`;
+  const decisionKey = `${String(enabled)}|${unseenCount}|${playback.length}|${stories.length}|${String(ring)}|${replayQueue.length}`;
   const decisionLoggedRef = useRef('');
   // [AVATAR-RING] (владелец 28.10: «два кольца сразу»): какое кольцо нарисовано и что решило — флаг историй, непросмотренные, есть ли Plus.
   const ringLoggedRef = useRef('');
@@ -100,27 +111,31 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   }
   if (decisionLoggedRef.current !== decisionKey) {
     decisionLoggedRef.current = decisionKey;
-    DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} очередь=${queue.length} к просмотру=${playback.length} живых=${stories.length} → ${ring ? 'кольцо горит' : 'кольца нет'}, тап ведёт ${ring && opensStories ? 'в просмотр непросмотренных' : 'в профиль'}`);
+    DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} повтор=${replayQueue.length} живых=${stories.length}`);
   }
 
-  const open = useCallback(() => {
-    if (viewer) { DebugLogger.info(LOG, 'тап: просмотр уже открыт'); return; }
-    if (!opensStories) { DebugLogger.info(LOG, `тап → профиль (непросмотренных нет) enabled=${String(enabled)} непросмотрено=${unseenCount} живых=${stories.length}`); onOpenProfile(); return; }
-    const events = queue;
+  const open = useCallback((events: StoryEventList) => {
+    if (openingRef.current || events.length === 0) return;
+    openingRef.current = true;
     const handle = buttonRef.current;
     if (!handle || typeof handle.measureInWindow !== 'function') {
-      DebugLogger.info(LOG, `тап → просмотр (${ring ? 'непросмотренные' : 'недавние'}): измерить аватар нельзя, раскрытие из угла, событий=${events.length}`);
       setViewer({ events, origin: null });
       return;
     }
     handle.measureInWindow((x: number, y: number, w: number, h: number) => {
       const origin = Number.isFinite(x) && w > 0 ? { x: x + w / 2, y: y + h / 2 } : null;
-      DebugLogger.info(LOG, `тап → просмотр (${ring ? 'непросмотренные' : 'недавние'}): событий=${events.length} origin=${origin ? `${Math.round(origin.x)},${Math.round(origin.y)}` : 'нет'}`);
       setViewer({ events, origin });
     });
-  }, [enabled, onOpenProfile, opensStories, queue, ring, stories.length, unseenCount, viewer]);
+  }, []);
 
-  const closeViewer = useCallback(() => { setViewer(null); }, []);
+  const closeViewer = useCallback(() => { openingRef.current = false; setViewer(null); }, []);
+  const onSeen = useCallback((id: string) => {
+    if (id.startsWith('home-activity:')) {
+      setSeenHomeIds((seen) => seen.has(id) ? seen : new Set([...seen, id]));
+    } else {
+      markSeen(id);
+    }
+  }, [markSeen]);
 
   // зачем (Сверка 22.10: аватар открывает профиль 3 из 5 — первое нажатие после входа на Главную и у верхнего края круга; правило
   // «сперва логи»): [AVATAR-TAP] показывает, где кнопка на экране, дошло ли касание до неё, отдал ли ей responder нажатие и какая ветка
@@ -157,14 +172,15 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   }, []);
   const onPress = useCallback(() => {
     if (pressRef.current) pressRef.current.pressed = true;
+    if (openingRef.current) return;
     DebugLogger.info(AVATAR_LOG, `onPress #${pressRef.current?.seq ?? '?'} → ${ring && opensStories ? 'просмотр сторис' : 'профиль'} +${sinceMount()} мс с монтажа`);
-    if (ring && opensStories) open(); else onOpenProfile();
-  }, [onOpenProfile, open, opensStories, ring]);
+    if (unreadQueue.length > 0) open(unreadQueue); else onOpenProfile();
+  }, [onOpenProfile, open, opensStories, unreadQueue, ring]);
 
   const onLongPress = useCallback(() => {
     if (pressRef.current) pressRef.current.pressed = true;
-    if (opensStories) open();
-  }, [open, opensStories]);
+    open(replayQueue);
+  }, [open, replayQueue]);
 
   const coin = (size: number): React.ReactElement => (coinSource ? (
     <Image testID="home-avatar-coin-rank" source={coinSource} style={{ width: size, height: size }} contentFit="contain" />
@@ -185,19 +201,24 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
           activeOpacity={0.82}
           onPress={onPress}
           onLongPress={opensStories ? onLongPress : undefined}
-          delayLongPress={2000}
+          delayLongPress={1000}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
           onLayout={onButtonLayout}
           accessibilityRole="button"
           accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
+          accessibilityHint={opensStories ? storyText(lang, 'holdToReplay') : undefined}
+          accessibilityActions={opensStories ? [{ name: 'replayStories', label: storyText(lang, 'replay') }] : undefined}
+          onAccessibilityAction={(event) => {
+            if (event.nativeEvent.actionName === 'replayStories') onLongPress();
+          }}
           hitSlop={6}
         >
           {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus tier={plusTier} size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
         </TouchableOpacity>
       </View>
       {viewer && Viewer ? (
-        <Viewer lang={lang} events={viewer.events} liveAnnouncementIds={stories.filter(event=>event.type==='announcement').map(event=>event.id)} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
+        <Viewer lang={lang} events={viewer.events} liveAnnouncementIds={stories.filter(event=>event.type==='announcement').map(event=>event.id)} liveHomeStoryIds={liveHomeStoryIds} coinRank={coinRank} origin={viewer.origin} onSeen={onSeen} onClose={closeViewer} />
       ) : null}
     </>
   );

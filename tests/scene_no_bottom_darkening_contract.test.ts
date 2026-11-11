@@ -30,17 +30,6 @@ describe('Сцена: нет затемнения низа', () => {
     expect(src).not.toMatch(/const scrim\b/);
   });
 
-  it.each([
-    ['components/dialogs/scene/DialogsSceneStage.tsx'],
-    ['components/home/v2/today_scene/TodaySceneView.tsx'],
-    ['components/home/v2/scene/HomeSceneStage.tsx'],
-    ['components/learning-v2/season/SeasonCourseView.tsx'],
-  ])('%s: слоя scrim нет (ни стиля, ни отрисовки)', (file) => {
-    const src = read(file);
-    expect(src).not.toMatch(/^\s*scrim: \{ position: 'absolute'/m);
-    expect(src).not.toMatch(/<LinearGradient[^>]*style=\{s\.scrim\}/);
-  });
-
   it('тёмные темы: нижние 20 % неба не темнее середины (отношение яркости ≥ 1)', () => {
     let n = 0;
     for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {

@@ -40,7 +40,7 @@ const ownerFacadeFragments = {
   cards: ['modules/phone-state/domains/cards.ts'],
   practice: ['modules/phone-state/domains/practice.ts'],
   economy: ['modules/phone-state/domains/economy.ts'],
-  learning_v2: ['modules/phone-state/domains/learning_v2.ts'],
+  learning_v2: ['modules/phone-state/domains/retired_course_completions.ts'],
 };
 const sharedAllowed = ['modules/phone-state/legacy_reader.ts', 'modules/phone-state/legacy_mirror.ts'];
 // зачем (координатор 13.10): dev-подмены НАМЕРЕННО пишут ключи прогресса прямо в AsyncStorage, мимо фасада, — фасад кладёт

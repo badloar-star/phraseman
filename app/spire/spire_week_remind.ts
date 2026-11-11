@@ -7,6 +7,11 @@
 // Лог: [D191-REMIND] — доступность (с причиной), постановка, повтор, отказ.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
 import { DebugLogger } from '../debug-logger';
 import { actionToastTri, emitAppEvent } from '../events';
 
@@ -54,20 +59,46 @@ export async function spireWeekRemindAvailability(nowMs: number = Date.now()): P
 }
 
 /** Поставить напоминание (повторный тап заменяет прежнее — одно напоминание, а не пачка). */
-export async function scheduleSpireWeekRemind(uiLang: string, nowMs: number = Date.now()): Promise<boolean> {
+export async function scheduleSpireWeekRemind(
+  uiLang: string,
+  nowMs: number = Date.now(),
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<boolean> {
+  const accountOwner = accountToken.stableId?.trim() || null;
+  const accountIsCurrent = (): boolean => Boolean(
+    accountOwner && isCurrentAccountGeneration(accountToken, accountOwner),
+  );
+  if (!accountIsCurrent()) { log(`не поставили: поколение ${accountToken.generation} уже не текущее`); return false; }
   const triggerAtMs = spireWeekRemindTriggerAt(nowMs);
   if (triggerAtMs === null) { log('не поставили: уже позже 18:30'); return false; }
   try {
     const notifications = await import('../notifications');
+    if (!accountIsCurrent()) { log(`не поставили: поколение ${accountToken.generation} сменилось при загрузке уведомлений`); return false; }
     const prevId = await AsyncStorage.getItem(ID_KEY).catch((error: unknown) => { log(`прежний id не прочитан (${String(error).slice(0, 80)})`); return null; });
+    if (!accountIsCurrent()) { log(`не поставили: поколение ${accountToken.generation} сменилось при чтении прежнего id`); return false; }
     if (prevId) {
       await notifications.cancelScheduledLocalNotificationById(prevId);
+      if (!accountIsCurrent()) { log(`не поставили: поколение ${accountToken.generation} сменилось при снятии прежнего напоминания`); return false; }
       log(`прежнее напоминание ${prevId} снято — ставим заново`);
     }
     const copy = spireWeekRemindCopy(uiLang);
+    if (!accountIsCurrent()) { log(`не поставили: поколение ${accountToken.generation} сменилось перед постановкой`); return false; }
     const result = await notifications.scheduleSpireWeekRemindLocalNotification({ ...copy, triggerAtMs });
     if (result.id === null) { log(`не поставили: ${result.reason}`); return false; }
+    if (!accountIsCurrent()) {
+      await notifications.cancelScheduledLocalNotificationById(result.id).catch((error: unknown) => {
+        log(`компенсация не сняла созданное напоминание (${String(error).slice(0, 80)})`);
+      });
+      log(`не поставили: поколение ${accountToken.generation} сменилось во время постановки, своё напоминание снято`);
+      return false;
+    }
     await AsyncStorage.setItem(ID_KEY, result.id).catch((error: unknown) => log(`id не сохранён (${String(error).slice(0, 80)}) — повтор может дать второе напоминание`));
+    if (!accountIsCurrent()) {
+      await notifications.cancelScheduledLocalNotificationById(result.id).catch((error: unknown) => {
+        log(`компенсация после записи id не сняла созданное напоминание (${String(error).slice(0, 80)})`);
+      });
+      return false;
+    }
     log(`поставили: id=${result.id} на ${new Date(triggerAtMs).toTimeString().slice(0, 5)} ui=${uiLang}`);
     return true;
   } catch (error) {
@@ -81,9 +112,19 @@ export async function scheduleSpireWeekRemind(uiLang: string, nowMs: number = Da
  * зачем (координатор 14.10, аудит Optimistic UI): окно закрывается сразу, напоминание ставится фоном; если постановка
  * не удалась, человек был уверен, что напоминание есть, — теперь он узнаёт, что нет. Закрытие окна остаётся оптимистичным.
  */
-export async function scheduleSpireWeekRemindWithFeedback(uiLang: string, nowMs: number = Date.now()): Promise<boolean> {
-  const ok = await scheduleSpireWeekRemind(uiLang, nowMs);
+export async function scheduleSpireWeekRemindWithFeedback(
+  uiLang: string,
+  nowMs: number = Date.now(),
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<boolean> {
+  const accountOwner = accountToken.stableId?.trim() || null;
+  const accountIsCurrent = (): boolean => Boolean(
+    accountOwner && isCurrentAccountGeneration(accountToken, accountOwner),
+  );
+  if (!accountIsCurrent()) return false;
+  const ok = await scheduleSpireWeekRemind(uiLang, nowMs, accountToken);
   if (ok) return true;
+  if (!accountIsCurrent()) return false;
   log('fail_toast: напоминание не поставилось — показываем тихий тост');
   emitAppEvent('action_toast', actionToastTri('info', {
     ru: 'Не получилось поставить напоминание', uk: 'Не вдалося поставити нагадування', en: "Couldn't set the reminder",

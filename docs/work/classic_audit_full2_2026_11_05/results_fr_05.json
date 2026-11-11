@@ -1,0 +1,23 @@
+[
+  {"id": "fr:11:13", "type": "B1", "field": "tiles", "problem": "соблазн «vers» даёт грамматичную «Je vais vers ma sœur» (иду к сестре — направляюсь к ней), подходит под подсказку", "fix": {"position": 2, "replace_distractor": "vers", "with": "sous"}},
+  {"id": "fr:11:14", "type": "B1", "field": "tiles", "problem": "соблазн «vers» даёт грамматичную «Tu vas vers ton frère» (идёшь к брату), подходит под подсказку", "fix": {"position": 2, "replace_distractor": "vers", "with": "sous"}},
+  {"id": "fr:11:14", "type": "M", "field": "uk", "problem": "uk «їдеш» (едешь) при ru «идёшь» — разный смысл ru и uk", "fix": "Ти йдеш до брата."},
+  {"id": "fr:11:16", "type": "B1", "field": "tiles", "problem": "соблазн «vers» даёт грамматичную «Ils vont vers leurs parents» (идут к родителям)", "fix": {"position": 2, "replace_distractor": "vers", "with": "sous"}},
+  {"id": "fr:11:16", "type": "M", "field": "uk", "problem": "uk «їдуть» (едут) при ru «идут» — разный смысл ru и uk", "fix": "Вони йдуть до батьків."},
+  {"id": "fr:11:27", "type": "M", "field": "uk", "problem": "имя «Пол» — в 11:12 и в ru «Поль»; французское Paul по-украински «Поль», несогласованность", "fix": "Поль їде до Італії."},
+  {"id": "fr:11:44", "type": "M", "field": "uk", "problem": "имя «Пол» вместо «Поль» (как в ru и 11:12)", "fix": "Поль не йде на зустріч."},
+  {"id": "fr:11:33", "type": "B1", "field": "tiles", "problem": "соблазн «en» даёт «Nous allons au parc en vélo» — очень распространённый разговорный вариант, засчитают ошибкой", "fix": {"position": 4, "replace_distractor": "en", "with": "pour"}},
+  {"id": "fr:11:34", "type": "B3", "field": "alternatives", "problem": "нет перестановки способа передвижения, которая принята в соседних 11:31–11:33; подсказка её не исключает", "fix": {"add": ["Tu vas en voiture à la gare."], "remove": []}},
+  {"id": "fr:11:36", "type": "B3", "field": "alternatives", "problem": "нет перестановки «en métro au stade», принятой в соседних 11:31–11:33", "fix": {"add": ["Il va en métro au stade."], "remove": []}},
+  {"id": "fr:11:37", "type": "B3", "field": "alternatives", "problem": "нет перестановки «à pied au collège», принятой в 11:31", "fix": {"add": ["Les enfants vont à pied au collège."], "remove": []}},
+  {"id": "fr:11:39", "type": "M", "field": "ru", "problem": "калька порядка слов «завтра» в конце; «ратуша» для mairie неестественно, по-русски «мэрия»", "fix": "Завтра мы идём в мэрию."},
+  {"id": "fr:11:39", "type": "M", "field": "uk", "problem": "калька порядка слов; для mairie естественнее «мерія»", "fix": "Завтра ми йдемо до мерії."},
+  {"id": "fr:11:40", "type": "M", "field": "ru", "problem": "калька порядка слов «на концерт вместе»; по-русски «вместе» перед глаголом (как в uk)", "fix": "Они вместе идут на концерт."},
+  {"id": "fr:12:30", "type": "M", "field": "ru", "problem": "eau fraîche = прохладная вода; «свежая вода» — калька", "fix": "Осталось немного прохладной воды."},
+  {"id": "fr:12:30", "type": "M", "field": "uk", "problem": "eau fraîche = прохолодна вода; «свіжа вода» — калька", "fix": "Залишилося трохи прохолодної води."},
+  {"id": "fr:12:37", "type": "M", "field": "uk", "problem": "«рослинне масло» — русизм; по-українськи «олія» (как в 12:10)", "fix": "У нас закінчилася олія."},
+  {"id": "fr:12:44", "type": "B1", "field": "tiles", "problem": "соблазн «voudrais» даёт верную «Tu voudrais une tasse de thé ?» (Хочешь чашку чая?) — засчитают ошибкой", "fix": {"position": 1, "replace_distractor": "voudrais", "with": "veut"}},
+  {"id": "fr:12:48", "type": "M", "field": "ru", "problem": "ru «закажу» ≠ uk «візьму» и ≠ prends; разный смысл ru и uk", "fix": "Я возьму рыбу с рисом."},
+  {"id": "fr:12:49", "type": "M", "field": "ru", "problem": "partager = делить; «берём… на всех» — пересказ, потерян глагол фразы", "fix": "Мы делим одну тарелку картошки фри."},
+  {"id": "fr:12:49", "type": "M", "field": "uk", "problem": "partager = ділити; «беремо… на всіх» — переказ", "fix": "Ми ділимо одну тарілку картоплі фрі."}
+]

@@ -1,0 +1,1066 @@
+[
+{
+"lesson": 13,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:13:01",
+"it:13:02",
+"it:13:03"
+],
+"textByLocale": {
+"en": "Adjectives have different patterns. `pesante` has one form for both genders in the singular. `leggero` has two: `leggero` and `leggera`.",
+"ru": "У прилагательных есть разные модели. У `pesante` одна форма для обоих родов в единственном числе. У `leggero` две: `leggero` и `leggera`.",
+"uk": "Прикметники мають різні моделі. У `pesante` одна форма для обох пологів в однині. У `leggero` дві: `leggero` та `leggera`."
+}
+},
+{
+"exampleIds": [
+"it:13:05",
+"it:13:06",
+"it:13:09"
+],
+"textByLocale": {
+"en": "Flowers also have different endings: `bianco`, `bianca`, and `verde` in the singular doesn't distinguish gender. It's best to study with an example object.",
+"ru": "В цветах тоже бывают разные окончания: `bianco`, `bianca`, а `verde` в единственном числе не различает род. Учить лучше вместе с примером предмета.",
+"uk": "У кольорах теж бувають різні закінчення: `bianco`, `bianca`, а `verde` в однині не розрізняє рід. Вчити краще разом із прикладом предмета."
+}
+},
+{
+"exampleIds": [
+"it:13:11",
+"it:13:13",
+"it:13:16"
+],
+"textByLocale": {
+"en": "The change in number affects several places at once: `la scatola è piena` and `le scatole sono piene`. Place the two versions side by side and note which three parts have changed.",
+"ru": "Смена числа затрагивает несколько мест сразу: `la scatola è piena` и `le scatole sono piene`. Поставь рядом две версии и отметь, какие три части поменялись.",
+"uk": "Зміна числа зачіпає кілька місць відразу: `la scatola è piena` і `le scatole sono piene`. Постав поруч дві версії і відзнач, які три частини змінилися."
+}
+},
+{
+"exampleIds": [
+"it:13:21",
+"it:13:23",
+"it:13:25"
+],
+"textByLocale": {
+"en": "The description can follow the name without a separate `è`: `una borsa nera`. In this case, the adjective is part of the name of the item being searched for or purchased.",
+"ru": "Описание может идти сразу за названием без отдельного `è`: `una borsa nera`. В таком случае прилагательное входит в название вещи, которую ищут или покупают.",
+"uk": "Опис може йти одразу за назвою без окремого `è`: `una borsa nera`. У такому разі прикметник входить у назву речі, яку шукають або купують."
+}
+},
+{
+"exampleIds": [
+"it:13:27",
+"it:13:28",
+"it:13:30"
+],
+"textByLocale": {
+"en": "Not all color names change in the same way: for example, the common `blu` remains `blu` even with several objects. Don't invent an ending just based on similarity to `rosso`.",
+"ru": "Не все названия цветов одинаково меняются: например, распространённое `blu` остаётся `blu` и с несколькими предметами. Не изобретай окончание только по сходству с `rosso`.",
+"uk": "Не всі назви кольорів однаково змінюються: наприклад, поширене `blu` залишається `blu` і з кількома предметами. Не вигадуй закінчення тільки за подібністю до `rosso`."
+}
+},
+{
+"exampleIds": [
+"it:13:31",
+"it:13:35",
+"it:13:38"
+],
+"textByLocale": {
+"en": "An adjective can come before or after a noun. The nuance of meaning sometimes depends on its position. First, memorize the entire natural phrase and don't automatically rearrange all the adjectives.",
+"ru": "Прилагательное бывает до или после существительного. От положения иногда зависит оттенок значения. Для начала запомни естественную группу целиком и не переставляй автоматически все прилагательные.",
+"uk": "Прикметник буває до іменника. Від положення іноді залежить відтінок значення. Спочатку запам'ятай природну групу цілком і не переставляй автоматично всі прикметники."
+}
+},
+{
+"exampleIds": [
+"it:13:41",
+"it:13:42",
+"it:13:49"
+],
+"textByLocale": {
+"en": "Sometimes a feature applies to an object not adjacent to you: first name the object, then describe it. When checking, follow the mental line from the noun to its adjective.",
+"ru": "Иногда признак относится к предмету не рядом с собой: сперва назови предмет, потом опиши его. При проверке проследи мысленную линию от существительного к его прилагательному.",
+"uk": "Іноді ознака відноситься до предмета не поруч із собою: спочатку назви предмет, потім опиши його. При перевірці прослідкуй уявну лінію від іменника до його прикметника."
+}
+}
+],
+"drills": [
+{
+"bad": "sceglie",
+"chapter": 1,
+"id": "it:13:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"nuove",
+"pesante",
+"sceglie"
+],
+"slot": 3
+},
+{
+"bad": "vorrei",
+"chapter": 1,
+"id": "it:13:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 47,
+"options": [
+"vorrei",
+"leggeri",
+"zaini"
+],
+"slot": 3
+},
+{
+"bad": "rosso",
+"chapter": 1,
+"id": "it:13:05:lab",
+"item": 5,
+"kind": "match",
+"near": 7,
+"options": [
+"grigio",
+"bianco",
+"rosso"
+],
+"slot": 3
+},
+{
+"bad": "sceglie",
+"chapter": 2,
+"id": "it:13:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"sceglie",
+"cortile",
+"verde"
+],
+"slot": 3
+},
+{
+"bad": "vecchio",
+"chapter": 2,
+"id": "it:13:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"vecchio",
+"grigio",
+"caldo"
+],
+"slot": 3
+},
+{
+"bad": "questa",
+"chapter": 2,
+"id": "it:13:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"lunga",
+"questa",
+"nuova"
+],
+"slot": 2
+},
+{
+"bad": "garage",
+"chapter": 3,
+"id": "it:13:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"nuove",
+"strade",
+"garage"
+],
+"slot": 3
+},
+{
+"bad": "auto",
+"chapter": 3,
+"id": "it:13:17:lab",
+"item": 17,
+"kind": "match",
+"near": 10,
+"options": [
+"auto",
+"compro",
+"vuoto"
+],
+"slot": 3
+},
+{
+"bad": "questa",
+"chapter": 3,
+"id": "it:13:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"stretta",
+"cucina",
+"questa"
+],
+"slot": 3
+},
+{
+"bad": "vecchia",
+"chapter": 4,
+"id": "it:13:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"porta",
+"vecchia",
+"nera"
+],
+"slot": 3
+},
+{
+"bad": "gonna",
+"chapter": 4,
+"id": "it:13:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"giardino",
+"gonna",
+"blu"
+],
+"slot": 4
+},
+{
+"bad": "preferisci",
+"chapter": 4,
+"id": "it:13:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"preferisci",
+"bianchi",
+"vorrei"
+],
+"slot": 3
+},
+{
+"bad": "auto",
+"chapter": 5,
+"id": "it:13:29:lab",
+"item": 29,
+"kind": "match",
+"near": 17,
+"options": [
+"grigio",
+"auto",
+"caldo"
+],
+"slot": 4
+},
+{
+"bad": "nuovo",
+"chapter": 5,
+"id": "it:13:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"nuovo",
+"giardino",
+"prendo"
+],
+"slot": 3
+},
+{
+"bad": "piene",
+"chapter": 5,
+"id": "it:13:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"grande",
+"piene",
+"cortile"
+],
+"slot": 4
+},
+{
+"bad": "qui",
+"chapter": 6,
+"id": "it:13:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"vicino",
+"lì",
+"qui"
+],
+"slot": 3
+},
+{
+"bad": "il",
+"chapter": 6,
+"id": "it:13:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"il",
+"una",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "nuove",
+"chapter": 6,
+"id": "it:13:42:lab",
+"item": 42,
+"kind": "match",
+"near": 44,
+"options": [
+"fredde",
+"bevande",
+"nuove"
+],
+"slot": 3
+},
+{
+"bad": "piena",
+"chapter": 7,
+"id": "it:13:45:lab",
+"item": 45,
+"kind": "build",
+"near": 43,
+"options": [
+"matura",
+"alta",
+"piena"
+],
+"slot": 5
+},
+{
+"bad": "mele",
+"chapter": 7,
+"id": "it:13:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 44,
+"options": [
+"mele",
+"robuste",
+"marrone"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"un cappotto",
+"leggero"
+],
+[
+"una gonna",
+"leggera"
+],
+[
+"gli zaini",
+"leggeri"
+],
+[
+"le borse",
+"leggere"
+],
+[
+"una scatola",
+"blu"
+],
+[
+"due scatole",
+"blu"
+]
+],
+"title": {
+"en": "What object: adjective agreement",
+"ru": "Какой предмет: согласование прилагательного",
+"uk": "Який предмет: узгодження прикметника"
+}
+},
+"exampleResolved": [
+{
+"id": "it:13:01",
+"target": "La borsa è pesante.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "it:13:02",
+"target": "La valigia è pesante.",
+"ru": "Чемодан тяжелый.",
+"uk": "Валіза важка."
+},
+{
+"id": "it:13:03",
+"target": "Gli zaini sono leggeri.",
+"ru": "Рюкзаки лёгкие.",
+"uk": "Рюкзаки легкі."
+},
+{
+"id": "it:13:05",
+"target": "Il lenzuolo è bianco.",
+"ru": "Простыня белая.",
+"uk": "Простирадло біле."
+},
+{
+"id": "it:13:06",
+"target": "La camicia è bianca.",
+"ru": "Рубашка белая.",
+"uk": "Сорочка біла."
+},
+{
+"id": "it:13:09",
+"target": "Il cappello è grigio.",
+"ru": "Шапка серая.",
+"uk": "Шапка сіра."
+},
+{
+"id": "it:13:11",
+"target": "La bicicletta è nuova.",
+"ru": "Велосипед новый.",
+"uk": "Велосипед новий."
+},
+{
+"id": "it:13:13",
+"target": "Le biciclette sono nuove.",
+"ru": "Велосипеды новые.",
+"uk": "Велосипеди нові."
+},
+{
+"id": "it:13:16",
+"target": "Le scatole sono piene.",
+"ru": "Коробки полные.",
+"uk": "Коробки повні."
+},
+{
+"id": "it:13:21",
+"target": "Cerco una borsa nera.",
+"ru": "Я ищу черную сумку.",
+"uk": "Я шукаю чорну сумку."
+},
+{
+"id": "it:13:23",
+"target": "Lui porta dei pantaloni blu.",
+"ru": "На нём синие брюки.",
+"uk": "Він у синіх штанях."
+},
+{
+"id": "it:13:25",
+"target": "Compro dei calzini neri.",
+"ru": "Я покупаю чёрные носки.",
+"uk": "Я купую чорні шкарпетки."
+},
+{
+"id": "it:13:27",
+"target": "Preferisci il maglione rosso?",
+"ru": "Ты предпочитаешь красный свитер?",
+"uk": "Тобі більше подобається червоний светр?"
+},
+{
+"id": "it:13:28",
+"target": "Lei sceglie le scarpe verdi.",
+"ru": "Она выбирает зелёные туфли.",
+"uk": "Вона обирає зелені туфлі."
+},
+{
+"id": "it:13:30",
+"target": "La coperta marrone è calda.",
+"ru": "Коричневое одеяло тёплое.",
+"uk": "Коричнева ковдра тепла."
+},
+{
+"id": "it:13:31",
+"target": "È un piccolo giardino.",
+"ru": "Это небольшой сад.",
+"uk": "Це маленький сад."
+},
+{
+"id": "it:13:35",
+"target": "Vorrei una sciarpa lunga.",
+"ru": "Я бы хотел длинный шарф.",
+"uk": "Я хотів би довгий шарф."
+},
+{
+"id": "it:13:38",
+"target": "È un vecchio edificio.",
+"ru": "Это старое здание.",
+"uk": "Це стара будівля."
+},
+{
+"id": "it:13:41",
+"target": "Questa zuppa è fredda.",
+"ru": "Этот суп холодный.",
+"uk": "Цей суп холодний."
+},
+{
+"id": "it:13:42",
+"target": "Le bevande sono fredde.",
+"ru": "Напитки холодные.",
+"uk": "Напої холодні."
+},
+{
+"id": "it:13:49",
+"target": "La mia giacca leggera è in valigia.",
+"ru": "Моя легкая куртка в чемодане.",
+"uk": "Моя легка куртка у валізі."
+}
+]
+},
+{
+"lesson": 14,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:14:01",
+"it:14:02",
+"it:14:04"
+],
+"textByLocale": {
+"en": "`Potere` communicates possibility or permission. In a phrase, a question and a statement can differ only in intonation. Consider whether you are being asked or told a fact.",
+"ru": "`Potere` сообщает возможность или разрешение. Во фразе вопрос и утверждение могут отличаться только интонацией. Учитывай, спрашивают ли тебя или сообщают факт.",
+"uk": "`Potere` повідомляє можливість чи дозвіл. У фразі питання та твердження можуть відрізнятися лише інтонацією. Зважай, чи питають тебе чи повідомляють факт."
+}
+},
+{
+"exampleIds": [
+"it:14:07",
+"it:14:08",
+"it:14:10"
+],
+"textByLocale": {
+"en": "`Dovere` communicates necessity. `Dobbiamo pagare` is \"we must pay,\" not \"we have already been paid.\" Don't change the form of the second verb because of the pronoun.",
+"ru": "`Dovere` сообщает необходимость. `Dobbiamo pagare` — это «мы должны заплатить», а не «нам уже заплатили». Не меняй форму второго глагола из-за местоимения.",
+"uk": "`Dovere` повідомляє необхідність. `Dobbiamo pagare` це «ми повинні заплатити», а не «нам уже заплатили». Не змінюй форму другого дієслова через займенник."
+}
+},
+{
+"exampleIds": [
+"it:14:11",
+"it:14:12",
+"it:14:14"
+],
+"textByLocale": {
+"en": "`Volere` expresses desire. Don't confuse the direct `voglio` with the polite `vorrei`, which comes later. When buying, the polite version often sounds softer.",
+"ru": "`Volere` выражает желание. Не путай прямое `voglio` с вежливым `vorrei`, которое будет позже. При покупке вежливый вариант часто звучит мягче.",
+"uk": "`Volere` висловлює бажання. Не плутай пряме `voglio` з ввічливим `vorrei`, яке буде згодом. При покупці ввічливий варіант часто звучить м'якше."
+}
+},
+{
+"exampleIds": [
+"it:14:17",
+"it:14:18",
+"it:14:19"
+],
+"textByLocale": {
+"en": "When addressing a single stranger, you can use the polite third form: `Può ripetere?`. You can't always tell from `può` alone whether the person is saying \"he can\" or the polite \"you can.\"",
+"ru": "Обращаясь к одному незнакомцу, можно использовать вежливую третью форму: `Può ripetere?` По одной форме `può` нельзя всегда решить, говорит ли человек «он может» или вежливое «вы можете».",
+"uk": "Звертаючись до одного незнайомця, можна використовувати ввічливу третю форму: `Può ripetere?` За однією формою `può` не можна завжди вирішити, чи людина говорить «він може» чи ввічливе «ви можете»."
+}
+},
+{
+"exampleIds": [
+"it:14:24",
+"it:14:26",
+"it:14:29"
+],
+"textByLocale": {
+"en": "Try using just `devo compilare` first, then adding `questo modulo`. This reduces the risk of confusing the person of the verb due to the long document title.",
+"ru": "Попробуй сначала построить только `devo compilare`, а затем добавить `questo modulo`. Так меньше риска перепутать лицо глагола из-за длинного названия документа.",
+"uk": "Спробуй спочатку побудувати лише `devo compilare`, а потім додати `questo modulo`. Так менше ризику переплутати обличчя дієслова через довгу назву документа."
+}
+},
+{
+"exampleIds": [
+"it:14:31",
+"it:14:34",
+"it:14:37"
+],
+"textByLocale": {
+"en": "`Non` is placed before the personal verb. `Non posso restare` means \"I can't stay\"; this is not the same as \"I don't want to stay.\" The modal meaning is retained even in the negative.",
+"ru": "`Non` ставится перед личным глаголом. `Non posso restare` — не могу остаться; это не то же самое, что не хочу остаться. Модальное значение сохраняется и в отрицании.",
+"uk": "`Non` ставиться перед особистим дієсловом. `Non posso restare` - не можу залишитися; це не те саме, що не хочу залишитися. Модальне значення зберігається й у запереченні."
+}
+},
+{
+"exampleIds": [
+"it:14:41",
+"it:14:43",
+"it:14:49"
+],
+"textByLocale": {
+"en": "The pronoun can appear in two positions: `lo posso fare` and `posso farlo`. The second version attaches the pronoun to the infinitive. Don't use the same pronoun in both positions.",
+"ru": "У местоимения возможны два места: `lo posso fare` и `posso farlo`. Вторая версия приклеивает местоимение к инфинитиву. Не сохраняй то же местоимение одновременно в обеих позициях.",
+"uk": "У займенника можливі два місця: `lo posso fare` та `posso farlo`. Друга версія приклеює займенник до інфінітиву. Не зберігай той самий займенник одночасно в обох позиціях."
+}
+}
+],
+"drills": [
+{
+"bad": "Può",
+"chapter": 1,
+"id": "it:14:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Puoi",
+"Posso",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "posso",
+"chapter": 1,
+"id": "it:14:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 22,
+"options": [
+"posso",
+"puoi",
+"può"
+],
+"slot": 1
+},
+{
+"bad": "Può",
+"chapter": 1,
+"id": "it:14:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Puoi",
+"Potete",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "Devo",
+"chapter": 2,
+"id": "it:14:08:lab",
+"item": 8,
+"kind": "build",
+"near": 4,
+"options": [
+"Deve",
+"Devi",
+"Devo"
+],
+"slot": 0
+},
+{
+"bad": "Devo",
+"chapter": 2,
+"id": "it:14:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 48,
+"options": [
+"Devo",
+"Deve",
+"Dobbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Voglio",
+"chapter": 2,
+"id": "it:14:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"Voglio",
+"Vuoi",
+"Vuole"
+],
+"slot": 0
+},
+{
+"bad": "Vuole",
+"chapter": 3,
+"id": "it:14:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 27,
+"options": [
+"Voglio",
+"Vuole",
+"Vogliamo"
+],
+"slot": 0
+},
+{
+"bad": "Può",
+"chapter": 3,
+"id": "it:14:17:lab",
+"item": 17,
+"kind": "match",
+"near": 1,
+"options": [
+"Puoi",
+"Posso",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "Posso",
+"chapter": 3,
+"id": "it:14:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Posso",
+"Possiamo",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "devo",
+"chapter": 4,
+"id": "it:14:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"deve",
+"dobbiamo",
+"devo"
+],
+"slot": 1
+},
+{
+"bad": "Devo",
+"chapter": 4,
+"id": "it:14:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 32,
+"options": [
+"Devo",
+"Deve",
+"Dobbiamo"
+],
+"slot": 0
+},
+{
+"bad": "Deve",
+"chapter": 4,
+"id": "it:14:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 7,
+"options": [
+"Devo",
+"Dobbiamo",
+"Deve"
+],
+"slot": 0
+},
+{
+"bad": "Devo",
+"chapter": 5,
+"id": "it:14:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Deve",
+"Devo",
+"Devono"
+],
+"slot": 0
+},
+{
+"bad": "può",
+"chapter": 5,
+"id": "it:14:31:lab",
+"item": 31,
+"kind": "build",
+"near": 40,
+"options": [
+"posso",
+"puoi",
+"può"
+],
+"slot": 1
+},
+{
+"bad": "può",
+"chapter": 5,
+"id": "it:14:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 40,
+"options": [
+"possiamo",
+"può",
+"puoi"
+],
+"slot": 1
+},
+{
+"bad": "vuole",
+"chapter": 6,
+"id": "it:14:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 32,
+"options": [
+"voglio",
+"vogliamo",
+"vuole"
+],
+"slot": 1
+},
+{
+"bad": "vuole",
+"chapter": 6,
+"id": "it:14:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"voglio",
+"vogliamo",
+"vuole"
+],
+"slot": 1
+},
+{
+"bad": "Puoi",
+"chapter": 6,
+"id": "it:14:42:lab",
+"item": 42,
+"kind": "match",
+"near": 19,
+"options": [
+"Puoi",
+"Posso",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "Può",
+"chapter": 7,
+"id": "it:14:45:lab",
+"item": 45,
+"kind": "build",
+"near": 4,
+"options": [
+"Puoi",
+"Può",
+"Possiamo"
+],
+"slot": 0
+},
+{
+"bad": "Devo",
+"chapter": 7,
+"id": "it:14:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 10,
+"options": [
+"Devo",
+"Deve",
+"Dobbiamo"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"io",
+"posso / devo / voglio"
+],
+[
+"tu",
+"puoi / devi / vuoi"
+],
+[
+"lui / lei",
+"può / deve / vuole"
+],
+[
+"noi",
+"possiamo / dobbiamo / vogliamo"
+],
+[
+"voi",
+"potete / dovete / volete"
+],
+[
+"loro",
+"possono / devono / vogliono"
+]
+],
+"title": {
+"en": "Can, must, want: two verbs",
+"ru": "Могу, должен, хочу: два глагола",
+"uk": "Можу, маю, хочу: два дієслова"
+}
+},
+"exampleResolved": [
+{
+"id": "it:14:01",
+"target": "Posso entrare.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "it:14:02",
+"target": "Puoi entrare.",
+"ru": "Ты можешь войти.",
+"uk": "Ти можеш увійти."
+},
+{
+"id": "it:14:04",
+"target": "Possiamo aspettare.",
+"ru": "Мы можем подождать.",
+"uk": "Ми можемо почекати."
+},
+{
+"id": "it:14:07",
+"target": "Devo partire.",
+"ru": "Мне нужно уйти.",
+"uk": "Мені треба йти."
+},
+{
+"id": "it:14:08",
+"target": "Devi aspettare.",
+"ru": "Тебе нужно подождать.",
+"uk": "Тобі треба почекати."
+},
+{
+"id": "it:14:10",
+"target": "Dobbiamo pagare.",
+"ru": "Нам нужно заплатить.",
+"uk": "Ми маємо заплатити."
+},
+{
+"id": "it:14:11",
+"target": "Voglio provarlo.",
+"ru": "Я хочу попробовать.",
+"uk": "Я хочу спробувати."
+},
+{
+"id": "it:14:12",
+"target": "Vuole prenotare.",
+"ru": "Она хочет забронировать.",
+"uk": "Вона хоче забронювати."
+},
+{
+"id": "it:14:14",
+"target": "Vogliamo visitare il museo.",
+"ru": "Мы хотим посетить музей.",
+"uk": "Ми хочемо відвідати музей."
+},
+{
+"id": "it:14:17",
+"target": "Posso aiutarla?",
+"ru": "Могу я вам помочь?",
+"uk": "Чи можу я вам допомогти?"
+},
+{
+"id": "it:14:18",
+"target": "Puoi chiudere la porta?",
+"ru": "Можешь закрыть дверь?",
+"uk": "Можеш зачинити двері?"
+},
+{
+"id": "it:14:19",
+"target": "Può ripetere?",
+"ru": "Можете повторить?",
+"uk": "Чи можете ви повторити?"
+},
+{
+"id": "it:14:24",
+"target": "Deve firmare qui.",
+"ru": "Вы должны подписать здесь.",
+"uk": "Ви повинні тут підписати."
+},
+{
+"id": "it:14:26",
+"target": "Devo compilare questo modulo.",
+"ru": "Я должен заполнить эту форму.",
+"uk": "Я повинен заповнити цю форму."
+},
+{
+"id": "it:14:29",
+"target": "Devono annullare l’appuntamento.",
+"ru": "Они должны отменить встречу.",
+"uk": "Вони повинні скасувати зустріч."
+},
+{
+"id": "it:14:31",
+"target": "Non posso portare questa valigia.",
+"ru": "Я не могу нести этот чемодан.",
+"uk": "Я не можу нести цю валізу."
+},
+{
+"id": "it:14:34",
+"target": "Non possiamo restare a lungo.",
+"ru": "Мы не можем остаться надолго.",
+"uk": "Ми не можемо залишитися надовго."
+},
+{
+"id": "it:14:37",
+"target": "Non vuole buttare via il pane.",
+"ru": "Она не хочет выбрасывать хлеб.",
+"uk": "Вона не хоче викидати хліб."
+},
+{
+"id": "it:14:41",
+"target": "Posso pagare con carta?",
+"ru": "Могу ли я оплатить картой?",
+"uk": "Чи можу я розплатитися карткою?"
+},
+{
+"id": "it:14:43",
+"target": "Mi può prestare il suo caricabatterie?",
+"ru": "Не могли бы вы (вежл.) одолжить мне свою зарядку?",
+"uk": "Чи не могли б ви (ввіч.) позичити мені свою зарядку?"
+},
+{
+"id": "it:14:49",
+"target": "Voglio imparare a nuotare.",
+"ru": "Я хочу научиться плавать.",
+"uk": "Я хочу навчитися плавати."
+}
+]
+}
+]

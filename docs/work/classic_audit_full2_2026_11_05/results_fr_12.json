@@ -1,0 +1,12 @@
+[
+{"id": "fr:25:10", "type": "B2", "field": "ru", "problem": "ru «Осталась одна» (ж.р.) расходится с target «un» (м.р.) и с uk «Залишився один»", "fix": "Остался один."},
+{"id": "fr:25:18", "type": "B1", "field": "tiles", "problem": "пара соблазнов «on» (поз.2) + «a» (поз.4) даёт верную фразу «De l’eau, on en a assez.» = «Воды у нас достаточно»", "fix": {"position": 2, "replace_distractor": "on", "with": "je"}},
+{"id": "fr:25:33", "type": "B1", "field": "tiles", "problem": "пара соблазнов «On» (поз.0) + «a» (поз.2) даёт верную фразу «On en a réservé trois.» = «Мы зарезервировали три»", "fix": {"position": 0, "replace_distractor": "On", "with": "Tu"}},
+{"id": "fr:25:38", "type": "B1", "field": "tiles", "problem": "пара соблазнов «il» (поз.8) + «faut» (поз.9) даёт верную фразу «…, il faut en commander trois.» = «нужно заказать три»", "fix": {"position": 9, "replace_distractor": "faut", "with": "devait"}},
+{"id": "fr:25:39", "type": "B1", "field": "tiles", "problem": "пара соблазнов «Il» (поз.0) + «faut» (поз.1) даёт верную фразу «Il faut en commander davantage.» = «Нужно заказать ещё»", "fix": {"position": 1, "replace_distractor": "faut", "with": "devions"}},
+{"id": "fr:25:49", "type": "B1", "field": "tiles", "problem": "пара соблазнов «On» (поз.0) + «a» (поз.1) даёт верную фразу «On a peu de temps et il en faut davantage.» = «У нас мало времени…»", "fix": {"position": 0, "replace_distractor": "On", "with": "Il"}},
+{"id": "fr:26:33", "type": "B1", "field": "tiles", "problem": "пара соблазнов «On» (поз.0) + «a» (поз.1) даёт верную фразу «On a autant de temps qu’eux.» = «У нас столько же времени…»", "fix": {"position": 0, "replace_distractor": "On", "with": "Elle"}},
+{"id": "fr:26:22", "type": "M", "field": "uk", "problem": "сравнение с голым родительным («повільніше Поля») — русизм, в украинском нужно «за/ніж»", "fix": "Ти говориш повільніше за Поля."},
+{"id": "fr:26:36", "type": "M", "field": "ru", "problem": "«В поезде тише, чем в автобусе» меняет смысл: target — поезд сам шумит меньше, чем автобус", "fix": "Поезд шумит меньше, чем автобус."},
+{"id": "fr:26:36", "type": "M", "field": "uk", "problem": "«У поїзді тихіше, ніж в автобусі» меняет смысл: target — поезд сам шумит меньше, чем автобус", "fix": "Поїзд шумить менше, ніж автобус."}
+]

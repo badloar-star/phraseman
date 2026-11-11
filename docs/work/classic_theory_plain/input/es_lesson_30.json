@@ -1,0 +1,811 @@
+{
+ "lang": "es",
+ "lesson": 30,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:30:01",
+   "target": "Quiero que vengas mañana.",
+   "ru": "Я хочу, чтобы ты пришёл завтра.",
+   "uk": "Я хочу, щоб ти прийшов завтра."
+  },
+  {
+   "id": "es:30:02",
+   "target": "Quiero que entres ahora.",
+   "ru": "Я хочу, чтобы ты вошла сейчас.",
+   "uk": "Я хочу, щоб ти зайшла зараз."
+  },
+  {
+   "id": "es:30:03",
+   "target": "Quiero que Luis abra la puerta.",
+   "ru": "Я хочу, чтобы Луис открыл дверь.",
+   "uk": "Я хочу, щоб Луїс відчинив двері."
+  },
+  {
+   "id": "es:30:04",
+   "target": "Quiero que leas el mensaje.",
+   "ru": "Я хочу, чтобы ты прочитал сообщение.",
+   "uk": "Я хочу, щоб ти прочитав повідомлення."
+  },
+  {
+   "id": "es:30:05",
+   "target": "Quiero que llames al hotel.",
+   "ru": "Я хочу, чтобы ты позвонила в отель.",
+   "uk": "Я хочу, щоб ти зателефонувала до готелю."
+  },
+  {
+   "id": "es:30:06",
+   "target": "Quiero que copies la contraseña.",
+   "ru": "Я хочу, чтобы ты скопировал пароль.",
+   "uk": "Я хочу, щоб ти скопіював пароль."
+  },
+  {
+   "id": "es:30:07",
+   "target": "Quiero que cierres la ventana.",
+   "ru": "Я хочу, чтобы ты закрыл окно.",
+   "uk": "Я хочу, щоб ти зачинив вікно."
+  },
+  {
+   "id": "es:30:08",
+   "target": "Quiero que la profesora hable más despacio.",
+   "ru": "Я хочу, чтобы преподавательница говорила помедленнее.",
+   "uk": "Я хочу, щоб викладачка говорила повільніше."
+  },
+  {
+   "id": "es:30:09",
+   "target": "Quiero que volvamos juntos.",
+   "ru": "Я хочу, чтобы мы вернулись вместе.",
+   "uk": "Я хочу, щоб ми повернулися разом."
+  },
+  {
+   "id": "es:30:10",
+   "target": "Quiero que el médico venga hoy.",
+   "ru": "Я хочу, чтобы врач пришёл сегодня.",
+   "uk": "Я хочу, щоб лікар прийшов сьогодні."
+  },
+  {
+   "id": "es:30:11",
+   "target": "Queremos que entres ahora.",
+   "ru": "Мы хотим, чтобы ты вошла сейчас.",
+   "uk": "Ми хочемо, щоб ти зайшла зараз."
+  },
+  {
+   "id": "es:30:12",
+   "target": "Queremos que apuntes el número.",
+   "ru": "Мы хотим, чтобы ты записал номер.",
+   "uk": "Ми хочемо, щоб ти записав номер."
+  },
+  {
+   "id": "es:30:13",
+   "target": "Queremos que revises los frenos.",
+   "ru": "Мы хотим, чтобы ты проверил тормоза.",
+   "uk": "Ми хочемо, щоб ти перевірив гальма."
+  },
+  {
+   "id": "es:30:14",
+   "target": "Queremos que llames al hotel.",
+   "ru": "Мы хотим, чтобы ты позвонила в отель.",
+   "uk": "Ми хочемо, щоб ти зателефонувала до готелю."
+  },
+  {
+   "id": "es:30:15",
+   "target": "Queremos que nos avises mañana.",
+   "ru": "Мы хотим, чтобы ты завтра дал нам знать.",
+   "uk": "Ми хочемо, щоб ти завтра дав нам знати."
+  },
+  {
+   "id": "es:30:16",
+   "target": "Queremos que cierres la ventana.",
+   "ru": "Мы хотим, чтобы ты закрыл окно.",
+   "uk": "Ми хочемо, щоб ти зачинив вікно."
+  },
+  {
+   "id": "es:30:17",
+   "target": "Queremos que la profesora hable más despacio.",
+   "ru": "Мы хотим, чтобы преподавательница говорила помедленнее.",
+   "uk": "Ми хочемо, щоб викладачка говорила повільніше."
+  },
+  {
+   "id": "es:30:18",
+   "target": "Queremos que volváis juntos.",
+   "ru": "Мы хотим, чтобы вы вернулись вместе.",
+   "uk": "Ми хочемо, щоб ви повернулися разом."
+  },
+  {
+   "id": "es:30:19",
+   "target": "Queremos que el médico venga hoy.",
+   "ru": "Мы хотим, чтобы врач пришёл сегодня.",
+   "uk": "Ми хочемо, щоб лікар прийшов сьогодні."
+  },
+  {
+   "id": "es:30:20",
+   "target": "Queremos que vengas mañana.",
+   "ru": "Мы хотим, чтобы ты пришёл завтра.",
+   "uk": "Ми хочемо, щоб ти прийшов завтра."
+  },
+  {
+   "id": "es:30:21",
+   "target": "Ana quiere que el mecánico repare la rueda.",
+   "ru": "Ана хочет, чтобы механик починил колесо.",
+   "uk": "Ана хоче, щоб механік полагодив колесо."
+  },
+  {
+   "id": "es:30:22",
+   "target": "Ana quiere que leas el mensaje.",
+   "ru": "Ана хочет, чтобы ты прочитал сообщение.",
+   "uk": "Ана хоче, щоб ти прочитав повідомлення."
+  },
+  {
+   "id": "es:30:23",
+   "target": "Ana quiere que leas el texto de la pantalla.",
+   "ru": "Ана хочет, чтобы ты прочитал текст на экране.",
+   "uk": "Ана хоче, щоб ти прочитав текст на екрані."
+  },
+  {
+   "id": "es:30:24",
+   "target": "Ana quiere que apuntes la contraseña.",
+   "ru": "Ана хочет, чтобы ты записал пароль.",
+   "uk": "Ана хоче, щоб ти записав пароль."
+  },
+  {
+   "id": "es:30:25",
+   "target": "Ana quiere que cierres la ventana.",
+   "ru": "Ана хочет, чтобы ты закрыл окно.",
+   "uk": "Ана хоче, щоб ти зачинив вікно."
+  },
+  {
+   "id": "es:30:26",
+   "target": "Ana quiere que la profesora hable más despacio.",
+   "ru": "Ана хочет, чтобы преподавательница говорила помедленнее.",
+   "uk": "Ана хоче, щоб викладачка говорила повільніше."
+  },
+  {
+   "id": "es:30:27",
+   "target": "Ana quiere que volvamos juntos.",
+   "ru": "Ана хочет, чтобы мы вернулись вместе.",
+   "uk": "Ана хоче, щоб ми повернулися разом."
+  },
+  {
+   "id": "es:30:28",
+   "target": "Ana quiere que el médico venga hoy.",
+   "ru": "Ана хочет, чтобы врач пришёл сегодня.",
+   "uk": "Ана хоче, щоб лікар прийшов сьогодні."
+  },
+  {
+   "id": "es:30:29",
+   "target": "Ana quiere que vengas mañana.",
+   "ru": "Ана хочет, чтобы ты пришёл завтра.",
+   "uk": "Ана хоче, щоб ти прийшов завтра."
+  },
+  {
+   "id": "es:30:30",
+   "target": "Ana quiere que entres ahora.",
+   "ru": "Ана хочет, чтобы ты вошла сейчас.",
+   "uk": "Ана хоче, щоб ти зайшла зараз."
+  },
+  {
+   "id": "es:30:31",
+   "target": "Mi madre no quiere que apagues la luz.",
+   "ru": "Моя мама не хочет, чтобы ты выключал свет.",
+   "uk": "Моя мама не хоче, щоб ти вимикав світло."
+  },
+  {
+   "id": "es:30:32",
+   "target": "Mi madre quiere que copies el texto.",
+   "ru": "Мама хочет, чтобы ты скопировал текст.",
+   "uk": "Мама хоче, щоб ти скопіював текст."
+  },
+  {
+   "id": "es:30:33",
+   "target": "Mi madre no quiere que cantes después de la cena.",
+   "ru": "Мама не хочет, чтобы ты пел после ужина.",
+   "uk": "Мама не хоче, щоб ти співав після вечері."
+  },
+  {
+   "id": "es:30:34",
+   "target": "Mi madre quiere que cierres la ventana.",
+   "ru": "Моя мама хочет, чтобы ты закрыл окно.",
+   "uk": "Моя мама хоче, щоб ти зачинив вікно."
+  },
+  {
+   "id": "es:30:35",
+   "target": "Mi madre no quiere que enciendas el horno.",
+   "ru": "Моя мама не хочет, чтобы ты включал духовку.",
+   "uk": "Моя мама не хоче, щоб ти вмикав духовку."
+  },
+  {
+   "id": "es:30:36",
+   "target": "Mi madre quiere que volvamos juntos.",
+   "ru": "Моя мама хочет, чтобы мы вернулись вместе.",
+   "uk": "Моя мама хоче, щоб ми повернулися разом."
+  },
+  {
+   "id": "es:30:37",
+   "target": "Mi madre no quiere que el médico venga hoy.",
+   "ru": "Моя мама не хочет, чтобы врач пришёл сегодня.",
+   "uk": "Моя мама не хоче, щоб лікар прийшов сьогодні."
+  },
+  {
+   "id": "es:30:38",
+   "target": "Mi madre quiere que vengas mañana.",
+   "ru": "Моя мама хочет, чтобы ты пришёл завтра.",
+   "uk": "Моя мама хоче, щоб ти прийшов завтра."
+  },
+  {
+   "id": "es:30:39",
+   "target": "Mi madre no quiere que dejes el grifo abierto.",
+   "ru": "Мама не хочет, чтобы ты оставлял кран открытым.",
+   "uk": "Мама не хоче, щоб ти залишав кран відкритим."
+  },
+  {
+   "id": "es:30:40",
+   "target": "Mi madre quiere que avises al vecino.",
+   "ru": "Моя мама хочет, чтобы ты предупредил соседа.",
+   "uk": "Моя мама хоче, щоб ти попередив сусіда."
+  },
+  {
+   "id": "es:30:41",
+   "target": "¿Quieres que llame al hotel?",
+   "ru": "Ты хочешь, чтобы я позвонила в отель?",
+   "uk": "Ти хочеш, щоб я зателефонувала до готелю?"
+  },
+  {
+   "id": "es:30:42",
+   "target": "¿Quieres que copie la dirección?",
+   "ru": "Хочешь, чтобы я скопировал адрес?",
+   "uk": "Хочеш, щоб я скопіював адресу?"
+  },
+  {
+   "id": "es:30:43",
+   "target": "¿Quieres que cierre la ventana?",
+   "ru": "Ты хочешь, чтобы я закрыл окно?",
+   "uk": "Ти хочеш, щоб я зачинив вікно?"
+  },
+  {
+   "id": "es:30:44",
+   "target": "¿Quieres que la profesora hable más despacio?",
+   "ru": "Ты хочешь, чтобы преподавательница говорила помедленнее?",
+   "uk": "Ти хочеш, щоб викладачка говорила повільніше?"
+  },
+  {
+   "id": "es:30:45",
+   "target": "¿Quieres que volvamos juntos?",
+   "ru": "Ты хочешь, чтобы мы вернулись вместе?",
+   "uk": "Ти хочеш, щоб ми повернулися разом?"
+  },
+  {
+   "id": "es:30:46",
+   "target": "¿Quieres que el médico venga hoy?",
+   "ru": "Ты хочешь, чтобы врач пришёл сегодня?",
+   "uk": "Ти хочеш, щоб лікар прийшов сьогодні?"
+  },
+  {
+   "id": "es:30:47",
+   "target": "¿Quieres que venga mañana?",
+   "ru": "Ты хочешь, чтобы я пришёл завтра?",
+   "uk": "Ти хочеш, щоб я прийшов завтра?"
+  },
+  {
+   "id": "es:30:48",
+   "target": "¿Quieres que baje el volumen?",
+   "ru": "Хочешь, чтобы я сделал потише?",
+   "uk": "Хочеш, щоб я зробив тихіше?"
+  },
+  {
+   "id": "es:30:49",
+   "target": "¿Quieres que Luis abra la puerta?",
+   "ru": "Ты хочешь, чтобы Луис открыл дверь?",
+   "uk": "Ти хочеш, щоб Луїс відчинив двері?"
+  },
+  {
+   "id": "es:30:50",
+   "target": "¿Quieres que lea el mensaje?",
+   "ru": "Ты хочешь, чтобы я прочитал сообщение?",
+   "uk": "Ти хочеш, щоб я прочитав повідомлення?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "despacio",
+   "ru": "медленно",
+   "uk": "повільно"
+  },
+  {
+   "lemma": "apuntar",
+   "ru": "записывать, делать пометку",
+   "uk": "записувати, занотовувати"
+  },
+  {
+   "lemma": "avisar",
+   "ru": "предупреждать, давать знать",
+   "uk": "попереджати, давати знати"
+  },
+  {
+   "lemma": "contraseña",
+   "ru": "пароль",
+   "uk": "пароль"
+  },
+  {
+   "lemma": "copiar",
+   "ru": "копировать",
+   "uk": "копіювати"
+  },
+  {
+   "lemma": "pantalla",
+   "ru": "экран",
+   "uk": "екран"
+  },
+  {
+   "lemma": "texto",
+   "ru": "текст",
+   "uk": "текст"
+  },
+  {
+   "lemma": "dirección",
+   "ru": "адрес",
+   "uk": "адреса"
+  },
+  {
+   "lemma": "querer",
+   "ru": "хотеть",
+   "uk": "хотіти"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar",
+  "corto",
+  "tuyo",
+  "encontrar",
+  "mío",
+  "silla",
+  "que",
+  "salir",
+  "vender",
+  "ver",
+  "visitar",
+  "freno",
+  "mecánico",
+  "reparar",
+  "revisar",
+  "rueda",
+  "taller",
+  "usar",
+  "noche",
+  "alquilar",
+  "balcón",
+  "barato",
+  "elegir",
+  "habitación",
+  "natural",
+  "piso",
+  "poner",
+  "ruidoso",
+  "tan",
+  "tanto",
+  "sin"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  },
+  {
+   "lesson": 27,
+   "title": "Книга, которую…: относительное que"
+  },
+  {
+   "lesson": 28,
+   "title": "Завтра позвоню: простое будущее"
+  },
+  {
+   "lesson": 29,
+   "title": "Я бы позвонил: condicional simple"
+  }
+ ],
+ "oldTopicTitle": "Хочу, чтобы ты…: querer que",
+ "oldTheoryRu": "Желание моё, приходит другой человек. Quiero venir — хочу прийти сам. Quiero que vengas — хочу, чтобы пришёл ты. Вырази пожелание относительно другого исполнителя. После que выбирается форма subjuntivo. Quiero venir — я сам хочу прийти. Quiero que vengas — хочу, чтобы пришёл ты. Именно смена исполнителя объясняет появление que и отдельной личной формы. Говорящий не утверждает «ты придёшь». Он говорит, что хочет этого. Поэтому после quiero que в этой конструкции берём vengas, а не vienes или vendrás. У обычного -ar появляются e, es, e, emos, éis, en: hablar → hable. У -er/-ir появляются a, as, a, amos, áis, an: abrir → abra. Лицо задаёт исполнитель желания. Venir даёт venga, vengas; cerrar — cierre, cierres. Не приклеивай окончание к первой попавшейся основе. В справочнике показаны реальные формы вместе с примерами. В Quiero que vengas я хочу, чтобы ты пришёл: желаемое действие ещё не свершилось. Не принимай vengas за прошедшее время; это форма для того, чего я сейчас хочу. Сравни два задания: «Мы хотим, чтобы ты пришёл завтра.» / «Ана хочет, чтобы механик починил колесо.». Первый глагол называет желающего, второй — исполнителя желаемого действия. Две части: Queremos  /  que vengas mañana. Сравни два задания: «Ты хочешь, чтобы преподавательница говорила помедленнее?» / «Ты хочешь, чтобы я прочитал сообщение?». Первый глагол называет желающего, второй — исполнителя желаемого действия. Вырази пожелание относительно другого исполнителя. После que выбирается форма subjuntivo."
+}

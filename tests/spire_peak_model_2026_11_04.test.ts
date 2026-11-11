@@ -1,5 +1,6 @@
 // зачем (координатор 04.11): модель экрана Пика не зависит от варианта макета — топ-5, вершинники, зоны, рекорд ступени, время.
 import { buildPeakModel, formatPeakTime, peakStepRecord, PEAK_TOP_COUNT } from '../modules/spire/peak_model';
+import { spireRivalsByFloor } from '../components/spire/spire_tower_model';
 import type { SpireRoomRow } from '../modules/spire/room_rows';
 
 function row(uid: string, weekCoins: number, steps: number, isMe = false): SpireRoomRow {
@@ -11,6 +12,16 @@ const rows: SpireRoomRow[] = Array.from({ length: 12 }, (_, i) =>
   row('u' + i, (12 - i) * 100, i === 9 || i === 11 ? 135 : 10 + i, i === 7));
 
 describe('модель экрана Пика', () => {
+  it('groups all players on their current floors with their rank coins', () => {
+    const occupants = spireRivalsByFloor([
+      { ...row('me', 100, 0, true), coinRank: 4 },
+      { ...row('same', 50, 2), coinRank: 7 },
+      { ...row('higher', 80, 5), coinRank: 12 },
+    ], true);
+    expect(occupants.get(1)?.map(({ uid, coinRank }) => [uid, coinRank])).toEqual([['me', 4], ['same', 7]]);
+    expect(occupants.get(2)?.map(({ uid }) => uid)).toEqual(['higher']);
+  });
+
   it('топ-5 по монетам недели, места с единицы', () => {
     const m = buildPeakModel(rows);
     expect(m.top).toHaveLength(PEAK_TOP_COUNT);

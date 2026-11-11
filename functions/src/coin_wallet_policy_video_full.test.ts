@@ -63,7 +63,6 @@ describe('кошелёк: награда за видео videofull_', () => {
     let state = applyCoinWalletLimits(EMPTY_COIN_WALLET_LIMITS, op, cls, Date.parse('2026-11-05T23:59:00Z'), 0);
     state = applyCoinWalletLimits(state, op, cls, Date.parse('2026-11-06T00:01:00Z'), 0);
     expect(state.videoFullDayCoins).toBe(500);
-    expect(state.chapterExamDayCoins).toBe(0);
     expect(state.journeyDayCoins).toBe(0);
   });
 

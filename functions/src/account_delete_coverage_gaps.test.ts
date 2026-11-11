@@ -63,9 +63,11 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
 
 // ── Заглушка Firestore: коллекции в памяти, where(==, !=), limit, batch(update/set/delete), doc().get() ──
 type Data = Record<string, unknown>;
-function makeDb(seed: Record<string, Record<string, Data>>) {
+function makeDb(seed: Record<string, Record<string, Data>>, options: { synchronizeFirstGroupAttempts?: boolean } = {}) {
   const store: Record<string, Map<string, Data>> = {};
   for (const [c, docs] of Object.entries(seed)) store[c] = new Map(Object.entries(docs).map(([id, d]) => [id, JSON.parse(JSON.stringify(d))]));
+  const versions = new Map<string, number>();
+  for (const [c, docs] of Object.entries(store)) for (const id of docs.keys()) versions.set(`${c}/${id}`, 1);
   const col = (c: string) => (store[c] ??= new Map());
   const segs = (f: unknown): string[] => (typeof f === 'string' ? f.split('.') : (f as { segments: string[] }).segments);
   const getPath = (d: Data, path: string[]) => path.reduce<unknown>((v, k) => (v && typeof v === 'object' ? (v as Data)[k] : undefined), d);
@@ -85,6 +87,10 @@ function makeDb(seed: Record<string, Record<string, Data>>) {
       else if (inc !== null) parent[last] = Number(parent[last] ?? 0) + inc;
       else parent[last] = value;
     }
+  };
+  const updateDoc = (c: string, id: string, patch: Data) => {
+    applyUpdate(col(c).get(id)!, patch);
+    versions.set(`${c}/${id}`, (versions.get(`${c}/${id}`) ?? 0) + 1);
   };
   const ref = (c: string, id: string) => ({
     id, c,
@@ -106,17 +112,51 @@ function makeDb(seed: Record<string, Record<string, Data>>) {
     batch: () => {
       const ops: Array<() => void> = [];
       return {
-        update: (r: { c: string; id: string }, patch: Data) => ops.push(() => applyUpdate(col(r.c).get(r.id)!, patch)),
-        set: (r: { c: string; id: string }, d: Data) => ops.push(() => col(r.c).set(r.id, { ...(col(r.c).get(r.id) ?? {}), ...d })),
-        delete: (r: { c: string; id: string }) => ops.push(() => col(r.c).delete(r.id)),
+        update: (r: { c: string; id: string }, patch: Data) => ops.push(() => updateDoc(r.c, r.id, patch)),
+        set: (r: { c: string; id: string }, d: Data) => ops.push(() => {
+          col(r.c).set(r.id, { ...(col(r.c).get(r.id) ?? {}), ...d });
+          versions.set(`${r.c}/${r.id}`, (versions.get(`${r.c}/${r.id}`) ?? 0) + 1);
+        }),
+        delete: (r: { c: string; id: string }) => ops.push(() => {
+          col(r.c).delete(r.id);
+          versions.set(`${r.c}/${r.id}`, (versions.get(`${r.c}/${r.id}`) ?? 0) + 1);
+        }),
         commit: async () => { ops.forEach((op) => op()); },
       };
     },
-    // зачем (сироты Codex 29.10): removeFromSpireGroups стирает рекорды этажей Пика в транзакции — заглушке нужен runTransaction
-    runTransaction: async <T>(fn: (tx: unknown) => Promise<T>): Promise<T> => fn({
-      get: (r: { get: () => Promise<unknown> }) => r.get(),
-      update: (r: { c: string; id: string }, patch: Data) => applyUpdate(col(r.c).get(r.id)!, patch),
-    }),
+    // Optimistic fake: concurrent account-deletion workers must retry after a
+    // room version conflict exactly like Firestore transactions do.
+    runTransaction: undefined as unknown,
+  };
+  let groupBarrierArrivals = 0;
+  let releaseGroupBarrier: (() => void) | null = null;
+  const groupBarrier = new Promise<void>((resolve) => { releaseGroupBarrier = resolve; });
+  db.runTransaction = async <T>(fn: (tx: unknown) => Promise<T>): Promise<T> => {
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const reads = new Map<string, number>();
+      const writes: Array<() => void> = [];
+      const result = await fn({
+        get: async (r: { c: string; id: string }) => {
+          const key = `${r.c}/${r.id}`;
+          reads.set(key, versions.get(key) ?? 0);
+          const value = col(r.c).get(r.id);
+          const copied = value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+          return { exists: copied !== undefined, data: () => copied };
+        },
+        update: (r: { c: string; id: string }, patch: Data) => writes.push(() => updateDoc(r.c, r.id, patch)),
+      });
+      if (options.synchronizeFirstGroupAttempts
+        && [...reads.keys()].some((key) => key.startsWith('spire_groups/'))
+        && groupBarrierArrivals < 2) {
+        groupBarrierArrivals += 1;
+        if (groupBarrierArrivals === 2) releaseGroupBarrier?.();
+        await groupBarrier;
+      }
+      if ([...reads].some(([key, version]) => (versions.get(key) ?? 0) !== version)) continue;
+      writes.forEach((write) => write());
+      return result;
+    }
+    throw new Error('transaction-contention');
   };
   return { db: db as unknown as admin.firestore.Firestore, store };
 }
@@ -150,6 +190,112 @@ test('spire groups drop the member (name included) and decrement the live count'
   expect(store.spire_groups.get('g1')!.liveMemberCount).toBe(1);
   expect(store.spire_groups.get('g2')!.liveMemberCount).toBe(1);
   expect(JSON.stringify([...store.spire_groups.values()])).not.toContain('Аня');
+});
+
+test('spire deletion updates a valid freeze count in the same transaction as member removal', async () => {
+  const { db, store } = makeDb({ spire_groups: {
+    g1: {
+      weekId: '2026-W41', lang: 'en', liveMemberCount: 2,
+      members: { [STABLE]: { name: 'Аня', steps: 4 }, other: { name: 'Bob', steps: 1 } },
+      finalizationFreeze: {
+        schema: 'spire-finalization-freeze.v1', state: 'frozen', weekId: '2026-W41', lang: 'en',
+        rankBy: 'coins', frozenResultCount: 2, removedAfterFreezeCount: 0,
+        resultsDigest: 'a'.repeat(64),
+        configEvidenceSchema: 'spire-finalization-config-evidence.v1', configEvidenceHash: 'b'.repeat(64),
+        inputEvidenceSchema: 'spire-finalization-input-evidence.v1', inputEvidenceHash: 'c'.repeat(64),
+        frozenAt: 123,
+      },
+    },
+  } });
+  await removeFromSpireGroups(db, STABLE, stats());
+  await removeFromSpireGroups(db, STABLE, stats());
+  const room = store.spire_groups.get('g1')!;
+  expect(room.members).toEqual({ other: { name: 'Bob', steps: 1 } });
+  expect((room.finalizationFreeze as Data).removedAfterFreezeCount).toBe(1);
+  expect(room.finalizationIntegrityHold).toBeUndefined();
+});
+
+test('spire deletion preserves a malformed freeze and places a PII-free integrity hold', async () => {
+  const malformed = { schema: 'spire-finalization-freeze.v1', state: 'frozen', weekId: 'wrong' };
+  const { db, store } = makeDb({ spire_groups: {
+    g1: { weekId: '2026-W41', lang: 'en', liveMemberCount: 1, members: { [STABLE]: { name: 'Аня' } }, finalizationFreeze: malformed },
+  } });
+  await removeFromSpireGroups(db, STABLE, stats());
+  const room = store.spire_groups.get('g1')!;
+  expect(room.members).toEqual({});
+  expect(room.finalizationFreeze).toEqual(malformed);
+  expect(room.finalizationIntegrityHold).toEqual({
+    schema: 'spire-finalization-integrity-hold.v1',
+    reason: 'invalid_freeze_during_member_deletion',
+    heldAtMs: expect.any(Number),
+  });
+  expect(Object.keys(room.finalizationIntegrityHold as Data).sort()).toEqual(['heldAtMs', 'reason', 'schema']);
+  expect(JSON.stringify(room.finalizationIntegrityHold)).not.toContain(STABLE);
+});
+
+test('spire deletion treats a null freeze as present-invalid, preserves it, and completes privacy removal', async () => {
+  const { db, store } = makeDb({ spire_groups: {
+    g1: { weekId: '2026-W41', lang: 'en', liveMemberCount: 1, members: { [STABLE]: { name: 'Аня' } }, finalizationFreeze: null },
+  } });
+  await expect(removeFromSpireGroups(db, STABLE, stats())).resolves.toBeUndefined();
+  const room = store.spire_groups.get('g1')!;
+  expect(room.members).toEqual({});
+  expect(room.liveMemberCount).toBe(0);
+  expect(Object.prototype.hasOwnProperty.call(room, 'finalizationFreeze')).toBe(true);
+  expect(room.finalizationFreeze).toBeNull();
+  expect(room.finalizationIntegrityHold).toEqual({
+    schema: 'spire-finalization-integrity-hold.v1',
+    reason: 'invalid_freeze_during_member_deletion',
+    heldAtMs: expect.any(Number),
+  });
+});
+
+test.each([
+  ['absent', undefined],
+  ['valid', {
+    schema: 'spire-finalization-freeze.v1', state: 'frozen', weekId: '2026-W41', lang: 'en', rankBy: 'steps',
+    frozenResultCount: 2, removedAfterFreezeCount: 0, resultsDigest: 'a'.repeat(64),
+    configEvidenceSchema: 'spire-finalization-config-evidence.v1', configEvidenceHash: 'b'.repeat(64),
+    inputEvidenceSchema: 'spire-finalization-input-evidence.v1', inputEvidenceHash: 'c'.repeat(64), frozenAt: 123,
+  }],
+  ['malformed', { schema: 'spire-finalization-freeze.v1', state: 'frozen', weekId: 'wrong' }],
+  ['null', null],
+] as const)('concurrent privacy removal retries exactly once for a %s freeze fence', async (kind, fence) => {
+  const fenceField = kind === 'absent' ? {} : { finalizationFreeze: fence };
+  const { db, store } = makeDb({ spire_groups: {
+    g1: {
+      weekId: '2026-W41', lang: 'en', liveMemberCount: 2,
+      members: { [STABLE]: { name: 'Аня' }, other: { name: 'Bob' } },
+      ...fenceField,
+    },
+  } }, { synchronizeFirstGroupAttempts: true });
+  const first = stats();
+  const second = stats();
+
+  await Promise.all([
+    removeFromSpireGroups(db, STABLE, first),
+    removeFromSpireGroups(db, STABLE, second),
+  ]);
+
+  const final = store.spire_groups.get('g1')!;
+  expect((final.members as Data)[STABLE]).toBeUndefined();
+  expect(final.liveMemberCount).toBe(1);
+  expect(first.docsUpdated + second.docsUpdated).toBe(1);
+  expect(JSON.stringify(final)).not.toContain('Аня');
+  if (kind === 'valid') {
+    expect((final.finalizationFreeze as Data).removedAfterFreezeCount).toBe(1);
+    expect(final.finalizationIntegrityHold).toBeUndefined();
+  } else if (kind === 'absent') {
+    expect(final.finalizationFreeze).toBeUndefined();
+    expect(final.finalizationIntegrityHold).toBeUndefined();
+  } else {
+    expect(final.finalizationFreeze).toEqual(fence);
+    expect(final.finalizationIntegrityHold).toEqual({
+      schema: 'spire-finalization-integrity-hold.v1',
+      reason: 'invalid_freeze_during_member_deletion',
+      heldAtMs: expect.any(Number),
+    });
+  }
 });
 
 test('spire floor records of the deleted member are scrubbed; other members keep theirs', async () => {

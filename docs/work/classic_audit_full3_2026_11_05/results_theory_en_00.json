@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-1/nuance",
+  "type": "T2",
+  "field": "localized.ru.nuance (то же chapters[2].body)",
+  "problem": "«используйте» — обращение на «вы», а story/choose на «ты»",
+  "fix": "Полная форма и сокращение (`I am` / `I'm`) значат одно и то же. С существительным во множественном числе, например `keys`, ставь `are`, даже если ключи принадлежат одному человеку."
+ },
+ {
+  "id": "lesson-1/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (то же chapters[2].body)",
+  "problem": "«використовуйте» — «ви», а story/choose на «ти»",
+  "fix": "Повна форма і скорочення (`I am` / `I'm`) означають те саме. З іменником у множині, як-от `keys`, став `are`, навіть якщо ключі належать одній людині."
+ },
+ {
+  "id": "lesson-1/chapters[3]",
+  "type": "T1",
+  "field": "localized.ru.chapters[3].body",
+  "problem": "«Распространённая ошибка» повторяет текст choose и не объясняет показанную ошибку I ready (пропуск глагола)",
+  "fix": "Главная ошибка — пропустить глагол: по-русски «Я готов» говорят без связки, а по-английски нужен `am`: `I am ready`, не `I ready`."
+ },
+ {
+  "id": "lesson-1/chapters[3]",
+  "type": "T1",
+  "field": "localized.uk.chapters[3].body",
+  "problem": "повторює choose, не пояснює помилку I ready",
+  "fix": "Головна помилка — пропустити дієслово: українською «Я готовий» кажуть без зв’язки, а англійською потрібне `am`: `I am ready`, а не `I ready`."
+ },
+ {
+  "id": "lesson-1/chapters[3]",
+  "type": "T1",
+  "field": "localized.en.chapters[3].body",
+  "problem": "repeats choose; does not explain the shown mistake I ready",
+  "fix": "The usual mistake is dropping the verb. Russian and Ukrainian can leave it out, but English needs `am`: `I am ready`, not `I ready`."
+ },
+ {
+  "id": "lesson-1/choose",
+  "type": "T1",
+  "field": "localized.en.choose (то же chapters[1].body, chapters[3].body, feedback)",
+  "problem": "«one other person uses is» неточно (you тоже один собеседник, it не человек); en не соответствует ru (нет he/she/it, нет примера My keys are here)",
+  "fix": "Choose the verb form from the subject, not from the last word. With `I` use `am`; with `he`, `she`, `it` or one thing use `is`; with `you`, `we`, `they` or a plural noun use `are`: `My keys are here`."
+ },
+ {
+  "id": "lesson-2/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (то же chapters[2].body)",
+  "problem": "машинный текст: заглавная после «;», «Заперечний дієслово» — несогласование, калька «є взаємозамінними скрізь»",
+  "fix": "Коротка відповідь зберігає підмет і дієслово. Ствердна відповідь не може закінчуватися на `I'm` або `she's`, а заперечна може закінчуватися на `isn't` або `aren't`. Тому не кожне скорочення можна вжити будь-де."
+ },
+ {
+  "id": "lesson-2/chapters[3]",
+  "type": "T1",
+  "field": "localized.ru.chapters[3].body",
+  "problem": "«Распространённая ошибка» говорит про not/do, а показанная ошибка — Yes, I'm (сокращение в кратком ответе)",
+  "fix": "В кратком ответе «да» глагол не сокращают: `Yes, I am`, `Yes, she is`. `I'm` или `she's` в конце фразы не ставят; в отрицании сокращение возможно: `No, I'm not`, `No, she isn't`."
+ },
+ {
+  "id": "lesson-2/chapters[3]",
+  "type": "T1",
+  "field": "localized.uk.chapters[3].body",
+  "problem": "текст про not/do, а помилка — Yes, I'm",
+  "fix": "У короткій відповіді «так» дієслово не скорочують: `Yes, I am`, `Yes, she is`. `I'm` або `she's` у кінці фрази не ставлять; у запереченні скорочення можливе: `No, I'm not`, `No, she isn't`."
+ },
+ {
+  "id": "lesson-2/chapters[3]",
+  "type": "T1",
+  "field": "localized.en.chapters[3].body",
+  "problem": "text is about not/questions, shown mistake is Yes, I'm",
+  "fix": "Do not contract the verb in a short yes answer: `Yes, I am`, `Yes, she is`. `I'm` or `she's` cannot end the sentence; a negative can: `No, I'm not`, `No, she isn't`."
+ },
+ {
+  "id": "lesson-2/chapters[4]",
+  "type": "T2",
+  "field": "localized.ru.chapters[4].body",
+  "problem": "невидимые символы U+200B в «и ​​доступе»",
+  "fix": "Вопрос о местах и доступе"
+ }
+]

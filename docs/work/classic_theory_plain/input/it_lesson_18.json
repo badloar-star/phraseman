@@ -1,0 +1,764 @@
+{
+ "lang": "it",
+ "lesson": 18,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:18:01",
+   "target": "Ho chiuso la porta.",
+   "ru": "Я закрыл дверь.",
+   "uk": "Я зачинив двері."
+  },
+  {
+   "id": "it:18:02",
+   "target": "Hai chiuso la porta.",
+   "ru": "Ты закрыл дверь.",
+   "uk": "Ти зачинив двері."
+  },
+  {
+   "id": "it:18:03",
+   "target": "Lei ha chiuso la finestra.",
+   "ru": "Она закрыла окно.",
+   "uk": "Вона зачинила вікно."
+  },
+  {
+   "id": "it:18:04",
+   "target": "Abbiamo chiuso il negozio.",
+   "ru": "Мы закрыли магазин.",
+   "uk": "Ми зачинили магазин."
+  },
+  {
+   "id": "it:18:05",
+   "target": "Avete chiuso il garage.",
+   "ru": "Вы закрыли гараж.",
+   "uk": "Ви закрили гараж."
+  },
+  {
+   "id": "it:18:06",
+   "target": "Hanno chiuso la sala.",
+   "ru": "Они закрыли зал.",
+   "uk": "Вони закрили зал."
+  },
+  {
+   "id": "it:18:07",
+   "target": "Ho comprato del pane.",
+   "ru": "Я купил хлеб.",
+   "uk": "Я купив хліб."
+  },
+  {
+   "id": "it:18:08",
+   "target": "Paolo ha comprato del caffè.",
+   "ru": "Паоло купил кофе.",
+   "uk": "Паоло купив каву."
+  },
+  {
+   "id": "it:18:09",
+   "target": "Abbiamo comprato due biglietti.",
+   "ru": "Мы купили два билета.",
+   "uk": "Ми купили два квитки."
+  },
+  {
+   "id": "it:18:10",
+   "target": "Lei ha comprato una sciarpa.",
+   "ru": "Она купила шарф.",
+   "uk": "Вона купила шарф."
+  },
+  {
+   "id": "it:18:11",
+   "target": "Ho prenotato un tavolo.",
+   "ru": "Я забронировал столик.",
+   "uk": "Я забронював столик."
+  },
+  {
+   "id": "it:18:12",
+   "target": "Hai prenotato una stanza.",
+   "ru": "Ты забронировал номер.",
+   "uk": "Ти забронював номер."
+  },
+  {
+   "id": "it:18:13",
+   "target": "Lui ha pagato il conto.",
+   "ru": "Он оплатил счет.",
+   "uk": "Він оплатив рахунок."
+  },
+  {
+   "id": "it:18:14",
+   "target": "Abbiamo incartato il regalo insieme.",
+   "ru": "Мы вместе завернули подарок.",
+   "uk": "Ми разом загорнули подарунок."
+  },
+  {
+   "id": "it:18:15",
+   "target": "Ha conservato la ricevuta.",
+   "ru": "Вы сохранили чек.",
+   "uk": "Ви зберегли чек."
+  },
+  {
+   "id": "it:18:16",
+   "target": "Hanno condiviso un taxi.",
+   "ru": "Они ехали в одном такси.",
+   "uk": "Вони їхали на спільному таксі."
+  },
+  {
+   "id": "it:18:17",
+   "target": "Ho dimenticato l’ombrello.",
+   "ru": "Я забыл зонт.",
+   "uk": "Я забув парасольку."
+  },
+  {
+   "id": "it:18:18",
+   "target": "Lei ha trovato le chiavi.",
+   "ru": "Она нашла свои ключи.",
+   "uk": "Вона знайшла свої ключі."
+  },
+  {
+   "id": "it:18:19",
+   "target": "Lui ha lasciato il cappotto qui.",
+   "ru": "Он оставил здесь своё пальто.",
+   "uk": "Він залишив тут своє пальто."
+  },
+  {
+   "id": "it:18:20",
+   "target": "Abbiamo riposto le sedie.",
+   "ru": "Мы убрали стулья.",
+   "uk": "Ми прибрали стільці."
+  },
+  {
+   "id": "it:18:21",
+   "target": "Ho preso il treno.",
+   "ru": "Я поехал на поезде.",
+   "uk": "Я поїхав поїздом."
+  },
+  {
+   "id": "it:18:22",
+   "target": "Hai preso la mia borsa?",
+   "ru": "Ты взял мою сумку?",
+   "uk": "Ти взяв мою сумку?"
+  },
+  {
+   "id": "it:18:23",
+   "target": "Lea ha letto il messaggio.",
+   "ru": "Леа прочитала сообщение.",
+   "uk": "Леа прочитала повідомлення."
+  },
+  {
+   "id": "it:18:24",
+   "target": "Abbiamo visto il film.",
+   "ru": "Мы посмотрели фильм.",
+   "uk": "Ми подивилися фільм."
+  },
+  {
+   "id": "it:18:25",
+   "target": "Hanno bevuto il succo di mela.",
+   "ru": "Они выпили яблочный сок.",
+   "uk": "Вони випили яблучний сік."
+  },
+  {
+   "id": "it:18:26",
+   "target": "Ha scritto il suo nome?",
+   "ru": "Вы написали своё имя?",
+   "uk": "Ви написали своє ім’я?"
+  },
+  {
+   "id": "it:18:27",
+   "target": "Ho ricevuto il pacco.",
+   "ru": "Я получил посылку.",
+   "uk": "Я отримав посилку."
+  },
+  {
+   "id": "it:18:28",
+   "target": "Lei ha fatto una copia.",
+   "ru": "Она сделала копию.",
+   "uk": "Вона зробила копію."
+  },
+  {
+   "id": "it:18:29",
+   "target": "Ha apparecchiato la tavola.",
+   "ru": "Он накрыл стол.",
+   "uk": "Він накрив на стіл."
+  },
+  {
+   "id": "it:18:30",
+   "target": "Abbiamo detto grazie.",
+   "ru": "Мы сказали спасибо.",
+   "uk": "Ми подякували."
+  },
+  {
+   "id": "it:18:31",
+   "target": "Non ho sentito il campanello.",
+   "ru": "Я не слышал звонка в дверь.",
+   "uk": "Я не чув дзвінка у двері."
+  },
+  {
+   "id": "it:18:32",
+   "target": "Non hai risposto al telefono.",
+   "ru": "Ты не ответил на звонок.",
+   "uk": "Ти не відповів на дзвінок."
+  },
+  {
+   "id": "it:18:33",
+   "target": "Lei non ha trovato il suo badge.",
+   "ru": "Она не нашла свой пропуск.",
+   "uk": "Вона не знайшла своєї перепустки."
+  },
+  {
+   "id": "it:18:34",
+   "target": "Non abbiamo dimenticato la cintura.",
+   "ru": "Мы не забыли ремень.",
+   "uk": "Ми не забули ремінь."
+  },
+  {
+   "id": "it:18:35",
+   "target": "Non hanno capito le istruzioni.",
+   "ru": "Они не поняли инструкции.",
+   "uk": "Вони не зрозуміли інструкцій."
+  },
+  {
+   "id": "it:18:36",
+   "target": "Non ha ancora firmato.",
+   "ru": "Вы еще не подписали.",
+   "uk": "Ви ще не підписалися."
+  },
+  {
+   "id": "it:18:37",
+   "target": "Hai controllato l’indirizzo?",
+   "ru": "Ты проверил адрес?",
+   "uk": "Ти перевірив адресу?"
+  },
+  {
+   "id": "it:18:38",
+   "target": "Ha assaggiato la zuppa?",
+   "ru": "Вы попробовали суп?",
+   "uk": "Ви скуштували суп?"
+  },
+  {
+   "id": "it:18:39",
+   "target": "Chi ha rotto il bicchiere?",
+   "ru": "Кто разбил стакан?",
+   "uk": "Хто розбив склянку?"
+  },
+  {
+   "id": "it:18:40",
+   "target": "Quando ha inviato il fascicolo?",
+   "ru": "Когда вы отправили папку с документами?",
+   "uk": "Коли ви надіслали папку з документами?"
+  },
+  {
+   "id": "it:18:41",
+   "target": "Ieri ho lavato la maglietta.",
+   "ru": "Вчера я постирал футболку.",
+   "uk": "Вчора я виправ футболку."
+  },
+  {
+   "id": "it:18:42",
+   "target": "Stamattina ha cambiato la pila.",
+   "ru": "Сегодня утром она поменяла батарейку.",
+   "uk": "Сьогодні вранці вона поміняла батарейку."
+  },
+  {
+   "id": "it:18:43",
+   "target": "Paolo ha riparato la serratura.",
+   "ru": "Паоло починил замок.",
+   "uk": "Паоло полагодив замок."
+  },
+  {
+   "id": "it:18:44",
+   "target": "Abbiamo aspettato un’ora allo sportello.",
+   "ru": "Мы прождали час у стойки.",
+   "uk": "Ми чекали годину біля стійки."
+  },
+  {
+   "id": "it:18:45",
+   "target": "Ho scritto il numero sulla busta.",
+   "ru": "Я написала номер на конверте.",
+   "uk": "Я написала номер на конверті."
+  },
+  {
+   "id": "it:18:46",
+   "target": "Hai dimenticato di chiedere il conto.",
+   "ru": "Ты забыл попросить счёт.",
+   "uk": "Ти забув попросити рахунок."
+  },
+  {
+   "id": "it:18:47",
+   "target": "Hanno annullato la consegna.",
+   "ru": "Они отменили доставку.",
+   "uk": "Вони скасували доставку."
+  },
+  {
+   "id": "it:18:48",
+   "target": "Avete scelto la camera blu.",
+   "ru": "Вы выбрали синюю комнату.",
+   "uk": "Ви обрали синю кімнату."
+  },
+  {
+   "id": "it:18:49",
+   "target": "Ha riempito la bottiglia prima della partenza.",
+   "ru": "Она наполнила свою бутылку перед уходом.",
+   "uk": "Вона наповнила свою пляшку перед тим, як піти."
+  },
+  {
+   "id": "it:18:50",
+   "target": "Abbiamo finito di lavorare a mezzogiorno.",
+   "ru": "Мы закончили работу в полдень.",
+   "uk": "Ми закінчили роботу опівдні."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il campanello",
+   "ru": "дверной звонок",
+   "uk": "дверний дзвінок"
+  },
+  {
+   "lemma": "il fascicolo",
+   "ru": "папка, комплект документов",
+   "uk": "папка, комплект документів"
+  },
+  {
+   "lemma": "il conto",
+   "ru": "счёт в ресторане",
+   "uk": "рахунок у ресторані"
+  },
+  {
+   "lemma": "la copia",
+   "ru": "копия",
+   "uk": "копія"
+  },
+  {
+   "lemma": "la partenza",
+   "ru": "отправление",
+   "uk": "відправлення"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  }
+ ],
+ "oldTopicTitle": "Завершённое действие: `ho chiuso`",
+ "oldTheoryRu": "В двухсловной группе первая часть показывает человека, вторая — действие. Если оставить только `ho`, выйдет «у меня есть». Если оставить только `chiuso`, полноценного сообщения о том, кто закрыл, не получится. У многих глаголов на `-are` форма заканчивается на `-ato`: `comprare` → `comprato`, `pagare` → `pagato`. Узнав модель, примени её к другому глаголу, но не ко всем без исключения. Частые формы надо узнавать целиком: `preso`, `letto`, `visto`. Удобно учить тройками: словарное название, форма, короткая фраза из жизни. С обычным существительным после глагола причастие с `avere` не следует за родом этого существительного: `ho chiuso la porta`, не `ho chiusa la porta`. С предшествующим местоимением правило будет другим. Отрицание идёт перед помощником. После `non ho` всё равно нужно назвать действие. Не переставляй `non` сразу перед названием вещи. Вопрос не отменяет прошедшее: сначала собери обе части глагола, затем остальные слова. `Ancora` с отрицанием помогает показать, что действие пока не произошло. Вчера и сегодня утром хорошо сочетаются с рассказом о завершённом эпизоде. Но выбор времени определяется тем, как человек рассказывает о событии, а не списком «волшебных слов»."
+}

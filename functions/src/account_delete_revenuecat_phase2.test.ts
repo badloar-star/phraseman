@@ -33,20 +33,81 @@ describe('account deletion RevenueCat permanent denial Phase 2 (RED)', () => {
     expect(deleteSource).toContain("{ collection: 'revenuecat_premium_denials', field: 'ownerUid', values: 'both' }");
   });
 
-  it.each([
-    // Premium processing was intentionally extracted from the HTTP adapter so
-    // the verified event reducer can be tested without an Express response.
-    ['premium', 'export async function applyVerifiedPremiumSubscriptionEvent'],
-    ['transfer', 'async function handleTransferEvent'],
-    // D103: обработчики покупки/возврата жемчуга удалены — пользователей не меняют.
-  ])('checks permanent denial before any %s user mutation or final receipt', (_label, marker) => {
+  it('fails closed for both deletion guards before every premium authority effect', () => {
+    const marker = 'export async function applyVerifiedPremiumSubscriptionEvent';
     const start = webhookSource.indexOf(marker);
     const nextHandler = webhookSource.indexOf('\nasync function ', start + marker.length);
     const handler = webhookSource.slice(start, nextHandler > start ? nextHandler : undefined);
-    expect(handler).toContain('readPermanentDeletionDenials(tx, db');
-    const denialRead = handler.indexOf('readPermanentDeletionDenials(tx, db');
-    const firstUserMutation = handler.search(/tx\.(?:set|update)\((?:userRef|recipientRef|donor\.ref)/);
-    expect(firstUserMutation).toBeGreaterThan(-1);
-    expect(denialRead).toBeLessThan(firstUserMutation);
+
+    const earlyGuardStart = handler.indexOf('const auditCandidates = boundPremiumOwnerCandidates');
+    const selectedGuardStart = handler.indexOf('const deletionIdentities = [');
+    expect(earlyGuardStart).toBeGreaterThan(-1);
+    expect(selectedGuardStart).toBeGreaterThan(earlyGuardStart);
+    const earlyGuard = handler.slice(earlyGuardStart, selectedGuardStart);
+    expect(earlyGuard).toContain('readPermanentDeletionDenials(tx, db, auditCandidates.candidates)');
+    expect(earlyGuard).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)');
+    expect(earlyGuard).toContain('db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(identity)');
+    expect(earlyGuard).toMatch(
+      /if \(\[\.\.\.earlyPermanentDenials, \.\.\.earlyDeletionSnapshots\]\.some\(\(snapshot\) => snapshot\.exists\)\) \{[\s\S]{0,700}return zeroTail\('receipt_evidence_conflict', 'account_deletion_pending_or_tombstoned'\);/,
+    );
+
+    const selectedGuardEnd = handler.indexOf('const targetUserRef = ', selectedGuardStart);
+    expect(selectedGuardEnd).toBeGreaterThan(selectedGuardStart);
+    const selectedGuard = handler.slice(selectedGuardStart, selectedGuardEnd);
+    for (const protectedIdentity of [
+      'authority.targetOwnerUid',
+      "evidence?.rawOriginalOwnerUid ?? ''",
+      "evidenceCanonicalOwnerUid ?? ''",
+      "requesterCanonicalUid ?? ''",
+    ]) {
+      expect(selectedGuard).toContain(protectedIdentity);
+    }
+    expect(selectedGuard).toContain('readPermanentDeletionDenials(tx, db, deletionIdentities)');
+    expect(selectedGuard).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)');
+    expect(selectedGuard).toContain('db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(identity)');
+    expect(selectedGuard).toMatch(
+      /if \(\[\.\.\.permanentDenials, \.\.\.deletionSnapshots\]\.some\(\(snapshot\) => snapshot\.exists\)\) \{[\s\S]{0,700}return zeroTail\('receipt_evidence_conflict', 'account_deletion_pending_or_tombstoned'\);/,
+    );
+
+    const failClosedReturn = handler.indexOf(
+      "return zeroTail('receipt_evidence_conflict', 'account_deletion_pending_or_tombstoned');",
+      selectedGuardStart,
+    );
+    expect(failClosedReturn).toBeGreaterThan(selectedGuardStart);
+    for (const protectedEffect of [
+      'tx.create(ownerRef',
+      'tx.set(processedRef',
+      'tx.set(lineageRef',
+      'tx.set(targetUserRef',
+      'writeAccessProjection(tx, targetUserRef',
+    ]) {
+      const effectIndex = handler.indexOf(protectedEffect, selectedGuardStart);
+      expect(effectIndex).toBeGreaterThan(-1);
+      expect(failClosedReturn).toBeLessThan(effectIndex);
+    }
+  });
+
+  it('keeps authenticated TRANSFER routed to a strict audit-only, no-state handler', () => {
+    const marker = 'async function handleTransferEvent';
+    const start = webhookSource.indexOf(marker);
+    const end = webhookSource.indexOf('\ntype AuthenticatedRevenueCatRoute', start + marker.length);
+    expect(start).toBeGreaterThan(-1);
+    expect(end).toBeGreaterThan(start);
+    const handler = webhookSource.slice(start, end);
+    expect(handler).toContain("logger.info('revenuecat_transfer_audit_only'");
+    expect(handler).toContain('eventIdHash: validEventId ? hashAuditIdentity(eventId) : null');
+    expect(handler).toContain('donorIdHashes:');
+    expect(handler).toContain('recipientIdHashes:');
+    expect(handler).toContain("res.status(200).json({ ok: true, kind: 'transfer', accepted: true, auditOnly: true })");
+    expect(handler).not.toMatch(/admin\.firestore|runTransaction|\.collection\(|\btx\.|\bdb\b/);
+    expect(handler).not.toMatch(/applyVerifiedPremiumSubscriptionEvent|revenuecat_premium_lineage|writeAccessProjection/);
+    expect(handler).not.toMatch(/syncPublicProfilePlusAfterCommit|TRANSFER_OUT|\.(?:set|update|delete)\(/);
+
+    const routeStart = webhookSource.indexOf('async function routeAuthenticatedRevenueCatWebhook');
+    const routeEnd = webhookSource.indexOf('\nasync function dispatchAuthenticatedRevenueCatWebhook', routeStart);
+    const route = webhookSource.slice(routeStart, routeEnd);
+    expect(route).toMatch(
+      /if \(eventType === 'TRANSFER'\) \{\s*await handleTransferEvent\(event, eventType, res\);\s*return;\s*\}/,
+    );
   });
 });

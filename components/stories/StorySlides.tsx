@@ -1,4 +1,5 @@
 import AnnouncementSlide from './AnnouncementSlide';
+import HomeActivityStorySlide from './HomeActivityStorySlide';
 // ═══════════════════════════════════════════════════════════════════════════
 // StorySlides.tsx — четыре вида кадра просмотра сторис (D192): итог недели, рубеж серии, ранг монеты, ачивка.
 //
@@ -15,8 +16,8 @@ import type { Lang } from '../../constants/i18n';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { clampSpireTierIndex, spireTierName } from '../../modules/spire/tier_names';
 import type { StoryEvent } from '../../modules/story_events/story_events_core';
-import { achievementNameForLang, ALL_ACHIEVEMENTS } from '../../app/achievements';
-import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
+import { achievementConditionForLang, achievementDescForLang, achievementNameForLang, ALL_ACHIEVEMENTS } from '../../app/achievements';
+import { coinRankPaidPriceFromStoryPayload, isValidCoinRank } from '../../app/coin_rank_table_v1';
 import AchievementArt from '../AchievementArt';
 import SpireRankCoin from '../spire/SpireRankCoin';
 import SpireTowerDeferred from '../spire/SpireTowerDeferred';
@@ -70,7 +71,7 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
   const subParts = [
     total > 0 && place > 0 ? storyText(lang, 'weekPlace', { place, total }) : null,
     weekCoins > 0 ? storyText(lang, 'weekCoins', { coins: storyThousands(weekCoins) }) : null,
-    outcome === 'up' && promotionCoins > 0 ? `+${storyThousands(promotionCoins)}` : null,
+    outcome === 'up' && promotionCoins > 0 ? momentText(lang, 'promoBonus', { n: promotionCoins }) : null,
   ].filter((part): part is string => part !== null);
   return (
     <>
@@ -107,9 +108,13 @@ function StreakSlide({ event, lang }: StorySlideProps) {
 // ─── ранг монеты ────────────────────────────────────────────────────────────
 function CoinRankSlide({ event, lang }: StorySlideProps) {
   const p = useSpirePalette();
-  const toRank = num(event.payload.toRank);
+  // num() нужен остальным старым payload, но денежный ранг нельзя приводить:
+  // строка '6' не должна становиться достоверным событием покупки ранга 6.
+  if (!isValidCoinRank(event.payload.toRank) || event.payload.toRank === 0) return null;
+  const toRank = event.payload.toRank;
   const fromRank = Math.max(0, toRank - 1);
-  const price = isValidCoinRank(toRank) ? coinRankRowForDisplay(toRank).priceToReach : toRank * 1000;
+  const price = coinRankPaidPriceFromStoryPayload(event.payload, toRank);
+  if (price === null) return null;
   return (
     <>
       <View style={s.rankRow}>
@@ -139,12 +144,14 @@ function AchievementSlide({ event, lang }: StorySlideProps) {
   const id = String(event.payload.achievementId ?? '');
   const def = ALL_ACHIEVEMENTS.find((a) => a.id === id);
   const name = def ? achievementNameForLang(def, lang) : '';
+  const reason = def ? achievementConditionForLang(def, lang) ?? achievementDescForLang(def, lang) : '';
   const nextDays = nextStreakAchievementDays(id);
   return (
     <>
       <View style={s.achArt}><AchievementArt achievementId={id} size={120} borderRadius={28} accessibilityLabel={name || undefined} /></View>
       <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'achOverline')}</Text>
       {name ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{name}</Text> : null}
+      {reason ? <Text style={[s.sub, { color: p.textSecondary }]}>{reason}</Text> : null}
       {nextDays !== null ? <Text style={[s.sub, { color: p.textSecondary }]}>{storyText(lang, 'achNext', { n: nextDays, dn: streakDayWord(lang, nextDays) })}</Text> : null}
     </>
   );
@@ -177,6 +184,7 @@ function ThemeUnlockSlide({ event, lang }: StorySlideProps) {
 
 function StorySlide(props: StorySlideProps) {
   switch (props.event.type) {
+    case 'home_activity': return <HomeActivityStorySlide {...props} />;
     case 'announcement': return <AnnouncementSlide event={props.event} paused={props.paused} />;
     case 'spire_week': return <WeekSlide {...props} />;
     case 'streak_milestone': return <StreakSlide {...props} />;

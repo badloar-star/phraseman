@@ -21,7 +21,7 @@ import { useDialogueV2MistakeCapture } from '../hooks/useDialogueV2MistakeCaptur
 import { DialogueGlassCta, dialogueGlassCardStyle, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { ScreenBackSlot, SafeTopCloseButton } from '../components/v2/ScreenBackButton';
 import { DialogueGlassMoodFace, dialogueMoodLabel } from '../components/dialogs/glass/DialogueGlassSessionParts';
-import { LV2_BAD, LV2_GOOD, useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { LV2_BAD, LV2_GOOD, useLv2Glass } from '../components/practice/PracticeGlass';
 import { BalancePill, CoinAward } from '../components/completion/V2DoneScreen';
 import { useReducedMotion } from 'react-native-reanimated';
 import { animateNextLayoutTransition } from './smooth_layout';

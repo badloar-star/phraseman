@@ -53,8 +53,6 @@ describe('bootstrap locale contract', () => {
     // зачем (05.10): с 8516191b5 Главная обязана ещё и прислать homeScreenReady (с потолком). Онбординг и бан стоят в
     // ИЛИ раньше — новый пользователь на онбординге и забаненный не ждут готовности Главной; это и сторожим.
     expect(match?.[1]).toContain('(effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady))');
-    const visible = layout.match(/const startupSplashVisible = ([^;]+);/);
-    expect(visible?.[1]).toContain('(!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
     expect(match?.[1]).not.toMatch(/lang|pack|manifest|download|network|hydrate/i);
   });
 

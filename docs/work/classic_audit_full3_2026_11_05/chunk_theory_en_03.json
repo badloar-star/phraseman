@@ -1,0 +1,1103 @@
+[
+{
+"lesson": 7,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 7,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что у меня есть",
+"formula": "[подлежащее] + [have / has] + [предмет или состояние]",
+"story": "Билет у меня: I have a ticket. Билет у неё: She has a ticket. В вопросе Does she have a ticket? форму has заменяет have.",
+"use": "Используйте `have` для вещей, которые вы несете, встреч и некоторых жалоб на здоровье. Головная боль обозначается `have`; холод — `be`. Обратите внимание на целое выражение.",
+"choose": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"nuance": "Для обозначения текущего владения в повседневном британском английском также используется `have got`. Вопрос в этом случае — `Have you got ...?`, а не смесь двух вариантов вопроса. Не применяйте эту альтернативу ко всем случаям использования `have`, например, при приеме пищи.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте `have` для вещей, которые вы несете, встреч и некоторых жалоб на здоровье. Головная боль обозначается `have`; холод — `be`. Обратите внимание на целое выражение.",
+"samples": [
+"07.01",
+"07.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"samples": [
+"07.02",
+"07.13"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Для обозначения текущего владения в повседневном британском английском также используется `have got`. Вопрос в этом случае — `Have you got ...?`, а не смесь двух вариантов вопроса. Не применяйте эту альтернативу ко всем случаям использования `have`, например, при приеме пищи.",
+"samples": [
+"07.13",
+"07.22"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Объясните, чего не хватает",
+"samples": [
+"07.33",
+"07.35",
+"07.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Перед уходом проверьте, у кого паспорт, а у кого запасной ключ. Затем спросите об одном предмете, используя другую форму.",
+"samples": [
+"07.42",
+"07.45",
+"07.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Свяжите владение с реальным предметом",
+"samples": [
+"07.50"
+],
+"tokenWalk": "07.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що в мене є",
+"formula": "[підмет] + [have / has] + [предмет або стан]",
+"story": "Квиток у мене: I have a ticket. У неї: She has a ticket. У питанні Does she have a ticket? після does стоїть have.",
+"use": "Використовуйте `have` для речей, які ви берете з собою, зустрічей та деяких фізичних скарг. Головний біль вимагає `have`; холод вимагає `be`. Зверніть увагу на весь вираз.",
+"choose": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"nuance": "Для теперішнього часу в повсякденній британській англійській також використовується `have got`. Його питання — `Have you got ...?`, а не суміш двох питальних моделей. Не застосовуйте цю альтернативу до кожного використання `have`, наприклад, під час вживання їжі.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте `have` для речей, які ви берете з собою, зустрічей та деяких фізичних скарг. Головний біль вимагає `have`; холод вимагає `be`. Зверніть увагу на весь вираз.",
+"samples": [
+"07.01",
+"07.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"samples": [
+"07.02",
+"07.13"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Для теперішнього часу в повсякденній британській англійській також використовується `have got`. Його питання — `Have you got ...?`, а не суміш двох питальних моделей. Не застосовуйте цю альтернативу до кожного використання `have`, наприклад, під час вживання їжі.",
+"samples": [
+"07.13",
+"07.22"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Поясніть, чого не вистачає",
+"samples": [
+"07.33",
+"07.35",
+"07.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Перед від'їздом перевірте, у кого паспорт, а у кого запасний ключ. Потім запитайте про один об'єкт, використовуючи іншу форму.",
+"samples": [
+"07.42",
+"07.45",
+"07.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Зв'яжіть володіння з реальним об'єктом",
+"samples": [
+"07.50"
+],
+"tokenWalk": "07.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Say what you have or need",
+"formula": "[subject] + [have / has] + [thing or condition]",
+"story": "I have a ticket; she has a ticket. When does starts the question, use have again: Does she have a ticket?",
+"use": "Use `have` for things you carry, appointments and some physical complaints. A headache takes `have`; being cold takes `be`. Notice the whole expression.",
+"choose": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`.",
+"nuance": "For current possession, everyday British English also uses `have got`. Its question is `Have you got ...?`, not a mixture of the two question patterns. Do not apply this alternative to every use of `have`, such as eating a meal.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use `have` for things you carry, appointments and some physical complaints. A headache takes `have`; being cold takes `be`. Notice the whole expression.",
+"samples": [
+"07.01",
+"07.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`.",
+"samples": [
+"07.02",
+"07.13"
+]
+},
+{
+"title": "A useful contrast",
+"body": "For current possession, everyday British English also uses `have got`. Its question is `Have you got ...?`, not a mixture of the two question patterns. Do not apply this alternative to every use of `have`, such as eating a meal.",
+"samples": [
+"07.13",
+"07.22"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`.",
+"wrong": "Does she has her passport?",
+"right": "Does she have her passport?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Explain what is missing",
+"samples": [
+"07.33",
+"07.35",
+"07.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Before leaving, check who has the passport and who has the spare key. Then ask about one object using a different form.",
+"samples": [
+"07.42",
+"07.45",
+"07.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Connect possession to a real object",
+"samples": [
+"07.50"
+],
+"tokenWalk": "07.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "07.01",
+"index": 1,
+"right": "have",
+"near": "has",
+"seq": [
+"I",
+"have",
+"a",
+"ticket"
+],
+"i": 0,
+"kind": "form",
+"key": "en07/lab/form1",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.13",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"She",
+"has",
+"a",
+"headache"
+],
+"i": 12,
+"kind": "form",
+"key": "en07/lab/form2",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.26",
+"index": 3,
+"right": "have",
+"near": "has",
+"seq": [
+"Does",
+"the",
+"room",
+"have",
+"a",
+"shower"
+],
+"i": 25,
+"kind": "form",
+"key": "en07/lab/form3",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.41",
+"index": 2,
+"right": "has",
+"near": "have",
+"seq": [
+"Our",
+"bus",
+"has",
+"two",
+"doors"
+],
+"i": 40,
+"kind": "form",
+"key": "en07/lab/form4",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.07",
+"index": 1,
+"right": "have",
+"near": "has",
+"seq": [
+"They",
+"have",
+"a",
+"car"
+],
+"i": 6,
+"kind": "spot",
+"key": "en07/lab/spot1",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.18",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"She",
+"has",
+"a",
+"prescription"
+],
+"i": 17,
+"kind": "spot",
+"key": "en07/lab/spot2",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.32",
+"index": 3,
+"right": "have",
+"near": "has",
+"seq": [
+"She",
+"does",
+"not",
+"have",
+"her",
+"glasses"
+],
+"i": 31,
+"kind": "spot",
+"key": "en07/lab/spot3",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"id": "07.46",
+"index": 1,
+"right": "has",
+"near": "have",
+"seq": [
+"She",
+"has",
+"a",
+"free",
+"afternoon"
+],
+"i": 45,
+"kind": "spot",
+"key": "en07/lab/spot4",
+"feedback": {
+"ru": "`I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`.",
+"uk": "`I have a ticket`, але `She has a ticket`. У питанні особу вже передає `does`: `Does she have her passport?`, а не `does she has`.",
+"en": "Use `has` for one person or thing in the third person. In ordinary present questions and negatives with `do` or `does`, return to `have`."
+}
+},
+{
+"kind": "match",
+"key": "en07/lab/match1",
+"id": "07.02",
+"other": "07.03"
+},
+{
+"kind": "match",
+"key": "en07/lab/match2",
+"id": "07.17",
+"other": "07.16"
+},
+{
+"kind": "match",
+"key": "en07/lab/match3",
+"id": "07.33",
+"other": "07.32"
+},
+{
+"kind": "match",
+"key": "en07/lab/match4",
+"id": "07.46",
+"other": "07.47"
+},
+{
+"kind": "build",
+"key": "en07/lab/build1",
+"id": "07.04"
+},
+{
+"kind": "build",
+"key": "en07/lab/build2",
+"id": "07.15"
+},
+{
+"kind": "build",
+"key": "en07/lab/build3",
+"id": "07.29"
+},
+{
+"kind": "build",
+"key": "en07/lab/build4",
+"id": "07.42"
+},
+{
+"kind": "transform",
+"id": "07.10",
+"base": "07.01",
+"diff": [
+{
+"before": [
+"ticket"
+],
+"after": [
+"question"
+]
+}
+],
+"key": "en07/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "07.25",
+"base": "07.21",
+"diff": [
+{
+"before": [
+"charger"
+],
+"after": [
+"pen"
+]
+}
+],
+"key": "en07/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "07.18",
+"base": "07.13",
+"diff": [
+{
+"before": [
+"headache"
+],
+"after": [
+"prescription"
+]
+}
+],
+"key": "en07/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "07.49",
+"base": "07.29",
+"diff": [
+{
+"before": [
+"smaller",
+"size"
+],
+"after": [
+"moment"
+]
+}
+],
+"key": "en07/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+18
+],
+[
+13,
+16
+],
+[
+17,
+2
+],
+[
+10,
+6
+],
+[
+15,
+3
+],
+[
+19,
+7
+]
+],
+"worked": [
+"07.05",
+"07.18",
+"07.33",
+"07.48"
+],
+"reflection": [
+"07.01",
+"07.02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 8,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 8,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Во сколько, в какой день и когда",
+"formula": "at [время] · on [день или дата] · in [месяц или сезон]",
+"story": "Записываешь встречу: at seven — час на часах, on Monday — день календаря, in May — месяц. В next Monday предлог уже не нужен.",
+"use": "Используйте размер выражения времени в качестве отправной точки: время по часам — это точка, названный день — это один день, а месяц или сезон — это больший период.",
+"choose": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"nuance": "В конструкциях `last`, `next`, `every` или `this`, стоящих непосредственно перед временем, предлог обычно опускается. `At the weekend` и `on the weekend` отражают различные широко используемые варианты английского языка.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте размер выражения времени в качестве отправной точки: время по часам — это точка, названный день — это один день, а месяц или сезон — это больший период.",
+"samples": [
+"08.01",
+"08.03"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"samples": [
+"08.03",
+"08.05"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В конструкциях `last`, `next`, `every` или `this`, стоящих непосредственно перед временем, предлог обычно опускается. `At the weekend` и `on the weekend` отражают различные широко используемые варианты английского языка.",
+"samples": [
+"08.05",
+"08.24"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Назовите месяц, время года или часть дня",
+"samples": [
+"08.33",
+"08.35",
+"08.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "У клиента указан правильный адрес, но неверный день. Укажите день и время, чтобы он мог изменить встречу.",
+"samples": [
+"08.42",
+"08.45",
+"08.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Знайте, когда предлог не нужен",
+"samples": [
+"08.50"
+],
+"tokenWalk": "08.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "О котрій, у який день і коли",
+"formula": "at [час] · on [день або дата] · in [місяць або пора року]",
+"story": "Записуєш зустріч: at seven — година, on Monday — день, in May — місяць. Перед next Monday прийменника не треба.",
+"use": "Використовуйте розмір виразу часу як відправну точку: час на годиннику – це точка, названий день – це один день, а місяць або сезон – це більший період.",
+"choose": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"nuance": "Якщо прийменники `last`, `next`, `every` або `this` стоять безпосередньо перед часом, прийменник зазвичай пропускається. `At the weekend` та `on the weekend` відображають різні широко вживані варіанти англійської мови.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте розмір виразу часу як відправну точку: час на годиннику – це точка, названий день – це один день, а місяць або сезон – це більший період.",
+"samples": [
+"08.01",
+"08.03"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"samples": [
+"08.03",
+"08.05"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Якщо прийменники `last`, `next`, `every` або `this` стоять безпосередньо перед часом, прийменник зазвичай пропускається. `At the weekend` та `on the weekend` відображають різні широко вживані варіанти англійської мови.",
+"samples": [
+"08.05",
+"08.24"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Назвіть місяць, пору року або частину доби",
+"samples": [
+"08.33",
+"08.35",
+"08.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Клієнт має правильну адресу, але неправильний день. Вкажіть день і час, щоб клієнт міг змінити зустріч.",
+"samples": [
+"08.42",
+"08.45",
+"08.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Знайте, коли не потрібен прийменник",
+"samples": [
+"08.50"
+],
+"tokenWalk": "08.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Pin down a time",
+"formula": "at [time] · on [day or date] · in [month or season]",
+"story": "Arrange a meeting: at seven for the clock, on Monday for a day, in May for a month. Next Monday needs no preposition.",
+"use": "Use the size of the time expression as a starting point: a clock time is a point, a named day is one day, and a month or season is a larger period.",
+"choose": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression.",
+"nuance": "With `last`, `next`, `every` or `this` directly before the time, usually leave out the preposition. `At the weekend` and `on the weekend` reflect different widely used varieties of English.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use the size of the time expression as a starting point: a clock time is a point, a named day is one day, and a month or season is a larger period.",
+"samples": [
+"08.01",
+"08.03"
+]
+},
+{
+"title": "How to choose",
+"body": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression.",
+"samples": [
+"08.03",
+"08.05"
+]
+},
+{
+"title": "A useful contrast",
+"body": "With `last`, `next`, `every` or `this` directly before the time, usually leave out the preposition. `At the weekend` and `on the weekend` reflect different widely used varieties of English.",
+"samples": [
+"08.05",
+"08.24"
+]
+},
+{
+"title": "Common mistake",
+"body": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression.",
+"wrong": "We meet in Tuesday.",
+"right": "We meet on Tuesday.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Name a month, season or part of the day",
+"samples": [
+"08.33",
+"08.35",
+"08.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A customer has the right address but the wrong day. Give the day and time so they can change the appointment.",
+"samples": [
+"08.42",
+"08.45",
+"08.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Know when no preposition is needed",
+"samples": [
+"08.50"
+],
+"tokenWalk": "08.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "08.01",
+"index": 2,
+"right": "at",
+"near": "on",
+"seq": [
+"I",
+"start",
+"at",
+"seven"
+],
+"i": 0,
+"kind": "form",
+"key": "en08/lab/form1",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.09",
+"index": 2,
+"right": "in",
+"near": "on",
+"seq": [
+"I",
+"walk",
+"in",
+"the",
+"morning"
+],
+"i": 8,
+"kind": "form",
+"key": "en08/lab/form2",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.26",
+"index": 3,
+"right": "on",
+"near": "in",
+"seq": [
+"The",
+"parcel",
+"arrives",
+"on",
+"Monday",
+"afternoon"
+],
+"i": 25,
+"kind": "form",
+"key": "en08/lab/form3",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.38",
+"index": 4,
+"right": "in",
+"near": "on",
+"seq": [
+"The",
+"new",
+"timetable",
+"starts",
+"in",
+"April"
+],
+"i": 37,
+"kind": "form",
+"key": "en08/lab/form4",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.07",
+"index": 2,
+"right": "at",
+"near": "on",
+"seq": [
+"We",
+"finish",
+"at",
+"midnight"
+],
+"i": 6,
+"kind": "spot",
+"key": "en08/lab/spot1",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.21",
+"index": 3,
+"right": "on",
+"near": "in",
+"seq": [
+"The",
+"office",
+"closes",
+"on",
+"public",
+"holidays"
+],
+"i": 20,
+"kind": "spot",
+"key": "en08/lab/spot2",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.32",
+"index": 3,
+"right": "in",
+"near": "on",
+"seq": [
+"Our",
+"course",
+"starts",
+"in",
+"September"
+],
+"i": 31,
+"kind": "spot",
+"key": "en08/lab/spot3",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"id": "08.47",
+"index": 3,
+"right": "on",
+"near": "in",
+"seq": [
+"Do",
+"you",
+"study",
+"on",
+"Sunday",
+"mornings"
+],
+"i": 46,
+"kind": "spot",
+"key": "en08/lab/spot4",
+"feedback": {
+"ru": "Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком.",
+"uk": "Точний час: `at seven`. Названий день або ранок цього дня: `on Monday`, `on Thursday morning`. Місяць, пора року, частина дня загалом: `in April`, `in summer`, `in the morning`. Вислів `at night` запам’ятай цілком.",
+"en": "Specific mornings belong to a day: use `on Thursday morning`. For mornings in general, use `in the morning`. `At night` is a common fixed expression."
+}
+},
+{
+"kind": "match",
+"key": "en08/lab/match1",
+"id": "08.02",
+"other": "08.01"
+},
+{
+"kind": "match",
+"key": "en08/lab/match2",
+"id": "08.17",
+"other": "08.18"
+},
+{
+"kind": "match",
+"key": "en08/lab/match3",
+"id": "08.33",
+"other": "08.34"
+},
+{
+"kind": "match",
+"key": "en08/lab/match4",
+"id": "08.46",
+"other": "08.48"
+},
+{
+"kind": "build",
+"key": "en08/lab/build1",
+"id": "08.04"
+},
+{
+"kind": "build",
+"key": "en08/lab/build2",
+"id": "08.15"
+},
+{
+"kind": "build",
+"key": "en08/lab/build3",
+"id": "08.29"
+},
+{
+"kind": "build",
+"key": "en08/lab/build4",
+"id": "08.42"
+},
+{
+"kind": "transform",
+"id": "08.10",
+"base": "08.04",
+"diff": [
+{
+"before": [
+"on",
+"Fridays"
+],
+"after": [
+"at",
+"night"
+]
+}
+],
+"key": "en08/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "08.42",
+"base": "08.02",
+"diff": [
+{
+"before": [
+"at",
+"noon"
+],
+"after": [
+"next",
+"week"
+]
+}
+],
+"key": "en08/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "08.44",
+"base": "08.09",
+"diff": [
+{
+"before": [
+"walk",
+"in",
+"the"
+],
+"after": [
+"see",
+"him",
+"every"
+]
+}
+],
+"key": "en08/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "08.15",
+"base": "08.03",
+"diff": [
+{
+"before": [
+"on",
+"Tuesday"
+],
+"after": [
+"at",
+"lunchtime"
+]
+}
+],
+"key": "en08/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+19,
+12
+],
+[
+2,
+4
+],
+[
+5,
+14
+],
+[
+10,
+3
+],
+[
+15,
+17
+],
+[
+7,
+11
+]
+],
+"worked": [
+"08.05",
+"08.18",
+"08.33",
+"08.48"
+],
+"reflection": [
+"08.01",
+"08.03"
+],
+"strategy": {
+"ru": "Сначала представь две разные картинки. Кто дома, что лежит на столе, кто кому звонит? Иногда оба варианта грамматически возможны, но только один описывает нужную картинку.",
+"uk": "Спершу уяви дві різні картинки. Хто вдома, що лежить на столі, хто кому телефонує? Іноді обидві фрази граматично можливі, але лише одна передає потрібний зміст.",
+"en": "Picture two different scenes. Who is home? What is on the table? Who phones whom? Both choices may make sentences, but only one describes the scene in this prompt."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

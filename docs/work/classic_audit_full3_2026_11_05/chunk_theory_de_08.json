@@ -1,0 +1,968 @@
+[
+{
+"lesson": 17,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:17:01",
+"de:17:05"
+],
+"textByLocale": {
+"en": "The trip is over, the person is already here. In `ich bin angekommen`,\" the word `bin` doesn't mean the action is happening now: it helps construct the past tense. Compare this with a simple location statement.",
+"ru": "Поездка закончилась, человек уже здесь. В `ich bin angekommen` слово `bin` не значит, что действие происходит сейчас: оно помогает построить прошедшее. Сравни с простым сообщением о местонахождении.",
+"uk": "Поїздка закінчилася, людина вже тут. У `ich bin angekommen` слово `bin` значить, що дію відбувається зараз: воно допомагає побудувати минуле. Порівняй із простим повідомленням про місцезнаходження."
+}
+},
+{
+"exampleIds": [
+"de:17:07",
+"de:17:10"
+],
+"textByLocale": {
+"en": "Changes of state are also important: wake up, fall asleep, get up. There may not be any journey on the map, but these actions in our bank are constructed with `sein`.\"",
+"ru": "Перемена состояния тоже важна: проснуться, уснуть, встать. Никакого путешествия по карте может не быть, однако эти действия в нашем банке строятся с `sein`.",
+"uk": "Зміна стану теж важлива: прокинутися, заснути, підвестися. Жодної подорожі картою може не бути, проте ці дії в нашому банку будуються з `sein`."
+}
+},
+{
+"exampleIds": [
+"de:17:11",
+"de:17:16"
+],
+"textByLocale": {
+"en": "When a person has moved to a new place, `sein` is often needed. But this isn't a rule of \"all verbs of motion without exception.\" Remember the usage in a specific meaning and with specific participants.",
+"ru": "Когда человек сам переместился в новое место, часто нужен `sein`. Но это не правило «все глаголы движения без исключений». Запоминай употребление в конкретном значении и с конкретными участниками.",
+"uk": "Коли людина сама перемістилася в нове місце, часто потрібна `sein`. Але це правило «всі дієслова руху без винятків». Запам'ятай вживання у конкретному значенні та з конкретними учасниками."
+}
+},
+{
+"exampleIds": [
+"de:17:21",
+"de:17:27"
+],
+"textByLocale": {
+"en": "The prefix defines the section of the trip: entry, exit, transfer, return. Compare the forms as whole words with `ge` inside; the auxiliary verb remains separate.",
+"ru": "Приставка определяет участок поездки: вход, выход, пересадку, возвращение. Сравни формы как целые слова с `ge` внутри; вспомогательный глагол при этом остаётся отдельным.",
+"uk": "Приставка визначає ділянку поїздки: вхід, вихід, пересадку, повернення. Порівняй форми як цілі слова з `ge` усередині; допоміжне дієслово у своїй залишається окремим."
+}
+},
+{
+"exampleIds": [
+"de:17:31",
+"de:17:36"
+],
+"textByLocale": {
+"en": "In the question, check not only the participle but also the number of people. A question about a group begins with `seid ihr`.\" A question about one friend begins with `bist du`; however, the participle does not need to be changed.",
+"ru": "В вопросе проверь не только причастие, но и число людей. Вопрос к группе начинается с `seid ihr`. К одному другу — с `bist du`; менять при этом причастие не надо.",
+"uk": "У питанні перевір не тільки причастя, а й кількість людей. Питання до групи починається з `seid ihr`. До одного друга - з `bist du`; міняти при цьому дієприкметник не треба."
+}
+},
+{
+"exampleIds": [
+"de:17:41",
+"de:17:45"
+],
+"textByLocale": {
+"en": "`Bleiben` is a useful exception to the motion picture: the person hasn't gone anywhere, but says `ich bin geblieben`.\" A change in property is conveyed by `geworden`: for example, the drink has gotten cold.",
+"ru": "`Bleiben` — полезное исключение из картинки движения: человек как раз никуда не ушёл, но говорит `ich bin geblieben`. Изменение свойства передаёт `geworden`: например, напиток остыл.",
+"uk": "`Bleiben` — корисний виняток із картинки руху: людина якраз нікуди не пішла, але каже `ich bin geblieben`. Зміна властивості передає `geworden`: наприклад, напій охолонув."
+}
+},
+{
+"exampleIds": [
+"de:17:46",
+"de:17:50"
+],
+"textByLocale": {
+"en": "Who is the subject? A window can fall, but a bicycle can break. Choose an auxiliary verb based on this object. Don't confuse `geworden` in the change of state with `worden` in other constructions.",
+"ru": "Кто является подлежащим? Упасть может стекло, а сломаться — велосипед. Вспомогательный глагол выбирай по этому предмету. Не путай `geworden` в изменении состояния с формой `worden` в других конструкциях.",
+"uk": "Хто підлягає? Впасти може скло, а зламатися велосипед. Допоміжне дієслово вибирай із цього предмета. Не плутай `geworden` у зміні стану з формою `worden` в інших конструкціях."
+}
+}
+],
+"lab": [
+{
+"bad": "bist",
+"chapter": 1,
+"id": "de:17:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"ist",
+"bist",
+"bin"
+],
+"slot": 1
+},
+{
+"bad": "war",
+"chapter": 1,
+"id": "de:17:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 10,
+"options": [
+"war",
+"wäre",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "ist",
+"chapter": 1,
+"id": "de:17:05:lab",
+"item": 5,
+"kind": "match",
+"near": 25,
+"options": [
+"ist",
+"sind",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "wäre",
+"chapter": 2,
+"id": "de:17:08:lab",
+"item": 8,
+"kind": "build",
+"near": 12,
+"options": [
+"wäre",
+"bist",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "bin",
+"chapter": 2,
+"id": "de:17:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"bin",
+"ist",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "sind",
+"chapter": 2,
+"id": "de:17:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 8,
+"options": [
+"bist",
+"sind",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "wäre",
+"chapter": 3,
+"id": "de:17:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"wäre",
+"war",
+"sind"
+],
+"slot": 1
+},
+{
+"bad": "war",
+"chapter": 3,
+"id": "de:17:17:lab",
+"item": 17,
+"kind": "match",
+"near": 20,
+"options": [
+"war",
+"bist",
+"ist"
+],
+"slot": 2
+},
+{
+"bad": "wäre",
+"chapter": 3,
+"id": "de:17:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"ist",
+"seid",
+"wäre"
+],
+"slot": 2
+},
+{
+"bad": "wäre",
+"chapter": 4,
+"id": "de:17:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"wäre",
+"war",
+"ist"
+],
+"slot": 1
+},
+{
+"bad": "seid",
+"chapter": 4,
+"id": "de:17:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 4,
+"options": [
+"sind",
+"wäre",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "ist",
+"chapter": 4,
+"id": "de:17:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 6,
+"options": [
+"sind",
+"ist",
+"wäre"
+],
+"slot": 2
+},
+{
+"bad": "bin",
+"chapter": 5,
+"id": "de:17:29:lab",
+"item": 29,
+"kind": "match",
+"near": 4,
+"options": [
+"sind",
+"bist",
+"bin"
+],
+"slot": 1
+},
+{
+"bad": "Sein",
+"chapter": 5,
+"id": "de:17:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"Bist",
+"Sein",
+"Wäre"
+],
+"slot": 0
+},
+{
+"bad": "Bist",
+"chapter": 5,
+"id": "de:17:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 10,
+"options": [
+"Bist",
+"Ist",
+"Sind"
+],
+"slot": 0
+},
+{
+"bad": "wäre",
+"chapter": 6,
+"id": "de:17:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 22,
+"options": [
+"ist",
+"sein",
+"wäre"
+],
+"slot": 1
+},
+{
+"bad": "sind",
+"chapter": 6,
+"id": "de:17:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 3,
+"options": [
+"sind",
+"ist",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "sein",
+"chapter": 6,
+"id": "de:17:42:lab",
+"item": 42,
+"kind": "match",
+"near": 4,
+"options": [
+"wäre",
+"sind",
+"sein"
+],
+"slot": 1
+},
+{
+"bad": "sein",
+"chapter": 7,
+"id": "de:17:45:lab",
+"item": 45,
+"kind": "build",
+"near": 46,
+"options": [
+"sein",
+"wäre",
+"ist"
+],
+"slot": 2
+},
+{
+"bad": "bist",
+"chapter": 7,
+"id": "de:17:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 11,
+"options": [
+"seid",
+"bist",
+"bin"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"ankommen",
+"ist angekommen"
+],
+[
+"gehen",
+"ist gegangen"
+],
+[
+"einsteigen",
+"ist eingestiegen"
+],
+[
+"aufstehen",
+"ist aufgestanden"
+],
+[
+"bleiben",
+"ist geblieben"
+],
+[
+"werden",
+"ist geworden"
+]
+],
+"title": {
+"en": "Talking about the past: `Perfekt` with `sein`",
+"ru": "Пришёл, уехал, остался: Perfekt с `sein`",
+"uk": "Прийшов, поїхав, залишився: Perfekt з `sein`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:17:01",
+"target": "Ich bin angekommen.",
+"ru": "Я приехал.",
+"uk": "Я приїхав."
+},
+{
+"id": "de:17:05",
+"target": "Ihr seid angekommen.",
+"ru": "Вы приехали.",
+"uk": "Ви приїхали."
+},
+{
+"id": "de:17:07",
+"target": "Ich bin früh aufgestanden.",
+"ru": "Я рано встал.",
+"uk": "Я рано встав."
+},
+{
+"id": "de:17:10",
+"target": "Anna ist sofort eingeschlafen.",
+"ru": "Анна сразу уснула.",
+"uk": "Анна одразу заснула."
+},
+{
+"id": "de:17:11",
+"target": "Ich bin nach Hause gegangen.",
+"ru": "Я пошёл домой.",
+"uk": "Я пішов додому."
+},
+{
+"id": "de:17:16",
+"target": "Die Kinder sind ins Wasser gesprungen.",
+"ru": "Дети прыгнули в воду.",
+"uk": "Діти стрибнули у воду."
+},
+{
+"id": "de:17:21",
+"target": "Ich bin vorne eingestiegen.",
+"ru": "Я вошёл через переднюю дверь.",
+"uk": "Я увійшов через передні двері."
+},
+{
+"id": "de:17:27",
+"target": "Mein Bruder ist aus Wien zurückgekommen.",
+"ru": "Мой брат вернулся из Вены.",
+"uk": "Мій брат повернувся з Відня."
+},
+{
+"id": "de:17:31",
+"target": "Bist du zu Fuß gekommen?",
+"ru": "Ты пришёл пешком?",
+"uk": "Ти прийшов пішки?"
+},
+{
+"id": "de:17:36",
+"target": "Wo ist Tom ausgestiegen?",
+"ru": "Где вышел Том?",
+"uk": "Де вийшов Том?"
+},
+{
+"id": "de:17:41",
+"target": "Ich bin heute zu Hause geblieben.",
+"ru": "Я сегодня остался дома.",
+"uk": "Я сьогодні залишився вдома."
+},
+{
+"id": "de:17:45",
+"target": "Unser Kind ist groß geworden.",
+"ru": "Наш ребёнок вырос.",
+"uk": "Наша дитина виросла."
+},
+{
+"id": "de:17:46",
+"target": "Es ist dunkel geworden.",
+"ru": "Стало темно.",
+"uk": "Стало темно."
+},
+{
+"id": "de:17:50",
+"target": "Zum Glück ist niemand hingefallen.",
+"ru": "К счастью, никто не упал.",
+"uk": "На щастя, ніхто не впав."
+}
+]
+},
+{
+"lesson": 18,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:18:01",
+"de:18:04"
+],
+"textByLocale": {
+"en": "Compare the state now and yesterday. Where `bin` would be now, `war` could be in the past. A separate participle is not required: the form itself indicates the tense.",
+"ru": "Сравни состояние сейчас и вчера. Там, где сейчас стояло бы `bin`, в прошлом может стоять `war`. Отдельное причастие не требуется: время уже показывает сама форма.",
+"uk": "Порівняй стан зараз і вчора. Там, де зараз стояло б `bin`, у минулому може стояти `war`. Окреме причастя не потрібно: час показує сама форма."
+}
+},
+{
+"exampleIds": [
+"de:18:07",
+"de:18:10"
+],
+"textByLocale": {
+"en": "When talking about having time, hunger, or luck, don't use `war` instead of `hatte`.\" Learn everyday collocations with their verb: German describes some sensations with \"to have.\"",
+"ru": "Если речь о наличии времени, голоде или удаче, вместо `hatte` не ставят `war`. Учи бытовые сочетания с их глаголом: немецкий называет некоторые ощущения через «иметь».",
+"uk": "Якщо йдеться про наявність часу, голод чи удачу, замість `hatte` не ставлять `war`. Вчи побутові поєднання з їхнім дієсловом: німецька називає деякі відчуття через «мати»."
+}
+},
+{
+"exampleIds": [
+"de:18:11",
+"de:18:16"
+],
+"textByLocale": {
+"en": "The adjective after `war` remains the same as after `ist`.\" Therefore, to talk about the state of the door yesterday, it is enough to change the tense; the openness and the object remain the same.",
+"ru": "Прилагательное после `war` остаётся таким же, как после `ist`. Значит, чтобы сказать о вчерашнем состоянии двери, достаточно поменять время связки; открытость и предмет прежние.",
+"uk": "Прикметник після `war` залишається таким самим, як після `ist`. Значить, щоб сказати про вчорашній стан дверей, достатньо поміняти час зв'язування; відкритість та предмет колишні."
+}
+},
+{
+"exampleIds": [
+"de:18:26",
+"de:18:30"
+],
+"textByLocale": {
+"en": "Not only people can have. The hotel had an elevator, the bus arrived late. In these phrases, `hatte` is not the beginning of a compound tense: it is followed by an object or state, not a participle.",
+"ru": "Иметь может не только человек. Гостиница имела лифт, автобус прибыл с задержкой. В этих фразах `hatte` не начало составного времени: после него идёт предмет или состояние, а не причастие.",
+"uk": "Мати може не лише людина. Готель мав ліфт, автобус прибув із затримкою. У цих фразах `hatte` не початок складеного часу: після нього йде предмет чи стан, а чи не причастя."
+}
+},
+{
+"exampleIds": [
+"de:18:31",
+"de:18:38"
+],
+"textByLocale": {
+"en": "In questions, `warst`, `wart`, `hattest`,\" and `hattet` come first. Compare two addressees: one friend needs a different form than several friends.",
+"ru": "В вопросах `warst`, `wart`, `hattest`, `hattet` выходят на первое место. Сравни двух адресатов: одному другу нужна иная форма, чем нескольким друзьям.",
+"uk": "У питаннях `warst`, `wart`, `hattest`, `hattet` виходять на перше місце. Порівняй двох адресатів: одному другу потрібна інша форма, ніж кільком друзям."
+}
+},
+{
+"exampleIds": [
+"de:18:41",
+"de:18:46"
+],
+"textByLocale": {
+"en": "`Früher` can describe a long period, while `gestern` can describe a single day. These time markers don't force you to choose a different verb: what's more important is the state or presence.",
+"ru": "`Früher` может описывать длительный период, а `gestern` — один конкретный день. Эти маркеры времени не обязывают выбрать другой глагол: важнее, состояние это или наличие.",
+"uk": "`Früher` може описувати тривалий період, а `gestern` - один конкретний день. Ці маркери часу не зобов'язують вибрати інше дієслово: важливіше, стан це чи наявність."
+}
+},
+{
+"exampleIds": [
+"de:18:47",
+"de:18:50"
+],
+"textByLocale": {
+"en": "Test the two-shot narrative: what was the setting and what you had on hand. You can express both things in two simple sentences, without complicating them with another past tense.",
+"ru": "Проверь рассказ из двух кадров: какая обстановка была и что у тебя оказалось под рукой. Можно сообщить обе вещи двумя простыми предложениями, не усложняя их ещё одним прошедшим временем.",
+"uk": "Перевір розповідь із двох кадрів: яка ситуація була і що в тебе опинилося під рукою. Можна повідомити обидві речі двома простими пропозиціями, не ускладнюючи їх ще одним минулим часом."
+}
+}
+],
+"lab": [
+{
+"bad": "wäre",
+"chapter": 1,
+"id": "de:18:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"wäre",
+"bist",
+"war"
+],
+"slot": 1
+},
+{
+"bad": "wäre",
+"chapter": 1,
+"id": "de:18:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"war",
+"wäre",
+"sein"
+],
+"slot": 1
+},
+{
+"bad": "waren",
+"chapter": 1,
+"id": "de:18:05:lab",
+"item": 5,
+"kind": "match",
+"near": 25,
+"options": [
+"waren",
+"wäre",
+"wart"
+],
+"slot": 1
+},
+{
+"bad": "hatten",
+"chapter": 2,
+"id": "de:18:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"hatten",
+"hattet",
+"hattest"
+],
+"slot": 1
+},
+{
+"bad": "hattet",
+"chapter": 2,
+"id": "de:18:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 24,
+"options": [
+"hatten",
+"hattet",
+"haben"
+],
+"slot": 1
+},
+{
+"bad": "sein",
+"chapter": 2,
+"id": "de:18:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 33,
+"options": [
+"ist",
+"sein",
+"war"
+],
+"slot": 2
+},
+{
+"bad": "bin",
+"chapter": 3,
+"id": "de:18:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 3,
+"options": [
+"war",
+"bin",
+"bist"
+],
+"slot": 2
+},
+{
+"bad": "warst",
+"chapter": 3,
+"id": "de:18:17:lab",
+"item": 17,
+"kind": "match",
+"near": 19,
+"options": [
+"sind",
+"waren",
+"warst"
+],
+"slot": 2
+},
+{
+"bad": "sind",
+"chapter": 3,
+"id": "de:18:19:lab",
+"item": 19,
+"kind": "build",
+"near": 17,
+"options": [
+"waren",
+"sind",
+"ist"
+],
+"slot": 2
+},
+{
+"bad": "habt",
+"chapter": 4,
+"id": "de:18:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 9,
+"options": [
+"hätte",
+"habt",
+"hatte"
+],
+"slot": 1
+},
+{
+"bad": "hattet",
+"chapter": 4,
+"id": "de:18:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 10,
+"options": [
+"hatten",
+"hattet",
+"hattest"
+],
+"slot": 1
+},
+{
+"bad": "haben",
+"chapter": 4,
+"id": "de:18:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 19,
+"options": [
+"haben",
+"hatte",
+"hatten"
+],
+"slot": 2
+},
+{
+"bad": "hast",
+"chapter": 5,
+"id": "de:18:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"hatte",
+"hat",
+"hast"
+],
+"slot": 2
+},
+{
+"bad": "Ist",
+"chapter": 5,
+"id": "de:18:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"Warst",
+"Wart",
+"Ist"
+],
+"slot": 0
+},
+{
+"bad": "War",
+"chapter": 5,
+"id": "de:18:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 46,
+"options": [
+"War",
+"Wäre",
+"Waren"
+],
+"slot": 0
+},
+{
+"bad": "Hat",
+"chapter": 6,
+"id": "de:18:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 22,
+"options": [
+"Hätte",
+"Hatten",
+"Hat"
+],
+"slot": 0
+},
+{
+"bad": "seid",
+"chapter": 6,
+"id": "de:18:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 11,
+"options": [
+"war",
+"wäre",
+"seid"
+],
+"slot": 1
+},
+{
+"bad": "haben",
+"chapter": 6,
+"id": "de:18:42:lab",
+"item": 42,
+"kind": "match",
+"near": 48,
+"options": [
+"haben",
+"hat",
+"hatte"
+],
+"slot": 1
+},
+{
+"bad": "habt",
+"chapter": 7,
+"id": "de:18:45:lab",
+"item": 45,
+"kind": "build",
+"near": 9,
+"options": [
+"habt",
+"hatte",
+"hätte"
+],
+"slot": 3
+},
+{
+"bad": "hat",
+"chapter": 7,
+"id": "de:18:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 42,
+"options": [
+"hatte",
+"hat",
+"habt"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"ich",
+"war / hatte"
+],
+[
+"du",
+"warst / hattest"
+],
+[
+"er / sie / es",
+"war / hatte"
+],
+[
+"wir",
+"waren / hatten"
+],
+[
+"ihr",
+"wart / hattet"
+],
+[
+"sie / Sie",
+"waren / hatten"
+]
+],
+"title": {
+"en": "What I had and what was: `war` and `hatte`",
+"ru": "Каким было и что было у меня: `war` и `hatte`",
+"uk": "Яким було і що було у мене: `war` та `hatte`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:18:01",
+"target": "Ich war müde.",
+"ru": "Я был уставшим.",
+"uk": "Я був втомлений."
+},
+{
+"id": "de:18:04",
+"target": "Wir waren zu Hause.",
+"ru": "Мы были дома.",
+"uk": "Ми були вдома."
+},
+{
+"id": "de:18:07",
+"target": "Ich hatte Zeit.",
+"ru": "У меня было время.",
+"uk": "У мене був час."
+},
+{
+"id": "de:18:10",
+"target": "Wir hatten Glück.",
+"ru": "Нам повезло.",
+"uk": "Нам пощастило."
+},
+{
+"id": "de:18:11",
+"target": "Gestern war die Kasse zu.",
+"ru": "Вчера касса была закрыта.",
+"uk": "Вчора каса була закрита."
+},
+{
+"id": "de:18:16",
+"target": "Die Dusche war kaputt.",
+"ru": "Душ был сломан.",
+"uk": "Душ був зламаний."
+},
+{
+"id": "de:18:26",
+"target": "Die Kinder hatten eine Idee.",
+"ru": "У детей была идея.",
+"uk": "Діти мали ідею."
+},
+{
+"id": "de:18:30",
+"target": "Der Bus hatte Verspätung.",
+"ru": "Автобус опаздывал.",
+"uk": "Автобус запізнювався."
+},
+{
+"id": "de:18:31",
+"target": "Warst du gestern im Büro?",
+"ru": "Ты был вчера в офисе?",
+"uk": "Ти був учора в офісі?"
+},
+{
+"id": "de:18:38",
+"target": "Hattet ihr Probleme?",
+"ru": "У вас были проблемы?",
+"uk": "У вас були проблеми?"
+},
+{
+"id": "de:18:41",
+"target": "Früher war hier ein Kino.",
+"ru": "Раньше здесь был кинотеатр.",
+"uk": "Раніше тут був кінотеатр."
+},
+{
+"id": "de:18:46",
+"target": "Am Ende waren alle erleichtert.",
+"ru": "В конце все почувствовали облегчение.",
+"uk": "Наприкінці всі відчули полегшення."
+},
+{
+"id": "de:18:47",
+"target": "Zum Glück war der Schaden klein.",
+"ru": "К счастью, ущерб был небольшим.",
+"uk": "На щастя, збитки були невеликими."
+},
+{
+"id": "de:18:50",
+"target": "Die letzte Bahn war schon weg.",
+"ru": "Последняя электричка уже ушла.",
+"uk": "Остання електричка вже пішла."
+}
+]
+}
+]

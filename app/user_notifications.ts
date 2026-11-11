@@ -88,13 +88,10 @@ export type UserNotificationFriendEventAction =
   | 'duel_invite'
   | 'duel_state'
   | 'gift'
-  | 'lesson_invite'
   // «Дуэль на 5 фраз» (идея 3): не путать с duel_invite/duel_state удалённой Арены (D83)
   | 'duel_challenge'
   | 'duel_result'
-  | 'duel_declined'
-  // «Урок вместе» (идея 2, Ядро 652953424): друг прошёл занятие по моему приглашению — телефон пригласившего сам начисляет +2
-  | 'lesson_together';
+  | 'duel_declined';
 
 /** Вызов на «Дуэль на 5 фраз» (идея 3, формат 1 · ЯДРО 22.10): id фраз — тексты берём из курса на телефоне. */
 export type UserNotificationDuelChallenge = Readonly<{ duelId: string; expiresAtMs: number; phraseIds: readonly string[] }>;
@@ -108,34 +105,18 @@ export type UserNotificationDuelResult = Readonly<{
   phraseIds: readonly string[] | null;
 }>;
 
-/**
- * «Урок вместе» (идея 2, формат 1 · ЯДРО 22.10): номера урока и занятия — «это занятие» в СВОЁМ курсе друга (языки у пары
- * могут отличаться, D188); lessonKey — только для журнала; expiresAtMs — полночь друга; minutes/stars — факты отправителя.
- */
-export type UserNotificationLessonInvite = Readonly<{
-  lessonOrdinal: number;
-  sessionOrdinal: number;
-  lessonKey?: string;
-  expiresAtMs?: number;
-  minutes?: number;
-  stars?: number;
-}>;
-
 export interface UserNotificationNavFriendEvent {
   kind: 'friend_event';
   actorStableUid: string;
   eventId: string;
   action: UserNotificationFriendEventAction;
   inviteId?: string;
-  lesson?: UserNotificationLessonInvite;
   /** Required for a direct Arena invite route; missing legacy rows open the hub. */
   studyTarget?: ArenaStudyTarget;
   duelChallenge?: UserNotificationDuelChallenge;
   duelResult?: UserNotificationDuelResult;
   /** duel_declined: какая дуэль закрыта отказом. */
   duelId?: string;
-  /** lesson_together: местный день друга (YYYY-MM-DD) — из него телефон пригласившего считает общий ключ кошелька. */
-  dayKey?: string;
 }
 
 export type UserNotificationNav =
@@ -231,37 +212,15 @@ function cleanText(value: unknown, maxLen: number): string {
 const intIn = (value: unknown, min: number, max: number): number | null =>
   typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max ? value : null;
 
-/** Приглашение на занятие без номеров урока и занятия бесполезно — такую строку не берём (null). */
-function parseLessonInvite(row: Record<string, unknown>): UserNotificationLessonInvite | null {
-  const lessonOrdinal = intIn(row.lessonOrdinal, 1, 999);
-  const sessionOrdinal = intIn(row.sessionOrdinal, 1, 999);
-  if (lessonOrdinal === null || sessionOrdinal === null) return null;
-  const lessonKey = cleanText(row.lessonKey, 160);
-  const expiresAtMs = intIn(row.expiresAtMs, 1, Number.MAX_SAFE_INTEGER);
-  // зачем (ЯДРО 22.10): числа телефона отправителя сервер только обрезает — здесь так же: вне пределов поле не берём
-  const minutes = intIn(row.minutes, 0, 180);
-  const stars = intIn(row.stars, 0, 999);
-  return {
-    lessonOrdinal,
-    sessionOrdinal,
-    ...(lessonKey ? { lessonKey } : {}),
-    ...(expiresAtMs !== null ? { expiresAtMs } : {}),
-    ...(minutes !== null ? { minutes } : {}),
-    ...(stars !== null ? { stars } : {}),
-  };
-}
-
 const FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriendEventAction>([
   'high_five',
   'study_invite',
   'duel_invite',
   'duel_state',
   'gift',
-  'lesson_invite',
   'duel_challenge',
   'duel_result',
   'duel_declined',
-  'lesson_together',
 ]);
 
 const DUEL_PHRASE_COUNT = 5;
@@ -336,8 +295,6 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   if (!actorStableUid || !eventId || !FRIEND_EVENT_ACTIONS.has(action)) return null;
   const inviteId = cleanText(row.inviteId, 256);
   const studyTarget = resolveArenaStudyTarget(row.studyTarget);
-  const lesson = action === 'lesson_invite' ? parseLessonInvite(row) : null;
-  if (action === 'lesson_invite' && !lesson) return null;
   // зачем (идея 3): строки дуэли разбираем на границе — у вызова и итога без полей играть и показывать нечего
   const duelChallenge = action === 'duel_challenge' ? parseDuelChallenge(row) : null;
   if (action === 'duel_challenge' && !duelChallenge) return null;
@@ -345,9 +302,6 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   if (action === 'duel_result' && !duelResult) return null;
   const duelId = action === 'duel_declined' ? cleanText(row.duelId, 160) : '';
   if (action === 'duel_declined' && !duelId) return null;
-  // зачем (закон владельца 22.10 «монеты выдаёт телефон»): без дня друга и приглашения общий ключ «раз в день на пару» не собрать
-  const dayKey = action === 'lesson_together' ? cleanText(row.dayKey, 10) : '';
-  if (action === 'lesson_together' && (!/^\d{4}-\d{2}-\d{2}$/.test(dayKey) || !inviteId)) return null;
   return {
     kind: 'friend_event',
     actorStableUid,
@@ -355,11 +309,9 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
     action: action as UserNotificationFriendEventAction,
     ...(inviteId ? { inviteId } : {}),
     ...(studyTarget ? { studyTarget } : {}),
-    ...(lesson ? { lesson } : {}),
     ...(duelChallenge ? { duelChallenge } : {}),
     ...(duelResult ? { duelResult } : {}),
     ...(duelId ? { duelId } : {}),
-    ...(dayKey ? { dayKey } : {}),
   };
 }
 

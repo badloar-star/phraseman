@@ -2,6 +2,7 @@ import { isCorrectAnswerSoundSilenced } from './correct_answer_silence';
 import { ExpoSfxBackend } from './expo_sfx_backend';
 import { soundAudit } from './sound_audit';
 import { tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
+import { isProductionSfxMusicAllowed } from './sfx_music_policy';
 import {
   SoundArbiter,
   type SoundDecision,
@@ -51,9 +52,11 @@ export class SoundDirector {
       undefined,
       () => getAudioActivitySnapshot().spokenActive,
     ),
+    private readonly allowSfxMusic: () => boolean = () => true,
   ) {}
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
+    if (!this.allowSfxMusic()) return { kind: 'drop', reason: 'disabled' };
     // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): звук верного ответа (Арена и любой будущий) не доходит до арбитра — как выключенный звук
     if (isCorrectAnswerSoundSilenced(eventId, options.scope ?? 'director')) return { kind: 'drop', reason: 'disabled' };
     const decision = this.arbiter.request(eventId, options);
@@ -107,6 +110,7 @@ export class SoundDirector {
    * первый верный ответ звучит мгновенно, а не после прогрева.
    */
   prewarm(eventIds: readonly SoundEventId[]): void {
+    if (!this.allowSfxMusic()) return;
     if (!this.backend.prewarm) {
       console.log('[SFX-PREWARM] skip reason=backend_without_prewarm');
       return;
@@ -345,7 +349,11 @@ export class SoundDirector {
   }
 }
 
-export const soundDirector = new SoundDirector(new ExpoSfxBackend());
+export function createProductionSoundDirector(backend: SfxPlaybackBackend, arbiter?: SoundArbiter): SoundDirector {
+  return new SoundDirector(backend, arbiter, isProductionSfxMusicAllowed);
+}
+
+export const soundDirector = createProductionSoundDirector(new ExpoSfxBackend());
 
 const initialSettings = getSoundSettingsSnapshot();
 soundDirector.setEffectsEnabled(initialSettings.effectsEnabled);

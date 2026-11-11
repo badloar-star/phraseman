@@ -1,0 +1,662 @@
+{
+ "lang": "de",
+ "lesson": 13,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:13:01",
+   "target": "Ich stehe früh auf.",
+   "ru": "Я рано встаю.",
+   "uk": "Я рано встаю."
+  },
+  {
+   "id": "de:13:02",
+   "target": "Du stehst um sieben auf.",
+   "ru": "Ты встаёшь в семь.",
+   "uk": "Ти встаєш у сім."
+  },
+  {
+   "id": "de:13:03",
+   "target": "Anna steht heute spät auf.",
+   "ru": "Анна сегодня встаёт поздно.",
+   "uk": "Анна сьогодні встає пізно."
+  },
+  {
+   "id": "de:13:04",
+   "target": "Wir stehen zusammen auf.",
+   "ru": "Мы встаём вместе.",
+   "uk": "Ми встаємо разом."
+  },
+  {
+   "id": "de:13:05",
+   "target": "Wann steht ihr auf?",
+   "ru": "Когда вы встаёте?",
+   "uk": "Коли ви встаєте?"
+  },
+  {
+   "id": "de:13:06",
+   "target": "Ich rufe dich an.",
+   "ru": "Я тебе звоню.",
+   "uk": "Я тобі дзвоню."
+  },
+  {
+   "id": "de:13:07",
+   "target": "Du rufst mich an.",
+   "ru": "Ты мне звонишь.",
+   "uk": "Ти мені дзвониш."
+  },
+  {
+   "id": "de:13:08",
+   "target": "Tom ruft seine Mutter an.",
+   "ru": "Том звонит своей маме.",
+   "uk": "Том дзвонить своїй мамі."
+  },
+  {
+   "id": "de:13:09",
+   "target": "Anna ruft im Hotel an.",
+   "ru": "Анна звонит в гостиницу.",
+   "uk": "Анна дзвонить у готель."
+  },
+  {
+   "id": "de:13:10",
+   "target": "Wer ruft heute an?",
+   "ru": "Кто сегодня звонит?",
+   "uk": "Хто сьогодні дзвонить?"
+  },
+  {
+   "id": "de:13:11",
+   "target": "Ich mache die Tür auf.",
+   "ru": "Я открываю дверь.",
+   "uk": "Я відчиняю двері."
+  },
+  {
+   "id": "de:13:12",
+   "target": "Du machst das Fenster auf.",
+   "ru": "Ты открываешь окно.",
+   "uk": "Ти відкриваєш вікно."
+  },
+  {
+   "id": "de:13:13",
+   "target": "Wir machen die Kiste auf.",
+   "ru": "Мы открываем ящик.",
+   "uk": "Ми відкриваємо ящик."
+  },
+  {
+   "id": "de:13:14",
+   "target": "Macht ihr den Laden auf?",
+   "ru": "Вы открываете магазин?",
+   "uk": "Ви відкриваєте магазин?"
+  },
+  {
+   "id": "de:13:15",
+   "target": "Tom macht das Fenster zu.",
+   "ru": "Том закрывает окно.",
+   "uk": "Том закриває вікно."
+  },
+  {
+   "id": "de:13:16",
+   "target": "Anna macht den Koffer zu.",
+   "ru": "Анна закрывает чемодан.",
+   "uk": "Анна закриває валізу."
+  },
+  {
+   "id": "de:13:17",
+   "target": "Ich schalte das Radio ein.",
+   "ru": "Я включаю радио.",
+   "uk": "Я вмикаю радіо."
+  },
+  {
+   "id": "de:13:18",
+   "target": "Du schaltest den Ofen aus.",
+   "ru": "Ты выключаешь духовку.",
+   "uk": "Ти вимикаєш духовку."
+  },
+  {
+   "id": "de:13:19",
+   "target": "Wir schalten das Licht ein.",
+   "ru": "Мы включаем свет.",
+   "uk": "Ми вмикаємо світло."
+  },
+  {
+   "id": "de:13:20",
+   "target": "Wer schaltet den Herd aus?",
+   "ru": "Кто выключает плиту?",
+   "uk": "Хто вимикає плиту?"
+  },
+  {
+   "id": "de:13:21",
+   "target": "Ich kaufe im Laden ein.",
+   "ru": "Я делаю покупки в магазине.",
+   "uk": "Я роблю покупки в магазині."
+  },
+  {
+   "id": "de:13:22",
+   "target": "Du kaufst auf dem Markt ein.",
+   "ru": "Ты делаешь покупки на рынке.",
+   "uk": "Ти робиш покупки на ринку."
+  },
+  {
+   "id": "de:13:23",
+   "target": "Anna kauft für die Feier ein.",
+   "ru": "Анна покупает продукты к празднику.",
+   "uk": "Анна купує продукти до свята."
+  },
+  {
+   "id": "de:13:24",
+   "target": "Wir kaufen am Samstag ein.",
+   "ru": "Мы ходим за покупками в субботу.",
+   "uk": "Ми ходимо за покупками у суботу."
+  },
+  {
+   "id": "de:13:25",
+   "target": "Am Wochenende kaufe ich ein.",
+   "ru": "По выходным я хожу за покупками.",
+   "uk": "На вихідних я ходжу за покупками."
+  },
+  {
+   "id": "de:13:26",
+   "target": "Ich bringe Brot mit.",
+   "ru": "Я принесу хлеб.",
+   "uk": "Я принесу хліб."
+  },
+  {
+   "id": "de:13:27",
+   "target": "Anna bringt einen Salat mit.",
+   "ru": "Анна принесёт салат.",
+   "uk": "Анна принесе салат."
+  },
+  {
+   "id": "de:13:28",
+   "target": "Tom bringt seine Freundin mit.",
+   "ru": "Том приведёт с собой подругу.",
+   "uk": "Том приведе із собою подругу."
+  },
+  {
+   "id": "de:13:29",
+   "target": "Wir bringen unsere Ausweise mit.",
+   "ru": "Мы принесём свои удостоверения.",
+   "uk": "Ми принесемо свої посвідчення."
+  },
+  {
+   "id": "de:13:30",
+   "target": "Bringst du eine Decke mit?",
+   "ru": "Ты возьмёшь с собой плед?",
+   "uk": "Ти візьмеш із собою плед?"
+  },
+  {
+   "id": "de:13:31",
+   "target": "Der Zug fährt um elf ab.",
+   "ru": "Поезд отправляется в одиннадцать.",
+   "uk": "Потяг вирушає об одинадцятій."
+  },
+  {
+   "id": "de:13:32",
+   "target": "Wann fährt der Bus ab?",
+   "ru": "Когда отправляется автобус?",
+   "uk": "Коли відправляється автобус?"
+  },
+  {
+   "id": "de:13:33",
+   "target": "Wir fahren morgen früh ab.",
+   "ru": "Мы выезжаем завтра рано утром.",
+   "uk": "Ми виїжджаємо завтра рано-вранці."
+  },
+  {
+   "id": "de:13:34",
+   "target": "Der Zug kommt um zwölf an.",
+   "ru": "Поезд прибывает в двенадцать.",
+   "uk": "Потяг прибуває о дванадцятій."
+  },
+  {
+   "id": "de:13:35",
+   "target": "Wann kommt ihr an?",
+   "ru": "Когда вы приезжаете?",
+   "uk": "Коли ви приїжджаєте?"
+  },
+  {
+   "id": "de:13:36",
+   "target": "Ich hole dich am Bahnhof ab.",
+   "ru": "Я встречу тебя на вокзале.",
+   "uk": "Я зустріну тебе на вокзалі."
+  },
+  {
+   "id": "de:13:37",
+   "target": "Tom holt das Paket ab.",
+   "ru": "Том забирает посылку.",
+   "uk": "Том забирає посилку."
+  },
+  {
+   "id": "de:13:38",
+   "target": "Wir holen die Kinder ab.",
+   "ru": "Мы забираем детей.",
+   "uk": "Ми забираємо дітей."
+  },
+  {
+   "id": "de:13:39",
+   "target": "Holst du mich morgen ab?",
+   "ru": "Ты завтра меня заберёшь?",
+   "uk": "Ти завтра мене забереш?"
+  },
+  {
+   "id": "de:13:40",
+   "target": "Wer holt die Gäste ab?",
+   "ru": "Кто встретит гостей?",
+   "uk": "Хто зустріне гостей?"
+  },
+  {
+   "id": "de:13:41",
+   "target": "Ich steige hier ein.",
+   "ru": "Я сажусь здесь.",
+   "uk": "Я сідаю тут."
+  },
+  {
+   "id": "de:13:42",
+   "target": "Anna steigt vorne ein.",
+   "ru": "Анна входит через переднюю дверь.",
+   "uk": "Анна входить через передні двері."
+  },
+  {
+   "id": "de:13:43",
+   "target": "Wir steigen am Markt aus.",
+   "ru": "Мы выходим у рынка.",
+   "uk": "Ми виходимо біля ринку."
+  },
+  {
+   "id": "de:13:44",
+   "target": "Steigt ihr am Bahnhof um?",
+   "ru": "Вы пересаживаетесь на вокзале?",
+   "uk": "Ви пересідаєте на вокзалі?"
+  },
+  {
+   "id": "de:13:45",
+   "target": "Tom steigt in Köln um.",
+   "ru": "Том делает пересадку в Кёльне.",
+   "uk": "Том робить пересадку у Кельні."
+  },
+  {
+   "id": "de:13:46",
+   "target": "Ich räume den Tisch ab.",
+   "ru": "Я убираю со стола.",
+   "uk": "Я прибираю зі столу."
+  },
+  {
+   "id": "de:13:47",
+   "target": "Du räumst die Küche auf.",
+   "ru": "Ты прибираешься на кухне.",
+   "uk": "Ти прибираєшся на кухні."
+  },
+  {
+   "id": "de:13:48",
+   "target": "Wir füllen das Formular aus.",
+   "ru": "Мы заполняем бланк.",
+   "uk": "Ми заповнюємо бланк."
+  },
+  {
+   "id": "de:13:49",
+   "target": "Anna schreibt die Nummer auf.",
+   "ru": "Анна записывает номер.",
+   "uk": "Анна записує номер."
+  },
+  {
+   "id": "de:13:50",
+   "target": "Der Kurs fängt gleich an.",
+   "ru": "Занятие вот-вот начнётся.",
+   "uk": "Заняття ось-ось розпочнеться."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "anrufen",
+   "ru": "позвонить по телефону",
+   "uk": "зателефонувати за телефоном"
+  },
+  {
+   "lemma": "umsteigen",
+   "ru": "пересаживаться на другой транспорт",
+   "uk": "пересідати на інший транспорт"
+  },
+  {
+   "lemma": "abholen",
+   "ru": "забирать, встречать",
+   "uk": "забирати, зустрічати"
+  },
+  {
+   "lemma": "das Formular",
+   "ru": "бланк, анкета",
+   "uk": "бланк, анкета"
+  },
+  {
+   "lemma": "der Herd",
+   "ru": "кухонная плита",
+   "uk": "кухонна плита"
+  },
+  {
+   "lemma": "die Nummer",
+   "ru": "номер",
+   "uk": "номер"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  }
+ ],
+ "oldTopicTitle": "Две части одного действия: отделяемые приставки",
+ "oldTheoryRu": "Будильник прозвенел, ты не просто стоишь, а встаёшь. В словаре это один глагол `aufstehen`, но в сообщении о себе он занимает два места. Не считай `auf` лишней плиткой. Для звонка нужен `anrufen`. Кому звонишь, помести внутрь рамки `rufe … an`. Без приставки получается другое действие: звать кого-то, а не звонить по телефону. Меняй маленькую часть — меняется результат. Окно можно открыть или закрыть, радио включить или выключить. Сначала представь конечное состояние вещи; оно подсказывает нужную приставку. У одной основы бывают разные функции. `Kaufen` — купить, а `einkaufen` часто означает сходить за покупками. Не приклеивай `ein` к уже спрягаемой форме в простом главном предложении. У отправления и прибытия похожая рамка, но разные приставки. Название станции, время и человека ставь между двумя частями там, где это требуется смыслом. Вопрос не склеивает приставку обратно. В общем вопросе личная форма идёт в начало, а приставка остаётся на правом краю. Таким способом можно спросить о выходе, входе или пересадке. Найди значение по двум краям сразу. Если видишь только `füllen`, легко пропустить, что речь о заполнении анкеты. Прочитай до `aus`, затем переведи всё действие, а не обе половины по отдельности."
+}

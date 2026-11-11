@@ -1,0 +1,15 @@
+[
+  {"id": "it:01:11", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Sono in casa.» (= я дома), которого нет в alternatives", "fix": {"position": 1, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:01:47", "type": "B2", "field": "uk", "problem": "«Сумка будинку» — неграмматично, нужно «вдома»", "fix": "Сумка вдома."},
+  {"id": "it:01:47", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «La borsa è in casa.»", "fix": {"position": 3, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:02:08", "type": "B2", "field": "uk", "problem": "uk «Тебе» (ти) при target voi и ru «Вас»", "fix": "Вас немає вдома."},
+  {"id": "it:02:08", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Non siete in casa.»", "fix": {"position": 2, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:02:41", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Non sono ancora in casa.»", "fix": {"position": 3, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:03:07", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Siete in casa?»", "fix": {"position": 1, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:03:10", "type": "B4", "field": "alternatives", "problem": "«Sei libero?» = «Ты свободен?», а подсказка «Вы свободны?» (Lei) — меняет лицо", "fix": {"add": [], "remove": ["Sei libero?"]}},
+  {"id": "it:03:29", "type": "B1", "field": "tiles", "problem": "Соблазн «lì» даёт «Il negozio è lì vicino?» — подсказка «Магазин находится рядом?» его не исключает", "fix": {"position": 3, "replace_distractor": "lì", "with": "siete"}},
+  {"id": "it:03:30", "type": "B2", "field": "uk", "problem": "Потеряно «відчинена» (aperta) — обрыв смысла", "fix": "Аптека відчинена сьогодні ввечері?"},
+  {"id": "it:03:47", "type": "B2", "field": "uk", "problem": "uk «тут на концерті» (место) расходится с ru «пришли на концерт» (цель, per il concerto)", "fix": "Ви прийшли на концерт?"},
+  {"id": "it:04:14", "type": "B2", "field": "uk", "problem": "«мапа» = географическая карта, а tessera = картка/пропуск", "fix": "Це картка."},
+  {"id": "it:04:14", "type": "B2", "field": "ru", "problem": "«карта» двусмысленно (читается как географическая карта), tessera = карточка/пропуск", "fix": "Это карточка."}
+]

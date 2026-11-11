@@ -1,0 +1,675 @@
+{
+ "lang": "es",
+ "lesson": 21,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:21:01",
+   "target": "Llamé al hotel ayer.",
+   "ru": "Я вчера позвонил в отель.",
+   "uk": "Я вчора зателефонував до готелю."
+  },
+  {
+   "id": "es:21:02",
+   "target": "Llamaste al hotel ayer.",
+   "ru": "Ты вчера позвонил в отель.",
+   "uk": "Ти вчора зателефонував до готелю."
+  },
+  {
+   "id": "es:21:03",
+   "target": "Llamé a Ana ayer.",
+   "ru": "Я вчера позвонил Ане.",
+   "uk": "Я вчора зателефонував Ані."
+  },
+  {
+   "id": "es:21:04",
+   "target": "Llamaste a Ana ayer.",
+   "ru": "Ты вчера позвонил Ане.",
+   "uk": "Ти вчора зателефонував Ані."
+  },
+  {
+   "id": "es:21:05",
+   "target": "Ana compró un billete ayer.",
+   "ru": "Ана вчера купила билет.",
+   "uk": "Ана вчора купила квиток."
+  },
+  {
+   "id": "es:21:06",
+   "target": "Compramos un billete ayer.",
+   "ru": "Мы вчера купили билет.",
+   "uk": "Ми вчора купили квиток."
+  },
+  {
+   "id": "es:21:07",
+   "target": "Compré queso en el mercado.",
+   "ru": "Я купил сыр на рынке.",
+   "uk": "Я купив сир на ринку."
+  },
+  {
+   "id": "es:21:08",
+   "target": "Compraste pan ayer.",
+   "ru": "Ты вчера купил хлеб.",
+   "uk": "Ти вчора купив хліб."
+  },
+  {
+   "id": "es:21:09",
+   "target": "Luis preparó la cena ayer.",
+   "ru": "Луис вчера приготовил ужин.",
+   "uk": "Луїс вчора приготував вечерю."
+  },
+  {
+   "id": "es:21:10",
+   "target": "Preparamos la mochila ayer.",
+   "ru": "Мы вчера приготовили рюкзак.",
+   "uk": "Ми вчора приготували рюкзак."
+  },
+  {
+   "id": "es:21:11",
+   "target": "Escribí una carta anoche.",
+   "ru": "Я вчера вечером написал письмо.",
+   "uk": "Я учора ввечері написав листа."
+  },
+  {
+   "id": "es:21:12",
+   "target": "Ana escribió un mensaje anoche.",
+   "ru": "Ана вчера вечером написала сообщение.",
+   "uk": "Ана учора ввечері написала повідомлення."
+  },
+  {
+   "id": "es:21:13",
+   "target": "Luis abrió la puerta anoche.",
+   "ru": "Луис вчера вечером открыл дверь.",
+   "uk": "Луїс учора ввечері відчинив двері."
+  },
+  {
+   "id": "es:21:14",
+   "target": "Compramos un kilo de arroz.",
+   "ru": "Мы купили килограмм риса.",
+   "uk": "Ми купили кілограм рису."
+  },
+  {
+   "id": "es:21:15",
+   "target": "Mandé la foto anoche.",
+   "ru": "Я вчера вечером отправил фотографию.",
+   "uk": "Я учора ввечері надіслав фотографію."
+  },
+  {
+   "id": "es:21:16",
+   "target": "Mandamos el mapa anoche.",
+   "ru": "Мы вчера вечером отправили карту.",
+   "uk": "Ми учора ввечері надіслали мапу."
+  },
+  {
+   "id": "es:21:17",
+   "target": "Compraste dos huevos.",
+   "ru": "Ты купил два яйца.",
+   "uk": "Ти купив два яйця."
+  },
+  {
+   "id": "es:21:18",
+   "target": "Compré un regalo para mi madre.",
+   "ru": "Я купил подарок для мамы.",
+   "uk": "Я купив подарунок для мами."
+  },
+  {
+   "id": "es:21:19",
+   "target": "Mis hermanos llevaron la maleta anoche.",
+   "ru": "Мои братья вчера вечером отнесли чемодан.",
+   "uk": "Мої брати учора ввечері віднесли валізу."
+  },
+  {
+   "id": "es:21:20",
+   "target": "Llevaste la bolsa anoche.",
+   "ru": "Ты вчера вечером отнёс пакет.",
+   "uk": "Ти учора ввечері відніс пакет."
+  },
+  {
+   "id": "es:21:21",
+   "target": "Pagamos en efectivo ayer.",
+   "ru": "Мы вчера заплатили наличными.",
+   "uk": "Ми вчора заплатили готівкою."
+  },
+  {
+   "id": "es:21:22",
+   "target": "Pagasteis con tarjeta ayer.",
+   "ru": "Вы вчера заплатили картой.",
+   "uk": "Ви вчора заплатили карткою."
+  },
+  {
+   "id": "es:21:23",
+   "target": "Ana compró fruta ayer.",
+   "ru": "Ана вчера купила фрукты.",
+   "uk": "Ана вчора купила фрукти."
+  },
+  {
+   "id": "es:21:24",
+   "target": "Entramos en la oficina ayer.",
+   "ru": "Мы вчера вошли в офис.",
+   "uk": "Ми вчора зайшли до офісу."
+  },
+  {
+   "id": "es:21:25",
+   "target": "Mis hermanas prepararon la cena ayer.",
+   "ru": "Мои сёстры вчера приготовили ужин.",
+   "uk": "Мої сестри вчора приготували вечерю."
+  },
+  {
+   "id": "es:21:26",
+   "target": "Mis hermanos prepararon la mochila ayer.",
+   "ru": "Мои братья вчера собрали рюкзак.",
+   "uk": "Мої брати вчора зібрали рюкзак."
+  },
+  {
+   "id": "es:21:27",
+   "target": "Comprasteis un billete ayer.",
+   "ru": "Вы вчера купили билет.",
+   "uk": "Ви вчора купили квиток."
+  },
+  {
+   "id": "es:21:28",
+   "target": "Me levanté temprano ayer.",
+   "ru": "Я вчера рано встал.",
+   "uk": "Я вчора рано встав."
+  },
+  {
+   "id": "es:21:29",
+   "target": "Mis hermanos compraron cebollas en el mercado.",
+   "ru": "Мои братья купили лук на рынке.",
+   "uk": "Мої брати купили цибулю на ринку."
+  },
+  {
+   "id": "es:21:30",
+   "target": "Mandasteis el mapa ayer.",
+   "ru": "Вы вчера отправили карту.",
+   "uk": "Ви вчора надіслали мапу."
+  },
+  {
+   "id": "es:21:31",
+   "target": "No llamé a Ana anoche.",
+   "ru": "Я вчера вечером не позвонил Ане.",
+   "uk": "Я учора ввечері не зателефонував Ані."
+  },
+  {
+   "id": "es:21:32",
+   "target": "Lavé las camisetas ayer.",
+   "ru": "Я вчера постирал футболки.",
+   "uk": "Я вчора виправ футболки."
+  },
+  {
+   "id": "es:21:33",
+   "target": "No compramos huevos ayer.",
+   "ru": "Мы вчера не купили яйца.",
+   "uk": "Ми вчора не купили яєць."
+  },
+  {
+   "id": "es:21:34",
+   "target": "No mandamos la foto anoche.",
+   "ru": "Мы вчера вечером не отправили фотографию.",
+   "uk": "Ми учора ввечері не надіслали фотографію."
+  },
+  {
+   "id": "es:21:35",
+   "target": "Me duché antes de la cena.",
+   "ru": "Я принял душ перед ужином.",
+   "uk": "Я прийняв душ перед вечерею."
+  },
+  {
+   "id": "es:21:36",
+   "target": "Mis hermanas no pagaron con tarjeta anoche.",
+   "ru": "Мои сёстры вчера вечером не заплатили картой.",
+   "uk": "Мої сестри учора ввечері не заплатили карткою."
+  },
+  {
+   "id": "es:21:37",
+   "target": "Luis preparó la sopa anoche.",
+   "ru": "Луис вчера вечером приготовил суп.",
+   "uk": "Луїс учора ввечері приготував суп."
+  },
+  {
+   "id": "es:21:38",
+   "target": "No compré un kilo de queso.",
+   "ru": "Я не покупал килограмм сыра.",
+   "uk": "Я не купував кілограма сиру."
+  },
+  {
+   "id": "es:21:39",
+   "target": "No llevasteis la bolsa anoche.",
+   "ru": "Вы вчера вечером не отнесли пакет.",
+   "uk": "Ви учора ввечері не віднесли пакет."
+  },
+  {
+   "id": "es:21:40",
+   "target": "Mis hermanos no esperaron aquí anoche.",
+   "ru": "Мои братья вчера вечером не подождали здесь.",
+   "uk": "Мої брати учора ввечері не почекали тут."
+  },
+  {
+   "id": "es:21:41",
+   "target": "¿Llamaste al hotel ayer?",
+   "ru": "Ты вчера позвонил в отель?",
+   "uk": "Ти вчора зателефонував до готелю?"
+  },
+  {
+   "id": "es:21:42",
+   "target": "¿Compraste queso ayer?",
+   "ru": "Ты вчера купил сыр?",
+   "uk": "Ти вчора купив сир?"
+  },
+  {
+   "id": "es:21:43",
+   "target": "¿Abrimos la puerta ayer?",
+   "ru": "Мы вчера открыли дверь?",
+   "uk": "Ми вчора відчинили двері?"
+  },
+  {
+   "id": "es:21:44",
+   "target": "¿Leíste el mensaje ayer?",
+   "ru": "Ты вчера прочитал сообщение?",
+   "uk": "Ти вчора прочитав повідомлення?"
+  },
+  {
+   "id": "es:21:45",
+   "target": "¿Luis compró un billete ayer?",
+   "ru": "Луис вчера купил билет?",
+   "uk": "Луїс вчора купив квиток?"
+  },
+  {
+   "id": "es:21:46",
+   "target": "¿Pagaste con tarjeta ayer?",
+   "ru": "Ты вчера заплатил картой?",
+   "uk": "Ти вчора заплатив карткою?"
+  },
+  {
+   "id": "es:21:47",
+   "target": "¿Pagaste la factura anoche?",
+   "ru": "Ты вчера вечером оплатил счёт?",
+   "uk": "Ти вчора ввечері оплатив рахунок?"
+  },
+  {
+   "id": "es:21:48",
+   "target": "¿Luis abrió la ventana ayer?",
+   "ru": "Луис вчера открыл окно?",
+   "uk": "Луїс вчора відчинив вікно?"
+  },
+  {
+   "id": "es:21:49",
+   "target": "¿Mis hermanas prepararon la cena ayer?",
+   "ru": "Мои сёстры вчера приготовили ужин?",
+   "uk": "Мої сестри вчора приготували вечерю?"
+  },
+  {
+   "id": "es:21:50",
+   "target": "¿Escribisteis un mensaje ayer?",
+   "ru": "Вы вчера написали сообщение?",
+   "uk": "Ви вчора написали повідомлення?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "anoche",
+   "ru": "вчера вечером",
+   "uk": "учора ввечері"
+  },
+  {
+   "lemma": "antes",
+   "ru": "раньше",
+   "uk": "раніше"
+  },
+  {
+   "lemma": "ayer",
+   "ru": "вчера",
+   "uk": "учора"
+  },
+  {
+   "lemma": "fruta",
+   "ru": "фрукты",
+   "uk": "фрукти"
+  },
+  {
+   "lemma": "kilo",
+   "ru": "килограмм",
+   "uk": "кілограм"
+  },
+  {
+   "lemma": "mercado",
+   "ru": "рынок",
+   "uk": "ринок"
+  },
+  {
+   "lemma": "queso",
+   "ru": "сыр",
+   "uk": "сир"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  }
+ ],
+ "oldTopicTitle": "Вчера сделал: правильное простое прошедшее",
+ "oldTheoryRu": "Вчерашний звонок закончился. Llamé — звонил я; llamaste — звонил ты. Ударение в llamé отличает эту форму от других. Представь событие как законченный эпизод в прошлом. Кто действовал, покажет окончание. Ayer отделяет вчерашний эпизод от сегодняшнего отчёта. В llamé прошедшее уже выражено одной формой. Не прибавляй he к llamé. У -ar говорящий выбирает -é, а для él/ella используется -ó. Llamé и llamó не взаимозаменяемы. По написанию видно, кто позвонил. Для tú у -ar ставим -aste, у -er/-ir — -iste. Не добавляй конечное s по аналогии с настоящим: llamaste, escribiste. Compramos может означать «мы покупаем» или «мы купили». Здесь помогает ayer или законченная ситуация. У escribir также совпадают формы escribimos. Pagar даёт pagué: сочетание gu сохраняет согласный перед e. Не путай изменение написания ради звучания с новой словарной единицей. Сравни два задания: «Ты вчера вечером отнёс пакет.» / «Мы вчера заплатили наличными.». Выбери лицо и правильное окончание законченного события. Смысловые опоры: «bolsa» — пакет, сумка. Сравни два задания: «Ты вчера прочитал сообщение?» / «Вы вчера написали сообщение?». Выбери лицо и правильное окончание законченного события. Представь событие как законченный эпизод в прошлом. Кто действовал, покажет окончание."
+}

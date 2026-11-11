@@ -1,0 +1,2035 @@
+[
+{
+"lesson": 31,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 31,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Когда придёшь: будущее событие с cuando",
+"formula": "будущее главного действия + cuando + presente de subjuntivo",
+"story": "Звонок ещё впереди. Скажи Te llamaré, а момент добавь через cuando llegue. Llegue здесь не означает, что человек уже пришёл.",
+"use": "Отдельно пообещай звонок: Te llamaré. Затем назови событие, которого ждёшь: cuando llegue. Форма llegue обозначает здесь предстоящее событие, а не уже состоявшийся приход.",
+"choose": "Cuando без ударения вводит временную часть. Отдельный вопрос ¿Cuándo llegarás? пишется с ударением, и будущее llegarás в вопросе уместно. Это другая конструкция.",
+"nuance": "Отдельно пообещай звонок: Te llamaré. Затем назови событие, которого ждёшь: cuando llegue. Форма llegue обозначает здесь предстоящее событие, а не уже состоявшийся приход.",
+"wrong": "Te llamaré cuando llegaré a casa.",
+"right": "Te llamaré cuando llegue a casa.",
+"chapters": [
+{
+"title": "Обещание и ориентир",
+"body": "В Te llamaré cuando llegue обещание — llamaré. Возвращение задаёт момент звонка, на момент речи оно ещё впереди. Для него выбираем llegue.",
+"note": "llamaré — главное будущее действие; llegue — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "Это не вопрос",
+"body": "Cuando без ударения вводит временную часть. Отдельный вопрос ¿Cuándo llegarás? пишется с ударением, и будущее llegarás в вопросе уместно. Это другая конструкция.",
+"note": "llamaré — главное будущее действие; termine — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:03",
+"es:31:04"
+],
+"focusId": "es:31:03"
+},
+{
+"title": "Определи исполнителя заново",
+"body": "В «позвоню, когда ты придёшь» первый глагол для yo, второй для tú: te llamaré cuando llegues. Окончания двух глаголов не обязаны совпадать.",
+"note": "llamaré — главное будущее действие; tenga — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:06",
+"es:31:07"
+],
+"focusId": "es:31:06"
+},
+{
+"title": "Можно начать с cuando",
+"body": "Cuando termine la clase, volveremos a casa. Порядок частей изменился, выбор формы нет. После начального придаточного ставится запятая; это оформление, а не плитка.",
+"note": "mandaré — главное будущее действие; terminemos — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:10",
+"es:31:11"
+],
+"focusId": "es:31:10"
+},
+{
+"title": "Будущее или привычка?",
+"body": "Каждый раз, когда возвращаюсь, звоню — привычка: cuando vuelvo. Позвоню, когда вернусь, — предстоящее событие: cuando vuelva. Само слово cuando не требует одного наклонения всегда.",
+"note": "llamaré — главное будущее действие; llegue — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мы вернёмся домой, когда я найду ключи.» / «Я открою дверь, когда придёт Ана.». После cuando ожидаемое событие выражено subjuntivo. Две части: Volveremos a casa  /  cuando encuentre las llaves.",
+"note": "Abriré — главное будущее действие; venga — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:20",
+"es:31:21"
+],
+"focusId": "es:31:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Когда прибудет поезд, мы выйдем.» / «Я заплачу, когда мы закончим совещание.». После cuando ожидаемое событие выражено subjuntivo. Свяжи обещание с событием, которого ещё ждут. После cuando не копируй будущее из русского перевода.",
+"note": "Pagaré — главное будущее действие; terminemos — ожидаемое событие. После cuando ожидаемое событие выражено subjuntivo.",
+"samples": [
+"es:31:44",
+"es:31:50"
+],
+"focusId": "es:31:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llegue",
+"gloss": "я",
+"id": "es:31:01",
+"sample": "Te llamaré cuando llegue a casa."
+},
+{
+"es": "tú · llegues",
+"gloss": "ты",
+"id": "es:31:27",
+"sample": "Hablaremos del viaje cuando llegues a casa."
+},
+{
+"es": "él · llegue",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · lleguemos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · lleguéis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lleguen",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llegar · Настоящее сослагательное"
+},
+{
+"rows": [
+{
+"es": "yo · termine",
+"gloss": "я",
+"id": "es:31:02",
+"sample": "Te llamaré cuando termine de trabajar."
+},
+{
+"es": "tú · termines",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · termine",
+"gloss": "он/она/Вы",
+"id": "es:31:03",
+"sample": "Cuando termine la clase, te llamaré."
+},
+{
+"es": "nosotros · terminemos",
+"gloss": "мы",
+"id": "es:31:10",
+"sample": "Cuando terminemos la reunión, te mandaré la foto."
+},
+{
+"es": "vosotros · terminéis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · terminen",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "terminar · Настоящее сослагательное"
+},
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · venga",
+"gloss": "он/она/Вы",
+"id": "es:31:18",
+"sample": "Cuando venga Ana, volveremos a casa."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir · Настоящее сослагательное"
+}
+]
+},
+"uk": {
+"title": "Коли прийдеш: майбутня подія з cuando",
+"formula": "майбутнє головної дії + cuando + presente de subjuntivo",
+"story": "Дзвінок ще попереду. Скажи Te llamaré, а момент додай через cuando llegue. Llegue не означає, що людина вже прийшла.",
+"use": "Окремо пообіцяй дзвінок: Te llamaré. Потім назви подію, на яку чекаєш: cuando llegue. Форма llegue тут позначає майбутню подію, а не те, що ти вже прийшов.",
+"choose": "Cuando без наголосу вводить часову частину. Самостійне ¿Cuándo llegarás? пишеться з наголосом, і майбутнє llegarás у питанні доречне. Це інша конструкція.",
+"nuance": "Окремо пообіцяй дзвінок: Te llamaré. Потім назви подію, на яку чекаєш: cuando llegue. Форма llegue тут позначає майбутню подію, а не те, що ти вже прийшов.",
+"wrong": "Te llamaré cuando llegaré a casa.",
+"right": "Te llamaré cuando llegue a casa.",
+"chapters": [
+{
+"title": "Обіцянка й орієнтир",
+"body": "У Te llamaré cuando llegue обіцянка — llamaré. Прибуття визначає момент дзвінка і ще попереду. Для нього обираємо llegue.",
+"note": "llamaré — головна майбутня дія; llegue — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "Це не запитання",
+"body": "Cuando без наголосу вводить часову частину. Самостійне ¿Cuándo llegarás? пишеться з наголосом, і майбутнє llegarás у питанні доречне. Це інша конструкція.",
+"note": "llamaré — головна майбутня дія; termine — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:03",
+"es:31:04"
+],
+"focusId": "es:31:03"
+},
+{
+"title": "Знову визнач виконавця",
+"body": "У «зателефоную, коли ти прийдеш» перше дієслово для yo, друге для tú: te llamaré cuando llegues. Їхні закінчення не обов’язково збігаються.",
+"note": "llamaré — головна майбутня дія; tenga — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:06",
+"es:31:07"
+],
+"focusId": "es:31:06"
+},
+{
+"title": "Можна почати з cuando",
+"body": "Cuando termine la clase, volveremos a casa. Порядок частин змінився, вибір форми ні. Після початкової підрядної частини ставимо кому; це оформлення, а не плитка.",
+"note": "mandaré — головна майбутня дія; terminemos — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:10",
+"es:31:11"
+],
+"focusId": "es:31:10"
+},
+{
+"title": "Майбутнє чи звичка?",
+"body": "Щоразу, коли повертаюся, телефоную — звичка: cuando vuelvo. Зателефоную, коли повернуся, — майбутня подія: cuando vuelva. Саме cuando не вимагає завжди одного способу.",
+"note": "llamaré — головна майбутня дія; llegue — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ми повернемося додому, коли я знайду ключі.» / «Я відчиню двері, коли прийде Ана.». Після cuando очікувану подію передає subjuntivo. Дві частини: Volveremos a casa  /  cuando encuentre las llaves.",
+"note": "Abriré — головна майбутня дія; venga — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:20",
+"es:31:21"
+],
+"focusId": "es:31:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Коли прибуде потяг, ми вийдемо.» / «Я заплачу, коли ми закінчимо нараду.». Після cuando очікувану подію передає subjuntivo. Пов’яжи обіцянку з подією, на яку ще чекають. Після cuando не копіюй майбутню форму українського перекладу.",
+"note": "Pagaré — головна майбутня дія; terminemos — очікувана подія. Після cuando очікувану подію передає subjuntivo.",
+"samples": [
+"es:31:44",
+"es:31:50"
+],
+"focusId": "es:31:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llegue",
+"gloss": "я",
+"id": "es:31:01",
+"sample": "Te llamaré cuando llegue a casa."
+},
+{
+"es": "tú · llegues",
+"gloss": "ти",
+"id": "es:31:27",
+"sample": "Hablaremos del viaje cuando llegues a casa."
+},
+{
+"es": "él · llegue",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · lleguemos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · lleguéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lleguen",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llegar · Теперішній субхунтив"
+},
+{
+"rows": [
+{
+"es": "yo · termine",
+"gloss": "я",
+"id": "es:31:02",
+"sample": "Te llamaré cuando termine de trabajar."
+},
+{
+"es": "tú · termines",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · termine",
+"gloss": "він/вона/Ви",
+"id": "es:31:03",
+"sample": "Cuando termine la clase, te llamaré."
+},
+{
+"es": "nosotros · terminemos",
+"gloss": "ми",
+"id": "es:31:10",
+"sample": "Cuando terminemos la reunión, te mandaré la foto."
+},
+{
+"es": "vosotros · terminéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · terminen",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "terminar · Теперішній субхунтив"
+},
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · venga",
+"gloss": "він/вона/Ви",
+"id": "es:31:18",
+"sample": "Cuando venga Ana, volveremos a casa."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir · Теперішній субхунтив"
+}
+]
+},
+"en": {
+"title": "When something happens in the future: cuando + subjunctive",
+"formula": "futuro + cuando + presente de subjuntivo",
+"story": "The call is still ahead. Te llamaré makes the promise; cuando llegue gives the moment. Llegue does not say the arrival already happened.",
+"use": "When cuando introduces an event that has not happened yet, use the present subjunctive here: Te llamaré cuando llegue.",
+"choose": "Cuando without stress introduces the tense. Separate question ¿Cuándo llegarás? is written with stress, and the future llegarás in the question is appropriate. This is a different construction.",
+"nuance": "When cuando introduces an event that has not happened yet, use the present subjunctive here: Te llamaré cuando llegue.",
+"wrong": "Te llamaré cuando llegaré a casa.",
+"right": "Te llamaré cuando llegue a casa.",
+"chapters": [
+{
+"title": "Which part is the promise, and which is the trigger?",
+"body": "In Te llamaré cuando llegue, the promise is llamaré. The return determines the moment of the call; at the time of speaking, it is still ahead. For this, we choose llegue.",
+"note": "llamaré is the main future action; llegue is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "Why cuando without a written accent?",
+"body": "Cuando without stress introduces the tense. Separate question ¿Cuándo llegarás? is written with stress, and the future llegarás in the question is appropriate. This is a different construction.",
+"note": "llamaré is the main future action; termine is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:03",
+"es:31:04"
+],
+"focusId": "es:31:03"
+},
+{
+"title": "Who will do each action?",
+"body": "In \"I'll call when you arrive,\" the first verb is yo, the second is tú: te llamaré cuando llegues. The endings of the two verbs do not have to match.",
+"note": "llamaré is the main future action; tenga is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:06",
+"es:31:07"
+],
+"focusId": "es:31:06"
+},
+{
+"title": "Can the sentence begin with cuando?",
+"body": "Cuando termine la clase, volveremos a casa. The order of the clauses has changed, but the choice of form has not. A comma is placed after the initial clause; this is a design, not a tile.",
+"note": "mandaré is the main future action; terminemos is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:10",
+"es:31:11"
+],
+"focusId": "es:31:10"
+},
+{
+"title": "Is this expected once or does it happen regularly?",
+"body": "Every time I come home, I call—habit: cuando vuelvo. I'll call when I get back—upcoming event: cuando vuelva. The word cuando itself doesn't always require the same mood.",
+"note": "llamaré is the main future action; llegue is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:01",
+"es:31:02"
+],
+"focusId": "es:31:01"
+},
+{
+"title": "How do I put the clauses together?",
+"body": "Compare two tasks: \"We'll return home when I find the keys.\" / \"I'll open the door when Ana comes.\" After cuando, the expected event is expressed by subjuntivo. Two parts: Volveremos a casa / cuando encuentre las llaves.",
+"note": "Abriré is the main future action; venga is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:20",
+"es:31:21"
+],
+"focusId": "es:31:21"
+},
+{
+"title": "Can I make the promise depend on another event?",
+"body": "When cuando introduces an event that has not happened yet, use the present subjunctive here: Te llamaré cuando llegue.",
+"note": "Pagaré is the main future action; terminemos is the expected event. After cuando, the expected event is expressed by subjuntivo.",
+"samples": [
+"es:31:44",
+"es:31:50"
+],
+"focusId": "es:31:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llegue",
+"gloss": "I",
+"id": "es:31:01",
+"sample": "Te llamaré cuando llegue a casa."
+},
+{
+"es": "tú · llegues",
+"gloss": "you",
+"id": "es:31:27",
+"sample": "Hablaremos del viaje cuando llegues a casa."
+},
+{
+"es": "él · llegue",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · lleguemos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · lleguéis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · lleguen",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "llegar Present Subjunctive"
+},
+{
+"rows": [
+{
+"es": "yo · termine",
+"gloss": "I",
+"id": "es:31:02",
+"sample": "Te llamaré cuando termine de trabajar."
+},
+{
+"es": "tú · termines",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · termine",
+"gloss": "he/she/you",
+"id": "es:31:03",
+"sample": "Cuando termine la clase, te llamaré."
+},
+{
+"es": "nosotros · terminemos",
+"gloss": "we",
+"id": "es:31:10",
+"sample": "Cuando terminemos la reunión, te mandaré la foto."
+},
+{
+"es": "vosotros · terminéis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · terminen",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "terminar Present Subjunctive"
+},
+{
+"rows": [
+{
+"es": "yo · venga",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · vengas",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · venga",
+"gloss": "he/she/you",
+"id": "es:31:18",
+"sample": "Cuando venga Ana, volveremos a casa."
+},
+{
+"es": "nosotros · vengamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · vengáis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · vengan",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "venir Present Subjunctive"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:31:01",
+"index": 3,
+"right": "llegue",
+"near": "llegaré",
+"seq": [
+"Te",
+"llamaré",
+"cuando",
+"llegue",
+"a",
+"casa"
+],
+"i": 0,
+"kind": "form",
+"key": "es31/lab/form1",
+"feedback": {
+"ru": "Глагол: llegar — прибывать, приходить.",
+"uk": "Дієслово: llegar — прибувати, приходити.",
+"en": "Verb: llegar — to arrive, to come."
+}
+},
+{
+"id": "es:31:12",
+"index": 4,
+"right": "sepa",
+"near": "sabré",
+"seq": [
+"Compraremos",
+"los",
+"billetes",
+"cuando",
+"sepa",
+"la",
+"hora"
+],
+"i": 11,
+"kind": "form",
+"key": "es31/lab/form2",
+"feedback": {
+"ru": "Глагол: saber — знать.",
+"uk": "Дієслово: saber — знати.",
+"en": "Verb: saber — to know."
+}
+},
+{
+"id": "es:31:26",
+"index": 1,
+"right": "vuelvas",
+"near": "volverás",
+"seq": [
+"Cuando",
+"vuelvas",
+"hablaremos",
+"del",
+"viaje"
+],
+"i": 25,
+"kind": "form",
+"key": "es31/lab/form3",
+"feedback": {
+"ru": "Глагол: volver — возвращаться.",
+"uk": "Дієслово: volver — повертатися.",
+"en": "Verb: volver — to return."
+}
+},
+{
+"id": "es:31:37",
+"index": 1,
+"right": "llegues",
+"near": "llegarás",
+"seq": [
+"Cuando",
+"llegues",
+"a",
+"casa",
+"te",
+"daré",
+"la",
+"llave"
+],
+"i": 36,
+"kind": "form",
+"key": "es31/lab/form4",
+"feedback": {
+"ru": "Глагол: llegar — прибывать, приходить.",
+"uk": "Дієслово: llegar — прибувати, приходити.",
+"en": "Verb: llegar — to arrive, to come."
+}
+},
+{
+"id": "es:31:07",
+"index": 1,
+"right": "tenga",
+"near": "tendré",
+"seq": [
+"Cuando",
+"tenga",
+"tiempo",
+"te",
+"mandaré",
+"la",
+"foto"
+],
+"i": 6,
+"kind": "spot",
+"key": "es31/lab/spot1",
+"feedback": {
+"ru": "tenga ← tener (иметь).",
+"uk": "tenga ← tener (мати).",
+"en": "tenga ← tener (have)."
+}
+},
+{
+"id": "es:31:16",
+"index": 4,
+"right": "termine",
+"near": "terminará",
+"seq": [
+"Volveremos",
+"a",
+"casa",
+"cuando",
+"termine",
+"la",
+"clase"
+],
+"i": 15,
+"kind": "spot",
+"key": "es31/lab/spot2",
+"feedback": {
+"ru": "Глагол: terminar — заканчивать.",
+"uk": "Дієслово: terminar — закінчувати.",
+"en": "Verb: terminar — to finish."
+}
+},
+{
+"id": "es:31:29",
+"index": 1,
+"right": "terminemos",
+"near": "terminaremos",
+"seq": [
+"Cuando",
+"terminemos",
+"la",
+"reunión",
+"hablaremos",
+"del",
+"viaje"
+],
+"i": 28,
+"kind": "spot",
+"key": "es31/lab/spot3",
+"feedback": {
+"ru": "Глагол: terminar — заканчивать.",
+"uk": "Дієслово: terminar — закінчувати.",
+"en": "Verb: terminar — to finish."
+}
+},
+{
+"id": "es:31:47",
+"index": 2,
+"right": "llegue",
+"near": "llegaré",
+"seq": [
+"Pagaré",
+"cuando",
+"llegue",
+"a",
+"casa"
+],
+"i": 46,
+"kind": "spot",
+"key": "es31/lab/spot4",
+"feedback": {
+"ru": "Глагол: llegar — прибывать, приходить.",
+"uk": "Дієслово: llegar — прибувати, приходити.",
+"en": "Verb: llegar — to arrive, to come."
+}
+},
+{
+"kind": "match",
+"key": "es31/lab/match1",
+"id": "es:31:02",
+"other": "es:31:03"
+},
+{
+"kind": "match",
+"key": "es31/lab/match2",
+"id": "es:31:17",
+"other": "es:31:22"
+},
+{
+"kind": "match",
+"key": "es31/lab/match3",
+"id": "es:31:33",
+"other": "es:31:34"
+},
+{
+"kind": "match",
+"key": "es31/lab/match4",
+"id": "es:31:46",
+"other": "es:31:47"
+},
+{
+"kind": "build",
+"key": "es31/lab/build1",
+"id": "es:31:04"
+},
+{
+"kind": "build",
+"key": "es31/lab/build2",
+"id": "es:31:15"
+},
+{
+"kind": "build",
+"key": "es31/lab/build3",
+"id": "es:31:29"
+},
+{
+"kind": "build",
+"key": "es31/lab/build4",
+"id": "es:31:42"
+},
+{
+"kind": "transform",
+"id": "es:31:06",
+"base": "es:31:04",
+"diff": [
+{
+"before": [
+"tiempo"
+],
+"after": [
+"cobertura"
+]
+}
+],
+"key": "es31/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:31:10",
+"base": "es:31:07",
+"diff": [
+{
+"before": [
+"tenga",
+"tiempo"
+],
+"after": [
+"terminemos",
+"la",
+"reunión"
+]
+}
+],
+"key": "es31/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:31:49",
+"base": "es:31:46",
+"diff": [
+{
+"before": [
+"tenga"
+],
+"after": [
+"reciba"
+]
+}
+],
+"key": "es31/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:31:50",
+"base": "es:31:43",
+"diff": [
+{
+"before": [
+"Saldremos"
+],
+"after": [
+"Pagaré"
+]
+}
+],
+"key": "es31/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+16
+],
+[
+4,
+17
+],
+[
+1,
+13
+],
+[
+5,
+9
+],
+[
+2,
+6
+],
+[
+19,
+11
+]
+],
+"worked": [
+"es:31:05",
+"es:31:18",
+"es:31:33",
+"es:31:48"
+],
+"reflection": [
+"es:31:01",
+"es:31:03"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 32,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 32,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Если бы…: условие и следствие",
+"formula": "si + imperfecto de subjuntivo → condicional simple",
+"story": "Вообрази свободный день. Si tuviera tiempo — условие, iría contigo — что я тогда сделал бы. В первой части не ставь tendría.",
+"use": "Собери две разные формы: предположи обстоятельство, затем скажи, что произошло бы при нём.",
+"choose": "В этой модели после si выбираем tuviera, pudiera, supiera, viviera. Не si tendría. Condicional оставь для следствия. Si без графического ударения означает «если».",
+"nuance": "Собери две разные формы: предположи обстоятельство, затем скажи, что произошло бы при нём. После si стоит форма на -ra, в следствии — condicional.",
+"wrong": "Si tendría tiempo, iría contigo.",
+"right": "Si tuviera tiempo, iría contigo.",
+"chapters": [
+{
+"title": "Воображаемая ситуация",
+"body": "Мы не обещаем, что условие исполнится. Говорящий мысленно меняет нынешние обстоятельства: сейчас времени нет или возможность лишь воображается. Отсюда si tuviera tiempo. Формы tuviera и tuviese в таком условии равно допустимы. Кнопки принимают оба варианта.",
+"note": "iría — воображаемое следствие; tuviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:01",
+"es:32:02"
+],
+"focusId": "es:32:01"
+},
+{
+"title": "Форма после si",
+"body": "В этой модели после si выбираем tuviera, pudiera, supiera, viviera. Не si tendría. Condicional оставь для следствия. Si без графического ударения означает «если».",
+"note": "Iría — воображаемое следствие; tuviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:02",
+"es:32:03"
+],
+"focusId": "es:32:02"
+},
+{
+"title": "Результат",
+"body": "Iría contigo — «пошёл бы с тобой». Это техника из урока 29. Сначала мысленно разметь части как «при каком условии?» и «что тогда сделал бы?», а потом выбирай окончания.",
+"note": "iría — воображаемое следствие; viviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:04",
+"es:32:05"
+],
+"focusId": "es:32:04"
+},
+{
+"title": "Важна функция, не место",
+"body": "Если следствие стоит первым, глаголы не меняются местами по форме: iría contigo si tuviera tiempo. Перед конечной частью с si в нейтральном порядке запятая не нужна.",
+"note": "Iría — воображаемое следствие; hubiera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:05",
+"es:32:06"
+],
+"focusId": "es:32:05"
+},
+{
+"title": "Что остаётся за пределами",
+"body": "В испанском существует и ряд -se (tuviese), здесь тренируем ряд -ra. Реальное условие si tengo tiempo и сожаление о прошлом si hubiera tenido tiempo — другие задачи, не замены окончания в этом упражнении.",
+"note": "pagaría — воображаемое следствие; tuviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:50",
+"es:32:01"
+],
+"focusId": "es:32:50"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мы бы поехали в центр, если бы был прямой поезд.» / «Я бы поговорил с Луисом, если бы у меня был его номер.». После si стоит форма на -ra, в следствии — condicional. Две части: Iríamos al centro  /  si hubiera un tren directo.",
+"note": "Hablaría — воображаемое следствие; tuviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:20",
+"es:32:21"
+],
+"focusId": "es:32:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Если бы был сигнал, я бы отправил тебе файл.» / «Если бы у меня были эти деньги, я бы заплатил сегодня.». После si стоит форма на -ra, в следствии — condicional. Собери две разные формы: предположи обстоятельство, затем скажи, что произошло бы при нём.",
+"note": "pagaría — воображаемое следствие; tuviera — условие после si. В этих условиях возможны две формы испанского imperfecto de subjuntivo, например tuviera и tuviese. В результате — condicional.",
+"samples": [
+"es:32:44",
+"es:32:50"
+],
+"focusId": "es:32:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · iría",
+"gloss": "я",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "tú · irías",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · iría",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · iríamos",
+"gloss": "мы",
+"id": "es:32:16",
+"sample": "Si tuviera coche, iríamos al centro."
+},
+{
+"es": "vosotros · iríais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · irían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir · Условное наклонение"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "я",
+"id": "es:32:11",
+"sample": "Si tuviera dinero, compraría el billete."
+},
+{
+"es": "tú · comprarías",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · compraría",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · comprarían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comprar · Условное наклонение"
+},
+{
+"rows": [
+{
+"es": "yo · hablaría",
+"gloss": "я",
+"id": "es:32:21",
+"sample": "Hablaría con Luis si tuviera su número."
+},
+{
+"es": "tú · hablarías",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · hablaría",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · hablaríamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · hablaríais",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · hablarían",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "hablar · Условное наклонение"
+},
+{
+"rows": [
+{
+"es": "tuviera",
+"gloss": "если бы имел",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "pudieras",
+"gloss": "если бы ты мог",
+"id": "es:32:18",
+"sample": "Si pudieras venir, iríamos al centro."
+},
+{
+"es": "hubiera",
+"gloss": "если бы существовал",
+"id": "es:32:05",
+"sample": "Iría contigo si hubiera un tren directo."
+},
+{
+"es": "supiera",
+"gloss": "если бы знал",
+"id": "es:32:09",
+"sample": "Te visitaría si supiera la dirección."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Якби…: умова й наслідок",
+"formula": "si + imperfecto de subjuntivo → condicional simple",
+"story": "Уяви вільний день. Si tuviera tiempo — умова, iría contigo — що я тоді зробив би. У першій частині не став tendría.",
+"use": "Склади дві різні форми: припусти обставину, потім скажи, що сталося б за неї.",
+"choose": "У цій моделі після si обирай tuviera, pudiera, supiera, viviera. Не si tendría: condicional лишається для наслідку. Si без графічного наголосу означає «якщо».",
+"nuance": "Склади дві різні форми: припусти обставину, потім скажи, що сталося б за неї. Після si форма на -ra, у наслідку — condicional.",
+"wrong": "Si tendría tiempo, iría contigo.",
+"right": "Si tuviera tiempo, iría contigo.",
+"chapters": [
+{
+"title": "Уявна ситуація",
+"body": "Ми не обіцяємо, що умова справдиться. Мовець подумки змінює теперішні обставини: часу зараз немає або можливість лише уявна. Тому si tuviera tiempo. Форми tuviera й tuviese у такій умові рівноправні. Конструктор приймає обидва варіанти.",
+"note": "iría — уявний наслідок; tuviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:01",
+"es:32:02"
+],
+"focusId": "es:32:01"
+},
+{
+"title": "Форма після si",
+"body": "У цій моделі після si обирай tuviera, pudiera, supiera, viviera. Не si tendría: condicional лишається для наслідку. Si без графічного наголосу означає «якщо».",
+"note": "Iría — уявний наслідок; tuviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:02",
+"es:32:03"
+],
+"focusId": "es:32:02"
+},
+{
+"title": "Наслідок",
+"body": "Iría contigo — «пішов би з тобою». Цю форму вивчали в уроці 29. Спершу розділи «за якої умови?» і «що тоді зробив би?», потім обирай закінчення.",
+"note": "iría — уявний наслідок; viviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:04",
+"es:32:05"
+],
+"focusId": "es:32:04"
+},
+{
+"title": "Важлива функція, не місце",
+"body": "Якщо наслідок перший, форми не міняються: iría contigo si tuviera tiempo. Перед кінцевою частиною з si у нейтральному порядку коми не потрібно.",
+"note": "Iría — уявний наслідок; hubiera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:05",
+"es:32:06"
+],
+"focusId": "es:32:05"
+},
+{
+"title": "Що поза межами уроку",
+"body": "В іспанській є і ряд -se (tuviese), тут тренуємо ряд -ra. Реальна умова si tengo tiempo та жаль про минуле si hubiera tenido tiempo — інші завдання, не прості заміни закінчення.",
+"note": "pagaría — уявний наслідок; tuviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:50",
+"es:32:01"
+],
+"focusId": "es:32:50"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ми б поїхали до центру, якби був прямий потяг.» / «Я б поговорив із Луїсом, якби я мав його номер.». Після si форма на -ra, у наслідку — condicional. Дві частини: Iríamos al centro  /  si hubiera un tren directo.",
+"note": "Hablaría — уявний наслідок; tuviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:20",
+"es:32:21"
+],
+"focusId": "es:32:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Якби був сигнал, я б надіслав тобі файл.» / «Якби я мав ці гроші, я б заплатив сьогодні.». Після si форма на -ra, у наслідку — condicional. Склади дві різні форми: припусти обставину, потім скажи, що сталося б за неї.",
+"note": "pagaría — уявний наслідок; tuviera — умова після si. У таких умовах можливі дві форми іспанського imperfecto de subjuntivo, наприклад tuviera і tuviese. У наслідку — condicional.",
+"samples": [
+"es:32:44",
+"es:32:50"
+],
+"focusId": "es:32:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · iría",
+"gloss": "я",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "tú · irías",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · iría",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · iríamos",
+"gloss": "ми",
+"id": "es:32:16",
+"sample": "Si tuviera coche, iríamos al centro."
+},
+{
+"es": "vosotros · iríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · irían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir · Умовний спосіб"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "я",
+"id": "es:32:11",
+"sample": "Si tuviera dinero, compraría el billete."
+},
+{
+"es": "tú · comprarías",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · compraría",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · comprarían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comprar · Умовний спосіб"
+},
+{
+"rows": [
+{
+"es": "yo · hablaría",
+"gloss": "я",
+"id": "es:32:21",
+"sample": "Hablaría con Luis si tuviera su número."
+},
+{
+"es": "tú · hablarías",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · hablaría",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · hablaríamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · hablaríais",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · hablarían",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "hablar · Умовний спосіб"
+},
+{
+"rows": [
+{
+"es": "tuviera",
+"gloss": "якби мав",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "pudieras",
+"gloss": "якби ти міг",
+"id": "es:32:18",
+"sample": "Si pudieras venir, iríamos al centro."
+},
+{
+"es": "hubiera",
+"gloss": "якби був",
+"id": "es:32:05",
+"sample": "Iría contigo si hubiera un tren directo."
+},
+{
+"es": "supiera",
+"gloss": "якби знав",
+"id": "es:32:09",
+"sample": "Te visitaría si supiera la dirección."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Imagined conditions and results: si + imperfect subjunctive",
+"formula": "si + imperfecto de subjuntivo → condicional simple",
+"story": "Imagine a day off. Si tuviera tiempo sets the condition; iría contigo gives the result. Do not use tendría after si in this pattern.",
+"use": "Combine two different forms: suppose a circumstance, then say what would happen under it.",
+"choose": "In this model, after si, we choose tuviera, pudiera, supiera, viviera. Not si tendría. Condicional, leave it for the investigation. Si without graphic stress means \"if.\"",
+"nuance": "Combine two different forms: suppose a circumstance, then say what would happen under it. After si comes a form ending in - ra, followed by condicional.",
+"wrong": "Si tendría tiempo, iría contigo.",
+"right": "Si tuviera tiempo, iría contigo.",
+"chapters": [
+{
+"title": "Is the condition real or imagined?",
+"body": "We don't promise that a condition will be fulfilled. The speaker mentally changes the current circumstances: there is no time now, or the possibility is only imagined. Hence si tuviera tiempo. The forms tuviera and tuviese are equally valid in this condition. The buttons accept both options.",
+"note": "iría is an imaginary consequence; tuviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:01",
+"es:32:02"
+],
+"focusId": "es:32:01"
+},
+{
+"title": "Which verb form goes after si?",
+"body": "In this model, after si, we choose tuviera, pudiera, supiera, viviera. Not si tendría. Condicional, leave it for the investigation. Si without graphic stress means \"if.\"",
+"note": "Iría is an imaginary consequence; tuviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:02",
+"es:32:03"
+],
+"focusId": "es:32:02"
+},
+{
+"title": "Which form describes the imagined result?",
+"body": "Iría contigo — \"would go with you.\" This is the technique from Lesson 29. First, mentally label the parts as \"under what condition?\" and \"what would you do then?\", and then choose the endings.",
+"note": "iría is an imaginary consequence; viviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:04",
+"es:32:05"
+],
+"focusId": "es:32:04"
+},
+{
+"title": "Does reversing the clauses change their jobs?",
+"body": "If the consequence comes first, the verbs do not change their order in form: iría contigo si tuviera tiempo. No comma is needed before the final clause with si in neutral order.",
+"note": "Iría is an imaginary consequence; hubiera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:05",
+"es:32:06"
+],
+"focusId": "es:32:05"
+},
+{
+"title": "What can be left unsaid in conversation?",
+"body": "In Spanish, there is also a series - se (tuviese); here we practice the series - ra. The actual condition si tengo tiempo and regret about the past si hubiera tenido tiempo are other tasks, not replacements for the ending in this exercise.",
+"note": "pagaría is an imaginary consequence; tuviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:50",
+"es:32:01"
+],
+"focusId": "es:32:50"
+},
+{
+"title": "How do I check both halves of the sentence?",
+"body": "Compare two tasks: \"We would go downtown if there was a direct train.\" / \"I would talk to Louis if I had his number.\" After si comes the form - ra, therefore condicional. Two parts: Iríamos al centro / si hubiera un tren directo.",
+"note": "Hablaría is an imaginary consequence; tuviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:20",
+"es:32:21"
+],
+"focusId": "es:32:21"
+},
+{
+"title": "Can I imagine another situation and its result?",
+"body": "Compare two tasks: \"If there was a signal, I would send you the file.\" / \"If I had this money, I would pay today.\" After si comes the form ending in - ra, and consequently, condicional. Combine the two different forms: assume a circumstance, then say what would happen under it.",
+"note": "pagaría is an imaginary consequence; tuviera is the condition after si. In this type of condition, either form of the Spanish imperfect subjunctive is possible: tuviera or tuviese, for example. The result uses the conditional.",
+"samples": [
+"es:32:44",
+"es:32:50"
+],
+"focusId": "es:32:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · iría",
+"gloss": "I",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "tú · irías",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · iría",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · iríamos",
+"gloss": "we",
+"id": "es:32:16",
+"sample": "Si tuviera coche, iríamos al centro."
+},
+{
+"es": "vosotros · iríais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · irían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ir Conditional Mood"
+},
+{
+"rows": [
+{
+"es": "yo · compraría",
+"gloss": "I",
+"id": "es:32:11",
+"sample": "Si tuviera dinero, compraría el billete."
+},
+{
+"es": "tú · comprarías",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · compraría",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · compraríamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · compraríais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · comprarían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "comprar Conditional Mood"
+},
+{
+"rows": [
+{
+"es": "yo · hablaría",
+"gloss": "I",
+"id": "es:32:21",
+"sample": "Hablaría con Luis si tuviera su número."
+},
+{
+"es": "tú · hablarías",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · hablaría",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · hablaríamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · hablaríais",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · hablarían",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "hablar Conditional Mood"
+},
+{
+"rows": [
+{
+"es": "tuviera",
+"gloss": "if I had",
+"id": "es:32:01",
+"sample": "Si tuviera tiempo, iría contigo."
+},
+{
+"es": "pudieras",
+"gloss": "if you could",
+"id": "es:32:18",
+"sample": "Si pudieras venir, iríamos al centro."
+},
+{
+"es": "hubiera",
+"gloss": "if I existed",
+"id": "es:32:05",
+"sample": "Iría contigo si hubiera un tren directo."
+},
+{
+"es": "supiera",
+"gloss": "if I knew",
+"id": "es:32:09",
+"sample": "Te visitaría si supiera la dirección."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:32:01",
+"index": 1,
+"right": "tuviera",
+"near": "tendría",
+"seq": [
+"Si",
+"tuviera",
+"tiempo",
+"iría",
+"contigo"
+],
+"i": 0,
+"kind": "form",
+"key": "es32/lab/form1",
+"feedback": {
+"ru": "tuviera ← tener (иметь).",
+"uk": "tuviera ← tener (мати).",
+"en": "tuviera ← tener (have)."
+}
+},
+{
+"id": "es:32:13",
+"index": 4,
+"right": "hubiera",
+"near": "habría",
+"seq": [
+"Compraría",
+"el",
+"billete",
+"si",
+"hubiera",
+"un",
+"tren",
+"directo"
+],
+"i": 12,
+"kind": "form",
+"key": "es32/lab/form2",
+"feedback": {
+"ru": "Глагол: hay (haber) — есть, имеется; говоря о наличии.",
+"uk": "Дієслово: hay (haber) — є, наявне; про наявність.",
+"en": "Verb: hay (haber) — there is, there is; speaking of presence."
+}
+},
+{
+"id": "es:32:24",
+"index": 4,
+"right": "viviera",
+"near": "viviría",
+"seq": [
+"Hablaría",
+"con",
+"Luis",
+"si",
+"viviera",
+"más",
+"cerca"
+],
+"i": 23,
+"kind": "form",
+"key": "es32/lab/form3",
+"feedback": {
+"ru": "Глагол: vivir — жить.",
+"uk": "Дієслово: vivir — жити.",
+"en": "Verb: vivir — to live."
+}
+},
+{
+"id": "es:32:39",
+"index": 3,
+"right": "estuviera",
+"near": "estaría",
+"seq": [
+"Si",
+"el",
+"túnel",
+"estuviera",
+"cerrado",
+"volvería",
+"al",
+"pueblo"
+],
+"i": 38,
+"kind": "form",
+"key": "es32/lab/form4",
+"feedback": {
+"ru": "estuviera ← estar (быть в определённом состоянии).",
+"uk": "estuviera ← estar (перебувати в певному стані).",
+"en": "estuviera ← estar (to be in a certain state)."
+}
+},
+{
+"id": "es:32:09",
+"index": 3,
+"right": "supiera",
+"near": "sabría",
+"seq": [
+"Te",
+"visitaría",
+"si",
+"supiera",
+"la",
+"dirección"
+],
+"i": 8,
+"kind": "spot",
+"key": "es32/lab/spot1",
+"feedback": {
+"ru": "Глагол: saber — знать.",
+"uk": "Дієслово: saber — знати.",
+"en": "Verb: saber — to know."
+}
+},
+{
+"id": "es:32:20",
+"index": 4,
+"right": "hubiera",
+"near": "habría",
+"seq": [
+"Iríamos",
+"al",
+"centro",
+"si",
+"hubiera",
+"un",
+"tren",
+"directo"
+],
+"i": 19,
+"kind": "spot",
+"key": "es32/lab/spot2",
+"feedback": {
+"ru": "Глагол: hay (haber) — есть, имеется; говоря о наличии.",
+"uk": "Дієслово: hay (haber) — є, наявне; про наявність.",
+"en": "Verb: hay (haber) — there is, there is; speaking of presence."
+}
+},
+{
+"id": "es:32:32",
+"index": 5,
+"right": "estuviera",
+"near": "estaría",
+"seq": [
+"Entraría",
+"ahora",
+"si",
+"la",
+"tienda",
+"estuviera",
+"abierta"
+],
+"i": 31,
+"kind": "spot",
+"key": "es32/lab/spot3",
+"feedback": {
+"ru": "estuviera ← estar (быть в определённом состоянии).",
+"uk": "estuviera ← estar (перебувати в певному стані).",
+"en": "estuviera ← estar (to be in a certain state)."
+}
+},
+{
+"id": "es:32:46",
+"index": 1,
+"right": "viviera",
+"near": "viviría",
+"seq": [
+"Si",
+"viviera",
+"en",
+"el",
+"pueblo",
+"necesitaría",
+"un",
+"coche"
+],
+"i": 45,
+"kind": "spot",
+"key": "es32/lab/spot4",
+"feedback": {
+"ru": "Глагол: vivir — жить.",
+"uk": "Дієслово: vivir — жити.",
+"en": "Verb: vivir — to live."
+}
+},
+{
+"kind": "match",
+"key": "es32/lab/match1",
+"id": "es:32:02",
+"other": "es:32:03"
+},
+{
+"kind": "match",
+"key": "es32/lab/match2",
+"id": "es:32:17",
+"other": "es:32:18"
+},
+{
+"kind": "match",
+"key": "es32/lab/match3",
+"id": "es:32:33",
+"other": "es:32:32"
+},
+{
+"kind": "match",
+"key": "es32/lab/match4",
+"id": "es:32:46",
+"other": "es:32:45"
+},
+{
+"kind": "build",
+"key": "es32/lab/build1",
+"id": "es:32:04"
+},
+{
+"kind": "build",
+"key": "es32/lab/build2",
+"id": "es:32:15"
+},
+{
+"kind": "build",
+"key": "es32/lab/build3",
+"id": "es:32:29"
+},
+{
+"kind": "build",
+"key": "es32/lab/build4",
+"id": "es:32:42"
+},
+{
+"kind": "transform",
+"id": "es:32:34",
+"base": "es:32:17",
+"diff": [
+{
+"before": [
+"copiaría"
+],
+"after": [
+"abriría"
+]
+}
+],
+"key": "es32/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:32:36",
+"base": "es:32:06",
+"diff": [
+{
+"before": [
+"visitaría"
+],
+"after": [
+"acompañaría"
+]
+}
+],
+"key": "es32/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:32:38",
+"base": "es:32:07",
+"diff": [
+{
+"before": [
+"visitaría"
+],
+"after": [
+"acompañaría"
+]
+}
+],
+"key": "es32/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:32:45",
+"base": "es:32:41",
+"diff": [
+{
+"before": [
+"tuviera",
+"tiempo"
+],
+"after": [
+"pudiera",
+"ayudarte"
+]
+}
+],
+"key": "es32/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+1,
+13
+],
+[
+17,
+9
+],
+[
+7,
+11
+],
+[
+5,
+2
+],
+[
+19,
+15
+]
+],
+"worked": [
+"es:32:05",
+"es:32:18",
+"es:32:33",
+"es:32:48"
+],
+"reflection": [
+"es:32:01",
+"es:32:02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

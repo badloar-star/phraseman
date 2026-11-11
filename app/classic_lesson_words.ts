@@ -38,11 +38,8 @@ export function classicWordsActiveFor(target: unknown): target is ClassicWordsLa
 
 const bankCache = new Map<string, Word[]>();
 
-/** Слова урока N курса `target`: только леммы, впервые встретившиеся в уроке N. Пустой список — слов в уроке нет. */
-export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number): Word[] {
+function classicLessonWordBankSnapshot(target: ClassicWordsLang, lessonId: number): Word[] {
   const cacheKey = `${target}:${lessonId}`;
-  // зачем: первое обращение к словам en запускает перенос прежнего прогресса (один раз за запуск, фоном, ничего не удаляет)
-  if (target === 'en') scheduleEnglishWordsSwitch((id) => classicLessonWordBank('en', id).map((w) => w.en));
   const cached = bankCache.get(cacheKey);
   if (cached) return cached.slice();
   const out: Word[] = [];
@@ -90,6 +87,25 @@ export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number
   console.log(`[CLASSIC-WORDS] bank ${target} lesson=${lessonId} words=${out.length} (glossary lemmas=${lemmas.length})`); // guard-ok: трасса состава словаря урока
   bankCache.set(cacheKey, out);
   return out.slice();
+}
+
+/**
+ * Exact active keys for progress parsing. Unlike the public bank accessor this
+ * is deliberately storage-side-effect-free: app-launch cache warming must not
+ * schedule an asynchronous migration merely to validate saved key names.
+ */
+export function classicLessonWordKeysForProgressCompatibility(
+  target: ClassicWordsLang,
+  lessonId: number,
+): ReadonlySet<string> {
+  return new Set(classicLessonWordBankSnapshot(target, lessonId).map((word) => word.en));
+}
+
+/** Слова урока N курса `target`: только леммы, впервые встретившиеся в уроке N. Пустой список — слов в уроке нет. */
+export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number): Word[] {
+  // зачем: первое обращение к словам en запускает перенос прежнего прогресса (один раз за запуск, фоном, ничего не удаляет)
+  if (target === 'en') scheduleEnglishWordsSwitch((id) => classicLessonWordBankSnapshot('en', id).map((w) => w.en));
+  return classicLessonWordBankSnapshot(target, lessonId);
 }
 
 /** Урок, в котором слово словаря курса встречается впервые (самый ранний); undefined — слова нет в словаре. */

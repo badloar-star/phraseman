@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 27,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:27:01",
+"it:27:02",
+"it:27:04"
+],
+"textByLocale": {
+"en": "In the future, the Italian ending is added to a special stem. For `partire`, it's `partir-`; don't leave the word in dictionary form and don't put `sono` before it.",
+"ru": "В будущем итальянское окончание добавляется к особой основе. Для `partire` это `partir-`; не оставляй слово в форме словаря и не ставь перед ним `sono`.",
+"uk": "У майбутньому італійське закінчення додається до особливої ​​основи. Для `partire` це `partir-`; не залишай слово у формі словника та не ставь перед ним `sono`."
+}
+},
+{
+"exampleIds": [
+"it:27:07",
+"it:27:09",
+"it:27:12"
+],
+"textByLocale": {
+"en": "Many verbs ending in `-are` become `e` in the future: `lavorare` → `lavorerò`. Learn the first form along with the verb, then add the remaining endings to the same stem.",
+"ru": "У многих глаголов на `-are` в будущем появляется `e`: `lavorare` → `lavorerò`. Учи первую форму вместе с глаголом, затем добавляй остальные окончания к той же основе.",
+"uk": "Багато дієслів на `-are` у майбутньому з'являється `e`: `lavorare` → `lavorerò`. Вчи першу форму разом з дієсловом, потім додай решту закінчення до тієї ж основі."
+}
+},
+{
+"exampleIds": [
+"it:27:13",
+"it:27:15",
+"it:27:16"
+],
+"textByLocale": {
+"en": "Frequent verbs change their stem more strongly: `avere` → `avrò`, `essere` → `sarò`, `andare` → `andrò`. Within one verb, a single series of endings is preserved.",
+"ru": "Частые глаголы меняют основу сильнее: `avere` → `avrò`, `essere` → `sarò`, `andare` → `andrò`. Внутри одного глагола сохраняется единая серия окончаний.",
+"uk": "Часті дієслова змінюють основу сильніше: `avere` → `avrò`, `essere` → `sarò`, `andare` → `andrò`. Усередині одного дієслова зберігається єдина серія закінчень."
+}
+},
+{
+"exampleIds": [
+"it:27:18",
+"it:27:22",
+"it:27:23"
+],
+"textByLocale": {
+"en": "The future can communicate a schedule or a predicted state. If the elevator operator arrives and the elevator starts working, the meaning of the action is suggested by the verb itself, not the time word.",
+"ru": "Будущее может сообщать о расписании или прогнозируемом состоянии. Если придёт лифтёр и лифт заработает, значение действия подсказывает сам глагол, а не слово времени.",
+"uk": "Майбутнє може повідомляти про розклад або прогнозований стан. Якщо прийде ліфтер і ліфт почне працювати, значення дії підказує саме дієслово, а не слово часу."
+}
+},
+{
+"exampleIds": [
+"it:27:26",
+"it:27:29",
+"it:27:32"
+],
+"textByLocale": {
+"en": "To ask a question, keep the future tense and select the addressee. A question mark does not make `partirete` the only appropriate translation of any form of address.",
+"ru": "Чтобы задать вопрос, сохраняй будущее время и выбери адресата. Вопросительный знак не делает `partirete` единственным подходящим переводом любого обращения «вы».",
+"uk": "Щоб поставити запитання, зберігай майбутній час і виберіть адресата. Знак питання не робить `partirete` єдиним відповідним перекладом будь-якого звернення «ви»."
+}
+},
+{
+"exampleIds": [
+"it:27:34",
+"it:27:37",
+"it:27:40"
+],
+"textByLocale": {
+"en": "Negation does not change the form itself: `non partirò`. For words about result or price, check the subject. The cost of one ticket and two tickets require different endings.",
+"ru": "Отрицание не меняет саму форму: `non partirò`. Для слов о результате или цене проверяй подлежащее. Стоимость одного билета и двух билетов требует разных окончаний.",
+"uk": "Заперечення не змінює саму форму: `non partirò`. Для слів про результат або ціну перевіряй належне. Вартість одного квитка та двох квитків потребує різних закінчень."
+}
+},
+{
+"exampleIds": [
+"it:27:43",
+"it:27:47",
+"it:27:50"
+],
+"textByLocale": {
+"en": "Conversational plans with explicit tense are often expressed in the present. In this lesson, we practice the explicit future. It is useful to recognize the everyday alternative, keeping in mind which form we are currently studying.",
+"ru": "Разговорный план с ясным временем нередко выражается настоящим. В этом уроке тренируем явное будущее. Полезно узнать бытовую альтернативу, не забывая, какую форму разбираем сейчас.",
+"uk": "Розмовний план з ясним часом нерідко виражається справжнім. У цьому уроці тренуємо майбутнє. Корисно дізнатися про побутову альтернативу, не забуваючи, яку форму розбираємо зараз."
+}
+}
+],
+"drills": [
+{
+"bad": "Partirà",
+"chapter": 1,
+"id": "it:27:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Partirò",
+"Partirai",
+"Partirà"
+],
+"slot": 0
+},
+{
+"bad": "partirai",
+"chapter": 1,
+"id": "it:27:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"partirete",
+"partirai",
+"partirà"
+],
+"slot": 1
+},
+{
+"bad": "Partiranno",
+"chapter": 1,
+"id": "it:27:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Partirai",
+"Partirete",
+"Partiranno"
+],
+"slot": 0
+},
+{
+"bad": "Andremo",
+"chapter": 2,
+"id": "it:27:08:lab",
+"item": 8,
+"kind": "build",
+"near": 16,
+"options": [
+"Andremo",
+"Andrai",
+"Andrete"
+],
+"slot": 0
+},
+{
+"bad": "arriverà",
+"chapter": 2,
+"id": "it:27:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 13,
+"options": [
+"arriverà",
+"preparerà",
+"prenderà"
+],
+"slot": 1
+},
+{
+"bad": "sarà",
+"chapter": 2,
+"id": "it:27:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 16,
+"options": [
+"sarai",
+"sarà",
+"saranno"
+],
+"slot": 1
+},
+{
+"bad": "Avrà",
+"chapter": 3,
+"id": "it:27:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 6,
+"options": [
+"Avrà",
+"Avrete",
+"Avremo"
+],
+"slot": 0
+},
+{
+"bad": "chiederò",
+"chapter": 3,
+"id": "it:27:17:lab",
+"item": 17,
+"kind": "match",
+"near": 19,
+"options": [
+"fermerò",
+"chiederò",
+"preparerò"
+],
+"slot": 3
+},
+{
+"bad": "chiederò",
+"chapter": 3,
+"id": "it:27:19:lab",
+"item": 19,
+"kind": "build",
+"near": 28,
+"options": [
+"invierò",
+"chiederò",
+"manderò"
+],
+"slot": 1
+},
+{
+"bad": "aprirai",
+"chapter": 4,
+"id": "it:27:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 11,
+"options": [
+"apriranno",
+"aprirà",
+"aprirai"
+],
+"slot": 2
+},
+{
+"bad": "arriveranno",
+"chapter": 4,
+"id": "it:27:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"arriveranno",
+"arriverò",
+"arriverà"
+],
+"slot": 2
+},
+{
+"bad": "sarò",
+"chapter": 4,
+"id": "it:27:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 45,
+"options": [
+"saranno",
+"sarà",
+"sarò"
+],
+"slot": 3
+},
+{
+"bad": "farete",
+"chapter": 5,
+"id": "it:27:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"farete",
+"farà",
+"farò"
+],
+"slot": 1
+},
+{
+"bad": "chiederò",
+"chapter": 5,
+"id": "it:27:31:lab",
+"item": 31,
+"kind": "build",
+"near": 6,
+"options": [
+"collegherò",
+"fermerò",
+"chiederò"
+],
+"slot": 2
+},
+{
+"bad": "sarà",
+"chapter": 5,
+"id": "it:27:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 33,
+"options": [
+"saranno",
+"sarà",
+"sarai"
+],
+"slot": 1
+},
+{
+"bad": "Avremo",
+"chapter": 6,
+"id": "it:27:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 24,
+"options": [
+"Avremo",
+"Avrò",
+"Avrà"
+],
+"slot": 0
+},
+{
+"bad": "piedi",
+"chapter": 6,
+"id": "it:27:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 6,
+"options": [
+"troverai",
+"aiuterai",
+"piedi"
+],
+"slot": 1
+},
+{
+"bad": "arriverà",
+"chapter": 6,
+"id": "it:27:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"d’identità",
+"arriverà",
+"mostrerà"
+],
+"slot": 1
+},
+{
+"bad": "saranno",
+"chapter": 7,
+"id": "it:27:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"sarà",
+"saranno",
+"sarai"
+],
+"slot": 2
+},
+{
+"bad": "Perderai",
+"chapter": 7,
+"id": "it:27:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 43,
+"options": [
+"Perderai",
+"Bambini",
+"Troverai"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"partire",
+"partirò / partirai / partirà"
+],
+[
+"arrivare",
+"arriveremo / arriverete / arriveranno"
+],
+[
+"essere",
+"sarò / sarà"
+],
+[
+"avere",
+"avrò / avrà"
+],
+[
+"potere",
+"potrò / potrà"
+],
+[
+"venire",
+"verrò / verrà"
+]
+],
+"title": {
+"en": "Future: `partirò`, `partirai`",
+"ru": "Будущее: `partirò`, `partirai`",
+"uk": "Майбутнє: `partirò`, `partirai`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:27:01",
+"target": "Partirò domani.",
+"ru": "Я уеду завтра.",
+"uk": "Я поїду завтра."
+},
+{
+"id": "it:27:02",
+"target": "Partirai domani.",
+"ru": "Ты уедешь завтра.",
+"uk": "Ти поїдеш завтра."
+},
+{
+"id": "it:27:04",
+"target": "Partiremo insieme.",
+"ru": "Мы уедем вместе.",
+"uk": "Ми поїдемо разом."
+},
+{
+"id": "it:27:07",
+"target": "Collegherò la lampada alla presa quando tornerà la corrente.",
+"ru": "Я включу лампу в розетку, когда снова дадут электричество.",
+"uk": "Я ввімкну лампу в розетку, коли знову з’явиться електрика."
+},
+{
+"id": "it:27:09",
+"target": "Paolo chiamerà la banca.",
+"ru": "Паоло позвонит в банк.",
+"uk": "Паоло зателефонує в банк."
+},
+{
+"id": "it:27:12",
+"target": "Domani sarai in ufficio.",
+"ru": "Завтра ты будешь в офисе.",
+"uk": "Завтра ти будеш в офісі."
+},
+{
+"id": "it:27:13",
+"target": "Lunedì si saprà il risultato.",
+"ru": "Результат будет известен в понедельник.",
+"uk": "Результат буде відомий у понеділок."
+},
+{
+"id": "it:27:15",
+"target": "Potrà pagare sul posto.",
+"ru": "Вы сможете оплатить на месте.",
+"uk": "Ви зможете заплатити на місці."
+},
+{
+"id": "it:27:16",
+"target": "Viaggeranno in autobus.",
+"ru": "Они поедут на автобусе.",
+"uk": "Вони поїдуть автобусом."
+},
+{
+"id": "it:27:18",
+"target": "Ti manderò un link per pagare con il tuo portafoglio elettronico.",
+"ru": "Я пришлю тебе ссылку для оплаты с помощью твоего электронного кошелька.",
+"uk": "Я надішлю тобі посилання для оплати за допомогою твого електронного гаманця."
+},
+{
+"id": "it:27:22",
+"target": "Il negozio aprirà alle nove.",
+"ru": "Магазин откроется в девять часов.",
+"uk": "Магазин відкриється о дев’ятій годині."
+},
+{
+"id": "it:27:23",
+"target": "L’ascensore sarà in funzione domani.",
+"ru": "Лифт будет работать завтра.",
+"uk": "Ліфт працюватиме завтра."
+},
+{
+"id": "it:27:26",
+"target": "Il suo ordine sarà pronto venerdì.",
+"ru": "Ваш заказ будет готов в пятницу.",
+"uk": "Ваше замовлення буде готове в п’ятницю."
+},
+{
+"id": "it:27:29",
+"target": "Stasera farà più fresco.",
+"ru": "Сегодня вечером будет прохладнее.",
+"uk": "Сьогодні ввечері буде прохолодніше."
+},
+{
+"id": "it:27:32",
+"target": "Non prenderà la macchina.",
+"ru": "Она не возьмет машину.",
+"uk": "Вона не візьме машину."
+},
+{
+"id": "it:27:34",
+"target": "Non saranno qui domenica.",
+"ru": "Их не будет здесь в воскресенье.",
+"uk": "Їх тут не буде в неділю."
+},
+{
+"id": "it:27:37",
+"target": "Quando riceverò la fattura?",
+"ru": "Когда я получу счет?",
+"uk": "Коли я отримаю рахунок?"
+},
+{
+"id": "it:27:40",
+"target": "Chi si prenderà cura dei bambini domani?",
+"ru": "Кто присмотрит за детьми завтра?",
+"uk": "Хто доглядатиме дітей завтра?"
+},
+{
+"id": "it:27:43",
+"target": "Le chiederò consiglio sulla perdita sotto il rubinetto.",
+"ru": "Я спрошу у вас совета насчёт протечки под краном.",
+"uk": "Я попрошу у вас поради щодо протікання під краном."
+},
+{
+"id": "it:27:47",
+"target": "Lascerò una coperta in camera.",
+"ru": "Я оставлю одеяло в комнате.",
+"uk": "Я залишу ковдру в кімнаті."
+},
+{
+"id": "it:27:50",
+"target": "La aspetteremo davanti alla farmacia.",
+"ru": "Мы будем ждать вас перед аптекой.",
+"uk": "Ми чекатимемо на вас перед аптекою."
+}
+]
+},
+{
+"lesson": 28,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:28:01",
+"it:28:02",
+"it:28:04"
+],
+"textByLocale": {
+"en": "In `volere`, the form `vorrei` is the first person conditional. Don't confuse it with `vorrò`, which expresses a future desire. Compare by sound and the letter before the ending.",
+"ru": "У `volere` форма `vorrei` — первое лицо условного наклонения. Не путай её с `vorrò`, которое сообщает о будущем желании. Сравни по звучанию и букве перед окончанием.",
+"uk": "У `volere` форма `vorrei` - перша особа умовного способу. Не плутай її з `vorrò`, що повідомляє про майбутнє бажання. Порівняй за звучанням і літерою перед закінченням."
+}
+},
+{
+"exampleIds": [
+"it:28:07",
+"it:28:10",
+"it:28:11"
+],
+"textByLocale": {
+"en": "In a request with `potere`, the second verb usually remains infinitive. `Potrebbe ripetere?` asks the interlocutor to repeat, rather than asserting that they have already repeated it.",
+"ru": "В просьбе с `potere` второй глагол обычно остаётся в инфинитиве. `Potrebbe ripetere?` просит собеседника повторить, а не утверждает, что он уже повторил.",
+"uk": "На прохання з `potere` друге дієслово зазвичай залишається в інфінітиві. `Potrebbe ripetere?` просить співрозмовника повторити, а чи не стверджує, що він уже повторив."
+}
+},
+{
+"exampleIds": [
+"it:28:13",
+"it:28:16",
+"it:28:18"
+],
+"textByLocale": {
+"en": "The addressee and the speaker are different roles. In `potrei`, the opportunity refers to me, while in `potrebbe`, when politely addressed, it refers to you. Check who should fulfill the request.",
+"ru": "Адресат и говорящий — разные роли. В `potrei` возможность относится ко мне, в `potrebbe` при вежливом обращении — к вам. Проверь, кто должен выполнить просьбу.",
+"uk": "Адресат і промовець - різні ролі. У `potrei` можливість відноситься до мене, у `potrebbe` при ввічливому зверненні до вас. Перевір, хто має виконати прохання."
+}
+},
+{
+"exampleIds": [
+"it:28:21",
+"it:28:24",
+"it:28:26"
+],
+"textByLocale": {
+"en": "`Preferirei` states a preference, `potremmo` is a proposal for joint action. These forms don't become synonyms just because they sound delicate.",
+"ru": "`Preferirei` называет предпочтение, `potremmo` — предложение о совместном действии. Эти формы не становятся синонимами только потому, что все звучат деликатно.",
+"uk": "`Preferirei` називає перевагу, `potremmo` - пропозиція про спільну дію. Ці форми не стають синонімами лише тому, що усі звучать делікатно."
+}
+},
+{
+"exampleIds": [
+"it:28:30",
+"it:28:31",
+"it:28:34"
+],
+"textByLocale": {
+"en": "`Dovresti` gives advice: \"I should.\" This is softer than `devi`, but advice is still different from the offer \"we can do it.\" Find the speaker's intent.",
+"ru": "`Dovresti` даёт совет: следовало бы. Это мягче, чем `devi`, но совет всё же отличается от предложения «можем сделать». Найди намерение говорящего.",
+"uk": "`Dovresti` дає пораду: слід було б. Це м'якше, ніж `devi`, але рада все ж таки відрізняється від пропозиції «можемо зробити». Знайди намір того, хто говорить."
+}
+},
+{
+"exampleIds": [
+"it:28:39",
+"it:28:41",
+"it:28:43"
+],
+"textByLocale": {
+"en": "At a hotel, it's useful to discuss possibility and availability. `Avrebbe una camera?` is one polite way to ask about a room. When addressing multiple employees, the form can be modified.",
+"ru": "В гостинице полезно говорить о возможности и наличии. `Avrebbe una camera?` — один из вежливых способов спросить о номере. Обращаясь к нескольким сотрудникам, форму можно изменить.",
+"uk": "У готелі корисно говорити про можливість та наявність. `Avrebbe una camera?` - один із ввічливих способів запитати про номер. Звертаючись до кількох співробітників, форму можна змінити."
+}
+},
+{
+"exampleIds": [
+"it:28:46",
+"it:28:47",
+"it:28:50"
+],
+"textByLocale": {
+"en": "Clarifying the subject makes the request practical: an aisle seat, written confirmation, an estimate. Don't lose the detail when replacing the full form with a shorter one.",
+"ru": "Уточнение предмета делает просьбу практичной: место у прохода, письменное подтверждение, смета. Не теряй деталь при замене полной формы более короткой.",
+"uk": "Уточнення предмета робить прохання практичним: місце біля проходу, письмове підтвердження, кошторис. Не губи деталь при заміні повної форми більш короткою."
+}
+}
+],
+"drills": [
+{
+"bad": "Vorremmo",
+"chapter": 1,
+"id": "it:28:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Vorrei",
+"Vorremmo",
+"Vorrebbe"
+],
+"slot": 0
+},
+{
+"bad": "Desideri",
+"chapter": 1,
+"id": "it:28:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Desidera",
+"Desideri",
+"Desiderano"
+],
+"slot": 0
+},
+{
+"bad": "Vorrei",
+"chapter": 1,
+"id": "it:28:05:lab",
+"item": 5,
+"kind": "match",
+"near": 45,
+"options": [
+"Vorremmo",
+"Vorrebbe",
+"Vorrei"
+],
+"slot": 0
+},
+{
+"bad": "Vorremmo",
+"chapter": 2,
+"id": "it:28:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Vorrei",
+"Vorrebbe",
+"Vorremmo"
+],
+"slot": 0
+},
+{
+"bad": "vorrei",
+"chapter": 2,
+"id": "it:28:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"vorremmo",
+"vorrei",
+"vorrebbe"
+],
+"slot": 1
+},
+{
+"bad": "Potresti",
+"chapter": 2,
+"id": "it:28:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 16,
+"options": [
+"Potrebbe",
+"Potresti",
+"Potrei"
+],
+"slot": 0
+},
+{
+"bad": "Potremmo",
+"chapter": 3,
+"id": "it:28:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 15,
+"options": [
+"Potrebbe",
+"Potremmo",
+"Potrei"
+],
+"slot": 0
+},
+{
+"bad": "Potresti",
+"chapter": 3,
+"id": "it:28:17:lab",
+"item": 17,
+"kind": "match",
+"near": 15,
+"options": [
+"Potresti",
+"Potrebbe",
+"Potremmo"
+],
+"slot": 0
+},
+{
+"bad": "Può",
+"chapter": 3,
+"id": "it:28:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"Posso",
+"Puoi",
+"Può"
+],
+"slot": 0
+},
+{
+"bad": "Preferiresti",
+"chapter": 4,
+"id": "it:28:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 50,
+"options": [
+"Preferiresti",
+"Preferiremmo",
+"Preferirei"
+],
+"slot": 0
+},
+{
+"bad": "Preferirei",
+"chapter": 4,
+"id": "it:28:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 9,
+"options": [
+"Preferiresti",
+"Preferiremmo",
+"Preferirei"
+],
+"slot": 0
+},
+{
+"bad": "Potrebbe",
+"chapter": 4,
+"id": "it:28:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Potresti",
+"Potremmo",
+"Potrebbe"
+],
+"slot": 0
+},
+{
+"bad": "Potrebbe",
+"chapter": 5,
+"id": "it:28:29:lab",
+"item": 29,
+"kind": "match",
+"near": 26,
+"options": [
+"Potremmo",
+"Potrebbe",
+"Potrei"
+],
+"slot": 0
+},
+{
+"bad": "Potrebbe",
+"chapter": 5,
+"id": "it:28:31:lab",
+"item": 31,
+"kind": "build",
+"near": 35,
+"options": [
+"Dovrebbe",
+"Mandarle",
+"Potrebbe"
+],
+"slot": 0
+},
+{
+"bad": "Bisogno",
+"chapter": 5,
+"id": "it:28:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 45,
+"options": [
+"Dovremmo",
+"Compleanno",
+"Bisogno"
+],
+"slot": 0
+},
+{
+"bad": "Potrebbe",
+"chapter": 6,
+"id": "it:28:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 2,
+"options": [
+"Potresti",
+"Potrebbe",
+"Potremmo"
+],
+"slot": 0
+},
+{
+"bad": "Potrebbe",
+"chapter": 6,
+"id": "it:28:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 31,
+"options": [
+"Potrei",
+"Potrebbe",
+"Potresti"
+],
+"slot": 0
+},
+{
+"bad": "Avrei",
+"chapter": 6,
+"id": "it:28:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Avrei",
+"Avrebbe",
+"Avremmo"
+],
+"slot": 0
+},
+{
+"bad": "Vorrei",
+"chapter": 7,
+"id": "it:28:45:lab",
+"item": 45,
+"kind": "build",
+"near": 49,
+"options": [
+"Vorrebbe",
+"Vorremmo",
+"Vorrei"
+],
+"slot": 0
+},
+{
+"bad": "Potresti",
+"chapter": 7,
+"id": "it:28:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 38,
+"options": [
+"Potresti",
+"Potrebbe",
+"Potrei"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"volere",
+"vorrei un caffè"
+],
+[
+"potere",
+"potrei / potrebbe"
+],
+[
+"preferire",
+"preferirei"
+],
+[
+"avere",
+"avrebbe una camera?"
+],
+[
+"dovere",
+"dovrei chiamare"
+]
+],
+"title": {
+"en": "Soften a request: `vorrei`, `potrebbe`",
+"ru": "Смягчить просьбу: `vorrei`, `potrebbe`",
+"uk": "Пом'якшити прохання: `vorrei`, `potrebbe`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:28:01",
+"target": "Vorrei un caffè.",
+"ru": "Я бы хотел кофе.",
+"uk": "Я хотів би кави."
+},
+{
+"id": "it:28:02",
+"target": "Vorrei un tè.",
+"ru": "Я бы хотел чай.",
+"uk": "Я хотів би чаю."
+},
+{
+"id": "it:28:04",
+"target": "Vorrebbe una stanza tranquilla.",
+"ru": "Она хотела бы тихую комнату.",
+"uk": "Вона хотіла б тиху кімнату."
+},
+{
+"id": "it:28:07",
+"target": "Vorrei andarmene prima.",
+"ru": "Я хотел бы уйти пораньше.",
+"uk": "Я хотів би піти раніше."
+},
+{
+"id": "it:28:10",
+"target": "Lea vorrebbe cambiare posto.",
+"ru": "Леа хотела бы пересесть на другое место.",
+"uk": "Леа хотіла б пересісти на інше місце."
+},
+{
+"id": "it:28:11",
+"target": "Potrebbe ripetere, per favore?",
+"ru": "Не могли бы вы повторить, пожалуйста?",
+"uk": "Чи не могли б ви повторити, будь ласка?"
+},
+{
+"id": "it:28:13",
+"target": "Potrebbe chiudere la finestra?",
+"ru": "Не могли бы вы закрыть окно?",
+"uk": "Чи не могли б ви зачинити вікно?"
+},
+{
+"id": "it:28:16",
+"target": "Potrebbe abbassare il volume?",
+"ru": "Не могли бы вы сделать потише?",
+"uk": "Чи не могли б ви зробити тихіше?"
+},
+{
+"id": "it:28:18",
+"target": "Potrebbe prestarmi la sua bicicletta?",
+"ru": "Вы могли бы одолжить мне свой велосипед?",
+"uk": "Ви могли б позичити мені свій велосипед?"
+},
+{
+"id": "it:28:21",
+"target": "Preferiremmo un tavolo all’aperto.",
+"ru": "Мы бы предпочли столик на улице.",
+"uk": "Ми б воліли столик на вулиці."
+},
+{
+"id": "it:28:24",
+"target": "Preferiresti andare a piedi?",
+"ru": "Ты бы предпочёл пойти пешком?",
+"uk": "Ти волів би піти пішки?"
+},
+{
+"id": "it:28:26",
+"target": "Potremmo condividere una ciotola di zuppa.",
+"ru": "Мы могли бы разделить тарелку супа.",
+"uk": "Ми могли б розділити миску супу."
+},
+{
+"id": "it:28:30",
+"target": "Sarebbe meglio prenotare.",
+"ru": "Лучше было бы забронировать.",
+"uk": "Краще було б забронювати."
+},
+{
+"id": "it:28:31",
+"target": "Dovrebbe conservare la ricevuta.",
+"ru": "Вам стоит сохранить чек.",
+"uk": "Вам варто зберегти чек."
+},
+{
+"id": "it:28:34",
+"target": "Dovremmo prendere il primo treno.",
+"ru": "Нам следует сесть на первый поезд.",
+"uk": "Нам слід сісти на перший поїзд."
+},
+{
+"id": "it:28:39",
+"target": "Potrei consegnare la domanda lunedì.",
+"ru": "Я мог бы отнести заявление в понедельник.",
+"uk": "Я міг би подати заяву в понеділок."
+},
+{
+"id": "it:28:41",
+"target": "Avrebbe una camera per due?",
+"ru": "У вас не найдётся номера на двоих?",
+"uk": "У вас не знайдеться номер на двох?"
+},
+{
+"id": "it:28:43",
+"target": "Le andrebbe bene?",
+"ru": "Вас это устроит?",
+"uk": "Це вам підійде?"
+},
+{
+"id": "it:28:46",
+"target": "Avrei bisogno di una conferma scritta.",
+"ru": "Мне потребуется письменное подтверждение.",
+"uk": "Мені потрібне письмове підтвердження."
+},
+{
+"id": "it:28:47",
+"target": "Vorrei un preventivo per la cucina.",
+"ru": "Я хотел бы смету на кухню.",
+"uk": "Я хотів би отримати цінову пропозицію на кухню."
+},
+{
+"id": "it:28:50",
+"target": "Preferirei un posto lato corridoio.",
+"ru": "Я бы предпочёл место у прохода.",
+"uk": "Я б віддав перевагу місцю біля проходу."
+}
+]
+}
+]

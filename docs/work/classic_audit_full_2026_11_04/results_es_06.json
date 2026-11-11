@@ -1,0 +1,93 @@
+[
+ {
+  "id": "es:21:18",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «a» даёт «Compré un regalo a mi madre» — естественная верная фраза для «купил подарок для мамы», не засчитают",
+  "fix": {"position": 3, "replace_distractor": "a", "with": "hasta"}
+ },
+ {
+  "id": "es:21:21",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «con» даёт «Pagamos con efectivo ayer» — норма Латинской Америки, верно по смыслу",
+  "fix": {"position": 1, "replace_distractor": "con", "with": "sobre"}
+ },
+ {
+  "id": "es:21:30",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы вчера отправили» допускает ustedes (Латинская Америка); в соседних vosotros-записях (21:22, 21:27) ustedes-вариант принят, здесь нет",
+  "fix": {"add": ["Mandaron el mapa ayer.", "Ayer mandaron el mapa."], "remove": []}
+ },
+ {
+  "id": "es:21:39",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы вчера вечером не отнесли» допускает ustedes (Латинская Америка), вариант не принят",
+  "fix": {"add": ["No llevaron la bolsa anoche.", "Anoche no llevaron la bolsa."], "remove": []}
+ },
+ {
+  "id": "es:21:50",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы вчера написали сообщение?» допускает ustedes (Латинская Америка), alternatives пусты",
+  "fix": {"add": ["¿Escribieron un mensaje ayer?"], "remove": []}
+ },
+ {
+  "id": "es:23:13",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "ru «ездила на рынок» / uk «їздила» без «обычно/каждый день» допускают разовую поездку; соблазн «fue» даёт верную «Mi madre fue al mercado en autobús»",
+  "fix": {"position": 2, "replace_distractor": "fue", "with": "vamos"}
+ },
+ {
+  "id": "es:23:19",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «fui» даёт «De niño fui a ese colegio» — естественное «в детстве я учился в той школе», верно по подсказке",
+  "fix": {"position": 2, "replace_distractor": "fui", "with": "vamos"}
+ },
+ {
+  "id": "es:23:22",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы часто ели» допускает ustedes (Латинская Америка), alternatives пусты",
+  "fix": {"add": ["Comían en la cocina a menudo."], "remove": []}
+ },
+ {
+  "id": "es:23:24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «en» даёт «Mis vecinos paseaban en el parque» — естественная верная фраза («гуляли в парке/по парку»), не засчитают",
+  "fix": {"position": 3, "replace_distractor": "en", "with": "sin"}
+ },
+ {
+  "id": "es:23:30",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы часто ели дома» допускает ustedes (Латинская Америка), alternatives пусты",
+  "fix": {"add": ["Comían en casa a menudo."], "remove": []}
+ },
+ {
+  "id": "es:23:35",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "подсказка «Раньше Луис не писал писем» начинается с «раньше» и ведёт к «Antes Luis no escribía cartas», который не засчитывается",
+  "fix": {"add": ["Antes Luis no escribía cartas."], "remove": []}
+ },
+ {
+  "id": "es:23:39",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы раньше не возвращались» допускает ustedes (Латинская Америка), alternatives пусты",
+  "fix": {"add": ["No volvían a la estación antes."], "remove": []}
+ },
+ {
+  "id": "es:23:50",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "«Вы обычно читали вместе?» допускает ustedes (Латинская Америка), alternatives пусты",
+  "fix": {"add": ["¿Leían juntos en clase?"], "remove": []}
+ }
+]

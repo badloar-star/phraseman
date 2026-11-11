@@ -37,7 +37,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
+import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -257,7 +257,7 @@ export default function FlashcardsBlitzSession() {
   // (рестарт «Ещё разок») получает новую копилку по цене повтора, ровно как
   // строка ниже уже делает для sessionId попыток.
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
-  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_blitz',
     sessionKey: `${feedbackAttemptId}_${roundId}`,

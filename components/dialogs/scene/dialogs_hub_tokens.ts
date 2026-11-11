@@ -8,8 +8,8 @@
 // Реализация экрана — после выбора владельца (3 варианта макета).
 // ═══════════════════════════════════════════════════════════════════════════
 import { alphaHex } from '../../../constants/v2Style';
-import { lv2Mix } from '../../learning-v2/learning_v2_task_theme_tokens';
-import { oklchToHex } from '../../learning-v2/season/season_art';
+import { lv2Mix } from '../../practice/practice_theme_tokens';
+import { oklchToHex } from '../../../constants/oklch';
 
 /** Тона миров из макета: светлота начала/конца градиента (160°) и множитель насыщенности. Порядок миров: social, work, travel, everyday. */
 export const DIALOGS_WORLD_TONES: readonly Readonly<{ l1: number; l2: number; cm: number }>[] = Object.freeze([
@@ -25,7 +25,7 @@ const worldCache = new Map<string, DialogsWorldArt>();
 
 /**
  * Градиент карточки мира: `from` → `to` по диагонали 160°, `glow` — световое пятно (радиал 60 % × 45 % в точке 90 % 0, непрозрачность 0,45 даёт экран).
- * themeHue = hexHue(g.accent) (components/learning-v2/season/season_art). Белый текст на `from`/`to` ≥ 4,5 во всех темах (тест dialogs_hub_tokens).
+ * themeHue = hexHue(g.accent) (constants/oklch.ts). Белый текст на `from`/`to` ≥ 4,5 во всех темах (тест dialogs_hub_tokens).
  */
 export function dialogsWorldArt(themeHue: number, worldIndex: number, appearance: 'light' | 'dark'): DialogsWorldArt {
   const i = ((Math.round(worldIndex) % DIALOGS_WORLD_TONES.length) + DIALOGS_WORLD_TONES.length) % DIALOGS_WORLD_TONES.length;

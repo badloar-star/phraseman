@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 9,
+"blocks": [
+{
+"textES": "Hay dos bolsas sobre la mesa. Muestra la tuya, no cualquier bolsa: la mia borsa. Se elige la palabra mia porque borsa es femenina. Da igual si la dice un hombre o una mujer.\nHay varias formas para \"mi\" y \"tu\". La forma más sencilla de cambiar el propietario es mantener un solo objeto: la mia borsa y la tua borsa. El artículo no cambia.",
+"textEn": "There are two bags on the table. You show yours, not just any bag: la mia borsa. The word mia is chosen because borsa is feminine. It doesn't matter whether a man or a woman says it.\nThere are several forms for \"my\" and \"your.\" The easiest way to change the owner is to keep one item: la mia borsa and la tua borsa. The article does not change.",
+"textId": "Ada dua tas di atas meja. Anda menunjukkan tas Anda, bukan sembarang tas: la mia borsa. Kata mia dipilih karena borsa adalah kata benda feminin. Tidak masalah apakah pria atau wanita yang mengucapkannya.\nAda beberapa bentuk untuk \"milik saya\" dan \"milikmu.\" Cara termudah untuk mengubah pemiliknya adalah dengan mempertahankan satu barang: la mia borsa dan la tua borsa. Artikelnya tidak berubah.",
+"textPl": "Na stole leżą dwie torby. Pokazujesz swoją, nie byle jaką torbę: la mia borsa. Słowo mia zostało wybrane, ponieważ borsa jest rodzaju żeńskiego. Nie ma znaczenia, czy wypowie je mężczyzna, czy kobieta.\nIstnieje kilka form dla „mojej” i „twojej”. Najprostszym sposobem zmiany właściciela jest zachowanie jednego przedmiotu: la mia borsa i la tua borsa. Rodzajnik się nie zmienia.",
+"textPtBr": "Há duas sacolas sobre a mesa. Você mostra a sua, não qualquer sacola: la mia borsa. A palavra mia foi escolhida porque borsa é feminina. Não importa se um homem ou uma mulher a diz.\nExistem várias formas para \"minha\" e \"sua\". A maneira mais fácil de alterar o proprietário é manter um item: la mia borsa e la tua borsa. O artigo não muda.",
+"textRU": "На столе две сумки. Ты показываешь не любую, а свою: la mia borsa. Слово mia выбирается потому, что borsa женского рода. Неважно, произносит это мужчина или женщина.\nДля «мой» и «твой» есть несколько форм. Сменить владельца проще всего, сохранив одну вещь: la mia borsa и la tua borsa. Артикль при этом не меняется.",
+"textTr": "Masada iki çanta var. Herhangi bir çantayı değil, seninkini gösteriyorsun: la mia borsa. mia kelimesi seçildi çünkü borsa dişil bir kelime. Bunu bir erkek mi yoksa bir kadın mı söylediği önemli değil.\n\"Benim\" ve \"senin\" için çeşitli biçimler vardır. Sahibi değiştirmenin en kolay yolu tek bir öğeyi korumaktır: la mia borsa ve la tua borsa. Makale değişmez.",
+"textUK": "На столі дві сумки. Ти показуєш не будь-яку, а свою: la mia borsa. Слово mia вибирається тому, що borsa жіночого роду. Не має значення, вимовляє це чоловік чи жінка.\nДля мій і твій є кілька форм. Змінити власника найпростіше, зберігши одну річ: la mia borsa та la tua borsa. Артикль при цьому не змінюється.",
+"textVi": "Trên bàn có hai chiếc túi. Bạn cho xem túi của bạn, không phải bất kỳ túi nào: la mia borsa. Từ mia được chọn vì borsa là giống cái. Không quan trọng là đàn ông hay phụ nữ nói từ đó.\nCó nhiều dạng cho \"của tôi\" và \"của bạn\". Cách dễ nhất để thay đổi chủ sở hữu là giữ nguyên một vật phẩm: la mia borsa và la tua borsa. Mạo từ không thay đổi.",
+"titleES": "¿De quién son estas cosas: mio, mia, miei, mie?",
+"titleEn": "Whose things are these: mio, mia, miei, mie",
+"titleId": "Barang-barang siapa ini: mio, mia, miei, mie",
+"titlePl": "Czyje to rzeczy: mio, mia, miei, mie",
+"titlePtBr": "De quem são estes objetos: mio, mia, miei, mie?",
+"titleRU": "Чьи это вещи: mio, mia, miei, mie",
+"titleTr": "Bu eşyalar kime ait: mio, mia, miei, mie",
+"titleUK": "Чиї це речі: mio, mia, miei, mie",
+"titleVi": "Những đồ vật này là của ai: mio, mia, miei, mie",
+"titleByLocale": {
+"en": "Whose things are these: mio, mia, miei, mie",
+"es": "¿De quién son estas cosas: mio, mia, miei, mie?",
+"id": "Barang-barang siapa ini: mio, mia, miei, mie",
+"pl": "Czyje to rzeczy: mio, mia, miei, mie",
+"pt-BR": "De quem são estes objetos: mio, mia, miei, mie?",
+"ru": "Чьи это вещи: mio, mia, miei, mie",
+"tr": "Bu eşyalar kime ait: mio, mia, miei, mie",
+"uk": "Чиї це речі: mio, mia, miei, mie",
+"vi": "Những đồ vật này là của ai: mio, mia, miei, mie"
+},
+"textByLocale": {
+"en": [
+"There are two bags on the table. You show yours, not just any bag: «la mia borsa». The word «mia» is chosen because «borsa» is feminine. It doesn't matter whether a man or a woman says it.",
+"There are several forms for \"my\" and \"your.\" The easiest way to change the owner is to keep one item: «la mia borsa» and «la tua borsa». The article does not change."
+],
+"es": [
+"Hay dos bolsas sobre la mesa. Muestra la tuya, no cualquier bolsa: «la mia borsa». Se elige la palabra «mia» porque «borsa» es femenina. Da igual si la dice un hombre o una mujer.",
+"Hay varias formas para \"mi\" y \"tu\". La forma más sencilla de cambiar el propietario es mantener un solo objeto: «la mia borsa» y «la tua borsa». El artículo no cambia."
+],
+"id": [
+"Ada dua tas di atas meja. Anda menunjukkan tas Anda, bukan sembarang tas: «la mia borsa». Kata «mia» dipilih karena «borsa» adalah kata benda feminin. Tidak masalah apakah pria atau wanita yang mengucapkannya.",
+"Ada beberapa bentuk untuk \"milik saya\" dan \"milikmu.\" Cara termudah untuk mengubah pemiliknya adalah dengan mempertahankan satu barang: «la mia borsa» dan «la tua borsa». Artikelnya tidak berubah."
+],
+"pl": [
+"Na stole leżą dwie torby. Pokazujesz swoją, nie byle jaką torbę: «la mia borsa». Słowo «mia» zostało wybrane, ponieważ «borsa» jest rodzaju żeńskiego. Nie ma znaczenia, czy wypowie je mężczyzna, czy kobieta.",
+"Istnieje kilka form dla „mojej” i „twojej”. Najprostszym sposobem zmiany właściciela jest zachowanie jednego przedmiotu: «la mia borsa» i «la tua borsa». Rodzajnik się nie zmienia."
+],
+"pt-BR": [
+"Há duas sacolas sobre a mesa. Você mostra a sua, não qualquer sacola: «la mia borsa». A palavra «mia» foi escolhida porque «borsa» é feminina. Não importa se um homem ou uma mulher a diz.",
+"Existem várias formas para \"minha\" e \"sua\". A maneira mais fácil de alterar o proprietário é manter um item: «la mia borsa» e «la tua borsa». O artigo não muda."
+],
+"ru": [
+"На столе две сумки. Ты показываешь не любую, а свою: «la mia borsa». Слово «mia» выбирается потому, что «borsa» женского рода. Неважно, произносит это мужчина или женщина.",
+"Для «мой» и «твой» есть несколько форм. Сменить владельца проще всего, сохранив одну вещь: «la mia borsa» и «la tua borsa». Артикль при этом не меняется."
+],
+"tr": [
+"Masada iki çanta var. Herhangi bir çantayı değil, seninkini gösteriyorsun: «la mia borsa». «mia» kelimesi seçildi çünkü «borsa» dişil bir kelime. Bunu bir erkek mi yoksa bir kadın mı söylediği önemli değil.",
+"\"Benim\" ve \"senin\" için çeşitli biçimler vardır. Sahibi değiştirmenin en kolay yolu tek bir öğeyi korumaktır: «la mia borsa» ve «la tua borsa». Makale değişmez."
+],
+"uk": [
+"На столі дві сумки. Ти показуєш не будь-яку, а свою: «la mia borsa». Слово «mia» вибирається тому, що «borsa» жіночого роду. Не має значення, вимовляє це чоловік чи жінка.",
+"Для мій і твій є кілька форм. Змінити власника найпростіше, зберігши одну річ: «la mia borsa» та «la tua borsa». Артикль при цьому не змінюється."
+],
+"vi": [
+"Trên bàn có hai chiếc túi. Bạn cho xem túi của bạn, không phải bất kỳ túi nào: «la mia borsa». Từ «mia» được chọn vì «borsa» là giống cái. Không quan trọng là đàn ông hay phụ nữ nói từ đó.",
+"Có nhiều dạng cho \"của tôi\" và \"của bạn\". Cách dễ nhất để thay đổi chủ sở hữu là giữ nguyên một vật phẩm: «la mia borsa» và «la tua borsa». Mạo từ không thay đổi."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:09:01"
+]
+},
+{
+"textES": "Artículo + posesivo + objeto\nDividamos el problema en dos: de quién es el objeto y qué significa \"it\" en italiano. El mismo dueño dice il mio passaporto, pero también la mia borsa. Si hay dos bolsas, el resultado es le mie borse: el dueño no ha cambiado.\nEl plural se refiere a varios objetos. Le mie chiavi son mis llaves, no las llaves de varios dueños. El artículo y el sustantivo posesivo concuerdan con chiavi.",
+"textEn": "Article + possessive + object\nDivide the problem in two: whose object is it and what is it in Italian. The same owner says il mio passaporto, but la mia borsa. If there are two bags, the result is le mie borse: the owner hasn't changed.\nThe plural refers to multiple items. Le mie chiavi is my keys, not multiple owners' keys. The article and possessive noun agree with chiavi.",
+"textId": "Artikel + posesif + objek\nBagi masalah ini menjadi dua: objek siapa itu dan apa artinya dalam bahasa Italia. Pemilik yang sama mengatakan il mio passaporto, tetapi la mia borsa. Jika ada dua tas, hasilnya adalah le mie borse: pemiliknya tidak berubah.\nBentuk jamak merujuk pada beberapa barang. Le mie chiavi adalah kunci saya, bukan kunci milik beberapa pemilik. Artikel dan kata benda posesif sesuai dengan chiavi.",
+"textPl": "Przedimek + dopełniacz + dopełnienie\nPodziel zadanie na dwie części: czyim dopełnieniem jest to i co to jest po włosku. Ten sam właściciel mówi il mio passaporto, ale la mia borsa. Jeśli są dwie torby, wynik to le mie borse: właściciel się nie zmienił.\nLiczba mnoga odnosi się do wielu przedmiotów. Le mie chiavi to moje klucze, a nie klucze wielu właścicieli. Rodzajnik i rzeczownik dzierżawczy zgadzają się z chiavi.",
+"textPtBr": "Artigo + possessivo + objeto\nDivida o problema em dois: de quem é o objeto e o que é em italiano. O mesmo dono diz il mio passaporto, mas la mia borsa. Se houver duas sacolas, o resultado é le mie borse: o dono não mudou.\nO plural se refere a vários itens. Le mie chiavi são minhas chaves, não as chaves de vários proprietários. O artigo e o substantivo possessivo concordam com chiavi.",
+"textRU": "артикль + притяжательная форма + предмет\nРаздели задачу надвое: чей предмет и какой он в итальянском. Тот же владелец говорит il mio passaporto, но la mia borsa. Если сумок две, получится le mie borse: владелец не изменился.\nМножественное число относится к нескольким вещам. Le mie chiavi — мои ключи, а не ключи нескольких хозяев. Артикль и притяжательное слово согласованы с chiavi.",
+"textTr": "Belirteç + iyelik + nesne\nProblemi ikiye ayırın: nesne kime ait ve İtalyanca'da ne anlama geliyor. Aynı sahip il mio passaporto diyor, ama la mia borsa de diyor. İki çanta varsa, sonuç le mie borse olur: sahibi değişmedi.\nÇoğul, birden fazla öğeyi ifade eder. Le mie chiavi benim anahtarlarım, birden fazla sahibin anahtarları değil. Makale ve iyelik eki chiavi ile uyumludur.",
+"textUK": "артикль + присвійна форма + предмет\nРозділи завдання надвоє: чий предмет і який він в італійському. Той самий власник говорить il mio passaporto, але la mia borsa. Якщо сумок дві, вийде le mie borse: власник не змінився.\nЧисленна кількість відноситься до кількох речей. Le mie chiavi - мої ключі, а не ключі кількох господарів. Артикль та присвійне слово узгоджені з chiavi.",
+"textVi": "Mạo từ + sở hữu cách + tân ngữ\nChia vấn đề thành hai phần: nó là của ai và nó là gì trong tiếng Ý. Cùng một người chủ nói il mio passaporto, nhưng lại nói la mia borsa. Nếu có hai chiếc túi, kết quả là le mie borse: người chủ không thay đổi.\nSố nhiều đề cập đến nhiều vật phẩm. Le mie chiavi là chìa khóa của tôi, không phải chìa khóa của nhiều chủ sở hữu. Mạo từ và danh từ sở hữu phù hợp với chiavi.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Article + possessive + object",
+"Divide the problem in two: whose object is it and what is it in Italian. The same owner says «il mio passaporto», but «la mia borsa». If there are two bags, the result is «le mie borse»: the owner hasn't changed.",
+"The plural refers to multiple items. «Le mie chiavi» is my keys, not multiple owners' keys. The article and possessive noun agree with «chiavi»."
+],
+"es": [
+"Artículo + posesivo + objeto",
+"Dividamos el problema en dos: de quién es el objeto y qué significa \"it\" en italiano. El mismo dueño dice «il mio passaporto», pero también «la mia borsa». Si hay dos bolsas, el resultado es «le mie borse»: el dueño no ha cambiado.",
+"El plural se refiere a varios objetos. «Le mie chiavi» son mis llaves, no las llaves de varios dueños. El artículo y el sustantivo posesivo concuerdan con «chiavi»."
+],
+"id": [
+"Artikel + posesif + objek",
+"Bagi masalah ini menjadi dua: objek siapa itu dan apa artinya dalam bahasa Italia. Pemilik yang sama mengatakan «il mio passaporto», tetapi «la mia borsa». Jika ada dua tas, hasilnya adalah «le mie borse»: pemiliknya tidak berubah.",
+"Bentuk jamak merujuk pada beberapa barang. «Le mie chiavi» adalah kunci saya, bukan kunci milik beberapa pemilik. Artikel dan kata benda posesif sesuai dengan «chiavi»."
+],
+"pl": [
+"Przedimek + dopełniacz + dopełnienie",
+"Podziel zadanie na dwie części: czyim dopełnieniem jest to i co to jest po włosku. Ten sam właściciel mówi «il mio passaporto», ale «la mia borsa». Jeśli są dwie torby, wynik to «le mie borse»: właściciel się nie zmienił.",
+"Liczba mnoga odnosi się do wielu przedmiotów. «Le mie chiavi» to moje klucze, a nie klucze wielu właścicieli. Rodzajnik i rzeczownik dzierżawczy zgadzają się z «chiavi»."
+],
+"pt-BR": [
+"Artigo + possessivo + objeto",
+"Divida o problema em dois: de quem é o objeto e o que é em italiano. O mesmo dono diz «il mio passaporto», mas «la mia borsa». Se houver duas sacolas, o resultado é «le mie borse»: o dono não mudou.",
+"O plural se refere a vários itens. «Le mie chiavi» são minhas chaves, não as chaves de vários proprietários. O artigo e o substantivo possessivo concordam com «chiavi»."
+],
+"ru": [
+"артикль + притяжательная форма + предмет",
+"Раздели задачу надвое: чей предмет и какой он в итальянском. Тот же владелец говорит «il mio passaporto», но «la mia borsa». Если сумок две, получится «le mie borse»: владелец не изменился.",
+"Множественное число относится к нескольким вещам. «Le mie chiavi» — мои ключи, а не ключи нескольких хозяев. Артикль и притяжательное слово согласованы с «chiavi»."
+],
+"tr": [
+"Belirteç + iyelik + nesne",
+"Problemi ikiye ayırın: nesne kime ait ve İtalyanca'da ne anlama geliyor. Aynı sahip «il mio passaporto» diyor, ama «la mia borsa» de diyor. İki çanta varsa, sonuç «le mie borse» olur: sahibi değişmedi.",
+"Çoğul, birden fazla öğeyi ifade eder. «Le mie chiavi» benim anahtarlarım, birden fazla sahibin anahtarları değil. Makale ve iyelik eki «chiavi» ile uyumludur."
+],
+"uk": [
+"артикль + присвійна форма + предмет",
+"Розділи завдання надвоє: чий предмет і який він в італійському. Той самий власник говорить «il mio passaporto», але «la mia borsa». Якщо сумок дві, вийде «le mie borse»: власник не змінився.",
+"Численна кількість відноситься до кількох речей. «Le mie chiavi» - мої ключі, а не ключі кількох господарів. Артикль та присвійне слово узгоджені з «chiavi»."
+],
+"vi": [
+"Mạo từ + sở hữu cách + tân ngữ",
+"Chia vấn đề thành hai phần: nó là của ai và nó là gì trong tiếng Ý. Cùng một người chủ nói «il mio passaporto», nhưng lại nói «la mia borsa». Nếu có hai chiếc túi, kết quả là «le mie borse»: người chủ không thay đổi.",
+"Số nhiều đề cập đến nhiều vật phẩm. «Le mie chiavi» là chìa khóa của tôi, không phải chìa khóa của nhiều chủ sở hữu. Mạo từ và danh từ sở hữu phù hợp với «chiavi»."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:09:05",
+"it:09:06"
+]
+},
+{
+"textES": "En \"Mi bolso está aquí\", primero encuentra el nombre del objeto: borsa. El par la mia depende de él. Luego agrega è qui. Verifica el resultado como dos partes: de quién es el bolso y dónde está.",
+"textEn": "In \"My bag is here,\" first find the name of the item: borsa. The pair la mia depends on it. Then add è qui. Check the result as two parts: whose bag is it and where is it.",
+"textId": "Dalam \"Tas saya ada di sini,\" pertama-tama temukan nama barangnya: borsa. Pasangan la mia bergantung padanya. Kemudian tambahkan è qui. Periksa hasilnya sebagai dua bagian: tas siapa itu dan di mana letaknya.",
+"textPl": "W zdaniu „Moja torba jest tutaj” najpierw znajdź nazwę przedmiotu: borsa. Para la mia od niej zależy. Następnie dodaj è qui. Sprawdź wynik w dwóch częściach: czyja to torba i gdzie ona jest.",
+"textPtBr": "Em \"Minha bolsa está aqui\", primeiro encontre o nome do item: borsa. O par la mia depende dele. Em seguida, adicione è qui. Verifique o resultado em duas partes: de quem é a bolsa e onde ela está.",
+"textRU": "В «Моя сумка здесь» найди сначала название вещи: borsa. От него зависит пара la mia. Потом добавь è qui. Проверь результат как две части: чья сумка и где она.",
+"textTr": "\"Çantam burada\" cümlesinde, önce öğenin adını bulun: borsa. la mia çifti buna bağlıdır. Ardından è qui'ü ekleyin. Sonucu iki bölüm halinde kontrol edin: çanta kime ait ve nerede.",
+"textUK": "У «Моя сумка тут» знайди спочатку назву речі: borsa. Від нього залежить пара la mia. Потім додай è qui. Перевір результат як дві частини: чия сумка і де вона.",
+"textVi": "Trong câu \"Túi của tôi ở đây\", trước tiên hãy tìm tên của vật phẩm: borsa. Cặp la mia phụ thuộc vào nó. Sau đó thêm è qui. Kiểm tra kết quả thành hai phần: túi của ai và nó ở đâu.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In \"My bag is here,\" first find the name of the item: «borsa». The pair «la mia» depends on it. Then add «è qui». Check the result as two parts: whose bag is it and where is it."
+],
+"es": [
+"En \"Mi bolso está aquí\", primero encuentra el nombre del objeto: «borsa». El par «la mia» depende de él. Luego agrega «è qui». Verifica el resultado como dos partes: de quién es el bolso y dónde está."
+],
+"id": [
+"Dalam \"Tas saya ada di sini,\" pertama-tama temukan nama barangnya: «borsa». Pasangan «la mia» bergantung padanya. Kemudian tambahkan «è qui». Periksa hasilnya sebagai dua bagian: tas siapa itu dan di mana letaknya."
+],
+"pl": [
+"W zdaniu „Moja torba jest tutaj” najpierw znajdź nazwę przedmiotu: «borsa». Para «la mia» od niej zależy. Następnie dodaj «è qui». Sprawdź wynik w dwóch częściach: czyja to torba i gdzie ona jest."
+],
+"pt-BR": [
+"Em \"Minha bolsa está aqui\", primeiro encontre o nome do item: «borsa». O par «la mia» depende dele. Em seguida, adicione «è qui». Verifique o resultado em duas partes: de quem é a bolsa e onde ela está."
+],
+"ru": [
+"В «Моя сумка здесь» найди сначала название вещи: «borsa». От него зависит пара «la mia». Потом добавь «è qui». Проверь результат как две части: чья сумка и где она."
+],
+"tr": [
+"\"Çantam burada\" cümlesinde, önce öğenin adını bulun: «borsa». «la mia» çifti buna bağlıdır. Ardından «è qui»'ü ekleyin. Sonucu iki bölüm halinde kontrol edin: çanta kime ait ve nerede."
+],
+"uk": [
+"У «Моя сумка тут» знайди спочатку назву речі: «borsa». Від нього залежить пара «la mia». Потім додай «è qui». Перевір результат як дві частини: чия сумка і де вона."
+],
+"vi": [
+"Trong câu \"Túi của tôi ở đây\", trước tiên hãy tìm tên của vật phẩm: «borsa». Cặp «la mia» phụ thuộc vào nó. Sau đó thêm «è qui». Kiểm tra kết quả thành hai phần: túi của ai và nó ở đâu."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:09:01",
+"it:09:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:09:01",
+"target": "La mia borsa è qui.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "it:09:05",
+"target": "Le mie chiavi sono qui.",
+"ru": "Мои ключи здесь.",
+"uk": "Мої ключі тут."
+},
+{
+"id": "it:09:06",
+"target": "Le tue chiavi sono qui.",
+"ru": "Твои ключи здесь.",
+"uk": "Твої ключі тут."
+},
+{
+"id": "it:09:01",
+"target": "La mia borsa è qui.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "it:09:04",
+"target": "La tua chiave è lì.",
+"ru": "Твой ключ там.",
+"uk": "Твій ключ там."
+}
+]
+},
+{
+"lesson": 10,
+"blocks": [
+{
+"textES": "Entraste en la sala y viste un banco vacío. Tu interlocutor aún no sabe que está ahí. Empieza así: C’è una panchina. Cuando hay varios, el comienzo cambia: Ci sono due panchine.\nC’è se usa con un objeto y con una sustancia incontable en singular. Ci sono se usa con varios. Primero, decide si se trata de un objeto o de varios, luego elige el inicio.",
+"textEn": "You entered the hall and saw an empty bench. Your interlocutor doesn't yet know it's there. Begin like this: C’è una panchina. When there are several, the beginning changes: Ci sono due panchine.\nC’è is used with one object and with an uncountable substance in the singular. Ci sono is used with several. First, decide whether it's one object or many, then choose the beginning.",
+"textId": "Anda memasuki aula dan melihat bangku kosong. Lawan bicara Anda belum tahu bangku itu ada di sana. Mulailah seperti ini: C’è una panchina. Jika ada beberapa, permulaannya berubah: Ci sono due panchine.\nC’è digunakan dengan satu objek dan dengan zat tak terhitung dalam bentuk tunggal. Ci sono digunakan dengan beberapa. Pertama, tentukan apakah itu satu objek atau banyak, lalu pilih permulaannya.",
+"textPl": "Wchodzisz do sali i widzisz pustą ławkę. Twój rozmówca jeszcze nie wie, że ona tam jest. Zacznij w ten sposób: C’è una panchina. Gdy jest ich kilka, początek się zmienia: Ci sono due panchine.\nC’è jest używane z jednym obiektem i z niepoliczalną substancją w liczbie pojedynczej. Ci sono jest używane z kilkoma. Najpierw zdecyduj, czy jest to jeden obiekt, czy wiele, a następnie wybierz początek.",
+"textPtBr": "Você entrou no salão e viu um banco vazio. Seu interlocutor ainda não sabe que ele está lá. Comece assim: C’è una panchina. Quando houver vários, o início muda: Ci sono due panchine.\nC’è é usado com um objeto e com uma substância incontável no singular. Ci sono é usado com vários. Primeiro, decida se é um objeto ou vários, depois escolha o início.",
+"textRU": "Ты вошёл в зал и увидел свободную скамейку. Собеседник ещё не знает, что она здесь есть. Начни так: C’è una panchina. Когда их несколько, начало меняется: Ci sono due panchine.\nC’è употребляется с одним предметом и с неисчисляемым веществом в единственном числе. Ci sono — с несколькими. Сначала реши, один предмет или много, затем выбирай начало.",
+"textTr": "Salona girdiniz ve boş bir bank gördünüz. Karşınızdaki kişi henüz orada olduğunu bilmiyor. Şöyle başlayın: C’è una panchina. Birkaç tane olduğunda başlangıç ​​değişir: Ci sono due panchine.\nC’è, tek bir nesne ve tekil halde sayılamayan bir madde ile kullanılır. Ci sono ise birden fazla nesne ile kullanılır. Önce tek bir nesne mi yoksa birden fazla nesne mi olduğuna karar verin, sonra başlangıcı seçin.",
+"textUK": "Ти увійшов до зали і побачив вільну лаву. Співрозмовник ще не знає, що вона є тут. Почни так: C’è una panchina. Коли їх кілька, початок змінюється: Ci sono due panchine.\nC’è використовується з одним предметом і з необчислюваним речовиною в однині. Ci sono - з декількома. Спочатку виріши, один предмет чи багато, потім вибирай початок.",
+"textVi": "Bạn bước vào hội trường và thấy một chiếc ghế dài trống. Người đối thoại của bạn vẫn chưa biết nó ở đó. Bắt đầu như thế này: C’è una panchina. Khi có nhiều, phần đầu sẽ thay đổi: Ci sono due panchine.\nC’è được sử dụng với một đối tượng và với một chất không đếm được ở dạng số ít. Ci sono được sử dụng với nhiều đối tượng. Trước tiên, hãy quyết định xem đó là một đối tượng hay nhiều đối tượng, sau đó chọn cách bắt đầu.",
+"titleES": "¿Qué hay en este lugar?: c’è y ci sono",
+"titleEn": "What is in this place: c’è and ci sono",
+"titleId": "Apa yang ada di tempat ini: c’è dan ci sono",
+"titlePl": "Co znajduje się w tym miejscu: c’è i ci sono",
+"titlePtBr": "O que há neste lugar: c’è e ci sono",
+"titleRU": "Что есть в этом месте: c’è и ci sono",
+"titleTr": "Bu yerde ne var: c’è ve ci sono",
+"titleUK": "Що є тут: c’è і ci sono",
+"titleVi": "Có gì ở nơi này: c’è và ci sono",
+"titleByLocale": {
+"en": "What is in this place: c’è and ci sono",
+"es": "¿Qué hay en este lugar?: c’è y ci sono",
+"id": "Apa yang ada di tempat ini: c’è dan ci sono",
+"pl": "Co znajduje się w tym miejscu: c’è i ci sono",
+"pt-BR": "O que há neste lugar: c’è e ci sono",
+"ru": "Что есть в этом месте: c’è и ci sono",
+"tr": "Bu yerde ne var: c’è ve ci sono",
+"uk": "Що є тут: c’è і ci sono",
+"vi": "Có gì ở nơi này: c’è và ci sono"
+},
+"textByLocale": {
+"en": [
+"You entered the hall and saw an empty bench. Your interlocutor doesn't yet know it's there. Begin like this: «C’è una panchina». When there are several, the beginning changes: «Ci sono due panchine».",
+"«C’è» is used with one object and with an uncountable substance in the singular. «Ci sono» is used with several. First, decide whether it's one object or many, then choose the beginning."
+],
+"es": [
+"Entraste en la sala y viste un banco vacío. Tu interlocutor aún no sabe que está ahí. Empieza así: «C’è una panchina». Cuando hay varios, el comienzo cambia: «Ci sono due panchine».",
+"«C’è» se usa con un objeto y con una sustancia incontable en singular. «Ci sono» se usa con varios. Primero, decide si se trata de un objeto o de varios, luego elige el inicio."
+],
+"id": [
+"Anda memasuki aula dan melihat bangku kosong. Lawan bicara Anda belum tahu bangku itu ada di sana. Mulailah seperti ini: «C’è una panchina». Jika ada beberapa, permulaannya berubah: «Ci sono due panchine».",
+"«C’è» digunakan dengan satu objek dan dengan zat tak terhitung dalam bentuk tunggal. «Ci sono» digunakan dengan beberapa. Pertama, tentukan apakah itu satu objek atau banyak, lalu pilih permulaannya."
+],
+"pl": [
+"Wchodzisz do sali i widzisz pustą ławkę. Twój rozmówca jeszcze nie wie, że ona tam jest. Zacznij w ten sposób: «C’è una panchina». Gdy jest ich kilka, początek się zmienia: «Ci sono due panchine».",
+"«C’è» jest używane z jednym obiektem i z niepoliczalną substancją w liczbie pojedynczej. «Ci sono» jest używane z kilkoma. Najpierw zdecyduj, czy jest to jeden obiekt, czy wiele, a następnie wybierz początek."
+],
+"pt-BR": [
+"Você entrou no salão e viu um banco vazio. Seu interlocutor ainda não sabe que ele está lá. Comece assim: «C’è una panchina». Quando houver vários, o início muda: «Ci sono due panchine».",
+"«C’è» é usado com um objeto e com uma substância incontável no singular. «Ci sono» é usado com vários. Primeiro, decida se é um objeto ou vários, depois escolha o início."
+],
+"ru": [
+"Ты вошёл в зал и увидел свободную скамейку. Собеседник ещё не знает, что она здесь есть. Начни так: «C’è una panchina». Когда их несколько, начало меняется: «Ci sono due panchine».",
+"«C’è» употребляется с одним предметом и с неисчисляемым веществом в единственном числе. «Ci sono» — с несколькими. Сначала реши, один предмет или много, затем выбирай начало."
+],
+"tr": [
+"Salona girdiniz ve boş bir bank gördünüz. Karşınızdaki kişi henüz orada olduğunu bilmiyor. Şöyle başlayın: «C’è una panchina». Birkaç tane olduğunda başlangıç ​​değişir: «Ci sono due panchine».",
+"«C’è», tek bir nesne ve tekil halde sayılamayan bir madde ile kullanılır. «Ci sono» ise birden fazla nesne ile kullanılır. Önce tek bir nesne mi yoksa birden fazla nesne mi olduğuna karar verin, sonra başlangıcı seçin."
+],
+"uk": [
+"Ти увійшов до зали і побачив вільну лаву. Співрозмовник ще не знає, що вона є тут. Почни так: «C’è una panchina». Коли їх кілька, початок змінюється: «Ci sono due panchine».",
+"«C’è» використовується з одним предметом і з необчислюваним речовиною в однині. «Ci sono» - з декількома. Спочатку виріши, один предмет чи багато, потім вибирай початок."
+],
+"vi": [
+"Bạn bước vào hội trường và thấy một chiếc ghế dài trống. Người đối thoại của bạn vẫn chưa biết nó ở đó. Bắt đầu như thế này: «C’è una panchina». Khi có nhiều, phần đầu sẽ thay đổi: «Ci sono due panchine».",
+"«C’è» được sử dụng với một đối tượng và với một chất không đếm được ở dạng số ít. «Ci sono» được sử dụng với nhiều đối tượng. Trước tiên, hãy quyết định xem đó là một đối tượng hay nhiều đối tượng, sau đó chọn cách bắt đầu."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:10:01"
+]
+},
+{
+"textES": "c’è + uno; ci sono + varios\nCompara las dos líneas de pensamiento. La chiave è qui te dice dónde está la llave conocida. C’è una chiave te dice que la llave existe. Estas construcciones pueden describir la misma escena, pero responden a preguntas diferentes.\nPuedes indicar primero la ubicación y luego decir qué hay en ella. O puedes empezar con la presencia del objeto. En ambos casos, mantén todos los detalles y la concordancia verbal.",
+"textEn": "c’è + one; ci sono + several\nCompare the two lines of thought. La chiave è qui tells you where the known key is. C’è una chiave tells you that the key exists at all. These constructions may describe the same scene, but they answer different questions.\nYou can first indicate the location, then say what's in it. Or you can begin with the presence of the object. In both orders, maintain all the details and verb agreement.",
+"textId": "c’è + satu; ci sono + beberapa\nBandingkan kedua alur pemikiran tersebut. La chiave è qui memberi tahu Anda di mana kunci yang diketahui berada. C’è una chiave memberi tahu Anda bahwa kunci itu memang ada. Konstruksi ini mungkin menggambarkan adegan yang sama, tetapi menjawab pertanyaan yang berbeda.\nAnda dapat terlebih dahulu menunjukkan lokasinya, lalu mengatakan apa yang ada di dalamnya. Atau Anda dapat memulai dengan keberadaan objek tersebut. Dalam kedua urutan tersebut, pertahankan semua detail dan kesesuaian kata kerja.",
+"textPl": "c’è + jeden; ci sono + kilka\nPorównaj dwa toki myślowe. La chiave è qui wskazuje, gdzie znajduje się znany klucz. C’è una chiave wskazuje, że klucz w ogóle istnieje. Te konstrukcje mogą opisywać tę samą scenę, ale odpowiadają na różne pytania.\nMożesz najpierw wskazać lokalizację, a następnie powiedzieć, co się w niej znajduje. Możesz też zacząć od obecności obiektu. W obu przypadkach zachowaj wszystkie szczegóły i zgodność czasowników.",
+"textPtBr": "c’è + um; ci sono + vários\nCompare as duas linhas de raciocínio. La chiave è qui indica onde está a chave conhecida. C’è una chiave indica que a chave existe. Essas construções podem descrever a mesma cena, mas respondem a perguntas diferentes.\nVocê pode primeiro indicar o local e depois dizer o que está nele. Ou você pode começar com a presença do objeto. Em ambas as ordens, mantenha todos os detalhes e a concordância verbal.",
+"textRU": "c’è + одно; ci sono + несколько\nСравни два направления мысли. La chiave è qui сообщает, где известный ключ. C’è una chiave сообщает, что ключ вообще есть. Эти конструкции могут описывать одну сцену, но отвечают на разные вопросы.\nМожно сначала обозначить место, затем сказать, что в нём есть. А можно начать с наличия предмета. В обоих порядках сохраняй все детали и согласование глагола.",
+"textTr": "c’è + bir; ci sono + birkaç\nİki düşünce çizgisini karşılaştırın. La chiave è qui size bilinen anahtarın nerede olduğunu söyler. C’è una chiave size anahtarın var olduğunu söyler. Bu yapılar aynı sahneyi tanımlayabilir, ancak farklı soruları yanıtlar.\nÖnce konumu belirtebilir, sonra içinde ne olduğunu söyleyebilirsiniz. Veya nesnenin varlığıyla başlayabilirsiniz. Her iki sırada da tüm ayrıntıları ve fiil uyumunu koruyun.",
+"textUK": "c’è + одна; ci sono + кілька\nПорівняй два напрямки думки. La chiave è qui повідомляє, де є відомий ключ. C’è una chiave повідомляє, що ключ взагалі є. Ці конструкції можуть описувати одну сцену, але відповідають різні питання.\nМожна спочатку позначити місце, а потім сказати, що в ньому є. А можна розпочати з наявності предмета. В обох порядках зберігай усі деталі та узгодження дієслова.",
+"textVi": "c’è + một; ci sono + nhiều\nSo sánh hai dòng suy nghĩ. La chiave è qui cho bạn biết chìa khóa đã biết ở đâu. C’è una chiave cho bạn biết rằng chìa khóa thực sự tồn tại. Những cấu trúc này có thể mô tả cùng một cảnh, nhưng chúng trả lời những câu hỏi khác nhau.\nBạn có thể chỉ ra vị trí trước, sau đó nói những gì ở trong đó. Hoặc bạn có thể bắt đầu bằng sự hiện diện của đối tượng. Trong cả hai cách sắp xếp, hãy duy trì tất cả các chi tiết và sự hòa hợp của động từ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«c’è» + one; «ci sono» + several",
+"Compare the two lines of thought. «La chiave è qui» tells you where the known key is. «C’è una chiave» tells you that the key exists at all. These constructions may describe the same scene, but they answer different questions.",
+"You can first indicate the location, then say what's in it. Or you can begin with the presence of the object. In both orders, maintain all the details and verb agreement."
+],
+"es": [
+"«c’è» + uno; «ci sono» + varios",
+"Compara las dos líneas de pensamiento. «La chiave è qui» te dice dónde está la llave conocida. «C’è una chiave» te dice que la llave existe. Estas construcciones pueden describir la misma escena, pero responden a preguntas diferentes.",
+"Puedes indicar primero la ubicación y luego decir qué hay en ella. O puedes empezar con la presencia del objeto. En ambos casos, mantén todos los detalles y la concordancia verbal."
+],
+"id": [
+"«c’è» + satu; «ci sono» + beberapa",
+"Bandingkan kedua alur pemikiran tersebut. «La chiave è qui» memberi tahu Anda di mana kunci yang diketahui berada. «C’è una chiave» memberi tahu Anda bahwa kunci itu memang ada. Konstruksi ini mungkin menggambarkan adegan yang sama, tetapi menjawab pertanyaan yang berbeda.",
+"Anda dapat terlebih dahulu menunjukkan lokasinya, lalu mengatakan apa yang ada di dalamnya. Atau Anda dapat memulai dengan keberadaan objek tersebut. Dalam kedua urutan tersebut, pertahankan semua detail dan kesesuaian kata kerja."
+],
+"pl": [
+"«c’è» + jeden; «ci sono» + kilka",
+"Porównaj dwa toki myślowe. «La chiave è qui» wskazuje, gdzie znajduje się znany klucz. «C’è una chiave» wskazuje, że klucz w ogóle istnieje. Te konstrukcje mogą opisywać tę samą scenę, ale odpowiadają na różne pytania.",
+"Możesz najpierw wskazać lokalizację, a następnie powiedzieć, co się w niej znajduje. Możesz też zacząć od obecności obiektu. W obu przypadkach zachowaj wszystkie szczegóły i zgodność czasowników."
+],
+"pt-BR": [
+"«c’è» + um; «ci sono» + vários",
+"Compare as duas linhas de raciocínio. «La chiave è qui» indica onde está a chave conhecida. «C’è una chiave» indica que a chave existe. Essas construções podem descrever a mesma cena, mas respondem a perguntas diferentes.",
+"Você pode primeiro indicar o local e depois dizer o que está nele. Ou você pode começar com a presença do objeto. Em ambas as ordens, mantenha todos os detalhes e a concordância verbal."
+],
+"ru": [
+"«c’è» + одно; «ci sono» + несколько",
+"Сравни два направления мысли. «La chiave è qui» сообщает, где известный ключ. «C’è una chiave» сообщает, что ключ вообще есть. Эти конструкции могут описывать одну сцену, но отвечают на разные вопросы.",
+"Можно сначала обозначить место, затем сказать, что в нём есть. А можно начать с наличия предмета. В обоих порядках сохраняй все детали и согласование глагола."
+],
+"tr": [
+"«c’è» + bir; «ci sono» + birkaç",
+"İki düşünce çizgisini karşılaştırın. «La chiave è qui» size bilinen anahtarın nerede olduğunu söyler. «C’è una chiave» size anahtarın var olduğunu söyler. Bu yapılar aynı sahneyi tanımlayabilir, ancak farklı soruları yanıtlar.",
+"Önce konumu belirtebilir, sonra içinde ne olduğunu söyleyebilirsiniz. Veya nesnenin varlığıyla başlayabilirsiniz. Her iki sırada da tüm ayrıntıları ve fiil uyumunu koruyun."
+],
+"uk": [
+"«c’è» + одна; «ci sono» + кілька",
+"Порівняй два напрямки думки. «La chiave è qui» повідомляє, де є відомий ключ. «C’è una chiave» повідомляє, що ключ взагалі є. Ці конструкції можуть описувати одну сцену, але відповідають різні питання.",
+"Можна спочатку позначити місце, а потім сказати, що в ньому є. А можна розпочати з наявності предмета. В обох порядках зберігай усі деталі та узгодження дієслова."
+],
+"vi": [
+"«c’è» + một; «ci sono» + nhiều",
+"So sánh hai dòng suy nghĩ. «La chiave è qui» cho bạn biết chìa khóa đã biết ở đâu. «C’è una chiave» cho bạn biết rằng chìa khóa thực sự tồn tại. Những cấu trúc này có thể mô tả cùng một cảnh, nhưng chúng trả lời những câu hỏi khác nhau.",
+"Bạn có thể chỉ ra vị trí trước, sau đó nói những gì ở trong đó. Hoặc bạn có thể bắt đầu bằng sự hiện diện của đối tượng. Trong cả hai cách sắp xếp, hãy duy trì tất cả các chi tiết và sự hòa hợp của động từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:10:06",
+"it:10:10"
+]
+},
+{
+"textES": "Para la primera respuesta, elige C’è como una sola ficha: ya contiene un apóstrofo y la forma è. A continuación, una y luego panchina. No añadas otro è después de c’è.",
+"textEn": "For the first answer, choose C’è as a single tile: it already contains both an apostrophe and the form è. Next comes una, then panchina. Don't add another è after c’è.",
+"textId": "Untuk jawaban pertama, pilih C’è sebagai satu ubin tunggal: ubin ini sudah mengandung apostrof dan bentuk è. Selanjutnya adalah una, lalu panchina. Jangan menambahkan è lagi setelah c’è.",
+"textPl": "W pierwszej odpowiedzi wybierz C’è jako pojedynczy element: zawiera on już apostrof i formę è. Następnie jest una, a potem panchina. Nie dodawaj kolejnego è po c’è.",
+"textPtBr": "Para a primeira resposta, escolha C’è como uma única peça: ela já contém um apóstrofo e a forma è. Em seguida, vem una e depois panchina. Não adicione outro è depois de c’è.",
+"textRU": "Для первого ответа выбери C’è одной плиткой: внутри уже есть и апостроф, и форма è. Следом una, затем panchina. Не добавляй ещё одно è после c’è.",
+"textTr": "İlk cevap için, tek bir karo olarak C’è'i seçin: zaten hem bir kesme işareti hem de è biçimini içeriyor. Sonra una, ardından panchina gelir. c’è'dan sonra başka bir è eklemeyin.",
+"textUK": "Для першої відповіді вибери C’è однією плиткою: всередині вже є і апостроф, і форма è. Потім una, потім panchina. Не додай ще одне è після c’è.",
+"textVi": "Đối với câu trả lời đầu tiên, hãy chọn C’è làm một ô duy nhất: nó đã chứa cả dấu nháy đơn và dạng è. Tiếp theo là una, sau đó là panchina. Đừng thêm è nữa sau c’è.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For the first answer, choose «C’è» as a single tile: it already contains both an apostrophe and the form «è». Next comes «una», then «panchina». Don't add another «è» after «c’è»."
+],
+"es": [
+"Para la primera respuesta, elige «C’è» como una sola ficha: ya contiene un apóstrofo y la forma «è». A continuación, «una» y luego «panchina». No añadas otro «è» después de «c’è»."
+],
+"id": [
+"Untuk jawaban pertama, pilih «C’è» sebagai satu ubin tunggal: ubin ini sudah mengandung apostrof dan bentuk «è». Selanjutnya adalah «una», lalu «panchina». Jangan menambahkan «è» lagi setelah «c’è»."
+],
+"pl": [
+"W pierwszej odpowiedzi wybierz «C’è» jako pojedynczy element: zawiera on już apostrof i formę «è». Następnie jest «una», a potem «panchina». Nie dodawaj kolejnego «è» po «c’è»."
+],
+"pt-BR": [
+"Para a primeira resposta, escolha «C’è» como uma única peça: ela já contém um apóstrofo e a forma «è». Em seguida, vem «una» e depois «panchina». Não adicione outro «è» depois de «c’è»."
+],
+"ru": [
+"Для первого ответа выбери «C’è» одной плиткой: внутри уже есть и апостроф, и форма «è». Следом «una», затем «panchina». Не добавляй ещё одно «è» после «c’è»."
+],
+"tr": [
+"İlk cevap için, tek bir karo olarak «C’è»'i seçin: zaten hem bir kesme işareti hem de «è» biçimini içeriyor. Sonra «una», ardından «panchina» gelir. «c’è»'dan sonra başka bir «è» eklemeyin."
+],
+"uk": [
+"Для першої відповіді вибери «C’è» однією плиткою: всередині вже є і апостроф, і форма «è». Потім «una», потім «panchina». Не додай ще одне «è» після «c’è»."
+],
+"vi": [
+"Đối với câu trả lời đầu tiên, hãy chọn «C’è» làm một ô duy nhất: nó đã chứa cả dấu nháy đơn và dạng «è». Tiếp theo là «una», sau đó là «panchina». Đừng thêm «è» nữa sau «c’è»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:10:01",
+"it:10:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:10:01",
+"target": "C’è una panchina.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "it:10:06",
+"target": "C’è un parco vicino alla stazione ferroviaria.",
+"ru": "Рядом с железнодорожным вокзалом есть парк.",
+"uk": "Біля залізничного вокзалу є парк."
+},
+{
+"id": "it:10:10",
+"target": "C’è del caffè.",
+"ru": "Есть кофе.",
+"uk": "Є кава."
+},
+{
+"id": "it:10:01",
+"target": "C’è una panchina.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "it:10:04",
+"target": "Ci sono tre sedie.",
+"ru": "Есть три стула.",
+"uk": "Є три стільці."
+}
+]
+},
+{
+"lesson": 11,
+"blocks": [
+{
+"textES": "En este caso, debes decir \"Voy a la estación\" en lugar de \"Estoy en la estación\". Misma ubicación, acción diferente. Vado significa \"Voy o conduzco\". Puedes especificar el destino exacto por separado.\nAndare no forma el presente simplemente cambiando la terminación: vado, vai, va, sino andiamo. Es conveniente enseñar en parejas con el mismo destino.",
+"textEn": "This time, you should say \"I'm going to the station\" instead of \"I'm at the station.\" Same location, different action. Vado means \"I'm going or driving.\" You can specify the exact destination separately.\nAndare doesn't form the present tense by simply changing the ending: vado, vai, va, but andiamo. It's convenient to teach in pairs with the same destination.",
+"textId": "Kali ini, Anda harus mengatakan \"Saya akan pergi ke stasiun\" alih-alih \"Saya berada di stasiun.\" Lokasi yang sama, tindakan yang berbeda. Vado berarti \"Saya akan pergi atau mengemudi.\" Anda dapat menentukan tujuan yang tepat secara terpisah.\nAndare tidak membentuk bentuk present tense hanya dengan mengubah akhiran: vado, vai, va, tetapi andiamo. Lebih mudah diajarkan berpasangan dengan tujuan yang sama.",
+"textPl": "Tym razem zamiast „Jestem na stacji” należy powiedzieć „Idę na stację”. To samo miejsce, inna czynność. Vado oznacza „Idę lub jadę”. Dokładny cel podróży można określić osobno.\nAndare nie tworzy czasu teraźniejszego poprzez prostą zmianę końcówki: vado, vai, va, ale andiamo. Wygodniej jest uczyć w parach, mając ten sam cel.",
+"textPtBr": "Desta vez, você deve dizer \"Estou indo para a estação\" em vez de \"Estou na estação\". Mesmo local, ação diferente. Vado significa \"Estou indo ou dirigindo\". Você pode especificar o destino exato separadamente.\nAndare não forma o presente do indicativo simplesmente mudando a terminação: vado, vai, va, mas sim andiamo. É conveniente ensinar em pares com o mesmo destino.",
+"textRU": "В этот раз надо сказать не «я на вокзале», а «я иду на вокзал». Место то же, действие другое. Vado означает «я иду или еду». Как именно добираешься, можно сообщить отдельно.\nAndare не образует настоящее простой заменой окончания: vado, vai, va, но andiamo. Учить удобно парами с одной и той же точкой назначения.",
+"textTr": "Bu sefer \"İstasyondayım\" yerine \"İstasyona gidiyorum\" demelisiniz. Aynı konum, farklı eylem. Vado \"Gidiyorum veya sürüyorum\" anlamına gelir. Tam varış noktasını ayrı olarak belirtebilirsiniz.\nAndare, sadece son eki değiştirerek şimdiki zamanı oluşturmaz: vado, vai, va, ancak andiamo oluşturur. Aynı varış noktasına sahip çiftler halinde öğretmek uygundur.",
+"textUK": "На цей раз треба сказати не «я на вокзалі», а «я йду на вокзал». Місце те саме, дія інша. Vado означає «я йду чи їду». Як саме дістаєшся, можна повідомити окремо.\nAndare не утворює справжнє простою заміною закінчення: vado, vai, va, але andiamo. Вчити зручно парами з однією і тією ж точкою призначення.",
+"textVi": "Lần này, bạn nên nói \"Tôi đang đi đến nhà ga\" thay vì \"Tôi đang ở nhà ga.\" Cùng một địa điểm, nhưng hành động khác nhau. Vado có nghĩa là \"Tôi đang đi hoặc lái xe.\" Bạn có thể chỉ định điểm đến chính xác một cách riêng biệt.\nAndare không tạo thành thì hiện tại chỉ bằng cách thay đổi đuôi: vado, vai, va, mà là andiamo. Thuận tiện hơn khi dạy theo cặp với cùng một điểm đến.",
+"titleES": "andare + ubicación",
+"titleEn": "Route: andare + location",
+"titleId": "Rute: andare + lokasi",
+"titlePl": "Trasa: andare + lokalizacja",
+"titlePtBr": "Rota: andare + localização",
+"titleRU": "Маршрут: andare + место",
+"titleTr": "Güzergah: andare + konum",
+"titleUK": "Маршрут: andare + місце",
+"titleVi": "Tuyến đường: andare + địa điểm",
+"titleByLocale": {
+"en": "Route: andare + location",
+"es": "andare + ubicación",
+"id": "Rute: andare + lokasi",
+"pl": "Trasa: andare + lokalizacja",
+"pt-BR": "Rota: andare + localização",
+"ru": "Маршрут: andare + место",
+"tr": "Güzergah: andare + konum",
+"uk": "Маршрут: andare + місце",
+"vi": "Tuyến đường: andare + địa điểm"
+},
+"textByLocale": {
+"en": [
+"This time, you should say \"I'm going to the station\" instead of \"I'm at the station.\" Same location, different action. «Vado» means \"I'm going or driving.\" You can specify the exact destination separately.",
+"«Andare» doesn't form the present tense by simply changing the ending: «vado», «vai», «va», but «andiamo». It's convenient to teach in pairs with the same destination."
+],
+"es": [
+"En este caso, debes decir \"Voy a la estación\" en lugar de \"Estoy en la estación\". Misma ubicación, acción diferente. «Vado» significa \"Voy o conduzco\". Puedes especificar el destino exacto por separado.",
+"«Andare» no forma el presente simplemente cambiando la terminación: «vado», «vai», «va», sino «andiamo». Es conveniente enseñar en parejas con el mismo destino."
+],
+"id": [
+"Kali ini, Anda harus mengatakan \"Saya akan pergi ke stasiun\" alih-alih \"Saya berada di stasiun.\" Lokasi yang sama, tindakan yang berbeda. «Vado» berarti \"Saya akan pergi atau mengemudi.\" Anda dapat menentukan tujuan yang tepat secara terpisah.",
+"«Andare» tidak membentuk bentuk present tense hanya dengan mengubah akhiran: «vado», «vai», «va», tetapi «andiamo». Lebih mudah diajarkan berpasangan dengan tujuan yang sama."
+],
+"pl": [
+"Tym razem zamiast „Jestem na stacji” należy powiedzieć „Idę na stację”. To samo miejsce, inna czynność. «Vado» oznacza „Idę lub jadę”. Dokładny cel podróży można określić osobno.",
+"«Andare» nie tworzy czasu teraźniejszego poprzez prostą zmianę końcówki: «vado», «vai», «va», ale «andiamo». Wygodniej jest uczyć w parach, mając ten sam cel."
+],
+"pt-BR": [
+"Desta vez, você deve dizer \"Estou indo para a estação\" em vez de \"Estou na estação\". Mesmo local, ação diferente. «Vado» significa \"Estou indo ou dirigindo\". Você pode especificar o destino exato separadamente.",
+"«Andare» não forma o presente do indicativo simplesmente mudando a terminação: «vado», «vai», «va», mas sim «andiamo». É conveniente ensinar em pares com o mesmo destino."
+],
+"ru": [
+"В этот раз надо сказать не «я на вокзале», а «я иду на вокзал». Место то же, действие другое. «Vado» означает «я иду или еду». Как именно добираешься, можно сообщить отдельно.",
+"«Andare» не образует настоящее простой заменой окончания: «vado», «vai», «va», но «andiamo». Учить удобно парами с одной и той же точкой назначения."
+],
+"tr": [
+"Bu sefer \"İstasyondayım\" yerine \"İstasyona gidiyorum\" demelisiniz. Aynı konum, farklı eylem. «Vado» \"Gidiyorum veya sürüyorum\" anlamına gelir. Tam varış noktasını ayrı olarak belirtebilirsiniz.",
+"«Andare», sadece son eki değiştirerek şimdiki zamanı oluşturmaz: «vado», «vai», «va», ancak «andiamo» oluşturur. Aynı varış noktasına sahip çiftler halinde öğretmek uygundur."
+],
+"uk": [
+"На цей раз треба сказати не «я на вокзалі», а «я йду на вокзал». Місце те саме, дія інша. «Vado» означає «я йду чи їду». Як саме дістаєшся, можна повідомити окремо.",
+"«Andare» не утворює справжнє простою заміною закінчення: «vado», «vai», «va», але «andiamo». Вчити зручно парами з однією і тією ж точкою призначення."
+],
+"vi": [
+"Lần này, bạn nên nói \"Tôi đang đi đến nhà ga\" thay vì \"Tôi đang ở nhà ga.\" Cùng một địa điểm, nhưng hành động khác nhau. «Vado» có nghĩa là \"Tôi đang đi hoặc lái xe.\" Bạn có thể chỉ định điểm đến chính xác một cách riêng biệt.",
+"«Andare» không tạo thành thì hiện tại chỉ bằng cách thay đổi đuôi: «vado», «vai», «va», mà là «andiamo». Thuận tiện hơn khi dạy theo cặp với cùng một điểm đến."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:11:01"
+]
+},
+{
+"textES": "vado / vai / va … + a / in / da\nRecuerda el verbo junto con el grupo de destino: vado in stazione, vado al mercato, vado dal medico. La última forma se refiere literalmente a una persona. La elección de la preposición no se puede deducir de una sola traducción de la palabra \"en\".\nA + il da como resultado al, y a + lo da como resultado allo. En al mercato, el artículo ya está oculto. No añadas el segundo il.",
+"textEn": "vado / vai / va … + a / in / da\nRemember the verb along with the destination group: vado in stazione, vado al mercato, vado dal medico. The last form literally directs to a person. The choice of preposition cannot be deduced from a single translation of the word \"in.\"\nA + il yields al, and a + lo yields allo. In al mercato, the article is already hidden. Don't add the second il.",
+"textId": "vado / vai / va … + a / in / da\nIngat kata kerja bersama dengan kelompok tujuan: vado in stazione, vado al mercato, vado dal medico. Bentuk terakhir secara harfiah mengarah ke seseorang. Pilihan preposisi tidak dapat disimpulkan dari satu terjemahan kata \"di.\"\nA + il menghasilkan al, dan a + lo menghasilkan allo. Pada al mercato, artikel sudah tersembunyi. Jangan tambahkan il yang kedua.",
+"textPl": "vado / vai / va … + a / in / da\nZapamiętaj czasownik wraz z grupą „destination”: vado in stazione, vado al mercato, vado dal medico. Ostatnia forma dosłownie wskazuje na osobę. Wyboru przyimka nie można wywnioskować z pojedynczego tłumaczenia słowa „in”.\nA + il daje al, a a + lo daje allo. W al mercato rodzajnik jest już ukryty. Nie dodawaj drugiego il.",
+"textPtBr": "vado / vai / va … + a / in / da\nLembre-se do verbo junto com o grupo de destino: vado in stazione, vado al mercato, vado dal medico. A última forma se dirige literalmente a uma pessoa. A escolha da preposição não pode ser deduzida de uma única tradução da palavra \"em\".\nA + il gera al, e a + lo gera allo. Em al mercato, o artigo já está oculto. Não adicione o segundo il.",
+"textRU": "vado / vai / va … + a / in / da\nЗапоминай глагол вместе с группой назначения: vado in stazione, vado al mercato, vado dal medico. Последняя форма буквально направляет к человеку. Выбор предлога нельзя вывести из одного перевода слова «в».\nA + il даёт al, а a + lo — allo. В al mercato артикль уже спрятан. Не добавляй второе il.",
+"textTr": "vado / vai / va … + a / in / da\nFiili varış noktası grubuyla birlikte hatırlayın: vado in stazione, vado al mercato, vado dal medico. Son form kelimenin tam anlamıyla bir kişiye işaret eder. Edat seçimi, \"içinde\" kelimesinin tek bir çevirisinden çıkarılamaz.\nA + il, al'yi ve a + lo, allo'ü verir. al mercato'te, makale zaten gizlenmiştir. İkinci il'yı eklemeyin.",
+"textUK": "vado / vai / va … + a / in / da\nЗапам'ятай дієслово разом із групою призначення: vado in stazione, vado al mercato, vado dal medico. Остання форма буквально спрямовує до людини. Вибір прийменника не можна вивести з перекладу слова «в».\nA + il дає al, а a + lo - allo. У al mercato артикль вже захований. Не додай друге il.",
+"textVi": "vado / vai / va … + a / in / da\nHãy nhớ động từ cùng với nhóm điểm đến: vado in stazione, vado al mercato, vado dal medico. Hình thức cuối cùng theo nghĩa đen chỉ đến một người. Việc lựa chọn giới từ không thể suy ra từ một bản dịch duy nhất của từ \"trong.\"\nA + il tạo ra al, và a + lo tạo ra allo. Trong al mercato, mạo từ đã được ẩn đi. Đừng thêm il thứ hai.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«vado / vai / va …» + «a / in / da»",
+"Remember the verb along with the destination group: «vado in stazione», «vado al mercato», «vado dal medico». The last form literally directs to a person. The choice of preposition cannot be deduced from a single translation of the word \"in.\"",
+"«A + il» yields «al», and «a + lo» yields «allo». In «al mercato», the article is already hidden. Don't add the second «il»."
+],
+"es": [
+"«vado / vai / va …» + «a / in / da»",
+"Recuerda el verbo junto con el grupo de destino: «vado in stazione», «vado al mercato», «vado dal medico». La última forma se refiere literalmente a una persona. La elección de la preposición no se puede deducir de una sola traducción de la palabra \"en\".",
+"«A + il» da como resultado «al», y «a + lo» da como resultado «allo». En «al mercato», el artículo ya está oculto. No añadas el segundo «il»."
+],
+"id": [
+"«vado / vai / va …» + «a / in / da»",
+"Ingat kata kerja bersama dengan kelompok tujuan: «vado in stazione», «vado al mercato», «vado dal medico». Bentuk terakhir secara harfiah mengarah ke seseorang. Pilihan preposisi tidak dapat disimpulkan dari satu terjemahan kata \"di.\"",
+"«A + il» menghasilkan «al», dan «a + lo» menghasilkan «allo». Pada «al mercato», artikel sudah tersembunyi. Jangan tambahkan «il» yang kedua."
+],
+"pl": [
+"«vado / vai / va …» + «a / in / da»",
+"Zapamiętaj czasownik wraz z grupą „destination”: «vado in stazione», «vado al mercato», «vado dal medico». Ostatnia forma dosłownie wskazuje na osobę. Wyboru przyimka nie można wywnioskować z pojedynczego tłumaczenia słowa „in”.",
+"«A + il» daje «al», a «a + lo» daje «allo». W «al mercato» rodzajnik jest już ukryty. Nie dodawaj drugiego «il»."
+],
+"pt-BR": [
+"«vado / vai / va …» + «a / in / da»",
+"Lembre-se do verbo junto com o grupo de destino: «vado in stazione», «vado al mercato», «vado dal medico». A última forma se dirige literalmente a uma pessoa. A escolha da preposição não pode ser deduzida de uma única tradução da palavra \"em\".",
+"«A + il» gera «al», e «a + lo» gera «allo». Em «al mercato», o artigo já está oculto. Não adicione o segundo «il»."
+],
+"ru": [
+"«vado / vai / va …» + «a / in / da»",
+"Запоминай глагол вместе с группой назначения: «vado in stazione», «vado al mercato», «vado dal medico». Последняя форма буквально направляет к человеку. Выбор предлога нельзя вывести из одного перевода слова «в».",
+"«A + il» даёт «al», а «a + lo» — «allo». В «al mercato» артикль уже спрятан. Не добавляй второе «il»."
+],
+"tr": [
+"«vado / vai / va …» + «a / in / da»",
+"Fiili varış noktası grubuyla birlikte hatırlayın: «vado in stazione», «vado al mercato», «vado dal medico». Son form kelimenin tam anlamıyla bir kişiye işaret eder. Edat seçimi, \"içinde\" kelimesinin tek bir çevirisinden çıkarılamaz.",
+"«A + il», «al»'yi ve «a + lo», «allo»'ü verir. «al mercato»'te, makale zaten gizlenmiştir. İkinci «il»'yı eklemeyin."
+],
+"uk": [
+"«vado / vai / va …» + «a / in / da»",
+"Запам'ятай дієслово разом із групою призначення: «vado in stazione», «vado al mercato», «vado dal medico». Остання форма буквально спрямовує до людини. Вибір прийменника не можна вивести з перекладу слова «в».",
+"«A + il» дає «al», а «a + lo» - «allo». У «al mercato» артикль вже захований. Не додай друге «il»."
+],
+"vi": [
+"«vado / vai / va …» + «a / in / da»",
+"Hãy nhớ động từ cùng với nhóm điểm đến: «vado in stazione», «vado al mercato», «vado dal medico». Hình thức cuối cùng theo nghĩa đen chỉ đến một người. Việc lựa chọn giới từ không thể suy ra từ một bản dịch duy nhất của từ \"trong.\"",
+"«A + il» tạo ra «al», và «a + lo» tạo ra «allo». Trong «al mercato», mạo từ đã được ẩn đi. Đừng thêm «il» thứ hai."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:11:04",
+"it:11:09"
+]
+},
+{
+"textES": "Para \"Voy a la estación\", empieza con Vado. Añade in y stazione. Si la otra persona necesita la respuesta \"Vas\", sustituye solo vado por vai.",
+"textEn": "For \"I'm going to the station,\" start with Vado. Add in and stazione. If the other person needs the answer \"you're going,\" replace only vado with vai.",
+"textId": "Untuk \"Saya akan pergi ke stasiun,\" mulailah dengan Vado. Tambahkan in dan stazione. Jika orang lain membutuhkan jawaban \"kamu akan pergi,\" ganti hanya vado dengan vai.",
+"textPl": "W przypadku „Idę na stację” zacznij od Vado. Dodaj in i stazione. Jeśli druga osoba potrzebuje odpowiedzi „Idziesz”, zastąp tylko vado vai.",
+"textPtBr": "Para \"Eu vou para a estação\", comece com Vado. Adicione in e stazione. Se a outra pessoa precisar da resposta \"você vai\", substitua apenas vado por vai.",
+"textRU": "Для «Я иду на вокзал» начни с Vado. Добавь in и stazione. Если собеседнику нужен ответ «ты идёшь», замени только vado на vai.",
+"textTr": "\"İstasyona gidiyorum\" için Vado ile başlayın. in ve stazione'ü ekleyin. Karşıdaki kişi \"gidiyorsun\" cevabını istiyorsa, sadece vado'ü vai ile değiştirin.",
+"textUK": "Для «Я йду на вокзал» почни з Vado. Додай in і stazione. Якщо співрозмовнику потрібна відповідь «ти йдеш», заміни лише vado на vai.",
+"textVi": "Đối với câu \"Tôi đang đi đến nhà ga\", hãy bắt đầu với Vado. Thêm in và stazione. Nếu người kia cần câu trả lời \"bạn đang đi\", chỉ cần thay thế vado bằng vai.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For \"I'm going to the station,\" start with «Vado». Add «in» and «stazione». If the other person needs the answer \"you're going,\" replace only «vado» with «vai»."
+],
+"es": [
+"Para \"Voy a la estación\", empieza con «Vado». Añade «in» y «stazione». Si la otra persona necesita la respuesta \"Vas\", sustituye solo «vado» por «vai»."
+],
+"id": [
+"Untuk \"Saya akan pergi ke stasiun,\" mulailah dengan «Vado». Tambahkan «in» dan «stazione». Jika orang lain membutuhkan jawaban \"kamu akan pergi,\" ganti hanya «vado» dengan «vai»."
+],
+"pl": [
+"W przypadku „Idę na stację” zacznij od «Vado». Dodaj «in» i «stazione». Jeśli druga osoba potrzebuje odpowiedzi „Idziesz”, zastąp tylko «vado» «vai»."
+],
+"pt-BR": [
+"Para \"Eu vou para a estação\", comece com «Vado». Adicione «in» e «stazione». Se a outra pessoa precisar da resposta \"você vai\", substitua apenas «vado» por «vai»."
+],
+"ru": [
+"Для «Я иду на вокзал» начни с «Vado». Добавь «in» и «stazione». Если собеседнику нужен ответ «ты идёшь», замени только «vado» на «vai»."
+],
+"tr": [
+"\"İstasyona gidiyorum\" için «Vado» ile başlayın. «in» ve «stazione»'ü ekleyin. Karşıdaki kişi \"gidiyorsun\" cevabını istiyorsa, sadece «vado»'ü «vai» ile değiştirin."
+],
+"uk": [
+"Для «Я йду на вокзал» почни з «Vado». Додай «in» і «stazione». Якщо співрозмовнику потрібна відповідь «ти йдеш», заміни лише «vado» на «vai»."
+],
+"vi": [
+"Đối với câu \"Tôi đang đi đến nhà ga\", hãy bắt đầu với «Vado». Thêm «in» và «stazione». Nếu người kia cần câu trả lời \"bạn đang đi\", chỉ cần thay thế «vado» bằng «vai»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:11:01",
+"it:11:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:11:01",
+"target": "Vado in stazione.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "it:11:04",
+"target": "Lui va al mercato.",
+"ru": "Он идет на рынок.",
+"uk": "Він іде на ринок."
+},
+{
+"id": "it:11:09",
+"target": "Io vado al cinema.",
+"ru": "Я иду в кино.",
+"uk": "Я йду в кіно."
+},
+{
+"id": "it:11:01",
+"target": "Vado in stazione.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "it:11:04",
+"target": "Lui va al mercato.",
+"ru": "Он идет на рынок.",
+"uk": "Він іде на ринок."
+}
+]
+},
+{
+"lesson": 12,
+"blocks": [
+{
+"textES": "Necesitas pan en la tienda, pero no especificas la cantidad. Prendo del pane deja la cantidad abierta. Si necesitas un kilogramo entero, indícalo explícitamente: un chilo di pane.\nEl artículo parcial se parece a un compuesto de di con un artículo definido, pero en estas frases no significa \"de\". Introduce una cierta cantidad del producto.",
+"textEn": "You need bread at the store, but you don't specify the number of loaves. Prendo del pane leaves the quantity open. If you need a whole kilogram, state it explicitly: un chilo di pane.\nThe partial article looks like a compound of di with a definite article, but in these phrases, it doesn't mean \"of.\" It introduces a certain quantity of the product.",
+"textId": "Anda membutuhkan roti di toko, tetapi Anda tidak menentukan jumlah roti. Prendo del pane membiarkan jumlahnya terbuka. Jika Anda membutuhkan satu kilogram penuh, nyatakan secara eksplisit: un chilo di pane.\nArtikel parsial tampak seperti gabungan dari di dengan artikel pasti, tetapi dalam frasa ini, itu tidak berarti \"dari.\" Artikel tersebut memperkenalkan sejumlah tertentu dari produk.",
+"textPl": "Potrzebujesz chleba w sklepie, ale nie określasz liczby bochenków. Prendo del pane pozostawia ilość otwartą. Jeśli potrzebujesz całego kilograma, podaj to wprost: un chilo di pane.\nPrzedimek częściowy wygląda jak połączenie di z przedimkiem określonym, ale w tych frazach nie oznacza on „z”. Wprowadza on określoną ilość produktu.",
+"textPtBr": "Você precisa de pão na loja, mas não especifica a quantidade. Prendo del pane deixa a quantidade em aberto. Se precisar de um quilo inteiro, especifique explicitamente: un chilo di pane.\nO artigo incompleto parece um composto de di com um artigo definido, mas nessas frases, não significa \"de\". Ele introduz uma certa quantidade do produto.",
+"textRU": "В магазине тебе нужен хлеб, но ты не называешь число булок. Prendo del pane оставляет количество открытым. Если нужен целый килограмм, скажи это явно: un chilo di pane.\nЧастичный артикль выглядит как соединение di с определённым артиклем, но в этих фразах он не означает «из». Он вводит некоторое количество продукта.",
+"textTr": "Marketten ekmek almanız gerekiyor, ancak kaç somun istediğinizi belirtmiyorsunuz. Prendo del pane miktarı açık bırakıyor. Eğer bir kilogram ekmek istiyorsanız, bunu açıkça belirtin: un chilo di pane.\nKısmi tanımlık, di ile belirli bir tanımlığın birleşimi gibi görünse de, bu ifadelerde \"ait\" anlamına gelmez. Ürünün belirli bir miktarını tanıtır.",
+"textUK": "У магазині тобі потрібний хліб, але ти не називаєш число булок. Prendo del pane залишає кількість відкритим. Якщо потрібний цілий кілограм, скажи це явно: un chilo di pane.\nЧастковий артикль виглядає як з'єднання di з певним артиклем, але в цих фразах він не означає \"з\". Він вводить кілька продуктів.",
+"textVi": "Bạn cần bánh mì ở cửa hàng, nhưng bạn không chỉ định số lượng ổ. Prendo del pane để trống phần số lượng. Nếu bạn cần cả một kilogram, hãy nêu rõ: un chilo di pane.\nMạo từ một phần trông giống như sự kết hợp của di với mạo từ xác định, nhưng trong các cụm từ này, nó không có nghĩa là \"của\". Nó giới thiệu một số lượng nhất định của sản phẩm.",
+"titleES": "Cantidad indefinida: del pane, dell’acqua",
+"titleEn": "Indefinite quantity: del pane, dell’acqua",
+"titleId": "Jumlah tak tentu: del pane, dell’acqua",
+"titlePl": "Ilość nieokreślona: del pane, dell’acqua",
+"titlePtBr": "Quantidade indefinida: del pane, dell’acqua",
+"titleRU": "Неопределённое количество: del pane, dell’acqua",
+"titleTr": "Belirsiz miktar: del pane, dell’acqua",
+"titleUK": "Невизначена кількість: del pane, dell’acqua",
+"titleVi": "Số lượng không xác định: del pane, dell’acqua",
+"titleByLocale": {
+"en": "Indefinite quantity: del pane, dell’acqua",
+"es": "Cantidad indefinida: del pane, dell’acqua",
+"id": "Jumlah tak tentu: del pane, dell’acqua",
+"pl": "Ilość nieokreślona: del pane, dell’acqua",
+"pt-BR": "Quantidade indefinida: del pane, dell’acqua",
+"ru": "Неопределённое количество: del pane, dell’acqua",
+"tr": "Belirsiz miktar: del pane, dell’acqua",
+"uk": "Невизначена кількість: del pane, dell’acqua",
+"vi": "Số lượng không xác định: del pane, dell’acqua"
+},
+"textByLocale": {
+"en": [
+"You need bread at the store, but you don't specify the number of loaves. «Prendo del pane» leaves the quantity open. If you need a whole kilogram, state it explicitly: «un chilo di pane».",
+"The partial article looks like a compound of «di» with a definite article, but in these phrases, it doesn't mean \"of.\" It introduces a certain quantity of the product."
+],
+"es": [
+"Necesitas pan en la tienda, pero no especificas la cantidad. «Prendo del pane» deja la cantidad abierta. Si necesitas un kilogramo entero, indícalo explícitamente: «un chilo di pane».",
+"El artículo parcial se parece a un compuesto de «di» con un artículo definido, pero en estas frases no significa \"de\". Introduce una cierta cantidad del producto."
+],
+"id": [
+"Anda membutuhkan roti di toko, tetapi Anda tidak menentukan jumlah roti. «Prendo del pane» membiarkan jumlahnya terbuka. Jika Anda membutuhkan satu kilogram penuh, nyatakan secara eksplisit: «un chilo di pane».",
+"Artikel parsial tampak seperti gabungan dari «di» dengan artikel pasti, tetapi dalam frasa ini, itu tidak berarti \"dari.\" Artikel tersebut memperkenalkan sejumlah tertentu dari produk."
+],
+"pl": [
+"Potrzebujesz chleba w sklepie, ale nie określasz liczby bochenków. «Prendo del pane» pozostawia ilość otwartą. Jeśli potrzebujesz całego kilograma, podaj to wprost: «un chilo di pane».",
+"Przedimek częściowy wygląda jak połączenie «di» z przedimkiem określonym, ale w tych frazach nie oznacza on „z”. Wprowadza on określoną ilość produktu."
+],
+"pt-BR": [
+"Você precisa de pão na loja, mas não especifica a quantidade. «Prendo del pane» deixa a quantidade em aberto. Se precisar de um quilo inteiro, especifique explicitamente: «un chilo di pane».",
+"O artigo incompleto parece um composto de «di» com um artigo definido, mas nessas frases, não significa \"de\". Ele introduz uma certa quantidade do produto."
+],
+"ru": [
+"В магазине тебе нужен хлеб, но ты не называешь число булок. «Prendo del pane» оставляет количество открытым. Если нужен целый килограмм, скажи это явно: «un chilo di pane».",
+"Частичный артикль выглядит как соединение «di» с определённым артиклем, но в этих фразах он не означает «из». Он вводит некоторое количество продукта."
+],
+"tr": [
+"Marketten ekmek almanız gerekiyor, ancak kaç somun istediğinizi belirtmiyorsunuz. «Prendo del pane» miktarı açık bırakıyor. Eğer bir kilogram ekmek istiyorsanız, bunu açıkça belirtin: «un chilo di pane».",
+"Kısmi tanımlık, «di» ile belirli bir tanımlığın birleşimi gibi görünse de, bu ifadelerde \"ait\" anlamına gelmez. Ürünün belirli bir miktarını tanıtır."
+],
+"uk": [
+"У магазині тобі потрібний хліб, але ти не називаєш число булок. «Prendo del pane» залишає кількість відкритим. Якщо потрібний цілий кілограм, скажи це явно: «un chilo di pane».",
+"Частковий артикль виглядає як з'єднання «di» з певним артиклем, але в цих фразах він не означає \"з\". Він вводить кілька продуктів."
+],
+"vi": [
+"Bạn cần bánh mì ở cửa hàng, nhưng bạn không chỉ định số lượng ổ. «Prendo del pane» để trống phần số lượng. Nếu bạn cần cả một kilogram, hãy nêu rõ: «un chilo di pane».",
+"Mạo từ một phần trông giống như sự kết hợp của «di» với mạo từ xác định, nhưng trong các cụm từ này, nó không có nghĩa là \"của\". Nó giới thiệu một số lượng nhất định của sản phẩm."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:12:01"
+]
+},
+{
+"textES": "Verbo + cantidad o porción\nLa forma depende del nombre del producto. Del pane y della farina tienen el mismo significado, pero se escriben diferente. Se coloca un apóstrofo antes de la vocal: dell’acqua.\nCon la mantequilla, distingue entre l’olio y il burro. Es importante no sustituir mecánicamente una palabra conocida, sino comprender qué mantequilla se necesita según la situación. El artículo debe coincidir con la palabra elegida.",
+"textEn": "Verb + quantity or portion\nThe form depends on the product name. Del pane and della farina are identical in meaning, but not spelled the same. An apostrophe appears before the vowel: dell’acqua.\nWith butter, distinguish between l’olio and il burro. It's important not to mechanically substitute a familiar word, but to understand which butter is needed based on the situation. The article must match the chosen word.",
+"textId": "Kata kerja + jumlah atau porsi\nBentuknya bergantung pada nama produk. Del pane dan della farina memiliki arti yang identik, tetapi ejaannya berbeda. Tanda apostrof muncul sebelum vokal: dell’acqua.\nDengan mentega, bedakan antara l’olio dan il burro. Penting untuk tidak secara mekanis mengganti kata yang sudah dikenal, tetapi untuk memahami mentega mana yang dibutuhkan berdasarkan situasi. Artikel harus sesuai dengan kata yang dipilih.",
+"textPl": "Czasownik + ilość lub porcja\nForma zależy od nazwy produktu. Del pane i della farina mają identyczne znaczenie, ale nie są pisane tak samo. Apostrof pojawia się przed samogłoską: dell’acqua.\nW przypadku masła rozróżnij l’olio i il burro. Ważne jest, aby nie zastępować go mechanicznie znanym słowem, ale zrozumieć, które masło jest potrzebne w zależności od sytuacji. Przedimek musi pasować do wybranego słowa.",
+"textPtBr": "Verbo + quantidade ou porção\nA forma depende do nome do produto. Del pane e della farina têm o mesmo significado, mas a grafia é diferente. Um apóstrofo aparece antes da vogal: dell’acqua.\nCom manteiga, distinga entre l’olio e il burro. É importante não substituir mecanicamente uma palavra familiar, mas entender qual manteiga é necessária com base na situação. O artigo deve corresponder à palavra escolhida.",
+"textRU": "глагол + количество или порция\nФорма зависит от названия продукта. Del pane и della farina работают одинаково по смыслу, но не совпадают по написанию. Перед гласной появляется апостроф: dell’acqua.\nС маслом различай l’olio и il burro. Важно не механически подставить знакомое слово, а понять, какое масло нужно по ситуации. Артикль должен соответствовать выбранному слову.",
+"textTr": "Fiil + miktar veya kısım\nBiçim, ürün adına bağlıdır. Del pane ve della farina anlam olarak aynıdır, ancak aynı şekilde yazılmazlar. Ünlü harften önce bir kesme işareti bulunur: dell’acqua.\nTereyağı ile l’olio ve il burro arasında ayrım yapın. Mekanik olarak tanıdık bir kelimeyi yerine koymak değil, duruma göre hangi tereyağının gerekli olduğunu anlamak önemlidir. Tanımlık, seçilen kelimeyle eşleşmelidir.",
+"textUK": "дієслово + кількість або порція\nФорма залежить від назви продукту. Del pane та della farina працюють однаково за змістом, але не збігаються за написанням. Перед голосною постає апостроф: dell’acqua.\nЗ маслом розрізняй l’olio і il burro. Важливо не механічно підставити знайоме слово, а зрозуміти, яке масло потрібно за ситуацією. Артикль повинен відповідати вибраному слову.",
+"textVi": "Động từ + số lượng hoặc phần\nHình thức phụ thuộc vào tên sản phẩm. Del pane và della farina có nghĩa giống nhau, nhưng cách viết khác nhau. Dấu nháy đơn xuất hiện trước nguyên âm: dell’acqua.\nVới bơ, hãy phân biệt giữa l’olio và il burro. Điều quan trọng là không thay thế một cách máy móc một từ quen thuộc, mà phải hiểu loại bơ nào cần thiết dựa trên tình huống. Mạo từ phải phù hợp với từ đã chọn.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Verb + quantity or portion",
+"The form depends on the product name. «Del pane» and «della farina» are identical in meaning, but not spelled the same. An apostrophe appears before the vowel: «dell’acqua».",
+"With butter, distinguish between «l’olio» and «il burro». It's important not to mechanically substitute a familiar word, but to understand which butter is needed based on the situation. The article must match the chosen word."
+],
+"es": [
+"Verbo + cantidad o porción",
+"La forma depende del nombre del producto. «Del pane» y «della farina» tienen el mismo significado, pero se escriben diferente. Se coloca un apóstrofo antes de la vocal: «dell’acqua».",
+"Con la mantequilla, distingue entre «l’olio» y «il burro». Es importante no sustituir mecánicamente una palabra conocida, sino comprender qué mantequilla se necesita según la situación. El artículo debe coincidir con la palabra elegida."
+],
+"id": [
+"Kata kerja + jumlah atau porsi",
+"Bentuknya bergantung pada nama produk. «Del pane» dan «della farina» memiliki arti yang identik, tetapi ejaannya berbeda. Tanda apostrof muncul sebelum vokal: «dell’acqua».",
+"Dengan mentega, bedakan antara «l’olio» dan «il burro». Penting untuk tidak secara mekanis mengganti kata yang sudah dikenal, tetapi untuk memahami mentega mana yang dibutuhkan berdasarkan situasi. Artikel harus sesuai dengan kata yang dipilih."
+],
+"pl": [
+"Czasownik + ilość lub porcja",
+"Forma zależy od nazwy produktu. «Del pane» i «della farina» mają identyczne znaczenie, ale nie są pisane tak samo. Apostrof pojawia się przed samogłoską: «dell’acqua».",
+"W przypadku masła rozróżnij «l’olio» i «il burro». Ważne jest, aby nie zastępować go mechanicznie znanym słowem, ale zrozumieć, które masło jest potrzebne w zależności od sytuacji. Przedimek musi pasować do wybranego słowa."
+],
+"pt-BR": [
+"Verbo + quantidade ou porção",
+"A forma depende do nome do produto. «Del pane» e «della farina» têm o mesmo significado, mas a grafia é diferente. Um apóstrofo aparece antes da vogal: «dell’acqua».",
+"Com manteiga, distinga entre «l’olio» e «il burro». É importante não substituir mecanicamente uma palavra familiar, mas entender qual manteiga é necessária com base na situação. O artigo deve corresponder à palavra escolhida."
+],
+"ru": [
+"глагол + количество или порция",
+"Форма зависит от названия продукта. «Del pane» и «della farina» работают одинаково по смыслу, но не совпадают по написанию. Перед гласной появляется апостроф: «dell’acqua».",
+"С маслом различай «l’olio» и «il burro». Важно не механически подставить знакомое слово, а понять, какое масло нужно по ситуации. Артикль должен соответствовать выбранному слову."
+],
+"tr": [
+"Fiil + miktar veya kısım",
+"Biçim, ürün adına bağlıdır. «Del pane» ve «della farina» anlam olarak aynıdır, ancak aynı şekilde yazılmazlar. Ünlü harften önce bir kesme işareti bulunur: «dell’acqua».",
+"Tereyağı ile «l’olio» ve «il burro» arasında ayrım yapın. Mekanik olarak tanıdık bir kelimeyi yerine koymak değil, duruma göre hangi tereyağının gerekli olduğunu anlamak önemlidir. Tanımlık, seçilen kelimeyle eşleşmelidir."
+],
+"uk": [
+"дієслово + кількість або порція",
+"Форма залежить від назви продукту. «Del pane» та «della farina» працюють однаково за змістом, але не збігаються за написанням. Перед голосною постає апостроф: «dell’acqua».",
+"З маслом розрізняй «l’olio» і «il burro». Важливо не механічно підставити знайоме слово, а зрозуміти, яке масло потрібно за ситуацією. Артикль повинен відповідати вибраному слову."
+],
+"vi": [
+"Động từ + số lượng hoặc phần",
+"Hình thức phụ thuộc vào tên sản phẩm. «Del pane» và «della farina» có nghĩa giống nhau, nhưng cách viết khác nhau. Dấu nháy đơn xuất hiện trước nguyên âm: «dell’acqua».",
+"Với bơ, hãy phân biệt giữa «l’olio» và «il burro». Điều quan trọng là không thay thế một cách máy móc một từ quen thuộc, mà phải hiểu loại bơ nào cần thiết dựa trên tình huống. Mạo từ phải phù hợp với từ đã chọn."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:12:09",
+"it:12:10"
+]
+},
+{
+"textES": "Resuelve \"Tomo pan\": Prendo - Elijo o tomo, del - cierta cantidad, pane - pan. En otros contextos, es posible prescindir del artículo parcial; aquí, practicamos una variante natural.",
+"textEn": "Solve \"I take bread\": Prendo - I choose or take, del - some quantity, pane - bread. In other contexts, it's possible to do without a partial article; here, we're practicing one natural variant.",
+"textId": "Selesaikan \"Saya mengambil roti\": Prendo - Saya memilih atau mengambil, del - sejumlah tertentu, pane - roti. Dalam konteks lain, dimungkinkan untuk melakukannya tanpa artikel parsial; di sini, kita mempraktikkan salah satu varian alami.",
+"textPl": "Rozwiąż „Biorę chleb”: Prendo – wybieram lub biorę, del – pewna ilość, pane – chleb. W innych kontekstach można obejść się bez przedimka częściowego; tutaj ćwiczymy jeden naturalny wariant.",
+"textPtBr": "Resolva \"Eu pego pão\": Prendo - Eu escolho ou pego, del - alguma quantidade, pane - pão. Em outros contextos, é possível dispensar o artigo incompleto; aqui, estamos praticando uma variante natural.",
+"textRU": "Собери «Я беру хлеб»: Prendo — выбираю или беру, del — какое-то количество, pane — хлеб. В иных контекстах возможно и без частичного артикля; здесь тренируем один естественный вариант.",
+"textTr": "\"Ekmek alıyorum\" cümlesini çözün: Prendo - Seçiyorum veya alıyorum, del - belirli bir miktar, pane - ekmek. Diğer bağlamlarda, kısmi bir tanımlık olmadan da yapılabilir; burada, doğal bir varyantı uyguluyoruz.",
+"textUK": "Збери \"Я беру хліб\": Prendo - вибираю або беру, del - якась кількість, pane - хліб. В інших контекстах можливе і без часткового артикля; тут тренуємо один природний варіант.",
+"textVi": "Giải thích câu \"Tôi lấy bánh mì\": Prendo - Tôi chọn hoặc lấy, del - một số lượng nhất định, pane - bánh mì. Trong các ngữ cảnh khác, có thể không cần mạo từ một phần; ở đây, chúng ta đang thực hành một biến thể tự nhiên.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Solve \"I take bread\": «Prendo» - I choose or take, «del» - some quantity, «pane» - bread. In other contexts, it's possible to do without a partial article; here, we're practicing one natural variant."
+],
+"es": [
+"Resuelve \"Tomo pan\": «Prendo» - Elijo o tomo, «del» - cierta cantidad, «pane» - pan. En otros contextos, es posible prescindir del artículo parcial; aquí, practicamos una variante natural."
+],
+"id": [
+"Selesaikan \"Saya mengambil roti\": «Prendo» - Saya memilih atau mengambil, «del» - sejumlah tertentu, «pane» - roti. Dalam konteks lain, dimungkinkan untuk melakukannya tanpa artikel parsial; di sini, kita mempraktikkan salah satu varian alami."
+],
+"pl": [
+"Rozwiąż „Biorę chleb”: «Prendo» – wybieram lub biorę, «del» – pewna ilość, «pane» – chleb. W innych kontekstach można obejść się bez przedimka częściowego; tutaj ćwiczymy jeden naturalny wariant."
+],
+"pt-BR": [
+"Resolva \"Eu pego pão\": «Prendo» - Eu escolho ou pego, «del» - alguma quantidade, «pane» - pão. Em outros contextos, é possível dispensar o artigo incompleto; aqui, estamos praticando uma variante natural."
+],
+"ru": [
+"Собери «Я беру хлеб»: «Prendo» — выбираю или беру, «del» — какое-то количество, «pane» — хлеб. В иных контекстах возможно и без частичного артикля; здесь тренируем один естественный вариант."
+],
+"tr": [
+"\"Ekmek alıyorum\" cümlesini çözün: «Prendo» - Seçiyorum veya alıyorum, «del» - belirli bir miktar, «pane» - ekmek. Diğer bağlamlarda, kısmi bir tanımlık olmadan da yapılabilir; burada, doğal bir varyantı uyguluyoruz."
+],
+"uk": [
+"Збери \"Я беру хліб\": «Prendo» - вибираю або беру, «del» - якась кількість, «pane» - хліб. В інших контекстах можливе і без часткового артикля; тут тренуємо один природний варіант."
+],
+"vi": [
+"Giải thích câu \"Tôi lấy bánh mì\": «Prendo» - Tôi chọn hoặc lấy, «del» - một số lượng nhất định, «pane» - bánh mì. Trong các ngữ cảnh khác, có thể không cần mạo từ một phần; ở đây, chúng ta đang thực hành một biến thể tự nhiên."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:12:01",
+"it:12:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:12:01",
+"target": "Prendo del pane.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "it:12:09",
+"target": "Vorrei del riso.",
+"ru": "Я бы хотел риса.",
+"uk": "Я хотів би трохи рису."
+},
+{
+"id": "it:12:10",
+"target": "Vorrei dell’olio.",
+"ru": "Я бы хотел растительного масла.",
+"uk": "Я б хотів рослинної олії."
+},
+{
+"id": "it:12:01",
+"target": "Prendo del pane.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "it:12:04",
+"target": "Lei prende della zuppa.",
+"ru": "Она берёт суп.",
+"uk": "Вона бере суп."
+}
+]
+}
+]

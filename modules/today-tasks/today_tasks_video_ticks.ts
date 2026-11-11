@@ -11,6 +11,7 @@
 // закрывает сам store, когда набрано 600 с. Запись — раз в минуту, не каждую секунду.
 // Q9: монет за сам просмотр нет — правило типа 'video' в today_tasks_core.
 // ═══════════════════════════════════════════════════════════════════════════
+import { onAccountOwnerChanged } from '../../app/account_owner_change';
 import { todayLocalDayKey } from './today_tasks_core';
 
 /** Тики чаще этого — дубль (второй слушатель/повтор моста), не секунда просмотра. */
@@ -24,7 +25,15 @@ let dayKey = '';
 let watchedSec = 0;
 let lastTickMs = 0;
 
-export type VideoTickReport = (units: number, videoId: string, dayKey: string, unitKey: string) => void;
+// зачем (F17, аудит, владелец 11.11): секунды просмотра копились в памяти без игрока — 50 с прошлого + 10 с нового давали
+// новому «минуту» в задании «Посмотреть видео». Счёт текущей минуты начинается заново; засчитанные минуты хранит store.
+onAccountOwnerChanged('today_tasks_video_ticks', () => {
+  console.log(`[TODAY-TASKS] video:owner_changed ${JSON.stringify({ dayKey, droppedSec: watchedSec % TODAY_VIDEO_CHECKPOINT_SEC })}`); // guard-ok: одна строка на смену владельца
+  watchedSec = 0;
+  lastTickMs = 0;
+});
+
+export type VideoTickReport =(units: number, videoId: string, dayKey: string, unitKey: string) => void;
 
 /**
  * Одна секунда воспроизведения. Возвращает true, если этот тик сделал отметку минуты.

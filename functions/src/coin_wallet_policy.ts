@@ -1,8 +1,4 @@
 import { HttpsError } from 'firebase-functions/v2/https';
-import {
-  LEARNING_V2_COURSE_LESSON_COUNT_V1,
-  LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
-} from '../../modules/learning-v2/content/course_topology_v1';
 
 /**
  * Политика серверного кошелька монет (Q13, владелец 01.10).
@@ -17,8 +13,6 @@ import {
  * (поля «источник» в контракте нет, и клиент мы не меняем):
  *   - `report_reward_<messageId>`        — награда за жалобу (D109, Q4);
  *   - `dailyjourney_<hash32>_<n>`        — монеты блока «Сегодня» (D49, modules/today-tasks).
- *   - `chapterexam_l<УУ>_c<Г>_<1|2>`     — 40 монет за ПЕРВУЮ сдачу экзамена главы Learning V2 (владелец 22.10):
- *     две операции по 20 (номинала 40 в кошельке нет), сумма зашита здесь, урок и глава — только из курса.
  *     зачем: префикс унаследован от удалённого «Дневного пути» и НЕ переименован —
  *     совместимость с уже выданными ключами и задеплоенным белым списком;
  *     переименование источника — только отдельным решением владельца;
@@ -26,10 +20,9 @@ import {
  *     hex = sha1(uid|videoId) считает телефон, поэтому повтор того же видео даёт тот же requestId и кошелёк его не начислит
  *     дважды (идемпотентность по номеру операции). Сумма зашита здесь (РОВНО stars_500), множителя «Супер-воскресенья» нет.
  *     Сервер НЕ судит, досмотрел ли человек (закон «телефон решает, сервер хранит»), только хранит и помечает аномалии.
- *   - `lessontogether_<40 hex>`          — «Урок вместе» +2 (владелец 22.10, кнопка «А1 — lesson_together: да»).
- *     ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений… монеты и всё остальное выдаётся телефоном…
- *     сервер сохраняет для синхронизации, чтобы не потерялось». Телефон решает (раз в день на пару — общий ключ
- *     sha(пара|день|uid)), сервер хранит по номеру операции; дневной счётчик — только пометка, НЕ отказ.
+ * зачем (курс занятий удалён): источники `chapterexam_` (экзамен главы) и `lessontogether_` («Урок вместе»)
+ * сняты вместе с курсом — такие операции старых версий приложения получают отказ `coin_wallet_source_not_allowed`.
+ * Счётчики этих источников в users/{uid}.coinWalletLimitsV1 больше не читаются и не пишутся.
  * Всё остальное (спины уровня, задания `quest_*`, компенсация подарков `g2c1_`/`g2cdj_`,
  * что угодно ещё) — отказ.
  *
@@ -38,8 +31,8 @@ import {
  * без них выдуманный клиентом ключ не мог бы напечатать до 30 000 монет за жизнь.
  */
 
-export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'chapter_exam' | 'lesson_together' | 'video_full';
-export type CoinWalletSubSource = 'report' | 'journey_runes' | 'exam_pass' | 'friends' | 'video_watch';
+export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'video_full';
+export type CoinWalletSubSource = 'report' | 'journey_runes' | 'video_watch';
 
 export type CoinWalletOperationShape = Readonly<{
   requestId: string;
@@ -54,14 +47,9 @@ export type CoinWalletClassification = Readonly<{
   subSource: CoinWalletSubSource;
 }>;
 
-/** `chapterexam_l01_c2_1`: урок двумя цифрами, глава одной, часть 1 или 2 (две части по 20 = 40 монет). */
-const CHAPTER_EXAM_REQUEST_RE = /^chapterexam_l(\d{2})_c(\d)_([12])$/;
-
 const SOURCE_PATTERNS: readonly (readonly [RegExp, CoinWalletClassification])[] = Object.freeze([
   [/^report_reward_[A-Za-z0-9_-]{1,66}$/, Object.freeze({ source: 'report_reward', subSource: 'report' })],
   [/^dailyjourney_[A-Za-z0-9]{32}_\d{1,3}$/, Object.freeze({ source: 'daily_journey', subSource: 'journey_runes' })],
-  [CHAPTER_EXAM_REQUEST_RE, Object.freeze({ source: 'chapter_exam', subSource: 'exam_pass' })],
-  [/^lessontogether_[0-9a-f]{40}$/, Object.freeze({ source: 'lesson_together', subSource: 'friends' })],
   [/^videofull_[0-9a-f]{40}$/, Object.freeze({ source: 'video_full', subSource: 'video_watch' })],
 ] as const);
 
@@ -94,21 +82,6 @@ export const COIN_WALLET_LIMITS = Object.freeze({
   journeyMaxPerOperation: 2_000,
   /** Один день пути в сутки: не больше самой крупной награды дня с удвоением. */
   journeyMaxPerDay: 2_000,
-  /**
-   * Экзамен главы (владелец 22.10): 40 монет за главу — ровно две операции stars_20. Сумма задаётся здесь, не клиентом.
-   * Сутки: 3 главы (120) — решение Ревизора 22.10; лишнее остаётся в очереди клиента и проходит в следующие сутки UTC.
-   */
-  chapterExamGiftId: 'stars_20',
-  chapterExamCoinsPerChapter: 40,
-  chapterExamMaxPerDay: 120,
-  /** «Урок вместе»: ровно stars_2 за операцию (форма записи, а не решение о награде). */
-  lessonTogetherGiftId: 'stars_2',
-  lessonTogetherCoins: 2,
-  /**
-   * Выше этого за сутки — только пометка `limits_flag` в журнале (сигнал аномалии), операция ПРИНИМАЕТСЯ.
-   * 3 приглашения × 2 стороны × 2 монеты = 12 — обычный потолок честного телефона.
-   */
-  lessonTogetherFlagPerDay: 12,
   /** Награда за видео (владелец 05.11): ровно stars_500, 70 % просмотра, один раз на видео. Дневного предела НЕТ. */
   videoFullGiftId: 'stars_500',
   videoFullCoins: 500,
@@ -126,10 +99,6 @@ export type CoinWalletLimitsState = Readonly<{
   reportDayCoins: number;
   journeyDayKey: string;
   journeyDayCoins: number;
-  chapterExamDayKey: string;
-  chapterExamDayCoins: number;
-  lessonTogetherDayKey: string;
-  lessonTogetherDayCoins: number;
   videoFullDayKey: string;
   videoFullDayCoins: number;
 }>;
@@ -142,10 +111,6 @@ export const EMPTY_COIN_WALLET_LIMITS: CoinWalletLimitsState = Object.freeze({
   reportDayCoins: 0,
   journeyDayKey: '',
   journeyDayCoins: 0,
-  chapterExamDayKey: '',
-  chapterExamDayCoins: 0,
-  lessonTogetherDayKey: '',
-  lessonTogetherDayCoins: 0,
   videoFullDayKey: '',
   videoFullDayCoins: 0,
 });
@@ -164,10 +129,6 @@ export function normalizeCoinWalletLimits(raw: unknown): CoinWalletLimitsState {
     reportDayCoins: nonNegativeInt(value.reportDayCoins),
     journeyDayKey: typeof value.journeyDayKey === 'string' ? value.journeyDayKey : '',
     journeyDayCoins: nonNegativeInt(value.journeyDayCoins),
-    chapterExamDayKey: typeof value.chapterExamDayKey === 'string' ? value.chapterExamDayKey : '',
-    chapterExamDayCoins: nonNegativeInt(value.chapterExamDayCoins),
-    lessonTogetherDayKey: typeof value.lessonTogetherDayKey === 'string' ? value.lessonTogetherDayKey : '',
-    lessonTogetherDayCoins: nonNegativeInt(value.lessonTogetherDayCoins),
     videoFullDayKey: typeof value.videoFullDayKey === 'string' ? value.videoFullDayKey : '',
     videoFullDayCoins: nonNegativeInt(value.videoFullDayCoins),
   });
@@ -196,7 +157,7 @@ export function classifyCoinWalletSource(requestId: string): CoinWalletClassific
   }
   return reject('permission-denied', 'coin_wallet_source_not_allowed', {
     requestIdPrefix: requestId.slice(0, 16),
-    note: 'not report_reward_/dailyjourney_/chapterexam_/lessontogether_/videofull_ (spins, quests, gift compensation g2c* and others are retired, D148)',
+    note: 'not report_reward_/dailyjourney_/videofull_ (spins, quests, gift compensation g2c*, chapter exam, lesson together and others are retired)',
   });
 }
 
@@ -213,39 +174,6 @@ function assertReportShape(operation: CoinWalletOperationShape, fields: Record<s
   }
   if (operation.amount > COIN_WALLET_LIMITS.reportMaxPerReward) {
     reject('invalid-argument', 'coin_wallet_amount_over_limit', { ...fields, limit: COIN_WALLET_LIMITS.reportMaxPerReward });
-  }
-}
-
-/**
- * Экзамен главы: урок 1..32 и глава 1..7 — по топологии курса (выдуманные номера — отказ), только stars_20, gameplay.
- * Повтор той же части — прежний результат по номеру операции (идемпотентность callable), поэтому глава даёт не больше 40.
- */
-function assertChapterExamShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
-  const match = CHAPTER_EXAM_REQUEST_RE.exec(operation.requestId);
-  const lesson = match ? Number(match[1]) : NaN;
-  const chapter = match ? Number(match[2]) : NaN;
-  if (!Number.isInteger(lesson) || lesson < 1 || lesson > LEARNING_V2_COURSE_LESSON_COUNT_V1
-    || !Number.isInteger(chapter) || chapter < 1 || chapter > LEARNING_V2_LESSON_CHAPTER_COUNT_V1) {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_not_in_course', lesson, chapter });
-  }
-  if (operation.promotionEligibility !== 'gameplay') {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_requires_gameplay' });
-  }
-  if (operation.giftId !== COIN_WALLET_LIMITS.chapterExamGiftId) {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'chapter_exam_gift_must_be_stars_20' });
-  }
-  if (operation.amount * 2 !== COIN_WALLET_LIMITS.chapterExamCoinsPerChapter) {
-    reject('invalid-argument', 'coin_wallet_amount_over_limit', { ...fields, why: 'chapter_exam_amount_must_be_half_of_40' });
-  }
-}
-
-/** «Урок вместе»: форма записи (stars_2, сумма 2, gameplay). Сколько раз и кому — решает телефон (закон владельца 22.10). */
-function assertLessonTogetherShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
-  if (operation.promotionEligibility !== 'gameplay') {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'lesson_together_requires_gameplay' });
-  }
-  if (operation.giftId !== COIN_WALLET_LIMITS.lessonTogetherGiftId || operation.amount !== COIN_WALLET_LIMITS.lessonTogetherCoins) {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'lesson_together_must_be_stars_2' });
   }
 }
 
@@ -294,10 +222,6 @@ export function assertCoinWalletOperationShape(
     assertReportShape(operation, fields);
   } else if (operation.lane !== 'base') {
     reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'only_report_uses_premium_lane' });
-  } else if (classification.source === 'chapter_exam') {
-    assertChapterExamShape(operation, fields);
-  } else if (classification.source === 'lesson_together') {
-    assertLessonTogetherShape(operation, fields);
   } else if (classification.source === 'video_full') {
     assertVideoFullShape(operation, fields);
   } else {
@@ -347,25 +271,6 @@ export function applyCoinWalletLimits(
     }
     log('limits_ok', { ...fields, used, after: used + operation.amount });
     return Object.freeze({ ...state, journeyDayKey: dayKey, journeyDayCoins: used + operation.amount });
-  }
-  if (classification.source === 'chapter_exam') {
-    const used = state.chapterExamDayKey === dayKey ? state.chapterExamDayCoins : 0;
-    if (used + operation.amount > COIN_WALLET_LIMITS.chapterExamMaxPerDay) {
-      reject('resource-exhausted', 'coin_wallet_daily_limit_reached', { ...fields, used, limit: COIN_WALLET_LIMITS.chapterExamMaxPerDay });
-    }
-    log('limits_ok', { ...fields, used, after: used + operation.amount });
-    return Object.freeze({ ...state, chapterExamDayKey: dayKey, chapterExamDayCoins: used + operation.amount });
-  }
-  if (classification.source === 'lesson_together') {
-    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений» — счётчик только для пометки аномалии, отказа нет.
-    const used = state.lessonTogetherDayKey === dayKey ? state.lessonTogetherDayCoins : 0;
-    const after = used + operation.amount;
-    if (after > COIN_WALLET_LIMITS.lessonTogetherFlagPerDay) {
-      console.warn(`[COIN-WALLET] limits_flag ${JSON.stringify({ ...fields, used, after, flagAt: COIN_WALLET_LIMITS.lessonTogetherFlagPerDay, accepted: true })}`);
-    } else {
-      log('limits_ok', { ...fields, used, after });
-    }
-    return Object.freeze({ ...state, lessonTogetherDayKey: dayKey, lessonTogetherDayCoins: after });
   }
   if (classification.source === 'video_full') {
     // зачем (владелец 05.11): дневного предела на награды за видео НЕТ — только пометка аномалии для админки, отказа нет.

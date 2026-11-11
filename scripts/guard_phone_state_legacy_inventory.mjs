@@ -11,7 +11,6 @@ const DECLARATION_SOURCES = new Set([
   'app/target_storage_keys.ts',
   'app/progress_events_client.ts',
   'app/economy/client_shard_operation_ledger.ts',
-  'modules/learning-v2/progress/progress_outbox.ts',
   'app/friend_gift_outbox.ts',
 ]);
 

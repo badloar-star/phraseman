@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isClassicVocabExcluded } from './classic_vocab_exclusions.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const norm = (t) => String(t).toLowerCase().replace(/[.,!?;:¿¡«»"]/g, '').trim();
 export function newFormsByLesson(lang) {
@@ -14,6 +15,8 @@ export function newFormsByLesson(lang) {
     for (const p of ph) for (const t of p.tiles) {
       const f = norm(t.correct); if (!f || !/\p{L}/u.test(f)) continue;
       if (seen.has(f)) continue;
+      // Keep the source encounter consumed even when it is not standalone vocabulary.
+      if (isClassicVocabExcluded(lang, f, n)) { seen.add(f); continue; }
       if (!words.has(f)) words.set(f, { form: f, surface: t.correct.replace(/[.,!?;:¿¡«»"]/g, ''), count: 0, examples: [] });
       const w = words.get(f); w.count++;
       if (w.examples.length < 2 && !w.examples.some((e) => e.id === p.id)) w.examples.push({ id: p.id, target: p.tiles.map((x) => x.correct).join(' '), ru: p.sourceLocales?.ru ?? p.ru, en: p.sourceLocales?.en });

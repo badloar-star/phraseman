@@ -1,0 +1,10 @@
+[
+  {"id": "fr:17:49", "type": "M", "field": "ru", "problem": "канцелярит «ошибается с выбором платформы»; se tromper de quai = идиоматично «ошибаться платформой» (как «ошибиться дверью»)", "fix": "Он ошибается платформой."},
+  {"id": "fr:17:49", "type": "M", "field": "uk", "problem": "канцелярит «помиляється з вибором платформи»", "fix": "Він помиляється платформою."},
+  {"id": "fr:18:08", "type": "B1", "field": "tiles", "problem": "соблазн «le» даёт верную фразу «Paul a acheté le café.» — подсказка «Поль купил кофе» не отличает партитив от определённого артикля", "fix": {"position": 3, "replace_distractor": "le", "with": "aux"}},
+  {"id": "fr:18:08", "type": "B1", "field": "tiles", "problem": "соблазн «un» даёт верную фразу «Paul a acheté un café.» (= купил кофе), засчитают ошибкой", "fix": {"position": 3, "replace_distractor": "un", "with": "les"}},
+  {"id": "fr:18:15", "type": "B1", "field": "tiles", "problem": "соблазн «ticket» даёт верную фразу «Vous avez gardé le ticket.» — le ticket (de caisse) во французском = кассовый чек, совпадает с «Вы сохранили чек»", "fix": {"position": 4, "replace_distractor": "ticket", "with": "badge"}},
+  {"id": "fr:18:16", "type": "M", "field": "uk", "problem": "«їхали на спільному таксі» звучит как название услуги, неестественно", "fix": "Вони їхали одним таксі."},
+  {"id": "fr:18:40", "type": "B2", "field": "ru", "problem": "ложный друг: le dossier — это папка/пакет документов, а не «файл» (fichier)", "fix": "Когда вы отправили документы?"},
+  {"id": "fr:18:40", "type": "B2", "field": "uk", "problem": "ложный друг: le dossier — пакет документів, а не «файл» (fichier)", "fix": "Коли ви надіслали документи?"}
+]

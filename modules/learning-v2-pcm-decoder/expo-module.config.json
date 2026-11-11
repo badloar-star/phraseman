@@ -1,9 +1,0 @@
-{
-  "platforms": ["ios", "android"],
-  "ios": {
-    "modules": ["LearningV2PcmDecoderModule"]
-  },
-  "android": {
-    "modules": ["app.phraseman.learningv2pcm.LearningV2PcmDecoderModule"]
-  }
-}

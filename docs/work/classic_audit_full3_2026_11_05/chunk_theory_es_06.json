@@ -1,0 +1,1948 @@
+[
+{
+"lesson": 13,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 13,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Как я себя чувствую: estar + состояние",
+"formula": "кто или что + estar + состояние",
+"story": "После долгой прогулки Ана говорит Estoy cansada. Луис говорит Estoy cansado. Estoy одинаково; слово о самочувствии меняет окончание.",
+"use": "Опиши самочувствие человека или состояние знакомой вещи в данной ситуации.",
+"choose": "Глагол показывает лицо и число, а прилагательное — род и число. Женщина и мужчина скажут одинаковое estoy, но выберут cansada и cansado соответственно.",
+"nuance": "Опиши самочувствие человека или состояние знакомой вещи в данной ситуации. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"wrong": "Soy cansado.",
+"right": "Estoy cansado.",
+"chapters": [
+{
+"title": "От места к состоянию",
+"body": "В Estoy en casa после глагола шло место. В Estoy cansado там стоит состояние. Один глагол, но теперь последнее слово отвечает не на «где?», а на «как себя чувствую?».",
+"note": "cansado: единственное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:01",
+"es:13:02"
+],
+"focusId": "es:13:01"
+},
+{
+"title": "Две независимые формы",
+"body": "Глагол показывает лицо и число, а прилагательное — род и число. Женщина и мужчина скажут одинаковое estoy, но выберут cansada и cansado соответственно.",
+"note": "cansada: единственное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:06",
+"es:13:07"
+],
+"focusId": "es:13:06"
+},
+{
+"title": "Группа",
+"body": "Для группы говорящих нужно estamos, для группы людей, о которых говорят, — están. Затем согласуй прилагательное: estamos listos или estamos listas по составу группы.",
+"note": "contentas: множественное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:41",
+"es:13:42"
+],
+"focusId": "es:13:41"
+},
+{
+"title": "Открыто или закрыто",
+"body": "И дверь (la puerta), и окно (la ventana) здесь женского рода: La puerta está abierta. La ventana está abierta. В обоих случаях -a в abierta соответствует испанскому существительному.",
+"note": "abierta: единственное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:23",
+"es:13:24"
+],
+"focusId": "es:13:23"
+},
+{
+"title": "Почему не «всегда временное»",
+"body": "Не выбирай связку по секундомеру. В этих фразах важно, что мы сообщаем о состоянии. Для профессии из урока 4 остаётся ser, даже если человек сменит работу завтра.",
+"note": "nerviosa: единственное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:31",
+"es:13:32"
+],
+"focusId": "es:13:31"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Твои сёстры готовы?» / «Дверь открыта.». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Смысловые опоры: «hermanas» — брат / сестра; «listas» — готовый.",
+"note": "abierta: единственное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:20",
+"es:13:21"
+],
+"focusId": "es:13:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Сегодня вы рады.» / «Столы чистые.». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Опиши самочувствие человека или состояние знакомой вещи в данной ситуации.",
+"note": "limpias: множественное число. Лицо выбирает форму estar; состояние согласуется с человеком или вещью.",
+"samples": [
+"es:13:44",
+"es:13:50"
+],
+"focusId": "es:13:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:13:01",
+"sample": "Estoy cansado."
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": "es:13:02",
+"sample": "Estás cansado."
+},
+{
+"es": "él · está",
+"gloss": "он/она/Вы",
+"id": "es:13:03",
+"sample": "Luis está cansado."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "мы",
+"id": "es:13:04",
+"sample": "Estamos cansados."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:13:19",
+"sample": "¿Estáis listos?"
+},
+{
+"es": "ellos · están",
+"gloss": "они/вы (ustedes)",
+"id": "es:13:05",
+"sample": "Mis hermanos están cansados."
+}
+],
+"title": "estar · Настоящее"
+}
+]
+},
+"uk": {
+"title": "Як я почуваюся: estar + стан",
+"formula": "хто або що + estar + стан",
+"story": "Після прогулянки Ана каже Estoy cansada, а Луїс — Estoy cansado. Estoy не змінюється; змінюється закінчення прикметника.",
+"use": "Опиши самопочуття людини або стан знайомої речі в цій ситуації.",
+"choose": "Дієслово показує особу й число, а прикметник — рід і число. Жінка й чоловік однаково скажуть estoy, але оберуть відповідно cansada та cansado.",
+"nuance": "Опиши самопочуття людини або стан знайомої речі в цій ситуації. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"wrong": "Soy cansado.",
+"right": "Estoy cansado.",
+"chapters": [
+{
+"title": "Від місця до стану",
+"body": "У Estoy en casa після дієслова було місце. У Estoy cansado там стан. Тепер останнє слово відповідає не на «де?», а на «як я почуваюся?».",
+"note": "cansado: однина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:01",
+"es:13:02"
+],
+"focusId": "es:13:01"
+},
+{
+"title": "Дві незалежні форми",
+"body": "Дієслово показує особу й число, а прикметник — рід і число. Жінка й чоловік однаково скажуть estoy, але оберуть відповідно cansada та cansado.",
+"note": "cansada: однина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:06",
+"es:13:07"
+],
+"focusId": "es:13:06"
+},
+{
+"title": "Група",
+"body": "Для групи мовців потрібне estamos, для людей, про яких говорять, — están. Далі узгодь прикметник: estamos listos чи estamos listas залежно від складу групи.",
+"note": "contentas: множина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:41",
+"es:13:42"
+],
+"focusId": "es:13:41"
+},
+{
+"title": "Відчинено чи зачинено",
+"body": "І двері (la puerta), і вікно (la ventana) тут жіночого роду: La puerta está abierta. La ventana está abierta. В обох реченнях -a в abierta відповідає іспанському іменнику.",
+"note": "abierta: однина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:23",
+"es:13:24"
+],
+"focusId": "es:13:23"
+},
+{
+"title": "Чому не «завжди тимчасове»",
+"body": "Не обирай зв’язку за тривалістю. У цих фразах ми повідомляємо про стан. Для професії з уроку 4 лишається ser, навіть якщо людина завтра змінить роботу.",
+"note": "nerviosa: однина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:31",
+"es:13:32"
+],
+"focusId": "es:13:31"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Твої сестри готові?» / «Двері відчинені.». Особа визначає форму estar, а ознака узгоджується з людиною чи річчю. Смислові опори: «hermanas» — брат / сестра; «listas» — готовий.",
+"note": "abierta: однина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:20",
+"es:13:21"
+],
+"focusId": "es:13:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Сьогодні ви раді.» / «Столи чисті.». Особа визначає форму estar, а ознака узгоджується з людиною чи річчю. Опиши самопочуття людини або стан знайомої речі в цій ситуації.",
+"note": "limpias: множина. Особа визначає форму estar, а ознака узгоджується з людиною чи річчю.",
+"samples": [
+"es:13:44",
+"es:13:50"
+],
+"focusId": "es:13:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": "es:13:01",
+"sample": "Estoy cansado."
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": "es:13:02",
+"sample": "Estás cansado."
+},
+{
+"es": "él · está",
+"gloss": "він/вона/Ви",
+"id": "es:13:03",
+"sample": "Luis está cansado."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "ми",
+"id": "es:13:04",
+"sample": "Estamos cansados."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:13:19",
+"sample": "¿Estáis listos?"
+},
+{
+"es": "ellos · están",
+"gloss": "вони/ви (ustedes)",
+"id": "es:13:05",
+"sample": "Mis hermanos están cansados."
+}
+],
+"title": "estar · Теперішній час"
+}
+]
+},
+"en": {
+"title": "Describing a state with estar",
+"formula": "(subject) + estar (está, están…) + state",
+"story": "After a long walk Ana says Estoy cansada; Luis says Estoy cansado. Both use estoy. The adjective changes.",
+"use": "Describe how a person feels or the state of a familiar thing in this situation.",
+"choose": "The verb indicates person and number, while the adjective indicates gender and number. A woman and a man would say the same estoy, but would choose cansada and cansado, respectively.",
+"nuance": "Describe how a person feels or the state of a familiar thing in this situation. The person chooses form estar; the state is consistent with the person or thing.",
+"wrong": "Soy cansado.",
+"right": "Estoy cansado.",
+"chapters": [
+{
+"title": "How does estar describe a condition as well as a place?",
+"body": "In Estoy en casa, the verb was followed by a place. In Estoy cansado, there's a state. It's the same verb, but now the last word answers not \"where?\" but \"how am I feeling?\".",
+"note": "cansado: singular. Person chooses form estar; state agrees with person or thing.",
+"samples": [
+"es:13:01",
+"es:13:02"
+],
+"focusId": "es:13:01"
+},
+{
+"title": "Which two words change for different reasons?",
+"body": "The verb indicates person and number, while the adjective indicates gender and number. A woman and a man would say the same estoy, but would choose cansada and cansado, respectively.",
+"note": "cansada: singular. Person chooses form estar; state agrees with person or thing.",
+"samples": [
+"es:13:06",
+"es:13:07"
+],
+"focusId": "es:13:06"
+},
+{
+"title": "How do I describe several people?",
+"body": "For a group of speakers, use estamos; for a group of people being talked about, use están. Then, match the adjective: estamos listos or estamos listas, depending on the group.",
+"note": "contentas: Plural. The person chooses the form estar; the state agrees with the person or thing.",
+"samples": [
+"es:13:41",
+"es:13:42"
+],
+"focusId": "es:13:41"
+},
+{
+"title": "Does “open” describe one door or several?",
+"body": "Puerta and ventana are both feminine in Spanish. That is why the adjective ends in -a in both la puerta está abierta and la ventana está abierta.",
+"note": "abierta: singular. Person chooses form estar; state agrees with person or thing.",
+"samples": [
+"es:13:23",
+"es:13:24"
+],
+"focusId": "es:13:23"
+},
+{
+"title": "Does estar always mean “temporary”?",
+"body": "Don't choose a conjunction by the stopwatch. In these phrases, it's important that we communicate a state. For the profession from Lesson 4, ser remains, even if the person changes jobs tomorrow.",
+"note": "nerviosa: singular. Person chooses form estar; state agrees with person or thing.",
+"samples": [
+"es:13:31",
+"es:13:32"
+],
+"focusId": "es:13:31"
+},
+{
+"title": "How do I build the whole sentence?",
+"body": "Compare two tasks: \"Are your sisters ready?\" / \"The door is open.\" The person chooses the form estar; the state corresponds to the person or thing. Semantic supports: \" hermanas \" - brother / sister; \" listas \" - ready.",
+"note": "abierta: singular. Person chooses form estar; state agrees with person or thing.",
+"samples": [
+"es:13:20",
+"es:13:21"
+],
+"focusId": "es:13:21"
+},
+{
+"title": "Can I describe another person's condition?",
+"body": "Compare two tasks: \"You are happy today\" / \"The tables are clean.\" The person chooses the form estar; the state is consistent with the person or thing. Describe the person's well-being or the state of a familiar thing in this situation.",
+"note": "limpias: Plural. The person chooses the form estar; the state agrees with the person or thing.",
+"samples": [
+"es:13:44",
+"es:13:50"
+],
+"focusId": "es:13:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": "es:13:01",
+"sample": "Estoy cansado."
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": "es:13:02",
+"sample": "Estás cansado."
+},
+{
+"es": "él · está",
+"gloss": "he/she/you",
+"id": "es:13:03",
+"sample": "Luis está cansado."
+},
+{
+"es": "nosotros · estamos",
+"gloss": "we",
+"id": "es:13:04",
+"sample": "Estamos cansados."
+},
+{
+"es": "vosotros · estáis",
+"gloss": "you (friends, Spain)",
+"id": "es:13:19",
+"sample": "¿Estáis listos?"
+},
+{
+"es": "ellos · están",
+"gloss": "they/you (ustedes)",
+"id": "es:13:05",
+"sample": "Mis hermanos están cansados."
+}
+],
+"title": "estar Present"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:13:01",
+"index": 1,
+"right": "cansado",
+"near": "cansados",
+"seq": [
+"Estoy",
+"cansado"
+],
+"i": 0,
+"kind": "form",
+"key": "es13/lab/form1",
+"feedback": {
+"ru": "Признак или состояние: cansado — уставший.",
+"uk": "Ознака чи стан: cansado — втомлений.",
+"en": "Trait or Condition: cansado — Tired."
+}
+},
+{
+"id": "es:13:14",
+"index": 2,
+"right": "ocupados",
+"near": "ocupado",
+"seq": [
+"Hoy",
+"estamos",
+"ocupados"
+],
+"i": 13,
+"kind": "form",
+"key": "es13/lab/form2",
+"feedback": {
+"ru": "Признак или состояние: ocupado — занятый.",
+"uk": "Ознака чи стан: ocupado — зайнятий.",
+"en": "Sign or State: ocupado — Busy."
+}
+},
+{
+"id": "es:13:25",
+"index": 3,
+"right": "abiertos",
+"near": "abierto",
+"seq": [
+"Los",
+"hoteles",
+"están",
+"abiertos"
+],
+"i": 24,
+"kind": "form",
+"key": "es13/lab/form3",
+"feedback": {
+"ru": "Признак или состояние: abierto — открытый.",
+"uk": "Ознака чи стан: abierto — відчинений; відкритий.",
+"en": "Feature or Condition: abierto - Open."
+}
+},
+{
+"id": "es:13:38",
+"index": 1,
+"right": "libres",
+"near": "libre",
+"seq": [
+"Están",
+"libres",
+"las",
+"mesas"
+],
+"i": 37,
+"kind": "form",
+"key": "es13/lab/form4",
+"feedback": {
+"ru": "Признак или состояние: libre — свободный.",
+"uk": "Ознака чи стан: libre — вільний.",
+"en": "Feature or Condition: libre - Free."
+}
+},
+{
+"id": "es:13:07",
+"index": 3,
+"right": "cansada",
+"near": "cansadas",
+"seq": [
+"Mi",
+"madre",
+"está",
+"cansada"
+],
+"i": 6,
+"kind": "spot",
+"key": "es13/lab/spot1",
+"feedback": {
+"ru": "Признак или состояние: cansado — уставший.",
+"uk": "Ознака чи стан: cansado — втомлений.",
+"en": "Trait or Condition: cansado — Tired."
+}
+},
+{
+"id": "es:13:20",
+"index": 3,
+"right": "listas",
+"near": "lista",
+"seq": [
+"Están",
+"tus",
+"hermanas",
+"listas"
+],
+"i": 19,
+"kind": "spot",
+"key": "es13/lab/spot2",
+"feedback": {
+"ru": "Признак или состояние: listo — готовый.",
+"uk": "Ознака чи стан: listo — готовий.",
+"en": "Trait or condition: listo - ready."
+}
+},
+{
+"id": "es:13:30",
+"index": 3,
+"right": "cerrados",
+"near": "cerrado",
+"seq": [
+"Los",
+"hoteles",
+"están",
+"cerrados",
+"hoy"
+],
+"i": 29,
+"kind": "spot",
+"key": "es13/lab/spot3",
+"feedback": {
+"ru": "Признак или состояние: cerrado — закрытый.",
+"uk": "Ознака чи стан: cerrado — зачинений; закритий.",
+"en": "Sign or State: cerrado — Closed."
+}
+},
+{
+"id": "es:13:50",
+"index": 3,
+"right": "limpias",
+"near": "limpia",
+"seq": [
+"Las",
+"mesas",
+"están",
+"limpias"
+],
+"i": 49,
+"kind": "spot",
+"key": "es13/lab/spot4",
+"feedback": {
+"ru": "Признак или состояние: limpio — чистый.",
+"uk": "Ознака чи стан: limpio — чистий.",
+"en": "Trait or Condition: limpio — Clean."
+}
+},
+{
+"kind": "match",
+"key": "es13/lab/match1",
+"id": "es:13:02",
+"other": "es:13:03"
+},
+{
+"kind": "match",
+"key": "es13/lab/match2",
+"id": "es:13:17",
+"other": "es:13:16"
+},
+{
+"kind": "match",
+"key": "es13/lab/match3",
+"id": "es:13:33",
+"other": "es:13:32"
+},
+{
+"kind": "match",
+"key": "es13/lab/match4",
+"id": "es:13:46",
+"other": "es:13:47"
+},
+{
+"kind": "build",
+"key": "es13/lab/build1",
+"id": "es:13:04"
+},
+{
+"kind": "build",
+"key": "es13/lab/build2",
+"id": "es:13:15"
+},
+{
+"kind": "build",
+"key": "es13/lab/build3",
+"id": "es:13:29"
+},
+{
+"kind": "build",
+"key": "es13/lab/build4",
+"id": "es:13:42"
+},
+{
+"kind": "transform",
+"id": "es:13:08",
+"base": "es:13:07",
+"diff": [
+{
+"before": [
+"madre"
+],
+"after": [
+"hermana"
+]
+}
+],
+"key": "es13/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:13:28",
+"base": "es:13:26",
+"diff": [
+{
+"before": [
+"tienda"
+],
+"after": [
+"puerta"
+]
+}
+],
+"key": "es13/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:13:32",
+"base": "es:13:31",
+"diff": [
+{
+"before": [
+"madre"
+],
+"after": [
+"hermana"
+]
+}
+],
+"key": "es13/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:13:39",
+"base": "es:13:36",
+"diff": [
+{
+"before": [
+"mesa"
+],
+"after": [
+"médica"
+]
+}
+],
+"key": "es13/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+16
+],
+[
+15,
+19
+],
+[
+2,
+5
+],
+[
+18,
+10
+],
+[
+9,
+13
+],
+[
+7,
+11
+]
+],
+"worked": [
+"es:13:05",
+"es:13:18",
+"es:13:33",
+"es:13:48"
+],
+"reflection": [
+"es:13:01",
+"es:13:06"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 14,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 14,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Я встаю: me, te, se, nos, os",
+"formula": "местоимение + личная форма глагола",
+"story": "Рассказываешь о своём утре: Me levanto. Теперь о чужом: Ana se levanta. Поменялись и маленькое слово, и окончание глагола.",
+"use": "Согласуй маленькое местоимение и глагол с одним и тем же человеком.",
+"choose": "Ты говоришь о себе: Me levanto. Говоришь другу о нём: Te levantas. Говоришь об Ане: Ana se levanta. Меняются и короткое слово перед глаголом, и его окончание. Имя Ana — это «она», если ты рассказываешь о ней, а не обращаешься к ней.",
+"nuance": "Согласуй маленькое местоимение и глагол с одним и тем же человеком. Местоимение и окончание глагола указывают на одного исполнителя.",
+"wrong": "Se levanto temprano.",
+"right": "Me levanto temprano.",
+"chapters": [
+{
+"title": "Откуда взялось me",
+"body": "Словарное levantarse означает «вставать». В личной форме окончание -se не остаётся на конце: для yo получаем два слова, me levanto.",
+"note": "Глагольная группа: Me levanto. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:01",
+"es:14:02"
+],
+"focusId": "es:14:01"
+},
+{
+"title": "Кто встаёт: yo me, tú te, Ana se",
+"body": "Ты говоришь о себе: Me levanto. Говоришь другу о нём: Te levantas. Говоришь об Ане: Ana se levanta. Меняются и короткое слово перед глаголом, и его окончание. Имя Ana — это «она», если ты рассказываешь о ней, а не обращаешься к ней.",
+"note": "Глагольная группа: se levanta. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:03",
+"es:14:04"
+],
+"focusId": "es:14:03"
+},
+{
+"title": "Мы и вы",
+"body": "Мы встаём — nos levantamos. Для нескольких друзей в Испании — os levantáis. Ellos и ustedes берут se, хотя смысл «они» или «вы» может различаться.",
+"note": "Глагольная группа: Nos levantamos. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:04",
+"es:14:05"
+],
+"focusId": "es:14:04"
+},
+{
+"title": "Моем руки",
+"body": "В me lavo las manos принадлежность рук уже ясна из me. Нейтральный испанский образец использует артикль las, а не кальку с «мои руки».",
+"note": "Глагольная группа: Me lavo. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:21",
+"es:14:22"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Не переводим себя буквально",
+"body": "Me siento aquí здесь означает «я сажусь здесь»: исходный глагол sentarse, а не отдельное действие над собой. В отрицании no идёт перед всей связкой: no me siento.",
+"note": "Глагольная группа: me siento. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:39",
+"es:14:40"
+],
+"focusId": "es:14:39"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Мои сёстры принимают душ дома?» / «Я мою руки.». Местоимение и окончание глагола указывают на одного исполнителя. Смысловые опоры: «hermanas» — брат / сестра; «casa» — дом; en casa — дома.",
+"note": "Глагольная группа: Me lavo. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:20",
+"es:14:21"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Мы готовимся к поездке.» / «Моя сестра собирается дома.». Местоимение и окончание глагола указывают на одного исполнителя. Согласуй маленькое местоимение и глагол с одним и тем же человеком.",
+"note": "Глагольная группа: se prepara. Местоимение и окончание глагола указывают на одного исполнителя.",
+"samples": [
+"es:14:44",
+"es:14:50"
+],
+"focusId": "es:14:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · me levanto",
+"gloss": "я",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "tú · te levantas",
+"gloss": "ты",
+"id": "es:14:02",
+"sample": "Te levantas a las siete."
+},
+{
+"es": "él · se levanta",
+"gloss": "он/она/Вы",
+"id": "es:14:03",
+"sample": "Ana se levanta temprano."
+},
+{
+"es": "nosotros · nos levantamos",
+"gloss": "мы",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+},
+{
+"es": "vosotros · os levantáis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:14:07",
+"sample": "Os levantáis temprano."
+},
+{
+"es": "ellos · se levantan",
+"gloss": "они/вы (ustedes)",
+"id": "es:14:06",
+"sample": "Mis hermanos se levantan a las siete."
+}
+],
+"title": "levantarse · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · me ducho",
+"gloss": "я",
+"id": "es:14:11",
+"sample": "Me ducho por la mañana."
+},
+{
+"es": "tú · te duchas",
+"gloss": "ты",
+"id": "es:14:12",
+"sample": "Te duchas en casa."
+},
+{
+"es": "él · se ducha",
+"gloss": "он/она/Вы",
+"id": "es:14:13",
+"sample": "Ana se ducha por la mañana."
+},
+{
+"es": "nosotros · nos duchamos",
+"gloss": "мы",
+"id": "es:14:14",
+"sample": "Nos duchamos en casa."
+},
+{
+"es": "vosotros · os ducháis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · se duchan",
+"gloss": "они/вы (ustedes)",
+"id": "es:14:16",
+"sample": "Mis hermanos se duchan en casa."
+}
+],
+"title": "ducharse · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · me lavo",
+"gloss": "я",
+"id": "es:14:21",
+"sample": "Me lavo las manos."
+},
+{
+"es": "tú · te lavas",
+"gloss": "ты",
+"id": "es:14:22",
+"sample": "Te lavas la cara."
+},
+{
+"es": "él · se lava",
+"gloss": "он/она/Вы",
+"id": "es:14:23",
+"sample": "Ana se lava las manos."
+},
+{
+"es": "nosotros · nos lavamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · os laváis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:14:27",
+"sample": "Os laváis las manos."
+},
+{
+"es": "ellos · se lavan",
+"gloss": "они/вы (ustedes)",
+"id": "es:14:26",
+"sample": "Mis hermanos se lavan la cara."
+}
+],
+"title": "lavarse · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · me siento",
+"gloss": "я",
+"id": "es:14:31",
+"sample": "Me siento aquí."
+},
+{
+"es": "tú · te sientas",
+"gloss": "ты",
+"id": "es:14:32",
+"sample": "Te sientas cerca de la ventana."
+},
+{
+"es": "él · se sienta",
+"gloss": "он/она/Вы",
+"id": "es:14:33",
+"sample": "Ana se sienta aquí."
+},
+{
+"es": "nosotros · nos sentamos",
+"gloss": "мы",
+"id": "es:14:34",
+"sample": "Nos sentamos cerca de la ventana."
+},
+{
+"es": "vosotros · os sentáis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:14:37",
+"sample": "Os sentáis aquí."
+},
+{
+"es": "ellos · se sientan",
+"gloss": "они/вы (ustedes)",
+"id": "es:14:36",
+"sample": "Mis hermanos se sientan cerca de la ventana."
+}
+],
+"title": "sentarse · Настоящее"
+},
+{
+"rows": [
+{
+"es": "yo · me preparo",
+"gloss": "я",
+"id": "es:14:41",
+"sample": "Me preparo para la clase."
+},
+{
+"es": "tú · te preparas",
+"gloss": "ты",
+"id": "es:14:42",
+"sample": "Te preparas para el viaje."
+},
+{
+"es": "él · se prepara",
+"gloss": "он/она/Вы",
+"id": "es:14:43",
+"sample": "Ana se prepara para la clase."
+},
+{
+"es": "nosotros · nos preparamos",
+"gloss": "мы",
+"id": "es:14:44",
+"sample": "Nos preparamos para el viaje."
+},
+{
+"es": "vosotros · os preparáis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:14:47",
+"sample": "Os preparáis para la clase."
+},
+{
+"es": "ellos · se preparan",
+"gloss": "они/вы (ustedes)",
+"id": "es:14:46",
+"sample": "Mis hermanos se preparan para el viaje."
+}
+],
+"title": "prepararse · Настоящее"
+},
+{
+"rows": [
+{
+"es": "me / te / se",
+"gloss": "я / ты / он или она",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "nos / os / se",
+"gloss": "мы / вы (Испания) / они",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Я встаю: me, te, se, nos, os",
+"formula": "займенник + особова форма дієслова",
+"story": "Про свій ранок: Me levanto. Про ранок Ани: Ana se levanta. Змінилися і займенник, і закінчення дієслова.",
+"use": "Узгодь малий займенник і дієслово з тією самою людиною.",
+"choose": "Говориш про себе: Me levanto. Кажеш другові про нього: Te levantas. Розповідаєш про Ану: Ana se levanta. Змінюються і коротке слово перед дієсловом, і закінчення. Названа Ана — це «вона», якщо ти розповідаєш про неї, а не звертаєшся до неї.",
+"nuance": "Узгодь малий займенник і дієслово з тією самою людиною. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"wrong": "Se levanto temprano.",
+"right": "Me levanto temprano.",
+"chapters": [
+{
+"title": "Звідки взялося me",
+"body": "Словникове levantarse означає «вставати». В особовій формі -se не залишається в кінці: для yo маємо два слова, me levanto.",
+"note": "Дієслівна група: Me levanto. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:01",
+"es:14:02"
+],
+"focusId": "es:14:01"
+},
+{
+"title": "Хто встає: yo me, tú te, Ana se",
+"body": "Говориш про себе: Me levanto. Кажеш другові про нього: Te levantas. Розповідаєш про Ану: Ana se levanta. Змінюються і коротке слово перед дієсловом, і закінчення. Названа Ана — це «вона», якщо ти розповідаєш про неї, а не звертаєшся до неї.",
+"note": "Дієслівна група: se levanta. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:03",
+"es:14:04"
+],
+"focusId": "es:14:03"
+},
+{
+"title": "Ми й ви",
+"body": "Ми встаємо — nos levantamos. Для кількох друзів в Іспанії — os levantáis. Ellos та ustedes беруть se, хоча переклад може бути «вони» або «ви».",
+"note": "Дієслівна група: Nos levantamos. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:04",
+"es:14:05"
+],
+"focusId": "es:14:04"
+},
+{
+"title": "Миємо руки",
+"body": "У me lavo las manos з me уже зрозуміло, чиї руки. У нейтральному іспанському зразку вживають артикль las, а не кальку з «мої руки».",
+"note": "Дієслівна група: Me lavo. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:21",
+"es:14:22"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Не перекладаємо дослівно «себе»",
+"body": "Me siento aquí тут означає «я сідаю тут»: вихідне дієслово sentarse. У запереченні no стоїть перед усією сполукою: no me siento.",
+"note": "Дієслівна група: me siento. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:39",
+"es:14:40"
+],
+"focusId": "es:14:39"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Мої сестри приймають душ вдома?» / «Я мию руки.». Займенник та закінчення дієслова вказують на того самого виконавця. Смислові опори: «hermanas» — брат / сестра; «casa» — дім; en casa — вдома.",
+"note": "Дієслівна група: Me lavo. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:20",
+"es:14:21"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ми готуємося до поїздки.» / «Моя сестра збирається вдома.». Займенник та закінчення дієслова вказують на того самого виконавця. Узгодь малий займенник і дієслово з тією самою людиною.",
+"note": "Дієслівна група: se prepara. Займенник та закінчення дієслова вказують на того самого виконавця.",
+"samples": [
+"es:14:44",
+"es:14:50"
+],
+"focusId": "es:14:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · me levanto",
+"gloss": "я",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "tú · te levantas",
+"gloss": "ти",
+"id": "es:14:02",
+"sample": "Te levantas a las siete."
+},
+{
+"es": "él · se levanta",
+"gloss": "він/вона/Ви",
+"id": "es:14:03",
+"sample": "Ana se levanta temprano."
+},
+{
+"es": "nosotros · nos levantamos",
+"gloss": "ми",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+},
+{
+"es": "vosotros · os levantáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:14:07",
+"sample": "Os levantáis temprano."
+},
+{
+"es": "ellos · se levantan",
+"gloss": "вони/ви (ustedes)",
+"id": "es:14:06",
+"sample": "Mis hermanos se levantan a las siete."
+}
+],
+"title": "levantarse · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · me ducho",
+"gloss": "я",
+"id": "es:14:11",
+"sample": "Me ducho por la mañana."
+},
+{
+"es": "tú · te duchas",
+"gloss": "ти",
+"id": "es:14:12",
+"sample": "Te duchas en casa."
+},
+{
+"es": "él · se ducha",
+"gloss": "він/вона/Ви",
+"id": "es:14:13",
+"sample": "Ana se ducha por la mañana."
+},
+{
+"es": "nosotros · nos duchamos",
+"gloss": "ми",
+"id": "es:14:14",
+"sample": "Nos duchamos en casa."
+},
+{
+"es": "vosotros · os ducháis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · se duchan",
+"gloss": "вони/ви (ustedes)",
+"id": "es:14:16",
+"sample": "Mis hermanos se duchan en casa."
+}
+],
+"title": "ducharse · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · me lavo",
+"gloss": "я",
+"id": "es:14:21",
+"sample": "Me lavo las manos."
+},
+{
+"es": "tú · te lavas",
+"gloss": "ти",
+"id": "es:14:22",
+"sample": "Te lavas la cara."
+},
+{
+"es": "él · se lava",
+"gloss": "він/вона/Ви",
+"id": "es:14:23",
+"sample": "Ana se lava las manos."
+},
+{
+"es": "nosotros · nos lavamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · os laváis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:14:27",
+"sample": "Os laváis las manos."
+},
+{
+"es": "ellos · se lavan",
+"gloss": "вони/ви (ustedes)",
+"id": "es:14:26",
+"sample": "Mis hermanos se lavan la cara."
+}
+],
+"title": "lavarse · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · me siento",
+"gloss": "я",
+"id": "es:14:31",
+"sample": "Me siento aquí."
+},
+{
+"es": "tú · te sientas",
+"gloss": "ти",
+"id": "es:14:32",
+"sample": "Te sientas cerca de la ventana."
+},
+{
+"es": "él · se sienta",
+"gloss": "він/вона/Ви",
+"id": "es:14:33",
+"sample": "Ana se sienta aquí."
+},
+{
+"es": "nosotros · nos sentamos",
+"gloss": "ми",
+"id": "es:14:34",
+"sample": "Nos sentamos cerca de la ventana."
+},
+{
+"es": "vosotros · os sentáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:14:37",
+"sample": "Os sentáis aquí."
+},
+{
+"es": "ellos · se sientan",
+"gloss": "вони/ви (ustedes)",
+"id": "es:14:36",
+"sample": "Mis hermanos se sientan cerca de la ventana."
+}
+],
+"title": "sentarse · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "yo · me preparo",
+"gloss": "я",
+"id": "es:14:41",
+"sample": "Me preparo para la clase."
+},
+{
+"es": "tú · te preparas",
+"gloss": "ти",
+"id": "es:14:42",
+"sample": "Te preparas para el viaje."
+},
+{
+"es": "él · se prepara",
+"gloss": "він/вона/Ви",
+"id": "es:14:43",
+"sample": "Ana se prepara para la clase."
+},
+{
+"es": "nosotros · nos preparamos",
+"gloss": "ми",
+"id": "es:14:44",
+"sample": "Nos preparamos para el viaje."
+},
+{
+"es": "vosotros · os preparáis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:14:47",
+"sample": "Os preparáis para la clase."
+},
+{
+"es": "ellos · se preparan",
+"gloss": "вони/ви (ustedes)",
+"id": "es:14:46",
+"sample": "Mis hermanos se preparan para el viaje."
+}
+],
+"title": "prepararse · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "me / te / se",
+"gloss": "я / ти / він чи вона",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "nos / os / se",
+"gloss": "ми / ви (Іспанія) / вони",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Reflexive verbs: me, te, se, nos, os",
+"formula": "me / te / se / nos / os / se + conjugated verb",
+"story": "Your own morning: Me levanto. Ana’s morning: Ana se levanta. Change both the small pronoun and the verb ending.",
+"use": "Agree the small pronoun and verb with the same person.",
+"choose": "About yourself: Me levanto. To a friend about what that friend does: Te levantas. About Ana: Ana se levanta. Two pieces change together: the little pronoun before the verb and the ending of the verb. Speaking about Ana is not the same as speaking to her.",
+"nuance": "Agree the small pronoun and verb with the same person. The pronoun and verb ending refer to the same performer.",
+"wrong": "Se levanto temprano.",
+"right": "Me levanto temprano.",
+"chapters": [
+{
+"title": "Why is the little word me there?",
+"body": "The dictionary levantarse means \"to get up.\" In the personal form, the ending - se does not remain at the end: for yo, we get two words, me levanto.",
+"note": "Verb phrase: Me levanto. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:01",
+"es:14:02"
+],
+"focusId": "es:14:01"
+},
+{
+"title": "Match the speaker to me, te or se",
+"body": "About yourself: Me levanto. To a friend about what that friend does: Te levantas. About Ana: Ana se levanta. Two pieces change together: the little pronoun before the verb and the ending of the verb. Speaking about Ana is not the same as speaking to her.",
+"note": "Verb phrase: se levanta. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:03",
+"es:14:04"
+],
+"focusId": "es:14:03"
+},
+{
+"title": "How do I include myself in a group?",
+"body": "We get up — nos levantamos. For a few friends in Spain — os levantáis. Ellos and ustedes take se, although the meaning of \"they\" or \"you\" may differ.",
+"note": "Verb phrase: Nos levantamos. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:04",
+"es:14:05"
+],
+"focusId": "es:14:04"
+},
+{
+"title": "Why do we say las manos here?",
+"body": "In me lavo las manos, the ownership of the hands is already clear from me. The neutral Spanish example uses the article las, not the tracing from \"my hands.\"",
+"note": "Verb phrase: Me lavo. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:21",
+"es:14:22"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Does a reflexive pronoun always need a separate translation?",
+"body": "Me siento aquí here means \"I sit here\": the original verb sentarse, not a separate action on oneself. In the negation, no comes before the entire copula: no me siento.",
+"note": "Verb phrase: me siento. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:39",
+"es:14:40"
+],
+"focusId": "es:14:39"
+},
+{
+"title": "How do I put the pieces in order?",
+"body": "Compare the two tasks: \"Do my sisters shower at home?\" / \"I wash my hands.\" The pronoun and verb ending refer to the same performer. Semantic supports: \" hermanas \" — brother / sister; \" casa \" — house; en casa — houses.",
+"note": "Verb phrase: Me lavo. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:20",
+"es:14:21"
+],
+"focusId": "es:14:21"
+},
+{
+"title": "Can I change just the person?",
+"body": "Compare two tasks: \"We're getting ready for the trip.\" / \"My sister is getting ready for home.\" The pronoun and verb ending indicate the same performer. Match a small pronoun and verb with the same person.",
+"note": "Verb phrase: se prepara. The pronoun and verb ending refer to the same performer.",
+"samples": [
+"es:14:44",
+"es:14:50"
+],
+"focusId": "es:14:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · me levanto",
+"gloss": "I",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "tú · te levantas",
+"gloss": "you",
+"id": "es:14:02",
+"sample": "Te levantas a las siete."
+},
+{
+"es": "él · se levanta",
+"gloss": "he/she/you",
+"id": "es:14:03",
+"sample": "Ana se levanta temprano."
+},
+{
+"es": "nosotros · nos levantamos",
+"gloss": "we",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+},
+{
+"es": "vosotros · os levantáis",
+"gloss": "you (friends, Spain)",
+"id": "es:14:07",
+"sample": "Os levantáis temprano."
+},
+{
+"es": "ellos · se levantan",
+"gloss": "they/you (ustedes)",
+"id": "es:14:06",
+"sample": "Mis hermanos se levantan a las siete."
+}
+],
+"title": "levantarse Present"
+},
+{
+"rows": [
+{
+"es": "yo · me ducho",
+"gloss": "I",
+"id": "es:14:11",
+"sample": "Me ducho por la mañana."
+},
+{
+"es": "tú · te duchas",
+"gloss": "you",
+"id": "es:14:12",
+"sample": "Te duchas en casa."
+},
+{
+"es": "él · se ducha",
+"gloss": "he/she/you",
+"id": "es:14:13",
+"sample": "Ana se ducha por la mañana."
+},
+{
+"es": "nosotros · nos duchamos",
+"gloss": "we",
+"id": "es:14:14",
+"sample": "Nos duchamos en casa."
+},
+{
+"es": "vosotros · os ducháis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · se duchan",
+"gloss": "they/you (ustedes)",
+"id": "es:14:16",
+"sample": "Mis hermanos se duchan en casa."
+}
+],
+"title": "ducharse Present"
+},
+{
+"rows": [
+{
+"es": "yo · me lavo",
+"gloss": "I",
+"id": "es:14:21",
+"sample": "Me lavo las manos."
+},
+{
+"es": "tú · te lavas",
+"gloss": "you",
+"id": "es:14:22",
+"sample": "Te lavas la cara."
+},
+{
+"es": "él · se lava",
+"gloss": "he/she/you",
+"id": "es:14:23",
+"sample": "Ana se lava las manos."
+},
+{
+"es": "nosotros · nos lavamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · os laváis",
+"gloss": "you (friends, Spain)",
+"id": "es:14:27",
+"sample": "Os laváis las manos."
+},
+{
+"es": "ellos · se lavan",
+"gloss": "they/you (ustedes)",
+"id": "es:14:26",
+"sample": "Mis hermanos se lavan la cara."
+}
+],
+"title": "lavarse Present"
+},
+{
+"rows": [
+{
+"es": "yo · me siento",
+"gloss": "I",
+"id": "es:14:31",
+"sample": "Me siento aquí."
+},
+{
+"es": "tú · te sientas",
+"gloss": "you",
+"id": "es:14:32",
+"sample": "Te sientas cerca de la ventana."
+},
+{
+"es": "él · se sienta",
+"gloss": "he/she/you",
+"id": "es:14:33",
+"sample": "Ana se sienta aquí."
+},
+{
+"es": "nosotros · nos sentamos",
+"gloss": "we",
+"id": "es:14:34",
+"sample": "Nos sentamos cerca de la ventana."
+},
+{
+"es": "vosotros · os sentáis",
+"gloss": "you (friends, Spain)",
+"id": "es:14:37",
+"sample": "Os sentáis aquí."
+},
+{
+"es": "ellos · se sientan",
+"gloss": "they/you (ustedes)",
+"id": "es:14:36",
+"sample": "Mis hermanos se sientan cerca de la ventana."
+}
+],
+"title": "sentarse Present"
+},
+{
+"rows": [
+{
+"es": "yo · me preparo",
+"gloss": "I",
+"id": "es:14:41",
+"sample": "Me preparo para la clase."
+},
+{
+"es": "tú · te preparas",
+"gloss": "you",
+"id": "es:14:42",
+"sample": "Te preparas para el viaje."
+},
+{
+"es": "él · se prepara",
+"gloss": "he/she/you",
+"id": "es:14:43",
+"sample": "Ana se prepara para la clase."
+},
+{
+"es": "nosotros · nos preparamos",
+"gloss": "we",
+"id": "es:14:44",
+"sample": "Nos preparamos para el viaje."
+},
+{
+"es": "vosotros · os preparáis",
+"gloss": "you (friends, Spain)",
+"id": "es:14:47",
+"sample": "Os preparáis para la clase."
+},
+{
+"es": "ellos · se preparan",
+"gloss": "they/you (ustedes)",
+"id": "es:14:46",
+"sample": "Mis hermanos se preparan para el viaje."
+}
+],
+"title": "prepararse Present"
+},
+{
+"rows": [
+{
+"es": "me / te / se",
+"gloss": "Me / You / He or She",
+"id": "es:14:01",
+"sample": "Me levanto temprano."
+},
+{
+"es": "nos / os / se",
+"gloss": "we / you (Spain) / they",
+"id": "es:14:04",
+"sample": "Nos levantamos a las siete."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:14:01",
+"index": 0,
+"right": "Me",
+"near": "Nos",
+"seq": [
+"Me",
+"levanto",
+"temprano"
+],
+"i": 0,
+"kind": "form",
+"key": "es14/lab/form1",
+"feedback": {
+"ru": "Местоимение: me — меня, мне; себя.",
+"uk": "Займенник: me — мене, мені; себе.",
+"en": "Pronoun: me — me, myself; myself."
+}
+},
+{
+"id": "es:14:13",
+"index": 1,
+"right": "se",
+"near": "me",
+"seq": [
+"Ana",
+"se",
+"ducha",
+"por",
+"la",
+"mañana"
+],
+"i": 12,
+"kind": "form",
+"key": "es14/lab/form2",
+"feedback": {
+"ru": "Местоимение: se — себя; показатель местоименной формы.",
+"uk": "Займенник: se — себе; показник займенникової форми.",
+"en": "Pronoun: se — myself; pronominal form indicator."
+}
+},
+{
+"id": "es:14:27",
+"index": 0,
+"right": "Os",
+"near": "Me",
+"seq": [
+"Os",
+"laváis",
+"las",
+"manos"
+],
+"i": 26,
+"kind": "form",
+"key": "es14/lab/form3",
+"feedback": {
+"ru": "Местоимение: os — вас, вам; себя (vosotros).",
+"uk": "Займенник: os — вас, вам; себе (vosotros).",
+"en": "Pronoun: os — you, yourself; yourself (vosotros)."
+}
+},
+{
+"id": "es:14:38",
+"index": 0,
+"right": "Te",
+"near": "Os",
+"seq": [
+"Te",
+"sientas",
+"cerca",
+"de",
+"la",
+"ventana"
+],
+"i": 37,
+"kind": "form",
+"key": "es14/lab/form4",
+"feedback": {
+"ru": "Местоимение: te — тебя, тебе; себя.",
+"uk": "Займенник: te — тебе, тобі; себе.",
+"en": "Pronoun: te — you, yourself; yourself."
+}
+},
+{
+"id": "es:14:04",
+"index": 0,
+"right": "Nos",
+"near": "Te",
+"seq": [
+"Nos",
+"levantamos",
+"a",
+"las",
+"siete"
+],
+"i": 3,
+"kind": "spot",
+"key": "es14/lab/spot1",
+"feedback": {
+"ru": "Местоимение: nos — нас, нам; себя (мы).",
+"uk": "Займенник: nos — нас, нам; себе (ми).",
+"en": "Pronoun: nos — us, ourselves; ourselves (we)."
+}
+},
+{
+"id": "es:14:20",
+"index": 2,
+"right": "se",
+"near": "me",
+"seq": [
+"Mis",
+"hermanas",
+"se",
+"duchan",
+"en",
+"casa"
+],
+"i": 19,
+"kind": "spot",
+"key": "es14/lab/spot2",
+"feedback": {
+"ru": "Местоимение: se — себя; показатель местоименной формы.",
+"uk": "Займенник: se — себе; показник займенникової форми.",
+"en": "Pronoun: se — myself; pronominal form indicator."
+}
+},
+{
+"id": "es:14:32",
+"index": 0,
+"right": "Te",
+"near": "Os",
+"seq": [
+"Te",
+"sientas",
+"cerca",
+"de",
+"la",
+"ventana"
+],
+"i": 31,
+"kind": "spot",
+"key": "es14/lab/spot3",
+"feedback": {
+"ru": "Местоимение: te — тебя, тебе; себя.",
+"uk": "Займенник: te — тебе, тобі; себе.",
+"en": "Pronoun: te — you, yourself; yourself."
+}
+},
+{
+"id": "es:14:47",
+"index": 0,
+"right": "Os",
+"near": "Me",
+"seq": [
+"Os",
+"preparáis",
+"para",
+"la",
+"clase"
+],
+"i": 46,
+"kind": "spot",
+"key": "es14/lab/spot4",
+"feedback": {
+"ru": "Местоимение: os — вас, вам; себя (vosotros).",
+"uk": "Займенник: os — вас, вам; себе (vosotros).",
+"en": "Pronoun: os — you, yourself; yourself (vosotros)."
+}
+},
+{
+"kind": "match",
+"key": "es14/lab/match1",
+"id": "es:14:02",
+"other": "es:14:04"
+},
+{
+"kind": "match",
+"key": "es14/lab/match2",
+"id": "es:14:17",
+"other": "es:14:16"
+},
+{
+"kind": "match",
+"key": "es14/lab/match3",
+"id": "es:14:33",
+"other": "es:14:31"
+},
+{
+"kind": "match",
+"key": "es14/lab/match4",
+"id": "es:14:46",
+"other": "es:14:45"
+},
+{
+"kind": "build",
+"key": "es14/lab/build1",
+"id": "es:14:04"
+},
+{
+"kind": "build",
+"key": "es14/lab/build2",
+"id": "es:14:15"
+},
+{
+"kind": "build",
+"key": "es14/lab/build3",
+"id": "es:14:29"
+},
+{
+"kind": "build",
+"key": "es14/lab/build4",
+"id": "es:14:42"
+},
+{
+"kind": "transform",
+"id": "es:14:09",
+"base": "es:14:01",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es14/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:14:19",
+"base": "es:14:11",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es14/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:14:29",
+"base": "es:14:21",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es14/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:14:49",
+"base": "es:14:41",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es14/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+12
+],
+[
+16,
+1
+],
+[
+18,
+5
+],
+[
+3,
+15
+],
+[
+17,
+9
+],
+[
+19,
+11
+]
+],
+"worked": [
+"es:14:05",
+"es:14:18",
+"es:14:33",
+"es:14:48"
+],
+"reflection": [
+"es:14:01",
+"es:14:03"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

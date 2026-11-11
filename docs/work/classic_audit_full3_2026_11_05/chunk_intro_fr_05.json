@@ -1,0 +1,1010 @@
+[
+{
+"lesson": 21,
+"blocks": [
+{
+"textES": "Imagina dos escenas: estás leyendo un libro y suena el teléfono. La lectura crea el contexto, y el sonido del teléfono es un evento dentro de ese contexto. Estos dos roles te ayudan a elegir dos formas verbales diferentes.\nPrimero, describe lo que ya sucedió. Luego, nombra el nuevo evento. El francés muestra la diferencia con la gramática, no con las palabras obligatorias \"ya\" y \"de repente\".",
+"textId": "Bayangkan dua adegan: Anda sedang membaca buku; lalu telepon berdering. Membaca menciptakan latar belakang, dering telepon adalah peristiwa dalam latar belakang tersebut. Kedua peran ini membantu Anda memilih dua bentuk kata kerja yang berbeda.\nPertama, jelaskan apa yang sudah terjadi. Kemudian sebutkan peristiwa baru tersebut. Bahasa Prancis menunjukkan perbedaannya dengan tata bahasa, bukan dengan kata-kata wajib \"sudah\" dan \"tiba-tiba.\"",
+"textPl": "Wyobraź sobie dwie sceny: czytasz książkę, a potem dzwoni telefon. Czytanie tworzy tło, a dzwonienie jest wydarzeniem w tym tle. Te dwie role pomagają Ci wybrać dwie różne formy czasownika.\nNajpierw opisz, co już się wydarzyło. Następnie nazwij nowe wydarzenie. Język francuski pokazuje różnicę w gramatyce, a nie w obowiązkowych słowach „already” i „suddenly”.",
+"textPtBr": "Imagine duas cenas: você já está lendo um livro; então o telefone toca. A leitura cria o pano de fundo, o toque é um evento dentro desse pano de fundo. Esses dois papéis ajudam você a escolher duas formas verbais diferentes.\nPrimeiro, descreva o que já aconteceu. Em seguida, nomeie o novo evento. O francês mostra a diferença com a gramática, não com as palavras obrigatórias \"já\" e \"de repente\".",
+"textRU": "Представь два кадра: ты уже читаешь книгу; тут звонит телефон. Чтение создаёт фон, звонок — событие на этом фоне. Эти две роли помогают выбрать две разные глагольные формы.\nСначала расскажи, что уже происходило. Затем назови новое событие. Французский показывает разницу грамматикой, а не обязательными словами «уже» и «вдруг».",
+"textTr": "İki sahne hayal edin: Zaten bir kitap okuyorsunuz; sonra telefon çalıyor. Okumak arka planı oluşturuyor, çalması ise bu arka plan içindeki bir olay. Bu iki rol, iki farklı fiil biçimi seçmenize yardımcı olur.\nÖnce, daha önce olanları açıklayın. Sonra yeni olayı adlandırın. Fransızca, \"zaten\" ve \"aniden\" gibi zorunlu kelimelerle değil, dilbilgisiyle farkı gösterir.",
+"textUK": "Уяви два кадри: ти вже читаєш книгу; Тут дзвонить телефон. Читання створює тло, дзвінок – подія на цьому тлі. Ці дві ролі допомагають вибрати дві різні дієслівні форми.\nСпочатку розкажи, що вже відбувалося. Потім назви нову подію. Французька показує різницю граматикою, а не обов'язковими словами «вже» та «раптом».",
+"textVi": "Hãy tưởng tượng hai tình huống: bạn đang đọc sách; rồi điện thoại reo. Việc đọc sách tạo nên bối cảnh, tiếng chuông điện thoại là một sự kiện trong bối cảnh đó. Hai vai trò này giúp bạn chọn hai dạng động từ khác nhau.\nTrước tiên, hãy mô tả những gì đã xảy ra. Sau đó nêu tên sự kiện mới. Tiếng Pháp thể hiện sự khác biệt bằng ngữ pháp, chứ không phải bằng các từ bắt buộc \"already\" và \"suddenly\".",
+"titleES": "Antecedentes y evento: Dos tiempos verbales en una oración",
+"titleId": "Latar Belakang dan Peristiwa: Dua Tenses dalam Satu Kalimat",
+"titlePl": "Tło i wydarzenie: dwa czasy gramatyczne w jednym zdaniu",
+"titlePtBr": "Contexto e Evento: Dois Tempos Verbais em uma Frase",
+"titleRU": "Фон и событие: два времени в одной фразе",
+"titleTr": "Arka Plan ve Olay: Tek Cümlede İki Zaman Kipi",
+"titleUK": "Фон та подія: два часи в одній фразі",
+"titleVi": "Bối cảnh và Sự kiện: Hai thì trong một câu",
+"titleByLocale": {
+"en": "Background and Event: Two Tenses in One Sentence",
+"es": "Antecedentes y evento: Dos tiempos verbales en una oración",
+"id": "Latar Belakang dan Peristiwa: Dua Tenses dalam Satu Kalimat",
+"pl": "Tło i wydarzenie: dwa czasy gramatyczne w jednym zdaniu",
+"pt-BR": "Contexto e Evento: Dois Tempos Verbais em uma Frase",
+"ru": "Фон и событие: два времени в одной фразе",
+"tr": "Arka Plan ve Olay: Tek Cümlede İki Zaman Kipi",
+"uk": "Фон та подія: два часи в одній фразі",
+"vi": "Bối cảnh và Sự kiện: Hai thì trong một câu"
+},
+"textByLocale": {
+"en": [
+"Imagine two scenes: you're already reading a book; then the phone rings. Reading creates the background, the ringing is an event within that background. These two roles help you choose two different verb forms.",
+"First, describe what already happened. Then name the new event. French shows the difference with grammar, not with the obligatory words \"already\" and \"suddenly.\""
+],
+"es": [
+"Imagina dos escenas: estás leyendo un libro y suena el teléfono. La lectura crea el contexto, y el sonido del teléfono es un evento dentro de ese contexto. Estos dos roles te ayudan a elegir dos formas verbales diferentes.",
+"Primero, describe lo que ya sucedió. Luego, nombra el nuevo evento. El francés muestra la diferencia con la gramática, no con las palabras obligatorias \"ya\" y \"de repente\"."
+],
+"id": [
+"Bayangkan dua adegan: Anda sedang membaca buku; lalu telepon berdering. Membaca menciptakan latar belakang, dering telepon adalah peristiwa dalam latar belakang tersebut. Kedua peran ini membantu Anda memilih dua bentuk kata kerja yang berbeda.",
+"Pertama, jelaskan apa yang sudah terjadi. Kemudian sebutkan peristiwa baru tersebut. Bahasa Prancis menunjukkan perbedaannya dengan tata bahasa, bukan dengan kata-kata wajib \"sudah\" dan \"tiba-tiba.\""
+],
+"pl": [
+"Wyobraź sobie dwie sceny: czytasz książkę, a potem dzwoni telefon. Czytanie tworzy tło, a dzwonienie jest wydarzeniem w tym tle. Te dwie role pomagają Ci wybrać dwie różne formy czasownika.",
+"Najpierw opisz, co już się wydarzyło. Następnie nazwij nowe wydarzenie. Język francuski pokazuje różnicę w gramatyce, a nie w obowiązkowych słowach „already” i „suddenly”."
+],
+"pt-BR": [
+"Imagine duas cenas: você já está lendo um livro; então o telefone toca. A leitura cria o pano de fundo, o toque é um evento dentro desse pano de fundo. Esses dois papéis ajudam você a escolher duas formas verbais diferentes.",
+"Primeiro, descreva o que já aconteceu. Em seguida, nomeie o novo evento. O francês mostra a diferença com a gramática, não com as palavras obrigatórias \"já\" e \"de repente\"."
+],
+"ru": [
+"Представь два кадра: ты уже читаешь книгу; тут звонит телефон. Чтение создаёт фон, звонок — событие на этом фоне. Эти две роли помогают выбрать две разные глагольные формы.",
+"Сначала расскажи, что уже происходило. Затем назови новое событие. Французский показывает разницу грамматикой, а не обязательными словами «уже» и «вдруг»."
+],
+"tr": [
+"İki sahne hayal edin: Zaten bir kitap okuyorsunuz; sonra telefon çalıyor. Okumak arka planı oluşturuyor, çalması ise bu arka plan içindeki bir olay. Bu iki rol, iki farklı fiil biçimi seçmenize yardımcı olur.",
+"Önce, daha önce olanları açıklayın. Sonra yeni olayı adlandırın. Fransızca, \"zaten\" ve \"aniden\" gibi zorunlu kelimelerle değil, dilbilgisiyle farkı gösterir."
+],
+"uk": [
+"Уяви два кадри: ти вже читаєш книгу; Тут дзвонить телефон. Читання створює тло, дзвінок – подія на цьому тлі. Ці дві ролі допомагають вибрати дві різні дієслівні форми.",
+"Спочатку розкажи, що вже відбувалося. Потім назви нову подію. Французька показує різницю граматикою, а не обов'язковими словами «вже» та «раптом»."
+],
+"vi": [
+"Hãy tưởng tượng hai tình huống: bạn đang đọc sách; rồi điện thoại reo. Việc đọc sách tạo nên bối cảnh, tiếng chuông điện thoại là một sự kiện trong bối cảnh đó. Hai vai trò này giúp bạn chọn hai dạng động từ khác nhau.",
+"Trước tiên, hãy mô tả những gì đã xảy ra. Sau đó nêu tên sự kiện mới. Tiếng Pháp thể hiện sự khác biệt bằng ngữ pháp, chứ không phải bằng các từ bắt buộc \"already\" và \"suddenly\"."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:21:01"
+]
+},
+{
+"textES": "Antecedentes continuos + quand + evento o pendant que + Antecedentes\nJe lisais responde a la pregunta \"¿qué estaba pasando?\" Tu as appelé responde a la pregunta \"¿qué pasó en ese momento?\" Las palabras quand y pendant que conectan las partes, pero no eligen el tiempo por ti.\nAl cambiar de participantes, conjugue cada parte por separado. La persona que comió no es necesariamente la misma que vino. No sustituya el mismo pronombre para ambas partes por inercia.",
+"textId": "Latar Belakang Berkelanjutan + quand + Peristiwa atau pendant que + Latar Belakang\nJe lisais menjawab pertanyaan \"apa yang sedang terjadi?\" Tu as appelé menjawab pertanyaan \"apa yang terjadi pada saat itu?\" Kata-kata quand dan pendant que menghubungkan bagian-bagiannya, tetapi mereka tidak memilih waktu untuk Anda.\nSaat mengubah partisipan, konjugasikan setiap bagian secara terpisah. Orang yang makan belum tentu orang yang datang. Jangan mengganti kedua bagian dengan kata ganti yang sama karena kebiasaan.",
+"textPl": "Ciągłe tło + quand + wydarzenie lub pendant que + tło\nJe lisais odpowiada na pytanie „co się działo?”. Tu as appelé odpowiada na pytanie „co się wydarzyło w tym momencie?”. Słowa quand i pendant que łączą części, ale nie wybierają czasu.\nZmieniając uczestników, odmieniaj każdą część osobno. Osoba, która zjadła, niekoniecznie jest tą samą osobą, która przyszła. Nie zastępuj obu części tym samym zaimkiem z powodu bezwładności.",
+"textPtBr": "Contexto Contínuo + quand + Evento ou pendant que + Contexto\nJe lisais responde à pergunta \"o que estava acontecendo?\" Tu as appelé responde à pergunta \"o que aconteceu naquele momento?\" As palavras quand e pendant que conectam as partes, mas não escolhem o tempo para você.\nAo trocar de participantes, conjugue cada parte separadamente. A pessoa que comeu não é necessariamente a mesma pessoa que veio. Não substitua o mesmo pronome para ambas as partes por inércia.",
+"textRU": "длительный фон + quand + событие или pendant que + фон\nJe lisais отвечает на вопрос «что происходило?». Tu as appelé — «что случилось в тот момент?». Слова quand и pendant que соединяют части, но сами по себе не выбирают время вместо тебя.\nМеняя участников, спрягай каждую часть отдельно. Кто ел, не обязательно тот же человек, который пришёл. Не подставляй одно местоимение в обе части по инерции.",
+"textTr": "Sürekli Arka Plan + quand + Olay veya pendant que + Arka Plan\nJe lisais \"ne oluyordu?\" sorusunu yanıtlıyor. Tu as appelé \"o anda ne oldu?\" sorusunu yanıtlıyor. quand ve pendant que kelimeleri parçaları birbirine bağlıyor, ancak sizin için zamanı seçmiyorlar.\nKatılımcıları değiştirirken, her bir parçayı ayrı ayrı çekimleyin. Yiyen kişi, gelen kişiyle aynı kişi olmak zorunda değildir. Alışkanlık gereği her iki parça için de aynı zamiri kullanmayın.",
+"textUK": "тривалий фон + quand + подія або pendant que + фон\nJe lisais відповідає питанням «що відбувалося?». Tu as appelé - \"що трапилося в той момент?\". Слова quand та pendant que з'єднують частини, але самі по собі не вибирають час замість тебе.\nЗмінюючи учасників, відмінюй кожну частину окремо. Хто їв, не обов'язково та сама людина, яка прийшла. Не підставляй один займенник в обидві частини за інерцією.",
+"textVi": "Bối cảnh tiếp diễn + quand + Sự kiện hoặc pendant que + Bối cảnh\nJe lisais trả lời câu hỏi \"điều gì đang xảy ra?\" Tu as appelé trả lời câu hỏi \"điều gì đã xảy ra vào thời điểm đó?\" Các từ quand và pendant que kết nối các phần, nhưng chúng không chọn thời điểm cho bạn.\nKhi thay đổi người tham gia, hãy chia động từ riêng biệt cho từng phần. Người ăn không nhất thiết phải là người đến. Đừng thay thế cùng một đại từ cho cả hai phần chỉ vì quán tính.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Continuous Background + «quand» + Event or «pendant que» + Background",
+"«Je lisais» answers the question \"what was happening?\" «Tu as appelé» answers the question \"what happened at that moment?\" The words «quand» and «pendant que» connect the parts, but they don't choose time for you.",
+"When changing participants, conjugate each part separately. The person who ate is not necessarily the same person who came. Don't substitute the same pronoun for both parts out of inertia."
+],
+"es": [
+"Antecedentes continuos + «quand» + evento o «pendant que» + Antecedentes",
+"«Je lisais» responde a la pregunta \"¿qué estaba pasando?\" «Tu as appelé» responde a la pregunta \"¿qué pasó en ese momento?\" Las palabras «quand» y «pendant que» conectan las partes, pero no eligen el tiempo por ti.",
+"Al cambiar de participantes, conjugue cada parte por separado. La persona que comió no es necesariamente la misma que vino. No sustituya el mismo pronombre para ambas partes por inercia."
+],
+"id": [
+"Latar Belakang Berkelanjutan + «quand» + Peristiwa atau «pendant que» + Latar Belakang",
+"«Je lisais» menjawab pertanyaan \"apa yang sedang terjadi?\" «Tu as appelé» menjawab pertanyaan \"apa yang terjadi pada saat itu?\" Kata-kata «quand» dan «pendant que» menghubungkan bagian-bagiannya, tetapi mereka tidak memilih waktu untuk Anda.",
+"Saat mengubah partisipan, konjugasikan setiap bagian secara terpisah. Orang yang makan belum tentu orang yang datang. Jangan mengganti kedua bagian dengan kata ganti yang sama karena kebiasaan."
+],
+"pl": [
+"Ciągłe tło + «quand» + wydarzenie lub «pendant que» + tło",
+"«Je lisais» odpowiada na pytanie „co się działo?”. «Tu as appelé» odpowiada na pytanie „co się wydarzyło w tym momencie?”. Słowa «quand» i «pendant que» łączą części, ale nie wybierają czasu.",
+"Zmieniając uczestników, odmieniaj każdą część osobno. Osoba, która zjadła, niekoniecznie jest tą samą osobą, która przyszła. Nie zastępuj obu części tym samym zaimkiem z powodu bezwładności."
+],
+"pt-BR": [
+"Contexto Contínuo + «quand» + Evento ou «pendant que» + Contexto",
+"«Je lisais» responde à pergunta \"o que estava acontecendo?\" «Tu as appelé» responde à pergunta \"o que aconteceu naquele momento?\" As palavras «quand» e «pendant que» conectam as partes, mas não escolhem o tempo para você.",
+"Ao trocar de participantes, conjugue cada parte separadamente. A pessoa que comeu não é necessariamente a mesma pessoa que veio. Não substitua o mesmo pronome para ambas as partes por inércia."
+],
+"ru": [
+"длительный фон + «quand» + событие или «pendant que» + фон",
+"«Je lisais» отвечает на вопрос «что происходило?». «Tu as appelé» — «что случилось в тот момент?». Слова «quand» и «pendant que» соединяют части, но сами по себе не выбирают время вместо тебя.",
+"Меняя участников, спрягай каждую часть отдельно. Кто ел, не обязательно тот же человек, который пришёл. Не подставляй одно местоимение в обе части по инерции."
+],
+"tr": [
+"Sürekli Arka Plan + «quand» + Olay veya «pendant que» + Arka Plan",
+"«Je lisais» \"ne oluyordu?\" sorusunu yanıtlıyor. «Tu as appelé» \"o anda ne oldu?\" sorusunu yanıtlıyor. «quand» ve «pendant que» kelimeleri parçaları birbirine bağlıyor, ancak sizin için zamanı seçmiyorlar.",
+"Katılımcıları değiştirirken, her bir parçayı ayrı ayrı çekimleyin. Yiyen kişi, gelen kişiyle aynı kişi olmak zorunda değildir. Alışkanlık gereği her iki parça için de aynı zamiri kullanmayın."
+],
+"uk": [
+"тривалий фон + «quand» + подія або «pendant que» + фон",
+"«Je lisais» відповідає питанням «що відбувалося?». «Tu as appelé» - \"що трапилося в той момент?\". Слова «quand» та «pendant que» з'єднують частини, але самі по собі не вибирають час замість тебе.",
+"Змінюючи учасників, відмінюй кожну частину окремо. Хто їв, не обов'язково та сама людина, яка прийшла. Не підставляй один займенник в обидві частини за інерцією."
+],
+"vi": [
+"Bối cảnh tiếp diễn + «quand» + Sự kiện hoặc «pendant que» + Bối cảnh",
+"«Je lisais» trả lời câu hỏi \"điều gì đang xảy ra?\" «Tu as appelé» trả lời câu hỏi \"điều gì đã xảy ra vào thời điểm đó?\" Các từ «quand» và «pendant que» kết nối các phần, nhưng chúng không chọn thời điểm cho bạn.",
+"Khi thay đổi người tham gia, hãy chia động từ riêng biệt cho từng phần. Người ăn không nhất thiết phải là người đến. Đừng thay thế cùng một đại từ cho cả hai phần chỉ vì quán tính."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:21:04",
+"fr:21:05"
+]
+},
+{
+"textES": "Estabas leyendo cuando sonó el teléfono. Empieza con je lisais: la lectura ya había comenzado. Quand conecta las partes, y tu as appelé añade un evento, que se puede marcar con un punto en la línea de tiempo.",
+"textId": "Anda sedang membaca ketika telepon berdering. Mulailah dengan je lisais: bacaan sudah berlangsung. Quand menghubungkan bagian-bagiannya, dan tu as appelé menambahkan sebuah peristiwa, yang dapat ditandai dengan titik pada garis waktu.",
+"textPl": "Czytałeś/aś, gdy zadzwonił telefon. Zacznij od je lisais: czytanie już się rozpoczęło. Quand łączy części, a tu as appelé dodaje wydarzenie, które można oznaczyć punktem na osi czasu.",
+"textPtBr": "Você estava lendo quando o telefone tocou. Comece com je lisais: a leitura já estava em andamento. Quand conecta as partes e tu as appelé adiciona um evento, que pode ser marcado com um ponto na linha do tempo.",
+"textRU": "Ты читал, и в этот момент раздался звонок. Начни с je lisais: чтение уже шло. Quand соединяет части, а tu as appelé добавляет событие, которое можно отметить точкой на линии времени.",
+"textTr": "Telefon çaldığında okuyordunuz. je lisais ile başlayın: okuma zaten başlamıştı. Quand parçaları birbirine bağlar ve tu as appelé, zaman çizelgesinde bir nokta ile işaretlenebilecek bir olay ekler.",
+"textUK": "Ти читав, і в цей момент пролунав дзвінок. Почни з je lisais: читання вже йшло. Quand з'єднує частини, а tu as appelé додає подію, яку можна відзначити точкою лінії часу.",
+"textVi": "Bạn đang đọc sách thì điện thoại reo. Bắt đầu với je lisais: việc đọc sách đã bắt đầu. Quand kết nối các phần, và tu as appelé thêm một sự kiện, có thể được đánh dấu bằng một điểm trên dòng thời gian.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You were reading when the phone rang. Start with «je lisais»: the reading was already underway. «Quand» connects the parts, and «tu as appelé» adds an event, which can be marked with a point on the timeline."
+],
+"es": [
+"Estabas leyendo cuando sonó el teléfono. Empieza con «je lisais»: la lectura ya había comenzado. «Quand» conecta las partes, y «tu as appelé» añade un evento, que se puede marcar con un punto en la línea de tiempo."
+],
+"id": [
+"Anda sedang membaca ketika telepon berdering. Mulailah dengan «je lisais»: bacaan sudah berlangsung. «Quand» menghubungkan bagian-bagiannya, dan «tu as appelé» menambahkan sebuah peristiwa, yang dapat ditandai dengan titik pada garis waktu."
+],
+"pl": [
+"Czytałeś/aś, gdy zadzwonił telefon. Zacznij od «je lisais»: czytanie już się rozpoczęło. «Quand» łączy części, a «tu as appelé» dodaje wydarzenie, które można oznaczyć punktem na osi czasu."
+],
+"pt-BR": [
+"Você estava lendo quando o telefone tocou. Comece com «je lisais»: a leitura já estava em andamento. «Quand» conecta as partes e «tu as appelé» adiciona um evento, que pode ser marcado com um ponto na linha do tempo."
+],
+"ru": [
+"Ты читал, и в этот момент раздался звонок. Начни с «je lisais»: чтение уже шло. «Quand» соединяет части, а «tu as appelé» добавляет событие, которое можно отметить точкой на линии времени."
+],
+"tr": [
+"Telefon çaldığında okuyordunuz. «je lisais» ile başlayın: okuma zaten başlamıştı. «Quand» parçaları birbirine bağlar ve «tu as appelé», zaman çizelgesinde bir nokta ile işaretlenebilecek bir olay ekler."
+],
+"uk": [
+"Ти читав, і в цей момент пролунав дзвінок. Почни з «je lisais»: читання вже йшло. «Quand» з'єднує частини, а «tu as appelé» додає подію, яку можна відзначити точкою лінії часу."
+],
+"vi": [
+"Bạn đang đọc sách thì điện thoại reo. Bắt đầu với «je lisais»: việc đọc sách đã bắt đầu. «Quand» kết nối các phần, và «tu as appelé» thêm một sự kiện, có thể được đánh dấu bằng một điểm trên dòng thời gian."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:21:01",
+"fr:21:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:21:01",
+"target": "Je lisais quand tu as appelé.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував."
+},
+{
+"id": "fr:21:04",
+"target": "Nous mangions quand Paul est arrivé.",
+"ru": "Мы ели, когда приехал Поль.",
+"uk": "Ми їли, коли прийшов Пол."
+},
+{
+"id": "fr:21:05",
+"target": "Tu écrivais quand je suis entré.",
+"ru": "Ты писал, когда я вошёл.",
+"uk": "Ти писав, коли я увійшов."
+},
+{
+"id": "fr:21:01",
+"target": "Je lisais quand tu as appelé.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував."
+},
+{
+"id": "fr:21:04",
+"target": "Nous mangions quand Paul est arrivé.",
+"ru": "Мы ели, когда приехал Поль.",
+"uk": "Ми їли, коли прийшов Пол."
+}
+]
+},
+{
+"lesson": 22,
+"blocks": [
+{
+"textES": "Estás viendo el mismo objeto o persona. No es necesario nombrarlos de nuevo. En lugar de usar el nombre completo, puedes decir \"su\", \"su\" o \"suyos\". En francés, estas palabras cortas se adelantan.\nEn lugar de repetir un objeto o una persona, usa la forma abreviada. Masculino singular — le, femenino — la, plural — les. El género de la palabra francesa sustituida determina el caso.",
+"textId": "Anda sedang melihat objek atau orang yang sama. Tidak perlu menyebutkan namanya lagi. Alih-alih menggunakan nama lengkap, Anda bisa mengatakan \"miliknya\" (laki-laki), \"miliknya\" (perempuan), atau \"milik mereka\". Dalam bahasa Prancis, kata-kata kecil ini dimajukan.\nAlih-alih mengulang objek atau orang, gunakan bentuk singkatnya. Maskulin tunggal — le, feminin — la, jamak — les. Jenis kelamin kata Prancis yang diganti menentukan.",
+"textPl": "Patrzysz na ten sam przedmiot lub tę samą osobę. Nie musisz ich ponownie nazywać. Zamiast używać pełnego imienia, możesz powiedzieć „jego”, „jej” lub „ich”. W języku francuskim te małe słowa są przesuwane do przodu.\nZamiast powtarzać dopełnienie lub osobę, użyj formy skróconej. Liczba pojedyncza rodzaju męskiego — le, żeńska — la, liczba mnoga — les. Rodzaj zastąpionego słowa francuskiego decyduje.",
+"textPtBr": "Você está olhando para o mesmo objeto ou pessoa. Não é necessário nomeá-los novamente. Em vez de usar o nome completo, você pode dizer \"seu\", \"sua\" ou \"deles\". Em francês, essas pequenas palavras são movidas para o início da frase.\nEm vez de repetir um objeto ou pessoa, use a forma abreviada. Masculino singular — le, feminino — la, plural — les. O gênero da palavra francesa substituída determina.",
+"textRU": "Вы смотрите на один и тот же предмет или человека. Необязательно называть его снова. Вместо полного названия можно сказать «его», «её», «их». Во французском такие маленькие слова перемещаются вперёд.\nВместо повторения предмета или человека возьми короткую форму. Мужской единственного — le, женский — la, множественное — les. Решает род заменённого французского слова.",
+"textTr": "Aynı nesneye veya kişiye bakıyorsunuz. Onları tekrar adlandırmanıza gerek yok. Tam ad yerine \"onun\", \"onların\" veya \"onların\" diyebilirsiniz. Fransızcada bu küçük kelimeler öne alınır.\nBir nesneyi veya kişiyi tekrarlamak yerine, kısa formu kullanın. Eril tekil — le, dişil — la, çoğul — les. Yerine konulan Fransızca kelimenin cinsiyeti belirler.",
+"textUK": "Ви дивитесь на той самий предмет або людину. Необов'язково називати його знову. Замість повної назви можна сказати \"його\", \"її\", \"їх\". У французькій такі малі слова переміщаються вперед.\nЗамість повторення предмета або людини візьми коротку форму. Чоловічий єдиного – le, жіночий – la, множинний – les. Вирішує рід заміненого французького слова.",
+"textVi": "Bạn đang nhìn cùng một vật thể hoặc người. Không cần thiết phải gọi tên họ một lần nữa. Thay vì dùng tên đầy đủ, bạn có thể nói \"của anh ấy\", \"của cô ấy\" hoặc \"của họ\". Trong tiếng Pháp, những từ viết tắt này được đặt ở vị trí phía trước.\nThay vì lặp lại một tân ngữ hoặc người, hãy sử dụng dạng ngắn. Giống đực số ít — le, giống cái — la, số nhiều — les. Giống của từ tiếng Pháp được thay thế sẽ quyết định.",
+"titleES": "No repitas el sujeto: le, la, les",
+"titleId": "Jangan mengulang subjek: le, la, les",
+"titlePl": "Nie powtarzaj podmiotu: le, la, les",
+"titlePtBr": "Não repita o sujeito: le, la, les",
+"titleRU": "Не повторять предмет: le, la, les",
+"titleTr": "Özneyi tekrarlamayın: le, la, les",
+"titleUK": "Не повторювати об'єкт: le, la, les",
+"titleVi": "Không lặp lại chủ ngữ: le, la, les",
+"titleByLocale": {
+"en": "Don't repeat the subject: le, la, les",
+"es": "No repitas el sujeto: le, la, les",
+"id": "Jangan mengulang subjek: le, la, les",
+"pl": "Nie powtarzaj podmiotu: le, la, les",
+"pt-BR": "Não repita o sujeito: le, la, les",
+"ru": "Не повторять предмет: le, la, les",
+"tr": "Özneyi tekrarlamayın: le, la, les",
+"uk": "Не повторювати об'єкт: le, la, les",
+"vi": "Không lặp lại chủ ngữ: le, la, les"
+},
+"textByLocale": {
+"en": [
+"You're looking at the same object or person. It's not necessary to name them again. Instead of using the full name, you can say \"his,\" \"her,\" or \"their.\" In French, these small words are moved forward.",
+"Instead of repeating an object or person, use the short form. Masculine singular — «le», feminine — «la», plural — «les». The gender of the replaced French word determines."
+],
+"es": [
+"Estás viendo el mismo objeto o persona. No es necesario nombrarlos de nuevo. En lugar de usar el nombre completo, puedes decir \"su\", \"su\" o \"suyos\". En francés, estas palabras cortas se adelantan.",
+"En lugar de repetir un objeto o una persona, usa la forma abreviada. Masculino singular — «le», femenino — «la», plural — «les». El género de la palabra francesa sustituida determina el caso."
+],
+"id": [
+"Anda sedang melihat objek atau orang yang sama. Tidak perlu menyebutkan namanya lagi. Alih-alih menggunakan nama lengkap, Anda bisa mengatakan \"miliknya\" (laki-laki), \"miliknya\" (perempuan), atau \"milik mereka\". Dalam bahasa Prancis, kata-kata kecil ini dimajukan.",
+"Alih-alih mengulang objek atau orang, gunakan bentuk singkatnya. Maskulin tunggal — «le», feminin — «la», jamak — «les». Jenis kelamin kata Prancis yang diganti menentukan."
+],
+"pl": [
+"Patrzysz na ten sam przedmiot lub tę samą osobę. Nie musisz ich ponownie nazywać. Zamiast używać pełnego imienia, możesz powiedzieć „jego”, „jej” lub „ich”. W języku francuskim te małe słowa są przesuwane do przodu.",
+"Zamiast powtarzać dopełnienie lub osobę, użyj formy skróconej. Liczba pojedyncza rodzaju męskiego — «le», żeńska — «la», liczba mnoga — «les». Rodzaj zastąpionego słowa francuskiego decyduje."
+],
+"pt-BR": [
+"Você está olhando para o mesmo objeto ou pessoa. Não é necessário nomeá-los novamente. Em vez de usar o nome completo, você pode dizer \"seu\", \"sua\" ou \"deles\". Em francês, essas pequenas palavras são movidas para o início da frase.",
+"Em vez de repetir um objeto ou pessoa, use a forma abreviada. Masculino singular — «le», feminino — «la», plural — «les». O gênero da palavra francesa substituída determina."
+],
+"ru": [
+"Вы смотрите на один и тот же предмет или человека. Необязательно называть его снова. Вместо полного названия можно сказать «его», «её», «их». Во французском такие маленькие слова перемещаются вперёд.",
+"Вместо повторения предмета или человека возьми короткую форму. Мужской единственного — «le», женский — «la», множественное — «les». Решает род заменённого французского слова."
+],
+"tr": [
+"Aynı nesneye veya kişiye bakıyorsunuz. Onları tekrar adlandırmanıza gerek yok. Tam ad yerine \"onun\", \"onların\" veya \"onların\" diyebilirsiniz. Fransızcada bu küçük kelimeler öne alınır.",
+"Bir nesneyi veya kişiyi tekrarlamak yerine, kısa formu kullanın. Eril tekil — «le», dişil — «la», çoğul — «les». Yerine konulan Fransızca kelimenin cinsiyeti belirler."
+],
+"uk": [
+"Ви дивитесь на той самий предмет або людину. Необов'язково називати його знову. Замість повної назви можна сказати \"його\", \"її\", \"їх\". У французькій такі малі слова переміщаються вперед.",
+"Замість повторення предмета або людини візьми коротку форму. Чоловічий єдиного – «le», жіночий – «la», множинний – «les». Вирішує рід заміненого французького слова."
+],
+"vi": [
+"Bạn đang nhìn cùng một vật thể hoặc người. Không cần thiết phải gọi tên họ một lần nữa. Thay vì dùng tên đầy đủ, bạn có thể nói \"của anh ấy\", \"của cô ấy\" hoặc \"của họ\". Trong tiếng Pháp, những từ viết tắt này được đặt ở vị trí phía trước.",
+"Thay vì lặp lại một tân ngữ hoặc người, hãy sử dụng dạng ngắn. Giống đực số ít — «le», giống cái — «la», số nhiều — «les». Giống của từ tiếng Pháp được thay thế sẽ quyết định."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:22:01"
+]
+},
+{
+"textES": "quién + objeto breve + verbo\nCompare Je vois Paul y Je le vois. En la primera frase, el nombre aparece después de la acción. En la segunda, le se refiere a la misma persona, pero precede a vois. No se trata de un artículo; no hay ningún sustantivo que lo siga.\nEl tema puede indicarse primero: La porte, je la ferme. Una coma separa el sujeto de la conversación. La antes de porte es un artículo, y la antes de ferme es un pronombre.",
+"textId": "who + objek pendek + kata kerja\nBandingkan Je vois Paul dan Je le vois. Pada frasa pertama, nama berada setelah tindakan. Pada frasa kedua, le merujuk pada orang yang sama, tetapi berada sebelum vois. Ini bukan artikel; tidak ada kata benda yang mengikutinya.\nTopik dapat dinyatakan terlebih dahulu: La porte, je la ferme. Koma memisahkan subjek percakapan. La sebelum porte adalah artikel, dan la sebelum ferme adalah kata ganti.",
+"textPl": "kto + dopełnienie krótkie + czasownik\nPorównaj Je vois Paul i Je le vois. W pierwszym zdaniu imię pojawia się po czynności. W drugim, le odnosi się do tej samej osoby, ale występuje przed vois. To nie jest rodzajnik; nie występuje po nim żaden rzeczownik.\nTemat można podać jako pierwszy: La porte, je la ferme. Przecinek oddziela temat rozmowy. La przed porte to rodzajnik, a la przed ferme to zaimek.",
+"textPtBr": "quem + objeto curto + verbo\nCompare Je vois Paul e Je le vois. Na primeira frase, o nome vem depois da ação. Na segunda, le se refere à mesma pessoa, mas vem antes de vois. Não se trata de um artigo; não há nenhum substantivo a seguir.\nO tópico pode ser declarado primeiro: La porte, je la ferme. Uma vírgula separa o sujeito da conversa. La antes de porte é um artigo, e la antes de ferme é um pronome.",
+"textRU": "кто + короткое дополнение + глагол\nСравни Je vois Paul и Je le vois. В первой фразе имя идёт после действия. Во второй le указывает на того же человека, но стоит перед vois. Это не артикль, за ним нет существительного.\nТема может быть названа сначала: La porte, je la ferme. Запятая отделяет предмет разговора. La перед porte — артикль, а la перед ferme — местоимение.",
+"textTr": "kim + kısa nesne + fiil\nJe vois Paul ve Je le vois'yi karşılaştırın. İlk ifadede isim eylemden sonra gelir. İkincisinde ise le aynı kişiye atıfta bulunur, ancak vois'ten önce gelir. Bu bir tanımlık değildir; ardından isim gelmez.\nKonu önce belirtilebilir: La porte, je la ferme. Virgül, konuşmanın öznesini ayırır. La, porte'ten önce bir edattır ve la, ferme'ten önce bir zamirdir.",
+"textUK": "хто + коротке доповнення + дієслово\nПорівняй Je vois Paul та Je le vois. У першій фразі ім'я йде після дії. У другій le вказує на ту саму людину, але стоїть перед vois. Це не артикль, за ним немає іменника.\nТема може бути названа спочатку: La porte, je la ferme. Кома відокремлює предмет розмови. La перед porte - артикль, а la перед ferme - займенник.",
+"textVi": "who + tân ngữ ngắn + động từ\nSo sánh Je vois Paul và Je le vois. Trong cụm từ đầu tiên, tên đứng sau hành động. Trong cụm từ thứ hai, le đề cập đến cùng một người, nhưng đứng trước vois. Đây không phải là mạo từ; không có danh từ nào theo sau nó.\nChủ đề có thể được nêu trước: La porte, je la ferme. Dấu phẩy phân tách chủ ngữ của cuộc hội thoại. La trước porte là mạo từ, và la trước ferme là đại từ.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + short object + verb",
+"Compare «Je vois Paul» and «Je le vois». In the first phrase, the name comes after the action. In the second, «le» refers to the same person, but comes before «vois». This is not an article; there is no noun following it.",
+"The topic can be stated first: «La porte, je la ferme». A comma separates the subject of the conversation. «La» before «porte» is an article, and «la» before «ferme» is a pronoun."
+],
+"es": [
+"quién + objeto breve + verbo",
+"Compare «Je vois Paul» y «Je le vois». En la primera frase, el nombre aparece después de la acción. En la segunda, «le» se refiere a la misma persona, pero precede a «vois». No se trata de un artículo; no hay ningún sustantivo que lo siga.",
+"El tema puede indicarse primero: «La porte, je la ferme». Una coma separa el sujeto de la conversación. «La» antes de «porte» es un artículo, y «la» antes de «ferme» es un pronombre."
+],
+"id": [
+"who + objek pendek + kata kerja",
+"Bandingkan «Je vois Paul» dan «Je le vois». Pada frasa pertama, nama berada setelah tindakan. Pada frasa kedua, «le» merujuk pada orang yang sama, tetapi berada sebelum «vois». Ini bukan artikel; tidak ada kata benda yang mengikutinya.",
+"Topik dapat dinyatakan terlebih dahulu: «La porte, je la ferme». Koma memisahkan subjek percakapan. «La» sebelum «porte» adalah artikel, dan «la» sebelum «ferme» adalah kata ganti."
+],
+"pl": [
+"kto + dopełnienie krótkie + czasownik",
+"Porównaj «Je vois Paul» i «Je le vois». W pierwszym zdaniu imię pojawia się po czynności. W drugim, «le» odnosi się do tej samej osoby, ale występuje przed «vois». To nie jest rodzajnik; nie występuje po nim żaden rzeczownik.",
+"Temat można podać jako pierwszy: «La porte, je la ferme». Przecinek oddziela temat rozmowy. «La» przed «porte» to rodzajnik, a «la» przed «ferme» to zaimek."
+],
+"pt-BR": [
+"quem + objeto curto + verbo",
+"Compare «Je vois Paul» e «Je le vois». Na primeira frase, o nome vem depois da ação. Na segunda, «le» se refere à mesma pessoa, mas vem antes de «vois». Não se trata de um artigo; não há nenhum substantivo a seguir.",
+"O tópico pode ser declarado primeiro: «La porte, je la ferme». Uma vírgula separa o sujeito da conversa. «La» antes de «porte» é um artigo, e «la» antes de «ferme» é um pronome."
+],
+"ru": [
+"кто + короткое дополнение + глагол",
+"Сравни «Je vois Paul» и «Je le vois». В первой фразе имя идёт после действия. Во второй «le» указывает на того же человека, но стоит перед «vois». Это не артикль, за ним нет существительного.",
+"Тема может быть названа сначала: «La porte, je la ferme». Запятая отделяет предмет разговора. «La» перед «porte» — артикль, а «la» перед «ferme» — местоимение."
+],
+"tr": [
+"kim + kısa nesne + fiil",
+"«Je vois Paul» ve «Je le vois»'yi karşılaştırın. İlk ifadede isim eylemden sonra gelir. İkincisinde ise «le» aynı kişiye atıfta bulunur, ancak «vois»'ten önce gelir. Bu bir tanımlık değildir; ardından isim gelmez.",
+"Konu önce belirtilebilir: «La porte, je la ferme». Virgül, konuşmanın öznesini ayırır. «La», «porte»'ten önce bir edattır ve «la», «ferme»'ten önce bir zamirdir."
+],
+"uk": [
+"хто + коротке доповнення + дієслово",
+"Порівняй «Je vois Paul» та «Je le vois». У першій фразі ім'я йде після дії. У другій «le» вказує на ту саму людину, але стоїть перед «vois». Це не артикль, за ним немає іменника.",
+"Тема може бути названа спочатку: «La porte, je la ferme». Кома відокремлює предмет розмови. «La» перед «porte» - артикль, а «la» перед «ferme» - займенник."
+],
+"vi": [
+"who + tân ngữ ngắn + động từ",
+"So sánh «Je vois Paul» và «Je le vois». Trong cụm từ đầu tiên, tên đứng sau hành động. Trong cụm từ thứ hai, «le» đề cập đến cùng một người, nhưng đứng trước «vois». Đây không phải là mạo từ; không có danh từ nào theo sau nó.",
+"Chủ đề có thể được nêu trước: «La porte, je la ferme». Dấu phẩy phân tách chủ ngữ của cuộc hội thoại. «La» trước «porte» là mạo từ, và «la» trước «ferme» là đại từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:22:11",
+"fr:22:12"
+]
+},
+{
+"textES": "Te preguntan por un hombre en concreto: ¿lo ves? Je — quien ve; le — a quien; vois — acción. A diferencia de un sustantivo completo, el complemento directo se coloca antes del verbo.",
+"textId": "Anda ditanya tentang seorang pria tertentu: apakah Anda melihatnya? Je — yang melihat; le — siapa; vois — tindakan. Tidak seperti kata benda lengkap, objek singkat ditempatkan sebelum kata kerja.",
+"textPl": "Pytają Cię o konkretnego mężczyznę: widzisz go? Je — kto widzi; le — kogo; vois — czynność. W przeciwieństwie do pełnego rzeczownika, krótkie dopełnienie umieszcza się przed czasownikiem.",
+"textPtBr": "Você está sendo questionado sobre um homem específico: você o vê? Je — quem vê; le — a quem; vois — ação. Ao contrário de um substantivo completo, um objeto abreviado é colocado antes do verbo.",
+"textRU": "Тебя спрашивают о конкретном мужчине: видишь ли ты его? Je — кто видит; le — кого; vois — действие. В отличие от полного существительного, короткое дополнение ставится перед глаголом.",
+"textTr": "Size belirli bir adam soruluyor: onu görüyor musunuz? Je — kim görüyor; le — kimi; vois — eylem. Tam bir isimden farklı olarak, kısa bir nesne fiilden önce yerleştirilir.",
+"textUK": "Тебе запитують про конкретного чоловіка: чи ти бачиш його? Je - хто бачить; le - кого; vois - дія. На відміну від повного іменника, короткий додаток ставиться перед дієсловом.",
+"textVi": "Bạn đang được hỏi về một người đàn ông cụ thể: bạn có nhìn thấy anh ta không? Je — người nhìn thấy; le — người mà; vois — hành động. Không giống như danh từ đầy đủ, một tân ngữ ngắn được đặt trước động từ.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're being asked about a specific man: do you see him? «Je» — who sees; «le» — whom; «vois» — action. Unlike a full noun, a short object is placed before the verb."
+],
+"es": [
+"Te preguntan por un hombre en concreto: ¿lo ves? «Je» — quien ve; «le» — a quien; «vois» — acción. A diferencia de un sustantivo completo, el complemento directo se coloca antes del verbo."
+],
+"id": [
+"Anda ditanya tentang seorang pria tertentu: apakah Anda melihatnya? «Je» — yang melihat; «le» — siapa; «vois» — tindakan. Tidak seperti kata benda lengkap, objek singkat ditempatkan sebelum kata kerja."
+],
+"pl": [
+"Pytają Cię o konkretnego mężczyznę: widzisz go? «Je» — kto widzi; «le» — kogo; «vois» — czynność. W przeciwieństwie do pełnego rzeczownika, krótkie dopełnienie umieszcza się przed czasownikiem."
+],
+"pt-BR": [
+"Você está sendo questionado sobre um homem específico: você o vê? «Je» — quem vê; «le» — a quem; «vois» — ação. Ao contrário de um substantivo completo, um objeto abreviado é colocado antes do verbo."
+],
+"ru": [
+"Тебя спрашивают о конкретном мужчине: видишь ли ты его? «Je» — кто видит; «le» — кого; «vois» — действие. В отличие от полного существительного, короткое дополнение ставится перед глаголом."
+],
+"tr": [
+"Size belirli bir adam soruluyor: onu görüyor musunuz? «Je» — kim görüyor; «le» — kimi; «vois» — eylem. Tam bir isimden farklı olarak, kısa bir nesne fiilden önce yerleştirilir."
+],
+"uk": [
+"Тебе запитують про конкретного чоловіка: чи ти бачиш його? «Je» - хто бачить; «le» - кого; «vois» - дія. На відміну від повного іменника, короткий додаток ставиться перед дієсловом."
+],
+"vi": [
+"Bạn đang được hỏi về một người đàn ông cụ thể: bạn có nhìn thấy anh ta không? «Je» — người nhìn thấy; «le» — người mà; «vois» — hành động. Không giống như danh từ đầy đủ, một tân ngữ ngắn được đặt trước động từ."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:22:01",
+"fr:22:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:22:01",
+"target": "Je le vois.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його."
+},
+{
+"id": "fr:22:11",
+"target": "La porte, je la ferme.",
+"ru": "Дверь — я её закрываю.",
+"uk": "Двері - я її закриваю."
+},
+{
+"id": "fr:22:12",
+"target": "Le sac, je le garde.",
+"ru": "Сумку я оставляю у себя.",
+"uk": "Сумку я залишаю у себе."
+},
+{
+"id": "fr:22:01",
+"target": "Je le vois.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його."
+},
+{
+"id": "fr:22:04",
+"target": "Tu le connais.",
+"ru": "Ты его знаешь.",
+"uk": "Ти знаєш його."
+}
+]
+},
+{
+"lesson": 23,
+"blocks": [
+{
+"textES": "Le pasas una llave a tu vecino. Hay un objeto que se pasa y una persona a quien se le pasa. En esta lección, reemplazamos al destinatario, no la llave en sí. El género del destinatario no es importante para esta sustitución.\nObserva la construcción con el nombre completo: parler à Léa, écrire à Paul. Una vez que el nombre está claro, lui lo reemplaza junto con la preposición. à no se repite antes de lui.",
+"textId": "Anda memberikan kunci kepada tetangga Anda. Ada benda yang diberikan dan orang yang menerimanya. Dalam pelajaran ini, kita mengganti penerima, bukan kuncinya sendiri. Jenis kelamin penerima tidak penting untuk penggantian ini.\nLihat konstruksi dengan nama lengkap: parler à Léa, écrire à Paul. Setelah namanya jelas, lui menggantikannya bersama dengan preposisi. à sendiri tidak diduplikasi sebelum lui.",
+"textPl": "Przekazujesz klucz sąsiadowi. Jest przedmiot, który przekazujesz, i osoba, której go przekazujesz. W tej lekcji zastępujemy odbiorcę, a nie sam klucz. Płeć odbiorcy nie ma znaczenia w tym przypadku.\nSpójrz na konstrukcję z pełną nazwą: parler à Léa, écrire à Paul. Gdy nazwa jest jasna, lui zastępuje ją wraz z przyimkiem. Samo à nie powtarza się przed lui.",
+"textPtBr": "Você passa uma chave para o seu vizinho. Há o objeto que está sendo passado e a pessoa para quem ele está sendo passado. Nesta lição, estamos substituindo o destinatário, não a chave em si. O gênero do destinatário não é importante para esta substituição.\nObserve a construção com o nome completo: parler à Léa, écrire à Paul. Assim que o nome estiver claro, lui o substitui junto com a preposição. O próprio à não é duplicado antes de lui.",
+"textRU": "Ты передаёшь соседке ключ. Есть вещь, которую передают, и человек, которому её передают. В этом уроке заменяем получателя, а не сам ключ. Пол получателя для этой замены не главное.\nПосмотри на конструкцию с полным именем: parler à Léa, écrire à Paul. Когда имя уже понятно, его вместе с предлогом заменяет lui. Само à перед lui здесь не дублируется.",
+"textTr": "Komşunuza bir anahtar veriyorsunuz. Burada verilen şey ve verilen kişi var. Bu derste, anahtarın kendisini değil, alıcıyı değiştiriyoruz. Alıcının cinsiyeti bu değiştirme için önemli değil.\nTam adla yapıya bakın: parler à Léa, écrire à Paul. Ad netleştikten sonra, lui, edatla birlikte onun yerini alır. à'ün kendisi lui'ten önce tekrarlanmaz.",
+"textUK": "Ти передаєш сусідці ключ. Є річ, яку передають, та людина, якій її передають. У цьому уроці замінюємо одержувача, а чи не сам ключ. Підлога одержувача для цієї заміни не головне.\nПодивися на конструкцію з повним ім'ям: parler à Léa, écrire à Paul. Коли ім'я вже зрозуміло, його разом із прийменником замінює lui. Саме à перед lui тут не дублюється.",
+"textVi": "Bạn đưa chìa khóa cho người bên cạnh. Có vật được đưa và người nhận. Trong bài học này, chúng ta thay thế người nhận, chứ không phải chính chiếc chìa khóa. Giới tính của người nhận không quan trọng trong phép thay thế này.\nHãy xem cấu trúc với tên đầy đủ: parler à Léa, écrire à Paul. Khi tên đã rõ ràng, lui sẽ thay thế nó cùng với giới từ. Bản thân à không được lặp lại trước lui.",
+"titleES": "A: lui y leur antes del verbo",
+"titleId": "Kepada: lui dan leur sebelum kata kerja",
+"titlePl": "Do: lui i leur przed czasownikiem",
+"titlePtBr": "Para: lui e leur antes do verbo",
+"titleRU": "Кому: lui и leur перед глаголом",
+"titleTr": "Kime: Fiilden önce lui ve leur",
+"titleUK": "Кому: lui та leur перед дієсловом",
+"titleVi": "Gửi đến: lui và leur trước động từ",
+"titleByLocale": {
+"en": "To: lui and leur before the verb",
+"es": "A: lui y leur antes del verbo",
+"id": "Kepada: lui dan leur sebelum kata kerja",
+"pl": "Do: lui i leur przed czasownikiem",
+"pt-BR": "Para: lui e leur antes do verbo",
+"ru": "Кому: lui и leur перед глаголом",
+"tr": "Kime: Fiilden önce lui ve leur",
+"uk": "Кому: lui та leur перед дієсловом",
+"vi": "Gửi đến: lui và leur trước động từ"
+},
+"textByLocale": {
+"en": [
+"You pass a key to your neighbor. There's the thing being passed and the person it's being passed to. In this lesson, we're replacing the recipient, not the key itself. The recipient's gender isn't important for this substitution.",
+"Look at the construction with the full name: «parler à Léa», «écrire à Paul». Once the name is clear, «lui» replaces it along with the preposition. «à» itself is not duplicated before «lui»."
+],
+"es": [
+"Le pasas una llave a tu vecino. Hay un objeto que se pasa y una persona a quien se le pasa. En esta lección, reemplazamos al destinatario, no la llave en sí. El género del destinatario no es importante para esta sustitución.",
+"Observa la construcción con el nombre completo: «parler à Léa», «écrire à Paul». Una vez que el nombre está claro, «lui» lo reemplaza junto con la preposición. «à» no se repite antes de «lui»."
+],
+"id": [
+"Anda memberikan kunci kepada tetangga Anda. Ada benda yang diberikan dan orang yang menerimanya. Dalam pelajaran ini, kita mengganti penerima, bukan kuncinya sendiri. Jenis kelamin penerima tidak penting untuk penggantian ini.",
+"Lihat konstruksi dengan nama lengkap: «parler à Léa», «écrire à Paul». Setelah namanya jelas, «lui» menggantikannya bersama dengan preposisi. «à» sendiri tidak diduplikasi sebelum «lui»."
+],
+"pl": [
+"Przekazujesz klucz sąsiadowi. Jest przedmiot, który przekazujesz, i osoba, której go przekazujesz. W tej lekcji zastępujemy odbiorcę, a nie sam klucz. Płeć odbiorcy nie ma znaczenia w tym przypadku.",
+"Spójrz na konstrukcję z pełną nazwą: «parler à Léa», «écrire à Paul». Gdy nazwa jest jasna, «lui» zastępuje ją wraz z przyimkiem. Samo «à» nie powtarza się przed «lui»."
+],
+"pt-BR": [
+"Você passa uma chave para o seu vizinho. Há o objeto que está sendo passado e a pessoa para quem ele está sendo passado. Nesta lição, estamos substituindo o destinatário, não a chave em si. O gênero do destinatário não é importante para esta substituição.",
+"Observe a construção com o nome completo: «parler à Léa», «écrire à Paul». Assim que o nome estiver claro, «lui» o substitui junto com a preposição. O próprio «à» não é duplicado antes de «lui»."
+],
+"ru": [
+"Ты передаёшь соседке ключ. Есть вещь, которую передают, и человек, которому её передают. В этом уроке заменяем получателя, а не сам ключ. Пол получателя для этой замены не главное.",
+"Посмотри на конструкцию с полным именем: «parler à Léa», «écrire à Paul». Когда имя уже понятно, его вместе с предлогом заменяет «lui». Само «à» перед «lui» здесь не дублируется."
+],
+"tr": [
+"Komşunuza bir anahtar veriyorsunuz. Burada verilen şey ve verilen kişi var. Bu derste, anahtarın kendisini değil, alıcıyı değiştiriyoruz. Alıcının cinsiyeti bu değiştirme için önemli değil.",
+"Tam adla yapıya bakın: «parler à Léa», «écrire à Paul». Ad netleştikten sonra, «lui», edatla birlikte onun yerini alır. «à»'ün kendisi «lui»'ten önce tekrarlanmaz."
+],
+"uk": [
+"Ти передаєш сусідці ключ. Є річ, яку передають, та людина, якій її передають. У цьому уроці замінюємо одержувача, а чи не сам ключ. Підлога одержувача для цієї заміни не головне.",
+"Подивися на конструкцію з повним ім'ям: «parler à Léa», «écrire à Paul». Коли ім'я вже зрозуміло, його разом із прийменником замінює «lui». Саме «à» перед «lui» тут не дублюється."
+],
+"vi": [
+"Bạn đưa chìa khóa cho người bên cạnh. Có vật được đưa và người nhận. Trong bài học này, chúng ta thay thế người nhận, chứ không phải chính chiếc chìa khóa. Giới tính của người nhận không quan trọng trong phép thay thế này.",
+"Hãy xem cấu trúc với tên đầy đủ: «parler à Léa», «écrire à Paul». Khi tên đã rõ ràng, «lui» sẽ thay thế nó cùng với giới từ. Bản thân «à» không được lặp lại trước «lui»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:23:01"
+]
+},
+{
+"textES": "quien + lui o leur + acción\nJe lui parle es apropiado cuando se habla con una persona: un hombre o una mujer. Je leur parle es apropiado cuando se habla con varias. A diferencia del posesivo leurs, el pronombre leur no recibe s antes del verbo.\nUn destinatario de cualquier género es lui, varios son leur. No añada s a leur. La ortografía leurs se refiere, por ejemplo, a sus múltiples cosas, no a \"ellos\" antes del verbo.",
+"textId": "siapa + lui atau leur + tindakan\nJe lui parle tepat digunakan saat berbicara kepada satu orang—seorang pria atau wanita. Je leur parle tepat digunakan saat berbicara kepada beberapa orang. Tidak seperti kata ganti posesif leurs, kata ganti leur tidak menerima s sebelum kata kerja.\nSatu penerima dari jenis kelamin apa pun adalah lui, beberapa adalah leur. Jangan menambahkan s ke leur. Ejaan leurs mengacu, misalnya, pada banyak hal mereka, bukan pada \"mereka\" sebelum kata kerja.",
+"textPl": "kto + lui lub leur + czynność\nJe lui parle jest odpowiedni, gdy zwracamy się do jednej osoby – mężczyzny lub kobiety. Je leur parle jest odpowiedni, gdy zwracamy się do kilku. W przeciwieństwie do dopełniacza leurs, zaimek leur nie otrzymuje s przed czasownikiem.\nJeden odbiorca dowolnej płci to lui, kilku to leur. Nie dodawaj s do leur. Zapis leurs odnosi się na przykład do ich wielu rzeczy, a nie do „ich” przed czasownikiem.",
+"textPtBr": "quem + lui ou leur + ação\nJe lui parle é apropriado quando se fala com uma pessoa — um homem ou uma mulher. Je leur parle é apropriado quando se fala com várias pessoas. Ao contrário do possessivo leurs, o pronome leur não recebe s antes do verbo.\nUm destinatário de qualquer gênero é lui, vários são leur. Não adicione s a leur. A grafia leurs refere-se, por exemplo, às suas múltiplas coisas, não a \"eles\" antes do verbo.",
+"textRU": "кто + lui или leur + действие\nJe lui parle подходит, когда говоришь с одним человеком — мужчиной или женщиной. Je leur parle — когда с несколькими. В отличие от притяжательного leurs, местоимение leur перед глаголом не получает s.\nОдин адресат любого пола — lui, несколько — leur. Не добавляй s к этому leur. Написание leurs относится, например, к их нескольким вещам, а не к «им» перед глаголом.",
+"textTr": "kim + lui veya leur + eylem\nJe lui parle, tek bir kişiye (erkek veya kadın) hitap ederken uygundur. Je leur parle, birden fazla kişiye hitap ederken uygundur. İyelik eki leurs'ün aksine, zamir leur fiilden önce s almaz.\nCinsiyetten bir alıcı lui, birden fazla alıcı ise leur'dir. s'ü leur'e eklemeyin. Örneğin, leurs yazımı, fiilden önce gelen \"onlar\" kelimesine değil, birden fazla şeye atıfta bulunur.",
+"textUK": "хто + lui або leur + дія\nJe lui parle підходить, коли говориш з однією людиною - чоловіком чи жінкою. Je leur parle - коли з декількома. На відміну від присвійного leurs, займенник leur перед дієсловом не отримує s.\nОдин адресат будь-якої статі - lui, кілька - leur. Не додай s до цього leur. Написання leurs відноситься, наприклад, до їх кількох речей, а не до \"їх\" перед дієсловом.",
+"textVi": "người + lui hoặc leur + hành động\nJe lui parle thích hợp khi nói chuyện với một người—một người đàn ông hoặc một người phụ nữ. Je leur parle thích hợp khi nói chuyện với nhiều người. Không giống như sở hữu cách leurs, đại từ leur không nhận s trước động từ.\nMột người nhận bất kỳ giới tính nào là lui, nhiều người nhận là leur. Không cộng s với leur. Cách viết leurs, ví dụ, đề cập đến nhiều thứ của họ, chứ không phải là \"chúng\" đứng trước động từ.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + «lui» or «leur» + action",
+"«Je lui parle» is appropriate when speaking to one person—a man or a woman. «Je leur parle» is appropriate when speaking to several. Unlike the possessive «leurs», the pronoun «leur» does not receive «s» before the verb.",
+"One recipient of either gender is «lui», several are «leur». Don't add «s» to «leur». The spelling «leurs» refers, for example, to their multiple things, not to \"them\" before the verb."
+],
+"es": [
+"quien + «lui» o «leur» + acción",
+"«Je lui parle» es apropiado cuando se habla con una persona: un hombre o una mujer. «Je leur parle» es apropiado cuando se habla con varias. A diferencia del posesivo «leurs», el pronombre «leur» no recibe «s» antes del verbo.",
+"Un destinatario de cualquier género es «lui», varios son «leur». No añada «s» a «leur». La ortografía «leurs» se refiere, por ejemplo, a sus múltiples cosas, no a \"ellos\" antes del verbo."
+],
+"id": [
+"siapa + «lui» atau «leur» + tindakan",
+"«Je lui parle» tepat digunakan saat berbicara kepada satu orang—seorang pria atau wanita. «Je leur parle» tepat digunakan saat berbicara kepada beberapa orang. Tidak seperti kata ganti posesif «leurs», kata ganti «leur» tidak menerima «s» sebelum kata kerja.",
+"Satu penerima dari jenis kelamin apa pun adalah «lui», beberapa adalah «leur». Jangan menambahkan «s» ke «leur». Ejaan «leurs» mengacu, misalnya, pada banyak hal mereka, bukan pada \"mereka\" sebelum kata kerja."
+],
+"pl": [
+"kto + «lui» lub «leur» + czynność",
+"«Je lui parle» jest odpowiedni, gdy zwracamy się do jednej osoby – mężczyzny lub kobiety. «Je leur parle» jest odpowiedni, gdy zwracamy się do kilku. W przeciwieństwie do dopełniacza «leurs», zaimek «leur» nie otrzymuje «s» przed czasownikiem.",
+"Jeden odbiorca dowolnej płci to «lui», kilku to «leur». Nie dodawaj «s» do «leur». Zapis «leurs» odnosi się na przykład do ich wielu rzeczy, a nie do „ich” przed czasownikiem."
+],
+"pt-BR": [
+"quem + «lui» ou «leur» + ação",
+"«Je lui parle» é apropriado quando se fala com uma pessoa — um homem ou uma mulher. «Je leur parle» é apropriado quando se fala com várias pessoas. Ao contrário do possessivo «leurs», o pronome «leur» não recebe «s» antes do verbo.",
+"Um destinatário de qualquer gênero é «lui», vários são «leur». Não adicione «s» a «leur». A grafia «leurs» refere-se, por exemplo, às suas múltiplas coisas, não a \"eles\" antes do verbo."
+],
+"ru": [
+"кто + «lui» или «leur» + действие",
+"«Je lui parle» подходит, когда говоришь с одним человеком — мужчиной или женщиной. «Je leur parle» — когда с несколькими. В отличие от притяжательного «leurs», местоимение «leur» перед глаголом не получает «s».",
+"Один адресат любого пола — «lui», несколько — «leur». Не добавляй «s» к этому «leur». Написание «leurs» относится, например, к их нескольким вещам, а не к «им» перед глаголом."
+],
+"tr": [
+"kim + «lui» veya «leur» + eylem",
+"«Je lui parle», tek bir kişiye (erkek veya kadın) hitap ederken uygundur. «Je leur parle», birden fazla kişiye hitap ederken uygundur. İyelik eki «leurs»'ün aksine, zamir «leur» fiilden önce «s» almaz.",
+"Cinsiyetten bir alıcı «lui», birden fazla alıcı ise «leur»'dir. «s»'ü «leur»'e eklemeyin. Örneğin, «leurs» yazımı, fiilden önce gelen \"onlar\" kelimesine değil, birden fazla şeye atıfta bulunur."
+],
+"uk": [
+"хто + «lui» або «leur» + дія",
+"«Je lui parle» підходить, коли говориш з однією людиною - чоловіком чи жінкою. «Je leur parle» - коли з декількома. На відміну від присвійного «leurs», займенник «leur» перед дієсловом не отримує «s».",
+"Один адресат будь-якої статі - «lui», кілька - «leur». Не додай «s» до цього «leur». Написання «leurs» відноситься, наприклад, до їх кількох речей, а не до \"їх\" перед дієсловом."
+],
+"vi": [
+"người + «lui» hoặc «leur» + hành động",
+"«Je lui parle» thích hợp khi nói chuyện với một người—một người đàn ông hoặc một người phụ nữ. «Je leur parle» thích hợp khi nói chuyện với nhiều người. Không giống như sở hữu cách «leurs», đại từ «leur» không nhận «s» trước động từ.",
+"Một người nhận bất kỳ giới tính nào là «lui», nhiều người nhận là «leur». Không cộng «s» với «leur». Cách viết «leurs», ví dụ, đề cập đến nhiều thứ của họ, chứ không phải là \"chúng\" đứng trước động từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:23:02",
+"fr:23:04"
+]
+},
+{
+"textES": "Te diriges a una persona. Empieza con je, elige lui (él o ella) y termina con parle. Si el destinatario es varias personas, solo lui se convierte en leur.",
+"textId": "Anda berbicara kepada satu orang. Mulailah dengan je, pilih lui—dia (laki-laki) atau dia (perempuan), akhiri dengan parle. Ubah penerima menjadi beberapa orang: hanya lui yang berubah menjadi leur.",
+"textPl": "Rozmawiasz z jedną osobą. Zacznij od je, wybierz lui — on lub ona, zakończ na parle. Zmień odbiorcę na wiele osób: tylko lui zmienia się na leur.",
+"textPtBr": "Você está falando com uma pessoa. Comece com je, escolha lui — ele ou ela — e termine com parle. Altere o destinatário para várias pessoas: apenas lui muda para leur.",
+"textRU": "Ты говоришь с одним человеком. Начни с je, выбери lui — ему или ей, закончи parle. Поменяй получателя на нескольких людей: меняется только lui на leur.",
+"textTr": "Tek bir kişiyle konuşuyorsunuz. je ile başlayın, lui'yi seçin (o veya o), parle ile bitirin. Alıcıyı birden fazla kişiye değiştirin: yalnızca lui, leur'e dönüşür.",
+"textUK": "Ти говориш з однією людиною. Почни з je, вибери lui - йому чи їй, закінчи parle. Поміняй одержувача на кількох людей: змінюється тільки lui на leur.",
+"textVi": "Bạn đang nói chuyện với một người. Bắt đầu với je, chọn lui—anh ấy hoặc cô ấy, kết thúc với parle. Thay đổi người nhận thành nhiều người: chỉ lui thay đổi thành leur.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"You're talking to one person. Start with «je», choose «lui»—him or her, finish with «parle». Change the recipient to multiple people: only «lui» changes to «leur»."
+],
+"es": [
+"Te diriges a una persona. Empieza con «je», elige «lui» (él o ella) y termina con «parle». Si el destinatario es varias personas, solo «lui» se convierte en «leur»."
+],
+"id": [
+"Anda berbicara kepada satu orang. Mulailah dengan «je», pilih «lui»—dia (laki-laki) atau dia (perempuan), akhiri dengan «parle». Ubah penerima menjadi beberapa orang: hanya «lui» yang berubah menjadi «leur»."
+],
+"pl": [
+"Rozmawiasz z jedną osobą. Zacznij od «je», wybierz «lui» — on lub ona, zakończ na «parle». Zmień odbiorcę na wiele osób: tylko «lui» zmienia się na «leur»."
+],
+"pt-BR": [
+"Você está falando com uma pessoa. Comece com «je», escolha «lui» — ele ou ela — e termine com «parle». Altere o destinatário para várias pessoas: apenas «lui» muda para «leur»."
+],
+"ru": [
+"Ты говоришь с одним человеком. Начни с «je», выбери «lui» — ему или ей, закончи «parle». Поменяй получателя на нескольких людей: меняется только «lui» на «leur»."
+],
+"tr": [
+"Tek bir kişiyle konuşuyorsunuz. «je» ile başlayın, «lui»'yi seçin (o veya o), «parle» ile bitirin. Alıcıyı birden fazla kişiye değiştirin: yalnızca «lui», «leur»'e dönüşür."
+],
+"uk": [
+"Ти говориш з однією людиною. Почни з «je», вибери «lui» - йому чи їй, закінчи «parle». Поміняй одержувача на кількох людей: змінюється тільки «lui» на «leur»."
+],
+"vi": [
+"Bạn đang nói chuyện với một người. Bắt đầu với «je», chọn «lui»—anh ấy hoặc cô ấy, kết thúc với «parle». Thay đổi người nhận thành nhiều người: chỉ «lui» thay đổi thành «leur»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:23:01",
+"fr:23:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:23:01",
+"target": "Je lui parle.",
+"ru": "Я разговариваю с ним.",
+"uk": "Я розмовляю з ним."
+},
+{
+"id": "fr:23:02",
+"target": "Tu lui parles.",
+"ru": "Ты разговариваешь с ним.",
+"uk": "Ти розмовляєш з ним."
+},
+{
+"id": "fr:23:04",
+"target": "Je leur parle.",
+"ru": "Я разговариваю с ними.",
+"uk": "Я розмовляю з ними."
+},
+{
+"id": "fr:23:01",
+"target": "Je lui parle.",
+"ru": "Я разговариваю с ним.",
+"uk": "Я розмовляю з ним."
+},
+{
+"id": "fr:23:04",
+"target": "Je leur parle.",
+"ru": "Я разговариваю с ними.",
+"uk": "Я розмовляю з ними."
+}
+]
+},
+{
+"lesson": 24,
+"blocks": [
+{
+"textES": "Ya has mencionado un mercado. Puedes repetir «al mercado» en la siguiente parte de la frase, pero la gente suele decir «allí». Una palabra francesa conserva la conexión con el lugar ya mencionado.\nY funciona cuando los interlocutores ya conocen el lugar. Puede corresponder a \"allí\" o \"allí\". Observa que el verbo describe movimiento o permanencia.",
+"textId": "Anda sudah menyebutkan sebuah pasar. Anda dapat mengulangi \"ke pasar\" di bagian kalimat berikutnya, tetapi orang sering mengatakan \"di sana\" sebagai gantinya. Satu kata dalam bahasa Prancis mempertahankan hubungan dengan tempat yang telah disebutkan.\nY berfungsi ketika para penutur sudah mengetahui tempat tersebut. Ini dapat sesuai dengan \"di sana\" atau \"di sana\". Perhatikan bahwa kata kerja tersebut menggambarkan pergerakan atau tinggal.",
+"textPl": "Nazwałeś już rynek. Możesz powtórzyć „to the market” w drugiej połowie zdania, ale ludzie często mówią „there”. Jedno francuskie słowo zachowuje związek z już wspomnianym miejscem.\nY działa, gdy rozmówcy znają już miejsce. Może odpowiadać „tam” lub „tam”. Zauważ, że czasownik opisuje ruch lub pobyt.",
+"textPtBr": "Você já mencionou um mercado. Você pode repetir \"ao mercado\" na próxima parte da frase, mas as pessoas geralmente dizem \"lá\" em vez disso. Uma palavra francesa mantém a conexão com o local já mencionado.\nY funciona quando os interlocutores já conhecem o lugar. Pode corresponder a \"lá\" ou \"aí\". Observe que o verbo descreve movimento ou permanência.",
+"textRU": "Вы уже назвали рынок. Повторить «на рынок» в следующей половине фразы можно, но часто вместо этого говорят «туда». Одно французское слово хранит связь с уже названным местом.\nY работает, когда собеседники уже знают место. Оно может соответствовать «туда» или «там». Смотри, глагол описывает движение или пребывание.",
+"textTr": "Zaten bir pazar yeri belirttiniz. Cümlenin sonraki yarısında \"pazar yerine\" ifadesini tekrarlayabilirsiniz, ancak insanlar genellikle bunun yerine \"orada\" derler. Fransızca bir kelime, daha önce bahsedilen yerle bağlantıyı koruyor.\nY, muhataplar yeri zaten biliyorsa işe yarar. \"Orada\" veya \"orada\" anlamına gelebilir. Fiilin hareket veya kalmayı tanımladığına dikkat edin.",
+"textUK": "Ви вже назвали ринок. Повторити «на ринок» у наступній половині фрази можна, але часто натомість кажуть «туди». Одне французьке слово зберігає зв'язок із вже названим місцем.\nY працює, коли співрозмовники вже знають місце. Воно може відповідати «туди» чи «там». Дивись, дієслово описує рух чи перебування.",
+"textVi": "Bạn đã nêu tên một khu chợ rồi. Bạn có thể lặp lại cụm từ \"đến chợ\" ở nửa sau của câu, nhưng mọi người thường nói \"ở đó\" thay vì vậy. Một từ tiếng Pháp vẫn giữ mối liên hệ với địa điểm đã được đề cập trước đó.\nY được sử dụng khi người đối thoại đã biết địa điểm. Nó có thể tương ứng với \"ở đó\" hoặc \"ở đó\". Lưu ý rằng động từ mô tả sự di chuyển hoặc ở lại.",
+"titleES": "No repita el lugar: y breve.",
+"titleId": "Jangan ulangi tempat: y pendek",
+"titlePl": "Nie powtarzaj miejsca: short y",
+"titlePtBr": "Não repita o lugar: abreviado y",
+"titleRU": "Не повторять место: короткое y",
+"titleTr": "Yeri tekrarlamayın: kısa y",
+"titleUK": "Не повторювати місце: коротке y",
+"titleVi": "Không lặp lại vị trí: y ngắn",
+"titleByLocale": {
+"en": "Do not repeat the place: short y",
+"es": "No repita el lugar: y breve.",
+"id": "Jangan ulangi tempat: y pendek",
+"pl": "Nie powtarzaj miejsca: short y",
+"pt-BR": "Não repita o lugar: abreviado y",
+"ru": "Не повторять место: короткое y",
+"tr": "Yeri tekrarlamayın: kısa y",
+"uk": "Не повторювати місце: коротке y",
+"vi": "Không lặp lại vị trí: y ngắn"
+},
+"textByLocale": {
+"en": [
+"You've already named a market. You can repeat \"to the market\" in the next half of the sentence, but people often say \"there\" instead. One French word retains a connection to the already mentioned place.",
+"«Y» works when the interlocutors already know the place. It can correspond to \"there\" or \"there.\" Notice that the verb describes movement or stay."
+],
+"es": [
+"Ya has mencionado un mercado. Puedes repetir «al mercado» en la siguiente parte de la frase, pero la gente suele decir «allí». Una palabra francesa conserva la conexión con el lugar ya mencionado.",
+"«Y» funciona cuando los interlocutores ya conocen el lugar. Puede corresponder a \"allí\" o \"allí\". Observa que el verbo describe movimiento o permanencia."
+],
+"id": [
+"Anda sudah menyebutkan sebuah pasar. Anda dapat mengulangi \"ke pasar\" di bagian kalimat berikutnya, tetapi orang sering mengatakan \"di sana\" sebagai gantinya. Satu kata dalam bahasa Prancis mempertahankan hubungan dengan tempat yang telah disebutkan.",
+"«Y» berfungsi ketika para penutur sudah mengetahui tempat tersebut. Ini dapat sesuai dengan \"di sana\" atau \"di sana\". Perhatikan bahwa kata kerja tersebut menggambarkan pergerakan atau tinggal."
+],
+"pl": [
+"Nazwałeś już rynek. Możesz powtórzyć „to the market” w drugiej połowie zdania, ale ludzie często mówią „there”. Jedno francuskie słowo zachowuje związek z już wspomnianym miejscem.",
+"«Y» działa, gdy rozmówcy znają już miejsce. Może odpowiadać „tam” lub „tam”. Zauważ, że czasownik opisuje ruch lub pobyt."
+],
+"pt-BR": [
+"Você já mencionou um mercado. Você pode repetir \"ao mercado\" na próxima parte da frase, mas as pessoas geralmente dizem \"lá\" em vez disso. Uma palavra francesa mantém a conexão com o local já mencionado.",
+"«Y» funciona quando os interlocutores já conhecem o lugar. Pode corresponder a \"lá\" ou \"aí\". Observe que o verbo descreve movimento ou permanência."
+],
+"ru": [
+"Вы уже назвали рынок. Повторить «на рынок» в следующей половине фразы можно, но часто вместо этого говорят «туда». Одно французское слово хранит связь с уже названным местом.",
+"«Y» работает, когда собеседники уже знают место. Оно может соответствовать «туда» или «там». Смотри, глагол описывает движение или пребывание."
+],
+"tr": [
+"Zaten bir pazar yeri belirttiniz. Cümlenin sonraki yarısında \"pazar yerine\" ifadesini tekrarlayabilirsiniz, ancak insanlar genellikle bunun yerine \"orada\" derler. Fransızca bir kelime, daha önce bahsedilen yerle bağlantıyı koruyor.",
+"«Y», muhataplar yeri zaten biliyorsa işe yarar. \"Orada\" veya \"orada\" anlamına gelebilir. Fiilin hareket veya kalmayı tanımladığına dikkat edin."
+],
+"uk": [
+"Ви вже назвали ринок. Повторити «на ринок» у наступній половині фрази можна, але часто натомість кажуть «туди». Одне французьке слово зберігає зв'язок із вже названим місцем.",
+"«Y» працює, коли співрозмовники вже знають місце. Воно може відповідати «туди» чи «там». Дивись, дієслово описує рух чи перебування."
+],
+"vi": [
+"Bạn đã nêu tên một khu chợ rồi. Bạn có thể lặp lại cụm từ \"đến chợ\" ở nửa sau của câu, nhưng mọi người thường nói \"ở đó\" thay vì vậy. Một từ tiếng Pháp vẫn giữ mối liên hệ với địa điểm đã được đề cập trước đó.",
+"«Y» được sử dụng khi người đối thoại đã biết địa điểm. Nó có thể tương ứng với \"ở đó\" hoặc \"ở đó\". Lưu ý rằng động từ mô tả sự di chuyển hoặc ở lại."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"fr:24:01"
+]
+},
+{
+"textES": "quien + y + verbo; con un infinitivo, y antes del infinitivo.\nEn Paul y va, la palabra y se refiere a un lugar; va se refiere a un campo. Puede significar tanto \"allí\" como \"allí\": observe la acción. En j’y vais, el apóstrofo enlaza los pronombres en la escritura, pero no anula su significado.\nAntes de una consonante, un pronombre regular tiene su forma completa, pero antes de y, se usan j’y y n’y. El apóstrofo se escribe junto, pero el verbo que lo sigue se escribe por separado.",
+"textId": "who + y + kata kerja; dengan infinitif, y sebelum infinitif\nDalam Paul y va, kata y merujuk pada suatu tempat; va merujuk pada suatu ladang. Kata ini dapat berarti \"di sana\" dan \"di sana\": perhatikan tindakannya. Dalam j’y vais, apostrof menghubungkan kata ganti dalam tulisan tetapi tidak menghilangkan maknanya.\nSebelum konsonan, kata ganti biasa memiliki bentuk lengkapnya, tetapi sebelum y, Anda mendapatkan j’y, n’y. Tulis apostrof bersama-sama, tetapi kata kerja setelahnya terpisah.",
+"textPl": "who + y + czasownik; z bezokolicznikiem, y przed bezokolicznikiem\nW Paul y va słowo y odnosi się do miejsca; va odnosi się do pola. Może oznaczać zarówno „tam”, jak i „tam”: spójrz na czynność. W j’y vais apostrof łączy zaimki w piśmie, ale nie unieważnia ich znaczenia.\nPrzed spółgłoską zaimek regularny ma swoją pełną formę, ale przed y otrzymujesz j’y, n’y. Napisz apostrof razem, ale czasownik po nim jest oddzielny.",
+"textPtBr": "quem + y + verbo; com um infinitivo, y antes do infinitivo\nEm Paul y va, a palavra y refere-se a um lugar; va refere-se a um campo. Pode significar tanto \"lá\" quanto \"ali\": observe a ação. Em j’y vais, o apóstrofo liga os pronomes na escrita, mas não anula o seu significado.\nAntes de uma consoante, um pronome regular tem sua forma completa, mas antes de y, você obtém j’y, n’y. Escreva o apóstrofo junto, mas o verbo depois dele é separado.",
+"textRU": "кто + y + глагол; с инфинитивом — y перед инфинитивом\nВ Paul y va слово y относится к месту; va — к Полю. Оно может означать и «там», и «туда»: смотри на действие. В j’y vais апостроф связывает местоимения на письме, но не отменяет их смысл.\nПеред согласной у обычного местоимения есть полная форма, а перед y получаются j’y, n’y. Пиши апостроф слитно, но глагол после него — отдельно.",
+"textTr": "kim + y + fiil; mastarla birlikte, mastardan önce y\nPaul y va'de, y kelimesi bir yeri; va ise bir alanı ifade eder. Hem \"orada\" hem de \"orada\" anlamına gelebilir: eyleme bakın. j’y vais'te, kesme işareti zamirleri yazılı olarak birbirine bağlar ancak anlamlarını ortadan kaldırmaz.\nBir ünsüzden önce, düzenli bir zamir tam halini alır, ancak y'den önce j’y, n’y elde edersiniz. Kesme işaretini birlikte yazın, ancak ondan sonraki fiil ayrıdır.",
+"textUK": "хто + y + дієслово; з інфінітивом - y перед інфінітивом\nУ Paul y va слово y відноситься до місця; va - до Поля. Воно може означати і там, і туди: дивись на дію. У j’y vais апостроф пов'язує займенники на листі, але не скасовує їх зміст.\nПеред згодою у звичайного займенника є повна форма, а перед y виходять j’y, n’y. Пиши апостроф разом, але дієслово після нього окремо.",
+"textVi": "who + y + động từ; với động từ nguyên mẫu, y đứng trước động từ nguyên mẫu\nTrong Paul y va, từ y đề cập đến một địa điểm; va đề cập đến một cánh đồng. Nó có thể mang cả nghĩa \"ở đó\" và \"ở đó\": hãy xem hành động. Trong j’y vais, dấu nháy đơn liên kết các đại từ trong văn bản nhưng không làm mất đi ý nghĩa của chúng.\nTrước một phụ âm, đại từ thông thường có dạng đầy đủ, nhưng trước y, bạn sẽ có j’y, n’y. Viết dấu nháy đơn liền nhau, nhưng động từ sau đó thì tách riêng.",
+"titleES": "Estructura de la frase",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"who + «y» + verb; with an infinitive, «y» before the infinitive",
+"In «Paul y va», the word «y» refers to a place; «va» refers to a field. It can mean both \"there\" and \"there\": look at the action. In «j’y vais», the apostrophe links the pronouns in writing but does not cancel their meaning.",
+"Before a consonant, a regular pronoun has its full form, but before «y», you get «j’y», «n’y». Write the apostrophe together, but the verb after it is separate."
+],
+"es": [
+"quien + «y» + verbo; con un infinitivo, «y» antes del infinitivo.",
+"En «Paul y va», la palabra «y» se refiere a un lugar; «va» se refiere a un campo. Puede significar tanto \"allí\" como \"allí\": observe la acción. En «j’y vais», el apóstrofo enlaza los pronombres en la escritura, pero no anula su significado.",
+"Antes de una consonante, un pronombre regular tiene su forma completa, pero antes de «y», se usan «j’y» y «n’y». El apóstrofo se escribe junto, pero el verbo que lo sigue se escribe por separado."
+],
+"id": [
+"who + «y» + kata kerja; dengan infinitif, «y» sebelum infinitif",
+"Dalam «Paul y va», kata «y» merujuk pada suatu tempat; «va» merujuk pada suatu ladang. Kata ini dapat berarti \"di sana\" dan \"di sana\": perhatikan tindakannya. Dalam «j’y vais», apostrof menghubungkan kata ganti dalam tulisan tetapi tidak menghilangkan maknanya.",
+"Sebelum konsonan, kata ganti biasa memiliki bentuk lengkapnya, tetapi sebelum «y», Anda mendapatkan «j’y», «n’y». Tulis apostrof bersama-sama, tetapi kata kerja setelahnya terpisah."
+],
+"pl": [
+"who + «y» + czasownik; z bezokolicznikiem, «y» przed bezokolicznikiem",
+"W «Paul y va» słowo «y» odnosi się do miejsca; «va» odnosi się do pola. Może oznaczać zarówno „tam”, jak i „tam”: spójrz na czynność. W «j’y vais» apostrof łączy zaimki w piśmie, ale nie unieważnia ich znaczenia.",
+"Przed spółgłoską zaimek regularny ma swoją pełną formę, ale przed «y» otrzymujesz «j’y», «n’y». Napisz apostrof razem, ale czasownik po nim jest oddzielny."
+],
+"pt-BR": [
+"quem + «y» + verbo; com um infinitivo, «y» antes do infinitivo",
+"Em «Paul y va», a palavra «y» refere-se a um lugar; «va» refere-se a um campo. Pode significar tanto \"lá\" quanto \"ali\": observe a ação. Em «j’y vais», o apóstrofo liga os pronomes na escrita, mas não anula o seu significado.",
+"Antes de uma consoante, um pronome regular tem sua forma completa, mas antes de «y», você obtém «j’y», «n’y». Escreva o apóstrofo junto, mas o verbo depois dele é separado."
+],
+"ru": [
+"кто + «y» + глагол; с инфинитивом — «y» перед инфинитивом",
+"В «Paul y va» слово «y» относится к месту; «va» — к Полю. Оно может означать и «там», и «туда»: смотри на действие. В «j’y vais» апостроф связывает местоимения на письме, но не отменяет их смысл.",
+"Перед согласной у обычного местоимения есть полная форма, а перед «y» получаются «j’y», «n’y». Пиши апостроф слитно, но глагол после него — отдельно."
+],
+"tr": [
+"kim + «y» + fiil; mastarla birlikte, mastardan önce «y»",
+"«Paul y va»'de, «y» kelimesi bir yeri; «va» ise bir alanı ifade eder. Hem \"orada\" hem de \"orada\" anlamına gelebilir: eyleme bakın. «j’y vais»'te, kesme işareti zamirleri yazılı olarak birbirine bağlar ancak anlamlarını ortadan kaldırmaz.",
+"Bir ünsüzden önce, düzenli bir zamir tam halini alır, ancak «y»'den önce «j’y», «n’y» elde edersiniz. Kesme işaretini birlikte yazın, ancak ondan sonraki fiil ayrıdır."
+],
+"uk": [
+"хто + «y» + дієслово; з інфінітивом - «y» перед інфінітивом",
+"У «Paul y va» слово «y» відноситься до місця; «va» - до Поля. Воно може означати і там, і туди: дивись на дію. У «j’y vais» апостроф пов'язує займенники на листі, але не скасовує їх зміст.",
+"Перед згодою у звичайного займенника є повна форма, а перед «y» виходять «j’y», «n’y». Пиши апостроф разом, але дієслово після нього окремо."
+],
+"vi": [
+"who + «y» + động từ; với động từ nguyên mẫu, «y» đứng trước động từ nguyên mẫu",
+"Trong «Paul y va», từ «y» đề cập đến một địa điểm; «va» đề cập đến một cánh đồng. Nó có thể mang cả nghĩa \"ở đó\" và \"ở đó\": hãy xem hành động. Trong «j’y vais», dấu nháy đơn liên kết các đại từ trong văn bản nhưng không làm mất đi ý nghĩa của chúng.",
+"Trước một phụ âm, đại từ thông thường có dạng đầy đủ, nhưng trước «y», bạn sẽ có «j’y», «n’y». Viết dấu nháy đơn liền nhau, nhưng động từ sau đó thì tách riêng."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"fr:24:07",
+"fr:24:08"
+]
+},
+{
+"textES": "Primero, nombra el mercado: je vais au marché. Paul se dirige al mismo lugar. En lugar del segundo \"al mercado\", di Paul y va aussi. Y indica dónde, pero no menciona el lugar nuevamente.",
+"textId": "Pertama, sebutkan nama pasar: je vais au marché. Paul sedang menuju ke tempat yang sama. Alih-alih \"ke pasar\" yang kedua, katakan Paul y va aussi. Y memberi tahu di mana, tetapi tidak menyebutkan nama tempat itu lagi.",
+"textPl": "Najpierw nazwij targowisko: je vais au marché. Paweł zmierza w to samo miejsce. Zamiast drugiego „na targowisko”, powiedz Paul y va aussi. Y wskazuje, gdzie, ale nie podaje ponownie nazwy miejsca.",
+"textPtBr": "Primeiro, nomeie o mercado: je vais au marché. Paul está indo para o mesmo lugar. Em vez do segundo \"para o mercado\", diga Paul y va aussi. Y indica onde, mas não nomeia o lugar novamente.",
+"textRU": "Сначала назови рынок: je vais au marché. Поль направляется в то же место. Вместо второго «на рынок» скажи Paul y va aussi. Y сообщает куда, но не называет место заново.",
+"textTr": "İlk olarak, pazarın adını söyleyin: je vais au marché. Paul aynı yere gidiyor. İkinci \"pazara\" yerine Paul y va aussi deyin. Y nerede olduğunu söyler, ancak yeri tekrar belirtmez.",
+"textUK": "Спочатку назви ринок: je vais au marché. Поль прямує до того ж місця. Замість другого \"на ринок\" скажи Paul y va aussi. Y повідомляє куди, але не називає місце заново.",
+"textVi": "Đầu tiên, hãy nêu tên chợ: je vais au marché. Paul đang đi đến cùng một nơi. Thay vì câu thứ hai \"đến chợ\", hãy nói Paul y va aussi. Y cho biết địa điểm, nhưng không nêu tên địa điểm một lần nữa.",
+"titleES": "Construye la frase paso a paso",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"First, name the market: «je vais au marché». Paul is heading to the same place. Instead of the second \"to the market,\" say «Paul y va aussi». «Y» tells where, but doesn't name the place again."
+],
+"es": [
+"Primero, nombra el mercado: «je vais au marché». Paul se dirige al mismo lugar. En lugar del segundo \"al mercado\", di «Paul y va aussi». «Y» indica dónde, pero no menciona el lugar nuevamente."
+],
+"id": [
+"Pertama, sebutkan nama pasar: «je vais au marché». Paul sedang menuju ke tempat yang sama. Alih-alih \"ke pasar\" yang kedua, katakan «Paul y va aussi». «Y» memberi tahu di mana, tetapi tidak menyebutkan nama tempat itu lagi."
+],
+"pl": [
+"Najpierw nazwij targowisko: «je vais au marché». Paweł zmierza w to samo miejsce. Zamiast drugiego „na targowisko”, powiedz «Paul y va aussi». «Y» wskazuje, gdzie, ale nie podaje ponownie nazwy miejsca."
+],
+"pt-BR": [
+"Primeiro, nomeie o mercado: «je vais au marché». Paul está indo para o mesmo lugar. Em vez do segundo \"para o mercado\", diga «Paul y va aussi». «Y» indica onde, mas não nomeia o lugar novamente."
+],
+"ru": [
+"Сначала назови рынок: «je vais au marché». Поль направляется в то же место. Вместо второго «на рынок» скажи «Paul y va aussi». «Y» сообщает куда, но не называет место заново."
+],
+"tr": [
+"İlk olarak, pazarın adını söyleyin: «je vais au marché». Paul aynı yere gidiyor. İkinci \"pazara\" yerine «Paul y va aussi» deyin. «Y» nerede olduğunu söyler, ancak yeri tekrar belirtmez."
+],
+"uk": [
+"Спочатку назви ринок: «je vais au marché». Поль прямує до того ж місця. Замість другого \"на ринок\" скажи «Paul y va aussi». «Y» повідомляє куди, але не називає місце заново."
+],
+"vi": [
+"Đầu tiên, hãy nêu tên chợ: «je vais au marché». Paul đang đi đến cùng một nơi. Thay vì câu thứ hai \"đến chợ\", hãy nói «Paul y va aussi». «Y» cho biết địa điểm, nhưng không nêu tên địa điểm một lần nữa."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"fr:24:01",
+"fr:24:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "fr:24:01",
+"target": "Je vais au marché et Paul y va aussi.",
+"ru": "Я иду на рынок, и Поль тоже.",
+"uk": "Я йду на ринок, і Пол теж йде."
+},
+{
+"id": "fr:24:07",
+"target": "J’y vais maintenant.",
+"ru": "Я иду туда сейчас.",
+"uk": "Я йду туди зараз."
+},
+{
+"id": "fr:24:08",
+"target": "Tu y vas demain.",
+"ru": "Ты пойдёшь туда завтра.",
+"uk": "Ти підеш туди завтра."
+},
+{
+"id": "fr:24:01",
+"target": "Je vais au marché et Paul y va aussi.",
+"ru": "Я иду на рынок, и Поль тоже.",
+"uk": "Я йду на ринок, і Пол теж йде."
+},
+{
+"id": "fr:24:04",
+"target": "Elle va au musée et nous y allons aussi.",
+"ru": "Она идёт в музей, и мы тоже.",
+"uk": "Вона йде до музею, і ми теж йдемо."
+}
+]
+}
+]

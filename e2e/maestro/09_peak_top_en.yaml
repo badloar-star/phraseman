@@ -1,0 +1,26 @@
+# зачем (координатор 17:35): ТОП Пика на реальном ранге ≥2 через вкладку «Сообщество»; dev_state set=spire:open,coinRank:3,plus:on.
+appId: app.phraseman
+name: 09 ТОП Пика через Сообщество en
+---
+- runFlow: _prelude_home_en.yaml
+- openLink: "phraseman://dev_state?set=spire:open,coinRank:3,plus:on"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- tapOn: "Community"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: 01_community
+- tapOn:
+    text: "Peak"
+    optional: true
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: 02_peak
+- tapOn:
+    text: "All participants.*"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 03_all_participants

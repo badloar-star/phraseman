@@ -51,7 +51,7 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
   const animated = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ scale: scale.value }] }));
   const accessibilityLabel = event.kind === 'high_five'
     ? triLang(lang, { ru: 'Открыть пятюню', uk: 'Відкрити п’ять', en: 'Open high five', es: 'Abrir saludo', 'pt-BR': 'Abrir cumprimento', vi: 'Mở lời động viên', id: 'Buka tos', tr: 'Çakı aç', pl: 'Otwórz piątkę' })
-    : event.kind === 'study_invite' || event.kind === 'lesson_invite'
+    : event.kind === 'study_invite'
       ? triLang(lang, { ru: 'Открыть приглашение на занятие', uk: 'Відкрити запрошення на заняття', en: 'Open study invitation', es: 'Abrir invitación a estudiar', 'pt-BR': 'Abrir convite para estudar', vi: 'Mở lời mời học', id: 'Buka ajakan belajar', tr: 'Çalışma davetini aç', pl: 'Otwórz zaproszenie do nauki' })
       : event.kind === 'duel_result'
         ? duelPlayCopy(lang, 'openResult')
@@ -62,7 +62,7 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
   const flashBadge = event.kind === 'duel_invite' || event.kind === 'duel_challenge';
   const iconName = event.kind === 'high_five'
     ? 'hand-left-outline'
-    : event.kind === 'study_invite' || event.kind === 'lesson_invite'
+    : event.kind === 'study_invite'
       ? 'book-outline'
       : event.kind === 'duel_result'
         ? 'trophy-outline'

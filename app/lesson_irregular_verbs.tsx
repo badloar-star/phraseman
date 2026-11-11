@@ -272,7 +272,8 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: {
+function LearnTab({ renderPractice, verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: {
+  renderPractice: (content: React.ReactNode) => React.ReactElement;
   verbs: IrregularVerb[];
   lessonVerbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
@@ -341,7 +342,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     intent: verbsEnergyIntent,
     screen: 'irregular_verbs',
     finalizeOn: 'first_answer',
-    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: verbs.length > 0 }),
+    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: !devJumpToFinale && verbs.length > 0 }),
     onInsufficient: () => onNoEnergyRef.current(),
     onCancelled: () => onCancelStartRef.current(),
   });
@@ -617,26 +618,26 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
           // освоения (чистый проход всех трёх форм). Только ощущение; счёт/legacy reward ниже.
           setLearnedBurst({ base: verb.base, past: verb.past, pp: verb.pp });
-          const newCount = 3;
-          const newCounts = { ...counts, [verb.base]: newCount };
-          setCounts(newCounts);
-          onUpdate(verb.base, newCount);
-          // зачем (аудит R58 #29, 15.10): запись шла без catch, а битое сохранённое значение молча ломало чтение; теперь сбой пишет причину, а нечитаемое НЕ затираем «пустым» прогрессом.
-          AsyncStorage.getItem(irregularStorageKey).then(raw => {
-            let g: Record<string, number> = {};
-            if (raw) {
-              try {
-                g = JSON.parse(raw) as Record<string, number>;
-              } catch (error: unknown) {
-                console.warn(`[IRREGULAR-VERBS] stored progress unreadable key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)} — запись пропущена, сохранённое не затираем`); // guard-ok: причина пропуска
-                return;
+          if ((counts[verb.base] ?? 0) < REQUIRED) {
+            setCounts({ ...counts, [verb.base]: REQUIRED });
+            onUpdate(verb.base, REQUIRED);
+            // Нечитаемый прогресс сохраняем как есть и сообщаем об ошибке чтения.
+            AsyncStorage.getItem(irregularStorageKey).then(raw => {
+              let g: Record<string, number> = {};
+              if (raw) {
+                try {
+                  g = JSON.parse(raw) as Record<string, number>;
+                } catch (error: unknown) {
+                  console.warn(`[IRREGULAR-VERBS] stored progress unreadable key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)} — запись пропущена, сохранённое не затираем`); // guard-ok: причина пропуска
+                  return;
+                }
               }
-            }
-            g[verb.base] = newCount;
-            return AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
-          }).catch((error: unknown) => {
-            console.warn(`[IRREGULAR-VERBS] progress write FAILED key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
-          });
+              g[verb.base] = Math.max(g[verb.base] ?? 0, REQUIRED);
+              return AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
+            }).catch((error: unknown) => {
+              console.warn(`[IRREGULAR-VERBS] progress write FAILED key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
+            });
+          }
           setLearnedCnt(c => c + 1);
           const nq = [...queue];
           nq.splice(pos % nq.length, 1);
@@ -773,7 +774,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const verb = activeVerb;
   if (!verb) {
     // зачем: экран ошибки убран (владелец 18.10) — уход назад делает useSilentLeave выше, здесь только пустой фон.
-    return <View style={{ flex: 1 }} />;
+    return renderPractice(null);
   }
 
   const form = FORM_SEQ[step];
@@ -795,7 +796,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', en: 'First try to recall it', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' }))
     : ' ';
 
-  return (
+  return renderPractice(
     <View style={{ flex: 1 }}>
 
       {/* ── Top card area ── */}
@@ -1265,8 +1266,8 @@ function LessonIrregularVerbs() {
     return [];
   }, [globalCounts, portions]);
 
-  // В режиме practiceAll тренируем все глаголы урока.
-  const verbsForLearnTab = practiceAll ? allVerbs : activePortion;
+  // Когда все порции пройдены, повторяем глаголы урока сразу при входе.
+  const verbsForLearnTab = practiceAll || activePortion.length === 0 ? allVerbs : activePortion;
   const title = triLang(lang, {
     ru: 'Неправильные глаголы',
     uk: 'Неправильні дієслова',
@@ -1279,119 +1280,121 @@ function LessonIrregularVerbs() {
     pl: 'Czasowniki nieregularne',
   });
 
+  // Шапка и вкладки нужны только в тренировке. Итог занимает весь экран и сам учитывает безопасные отступы.
+  const renderPractice = (content: React.ReactNode) => (
+    <View style={{ flex: 1, paddingTop: insets.top }}>
+      <ContentWrap>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton screen="lesson_irregular_verbs" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} />
+        {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 20, paddingRight: 12, minHeight: SCREEN_BACK_SIZE }}>
+          <ScreenBackSlot />
+          <PracticeHeaderTitle glass={glass} title={`${lessonId}. ${title}`} />
+        </View>
+
+        <View style={{ flex: 1 }}>{content}</View>
+
+        {/* Сегмент «Учить / Словарь» (макет `.tabbar .seg`): скругление 22, высота 44, активный — плитка-выделение. */}
+        {!frenchIrregularBlocked && (
+        <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: Math.max(insets.bottom, 12) }}>
+          <View style={{ flexDirection: 'row', height: 44, padding: 3, borderRadius: 22, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}>
+          {(['learn', 'dict'] as const).map(key => {
+            const isActive = tab === key;
+            const label = key === 'dict'
+              ? triLang(lang, {
+                  ru: 'Словарь',
+                  uk: 'Словник',
+                  en: rootPack.lessonMenu.vocab,
+                  es: rootPack.lessonMenu.vocab,
+                  'pt-BR': 'Vocabulário',
+                  vi: 'Từ vựng',
+                  id: 'Kosakata',
+                  tr: 'Sözlük',
+                  pl: 'Słownik',
+                })
+              : triLang(lang, {
+                  ru: 'Учить',
+                  uk: 'Учити',
+                  en: rootPack.words.training,
+                  es: rootPack.words.training,
+                  'pt-BR': 'Aprender',
+                  vi: 'Học',
+                  id: 'Belajar',
+                  tr: 'Öğren',
+                  pl: 'Ucz się',
+                });
+            return (
+              <Pressable key={key}
+                accessibilityRole="tab"
+                accessibilityState={{ selected: isActive }}
+                style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: isActive ? glass.raisedFillFrom : 'transparent', boxShadow: isActive ? nestedBoxShadow(glass) : undefined }}
+                onPress={() => {
+                  Keyboard.dismiss();
+                  setUserTab(key);
+                  if (key === 'dict') setPracticeAll(false);
+                }}
+              >
+                <Text style={{ color: isActive ? glass.text : glass.secondary, fontSize: 13, fontWeight: '600' }}>{label}</Text>
+              </Pressable>
+            );
+          })}
+          </View>
+        </View>
+        )}
+      </ContentWrap>
+    </View>
+  );
+
+  const showLearn = !frenchIrregularBlocked && (tab === 'learn' || practiceAll);
+  const progressLoading = hydratedCountsKey !== irregularStorageKey;
   return (
     <ScreenGradient>
-      <View style={{ flex: 1, paddingTop: insets.top }}>
-        <ContentWrap>
-          {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
-          <SafeTopBackButton screen="lesson_irregular_verbs" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} />
-          {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 20, paddingRight: 12, minHeight: SCREEN_BACK_SIZE }}>
-            <ScreenBackSlot />
-            <PracticeHeaderTitle glass={glass} title={`${lessonId}. ${title}`} />
+      {showLearn && !progressLoading ? (
+        <LearnTab
+          renderPractice={renderPractice}
+          key={`${studyTarget}:${lessonId}:${learnTabKey}`}
+          verbs={verbsForLearnTab}
+          lessonVerbs={allVerbs}
+          allVerbs={allVerbsFlat}
+          lang={lang}
+          initCounts={globalCounts}
+          lessonId={lessonId}
+          studyTarget={studyTarget}
+          onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
+          practiceRunCompletionOrdinal={learnTabKey + 1}
+          devFakeStartRunes={devRunesFake?.runes}
+          devFakeStartPoints={devRunesFake?.secondary}
+          devJumpToFinale={devJumpToFinale}
+          onReset={() => {
+            setPracticeAll(true);
+            setLearnTabKey(k => k + 1);
+          }}
+          onNoEnergy={() => setNoEnergyModalOpen(true)}
+          onCancelStart={() => setUserTab('dict')}
+        />
+      ) : renderPractice(frenchIrregularBlocked ? (
+        <FrenchIrregularVerbsUnavailable
+          lang={lang}
+          onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
+        />
+      ) : showLearn ? (
+        // зачем: скелет вместо крутилки — геометрия первого кадра = итоговая (макет wordsLoading).
+        <View testID="irregular-verbs-progress-loading" style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
+          <PracticeProgressRow glass={glass} progress={0} flush />
+          <View style={{ marginTop: 30, minHeight: 200, borderRadius: 16, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: '60%', height: 26, borderRadius: 8, backgroundColor: glass.opaqueControl }} />
           </View>
-
-          <View style={{ flex: 1 }}>
-            {frenchIrregularBlocked
-              ? <FrenchIrregularVerbsUnavailable
-                  lang={lang}
-                  onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
-                />
-              : tab === 'learn' || practiceAll
-              ? hydratedCountsKey !== irregularStorageKey
-                ? (
-                  // зачем: скелет вместо крутилки — геометрия первого кадра = итоговая (макет wordsLoading).
-                  <View testID="irregular-verbs-progress-loading" style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
-                    <PracticeProgressRow glass={glass} progress={0} flush />
-                    <View style={{ marginTop: 30, minHeight: 200, borderRadius: 16, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), alignItems: 'center', justifyContent: 'center' }}>
-                      <View style={{ width: '60%', height: 26, borderRadius: 8, backgroundColor: glass.opaqueControl }} />
-                    </View>
-                  </View>
-                )
-                : <LearnTab
-                  key={`${studyTarget}:${lessonId}:${learnTabKey}`}
-                  verbs={verbsForLearnTab}
-                  lessonVerbs={allVerbs}
-                  allVerbs={allVerbsFlat}
-                  lang={lang}
-                  initCounts={globalCounts}
-                  lessonId={lessonId}
-                  studyTarget={studyTarget}
-                  onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
-                  practiceRunCompletionOrdinal={learnTabKey + 1}
-                  devFakeStartRunes={devRunesFake?.runes}
-                  devFakeStartPoints={devRunesFake?.secondary}
-                  devJumpToFinale={devJumpToFinale}
-                  onReset={() => {
-                    setPracticeAll(true);
-                    setLearnTabKey(k => k + 1);
-                  }}
-                  onNoEnergy={() => setNoEnergyModalOpen(true)}
-                  onCancelStart={() => setUserTab('dict')}
-                />
-              : <DictTab
-                  allVerbs={allVerbs}
-                  globalCounts={globalCounts}
-                  lang={lang}
-                  lessonId={lessonId}
-                  onStartLearn={() => {
-                    setUserTab('learn');
-                  }}
-                />
-            }
-          </View>
-
-          {/* Сегмент «Учить / Словарь» (макет `.tabbar .seg`): скругление 22, высота 44, активный — плитка-выделение. */}
-          {!frenchIrregularBlocked && (
-          <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: Math.max(insets.bottom, 12) }}>
-            <View style={{ flexDirection: 'row', height: 44, padding: 3, borderRadius: 22, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}>
-            {(['learn', 'dict'] as const).map(key => {
-              const isActive = tab === key;
-              const label = key === 'dict'
-                ? triLang(lang, {
-                    ru: 'Словарь',
-                    uk: 'Словник',
-                    en: rootPack.lessonMenu.vocab,
-                    es: rootPack.lessonMenu.vocab,
-                    'pt-BR': 'Vocabulário',
-                    vi: 'Từ vựng',
-                    id: 'Kosakata',
-                    tr: 'Sözlük',
-                    pl: 'Słownik',
-                  })
-                : triLang(lang, {
-                    ru: 'Учить',
-                    uk: 'Учити',
-                    en: rootPack.words.training,
-                    es: rootPack.words.training,
-                    'pt-BR': 'Aprender',
-                    vi: 'Học',
-                    id: 'Belajar',
-                    tr: 'Öğren',
-                    pl: 'Ucz się',
-                  });
-              return (
-                <Pressable key={key}
-                  accessibilityRole="tab"
-                  accessibilityState={{ selected: isActive }}
-                  style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: isActive ? glass.raisedFillFrom : 'transparent', boxShadow: isActive ? nestedBoxShadow(glass) : undefined }}
-                  onPress={() => {
-                    Keyboard.dismiss();
-                    setUserTab(key);
-                    if (key === 'dict') setPracticeAll(false);
-                  }}
-                >
-                  <Text style={{ color: isActive ? glass.text : glass.secondary, fontSize: 13, fontWeight: '600' }}>{label}</Text>
-                </Pressable>
-              );
-            })}
-            </View>
-          </View>
-          )}
-        </ContentWrap>
-
-        <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
-      </View>
+        </View>
+      ) : (
+        <DictTab
+          allVerbs={allVerbs}
+          globalCounts={globalCounts}
+          lang={lang}
+          lessonId={lessonId}
+          onStartLearn={() => setUserTab('learn')}
+        />
+      ))}
+      <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
     </ScreenGradient>
   );
 }

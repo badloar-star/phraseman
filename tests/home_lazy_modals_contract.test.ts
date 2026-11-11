@@ -13,7 +13,6 @@ const LAZY_MODALS: readonly [string, string][] = [
   ['SurveySheetModal', '../../components/survey/SurveySheetModal'],
   ['SavedCardsFlight', '../../components/SavedCardsFlight'],
   ['PlayerProfileModal', '../../components/PlayerProfileModal'],
-  ['FeatureIntroEntry', '../../components/feature_intro/FeatureIntroEntry'],
 ];
 
 const RARE_MODULES = ['../achievements', '../mistake_hub_advice', '../lingman_youtube'];
@@ -35,7 +34,7 @@ describe('Home: closed modals and rare modules are not evaluated with the Home c
 
   it('closed modals mount only after their first open, and modules are prewarmed after the first Home frame', () => {
     expect(home).toContain('function useMountedAfterFirstOpen(open: boolean): boolean {');
-    for (const flag of ['premiumCelebrationMounted', 'vipCelebrationMounted', 'profileModalMounted', 'profileIntroMounted', 'savedCardsFlightMounted']) {
+    for (const flag of ['premiumCelebrationMounted', 'vipCelebrationMounted', 'profileModalMounted', 'savedCardsFlightMounted']) {
       expect(home).toContain(`const ${flag} = useMountedAfterFirstOpen(`);
       expect(home).toContain(`{${flag} ? (<Suspense fallback={null}>`);
     }

@@ -103,7 +103,6 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/dialogue_v2_memory',
   '/settings_edu',
   '/flashcards_voice_picker',
-  '/survey_screen',
   '/ai_dialog_briefing',
   '/ai_dialog_consent_gate',
   '/ai_dialog_session',
@@ -131,26 +130,6 @@ const TRANSIENT_REDIRECT_PATHS: ReadonlySet<string> = new Set([
 // Одноразовые экраны: попасть на них можно ТОЛЬКО через подготовку на экране
 // перед ними, а по «назад» — никогда.
 //
-// зачем (владелец 23.09, «Сессия недоступна» — сделать невозможным): материал
-// занятия едет с карты через мост в памяти под ключом sessionRunId. Трекер
-// «назад» хранил полный href занятия вместе с этим ключом, поэтому кнопка
-// «назад» НА КАРТЕ возвращала в уже закрытое занятие по протухшему адресу:
-// моста там больше нет → тупик «Сессия недоступна», и вдобавок гейт энергии
-// списывал плату ВТОРОЙ раз.
-//
-// Исключение стоит здесь, а не в экранах, намеренно: так оно действует на
-// любой стиль выхода — нынешний и будущий — и не требует помнить о нём в
-// каждом новом месте.
-const ONE_SHOT_SESSION_PATHS: readonly string[] = ['/learning-v2/session'];
-
-/** Экран, на который «назад» не имеет права вернуться (см. ONE_SHOT_SESSION_PATHS). */
-function isOneShotRoutePath(path: string): boolean {
-  // startsWith, а не точное совпадение: у маршрута динамический сегмент [id].
-  const pathname = pathnameOf(path);
-  return ONE_SHOT_SESSION_PATHS.some(
-    (base) => pathname === base || pathname.startsWith(`${base}/`),
-  );
-}
 
 // Эти экраны владеют особыми Android Back-сценариями (подтверждение выхода,
 // закрытие внутренней панели, сохранение сессии). Глобальный guard их не перебивает.
@@ -167,9 +146,6 @@ const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/lesson1',
   '/lesson_complete',
   '/lesson_words',
-  // зачем (Сверка 25.10 ❌ по 1c45ee89f): push-Сезон сам решает «Назад» — окно эпизода → «Все уроки» → тот же путь, что «‹»
-  // (SeasonCourseConnected). Глобальный обработчик корня переподписывался на каждом переходе, вызывался первым и вёл в /lessons_list.
-  '/learning-v2/course',
   // зачем (Сверка 15.10): тренировка «Ошибок» сама решает «Назад» — сначала прячет клавиатуру, потом выход в хаб «Ошибок»
   '/mistake_practice_session',
   '/pack_opening',
@@ -279,9 +255,7 @@ function basePath(path: string): string {
 
 function fixedChildSection(pathname: string): NavigationSection | null {
   if (
-    pathname.startsWith('/learning-v2/')
-    || pathname.startsWith('/learning_v2_')
-    || pathname.startsWith('/lesson')
+    pathname.startsWith('/lesson')
     || pathname === '/hint'
     || pathname === '/preposition_drill'
     || pathname === '/diagnostic_test'
@@ -460,14 +434,7 @@ export function rememberNavigationPath(path: string | null | undefined): void {
 function popBackCandidate(leaving: NavigationEntry | null): NavigationEntry | null {
   if (navigationStack.length > 0) navigationStack.pop();
 
-  // зачем: одноразовые экраны снимаются наравне с пейволами — их адрес после
-  // выхода протух (мост съеден), возвращаться туда нельзя. isNonBackTargetPath
-  // НЕ трогаем: он влияет ещё и на paywallDismissShouldReplace.
-  while (
-    navigationStack.length > 0 &&
-    (isNonBackTargetPath(currentEntry()!.href) ||
-      isOneShotRoutePath(currentEntry()!.href))
-  ) {
+  while (navigationStack.length > 0 && isNonBackTargetPath(currentEntry()!.href)) {
     navigationStack.pop();
   }
 
@@ -499,13 +466,7 @@ function popBackCandidate(leaving: NavigationEntry | null): NavigationEntry | nu
 function safeTarget(candidate: NavigationEntry | null, fallback: any): { target: any; path: string } {
   const fallbackPath = hrefForTarget(fallback) ?? HOME_BACK_FALLBACK;
   const candidatePath = candidate?.href ?? null;
-  // Второй заслон: даже если одноразовый экран как-то уцелел в стеке, целью
-  // «назад» он не станет — уходим на fallback (обычно вкладка раздела).
-  if (
-    candidatePath &&
-    !isNonBackTargetPath(candidatePath) &&
-    !isOneShotRoutePath(candidatePath)
-  ) {
+  if (candidatePath && !isNonBackTargetPath(candidatePath)) {
     return { target: candidatePath, path: candidatePath };
   }
   if (!isNonBackTargetPath(fallbackPath)) return { target: fallback, path: fallbackPath };

@@ -60,17 +60,4 @@ describe('экраны с прямым сравнением не входят в
     // …и пока это так, их прямое сравнение безопасно. Попал в список режима Б — тест роняется и требует перевода экрана на предикат.
     expect(read('app/mistake_practice_session.tsx')).toContain("attemptEffect === 'attempts_exhausted'");
   });
-
-  it('все экраны списка режима Б перечислены выше (шесть: Блиц, Речь, Свайп, Глаголы, Урок, Слова) + Learning V2', () => {
-    for (const activity of ['flashcards', 'lesson_words', 'irregular_verbs', 'classic_lesson', 'learning_v2_session'] as const) {
-      expect(isMistakeChargeActivity(activity)).toBe(true);
-    }
-    expect(SCREENS.map((s) => s.file)).toEqual(expect.arrayContaining([
-      'app/flashcards_blitz_session.tsx', 'app/flashcards_speaking_session.tsx', 'app/flashcards_swipe.tsx',
-      'app/lesson_irregular_verbs.tsx', 'app/lesson1.tsx', 'app/lesson_words.tsx',
-    ]));
-    // Learning V2 — Codex, здесь только проверка, что его экраны тоже на предикате
-    expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('isAttemptsStopEffect(attemptEffect)');
-    expect(read('app/learning-v2/session/[id].tsx')).toContain('isAttemptsStopEffect(attemptEffect)');
-  });
 });

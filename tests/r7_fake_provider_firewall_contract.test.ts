@@ -13,11 +13,4 @@ describe('R7 fake-provider firewall contract', () => {
     expect(runner).toContain("'.codex-tmp'");
     expect(runner).not.toMatch(/fetch\(|https:|OPENAI_API_KEY/);
   });
-
-  it('retains the bounded repair budget and supported production targets', () => {
-    const runner = read('functions/src/content_factory/stage_runner.ts');
-    const factory = read('functions/src/admin_content_factory.ts');
-    expect(runner).toContain('maxRepairs > 2');
-    expect(factory).toContain("['en', 'fr'] as const");
-  });
 });

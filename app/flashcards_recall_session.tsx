@@ -6,6 +6,7 @@ import {
   AccessibilityInfo,
   AppState,
   findNodeHandle,
+  Platform,
   Pressable,
   ScrollView,
   StatusBar,
@@ -16,12 +17,12 @@ import {
   View,
 } from 'react-native';
 import Reanimated, { FadeInDown, FadeInUp, useReducedMotion } from 'react-native-reanimated';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ContentWrap from '../components/ContentWrap';
 import { useScreen } from '../hooks/use-screen';
-import { effectiveFontScale } from '../constants/font_scale_cap';
-import { recallPromptFit } from './flashcards/recall_prompt_fit';
+import { useKeyboardBottomInset } from '../components/keyboardAvoidance';
+import { recallInstructionClearance, recallPromptFit } from './flashcards/recall_prompt_fit';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
 import { resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
@@ -45,7 +46,7 @@ import { SCREEN_BACK_SIZE, SafeTopCloseButton } from '../components/v2/ScreenBac
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
+import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -157,6 +158,24 @@ export default function FlashcardsRecallSession() {
   // зачем (владелец 11.11, жалоба Стеллы): фраза задания подгоняется под ширину экрана и системный шрифт — см. flashcards/recall_prompt_fit.ts
   const { width: windowWidth, fontScale: systemFontScale } = useWindowDimensions();
   const { contentMaxW } = useScreen();
+  // зачем (владелец 11.11, жалоба Стеллы; подтверждено на эмуляторе Android 15): приложение рисуется «от края до края», и система сама
+  // не сжимает окно под клавиатуру — поле ввода и «Проверить» оставались под ней, человек печатал вслепую. На Android список ужимается
+  // на высоту клавиатуры и прокручивается к полю ввода. На iPhone это делает automaticallyAdjustKeyboardInsets у списка — там не трогаем.
+  // зачем: нижний безопасный отступ экран уже отдал SafeAreaView — из высоты клавиатуры его вычитаем, иначе над клавиатурой пустая полоса.
+  const safeBottomInset = useSafeAreaInsets().bottom;
+  const keyboardInset = Math.max(0, useKeyboardBottomInset(Platform.OS === 'android') - safeBottomInset);
+  const recallScrollRef = useRef<ScrollView>(null);
+  const inputShellBottomRef = useRef(0);
+  const [recallViewportH, setRecallViewportH] = useState(0);
+  useEffect(() => {
+    if (keyboardInset <= 0 || recallViewportH <= 0) return undefined;
+    // зачем: поле ввода ставится вплотную над клавиатурой (зазор 8), а вопрос над ним остаётся виден настолько, насколько хватает места;
+    // если всё и так помещается — прокрутки нет.
+    const frame = requestAnimationFrame(() => {
+      recallScrollRef.current?.scrollTo({ y: Math.max(0, inputShellBottomRef.current + 8 - recallViewportH), animated: true });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [keyboardInset, recallViewportH]);
   const recallGlass = liquidGlassTokens(liquidGlassThemeId);
   const { accessResolved, hasPremiumAccess } = usePremium();
   const reducedMotion = useReducedMotion();
@@ -247,7 +266,7 @@ export default function FlashcardsRecallSession() {
     [params.devRunesSeed],
   );
   // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
-  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeys(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: `recall_${deckKey}_${attemptSessionId}`,
@@ -996,9 +1015,8 @@ export default function FlashcardsRecallSession() {
   }
 
   const promptFit = recallPromptFit({ text: promptOf(activeCard), contentWidth: Math.min(windowWidth, contentMaxW), fontScale: systemFontScale });
-  // зачем: подпись задания приколота к верху карточки (18 + строка 21); фразе оставляем под неё место, иначе длинная фраза наезжала на подпись.
-  // 24 при обычном шрифте: одна и две строки фразы по-прежнему умещаются в 170 макета; при крупном шрифте зазор растёт вместе с подписью.
-  const promptClearance = Math.round(24 * effectiveFontScale(systemFontScale));
+  // зачем: подпись задания приколота к верху карточки; фразе оставляем под неё место (по числу строк подписи), иначе фраза наезжала на подпись.
+  const promptClearance = recallInstructionClearance({ instruction: direction === 'to_source' ? copy.promptToSource : copy.prompt, contentWidth: Math.min(windowWidth, contentMaxW), fontScale: systemFontScale });
   const feedbackSurface = feedback?.kind === 'wrong' ? FEEDBACK_BAD_SURFACE : FEEDBACK_OK_SURFACE;
   const attemptsInteractive = attempts.hydrated && attemptsPhase === 'active';
   const canCheck = attemptsInteractive && input.trim().length > 0 && !feedback && !answerRevealed;
@@ -1014,7 +1032,9 @@ export default function FlashcardsRecallSession() {
         <ContentWrap>
           {renderHeader(true)}
           <ScrollView
-            style={styles.scroll}
+            ref={recallScrollRef}
+            onLayout={(event) => { const next = Math.round(event.nativeEvent.layout.height); setRecallViewportH((prev) => (prev === next ? prev : next)); }}
+            style={keyboardInset > 0 ? [styles.scroll, { marginBottom: keyboardInset }] : styles.scroll}
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps="handled"
             automaticallyAdjustKeyboardInsets
@@ -1040,7 +1060,7 @@ export default function FlashcardsRecallSession() {
                 collapsable={false}
                 accessible
                 accessibilityLabel={`${direction === 'to_source' ? copy.promptToSource : copy.prompt}. ${promptOf(activeCard)}`}
-                style={[styles.focusPrompt, { marginVertical: promptClearance }]}
+                style={[styles.focusPrompt, { marginTop: promptClearance, marginBottom: 24 }]}
               >
                 <Text testID="fc-recall-prompt" style={[styles.translation, { color: t.textPrimary, fontSize: promptFit.fontSize, lineHeight: promptFit.lineHeight }]}>
                   {promptOf(activeCard)}
@@ -1083,6 +1103,7 @@ export default function FlashcardsRecallSession() {
             ) : (
               <View
                 testID="fc-recall-input-shell"
+                onLayout={(event) => { inputShellBottomRef.current = event.nativeEvent.layout.y + event.nativeEvent.layout.height; }}
                 style={[
                   styles.compactInputShell,
                   {

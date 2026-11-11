@@ -1,0 +1,4744 @@
+[
+{
+"lemma": "el",
+"pos": "DET",
+"forms": [
+"el",
+"la",
+"las",
+"los"
+],
+"firstLesson": 1,
+"phraseIds": [
+"es:01:31",
+"es:01:32",
+"es:01:39",
+"es:01:35",
+"es:01:34",
+"es:01:38",
+"es:01:36",
+"es:01:37",
+"es:01:33",
+"es:01:40",
+"es:01:41",
+"es:01:47",
+"es:01:42",
+"es:01:43",
+"es:01:44",
+"es:01:45",
+"es:01:46",
+"es:01:48",
+"es:01:49",
+"es:01:50",
+"es:02:13",
+"es:02:14",
+"es:02:15",
+"es:02:16",
+"es:02:17",
+"es:02:18",
+"es:02:19",
+"es:02:20",
+"es:02:21",
+"es:02:22",
+"es:02:23",
+"es:02:27",
+"es:02:28",
+"es:02:29",
+"es:02:30",
+"es:02:31",
+"es:02:32",
+"es:02:33",
+"es:02:34",
+"es:02:35",
+"es:02:36",
+"es:02:37",
+"es:02:38",
+"es:02:39",
+"es:02:40",
+"es:02:41",
+"es:02:42",
+"es:02:43",
+"es:02:44",
+"es:02:45",
+"es:02:46",
+"es:02:47",
+"es:02:48",
+"es:02:49",
+"es:02:50",
+"es:03:05",
+"es:03:08",
+"es:03:09",
+"es:03:10",
+"es:03:14",
+"es:03:18",
+"es:03:19",
+"es:03:24",
+"es:03:25",
+"es:03:26",
+"es:03:27",
+"es:03:28",
+"es:03:29",
+"es:03:30",
+"es:03:31",
+"es:03:32",
+"es:03:33",
+"es:03:34",
+"es:03:35",
+"es:03:36",
+"es:03:37",
+"es:03:38",
+"es:03:39",
+"es:03:40",
+"es:03:41",
+"es:03:42",
+"es:03:43",
+"es:03:44",
+"es:03:45",
+"es:03:46",
+"es:03:47",
+"es:03:48",
+"es:03:49",
+"es:03:50",
+"es:04:31",
+"es:04:32",
+"es:04:33",
+"es:04:34",
+"es:04:35",
+"es:04:37",
+"es:04:38",
+"es:04:39",
+"es:04:40",
+"es:05:03",
+"es:05:06",
+"es:05:07",
+"es:05:08",
+"es:05:09",
+"es:05:10",
+"es:05:14",
+"es:05:15",
+"es:05:16",
+"es:05:17",
+"es:05:19",
+"es:05:20",
+"es:05:27",
+"es:05:28",
+"es:05:29",
+"es:05:30",
+"es:05:33",
+"es:05:35",
+"es:05:36",
+"es:05:37",
+"es:05:38",
+"es:05:39",
+"es:05:41",
+"es:05:42",
+"es:05:43",
+"es:05:44",
+"es:05:47",
+"es:05:48",
+"es:05:49",
+"es:06:01",
+"es:06:02",
+"es:06:03",
+"es:06:04",
+"es:06:05",
+"es:06:06",
+"es:06:07",
+"es:06:08",
+"es:06:09",
+"es:06:10",
+"es:06:11",
+"es:06:12",
+"es:06:13",
+"es:06:14",
+"es:06:15",
+"es:06:16",
+"es:06:17",
+"es:06:18",
+"es:06:19",
+"es:06:20",
+"es:06:21",
+"es:06:22",
+"es:06:23",
+"es:06:24",
+"es:06:25",
+"es:06:26",
+"es:06:27",
+"es:06:28",
+"es:06:29",
+"es:06:30",
+"es:06:31",
+"es:06:32",
+"es:06:33",
+"es:06:34",
+"es:06:35",
+"es:06:36",
+"es:06:37",
+"es:06:38",
+"es:06:39",
+"es:06:40",
+"es:06:41",
+"es:06:42",
+"es:06:43",
+"es:06:44",
+"es:06:45",
+"es:06:46",
+"es:06:47",
+"es:06:48",
+"es:06:49",
+"es:06:50",
+"es:07:05",
+"es:07:06",
+"es:07:07",
+"es:07:08",
+"es:07:09",
+"es:07:10",
+"es:07:11",
+"es:07:12",
+"es:07:13",
+"es:07:14",
+"es:07:15",
+"es:07:16",
+"es:07:17",
+"es:07:19",
+"es:07:22",
+"es:07:23",
+"es:07:24",
+"es:07:25",
+"es:07:26",
+"es:07:27",
+"es:07:28",
+"es:07:33",
+"es:07:38",
+"es:07:41",
+"es:07:42",
+"es:07:43",
+"es:07:44",
+"es:07:45",
+"es:07:46",
+"es:07:49",
+"es:07:50",
+"es:08:07",
+"es:08:08",
+"es:08:09",
+"es:08:10",
+"es:08:13",
+"es:08:14",
+"es:08:15",
+"es:08:16",
+"es:08:17",
+"es:08:18",
+"es:08:23",
+"es:08:24",
+"es:08:26",
+"es:08:28",
+"es:08:37",
+"es:08:38",
+"es:09:12",
+"es:09:13",
+"es:09:19",
+"es:09:22",
+"es:09:30",
+"es:09:35",
+"es:09:36",
+"es:09:37",
+"es:10:03",
+"es:10:04",
+"es:10:07",
+"es:10:08",
+"es:10:14",
+"es:10:15",
+"es:10:16",
+"es:10:25",
+"es:10:26",
+"es:10:28",
+"es:10:29",
+"es:10:30",
+"es:10:31",
+"es:10:32",
+"es:10:33",
+"es:10:34",
+"es:10:37",
+"es:10:38",
+"es:10:39",
+"es:10:41",
+"es:10:44",
+"es:10:45",
+"es:10:47",
+"es:10:48",
+"es:11:06",
+"es:11:07",
+"es:11:09",
+"es:11:10",
+"es:11:15",
+"es:11:30",
+"es:11:42",
+"es:11:45",
+"es:11:46",
+"es:11:47",
+"es:11:48",
+"es:11:49",
+"es:11:50",
+"es:12:01",
+"es:12:02",
+"es:12:03",
+"es:12:04",
+"es:12:05",
+"es:12:06",
+"es:12:07",
+"es:12:08",
+"es:12:09",
+"es:12:10",
+"es:12:11",
+"es:12:12",
+"es:12:13",
+"es:12:14",
+"es:12:15",
+"es:12:16",
+"es:12:17",
+"es:12:18",
+"es:12:19",
+"es:12:20",
+"es:12:31",
+"es:12:32",
+"es:12:33",
+"es:12:34",
+"es:12:35",
+"es:12:36",
+"es:12:37",
+"es:12:38",
+"es:12:39",
+"es:12:40",
+"es:12:47",
+"es:13:09",
+"es:13:10",
+"es:13:21",
+"es:13:22",
+"es:13:23",
+"es:13:24",
+"es:13:25",
+"es:13:26",
+"es:13:27",
+"es:13:28",
+"es:13:29",
+"es:13:30",
+"es:13:35",
+"es:13:36",
+"es:13:37",
+"es:13:38",
+"es:13:39",
+"es:13:40",
+"es:13:46",
+"es:13:47",
+"es:13:48",
+"es:13:49",
+"es:13:50",
+"es:14:02",
+"es:14:04",
+"es:14:06",
+"es:14:08",
+"es:14:10",
+"es:14:11",
+"es:14:13",
+"es:14:15",
+"es:14:17",
+"es:14:19",
+"es:14:21",
+"es:14:22",
+"es:14:23",
+"es:14:24",
+"es:14:25",
+"es:14:26",
+"es:14:27",
+"es:14:28",
+"es:14:29",
+"es:14:30",
+"es:14:32",
+"es:14:34",
+"es:14:36",
+"es:14:38",
+"es:14:40",
+"es:14:41",
+"es:14:42",
+"es:14:43",
+"es:14:44",
+"es:14:45",
+"es:14:46",
+"es:14:47",
+"es:14:48",
+"es:14:49",
+"es:15:01",
+"es:15:02",
+"es:15:04",
+"es:15:11",
+"es:15:12",
+"es:15:14",
+"es:15:17",
+"es:15:18",
+"es:15:19",
+"es:15:20",
+"es:15:26",
+"es:15:27",
+"es:15:28",
+"es:15:31",
+"es:15:32",
+"es:15:37",
+"es:15:38",
+"es:15:39",
+"es:15:41",
+"es:15:49",
+"es:15:50",
+"es:16:07",
+"es:16:08",
+"es:16:13",
+"es:16:14",
+"es:16:17",
+"es:16:18",
+"es:16:19",
+"es:16:20",
+"es:16:23",
+"es:16:24",
+"es:16:25",
+"es:16:26",
+"es:16:27",
+"es:16:28",
+"es:16:29",
+"es:16:30",
+"es:16:37",
+"es:16:38",
+"es:16:39",
+"es:16:40",
+"es:16:43",
+"es:16:46",
+"es:16:47",
+"es:16:48",
+"es:17:01",
+"es:17:02",
+"es:17:03",
+"es:17:07",
+"es:17:09",
+"es:17:11",
+"es:17:13",
+"es:17:14",
+"es:17:18",
+"es:17:19",
+"es:17:24",
+"es:17:26",
+"es:17:27",
+"es:17:28",
+"es:17:30",
+"es:17:32",
+"es:17:37",
+"es:17:42",
+"es:18:03",
+"es:18:12",
+"es:18:13",
+"es:18:16",
+"es:18:17",
+"es:18:19",
+"es:18:22",
+"es:18:34",
+"es:18:38",
+"es:18:39",
+"es:18:43",
+"es:18:44",
+"es:19:01",
+"es:19:02",
+"es:19:03",
+"es:19:04",
+"es:19:13",
+"es:19:15",
+"es:19:16",
+"es:19:17",
+"es:19:18",
+"es:19:21",
+"es:19:22",
+"es:19:23",
+"es:19:24",
+"es:19:27",
+"es:19:28",
+"es:19:30",
+"es:19:31",
+"es:19:33",
+"es:19:34",
+"es:19:37",
+"es:19:39",
+"es:19:40",
+"es:19:42",
+"es:19:44",
+"es:19:45",
+"es:19:46",
+"es:19:48",
+"es:20:03",
+"es:20:04",
+"es:20:09",
+"es:20:10",
+"es:20:11",
+"es:20:12",
+"es:20:13",
+"es:20:14",
+"es:20:17",
+"es:20:18",
+"es:20:20",
+"es:20:21",
+"es:20:22",
+"es:20:23",
+"es:20:24",
+"es:20:25",
+"es:20:28",
+"es:20:29",
+"es:20:30",
+"es:20:32",
+"es:20:33",
+"es:20:37",
+"es:20:38",
+"es:20:39",
+"es:20:40",
+"es:20:42",
+"es:20:44",
+"es:20:45",
+"es:20:46",
+"es:20:47",
+"es:20:48",
+"es:20:49",
+"es:20:50",
+"es:21:07",
+"es:21:09",
+"es:21:10",
+"es:21:13",
+"es:21:15",
+"es:21:16",
+"es:21:19",
+"es:21:20",
+"es:21:24",
+"es:21:25",
+"es:21:26",
+"es:21:29",
+"es:21:30",
+"es:21:32",
+"es:21:34",
+"es:21:35",
+"es:21:37",
+"es:21:39",
+"es:21:43",
+"es:21:44",
+"es:21:47",
+"es:21:48",
+"es:21:49",
+"es:22:03",
+"es:22:07",
+"es:22:08",
+"es:22:21",
+"es:22:25",
+"es:22:26",
+"es:22:29",
+"es:22:30",
+"es:22:32",
+"es:22:34",
+"es:22:39",
+"es:22:43",
+"es:22:45",
+"es:22:46",
+"es:22:48",
+"es:22:50",
+"es:23:03",
+"es:23:04",
+"es:23:08",
+"es:23:10",
+"es:23:14",
+"es:23:18",
+"es:23:21",
+"es:23:22",
+"es:23:24",
+"es:23:25",
+"es:23:26",
+"es:23:27",
+"es:23:32",
+"es:23:37",
+"es:23:39",
+"es:23:43",
+"es:23:45",
+"es:24:01",
+"es:24:02",
+"es:24:03",
+"es:24:04",
+"es:24:05",
+"es:24:06",
+"es:24:07",
+"es:24:08",
+"es:24:09",
+"es:24:10",
+"es:24:11",
+"es:24:12",
+"es:24:13",
+"es:24:14",
+"es:24:15",
+"es:24:17",
+"es:24:18",
+"es:24:19",
+"es:24:20",
+"es:24:21",
+"es:24:22",
+"es:24:23",
+"es:24:24",
+"es:24:26",
+"es:24:27",
+"es:24:28",
+"es:24:29",
+"es:24:30",
+"es:24:31",
+"es:24:32",
+"es:24:33",
+"es:24:35",
+"es:24:36",
+"es:24:37",
+"es:24:38",
+"es:24:40",
+"es:24:41",
+"es:24:42",
+"es:24:43",
+"es:24:44",
+"es:24:45",
+"es:24:47",
+"es:24:48",
+"es:24:49",
+"es:24:50",
+"es:25:01",
+"es:25:02",
+"es:25:03",
+"es:25:04",
+"es:25:07",
+"es:25:10",
+"es:25:11",
+"es:25:12",
+"es:25:13",
+"es:25:14",
+"es:25:15",
+"es:25:16",
+"es:25:17",
+"es:25:18",
+"es:25:19",
+"es:25:20",
+"es:25:23",
+"es:25:24",
+"es:25:26",
+"es:25:27",
+"es:25:28",
+"es:25:32",
+"es:25:33",
+"es:25:34",
+"es:25:35",
+"es:25:36",
+"es:25:37",
+"es:25:38",
+"es:25:39",
+"es:25:40",
+"es:25:41",
+"es:25:42",
+"es:25:43",
+"es:25:44",
+"es:25:46",
+"es:25:48",
+"es:26:06",
+"es:26:07",
+"es:26:08",
+"es:26:09",
+"es:26:10",
+"es:26:11",
+"es:26:12",
+"es:26:13",
+"es:26:15",
+"es:26:17",
+"es:26:19",
+"es:26:21",
+"es:26:22",
+"es:26:23",
+"es:26:24",
+"es:26:25",
+"es:26:29",
+"es:26:31",
+"es:26:32",
+"es:26:33",
+"es:26:34",
+"es:26:35",
+"es:26:36",
+"es:26:39",
+"es:26:40",
+"es:26:42",
+"es:26:43",
+"es:26:45",
+"es:26:46",
+"es:26:47",
+"es:26:48",
+"es:26:49",
+"es:26:50",
+"es:27:01",
+"es:27:02",
+"es:27:03",
+"es:27:04",
+"es:27:05",
+"es:27:06",
+"es:27:07",
+"es:27:08",
+"es:27:09",
+"es:27:10",
+"es:27:11",
+"es:27:12",
+"es:27:13",
+"es:27:14",
+"es:27:15",
+"es:27:16",
+"es:27:17",
+"es:27:18",
+"es:27:19",
+"es:27:20",
+"es:27:21",
+"es:27:22",
+"es:27:23",
+"es:27:24",
+"es:27:25",
+"es:27:26",
+"es:27:27",
+"es:27:28",
+"es:27:29",
+"es:27:30",
+"es:27:31",
+"es:27:32",
+"es:27:33",
+"es:27:34",
+"es:27:35",
+"es:27:36",
+"es:27:37",
+"es:27:38",
+"es:27:39",
+"es:27:40",
+"es:27:41",
+"es:27:42",
+"es:27:43",
+"es:27:44",
+"es:27:45",
+"es:27:46",
+"es:27:47",
+"es:27:48",
+"es:27:49",
+"es:27:50",
+"es:28:07",
+"es:28:08",
+"es:28:12",
+"es:28:13",
+"es:28:14",
+"es:28:15",
+"es:28:16",
+"es:28:17",
+"es:28:18",
+"es:28:19",
+"es:28:22",
+"es:28:24",
+"es:28:25",
+"es:28:26",
+"es:28:30",
+"es:28:34",
+"es:28:35",
+"es:28:36",
+"es:28:38",
+"es:28:39",
+"es:28:40",
+"es:28:42",
+"es:28:44",
+"es:28:45",
+"es:28:46",
+"es:28:47",
+"es:28:49",
+"es:28:50",
+"es:29:11",
+"es:29:12",
+"es:29:13",
+"es:29:14",
+"es:29:19",
+"es:29:20",
+"es:29:22",
+"es:29:24",
+"es:29:25",
+"es:29:26",
+"es:29:27",
+"es:29:28",
+"es:29:29",
+"es:29:31",
+"es:29:40",
+"es:29:45",
+"es:29:46",
+"es:29:47",
+"es:29:50",
+"es:30:03",
+"es:30:04",
+"es:30:06",
+"es:30:07",
+"es:30:08",
+"es:30:10",
+"es:30:12",
+"es:30:13",
+"es:30:16",
+"es:30:17",
+"es:30:19",
+"es:30:21",
+"es:30:22",
+"es:30:23",
+"es:30:24",
+"es:30:25",
+"es:30:26",
+"es:30:28",
+"es:30:31",
+"es:30:32",
+"es:30:33",
+"es:30:34",
+"es:30:35",
+"es:30:37",
+"es:30:39",
+"es:30:42",
+"es:30:43",
+"es:30:44",
+"es:30:46",
+"es:30:48",
+"es:30:49",
+"es:30:50",
+"es:31:03",
+"es:31:05",
+"es:31:07",
+"es:31:08",
+"es:31:09",
+"es:31:10",
+"es:31:11",
+"es:31:12",
+"es:31:13",
+"es:31:14",
+"es:31:15",
+"es:31:16",
+"es:31:20",
+"es:31:21",
+"es:31:22",
+"es:31:23",
+"es:31:24",
+"es:31:25",
+"es:31:28",
+"es:31:29",
+"es:31:31",
+"es:31:32",
+"es:31:33",
+"es:31:34",
+"es:31:35",
+"es:31:36",
+"es:31:37",
+"es:31:38",
+"es:31:39",
+"es:31:40",
+"es:31:42",
+"es:31:43",
+"es:31:44",
+"es:31:46",
+"es:31:48",
+"es:31:49",
+"es:31:50",
+"es:32:09",
+"es:32:10",
+"es:32:11",
+"es:32:12",
+"es:32:13",
+"es:32:15",
+"es:32:17",
+"es:32:22",
+"es:32:23",
+"es:32:27",
+"es:32:30",
+"es:32:31",
+"es:32:32",
+"es:32:34",
+"es:32:35",
+"es:32:37",
+"es:32:39",
+"es:32:42",
+"es:32:44",
+"es:32:46",
+"es:32:48",
+"es:32:49",
+"es:32:50"
+],
+"example": {
+"id": "es:01:31",
+"target": "El móvil está aquí.",
+"ru": "Телефон здесь.",
+"uk": "Телефон тут."
+}
+},
+{
+"lemma": "estáis",
+"pos": "VERB",
+"forms": [
+"estáis"
+],
+"firstLesson": 1,
+"phraseIds": [
+"es:01:25",
+"es:01:27",
+"es:02:21",
+"es:03:21",
+"es:03:24",
+"es:05:45",
+"es:13:19",
+"es:13:44"
+],
+"example": {
+"id": "es:01:25",
+"target": "Estáis aquí.",
+"ru": "Вы здесь.",
+"uk": "Ви тут."
+}
+},
+{
+"lemma": "enfermera",
+"pos": "NOUN",
+"forms": [
+"enfermera"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:42",
+"es:04:44",
+"es:05:47",
+"es:05:48"
+],
+"example": {
+"id": "es:04:42",
+"target": "Soy enfermera.",
+"ru": "Я медсестра.",
+"uk": "Я медсестра."
+}
+},
+{
+"lemma": "er",
+"pos": "ADJ",
+"forms": [
+"eres"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:45"
+],
+"example": {
+"id": "es:04:45",
+"target": "Eres guía.",
+"ru": "Ты гид.",
+"uk": "Ти гід."
+}
+},
+{
+"lemma": "eres",
+"pos": "PROPN",
+"forms": [
+"eres"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:06"
+],
+"example": {
+"id": "es:04:06",
+"target": "Eres médica.",
+"ru": "Ты врач (жен.).",
+"uk": "Ти лікарка."
+}
+},
+{
+"lemma": "estudiant",
+"pos": "ADJ",
+"forms": [
+"estudiantes"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:21",
+"es:04:26",
+"es:04:27",
+"es:04:49"
+],
+"example": {
+"id": "es:04:21",
+"target": "Somos estudiantes.",
+"ru": "Мы студенты.",
+"uk": "Ми студенти."
+}
+},
+{
+"lemma": "médica",
+"pos": "PROPN",
+"forms": [
+"médica"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:06",
+"es:04:32",
+"es:06:42",
+"es:13:09",
+"es:13:39"
+],
+"example": {
+"id": "es:04:06",
+"target": "Eres médica.",
+"ru": "Ты врач (жен.).",
+"uk": "Ти лікарка."
+}
+},
+{
+"lemma": "profesora",
+"pos": "NOUN",
+"forms": [
+"profesora",
+"profesoras"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:10",
+"es:04:13",
+"es:04:25",
+"es:04:29",
+"es:04:33",
+"es:05:28",
+"es:08:36",
+"es:13:10",
+"es:24:08",
+"es:24:18",
+"es:24:28",
+"es:24:38",
+"es:24:48",
+"es:26:45",
+"es:30:08",
+"es:30:17",
+"es:30:26",
+"es:30:44"
+],
+"example": {
+"id": "es:04:10",
+"target": "Soy profesora.",
+"ru": "Я преподавательница.",
+"uk": "Я викладачка."
+}
+},
+{
+"lemma": "sois",
+"pos": "AUX",
+"forms": [
+"sois"
+],
+"firstLesson": 4,
+"phraseIds": [
+"es:04:27",
+"es:04:47"
+],
+"example": {
+"id": "es:04:27",
+"target": "Sois estudiantes.",
+"ru": "Вы студенты.",
+"uk": "Ви студенти."
+}
+},
+{
+"lemma": "uno",
+"pos": "DET",
+"forms": [
+"un",
+"una",
+"unas"
+],
+"firstLesson": 7,
+"phraseIds": [
+"es:07:01",
+"es:07:02",
+"es:07:03",
+"es:07:04",
+"es:07:05",
+"es:07:06",
+"es:07:07",
+"es:07:08",
+"es:07:09",
+"es:07:10",
+"es:07:39",
+"es:07:40",
+"es:07:41",
+"es:07:43",
+"es:07:44",
+"es:07:45",
+"es:07:46",
+"es:07:50",
+"es:09:48",
+"es:10:17",
+"es:10:18",
+"es:10:19",
+"es:10:20",
+"es:10:27",
+"es:10:46",
+"es:10:50",
+"es:11:01",
+"es:11:02",
+"es:11:03",
+"es:11:04",
+"es:11:05",
+"es:11:11",
+"es:11:12",
+"es:11:13",
+"es:11:14",
+"es:11:15",
+"es:11:17",
+"es:11:20",
+"es:11:31",
+"es:11:33",
+"es:11:35",
+"es:11:36",
+"es:11:37",
+"es:11:38",
+"es:11:39",
+"es:11:40",
+"es:11:42",
+"es:12:24",
+"es:12:26",
+"es:12:27",
+"es:12:29",
+"es:12:30",
+"es:12:41",
+"es:12:42",
+"es:12:43",
+"es:12:44",
+"es:12:45",
+"es:12:46",
+"es:12:50",
+"es:15:13",
+"es:15:15",
+"es:15:16",
+"es:16:09",
+"es:16:11",
+"es:16:12",
+"es:16:35",
+"es:16:36",
+"es:16:50",
+"es:19:05",
+"es:19:06",
+"es:19:07",
+"es:19:08",
+"es:19:14",
+"es:19:32",
+"es:19:43",
+"es:20:05",
+"es:20:07",
+"es:20:08",
+"es:20:31",
+"es:20:35",
+"es:21:05",
+"es:21:06",
+"es:21:11",
+"es:21:12",
+"es:21:14",
+"es:21:18",
+"es:21:27",
+"es:21:38",
+"es:21:45",
+"es:21:50",
+"es:22:11",
+"es:22:13",
+"es:22:14",
+"es:22:16",
+"es:22:19",
+"es:22:20",
+"es:22:22",
+"es:22:23",
+"es:22:24",
+"es:22:27",
+"es:22:28",
+"es:23:07",
+"es:23:15",
+"es:23:16",
+"es:23:29",
+"es:23:46",
+"es:24:04",
+"es:24:24",
+"es:24:44",
+"es:25:05",
+"es:25:06",
+"es:25:31",
+"es:25:34",
+"es:25:37",
+"es:25:38",
+"es:26:01",
+"es:26:02",
+"es:26:03",
+"es:26:04",
+"es:26:05",
+"es:26:14",
+"es:26:16",
+"es:26:17",
+"es:26:18",
+"es:26:20",
+"es:26:26",
+"es:26:27",
+"es:26:28",
+"es:26:30",
+"es:28:09",
+"es:28:11",
+"es:28:31",
+"es:28:32",
+"es:28:48",
+"es:29:05",
+"es:29:06",
+"es:29:15",
+"es:29:16",
+"es:29:29",
+"es:29:32",
+"es:29:33",
+"es:29:36",
+"es:29:37",
+"es:29:39",
+"es:29:42",
+"es:29:43",
+"es:29:48",
+"es:29:49",
+"es:32:05",
+"es:32:10",
+"es:32:13",
+"es:32:19",
+"es:32:20",
+"es:32:37",
+"es:32:43",
+"es:32:46",
+"es:32:48"
+],
+"example": {
+"id": "es:07:01",
+"target": "Hay un libro aquí.",
+"ru": "Здесь есть книга.",
+"uk": "Тут є книжка."
+}
+},
+{
+"lemma": "hermana",
+"pos": "NOUN",
+"forms": [
+"hermana",
+"hermanas"
+],
+"firstLesson": 8,
+"phraseIds": [
+"es:08:31",
+"es:08:32",
+"es:08:40",
+"es:08:45",
+"es:08:49",
+"es:09:13",
+"es:09:20",
+"es:09:40",
+"es:09:43",
+"es:10:38",
+"es:10:49",
+"es:11:13",
+"es:11:50",
+"es:13:08",
+"es:13:15",
+"es:13:20",
+"es:13:32",
+"es:14:10",
+"es:14:20",
+"es:14:30",
+"es:14:40",
+"es:14:50",
+"es:15:20",
+"es:15:26",
+"es:15:36",
+"es:16:37",
+"es:16:46",
+"es:17:24",
+"es:17:44",
+"es:19:25",
+"es:19:37",
+"es:19:49",
+"es:20:25",
+"es:20:49",
+"es:21:25",
+"es:21:36",
+"es:21:49",
+"es:23:18",
+"es:23:25",
+"es:23:36",
+"es:23:49",
+"es:24:03",
+"es:24:12",
+"es:24:20",
+"es:24:21",
+"es:24:38",
+"es:24:47",
+"es:26:04",
+"es:26:12",
+"es:26:14",
+"es:27:50",
+"es:28:18",
+"es:28:36",
+"es:28:49",
+"es:29:18",
+"es:29:25",
+"es:29:36",
+"es:29:49"
+],
+"example": {
+"id": "es:08:31",
+"target": "Mi hermana está en casa.",
+"ru": "Моя сестра дома.",
+"uk": "Моя сестра вдома."
+}
+},
+{
+"lemma": "buscas",
+"pos": "PROPN",
+"forms": [
+"buscas"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:32",
+"es:09:47",
+"es:18:16",
+"es:27:32"
+],
+"example": {
+"id": "es:09:32",
+"target": "Buscas tu móvil.",
+"ru": "Ты ищешь свой телефон.",
+"uk": "Ти шукаєш свій телефон."
+}
+},
+{
+"lemma": "buscáis",
+"pos": "VERB",
+"forms": [
+"buscáis"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:36"
+],
+"example": {
+"id": "es:09:36",
+"target": "Buscáis la parada.",
+"ru": "Вы ищете остановку.",
+"uk": "Ви шукаєте зупинку."
+}
+},
+{
+"lemma": "estud",
+"pos": "VERB",
+"forms": [
+"estudiamos"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:23"
+],
+"example": {
+"id": "es:09:23",
+"target": "Estudiamos español.",
+"ru": "Мы учим испанский.",
+"uk": "Ми вивчаємо іспанську."
+}
+},
+{
+"lemma": "estudias",
+"pos": "PROPN",
+"forms": [
+"estudias"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:06",
+"es:09:08"
+],
+"example": {
+"id": "es:09:06",
+"target": "Estudias en casa.",
+"ru": "Ты учишься дома.",
+"uk": "Ти навчаєшся вдома."
+}
+},
+{
+"lemma": "estudio",
+"pos": "PROPN",
+"forms": [
+"estudio"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:05",
+"es:09:07",
+"es:09:17"
+],
+"example": {
+"id": "es:09:05",
+"target": "Estudio en casa.",
+"ru": "Я учусь дома.",
+"uk": "Я навчаюся вдома."
+}
+},
+{
+"lemma": "estudiáis",
+"pos": "VERB",
+"forms": [
+"estudiáis"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:26"
+],
+"example": {
+"id": "es:09:26",
+"target": "Estudiáis aquí.",
+"ru": "Вы (мн.) учитесь здесь.",
+"uk": "Ви (мн.) навчаєтеся тут."
+}
+},
+{
+"lemma": "habláis",
+"pos": "VERB",
+"forms": [
+"habláis"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:27"
+],
+"example": {
+"id": "es:09:27",
+"target": "Habláis español.",
+"ru": "Вы говорите по-испански.",
+"uk": "Ви говорите іспанською."
+}
+},
+{
+"lemma": "trabajas",
+"pos": "VERB",
+"forms": [
+"trabajas"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:44"
+],
+"example": {
+"id": "es:09:44",
+"target": "¿Trabajas hoy?",
+"ru": "Ты сегодня работаешь?",
+"uk": "Ти сьогодні працюєш?"
+}
+},
+{
+"lemma": "trabajo",
+"pos": "PROPN",
+"forms": [
+"trabajo"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:01",
+"es:09:03",
+"es:09:38"
+],
+"example": {
+"id": "es:09:01",
+"target": "Trabajo aquí.",
+"ru": "Я работаю здесь.",
+"uk": "Я працюю тут."
+}
+},
+{
+"lemma": "trabajáis",
+"pos": "PROPN",
+"forms": [
+"trabajáis"
+],
+"firstLesson": 9,
+"phraseIds": [
+"es:09:25"
+],
+"example": {
+"id": "es:09:25",
+"target": "Trabajáis en casa.",
+"ru": "Вы работаете дома.",
+"uk": "Ви працюєте вдома."
+}
+},
+{
+"lemma": "abres",
+"pos": "VERB",
+"forms": [
+"abres"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:32"
+],
+"example": {
+"id": "es:10:32",
+"target": "No abres la puerta hoy.",
+"ru": "Ты сегодня не открываешь дверь.",
+"uk": "Ти сьогодні не відчиняєш двері."
+}
+},
+{
+"lemma": "bebe",
+"pos": "PROPN",
+"forms": [
+"bebe"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:10"
+],
+"example": {
+"id": "es:10:10",
+"target": "Luis bebe café.",
+"ru": "Луис пьёт кофе.",
+"uk": "Луїс п’є каву."
+}
+},
+{
+"lemma": "bebes",
+"pos": "PROPN",
+"forms": [
+"bebes"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:12"
+],
+"example": {
+"id": "es:10:12",
+"target": "Bebes café.",
+"ru": "Ты пьёшь кофе.",
+"uk": "Ти п’єш каву."
+}
+},
+{
+"lemma": "bebo",
+"pos": "PROPN",
+"forms": [
+"bebo"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:11",
+"es:10:13"
+],
+"example": {
+"id": "es:10:11",
+"target": "Bebo agua.",
+"ru": "Я пью воду.",
+"uk": "Я п’ю воду."
+}
+},
+{
+"lemma": "come",
+"pos": "PROPN",
+"forms": [
+"come"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:06",
+"es:25:30"
+],
+"example": {
+"id": "es:10:06",
+"target": "Ana come en casa.",
+"ru": "Ана ест дома.",
+"uk": "Ана їсть удома."
+}
+},
+{
+"lemma": "comes",
+"pos": "PROPN",
+"forms": [
+"comes"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:08"
+],
+"example": {
+"id": "es:10:08",
+"target": "Comes en la cocina.",
+"ru": "Ты ешь на кухне.",
+"uk": "Ти їси на кухні."
+}
+},
+{
+"lemma": "como",
+"pos": "SCONJ",
+"forms": [
+"como"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:05",
+"es:10:07",
+"es:10:37",
+"es:10:42"
+],
+"example": {
+"id": "es:10:05",
+"target": "Como en casa.",
+"ru": "Я ем дома.",
+"uk": "Я їм удома."
+}
+},
+{
+"lemma": "coméis",
+"pos": "PROPN",
+"forms": [
+"coméis"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:22"
+],
+"example": {
+"id": "es:10:22",
+"target": "Coméis en casa.",
+"ru": "Вы едите дома.",
+"uk": "Ви їсте вдома."
+}
+},
+{
+"lemma": "escribes",
+"pos": "VERB",
+"forms": [
+"escribes"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:17"
+],
+"example": {
+"id": "es:10:17",
+"target": "Escribes una carta.",
+"ru": "Ты пишешь письмо.",
+"uk": "Ти пишеш листа."
+}
+},
+{
+"lemma": "escribís",
+"pos": "PROPN",
+"forms": [
+"escribís"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:27",
+"es:10:50"
+],
+"example": {
+"id": "es:10:27",
+"target": "Escribís una carta.",
+"ru": "Вы пишете письмо.",
+"uk": "Ви пишете листа."
+}
+},
+{
+"lemma": "lees",
+"pos": "PROPN",
+"forms": [
+"lees"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:39",
+"es:10:44",
+"es:10:45"
+],
+"example": {
+"id": "es:10:39",
+"target": "No lees el libro hoy.",
+"ru": "Ты сегодня не читаешь книгу.",
+"uk": "Ти сьогодні не читаєш книжку."
+}
+},
+{
+"lemma": "leo",
+"pos": "PROPN",
+"forms": [
+"leo"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:15"
+],
+"example": {
+"id": "es:10:15",
+"target": "Leo el mensaje.",
+"ru": "Я читаю сообщение.",
+"uk": "Я читаю повідомлення."
+}
+},
+{
+"lemma": "vives",
+"pos": "PROPN",
+"forms": [
+"vives"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:02",
+"es:10:04",
+"es:10:41"
+],
+"example": {
+"id": "es:10:02",
+"target": "Vives aquí.",
+"ru": "Ты живёшь здесь.",
+"uk": "Ти живеш тут."
+}
+},
+{
+"lemma": "vivís",
+"pos": "VERB",
+"forms": [
+"vivís"
+],
+"firstLesson": 10,
+"phraseIds": [
+"es:10:30"
+],
+"example": {
+"id": "es:10:30",
+"target": "Vivís cerca de la estación.",
+"ru": "Вы живёте рядом с вокзалом.",
+"uk": "Ви живете поруч із вокзалом."
+}
+},
+{
+"lemma": "tenéis",
+"pos": "VERB",
+"forms": [
+"tenéis"
+],
+"firstLesson": 11,
+"phraseIds": [
+"es:11:25",
+"es:11:37",
+"es:11:49"
+],
+"example": {
+"id": "es:11:25",
+"target": "No tenéis cambio.",
+"ru": "У вас нет мелочи.",
+"uk": "У вас немає дрібних грошей."
+}
+},
+{
+"lemma": "ducha",
+"pos": "NOUN",
+"forms": [
+"duchas"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:12",
+"es:14:18"
+],
+"example": {
+"id": "es:14:12",
+"target": "Te duchas en casa.",
+"ru": "Ты принимаешь душ дома.",
+"uk": "Ти приймаєш душ вдома."
+}
+},
+{
+"lemma": "duchaber",
+"pos": "VERB",
+"forms": [
+"ducha"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:13",
+"es:14:15",
+"es:14:17"
+],
+"example": {
+"id": "es:14:13",
+"target": "Ana se ducha por la mañana.",
+"ru": "Ана принимает душ по утрам.",
+"uk": "Ана приймає душ вранці."
+}
+},
+{
+"lemma": "duchan",
+"pos": "VERB",
+"forms": [
+"duchan"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:16",
+"es:14:20"
+],
+"example": {
+"id": "es:14:16",
+"target": "Mis hermanos se duchan en casa.",
+"ru": "Мои братья принимают душ дома.",
+"uk": "Мої брати приймають душ вдома."
+}
+},
+{
+"lemma": "duchar",
+"pos": "VERB",
+"forms": [
+"duchamos",
+"duché"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:14",
+"es:21:35"
+],
+"example": {
+"id": "es:14:14",
+"target": "Nos duchamos en casa.",
+"ru": "Мы принимаем душ дома.",
+"uk": "Ми приймаємо душ вдома."
+}
+},
+{
+"lemma": "duchir",
+"pos": "VERB",
+"forms": [
+"ducho"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:11",
+"es:14:19"
+],
+"example": {
+"id": "es:14:11",
+"target": "Me ducho por la mañana.",
+"ru": "Я принимаю душ по утрам.",
+"uk": "Я приймаю душ вранці."
+}
+},
+{
+"lemma": "laváis",
+"pos": "VERB",
+"forms": [
+"laváis"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:27"
+],
+"example": {
+"id": "es:14:27",
+"target": "Os laváis las manos.",
+"ru": "Вы моете руки.",
+"uk": "Ви миєте руки."
+}
+},
+{
+"lemma": "levantar",
+"pos": "VERB",
+"forms": [
+"levanta",
+"levantamos",
+"levantan",
+"levantas",
+"levanté"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:02",
+"es:14:03",
+"es:14:04",
+"es:14:05",
+"es:14:06",
+"es:14:08",
+"es:14:10",
+"es:21:28"
+],
+"example": {
+"id": "es:14:02",
+"target": "Te levantas a las siete.",
+"ru": "Ты встаёшь в семь.",
+"uk": "Ти встаєш о сьомій."
+}
+},
+{
+"lemma": "levanto",
+"pos": "VERB",
+"forms": [
+"levanto"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:01",
+"es:14:09"
+],
+"example": {
+"id": "es:14:01",
+"target": "Me levanto temprano.",
+"ru": "Я встаю рано.",
+"uk": "Я встаю рано."
+}
+},
+{
+"lemma": "levantáis",
+"pos": "VERB",
+"forms": [
+"levantáis"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:07"
+],
+"example": {
+"id": "es:14:07",
+"target": "Os levantáis temprano.",
+"ru": "Вы встаёте рано.",
+"uk": "Ви встаєте рано."
+}
+},
+{
+"lemma": "preparo",
+"pos": "VERB",
+"forms": [
+"preparo"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:41"
+],
+"example": {
+"id": "es:14:41",
+"target": "Me preparo para la clase.",
+"ru": "Я готовлюсь к занятию.",
+"uk": "Я готуюся до заняття."
+}
+},
+{
+"lemma": "preparáis",
+"pos": "VERB",
+"forms": [
+"preparáis"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:47"
+],
+"example": {
+"id": "es:14:47",
+"target": "Os preparáis para la clase.",
+"ru": "Вы готовитесь к занятию.",
+"uk": "Ви готуєтеся до заняття."
+}
+},
+{
+"lemma": "sentar",
+"pos": "VERB",
+"forms": [
+"sentamos",
+"sienta",
+"sientan",
+"sientas"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:32",
+"es:14:33",
+"es:14:34",
+"es:14:35",
+"es:14:36",
+"es:14:38",
+"es:14:40"
+],
+"example": {
+"id": "es:14:32",
+"target": "Te sientas cerca de la ventana.",
+"ru": "Ты садишься у окна.",
+"uk": "Ти сідаєш біля вікна."
+}
+},
+{
+"lemma": "sentir",
+"pos": "VERB",
+"forms": [
+"siento"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:31",
+"es:14:39"
+],
+"example": {
+"id": "es:14:31",
+"target": "Me siento aquí.",
+"ru": "Я сажусь здесь.",
+"uk": "Я сідаю тут."
+}
+},
+{
+"lemma": "sentáis",
+"pos": "VERB",
+"forms": [
+"sentáis"
+],
+"firstLesson": 14,
+"phraseIds": [
+"es:14:37"
+],
+"example": {
+"id": "es:14:37",
+"target": "Os sentáis aquí.",
+"ru": "Вы садитесь здесь.",
+"uk": "Ви сідаєте тут."
+}
+},
+{
+"lemma": "vais",
+"pos": "AUX",
+"forms": [
+"vais"
+],
+"firstLesson": 16,
+"phraseIds": [
+"es:16:22",
+"es:16:25",
+"es:16:28",
+"es:16:49"
+],
+"example": {
+"id": "es:16:22",
+"target": "Vais a pagar con tarjeta mañana.",
+"ru": "Вы завтра собираетесь заплатить картой.",
+"uk": "Ви завтра збираєтеся заплатити карткою."
+}
+},
+{
+"lemma": "vas",
+"pos": "AUX",
+"forms": [
+"vas"
+],
+"firstLesson": 16,
+"phraseIds": [
+"es:16:02",
+"es:16:04",
+"es:16:06",
+"es:16:41",
+"es:16:44",
+"es:16:47",
+"es:16:48"
+],
+"example": {
+"id": "es:16:02",
+"target": "Vas a llamar al hotel.",
+"ru": "Ты собираешься позвонить в отель.",
+"uk": "Ти збираєшся зателефонувати до готелю."
+}
+},
+{
+"lemma": "busca",
+"pos": "NOUN",
+"forms": [
+"busca"
+],
+"firstLesson": 18,
+"phraseIds": [
+"es:18:12",
+"es:18:19"
+],
+"example": {
+"id": "es:18:12",
+"target": "Ana la busca.",
+"ru": "Ана её ищет.",
+"uk": "Ана її шукає."
+}
+},
+{
+"lemma": "cambias",
+"pos": "PROPN",
+"forms": [
+"cambias"
+],
+"firstLesson": 18,
+"phraseIds": [
+"es:18:17"
+],
+"example": {
+"id": "es:18:17",
+"target": "¿La cambias en la tienda?",
+"ru": "Ты меняешь её в магазине?",
+"uk": "Ти обмінюєш її в магазині?"
+}
+},
+{
+"lemma": "devuelvo",
+"pos": "VERB",
+"forms": [
+"devuelvo"
+],
+"firstLesson": 18,
+"phraseIds": [
+"es:18:13"
+],
+"example": {
+"id": "es:18:13",
+"target": "Los devuelvo hoy.",
+"ru": "Я верну их сегодня.",
+"uk": "Я поверну їх сьогодні."
+}
+},
+{
+"lemma": "envuelvo",
+"pos": "VERB",
+"forms": [
+"envuelvo"
+],
+"firstLesson": 18,
+"phraseIds": [
+"es:18:26"
+],
+"example": {
+"id": "es:18:26",
+"target": "Lo envuelvo en casa.",
+"ru": "Я заворачиваю его дома.",
+"uk": "Я загортаю його вдома."
+}
+},
+{
+"lemma": "lavo",
+"pos": "PROPN",
+"forms": [
+"lavo"
+],
+"firstLesson": 18,
+"phraseIds": [
+"es:18:34"
+],
+"example": {
+"id": "es:18:34",
+"target": "La lavo a mano.",
+"ru": "Я стираю её вручную.",
+"uk": "Я перу її вручну."
+}
+},
+{
+"lemma": "habéis",
+"pos": "AUX",
+"forms": [
+"habéis"
+],
+"firstLesson": 20,
+"phraseIds": [
+"es:20:22",
+"es:20:30",
+"es:20:50"
+],
+"example": {
+"id": "es:20:22",
+"target": "Habéis leído el mensaje esta semana.",
+"ru": "Вы на этой неделе прочитали сообщение.",
+"uk": "Ви цього тижня прочитали повідомлення."
+}
+},
+{
+"lemma": "has",
+"pos": "AUX",
+"forms": [
+"has"
+],
+"firstLesson": 20,
+"phraseIds": [
+"es:20:14",
+"es:20:20",
+"es:20:27",
+"es:20:41",
+"es:20:42",
+"es:20:44",
+"es:20:48"
+],
+"example": {
+"id": "es:20:14",
+"target": "Has preparado la mochila hoy.",
+"ru": "Ты сегодня собрал рюкзак.",
+"uk": "Ти сьогодні зібрав рюкзак."
+}
+},
+{
+"lemma": "comprastar",
+"pos": "VERB",
+"forms": [
+"compraste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:17",
+"es:26:20",
+"es:27:27"
+],
+"example": {
+"id": "es:21:17",
+"target": "Compraste dos huevos.",
+"ru": "Ты купил два яйца.",
+"uk": "Ти купив два яйця."
+}
+},
+{
+"lemma": "compraste",
+"pos": "PROPN",
+"forms": [
+"compraste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:08",
+"es:21:42"
+],
+"example": {
+"id": "es:21:08",
+"target": "Compraste pan ayer.",
+"ru": "Ты вчера купил хлеб.",
+"uk": "Ти вчора купив хліб."
+}
+},
+{
+"lemma": "comprasteis",
+"pos": "PROPN",
+"forms": [
+"comprasteis"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:27"
+],
+"example": {
+"id": "es:21:27",
+"target": "Comprasteis un billete ayer.",
+"ru": "Вы вчера купили билет.",
+"uk": "Ви вчора купили квиток."
+}
+},
+{
+"lemma": "escribisteis",
+"pos": "PROPN",
+"forms": [
+"escribisteis"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:50"
+],
+"example": {
+"id": "es:21:50",
+"target": "¿Escribisteis un mensaje ayer?",
+"ru": "Вы вчера написали сообщение?",
+"uk": "Ви вчора написали повідомлення?"
+}
+},
+{
+"lemma": "lavé",
+"pos": "VERB",
+"forms": [
+"lavé"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:32"
+],
+"example": {
+"id": "es:21:32",
+"target": "Lavé las camisetas ayer.",
+"ru": "Я вчера постирал футболки.",
+"uk": "Я вчора виправ футболки."
+}
+},
+{
+"lemma": "leíste",
+"pos": "VERB",
+"forms": [
+"leíste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:44"
+],
+"example": {
+"id": "es:21:44",
+"target": "¿Leíste el mensaje ayer?",
+"ru": "Ты вчера прочитал сообщение?",
+"uk": "Ти вчора прочитав повідомлення?"
+}
+},
+{
+"lemma": "llamaste",
+"pos": "PROPN",
+"forms": [
+"llamaste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:02",
+"es:21:04",
+"es:21:41",
+"es:24:16",
+"es:24:25",
+"es:24:43"
+],
+"example": {
+"id": "es:21:02",
+"target": "Llamaste al hotel ayer.",
+"ru": "Ты вчера позвонил в отель.",
+"uk": "Ти вчора зателефонував до готелю."
+}
+},
+{
+"lemma": "llamé",
+"pos": "VERB",
+"forms": [
+"llamé"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:31"
+],
+"example": {
+"id": "es:21:31",
+"target": "No llamé a Ana anoche.",
+"ru": "Я вчера вечером не позвонил Ане.",
+"uk": "Я учора ввечері не зателефонував Ані."
+}
+},
+{
+"lemma": "llevaste",
+"pos": "PROPN",
+"forms": [
+"llevaste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:20"
+],
+"example": {
+"id": "es:21:20",
+"target": "Llevaste la bolsa anoche.",
+"ru": "Ты вчера вечером отнёс пакет.",
+"uk": "Ти учора ввечері відніс пакет."
+}
+},
+{
+"lemma": "llevasteis",
+"pos": "VERB",
+"forms": [
+"llevasteis"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:39"
+],
+"example": {
+"id": "es:21:39",
+"target": "No llevasteis la bolsa anoche.",
+"ru": "Вы вчера вечером не отнесли пакет.",
+"uk": "Ви учора ввечері не віднесли пакет."
+}
+},
+{
+"lemma": "mandasteis",
+"pos": "PROPN",
+"forms": [
+"mandasteis"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:30"
+],
+"example": {
+"id": "es:21:30",
+"target": "Mandasteis el mapa ayer.",
+"ru": "Вы вчера отправили карту.",
+"uk": "Ви вчора надіслали мапу."
+}
+},
+{
+"lemma": "mander",
+"pos": "VERB",
+"forms": [
+"mandé"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:15"
+],
+"example": {
+"id": "es:21:15",
+"target": "Mandé la foto anoche.",
+"ru": "Я вчера вечером отправил фотографию.",
+"uk": "Я учора ввечері надіслав фотографію."
+}
+},
+{
+"lemma": "pagaste",
+"pos": "PROPN",
+"forms": [
+"pagaste"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:46",
+"es:21:47"
+],
+"example": {
+"id": "es:21:46",
+"target": "¿Pagaste con tarjeta ayer?",
+"ru": "Ты вчера заплатил картой?",
+"uk": "Ти вчора заплатив карткою?"
+}
+},
+{
+"lemma": "pagasteis",
+"pos": "PROPN",
+"forms": [
+"pagasteis"
+],
+"firstLesson": 21,
+"phraseIds": [
+"es:21:22"
+],
+"example": {
+"id": "es:21:22",
+"target": "Pagasteis con tarjeta ayer.",
+"ru": "Вы вчера заплатили картой.",
+"uk": "Ви вчора заплатили карткою."
+}
+},
+{
+"lemma": "fuiste",
+"pos": "VERB",
+"forms": [
+"fuiste"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:02",
+"es:22:08",
+"es:22:10"
+],
+"example": {
+"id": "es:22:02",
+"target": "Fuiste al hotel anoche.",
+"ru": "Ты вчера вечером сходил в отель.",
+"uk": "Ти учора ввечері сходив до готелю."
+}
+},
+{
+"lemma": "hiciste",
+"pos": "VERB",
+"forms": [
+"hiciste"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:22",
+"es:22:28",
+"es:22:30"
+],
+"example": {
+"id": "es:22:22",
+"target": "Hiciste una reserva anoche.",
+"ru": "Ты оформил бронь вчера вечером.",
+"uk": "Ти оформив бронювання вчора ввечері."
+}
+},
+{
+"lemma": "hicisteis",
+"pos": "VERB",
+"forms": [
+"hicisteis"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:27"
+],
+"example": {
+"id": "es:22:27",
+"target": "Hicisteis una reserva ayer.",
+"ru": "Вы вчера оформили бронь.",
+"uk": "Ви вчора оформили бронювання."
+}
+},
+{
+"lemma": "pudiste",
+"pos": "VERB",
+"forms": [
+"pudiste"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:42",
+"es:22:50"
+],
+"example": {
+"id": "es:22:42",
+"target": "Pudiste volver a casa anoche.",
+"ru": "Ты вчера вечером смог вернуться домой.",
+"uk": "Ти учора ввечері зміг повернутися додому."
+}
+},
+{
+"lemma": "pudisteis",
+"pos": "PROPN",
+"forms": [
+"pudisteis"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:47"
+],
+"example": {
+"id": "es:22:47",
+"target": "Pudisteis volver a casa ayer.",
+"ru": "Вы (мн.) вчера смогли вернуться домой.",
+"uk": "Ви (мн.) вчора змогли повернутися додому."
+}
+},
+{
+"lemma": "tuviste",
+"pos": "VERB",
+"forms": [
+"tuviste"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:12",
+"es:22:18",
+"es:22:20"
+],
+"example": {
+"id": "es:22:12",
+"target": "Tuviste tiempo para leer anoche.",
+"ru": "У тебя вчера вечером было время почитать.",
+"uk": "У тебе учора ввечері був час почитати."
+}
+},
+{
+"lemma": "tuvisteis",
+"pos": "VERB",
+"forms": [
+"tuvisteis"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:17"
+],
+"example": {
+"id": "es:22:17",
+"target": "Tuvisteis tiempo para leer ayer.",
+"ru": "У вас вчера было время почитать.",
+"uk": "У вас вчора був час почитати."
+}
+},
+{
+"lemma": "vine",
+"pos": "VERB",
+"forms": [
+"vine"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:31",
+"es:22:32"
+],
+"example": {
+"id": "es:22:31",
+"target": "Vine a casa ayer.",
+"ru": "Я вчера пришёл домой.",
+"uk": "Я вчора прийшов додому."
+}
+},
+{
+"lemma": "viniste",
+"pos": "PROPN",
+"forms": [
+"viniste"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:38",
+"es:22:39",
+"es:22:40"
+],
+"example": {
+"id": "es:22:38",
+"target": "¿Viniste en tren ayer?",
+"ru": "Ты вчера приехал на поезде?",
+"uk": "Ти вчора приїхав потягом?"
+}
+},
+{
+"lemma": "vinisteis",
+"pos": "PROPN",
+"forms": [
+"vinisteis"
+],
+"firstLesson": 22,
+"phraseIds": [
+"es:22:37"
+],
+"example": {
+"id": "es:22:37",
+"target": "Vinisteis al hotel ayer.",
+"ru": "Вы вчера пришли в отель.",
+"uk": "Ви вчора прийшли до готелю."
+}
+},
+{
+"lemma": "bebíamos",
+"pos": "PROPN",
+"forms": [
+"bebíamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:28"
+],
+"example": {
+"id": "es:23:28",
+"target": "Bebíamos agua a menudo.",
+"ru": "Мы часто пили воду.",
+"uk": "Ми часто пили воду."
+}
+},
+{
+"lemma": "bebías",
+"pos": "PROPN",
+"forms": [
+"bebías"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:44"
+],
+"example": {
+"id": "es:23:44",
+"target": "¿Bebías café antes?",
+"ru": "Ты раньше пил кофе?",
+"uk": "Ти раніше пив каву?"
+}
+},
+{
+"lemma": "comía",
+"pos": "NOUN",
+"forms": [
+"comías"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:32"
+],
+"example": {
+"id": "es:23:32",
+"target": "No comías en la cocina antes.",
+"ru": "Ты раньше не ел на кухне.",
+"uk": "Ти раніше не їв на кухні."
+}
+},
+{
+"lemma": "comíais",
+"pos": "PROPN",
+"forms": [
+"comíais"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:22",
+"es:23:30"
+],
+"example": {
+"id": "es:23:22",
+"target": "Comíais en la cocina a menudo.",
+"ru": "Вы часто ели на кухне.",
+"uk": "Ви часто їли на кухні."
+}
+},
+{
+"lemma": "comías",
+"pos": "PROPN",
+"forms": [
+"comías"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:08"
+],
+"example": {
+"id": "es:23:08",
+"target": "Comías en la cocina antes.",
+"ru": "Ты раньше ел на кухне.",
+"uk": "Ти раніше їв на кухні."
+}
+},
+{
+"lemma": "escribíar",
+"pos": "VERB",
+"forms": [
+"escribíamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:16"
+],
+"example": {
+"id": "es:23:16",
+"target": "Escribíamos un mensaje cada día.",
+"ru": "Мы каждый день писали сообщение.",
+"uk": "Ми щодня писали повідомлення."
+}
+},
+{
+"lemma": "esperabas",
+"pos": "VERB",
+"forms": [
+"esperabas"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:20"
+],
+"example": {
+"id": "es:23:20",
+"target": "Esperabas fuera cada día.",
+"ru": "Ты каждый день ждал снаружи.",
+"uk": "Ти щодня чекав надворі."
+}
+},
+{
+"lemma": "esperár",
+"pos": "VERB",
+"forms": [
+"esperábamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:47",
+"es:24:03",
+"es:24:13",
+"es:24:19",
+"es:24:23",
+"es:24:33",
+"es:24:43"
+],
+"example": {
+"id": "es:23:47",
+"target": "¿Esperábamos fuera antes?",
+"ru": "Мы раньше ждали снаружи?",
+"uk": "Ми раніше чекали надворі?"
+}
+},
+{
+"lemma": "leíais",
+"pos": "PROPN",
+"forms": [
+"leíais"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:50"
+],
+"example": {
+"id": "es:23:50",
+"target": "¿Leíais juntos en clase?",
+"ru": "Вы обычно читали вместе на занятии?",
+"uk": "Ви зазвичай читали разом на занятті?"
+}
+},
+{
+"lemma": "leías",
+"pos": "PROPN",
+"forms": [
+"leías"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:14"
+],
+"example": {
+"id": "es:23:14",
+"target": "Leías el mensaje cada día.",
+"ru": "Ты каждый день читал сообщение.",
+"uk": "Ти щодня читав повідомлення."
+}
+},
+{
+"lemma": "menudo",
+"pos": "NOUN",
+"forms": [
+"menudo"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:22",
+"es:23:23",
+"es:23:25",
+"es:23:26",
+"es:23:28",
+"es:23:29",
+"es:23:30"
+],
+"example": {
+"id": "es:23:22",
+"target": "Comíais en la cocina a menudo.",
+"ru": "Вы часто ели на кухне.",
+"uk": "Ви часто їли на кухні."
+}
+},
+{
+"lemma": "preparábar",
+"pos": "VERB",
+"forms": [
+"preparábamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:37"
+],
+"example": {
+"id": "es:23:37",
+"target": "No preparábamos la cena antes.",
+"ru": "Мы раньше не готовили ужин.",
+"uk": "Ми раніше не готували вечерю."
+}
+},
+{
+"lemma": "trabajábar",
+"pos": "VERB",
+"forms": [
+"trabajábamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:10",
+"es:23:43"
+],
+"example": {
+"id": "es:23:10",
+"target": "Trabajábamos en el hotel antes.",
+"ru": "Мы раньше работали в отеле.",
+"uk": "Ми раніше працювали у готелі."
+}
+},
+{
+"lemma": "vivías",
+"pos": "PROPN",
+"forms": [
+"vivías"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:02",
+"es:23:04",
+"es:23:41",
+"es:23:42"
+],
+"example": {
+"id": "es:23:02",
+"target": "Vivías aquí antes.",
+"ru": "Ты раньше жил здесь.",
+"uk": "Ти раніше жив тут."
+}
+},
+{
+"lemma": "volvíais",
+"pos": "VERB",
+"forms": [
+"volvíais"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:39"
+],
+"example": {
+"id": "es:23:39",
+"target": "No volvíais a la estación antes.",
+"ru": "Вы раньше не возвращались на вокзал.",
+"uk": "Ви раніше не поверталися на вокзал."
+}
+},
+{
+"lemma": "ír",
+"pos": "VERB",
+"forms": [
+"íbamos"
+],
+"firstLesson": 23,
+"phraseIds": [
+"es:23:38"
+],
+"example": {
+"id": "es:23:38",
+"target": "Íbamos al colegio en bicicleta.",
+"ru": "Мы ездили в школу на велосипедах.",
+"uk": "Ми їздили до школи велосипедами."
+}
+},
+{
+"lemma": "buscabar",
+"pos": "VERB",
+"forms": [
+"buscabas"
+],
+"firstLesson": 24,
+"phraseIds": [
+"es:24:37",
+"es:24:47"
+],
+"example": {
+"id": "es:24:37",
+"target": "Mientras buscabas la llave, recibí tu mensaje.",
+"ru": "Пока ты искала ключ, я получил твоё сообщение.",
+"uk": "Поки ти шукала ключ, я отримав твоє повідомлення."
+}
+},
+{
+"lemma": "buscabas",
+"pos": "VERB",
+"forms": [
+"buscabas"
+],
+"firstLesson": 24,
+"phraseIds": [
+"es:24:07",
+"es:24:17",
+"es:24:27"
+],
+"example": {
+"id": "es:24:07",
+"target": "Buscabas la llave cuando llegó Ana.",
+"ru": "Ты искала ключ, когда пришла Ана.",
+"uk": "Ти шукала ключ, коли прийшла Ана."
+}
+},
+{
+"lemma": "baja",
+"pos": "PROPN",
+"forms": [
+"baja"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:24",
+"es:25:34"
+],
+"example": {
+"id": "es:25:24",
+"target": "Baja el volumen.",
+"ru": "Сделай потише.",
+"uk": "Зроби тихіше."
+}
+},
+{
+"lemma": "corta",
+"pos": "PROPN",
+"forms": [
+"corta"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:43"
+],
+"example": {
+"id": "es:25:43",
+"target": "Corta el queso.",
+"ru": "Нарежь сыр.",
+"uk": "Наріж сир."
+}
+},
+{
+"lemma": "guarda",
+"pos": "PROPN",
+"forms": [
+"guarda"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:46"
+],
+"example": {
+"id": "es:25:46",
+"target": "Guarda la sal en la cocina.",
+"ru": "Убери соль на кухню.",
+"uk": "Прибери сіль на кухню."
+}
+},
+{
+"lemma": "lee",
+"pos": "PROPN",
+"forms": [
+"lee"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:03",
+"es:25:04",
+"es:25:44"
+],
+"example": {
+"id": "es:25:03",
+"target": "Lee el libro.",
+"ru": "Прочитай книгу.",
+"uk": "Прочитай книжку."
+}
+},
+{
+"lemma": "llama",
+"pos": "PROPN",
+"forms": [
+"llama"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:09",
+"es:25:21",
+"es:25:49",
+"es:25:50"
+],
+"example": {
+"id": "es:25:09",
+"target": "Llama al hotel.",
+"ru": "Позвони в отель.",
+"uk": "Зателефонуй до готелю."
+}
+},
+{
+"lemma": "paga",
+"pos": "PROPN",
+"forms": [
+"paga"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:25",
+"es:25:47"
+],
+"example": {
+"id": "es:25:25",
+"target": "Paga con tarjeta ahora.",
+"ru": "Заплати картой сейчас.",
+"uk": "Заплати карткою зараз."
+}
+},
+{
+"lemma": "seca",
+"pos": "PROPN",
+"forms": [
+"seca"
+],
+"firstLesson": 25,
+"phraseIds": [
+"es:25:18"
+],
+"example": {
+"id": "es:25:18",
+"target": "Seca los platos.",
+"ru": "Вытри тарелки.",
+"uk": "Витри тарілки."
+}
+},
+{
+"lemma": "devolví",
+"pos": "VERB",
+"forms": [
+"devolví"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:48"
+],
+"example": {
+"id": "es:26:48",
+"target": "Les devolví el paraguas a mis vecinos.",
+"ru": "Я вернул зонт моим соседям.",
+"uk": "Я повернув парасольку моїм сусідам."
+}
+},
+{
+"lemma": "di",
+"pos": "VERB",
+"forms": [
+"di"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:11",
+"es:26:14"
+],
+"example": {
+"id": "es:26:11",
+"target": "Le di la llave.",
+"ru": "Я дал ей ключ.",
+"uk": "Я дав їй ключ."
+}
+},
+{
+"lemma": "diste",
+"pos": "VERB",
+"forms": [
+"diste"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:15",
+"es:27:05"
+],
+"example": {
+"id": "es:26:15",
+"target": "¿Le diste la llave?",
+"ru": "Ты дал ей ключ?",
+"uk": "Ти дав їй ключ?"
+}
+},
+{
+"lemma": "enseñé",
+"pos": "VERB",
+"forms": [
+"enseñé"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:43"
+],
+"example": {
+"id": "es:26:43",
+"target": "Le enseñé la cuenta a Luis.",
+"ru": "Я показал Луису счёт.",
+"uk": "Я показав Луїсу рахунок."
+}
+},
+{
+"lemma": "escribiste",
+"pos": "VERB",
+"forms": [
+"escribiste"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:05",
+"es:27:21",
+"es:27:37"
+],
+"example": {
+"id": "es:26:05",
+"target": "¿Les escribiste una carta?",
+"ru": "Ты написал им письмо?",
+"uk": "Ти написав їм листа?"
+}
+},
+{
+"lemma": "leímos",
+"pos": "VERB",
+"forms": [
+"leímos"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:36",
+"es:26:39",
+"es:26:40",
+"es:27:23"
+],
+"example": {
+"id": "es:26:36",
+"target": "Le leímos la carta.",
+"ru": "Мы прочитали ей письмо.",
+"uk": "Ми прочитали їй листа."
+}
+},
+{
+"lemma": "mandamos",
+"pos": "VERB",
+"forms": [
+"mandamos"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:29"
+],
+"example": {
+"id": "es:26:29",
+"target": "Les mandamos la receta a los vecinos.",
+"ru": "Мы отправили соседям рецепт.",
+"uk": "Ми надіслали сусідам рецепт."
+}
+},
+{
+"lemma": "mandastar",
+"pos": "VERB",
+"forms": [
+"mandaste"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:10"
+],
+"example": {
+"id": "es:26:10",
+"target": "¿Le mandaste la foto?",
+"ru": "Ты отправил ему фотографию?",
+"uk": "Ти надіслав йому фотографію?"
+}
+},
+{
+"lemma": "mandir",
+"pos": "VERB",
+"forms": [
+"mandamos"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:26",
+"es:26:27",
+"es:26:28",
+"es:26:30"
+],
+"example": {
+"id": "es:26:26",
+"target": "Le mandamos un mensaje.",
+"ru": "Мы отправили ей сообщение.",
+"uk": "Ми надіслали їй повідомлення."
+}
+},
+{
+"lemma": "mandé",
+"pos": "VERB",
+"forms": [
+"mandé"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:06",
+"es:26:07",
+"es:26:08",
+"es:26:09",
+"es:27:28"
+],
+"example": {
+"id": "es:26:06",
+"target": "Le mandé la foto.",
+"ru": "Я отправил ему фотографию.",
+"uk": "Я надіслав йому фотографію."
+}
+},
+{
+"lemma": "mostré",
+"pos": "VERB",
+"forms": [
+"mostré"
+],
+"firstLesson": 26,
+"phraseIds": [
+"es:26:21",
+"es:26:22",
+"es:26:23",
+"es:26:24"
+],
+"example": {
+"id": "es:26:21",
+"target": "Les mostré el mapa.",
+"ru": "Я показал им карту.",
+"uk": "Я показав їм мапу."
+}
+},
+{
+"lemma": "dejastir",
+"pos": "VERB",
+"forms": [
+"dejaste"
+],
+"firstLesson": 27,
+"phraseIds": [
+"es:27:19"
+],
+"example": {
+"id": "es:27:19",
+"target": "Las llaves que dejaste aquí están en la mesa.",
+"ru": "Ключи, которые ты оставил здесь, лежат на столе.",
+"uk": "Ключі, які ти залишив тут, лежать на столі."
+}
+},
+{
+"lemma": "recibiste",
+"pos": "VERB",
+"forms": [
+"recibiste"
+],
+"firstLesson": 27,
+"phraseIds": [
+"es:27:26"
+],
+"example": {
+"id": "es:27:26",
+"target": "¿Dónde está el paquete que recibiste?",
+"ru": "Где посылка, которую ты получил?",
+"uk": "Де посилка, яку ти отримав?"
+}
+},
+{
+"lemma": "abrirás",
+"pos": "PROPN",
+"forms": [
+"abrirás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:14",
+"es:28:44"
+],
+"example": {
+"id": "es:28:14",
+"target": "Abrirás la ventana más tarde.",
+"ru": "Ты позже откроешь окно.",
+"uk": "Ти пізніше відчиниш вікно."
+}
+},
+{
+"lemma": "compraremos",
+"pos": "VERB",
+"forms": [
+"compraremos"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:10",
+"es:31:14"
+],
+"example": {
+"id": "es:28:10",
+"target": "Compraremos pan mañana.",
+"ru": "Мы завтра купим хлеб.",
+"uk": "Ми завтра купимо хліб."
+}
+},
+{
+"lemma": "escribirar",
+"pos": "VERB",
+"forms": [
+"escribiré"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:11"
+],
+"example": {
+"id": "es:28:11",
+"target": "Escribiré una carta más tarde.",
+"ru": "Я позже напишу письмо.",
+"uk": "Я пізніше напишу листа."
+}
+},
+{
+"lemma": "escribirás",
+"pos": "VERB",
+"forms": [
+"escribirás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:32"
+],
+"example": {
+"id": "es:28:32",
+"target": "No escribirás un mensaje esta noche.",
+"ru": "Ты сегодня вечером не напишешь сообщение.",
+"uk": "Ти сьогодні ввечері не напишеш повідомлення."
+}
+},
+{
+"lemma": "leeré",
+"pos": "VERB",
+"forms": [
+"leeré"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:15"
+],
+"example": {
+"id": "es:28:15",
+"target": "Leeré el mensaje más tarde.",
+"ru": "Я позже прочитаю сообщение.",
+"uk": "Я пізніше прочитаю повідомлення."
+}
+},
+{
+"lemma": "leeréis",
+"pos": "PROPN",
+"forms": [
+"leeréis"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:50"
+],
+"example": {
+"id": "es:28:50",
+"target": "¿Leeréis el mensaje?",
+"ru": "Вы прочитаете сообщение?",
+"uk": "Ви прочитаєте повідомлення?"
+}
+},
+{
+"lemma": "llamarás",
+"pos": "PROPN",
+"forms": [
+"llamarás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:02",
+"es:28:04",
+"es:28:41"
+],
+"example": {
+"id": "es:28:02",
+"target": "Llamarás al hotel mañana.",
+"ru": "Ты завтра позвонишь в отель.",
+"uk": "Ти завтра зателефонуєш до готелю."
+}
+},
+{
+"lemma": "llevaré",
+"pos": "VERB",
+"forms": [
+"llevaré"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:07",
+"es:28:45"
+],
+"example": {
+"id": "es:28:07",
+"target": "Llevaré la bicicleta al taller.",
+"ru": "Я отвезу велосипед в мастерскую.",
+"uk": "Я відвезу велосипед до майстерні."
+}
+},
+{
+"lemma": "mandarás",
+"pos": "PROPN",
+"forms": [
+"mandarás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:08"
+],
+"example": {
+"id": "es:28:08",
+"target": "Mandarás el mapa mañana.",
+"ru": "Ты завтра отправишь карту.",
+"uk": "Ти завтра надішлеш мапу."
+}
+},
+{
+"lemma": "mandaréis",
+"pos": "PROPN",
+"forms": [
+"mandaréis"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:22"
+],
+"example": {
+"id": "es:28:22",
+"target": "Mandaréis el mapa mañana.",
+"ru": "Вы завтра отправите карту.",
+"uk": "Ви завтра надішлете мапу."
+}
+},
+{
+"lemma": "pagarás",
+"pos": "VERB",
+"forms": [
+"pagarás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:20"
+],
+"example": {
+"id": "es:28:20",
+"target": "Pagarás en efectivo más tarde.",
+"ru": "Ты позже заплатишь наличными.",
+"uk": "Ти пізніше заплатиш готівкою."
+}
+},
+{
+"lemma": "pagaréis",
+"pos": "PROPN",
+"forms": [
+"pagaréis"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:27"
+],
+"example": {
+"id": "es:28:27",
+"target": "Pagaréis en efectivo mañana.",
+"ru": "Вы завтра заплатите наличными.",
+"uk": "Ви завтра заплатите готівкою."
+}
+},
+{
+"lemma": "pasarar",
+"pos": "VERB",
+"forms": [
+"pasaré"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:26"
+],
+"example": {
+"id": "es:28:26",
+"target": "Pasaré por el parque después del colegio.",
+"ru": "После школы я зайду в парк.",
+"uk": "Після школи я зайду до парку."
+}
+},
+{
+"lemma": "recogeré",
+"pos": "PROPN",
+"forms": [
+"recogeré"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:25"
+],
+"example": {
+"id": "es:28:25",
+"target": "Recogeré el coche en el taller.",
+"ru": "Я заберу машину из мастерской.",
+"uk": "Я заберу машину з майстерні."
+}
+},
+{
+"lemma": "revisarás",
+"pos": "PROPN",
+"forms": [
+"revisarás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:42"
+],
+"example": {
+"id": "es:28:42",
+"target": "¿Revisarás la factura?",
+"ru": "Ты проверишь счёт?",
+"uk": "Ти перевіриш рахунок?"
+}
+},
+{
+"lemma": "venderé",
+"pos": "PROPN",
+"forms": [
+"venderé"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:21"
+],
+"example": {
+"id": "es:28:21",
+"target": "Venderé mi coche después del viaje.",
+"ru": "Я продам машину после поездки.",
+"uk": "Я продам машину після поїздки."
+}
+},
+{
+"lemma": "volverás",
+"pos": "VERB",
+"forms": [
+"volverás"
+],
+"firstLesson": 28,
+"phraseIds": [
+"es:28:38"
+],
+"example": {
+"id": "es:28:38",
+"target": "No volverás a la estación esta noche.",
+"ru": "Ты сегодня вечером не вернёшься на вокзал.",
+"uk": "Ти сьогодні ввечері не повернешся на вокзал."
+}
+},
+{
+"lemma": "abriría",
+"pos": "PROPN",
+"forms": [
+"abriría"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:11"
+],
+"example": {
+"id": "es:29:11",
+"target": "Abriría la puerta.",
+"ru": "Я открыл бы дверь.",
+"uk": "Я відчинив би двері."
+}
+},
+{
+"lemma": "alquilaríar",
+"pos": "VERB",
+"forms": [
+"alquilaríamos"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:06"
+],
+"example": {
+"id": "es:29:06",
+"target": "Alquilaríamos una habitación.",
+"ru": "Мы бы сняли комнату.",
+"uk": "Ми б винайняли кімнату."
+}
+},
+{
+"lemma": "alquilarías",
+"pos": "NOUN",
+"forms": [
+"alquilarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:42",
+"es:29:43"
+],
+"example": {
+"id": "es:29:42",
+"target": "¿Alquilarías una habitación en mi barrio?",
+"ru": "Ты бы снял комнату в моём районе?",
+"uk": "Ти б винайняв кімнату в моєму районі?"
+}
+},
+{
+"lemma": "cocinaría",
+"pos": "PROPN",
+"forms": [
+"cocinaría"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:21"
+],
+"example": {
+"id": "es:29:21",
+"target": "Cocinaría en casa esta noche.",
+"ru": "Я бы сегодня вечером приготовил еду дома.",
+"uk": "Я б сьогодні ввечері приготував їжу вдома."
+}
+},
+{
+"lemma": "comprarir",
+"pos": "VERB",
+"forms": [
+"compraría",
+"comprarían"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:05",
+"es:29:36",
+"es:32:13"
+],
+"example": {
+"id": "es:29:05",
+"target": "Ana compraría un billete.",
+"ru": "Ана купила бы билет.",
+"uk": "Ана купила б квиток."
+}
+},
+{
+"lemma": "compraría",
+"pos": "NOUN",
+"forms": [
+"compraría"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:07",
+"es:32:14",
+"es:32:15"
+],
+"example": {
+"id": "es:29:07",
+"target": "Compraría pan.",
+"ru": "Я купил бы хлеб.",
+"uk": "Я купив би хліб."
+}
+},
+{
+"lemma": "compraríai",
+"pos": "ADJ",
+"forms": [
+"compraríais"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:39"
+],
+"example": {
+"id": "es:29:39",
+"target": "No compraríais un billete hoy.",
+"ru": "Вы сегодня не купили бы билет.",
+"uk": "Ви сьогодні не купили б квиток."
+}
+},
+{
+"lemma": "comprarías",
+"pos": "PROPN",
+"forms": [
+"comprarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:08"
+],
+"example": {
+"id": "es:29:08",
+"target": "Comprarías pan.",
+"ru": "Ты купил бы хлеб.",
+"uk": "Ти купив би хліб."
+}
+},
+{
+"lemma": "elegiría",
+"pos": "NOUN",
+"forms": [
+"elegirías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:47"
+],
+"example": {
+"id": "es:29:47",
+"target": "¿Elegirías el piso con balcón?",
+"ru": "Ты бы выбрал квартиру с балконом?",
+"uk": "Ти б обрав квартиру з балконом?"
+}
+},
+{
+"lemma": "entrarías",
+"pos": "PROPN",
+"forms": [
+"entrarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:20"
+],
+"example": {
+"id": "es:29:20",
+"target": "Entrarías en la oficina.",
+"ru": "Ты вошёл бы в офис.",
+"uk": "Ти зайшов би до офісу."
+}
+},
+{
+"lemma": "escribirias",
+"pos": "VERB",
+"forms": [
+"escribirías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:32"
+],
+"example": {
+"id": "es:29:32",
+"target": "No escribirías un mensaje hoy.",
+"ru": "Ты сегодня не написал бы сообщение.",
+"uk": "Ти сьогодні не написав би повідомлення."
+}
+},
+{
+"lemma": "escribiríar",
+"pos": "VERB",
+"forms": [
+"escribiríamos"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:16"
+],
+"example": {
+"id": "es:29:16",
+"target": "Escribiríamos un mensaje.",
+"ru": "Мы написали бы сообщение.",
+"uk": "Ми написали б повідомлення."
+}
+},
+{
+"lemma": "esperaríais",
+"pos": "PROPN",
+"forms": [
+"esperaríais"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:30"
+],
+"example": {
+"id": "es:29:30",
+"target": "Esperaríais fuera.",
+"ru": "Вы подождали бы снаружи.",
+"uk": "Ви почекали б надворі."
+}
+},
+{
+"lemma": "esperaríar",
+"pos": "VERB",
+"forms": [
+"esperaríamos"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:10"
+],
+"example": {
+"id": "es:29:10",
+"target": "Esperaríamos aquí.",
+"ru": "Мы подождали бы здесь.",
+"uk": "Ми почекали б тут."
+}
+},
+{
+"lemma": "esperarías",
+"pos": "PROPN",
+"forms": [
+"esperarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:48"
+],
+"example": {
+"id": "es:29:48",
+"target": "¿Esperarías aquí un minuto?",
+"ru": "Ты бы подождал здесь минутку?",
+"uk": "Ти б почекав тут хвилинку?"
+}
+},
+{
+"lemma": "leeríais",
+"pos": "PROPN",
+"forms": [
+"leeríais"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:27"
+],
+"example": {
+"id": "es:29:27",
+"target": "Leeríais el mensaje.",
+"ru": "Вы прочитали бы сообщение.",
+"uk": "Ви прочитали б повідомлення."
+}
+},
+{
+"lemma": "leeríamo",
+"pos": "PRON",
+"forms": [
+"leeríamos"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:28"
+],
+"example": {
+"id": "es:29:28",
+"target": "Leeríamos el libro.",
+"ru": "Мы прочитали бы книгу.",
+"uk": "Ми прочитали б книжку."
+}
+},
+{
+"lemma": "llamaría",
+"pos": "NOUN",
+"forms": [
+"llamaría"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:01",
+"es:29:03"
+],
+"example": {
+"id": "es:29:01",
+"target": "Llamaría al hotel.",
+"ru": "Я позвонил бы в отель.",
+"uk": "Я зателефонував би до готелю."
+}
+},
+{
+"lemma": "llamarías",
+"pos": "VERB",
+"forms": [
+"llamarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:02",
+"es:29:04",
+"es:29:41"
+],
+"example": {
+"id": "es:29:02",
+"target": "Llamarías al hotel.",
+"ru": "Ты бы позвонил в отель.",
+"uk": "Ти б зателефонував до готелю."
+}
+},
+{
+"lemma": "llevarir",
+"pos": "VERB",
+"forms": [
+"llevarían"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:25",
+"es:29:26"
+],
+"example": {
+"id": "es:29:25",
+"target": "Mis hermanas llevarían la maleta.",
+"ru": "Мои сёстры отнесли бы чемодан.",
+"uk": "Мої сестри віднесли б валізу."
+}
+},
+{
+"lemma": "mandaría",
+"pos": "NOUN",
+"forms": [
+"mandarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:14"
+],
+"example": {
+"id": "es:29:14",
+"target": "Mandarías el mapa.",
+"ru": "Ты отправил бы карту.",
+"uk": "Ти надіслав би мапу."
+}
+},
+{
+"lemma": "mandaríais",
+"pos": "PROPN",
+"forms": [
+"mandaríais"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:50"
+],
+"example": {
+"id": "es:29:50",
+"target": "¿Mandaríais la foto?",
+"ru": "Вы отправили бы фотографию?",
+"uk": "Ви надіслали б фотографію?"
+}
+},
+{
+"lemma": "pagarir",
+"pos": "VERB",
+"forms": [
+"pagarían"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:18"
+],
+"example": {
+"id": "es:29:18",
+"target": "Mis hermanas pagarían con tarjeta.",
+"ru": "Мои сёстры заплатили бы картой.",
+"uk": "Мої сестри заплатили б карткою."
+}
+},
+{
+"lemma": "pagarías",
+"pos": "PROPN",
+"forms": [
+"pagarías"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:44"
+],
+"example": {
+"id": "es:29:44",
+"target": "¿Pagarías con tarjeta?",
+"ru": "Ты заплатил бы картой?",
+"uk": "Ти заплатив би карткою?"
+}
+},
+{
+"lemma": "preparariais",
+"pos": "VERB",
+"forms": [
+"prepararíais"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:22"
+],
+"example": {
+"id": "es:29:22",
+"target": "Prepararíais la mochila.",
+"ru": "Вы приготовили бы рюкзак.",
+"uk": "Ви приготували б рюкзак."
+}
+},
+{
+"lemma": "visitaría",
+"pos": "PROPN",
+"forms": [
+"visitaría"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:19"
+],
+"example": {
+"id": "es:29:19",
+"target": "Visitaría el piso con luz natural.",
+"ru": "Я бы посмотрел квартиру с естественным освещением.",
+"uk": "Я б подивився квартиру з природним освітленням."
+}
+},
+{
+"lemma": "volverir",
+"pos": "VERB",
+"forms": [
+"volverían"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:23"
+],
+"example": {
+"id": "es:29:23",
+"target": "Mis hermanos volverían a casa.",
+"ru": "Мои братья бы вернулись домой.",
+"uk": "Мої брати б повернулися додому."
+}
+},
+{
+"lemma": "volveríamos",
+"pos": "VERB",
+"forms": [
+"volveríamos"
+],
+"firstLesson": 29,
+"phraseIds": [
+"es:29:34"
+],
+"example": {
+"id": "es:29:34",
+"target": "No volveríamos a casa hoy.",
+"ru": "Мы сегодня не вернулись бы домой.",
+"uk": "Ми сьогодні не повернулися б додому."
+}
+},
+{
+"lemma": "apagues",
+"pos": "VERB",
+"forms": [
+"apagues"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:31"
+],
+"example": {
+"id": "es:30:31",
+"target": "Mi madre no quiere que apagues la luz.",
+"ru": "Моя мама не хочет, чтобы ты выключал свет.",
+"uk": "Моя мама не хоче, щоб ти вимикав світло."
+}
+},
+{
+"lemma": "apunt",
+"pos": "ADJ",
+"forms": [
+"apuntes"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:12",
+"es:30:24"
+],
+"example": {
+"id": "es:30:12",
+"target": "Queremos que apuntes el número.",
+"ru": "Мы хотим, чтобы ты записал номер.",
+"uk": "Ми хочемо, щоб ти записав номер."
+}
+},
+{
+"lemma": "avises",
+"pos": "VERB",
+"forms": [
+"avises"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:15"
+],
+"example": {
+"id": "es:30:15",
+"target": "Queremos que nos avises mañana.",
+"ru": "Мы хотим, чтобы ты завтра дал нам знать.",
+"uk": "Ми хочемо, щоб ти завтра дав нам знати."
+}
+},
+{
+"lemma": "avisser",
+"pos": "VERB",
+"forms": [
+"avises"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:40"
+],
+"example": {
+"id": "es:30:40",
+"target": "Mi madre quiere que avises al vecino.",
+"ru": "Моя мама хочет, чтобы ты предупредил соседа.",
+"uk": "Моя мама хоче, щоб ти попередив сусіда."
+}
+},
+{
+"lemma": "cant",
+"pos": "NOUN",
+"forms": [
+"cantes"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:33"
+],
+"example": {
+"id": "es:30:33",
+"target": "Mi madre no quiere que cantes después de la cena.",
+"ru": "Мама не хочет, чтобы ты пел после ужина.",
+"uk": "Мама не хоче, щоб ти співав після вечері."
+}
+},
+{
+"lemma": "cierre",
+"pos": "NOUN",
+"forms": [
+"cierres"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:07",
+"es:30:16",
+"es:30:25",
+"es:30:34"
+],
+"example": {
+"id": "es:30:07",
+"target": "Quiero que cierres la ventana.",
+"ru": "Я хочу, чтобы ты закрыл окно.",
+"uk": "Я хочу, щоб ти зачинив вікно."
+}
+},
+{
+"lemma": "copies",
+"pos": "VERB",
+"forms": [
+"copies"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:06",
+"es:30:32"
+],
+"example": {
+"id": "es:30:06",
+"target": "Quiero que copies la contraseña.",
+"ru": "Я хочу, чтобы ты скопировал пароль.",
+"uk": "Я хочу, щоб ти скопіював пароль."
+}
+},
+{
+"lemma": "copiir",
+"pos": "VERB",
+"forms": [
+"copie"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:42"
+],
+"example": {
+"id": "es:30:42",
+"target": "¿Quieres que copie la dirección?",
+"ru": "Хочешь, чтобы я скопировал адрес?",
+"uk": "Хочеш, щоб я скопіював адресу?"
+}
+},
+{
+"lemma": "dejes",
+"pos": "VERB",
+"forms": [
+"dejes"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:39"
+],
+"example": {
+"id": "es:30:39",
+"target": "Mi madre no quiere que dejes el grifo abierto.",
+"ru": "Мама не хочет, чтобы ты оставлял кран открытым.",
+"uk": "Мама не хоче, щоб ти залишав кран відкритим."
+}
+},
+{
+"lemma": "encienda",
+"pos": "NOUN",
+"forms": [
+"enciendas"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:35"
+],
+"example": {
+"id": "es:30:35",
+"target": "Mi madre no quiere que enciendas el horno.",
+"ru": "Моя мама не хочет, чтобы ты включал духовку.",
+"uk": "Моя мама не хоче, щоб ти вмикав духовку."
+}
+},
+{
+"lemma": "entrser",
+"pos": "VERB",
+"forms": [
+"entres"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:02",
+"es:30:11",
+"es:30:30"
+],
+"example": {
+"id": "es:30:02",
+"target": "Quiero que entres ahora.",
+"ru": "Я хочу, чтобы ты вошла сейчас.",
+"uk": "Я хочу, щоб ти зайшла зараз."
+}
+},
+{
+"lemma": "leas",
+"pos": "VERB",
+"forms": [
+"leas"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:04",
+"es:30:22",
+"es:30:23"
+],
+"example": {
+"id": "es:30:04",
+"target": "Quiero que leas el mensaje.",
+"ru": "Я хочу, чтобы ты прочитал сообщение.",
+"uk": "Я хочу, щоб ти прочитав повідомлення."
+}
+},
+{
+"lemma": "llames",
+"pos": "VERB",
+"forms": [
+"llames"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:05",
+"es:30:14"
+],
+"example": {
+"id": "es:30:05",
+"target": "Quiero que llames al hotel.",
+"ru": "Я хочу, чтобы ты позвонила в отель.",
+"uk": "Я хочу, щоб ти зателефонувала до готелю."
+}
+},
+{
+"lemma": "quieres",
+"pos": "VERB",
+"forms": [
+"quieres"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:44",
+"es:30:46",
+"es:30:49"
+],
+"example": {
+"id": "es:30:44",
+"target": "¿Quieres que la profesora hable más despacio?",
+"ru": "Ты хочешь, чтобы преподавательница говорила помедленнее?",
+"uk": "Ти хочеш, щоб викладачка говорила повільніше?"
+}
+},
+{
+"lemma": "repare",
+"pos": "NOUN",
+"forms": [
+"repare"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:21"
+],
+"example": {
+"id": "es:30:21",
+"target": "Ana quiere que el mecánico repare la rueda.",
+"ru": "Ана хочет, чтобы механик починил колесо.",
+"uk": "Ана хоче, щоб механік полагодив колесо."
+}
+},
+{
+"lemma": "revisser",
+"pos": "VERB",
+"forms": [
+"revises"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:13"
+],
+"example": {
+"id": "es:30:13",
+"target": "Queremos que revises los frenos.",
+"ru": "Мы хотим, чтобы ты проверил тормоза.",
+"uk": "Ми хочемо, щоб ти перевірив гальма."
+}
+},
+{
+"lemma": "vengas",
+"pos": "VERB",
+"forms": [
+"vengas"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:01",
+"es:30:20",
+"es:30:29",
+"es:30:38"
+],
+"example": {
+"id": "es:30:01",
+"target": "Quiero que vengas mañana.",
+"ru": "Я хочу, чтобы ты пришёл завтра.",
+"uk": "Я хочу, щоб ти прийшов завтра."
+}
+},
+{
+"lemma": "volváis",
+"pos": "VERB",
+"forms": [
+"volváis"
+],
+"firstLesson": 30,
+"phraseIds": [
+"es:30:18"
+],
+"example": {
+"id": "es:30:18",
+"target": "Queremos que volváis juntos.",
+"ru": "Мы хотим, чтобы вы вернулись вместе.",
+"uk": "Ми хочемо, щоб ви повернулися разом."
+}
+},
+{
+"lemma": "abriré",
+"pos": "VERB",
+"forms": [
+"abriré"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:22"
+],
+"example": {
+"id": "es:31:22",
+"target": "Cuando vuelvas, abriré la puerta.",
+"ru": "Когда ты вернёшься, я открою дверь.",
+"uk": "Коли ти повернешся, я відчиню двері."
+}
+},
+{
+"lemma": "apagaré",
+"pos": "VERB",
+"forms": [
+"apagaré"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:34"
+],
+"example": {
+"id": "es:31:34",
+"target": "Cuando termine la película, apagaré la pantalla.",
+"ru": "Когда закончится фильм, я выключу экран.",
+"uk": "Коли закінчиться фільм, я вимкну екран."
+}
+},
+{
+"lemma": "comprarer",
+"pos": "VERB",
+"forms": [
+"compraremos"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:12",
+"es:31:13",
+"es:31:15"
+],
+"example": {
+"id": "es:31:12",
+"target": "Compraremos los billetes cuando sepa la hora.",
+"ru": "Мы купим билеты, когда я узнаю время.",
+"uk": "Ми купимо квитки, коли я дізнаюся час."
+}
+},
+{
+"lemma": "enviaré",
+"pos": "VERB",
+"forms": [
+"enviaré"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:35"
+],
+"example": {
+"id": "es:31:35",
+"target": "Cuando la batería esté cargada, enviaré las fotos.",
+"ru": "Когда аккумулятор зарядится, я отправлю фотографии.",
+"uk": "Коли акумулятор зарядиться, я надішлю фотографії."
+}
+},
+{
+"lemma": "estés",
+"pos": "AUX",
+"forms": [
+"estés"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:15",
+"es:31:19",
+"es:31:40",
+"es:31:41"
+],
+"example": {
+"id": "es:31:15",
+"target": "Compraremos los billetes cuando estés listo.",
+"ru": "Мы купим билеты, когда ты будешь готов.",
+"uk": "Ми купимо квитки, коли ти будеш готовий."
+}
+},
+{
+"lemma": "llamaré",
+"pos": "VERB",
+"forms": [
+"llamaré"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:01",
+"es:31:02",
+"es:31:03",
+"es:31:04",
+"es:31:05",
+"es:31:06",
+"es:31:17",
+"es:31:33"
+],
+"example": {
+"id": "es:31:01",
+"target": "Te llamaré cuando llegue a casa.",
+"ru": "Я тебе позвоню, когда приду домой.",
+"uk": "Я тобі зателефоную, коли прийду додому."
+}
+},
+{
+"lemma": "lleguser",
+"pos": "VERB",
+"forms": [
+"llegues"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:27",
+"es:31:37"
+],
+"example": {
+"id": "es:31:27",
+"target": "Hablaremos del viaje cuando llegues a casa.",
+"ru": "Мы поговорим о поездке, когда ты придёшь домой.",
+"uk": "Ми поговоримо про поїздку, коли ти прийдеш додому."
+}
+},
+{
+"lemma": "pagaré",
+"pos": "ADJ",
+"forms": [
+"pagaré"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:46",
+"es:31:47",
+"es:31:49",
+"es:31:50"
+],
+"example": {
+"id": "es:31:46",
+"target": "Pagaré cuando tenga el dinero.",
+"ru": "Я заплачу, когда у меня будут деньги.",
+"uk": "Я заплачу, коли у мене будуть гроші."
+}
+},
+{
+"lemma": "recogerer",
+"pos": "VERB",
+"forms": [
+"recogeremos"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:25"
+],
+"example": {
+"id": "es:31:25",
+"target": "Cuando avise el mecánico, recogeremos el coche.",
+"ru": "Когда механик даст знать, мы заберём машину.",
+"uk": "Коли механік дасть знати, ми заберемо машину."
+}
+},
+{
+"lemma": "saldrar",
+"pos": "VERB",
+"forms": [
+"saldremos"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:44"
+],
+"example": {
+"id": "es:31:44",
+"target": "Cuando llegue el tren, saldremos.",
+"ru": "Когда прибудет поезд, мы выйдем.",
+"uk": "Коли прибуде потяг, ми вийдемо."
+}
+},
+{
+"lemma": "terminemos",
+"pos": "VERB",
+"forms": [
+"terminemos"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:10",
+"es:31:29",
+"es:31:43",
+"es:31:50"
+],
+"example": {
+"id": "es:31:10",
+"target": "Cuando terminemos la reunión, te mandaré la foto.",
+"ru": "Когда мы закончим совещание, я отправлю тебе фотографию.",
+"uk": "Коли ми закінчимо нараду, я надішлю тобі фотографію."
+}
+},
+{
+"lemma": "vuelvas",
+"pos": "VERB",
+"forms": [
+"vuelvas"
+],
+"firstLesson": 31,
+"phraseIds": [
+"es:31:22",
+"es:31:26",
+"es:31:36"
+],
+"example": {
+"id": "es:31:22",
+"target": "Cuando vuelvas, abriré la puerta.",
+"ru": "Когда ты вернёшься, я открою дверь.",
+"uk": "Коли ти повернешся, я відчиню двері."
+}
+},
+{
+"lemma": "ayudarte",
+"pos": "NOUN",
+"forms": [
+"ayudarte"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:45"
+],
+"example": {
+"id": "es:32:45",
+"target": "Si pudiera ayudarte, me quedaría aquí.",
+"ru": "Если бы я мог тебе помочь, я бы остался здесь.",
+"uk": "Якби я міг тобі допомогти, я б залишився тут."
+}
+},
+{
+"lemma": "cargaría",
+"pos": "PROPN",
+"forms": [
+"cargaría"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:42"
+],
+"example": {
+"id": "es:32:42",
+"target": "Cargaría el móvil si tuviera tiempo.",
+"ru": "Я бы зарядил телефон, если бы у меня было время.",
+"uk": "Я б зарядив телефон, якби мав час."
+}
+},
+{
+"lemma": "irir",
+"pos": "VERB",
+"forms": [
+"iríamos"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:16",
+"es:32:18",
+"es:32:20"
+],
+"example": {
+"id": "es:32:16",
+"target": "Si tuviera coche, iríamos al centro.",
+"ru": "Если бы у меня была машина, мы бы поехали в центр.",
+"uk": "Якби я мав машину, ми б поїхали до центру."
+}
+},
+{
+"lemma": "iría",
+"pos": "PROPN",
+"forms": [
+"iría"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:02",
+"es:32:05"
+],
+"example": {
+"id": "es:32:02",
+"target": "Iría contigo si tuviera dinero.",
+"ru": "Я бы пошёл с тобой, если бы у меня были деньги.",
+"uk": "Я б пішов із тобою, якби я мав гроші."
+}
+},
+{
+"lemma": "pudierar",
+"pos": "AUX",
+"forms": [
+"pudieras"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:18",
+"es:32:40"
+],
+"example": {
+"id": "es:32:18",
+"target": "Si pudieras venir, iríamos al centro.",
+"ru": "Если бы ты мог прийти, мы бы поехали в центр.",
+"uk": "Якби ти міг прийти, ми б поїхали до центру."
+}
+},
+{
+"lemma": "quedar",
+"pos": "VERB",
+"forms": [
+"quedaría"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:41",
+"es:32:45"
+],
+"example": {
+"id": "es:32:41",
+"target": "Si tuviera tiempo, me quedaría aquí.",
+"ru": "Если бы у меня было время, я бы остался здесь.",
+"uk": "Якби я мав час, я б залишився тут."
+}
+},
+{
+"lemma": "usaríamos",
+"pos": "VERB",
+"forms": [
+"usaríamos"
+],
+"firstLesson": 32,
+"phraseIds": [
+"es:32:37"
+],
+"example": {
+"id": "es:32:37",
+"target": "Si hubiera una avería, usaríamos la bicicleta.",
+"ru": "Если бы произошла поломка, мы бы поехали на велосипеде.",
+"uk": "Якби сталася поломка, ми б поїхали велосипедом."
+}
+}
+]

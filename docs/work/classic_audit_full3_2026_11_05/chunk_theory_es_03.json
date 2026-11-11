@@ -1,0 +1,1743 @@
+[
+{
+"lesson": 7,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 7,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Hay: что здесь есть?",
+"formula": "hay + что или сколько + где",
+"story": "Открыл сумку и перечисляешь находки: Hay una llave. Hay dos llaves. Hay не меняется. Для места уже знакомого ключа: La llave está aquí.",
+"use": "Сообщи, есть ли в каком-то месте предмет, люди или что-то необходимое. Отличай hay от está.",
+"choose": "Перед одним новым исчисляемым предметом в этих фразах ставим un или una. Выбирай по испанскому существительному: un mapa, но una mochila. Не копируй род слова в переводе и не угадывай его только по последней букве.",
+"nuance": "После dos нужен предмет во множественном числе: libros. Само hay не меняется.",
+"wrong": "Hay dos libro en la mesa.",
+"right": "Hay dos libros en la mesa.",
+"chapters": [
+{
+"title": "Что именно сообщает hay",
+"body": "Открыв дверь, ты впервые замечаешь книгу. Для сообщения «здесь есть книга» начни с hay. Когда оба уже знают эту книгу и ищут её, скажи, где она: El libro está aquí. Решение зависит от того, о чём разговор, а не от того, надолго ли книга здесь.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:01",
+"es:07:02"
+],
+"focusId": "es:07:01"
+},
+{
+"title": "Un или una перед новой вещью",
+"body": "Перед одним новым исчисляемым предметом в этих фразах ставим un или una. Выбирай по испанскому существительному: un mapa, но una mochila. Не копируй род слова в переводе и не угадывай его только по последней букве.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:03",
+"es:07:04",
+"es:07:05"
+],
+"focusId": "es:07:05"
+},
+{
+"title": "Что меняется после dos",
+"body": "Форма hay не согласуется с вещами по числу. Можно увидеть одну книгу, а потом две: hay un libro → hay dos libros. После dos не добавляй un и не оставляй существительное в единственном числе.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:10",
+"es:07:11",
+"es:07:12"
+],
+"focusId": "es:07:12"
+},
+{
+"title": "Вода, кофе и неопределённое количество",
+"body": "Когда говоришь просто о наличии воды или кофе, подойдёт hay agua или hay café: конкретную порцию не считаем. Без артикля можно и назвать неопределённое множество: hay libros. А un café в другом разговоре может означать порцию кофе.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:21",
+"es:07:23",
+"es:07:26"
+],
+"focusId": "es:07:23"
+},
+{
+"title": "Как сказать, что чего-то нет",
+"body": "Сначала скажи, что что-то есть: Hay café. Чтобы сказать обратное, добавь no: No hay café. Во множественном числе hay не меняется: No hay billetes — билетов нет.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:31",
+"es:07:32",
+"es:07:35"
+],
+"focusId": "es:07:35"
+},
+{
+"title": "Как задать вопрос о наличии",
+"body": "Чтобы узнать, есть ли что-то, оставь hay на месте и произнеси фразу как вопрос. Не нужен вспомогательный глагол. На письме нужны оба вопросительных знака; в конструкторе они появляются сами.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:37",
+"es:07:39",
+"es:07:40"
+],
+"focusId": "es:07:39"
+},
+{
+"title": "Начать с места тоже можно",
+"body": "Когда ты осматриваешь сумку, станцию или стол по очереди, удобно назвать место первым: En la mesa hay… Это не новое правило глагола, а способ расставить акценты. Обратный нейтральный порядок Hay… en la mesa тоже возможен.",
+"note": "Hay — безличная форма: здесь не ищем подлежащее для согласования.",
+"samples": [
+"es:07:41",
+"es:07:42",
+"es:07:46",
+"es:07:48"
+],
+"focusId": "es:07:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "hay un / una",
+"gloss": "Один новый предмет",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+},
+{
+"es": "hay dos",
+"gloss": "Точное количество",
+"id": "es:07:11",
+"sample": "Hay dos libros en la mesa."
+},
+{
+"es": "hay + agua / libros",
+"gloss": "Вещество или вещи без точного счёта",
+"id": "es:07:21",
+"sample": "Hay agua."
+},
+{
+"es": "no hay",
+"gloss": "Отсутствие",
+"id": "es:07:31",
+"sample": "No hay agua."
+},
+{
+"es": "¿hay…?",
+"gloss": "Спросить, есть ли что-то",
+"id": "es:07:37",
+"sample": "¿Hay agua aquí?"
+}
+],
+"title": "Пять моделей с hay"
+},
+{
+"rows": [
+{
+"es": "— · hay",
+"gloss": "есть / имеется",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+}
+],
+"title": "Формы haber"
+}
+]
+},
+"uk": {
+"title": "Hay: що тут є?",
+"formula": "hay + що або скільки + де",
+"story": "Відкрив сумку й називаєш знахідки: Hay una llave. Hay dos llaves. Hay не змінюється. Про місце знайомого ключа: La llave está aquí.",
+"use": "Скажи, чи є десь річ, люди або щось потрібне. Відрізняй hay від está.",
+"choose": "Перед одним новим злічуваним предметом у цих фразах ставимо un або una. Обирай за іспанським іменником: un mapa, але una mochila. Не копіюй рід слова в перекладі й не вгадуй його лише за останньою літерою.",
+"nuance": "Після dos потрібна множина: libros. Саме hay не змінюється.",
+"wrong": "Hay dos libro en la mesa.",
+"right": "Hay dos libros en la mesa.",
+"chapters": [
+{
+"title": "Що саме повідомляє hay",
+"body": "Відчинивши двері, ти вперше помічаєш книжку. Для повідомлення «тут є книжка» почни з hay. Коли обоє вже знають цю книжку й шукають її, скажи, де вона: El libro está aquí. Рішення залежить від того, про що розмова, а не від того, чи надовго книжка тут.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:01",
+"es:07:02"
+],
+"focusId": "es:07:01"
+},
+{
+"title": "Un чи una перед новою річчю",
+"body": "Перед одним новим злічуваним предметом у цих фразах ставимо un або una. Обирай за іспанським іменником: un mapa, але una mochila. Не копіюй рід слова в перекладі й не вгадуй його лише за останньою літерою.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:03",
+"es:07:04",
+"es:07:05"
+],
+"focusId": "es:07:05"
+},
+{
+"title": "Що змінюється після dos",
+"body": "Форма hay не узгоджується з речами за числом. Можна побачити одну книжку, а потім дві: hay un libro → hay dos libros. Після dos не додавай un і не залишай іменник в однині.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:10",
+"es:07:11",
+"es:07:12"
+],
+"focusId": "es:07:12"
+},
+{
+"title": "Вода, кава й невизначена кількість",
+"body": "Коли кажеш просто про наявність води чи кави, підійде hay agua або hay café: конкретної порції не рахуємо. Без артикля можна назвати й невизначену множину: hay libros. А un café в іншій розмові може означати порцію кави.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:21",
+"es:07:23",
+"es:07:26"
+],
+"focusId": "es:07:23"
+},
+{
+"title": "Як сказати, що чогось немає",
+"body": "Спершу скажи, що щось є: Hay café. Щоб сказати протилежне, додай no: No hay café. У множині hay не змінюється: No hay billetes — квитків немає.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:31",
+"es:07:32",
+"es:07:35"
+],
+"focusId": "es:07:35"
+},
+{
+"title": "Як запитати про наявність",
+"body": "Щоб дізнатися, чи щось є, залиш hay на місці й вимов фразу як запитання. Допоміжне дієслово не потрібне. На письмі потрібні обидва знаки питання; у конструкторі вони з’являються самі.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:37",
+"es:07:39",
+"es:07:40"
+],
+"focusId": "es:07:39"
+},
+{
+"title": "Можна почати й з місця",
+"body": "Коли по черзі оглядаєш сумку, станцію чи стіл, зручно спочатку назвати місце: En la mesa hay… Це не нове правило дієслова, а спосіб розставити акценти. Зворотний нейтральний порядок Hay… en la mesa теж можливий.",
+"note": "Hay — безособова форма: тут не шукаємо підмета для узгодження.",
+"samples": [
+"es:07:41",
+"es:07:42",
+"es:07:46",
+"es:07:48"
+],
+"focusId": "es:07:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "hay un / una",
+"gloss": "Один новий предмет",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+},
+{
+"es": "hay dos",
+"gloss": "Точна кількість",
+"id": "es:07:11",
+"sample": "Hay dos libros en la mesa."
+},
+{
+"es": "hay + agua / libros",
+"gloss": "Речовина чи речі без точної кількості",
+"id": "es:07:21",
+"sample": "Hay agua."
+},
+{
+"es": "no hay",
+"gloss": "Відсутність",
+"id": "es:07:31",
+"sample": "No hay agua."
+},
+{
+"es": "¿hay…?",
+"gloss": "Запитати, чи щось є",
+"id": "es:07:37",
+"sample": "¿Hay agua aquí?"
+}
+],
+"title": "П’ять моделей з hay"
+},
+{
+"rows": [
+{
+"es": "— · hay",
+"gloss": "є / наявне",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+}
+],
+"title": "Форми haber"
+}
+]
+},
+"en": {
+"title": "Saying what there is with hay",
+"formula": "hay + what is there + (place)",
+"story": "Look in a bag: Hay una llave. Hay dos llaves. Hay introduces what is there. To locate the key you both know about, say La llave está aquí.",
+"use": "Report whether an object, people, or necessary item is available in a certain place. Distinguish hay from está.",
+"choose": "Before each new countable object in these phrases, put un or una. Choose based on the Spanish noun: un mapa, but una mochila. Don't copy the gender of the word in the translation or guess it based only on the last letter.",
+"nuance": "After dos, a plural object is needed: libros. hay itself doesn't change.",
+"wrong": "Hay dos libro en la mesa.",
+"right": "Hay dos libros en la mesa.",
+"chapters": [
+{
+"title": "Am I saying something exists or locating a known thing?",
+"body": "As you open the door, you notice a book for the first time. To say \"there's a book here,\" start with hay. When both people know the book and are looking for it, tell them where it is: El libro está aquí. The decision depends on what the conversation is about, not on how long the book will be there.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:01",
+"es:07:02"
+],
+"focusId": "es:07:01"
+},
+{
+"title": "When do I use un or una?",
+"body": "Before each new countable object in these phrases, put un or una. Choose based on the Spanish noun: un mapa, but una mochila. Don't copy the gender of the word in the translation or guess it based only on the last letter.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:03",
+"es:07:04",
+"es:07:05"
+],
+"focusId": "es:07:05"
+},
+{
+"title": "What changes after dos?",
+"body": "Form hay does not agree with things by number. You can see one book, and then two: hay un libro → hay dos libros. After dos, do not add un and do not leave the noun singular.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:10",
+"es:07:11",
+"es:07:12"
+],
+"focusId": "es:07:12"
+},
+{
+"title": "How do I talk about water or coffee without counting it?",
+"body": "When simply talking about the presence of water or coffee, hay agua or hay café will do: we're not counting a specific serving. Without the article, you can also name an indefinite set: hay libros. And un café in another conversation might mean a serving of coffee.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:21",
+"es:07:23",
+"es:07:26"
+],
+"focusId": "es:07:23"
+},
+{
+"title": "How do I say there isn’t any?",
+"body": "Put no directly before hay. Compare Hay billetes and No hay billetes: hay and billetes stay the same.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:31",
+"es:07:32",
+"es:07:35"
+],
+"focusId": "es:07:35"
+},
+{
+"title": "How do I ask whether something is available?",
+"body": "To find out whether something exists, leave hay in place and say the phrase as a question. No auxiliary verb is needed. In writing, both question marks are needed; in the construction set, they appear automatically.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:37",
+"es:07:39",
+"es:07:40"
+],
+"focusId": "es:07:39"
+},
+{
+"title": "Can I mention the place first?",
+"body": "When you examine a bag, a station, or a table in turn, it's convenient to name the location first: En la mesa hay … This isn't a new verb rule, but a way to emphasize the point. The reverse neutral order Hay … en la mesa is also possible.",
+"note": "Hay is an impersonal form: we don't look for a subject for agreement here.",
+"samples": [
+"es:07:41",
+"es:07:42",
+"es:07:46",
+"es:07:48"
+],
+"focusId": "es:07:42"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "hay un / una",
+"gloss": "One new item",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+},
+{
+"es": "hay dos",
+"gloss": "The exact quantity",
+"id": "es:07:11",
+"sample": "Hay dos libros en la mesa."
+},
+{
+"es": "hay + agua / libros",
+"gloss": "A substance or things without exact count",
+"id": "es:07:21",
+"sample": "Hay agua."
+},
+{
+"es": "no hay",
+"gloss": "Absence",
+"id": "es:07:31",
+"sample": "No hay agua."
+},
+{
+"es": "¿hay…?",
+"gloss": "Ask if there is something",
+"id": "es:07:37",
+"sample": "¿Hay agua aquí?"
+}
+],
+"title": "Five Models with hay"
+},
+{
+"rows": [
+{
+"es": "— · hay",
+"gloss": "is / there is",
+"id": "es:07:01",
+"sample": "Hay un libro aquí."
+}
+],
+"title": "Forms haber"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:07:01",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"un",
+"libro",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es07/lab/form1",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:13",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"dos",
+"llaves",
+"en",
+"el",
+"bolso"
+],
+"i": 12,
+"kind": "form",
+"key": "es07/lab/form2",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:26",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"libros",
+"en",
+"la",
+"oficina"
+],
+"i": 25,
+"kind": "form",
+"key": "es07/lab/form3",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:38",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"leche",
+"en",
+"el",
+"hotel"
+],
+"i": 37,
+"kind": "form",
+"key": "es07/lab/form4",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:07",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"una",
+"llave",
+"en",
+"el",
+"bolso"
+],
+"i": 6,
+"kind": "spot",
+"key": "es07/lab/spot1",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:20",
+"index": 0,
+"right": "Hay",
+"near": "Tienen",
+"seq": [
+"Hay",
+"dos",
+"farmacias",
+"cerca"
+],
+"i": 19,
+"kind": "spot",
+"key": "es07/lab/spot2",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:32",
+"index": 1,
+"right": "hay",
+"near": "tienen",
+"seq": [
+"No",
+"hay",
+"café"
+],
+"i": 31,
+"kind": "spot",
+"key": "es07/lab/spot3",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"id": "es:07:47",
+"index": 2,
+"right": "hay",
+"near": "tienen",
+"seq": [
+"Aquí",
+"no",
+"hay",
+"salida"
+],
+"i": 46,
+"kind": "spot",
+"key": "es07/lab/spot4",
+"feedback": {
+"ru": "Неизменное hay сообщает о наличии; для нескольких вещей оно имеет ту же форму.",
+"uk": "Незмінне hay повідомляє про наявність; для кількох речей форма та сама.",
+"en": "The invariable hay reports presence; it has the same form for several things."
+}
+},
+{
+"kind": "match",
+"key": "es07/lab/match1",
+"id": "es:07:02",
+"other": "es:07:01"
+},
+{
+"kind": "match",
+"key": "es07/lab/match2",
+"id": "es:07:17",
+"other": "es:07:16"
+},
+{
+"kind": "match",
+"key": "es07/lab/match3",
+"id": "es:07:33",
+"other": "es:07:34"
+},
+{
+"kind": "match",
+"key": "es07/lab/match4",
+"id": "es:07:46",
+"other": "es:07:47"
+},
+{
+"kind": "build",
+"key": "es07/lab/build1",
+"id": "es:07:04"
+},
+{
+"kind": "build",
+"key": "es07/lab/build2",
+"id": "es:07:15"
+},
+{
+"kind": "build",
+"key": "es07/lab/build3",
+"id": "es:07:29"
+},
+{
+"kind": "build",
+"key": "es07/lab/build4",
+"id": "es:07:42"
+},
+{
+"kind": "transform",
+"id": "es:07:12",
+"base": "es:07:11",
+"diff": [
+{
+"before": [
+"libros"
+],
+"after": [
+"llaves"
+]
+}
+],
+"key": "es07/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:07:14",
+"base": "es:07:13",
+"diff": [
+{
+"before": [
+"llaves"
+],
+"after": [
+"fotos"
+]
+}
+],
+"key": "es07/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:07:33",
+"base": "es:07:24",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es07/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:07:49",
+"base": "es:07:26",
+"diff": [
+{
+"before": [
+"libros"
+],
+"after": [
+"gente"
+]
+}
+],
+"key": "es07/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+12,
+4
+],
+[
+16,
+1
+],
+[
+2,
+5
+],
+[
+6,
+10
+],
+[
+3,
+15
+],
+[
+11,
+7
+]
+],
+"worked": [
+"es:07:05",
+"es:07:18",
+"es:07:33",
+"es:07:48"
+],
+"reflection": [
+"es:07:01",
+"es:07:11"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 8,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 8,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Мои, твои или их: mi, tu, su",
+"formula": "mi / tu / su + один предмет; mis / tus / sus + несколько",
+"story": "Один хозяин может потерять несколько ключей. Mi llave → mis llaves: -s относится к ключам, а не к хозяину.",
+"use": "Назови владельца и выбери форму по числу вещей. Используй знакомые фразы о месте и семье.",
+"choose": "Mi → mis, tu → tus и su → sus меняются по числу того, что принадлежит. Не считай владельцев: у семьи может быть одна машина, а у одного человека — несколько ключей. Сравни su coche и sus llaves.",
+"nuance": "Llaves — несколько ключей. Даже у одного владельца перед ними нужно mis, а не mi.",
+"wrong": "Mi llaves están aquí.",
+"right": "Mis llaves están aquí.",
+"chapters": [
+{
+"title": "Как назвать владельца",
+"body": "Определи, чья вещь. Если моя — mi, если собеседника, которому говорю «ты», — tu. Когда речь о нём, о ней, о них или о собеседнике на usted, возможна форма su. Сначала выбери владельца, затем проверь число предметов.",
+"note": "В группе «tu libro» выбирай tu по владельцу и числу того, что названо существительным libro.",
+"samples": [
+"es:08:01",
+"es:08:11",
+"es:08:21"
+],
+"focusId": "es:08:11"
+},
+{
+"title": "Что делает окончание -s",
+"body": "Mi → mis, tu → tus и su → sus меняются по числу того, что принадлежит. Не считай владельцев: у семьи может быть одна машина, а у одного человека — несколько ключей. Сравни su coche и sus llaves.",
+"note": "В группе «su coche» выбирай su по владельцу и числу того, что названо существительным coche.",
+"samples": [
+"es:08:03",
+"es:08:04",
+"es:08:25",
+"es:08:26"
+],
+"focusId": "es:08:25"
+},
+{
+"title": "Mi перед существительными разного рода",
+"body": "Mi libro — моя книга. Mi mochila — мой рюкзак. Почему оба раза mi? Здесь это короткое слово стоит ПЕРЕД названием вещи. Род вещи его не меняет; число меняет: mi libro → mis libros. Не путай mi с отдельным словом mío: это другая конструкция.",
+"note": "В группе «mi mochila» выбирай mi по владельцу и числу того, что названо существительным mochila.",
+"samples": [
+"es:08:01",
+"es:08:05",
+"es:08:06"
+],
+"focusId": "es:08:05"
+},
+{
+"title": "Почему не нужен ещё и артикль",
+"body": "В обычной современной модели перед существительным выбираем la llave или mi llave, но не la mi llave. В остальной части фразы артикли никуда не исчезают: tu llave está en la mesa. У стола в этой фразе не назван владелец.",
+"note": "В группе «tu llave» выбирай tu по владельцу и числу того, что названо существительным llave.",
+"samples": [
+"es:08:13",
+"es:08:14",
+"es:08:16"
+],
+"focusId": "es:08:13"
+},
+{
+"title": "Как понять, кто скрывается за su",
+"body": "Испанское su само не уточняет пол и число владельцев. Без разговора Su mochila está aquí может означать «её», «его», «их» или вежливое «ваш рюкзак здесь». Поэтому в заданиях со спорным адресатом контекст показан до первой плитки.",
+"note": "В группе «sus billetes» выбирай sus по владельцу и числу того, что названо существительным billetes.",
+"samples": [
+"es:08:21",
+"es:08:23",
+"es:08:27",
+"es:08:28"
+],
+"focusId": "es:08:28"
+},
+{
+"title": "Два владельца в одном предложении",
+"body": "Разбирай каждую группу отдельно. В «твои фото в моём телефоне» сначала выбирай слово для фотографий собеседника, затем для одного телефона говорящего. Не нужно делать обе формы одинаковыми только потому, что они попали в одну фразу.",
+"note": "В группе «tus fotos» выбирай tus по владельцу и числу того, что названо существительным fotos.",
+"samples": [
+"es:08:20",
+"es:08:29",
+"es:08:47",
+"es:08:48"
+],
+"focusId": "es:08:20"
+},
+{
+"title": "Вопрос или отрицание не меняют владельца",
+"body": "Вопросительное dónde и отрицание no уже знакомы. Они меняют цель высказывания, но не форму слов «мой» и «твой». Сначала собери группу mis llaves, затем выбери глагол во множественном числе, даже если в переводе сказано «ключей нет».",
+"note": "В группе «mis llaves» выбирай mis по владельцу и числу того, что названо существительным llaves.",
+"samples": [
+"es:08:42",
+"es:08:43",
+"es:08:44",
+"es:08:46"
+],
+"focusId": "es:08:44"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "mi",
+"gloss": "моё: один предмет",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "mis",
+"gloss": "моё: несколько предметов",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+},
+{
+"es": "tu",
+"gloss": "твоё: один предмет",
+"id": "es:08:11",
+"sample": "Tu libro está aquí."
+},
+{
+"es": "tus",
+"gloss": "твоё: несколько предметов",
+"id": "es:08:12",
+"sample": "Tus libros están aquí."
+},
+{
+"es": "su",
+"gloss": "его / её / их / Ваш: один предмет",
+"id": "es:08:25",
+"sample": "Su coche está fuera."
+},
+{
+"es": "sus",
+"gloss": "тот же круг владельцев: несколько вещей",
+"id": "es:08:26",
+"sample": "Sus llaves están en la cocina."
+}
+],
+"title": "Владелец и число вещей"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · está",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "вы, несколько друзей в Испании",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · están",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+}
+],
+"title": "Формы estar"
+},
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · es",
+"gloss": "он, она или один адресат на «вы»",
+"id": "es:08:33",
+"sample": "Su hermano es médico."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "вы, несколько друзей в Испании",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · son",
+"gloss": "они или несколько адресатов на ustedes",
+"id": "es:08:40",
+"sample": "Sus hermanas son médicas."
+}
+],
+"title": "Формы ser"
+}
+]
+},
+"uk": {
+"title": "Мої, твої чи їхні: mi, tu, su",
+"formula": "mi / tu / su + один предмет; mis / tus / sus + кілька",
+"story": "Один власник може загубити кілька ключів. Mi llave → mis llaves: -s стосується ключів, а не власника.",
+"use": "Назви власника й обери форму за кількістю речей. Використовуй знайомі фрази про місце та родину.",
+"choose": "Mi → mis, tu → tus і su → sus змінюються за числом того, що комусь належить. Не рахуй власників: родина може мати одну машину, а одна людина — кілька ключів. Порівняй su coche і sus llaves.",
+"nuance": "Llaves — кілька ключів. Навіть за одного власника перед ними треба mis, а не mi.",
+"wrong": "Mi llaves están aquí.",
+"right": "Mis llaves están aquí.",
+"chapters": [
+{
+"title": "Як назвати власника",
+"body": "Визнач, чия річ. Якщо моя — mi, якщо співрозмовника, до якого звертаюся на «ти», — tu. Коли йдеться про нього, про неї, про них або про співрозмовника на usted, можлива форма su. Спершу обери власника, тоді перевір кількість речей.",
+"note": "У групі «tu libro» обирай tu за власником і числом того, що названо іменником libro.",
+"samples": [
+"es:08:01",
+"es:08:11",
+"es:08:21"
+],
+"focusId": "es:08:11"
+},
+{
+"title": "Що робить закінчення -s",
+"body": "Mi → mis, tu → tus і su → sus змінюються за числом того, що комусь належить. Не рахуй власників: родина може мати одну машину, а одна людина — кілька ключів. Порівняй su coche і sus llaves.",
+"note": "У групі «su coche» обирай su за власником і числом того, що названо іменником coche.",
+"samples": [
+"es:08:03",
+"es:08:04",
+"es:08:25",
+"es:08:26"
+],
+"focusId": "es:08:25"
+},
+{
+"title": "Mi перед іменниками різного роду",
+"body": "Mi libro — моя книжка. Mi mochila — мій рюкзак. В обох випадках mi стоїть ПЕРЕД назвою речі. Рід речі не впливає на цю форму, число впливає: mi libro → mis libros. Не плутай mi з окремою формою mío: це інша конструкція.",
+"note": "У групі «mi mochila» обирай mi за власником і числом того, що названо іменником mochila.",
+"samples": [
+"es:08:01",
+"es:08:05",
+"es:08:06"
+],
+"focusId": "es:08:05"
+},
+{
+"title": "Чому не потрібен іще й артикль",
+"body": "У звичайній сучасній моделі перед іменником обираємо la llave або mi llave, але не la mi llave. У решті фрази артиклі нікуди не зникають: tu llave está en la mesa. Власника столу тут не названо.",
+"note": "У групі «tu llave» обирай tu за власником і числом того, що названо іменником llave.",
+"samples": [
+"es:08:13",
+"es:08:14",
+"es:08:16"
+],
+"focusId": "es:08:13"
+},
+{
+"title": "Як зрозуміти, кого позначає su",
+"body": "Іспанське su саме по собі не уточнює статі й кількості власників. Поза розмовою Su mochila está aquí може означати «її», «його», «їхній» чи ввічливе «ваш рюкзак тут». Тому в завданнях із неоднозначним адресатом ситуацію подано до першої плитки.",
+"note": "У групі «sus billetes» обирай sus за власником і числом того, що названо іменником billetes.",
+"samples": [
+"es:08:21",
+"es:08:23",
+"es:08:27",
+"es:08:28"
+],
+"focusId": "es:08:28"
+},
+{
+"title": "Два власники в одному реченні",
+"body": "Розбирай кожну групу окремо. У фразі «твої фотографії в моєму телефоні» спершу обери слово для фотографій співрозмовника, тоді — для одного телефона мовця. Обидві форми не мають бути однаковими лише тому, що стоять в одному реченні.",
+"note": "У групі «tus fotos» обирай tus за власником і числом того, що названо іменником fotos.",
+"samples": [
+"es:08:20",
+"es:08:29",
+"es:08:47",
+"es:08:48"
+],
+"focusId": "es:08:20"
+},
+{
+"title": "Запитання чи заперечення не змінюють власника",
+"body": "Питальне dónde і заперечення no вже знайомі. Вони змінюють мету вислову, але не форму слів «мій» і «твій». Спочатку склади групу mis llaves, тоді обери дієслово в множині, навіть якщо в перекладі сказано «ключів немає».",
+"note": "У групі «mis llaves» обирай mis за власником і числом того, що названо іменником llaves.",
+"samples": [
+"es:08:42",
+"es:08:43",
+"es:08:44",
+"es:08:46"
+],
+"focusId": "es:08:44"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "mi",
+"gloss": "моє: один предмет",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "mis",
+"gloss": "моє: кілька предметів",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+},
+{
+"es": "tu",
+"gloss": "твоє: один предмет",
+"id": "es:08:11",
+"sample": "Tu libro está aquí."
+},
+{
+"es": "tus",
+"gloss": "твоє: кілька предметів",
+"id": "es:08:12",
+"sample": "Tus libros están aquí."
+},
+{
+"es": "su",
+"gloss": "його / її / їхній / Ваш: один предмет",
+"id": "es:08:25",
+"sample": "Su coche está fuera."
+},
+{
+"es": "sus",
+"gloss": "ті самі можливі власники: кілька речей",
+"id": "es:08:26",
+"sample": "Sus llaves están en la cocina."
+}
+],
+"title": "Власник і кількість речей"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · está",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · están",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+}
+],
+"title": "Форми estar"
+},
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · es",
+"gloss": "він, вона або один адресат на «ви»",
+"id": "es:08:33",
+"sample": "Su hermano es médico."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "ви, кілька друзів в Іспанії",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · son",
+"gloss": "вони або кілька адресатів на ustedes",
+"id": "es:08:40",
+"sample": "Sus hermanas son médicas."
+}
+],
+"title": "Форми ser"
+}
+]
+},
+"en": {
+"title": "Whose is it? Mi, tu and su",
+"formula": "mi / tu / su + singular noun · mis / tus / sus + plural noun",
+"story": "One owner can lose several keys. Mi llave → mis llaves: the -s counts the keys, not their owners.",
+"use": "Name the owner and choose the form based on the number of things. Use familiar phrases about place and family.",
+"choose": "Mi → mis, tu → tus, and su → sus change depending on the number of things owned. Don't count the owners: a family can have one car, and one person can have several keys. Compare su coche and sus llaves.",
+"nuance": "Llaves — multiple keys. Even if they belong to the same owner, they need mis before them, not mi.",
+"wrong": "Mi llaves están aquí.",
+"right": "Mis llaves están aquí.",
+"chapters": [
+{
+"title": "How do I say who owns something?",
+"body": "Determine whose thing it is. If it's mine, use mi; if it's the interlocutor to whom I'm addressing \"you,\" use tu. When talking about him, her, them, or the interlocutor with usted, form su is possible. First, choose the owner, then check the number of items.",
+"note": "In the group \" tu libro \", select tu by the owner and number of what is named by the noun libro.",
+"samples": [
+"es:08:01",
+"es:08:11",
+"es:08:21"
+],
+"focusId": "es:08:11"
+},
+{
+"title": "Why do I add -s for more than one thing?",
+"body": "Mi → mis, tu → tus, and su → sus change depending on the number of things owned. Don't count the owners: a family can have one car, and one person can have several keys. Compare su coche and sus llaves.",
+"note": "In the group \" su coche \", select su by the owner and number of what is named by the noun coche.",
+"samples": [
+"es:08:03",
+"es:08:04",
+"es:08:25",
+"es:08:26"
+],
+"focusId": "es:08:25"
+},
+{
+"title": "Does mi change with the noun's gender?",
+"body": "Compare mi libro (“my book”) and mi mochila (“my backpack”). Before a noun, mi stays mi for both genders. Number does matter: mi libro becomes mis libros. This does not mean that mi and mío are interchangeable; the second belongs to a different pattern.",
+"note": "In the group \" mi mochila \", select mi by the owner and number of what is named by the noun mochila.",
+"samples": [
+"es:08:01",
+"es:08:05",
+"es:08:06"
+],
+"focusId": "es:08:05"
+},
+{
+"title": "Why not use el before mi?",
+"body": "In the usual modern model, we choose la llave or mi llave before the noun, but not la mi llave. The articles remain in place throughout the rest of the phrase: tu llave está en la mesa. The owner of the table is not named in this phrase.",
+"note": "In the group \" tu llave \", select tu by the owner and number of what is named by the noun llave.",
+"samples": [
+"es:08:13",
+"es:08:14",
+"es:08:16"
+],
+"focusId": "es:08:13"
+},
+{
+"title": "Whose does su mean here?",
+"body": "Spanish su itself does not specify the gender or number of owners. Without conversation, Su mochila está aquí can mean \"her,\" \"his,\" \"their,\" or the polite \"your backpack is here.\" Therefore, in tasks with a debatable recipient, the context is shown before the first tile.",
+"note": "In the group \" sus billetes \", select sus by the owner and number of what is named by the noun billetes.",
+"samples": [
+"es:08:21",
+"es:08:23",
+"es:08:27",
+"es:08:28"
+],
+"focusId": "es:08:28"
+},
+{
+"title": "How do I keep two owners apart?",
+"body": "Analyze each group separately. In \"Your photos are on my phone,\" first choose a word for the person you're talking to, then for the speaker's phone number. Don't make both forms the same just because they're in the same sentence.",
+"note": "In the group \" tus fotos \", select tus by the owner and number of what is named by the noun fotos.",
+"samples": [
+"es:08:20",
+"es:08:29",
+"es:08:47",
+"es:08:48"
+],
+"focusId": "es:08:20"
+},
+{
+"title": "Does ownership change in a question or a negative?",
+"body": "The interrogative dónde and the negation no are already familiar. They change the purpose of the utterance, but not the form of the words \"my\" and \"your.\" First, assemble the group mis llaves, then choose the plural verb, even if the translation says \"no keys.\"",
+"note": "In the group \" mis llaves \", select mis by the owner and number of what is named by the noun llaves.",
+"samples": [
+"es:08:42",
+"es:08:43",
+"es:08:44",
+"es:08:46"
+],
+"focusId": "es:08:44"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "mi",
+"gloss": "My: Single Item",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "mis",
+"gloss": "My: Multiple Items",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+},
+{
+"es": "tu",
+"gloss": "yours: one item",
+"id": "es:08:11",
+"sample": "Tu libro está aquí."
+},
+{
+"es": "tus",
+"gloss": "yours: several items",
+"id": "es:08:12",
+"sample": "Tus libros están aquí."
+},
+{
+"es": "su",
+"gloss": "his / hers / theirs / Your: one object",
+"id": "es:08:25",
+"sample": "Su coche está fuera."
+},
+{
+"es": "sus",
+"gloss": "same circle of owners: several things",
+"id": "es:08:26",
+"sample": "Sus llaves están en la cocina."
+}
+],
+"title": "Owner and number of items"
+},
+{
+"rows": [
+{
+"es": "yo · estoy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · estás",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · está",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:08:01",
+"sample": "Mi libro está aquí."
+},
+{
+"es": "nosotros/as · estamos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · estáis",
+"gloss": "you, several friends in Spain",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · están",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:08:02",
+"sample": "Mis libros están aquí."
+}
+],
+"title": "Forms of estar"
+},
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él / ella / usted · es",
+"gloss": "He, She, or One Addressee with the Form \"You\"",
+"id": "es:08:33",
+"sample": "Su hermano es médico."
+},
+{
+"es": "nosotros/as · somos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros/as · sois",
+"gloss": "you, several friends in Spain",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos / ellas / ustedes · son",
+"gloss": "they or multiple recipients on ustedes",
+"id": "es:08:40",
+"sample": "Sus hermanas son médicas."
+}
+],
+"title": "Forms ser"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:08:01",
+"index": 0,
+"right": "Mi",
+"near": "Mis",
+"seq": [
+"Mi",
+"libro",
+"está",
+"aquí"
+],
+"i": 0,
+"kind": "form",
+"key": "es08/lab/form1",
+"feedback": {
+"ru": "Следующее слово — libro. Выбери владельца по переводу и число по предмету (один): mi.",
+"uk": "Наступне слово — libro. Обери власника за перекладом, а число — за предметом (один): mi.",
+"en": "The next word is libro. Select the owner by translation and the number by subject (one): mi."
+}
+},
+{
+"id": "es:08:13",
+"index": 0,
+"right": "Tu",
+"near": "Tus",
+"seq": [
+"Tu",
+"llave",
+"está",
+"en",
+"la",
+"mesa"
+],
+"i": 12,
+"kind": "form",
+"key": "es08/lab/form2",
+"feedback": {
+"ru": "Следующее слово — llave. Выбери владельца по переводу и число по предмету (один): tu.",
+"uk": "Наступне слово — llave. Обери власника за перекладом, а число — за предметом (один): tu.",
+"en": "The next word is llave. Select the owner by translation and the number by subject (one): tu."
+}
+},
+{
+"id": "es:08:26",
+"index": 0,
+"right": "Sus",
+"near": "Su",
+"seq": [
+"Sus",
+"llaves",
+"están",
+"en",
+"la",
+"cocina"
+],
+"i": 25,
+"kind": "form",
+"key": "es08/lab/form3",
+"feedback": {
+"ru": "Следующее слово — llaves. Выбери владельца по переводу и число по предмету (несколько): sus.",
+"uk": "Наступне слово — llaves. Обери власника за перекладом, а число — за предметом (кілька): sus.",
+"en": "The next word is llaves. Select the owner by translation and the number by subject (multiple): sus."
+}
+},
+{
+"id": "es:08:38",
+"index": 0,
+"right": "Su",
+"near": "Sus",
+"seq": [
+"Su",
+"madre",
+"está",
+"en",
+"la",
+"tienda"
+],
+"i": 37,
+"kind": "form",
+"key": "es08/lab/form4",
+"feedback": {
+"ru": "Следующее слово — madre. Выбери владельца по переводу и число по предмету (один): su.",
+"uk": "Наступне слово — madre. Обери власника за перекладом, а число — за предметом (один): su.",
+"en": "The next word is madre. Select the owner by translation and the number by subject (one): su."
+}
+},
+{
+"id": "es:08:07",
+"index": 0,
+"right": "Mis",
+"near": "Mi",
+"seq": [
+"Mis",
+"fotos",
+"están",
+"en",
+"el",
+"móvil"
+],
+"i": 6,
+"kind": "spot",
+"key": "es08/lab/spot1",
+"feedback": {
+"ru": "Следующее слово — fotos. Выбери владельца по переводу и число по предмету (несколько): mis.",
+"uk": "Наступне слово — fotos. Обери власника за перекладом, а число — за предметом (кілька): mis.",
+"en": "The next word is fotos. Select the owner by translation and the number by subject (multiple): mis."
+}
+},
+{
+"id": "es:08:20",
+"index": 0,
+"right": "Tus",
+"near": "Tu",
+"seq": [
+"Tus",
+"fotos",
+"están",
+"en",
+"mi",
+"móvil"
+],
+"i": 19,
+"kind": "spot",
+"key": "es08/lab/spot2",
+"feedback": {
+"ru": "Следующее слово — fotos. Выбери владельца по переводу и число по предмету (несколько): tus.",
+"uk": "Наступне слово — fotos. Обери власника за перекладом, а число — за предметом (кілька): tus.",
+"en": "The next word is fotos. Select the owner by translation and the number by subject (multiple): tus."
+}
+},
+{
+"id": "es:08:32",
+"index": 0,
+"right": "Tu",
+"near": "Tus",
+"seq": [
+"Tu",
+"hermana",
+"está",
+"en",
+"clase"
+],
+"i": 31,
+"kind": "spot",
+"key": "es08/lab/spot3",
+"feedback": {
+"ru": "Следующее слово — hermana. Выбери владельца по переводу и число по предмету (один): tu.",
+"uk": "Наступне слово — hermana. Обери власника за перекладом, а число — за предметом (один): tu.",
+"en": "The next word is hermana. Select the owner by translation and the number by subject (one): tu."
+}
+},
+{
+"id": "es:08:47",
+"index": 0,
+"right": "Mi",
+"near": "Mis",
+"seq": [
+"Mi",
+"llave",
+"está",
+"en",
+"tu",
+"bolsillo"
+],
+"i": 46,
+"kind": "spot",
+"key": "es08/lab/spot4",
+"feedback": {
+"ru": "Следующее слово — llave. Выбери владельца по переводу и число по предмету (один): mi.",
+"uk": "Наступне слово — llave. Обери власника за перекладом, а число — за предметом (один): mi.",
+"en": "The next word is llave. Select the owner by translation and the number by subject (one): mi."
+}
+},
+{
+"kind": "match",
+"key": "es08/lab/match1",
+"id": "es:08:02",
+"other": "es:08:03"
+},
+{
+"kind": "match",
+"key": "es08/lab/match2",
+"id": "es:08:17",
+"other": "es:08:18"
+},
+{
+"kind": "match",
+"key": "es08/lab/match3",
+"id": "es:08:33",
+"other": "es:08:36"
+},
+{
+"kind": "match",
+"key": "es08/lab/match4",
+"id": "es:08:46",
+"other": "es:08:47"
+},
+{
+"kind": "build",
+"key": "es08/lab/build1",
+"id": "es:08:04"
+},
+{
+"kind": "build",
+"key": "es08/lab/build2",
+"id": "es:08:15"
+},
+{
+"kind": "build",
+"key": "es08/lab/build3",
+"id": "es:08:29"
+},
+{
+"kind": "build",
+"key": "es08/lab/build4",
+"id": "es:08:42"
+},
+{
+"kind": "transform",
+"id": "es:08:11",
+"base": "es:08:01",
+"diff": [
+{
+"before": [
+"Mi"
+],
+"after": [
+"Tu"
+]
+}
+],
+"key": "es08/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:08:31",
+"base": "es:08:05",
+"diff": [
+{
+"before": [
+"mochila"
+],
+"after": [
+"hermana"
+]
+}
+],
+"key": "es08/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:08:27",
+"base": "es:08:21",
+"diff": [
+{
+"before": [
+"mochila"
+],
+"after": [
+"billete"
+]
+}
+],
+"key": "es08/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:08:49",
+"base": "es:08:32",
+"diff": [
+{
+"before": [
+"Tu"
+],
+"after": [
+"Su"
+]
+},
+{
+"before": [],
+"after": [
+"mi"
+]
+}
+],
+"key": "es08/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+16
+],
+[
+2,
+12
+],
+[
+4,
+8
+],
+[
+1,
+9
+],
+[
+18,
+5
+],
+[
+7,
+14
+],
+[
+11,
+15
+]
+],
+"worked": [
+"es:08:05",
+"es:08:18",
+"es:08:33",
+"es:08:48"
+],
+"reflection": [
+"es:08:01",
+"es:08:02"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

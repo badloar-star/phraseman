@@ -53,6 +53,7 @@ describe('выбор и сопоставление «навсегда»', () => 
     expect(a.type).toBe('NON_RENEWING_PURCHASE');
     expect(a.product_id).toBe('phraseman_premium_lifetime_v1');
     expect(a.app_user_id).toBe(UID);
+    expect(a.original_app_user_id).toBeUndefined();
     expect(a.environment).toBe('PRODUCTION');
   });
 
@@ -119,6 +120,9 @@ describe('цепочка: «навсегда» в отсрочке → восс�
     expect(restored).toMatchObject({ ok: true, active: true, reconciled: true, plan: 'lifetime' });
     expect(apply).toHaveBeenCalledTimes(1);
     expect((apply.mock.calls[0] as unknown[])[0]).toMatchObject({ type: 'NON_RENEWING_PURCHASE', product_id: 'phraseman_premium_lifetime_v1' });
+    expect((apply.mock.calls[0] as unknown[])[3]).toEqual({
+      kind: 'synthetic_reconcile', requesterCanonicalUid: UID, source: 'lifetime',
+    });
 
     // повтор сразу после — задержка успеха, начислений больше нет, ответ «активно» из проекции
     const again = await hooks.reconcileMine(db, UID, 'auth_1', 'test_secret', NOW + 1000, f.impl, 'premium', apply);
@@ -155,6 +159,9 @@ describe('цепочка: «навсегда» в отсрочке → восс�
     expect(result).toMatchObject({ active: true, reconciled: true });
     expect(f.urls.some((u) => u.includes('/purchases'))).toBe(false);
     expect((apply.mock.calls[0] as unknown[])[0]).toMatchObject({ type: 'RENEWAL' });
+    expect((apply.mock.calls[0] as unknown[])[3]).toEqual({
+      kind: 'synthetic_reconcile', requesterCanonicalUid: UID, source: 'subscription',
+    });
   });
 
   it('нет ни подписки, ни «навсегда» → не найдено, без применения', async () => {

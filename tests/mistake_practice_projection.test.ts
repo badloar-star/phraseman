@@ -1,5 +1,6 @@
 import type { MistakeEvent } from '../modules/mistake-practice/contracts';
-import { projectMistakes } from '../modules/mistake-practice/projection';
+import { MISTAKE_RULE_THREE_STEPS, projectMistakes } from '../modules/mistake-practice/projection';
+import { MISTAKE_CHECK_DELAY_MS } from '../modules/mistake-practice/three_step_rule';
 
 const DAY = 24 * 60 * 60 * 1000;
 const T0 = Date.UTC(2026, 7, 20, 10);
@@ -17,7 +18,8 @@ function event(
     type,
     occurredAtMs,
     studyTarget: 'en',
-    payload,
+    // зачем (D203, 11.11): экран отработки ставит на каждый ответ метку правила «три шага + проверка»; тесты пишут ответы так же.
+    payload: type === 'practice_answered' && payload.rule === undefined ? { ...payload, rule: MISTAKE_RULE_THREE_STEPS } : payload,
     ...overrides,
   };
 }
@@ -76,9 +78,11 @@ describe('mistake projection', () => {
     expect(item?.qualifyingDays).toEqual(['2026-08-20']);
     expect(item?.qualifyingModes).toEqual(['lesson_typing']);
     expect(item?.status).toBe('active');
+    // D203: шаги считаются по ответам, а не по дням — два верных ответа за один день дают два шага из трёх.
+    expect(item?.supportPassCount).toBe(2);
   });
 
-  test('corrects after three independent days, two modes and a production answer', () => {
+  test('corrects after three correct steps and schedules the check', () => {
     const projection = projectMistakes([
       captured,
       event('practice_answered', T0 + 1, {
@@ -114,10 +118,14 @@ describe('mistake projection', () => {
         'lesson_scripted_speech',
       ],
       hasIndependentProduction: true,
+      checkDueAtMs: T0 + DAY * 2 + MISTAKE_CHECK_DELAY_MS,
+      checkPassedAtMs: null,
     });
   });
 
-  test('recognition-only history cannot mark an item corrected', () => {
+  // зачем (D203): исправление — это три верных шага; какой вид задания достался на шаге, решает сборка занятия (от лёгкого
+  // к самостоятельному), а не расчёт состояния. Прежнее правило «только самостоятельные режимы за три дня» отменено.
+  test('three correct steps correct the item whatever task kinds were available', () => {
     const answers = [0, 1, 2].map((day) =>
       event('practice_answered', T0 + DAY * day, {
         correct: true,
@@ -131,12 +139,14 @@ describe('mistake projection', () => {
       captured.mistakeId,
     );
 
-    expect(item?.qualifyingDays).toHaveLength(0);
     expect(item?.hasIndependentProduction).toBe(false);
-    expect(item?.status).toBe('active');
+    expect(item?.status).toBe('corrected');
+    const two = projectMistakes([captured, ...answers.slice(0, 2)]).items.get(captured.mistakeId);
+    expect(two?.status).toBe('active');
+    expect(two?.supportPassCount).toBe(2);
   });
 
-  test('an independent production miss resets the series and is due immediately', () => {
+  test('a miss drops one step and is due immediately', () => {
     const missAt = T0 + DAY + 100;
     const item = projectMistakes([
       captured,
@@ -156,12 +166,13 @@ describe('mistake projection', () => {
       }),
     ]).items.get(captured.mistakeId);
 
-    expect(item?.qualifyingDays).toEqual([]);
+    expect(item?.supportPassCount).toBe(0);
+    expect(item?.missesInRow).toBe(1);
     expect(item?.status).toBe('active');
     expect(item?.dueAtMs).toBe(missAt);
   });
 
-  test('recognition verdicts never masquerade as independent evidence or erase it', () => {
+  test('a miss keeps the record of the days already practised', () => {
     const recognitionAt = T0 + DAY + 100;
     const item = projectMistakes([
       captured,
@@ -185,7 +196,8 @@ describe('mistake projection', () => {
     expect(item?.dueAtMs).toBe(recognitionAt);
   });
 
-  test('grows the independent-success interval adaptively', () => {
+  // зачем (D203): между шагами ошибка не «созревает» — она доступна сразу; отложена только проверка после третьего шага.
+  test('an active mistake stays due right after a correct step; only the check is delayed', () => {
     const firstAt = T0 + 1;
     const secondAt = T0 + DAY + 1;
     const first = projectMistakes([
@@ -203,8 +215,20 @@ describe('mistake projection', () => {
         correct: true, localDay: '2026-08-21', mode: 'lesson_scripted_speech', support: 'recognition',
       }),
     ]).items.get(captured.mistakeId);
-    expect(first?.dueAtMs).toBe(firstAt + DAY);
-    expect(second?.dueAtMs).toBe(secondAt + DAY * 2);
+    expect(first?.dueAtMs).toBe(firstAt);
+    expect(second?.dueAtMs).toBe(secondAt);
+    expect(second?.status).toBe('active');
+    expect(second?.checkDueAtMs).toBeNull();
+  });
+
+  // зачем (владелец 06.11): ответ БЕЗ метки правила (старая история, старые сборки) — первый верный сразу исправляет, без проверки.
+  test('an answer without the rule marker follows the previous rule: the first correct answer corrects', () => {
+    const item = projectMistakes([
+      captured,
+      event('practice_answered', T0 + 1, { correct: true, localDay: '2026-08-20', mode: 'lesson_choice', support: 'recognition', rule: null }),
+    ]).items.get(captured.mistakeId);
+    expect(item?.status).toBe('corrected');
+    expect(item?.checkDueAtMs).toBeNull();
   });
 
   test('hide, undo and a new correction cycle are event driven', () => {

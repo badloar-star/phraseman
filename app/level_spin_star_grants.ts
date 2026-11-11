@@ -1842,7 +1842,19 @@ export async function adoptServerWalletFromUserDoc(
 export type PreparedRuneSpend =
   | Readonly<{
       ok: true;
-      alreadySpent: boolean;
+      alreadySpent: false;
+      existingSpend: null;
+      balanceBefore: number;
+      balanceAfter: number;
+      /** Записи траты. Вызывающий пишет их ОДНИМ multiSet вместе с товаром. */
+      durableWrites: readonly (readonly [string, string])[];
+      projection: LevelSpinStarProjection;
+    }>
+  | Readonly<{
+      ok: true;
+      alreadySpent: true;
+      /** Неизменяемая старая квитанция: её цена может отличаться от сегодняшнего прайса. */
+      existingSpend: RuneSpendExactResultV1;
       balanceBefore: number;
       balanceAfter: number;
       /** Записи траты. Вызывающий пишет их ОДНИМ multiSet вместе с товаром. */
@@ -1906,12 +1918,26 @@ export async function prepareRuneSpend(
         operation.operationId === input.operationId
       ));
       if (existing) {
+        const existingSpend = parseRuneSpendExactResult(existing);
+        if (!existingSpend || !await hasValidRuneSpendFingerprint(existingSpend)) {
+          throw new Error('rune_spend_existing_operation_invalid');
+        }
+        if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+          throw new Error('level_spin_star_identity_changed');
+        }
+        // operationId один и тот же навсегда. Чужой товар под тем же id нельзя
+        // превратить в выдачу запрошенного товара; цену намеренно не сравниваем —
+        // старый прайс остаётся действительной квитанцией при восстановлении.
+        if (existingSpend.kind !== input.kind || existingSpend.subjectId !== input.subjectId) {
+          throw new Error('rune_spend_existing_operation_mismatch');
+        }
         // Повтор той же траты — не вторая цена. Возвращаем факт, а не списание.
         const visible = visibleProjection(projection);
         console.log(`[RUNE-SPEND] already_spent op=${input.operationId} balance=${visible.balance}`); // guard-ok: исход обязан логироваться и в релизе
         return Object.freeze({
           ok: true as const,
           alreadySpent: true as const,
+          existingSpend,
           balanceBefore: visible.balance,
           balanceAfter: visible.balance,
           // Писать нечего: трата уже лежит. Вызывающий просто выдаёт товар.
@@ -1961,6 +1987,7 @@ export async function prepareRuneSpend(
       return Object.freeze({
         ok: true as const,
         alreadySpent: false as const,
+        existingSpend: null,
         balanceBefore,
         balanceAfter,
         durableWrites: Object.freeze([

@@ -130,7 +130,7 @@ export const PeakWeekFrame = memo(function PeakWeekFrame({ tpl, lang, myRank }: 
   const sub = [
     outcome,
     tpl.weekCoins > 0 ? storyText(lang, 'weekCoins', { coins: storyThousands(tpl.weekCoins) }) : null,
-    tpl.outcome === 'up' && tpl.promotionCoins > 0 ? `+${storyThousands(tpl.promotionCoins)}` : null,
+    tpl.outcome === 'up' && tpl.promotionCoins > 0 ? momentText(lang, 'promoBonus', { n: tpl.promotionCoins }) : null,
   ].filter((part): part is string => part !== null).join(' · ');
   const columns = useMemo(() => {
     const byPlace = new Map((tpl.podium ?? []).map((e) => [e.place, e] as const));

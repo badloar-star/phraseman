@@ -97,3 +97,41 @@ Governance-ID: TG-813177371D89 (28.10: урок 32 — «я помыл» → «�
 Governance-ID: TG-7878D4DB782E (28.10: урок 32 — перевод английской фразы во вступлениях вернуть к «я» (96 строк), заголовки на «вы»; уточнение координатора и замечание Ревизора; откат — git revert)
 
 Governance-ID: TG-A8D405A4F8E2 (28.10: тост «Уроки недоступны» короче — строки Дизайну; правок файлов нет)
+
+Governance-ID: TG-6E69D6C07CA2 (29.10: подписи кадров объявлений 2.0 на 9 языках — components/stories/announcements_v2/announcement_v2_strings.ts, снять TRANSLATE; проверка — ратчет i18n:check и разбор файла; откат — git revert)
+
+Governance-ID: TG-01D6F46EF80F (29.10: вычитка ru/uk уроков 25–27 после Теории — «законченное время / завершений час» → «это уже прошлое», «не може стояти сама» → «окремо»; правки только final.ru/uk.md, по коммиту на урок; откат — git revert)
+
+Governance-ID: TG-C2109CD9D7C3 (29.10: вычитка ru/uk уроков 29–30 — «форма для нескольких: were» → «растений несколько»; «was — связка» → «was — «было»»; откат — git revert)
+
+Governance-ID: TG-5E97EB663DBD (29.10: вычитка ru/uk урока 32 — «Когда вместо предмета it» → «…стоит it»; откат — git revert)
+
+Governance-ID: TG-68268650B792 (29.10: поиск «суженных» строк (словари не на все 9 языков) в закоммиченном коде экранов; список координатору, перевод чистых файлов по коммиту на экран, предложение правки сторожа scan_untranslated_ui; откат — git revert)
+
+Governance-ID: TG-79FBCE356B10 (29.10: «суженные» словари triLang — неверные ключи языков (pt вместо pt-BR) и пропуски; первая находка components/DailyPhraseFriendsRow.tsx:39; правка ключей по экрану, откат — git revert)
+
+Governance-ID: TG-F2EA45DDBED5 (29.10: сторож ключей triLang — scripts/trilang_key_guard.mjs + подключение в scan_untranslated_ui.mjs (полный и --staged): неверный ключ языка = ошибка, словарь без en / без pt-BR,vi,id,tr,pl = ратчет по базе; тест на подложенный pt:; откат — git revert)
+
+Governance-ID: TG-3C8DB0742A1E (29.10: замечания Ревизора к сторожу triLang 5f04a4f03 — немой catch в walk() → console.warn; fr/de разрешить только в файлах «Диалогов»; тест; откат — git revert)
+
+Governance-ID: TG-3EC571B1353E (29.10: вычитка новых «Що ви опануєте / Что вы освоите» уроков 1–4 и 27–32 после переписи Теорией; правки только в final.ru/uk.md (поле не в practice.atomic.json); откат — git revert)
+
+Governance-ID: TG-9E0545C31320 (29.10: сверка 9 языков в коммитах обновления — конкурс B, окно победителя, лесенка, анонс/история, «Не хочу с начала», окно Plus, энергия 30 мин; дописать пропуски, коммит по экрану; откат — git revert)
+
+Governance-ID: TG-9E0545C31320 (продолжение 29.10: сторож scan_untranslated_ui исключает дев-превью app/dev_*.tsx и *_preview.tsx; немой catch в walk() пишет причину)
+
+Governance-ID: TG-9E0545C31320 (продолжение 29.10: перевод 24 фраз рекорда этажа Пика на en/es/pt-BR/vi/id/tr/pl в docs/work/handover/peak-record-translation-2026-10-29.md по просьбе Тем)
+
+Governance-ID: TG-D5C5351CEA07 (29.10: 9 языков в components/packs/CommunityPackCheckScene.tsx (версия HEAD после слияния 13f66f310) — LP(ru,en) → triLang на 9 языков, склонение «N карточек» по языку; правки Codex в рабочей копии не трогать; откат — git revert)
+
+Governance-ID: TG-2EAE18132ACE (29.10: новый файл components/packs/community_pack_check_strings.ts — 9 языков экрана проверки набора; правка экрана — поверх коммита Дизайна)
+
+Governance-ID: TG-D358005FEDF4 (29.10: 9 языков в шторке правил конкурса и этапе на главной Сообщества — новый components/packs/community_scene_strings.ts, LP в CommunityScene.tsx → по словарю; неполные словари CommunityPackScene/community_pack_create; призы — по решению координатора; откат — git revert)
+
+Governance-ID: TG-AEA19A16CFBD (29.10: components/spire/moments/moments_strings.ts:59 downBodyNoSteps — tr/pl старые названия Kule/Wieża → Zirve/Szczyt, красный сторож spire_old_names_guard)
+
+Governance-ID: TG-9F6373C9B940 (29.10: призы конкурса в шторке «Условия участия» — Plus на 3/2/1 месяц за места 1/2/3 по решению владельца; CommunityScene.tsx:131; 9 языков из community_scene_strings.ts)
+
+Governance-ID: TG-9C5ACA64AAA7 (29.10: вычитка uk «Що ви опануєте» во всём курсе на естественность — кальки, род, лишние слова; правки в md через Теорию или с её согласия; откат — git revert)
+
+Governance-ID: TG-9C5ACA64AAA7 (продолжение: 6 правок «Что вы освоите» с согласия Теории — l05/s53, s55, l10/s37 калька «знаходиться»; l07/s48, l09/s18, l26/s39 двусмысленное «вы», без рода)

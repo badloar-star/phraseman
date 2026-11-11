@@ -95,6 +95,7 @@ import {
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import PackVideoHero from './flashcards/PackVideoHero';
 import HomeV2VideoPlayerModal from '../components/home/v2/HomeV2VideoPlayerModal';
+import { useVideoSectionPreference } from './video_section_preference';
 import { packSupportsVideoMoments, resolveVideoMoment, type VideoMoment } from './flashcards/video_moment';
 import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
@@ -775,7 +776,9 @@ export default function FlashcardsScreen() {
    * Без таймкода/ролика/готовности видеораздела (D129) обработчика нет —
    * кнопка момента не рисуется вовсе.
    */
+  const videoEnabled = useVideoSectionPreference() === true;
   const [videoMoment, setVideoMoment] = useState<VideoMoment | null>(null);
+  useEffect(() => { if (!videoEnabled) setVideoMoment(null); }, [videoEnabled]);
   const videoMomentPack = packDeeplink && packSupportsVideoMoments(currentMarketPack) ? currentMarketPack : null;
   // зачем (владелец 18.10): «Сохранить» на каждой карточке набора из видео — сохранение кладём в контекст, строки списка читают его (кнопка только в наборах из видео).
   const videoPackCardSave = useVideoCardSave({ lang, packLanguage: currentMarketPack?.packLanguage, sourceTitle: currentMarketPack ? packTitleForInterface(currentMarketPack, strLang) : undefined, enabled: !!videoMomentPack });
@@ -1558,7 +1561,7 @@ export default function FlashcardsScreen() {
             onBack={handleCollectionBack}
             onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackMoreOpen(true) : null}
             onSpeak={(text) => speakFront(text, currentMarketPack.packLanguage)}
-            onOpenMoment={videoMomentPack ? openVideoMoment : null}
+            onOpenMoment={videoEnabled && videoMomentPack ? openVideoMoment : null}
             // зачем (cards-v2 videoSet(), 12.10): «Добавить +» / «✓ В моих наборах» — кнопка ряда под названием (CommunityPackSocialBar variant="setAdd"),
             // а не нижняя «Учить набор»; логика добавления и покупки прежняя.
             owned={!previewMode}
@@ -1829,7 +1832,7 @@ export default function FlashcardsScreen() {
             selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
             onCreatePack={openCreatePackFromSelection}
             onDeleteSelected={confirmDeleteSelected}
-            onOpenVideoMoment={videoMomentPack ? openVideoMoment : null}
+            onOpenVideoMoment={videoEnabled && videoMomentPack ? openVideoMoment : null}
             videoMomentLabel={videoMomentLabel}
           />
           </VideoCardSaveContext.Provider>
@@ -1941,7 +1944,7 @@ export default function FlashcardsScreen() {
           набор на устройстве — тогда уходим назад, чтобы не остаться на
           экране только что скрытого набора. */}
       {/* D131: ролик набора на секунде фразы; закрытие возвращает в тот же набор. */}
-      {videoMoment ? (
+      {videoEnabled && videoMoment ? (
         <HomeV2VideoPlayerModal
           testID="pack-video-moment-player"
           video={{ id: videoMoment.videoId, title: videoMoment.title }}

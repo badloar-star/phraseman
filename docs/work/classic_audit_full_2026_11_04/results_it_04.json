@@ -1,0 +1,19 @@
+[
+  {"id": "it:14:25", "type": "B2", "field": "ru", "problem": "Безличное «Нужно» не передаёт лицо Dobbiamo (мы); Devo/Devi/Deve тоже подходят к подсказке", "fix": "Нам нужно забронировать место."},
+  {"id": "it:14:25", "type": "B2", "field": "uk", "problem": "Безличное «Потрібно» не передаёт лицо Dobbiamo (ми); Devo/Devi/Deve тоже подходят к подсказке", "fix": "Нам потрібно забронювати місце."},
+  {"id": "it:14:33", "type": "B3", "field": "alternatives", "problem": "uk «Паоло зараз не може відповісти» прямо задаёт порядок «Paolo ora non può rispondere», плитки его позволяют, в alternatives нет", "fix": {"add": ["Paolo ora non può rispondere."], "remove": []}},
+  {"id": "it:14:35", "type": "B2", "field": "uk", "problem": "Безличное «Не можна» не задаёт лицо Lei (deve); подходит и «Non dobbiamo» из соблазнов", "fix": "Вам не можна торкатися цієї кнопки."},
+  {"id": "it:14:35", "type": "B4", "field": "alternatives", "problem": "«Non devi» (ты) противоречит подсказке «Вам» (вежливая форма Lei)", "fix": {"add": [], "remove": ["Non devi toccare quel pulsante."]}},
+  {"id": "it:15:09", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Luis sta mangiando in casa.» (= дома)", "fix": {"position": 3, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:15:10", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Stiamo mangiando in casa.» (= дома)", "fix": {"position": 2, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:15:29", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «I miei fratelli stanno mangiando in casa.» (= дома)", "fix": {"position": 5, "replace_distractor": "in", "with": "con"}},
+  {"id": "it:15:41", "type": "B1", "field": "tiles", "problem": "Соблазн «da» даёт верное и очень частое «Stai lavorando da casa?» (работаешь из дома)", "fix": {"position": 2, "replace_distractor": "da", "with": "con"}},
+  {"id": "it:15:41", "type": "B1", "field": "tiles", "problem": "Соблазн «in» даёт верное «Stai lavorando in casa?» (= дома)", "fix": {"position": 2, "replace_distractor": "in", "with": "su"}},
+  {"id": "it:16:05", "type": "B1", "field": "tiles", "problem": "Соблазн «Stai» даёт верное «Stai qui!» (= останься здесь, повелит. stare)", "fix": {"position": 0, "replace_distractor": "Stai", "with": "Sono"}},
+  {"id": "it:16:34", "type": "B2", "field": "ru", "problem": "Потерян элемент «la porta» (дверь)", "fix": "Не запирай дверь на ключ!"},
+  {"id": "it:16:34", "type": "B2", "field": "uk", "problem": "Потерян элемент «la porta» (двері)", "fix": "Не замикай двері на ключ!"},
+  {"id": "it:16:44", "type": "B2", "field": "ru", "problem": "Troviamo = найдём, а не «поищем» (cerchiamo)", "fix": "Давайте найдём другой столик!"},
+  {"id": "it:16:44", "type": "B2", "field": "uk", "problem": "«Давайте шукаємо» неграмматично как призыв и = cerchiamo; Troviamo = знайдімо", "fix": "Знайдімо інший столик!"},
+  {"id": "it:17:36", "type": "B2", "field": "uk", "problem": "«Я піду відпочивати» = пойду отдыхать, а не «ho intenzione di» (собираюсь); расходится с ru", "fix": "Я збираюся відпочити."},
+  {"id": "it:17:37", "type": "B2", "field": "ru", "problem": "ru в будущем времени («будешь собираться»), target и uk — настоящее", "fix": "Ты собираешься здесь."}
+]

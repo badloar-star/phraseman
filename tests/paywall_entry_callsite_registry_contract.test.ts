@@ -85,9 +85,9 @@ function sourceFiles(directory: string): string[] {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
     const absolute = path.join(directory, entry.name);
     // зачем (2026-09-20): вырезов быть НЕ должно. Здесь стояло два `continue` —
-    // 'app/learning-v2/' и 'app/ai_companion_session.tsx' («retired Max AI Tutor»).
+    // экраны удалённого курса занятий и 'app/ai_companion_session.tsx' («retired Max AI Tutor»).
     // Оба экрана живые и ведут на пейвол, и оба прятали по неизвестному source
-    // ('learning_v2', 'ai_companion_daily_limit'), из-за чего кнопка Plus на
+    // (источник удалённого курса, 'ai_companion_daily_limit'), из-за чего кнопка Plus на
     // релизе молча закрывала модалку вместо продажи. Сторож без полного охвата
     // не сторож: класс бага возвращается ровно через вырез.
     if (entry.isDirectory()) out.push(...sourceFiles(absolute));

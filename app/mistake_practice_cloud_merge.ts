@@ -1,4 +1,4 @@
-import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1 } from '../modules/canonical_json';
 import {
   isMistakeStudyTargetValue,
   type MistakeEvent,

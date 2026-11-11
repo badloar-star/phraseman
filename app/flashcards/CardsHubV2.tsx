@@ -152,7 +152,7 @@ function CardsHubV2Inner({ g, title, tiles, onBack, onCreate, labels }: Props) {
         </V2Pressable>
       </View>
       {/* зачем: пять строк — список фиксированный и короткий, FlatList не нужен (лишняя виртуализация); прокрутка — для крупного шрифта и низких экранов */}
-      <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false} testID="fc-cards-hub-list">
+      <ScrollView contentContainerStyle={styles.list} decelerationRate="fast" showsVerticalScrollIndicator={false} testID="fc-cards-hub-list">
         {rows.map((row) => /* guard-ok: пять фиксированных строк макета, виртуализация не нужна */ <CardsHubListRow key={row.id} g={g} row={row} tone={tone} lh={lh} />)}
       </ScrollView>
     </View>

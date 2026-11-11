@@ -1,0 +1,100 @@
+[
+ {
+  "id": "lesson-11/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«не утворює справжнє» — «справжнє» = подлинное, нужно «теперішній час»",
+  "fix": "`Andare` не утворює теперішній час простою заміною закінчення: `vado`, `vai`, `va`, але `andiamo`. Вчити зручно парами з однією і тією ж точкою призначення."
+ },
+ {
+  "id": "lesson-11/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«Не додай» — неверная форма запрета, нужно «Не додавай»",
+  "fix": "`A + il` дає `al`, а `a + lo` — `allo`. У `al mercato` артикль уже захований. Не додавай друге `il`."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T3",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "`da mia sorella` нет во фразах курса: в примере it:11:13 «Vado a casa di mia sorella»",
+  "fix": "К врачу идут с `da`: `dal medico`, `dal dentista`. В гости к сестре в курсе говорят `a casa di mia sorella`. Не путай `da` в этом значении с обозначением исходной точки: понять роль помогает вся фраза."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T3",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "то же: `da mia sorella` нет во фразах курса (it:11:13 — a casa di mia sorella)",
+  "fix": "До лікаря йдуть з `da`: `dal medico`, `dal dentista`. У гості до сестри в курсі кажуть `a casa di mia sorella`. Не плутай `da` у цьому значенні з позначенням вихідної точки: зрозуміти роль допомагає вся фраза."
+ },
+ {
+  "id": "lesson-11/chapter-2",
+  "type": "T3",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "same: `da mia sorella` is not among course phrases (it:11:13 uses a casa di mia sorella)",
+  "fix": "People go to the doctor with `da`: `dal medico`, `dal dentista`. To visit your sister, the course says `a casa di mia sorella`. Don't confuse `da` in this meaning with the starting point: the whole phrase shows the role."
+ },
+ {
+  "id": "lesson-11/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«У багатьох назвах» = «во многих названиях», а в ru «у множественных названий» — смысл расходится",
+  "fix": "З містами зазвичай `a`, з багатьма назвами країн `in`: `a Roma`, `in Italia`. У назвах у множині можлива форма з артиклем: `negli Stati Uniti`."
+ },
+ {
+  "id": "lesson-11/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«Сьогодення» = современность, нужно «теперішній час»; «якщо за умови» неграмматично",
+  "fix": "Теперішній час можна використовувати з ясним часом домовленості: план на вечір не обов'язково вимагає майбутнього закінчення. Але якщо в умові «після уроку», не перетворюй його на «до уроку»."
+ },
+ {
+  "id": "lesson-12/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Він вводить кілька продуктів» ≠ ru «некоторое количество продукта»",
+  "fix": "Частковий артикль виглядає як сполучення `di` з означеним артиклем, але в цих фразах він не означає «з». Він вводить певну кількість продукту."
+ },
+ {
+  "id": "lesson-12/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«With butter… which butter» — ru «масло» передано как butter, хотя `l’olio` — oil; текст бессмыслен",
+  "fix": "Russian «масло» can be two Italian words: `l’olio` (oil) and `il burro` (butter). Don't mechanically substitute a familiar word; understand from the situation which one is needed. The article must match the chosen word."
+ },
+ {
+  "id": "lesson-12/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«не вважають» = не полагают; нужно «не лічать»",
+  "fix": "Речовину зазвичай не лічать без одиниці виміру, але ягоди можна назвати у множині. `Delle fragole` не означає певну відому упаковку."
+ },
+ {
+  "id": "lesson-12/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«В італійському» (мова — ж. р.) и «Не додай» вместо «Не додавай»",
+  "fix": "В італійській часто можна зовсім не вказувати артикль: `bevo acqua`. На відміну від жорсткого шаблону, це живий вибір контексту. Не додавай слово «трохи» туди, де потрібна точна порція."
+ },
+ {
+  "id": "lesson-12/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«негативній фразі» — калька, нужно «заперечній»",
+  "fix": "У заперечній фразі `non bevo latte` іменник може стояти без артикля. Після кожного заперечення не потрібно автоматично вставляти `di`."
+ },
+ {
+  "id": "lesson-12/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«Одиницю вважаємо» = полагаем; нужно «рахуємо»",
+  "fix": "З одиницею виміру йде `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. Одиницю рахуємо цілком: одна пляшка, дві склянки."
+ },
+ {
+  "id": "lesson-12/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«The unit of measurement is `di`» — неверно; ru: «с единицей измерения идёт di»",
+  "fix": "A unit of measurement takes `di`: `una bottiglia di latte`, `un bicchiere d’acqua`. We count the whole unit: one bottle, two glasses."
+ }
+]

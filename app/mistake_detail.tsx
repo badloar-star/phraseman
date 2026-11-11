@@ -13,7 +13,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import V2DeadEnd from '../components/v2/V2DeadEnd';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../components/practice/PracticeGlass';
 import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
 import { glassButtonFill, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';

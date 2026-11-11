@@ -1,0 +1,5964 @@
+[
+{
+"lesson": 19,
+"id": "it:19:01",
+"target": "Paolo è arrivato.",
+"ru": "Паоло приехал.",
+"uk": "Паоло приїхав.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"alla",
+"allo",
+"ai",
+"alle"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"sull’ultimo",
+"clienti",
+"libro",
+"cercando",
+"tavolo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:02",
+"target": "Lea è arrivata.",
+"ru": "Леа приехала.",
+"uk": "Леа приїхала.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"lille",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "arrivata",
+"distractors": [
+"ferroviaria",
+"cortile",
+"via",
+"postina",
+"andata"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:03",
+"target": "Paolo è partito.",
+"ru": "Паоло уехал.",
+"uk": "Паоло поїхав.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"alunni",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "partito",
+"distractors": [
+"tavolo",
+"alla",
+"muro",
+"libro",
+"ai"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:04",
+"target": "Lea è partita.",
+"ru": "Леа уехала.",
+"uk": "Леа поїхала.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"andate",
+"andiamo",
+"vado",
+"vanno"
+]
+},
+{
+"correct": "partita",
+"distractors": [
+"non",
+"nonna",
+"entrata",
+"tasca",
+"più"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:05",
+"target": "Sono arrivati.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Arrivate"
+]
+},
+{
+"correct": "arrivati",
+"distractors": [
+"arrivato",
+"arrivata",
+"tornati",
+"clienti",
+"cercando"
+]
+}
+],
+"alternatives": [
+"Loro sono arrivati."
+]
+},
+{
+"lesson": 19,
+"id": "it:19:06",
+"target": "Sono arrivate.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Ci"
+]
+},
+{
+"correct": "arrivate",
+"distractors": [
+"arrivi",
+"arrivato",
+"arrivata",
+"cercando",
+"dimenticato"
+]
+}
+],
+"alternatives": [
+"Loro sono arrivate."
+]
+},
+{
+"lesson": 19,
+"id": "it:19:07",
+"target": "Sono partiti.",
+"ru": "Они ушли.",
+"uk": "Вони пішли.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Tasca"
+]
+},
+{
+"correct": "partiti",
+"distractors": [
+"postina",
+"partita",
+"cugini",
+"clienti",
+"partito"
+]
+}
+],
+"alternatives": [
+"Loro sono partiti."
+]
+},
+{
+"lesson": 19,
+"id": "it:19:08",
+"target": "Sono partite.",
+"ru": "Они ушли.",
+"uk": "Вони пішли.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Sceso"
+]
+},
+{
+"correct": "partite",
+"distractors": [
+"parte",
+"partiamo",
+"partito",
+"partita",
+"madre"
+]
+}
+],
+"alternatives": [
+"Loro sono partite."
+]
+},
+{
+"lesson": 19,
+"id": "it:19:09",
+"target": "È arrivato mio fratello.",
+"ru": "Мой брат пришел.",
+"uk": "Мій брат прийшов.",
+"tiles": [
+{
+"correct": "È",
+"distractors": [
+"Siamo",
+"Arrivate",
+"Ci",
+"C’è",
+"La"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"sull’ultimo",
+"sceso",
+"postino",
+"cercando",
+"dimenticato"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"nostro",
+"tua",
+"sua",
+"suoi",
+"nostra"
+]
+},
+{
+"correct": "fratello",
+"distractors": [
+"sull’ultimo",
+"giorno",
+"concerto",
+"pranzo",
+"tavolo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:10",
+"target": "È arrivata mia sorella.",
+"ru": "Моя сестра пришла.",
+"uk": "Моя сестра прийшла.",
+"tiles": [
+{
+"correct": "È",
+"distractors": [
+"Siamo",
+"Piano",
+"Ci",
+"C’è",
+"La"
+]
+},
+{
+"correct": "arrivata",
+"distractors": [
+"padre",
+"uscita",
+"nata",
+"chiave",
+"madre"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"suo",
+"tua",
+"miei",
+"loro",
+"sua"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"banca",
+"entrata",
+"casa",
+"nella",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:11",
+"target": "Paolo è andato alla stazione ferroviaria.",
+"ru": "Паоло пошел на вокзал.",
+"uk": "Паоло пішов на вокзал.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"classe",
+"ci",
+"c’è",
+"chiavi"
+]
+},
+{
+"correct": "andato",
+"distractors": [
+"madre",
+"caduto",
+"mercato",
+"tavolo",
+"museo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"chiave",
+"prendere",
+"padre",
+"passeggere",
+"arrivate"
+]
+},
+{
+"correct": "ferroviaria",
+"distractors": [
+"arrivata",
+"tutto",
+"chiave",
+"giorno",
+"stamattina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:12",
+"target": "Lea è andata in banca.",
+"ru": "Леа пошла в банк.",
+"uk": "Леа пішла до банку.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"passata",
+"ci",
+"c’è",
+"nella"
+]
+},
+{
+"correct": "andata",
+"distractors": [
+"caduto",
+"arrivata",
+"ora",
+"casa",
+"arrivato"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "banca",
+"distractors": [
+"stanza",
+"tornata",
+"rimasta",
+"figlia",
+"nonna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:13",
+"target": "I miei genitori sono andati al mercato.",
+"ru": "Мои родители пошли на рынок.",
+"uk": "Мої батьки пішли на ринок.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Uno",
+"Un"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"sua",
+"tuo",
+"vostro",
+"nostre",
+"mia"
+]
+},
+{
+"correct": "genitori",
+"distractors": [
+"amici",
+"venuti",
+"usciti",
+"rimasti",
+"piedi"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"monete",
+"c’è",
+"ci",
+"stazione"
+]
+},
+{
+"correct": "andati",
+"distractors": [
+"mia",
+"figlia",
+"mio",
+"sua",
+"suo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"alle",
+"allo",
+"ai",
+"casa"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"casa",
+"borsa",
+"tavolo",
+"piano",
+"pranzo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:14",
+"target": "Le mie sorelle sono andate al concerto.",
+"ru": "Мои сестры пошли на концерт.",
+"uk": "Мої сестри пішли на концерт.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"Un",
+"La",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"nostri",
+"tuoi",
+"nostra",
+"loro",
+"nostro"
+]
+},
+{
+"correct": "sorelle",
+"distractors": [
+"lille",
+"padre",
+"infermiere",
+"monete",
+"passeggere"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"autobus",
+"siamo",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "andate",
+"distractors": [
+"vado",
+"ufficio",
+"museo",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "concerto",
+"distractors": [
+"entrato",
+"sull’ultimo",
+"fratello",
+"caduto",
+"andato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:15",
+"target": "Mia madre è tornata a casa presto.",
+"ru": "Моя мама вернулась домой рано.",
+"uk": "Моя мама повернулася додому рано.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Suo",
+"Loro",
+"Vostri",
+"Nostro",
+"Io"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"sorelle",
+"julie",
+"padre",
+"stazione",
+"cortile"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ospiti",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "tornata",
+"distractors": [
+"andata",
+"nonna",
+"passata",
+"caduta",
+"via"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"dalla",
+"rimasta",
+"stanza",
+"figlia",
+"postina"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"spesso",
+"stasera",
+"oggi",
+"ieri"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:16",
+"target": "Mio padre è tornato a casa tardi.",
+"ru": "Мой отец вернулся домой поздно.",
+"uk": "Мій батько повернувся додому пізно.",
+"tiles": [
+{
+"correct": "Mio",
+"distractors": [
+"Tua",
+"Suo",
+"Sua",
+"Miei",
+"Nostro"
+]
+},
+{
+"correct": "padre",
+"distractors": [
+"madre",
+"sorelle",
+"garage",
+"classe",
+"partite"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"cadute",
+"ci",
+"c’è",
+"nella"
+]
+},
+{
+"correct": "tornato",
+"distractors": [
+"sorelle",
+"passato",
+"tutto",
+"stazione",
+"foto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"su",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"ora",
+"andata",
+"sorella",
+"banca",
+"rimasta"
+]
+},
+{
+"correct": "tardi",
+"distractors": [
+"spesso",
+"stasera",
+"domani",
+"presto",
+"oggi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:17",
+"target": "Gli ospiti sono rimasti qui per la notte.",
+"ru": "Гости остались здесь на ночь.",
+"uk": "Гості залишилися тут на ніч.",
+"tiles": [
+{
+"correct": "Gli",
+"distractors": [
+"Il",
+"Un",
+"Mi",
+"I",
+"Che"
+]
+},
+{
+"correct": "ospiti",
+"distractors": [
+"alunni",
+"scesi",
+"venuti",
+"partiti",
+"cugini"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"mio",
+"mia",
+"sua",
+"suo"
+]
+},
+{
+"correct": "rimasti",
+"distractors": [
+"miei",
+"genitori",
+"clienti",
+"venuti",
+"alunni"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"mi",
+"che"
+]
+},
+{
+"correct": "notte",
+"distractors": [
+"prendere",
+"cortile",
+"padre",
+"chiave",
+"stazione"
+]
+}
+],
+"alternatives": [
+"Gli ospiti sono rimasti qua per la notte."
+]
+},
+{
+"lesson": 19,
+"id": "it:19:18",
+"target": "I vicini sono rimasti fuori.",
+"ru": "Соседи остались на улице.",
+"uk": "Сусіди залишилися на вулиці.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Le",
+"Una"
+]
+},
+{
+"correct": "vicini",
+"distractors": [
+"genitori",
+"entrati",
+"venuti",
+"amici",
+"piedi"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"prendere",
+"c’è",
+"ci",
+"stazione"
+]
+},
+{
+"correct": "rimasti",
+"distractors": [
+"piedi",
+"entrati",
+"ospiti",
+"tornati",
+"scesi"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"vicino",
+"qui",
+"lì",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:19",
+"target": "Il postino è passato stamattina.",
+"ru": "Почтальон приходил сегодня утром.",
+"uk": "Листоноша приїхав сьогодні вранці.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Lo",
+"Che"
+]
+},
+{
+"correct": "postino",
+"distractors": [
+"entrato",
+"ripartito",
+"mercato",
+"libro",
+"fratello"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"via",
+"ci",
+"c’è",
+"casa"
+]
+},
+{
+"correct": "passato",
+"distractors": [
+"muro",
+"primo",
+"nato",
+"andato",
+"tavolo"
+]
+},
+{
+"correct": "stamattina",
+"distractors": [
+"domani",
+"spesso",
+"tardi",
+"stasera",
+"presto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:20",
+"target": "La postina è passata ieri.",
+"ru": "Почтальон пришла вчера.",
+"uk": "Листоноша прийшла вчора.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Ci",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "postina",
+"distractors": [
+"figlia",
+"tornata",
+"casa",
+"nonna",
+"ora"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stamattina",
+"ci",
+"c’è",
+"domani"
+]
+},
+{
+"correct": "passata",
+"distractors": [
+"miei",
+"uscita",
+"rimasta",
+"casa",
+"nonna"
+]
+},
+{
+"correct": "ieri",
+"distractors": [
+"presto",
+"spesso",
+"domani",
+"tardi",
+"oggi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:21",
+"target": "Lea è entrata nella stanza.",
+"ru": "Леа вошла в комнату.",
+"uk": "Леа зайшла до кімнати.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"uscita",
+"ci",
+"c’è",
+"alla"
+]
+},
+{
+"correct": "entrata",
+"distractors": [
+"banca",
+"casa",
+"ora",
+"andata",
+"borsa"
+]
+},
+{
+"correct": "nella",
+"distractors": [
+"nel",
+"nei",
+"negli",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"alla",
+"postina",
+"figlia",
+"tornata",
+"ai"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:22",
+"target": "Paolo è entrato in garage.",
+"ru": "Паоло вошел в гараж.",
+"uk": "Паоло зайшов до гаража.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ora",
+"casa",
+"ci",
+"c’è"
+]
+},
+{
+"correct": "entrato",
+"distractors": [
+"postino",
+"stazione",
+"primo",
+"insieme",
+"chiave"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "garage",
+"distractors": [
+"cadute",
+"sorelle",
+"classe",
+"salite",
+"cortile"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:23",
+"target": "I bambini sono usciti in cortile.",
+"ru": "Дети вышли во двор.",
+"uk": "Діти вийшли на подвір’я.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Le",
+"Uno"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"piedi",
+"genitori",
+"ospiti",
+"clienti",
+"alunni"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"genitori",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "usciti",
+"distractors": [
+"rimasti",
+"amici",
+"piedi",
+"genitori",
+"vicini"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "cortile",
+"distractors": [
+"passeggere",
+"notte",
+"cadute",
+"sorelle",
+"classe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:24",
+"target": "Mia figlia è uscita dal cancello.",
+"ru": "Моя дочь вышла через калитку.",
+"uk": "Моя донька вийшла через хвіртку.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Tua",
+"Tuo",
+"Nostro",
+"Vostri",
+"Sua"
+]
+},
+{
+"correct": "figlia",
+"distractors": [
+"alla",
+"via",
+"rimasta",
+"nella",
+"caduta"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"sua",
+"mio",
+"suo",
+"tuo"
+]
+},
+{
+"correct": "uscita",
+"distractors": [
+"tornata",
+"casa",
+"salita",
+"ora",
+"borsa"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "cancello",
+"distractors": [
+"siamo",
+"sei",
+"siete",
+"sono",
+"arrivato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:25",
+"target": "Mia sorella è salita al primo piano.",
+"ru": "Моя сестра поднялась на второй этаж.",
+"uk": "Моя сестра піднялася на другий поверх.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Suo",
+"Loro",
+"Sua",
+"Miei",
+"Io"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"partita",
+"caduta",
+"arrivata",
+"andata",
+"casa"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"pranzo",
+"ci",
+"c’è",
+"ufficio"
+]
+},
+{
+"correct": "salita",
+"distractors": [
+"nella",
+"casa",
+"tornata",
+"stanza",
+"ora"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "primo",
+"distractors": [
+"giugno",
+"pranzo",
+"foto",
+"giorno",
+"treno"
+]
+},
+{
+"correct": "piano",
+"distractors": [
+"libro",
+"tavolo",
+"suo",
+"concerto",
+"pranzo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:26",
+"target": "I clienti sono scesi sul pianerottolo.",
+"ru": "Покупатели спустились на лестничную площадку.",
+"uk": "Покупці спустилися на сходовий майданчик.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Un",
+"Gli"
+]
+},
+{
+"correct": "clienti",
+"distractors": [
+"bambini",
+"vicini",
+"fuori",
+"rimasti",
+"piedi"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"salite",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "scesi",
+"distractors": [
+"venuti",
+"bambini",
+"entrati",
+"partiti",
+"chiavi"
+]
+},
+{
+"correct": "sul",
+"distractors": [
+"sulla",
+"sullo",
+"borsa",
+"giacca",
+"mappa"
+]
+},
+{
+"correct": "pianerottolo",
+"distractors": [
+"ripartito",
+"sull’ultimo",
+"usciti",
+"tavolo",
+"vicino"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:27",
+"target": "La chiave è caduta sotto il tavolo.",
+"ru": "Ключ упал под стол.",
+"uk": "Ключ упав під стіл.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Ci",
+"Si",
+"Mi",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"cadute",
+"partite",
+"padre",
+"cortile",
+"notte"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"muro",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "caduta",
+"distractors": [
+"sul",
+"casa",
+"partita",
+"ora",
+"sulla"
+]
+},
+{
+"correct": "sotto",
+"distractors": [
+"sopra",
+"di",
+"per",
+"con",
+"a"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"i",
+"una",
+"gli",
+"che",
+"e"
+]
+},
+{
+"correct": "tavolo",
+"distractors": [
+"nato",
+"arrivato",
+"muro",
+"ripartito",
+"libro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:28",
+"target": "Le monete mi sono cadute dalla tasca.",
+"ru": "Монеты выпали из моего кармана.",
+"uk": "Монети випали з моєї кишені.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"Una",
+"La",
+"Uno",
+"Un"
+]
+},
+{
+"correct": "monete",
+"distractors": [
+"madre",
+"garage",
+"infermiere",
+"chiave",
+"stazione"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"la",
+"ci",
+"ti",
+"si",
+"il"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"primo",
+"c’è",
+"ci",
+"stazione"
+]
+},
+{
+"correct": "cadute",
+"distractors": [
+"nella",
+"julie",
+"negli",
+"nei",
+"nel"
+]
+},
+{
+"correct": "dalla",
+"distractors": [
+"dal",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "tasca",
+"distractors": [
+"tornata",
+"figlia",
+"casa",
+"via",
+"ora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:29",
+"target": "Le foto sono cadute dal muro.",
+"ru": "Фотографии упали со стены.",
+"uk": "Фотографії впали зі стіни.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"partito",
+"nato",
+"tutto",
+"primo",
+"tavolo"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"ospiti",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "cadute",
+"distractors": [
+"tornata",
+"prendere",
+"sorelle",
+"julie",
+"cortile"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "muro",
+"distractors": [
+"tutto",
+"entrato",
+"partito",
+"sceso",
+"giorno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:30",
+"target": "Il libro è caduto dalla borsa.",
+"ru": "Книга выпала из сумки.",
+"uk": "Книга випала з сумки.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Le",
+"Una",
+"Che"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"foto",
+"presto",
+"arrivato",
+"tutto",
+"domani"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"uscita",
+"ci",
+"c’è",
+"alla"
+]
+},
+{
+"correct": "caduto",
+"distractors": [
+"passato",
+"mercato",
+"primo",
+"tavolo",
+"foto"
+]
+},
+{
+"correct": "dalla",
+"distractors": [
+"dal",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"rimasta",
+"nata",
+"nonna",
+"andata",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:31",
+"target": "Paolo non è ancora tornato.",
+"ru": "Паоло ещё не вернулся.",
+"uk": "Паоло ще не повернувся.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"mai",
+"sempre",
+"po’"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"passeggere",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"più",
+"già",
+"mai",
+"sempre",
+"po’"
+]
+},
+{
+"correct": "tornato",
+"distractors": [
+"ripartito",
+"arrivato",
+"sceso",
+"concerto",
+"via"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:32",
+"target": "Lea non è ancora tornata.",
+"ru": "Леа ещё не вернулась.",
+"uk": "Леа ще не повернулася.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"mai",
+"sempre",
+"po’"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ospiti",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"più",
+"mai",
+"sempre",
+"po’"
+]
+},
+{
+"correct": "tornata",
+"distractors": [
+"tasca",
+"sono",
+"arrivato",
+"casa",
+"sei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:33",
+"target": "I miei cugini non sono venuti.",
+"ru": "Мои кузены не пришли.",
+"uk": "Мої двоюрідні брати і сестри не прийшли.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Gli",
+"Le"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"tuo",
+"mio",
+"mia",
+"vostre",
+"suoi"
+]
+},
+{
+"correct": "cugini",
+"distractors": [
+"usciti",
+"alunni",
+"bambini",
+"fuori",
+"entrati"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"sempre",
+"mai"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"pianerottolo",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "venuti",
+"distractors": [
+"bambini",
+"piedi",
+"vicini",
+"genitori",
+"amici"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:34",
+"target": "I clienti non sono entrati.",
+"ru": "Клиенты не вошли.",
+"uk": "Клієнти не увійшли.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Le",
+"Lo"
+]
+},
+{
+"correct": "clienti",
+"distractors": [
+"piedi",
+"vicini",
+"rimasti",
+"tornati",
+"scesi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"vicini",
+"c’è",
+"ci",
+"chiavi"
+]
+},
+{
+"correct": "entrati",
+"distractors": [
+"venuti",
+"postina",
+"amici",
+"rimasti",
+"genitori"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:35",
+"target": "L’autobus non è passato ieri.",
+"ru": "Автобус вчера не приехал.",
+"uk": "Автобус не приїхав учора.",
+"tiles": [
+{
+"correct": "L’autobus",
+"distractors": [
+"Autobus",
+"Tasca",
+"Cancello",
+"Sei",
+"Finestra"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"cancello",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "passato",
+"distractors": [
+"ripartito",
+"andato",
+"nato",
+"muro",
+"tavolo"
+]
+},
+{
+"correct": "ieri",
+"distractors": [
+"domani",
+"presto",
+"stasera",
+"spesso",
+"oggi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:36",
+"target": "Quando è arrivata?",
+"ru": "Когда она приехала?",
+"uk": "Коли вона приїхала?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siete",
+"siamo",
+"salite"
+]
+},
+{
+"correct": "arrivata",
+"distractors": [
+"entrata",
+"arrivati",
+"nata",
+"salita",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:37",
+"target": "Dove sono andate?",
+"ru": "Куда они ушли?",
+"uk": "Куди вони пішли?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Cosa",
+"Chi",
+"Quale",
+"Quanto",
+"Qui"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siete",
+"piedi",
+"siamo"
+]
+},
+{
+"correct": "andate",
+"distractors": [
+"va",
+"andiamo",
+"vado",
+"vanno",
+"vai"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:38",
+"target": "A che ora è partito?",
+"ru": "Во сколько он ушёл?",
+"uk": "О котрій годині він пішов?",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Da",
+"Sotto"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"nata",
+"uscita",
+"mia",
+"casa",
+"alla"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siamo",
+"siete",
+"muro"
+]
+},
+{
+"correct": "partito",
+"distractors": [
+"tavolo",
+"foto",
+"fratello",
+"partiti",
+"stazione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:39",
+"target": "Julie è tornata a casa?",
+"ru": "Джули вернулась домой?",
+"uk": "Джулі повернулася додому?",
+"tiles": [
+{
+"correct": "Julie",
+"distractors": [
+"Sorelle",
+"Mele",
+"Te",
+"Mio",
+"Suo"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"n’è",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "tornata",
+"distractors": [
+"rimasta",
+"tutto",
+"zuppa",
+"farina",
+"figlia"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"ora",
+"via",
+"nonna",
+"tasca",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:40",
+"target": "Le infermiere sono già andate via?",
+"ru": "Медсёстры уже ушли?",
+"uk": "Медсестри вже пішли?",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"Un",
+"Mi",
+"Si"
+]
+},
+{
+"correct": "infermiere",
+"distractors": [
+"passeggere",
+"prendere",
+"stazione",
+"cortile",
+"sorelle"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"foto",
+"c’è",
+"ci",
+"stazione"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "andate",
+"distractors": [
+"vado",
+"ufficio",
+"museo",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"casa",
+"borsa",
+"nonna",
+"nata",
+"ora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:41",
+"target": "Mia nonna è nata a Lille.",
+"ru": "Моя бабушка родилась в Лилле.",
+"uk": "Моя бабуся народилася в Ліллі.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Suo",
+"Sua",
+"Nostro",
+"Sue",
+"Loro"
+]
+},
+{
+"correct": "nonna",
+"distractors": [
+"alla",
+"tasca",
+"caduta",
+"via",
+"salita"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"figlia",
+"ci",
+"c’è",
+"nella"
+]
+},
+{
+"correct": "nata",
+"distractors": [
+"via",
+"ora",
+"casa",
+"tornata",
+"passata"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "Lille",
+"distractors": [
+"Notte",
+"Padre",
+"Cadute",
+"Garage",
+"Dove"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:42",
+"target": "Mio figlio è nato a giugno.",
+"ru": "Мой сын родился в июне.",
+"uk": "Мій син народився в червні.",
+"tiles": [
+{
+"correct": "Mio",
+"distractors": [
+"Tuo",
+"Miei",
+"Nostri",
+"Sua",
+"Suo"
+]
+},
+{
+"correct": "figlio",
+"distractors": [
+"entrato",
+"partito",
+"mercato",
+"libro",
+"tutto"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"salite",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "nato",
+"distractors": [
+"monete",
+"foto",
+"caduto",
+"sceso",
+"libro"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"senza",
+"da"
+]
+},
+{
+"correct": "giugno",
+"distractors": [
+"fratello",
+"partito",
+"vicino",
+"arrivato",
+"fuori"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:43",
+"target": "I due amici sono venuti a piedi.",
+"ru": "Два друга пришли пешком.",
+"uk": "Двоє друзів прийшли пішки.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Gli",
+"Le",
+"Un"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"tre",
+"dieci",
+"cinque",
+"quattro",
+"sette"
+]
+},
+{
+"correct": "amici",
+"distractors": [
+"alunni",
+"scesi",
+"cugini",
+"vicini",
+"bambini"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"caduto",
+"c’è",
+"ci",
+"nella"
+]
+},
+{
+"correct": "venuti",
+"distractors": [
+"clienti",
+"scesi",
+"partiti",
+"cugini",
+"bambini"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"fra",
+"da"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"alunni",
+"cugini",
+"rimasti",
+"entrati",
+"bambini"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:44",
+"target": "Suo padre è arrivato presto.",
+"ru": "Её отец приехал рано.",
+"uk": "Її батько прибув рано.",
+"tiles": [
+{
+"correct": "Suo",
+"distractors": [
+"Loro",
+"Mio",
+"Vostri",
+"Tue",
+"Io"
+]
+},
+{
+"correct": "padre",
+"distractors": [
+"lille",
+"madre",
+"monete",
+"julie",
+"sorelle"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"siamo",
+"sei",
+"siete",
+"partita"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"usciti",
+"casa",
+"arrivate",
+"nato",
+"ora"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"ieri",
+"spesso",
+"stasera",
+"oggi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:45",
+"target": "Sua madre se n’è andata senza la borsa.",
+"ru": "Её мать ушла без сумки.",
+"uk": "Її мати пішла без сумки.",
+"tiles": [
+{
+"correct": "Sua",
+"distractors": [
+"Mia",
+"Tua",
+"Nostri",
+"Tuo",
+"Miei"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"sorelle",
+"classe",
+"cortile",
+"cadute",
+"padre"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "n’è",
+"distractors": [
+"l’autobus",
+"caduto",
+"entrati",
+"gli",
+"il"
+]
+},
+{
+"correct": "andata",
+"distractors": [
+"classe",
+"andati",
+"arrivata",
+"tornata",
+"nonna"
+]
+},
+{
+"correct": "senza",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"per"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"le",
+"i",
+"che"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"alla",
+"tasca",
+"rimasta",
+"banca",
+"caduta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:46",
+"target": "Il vicino è sceso a prendere la posta.",
+"ru": "Сосед спустился вниз за почтой.",
+"uk": "Сусід спустився вниз, щоб забрати пошту.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Le",
+"Gli",
+"Una",
+"I",
+"Che"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"caduto",
+"siamo",
+"ci",
+"c’è",
+"nella"
+]
+},
+{
+"correct": "sceso",
+"distractors": [
+"foto",
+"libro",
+"concerto",
+"fratello",
+"tavolo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "prendere",
+"distractors": [
+"cadute",
+"lille",
+"passeggere",
+"padre",
+"chiave"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"le",
+"un",
+"si",
+"ci",
+"che"
+]
+},
+{
+"correct": "posta",
+"distractors": [
+"banca",
+"andata",
+"tornata",
+"postina",
+"salita"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:47",
+"target": "Gli alunni sono tornati in classe.",
+"ru": "Ученики вернулись в класс.",
+"uk": "Учні повернулися до класу.",
+"tiles": [
+{
+"correct": "Gli",
+"distractors": [
+"Il",
+"La",
+"Ci",
+"Un",
+"Le"
+]
+},
+{
+"correct": "alunni",
+"distractors": [
+"genitori",
+"clienti",
+"rimasti",
+"usciti",
+"cugini"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"andate",
+"andiamo",
+"vado",
+"vanno"
+]
+},
+{
+"correct": "tornati",
+"distractors": [
+"bambini",
+"piedi",
+"andati",
+"vicini",
+"chiavi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"senza"
+]
+},
+{
+"correct": "classe",
+"distractors": [
+"padre",
+"notte",
+"julie",
+"sorelle",
+"madre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:48",
+"target": "Lea è rimasta a casa tutto il giorno.",
+"ru": "Леа осталась дома на весь день.",
+"uk": "Леа залишилася вдома весь день.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"dove",
+"chi",
+"ci",
+"c’è"
+]
+},
+{
+"correct": "rimasta",
+"distractors": [
+"entrata",
+"tasca",
+"sorella",
+"banca",
+"zuppa"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"passata",
+"sorella",
+"via",
+"nella",
+"borsa"
+]
+},
+{
+"correct": "tutto",
+"distractors": [
+"caduto",
+"libro",
+"piano",
+"foto",
+"tornato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"gli"
+]
+},
+{
+"correct": "giorno",
+"distractors": [
+"cancello",
+"libro",
+"partito",
+"foto",
+"caduto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:49",
+"target": "Paolo è ripartito dopo pranzo.",
+"ru": "Паоло ушёл после обеда.",
+"uk": "Паоло пішов після обіду.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stazione",
+"insieme",
+"ci",
+"chiave"
+]
+},
+{
+"correct": "ripartito",
+"distractors": [
+"mercato",
+"tavolo",
+"giorno",
+"passato",
+"treno"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "pranzo",
+"distractors": [
+"postino",
+"primo",
+"libro",
+"concerto",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "it:19:50",
+"target": "Le passeggere sono salite sull’ultimo autobus.",
+"ru": "Пассажирки сели в последний автобус.",
+"uk": "Пасажирки сіли до останнього автобуса.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Lo",
+"Che"
+]
+},
+{
+"correct": "passeggere",
+"distractors": [
+"stazione",
+"cortile",
+"prendere",
+"sorelle",
+"partite"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"partita",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "salite",
+"distractors": [
+"siamo",
+"sei",
+"siete",
+"è",
+"cortile"
+]
+},
+{
+"correct": "sull’ultimo",
+"distractors": [
+"ripartito",
+"cancello",
+"pianerottolo",
+"arrivato",
+"concerto"
+]
+},
+{
+"correct": "autobus",
+"distractors": [
+"l’autobus",
+"fratello",
+"tavolo",
+"scesi",
+"biglietto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:01",
+"target": "Abitavo qui.",
+"ru": "Я раньше здесь жил.",
+"uk": "Я раніше тут жив.",
+"tiles": [
+{
+"correct": "Abitavo",
+"distractors": [
+"Abitavi",
+"Abitavate",
+"Negozi",
+"Vicini",
+"Anni"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io abitavo qui.",
+"Abitavo qua.",
+"Io abitavo qua."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:02",
+"target": "Abitavi qui.",
+"ru": "Ты раньше здесь жил.",
+"uk": "Ти тут колись жив.",
+"tiles": [
+{
+"correct": "Abitavi",
+"distractors": [
+"Abitavate",
+"Abitavo",
+"Negozi",
+"Vicini",
+"Anni"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu abitavi qui.",
+"Abitavi qua.",
+"Tu abitavi qua."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:03",
+"target": "Lei viveva a Lione.",
+"ru": "Она жила в Лионе.",
+"uk": "Вона жила в Ліоні.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Io",
+"Loro",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "viveva",
+"distractors": [
+"vivevano",
+"vivevamo",
+"fondo",
+"tempo",
+"giardino"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "Lione",
+"distractors": [
+"Mie",
+"Luce",
+"Padre",
+"Cortile",
+"Madre"
+]
+}
+],
+"alternatives": [
+"Viveva a Lione."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:04",
+"target": "Noi vivevamo in campagna.",
+"ru": "Мы жили в сельской местности.",
+"uk": "Ми жили в сільській місцевості.",
+"tiles": [
+{
+"correct": "Noi",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "vivevamo",
+"distractors": [
+"vivevano",
+"viveva",
+"fondo",
+"tempo",
+"giardino"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"per",
+"di",
+"da",
+"con"
+]
+},
+{
+"correct": "campagna",
+"distractors": [
+"prendeva",
+"scatola",
+"faceva",
+"deserta",
+"crostata"
+]
+}
+],
+"alternatives": [
+"Vivevamo in campagna."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:05",
+"target": "Abitavate in città.",
+"ru": "Вы жили в городе.",
+"uk": "Ви жили у місті.",
+"tiles": [
+{
+"correct": "Abitavate",
+"distractors": [
+"Andiamo",
+"Va",
+"Vado",
+"Vai",
+"Vanno"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "città",
+"distractors": [
+"fioca",
+"libero",
+"erano",
+"già",
+"noi"
+]
+}
+],
+"alternatives": [
+"Voi abitavate in città."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:06",
+"target": "Vivevano vicino al porto.",
+"ru": "Они жили недалеко от порта.",
+"uk": "Вони жили біля порту.",
+"tiles": [
+{
+"correct": "Vivevano",
+"distractors": [
+"Vivevamo",
+"Viveva",
+"Era",
+"Eravamo",
+"Ero"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "porto",
+"distractors": [
+"porti",
+"aperta",
+"chiusa",
+"chiuso",
+"aperte"
+]
+}
+],
+"alternatives": [
+"Loro vivevano vicino al porto."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:07",
+"target": "Ero spesso solo.",
+"ru": "Я часто был один.",
+"uk": "Я часто був сам.",
+"tiles": [
+{
+"correct": "Ero",
+"distractors": [
+"Erano",
+"Eravamo",
+"Libera",
+"Libere",
+"Liberi"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"domani",
+"stasera",
+"oggi",
+"stamattina",
+"tardi"
+]
+},
+{
+"correct": "solo",
+"distractors": [
+"erano",
+"tenevo",
+"libero",
+"postino",
+"lungo"
+]
+}
+],
+"alternatives": [
+"Io ero spesso solo."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:08",
+"target": "Lei era spesso sola.",
+"ru": "Она часто была одна.",
+"uk": "Вона часто була сама.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Io",
+"Tu",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"domani",
+"ieri",
+"stasera",
+"presto",
+"oggi"
+]
+},
+{
+"correct": "sola",
+"distractors": [
+"alla",
+"cipolla",
+"strada",
+"sera",
+"fioca"
+]
+}
+],
+"alternatives": [
+"Era spesso sola."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:09",
+"target": "Eravamo vicini di casa.",
+"ru": "Мы были соседями.",
+"uk": "Ми були сусідами.",
+"tiles": [
+{
+"correct": "Eravamo",
+"distractors": [
+"Era",
+"Erano",
+"Ero",
+"Ha",
+"Hai"
+]
+},
+{
+"correct": "vicini",
+"distractors": [
+"davanti",
+"ogni",
+"negozi",
+"pacchi",
+"piedi"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"metteva",
+"fretta",
+"scatola",
+"zia",
+"c’era"
+]
+}
+],
+"alternatives": [
+"Noi eravamo vicini di casa."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:10",
+"target": "Il giardino era grande.",
+"ru": "Сад был большим.",
+"uk": "Сад був великий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Gli",
+"Una",
+"I",
+"Le"
+]
+},
+{
+"correct": "giardino",
+"distractors": [
+"erano",
+"passeggiavo",
+"radio",
+"vecchio",
+"freddo"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "grande",
+"distractors": [
+"canale",
+"madre",
+"quartiere",
+"stazione",
+"fine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:11",
+"target": "Lavoravo il sabato.",
+"ru": "Я раньше работал по субботам.",
+"uk": "Я працював по суботах.",
+"tiles": [
+{
+"correct": "Lavoravo",
+"distractors": [
+"Giardino",
+"All’aperto",
+"Pagavamo",
+"Tornavano",
+"Passeggiavo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "sabato",
+"distractors": [
+"piccolo",
+"disegnavo",
+"giocavo",
+"buio",
+"libero"
+]
+}
+],
+"alternatives": [
+"Io lavoravo il sabato."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:12",
+"target": "La domenica mangiavamo insieme.",
+"ru": "По воскресеньям мы ели вместе.",
+"uk": "По неділях ми їли разом.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Ci",
+"Lo",
+"Ti"
+]
+},
+{
+"correct": "domenica",
+"distractors": [
+"occupava",
+"strada",
+"scatola",
+"c’era",
+"deserta"
+]
+},
+{
+"correct": "mangiavamo",
+"distractors": [
+"ritardo",
+"sabato",
+"giocavo",
+"disegnavo",
+"conoscevo"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"madre",
+"barche",
+"luce",
+"pane",
+"d’estate"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:13",
+"target": "Ogni mattina comprava il pane.",
+"ru": "Каждое утро он покупал хлеб.",
+"uk": "Щоранку він купував хліб.",
+"tiles": [
+{
+"correct": "Ogni",
+"distractors": [
+"Qui",
+"Vicini",
+"Alzavi",
+"Questo",
+"Questa"
+]
+},
+{
+"correct": "mattina",
+"distractors": [
+"campagna",
+"profumava",
+"scatola",
+"pioveva",
+"fontana"
+]
+},
+{
+"correct": "comprava",
+"distractors": [
+"bilancia",
+"profumava",
+"casa",
+"strada",
+"scuola"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"gli",
+"una"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"barche",
+"pallone",
+"monete",
+"forte",
+"grande"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:14",
+"target": "La sera ascoltava la radio.",
+"ru": "Вечером она слушала радио.",
+"uk": "Увечері вона слухала радіо.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Le",
+"Gli",
+"Un"
+]
+},
+{
+"correct": "sera",
+"distractors": [
+"casa",
+"aveva",
+"scuola",
+"domenica",
+"scatola"
+]
+},
+{
+"correct": "ascoltava",
+"distractors": [
+"ferroviaria",
+"crostata",
+"bilancia",
+"comprava",
+"profumava"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"mi",
+"ci",
+"si"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"lavoravo",
+"vento",
+"giocavo",
+"postino",
+"buio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:15",
+"target": "Allora pagavamo in contanti.",
+"ru": "Тогда мы расплачивались наличными.",
+"uk": "Тоді ми платили готівкою.",
+"tiles": [
+{
+"correct": "Allora",
+"distractors": [
+"Fretta",
+"Coricava",
+"Tirava",
+"Profumava",
+"Crostata"
+]
+},
+{
+"correct": "pagavamo",
+"distractors": [
+"tempo",
+"disegnavo",
+"lungo",
+"postino",
+"vecchio"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"su"
+]
+},
+{
+"correct": "contanti",
+"distractors": [
+"alzavi",
+"bambini",
+"abitavi",
+"andavi",
+"vicini"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:16",
+"target": "D’estate dormivano all’aperto.",
+"ru": "Летом они спали на улице.",
+"uk": "Влітку вони спали надворі.",
+"tiles": [
+{
+"correct": "D’estate",
+"distractors": [
+"Aveva",
+"Pallone",
+"Barche",
+"Avevano",
+"Avevamo"
+]
+},
+{
+"correct": "dormivano",
+"distractors": [
+"dormiva",
+"dormivo",
+"doccia",
+"pioveva",
+"specchio"
+]
+},
+{
+"correct": "all’aperto",
+"distractors": [
+"tornavano",
+"vivevamo",
+"giardino",
+"passeggiavo",
+"giocavo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:17",
+"target": "Andavi a scuola a piedi.",
+"ru": "Ты ходил в школу пешком.",
+"uk": "Ти ходив до школи пішки.",
+"tiles": [
+{
+"correct": "Andavi",
+"distractors": [
+"Anni",
+"Vicini",
+"Negozi",
+"Abitavi",
+"Chiusi"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "scuola",
+"distractors": [
+"faceva",
+"preparava",
+"allora",
+"fontana",
+"casa"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"negozi",
+"davanti",
+"contanti",
+"anni",
+"bambini"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:18",
+"target": "Mio padre prendeva sempre l’autobus.",
+"ru": "Мой отец всегда ездил на автобусе.",
+"uk": "Мій батько завжди їздив автобусом.",
+"tiles": [
+{
+"correct": "Mio",
+"distractors": [
+"Tuo",
+"Tuoi",
+"Sua",
+"Miei",
+"Loro"
+]
+},
+{
+"correct": "padre",
+"distractors": [
+"stazione",
+"insieme",
+"madre",
+"monete",
+"lione"
+]
+},
+{
+"correct": "prendeva",
+"distractors": [
+"strada",
+"scatola",
+"sera",
+"crostata",
+"campagna"
+]
+},
+{
+"correct": "sempre",
+"distractors": [
+"non",
+"già",
+"ancora",
+"più",
+"mai"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"vivevamo",
+"barche",
+"fondo",
+"dove",
+"cosa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:19",
+"target": "Da piccolo giocavo a pallone in cortile.",
+"ru": "В детстве я играл в мяч во дворе.",
+"uk": "У дитинстві я грав у м'яч у дворі.",
+"tiles": [
+{
+"correct": "Da",
+"distractors": [
+"Di",
+"Con",
+"Per",
+"Sotto",
+"Dopo"
+]
+},
+{
+"correct": "piccolo",
+"distractors": [
+"all’aperto",
+"conoscevo",
+"vento",
+"ritardo",
+"tavolo"
+]
+},
+{
+"correct": "giocavo",
+"distractors": [
+"postino",
+"lungo",
+"avevamo",
+"tempo",
+"ritardo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"di",
+"per",
+"sotto",
+"dopo",
+"su"
+]
+},
+{
+"correct": "pallone",
+"distractors": [
+"quartiere",
+"madre",
+"forte",
+"stazione",
+"finestre"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"di",
+"con",
+"per",
+"su",
+"sotto"
+]
+},
+{
+"correct": "cortile",
+"distractors": [
+"continuazione",
+"fine",
+"grande",
+"quartiere",
+"lione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:20",
+"target": "Giocavo spesso in questo cortile.",
+"ru": "Я часто играл в этом дворе.",
+"uk": "Я часто грався на цьому подвір’ї.",
+"tiles": [
+{
+"correct": "Giocavo",
+"distractors": [
+"Mano",
+"Fondo",
+"Tempo",
+"All’aperto",
+"Molto"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"ieri",
+"domani",
+"stasera",
+"oggi",
+"presto"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"da",
+"per"
+]
+},
+{
+"correct": "questo",
+"distractors": [
+"qui",
+"sabato",
+"mano",
+"fondo",
+"tenevo"
+]
+},
+{
+"correct": "cortile",
+"distractors": [
+"insieme",
+"lione",
+"madre",
+"pane",
+"canale"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:21",
+"target": "Mia nonna tagliava sempre la cipolla a mano.",
+"ru": "Моя бабушка всегда резала лук вручную.",
+"uk": "Моя бабуся завжди різала цибулю вручну.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Loro",
+"Tua",
+"Nostra",
+"Sua",
+"Io"
+]
+},
+{
+"correct": "nonna",
+"distractors": [
+"fioca",
+"campagna",
+"tutta",
+"aveva",
+"bilancia"
+]
+},
+{
+"correct": "tagliava",
+"distractors": [
+"coricava",
+"metteva",
+"tirava",
+"prendeva",
+"stavamo"
+]
+},
+{
+"correct": "sempre",
+"distractors": [
+"non",
+"già",
+"ancora",
+"più",
+"mai"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"mi",
+"le",
+"che"
+]
+},
+{
+"correct": "cipolla",
+"distractors": [
+"preparava",
+"campagna",
+"fontana",
+"scatola",
+"bilancia"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "mano",
+"distractors": [
+"mercato",
+"vento",
+"freddo",
+"vecchio",
+"lungo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:22",
+"target": "Era già buio.",
+"ru": "Уже стемнело.",
+"uk": "Вже стемніло.",
+"tiles": [
+{
+"correct": "Era",
+"distractors": [
+"Eravamo",
+"Domani",
+"Presto",
+"Oggi",
+"Spesso"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"sempre",
+"mai"
+]
+},
+{
+"correct": "buio",
+"distractors": [
+"vecchio",
+"questo",
+"erano",
+"giocavo",
+"vento"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:23",
+"target": "Pioveva in continuazione.",
+"ru": "Непрерывно шел дождь.",
+"uk": "Постійно йшов дощ.",
+"tiles": [
+{
+"correct": "Pioveva",
+"distractors": [
+"Preparava",
+"Allora",
+"Bilancia",
+"Faceva",
+"Scuola"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "continuazione",
+"distractors": [
+"non",
+"luce",
+"l’ascensore",
+"viveva",
+"fontana"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:24",
+"target": "Tirava un forte vento.",
+"ru": "Сильно дул ветер.",
+"uk": "Вітер дув сильно.",
+"tiles": [
+{
+"correct": "Tirava",
+"distractors": [
+"Occupava",
+"Metteva",
+"Zia",
+"C’era",
+"Piazza"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "forte",
+"distractors": [
+"pallone",
+"lione",
+"d’estate",
+"finestre",
+"madre"
+]
+},
+{
+"correct": "vento",
+"distractors": [
+"mano",
+"piccolo",
+"tenevo",
+"giardino",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:25",
+"target": "La strada era deserta.",
+"ru": "Улица была пустынна.",
+"uk": "Вулиця була безлюдна.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Ci",
+"Che",
+"E"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"crostata",
+"pioveva",
+"allora",
+"faceva",
+"mattina"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "deserta",
+"distractors": [
+"viveva",
+"sola",
+"pioveva",
+"fretta",
+"bilancia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:26",
+"target": "Le finestre erano aperte.",
+"ru": "Окна были открыты.",
+"uk": "Вікна були відчинені.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Che",
+"E"
+]
+},
+{
+"correct": "finestre",
+"distractors": [
+"l’ascensore",
+"grande",
+"cortile",
+"canale",
+"lione"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"ero",
+"eravamo",
+"libero",
+"piatto",
+"vecchio"
+]
+},
+{
+"correct": "aperte",
+"distractors": [
+"chiuso",
+"chiusa",
+"chiuse",
+"chiusi",
+"stazione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:27",
+"target": "La luce era fioca.",
+"ru": "Свет был тусклым.",
+"uk": "Світло було тьмяним.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Le",
+"Mi",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "luce",
+"distractors": [
+"stazione",
+"insieme",
+"pane",
+"cortile",
+"grande"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "fioca",
+"distractors": [
+"comprava",
+"zia",
+"tutta",
+"coricava",
+"mattina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:28",
+"target": "La stanza profumava di caffè.",
+"ru": "В комнате пахло кофе.",
+"uk": "У кімнаті пахло кавою.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Ci",
+"Uno",
+"Ti"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"fretta",
+"zia",
+"allora",
+"tutta",
+"fioca"
+]
+},
+{
+"correct": "profumava",
+"distractors": [
+"lavorava",
+"ferroviaria",
+"metteva",
+"fontana",
+"crostata"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"tornavano",
+"alzavi",
+"insieme",
+"alla",
+"vecchio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:29",
+"target": "I bambini avevano freddo.",
+"ru": "Детям было холодно.",
+"uk": "Дітям було холодно.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Le",
+"Gli"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"davanti",
+"piedi",
+"ogni",
+"andavi",
+"negozi"
+]
+},
+{
+"correct": "avevano",
+"distractors": [
+"aveva",
+"avevamo",
+"casa",
+"tempo",
+"preso"
+]
+},
+{
+"correct": "freddo",
+"distractors": [
+"disegnavo",
+"conoscevo",
+"postino",
+"sabato",
+"mano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:30",
+"target": "Avevamo molto tempo.",
+"ru": "У нас было много времени.",
+"uk": "У нас було багато часу.",
+"tiles": [
+{
+"correct": "Avevamo",
+"distractors": [
+"Aveva",
+"Avevano",
+"Barche",
+"Pallone",
+"D’estate"
+]
+},
+{
+"correct": "molto",
+"distractors": [
+"poco",
+"più",
+"troppo",
+"po’",
+"non"
+]
+},
+{
+"correct": "tempo",
+"distractors": [
+"ritardo",
+"mercato",
+"libero",
+"mio",
+"postino"
+]
+}
+],
+"alternatives": [
+"Noi avevamo molto tempo."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:31",
+"target": "Non conoscevo il quartiere.",
+"ru": "Я не знал этот район.",
+"uk": "Я не знав району.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Sempre"
+]
+},
+{
+"correct": "conoscevo",
+"distractors": [
+"lavoravo",
+"abitavo",
+"freddo",
+"passeggiavo",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"uno",
+"che"
+]
+},
+{
+"correct": "quartiere",
+"distractors": [
+"barche",
+"d’estate",
+"monete",
+"pallone",
+"l’ascensore"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:32",
+"target": "Non c’era l’ascensore.",
+"ru": "Лифта не было.",
+"uk": "Ліфта не було.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Più",
+"Sempre",
+"Mai"
+]
+},
+{
+"correct": "c’era",
+"distractors": [
+"sulla",
+"piazza",
+"mattina",
+"scuola",
+"sera"
+]
+},
+{
+"correct": "l’ascensore",
+"distractors": [
+"abitavate",
+"continuazione",
+"finestre",
+"stazione",
+"d’estate"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:33",
+"target": "Non aveva una bicicletta.",
+"ru": "У неё не было велосипеда.",
+"uk": "У неї не було велосипеда.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Sempre"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"casa",
+"tempo",
+"preso"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"gli",
+"che",
+"e"
+]
+},
+{
+"correct": "bicicletta",
+"distractors": [
+"ferroviaria",
+"crostata",
+"coricava",
+"pioveva",
+"bilancia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:34",
+"target": "Non avevamo fretta.",
+"ru": "Мы никуда не спешили.",
+"uk": "Ми не поспішали.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Sempre",
+"Mai"
+]
+},
+{
+"correct": "avevamo",
+"distractors": [
+"aveva",
+"avevano",
+"casa",
+"tempo",
+"preso"
+]
+},
+{
+"correct": "fretta",
+"distractors": [
+"occupava",
+"metteva",
+"sera",
+"c’era",
+"scatola"
+]
+}
+],
+"alternatives": [
+"Noi non avevamo fretta."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:35",
+"target": "I negozi erano chiusi il lunedì.",
+"ru": "Магазины не работали по понедельникам.",
+"uk": "Магазини не працювали по понеділках.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Un",
+"Una",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "negozi",
+"distractors": [
+"anni",
+"vicini",
+"ogni",
+"andavi",
+"pacchi"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"ero",
+"eravamo",
+"libero",
+"piatto",
+"vecchio"
+]
+},
+{
+"correct": "chiusi",
+"distractors": [
+"aperto",
+"aperta",
+"aperti",
+"aperte",
+"sono"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"le",
+"la",
+"uno",
+"che",
+"e"
+]
+},
+{
+"correct": "lunedì",
+"distractors": [
+"del",
+"pallone",
+"radio",
+"postino",
+"madre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:36",
+"target": "Ti alzavi prima?",
+"ru": "Ты вставал раньше?",
+"uk": "Ти вставав раніше?",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"Ci",
+"Si",
+"Le",
+"La",
+"Il"
+]
+},
+{
+"correct": "alzavi",
+"distractors": [
+"davanti",
+"vicini",
+"contanti",
+"andavi",
+"qui"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+}
+],
+"alternatives": [
+"Tu ti alzavi prima?"
+]
+},
+{
+"lesson": 20,
+"id": "it:20:37",
+"target": "Dove lavorava tua madre?",
+"ru": "Где работала твоя мама?",
+"uk": "Де працювала твоя мама?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Chi",
+"Cosa",
+"Quale",
+"Quanto",
+"Quante"
+]
+},
+{
+"correct": "lavorava",
+"distractors": [
+"fontana",
+"ferroviaria",
+"crostata",
+"pioveva",
+"cipolla"
+]
+},
+{
+"correct": "tua",
+"distractors": [
+"loro",
+"mio",
+"sue",
+"mie",
+"nostri"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"cortile",
+"monete",
+"pallone",
+"stazione",
+"fine"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:38",
+"target": "Che cosa faceva la sera?",
+"ru": "Чем вы занимались по вечерам?",
+"uk": "Чим ви займалися вечорами?",
+"tiles": [
+{
+"correct": "Che",
+"distractors": [
+"Quando",
+"Se",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "cosa",
+"distractors": [
+"dove",
+"chi",
+"quanti",
+"prima",
+"quale"
+]
+},
+{
+"correct": "faceva",
+"distractors": [
+"cinema",
+"pioveva",
+"casa",
+"arrivata",
+"crostata"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"si",
+"e",
+"per"
+]
+},
+{
+"correct": "sera",
+"distractors": [
+"era",
+"sola",
+"piazza",
+"sulla",
+"allora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:39",
+"target": "Era spesso libero?",
+"ru": "Вы часто бывали свободны?",
+"uk": "Ви часто бували вільні?",
+"tiles": [
+{
+"correct": "Era",
+"distractors": [
+"Eravamo",
+"Domani",
+"Presto",
+"Oggi",
+"Questa"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"domani",
+"stasera",
+"presto",
+"ieri",
+"oggi"
+]
+},
+{
+"correct": "libero",
+"distractors": [
+"ufficio",
+"sono",
+"negozio",
+"solo",
+"siamo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:40",
+"target": "Come tornavano a casa i bambini?",
+"ru": "Как дети добирались домой?",
+"uk": "Як діти добиралися додому?",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Che",
+"Quando",
+"Se",
+"Mentre",
+"Perché"
+]
+},
+{
+"correct": "tornavano",
+"distractors": [
+"vecchio",
+"giocavo",
+"alla",
+"questo",
+"insieme"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"faceva",
+"sulla",
+"zia",
+"sola",
+"pioveva"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"un",
+"gli",
+"una"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"piedi",
+"andavi",
+"abitavi",
+"treni",
+"anni"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:41",
+"target": "A otto anni, tenevo le mie monete in una scatola.",
+"ru": "В восемь лет я хранил свои монеты в коробке.",
+"uk": "У вісім років я зберігав свої монети в коробці.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Di",
+"Per",
+"Da",
+"Sotto",
+"Dopo"
+]
+},
+{
+"correct": "otto",
+"distractors": [
+"due",
+"dieci",
+"cinque",
+"sette",
+"tre"
+]
+},
+{
+"correct": "anni",
+"distractors": [
+"ogni",
+"abitavi",
+"pacchi",
+"vicini",
+"piedi"
+]
+},
+{
+"correct": "tenevo",
+"distractors": [
+"lungo",
+"buio",
+"piccolo",
+"vecchio",
+"fondo"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"un",
+"i",
+"che"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"mia",
+"suo",
+"tuo",
+"mio",
+"nostro"
+]
+},
+{
+"correct": "monete",
+"distractors": [
+"forte",
+"finestre",
+"canale",
+"stazione",
+"padre"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"di",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "scatola",
+"distractors": [
+"strada",
+"deserta",
+"casa",
+"tirava",
+"tutta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:42",
+"target": "Mia zia preparava una crostata ogni domenica.",
+"ru": "Моя тётя каждое воскресенье пекла пирог из песочного теста.",
+"uk": "Моя тітка щонеділі пекла пиріг з пісочного тіста.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Nostri",
+"Nostra",
+"Suo",
+"Tua",
+"Sua"
+]
+},
+{
+"correct": "zia",
+"distractors": [
+"casa",
+"strada",
+"tirava",
+"sera",
+"sola"
+]
+},
+{
+"correct": "preparava",
+"distractors": [
+"fontana",
+"cipolla",
+"casa",
+"scuola",
+"scatola"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "crostata",
+"distractors": [
+"coricava",
+"c’era",
+"bilancia",
+"tirava",
+"campagna"
+]
+},
+{
+"correct": "ogni",
+"distractors": [
+"anni",
+"davanti",
+"andavi",
+"treni",
+"alzavi"
+]
+},
+{
+"correct": "domenica",
+"distractors": [
+"ferroviaria",
+"pioveva",
+"bicicletta",
+"strada",
+"scatola"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:43",
+"target": "Il postino metteva i pacchi sulla bilancia.",
+"ru": "Почтальон ставил посылки на весы.",
+"uk": "Листоноша ставив посилки на ваги.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Gli",
+"Le",
+"Che"
+]
+},
+{
+"correct": "postino",
+"distractors": [
+"pagavamo",
+"vivevano",
+"disegnavo",
+"tempo",
+"lungo"
+]
+},
+{
+"correct": "metteva",
+"distractors": [
+"scatola",
+"c’era",
+"fretta",
+"casa",
+"eravamo"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"le",
+"un",
+"lo",
+"che"
+]
+},
+{
+"correct": "pacchi",
+"distractors": [
+"alzavi",
+"vicini",
+"contanti",
+"qui",
+"davanti"
+]
+},
+{
+"correct": "sulla",
+"distractors": [
+"sul",
+"borsa",
+"giacca",
+"mappa",
+"sorella"
+]
+},
+{
+"correct": "bilancia",
+"distractors": [
+"lavorava",
+"comprava",
+"fontana",
+"cipolla",
+"pioveva"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:44",
+"target": "La stazione ferroviaria era in fondo alla strada.",
+"ru": "Железнодорожный вокзал находился в конце улицы.",
+"uk": "Залізнична станція була в кінці вулиці.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"I",
+"Si",
+"Che"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"l’ascensore",
+"canale",
+"pallone",
+"padre",
+"forte"
+]
+},
+{
+"correct": "ferroviaria",
+"distractors": [
+"ascoltava",
+"comprava",
+"crostata",
+"bilancia",
+"profumava"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "fondo",
+"distractors": [
+"vivevamo",
+"giardino",
+"tempo",
+"ritardo",
+"freddo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"profumava",
+"comprava",
+"scuola",
+"casa",
+"domenica"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:45",
+"target": "I treni erano spesso in ritardo.",
+"ru": "Поезда часто опаздывали.",
+"uk": "Поїзди часто запізнювалися.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Lo",
+"Un"
+]
+},
+{
+"correct": "treni",
+"distractors": [
+"ogni",
+"contanti",
+"pacchi",
+"piedi",
+"bambini"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"ero",
+"eravamo",
+"libero",
+"piatto",
+"vecchio"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"domani",
+"presto",
+"stasera",
+"stamattina",
+"tardi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ritardo",
+"distractors": [
+"mangiavamo",
+"conoscevo",
+"giocavo",
+"disegnavo",
+"sabato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:46",
+"target": "Passeggiavo lungo il canale.",
+"ru": "Я шёл вдоль канала.",
+"uk": "Я йшов вздовж каналу.",
+"tiles": [
+{
+"correct": "Passeggiavo",
+"distractors": [
+"Pagavamo",
+"Tornavano",
+"Lavoravo",
+"All’aperto",
+"Giardino"
+]
+},
+{
+"correct": "lungo",
+"distractors": [
+"vecchio",
+"mano",
+"giocavo",
+"piccolo",
+"libero"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"lo",
+"una"
+]
+},
+{
+"correct": "canale",
+"distractors": [
+"monete",
+"d’estate",
+"lione",
+"quartiere",
+"finestre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:47",
+"target": "Ci incontravamo davanti alla fontana.",
+"ru": "Мы встречались перед фонтаном.",
+"uk": "Ми зустрічалися перед фонтаном.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"La",
+"Mi",
+"Si",
+"Il",
+"Le"
+]
+},
+{
+"correct": "incontravamo",
+"distractors": [
+"sei",
+"siete",
+"sono",
+"va",
+"vado"
+]
+},
+{
+"correct": "davanti",
+"distractors": [
+"ogni",
+"contanti",
+"piedi",
+"negozi",
+"bambini"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"alle",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "fontana",
+"distractors": [
+"preparava",
+"coricava",
+"domenica",
+"pioveva",
+"cipolla"
+]
+}
+],
+"alternatives": [
+"Noi ci incontravamo davanti alla fontana."
+]
+},
+{
+"lesson": 20,
+"id": "it:20:48",
+"target": "Da piccolo disegnavo barche.",
+"ru": "Когда я был маленьким, я рисовал лодки.",
+"uk": "Коли я був маленьким, я малював човни.",
+"tiles": [
+{
+"correct": "Da",
+"distractors": [
+"In",
+"A",
+"Di",
+"Con",
+"Per"
+]
+},
+{
+"correct": "piccolo",
+"distractors": [
+"vivevano",
+"lavoravo",
+"tenevo",
+"radio",
+"vento"
+]
+},
+{
+"correct": "disegnavo",
+"distractors": [
+"tornavano",
+"questo",
+"giocavo",
+"vecchio",
+"questa"
+]
+},
+{
+"correct": "barche",
+"distractors": [
+"fine",
+"canale",
+"monete",
+"grande",
+"padre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:49",
+"target": "Si coricava prima della fine del film.",
+"ru": "Она обычно ложилась спать, не досмотрев фильм.",
+"uk": "Вона зазвичай лягала спати, не додивившись фільм.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Mi",
+"Ci",
+"Il",
+"Le"
+]
+},
+{
+"correct": "coricava",
+"distractors": [
+"prendeva",
+"tagliava",
+"tirava",
+"metteva",
+"cipolla"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"dei",
+"delle",
+"degli",
+"siamo",
+"sei"
+]
+},
+{
+"correct": "fine",
+"distractors": [
+"barche",
+"madre",
+"lione",
+"luce",
+"grande"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"delle",
+"degli",
+"dello",
+"siamo"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"tenevo",
+"metteva",
+"forte",
+"cortile",
+"eravamo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "it:20:50",
+"target": "Il vecchio mercato occupava tutta la piazza.",
+"ru": "Старый рынок занимал всю площадь.",
+"uk": "Старий ринок займав всю площу.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Una",
+"Uno",
+"Gli",
+"Che",
+"E"
+]
+},
+{
+"correct": "vecchio",
+"distractors": [
+"pagavamo",
+"tempo",
+"disegnavo",
+"sabato",
+"giocavo"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"vento",
+"solo",
+"nonna",
+"giocavo",
+"all’aperto"
+]
+},
+{
+"correct": "occupava",
+"distractors": [
+"scatola",
+"c’era",
+"strada",
+"domenica",
+"sera"
+]
+},
+{
+"correct": "tutta",
+"distractors": [
+"prendeva",
+"strada",
+"sera",
+"c’era",
+"fioca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"i",
+"le",
+"si",
+"che"
+]
+},
+{
+"correct": "piazza",
+"distractors": [
+"viveva",
+"coricava",
+"profumava",
+"pioveva",
+"strada"
+]
+}
+],
+"alternatives": []
+}
+]

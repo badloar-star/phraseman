@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-21/choose",
+  "type": "T2",
+  "field": "localized.en.choose (+chapters[1].body, chapters[3].body, feedback)",
+  "problem": "en не соответствует ru: в ru — выбор окончания -one/-body/-thing/-where и any-/some- в вопросах; в en — про отрицания и единственное число после everyone",
+  "fix": "For a person choose `-one` or `-body`, for a thing `-thing`, for a place `-where`. A neutral question usually takes an `any-` form, but an offer or request can be a question with `some-`."
+ },
+ {
+  "id": "lesson-21/nuance",
+  "type": "T1",
+  "field": "localized.en.nuance (+chapters[2].body)",
+  "problem": "«For the same ordinary meaning say I didn't see anyone» — неверно: это не тот же смысл, что Nobody answered; не сказано, что второе отрицание лишнее",
+  "fix": "`Nobody answered` is already negative. To say you did not see anyone, use `I didn't see anyone`; do not add a second negative. In `Anyone can come`, `anyone` means any person at all."
+ },
+ {
+  "id": "lesson-21/choose",
+  "type": "T2",
+  "field": "localized.ru.choose (+chapters[1].body, chapters[3].body, feedback)",
+  "problem": "неясно/калька: «предложение или просьба могут начинаться с вопроса с some-»; плюс «ты» при «вы» в остальных разделах",
+  "fix": "Для человека выберите окончание `-one` или `-body`, для предмета — `-thing`, для места — `-where`. В нейтральном вопросе обычно нужна форма с `any-`, но вопрос-предложение или просьба часто строится с `some-`."
+ },
+ {
+  "id": "lesson-21/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Для людини оберіть закінчення `-one` чи `-body`, для речі — `-thing`, для місця — `-where`. У нейтральному питанні часто вживають `any-`, але в пропозиціях і проханнях можливе питання із `some-`."
+ },
+ {
+  "id": "lesson-21/nuance",
+  "type": "T2",
+  "field": "localized.ru.nuance (+chapters[2].body)",
+  "problem": "ты/вы вразнобой: nuance на «ты» («ты не видел», «не добавляй»), use/главы 4–6 на «вы»",
+  "fix": "В `Nobody answered` отрицание уже есть в `nobody`. Чтобы сказать, что вы никого не видели, используйте `I did not see anyone`. Не добавляйте ещё одно отрицание. В `Anyone can come` слово `anyone` означает «кто угодно»."
+ },
+ {
+  "id": "lesson-22/use",
+  "type": "T2",
+  "field": "localized.uk.use (+chapters[0].body)",
+  "problem": "змішані терміни: «додатком» і «доповненням» (в укр. граматиці — додаток), калька «дія сама по собі»",
+  "fix": "Дія може бути підметом речення, стояти після прийменника або бути додатком після певних дієслів. Це не завжди дія, яка відбувається просто зараз."
+ },
+ {
+  "id": "lesson-22/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (+chapters[2].body)",
+  "problem": "калька «слова після mind все ще приймають -ing»",
+  "fix": "`Stop doing` означає припинити цю діяльність. `Stop to do` означає зупинитися, щоб зробити щось інше. `Do you mind ...?` – це прохання; після `mind` однаково потрібна форма на `-ing`."
+ },
+ {
+  "id": "lesson-22/chapter-4",
+  "type": "T2",
+  "field": "localized.uk.chapters[4].body",
+  "problem": "калька «фіксовані комбінації»",
+  "fix": "Вживати сталі сполучення у звичайних повідомленнях"
+ },
+ {
+  "id": "lesson-22/chapter-6",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "неправильне керування «розрізняти … від»",
+  "fix": "Розрізняти мету й завершення дії"
+ },
+ {
+  "id": "lesson-22/choose",
+  "type": "T2",
+  "field": "localized.ru.choose",
+  "problem": "ты/вы вразнобой внутри урока: story/choose/strategy/feedback на «ты», use/nuance/главы 4–6 на «вы»; привести choose (и дубли в chapters[1].body, chapters[3].body, feedback) к «вы», story/strategy — тоже",
+  "fix": "После `enjoy` и `avoid` действие выражается формой на `-ing`. Та же форма нужна после предлога: `without asking`. Запоминайте эту форму вместе с первым словом, а не как правило для любого второго глагола."
+ },
+ {
+  "id": "lesson-22/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Після `enjoy` та `avoid` дію передає форма на `-ing`. Така сама форма потрібна після прийменника: `without asking`. Запам’ятовуйте сполуку разом, не поширюйте це правило на всі пари дієслів."
+ }
+]

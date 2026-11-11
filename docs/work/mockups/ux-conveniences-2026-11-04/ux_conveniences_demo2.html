@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru" data-pktheme="graphite-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PhraseMan — ещё удобства: как сейчас и как будет</title>
+<style>
+/* Токены — реальные значения тем graphite / ink × dark / light (как в ux_delight_demo.html, из constants/liquidGlassThemePalette, calm). */
+:root, [data-pktheme="graphite-dark"]{--bg:#0C0D10;--bgTop:#181A1F;--text:#FFFFFF;--sec:#B8B9BD;--card:#151517;--ctrl:#222429;--sheet:#222429;--cta:#F2F1F6;--ctaInk:#0B0C0E;--scrim:rgba(0,0,0,.60);--btn:#4A4B50;--ok:#47C870;--bad:#F05454;--skel:rgba(255,255,255,.08);color-scheme:dark}
+[data-pktheme="graphite-light"]{--bg:#EDF0F4;--bgTop:#F5F7FA;--text:#16191C;--sec:#575B60;--card:#FEFEFF;--ctrl:#DFE3E8;--sheet:#FBFCFD;--cta:#182029;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B3B7BB;--ok:#2E9E55;--bad:#D23C3C;--skel:rgba(0,0,0,.07);color-scheme:light}
+[data-pktheme="ink-dark"]{--bg:#030408;--bgTop:#0A0C14;--text:#F9FAFE;--sec:#C1C4CF;--card:#090B13;--ctrl:#1C1F2A;--sheet:#0F111A;--cta:#DFE4F8;--ctaInk:#04050C;--scrim:rgba(0,0,0,.60);--btn:#3B3E48;--ok:#47C870;--bad:#F05454;--skel:rgba(255,255,255,.08);color-scheme:dark}
+[data-pktheme="ink-light"]{--bg:#EFEFF6;--bgTop:#F6F6FB;--text:#17181E;--sec:#595A63;--card:#FEFEFF;--ctrl:#E1E2EA;--sheet:#FBFBFE;--cta:#1D1D2F;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B5B6BD;--ok:#2E9E55;--bad:#D23C3C;--skel:rgba(0,0,0,.07);color-scheme:light}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.35 -apple-system,"Segoe UI",Roboto,Inter,system-ui,sans-serif}
+body{padding:0 16px 48px}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer;touch-action:manipulation}
+input{font:inherit;color:var(--text)}
+.top{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 0;background:linear-gradient(var(--bg) 78%,transparent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{min-height:36px;padding:0 14px;border-radius:18px;background:var(--ctrl);color:var(--text);font-weight:600;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--cta);color:var(--ctaInk)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;max-width:1240px;margin:6px auto 0}
+.demo{background:var(--card);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.demo h2{margin:0;font-size:17px;font-weight:700}
+.seg{display:flex;background:var(--ctrl);border-radius:12px;padding:3px}
+.seg button{flex:1;min-height:38px;border-radius:9px;font-weight:600;font-size:15px;color:var(--sec);transition:background .18s,color .18s}
+.seg button[aria-pressed="true"]{background:var(--cta);color:var(--ctaInk)}
+.hint{margin:0;color:var(--sec);font-size:15px}
+.screen{position:relative;height:420px;border-radius:18px;overflow:hidden;background:linear-gradient(var(--bgTop),var(--bg) 60%);padding:14px;display:flex;flex-direction:column;gap:12px}
+.btn{min-height:50px;border-radius:15px;background:var(--cta);color:var(--ctaInk);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;padding:0 18px;transition:transform .12s,opacity .12s}
+.btn:active{transform:scale(.97);opacity:.86}
+.btn.sec{background:var(--ctrl);color:var(--text)}
+.tile{background:var(--ctrl);border-radius:14px;min-height:52px;display:flex;align-items:center;padding:0 14px;font-weight:600}
+.row{display:flex;align-items:center;gap:10px}
+.sub{color:var(--sec);font-size:15px}
+.ico{width:24px;height:24px;flex:none}
+.grow{flex:1;min-width:0}
+.toast{position:absolute;left:14px;right:14px;top:14px;z-index:30;background:var(--sheet);border-radius:14px;padding:12px 14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity .2s,transform .22s cubic-bezier(.2,.8,.2,1)}
+.toast.show{opacity:1;transform:none}
+.dotok{width:10px;height:10px;border-radius:50%;background:var(--ok);flex:none}
+.tabs{display:flex;background:var(--ctrl);border-radius:20px;padding:4px;margin-top:auto}
+.tabs button{flex:1;min-height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--sec);transition:transform .12s}
+.tabs button:active{transform:scale(.94)}
+.tabs button[aria-current="true"]{background:var(--cta);color:var(--ctaInk)}
+.list{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
+.list::-webkit-scrollbar{display:none}
+.menu{position:absolute;z-index:25;background:var(--sheet);border-radius:18px;padding:6px;box-shadow:0 14px 34px rgba(0,0,0,.35);min-width:220px;animation:pop .18s cubic-bezier(.2,.8,.2,1) both;transform-origin:top left}
+.menu button{width:100%;min-height:48px;padding:0 14px;border-radius:12px;display:flex;align-items:center;gap:12px;font-weight:600;text-align:left}
+.menu button:active{background:var(--ctrl)}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.scrimx{position:absolute;inset:0;z-index:24;background:var(--scrim)}
+.field{background:var(--ctrl);border-radius:14px;min-height:54px;padding:0 14px;border:0;width:100%;outline:none;font-size:17px}
+.field:focus{box-shadow:0 0 0 2px var(--cta)}
+.bub{max-width:82%;padding:12px 14px;border-radius:18px;font-weight:500;font-size:16px;user-select:none;-webkit-user-select:none}
+.bub.bot{align-self:flex-start;background:var(--ctrl);border-bottom-left-radius:5px}
+.bub.me{align-self:flex-end;background:var(--cta);color:var(--ctaInk);border-bottom-right-radius:5px}
+.bub.hold{transform:scale(1.03);transition:transform .45s}
+.chipx{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:22px;background:var(--ctrl);font-weight:700;align-self:flex-start;animation:pop .2s both}
+.chipx.cta{background:var(--cta);color:var(--ctaInk)}
+.wave{display:flex;gap:3px;align-items:center;height:24px}
+.wave i{width:4px;border-radius:2px;background:currentColor;animation:wv .5s ease-in-out infinite alternate}
+.wave i:nth-child(2){animation-delay:.1s}.wave i:nth-child(3){animation-delay:.2s}.wave i:nth-child(4){animation-delay:.3s}
+@keyframes wv{from{height:6px}to{height:22px}}
+.vid{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,var(--btn),var(--ctrl));aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.vbar{height:8px;border-radius:4px;background:var(--ctrl);overflow:hidden}
+.vbar i{display:block;height:100%;background:var(--cta)}
+.phone{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 8px;align-content:start;padding-top:20px}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;color:var(--sec);user-select:none;-webkit-user-select:none}
+.app i{width:58px;height:58px;border-radius:16px;background:var(--ctrl);display:block;transition:transform .15s}
+.app.me i{background:var(--cta);color:var(--ctaInk);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;font-style:normal}
+.app.held i{transform:scale(1.1)}
+.prog{height:6px;border-radius:3px;background:var(--ctrl);overflow:hidden}.prog i{display:block;height:100%;background:var(--cta);transition:width .25s}
+@media (prefers-reduced-motion: reduce){.menu,.chipx,.toast,.btn,.bub.hold{animation:none;transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="chips" id="themes" role="group" aria-label="Тема">
+    <button class="chip" data-t="graphite-dark" aria-pressed="true">Графит · тёмная</button>
+    <button class="chip" data-t="graphite-light" aria-pressed="false">Графит · светлая</button>
+    <button class="chip" data-t="ink-dark" aria-pressed="false">Чернила · тёмная</button>
+    <button class="chip" data-t="ink-light" aria-pressed="false">Чернила · светлая</button>
+  </div>
+</header>
+<main class="grid" id="grid"></main>
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var root=document.documentElement;
+function svg(p,extra){return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '+(extra||'')+'>'+p+'</svg>'}
+var I={
+ home:svg('<path d="M4 11l8-7 8 7v9H4z"/>'),play:svg('<circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor"/>'),
+ users:svg('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6M16 5a3.5 3.5 0 0 1 0 7M18 14c2.4.6 3.5 2.6 3.5 6"/>'),
+ gear:svg('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'),
+ book:svg('<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/>'),
+ spk:svg('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/>'),
+ search:svg('<circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/>'),
+ plus:svg('<path d="M12 5v14M5 12h14"/>'),
+ copy:svg('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>'),
+ share:svg('<path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/>'),
+ turtle:svg('<path d="M3 15c0-4 3.5-7 8-7s7 3 7 7zM18 12c1.5 0 3 .8 3 2.2M7 15v3M14 15v3"/>'),
+ card:svg('<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M12 9v6M9 12h6"/>'),
+ back10:svg('<path d="M4 12a8 8 0 1 0 3-6.2M4 4v5h5"/>'),
+ retry:svg('<path d="M3 12a9 9 0 0 1 15.5-6.2M21 4v5h-5M21 12a9 9 0 0 1-15.5 6.2M3 20v-5h5"/>'),
+ tick:svg('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+ trash:svg('<path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/>'),
+ info:svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/>'),
+ next:svg('<path d="M5 12h14M13 6l6 6-6 6"/>')
+};
+var themes=$$('#themes .chip');
+themes.forEach(function(b){b.addEventListener('click',function(){root.setAttribute('data-pktheme',b.dataset.t);themes.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))})})});
+
+function demo(title,hint,render){
+  var el=document.createElement('section');el.className='demo';
+  el.innerHTML='<h2>'+title+'</h2><div class="seg" role="group"><button data-m="before" aria-pressed="true">Как сейчас</button><button data-m="after" aria-pressed="false">Как будет</button></div><p class="hint">'+hint+'</p><div class="screen"></div><div class="reset"></div>';
+  $('#grid').appendChild(el);
+  var scr=$('.screen',el),seg=$$('.seg button',el),mode='before',timers=[];
+  var api={scr:scr,after:function(){return mode==='after'},later:function(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t},
+    toast:function(txt){var t=$('.toast',scr);if(!t){t=document.createElement('div');t.className='toast';scr.appendChild(t)}t.innerHTML='<span class="dotok"></span>'+txt;t.classList.add('show');clearTimeout(api._tt);api._tt=setTimeout(function(){t.classList.remove('show')},1600)},
+    redraw:function(){timers.forEach(clearTimeout);timers=[];scr.innerHTML='';render(api,scr)}};
+  seg.forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.m;seg.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});api.redraw()})});
+  api.redraw();return api;
+}
+function hold(el,ms,onHold,onTap){var t=null,done=false;
+  el.addEventListener('pointerdown',function(e){done=false;el.classList.add('held');t=setTimeout(function(){done=true;el.classList.remove('held');onHold(e)},ms)});
+  function up(){clearTimeout(t);el.classList.remove('held');}
+  el.addEventListener('pointerup',function(){var d=done;up();if(!d&&onTap)onTap()});
+  el.addEventListener('pointerleave',up);el.addEventListener('pointercancel',up);el.addEventListener('contextmenu',function(e){e.preventDefault()})}
+function tabbar(active){return '<div class="tabs"><button aria-label="Главная">'+I.home+'</button><button aria-label="Уроки" '+(active==='lessons'?'aria-current="true"':'')+' data-lessons>'+I.book+'</button><button aria-label="Видео">'+I.play+'</button><button aria-label="Сообщество">'+I.users+'</button></div>'}
+
+/* ───── вторая часть: остаток ТОП-15 + ВАУ ───── */
+I.sun=svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/>');
+I.bell=svg('<path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/>');
+I.paste=svg('<rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9 5V3h6v2M9 12h6M9 16h4"/>');
+I.wifi=svg('<path d="M3 9a14 14 0 0 1 18 0M6 12.5a9 9 0 0 1 12 0M9 16a4.5 4.5 0 0 1 6 0M12 19.5v.01"/>');
+I.stop=svg('<rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>');
+I.pause=svg('<path d="M8 5v14M16 5v14"/>');
+I.globe=svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>');
+I.link=svg('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');
+I.down=svg('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>');
+I.up=svg('<path d="M12 20V9M7 14l5-5 5 5M5 4h14"/>');
+I.eye=svg('<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>');
+I.chev=svg('<path d="M6 9l6 6 6-6"/>');
+function reopen(api,scr,label){var r=$('.reset',scr.parentNode);r.innerHTML='<button class="btn sec" style="width:100%">'+label+'</button>';$('button',r).onclick=function(){api.redraw()}}
+function segs(items,cur,key){return '<div class="seg" style="width:100%">'+items.map(function(v){return '<button data-k="'+key+'" data-v="'+v+'" aria-pressed="'+(v===cur)+'">'+v+'</button>'}).join('')+'</div>'}
+function bindSegs(scr,state,after,persist){$$('[data-k]',scr).forEach(function(b){b.addEventListener('click',function(){state[b.dataset.k]=b.dataset.v;if(after)persist[b.dataset.k]=b.dataset.v;$$('[data-k="'+b.dataset.k+'"]',scr).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});if(scr._on)scr._on(b.dataset.k,b.dataset.v)})})}
+
+/* 11 — слово в редакторе без автоисправления */
+demo('11 · Слово без автоисправления','Нажми «Напечатать gonna» — как поведёт себя поле.',function(api,scr){
+  scr.innerHTML='<b>Слово</b><input class="field" data-w '+(api.after()?'autocapitalize="off" autocorrect="off" spellcheck="false"':'')+' placeholder="Слово"><button class="btn sec" data-t>Напечатать «gonna»</button><div class="chipx" data-o style="display:none"></div><span class="sub">Перевод</span><input class="field" placeholder="Перевод">';
+  var w=$('[data-w]',scr),o=$('[data-o]',scr),run=0;
+  $('[data-t]',scr).addEventListener('click',function(){var id=++run;w.value='';var s='gonna',i=0;o.style.display='none';(function step(){if(id!==run)return;w.value=s.slice(0,++i);if(i<s.length)return api.later(step,110);
+    if(!api.after())api.later(function(){if(id!==run)return;w.value='Gone';o.style.display='inline-flex';o.innerHTML=I.info+'Телефон «исправил» слово'},350);
+    else{o.style.display='inline-flex';o.innerHTML=I.tick+'Как напечатано'}})()});
+});
+
+/* 19 — экран не гаснет */
+demo('19 · Экран во время урока','Подожди секунды или нажми на экран.',function(api,scr){
+  var left=8,tm;
+  scr.innerHTML='<div class="tile" style="min-height:96px;font-size:20px;justify-content:center">Переведи: «Где вокзал?»</div><div class="chipx" data-s style="align-self:center"></div><div class="tile" style="font-size:18px;justify-content:center">Where is the station?</div><div class="tile" style="font-size:18px;justify-content:center">Where are the stations?</div><div data-off style="position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;color:#888;font-size:17px;z-index:20">Экран погас · нажми, чтобы включить</div>';
+  var s=$('[data-s]',scr),off=$('[data-off]',scr);
+  function paint(){s.innerHTML=api.after()?I.sun+'Экран остаётся включённым':I.sun+'Погаснет через '+left+' с'}
+  paint();
+  tm=setInterval(function(){if(!scr.isConnected){clearInterval(tm);return}if(api.after())return;left--;if(left<=0){off.style.display='flex';clearInterval(tm)}else paint()},1000);
+  off.addEventListener('click',function(){off.style.display='none';left=8;paint();clearInterval(tm);tm=setInterval(function(){if(!scr.isConnected){clearInterval(tm);return}if(api.after())return;left--;if(left<=0){off.style.display='flex';clearInterval(tm)}else paint()},1000)});
+  scr.addEventListener('pointerdown',function(){if(!api.after()&&off.style.display==='none'){left=8;paint()}});
+});
+
+/* 2 — Сообщество помнит раздел */
+var mem2={s:'Пик'};
+demo('2 · Сообщество помнит раздел','Выбери раздел, закрой и открой снова.',function(api,scr){
+  var st={s:api.after()?mem2.s:'Пик'};
+  scr.innerHTML='<b style="font-size:22px">Сообщество</b>'+segs(['Пик','Друзья','Наборы'],st.s,'s')+'<div class="tile" data-body style="min-height:160px;font-size:20px;justify-content:center"></div>';
+  function body(){$('[data-body]',scr).textContent=st.s==='Пик'?'Рейтинг недели':st.s==='Друзья'?'Твои друзья':'Наборы сообщества'}body();
+  scr._on=function(k,v){body()};bindSegs(scr,st,api.after(),mem2);reopen(api,scr,'Закрыть и открыть снова');
+});
+
+/* 7+4+35 — помнить вид, сортировку, фильтр */
+var mem3={a:'Стопкой',b:'Топ',c:'Ждут'};
+demo('7 · 4 · 35 · Вид, сортировка, фильтр','Поменяй три настройки, закрой и открой снова.',function(api,scr){
+  var st=api.after()?{a:mem3.a,b:mem3.b,c:mem3.c}:{a:'Стопкой',b:'Топ',c:'Ждут'};
+  scr.innerHTML='<b>Коллекция карточек</b>'+segs(['Стопкой','Списком'],st.a,'a')+'<b>Каталог наборов</b>'+segs(['Топ','Новые'],st.b,'b')+'<b>Ошибки</b>'+segs(['Ждут','Исправлены','Все'],st.c,'c');
+  bindSegs(scr,st,api.after(),mem3);reopen(api,scr,'Закрыть и открыть снова');
+});
+
+/* 23+24 — кнопка «Вставить» */
+demo('23 · 24 · Вставить код','Нажми «Вставить» рядом с полем.',function(api,scr){
+  function fld(id,ph,val){return '<div class="row"><input class="field grow" data-f="'+id+'" placeholder="'+ph+'" '+(api.after()&&id==='p'?'style="text-transform:uppercase"':'')+'>'+(api.after()?'<button class="btn sec" data-p="'+id+'" style="min-height:54px;padding:0 16px">'+I.paste+'&nbsp;Вставить</button>':'')+'</div>'}
+  scr.innerHTML='<b>Код друга</b>'+fld('f','Код друга')+'<b>Промокод</b>'+fld('p','Промокод')+'<button class="btn" style="margin-top:auto" data-ok>Продолжить</button>';
+  var clip={f:'FRIEND-4821',p:'spring25'};
+  $$('[data-p]',scr).forEach(function(b){b.addEventListener('click',function(){var i=$('[data-f="'+b.dataset.p+'"]',scr);i.value=b.dataset.p==='p'?clip.p.toUpperCase():clip.f;api.toast('Вставлено')})});
+  $('[data-ok]',scr).addEventListener('click',function(){api.toast('Принято')});
+});
+
+/* 47 — честная офлайн-плашка */
+demo('47 · Нет сети','Это экран без интернета.',function(api,scr){
+  var ban=api.after()?'<div class="tile" style="min-height:76px;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px"><b>Нет сети</b><span class="sub">Работают уроки и карточки</span></div>':'<div class="tile" style="min-height:64px;justify-content:space-between"><b>Нет сети</b><button class="btn sec" data-r style="min-height:42px">Повторить</button></div>';
+  scr.innerHTML=ban+'<div class="tile">Урок 8</div><div class="tile">Мои карточки</div><div class="tile" style="opacity:.5">Сообщество</div><div class="tile" style="opacity:.5">Пик</div>';
+  var r=$('[data-r]',scr);if(r)r.addEventListener('click',function(){api.toast('Всё ещё нет сети')});
+});
+
+/* 26+27 — пример скорости, пробное уведомление */
+demo('26 · 27 · Настройки озвучки','Подвигай ползунок и отпусти. Потом проверь уведомление.',function(api,scr){
+  var v=1;
+  scr.innerHTML='<b>Скорость озвучки <span data-v>1,0×</span></b><input type="range" min="0.6" max="1.4" step="0.1" value="1" data-r style="width:100%;height:36px;accent-color:var(--cta)"><div data-o style="min-height:52px"></div>'+(api.after()?'<button class="btn" data-n>'+I.bell+'&nbsp;Проверить уведомление</button>':'')+'<div data-note class="tile" style="display:none;min-height:70px;gap:12px;background:var(--sheet);position:absolute;left:14px;right:14px;top:14px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.3)">'+I.bell+'<b>PhraseMan · Пора повторить слова</b></div>';
+  var r=$('[data-r]',scr);r.addEventListener('input',function(){v=+r.value;$('[data-v]',scr).textContent=v.toFixed(1).replace('.',',')+'×'});
+  r.addEventListener('change',function(){if(!api.after())return;var o=$('[data-o]',scr);o.innerHTML='<div class="chipx cta"><span class="wave" style="animation-duration:'+(1/v)+'s"><i></i><i></i><i></i><i></i></span>How are you doing?</div>';api.later(function(){o.innerHTML=''},1800)});
+  var n=$('[data-n]',scr);if(n)n.addEventListener('click',function(){api.toast('Через 3 секунды придёт');api.later(function(){var x=$('[data-note]',scr);x.style.display='flex';api.later(function(){x.style.display='none'},2400)},3000)});
+});
+
+/* 16 — «досмотрено» */
+demo('16 · Видео: досмотрено','Нажми на ролик — он станет просмотренным.',function(api,scr){
+  var rows=[['Заказ в кафе',1],['В аэропорту',0],['Знакомство',1],['На работе',0]];
+  scr.innerHTML='<div class="list">'+rows.map(function(r,i){return '<button class="tile" data-i="'+i+'" style="min-height:64px;justify-content:space-between;text-align:left"><span>'+r[0]+'</span><span data-m style="display:flex;gap:6px">'+(r[1]?'':'<span class="chipx" style="min-height:30px;padding:0 10px;font-size:15px">новое</span>')+'</span></button>'}).join('')+'</div>';
+  $$('[data-i]',scr).forEach(function(b){var done=rows[b.dataset.i][1];
+    if(api.after()&&!done)b._seen=false;
+    function mark(){$('[data-m]',b).innerHTML='<span style="color:var(--ok);display:flex;align-items:center;gap:6px">'+I.tick+'Досмотрено</span>'}
+    if(api.after()&&done===1&&b.dataset.i==='0')mark();
+    b.addEventListener('click',function(){if(api.after())mark();api.toast(rows[b.dataset.i][0])})});
+});
+
+/* ВАУ — прослушать все слова */
+demo('ВАУ · Прослушать все слова','Нажми «Слушать все» — слова озвучиваются по очереди.',function(api,scr){
+  var words=[['hello','привет'],['thank you','спасибо'],['please','пожалуйста'],['sorry','извините'],['goodbye','до свидания']],cur=-1,on=false;
+  scr.innerHTML=(api.after()?'<button class="btn" data-all>'+I.spk+'&nbsp;Слушать все</button>':'')+'<div class="list" data-l>'+words.map(function(w,i){return '<div class="tile" data-w="'+i+'" style="min-height:56px;justify-content:space-between;transition:background .2s"><b>'+w[0]+'</b><span class="sub">'+w[1]+'</span></div>'}).join('')+'</div><div data-bar style="display:none;margin-top:auto" class="row"><button class="btn sec grow" data-st>'+I.stop+'&nbsp;Стоп</button></div>';
+  var bar=$('[data-bar]',scr),all=$('[data-all]',scr);
+  function hi(){$$('[data-w]',scr).forEach(function(t,i){t.style.background=i===cur?'var(--cta)':'';t.style.color=i===cur?'var(--ctaInk)':''})}
+  function stop(){on=false;cur=-1;hi();bar.style.display='none';if(all)all.style.display='flex'}
+  function next(){if(!on)return;cur++;if(cur>=words.length){stop();api.toast('Готово');return}hi();api.later(next,1100)}
+  if(all)all.addEventListener('click',function(){on=true;cur=-1;all.style.display='none';bar.style.display='flex';next()});
+  $('[data-st]',scr).addEventListener('click',stop);
+});
+
+/* ВАУ — быстрая смена языка */
+demo('ВАУ · Быстрая смена языка','В «Как будет» выбери вариант: долгое нажатие или видимая кнопка.',function(api,scr){
+  var langs=['English','Español','Français','Deutsch'],cur=0,variant='Долгое нажатие';
+  function draw(){
+    var head=api.after()&&variant==='Кнопка'?'<div class="row"><b class="grow" style="font-size:22px" data-h>Главная</b><button class="chipx" data-sw style="min-height:44px;animation:none">'+I.globe+langs[cur]+I.chev+'</button></div>':'<div class="row"><b class="grow" style="font-size:22px;padding:10px 0" data-h>Главная · '+langs[cur]+'</b></div>';
+    scr.innerHTML=(api.after()?segs(['Долгое нажатие','Кнопка'],variant,'v'):'')+head+'<div class="tile" style="min-height:110px;font-size:20px;justify-content:center">Урок 8</div><div class="tile">Серия: 5 дней</div>';
+    $$('[data-k="v"]',scr).forEach(function(b){b.addEventListener('click',function(){variant=b.dataset.v;draw()})});
+    function openSheet(){var s=document.createElement('div');s.className='scrimx';var m=document.createElement('div');m.className='menu';m.style.left='14px';m.style.right='14px';m.style.top='110px';m.style.transformOrigin='top center';
+      m.innerHTML=langs.map(function(l,i){return '<button data-l="'+i+'">'+I.globe+l+(i===cur?'<span style="margin-left:auto">'+I.tick+'</span>':'')+'</button>'}).join('');
+      scr.appendChild(s);scr.appendChild(m);var close=function(){m.remove();s.remove()};s.addEventListener('pointerdown',close);
+      $$('[data-l]',m).forEach(function(b){b.addEventListener('click',function(){cur=+b.dataset.l;close();draw();api.toast(langs[cur])})})}
+    var sw=$('[data-sw]',scr);if(sw)sw.addEventListener('click',openSheet);
+    if(api.after()&&variant==='Долгое нажатие')hold($('[data-h]',scr),500,openSheet);
+  }
+  draw();
+});
+
+/* ВАУ — импорт, экспорт, ссылка */
+demo('ВАУ · Поделиться и перенести слова','Нажми на любое действие над набором.',function(api,scr){
+  scr.innerHTML='<b style="font-size:22px">Еда и кафе</b><div class="tile">12 карточек</div><button class="btn">Тренировать</button>'+(api.after()?'<div class="row"><button class="btn sec grow" data-sh>'+I.link+'&nbsp;Ссылка</button><button class="btn sec grow" data-ex>'+I.down+'&nbsp;Экспорт</button><button class="btn sec grow" data-im>'+I.up+'&nbsp;Импорт</button></div>':'');
+  function sheet(inner){var s=document.createElement('div');s.className='scrimx';var m=document.createElement('div');m.className='menu';m.style.cssText='left:0;right:0;bottom:0;border-radius:22px 22px 0 0;padding:16px;transform-origin:bottom';m.innerHTML=inner;scr.appendChild(s);scr.appendChild(m);var close=function(){m.remove();s.remove()};s.addEventListener('pointerdown',close);return {m:m,close:close}}
+  var sh=$('[data-sh]',scr);if(sh)sh.addEventListener('click',function(){api.toast('Ссылка скопирована')});
+  var ex=$('[data-ex]',scr);if(ex)ex.addEventListener('click',function(){var o=sheet('<b>Список слов</b><pre style="margin:10px 0;background:var(--ctrl);border-radius:14px;padding:12px;font:16px/1.5 inherit;white-space:pre-wrap">coffee — кофе\ntea — чай\nbread — хлеб</pre><button class="btn" data-c>'+I.copy+'&nbsp;Скопировать</button>');$('[data-c]',o.m).addEventListener('click',function(){o.close();api.toast('Скопировано')})});
+  var im=$('[data-im]',scr);if(im)im.addEventListener('click',function(){var o=sheet('<b>Вставь список</b><textarea data-t class="field" style="min-height:110px;padding:12px;margin:10px 0;resize:none">apple — яблоко\nmilk — молоко\negg — яйцо</textarea><button class="btn" data-a>Добавить 3 карточки</button>');$('[data-a]',o.m).addEventListener('click',function(){o.close();api.toast('Добавлено 3 карточки')})});
+});
+})();
+</script>
+</body>
+</html>

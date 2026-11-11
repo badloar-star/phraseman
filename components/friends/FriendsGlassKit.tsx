@@ -58,7 +58,10 @@ export function FriendsCard({ glass, children, testID, style, onLayoutHeight }: 
   return (
     <View testID={testID} onLayout={onLayoutHeight ? (event) => onLayoutHeight(event.nativeEvent.layout.height) : undefined} style={[friendsCardStyle(glass), style]}>
       {/* зачем (владелец 18.10 «острые углы на плашках»): блик сверху и дымка — со скруглением карточки (14), иначе за ней торчат квадратные уголки */}
-      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14 }} />
+      {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): карточка друга у «Авроры» — наклонный перелив плашки (148°, до 62 %) вместо плоского тона с бликом */}
+      {glass.aurora
+        ? <LinearGradient pointerEvents="none" colors={[glass.aurora.cardFrom, glass.aurora.cardTo]} start={{ x: 0, y: 0 }} end={{ x: 0.4, y: 0.62 }} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14 }} />
+        : <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14 }} />}
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} radius={14} />
       {children}
@@ -157,7 +160,9 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
   const height = compact ? 44 : 48;
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
   // зачем (владелец 13.10, №35 «кнопки не сливаются»): заливки — токены кнопок темы: отключённая buttonFillDisabled/buttonInkDisabled (подпись >= 4,5), вторичная buttonFill, главная ctaFill
-  const ink = disabled ? glass.buttonInkDisabled : primary ? glass.ctaFillInk : glass.text;
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): главная кнопка «Авроры» — перелив материала с тёмной подписью
+  const auroraCta = primary && !disabled ? glass.aurora ?? null : null;
+  const ink = auroraCta ? auroraCta.ctaInk : disabled ? glass.buttonInkDisabled : primary ? glass.ctaFillInk : glass.text;
   // зачем (владелец 18.10, «сперва логи»): x и ширина надписи кнопки «по ширине надписи» — по ним видно, по центру ли она
   const onLabelLayout = hug
     ? (e: LayoutChangeEvent) => {
@@ -194,7 +199,9 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
       }}
     >
       {/* зачем (координатор 05.10): в «Спокойно-тёмном» — общий глянец .cta макета из ThemeAccentFill, а не свой градиент. */}
-      {primary && !disabled ? <ThemeAccentFill glass={glass} radius={height / 2} /> : null}
+      {auroraCta
+        ? <LinearGradient pointerEvents="none" colors={[auroraCta.ctaFrom, auroraCta.ctaTo]} start={{ x: 0, y: 0.43 }} end={{ x: 1, y: 0.57 }} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: height / 2 }} />
+        : primary && !disabled ? <ThemeAccentFill glass={glass} radius={height / 2} /> : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
       <FlowText
         testID="friends-button-label"

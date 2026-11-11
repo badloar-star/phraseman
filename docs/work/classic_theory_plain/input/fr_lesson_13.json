@@ -1,0 +1,697 @@
+{
+ "lang": "fr",
+ "lesson": 13,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:13:01",
+   "target": "Le sac est lourd.",
+   "ru": "Сумка тяжелая.",
+   "uk": "Сумка важка."
+  },
+  {
+   "id": "fr:13:02",
+   "target": "La valise est lourde.",
+   "ru": "Чемодан тяжелый.",
+   "uk": "Валіза важка."
+  },
+  {
+   "id": "fr:13:03",
+   "target": "Le sac est léger.",
+   "ru": "Сумка легкая.",
+   "uk": "Сумка легка."
+  },
+  {
+   "id": "fr:13:04",
+   "target": "La veste est légère.",
+   "ru": "Куртка лёгкая.",
+   "uk": "Куртка легка."
+  },
+  {
+   "id": "fr:13:05",
+   "target": "Le drap est blanc.",
+   "ru": "Простыня белая.",
+   "uk": "Простирадло біле."
+  },
+  {
+   "id": "fr:13:06",
+   "target": "La chemise est blanche.",
+   "ru": "Рубашка белая.",
+   "uk": "Сорочка біла."
+  },
+  {
+   "id": "fr:13:07",
+   "target": "Le pull est vert.",
+   "ru": "Свитер зеленый.",
+   "uk": "Светр зелений."
+  },
+  {
+   "id": "fr:13:08",
+   "target": "La jupe est verte.",
+   "ru": "Юбка зеленая.",
+   "uk": "Спідниця зелена."
+  },
+  {
+   "id": "fr:13:09",
+   "target": "Le bonnet est gris.",
+   "ru": "Шапка серая.",
+   "uk": "Шапка сіра."
+  },
+  {
+   "id": "fr:13:10",
+   "target": "La robe est grise.",
+   "ru": "Платье серое.",
+   "uk": "Сукня сіра."
+  },
+  {
+   "id": "fr:13:11",
+   "target": "Le vélo est neuf.",
+   "ru": "Велосипед новый.",
+   "uk": "Велосипед новий."
+  },
+  {
+   "id": "fr:13:12",
+   "target": "La voiture est neuve.",
+   "ru": "Машина новая.",
+   "uk": "Машина нова."
+  },
+  {
+   "id": "fr:13:13",
+   "target": "Les vélos sont neufs.",
+   "ru": "Велосипеды новые.",
+   "uk": "Велосипеди нові."
+  },
+  {
+   "id": "fr:13:14",
+   "target": "Les voitures sont neuves.",
+   "ru": "Машины новые.",
+   "uk": "Машини нові."
+  },
+  {
+   "id": "fr:13:15",
+   "target": "La boîte est pleine.",
+   "ru": "Коробка полная.",
+   "uk": "Коробка повна."
+  },
+  {
+   "id": "fr:13:16",
+   "target": "Les boîtes sont pleines.",
+   "ru": "Коробки полные.",
+   "uk": "Коробки повні."
+  },
+  {
+   "id": "fr:13:17",
+   "target": "Le verre est vide.",
+   "ru": "Стакан пуст.",
+   "uk": "Склянка порожня."
+  },
+  {
+   "id": "fr:13:18",
+   "target": "Les verres sont vides.",
+   "ru": "Стаканы пусты.",
+   "uk": "Склянки порожні."
+  },
+  {
+   "id": "fr:13:19",
+   "target": "La rue est étroite.",
+   "ru": "Улица узкая.",
+   "uk": "Вулиця вузька."
+  },
+  {
+   "id": "fr:13:20",
+   "target": "Les rues sont étroites.",
+   "ru": "Улицы узкие.",
+   "uk": "Вулиці вузькі."
+  },
+  {
+   "id": "fr:13:21",
+   "target": "Je cherche un sac noir.",
+   "ru": "Я ищу черную сумку.",
+   "uk": "Я шукаю чорну сумку."
+  },
+  {
+   "id": "fr:13:22",
+   "target": "Je cherche une veste noire.",
+   "ru": "Я ищу черную куртку.",
+   "uk": "Я шукаю чорну куртку."
+  },
+  {
+   "id": "fr:13:23",
+   "target": "Elle porte un pantalon bleu.",
+   "ru": "На ней синие брюки.",
+   "uk": "Вона в синіх штанях."
+  },
+  {
+   "id": "fr:13:24",
+   "target": "Il porte une chemise bleue.",
+   "ru": "На нем синяя рубашка.",
+   "uk": "Він у синій сорочці."
+  },
+  {
+   "id": "fr:13:25",
+   "target": "J’achète des chaussettes noires.",
+   "ru": "Я покупаю чёрные носки.",
+   "uk": "Я купую чорні шкарпетки."
+  },
+  {
+   "id": "fr:13:26",
+   "target": "Nous prenons les serviettes blanches.",
+   "ru": "Мы берём белые полотенца.",
+   "uk": "Ми беремо білі рушники."
+  },
+  {
+   "id": "fr:13:27",
+   "target": "Tu préfères le pull rouge ?",
+   "ru": "Ты предпочитаешь красный свитер?",
+   "uk": "Тобі більше подобається червоний светр?"
+  },
+  {
+   "id": "fr:13:28",
+   "target": "Elle choisit les chaussures vertes.",
+   "ru": "Она выбирает зелёные туфли.",
+   "uk": "Вона обирає зелені туфлі."
+  },
+  {
+   "id": "fr:13:29",
+   "target": "Le manteau brun est chaud.",
+   "ru": "Коричневое пальто тёплое.",
+   "uk": "Коричневе пальто тепле."
+  },
+  {
+   "id": "fr:13:30",
+   "target": "La couverture brune est chaude.",
+   "ru": "Коричневое одеяло тёплое.",
+   "uk": "Коричнева ковдра тепла."
+  },
+  {
+   "id": "fr:13:31",
+   "target": "C’est un petit jardin.",
+   "ru": "Это небольшой сад.",
+   "uk": "Це маленький сад."
+  },
+  {
+   "id": "fr:13:32",
+   "target": "C’est une petite cour.",
+   "ru": "Это небольшой дворик.",
+   "uk": "Це невеликий дворик."
+  },
+  {
+   "id": "fr:13:33",
+   "target": "Il habite dans un grand appartement.",
+   "ru": "Он живёт в большой квартире.",
+   "uk": "Він живе у великій квартирі."
+  },
+  {
+   "id": "fr:13:34",
+   "target": "Elle travaille dans une grande salle.",
+   "ru": "Она работает в большой комнате.",
+   "uk": "Вона працює у великій кімнаті."
+  },
+  {
+   "id": "fr:13:35",
+   "target": "Je voudrais une longue écharpe.",
+   "ru": "Я бы хотел длинный шарф.",
+   "uk": "Я хотів би довгий шарф."
+  },
+  {
+   "id": "fr:13:36",
+   "target": "Nous avons un nouveau voisin.",
+   "ru": "У нас новый сосед.",
+   "uk": "У нас новий сусід."
+  },
+  {
+   "id": "fr:13:37",
+   "target": "Vous avez une nouvelle adresse ?",
+   "ru": "У вас новый адрес?",
+   "uk": "У вас нова адреса?"
+  },
+  {
+   "id": "fr:13:38",
+   "target": "C’est un vieil immeuble.",
+   "ru": "Это старое здание.",
+   "uk": "Це стара будівля."
+  },
+  {
+   "id": "fr:13:39",
+   "target": "C’est une vieille photo.",
+   "ru": "Это старая фотография.",
+   "uk": "Це стара фотографія."
+  },
+  {
+   "id": "fr:13:40",
+   "target": "Il porte un beau costume.",
+   "ru": "На нём красивый костюм.",
+   "uk": "На ньому гарний костюм."
+  },
+  {
+   "id": "fr:13:41",
+   "target": "Cette soupe est froide.",
+   "ru": "Этот суп холодный.",
+   "uk": "Цей суп холодний."
+  },
+  {
+   "id": "fr:13:42",
+   "target": "Les boissons sont fraîches.",
+   "ru": "Напитки холодные.",
+   "uk": "Напої холодні."
+  },
+  {
+   "id": "fr:13:43",
+   "target": "La poire est mûre.",
+   "ru": "Груша спелая.",
+   "uk": "Груша стигла."
+  },
+  {
+   "id": "fr:13:44",
+   "target": "Les pommes sont mûres.",
+   "ru": "Яблоки спелые.",
+   "uk": "Яблука стиглі."
+  },
+  {
+   "id": "fr:13:45",
+   "target": "La porte du garage est haute.",
+   "ru": "Гаражные ворота высокие.",
+   "uk": "Гаражні ворота високі."
+  },
+  {
+   "id": "fr:13:46",
+   "target": "Le mur de la cuisine est blanc.",
+   "ru": "Кухонная стена белая.",
+   "uk": "Стіна на кухні біла."
+  },
+  {
+   "id": "fr:13:47",
+   "target": "Les étagères sont trop basses.",
+   "ru": "Полки слишком низкие.",
+   "uk": "Полиці занадто низькі."
+  },
+  {
+   "id": "fr:13:48",
+   "target": "Les nouvelles chaises sont solides.",
+   "ru": "Новые стулья прочные.",
+   "uk": "Нові стільці міцні."
+  },
+  {
+   "id": "fr:13:49",
+   "target": "Ma veste légère est dans la valise.",
+   "ru": "Моя легкая куртка в чемодане.",
+   "uk": "Моя легка куртка у валізі."
+  },
+  {
+   "id": "fr:13:50",
+   "target": "Je prends la petite boîte bleue.",
+   "ru": "Я беру маленькую синюю коробочку.",
+   "uk": "Я беру маленьку синю коробочку."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "léger / légère",
+   "ru": "лёгкий, лёгкая (по весу)",
+   "uk": "легкий, легка (за вагою)"
+  },
+  {
+   "lemma": "la boîte",
+   "ru": "коробка",
+   "uk": "коробка"
+  },
+  {
+   "lemma": "le pull",
+   "ru": "свитер",
+   "uk": "светр"
+  },
+  {
+   "lemma": "la chemise",
+   "ru": "рубашка",
+   "uk": "сорочка"
+  },
+  {
+   "lemma": "l’étagère (f.)",
+   "ru": "полка",
+   "uk": "полку"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  }
+ ],
+ "oldTopicTitle": "Описание вещи: род и число прилагательного",
+ "oldTheoryRu": "Прилагательное говорит, какой предмет. Оно смотрит на род французского названия, а не на пол говорящего. В паре про сумку и чемодан ты меняешь предмет и связанную с ним форму. Нередко прибавляют `e`, но это не механическое правило для любой основы. `Blanc` превращается в `blanche`, `léger` — в `légère`. Полезно видеть две формы рядом. Если предметов несколько, письменная форма обычно получает `s`. У `neuf` есть дополнительное изменение: `neuve`, `neufs`, `neuves`. Не убирай множественное число у самого существительного. Цвет в обычной группе идёт после названия. Некоторые пары отличаются только письменно: `bleu`, `bleue`. Цвет `rouge` уже заканчивается на `e` и в единственном числе не меняется по роду. Некоторые частые прилагательные стоят перед существительным: `petit`, `grand`, `nouveau`. Не копируй порядок из примера с цветом, не посмотрев, какое именно прилагательное используешь. Перед гласной в мужском единственном числе у некоторых прилагательных особая форма: `un vieil immeuble`, `nouvel`, `bel`; перед согласной — `un nouveau voisin`, `un beau costume`. `Vieil` здесь не женский род: женская форма — `vieille`, как в `une vieille photo`. В `la petite boîte bleue` оба прилагательных относятся к одной коробке. Определи её род и число один раз, а потом проверь отдельно форму и место каждого описания."
+}

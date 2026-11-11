@@ -12,7 +12,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import type { MistakeDiffSegment } from '../../app/mistake_answer_diff';
-import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../practice/PracticeGlass';
 import { mpColors } from './panelPaint';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { GlassRim } from './GlassRim';

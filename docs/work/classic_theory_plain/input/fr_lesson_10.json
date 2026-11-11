@@ -1,0 +1,678 @@
+{
+ "lang": "fr",
+ "lesson": 10,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:10:01",
+   "target": "Il y a un banc.",
+   "ru": "Есть скамейка.",
+   "uk": "Є лава."
+  },
+  {
+   "id": "fr:10:02",
+   "target": "Il y a une table.",
+   "ru": "Есть стол.",
+   "uk": "Є стіл."
+  },
+  {
+   "id": "fr:10:03",
+   "target": "Il y a deux bancs.",
+   "ru": "Есть две скамейки.",
+   "uk": "Є дві лавки."
+  },
+  {
+   "id": "fr:10:04",
+   "target": "Il y a trois chaises.",
+   "ru": "Есть три стула.",
+   "uk": "Є три стільці."
+  },
+  {
+   "id": "fr:10:05",
+   "target": "Il y a une pharmacie ici.",
+   "ru": "Здесь есть аптека.",
+   "uk": "Тут є аптека."
+  },
+  {
+   "id": "fr:10:06",
+   "target": "Il y a un parc près de la gare.",
+   "ru": "Рядом с железнодорожным вокзалом есть парк.",
+   "uk": "Біля залізничного вокзалу є парк."
+  },
+  {
+   "id": "fr:10:07",
+   "target": "Il y a des livres sur la table.",
+   "ru": "На столе лежат книги.",
+   "uk": "На столі книги."
+  },
+  {
+   "id": "fr:10:08",
+   "target": "Il y a du pain.",
+   "ru": "Есть хлеб.",
+   "uk": "Є хліб."
+  },
+  {
+   "id": "fr:10:09",
+   "target": "Il y a de l’eau.",
+   "ru": "Есть вода.",
+   "uk": "Є вода."
+  },
+  {
+   "id": "fr:10:10",
+   "target": "Il y a du café.",
+   "ru": "Есть кофе.",
+   "uk": "Є кава."
+  },
+  {
+   "id": "fr:10:11",
+   "target": "Dans le sac, il y a une carte.",
+   "ru": "В сумке карта.",
+   "uk": "У сумці є карта."
+  },
+  {
+   "id": "fr:10:12",
+   "target": "Sur le lit, il y a une écharpe.",
+   "ru": "На кровати шарф.",
+   "uk": "На ліжку є шарф."
+  },
+  {
+   "id": "fr:10:13",
+   "target": "Dans la poche, il y a un ticket.",
+   "ru": "В кармане билет.",
+   "uk": "У кишені є квиток."
+  },
+  {
+   "id": "fr:10:14",
+   "target": "Sur le bureau, il y a un écran.",
+   "ru": "На столе экран.",
+   "uk": "На столі є екран."
+  },
+  {
+   "id": "fr:10:15",
+   "target": "Dans la cuisine, il y a une horloge.",
+   "ru": "На кухне есть часы.",
+   "uk": "На кухні є годинник."
+  },
+  {
+   "id": "fr:10:16",
+   "target": "Dans le tiroir, il y a des piles.",
+   "ru": "В ящике лежат батарейки.",
+   "uk": "У шухляді є батарейки."
+  },
+  {
+   "id": "fr:10:17",
+   "target": "Il y a un message pour vous.",
+   "ru": "Для вас есть сообщение.",
+   "uk": "Для вас є повідомлення."
+  },
+  {
+   "id": "fr:10:18",
+   "target": "Il y a une lettre pour Léa.",
+   "ru": "Письмо для Леа.",
+   "uk": "Лист для Леї."
+  },
+  {
+   "id": "fr:10:19",
+   "target": "Il y a une place au fond.",
+   "ru": "Сзади есть свободное место.",
+   "uk": "Ззаду є вільне місце."
+  },
+  {
+   "id": "fr:10:20",
+   "target": "Il y a un ascenseur dans l’hôtel.",
+   "ru": "В отеле есть лифт.",
+   "uk": "У готелі є ліфт."
+  },
+  {
+   "id": "fr:10:21",
+   "target": "Est-ce qu’il y a un bus ce soir ?",
+   "ru": "Есть ли сегодня вечером автобус?",
+   "uk": "Чи є автобус сьогодні ввечері?"
+  },
+  {
+   "id": "fr:10:22",
+   "target": "Il y a un marché le dimanche ?",
+   "ru": "Есть ли рынок по воскресеньям?",
+   "uk": "Чи є ринок по неділях?"
+  },
+  {
+   "id": "fr:10:23",
+   "target": "Est-ce qu’il y a une consigne ?",
+   "ru": "Есть ли камера хранения багажа?",
+   "uk": "Чи є камера схову багажу?"
+  },
+  {
+   "id": "fr:10:24",
+   "target": "Il y a des toilettes ici ?",
+   "ru": "Есть ли здесь туалеты?",
+   "uk": "Чи є тут туалети?"
+  },
+  {
+   "id": "fr:10:25",
+   "target": "Est-ce qu’il y a de la place ?",
+   "ru": "Есть ли свободные места?",
+   "uk": "Чи є вільні місця?"
+  },
+  {
+   "id": "fr:10:26",
+   "target": "Il y a une erreur sur le reçu ?",
+   "ru": "Есть ли ошибка в чеке?",
+   "uk": "Чи є помилка в чеку?"
+  },
+  {
+   "id": "fr:10:27",
+   "target": "Est-ce qu’il y a une chambre libre ?",
+   "ru": "Есть ли свободная комната?",
+   "uk": "Чи є вільна кімната?"
+  },
+  {
+   "id": "fr:10:28",
+   "target": "Il y a du lait au frigo ?",
+   "ru": "Есть ли молоко в холодильнике?",
+   "uk": "Чи є молоко в холодильнику?"
+  },
+  {
+   "id": "fr:10:29",
+   "target": "Est-ce qu’il y a une prise près du lit ?",
+   "ru": "Есть ли розетка рядом с кроватью?",
+   "uk": "Чи є розетка біля ліжка?"
+  },
+  {
+   "id": "fr:10:30",
+   "target": "Il y a un autre train aujourd’hui ?",
+   "ru": "Есть ли сегодня другой поезд?",
+   "uk": "Чи є сьогодні інший поїзд?"
+  },
+  {
+   "id": "fr:10:31",
+   "target": "Il n’y a pas de banc.",
+   "ru": "Нет скамейки.",
+   "uk": "Лавки немає."
+  },
+  {
+   "id": "fr:10:32",
+   "target": "Il n’y a pas de savon.",
+   "ru": "Нет мыла.",
+   "uk": "Мила немає."
+  },
+  {
+   "id": "fr:10:33",
+   "target": "Il n’y a pas d’eau chaude.",
+   "ru": "Нет горячей воды.",
+   "uk": "Гарячої води немає."
+  },
+  {
+   "id": "fr:10:34",
+   "target": "Il n’y a pas de train après minuit.",
+   "ru": "После полуночи поездов нет.",
+   "uk": "Після півночі поїздів немає."
+  },
+  {
+   "id": "fr:10:35",
+   "target": "Il n’y a pas de sucre.",
+   "ru": "Нет сахара.",
+   "uk": "Цукру немає."
+  },
+  {
+   "id": "fr:10:36",
+   "target": "Il n’y a plus de billets.",
+   "ru": "Билетов больше нет.",
+   "uk": "Квитків більше немає."
+  },
+  {
+   "id": "fr:10:37",
+   "target": "Il y a encore deux places.",
+   "ru": "Осталось два места.",
+   "uk": "Ще є два вільних місця."
+  },
+  {
+   "id": "fr:10:38",
+   "target": "Il y a trop de bruit.",
+   "ru": "Слишком шумно.",
+   "uk": "Занадто шумно."
+  },
+  {
+   "id": "fr:10:39",
+   "target": "Il y a beaucoup de monde.",
+   "ru": "Много людей.",
+   "uk": "Багато людей."
+  },
+  {
+   "id": "fr:10:40",
+   "target": "Il y a peu de circulation.",
+   "ru": "Машин мало.",
+   "uk": "Рух транспорту невеликий."
+  },
+  {
+   "id": "fr:10:41",
+   "target": "Il y a une boulangerie au coin de la rue.",
+   "ru": "На углу есть пекарня.",
+   "uk": "На розі є пекарня."
+  },
+  {
+   "id": "fr:10:42",
+   "target": "Dans le parc, il y a des jeux pour enfants.",
+   "ru": "В парке есть детская площадка.",
+   "uk": "У парку є дитячий майданчик."
+  },
+  {
+   "id": "fr:10:43",
+   "target": "Il y a un colis à la réception.",
+   "ru": "На ресепшене лежит посылка.",
+   "uk": "На рецепції лежить посилка."
+  },
+  {
+   "id": "fr:10:44",
+   "target": "Il y a des travaux devant le musée.",
+   "ru": "Перед музеем ведутся строительные работы.",
+   "uk": "Перед музеєм йдуть будівельні роботи."
+  },
+  {
+   "id": "fr:10:45",
+   "target": "Il y a une couverture dans le placard.",
+   "ru": "В шкафу лежит одеяло.",
+   "uk": "У шафі є ковдра."
+  },
+  {
+   "id": "fr:10:46",
+   "target": "Il y a une tache sur ta veste.",
+   "ru": "На твоей куртке пятно.",
+   "uk": "На твоїй куртці пляма."
+  },
+  {
+   "id": "fr:10:47",
+   "target": "Il y a un numéro au dos de la carte.",
+   "ru": "На обороте карты есть номер.",
+   "uk": "На звороті картки є номер."
+  },
+  {
+   "id": "fr:10:48",
+   "target": "Il y a une piste cyclable ici.",
+   "ru": "Здесь велосипедная дорожка.",
+   "uk": "Тут є велосипедна доріжка."
+  },
+  {
+   "id": "fr:10:49",
+   "target": "Il y a une file devant le guichet.",
+   "ru": "Перед кассой очередь.",
+   "uk": "Біля каси черга."
+  },
+  {
+   "id": "fr:10:50",
+   "target": "Il y a un arrêt juste en face.",
+   "ru": "Прямо напротив есть остановка.",
+   "uk": "Прямо навпроти є зупинка."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le banc",
+   "ru": "скамейка",
+   "uk": "лава"
+  },
+  {
+   "lemma": "le colis",
+   "ru": "посылка",
+   "uk": "посилка"
+  },
+  {
+   "lemma": "la couverture",
+   "ru": "одеяло",
+   "uk": "ковдру"
+  },
+  {
+   "lemma": "le placard",
+   "ru": "шкаф",
+   "uk": "шафа"
+  },
+  {
+   "lemma": "la pile",
+   "ru": "батарейка",
+   "uk": "батарейка"
+  },
+  {
+   "lemma": "le lait",
+   "ru": "молоко",
+   "uk": "молоко"
+  },
+  {
+   "lemma": "la cuisine",
+   "ru": "кухня",
+   "uk": "кухня"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  }
+ ],
+ "oldTopicTitle": "Что здесь есть: `il y a`",
+ "oldTheoryRu": "До этого ты говорил, где находится знакомая вещь. Теперь вводишь новую: «здесь есть скамейка». Конструкция `il y a` сообщает о наличии, а не отвечает, где находится конкретная скамейка. После конструкции может быть одна вещь, несколько или вещество. Начало `il y a` во всех трёх случаях неизменно. Не заменяй `a` формой множественного числа. Когда важно место, вынеси его в начало: сначала назови ящик, затем перечисли его содержимое. Французское `y` внутри `il y a` не надо убирать даже при явном месте. Вопрос можно построить интонацией либо с `est-ce que`. Вторая схема перед `il` даёт `est-ce qu’il y a`. Не вынимай из готовой формулы короткое `y`. При полном отрицании получаем `il n’y a pas de`. Перед гласной `de` становится `d’`. Сравни наличие горячей воды и её отсутствие, не меняя воду на другой предмет. `Il n’y a plus` означает, что чего-то больше нет, а `il y a encore` — что осталось. При покупке последних билетов эти похожие по длине фразы передают противоположные новости. Сравни две фразы про одно и то же место: `Il y a un colis à la réception` вводит посылку, `Le colis est à la réception` сообщает, где находится уже известная посылка. Выбирай по цели сообщения."
+}

@@ -141,10 +141,15 @@
    "es": "después de"
   },
   "dem": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the",
-   "es": "el"
+   "ru": "После еды мы слушаем музыку (Nach ___ Essen)",
+   "uk": "Після їжі ми слухаємо музику (Nach ___ Essen)",
+   "en": "We listen to music after the meal (Nach ___ Essen)",
+   "es": "Después de comer, escuchamos música (Nach ___ Essen)",
+   "pt-BR": "Depois da refeição, ouvimos música (Nach ___ Essen)",
+   "vi": "Sau bữa ăn, chúng tôi nghe nhạc (Nach ___ Essen)",
+   "id": "Setelah makan, kami mendengarkan musik (Nach ___ Essen)",
+   "tr": "Yemekten sonra müzik dinliyoruz (Nach ___ Essen)",
+   "pl": "Po posiłku słuchamy muzyki (Nach ___ Essen)"
   },
   "vor": {
    "ru": "перед, до",

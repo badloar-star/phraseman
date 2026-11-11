@@ -1,0 +1,7313 @@
+[
+{
+"lesson": 23,
+"id": "es:23:01",
+"target": "Vivía aquí antes.",
+"ru": "Я раньше жил здесь.",
+"uk": "Я раніше жив тут.",
+"tiles": [
+{
+"correct": "Vivía",
+"distractors": [
+"Vives",
+"Vivimos",
+"Vivo",
+"Viven",
+"Vivíamos"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"fuera",
+"dentro",
+"cerca",
+"allí",
+"lejos"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ahora",
+"mañana",
+"más",
+"ayer",
+"ya"
+]
+}
+],
+"alternatives": [
+"Yo vivía aquí antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:02",
+"target": "Vivías aquí antes.",
+"ru": "Ты раньше жил здесь.",
+"uk": "Ти раніше жив тут.",
+"tiles": [
+{
+"correct": "Vivías",
+"distractors": [
+"Vivís",
+"Vivía",
+"Vivíamos",
+"Vivimos",
+"Vives"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"fuera",
+"dentro",
+"allí",
+"lejos"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ayer",
+"más",
+"mañana",
+"menudo",
+"temprano"
+]
+}
+],
+"alternatives": [
+"Tú vivías aquí antes.",
+"Antes vivías aquí.",
+"Tú antes vivías aquí."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:03",
+"target": "Vivía cerca de la estación antes.",
+"ru": "Я раньше жил рядом с вокзалом.",
+"uk": "Я раніше жив поруч із вокзалом.",
+"tiles": [
+{
+"correct": "Vivía",
+"distractors": [
+"Vivías",
+"Viven",
+"Vivimos",
+"Vivo",
+"Vivíamos"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"dentro",
+"aquí",
+"fuera",
+"allí",
+"lejos"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"en",
+"desde",
+"por",
+"a",
+"con"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"un",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"mochila",
+"hermanas",
+"mensaje",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"temprano",
+"tarde",
+"anoche",
+"ayer",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo vivía cerca de la estación antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:04",
+"target": "Vivías cerca de la estación antes.",
+"ru": "Ты раньше жил рядом с вокзалом.",
+"uk": "Ти раніше жив поруч із вокзалом.",
+"tiles": [
+{
+"correct": "Vivías",
+"distractors": [
+"Vivía",
+"Vivíamos",
+"Vivo",
+"Vivís",
+"Vivimos"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"allí",
+"aquí",
+"dentro",
+"lejos",
+"fuera"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"en",
+"por",
+"a",
+"con",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"un",
+"esta",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"reserva",
+"parada",
+"bolso",
+"ventana",
+"casa"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ya",
+"ahora",
+"ayer",
+"mañana",
+"más"
+]
+}
+],
+"alternatives": [
+"Tú vivías cerca de la estación antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:05",
+"target": "Ana comía en casa antes.",
+"ru": "Ана раньше ела дома.",
+"uk": "Ана раніше їла вдома.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Lejos",
+"Ayer"
+]
+},
+{
+"correct": "comía",
+"distractors": [
+"comiendo",
+"comíamos",
+"comer",
+"gustan",
+"gusta"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermanas",
+"favor",
+"vecinos",
+"billetes",
+"mesa"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ahora",
+"mañana",
+"ayer",
+"más",
+"tarde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:06",
+"target": "Comíamos en casa antes.",
+"ru": "Мы раньше ели дома.",
+"uk": "Ми раніше їли вдома.",
+"tiles": [
+{
+"correct": "Comíamos",
+"distractors": [
+"Comes",
+"Comíais",
+"Comías",
+"Comer",
+"Comían"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mochilas",
+"música",
+"fotos",
+"mercado",
+"cita"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"más",
+"ayer",
+"tarde",
+"mañana",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros comíamos en casa antes.",
+"Nosotras comíamos en casa antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:07",
+"target": "Vivía en un barrio tranquilo.",
+"ru": "Я жил в тихом районе.",
+"uk": "Я жив у тихому районі.",
+"tiles": [
+{
+"correct": "Vivía",
+"distractors": [
+"Vivías",
+"Vivís",
+"Vives",
+"Vivimos",
+"Vivíamos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"sin",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"los",
+"una",
+"con",
+"que"
+]
+},
+{
+"correct": "barrio",
+"distractors": [
+"cocina",
+"carta",
+"móvil",
+"hotel",
+"casa"
+]
+},
+{
+"correct": "tranquilo",
+"distractors": [
+"libres",
+"fría",
+"nuevo",
+"listos",
+"rojo"
+]
+}
+],
+"alternatives": [
+"Yo vivía en un barrio tranquilo."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:08",
+"target": "Comías en la cocina antes.",
+"ru": "Ты раньше ел на кухне.",
+"uk": "Ти раніше їв на кухні.",
+"tiles": [
+{
+"correct": "Comías",
+"distractors": [
+"Comíais",
+"Comíamos",
+"Comía",
+"Comes",
+"Comían"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"de",
+"para",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"lo",
+"este",
+"con"
+]
+},
+{
+"correct": "cocina",
+"distractors": [
+"arroz",
+"abrigo",
+"cita",
+"llave",
+"salidas"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"tarde",
+"ahora",
+"anoche",
+"ayer",
+"después"
+]
+}
+],
+"alternatives": [
+"Tú comías en la cocina antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:09",
+"target": "Luis trabajaba en casa antes.",
+"ru": "Луис раньше работал дома.",
+"uk": "Луїс раніше працював вдома.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Lejos",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "trabajaba",
+"distractors": [
+"trabaja",
+"trabajas",
+"trabajar",
+"trabajan",
+"trabajando"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"viaje",
+"billete",
+"foto",
+"camisetas",
+"ventana"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"anoche",
+"ayer",
+"ya",
+"tarde",
+"ahora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:10",
+"target": "Trabajábamos en el hotel antes.",
+"ru": "Мы раньше работали в отеле.",
+"uk": "Ми раніше працювали у готелі.",
+"tiles": [
+{
+"correct": "Trabajábamos",
+"distractors": [
+"Trabajáis",
+"Trabaja",
+"Trabajamos",
+"Trabajaban",
+"Trabajan"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"una",
+"cada",
+"con"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"carta",
+"regalo",
+"cebollas",
+"libros",
+"cita"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"mañana",
+"anoche",
+"menudo",
+"también",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Nosotros trabajábamos en el hotel antes.",
+"Nosotras trabajábamos en el hotel antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:11",
+"target": "Bebía agua cada día.",
+"ru": "Я каждый день пил воду.",
+"uk": "Я щодня пив воду.",
+"tiles": [
+{
+"correct": "Bebía",
+"distractors": [
+"Bebe",
+"Bebemos",
+"Bebo",
+"Bebiendo",
+"Son"
+]
+},
+{
+"correct": "agua",
+"distractors": [
+"compra",
+"tarjeta",
+"carta",
+"casa",
+"llaves"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"tus",
+"los",
+"el",
+"las",
+"la"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"mensaje",
+"zapatos",
+"salida",
+"billete",
+"casa"
+]
+}
+],
+"alternatives": [
+"Yo bebía agua cada día."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:12",
+"target": "Ana bebía café cada día.",
+"ru": "Ана каждый день пила кофе.",
+"uk": "Ана щодня пила каву.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "bebía",
+"distractors": [
+"bebiendo",
+"beber",
+"bebíamos",
+"gusta",
+"llamar"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"cocina",
+"ventana",
+"mañana",
+"foto",
+"libros"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"mis",
+"tu",
+"su",
+"unas",
+"una"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"llave",
+"reserva",
+"leche",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:13",
+"target": "Mi madre iba al mercado en autobús.",
+"ru": "Моя мама ездила на рынок на автобусе.",
+"uk": "Моя мама їздила на ринок автобусом.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"Sus",
+"Mis",
+"Tu",
+"Tus",
+"Su"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"bolsa",
+"carta",
+"billetes",
+"taxi",
+"ascensor"
+]
+},
+{
+"correct": "iba",
+"distractors": [
+"fuiste",
+"vamos",
+"fueron",
+"es",
+"fui"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "mercado",
+"distractors": [
+"cambio",
+"maletas",
+"hotel",
+"casa",
+"mochila"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "autobús",
+"distractors": [
+"clase",
+"mapas",
+"camisetas",
+"hoteles",
+"música"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:14",
+"target": "Leías el mensaje cada día.",
+"ru": "Ты каждый день читал сообщение.",
+"uk": "Ти щодня читав повідомлення.",
+"tiles": [
+{
+"correct": "Leías",
+"distractors": [
+"Leído",
+"Leía",
+"Leer",
+"Lees",
+"Leo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"mesas",
+"llaves",
+"ventana",
+"hermana",
+"casa"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"mis",
+"su",
+"los",
+"este",
+"la"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"mesa",
+"ventana",
+"manos",
+"aeropuerto",
+"oficina"
+]
+}
+],
+"alternatives": [
+"Tú leías el mensaje cada día."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:15",
+"target": "Escribía una carta cada día.",
+"ru": "Я каждый день писал письмо.",
+"uk": "Я щодня писав листа.",
+"tiles": [
+{
+"correct": "Escribía",
+"distractors": [
+"Escribiendo",
+"Escribo",
+"Escribes",
+"Buscando",
+"Escribís"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"los",
+"un",
+"tu",
+"mi",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"película",
+"baño",
+"bolso",
+"cargador",
+"casa"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"el",
+"los",
+"tus",
+"la",
+"un"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"hermano",
+"tarjeta",
+"lista",
+"móvil",
+"pregunta"
+]
+}
+],
+"alternatives": [
+"Yo escribía una carta cada día."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:16",
+"target": "Escribíamos un mensaje cada día.",
+"ru": "Мы каждый день писали сообщение.",
+"uk": "Ми щодня писали повідомлення.",
+"tiles": [
+{
+"correct": "Escribíamos",
+"distractors": [
+"Escribiendo",
+"Escribe",
+"Escribimos",
+"Volver",
+"Escribís"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"los",
+"una",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"casa",
+"película",
+"puerta",
+"idea",
+"hotel"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"la",
+"tu",
+"mis",
+"los",
+"el"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"bolsillo",
+"sopa",
+"paquete",
+"cena",
+"casa"
+]
+}
+],
+"alternatives": [
+"Nosotros escribíamos un mensaje cada día.",
+"Nosotras escribíamos un mensaje cada día."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:17",
+"target": "Ana trabajaba en casa cada día.",
+"ru": "Ана каждый день работала дома.",
+"uk": "Ана щодня працювала вдома.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Pronto",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "trabajaba",
+"distractors": [
+"trabajando",
+"trabajáis",
+"trabaja",
+"trabajar",
+"trabajan"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"carta",
+"estación",
+"correo",
+"reserva",
+"reunión"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"mi",
+"la",
+"mis",
+"el",
+"una"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"hoteles",
+"camiseta",
+"hermanos",
+"minuto",
+"madre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:18",
+"target": "Mis hermanas trabajaban en el hotel cada día.",
+"ru": "Мои сёстры каждый день работали в отеле.",
+"uk": "Мої сестри щодня працювали у готелі.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Sus",
+"Su",
+"Tu",
+"Mi",
+"Tus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"fruta",
+"maleta",
+"mensaje",
+"banco",
+"casa"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabajan",
+"trabaja",
+"trabajábamos",
+"trabajas",
+"trabajando"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"para",
+"con",
+"de",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"efectivo",
+"carta",
+"aeropuerto",
+"mañana",
+"hermana"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"mi",
+"la",
+"esta",
+"una",
+"los"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"número",
+"foto",
+"casa",
+"mensaje",
+"coche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:19",
+"target": "De niño iba a ese colegio.",
+"ru": "В детстве я ходил в ту школу.",
+"uk": "У дитинстві я ходив до тієї школи.",
+"tiles": [
+{
+"correct": "De",
+"distractors": [
+"Por",
+"Para",
+"En",
+"Con",
+"Desde"
+]
+},
+{
+"correct": "niño",
+"distractors": [
+"madre",
+"kilo",
+"coches",
+"hotel",
+"libro"
+]
+},
+{
+"correct": "iba",
+"distractors": [
+"fue",
+"vamos",
+"fuiste",
+"ir",
+"comprar"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"con",
+"por",
+"desde",
+"sin"
+]
+},
+{
+"correct": "ese",
+"distractors": [
+"la",
+"una",
+"los",
+"las",
+"el"
+]
+},
+{
+"correct": "colegio",
+"distractors": [
+"abrigos",
+"hermana",
+"coche",
+"maletas",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:20",
+"target": "Esperabas fuera cada día.",
+"ru": "Ты каждый день ждал снаружи.",
+"uk": "Ти щодня чекав надворі.",
+"tiles": [
+{
+"correct": "Esperabas",
+"distractors": [
+"Esperábamos",
+"Esperar",
+"Esperaron",
+"Esperando",
+"Esperaban"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"aquí",
+"lejos",
+"allí",
+"cerca",
+"dentro"
+]
+},
+{
+"correct": "cada",
+"distractors": [
+"su",
+"las",
+"la",
+"los",
+"una"
+]
+},
+{
+"correct": "día",
+"distractors": [
+"libro",
+"salida",
+"mapa",
+"recepción",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tú esperabas fuera cada día."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:21",
+"target": "Vivíamos cerca de la tienda.",
+"ru": "Мы жили рядом с магазином.",
+"uk": "Ми жили поруч із магазином.",
+"tiles": [
+{
+"correct": "Vivíamos",
+"distractors": [
+"Vivimos",
+"Vivo",
+"Vives",
+"Vivía",
+"Vivías"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"aquí",
+"dentro",
+"allí",
+"lejos",
+"fuera"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"con",
+"a",
+"en",
+"sin",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"un",
+"el",
+"con"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"llave",
+"móvil",
+"pasaportes",
+"libro",
+"favor"
+]
+}
+],
+"alternatives": [
+"Nosotros vivíamos cerca de la tienda.",
+"Nosotras vivíamos cerca de la tienda."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:22",
+"target": "Comíais en la cocina a menudo.",
+"ru": "Вы часто ели на кухне.",
+"uk": "Ви часто їли на кухні.",
+"tiles": [
+{
+"correct": "Comíais",
+"distractors": [
+"Comíamos",
+"Comiendo",
+"Comer",
+"Llamó",
+"Llamaste"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "cocina",
+"distractors": [
+"tiempo",
+"mensaje",
+"casa",
+"hotel",
+"mochila"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"antes",
+"más",
+"mañana",
+"tarde",
+"ya"
+]
+}
+],
+"alternatives": [
+"Comían en la cocina a menudo."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:23",
+"target": "Mis hermanos trabajaban en casa a menudo.",
+"ru": "Мои братья часто работали дома.",
+"uk": "Мої брати часто працювали вдома.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Sus",
+"Su",
+"Mi",
+"Tu",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"trenes",
+"manos",
+"libro",
+"mensaje",
+"móvil"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabajando",
+"trabajábamos",
+"trabaja",
+"trabajáis",
+"trabajan"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mensaje",
+"aeropuerto",
+"llave",
+"libros",
+"hotel"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"anoche",
+"ahora",
+"ayer",
+"más",
+"tarde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:24",
+"target": "Mis vecinos paseaban por el parque.",
+"ru": "Мои соседи гуляли по парку.",
+"uk": "Мої сусіди гуляли парком.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Mi",
+"Tus",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "vecinos",
+"distractors": [
+"libros",
+"hermanos",
+"bolsillo",
+"mesa",
+"casa"
+]
+},
+{
+"correct": "paseaban",
+"distractors": [
+"pasear",
+"están",
+"gusta",
+"llevo",
+"está"
+]
+},
+{
+"correct": "por",
+"distractors": [
+"sin",
+"a",
+"para",
+"de",
+"con"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"los",
+"la",
+"cada"
+]
+},
+{
+"correct": "parque",
+"distractors": [
+"idea",
+"baño",
+"casa",
+"recepción",
+"oficina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:25",
+"target": "Mis hermanas leían el libro a menudo.",
+"ru": "Мои сёстры часто читали книгу.",
+"uk": "Мої сестри часто читали книжку.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Tu",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"tienda",
+"cocina",
+"llaves",
+"oficina",
+"casa"
+]
+},
+{
+"correct": "leían",
+"distractors": [
+"leído",
+"leyendo",
+"leer",
+"lee",
+"leíste"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"lo",
+"los",
+"la",
+"con"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"mochilas",
+"gente",
+"salida",
+"casa",
+"hermanos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"sin",
+"por",
+"de",
+"con",
+"para"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"anoche",
+"antes",
+"ayer",
+"más",
+"mañana"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:26",
+"target": "Mis hermanos leían el mensaje a menudo.",
+"ru": "Мои братья часто читали сообщение.",
+"uk": "Мої брати часто читали повідомлення.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Su",
+"Sus",
+"Tu"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"billete",
+"maleta",
+"libro",
+"foto",
+"casa"
+]
+},
+{
+"correct": "leían",
+"distractors": [
+"leído",
+"lee",
+"leyendo",
+"leer",
+"leíste"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"los",
+"las",
+"una",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"pan",
+"oficina",
+"mañana",
+"cocina",
+"ayer"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"anoche",
+"mañana",
+"ayer",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:27",
+"target": "El autobús pasaba por mi barrio.",
+"ru": "Автобус проезжал через мой район.",
+"uk": "Автобус проїжджав через мій район.",
+"tiles": [
+{
+"correct": "El",
+"distractors": [
+"Las",
+"La",
+"Los",
+"Una",
+"Con"
+]
+},
+{
+"correct": "autobús",
+"distractors": [
+"parque",
+"fotos",
+"clase",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "pasaba",
+"distractors": [
+"pasar",
+"cambias",
+"gusta",
+"fregar",
+"puedes"
+]
+},
+{
+"correct": "por",
+"distractors": [
+"de",
+"a",
+"sin",
+"con",
+"para"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"tu",
+"tus",
+"sus",
+"su"
+]
+},
+{
+"correct": "barrio",
+"distractors": [
+"pan",
+"maleta",
+"leche",
+"bolso",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:28",
+"target": "Bebíamos agua a menudo.",
+"ru": "Мы часто пили воду.",
+"uk": "Ми часто пили воду.",
+"tiles": [
+{
+"correct": "Bebíamos",
+"distractors": [
+"Beber",
+"Bebiendo",
+"Bebemos",
+"Bebo",
+"Estudio"
+]
+},
+{
+"correct": "agua",
+"distractors": [
+"bolso",
+"películas",
+"parque",
+"estación",
+"casa"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"con",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"tarde",
+"ahora",
+"mañana",
+"ayer",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros bebíamos agua a menudo.",
+"Nosotras bebíamos agua a menudo."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:29",
+"target": "Mis hermanos escribían un mensaje a menudo.",
+"ru": "Мои братья часто писали сообщение.",
+"uk": "Мої брати часто писали повідомлення.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Sus",
+"Tus",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"bolsos",
+"libro",
+"ventana",
+"barrio",
+"casa"
+]
+},
+{
+"correct": "escribían",
+"distractors": [
+"escribiendo",
+"sonó",
+"escribir",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"unas",
+"la",
+"una",
+"ese",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"cartas",
+"maletas",
+"fotos",
+"clase",
+"mochila"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"desde",
+"para",
+"con",
+"de",
+"por"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"mañana",
+"antes",
+"ayer",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:30",
+"target": "Comíais en casa a menudo.",
+"ru": "Вы часто ели дома.",
+"uk": "Ви часто їли вдома.",
+"tiles": [
+{
+"correct": "Comíais",
+"distractors": [
+"Comíamos",
+"Comiendo",
+"Comer",
+"Llamó",
+"Llamaste"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"para",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mensaje",
+"efectivo",
+"aeropuerto",
+"salidas",
+"mochila"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "menudo",
+"distractors": [
+"ahora",
+"ayer",
+"más",
+"ya",
+"antes"
+]
+}
+],
+"alternatives": [
+"Comían en casa a menudo.",
+"A menudo comíais en casa.",
+"A menudo comían en casa."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:31",
+"target": "No trabajaba en casa antes.",
+"ru": "Я раньше не работал дома.",
+"uk": "Я раніше не працював вдома.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "trabajaba",
+"distractors": [
+"trabaja",
+"trabajamos",
+"trabajaban",
+"trabajo",
+"trabajan"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"desde",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"carta",
+"compra",
+"libro",
+"llave",
+"hotel"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"mañana",
+"ahora",
+"más",
+"ayer",
+"anoche"
+]
+}
+],
+"alternatives": [
+"Yo no trabajaba en casa antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:32",
+"target": "No comías en la cocina antes.",
+"ru": "Ты раньше не ел на кухне.",
+"uk": "Ти раніше не їв на кухні.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "comías",
+"distractors": [
+"comiendo",
+"comes",
+"comer",
+"comíamos",
+"comía"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"para",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"estos",
+"con"
+]
+},
+{
+"correct": "cocina",
+"distractors": [
+"huevos",
+"kilo",
+"mochila",
+"cita",
+"reloj"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"anoche",
+"ayer",
+"ahora",
+"más",
+"mañana"
+]
+}
+],
+"alternatives": [
+"Tú no comías en la cocina antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:33",
+"target": "Ana no bebía agua antes.",
+"ru": "Ана раньше не пила воду.",
+"uk": "Ана раніше не пила воду.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Quién",
+"Ayer",
+"Nunca"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"también",
+"ya",
+"ayer",
+"aquí",
+"hoy"
+]
+},
+{
+"correct": "bebía",
+"distractors": [
+"bebiendo",
+"llevo",
+"beber",
+"bebíamos",
+"lleva"
+]
+},
+{
+"correct": "agua",
+"distractors": [
+"hotel",
+"recepción",
+"paquete",
+"mesas",
+"casa"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"anoche",
+"temprano",
+"menudo",
+"ayer",
+"ahora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:34",
+"target": "De niño compraba fruta en ese mercado.",
+"ru": "В детстве я покупал фрукты на том рынке.",
+"uk": "У дитинстві я купував фрукти на тому ринку.",
+"tiles": [
+{
+"correct": "De",
+"distractors": [
+"Con",
+"Por",
+"A",
+"Para",
+"Desde"
+]
+},
+{
+"correct": "niño",
+"distractors": [
+"libros",
+"tienda",
+"billete",
+"hermanos",
+"móvil"
+]
+},
+{
+"correct": "compraba",
+"distractors": [
+"comprar",
+"compré",
+"compraste",
+"compró",
+"compramos"
+]
+},
+{
+"correct": "fruta",
+"distractors": [
+"hermanos",
+"carta",
+"favor",
+"pasaportes",
+"casa"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"para",
+"desde",
+"sin"
+]
+},
+{
+"correct": "ese",
+"distractors": [
+"mis",
+"la",
+"el",
+"una",
+"un"
+]
+},
+{
+"correct": "mercado",
+"distractors": [
+"lista",
+"bicicleta",
+"mañana",
+"canción",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:35",
+"target": "Luis no escribía cartas antes.",
+"ru": "Раньше Луис не писал писем.",
+"uk": "Раніше Луїс не писав листів.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Cuándo",
+"Ayer",
+"Pronto",
+"Quién"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"también",
+"ya",
+"ayer",
+"mañana",
+"ahora"
+]
+},
+{
+"correct": "escribía",
+"distractors": [
+"escribir",
+"escrito",
+"escribiendo",
+"escribimos",
+"escribíamos"
+]
+},
+{
+"correct": "cartas",
+"distractors": [
+"casa",
+"salidas",
+"paraguas",
+"tarjeta",
+"mensaje"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ayer",
+"también",
+"mañana",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Antes Luis no escribía cartas."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:36",
+"target": "Mis hermanas no esperaban aquí antes.",
+"ru": "Мои сёстры раньше не ждали здесь.",
+"uk": "Мої сестри раніше не чекали тут.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Su",
+"Sus",
+"Tus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"madre",
+"casa",
+"pan",
+"hotel",
+"libro"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"también",
+"ayer",
+"mañana",
+"ahora"
+]
+},
+{
+"correct": "esperaban",
+"distractors": [
+"esperábamos",
+"esperar",
+"esperaron",
+"esperando",
+"gustan"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"cerca",
+"fuera",
+"dentro",
+"lejos"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ya",
+"ayer",
+"más",
+"ahora",
+"mañana"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:37",
+"target": "No preparábamos la cena antes.",
+"ru": "Мы раньше не готовили ужин.",
+"uk": "Ми раніше не готували вечерю.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "preparábamos",
+"distractors": [
+"preparaba",
+"prepararon",
+"preparó",
+"preparado",
+"preparar"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"un",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"café",
+"bicicleta",
+"pan",
+"lista",
+"hermanos"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"tarde",
+"anoche",
+"mañana",
+"ya",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Nosotros no preparábamos la cena antes.",
+"Nosotras no preparábamos la cena antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:38",
+"target": "Íbamos al colegio en bicicleta.",
+"ru": "Мы ездили в школу на велосипедах.",
+"uk": "Ми їздили до школи велосипедами.",
+"tiles": [
+{
+"correct": "Íbamos",
+"distractors": [
+"Fui",
+"Fueron",
+"Fue",
+"Fuiste",
+"Ir"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "colegio",
+"distractors": [
+"cita",
+"cara",
+"pasaportes",
+"mapa",
+"casa"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "bicicleta",
+"distractors": [
+"correo",
+"recepción",
+"hermanas",
+"casa",
+"coche"
+]
+}
+],
+"alternatives": [
+"Nosotros íbamos al colegio en bicicleta.",
+"Nosotras íbamos al colegio en bicicleta."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:39",
+"target": "No volvíais a la estación antes.",
+"ru": "Вы раньше не возвращались на вокзал.",
+"uk": "Ви раніше не поверталися на вокзал.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"También",
+"Aquí",
+"Hoy",
+"Anoche"
+]
+},
+{
+"correct": "volvíais",
+"distractors": [
+"vuelto",
+"volviendo",
+"volver",
+"trabaja",
+"gustan"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"desde",
+"de",
+"con",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"este",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"lista",
+"favor",
+"timbre",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"más",
+"tarde",
+"temprano",
+"ayer",
+"mañana"
+]
+}
+],
+"alternatives": [
+"No volvían a la estación antes."
+]
+},
+{
+"lesson": 23,
+"id": "es:23:40",
+"target": "Antes mis hermanos no llevaban mochila.",
+"ru": "Раньше мои братья не носили рюкзак.",
+"uk": "Раніше мої брати не носили рюкзак.",
+"tiles": [
+{
+"correct": "Antes",
+"distractors": [
+"Mañana",
+"Tarde",
+"Ya",
+"Anoche",
+"Más"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"mi",
+"sus",
+"tu",
+"su",
+"tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"carta",
+"mañana",
+"queso",
+"ayer",
+"ahora"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"también",
+"ya",
+"ayer",
+"mañana",
+"ahora"
+]
+},
+{
+"correct": "llevaban",
+"distractors": [
+"llevas",
+"llevar",
+"comías",
+"lleva",
+"llevamos"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"madre",
+"libro",
+"carta",
+"hermano",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:41",
+"target": "¿Vivías aquí antes?",
+"ru": "Ты раньше жил здесь?",
+"uk": "Ти раніше жив тут?",
+"tiles": [
+{
+"correct": "Vivías",
+"distractors": [
+"Vivía",
+"Vives",
+"Viven",
+"Vivís",
+"Vivimos"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"allí",
+"dentro",
+"fuera",
+"lejos"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"más",
+"anoche",
+"menudo",
+"tarde",
+"mañana"
+]
+}
+],
+"alternatives": [
+"¿Tú vivías aquí antes?"
+]
+},
+{
+"lesson": 23,
+"id": "es:23:42",
+"target": "¿Vivías cerca del parque?",
+"ru": "Ты раньше жил рядом с парком?",
+"uk": "Ти раніше жив біля парку?",
+"tiles": [
+{
+"correct": "Vivías",
+"distractors": [
+"Viven",
+"Vivís",
+"Vivimos",
+"Vivíamos",
+"Vivía"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"allí",
+"aquí",
+"fuera",
+"lejos",
+"dentro"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "parque",
+"distractors": [
+"llaves",
+"colegio",
+"carta",
+"canciones",
+"libro"
+]
+}
+],
+"alternatives": [
+"¿Tú vivías cerca del parque?"
+]
+},
+{
+"lesson": 23,
+"id": "es:23:43",
+"target": "¿Trabajábamos en el hotel antes?",
+"ru": "Мы раньше работали в отеле?",
+"uk": "Ми раніше працювали у готелі?",
+"tiles": [
+{
+"correct": "Trabajábamos",
+"distractors": [
+"Trabajaban",
+"Trabajaba",
+"Trabajan",
+"Trabajando",
+"Trabaja"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"de",
+"para",
+"con",
+"por"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"los",
+"una",
+"las",
+"con"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mensaje",
+"fotos",
+"leche",
+"libros",
+"casa"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ayer",
+"mañana",
+"menudo",
+"anoche",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Nosotros trabajábamos en el hotel antes?",
+"¿Nosotras trabajábamos en el hotel antes?"
+]
+},
+{
+"lesson": 23,
+"id": "es:23:44",
+"target": "¿Bebías café antes?",
+"ru": "Ты раньше пил кофе?",
+"uk": "Ти раніше пив каву?",
+"tiles": [
+{
+"correct": "Bebías",
+"distractors": [
+"Bebiendo",
+"Bebe",
+"Bebo",
+"Bebía",
+"Bebemos"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"mochila",
+"puerta",
+"fotos",
+"hotel",
+"cena"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"ahora",
+"tarde",
+"ayer",
+"también",
+"después"
+]
+}
+],
+"alternatives": [
+"¿Tú bebías café antes?"
+]
+},
+{
+"lesson": 23,
+"id": "es:23:45",
+"target": "¿Luis leía en el tren?",
+"ru": "Луис обычно читал в поезде?",
+"uk": "Луїс зазвичай читав у потязі?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "leía",
+"distractors": [
+"leído",
+"leyendo",
+"leer",
+"leen",
+"lee"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"desde",
+"con",
+"de",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"lo",
+"la",
+"los",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"mochila",
+"efectivo",
+"taxi",
+"carta",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:46",
+"target": "¿Ana escribía un mensaje antes?",
+"ru": "Ана раньше писала сообщение?",
+"uk": "Ана раніше писала повідомлення?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Ayer",
+"Cuándo"
+]
+},
+{
+"correct": "escribía",
+"distractors": [
+"escribiendo",
+"escribíamos",
+"escribir",
+"escrito",
+"escribimos"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"los",
+"una",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"farmacia",
+"mesa",
+"niño",
+"parque",
+"casa"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"mañana",
+"ahora",
+"ayer",
+"más",
+"tarde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:47",
+"target": "¿Esperábamos fuera antes?",
+"ru": "Мы раньше ждали снаружи?",
+"uk": "Ми раніше чекали надворі?",
+"tiles": [
+{
+"correct": "Esperábamos",
+"distractors": [
+"Esperando",
+"Esperaron",
+"Esperabas",
+"Esperar",
+"Esperaban"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"allí",
+"aquí",
+"lejos",
+"cerca",
+"dentro"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"tarde",
+"ya",
+"más",
+"ayer",
+"mañana"
+]
+}
+],
+"alternatives": [
+"¿Nosotros esperábamos fuera antes?",
+"¿Nosotras esperábamos fuera antes?"
+]
+},
+{
+"lesson": 23,
+"id": "es:23:48",
+"target": "¿Tus vecinos también trabajaban aquí?",
+"ru": "Твои соседи тоже раньше работали здесь?",
+"uk": "Твої сусіди теж раніше працювали тут?",
+"tiles": [
+{
+"correct": "Tus",
+"distractors": [
+"Mi",
+"Sus",
+"Tu",
+"Mis",
+"Su"
+]
+},
+{
+"correct": "vecinos",
+"distractors": [
+"ventana",
+"cara",
+"hermanos",
+"tienda",
+"casa"
+]
+},
+{
+"correct": "también",
+"distractors": [
+"tarde",
+"ahora",
+"después",
+"ayer",
+"mañana"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabajan",
+"trabaja",
+"trabajas",
+"trabajando",
+"trabajar"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"lejos",
+"fuera",
+"allí",
+"dentro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:49",
+"target": "¿Mis hermanas volvían a casa antes?",
+"ru": "Мои сёстры раньше возвращались домой?",
+"uk": "Мої сестри раніше поверталися додому?",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tus",
+"Sus",
+"Tu",
+"Mi",
+"Su"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"mesa",
+"hotel",
+"maleta",
+"autobús",
+"paraguas"
+]
+},
+{
+"correct": "volvían",
+"distractors": [
+"volver",
+"vuelto",
+"volviendo",
+"abriendo",
+"gustan"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"para",
+"desde",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mochila",
+"maletas",
+"llaves",
+"agua",
+"música"
+]
+},
+{
+"correct": "antes",
+"distractors": [
+"mañana",
+"tarde",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "es:23:50",
+"target": "¿Leíais juntos en clase?",
+"ru": "Вы обычно читали вместе на занятии?",
+"uk": "Ви зазвичай читали разом на занятті?",
+"tiles": [
+{
+"correct": "Leíais",
+"distractors": [
+"Leo",
+"Leído",
+"Leyendo",
+"Leer",
+"Buscas"
+]
+},
+{
+"correct": "juntos",
+"distractors": [
+"blancas",
+"ocupada",
+"rojas",
+"cansados",
+"roja"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"para",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"efectivo",
+"recepción",
+"canciones",
+"farmacia",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Leían juntos en clase?"
+]
+},
+{
+"lesson": 24,
+"id": "es:24:01",
+"target": "Leía el mensaje cuando sonó el móvil.",
+"ru": "Я читал сообщение, когда зазвонил телефон.",
+"uk": "Я читав повідомлення, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Leía",
+"distractors": [
+"Leyendo",
+"Leído",
+"Leían",
+"Lees",
+"Leer"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"las",
+"los",
+"estos"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"platos",
+"tren",
+"llave",
+"manos",
+"arroz"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"que",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"preparaba",
+"lee",
+"puede",
+"devuelvo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"la",
+"lo",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"coche",
+"día",
+"arroz",
+"cita",
+"foto"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el móvil, leía el mensaje."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:02",
+"target": "Ana preparaba la cena cuando recibí tu mensaje.",
+"ru": "Ана готовила ужин, когда я получил твоё сообщение.",
+"uk": "Ана готувала вечерю, коли я отримав твоє повідомлення.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "preparaba",
+"distractors": [
+"prepararon",
+"preparar",
+"preparamos",
+"prepara",
+"preparado"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"un",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"sopa",
+"billete",
+"móviles",
+"casa",
+"madre"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "recibí",
+"distractors": [
+"recibido",
+"confirmado",
+"está",
+"gusta",
+"llamar"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"mi",
+"sus",
+"mis",
+"su",
+"tus"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"baño",
+"kilo",
+"timbre",
+"café",
+"correo"
+]
+}
+],
+"alternatives": [
+"Cuando recibí tu mensaje, Ana preparaba la cena."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:03",
+"target": "Esperábamos el tren cuando llegó mi hermana.",
+"ru": "Мы ждали поезд, когда пришла моя сестра.",
+"uk": "Ми чекали на потяг, коли прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Esperábamos",
+"distractors": [
+"Esperabas",
+"Esperar",
+"Espera",
+"Esperando",
+"Esperaban"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"una",
+"las",
+"cada",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"cena",
+"agua",
+"banco",
+"volumen",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"porque",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"paga",
+"pagado",
+"pagaste",
+"preparábamos",
+"está"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"tus",
+"su",
+"tu",
+"sus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"zapatos",
+"libros",
+"casa",
+"mensaje",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Cuando llegó mi hermana, esperábamos el tren."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:04",
+"target": "Luis escribía una carta cuando se abrió la puerta.",
+"ru": "Луис писал письмо, когда открылась дверь.",
+"uk": "Луїс писав листа, коли відчинилися двері.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Cuándo",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "escribía",
+"distractors": [
+"escribíamos",
+"hablan",
+"escribir",
+"escrito",
+"escribiendo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"su",
+"el",
+"las",
+"un",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"foto",
+"billetes",
+"madre",
+"huevos",
+"bolso"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"porque",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"mis",
+"los",
+"mi",
+"le",
+"el"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abierto",
+"abrir",
+"abrimos",
+"abriendo",
+"abrirla"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"un",
+"las",
+"ese"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"ventana",
+"abrigos",
+"café",
+"factura",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando se abrió la puerta, Luis escribía una carta."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:05",
+"target": "Mis hermanos trabajaban cuando entró el médico.",
+"ru": "Мои братья работали, когда вошёл врач.",
+"uk": "Мої брати працювали, коли зайшов лікар.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tus",
+"Su",
+"Sus",
+"Tu",
+"Mi"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"bolsa",
+"reunión",
+"ventanas",
+"bolsillos",
+"bolso"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabaja",
+"trabajan",
+"trabajar",
+"trabajando",
+"trabajas"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"porque",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "entró",
+"distractors": [
+"entrar",
+"entrado",
+"estamos",
+"están",
+"gustan"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"lo",
+"las",
+"con"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"guía",
+"estudiante",
+"enfermera",
+"profesora",
+"estudiantes"
+]
+}
+],
+"alternatives": [
+"Cuando entró el médico, mis hermanos trabajaban."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:06",
+"target": "Bebía café cuando llegó el tren.",
+"ru": "Я пил кофе, когда прибыл поезд.",
+"uk": "Я пив каву, коли прибув потяг.",
+"tiles": [
+{
+"correct": "Bebía",
+"distractors": [
+"Bebiendo",
+"Beber",
+"Bebíamos",
+"Bebemos",
+"Bebo"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"regalo",
+"número",
+"mochila",
+"idea",
+"grifo"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"los",
+"una",
+"esta"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"hermanas",
+"viaje",
+"factura",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Cuando llegó el tren, bebía café."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:07",
+"target": "Buscabas la llave cuando llegó Ana.",
+"ru": "Ты искала ключ, когда пришла Ана.",
+"uk": "Ти шукала ключ, коли прийшла Ана.",
+"tiles": [
+{
+"correct": "Buscabas",
+"distractors": [
+"Buscas",
+"Busco",
+"Buscamos",
+"Buscando",
+"Busca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"las",
+"el",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"mesa",
+"ventana",
+"hermanos",
+"bolso",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"escrito",
+"escribimos",
+"escribir",
+"escribía",
+"escribe"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Ayer",
+"Cuándo"
+]
+}
+],
+"alternatives": [
+"Cuando llegó Ana, buscabas la llave."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:08",
+"target": "La profesora hablaba cuando terminó la reunión.",
+"ru": "Преподавательница говорила, когда закончилась встреча.",
+"uk": "Викладачка говорила, коли закінчилася зустріч.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Las",
+"Los",
+"Lo",
+"El",
+"Con"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"médico",
+"guía",
+"enfermero",
+"estudiantes",
+"médica"
+]
+},
+{
+"correct": "hablaba",
+"distractors": [
+"habláis",
+"hay",
+"ha",
+"hemos",
+"he"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "terminó",
+"distractors": [
+"terminado",
+"buscabas",
+"buscas",
+"busca",
+"buscan"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"lo",
+"las",
+"los",
+"el"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"tarjeta",
+"gente",
+"paquete",
+"hermano",
+"ventana"
+]
+}
+],
+"alternatives": [
+"Cuando terminó la reunión, la profesora hablaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:09",
+"target": "Comíamos en casa cuando sonó el móvil.",
+"ru": "Мы ели дома, когда зазвонил телефон.",
+"uk": "Ми їли вдома, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Comíamos",
+"distractors": [
+"Comer",
+"Como",
+"Comía",
+"Coméis",
+"Comíais"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hotel",
+"foto",
+"puerta",
+"abrigos",
+"mensaje"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"escribía",
+"llevaron",
+"leíste",
+"escribir"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"lo",
+"las",
+"una",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"efectivo",
+"bolso",
+"mochilas",
+"parada",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el móvil, comíamos en casa."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:10",
+"target": "Los estudiantes leían cuando recibí tu mensaje.",
+"ru": "Студенты читали, когда я получил твоё сообщение.",
+"uk": "Студенти читали, коли я отримав твоє повідомлення.",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Tus",
+"El",
+"Mi",
+"Las",
+"Con"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"estudiante",
+"enfermera",
+"guía",
+"profesora",
+"médico"
+]
+},
+{
+"correct": "leían",
+"distractors": [
+"lee",
+"leía",
+"leído",
+"leíais",
+"leyendo"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "recibí",
+"distractors": [
+"recibido",
+"llamar",
+"llamaste",
+"llamó",
+"llamado"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"sus",
+"mi",
+"su",
+"mis",
+"tus"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"botella",
+"correo",
+"casa",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": [
+"Cuando recibí tu mensaje, los estudiantes leían."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:11",
+"target": "Leía tu carta cuando sonó el móvil.",
+"ru": "Я читал твоё письмо, когда зазвонил телефон.",
+"uk": "Я читав твого листа, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Leía",
+"distractors": [
+"Leer",
+"Leído",
+"Leo",
+"Lees",
+"Leyendo"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"mis",
+"sus",
+"su",
+"mi",
+"tus"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"ventanas",
+"abrigos",
+"llave",
+"libro",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"abrirla",
+"lavas",
+"laváis",
+"lavo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"botellas",
+"cocina",
+"tiempo",
+"mensaje",
+"farmacias"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el móvil, leía tu carta."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:12",
+"target": "Ana preparaba la cena cuando llegó mi hermana.",
+"ru": "Ана готовила ужин, когда пришла моя сестра.",
+"uk": "Ана готувала вечерю, коли прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Cuándo",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "preparaba",
+"distractors": [
+"preparar",
+"prepara",
+"prepararon",
+"preparamos",
+"preparado"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"los",
+"un",
+"este",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"leche",
+"maleta",
+"café",
+"cara",
+"recepción"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"tu",
+"sus",
+"su",
+"mis",
+"tus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"mesa",
+"cocina",
+"grifo",
+"hoteles",
+"número"
+]
+}
+],
+"alternatives": [
+"Cuando llegó mi hermana, Ana preparaba la cena."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:13",
+"target": "Esperábamos el tren cuando se abrió la puerta.",
+"ru": "Мы ждали поезд, когда открылась дверь.",
+"uk": "Ми чекали на потяг, коли відчинилися двері.",
+"tiles": [
+{
+"correct": "Esperábamos",
+"distractors": [
+"Esperar",
+"Esperando",
+"Esperabas",
+"Espera",
+"Esperaban"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"una",
+"esta",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"timbre",
+"minuto",
+"música",
+"ventana",
+"hermano"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"las",
+"unas",
+"mi",
+"le",
+"una"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abrirla",
+"abriendo",
+"abren",
+"abre",
+"abrir"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"ese",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"aeropuerto",
+"queso",
+"mochila",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Cuando se abrió la puerta, esperábamos el tren."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:14",
+"target": "Preparaba la sopa cuando sonó el timbre.",
+"ru": "Я готовил суп, когда раздался звонок в дверь.",
+"uk": "Я готував суп, коли пролунав дзвінок у двері.",
+"tiles": [
+{
+"correct": "Preparaba",
+"distractors": [
+"Preparado",
+"Preparando",
+"Prepararon",
+"Preparábamos",
+"Prepara"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"lo",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "sopa",
+"distractors": [
+"viaje",
+"grifo",
+"libro",
+"número",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"pero",
+"que",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"escribía",
+"hicimos",
+"estudio",
+"escribir"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"lo",
+"ese",
+"con"
+]
+},
+{
+"correct": "timbre",
+"distractors": [
+"cena",
+"mesa",
+"pedido",
+"hotel",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el timbre, preparaba la sopa."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:15",
+"target": "Mis hermanos esperaban cuando llegó el tren.",
+"ru": "Мои братья ждали, когда прибыл поезд.",
+"uk": "Мої брати чекали, коли прибув потяг.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Su",
+"Mi",
+"Sus",
+"Tu",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"cambio",
+"ventana",
+"fotos",
+"salida",
+"casa"
+]
+},
+{
+"correct": "esperaban",
+"distractors": [
+"esperando",
+"esperar",
+"esperábamos",
+"espera",
+"esperaron"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"pero",
+"que",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"bebiendo",
+"beber",
+"bebía",
+"bebo",
+"bebe"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"una",
+"la",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"hermanas",
+"recepción",
+"bicicleta",
+"factura",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando llegó el tren, mis hermanos esperaban."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:16",
+"target": "Bebía café cuando me llamaste.",
+"ru": "Я пил кофе, когда ты мне позвонил.",
+"uk": "Я пив каву, коли ти мені зателефонував.",
+"tiles": [
+{
+"correct": "Bebía",
+"distractors": [
+"Bebe",
+"Bebes",
+"Bebíamos",
+"Beben",
+"Bebo"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"reunión",
+"salida",
+"baño",
+"libros",
+"lista"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"pero",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"tu",
+"la",
+"los",
+"una",
+"se"
+]
+},
+{
+"correct": "llamaste",
+"distractors": [
+"llama",
+"llamado",
+"llamó",
+"llamar",
+"llamé"
+]
+}
+],
+"alternatives": [
+"Cuando me llamaste, bebía café."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:17",
+"target": "Buscabas la llave cuando terminó la reunión.",
+"ru": "Ты искала ключ, когда закончилась встреча.",
+"uk": "Ти шукала ключ, коли закінчилася зустріч.",
+"tiles": [
+{
+"correct": "Buscabas",
+"distractors": [
+"Buscamos",
+"Busco",
+"Busca",
+"Buscas",
+"Buscáis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"lo",
+"este",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"viaje",
+"libros",
+"casa",
+"hotel",
+"hermanas"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "terminó",
+"distractors": [
+"terminado",
+"tuve",
+"comprar",
+"tengo",
+"tiene"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"lo",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"timbre",
+"lista",
+"fotos",
+"semana",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Cuando terminó la reunión, buscabas la llave."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:18",
+"target": "La profesora hablaba cuando sonó el móvil.",
+"ru": "Преподавательница говорила, когда зазвонил телефон.",
+"uk": "Викладачка говорила, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Las",
+"Lo",
+"Los",
+"Esta",
+"Con"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"estudiantes",
+"enfermera",
+"médico",
+"estudiante",
+"médicas"
+]
+},
+{
+"correct": "hablaba",
+"distractors": [
+"habláis",
+"habla",
+"hablamos",
+"hablan",
+"hablas"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"leías",
+"leído",
+"tiene",
+"tengo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"este",
+"con",
+"que"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"madre",
+"periódico",
+"tienda",
+"llave",
+"libro"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el móvil, la profesora hablaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:19",
+"target": "Esperábamos el autobús cuando empezó a llover.",
+"ru": "Мы ждали автобус, когда пошёл дождь.",
+"uk": "Ми чекали на автобус, коли пішов дощ.",
+"tiles": [
+{
+"correct": "Esperábamos",
+"distractors": [
+"Esperaban",
+"Esperar",
+"Esperabas",
+"Espera",
+"Esperando"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"la",
+"ese",
+"con"
+]
+},
+{
+"correct": "autobús",
+"distractors": [
+"cartas",
+"mensaje",
+"tren",
+"banco",
+"mesa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"pero",
+"si",
+"que",
+"porque",
+"ni"
+]
+},
+{
+"correct": "empezó",
+"distractors": [
+"gusta",
+"lleva",
+"gustan",
+"llevar",
+"llevamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"desde",
+"de",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "llover",
+"distractors": [
+"prepararon",
+"está",
+"estudiáis",
+"están",
+"estás"
+]
+}
+],
+"alternatives": [
+"Cuando empezó a llover, esperábamos el autobús."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:20",
+"target": "Los estudiantes leían cuando llegó mi hermana.",
+"ru": "Студенты читали, когда пришла моя сестра.",
+"uk": "Студенти читали, коли прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Mis",
+"Tu",
+"Las",
+"El",
+"Un"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"profesor",
+"guía",
+"guías",
+"profesora",
+"enfermera"
+]
+},
+{
+"correct": "leían",
+"distractors": [
+"lee",
+"leyendo",
+"leer",
+"leído",
+"lees"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"escribir",
+"escribía",
+"escrito",
+"escribimos",
+"escribe"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"tus",
+"tu",
+"su",
+"sus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"botellas",
+"mapa",
+"cara",
+"foto",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Cuando llegó mi hermana, los estudiantes leían."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:21",
+"target": "Leía el mensaje cuando llegó mi hermana.",
+"ru": "Я читал сообщение, когда пришла моя сестра.",
+"uk": "Я читав повідомлення, коли прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Leía",
+"distractors": [
+"Lees",
+"Leer",
+"Leo",
+"Leído",
+"Leías"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"los",
+"lo",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"número",
+"carta",
+"cara",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"sus",
+"su",
+"tu",
+"tus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"agua",
+"madre",
+"móvil",
+"libro",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando llegó mi hermana, leía el mensaje."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:22",
+"target": "Ana preparaba la cena cuando se abrió la puerta.",
+"ru": "Ана готовила ужин, когда открылась дверь.",
+"uk": "Ана готувала вечерю, коли відчинилися двері.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Nunca",
+"Pronto"
+]
+},
+{
+"correct": "preparaba",
+"distractors": [
+"preparado",
+"preparar",
+"prepararon",
+"prepara",
+"preparando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"volumen",
+"tiendas",
+"hermanas",
+"foto",
+"mano"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"si",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"los",
+"sus",
+"mis",
+"el",
+"una"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abriendo",
+"abierto",
+"abrirla",
+"abrir",
+"abrimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"lo",
+"esta",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"pasaportes",
+"billetes",
+"mensaje",
+"minuto",
+"casa"
+]
+}
+],
+"alternatives": [
+"Cuando se abrió la puerta, Ana preparaba la cena."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:23",
+"target": "Esperábamos el tren cuando empezó a llover.",
+"ru": "Мы ждали поезд, когда пошёл дождь.",
+"uk": "Ми чекали на потяг, коли почався дощ.",
+"tiles": [
+{
+"correct": "Esperábamos",
+"distractors": [
+"Esperaban",
+"Esperando",
+"Espera",
+"Esperabas",
+"Esperar"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"la",
+"lo",
+"una",
+"unas"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"reunión",
+"madre",
+"minuto",
+"estación",
+"foto"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "empezó",
+"distractors": [
+"escribes",
+"estudiar",
+"leías",
+"leían",
+"estudias"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"para",
+"sin",
+"por",
+"con"
+]
+},
+{
+"correct": "llover",
+"distractors": [
+"va",
+"podemos",
+"vas",
+"vamos",
+"voy"
+]
+}
+],
+"alternatives": [
+"Cuando empezó a llover, esperábamos el tren."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:24",
+"target": "Luis escribía una carta cuando llegó el tren.",
+"ru": "Луис писал письмо, когда прибыл поезд.",
+"uk": "Луїс писав листа, коли прибув потяг.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "escribía",
+"distractors": [
+"escribíamos",
+"escribir",
+"duchas",
+"escrito",
+"escribiendo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mis",
+"tus",
+"sus",
+"con",
+"que"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"cita",
+"llaves",
+"mesas",
+"taxi",
+"viaje"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"lo",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"mochila",
+"bicicleta",
+"casa",
+"hotel",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Cuando llegó el tren, Luis escribía una carta."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:25",
+"target": "Mis hermanos trabajaban cuando me llamaste.",
+"ru": "Мои братья работали, когда ты мне позвонил.",
+"uk": "Мої брати працювали, коли ти мені зателефонував.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Tu",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"mensaje",
+"reserva",
+"tienda",
+"efectivo",
+"casa"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabaja",
+"trabajando",
+"trabajábamos",
+"trabajar",
+"trabajaba"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"pero",
+"si",
+"porque",
+"ni"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"la",
+"mi",
+"una",
+"las",
+"el"
+]
+},
+{
+"correct": "llamaste",
+"distractors": [
+"llamado",
+"llama",
+"llamar",
+"llamé",
+"llamó"
+]
+}
+],
+"alternatives": [
+"Cuando me llamaste, mis hermanos trabajaban."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:26",
+"target": "Bebía café cuando terminó la reunión.",
+"ru": "Я пил кофе, когда закончилась встреча.",
+"uk": "Я пив каву, коли закінчилася зустріч.",
+"tiles": [
+{
+"correct": "Bebía",
+"distractors": [
+"Bebes",
+"Bebiendo",
+"Bebo",
+"Bebías",
+"Tiene"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"bolsos",
+"colegio",
+"manos",
+"salida",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "terminó",
+"distractors": [
+"terminado",
+"hicieron",
+"están",
+"hiciste",
+"hicimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"los",
+"un",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"pasaporte",
+"pan",
+"efectivo",
+"madre",
+"mapas"
+]
+}
+],
+"alternatives": [
+"Cuando terminó la reunión, bebía café."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:27",
+"target": "Buscabas la llave cuando sonó el móvil.",
+"ru": "Ты искала ключ, когда зазвонил телефон.",
+"uk": "Ти шукала ключ, коли задзвонив телефон.",
+"tiles": [
+{
+"correct": "Buscabas",
+"distractors": [
+"Buscan",
+"Busca",
+"Busco",
+"Escribe",
+"Buscas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"hotel",
+"compra",
+"casa",
+"mensaje",
+"carta"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"que",
+"si",
+"porque",
+"pero",
+"ni"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"laváis",
+"empezó",
+"lavo",
+"lava"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"una",
+"con",
+"que"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"oficina",
+"pan",
+"libro",
+"casa",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Cuando sonó el móvil, buscabas la llave."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:28",
+"target": "La profesora hablaba cuando recibí tu mensaje.",
+"ru": "Преподавательница говорила, когда я получил твоё сообщение.",
+"uk": "Викладачка говорила, коли я отримав твоє повідомлення.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"El",
+"Las",
+"Un",
+"Con"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"médico",
+"estudiantes",
+"enfermera",
+"guías",
+"profesor"
+]
+},
+{
+"correct": "hablaba",
+"distractors": [
+"hablar",
+"hablamos",
+"habláis",
+"tiene",
+"tengo"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"si",
+"que",
+"pero",
+"porque",
+"ni"
+]
+},
+{
+"correct": "recibí",
+"distractors": [
+"recibido",
+"lavan",
+"lavo",
+"lava",
+"laváis"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"sus",
+"mis",
+"mi",
+"tus",
+"su"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"clase",
+"casa",
+"hotel",
+"mochila",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Cuando recibí tu mensaje, la profesora hablaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:29",
+"target": "Ana leía el periódico cuando llegó el taxi.",
+"ru": "Ана читала газету, когда приехало такси.",
+"uk": "Ана читала газету, коли приїхало таксі.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "leía",
+"distractors": [
+"leyendo",
+"leemos",
+"leer",
+"lee",
+"leído"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"los",
+"una",
+"esta"
+]
+},
+{
+"correct": "periódico",
+"distractors": [
+"botella",
+"abrigo",
+"libro",
+"películas",
+"casa"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"que",
+"si",
+"pero",
+"ni"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"la",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"supermercado",
+"horno",
+"móvil",
+"madre",
+"centro"
+]
+}
+],
+"alternatives": [
+"Cuando llegó el taxi, Ana leía el periódico."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:30",
+"target": "Yo cocinaba cuando se abrió la puerta.",
+"ru": "Я готовил, когда открылась дверь.",
+"uk": "Я готував, коли відчинилися двері.",
+"tiles": [
+{
+"correct": "Yo",
+"distractors": [
+"Un",
+"Mi",
+"Sus",
+"Mis",
+"Te"
+]
+},
+{
+"correct": "cocinaba",
+"distractors": [
+"esperando",
+"estamos",
+"está",
+"están",
+"estás"
+]
+},
+{
+"correct": "cuando",
+"distractors": [
+"porque",
+"si",
+"que",
+"pero",
+"ni"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"un",
+"tus",
+"los",
+"os",
+"el"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abierto",
+"abrir",
+"abre",
+"abren",
+"abrimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"los",
+"un",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"mercado",
+"verduras",
+"mesa",
+"taxi",
+"número"
+]
+}
+],
+"alternatives": [
+"Cuando se abrió la puerta, yo cocinaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:31",
+"target": "Mientras leía el mensaje, se abrió la puerta.",
+"ru": "Пока я читал сообщение, открылась дверь.",
+"uk": "Поки я читав повідомлення, відчинилися двері.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "leía",
+"distractors": [
+"leer",
+"leyendo",
+"leían",
+"leído",
+"lee"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"libros",
+"recepción",
+"agua",
+"vecinos",
+"casa"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"tus",
+"sus",
+"me",
+"mi",
+"mis"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abierto",
+"abre",
+"abrir",
+"abren",
+"abrimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"hotel",
+"bolsa",
+"reserva",
+"arroz",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Se abrió la puerta mientras leía el mensaje."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:32",
+"target": "Mientras Ana preparaba la cena, entró el médico.",
+"ru": "Пока Ана готовила ужин, вошёл врач.",
+"uk": "Поки Ана готувала вечерю, зайшов лікар.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Si",
+"Que",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Nunca",
+"Ayer",
+"Quién"
+]
+},
+{
+"correct": "preparaba",
+"distractors": [
+"prepararon",
+"preparábamos",
+"preparar",
+"preparado",
+"prepara"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"clase",
+"billetes",
+"botella",
+"hermanas",
+"casa"
+]
+},
+{
+"correct": "entró",
+"distractors": [
+"entrado",
+"entrar",
+"recibido",
+"recibí",
+"están"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"este",
+"con",
+"que"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"profesora",
+"estudiante",
+"profesor",
+"enfermera",
+"estudiantes"
+]
+}
+],
+"alternatives": [
+"Entró el médico mientras Ana preparaba la cena."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:33",
+"target": "Mientras esperábamos el tren, me llamó Ana.",
+"ru": "Пока мы ждали поезд, мне позвонила Ана.",
+"uk": "Поки ми чекали на потяг, мені зателефонувала Ана.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Porque",
+"Que",
+"Si",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "esperábamos",
+"distractors": [
+"esperaban",
+"esperaron",
+"esperabas",
+"esperar",
+"espera"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"los",
+"las",
+"esta",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"clase",
+"mensaje",
+"café",
+"hermanas",
+"casa"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"tu",
+"tus",
+"las",
+"le",
+"la"
+]
+},
+{
+"correct": "llamó",
+"distractors": [
+"llamar",
+"llamado",
+"llamaste",
+"llamé",
+"gustan"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pablo",
+"Marta",
+"Diego",
+"Elena"
+]
+}
+],
+"alternatives": [
+"Me llamó Ana mientras esperábamos el tren."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:34",
+"target": "Mientras cantaba Ana, empezó a llover.",
+"ru": "Пока Ана пела, пошёл дождь.",
+"uk": "Поки Ана співала, пішов дощ.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "cantaba",
+"distractors": [
+"guarda",
+"mandado",
+"trabajas",
+"trabaja",
+"trabajan"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Nunca",
+"Cuándo",
+"Quién"
+]
+},
+{
+"correct": "empezó",
+"distractors": [
+"abrió",
+"compraste",
+"trabajaba",
+"trabaja",
+"compró"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"para",
+"con",
+"de",
+"desde"
+]
+},
+{
+"correct": "llover",
+"distractors": [
+"bebo",
+"mandé",
+"paseaban",
+"vas",
+"va"
+]
+}
+],
+"alternatives": [
+"Empezó a llover mientras cantaba Ana."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:35",
+"target": "Mientras mis hermanos trabajaban, terminó la reunión.",
+"ru": "Пока мои братья работали, закончилась встреча.",
+"uk": "Поки мої брати працювали, закінчилася зустріч.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Si",
+"Pero",
+"Que",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"mi",
+"tu",
+"sus",
+"tus",
+"su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"música",
+"maleta",
+"arroz",
+"clase",
+"casa"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabaja",
+"trabajamos",
+"trabajas",
+"trabajan",
+"trabajando"
+]
+},
+{
+"correct": "terminó",
+"distractors": [
+"terminado",
+"lavé",
+"están",
+"está",
+"estás"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"lo",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"estación",
+"coche",
+"casa",
+"mensaje",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Terminó la reunión mientras mis hermanos trabajaban."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:36",
+"target": "Mientras bebía café, sonó el móvil.",
+"ru": "Пока я пил кофе, зазвонил телефон.",
+"uk": "Поки я пив каву, задзвонив телефон.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Porque",
+"Si",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "bebía",
+"distractors": [
+"beben",
+"bebiendo",
+"bebo",
+"beber",
+"leyendo"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"cocina",
+"cartas",
+"reunión",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"es",
+"pagado",
+"abrimos",
+"hablaba"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"los",
+"unas",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"mañana",
+"azúcar",
+"hermanos",
+"mensaje",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Sonó el móvil mientras bebía café."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:37",
+"target": "Mientras buscabas la llave, recibí tu mensaje.",
+"ru": "Пока ты искала ключ, я получил твоё сообщение.",
+"uk": "Поки ти шукала ключ, я отримав твоє повідомлення.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Porque",
+"Pero",
+"Que",
+"Si",
+"Ni"
+]
+},
+{
+"correct": "buscabas",
+"distractors": [
+"buscáis",
+"buscas",
+"busca",
+"buscando",
+"comiendo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"hermana",
+"música",
+"mapa",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "recibí",
+"distractors": [
+"recibido",
+"iba",
+"fue",
+"está",
+"fuiste"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"mis",
+"sus",
+"tus",
+"su",
+"mi"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"tren",
+"hermana",
+"regalo",
+"tiendas",
+"niño"
+]
+}
+],
+"alternatives": [
+"Recibí tu mensaje mientras buscabas la llave."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:38",
+"target": "Mientras la profesora hablaba, llegó mi hermana.",
+"ru": "Пока преподавательница говорила, пришла моя сестра.",
+"uk": "Поки викладачка говорила, прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Pero",
+"Si",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"enfermero",
+"guía",
+"estudiante",
+"médico",
+"estudiantes"
+]
+},
+{
+"correct": "hablaba",
+"distractors": [
+"hablas",
+"sonó",
+"suena",
+"habláis",
+"gusta"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"preparábamos",
+"está",
+"escrito",
+"escribir",
+"preparamos"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"sus",
+"mis",
+"su",
+"tu",
+"tus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"viaje",
+"coche",
+"casa",
+"mensaje",
+"llaves"
+]
+}
+],
+"alternatives": [
+"Llegó mi hermana mientras la profesora hablaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:39",
+"target": "Mientras comíamos en casa, llamó Luis.",
+"ru": "Пока мы ели дома, позвонил Луис.",
+"uk": "Поки ми їли вдома, зателефонував Луїс.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "comíamos",
+"distractors": [
+"comíais",
+"comer",
+"comiendo",
+"como",
+"comían"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"para",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"camiseta",
+"luz",
+"hermanas",
+"bolsillo",
+"puerta"
+]
+},
+{
+"correct": "llamó",
+"distractors": [
+"llamar",
+"llamaste",
+"llamado",
+"llamé",
+"gustan"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Pronto",
+"Quién",
+"Nunca"
+]
+}
+],
+"alternatives": [
+"Llamó Luis mientras comíamos en casa."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:40",
+"target": "Mientras cortaba el queso, sonó el timbre.",
+"ru": "Пока я нарезал сыр, раздался звонок в дверь.",
+"uk": "Поки я нарізав сир, пролунав дзвінок у двері.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Porque",
+"Que",
+"Si",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "cortaba",
+"distractors": [
+"corta",
+"cortando",
+"compré",
+"puede",
+"podemos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"lo",
+"una",
+"la",
+"con"
+]
+},
+{
+"correct": "queso",
+"distractors": [
+"lista",
+"horno",
+"madre",
+"botellas",
+"casa"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"ducho",
+"pasar",
+"duchas",
+"duché"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"lo",
+"una",
+"los",
+"con"
+]
+},
+{
+"correct": "timbre",
+"distractors": [
+"bicicleta",
+"hermana",
+"bufanda",
+"pasaportes",
+"coche"
+]
+}
+],
+"alternatives": [
+"Sonó el timbre mientras cortaba el queso."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:41",
+"target": "Mientras leía el mensaje, entró el médico.",
+"ru": "Пока я читал сообщение, вошёл врач.",
+"uk": "Поки я читав повідомлення, зайшов лікар.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "leía",
+"distractors": [
+"lee",
+"leíste",
+"leían",
+"leyendo",
+"leer"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"una",
+"los",
+"la",
+"las"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"hermana",
+"tiempo",
+"tarjeta",
+"bolsa",
+"libro"
+]
+},
+{
+"correct": "entró",
+"distractors": [
+"entrar",
+"entramos",
+"entrado",
+"abierto",
+"estudias"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"una",
+"lo",
+"con"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"estudiantes",
+"médicos",
+"profesor",
+"profesores",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Entró el médico mientras leía el mensaje."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:42",
+"target": "Mientras Ana preparaba la cena, sonó el timbre.",
+"ru": "Пока Ана готовила ужин, позвонили в дверь.",
+"uk": "Поки Ана готувала вечерю, подзвонили у двері.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Pero",
+"Si",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Marta",
+"Diego",
+"Pablo",
+"Elena"
+]
+},
+{
+"correct": "preparaba",
+"distractors": [
+"preparar",
+"prepara",
+"preparado",
+"prepararon",
+"preparamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"lo",
+"las",
+"un",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"correo",
+"libro",
+"hermanos",
+"hermanas",
+"llave"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"bebe",
+"comprado",
+"lavando",
+"lavo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"los",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "timbre",
+"distractors": [
+"mensaje",
+"pan",
+"zapatos",
+"bolsa",
+"carta"
+]
+}
+],
+"alternatives": [
+"Sonó el timbre mientras Ana preparaba la cena."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:43",
+"target": "Mientras esperábamos el tren, me llamaste.",
+"ru": "Пока мы ждали поезд, ты мне позвонил.",
+"uk": "Поки ми чекали на потяг, ти мені зателефонував.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "esperábamos",
+"distractors": [
+"esperaron",
+"espera",
+"esperaban",
+"esperar",
+"esperabas"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"los",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"mapa",
+"billete",
+"café",
+"camiseta",
+"mensaje"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"la",
+"los",
+"mis",
+"las",
+"se"
+]
+},
+{
+"correct": "llamaste",
+"distractors": [
+"llamar",
+"llamó",
+"llama",
+"llamado",
+"llamé"
+]
+}
+],
+"alternatives": [
+"Me llamaste mientras esperábamos el tren."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:44",
+"target": "Mientras Luis escribía una carta, terminó la reunión.",
+"ru": "Пока Луис писал письмо, закончилась встреча.",
+"uk": "Поки Луїс писав листа, закінчилася зустріч.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Pero",
+"Porque",
+"Si",
+"Que",
+"Ni"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "escribía",
+"distractors": [
+"escribir",
+"escrito",
+"escribiendo",
+"escribimos",
+"escribíamos"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"tu",
+"un",
+"tus",
+"el",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"semana",
+"correo",
+"paquete",
+"botella",
+"casa"
+]
+},
+{
+"correct": "terminó",
+"distractors": [
+"terminado",
+"escribe",
+"escribimos",
+"escribir",
+"escrito"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"un",
+"lo",
+"con"
+]
+},
+{
+"correct": "reunión",
+"distractors": [
+"libros",
+"agua",
+"barrio",
+"regalo",
+"casa"
+]
+}
+],
+"alternatives": [
+"Terminó la reunión mientras Luis escribía una carta."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:45",
+"target": "Mientras mis hermanos trabajaban, sonó el móvil.",
+"ru": "Пока мои братья работали, зазвонил телефон.",
+"uk": "Поки мої брати працювали, задзвонив телефон.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Si",
+"Que",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"tu",
+"mi",
+"sus",
+"tus",
+"su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"mensaje",
+"camisetas",
+"fotos",
+"reunión",
+"casa"
+]
+},
+{
+"correct": "trabajaban",
+"distractors": [
+"trabajan",
+"trabajando",
+"trabajamos",
+"trabajas",
+"trabaja"
+]
+},
+{
+"correct": "sonó",
+"distractors": [
+"suena",
+"levanté",
+"levanta",
+"levantan",
+"levantas"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"lo",
+"los",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"casa",
+"viaje",
+"hermanas",
+"oficina",
+"kilo"
+]
+}
+],
+"alternatives": [
+"Sonó el móvil mientras mis hermanos trabajaban."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:46",
+"target": "Mientras bebía café, recibí tu mensaje.",
+"ru": "Пока я пил кофе, я получил твоё сообщение.",
+"uk": "Поки я пив каву, я отримав твоє повідомлення.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Pero",
+"Porque",
+"Ni"
+]
+},
+{
+"correct": "bebía",
+"distractors": [
+"bebemos",
+"bebes",
+"bebiendo",
+"beber",
+"abre"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"mesa",
+"hotel",
+"semana",
+"tienda",
+"madre"
+]
+},
+{
+"correct": "recibí",
+"distractors": [
+"recibido",
+"buscabas",
+"buscas",
+"busca",
+"buscan"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"sus",
+"mi",
+"mis",
+"tus",
+"su"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"hoteles",
+"libros",
+"maleta",
+"móvil",
+"casa"
+]
+}
+],
+"alternatives": [
+"Recibí tu mensaje mientras bebía café."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:47",
+"target": "Mientras buscabas la llave, llegó mi hermana.",
+"ru": "Пока ты искала ключ, пришла моя сестра.",
+"uk": "Поки ти шукала ключ, прийшла моя сестра.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "buscabas",
+"distractors": [
+"busco",
+"busca",
+"buscan",
+"buscas",
+"buscáis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"ventanas",
+"hermanas",
+"coche",
+"playa",
+"casa"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"escribes",
+"escribimos",
+"escrito",
+"escribir",
+"escribe"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"sus",
+"tu",
+"su",
+"tus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"billetes",
+"paquete",
+"tiendas",
+"tren",
+"casa"
+]
+}
+],
+"alternatives": [
+"Llegó mi hermana mientras buscabas la llave."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:48",
+"target": "Mientras la profesora hablaba, se abrió la puerta.",
+"ru": "Пока преподавательница говорила, открылась дверь.",
+"uk": "Поки викладачка говорила, відчинилися двері.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"médicas",
+"guía",
+"médica",
+"guías",
+"médicos"
+]
+},
+{
+"correct": "hablaba",
+"distractors": [
+"habláis",
+"habla",
+"hablamos",
+"hablan",
+"hablas"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"tu",
+"las",
+"mis",
+"el",
+"les"
+]
+},
+{
+"correct": "abrió",
+"distractors": [
+"abrir",
+"abrimos",
+"abierto",
+"abriendo",
+"abrirla"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"lo",
+"las",
+"un",
+"el",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"llaves",
+"coche",
+"bicicleta",
+"mensaje",
+"mercado"
+]
+}
+],
+"alternatives": [
+"Se abrió la puerta mientras la profesora hablaba."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:49",
+"target": "Mientras comíamos en casa, entró el médico.",
+"ru": "Пока мы ели дома, вошёл врач.",
+"uk": "Поки ми їли вдома, зайшов лікар.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "comíamos",
+"distractors": [
+"comía",
+"comiendo",
+"coméis",
+"comíais",
+"comían"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"por",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mercado",
+"libro",
+"reloj",
+"paquete",
+"botellas"
+]
+},
+{
+"correct": "entró",
+"distractors": [
+"entrar",
+"entrado",
+"entramos",
+"estamos",
+"están"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"lo",
+"los",
+"esta"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"profesora",
+"guía",
+"profesor",
+"estudiantes",
+"enfermera"
+]
+}
+],
+"alternatives": [
+"Entró el médico mientras comíamos en casa."
+]
+},
+{
+"lesson": 24,
+"id": "es:24:50",
+"target": "Mientras los estudiantes leían, llegó el tren.",
+"ru": "Пока студенты читали, прибыл поезд.",
+"uk": "Поки студенти читали, прибув потяг.",
+"tiles": [
+{
+"correct": "Mientras",
+"distractors": [
+"Que",
+"Si",
+"Porque",
+"Pero",
+"Ni"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"mis",
+"unas",
+"la",
+"su",
+"una"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"profesor",
+"profesores",
+"médico",
+"enfermero",
+"profesora"
+]
+},
+{
+"correct": "leían",
+"distractors": [
+"lee",
+"leyendo",
+"leer",
+"leído",
+"lees"
+]
+},
+{
+"correct": "llegó",
+"distractors": [
+"paseaban",
+"gusta",
+"preparábamos",
+"pasear",
+"están"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"lo",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "tren",
+"distractors": [
+"viaje",
+"salidas",
+"recepción",
+"mochila",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Llegó el tren mientras los estudiantes leían."
+]
+}
+]

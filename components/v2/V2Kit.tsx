@@ -39,6 +39,7 @@ import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { NavIcon } from './BackGlyph';
 import KitSpinner from './KitSpinner';
+import { LinearGradient } from '../SafeLinearGradient';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -258,7 +259,9 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
   // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): отключённая кнопка — не «всё на 45 % прозрачности» (подпись уходила ниже 3 : 1),
   // а плоская заливка buttonFillDisabled + подпись buttonInkDisabled (≈ 3,4 : 1), без тени; активная вторичная — buttonFill (≥ 1,6 : 1 к поверхностям).
   const filled = variant === 'primary' || variant === 'accent';
-  const fg = disabled ? (filled || variant === 'secondary' ? g.buttonInkDisabled : p.textMuted) : filled ? p.ctaText : p.text;
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» главная кнопка — светлый перелив материала (98°) с тёмной подписью и цветной тенью; у остальных тем — прежняя заливка
+  const auroraCta = filled && !disabled ? g.aurora ?? null : null;
+  const fg = auroraCta ? auroraCta.ctaInk : disabled ? (filled || variant === 'secondary' ? g.buttonInkDisabled : p.textMuted) : filled ? p.ctaText : p.text;
   const bg = disabled && (filled || variant === 'secondary')
     ? g.buttonFillDisabled
     : variant === 'primary' ? p.cta : variant === 'accent' ? p.accentFill : variant === 'secondary' ? g.buttonFill : 'transparent';
@@ -276,12 +279,14 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
         s.button,
         { minHeight: height, paddingVertical: 6, borderRadius: height / 2, backgroundColor: bg },
         // зачем (стиль «Тень»): кнопка действия — цветная тень; второстепенная вместо контура — плашка с малой тенью.
-        filled && !disabled ? { boxShadow: actionBoxShadow(g) } : null,
+        filled && !disabled ? { boxShadow: auroraCta ? [{ offsetX: 0, offsetY: 16, blurRadius: 30, spreadDistance: -12, color: auroraCta.ctaGlow }] : actionBoxShadow(g) } : null,
+        auroraCta ? { backgroundColor: auroraCta.ctaTo } : null,
         variant === 'secondary' && !disabled ? { boxShadow: nestedBoxShadow(g) } : null,
         size === 'small' ? { paddingHorizontal: 16 } : null,
         style,
       ]}
     >
+      {auroraCta ? <LinearGradient pointerEvents="none" colors={[auroraCta.ctaFrom, auroraCta.ctaTo]} start={{ x: 0, y: 0.43 }} end={{ x: 1, y: 0.57 }} style={[StyleSheet.absoluteFill, { borderRadius: height / 2 }]} /> : null}
       {loading ? <KitSpinner color={fg} /> : (
         <>
           {iconPosition === 'leading' ? iconNode : null}

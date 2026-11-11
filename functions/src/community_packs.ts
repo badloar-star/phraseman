@@ -10,7 +10,6 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
 import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
-import { enqueueCardTtsJob } from './card_tts_jobs';
 import { readPackPublishSlot, writePackPublishSlot } from './pack_publish_limit';
 import { normalizePackLevel, type PackLevel } from './community_pack_level';
 
@@ -519,10 +518,8 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         updatedAt: now,
       });
     });
-    // зачем: D128 — новые карточки опубликованного набора озвучиваются в фоне.
-    // Постановка не бросает и не задерживает ответ автору дольше одной записи;
-    // воркер сам пропустит набор, если он не 'published' или без языка.
-    await enqueueCardTtsJob(db, updatePackId, 'author_edit_published');
+    // зачем (владелец 11.11.2026, «удали всю озвучку»): набор больше не ставится в очередь
+    // серверной озвучки — карточки читает только голос телефона.
     return { submissionId: subRef.id };
   }
 
@@ -846,13 +843,8 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     approvedPackId = submissionId;
   });
 
-  if (action === 'approve' && approvedPackId) {
-    // зачем: D128 — одобренный набор озвучивается сразу, но в фоне
-    // (card_tts_worker.ts): одобрение не ждёт OpenAI и не падает из-за него.
-    await enqueueCardTtsJob(db, approvedPackId, 'moderation_approve');
-  } else if (action === 'approve') {
-    console.log('[CARD-TTS] enqueue:skip moderation — одобрение ничего не опубликовало', JSON.stringify({ submissionId }));
-  }
+  // зачем (владелец 11.11.2026, «удали всю озвучку»): одобренный набор больше не ставится в очередь
+  // серверной озвучки (D128 снят) — платной генерации клипов нет, карточки читает голос телефона.
   return { ok: true, publishedPackId: action === 'approve' ? approvedPackId : null };
 });
 

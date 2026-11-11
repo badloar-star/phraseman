@@ -22,9 +22,13 @@ import type { StudyTargetLang } from '../../../../app/study_target_lang_dev';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
+import type { HomeWeekDotsProps } from '../HomeWeekDots';
+import { buildHomeSceneStory, buildHomeSpecialStory } from '../../../../modules/story_events/home_activity_stories';
+import { homeContinueLessonLabel } from './HomeContinueScene';
+import type { StoryEvent } from '../../../../modules/story_events/story_events_core';
 import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
-import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput, type HomeSceneCtaTarget } from './home_scene_copy';
-import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
+import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopy, type HomeSceneCopyInput, type HomeSceneCtaTarget } from './home_scene_copy';
+import { homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokensForTheme, relativeLuminance, type HomeSceneStageTokens } from './home_scene_tokens';
@@ -47,6 +51,8 @@ import { HOME_SCENE_INK } from './home_scene_ink';
 const LOG = '[HOME-SCENE]';
 /** Верх шапки внутри сцены — под зоной часов (s.top paddingTop). */
 const HEADER_TOP = 8;
+const noopChip = () => undefined;
+const NO_CHIPS: readonly HomeSceneChip[] = [];
 
 /**
  * зачем (координатор 22.10): «Сцена» на Главной — в dev-сборке да, в релизе нет, пока владелец не посмотрит её на эмуляторе.
@@ -69,13 +75,6 @@ const CHIP_ICON: Readonly<Record<HomeSceneChipKind, HomeSceneChip['icon']>> = {
 let streakLostShownDay: string | null = null;
 const dayKeyOf = (d: Date): string => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-/** Проверка выпуска эпизодов курса — лениво, только когда урок пройден целиком (первый кадр не платит за модуль). */
-const isSessionReleased = (lessonOrdinal: number, sessionOrdinal: number): boolean => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { isLearningV2SessionReleasedV1 } = require('../../../../app/learning_v2_session_availability_v1') as typeof import('../../../../app/learning_v2_session_availability_v1');
-  return isLearningV2SessionReleasedV1(lessonOrdinal, sessionOrdinal);
-};
-
 /** Место продолжения — то же, что показывала карточка «Продолжить». */
 export type HomeScenePlace = Readonly<{
   badge: string | null;
@@ -91,10 +90,14 @@ export type HomeScenePlace = Readonly<{
   lessonNo?: number | null;
 }>;
 
-type Props = Readonly<{
+type HomeSceneScrollProps = Readonly<{ topOverscroll?: import('react-native-reanimated').SharedValue<number> }>;
+
+type Props = HomeSceneScrollProps & Readonly<{
   lang: Lang;
   /** HomeV2Header с tone="scene"; surface — верхний цвет сцены (под значком ◆ кольца Plus). */
-  header: (surface: string) => React.ReactNode;
+  header: (surface: string, sceneStory?: StoryEvent) => React.ReactNode;
+  week?: HomeWeekDotsProps;
+  overlapNextPanel?: boolean;
   artTone: ThemedArtBrightness;
   /**
    * Прежний вход цветов сцены. зачем оставлен: Главная ещё передаёт его (app/(tabs)/home.tsx занят чужими правками); с 22.10 цвета —
@@ -109,14 +112,14 @@ type Props = Readonly<{
   /** false — ни одного места продолжения (новичок); null — ещё читается. */
   hasProgress: boolean | null;
   place: HomeScenePlace;
-  /** Прогресс урока продолжения: пройдено / выпущено (для «всё пройдено»). */
-  courseProgress: Readonly<{ lessonOrdinal: number; done: number; total: number }> | null;
   pending: boolean;
   busy: boolean;
   /** Главная на экране и приложение активно. */
   active: boolean;
   onContinue: () => void;
-  onChip: (kind: HomeSceneChipKind) => void;
+  /** false — кнопки «Продолжить урок» нет (урока продолжить нельзя). */
+  canContinue?: boolean;
+  onChip?: (kind: HomeSceneChipKind) => void;
   /** Особые сцены (владелец 25.10): неразобранные ошибки — счётчик Главной; null — ещё не прочитан. Не задано — особых сцен с ошибками нет. */
   mistakesOpen?: number | null;
   /** Цель обучения — для карточек «пора повторить». */
@@ -161,14 +164,13 @@ export default function HomeScene(p: Props) {
   const firstEntryToday = useRef(streakLostShownDay !== todayKey);
   const streakLostToday = lostCandidate && firstEntryToday.current;
   useEffect(() => { if (streakLostToday) streakLostShownDay = todayKey; }, [streakLostToday, todayKey]);
-  const allReleasedDone = useMemo(() => homeSceneAllReleasedDone(p.courseProgress, isSessionReleased), [p.courseProgress]);
   const decision = useMemo(() => pickHomeSceneState(devSetup
     // dev-подмена: факты сцены — из эталона; энергия, Plus и сеть — настоящие (у них свои честные ручки)
     ? { ...devSetup.input, plus: p.plus, energy: p.energy, offline }
     : {
       hasProgress: p.hasProgress, hour, streakDays: p.streakDays, dayCounted, plus: p.plus, energy: p.energy, daysAway,
-      streakLostToday, chapterExamReady: false, allReleasedDone, offline,
-    }), [devSetup, p.hasProgress, hour, p.streakDays, dayCounted, p.plus, p.energy, daysAway, streakLostToday, allReleasedDone, offline]);
+      streakLostToday, chapterExamReady: false, allReleasedDone: false, offline,
+    }), [devSetup, p.hasProgress, hour, p.streakDays, dayCounted, p.plus, p.energy, daysAway, streakLostToday, offline]);
   const devLogRef = useRef('');
   useEffect(() => {
     const key = devSetup ? `${devFactsState}|${decision.state}|${decision.reason}` : 'off';
@@ -183,8 +185,8 @@ export default function HomeScene(p: Props) {
     const key = `${decision.state}|${decision.reason}|${String(decision.offlineLine)}|${String(decision.zeroEnergyNote)}`;
     if (logKeyRef.current === key) return;
     logKeyRef.current = key;
-    console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, daysSinceLesson, prevVisitDay: visitGap?.previousVisitDay ?? null, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
-  }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, daysSinceLesson, visitGap, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
+    console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, daysSinceLesson, prevVisitDay: visitGap?.previousVisitDay ?? null, streakCount: personal.streakCount, streakLostToday, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
+  }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, daysSinceLesson, visitGap, personal.streakCount, streakLostToday]);
   // зачем (владелец 25.10, 12 новых состояний сцены): особая сцена поверх героя — только из данных телефона; срочные герои главнее
   const wordsDue = useHomeSceneWordsDue(p.onSpecial ? p.studyTarget : undefined);
   const localFacts = useHomeSceneLocalFacts(p.studyTarget, Boolean(p.onSpecial));
@@ -201,6 +203,8 @@ export default function HomeScene(p: Props) {
     <HomeSceneView
       lang={p.lang}
       header={p.header}
+      week={p.week}
+      overlapNextPanel={p.overlapNextPanel}
       artTone={p.artTone}
       decision={decision}
       special={p.onSpecial && !p.pending ? special : null}
@@ -216,15 +220,20 @@ export default function HomeScene(p: Props) {
       active={p.active}
       statusTint
       topInset={topInset}
+      topOverscroll={p.topOverscroll}
       onContinue={p.onContinue}
-      onChip={p.onChip}
+      onChip={p.onChip ?? noopChip}
+      continueOnly
+      canContinue={p.canContinue}
     />
   );
 }
 
-export type HomeSceneViewProps = Readonly<{
+export type HomeSceneViewProps = HomeSceneScrollProps & Readonly<{
   lang: Lang;
-  header: (surface: string) => React.ReactNode;
+  header: (surface: string, sceneStory?: StoryEvent) => React.ReactNode;
+  week?: HomeWeekDotsProps;
+  overlapNextPanel?: boolean;
   artTone: ThemedArtBrightness;
   /** Решение pickHomeSceneState — у Главной из фактов телефона, у dev-входа из моков. */
   decision: HomeSceneDecision;
@@ -255,6 +264,13 @@ export type HomeSceneViewProps = Readonly<{
   /** Особая сцена (тексты и куда ведёт кнопка); null — обычный герой. */
   special?: HomeSceneSpecialView | null;
   onSpecial?: (route: HomeSceneSpecialRoute) => void;
+  /**
+   * зачем (владелец 11.11: «убери с главной все состояния вверху»): настоящая Главная рисует только шапку, неделю и «Продолжить урок»;
+   * герой состояния и особая сцена уходят историей в кольцо аватара. Dev-вход «Сверки» (без флага) по-прежнему рисует прежнюю сцену.
+   */
+  continueOnly?: boolean;
+  /** Нет — кнопки «Продолжить урок» нет (для continueOnly). */
+  canContinue?: boolean;
 }>;
 
 /**
@@ -286,7 +302,8 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens 
 export function HomeSceneView(p: HomeSceneViewProps) {
   const { decision } = p;
   const [minuteTick, setMinuteTick] = useState(0);
-  const evening = decision.state === 'streak_risk';
+  // зачем (владелец 11.11): на Главной без состояний нет и вечернего героя — сцена всегда в обычном свете
+  const evening = !p.continueOnly && decision.state === 'streak_risk';
   const fixedClock = p.minutesToMidnight !== undefined;
   // зачем: «До полуночи 2 ч 20 мин» не стоит на месте, пока Главная открыта — раз в минуту, только вечером и только на экране
   useEffect(() => {
@@ -336,6 +353,18 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [copyInput, liveEnergy, fixedEnergyMinutes]);
   const chips = useMemo<readonly HomeSceneChip[]>(() => copy.chips.map((kind) => ({ kind, label: homeSceneChipLabel(p.lang, kind), icon: CHIP_ICON[kind] })), [copy.chips, p.lang]);
   const offlineLine = useMemo(() => (decision.offlineLine ? homeSceneOfflineLine(p.lang) : null), [decision.offlineLine, p.lang]);
+  // зачем (владелец 11.11): состояние сцены — история дня; особая сцена — своя история; «Нет сети» при обычном герое — тоже история
+  const sceneStory = p.pending ? undefined
+    : specialView ? buildHomeSpecialStory(specialView.special, specialView.key, specialView.copy, new Date())
+      : buildHomeSceneStory(decision.offlineLine && (decision.state === 'continue' || decision.state === 'newbie') ? 'offline' : decision.state, copy, offlineLine?.bold, new Date());
+  const storyLogRef = useRef('');
+  useEffect(() => {
+    if (!p.continueOnly) return;
+    const key = `${sceneStory?.id ?? 'none'}|${decision.state}|${specialView?.special ?? ''}|${String(p.pending)}`;
+    if (storyLogRef.current === key) return;
+    storyLogRef.current = key;
+    console.log('[HOME-SCENE-STORY]', JSON.stringify({ story: sceneStory?.id ?? null, status: sceneStory?.payload.status ?? null, state: decision.state, special: specialView?.special ?? null, offlineLine: decision.offlineLine, pending: p.pending, reason: p.pending ? 'pending' : sceneStory ? 'to_story' : 'permanent_state_no_story' })); // guard-ok: одна строка на смену истории
+  }, [p.continueOnly, sceneStory, decision.state, decision.offlineLine, specialView, p.pending]);
   // зачем (жалоба владельца 25.10 «Ещё эпизод → классическое меню»): в момент тапа — состояние, цель и надпись, которую видел человек;
   // маршрут пишет обработчик Главной ([HOME-CONTINUE] open). Цель и обработчик Главная считает в одном рендере (homeSceneCtaTarget).
   const { onContinue } = p;
@@ -353,6 +382,17 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     console.log('[HOME-CONTINUE] tap', JSON.stringify({ state: decision.state, target: ctaTarget ?? 'v2_default', cta: copy.cta, lessonNo: ctaLessonNo, episode: ctaEpisode, special: specialView?.special ?? null })); // guard-ok: одна строка на тап
     onContinue();
   }, [copy.cta, ctaEpisode, ctaLessonNo, ctaTarget, decision.state, onContinue, onSpecial, specialView]);
+  // зачем (владелец 11.11: «убери с главной все состояния вверху, который урок или всё другое; кнопка „Продолжить" становится
+  // „Продолжить урок" и только продолжает последний открытый урок»): фон и картинка сцены темы остаются, а надписи героя, место урока,
+  // прогресс и чипы уходят — состояние живёт историей в кольце аватара (sceneStory выше). Кнопки нет, если продолжать нечего.
+  const stageCopy = useMemo<HomeSceneCopy>(() => ({
+    kicker: '', title: '', line: null, bar: null, warm: null, note: null, chips: [],
+    cta: p.canContinue === false ? null : homeContinueLessonLabel(p.lang),
+  }), [p.canContinue, p.lang]);
+  const onContinueLesson = useCallback(() => {
+    console.log('[HOME-CONTINUE] tap', JSON.stringify({ mode: 'continue_lesson_only', state: decision.state, story: sceneStory?.id ?? null, lessonNo: ctaLessonNo })); // guard-ok: одна строка на тап
+    onContinue();
+  }, [decision.state, sceneStory?.id, ctaLessonNo, onContinue]);
   // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне»): факт — где по экрану начинается сцена и какой у неё верхний цвет;
   // сравнивается с [SAFE-TOP] status_strip (высота зоны часов и цвет полосы над ней).
   const rootRef = useRef<View>(null);
@@ -362,28 +402,30 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     });
   }, [decision.state, tokens.sceneTop, p.statusTint, topInset]);
   return (
-    <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${specialView?.special ?? decision.state}`} style={s.root}>
+    <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${specialView?.special ?? decision.state}`} style={[s.root, p.overlapNextPanel === false && s.withoutOverlap]}>
       <HomeSceneStage
-        state={decision.state}
-        specialKey={specialView ? `${specialView.special}:${specialView.key ?? ''}` : null}
+        state={p.continueOnly ? 'continue' : decision.state}
+        specialKey={!p.continueOnly && specialView ? `${specialView.special}:${specialView.key ?? ''}` : null}
         evening={evening}
         tokens={tokens}
-        copy={copy}
-        liveEnergy={liveEnergy}
+        copy={p.continueOnly ? stageCopy : copy}
+        liveEnergy={p.continueOnly ? null : liveEnergy}
         buildLiveText={buildLiveText}
-        chips={chips}
+        chips={p.continueOnly ? NO_CHIPS : chips}
         pending={p.pending}
         busy={p.busy}
         active={p.active}
-        onCta={onCta}
+        onCta={p.continueOnly ? onContinueLesson : onCta}
         onChip={p.onChip}
         topInset={topInset}
+        topOverscroll={p.topOverscroll}
         headerHeight={headerHeight}
+        week={p.week}
       />
       {/* зачем (владелец 22.10): фон сцены заходит под часы, шапка — ниже зоны часов на прежние 12 */}
       <View onLayout={handleHeaderLayout} style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">
-        {p.header(tokens.sceneTop)}
-        {offlineLine ? (
+        {p.header(tokens.sceneTop, sceneStory)}
+        {offlineLine && !p.continueOnly ? (
           <View testID="home-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
             <Ionicons name="cloud-offline-outline" size={18} color={HOME_SCENE_INK.text} />
             <Text style={s.offlineText}><Text style={s.offlineBold}>{offlineLine.bold}</Text> {offlineLine.rest}</Text>
@@ -398,6 +440,7 @@ const s = StyleSheet.create({
   // зачем: сцена во всю ширину — гасим боковой отступ ленты Главной (V2.homePad)
   // зачем (владелец 22.10, вариант 2 scenes-compact.html): карточка «Сегодня» наезжает на низ сцены на 22 (зазор ленты Главной гасим)
   root: { marginHorizontal: -V2.homePad, marginBottom: -HOME_SCENE_PANEL_OVERLAP },
+  withoutOverlap: { marginBottom: 0 },
   top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 8, paddingHorizontal: 20, gap: 10 },
   offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: HOME_SCENE_INK.glass }, // аудит контраста 22.10: 14 % вместо 16 % — «Нет сети» ≥ 4,5 в светлых sage/grad_aurora
   // зачем (D145): строка «Нет сети» — шкала 13/17

@@ -1,0 +1,1115 @@
+[
+{
+"lesson": 15,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 15,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Чья это вещь",
+"formula": "my + [существительное] · mine [без существительного после]",
+"story": "Покажи на пальто: This is my coat. Теперь слово coat уже назвали: This coat is mine. My требует названия вещи; mine заменяет всё сочетание.",
+"use": "Когда вы определяете владельца, решите, будете ли вы называть предмет. Это определяет, какая притяжательная форма вам нужна.",
+"choose": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"nuance": "В словах `yours` и `hers` нет апострофа. Имя владельца обозначается по-разному: `Anna's coat` или `my sister's coat`. В английском языке выбор `his` или `her` зависит от владельца, а не от пола объекта.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Когда вы определяете владельца, решите, будете ли вы называть предмет. Это определяет, какая притяжательная форма вам нужна.",
+"samples": [
+"15.01",
+"15.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"samples": [
+"15.02",
+"15.05"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В словах `yours` и `hers` нет апострофа. Имя владельца обозначается по-разному: `Anna's coat` или `my sister's coat`. В английском языке выбор `his` или `her` зависит от владельца, а не от пола объекта.",
+"samples": [
+"15.05",
+"15.06"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Сравните двух владельцев",
+"samples": [
+"15.33",
+"15.35",
+"15.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Два похожих пальто висят у двери. Сначала определите свое пальто по существительному, а затем, не повторяя его.",
+"samples": [
+"15.42",
+"15.45",
+"15.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Добавьте имена и родственные связи",
+"samples": [
+"15.50"
+],
+"tokenWalk": "15.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Чия це річ",
+"formula": "my + [іменник] · mine [без іменника після]",
+"story": "Покажи на пальто: This is my coat. Річ уже названо: This coat is mine. Після my назви річ, а mine замінює все сполучення.",
+"use": "Коли ви визначаєте власника, вирішіть, чи будете ви називати назву предмета. Це визначає, яка форма присвійного відмінка вам потрібна.",
+"choose": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"nuance": "У `yours` або `hers` немає апострофа. Іменований власник відрізняється: `Anna's coat` або `my sister's coat`. В англійській мові вибір `his` або `her` вказує на власника, а не на стать об'єкта.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Коли ви визначаєте власника, вирішіть, чи будете ви називати назву предмета. Це визначає, яка форма присвійного відмінка вам потрібна.",
+"samples": [
+"15.01",
+"15.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"samples": [
+"15.02",
+"15.05"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "У `yours` або `hers` немає апострофа. Іменований власник відрізняється: `Anna's coat` або `my sister's coat`. В англійській мові вибір `his` або `her` вказує на власника, а не на стать об'єкта.",
+"samples": [
+"15.05",
+"15.06"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Порівняйте двох власників",
+"samples": [
+"15.33",
+"15.35",
+"15.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Два схожих пальта висять біля дверей. Спочатку визначте своє пальто за іменником, а потім, не повторюючи іменник.",
+"samples": [
+"15.42",
+"15.45",
+"15.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Додайте імена та родинні зв'язки",
+"samples": [
+"15.50"
+],
+"tokenWalk": "15.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Keep track of whose things they are",
+"formula": "my + [noun] · mine [without a following noun]",
+"story": "Point to a coat: This is my coat. If coat is already named: This coat is mine. My goes before the thing; mine stands on its own.",
+"use": "When you identify an owner, decide whether you are going to say the name of the object. This determines which possessive form you need.",
+"choose": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs.",
+"nuance": "There is no apostrophe in `yours` or `hers`. A named owner is different: `Anna's coat` or `my sister's coat`. In English the choice of `his` or `her` follows the owner, not the gender of the object.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "When you identify an owner, decide whether you are going to say the name of the object. This determines which possessive form you need.",
+"samples": [
+"15.01",
+"15.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs.",
+"samples": [
+"15.02",
+"15.05"
+]
+},
+{
+"title": "A useful contrast",
+"body": "There is no apostrophe in `yours` or `hers`. A named owner is different: `Anna's coat` or `my sister's coat`. In English the choice of `his` or `her` follows the owner, not the gender of the object.",
+"samples": [
+"15.05",
+"15.06"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs.",
+"wrong": "This is mine coat.",
+"right": "This is my coat.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Compare two owners",
+"samples": [
+"15.33",
+"15.35",
+"15.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Two similar coats are hanging by the door. Identify your coat first with the noun and then without repeating the noun.",
+"samples": [
+"15.42",
+"15.45",
+"15.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Add names and family relationships",
+"samples": [
+"15.50"
+],
+"tokenWalk": "15.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "15.01",
+"index": 2,
+"right": "my",
+"near": "mine",
+"seq": [
+"This",
+"is",
+"my",
+"coat"
+],
+"i": 0,
+"kind": "form",
+"key": "en15/lab/form1",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.13",
+"index": 0,
+"right": "Her",
+"near": "Hers",
+"seq": [
+"Her",
+"helmet",
+"is",
+"on",
+"the",
+"shelf"
+],
+"i": 12,
+"kind": "form",
+"key": "en15/lab/form2",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.26",
+"index": 6,
+"right": "ours",
+"near": "our",
+"seq": [
+"Are",
+"the",
+"seats",
+"by",
+"the",
+"window",
+"ours"
+],
+"i": 25,
+"kind": "form",
+"key": "en15/lab/form3",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.38",
+"index": 2,
+"right": "our",
+"near": "ours",
+"seq": [
+"We",
+"brought",
+"our",
+"own",
+"cups"
+],
+"i": 37,
+"kind": "form",
+"key": "en15/lab/form4",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.06",
+"index": 3,
+"right": "hers",
+"near": "her",
+"seq": [
+"This",
+"key",
+"is",
+"hers"
+],
+"i": 5,
+"kind": "spot",
+"key": "en15/lab/spot1",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.23",
+"index": 3,
+"right": "yours",
+"near": "your",
+"seq": [
+"Is",
+"this",
+"umbrella",
+"yours"
+],
+"i": 22,
+"kind": "spot",
+"key": "en15/lab/spot2",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.32",
+"index": 0,
+"right": "Your",
+"near": "Yours",
+"seq": [
+"Your",
+"bag",
+"is",
+"heavier",
+"than",
+"mine"
+],
+"i": 31,
+"kind": "spot",
+"key": "en15/lab/spot3",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"id": "15.49",
+"index": 0,
+"right": "Their",
+"near": "Theirs",
+"seq": [
+"Their",
+"keys",
+"work",
+"but",
+"ours",
+"do",
+"not"
+],
+"i": 48,
+"kind": "spot",
+"key": "en15/lab/spot4",
+"feedback": {
+"ru": "Если существительное ещё предстоит назвать, скажи `my coat`. Если слово `coat` уже понятно и повторять его не надо, скажи `mine`. Сравни `her bag → hers`, `our seats → ours`.",
+"uk": "Якщо іменник ще треба назвати, скажи `my coat`. Коли слово `coat` уже зрозуміле й повторювати його не потрібно, скажи `mine`. Порівняй `her bag → hers`, `our seats → ours`.",
+"en": "Use `my`, `your`, `her`, `our`, `their` before a noun. Use `mine`, `yours`, `hers`, `ours`, `theirs` instead of the whole noun phrase. `His` has the same shape in both jobs."
+}
+},
+{
+"kind": "match",
+"key": "en15/lab/match1",
+"id": "15.02",
+"other": "15.03"
+},
+{
+"kind": "match",
+"key": "en15/lab/match2",
+"id": "15.17",
+"other": "15.11"
+},
+{
+"kind": "match",
+"key": "en15/lab/match3",
+"id": "15.33",
+"other": "15.36"
+},
+{
+"kind": "match",
+"key": "en15/lab/match4",
+"id": "15.46",
+"other": "15.44"
+},
+{
+"kind": "build",
+"key": "en15/lab/build1",
+"id": "15.04"
+},
+{
+"kind": "build",
+"key": "en15/lab/build2",
+"id": "15.15"
+},
+{
+"kind": "build",
+"key": "en15/lab/build3",
+"id": "15.29"
+},
+{
+"kind": "build",
+"key": "en15/lab/build4",
+"id": "15.42"
+},
+{
+"kind": "transform",
+"id": "15.05",
+"base": "15.01",
+"diff": [
+{
+"before": [
+"my",
+"coat"
+],
+"after": [
+"her",
+"key"
+]
+}
+],
+"key": "en15/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "15.42",
+"base": "15.29",
+"diff": [
+{
+"before": [
+"locker"
+],
+"after": [
+"sister's",
+"coat"
+]
+}
+],
+"key": "en15/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "15.27",
+"base": "15.23",
+"diff": [
+{
+"before": [
+"umbrella",
+"yours"
+],
+"after": [
+"booking",
+"theirs"
+]
+}
+],
+"key": "en15/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "15.48",
+"base": "15.28",
+"diff": [
+{
+"before": [
+"Whose"
+],
+"after": [
+"His"
+]
+},
+{
+"before": [
+"envelope"
+],
+"after": [
+"label",
+"not",
+"hers"
+]
+}
+],
+"key": "en15/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+16,
+4
+],
+[
+12,
+1
+],
+[
+2,
+5
+],
+[
+10,
+3
+],
+[
+15,
+17
+],
+[
+7,
+19
+]
+],
+"worked": [
+"15.05",
+"15.18",
+"15.33",
+"15.48"
+],
+"reflection": [
+"15.01",
+"15.02"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 16,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 16,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Куда поставить частицу",
+"formula": "turn off [существительное] / turn [существительное] off · turn it off",
+"story": "Выключи вентилятор: Turn off the fan или Turn the fan off. Заменил the fan на it? Тогда только Turn it off, не Turn off it.",
+"use": "Короткое слово может изменить значение глагола. Рассматривайте два слова как одно выражение: `look after` — это не просто взгляд в определенном направлении.",
+"choose": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"nuance": "Не каждое сочетание разделяется. `look after` следует оставлять вместе перед лицом, а `look for` — вместе перед отсутствующим предметом. Глагол по-прежнему изменяется в зависимости от времени и лица.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Короткое слово может изменить значение глагола. Рассматривайте два слова как одно выражение: `look after` — это не просто взгляд в определенном направлении.",
+"samples": [
+"16.11",
+"16.13"
+]
+},
+{
+"title": "Как выбрать",
+"body": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"samples": [
+"16.13",
+"16.14"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Не каждое сочетание разделяется. `look after` следует оставлять вместе перед лицом, а `look for` — вместе перед отсутствующим предметом. Глагол по-прежнему изменяется в зависимости от времени и лица.",
+"samples": [
+"16.14",
+"16.16"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Держите неразделимые выражения вместе",
+"samples": [
+"16.33",
+"16.35",
+"16.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вентилятор работает. Назовите вентилятор в полной инструкции, затем вернитесь к нему, не повторяя существительное.",
+"samples": [
+"16.42",
+"16.45",
+"16.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Используйте фразовый глагол для решения проблемы",
+"samples": [
+"16.50"
+],
+"tokenWalk": "16.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Куди поставити частку",
+"formula": "turn off [іменник] / turn [іменник] off · turn it off",
+"story": "Вимкни вентилятор: Turn off the fan або Turn the fan off. Замінив the fan на it? Тоді Turn it off, не Turn off it.",
+"use": "Коротке слово може змінити значення дієслова. Візьміть два слова як один вираз: `look after` — це не просто дивитися в певному напрямку.",
+"choose": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"nuance": "Не кожна комбінація розділяється. Тримайте `look after` разом перед особою та `look for` разом перед відсутнім предметом. Дієслово все ще змінюється за часом та особою.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Коротке слово може змінити значення дієслова. Візьміть два слова як один вираз: `look after` — це не просто дивитися в певному напрямку.",
+"samples": [
+"16.11",
+"16.13"
+]
+},
+{
+"title": "Як вибрати",
+"body": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"samples": [
+"16.13",
+"16.14"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Не кожна комбінація розділяється. Тримайте `look after` разом перед особою та `look for` разом перед відсутнім предметом. Дієслово все ще змінюється за часом та особою.",
+"samples": [
+"16.14",
+"16.16"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Зберігати нероздільні вирази разом",
+"samples": [
+"16.33",
+"16.35",
+"16.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Вентилятор працює. Назвіть вентилятор у повній інструкції, а потім поверніться до нього, не називаючи іменника знову.",
+"samples": [
+"16.42",
+"16.45",
+"16.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Використовувати фразове дієслово для вирішення проблеми",
+"samples": [
+"16.50"
+],
+"tokenWalk": "16.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Place the small word correctly",
+"formula": "turn off [noun] / turn [noun] off · turn it off",
+"story": "Turn off the fan and Turn the fan off both work. Replace the fan with it: Turn it off. The pronoun belongs in the middle.",
+"use": "A short word can change what a verb means. Take the two words as one expression: `look after` is not just looking in a direction.",
+"choose": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle.",
+"nuance": "Not every combination splits. Keep `look after` together before the person and keep `look for` together before the missing thing. The verb still changes for time and person.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "A short word can change what a verb means. Take the two words as one expression: `look after` is not just looking in a direction.",
+"samples": [
+"16.11",
+"16.13"
+]
+},
+{
+"title": "How to choose",
+"body": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle.",
+"samples": [
+"16.13",
+"16.14"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Not every combination splits. Keep `look after` together before the person and keep `look for` together before the missing thing. The verb still changes for time and person.",
+"samples": [
+"16.14",
+"16.16"
+]
+},
+{
+"title": "Common mistake",
+"body": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle.",
+"wrong": "Turn off it.",
+"right": "Turn it off.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Keep inseparable expressions together",
+"samples": [
+"16.33",
+"16.35",
+"16.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A fan is running. Name the fan in a full instruction, then refer back to it without saying the noun again.",
+"samples": [
+"16.42",
+"16.45",
+"16.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Use a phrasal verb to solve a problem",
+"samples": [
+"16.50"
+],
+"tokenWalk": "16.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "16.01",
+"index": 1,
+"right": "up",
+"near": "down",
+"seq": [
+"Wake",
+"up",
+"Tom"
+],
+"i": 0,
+"kind": "form",
+"key": "en16/lab/form1",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.13",
+"index": 2,
+"right": "on",
+"near": "off",
+"seq": [
+"Turn",
+"it",
+"on"
+],
+"i": 12,
+"kind": "form",
+"key": "en16/lab/form2",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.24",
+"index": 3,
+"right": "up",
+"near": "down",
+"seq": [
+"He",
+"looked",
+"it",
+"up"
+],
+"i": 23,
+"kind": "form",
+"key": "en16/lab/form3",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.41",
+"index": 4,
+"right": "off",
+"near": "on",
+"seq": [
+"Please",
+"take",
+"your",
+"shoes",
+"off"
+],
+"i": 40,
+"kind": "form",
+"key": "en16/lab/form4",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.08",
+"index": 1,
+"right": "back",
+"near": "away",
+"seq": [
+"Come",
+"back",
+"after",
+"the",
+"rehearsal"
+],
+"i": 7,
+"kind": "spot",
+"key": "en16/lab/spot1",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.16",
+"index": 2,
+"right": "off",
+"near": "on",
+"seq": [
+"Turn",
+"it",
+"off"
+],
+"i": 15,
+"kind": "spot",
+"key": "en16/lab/spot2",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.30",
+"index": 3,
+"right": "on",
+"near": "off",
+"seq": [
+"She",
+"tried",
+"it",
+"on"
+],
+"i": 29,
+"kind": "spot",
+"key": "en16/lab/spot3",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"id": "16.50",
+"index": 4,
+"right": "away",
+"near": "back",
+"seq": [
+"Please",
+"put",
+"the",
+"milk",
+"away"
+],
+"i": 49,
+"kind": "spot",
+"key": "en16/lab/spot4",
+"feedback": {
+"ru": "С существительным возможны два порядка: `turn off the fan` и `turn the fan off`. Заменив `the fan` на `it`, поставь местоимение в середину: `turn it off`. Это правило не разрешает разрывать любой фразовый глагол.",
+"uk": "З іменником можливі два порядки: `turn off the fan` і `turn the fan off`. Замінивши `the fan` на `it`, постав займенник посередині: `turn it off`. Це правило не означає, що можна роз’єднати будь-яке фразове дієслово.",
+"en": "Some verbs with objects can split. A noun can go in two positions with `turn off`; a short object pronoun such as `it` goes between the verb and the particle."
+}
+},
+{
+"kind": "match",
+"key": "en16/lab/match1",
+"id": "16.02",
+"other": "16.01"
+},
+{
+"kind": "match",
+"key": "en16/lab/match2",
+"id": "16.17",
+"other": "16.15"
+},
+{
+"kind": "match",
+"key": "en16/lab/match3",
+"id": "16.33",
+"other": "16.34"
+},
+{
+"kind": "match",
+"key": "en16/lab/match4",
+"id": "16.46",
+"other": "16.47"
+},
+{
+"kind": "build",
+"key": "en16/lab/build1",
+"id": "16.04"
+},
+{
+"kind": "build",
+"key": "en16/lab/build2",
+"id": "16.15"
+},
+{
+"kind": "build",
+"key": "en16/lab/build3",
+"id": "16.29"
+},
+{
+"kind": "build",
+"key": "en16/lab/build4",
+"id": "16.42"
+},
+{
+"kind": "transform",
+"id": "16.16",
+"base": "16.13",
+"diff": [
+{
+"before": [
+"on"
+],
+"after": [
+"off"
+]
+}
+],
+"key": "en16/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "16.15",
+"base": "16.12",
+"diff": [
+{
+"before": [
+"oven",
+"on"
+],
+"after": [
+"heater",
+"off"
+]
+}
+],
+"key": "en16/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "16.34",
+"base": "16.24",
+"diff": [
+{
+"before": [
+"it",
+"up"
+],
+"after": [
+"for",
+"his",
+"wallet"
+]
+}
+],
+"key": "en16/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "16.38",
+"base": "16.37",
+"diff": [
+{
+"before": [
+"We"
+],
+"after": [
+"She"
+]
+},
+{
+"before": [
+"milk"
+],
+"after": [
+"paper"
+]
+}
+],
+"key": "en16/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+1,
+16
+],
+[
+13,
+17
+],
+[
+5,
+9
+],
+[
+2,
+14
+],
+[
+10,
+19
+],
+[
+15,
+3
+],
+[
+7,
+11
+]
+],
+"worked": [
+"16.05",
+"16.18",
+"16.33",
+"16.48"
+],
+"reflection": [
+"16.14",
+"16.16"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

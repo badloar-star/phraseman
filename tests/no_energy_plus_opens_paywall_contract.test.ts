@@ -48,15 +48,4 @@ describe('No energy → Plus always reaches the paywall', () => {
     const briefing = read('app/dialogue_v2_briefing.tsx');
     expect(briefing).toMatch(/<NoEnergyModal variant="dialogs"[^>]*onBeforeOpenPremium=\{\(\) => setNoEnergy\(false\)\}/);
   });
-
-  it('every entry that leaves its screen on close is covered (Learning V2, Cards, Dialogs, lessons)', () => {
-    const entries = ['app', 'components', 'modules']
-      .flatMap(walk)
-      .filter((f) => f !== 'components/NoEnergyModal.tsx' && /<NoEnergyModal\b/.test(read(f)));
-    // Известные входы, где onClose уводит с экрана: страховка окна закрывает их все.
-    const leaving = ['app/learning-v2/session/[id].tsx', 'app/flashcards_blitz_session.tsx', 'app/flashcards_recall_session.tsx', 'app/flashcards_speaking_session.tsx', 'app/dialogue_v2_briefing.tsx'];
-    for (const f of leaving) expect(entries).toContain(f);
-    // Страховка живёт в самом окне — значит покрыт любой вход, в том числе будущий.
-    expect(modal).toContain('unmount_with_pending');
-  });
 });

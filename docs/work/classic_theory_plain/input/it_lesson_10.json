@@ -1,0 +1,698 @@
+{
+ "lang": "it",
+ "lesson": 10,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:10:01",
+   "target": "C’è una panchina.",
+   "ru": "Есть скамейка.",
+   "uk": "Є лава."
+  },
+  {
+   "id": "it:10:02",
+   "target": "C’è un tavolo.",
+   "ru": "Есть стол.",
+   "uk": "Є стіл."
+  },
+  {
+   "id": "it:10:03",
+   "target": "Ci sono due panchine.",
+   "ru": "Есть две скамейки.",
+   "uk": "Є дві лавки."
+  },
+  {
+   "id": "it:10:04",
+   "target": "Ci sono tre sedie.",
+   "ru": "Есть три стула.",
+   "uk": "Є три стільці."
+  },
+  {
+   "id": "it:10:05",
+   "target": "Qui c’è una farmacia.",
+   "ru": "Здесь есть аптека.",
+   "uk": "Тут є аптека."
+  },
+  {
+   "id": "it:10:06",
+   "target": "C’è un parco vicino alla stazione ferroviaria.",
+   "ru": "Рядом с железнодорожным вокзалом есть парк.",
+   "uk": "Біля залізничного вокзалу є парк."
+  },
+  {
+   "id": "it:10:07",
+   "target": "Ci sono dei libri sul tavolo.",
+   "ru": "На столе лежат книги.",
+   "uk": "На столі книги."
+  },
+  {
+   "id": "it:10:08",
+   "target": "C’è del pane.",
+   "ru": "Есть хлеб.",
+   "uk": "Є хліб."
+  },
+  {
+   "id": "it:10:09",
+   "target": "C’è dell’acqua.",
+   "ru": "Есть вода.",
+   "uk": "Є вода."
+  },
+  {
+   "id": "it:10:10",
+   "target": "C’è del caffè.",
+   "ru": "Есть кофе.",
+   "uk": "Є кава."
+  },
+  {
+   "id": "it:10:11",
+   "target": "Nella borsa c’è una mappa.",
+   "ru": "В сумке карта.",
+   "uk": "У сумці є карта."
+  },
+  {
+   "id": "it:10:12",
+   "target": "Sul letto c’è una sciarpa.",
+   "ru": "На кровати шарф.",
+   "uk": "На ліжку є шарф."
+  },
+  {
+   "id": "it:10:13",
+   "target": "In tasca c’è un biglietto.",
+   "ru": "В кармане билет.",
+   "uk": "У кишені є квиток."
+  },
+  {
+   "id": "it:10:14",
+   "target": "Sulla scrivania c’è uno schermo.",
+   "ru": "На столе экран.",
+   "uk": "На столі є екран."
+  },
+  {
+   "id": "it:10:15",
+   "target": "C’è un orologio in cucina.",
+   "ru": "На кухне есть часы.",
+   "uk": "На кухні є годинник."
+  },
+  {
+   "id": "it:10:16",
+   "target": "Nel cassetto ci sono delle pile.",
+   "ru": "В ящике лежат батарейки.",
+   "uk": "У шухляді є батарейки."
+  },
+  {
+   "id": "it:10:17",
+   "target": "C’è un messaggio per te.",
+   "ru": "Для тебя есть сообщение.",
+   "uk": "Для тебе є повідомлення."
+  },
+  {
+   "id": "it:10:18",
+   "target": "C’è una lettera per Lea.",
+   "ru": "Для Леа есть письмо.",
+   "uk": "Для Леа є лист."
+  },
+  {
+   "id": "it:10:19",
+   "target": "C’è un posto a sedere in fondo.",
+   "ru": "В конце есть сидячее место.",
+   "uk": "У кінці є сидяче місце."
+  },
+  {
+   "id": "it:10:20",
+   "target": "C’è un ascensore in hotel.",
+   "ru": "В отеле есть лифт.",
+   "uk": "У готелі є ліфт."
+  },
+  {
+   "id": "it:10:21",
+   "target": "C’è un autobus stasera?",
+   "ru": "Есть ли сегодня вечером автобус?",
+   "uk": "Чи є автобус сьогодні ввечері?"
+  },
+  {
+   "id": "it:10:22",
+   "target": "C’è il mercato la domenica?",
+   "ru": "Есть ли рынок по воскресеньям?",
+   "uk": "Чи є ринок у неділю?"
+  },
+  {
+   "id": "it:10:23",
+   "target": "C’è un deposito bagagli?",
+   "ru": "Есть ли камера хранения багажа?",
+   "uk": "Чи є камера схову багажу?"
+  },
+  {
+   "id": "it:10:24",
+   "target": "Ci sono dei bagni?",
+   "ru": "Есть ли здесь туалеты?",
+   "uk": "Чи є тут туалети?"
+  },
+  {
+   "id": "it:10:25",
+   "target": "C’è posto?",
+   "ru": "Есть ли свободные места?",
+   "uk": "Чи є вільні місця?"
+  },
+  {
+   "id": "it:10:26",
+   "target": "C’è un errore sulla ricevuta?",
+   "ru": "Есть ли ошибка в чеке?",
+   "uk": "Чи є помилка в чеку?"
+  },
+  {
+   "id": "it:10:27",
+   "target": "C’è una camera libera?",
+   "ru": "Есть ли свободная комната?",
+   "uk": "Чи є вільна кімната?"
+  },
+  {
+   "id": "it:10:28",
+   "target": "C’è del latte in frigorifero?",
+   "ru": "Есть ли молоко в холодильнике?",
+   "uk": "Чи є молоко в холодильнику?"
+  },
+  {
+   "id": "it:10:29",
+   "target": "C’è una presa di corrente vicino al letto?",
+   "ru": "Есть ли розетка рядом с кроватью?",
+   "uk": "Чи є розетка біля ліжка?"
+  },
+  {
+   "id": "it:10:30",
+   "target": "C’è un altro treno oggi?",
+   "ru": "Есть ли сегодня другой поезд?",
+   "uk": "Чи є сьогодні інший поїзд?"
+  },
+  {
+   "id": "it:10:31",
+   "target": "Non c’è nessuna panchina.",
+   "ru": "Нет скамейки.",
+   "uk": "Лавки немає."
+  },
+  {
+   "id": "it:10:32",
+   "target": "Non c’è sapone.",
+   "ru": "Нет мыла.",
+   "uk": "Мила немає."
+  },
+  {
+   "id": "it:10:33",
+   "target": "Non c’è acqua calda.",
+   "ru": "Нет горячей воды.",
+   "uk": "Гарячої води немає."
+  },
+  {
+   "id": "it:10:34",
+   "target": "Non ci sono treni dopo mezzanotte.",
+   "ru": "После полуночи поездов нет.",
+   "uk": "Після півночі поїздів немає."
+  },
+  {
+   "id": "it:10:35",
+   "target": "Non c’è zucchero.",
+   "ru": "Нет сахара.",
+   "uk": "Цукру немає."
+  },
+  {
+   "id": "it:10:36",
+   "target": "Non ci sono più biglietti.",
+   "ru": "Билетов больше нет.",
+   "uk": "Квитків більше немає."
+  },
+  {
+   "id": "it:10:37",
+   "target": "Ci sono ancora due posti liberi.",
+   "ru": "Ещё есть два свободных места.",
+   "uk": "Ще є два вільних місця."
+  },
+  {
+   "id": "it:10:38",
+   "target": "C’è troppo rumore.",
+   "ru": "Слишком шумно.",
+   "uk": "Занадто шумно."
+  },
+  {
+   "id": "it:10:39",
+   "target": "C’è molta gente.",
+   "ru": "Много людей.",
+   "uk": "Багато людей."
+  },
+  {
+   "id": "it:10:40",
+   "target": "C’è poco traffico.",
+   "ru": "Машин на дороге мало.",
+   "uk": "Машин на дорозі мало."
+  },
+  {
+   "id": "it:10:41",
+   "target": "C’è una panetteria all’angolo.",
+   "ru": "На углу есть пекарня.",
+   "uk": "На розі є пекарня."
+  },
+  {
+   "id": "it:10:42",
+   "target": "Nel parco c’è un’area giochi per bambini.",
+   "ru": "В парке есть детская площадка.",
+   "uk": "У парку є дитячий майданчик."
+  },
+  {
+   "id": "it:10:43",
+   "target": "C’è un pacco alla reception.",
+   "ru": "На ресепшене есть посылка.",
+   "uk": "На рецепції є посилка."
+  },
+  {
+   "id": "it:10:44",
+   "target": "Ci sono lavori in corso davanti al museo.",
+   "ru": "Перед музеем ведутся строительные работы.",
+   "uk": "Перед музеєм йдуть будівельні роботи."
+  },
+  {
+   "id": "it:10:45",
+   "target": "Ci sono dei posti liberi sulla banchina.",
+   "ru": "На платформе есть свободные места.",
+   "uk": "На платформі є вільні місця."
+  },
+  {
+   "id": "it:10:46",
+   "target": "C’è una coperta nell’armadio.",
+   "ru": "В шкафу лежит одеяло.",
+   "uk": "У шафі є ковдра."
+  },
+  {
+   "id": "it:10:47",
+   "target": "C’è un numero sul retro della carta.",
+   "ru": "На обороте карты есть номер.",
+   "uk": "На звороті картки є номер."
+  },
+  {
+   "id": "it:10:48",
+   "target": "Qui c’è una pista ciclabile.",
+   "ru": "Здесь велосипедная дорожка.",
+   "uk": "Тут є велосипедна доріжка."
+  },
+  {
+   "id": "it:10:49",
+   "target": "C’è una fila davanti alla biglietteria.",
+   "ru": "Перед билетной кассой очередь.",
+   "uk": "Перед касою черга."
+  },
+  {
+   "id": "it:10:50",
+   "target": "C’è una fermata dell’autobus proprio di fronte.",
+   "ru": "Прямо напротив есть автобусная остановка.",
+   "uk": "Прямо навпроти є автобусна зупинка."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la panchina",
+   "ru": "скамейка",
+   "uk": "лава"
+  },
+  {
+   "lemma": "il pacco",
+   "ru": "посылка",
+   "uk": "посилка"
+  },
+  {
+   "lemma": "la coperta",
+   "ru": "одеяло",
+   "uk": "ковдру"
+  },
+  {
+   "lemma": "l’armadio",
+   "ru": "шкаф",
+   "uk": "шафа"
+  },
+  {
+   "lemma": "la pila",
+   "ru": "батарейка",
+   "uk": "батарейка"
+  },
+  {
+   "lemma": "il latte",
+   "ru": "молоко",
+   "uk": "молоко"
+  },
+  {
+   "lemma": "la cucina",
+   "ru": "кухня",
+   "uk": "кухня"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  }
+ ],
+ "oldTopicTitle": "Что есть в этом месте: `c’è` и `ci sono`",
+ "oldTheoryRu": "`C’è` употребляется с одним предметом и с неисчисляемым веществом в единственном числе. `Ci sono` — с несколькими. Сначала реши, один предмет или много, затем выбирай начало. Можно сначала обозначить место, затем сказать, что в нём есть. А можно начать с наличия предмета. В обоих порядках сохраняй все детали и согласование глагола. Неопределённый артикль помогает впервые представить один предмет. Числительное само указывает количество; перед «два» не нужно ещё одно `un`. Вопрос сохраняет ту же основу: `C’è una camera libera?` отличается от утверждения интонацией и знаком, а не новой вспомогательной частицей. Отрицание `non` стоит перед всей группой: `Non c’è` или `Non ci sono`. Число предмета по-прежнему имеет значение, даже когда его нет. `Ancora` и `più` меняют смысл наличия: ещё осталось или больше нет. `Molta gente` — много людей по смыслу, но итальянское существительное `gente` стоит в единственном числе. Проверь глазами, можно ли показать предметы по одному. Очередь может состоять из многих людей, но сама `fila` одна. Поэтому при сообщении о наличии очереди выбирай `c’è`."
+}

@@ -1,0 +1,8 @@
+11-05 12:44:31.332 10095 10263 I ReactNativeJS: [ONBOARD-LANG] choose target=es ui=en prevState=en
+11-05 12:44:31.551 10095 10263 I ReactNativeJS: [ONBOARD-LANG] set requested=es written=es before=es ui=en
+11-05 12:44:31.559 10095 10263 I ReactNativeJS: [ONBOARD-LANG] read raw=es known=1 result=es ui=en source=AsyncStorage:study_target_v1
+11-05 12:44:32.246 10095 10263 I ReactNativeJS: [ONBOARD-LANG] set requested=en written=en before=es ui=en
+11-05 12:44:32.310 10095 10263 I ReactNativeJS: [ONBOARD-LANG] read raw=en known=1 result=en ui=en source=AsyncStorage:study_target_v1
+11-05 12:44:32.315 10095 10263 I ReactNativeJS: [ONBOARD-LANG] choose:done target=es requestedKey=es studyTargetKey=en match=0
+11-05 12:44:32.321 10095 10263 I ReactNativeJS: [ONBOARD-LANG] lock_decision target=es locked=0 reason=no_record primary=none
+11-05 12:44:33.215 10095 10263 I ReactNativeJS: [ONBOARD-LANG] lock_decision target=en locked=0 reason=no_record primary=none

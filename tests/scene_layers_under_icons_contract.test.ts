@@ -33,11 +33,6 @@ describe('Сцена: слои цвета лежат под контентом',
     if (scrim >= 0) expect(scrim).toBeLessThan(hero);
   });
 
-  it('Сезон: слой сцены — первый ребёнок обложки, до шапки и текста', () => {
-    const src = read('components/learning-v2/season/SeasonCourseView.tsx');
-    expect(at(src, '<SceneBackdropFill screen="season"')).toBeLessThan(at(src, 'style={[styles.heroTop'));
-  });
-
   it('Пик: фон и звёзды — до башни', () => {
     const src = read('components/spire/scene/SpireScene.tsx');
     expect(at(src, '<SpireSceneBackdrop')).toBeLessThan(at(src, '<SpireTower'));

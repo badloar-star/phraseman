@@ -1,0 +1,170 @@
+[
+ {
+  "id": "lesson-15/chapters[0]",
+  "type": "T2",
+  "field": "localized.ru.chapters[0].body",
+  "problem": "«Упаковка простая» — неестественно по-русски (в uk корректно «Модель проста»)",
+  "fix": "Первый глагол сообщает о возможности или разрешении. Второй называет действие. Модель простая: puedo + entrar — могу войти."
+ },
+ {
+  "id": "lesson-15/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].body",
+  "problem": "en: «The packaging is simple» — калька",
+  "fix": "The first verb communicates possibility or permission. The second names the action. The pattern is simple: puedo + entrar — I can enter."
+ },
+ {
+  "id": "lesson-15/use",
+  "type": "T2",
+  "field": "localized.uk.use",
+  "problem": "«відмінюючи» — відмінюють іменники; для дієслова — «змінюючи за особами»",
+  "fix": "Скажи, хто може виконати дію, не змінюючи за особами друге дієслово ще раз."
+ },
+ {
+  "id": "lesson-15/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance",
+  "problem": "«відмінюючи / Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Скажи, хто може виконати дію, не змінюючи за особами друге дієслово ще раз. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[0]",
+  "type": "T2",
+  "field": "localized.uk.chapters[0].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Puedo entrar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[1]",
+  "type": "T2",
+  "field": "localized.uk.chapters[1].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Podemos esperar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[2]",
+  "type": "T2",
+  "field": "localized.uk.chapters[2].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Puedes pagar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[3]",
+  "type": "T2",
+  "field": "localized.uk.chapters[3].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Puedo pagar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[4]",
+  "type": "T2",
+  "field": "localized.uk.chapters[4].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: puede pagar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[5]",
+  "type": "T2",
+  "field": "localized.uk.chapters[5].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Puedo pagar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].note",
+  "problem": "«Відмінюємо poder» — дієслова не відмінюються, а змінюються за особами",
+  "fix": "Дієслівна група: Puedes llevar. За особами змінюємо poder; друге дієслово лишається в інфінітиві."
+ },
+ {
+  "id": "lesson-15/chapters[5]",
+  "type": "T2",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "«Відмінюємо poder» — неправильний термін; подвійна крапка після цитати; глоса hermanas — «брат / сестра» замість «сестри»",
+  "fix": "Порівняй два завдання: «Мої сестри можуть віднести пакет.» / «Я сьогодні можу заплатити готівкою». За особами змінюємо poder; друге дієслово лишається в інфінітиві. Смислові опори: «hermanas» — сестри; «bolsa» — пакет, сумка."
+ },
+ {
+  "id": "lesson-15/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "«Відмінюємо/відмінюючи» — неправильний термін для дієслова; подвійна крапка після цитати",
+  "fix": "Порівняй два завдання: «Ти можеш почекати надворі?» / «Ти можеш віднести пакет?» За особами змінюємо poder; друге дієслово лишається в інфінітиві. Скажи, хто може виконати дію, не змінюючи за особами друге дієслово ще раз."
+ },
+ {
+  "id": "lesson-15/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты; глосса hermanas — «сёстры», а не «брат / сестра»",
+  "fix": "Сравни два задания: «Мои сёстры могут отнести пакет.» / «Я сегодня могу заплатить наличными». Спрягается poder; второй глагол остаётся в инфинитиве. Смысловые опоры: «hermanas» — сёстры; «bolsa» — пакет, сумка."
+ },
+ {
+  "id": "lesson-15/chapters[5]",
+  "type": "T1",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: «can deliver the package» искажает es:15:20 (carry the bag); hermanas — «brother / sister»; битые кавычки",
+  "fix": "Compare the two tasks: \"My sisters can carry the bag.\" / \"I can pay in cash today.\" Conjugate poder; the second verb stays in the infinitive. Key words: hermanas — sisters; bolsa — bag."
+ },
+ {
+  "id": "lesson-15/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Ты можешь подождать снаружи?» / «Ты можешь отнести пакет?» Спрягается poder; второй глагол остаётся в инфинитиве. Скажи, кто может выполнить действие, не спрягая второе слово ещё раз."
+ },
+ {
+  "id": "lesson-15/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: «Tell me who can…» — неверный перевод «Скажи»; «carry the package» ≠ курс (carry the bag)",
+  "fix": "Compare the two tasks: \"Can you wait outside?\" / \"Can you carry the bag?\" Conjugate poder; the second verb remains in the infinitive. Say who can perform the action without conjugating the second word again."
+ },
+ {
+  "id": "lesson-15/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "en: разорванные окончания \"- ar, - er, - ir\"",
+  "fix": "Compare puedo pagar and podemos pagar. The active person is already expressed in poder. Keep -ar, -er or -ir for the second verb and don't insert a between them."
+ },
+ {
+  "id": "lesson-16/chapters[5]",
+  "type": "T3",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "«приготовить рюкзак» — неестественно и расходится с фразой курса es:16:20 («собрать рюкзак»); двойная точка после цитаты",
+  "fix": "Сравни два задания: «Мы позже собираемся собрать рюкзак.» / «Мы завтра собираемся заплатить наличными». Меняется ir, а между ним и инфинитивом сохраняется a. Смысловые опоры: «mochila» — рюкзак."
+ },
+ {
+  "id": "lesson-16/chapters[5]",
+  "type": "T3",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "«приготувати рюкзак» — неприродно й розходиться з фразою курсу es:16:20 («зібрати рюкзак»); подвійна крапка",
+  "fix": "Порівняй два завдання: «Ми пізніше збираємося зібрати рюкзак.» / «Ми завтра збираємося заплатити готівкою». Змінюється ir, а між ним та інфінітивом зберігається a. Смислові опори: «mochila» — рюкзак."
+ },
+ {
+  "id": "lesson-16/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: битые кавычки «Semantic supports: \" mochila \"»",
+  "fix": "Compare the two tasks: \"We are going to prepare the backpack later.\" / \"We are going to pay in cash tomorrow.\" ir changes, but a remains between it and the infinitive. Key word: mochila — backpack."
+ },
+ {
+  "id": "lesson-16/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Ты собираешься поесть дома?» / «Луис собирается купить билет?» Меняется ir, а между ним и инфинитивом сохраняется a. Назови план: кто собирается что сделать. Не потеряй a между двумя глаголами."
+ },
+ {
+  "id": "lesson-16/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Ти збираєшся поїсти вдома?» / «Луїс збирається купити квиток?» Змінюється ir, а між ним та інфінітивом зберігається a. Назви план: хто збирається що зробити. Не пропусти a між двома дієсловами."
+ },
+ {
+  "id": "lesson-16/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: имя Luis переведено как «Louis» (в курсе Luis)",
+  "fix": "Compare the two tasks: \"Are you going to eat at home?\" / \"Is Luis going to buy a ticket?\" ir changes, but a remains between it and the infinitive. Name the plan: who is going to do what. Don't lose a between the two verbs."
+ }
+]

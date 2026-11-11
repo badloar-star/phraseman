@@ -1,15 +1,22 @@
 import { COURSE_LEVEL_RANGES } from './course_levels';
 import { DebugLogger } from './debug-logger';
 import { getLessonData } from './lesson_data_all';
+import { expandedCorrectText } from '../modules/expanded-formats/grade';
+import { authoredExamItems, buildAuthoredExamDraft, type AuthoredFormat } from './level_exam_authored_bank';
+import { buildExpandedExamDraft, EXPANDED_SEED_NEEDS, swapPhraseWord, type ExpandedSeed, type ExpandedSeedGap, type PhraseBuiltFormat } from './level_exam_expanded_builder';
 import { GAP_RULE_ORDER, provableGapByRule } from './level_exam_gap_rules';
 import type { LessonPhrase, LessonWord } from './lesson_data_types';
 import { createLevelExamRng, shuffled } from './level_exam_rng';
 import type { SourceLocale } from './source_locales';
+import type { StudyTargetLang } from './study_target_lang_dev';
 import {
   CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
+  levelExamPassScore,
   type BuildLevelExamBlueprintInput,
   type LevelExamBlueprint,
   type LevelExamChoiceTask,
+  type LevelExamExpandedTask,
+  type LevelExamLevel,
   type LevelExamPhraseBuilderTask,
   type LevelExamSpeedMatchPair,
   type LevelExamTask,
@@ -17,6 +24,66 @@ import {
 
 const EXAM_DURATION_MS = { A1: 12 * 60_000, A2: 13 * 60_000, B1: 14 * 60_000, B2: 15 * 60_000 } as const;
 const SINGLE_TASKS_PER_MODE = 6;
+
+/**
+ * зачем (владелец 11.11.2026): «соответствующую сложность для каждого экзамена» и новые механики Пика.
+ * С версии 5 состав зависит от уровня: A1 — узнавание (выбор, пары), A2 — сборка и поиск лишнего, B1 — исправление
+ * и ввод слова, B2 — ввод слов и перевод целой фразы. В каждом уровне 30 баллов: `classic` + 6 быстрых пар + `expanded`.
+ * До версии 5 — прежние 6 заданий каждого из четырёх видов.
+ *
+ * В составе только семь механик, которые честно строятся из ОДНОЙ фразы урока. Остальным пяти (ответ в диалоге, порядок
+ * реплик, пары вопрос–ответ, разложи по группам, найди подтверждение) нужны диалоги и тексты; владелец 11.11.2026:
+ * «писать отдельно, но используя грамматику или слова, которые юзер уже разбирал». Они войдут в состав вместе с авторским банком.
+ */
+type ClassicCounts = Readonly<{ guess_phrase: number; fill_gap: number; find_oddity: number; translate_build: number }>;
+type LevelMix = Readonly<{
+  classic: ClassicCounts;
+  /** Механики из фраз уроков. */
+  expanded: readonly (readonly [PhraseBuiltFormat, number])[];
+  /** Механики из авторского банка диалогов и текстов; нет банка для уровня — задание заменяется механикой из фраз. */
+  authored: readonly (readonly [AuthoredFormat, number])[];
+}>;
+const LEGACY_MIX: LevelMix = {
+  classic: { guess_phrase: SINGLE_TASKS_PER_MODE, fill_gap: SINGLE_TASKS_PER_MODE, find_oddity: SINGLE_TASKS_PER_MODE, translate_build: SINGLE_TASKS_PER_MODE },
+  expanded: [],
+  authored: [],
+};
+export const LEVEL_EXAM_V5_MIX: Readonly<Record<LevelExamLevel, LevelMix>> = {
+  A1: {
+    classic: { guess_phrase: 4, fill_gap: 4, find_oddity: 3, translate_build: 3 },
+    expanded: [['multi_select', 2], ['sentence_build_noise', 2], ['remove_intruder', 1]],
+    authored: [['context_choice', 1], ['dialogue_order', 1], ['reply_pairs', 1], ['classify_function', 1], ['evidence_choice', 1]],
+  },
+  A2: {
+    classic: { guess_phrase: 3, fill_gap: 4, find_oddity: 3, translate_build: 3 },
+    expanded: [['sentence_build_noise', 3], ['remove_intruder', 3], ['multi_select', 2], ['word_repair', 3]],
+    authored: [],
+  },
+  B1: {
+    classic: { guess_phrase: 2, fill_gap: 3, find_oddity: 2, translate_build: 2 },
+    expanded: [['word_repair', 4], ['remove_intruder', 2], ['sentence_build_noise', 2], ['linked_gaps', 2], ['multi_select', 2], ['typed_word', 3]],
+    authored: [],
+  },
+  B2: {
+    classic: { guess_phrase: 1, fill_gap: 2, find_oddity: 2, translate_build: 0 },
+    expanded: [['word_repair', 4], ['typed_word', 5], ['sentence_transform', 3], ['linked_gaps', 2], ['sentence_build_noise', 2], ['multi_select', 2], ['remove_intruder', 1]],
+    authored: [],
+  },
+};
+/** Чем заменить механику, если из фраз уровня её не собрать: сначала близкая, в конце — выбор перевода (ему хватает одного правила). */
+const EXPANDED_FALLBACK: Readonly<Partial<Record<PhraseBuiltFormat, readonly PhraseBuiltFormat[]>>> = {
+  linked_gaps: ['typed_word', 'word_repair'],
+  sentence_transform: ['typed_word'],
+  remove_intruder: ['word_repair'],
+  sentence_build_noise: ['word_repair'],
+  multi_select: ['word_repair'],
+  typed_word: ['word_repair'],
+  word_repair: ['remove_intruder'],
+};
+const EXPANDED_LAST_RESORT: PhraseBuiltFormat = 'word_repair';
+/** Чем заменить авторское задание, пока банка для уровня или языка нет. */
+const AUTHORED_SUBSTITUTE: PhraseBuiltFormat = 'multi_select';
+const EXPANDED_BUILD_TRIES = 8;
 const LOG = '[EXAM-VOCAB]';
 
 // зачем (слово владельца af62e0821 через координатора, 05.11): в экзамене уровня — только слова и фразы из ПРОЙДЕННЫХ уроков.
@@ -34,16 +101,27 @@ function wordTokens(value: string): string[] {
     .filter(Boolean);
 }
 
-const vocabCache = new Map<number, LevelVocab>();
+const vocabCache = new Map<string, LevelVocab>();
 
-/** Словарь уроков 1..toLesson; один раз на последний урок уровня. */
-function levelVocab(toLesson: number): LevelVocab {
-  const cached = vocabCache.get(toLesson);
+/**
+ * зачем (владелец 11.11.2026: «в экзаменах — фразы, которые встречались в уроках»): урок показывает фразы КЛАССИЧЕСКОГО курса
+ * (getLessonData(урок, язык)), а экзамен до версии 5 читал прежний набор фраз без языка — ученик видел на экзамене
+ * фразы, которых в его уроках нет. С версии 5 экзамен читает те же фразы, что и урок. Версии 3 и 4 читают прежний набор:
+ * начатая попытка обязана восстановиться теми же заданиями.
+ */
+function lessonPhrases(lessonId: number, courseTarget: StudyTargetLang | undefined): LessonPhrase[] {
+  return courseTarget ? getLessonData(lessonId, courseTarget) : getLessonData(lessonId);
+}
+
+/** Словарь уроков 1..toLesson; один раз на последний урок уровня и источник фраз. */
+function levelVocab(toLesson: number, courseTarget: StudyTargetLang | undefined): LevelVocab {
+  const cacheKey = `${courseTarget ?? 'legacy'}:${toLesson}`;
+  const cached = vocabCache.get(cacheKey);
   if (cached) return cached;
   const tokens = new Set<string>();
   const byCategory = new Map<string, string[]>();
   for (let lessonId = 1; lessonId <= toLesson; lessonId += 1) {
-    for (const phrase of getLessonData(lessonId)) {
+    for (const phrase of lessonPhrases(lessonId, courseTarget)) {
       wordTokens(phrase.english).forEach((token) => tokens.add(token));
       for (const alt of phrase.alternatives || []) wordTokens(alt).forEach((token) => tokens.add(token));
       for (const word of targetWords(phrase)) {
@@ -59,7 +137,7 @@ function levelVocab(toLesson: number): LevelVocab {
     }
   }
   const vocab: LevelVocab = { tokens, byCategory };
-  vocabCache.set(toLesson, vocab);
+  vocabCache.set(cacheKey, vocab);
   return vocab;
 }
 
@@ -177,6 +255,28 @@ function provableGapCandidate(reference: PhraseReference, ctx: VocabContext): Ga
     }
   }
   return null;
+}
+
+/** Все доказуемые пропуски фразы — по одному на слово; из них строятся задания новых механик (ошибка только доказуемая). */
+function provableGapsOf(reference: PhraseReference, ctx: VocabContext): ExpandedSeedGap[] {
+  const sentence = reference.phrase.english.trim();
+  const found: ExpandedSeedGap[] = [];
+  for (const rule of GAP_RULE_ORDER) {
+    for (const word of targetWords(reference.phrase)) {
+      const category = String(word.category ?? '').trim().toLocaleLowerCase();
+      const result = provableGapByRule(rule, {
+        sentence,
+        answer: word.text,
+        category,
+        authored: word.distractors || [],
+        categoryPool: ctx.vocab.byCategory.get(category) || [],
+        isKnown: (value) => isKnownWord(ctx, value),
+      });
+      if (!result || found.some((gap) => normalized(gap.answer) === normalized(result.answer))) continue;
+      if (replaceUniqueWord(sentence, result.answer, '___')) found.push({ answer: result.answer, distractors: result.distractors });
+    }
+  }
+  return found;
 }
 
 /** provable=false — прежний отбор версии 3 (там засчитывается любой вариант смыслового пропуска); его не трогаем, чтобы начатые попытки восстанавливались. */
@@ -323,12 +423,13 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   const blueprintVersion = input.blueprintVersion ?? CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION;
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
   // зачем: loud считает отброшенное/добранное только для РЕАЛЬНО выданных заданий; quiet — для проб кандидатов (иначе счёт раздувается)
-  const vocab = levelVocab(toLesson);
+  const courseTarget: StudyTargetLang | undefined = blueprintVersion >= 5 ? input.studyTarget : undefined;
+  const vocab = levelVocab(toLesson, courseTarget);
   const loud: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
   const quiet: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
   const references: PhraseReference[] = [];
   for (let lessonId = fromLesson; lessonId <= toLesson; lessonId += 1) {
-    for (const phrase of getLessonData(lessonId)) {
+    for (const phrase of lessonPhrases(lessonId, courseTarget)) {
       const sourceText = explicitSourceText(phrase, input.sourceLocale);
       if (phrase.english.trim() && sourceText) references.push({ lessonId, phraseId: String(phrase.id), phrase, sourceText });
     }
@@ -362,7 +463,30 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     englishByLesson.set(reference.lessonId, list);
   }
 
-  for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
+  const mix = blueprintVersion >= 5 ? LEVEL_EXAM_V5_MIX[input.level] : LEGACY_MIX;
+  const gapCache = new Map<string, ExpandedSeedGap[]>();
+  const gapsOf = (reference: PhraseReference): ExpandedSeedGap[] => {
+    const key = `${reference.lessonId}:${reference.phraseId}`;
+    const cached = gapCache.get(key);
+    if (cached) return cached;
+    const gaps = provableGapsOf(reference, quiet);
+    gapCache.set(key, gaps);
+    return gaps;
+  };
+  /**
+   * зачем: «найди ошибку» до версии 5 искала ошибку по разметке класса слова, а в фразах курса, который проходит ученик,
+   * такой разметки нет — кандидатов не находилось вовсе. С версии 5 ошибочная фраза строится так же, как пропуск:
+   * слово заменяется соблазном, который ДОКАЗУЕМО неверен в этом месте по правилу грамматики.
+   */
+  const oddityOf = (reference: PhraseReference, ctx: VocabContext): OddityCandidate | null => {
+    if (blueprintVersion < 5) return safeOddityCandidate(reference, ctx);
+    const gap = gapsOf(reference)[0];
+    if (!gap) return null;
+    const wrong = swapPhraseWord(reference.phrase.english.trim(), gap.answer, gap.distractors[0]);
+    return wrong ? { reference, wrong } : null;
+  };
+
+  for (let index = 0; index < mix.classic.guess_phrase; index += 1) {
     const reference = next();
     const id = `${input.level}:guess_phrase:${reference.lessonId}:${reference.phraseId}`;
     tasks.push({
@@ -373,7 +497,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     } satisfies LevelExamChoiceTask);
   }
 
-  for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
+  for (let index = 0; index < mix.classic.fill_gap; index += 1) {
     const provableGaps = blueprintVersion >= 4;
     const reference = next((item) => safeGapCandidate(item, quiet, provableGaps) !== null);
     const candidate = safeGapCandidate(reference, loud, provableGaps)!;
@@ -383,18 +507,18 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     const grammarCategory = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'].includes(category);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
-      format: 'fill_gap', prompt: blueprintVersion === 4 ? `${reference.sourceText}\n${candidate.gap}` : candidate.gap,
+      format: 'fill_gap', prompt: blueprintVersion >= 4 ? `${reference.sourceText}\n${candidate.gap}` : candidate.gap,
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
       ...choices,
-      acceptedOptionIds: blueprintVersion === 4 || grammarCategory
+      acceptedOptionIds: blueprintVersion >= 4 || grammarCategory
         ? [choices.correctOptionId]
         : choices.options.map((option) => option.id),
     } satisfies LevelExamChoiceTask);
   }
 
-  for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => safeOddityCandidate(item, quiet) !== null);
-    const candidate = safeOddityCandidate(reference, loud)!;
+  for (let index = 0; index < mix.classic.find_oddity; index += 1) {
+    const reference = next((item) => oddityOf(item, quiet) !== null);
+    const candidate = oddityOf(reference, loud)!;
     const id = `${input.level}:find_oddity:${reference.lessonId}:${reference.phraseId}`;
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
@@ -405,7 +529,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     } satisfies LevelExamChoiceTask);
   }
 
-  for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
+  for (let index = 0; index < mix.classic.translate_build; index += 1) {
     const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item, quiet));
     const id = `${input.level}:translate_build:${reference.lessonId}:${reference.phraseId}`;
     const tokenData = builderTokens(reference, id, input.seed, loud);
@@ -415,6 +539,102 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
       ...tokenData,
     } satisfies LevelExamPhraseBuilderTask);
+  }
+
+  // ── двенадцать новых механик (версия 5): задание собирается из фраз уроков уровня ──
+  const seedOf = (reference: PhraseReference): ExpandedSeed => ({
+    lessonId: reference.lessonId,
+    phraseId: reference.phraseId,
+    english: reference.phrase.english.trim(),
+    sourceText: reference.sourceText,
+    alternatives: (reference.phrase.alternatives || []).map((value) => value.trim()).filter(Boolean),
+    gaps: gapsOf(reference),
+  });
+  const release = (picked: readonly PhraseReference[]): void => {
+    for (const reference of picked) used.delete(`${reference.lessonId}:${reference.phraseId}`);
+  };
+  let expandedFallbacks = 0;
+  const tryExpanded = (format: PhraseBuiltFormat, serial: number): LevelExamExpandedTask | null => {
+    const need = EXPANDED_SEED_NEEDS[format];
+    for (let attemptIndex = 0; attemptIndex < EXPANDED_BUILD_TRIES; attemptIndex += 1) {
+      const picked: PhraseReference[] = [];
+      try {
+        for (let slot = 0; slot < need.seeds; slot += 1) picked.push(next((item) => gapsOf(item).length >= need.gaps));
+      } catch (error) {
+        // зачем: фраз с нужным числом доказуемых пропусков больше нет — эту механику из уровня не собрать, берём запасную
+        DebugLogger.warn(LOG, `expanded no candidates level=${input.level} format=${format} need=${need.seeds}x${need.gaps} reason=${error instanceof Error ? error.message : String(error)}`);
+        release(picked);
+        return null;
+      }
+      const draft = buildExpandedExamDraft(format, picked.map(seedOf), `${input.seed}:${format}:${serial}:${attemptIndex}`, input.sourceLocale);
+      if (draft) {
+        const main = picked[0];
+        const id = `${input.level}:${format}:${main.lessonId}:${main.phraseId}`;
+        return {
+          id, scoreUnitId: id, lessonId: main.lessonId, phraseId: main.phraseId,
+          format, instruction: draft.instruction, prompt: draft.prompt, context: draft.context,
+          explanation: `${main.phrase.english.trim()} — ${main.sourceText}`,
+          exercise: draft.exercise,
+        };
+      }
+      // зачем: из этих фраз честное задание не вышло (слово повторяется, варианты совпали) — фразы возвращаются в общий запас
+      release(picked);
+    }
+    return null;
+  };
+  let expandedSerial = 0;
+  for (const [format, count] of mix.expanded) {
+    for (let index = 0; index < count; index += 1) {
+      expandedSerial += 1;
+      const chain: PhraseBuiltFormat[] = [format, ...(EXPANDED_FALLBACK[format] || []), EXPANDED_LAST_RESORT];
+      let task: LevelExamExpandedTask | null = null;
+      for (const candidate of chain) {
+        task = tryExpanded(candidate, expandedSerial);
+        if (task) {
+          if (candidate !== format) expandedFallbacks += 1;
+          break;
+        }
+      }
+      if (!task) throw new Error(`level_exam_expanded_missing:${input.level}:${format}`);
+      tasks.push(task);
+    }
+  }
+
+  // ── пять механик из авторского банка диалогов и текстов ──
+  const authoredPool = shuffled(authoredExamItems(input.studyTarget, input.level), createLevelExamRng(`${input.seed}:authored`));
+  const authoredUsed = new Set<string>();
+  let authoredSubstituted = 0;
+  for (const [format, count] of mix.authored) {
+    for (let index = 0; index < count; index += 1) {
+      expandedSerial += 1;
+      let task: LevelExamExpandedTask | null = null;
+      for (const item of authoredPool) {
+        if (item.format !== format || authoredUsed.has(item.id)) continue;
+        const draft = buildAuthoredExamDraft(item, input.seed, input.sourceLocale);
+        if (!draft) {
+          DebugLogger.warn(LOG, `authored item rejected id=${item.id} format=${format}`);
+          continue;
+        }
+        authoredUsed.add(item.id);
+        const id = `${input.level}:${format}:${item.lessonId}:${item.id}`;
+        task = {
+          id, scoreUnitId: id, lessonId: item.lessonId, phraseId: item.id,
+          format, instruction: draft.instruction, prompt: draft.prompt, context: draft.context,
+          explanation: expandedCorrectText(draft.exercise), exercise: draft.exercise,
+        };
+        break;
+      }
+      if (!task) {
+        // зачем: банка для этого уровня/языка ещё нет — баллов всё равно 30, место занимает механика из фраз уроков
+        authoredSubstituted += 1;
+        for (const candidate of [AUTHORED_SUBSTITUTE, EXPANDED_LAST_RESORT]) {
+          task = tryExpanded(candidate, expandedSerial);
+          if (task) break;
+        }
+      }
+      if (!task) throw new Error(`level_exam_authored_missing:${input.level}:${format}`);
+      tasks.push(task);
+    }
   }
 
   const pairs: LevelExamSpeedMatchPair[] = Array.from({ length: 6 }, () => {
@@ -429,11 +649,11 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
 
   const orderedTasks = shuffled(tasks, createLevelExamRng(`${input.seed}:tasks`));
   // зачем (сперва логи): сколько соблазнов вне пройденных уроков отброшено и сколько добрано близкими по классу
-  DebugLogger.info(LOG, `lang=en level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length}`);
+  DebugLogger.info(LOG, `lang=en level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length} v=${blueprintVersion} course=${courseTarget ?? 'legacy'} expandedFallbacks=${expandedFallbacks} authoredSubstituted=${authoredSubstituted}`);
   return {
     version: blueprintVersion, level: input.level, studyTarget: 'en', sourceLocale: input.sourceLocale, seed: input.seed,
     tasks: orderedTasks,
     scoredUnitIds: orderedTasks.flatMap((task) => task.format === 'speed_match' ? task.pairs.map((pair) => pair.scoreUnitId) : [task.scoreUnitId]),
-    durationMs: EXAM_DURATION_MS[input.level], passScore: 21,
+    durationMs: EXAM_DURATION_MS[input.level], passScore: levelExamPassScore(input.level, blueprintVersion),
   };
 }

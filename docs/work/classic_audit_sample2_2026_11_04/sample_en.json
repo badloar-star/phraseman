@@ -54,8 +54,8 @@
 "this",
 "that",
 "no",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -95,7 +95,7 @@
 "lesson": 1,
 "id": "en-classic-r1:01.34",
 "target": "We are early.",
-"ru": "Мы пришли раньше.",
+"ru": "Мы пришли рано.",
 "uk": "Ми прийшли рано.",
 "tiles": [
 {
@@ -330,9 +330,9 @@
 "distractors": [
 "to",
 "on",
+"from",
 "before",
-"in",
-"for"
+"in"
 ]
 },
 {
@@ -355,8 +355,8 @@
 "lesson": 2,
 "id": "en-classic-r1:02.23",
 "target": "Yes, she is.",
-"ru": "Да, она здесь.",
-"uk": "Так, вона тут.",
+"ru": "— Она здесь? — Да.",
+"uk": "— Вона тут? — Так.",
 "tiles": [
 {
 "correct": "Yes",
@@ -468,7 +468,7 @@
 "that",
 "much",
 "no",
-"for"
+"and"
 ]
 },
 {
@@ -549,8 +549,8 @@
 "this",
 "that",
 "much",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -601,9 +601,9 @@
 "distractors": [
 "the",
 "a",
-"these",
 "an",
-"no"
+"no",
+"much"
 ]
 },
 {
@@ -631,9 +631,9 @@
 "distractors": [
 "this",
 "that",
-"for",
-"of",
-"to"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -695,7 +695,7 @@
 "that",
 "any",
 "every",
-"for"
+"and"
 ]
 },
 {
@@ -764,8 +764,8 @@
 "this",
 "that",
 "each",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -945,7 +945,7 @@
 "that",
 "these",
 "each",
-"for"
+"and"
 ]
 },
 {
@@ -976,8 +976,8 @@
 "this",
 "that",
 "much",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1037,9 +1037,9 @@
 "distractors": [
 "the",
 "a",
-"this",
-"that",
-"an"
+"an",
+"no",
+"much"
 ]
 },
 {
@@ -1191,9 +1191,9 @@
 "distractors": [
 "this",
 "that",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1291,9 +1291,9 @@
 "distractors": [
 "this",
 "that",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1322,8 +1322,8 @@
 "off",
 "left",
 "not",
-"on",
-"in"
+"here",
+"leave"
 ]
 }
 ],
@@ -1375,7 +1375,7 @@
 "that",
 "these",
 "no",
-"for"
+"and"
 ]
 },
 {
@@ -1435,7 +1435,7 @@
 "that",
 "no",
 "any",
-"for"
+"and"
 ]
 },
 {
@@ -1503,9 +1503,9 @@
 "distractors": [
 "this",
 "that",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1542,10 +1542,10 @@
 "correct": "What",
 "distractors": [
 "who",
-"when",
 "where",
 "why",
-"how"
+"how",
+"the"
 ]
 },
 {
@@ -1653,9 +1653,9 @@
 "distractors": [
 "how",
 "who",
-"when",
 "what",
-"which"
+"which",
+"why"
 ]
 },
 {
@@ -1704,8 +1704,8 @@
 "where",
 "which",
 "what",
-"when",
-"who"
+"who",
+"why"
 ]
 },
 {
@@ -1734,8 +1734,8 @@
 "this",
 "that",
 "every",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1803,9 +1803,9 @@
 "distractors": [
 "get",
 "gets",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -1866,8 +1866,8 @@
 "this",
 "that",
 "these",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1908,8 +1908,8 @@
 "this",
 "that",
 "every",
-"for",
-"of"
+"and",
+"but"
 ]
 },
 {
@@ -1979,9 +1979,9 @@
 "distractors": [
 "get",
 "gets",
-"for",
-"of",
-"at"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -2074,7 +2074,7 @@
 "that",
 "much",
 "no",
-"with"
+"and"
 ]
 },
 {
@@ -2133,8 +2133,8 @@
 "this",
 "that",
 "these",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2171,10 +2171,10 @@
 "correct": "on",
 "distractors": [
 "at",
+"into",
 "for",
 "by",
-"of",
-"with"
+"of"
 ]
 },
 {
@@ -2204,7 +2204,7 @@
 "that",
 "much",
 "these",
-"with"
+"and"
 ]
 },
 {
@@ -2220,11 +2220,11 @@
 {
 "correct": "class",
 "distractors": [
-"bags",
 "doors",
 "size",
 "screen",
-"keys"
+"keys",
+"seats"
 ]
 },
 {
@@ -2354,9 +2354,9 @@
 "distractors": [
 "rooms",
 "seats",
-"minutes",
 "tickets",
-"keys"
+"keys",
+"bags"
 ]
 },
 {
@@ -2364,9 +2364,9 @@
 "distractors": [
 "to",
 "on",
+"across",
 "after",
-"in",
-"for"
+"under"
 ]
 },
 {
@@ -2375,8 +2375,8 @@
 "this",
 "that",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2487,8 +2487,8 @@
 "this",
 "that",
 "every",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2517,8 +2517,8 @@
 "this",
 "that",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2588,9 +2588,9 @@
 "distractors": [
 "this",
 "that",
-"with",
-"for",
-"of"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -2599,8 +2599,8 @@
 "lift",
 "entrance",
 "door",
-"flight",
-"friday"
+"friday",
+"window"
 ]
 }
 ],
@@ -2650,7 +2650,7 @@
 "that",
 "no",
 "much",
-"with"
+"and"
 ]
 },
 {
@@ -2782,7 +2782,7 @@
 "fridge",
 "need",
 "is",
-"was"
+"are"
 ]
 }
 ],
@@ -2821,8 +2821,8 @@
 "checked",
 "is",
 "checks",
-"was",
-"are"
+"are",
+"am"
 ]
 },
 {
@@ -2831,8 +2831,8 @@
 "this",
 "that",
 "some",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -2929,10 +2929,10 @@
 "correct": "get",
 "distractors": [
 "got",
-"chose",
 "is",
 "are",
-"was"
+"am",
+"do"
 ]
 },
 {
@@ -3010,9 +3010,9 @@
 "distractors": [
 "this",
 "that",
-"with",
-"for",
-"of"
+"and",
+"but",
+"with"
 ]
 },
 {
@@ -3063,8 +3063,8 @@
 "this",
 "that",
 "any",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3113,8 +3113,8 @@
 "this",
 "that",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3124,7 +3124,7 @@
 "shop",
 "last",
 "bus",
-"green"
+"train"
 ]
 },
 {
@@ -3214,7 +3214,7 @@
 "that",
 "these",
 "every",
-"with"
+"and"
 ]
 },
 {
@@ -3232,9 +3232,9 @@
 "distractors": [
 "arrived",
 "arrives",
-"come",
 "have",
-"is"
+"is",
+"do"
 ]
 },
 {
@@ -3242,9 +3242,9 @@
 "distractors": [
 "at",
 "for",
+"under",
 "by",
-"of",
-"with"
+"of"
 ]
 },
 {
@@ -3252,9 +3252,9 @@
 "distractors": [
 "lunch",
 "driver",
-"group",
 "room",
-"work"
+"work",
+"door"
 ]
 }
 ],
@@ -3283,8 +3283,8 @@
 "this",
 "that",
 "each",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3313,8 +3313,8 @@
 "this",
 "that",
 "no",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3386,7 +3386,7 @@
 "this",
 "all",
 "no",
-"with"
+"and"
 ]
 },
 {
@@ -3437,8 +3437,8 @@
 "this",
 "that",
 "these",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3487,8 +3487,8 @@
 "this",
 "that",
 "these",
-"with",
-"for"
+"and",
+"but"
 ]
 },
 {
@@ -3548,7 +3548,7 @@
 "that",
 "much",
 "no",
-"with"
+"and"
 ]
 },
 {
@@ -3568,7 +3568,7 @@
 "his",
 "her",
 "our",
-"yours"
+"their"
 ]
 },
 {
@@ -3604,11 +3604,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"could",
 "should",
 "cannot",
-"must"
+"must",
+"may",
+"does"
 ]
 },
 {
@@ -3627,8 +3627,8 @@
 "this",
 "that",
 "these",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -3666,11 +3666,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"could",
 "should",
 "cannot",
-"must"
+"must",
+"may",
+"does"
 ]
 },
 {
@@ -3690,7 +3690,7 @@
 "that",
 "much",
 "some",
-"but"
+"and"
 ]
 },
 {
@@ -3719,7 +3719,7 @@
 "to",
 "at",
 "on",
-"outside",
+"into",
 "in"
 ]
 },
@@ -3750,7 +3750,7 @@
 "an",
 "no",
 "much",
-"these"
+"any"
 ]
 },
 {
@@ -3766,11 +3766,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"could",
 "should",
 "cannot",
-"must"
+"must",
+"may",
+"does"
 ]
 },
 {
@@ -3809,8 +3809,8 @@
 "that",
 "some",
 "each",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -3846,11 +3846,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"could",
 "should",
 "cannot",
-"must"
+"must",
+"may",
+"does"
 ]
 },
 {
@@ -3869,8 +3869,8 @@
 "that",
 "this",
 "these",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -3887,10 +3887,10 @@
 "correct": "on",
 "distractors": [
 "at",
-"until",
 "for",
 "by",
-"of"
+"of",
+"after"
 ]
 },
 {
@@ -3898,8 +3898,8 @@
 "distractors": [
 "this",
 "that",
-"those",
 "much",
+"and",
 "but"
 ]
 },
@@ -3909,8 +3909,8 @@
 "leave",
 "leaves",
 "up",
-"behind",
-"down"
+"down",
+"is"
 ]
 }
 ],
@@ -3982,7 +3982,7 @@
 "how",
 "who",
 "whose",
-"when"
+"why"
 ]
 },
 {
@@ -4011,8 +4011,8 @@
 "this",
 "that",
 "both",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -4051,8 +4051,8 @@
 "this",
 "that",
 "each",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -4112,7 +4112,7 @@
 "that",
 "any",
 "no",
-"but"
+"and"
 ]
 },
 {
@@ -4161,18 +4161,18 @@
 {
 "lesson": 15,
 "id": "en-classic-r1:15.08",
-"target": "Those seats are ours.",
+"target": "These seats are ours.",
 "ru": "Эти места наши.",
 "uk": "Ці місця наші.",
 "tiles": [
 {
-"correct": "Those",
+"correct": "These",
 "distractors": [
 "the",
 "a",
-"this",
-"that",
-"each"
+"each",
+"an",
+"no"
 ]
 },
 {
@@ -4219,10 +4219,10 @@
 "correct": "Whose",
 "distractors": [
 "who",
-"when",
 "what",
 "which",
-"where"
+"where",
+"how"
 ]
 },
 {
@@ -4250,9 +4250,9 @@
 "distractors": [
 "the",
 "a",
-"those",
 "each",
-"an"
+"an",
+"no"
 ]
 }
 ],
@@ -4308,11 +4308,11 @@
 {
 "correct": "than",
 "distractors": [
-"to",
-"of",
 "off",
-"on",
-"at"
+"up",
+"out",
+"not",
+"back"
 ]
 },
 {
@@ -4430,9 +4430,9 @@
 "distractors": [
 "are",
 "was",
-"responding",
 "worry",
-"am"
+"am",
+"be"
 ]
 },
 {
@@ -4498,11 +4498,11 @@
 {
 "correct": "but",
 "distractors": [
+"if",
 "when",
-"after",
-"to",
-"on",
-"at"
+"unless",
+"because",
+"so"
 ]
 },
 {
@@ -4530,9 +4530,9 @@
 "distractors": [
 "takes",
 "took",
-"taking",
 "take",
-"have"
+"have",
+"keep"
 ]
 }
 ],
@@ -4571,8 +4571,8 @@
 "for",
 "by",
 "of",
-"with",
-"after"
+"after",
+"before"
 ]
 },
 {
@@ -4582,7 +4582,7 @@
 "in",
 "for",
 "of",
-"with"
+"after"
 ]
 },
 {
@@ -4592,7 +4592,7 @@
 "that",
 "no",
 "much",
-"but"
+"and"
 ]
 },
 {
@@ -4641,8 +4641,8 @@
 "off",
 "left",
 "out",
-"in",
-"on"
+"leave",
+"down"
 ]
 },
 {
@@ -4651,8 +4651,8 @@
 "this",
 "that",
 "much",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -4691,20 +4691,20 @@
 "correct": "ran",
 "distractors": [
 "run",
-"running",
 "fixing",
 "waiting",
-"went"
+"went",
+"is"
 ]
 },
 {
 "correct": "out",
 "distractors": [
-"on",
 "than",
-"in",
-"to",
-"at"
+"up",
+"left",
+"not",
+"back"
 ]
 },
 {
@@ -4780,11 +4780,11 @@
 {
 "correct": "out",
 "distractors": [
-"on",
 "than",
-"about",
-"at",
-"in"
+"up",
+"left",
+"not",
+"back"
 ]
 },
 {
@@ -4793,8 +4793,8 @@
 "that",
 "this",
 "these",
-"but",
-"with"
+"and",
+"but"
 ]
 },
 {
@@ -4944,11 +4944,11 @@
 {
 "correct": "Why",
 "distractors": [
-"when",
 "whose",
 "who",
 "where",
-"what"
+"what",
+"which"
 ]
 },
 {
@@ -4999,7 +4999,7 @@
 "id": "en-classic-r1:17.30",
 "target": "Are you using this chair?",
 "ru": "Вы пользуетесь этим стулом?",
-"uk": "Ви користуєтеся цим кріслом?",
+"uk": "Ви користуєтеся цим стільцем?",
 "tiles": [
 {
 "correct": "Are",
@@ -5036,9 +5036,9 @@
 "distractors": [
 "the",
 "a",
-"these",
 "some",
-"an"
+"an",
+"no"
 ]
 },
 {
@@ -5134,11 +5134,11 @@
 {
 "correct": "travel",
 "distractors": [
-"travelling",
 "takes",
 "took",
 "take",
-"taking"
+"taking",
+"is"
 ]
 },
 {
@@ -5147,8 +5147,8 @@
 "to",
 "in",
 "on",
-"beside",
-"for"
+"for",
+"of"
 ]
 },
 {
@@ -5177,20 +5177,20 @@
 "correct": "Anyone",
 "distractors": [
 "nothing",
-"someone",
 "who's",
 "round-trip",
-"anything"
+"anything",
+"something"
 ]
 },
 {
 "correct": "can",
 "distractors": [
-"will",
-"would",
 "should",
 "cannot",
-"must"
+"must",
+"does",
+"did"
 ]
 },
 {
@@ -5352,7 +5352,7 @@
 "up",
 "not",
 "out",
-"on"
+"here"
 ]
 },
 {
@@ -5530,11 +5530,11 @@
 {
 "correct": "If",
 "distractors": [
-"I",
-"you",
-"they",
 "when",
-"she"
+"unless",
+"but",
+"while",
+"and"
 ]
 },
 {
@@ -5580,11 +5580,11 @@
 {
 "correct": "will",
 "distractors": [
-"can",
-"would",
-"could",
 "must",
-"should"
+"should",
+"cannot",
+"might",
+"may"
 ]
 },
 {
@@ -5634,11 +5634,11 @@
 {
 "correct": "would",
 "distractors": [
-"will",
-"can",
-"could",
 "cannot",
-"must"
+"must",
+"might",
+"may",
+"don't"
 ]
 },
 {
@@ -5676,9 +5676,9 @@
 "distractors": [
 "but",
 "when",
-"off",
-"as",
-"than"
+"while",
+"unless",
+"and"
 ]
 },
 {
@@ -5758,11 +5758,11 @@
 {
 "correct": "could",
 "distractors": [
-"will",
 "round-trip",
 "who's",
 "should",
-"would"
+"cannot",
+"must"
 ]
 },
 {
@@ -5973,8 +5973,8 @@
 "kitchen",
 "letter",
 "shift",
-"police",
-"factory"
+"factory",
+"room"
 ]
 }
 ],
@@ -6044,7 +6044,7 @@
 "taxi",
 "saturdays",
 "group",
-"jump"
+"train"
 ]
 }
 ],
@@ -6256,9 +6256,9 @@
 "distractors": [
 "up",
 "not",
-"on",
-"in",
-"to"
+"here",
+"now",
+"still"
 ]
 },
 {
@@ -6285,10 +6285,10 @@
 "correct": "when",
 "distractors": [
 "if",
-"after",
-"who",
-"what",
-"how"
+"but",
+"while",
+"unless",
+"and"
 ]
 },
 {
@@ -6324,11 +6324,11 @@
 {
 "correct": "off",
 "distractors": [
-"on",
 "up",
-"if",
-"in",
-"to"
+"left",
+"than",
+"not",
+"leave"
 ]
 }
 ],
@@ -6354,11 +6354,11 @@
 {
 "correct": "can",
 "distractors": [
-"will",
-"would",
 "must",
 "should",
-"cannot"
+"cannot",
+"does",
+"did"
 ]
 },
 {
@@ -6474,11 +6474,11 @@
 {
 "correct": "would",
 "distractors": [
-"will",
-"can",
-"could",
 "should",
-"cannot"
+"cannot",
+"must",
+"might",
+"may"
 ]
 },
 {
@@ -6516,9 +6516,9 @@
 "distractors": [
 "but",
 "while",
-"after",
-"than",
-"when"
+"when",
+"unless",
+"and"
 ]
 },
 {

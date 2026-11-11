@@ -1,0 +1,773 @@
+{
+ "lang": "it",
+ "lesson": 19,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:19:01",
+   "target": "Paolo è arrivato.",
+   "ru": "Паоло приехал.",
+   "uk": "Паоло приїхав."
+  },
+  {
+   "id": "it:19:02",
+   "target": "Lea è arrivata.",
+   "ru": "Леа приехала.",
+   "uk": "Леа приїхала."
+  },
+  {
+   "id": "it:19:03",
+   "target": "Paolo è partito.",
+   "ru": "Паоло уехал.",
+   "uk": "Паоло поїхав."
+  },
+  {
+   "id": "it:19:04",
+   "target": "Lea è partita.",
+   "ru": "Леа уехала.",
+   "uk": "Леа поїхала."
+  },
+  {
+   "id": "it:19:05",
+   "target": "Sono arrivati.",
+   "ru": "Они прибыли.",
+   "uk": "Вони прибули."
+  },
+  {
+   "id": "it:19:06",
+   "target": "Sono arrivate.",
+   "ru": "Они прибыли.",
+   "uk": "Вони прибули."
+  },
+  {
+   "id": "it:19:07",
+   "target": "Sono partiti.",
+   "ru": "Они ушли.",
+   "uk": "Вони пішли."
+  },
+  {
+   "id": "it:19:08",
+   "target": "Sono partite.",
+   "ru": "Они ушли.",
+   "uk": "Вони пішли."
+  },
+  {
+   "id": "it:19:09",
+   "target": "È arrivato mio fratello.",
+   "ru": "Мой брат пришел.",
+   "uk": "Мій брат прийшов."
+  },
+  {
+   "id": "it:19:10",
+   "target": "È arrivata mia sorella.",
+   "ru": "Моя сестра пришла.",
+   "uk": "Моя сестра прийшла."
+  },
+  {
+   "id": "it:19:11",
+   "target": "Paolo è andato alla stazione ferroviaria.",
+   "ru": "Паоло пошел на вокзал.",
+   "uk": "Паоло пішов на вокзал."
+  },
+  {
+   "id": "it:19:12",
+   "target": "Lea è andata in banca.",
+   "ru": "Леа пошла в банк.",
+   "uk": "Леа пішла до банку."
+  },
+  {
+   "id": "it:19:13",
+   "target": "I miei genitori sono andati al mercato.",
+   "ru": "Мои родители пошли на рынок.",
+   "uk": "Мої батьки пішли на ринок."
+  },
+  {
+   "id": "it:19:14",
+   "target": "Le mie sorelle sono andate al concerto.",
+   "ru": "Мои сестры пошли на концерт.",
+   "uk": "Мої сестри пішли на концерт."
+  },
+  {
+   "id": "it:19:15",
+   "target": "Mia madre è tornata a casa presto.",
+   "ru": "Моя мама вернулась домой рано.",
+   "uk": "Моя мама повернулася додому рано."
+  },
+  {
+   "id": "it:19:16",
+   "target": "Mio padre è tornato a casa tardi.",
+   "ru": "Мой отец вернулся домой поздно.",
+   "uk": "Мій батько повернувся додому пізно."
+  },
+  {
+   "id": "it:19:17",
+   "target": "Gli ospiti sono rimasti qui per la notte.",
+   "ru": "Гости остались здесь на ночь.",
+   "uk": "Гості залишилися тут на ніч."
+  },
+  {
+   "id": "it:19:18",
+   "target": "I vicini sono rimasti fuori.",
+   "ru": "Соседи остались на улице.",
+   "uk": "Сусіди залишилися на вулиці."
+  },
+  {
+   "id": "it:19:19",
+   "target": "Il postino è passato stamattina.",
+   "ru": "Почтальон приходил сегодня утром.",
+   "uk": "Листоноша приходив сьогодні вранці."
+  },
+  {
+   "id": "it:19:20",
+   "target": "La postina è passata ieri.",
+   "ru": "Почтальонша приходила вчера.",
+   "uk": "Листоноша прийшла вчора."
+  },
+  {
+   "id": "it:19:21",
+   "target": "Lea è entrata nella stanza.",
+   "ru": "Леа вошла в комнату.",
+   "uk": "Леа зайшла до кімнати."
+  },
+  {
+   "id": "it:19:22",
+   "target": "Paolo è entrato in garage.",
+   "ru": "Паоло вошел в гараж.",
+   "uk": "Паоло зайшов до гаража."
+  },
+  {
+   "id": "it:19:23",
+   "target": "I bambini sono usciti in cortile.",
+   "ru": "Дети вышли во двор.",
+   "uk": "Діти вийшли на подвір’я."
+  },
+  {
+   "id": "it:19:24",
+   "target": "Mia figlia è uscita dal cancello.",
+   "ru": "Моя дочь вышла через калитку.",
+   "uk": "Моя донька вийшла через хвіртку."
+  },
+  {
+   "id": "it:19:25",
+   "target": "Mia sorella è salita al primo piano.",
+   "ru": "Моя сестра поднялась на второй этаж.",
+   "uk": "Моя сестра піднялася на другий поверх."
+  },
+  {
+   "id": "it:19:26",
+   "target": "I clienti sono scesi sul pianerottolo.",
+   "ru": "Покупатели спустились на лестничную площадку.",
+   "uk": "Покупці спустилися на сходовий майданчик."
+  },
+  {
+   "id": "it:19:27",
+   "target": "La chiave è caduta sotto il tavolo.",
+   "ru": "Ключ упал под стол.",
+   "uk": "Ключ упав під стіл."
+  },
+  {
+   "id": "it:19:28",
+   "target": "Le monete mi sono cadute dalla tasca.",
+   "ru": "Монеты выпали из моего кармана.",
+   "uk": "Монети випали з моєї кишені."
+  },
+  {
+   "id": "it:19:29",
+   "target": "Le foto sono cadute dal muro.",
+   "ru": "Фотографии упали со стены.",
+   "uk": "Фотографії впали зі стіни."
+  },
+  {
+   "id": "it:19:30",
+   "target": "Il libro è caduto dalla borsa.",
+   "ru": "Книга выпала из сумки.",
+   "uk": "Книга випала з сумки."
+  },
+  {
+   "id": "it:19:31",
+   "target": "Paolo non è ancora tornato.",
+   "ru": "Паоло ещё не вернулся.",
+   "uk": "Паоло ще не повернувся."
+  },
+  {
+   "id": "it:19:32",
+   "target": "Lea non è ancora tornata.",
+   "ru": "Леа ещё не вернулась.",
+   "uk": "Леа ще не повернулася."
+  },
+  {
+   "id": "it:19:33",
+   "target": "I miei cugini non sono venuti.",
+   "ru": "Мои двоюродные братья не пришли.",
+   "uk": "Мої двоюрідні брати не прийшли."
+  },
+  {
+   "id": "it:19:34",
+   "target": "I clienti non sono entrati.",
+   "ru": "Клиенты не вошли.",
+   "uk": "Клієнти не увійшли."
+  },
+  {
+   "id": "it:19:35",
+   "target": "L’autobus non è passato ieri.",
+   "ru": "Автобус вчера не приехал.",
+   "uk": "Автобус не приїхав учора."
+  },
+  {
+   "id": "it:19:36",
+   "target": "Quando è arrivata?",
+   "ru": "Когда она приехала?",
+   "uk": "Коли вона приїхала?"
+  },
+  {
+   "id": "it:19:37",
+   "target": "Dove sono andate?",
+   "ru": "Куда они ушли?",
+   "uk": "Куди вони пішли?"
+  },
+  {
+   "id": "it:19:38",
+   "target": "A che ora è partito?",
+   "ru": "Во сколько он ушёл?",
+   "uk": "О котрій годині він пішов?"
+  },
+  {
+   "id": "it:19:39",
+   "target": "Julie è tornata a casa?",
+   "ru": "Джули вернулась домой?",
+   "uk": "Джулі повернулася додому?"
+  },
+  {
+   "id": "it:19:40",
+   "target": "Le infermiere sono già andate via?",
+   "ru": "Медсёстры уже ушли?",
+   "uk": "Медсестри вже пішли?"
+  },
+  {
+   "id": "it:19:41",
+   "target": "Mia nonna è nata a Lille.",
+   "ru": "Моя бабушка родилась в Лилле.",
+   "uk": "Моя бабуся народилася в Ліллі."
+  },
+  {
+   "id": "it:19:42",
+   "target": "Mio figlio è nato a giugno.",
+   "ru": "Мой сын родился в июне.",
+   "uk": "Мій син народився в червні."
+  },
+  {
+   "id": "it:19:43",
+   "target": "I due amici sono venuti a piedi.",
+   "ru": "Два друга пришли пешком.",
+   "uk": "Двоє друзів прийшли пішки."
+  },
+  {
+   "id": "it:19:44",
+   "target": "Suo padre è arrivato presto.",
+   "ru": "Её отец приехал рано.",
+   "uk": "Її батько прибув рано."
+  },
+  {
+   "id": "it:19:45",
+   "target": "Sua madre se n’è andata senza la borsa.",
+   "ru": "Её мать ушла без сумки.",
+   "uk": "Її мати пішла без сумки."
+  },
+  {
+   "id": "it:19:46",
+   "target": "Il vicino è sceso a prendere la posta.",
+   "ru": "Сосед спустился вниз за почтой.",
+   "uk": "Сусід спустився вниз, щоб забрати пошту."
+  },
+  {
+   "id": "it:19:47",
+   "target": "Gli alunni sono tornati in classe.",
+   "ru": "Ученики вернулись в класс.",
+   "uk": "Учні повернулися до класу."
+  },
+  {
+   "id": "it:19:48",
+   "target": "Lea è rimasta a casa tutto il giorno.",
+   "ru": "Леа осталась дома на весь день.",
+   "uk": "Леа залишилася вдома весь день."
+  },
+  {
+   "id": "it:19:49",
+   "target": "Paolo è ripartito dopo pranzo.",
+   "ru": "Паоло ушёл после обеда.",
+   "uk": "Паоло пішов після обіду."
+  },
+  {
+   "id": "it:19:50",
+   "target": "Le passeggere sono salite sull’ultimo autobus.",
+   "ru": "Пассажирки сели в последний автобус.",
+   "uk": "Пасажирки сіли до останнього автобуса."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la posta",
+   "ru": "почта, корреспонденция",
+   "uk": "пошта, кореспонденція"
+  },
+  {
+   "lemma": "il pianerottolo",
+   "ru": "лестничная площадка",
+   "uk": "сходовий майданчик"
+  },
+  {
+   "lemma": "la moneta",
+   "ru": "монета",
+   "uk": "монета"
+  },
+  {
+   "lemma": "l’alunno",
+   "ru": "ученик, ученица",
+   "uk": "учень, учениця"
+  },
+  {
+   "lemma": "l’infermiera",
+   "ru": "медицинская сестра",
+   "uk": "медична сестра"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  }
+ ],
+ "oldTopicTitle": "Кто приехал: прошедшее с `essere`",
+ "oldTheoryRu": "У `arrivare` и `partire` помощник — `essere`. Не выбирай его только из-за слова «движение»: например, `ho camminato` тоже сообщает о движении, но употребляет `avere`. Группа женщин — `sono arrivate`, мужская или смешанная группа — `sono arrivati`. В заданиях это видно из подсказки. Одна форма `sono` не определяет род. Если человек назван после глагола, согласование всё равно идёт с ним. Сверь `è arrivato mio fratello` и `è arrivata mia sorella`. В каком месте произошло действие — отдельная часть. Сначала выбери помощник и причастие, затем подбери место. Не путай «вошла» и «уже была внутри». Упасть может и вещь. Для `la chiave` выбирай `è caduta`, для `le foto` — `sono cadute`. Здесь окончание показывает не пол человека, а грамматический род названия. В отрицании `non` предшествует помощнику. `Non è ancora tornata` относится к женщине, которая ещё не вернулась; отсутствие события не отменяет согласования. Для рождения и пребывания тоже встречается `essere`: `è nata`, `è rimasta`. Записывай помощник как часть карточки конкретного глагола и его значения."
+}

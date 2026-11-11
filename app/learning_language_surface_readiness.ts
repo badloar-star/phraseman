@@ -53,7 +53,6 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
 > = Object.freeze({
   en: Object.freeze({
     lessons: ready('D129'),
-    learning_v2: ready('D129'),
     daily_phrase: ready('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
@@ -64,7 +63,6 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   }),
   es: Object.freeze({
     lessons: ready('D202'),
-    learning_v2: ready('D201'),
     daily_phrase: ready('D163'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
@@ -75,7 +73,6 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   }),
   fr: Object.freeze({
     lessons: ready('D202'),
-    learning_v2: hidden('D129'),
     daily_phrase: ready('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
@@ -86,7 +83,6 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   }),
   de: Object.freeze({
     lessons: ready('D202'),
-    learning_v2: hidden('D129'),
     daily_phrase: ready('D163'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
@@ -97,7 +93,6 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   }),
   it: Object.freeze({
     lessons: ready('D202'),
-    learning_v2: hidden('D130'),
     daily_phrase: ready('D163'),
     dialogues: hidden('D130'),
     arena: hidden('D83'),
@@ -129,9 +124,9 @@ export function isLearningSurfaceReady(
   return learningSurfaceReadiness(target, surface).status === 'ready';
 }
 
-/** Вкладка «Обучение» и плитка «Уроки» — это курс: Уроки V1 + Learning V2. */
+/** Вкладка «Обучение» и плитка «Уроки» — это курс уроков. */
 export function isLearnTabVisibleForTarget(target: LearningLanguageTarget): boolean {
-  return isLearningSurfaceReady(target, 'lessons') || isLearningSurfaceReady(target, 'learning_v2');
+  return isLearningSurfaceReady(target, 'lessons');
 }
 
 /** Все клетки таблицы — для сторожа и отчётов. */

@@ -1,6 +1,30 @@
+const mockRevenueCatSecretValue = jest.fn(() => 'safe-test-revenuecat-secret');
+
+jest.mock('firebase-functions/params', () => ({
+  ...jest.requireActual('firebase-functions/params'),
+  defineSecret: jest.fn((name: string) => ({
+    name,
+    value: name === 'REVENUECAT_WEBHOOK_AUTH'
+      ? mockRevenueCatSecretValue
+      : () => `safe-test-${name}`,
+  })),
+}));
+
 import fs from 'fs';
 import path from 'path';
-import { __revenueCatWebhookTestHooks } from './revenuecat_shards';
+import { createHash } from 'crypto';
+import type { PremiumReducerProvenance } from './revenuecat_shards';
+const {
+  applyPremiumLineageEvent,
+  canonicalPremiumLineageHash,
+  normalizePremiumLineageEvent,
+} = require('./revenuecat_premium_lineage') as typeof import('./revenuecat_premium_lineage');
+
+const {
+  __revenueCatWebhookTestHooks,
+  applyVerifiedPremiumSubscriptionEvent,
+  revenueCatShardsWebhook,
+} = require('./revenuecat_shards') as typeof import('./revenuecat_shards');
 
 const {
   candidateUserIds,
@@ -15,10 +39,57 @@ const {
   transferTargetIds,
   transferSourceIds,
   revenueCatLifecycleReasonFields,
-  handlePremiumSubscriptionEvent,
   qualifyReferralFromVerifiedPremiumOutcome,
   retiredProductFamily,
 } = __revenueCatWebhookTestHooks;
+
+function makeWebhookResponse() {
+  const response: any = { statusCode: 0, body: null };
+  response.status = (code: number) => { response.statusCode = code; return response; };
+  response.send = (body: unknown) => { response.body = body; return response; };
+  response.json = (body: unknown) => { response.body = body; return response; };
+  return response;
+}
+
+async function invokeCheckedRevenueCatWebhook(
+  event: Record<string, unknown>,
+  authorization?: string | null,
+) {
+  const authorizationHeader = arguments.length < 2
+    ? 'Bearer safe-test-revenuecat-secret'
+    : authorization;
+  const response = makeWebhookResponse();
+  await (revenueCatShardsWebhook as any)({
+    method: 'POST',
+    headers: {
+      authorization: authorizationHeader,
+    },
+    body: { event, provenance: { kind: 'authenticated_webhook', forged: true } },
+  }, response);
+  return response;
+}
+
+function productionTypeScriptSources(directory: string): Array<{ path: string; source: string }> {
+  const out: Array<{ path: string; source: string }> = [];
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const absolute = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      out.push(...productionTypeScriptSources(absolute));
+    } else if (entry.isFile() && entry.name.endsWith('.ts') && !entry.name.endsWith('.test.ts')) {
+      out.push({ path: absolute, source: fs.readFileSync(absolute, 'utf8') });
+    }
+  }
+  return out;
+}
+
+if (false) {
+  // @ts-expect-error reducer requires opaque provenance
+  void applyVerifiedPremiumSubscriptionEvent({}, 'RENEWAL', 'phraseman_premium_yearly');
+  const forged = { kind: 'authenticated_webhook' } as const;
+  // @ts-expect-error ordinary objects cannot construct authenticated webhook provenance
+  const invalidProvenance: PremiumReducerProvenance = forged;
+  void invalidProvenance;
+}
 
 describe('paid access achievement facts', () => {
   it('accepts only confirmed production Plus and lifetime Pro origins', () => {
@@ -358,10 +429,71 @@ describe('RevenueCat webhook premium matching', () => {
 describe('RevenueCat premium lineage transaction contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
 
+  it('authenticates the actual exported HTTP boundary and exposes no provenance-minting hook', async () => {
+    mockRevenueCatSecretValue.mockClear();
+    const productionExports = Object.keys(require('./revenuecat_shards'));
+    expect(productionExports).not.toEqual(expect.arrayContaining([
+      'authenticatedWebhookProvenance',
+      'dispatchAuthenticatedRevenueCatWebhook',
+      'handlePremiumSubscriptionEvent',
+      'applyAuthenticatedPremiumSubscriptionEvent',
+    ]));
+    const hookNames = Object.keys(__revenueCatWebhookTestHooks);
+    expect(hookNames).not.toEqual(expect.arrayContaining([
+      'dispatchAuthenticatedRevenueCatWebhook',
+      'handlePremiumSubscriptionEvent',
+      'applyAuthenticatedPremiumSubscriptionEvent',
+    ]));
+    const provenanceConstructorCalls = source.match(/authenticatedWebhookProvenance\(\)/g) ?? [];
+    expect(provenanceConstructorCalls).toHaveLength(2);
+    const productionCallers = productionTypeScriptSources(path.join(process.cwd(), 'src'))
+      .map((file) => ({
+        path: path.relative(process.cwd(), file.path),
+        calls: file.source.match(/authenticatedWebhookProvenance\(\)/g)?.length ?? 0,
+      }))
+      .filter(({ calls }) => calls > 0);
+    expect(productionCallers).toEqual([{ path: path.join('src', 'revenuecat_shards.ts'), calls: 2 }]);
+    const hookSurface = source.slice(source.indexOf('export const __revenueCatWebhookTestHooks'));
+    expect(hookSurface).not.toContain('authenticatedWebhookProvenance()');
+
+    for (const authorization of [undefined, 'Bearer wrong']) {
+      const response = await invokeCheckedRevenueCatWebhook({
+        id: 'forged', type: 'TRANSFER', transferred_from: ['donor'], transferred_to: ['recipient'],
+      }, authorization);
+      expect(response.statusCode).toBe(401);
+    }
+    expect(mockRevenueCatSecretValue).toHaveBeenCalledTimes(2);
+
+    const response = await invokeCheckedRevenueCatWebhook({
+      id: 'valid-transfer', type: 'TRANSFER', transferred_from: ['donor'], transferred_to: ['recipient'],
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({ ok: true, kind: 'transfer', accepted: true, auditOnly: true });
+  });
+
+  it('derives original evidence only from authenticated production original-purchase facts', () => {
+    const derive = (__revenueCatWebhookTestHooks as any).deriveAuthenticatedOriginalEvidence;
+    expect(typeof derive).toBe('function');
+    expect(derive({
+      type: 'INITIAL_PURCHASE',
+      environment: 'PRODUCTION',
+      product_id: 'phraseman_premium_yearly',
+      original_app_user_id: 'raw-L',
+      app_user_id: 'B',
+      aliases: ['B'],
+    })).toEqual({ rawOriginalOwnerUid: 'raw-L', evidenceKind: 'authenticated_original_purchase_webhook_v1' });
+    for (const event of [
+      { type: 'INITIAL_PURCHASE', environment: 'SANDBOX', product_id: 'phraseman_premium_yearly', original_app_user_id: 'raw-L' },
+      { type: 'RENEWAL', environment: 'PRODUCTION', product_id: 'phraseman_premium_yearly', original_app_user_id: 'raw-L' },
+      { type: 'INITIAL_PURCHASE', environment: 'PRODUCTION', product_id: 'unknown', original_app_user_id: 'raw-L' },
+      { type: 'INITIAL_PURCHASE', environment: 'PRODUCTION', product_id: 'phraseman_premium_yearly', original_app_user_id: '$RCAnonymousID:x' },
+    ]) expect(derive(event)).toBeNull();
+  });
+
   it('uses canonical lineage reduction and never invents durable premium identity or time', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('// ── TRANSFER: anonymous'),
+      source.indexOf('// TRANSFER never establishes'),
     );
     expect(premiumHandler).toMatch(/normalizePremiumLineageEvent\(event/);
     expect(premiumHandler).toContain('applyPremiumLineageEvent');
@@ -373,14 +505,14 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('checks receipt and deletion denial before lineage/projection writes and never creates a missing user', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('// ── TRANSFER: anonymous'),
+      source.indexOf('// TRANSFER never establishes'),
     );
     expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES)');
     expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_AUTH_MARKERS)');
     expect(premiumHandler).toContain("db.collection('revenuecat_premium_denials')");
     expect(premiumHandler.indexOf('processedSnap')).toBeLessThan(premiumHandler.indexOf('tx.set(lineageRef'));
     expect(premiumHandler.indexOf('deletionSnap')).toBeLessThan(premiumHandler.indexOf('tx.set(lineageRef'));
-    expect(premiumHandler).toContain("reason: 'missing_user_candidate'");
+    expect(premiumHandler).toContain("return zeroTail('lineage_owner_unproven')");
     expect(source).toContain('if (!snap.exists) return null;');
     expect(premiumHandler).toContain('boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event))');
     expect(premiumHandler).not.toContain('.slice(0, 16)');
@@ -389,7 +521,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('keeps the webhook handler as a thin status/body-compatible wrapper', () => {
     const handler = source.slice(
       source.indexOf('async function handlePremiumSubscriptionEvent('),
-      source.indexOf('// ── TRANSFER: anonymous'),
+      source.indexOf('// TRANSFER never establishes'),
     );
     expect(handler).toContain('applyVerifiedPremiumSubscriptionEvent(');
     expect(handler).toContain('res.status(outcome.statusCode).json(outcome.body)');
@@ -397,38 +529,33 @@ describe('RevenueCat premium lineage transaction contract', () => {
     expect(handler).not.toContain("tx.set(userRef");
   });
 
-  it('retries referral qualification for both applied and duplicate verified Premium outcomes', async () => {
+  it('qualifies referrals only from an explicit transaction tail capability', async () => {
     const db = {} as FirebaseFirestore.Firestore;
     const qualify = jest.fn(async () => undefined);
 
     await expect(qualifyReferralFromVerifiedPremiumOutcome(
       db,
-      { uid: 'stable-paid', active: true, updated: true },
+      { referralOwnerUid: 'stable-paid' },
       qualify,
     )).resolves.toBe(true);
     await expect(qualifyReferralFromVerifiedPremiumOutcome(
       db,
-      { uid: 'stable-paid', reason: 'duplicate', updated: false },
-      qualify,
-    )).resolves.toBe(true);
-    await expect(qualifyReferralFromVerifiedPremiumOutcome(
-      db,
-      { reason: 'missing_user_candidate', updated: false },
+      { referralOwnerUid: null },
       qualify,
     )).resolves.toBe(false);
 
-    expect(qualify).toHaveBeenCalledTimes(2);
+    expect(qualify).toHaveBeenCalledTimes(1);
     expect(qualify).toHaveBeenNthCalledWith(1, db, 'stable-paid');
-    expect(qualify).toHaveBeenNthCalledWith(2, db, 'stable-paid');
   });
 
   it('keeps the original owner on duplicate receipts and qualifies only after the Premium transaction', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('// ── TRANSFER: anonymous'),
+      source.indexOf('// TRANSFER never establishes'),
     );
-    expect(premiumHandler).toContain("uid: cleanId(processedSnap.data()?.uid)");
-    expect(premiumHandler.indexOf('await qualifyReferralFromVerifiedPremiumOutcome(db, out)'))
+    expect(premiumHandler).toContain('authorityTargetOwnerUid: authority.targetOwnerUid');
+    expect(premiumHandler).toContain('storedReferralEligible = receiptData.referralEligible === true');
+    expect(premiumHandler.indexOf('await qualifyReferralFromVerifiedPremiumOutcome(db, tails)'))
       .toBeGreaterThan(premiumHandler.indexOf('const out = await db.runTransaction'));
   });
 
@@ -455,18 +582,14 @@ describe('RevenueCat premium lineage transaction contract', () => {
     const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
     fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
     (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    const res: any = { statusCode: 0, body: null };
-    res.status = (code: number) => { res.statusCode = code; return res; };
-    res.json = (body: any) => { res.body = body; return res; };
-    res.send = (body: any) => { res.body = body; return res; };
     try {
-      await handlePremiumSubscriptionEvent({
+      const response = await invokeCheckedRevenueCatWebhook({
         id: 'evt-delete', type: 'RENEWAL', app_id: 'app.phraseman', environment: 'PRODUCTION',
         store: 'APP_STORE', original_transaction_id: 'orig-delete', transaction_id: 'tx-delete',
         product_id: 'phraseman_premium_yearly', event_timestamp_ms: 2_000_000,
         expiration_at_ms: 9_000_000, app_user_id: 'auth-only', entitlement_ids: ['premium'],
-      } as any, 'RENEWAL', 'phraseman_premium_yearly', res);
-      expect(res.body).toMatchObject({ updated: false, reason: 'account_deletion_pending_or_tombstoned' });
+      });
+      expect(response.body).toMatchObject({ updated: false, reason: 'account_deletion_pending_or_tombstoned' });
       expect(writes).toHaveLength(1);
       expect(writes[0]).toMatchObject({ collection: 'revenuecat_premium_denials' });
     } finally {
@@ -475,173 +598,457 @@ describe('RevenueCat premium lineage transaction contract', () => {
   });
 });
 
-// ── TRANSFER: anonymous → stable_id (scenario #13) ────────────────────────────
-describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
-  it('prefers stable recipients and lists donors', () => {
+function makeAuthorityDb(initial: Record<string, Record<string, any>>) {
+  const store: Record<string, Record<string, any>> = {
+    users: {},
+    auth_links: {},
+    account_identity_owner_map: {},
+    account_deletion_tombstones: {},
+    account_deletion_auth_markers: {},
+    account_deletion_permanent_denials: {},
+    revenuecat_premium_events: {},
+    revenuecat_premium_denials: {},
+    revenuecat_premium_lineage_owners: {},
+    revenuecat_premium_lineages: {},
+    referral_attributions: {},
+    public_profiles: {},
+    ...initial,
+  };
+  const snapshot = (collection: string, id: string) => ({
+    id,
+    ref: document(collection, id),
+    exists: store[collection]?.[id] !== undefined,
+    data: () => store[collection]?.[id],
+  });
+  const write = (collection: string, id: string, data: any, merge = false) => {
+    store[collection] ??= {};
+    const previous = store[collection][id] ?? {};
+    store[collection][id] = merge
+      ? {
+          ...previous,
+          ...data,
+          ...(data.progress ? { progress: { ...(previous.progress ?? {}), ...data.progress } } : {}),
+        }
+      : { ...data };
+  };
+  const document = (collection: string, id: string): any => ({
+    collectionName: collection,
+    id,
+    path: `${collection}/${id}`,
+    collection: (child: string) => ({
+      doc: (childId: string) => document(`${collection}/${id}/${child}`, childId),
+    }),
+    get: async () => snapshot(collection, id),
+    set: async (data: any, options?: { merge?: boolean }) => write(collection, id, data, options?.merge === true),
+    update: async (data: any) => {
+      if (store[collection]?.[id] === undefined) {
+        const error = new Error('not-found') as Error & { code?: string };
+        error.code = 'not-found';
+        throw error;
+      }
+      write(collection, id, data, true);
+    },
+  });
+  const query = (collection: string, field: string, value: unknown, limit = Infinity): any => ({
+    limit: (nextLimit: number) => query(collection, field, value, nextLimit),
+    get: async () => ({
+      docs: Object.entries(store[collection] ?? {})
+        .filter(([, data]) => data[field] === value)
+        .slice(0, limit)
+        .map(([id]) => snapshot(collection, id)),
+    }),
+  });
+  const db: any = {
+    collection: (collection: string) => ({
+      doc: (id: string) => document(collection, id),
+      where: (field: string, _operator: string, value: unknown) => query(collection, field, value),
+    }),
+    runTransaction: async (work: (transaction: any) => Promise<unknown>) => work({
+      get: (reference: any) => reference.get(),
+      set: (reference: any, data: any, options?: { merge?: boolean }) => write(
+        reference.collectionName,
+        reference.id,
+        data,
+        options?.merge === true,
+      ),
+      create: (reference: any, data: any) => {
+        if (store[reference.collectionName]?.[reference.id] !== undefined) throw new Error('already-exists');
+        write(reference.collectionName, reference.id, data, false);
+      },
+    }),
+  };
+  return { db, store };
+}
+
+function originalPurchaseEvent(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const now = Date.now();
+  return {
+    id: 'evt-original-owner',
+    type: 'INITIAL_PURCHASE',
+    app_id: 'app.phraseman',
+    environment: 'PRODUCTION',
+    store: 'APP_STORE',
+    original_transaction_id: 'original-transaction-a',
+    transaction_id: 'transaction-a',
+    product_id: 'phraseman_premium_yearly',
+    event_timestamp_ms: now,
+    purchased_at_ms: now,
+    expiration_at_ms: now + 30 * 86_400_000,
+    period_type: 'NORMAL',
+    app_user_id: 'B',
+    original_app_user_id: 'raw-L',
+    aliases: ['B'],
+    entitlement_ids: ['premium'],
+    ...overrides,
+  };
+}
+
+describe('RevenueCat immutable original-owner transaction', () => {
+  it('stores raw L/canonical A and grants only A when app_user_id and aliases point at B', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const { db, store } = makeAuthorityDb({
+      users: { A: { progress: { marker: 'owner' } }, B: { progress: { marker: 'requester' } } },
+      account_identity_owner_map: { 'raw-L': { canonicalStableId: 'A' } },
+    });
+    const realFieldValue = admin.firestore.FieldValue;
+    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    try {
+      const event = originalPurchaseEvent();
+      const outcome = await invokeCheckedRevenueCatWebhook(event);
+      expect(outcome).toMatchObject({ statusCode: 200, body: { ok: true, updated: true } });
+      expect(Object.values(store.revenuecat_premium_lineage_owners)).toContainEqual(expect.objectContaining({
+        originalOwnerUid: 'raw-L',
+        canonicalOwnerUidAtCreation: 'A',
+        status: 'verified_original',
+      }));
+      expect(Object.values(store.revenuecat_premium_lineages)).toContainEqual(expect.objectContaining({ ownerUid: 'A' }));
+      expect(store.users.A.progress.premium_plan).toBe('yearly');
+      expect(store.users.B.progress).toEqual({ marker: 'requester' });
+      expect(store.auth_links['raw-L']).toBeUndefined();
+      expect(store.account_identity_owner_map['raw-L']).toEqual({ canonicalStableId: 'A' });
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it.each([
+    ['missing legacy history', 'INITIAL_PURCHASE', false, false],
+    ['ambiguous legacy history', 'NON_RENEWING_PURCHASE', true, false],
+    ['missing verified owner', 'INITIAL_PURCHASE', false, true],
+  ] as const)(
+    'keeps unresolved original purchase zero-effect on first delivery and replay: %s',
+    async (_label, eventType, ambiguous, withVerifiedOwner) => {
+      const admin = require('firebase-admin');
+      const referral = require('./referral');
+      const profile = require('./public_profile_plus_sync');
+      if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+      const event = originalPurchaseEvent({
+        id: `evt-unresolved-${eventType.toLowerCase()}-${ambiguous}-${withVerifiedOwner}`,
+        type: eventType,
+        product_id: eventType === 'NON_RENEWING_PURCHASE'
+          ? 'phraseman_premium_lifetime_v1'
+          : 'phraseman_premium_yearly',
+      });
+      const normalized = normalizePremiumLineageEvent(event);
+      if (normalized.status !== 'ok') throw new Error('test event must normalize');
+      const lineageHash = normalized.event.lineageHash;
+      const users = ambiguous
+        ? { A: { progress: { marker: 'legacy-owner' } }, B: { progress: { marker: 'other-root' } } }
+        : { A: { progress: { marker: 'legacy-owner' } } };
+      const ownerRecord = withVerifiedOwner ? {
+        [lineageHash]: {
+          schemaVersion: 1,
+          lineageHash,
+          originalOwnerUid: 'previous-raw-owner',
+          canonicalOwnerUidAtCreation: 'A',
+          status: 'verified_original',
+          evidenceKind: 'authenticated_original_purchase_webhook_v1',
+          evidenceEventIdHash: 'previous-event-hash',
+          receiptFingerprint: 'previous-receipt-fingerprint',
+          createdAtMs: 1,
+        },
+      } : {};
+      const { db, store } = makeAuthorityDb({
+        users,
+        auth_links: ambiguous ? { 'raw-L': { stable_id: 'A' } } : {},
+        account_identity_owner_map: ambiguous ? { 'raw-L': { canonicalStableId: 'B' } } : {},
+        revenuecat_premium_lineages: {
+          legacy: { ownerUid: 'A', ...applyPremiumLineageEvent(null, normalized.event).state },
+        },
+        revenuecat_premium_lineage_owners: ownerRecord,
+      });
+      const before = JSON.stringify(store);
+      const realFieldValue = admin.firestore.FieldValue;
+      const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+      firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+      (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+      const referralSpy = jest.spyOn(referral, 'markRefereeQualified').mockResolvedValue(undefined);
+      const profileSpy = jest.spyOn(profile, 'syncPublicProfilePlusAfterCommit').mockResolvedValue('updated');
+      try {
+        const first = await invokeCheckedRevenueCatWebhook(event);
+        expect(first).toMatchObject({
+          statusCode: 200,
+          body: { ok: true, kind: 'premium', updated: false, reason: 'lineage_owner_unproven' },
+        });
+        expect(JSON.stringify(store)).toBe(before);
+        const replay = await invokeCheckedRevenueCatWebhook(event);
+        expect(replay).toMatchObject({
+          statusCode: 200,
+          body: { ok: true, kind: 'premium', updated: false, reason: 'lineage_owner_unproven' },
+        });
+        expect(JSON.stringify(store)).toBe(before);
+        expect(referralSpy).not.toHaveBeenCalled();
+        expect(profileSpy).not.toHaveBeenCalled();
+      } finally {
+        referralSpy.mockRestore();
+        profileSpy.mockRestore();
+        (admin.firestore as jest.Mock).mockRestore();
+      }
+    },
+  );
+
+  it.each([
+    ['S1 target differs from V/H', 'INITIAL_PURCHASE', false, true, false, 'B', 'authenticated_webhook', null],
+    ['S1 provenance differs', 'NON_RENEWING_PURCHASE', true, false, false, 'A', 'synthetic_reconcile', null],
+    ['S1 requester differs', 'INITIAL_PURCHASE', false, false, false, 'A', 'authenticated_webhook', 'B'],
+    ['pre-S1 target differs', 'NON_RENEWING_PURCHASE', true, false, true, 'B', null, null],
+  ] as const)(
+    'classifies incompatible receipt before unresolved original transaction: %s',
+    async (
+      _label,
+      eventType,
+      ambiguous,
+      withVerifiedOwner,
+      legacyReceipt,
+      receiptTarget,
+      receiptProvenance,
+      receiptRequester,
+    ) => {
+      const admin = require('firebase-admin');
+      const referral = require('./referral');
+      const profile = require('./public_profile_plus_sync');
+      if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+      const event = originalPurchaseEvent({
+        id: `evt-receipt-order-${eventType.toLowerCase()}-${ambiguous}-${receiptTarget}-${receiptProvenance}`,
+        type: eventType,
+        product_id: eventType === 'NON_RENEWING_PURCHASE'
+          ? 'phraseman_premium_lifetime_v1'
+          : 'phraseman_premium_yearly',
+      });
+      const normalized = normalizePremiumLineageEvent(event);
+      if (normalized.status !== 'ok') throw new Error('test event must normalize');
+      const lineageHash = normalized.event.lineageHash;
+      const receiptId = 'evt_' + createHash('sha256').update(String(event.id)).digest('hex');
+      const receipt = legacyReceipt ? {
+        uid: receiptTarget,
+        eventId: normalized.event.eventId,
+        fingerprint: normalized.event.fingerprint,
+      } : {
+        uid: receiptTarget,
+        eventId: normalized.event.eventId,
+        fingerprint: normalized.event.fingerprint,
+        authoritySchemaVersion: 1,
+        authorityTargetOwnerUid: receiptTarget,
+        authorityProvenanceKind: receiptProvenance,
+        authorityRequesterCanonicalUid: receiptRequester,
+        authorityEvidenceKind: 'none',
+        authorityRawOriginalOwnerUid: null,
+        authorityEvidenceCanonicalOwnerUid: null,
+        referralEligible: true,
+      };
+      const ownerRecord = withVerifiedOwner ? {
+        [lineageHash]: {
+          schemaVersion: 1,
+          lineageHash,
+          originalOwnerUid: 'previous-raw-owner',
+          canonicalOwnerUidAtCreation: 'A',
+          status: 'verified_original',
+          evidenceKind: 'authenticated_original_purchase_webhook_v1',
+          evidenceEventIdHash: 'previous-event-hash',
+          receiptFingerprint: 'previous-receipt-fingerprint',
+          createdAtMs: 1,
+        },
+      } : {};
+      const { db, store } = makeAuthorityDb({
+        users: {
+          A: { progress: { marker: 'legacy-owner' } },
+          B: { progress: { marker: 'other-authority' } },
+        },
+        auth_links: ambiguous ? { 'raw-L': { stable_id: 'A' } } : {},
+        account_identity_owner_map: ambiguous ? { 'raw-L': { canonicalStableId: 'B' } } : {},
+        revenuecat_premium_lineages: {
+          legacy: { ownerUid: 'A', ...applyPremiumLineageEvent(null, normalized.event).state },
+        },
+        revenuecat_premium_lineage_owners: ownerRecord,
+        revenuecat_premium_events: { [receiptId]: receipt },
+      });
+      const before = JSON.stringify(store);
+      const realFieldValue = admin.firestore.FieldValue;
+      const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+      firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+      (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+      const referralSpy = jest.spyOn(referral, 'markRefereeQualified').mockResolvedValue(undefined);
+      const profileSpy = jest.spyOn(profile, 'syncPublicProfilePlusAfterCommit').mockResolvedValue('updated');
+      try {
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+          const outcome = await invokeCheckedRevenueCatWebhook(event);
+          expect(outcome).toMatchObject({
+            statusCode: 200,
+            body: { ok: true, kind: 'premium', updated: false, reason: 'receipt_evidence_conflict' },
+          });
+          expect(JSON.stringify(store)).toBe(before);
+        }
+        expect(referralSpy).not.toHaveBeenCalled();
+        expect(profileSpy).not.toHaveBeenCalled();
+      } finally {
+        referralSpy.mockRestore();
+        profileSpy.mockRestore();
+        (admin.firestore as jest.Mock).mockRestore();
+      }
+    },
+  );
+
+  it('synthetic original-shaped payload cannot create owner, lineage, receipt, or requester projection', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const { db, store } = makeAuthorityDb({ users: { B: { progress: { marker: 'unchanged' } } } });
+    const realFieldValue = admin.firestore.FieldValue;
+    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    try {
+      const event = originalPurchaseEvent({ app_user_id: 'B', original_app_user_id: 'B' });
+      const outcome = await applyVerifiedPremiumSubscriptionEvent(
+        event,
+        'INITIAL_PURCHASE',
+        'phraseman_premium_yearly',
+        { kind: 'synthetic_reconcile', requesterCanonicalUid: 'B', source: 'lifetime' },
+      );
+      expect(outcome.body).toMatchObject({ updated: false, reason: 'lineage_owner_unproven' });
+      expect(store.users.B.progress).toEqual({ marker: 'unchanged' });
+      expect(store.revenuecat_premium_lineage_owners).toEqual({});
+      expect(store.revenuecat_premium_lineages).toEqual({});
+      expect(store.revenuecat_premium_events).toEqual({});
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('upgrades only immutable owner metadata for a compatible pre-S1 duplicate', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const event = originalPurchaseEvent({ id: 'evt-legacy-duplicate' });
+    const normalized = normalizePremiumLineageEvent(event);
+    if (normalized.status !== 'ok') throw new Error('test event must normalize');
+    const lineageHash = canonicalPremiumLineageHash(event);
+    const receiptId = 'evt_' + createHash('sha256').update(String(event.id)).digest('hex');
+    const lineage = { ownerUid: 'A', ...applyPremiumLineageEvent(null, normalized.event).state, financialMarker: 'frozen' };
+    const receipt = { uid: 'A', eventId: normalized.event.eventId, fingerprint: normalized.event.fingerprint, frozen: true };
+    const user = { progress: { premium_plan: 'yearly', financialMarker: 'frozen' }, achievement: 'frozen' };
+    const { db, store } = makeAuthorityDb({
+      users: { A: user },
+      account_identity_owner_map: { 'raw-L': { canonicalStableId: 'A' } },
+      revenuecat_premium_lineages: { legacy: lineage },
+      revenuecat_premium_events: { [receiptId]: receipt },
+    });
+    const before = JSON.stringify({ user, lineage, receipt, ownerMap: store.account_identity_owner_map });
+    const realFieldValue = admin.firestore.FieldValue;
+    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    try {
+      const outcome = await invokeCheckedRevenueCatWebhook(event);
+      expect(outcome.body).toMatchObject({ updated: false, reason: 'duplicate', ownerMetadataCreated: true });
+      expect(store.revenuecat_premium_lineage_owners[lineageHash]).toMatchObject({
+        originalOwnerUid: 'raw-L', canonicalOwnerUidAtCreation: 'A',
+      });
+      expect(JSON.stringify({
+        user: store.users.A,
+        lineage: store.revenuecat_premium_lineages.legacy,
+        receipt: store.revenuecat_premium_events[receiptId],
+        ownerMap: store.account_identity_owner_map,
+      })).toBe(before);
+      expect(store.auth_links['raw-L']).toBeUndefined();
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('lets synthetic requester B refresh verified A without authorizing, writing, or tailing B', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const original = originalPurchaseEvent({ app_user_id: 'A', original_app_user_id: 'A' });
+    const originalNormalized = normalizePremiumLineageEvent(original);
+    if (originalNormalized.status !== 'ok') throw new Error('test event must normalize');
+    const lineageHash = originalNormalized.event.lineageHash;
+    const initialLineage = {
+      ownerUid: 'A',
+      ...applyPremiumLineageEvent(null, originalNormalized.event).state,
+    };
+    const renewal = {
+      ...original,
+      id: 'evt-synthetic-b-refresh',
+      type: 'RENEWAL',
+      app_user_id: 'B',
+      transaction_id: 'transaction-renewal-b',
+      event_timestamp_ms: Number(original.event_timestamp_ms) + 1_000,
+      expiration_at_ms: Number(original.expiration_at_ms) + 86_400_000,
+    };
+    delete (renewal as Record<string, unknown>).original_app_user_id;
+    const { db, store } = makeAuthorityDb({
+      users: { A: { progress: { marker: 'owner' } }, B: { progress: { marker: 'requester' } } },
+      revenuecat_premium_lineages: { existing: initialLineage },
+      revenuecat_premium_lineage_owners: {
+        [lineageHash]: {
+          schemaVersion: 1,
+          lineageHash,
+          originalOwnerUid: 'A',
+          canonicalOwnerUidAtCreation: 'A',
+          status: 'verified_original',
+          evidenceKind: 'authenticated_original_purchase_webhook_v1',
+          evidenceEventIdHash: createHash('sha256').update(String(original.id)).digest('hex'),
+          receiptFingerprint: originalNormalized.event.fingerprint,
+          createdAtMs: Date.now(),
+        },
+      },
+    });
+    const realFieldValue = admin.firestore.FieldValue;
+    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    try {
+      const outcome = await applyVerifiedPremiumSubscriptionEvent(
+        renewal,
+        'RENEWAL',
+        'phraseman_premium_yearly',
+        { kind: 'synthetic_reconcile', requesterCanonicalUid: 'B', source: 'subscription' },
+      );
+      expect(outcome.body).toEqual({ ok: true, kind: 'premium', updated: true, reason: 'not_requester' });
+      expect(store.users.A.progress.premium_plan).toBe('yearly');
+      expect(store.users.B.progress).toEqual({ marker: 'requester' });
+      expect(store.public_profiles.A).toBeUndefined();
+      expect(store.public_profiles.B).toBeUndefined();
+      expect(JSON.stringify(outcome.body)).not.toContain('A');
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+});
+
+// TRANSFER is audit-only under the original-account-only policy. Detailed mutation guards
+// live in revenuecat_transfer_phase2.test.ts; these helpers only normalize bounded audit ids.
+describe('RevenueCat webhook TRANSFER audit inputs', () => {
+  it('keeps source ids and exposes only stable target ids to the audit classifier', () => {
     const event = {
       type: 'TRANSFER',
       transferred_to: ['$RCAnonymousID:zzz', 'stable-real'],
       transferred_from: ['$RCAnonymousID:aaa'],
     } as any;
-    expect(transferTargetIds(event)).toEqual(['stable-real']); // anonymous dropped
+    expect(transferTargetIds(event)).toEqual(['stable-real']);
     expect(transferSourceIds(event)).toEqual(['$RCAnonymousID:aaa']);
-  });
-
-  function makeRcDbStub(initialUsers: Record<string, any> = {}) {
-    const store: Record<string, Record<string, any>> = {
-      users: { ...initialUsers },
-      revenuecat_premium_events: {},
-      revenuecat_premium_denials: {},
-      revenuecat_premium_lineages: {},
-      account_deletion_tombstones: {},
-      account_deletion_auth_markers: {},
-      account_deletion_permanent_denials: {},
-      auth_links: {},
-    };
-    const snap = (coll: string, id: string, data: any) => ({ id, ref: docApi(coll, id), exists: !!data, data: () => data });
-    const docApi = (coll: string, id: string) => ({
-      collectionName: coll,
-      collection: (child: string) => ({
-        doc: (childId: string) => docApi(`${coll}/${id}/${child}`, childId),
-      }),
-      id,
-      path: `${coll}/${id}`,
-      get: async () => snap(coll, id, store[coll]?.[id]),
-      set: async (data: any) => {
-        store[coll] = store[coll] ?? {};
-        const prev = store[coll][id] ?? {};
-        const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
-        store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
-      },
-      // зачем: заглушка обязана повторять НАСТОЯЩИЙ Firestore update:
-      // (а) вложенный объект (`{ progress: {...} }`) ЗАМЕНЯЕТ поле целиком;
-      // (б) путь через точку (`'progress.plan'`) правит один ключ.
-      // Прежняя версия наоборот МЕРЖИЛА progress — из-за этого уничтожение
-      // прогресса донора при TRANSFER_OUT (инцидент 27.08.2026) было
-      // принципиально невидимо для тестов: тест ниже «проверял» деактивацию
-      // донора и был зелёным, пока в проде у платящего стирался весь прогресс.
-      update: async (data: any) => {
-        if (store[coll]?.[id] === undefined) throw new Error('not-found');
-        const next = { ...store[coll][id] };
-        for (const [rawKey, value] of Object.entries(data)) {
-          if (!rawKey.includes('.')) {
-            next[rawKey] = value; // вложенный объект заменяет поле целиком
-            continue;
-          }
-          const segments = rawKey.split('.');
-          const leaf = segments.pop() as string;
-          let cursor: Record<string, any> = next;
-          for (const segment of segments) {
-            cursor[segment] = { ...(cursor[segment] ?? {}) };
-            cursor = cursor[segment];
-          }
-          cursor[leaf] = value;
-        }
-        store[coll][id] = next;
-      },
-    });
-    const queryApi = (coll: string, field: string, op: string, value: unknown, max = Infinity): any => ({
-      limit: (nextMax: number) => queryApi(coll, field, op, value, nextMax),
-      get: async () => ({
-        docs: Object.entries(store[coll] ?? {})
-          .filter(([, data]) => op === 'in'
-            ? Array.isArray(value) && value.includes(data[field])
-            : data[field] === value)
-          .slice(0, max)
-          .map(([id, data]) => snap(coll, id, data)),
-      }),
-    });
-    const db: any = {
-      collection: (coll: string) => ({
-        doc: (id: string) => docApi(coll, id),
-        where: (field: string, op: string, value: unknown) => queryApi(coll, field, op, value),
-      }),
-      runTransaction: async (fn: (tx: any) => Promise<unknown>) => {
-        const tx = {
-          get: async (ref: any) => ref.get(),
-          set: async (ref: any, data: any) => ref.set(data),
-          update: async (ref: any, data: any) => ref.update(data),
-          delete: async (ref: any) => { delete store[ref.collectionName][ref.id]; },
-        };
-        return fn(tx);
-      },
-    };
-    return { db, store };
-  }
-
-  function makeRes() {
-    const r: any = { statusCode: 0, body: null };
-    r.status = (c: number) => { r.statusCode = c; return r; };
-    r.json = (b: any) => { r.body = b; return r; };
-    r.send = (b: any) => { r.body = b; return r; };
-    return r;
-  }
-
-  it('moves active premium from the anonymous donor to the stable recipient and deactivates the donor', async () => {
-    const admin = require('firebase-admin');
-    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
-    const { db, store } = makeRcDbStub({
-      // У донора намеренно есть и учебный прогресс: премиум обязан уехать,
-      // а XP/уровень/стрик — остаться (инцидент 27.08.2026, см. заглушку update).
-      '$RCAnonymousID:aaa': {
-        progress: {
-          premium_plan: 'yearly',
-          premium_expiry: '0',
-          premium_rc_expiry_ms: String(Date.now() + 1e9),
-          user_total_xp: '48210',
-          user_level: '12',
-          streak_days: '37',
-        },
-      },
-      'stable-real': { progress: { user_total_xp: '4000' } },
-    });
-    const realFieldValue = admin.firestore.FieldValue;
-    const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
-    fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    try {
-      const event = {
-        id: 'evt_transfer_1',
-        type: 'TRANSFER',
-        event_timestamp_ms: 2_000_000,
-        transferred_from: ['$RCAnonymousID:aaa'],
-        transferred_to: ['stable-real'],
-      } as any;
-      const res = makeRes();
-      await __revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
-      expect(res.body).toMatchObject({ ok: true, kind: 'transfer', moved: true, recipientId: 'stable-real' });
-      expect(store.users['stable-real'].progress.premium_plan).toBe('yearly');
-      expect(store.users['$RCAnonymousID:aaa'].progress.premium_plan).toBe(''); // donor deactivated
-      // Премиум сняли — но учебный прогресс донора обязан уцелеть.
-      expect(store.users['$RCAnonymousID:aaa'].progress.user_total_xp).toBe('48210');
-      expect(store.users['$RCAnonymousID:aaa'].progress.user_level).toBe('12');
-      expect(store.users['$RCAnonymousID:aaa'].progress.streak_days).toBe('37');
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('is idempotent — a re-delivered TRANSFER does not move twice', async () => {
-    const admin = require('firebase-admin');
-    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
-    const { db, store } = makeRcDbStub({
-      '$RCAnonymousID:bbb': { progress: { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: String(Date.now() + 1e9) } },
-      'stable-2': { progress: { user_total_xp: '1' } },
-    });
-    store.revenuecat_premium_events['evt_dup'] = { eventId: 'evt_dup' }; // already processed
-    const realFieldValue = admin.firestore.FieldValue;
-    const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
-    fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    try {
-      const event = { id: 'evt_dup', type: 'TRANSFER', event_timestamp_ms: 2_000_001, transferred_from: ['$RCAnonymousID:bbb'], transferred_to: ['stable-2'] } as any;
-      const res = makeRes();
-      await __revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
-      expect(res.body).toMatchObject({ ok: true, moved: false, reason: 'duplicate' });
-      expect(store.users['stable-2'].progress.premium_plan).toBeUndefined(); // untouched
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
   });
 });
 
@@ -754,12 +1161,21 @@ describe('D103/D136/D139: retired products are never credited', () => {
     expect(source).not.toContain("from './voice_minutes'");
     expect(source).not.toContain('handleVoiceMinutePackEvent');
     expect(source).not.toContain('VOICE_MINUTE_SANDBOX_STABLE_UIDS');
-    const webhook = source.slice(source.indexOf('export const revenueCatShardsWebhook'));
-    const auth = webhook.indexOf('authMatches(req.headers.authorization, expectedAuth)');
-    const retired = webhook.indexOf('const retiredFamily = retiredProductFamily(productId);');
-    const sandbox = webhook.indexOf('if (isSandboxEvent(event))');
+    const dispatch = source.slice(
+      source.indexOf('async function dispatchAuthenticatedRevenueCatWebhook('),
+      source.indexOf('export const revenueCatShardsWebhook'),
+    );
+    const route = source.slice(
+      source.indexOf('async function routeAuthenticatedRevenueCatWebhook('),
+      source.indexOf('async function dispatchAuthenticatedRevenueCatWebhook('),
+    );
+    const auth = dispatch.indexOf('authMatches(req.headers?.authorization, expectedAuth)');
+    const body = dispatch.indexOf('const body = req.body');
+    const retired = route.indexOf('const retiredFamily = retiredProductFamily(productId);');
+    const sandbox = route.indexOf('if (isSandboxEvent(event))');
     expect(auth).toBeGreaterThan(-1);
-    expect(retired).toBeGreaterThan(auth);
+    expect(body).toBeGreaterThan(auth);
+    expect(retired).toBeGreaterThan(-1);
     expect(sandbox).toBeGreaterThan(retired);
   });
 });

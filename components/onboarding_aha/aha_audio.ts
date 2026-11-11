@@ -5,7 +5,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { useAudioPlayer, type AudioPlayer, type AudioStatus } from 'expo-audio';
-import { AHA_VOICE_HEAR, AHA_VOICE_SAY, AHA_AMBIENT } from './aha_assets';
+import { AHA_VOICE_HEAR, AHA_VOICE_SAY } from './aha_assets';
 import type { AhaScenarioId } from './aha_types';
 import {
   claimAmbientAudio,
@@ -53,7 +53,6 @@ function playFromStart(player: AudioPlayer): void {
 export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   const hearPlayer = useAudioPlayer(AHA_VOICE_HEAR[scenarioId]);
   const sayPlayer = useAudioPlayer(AHA_VOICE_SAY[scenarioId]);
-  const ambientPlayer = useAudioPlayer(AHA_AMBIENT[scenarioId]);
 
   // Текущий колбэк onEnd для voice-плеера, который сейчас слушаем (один активный
   // прогон за раз — второй play() того же или другого voice-плеера просто
@@ -62,20 +61,8 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   const voiceClaimRef = useRef<SpokenAudioClaim | null>(null);
   const ambientClaimRef = useRef<AmbientAudioClaim | null>(null);
 
-  useEffect(() => {
-    safe(() => {
-      ambientPlayer.loop = true;
-      ambientPlayer.volume = AMBIENT_VOLUME;
-    });
-  }, [ambientPlayer]);
-
-  const duckAmbient = useCallback(() => {
-    safe(() => { ambientPlayer.volume = AMBIENT_DUCKED_VOLUME; });
-  }, [ambientPlayer]);
-
-  const unduckAmbient = useCallback(() => {
-    safe(() => { ambientPlayer.volume = AMBIENT_VOLUME; });
-  }, [ambientPlayer]);
+  const duckAmbient = useCallback(() => {}, []);
+  const unduckAmbient = useCallback(() => {}, []);
 
   const stopVoicePlayers = useCallback((completeCurrent: boolean) => {
     const active = activeEndRef.current;
@@ -140,20 +127,10 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   const stopAmbient = useCallback(() => {
     ambientClaimRef.current?.release();
     ambientClaimRef.current = null;
-    safe(() => ambientPlayer.pause());
-  }, [ambientPlayer]);
+  }, []);
 
   const startAmbient = useCallback(() => {
-    if (!getSoundSettingsSnapshot().effectsEnabled) return;
-    let claim: AmbientAudioClaim | null = null;
-    claim = claimAmbientAudio(() => {
-      safe(() => ambientPlayer.pause());
-      if (ambientClaimRef.current === claim) ambientClaimRef.current = null;
-    }, 'onboarding:ambient');
-    if (!claim) return;
-    ambientClaimRef.current = claim;
-    safe(() => playFromStart(ambientPlayer));
-  }, [ambientPlayer]);
+  }, []);
 
   const stopAll = useCallback(() => {
     stopVoicePlayers(false);
@@ -202,9 +179,8 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
       ambientClaimRef.current = null;
       safe(() => hearPlayer.pause());
       safe(() => sayPlayer.pause());
-      safe(() => ambientPlayer.pause());
     };
-  }, [hearPlayer, sayPlayer, ambientPlayer]);
+  }, [hearPlayer, sayPlayer]);
 
   return { playHear, playSay, startAmbient, stopAmbient, stopAll };
 }

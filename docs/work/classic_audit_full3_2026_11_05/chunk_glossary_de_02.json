@@ -1,0 +1,27 @@
+[
+{
+"lemma": "wählen",
+"meaning": {
+"ru": "выбирать",
+"uk": "вибирати",
+"en": "Select",
+"es": "Seleccionar",
+"pt-BR": "Selecionar",
+"vi": "Chọn",
+"id": "Pilih",
+"tr": "Seç",
+"pl": "Wybierz"
+},
+"firstLesson": 32,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "de:32:50",
+"target": "Wenn ich noch einmal wählen könnte, würde ich diesmal den direkten Zug nehmen.",
+"ru": "Если бы я мог выбрать ещё раз, на этот раз я бы поехал прямым поездом.",
+"uk": "Якби я міг вибрати ще раз, цього разу я поїхав би прямим поїздом."
+}
+],
+"other": {}
+}
+]

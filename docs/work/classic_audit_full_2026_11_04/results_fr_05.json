@@ -1,0 +1,23 @@
+[
+  {"id": "fr:18:12", "type": "B2", "field": "uk", "problem": "uk «Ви забронювали» (вы) при target Tu (ты) и ru «Ты забронировал»", "fix": "Ти забронював номер."},
+  {"id": "fr:18:14", "type": "B1", "field": "tiles", "problem": "соблазн On + соблазн a даёт верное «On a commandé le dessert» = «Мы заказали десерт», нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Elles"}},
+  {"id": "fr:18:15", "type": "B2", "field": "uk", "problem": "uk «Ти зберіг» (ты) при target Vous и ru «Вы сохранили»", "fix": "Ви зберегли чек."},
+  {"id": "fr:18:17", "type": "B2", "field": "ru", "problem": "род говорящего: ru «забыла» (ж), uk «забув» (м); в ru потеряно притяжательное mon («свой»)", "fix": "Я забыл свой зонт."},
+  {"id": "fr:18:19", "type": "B2", "field": "ru", "problem": "ru «куртку» ≠ manteau (пальто), расходится с uk «пальто»", "fix": "Он оставил здесь своё пальто."},
+  {"id": "fr:18:21", "type": "B2", "field": "ru", "problem": "род говорящего: ru «поехала» (ж), uk «поїхав» (м)", "fix": "Я поехал на поезде."},
+  {"id": "fr:18:41", "type": "B2", "field": "ru", "problem": "род говорящего: ru «постирала» (ж), uk мужской род", "fix": "Вчера я постирал полотенца."},
+  {"id": "fr:18:44", "type": "B1", "field": "tiles", "problem": "соблазн On + соблазн a даёт верное «On a attendu une heure au guichet» = «Мы прождали час», нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Il"}},
+  {"id": "fr:18:45", "type": "B2", "field": "ru", "problem": "род говорящего: ru «написала» (ж), uk «написав» (м)", "fix": "Я написал номер на конверте."},
+  {"id": "fr:18:50", "type": "B1", "field": "tiles", "problem": "соблазн On + соблазн a даёт верное «On a fini le travail à midi» = «Мы закончили работу», нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Elles"}},
+  {"id": "fr:19:19", "type": "B2", "field": "uk", "problem": "ru «приходил» и uk «приїхав» (приехал) расходятся по смыслу; est passé = заходил", "fix": "Листоноша приходив сьогодні вранці."},
+  {"id": "fr:19:47", "type": "B2", "field": "ru", "problem": "ru «Студенты» ≠ élèves (ученики), расходится с uk «Учні»", "fix": "Ученики вернулись в класс."},
+  {"id": "fr:20:02", "type": "B2", "field": "ru", "problem": "род адресата: ru «жила» (ж), uk «жив» (м)", "fix": "Ты раньше здесь жил."},
+  {"id": "fr:20:09", "type": "B1", "field": "tiles", "problem": "соблазн On + соблазн était даёт верное разговорное «On était voisins» = «Мы были соседями», нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Il"}},
+  {"id": "fr:20:20", "type": "B2", "field": "ru", "problem": "род говорящего: ru «играла» (ж), uk «грався» (м); в ru потеряно cette («этом»), из-за чего верен и вариант «dans la cour»", "fix": "Я часто играл в этом дворе."},
+  {"id": "fr:20:30", "type": "B1", "field": "tiles", "problem": "соблазн On + соблазн avait даёт верное «On avait beaucoup de temps» = «У нас было много времени», нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Ils"}},
+  {"id": "fr:20:31", "type": "B2", "field": "ru", "problem": "род говорящего: ru «знала» (ж), uk «знав» (м); ru «этот» не соответствует артиклю le", "fix": "Я не знал района."},
+  {"id": "fr:20:36", "type": "B2", "field": "uk", "problem": "uk «Ви вставали» (вы) при target Tu te levais и ru «Ты вставал»", "fix": "Ти вставав раніше?"},
+  {"id": "fr:20:37", "type": "B2", "field": "uk", "problem": "uk «ваша мама» (вы) при target ta mère и ru «твоя мама»", "fix": "Де працювала твоя мама?"},
+  {"id": "fr:20:46", "type": "B2", "field": "ru", "problem": "se promener = гулять; ru «шёл» теряет смысл прогулки и привычности (imparfait)", "fix": "Я гулял вдоль канала."},
+  {"id": "fr:20:46", "type": "B2", "field": "uk", "problem": "se promener = гуляти; uk «йшов» теряет смысл прогулки", "fix": "Я гуляв уздовж каналу."}
+]

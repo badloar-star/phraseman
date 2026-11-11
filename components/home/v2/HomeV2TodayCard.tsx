@@ -11,7 +11,7 @@ import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
-import { useShadowGlass } from '../../v2/ShadowSurface';
+import { PlateFill, useShadowGlass } from '../../v2/ShadowSurface';
 import HomeScenePlateShadow from './scene/HomeScenePlateShadow';
 import HomeV2SeeAllButton from './HomeV2SeeAllButton';
 import { useTheme } from '../../ThemeContext';
@@ -33,8 +33,8 @@ type Props = {
   title: string | null;
   tasks: readonly TodayTask[];
   onOpenTask: (task: TodayTask) => void;
-  /** Q90 (координатор 01.10): активный опрос — строка ПОД заданиями, тем же видом; null/нет — не рисуется. */
-  surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void; /** ✕ справа (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; /** Плитка с бриллиантом Plus вместо значка опроса. */ plus?: boolean }> | null;
+  /** Предложение пробного Plus под задачами. */
+  trialRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void; /** ✕ справа (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; }> | null;
   /** «Смотреть все» справа от заголовка → экран «Сегодня» с кольцом дня (владелец 17.10); видна только за флагом moments_v3, нет — ссылки нет. */
   seeAll?: Readonly<{ label: string; onPress: () => void }> | null;
   /** Цвет отметки выполненной строки по индексу (цвета колец на экране «Сегодня»); нет — нейтральный. */
@@ -53,7 +53,7 @@ type Props = {
  */
 /**
  * зачем (координатор 17.10, скорость Главной): Главная пересобирает props на каждый свой рендер — новый массив tasks, новые onOpenTask/
- * surveyRow/seeAll — и карточка перерисовывалась впустую. Тонкая обёртка кладёт свежие props в ref, memo-вид сравнивает только ДАННЫЕ;
+ * trialRow/seeAll — и карточка перерисовывалась впустую. Тонкая обёртка кладёт свежие props в ref, memo-вид сравнивает только ДАННЫЕ;
  * тап зовёт самый свежий обработчик из ref (как плитки HomeV2FeatureTiles) — устаревших замыканий нет.
  */
 export default function HomeV2TodayCard(props: Props) {
@@ -65,7 +65,7 @@ export default function HomeV2TodayCard(props: Props) {
 function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
   if (a.title !== b.title || a.latestRef !== b.latestRef) return false;
   if ((a.scene?.count ?? null) !== (b.scene?.count ?? null)) return false;
-  if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null) || Boolean(a.surveyRow?.onDismiss) !== Boolean(b.surveyRow?.onDismiss)) return false;
+  if ((a.trialRow?.title ?? null) !== (b.trialRow?.title ?? null) || (a.trialRow?.subtitle ?? null) !== (b.trialRow?.subtitle ?? null) || Boolean(a.trialRow?.onDismiss) !== Boolean(b.trialRow?.onDismiss)) return false;
   if ((a.seeAll?.label ?? null) !== (b.seeAll?.label ?? null)) return false;
   if ((a.pairRow?.friendUid ?? null) !== (b.pairRow?.friendUid ?? null) || (a.pairRow?.title ?? null) !== (b.pairRow?.title ?? null) || (a.pairRow?.subtitle ?? null) !== (b.pairRow?.subtitle ?? null)) return false;
   const ac = a.doneColors ?? [];
@@ -94,8 +94,8 @@ function useJustDoneKinds(tasks: readonly TodayTask[]): ReadonlySet<TodayTaskKin
   return just;
 }
 
-const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, scene, pairRow, latestRef }: ViewProps) {
-  useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors, pairRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, trialRow, seeAll, doneColors, scene, pairRow, latestRef }: ViewProps) {
+  useRenderCause('home:today', () => ({ title, tasks, trialRow, seeAll, doneColors, pairRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
@@ -112,7 +112,8 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
       <View testID="home-v2-today" style={s.sceneCard}>
         {/* зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем */}
         <HomeScenePlateShadow kind="today" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />
-        <View pointerEvents="none" style={[s.sceneCardFill, { backgroundColor: g.opaqueCard }]} />
+        {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» плашка — градиент материала (наискось), у остальных тем — прежняя ровная заливка */}
+        {g.aurora ? <PlateFill g={g} radius={28} /> : <View pointerEvents="none" style={[s.sceneCardFill, { backgroundColor: g.opaqueCard }]} />}
         {/* зачем (Сверка home4; макет: серого круглого чипа › в шапке нет): шапка «Сегодня · N из M» — одна нажимаемая строка, ведёт на экран «Сегодня» (кольца дня) */}
         <V2Pressable
           testID="home-v2-today-see-all"
@@ -136,7 +137,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
             scaleTo={0.98}
             style={s.sceneRow}
           >
-            <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="flame" size={18} color={g.text} /></View>
+            <SceneTaskIcon g={g} name="flame" />
             <View style={s.copy}>
               <Text style={[s.taskTitle, { color: g.text }]}>{pairRow.title}</Text>
               <Text style={[s.taskSubtitle, { color: g.secondary }]}>{pairRow.subtitle}</Text>
@@ -161,37 +162,34 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
               scaleTo={0.98}
               style={[s.sceneRow, index > 0 || pairRow ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` } : null]} // shadow-ok: разделитель строк (линия сверху, не обводка контейнера)
             >
-              <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={KIND_ICON[task.kind]} size={18} color={g.text} /></View>
+              <SceneTaskIcon g={g} name={KIND_ICON[task.kind]} />
               <View style={s.copy}>
                 <Text style={[s.taskTitle, { color: g.text }]}>{task.title}</Text>
                 {task.subtitle ? <Text style={[s.taskSubtitle, { color: g.secondary }]}>{task.subtitle}</Text> : null}
               </View>
-              {task.done ? <DoneTick size={18} color={doneColor} play={justDone.has(task.kind)} haptic={justDone.has(task.kind)} /> : <Text style={[s.counter, { color: g.secondary }]}>{counter}</Text>}
+              {task.done ? (g.aurora
+                ? <LinearGradient colors={[g.aurora.ctaFrom, g.aurora.ctaTo]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.auroraTick}><DoneTick size={15} color={g.aurora.ctaInk} play={justDone.has(task.kind)} haptic={justDone.has(task.kind)} /></LinearGradient>
+                : <DoneTick size={18} color={doneColor} play={justDone.has(task.kind)} haptic={justDone.has(task.kind)} />) : <Text style={[s.counter, { color: g.secondary }]}>{counter}</Text>}
             </V2Pressable>
           );
         })}
-        {surveyRow ? (
+        {trialRow ? (
           <V2Pressable
-            testID="home-v2-today-survey"
+            testID="home-v2-today-trial"
             accessibilityRole="button"
-            accessibilityLabel={`${surveyRow.title}${surveyRow.subtitle ? `. ${surveyRow.subtitle}` : ''}`}
-            onPress={() => latestRef.current.surveyRow?.onPress()}
+            accessibilityLabel={`${trialRow.title}${trialRow.subtitle ? `. ${trialRow.subtitle}` : ''}`}
+            onPress={() => latestRef.current.trialRow?.onPress()}
             scaleTo={0.98}
             style={[s.sceneRow, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` }]} // shadow-ok: разделитель строк
           >
-            {surveyRow.plus ? (
-              // зачем (макет plus-task): плитка с бриллиантом Plus — цвета бейджа аватарки (фиолет → голубой), белый бриллиант; арт, не поверхность темы
-              <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.sceneIcon}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
-            ) : (
-              <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={g.text} /></View>
-            )}
+            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.sceneIcon}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
             <View style={s.copy}>
-              <Text numberOfLines={1} style={[s.taskTitle, { color: g.text }]}>{surveyRow.title}</Text>
-              {surveyRow.subtitle ? <Text numberOfLines={1} style={[s.taskSubtitle, { color: g.secondary }]}>{surveyRow.subtitle}</Text> : null}
+              <Text numberOfLines={1} style={[s.taskTitle, { color: g.text }]}>{trialRow.title}</Text>
+              {trialRow.subtitle ? <Text numberOfLines={1} style={[s.taskSubtitle, { color: g.secondary }]}>{trialRow.subtitle}</Text> : null}
             </View>
-            {surveyRow.onDismiss ? (
+            {trialRow.onDismiss ? (
               // зачем: ✕ — своя зона нажатия 44×44 (не на весь ряд), тап не доходит до строки и не открывает окно подписки
-              <Pressable testID="home-v2-today-survey-dismiss" accessibilityRole="button" accessibilityLabel={surveyRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={() => latestRef.current.surveyRow?.onDismiss?.()} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
+              <Pressable testID="home-v2-today-trial-dismiss" accessibilityRole="button" accessibilityLabel={trialRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={() => latestRef.current.trialRow?.onDismiss?.()} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
                 <Ionicons name="close" size={18} color={g.secondary} />
               </Pressable>
             ) : null}
@@ -266,22 +264,21 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
             </V2Pressable>
           );
         })}
-        {surveyRow ? (
+        {trialRow ? (
           <V2Pressable
-            testID="home-v2-today-survey"
+            testID="home-v2-today-trial"
             accessibilityRole="button"
-            accessibilityLabel={`${surveyRow.title}${surveyRow.subtitle ? `. ${surveyRow.subtitle}` : ''}`}
-            onPress={() => latestRef.current.surveyRow?.onPress()}
+            accessibilityLabel={`${trialRow.title}${trialRow.subtitle ? `. ${trialRow.subtitle}` : ''}`}
+            onPress={() => latestRef.current.trialRow?.onPress()}
             scaleTo={0.98}
             style={[s.row, rowGlass]}
           >
             <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
-            <V2IconTile name="clipboard-outline" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
+            <V2IconTile name="diamond-outline" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
             <View style={s.copy}>
-              {/* зачем (владелец 13.10 12:30, скрин Главной uk): вопрос опроса приходит с сервера длинным и не вмещался — строка показывает короткую метку «Опрос» и подпись «1 вопрос · 1 мин» (hooks/use_home_survey_entry.ts, homeSurveyRowCopy), каждая в одну строку; сам вопрос — внутри листа после тапа */}
-              <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
-              {surveyRow.subtitle ? (
-                <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
+              <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{trialRow.title}</Text>
+              {trialRow.subtitle ? (
+                <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{trialRow.subtitle}</Text>
               ) : null}
             </View>
             <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />
@@ -291,6 +288,23 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
     </View>
   );
 }, sameTodayCardData);
+
+/**
+ * Значок задания в карточке «Сегодня» со «Сценой». зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» значок белый на цветной подложке-градиенте материала (150°) с мягкой цветной тенью;
+ * у остальных тем — прежняя вложенная плашка с значком цвета текста.
+ */
+function SceneTaskIcon({ g, name }: Readonly<{ g: ReturnType<typeof useShadowGlass>; name: React.ComponentProps<typeof Ionicons>['name'] }>) {
+  if (g.aurora) {
+    return (
+      <LinearGradient colors={[g.aurora.chipFrom, g.aurora.chipTo]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[s.sceneIcon, { boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 14, spreadDistance: -8, color: g.aurora.chipTo }] }]}>
+        <Ionicons name={name} size={18} color={AURORA_CHIP_INK} />
+      </LinearGradient>
+    );
+  }
+  return <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={name} size={18} color={g.text} /></View>;
+}
+/** Белый значок на цветной подложке «Авроры». */
+const AURORA_CHIP_INK = '#FFFFFF'; // theme-exempt: значок на цветной подложке материала — белый в любой теме (как в макете)
 
 const s = StyleSheet.create({
   card: {
@@ -310,6 +324,7 @@ const s = StyleSheet.create({
   sceneCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   sceneRow: { minHeight: 52, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 12 },
   sceneIcon: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  auroraTick: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   // зачем (17.10; 18.10): заголовок и кнопка-иконка «Смотреть все» в одну строку — та же кнопка, что у ленты видео (HomeV2SeeAllButton)
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 12, marginRight: 8, marginBottom: 12, minHeight: 17 },
   header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6 },
@@ -318,7 +333,7 @@ const s = StyleSheet.create({
   pairGap: { marginBottom: 10 }, // строка «Серия вдвоём» отделена от задач дня (макет friends-full: margin-bottom 10)
   row: {
     minHeight: 58,
-    paddingVertical: 10, // зачем (13.10): строка с переносом текста (опрос) растёт, а не садится на нижний край; задачи в 2 строки по 37 px остаются 58
+    paddingVertical: 10, // зачем (13.10): строка с переносом текста растёт, а не садится на нижний край; задачи в 2 строки по 37 px остаются 58
     borderRadius: V2.radius.row,
     flexDirection: 'row',
     alignItems: 'center',

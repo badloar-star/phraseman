@@ -57,43 +57,6 @@ describe('раннеры тестов', () => {
     expect(silent).toEqual([]);
   });
 
-  test('карантин V2: каждый тест из docs/work/test-quarantine-v2-2026-10-18.md исключён из основного раннера (файл ведёт V2, здесь только сверка)', () => {
-    const rel = 'docs/work/test-quarantine-v2-2026-10-18.md';
-    if (!fs.existsSync(path.join(root, rel))) return; // файла ещё нет — сверять нечего
-    const doc = fs.readFileSync(path.join(root, rel), 'utf8');
-    const listed = Array.from(new Set(Array.from(doc.matchAll(/\b([a-z0-9_]+\.test\.tsx?)\b/g)).map((m) => `tests/${m[1]}`)));
-    const ignored = new Set((pkg[J].testPathIgnorePatterns as string[]).map((e) => e.replace('<rootDir>/', '')));
-    // починен и возвращён в обычный прогон: журнал [INTRO-BLUR] за DIAG_ENABLED (18.10) — в списке V2 остался как «среда», но больше не красный
-    // + четыре теста, которые чинит сам V2 (перепин сделан / файл в рабочей копии V2): в карантин не прячем, остаются в обычном прогоне
-    const restored = new Set([
-      'tests/learning_v2_session_intro_feedback_behavior.test.tsx',
-      'tests/learning_v2_new_word_encounter_projection_v1.test.ts',
-      'tests/learning_v2_all_ready_tasks_runtime_audit.test.ts',
-      'tests/learning_v2_factory_production_audio_contract.test.ts',
-      'tests/learning_v2_factory_native_projection_v1.test.ts',
-      // семь устаревших проверок «А — Дизайну» (Ревизор 3.81, 18.10): приведены к текущему контракту и возвращены в обычный прогон; lesson_map_screen_contract удалён (экран снят в 5bef1e710)
-      'tests/learning_v2_content_quality_gate_wiring.test.ts',
-      'tests/learning_v2_intro_reader_fixture_contract.test.ts',
-      'tests/learning_v2_intro_theme_contract.test.ts',
-      'tests/learning_v2_lexical_density_policy_v2.test.ts',
-      'tests/learning_v2_listen_choose_option_label_v1.test.ts',
-      // шесть тестов фикстур V2 зелёные после 8f28a1e98 (прогон V2 без карантина: 6/6, 11/11) — возвращены в обычный прогон по просьбе V2
-      'tests/learning_v2_course_session_completed_spool_v1.test.ts',
-      'tests/learning_v2_course_session_save_card_v1.test.ts',
-      'tests/learning_v2_activity_released_session_submission_spool_v2.test.ts',
-      'tests/learning_v2_course_session_audio_readback_v1.test.ts',
-      'tests/learning_v2_course_session_audio_release_extension_v1.test.ts',
-      'tests/learning_v2_course_lesson_audio_release_index_v1.test.ts',
-      // ещё два зелёных от V2 (c2dbb8e41): возвращены в обычный прогон
-      'tests/learning_v2_intro_semantic_runs_contract.test.ts',
-      'tests/learning_v2_activity_post_terminal_card_catalog_v1.test.ts',
-      // ещё два зелёных от V2 (498db6d59): прогон V2 без карантина 4/4, 23/23
-      'tests/learning_v2_neutral_qa_session_e2e_harness_v1.test.ts',
-      'tests/learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts',
-    ]);
-    expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f) && !restored.has(f))).toEqual([]);
-  });
-
   test('.test.ts подхватывает основной раннер шаблоном tests/**/*.test.ts', () => {
     expect(runners[0]!.testMatch).toContain('<rootDir>/tests/**/*.test.ts');
   });

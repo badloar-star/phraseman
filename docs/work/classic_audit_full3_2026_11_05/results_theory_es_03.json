@@ -1,0 +1,30 @@
+[
+ {
+  "id": "lesson-7/tables",
+  "type": "T2",
+  "field": "localized.en.tables[1].title",
+  "problem": "неграмматично «Forms haber»",
+  "fix": "Forms of haber"
+ },
+ {
+  "id": "lesson-8/ch5",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "«then for the speaker's phone number» — неверно: речь о телефоне, а не номере; пропущено, что слово выбирается для фотографий собеседника",
+  "fix": "Analyze each group separately. In “Your photos are on my phone”, first choose the word for the photos of the person you're talking to, then the word for the speaker's one phone. Don't make both forms the same just because they're in the same sentence."
+ },
+ {
+  "id": "lesson-8/ch4",
+  "type": "T2",
+  "field": "localized.en.chapters[4].body",
+  "problem": "«Without conversation», «debatable recipient» — калька, не передаёт ru (без контекста, неоднозначный владелец)",
+  "fix": "Spanish su does not show the gender or number of the owners by itself. Without context, Su mochila está aquí can mean “her”, “his”, “their” or polite “your backpack is here”. That's why, in tasks where the owner is ambiguous, the context is shown before the first tile."
+ },
+ {
+  "id": "lesson-8/tables",
+  "type": "T2",
+  "field": "localized.en.tables[2].title",
+  "problem": "неграмматично «Forms ser»",
+  "fix": "Forms of ser"
+ }
+]

@@ -1,4 +1,4 @@
-import { nextLiveStoryIndex } from '../../modules/story_events/story_events_core';
+import { isStoryAvailable, nextLiveStoryIndex } from '../../modules/story_events/story_events_core';
 // ═══════════════════════════════════════════════════════════════════════════
 // StoryViewer.tsx — полноэкранный просмотр сторис по аватару (D192): полосы прогресса, 10 с на событие, тапы, пауза, свайп вниз.
 //
@@ -68,6 +68,7 @@ export type StoryViewerProps = Readonly<{
   /** Очередь просмотра (непросмотренные от старого к новому) — замораживается при открытии. */
   events: StoryEventList;
   liveAnnouncementIds?: readonly string[];
+  liveHomeStoryIds?: readonly string[];
   /** Ранг монеты человека 0…19 (для шапки и маркера на башне); null — базовая. */
   coinRank: number | null;
   /** Центр аватара в окне — откуда раскрывается просмотр. */
@@ -84,7 +85,7 @@ export type StoryViewerProps = Readonly<{
   studioSettle?: boolean;
 }>;
 
-function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer', studio = false, startIndex = 0, studioSettle = false }: StoryViewerProps) {
+function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer', studio = false, startIndex = 0, studioSettle = false }: StoryViewerProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -93,6 +94,8 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const events = useMemo(() => eventsProp, []); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: очередь замораживается на открытие
   const count = events.length;
   const liveIdsRef=useRef(liveAnnouncementIds);liveIdsRef.current=liveAnnouncementIds;
+  const liveHomeStoryIdsRef = useRef(liveHomeStoryIds);
+  liveHomeStoryIdsRef.current = liveHomeStoryIds;
   const [index, setIndex] = useState(0);
   const [screenReader, setScreenReader] = useState(false);
   const indexRef = useRef(0);
@@ -106,9 +109,6 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const [heldUi, setHeldUi] = useState(false);
   // верх зоны кнопки действия (y от верха экрана); null — кнопки нет: тап и касание по кнопке не листают и не ставят паузу
   const ctaZoneRef = useRef<number | null>(null);
-  // зачем (опрос в объявлении): тап по варианту и тап листания приходят одновременно — время нажатия варианта и «в кадре есть варианты»
-  const innerPressAtRef = useRef(0);
-  const interactiveRef = useRef(false);
   const screenReaderRef = useRef(false);
   const nowMs = useMemo(() => Date.now(), []);
 
@@ -158,7 +158,7 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const go = useCallback((target: number) => {
     if (closingRef.current) return;
     if (target >= count) { close('finished'); return; }
-    const k = nextLiveStoryIndex(events,target,indexRef.current,liveIdsRef.current);
+    const k = nextLiveStoryIndex(events, target, indexRef.current, liveIdsRef.current, liveHomeStoryIdsRef.current);
     if(k<0){DebugLogger.info(LOG,`go: назад некуда (k=${k} цель=${target} индекс=${indexRef.current})`);return;}
     if(k>=count){close('finished');return;}
     if (k !== indexRef.current) tryPlayV2Event('story', 'story_viewer'); // зачем (координатор 14.10): звук перелистывания сторис V2; флаг выключен — тишина
@@ -175,7 +175,10 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
     if (!screenReaderRef.current && !pausedRef.current) runBar(0);
   }, [appear, close, count, events, progress, reduceMotion, runBar]);
   goRef.current = go;
-  useEffect(()=>{const current=events[indexRef.current];if(current?.type==='announcement'&&liveAnnouncementIds&&!liveAnnouncementIds.includes(current.id))goRef.current(indexRef.current+1);},[events,liveAnnouncementIds]);
+  useEffect(() => {
+    const current = events[indexRef.current];
+    if (current && !isStoryAvailable(current, liveAnnouncementIds, liveHomeStoryIds)) advance();
+  }, [advance, events, liveAnnouncementIds, liveHomeStoryIds]);
 
   // пауза/возобновление: палец, фон приложения, диктор — любое «держит» полосу
   const syncPause = useCallback(() => {
@@ -238,18 +241,9 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const onTapAt = useCallback((x: number, y: number) => {
     if (y < headerH) return;
     if (ctaZoneRef.current !== null && y >= ctaZoneRef.current) { DebugLogger.info(LOG, `тап по кнопке действия y=${Math.round(y)} — не листаем`); return; }
-    const navigate = () => {
-      DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
-      go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
-    };
-    if (!interactiveRef.current) { navigate(); return; }
-    // зачем: решаем через 60 мс, когда нажатие варианта опроса уже отмечено (onPress и конец жеста приходят почти вместе)
-    setTimeout(() => {
-      if (Date.now() - innerPressAtRef.current < 400) { DebugLogger.info(LOG, 'тап по варианту опроса — не листаем'); return; }
-      navigate();
-    }, 60);
+    DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
+    go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
   }, [go, headerH, winW]);
-  const markInnerPress = useCallback(() => { innerPressAtRef.current = Date.now(); }, []);
 
   const gesture = useMemo(() => {
     // зачем (аудит Optimistic UI 24.10): тап короче удержания. Раньше tap=250 мс > hold=220 мс: отпустил на 230 мс — и пауза, и перелистывание сразу после неё; теперь «дольше STORY_HOLD_MS» — только удержание
@@ -302,7 +296,6 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
     }
     return announcement;
   }, [event, nowMs]);
-  interactiveRef.current = annV2?.design === 'poll';
   const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : annV2 ? announcementCta(annV2) : null;
   const ctaBottom = storyCtaBottom(insets.bottom);
   ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
@@ -348,7 +341,7 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
               </Pressable>
             </View>
             {annV2 && event ? (
-              <StoryAnnouncementV2Layer key={event.id} announcement={annV2} lang={lang} myRank={coinRank} bottom={cta ? STORY_SLIDE_BOTTOM_CTA : 60} onInnerPress={markInnerPress} studio={studio} testID={`${testID}-slide`} />
+              <StoryAnnouncementV2Layer key={event.id} announcement={annV2} lang={lang} myRank={coinRank} bottom={cta ? STORY_SLIDE_BOTTOM_CTA : 60} studio={studio} testID={`${testID}-slide`} />
             ) : null}
             {tpl || annV2 ? null : (
               <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>

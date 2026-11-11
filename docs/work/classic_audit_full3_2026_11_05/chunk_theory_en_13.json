@@ -1,0 +1,1142 @@
+[
+{
+"lesson": 27,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 27,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как передать чужие слова",
+"formula": "say + [часть предложения] · tell + [кто] + [часть предложения]",
+"story": "Прямой вопрос: Where do you live? Пересказываешь: He asked where I lived. Внутри пересказа не задаёшь второй вопрос: I стоит перед lived.",
+"use": "Пересказ слов означает выбор того, чья точка зрения важна сейчас. В пересказе прошлого глаголы часто смещаются назад, и такое слово, как «завтра», может потребовать превращения в «послезавтра». Смещайте только тогда, когда этого требует контекст.",
+"choose": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"nuance": "В сообщенном запросе используется объект и инфинитив. Сообщенное ранее событие может содержать `had` плюс причастие прошедшего времени. Не следует принудительно менять время глагола, если утверждение все еще верно и контекст позволяет использовать исходное время.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Пересказ слов означает выбор того, чья точка зрения важна сейчас. В пересказе прошлого глаголы часто смещаются назад, и такое слово, как «завтра», может потребовать превращения в «послезавтра». Смещайте только тогда, когда этого требует контекст.",
+"samples": [
+"27.01",
+"27.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"samples": [
+"27.11",
+"27.31"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В сообщенном запросе используется объект и инфинитив. Сообщенное ранее событие может содержать `had` плюс причастие прошедшего времени. Не следует принудительно менять время глагола, если утверждение все еще верно и контекст позволяет использовать исходное время.",
+"samples": [
+"27.31",
+"27.36"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Перескажите вопрос в порядке утверждений",
+"samples": [
+"27.33",
+"27.35",
+"27.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы вчера разговаривали с сотрудником ресепшена. Расскажите коллеге об ответе, вопросе и инструкции, которые вы услышали. Это три разных варианта.",
+"samples": [
+"27.42",
+"27.45",
+"27.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Сообщите о просьбах и более ранних событиях",
+"samples": [
+"27.50"
+],
+"tokenWalk": "27.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як передати чужі слова",
+"formula": "say + [частина речення] · tell + [хто] + [частина речення]",
+"story": "Пряме запитання: Where do you live? Переказ: He asked where I lived. Усередині переказу не ставиш запитання вдруге: I перед lived.",
+"use": "Переказ слів означає вибір, чия точка зору має значення зараз. У минулому речення дієслова часто зміщуються назад, і таке слово, як tomorrow, може потребувати стати the next day. Зміщуйте лише тоді, коли цього вимагає контекст.",
+"choose": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"nuance": "У повідомленому запиті використовується додаток та інфінітив. Повідомлена попередня подія може мати `had` плюс дієприкметник минулого часу. Не форсуйте зміну часу, якщо твердження все ще дійсне, а контекст дозволяє використовувати початковий час.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Переказ слів означає вибір, чия точка зору має значення зараз. У минулому речення дієслова часто зміщуються назад, і таке слово, як tomorrow, може потребувати стати the next day. Зміщуйте лише тоді, коли цього вимагає контекст.",
+"samples": [
+"27.01",
+"27.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"samples": [
+"27.11",
+"27.31"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "У повідомленому запиті використовується додаток та інфінітив. Повідомлена попередня подія може мати `had` плюс дієприкметник минулого часу. Не форсуйте зміну часу, якщо твердження все ще дійсне, а контекст дозволяє використовувати початковий час.",
+"samples": [
+"27.31",
+"27.36"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Повідомити про питання в порядку тверджень",
+"samples": [
+"27.33",
+"27.35",
+"27.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви вчора розмовляли з рецепцією. Передайте колезі відповідь, запитання та інструкцію, яку ви почули. Це три різні шаблони.",
+"samples": [
+"27.42",
+"27.45",
+"27.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Повідомити про запити та попередні події",
+"samples": [
+"27.50"
+],
+"tokenWalk": "27.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Tell someone what another person said",
+"formula": "say + [clause] · tell + [person] + [clause]",
+"story": "Direct question: Where do you live? Report: He asked where I lived. Inside the report I goes before lived; you are not starting a second question.",
+"use": "Retelling words means choosing whose viewpoint matters now. In a past report verbs often shift back, and a word like tomorrow may need to become the next day. Shift only when the context calls for it.",
+"choose": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question.",
+"nuance": "A reported request uses an object and an infinitive. A reported earlier event can take `had` plus a past participle. Do not force a tense shift when the statement is still valid and context allows the original tense.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Retelling words means choosing whose viewpoint matters now. In a past report verbs often shift back, and a word like tomorrow may need to become the next day. Shift only when the context calls for it.",
+"samples": [
+"27.01",
+"27.11"
+]
+},
+{
+"title": "How to choose",
+"body": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question.",
+"samples": [
+"27.11",
+"27.31"
+]
+},
+{
+"title": "A useful contrast",
+"body": "A reported request uses an object and an infinitive. A reported earlier event can take `had` plus a past participle. Do not force a tense shift when the statement is still valid and context allows the original tense.",
+"samples": [
+"27.31",
+"27.36"
+]
+},
+{
+"title": "Common mistake",
+"body": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question.",
+"wrong": "He asked where did I live.",
+"right": "He asked where I lived.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Report a question in statement order",
+"samples": [
+"27.33",
+"27.35",
+"27.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You spoke to reception yesterday. Tell a colleague the answer, the question and the instruction you heard. These are three different patterns.",
+"samples": [
+"27.42",
+"27.45",
+"27.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Report requests and earlier events",
+"samples": [
+"27.50"
+],
+"tokenWalk": "27.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "27.01",
+"index": 1,
+"right": "said",
+"near": "say",
+"seq": [
+"Anna",
+"said",
+"she",
+"was",
+"tired"
+],
+"i": 0,
+"kind": "form",
+"key": "en27/lab/form1",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.13",
+"index": 1,
+"right": "told",
+"near": "tell",
+"seq": [
+"I",
+"told",
+"her",
+"I",
+"was",
+"at",
+"the",
+"station"
+],
+"i": 12,
+"kind": "form",
+"key": "en27/lab/form2",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.31",
+"index": 1,
+"right": "asked",
+"near": "ask",
+"seq": [
+"He",
+"asked",
+"who",
+"could",
+"look",
+"after",
+"his",
+"dog"
+],
+"i": 30,
+"kind": "form",
+"key": "en27/lab/form3",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.38",
+"index": 1,
+"right": "asked",
+"near": "ask",
+"seq": [
+"They",
+"asked",
+"if",
+"the",
+"room",
+"was",
+"free"
+],
+"i": 37,
+"kind": "form",
+"key": "en27/lab/form4",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.07",
+"index": 1,
+"right": "said",
+"near": "say",
+"seq": [
+"We",
+"said",
+"we",
+"wanted",
+"two",
+"seats"
+],
+"i": 6,
+"kind": "spot",
+"key": "en27/lab/spot1",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.20",
+"index": 1,
+"right": "told",
+"near": "tell",
+"seq": [
+"We",
+"told",
+"the",
+"manager",
+"the",
+"lift",
+"did",
+"not",
+"work"
+],
+"i": 19,
+"kind": "spot",
+"key": "en27/lab/spot2",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.32",
+"index": 1,
+"right": "asked",
+"near": "ask",
+"seq": [
+"She",
+"asked",
+"what",
+"I",
+"needed"
+],
+"i": 31,
+"kind": "spot",
+"key": "en27/lab/spot3",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"id": "27.47",
+"index": 1,
+"right": "told",
+"near": "tell",
+"seq": [
+"I",
+"told",
+"her",
+"I",
+"had",
+"never",
+"driven",
+"a",
+"van"
+],
+"i": 46,
+"kind": "spot",
+"key": "en27/lab/spot4",
+"feedback": {
+"ru": "После `tell` в этих примерах укажи слушателя: `She told me…`. После `say` можно сразу передать слова: `She said…`. В косвенном вопросе сохраняется порядок утверждения: `He asked where I lived`.",
+"uk": "Після `tell` у цих прикладах назви слухача: `She told me…`. Після `say` можна відразу передати слова: `She said…`. У непрямому питанні лишається порядок твердження: `He asked where I lived`.",
+"en": "`Say` can lead straight to a clause. `Tell` normally names the listener before the clause. Reported questions use statement order, not question order; `if` or `whether` introduces a yes/no question."
+}
+},
+{
+"kind": "match",
+"key": "en27/lab/match1",
+"id": "27.02",
+"other": "27.03"
+},
+{
+"kind": "match",
+"key": "en27/lab/match2",
+"id": "27.17",
+"other": "27.18"
+},
+{
+"kind": "match",
+"key": "en27/lab/match3",
+"id": "27.33",
+"other": "27.34"
+},
+{
+"kind": "match",
+"key": "en27/lab/match4",
+"id": "27.46",
+"other": "27.45"
+},
+{
+"kind": "build",
+"key": "en27/lab/build1",
+"id": "27.04"
+},
+{
+"kind": "build",
+"key": "en27/lab/build2",
+"id": "27.15"
+},
+{
+"kind": "build",
+"key": "en27/lab/build3",
+"id": "27.29"
+},
+{
+"kind": "build",
+"key": "en27/lab/build4",
+"id": "27.42"
+},
+{
+"kind": "transform",
+"id": "27.21",
+"base": "27.08",
+"diff": [
+{
+"before": [
+"knew",
+"the",
+"address"
+],
+"after": [
+"could",
+"wait"
+]
+}
+],
+"key": "en27/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "27.22",
+"base": "27.09",
+"diff": [
+{
+"before": [
+"had"
+],
+"after": [
+"would",
+"send"
+]
+},
+{
+"before": [
+"spare",
+"key"
+],
+"after": [
+"reminder"
+]
+}
+],
+"key": "en27/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "27.47",
+"base": "27.13",
+"diff": [
+{
+"before": [
+"was",
+"at",
+"the",
+"station"
+],
+"after": [
+"had",
+"never",
+"driven",
+"a",
+"van"
+]
+}
+],
+"key": "en27/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "27.50",
+"base": "27.36",
+"diff": [
+{
+"before": [
+"a",
+"reference",
+"number"
+],
+"after": [
+"received",
+"his",
+"message"
+]
+}
+],
+"key": "en27/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+2,
+6
+],
+[
+19,
+3
+],
+[
+17,
+14
+],
+[
+10,
+15
+],
+[
+11,
+7
+],
+[
+18,
+5
+]
+],
+"worked": [
+"27.05",
+"27.18",
+"27.33",
+"27.48"
+],
+"reflection": [
+"27.01",
+"27.02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 28,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 28,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Сам, для себя или друг для друга?",
+"formula": "[подлежащее] → [возвратное местоимение] · by + [возвратное местоимение]",
+"story": "Она учила кого-то другого: She taught him. Она научила себя: She taught herself. Herself возвращает действие к той же женщине.",
+"use": "Используйте возвратное местоимение, когда исполнитель и получатель — одно и то же лицо. В английском языке возвратное местоимение добавляется не ко всем действиям, которые в другом языке выражаются возвратно.",
+"choose": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"nuance": "`Each other` означает, что действие переходит от одного лица к другому. `Themselves` возвращает действие каждому лицу. В английском языке обычно используется `wash my hands`, а не буквальный возвратный эквивалент.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте возвратное местоимение, когда исполнитель и получатель — одно и то же лицо. В английском языке возвратное местоимение добавляется не ко всем действиям, которые в другом языке выражаются возвратно.",
+"samples": [
+"28.01",
+"28.09"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"samples": [
+"28.09",
+"28.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Each other` означает, что действие переходит от одного лица к другому. `Themselves` возвращает действие каждому лицу. В английском языке обычно используется `wash my hands`, а не буквальный возвратный эквивалент.",
+"samples": [
+"28.21",
+"28.31"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "В одиночестве, без помощи или в собственном пространстве",
+"samples": [
+"28.33",
+"28.35",
+"28.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Два соседа несут коробки вместе. Решите, помогали ли они друг другу или каждый справлялся самостоятельно. Используйте разные слова для этих ситуаций.",
+"samples": [
+"28.42",
+"28.45",
+"28.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Разделяйте рефлексивные и взаимные действия",
+"samples": [
+"28.50"
+],
+"tokenWalk": "28.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Сам, для себе чи одне для одного?",
+"formula": "[підмет] → [зворотний займенник] · by + [зворотний займенник]",
+"story": "Вона навчала іншу людину: She taught him. Навчила саму себе: She taught herself. Herself повертає дію до тієї самої жінки.",
+"use": "Використовуйте зворотний займенник, коли виконавець і приймач — одна й та сама особа. Англійська мова не додає зворотний займенник до кожної дії, яку інша мова виражає рефлексивно.",
+"choose": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"nuance": "`Each other` означає, що дія переходить від однієї особи до іншої. `Themselves` передає дію кожній особі. В англійській мові зазвичай використовується `wash my hands`, а не буквальний зворотний еквівалент.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте зворотний займенник, коли виконавець і приймач — одна й та сама особа. Англійська мова не додає зворотний займенник до кожної дії, яку інша мова виражає рефлексивно.",
+"samples": [
+"28.01",
+"28.09"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"samples": [
+"28.09",
+"28.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Each other` означає, що дія переходить від однієї особи до іншої. `Themselves` передає дію кожній особі. В англійській мові зазвичай використовується `wash my hands`, а не буквальний зворотний еквівалент.",
+"samples": [
+"28.21",
+"28.31"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Самостійно, без допомоги або в власному просторі",
+"samples": [
+"28.33",
+"28.35",
+"28.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Двоє сусідів несуть коробки разом. Визначте, чи допомагали вони один одному, чи кожен справлявся самостійно. Використовуйте різні слова для цих ситуацій.",
+"samples": [
+"28.42",
+"28.45",
+"28.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Розділіть рефлексивні та взаємні дії",
+"samples": [
+"28.50"
+],
+"tokenWalk": "28.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Say who did something to whom",
+"formula": "[subject] acts on [reflexive] · by + [reflexive]",
+"story": "She taught him describes two people. She taught herself describes one person in both roles. Herself points back to she.",
+"use": "Use a reflexive when the doer and the receiver are the same person. English does not add a reflexive to every action that another language expresses reflexively.",
+"choose": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`.",
+"nuance": "`Each other` means the action crosses from one person to another. `Themselves` sends the action back to each person. English usually says `wash my hands`, not a literal reflexive equivalent.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use a reflexive when the doer and the receiver are the same person. English does not add a reflexive to every action that another language expresses reflexively.",
+"samples": [
+"28.01",
+"28.09"
+]
+},
+{
+"title": "How to choose",
+"body": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`.",
+"samples": [
+"28.09",
+"28.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Each other` means the action crosses from one person to another. `Themselves` sends the action back to each person. English usually says `wash my hands`, not a literal reflexive equivalent.",
+"samples": [
+"28.21",
+"28.31"
+]
+},
+{
+"title": "Common mistake",
+"body": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`.",
+"wrong": "She taught himself English.",
+"right": "She taught herself English.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Alone, without help or with space to oneself",
+"samples": [
+"28.33",
+"28.35",
+"28.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Two neighbours carry boxes together. Decide whether they helped one another or whether each managed independently. Use different words for those situations.",
+"samples": [
+"28.42",
+"28.45",
+"28.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Separate reflexive and reciprocal actions",
+"samples": [
+"28.50"
+],
+"tokenWalk": "28.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "28.01",
+"index": 2,
+"right": "myself",
+"near": "ourselves",
+"seq": [
+"I",
+"cut",
+"myself"
+],
+"i": 0,
+"kind": "form",
+"key": "en28/lab/form1",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.13",
+"index": 2,
+"right": "himself",
+"near": "yourselves",
+"seq": [
+"He",
+"cut",
+"himself",
+"a",
+"slice",
+"of",
+"bread"
+],
+"i": 12,
+"kind": "form",
+"key": "en28/lab/form2",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.26",
+"index": 4,
+"right": "yourself",
+"near": "ourselves",
+"seq": [
+"Did",
+"you",
+"make",
+"this",
+"yourself"
+],
+"i": 25,
+"kind": "form",
+"key": "en28/lab/form3",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.35",
+"index": 4,
+"right": "themselves",
+"near": "herself",
+"seq": [
+"They",
+"walked",
+"home",
+"by",
+"themselves"
+],
+"i": 34,
+"kind": "form",
+"key": "en28/lab/form4",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.07",
+"index": 3,
+"right": "itself",
+"near": "ourselves",
+"seq": [
+"The",
+"cat",
+"washed",
+"itself"
+],
+"i": 6,
+"kind": "spot",
+"key": "en28/lab/spot1",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.19",
+"index": 2,
+"right": "ourselves",
+"near": "myself",
+"seq": [
+"We",
+"gave",
+"ourselves",
+"extra",
+"time"
+],
+"i": 18,
+"kind": "spot",
+"key": "en28/lab/spot2",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.32",
+"index": 3,
+"right": "herself",
+"near": "themselves",
+"seq": [
+"She",
+"lives",
+"by",
+"herself"
+],
+"i": 31,
+"kind": "spot",
+"key": "en28/lab/spot3",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"id": "28.47",
+"index": 4,
+"right": "itself",
+"near": "ourselves",
+"seq": [
+"The",
+"door",
+"closed",
+"by",
+"itself"
+],
+"i": 46,
+"kind": "spot",
+"key": "en28/lab/spot4",
+"feedback": {
+"ru": "Когда действие возвращается к тому же человеку, выбери `myself`, `yourself`, `himself` и т. д. Сравни `I cut myself` и `I cut the bread`. Та же форма может подчёркивать, кто выполнил работу: `I did it myself`.",
+"uk": "Коли дія спрямована на саму людину, обери `myself`, `yourself`, `himself` тощо. Порівняй `I cut myself` і `I cut the bread`. Та сама форма може підкреслювати виконавця: `I did it myself`.",
+"en": "An extra reflexive can emphasise who did the work. `By myself` can mean alone or without help. Match singular and plural forms carefully, especially with `you`."
+}
+},
+{
+"kind": "match",
+"key": "en28/lab/match1",
+"id": "28.02",
+"other": "28.09"
+},
+{
+"kind": "match",
+"key": "en28/lab/match2",
+"id": "28.17",
+"other": "28.15"
+},
+{
+"kind": "match",
+"key": "en28/lab/match3",
+"id": "28.33",
+"other": "28.32"
+},
+{
+"kind": "match",
+"key": "en28/lab/match4",
+"id": "28.46",
+"other": "28.33"
+},
+{
+"kind": "build",
+"key": "en28/lab/build1",
+"id": "28.04"
+},
+{
+"kind": "build",
+"key": "en28/lab/build2",
+"id": "28.15"
+},
+{
+"kind": "build",
+"key": "en28/lab/build3",
+"id": "28.29"
+},
+{
+"kind": "build",
+"key": "en28/lab/build4",
+"id": "28.42"
+},
+{
+"kind": "transform",
+"id": "28.31",
+"base": "28.01",
+"diff": [
+{
+"before": [
+"cut"
+],
+"after": [
+"went",
+"by"
+]
+}
+],
+"key": "en28/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "28.32",
+"base": "28.02",
+"diff": [
+{
+"before": [
+"hurt"
+],
+"after": [
+"lives",
+"by"
+]
+}
+],
+"key": "en28/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "28.33",
+"base": "28.03",
+"diff": [
+{
+"before": [
+"blamed"
+],
+"after": [
+"travelled",
+"by"
+]
+}
+],
+"key": "en28/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "28.30",
+"base": "28.24",
+"diff": [
+{
+"before": [
+"did"
+],
+"after": [
+"saw"
+]
+},
+{
+"before": [
+"painting"
+],
+"after": [
+"damage"
+]
+}
+],
+"key": "en28/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+1
+],
+[
+16,
+6
+],
+[
+2,
+14
+],
+[
+3,
+10
+],
+[
+15,
+7
+],
+[
+11,
+18
+]
+],
+"worked": [
+"28.05",
+"28.18",
+"28.33",
+"28.48"
+],
+"reflection": [
+"28.01",
+"28.02"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

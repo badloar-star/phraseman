@@ -1,0 +1,25 @@
+# зачем (координатор 17:20): Ultra (plan=yearly) на ранге ≥2 — Главная, Управление подпиской, ТОП Пика + «Все участники». Без хопов: после dev_state — pressKey back.
+appId: app.phraseman
+name: 08 Ultra Главная подписка ТОП Пика en
+---
+- runFlow: _prelude_home_en.yaml
+- openLink: "phraseman://dev_state?set=plus:on,plan:yearly,coinRank:3"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- takeScreenshot: 01_devstate_applied
+- back
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: 02_home_ultra
+- tapOn:
+    text: "Peak"
+    optional: true
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: 03_peak_top
+- tapOn:
+    text: "All participants.*"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 04_peak_all_participants

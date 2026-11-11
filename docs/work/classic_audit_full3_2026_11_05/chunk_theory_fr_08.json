@@ -1,0 +1,1058 @@
+[
+{
+"lesson": 17,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:17:01",
+"fr:17:02",
+"fr:17:03"
+],
+"textByLocale": {
+"en": "Compare \"to pick up the bag\" and \"to get up by yourself.\" In this topic, the action concerns the performer. The short pronoun before the verb indicates this connection.",
+"ru": "Сравни «поднять сумку» и «встать самому». В этой теме действие касается самого исполнителя. Короткое местоимение перед глаголом показывает эту связь.",
+"uk": "Порівняй «підняти сумку» та «встати самому». У цій темі дія стосується самого виконавця. Короткий займенник перед дієсловом показує цей зв'язок."
+}
+},
+{
+"exampleIds": [
+"fr:17:01",
+"fr:17:04",
+"fr:17:05"
+],
+"textByLocale": {
+"en": "The person has changed—check both forms at once: `je me lève` → `tu te lèves`. In `nous nous levons`, the two `nous`s are not a typo: the first names a group, the second is related to the verb.",
+"ru": "Сменился человек — проверяй сразу две формы: `je me lève` → `tu te lèves`. В `nous nous levons` два `nous` не опечатка: первое называет группу, второе связано с глаголом.",
+"uk": "Змінилася людина — перевіряй відразу дві форми: `je me lève` → `tu te lèves`. У `nous nous levons` два `nous` не друкарська помилка: перше називає групу, друге пов'язане з дієсловом."
+}
+},
+{
+"exampleIds": [
+"fr:17:11",
+"fr:17:15",
+"fr:17:17"
+],
+"textByLocale": {
+"en": "For a daily routine, you can add time. Build the core, and then clarify when the action takes place. Night or morning do not change the form of the reflexive pronoun.",
+"ru": "Для распорядка дня можно добавить время. Собери ядро, а потом уточни, когда действие происходит. Ночь или утро не меняют форму возвратного местоимения.",
+"uk": "Можна додати час для розпорядку дня. Збери ядро, а потім уточни, коли дія відбувається. Ніч чи ранок не змінюють форму зворотного займенника."
+}
+},
+{
+"exampleIds": [
+"fr:17:21",
+"fr:17:22",
+"fr:17:24"
+],
+"textByLocale": {
+"en": "Before a vowel or silent `h`, `m’`, `t’`, or `s’` are possible. `elle s’habille` contains both a person and a reflexive pronoun. The apostrophe refers to the following verb.",
+"ru": "Перед гласной или немым `h` возможны `m’`, `t’`, `s’`. В `elle s’habille` есть и человек, и возвратное местоимение. Апостроф относится к последующему глаголу.",
+"uk": "Перед голосною або німим `h` можливі `m’`, `t’`, `s’`. У `elle s’habille` є і людина, і займенник назад. Апостроф відноситься до наступного дієслова."
+}
+},
+{
+"exampleIds": [
+"fr:17:26",
+"fr:17:27",
+"fr:17:28"
+],
+"textByLocale": {
+"en": "For simply washing your hands, the French expression is `se laver les mains`. It's already clear that the hands belong to the performer. Don't add an additional possessive word without a reason.",
+"ru": "Для обычного мытья своих рук французское выражение — `se laver les mains`. То, что руки принадлежат исполнителю, уже понятно. Не вставляй дополнительно притяжательное слово без причины.",
+"uk": "Для звичайного миття своїх рук французький вираз - `se laver les mains`. Те, що руки належать виконавцю, вже зрозуміло. Не вставляй додатково присвійне слово без причини."
+}
+},
+{
+"exampleIds": [
+"fr:17:31",
+"fr:17:36",
+"fr:17:39"
+],
+"textByLocale": {
+"en": "Negation covers the group `me lève`: `je ne me lève pas`. With a modal verb, the pronoun refers to the infinitive: `je peux me reposer`, not `peux`.",
+"ru": "Отрицание охватывает группу `me lève`: `je ne me lève pas`. С модальным глаголом местоимение относится к инфинитиву: `je peux me reposer`, а не к `peux`.",
+"uk": "Заперечення охоплює групу `me lève`: `je ne me lève pas`. З модальним дієсловом займенник відноситься до інфінітиву: `je peux me reposer`, а не до `peux`."
+}
+},
+{
+"exampleIds": [
+"fr:17:41",
+"fr:17:44",
+"fr:17:48"
+],
+"textByLocale": {
+"en": "Not every such verb is conveniently translated literally as \"oneself.\" For example, `se tromper` is \"to err,\" `se souvenir de` is \"to remember.\" Memorize the whole expression in a dictionary.",
+"ru": "Не всякий такой глагол удобно переводится буквально «себя». Например, `se tromper` — ошибаться, `se souvenir de` — помнить. В словаре запоминай целое выражение.",
+"uk": "Не всяке таке дієслово зручно перекладається буквально «себе». Наприклад, `se tromper` – помилятися, `se souvenir de` – пам'ятати. У словнику запам'ятай цілий вираз."
+}
+}
+],
+"drills": [
+{
+"bad": "jamais",
+"chapter": 1,
+"id": "fr:17:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 7,
+"options": [
+"la",
+"me",
+"jamais"
+],
+"slot": 1
+},
+{
+"bad": "leur",
+"chapter": 1,
+"id": "fr:17:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 13,
+"options": [
+"se",
+"leur",
+"encore"
+],
+"slot": 1
+},
+{
+"bad": "nous",
+"chapter": 1,
+"id": "fr:17:05:lab",
+"item": 5,
+"kind": "match",
+"near": 48,
+"options": [
+"nous",
+"elle",
+"vous"
+],
+"slot": 1
+},
+{
+"bad": "se",
+"chapter": 2,
+"id": "fr:17:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"te",
+"se",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "plus",
+"chapter": 2,
+"id": "fr:17:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"plus",
+"me",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 2,
+"id": "fr:17:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 8,
+"options": [
+"la",
+"lui",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "on",
+"chapter": 3,
+"id": "fr:17:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"on",
+"je",
+"nous"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 3,
+"id": "fr:17:17:lab",
+"item": 17,
+"kind": "match",
+"near": 41,
+"options": [
+"le",
+"jamais",
+"me"
+],
+"slot": 1
+},
+{
+"bad": "ne",
+"chapter": 3,
+"id": "fr:17:19:lab",
+"item": 19,
+"kind": "build",
+"near": 30,
+"options": [
+"se",
+"ne",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "s’appelle",
+"chapter": 4,
+"id": "fr:17:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"s’appelle",
+"s’habille",
+"s’amusent"
+],
+"slot": 1
+},
+{
+"bad": "je",
+"chapter": 4,
+"id": "fr:17:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 5,
+"options": [
+"vous",
+"je",
+"on"
+],
+"slot": 1
+},
+{
+"bad": "encore",
+"chapter": 4,
+"id": "fr:17:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 7,
+"options": [
+"pas",
+"encore",
+"me"
+],
+"slot": 1
+},
+{
+"bad": "elles",
+"chapter": 5,
+"id": "fr:17:29:lab",
+"item": 29,
+"kind": "match",
+"near": 4,
+"options": [
+"nous",
+"je",
+"elles"
+],
+"slot": 1
+},
+{
+"bad": "encore",
+"chapter": 5,
+"id": "fr:17:31:lab",
+"item": 31,
+"kind": "build",
+"near": 1,
+"options": [
+"les",
+"encore",
+"me"
+],
+"slot": 2
+},
+{
+"bad": "Je",
+"chapter": 5,
+"id": "fr:17:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 5,
+"options": [
+"Il",
+"Je",
+"Vous"
+],
+"slot": 0
+},
+{
+"bad": "ne",
+"chapter": 6,
+"id": "fr:17:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 7,
+"options": [
+"en",
+"ne",
+"me"
+],
+"slot": 2
+},
+{
+"bad": "On",
+"chapter": 6,
+"id": "fr:17:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 4,
+"options": [
+"On",
+"Ils",
+"Nous"
+],
+"slot": 0
+},
+{
+"bad": "les",
+"chapter": 6,
+"id": "fr:17:42:lab",
+"item": 42,
+"kind": "match",
+"near": 3,
+"options": [
+"les",
+"plus",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "s’habille",
+"chapter": 7,
+"id": "fr:17:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"s’habille",
+"s’amusent",
+"s’appelle"
+],
+"slot": 1
+},
+{
+"bad": "nous",
+"chapter": 7,
+"id": "fr:17:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"je",
+"vous",
+"nous"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"se lever",
+"je me lève / tu te lèves"
+],
+[
+"elle / ils",
+"elle se lève / ils se lèvent"
+],
+[
+"nous",
+"nous nous levons"
+],
+[
+"vous",
+"vous vous levez"
+],
+[
+"s’habiller",
+"je m’habille / elle s’habille"
+],
+[
+"se reposer",
+"je vais me reposer"
+]
+],
+"title": {
+"en": "Morning and self-directed actions: `je me lève`",
+"ru": "Утро и действия с собой: `je me lève`",
+"uk": "Ранок та дії з собою: `je me lève`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:17:01",
+"target": "Je me lève.",
+"ru": "Я встаю.",
+"uk": "Я встаю."
+},
+{
+"id": "fr:17:02",
+"target": "Tu te lèves.",
+"ru": "Ты встаешь.",
+"uk": "Ти встаєш."
+},
+{
+"id": "fr:17:03",
+"target": "Elle se lève.",
+"ru": "Она встает.",
+"uk": "Вона встає."
+},
+{
+"id": "fr:17:04",
+"target": "Nous nous levons.",
+"ru": "Мы встаем.",
+"uk": "Ми встаємо."
+},
+{
+"id": "fr:17:05",
+"target": "Vous vous levez.",
+"ru": "Вы встаёте.",
+"uk": "Ви встаєте."
+},
+{
+"id": "fr:17:11",
+"target": "Je me réveille tôt.",
+"ru": "Я просыпаюсь рано.",
+"uk": "Я прокидаюся рано."
+},
+{
+"id": "fr:17:15",
+"target": "Vous vous réveillez souvent la nuit ?",
+"ru": "Вы часто просыпаетесь ночью?",
+"uk": "Ви часто прокидаєтеся вночі?"
+},
+{
+"id": "fr:17:17",
+"target": "Je me douche le matin.",
+"ru": "Я принимаю душ утром.",
+"uk": "Я приймаю душ вранці."
+},
+{
+"id": "fr:17:21",
+"target": "Je m’habille dans la chambre.",
+"ru": "Я одеваюсь в спальне.",
+"uk": "Я одягаюся в спальні."
+},
+{
+"id": "fr:17:22",
+"target": "Elle s’habille seule.",
+"ru": "Она одевается сама.",
+"uk": "Вона одягається сама."
+},
+{
+"id": "fr:17:24",
+"target": "Vous vous habillez pour sortir.",
+"ru": "Вы одеваетесь, чтобы выйти.",
+"uk": "Ви одягаєтеся, щоб вийти."
+},
+{
+"id": "fr:17:26",
+"target": "Je me brosse les dents.",
+"ru": "Я чищу зубы.",
+"uk": "Я чищу зуби."
+},
+{
+"id": "fr:17:27",
+"target": "Elle se lave les mains.",
+"ru": "Она моет руки.",
+"uk": "Вона миє руки."
+},
+{
+"id": "fr:17:28",
+"target": "Les enfants se lavent le visage.",
+"ru": "Дети умываются.",
+"uk": "Діти вмивають обличчя."
+},
+{
+"id": "fr:17:31",
+"target": "Je ne me lève pas avant six heures.",
+"ru": "Я не встаю раньше шести часов.",
+"uk": "Я не встаю раніше шостої години."
+},
+{
+"id": "fr:17:36",
+"target": "Je vais me reposer.",
+"ru": "Я собираюсь отдохнуть.",
+"uk": "Я піду відпочивати."
+},
+{
+"id": "fr:17:39",
+"target": "Nous pouvons nous asseoir ici.",
+"ru": "Мы можем сесть здесь.",
+"uk": "Ми можемо сісти тут."
+},
+{
+"id": "fr:17:41",
+"target": "Je me dépêche pour le bus.",
+"ru": "Я спешу на автобус.",
+"uk": "Я поспішаю на автобус."
+},
+{
+"id": "fr:17:44",
+"target": "Tu te souviens de cette adresse ?",
+"ru": "Ты помнишь этот адрес?",
+"uk": "Ти пам'ятаєш цю адресу?"
+},
+{
+"id": "fr:17:48",
+"target": "Vous vous sentez mieux ?",
+"ru": "Вам лучше?",
+"uk": "Вам краще?"
+}
+]
+},
+{
+"lesson": 18,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:18:01",
+"fr:18:02",
+"fr:18:03"
+],
+"textByLocale": {
+"en": "The past tense in this diagram consists of two parts. The first changes according to person, the second carries the meaning. Don't translate `ai` separately as \"have\": here it helps say \"closed.\"",
+"ru": "Прошедшее в этой схеме состоит из двух частей. Первая меняется по лицу, вторая несёт смысл. Не переводим `ai` отдельно как «имею»: здесь оно помогает сказать «закрыл».",
+"uk": "Те, що пройшло в цій схемі, складається з двох частин. Перша змінюється по обличчю, друга несе сенс. Не перекладаємо `ai` окремо як \"маю\": тут воно допомагає сказати \"закрив\"."
+}
+},
+{
+"exampleIds": [
+"fr:18:03",
+"fr:18:04",
+"fr:18:05"
+],
+"textByLocale": {
+"en": "Compare `j’ai fermé` and `nous avons fermé`. Change the assistant, but don't put `fermons` after `avons`: that would be a personal form instead of a participle.",
+"ru": "Сравни `j’ai fermé` и `nous avons fermé`. Поменяй помощника, но не ставь `fermons` после `avons`: это была бы личная форма вместо причастия.",
+"uk": "Порівняй `j’ai fermé` і `nous avons fermé`. Поміняй помічника, але не став `fermons` після `avons`: це була б особиста форма замість причастя."
+}
+},
+{
+"exampleIds": [
+"fr:18:07",
+"fr:18:11",
+"fr:18:16"
+],
+"textByLocale": {
+"en": "Many verbs ending in `-er` have participles ending in `-é`. The dictionary says `acheter`, and the purchase made is `acheté`. The emphasis on `é` is important in written French.",
+"ru": "У многих глаголов на `-er` причастие кончается на `-é`. В словаре стоит `acheter`, а сделанная покупка — `acheté`. Акцент на `é` в письменном французском важен.",
+"uk": "У багатьох дієслів на `-er` дієприкметник закінчується на `-é`. У словнику коштує `acheter`, а зроблена покупка - `acheté`. Акцент на `é` у письмовій французькій важливий."
+}
+},
+{
+"exampleIds": [
+"fr:18:21",
+"fr:18:23",
+"fr:18:27"
+],
+"textByLocale": {
+"en": "Not all forms are created according to the pattern of `fermé`. Remember them in small pairs: `prendre → pris`, `lire → lu`, `recevoir → reçu`, `faire → fait`.",
+"ru": "Не все формы создаются по образцу `fermé`. Запоминай маленькими парами: `prendre → pris`, `lire → lu`, `recevoir → reçu`, `faire → fait`.",
+"uk": "Не всі форми створюються за зразком `fermé`. Запам'ятовуйте маленькими парами: `prendre → pris`, `lire → lu`, `recevoir → reçu`, `faire → fait`."
+}
+},
+{
+"exampleIds": [
+"fr:18:31",
+"fr:18:32",
+"fr:18:35"
+],
+"textByLocale": {
+"en": "When negating `ne … pas`, surround the auxiliary verb: `je n’ai pas entendu`. The participle comes next. In `n’ai`, the apostrophe is required.",
+"ru": "При отрицании `ne … pas` окружают вспомогательный глагол: `je n’ai pas entendu`. Причастие идёт дальше. В `n’ai` апостроф обязателен.",
+"uk": "У запереченні `ne … pas` охоплюють допоміжне дієслово: `je n’ai pas entendu`. Дієприкметник стоїть після них. В `n’ai` апостроф обов’язковий."
+}
+},
+{
+"exampleIds": [
+"fr:18:37",
+"fr:18:39",
+"fr:18:40"
+],
+"textByLocale": {
+"en": "A question can change its beginning, but the past tense does not split. In `avez-vous envoyé`, a pronoun appeared between the auxiliary and the participle due to inversion.",
+"ru": "Вопрос может менять начало, но прошедшее не распадается. В `avez-vous envoyé` между помощником и причастием оказалось местоимение из-за инверсии.",
+"uk": "Питання може змінювати початок, але минуле не розпадається. У `avez-vous envoyé` між помічником і дієприкметником виявився займенник через інверсію."
+}
+},
+{
+"exampleIds": [
+"fr:18:41",
+"fr:18:46",
+"fr:18:50"
+],
+"textByLocale": {
+"en": "Don't add a feminine ending just because a woman is speaking: with `avoir`, the subject itself does not trigger agreement. A separate case with a direct object before the verb will be discussed later.",
+"ru": "Не прибавляй женское окончание только потому, что действует женщина: с `avoir` подлежащее само по себе не запускает согласование. Отдельный случай с прямым дополнением перед глаголом будет разобран позже.",
+"uk": "Не додай жіноче закінчення тільки тому, що діє жінка: з `avoir` підлягає саме собою не запускає узгодження. Окремий випадок із прямим доповненням перед дієсловом буде розібраний пізніше."
+}
+}
+],
+"drills": [
+{
+"bad": "Avez-vous",
+"chapter": 1,
+"id": "fr:18:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"J’ai",
+"L’enveloppe",
+"Avez-vous"
+],
+"slot": 0
+},
+{
+"bad": "ont",
+"chapter": 1,
+"id": "fr:18:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"a",
+"aviez",
+"ont"
+],
+"slot": 1
+},
+{
+"bad": "ai",
+"chapter": 1,
+"id": "fr:18:05:lab",
+"item": 5,
+"kind": "match",
+"near": 15,
+"options": [
+"avons",
+"ai",
+"avez"
+],
+"slot": 1
+},
+{
+"bad": "ont",
+"chapter": 2,
+"id": "fr:18:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"ont",
+"aurai",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "auraient",
+"chapter": 2,
+"id": "fr:18:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 28,
+"options": [
+"ai",
+"auraient",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "a",
+"chapter": 2,
+"id": "fr:18:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"a",
+"ai",
+"as"
+],
+"slot": 1
+},
+{
+"bad": "a",
+"chapter": 3,
+"id": "fr:18:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"avons",
+"a",
+"ait"
+],
+"slot": 1
+},
+{
+"bad": "N’avons",
+"chapter": 3,
+"id": "fr:18:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"N’avons",
+"J’ai",
+"Avez-vous"
+],
+"slot": 0
+},
+{
+"bad": "avaient",
+"chapter": 3,
+"id": "fr:18:19:lab",
+"item": 19,
+"kind": "build",
+"near": 13,
+"options": [
+"aient",
+"a",
+"avaient"
+],
+"slot": 1
+},
+{
+"bad": "ait",
+"chapter": 4,
+"id": "fr:18:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 12,
+"options": [
+"as",
+"ayez",
+"ait"
+],
+"slot": 1
+},
+{
+"bad": "avez",
+"chapter": 4,
+"id": "fr:18:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 14,
+"options": [
+"avez",
+"aient",
+"avons"
+],
+"slot": 1
+},
+{
+"bad": "aie",
+"chapter": 4,
+"id": "fr:18:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 15,
+"options": [
+"ayez",
+"aie",
+"avez"
+],
+"slot": 1
+},
+{
+"bad": "avez",
+"chapter": 5,
+"id": "fr:18:29:lab",
+"item": 29,
+"kind": "match",
+"near": 13,
+"options": [
+"aie",
+"avez",
+"a"
+],
+"slot": 1
+},
+{
+"bad": "n’avez",
+"chapter": 5,
+"id": "fr:18:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"n’ai",
+"n’avez",
+"n’ont"
+],
+"slot": 1
+},
+{
+"bad": "n’a",
+"chapter": 5,
+"id": "fr:18:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"n’avons",
+"n’ont",
+"n’a"
+],
+"slot": 1
+},
+{
+"bad": "n’avons",
+"chapter": 6,
+"id": "fr:18:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 38,
+"options": [
+"n’avez",
+"n’avons",
+"n’a"
+],
+"slot": 1
+},
+{
+"bad": "ai",
+"chapter": 6,
+"id": "fr:18:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 23,
+"options": [
+"ai",
+"a",
+"avaient"
+],
+"slot": 1
+},
+{
+"bad": "ayons",
+"chapter": 6,
+"id": "fr:18:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"a",
+"ayons",
+"avait"
+],
+"slot": 3
+},
+{
+"bad": "Est-ce",
+"chapter": 7,
+"id": "fr:18:45:lab",
+"item": 45,
+"kind": "build",
+"near": 27,
+"options": [
+"Est-ce",
+"J’ai",
+"Avez-vous"
+],
+"slot": 0
+},
+{
+"bad": "ayez",
+"chapter": 7,
+"id": "fr:18:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 38,
+"options": [
+"ayez",
+"avez",
+"ait"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"fermer",
+"j’ai fermé"
+],
+[
+"acheter",
+"tu as acheté"
+],
+[
+"prendre",
+"elle a pris"
+],
+[
+"voir",
+"nous avons vu"
+],
+[
+"lire",
+"vous avez lu"
+],
+[
+"mettre",
+"ils ont mis"
+],
+[
+"entendre",
+"je n’ai pas entendu"
+]
+],
+"title": {
+"en": "What has already happened: past tense with `avoir`",
+"ru": "Что уже произошло: прошедшее с `avoir`",
+"uk": "Що вже сталося: минуле з `avoir`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:18:01",
+"target": "J’ai fermé la porte.",
+"ru": "Я закрыл дверь.",
+"uk": "Я зачинив двері."
+},
+{
+"id": "fr:18:02",
+"target": "Tu as fermé la porte.",
+"ru": "Ты закрыл дверь.",
+"uk": "Ти зачинив двері."
+},
+{
+"id": "fr:18:03",
+"target": "Elle a fermé la fenêtre.",
+"ru": "Она закрыла окно.",
+"uk": "Вона зачинила вікно."
+},
+{
+"id": "fr:18:04",
+"target": "Nous avons fermé le magasin.",
+"ru": "Мы закрыли магазин.",
+"uk": "Ми зачинили магазин."
+},
+{
+"id": "fr:18:05",
+"target": "Vous avez fermé le garage.",
+"ru": "Вы закрыли гараж.",
+"uk": "Ви закрили гараж."
+},
+{
+"id": "fr:18:07",
+"target": "J’ai acheté du pain.",
+"ru": "Я купил хлеб.",
+"uk": "Я купив хліб."
+},
+{
+"id": "fr:18:11",
+"target": "J’ai réservé une table.",
+"ru": "Я забронировал столик.",
+"uk": "Я забронював столик."
+},
+{
+"id": "fr:18:16",
+"target": "Elles ont partagé un taxi.",
+"ru": "Они ехали в одном такси.",
+"uk": "Вони їхали одним таксі."
+},
+{
+"id": "fr:18:21",
+"target": "J’ai pris le train.",
+"ru": "Я поехал на поезде.",
+"uk": "Я поїхав поїздом."
+},
+{
+"id": "fr:18:23",
+"target": "Léa a lu le message.",
+"ru": "Леа прочитала сообщение.",
+"uk": "Леа прочитала повідомлення."
+},
+{
+"id": "fr:18:27",
+"target": "J’ai reçu le colis.",
+"ru": "Я получил посылку.",
+"uk": "Я отримав посилку."
+},
+{
+"id": "fr:18:31",
+"target": "Je n’ai pas entendu la sonnette.",
+"ru": "Я не слышал звонка в дверь.",
+"uk": "Я не чув дзвінка у двері."
+},
+{
+"id": "fr:18:32",
+"target": "Tu n’as pas répondu au téléphone.",
+"ru": "Ты не ответил на звонок.",
+"uk": "Ти не відповів на дзвінок."
+},
+{
+"id": "fr:18:35",
+"target": "Ils n’ont pas compris la consigne.",
+"ru": "Они не поняли инструкции.",
+"uk": "Вони не зрозуміли інструкцій."
+},
+{
+"id": "fr:18:37",
+"target": "Est-ce que tu as vérifié l’adresse ?",
+"ru": "Ты проверил адрес?",
+"uk": "Ти перевірив адресу?"
+},
+{
+"id": "fr:18:39",
+"target": "Qui a cassé le verre ?",
+"ru": "Кто разбил стакан?",
+"uk": "Хто розбив склянку?"
+},
+{
+"id": "fr:18:40",
+"target": "Quand avez-vous envoyé le dossier ?",
+"ru": "Когда вы отправили документы?",
+"uk": "Коли ви надіслали документи?"
+},
+{
+"id": "fr:18:41",
+"target": "Hier, j’ai lavé les serviettes.",
+"ru": "Вчера я постирал полотенца.",
+"uk": "Вчора я виправ рушники."
+},
+{
+"id": "fr:18:46",
+"target": "Tu as oublié de prendre la facture.",
+"ru": "Ты забыл взять счёт.",
+"uk": "Ти забув взяти рахунок."
+},
+{
+"id": "fr:18:50",
+"target": "Nous avons fini le travail à midi.",
+"ru": "Мы закончили работу в полдень.",
+"uk": "Ми закінчили роботу опівдні."
+}
+]
+}
+]

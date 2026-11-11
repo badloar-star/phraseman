@@ -1,0 +1,1472 @@
+[
+{
+"lesson": 11,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 11,
+"target": "es",
+"localized": {
+"ru": {
+"title": "У меня есть: tener",
+"formula": "владелец + tener + то, что у него есть",
+"story": "Представь, что поднимаешь руку: Tengo una pregunta — вопрос у меня. Вопрос у Аны? Тогда Ana tiene una pregunta.",
+"use": "Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener.",
+"choose": "Запомни tengo, tienes, tiene вместе с лицами yo, tú, él. Не используй правильную модель comer вслепую: tengo имеет g, а tienes и tiene — ie.",
+"nuance": "Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"wrong": "Tiene una pregunta.",
+"right": "Tengo una pregunta.",
+"chapters": [
+{
+"title": "Кто владелец и какую форму tener выбрать?",
+"body": "В «У меня вопрос» владелец — говорящий. Именно он становится подлежащим испанской фразы. Не переводи «у» отдельным предлогом: tengo уже означает «у меня есть».",
+"note": "Ключевая форма: Tengo. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:01",
+"es:11:02"
+],
+"focusId": "es:11:01"
+},
+{
+"title": "Три опорные формы",
+"body": "Запомни tengo, tienes, tiene вместе с лицами yo, tú, él. Не используй правильную модель comer вслепую: tengo имеет g, а tienes и tiene — ie.",
+"note": "Ключевая форма: Tienes. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:02",
+"es:11:03"
+],
+"focusId": "es:11:02"
+},
+{
+"title": "Мы и группа",
+"body": "Когда владельцы — мы, нужно tenemos. Два билета не меняют форму: tenemos un billete и tenemos dos billetes. У ellos, наоборот, tienen даже с одним билетом.",
+"note": "Ключевая форма: Tenemos. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:16",
+"es:11:17"
+],
+"focusId": "es:11:16"
+},
+{
+"title": "Hay или tengo?",
+"body": "Hay una llave сообщает о наличии ключа, но не называет владельца. Tengo la llave отвечает на другой вопрос: ключ у меня. Определи, какую информацию передаёт подсказка.",
+"note": "Ключевая форма: Tengo. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:07",
+"es:11:08"
+],
+"focusId": "es:11:07"
+},
+{
+"title": "Нет, но у кого?",
+"body": "В «У меня нет времени» сначала определи владельца. Для «я» выбери tengo и поставь перед ним no. Не пытайся отрицать существительное tiempo.",
+"note": "Ключевая форма: tengo. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:26",
+"es:11:27"
+],
+"focusId": "es:11:26"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «У нас есть идея.» / «У меня нет мелочи.». Глагол согласуется с владельцем, не с тем, чем он владеет. Смысловые опоры: «idea» — идея.",
+"note": "Ключевая форма: tengo. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:20",
+"es:11:21"
+],
+"focusId": "es:11:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «У Луиса есть мой номер.» / «У моих сестёр ключи от дома.». Глагол согласуется с владельцем, не с тем, чем он владеет. Сообщи, у кого есть вещь или возможность. Сначала найди владельца, затем выбери форму tener.",
+"note": "Ключевая форма: tienen. Глагол согласуется с владельцем, не с тем, чем он владеет.",
+"samples": [
+"es:11:44",
+"es:11:50"
+],
+"focusId": "es:11:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "я",
+"id": "es:11:01",
+"sample": "Tengo una pregunta."
+},
+{
+"es": "tú · tienes",
+"gloss": "ты",
+"id": "es:11:02",
+"sample": "Tienes una pregunta."
+},
+{
+"es": "él · tiene",
+"gloss": "он/она/Вы",
+"id": "es:11:03",
+"sample": "Ana tiene una pregunta."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "мы",
+"id": "es:11:04",
+"sample": "Tenemos una pregunta."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "вы (друзья, Испания)",
+"id": "es:11:25",
+"sample": "No tenéis cambio."
+},
+{
+"es": "ellos · tienen",
+"gloss": "они/вы (ustedes)",
+"id": "es:11:05",
+"sample": "Mis hermanos tienen una pregunta."
+}
+],
+"title": "tener · Настоящее"
+}
+]
+},
+"uk": {
+"title": "У мене є: tener",
+"formula": "власник + tener + те, що він має",
+"story": "Уяви, що піднімаєш руку: Tengo una pregunta — запитання в мене. Якщо в Ани: Ana tiene una pregunta.",
+"use": "Скажи, у кого є річ або можливість. Спочатку визнач власника, потім обери форму tener.",
+"choose": "Запам’ятай tengo, tienes, tiene разом з yo, tú, él. Не перенось механічно зразок comer: у tengo є g, а в tienes і tiene — ie.",
+"nuance": "Скажи, у кого є річ або можливість. Спочатку визнач власника, потім обери форму tener. Дієслово узгоджується з власником, не з річчю.",
+"wrong": "Tiene una pregunta.",
+"right": "Tengo una pregunta.",
+"chapters": [
+{
+"title": "Хто власник і яку форму tener обрати?",
+"body": "У «У мене запитання» власником є мовець. Саме він стає підметом іспанської фрази. Не перекладай «у» окремим прийменником: tengo вже означає «я маю».",
+"note": "Ключова форма: Tengo. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:01",
+"es:11:02"
+],
+"focusId": "es:11:01"
+},
+{
+"title": "Три опорні форми",
+"body": "Запам’ятай tengo, tienes, tiene разом з yo, tú, él. Не перенось механічно зразок comer: у tengo є g, а в tienes і tiene — ie.",
+"note": "Ключова форма: Tienes. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:02",
+"es:11:03"
+],
+"focusId": "es:11:02"
+},
+{
+"title": "Ми й група",
+"body": "Коли власники — ми, потрібне tenemos. Два квитки не змінюють форму: tenemos un billete та tenemos dos billetes. Для ellos беремо tienen навіть з одним квитком.",
+"note": "Ключова форма: Tenemos. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:16",
+"es:11:17"
+],
+"focusId": "es:11:16"
+},
+{
+"title": "Hay чи tengo?",
+"body": "Hay una llave повідомляє про наявність ключа, але не називає власника. Tengo la llave відповідає на інше запитання: ключ у мене.",
+"note": "Ключова форма: Tengo. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:07",
+"es:11:08"
+],
+"focusId": "es:11:07"
+},
+{
+"title": "Немає, але в кого?",
+"body": "У «У мене немає часу» спершу визнач власника. Для «я» обери tengo і постав перед ним no. Не заперечуй окремо іменник tiempo.",
+"note": "Ключова форма: tengo. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:26",
+"es:11:27"
+],
+"focusId": "es:11:26"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «У нас є ідея.» / «У мене немає дрібних грошей.». Дієслово узгоджується з власником, не з річчю. Смислові опори: «idea» — ідея.",
+"note": "Ключова форма: tengo. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:20",
+"es:11:21"
+],
+"focusId": "es:11:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «У Луїса є мій номер.» / «У моїх сестер ключі від дому.». Дієслово узгоджується з власником, не з річчю. Скажи, у кого є річ або можливість. Спочатку визнач власника, потім обери форму tener.",
+"note": "Ключова форма: tienen. Дієслово узгоджується з власником, не з річчю.",
+"samples": [
+"es:11:44",
+"es:11:50"
+],
+"focusId": "es:11:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "я",
+"id": "es:11:01",
+"sample": "Tengo una pregunta."
+},
+{
+"es": "tú · tienes",
+"gloss": "ти",
+"id": "es:11:02",
+"sample": "Tienes una pregunta."
+},
+{
+"es": "él · tiene",
+"gloss": "він/вона/Ви",
+"id": "es:11:03",
+"sample": "Ana tiene una pregunta."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "ми",
+"id": "es:11:04",
+"sample": "Tenemos una pregunta."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "ви (друзі, Іспанія)",
+"id": "es:11:25",
+"sample": "No tenéis cambio."
+},
+{
+"es": "ellos · tienen",
+"gloss": "вони/ви (ustedes)",
+"id": "es:11:05",
+"sample": "Mis hermanos tienen una pregunta."
+}
+],
+"title": "tener · Теперішній час"
+}
+]
+},
+"en": {
+"title": "Saying what you have with tener",
+"formula": "(subject) + tener (tengo, tienes…) + what the person has",
+"story": "Imagine raising your hand: Tengo una pregunta means you have a question. Point to Ana instead: Ana tiene una pregunta.",
+"use": "Report who has a thing or opportunity. First, find the owner, then choose the form tener.",
+"choose": "Remember tengo, tienes, tiene along with faces yo, tú, él. Don't use the correct model comer blindly: tengo has g, and tienes and tiene have ie.",
+"nuance": "Tell me who has a thing or opportunity. First, find the owner, then choose the form tener. The verb agrees with the owner, not with the thing they own.",
+"wrong": "Tiene una pregunta.",
+"right": "Tengo una pregunta.",
+"chapters": [
+{
+"title": "Who has the item?",
+"body": "In \"I have a question,\" the speaker is the owner. They become the subject of the Spanish phrase. Don't translate \"y\" as a separate preposition: tengo already means \"I have.\"",
+"note": "Key form: Tengo. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:01",
+"es:11:02"
+],
+"focusId": "es:11:01"
+},
+{
+"title": "Which three forms should I recognise first?",
+"body": "Remember tengo, tienes, tiene along with faces yo, tú, él. Don't use the correct model comer blindly: tengo has g, and tienes and tiene have ie.",
+"note": "Key form: Tienes. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:02",
+"es:11:03"
+],
+"focusId": "es:11:02"
+},
+{
+"title": "How do we say what we or you have as a group?",
+"body": "When we are the owners, you need tenemos. Two tickets don't change form: tenemos un billete and tenemos dos billetes. For ellos, on the contrary, tienen even with one ticket.",
+"note": "Key form: Tenemos. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:16",
+"es:11:17"
+],
+"focusId": "es:11:16"
+},
+{
+"title": "Is something available or does someone have it?",
+"body": "Hay una llave reports the presence of a key, but doesn't identify the owner. Tengo la llave answers another question: I have the key. Determine what information the clue conveys.",
+"note": "Key form: Tengo. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:07",
+"es:11:08"
+],
+"focusId": "es:11:07"
+},
+{
+"title": "How do I say who does not have something?",
+"body": "In \"I don't have time,\" first identify the owner. For \"I,\" choose tengo and precede it with no. Don't try to negate the noun tiempo.",
+"note": "Key form: tengo. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:26",
+"es:11:27"
+],
+"focusId": "es:11:26"
+},
+{
+"title": "How do I choose the words in order?",
+"body": "Compare the two tasks: \"We have an idea.\" / \"I don't have any change.\" The verb agrees with the owner, not with what they own. Semantic supports: \" idea \" — idea.",
+"note": "Key form: tengo. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:20",
+"es:11:21"
+],
+"focusId": "es:11:21"
+},
+{
+"title": "Can I use tener with a different item?",
+"body": "Compare the two tasks: \"Louis has my number.\" / \"My sisters have the keys to the house.\" The verb agrees with the owner, not with what they own. Say who has the thing or opportunity. First, find the owner, then choose the form tener.",
+"note": "Key form: tienen. The verb agrees with the owner, not with what they own.",
+"samples": [
+"es:11:44",
+"es:11:50"
+],
+"focusId": "es:11:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · tengo",
+"gloss": "I",
+"id": "es:11:01",
+"sample": "Tengo una pregunta."
+},
+{
+"es": "tú · tienes",
+"gloss": "you",
+"id": "es:11:02",
+"sample": "Tienes una pregunta."
+},
+{
+"es": "él · tiene",
+"gloss": "he/she/you",
+"id": "es:11:03",
+"sample": "Ana tiene una pregunta."
+},
+{
+"es": "nosotros · tenemos",
+"gloss": "we",
+"id": "es:11:04",
+"sample": "Tenemos una pregunta."
+},
+{
+"es": "vosotros · tenéis",
+"gloss": "you (friends, Spain)",
+"id": "es:11:25",
+"sample": "No tenéis cambio."
+},
+{
+"es": "ellos · tienen",
+"gloss": "they/you (ustedes)",
+"id": "es:11:05",
+"sample": "Mis hermanos tienen una pregunta."
+}
+],
+"title": "tener Present"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:11:01",
+"index": 0,
+"right": "Tengo",
+"near": "Tienes",
+"seq": [
+"Tengo",
+"una",
+"pregunta"
+],
+"i": 0,
+"kind": "form",
+"key": "es11/lab/form1",
+"feedback": {
+"ru": "Tengo ← tener (иметь); yo.",
+"uk": "Tengo ← tener (мати); yo.",
+"en": "Tengo ← tener (to have); yo."
+}
+},
+{
+"id": "es:11:13",
+"index": 2,
+"right": "tiene",
+"near": "tienen",
+"seq": [
+"Mi",
+"hermana",
+"tiene",
+"una",
+"cita"
+],
+"i": 12,
+"kind": "form",
+"key": "es11/lab/form2",
+"feedback": {
+"ru": "tiene ← tener (иметь); él.",
+"uk": "tiene ← tener (мати); él.",
+"en": "tiene ← tener (to have); él."
+}
+},
+{
+"id": "es:11:25",
+"index": 1,
+"right": "tenéis",
+"near": "tengo",
+"seq": [
+"No",
+"tenéis",
+"cambio"
+],
+"i": 24,
+"kind": "form",
+"key": "es11/lab/form3",
+"feedback": {
+"ru": "tenéis ← tener (иметь); vosotros.",
+"uk": "tenéis ← tener (мати); vosotros.",
+"en": "tenéis ← tener (to have); vosotros."
+}
+},
+{
+"id": "es:11:38",
+"index": 0,
+"right": "Tienen",
+"near": "Tiene",
+"seq": [
+"Tienen",
+"ustedes",
+"una",
+"reserva"
+],
+"i": 37,
+"kind": "form",
+"key": "es11/lab/form4",
+"feedback": {
+"ru": "Tienen ← tener (иметь); ellos.",
+"uk": "Tienen ← tener (мати); ellos.",
+"en": "Tienen ← tener (to have); ellos."
+}
+},
+{
+"id": "es:11:04",
+"index": 0,
+"right": "Tenemos",
+"near": "Tengo",
+"seq": [
+"Tenemos",
+"una",
+"pregunta"
+],
+"i": 3,
+"kind": "spot",
+"key": "es11/lab/spot1",
+"feedback": {
+"ru": "Tenemos ← tener (иметь); nosotros.",
+"uk": "Tenemos ← tener (мати); nosotros.",
+"en": "Tenemos ← tener (to have); nosotros."
+}
+},
+{
+"id": "es:11:22",
+"index": 1,
+"right": "tienes",
+"near": "tengo",
+"seq": [
+"No",
+"tienes",
+"cambio"
+],
+"i": 21,
+"kind": "spot",
+"key": "es11/lab/spot2",
+"feedback": {
+"ru": "tienes ← tener (иметь); tú.",
+"uk": "tienes ← tener (мати); tú.",
+"en": "tienes ← tener (to have); tú."
+}
+},
+{
+"id": "es:11:32",
+"index": 0,
+"right": "Tienes",
+"near": "Tengo",
+"seq": [
+"Tienes",
+"mi",
+"mochila"
+],
+"i": 31,
+"kind": "spot",
+"key": "es11/lab/spot3",
+"feedback": {
+"ru": "Tienes ← tener (иметь); tú.",
+"uk": "Tienes ← tener (мати); tú.",
+"en": "Tienes ← tener (to have); tú."
+}
+},
+{
+"id": "es:11:46",
+"index": 0,
+"right": "Tengo",
+"near": "Tienes",
+"seq": [
+"Tengo",
+"las",
+"llaves",
+"de",
+"casa"
+],
+"i": 45,
+"kind": "spot",
+"key": "es11/lab/spot4",
+"feedback": {
+"ru": "Tengo ← tener (иметь); yo.",
+"uk": "Tengo ← tener (мати); yo.",
+"en": "Tengo ← tener (to have); yo."
+}
+},
+{
+"kind": "match",
+"key": "es11/lab/match1",
+"id": "es:11:02",
+"other": "es:11:03"
+},
+{
+"kind": "match",
+"key": "es11/lab/match2",
+"id": "es:11:17",
+"other": "es:11:16"
+},
+{
+"kind": "match",
+"key": "es11/lab/match3",
+"id": "es:11:33",
+"other": "es:11:32"
+},
+{
+"kind": "match",
+"key": "es11/lab/match4",
+"id": "es:11:46",
+"other": "es:11:50"
+},
+{
+"kind": "build",
+"key": "es11/lab/build1",
+"id": "es:11:04"
+},
+{
+"kind": "build",
+"key": "es11/lab/build2",
+"id": "es:11:15"
+},
+{
+"kind": "build",
+"key": "es11/lab/build3",
+"id": "es:11:29"
+},
+{
+"kind": "build",
+"key": "es11/lab/build4",
+"id": "es:11:42"
+},
+{
+"kind": "transform",
+"id": "es:11:14",
+"base": "es:11:13",
+"diff": [
+{
+"before": [
+"hermana"
+],
+"after": [
+"madre"
+]
+}
+],
+"key": "es11/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:11:35",
+"base": "es:11:01",
+"diff": [
+{
+"before": [
+"Tengo"
+],
+"after": [
+"Tienes"
+]
+}
+],
+"key": "es11/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:11:47",
+"base": "es:11:46",
+"diff": [
+{
+"before": [
+"Tengo"
+],
+"after": [
+"Tienes"
+]
+}
+],
+"key": "es11/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:11:49",
+"base": "es:11:48",
+"diff": [
+{
+"before": [
+"Tenemos"
+],
+"after": [
+"Tenéis"
+]
+}
+],
+"key": "es11/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+12
+],
+[
+9,
+13
+],
+[
+1,
+16
+],
+[
+2,
+14
+],
+[
+5,
+10
+],
+[
+11,
+19
+]
+],
+"worked": [
+"es:11:05",
+"es:11:18",
+"es:11:33",
+"es:11:48"
+],
+"reflection": [
+"es:11:01",
+"es:11:02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 12,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 12,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Красная сумка, красные сумки: согласование",
+"formula": "название предмета → испанский род и число → прилагательное",
+"story": "Цвет или размер один и тот же, а окончание может измениться. Сравни новый предмет: el libro nuevo, la mochila nueva.",
+"use": "Подбери форму прилагательного по испанскому существительному, а не по роду его перевода.",
+"choose": "Сначала определи род, затем число. У rojo четыре формы: rojo, roja, rojos, rojas. В las maletas rojas обе метки совпадают с существительным.",
+"nuance": "Подбери форму прилагательного по испанскому существительному, а не по роду его перевода. Проверь род и число испанского названия предмета.",
+"wrong": "El libro es nueva.",
+"right": "El libro es nuevo.",
+"chapters": [
+{
+"title": "Почему el libro nuevo, а не el libro nueva?",
+"body": "Начни с испанского существительного. В el libro слово libro мужского рода: el libro nuevo. В la mochila слово mochila женского рода: la mochila nueva. Окончание согласуется с испанским словом.",
+"note": "nuevo: единственное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:01",
+"es:12:02"
+],
+"focusId": "es:12:01"
+},
+{
+"title": "Две оси",
+"body": "Сначала определи род, затем число. У rojo четыре формы: rojo, roja, rojos, rojas. В las maletas rojas обе метки совпадают с существительным.",
+"note": "pequeñas: множественное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:16",
+"es:12:17"
+],
+"focusId": "es:12:16"
+},
+{
+"title": "После ser",
+"body": "Согласование сохраняется и через глагол: la mochila es nueva, las mochilas son nuevas. Меняются сразу связка и окончание, потому что изменилось подлежащее.",
+"note": "pequeños: множественное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:11",
+"es:12:12"
+],
+"focusId": "es:12:11"
+},
+{
+"title": "Не всё заканчивается на -o",
+"body": "Grande не превращается в granda для женского рода. Оно меняется только по числу: una casa grande, dos casas grandes. Не отрезай последнюю букву автоматически.",
+"note": "grande: единственное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:31",
+"es:12:32"
+],
+"focusId": "es:12:31"
+},
+{
+"title": "Место описания",
+"body": "В нейтральных образцах с цветом или размером сначала называем предмет, потом признак: una mochila roja. Это модель этих заданий, а не запрет на другие позиции прилагательных.",
+"note": "negro: единственное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:42",
+"es:12:43"
+],
+"focusId": "es:12:42"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Окна маленькие.» / «Моя машина красная.». Проверь род и число испанского названия предмета. Смысловые опоры: «ventanas» — окно; «pequeñas» — маленький.",
+"note": "rojo: единственное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:20",
+"es:12:21"
+],
+"focusId": "es:12:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Я ищу новую книгу.» / «Здесь есть большое окно.». Проверь род и число испанского названия предмета. Подбери форму прилагательного по испанскому существительному, а не по роду его перевода.",
+"note": "grande: единственное число. Проверь род и число испанского названия предмета.",
+"samples": [
+"es:12:44",
+"es:12:50"
+],
+"focusId": "es:12:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "он/она/Вы",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nosotros · somos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "они/вы (ustedes)",
+"id": "es:12:11",
+"sample": "Los libros son pequeños."
+}
+],
+"title": "ser · Настоящее"
+},
+{
+"rows": [
+{
+"es": "nuevo / nueva",
+"gloss": "одна вещь: мужской / женский род",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nuevos / nuevas",
+"gloss": "несколько вещей",
+"id": "es:12:49",
+"sample": "Hay dos libros nuevos aquí."
+},
+{
+"es": "grande / grandes",
+"gloss": "меняется число, но не род",
+"id": "es:12:31",
+"sample": "La casa es grande."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Червона сумка, червоні сумки: узгодження",
+"formula": "назва речі → іспанський рід і число → прикметник",
+"story": "Колір чи розмір той самий, але закінчення може змінитися. Порівняй: el libro nuevo, la mochila nueva.",
+"use": "Узгодь прикметник з іспанським іменником, а не з родом його перекладу.",
+"choose": "Спочатку визнач рід, тоді число. Rojo має чотири форми: rojo, roja, rojos, rojas. У las maletas rojas обидві ознаки відповідають іменнику.",
+"nuance": "Узгодь прикметник з іспанським іменником, а не з родом його перекладу. Перевір рід та число іспанської назви речі.",
+"wrong": "El libro es nueva.",
+"right": "El libro es nuevo.",
+"chapters": [
+{
+"title": "Чому el libro nuevo, а не el libro nueva?",
+"body": "Почни з іспанського іменника. В el libro слово libro чоловічого роду: el libro nuevo. У la mochila слово mochila жіночого роду: la mochila nueva. Закінчення узгоджується з іспанським словом.",
+"note": "nuevo: однина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:01",
+"es:12:02"
+],
+"focusId": "es:12:01"
+},
+{
+"title": "Дві ознаки",
+"body": "Спочатку визнач рід, тоді число. Rojo має чотири форми: rojo, roja, rojos, rojas. У las maletas rojas обидві ознаки відповідають іменнику.",
+"note": "pequeñas: множина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:16",
+"es:12:17"
+],
+"focusId": "es:12:16"
+},
+{
+"title": "Після ser",
+"body": "Узгодження зберігається і через дієслово: la mochila es nueva, las mochilas son nuevas. Через зміну підмета змінюються і зв’язка, і закінчення прикметника.",
+"note": "pequeños: множина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:11",
+"es:12:12"
+],
+"focusId": "es:12:11"
+},
+{
+"title": "Не все закінчується на -o",
+"body": "Grande не стає granda для жіночого роду. Воно змінюється лише за числом: una casa grande, dos casas grandes. Не відкидай останню літеру автоматично.",
+"note": "grande: однина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:31",
+"es:12:32"
+],
+"focusId": "es:12:31"
+},
+{
+"title": "Місце ознаки",
+"body": "У нейтральних зразках із кольором або розміром спершу називаємо річ, тоді ознаку: una mochila roja. Це модель завдань, а не заборона на інші позиції прикметників.",
+"note": "negro: однина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:42",
+"es:12:43"
+],
+"focusId": "es:12:42"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Вікна маленькі.» / «Моя машина червона.». Перевір рід та число іспанської назви речі. Смислові опори: «ventanas» — вікно; «pequeñas» — малий.",
+"note": "rojo: однина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:20",
+"es:12:21"
+],
+"focusId": "es:12:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Я шукаю нову книжку.» / «Тут є велике вікно.». Перевір рід та число іспанської назви речі. Узгодь прикметник з іспанським іменником, а не з родом його перекладу.",
+"note": "grande: однина. Перевір рід та число іспанської назви речі.",
+"samples": [
+"es:12:44",
+"es:12:50"
+],
+"focusId": "es:12:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "він/вона/Ви",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nosotros · somos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "вони/ви (ustedes)",
+"id": "es:12:11",
+"sample": "Los libros son pequeños."
+}
+],
+"title": "ser · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "nuevo / nueva",
+"gloss": "одна річ: чоловічий / жіночий рід",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nuevos / nuevas",
+"gloss": "кілька речей",
+"id": "es:12:49",
+"sample": "Hay dos libros nuevos aquí."
+},
+{
+"es": "grande / grandes",
+"gloss": "змінюється число, але не рід",
+"id": "es:12:31",
+"sample": "La casa es grande."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Making adjectives agree with nouns",
+"formula": "noun + adjective with matching gender and number: el libro nuevo · la mochila nueva",
+"story": "Both objects can be new: el libro nuevo, la mochila nueva. The object changes, so the ending of the describing word changes too.",
+"use": "Match the adjective form to the Spanish noun, not to its gender.",
+"choose": "First, determine the gender, then the number. rojo has four forms: rojo, roja, rojos, rojas. In las maletas rojas both labels match the noun.",
+"nuance": "Match the adjective form to the Spanish noun, not to its gender. Check the gender and number of the Spanish name of the object.",
+"wrong": "El libro es nueva.",
+"right": "El libro es nuevo.",
+"chapters": [
+{
+"title": "Why el libro nuevo rather than el libro nueva?",
+"body": "Libro is masculine in Spanish, so the adjective is nuevo: el libro nuevo. An adjective describing a different noun may need a different ending: la mochila nueva.",
+"note": "nuevo: singular. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:01",
+"es:12:02"
+],
+"focusId": "es:12:01"
+},
+{
+"title": "Which noun decides gender and number?",
+"body": "First, determine the gender, then the number. rojo has four forms: rojo, roja, rojos, rojas. In las maletas rojas both labels match the noun.",
+"note": "pequeñas: Plural. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:16",
+"es:12:17"
+],
+"focusId": "es:12:16"
+},
+{
+"title": "What happens to the adjective after ser?",
+"body": "Agreement is also maintained through the verb: la mochila es nueva, las mochilas son nuevas. The linking and ending change immediately because the subject has changed.",
+"note": "pequeños: Plural. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:11",
+"es:12:12"
+],
+"focusId": "es:12:11"
+},
+{
+"title": "Do all adjectives end in -o or -a?",
+"body": "Grande doesn't turn into granda for the feminine gender. It only changes in number: una casa grande, dos casas grandes. Don't automatically cut off the last letter.",
+"note": "grande: singular. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:31",
+"es:12:32"
+],
+"focusId": "es:12:31"
+},
+{
+"title": "Where does the description go in these examples?",
+"body": "In neutral examples with color or size, we first name the object, then the attribute: una mochila roja. This is a model for these tasks, not a prohibition on other adjective positions.",
+"note": "negro: singular. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:42",
+"es:12:43"
+],
+"focusId": "es:12:42"
+},
+{
+"title": "How do I check each word?",
+"body": "Compare the two tasks: \"The windows are small.\" / \"My car is red.\" Check the gender and number of the Spanish name of the object. Semantic supports: \" ventanas \" - window; \" pequeñas \" - small.",
+"note": "rojo: singular. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:20",
+"es:12:21"
+],
+"focusId": "es:12:21"
+},
+{
+"title": "Can I describe a different thing?",
+"body": "Compare the two tasks: \"I'm looking for a new book.\" / \"There's a big window here.\" Check the gender and number of the Spanish object name. Match the adjective form to the Spanish noun, not the gender of its translation.",
+"note": "grande: singular. Check the gender and number of the Spanish name of the object.",
+"samples": [
+"es:12:44",
+"es:12:50"
+],
+"focusId": "es:12:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "he/she/you",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nosotros · somos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "they/you (ustedes)",
+"id": "es:12:11",
+"sample": "Los libros son pequeños."
+}
+],
+"title": "ser Present"
+},
+{
+"rows": [
+{
+"es": "nuevo / nueva",
+"gloss": "One thing: masculine / feminine",
+"id": "es:12:01",
+"sample": "El libro es nuevo."
+},
+{
+"es": "nuevos / nuevas",
+"gloss": "several things",
+"id": "es:12:49",
+"sample": "Hay dos libros nuevos aquí."
+},
+{
+"es": "grande / grandes",
+"gloss": "the number changes, but not the gender",
+"id": "es:12:31",
+"sample": "La casa es grande."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:12:01",
+"index": 3,
+"right": "nuevo",
+"near": "nuevas",
+"seq": [
+"El",
+"libro",
+"es",
+"nuevo"
+],
+"i": 0,
+"kind": "form",
+"key": "es12/lab/form1",
+"feedback": {
+"ru": "Признак или состояние: nuevo — новый.",
+"uk": "Ознака чи стан: nuevo — новий.",
+"en": "Feature or Condition: nuevo - New."
+}
+},
+{
+"id": "es:12:13",
+"index": 3,
+"right": "pequeños",
+"near": "pequeña",
+"seq": [
+"Los",
+"coches",
+"son",
+"pequeños"
+],
+"i": 12,
+"kind": "form",
+"key": "es12/lab/form2",
+"feedback": {
+"ru": "Признак или состояние: pequeño — маленький.",
+"uk": "Ознака чи стан: pequeño — малий.",
+"en": "Feature or Condition: pequeño - Small."
+}
+},
+{
+"id": "es:12:25",
+"index": 3,
+"right": "blanco",
+"near": "blanca",
+"seq": [
+"Mi",
+"móvil",
+"es",
+"blanco"
+],
+"i": 24,
+"kind": "form",
+"key": "es12/lab/form3",
+"feedback": {
+"ru": "Признак или состояние: blanco — белый.",
+"uk": "Ознака чи стан: blanco — білий.",
+"en": "Trait or condition: blanco - white."
+}
+},
+{
+"id": "es:12:38",
+"index": 1,
+"right": "grandes",
+"near": "grande",
+"seq": [
+"Son",
+"grandes",
+"las",
+"mochilas"
+],
+"i": 37,
+"kind": "form",
+"key": "es12/lab/form4",
+"feedback": {
+"ru": "Признак или состояние: grande — большой.",
+"uk": "Ознака чи стан: grande — великий.",
+"en": "Trait or condition: grande - large."
+}
+},
+{
+"id": "es:12:07",
+"index": 3,
+"right": "nueva",
+"near": "nuevos",
+"seq": [
+"La",
+"maleta",
+"es",
+"nueva"
+],
+"i": 6,
+"kind": "spot",
+"key": "es12/lab/spot1",
+"feedback": {
+"ru": "Признак или состояние: nuevo — новый.",
+"uk": "Ознака чи стан: nuevo — новий.",
+"en": "Feature or Condition: nuevo - New."
+}
+},
+{
+"id": "es:12:20",
+"index": 3,
+"right": "pequeñas",
+"near": "pequeño",
+"seq": [
+"Las",
+"ventanas",
+"son",
+"pequeñas"
+],
+"i": 19,
+"kind": "spot",
+"key": "es12/lab/spot2",
+"feedback": {
+"ru": "Признак или состояние: pequeño — маленький.",
+"uk": "Ознака чи стан: pequeño — малий.",
+"en": "Feature or Condition: pequeño - Small."
+}
+},
+{
+"id": "es:12:32",
+"index": 3,
+"right": "grande",
+"near": "grandes",
+"seq": [
+"El",
+"hotel",
+"es",
+"grande"
+],
+"i": 31,
+"kind": "spot",
+"key": "es12/lab/spot3",
+"feedback": {
+"ru": "Признак или состояние: grande — большой.",
+"uk": "Ознака чи стан: grande — великий.",
+"en": "Trait or condition: grande - large."
+}
+},
+{
+"id": "es:12:45",
+"index": 3,
+"right": "roja",
+"near": "rojo",
+"seq": [
+"Busco",
+"una",
+"mochila",
+"roja"
+],
+"i": 44,
+"kind": "spot",
+"key": "es12/lab/spot4",
+"feedback": {
+"ru": "Признак или состояние: rojo — красный.",
+"uk": "Ознака чи стан: rojo — червоний.",
+"en": "Feature or Condition: rojo - Red."
+}
+},
+{
+"kind": "match",
+"key": "es12/lab/match1",
+"id": "es:12:02",
+"other": "es:12:06"
+},
+{
+"kind": "match",
+"key": "es12/lab/match2",
+"id": "es:12:17",
+"other": "es:12:15"
+},
+{
+"kind": "match",
+"key": "es12/lab/match3",
+"id": "es:12:33",
+"other": "es:12:34"
+},
+{
+"kind": "match",
+"key": "es12/lab/match4",
+"id": "es:12:46",
+"other": "es:12:48"
+},
+{
+"kind": "build",
+"key": "es12/lab/build1",
+"id": "es:12:04"
+},
+{
+"kind": "build",
+"key": "es12/lab/build2",
+"id": "es:12:15"
+},
+{
+"kind": "build",
+"key": "es12/lab/build3",
+"id": "es:12:29"
+},
+{
+"kind": "build",
+"key": "es12/lab/build4",
+"id": "es:12:42"
+},
+{
+"kind": "transform",
+"id": "es:12:05",
+"base": "es:12:03",
+"diff": [
+{
+"before": [
+"móvil"
+],
+"after": [
+"coche"
+]
+}
+],
+"key": "es12/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:12:35",
+"base": "es:12:10",
+"diff": [
+{
+"before": [
+"nueva"
+],
+"after": [
+"grande"
+]
+}
+],
+"key": "es12/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:12:33",
+"base": "es:12:31",
+"diff": [
+{
+"before": [
+"casa"
+],
+"after": [
+"cocina"
+]
+}
+],
+"key": "es12/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:12:40",
+"base": "es:12:38",
+"diff": [
+{
+"before": [
+"mochilas"
+],
+"after": [
+"mesas"
+]
+}
+],
+"key": "es12/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+9,
+13
+],
+[
+1,
+4
+],
+[
+6,
+18
+],
+[
+15,
+7
+],
+[
+5,
+2
+],
+[
+11,
+19
+]
+],
+"worked": [
+"es:12:05",
+"es:12:18",
+"es:12:33",
+"es:12:48"
+],
+"reflection": [
+"es:12:01",
+"es:12:06"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

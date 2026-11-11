@@ -135,7 +135,11 @@ for (const lang of LANGS) {
           const pool = [...(seen.get(low(tile.correct)) || new Map()).entries()]
             .filter(([, e]) => e.first <= lesson.n).sort((a, b) => b[1].count - a[1].count || a[0].localeCompare(b[0])).map(([w]) => w);
           // последний запас — служебные слова языка из списков сторожа (на них правило «пройденности» не распространяется)
-          const pick = pool.find(fits) ?? (d.with || []).find(fits) ?? (LISTS.closedClasses?.[lang]?.prep ?? []).find(fits);
+          // зачем (U10, часть 3): noPool — замена ТОЛЬКО из явного списка слов другого класса. Пул «соблазны того же верного
+          // слова» состоит из слов того же класса (предлог к предлогу), а они-то и встают в слот грамматически («être vers la gare»).
+          const pick = d.noPool
+            ? (d.with || []).find(fits)
+            : pool.find(fits) ?? (d.with || []).find(fits) ?? (LISTS.closedClasses?.[lang]?.prep ?? []).find(fits);
           if (!pick) throw new Error(`${LOG} ${p.id}#${i}: нет замены для «${d.distractor}» при «${tile.correct}» (${p.target})`);
           const next = likeCase(pick, tile.distractors[at]);
           rows.push(`| ${lang} | ${String(lesson.n).padStart(2, '0')} | ${p.target} — ${p.sourceLocales.ru} | **${tile.correct}** / ~~${tile.distractors[at]}~~ | **${tile.correct}** / ${next} | ${d.why} |`);

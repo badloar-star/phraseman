@@ -10,8 +10,8 @@ describe('overlays=off also hides the entitlement-expired window', () => {
   it('the host subscribes to the dev flag and neither takes the arbiter slot nor renders while it is on', () => {
     expect(host).toContain("import { getDevOverlaysSnapshot, subscribeDevOverlays } from '../app/dev_overlays_off';");
     expect(host).toContain('useSyncExternalStore(subscribeDevOverlays, getDevOverlaysSnapshot, getDevOverlaysSnapshot)');
-    expect(host).toContain("useOverlayVisible('entitlementExpired', kind != null && !devOverlaysOff)");
-    expect(host).toContain('if (!kind || !overlayVisible || devOverlaysOff) return null;');
+    expect(host).toContain("useOverlayVisible('entitlementExpired', pending !== null && !devOverlaysOff && !billingOpen)");
+    expect(host).toContain('if (!pending || !overlayVisible || billingOpen || devOverlaysOff || opened.current === pending) return;');
   });
 
   it('the link generator no longer exempts the settings message-slot rows from overlays=off', () => {

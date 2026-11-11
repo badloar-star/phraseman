@@ -1,7 +1,3 @@
-// зачем: 2026-08-23 — контент-фабрика Learning V2 (9 функций) переехала в
-// кодбазу functions-content. Замер: она тянула в память все авторские сессии
-// курса и стоила 236 МБ из 380 МБ основного бандла, то есть за неё платили
-// все 240 функций при каждом холодном старте. Деплой: functions:content.
 // зачем (Account V2, 8D): ПЕРВЫМ — до любых модулей: в эмуляторе функций прокси firebase-admin
 // теряет статики admin.firestore (FieldValue/Timestamp); в проде ничего не делает.
 import "./emulator_admin_namespace_fix";
@@ -234,13 +230,6 @@ const {
 // adminGetCoinExchangeCenter) удалена целиком: тратила жемчуг, которого больше нет.
 // Функции на сервере снимает деплой владельца.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  getLearningV2AccountBinding,
-  resolveLearningV2WalletRewardReceipt,
-} = require("./learning_v2_wallet_reward_callable");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { grantMistakeCorrectionReward } = require("./mistake_practice_wallet_reward");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { mistakePracticeSyncEvents } = require("./mistake_practice_event_sync");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -289,14 +278,6 @@ const {
 const {
   progressReseedMissing,
 } = require("./progress_reseed_missing");
-// Learning V2 uploads one immutable completion packet only after the local
-// session is over. The active lesson never calls this endpoint.
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  createRequiredSessionCompletionProductionCallable,
-} = require("./learning_v2/required_session_completion_callable");
-const submitLearningV2RequiredSessionCompletion =
-  createRequiredSessionCompletionProductionCallable();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   ADMIN_ALERT_BOT_TOKEN,
@@ -402,8 +383,6 @@ exports.vipRevokeMine = vipRevokeMine;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.progressReseedMissing = progressReseedMissing;
-exports.submitLearningV2RequiredSessionCompletion =
-  submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnUserIdeaReport = adminAlertOnUserIdeaReport;
 exports.adminAlertOnCronHeartbeat = adminAlertOnCronHeartbeat;
@@ -416,10 +395,6 @@ exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.submitShardSurvey = submitShardSurvey;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
-exports.resolveLearningV2WalletRewardReceipt =
-  resolveLearningV2WalletRewardReceipt;
-exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
-exports.grantMistakeCorrectionReward = grantMistakeCorrectionReward;
 exports.mistakePracticeSyncEvents = mistakePracticeSyncEvents;
 exports.submitUserIdea = submitUserIdea;
 exports.listPublicUserIdeas = listPublicUserIdeas;
@@ -623,10 +598,6 @@ export { communityMonthStandingsRefresh } from './community_month_contest';
 export { cardTtsPackWorker, adminCardTtsRequeuePack } from "./card_tts_worker";
 
 
-// Learning V2 learner-safe active-session descriptor. Auth + App Check are
-// enforced in the callable module; no private repository handle is serialized.
-export { submitLearningV2ActivityReleasedCompletionV1 } from "./learning_v2/activity_released_session_completion_callable_v1";
-export { submitLearningV2CourseSessionCompletedV1 } from "./learning_v2/course_session_completed_summary_callable_v1";
 
 // ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
 export { premiumExpiryCron } from "./premium_expiry_cron";
@@ -777,10 +748,6 @@ export {
   adminVerifyGlobalBroadcastPrivacyReadiness,
 } from "./admin_global_broadcast";
 export {
-  adminCreateContentGenerationJob,
-  adminListContentFactoryJobs,
-} from "./admin_content_factory";
-export {
   adminGetVideoStudioWorkspace,
   adminGetVideoPhraseWorkspace,
   adminSaveVideoPhraseDraft,
@@ -795,7 +762,6 @@ export {
   adminCreateContentStage,
   adminControlContentStage,
   adminListContentStages,
-  adminGetLearningV2CourseWorkspaceProjection,
   adminListContentStageDependencies,
   adminGetContentStageCapabilities,
   adminPreviewContentStage,
@@ -807,38 +773,6 @@ export {
   adminRunContentStage,
   CONTENT_STAGE_OPENAI_API_KEY,
 } from "./content_stage_worker";
-export {
-  learningV2LocalizedCourseShardBackgroundWorker,
-  adminPreviewLearningV2CourseWave,
-  adminApproveLearningV2CourseWave,
-  adminRejectLearningV2CourseWave,
-  LEARNING_V2_COURSE_SHARD_OPENAI_API_KEY,
-} from "./content_factory/learning_v2_course_shard_background";
-// зачем: без экспорта функции просто нет на сервере. Именно её отсутствие
-// давало head_missing и «Сессия недоступна / NOT FOUND» — публиковать курс
-// было нечем.
-export {
-  adminGetContentFactoryJobDetail,
-  adminGetContentFactoryUnitPreview,
-  adminGetContentFactoryWorkspace,
-  adminGetContentFactoryRolloutMetrics,
-} from "./admin_content_factory_read";
-export {
-  adminRunContentGenerationUnit,
-  CONTENT_FACTORY_OPENAI_API_KEY,
-} from "./content_factory_worker";
-export {
-  adminSaveV2EpisodeDraft,
-  adminSaveV2SeasonDraft,
-} from "./admin_content_studio_callables";
-export {
-  adminReviewCourseGeneration,
-  adminSealCourseRelease,
-} from "./admin_content_release";
-export {
-  adminActivateCourseRelease,
-  adminRollbackCourseRelease,
-} from "./language_release";
 export {
   openAiDialogModelConfig,
   openAiDialogQuotaConfig,
@@ -1012,9 +946,6 @@ export {
 // tournamentWeeklyBankInfo давал 4 569 вызовов/мес от клиента 1.6.7, и все они
 // уже отвечали 401 — то есть функция не работала и до удаления.
 
-// Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
-export { finalizeLearningV2DelayedCandidate } from "./learning_v2_delayed_callable";
-export { finalizeLearningV2AccessPurchase } from "./learning_v2_access_production_callable";
 
 // зачем: D108 — архив косметики (cosmeticAssetCatalogGet, adminGetCosmeticAssetArchive,
 // adminSetCosmeticAssetSaleStatus) удалён вместе с аурами и кастомными аватарами.
@@ -1034,11 +965,8 @@ export { friendsGetProfiles } from "./friends_profiles";
 // «Позвать» — вкладка Друзья, за флагом
 // friends_together_enabled на клиенте.
 export { friendsNudge } from "./friends_together";
-// «Дуэль на 5 фраз» и «Урок вместе» (владелец 21.10) — за remote_config bools.friends_together_enabled;
-// выкладка только по «да» владельца. Claim «Урока вместе» отвечает completion_reader_not_wired, пока Learning V2
-// не отдаст помощник чтения засчитанного занятия.
+// «Дуэль на 5 фраз» (владелец 21.10) — за remote_config bools.friends_together_enabled.
 export { friendsDuelChallenge, friendsDuelMove, friendsDuelDecline } from "./friends_duel";
-export { friendsLessonInvite, friendsLessonTogetherMark } from "./friends_lesson_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
 // Визитка «Про» (2026-09-30): свой текст до 80 символов — только через сервер.
 export { profileCardBioSetMine } from "./profile_card_bio";
@@ -1102,19 +1030,6 @@ export {
   adminResumePendingReferralPurchaseRepair,
 } from "./admin_referral_purchase_repair";
 
-// Learning V2: генерация юнитов (E1 vertical slice) — очередь плана + воркер
-export {
-  adminCreateV2GenerationPlan,
-  adminQueueV2GenerationPlan,
-} from "./admin_v2_generation";
-export {
-  adminGetV2OwnerGeneratorWorkspace,
-  adminPrepareV2OwnerEpisodeDraft,
-} from "./content_factory/v2_owner_generator_workspace_v1";
-export {
-  adminSeedV2E1DemoSource,
-  adminRunV2E1Compilation,
-} from "./content_factory/v2_e1_compilation_worker";
 // зачем: панель «Диагностика» в админке (аудит 2026-08-29) — пульс кронов,
 // стадии удалений, critical-поток клиентов и обезличенная экономика одним
 // вызовом; cron_heartbeats/deletion_diagnostics закрыты правилами наглухо,
@@ -1137,18 +1052,6 @@ export { accountsV2DeletionStatus } from "./accounts_v2_deletion/status_callable
 // config/accounts_v2.syncEnabled (выкл → accounts_v2_disabled, ноль чтений данных).
 export { accountsV2MigrateMine } from "./accounts_v2_adapter/migrate_mine";
 export { accountsV2PullMine } from "./accounts_v2_adapter/pull_mine";
-// зачем (владелец, 2026-08-23): кнопка публикации курса в админке
-// (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
-// доставка контента без OTA: опубликовал, и приложение видит новый материал.
-//
-// ЭКСПОРТА ЗДЕСЬ НЕТ НАМЕРЕННО. Функция живёт в кодовой базе `content`
-// (functions-content/index.ts) — её вынесли туда коммитом 478b03750, чтобы
-// основной бандл похудел с 380 до 140 МБ. Позже эту же функцию по незнанию
-// добавили и сюда, из-за чего Firebase отказывался деплоить ВСЁ разом:
-// «More than one codebase claims following functions». Имя эндпоинта не
-// изменилось, поэтому кнопка в админке работает как прежде.
-// Возвращать экспорт сюда нельзя — снова сломается деплой всех функций.
-
 // ── Telegram owner alerts: durable privacy-safe outbox and selected sources ──
 export {
   adminAlertDispatchOnCreate,

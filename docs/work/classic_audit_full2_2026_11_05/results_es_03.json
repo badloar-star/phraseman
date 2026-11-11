@@ -1,0 +1,13 @@
+[
+{"id": "es:07:36", "type": "B1", "field": "tiles", "problem": "На позиции наречения времени 'hoy' соблазны почти все из другого класса (quién, estamos, está, están) — верная плитка угадывается без знания слова", "fix": {"position": 3, "replace_distractor": "quién", "with": "ahora"}},
+{"id": "es:07:36", "type": "B1", "field": "tiles", "problem": "Глагол 'estamos' на позиции наречения времени — очевидный мусор", "fix": {"position": 3, "replace_distractor": "estamos", "with": "mañana"}},
+{"id": "es:08:08", "type": "M", "field": "uk", "problem": "'зарядний пристрій' — канцелярит; в живой речи и в паре с ru 'зарядка' естественно 'зарядка'", "fix": "Моя зарядка в машині."},
+{"id": "es:08:15", "type": "M", "field": "uk", "problem": "'зарядний пристрій' — канцелярит; естественно 'зарядка' (как в ru)", "fix": "Твоя зарядка на кухні."},
+{"id": "es:08:36", "type": "B1", "field": "tiles", "problem": "На позиции связки 'es' три из пяти соблазнов — наречия (aquí, lejos, cerca), явный мусор, верная плитка угадывается по грамматике", "fix": {"position": 2, "replace_distractor": "aquí", "with": "eres"}},
+{"id": "es:08:36", "type": "B1", "field": "tiles", "problem": "Наречие 'lejos' на позиции глагола — мусор", "fix": {"position": 2, "replace_distractor": "lejos", "with": "son"}},
+{"id": "es:08:36", "type": "B1", "field": "tiles", "problem": "Наречие 'cerca' на позиции глагола — мусор", "fix": {"position": 2, "replace_distractor": "cerca", "with": "está"}},
+{"id": "es:08:39", "type": "B1", "field": "tiles", "problem": "На позиции связки 'es' три из пяти соблазнов — наречия (aquí, lejos, cerca), явный мусор", "fix": {"position": 2, "replace_distractor": "aquí", "with": "eres"}},
+{"id": "es:08:39", "type": "B1", "field": "tiles", "problem": "Наречие 'lejos' на позиции глагола — мусор", "fix": {"position": 2, "replace_distractor": "lejos", "with": "son"}},
+{"id": "es:08:39", "type": "B1", "field": "tiles", "problem": "Наречие 'cerca' на позиции глагола — мусор", "fix": {"position": 2, "replace_distractor": "cerca", "with": "está"}},
+{"id": "es:08:41", "type": "M", "field": "uk", "problem": "Родительный падеж неодушевлённого 'телефон' по норме — 'телефону', а не 'телефона'", "fix": "Мого телефону тут немає."}
+]

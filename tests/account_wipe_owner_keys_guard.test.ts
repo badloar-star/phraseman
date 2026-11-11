@@ -4,6 +4,8 @@
 // Новый ключ-владелец без решения роняет тест: так пропуск больше не проскочит молча.
 import fs from 'node:fs';
 import path from 'node:path';
+import { deriveRealPremiumServerProjection, writeRealPremiumServerProjection } from '../app/cloud_sync';
+import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 
 const root = path.join(__dirname, '..');
 const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
@@ -29,6 +31,7 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
   // зачем (координатор 24.10): данные аккаунта — на чужом телефоне им не место; стираются при выходе и удалении
   premium_theme_entitlements_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, PREMIUM_THEME_ENTITLEMENTS_PREFIX) — права на темы владельца (2713b36e9)' },
   plus_cloud_confirmed_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, PLUS_CLOUD_CONFIRMED_PREFIX) — метка «облако подтвердило Plus» (5781370d8)' },
+  premium_real_snapshot_v1: { decision: 'wiped', how: 'общий accountOwnedStorageKeysFrom + финальная проверка isRealPremiumSnapshotStorageKey' },
   app_messages_personal_copy_v1: { decision: 'wiped', how: 'шаг appMessages (APP_MESSAGES_ACCOUNT_WIPE_PREFIXES) — личная копия входящих (ca212f7c0)' },
   paid_level_spin_envelope_v1: { decision: 'kept', how: 'деньги: конверт платного спина, владелец-scoped, досылается при возврате владельца' },
   level_spin_star_grant_outbox_v1: { decision: 'kept', how: 'деньги: очередь начислений звёзд спина' },
@@ -46,6 +49,69 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
 };
 
 describe('account wipe covers every owner-keyed local key', () => {
+  it('derives owner-bound real Premium only from an unambiguous store plan', () => {
+    expect(deriveRealPremiumServerProjection({
+      premium_plan: 'annual',
+      premium_expiry: '1800000000000',
+      premium_rc_expiry_ms: '1800000001000',
+      premium_rc_product_id: 'pro_annual',
+      premium_rc_period_type: 'NORMAL',
+      premium_rc_store: 'PLAY_STORE',
+      premium_rc_purchased_at_ms: '1700000000000',
+      premium_rc_updated_at: '1750000000000',
+    }, 1760000000000)).toEqual({
+      active: true,
+      plan: 'yearly',
+      premiumExpiryMs: 1800000000000,
+      rcExpiryMs: 1800000001000,
+      rcLastSeenAtMs: 1760000000000,
+      rcProductId: 'pro_annual',
+      rcPeriodType: 'NORMAL',
+      rcStore: 'PLAY_STORE',
+      rcPurchasedAtMs: 1700000000000,
+      rcUpdatedAtMs: 1750000000000,
+      evidenceSource: 'server_projection',
+    });
+    expect(deriveRealPremiumServerProjection({ premium_plan: 'admin_vip' }, 1760000000000)).toBeNull();
+    expect(deriveRealPremiumServerProjection({ premium_plan: 'lifetime', admin_premium_override: 'true' }, 1760000000000)).toBeNull();
+    expect(deriveRealPremiumServerProjection({ vip_plan: 'lifetime', vip_active: 'true' }, 1760000000000)).toBeNull();
+    expect(deriveRealPremiumServerProjection({}, 1760000000000)).toBeNull();
+  });
+
+  it('includes real Premium snapshots in backup, wipe, and final-residue classification', () => {
+    const sync = read('app/cloud_sync.ts');
+    const inventory = sync.slice(sync.indexOf('export function accountOwnedStorageKeysFrom'), sync.indexOf('export function accountLocalDataKeysForToday'));
+    expect(inventory).toContain('isRealPremiumSnapshotStorageKey');
+    const wipeBody = sync.slice(sync.indexOf('async function wipeLocalAccountDataUnsafeBody'), sync.indexOf('// Сбрасываем in-memory bookkeeping синка'));
+    expect(wipeBody).toContain('isRealPremiumSnapshotStorageKey(key)');
+  });
+
+  it('publishes a cloud projection only for the restore generation that remains current', async () => {
+    beginAccountGeneration('cloud-owner-a');
+    const generationA = captureAccountGeneration();
+    const write = jest.fn(async () => true);
+    await expect(writeRealPremiumServerProjection(
+      generationA,
+      { premium_plan: 'lifetime' },
+      1760000000000,
+      write,
+    )).resolves.toBe(true);
+    expect(write).toHaveBeenCalledWith(generationA, expect.objectContaining({
+      active: true,
+      plan: 'lifetime',
+      evidenceSource: 'server_projection',
+    }));
+
+    beginAccountGeneration('cloud-owner-b');
+    await expect(writeRealPremiumServerProjection(
+      generationA,
+      { premium_plan: 'lifetime' },
+      1760000000000,
+      write,
+    )).resolves.toBe(false);
+    expect(write).toHaveBeenCalledTimes(1);
+  });
+
   // зачем (R15d, Ревизор 15.10): ключ сторис живёт в modules/, сторож ниже смотрит только app/** — проверяем явно.
   it('wipes story events (story_events_v1:<stableId>) on sign-out, switch and delete', () => {
     const sync = read('app/cloud_sync.ts');

@@ -38,12 +38,6 @@
    "en": "tired",
    "es": "cansado"
   },
-  "anna": {
-   "ru": "Анна (имя)",
-   "uk": "Анна (ім'я)",
-   "en": "Anna (name)",
-   "es": "Anna (nombre)"
-  },
   "ist": {
    "ru": "(он, она, оно) есть",
    "uk": "(він, вона, воно) є",
@@ -80,12 +74,6 @@
    "en": "(you all) are",
    "es": "(vosotros) estáis, sois"
   },
-  "tom": {
-   "ru": "Том (имя)",
-   "uk": "Том (ім'я)",
-   "en": "Tom (name)",
-   "es": "Tom (nombre)"
-  },
   "zu": {
    "ru": "у, к (часть слов «дома»)",
    "uk": "у, до (частина слів «вдома»)",
@@ -105,10 +93,15 @@
    "es": "listo"
   },
   "die": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the",
-   "es": "el, la, los, las"
+   "ru": "Эти дети готовы (___ Kinder sind bereit)",
+   "uk": "Ці діти готові (___ Kinder sind bereit)",
+   "en": "The children are ready (___ Kinder sind bereit)",
+   "es": "Los niños están listos (___ Kinder sind bereit)",
+   "pt-BR": "As crianças estão prontas (___ Kinder sind bereit)",
+   "vi": "Các em nhỏ đã sẵn sàng (___ Kinder sind bereit)",
+   "id": "Anak-anak sudah siap (___ Kinder sind bereit)",
+   "tr": "Çocuklar hazır (___ Kinder sind bereit)",
+   "pl": "Dzieci są gotowe (___ Kinder sind bereit)"
   },
   "kinder": {
    "ru": "дети",
@@ -153,10 +146,15 @@
    "es": "abierto"
   },
   "das": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the",
-   "es": "el, lo"
+   "ru": "Это окно открыто (___ Fenster ist offen)",
+   "uk": "Це вікно відчинене (___ Fenster ist offen)",
+   "en": "The window is open (___ Fenster ist offen)",
+   "es": "La ventana está abierta (___ Fenster ist offen)",
+   "pt-BR": "A janela está aberta (___ Fenster ist offen)",
+   "vi": "Cửa sổ đang mở (___ Fenster ist offen)",
+   "id": "Jendelanya terbuka (___ Fenster ist offen)",
+   "tr": "Pencere açık (___ Fenster ist offen)",
+   "pl": "Okno jest otwarte (___ Fenster ist offen)"
   },
   "fenster": {
    "ru": "окно",
@@ -165,10 +163,15 @@
    "es": "ventana"
   },
   "der": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "the",
-   "es": "el"
+   "ru": "Этот чай горячий (___ Tee ist heiß)",
+   "uk": "Цей чай гарячий (___ Tee ist heiß)",
+   "en": "The tea is hot (___ Tee ist heiß)",
+   "es": "El té está caliente (___ Tee ist heiß)",
+   "pt-BR": "O chá está quente (___ Tee ist heiß)",
+   "vi": "Trà đang nóng (___ Tee ist heiß)",
+   "id": "Tehnya panas (___ Tee ist heiß)",
+   "tr": "Çay sıcak (___ Tee ist heiß)",
+   "pl": "Herbata jest gorąca (___ Tee ist heiß)"
   },
   "tee": {
    "ru": "чай",

@@ -85,6 +85,7 @@ function PrepositionDrillScreen() {
   const runErrorsRef = useRef<V2DoneError[]>([]);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
+  const [practiceOnly, setPracticeOnly] = useState(false);
   const [reviewMode, setReviewMode] = useState(false);
   // зачем (аудит R58 #9, координатор 15.10): снимок id для «Повторить ошибки». Раньше список строился из живого wrongIds —
   // верный ответ убирал вопрос из списка, индекс +1 перепрыгивал следующий, и часть ошибок не показывалась вовсе.
@@ -142,7 +143,7 @@ function PrepositionDrillScreen() {
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
-  // Ждём заряд и прогресс: завершённый/пустой урок не является новым занятием.
+  // Ждём заряд и загрузку сохранённого прогресса перед первым заданием.
   // зачем: D72/D87/PM-084 — единый гейт первого вопроса. Латч по operationId
   // внутри гейта: смена баланса после списания второй раз не спишет, уход до
   // показа первого задания вернёт энергию.
@@ -166,11 +167,14 @@ function PrepositionDrillScreen() {
 
   useEffect(() => {
     if (!pack) return;
+    let cancelled = false;
     setProgressReadyForKey(null);
+    setPracticeOnly(false);
     setReviewMode(false);
     setSelected(null);
     setIsCorrect(false);
     AsyncStorage.getItem(progressKey).then(raw => {
+      if (cancelled) return;
       try {
         const saved: PrepositionProgress = raw
           ? JSON.parse(raw)
@@ -182,20 +186,28 @@ function PrepositionDrillScreen() {
         const savedWrong = Array.isArray(saved.wrongIds)
           ? saved.wrongIds.filter(id => validIds.has(id))
           : [];
+        const answeredCount = new Set(savedAnswered).size;
+        const completed = pack.items.length > 0 && answeredCount === pack.items.length;
+        setPracticeOnly(completed);
         setAnsweredIds(savedAnswered);
-        setWrongIds(savedWrong);
-        setItemIdx(Math.min(savedAnswered.length, pack.items.length));
-        setCorrectCount(Math.max(0, savedAnswered.length - savedWrong.length));
+        setWrongIds(completed ? [] : savedWrong);
+        setItemIdx(completed ? 0 : answeredCount);
+        setCorrectCount(completed ? 0 : Math.max(0, answeredCount - savedWrong.length));
       } catch {
         setAnsweredIds([]);
         setWrongIds([]);
         setItemIdx(0);
         setCorrectCount(0);
       }
-    }).catch(noteSwallowedHandler('preposition_drill:useEffect.getItem')).finally(() => setProgressReadyForKey(progressKey));
+    }).catch(noteSwallowedHandler('preposition_drill:useEffect.getItem')).finally(() => {
+      if (!cancelled) setProgressReadyForKey(progressKey);
+    });
+    return () => { cancelled = true; };
   }, [pack, progressKey]);
 
   const saveProgress = (nextAnswered: string[], nextWrong: string[]) => {
+    // Результаты повторного прохода живут в текущей сессии.
+    if (practiceOnly) return;
     const payload: PrepositionProgress = { answeredIds: nextAnswered, wrongIds: nextWrong };
     AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(noteSwallowedHandler('preposition_drill:saveProgress.setItem'));
   };
@@ -314,7 +326,7 @@ function PrepositionDrillScreen() {
   const prepositionsLabel = pack.newPrepositions.map(p => p.text).join(', ');
 
   const onAnswer = (option: string) => {
-    if (selected) return;
+    if (selected || progressReadyForKey !== progressKey) return;
     // зачем: 10 ⚡ уже списаны за вход в тренажёр, внутри энергия не тратится —
     // проверка баланса на каждом ответе оборвала бы оплаченную сессию.
     const ok = option === item.correct;
@@ -418,13 +430,11 @@ function PrepositionDrillScreen() {
 
   return (
     <ScreenGradient>
-      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: bottomInset }}>
-        <ContentWrap>
-        {headerNode}
-        <View style={{ flex: 1, paddingHorizontal: 16 }}>
-
-          {!done && item ? (
-            <View style={{ flex: 1 }}>
+      {!done && item ? (
+        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: bottomInset }}>
+          <ContentWrap>
+            {headerNode}
+            <View style={{ flex: 1, paddingHorizontal: 16 }}>
               <BouncyScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
@@ -635,44 +645,40 @@ function PrepositionDrillScreen() {
                 </View>
               ) : null}
             </View>
-          ) : (
-            // зачем (владелец 01.10): итог предлогов = общий экран завершения 2.0 по макету learn.html.
-            <V2DoneScreen
-              testID="preposition-drill-complete"
-              title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practiced', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
-              subtitle={triLang(lang, {
-                ru: `Тренажёр предлогов · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'вызов', few: 'вызова', many: 'вызовов' })}`,
-                uk: `Тренажер прийменників · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'завдання', few: 'завдання', many: 'завдань' })}`,
-                en: `Preposition drill · Lesson ${lessonId} · ${total} challenges`,
-                es: `Preposiciones · Lección ${lessonId} · ${total} retos`,
-                'pt-BR': `Preposições · Lição ${lessonId} · ${total} desafios`,
-                vi: `Giới từ · Bài ${lessonId} · ${total} thử thách`,
-                id: `Preposisi · Pelajaran ${lessonId} · ${total} tantangan`,
-                tr: `Edatlar · Ders ${lessonId} · ${total} görev`,
-                pl: `Przyimki · Lekcja ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'zadanie', few: 'zadania', many: 'zadań' })}`,
-              })}
-              stars={null}
-              correct={total > 0 ? correctCount : null}
-              wrong={total > 0 ? Math.max(0, total - correctCount) : null}
-              coinsGained={repeatRunWithoutCoins ? 0 : prepositionRunes.runes}
-              errors={runErrorsRef.current}
-              primaryLabel={wrongIds.length > 0 && !reviewMode
-                ? triLang(lang, { ru: 'Закрепить промахи', uk: 'Закріпити промахи', en: 'Fix mistakes', es: 'Repasar fallos', 'pt-BR': 'Corrigir erros', vi: 'Sửa lỗi', id: 'Perbaiki kesalahan', tr: 'Hataları düzelt', pl: 'Popraw błędy' })
-                : triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
-              onPrimary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) restartWrong(); else backToLesson(); }}
-              secondaryLabel={wrongIds.length > 0 && !reviewMode
-                ? triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })
-                : triLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Jeszcze raz' })}
-              onSecondary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) backToLesson(); else restartAll(); }}
-              onClose={() => { fk.tap(); backToLesson(); }}
-            />
-          )}
-          {/* зачем (владелец 01.10, макет): вспышки поверх итога нет — итог сам показывает результат. */}
+          </ContentWrap>
         </View>
-        </ContentWrap>
-
-        <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={onCloseEnergyModal} activity="preposition_drill" />
-      </View>
+      ) : (
+        <V2DoneScreen
+          testID="preposition-drill-complete"
+          title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practiced', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
+          subtitle={triLang(lang, {
+            ru: `Тренажёр предлогов · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'вызов', few: 'вызова', many: 'вызовов' })}`,
+            uk: `Тренажер прийменників · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'завдання', few: 'завдання', many: 'завдань' })}`,
+            en: `Preposition drill · Lesson ${lessonId} · ${total} challenges`,
+            es: `Preposiciones · Lección ${lessonId} · ${total} retos`,
+            'pt-BR': `Preposições · Lição ${lessonId} · ${total} desafios`,
+            vi: `Giới từ · Bài ${lessonId} · ${total} thử thách`,
+            id: `Preposisi · Pelajaran ${lessonId} · ${total} tantangan`,
+            tr: `Edatlar · Ders ${lessonId} · ${total} görev`,
+            pl: `Przyimki · Lekcja ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'zadanie', few: 'zadania', many: 'zadań' })}`,
+          })}
+          stars={null}
+          correct={total > 0 ? correctCount : null}
+          wrong={total > 0 ? Math.max(0, total - correctCount) : null}
+          coinsGained={repeatRunWithoutCoins ? 0 : prepositionRunes.runes}
+          errors={runErrorsRef.current}
+          primaryLabel={wrongIds.length > 0 && !reviewMode
+            ? triLang(lang, { ru: 'Закрепить промахи', uk: 'Закріпити промахи', en: 'Fix mistakes', es: 'Repasar fallos', 'pt-BR': 'Corrigir erros', vi: 'Sửa lỗi', id: 'Perbaiki kesalahan', tr: 'Hataları düzelt', pl: 'Popraw błędy' })
+            : triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
+          onPrimary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) restartWrong(); else backToLesson(); }}
+          secondaryLabel={wrongIds.length > 0 && !reviewMode
+            ? triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })
+            : triLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Jeszcze raz' })}
+          onSecondary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) backToLesson(); else restartAll(); }}
+          onClose={() => { fk.tap(); backToLesson(); }}
+        />
+      )}
+      <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={onCloseEnergyModal} activity="preposition_drill" />
     </ScreenGradient>
   );
 }

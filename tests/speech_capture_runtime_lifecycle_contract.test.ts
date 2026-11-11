@@ -19,7 +19,6 @@ function lifecycleEffect(text: string): string {
 
 const CAPTURE_OWNERS = [
   "components/onboarding_aha/SpeechBeat.tsx",
-  "components/learning-v2-lab/kimi/use_voice_capture.ts",
   "components/SpeakingPanel.tsx",
   "app/ai_dialog_session.tsx",
 ] as const;

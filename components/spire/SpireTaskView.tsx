@@ -19,7 +19,7 @@ import type { Lang } from '../../constants/i18n';
 import type { SpirePackTask } from '../../modules/spire/pack_plan';
 import type { SpireFeedback } from '../../app/spire/use_spire_step_runner';
 import V2Pressable from '../v2/V2Pressable';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../practice/PracticeGlass';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';

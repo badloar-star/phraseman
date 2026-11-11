@@ -57,23 +57,6 @@ describe('PM-193-A1: язык, контекст и ожидаемый ответ
     });
   });
 
-  // Все точки записи обязаны передавать язык + источник + ожидаемый ответ.
-  test.each([
-    'app/lesson1.tsx', 'app/lesson_words.tsx', 'app/lesson_irregular_verbs.tsx', 'app/diagnostic_test.tsx',
-    'app/level_exam.tsx', 'app/exam.tsx', 'app/flashcards_swipe.tsx', 'app/flashcards_blitz_session.tsx',
-    'app/flashcards_recall_session.tsx', 'app/flashcards_speaking_session.tsx',
-    'app/learning-v2/session/[id].tsx', 'app/learning_v2_direct_session_player_v1.tsx', 'app/spire/spire_mistake_capture.ts',
-  ])('%s: вызов записи несёт studyTarget, sourceKind, sourceId, canonicalTarget, expected', (relative) => {
-    const source = read(relative);
-    const at = source.search(/captu(re|reCurrentAccount)ObjectiveAttempt\(\{|captureObjectiveAttempt\(\{/);
-    expect(at).toBeGreaterThan(-1);
-    // Шпиль собирает content выше вызова (спред) — берём весь файл.
-    const call = relative.startsWith('app/spire/') ? source : source.slice(at, at + 2600);
-    for (const field of ['studyTarget', 'sourceKind', 'sourceId', 'canonicalTarget', 'expected']) {
-      expect({ relative, field, present: call.includes(field) }).toEqual({ relative, field, present: true });
-    }
-  });
-
   test('старая запись без необязательных полей читается как раньше', () => {
     const legacy: MistakeEvent = {
       eventId: 'e1', mistakeId: 'm1', cycleId: 'c1', type: 'captured', occurredAtMs: 1, studyTarget: 'en',

@@ -1,10 +1,5 @@
-const mockCommitComposite = jest.fn(async (_candidate?: unknown, _dependencies?: unknown) => ({ status: 'applied' }));
 const mockLoadJournal = jest.fn();
 
-jest.mock('../app/learning_v2_owner_repository_runtime', () => ({
-  commitMistakeCorrectionWalletComposite: (candidate: unknown, dependencies?: unknown) =>
-    mockCommitComposite(candidate, dependencies),
-}));
 jest.mock('../app/mistake_practice_store', () => ({
   loadMistakeEventJournal: (...args: unknown[]) => mockLoadJournal(...args),
   appendMistakeEvent: jest.fn(async () => ({ appended: true })),
@@ -23,15 +18,16 @@ import {
   flushPendingMistakeCorrectionRewards,
   settleMistakePracticeAnswerRewards,
 } from '../app/mistake_practice_rewards';
-import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { deriveMistakeRewardAccountScopeHash } from '../modules/mistake-practice/correction_reward_receipt';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 
-test('account switch between correction evidence load and commit cannot credit the new owner', async () => {
+// зачем: кошелька курса занятий больше нет — награда это отметка в журнале ошибок; сторож проверяет, что смена аккаунта
+// между чтением журнала и выдачей не даёт отметку новому владельцу.
+test('account switch between correction evidence load and the grant cannot credit the new owner', async () => {
   const mistakeId = `mistake:v1:${'a'.repeat(64)}`;
   const cycleId = `mistake-cycle:v1:${'b'.repeat(64)}`;
   const attemptId = 'session-1:position:2';
   const eventId = `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({ attemptId, type: 'practice_answered' }))}`;
-  mockCommitComposite.mockClear();
   beginAccountGeneration('owner-a');
   mockLoadJournal.mockImplementationOnce(async () => {
     beginAccountGeneration('owner-b');
@@ -49,10 +45,9 @@ test('account switch between correction evidence load and commit cannot credit t
     beforeStatus: 'active', afterStatus: 'corrected',
   }, {
   })).rejects.toThrow('mistake_correction_account_generation_stale');
-  expect(mockCommitComposite).not.toHaveBeenCalled();
 });
 
-test('an owner-rematerialized owner-A reward marker materializes only under current owner-B scope', async () => {
+test('an owner-rematerialized owner-A reward marker is accepted as already rewarded under current owner-B scope', async () => {
   const mistakeId = `mistake:v1:${'a'.repeat(64)}`;
   const cycleId = `mistake-cycle:v1:${'b'.repeat(64)}`;
   const correctionEventId = `mistake-practice:v1:${'c'.repeat(64)}`;
@@ -61,7 +56,6 @@ test('an owner-rematerialized owner-A reward marker materializes only under curr
     eventId: correctionEventId, mistakeId, cycleId, type: 'practice_answered',
     occurredAtMs: 1, studyTarget: 'en', payload: { correct: true, independent: true },
   };
-  mockCommitComposite.mockClear();
   beginAccountGeneration('owner-b');
   mockLoadJournal.mockResolvedValue({
     version: 1, accountScope: 'owner-b', studyTarget: 'en',
@@ -71,7 +65,7 @@ test('an owner-rematerialized owner-A reward marker materializes only under curr
         rewardKey, stars: 1, rewardVersion: 1,
         replayReceipt: {
           schemaVersion: 'mistake-correction-wallet-composite.v1',
-          accountScopeHash: deriveLearningV2EconomicAccountScopeHash('owner-a'),
+          accountScopeHash: deriveMistakeRewardAccountScopeHash('owner-a'),
           rewardKey, mistakeId, cycleId, studyTarget: 'en', correctionEventId,
           correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)), rewardVersion: 1,
         },
@@ -81,12 +75,4 @@ test('an owner-rematerialized owner-A reward marker materializes only under curr
   await expect(flushPendingMistakeCorrectionRewards({
     accountScope: 'owner-b', studyTarget: 'en',
   })).resolves.toEqual({ attempted: 0, delivered: 0, pending: 0 });
-  expect(mockCommitComposite).toHaveBeenCalledTimes(1);
-  expect(mockCommitComposite).toHaveBeenCalledWith(expect.objectContaining({
-    accountScopeHash: deriveLearningV2EconomicAccountScopeHash('owner-b'),
-    correctionEventId,
-    correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)),
-  }), expect.objectContaining({
-    accountToken: expect.objectContaining({ stableId: 'owner-b' }),
-  }));
 });

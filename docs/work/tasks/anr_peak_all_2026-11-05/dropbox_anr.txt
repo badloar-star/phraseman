@@ -1,0 +1,120 @@
+Drop box contents: 252 entries
+Max entries: 1000
+Low priority rate limit period: 2000 ms
+Low priority tags: {data_app_wtf, keymaster, system_server_wtf, system_app_strictmode, system_app_wtf, system_server_strictmode, data_app_strictmode, netstats}
+Searching for: data_app_anr
+
+========================================
+2026-11-04 18:04:50 data_app_anr (compressed text, 17316 bytes)
+SystemUptimeMs: 1498080
+Process: app.phraseman
+PID: 3498
+UID: 10209
+Frozen: false
+Timestamp: 2026-11-04 18:04:45.025+0000
+Flags: 0x38e8be46
+Package: app.phraseman v100 (1.5.60)
+Foreground: Yes
+Process-Runtime: 1326557
+Activity: app.phraseman/.MainActivity
+ErrorId: b9bf60f8-40a7-4356-9747-2616d4ebf706
+Build: google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys
+Loading-Progress: 1.0
+Dropped-Count: 0
+
+----- Output from /proc/pressure/memory -----
+some avg10=0.73 avg60=3.82 avg300=3.28 total=22751668
+full avg10=0.70 avg60=3.60 avg300=3.11 total=20260978
+----- End output from /proc/pressure/memory -----
+----- Output from /proc/pressure/cpu -----
+some avg10=4.01 avg60=8.65 avg300=6.97 total=110030065
+full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+----- End output from /proc/pressure/cpu -----
+----- Output from /proc/pressure/io -----
+some avg10=0.28 avg60=0.47 avg300=0.27 total=12294362
+full avg10=0.02 avg60=0.18 avg300=0.10 total=4848140
+----- End output from /proc/pressure/io -----
+
+CPU usage from 243782ms to -3ms ago (2026-11-04 18:00:41.280 to 2026-11-04 18:04:45.065):
+  148% 3498/app.phraseman: 76% user + 72% kernel / faults: 888046 minor 5203 major
+  14% 60/kswapd0: 0% user + 14% kernel
+  3.9% 469/surfaceflinger: 0.2% user + 3.6% kernel / faults: 4 minor 235 major
+  2.9% 423/android.hardware.graphics.composer3-service.ranchu: 0.1% user + 2.7% kernel / faults: 127 major
+  2.7% 609/system_server: 0.4% user + 2.2% kernel / faults: 3629 minor 1064 major
+  2.6% 414/android.hardware.sensors-service.multihal: 0% user + 2.5% kernel / faults: 2 major
+  1.4% 478/adbd: 0.1% user + 1.3% kernel / faults: 32309 minor
+  0.9% 1141/com.google.android.gms.persistent: 0.4% user + 0.5% kernel / faults: 2828 minor 350 major
+  0.8% 4226/kworker/1:2-virtio_vsock: 0% user + 0.8% kernel
+  0.7% 873/com.android.systemui: 0.1% user + 0.5% kernel / faults: 2485 minor 417 major
+28% TOTAL: 11% user + 16% kernel + 0.3% iowait + 0.2% softirq
+Data File: /data/anr/anr_2026-11-04-18-04-45-254
+Subject: Input dispatching timed out (ec4da7f app.phraseman/app.phraseman.MainActivity (server) is not responding. Waited 5014ms for MotionEvent(deviceId=-1, eventTime=1488001000000, source=TOUCHSCREEN, displayId=0, action=DOWN, actionButton=0x00000000, flags=0x00000000, metaState=0x00000000, buttonState=0x00000000, classification=NONE, edgeFlags=0x00000000, xPrecision=1.0, yPrecision=1.0, xCursorPosition=nan, yCursorPosition=nan, pointers=[0: (250.0, 209.0)]), policyFlags=0x6b000000).
+RssHwmKb: 1673532
+RssKb: 1636972
+RssAnonKb: 1500316
+RssShmemKb: 35932
+VmSwapKb: 744228
+
+
+--- CriticalEventLog ---
+capacity: 20
+timestamp_ms: 1793815485210
+window_ms: 300000
+
+----- dumping pid: 3498 at 1493127
+proc 3498
+context hwbinder
+  buffer 168118: 0 size 8:0:0 delivered
+  buffer 169979: 8 size 8:0:0 delivered
+  buffer 169449: 10 size 8:0:0 delivered
+  buffer 168760: 18 size 8:0:0 delivered
+  buffer 168310: 20 size 8:0:0 delivered
+  buffer 169637: 28 size 8:0:0 delivered
+  buffer 167384: 30 size 8:0:0 delivered
+  buffer 165338: 38 size 8:0:0 delivered
+  buffer 168688: 40 size 8:0:0 delivered
+  buffer 170277: 48 size 8:0:0 delivered
+  buffer 170441: 50 size 8:0:0 delivered
+  buffer 170584: 58 size 8:0:0 delivered
+  buffer 170275: 60 size 64:0:0 delivered
+
+----- pid 3498 at 2026-11-04 18:04:45.289468600+0000 -----
+Cmd line: app.phraseman
+Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys'
+ABI: 'x86_64'
+Build type: optimized
+Debug Store: 1,0,1493331::
+suspend all histogram:	Sum: 66.198ms 99% C.I. 44us-3198.720us Avg: 350.253us Max: 5331us
+DALVIK THREADS (183):
+"main" prio=5 tid=1 Runnable
+  | group="main" sCount=0 ucsCount=0 flags=0 obj=0x73aae9b8 self=0x710faf43b380
+  | sysTid=3498 nice=-10 cgrp=top-app sched=0/0 handle=0x711157365d18
+  | state=R schedstat=( 349466333377 24337286601 144015 ) utm=20973 stm=13973 core=3 HZ=100
+  | stack=0x7ffc6629d000-0x7ffc6629f000 stackSize=8188KB
+  | held mutexes= "mutator lock"(shared held)
+  at java.util.HashMap.newNode(HashMap.java:1907)
+  at java.util.HashMap.putVal(HashMap.java:636)
+  at java.util.HashMap.put(HashMap.java:617)
+  at com.facebook.react.bridge.JavaOnlyMap.<init>(JavaOnlyMap.kt:65)
+  at com.facebook.react.bridge.JavaOnlyMap.<init>(unavailable:0)
+  at com.facebook.react.bridge.JavaOnlyMap$Companion.of(JavaOnlyMap.kt:26)
+  at com.facebook.react.bridge.JavaOnlyMap.of(unavailable:2)
+  at com.swmansion.reanimated.NativeProxy.synchronouslyUpdateUIProps(NativeProxy.java:374)
+  at com.swmansion.reanimated.NativeProxy.performNonLayoutOperations(Native method)
+  at com.swmansion.reanimated.NodesManager.performNonLayoutOperations(NodesManager.java:132)
+  at com.swmansion.reanimated.NodesManager.performOperationsRespectingDrawPass(NodesManager.java:139)
+  at com.swmansion.reanimated.NodesManager.onEventDispatch(NodesManager.java:220)
+  at com.facebook.react.uimanager.events.FabricEventDispatcher.dispatchEvent(FabricEventDispatcher.kt:64)
+  at com.horcrux.svg.VirtualView.setClientRect(VirtualView.java:606)
+  at com.horcrux.svg.RenderableView.draw(RenderableView.java:520)
+  at com.horcrux.svg.RenderableView.render(RenderableView.java:490)
+  at com.horcrux.svg.GroupView.drawGroup(GroupView.java:132)
+  at com.horcrux.svg.GroupView.draw(GroupView.java:88)
+  at com.horcrux.svg.RenderableView.render(RenderableView.java:490)
+  at com.horcrux.svg.GroupView.drawGroup(GroupView.java:132)
+  at com.horcrux.svg.GroupView.draw(GroupView.java:88)
+  at com.horcrux.svg.RenderableView.render(RenderableView.java:490)
+  at com.horcrux.svg.SvgView.drawChildren(SvgView.java:336)
+  - locked <@addr=0x16f75800> (a com.horcrux.svg.SvgView)
+  at com.horcrux.svg.SvgView.drawOutput(SvgView.java:282)
+  at com.horcrux.svg.SvgView.onDraw(SvgView.java:135)

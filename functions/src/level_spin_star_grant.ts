@@ -47,7 +47,7 @@ const STAR_AMOUNTS = Object.freeze({
   // Зеркала на клиенте: modules/phone-state/domains/economy.ts и
   // app/level_spin_star_grants.ts. Крупнейший номинал компенсации Q12.
   stars_2000: 2_000,
-  // зачем: «Урок вместе» +2 (владелец 22.10, А1); форму источника проверяет coin_wallet_policy (только lessontogether_).
+  // зачем: номинал остаётся в таблице ради разбора уже сохранённых операций; новых источников на 2 монеты нет.
   stars_2: 2,
 } as const);
 const REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
@@ -265,16 +265,9 @@ export async function materializeCoinWalletOperation(
   const receipts = userRef.collection(STAR_OPERATIONS_COLLECTION);
   const receiptRef = receipts.doc(composite.operationId);
   const otherLane = composite.lane === 'base' ? 'premium' : 'base';
-  // зачем (Ревизор 22.10): экзамен главы — вторая часть (_2) проходит только после квитанции первой (_1) той же главы;
-  // одно чтение в той же транзакции, только для второй части. Жалоба — соседняя полоса, как раньше.
-  const chapterExamPartOne = classification.source === 'chapter_exam' && composite.requestId.endsWith('_2')
-    ? `${composite.requestId.slice(0, -2)}_1`
-    : null;
   const siblingRef = classification.source === 'report_reward'
     ? receipts.doc(`level_spin:${composite.requestId}.${otherLane}`)
-    : chapterExamPartOne
-      ? receipts.doc(`level_spin:${chapterExamPartOne}.base`)
-      : null;
+    : null;
   return db.runTransaction(async (tx) => {
     beginStarLedgerTransactionAttempt(tx);
     const [userSnap, existingReceipt, siblingSnap] = await Promise.all([
@@ -303,16 +296,8 @@ export async function materializeCoinWalletOperation(
         ...starsWeekField(buildStarsWeekSnapshotV1(current)),
       });
     }
-    if (chapterExamPartOne) {
-      const partOne = siblingSnap?.exists ? siblingSnap.data() as Partial<StarOpReceipt> | undefined : undefined;
-      const delta = Number(partOne?.delta);
-      if (partOne?.sourceId !== `${chapterExamPartOne}.base` || !Number.isSafeInteger(delta) || delta <= 0) {
-        console.warn(`${LOG} reject reason=coin_wallet_chapter_exam_part_one_missing op=${composite.operationId} sourceId=${String(partOne?.sourceId ?? null)}`);
-        throw new HttpsError('failed-precondition', 'coin_wallet_chapter_exam_part_one_missing');
-      }
-    }
     const limitsBefore = normalizeCoinWalletLimits(userSnap.data()?.[COIN_WALLET_LIMITS_FIELD]);
-    const sibling = siblingRef && !chapterExamPartOne ? siblingReportAmount(siblingSnap, composite, otherLane) : 0;
+    const sibling = siblingRef ? siblingReportAmount(siblingSnap, composite, otherLane) : 0;
     const limitsAfter = applyCoinWalletLimits(limitsBefore, composite, classification, nowMs, sibling);
     const prepared = await prepareStarOperations(
       tx, db, stableUid, userSnap, [levelSpinStarLedgerOperation(composite)],

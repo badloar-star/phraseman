@@ -1,0 +1,741 @@
+{
+ "lang": "de",
+ "lesson": 22,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:22:01",
+   "target": "Ich weiß, dass Anna hier ist.",
+   "ru": "Я знаю, что Анна здесь.",
+   "uk": "Я знаю, що Анна тут."
+  },
+  {
+   "id": "de:22:02",
+   "target": "Ich weiß, dass Tom heute arbeitet.",
+   "ru": "Я знаю, что Том сегодня работает.",
+   "uk": "Я знаю, що Том сьогодні працює."
+  },
+  {
+   "id": "de:22:03",
+   "target": "Wir wissen, dass der Bus bald kommt.",
+   "ru": "Мы знаем, что автобус скоро придёт.",
+   "uk": "Ми знаємо, що автобус незабаром прийде."
+  },
+  {
+   "id": "de:22:04",
+   "target": "Du weißt, dass ich zu Hause bin.",
+   "ru": "Ты знаешь, что я дома.",
+   "uk": "Ти знаєш, що я вдома."
+  },
+  {
+   "id": "de:22:05",
+   "target": "Anna weiß, dass wir morgen kommen.",
+   "ru": "Анна знает, что мы придём завтра.",
+   "uk": "Анна знає, що ми прийдемо завтра."
+  },
+  {
+   "id": "de:22:06",
+   "target": "Tom sagt, dass er müde ist.",
+   "ru": "Том говорит, что он устал.",
+   "uk": "Том каже, що він втомився."
+  },
+  {
+   "id": "de:22:07",
+   "target": "Anna sagt, dass sie Hunger hat.",
+   "ru": "Анна говорит, что хочет есть.",
+   "uk": "Ганна каже, що хоче їсти."
+  },
+  {
+   "id": "de:22:08",
+   "target": "Die Kinder sagen, dass sie fertig sind.",
+   "ru": "Дети говорят, что закончили.",
+   "uk": "Діти кажуть, що закінчили."
+  },
+  {
+   "id": "de:22:09",
+   "target": "Sie sagt, dass das Essen warm ist.",
+   "ru": "Она говорит, что еда тёплая.",
+   "uk": "Вона каже, що їжа тепла."
+  },
+  {
+   "id": "de:22:10",
+   "target": "Er sagt, dass die Tür offen ist.",
+   "ru": "Он говорит, что дверь открыта.",
+   "uk": "Він каже, що двері відчинені."
+  },
+  {
+   "id": "de:22:11",
+   "target": "Ich glaube, dass der Laden offen ist.",
+   "ru": "Я думаю, что магазин открыт.",
+   "uk": "Я думаю, що магазин відкритий."
+  },
+  {
+   "id": "de:22:12",
+   "target": "Tom sagt, dass der Empfang im Keller schlecht ist.",
+   "ru": "Том говорит, что в подвале плохая связь.",
+   "uk": "Том каже, що в підвалі поганий зв'язок."
+  },
+  {
+   "id": "de:22:13",
+   "target": "Er sagt, dass der Schaden an der Dusche klein ist.",
+   "ru": "Он говорит, что душ повреждён не сильно.",
+   "uk": "Він каже, що пошкодження душу незначні."
+  },
+  {
+   "id": "de:22:14",
+   "target": "Tom glaubt, dass die Rechnung stimmt.",
+   "ru": "Том думает, что счёт верный.",
+   "uk": "Том думає, що рахунок правильний."
+  },
+  {
+   "id": "de:22:15",
+   "target": "Ich hoffe, dass sich die Kinder am Wochenende gut erholen.",
+   "ru": "Я надеюсь, что дети хорошо отдохнут в выходные.",
+   "uk": "Сподіваюся, діти добре відпочинуть на вихідних."
+  },
+  {
+   "id": "de:22:16",
+   "target": "Wir hoffen, dass es morgen trocken bleibt.",
+   "ru": "Мы надеемся, что завтра обойдётся без дождя.",
+   "uk": "Ми сподіваємось, що завтра обійдеться без дощу."
+  },
+  {
+   "id": "de:22:17",
+   "target": "Ich hoffe, dass der Schlüssel passt.",
+   "ru": "Надеюсь, ключ подойдёт.",
+   "uk": "Сподіваюся, ключ підійде."
+  },
+  {
+   "id": "de:22:18",
+   "target": "Er hofft, dass die Gäste bleiben.",
+   "ru": "Он надеется, что гости останутся.",
+   "uk": "Він сподівається, що гості залишаться."
+  },
+  {
+   "id": "de:22:19",
+   "target": "Du merkst, dass das Wasser kalt ist.",
+   "ru": "Ты замечаешь, что вода холодная.",
+   "uk": "Ти помічаєш, що вода холодна."
+  },
+  {
+   "id": "de:22:20",
+   "target": "Ich sehe, dass das Fenster zu ist.",
+   "ru": "Я вижу, что окно закрыто.",
+   "uk": "Я бачу, що вікно закрите."
+  },
+  {
+   "id": "de:22:21",
+   "target": "Anna schreibt, dass sie später kommt.",
+   "ru": "Анна пишет, что придёт позже.",
+   "uk": "Ганна пише, що прийде пізніше."
+  },
+  {
+   "id": "de:22:22",
+   "target": "Tom erklärt, dass der Zug hier hält.",
+   "ru": "Том объясняет, что поезд здесь останавливается.",
+   "uk": "Том пояснює, що поїзд тут зупиняється."
+  },
+  {
+   "id": "de:22:23",
+   "target": "Sie bestätigt, dass das Zimmer frei ist.",
+   "ru": "Она подтверждает, что номер свободен.",
+   "uk": "Вона підтверджує, що номер вільний."
+  },
+  {
+   "id": "de:22:24",
+   "target": "Er meldet, dass der Aufzug kaputt ist.",
+   "ru": "Он сообщает, что лифт сломан.",
+   "uk": "Він повідомляє, що ліфт зламаний."
+  },
+  {
+   "id": "de:22:25",
+   "target": "Wir hören, dass die Straße gesperrt ist.",
+   "ru": "Мы слышим, что дорога перекрыта.",
+   "uk": "Ми чуємо, що дорога перекрита."
+  },
+  {
+   "id": "de:22:26",
+   "target": "Ich lese, dass der Kurs am Freitag beginnt.",
+   "ru": "Я читаю, что курс начинается в пятницу.",
+   "uk": "Я читаю, що курс починається у п'ятницю."
+  },
+  {
+   "id": "de:22:27",
+   "target": "Sie verspricht, dass sie morgen anruft.",
+   "ru": "Она обещает, что позвонит завтра.",
+   "uk": "Вона обіцяє, що подзвонить завтра."
+  },
+  {
+   "id": "de:22:28",
+   "target": "Wir sehen, dass das Licht noch brennt.",
+   "ru": "Мы видим, что свет ещё горит.",
+   "uk": "Ми бачимо, що світло ще горить."
+  },
+  {
+   "id": "de:22:29",
+   "target": "Er merkt, dass die Milch fehlt.",
+   "ru": "Он замечает, что молока нет.",
+   "uk": "Він зауважує, що молока немає."
+  },
+  {
+   "id": "de:22:30",
+   "target": "Mir fällt auf, dass die Uhr steht.",
+   "ru": "Я замечаю, что часы остановились.",
+   "uk": "Я помічаю, що годинник зупинився."
+  },
+  {
+   "id": "de:22:31",
+   "target": "Ich weiß, dass wir hier umsteigen müssen.",
+   "ru": "Я знаю, что нам надо здесь пересесть.",
+   "uk": "Я знаю, що нам треба тут пересісти."
+  },
+  {
+   "id": "de:22:32",
+   "target": "Anna sagt, dass sie mitkommen kann.",
+   "ru": "Анна говорит, что может пойти с нами.",
+   "uk": "Анна каже, що може піти з нами."
+  },
+  {
+   "id": "de:22:33",
+   "target": "Er glaubt, dass er bar zahlen muss.",
+   "ru": "Он думает, что должен заплатить наличными.",
+   "uk": "Він думає, що повинен заплатити готівкою."
+  },
+  {
+   "id": "de:22:34",
+   "target": "Wir hoffen, dass ihr bleiben könnt.",
+   "ru": "Мы надеемся, что вы можете остаться.",
+   "uk": "Ми сподіваємося, що ви можете залишитися."
+  },
+  {
+   "id": "de:22:35",
+   "target": "Sie schreibt, dass sie früher fahren möchte.",
+   "ru": "Она пишет, что хочет выехать раньше.",
+   "uk": "Вона пише, що хоче виїхати раніше."
+  },
+  {
+   "id": "de:22:36",
+   "target": "Ich sage, dass ich das Paket abholen kann.",
+   "ru": "Я говорю, что могу забрать посылку.",
+   "uk": "Я говорю, що можу забрати посилку."
+  },
+  {
+   "id": "de:22:37",
+   "target": "Er erklärt, dass wir die Tür abschließen sollen.",
+   "ru": "Он объясняет, что нам нужно запереть дверь.",
+   "uk": "Він пояснює, що нам потрібно замкнути двері."
+  },
+  {
+   "id": "de:22:38",
+   "target": "Anna findet, dass wir eine Pause machen sollten.",
+   "ru": "Анна считает, что нам стоит сделать перерыв.",
+   "uk": "Анна вважає, що нам варто зробити перерву."
+  },
+  {
+   "id": "de:22:39",
+   "target": "Ich hoffe, dass Sie mir helfen können.",
+   "ru": "Надеюсь, вы можете мне помочь.",
+   "uk": "Сподіваюся, ви можете допомогти мені."
+  },
+  {
+   "id": "de:22:40",
+   "target": "Wir verstehen, dass ihr losfahren müsst.",
+   "ru": "Мы понимаем, что вам надо выезжать.",
+   "uk": "Ми розуміємо, що вам треба виїжджати."
+  },
+  {
+   "id": "de:22:41",
+   "target": "Ich weiß, dass der Brief angekommen ist.",
+   "ru": "Я знаю, что письмо пришло.",
+   "uk": "Я знаю, що лист надійшов."
+  },
+  {
+   "id": "de:22:42",
+   "target": "Anna schreibt, dass sie sich für den Ersatzschlüssel bedanken möchte.",
+   "ru": "Анна пишет, что хочет поблагодарить за запасной ключ.",
+   "uk": "Анна пише, що хоче подякувати за запасний ключ."
+  },
+  {
+   "id": "de:22:43",
+   "target": "Tom merkt, dass er die Brille vergessen hat.",
+   "ru": "Том замечает, что забыл очки.",
+   "uk": "Том помічає, що забув окуляри."
+  },
+  {
+   "id": "de:22:44",
+   "target": "Wir hören, dass der Zug ausgefallen ist.",
+   "ru": "Мы слышим, что поезд отменили.",
+   "uk": "Ми чуємо, що потяг скасували."
+  },
+  {
+   "id": "de:22:45",
+   "target": "Ich freue mich, dass du Zeit hast.",
+   "ru": "Я рад, что у тебя есть время.",
+   "uk": "Я радий, що в тебе є час."
+  },
+  {
+   "id": "de:22:46",
+   "target": "Es ist gut, dass du fragst.",
+   "ru": "Хорошо, что ты спрашиваешь.",
+   "uk": "Добре, що ти питаєш."
+  },
+  {
+   "id": "de:22:47",
+   "target": "Es ist wichtig, dass wir pünktlich sind.",
+   "ru": "Важно, чтобы мы пришли вовремя.",
+   "uk": "Важливо, щоб ми прийшли вчасно."
+  },
+  {
+   "id": "de:22:48",
+   "target": "Es tut mir leid, dass ich so spät bin.",
+   "ru": "Извини, что я так опоздал.",
+   "uk": "Вибач, що я так спізнився."
+  },
+  {
+   "id": "de:22:49",
+   "target": "Es stimmt, dass die Miete steigt.",
+   "ru": "Правда, что квартплата растёт.",
+   "uk": "Правда, що квартплата зростає."
+  },
+  {
+   "id": "de:22:50",
+   "target": "Danke, dass du auf mich gewartet hast.",
+   "ru": "Спасибо, что подождал меня.",
+   "uk": "Дякую, що зачекав мене."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "hoffen",
+   "ru": "надеяться",
+   "uk": "сподіватися"
+  },
+  {
+   "lemma": "bestätigen",
+   "ru": "подтверждать",
+   "uk": "підтверджувати"
+  },
+  {
+   "lemma": "versprechen",
+   "ru": "обещать",
+   "uk": "обіцяти"
+  },
+  {
+   "lemma": "merken",
+   "ru": "замечать",
+   "uk": "помічати"
+  },
+  {
+   "lemma": "die Miete",
+   "ru": "арендная плата",
+   "uk": "орендна плата"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  }
+ ],
+ "oldTopicTitle": "Передаю содержание сообщения: `dass`",
+ "oldTheoryRu": "Передать сообщение — не то же самое, что назвать причину. В `Tom sagt, dass …` мы ждём, что именно он сказал. Не ищи обязательной причинно-следственной связи между частями. Глаголы надежды и предположения не подтверждают факт. Немецкая конструкция одинакова и для достоверного знания, и для мнения; степень уверенности задаёт глагол в главной части. Если у глагола есть отделяемая приставка, в конце придаточного она снова пишется слитно с глаголом: `anruft`. Не оставляй приставку отдельно, как в главном предложении. При модальном глаголе закрывает придаточное его личная форма. Сначала найди действие в словарной форме, затем добавь, может, хочет или должен ли человек его выполнить. Прежнее действие передавай в его реальном значении: если кто-то уже звонил, оставь прошедшее время. Изменение порядка после `dass` само по себе не превращает настоящее в прошлое. Почему две буквы `s`? Союз `dass` вводит содержание. Артикль или местоимение `das` — другое слово с другой задачей, хотя произносятся они одинаково. Выбирай по роли, не по звучанию. Вежливое сообщение тоже подчиняется правилу. В благодарности или извинении главная часть может быть короткой. Разворачивай подробности после союза и только там проверяй правый край."
+}

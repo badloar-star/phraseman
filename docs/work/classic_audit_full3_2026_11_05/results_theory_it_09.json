@@ -1,0 +1,107 @@
+[
+ {
+  "id": "lesson-19/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Де сталося дія» — ошибка рода; «причастя» — русизм (в курсе uk «дієприкметник»)",
+  "fix": "Де відбулася дія — окрема частина. Спочатку вибери помічник і дієприкметник, потім підбери місце. Не плутай «увійшла» і «вже була всередині»."
+ },
+ {
+  "id": "lesson-19/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "«assistant» вместо auxiliary",
+  "fix": "The place where the action happened is a separate part. First choose the auxiliary and the participle, then pick the place. Don't confuse \"entered\" with \"was already inside.\""
+ },
+ {
+  "id": "lesson-19/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«погодження» (= одобрение) вместо «узгодження» (в ch3 того же урока — узгодження); «відноситься до» — русизм",
+  "fix": "У запереченні `non` стоїть перед помічником. `Non è ancora tornata` стосується жінки, яка ще не повернулася; відсутність події не скасовує узгодження."
+ },
+ {
+  "id": "lesson-19/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "«assistant» вместо auxiliary",
+  "fix": "In negation, `non` comes before the auxiliary. `Non è ancora tornata` refers to a woman who has not returned yet; the absence of the event does not cancel the agreement."
+ },
+ {
+  "id": "lesson-19/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«Write the assistant» — неверный термин",
+  "fix": "`essere` is also used for being born and staying: `è nata`, `è rimasta`. Note the auxiliary as part of the card for each specific verb and its meaning."
+ },
+ {
+  "id": "lesson-20/title",
+  "type": "T2",
+  "field": "title.en",
+  "problem": "«Usually used to be» — неграмматично, не передаёт «Раньше обычно»",
+  "fix": "What used to happen: `imperfetto`"
+ },
+ {
+  "id": "lesson-20/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "потеряно «прошедшее» (ru: «прошедшее описание»), смысл ru≠uk",
+  "fix": "Використовуй минулий опис для стану, звичної дії або обстановки. Сама форма не повідомляє, що подія повторювалася строго певну кількість разів."
+ },
+ {
+  "id": "lesson-20/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«справжнє `sono`» (= настоящий/подлинный) вместо «теперішнє»",
+  "fix": "`Essere` має особливу основу: `ero`, `eri`, `era`, `eravamo`, `eravate`, `erano`. Не намагайся склеїти теперішнє `sono` зі звичайним закінченням."
+ },
+ {
+  "id": "lesson-20/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«Тимчасова форма» (= временная, непостоянная) вместо «форма часу»",
+  "fix": "В описі кімнати або людини знайди, що саме «було»: світло, вікна, відчуття холоду. Форма часу належить дієслову, а рід і число предмета — іменнику та опису."
+ },
+ {
+  "id": "lesson-20/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.ru",
+  "problem": "«прошедший родственник» — калька, звучит как «умерший родственник»",
+  "fix": "`Non c’era` описывает, чего раньше не было. Это прошедшая форма знакомого `non c’è`. Для нескольких предметов — `non c’erano`."
+ },
+ {
+  "id": "lesson-20/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«минулий родич» — та же калька",
+  "fix": "`Non c’era` описує, чого раніше не було. Це минула форма знайомого `non c’è`. Для кількох предметів — `non c’erano`."
+ },
+ {
+  "id": "lesson-20/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "«past relative of the acquaintance `non c’è`» — бессмыслица",
+  "fix": "`Non c’era` describes something that wasn't there before. It is the past form of the familiar `non c’è`. For several objects, use `non c’erano`."
+ },
+ {
+  "id": "lesson-20/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].exampleIds",
+  "problem": "глава про non c’era/non c’erano, но it:20:31 (Non conoscevo…) и it:20:35 (I negozi erano chiusi…) не содержат c’era; non c’erano не проиллюстрирован",
+  "fix": "Заменить it:20:31 и it:20:35 на фразы урока 20 с `non c’era` / `non c’erano`; если их нет — убрать из текста упоминание `non c’erano`."
+ },
+ {
+  "id": "lesson-20/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "для украинского текста «російською мовою» — должно быть «українською»",
+  "fix": "Коли згадуєш дитинство, корисно подумки розділити «зазвичай бувало» і «одного разу трапилося». Тут тренується перше, навіть якщо українською обидва повідомлення можна назвати минулим часом."
+ },
+ {
+  "id": "lesson-20/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«This trains your first glance» — неверно понят «первый взгляд» (первый из двух вариантов); «in Russian» в английской локали",
+  "fix": "When recalling childhood, it's useful to mentally separate \"usually happened\" from \"happened once.\" This lesson practices the first one, even if in English both could simply be called the past tense."
+ }
+]

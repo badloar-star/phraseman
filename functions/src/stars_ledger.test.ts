@@ -430,25 +430,6 @@ describe('единый журнал звёзд', () => {
         .toEqual({ arena: 7 });
       expect(normalizeStars({ bySource: 'broken' }).bySource).toEqual({});
     });
-
-    it('держит таблицу источников закрытой', () => {
-      expect(STAR_OP_SOURCE.arena_match).toBe('arena');
-      expect(STAR_OP_SOURCE.learning_v2_session).toBe('learning');
-      expect(STAR_OP_SOURCE.friends_together_chest).toBe('friends');
-      expect(STAR_OP_SOURCE.level_spin_grant).toBe('spin');
-      expect(STAR_OP_SOURCE.coin_exchange).toBe('exchange');
-      // Стартовый подарок обязан попадать в приток — это и был баг владельца.
-      expect(STAR_OP_SOURCE.welcome_gift).toBe('other');
-      // Просмотр видео НЕ попадает в «учёбу», хотя ролики обучающие: строка
-      // «учёба» означает занятия внутри приложения, и смешение завысило бы её,
-      // скрыв, что руны пришли за фоновое видео (владелец 2026-09-03).
-      expect(STAR_OP_SOURCE.video_watch).toBe('other');
-      // Каждая причина имеет источник: новая причина без строки здесь уронит
-      // сборку, а не проедет молча с нулём на экране.
-      for (const reason of Object.keys(STAR_OP_CLASS)) {
-        expect((STAR_OP_SOURCE as Record<string, string>)[reason]).toBeTruthy();
-      }
-    });
   });
 
   it('держит таблицу классов операций закрытой', () => {

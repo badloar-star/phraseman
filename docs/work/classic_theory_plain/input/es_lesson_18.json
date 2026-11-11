@@ -1,0 +1,654 @@
+{
+ "lang": "es",
+ "lesson": 18,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:18:01",
+   "target": "Lo tengo aquí.",
+   "ru": "Он у меня здесь.",
+   "uk": "Він у мене тут."
+  },
+  {
+   "id": "es:18:02",
+   "target": "La tienes aquí.",
+   "ru": "Она у тебя здесь.",
+   "uk": "Вона у тебе тут."
+  },
+  {
+   "id": "es:18:03",
+   "target": "Ana los tiene en el bolso.",
+   "ru": "Они у Аны в сумке.",
+   "uk": "Вони в Ани в сумці."
+  },
+  {
+   "id": "es:18:04",
+   "target": "Las tenemos aquí.",
+   "ru": "Они у нас здесь.",
+   "uk": "Вони у нас тут."
+  },
+  {
+   "id": "es:18:05",
+   "target": "Luis no lo tiene aquí.",
+   "ru": "У Луиса его здесь нет.",
+   "uk": "У Луїса його тут немає."
+  },
+  {
+   "id": "es:18:06",
+   "target": "La tengo aquí.",
+   "ru": "Она у меня здесь.",
+   "uk": "Вона в мене тут."
+  },
+  {
+   "id": "es:18:07",
+   "target": "¿Los tienes aquí?",
+   "ru": "Они у тебя здесь?",
+   "uk": "Вони у тебе тут?"
+  },
+  {
+   "id": "es:18:08",
+   "target": "Mis hermanos las tienen aquí.",
+   "ru": "Они у моих братьев здесь.",
+   "uk": "Вони у моїх братів тут."
+  },
+  {
+   "id": "es:18:09",
+   "target": "No la tenemos aquí.",
+   "ru": "У нас её здесь нет.",
+   "uk": "У нас її тут немає."
+  },
+  {
+   "id": "es:18:10",
+   "target": "¿Ana lo tiene aquí?",
+   "ru": "Он у Аны здесь?",
+   "uk": "Він в Ани тут?"
+  },
+  {
+   "id": "es:18:11",
+   "target": "Lo buscas.",
+   "ru": "Ты его ищешь.",
+   "uk": "Ти його шукаєш."
+  },
+  {
+   "id": "es:18:12",
+   "target": "Ana la busca.",
+   "ru": "Ана её ищет.",
+   "uk": "Ана її шукає."
+  },
+  {
+   "id": "es:18:13",
+   "target": "Los devuelvo hoy.",
+   "ru": "Я верну их сегодня.",
+   "uk": "Я поверну їх сьогодні."
+  },
+  {
+   "id": "es:18:14",
+   "target": "Luis las busca.",
+   "ru": "Луис их ищет.",
+   "uk": "Луїс їх шукає."
+  },
+  {
+   "id": "es:18:15",
+   "target": "No lo busco.",
+   "ru": "Я его не ищу.",
+   "uk": "Я його не шукаю."
+  },
+  {
+   "id": "es:18:16",
+   "target": "La buscas.",
+   "ru": "Ты её ищешь.",
+   "uk": "Ти її шукаєш."
+  },
+  {
+   "id": "es:18:17",
+   "target": "¿La cambias en la tienda?",
+   "ru": "Ты меняешь её в магазине?",
+   "uk": "Ти обмінюєш її в магазині?"
+  },
+  {
+   "id": "es:18:18",
+   "target": "Las buscamos.",
+   "ru": "Мы их ищем.",
+   "uk": "Ми їх шукаємо."
+  },
+  {
+   "id": "es:18:19",
+   "target": "Ana no la busca.",
+   "ru": "Ана её не ищет.",
+   "uk": "Ана її не шукає."
+  },
+  {
+   "id": "es:18:20",
+   "target": "¿Lo busco?",
+   "ru": "Мне его поискать?",
+   "uk": "Мені його пошукати?"
+  },
+  {
+   "id": "es:18:21",
+   "target": "Ana lo lleva a casa.",
+   "ru": "Ана его несёт домой.",
+   "uk": "Ана його несе додому."
+  },
+  {
+   "id": "es:18:22",
+   "target": "La recojo en recepción.",
+   "ru": "Я забираю её со стойки регистрации.",
+   "uk": "Я забираю її зі стійки реєстрації."
+  },
+  {
+   "id": "es:18:23",
+   "target": "Luis los lleva a casa.",
+   "ru": "Луис их несёт домой.",
+   "uk": "Луїс їх несе додому."
+  },
+  {
+   "id": "es:18:24",
+   "target": "Las llevo a casa.",
+   "ru": "Я их несу домой.",
+   "uk": "Я їх несу додому."
+  },
+  {
+   "id": "es:18:25",
+   "target": "No lo llevas a casa.",
+   "ru": "Ты его не несёшь домой.",
+   "uk": "Ти його не несеш додому."
+  },
+  {
+   "id": "es:18:26",
+   "target": "Lo envuelvo en casa.",
+   "ru": "Я заворачиваю его дома.",
+   "uk": "Я загортаю його вдома."
+  },
+  {
+   "id": "es:18:27",
+   "target": "¿Los llevamos a casa?",
+   "ru": "Отнесём их домой?",
+   "uk": "Віднесемо їх додому?"
+  },
+  {
+   "id": "es:18:28",
+   "target": "Ana las lleva a casa.",
+   "ru": "Ана их несёт домой.",
+   "uk": "Ана їх несе додому."
+  },
+  {
+   "id": "es:18:29",
+   "target": "No la llevo a casa.",
+   "ru": "Я её не несу домой.",
+   "uk": "Я її не несу додому."
+  },
+  {
+   "id": "es:18:30",
+   "target": "¿Lo llevas a casa?",
+   "ru": "Ты его несёшь домой?",
+   "uk": "Ти його несеш додому?"
+  },
+  {
+   "id": "es:18:31",
+   "target": "Lo necesitamos hoy.",
+   "ru": "Он нам сегодня нужен.",
+   "uk": "Він нам сьогодні потрібен."
+  },
+  {
+   "id": "es:18:32",
+   "target": "Luis la necesita hoy.",
+   "ru": "Она Луису сегодня нужна.",
+   "uk": "Вона Луїсу сьогодні потрібна."
+  },
+  {
+   "id": "es:18:33",
+   "target": "Los necesito hoy.",
+   "ru": "Они мне сегодня нужны.",
+   "uk": "Вони мені сьогодні потрібні."
+  },
+  {
+   "id": "es:18:34",
+   "target": "La lavo a mano.",
+   "ru": "Я стираю её вручную.",
+   "uk": "Я перу її вручну."
+  },
+  {
+   "id": "es:18:35",
+   "target": "Mis hermanos no lo necesitan hoy.",
+   "ru": "Он моим братьям сегодня не нужен.",
+   "uk": "Він моїм братам сьогодні не потрібен."
+  },
+  {
+   "id": "es:18:36",
+   "target": "La necesitamos hoy.",
+   "ru": "Она нам сегодня нужна.",
+   "uk": "Вона нам сьогодні потрібна."
+  },
+  {
+   "id": "es:18:37",
+   "target": "¿Ana los necesita hoy?",
+   "ru": "Они Ане сегодня нужны?",
+   "uk": "Вони Ані сьогодні потрібні?"
+  },
+  {
+   "id": "es:18:38",
+   "target": "Las guardo en el bolsillo.",
+   "ru": "Я кладу их в карман.",
+   "uk": "Я кладу їх у кишеню."
+  },
+  {
+   "id": "es:18:39",
+   "target": "No la necesitas hoy.",
+   "ru": "Она тебе сегодня не нужна.",
+   "uk": "Вона тобі сьогодні не потрібна."
+  },
+  {
+   "id": "es:18:40",
+   "target": "¿Ana lo necesita hoy?",
+   "ru": "Он Ане сегодня нужен?",
+   "uk": "Він Ані сьогодні потрібен?"
+  },
+  {
+   "id": "es:18:41",
+   "target": "Luis lo deja en casa.",
+   "ru": "Луис оставляет его дома.",
+   "uk": "Луїс залишає його вдома."
+  },
+  {
+   "id": "es:18:42",
+   "target": "La dejo en casa.",
+   "ru": "Я её оставляю дома.",
+   "uk": "Я її залишаю вдома."
+  },
+  {
+   "id": "es:18:43",
+   "target": "La música la escucho en casa.",
+   "ru": "Музыку я слушаю дома.",
+   "uk": "Музику я слухаю вдома."
+  },
+  {
+   "id": "es:18:44",
+   "target": "Los recojo después de clase.",
+   "ru": "Я заберу их после занятия.",
+   "uk": "Я заберу їх після заняття."
+  },
+  {
+   "id": "es:18:45",
+   "target": "No lo dejamos en casa.",
+   "ru": "Мы его не оставляем дома.",
+   "uk": "Ми його не залишаємо вдома."
+  },
+  {
+   "id": "es:18:46",
+   "target": "Ana la deja en casa.",
+   "ru": "Ана её оставляет дома.",
+   "uk": "Ана її залишає вдома."
+  },
+  {
+   "id": "es:18:47",
+   "target": "¿Los dejo en casa?",
+   "ru": "Мне оставить их дома?",
+   "uk": "Мені залишити їх вдома?"
+  },
+  {
+   "id": "es:18:48",
+   "target": "Las dejas en casa.",
+   "ru": "Ты их оставляешь дома.",
+   "uk": "Ти їх залишаєш вдома."
+  },
+  {
+   "id": "es:18:49",
+   "target": "¿Lo devuelves mañana?",
+   "ru": "Ты вернёшь его завтра?",
+   "uk": "Ти повернеш його завтра?"
+  },
+  {
+   "id": "es:18:50",
+   "target": "¿Lo dejamos en casa?",
+   "ru": "Оставим его дома?",
+   "uk": "Залишимо його вдома?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "dejar",
+   "ru": "оставлять",
+   "uk": "залишати"
+  },
+  {
+   "lemma": "guardar",
+   "ru": "хранить",
+   "uk": "зберігати"
+  },
+  {
+   "lemma": "lavar",
+   "ru": "мыть; стирать",
+   "uk": "мити; прати"
+  },
+  {
+   "lemma": "cambiar",
+   "ru": "менять, обменивать",
+   "uk": "міняти, обмінювати"
+  },
+  {
+   "lemma": "después",
+   "ru": "после, позже",
+   "uk": "після, пізніше"
+  },
+  {
+   "lemma": "devolver",
+   "ru": "возвращать вещь",
+   "uk": "повертати річ"
+  },
+  {
+   "lemma": "envolver",
+   "ru": "заворачивать",
+   "uk": "загортати"
+  },
+  {
+   "lemma": "escuchar",
+   "ru": "слушать",
+   "uk": "слухати"
+  },
+  {
+   "lemma": "recoger",
+   "ru": "забирать, забирать заказ",
+   "uk": "забирати, отримувати"
+  },
+  {
+   "lemma": "necesitar",
+   "ru": "нуждаться",
+   "uk": "потребувати"
+  },
+  {
+   "lemma": "lo/la",
+   "ru": "его, её, их: прямое дополнение",
+   "uk": "його, її, їх: прямий додаток"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  }
+ ],
+ "oldTopicTitle": "Заменяем предмет: lo, la, los, las",
+ "oldTheoryRu": "Уже назвали книгу? Вместо el libro скажи lo. Вместо la llave — la. В Lo tengo местоимение заменяет вещь, а tengo называет действие. Вернись к уже названному предмету. Вместо его названия поставь безударное местоимение перед глаголом. Отдельное «его» не говорит нам, какое испанское слово заменили. Поэтому перед каждым заданием назван предмет. Род el libro и la mochila важнее рода слов «книга» и «рюкзак». Lo заменяет конкретный предмет мужского рода, la — женского. Книгу можно передать словом lo, потому что по-испански это el libro. Два билета — los billetes → los. Фотографии — las fotos → las. Конечное -s добавляет число, но не отменяет род. La перед существительным называет предмет вместе с ним: la llave. В la tengo за la сразу идёт глагол: это уже самостоятельное дополнение, название ключа не повторяется. В этой теме работаем с одной личной формой: lo busco, no lo busco. Другие позиции возможны с инфинитивом и повелительной формой, но это не цель данной тренировки. Сравни два задания: «Я его ищу?» / «Ана её несёт домой.». Проверь род и число испанского слова из контекста. Смысловые опоры: lo. Сравни два задания: «Я заберу их после занятия.» / «Мы его оставляем дома?». Проверь род и число испанского слова из контекста. Вернись к уже названному предмету. Вместо его названия поставь безударное местоимение перед глаголом."
+}

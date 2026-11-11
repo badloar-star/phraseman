@@ -109,11 +109,19 @@ export function homeScenePreviewSetup(state: HomeScenePreviewState, plus: boolea
   });
 }
 
-/** Место продолжения, как его собирает Главная: «Урок N», эпизод, название эпизода (titleOf — то же, что у карточки «Продолжить»). */
+function previewEpisodeTitle(lang: Lang, _lesson: number, episode: number): string {
+  const label = triLang(lang, {
+    ru: 'Занятие', en: 'Session', uk: 'Заняття', es: 'Sesión', 'pt-BR': 'Sessão',
+    vi: 'Buổi', id: 'Sesi', tr: 'Oturum', pl: 'Zajęcia',
+  });
+  return label + ' ' + episode;
+}
+
+/** Пример карточки продолжения для предпросмотра Главной. */
 export function homeScenePreviewPlace(
   lang: Lang,
   setup: HomeScenePreviewSetup,
-  titleOf: (lang: Lang, lesson: number, episode: number) => string,
+  titleOf: (lang: Lang, lesson: number, episode: number) => string = previewEpisodeTitle,
 ): Readonly<{ badge: string; episode: number | null; title: string; done: number | null; total: number | null; theoryLessonId: number | null }> {
   const n = setup.lesson;
   return Object.freeze({

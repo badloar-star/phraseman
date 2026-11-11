@@ -1,0 +1,86 @@
+[
+ {
+  "id": "lesson-23/use",
+  "type": "T2",
+  "field": "localized.uk.use (+chapters[0].body)",
+  "problem": "калька й неграматичність: «Англійська мова може не включати агента, а не вигадувати…»",
+  "fix": "Поставте кімнату, квиток або посилку на перше місце, коли дія важливіша за того, хто її виконує. В англійській виконавця можна просто не називати, не вигадуючи розмиту «відповідальну особу»."
+ },
+ {
+  "id": "lesson-23/chapter-6",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "помилка: «першу допоміжну дію» замість допоміжного дієслова",
+  "fix": "Змінити час або перше допоміжне дієслово"
+ },
+ {
+  "id": "lesson-23/choose",
+  "type": "T2",
+  "field": "localized.en.choose (+chapters[1].body, chapters[3].body, feedback)",
+  "problem": "en не соответствует ru: в ru — сначала объект, be показывает время и число, пример The tickets are sold online, исполнитель не обязателен; в en — про правильные/неправильные причастия",
+  "fix": "Name the receiver of the action first. Use a form of `be` to show time and number, then add the past participle: `The tickets are sold online`. You do not need to name who does it."
+ },
+ {
+  "id": "lesson-23/choose",
+  "type": "T2",
+  "field": "localized.ru.choose",
+  "problem": "ты/вы вразнобой внутри урока: story/choose/strategy/feedback на «ты», use/nuance/главы 4–6 на «вы»; привести choose (и дубли в chapters[1].body, chapters[3].body, feedback) к «вы», story/strategy — тоже",
+  "fix": "Первым назовите то, над чем выполняют действие. Формой `be` покажите время и число, затем добавьте третью форму: `The tickets are sold online`. Исполнитель здесь не обязателен."
+ },
+ {
+  "id": "lesson-23/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Спершу назвіть те, над чим виконують дію. Формою `be` покажіть час і число, а потім додайте третю форму: `The tickets are sold online`. Виконавця тут можна не називати."
+ },
+ {
+  "id": "lesson-24/use",
+  "type": "T1",
+  "field": "localized.ru.use (+chapters[0].body)",
+  "problem": "потерян смысл «опыт до настоящего момента»: «события, произошедшего ранее» подходит под любое прошлое и противоречит правилу про past simple",
+  "fix": "Используйте Present Perfect для результата, важного сейчас, для опыта «когда-либо до сих пор» или для периода, который длится до настоящего момента. Если время явно закончилось (например, yesterday), в этих заданиях нужен Past Simple."
+ },
+ {
+  "id": "lesson-24/use",
+  "type": "T1",
+  "field": "localized.uk.use (+chapters[0].body)",
+  "problem": "втрачено значення «досвід до теперішнього моменту»: «подій до теперішнього часу» підходить під будь-яке минуле",
+  "fix": "Використовуйте Present Perfect для результату, важливого зараз, для досвіду «колись досі» або для періоду, що триває до теперішнього моменту. Якщо час явно завершений (наприклад, yesterday), у цих завданнях потрібен Past Simple."
+ },
+ {
+  "id": "lesson-24/nuance",
+  "type": "T2",
+  "field": "localized.uk.nuance (+chapters[2].body)",
+  "problem": "помилка: «в кінці питального або заперечного дієслова» (має бути — речення), калька «зустрічаються»",
+  "fix": "`Yet` зазвичай стоїть у кінці запитання або заперечного речення. `Already` та `just` часто стоять між допоміжним дієсловом і дієприкметником. В американському варіанті з нещодавніми подіями також можливий минулий простий час; важливі час і мета вправи."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T2",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "«Квитка зараз бракує» — «бракує» = нестача, а не «зник/загубився»",
+  "fix": "Квиток зараз зник. Поясніть результат. Потім додайте точний час, коли це сталося, і зверніть увагу, чому підходить інший час."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T2",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "«Билет пропал прямо сейчас» — смещение смысла (en: is missing right now — состояние), «точное время окончания» — калька",
+  "fix": "Билета сейчас нет. Объясните результат. Затем добавьте точное время, когда это случилось, и обратите внимание, почему подходит другое время."
+ },
+ {
+  "id": "lesson-24/choose",
+  "type": "T2",
+  "field": "localized.ru.choose",
+  "problem": "ты/вы вразнобой внутри урока: story/choose/strategy/feedback на «ты», use/nuance/главы 4–6 на «вы»; привести choose (и дубли в chapters[1].body, chapters[3].body, feedback) к «вы», story/strategy — тоже",
+  "fix": "Посмотрите на подлежащее: `I/we/you/they have`, `he/she/it has`. Дальше нужна третья форма, например `found` или `written`. Для продолжающегося периода `for` вводит длительность, а `since` — момент начала."
+ },
+ {
+  "id": "lesson-24/choose",
+  "type": "T2",
+  "field": "localized.uk.choose",
+  "problem": "ти/ви вперемішку в межах уроку: story/choose/strategy/feedback на «ти», use/nuance/розділи 4–6 на «ви»; привести choose (і дублі в chapters[1].body, chapters[3].body, feedback) до «ви», story/strategy — теж",
+  "fix": "Подивіться на підмет: `I/we/you/they have`, `he/she/it has`. Далі потрібна третя форма, наприклад `found` або `written`. Для періоду, що досі триває, `for` позначає тривалість, а `since` — момент початку."
+ }
+]

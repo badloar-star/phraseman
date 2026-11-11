@@ -47,7 +47,7 @@ import { applyReferralPairBonus } from './friends_together';
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { contestLessonsCompleted } from './community_month_tally';
 import { LADDER_LESSON_WINDOW_MS } from './referral_ladder';
-import { ladderPushTokenHash, ladderSecondDayTransition } from './referral_ladder_plus';
+import { ladderPushTokenHash } from './referral_ladder_plus';
 import {
   REFERRAL_LADDER_PROGRAM,
   REFERRAL_LADDER_STATS,
@@ -831,12 +831,6 @@ export async function handleReferralUsersWrite(
     if (ladderLessonTransition(pB, pA)) {
       await processReferralLadderLesson(admin.firestore(), userId, 'users_write').catch((e) => {
         console.warn(`[REF-LADDER] users_write_failed referee=${ladderLogId(userId)} reason=${e instanceof Error ? e.message.slice(0, 160) : String(e)}`);
-      });
-    } else if (ladderSecondDayTransition(pB, pA)) {
-      // зачем (лесенка C): друг, уже засчитанный за монеты, дождался второго серверного дня — пересчитать для Plus.
-      // Переход бывает раз в жизни аккаунта (метки ставит только сервер), без чтений до вызова.
-      await processLadderPlusEligibility(admin.firestore(), userId, 'users_write').catch((e) => {
-        console.warn(`[LADDER-C] users_write_eligibility_failed referee=${ladderLogId(userId)} reason=${e instanceof Error ? e.message.slice(0, 160) : String(e)}`);
       });
     }
     // Дёшево выходим: реагируем только на переход «не было store-премиума → есть».

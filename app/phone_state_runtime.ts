@@ -33,8 +33,7 @@ import { createPreferencesReducer } from '../modules/phone-state/domains/prefere
 import { createCardsReducer } from '../modules/phone-state/domains/cards';
 import { createPracticeReducer } from '../modules/phone-state/domains/practice';
 import { createEconomyReducer } from '../modules/phone-state/domains/economy';
-import { createLearningV2Reducer } from '../modules/phone-state/domains/learning_v2';
-import { configurePhoneStateLearningV2Bridge } from '../modules/phone-state/learning_v2_runtime_bridge';
+import { createRetiredCourseCompletionReducer } from '../modules/phone-state/domains/retired_course_completions';
 import {
   createPersonalProgressApi,
   type PersonalProgressJournal,
@@ -392,7 +391,8 @@ async function openRuntimeSession(
       createCardsReducer(),
       createPracticeReducer(),
       createEconomyReducer(),
-      createLearningV2Reducer(),
+      // зачем: курс занятий удалён, но его операции уже лежат в журнале — редьюсер остаётся ради воспроизведения.
+      createRetiredCourseCompletionReducer(),
       opaqueReducer('lesson_completion'),
       opaqueReducer('exam_completion'),
     ] as const);
@@ -417,7 +417,6 @@ async function openRuntimeSession(
         configurePhoneStateCardsBridge(null);
         configurePhoneStatePracticeBridge(null);
         configurePhoneStateEconomyBridge(null);
-        configurePhoneStateLearningV2Bridge(null);
         configurePhoneStateBackgroundSyncBridge(null);
         configurePhoneStateProgressRegisterBridge(null);
         configurePhoneStateProgressCutover(null);
@@ -605,12 +604,6 @@ export function installPhoneStateProductionRuntime(): void {
       }).then(() => drainClientShardPhoneStateOutbox({
         accountToken: shardRuntimeToken,
       })).catch(noteSwallowedHandler('phone_state_runtime:promise_3')));
-      configurePhoneStateLearningV2Bridge({
-        scope,
-        deviceId: session.deviceId,
-        store: session.store,
-        triggerSync: () => session.triggerSync('sealed_segment'),
-      });
       const manifestBody = Object.freeze({
         schemaVersion: 'personal-sync-device.v1' as const,
         ...scope,

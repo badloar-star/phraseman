@@ -1,0 +1,128 @@
+[
+  {
+    "id": "lesson-23/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.uk",
+    "problem": "«Людина… Він» — род; «Звичайний час» — потеряно «теперішній»",
+    "fix": "Людина ще не знає, чи піде дощ. Вона пропонує план на такий випадок. Звичайний теперішній час підходить для реальної умови; спеціальна форма майбутнього тут не обов'язкова."
+  },
+  {
+    "id": "lesson-23/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "пропущено «не» — смысл противоположен ru; «головного пропозиції», «зміст умов»",
+    "fix": "Якщо спочатку сказати результат, у головній частині звичайний порядок. Коли умова наприкінці, вона не змінює перших слів головного речення. В обох порядках зміст умови можна зберегти."
+  },
+  {
+    "id": "lesson-23/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "«запитом» (=query), «`du`, що підлягає» — машинный мусор",
+    "fix": "Результат може бути проханням, а не звичайним повідомленням. Після коми залишиться команда: підмет `du` не мусить з'являтися лише тому, що в першій частині його було названо."
+  },
+  {
+    "id": "lesson-23/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.uk",
+    "problem": "«надає можливість» (=предоставляет) ≠ ru «сообщает возможность»",
+    "fix": "Модальна частина повідомляє про можливість або обов'язок. Вибирай її за практичним значенням: що можна зробити, а що доведеться зробити. Не втрачай інфінітив у самому кінці головної частини."
+  },
+  {
+    "id": "lesson-23/chapter-6",
+    "type": "T1",
+    "field": "theory.chapters[5].textByLocale.ru",
+    "problem": "пример «позвонить по прибытии» не из примеров главы (23:45 аккумулятор, 23:47 чай)",
+    "fix": "Смысл не обязательно условный в строгом смысле. Когда аккумулятор почти сел, его заряжают: событие ожидается, вопрос только в том, когда оно случится. Условие и ожидаемый момент получают одну структуру предложения."
+  },
+  {
+    "id": "lesson-23/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.uk",
+    "problem": "«пропозиції» вместо «речення»; пример не из главы",
+    "fix": "Сенс не обов'язково умовний у строгому значенні. Коли акумулятор майже розрядився, його заряджають: подія очікується, питання лише в тому, коли вона станеться. Умова та очікуваний момент отримують одну структуру речення."
+  },
+  {
+    "id": "lesson-23/chapter-6",
+    "type": "T1",
+    "field": "theory.chapters[5].textByLocale.en",
+    "problem": "пример «call upon arrival» не из примеров главы",
+    "fix": "The meaning is not necessarily conditional in the strict sense. When the battery is almost empty, you charge it: the event is expected; the only question is when it will happen. The condition and the expected moment share the same sentence structure."
+  },
+  {
+    "id": "lesson-24/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.uk",
+    "problem": "«причиною її відкриття» — двері мн.ч.",
+    "fix": "Уяви кадр: ти приїжджаєш, двері вже відчинені. `Als` повідомляє, до якого моменту належить сцена. Воно не означає, що ти відчинив двері або став причиною того, що їх відчинили."
+  },
+  {
+    "id": "lesson-24/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.uk",
+    "problem": "«Обидва можливі» — обрыв без «порядки»; «пропозицію»",
+    "fix": "Обидва порядки можливі. Можна спочатку назвати своє місцезнаходження, а потім дзвінок, яким позначено момент. У підрядному реченні порядок залишається підрядним, навіть якщо воно завершує речення."
+  },
+  {
+    "id": "lesson-24/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.en",
+    "problem": "«the bell» — в примере звонок телефона (das Handy klingelte)",
+    "fix": "Both orders are possible. You can first state where you were, and then the phone ringing that marks the moment. In the subordinate clause, the word order stays subordinate even if the clause ends the sentence."
+  },
+  {
+    "id": "lesson-24/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "потеряно «один» (ключ правила als) и «рівно»",
+    "fix": "Одноразовість не означає «рівно одна секунда». Дитинство чи період навчання тривали довго, але розглядаються як один минулий період життя. Тому і там може з'явитися `als`."
+  },
+  {
+    "id": "lesson-24/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.uk",
+    "problem": "«запроваджує» (=вводит в действие) вместо «вводить»",
+    "fix": "Усередині єдиного періоду події могли повторюватися. Наприклад, у роки роботи в готелі людина багато разів рано вставала. Сполучник вводить саме період, а не рахує кількість підйомів."
+  },
+  {
+    "id": "lesson-24/chapter-5",
+    "type": "T1",
+    "field": "theory.chapters[4].textByLocale.ru",
+    "problem": "«в рассказе часто встретится Präteritum» — противопоставление потеряно (нужно «в письменном»)",
+    "fix": "Временная часть не требует одного-единственного грамматического прошедшего. В разговорном рассказе возможен Perfekt, в письменном повествовании часто встречается Präteritum. Проверь порядок вспомогательного глагола, если он есть."
+  },
+  {
+    "id": "lesson-24/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«Тимчасова» (=непостоянная) вместо «Часова»",
+    "fix": "Часова частина не вимагає одного-єдиного граматичного минулого. У розмовній розповіді можливий Perfekt, у письмовій оповіді часто трапляється Präteritum. Перевір порядок допоміжного дієслова, якщо він є."
+  },
+  {
+    "id": "lesson-24/chapter-5",
+    "type": "T1",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "«the present tense is often encountered» — неверно, речь о Präteritum; «The tense» ≠ «временная часть»",
+    "fix": "The time clause does not require one single grammatical past tense. In a conversational story, Perfekt is possible; in written narration, Präteritum is common. Check the position of the auxiliary verb, if there is one."
+  },
+  {
+    "id": "lesson-24/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.uk",
+    "problem": "«тимчасове als», «ціла пропозиція» — машинные ошибки",
+    "fix": "Не плутай часове `als` із порівняльним. У цьому уроці за ним іде ціле речення про момент у минулому, а не другий предмет порівняння за ціною чи розміром."
+  },
+  {
+    "id": "lesson-24/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.uk",
+    "problem": "«тимчасова рамка», «а чи не просто за наявності» — машинный мусор",
+    "fix": "Один учорашній випадок протиставь звичці: один раз — часова рамка з `als`, щоразу — зазвичай `wenn`. Рішення ухвалюється за історією, а не просто за наявністю слова «коли» в перекладі."
+  },
+  {
+    "id": "lesson-24/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "Contrast one incident from yesterday with a habit: once—a time frame with `als`, every time—usually `wenn`. The decision is made based on history, not simply on the presence of the word \"when\" in the translation."
+  }
+]

@@ -57,7 +57,6 @@ describe('старт платной активности: без окна под
       'app/flashcards_blitz_session.tsx',
       'app/flashcards_speaking_session.tsx',
       'app/flashcards_swipe.tsx',
-      'app/learning-v2/session/[id].tsx',
       'app/lesson_irregular_verbs.tsx',
       'app/lesson_words.tsx',
       'app/lesson1.tsx',

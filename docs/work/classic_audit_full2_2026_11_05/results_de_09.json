@@ -1,0 +1,16 @@
+[
+{"id": "de:19:32", "type": "M", "field": "ru", "problem": "«записываешься у врача» — неестественно; по-русски записываются к врачу", "fix": "Ты записываешься к врачу."},
+{"id": "de:19:32", "type": "M", "field": "uk", "problem": "«записуєшся у лікаря» — неприродно; записуються до лікаря", "fix": "Ти записуєшся до лікаря."},
+{"id": "de:19:34", "type": "B1", "field": "tiles", "problem": "соблазн «im» даёт верную фразу «Wir treffen uns im Bahnhof.» = «Мы встречаемся на вокзале»", "fix": {"position": 3, "replace_distractor": "im", "with": "zur"}},
+{"id": "de:19:36", "type": "M", "field": "uk", "problem": "«Ганна» вместо «Анна» — во всех остальных фразах курса uk «Анна»; разнобой имени", "fix": "Том і Анна прощаються."},
+{"id": "de:19:48", "type": "B1", "field": "tiles", "problem": "соблазн «hatte» даёт грамматичную фразу «Sie hatte sich gut erholt.», которая тоже переводится «Она хорошо отдохнула»", "fix": {"position": 1, "replace_distractor": "hatte", "with": "hattest"}},
+{"id": "de:19:50", "type": "B1", "field": "tiles", "problem": "соблазн «hattet» даёт грамматичную фразу «Ihr hattet euch für morgen verabredet.» = «Вы договорились встретиться завтра»", "fix": {"position": 1, "replace_distractor": "hattet", "with": "hast"}},
+{"id": "de:20:01", "type": "M", "field": "uk", "problem": "в предикате нужен прикметник «швидший», «швидше» — прислівник", "fix": "Автобус швидший за мене."},
+{"id": "de:20:02", "type": "M", "field": "uk", "problem": "в предикате нужен прикметник «швидший», «швидше» — прислівник", "fix": "Поїзд швидший за автобус."},
+{"id": "de:20:25", "type": "B1", "field": "tiles", "problem": "соблазн «zum» даёт разговорно-естественную «näher zum Bahnhof», прямо подсказанную «ближе к вокзалу»", "fix": {"position": 4, "replace_distractor": "zum", "with": "vom"}},
+{"id": "de:20:25", "type": "B1", "field": "tiles", "problem": "соблазн «beim» даёт верную (южнонем./разг.) «näher beim Bahnhof»", "fix": {"position": 4, "replace_distractor": "beim", "with": "im"}},
+{"id": "de:20:13", "type": "B1", "field": "tiles", "problem": "на позиции прилагательного все 5 соблазнов — глаголы (bedanke, getroffen, kämmt, meldet, mitkommen): выдают себя по части речи, позиция тривиальна; заменить хотя бы часть на прилагательные (alte, letzte, blaue)", "fix": {"position": 1, "replace_distractor": "mitkommen", "with": "alte"}},
+{"id": "de:20:30", "type": "B1", "field": "tiles", "problem": "на позиции прилагательного все 5 соблазнов — глаголы (bedanke, getroffen, kämmt, meldet, mitkommen): выдают себя; заменить на прилагательные (alte, letzte, zweite)", "fix": {"position": 1, "replace_distractor": "mitkommen", "with": "alte"}},
+{"id": "de:20:40", "type": "B1", "field": "tiles", "problem": "к прилагательному «rote» все соблазны — формы haben (hast, habe, haben, habt, hat): нелепо, отсеивается без знания слова; заменить на прилагательные (grüne, alte, neue)", "fix": {"position": 1, "replace_distractor": "hast", "with": "grüne"}},
+{"id": "de:20:42", "type": "B1", "field": "tiles", "problem": "к местоимению «unsere» соблазны frage, gehört, genauso, laut, lieber — другая часть речи, выдают себя; заменить на притяжательные (deine, eure, meine)", "fix": {"position": 6, "replace_distractor": "frage", "with": "deine"}}
+]

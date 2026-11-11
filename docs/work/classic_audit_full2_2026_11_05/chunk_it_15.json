@@ -1,0 +1,8447 @@
+[
+{
+"lesson": 31,
+"id": "it:31:01",
+"target": "Avevo già mangiato quando hai chiamato.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв.",
+"tiles": [
+{
+"correct": "Avevo",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Ecco"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "mangiato",
+"distractors": [
+"sul",
+"richiesto",
+"steso",
+"iniziato",
+"guardato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"ho",
+"hanno",
+"abbiamo",
+"avete"
+]
+},
+{
+"correct": "chiamato",
+"distractors": [
+"l’idraulico",
+"arrivato",
+"fuoco",
+"svegliato",
+"chiesto"
+]
+}
+],
+"alternatives": [
+"Io avevo già mangiato quando hai chiamato."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:02",
+"target": "Avevi già pagato quando sono arrivato.",
+"ru": "К тому моменту, как я пришёл, ты уже заплатил.",
+"uk": "До того моменту, як я прийшов, ти вже заплатив.",
+"tiles": [
+{
+"correct": "Avevi",
+"distractors": [
+"Aveva",
+"Avevamo",
+"Avevo",
+"Avevano",
+"Avevate"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "pagato",
+"distractors": [
+"pasto",
+"abbassato",
+"avuto",
+"ritrovato",
+"sparito"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"pane",
+"siete",
+"sei",
+"siamo"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"preparato",
+"chiamato",
+"nuovo",
+"tornato",
+"portafoglio"
+]
+}
+],
+"alternatives": [
+"Tu avevi già pagato quando sono arrivato."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:03",
+"target": "Lea aveva già asciugato il pavimento.",
+"ru": "Леа уже вытерла пол.",
+"uk": "Леа вже витерла підлогу.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "asciugato",
+"distractors": [
+"richiamato",
+"messaggio",
+"cartello",
+"cercando",
+"bevuto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"lo",
+"una"
+]
+},
+{
+"correct": "pavimento",
+"distractors": [
+"arrivato",
+"dimenticato",
+"postino",
+"partito",
+"prenotato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:04",
+"target": "Avevamo già prenotato i nostri posti.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця.",
+"tiles": [
+{
+"correct": "Avevamo",
+"distractors": [
+"Avevo",
+"Aveva",
+"Avevi",
+"Avevano",
+"Avevate"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"ancora",
+"più",
+"mai",
+"anche"
+]
+},
+{
+"correct": "prenotato",
+"distractors": [
+"prenotati",
+"mangiato",
+"tornato",
+"dipingere",
+"telefono"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"il",
+"le",
+"una",
+"gli"
+]
+},
+{
+"correct": "nostri",
+"distractors": [
+"mia",
+"tuo",
+"vostri",
+"loro",
+"tue"
+]
+},
+{
+"correct": "posti",
+"distractors": [
+"lei",
+"clienti",
+"fogli",
+"miei",
+"arrivati"
+]
+}
+],
+"alternatives": [
+"Noi avevamo già prenotato i nostri posti."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:05",
+"target": "Aveva già letto il messaggio?",
+"ru": "Вы уже прочитали сообщение?",
+"uk": "Ви вже прочитали повідомлення?",
+"tiles": [
+{
+"correct": "Aveva",
+"distractors": [
+"Avevamo",
+"Avevano",
+"Barche",
+"Pallone",
+"D’estate"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "letto",
+"distractors": [
+"piatto",
+"iniziato",
+"visto",
+"telefono",
+"partito"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"lo",
+"le",
+"una",
+"uno"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"dormito",
+"uscito",
+"ritorno",
+"riletto",
+"richiesto"
+]
+}
+],
+"alternatives": [
+"Avevate già letto il messaggio?",
+"Avevi già letto il messaggio?"
+]
+},
+{
+"lesson": 31,
+"id": "it:31:06",
+"target": "Avevano già preso l’autobus.",
+"ru": "Они уже сели на автобус.",
+"uk": "Вони вже сіли на автобус.",
+"tiles": [
+{
+"correct": "Avevano",
+"distractors": [
+"Aveva",
+"Avevo",
+"Avevamo",
+"Avevi",
+"Avevate"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "preso",
+"distractors": [
+"guardato",
+"avevamo",
+"dormito",
+"fuoco",
+"prenotato"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"porta",
+"avevamo",
+"banca",
+"l’acqua",
+"casa"
+]
+}
+],
+"alternatives": [
+"Loro avevano già preso l’autobus."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:07",
+"target": "Paolo era già uscito quando sono entrato.",
+"ru": "Когда я вошёл, Паоло уже ушёл.",
+"uk": "Коли я увійшов, Паоло уже пішов.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"sempre"
+]
+},
+{
+"correct": "uscito",
+"distractors": [
+"nuovo",
+"cartello",
+"usciti",
+"chiamato",
+"arrivato"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"riuscito",
+"siete",
+"sei",
+"siamo"
+]
+},
+{
+"correct": "entrato",
+"distractors": [
+"pasto",
+"postino",
+"assaggiato",
+"passaporto",
+"biglietto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:08",
+"target": "Lea era già uscita quando ho chiamato.",
+"ru": "Леа уже ушла, когда я позвонил.",
+"uk": "Леа вже пішла, коли я подзвонив.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"ancora",
+"più",
+"mai",
+"anche"
+]
+},
+{
+"correct": "uscita",
+"distractors": [
+"usciti",
+"preparato",
+"scesa",
+"posti",
+"occhiali"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "chiamato",
+"distractors": [
+"riconosciuto",
+"promesso",
+"nascosto",
+"nuovo",
+"pasto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:09",
+"target": "I clienti erano già usciti.",
+"ru": "Клиенты к тому моменту уже вышли.",
+"uk": "Клієнти на той момент уже вийшли.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Una",
+"Le"
+]
+},
+{
+"correct": "clienti",
+"distractors": [
+"istruzioni",
+"posti",
+"fogli",
+"arrivati",
+"tornati"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"ero",
+"eravamo",
+"sarebbe",
+"fossero",
+"fossi"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"anche",
+"mai"
+]
+},
+{
+"correct": "usciti",
+"distractors": [
+"fogli",
+"grande",
+"tornati",
+"posti",
+"bambini"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:10",
+"target": "I miei genitori erano già tornati a casa.",
+"ru": "Мои родители уже вернулись домой.",
+"uk": "Мої батьки вже повернулися додому.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Le",
+"Una"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"mia",
+"tua",
+"mio",
+"sua",
+"vostri"
+]
+},
+{
+"correct": "genitori",
+"distractors": [
+"istruzioni",
+"posti",
+"fogli",
+"clienti",
+"avevi"
+]
+},
+{
+"correct": "erano",
+"distractors": [
+"ero",
+"eravamo",
+"sarebbe",
+"fossero",
+"fossi"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "tornati",
+"distractors": [
+"l’autobus",
+"istruzioni",
+"clienti",
+"arrivati",
+"fogli"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"era",
+"nella",
+"giacca",
+"stava",
+"zuppa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:11",
+"target": "Non riuscivo a trovare la chiave che avevo nascosto.",
+"ru": "Я никак не мог найти ключ, который раньше спрятал.",
+"uk": "Я ніяк не міг знайти ключ, який раніше сховав.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Più",
+"Anche",
+"Mai"
+]
+},
+{
+"correct": "riuscivo",
+"distractors": [
+"pagato",
+"dovuto",
+"cercando",
+"presentato",
+"richiesto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "trovare",
+"distractors": [
+"latte",
+"pane",
+"codice",
+"bene",
+"valigie"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ne",
+"ci",
+"e"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"dipingere",
+"tornare",
+"riparazione",
+"felice",
+"scarpe"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"quando",
+"se",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "nascosto",
+"distractors": [
+"presentato",
+"caldo",
+"letto",
+"chiesto",
+"dimenticato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:12",
+"target": "Paolo stava cercando la borsa che aveva dimenticato.",
+"ru": "Паоло искал сумку, которую раньше забыл.",
+"uk": "Паоло шукав сумку, яку раніше забув.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "stava",
+"distractors": [
+"stavamo",
+"stavano",
+"porta",
+"scrivendo",
+"preso"
+]
+},
+{
+"correct": "cercando",
+"distractors": [
+"nascosto",
+"messaggio",
+"richiamato",
+"portafoglio",
+"ufficio"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"ci",
+"un"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"alla",
+"strada",
+"uscita",
+"zuppa",
+"ai"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"come",
+"se",
+"quando",
+"mentre",
+"perché"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"asciugato",
+"riuscivo",
+"messaggio",
+"l’idraulico",
+"arrivato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:13",
+"target": "Lei ha riletto la lettera che aveva ricevuto.",
+"ru": "Она перечитала письмо, которое до этого получила.",
+"uk": "Вона перечитала листа, який до цього отримала.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Loro",
+"Lui",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "riletto",
+"distractors": [
+"conto",
+"traboccato",
+"erano",
+"nascosto",
+"nuovo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"si",
+"ne",
+"mi"
+]
+},
+{
+"correct": "lettera",
+"distractors": [
+"borsa",
+"stava",
+"scesa",
+"porta",
+"banca"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"casa"
+]
+},
+{
+"correct": "ricevuto",
+"distractors": [
+"pagato",
+"ritrovato",
+"avuto",
+"richiamato",
+"steso"
+]
+}
+],
+"alternatives": [
+"Ha riletto la lettera che aveva ricevuto."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:14",
+"target": "Ho riconosciuto la strada che avevamo attraversato.",
+"ru": "Я узнал улицу, которую мы перешли.",
+"uk": "Я впізнав вулицю, яку ми переходили.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Hai",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "riconosciuto",
+"distractors": [
+"preso",
+"pavimento",
+"preparato",
+"comprato",
+"visto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"ne",
+"e"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"conferma",
+"zuppa",
+"questa",
+"borsa",
+"menta"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"come",
+"quando",
+"mentre",
+"perché"
+]
+},
+{
+"correct": "avevamo",
+"distractors": [
+"aveva",
+"avevo",
+"avevi",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "attraversato",
+"distractors": [
+"preparato",
+"chiesto",
+"dimenticato",
+"portafoglio",
+"caldo"
+]
+}
+],
+"alternatives": [
+"Io ho riconosciuto la strada che avevamo attraversato."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:15",
+"target": "Hai ritrovato il badge che avevi perso.",
+"ru": "Ты нашёл пропуск, который до этого потерял.",
+"uk": "Ти знайшов перепустку, яку до цього втратив.",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "ritrovato",
+"distractors": [
+"iniziato",
+"lasciato",
+"telefono",
+"pavimento",
+"preparato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"e"
+]
+},
+{
+"correct": "badge",
+"distractors": [
+"codice",
+"chiave",
+"trovare",
+"entrare",
+"valigie"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "avevi",
+"distractors": [
+"aveva",
+"avevamo",
+"avevo",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "perso",
+"distractors": [
+"giorno",
+"postino",
+"successo",
+"guardato",
+"trovato"
+]
+}
+],
+"alternatives": [
+"Tu hai ritrovato il badge che avevi perso."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:16",
+"target": "Il pane che avevo comprato era ancora caldo.",
+"ru": "Хлеб, который я купил, был ещё тёплым.",
+"uk": "Хліб, який я купив, був ще теплим.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Le",
+"Gli",
+"E"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"codice",
+"tornare",
+"entrare",
+"grande",
+"chiave"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"come",
+"quando",
+"se",
+"mentre",
+"perché"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "comprato",
+"distractors": [
+"preparato",
+"guardato",
+"riletto",
+"portafoglio",
+"capito"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"non",
+"già",
+"più",
+"mai",
+"anche"
+]
+},
+{
+"correct": "caldo",
+"distractors": [
+"chiuso",
+"ufficio",
+"lavoro",
+"vicino",
+"fuori"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:17",
+"target": "Avevo già bevuto metà della zuppa.",
+"ru": "Я уже выпил половину супа.",
+"uk": "Я вже випив половину супу.",
+"tiles": [
+{
+"correct": "Avevo",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Ecco"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"ancora",
+"più",
+"mai",
+"anche"
+]
+},
+{
+"correct": "bevuto",
+"distractors": [
+"piatto",
+"asciugato",
+"chiamato",
+"mangiato",
+"arrivato"
+]
+},
+{
+"correct": "metà",
+"distractors": [
+"posti",
+"treno",
+"dimenticato",
+"avevi",
+"avevamo"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"andata",
+"sveglia",
+"menta",
+"questa",
+"alla"
+]
+}
+],
+"alternatives": [
+"Io avevo già bevuto metà della zuppa."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:18",
+"target": "La giacca che avevo scelto era troppo grande.",
+"ru": "Выбранная мной куртка оказалась слишком большой.",
+"uk": "Куртка, яку я обрав, була завелика.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Ne",
+"Gli",
+"E"
+]
+},
+{
+"correct": "giacca",
+"distractors": [
+"della",
+"cantina",
+"serratura",
+"casa",
+"sveglia"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"quando",
+"se",
+"come",
+"mentre",
+"perché"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avesse",
+"avessimo",
+"avessi",
+"avrebbe",
+"avrei"
+]
+},
+{
+"correct": "scelto",
+"distractors": [
+"stato",
+"preso",
+"svegliato",
+"ritrovato",
+"dovuto"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "troppo",
+"distractors": [
+"po’",
+"molto",
+"più",
+"meno",
+"abbastanza"
+]
+},
+{
+"correct": "grande",
+"distractors": [
+"dipingere",
+"badge",
+"bene",
+"iniziare",
+"codice"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:19",
+"target": "Il vicino aveva riparato la serratura prima del nostro ritorno.",
+"ru": "Сосед починил замок до нашего возвращения.",
+"uk": "Сусід полагодив замок, перш ніж ми повернулися.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"Una",
+"Le",
+"I",
+"Che",
+"E"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "riparato",
+"distractors": [
+"sforzo",
+"letto",
+"ricevuto",
+"tempo",
+"prenotato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"i",
+"un",
+"mi",
+"ne",
+"che"
+]
+},
+{
+"correct": "serratura",
+"distractors": [
+"lettera",
+"sveglia",
+"andata",
+"questa",
+"giacca"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"della",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "nostro",
+"distractors": [
+"tuo",
+"mia",
+"tua",
+"sua",
+"mio"
+]
+},
+{
+"correct": "ritorno",
+"distractors": [
+"lavoro",
+"pavimento",
+"nuovo",
+"tempo",
+"passaporto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:20",
+"target": "La banca aveva già chiuso prima del mio arrivo.",
+"ru": "Банк уже закрылся до моего приезда.",
+"uk": "Банк уже закрився до мого приходу.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Ci",
+"I",
+"Si",
+"Mi"
+]
+},
+{
+"correct": "banca",
+"distractors": [
+"era",
+"nella",
+"lettera",
+"casa",
+"cantina"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"aperti",
+"aperte",
+"sono"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"sua",
+"tua",
+"suo",
+"vostri",
+"tuo"
+]
+},
+{
+"correct": "arrivo",
+"distractors": [
+"arrivato",
+"erano",
+"tempo",
+"nuovo",
+"entrato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:21",
+"target": "Non avevo visto il cartello.",
+"ru": "Я не видел табличку.",
+"uk": "Я не бачив знака.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Anche"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "visto",
+"distractors": [
+"piatto",
+"nascosto",
+"scelto",
+"fuoco",
+"capito"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "cartello",
+"distractors": [
+"chiesto",
+"erano",
+"entrato",
+"pasto",
+"piatto"
+]
+}
+],
+"alternatives": [
+"Io non avevo visto il cartello."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:22",
+"target": "Non aveva capito le istruzioni.",
+"ru": "Она не поняла инструкции.",
+"uk": "Вона не зрозуміла інструкцій.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Anche"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"casa"
+]
+},
+{
+"correct": "capito",
+"distractors": [
+"avevamo",
+"ricevuto",
+"preso",
+"tornato",
+"tempo"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"un",
+"la",
+"si",
+"lo"
+]
+},
+{
+"correct": "istruzioni",
+"distractors": [
+"genitori",
+"perso",
+"clienti",
+"tornati",
+"arrivati"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:23",
+"target": "Non avevamo ricevuto il codice.",
+"ru": "Мы не получили код.",
+"uk": "Ми не отримали код.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Sempre",
+"Anche"
+]
+},
+{
+"correct": "avevamo",
+"distractors": [
+"aveva",
+"avevo",
+"avevi",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "ricevuto",
+"distractors": [
+"bevuto",
+"ricevute",
+"dovuto",
+"iniziato",
+"portafoglio"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "codice",
+"distractors": [
+"entrare",
+"chiave",
+"grande",
+"trovare",
+"valigie"
+]
+}
+],
+"alternatives": [
+"Noi non avevamo ricevuto il codice."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:24",
+"target": "Non avevano ancora preparato il pasto.",
+"ru": "Они ещё не приготовили еду.",
+"uk": "Вони ще не приготували їжу.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Sempre",
+"Mai",
+"Anche"
+]
+},
+{
+"correct": "avevano",
+"distractors": [
+"aveva",
+"avevo",
+"avevamo",
+"avevi",
+"avevate"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"più",
+"mai",
+"anche",
+"sempre"
+]
+},
+{
+"correct": "preparato",
+"distractors": [
+"soluzione",
+"tornato",
+"scelto",
+"bevuto",
+"preferito"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"uno",
+"gli"
+]
+},
+{
+"correct": "pasto",
+"distractors": [
+"dovuto",
+"messaggio",
+"ufficio",
+"nuovo",
+"fuoco"
+]
+}
+],
+"alternatives": [
+"Loro non avevano ancora preparato il pasto."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:25",
+"target": "Non avevamo ancora ricevuto la conferma della prenotazione.",
+"ru": "Мы ещё не получили подтверждение бронирования к тому моменту.",
+"uk": "На той момент ми ще не отримали підтвердження бронювання.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Mai",
+"Anche",
+"Sempre"
+]
+},
+{
+"correct": "avevamo",
+"distractors": [
+"aveva",
+"avevo",
+"avevi",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"più",
+"già",
+"mai",
+"sempre",
+"anche"
+]
+},
+{
+"correct": "ricevuto",
+"distractors": [
+"mangiato",
+"asciugato",
+"abbassato",
+"dovuto",
+"prenotato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"mi",
+"uno",
+"ne"
+]
+},
+{
+"correct": "conferma",
+"distractors": [
+"andata",
+"lettera",
+"giacca",
+"silenziosa",
+"sveglia"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "prenotazione",
+"distractors": [
+"controllare",
+"soluzione",
+"preferito",
+"dipingere",
+"riparazione"
+]
+}
+],
+"alternatives": [
+"Noi non avevamo ancora ricevuto la conferma della prenotazione."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:26",
+"target": "Non ero mai stato in questo museo.",
+"ru": "До того я ни разу не заходил в этот музей.",
+"uk": "До того я жодного разу не заходив до цього музею.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Ancora",
+"Già",
+"Sempre",
+"Anche"
+]
+},
+{
+"correct": "ero",
+"distractors": [
+"erano",
+"eravamo",
+"sarebbe",
+"fossero",
+"fossi"
+]
+},
+{
+"correct": "mai",
+"distractors": [
+"più",
+"già",
+"ancora",
+"sempre",
+"anche"
+]
+},
+{
+"correct": "stato",
+"distractors": [
+"arrivo",
+"stati",
+"nuovo",
+"amici",
+"piedi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"senza",
+"con"
+]
+},
+{
+"correct": "questo",
+"distractors": [
+"ritrovato",
+"steso",
+"dovuto",
+"mangiato",
+"qui"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"cercando",
+"sforzo",
+"chiesto",
+"capito",
+"treno"
+]
+}
+],
+"alternatives": [
+"Io non ero mai stato in questo museo."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:27",
+"target": "Lea non era mai scesa in cantina.",
+"ru": "Леа никогда не спускалась в подвал.",
+"uk": "Леа ніколи не спускалася до підвалу.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"ancora",
+"anche",
+"sempre"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "mai",
+"distractors": [
+"più",
+"già",
+"ancora",
+"sempre",
+"anche"
+]
+},
+{
+"correct": "scesa",
+"distractors": [
+"rimasta",
+"l’acqua",
+"giacca",
+"borsa",
+"zuppa"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"per",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "cantina",
+"distractors": [
+"porta",
+"borsa",
+"lettera",
+"serratura",
+"sveglia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:28",
+"target": "Paolo non si era svegliato in tempo.",
+"ru": "Паоло не проснулся вовремя.",
+"uk": "Паоло не прокинувся вчасно.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"sempre",
+"anche"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ne",
+"mi",
+"ti",
+"ci"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "svegliato",
+"distractors": [
+"riuscito",
+"richiamato",
+"attraversato",
+"sparito",
+"riparato"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"per",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "tempo",
+"distractors": [
+"arrivo",
+"partito",
+"bevuto",
+"guardato",
+"sparito"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:29",
+"target": "Non avevamo mai assaggiato questa zuppa.",
+"ru": "Мы никогда не пробовали этот суп.",
+"uk": "Ми ніколи не куштували цього супу.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Anche",
+"Sempre"
+]
+},
+{
+"correct": "avevamo",
+"distractors": [
+"aveva",
+"avevo",
+"avevi",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "mai",
+"distractors": [
+"più",
+"ancora",
+"già",
+"anche",
+"sempre"
+]
+},
+{
+"correct": "assaggiato",
+"distractors": [
+"presentato",
+"attraversato",
+"cercando",
+"nuovo",
+"impostato"
+]
+},
+{
+"correct": "questa",
+"distractors": [
+"qui",
+"questi",
+"sveglia",
+"casa",
+"fuori"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"menta",
+"andata",
+"l’acqua",
+"scesa",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Noi non avevamo mai assaggiato questa zuppa."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:30",
+"target": "Avevi promesso di controllare il cartello.",
+"ru": "Ты обещал проверить табличку.",
+"uk": "Ти обіцяв перевірити вивіску.",
+"tiles": [
+{
+"correct": "Avevi",
+"distractors": [
+"Aveva",
+"Avevamo",
+"Avevo",
+"Avevano",
+"Avevate"
+]
+},
+{
+"correct": "promesso",
+"distractors": [
+"stato",
+"preferito",
+"preparato",
+"piatto",
+"portafoglio"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "controllare",
+"distractors": [
+"soluzione",
+"prenotazione",
+"riparazione",
+"dipingere",
+"iniziare"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "cartello",
+"distractors": [
+"comprato",
+"letto",
+"capito",
+"telefono",
+"preparato"
+]
+}
+],
+"alternatives": [
+"Tu avevi promesso di controllare il cartello."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:31",
+"target": "Quando ho aperto la porta, il gatto era già uscito.",
+"ru": "Когда я открыл дверь, кот уже вышел.",
+"uk": "Коли я відчинив двері, кіт уже вийшов.",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "aperto",
+"distractors": [
+"chiuso",
+"chiusa",
+"aperte",
+"aperti",
+"chiusi"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"i",
+"le",
+"gli",
+"mi",
+"che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"porti",
+"portano",
+"casa",
+"borsa",
+"strada"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"i",
+"una",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "gatto",
+"distractors": [
+"entrato",
+"iniziato",
+"mangiato",
+"pasto",
+"piatto"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "uscito",
+"distractors": [
+"visto",
+"asciugato",
+"impostato",
+"messaggio",
+"usciti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:32",
+"target": "Quando siamo arrivati, il film era già iniziato.",
+"ru": "Когда мы приехали, фильм уже начался.",
+"uk": "Коли ми прийшли, фільм уже почався.",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sia",
+"sono",
+"sei",
+"siete"
+]
+},
+{
+"correct": "arrivati",
+"distractors": [
+"l’autobus",
+"istruzioni",
+"arrivata",
+"arrivato",
+"fogli"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"gli",
+"che"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"riconosciuto",
+"tornare",
+"bevuto",
+"trovare",
+"hanno"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "iniziato",
+"distractors": [
+"giorno",
+"pavimento",
+"preparato",
+"questo",
+"stanza"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:33",
+"target": "Quando ha guardato nella borsa, il portafoglio era sparito.",
+"ru": "Когда она заглянула в сумку, кошелёк уже исчез.",
+"uk": "Коли вона заглянула в сумку, гаманець уже зник.",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hanno",
+"hai",
+"avete"
+]
+},
+{
+"correct": "guardato",
+"distractors": [
+"chiesto",
+"abbassato",
+"tempo",
+"svegliato",
+"gatto"
+]
+},
+{
+"correct": "nella",
+"distractors": [
+"nel",
+"nei",
+"negli",
+"casa",
+"siamo"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"serratura",
+"lettera",
+"prima",
+"andata",
+"cantina"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"le",
+"che"
+]
+},
+{
+"correct": "portafoglio",
+"distractors": [
+"iniziato",
+"abbassato",
+"dimenticato",
+"riconosciuto",
+"chiamato"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"libero",
+"piatto"
+]
+},
+{
+"correct": "sparito",
+"distractors": [
+"prenotazione",
+"avuto",
+"ricevuto",
+"presentato",
+"visto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:34",
+"target": "Quando Paolo ha richiamato, avevo trovato una soluzione.",
+"ru": "Когда Паоло перезвонил, я уже нашёл решение.",
+"uk": "Коли Паоло передзвонив, я вже знайшов рішення.",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "richiamato",
+"distractors": [
+"riuscivo",
+"svegliato",
+"dimenticato",
+"attraversato",
+"ufficio"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "trovato",
+"distractors": [
+"treno",
+"ritorno",
+"dormito",
+"piatto",
+"museo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "soluzione",
+"distractors": [
+"riparazione",
+"prenotazione",
+"entrare",
+"felice",
+"codice"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:35",
+"target": "Quando è arrivato il postino, Lea era già andata al lavoro.",
+"ru": "Когда пришёл почтальон, Леа уже ушла на работу.",
+"uk": "Коли прийшов листоноша, Леа вже пішла на роботу.",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"nella",
+"siamo",
+"ci",
+"c’è",
+"sia"
+]
+},
+{
+"correct": "arrivato",
+"distractors": [
+"svegliato",
+"messaggio",
+"dimenticato",
+"cercando",
+"biglietto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"le",
+"che"
+]
+},
+{
+"correct": "postino",
+"distractors": [
+"nuovo",
+"promesso",
+"successo",
+"presentato",
+"avuto"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"eravamo",
+"casa",
+"nella",
+"stava",
+"siamo"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"anche",
+"mai"
+]
+},
+{
+"correct": "andata",
+"distractors": [
+"sveglia",
+"giacca",
+"scesa",
+"borsa",
+"questa"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"vicino",
+"treno",
+"museo",
+"parco",
+"meglio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:36",
+"target": "Ero stanco perché non avevo dormito bene.",
+"ru": "Я устал, потому что плохо спал.",
+"uk": "Я втомився, бо погано спав.",
+"tiles": [
+{
+"correct": "Ero",
+"distractors": [
+"Erano",
+"Eravamo",
+"Libera",
+"Libere",
+"Liberi"
+]
+},
+{
+"correct": "stanco",
+"distractors": [
+"pronto",
+"pronti",
+"pronta",
+"stanchi",
+"pronte"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"quando",
+"che",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "dormito",
+"distractors": [
+"partito",
+"entrare",
+"riuscito",
+"richiesto",
+"presentato"
+]
+},
+{
+"correct": "bene",
+"distractors": [
+"trovare",
+"entrare",
+"badge",
+"felice",
+"pane"
+]
+}
+],
+"alternatives": [
+"Io ero stanco perché non avevo dormito bene."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:37",
+"target": "Era felice perché aveva avuto successo.",
+"ru": "Она была счастлива, потому что ей это удалось.",
+"uk": "Вона була щаслива, бо їй це вдалося.",
+"tiles": [
+{
+"correct": "Era",
+"distractors": [
+"Erano",
+"Eravamo",
+"Sarà",
+"Sarebbe",
+"Domani"
+]
+},
+{
+"correct": "felice",
+"distractors": [
+"tornare",
+"dipingere",
+"pane",
+"chiave",
+"iniziare"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"che",
+"quando",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"casa"
+]
+},
+{
+"correct": "avuto",
+"distractors": [
+"riparato",
+"preparato",
+"abbassato",
+"giorno",
+"museo"
+]
+},
+{
+"correct": "successo",
+"distractors": [
+"uscito",
+"letto",
+"asciugato",
+"impostato",
+"preso"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:38",
+"target": "Sono tornato in ufficio perché avevo dimenticato il telefono lì.",
+"ru": "Я вернулся в офис, потому что оставил там свой телефон.",
+"uk": "Я повернувся до офісу, бо залишив там телефон.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Entrato",
+"Sei",
+"Siamo",
+"Siete"
+]
+},
+{
+"correct": "tornato",
+"distractors": [
+"nuovo",
+"riuscito",
+"lettera",
+"sparito",
+"casa"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"messaggio",
+"arrivato",
+"cercando",
+"questo",
+"treno"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"che",
+"quando",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "avevo",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"avesse"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"nuovo",
+"richiamato",
+"ritrovato",
+"riuscivo",
+"riconosciuto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"una",
+"la",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"successo",
+"traboccato",
+"cartello",
+"erano",
+"cercando"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io sono tornato in ufficio perché avevo dimenticato il telefono lì.",
+"Sono tornato in ufficio perché avevo dimenticato il telefono là.",
+"Io sono tornato in ufficio perché avevo dimenticato il telefono là."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:39",
+"target": "Abbiamo preso di nuovo l’autobus perché il treno era già partito.",
+"ru": "Мы снова сели на автобус, потому что поезд уже уехал.",
+"uk": "Ми знову поїхали автобусом, бо поїзд уже відійшов.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Abbia",
+"Hai",
+"Hanno"
+]
+},
+{
+"correct": "preso",
+"distractors": [
+"uscito",
+"visto",
+"chiamato",
+"cartello",
+"trovato"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "nuovo",
+"distractors": [
+"uscito",
+"giorno",
+"perso",
+"stato",
+"questo"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"fuoco",
+"passaporto",
+"uscito",
+"arrivati",
+"mai"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"quando",
+"che",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"uscito",
+"giorno",
+"bevuto",
+"museo",
+"tavolo"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "partito",
+"distractors": [
+"visto",
+"avevamo",
+"entrato",
+"successo",
+"avevo"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo preso di nuovo l’autobus perché il treno era già partito."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:40",
+"target": "Sei dovuto tornare a casa perché avevi dimenticato il passaporto.",
+"ru": "Тебе пришлось ехать домой, потому что ты забыл свой паспорт.",
+"uk": "Тобі довелося їхати додому, бо ти забув паспорт.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Una",
+"Siamo",
+"La"
+]
+},
+{
+"correct": "dovuto",
+"distractors": [
+"cercando",
+"messaggio",
+"piatto",
+"riparato",
+"arrivato"
+]
+},
+{
+"correct": "tornare",
+"distractors": [
+"grande",
+"valigie",
+"latte",
+"entrare",
+"felice"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"di",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"alla",
+"menta",
+"scesa",
+"della",
+"stanza"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"che",
+"quando",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "avevi",
+"distractors": [
+"aveva",
+"avevamo",
+"avevo",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"riuscivo",
+"richiesto",
+"comprato",
+"chiamato",
+"traboccato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"uno"
+]
+},
+{
+"correct": "passaporto",
+"distractors": [
+"traboccato",
+"cercando",
+"arrivato",
+"l’idraulico",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Tu sei dovuto tornare a casa perché avevi dimenticato il passaporto."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:41",
+"target": "Avevo preparato le valigie il giorno prima.",
+"ru": "Я собрал чемоданы накануне.",
+"uk": "Я зібрав валізи напередодні.",
+"tiles": [
+{
+"correct": "Avevo",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Ecco"
+]
+},
+{
+"correct": "preparato",
+"distractors": [
+"richiamato",
+"pagato",
+"dimenticato",
+"nascosto",
+"sforzo"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"i",
+"ne",
+"un",
+"che"
+]
+},
+{
+"correct": "valigie",
+"distractors": [
+"soluzione",
+"codice",
+"felice",
+"latte",
+"grande"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "giorno",
+"distractors": [
+"piatto",
+"questo",
+"sono",
+"stato",
+"treno"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+}
+],
+"alternatives": [
+"Io avevo preparato le valigie il giorno prima."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:42",
+"target": "Aveva impostato la sveglia alle sei.",
+"ru": "Она поставила будильник на шесть часов.",
+"uk": "Вона завела будильник на шосту годину.",
+"tiles": [
+{
+"correct": "Aveva",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Barche"
+]
+},
+{
+"correct": "impostato",
+"distractors": [
+"tornati",
+"postino",
+"promesso",
+"cercando",
+"cartello"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "sveglia",
+"distractors": [
+"porta",
+"silenziosa",
+"della",
+"menta",
+"casa"
+]
+},
+{
+"correct": "alle",
+"distractors": [
+"al",
+"alla",
+"allo",
+"ai",
+"casa"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"siamo",
+"siete",
+"ci"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:43",
+"target": "Avevamo steso i fogli sul pavimento prima di dipingere.",
+"ru": "Перед покраской мы разложили листы бумаги на полу.",
+"uk": "Перед фарбуванням ми розклали аркуші паперу на підлозі.",
+"tiles": [
+{
+"correct": "Avevamo",
+"distractors": [
+"Aveva",
+"Avevo",
+"Avevi",
+"Avevano",
+"Avevate"
+]
+},
+{
+"correct": "steso",
+"distractors": [
+"chiesto",
+"guardato",
+"comprato",
+"pagato",
+"uscito"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"le",
+"la",
+"un",
+"una"
+]
+},
+{
+"correct": "fogli",
+"distractors": [
+"genitori",
+"usciti",
+"clienti",
+"tornati",
+"posti"
+]
+},
+{
+"correct": "sul",
+"distractors": [
+"sulla",
+"sullo",
+"borsa",
+"giacca",
+"mappa"
+]
+},
+{
+"correct": "pavimento",
+"distractors": [
+"comprato",
+"l’idraulico",
+"messaggio",
+"chiamato",
+"passaporto"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "dipingere",
+"distractors": [
+"grande",
+"entrare",
+"felice",
+"iniziare",
+"trovare"
+]
+}
+],
+"alternatives": [
+"Noi avevamo steso i fogli sul pavimento prima di dipingere."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:44",
+"target": "Aveva preparato il tè alla menta e il mio piatto preferito.",
+"ru": "Она заварила мятный чай и приготовила мое любимое блюдо.",
+"uk": "Вона зварила м’ятний чай і мою улюблену страву.",
+"tiles": [
+{
+"correct": "Aveva",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Barche"
+]
+},
+{
+"correct": "preparato",
+"distractors": [
+"dormito",
+"impostato",
+"traboccato",
+"abbassato",
+"dimenticato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "tè",
+"distractors": [
+"fogli",
+"silenziosa",
+"porta",
+"ritorno",
+"ancora"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"alle",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "menta",
+"distractors": [
+"zuppa",
+"conferma",
+"prima",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "e",
+"distractors": [
+"che",
+"se",
+"quando",
+"mentre",
+"come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"gli",
+"che"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"nostra",
+"tuo",
+"nostro",
+"vostri",
+"sua"
+]
+},
+{
+"correct": "piatto",
+"distractors": [
+"arrivo",
+"riletto",
+"erano",
+"giorno",
+"mangiato"
+]
+},
+{
+"correct": "preferito",
+"distractors": [
+"tornato",
+"comprato",
+"stanza",
+"successo",
+"riuscito"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:45",
+"target": "La riparazione aveva richiesto molto sforzo.",
+"ru": "Ремонт потребовал больших усилий.",
+"uk": "Ремонт зажадав великих зусиль.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Gli",
+"Ci"
+]
+},
+{
+"correct": "riparazione",
+"distractors": [
+"prenotazione",
+"soluzione",
+"dipingere",
+"iniziare",
+"controllare"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "richiesto",
+"distractors": [
+"preferito",
+"preparato",
+"asciugato",
+"riuscivo",
+"promesso"
+]
+},
+{
+"correct": "molto",
+"distractors": [
+"meno",
+"più",
+"abbastanza",
+"poco",
+"troppo"
+]
+},
+{
+"correct": "sforzo",
+"distractors": [
+"lavoro",
+"steso",
+"perso",
+"riletto",
+"stato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:46",
+"target": "L’idraulico aveva chiuso l’acqua prima di iniziare.",
+"ru": "Сантехник перекрыл воду перед началом работы.",
+"uk": "Сантехнік вимкнув воду перед початком робіт.",
+"tiles": [
+{
+"correct": "L’idraulico",
+"distractors": [
+"Promesso",
+"Impostato",
+"Riconosciuto",
+"Prenotato",
+"Richiesto"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevano",
+"avevate",
+"casa",
+"tempo"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"aperti",
+"aperte",
+"sono"
+]
+},
+{
+"correct": "l’acqua",
+"distractors": [
+"andata",
+"borsa",
+"nella",
+"scesa",
+"menta"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "iniziare",
+"distractors": [
+"riparazione",
+"tornare",
+"controllare",
+"latte",
+"codice"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:47",
+"target": "Avevamo chiesto una stanza silenziosa.",
+"ru": "Мы попросили тихую комнату.",
+"uk": "Ми попросили тиху кімнату.",
+"tiles": [
+{
+"correct": "Avevamo",
+"distractors": [
+"Aveva",
+"Avevo",
+"Avevi",
+"Avevano",
+"Avevate"
+]
+},
+{
+"correct": "chiesto",
+"distractors": [
+"svegliato",
+"ufficio",
+"attraversato",
+"riletto",
+"assaggiato"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"lo",
+"gli",
+"che",
+"e"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"lettera",
+"sveglia",
+"menta",
+"casa",
+"serratura"
+]
+},
+{
+"correct": "silenziosa",
+"distractors": [
+"conferma",
+"l’acqua",
+"cantina",
+"serratura",
+"lettera"
+]
+}
+],
+"alternatives": [
+"Noi avevamo chiesto una stanza silenziosa."
+]
+},
+{
+"lesson": 31,
+"id": "it:31:48",
+"target": "Aveva abbassato il fuoco perché il latte era traboccato.",
+"ru": "Он убавил огонь, потому что молоко выкипело.",
+"uk": "Він зменшив вогонь, бо молоко википіло.",
+"tiles": [
+{
+"correct": "Aveva",
+"distractors": [
+"Avevamo",
+"Avevi",
+"Avevano",
+"Avevate",
+"Barche"
+]
+},
+{
+"correct": "abbassato",
+"distractors": [
+"non",
+"questa",
+"piatto",
+"pagato",
+"telefono"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "fuoco",
+"distractors": [
+"perso",
+"scelto",
+"dormito",
+"avevo",
+"riuscivo"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"che",
+"quando",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"una",
+"le"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"codice",
+"iniziare",
+"bene",
+"entrare",
+"valigie"
+]
+},
+{
+"correct": "era",
+"distractors": [
+"erano",
+"eravamo",
+"casa",
+"nella",
+"libero"
+]
+},
+{
+"correct": "traboccato",
+"distractors": [
+"lei",
+"tornato",
+"cartello",
+"entrato",
+"sparito"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:49",
+"target": "Lea aveva già pagato quando le hanno presentato il conto.",
+"ru": "Леа уже заплатила, когда ей вручили счет.",
+"uk": "Леа вже заплатила, коли їй вручили рахунок.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "aveva",
+"distractors": [
+"avevamo",
+"avevi",
+"avevano",
+"avevate",
+"casa"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"più",
+"ancora",
+"mai",
+"anche"
+]
+},
+{
+"correct": "pagato",
+"distractors": [
+"preparato",
+"tornato",
+"prenotato",
+"chiave",
+"uscito"
+]
+},
+{
+"correct": "quando",
+"distractors": [
+"che",
+"se",
+"come",
+"perché",
+"e"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"un",
+"la",
+"ci",
+"i",
+"che"
+]
+},
+{
+"correct": "hanno",
+"distractors": [
+"ha",
+"ho",
+"hai",
+"abbiamo",
+"avete"
+]
+},
+{
+"correct": "presentato",
+"distractors": [
+"istruzioni",
+"sforzo",
+"riconosciuto",
+"attraversato",
+"assaggiato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "conto",
+"distractors": [
+"letto",
+"lasciato",
+"riparato",
+"descrivo",
+"tavolo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "it:31:50",
+"target": "Sono riuscito ad entrare perché mi avevi lasciato la chiave.",
+"ru": "Я смог войти, потому что ты оставил мне ключ.",
+"uk": "Я зміг увійти, бо ти залишив мені ключ.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Passaporto",
+"Sei",
+"Siamo",
+"Siete"
+]
+},
+{
+"correct": "riuscito",
+"distractors": [
+"borsa",
+"preso",
+"steso",
+"impostato",
+"perso"
+]
+},
+{
+"correct": "ad",
+"distractors": [
+"l’autobus",
+"uscita",
+"chiamato",
+"stato",
+"stanco"
+]
+},
+{
+"correct": "entrare",
+"distractors": [
+"grande",
+"felice",
+"iniziare",
+"trovare",
+"valigie"
+]
+},
+{
+"correct": "perché",
+"distractors": [
+"che",
+"quando",
+"se",
+"mentre",
+"come"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"ci",
+"si",
+"lo",
+"ne",
+"il"
+]
+},
+{
+"correct": "avevi",
+"distractors": [
+"aveva",
+"avevo",
+"avevamo",
+"avevano",
+"avevate"
+]
+},
+{
+"correct": "lasciato",
+"distractors": [
+"passaporto",
+"avuto",
+"gatto",
+"l’idraulico",
+"nascosto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"ci",
+"ne",
+"uno"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"badge",
+"soluzione",
+"riparazione",
+"codice",
+"latte"
+]
+}
+],
+"alternatives": [
+"Io sono riuscito ad entrare perché mi avevi lasciato la chiave."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:01",
+"target": "Se avessi tempo, verrei.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Quando",
+"Che",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avevo",
+"avrebbe",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "tempo",
+"distractors": [
+"meglio",
+"buono",
+"fossero",
+"letto",
+"gatto"
+]
+},
+{
+"correct": "verrei",
+"distractors": [
+"verresti",
+"verrebbe",
+"posti",
+"occhiali",
+"taxi"
+]
+}
+],
+"alternatives": [
+"Verrei se avessi tempo."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:02",
+"target": "Se avessi tempo, verresti.",
+"ru": "Если бы у тебя было время, ты бы пришел.",
+"uk": "Якби в тебе був час, ти б прийшов.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avrebbe",
+"avrei",
+"avevo",
+"cartello"
+]
+},
+{
+"correct": "tempo",
+"distractors": [
+"forno",
+"aperto",
+"gatto",
+"bisogno",
+"museo"
+]
+},
+{
+"correct": "verresti",
+"distractors": [
+"verrei",
+"verrebbe",
+"posti",
+"occhiali",
+"taxi"
+]
+}
+],
+"alternatives": [
+"Verresti se avessi tempo."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:03",
+"target": "Se potessi scegliere, resterei.",
+"ru": "Если бы у меня был выбор, я бы остался.",
+"uk": "Якби в мене був вибір, я б залишився.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "potessi",
+"distractors": [
+"può",
+"posso",
+"puoi",
+"possiamo",
+"possono"
+]
+},
+{
+"correct": "scegliere",
+"distractors": [
+"preparerebbe",
+"sparisse",
+"soluzione",
+"venire",
+"correre"
+]
+},
+{
+"correct": "resterei",
+"distractors": [
+"promettessi",
+"entrerei",
+"metterei",
+"aiuterei",
+"pioli"
+]
+}
+],
+"alternatives": [
+"Resterei se potessi scegliere."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:04",
+"target": "Se fossi libero, ti aiuterei.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "fossi",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "libero",
+"distractors": [
+"libere",
+"liberi",
+"ufficio",
+"sono",
+"negozio"
+]
+},
+{
+"correct": "ti",
+"distractors": [
+"ci",
+"mi",
+"la",
+"li",
+"lo"
+]
+},
+{
+"correct": "aiuterei",
+"distractors": [
+"avvertissi",
+"conoscessi",
+"tutti",
+"entrerei",
+"sentiresti"
+]
+}
+],
+"alternatives": [
+"Ti aiuterei se fossi libero."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:05",
+"target": "Se tu fossi libero, potresti venire.",
+"ru": "Если бы ты был свободен, ты мог бы прийти.",
+"uk": "Якби ти був вільний, ти міг би прийти.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"lei",
+"lui",
+"loro",
+"io",
+"noi"
+]
+},
+{
+"correct": "fossi",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"domani"
+]
+},
+{
+"correct": "libero",
+"distractors": [
+"liberi",
+"libere",
+"ufficio",
+"sono",
+"negozio"
+]
+},
+{
+"correct": "potresti",
+"distractors": [
+"potrebbe",
+"potrei",
+"potremmo",
+"posso",
+"potessi"
+]
+},
+{
+"correct": "venire",
+"distractors": [
+"leggibile",
+"pancake",
+"custode",
+"chiave",
+"garage"
+]
+}
+],
+"alternatives": [
+"Potresti venire se tu fossi libero."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:06",
+"target": "Se fossimo pronti, partiremmo.",
+"ru": "Если бы мы были готовы, мы бы ушли.",
+"uk": "Якби ми були готові, ми б пішли.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Quando",
+"Che",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "fossimo",
+"distractors": [
+"fosse",
+"fossi",
+"fossero",
+"ero",
+"sarebbe"
+]
+},
+{
+"correct": "pronti",
+"distractors": [
+"stanco",
+"pronta",
+"pronto",
+"stanca",
+"stanchi"
+]
+},
+{
+"correct": "partiremmo",
+"distractors": [
+"quell’albero",
+"biglietto",
+"cartello",
+"d’accordo",
+"ripareremmo"
+]
+}
+],
+"alternatives": [
+"Partiremmo se fossimo pronti."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:07",
+"target": "Se lei fosse qui, capirebbe.",
+"ru": "Если бы она была здесь, она бы поняла.",
+"uk": "Якби вона була тут, вона б зрозуміла.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "lei",
+"distractors": [
+"loro",
+"io",
+"lui",
+"tu",
+"voi"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "capirebbe",
+"distractors": [
+"correre",
+"facesse",
+"stazione",
+"leggibile",
+"girasse"
+]
+}
+],
+"alternatives": [
+"Se lei fosse qua, capirebbe.",
+"Capirebbe se lei fosse qui.",
+"Capirebbe se lei fosse qua."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:08",
+"target": "Se Paolo avesse una macchina, verrebbe.",
+"ru": "Если бы у Паоло была машина, он бы приехал.",
+"uk": "Якби в Паоло була машина, він би приїхав.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "avesse",
+"distractors": [
+"avessimo",
+"avrebbe",
+"avrei",
+"avevo",
+"maglione"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "macchina",
+"distractors": [
+"scala",
+"guardia",
+"stanza",
+"l’uscita",
+"giacca"
+]
+},
+{
+"correct": "verrebbe",
+"distractors": [
+"verrei",
+"verresti",
+"posti",
+"occhiali",
+"taxi"
+]
+}
+],
+"alternatives": [
+"Verrebbe se Paolo avesse una macchina."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:09",
+"target": "Se Lei fosse d’accordo, cominceremmo.",
+"ru": "Если бы вы согласились, мы бы начали.",
+"uk": "Якби ви погодилися, ми почали б.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Noi",
+"Sua",
+"Suo"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "d’accordo",
+"distractors": [
+"arriveremmo",
+"scontrino",
+"faremmo",
+"bisogno",
+"messaggio"
+]
+},
+{
+"correct": "cominceremmo",
+"distractors": [
+"arriveremmo",
+"ripareremmo",
+"troveremmo",
+"andassero",
+"avviseremmo"
+]
+}
+],
+"alternatives": [
+"Cominceremmo se Lei fosse d’accordo."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:10",
+"target": "Se avessi un biglietto, entrerei.",
+"ru": "Если бы у меня был билет, я бы вошел.",
+"uk": "Якби в мене був квиток, я б зайшов.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avrei",
+"avevo",
+"avrebbe",
+"avevamo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"gli",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"numero",
+"domicilio",
+"bisogno",
+"troveremmo",
+"scontrino"
+]
+},
+{
+"correct": "entrerei",
+"distractors": [
+"porterei",
+"sceglierei",
+"presterei",
+"pioli",
+"potresti"
+]
+}
+],
+"alternatives": [
+"Entrerei se avessi un biglietto."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:11",
+"target": "Se abitassi vicino al parco, andrei a correre.",
+"ru": "Если бы я жил рядом с парком, я бы пошел на пробежку.",
+"uk": "Якби я жив біля парку, я б пішов на пробіжку.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "abitassi",
+"distractors": [
+"buono",
+"letto",
+"pioli",
+"posto",
+"tempo"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "parco",
+"distractors": [
+"tempo",
+"museo",
+"suo",
+"meglio",
+"negozio"
+]
+},
+{
+"correct": "andrei",
+"distractors": [
+"andrebbe",
+"andremmo",
+"avviserei",
+"guidarci",
+"presterei"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "correre",
+"distractors": [
+"te",
+"capirebbe",
+"consegne",
+"pancake",
+"dottore"
+]
+}
+],
+"alternatives": [
+"Andrei a correre se abitassi vicino al parco."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:12",
+"target": "Se lavorassi qui, verrei a piedi.",
+"ru": "Если бы я работал здесь, я бы ходил пешком.",
+"uk": "Якби я працював тут, я б пішов пішки.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "lavorassi",
+"distractors": [
+"ancora",
+"più",
+"non",
+"già",
+"mai"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"fuori",
+"lì",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "verrei",
+"distractors": [
+"verresti",
+"verrebbe",
+"posti",
+"occhiali",
+"taxi"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"lei",
+"posti",
+"taxi",
+"occhiali",
+"bagagli"
+]
+}
+],
+"alternatives": [
+"Se lavorassi qua, verrei a piedi.",
+"Verrei a piedi se lavorassi qui.",
+"Verrei a piedi se lavorassi qua."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:13",
+"target": "Se l’autobus arrivasse prima, lo prenderei.",
+"ru": "Если бы автобус приезжал раньше, я бы поехал на нем.",
+"uk": "Якби автобус приїжджав раніше, я б на нього сів.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Quando",
+"Che",
+"Mentre",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "l’autobus",
+"distractors": [
+"chiudessi",
+"fossi",
+"leggerebbe",
+"proverei",
+"aiuterei"
+]
+},
+{
+"correct": "arrivasse",
+"distractors": [
+"conservassi",
+"abitassi",
+"cambiasse",
+"sparisse",
+"preparerei"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"la",
+"un",
+"le",
+"mi"
+]
+},
+{
+"correct": "prenderei",
+"distractors": [
+"prenderemmo",
+"troveremmo",
+"quell’albero",
+"viaggeremmo",
+"biglietto"
+]
+}
+],
+"alternatives": [
+"Lo prenderei se l’autobus arrivasse prima."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:14",
+"target": "Se la stazione ferroviaria fosse più vicina, andremmo a piedi.",
+"ru": "Если бы железнодорожный вокзал был ближе, мы бы шли пешком.",
+"uk": "Якби залізнична станція була ближче, ми б пішли пішки.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"ci",
+"li",
+"gli"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"costasse",
+"pancake",
+"spese",
+"basse",
+"latte"
+]
+},
+{
+"correct": "ferroviaria",
+"distractors": [
+"bicicletta",
+"macchina",
+"programma",
+"consegna",
+"esperienza"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossimo",
+"fossero",
+"sarebbe",
+"ero",
+"te"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"meno",
+"molto",
+"già",
+"ancora"
+]
+},
+{
+"correct": "vicina",
+"distractors": [
+"l’uscita",
+"questa",
+"porta",
+"libera",
+"macchina"
+]
+},
+{
+"correct": "andremmo",
+"distractors": [
+"andrei",
+"andrebbe",
+"avviserei",
+"guidarci",
+"presterei"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"da",
+"per",
+"sotto"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"verrei",
+"taxi",
+"occhiali",
+"posti",
+"dei"
+]
+}
+],
+"alternatives": [
+"Andremmo a piedi se la stazione ferroviaria fosse più vicina."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:15",
+"target": "Se il treno costasse meno, viaggeremmo di più.",
+"ru": "Если бы поезд стоил меньше, мы бы больше путешествовали.",
+"uk": "Якби поїзд був дешевшим, ми б подорожували більше.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"faremmo",
+"suo",
+"posto",
+"tempo",
+"mio"
+]
+},
+{
+"correct": "costasse",
+"distractors": [
+"giacca",
+"borsa",
+"zuppa",
+"questa",
+"stanza"
+]
+},
+{
+"correct": "meno",
+"distractors": [
+"quanto",
+"molto",
+"abbastanza",
+"po’",
+"troppo"
+]
+},
+{
+"correct": "viaggeremmo",
+"distractors": [
+"quell’albero",
+"usciremmo",
+"partiremmo",
+"cominceremmo",
+"biglietto"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"troppo",
+"già",
+"ancora",
+"mai"
+]
+}
+],
+"alternatives": [
+"Viaggeremmo di più se il treno costasse meno."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:16",
+"target": "Se la strada fosse libera, arriveremmo prima di mezzogiorno.",
+"ru": "Если бы дорога была свободна, мы бы приехали до полудня.",
+"uk": "Якби дорога була вільна, ми б прибули до полудня.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ne",
+"ci",
+"le",
+"i"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"porta",
+"scala",
+"fortuna",
+"torta",
+"pausa"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"ero",
+"sarebbe",
+"era"
+]
+},
+{
+"correct": "libera",
+"distractors": [
+"liberi",
+"libere",
+"borsa",
+"camera",
+"valigia"
+]
+},
+{
+"correct": "arriveremmo",
+"distractors": [
+"arriverei",
+"d’accordo",
+"andassero",
+"cominceremmo",
+"messaggio"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "mezzogiorno",
+"distractors": [
+"prenderemmo",
+"troveremmo",
+"quell’albero",
+"viaggeremmo",
+"tempo"
+]
+}
+],
+"alternatives": [
+"Arriveremmo prima di mezzogiorno se la strada fosse libera."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:17",
+"target": "Se conoscessi l’indirizzo, potresti guidarci.",
+"ru": "Если бы ты знал адрес, ты мог бы показать нам дорогу.",
+"uk": "Якби ти знав адресу, ти міг би показати нам дорогу.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "conoscessi",
+"distractors": [
+"fosse",
+"sarebbe",
+"fossero",
+"fossi",
+"fossimo"
+]
+},
+{
+"correct": "l’indirizzo",
+"distractors": [
+"d’accordo",
+"usciremmo",
+"troveremmo",
+"viaggeremmo",
+"prenderemmo"
+]
+},
+{
+"correct": "potresti",
+"distractors": [
+"potrebbe",
+"potrei",
+"potremmo",
+"posso",
+"potessi"
+]
+},
+{
+"correct": "guidarci",
+"distractors": [
+"posti",
+"proponessi",
+"entrerei",
+"proverei",
+"occhiali"
+]
+}
+],
+"alternatives": [
+"Potresti guidarci se conoscessi l’indirizzo."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:18",
+"target": "Se avessi la mia bicicletta, arriverei a casa prima.",
+"ru": "Если бы у меня был свой велосипед, я бы добрался домой быстрее.",
+"uk": "Якби в мене був свій велосипед, я б швидше дістався додому.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avevo",
+"avrebbe",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"mi",
+"ci",
+"che"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"tuo",
+"sua",
+"suo",
+"nostre",
+"tua"
+]
+},
+{
+"correct": "bicicletta",
+"distractors": [
+"esperienza",
+"ferroviaria",
+"consegna",
+"leggera",
+"macchina"
+]
+},
+{
+"correct": "arriverei",
+"distractors": [
+"arriveremmo",
+"d’accordo",
+"andassero",
+"cominceremmo",
+"messaggio"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"porta",
+"lampada",
+"calda",
+"borsa",
+"camera"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+}
+],
+"alternatives": [
+"Arriverei a casa prima se avessi la mia bicicletta."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:19",
+"target": "Se smettesse di piovere, usciremmo.",
+"ru": "Если бы дождь прекратился, мы бы вышли.",
+"uk": "Якби дощ припинився, ми б вийшли.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "smettesse",
+"distractors": [
+"guidarci",
+"andrei",
+"avviserei",
+"presterei",
+"posti"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "piovere",
+"distractors": [
+"fosse",
+"costasse",
+"te",
+"venire",
+"consegne"
+]
+},
+{
+"correct": "usciremmo",
+"distractors": [
+"libero",
+"d’accordo",
+"cartello",
+"rubinetto",
+"troveremmo"
+]
+}
+],
+"alternatives": [
+"Usciremmo se smettesse di piovere."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:20",
+"target": "Se il museo fosse aperto di lunedì, ci andrei domani.",
+"ru": "Если бы музей был открыт по понедельникам, я бы пошёл завтра.",
+"uk": "Якби музей був відкритий по понеділках, я б пішов завтра.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"gatto",
+"messaggio",
+"treno",
+"giorno",
+"bisogno"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"ero",
+"sarebbe",
+"era"
+]
+},
+{
+"correct": "aperto",
+"distractors": [
+"chiusa",
+"chiuso",
+"chiusi",
+"chiuse",
+"aperti"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "lunedì",
+"distractors": [
+"girasse",
+"leggera",
+"venire",
+"letto",
+"terremmo"
+]
+},
+{
+"correct": "ci",
+"distractors": [
+"la",
+"si",
+"mi",
+"ne",
+"le"
+]
+},
+{
+"correct": "andrei",
+"distractors": [
+"andrebbe",
+"andremmo",
+"avviserei",
+"guidarci",
+"presterei"
+]
+},
+{
+"correct": "domani",
+"distractors": [
+"oggi",
+"stasera",
+"spesso",
+"presto",
+"tardi"
+]
+}
+],
+"alternatives": [
+"Ci andrei domani se il museo fosse aperto di lunedì."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:21",
+"target": "Sceglierei questa stanza se costasse meno.",
+"ru": "Я бы выбрал эту комнату, если бы она была дешевле.",
+"uk": "Я б вибрав цю кімнату, якби вона була дешевшою.",
+"tiles": [
+{
+"correct": "Sceglierei",
+"distractors": [
+"Aiuterei",
+"Chiuderei",
+"Conserverei",
+"Metterei",
+"Verresti"
+]
+},
+{
+"correct": "questa",
+"distractors": [
+"fortuna",
+"qui",
+"macchina",
+"lampada",
+"fuori"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"giacca",
+"consegna",
+"casa",
+"vicina",
+"programma"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "costasse",
+"distractors": [
+"funzionasse",
+"spese",
+"basse",
+"consegne",
+"chiave"
+]
+},
+{
+"correct": "meno",
+"distractors": [
+"più",
+"quanto",
+"po’",
+"poco",
+"non"
+]
+}
+],
+"alternatives": [
+"Se costasse meno, sceglierei questa stanza."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:22",
+"target": "Prenderei la giacca se fosse più calda.",
+"ru": "Я бы взял куртку, если бы она была теплее.",
+"uk": "Я б взяв куртку, якби вона була теплішою.",
+"tiles": [
+{
+"correct": "Prenderei",
+"distractors": [
+"Prenderemmo",
+"Vorrebbe",
+"Vorremmo",
+"Avviserei",
+"Pioli"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"un",
+"si"
+]
+},
+{
+"correct": "giacca",
+"distractors": [
+"guardia",
+"macchina",
+"lampada",
+"programma",
+"fortuna"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"perché",
+"mentre",
+"come"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"ero",
+"sarebbe",
+"era"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"meno",
+"molto",
+"già",
+"ancora"
+]
+},
+{
+"correct": "calda",
+"distractors": [
+"l’uscita",
+"mia",
+"stanza",
+"fortuna",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Se fosse più calda, prenderei la giacca."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:23",
+"target": "Conserverei quel biglietto se fosse il mio ricordo più bello del viaggio.",
+"ru": "Я бы сохранил тот билет, если бы это было самое дорогое для меня напоминание о поездке.",
+"uk": "Я зберіг би той квиток, якби це було найдорожче для мене нагадування про поїздку.",
+"tiles": [
+{
+"correct": "Conserverei",
+"distractors": [
+"Sceglierei",
+"Metterei",
+"Aiuterei",
+"Verresti",
+"Chiuderei"
+]
+},
+{
+"correct": "quel",
+"distractors": [
+"nel",
+"verrebbe",
+"vicini",
+"nella",
+"negli"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"partiremmo",
+"quell’albero",
+"domicilio",
+"prenderemmo",
+"scontrino"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"vostri",
+"loro",
+"nostra",
+"sue",
+"sua"
+]
+},
+{
+"correct": "ricordo",
+"distractors": [
+"ricordi",
+"mani",
+"letto",
+"tempo",
+"davanti"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"meno",
+"troppo",
+"già",
+"ancora"
+]
+},
+{
+"correct": "bello",
+"distractors": [
+"cartello",
+"faremmo",
+"bisogno",
+"negozio",
+"casco"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "viaggio",
+"distractors": [
+"questo",
+"gatto",
+"percorso",
+"fratello",
+"tempo"
+]
+}
+],
+"alternatives": [
+"Se fosse il mio ricordo più bello del viaggio, conserverei quel biglietto."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:24",
+"target": "Chiamerebbe il dottore se avesse il suo numero.",
+"ru": "Она бы позвонила врачу, если бы у неё был его номер.",
+"uk": "Вона б зателефонувала лікарю, якби в неї був його номер.",
+"tiles": [
+{
+"correct": "Chiamerebbe",
+"distractors": [
+"Posso",
+"Potrei",
+"Potremmo",
+"Potresti",
+"Potessi"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "dottore",
+"distractors": [
+"leggerebbe",
+"online",
+"scegliere",
+"maglione",
+"piovere"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"mentre",
+"perché",
+"quando",
+"come"
+]
+},
+{
+"correct": "avesse",
+"distractors": [
+"avessimo",
+"avevo",
+"avrebbe",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"una",
+"i",
+"lo"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"mio",
+"nostro",
+"mia",
+"nostre",
+"tua"
+]
+},
+{
+"correct": "numero",
+"distractors": [
+"mio",
+"giorno",
+"gatto",
+"letto",
+"cartello"
+]
+}
+],
+"alternatives": [
+"Se avesse il suo numero, chiamerebbe il dottore."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:25",
+"target": "Leggerebbe il messaggio se avesse gli occhiali.",
+"ru": "Он бы прочитал сообщение, если бы у него были очки.",
+"uk": "Він би прочитав повідомлення, якби в нього були окуляри.",
+"tiles": [
+{
+"correct": "Leggerebbe",
+"distractors": [
+"Posso",
+"Potrei",
+"Potremmo",
+"Potresti",
+"Potessi"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"avviseremmo",
+"domicilio",
+"viaggeremmo",
+"biglietto",
+"ripareremmo"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"quando",
+"mentre",
+"che",
+"come",
+"perché"
+]
+},
+{
+"correct": "avesse",
+"distractors": [
+"avessimo",
+"avrebbe",
+"avevo",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "gli",
+"distractors": [
+"la",
+"i",
+"lo",
+"ci",
+"che"
+]
+},
+{
+"correct": "occhiali",
+"distractors": [
+"arriverei",
+"conservassi",
+"verrei",
+"sentiresti",
+"preparerei"
+]
+}
+],
+"alternatives": [
+"Se avesse gli occhiali, leggerebbe il messaggio."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:26",
+"target": "Sentiresti meglio se chiudessi la finestra.",
+"ru": "Ты бы лучше слышал, если бы закрыл окно.",
+"uk": "Ти б краще чув, якби зачинив вікно.",
+"tiles": [
+{
+"correct": "Sentiresti",
+"distractors": [
+"Scriverei",
+"Conserverei",
+"Guidarci",
+"Resterei",
+"Avviserei"
+]
+},
+{
+"correct": "meglio",
+"distractors": [
+"posto",
+"messaggio",
+"biglietto",
+"negozio",
+"gatto"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"quando",
+"che",
+"perché",
+"mentre",
+"come"
+]
+},
+{
+"correct": "chiudessi",
+"distractors": [
+"maglione",
+"giornale",
+"canzone",
+"intenzione",
+"velocemente"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"ci",
+"si",
+"un"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"questa",
+"scala",
+"lampada",
+"leggera",
+"ferroviaria"
+]
+}
+],
+"alternatives": [
+"Se chiudessi la finestra, sentiresti meglio."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:27",
+"target": "Faremmo una pausa se tutti fossero d’accordo.",
+"ru": "Мы бы сделали перерыв, если бы все согласились.",
+"uk": "Ми б зробили перерву, якби всі погодилися.",
+"tiles": [
+{
+"correct": "Faremmo",
+"distractors": [
+"Farei",
+"Posso",
+"Potrebbe",
+"Potrei",
+"Potresti"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"gli",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "pausa",
+"distractors": [
+"consegna",
+"finestra",
+"leggera",
+"questa",
+"casa"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"quando",
+"che",
+"perché",
+"mentre",
+"come"
+]
+},
+{
+"correct": "tutti",
+"distractors": [
+"andrei",
+"terrei",
+"resterei",
+"metterei",
+"proverei"
+]
+},
+{
+"correct": "fossero",
+"distractors": [
+"fosse",
+"fossi",
+"fossimo",
+"sarebbe",
+"ero"
+]
+},
+{
+"correct": "d’accordo",
+"distractors": [
+"andassero",
+"messaggio",
+"avviseremmo",
+"troveremmo",
+"cominceremmo"
+]
+}
+],
+"alternatives": [
+"Se tutti fossero d’accordo, faremmo una pausa."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:28",
+"target": "Porterei questa borsa se fosse più leggera.",
+"ru": "Я бы понёс эту сумку, если бы она была легче.",
+"uk": "Я б ніс цю сумку, якби вона була легшою.",
+"tiles": [
+{
+"correct": "Porterei",
+"distractors": [
+"Vorrebbe",
+"Vorremmo",
+"Avviserei",
+"Pioli",
+"Presterei"
+]
+},
+{
+"correct": "questa",
+"distractors": [
+"casa",
+"fortuna",
+"questi",
+"guardia",
+"qui"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"casa",
+"libera",
+"tua",
+"mia",
+"guardia"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"quando",
+"che",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"te"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"molto",
+"quante",
+"già",
+"ancora"
+]
+},
+{
+"correct": "leggera",
+"distractors": [
+"casa",
+"l’acqua",
+"macchina",
+"lampada",
+"strada"
+]
+}
+],
+"alternatives": [
+"Se fosse più leggera, porterei questa borsa."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:29",
+"target": "Prenderemmo un taxi se avessimo dei bagagli.",
+"ru": "Мы бы взяли такси, если бы у нас был багаж.",
+"uk": "Ми б взяли таксі, якби у нас був багаж.",
+"tiles": [
+{
+"correct": "Prenderemmo",
+"distractors": [
+"Prenderei",
+"Posso",
+"Potrebbe",
+"Potrei",
+"Potresti"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"tutti",
+"fossi",
+"domani",
+"posti",
+"pioli"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"perché",
+"mentre",
+"come"
+]
+},
+{
+"correct": "avessimo",
+"distractors": [
+"avessi",
+"avesse",
+"avrei",
+"avrebbe",
+"avevo"
+]
+},
+{
+"correct": "dei",
+"distractors": [
+"del",
+"della",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "bagagli",
+"distractors": [
+"ordinerei",
+"terrei",
+"sentiresti",
+"chiuderei",
+"posti"
+]
+}
+],
+"alternatives": [
+"Se avessimo dei bagagli, prenderemmo un taxi."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:30",
+"target": "Ti presterei il mio casco se ne avessi bisogno.",
+"ru": "Я бы одолжил тебе свой шлем, если бы он тебе понадобился.",
+"uk": "Я б позичив тобі свій шолом, якби він тобі знадобився.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Ci",
+"Mi",
+"Gli",
+"Le"
+]
+},
+{
+"correct": "presterei",
+"distractors": [
+"pronti",
+"chiudessi",
+"avvertissi",
+"conserverei",
+"conoscessi"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"lo",
+"le"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"loro",
+"sua",
+"vostro",
+"mie",
+"nostra"
+]
+},
+{
+"correct": "casco",
+"distractors": [
+"meglio",
+"bello",
+"avessimo",
+"libero",
+"treno"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"mentre",
+"quando",
+"come",
+"perché"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"mi",
+"la",
+"ci",
+"li",
+"vi"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avrebbe",
+"avevo",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "bisogno",
+"distractors": [
+"gatto",
+"letto",
+"usciremmo",
+"forno",
+"cartello"
+]
+}
+],
+"alternatives": [
+"Se ne avessi bisogno, ti presterei il mio casco."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:31",
+"target": "Se la chiave girasse, la porta si aprirebbe.",
+"ru": "Если бы ключ повернулся, дверь бы открылась.",
+"uk": "Якби ключ повернувся, двері відчинилися б.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"un",
+"ci",
+"mi"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"costasse",
+"dottore",
+"basse",
+"cambiare",
+"spese"
+]
+},
+{
+"correct": "girasse",
+"distractors": [
+"leggibile",
+"spese",
+"stazione",
+"facesse",
+"garage"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"lo",
+"un",
+"i"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"portano",
+"casa",
+"borsa",
+"strada",
+"cena"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"ci",
+"ne",
+"lo",
+"ti",
+"il"
+]
+},
+{
+"correct": "aprirebbe",
+"distractors": [
+"dottore",
+"piovere",
+"soluzione",
+"spese",
+"basse"
+]
+}
+],
+"alternatives": [
+"La porta si aprirebbe se la chiave girasse."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:32",
+"target": "Se ci fosse la guardia, aprirebbe il garage.",
+"ru": "Если бы здесь был охранник, он бы открыл гараж.",
+"uk": "Якби охоронець був тут, він би відчинив гараж.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Perché",
+"Quando",
+"Come"
+]
+},
+{
+"correct": "ci",
+"distractors": [
+"ti",
+"li",
+"si",
+"lo",
+"ne"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"gli",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "guardia",
+"distractors": [
+"porta",
+"strada",
+"casa",
+"torta",
+"vicina"
+]
+},
+{
+"correct": "aprirebbe",
+"distractors": [
+"chiave",
+"dottore",
+"piovere",
+"soluzione",
+"spese"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"i",
+"le",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "garage",
+"distractors": [
+"costasse",
+"girasse",
+"leggibile",
+"scegliere",
+"spese"
+]
+}
+],
+"alternatives": [
+"Aprirebbe il garage se ci fosse la guardia."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:33",
+"target": "Se avessimo una scala a pioli, ripareremmo la lampada.",
+"ru": "Если бы у нас была приставная лестница, мы бы починили лампу.",
+"uk": "Якби у нас були приставні сходи, ми полагодили б лампу.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessimo",
+"distractors": [
+"avessi",
+"avesse",
+"avevo",
+"avrebbe",
+"avevamo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "scala",
+"distractors": [
+"porta",
+"borsa",
+"consegna",
+"giacca",
+"l’acqua"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "pioli",
+"distractors": [
+"farei",
+"proverei",
+"abitassi",
+"taxi",
+"qui"
+]
+},
+{
+"correct": "ripareremmo",
+"distractors": [
+"d’accordo",
+"andassero",
+"biglietto",
+"messaggio",
+"avviseremmo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"i",
+"mi",
+"che"
+]
+},
+{
+"correct": "lampada",
+"distractors": [
+"leggera",
+"l’uscita",
+"consegna",
+"questa",
+"casa"
+]
+}
+],
+"alternatives": [
+"Ripareremmo la lampada se avessimo una scala a pioli."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:34",
+"target": "Se conservassi lo scontrino, potresti cambiare il maglione.",
+"ru": "Если бы ты сохранил чек, ты мог бы обменять свитер.",
+"uk": "Якби ти зберіг чек, ти міг би обміняти светр.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Perché",
+"Quando",
+"Come"
+]
+},
+{
+"correct": "conservassi",
+"distractors": [
+"abitassi",
+"preparerei",
+"occhiali",
+"bagagli",
+"pioli"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"la",
+"una",
+"un",
+"ne",
+"che"
+]
+},
+{
+"correct": "scontrino",
+"distractors": [
+"avviseremmo",
+"cominceremmo",
+"troveremmo",
+"domicilio",
+"biglietto"
+]
+},
+{
+"correct": "potresti",
+"distractors": [
+"potrebbe",
+"potremmo",
+"potrei",
+"posso",
+"potessi"
+]
+},
+{
+"correct": "cambiare",
+"distractors": [
+"custode",
+"piovere",
+"soluzione",
+"correre",
+"dottore"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"uno",
+"gli",
+"che"
+]
+},
+{
+"correct": "maglione",
+"distractors": [
+"arrivasse",
+"avesse",
+"cambiasse",
+"sparisse",
+"capirebbe"
+]
+}
+],
+"alternatives": [
+"Potresti cambiare il maglione se conservassi lo scontrino."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:35",
+"target": "Se il negozio facesse consegne a domicilio, ordinerei online.",
+"ru": "Если бы магазин доставлял на дом, я бы заказал онлайн.",
+"uk": "Якби магазин доставляв додому, я б замовив онлайн.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"le",
+"uno",
+"i"
+]
+},
+{
+"correct": "negozio",
+"distractors": [
+"meglio",
+"vicino",
+"parco",
+"scontrino",
+"bello"
+]
+},
+{
+"correct": "facesse",
+"distractors": [
+"sparisse",
+"stazione",
+"custode",
+"correre",
+"cambiare"
+]
+},
+{
+"correct": "consegne",
+"distractors": [
+"leggibile",
+"garage",
+"stazione",
+"scegliere",
+"insieme"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "domicilio",
+"distractors": [
+"andassero",
+"cartello",
+"d’accordo",
+"messaggio",
+"avessimo"
+]
+},
+{
+"correct": "ordinerei",
+"distractors": [
+"l’uscita",
+"ferroviaria",
+"vicini",
+"bagagli",
+"macchina"
+]
+},
+{
+"correct": "online",
+"distractors": [
+"leggibile",
+"piovere",
+"custode",
+"stazione",
+"venire"
+]
+}
+],
+"alternatives": [
+"Ordinerei online se il negozio facesse consegne a domicilio."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:36",
+"target": "Se il forno funzionasse, preparerebbe una torta.",
+"ru": "Если бы духовка работала, она бы испекла пирог.",
+"uk": "Якби духовка працювала, вона б спекла пиріг.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"uno",
+"che",
+"e"
+]
+},
+{
+"correct": "forno",
+"distractors": [
+"mio",
+"parco",
+"gatto",
+"letto",
+"bisogno"
+]
+},
+{
+"correct": "funzionasse",
+"distractors": [
+"tuo",
+"mia",
+"mio",
+"sua",
+"suo"
+]
+},
+{
+"correct": "preparerebbe",
+"distractors": [
+"aprirebbe",
+"chiamerebbe",
+"leggerebbe",
+"arrivasse",
+"soluzione"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"i",
+"lo",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "torta",
+"distractors": [
+"libera",
+"l’acqua",
+"lampada",
+"l’uscita",
+"mia"
+]
+}
+],
+"alternatives": [
+"Preparerebbe una torta se il forno funzionasse."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:37",
+"target": "Se il latte fosse ancora buono, farei i pancake.",
+"ru": "Если бы молоко было еще годным, я бы испек блины.",
+"uk": "Якби молоко було ще хорошим, я б спек млинці.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"perdesse",
+"consegne",
+"tornare",
+"online",
+"spese"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"te"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"non",
+"più",
+"già",
+"mai",
+"anche"
+]
+},
+{
+"correct": "buono",
+"distractors": [
+"tempo",
+"bisogno",
+"forno",
+"cartello",
+"posto"
+]
+},
+{
+"correct": "farei",
+"distractors": [
+"faremmo",
+"bisogno",
+"qui",
+"mio",
+"suo"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"un",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "pancake",
+"distractors": [
+"basse",
+"verrebbe",
+"maglione",
+"cambiasse",
+"online"
+]
+}
+],
+"alternatives": [
+"Farei i pancake se il latte fosse ancora buono."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:38",
+"target": "Se avessi del miele, ne metterei un po’ nel tè.",
+"ru": "Если бы у меня был мёд, я бы добавил немного в чай.",
+"uk": "Якби в мене був мед, я б поклав трохи в чай.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Quando",
+"Che",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avevo",
+"avrei",
+"avrebbe",
+"avevamo"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"della",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "miele",
+"distractors": [
+"perdesse",
+"spese",
+"consegne",
+"online",
+"piovere"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"ci",
+"la",
+"li",
+"si",
+"gli"
+]
+},
+{
+"correct": "metterei",
+"distractors": [
+"conservassi",
+"avviserei",
+"terrei",
+"pioli",
+"abitassi"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "po’",
+"distractors": [
+"meno",
+"abbastanza",
+"molto",
+"tanto",
+"troppo"
+]
+},
+{
+"correct": "nel",
+"distractors": [
+"nella",
+"negli",
+"nei",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "tè",
+"distractors": [
+"preparerebbe",
+"qui",
+"cartello",
+"potessi",
+"fuori"
+]
+}
+],
+"alternatives": [
+"Ne metterei un po’ nel tè se avessi del miele."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:39",
+"target": "Se il cartello fosse leggibile, troveremmo l’uscita.",
+"ru": "Если бы вывеска была разборчивой, мы бы нашли выход.",
+"uk": "Якби знак був розбірливим, ми б знайшли вихід.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"le",
+"i",
+"che"
+]
+},
+{
+"correct": "cartello",
+"distractors": [
+"rubinetto",
+"partiremmo",
+"d’accordo",
+"usciremmo",
+"ripareremmo"
+]
+},
+{
+"correct": "fosse",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"era"
+]
+},
+{
+"correct": "leggibile",
+"distractors": [
+"facesse",
+"preparerebbe",
+"correre",
+"avesse",
+"consegne"
+]
+},
+{
+"correct": "troveremmo",
+"distractors": [
+"terremmo",
+"rubinetto",
+"ricordo",
+"viaggeremmo",
+"usciremmo"
+]
+},
+{
+"correct": "l’uscita",
+"distractors": [
+"ordinerei",
+"capirebbe",
+"ferroviaria",
+"macchina",
+"programma"
+]
+}
+],
+"alternatives": [
+"Troveremmo l’uscita se il cartello fosse leggibile."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:40",
+"target": "Se il rubinetto perdesse, chiuderei l’acqua.",
+"ru": "Если бы кран протекал, я бы выключил воду.",
+"uk": "Якби протікав кран, я б вимкнув воду.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Perché",
+"Quando",
+"Come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "rubinetto",
+"distractors": [
+"libero",
+"ripareremmo",
+"ricordo",
+"giorno",
+"biglietto"
+]
+},
+{
+"correct": "perdesse",
+"distractors": [
+"sceglierei",
+"online",
+"piovere",
+"spese",
+"consegne"
+]
+},
+{
+"correct": "chiuderei",
+"distractors": [
+"resterei",
+"guidarci",
+"avviserei",
+"presterei",
+"andrei"
+]
+},
+{
+"correct": "l’acqua",
+"distractors": [
+"torta",
+"lampada",
+"casa",
+"l’uscita",
+"esperienza"
+]
+}
+],
+"alternatives": [
+"Chiuderei l’acqua se il rubinetto perdesse."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:41",
+"target": "Se mi avvertissi il giorno prima, preparerei il letto.",
+"ru": "Если бы ты предупредил меня накануне, я бы приготовил постель.",
+"uk": "Якби ти попередив мене напередодні, я приготував би постіль.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"la",
+"ci",
+"ti",
+"ne",
+"si"
+]
+},
+{
+"correct": "avvertissi",
+"distractors": [
+"andassero",
+"d’accordo",
+"messaggio",
+"cominceremmo",
+"troveremmo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"gli",
+"che"
+]
+},
+{
+"correct": "giorno",
+"distractors": [
+"posto",
+"d’accordo",
+"parco",
+"rubinetto",
+"forno"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"meno",
+"dove",
+"cosa"
+]
+},
+{
+"correct": "preparerei",
+"distractors": [
+"conservassi",
+"abitassi",
+"porterei",
+"conserverei",
+"bagagli"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"lo",
+"che"
+]
+},
+{
+"correct": "letto",
+"distractors": [
+"avessimo",
+"gatto",
+"negozio",
+"buono",
+"bisogno"
+]
+}
+],
+"alternatives": [
+"Preparerei il letto se mi avvertissi il giorno prima."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:42",
+"target": "Se fossi in te, gli scriverei.",
+"ru": "На твоём месте я бы написал ему.",
+"uk": "Якби я був на твоєму місці, я б написав йому.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "fossi",
+"distractors": [
+"fossero",
+"fossimo",
+"sarebbe",
+"ero",
+"domani"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"fosse",
+"miele",
+"latte",
+"basse",
+"sarebbe"
+]
+},
+{
+"correct": "gli",
+"distractors": [
+"il",
+"le",
+"ci",
+"la",
+"una"
+]
+},
+{
+"correct": "scriverei",
+"distractors": [
+"avviserei",
+"pioli",
+"presterei",
+"abitassi",
+"andrebbe"
+]
+}
+],
+"alternatives": [
+"Gli scriverei se fossi in te."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:43",
+"target": "Se i vicini se ne andassero, terremmo il loro gatto.",
+"ru": "Если бы соседи съехали, мы бы оставили себе их кота.",
+"uk": "Якби сусіди переїхали, ми б залишили їхнього кота.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"uno",
+"un",
+"gli",
+"che"
+]
+},
+{
+"correct": "vicini",
+"distractors": [
+"ordinerei",
+"abitassi",
+"pioli",
+"proverei",
+"aiuterei"
+]
+},
+{
+"correct": "se",
+"distractors": [
+"che",
+"quando",
+"perché",
+"mentre",
+"come"
+]
+},
+{
+"correct": "ne",
+"distractors": [
+"la",
+"ci",
+"si",
+"le",
+"mi"
+]
+},
+{
+"correct": "andassero",
+"distractors": [
+"viaggio",
+"libero",
+"viaggeremmo",
+"faremmo",
+"quell’albero"
+]
+},
+{
+"correct": "terremmo",
+"distractors": [
+"terrei",
+"troveremmo",
+"proverei",
+"avviserei",
+"metterei"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"una",
+"la",
+"le",
+"uno",
+"che"
+]
+},
+{
+"correct": "loro",
+"distractors": [
+"lei",
+"mio",
+"suoi",
+"tue",
+"miei"
+]
+},
+{
+"correct": "gatto",
+"distractors": [
+"viaggio",
+"parco",
+"aperto",
+"forno",
+"chiuso"
+]
+}
+],
+"alternatives": [
+"Terremmo il loro gatto se i vicini se ne andassero."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:44",
+"target": "Se proponessi una soluzione, ti ascolterei.",
+"ru": "Если бы ты предложил решение, я бы тебя выслушал.",
+"uk": "Якби ти запропонував рішення, я б тебе вислухав.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "proponessi",
+"distractors": [
+"giorno",
+"partito",
+"treno",
+"pranzo",
+"questo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "soluzione",
+"distractors": [
+"smettesse",
+"perdesse",
+"preparerebbe",
+"piovere",
+"online"
+]
+},
+{
+"correct": "ti",
+"distractors": [
+"la",
+"ci",
+"si",
+"le",
+"gli"
+]
+},
+{
+"correct": "ascolterei",
+"distractors": [
+"avviserei",
+"pioli",
+"presterei",
+"abitassi",
+"andrebbe"
+]
+}
+],
+"alternatives": [
+"Ti ascolterei se proponessi una soluzione."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:45",
+"target": "Se la chiave sparisse, avviserei il custode.",
+"ru": "Если бы ключ пропал, я бы предупредил сторожа.",
+"uk": "Якби ключ зник, я попередив би сторожа.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Perché",
+"Quando",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"ne",
+"si",
+"ci",
+"che"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"aprirebbe",
+"dottore",
+"spese",
+"piovere",
+"basse"
+]
+},
+{
+"correct": "sparisse",
+"distractors": [
+"buono",
+"letto",
+"posto",
+"tempo",
+"bisogno"
+]
+},
+{
+"correct": "avviserei",
+"distractors": [
+"presterei",
+"andrei",
+"occhiali",
+"guidarci",
+"preparerei"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"le",
+"gli",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "custode",
+"distractors": [
+"arrivasse",
+"verrebbe",
+"cambiasse",
+"girasse",
+"leggibile"
+]
+}
+],
+"alternatives": [
+"Avviserei il custode se la chiave sparisse."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:46",
+"target": "Se promettessi di tornare, terrei il tuo posto.",
+"ru": "Если бы ты пообещал вернуться, я бы придержал твоё место.",
+"uk": "Якби ти пообіцяв повернутись, я б притримав твоє місце.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Mentre",
+"Quando",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "promettessi",
+"distractors": [
+"programma",
+"macchina",
+"giacca",
+"consegna",
+"ferroviaria"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "tornare",
+"distractors": [
+"te",
+"scegliere",
+"cambiasse",
+"basse",
+"capirebbe"
+]
+},
+{
+"correct": "terrei",
+"distractors": [
+"terremmo",
+"troveremmo",
+"proverei",
+"avviserei",
+"metterei"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "tuo",
+"distractors": [
+"sue",
+"vostro",
+"mia",
+"nostro",
+"mio"
+]
+},
+{
+"correct": "posto",
+"distractors": [
+"ricordo",
+"buono",
+"bello",
+"treno",
+"letto"
+]
+}
+],
+"alternatives": [
+"Terrei il tuo posto se promettessi di tornare."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:47",
+"target": "Se avessimo fortuna, troveremmo due posti vicini.",
+"ru": "Если бы нам повезло, мы бы нашли два места рядом.",
+"uk": "Якби нам пощастило, ми б знайшли два місця поруч.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "avessimo",
+"distractors": [
+"avessi",
+"avesse",
+"avevo",
+"avrebbe",
+"avevamo"
+]
+},
+{
+"correct": "fortuna",
+"distractors": [
+"casa",
+"borsa",
+"stanza",
+"bicicletta",
+"l’uscita"
+]
+},
+{
+"correct": "troveremmo",
+"distractors": [
+"terremmo",
+"andremmo",
+"mezzogiorno",
+"quell’albero",
+"avviseremmo"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"quattro",
+"nove",
+"otto",
+"cinque",
+"tre"
+]
+},
+{
+"correct": "posti",
+"distractors": [
+"avessi",
+"tutti",
+"metterei",
+"verrei",
+"taxi"
+]
+},
+{
+"correct": "vicini",
+"distractors": [
+"porterei",
+"abitassi",
+"aiuterei",
+"resterei",
+"tutti"
+]
+}
+],
+"alternatives": [
+"Troveremmo due posti vicini se avessimo fortuna."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:48",
+"target": "Se le spese di consegna fossero più basse, ordinerei quell’albero.",
+"ru": "Если бы доставка стоила дешевле, я бы заказал то дерево.",
+"uk": "Якби доставка коштувала дешевше, я б замовив дерево.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"un",
+"la",
+"si",
+"ne"
+]
+},
+{
+"correct": "spese",
+"distractors": [
+"pancake",
+"online",
+"tornare",
+"custode",
+"dottore"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "consegna",
+"distractors": [
+"questa",
+"casa",
+"ferroviaria",
+"macchina",
+"borsa"
+]
+},
+{
+"correct": "fossero",
+"distractors": [
+"fosse",
+"fossi",
+"fossimo",
+"sarebbe",
+"ero"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"non",
+"troppo",
+"tante",
+"po’",
+"già"
+]
+},
+{
+"correct": "basse",
+"distractors": [
+"perdesse",
+"facesse",
+"pancake",
+"online",
+"girasse"
+]
+},
+{
+"correct": "ordinerei",
+"distractors": [
+"l’uscita",
+"ferroviaria",
+"vicini",
+"bagagli",
+"macchina"
+]
+},
+{
+"correct": "quell’albero",
+"distractors": [
+"arriveremmo",
+"partiremmo",
+"cominceremmo",
+"andassero",
+"d’accordo"
+]
+}
+],
+"alternatives": [
+"Ordinerei quell’albero se le spese di consegna fossero più basse."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:49",
+"target": "Se avessi la tua esperienza, ci proverei.",
+"ru": "Если бы у меня был твой опыт, я бы попытал счастья.",
+"uk": "Якби в мене був твій досвід, я б спробував щастя.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Che",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "avessi",
+"distractors": [
+"avessimo",
+"avevo",
+"avrebbe",
+"avevamo",
+"avevate"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ne",
+"mi",
+"che"
+]
+},
+{
+"correct": "tua",
+"distractors": [
+"mio",
+"tuoi",
+"sua",
+"mia",
+"suo"
+]
+},
+{
+"correct": "esperienza",
+"distractors": [
+"lampada",
+"bicicletta",
+"ferroviaria",
+"macchina",
+"consegna"
+]
+},
+{
+"correct": "ci",
+"distractors": [
+"ne",
+"ti",
+"mi",
+"si",
+"il"
+]
+},
+{
+"correct": "proverei",
+"distractors": [
+"promettessi",
+"terrei",
+"avviserei",
+"chiuderei",
+"piedi"
+]
+}
+],
+"alternatives": [
+"Ci proverei se avessi la tua esperienza."
+]
+},
+{
+"lesson": 32,
+"id": "it:32:50",
+"target": "Se il programma cambiasse, la avviseremmo.",
+"ru": "Если бы расписание изменилось, мы бы вам сообщили.",
+"uk": "Якби розклад змінився, ми б вам повідомили.",
+"tiles": [
+{
+"correct": "Se",
+"distractors": [
+"Quando",
+"Mentre",
+"Che",
+"Perché",
+"Come"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"gli",
+"i",
+"una",
+"che",
+"e"
+]
+},
+{
+"correct": "programma",
+"distractors": [
+"fortuna",
+"l’acqua",
+"esperienza",
+"guardia",
+"leggera"
+]
+},
+{
+"correct": "cambiasse",
+"distractors": [
+"avesse",
+"funzionasse",
+"facesse",
+"leggerebbe",
+"consegne"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"i",
+"ci",
+"un",
+"ti",
+"che"
+]
+},
+{
+"correct": "avviseremmo",
+"distractors": [
+"ripareremmo",
+"cartello",
+"partiremmo",
+"avessimo",
+"troveremmo"
+]
+}
+],
+"alternatives": [
+"La avviseremmo se il programma cambiasse."
+]
+}
+]

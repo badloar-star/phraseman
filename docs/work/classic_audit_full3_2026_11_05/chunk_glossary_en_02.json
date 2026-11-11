@@ -1,0 +1,3148 @@
+[
+{
+"lemma": "teach",
+"meaning": {
+"ru": "учить",
+"uk": "навчати",
+"en": "teach",
+"es": "enseñar",
+"pt-BR": "ensinar",
+"vi": "dạy",
+"id": "mengajar",
+"tr": "öğretmek",
+"pl": "uczyć"
+},
+"firstLesson": 6,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:06.47",
+"target": "Who teaches the evening class?",
+"ru": "Кто ведет вечерние занятия?",
+"uk": "Хто викладає вечірні заняття?"
+},
+{
+"id": "en-classic-r1:28.09",
+"target": "She taught herself English.",
+"ru": "Она самостоятельно выучила английский.",
+"uk": "Вона сама вивчила англійську."
+},
+{
+"id": "en-classic-r1:28.44",
+"target": "They taught themselves to cook.",
+"ru": "Они научились готовить сами.",
+"uk": "Вони самі навчилися готувати."
+}
+],
+"other": {}
+},
+{
+"lemma": "evening",
+"meaning": {
+"ru": "вечер",
+"uk": "вечір",
+"en": "evening",
+"es": "tarde",
+"pt-BR": "noite",
+"vi": "buổi tối",
+"id": "malam",
+"tr": "akşam",
+"pl": "wieczór"
+},
+"firstLesson": 6,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:06.47",
+"target": "Who teaches the evening class?",
+"ru": "Кто ведет вечерние занятия?",
+"uk": "Хто викладає вечірні заняття?"
+},
+{
+"id": "en-classic-r1:08.06",
+"target": "She studies in the evening.",
+"ru": "Она учится вечером.",
+"uk": "Вона навчається ввечері."
+},
+{
+"id": "en-classic-r1:08.22",
+"target": "We train on Wednesday evenings.",
+"ru": "Мы тренируемся по средам вечером.",
+"uk": "Ми тренуємося по середах ввечері."
+}
+],
+"other": {}
+},
+{
+"lemma": "belongs",
+"meaning": {
+"ru": "принадлежит",
+"uk": "належить",
+"en": "is owned by",
+"es": "pertenece a",
+"pt-BR": "pertence a",
+"vi": "thuộc về",
+"id": "milik",
+"tr": "aittir"
+},
+"firstLesson": 6,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:06.48",
+"target": "Which bag belongs to you?",
+"ru": "Какая сумка ваша?",
+"uk": "Яка сумка належить вам?"
+},
+{
+"id": "en-classic-r1:30.47",
+"target": "The chair you are sitting on belongs to Anna.",
+"ru": "Стул, на котором вы сидите, принадлежит Анне.",
+"uk": "Стілець, на якому ви сидите, належить Анні."
+}
+],
+"other": {}
+},
+{
+"lemma": "foot",
+"meaning": {
+"ru": "нога",
+"uk": "стопа",
+"en": "foot",
+"es": "pie",
+"pt-BR": "pé",
+"vi": "chân",
+"id": "kaki",
+"tr": "ayak",
+"pl": "stopa"
+},
+"firstLesson": 6,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:06.50",
+"target": "How long does it take on foot?",
+"ru": "Сколько времени это занимает пешком?",
+"uk": "Скільки часу потрібно, щоб дістатися пішки?"
+}
+],
+"other": {}
+},
+{
+"lemma": "number",
+"meaning": {
+"ru": "число",
+"uk": "число",
+"en": "number",
+"es": "número",
+"pt-BR": "número",
+"vi": "số",
+"id": "nomor",
+"tr": "sayı",
+"pl": "numer"
+},
+"firstLesson": 7,
+"phrasesCount": 16,
+"examples": [
+{
+"id": "en-classic-r1:07.05",
+"target": "I have your number.",
+"ru": "У меня есть ваш номер.",
+"uk": "У мене є ваш номер."
+},
+{
+"id": "en-classic-r1:07.20",
+"target": "I have the doctor's number.",
+"ru": "У меня есть номер врача.",
+"uk": "У мене є номер лікаря."
+},
+{
+"id": "en-classic-r1:07.30",
+"target": "Does the shop have a phone number?",
+"ru": "У магазина есть номер телефона?",
+"uk": "У магазину є номер телефону?"
+}
+],
+"other": {}
+},
+{
+"lemma": "car",
+"meaning": {
+"ru": "автомобиль",
+"uk": "автомобіль",
+"en": "car",
+"es": "coche",
+"pt-BR": "carro",
+"vi": "ô tô",
+"id": "mobil",
+"tr": "araba",
+"pl": "samochód"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.07",
+"target": "They have a car.",
+"ru": "У них есть машина.",
+"uk": "У них є машина."
+},
+{
+"id": "en-classic-r1:17.39",
+"target": "I am not taking the car.",
+"ru": "Я не поеду на машине.",
+"uk": "Я не поїду машиною."
+},
+{
+"id": "en-classic-r1:19.23",
+"target": "The car park is behind the hotel.",
+"ru": "Автостоянка находится за отелем.",
+"uk": "Автостоянка знаходиться за готелем."
+}
+],
+"other": {}
+},
+{
+"lemma": "bicycle",
+"meaning": {
+"ru": "велосипед",
+"uk": "велосипед",
+"en": "bicycle",
+"es": "bicicleta",
+"pt-BR": "bicicleta",
+"vi": "xe đạp",
+"id": "sepeda",
+"tr": "bisiklet",
+"pl": "rower"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.08",
+"target": "He has a bicycle.",
+"ru": "У него есть велосипед.",
+"uk": "У нього є велосипед."
+}
+],
+"other": {}
+},
+{
+"lemma": "question",
+"meaning": {
+"ru": "вопрос",
+"uk": "питання",
+"en": "question",
+"es": "pregunta",
+"pt-BR": "pergunta",
+"vi": "câu hỏi",
+"id": "pertanyaan",
+"tr": "soru",
+"pl": "pytanie"
+},
+"firstLesson": 7,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:07.10",
+"target": "I have a question.",
+"ru": "У меня есть вопрос.",
+"uk": "У мене є питання."
+},
+{
+"id": "en-classic-r1:14.19",
+"target": "The second question is easier than the first.",
+"ru": "Второй вопрос проще первого.",
+"uk": "Друге питання легше за перше."
+},
+{
+"id": "en-classic-r1:28.17",
+"target": "She asked herself a useful question.",
+"ru": "Она задала себе полезный вопрос.",
+"uk": "Вона поставила собі корисне запитання."
+}
+],
+"other": {}
+},
+{
+"lemma": "sore",
+"meaning": {
+"ru": "боль",
+"uk": "біль",
+"en": "sore",
+"es": "dolor",
+"pt-BR": "dor de garganta",
+"vi": "đau",
+"id": "sakit",
+"tr": "ağrı",
+"pl": "ból"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.11",
+"target": "I have a sore throat.",
+"ru": "У меня болит горло.",
+"uk": "У мене болить горло."
+}
+],
+"other": {}
+},
+{
+"lemma": "throat",
+"meaning": {
+"ru": "горло",
+"uk": "горло",
+"en": "throat",
+"es": "garganta",
+"pt-BR": "garganta",
+"vi": "cổ họng",
+"id": "tenggorokan",
+"tr": "boğaz",
+"pl": "gardło"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.11",
+"target": "I have a sore throat.",
+"ru": "У меня болит горло.",
+"uk": "У мене болить горло."
+}
+],
+"other": {}
+},
+{
+"lemma": "cough",
+"meaning": {
+"ru": "кашель",
+"uk": "кашель",
+"en": "cough",
+"es": "tos",
+"pt-BR": "tosse",
+"vi": "ho",
+"id": "batuk",
+"tr": "öksürük",
+"pl": "kaszel"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.12",
+"target": "He has a cough.",
+"ru": "У него кашель.",
+"uk": "У нього кашель."
+}
+],
+"other": {}
+},
+{
+"lemma": "headache",
+"meaning": {
+"ru": "головная боль",
+"uk": "головний біль",
+"en": "headache",
+"es": "dolor de cabeza",
+"pt-BR": "dor de cabeça",
+"vi": "đau đầu",
+"id": "sakit kepala",
+"tr": "baş ağrısı",
+"pl": "ból głowy"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.13",
+"target": "She has a headache.",
+"ru": "У неё болит голова.",
+"uk": "У неї болить голова."
+}
+],
+"other": {}
+},
+{
+"lemma": "appointment",
+"meaning": {
+"ru": "запланированная встреча",
+"uk": "запланована зустріч",
+"en": "scheduled appointment",
+"es": "cita programada",
+"pt-BR": "consulta agendada",
+"vi": "cuộc hẹn đã lên lịch",
+"id": "janji temu terjadwal",
+"tr": "planlanmış randevu",
+"pl": "umówiona wizyta"
+},
+"firstLesson": 7,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:07.14",
+"target": "We have an appointment.",
+"ru": "У нас запись на приём.",
+"uk": "У нас призначений прийом."
+},
+{
+"id": "en-classic-r1:08.24",
+"target": "My appointment is on Thursday morning.",
+"ru": "Моя встреча назначена на утро четверга.",
+"uk": "Моя зустріч у четвер вранці."
+},
+{
+"id": "en-classic-r1:08.49",
+"target": "I have a dentist's appointment on Tuesday.",
+"ru": "У меня во вторник приём у стоматолога.",
+"uk": "У мене прийом у стоматолога у вівторок."
+}
+],
+"other": {}
+},
+{
+"lemma": "daughter",
+"meaning": {
+"ru": "дочь",
+"uk": "донька",
+"en": "daughter",
+"es": "hija",
+"pt-BR": "filha",
+"vi": "con gái",
+"id": "anak perempuan",
+"tr": "kız çocuğu",
+"pl": "córka"
+},
+"firstLesson": 7,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:07.15",
+"target": "My daughter has a cold.",
+"ru": "У моей дочери простуда.",
+"uk": "У моєї доньки застуда."
+},
+{
+"id": "en-classic-r1:30.39",
+"target": "I met a nurse whose daughter studies here.",
+"ru": "Я встретил медсестру, чья дочь здесь учится.",
+"uk": "Я зустрів медсестру, чия дочка тут навчається."
+}
+],
+"other": {}
+},
+{
+"lemma": "block",
+"meaning": {
+"ru": "блокировка",
+"uk": "закладеність",
+"en": "block",
+"es": "bloqueo",
+"pt-BR": "bloco",
+"vi": "khối",
+"id": "penyumbatan",
+"tr": "blok",
+"pl": "blokada"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.16",
+"target": "I have a blocked nose.",
+"ru": "У меня заложен нос.",
+"uk": "У мене закладений ніс."
+},
+{
+"id": "en-classic-r1:10.36",
+"target": "We should not block the exit.",
+"ru": "Нам не стоит загораживать выход.",
+"uk": "Нам не слід блокувати вихід."
+},
+{
+"id": "en-classic-r1:18.12",
+"target": "Do not block the stairs.",
+"ru": "Не загораживайте лестницу.",
+"uk": "Не блокуйте сходи."
+}
+],
+"other": {}
+},
+{
+"lemma": "nose",
+"meaning": {
+"ru": "нос",
+"uk": "ніс",
+"en": "nose",
+"es": "nariz",
+"pt-BR": "nariz",
+"vi": "mũi",
+"id": "hidung",
+"tr": "burun",
+"pl": "nos"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.16",
+"target": "I have a blocked nose.",
+"ru": "У меня заложен нос.",
+"uk": "У мене закладений ніс."
+}
+],
+"other": {}
+},
+{
+"lemma": "fever",
+"meaning": {
+"ru": "лихорадка",
+"uk": "лихоманка",
+"en": "fever",
+"es": "fiebre",
+"pt-BR": "febre",
+"vi": "sốt",
+"id": "demam",
+"tr": "ateş",
+"pl": "gorączka"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.17",
+"target": "He has a fever.",
+"ru": "У него температура.",
+"uk": "У нього температура."
+}
+],
+"other": {}
+},
+{
+"lemma": "prescription",
+"meaning": {
+"ru": "рецепт",
+"uk": "рецепт",
+"en": "prescription",
+"es": "receta",
+"pt-BR": "receita médica",
+"vi": "đơn thuốc",
+"id": "resep",
+"tr": "reçete",
+"pl": "recepta"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.18",
+"target": "She has a prescription.",
+"ru": "У неё есть рецепт.",
+"uk": "У неї є рецепт."
+}
+],
+"other": {}
+},
+{
+"lemma": "health",
+"meaning": {
+"ru": "здоровье",
+"uk": "здоров'я",
+"en": "health",
+"es": "salud",
+"pt-BR": "saúde",
+"vi": "sức khỏe",
+"id": "kesehatan",
+"tr": "sağlık",
+"pl": "zdrowie"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.19",
+"target": "They have health insurance.",
+"ru": "У них есть медицинская страховка.",
+"uk": "У них є медична страховка."
+}
+],
+"other": {}
+},
+{
+"lemma": "insurance",
+"meaning": {
+"ru": "страховка",
+"uk": "страхування",
+"en": "insurance",
+"es": "seguro",
+"pt-BR": "seguro",
+"vi": "bảo hiểm",
+"id": "asuransi",
+"tr": "sigorta",
+"pl": "ubezpieczenie"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.19",
+"target": "They have health insurance.",
+"ru": "У них есть медицинская страховка.",
+"uk": "У них є медична страховка."
+}
+],
+"other": {}
+},
+{
+"lemma": "doctor",
+"meaning": {
+"ru": "врач",
+"uk": "лікар",
+"en": "doctor",
+"es": "médico",
+"pt-BR": "médico",
+"vi": "bác sĩ",
+"id": "dokter",
+"tr": "doktor",
+"pl": "lekarz"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.20",
+"target": "I have the doctor's number.",
+"ru": "У меня есть номер врача.",
+"uk": "У мене є номер лікаря."
+}
+],
+"other": {}
+},
+{
+"lemma": "charger",
+"meaning": {
+"ru": "зарядное устройство",
+"uk": "зарядний пристрій",
+"en": "charger",
+"es": "cargador",
+"pt-BR": "carregador",
+"vi": "bộ sạc",
+"id": "pengisi daya",
+"tr": "şarj cihazı",
+"pl": "ładowarka"
+},
+"firstLesson": 7,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:07.21",
+"target": "Do you have a charger?",
+"ru": "У вас есть зарядное устройство?",
+"uk": "У вас є зарядний пристрій?"
+},
+{
+"id": "en-classic-r1:11.41",
+"target": "The charger worked yesterday.",
+"ru": "Зарядное устройство вчера работало.",
+"uk": "Зарядний пристрій працював вчора."
+},
+{
+"id": "en-classic-r1:12.32",
+"target": "Did she bring the charger?",
+"ru": "Она принесла зарядное устройство?",
+"uk": "Вона принесла зарядний пристрій?"
+}
+],
+"other": {}
+},
+{
+"lemma": "passport",
+"meaning": {
+"ru": "паспорт",
+"uk": "паспорт",
+"en": "passport",
+"es": "pasaporte",
+"pt-BR": "passaporte",
+"vi": "hộ chiếu",
+"id": "paspor",
+"tr": "pasaport",
+"pl": "paszport"
+},
+"firstLesson": 7,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:07.22",
+"target": "Does she have her passport?",
+"ru": "У неё есть паспорт?",
+"uk": "У неї є паспорт?"
+},
+{
+"id": "en-classic-r1:07.44",
+"target": "My passport has a blue cover.",
+"ru": "Мой паспорт в синей обложке.",
+"uk": "У мого паспорта синя обкладинка."
+},
+{
+"id": "en-classic-r1:10.43",
+"target": "He has to bring his passport.",
+"ru": "Он должен принести свой паспорт.",
+"uk": "Він має взяти з собою свій паспорт."
+}
+],
+"other": {}
+},
+{
+"lemma": "enough",
+"meaning": {
+"ru": "достаточно",
+"uk": "достатньо",
+"en": "enough",
+"es": "suficiente",
+"pt-BR": "suficiente",
+"vi": "đủ",
+"id": "cukup",
+"tr": "yeterli",
+"pl": "wystarczająco"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.23",
+"target": "Do we have enough time?",
+"ru": "У нас достаточно времени?",
+"uk": "У нас достатньо часу?"
+},
+{
+"id": "en-classic-r1:09.34",
+"target": "There are not enough chairs.",
+"ru": "Недостаточно стульев.",
+"uk": "Недостатньо стільців."
+},
+{
+"id": "en-classic-r1:13.36",
+"target": "Will we have enough time?",
+"ru": "У нас будет достаточно времени?",
+"uk": "Чи буде у нас достатньо часу?"
+}
+],
+"other": {}
+},
+{
+"lemma": "change",
+"meaning": {
+"ru": "мелкие монеты",
+"uk": "дрібні монети",
+"en": "small coins",
+"es": "monedas pequeñas",
+"pt-BR": "moedas pequenas",
+"vi": "tiền xu nhỏ",
+"id": "koin kecil",
+"tr": "küçük madeni paralar",
+"pl": "drobne monety"
+},
+"firstLesson": 7,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:07.24",
+"target": "Does he have any change?",
+"ru": "У него есть сдача?",
+"uk": "У нього є решта?"
+},
+{
+"id": "en-classic-r1:32.03",
+"target": "I do not have enough change for the locker.",
+"ru": "У меня недостаточно сдачи для камеры хранения.",
+"uk": "У мене недостатньо решти для шафки."
+}
+],
+"other": {}
+},
+{
+"lemma": "pen",
+"meaning": {
+"ru": "ручка",
+"uk": "ручка",
+"en": "pen",
+"es": "bolígrafo",
+"pt-BR": "caneta",
+"vi": "bút",
+"id": "pena",
+"tr": "kalem",
+"pl": "długopis"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.25",
+"target": "Do you have a pen?",
+"ru": "У вас есть ручка?",
+"uk": "У вас є ручка?"
+},
+{
+"id": "en-classic-r1:10.17",
+"target": "Can I borrow a pen?",
+"ru": "Можно мне взять ручку?",
+"uk": "Чи можу я позичити ручку?"
+},
+{
+"id": "en-classic-r1:20.01",
+"target": "I need a pen.",
+"ru": "Мне нужна ручка.",
+"uk": "Мені потрібна ручка."
+}
+],
+"other": {}
+},
+{
+"lemma": "shower",
+"meaning": {
+"ru": "душ",
+"uk": "душ",
+"en": "shower",
+"es": "ducha",
+"pt-BR": "chuveiro",
+"vi": "vòi sen",
+"id": "pancuran",
+"tr": "duş",
+"pl": "prysznic"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.26",
+"target": "Does the room have a shower?",
+"ru": "В номере есть душ?",
+"uk": "У номері є душ?"
+}
+],
+"other": {}
+},
+{
+"lemma": "zip",
+"meaning": {
+"ru": "молния на сумке",
+"uk": "блискавка на сумці",
+"en": "zipper on a bag",
+"es": "cremallera de bolso",
+"pt-BR": "zíper em uma bolsa",
+"vi": "khóa kéo trên túi",
+"id": "ritsleting pada tas",
+"tr": "çanta fermuarı",
+"pl": "zamek błyskawiczny w torbie"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.28",
+"target": "Does the bag have a zip?",
+"ru": "На сумке есть молния?",
+"uk": "Чи є на сумці блискавка?"
+}
+],
+"other": {}
+},
+{
+"lemma": "small",
+"meaning": {
+"ru": "маленький",
+"uk": "маленький",
+"en": "small",
+"es": "pequeño",
+"pt-BR": "pequeno",
+"vi": "nhỏ",
+"id": "kecil",
+"tr": "küçük",
+"pl": "mały"
+},
+"firstLesson": 7,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "en-classic-r1:07.29",
+"target": "Do you have a smaller size?",
+"ru": "У вас есть меньший размер?",
+"uk": "У вас є менший розмір?"
+},
+{
+"id": "en-classic-r1:13.19",
+"target": "There will be a small fee for delivery.",
+"ru": "За доставку будет небольшая плата.",
+"uk": "За доставку буде невелика плата."
+},
+{
+"id": "en-classic-r1:14.09",
+"target": "Their flat is smaller.",
+"ru": "Их квартира меньше.",
+"uk": "Їхня квартира менша."
+}
+],
+"other": {}
+},
+{
+"lemma": "booking",
+"meaning": {
+"ru": "бронирование",
+"uk": "бронювання",
+"en": "reservation",
+"es": "reserva",
+"pt-BR": "reserva",
+"vi": "đặt chỗ",
+"id": "reservasi",
+"tr": "rezervasyon",
+"pl": "rezerwacja"
+},
+"firstLesson": 7,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "en-classic-r1:07.31",
+"target": "I do not have a booking.",
+"ru": "У меня нет бронирования.",
+"uk": "У мене немає бронювання."
+},
+{
+"id": "en-classic-r1:11.23",
+"target": "We changed our booking.",
+"ru": "Мы изменили своё бронирование.",
+"uk": "Ми змінили наше бронювання."
+},
+{
+"id": "en-classic-r1:11.37",
+"target": "She did not cancel the booking.",
+"ru": "Она не отменила бронирование.",
+"uk": "Вона не скасувала бронювання."
+}
+],
+"other": {}
+},
+{
+"lemma": "glasses",
+"meaning": {
+"ru": "очки",
+"uk": "окуляри",
+"en": "eyeglasses",
+"es": "gafas",
+"pt-BR": "óculos",
+"vi": "kính mắt",
+"id": "kacamata",
+"tr": "gözlük",
+"pl": "okulary"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.32",
+"target": "She does not have her glasses.",
+"ru": "У нее нет очков.",
+"uk": "У неї немає окулярів."
+},
+{
+"id": "en-classic-r1:12.11",
+"target": "I left my glasses at work.",
+"ru": "Я оставил свои очки на работе.",
+"uk": "Я залишив окуляри на роботі."
+},
+{
+"id": "en-classic-r1:12.29",
+"target": "He broke his glasses.",
+"ru": "Он разбил свои очки.",
+"uk": "Він розбив окуляри."
+}
+],
+"other": {}
+},
+{
+"lemma": "original",
+"meaning": {
+"ru": "оригинал",
+"uk": "оригінал",
+"en": "original",
+"es": "original",
+"pt-BR": "original",
+"vi": "chính hãng",
+"id": "asli",
+"tr": "orijinal",
+"pl": "oryginał"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.33",
+"target": "We do not have the original receipt.",
+"ru": "У нас нет оригинала чека.",
+"uk": "У нас немає оригінального чека."
+}
+],
+"other": {}
+},
+{
+"lemma": "licence",
+"meaning": {
+"ru": "лицензия",
+"uk": "посвідчення особи",
+"en": "licence",
+"es": "licencia",
+"pt-BR": "carteira de habilitação",
+"vi": "giấy phép",
+"id": "lisensi",
+"tr": "lisans",
+"pl": "prawo jazdy"
+},
+"firstLesson": 7,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:07.34",
+"target": "He does not have a driving licence.",
+"ru": "У него нет водительских прав.",
+"uk": "У нього немає водійських прав."
+},
+{
+"id": "en-classic-r1:27.27",
+"target": "He told us he had renewed his licence.",
+"ru": "Он сказал нам, что продлил свои права.",
+"uk": "Він сказав нам, що поновив свої водійські права."
+}
+],
+"other": {}
+},
+{
+"lemma": "bike",
+"meaning": {
+"ru": "велосипед",
+"uk": "велосипед",
+"en": "bicycle",
+"es": "bicicleta",
+"pt-BR": "bicicleta",
+"vi": "xe đạp",
+"id": "sepeda",
+"tr": "bisiklet",
+"pl": "rower"
+},
+"firstLesson": 7,
+"phrasesCount": 12,
+"examples": [
+{
+"id": "en-classic-r1:07.37",
+"target": "My bike does not have lights.",
+"ru": "На моем велосипеде нет фар.",
+"uk": "У мого велосипеда немає фар."
+},
+{
+"id": "en-classic-r1:09.29",
+"target": "Is there room for my bike?",
+"ru": "Есть ли место для моего велосипеда?",
+"uk": "Чи є місце для мого велосипеда?"
+},
+{
+"id": "en-classic-r1:11.34",
+"target": "Did he lock the bike?",
+"ru": "Он запер велосипед?",
+"uk": "Він замкнув велосипед?"
+}
+],
+"other": {}
+},
+{
+"lemma": "handle",
+"meaning": {
+"ru": "дверная ручка",
+"uk": "дверна ручка",
+"en": "door handle",
+"es": "manija de puerta",
+"pt-BR": "maçaneta",
+"vi": "tay nắm cửa",
+"id": "gagang pintu",
+"tr": "kapı kolu",
+"pl": "klamka"
+},
+"firstLesson": 7,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:07.38",
+"target": "This door does not have a handle.",
+"ru": "У этой двери нет ручки.",
+"uk": "У цих дверях немає ручки."
+},
+{
+"id": "en-classic-r1:18.39",
+"target": "Pull the handle towards you.",
+"ru": "Потяните ручку на себя.",
+"uk": "Потягніть ручку на себе."
+},
+{
+"id": "en-classic-r1:26.05",
+"target": "If the latch sticks, lift the handle.",
+"ru": "Если защелка заклинит, поднимите ручку.",
+"uk": "Якщо засувка заклинить, підніміть ручку."
+}
+],
+"other": {}
+},
+{
+"lemma": "chair",
+"meaning": {
+"ru": "стул",
+"uk": "стілець",
+"en": "chair",
+"es": "silla",
+"pt-BR": "cadeira",
+"vi": "ghế",
+"id": "kursi",
+"tr": "sandalye",
+"pl": "krzesło"
+},
+"firstLesson": 7,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "en-classic-r1:07.39",
+"target": "We do not have a spare chair.",
+"ru": "У нас нет лишнего стула.",
+"uk": "У нас немає вільного стільця."
+},
+{
+"id": "en-classic-r1:09.34",
+"target": "There are not enough chairs.",
+"ru": "Недостаточно стульев.",
+"uk": "Недостатньо стільців."
+},
+{
+"id": "en-classic-r1:14.21",
+"target": "This chair is more comfortable.",
+"ru": "Этот стул удобнее.",
+"uk": "Цей стілець зручніший."
+}
+],
+"other": {}
+},
+{
+"lemma": "garden",
+"meaning": {
+"ru": "сад",
+"uk": "сад",
+"en": "garden",
+"es": "jardín",
+"pt-BR": "jardim",
+"vi": "vườn",
+"id": "taman",
+"tr": "bahçe",
+"pl": "ogród"
+},
+"firstLesson": 7,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:07.40",
+"target": "The flat does not have a garden.",
+"ru": "В квартире нет сада.",
+"uk": "У квартирі немає саду."
+},
+{
+"id": "en-classic-r1:08.39",
+"target": "The garden is beautiful in autumn.",
+"ru": "Сад прекрасен осенью.",
+"uk": "Сад прекрасний восени."
+}
+],
+"other": {}
+},
+{
+"lemma": "two",
+"meaning": {
+"ru": "два",
+"uk": "два",
+"en": "two",
+"es": "dos",
+"pt-BR": "dois",
+"vi": "hai",
+"id": "dua",
+"tr": "iki",
+"pl": "dwa"
+},
+"firstLesson": 7,
+"phrasesCount": 11,
+"examples": [
+{
+"id": "en-classic-r1:07.41",
+"target": "Our bus has two doors.",
+"ru": "В нашем автобусе две двери.",
+"uk": "У нашому автобусі двоє дверей."
+},
+{
+"id": "en-classic-r1:07.47",
+"target": "We have a table for two.",
+"ru": "У нас есть столик на двоих.",
+"uk": "У нас є столик на двох."
+},
+{
+"id": "en-classic-r1:09.04",
+"target": "There are two queues.",
+"ru": "Есть две очереди.",
+"uk": "Є дві черги."
+}
+],
+"other": {}
+},
+{
+"lemma": "three",
+"meaning": {
+"ru": "три",
+"uk": "три",
+"en": "three",
+"es": "tres",
+"pt-BR": "três",
+"vi": "ba",
+"id": "tiga",
+"tr": "üç",
+"pl": "trzy"
+},
+"firstLesson": 7,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:07.43",
+"target": "The form has three pages.",
+"ru": "В анкете три страницы.",
+"uk": "Анкета має три сторінки."
+},
+{
+"id": "en-classic-r1:09.46",
+"target": "There are three stops before the station.",
+"ru": "До станции три остановки.",
+"uk": "До станції три зупинки."
+},
+{
+"id": "en-classic-r1:24.44",
+"target": "She has called three times today.",
+"ru": "Она звонила три раза сегодня.",
+"uk": "Вона дзвонила тричі сьогодні."
+}
+],
+"other": {}
+},
+{
+"lemma": "page",
+"meaning": {
+"ru": "страница",
+"uk": "сторінка",
+"en": "page",
+"es": "página",
+"pt-BR": "página",
+"vi": "trang",
+"id": "halaman",
+"tr": "sayfa",
+"pl": "strona"
+},
+"firstLesson": 7,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:07.43",
+"target": "The form has three pages.",
+"ru": "В анкете три страницы.",
+"uk": "Анкета має три сторінки."
+},
+{
+"id": "en-classic-r1:10.47",
+"target": "Do we have to sign both pages?",
+"ru": "Нужно ли нам подписывать обе страницы?",
+"uk": "Чи повинні ми підписувати обидві сторінки?"
+},
+{
+"id": "en-classic-r1:11.47",
+"target": "I noticed a missing page.",
+"ru": "Я заметил, что не хватает страницы.",
+"uk": "Я помітив, що бракує сторінки."
+}
+],
+"other": {}
+},
+{
+"lemma": "blue",
+"meaning": {
+"ru": "синий",
+"uk": "синій",
+"en": "blue",
+"es": "azul",
+"pt-BR": "azul",
+"vi": "màu xanh lam",
+"id": "biru",
+"tr": "mavi",
+"pl": "niebieski"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.44",
+"target": "My passport has a blue cover.",
+"ru": "Мой паспорт в синей обложке.",
+"uk": "У мого паспорта синя обкладинка."
+},
+{
+"id": "en-classic-r1:14.06",
+"target": "The blue coat is longer.",
+"ru": "Синее пальто длиннее.",
+"uk": "Синє пальто довше."
+},
+{
+"id": "en-classic-r1:15.25",
+"target": "Is the blue bike his?",
+"ru": "Синий велосипед его?",
+"uk": "Синій велосипед його?"
+}
+],
+"other": {}
+},
+{
+"lemma": "deep",
+"meaning": {
+"ru": "глубокий",
+"uk": "глибокий",
+"en": "deep",
+"es": "profundo",
+"pt-BR": "profundo",
+"vi": "sâu",
+"id": "dalam",
+"tr": "derin",
+"pl": "głęboki"
+},
+"firstLesson": 7,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:07.45",
+"target": "The coat has deep pockets.",
+"ru": "В пальто глубокие карманы.",
+"uk": "У пальто глибокі кишені."
+}
+],
+"other": {}
+},
+{
+"lemma": "pocket",
+"meaning": {
+"ru": "карман",
+"uk": "кишеня",
+"en": "pocket",
+"es": "bolsillo",
+"pt-BR": "bolso",
+"vi": "túi",
+"id": "saku",
+"tr": "cep",
+"pl": "kieszeń"
+},
+"firstLesson": 7,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:07.45",
+"target": "The coat has deep pockets.",
+"ru": "В пальто глубокие карманы.",
+"uk": "У пальто глибокі кишені."
+},
+{
+"id": "en-classic-r1:19.42",
+"target": "There is a hole in my pocket.",
+"ru": "В моем кармане дыра.",
+"uk": "У моїй кишені є дірка."
+},
+{
+"id": "en-classic-r1:32.07",
+"target": "I felt my phone vibrate in my coat pocket.",
+"ru": "Я почувствовал вибрацию телефона в кармане куртки.",
+"uk": "Я відчув, як мій телефон завібрував у кишені пальта."
+}
+],
+"other": {}
+},
+{
+"lemma": "afternoon",
+"meaning": {
+"ru": "послеобеденный",
+"uk": "день",
+"en": "afternoon",
+"es": "tarde",
+"pt-BR": "tarde",
+"vi": "buổi chiều",
+"id": "sore",
+"tr": "öğleden sonra",
+"pl": "popołudnie"
+},
+"firstLesson": 7,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:07.46",
+"target": "She has a free afternoon.",
+"ru": "У неё свободна вторая половина дня.",
+"uk": "Після обіду вона вільна."
+},
+{
+"id": "en-classic-r1:08.26",
+"target": "The parcel arrives on Monday afternoon.",
+"ru": "Посылка прибудет в понедельник днем.",
+"uk": "Посилка прибуває в понеділок вдень."
+},
+{
+"id": "en-classic-r1:08.35",
+"target": "The park is quiet in the afternoon.",
+"ru": "В парке тихо днем.",
+"uk": "У парку тихо вдень."
+}
+],
+"other": {}
+},
+{
+"lemma": "table",
+"meaning": {
+"ru": "стол",
+"uk": "стіл",
+"en": "table",
+"es": "mesa",
+"pt-BR": "mesa",
+"vi": "bàn",
+"id": "meja",
+"tr": "masa",
+"pl": "stół"
+},
+"firstLesson": 7,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:07.47",
+"target": "We have a table for two.",
+"ru": "У нас есть столик на двоих.",
+"uk": "У нас є столик на двох."
+},
+{
+"id": "en-classic-r1:09.16",
+"target": "There is bread on the table.",
+"ru": "На столе лежит хлеб.",
+"uk": "На столі є хліб."
+},
+{
+"id": "en-classic-r1:10.19",
+"target": "Can we book a table?",
+"ru": "Можно нам забронировать столик?",
+"uk": "Чи можемо ми забронювати столик?"
+}
+],
+"other": {}
+},
+{
+"lemma": "hotel",
+"meaning": {
+"ru": "отель",
+"uk": "готель",
+"en": "hotel",
+"es": "hotel",
+"pt-BR": "hotel",
+"vi": "khách sạn",
+"id": "hotel",
+"tr": "otel",
+"pl": "hotel"
+},
+"firstLesson": 7,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "en-classic-r1:07.48",
+"target": "The hotel has a luggage room.",
+"ru": "В отеле есть камера хранения багажа.",
+"uk": "У готелі є камера схову."
+},
+{
+"id": "en-classic-r1:14.16",
+"target": "The station is closer than the hotel.",
+"ru": "Вокзал ближе, чем отель.",
+"uk": "Станція ближча, ніж готель."
+},
+{
+"id": "en-classic-r1:19.23",
+"target": "The car park is behind the hotel.",
+"ru": "Автостоянка находится за отелем.",
+"uk": "Автостоянка знаходиться за готелем."
+}
+],
+"other": {}
+},
+{
+"lemma": "luggage",
+"meaning": {
+"ru": "багаж",
+"uk": "багаж",
+"en": "luggage",
+"es": "equipaje",
+"pt-BR": "bagagem",
+"vi": "hành lý",
+"id": "koper",
+"tr": "bagaj",
+"pl": "bagaż"
+},
+"firstLesson": 7,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:07.48",
+"target": "The hotel has a luggage room.",
+"ru": "В отеле есть камера хранения багажа.",
+"uk": "У готелі є камера схову."
+},
+{
+"id": "en-classic-r1:13.18",
+"target": "I will ask about luggage storage.",
+"ru": "Я спрошу о хранении багажа.",
+"uk": "Я запитаю про камеру схову багажу."
+}
+],
+"other": {}
+},
+{
+"lemma": "moment",
+"meaning": {
+"ru": "момент",
+"uk": "момент",
+"en": "moment",
+"es": "momento",
+"pt-BR": "momento",
+"vi": "khoảnh khắc",
+"id": "momen",
+"tr": "an",
+"pl": "chwila"
+},
+"firstLesson": 7,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:07.49",
+"target": "Do you have a moment?",
+"ru": "У вас есть минутка?",
+"uk": "Маєте хвилинку?"
+},
+{
+"id": "en-classic-r1:13.46",
+"target": "This light will turn green in a moment.",
+"ru": "Этот светофор через мгновение загорится зеленым.",
+"uk": "Цей світлофор за мить загориться зеленим."
+},
+{
+"id": "en-classic-r1:32.18",
+"target": "The lobby is being painted at the moment.",
+"ru": "В вестибюле сейчас идет покраска.",
+"uk": "У вестибюлі зараз фарбують."
+}
+],
+"other": {}
+},
+{
+"lemma": "everything",
+"meaning": {
+"ru": "всё",
+"uk": "все",
+"en": "everything",
+"es": "todo",
+"pt-BR": "tudo",
+"vi": "mọi thứ",
+"id": "semuanya",
+"tr": "her şey",
+"pl": "wszystko"
+},
+"firstLesson": 7,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:07.50",
+"target": "I have everything I need.",
+"ru": "У меня есть всё, что мне нужно.",
+"uk": "У мене є все, що мені потрібно."
+},
+{
+"id": "en-classic-r1:21.32",
+"target": "Everything is ready now.",
+"ru": "Теперь всё готово.",
+"uk": "Тепер усе готове."
+},
+{
+"id": "en-classic-r1:21.34",
+"target": "I checked everything twice.",
+"ru": "Я всё проверил дважды.",
+"uk": "Я все перевірив двічі."
+}
+],
+"other": {}
+},
+{
+"lemma": "seven",
+"meaning": {
+"ru": "семь",
+"uk": "сім",
+"en": "seven",
+"es": "siete",
+"pt-BR": "sete",
+"vi": "bảy",
+"id": "tujuh",
+"tr": "yedi",
+"pl": "siedem"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.01",
+"target": "I start at seven.",
+"ru": "Я начинаю в семь.",
+"uk": "Я починаю о сьомій."
+},
+{
+"id": "en-classic-r1:16.02",
+"target": "I get up at seven.",
+"ru": "Я встаю в семь.",
+"uk": "Я встаю о сьомій."
+},
+{
+"id": "en-classic-r1:25.13",
+"target": "We were having breakfast at seven.",
+"ru": "Мы завтракали в семь.",
+"uk": "Ми снідали о сьомій."
+}
+],
+"other": {}
+},
+{
+"lemma": "noon",
+"meaning": {
+"ru": "полдень",
+"uk": "полудень",
+"en": "midday",
+"es": "mediodía",
+"pt-BR": "meio-dia",
+"vi": "giữa trưa",
+"id": "tengah hari",
+"tr": "öğle vakti",
+"pl": "południe"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.02",
+"target": "She starts at noon.",
+"ru": "Она начинает в полдень.",
+"uk": "Вона починає опівдні."
+},
+{
+"id": "en-classic-r1:16.06",
+"target": "The train pulls in at noon.",
+"ru": "Поезд прибывает в полдень.",
+"uk": "Поїзд прибуває опівдні."
+},
+{
+"id": "en-classic-r1:23.03",
+"target": "The letters are collected at noon.",
+"ru": "Письма забирают в полдень.",
+"uk": "Листи забирають опівдні."
+}
+],
+"other": {}
+},
+{
+"lemma": "tuesday",
+"meaning": {
+"ru": "вторник",
+"uk": "вівторок",
+"en": "tuesday",
+"es": "martes",
+"pt-BR": "terça-feira",
+"vi": "thứ ba",
+"id": "Selasa",
+"tr": "salı",
+"pl": "wtorek"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.03",
+"target": "We meet on Tuesday.",
+"ru": "Мы встречаемся во вторник.",
+"uk": "Ми зустрічаємося у вівторок."
+},
+{
+"id": "en-classic-r1:08.49",
+"target": "I have a dentist's appointment on Tuesday.",
+"ru": "У меня во вторник приём у стоматолога.",
+"uk": "У мене прийом у стоматолога у вівторок."
+}
+],
+"other": {}
+},
+{
+"lemma": "travel",
+"meaning": {
+"ru": "путешествие",
+"uk": "подорож",
+"en": "travel",
+"es": "viaje",
+"pt-BR": "viagem",
+"vi": "du lịch",
+"id": "perjalanan",
+"tr": "seyahat",
+"pl": "podróż"
+},
+"firstLesson": 8,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "en-classic-r1:08.05",
+"target": "I travel in July.",
+"ru": "Я путешествую в июле.",
+"uk": "Я подорожую в липні."
+},
+{
+"id": "en-classic-r1:08.34",
+"target": "We usually travel in spring.",
+"ru": "Обычно мы путешествуем весной.",
+"uk": "Ми зазвичай подорожуємо навесні."
+},
+{
+"id": "en-classic-r1:20.36",
+"target": "We usually travel by train.",
+"ru": "Обычно мы путешествуем на поезде.",
+"uk": "Ми зазвичай подорожуємо поїздом."
+}
+],
+"other": {}
+},
+{
+"lemma": "july",
+"meaning": {
+"ru": "июль",
+"uk": "липень",
+"en": "july",
+"es": "julio",
+"pt-BR": "julho",
+"vi": "tháng bảy",
+"id": "Juli",
+"tr": "temmuz",
+"pl": "lipiec"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.05",
+"target": "I travel in July.",
+"ru": "Я путешествую в июле.",
+"uk": "Я подорожую в липні."
+}
+],
+"other": {}
+},
+{
+"lemma": "midnight",
+"meaning": {
+"ru": "полночь",
+"uk": "опівніч",
+"en": "midnight",
+"es": "medianoche",
+"pt-BR": "meia-noite",
+"vi": "nửa đêm",
+"id": "tengah malam",
+"tr": "gece yarısı",
+"pl": "północ"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.07",
+"target": "We finish at midnight.",
+"ru": "Мы заканчиваем в полночь.",
+"uk": "Ми закінчуємо опівночі."
+},
+{
+"id": "en-classic-r1:09.40",
+"target": "There are no trains after midnight.",
+"ru": "После полуночи поездов нет.",
+"uk": "Після півночі поїздів немає."
+}
+],
+"other": {}
+},
+{
+"lemma": "arrive",
+"meaning": {
+"ru": "прибытие",
+"uk": "прибуття",
+"en": "arrive",
+"es": "llegar",
+"pt-BR": "chegar",
+"vi": "đến",
+"id": "tiba",
+"tr": "varmak",
+"pl": "przyjazd"
+},
+"firstLesson": 8,
+"phrasesCount": 14,
+"examples": [
+{
+"id": "en-classic-r1:08.08",
+"target": "They arrive on Monday.",
+"ru": "Они приезжают в понедельник.",
+"uk": "Вони прибувають у понеділок."
+},
+{
+"id": "en-classic-r1:08.26",
+"target": "The parcel arrives on Monday afternoon.",
+"ru": "Посылка прибудет в понедельник днем.",
+"uk": "Посилка прибуває в понеділок вдень."
+},
+{
+"id": "en-classic-r1:11.30",
+"target": "The train arrived ten minutes late.",
+"ru": "Поезд опоздал на десять минут.",
+"uk": "Поїзд прибув із запізненням на десять хвилин."
+}
+],
+"other": {}
+},
+{
+"lemma": "monday",
+"meaning": {
+"ru": "понедельник",
+"uk": "понеділок",
+"en": "monday",
+"es": "lunes",
+"pt-BR": "segunda-feira",
+"vi": "thứ hai",
+"id": "Senin",
+"tr": "pazartesi",
+"pl": "poniedziałek"
+},
+"firstLesson": 8,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:08.08",
+"target": "They arrive on Monday.",
+"ru": "Они приезжают в понедельник.",
+"uk": "Вони прибувають у понеділок."
+},
+{
+"id": "en-classic-r1:08.26",
+"target": "The parcel arrives on Monday afternoon.",
+"ru": "Посылка прибудет в понедельник днем.",
+"uk": "Посилка прибуває в понеділок вдень."
+},
+{
+"id": "en-classic-r1:08.41",
+"target": "I work every Monday.",
+"ru": "Я работаю каждый понедельник.",
+"uk": "Я працюю щопонеділка."
+}
+],
+"other": {}
+},
+{
+"lemma": "morning",
+"meaning": {
+"ru": "утро",
+"uk": "ранок",
+"en": "morning",
+"es": "mañana",
+"pt-BR": "manhã",
+"vi": "buổi sáng",
+"id": "pagi",
+"tr": "sabah",
+"pl": "rano"
+},
+"firstLesson": 8,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "en-classic-r1:08.09",
+"target": "I walk in the morning.",
+"ru": "Я гуляю утром.",
+"uk": "Я гуляю вранці."
+},
+{
+"id": "en-classic-r1:08.24",
+"target": "My appointment is on Thursday morning.",
+"ru": "Моя встреча назначена на утро четверга.",
+"uk": "Моя зустріч у четвер вранці."
+},
+{
+"id": "en-classic-r1:08.44",
+"target": "I see him every morning.",
+"ru": "Я вижу его каждое утро.",
+"uk": "Я бачу його щоранку."
+}
+],
+"other": {}
+},
+{
+"lemma": "half",
+"meaning": {
+"ru": "половина",
+"uk": "половина",
+"en": "half",
+"es": "mitad",
+"pt-BR": "metade",
+"vi": "một nửa",
+"id": "setengah",
+"tr": "yarım",
+"pl": "połowa"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.11",
+"target": "The gate opens at half past six.",
+"ru": "Ворота открываются в половине седьмого.",
+"uk": "Ворота відчиняються о пів на сьому."
+},
+{
+"id": "en-classic-r1:08.14",
+"target": "The desk closes at half past four.",
+"ru": "Стойка регистрации закрывается в половине пятого.",
+"uk": "Стійка зачиняється о пів на п'яту."
+},
+{
+"id": "en-classic-r1:21.39",
+"target": "Everything on this shelf is half price.",
+"ru": "Всё на этой полке продаётся за полцены.",
+"uk": "Все на цій полиці коштує півціни."
+}
+],
+"other": {}
+},
+{
+"lemma": "past",
+"meaning": {
+"ru": "прошлое",
+"uk": "минуле",
+"en": "past",
+"es": "pasado",
+"pt-BR": "passado",
+"vi": "quá khứ",
+"id": "lewat",
+"tr": "geçmiş",
+"pl": "przeszłość"
+},
+"firstLesson": 8,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:08.11",
+"target": "The gate opens at half past six.",
+"ru": "Ворота открываются в половине седьмого.",
+"uk": "Ворота відчиняються о пів на сьому."
+},
+{
+"id": "en-classic-r1:08.12",
+"target": "The train leaves at a quarter past eight.",
+"ru": "Поезд отправляется в четверть девятого.",
+"uk": "Поїзд відправляється о чверть на дев'яту."
+},
+{
+"id": "en-classic-r1:08.14",
+"target": "The desk closes at half past four.",
+"ru": "Стойка регистрации закрывается в половине пятого.",
+"uk": "Стійка зачиняється о пів на п'яту."
+}
+],
+"other": {}
+},
+{
+"lemma": "six",
+"meaning": {
+"ru": "шесть",
+"uk": "шість",
+"en": "six",
+"es": "seis",
+"pt-BR": "seis",
+"vi": "sáu",
+"id": "enam",
+"tr": "altı",
+"pl": "sześć"
+},
+"firstLesson": 8,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "en-classic-r1:08.11",
+"target": "The gate opens at half past six.",
+"ru": "Ворота открываются в половине седьмого.",
+"uk": "Ворота відчиняються о пів на сьому."
+},
+{
+"id": "en-classic-r1:08.17",
+"target": "The alarm rings at six thirty.",
+"ru": "Будильник звонит в шесть тридцать.",
+"uk": "Будильник дзвонить о шостій тридцять."
+},
+{
+"id": "en-classic-r1:08.50",
+"target": "Do we have time before the train leaves at six?",
+"ru": "У нас есть время до отправления поезда в шесть?",
+"uk": "У нас є час до відправлення поїзда о шостій?"
+}
+],
+"other": {}
+},
+{
+"lemma": "quarter",
+"meaning": {
+"ru": "квартал",
+"uk": "чверть",
+"en": "quarter",
+"es": "cuarto",
+"pt-BR": "quarto",
+"vi": "quý",
+"id": "seperempat",
+"tr": "çeyrek",
+"pl": "kwartał"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.12",
+"target": "The train leaves at a quarter past eight.",
+"ru": "Поезд отправляется в четверть девятого.",
+"uk": "Поїзд відправляється о чверть на дев'яту."
+}
+],
+"other": {}
+},
+{
+"lemma": "four",
+"meaning": {
+"ru": "четыре",
+"uk": "чотири",
+"en": "four",
+"es": "cuatro",
+"pt-BR": "quatro",
+"vi": "bốn",
+"id": "empat",
+"tr": "dört",
+"pl": "cztery"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.14",
+"target": "The desk closes at half past four.",
+"ru": "Стойка регистрации закрывается в половине пятого.",
+"uk": "Стійка зачиняється о пів на п'яту."
+}
+],
+"other": {}
+},
+{
+"lemma": "lunchtime",
+"meaning": {
+"ru": "обеденное время",
+"uk": "обідня перерва",
+"en": "lunchtime",
+"es": "hora del almuerzo",
+"pt-BR": "hora do almoço",
+"vi": "giờ ăn trưa",
+"id": "waktu makan siang",
+"tr": "öğle yemeği",
+"pl": "przerwa obiadowa"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.15",
+"target": "We meet at lunchtime.",
+"ru": "Мы встречаемся в обеденное время.",
+"uk": "Ми зустрічаємося під час обіду."
+}
+],
+"other": {}
+},
+{
+"lemma": "concert",
+"meaning": {
+"ru": "концерт",
+"uk": "концерт",
+"en": "concert",
+"es": "concierto",
+"pt-BR": "concerto",
+"vi": "buổi hòa nhạc",
+"id": "konser",
+"tr": "konser",
+"pl": "koncert"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.16",
+"target": "The concert starts at eight fifteen.",
+"ru": "Концерт начинается в восемь пятнадцать.",
+"uk": "Концерт починається о восьмій п'ятнадцять."
+},
+{
+"id": "en-classic-r1:28.49",
+"target": "I enjoyed myself at the concert.",
+"ru": "Мне понравилось на концерте.",
+"uk": "Мені сподобалося на концерті."
+}
+],
+"other": {}
+},
+{
+"lemma": "fifteen",
+"meaning": {
+"ru": "пятнадцать",
+"uk": "п'ятнадцять",
+"en": "fifteen",
+"es": "quince",
+"pt-BR": "quinze",
+"vi": "mười lăm",
+"id": "lima belas",
+"tr": "on beş",
+"pl": "piętnaście"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.16",
+"target": "The concert starts at eight fifteen.",
+"ru": "Концерт начинается в восемь пятнадцать.",
+"uk": "Концерт починається о восьмій п'ятнадцять."
+}
+],
+"other": {}
+},
+{
+"lemma": "ring",
+"meaning": {
+"ru": "звонить",
+"uk": "дзвонити",
+"en": "to ring",
+"es": "tocar",
+"pt-BR": "tocar",
+"vi": "rung chuông",
+"id": "untuk membunyikan",
+"tr": "çalmak",
+"pl": "dzwonić"
+},
+"firstLesson": 8,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "en-classic-r1:08.17",
+"target": "The alarm rings at six thirty.",
+"ru": "Будильник звонит в шесть тридцать.",
+"uk": "Будильник дзвонить о шостій тридцять."
+},
+{
+"id": "en-classic-r1:08.20",
+"target": "The bell rings at midday.",
+"ru": "Звонок звенит в полдень.",
+"uk": "Дзвінок дзвонить опівдні."
+},
+{
+"id": "en-classic-r1:17.07",
+"target": "The phone is ringing.",
+"ru": "Звонит телефон.",
+"uk": "Телефон дзвонить."
+}
+],
+"other": {}
+},
+{
+"lemma": "thirty",
+"meaning": {
+"ru": "тридцать",
+"uk": "тридцять",
+"en": "thirty",
+"es": "treinta",
+"pt-BR": "trinta",
+"vi": "ba mươi",
+"id": "tiga puluh",
+"tr": "otuz",
+"pl": "trzydzieści"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.17",
+"target": "The alarm rings at six thirty.",
+"ru": "Будильник звонит в шесть тридцать.",
+"uk": "Будильник дзвонить о шостій тридцять."
+}
+],
+"other": {}
+},
+{
+"lemma": "bakery",
+"meaning": {
+"ru": "пекарня",
+"uk": "пекарня",
+"en": "bakery",
+"es": "panadería",
+"pt-BR": "padaria",
+"vi": "tiệm bánh",
+"id": "toko roti",
+"tr": "fırın",
+"pl": "piekarnia"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.18",
+"target": "The bakery opens at dawn.",
+"ru": "Пекарня открывается на рассвете.",
+"uk": "Пекарня відкривається на світанку."
+},
+{
+"id": "en-classic-r1:19.22",
+"target": "The bakery is next to the library.",
+"ru": "Пекарня находится рядом с библиотекой.",
+"uk": "Пекарня знаходиться поруч з бібліотекою."
+},
+{
+"id": "en-classic-r1:29.40",
+"target": "Did there use to be a bakery here?",
+"ru": "Здесь раньше была пекарня?",
+"uk": "Тут раніше була пекарня?"
+}
+],
+"other": {}
+},
+{
+"lemma": "dawn",
+"meaning": {
+"ru": "рассвет",
+"uk": "світанок",
+"en": "dawn",
+"es": "amanecer",
+"pt-BR": "amanhecer",
+"vi": "bình minh",
+"id": "fajar",
+"tr": "şafak",
+"pl": "świt"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.18",
+"target": "The bakery opens at dawn.",
+"ru": "Пекарня открывается на рассвете.",
+"uk": "Пекарня відкривається на світанку."
+}
+],
+"other": {}
+},
+{
+"lemma": "change",
+"meaning": {
+"ru": "что-то менять",
+"uk": "щось змінювати",
+"en": "to change something",
+"es": "cambiar algo",
+"pt-BR": "mudar algo",
+"vi": "thay đổi điều gì đó",
+"id": "untuk mengubah sesuatu",
+"tr": "bir şeyi değiştirmek",
+"pl": "coś zmieniać"
+},
+"firstLesson": 8,
+"phrasesCount": 13,
+"examples": [
+{
+"id": "en-classic-r1:08.19",
+"target": "The shift changes at ten.",
+"ru": "Пересменка в десять.",
+"uk": "Перезмінка о десятій."
+},
+{
+"id": "en-classic-r1:10.18",
+"target": "Can I change my seat?",
+"ru": "Можно мне поменять место?",
+"uk": "Чи можу я пересісти?"
+},
+{
+"id": "en-classic-r1:11.23",
+"target": "We changed our booking.",
+"ru": "Мы изменили своё бронирование.",
+"uk": "Ми змінили наше бронювання."
+}
+],
+"other": {}
+},
+{
+"lemma": "bell",
+"meaning": {
+"ru": "колокол",
+"uk": "дзвінок",
+"en": "bell",
+"es": "campana",
+"pt-BR": "sino",
+"vi": "chuông",
+"id": "lonceng",
+"tr": "çan",
+"pl": "dzwonek"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.20",
+"target": "The bell rings at midday.",
+"ru": "Звонок звенит в полдень.",
+"uk": "Дзвінок дзвонить опівдні."
+},
+{
+"id": "en-classic-r1:18.40",
+"target": "Ring the bell once.",
+"ru": "Позвоните в звонок один раз.",
+"uk": "Подзвоніть у дзвінок один раз."
+},
+{
+"id": "en-classic-r1:21.35",
+"target": "Everybody heard the bell.",
+"ru": "Все услышали звонок.",
+"uk": "Усі чули дзвінок."
+}
+],
+"other": {}
+},
+{
+"lemma": "midday",
+"meaning": {
+"ru": "полдень",
+"uk": "полудень",
+"en": "midday",
+"es": "mediodía",
+"pt-BR": "meio-dia",
+"vi": "giữa trưa",
+"id": "tengah hari",
+"tr": "öğle vakti",
+"pl": "południe"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.20",
+"target": "The bell rings at midday.",
+"ru": "Звонок звенит в полдень.",
+"uk": "Дзвінок дзвонить опівдні."
+}
+],
+"other": {}
+},
+{
+"lemma": "public",
+"meaning": {
+"ru": "общественный",
+"uk": "громадськість",
+"en": "public",
+"es": "público",
+"pt-BR": "público",
+"vi": "công cộng",
+"id": "umum",
+"tr": "halka açık",
+"pl": "publiczny"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.21",
+"target": "The office closes on public holidays.",
+"ru": "Офис закрыт в праздничные дни.",
+"uk": "Офіс зачиняється у святкові дні."
+}
+],
+"other": {}
+},
+{
+"lemma": "holidays",
+"meaning": {
+"ru": "праздники",
+"uk": "свята",
+"en": "holidays",
+"es": "días festivos",
+"pt-BR": "feriados",
+"vi": "ngày lễ",
+"id": "hari libur",
+"tr": "tatiller",
+"pl": "święta"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.21",
+"target": "The office closes on public holidays.",
+"ru": "Офис закрыт в праздничные дни.",
+"uk": "Офіс зачиняється у святкові дні."
+}
+],
+"other": {}
+},
+{
+"lemma": "train",
+"meaning": {
+"ru": "тренироваться или практиковаться",
+"uk": "тренуватися або практикуватися",
+"en": "to train or practise",
+"es": "entrenar o practicar",
+"pt-BR": "treinar ou praticar",
+"vi": "để huấn luyện hoặc thực hành",
+"id": "untuk berlatih atau mempraktikkan",
+"tr": "antrenman yapmak veya pratik yapmak",
+"pl": "do trenowania lub ćwiczenia"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.22",
+"target": "We train on Wednesday evenings.",
+"ru": "Мы тренируемся по средам вечером.",
+"uk": "Ми тренуємося по середах ввечері."
+}
+],
+"other": {}
+},
+{
+"lemma": "wednesday",
+"meaning": {
+"ru": "среда",
+"uk": "середа",
+"en": "wednesday",
+"es": "miércoles",
+"pt-BR": "quarta-feira",
+"vi": "thứ tư",
+"id": "hari Rabu",
+"tr": "çarşamba",
+"pl": "środa"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.22",
+"target": "We train on Wednesday evenings.",
+"ru": "Мы тренируемся по средам вечером.",
+"uk": "Ми тренуємося по середах ввечері."
+}
+],
+"other": {}
+},
+{
+"lemma": "bill",
+"meaning": {
+"ru": "счет к оплате",
+"uk": "рахунок до оплати",
+"en": "bill to pay",
+"es": "factura a pagar",
+"pt-BR": "conta a pagar",
+"vi": "hóa đơn cần thanh toán",
+"id": "tagihan yang harus dibayar",
+"tr": "ödenecek fatura",
+"pl": "rachunek do zapłaty"
+},
+"firstLesson": 8,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "en-classic-r1:08.23",
+"target": "The bill is due on Friday.",
+"ru": "Счет нужно оплатить в пятницу.",
+"uk": "Рахунок має бути сплачений у п'ятницю."
+},
+{
+"id": "en-classic-r1:09.43",
+"target": "There is a mistake on my bill.",
+"ru": "В моем счете ошибка.",
+"uk": "У моєму рахунку помилка."
+},
+{
+"id": "en-classic-r1:12.19",
+"target": "I paid the bill online.",
+"ru": "Я оплатил счёт онлайн.",
+"uk": "Я оплатив рахунок онлайн."
+}
+],
+"other": {}
+},
+{
+"lemma": "due",
+"meaning": {
+"ru": "срок",
+"uk": "термін сплати",
+"en": "due",
+"es": "vence",
+"pt-BR": "devido",
+"vi": "đến hạn",
+"id": "jatuh tempo",
+"tr": "vadesi gelmiş",
+"pl": "termin"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.23",
+"target": "The bill is due on Friday.",
+"ru": "Счет нужно оплатить в пятницу.",
+"uk": "Рахунок має бути сплачений у п'ятницю."
+},
+{
+"id": "en-classic-r1:08.27",
+"target": "The rent is due on the first of May.",
+"ru": "Арендная плата должна быть внесена первого мая.",
+"uk": "Орендна плата має бути сплачена першого травня."
+}
+],
+"other": {}
+},
+{
+"lemma": "thursday",
+"meaning": {
+"ru": "четверг",
+"uk": "четвер",
+"en": "thursday",
+"es": "jueves",
+"pt-BR": "quinta-feira",
+"vi": "thứ năm",
+"id": "hari Kamis",
+"tr": "perşembe",
+"pl": "czwartek"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.24",
+"target": "My appointment is on Thursday morning.",
+"ru": "Моя встреча назначена на утро четверга.",
+"uk": "Моя зустріч у четвер вранці."
+},
+{
+"id": "en-classic-r1:32.12",
+"target": "We changed the date last Thursday.",
+"ru": "Мы изменили дату в прошлый четверг.",
+"uk": "Ми змінили дату минулого четверга."
+}
+],
+"other": {}
+},
+{
+"lemma": "market",
+"meaning": {
+"ru": "рынок",
+"uk": "ринок",
+"en": "market",
+"es": "mercado",
+"pt-BR": "mercado",
+"vi": "chợ",
+"id": "pasar",
+"tr": "pazar",
+"pl": "rynek"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.25",
+"target": "The market opens on Saturdays.",
+"ru": "Рынок открыт по субботам.",
+"uk": "Ринок відкривається по суботах."
+},
+{
+"id": "en-classic-r1:20.40",
+"target": "I buy fruit at the market.",
+"ru": "Я покупаю фрукты на рынке.",
+"uk": "Я купую фрукти на ринку."
+}
+],
+"other": {}
+},
+{
+"lemma": "saturdays",
+"meaning": {
+"ru": "субботы",
+"uk": "суботи",
+"en": "the days named Saturday",
+"es": "sábados",
+"pt-BR": "sábados",
+"vi": "các thứ Bảy",
+"id": "hari Sabtu",
+"tr": "cumartesiler"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.25",
+"target": "The market opens on Saturdays.",
+"ru": "Рынок открыт по субботам.",
+"uk": "Ринок відкривається по суботах."
+},
+{
+"id": "en-classic-r1:29.34",
+"target": "Did they use to deliver on Saturdays?",
+"ru": "Они раньше доставляли по субботам?",
+"uk": "Вони колись доставляли по суботах?"
+}
+],
+"other": {}
+},
+{
+"lemma": "first",
+"meaning": {
+"ru": "первый",
+"uk": "перший",
+"en": "first",
+"es": "primero",
+"pt-BR": "primeiro",
+"vi": "đầu tiên",
+"id": "pertama",
+"tr": "ilk",
+"pl": "pierwszy"
+},
+"firstLesson": 8,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "en-classic-r1:08.27",
+"target": "The rent is due on the first of May.",
+"ru": "Арендная плата должна быть внесена первого мая.",
+"uk": "Орендна плата має бути сплачена першого травня."
+},
+{
+"id": "en-classic-r1:14.19",
+"target": "The second question is easier than the first.",
+"ru": "Второй вопрос проще первого.",
+"uk": "Друге питання легше за перше."
+},
+{
+"id": "en-classic-r1:14.50",
+"target": "The second bus was even later than the first.",
+"ru": "Второй автобус опоздал ещё сильнее первого.",
+"uk": "Другий автобус прибув навіть пізніше за перший."
+}
+],
+"other": {}
+},
+{
+"lemma": "birthday",
+"meaning": {
+"ru": "день рождения",
+"uk": "день народження",
+"en": "birthday",
+"es": "cumpleaños",
+"pt-BR": "aniversário",
+"vi": "sinh nhật",
+"id": "ulang tahun",
+"tr": "doğum günü",
+"pl": "urodziny"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.28",
+"target": "Her birthday is on New Year's Day.",
+"ru": "Ее день рождения приходится на Новый год.",
+"uk": "Її день народження на Новий рік."
+},
+{
+"id": "en-classic-r1:08.36",
+"target": "My birthday is in June.",
+"ru": "Мой день рождения в июне.",
+"uk": "Мій день народження в червні."
+}
+],
+"other": {}
+},
+{
+"lemma": "year",
+"meaning": {
+"ru": "год",
+"uk": "рік",
+"en": "year",
+"es": "año",
+"pt-BR": "ano",
+"vi": "năm",
+"id": "tahun",
+"tr": "yıl",
+"pl": "rok"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.28",
+"target": "Her birthday is on New Year's Day.",
+"ru": "Ее день рождения приходится на Новый год.",
+"uk": "Її день народження на Новий рік."
+},
+{
+"id": "en-classic-r1:24.31",
+"target": "I have lived here for a year.",
+"ru": "Я живу здесь уже год.",
+"uk": "Я живу тут рік."
+},
+{
+"id": "en-classic-r1:24.33",
+"target": "We have known each other for years.",
+"ru": "Мы знакомы много лет.",
+"uk": "Ми знаємо одне одного багато років."
+}
+],
+"other": {}
+},
+{
+"lemma": "short",
+"meaning": {
+"ru": "короткий",
+"uk": "короткий",
+"en": "short",
+"es": "corto",
+"pt-BR": "curto",
+"vi": "ngắn",
+"id": "singkat",
+"tr": "kısa",
+"pl": "krótki"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.31",
+"target": "The days are short in winter.",
+"ru": "Дни зимой короткие.",
+"uk": "Взимку дні короткі."
+},
+{
+"id": "en-classic-r1:10.16",
+"target": "Can we take a short break?",
+"ru": "Можно нам сделать небольшой перерыв?",
+"uk": "Чи можемо ми зробити коротку перерву?"
+}
+],
+"other": {}
+},
+{
+"lemma": "winter",
+"meaning": {
+"ru": "зима",
+"uk": "зима",
+"en": "winter",
+"es": "invierno",
+"pt-BR": "inverno",
+"vi": "mùa đông",
+"id": "musim dingin",
+"tr": "kış",
+"pl": "zima"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.31",
+"target": "The days are short in winter.",
+"ru": "Дни зимой короткие.",
+"uk": "Взимку дні короткі."
+}
+],
+"other": {}
+},
+{
+"lemma": "course",
+"meaning": {
+"ru": "курс",
+"uk": "курс",
+"en": "course",
+"es": "curso",
+"pt-BR": "curso",
+"vi": "khóa học",
+"id": "kursus",
+"tr": "kurs",
+"pl": "kurs"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.32",
+"target": "Our course starts in September.",
+"ru": "Наш курс начинается в сентябре.",
+"uk": "Наш курс починається у вересні."
+}
+],
+"other": {}
+},
+{
+"lemma": "september",
+"meaning": {
+"ru": "сентябрь",
+"uk": "вересень",
+"en": "september",
+"es": "septiembre",
+"pt-BR": "setembro",
+"vi": "tháng chín",
+"id": "September",
+"tr": "Eylül",
+"pl": "wrzesień"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.32",
+"target": "Our course starts in September.",
+"ru": "Наш курс начинается в сентябре.",
+"uk": "Наш курс починається у вересні."
+}
+],
+"other": {}
+},
+{
+"lemma": "hot",
+"meaning": {
+"ru": "жаркий",
+"uk": "спекотно",
+"en": "hot",
+"es": "calor",
+"pt-BR": "quente",
+"vi": "nóng",
+"id": "panas",
+"tr": "sıcak",
+"pl": "gorąco"
+},
+"firstLesson": 8,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "en-classic-r1:08.33",
+"target": "The kitchen gets hot in summer.",
+"ru": "На кухне летом жарко.",
+"uk": "Влітку на кухні стає спекотно."
+},
+{
+"id": "en-classic-r1:09.35",
+"target": "There is no hot water.",
+"ru": "Нет горячей воды.",
+"uk": "Немає гарячої води."
+},
+{
+"id": "en-classic-r1:24.40",
+"target": "We have not had hot water for two days.",
+"ru": "У нас нет горячей воды уже два дня.",
+"uk": "У нас не було гарячої води два дні."
+}
+],
+"other": {}
+},
+{
+"lemma": "summer",
+"meaning": {
+"ru": "лето",
+"uk": "літо",
+"en": "summer",
+"es": "verano",
+"pt-BR": "verão",
+"vi": "mùa hè",
+"id": "musim panas",
+"tr": "yaz",
+"pl": "lato"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.33",
+"target": "The kitchen gets hot in summer.",
+"ru": "На кухне летом жарко.",
+"uk": "Влітку на кухні стає спекотно."
+},
+{
+"id": "en-classic-r1:17.44",
+"target": "I am learning to swim this summer.",
+"ru": "Этим летом я учусь плавать.",
+"uk": "Цього літа я вчуся плавати."
+}
+],
+"other": {}
+},
+{
+"lemma": "spring",
+"meaning": {
+"ru": "весна",
+"uk": "весна",
+"en": "spring",
+"es": "primavera",
+"pt-BR": "primavera",
+"vi": "mùa xuân",
+"id": "musim semi",
+"tr": "ilkbahar",
+"pl": "wiosna"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.34",
+"target": "We usually travel in spring.",
+"ru": "Обычно мы путешествуем весной.",
+"uk": "Ми зазвичай подорожуємо навесні."
+}
+],
+"other": {}
+},
+{
+"lemma": "park",
+"meaning": {
+"ru": "общественный парк",
+"uk": "громадський парк",
+"en": "public park",
+"es": "parque público",
+"pt-BR": "parque público",
+"vi": "công viên công cộng",
+"id": "taman umum",
+"tr": "halk parkı",
+"pl": "park publiczny"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.35",
+"target": "The park is quiet in the afternoon.",
+"ru": "В парке тихо днем.",
+"uk": "У парку тихо вдень."
+},
+{
+"id": "en-classic-r1:23.36",
+"target": "Parking is not allowed here.",
+"ru": "Парковка здесь запрещена.",
+"uk": "Паркування тут заборонено."
+}
+],
+"other": {}
+},
+{
+"lemma": "june",
+"meaning": {
+"ru": "июнь",
+"uk": "червень",
+"en": "june",
+"es": "junio",
+"pt-BR": "junho",
+"vi": "tháng sáu",
+"id": "Juni",
+"tr": "Haziran",
+"pl": "czerwiec"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.36",
+"target": "My birthday is in June.",
+"ru": "Мой день рождения в июне.",
+"uk": "Мій день народження в червні."
+}
+],
+"other": {}
+},
+{
+"lemma": "club",
+"meaning": {
+"ru": "клуб",
+"uk": "клуб",
+"en": "club",
+"es": "club",
+"pt-BR": "clube",
+"vi": "câu lạc bộ",
+"id": "klub",
+"tr": "kulüp",
+"pl": "klub"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.37",
+"target": "Our club meets in January.",
+"ru": "Наш клуб собирается в январе.",
+"uk": "Наш клуб зустрічається в січні."
+}
+],
+"other": {}
+},
+{
+"lemma": "january",
+"meaning": {
+"ru": "январь",
+"uk": "січень",
+"en": "january",
+"es": "enero",
+"pt-BR": "janeiro",
+"vi": "tháng một",
+"id": "Januari",
+"tr": "Ocak",
+"pl": "styczeń"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.37",
+"target": "Our club meets in January.",
+"ru": "Наш клуб собирается в январе.",
+"uk": "Наш клуб зустрічається в січні."
+}
+],
+"other": {}
+},
+{
+"lemma": "timetable",
+"meaning": {
+"ru": "расписание транспорта",
+"uk": "розклад руху транспорту",
+"en": "transport schedule",
+"es": "horario de transporte",
+"pt-BR": "horário de transporte",
+"vi": "lịch trình vận chuyển",
+"id": "jadwal transportasi",
+"tr": "ulaşım tarifesi",
+"pl": "rozkład jazdy"
+},
+"firstLesson": 8,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "en-classic-r1:08.38",
+"target": "The new timetable starts in April.",
+"ru": "Новое расписание вступает в силу в апреле.",
+"uk": "Новий розклад починається у квітні."
+},
+{
+"id": "en-classic-r1:13.44",
+"target": "The new timetable will start next month.",
+"ru": "Новое расписание начнет действовать в следующем месяце.",
+"uk": "Новий розклад почне діяти наступного місяця."
+},
+{
+"id": "en-classic-r1:29.27",
+"target": "I did not use to check the timetable.",
+"ru": "Я раньше не проверял расписание.",
+"uk": "Раніше я не перевіряв розклад."
+}
+],
+"other": {}
+},
+{
+"lemma": "april",
+"meaning": {
+"ru": "апрель",
+"uk": "квітень",
+"en": "april",
+"es": "abril",
+"pt-BR": "abril",
+"vi": "tháng tư",
+"id": "April",
+"tr": "Nisan",
+"pl": "kwiecień"
+},
+"firstLesson": 8,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "en-classic-r1:08.38",
+"target": "The new timetable starts in April.",
+"ru": "Новое расписание вступает в силу в апреле.",
+"uk": "Новий розклад починається у квітні."
+},
+{
+"id": "en-classic-r1:32.14",
+"target": "She has worked at this hotel since April.",
+"ru": "Она работает в этом отеле с апреля.",
+"uk": "Вона працює в цьому готелі з квітня."
+}
+],
+"other": {}
+},
+{
+"lemma": "beautiful",
+"meaning": {
+"ru": "красивый",
+"uk": "красиво",
+"en": "beautiful",
+"es": "hermoso",
+"pt-BR": "bonito",
+"vi": "đẹp",
+"id": "indah",
+"tr": "güzel",
+"pl": "pięknie"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.39",
+"target": "The garden is beautiful in autumn.",
+"ru": "Сад прекрасен осенью.",
+"uk": "Сад прекрасний восени."
+}
+],
+"other": {}
+},
+{
+"lemma": "autumn",
+"meaning": {
+"ru": "осень",
+"uk": "осінь",
+"en": "autumn",
+"es": "otoño",
+"pt-BR": "outono",
+"vi": "mùa thu",
+"id": "musim gugur",
+"tr": "sonbahar",
+"pl": "jesień"
+},
+"firstLesson": 8,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "en-classic-r1:08.39",
+"target": "The garden is beautiful in autumn.",
+"ru": "Сад прекрасен осенью.",
+"uk": "Сад прекрасний восени."
+}
+],
+"other": {}
+}
+]

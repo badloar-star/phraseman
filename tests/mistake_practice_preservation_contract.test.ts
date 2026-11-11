@@ -71,12 +71,4 @@ describe('mistake practice preservation boundary', () => {
     expect(replayBlock).not.toContain('mistake-practice/scheduler');
     expect(replayBlock).not.toContain('mistake_practice_scheduler');
   });
-
-  test('Learning V2 keeps required-session ownership separate from an optional error loop', () => {
-    // зачем (§129): прежний контракт читал удалённый экран-карту урока (buildLessonRoadItems, locked_session | checkpoint). Требование то же —
-    // обязательная сессия и необязательная петля ошибок живут раздельно, — но владеет им теперь экран занятия.
-    const source = read('app/learning-v2/session/[id].tsx');
-
-    expect(source).toContain('createRequiredSessionLocalCommitCoordinator');
-  });
 });

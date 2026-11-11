@@ -7,7 +7,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import V2Pressable from './V2Pressable';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 

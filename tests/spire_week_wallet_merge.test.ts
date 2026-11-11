@@ -15,7 +15,10 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   },
 }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
-jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => mockToken }));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => mockToken,
+  isCurrentAccountGeneration: (token: typeof mockToken, expected?: string | null) => token === mockToken && token.phase === 'active' && (expected === undefined || expected === token.stableId),
+}));
 jest.mock('../app/level_spin_star_grants', () => ({ mergeLevelSpinServerStars: (...a: unknown[]) => mockMerge(...(a as [])) }));
 jest.mock('../modules/story_events/story_event_sources', () => ({ recordSpireWeekStory: () => undefined }));
 let mockWeeks: string[] = [];

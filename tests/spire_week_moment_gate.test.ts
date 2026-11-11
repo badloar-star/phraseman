@@ -13,8 +13,17 @@ import {
 let mockStore: Record<string, string> = {};
 let mockFlagOn = true;
 let mockResult: Record<string, unknown> | null = null;
+let mockUid = 'stable-a';
+let mockAccountToken = { generation: 1, stableId: 'stable-a', phase: 'active' as const };
+let mockAccountCurrent = true;
 const mockLoad = jest.fn(async () => mockResult);
 const mockStoryShown = jest.fn();
+
+function deferred<T>() {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((done) => { resolve = done; });
+  return { promise, resolve };
+}
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
@@ -27,7 +36,13 @@ jest.mock('../app/remote_config_client', () => ({
   readRemoteConfigCacheRaw: async () => JSON.stringify({ bools: { moments_v3: mockFlagOn } }),
 }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
-jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: async () => 'stable-a' }));
+jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: async () => mockUid }));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => mockAccountToken,
+  isCurrentAccountGeneration: (token: typeof mockAccountToken, expected?: string | null) => (
+    mockAccountCurrent && token === mockAccountToken && (expected === undefined || expected === mockAccountToken.stableId)
+  ),
+}));
 jest.mock('../app/spire_config_client', () => ({ warmSpireConfigFromDisk: async () => 'disk', peekSpireConfig: () => ({ enabled: true }) }));
 jest.mock('../app/spire/spire_live_gate', () => ({ spireOpenLiveGate: () => ({ open: true }) }));
 jest.mock('../app/spire/spire_ui_lang_gate', () => ({ spireUiLangDecision: (l: string) => ({ allowed: l === 'ru' || l === 'uk', reason: 'test' }) }));
@@ -58,9 +73,13 @@ describe('D191 week moment gate', () => {
   beforeEach(() => {
     mockStore = {};
     mockFlagOn = true;
-    mockLoad.mockClear();
+    mockLoad.mockReset();
+    mockLoad.mockImplementation(async () => mockResult);
     mockStoryShown.mockClear();
     mockStoryRecorded.mockClear();
+    mockUid = 'stable-a';
+    mockAccountToken = { generation: 1, stableId: 'stable-a', phase: 'active' };
+    mockAccountCurrent = true;
     __resetSpireWeekMomentGateForTests();
   });
 
@@ -88,7 +107,7 @@ describe('D191 week moment gate', () => {
     expect(first).toMatchObject({ show: true, outcome: 'promoted', weekId, isRepeatPromotion: true }); // prevTier 2 → повторное
     await markSpireWeekMomentShown(first as SpireWeekMomentShow);
     // координатор 15.10 (R21): окно D191 НЕ гасит историю итога недели — кольцо у аватарки тоже загорается
-    expect(mockStoryRecorded).toHaveBeenCalledWith(mockResult);
+    expect(mockStoryRecorded).toHaveBeenCalledWith(mockResult, mockAccountToken);
     expect(mockStoryShown).not.toHaveBeenCalled();
     const second = await resolveSpireWeekMoment({ ...INPUT, nowMs: nowMs + 60_000 });
     expect(second).toEqual({ show: false, reason: 'already_shown' });
@@ -101,6 +120,57 @@ describe('D191 week moment gate', () => {
     const [a, b] = await Promise.all([resolveSpireWeekMoment({ ...INPUT, nowMs }), resolveSpireWeekMoment({ ...INPUT, nowMs })]);
     expect([a.show, b.show].filter(Boolean)).toHaveLength(1);
     expect([a, b].some((d) => !d.show && d.reason === 'in_progress')).toBe(true);
+  });
+
+  it('late A completion never clears the newer B flight key', async () => {
+    const nowMs = MONDAY_UTC + 5 * 60_000;
+    const weekId = decideSpireWeekMomentTiming(nowMs, null).weekId;
+    const loadA = deferred<Record<string, unknown> | null>();
+    const loadB = deferred<Record<string, unknown> | null>();
+    mockLoad.mockImplementation((_gate: unknown, identity: { uid: string }) => identity.uid === 'stable-a' ? loadA.promise : loadB.promise);
+
+    const firstA = resolveSpireWeekMoment({ ...INPUT, nowMs });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockLoad).toHaveBeenCalledTimes(1);
+
+    mockUid = 'stable-b';
+    mockAccountToken = { generation: 2, stableId: 'stable-b', phase: 'active' };
+    const firstB = resolveSpireWeekMoment({ ...INPUT, nowMs });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockLoad).toHaveBeenCalledTimes(2);
+
+    loadA.resolve(weekResult(weekId));
+    await expect(firstA).resolves.toEqual({ show: false, reason: 'account_changed' });
+    await expect(resolveSpireWeekMoment({ ...INPUT, nowMs })).resolves.toEqual({ show: false, reason: 'in_progress' });
+
+    loadB.resolve(weekResult(weekId));
+    await expect(firstB).resolves.toMatchObject({ show: true, uid: 'stable-b', weekId });
+  });
+
+  it('same uid new generation owns a separate flight and old completion cannot clear it', async () => {
+    const nowMs = MONDAY_UTC + 5 * 60_000;
+    const weekId = decideSpireWeekMomentTiming(nowMs, null).weekId;
+    const oldLoad = deferred<Record<string, unknown> | null>();
+    const newLoad = deferred<Record<string, unknown> | null>();
+    mockLoad.mockReturnValueOnce(oldLoad.promise).mockReturnValueOnce(newLoad.promise);
+
+    const oldToken = mockAccountToken;
+    const oldFlight = resolveSpireWeekMoment({ ...INPUT, nowMs, accountToken: oldToken });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockLoad).toHaveBeenCalledTimes(1);
+
+    mockAccountToken = { generation: 2, stableId: 'stable-a', phase: 'active' };
+    const newToken = mockAccountToken;
+    const newFlight = resolveSpireWeekMoment({ ...INPUT, nowMs, accountToken: newToken });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockLoad).toHaveBeenCalledTimes(2);
+
+    oldLoad.resolve(weekResult(weekId));
+    await expect(oldFlight).resolves.toEqual({ show: false, reason: 'account_changed' });
+    await expect(resolveSpireWeekMoment({ ...INPUT, nowMs, accountToken: newToken })).resolves.toEqual({ show: false, reason: 'in_progress' });
+
+    newLoad.resolve(weekResult(weekId));
+    await expect(newFlight).resolves.toMatchObject({ show: true, uid: 'stable-a', accountToken: newToken, weekId });
   });
 
   it('a decision that never reached the screen is not lost: no mark until shown', async () => {

@@ -1,0 +1,528 @@
+{
+ "lang": "es",
+ "lesson": 10,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:10:01",
+   "target": "Vivo aquí.",
+   "ru": "Я живу здесь.",
+   "uk": "Я живу тут."
+  },
+  {
+   "id": "es:10:02",
+   "target": "Vives aquí.",
+   "ru": "Ты живёшь здесь.",
+   "uk": "Ти живеш тут."
+  },
+  {
+   "id": "es:10:03",
+   "target": "Vivo cerca de la estación.",
+   "ru": "Я живу рядом с вокзалом.",
+   "uk": "Я живу поруч із вокзалом."
+  },
+  {
+   "id": "es:10:04",
+   "target": "Vives cerca de la estación.",
+   "ru": "Ты живёшь рядом с вокзалом.",
+   "uk": "Ти живеш поруч із вокзалом."
+  },
+  {
+   "id": "es:10:05",
+   "target": "Como en casa.",
+   "ru": "Я ем дома.",
+   "uk": "Я їм удома."
+  },
+  {
+   "id": "es:10:06",
+   "target": "Ana come en casa.",
+   "ru": "Ана ест дома.",
+   "uk": "Ана їсть удома."
+  },
+  {
+   "id": "es:10:07",
+   "target": "Como en la cocina.",
+   "ru": "Я ем на кухне.",
+   "uk": "Я їм на кухні."
+  },
+  {
+   "id": "es:10:08",
+   "target": "Comes en la cocina.",
+   "ru": "Ты ешь на кухне.",
+   "uk": "Ти їси на кухні."
+  },
+  {
+   "id": "es:10:09",
+   "target": "Bebemos agua.",
+   "ru": "Мы пьём воду.",
+   "uk": "Ми п’ємо воду."
+  },
+  {
+   "id": "es:10:10",
+   "target": "Luis bebe café.",
+   "ru": "Луис пьёт кофе.",
+   "uk": "Луїс п’є каву."
+  },
+  {
+   "id": "es:10:11",
+   "target": "Bebo agua.",
+   "ru": "Я пью воду.",
+   "uk": "Я п’ю воду."
+  },
+  {
+   "id": "es:10:12",
+   "target": "Bebes café.",
+   "ru": "Ты пьёшь кофе.",
+   "uk": "Ти п’єш каву."
+  },
+  {
+   "id": "es:10:13",
+   "target": "Bebo café con leche.",
+   "ru": "Я пью кофе с молоком.",
+   "uk": "Я п’ю каву з молоком."
+  },
+  {
+   "id": "es:10:14",
+   "target": "Luis lee el libro.",
+   "ru": "Луис читает книгу.",
+   "uk": "Луїс читає книжку."
+  },
+  {
+   "id": "es:10:15",
+   "target": "Leo el mensaje.",
+   "ru": "Я читаю сообщение.",
+   "uk": "Я читаю повідомлення."
+  },
+  {
+   "id": "es:10:16",
+   "target": "Leemos el mensaje.",
+   "ru": "Мы читаем сообщение.",
+   "uk": "Ми читаємо повідомлення."
+  },
+  {
+   "id": "es:10:17",
+   "target": "Escribes una carta.",
+   "ru": "Ты пишешь письмо.",
+   "uk": "Ти пишеш листа."
+  },
+  {
+   "id": "es:10:18",
+   "target": "Luis escribe una carta.",
+   "ru": "Луис пишет письмо.",
+   "uk": "Луїс пише листа."
+  },
+  {
+   "id": "es:10:19",
+   "target": "Ana escribe un mensaje.",
+   "ru": "Ана пишет сообщение.",
+   "uk": "Ана пише повідомлення."
+  },
+  {
+   "id": "es:10:20",
+   "target": "Escribimos un mensaje.",
+   "ru": "Мы пишем сообщение.",
+   "uk": "Ми пишемо повідомлення."
+  },
+  {
+   "id": "es:10:21",
+   "target": "Vivimos aquí.",
+   "ru": "Мы живём здесь.",
+   "uk": "Ми живемо тут."
+  },
+  {
+   "id": "es:10:22",
+   "target": "Coméis en casa.",
+   "ru": "Вы едите дома.",
+   "uk": "Ви їсте вдома."
+  },
+  {
+   "id": "es:10:23",
+   "target": "Mis hermanos beben agua.",
+   "ru": "Мои братья пьют воду.",
+   "uk": "Мої брати п’ють воду."
+  },
+  {
+   "id": "es:10:24",
+   "target": "Bebemos café.",
+   "ru": "Мы пьём кофе.",
+   "uk": "Ми п’ємо каву."
+  },
+  {
+   "id": "es:10:25",
+   "target": "Ana lee el periódico en el tren.",
+   "ru": "Ана читает газету в поезде.",
+   "uk": "Ана читає газету в потязі."
+  },
+  {
+   "id": "es:10:26",
+   "target": "Mis hermanos leen el mensaje.",
+   "ru": "Мои братья читают сообщение.",
+   "uk": "Мої брати читають повідомлення."
+  },
+  {
+   "id": "es:10:27",
+   "target": "Escribís una carta.",
+   "ru": "Вы пишете письмо.",
+   "uk": "Ви пишете листа."
+  },
+  {
+   "id": "es:10:28",
+   "target": "Abrimos la puerta.",
+   "ru": "Мы открываем дверь.",
+   "uk": "Ми відчиняємо двері."
+  },
+  {
+   "id": "es:10:29",
+   "target": "Mis hermanos abren la ventana.",
+   "ru": "Мои братья открывают окно.",
+   "uk": "Мої брати відчиняють вікно."
+  },
+  {
+   "id": "es:10:30",
+   "target": "Vivís cerca de la estación.",
+   "ru": "Вы живёте рядом с вокзалом.",
+   "uk": "Ви живете поруч із вокзалом."
+  },
+  {
+   "id": "es:10:31",
+   "target": "No abro la puerta hoy.",
+   "ru": "Я сегодня не открываю дверь.",
+   "uk": "Я сьогодні не відчиняю двері."
+  },
+  {
+   "id": "es:10:32",
+   "target": "No abres la puerta hoy.",
+   "ru": "Ты сегодня не открываешь дверь.",
+   "uk": "Ти сьогодні не відчиняєш двері."
+  },
+  {
+   "id": "es:10:33",
+   "target": "Ana no abre la ventana hoy.",
+   "ru": "Ана сегодня не открывает окно.",
+   "uk": "Ана сьогодні не відчиняє вікно."
+  },
+  {
+   "id": "es:10:34",
+   "target": "Luis no abre la ventana hoy.",
+   "ru": "Луис сегодня не открывает окно.",
+   "uk": "Луїс сьогодні не відчиняє вікно."
+  },
+  {
+   "id": "es:10:35",
+   "target": "Hoy no escribo cartas.",
+   "ru": "Сегодня я не пишу писем.",
+   "uk": "Сьогодні я не пишу листів."
+  },
+  {
+   "id": "es:10:36",
+   "target": "No bebo café con azúcar.",
+   "ru": "Я не пью кофе с сахаром.",
+   "uk": "Я не п’ю каву з цукром."
+  },
+  {
+   "id": "es:10:37",
+   "target": "No como en la cocina hoy.",
+   "ru": "Я сегодня не ем на кухне.",
+   "uk": "Я сьогодні не їм на кухні."
+  },
+  {
+   "id": "es:10:38",
+   "target": "Mis hermanas no viven cerca de la estación.",
+   "ru": "Мои сёстры не живут рядом с вокзалом.",
+   "uk": "Мої сестри не живуть поруч із вокзалом."
+  },
+  {
+   "id": "es:10:39",
+   "target": "No lees el libro hoy.",
+   "ru": "Ты сегодня не читаешь книгу.",
+   "uk": "Ти сьогодні не читаєш книжку."
+  },
+  {
+   "id": "es:10:40",
+   "target": "¿Vivimos cerca del hotel?",
+   "ru": "Мы живём рядом с отелем?",
+   "uk": "Ми живемо поруч із готелем?"
+  },
+  {
+   "id": "es:10:41",
+   "target": "¿Vives cerca de la estación?",
+   "ru": "Ты живёшь рядом с вокзалом?",
+   "uk": "Ти живеш поруч із вокзалом?"
+  },
+  {
+   "id": "es:10:42",
+   "target": "¿Como en casa?",
+   "ru": "Я ем дома?",
+   "uk": "Я їм удома?"
+  },
+  {
+   "id": "es:10:43",
+   "target": "¿Bebemos agua?",
+   "ru": "Мы пьём воду?",
+   "uk": "Ми п’ємо воду?"
+  },
+  {
+   "id": "es:10:44",
+   "target": "¿Lees el libro?",
+   "ru": "Ты читаешь книгу?",
+   "uk": "Ти читаєш книжку?"
+  },
+  {
+   "id": "es:10:45",
+   "target": "¿Lees el periódico en casa?",
+   "ru": "Ты читаешь газету дома?",
+   "uk": "Ти читаєш газету вдома?"
+  },
+  {
+   "id": "es:10:46",
+   "target": "¿Luis escribe un mensaje?",
+   "ru": "Луис пишет сообщение?",
+   "uk": "Луїс пише повідомлення?"
+  },
+  {
+   "id": "es:10:47",
+   "target": "¿Abrimos la puerta?",
+   "ru": "Мы открываем дверь?",
+   "uk": "Ми відчиняємо двері?"
+  },
+  {
+   "id": "es:10:48",
+   "target": "¿Luis abre la ventana?",
+   "ru": "Луис открывает окно?",
+   "uk": "Луїс відчиняє вікно?"
+  },
+  {
+   "id": "es:10:49",
+   "target": "¿Mis hermanas beben café?",
+   "ru": "Мои сёстры пьют кофе?",
+   "uk": "Мої сестри п’ють каву?"
+  },
+  {
+   "id": "es:10:50",
+   "target": "¿Escribís una carta?",
+   "ru": "Вы пишете письмо?",
+   "uk": "Ви пишете листа?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "abrir",
+   "ru": "открывать",
+   "uk": "відчиняти; відкривати"
+  },
+  {
+   "lemma": "beber",
+   "ru": "пить",
+   "uk": "пити"
+  },
+  {
+   "lemma": "comer",
+   "ru": "есть",
+   "uk": "їсти"
+  },
+  {
+   "lemma": "escribir",
+   "ru": "писать",
+   "uk": "писати"
+  },
+  {
+   "lemma": "leer",
+   "ru": "читать",
+   "uk": "читати"
+  },
+  {
+   "lemma": "periódico",
+   "ru": "газета",
+   "uk": "газета"
+  },
+  {
+   "lemma": "carta",
+   "ru": "письмо",
+   "uk": "лист"
+  },
+  {
+   "lemma": "mensaje",
+   "ru": "сообщение",
+   "uk": "повідомлення"
+  },
+  {
+   "lemma": "ventana",
+   "ru": "окно",
+   "uk": "вікно"
+  },
+  {
+   "lemma": "con",
+   "ru": "с",
+   "uk": "з"
+  },
+  {
+   "lemma": "de",
+   "ru": "из, от; принадлежность",
+   "uk": "із, від; належність"
+  },
+  {
+   "lemma": "vivir",
+   "ru": "жить",
+   "uk": "жити"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  }
+ ],
+ "oldTopicTitle": "Живу здесь, читаю дома: глаголы на -er и -ir",
+ "oldTheoryRu": "Послушай форму «мы»: comer → comemos, vivir → vivimos. В единственном числе разница почти не слышна: comes и vives заканчиваются на -es. Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir. Убери -er у comer и -ir у vivir. Останутся com- и viv-. Для «я» обе основы получают -o: como, vivo. Начальная форма сама по себе не сообщает, кто действует. На обращение к одному знакомому указывают comes и vives. В третьем лице конечное -s исчезает: come, vive. Одна и та же форма третьего лица подходит для имени и для usted. «Мы едим» — comemos, но «мы живём» — vivimos. Не выводи одну форму из другой на слух: вернись к comer или vivir и восстанови группу. Для vosotros получаются coméis и vivís. Знакомое estoy нужно для места в Estoy aquí. В Vivo aquí слово vivo уже спрягается, поэтому добавлять estoy не нужно. Прочитай фразу, начиная с самого действия. Вопрос отличается от утверждения только интонацией и знаками ¿…?: ¿Lees el libro? Для отрицания поставь no прямо перед глаголом: Hoy no escribo cartas, No bebo café con azúcar. Ни вопрос, ни отрицание не меняют окончание глагола. Сравни два задания: «Мы пишем сообщение.» / «Мы живём здесь». Согласуй личное окончание с исполнителем. Смысловые опоры: «mensaje» — сообщение. Сравни два задания: «Ты читаешь книгу?» / «Вы пишете письмо?» Согласуй личное окончание с исполнителем. Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir."
+}

@@ -111,7 +111,7 @@ describe('report reply user messages', () => {
     expect(visible.unreadCount).toBe(2);
   });
 
-  it('filters every dismissed team message kind', () => {
+  it('filters dismissed messages and retired polls', () => {
     const news = normalizeAppMessage('news1', {
       kind: 'message',
       active: true,
@@ -140,8 +140,8 @@ describe('report reply user messages', () => {
       updatedAtMs: now,
     }], now);
 
-    expect(snapshot.messages.map((message) => message.id)).toEqual(['poll1']);
-    expect(snapshot.unreadCount).toBe(1);
+    expect(snapshot.messages).toEqual([]);
+    expect(snapshot.unreadCount).toBe(0);
   });
 
   it('applies delete and Undo as a visibility-only LWW patch', () => {

@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { onAccountOwnerChanged } from '../../../../app/account_owner_change';
 import { DebugLogger } from '../../../../app/debug-logger';
 import {
   HOME_SCENE_SPECIAL_EMPTY_JOURNAL,
@@ -23,6 +24,14 @@ export const HOME_SCENE_SPECIAL_JOURNAL_KEY = 'home_scene_special_journal_v1';
 
 let memory: HomeSceneSpecialJournal | null = null;
 let loading: Promise<HomeSceneSpecialJournal> | null = null;
+
+// зачем (F17, аудит, владелец 11.11): журнал показов прошлого игрока в памяти глушил особые сцены следующему («одна в день»,
+// «не два дня подряд»). Диск чистит выход/смена аккаунта (ключ в ACCOUNT_SWITCH_LEAK_KEYS), память — здесь.
+onAccountOwnerChanged('home_scene_special_journal', () => {
+  DebugLogger.info(LOG, `особые сцены: владелец сменился — журнал в памяти сброшен (был last=${memory?.last ? `${memory.last.state}@${memory.last.day}` : '—'})`); // guard-ok
+  memory = null;
+  loading = null;
+});
 
 /** Журнал, если уже в памяти (первый кадр Главной), иначе null — тогда особую сцену решаем после readHomeSceneSpecialJournal. */
 export function peekHomeSceneSpecialJournal(): HomeSceneSpecialJournal | null {

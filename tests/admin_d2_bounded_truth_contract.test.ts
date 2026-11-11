@@ -36,19 +36,16 @@ describe('Admin D2 bounded and truthful loader contract', () => {
   test('retired leagues section is gone from the admin', () => {
     expect(html).not.toContain('window.loadClubsData');
     expect(html).not.toContain('window.loadLeagueChestArchive');
-    expect(html).toContain('показана ограниченная выборка');
+    expect(html).toMatch(/показана ограниченная выборка/i);
   });
 
   test('bounded list surfaces use cap+1 and persistent sample/truncation truth', () => {
     const cases: Array<[string, string, string]> = [
       // зачем (04.10): доска «Топ хелперов» снята (2026-08-23) — сторож удалён.
-      ['window.loadVipSurveyResponses = async function', 'window.renderVipSurveyResponses = function', 'VIP_SURVEY_PAGE'],
       // зачем (04.10): идеи читаются постранично до USER_IDEAS_MAX с пробой хвоста — проверка ниже отдельно.
-      ['window.loadCancelSurveys = async function', '/**', 'CANCEL_SURVEYS_PAGE'],
       ['window.loadUgcPurchases = async function', 'window.renderUgcPurchases = function', 'UGC_PURCHASES_PAGE'],
       ['window.loadDailyPhrases = async function', 'window.renderDailyPhrases = function', 'DAILY_PHRASES_PAGE'],
       // зачем: D68 — «Наборы карточек» (card_packs) удалены из админки 2.0.
-      ['async function loadShardSurveyResponses()', 'window.renderShardSurveyFeed = function', 'SHARD_SURVEY_RESPONSES_PAGE'],
     ];
     for (const [start, end, cap] of cases) {
       const source = block(start, end);
@@ -259,14 +256,6 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(exits).toContain('if (!truncated) _onboardingExitsLoaded = true');
   });
 
-  test('shard survey config/stat lists use deterministic cap sentinels and incomplete health', () => {
-    const source = block('window.loadShardSurveys = async function', 'function renderShardSurveySummary');
-    expect(source).toContain('SHARD_SURVEYS_PAGE + 1');
-    expect(source).toContain('orderBy(documentId())');
-    expect(source).toContain('_shardSurveysSourceHealth');
-    expect(source).toContain('window._shardSurveysLoaded = false');
-    expect(source).not.toContain('limit(200)');
-  });
 
   test('navigation badge count failures remain unknown and aggregate counts are not artificially capped', () => {
     const source = block('async function adminCount', '// ── Duplicates panel');
@@ -294,13 +283,6 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(migration.indexOf('if (truncated)')).toBeLessThan(migration.indexOf('for (let offset'));
   });
 
-  test('helper and Plus-survey samples do not become session-complete caches', () => {
-    // зачем (04.10): доска «Топ хелперов» снята (2026-08-23) — её проверка удалена, Plus-опрос остаётся.
-    const vip = block('window.loadVipSurveyResponses = async function', 'window.renderVipSurveyResponses = function');
-    const vipRender = block('window.renderVipSurveyResponses = function', 'window.addTestReport');
-    expect(vip).toContain('if (!truncated) window._vipSurveyLoaded = true');
-    expect(vipRender).toContain('загруженной выборке');
-  });
 
   test('user shard-log totals and App Message paywall funnels use cap sentinels', () => {
     // зачем (04.10): журнал осколков пользователя снят в 2.0 (осколки удалены) — проверка удалена, воронка остаётся.

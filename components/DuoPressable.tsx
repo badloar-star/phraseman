@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import {
   Pressable,
   PressableProps,
@@ -9,6 +9,8 @@ import {
   type GestureResponderEvent,
 } from 'react-native';
 import Reanimated, {
+  cancelAnimation,
+  type SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -71,6 +73,13 @@ interface Props extends PassthroughPressableProps {
    * поэтому глобальное значение по умолчанию равно 0.
    */
   delayPressIn?: number;
+  /**
+   * Semantic identity of the native press target. Changing it replaces
+   * Pressable (cancelling an in-flight gesture) and the animated-style owner,
+   * while preserving the physical press/held shared values. Omitted callers
+   * keep the existing lifecycle.
+   */
+  pressTargetKey?: React.Key;
 }
 
 // зачем: владелец — «кромка должна продавливаться, а не всё целиком» (2026-08-16).
@@ -78,6 +87,70 @@ interface Props extends PassthroughPressableProps {
 // миниатюре: лёгкий сдвиг вниз без scale/opacity, вместо старого
 // «сжимается весь блок» (выглядело как второй слой под кнопкой).
 const FLAT_PRESS_TRANSLATE_Y = 1.5;
+
+interface SurfaceProps {
+  press: SharedValue<number>;
+  held: SharedValue<number>;
+  travel: number;
+  pressedExternally: boolean;
+  surfaceBaseStyle?: StyleProp<ViewStyle>;
+  gradientColors?: readonly string[];
+  children: React.ReactNode;
+}
+
+function StableDuoPressableSurface({
+  press,
+  held,
+  travel,
+  surfaceBaseStyle,
+  gradientColors,
+  children,
+}: SurfaceProps) {
+  const faceStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: Math.max(press.value, held.value) * travel }],
+  }));
+  return (
+    <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, faceStyle]}>
+      {children}
+    </Reanimated.View>
+  );
+}
+
+function IdentityDuoPressableSurface({
+  press,
+  held,
+  travel,
+  pressedExternally,
+  surfaceBaseStyle,
+  gradientColors,
+  children,
+}: SurfaceProps) {
+  // This owner remounts with the keyed native target. Reanimated keeps a
+  // hook's first updater for mount-time PropsFilter, so the readiness channel
+  // must also be new for each semantic target.
+  const targetReady = useSharedValue(0);
+  const initialPressedExternally = useRef(pressedExternally).current;
+  const faceStyle = useAnimatedStyle(() => {
+    const depth = targetReady.value === 0
+      ? (initialPressedExternally ? 1 : 0)
+      : Math.max(press.value, held.value);
+    return { transform: [{ translateY: depth * travel }] };
+  });
+
+  useLayoutEffect(() => {
+    cancelAnimation(press);
+    cancelAnimation(held);
+    press.value = 0;
+    held.value = initialPressedExternally ? 1 : 0;
+    targetReady.value = 1;
+  }, [press, held, initialPressedExternally, targetReady]);
+
+  return (
+    <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, faceStyle]}>
+      {children}
+    </Reanimated.View>
+  );
+}
 
 /**
  * Кнопка-клавиша: статичная цветная «подошва» (edge) снизу + лицо (face),
@@ -104,6 +177,7 @@ function DuoPressable({
   withHaptic = true,
   pressedExternally = false,
   delayPressIn = 0,
+  pressTargetKey,
   ...rest
 }: Props) {
   const hasEdge = !!edgeColor;
@@ -131,6 +205,11 @@ function DuoPressable({
     held.value = reduceMotion ? next : withSpring(next, PRESS.release);
   }, [pressedExternally, reduceMotion, held]);
 
+  useEffect(() => () => {
+    cancelAnimation(press);
+    cancelAnimation(held);
+  }, [press, held]);
+
   const flattenedSurfaceStyle = useMemo(() => StyleSheet.flatten(style) as ViewStyle | undefined, [style]);
   const surfaceOpacity = typeof flattenedSurfaceStyle?.opacity === 'number' ? flattenedSurfaceStyle.opacity : undefined;
   const surfaceOpacityStyle = surfaceOpacity === undefined ? null : { opacity: surfaceOpacity };
@@ -142,18 +221,24 @@ function DuoPressable({
 
   const radius = typeof flattenedSurfaceStyle?.borderRadius === 'number' ? flattenedSurfaceStyle.borderRadius : styles.surface.borderRadius;
 
-  // Лицо едет вниз на всю высоту кромки (или на лёгкий флэт-сдвиг без кромки).
-  // Никакого scale/opacity — вдавливание читается только по геометрии, как у
-  // настоящей клавиши.
-  const faceStyle = useAnimatedStyle(() => {
-    const depth = Math.max(press.value, held.value);
-    return {
-      transform: [{ translateY: depth * travel }],
-    };
-  });
+  const surfaceContent = (
+    <>
+      {gradientColors ? (
+        <LinearGradient
+          colors={gradientColors as unknown as readonly [string, string, ...string[]]}
+          start={gradientStart}
+          end={gradientEnd}
+          style={StyleSheet.absoluteFill}
+          pointerEvents="none"
+        />
+      ) : null}
+      {children}
+    </>
+  );
 
   return (
     <Pressable
+      key={pressTargetKey}
       accessibilityRole="button"
       {...rest}
       onPress={onPress}
@@ -168,18 +253,29 @@ function DuoPressable({
       {hasEdge ? (
         <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius: radius, backgroundColor: edgeColor }]} />
       ) : null}
-      <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, faceStyle]}>
-        {gradientColors ? (
-          <LinearGradient
-            colors={gradientColors as unknown as readonly [string, string, ...string[]]}
-            start={gradientStart}
-            end={gradientEnd}
-            style={StyleSheet.absoluteFill}
-            pointerEvents="none"
-          />
-        ) : null}
-        {children}
-      </Reanimated.View>
+      {pressTargetKey === undefined ? (
+        <StableDuoPressableSurface
+          press={press}
+          held={held}
+          travel={travel}
+          pressedExternally={pressedExternally}
+          surfaceBaseStyle={surfaceBaseStyle}
+          gradientColors={gradientColors}
+        >
+          {surfaceContent}
+        </StableDuoPressableSurface>
+      ) : (
+        <IdentityDuoPressableSurface
+          press={press}
+          held={held}
+          travel={travel}
+          pressedExternally={pressedExternally}
+          surfaceBaseStyle={surfaceBaseStyle}
+          gradientColors={gradientColors}
+        >
+          {surfaceContent}
+        </IdentityDuoPressableSurface>
+      )}
     </Pressable>
   );
 }

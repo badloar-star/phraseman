@@ -27,6 +27,12 @@ import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
 import { writeAccessProjection, writeAccessProjectionFromPatch } from './access_projection';
 import { syncPublicProfilePlusAfterCommit } from './public_profile_plus_sync';
+import {
+  decidePremiumRestoreAuthority,
+  decidePremiumRestoreTails,
+  normalizeRawOriginalOwnerUid,
+  type PremiumReducerProvenanceKind,
+} from './revenuecat_restore_owner_policy';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -122,6 +128,24 @@ type RevenueCatWebhookBody = {
 };
 
 type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
+
+declare const authenticatedWebhookProvenanceBrand: unique symbol;
+type AuthenticatedWebhookProvenance = Readonly<{
+  kind: 'authenticated_webhook';
+  [authenticatedWebhookProvenanceBrand]: true;
+}>;
+
+export type PremiumReducerProvenance =
+  | AuthenticatedWebhookProvenance
+  | Readonly<{
+      kind: 'synthetic_reconcile';
+      requesterCanonicalUid: string;
+      source: 'subscription' | 'lifetime';
+    }>;
+
+function authenticatedWebhookProvenance(): AuthenticatedWebhookProvenance {
+  return Object.freeze({ kind: 'authenticated_webhook' }) as AuthenticatedWebhookProvenance;
+}
 
 function cleanId(raw: unknown): string {
   return String(raw ?? '').trim();
@@ -235,6 +259,24 @@ export function isManagedPremiumProductId(rawProductId: unknown): boolean {
   const productId = cleanId(rawProductId).toLowerCase();
   return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(productId)
     || productId === 'phraseman_premium_lifetime_v1';
+}
+
+function deriveAuthenticatedOriginalEvidence(event: RevenueCatEvent): Readonly<{
+  rawOriginalOwnerUid: string;
+  evidenceKind: 'authenticated_original_purchase_webhook_v1';
+}> | null {
+  const eventType = cleanId(event.type).toUpperCase();
+  const environment = cleanId(event.environment).toUpperCase();
+  const rawOriginalOwnerUid = normalizeRawOriginalOwnerUid(event.original_app_user_id);
+  if (
+    environment !== 'PRODUCTION'
+    || (eventType !== 'INITIAL_PURCHASE' && eventType !== 'NON_RENEWING_PURCHASE')
+    || !isManagedPremiumProductId(event.product_id)
+    || !rawOriginalOwnerUid
+  ) {
+    return null;
+  }
+  return { rawOriginalOwnerUid, evidenceKind: 'authenticated_original_purchase_webhook_v1' };
 }
 
 function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
@@ -503,208 +545,375 @@ async function writePremiumDenialReceipt(
   }, { merge: false });
 }
 
+type RevenueCatLineageOwnerV1 = Readonly<{
+  schemaVersion: 1;
+  lineageHash: string;
+  originalOwnerUid: string;
+  canonicalOwnerUidAtCreation: string;
+  status: 'verified_original';
+  evidenceKind: 'authenticated_original_purchase_webhook_v1';
+  evidenceEventIdHash: string;
+  receiptFingerprint: string;
+  createdAtMs: number;
+}>;
+
+type PremiumTransactionTailToken = Readonly<{
+  decision: ReturnType<typeof decidePremiumRestoreAuthority>['decision'];
+  targetOwnerUid: string | null;
+  committed: boolean;
+  projectionChanged: boolean;
+  referralEligible: boolean;
+  requesterDecision: 'owner' | 'not_requester' | 'webhook';
+  progress: Record<string, unknown> | null;
+}>;
+
+function projectionPatchChanged(
+  progress: Record<string, unknown>,
+  patch: Record<string, unknown>,
+): boolean {
+  return Object.entries(patch).some(([key, value]) => cleanId(progress[key]) !== cleanId(value));
+}
+
+function lineageOwnerRecord(
+  data: FirebaseFirestore.DocumentData | undefined,
+  lineageHash: string,
+): RevenueCatLineageOwnerV1 | null {
+  if (
+    data?.schemaVersion !== 1
+    || data?.lineageHash !== lineageHash
+    || data?.status !== 'verified_original'
+    || data?.evidenceKind !== 'authenticated_original_purchase_webhook_v1'
+    || !normalizeRawOriginalOwnerUid(data?.originalOwnerUid)
+    || !normalizeRawOriginalOwnerUid(data?.canonicalOwnerUidAtCreation)
+    || !cleanId(data?.evidenceEventIdHash)
+    || !cleanId(data?.receiptFingerprint)
+    || !Number.isSafeInteger(data?.createdAtMs)
+    || data.createdAtMs <= 0
+  ) {
+    return null;
+  }
+  return data as RevenueCatLineageOwnerV1;
+}
+
+async function canonicalIdentityForAuthority(
+  tx: admin.firestore.Transaction,
+  db: admin.firestore.Firestore,
+  rawUid: unknown,
+): Promise<string | null> {
+  const uid = cleanId(rawUid);
+  if (!uid) return null;
+  const resolution = await resolveCanonicalDonorUid(tx, db, uid);
+  return resolution.status === 'resolved' ? resolution.uid : null;
+}
+
 export async function applyVerifiedPremiumSubscriptionEvent(
   rawEvent: Record<string, unknown>,
   eventType: string,
   productId: string,
+  provenance: PremiumReducerProvenance,
 ): Promise<{ statusCode: number; body: Record<string, unknown> }> {
   const event = rawEvent as RevenueCatEvent;
   const normalized = normalizePremiumLineageEvent(event as Record<string, unknown>);
   if (normalized.status === 'quarantine') {
     await writePremiumDenialReceipt(
       event,
-      `quarantine_${normalized.rawFingerprint}`,
+      'quarantine_' + normalized.rawFingerprint,
       normalized.reason,
       { rawFingerprint: normalized.rawFingerprint },
     );
-    return {
-      statusCode: 202,
-      body: { ok: true, kind: 'premium', quarantined: true, reason: normalized.reason },
-    };
+    return { statusCode: 202, body: { ok: true, kind: 'premium', quarantined: true, reason: normalized.reason } };
   }
 
   const canonicalEvent = normalized.event;
-  const boundedCandidates = boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event));
-  if (boundedCandidates.status === 'quarantine') {
-    await writePremiumDenialReceipt(
-      event,
-      premiumReceiptDocId(canonicalEvent.eventId),
-      boundedCandidates.reason,
-      { fingerprint: canonicalEvent.fingerprint },
-    );
-    return {
-      statusCode: 202,
-      body: { ok: true, kind: 'premium', quarantined: true, reason: boundedCandidates.reason },
-    };
-  }
-  const candidates = boundedCandidates.candidates;
-  if (candidates.length === 0) {
-    const hasAnonymousIdentity = [event.app_user_id, event.original_app_user_id]
-      .some(isRevenueCatAnonymousId);
-    const reason = hasAnonymousIdentity ? 'ambiguous_anonymous_owner' : 'missing_authoritative_owner';
-    await writePremiumDenialReceipt(
-      event,
-      premiumReceiptDocId(canonicalEvent.eventId),
-      reason,
-      {
-        fingerprint: canonicalEvent.fingerprint,
-        evidenceCandidates: candidateUserIds(event),
-      },
-    );
-    return {
-      statusCode: 202,
-      body: { ok: true, kind: 'premium', quarantined: true, reason },
-    };
-  }
   const db = admin.firestore();
   const receiptId = premiumReceiptDocId(canonicalEvent.eventId);
-  const processedRef = db.collection('revenuecat_premium_events').doc(receiptId);
+  const processedReceiptRef = db.collection('revenuecat_premium_events').doc(receiptId);
   const denialRef = db.collection('revenuecat_premium_denials').doc(receiptId);
+  const ownerRef = db.collection('revenuecat_premium_lineage_owners').doc(canonicalEvent.lineageHash);
+  const ownerCreatedAtMs = Date.now();
 
-  // зачем (владелец 21.10, Ревизор 21.10): прогресс ПОСЛЕ записи — для кольца Plus в публичном профиле. Живёт вне
-  // транзакции (возврат транзакции целиком уходит в HTTP-ответ — прогресс туда класть нельзя) и сбрасывается на
-  // каждой попытке, чтобы ретрай не подхватил значение несостоявшейся попытки.
-  const ring: { progress: Record<string, unknown> | null } = { progress: null };
-  const out = await db.runTransaction(async (tx) => {
-      ring.progress = null;
-      // All denial/idempotency/deletion reads happen before any user, lineage,
-      // projection, or receipt write in this transaction.
-      const processedSnap = await tx.get(processedRef);
-      const denialSnap = await tx.get(denialRef);
-      const permanentDenialSnapshots = await readPermanentDeletionDenials(tx, db, candidates);
-      const deletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
-      for (const candidate of candidates) {
-        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(candidate)));
-        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(candidate)));
-      }
+  const out = await db.runTransaction(async (tx): Promise<{
+    response: Record<string, unknown>;
+    tail: PremiumTransactionTailToken;
+  }> => {
+    const processedSnap = await tx.get(processedReceiptRef);
+    const denialSnap = await tx.get(denialRef);
+    const ownerSnap = await tx.get(ownerRef);
 
-      if (denialSnap.exists) {
-        return { updated: false, reason: 'denied_receipt_exists' as const };
-      }
-      if (processedSnap.exists) {
-        const replay = receiptReplayDecision(processedSnap.data() ?? {}, canonicalEvent);
-        if (replay === 'duplicate') return {
-          updated: false,
-          reason: 'duplicate' as const,
-          uid: cleanId(processedSnap.data()?.uid),
-        };
-        tx.set(denialRef, {
-          reason: 'event_id_fingerprint_conflict',
-          eventId: canonicalEvent.eventId,
-          fingerprint: canonicalEvent.fingerprint,
-          existingFingerprint: cleanId(processedSnap.data()?.fingerprint),
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { updated: false, reason: 'event_id_fingerprint_conflict' as const };
-      }
-      if ([...deletionSnapshots, ...permanentDenialSnapshots].some((snapshot) => snapshot.exists)) {
+    const zeroTail = (
+      decision: PremiumTransactionTailToken['decision'],
+      reason: string = decision,
+    ) => ({
+      response: { ok: true, kind: 'premium', updated: false, reason },
+      tail: {
+        decision,
+        targetOwnerUid: null,
+        committed: false,
+        projectionChanged: false,
+        referralEligible: false,
+        requesterDecision: provenance.kind === 'authenticated_webhook' ? 'webhook' as const : 'not_requester' as const,
+        progress: null,
+      },
+    });
+
+    if (denialSnap.exists) return zeroTail('receipt_evidence_conflict', 'denied_receipt_exists');
+    const auditCandidates = boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event));
+    if (auditCandidates.status === 'quarantine') {
+      return zeroTail('lineage_owner_unproven', auditCandidates.reason);
+    }
+    const earlyPermanentDenials = await readPermanentDeletionDenials(tx, db, auditCandidates.candidates);
+    const earlyDeletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
+    for (const identity of auditCandidates.candidates) {
+      earlyDeletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)));
+      earlyDeletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(identity)));
+    }
+    if ([...earlyPermanentDenials, ...earlyDeletionSnapshots].some((snapshot) => snapshot.exists)) {
+      if (!processedSnap.exists) {
         tx.set(denialRef, {
           reason: 'account_deletion_pending_or_tombstoned',
           eventId: canonicalEvent.eventId,
           fingerprint: canonicalEvent.fingerprint,
-          candidates,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-        return { updated: false, reason: 'account_deletion_pending_or_tombstoned' as const };
       }
-      if (candidates.length === 0) {
-        tx.set(denialRef, {
-          reason: 'missing_user_candidate',
-          eventId: canonicalEvent.eventId,
-          fingerprint: canonicalEvent.fingerprint,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { updated: false, reason: 'missing_user_candidate' as const };
-      }
+      return zeroTail('receipt_evidence_conflict', 'account_deletion_pending_or_tombstoned');
+    }
 
-      const ownerResolution = await resolvePremiumOwnerRef(tx, db, candidates);
-      if (ownerResolution.status !== 'resolved') {
-        tx.set(denialRef, {
-          reason: ownerResolution.reason,
-          eventId: canonicalEvent.eventId,
-          fingerprint: canonicalEvent.fingerprint,
-          candidates,
-          ...(ownerResolution.status === 'ambiguous' ? { ownerUids: ownerResolution.ownerUids } : {}),
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { updated: false, reason: ownerResolution.reason };
-      }
+    const historySnapshot = await tx.get(
+      db.collection('revenuecat_premium_lineages')
+        .where('lineageHash', '==', canonicalEvent.lineageHash)
+        .limit(MAX_OWNER_LINEAGES + 1),
+    );
+    if (historySnapshot.docs.length > MAX_OWNER_LINEAGES) {
+      return zeroTail('lineage_owner_conflict', 'lineage_history_overflow');
+    }
 
-      const { uid, ref: userRef, snap: userSnap } = ownerResolution;
-      const canonicalDeletionSnapshots = [
-        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(uid)),
-        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid)),
-        ...(await readPermanentDeletionDenials(tx, db, [uid])),
-      ];
-      if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
-        tx.set(denialRef, {
-          reason: 'account_deletion_pending_or_tombstoned',
-          eventId: canonicalEvent.eventId,
-          fingerprint: canonicalEvent.fingerprint,
-          candidates,
-          ownerUid: uid,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { updated: false, reason: 'account_deletion_pending_or_tombstoned' as const };
-      }
-      const lineageQuery = db.collection('revenuecat_premium_lineages')
-        .where('ownerUid', '==', uid)
-        .limit(MAX_OWNER_LINEAGES + 1);
-      const lineageSnapshot = await tx.get(lineageQuery);
-      const existingLineages = lineageSnapshot.docs.map((doc) => doc.data() as PremiumLineageState & { ownerUid?: string });
-      const currentLineage = existingLineages.find((lineage) => lineage.lineageHash === canonicalEvent.lineageHash) ?? null;
-      if (!currentLineage && existingLineages.length >= MAX_OWNER_LINEAGES) {
-        tx.set(denialRef, {
-          reason: 'owner_lineage_limit',
-          ownerUid: uid,
-          eventId: canonicalEvent.eventId,
-          fingerprint: canonicalEvent.fingerprint,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { updated: false, reason: 'owner_lineage_limit' as const };
-      }
+    const evidence = provenance.kind === 'authenticated_webhook'
+      ? deriveAuthenticatedOriginalEvidence(event)
+      : null;
+    let evidenceCanonicalOwnerUid: string | null = null;
+    if (evidence) {
+      const evidenceResolution = await resolvePremiumOwnerRef(tx, db, [evidence.rawOriginalOwnerUid]);
+      if (evidenceResolution.status === 'resolved') evidenceCanonicalOwnerUid = evidenceResolution.uid;
+    }
+    const normalizedEvidence = evidence && evidenceCanonicalOwnerUid
+      ? {
+          ...evidence,
+          evidenceCanonicalOwnerUid,
+        }
+      : null;
+    const requesterCanonicalUid = provenance.kind === 'synthetic_reconcile'
+      ? normalizeRawOriginalOwnerUid(provenance.requesterCanonicalUid)
+      : null;
 
-      const reduced = applyPremiumLineageEvent(currentLineage, canonicalEvent);
-      const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
-      const receipt = {
-        uid,
-        candidates,
-        productId,
-        eventId: canonicalEvent.eventId,
-        fingerprint: canonicalEvent.fingerprint,
-        lineageHash: canonicalEvent.lineageHash,
-        eventType,
-        periodType: cleanId(event.period_type).toUpperCase(),
-        store: canonicalEvent.store,
-        environment: canonicalEvent.environment,
-        transactionId: canonicalEvent.transactionId,
-        originalTransactionId: canonicalEvent.originalTransactionId,
-        purchasedAtMs: eventMs(event.purchased_at_ms),
-        expirationAtMs: canonicalEvent.expirationAtMs,
-        eventTimestampMs: canonicalEvent.eventTimeMs,
-        billingCadence: classifyRevenueCatBillingCadence(event),
-        ...normalizeRevenueCatFinancials(event),
-        ...revenueCatLifecycleReasonFields(event, eventType),
-        reduction: reduced.status,
-        userDocExists: true,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    const historyOwnerUids: string[] = [];
+    for (const document of historySnapshot.docs) {
+      const canonicalOwnerUid = await canonicalIdentityForAuthority(tx, db, document.data()?.ownerUid);
+      if (!canonicalOwnerUid) return zeroTail('lineage_owner_conflict');
+      if (!historyOwnerUids.includes(canonicalOwnerUid)) historyOwnerUids.push(canonicalOwnerUid);
+    }
+
+    let verifiedOwner: {
+      originalOwnerUid: string;
+      canonicalOwnerUidAtCreation: string;
+      currentCanonicalOwnerUid: string;
+    } | null = null;
+    const storedOwner = ownerSnap.exists
+      ? lineageOwnerRecord(ownerSnap.data(), canonicalEvent.lineageHash)
+      : null;
+    if (ownerSnap.exists && !storedOwner) return zeroTail('owner_lineage_inconsistent');
+    if (storedOwner) {
+      const currentCanonicalOwnerUid = await canonicalIdentityForAuthority(
+        tx,
+        db,
+        storedOwner.canonicalOwnerUidAtCreation,
+      );
+      if (!currentCanonicalOwnerUid) return zeroTail('owner_lineage_inconsistent');
+      verifiedOwner = {
+        originalOwnerUid: storedOwner.originalOwnerUid,
+        canonicalOwnerUidAtCreation: storedOwner.canonicalOwnerUidAtCreation,
+        currentCanonicalOwnerUid,
       };
+    }
 
-      const projectedLineages = existingLineages
-        .filter((lineage) => lineage.lineageHash !== reduced.state.lineageHash)
-        .concat(reduced.state);
-      const projectionNow = Date.now();
-      const aggregate = aggregatePremiumLineages(projectedLineages, progress, projectionNow);
-      const achievementGrant = paidAccessAchievementGrant(event);
+    const receiptData = processedSnap.data() ?? {};
+    const receiptTargetOwnerUid = processedSnap.exists
+      ? await canonicalIdentityForAuthority(
+          tx,
+          db,
+          receiptData.authorityTargetOwnerUid ?? receiptData.uid,
+        )
+      : null;
+    const receiptRequesterUid = processedSnap.exists && receiptData.authorityRequesterCanonicalUid
+      ? await canonicalIdentityForAuthority(tx, db, receiptData.authorityRequesterCanonicalUid)
+      : null;
+    const receiptEvidenceUid = processedSnap.exists && receiptData.authorityEvidenceCanonicalOwnerUid
+      ? await canonicalIdentityForAuthority(tx, db, receiptData.authorityEvidenceCanonicalOwnerUid)
+      : null;
+    const receiptAuthority = processedSnap.exists ? {
+      kind: receiptData.authoritySchemaVersion === 1 ? 's1' as const : 'legacy' as const,
+      fingerprintMatches: receiptReplayDecision(receiptData, canonicalEvent) === 'duplicate',
+      targetOwnerUid: receiptTargetOwnerUid,
+      provenanceKind: receiptData.authorityProvenanceKind as PremiumReducerProvenanceKind | undefined,
+      requesterCanonicalUid: receiptRequesterUid,
+      evidenceKind: receiptData.authorityEvidenceKind as 'authenticated_original_purchase_webhook_v1' | 'none' | undefined,
+      rawOriginalOwnerUid: cleanId(receiptData.authorityRawOriginalOwnerUid) || null,
+      evidenceCanonicalOwnerUid: receiptEvidenceUid,
+    } : null;
+
+    const authority = decidePremiumRestoreAuthority({
+      eventType,
+      provenanceKind: provenance.kind,
+      requesterCanonicalUid,
+      rawOriginalOwnerUid: normalizedEvidence?.rawOriginalOwnerUid ?? null,
+      evidenceCanonicalOwnerUid: normalizedEvidence?.evidenceCanonicalOwnerUid ?? null,
+      verifiedOwner,
+      historyOwnerUids,
+      receipt: receiptAuthority,
+    });
+    if (!authority.targetOwnerUid) return zeroTail(authority.decision);
+
+    const deletionIdentities = [
+      authority.targetOwnerUid,
+      evidence?.rawOriginalOwnerUid ?? '',
+      evidenceCanonicalOwnerUid ?? '',
+      requesterCanonicalUid ?? '',
+    ];
+    const permanentDenials = await readPermanentDeletionDenials(tx, db, deletionIdentities);
+    const deletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
+    for (const identity of [...new Set(deletionIdentities.filter(Boolean))]) {
+      deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)));
+      deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(identity)));
+    }
+    if ([...permanentDenials, ...deletionSnapshots].some((snapshot) => snapshot.exists)) {
+      if (!processedSnap.exists) {
+        tx.set(denialRef, {
+          reason: 'account_deletion_pending_or_tombstoned',
+          eventId: canonicalEvent.eventId,
+          fingerprint: canonicalEvent.fingerprint,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+      }
+      return zeroTail('receipt_evidence_conflict', 'account_deletion_pending_or_tombstoned');
+    }
+
+    const targetUserRef = db.collection('users').doc(authority.targetOwnerUid);
+    const targetUserSnap = await tx.get(targetUserRef);
+    if (!targetUserSnap.exists) return zeroTail('lineage_owner_unproven');
+
+    const makeOwnerRecord = (): RevenueCatLineageOwnerV1 => ({
+      schemaVersion: 1,
+      lineageHash: canonicalEvent.lineageHash,
+      originalOwnerUid: normalizedEvidence!.rawOriginalOwnerUid,
+      canonicalOwnerUidAtCreation: normalizedEvidence!.evidenceCanonicalOwnerUid,
+      status: 'verified_original',
+      evidenceKind: 'authenticated_original_purchase_webhook_v1',
+      evidenceEventIdHash: hashAuditIdentity(canonicalEvent.eventId),
+      receiptFingerprint: canonicalEvent.fingerprint,
+      createdAtMs: ownerCreatedAtMs,
+    });
+
+    if (authority.paymentDuplicate) {
+      if (authority.createOwner) tx.create(ownerRef, makeOwnerRecord());
+      const storedReferralEligible = receiptData.referralEligible === true;
+      return {
+        response: {
+          ok: true,
+          kind: 'premium',
+          updated: false,
+          reason: authority.requesterDecision === 'not_requester' ? 'not_requester' : 'duplicate',
+          ...(authority.decision === 'verify_matching_legacy_owner_duplicate'
+            ? { ownerMetadataCreated: true }
+            : {}),
+        },
+        tail: {
+          decision: authority.decision,
+          targetOwnerUid: authority.targetOwnerUid,
+          committed: true,
+          projectionChanged: false,
+          referralEligible: storedReferralEligible,
+          requesterDecision: authority.requesterDecision,
+          progress: null,
+        },
+      };
+    }
+
+    const ownerLineageSnapshot = await tx.get(
+      db.collection('revenuecat_premium_lineages')
+        .where('ownerUid', '==', authority.targetOwnerUid)
+        .limit(MAX_OWNER_LINEAGES + 1),
+    );
+    if (ownerLineageSnapshot.docs.length > MAX_OWNER_LINEAGES) {
+      return zeroTail('lineage_owner_conflict', 'owner_lineage_limit');
+    }
+    const existingLineages = ownerLineageSnapshot.docs.map(
+      (document) => document.data() as PremiumLineageState & { ownerUid?: string },
+    );
+    const currentLineage = existingLineages.find(
+      (lineage) => lineage.lineageHash === canonicalEvent.lineageHash,
+    ) ?? null;
+    if (!currentLineage && existingLineages.length >= MAX_OWNER_LINEAGES) {
+      return zeroTail('lineage_owner_conflict', 'owner_lineage_limit');
+    }
+
+    const reduced = applyPremiumLineageEvent(currentLineage, canonicalEvent);
+    const progress = (targetUserSnap.data()?.progress ?? {}) as Record<string, unknown>;
+    const projectedLineages = existingLineages
+      .filter((lineage) => lineage.lineageHash !== reduced.state.lineageHash)
+      .concat(reduced.state);
+    const projectionNow = Date.now();
+    const aggregate = aggregatePremiumLineages(projectedLineages, progress, projectionNow);
+    const projectionChanged = reduced.status === 'applied'
+      && projectionPatchChanged(progress, aggregate.progressPatch);
+    const achievementGrant = paidAccessAchievementGrant(event);
+    const referralEligible = reduced.status === 'applied'
+      && (achievementGrant.plus || achievementGrant.pro);
+    const evidenceKind = normalizedEvidence
+      ? 'authenticated_original_purchase_webhook_v1' as const
+      : 'none' as const;
+    const processedRef = db.collection('revenuecat_premium_events').doc(receiptId);
+    const receipt = {
+      uid: authority.targetOwnerUid,
+      productId,
+      eventId: canonicalEvent.eventId,
+      fingerprint: canonicalEvent.fingerprint,
+      lineageHash: canonicalEvent.lineageHash,
+      eventType,
+      periodType: cleanId(event.period_type).toUpperCase(),
+      store: canonicalEvent.store,
+      environment: canonicalEvent.environment,
+      transactionId: canonicalEvent.transactionId,
+      originalTransactionId: canonicalEvent.originalTransactionId,
+      purchasedAtMs: eventMs(event.purchased_at_ms),
+      expirationAtMs: canonicalEvent.expirationAtMs,
+      eventTimestampMs: canonicalEvent.eventTimeMs,
+      billingCadence: classifyRevenueCatBillingCadence(event),
+      ...normalizeRevenueCatFinancials(event),
+      ...revenueCatLifecycleReasonFields(event, eventType),
+      reduction: reduced.status,
+      userDocExists: true,
+      authoritySchemaVersion: 1,
+      authorityProvenanceKind: provenance.kind,
+      authorityRequesterCanonicalUid: requesterCanonicalUid,
+      authorityEvidenceKind: evidenceKind,
+      authorityRawOriginalOwnerUid: normalizedEvidence?.rawOriginalOwnerUid ?? null,
+      authorityEvidenceCanonicalOwnerUid: normalizedEvidence?.evidenceCanonicalOwnerUid ?? null,
+      authorityTargetOwnerUid: authority.targetOwnerUid,
+      referralEligible,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+
+    if (authority.createOwner) tx.create(ownerRef, makeOwnerRecord());
+    tx.set(processedRef, receipt);
+    if (reduced.status === 'applied') {
       const lineageRef = db.collection('revenuecat_premium_lineages')
-        .doc(premiumLineageDocId(uid, canonicalEvent.lineageHash));
+        .doc(premiumLineageDocId(authority.targetOwnerUid, canonicalEvent.lineageHash));
       tx.set(lineageRef, {
-        ownerUid: uid,
+        ownerUid: authority.targetOwnerUid,
         ...reduced.state,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       }, { merge: false });
-      tx.set(processedRef, receipt);
-      tx.set(userRef, {
+      tx.set(targetUserRef, {
         progress: {
           ...aggregate.progressPatch,
           ...(achievementGrant.plus ? { achievement_access_plus_paid_v1: 'true' } : {}),
@@ -713,35 +922,55 @@ export async function applyVerifiedPremiumSubscriptionEvent(
         updatedAt: projectionNow,
         last_active_at: projectionNow,
       }, { merge: true });
-      writeAccessProjection(tx, userRef, aggregate.progressPatch, projectionNow);
-      // Полный прогресс (VIP и прочее + новый патч подписки), чтобы кольцо не погасло у человека с активным VIP.
-      ring.progress = { ...progress, ...aggregate.progressPatch };
+      writeAccessProjection(tx, targetUserRef, aggregate.progressPatch, projectionNow);
+    }
 
-      return {
+    return {
+      response: {
+        ok: true,
+        kind: 'premium',
         updated: reduced.status === 'applied',
-        ...(reduced.status === 'stale' ? { reason: 'stale_event' as const } : {}),
-        uid,
-        active: aggregate.winnerLineageHash !== undefined,
-        aggregateStatus: aggregate.status,
-        winnerLineageHash: aggregate.winnerLineageHash ?? null,
-      };
+        ...(authority.requesterDecision === 'not_requester'
+          ? { reason: 'not_requester' }
+          : reduced.status === 'stale'
+            ? { reason: 'stale_event' }
+            : {}),
+        ...(authority.requesterDecision === 'owner'
+          ? { active: aggregate.winnerLineageHash !== undefined }
+          : {}),
+      },
+      tail: {
+        decision: authority.decision,
+        targetOwnerUid: authority.targetOwnerUid,
+        committed: true,
+        projectionChanged,
+        referralEligible,
+        requesterDecision: authority.requesterDecision,
+        progress: projectionChanged ? { ...progress, ...aggregate.progressPatch } : null,
+      },
+    };
   });
 
-  await qualifyReferralFromVerifiedPremiumOutcome(db, out);
-  // Кольцо Plus — ПОСЛЕ денежной транзакции и лучшей попыткой: никогда не бросает, деньги уже записаны (Ревизор 21.10).
-  if (ring.progress && out.uid) {
-    await syncPublicProfilePlusAfterCommit({ db, stableUid: String(out.uid), progress: ring.progress, nowMs: Date.now(), source: 'revenuecat_webhook' });
+  const tails = decidePremiumRestoreTails(out.tail);
+  await qualifyReferralFromVerifiedPremiumOutcome(db, tails);
+  if (tails.profileOwnerUid && out.tail.progress) {
+    await syncPublicProfilePlusAfterCommit({
+      db,
+      stableUid: tails.profileOwnerUid,
+      progress: out.tail.progress,
+      nowMs: Date.now(),
+      source: 'revenuecat_webhook',
+    });
   }
-
-  return { statusCode: 200, body: { ok: true, kind: 'premium', ...out } };
+  return { statusCode: 200, body: out.response };
 }
 
 async function qualifyReferralFromVerifiedPremiumOutcome(
   db: FirebaseFirestore.Firestore,
-  outcome: Readonly<{ uid?: string; active?: boolean; updated: boolean; reason?: string }>,
+  outcome: Readonly<{ referralOwnerUid: string | null }>,
   qualify: (db: FirebaseFirestore.Firestore, uid: string) => Promise<unknown> = markRefereeQualified,
 ): Promise<boolean> {
-  const uid = cleanId(outcome.uid);
+  const uid = cleanId(outcome.referralOwnerUid);
   if (!uid) return false;
   await qualify(db, uid);
   return true;
@@ -788,6 +1017,7 @@ async function handlePremiumSubscriptionEvent(
   event: RevenueCatEvent,
   eventType: string,
   productId: string,
+  provenance: AuthenticatedWebhookProvenance,
   res: any,
 ): Promise<void> {
   try {
@@ -795,6 +1025,7 @@ async function handlePremiumSubscriptionEvent(
       event as Record<string, unknown>,
       eventType,
       productId,
+      provenance,
     );
     res.status(outcome.statusCode).json(outcome.body);
   } catch (error) {
@@ -808,373 +1039,115 @@ async function handlePremiumSubscriptionEvent(
   }
 }
 
-// ── TRANSFER: anonymous → stable_id entitlement move (closes the "premium written
-//    to an anonymous RC id" gap, scenario #13). When a purchase happened before
-//    Purchases.logIn(stable_id), premium landed on users/{$RCAnonymousID}. After
-//    login RevenueCat fires TRANSFER with transferred_from (anon ids) → transferred_to
-//    (the stable_id). We move any premium block to the recipient and deactivate the
-//    donor, so the paying user sees premium on their real account. ────────────────
-
-const PREMIUM_PROGRESS_KEYS = [
-  'premium_plan',
-  'premium_expiry',
-  'premium_rc_product_id',
-  'premium_rc_period_type',
-  'premium_rc_store',
-  'premium_rc_environment',
-  'premium_rc_event_type',
-  'premium_rc_updated_at',
-  'premium_rc_expiry_ms',
-  'premium_rc_purchased_at_ms',
-  'premium_rc_cancelled_at',
-  'had_premium_ever',
-] as const;
-
+// TRANSFER never establishes or changes Premium ownership. RevenueCat may report
+// stable or anonymous donor/recipient ids, but S1 records only bounded hashes in
+// the function log and returns one generic authenticated acknowledgement.
 function idList(raw: unknown): string[] {
   const out = new Set<string>();
-  for (const v of Array.isArray(raw) ? raw : []) {
-    const id = cleanId(v);
+  for (const value of Array.isArray(raw) ? raw : []) {
+    const id = cleanId(value);
     if (id) out.add(id);
   }
   return [...out];
 }
 
-/** Recipients of a transfer: prefer stable (non-anonymous) ids. */
 export function transferTargetIds(event: RevenueCatEvent): string[] {
   return stableCandidateUserIds(idList(event.transferred_to));
 }
 
-/** Donors of a transfer (the ids losing the entitlement). */
 export function transferSourceIds(event: RevenueCatEvent): string[] {
   return idList(event.transferred_from);
 }
 
-/** Reads the active store-premium block from a donor doc, if any. */
-function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): Record<string, string> | null {
-  const plan = cleanId(progress.premium_plan).toLowerCase();
-  // Lifetime — это законный store-план (NON_RENEWING_PURCHASE phraseman_premium_lifetime_v1,
-  // см. premiumPlanFromEvent). Без него TRANSFER от анонимного RC-id (купил «Навсегда»
-  // до Purchases.logIn) возвращал null → доступ исчезал у реального аккаунта после логина.
-  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual'
-    || plan === 'lifetime';
-  if (!isStorePlan) return null;
-  const expiryMs = eventMs(progress.premium_expiry);
-  const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
-  // Lifetime по определению бессрочный (premium_expiry='0'), так что отдельный guard:
-  // в общем случае активность = expiry открытый или ещё впереди.
-  const active = plan === 'lifetime'
-    || (expiryMs == null || expiryMs <= 0 || expiryMs > now)
-    || (rcExpiryMs != null && rcExpiryMs > now);
-  if (!active) return null;
-  const block: Record<string, string> = {};
-  for (const key of PREMIUM_PROGRESS_KEYS) {
-    const v = cleanId(progress[key]);
-    if (v) block[key] = v;
-  }
-  block.premium_plan = plan === 'annual' ? 'yearly' : plan;
-  block.had_premium_ever = '1';
-  return block;
-}
-
-function premiumProjectionStrength(progress: Record<string, unknown>): number {
-  const plan = cleanId(progress.premium_plan).toLowerCase();
-  if (plan === 'lifetime') return Number.POSITIVE_INFINITY;
-  if (plan !== 'monthly' && plan !== 'yearly' && plan !== 'annual') return 0;
-  const expiryMs = eventMs(progress.premium_expiry);
-  const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
-  const finiteExpiry = Math.max(expiryMs ?? 0, rcExpiryMs ?? 0);
-  return finiteExpiry > 0 ? finiteExpiry : Number.POSITIVE_INFINITY;
-}
-
-function preferredLegacyPremiumBlock(
-  left: Record<string, string> | null,
-  right: Record<string, string> | null,
-): Record<string, string> | null {
-  if (!left) return right;
-  if (!right) return left;
-  const leftStrength = premiumProjectionStrength(left);
-  const rightStrength = premiumProjectionStrength(right);
-  if (leftStrength !== rightStrength) return leftStrength > rightStrength ? left : right;
-  return JSON.stringify(left) <= JSON.stringify(right) ? left : right;
+function hashAuditIdentity(value: string): string {
+  return createHash('sha256').update(value).digest('hex');
 }
 
 async function handleTransferEvent(event: RevenueCatEvent, eventType: string, res: any): Promise<void> {
-  const boundedTargets = boundPremiumOwnerCandidates(transferTargetIds(event));
-  const boundedSources = boundPremiumOwnerCandidates(transferSourceIds(event));
-  if (boundedTargets.status === 'quarantine' || boundedSources.status === 'quarantine') {
-    res.status(202).json({ ok: true, kind: 'transfer', quarantined: true, reason: 'transfer_identity_overflow' });
-    return;
-  }
-  const targets = boundedTargets.candidates;
-  const sources = boundedSources.candidates;
-  if (targets.length === 0 || sources.length === 0) {
-    res.status(200).json({ ok: true, kind: 'transfer', ignored: 'missing_transfer_ids' });
-    return;
-  }
-
+  const rawSources = idList(event.transferred_from);
+  const rawTargets = idList(event.transferred_to);
+  const boundedSources = boundPremiumOwnerCandidates(rawSources);
+  const boundedTargets = boundPremiumOwnerCandidates(rawTargets);
   const eventId = cleanId(event.id);
-  const transferEventTimeMs = eventMs(event.event_timestamp_ms);
-  if (!eventId || transferEventTimeMs === null) {
-    res.status(400).send('Missing immutable TRANSFER identity');
-    return;
-  }
-  if (eventId.length > 256 || eventId.includes('/')) {
-    res.status(400).send('Missing immutable TRANSFER identity');
-    return;
-  }
+  const validEventId = eventId.length > 0 && eventId.length <= 256 && !eventId.includes('/');
+  const accepted = validEventId
+    && boundedSources.status === 'ok'
+    && boundedTargets.status === 'ok';
 
-  const db = admin.firestore();
-  const now = Date.now();
-  const processedRef = db.collection('revenuecat_premium_events').doc(eventId);
-  const denialRef = db.collection('revenuecat_premium_denials').doc(`transfer_${createHash('sha256').update(eventId).digest('hex')}`);
-
-  try {
-    const out = await db.runTransaction(async (tx) => {
-      const processedSnap = await tx.get(processedRef);
-      const denialSnap = await tx.get(denialRef);
-      if (processedSnap.exists) return { moved: false, reason: 'duplicate' as const };
-      if (denialSnap.exists) return { moved: false, reason: 'denied_receipt_exists' as const };
-
-      const canonicalSourceSet = new Set<string>();
-      for (const sourceId of sources) {
-        const canonicalSource = await resolveCanonicalDonorUid(tx, db, sourceId);
-        if (canonicalSource.status !== 'resolved') {
-          return { moved: false, reason: canonicalSource.reason, retryable: true };
-        }
-        canonicalSourceSet.add(canonicalSource.uid);
-      }
-      const canonicalSourceIds = [...canonicalSourceSet];
-      const transferIdentities = [...new Set([...targets, ...sources, ...canonicalSourceIds])];
-      const permanentDenialSnapshots = await readPermanentDeletionDenials(tx, db, transferIdentities);
-      const operationalDeletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
-      for (const identity of transferIdentities) {
-        operationalDeletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)));
-        operationalDeletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(identity)));
-      }
-      if ([...permanentDenialSnapshots, ...operationalDeletionSnapshots].some((snapshot) => snapshot.exists)) {
-        tx.set(denialRef, {
-          reason: 'account_deletion_pending_or_permanent',
-          eventId,
-          eventType,
-          identityHashes: transferIdentities.map((identity) => createHash('sha256').update(identity).digest('hex')),
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { moved: false, reason: 'account_deletion_pending_or_permanent' as const, retryable: false };
-      }
-
-      const ownerResolution = await resolvePremiumOwnerRef(tx, db, targets);
-      if (ownerResolution.status !== 'resolved') {
-        return {
-          moved: false,
-          reason: ownerResolution.reason,
-          retryable: true,
-        };
-      }
-      const { uid: recipientId, ref: recipientRef, snap: recipientSnap } = ownerResolution;
-      const canonicalDonorIds = canonicalSourceIds.filter((sourceId) => sourceId !== recipientId);
-      const canonicalDeletionSnapshots = [
-        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(recipientId)),
-        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(recipientId)),
-        ...(await readPermanentDeletionDenials(tx, db, [recipientId])),
-      ];
-      if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
-        tx.set(denialRef, {
-          reason: 'account_deletion_pending_or_permanent',
-          eventId,
-          eventType,
-          ownerUidHash: createHash('sha256').update(recipientId).digest('hex'),
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { moved: false, reason: 'account_deletion_pending_or_permanent' as const, retryable: false };
-      }
-
-      const recipientLineageQuery = db.collection('revenuecat_premium_lineages')
-        .where('ownerUid', '==', recipientId)
-        .limit(MAX_OWNER_LINEAGES + 1);
-      const donorLineageDocs: FirebaseFirestore.QueryDocumentSnapshot[] = [];
-      if (canonicalDonorIds.length > 0) {
-        const donorLineageQuery = db.collection('revenuecat_premium_lineages')
-          .where('ownerUid', 'in', canonicalDonorIds)
-          .limit(MAX_OWNER_LINEAGES + 1);
-        const donorLineageSnapshot = await tx.get(donorLineageQuery);
-        donorLineageDocs.push(...donorLineageSnapshot.docs);
-      }
-      const recipientLineageSnapshot = await tx.get(recipientLineageQuery);
-      if (donorLineageDocs.length > MAX_OWNER_LINEAGES
-        || recipientLineageSnapshot.docs.length > MAX_OWNER_LINEAGES) {
-        tx.set(denialRef, {
-          reason: 'transfer_lineage_limit',
-          eventId,
-          eventType,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { moved: false, reason: 'transfer_lineage_limit' as const, retryable: false };
-      }
-
-      const donorUsers: Array<{ id: string; ref: FirebaseFirestore.DocumentReference; snap: FirebaseFirestore.DocumentSnapshot }> = [];
-      for (const sourceId of canonicalDonorIds) {
-        const ref = db.collection('users').doc(sourceId);
-        const snap = await tx.get(ref);
-        if (snap.exists) donorUsers.push({ id: sourceId, ref, snap });
-      }
-
-      const recipientProgress = (recipientSnap.data()?.progress ?? {}) as Record<string, unknown>;
-      const recipientLineageByHash = new Map<string, {
-        targetRef: FirebaseFirestore.DocumentReference;
-        state: PremiumLineageState;
-        obsoleteRefs: FirebaseFirestore.DocumentReference[];
-      }>();
-      for (const lineage of recipientLineageSnapshot.docs) {
-        const state = lineage.data() as PremiumLineageState & { ownerUid?: string };
-        const targetRef = db.collection('revenuecat_premium_lineages')
-          .doc(premiumLineageDocId(recipientId, state.lineageHash));
-        const existing = recipientLineageByHash.get(state.lineageHash);
-        recipientLineageByHash.set(state.lineageHash, {
-          targetRef,
-          state: existing ? chooseAuthoritativePremiumLineageState(existing.state, state) : state,
-          obsoleteRefs: [
-            ...(existing?.obsoleteRefs ?? []),
-            ...(lineage.ref.path === targetRef.path ? [] : [lineage.ref]),
-          ],
-        });
-      }
-      for (const lineage of donorLineageDocs) {
-        const state = lineage.data() as PremiumLineageState & { ownerUid?: string };
-        const existing = recipientLineageByHash.get(state.lineageHash);
-        const selected = existing ? chooseAuthoritativePremiumLineageState(existing.state, state) : state;
-        const targetRef = existing?.targetRef ?? db.collection('revenuecat_premium_lineages')
-          .doc(premiumLineageDocId(recipientId, state.lineageHash));
-        recipientLineageByHash.set(state.lineageHash, {
-          targetRef,
-          state: selected,
-          obsoleteRefs: [
-            ...(existing?.obsoleteRefs ?? []),
-            ...(lineage.ref.path === targetRef.path ? [] : [lineage.ref]),
-          ],
-        });
-      }
-      const recipientLineages = [...recipientLineageByHash.values()].map(({ state }) => state);
-      if (recipientLineages.length > MAX_OWNER_LINEAGES) {
-        tx.set(denialRef, {
-          reason: 'owner_lineage_limit',
-          eventId,
-          eventType,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { moved: false, reason: 'owner_lineage_limit' as const, retryable: false };
-      }
-
-      const aggregate = aggregatePremiumLineages(recipientLineages, recipientProgress, now);
-      let legacyPremiumBlock: Record<string, string> | null = null;
-      for (const donor of donorUsers) {
-        const donorProgress = (donor.snap.data()?.progress ?? {}) as Record<string, unknown>;
-        legacyPremiumBlock = preferredLegacyPremiumBlock(
-          legacyPremiumBlock,
-          readDonorPremiumBlock(donorProgress, now),
-        );
-      }
-      const movedPremium = donorLineageDocs.length > 0 || legacyPremiumBlock !== null;
-      const targetLegacyPremium = readDonorPremiumBlock(recipientProgress, now);
-      const aggregateStrength = premiumProjectionStrength(aggregate.progressPatch);
-      const targetLegacyIsStronger = targetLegacyPremium !== null
-        && premiumProjectionStrength(recipientProgress) >= aggregateStrength;
-      const projectedProgress = targetLegacyIsStronger
-        ? recipientProgress
-        : recipientLineages.length > 0
-        ? aggregate.progressPatch
-        : !targetLegacyPremium && legacyPremiumBlock
-          ? { ...recipientProgress, ...legacyPremiumBlock }
-          : recipientProgress;
-
-      tx.set(processedRef, {
-        eventId,
-        eventType,
-        eventTimestampMs: transferEventTimeMs,
-        transferredFrom: sources,
-        transferredTo: targets,
-        donorIds: donorUsers.map((donor) => donor.id),
-        recipientId,
-        movedPremium,
-        movedLineages: donorLineageDocs.length,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-
-      for (const lineage of recipientLineageByHash.values()) {
-        tx.set(lineage.targetRef, {
-          ...lineage.state,
-          ownerUid: recipientId,
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        }, { merge: false });
-        for (const obsoleteRef of lineage.obsoleteRefs) {
-          tx.delete(obsoleteRef);
-        }
-      }
-      tx.update(recipientRef, {
-        progress: {
-          ...projectedProgress,
-          ...(movedPremium ? { premium_rc_event_type: 'TRANSFER', premium_rc_updated_at: String(now) } : {}),
-        },
-        updatedAt: now,
-        last_active_at: now,
-      });
-      writeAccessProjection(tx, recipientRef, projectedProgress, now);
-
-      for (const donor of donorUsers) {
-        if (donor.id === recipientId) continue;
-        const donorProgress = (donor.snap.data()?.progress ?? {}) as Record<string, unknown>;
-        if (!readDonorPremiumBlock(donorProgress, now)) continue;
-        const donorPatch = {
-          premium_plan: '',
-          premium_expiry: String(now),
-          premium_rc_active_lineage: '',
-          premium_rc_event_type: 'TRANSFER_OUT',
-          premium_rc_updated_at: String(now),
-        };
-        // зачем: ТОЛЬКО точечные пути `progress.<ключ>`. Раньше здесь стояло
-        // `tx.update(ref, …)` с патчем, положенным в поле `progress` одним
-        // объектом — а update с вложенным объектом ЗАМЕНЯЕТ его целиком,
-        // а не мержит (сторож в тестах ловит ту строку буквально). 27.08.2026 это
-        // стёрло платящему (uid 7b46c701…) весь прогресс: уровень, стрик,
-        // выученные слова — в документе осталось ровно 5 полей патча. Получатель
-        // строкой выше писался со спредом и не пострадал; здесь спред забыли.
-        // Точечные пути (а не спред) выбраны намеренно: они не перечитывают и не
-        // переписывают соседние поля, поэтому параллельная транзакция не может
-        // воскресить устаревшие значения.
-        const donorUpdate: Record<string, unknown> = { updatedAt: now };
-        for (const [key, value] of Object.entries(donorPatch)) {
-          donorUpdate[`progress.${key}`] = value;
-        }
-        tx.update(donor.ref, donorUpdate);
-        writeAccessProjectionFromPatch(tx, donor.ref, donorProgress, donorPatch, now);
-      }
-
-      return {
-        moved: movedPremium,
-        ...(movedPremium ? {} : { reason: 'no_active_donor_premium' as const }),
-        recipientId,
-        donorIds: donorUsers.map((donor) => donor.id),
-      };
-    });
-
-    if (out.retryable) {
-      res.status(503).json({ ok: false, kind: 'transfer', ...out });
-      return;
-    }
-    res.status(200).json({ ok: true, kind: 'transfer', ...out });
-  } catch (error) {
-    logger.error('revenuecat_transfer_webhook_failed', error);
-    await recordPaymentWebhookFailure(admin.firestore(), {
-      hook: 'transfer',
-      message: String(error),
-      nowMs: Date.now(),
-    });
-    res.status(500).send('Internal error');
-  }
+  logger.info('revenuecat_transfer_audit_only', {
+    eventType,
+    accepted,
+    eventIdHash: validEventId ? hashAuditIdentity(eventId) : null,
+    donorIdHashes: boundedSources.status === 'ok'
+      ? boundedSources.candidates.map(hashAuditIdentity)
+      : [],
+    recipientIdHashes: boundedTargets.status === 'ok'
+      ? boundedTargets.candidates.map(hashAuditIdentity)
+      : [],
+    donorCount: rawSources.length,
+    recipientCount: rawTargets.length,
+  });
+  res.status(200).json({ ok: true, kind: 'transfer', accepted: true, auditOnly: true });
 }
 
-export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REVENUECAT_WEBHOOK_AUTH] }, async (req, res) => {
+// Structural boundary for the connected deletion/no-resurrection contract.
+// This type is internal and cannot construct or export authenticated provenance.
+type AuthenticatedRevenueCatRoute = (
+  event: RevenueCatEvent,
+  provenance: AuthenticatedWebhookProvenance,
+  eventType: string,
+  productId: string,
+  res: any,
+) => Promise<void>;
+
+async function routeAuthenticatedRevenueCatWebhook(
+  event: RevenueCatEvent,
+  provenance: AuthenticatedWebhookProvenance,
+  eventType: string,
+  productId: string,
+  res: any,
+): Promise<void> {
+  const retiredFamily = retiredProductFamily(productId);
+  if (retiredFamily) {
+    await handleRetiredProductEvent(event, eventType, productId, retiredFamily, res);
+    return;
+  }
+
+  if (isSandboxEvent(event)) {
+    logger.info('revenuecat_webhook_sandbox_ignored', {
+      eventType,
+      productId,
+      environment: cleanId(event.environment),
+    });
+    res.status(200).json({ ok: true, ignored: 'sandbox_environment', environment: cleanId(event.environment) });
+    return;
+  }
+
+  if (eventType === 'TRANSFER') {
+    await handleTransferEvent(event, eventType, res);
+    return;
+  }
+
+  if (!looksLikePremiumSubscription(event)) {
+    logger.info('[REVENUECAT] not_managed_product', { eventType, productId });
+    res.status(200).json({ ok: true, ignored: 'not_managed_product' });
+    return;
+  }
+
+  await handlePremiumSubscriptionEvent(event, eventType, productId, provenance, res);
+}
+
+async function dispatchAuthenticatedRevenueCatWebhook(
+  req: any,
+  res: any,
+  expectedAuth: string,
+): Promise<void> {
   if (req.method !== 'POST') {
     res.status(405).send('Method not allowed');
+    return;
+  }
+  if (!expectedAuth || !authMatches(req.headers?.authorization, expectedAuth)) {
+    res.status(401).send('Unauthorized');
     return;
   }
 
@@ -1182,50 +1155,30 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
   const event = body?.event;
   const eventType = cleanId(event?.type).toUpperCase();
   const productId = cleanId(event?.product_id);
-
   if (!event || !eventType) {
     res.status(400).send('Bad request');
     return;
   }
 
-  const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
-  if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
-    res.status(401).send('Unauthorized');
-    return;
-  }
+  await routeAuthenticatedRevenueCatWebhook(
+    event,
+    authenticatedWebhookProvenance(),
+    eventType,
+    productId,
+    res,
+  );
+}
 
-  // зачем: D136/D139 — снятые товары (жемчуг, минуты и подписка MAX) получают
-  // явный лог-отказ раньше любой маршрутизации, в том числе в SANDBOX: так
-  // ни одна будущая ветка не сможет их случайно начислить.
-  const retiredFamily = retiredProductFamily(productId);
-  if (retiredFamily) {
-    await handleRetiredProductEvent(event, eventType, productId, retiredFamily, res);
-    return;
-  }
-
-  // Premium SANDBOX events always remain blocked.
-  if (isSandboxEvent(event)) {
-    logger.info('revenuecat_webhook_sandbox_ignored', { eventType, productId, environment: cleanId(event.environment) });
-    res.status(200).json({ ok: true, ignored: 'sandbox_environment', environment: cleanId(event.environment) });
-    return;
-  }
-
-  // TRANSFER moves entitlements between app_user_ids (anonymous → stable_id after
-  // login). It carries no product_id, so handle it before the premium/shard routing.
-  if (eventType === 'TRANSFER') {
-    await handleTransferEvent(event, eventType, res);
-    return;
-  }
-
-  const premium = looksLikePremiumSubscription(event);
-  if (!premium) {
-    logger.info('[REVENUECAT] not_managed_product', { eventType, productId });
-    res.status(200).json({ ok: true, ignored: 'not_managed_product' });
-    return;
-  }
-
-  await handlePremiumSubscriptionEvent(event, eventType, productId, res);
-});
+export const revenueCatShardsWebhook = onRequest(
+  { region: REGION, secrets: [REVENUECAT_WEBHOOK_AUTH] },
+  async (req, res) => {
+    await dispatchAuthenticatedRevenueCatWebhook(
+      req,
+      res,
+      REVENUECAT_WEBHOOK_AUTH.value().trim(),
+    );
+  },
+);
 
 export const __revenueCatWebhookTestHooks = {
   candidateUserIds,
@@ -1242,7 +1195,7 @@ export const __revenueCatWebhookTestHooks = {
   transferSourceIds,
   revenueCatLifecycleReasonFields,
   handleTransferEvent,
-  handlePremiumSubscriptionEvent,
+  deriveAuthenticatedOriginalEvidence,
   // D103/D136/D139: снятые товары (жемчуг, минуты и подписка MAX) — только лог-отказ.
   retiredProductFamily,
   handleRetiredProductEvent,

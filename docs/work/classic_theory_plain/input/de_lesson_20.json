@@ -1,0 +1,722 @@
+{
+ "lang": "de",
+ "lesson": 20,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:20:01",
+   "target": "Der Bus ist schneller als ich.",
+   "ru": "Автобус быстрее меня.",
+   "uk": "Автобус швидший за мене."
+  },
+  {
+   "id": "de:20:02",
+   "target": "Der Zug ist schneller als der Bus.",
+   "ru": "Поезд быстрее автобуса.",
+   "uk": "Поїзд швидший за автобус."
+  },
+  {
+   "id": "de:20:03",
+   "target": "Das Fahrrad ist langsamer als der Zug.",
+   "ru": "Велосипед медленнее поезда.",
+   "uk": "Велосипед повільніший за поїзд."
+  },
+  {
+   "id": "de:20:04",
+   "target": "Die Bahn ist billiger als das Taxi.",
+   "ru": "Поездка на электричке дешевле поездки на такси.",
+   "uk": "Поїздка електричкою дешевша за поїздку на таксі."
+  },
+  {
+   "id": "de:20:05",
+   "target": "Das Taxi ist teurer als die Bahn.",
+   "ru": "Такси дороже электрички.",
+   "uk": "Таксі дорожче за електричку."
+  },
+  {
+   "id": "de:20:06",
+   "target": "Dieses Zimmer ist größer.",
+   "ru": "Эта комната больше.",
+   "uk": "Ця кімната більша."
+  },
+  {
+   "id": "de:20:07",
+   "target": "Das Bad ist kleiner.",
+   "ru": "Ванная меньше.",
+   "uk": "Ванна кімната менша."
+  },
+  {
+   "id": "de:20:08",
+   "target": "Der Flur ist länger.",
+   "ru": "Коридор длиннее.",
+   "uk": "Коридор довший."
+  },
+  {
+   "id": "de:20:09",
+   "target": "Die Küche ist heller.",
+   "ru": "Кухня светлее.",
+   "uk": "Кухня світліша."
+  },
+  {
+   "id": "de:20:10",
+   "target": "Der Garten ist ruhiger.",
+   "ru": "В саду тише.",
+   "uk": "У саду тихіше."
+  },
+  {
+   "id": "de:20:11",
+   "target": "Mein Koffer ist leichter als deiner.",
+   "ru": "Мой чемодан легче твоего.",
+   "uk": "Моя валіза легша за твою."
+  },
+  {
+   "id": "de:20:12",
+   "target": "Meine Tasche ist schwerer als deine.",
+   "ru": "Моя сумка тяжелее твоей.",
+   "uk": "Моя сумка важча за твою."
+  },
+  {
+   "id": "de:20:13",
+   "target": "Der neue Mantel ist wärmer.",
+   "ru": "Новое пальто теплее.",
+   "uk": "Нове пальто тепліше."
+  },
+  {
+   "id": "de:20:14",
+   "target": "Das zweite Regal ist breiter.",
+   "ru": "Вторая полка шире.",
+   "uk": "Друга полиця ширша."
+  },
+  {
+   "id": "de:20:15",
+   "target": "Die alte Treppe ist schmaler.",
+   "ru": "Старая лестница более узкая.",
+   "uk": "Старі сходи вужчі."
+  },
+  {
+   "id": "de:20:16",
+   "target": "Heute ist es kälter als gestern.",
+   "ru": "Сегодня холоднее, чем вчера.",
+   "uk": "Сьогодні холодніше, ніж учора."
+  },
+  {
+   "id": "de:20:17",
+   "target": "Im Süden ist es wärmer.",
+   "ru": "На юге теплее.",
+   "uk": "На півдні тепліше."
+  },
+  {
+   "id": "de:20:18",
+   "target": "Der Wind ist heute stärker.",
+   "ru": "Сегодня ветер сильнее.",
+   "uk": "Сьогодні вітер сильніший."
+  },
+  {
+   "id": "de:20:19",
+   "target": "Das Wasser ist jetzt sauberer.",
+   "ru": "Вода теперь чище.",
+   "uk": "Вода тепер чистіша."
+  },
+  {
+   "id": "de:20:20",
+   "target": "Der Strand ist hier schöner.",
+   "ru": "Пляж здесь красивее.",
+   "uk": "Пляж тут гарніший."
+  },
+  {
+   "id": "de:20:21",
+   "target": "Ich trinke lieber Tee.",
+   "ru": "Я предпочитаю чай.",
+   "uk": "Я віддаю перевагу чаю."
+  },
+  {
+   "id": "de:20:22",
+   "target": "Anna fährt lieber mit dem Zug.",
+   "ru": "Анна предпочитает ездить поездом.",
+   "uk": "Анна воліє їздити поїздом."
+  },
+  {
+   "id": "de:20:23",
+   "target": "Wir kochen lieber zu Hause.",
+   "ru": "Мы предпочитаем готовить дома.",
+   "uk": "Ми вважаємо за краще готувати вдома."
+  },
+  {
+   "id": "de:20:24",
+   "target": "Tom liest lieber am Fenster.",
+   "ru": "Том предпочитает читать у окна.",
+   "uk": "Том вважає за краще читати біля вікна."
+  },
+  {
+   "id": "de:20:25",
+   "target": "Ihr wohnt jetzt näher am Bahnhof.",
+   "ru": "Теперь вы живёте ближе к вокзалу.",
+   "uk": "Тепер ви живете ближче до вокзалу."
+  },
+  {
+   "id": "de:20:26",
+   "target": "Heute geht es mir besser.",
+   "ru": "Сегодня мне лучше.",
+   "uk": "Сьогодні мені краще."
+  },
+  {
+   "id": "de:20:27",
+   "target": "Das andere Handy funktioniert besser.",
+   "ru": "Другой телефон работает лучше.",
+   "uk": "Інший телефон працює краще."
+  },
+  {
+   "id": "de:20:28",
+   "target": "Nach der Pause höre ich besser.",
+   "ru": "После перерыва я лучше слышу.",
+   "uk": "Після перерви я краще чую."
+  },
+  {
+   "id": "de:20:29",
+   "target": "Diese Jacke passt besser.",
+   "ru": "Эта куртка лучше сидит.",
+   "uk": "Ця куртка краще сидить."
+  },
+  {
+   "id": "de:20:30",
+   "target": "Der neue Ofen braucht weniger Strom.",
+   "ru": "Новая духовка расходует меньше электричества.",
+   "uk": "Нова духовка витрачає менше електрики."
+  },
+  {
+   "id": "de:20:31",
+   "target": "Die Tickets kosten jetzt mehr.",
+   "ru": "Билеты теперь стоят дороже.",
+   "uk": "Квитки тепер коштують дорожче."
+  },
+  {
+   "id": "de:20:32",
+   "target": "Ich habe heute weniger Zeit.",
+   "ru": "Сегодня у меня меньше времени.",
+   "uk": "Сьогодні у мене менше часу."
+  },
+  {
+   "id": "de:20:33",
+   "target": "Der direkte Weg ist kürzer.",
+   "ru": "Прямая дорога короче.",
+   "uk": "Пряма дорога коротша."
+  },
+  {
+   "id": "de:20:34",
+   "target": "Die Fahrt dauert heute länger.",
+   "ru": "Сегодня поездка занимает больше времени.",
+   "uk": "Сьогодні подорож займає більше часу."
+  },
+  {
+   "id": "de:20:35",
+   "target": "Diese Uhr ist genauer.",
+   "ru": "Эти часы точнее.",
+   "uk": "Цей годинник точніший."
+  },
+  {
+   "id": "de:20:36",
+   "target": "Der erste Bus kommt früher.",
+   "ru": "Первый автобус приходит раньше.",
+   "uk": "Перший автобус приходить раніше."
+  },
+  {
+   "id": "de:20:37",
+   "target": "Die letzte Bahn fährt später.",
+   "ru": "Последняя электричка отправляется позже.",
+   "uk": "Остання електричка відправляється пізніше."
+  },
+  {
+   "id": "de:20:38",
+   "target": "Anna ist älter als Tom.",
+   "ru": "Анна старше Тома.",
+   "uk": "Анна старша за Тома."
+  },
+  {
+   "id": "de:20:39",
+   "target": "Tom ist jünger als Anna.",
+   "ru": "Том младше Анны.",
+   "uk": "Том молодший за Анну."
+  },
+  {
+   "id": "de:20:40",
+   "target": "Der rote Eimer ist größer als der blaue.",
+   "ru": "Красное ведро больше синего.",
+   "uk": "Червоне відро більше за синє."
+  },
+  {
+   "id": "de:20:41",
+   "target": "Der Bus ist so voll wie gestern.",
+   "ru": "Автобус так же полон, как вчера.",
+   "uk": "Автобус такий самий повний, як учора."
+  },
+  {
+   "id": "de:20:42",
+   "target": "Eure Küche ist so groß wie unsere.",
+   "ru": "Ваша кухня такая же большая, как наша.",
+   "uk": "Ваша кухня така ж велика, як наша."
+  },
+  {
+   "id": "de:20:43",
+   "target": "Ich bin genauso müde wie du.",
+   "ru": "Я устал не меньше тебя.",
+   "uk": "Я втомився не менше за тебе."
+  },
+  {
+   "id": "de:20:44",
+   "target": "Die Suppe ist nicht so heiß wie der Tee.",
+   "ru": "Суп не такой горячий, как чай.",
+   "uk": "Суп не такий гарячий, як чай."
+  },
+  {
+   "id": "de:20:45",
+   "target": "Das Zimmer ist nicht so laut wie der Flur.",
+   "ru": "В комнате не так шумно, как в коридоре.",
+   "uk": "У кімнаті не так галасливо, як у коридорі."
+  },
+  {
+   "id": "de:20:46",
+   "target": "Welcher Zug ist am schnellsten?",
+   "ru": "Какой поезд самый быстрый?",
+   "uk": "Який поїзд найшвидший?"
+  },
+  {
+   "id": "de:20:47",
+   "target": "Am liebsten schwimme ich im See.",
+   "ru": "Больше всего я люблю плавать в озере.",
+   "uk": "Найбільше я люблю плавати в озері."
+  },
+  {
+   "id": "de:20:48",
+   "target": "Dieser Platz gefällt mir am besten.",
+   "ru": "Это место мне нравится больше всего.",
+   "uk": "Це місце мені подобається найбільше."
+  },
+  {
+   "id": "de:20:49",
+   "target": "Hier ist das Wasser am tiefsten.",
+   "ru": "Здесь вода глубже всего.",
+   "uk": "Тут вода найглибша."
+  },
+  {
+   "id": "de:20:50",
+   "target": "Morgens ist der Laden am ruhigsten.",
+   "ru": "Утром в магазине тише всего.",
+   "uk": "Вранці в магазині найтише."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Wind",
+   "ru": "ветер",
+   "uk": "вітер"
+  },
+  {
+   "lemma": "der Strand",
+   "ru": "пляж",
+   "uk": "пляж"
+  },
+  {
+   "lemma": "der Strom",
+   "ru": "электричество",
+   "uk": "електрика"
+  },
+  {
+   "lemma": "weniger",
+   "ru": "меньше, в меньшем количестве",
+   "uk": "менше, у меншій кількості"
+  },
+  {
+   "lemma": "lieber",
+   "ru": "с большей охотой, предпочтительнее",
+   "uk": "з більшим полюванням, краще"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  }
+ ],
+ "oldTopicTitle": "Сравниваю билеты, вещи и варианты",
+ "oldTheoryRu": "У двух способов поездки разные цены и скорость. Для различия добавляется форма сравнения и затем `als`, если назван второй участник. Одно описание должно относиться к обеим сопоставляемым вещам. Второй участник иногда понятен: при выборе номера достаточно сказать, что эта комната больше. Не требуется искусственно заканчивать каждую фразу словами «чем та». Но сравнительную форму при этом оставь. Некоторые короткие прилагательные меняют гласную: `warm – wärmer`, `kalt – kälter`. Не вставляй умлаут во все слова подряд. Выучи пару в двух близких бытовых примерах. Предпочтение и качество не одно и то же. `Lieber` сообщает, что сам человек предпочитает сделать. `Besser` говорит, что лучше получается или работает. Сравни вкус напитка с желанием его выпить. Количество не обязательно сравнивают прилагательным: если стало больше или меньше денег или времени, годятся `mehr` и `weniger`. Время сравнивают обычной сравнительной формой: `später`, `früher`. Проверь, что именно сравнивается. Когда различия нет, ставь `wie` после `so` или `genauso`: речь о равенстве по выбранному признаку. Конструкция с `nicht so` выражает обратное, но всё равно использует `wie`. Выбор из целой группы выражают формой с `am`: самый быстрый из нескольких поездов, лучшее место из нескольких вариантов. Для оценки качества запомни `gut – besser – am besten`."
+}

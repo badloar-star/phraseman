@@ -1,0 +1,12 @@
+[
+{"id": "en-classic-r1:13.03", "type": "B1", "field": "tiles", "problem": "Соблазн 'some' на месте артикля даёт верную естественную фразу 'We will bring some cups.' — ru/uk «чашки» её не исключают, в alternatives её нет", "fix": {"position": 3, "replace_distractor": "some", "with": "much"}},
+{"id": "en-classic-r1:13.09", "type": "B1", "field": "tiles", "problem": "После 'the' все соблазны (locked, have, do, does, is) — не существительные; позиция решается без знания слова", "fix": {"position": 4, "replace_distractor": "do", "with": "door"}},
+{"id": "en-classic-r1:13.13", "type": "M", "field": "ru", "problem": "'keep a seat' — «займём/придержим место», а не «зарезервируем» (это reserve); подсказка толкает к другому глаголу", "fix": "Мы займём для вас место."},
+{"id": "en-classic-r1:13.16", "type": "M", "field": "ru", "problem": "«Отвечу на телефонный звонок» — канцелярит/калька; по-русски 'answer the phone' = «возьму трубку»", "fix": "Я возьму трубку."},
+{"id": "en-classic-r1:13.16", "type": "M", "field": "uk", "problem": "«Відповім на телефонний дзвінок» — калька; природно «візьму слухавку»", "fix": "Я візьму слухавку."},
+{"id": "en-classic-r1:13.16", "type": "B1", "field": "tiles", "problem": "После 'the' все соблазны (go, is, clean, forgot, are) — не существительные; позиция решается без знания слова", "fix": {"position": 4, "replace_distractor": "go", "with": "door"}},
+{"id": "en-classic-r1:13.29", "type": "B2", "field": "ru", "problem": "locker = шкафчик (так и в uk «шафку»), а «камера хранения» — это luggage storage; ru и uk расходятся по смыслу", "fix": "Эта сумка не поместится в шкафчик."},
+{"id": "en-classic-r1:13.46", "type": "B2", "field": "uk", "problem": "ru «светофор», uk «Це світло» — расхождение и калька с английского (по-українськи «світлофор загориться зеленим»)", "fix": "Цей світлофор за мить загориться зеленим."},
+{"id": "en-classic-r1:13.49", "type": "M", "field": "uk", "problem": "«я зачиню» без дополнения звучит обрывочно и расходится с ru «я всё закрою» (lock up = закрыть всё)", "fix": "Не хвилюйся, я все зачиню."},
+{"id": "en-classic-r1:14.16", "type": "M", "field": "uk", "problem": "«Станція ближче» — прислівник вместо согласованного прикметника (русизм); нужно «ближча»", "fix": "Станція ближча, ніж готель."}
+]

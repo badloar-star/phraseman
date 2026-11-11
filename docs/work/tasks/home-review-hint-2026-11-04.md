@@ -93,3 +93,123 @@ Governance-ID: TG-A93C76C7DDB3
 
 Governance-ID: TG-4944AF848CD1
 (Закрытие статусов моих пакетов по инвентарю Моментов, 05.11; правка текста paywall-fine отложена до кадра и слова координатора.)
+
+Governance-ID: TG-9B3AAC81DA73
+(Пик: короткая строка «Пока здесь никого» в пустом списке «Все участники», стиль 2.0, по слову координатора 05.11.)
+
+Governance-ID: TG-770D4B71286C
+(Друзья: убрать строки-описания наград 1 и 2 с прогрессом с вкладки, по слову владельца через координатора 05.11; награды остаются в «Как это работает».)
+
+Governance-ID: TG-158E52EBB627
+Governance-ID: TG-79F9591E65FF
+Governance-ID: TG-57FE154567C6
+Governance-ID: TG-7662D7596E50
+(05.11 утро: Друзья без строк наград 1/2 + сторож + замок; затем Наборы по макету и Пик B по списку расхождений.)
+
+Governance-ID: TG-FB12B3C18471
+Governance-ID: TG-8414F59BA4F4
+Governance-ID: TG-45E739BE8850
+(Карточки 0/0 по макету cards-zero: без плашки «Начни с готового», кнопка «Создать набор»; затем Играть/заголовок в Пике, Главная 1:1.)
+
+Governance-ID: TG-5C273962A7EB
+(Друзья: разбор сиротской переработки «Как это работает» referral_ladder_how_sheet + strings: решение по вердикту.)
+
+Governance-ID: TG-98AAEAB4501F
+Governance-ID: TG-21539AEC10D5
+(Пик B: убрана строка «Друзья на этой неделе»; Играть — по кадру.)
+
+Governance-ID: TG-E804EF0A7756
+(Главная 1:1: пилюля серии, «Сегодня», Фраза дня — по golden rev6-home-free-0.)
+
+Governance-ID: TG-5C9BDC794184
+(Сиротская лесенка приглашений: один атомарный коммит по решению координатора 05.11.)
+
+Governance-ID: TG-8178A8D474F4
+Governance-ID: TG-64702B1C4DB1
+Governance-ID: TG-A3FE61BABDF0
+(Главная: лента видео вернуть по логам + сортировка новое-первым; бейдж награды НЕ кодить до ОК владельца.)
+
+Governance-ID: TG-2A5AEAD5E502
+
+Governance-ID: TG-7CB0A82123C8
+Governance-ID: TG-F41D23362BA8
+(Бейдж награды: флаг/got/eligibility из хуков Моментов.)
+
+Governance-ID: TG-3EB9135A7987
+(Очередь координатора: Карточки (чип/«осталось») — уже есть по D174; Фраза дня с переводом; Играть по кадру.)
+
+Governance-ID: TG-F0EF2A576D2D
+(P0: лента видео не видна на устройстве владельца + шов в шапке сцены.)
+
+Governance-ID: TG-EB3534727C02
+(Раунд 2 удобств: Настройки — версия, «Только главное»; Главная — шов шапки по слою.)
+
+Governance-ID: TG-131F620D25C2
+(Настройки п.4: звук «верно» при включении звуковых эффектов.)
+
+Governance-ID: TG-67C93B417DB1
+
+Governance-ID: TG-6EF710F08EC6
+
+Governance-ID: TG-4FC9CE318AC0
+
+Governance-ID: TG-B3CCD85779EC
+
+Governance-ID: TG-89214BFB591E
+
+Governance-ID: TG-E72C017537EB
+
+Governance-ID: TG-C24A72B87CA2
+
+Governance-ID: TG-1D1C8AC7C5A9
+
+Governance-ID: TG-2851C6C63E01
+
+Governance-ID: TG-05A931177B5D
+
+Governance-ID: TG-68098477FEEE
+
+Governance-ID: TG-556BCE084496
+
+Governance-ID: TG-7A33DB1D9836
+
+Governance-ID: TG-6956E694B7A5
+
+Governance-ID: TG-20350279F8DE
+
+Governance-ID: TG-7CB14334E73D
+
+Governance-ID: TG-4CFB1CD0546B
+
+Governance-ID: TG-9DCD14D75956
+
+Governance-ID: TG-EE930FC99C43
+
+Governance-ID: TG-E4B8DFFDC62D
+
+Governance-ID: TG-487B954B9B4F
+
+Governance-ID: TG-CBA3D1EDA90C
+
+Governance-ID: TG-44C88D148C3F
+
+Governance-ID: TG-0F2F93F108B7
+
+Governance-ID: TG-D9A229B70F7A
+
+Governance-ID: TG-3BFD9E332323
+
+Governance-ID: TG-94E3D39D9EAE
+Governance-ID: TG-WELCOME-NEXT-TABBAR-1793883827
+Governance-ID: TG-6AE6DF46B731
+Governance-ID: TG-0AE670EDE273
+Governance-ID: TG-8D645C8C91ED
+Governance-ID: TG-E23A168BD3C4
+Governance-ID: TG-84D98BF37FEF
+Governance-ID: TG-C3E9ADA76D88
+Governance-ID: TG-33E50503FFA7
+Governance-ID: TG-F6CC7FFCAA53
+Governance-ID: TG-4D2897ACFBF1
+Governance-ID: TG-289F97A2ECD5
+Governance-ID: TG-2E9897D1F65F
+Governance-ID: TG-2E9897D1F65F

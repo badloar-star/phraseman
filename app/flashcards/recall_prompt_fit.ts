@@ -5,7 +5,7 @@
 // Правило то же, что у карточек (владелец 18.10): длиннее текст или уже место — кегль меньше, перенос по словам, без «…» и без
 // adjustsFontSizeToFit. Фраза, которая помещается в четыре строки макетного размера, остаётся 34/40 — вид совпадает с макетом.
 import { effectiveFontScale } from '../../constants/font_scale_cap';
-import { fitPhraseFontSize } from './fit_phrase_font';
+import { estimateWrappedLines, fitPhraseFontSize } from './fit_phrase_font';
 
 export const RECALL_PROMPT_BASE_SIZE = 34;
 export const RECALL_PROMPT_BASE_LINE = 40;
@@ -34,6 +34,21 @@ export function recallPromptFit(input: Readonly<{ text: string; contentWidth: nu
     : Math.round((fontSize * RECALL_PROMPT_BASE_LINE) / RECALL_PROMPT_BASE_SIZE);
   const lineHeight = scale === 1 ? baseLine : Math.round(baseLine * scale * 10) / 10;
   return { fontSize, lineHeight };
+}
+
+/**
+ * Сколько места сверху и снизу оставить фразе под подпись задания, приколотую к верху карточки (top 18, строка 16/21).
+ *
+ * зачем (проверка на эмуляторе 11.11, ширина 320 + шрифт 1.5): подпись «Напиши на изучаемом языке» переносится на две строки, и фраза
+ * вставала вплотную к ней. Зазор считается по числу строк подписи. Одна строка при обычном шрифте даёт 24 — одна и две строки фразы
+ * по-прежнему умещаются в 170 макета, вид не меняется.
+ */
+export function recallInstructionClearance(input: Readonly<{ instruction: string; contentWidth: number; fontScale: number }>): number {
+  const scale = effectiveFontScale(input.fontScale);
+  // подпись тянется на всю ширину карточки (left 0, right 0) — вычитаются только поля экрана
+  const widthPx = input.contentWidth - RECALL_PROMPT_SIDE_INSETS / 2;
+  const lines = widthPx > 0 && input.instruction ? estimateWrappedLines(input.instruction, 16, widthPx, scale) : 1;
+  return Math.round(18 + lines * 21 * scale + 5 - 20);
 }
 
 /* expo-router: app/ files are treated as routes and need a default export. */

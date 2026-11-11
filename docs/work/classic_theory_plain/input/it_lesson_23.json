@@ -1,0 +1,809 @@
+{
+ "lang": "it",
+ "lesson": 23,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:23:01",
+   "target": "Gli parlo.",
+   "ru": "Я разговариваю с ним.",
+   "uk": "Я розмовляю з ним."
+  },
+  {
+   "id": "it:23:02",
+   "target": "Gli parli.",
+   "ru": "Ты разговариваешь с ним.",
+   "uk": "Ти розмовляєш з ним."
+  },
+  {
+   "id": "it:23:03",
+   "target": "Le parliamo.",
+   "ru": "Мы разговариваем с ней.",
+   "uk": "Ми розмовляємо з нею."
+  },
+  {
+   "id": "it:23:04",
+   "target": "Parlo a loro.",
+   "ru": "Я разговариваю с ними.",
+   "uk": "Я розмовляю з ними."
+  },
+  {
+   "id": "it:23:05",
+   "target": "Lei parla a loro.",
+   "ru": "Она с ними разговаривает.",
+   "uk": "Вона розмовляє з ними."
+  },
+  {
+   "id": "it:23:06",
+   "target": "Parlate con loro.",
+   "ru": "Вы (мн.) разговариваете с ними.",
+   "uk": "Ви (мн.) розмовляєте з ними."
+  },
+  {
+   "id": "it:23:07",
+   "target": "Io le scrivo.",
+   "ru": "Я ей пишу.",
+   "uk": "Я пишу їй."
+  },
+  {
+   "id": "it:23:08",
+   "target": "Gli scrivi.",
+   "ru": "Ты им пишешь.",
+   "uk": "Ти пишеш їм."
+  },
+  {
+   "id": "it:23:09",
+   "target": "Paolo le risponde.",
+   "ru": "Паоло ей отвечает.",
+   "uk": "Паоло відповідає їй."
+  },
+  {
+   "id": "it:23:10",
+   "target": "Lea risponde a loro.",
+   "ru": "Леа им отвечает.",
+   "uk": "Леа відповідає їм."
+  },
+  {
+   "id": "it:23:11",
+   "target": "Le telefonerò stasera.",
+   "ru": "Я позвоню ей сегодня вечером.",
+   "uk": "Я зателефоную їй сьогодні ввечері."
+  },
+  {
+   "id": "it:23:12",
+   "target": "Gli telefoneremo domani.",
+   "ru": "Мы позвоним им завтра.",
+   "uk": "Ми зателефонуємо їм завтра."
+  },
+  {
+   "id": "it:23:13",
+   "target": "Le descrivo il tragitto a piedi.",
+   "ru": "Я объясняю ей, как пройти пешком.",
+   "uk": "Я пояснюю їй, як пройти пішки."
+  },
+  {
+   "id": "it:23:14",
+   "target": "Lui gli manda una foto.",
+   "ru": "Он отправляет им фотографию.",
+   "uk": "Він надсилає їм фотографію."
+  },
+  {
+   "id": "it:23:15",
+   "target": "Gli presto la mia penna.",
+   "ru": "Я одалживаю ему свою ручку.",
+   "uk": "Я позичаю йому свою ручку."
+  },
+  {
+   "id": "it:23:16",
+   "target": "Gli presti delle sedie.",
+   "ru": "Ты одалживаешь им стулья.",
+   "uk": "Ти позичаєш їм стільці."
+  },
+  {
+   "id": "it:23:17",
+   "target": "Gli diamo appuntamento.",
+   "ru": "Мы назначаем ему встречу.",
+   "uk": "Ми призначаємо йому зустріч."
+  },
+  {
+   "id": "it:23:18",
+   "target": "Gli mostrate l’uscita.",
+   "ru": "Вы показываете им выход.",
+   "uk": "Ви показуєте їм вихід."
+  },
+  {
+   "id": "it:23:19",
+   "target": "Gli portano un bicchiere d’acqua.",
+   "ru": "Они приносят ему стакан воды.",
+   "uk": "Вони приносять йому склянку води."
+  },
+  {
+   "id": "it:23:20",
+   "target": "Gli racconto del mio viaggio.",
+   "ru": "Я рассказываю им о своей поездке.",
+   "uk": "Я розповідаю їм про свою подорож."
+  },
+  {
+   "id": "it:23:21",
+   "target": "Le regalo un libro per il suo compleanno.",
+   "ru": "Я дарю ей книгу на день рождения.",
+   "uk": "Я дарую їй книгу на день народження."
+  },
+  {
+   "id": "it:23:22",
+   "target": "Gli scrivo ogni domenica.",
+   "ru": "Я пишу им каждое воскресенье.",
+   "uk": "Я пишу їм щонеділі."
+  },
+  {
+   "id": "it:23:23",
+   "target": "Le lascio la mia chiave alla reception.",
+   "ru": "Я оставляю ей свой ключ на ресепшене.",
+   "uk": "Я залишаю їй свій ключ на рецепції."
+  },
+  {
+   "id": "it:23:24",
+   "target": "Le chiedo un consiglio prima di firmare.",
+   "ru": "Я спрашиваю у нее совета перед тем, как подписать.",
+   "uk": "Я прошу її поради перед тим, як підписати."
+  },
+  {
+   "id": "it:23:25",
+   "target": "Gli spiego le regole del gioco.",
+   "ru": "Я объясняю им правила игры.",
+   "uk": "Я пояснюю їм правила гри."
+  },
+  {
+   "id": "it:23:26",
+   "target": "Le restituisco la carta dopo il pagamento.",
+   "ru": "Я возвращаю ей карту после оплаты.",
+   "uk": "Я повертаю їй картку після оплати."
+  },
+  {
+   "id": "it:23:27",
+   "target": "Gli offro un caffè mentre aspettano.",
+   "ru": "Я предлагаю им кофе, пока они ждут.",
+   "uk": "Я пропоную їм каву, поки вони чекають."
+  },
+  {
+   "id": "it:23:28",
+   "target": "Le leggo una storia prima di andare a letto.",
+   "ru": "Я читаю ей сказку перед сном.",
+   "uk": "Я читаю їй казку перед сном."
+  },
+  {
+   "id": "it:23:29",
+   "target": "Le parlo della perdita in cucina.",
+   "ru": "Я рассказываю ей о протечке на кухне.",
+   "uk": "Я розповідаю їй про витік на кухні."
+  },
+  {
+   "id": "it:23:30",
+   "target": "Gli mostro il giardino dietro casa.",
+   "ru": "Я показываю им сад за домом.",
+   "uk": "Я показую їм сад за будинком."
+  },
+  {
+   "id": "it:23:31",
+   "target": "Non le rispondo subito.",
+   "ru": "Я не отвечаю ей сразу.",
+   "uk": "Я не відповідаю їй одразу."
+  },
+  {
+   "id": "it:23:32",
+   "target": "Lei non gli dice il prezzo.",
+   "ru": "Она не говорит им цену.",
+   "uk": "Вона не каже їм ціну."
+  },
+  {
+   "id": "it:23:33",
+   "target": "Non le diciamo niente.",
+   "ru": "Мы ей ничего не говорим.",
+   "uk": "Ми їй нічого не кажемо."
+  },
+  {
+   "id": "it:23:34",
+   "target": "Non gli scrivi mai?",
+   "ru": "Ты никогда им не пишешь?",
+   "uk": "Ти ніколи їм не пишеш?"
+  },
+  {
+   "id": "it:23:35",
+   "target": "Non vuole telefonarle.",
+   "ru": "Он не хочет ей звонить.",
+   "uk": "Він не хоче їй дзвонити."
+  },
+  {
+   "id": "it:23:36",
+   "target": "Ho intenzione di chiederle l’ora.",
+   "ru": "Я собираюсь спросить у неё время.",
+   "uk": "Я збираюся запитати в неї, котра година."
+  },
+  {
+   "id": "it:23:37",
+   "target": "Può lasciare loro un messaggio.",
+   "ru": "Вы можете оставить им сообщение.",
+   "uk": "Ви можете залишити їм повідомлення."
+  },
+  {
+   "id": "it:23:38",
+   "target": "Dobbiamo restituirgli il badge.",
+   "ru": "Нам нужно вернуть ему пропуск.",
+   "uk": "Нам потрібно повернути йому перепустку."
+  },
+  {
+   "id": "it:23:39",
+   "target": "Puoi passargli il sale?",
+   "ru": "Можешь передать ему соль?",
+   "uk": "Можеш передати йому сіль?"
+  },
+  {
+   "id": "it:23:40",
+   "target": "Vorrei dire loro grazie.",
+   "ru": "Я хотел бы сказать им спасибо.",
+   "uk": "Я хотів би сказати їм спасибі."
+  },
+  {
+   "id": "it:23:41",
+   "target": "Gli ho inviato il conto.",
+   "ru": "Я отправил ему счет.",
+   "uk": "Я надіслав йому рахунок."
+  },
+  {
+   "id": "it:23:42",
+   "target": "Abbiamo proposto loro un’altra data.",
+   "ru": "Мы предложили им другую дату.",
+   "uk": "Ми запропонували їм іншу дату."
+  },
+  {
+   "id": "it:23:43",
+   "target": "Mia sorella gli ha prestato la sua bicicletta.",
+   "ru": "Моя сестра одолжила ему свой велосипед.",
+   "uk": "Моя сестра позичила йому свій велосипед."
+  },
+  {
+   "id": "it:23:44",
+   "target": "Gli hanno chiesto l’indirizzo.",
+   "ru": "Они спросили у него адрес.",
+   "uk": "Вони запитали в нього адресу."
+  },
+  {
+   "id": "it:23:45",
+   "target": "Ha spiegato loro il percorso?",
+   "ru": "Вы объяснили им маршрут?",
+   "uk": "Ви пояснили їм маршрут?"
+  },
+  {
+   "id": "it:23:46",
+   "target": "Chi le ha regalato questa sciarpa?",
+   "ru": "Кто подарил ей этот шарф?",
+   "uk": "Хто подарував їй цей шарф?"
+  },
+  {
+   "id": "it:23:47",
+   "target": "Quando pensi di rispondergli?",
+   "ru": "Когда ты собираешься им ответить?",
+   "uk": "Коли ти збираєшся їм відповісти?"
+  },
+  {
+   "id": "it:23:48",
+   "target": "Ti fidi di lei?",
+   "ru": "Ты ей доверяешь?",
+   "uk": "Ти їй довіряєш?"
+  },
+  {
+   "id": "it:23:49",
+   "target": "Auguro loro buon viaggio.",
+   "ru": "Желаю им хорошей поездки.",
+   "uk": "Я бажаю їм щасливої дороги."
+  },
+  {
+   "id": "it:23:50",
+   "target": "Lei gli ricorda l’appuntamento.",
+   "ru": "Она напоминает ему о встрече.",
+   "uk": "Вона нагадує йому про зустріч."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il consiglio",
+   "ru": "совет",
+   "uk": "порада"
+  },
+  {
+   "lemma": "la perdita",
+   "ru": "протечка",
+   "uk": "протікання"
+  },
+  {
+   "lemma": "il compleanno",
+   "ru": "день рождения",
+   "uk": "день народження"
+  },
+  {
+   "lemma": "la regola",
+   "ru": "правило",
+   "uk": "правило"
+  },
+  {
+   "lemma": "il pagamento",
+   "ru": "оплата",
+   "uk": "оплата"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  }
+ ],
+ "oldTopicTitle": "Получатель действия: `gli` и `le`",
+ "oldTheoryRu": "У короткого местоимения здесь вопрос «кому?». Заменяя говорящего, меняй глагол, а не местоимение адресата: `gli parlo` и `gli parli`. С предметом и получателем раздели две роли. В «посылаю ей сообщение» сообщение — что посылаю, а она — кому. Не используй форму для прямого дополнения только из-за слова «она». `Le` может означать и вежливое «Вам», и «ей». Большая буква в вежливой записи возможна, но не обязательна. Отдельная ситуация должна объяснять, адресат перед нами или мы о нём говорим. В современном повседневном употреблении `gli` может относиться и к группе получателей. Когда форма двусмысленна, развёрнутое `a loro` делает адресата явным. Не выводи число лишь из одной плитки. С инфинитивом короткое местоимение можно присоединить в конце. В `devo scriverle` речь всё ещё о том, кому пишут; `devo scriverla` означало бы «должен написать её», например записку. После имени или полного адресата слово `a` может быть необходимо. Если заменяешь всю группу короткой формой, не ставь перед ней ещё одно `a`. Учти управление конкретного итальянского глагола. `Aiutare qualcuno` — помочь кому-то по смыслу, но в итальянском объект прямой: `lo aiuto`. Нельзя переносить исходный падеж в итальянский автоматически."
+}

@@ -193,20 +193,4 @@ describe('numeric energy v2 contract', () => {
       expect(source).toContain(`${latch}.current = false`);
     }
   });
-
-  it('covers recall and direct Learning V2 retry paid-entry callsites', () => {
-    const recall = read('app/flashcards_recall_session.tsx');
-    expect(recall).toContain("useEnergySessionIntent(");
-    expect(recall).toContain("'flashcards_recall'");
-    // зачем (03.10): интент берётся под запись журнала (resolveEnergyIntentForRecord), а не из manifest.
-    expect(recall).toContain('confirmSpendOne(recordIntent)');
-    expect(recall).toContain('resolveEnergyIntentForRecord(');
-    expect(recall).toContain('activity="flashcards"');
-
-    const directV2 = read('app/learning_v2_direct_session_player_v1.tsx');
-    expect(directV2).toContain('useEnergySessionIntent(');
-    expect(directV2).toContain('"learning_v2_session"');
-    expect(directV2).toContain('await confirmSpendOne(restartEnergyIntent)');
-    expect(directV2).toContain('restartEnergyBusyRef.current = true');
-  });
 });

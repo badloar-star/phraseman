@@ -1,0 +1,251 @@
+[
+ {
+  "id": "es:18:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «La» даёт верную фразу «La tengo aquí.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "La",
+   "with": "Mi"
+  }
+ },
+ {
+  "id": "es:18:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «las» даёт верную фразу «Ana las tiene en el bolso.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "las",
+   "with": "su"
+  }
+ },
+ {
+  "id": "es:18:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «la» даёт верную фразу «Luis no la tiene aquí.», её нет в alternatives",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "la",
+   "with": "mi"
+  }
+ },
+ {
+  "id": "es:18:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «los» даёт верную фразу «Mis hermanos los tienen aquí.», её нет в alternatives",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "mis"
+  }
+ },
+ {
+  "id": "es:18:09",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «его», uk «її» — разный род между ru и uk; target la",
+  "fix": "У нас её нет здесь."
+ },
+ {
+  "id": "es:18:11",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «La» даёт верную фразу «La buscas.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "La",
+   "with": "Un"
+  }
+ },
+ {
+  "id": "es:18:12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «lo» даёт верную фразу «Ana lo busca.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "lo",
+   "with": "su"
+  }
+ },
+ {
+  "id": "es:18:15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «la» даёт верную фразу «No la busco.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "la",
+   "with": "tu"
+  }
+ },
+ {
+  "id": "es:18:17",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Lo» даёт верную фразу «¿Lo cambias en la tienda?», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Lo",
+   "with": "Su"
+  }
+ },
+ {
+  "id": "es:18:21",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «la» даёт верную фразу «Ana la lleva a casa.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "la",
+   "with": "mi"
+  }
+ },
+ {
+  "id": "es:18:22",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «его», uk «її» — разный род между ru и uk; target La",
+  "fix": "Я забираю её со стойки регистрации."
+ },
+ {
+  "id": "es:18:22",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Lo» даёт верную фразу «Lo recojo en recepción.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Lo",
+   "with": "Mi"
+  }
+ },
+ {
+  "id": "es:18:24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Los» даёт верную фразу «Los llevo a casa.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Un"
+  }
+ },
+ {
+  "id": "es:18:26",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «La» даёт верную фразу «La envuelvo en casa.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "La",
+   "with": "Mi"
+  }
+ },
+ {
+  "id": "es:18:27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Las» даёт верную фразу «¿Las llevamos a casa?», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Mis"
+  }
+ },
+ {
+  "id": "es:18:29",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «его», uk «її» — разный род между ru и uk; target la",
+  "fix": "Я её не несу домой."
+ },
+ {
+  "id": "es:18:35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «la» даёт верную фразу «Mis hermanos no la necesitan hoy.», её нет в alternatives",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "la",
+   "with": "su"
+  }
+ },
+ {
+  "id": "es:18:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Lo» даёт верную фразу «Lo necesitamos hoy.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Lo",
+   "with": "Mi"
+  }
+ },
+ {
+  "id": "es:18:38",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «Los» даёт верную фразу «Los guardo en el bolsillo.», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Tus"
+  }
+ },
+ {
+  "id": "es:18:39",
+  "type": "B2",
+  "field": "ru",
+  "problem": "ru «Он … не нужен», uk «Вона … не потрібна» — разный род между ru и uk; target la",
+  "fix": "Она тебе сегодня не нужна."
+ },
+ {
+  "id": "es:18:39",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «lo» даёт верную фразу «No lo necesitas hoy.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "lo",
+   "with": "mi"
+  }
+ },
+ {
+  "id": "es:18:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «la» даёт верную фразу «No la dejamos en casa.», её нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "la",
+   "with": "tu"
+  }
+ },
+ {
+  "id": "es:18:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Подсказка задаёт только род русского слова, род испанского предмета неизвестен (курс сам даёт La на «он» и Lo на «она»); соблазн «La» даёт верную фразу «¿La dejamos en casa?», её нет в alternatives",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "La",
+   "with": "Tu"
+  }
+ },
+ {
+  "id": "es:20:22",
+  "type": "B4",
+  "field": "alternatives",
+  "problem": "Неграмматичный допустимый ответ «estas semana» (нет согласования)",
+  "fix": {
+   "add": [],
+   "remove": [
+    "Habéis leído el mensaje estas semana."
+   ]
+  }
+ }
+]

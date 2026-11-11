@@ -8,6 +8,8 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { onAccountOwnerChanged } from './account_owner_change';
+
 export const DIALOG_FIRST_FREE_SUMMARY_KEY = 'dialog_first_free_summary_v1';
 const PHRASE_MAX = 200;
 
@@ -30,6 +32,15 @@ export type DialogFirstSummaryParams = Readonly<{
 let cached: DialogFirstFreeSummary | null = null;
 let hydrated = false;
 let hydration: Promise<void> | null = null;
+
+// зачем (F17, аудит, владелец 11.11): итог разговора прошлого игрока в памяти уходил в пейвол следующего (его минуты и его
+// фразы «было → стало») и мешал записать собственный итог. Диск чистит выход/смена аккаунта (ключ в ACCOUNT_SWITCH_LEAK_KEYS).
+onAccountOwnerChanged('dialog_first_free_summary', () => {
+  console.log('[DIALOG-FIRST-SUMMARY]', 'owner_changed', JSON.stringify({ hadSummary: cached !== null, hydrated })); // guard-ok: одна строка на смену владельца, без текста фраз
+  cached = null;
+  hydrated = false;
+  hydration = null;
+});
 
 function clip(value: unknown): string | null {
   if (typeof value !== 'string') return null;

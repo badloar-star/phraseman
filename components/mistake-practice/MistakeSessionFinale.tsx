@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { triLang, type Lang } from '../../constants/i18n';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import { MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow } from '../mistakes-panel/PanelKit';
 import { RoundButton } from '../mistakes-panel/PracticeKit';
 

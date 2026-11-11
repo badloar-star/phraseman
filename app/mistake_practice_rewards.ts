@@ -1,7 +1,7 @@
 import {
   canonicalJsonV1,
   sha256Utf8,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import {
   projectMistakes,
@@ -13,12 +13,11 @@ import {
   loadMistakeEventJournal,
   type MistakePracticeStorage,
 } from './mistake_practice_store';
-import { commitMistakeCorrectionWalletComposite } from './learning_v2_owner_repository_runtime';
-import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
 import {
+  deriveMistakeRewardAccountScopeHash,
   parseMistakeCorrectionWalletComposite,
   type MistakeCorrectionWalletCompositeV1,
-} from '../modules/learning-v2/progress/mistake_correction_wallet_composite';
+} from '../modules/mistake-practice/correction_reward_receipt';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -121,7 +120,7 @@ async function claimCorrectionStarDefault(
   }
   const replayReceipt = Object.freeze({
     schemaVersion: 'mistake-correction-wallet-composite.v1',
-    accountScopeHash: deriveLearningV2EconomicAccountScopeHash(input.accountScope),
+    accountScopeHash: deriveMistakeRewardAccountScopeHash(input.accountScope),
     rewardKey: input.rewardKey,
     mistakeId: input.mistakeId,
     cycleId: input.cycleId,
@@ -131,8 +130,12 @@ async function claimCorrectionStarDefault(
     earnedAtMs: evidence.occurredAtMs,
     rewardVersion: 1,
   } as const);
-  await commitMistakeCorrectionWalletComposite(replayReceipt, { accountToken });
+  // зачем: раньше здесь звезда зачислялась в кошелёк курса занятий. Курс и его кошелёк удалены (зачисление зависело
+  // от серверной функции, которой больше нет) — награда теперь только отметка correction_rewarded в журнале ошибок:
+  // по ней экран показывает «исправлено», считает достижения и не выдаёт награду второй раз.
+  const verified = parseMistakeCorrectionWalletComposite(replayReceipt);
   assertOwnerCurrent();
+  console.log('[MISTAKE-REWARD] claim', JSON.stringify({ mistakeId: input.mistakeId, cycleId: input.cycleId, studyTarget: input.studyTarget, rewardKey: verified.rewardKey, evidence: evidence.eventId, source: 'local_journal' })); // guard-ok: одна строка на выданную награду
   return Object.freeze({ granted: true, replayReceipt });
 }
 
@@ -240,7 +243,7 @@ export async function flushPendingMistakeCorrectionRewards(
       if (!correctionEvent || marker.payload.rewardKey !== rewardKey) continue;
       replayReceipt = Object.freeze({
         schemaVersion: 'mistake-correction-wallet-composite.v1',
-        accountScopeHash: deriveLearningV2EconomicAccountScopeHash(input.accountScope),
+        accountScopeHash: deriveMistakeRewardAccountScopeHash(input.accountScope),
         rewardKey,
         mistakeId: marker.mistakeId,
         cycleId: marker.cycleId,
@@ -319,7 +322,7 @@ export async function flushPendingMistakeCorrectionRewards(
       if (!claim.granted) continue;
       const replayReceipt = Object.freeze({
         schemaVersion: 'mistake-correction-wallet-composite.v1' as const,
-        accountScopeHash: deriveLearningV2EconomicAccountScopeHash(input.accountScope),
+        accountScopeHash: deriveMistakeRewardAccountScopeHash(input.accountScope),
         rewardKey,
         mistakeId: item.mistakeId,
         cycleId: item.cycleId,

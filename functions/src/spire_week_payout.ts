@@ -29,6 +29,13 @@ import {
   commitStarOperations,
   prepareStarOperations,
 } from './stars_ledger';
+import { validateSpireFrozenResult } from './spire_finalization_freeze';
+import { spireEnergyDeltaForWeek } from '../../shared/spire_energy_bonus';
+import {
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  accountDeletePermanentDenialId,
+} from './account_delete_job';
 
 const LOG = '[SPIRE-PAYOUT]';
 
@@ -39,6 +46,7 @@ export type SpireWeekPayoutStatus =
   | 'skipped_user_missing'
   | 'skipped_identity_transition'
   | 'skipped_result_missing'
+  | 'integrity_room_hold'
   | 'rejected';
 
 export type SpireWeekPayoutOutcome = Readonly<{
@@ -51,9 +59,11 @@ export type SpireWeekPayoutOutcome = Readonly<{
 
 export type SpireWeekPayoutInput = Readonly<{
   uid: string;
+  groupId: string;
   weekId: string;
   lang: string;
   resultRef: admin.firestore.DocumentReference;
+  roomRef: admin.firestore.DocumentReference;
   /** Понедельник 00:00 UTC следующей недели — фиксированный earnedAtMs операции. */
   weekEndMs: number;
 }>;
@@ -91,14 +101,39 @@ export async function payoutSpireWeekReward(
   // guard-ok: точечные документы по id, не листинг коллекции.
   const userRef = db.collection('users').doc(input.uid); // guard-ok: документ по id
   const receiptRef = userRef.collection(STAR_OPERATIONS_COLLECTION).doc(opId); // guard-ok: документ по id
+  const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(input.uid);
+  const denialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(input.uid));
+  const leaderboardRef = db.collection('leaderboard').doc(input.uid);
 
   const outcome = await db.runTransaction(async (tx): Promise<SpireWeekPayoutOutcome> => {
     beginStarLedgerTransactionAttempt(tx);
-    const [userSnap, resultSnap, receiptSnap] = await Promise.all([
+    const [userSnap, resultSnap, receiptSnap, roomSnap, tombstoneSnap, denialSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(input.resultRef),
       tx.get(receiptRef),
+      tx.get(input.roomRef),
+      tx.get(tombstoneRef),
+      tx.get(denialRef),
     ]);
+
+    const roomData = roomSnap.exists ? roomSnap.data() ?? {} : {};
+    if (!roomSnap.exists || Object.prototype.hasOwnProperty.call(roomData, 'finalizationIntegrityHold')) {
+      return {
+        uid: input.uid,
+        status: 'integrity_room_hold',
+        opId,
+        coins: 0,
+        errorCode: 'integrity_room_hold',
+      };
+    }
+    const room = { ...roomData, groupId: input.roomRef.id } as Record<string, unknown>;
+    const expectedResultPath = `users/${input.uid}/spire_week_results/${String(room.weekId)}_${String(room.lang)}`;
+    if (input.groupId !== input.roomRef.id
+      || input.weekId !== room.weekId
+      || input.lang !== room.lang
+      || input.resultRef.path !== expectedResultPath) {
+      return { uid: input.uid, status: 'rejected', opId, coins: 0, errorCode: 'frozen_result_caller_mismatch' };
+    }
 
     if (!userSnap.exists) {
       // Не создаём users/{uid} ради монет: журнал сделал бы set(merge) и родил
@@ -106,7 +141,7 @@ export async function payoutSpireWeekReward(
       return { uid: input.uid, status: 'skipped_user_missing', opId, coins: 0 };
     }
     const userData = userSnap.data();
-    if (userData?.identityHidden === true || userData?.levelSpinMergePending === true) {
+    if (userData?.identityHidden === true || userData?.levelSpinMergePending === true || tombstoneSnap?.exists || denialSnap?.exists) {
       // Аккаунт в переезде: баланс сейчас нельзя трогать. Ретрай крона догонит.
       return { uid: input.uid, status: 'skipped_identity_transition', opId, coins: 0 };
     }
@@ -114,24 +149,45 @@ export async function payoutSpireWeekReward(
       return { uid: input.uid, status: 'skipped_result_missing', opId, coins: 0 };
     }
 
-    if (receiptSnap.exists) {
-      const receipt = receiptSnap.data() ?? {};
-      const paid = Math.max(0, Math.trunc(num(receipt.delta)));
-      // guard-ok: запись внутри runTransaction.
-      tx.set(input.resultRef, { // guard-ok: merge:true ниже, внутри runTransaction
-        rewardStatus: 'paid',
-        rewardOpId: opId,
-        rewardPaidCoins: paid,
-        // зачем: ретрай крона — снимок из расписки (баланс сразу после ЭТОЙ выплаты); клиент сам отбросит его, если уже видел новее.
-        ...spireWeekPaidWalletFields({ balance: receipt.balanceAfter, earnedTotal: receipt.earnedTotalAfter, seq: receipt.seq }),
-      }, { merge: true });
-      return { uid: input.uid, status: 'already_paid', opId, coins: paid };
+    const result = resultSnap.data() ?? {};
+    if (!validateSpireFrozenResult(room, input.uid, result)) {
+      return { uid: input.uid, status: 'rejected', opId, coins: 0, errorCode: 'frozen_result_binding_mismatch' };
     }
 
-    const result = resultSnap.data() ?? {};
     const reward = (result.rewardCoins && typeof result.rewardCoins === 'object')
       ? result.rewardCoins as Record<string, unknown>
       : {};
+    const expectedCoins = Math.max(0, Math.trunc(num(reward.total ?? (num(reward.place) + num(reward.promotion)))));
+
+    const writeSettlement = (wallet: Record<string, unknown>, paidCoins: number, paid: boolean) => {
+      const prevTier = Math.trunc(num(result.prevTier));
+      const newTier = Math.trunc(num(result.newTier));
+      tx.set(leaderboardRef, {
+        spireTiers: { [input.lang]: newTier },
+        spireEnergyDeltas: { [input.lang]: { [input.weekId]: spireEnergyDeltaForWeek(prevTier, newTier) } },
+      }, { merge: true });
+      tx.set(input.resultRef, {
+        rewardStatus: paid ? 'paid' : 'none',
+        settlementStatus: 'settled',
+        ...(paid ? { rewardOpId: opId, rewardPaidCoins: paidCoins } : {}),
+        ...wallet,
+      }, { merge: true });
+    };
+
+    if (receiptSnap.exists) {
+      const receipt = receiptSnap.data() ?? {};
+      const paid = Math.max(0, Math.trunc(num(receipt.delta)));
+      if (paid !== expectedCoins) {
+        return { uid: input.uid, status: 'rejected', opId, coins: 0, errorCode: 'receipt_delta_mismatch' };
+      }
+      // guard-ok: запись внутри runTransaction.
+      writeSettlement({
+        // зачем: ретрай крона — снимок из расписки (баланс сразу после ЭТОЙ выплаты); клиент сам отбросит его, если уже видел новее.
+        ...spireWeekPaidWalletFields({ balance: receipt.balanceAfter, earnedTotal: receipt.earnedTotalAfter, seq: receipt.seq }),
+      }, paid, true);
+      return { uid: input.uid, status: 'already_paid', opId, coins: paid };
+    }
+
     const op = spireWeekRewardOp({
       weekId: input.weekId,
       lang: input.lang,
@@ -142,7 +198,7 @@ export async function payoutSpireWeekReward(
     });
     if (!op) {
       // guard-ok: запись внутри runTransaction.
-      tx.set(input.resultRef, { rewardStatus: 'none' }, { merge: true });
+      writeSettlement({}, 0, false);
       return { uid: input.uid, status: 'nothing_to_pay', opId, coins: 0 };
     }
 
@@ -167,13 +223,10 @@ export async function payoutSpireWeekReward(
     }
     const ledger = commitStarOperations(tx, prepared);
     // guard-ok: запись внутри runTransaction.
-    tx.set(input.resultRef, { // guard-ok: merge:true ниже, внутри runTransaction
-      rewardStatus: 'paid',
-      rewardOpId: opId,
-      rewardPaidCoins: op.delta,
+    writeSettlement({
       rewardPaidAt: admin.firestore.FieldValue.serverTimestamp(),
       ...spireWeekPaidWalletFields(ledger),
-    }, { merge: true });
+    }, op.delta, true);
     return {
       uid: input.uid,
       status: ledgerOutcome.status === 'already_applied' ? 'already_paid' : 'paid',
@@ -182,8 +235,15 @@ export async function payoutSpireWeekReward(
     };
   });
 
-  const line = JSON.stringify({ event: 'payout', weekId: input.weekId, lang: input.lang, ...outcome });
-  if (outcome.status === 'rejected' || outcome.status.startsWith('skipped_')) console.warn(LOG, line);
+  const line = JSON.stringify({
+    event: 'payout',
+    groupId: input.groupId,
+    weekId: input.weekId,
+    lang: input.lang,
+    status: outcome.status,
+    ...(outcome.errorCode ? { reason: outcome.errorCode } : {}),
+  });
+  if (outcome.status === 'rejected' || outcome.status.startsWith('skipped_') || outcome.status === 'integrity_room_hold') console.warn(LOG, line);
   else console.log(LOG, line);
   return outcome;
 }

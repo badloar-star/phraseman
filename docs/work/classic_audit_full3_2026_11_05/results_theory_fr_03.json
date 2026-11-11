@@ -1,0 +1,72 @@
+[
+ {
+  "id": "lesson-7/title",
+  "type": "T2",
+  "field": "theory.title.uk",
+  "problem": "«даний» — русизм; в украинском «теперішній час»",
+  "fix": "Повсякденна дія: теперішній час на `-er`"
+ },
+ {
+  "id": "lesson-7/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«на листі» (в письме-послании) вместо «на письмі»",
+  "fix": "У регулярних дієслів на `-er` прибери `-er` і додай закінчення для особи. Форми `travaille` та `travailles` звучать однаково, але на письмі `s` вказує на `tu`."
+ },
+ {
+  "id": "lesson-7/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«особистих форм» — калька, нужно «особових форм»",
+  "fix": "До `nous` підбирай `-ons`, до `vous` — `-ez`, до `ils` або `elles` — `-ent`. Останнє закінчення звичайних особових форм не вимовляй як окремий склад."
+ },
+ {
+  "id": "lesson-7/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "Потеряно «не»: «Знайоме закінчення робить дієслова взаємозамінними» — смысл противоположен ru",
+  "fix": "Переведи увагу із закінчення на зміст: `chercher` означає «шукати», а `regarder` — «дивитися». Знайоме закінчення не робить дієслова взаємозамінними."
+ },
+ {
+  "id": "lesson-8/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«не впізнаєш» (не узнаешь в лицо) вместо «не дізнаєшся»",
+  "fix": "Постав собі запитання: яку частину відповіді я не знаю? Не вистачає місця — `où`. Не вистачає людини — `qui`. Якщо співрозмовник відповість лише «так», потрібної деталі ти так і не дізнаєшся."
+ },
+ {
+  "id": "lesson-8/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "«`où` is missing the place» — неверный смысл (ru: не хватает места → `où`)",
+  "fix": "Ask yourself: which part of the answer don't I know? If the place is missing, use `où`. If the person is missing, use `qui`. If the other person only answers \"yes,\" you still won't learn the detail you need."
+ },
+ {
+  "id": "lesson-8/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«ще одне підлягає» — неграмматично, нужно «підмет»",
+  "fix": "У `Qui travaille ici ?` саме слово `qui` вже означає невідомого виконавця. Не потрібно вигадувати і додавати перед дієсловом ще один підмет."
+ },
+ {
+  "id": "lesson-8/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«subject of an action» вместо object (ru «предмет действия»); «who is looking for?» неграмматично",
+  "fix": "`Pourquoi` expects a reason, `comment` a manner or state. `Qu’est-ce que` helps you ask about the object of an action. Carefully distinguish between \"who is looking?\" and \"what are you looking for?\""
+ },
+ {
+  "id": "lesson-8/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«коли він має сенс» (= когда разумно) ≠ ru «когда он несёт смысл»",
+  "fix": "Зберігай прийменник, коли він несе зміст: `avec qui` — з ким, `pour qui` — для кого. Розмовне розташування запитального слова може відрізнятися; форма завдання задає нейтральний зразок."
+ },
+ {
+  "id": "lesson-8/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«when it makes sense» ≠ ru «когда он несёт смысл»",
+  "fix": "Keep the preposition when it carries meaning: `avec qui` — with whom, `pour qui` — for whom. The colloquial placement of the question word may vary; the task form sets a neutral pattern."
+ }
+]

@@ -5,12 +5,6 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
 describe('speech capture callbacks stay owned by the session that created them', () => {
-  test('Kimi rejects a stale result before it can mutate bestRef', () => {
-    const source = read('components/learning-v2-lab/kimi/use_voice_capture.ts');
-    const resultListener = source.slice(source.indexOf("speech.addListener('result'"), source.indexOf("speech.addListener('end'"));
-    expect(resultListener.indexOf('attempt !== attemptRef.current')).toBeGreaterThanOrEqual(0);
-    expect(resultListener.indexOf('attempt !== attemptRef.current')).toBeLessThan(resultListener.indexOf('bestRef.current = best'));
-  });
 
   test('SpeechBeat gates scoring and delayed audioend, and safely starts replay', () => {
     const source = read('components/onboarding_aha/SpeechBeat.tsx');

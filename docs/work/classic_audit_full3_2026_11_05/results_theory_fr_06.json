@@ -1,0 +1,86 @@
+[
+ {
+  "id": "lesson-13/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«не на підлогу того, хто говорить» — машинная ошибка (пол→підлога), нужно «стать».",
+  "fix": "Прикметник каже, який предмет. Він орієнтується на рід французької назви, а не на стать того, хто говорить. У парі про сумку та валізу ти змінюєш предмет і пов'язану з ним форму."
+ },
+ {
+  "id": "lesson-13/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "«the written form usually becomes `s`» — неверно, форма получает `s`.",
+  "fix": "If there are several objects, the written form usually gets an `s`. `neuf` has an extra change: `neuve`, `neufs`, `neuves`. Don't remove the plural from the noun itself."
+ },
+ {
+  "id": "lesson-13/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«Колір … відбувається після назви» (машинная ошибка: идёт→відбувається); «і однині» без «в».",
+  "fix": "Колір у звичайній групі стоїть після назви. Деякі пари відрізняються тільки на письмі: `bleu`, `bleue`. Колір `rouge` уже закінчується на `e` і в однині не змінюється за родом."
+ },
+ {
+  "id": "lesson-13/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "«doesn't change gender» — смысл: не меняется по роду.",
+  "fix": "In a regular group, the color comes after the noun. Some pairs differ only in writing: `bleu`, `bleue`. The color `rouge` already ends in `e` and does not change for gender in the singular."
+ },
+ {
+  "id": "lesson-13/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "Примеры главы (`nouveau voisin`, `vieille photo`, `beau costume`) не иллюстрируют текст; `vieux fauteuil` нет в курсе; не упомянуты `nouvel`/`bel`.",
+  "fix": "Перед гласной в мужском единственном числе у некоторых прилагательных особая форма: `un vieil immeuble`, `nouvel`, `bel`; перед согласной — `un nouveau voisin`, `un beau costume`. `Vieil` здесь не женский род: женская форма — `vieille`, как в `une vieille photo`."
+ },
+ {
+  "id": "lesson-13/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "Те же проблемы с примерами; «в чоловічому однині» — неграмматично.",
+  "fix": "Перед голосною в чоловічому роді однини деякі прикметники мають особливу форму: `un vieil immeuble`, `nouvel`, `bel`; перед приголосною — `un nouveau voisin`, `un beau costume`. `Vieil` тут не жіночий рід: жіноча форма — `vieille`, як у `une vieille photo`."
+ },
+ {
+  "id": "lesson-13/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "Examples don't match the text; `vieux fauteuil` is not from the course.",
+  "fix": "Before a vowel in the masculine singular, some adjectives have a special form: `un vieil immeuble`, `nouvel`, `bel`; before a consonant — `un nouveau voisin`, `un beau costume`. `Vieil` is not feminine here: the feminine form is `vieille`, as in `une vieille photo`."
+ },
+ {
+  "id": "lesson-14/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Особисте закінчення» — термин «особове»; «другий залишається» — дієслово среднего рода.",
+  "fix": "У словах «можу увійти» є два рішення. Перше — чи може людина це зробити. Друге — що саме. Особове закінчення з'являється в першого дієслова; друге залишається у словниковій формі."
+ },
+ {
+  "id": "lesson-14/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "«two solutions» — неверно, ru «два решения» = decisions.",
+  "fix": "The words \"I can come in\" contain two decisions. The first is whether the person can do it. The second is what exactly. The personal ending goes on the first verb; the second stays in the dictionary form."
+ },
+ {
+  "id": "lesson-14/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«змінюється обличчя» — машинная ошибка (лицо→обличчя), нужно «особа».",
+  "fix": "У проханні змінюється особа: чи можеш ти, чи можете ви. `Pouvez-vous` з дефісом робить явне питання. Сама дія після нього не стає питальною і не змінює форму."
+ },
+ {
+  "id": "lesson-14/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "«can you, can you?» — различие ты/вы потеряно.",
+  "fix": "In a request, the person changes: can you (one friend), can you (polite or several people). `Pouvez-vous` with a hyphen makes an explicit question. The action after it does not become interrogative and does not change form."
+ },
+ {
+  "id": "lesson-14/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«A pronoun can refer to an action» — неверно передан смысл (местоимение относится к второму глаголу).",
+  "fix": "A pronoun can belong to the action verb: `m’aider`, `me prêter`. Don't insert it inside `pouvoir`. First choose the person who can fulfill the request."
+ }
+]

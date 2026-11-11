@@ -1,0 +1,831 @@
+{
+ "lang": "de",
+ "lesson": 32,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:32:01",
+   "target": "Wenn ich mehr Zeit hätte, würde ich mitkommen.",
+   "ru": "Если бы у меня было больше времени, я бы пошёл с вами.",
+   "uk": "Якби я мав більше часу, я пішов би з вами."
+  },
+  {
+   "id": "de:32:02",
+   "target": "Wenn du hier wärst, würde ich dir den Garten zeigen.",
+   "ru": "Если бы ты был здесь, я бы показал тебе сад.",
+   "uk": "Якби ти був тут, я показав би тобі сад."
+  },
+  {
+   "id": "de:32:03",
+   "target": "Wenn der Bus pünktlich wäre, kämen wir früher an.",
+   "ru": "Если бы автобус не опаздывал, мы приехали бы раньше.",
+   "uk": "Якби автобус не спізнювався, ми приїхали б раніше."
+  },
+  {
+   "id": "de:32:04",
+   "target": "Wenn das Zimmer billiger wäre, würde ich es buchen.",
+   "ru": "Если бы комната стоила дешевле, я бы её забронировал.",
+   "uk": "Якби кімната коштувала дешевше, я її забронював би."
+  },
+  {
+   "id": "de:32:05",
+   "target": "Wenn Anna ein Auto hätte, würde sie uns abholen.",
+   "ru": "Если бы у Анны была машина, она бы нас забрала.",
+   "uk": "Якби у Ганни була машина, вона б нас забрала."
+  },
+  {
+   "id": "de:32:06",
+   "target": "Wenn der Regen aufhören würde, könnten wir losgehen.",
+   "ru": "Если бы дождь прекратился, мы могли бы пойти.",
+   "uk": "Якби дощ припинився, то ми могли б піти."
+  },
+  {
+   "id": "de:32:07",
+   "target": "Wenn ich die Nummer wüsste, würde ich anrufen.",
+   "ru": "Если бы я знал номер, я бы позвонил.",
+   "uk": "Якби я знав номер, я зателефонував би."
+  },
+  {
+   "id": "de:32:08",
+   "target": "Wenn der Laden offen wäre, könnte ich Brot kaufen.",
+   "ru": "Если бы магазин был открыт, я мог бы купить хлеб.",
+   "uk": "Якби магазин був відчинений, я міг би купити хліб."
+  },
+  {
+   "id": "de:32:09",
+   "target": "Wenn wir näher wohnen würden, kämen wir öfter vorbei.",
+   "ru": "Если бы мы жили ближе, мы заходили бы чаще.",
+   "uk": "Якби ми жили ближче, ми заходили б частіше."
+  },
+  {
+   "id": "de:32:10",
+   "target": "Wenn ich du wäre, würde ich den Termin bestätigen.",
+   "ru": "На твоём месте я бы подтвердил встречу.",
+   "uk": "На твоєму місці я підтвердив би зустріч."
+  },
+  {
+   "id": "de:32:11",
+   "target": "Ich würde zu Fuß gehen, wenn der Weg kürzer wäre.",
+   "ru": "Я бы пошёл пешком, если бы дорога была короче.",
+   "uk": "Я пішов би пішки, якби дорога була коротшою."
+  },
+  {
+   "id": "de:32:12",
+   "target": "Anna würde bleiben, wenn sie morgen frei hätte.",
+   "ru": "Анна бы осталась, если бы завтра у неё был выходной.",
+   "uk": "Ганна б залишилася, якби завтра у неї був вихідний."
+  },
+  {
+   "id": "de:32:13",
+   "target": "Wir würden öfter kochen, wenn unsere Küche größer wäre.",
+   "ru": "Мы бы чаще готовили, если бы кухня была больше.",
+   "uk": "Ми б частіше готували, якби кухня була більшою."
+  },
+  {
+   "id": "de:32:14",
+   "target": "Tom würde das Rad kaufen, wenn es besser passen würde.",
+   "ru": "Том купил бы велосипед, если бы тот ему лучше подходил.",
+   "uk": "Том купив би велосипед, якби той йому краще підходив."
+  },
+  {
+   "id": "de:32:15",
+   "target": "Wenn ich die Gegend besser kennen würde, könnte ich dir den Weg zeigen.",
+   "ru": "Если бы я лучше знал этот район, я мог бы показать тебе дорогу.",
+   "uk": "Якби я краще знав цю місцевість, я міг би показати тобі дорогу."
+  },
+  {
+   "id": "de:32:16",
+   "target": "Ihr könntet draußen essen, wenn es wärmer wäre.",
+   "ru": "Вы могли бы поесть на улице, если бы было теплее.",
+   "uk": "Ви могли б поїсти на вулиці, якби було тепліше."
+  },
+  {
+   "id": "de:32:17",
+   "target": "Wir könnten den Zug nehmen, wenn er hier halten würde.",
+   "ru": "Мы могли бы поехать на поезде, если бы он здесь останавливался.",
+   "uk": "Ми могли б поїхати поїздом, якби він тут зупинявся."
+  },
+  {
+   "id": "de:32:18",
+   "target": "Wenn das Fieber gesunken wäre, hätte ich besser geschlafen.",
+   "ru": "Если бы температура спала, я бы лучше поспал.",
+   "uk": "Якби температура спала, я б краще поспав."
+  },
+  {
+   "id": "de:32:19",
+   "target": "Er hätte mehr Platz, wenn der Schrank kleiner wäre.",
+   "ru": "У него было бы больше места, если бы шкаф был меньше.",
+   "uk": "У нього було б більше місця, якби шафа була меншою."
+  },
+  {
+   "id": "de:32:20",
+   "target": "Wenn der Weg nicht glatt wäre, würde ich zu Fuß gehen.",
+   "ru": "Если бы дорожка не была скользкой, я бы пошёл пешком.",
+   "uk": "Якби стежка не була слизькою, я б пішов пішки."
+  },
+  {
+   "id": "de:32:21",
+   "target": "Wenn ich früher losgefahren wäre, hätte ich den Zug erreicht.",
+   "ru": "Если бы я тогда выехал раньше, я бы успел на поезд.",
+   "uk": "Якби я виїхав раніше, я встиг би на поїзд."
+  },
+  {
+   "id": "de:32:22",
+   "target": "Wenn du angerufen hättest, hätte ich gewartet.",
+   "ru": "Если бы ты позвонил, я бы подождал.",
+   "uk": "Якби ти зателефонував, я б зачекав."
+  },
+  {
+   "id": "de:32:23",
+   "target": "Wenn ich den Stecker gezogen hätte, wäre die Lampe ausgegangen.",
+   "ru": "Если бы я вынул вилку из розетки, лампа бы погасла.",
+   "uk": "Якби я витягнув вилку з розетки, лампа б згасла."
+  },
+  {
+   "id": "de:32:24",
+   "target": "Wenn Tom seinen Pass mitgenommen hätte, hätte er einchecken können.",
+   "ru": "Если бы Том взял паспорт, он смог бы зарегистрироваться на рейс.",
+   "uk": "Якби Том узяв паспорт, він міг би зареєструватися на рейс."
+  },
+  {
+   "id": "de:32:25",
+   "target": "Wenn wir reserviert hätten, hätten wir einen Tisch bekommen.",
+   "ru": "Если бы мы заранее забронировали столик, нам бы он достался.",
+   "uk": "Якби ми заздалегідь забронювали столик, нам би він дістався."
+  },
+  {
+   "id": "de:32:26",
+   "target": "Wenn ihr gefragt hättet, hätten wir euch geholfen.",
+   "ru": "Если бы вы тогда спросили, мы бы вам помогли.",
+   "uk": "Якби ви тоді спитали, ми б вам допомогли."
+  },
+  {
+   "id": "de:32:27",
+   "target": "Wenn es nicht geregnet hätte, wären wir zu Fuß gegangen.",
+   "ru": "Если бы тогда не было дождя, мы пошли бы пешком.",
+   "uk": "Якби тоді не було дощу, ми пішли б пішки."
+  },
+  {
+   "id": "de:32:28",
+   "target": "Wenn der Wecker geklingelt hätte, wäre ich früher aufgestanden.",
+   "ru": "Если бы будильник прозвенел, я бы встал раньше.",
+   "uk": "Якби будильник продзвенів, я встав би раніше."
+  },
+  {
+   "id": "de:32:29",
+   "target": "Wenn die Tür offen gewesen wäre, wäre ich hineingegangen.",
+   "ru": "Если бы тогда дверь была открыта, я бы вошёл.",
+   "uk": "Якби тоді двері були відчинені, я б увійшов."
+  },
+  {
+   "id": "de:32:30",
+   "target": "Wenn das Taxi früher gekommen wäre, hätten wir den Anschluss geschafft.",
+   "ru": "Если бы такси приехало пораньше, мы бы успели на пересадку.",
+   "uk": "Якби таксі приїхало раніше, ми встигли б на пересадку."
+  },
+  {
+   "id": "de:32:31",
+   "target": "Ich hätte dich abgeholt, wenn ich deine Nachricht gelesen hätte.",
+   "ru": "Я бы тогда тебя забрал, если бы прочитал твоё сообщение.",
+   "uk": "Я б тоді тебе забрав, якби прочитав твоє повідомлення."
+  },
+  {
+   "id": "de:32:32",
+   "target": "Anna wäre mitgekommen, wenn sie Zeit gehabt hätte.",
+   "ru": "Анна бы тогда поехала с нами, если бы у неё было время.",
+   "uk": "Анна б тоді поїхала з нами, якби у неї був час."
+  },
+  {
+   "id": "de:32:33",
+   "target": "Wir hätten die Rechnung geprüft, wenn wir den Fehler bemerkt hätten.",
+   "ru": "Мы бы проверили счёт, если бы заметили ошибку.",
+   "uk": "Ми б перевірили рахунок, якби помітили помилку."
+  },
+  {
+   "id": "de:32:34",
+   "target": "Tom hätte den Herd ausgeschaltet, wenn er zu Hause gewesen wäre.",
+   "ru": "Том бы тогда выключил плиту, если бы был дома.",
+   "uk": "Том би тоді вимкнув плиту, якби був удома."
+  },
+  {
+   "id": "de:32:35",
+   "target": "Ihr hättet weniger bezahlt, wenn ihr früher gebucht hättet.",
+   "ru": "Вы заплатили бы меньше, если бы забронировали раньше.",
+   "uk": "Ви б заплатили менше, якби забронювали раніше."
+  },
+  {
+   "id": "de:32:36",
+   "target": "Ich hätte mich gemeldet, wenn mein Handy funktioniert hätte.",
+   "ru": "Я бы тогда связался с тобой, если бы мой телефон работал.",
+   "uk": "Я б тоді зв'язався з тобою, якби мій телефон працював."
+  },
+  {
+   "id": "de:32:37",
+   "target": "Wir wären geblieben, wenn das Zimmer ruhig gewesen wäre.",
+   "ru": "Мы бы остались, если бы номер был тихим.",
+   "uk": "Ми залишилися б, якби номер був тихим."
+  },
+  {
+   "id": "de:32:38",
+   "target": "Sie hätte das Paket abgeholt, wenn sie ihren Ausweis gefunden hätte.",
+   "ru": "Она забрала бы посылку, если бы нашла удостоверение.",
+   "uk": "Вона забрала б посилку, якби знайшла посвідчення."
+  },
+  {
+   "id": "de:32:39",
+   "target": "Ich hätte den Brief geschickt, wenn ich eine Briefmarke gehabt hätte.",
+   "ru": "Я бы тогда отправил письмо, если бы у меня была марка.",
+   "uk": "Я б тоді відправив листа, якби у мене була марка."
+  },
+  {
+   "id": "de:32:40",
+   "target": "Wir hätten den anderen Weg genommen, wenn die Straße gesperrt gewesen wäre.",
+   "ru": "Мы поехали бы другой дорогой, если бы та дорога была перекрыта.",
+   "uk": "Ми поїхали б іншою дорогою, якби та дорога була перекрита."
+  },
+  {
+   "id": "de:32:41",
+   "target": "Ohne den Stau wären wir pünktlich gewesen.",
+   "ru": "Без той пробки мы бы приехали вовремя.",
+   "uk": "Без тієї пробки ми б приїхали вчасно."
+  },
+  {
+   "id": "de:32:42",
+   "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+   "ru": "Без твоей помощи я бы тогда не донёс ящик.",
+   "uk": "Без твоєї допомоги я б тоді не доніс ящик."
+  },
+  {
+   "id": "de:32:43",
+   "target": "Mit einer besseren Verbindung hätte ich dich verstanden.",
+   "ru": "При более качественной связи я бы тогда тебя понял.",
+   "uk": "За більш якісного зв'язку я б тоді тебе зрозумів."
+  },
+  {
+   "id": "de:32:44",
+   "target": "An deiner Stelle hätte ich nach dem Preis gefragt.",
+   "ru": "На твоём месте я бы тогда спросил о цене.",
+   "uk": "На твоєму місці я б тоді спитав про ціну."
+  },
+  {
+   "id": "de:32:45",
+   "target": "Hätte ich die Nummer gespeichert, könnte ich jetzt anrufen.",
+   "ru": "Если бы я сохранил номер, я мог бы сейчас позвонить.",
+   "uk": "Якби я зберіг номер, я б міг зателефонувати зараз."
+  },
+  {
+   "id": "de:32:46",
+   "target": "Ohne den Aufzug hätten wir länger gebraucht.",
+   "ru": "Без лифта мы бы тогда потратили больше времени.",
+   "uk": "Без ліфта ми тоді витратили б більше часу."
+  },
+  {
+   "id": "de:32:47",
+   "target": "Mit einem zweiten Schlüssel wäre ich ins Haus gekommen.",
+   "ru": "Со вторым ключом я бы тогда смог попасть домой.",
+   "uk": "З другим ключем я тоді зміг би потрапити додому."
+  },
+  {
+   "id": "de:32:48",
+   "target": "Ohne die Quittung hätte ich nichts zurückbekommen.",
+   "ru": "Без квитанции мне бы ничего не вернули.",
+   "uk": "Без квитанції мені б нічого не повернули."
+  },
+  {
+   "id": "de:32:49",
+   "target": "Mit dem richtigen Werkzeug hätten wir das Rad repariert.",
+   "ru": "Если бы у нас был нужный инструмент, мы бы починили велосипед.",
+   "uk": "Якби у нас був потрібний інструмент, ми полагодили б велосипед."
+  },
+  {
+   "id": "de:32:50",
+   "target": "Wenn ich noch einmal wählen könnte, würde ich diesmal den direkten Zug nehmen.",
+   "ru": "Если бы я мог выбрать ещё раз, на этот раз я бы поехал прямым поездом.",
+   "uk": "Якби я міг вибрати ще раз, цього разу я поїхав би прямим поїздом."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "die Briefmarke",
+   "ru": "почтовая марка",
+   "uk": "поштова марка"
+  },
+  {
+   "lemma": "die Verbindung",
+   "ru": "соединение, связь",
+   "uk": "з'єднання, зв'язок"
+  },
+  {
+   "lemma": "das Werkzeug",
+   "ru": "инструмент",
+   "uk": "інструмент"
+  },
+  {
+   "lemma": "der Fehler",
+   "ru": "ошибка",
+   "uk": "помилка"
+  },
+  {
+   "lemma": "wählen",
+   "ru": "выбирать",
+   "uk": "вибирати"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden",
+  "der Kollege",
+  "die Leute",
+  "verbrauchen",
+  "zusammenklappen",
+  "sonntags",
+  "der Müll",
+  "der Hausmeister",
+  "die Firma",
+  "erstatten",
+  "liefern",
+  "der Versand",
+  "das Salz",
+  "wiederholen",
+  "behalten",
+  "dankbar",
+  "der Antrag",
+  "der Unfall",
+  "die Größe",
+  "nachsehen",
+  "gültig",
+  "das Fieber",
+  "der Stecker",
+  "die Gegend",
+  "glatt",
+  "speichern"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  },
+  {
+   "lesson": 27,
+   "title": "Какой человек или предмет: относительное предложение"
+  },
+  {
+   "lesson": 28,
+   "title": "Что делают с предметом: пассив с `werden`"
+  },
+  {
+   "lesson": 29,
+   "title": "Попросить мягче: `hätte`, `wäre`, `könnte`"
+  },
+  {
+   "lesson": 30,
+   "title": "Спросить косвенно: `ob` или вопросительное слово"
+  },
+  {
+   "lesson": 31,
+   "title": "Что случилось раньше другого прошлого события?"
+  }
+ ],
+ "oldTopicTitle": "Что было бы иначе: нереальные условия",
+ "oldTheoryRu": "Воображаем другой мир прямо сейчас. Если бы времени было больше, результат мог бы измениться. `Hätte` выражает условность и не означает автоматически, что появилась вторая отметка в прошлом. Результат легко вынести вперёд: сначала скажи, что сделал бы, затем — при каком условии. Порядок личного глагола в придаточном после `wenn` от перестановки частей не меняется. Упущенное в прошлом обозначай иначе. Раньше не выехали — и на поезд не успели. `Losgefahren wäre` в условии и `hätte erreicht` в результате относятся к воображаемому прошлому. С перемещением или переменой состояния в этом времени нередко нужен `wäre`, где Perfekt потребовал бы `sein`. Не ставь `hätte` ко всем глаголам просто потому, что в переводе есть «бы». Сначала назови то, что не произошло, затем отсутствующее условие. Подумай о сообщении на телефоне: человек не увидел его вовремя, поэтому не забрал собеседника. Это уже нельзя исправить задним числом. Условие можно выразить группой с `ohne` или `mit`, без целого предложения с `wenn`. Личный глагол главной части всё равно нужен. Сравни результат с реальным препятствием: пробкой, отсутствием ключа или квитанции. Финальная проверка. Не путай форму для воображаемого выбора сегодня с сожалением о прошлом. Прочитай обе части в правильном временном плане: даже идеально собранный порядок не спасёт фразу, если изменилась сама история."
+}

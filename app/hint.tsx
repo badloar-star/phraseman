@@ -11,6 +11,7 @@ import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import TonalSurface from '../components/TonalSurface';
 import { safeRouterBack } from './navigation_back';
+import { lessonHelpRedirectReasonForHint, redirectHintToLessonHelp } from './theory_entry_route';
 import { getClassicPlainView } from './classic_theory_plain';
 import ClassicPlainTheoryScreen from '../components/theory/ClassicPlainTheoryScreen';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -1468,19 +1469,15 @@ function HintScreen() {
   // зачем (координатор 12.10): в hint теория только ru/uk/es; pt-BR/vi/id/tr/pl и en (режим hide) уходят в lesson_help —
   // там вводные экраны урока на их языке или переведённое «недоступно», а не чужой язык. Прямой заход по ссылке тоже.
   const theoryEntry = theoryEntryFor(lang, true, 'hint');
-  React.useEffect(() => {
-    if (theoryEntry === 'hint') return;
-    console.log(`[I18N-FALLBACK] hint: lang=${lang} entry=${theoryEntry} → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход логируется
-    router.replace({ pathname: '/lesson_help', params: { id: String(lessonId) } } as never);
-  }, [theoryEntry, lang, lessonId, router]);
   // зачем (владелец 05.11: «теория во всех языках показывает английский»): шпаргалка и теория этого экрана — английские; в курсе другого языка
   // экран не показывает их никогда, а ведёт на /lesson_help (теория целевого языка, а если её нет — обратно в меню).
   const hintForeignTarget = storageStudyTarget(studyTarget) !== 'en';
+  const lessonHelpRedirectReason = lessonHelpRedirectReasonForHint({ theoryEntry, studyTarget });
   React.useEffect(() => {
-    if (!hintForeignTarget) return;
-    console.log(`[LESSON-HELP] hint: курс не английский (${String(studyTarget)}) → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход с причиной
-    router.replace({ pathname: '/lesson_help', params: { id: String(lessonId) } } as never);
-  }, [hintForeignTarget, studyTarget, lessonId, router]);
+    if (!lessonHelpRedirectReason) return;
+    console.log(`[LESSON-HELP] hint: reason=${lessonHelpRedirectReason} lang=${lang} target=${String(studyTarget)} → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход с причиной
+    redirectHintToLessonHelp(router, lessonId);
+  }, [lessonHelpRedirectReason, lang, studyTarget, lessonId, router]);
   if (hintForeignTarget) return null;
   if (theoryEntry !== 'hint') return null;
 

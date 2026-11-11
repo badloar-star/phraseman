@@ -1,0 +1,952 @@
+[
+{
+"lesson": 23,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:23:01",
+"de:23:05"
+],
+"textByLocale": {
+"en": "The man doesn't yet know whether it will rain. He proposes a plan for such a contingency. The ordinary present tense is appropriate for the real condition; a special future form is not necessary here.",
+"ru": "Человек ещё не знает, пойдёт ли дождь. Он предлагает план на такой случай. Обычное настоящее время подходит для реального условия; специальная форма будущего здесь не обязательна.",
+"uk": "Людина ще не знає, чи піде дощ. Він пропонує план на такий випадок. Звичайний час підходить для реальної умови; спеціальна форма майбутнього тут не є обов'язковою."
+}
+},
+{
+"exampleIds": [
+"de:23:11",
+"de:23:15"
+],
+"textByLocale": {
+"en": "If the result is stated first, the main clause is in the usual order. When the condition comes last, it doesn't change the first words of the main clause. In both orders, the meaning of the condition can be preserved.",
+"ru": "Если сначала сказать результат, в главной части обычный порядок. Когда условие в конце, оно не меняет первые слова главного предложения. В обоих порядках смысл условия можно сохранить.",
+"uk": "Якщо спочатку сказати результат, у головній частині звичайний порядок. Коли умова наприкінці, вона змінює перші слова головного пропозиції. В обох порядках зміст умов можна зберегти."
+}
+},
+{
+"exampleIds": [
+"de:23:21",
+"de:23:24"
+],
+"textByLocale": {
+"en": "The result can be a request, not a simple message. After the comma, a command remains: the subject `du` doesn't have to appear just because it was mentioned in the first part.",
+"ru": "Результат может быть просьбой, а не обычным сообщением. После запятой останется команда: подлежащее `du` не обязано появляться только потому, что в первой части оно было названо.",
+"uk": "Результат може бути запитом, а не звичайним повідомленням. Після коми залишиться команда: `du`, що підлягає, не повинно з'являтися тільки тому, що в першій частині воно було названо."
+}
+},
+{
+"exampleIds": [
+"de:23:31",
+"de:23:35"
+],
+"textByLocale": {
+"en": "The modal clause expresses an opportunity or an obligation. Choose it based on its practical meaning: what can be done and what must be done. Don't lose the infinitive at the very end of the main clause.",
+"ru": "Модальная часть сообщает возможность или обязанность. Выбирай её по практическому значению: что можно сделать, а что придётся сделать. Не теряй инфинитив в самом конце главной части.",
+"uk": "Модальна частина надає можливість або обов'язок. Вибирай її за практичним значенням: що можна зробити, а що доведеться зробити. Не втрачай інфінітив наприкінці головної частини."
+}
+},
+{
+"exampleIds": [
+"de:23:41",
+"de:23:44"
+],
+"textByLocale": {
+"en": "Another useful function is a recurring adverbial clause. `Immer wenn` means \"whenever.\" Think of a recurring workday, not a single instance from the past.",
+"ru": "Другая полезная функция — повторяющееся обстоятельство. `Immer wenn` означает «всякий раз, когда». Вспомни повторяющийся рабочий день, а не единственный случай из прошлого.",
+"uk": "Інша корисна функція — обставина, що повторюється. `Immer wenn` означає «кожен раз, коли». Згадай робочий день, що повторюється, а не єдиний випадок з минулого."
+}
+},
+{
+"exampleIds": [
+"de:23:45",
+"de:23:47"
+],
+"textByLocale": {
+"en": "The meaning is not necessarily conditional in the strict sense. In the instruction to call upon arrival, the event is expected; the only question is when it will occur. The condition and the expected moment share the same sentence structure.",
+"ru": "Смысл не обязательно условный в строгом смысле. В указании позвонить по прибытии событие ожидается, вопрос только когда оно случится. Условие и ожидаемый момент получают одну структуру предложения.",
+"uk": "Сенс не обов'язково умовний у строгому значенні. У вказівці зателефонувати по прибутті подія очікується, питання тільки коли вона станеться. Умова та очікуваний момент отримують одну структуру пропозиції."
+}
+},
+{
+"exampleIds": [
+"de:23:48",
+"de:23:50"
+],
+"textByLocale": {
+"en": "Don't confuse this with the indirect question \"whether.\" In this lesson, we state the conditions under which we act; we don't ask whether the statement is true. A separate word for indirect questions will appear later.",
+"ru": "Не путай с косвенным вопросом «ли». В этом уроке сообщаем, при каких условиях действуем; мы не спрашиваем, верно ли утверждение. Отдельное слово для косвенных вопросов появится позднее.",
+"uk": "Не плутай із непрямим питанням «чи». У цьому уроці повідомляємо, за яких умов діємо; ми не питаємо, чи правильне твердження. Окреме слово для непрямих питань з'явиться пізніше."
+}
+}
+],
+"lab": [
+{
+"bad": "Ob",
+"chapter": 1,
+"id": "de:23:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Dass",
+"Ob",
+"Wenn"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 1,
+"id": "de:23:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 35,
+"options": [
+"Als",
+"Wenn",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "Nachdem",
+"chapter": 1,
+"id": "de:23:05:lab",
+"item": 5,
+"kind": "match",
+"near": 30,
+"options": [
+"Wenn",
+"Damit",
+"Nachdem"
+],
+"slot": 0
+},
+{
+"bad": "Weil",
+"chapter": 2,
+"id": "de:23:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"Weil",
+"Ob",
+"Wenn"
+],
+"slot": 0
+},
+{
+"bad": "Nachdem",
+"chapter": 2,
+"id": "de:23:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"Nachdem",
+"Wenn",
+"Damit"
+],
+"slot": 0
+},
+{
+"bad": "obwohl",
+"chapter": 2,
+"id": "de:23:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 20,
+"options": [
+"als",
+"wenn",
+"obwohl"
+],
+"slot": 3
+},
+{
+"bad": "damit",
+"chapter": 3,
+"id": "de:23:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 20,
+"options": [
+"wenn",
+"damit",
+"ob"
+],
+"slot": 4
+},
+{
+"bad": "Nachdem",
+"chapter": 3,
+"id": "de:23:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"Obwohl",
+"Wenn",
+"Nachdem"
+],
+"slot": 0
+},
+{
+"bad": "weil",
+"chapter": 3,
+"id": "de:23:19:lab",
+"item": 19,
+"kind": "build",
+"near": 11,
+"options": [
+"dass",
+"weil",
+"wenn"
+],
+"slot": 3
+},
+{
+"bad": "Weil",
+"chapter": 4,
+"id": "de:23:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 46,
+"options": [
+"Weil",
+"Wenn",
+"Ob"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 4,
+"id": "de:23:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 38,
+"options": [
+"Wenn",
+"Dass",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "Ob",
+"chapter": 4,
+"id": "de:23:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 27,
+"options": [
+"Ob",
+"Wenn",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "Damit",
+"chapter": 5,
+"id": "de:23:29:lab",
+"item": 29,
+"kind": "match",
+"near": 17,
+"options": [
+"Als",
+"Damit",
+"Wenn"
+],
+"slot": 0
+},
+{
+"bad": "Als",
+"chapter": 5,
+"id": "de:23:31:lab",
+"item": 31,
+"kind": "build",
+"near": 9,
+"options": [
+"Wenn",
+"Weil",
+"Als"
+],
+"slot": 0
+},
+{
+"bad": "Weil",
+"chapter": 5,
+"id": "de:23:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"Ob",
+"Wenn",
+"Weil"
+],
+"slot": 0
+},
+{
+"bad": "Damit",
+"chapter": 6,
+"id": "de:23:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 30,
+"options": [
+"Damit",
+"Wenn",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "Dass",
+"chapter": 6,
+"id": "de:23:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 45,
+"options": [
+"Wenn",
+"Dass",
+"Nachdem"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 6,
+"id": "de:23:42:lab",
+"item": 42,
+"kind": "match",
+"near": 7,
+"options": [
+"Obwohl",
+"Damit",
+"Wenn"
+],
+"slot": 0
+},
+{
+"bad": "Damit",
+"chapter": 7,
+"id": "de:23:45:lab",
+"item": 45,
+"kind": "build",
+"near": 39,
+"options": [
+"Damit",
+"Wenn",
+"Als"
+],
+"slot": 0
+},
+{
+"bad": "ob",
+"chapter": 7,
+"id": "de:23:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 20,
+"options": [
+"ob",
+"wenn",
+"obwohl"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"Es regnet.",
+"wenn es regnet"
+],
+[
+"Du bist fertig.",
+"wenn du fertig bist"
+],
+[
+"Ich habe Zeit.",
+"wenn ich Zeit habe"
+],
+[
+"Du kommst an.",
+"wenn du ankommst"
+]
+],
+"title": {
+"en": "Conditions and repeated events: `wenn`",
+"ru": "Условие и повторяющийся случай: `wenn`",
+"uk": "Умова та випадок, що повторюється: `wenn`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:23:01",
+"target": "Wenn es regnet, bleibe ich zu Hause.",
+"ru": "Если пойдёт дождь, я останусь дома.",
+"uk": "Якщо йтиме дощ, я залишуся вдома."
+},
+{
+"id": "de:23:05",
+"target": "Wenn Anna Zeit hat, kommt sie mit.",
+"ru": "Если у Анны есть время, она пойдёт с нами.",
+"uk": "Якщо Анна має час, вона піде з нами."
+},
+{
+"id": "de:23:11",
+"target": "Ich rufe dich an, wenn ich zu Hause bin.",
+"ru": "Я позвоню тебе, когда буду дома.",
+"uk": "Я подзвоню тобі, коли буду вдома."
+},
+{
+"id": "de:23:15",
+"target": "Ich kaufe Milch, wenn der Laden offen ist.",
+"ru": "Я куплю молоко, если магазин открыт.",
+"uk": "Я куплю молоко, якщо магазин відкритий."
+},
+{
+"id": "de:23:21",
+"target": "Wenn du den Pass findest, ruf mich an!",
+"ru": "Если найдёшь паспорт, позвони мне!",
+"uk": "Якщо знайдеш паспорт, подзвони мені!"
+},
+{
+"id": "de:23:24",
+"target": "Wenn Sie einsteigen, zeigen Sie bitte Ihr Ticket!",
+"ru": "При входе покажите, пожалуйста, ваш билет!",
+"uk": "При вході покажіть, будь ласка, ваш квиток!"
+},
+{
+"id": "de:23:31",
+"target": "Wenn der Zug ausfällt, können wir den Bus nehmen.",
+"ru": "Если поезд отменят, мы можем поехать на автобусе.",
+"uk": "Якщо потяг скасують, ми можемо поїхати автобусом."
+},
+{
+"id": "de:23:35",
+"target": "Wenn ich krank bin, muss ich den Termin absagen.",
+"ru": "Если я заболею, мне придётся отменить запись.",
+"uk": "Якщо я захворію, мені доведеться скасувати запис."
+},
+{
+"id": "de:23:41",
+"target": "Immer wenn ich hier bin, besuche ich meine Schwester.",
+"ru": "Всякий раз, когда я бываю здесь, я навещаю сестру.",
+"uk": "Щоразу, коли я буваю тут, я відвідую сестру."
+},
+{
+"id": "de:23:44",
+"target": "Wenn ich Post bekomme, lege ich sie auf den Tisch.",
+"ru": "Когда я получаю почту, я кладу её на стол.",
+"uk": "Коли я отримую пошту, я кладу її на стіл."
+},
+{
+"id": "de:23:45",
+"target": "Wenn der Akku fast leer ist, lade ich ihn auf.",
+"ru": "Когда заряд почти закончился, я заряжаю аккумулятор.",
+"uk": "Коли заряд майже закінчився, я заряджаю акумулятор."
+},
+{
+"id": "de:23:47",
+"target": "Ich trinke Tee, wenn mein Hals wehtut.",
+"ru": "Я пью чай, когда у меня болит горло.",
+"uk": "Я п'ю чай, коли у мене болить горло."
+},
+{
+"id": "de:23:48",
+"target": "Wir nehmen die Treppe, wenn der Aufzug nicht fährt.",
+"ru": "Мы идём по лестнице, когда лифт не работает.",
+"uk": "Ми йдемо сходами, коли ліфт не працює."
+},
+{
+"id": "de:23:50",
+"target": "Wenn die Bahn pünktlich ist, schaffen wir den Anschluss.",
+"ru": "Если электричка придёт вовремя, мы успеем на пересадку.",
+"uk": "Якщо електричка прийде вчасно, ми встигнемо на пересадку."
+}
+]
+},
+{
+"lesson": 24,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:24:01",
+"de:24:05"
+],
+"textByLocale": {
+"en": "Imagine the scene: you arrive, the door is already open. `Als` tells you what moment the scene takes place in. It doesn't mean you opened the door or caused it to open.",
+"ru": "Представь кадр: ты приезжаешь, дверь уже открыта. `Als` сообщает, к какому моменту относится сцена. Оно не означает, что ты открыл дверь или стал причиной её открытия.",
+"uk": "Уяви кадр: ти приїжджаєш, двері вже відчинені. `Als` повідомляє, до якого моменту відноситься сцена. Воно не означає, що ти відчинив двері або став причиною її відкриття."
+}
+},
+{
+"exampleIds": [
+"de:24:11",
+"de:24:16"
+],
+"textByLocale": {
+"en": "Both orders are possible. You can first state your location, and then the bell that marks the moment. In a subordinate clause, the order remains subordinate, even if it ends the sentence.",
+"ru": "Оба порядка возможны. Можно сначала назвать своё местонахождение, а потом звонок, которым отмечен момент. В придаточном порядок остаётся подчинённым, даже если оно завершает предложение.",
+"uk": "Обидва можливі. Можна спочатку назвати своє місцезнаходження, а потім дзвінок, яким відзначено момент. У підрядному порядок залишається підлеглим, навіть якщо воно завершує пропозицію."
+}
+},
+{
+"exampleIds": [
+"de:24:21",
+"de:24:26"
+],
+"textByLocale": {
+"en": "One-time doesn't mean \"exactly one second.\" Childhood or school were long, but they are considered a single past period of life. Therefore, `als` can appear there too.",
+"ru": "Однократность не означает «ровно одна секунда». Детство или период учёбы длились долго, но рассматриваются как один прошлый период жизни. Поэтому и там может появиться `als`.",
+"uk": "Одноразовість не означає «одна секунда». Дитинство чи період навчання тривали довго, але розглядаються як минулий період життя. Тому і там може з'явитися `als`."
+}
+},
+{
+"exampleIds": [
+"de:24:27",
+"de:24:30"
+],
+"textByLocale": {
+"en": "Events could be repeated within a single period. For example, during his years working at a hotel, a person got up early many times. The conjunction introduces the period itself, rather than counting the number of times he got up.",
+"ru": "Внутри единственного периода события могли повторяться. Например, в годы работы в гостинице человек много раз рано вставал. Союз вводит именно период, а не считает число подъёмов.",
+"uk": "Всередині єдиного періоду події могли повторюватися. Наприклад, у роки роботи в готелі людина багато разів рано вставала. Союз запроваджує саме період, а не рахує кількість підйомів."
+}
+},
+{
+"exampleIds": [
+"de:24:31",
+"de:24:35"
+],
+"textByLocale": {
+"en": "The tense does not require a single grammatical past. In a conversational story, the perfect tense is possible, while in a short story, the present tense is often encountered. Check the order of the auxiliary verb, if any.",
+"ru": "Временная часть не требует одного-единственного грамматического прошедшего. В разговорном рассказе возможен Perfekt, в рассказе часто встретится Präteritum. Проверь порядок вспомогательного глагола, если он есть.",
+"uk": "Тимчасова частина не вимагає єдиного граматичного минулого. У розмовному оповіданні можливий Perfekt, в оповіданні часто-густо зустрінеться Präteritum. Перевір порядок допоміжного дієслова, якщо він є."
+}
+},
+{
+"exampleIds": [
+"de:24:36",
+"de:24:40"
+],
+"textByLocale": {
+"en": "Don't confuse the temporal `als` with a comparative. In this lesson, it is followed by a whole sentence about a moment in the past, not a second object of comparison based on price or size.",
+"ru": "Не путай временное `als` со сравнительным. В этом уроке за ним идёт целое предложение о моменте в прошлом, а не второй предмет сравнения по цене или размеру.",
+"uk": "Не плутай тимчасове `als` із порівняльним. У цьому уроці за ним йде ціла пропозиція про момент минулого, а не другий предмет порівняння за ціною або розміром."
+}
+},
+{
+"exampleIds": [
+"de:24:41",
+"de:24:50"
+],
+"textByLocale": {
+"en": "Contrast one incident from yesterday with a habit: once—a time frame with `als`,\" every time—usually `wenn`.\" The decision is made based on history, not simply on the presence of the word \"when\" in the translation.",
+"ru": "Один вчерашний случай противопоставь привычке: один раз — временна́я рамка с `als`, всякий раз — обычно `wenn`. Решение принимается по истории, а не просто по наличию слова «когда» в переводе.",
+"uk": "Один вчорашній випадок протиставь звичці: один раз - тимчасова рамка з `als`, щоразу - зазвичай `wenn`. Рішення приймається з історії, а чи не просто за наявності слова «коли» у перекладі."
+}
+}
+],
+"lab": [
+{
+"bad": "Dass",
+"chapter": 1,
+"id": "de:24:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 9,
+"options": [
+"Als",
+"Dass",
+"Damit"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 1,
+"id": "de:24:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Obwohl",
+"Als",
+"Nachdem"
+],
+"slot": 0
+},
+{
+"bad": "Weil",
+"chapter": 1,
+"id": "de:24:05:lab",
+"item": 5,
+"kind": "match",
+"near": 29,
+"options": [
+"Weil",
+"Als",
+"Ob"
+],
+"slot": 0
+},
+{
+"bad": "Damit",
+"chapter": 2,
+"id": "de:24:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Weil",
+"Damit",
+"Als"
+],
+"slot": 0
+},
+{
+"bad": "Nachdem",
+"chapter": 2,
+"id": "de:24:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 25,
+"options": [
+"Als",
+"Wenn",
+"Nachdem"
+],
+"slot": 0
+},
+{
+"bad": "ob",
+"chapter": 2,
+"id": "de:24:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 16,
+"options": [
+"als",
+"ob",
+"dass"
+],
+"slot": 4
+},
+{
+"bad": "ob",
+"chapter": 3,
+"id": "de:24:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 11,
+"options": [
+"als",
+"wenn",
+"ob"
+],
+"slot": 4
+},
+{
+"bad": "ob",
+"chapter": 3,
+"id": "de:24:17:lab",
+"item": 17,
+"kind": "match",
+"near": 20,
+"options": [
+"als",
+"ob",
+"damit"
+],
+"slot": 3
+},
+{
+"bad": "dass",
+"chapter": 3,
+"id": "de:24:19:lab",
+"item": 19,
+"kind": "build",
+"near": 20,
+"options": [
+"weil",
+"als",
+"dass"
+],
+"slot": 4
+},
+{
+"bad": "Dass",
+"chapter": 4,
+"id": "de:24:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 23,
+"options": [
+"Dass",
+"Ob",
+"Als"
+],
+"slot": 0
+},
+{
+"bad": "Dass",
+"chapter": 4,
+"id": "de:24:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 22,
+"options": [
+"Als",
+"Damit",
+"Dass"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 4,
+"id": "de:24:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 48,
+"options": [
+"Damit",
+"Obwohl",
+"Als"
+],
+"slot": 0
+},
+{
+"bad": "Ob",
+"chapter": 5,
+"id": "de:24:29:lab",
+"item": 29,
+"kind": "match",
+"near": 5,
+"options": [
+"Als",
+"Obwohl",
+"Ob"
+],
+"slot": 0
+},
+{
+"bad": "Weil",
+"chapter": 5,
+"id": "de:24:31:lab",
+"item": 31,
+"kind": "build",
+"near": 7,
+"options": [
+"Als",
+"Weil",
+"Dass"
+],
+"slot": 0
+},
+{
+"bad": "Nachdem",
+"chapter": 5,
+"id": "de:24:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 8,
+"options": [
+"Nachdem",
+"Als",
+"Damit"
+],
+"slot": 0
+},
+{
+"bad": "Nachdem",
+"chapter": 6,
+"id": "de:24:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"Als",
+"Nachdem",
+"Dass"
+],
+"slot": 0
+},
+{
+"bad": "Obwohl",
+"chapter": 6,
+"id": "de:24:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 4,
+"options": [
+"Als",
+"Ob",
+"Obwohl"
+],
+"slot": 0
+},
+{
+"bad": "ob",
+"chapter": 6,
+"id": "de:24:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"als",
+"ob",
+"dass"
+],
+"slot": 2
+},
+{
+"bad": "ob",
+"chapter": 7,
+"id": "de:24:45:lab",
+"item": 45,
+"kind": "build",
+"near": 41,
+"options": [
+"ob",
+"als",
+"wenn"
+],
+"slot": 4
+},
+{
+"bad": "Ob",
+"chapter": 7,
+"id": "de:24:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 26,
+"options": [
+"Obwohl",
+"Ob",
+"Als"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"Ich kam an.",
+"als ich ankam"
+],
+[
+"Der Arzt kam.",
+"als der Arzt kam"
+],
+[
+"Wir waren Kinder.",
+"als wir Kinder waren"
+],
+[
+"Du hast angerufen.",
+"als du angerufen hast"
+]
+],
+"title": {
+"en": "One past event: `als`",
+"ru": "Один случай в прошлом: `als`",
+"uk": "Один випадок у минулому: `als`"
+}
+},
+"exampleResolved": [
+{
+"id": "de:24:01",
+"target": "Als ich ankam, war die Tür offen.",
+"ru": "Когда я приехал, дверь была открыта.",
+"uk": "Коли я приїхав, двері були відчинені."
+},
+{
+"id": "de:24:05",
+"target": "Als der Zug hielt, stand ich auf.",
+"ru": "Когда поезд остановился, я встал.",
+"uk": "Коли поїзд зупинився, я встав."
+},
+{
+"id": "de:24:11",
+"target": "Ich war zu Hause, als das Handy klingelte.",
+"ru": "Я был дома, когда зазвонил телефон.",
+"uk": "Я був удома, коли задзвонив телефон."
+},
+{
+"id": "de:24:16",
+"target": "Wir hatten viel Gepäck, als wir umzogen.",
+"ru": "У нас было много багажа, когда мы переезжали.",
+"uk": "Ми мали багато багажу, коли ми переїжджали."
+},
+{
+"id": "de:24:21",
+"target": "Als Anna noch ein Kind war, hatte sie ein rotes Fahrrad.",
+"ru": "Когда Анна была ещё ребёнком, у неё был красный велосипед.",
+"uk": "Коли Анна була ще дитиною, вона мала червоний велосипед."
+},
+{
+"id": "de:24:26",
+"target": "Als Tom neu in der Stadt war, kannte er niemanden.",
+"ru": "Когда Том только приехал в город, он никого не знал.",
+"uk": "Коли Том тільки-но приїхав до міста, він нікого не знав."
+},
+{
+"id": "de:24:27",
+"target": "Als wir Nachbarn waren, sahen wir uns oft.",
+"ru": "Когда мы были соседями, мы часто виделись.",
+"uk": "Коли ми були сусідами, ми часто бачилися."
+},
+{
+"id": "de:24:30",
+"target": "Als wir noch kein Auto hatten, nahmen wir die Bahn.",
+"ru": "Пока у нас ещё не было машины, мы ездили на электричке.",
+"uk": "Поки ми ще не мали машини, ми їздили електричкою."
+},
+{
+"id": "de:24:31",
+"target": "Als ich ausgestiegen bin, hat es geschneit.",
+"ru": "Когда я вышел из транспорта, шёл снег.",
+"uk": "Коли я вийшов із транспорту, йшов сніг."
+},
+{
+"id": "de:24:35",
+"target": "Als wir ankamen, lief der Film schon.",
+"ru": "Когда мы пришли, фильм уже шёл.",
+"uk": "Коли ми прийшли, фільм уже йшов."
+},
+{
+"id": "de:24:36",
+"target": "Als der Alarm losging, verließen wir das Haus.",
+"ru": "Когда сработала сигнализация, мы вышли из дома.",
+"uk": "Коли спрацювала сигналізація, ми вийшли з дому."
+},
+{
+"id": "de:24:40",
+"target": "Als der Strom ausfiel, holte ich eine Kerze.",
+"ru": "Когда отключили электричество, я принёс свечу.",
+"uk": "Коли відключили електрику, я приніс свічку."
+},
+{
+"id": "de:24:41",
+"target": "Ich freute mich, als das Paket ankam.",
+"ru": "Я обрадовался, когда пришла посылка.",
+"uk": "Я зрадів, коли надійшла посилка."
+},
+{
+"id": "de:24:50",
+"target": "Als die Sonne aufging, erreichten wir den Bahnhof.",
+"ru": "Когда взошло солнце, мы добрались до вокзала.",
+"uk": "Коли зійшло сонце, ми дісталися вокзалу."
+}
+]
+}
+]

@@ -1,7 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
-import { LEARNING_V2_COURSE_SESSION_COUNT_V1 } from '../../modules/learning-v2/content/course_topology_v1';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
@@ -15,7 +14,6 @@ const VIDEO_TARGET_SECONDS = 200 * 60 * 60;
 const VIDEO_PREFETCH_SECONDS = 180 * 60 * 60;
 const VIDEO_MAX_CHECKPOINT_SECONDS = 60;
 const VIDEO_MIN_WALL_SECONDS = 40;
-const COURSE_PREFETCH_COUNT = LEARNING_V2_COURSE_SESSION_COUNT_V1 - 16;
 
 export const PREMIUM_THEME_BY_CONDITION = Object.freeze({
   plus_purchase: 'grad_full_olive',
@@ -23,8 +21,12 @@ export const PREMIUM_THEME_BY_CONDITION = Object.freeze({
   streak_365: 'grad_full_ref_storm_violet',
   final_spire: 'grad_full_titanium',
   video_200_hours: 'grad_full_horizon',
-  learning_v2_complete: 'grad_full_ref_gravity_blue',
 } as const);
+
+// зачем: тема «Сингулярность» выдавалась за прохождение удалённого курса занятий. Условие снято — заново её
+// не получить, но у тех, кому она уже выдана, запись в premium_theme_entitlements_v1 сохраняется: без этого списка
+// cleanEntitlements выбросил бы её при следующей перезаписи поля.
+export const RETIRED_PREMIUM_THEME_IDS: readonly string[] = Object.freeze(['grad_full_ref_gravity_blue']);
 
 export type PremiumThemeCondition = keyof typeof PREMIUM_THEME_BY_CONDITION;
 type Entitlements = Readonly<Record<string, number>>;
@@ -35,7 +37,7 @@ type PremiumThemeFacts = Readonly<{
   spireTiers: unknown;
   videoSeconds: number;
 }>;
-type PremiumThemeProgressUnit = 'purchase' | 'rank' | 'days' | 'tier' | 'hours' | 'sessions';
+type PremiumThemeProgressUnit = 'purchase' | 'rank' | 'days' | 'tier' | 'hours';
 type PremiumThemeProgress = Readonly<{ current: number; target: number; unit: PremiumThemeProgressUnit }>;
 type PremiumThemeProgressByCondition = Readonly<Record<PremiumThemeCondition, PremiumThemeProgress>>;
 
@@ -45,10 +47,10 @@ function record(value: unknown): Record<string, unknown> {
 
 function cleanEntitlements(value: unknown): Entitlements {
   const out: Record<string, number> = {};
-  const allowed = new Set(Object.values(PREMIUM_THEME_BY_CONDITION));
+  const allowed = new Set<string>([...Object.values(PREMIUM_THEME_BY_CONDITION), ...RETIRED_PREMIUM_THEME_IDS]);
   for (const [themeId, rawAt] of Object.entries(record(value))) {
     const atMs = Number(rawAt);
-    if (allowed.has(themeId as never) && Number.isSafeInteger(atMs) && atMs > 0) out[themeId] = atMs;
+    if (allowed.has(themeId) && Number.isSafeInteger(atMs) && atMs > 0) out[themeId] = atMs;
   }
   return Object.freeze(out);
 }
@@ -106,7 +108,6 @@ export function premiumThemeConditionSatisfied(input: Readonly<{
     case 'streak_365': return numericProgress(input.progress, 'streak_count') >= STREAK_DAYS;
     case 'final_spire': return maxSpireTier(input.spireTiers) >= FINAL_SPIRE_TIER;
     case 'video_200_hours': return input.videoSeconds >= VIDEO_TARGET_SECONDS;
-    case 'learning_v2_complete': return numericProgress(input.progress, 'learning_v2_course_progress_sync_v1') >= LEARNING_V2_COURSE_SESSION_COUNT_V1;
     default: return false;
   }
 }
@@ -117,7 +118,6 @@ function nearUnlockConditions(facts: PremiumThemeFacts): readonly PremiumThemeCo
   if (numericProgress(facts.progress, 'streak_count') >= 350) out.push('streak_365');
   if (maxSpireTier(facts.spireTiers) >= FINAL_SPIRE_TIER - 1) out.push('final_spire');
   if (facts.videoSeconds >= VIDEO_PREFETCH_SECONDS) out.push('video_200_hours');
-  if (numericProgress(facts.progress, 'learning_v2_course_progress_sync_v1') >= COURSE_PREFETCH_COUNT) out.push('learning_v2_complete');
   return Object.freeze(out);
 }
 
@@ -138,11 +138,6 @@ function progressByCondition(facts: PremiumThemeFacts): PremiumThemeProgressByCo
     streak_365: boundedProgress(numericProgress(facts.progress, 'streak_count'), STREAK_DAYS, 'days'),
     final_spire: boundedProgress(maxSpireTier(facts.spireTiers), FINAL_SPIRE_TIER, 'tier'),
     video_200_hours: boundedProgress(Math.floor(facts.videoSeconds / 3600), VIDEO_TARGET_SECONDS / 3600, 'hours'),
-    learning_v2_complete: boundedProgress(
-      numericProgress(facts.progress, 'learning_v2_course_progress_sync_v1'),
-      LEARNING_V2_COURSE_SESSION_COUNT_V1,
-      'sessions',
-    ),
   });
 }
 

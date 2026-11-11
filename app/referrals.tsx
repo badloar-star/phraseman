@@ -70,6 +70,7 @@ import { safeRouterBack } from './navigation_back';
 import { glassFill } from '../components/GlassSurface';
 import TonalSurface from '../components/TonalSurface';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { readRealPremiumSnapshotForGeneration } from './premium_real_storage';
 import { accountScopeKey } from './account_scope_key';
 import {
   REFERRAL_STATE_STORAGE_KEY,
@@ -218,8 +219,13 @@ export default function ReferralsScreen() {
   const [isProLifetime, setIsProLifetime] = useState(false);
   useEffect(() => {
     let alive = true;
-    void AsyncStorage.getItem('premium_plan')
-      .then((plan) => { if (alive) setIsProLifetime(plan === 'lifetime'); })
+    const token = captureAccountGeneration();
+    void readRealPremiumSnapshotForGeneration(token)
+      .then((snapshot) => {
+        if (alive && token.stableId && isCurrentAccountGeneration(token, token.stableId)) {
+          setIsProLifetime(snapshot?.active === true && snapshot.plan === 'lifetime');
+        }
+      })
       .catch(swallowError('referrals:ReferralsScreen'));
     return () => { alive = false; };
   }, [renderAccountScope]);

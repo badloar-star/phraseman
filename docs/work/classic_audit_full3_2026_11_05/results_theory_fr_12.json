@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-25/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.ru",
+  "problem": "Последнее предложение бессмысленно («не ставь его вместо отсутствующего существительного перед en»)",
+  "fix": "В прошедшем `en` стоит перед `ai`, `as`, `a`, `avons`. Число обычно остаётся после причастия. Само существительное не повторяй: его уже заменяет `en`."
+ },
+ {
+  "id": "lesson-25/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "То же бессмысленное последнее предложение",
+  "fix": "У минулому `en` стоїть перед `ai`, `as`, `a`, `avons`. Число зазвичай залишається після дієприкметника. Сам іменник не повторюй: його вже замінює `en`."
+ },
+ {
+  "id": "lesson-25/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "Same meaningless last sentence",
+  "fix": "In the past tense, `en` comes before `ai`, `as`, `a`, `avons`. The number usually stays after the participle. Don't repeat the noun itself: `en` already replaces it."
+ },
+ {
+  "id": "lesson-25/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].textByLocale.ru",
+  "problem": "Пример `veut en essayer un autre` не из фраз курса; ссылочные примеры 25:36/37/40",
+  "fix": "При втором глаголе ищи смысловое действие: принести две штуки — `Tu peux en apporter deux ?`. В таких примерах `en` привязано к инфинитиву."
+ },
+ {
+  "id": "lesson-25/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "Приклад не з курсу",
+  "fix": "При другому дієслові шукай смислову дію: принести дві штуки — `Tu peux en apporter deux ?`. У таких прикладах `en` прив'язано до інфінітива."
+ },
+ {
+  "id": "lesson-25/chapter-6",
+  "type": "T1",
+  "field": "chapters[5].textByLocale.en",
+  "problem": "Example not from the course",
+  "fix": "With a second verb, look for the meaningful action: to bring two of them — `Tu peux en apporter deux ?`. In such examples, `en` is tied to the infinitive."
+ },
+ {
+  "id": "lesson-26/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Виберіть» на «ви», в остальных главах и в ru — «ты»",
+  "fix": "Вибери напрямок: більше, менше, на рівних. `Que` поєднує ознаку з тим, з ким чи з чим порівнюють. Останню частину іноді зрозуміло з розмови, і її не вимовляють."
+ },
+ {
+  "id": "lesson-26/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«узгоджується з описом» — искажён смысл (с тем, что описывает); пропущено «у»",
+  "fix": "Прикметник, як і раніше, узгоджується з тим, що описує. У валізи `lourde`, у сумки `lourd` у цих французьких прикладах. `Plus` та `moins` цього не скасовують."
+ },
+ {
+  "id": "lesson-26/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«чудовий оборот» — ошибка перевода «превосходный» (superlative)",
+  "fix": "Коли обирають один крайній варіант із групи, потрібен найвищий ступінь: найкоротший, найменш дорогий. Не втрать артикль перед `plus` або `moins` у такій схемі."
+ },
+ {
+  "id": "lesson-26/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.ru",
+  "problem": "«превосходный оборот» — неестественно, термин: превосходная степень",
+  "fix": "Когда выбирается один крайний вариант из группы, нужна превосходная степень: самый короткий, наименее дорогой. Не потеряй артикль перед `plus` или `moins` в такой схеме."
+ },
+ {
+  "id": "lesson-26/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«дешевше інший» — неграмматично",
+  "fix": "Перевірка з покупкою: зістав «дешевша за іншу» і «найдешевша з усіх». У першому випадку подумки шукай другу річ, у другому — цілу групу для вибору."
+ }
+]

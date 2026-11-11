@@ -38,6 +38,15 @@ export const ACCOUNT_SWITCH_LEAK_KEYS: readonly string[] = Object.freeze([
   'vip_celebration_pending_v1', 'vip_celebration_pending_marker_v1',
   'community_pack_liked_ids_v1', 'community_pack_added_registered_ids_v1',
   'energy_zero_count_v1', 'streak_lost_count_v1',
+  // F17, аудит (владелец 11.11): память особых сцен Главной (снимок счётчиков для «рубежа», место в Пике для «тебя обогнали»,
+  // «фраза дня показана», журнал показов) и маркеры реферального окна. Без владельца в имени: счётчики A сравнивались с B
+  // (ложный рубеж / «обогнали»), а конец реферального окна A показывал B «доступ закончился».
+  'home_scene_milestone_snapshot_v1', 'home_scene_peak_place_v1', 'home_scene_phrase_seen_v1', 'home_scene_special_journal_v1',
+  'referral_access_last_until_ms_v1', 'referral_access_ended_seen_for_v1',
+  // F17, аудит: «последняя показанная серия» (Главная докручивала число от серии A до серии B с пульсом кольца — ложный рост
+  // серии), отметка пульса точки недели, кольцо «Сегодня» (заполнялось от прогресса A), итог первого разговора с ИИ
+  // (минуты, реплики и фразы A попадали в пейвол B, а свой итог B уже не записывался).
+  'streak_last_shown', 'home_week_dot_animation_last_shown_v1', 'today_ring_seen_v1', 'dialog_first_free_summary_v1',
 ]);
 
 /* expo-router: keep this utility from being treated as a screen */

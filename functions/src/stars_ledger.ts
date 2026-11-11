@@ -105,12 +105,8 @@ export type StarOpReason =
   // «Вместе» (friends_together.ts): веха уровня дружбы и сундук недели — оба заработок
   // (клеймится только за реально накопленные дни прогресса, не подарок).
   | 'friends_together_level' | 'friends_together_chest'
-  // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это одна
-  // валюта. Занятие оплачено учёбой, поэтому earn (обязано открывать награды
-  // сезона); открытие занятия — spend по лестнице 45/50/55/60/65.
-  | 'learning_v2_session' | 'learning_v2_unlock'
-  // зачем (владелец, 2026-08-27): руны должны зарабатываться не только в Арене и
-  // курсе V2, но и в семи учебных активностях — урок, словарь, неправильные
+  // зачем (владелец, 2026-08-27): руны должны зарабатываться не только в Арене,
+  // но и в семи учебных активностях — урок, словарь, неправильные
   // глаголы, блиц, тренировка карточек, отработка ошибок, голосовая отработка.
   // Одна причина на все семь: разрез «откуда руны» показывает их одной строкой
   // «учёба» вместе с курсом, а конкретная активность лежит в sourceKind, не
@@ -175,8 +171,6 @@ export type StarOpReason =
   | 'account_merge_out' | 'account_merge_in'
   // зачем (D195, владелец 15.10): старые бонусы (опыт, жемчуг, вращения) → монеты один раз; grant — подарок за старое,
   // не заработок: не двигает earnedTotal и очки лиги (legacy_bonus_convert.ts).
-  // зачем (закон владельца 22.10): «Урок вместе» +2 начисляет телефон через кошелёк (level_spin_grant, ключ lessontogether_);
-  // прежняя серверная причина friends_lesson_together в облако не выходила и снята.
   | 'legacy_bonus';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
@@ -197,9 +191,7 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   level_spin_grant: 'grant',
   friends_together_level: 'earn',
   friends_together_chest: 'earn',
-  learning_v2_session: 'earn',
-  learning_v2_unlock: 'spend',
-  // Учебные активности вне курса V2 — заработок наравне с сессией курса.
+  // Учебные активности — заработок.
   practice_session: 'earn',
   welcome_gift: 'grant',
   // Просмотр видео — не учёба: grant, чтобы не двигать очки лиги (см. StarOpReason).
@@ -241,7 +233,6 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   arena_tier: 'arena',
   friends_together_level: 'friends',
   friends_together_chest: 'friends',
-  learning_v2_session: 'learning',
   // Семь учебных активностей делят строку «учёба» с курсом: для игрока это один
   // и тот же смысл «заработал занимаясь», а какая именно активность — видно в
   // sourceKind расписки.
@@ -261,7 +252,6 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   // но тип обязан быть полным, иначе новая причина проедет незамеченной.
   spend_shop: 'other',
   admin_revoke: 'other',
-  learning_v2_unlock: 'other',
   dialog_extra_replies: 'other',
   dialog_unlock: 'other',
   // Продажа своего набора — отдельного смысла в разрезе «откуда руны» пока нет,

@@ -1,0 +1,1047 @@
+[
+{
+"lesson": 3,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:03:01",
+"fr:03:02"
+],
+"textByLocale": {
+"en": "The only unknown is whether the message is true. Keep the words of a simple statement, but pronounce them as a question. This question differs from the question \"Where?\": \"yes\" or \"no\" is sufficient.",
+"ru": "Неизвестно лишь, верно ли сообщение. Оставь слова простого утверждения, но произнеси их как вопрос. Такой вопрос отличается от вопроса «где?»: здесь достаточно «да» или «нет».",
+"uk": "Невідомо лише, чи правильне повідомлення. Залиш слова простого твердження, але скажи їх як питання. Таке питання відрізняється від питання «де?»: тут достатньо «так» чи «ні»."
+}
+},
+{
+"exampleIds": [
+"fr:03:11",
+"fr:03:12",
+"fr:03:13"
+],
+"textByLocale": {
+"en": "To clearly state a question, begin with `est-ce que`. Then put the usual statement: who, verb, and the rest. No need to rearrange the subject after the verb again.",
+"ru": "Чтобы явно обозначить вопрос, начни с `est-ce que`. Потом поставь обычное сообщение: кто, глагол, остальное. Не нужно ещё раз переставлять подлежащее за глаголом.",
+"uk": "Щоб явно позначити питання, почни з `est-ce que`. Потім постав звичайне повідомлення: хто, дієслово, інше. Не потрібно ще раз переставляти підлягає за дієсловом."
+}
+},
+{
+"exampleIds": [
+"fr:03:15",
+"fr:03:16",
+"fr:03:18"
+],
+"textByLocale": {
+"en": "The question still cares about who it's about. Several clues require `sont`. One train requires `est`. The very beginning of `est-ce que` doesn't influence this choice.",
+"ru": "В вопросе всё ещё важно, о ком он. Несколько ключей требуют `sont`. Один поезд требует `est`. Само начало `est-ce que` на этот выбор не влияет.",
+"uk": "У запитанні так само важливо, про кого йдеться. Для кількох ключів потрібне `sont`, для одного потяга — `est`. Початок `est-ce que` цього не змінює."
+}
+},
+{
+"exampleIds": [
+"fr:03:21",
+"fr:03:23",
+"fr:03:25"
+],
+"textByLocale": {
+"en": "A train station is a good place for short clarifications. When asking how far a stop is or whether the exit is on the left, don't replace the question with the word \"where\" if you need to confirm a specific guess.",
+"ru": "Вокзал — хорошее место для коротких уточнений. Спрашивая, далеко ли остановка или слева ли выход, не заменяй вопрос словом «где», если тебе нужно подтвердить конкретную догадку.",
+"uk": "Вокзал - гарне місце для коротких уточнень. Запитуючи, чи далеко зупинка чи ліворуч вихід, не замінюй питання словом «де», якщо тобі потрібно підтвердити конкретну здогадку."
+}
+},
+{
+"exampleIds": [
+"fr:03:31",
+"fr:03:33",
+"fr:03:38"
+],
+"textByLocale": {
+"en": "In the construction `est-ce que`, the first word contains a hyphen, and `que` is written separately. Before a vowel, we get `qu’`: it's not a separate additional tile with the sound `e`.",
+"ru": "В конструкции `est-ce que` первое слово содержит дефис, а `que` пишется отдельно. Перед гласной получим `qu’`: это не отдельная дополнительная плитка со звуком `e`.",
+"uk": "У конструкції `est-ce que` перше слово містить дефіс, а `que` пишеться окремо. Перед голосною отримаємо `qu’`: це не окрема додаткова плитка зі звуком `e`."
+}
+},
+{
+"exampleIds": [
+"fr:03:41",
+"fr:03:44",
+"fr:03:48"
+],
+"textByLocale": {
+"en": "Useful change: Add `déjà` when asking \"already?\" Don't automatically add it to all questions, otherwise it will create an expectation that wasn't in the task.",
+"ru": "Полезное изменение: добавь `déjà`, когда спрашиваешь «уже?». Не добавляй его автоматически ко всем вопросам: иначе появится ожидание, которого не было в задании.",
+"uk": "Корисна зміна: додай `déjà`, коли запитуєш «вже?». Не додай його автоматично до всіх питань: інакше з'явиться очікування, якого не було в завданні."
+}
+},
+{
+"exampleIds": [
+"fr:03:46",
+"fr:03:49",
+"fr:03:50"
+],
+"textByLocale": {
+"en": "Different wordings of the same question can be correct. The short, colloquial form and the form with `est-ce que` don't change the request. Learn to recognize both without doubling the question markers.",
+"ru": "Разные формулировки одного вопроса могут быть правильными. Короткая разговорная и форма с `est-ce que` не меняют запрос. Учись узнавать обе, не удваивая маркеры вопроса.",
+"uk": "Різні формулювання одного питання можуть бути правильними. Коротка розмовна та форма з `est-ce que` не змінюють запит. Вчися дізнаватися обидві, не подвоюючи маркери питання."
+}
+}
+],
+"drills": [
+{
+"bad": "Je",
+"chapter": 1,
+"id": "fr:03:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Tu",
+"Elle",
+"Je"
+],
+"slot": 0
+},
+{
+"bad": "Elles",
+"chapter": 1,
+"id": "fr:03:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"Tu",
+"Elles",
+"On"
+],
+"slot": 0
+},
+{
+"bad": "sont",
+"chapter": 1,
+"id": "fr:03:05:lab",
+"item": 5,
+"kind": "match",
+"near": 18,
+"options": [
+"sont",
+"est",
+"êtes"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 2,
+"id": "fr:03:08:lab",
+"item": 8,
+"kind": "build",
+"near": 28,
+"options": [
+"suis",
+"êtes",
+"sont"
+],
+"slot": 1
+},
+{
+"bad": "Je",
+"chapter": 2,
+"id": "fr:03:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"Vous",
+"Je",
+"Nous"
+],
+"slot": 0
+},
+{
+"bad": "Est-elle",
+"chapter": 2,
+"id": "fr:03:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 14,
+"options": [
+"Es-tu",
+"Est-ce",
+"Est-elle"
+],
+"slot": 0
+},
+{
+"bad": "Est-il",
+"chapter": 3,
+"id": "fr:03:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 34,
+"options": [
+"Est-il",
+"Est-ce",
+"Est-elle"
+],
+"slot": 0
+},
+{
+"bad": "Est-elle",
+"chapter": 3,
+"id": "fr:03:17:lab",
+"item": 17,
+"kind": "match",
+"near": 40,
+"options": [
+"Est-elle",
+"Est-il",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Es-tu",
+"chapter": 3,
+"id": "fr:03:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"Es-tu",
+"Est-ce",
+"Êtes-vous"
+],
+"slot": 0
+},
+{
+"bad": "êtes",
+"chapter": 4,
+"id": "fr:03:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 41,
+"options": [
+"est",
+"êtes",
+"es"
+],
+"slot": 1
+},
+{
+"bad": "Une",
+"chapter": 4,
+"id": "fr:03:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"Une",
+"La",
+"Le"
+],
+"slot": 0
+},
+{
+"bad": "Aux",
+"chapter": 4,
+"id": "fr:03:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 21,
+"options": [
+"Le",
+"Des",
+"Aux"
+],
+"slot": 0
+},
+{
+"bad": "Les",
+"chapter": 5,
+"id": "fr:03:29:lab",
+"item": 29,
+"kind": "match",
+"near": 21,
+"options": [
+"Des",
+"Le",
+"Les"
+],
+"slot": 0
+},
+{
+"bad": "Êtes-vous",
+"chapter": 5,
+"id": "fr:03:31:lab",
+"item": 31,
+"kind": "build",
+"near": 18,
+"options": [
+"Est-ce",
+"Êtes-vous",
+"Sont-ils"
+],
+"slot": 0
+},
+{
+"bad": "Est-elle",
+"chapter": 5,
+"id": "fr:03:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 14,
+"options": [
+"Sont-ils",
+"Est-ce",
+"Est-elle"
+],
+"slot": 0
+},
+{
+"bad": "Est-il",
+"chapter": 6,
+"id": "fr:03:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 13,
+"options": [
+"Est-il",
+"Est-ce",
+"Est-elle"
+],
+"slot": 0
+},
+{
+"bad": "Sont-ils",
+"chapter": 6,
+"id": "fr:03:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 37,
+"options": [
+"Sont-ils",
+"Es-tu",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Cette",
+"chapter": 6,
+"id": "fr:03:42:lab",
+"item": 42,
+"kind": "match",
+"near": 49,
+"options": [
+"Cette",
+"Aux",
+"Les"
+],
+"slot": 0
+},
+{
+"bad": "chambre",
+"chapter": 7,
+"id": "fr:03:45:lab",
+"item": 45,
+"kind": "build",
+"near": 25,
+"options": [
+"chambre",
+"gare",
+"sortie"
+],
+"slot": 1
+},
+{
+"bad": "cuisine",
+"chapter": 7,
+"id": "fr:03:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"cuisine",
+"chambre",
+"gare"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Tu es là.",
+"Tu es là ?"
+],
+[
+"Tu es là ?",
+"Est-ce que tu es là ?"
+],
+[
+"Elle est prête ?",
+"Est-ce qu’elle est prête ?"
+],
+[
+"La salle est libre ?",
+"Est-ce que la salle est libre ?"
+]
+],
+"title": {
+"en": "Check a guess: a \"yes or no\" question",
+"ru": "Проверить догадку: вопрос «да или нет»",
+"uk": "Перевірити здогад: питання «так чи ні»"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:03:01",
+"target": "Tu es là ?",
+"ru": "Ты там?",
+"uk": "Ти там?"
+},
+{
+"id": "fr:03:02",
+"target": "Tu es ici ?",
+"ru": "Ты здесь?",
+"uk": "Ти тут?"
+},
+{
+"id": "fr:03:11",
+"target": "Est-ce que tu es à la gare ?",
+"ru": "Ты на вокзале?",
+"uk": "Ти на вокзалі?"
+},
+{
+"id": "fr:03:12",
+"target": "Est-ce que la porte est ouverte ?",
+"ru": "Дверь открыта?",
+"uk": "Двері відчинені?"
+},
+{
+"id": "fr:03:13",
+"target": "Est-ce que le café est fermé ?",
+"ru": "Кафе закрыто?",
+"uk": "Кафе зачинене?"
+},
+{
+"id": "fr:03:15",
+"target": "Est-ce que les clés sont ici ?",
+"ru": "Ключи здесь?",
+"uk": "Ключі тут?"
+},
+{
+"id": "fr:03:16",
+"target": "Est-ce que le train est à l’heure ?",
+"ru": "Поезд идёт по расписанию?",
+"uk": "Поїзд іде за розкладом?"
+},
+{
+"id": "fr:03:18",
+"target": "Est-ce que Paul est fatigué ?",
+"ru": "Поль устал?",
+"uk": "Пол втомився?"
+},
+{
+"id": "fr:03:21",
+"target": "Le guichet est ouvert ?",
+"ru": "Касса открыта?",
+"uk": "Каса відкрита?"
+},
+{
+"id": "fr:03:23",
+"target": "L’arrêt est loin ?",
+"ru": "Остановка далеко?",
+"uk": "Зупинка далеко?"
+},
+{
+"id": "fr:03:25",
+"target": "La sortie est à gauche ?",
+"ru": "Выход слева?",
+"uk": "Вихід ліворуч?"
+},
+{
+"id": "fr:03:31",
+"target": "Est-ce que Léa est avec toi ?",
+"ru": "Леа с тобой?",
+"uk": "Леа з тобою?"
+},
+{
+"id": "fr:03:33",
+"target": "Est-ce que la fenêtre est fermée ?",
+"ru": "Окно закрыто?",
+"uk": "Вікно зачинене?"
+},
+{
+"id": "fr:03:38",
+"target": "Est-ce que la salle est vide ?",
+"ru": "Комната пуста?",
+"uk": "Кімната порожня?"
+},
+{
+"id": "fr:03:41",
+"target": "Le prochain bus est déjà là ?",
+"ru": "Следующий автобус уже здесь?",
+"uk": "Наступний автобус вже тут?"
+},
+{
+"id": "fr:03:44",
+"target": "Le train est sur ce quai ?",
+"ru": "Поезд у этой платформы?",
+"uk": "Поїзд біля цієї платформи?"
+},
+{
+"id": "fr:03:48",
+"target": "La chambre est au premier étage ?",
+"ru": "Комната на втором этаже?",
+"uk": "Кімната на другому поверсі?"
+},
+{
+"id": "fr:03:46",
+"target": "Tu es seul ce soir ?",
+"ru": "Ты сегодня вечером один?",
+"uk": "Ти сьогодні ввечері один?"
+},
+{
+"id": "fr:03:49",
+"target": "Les enfants sont avec vous ?",
+"ru": "Дети с вами?",
+"uk": "Діти з вами?"
+},
+{
+"id": "fr:03:50",
+"target": "Le déjeuner est prêt ?",
+"ru": "Обед готов?",
+"uk": "Обід готовий?"
+}
+]
+},
+{
+"lesson": 4,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:04:01",
+"fr:04:03",
+"fr:04:05"
+],
+"textByLocale": {
+"en": "When pointing to a person and asking who it is, it's convenient to start with `c’est`. The verb form is already there. Don't add another `est` after that.",
+"ru": "Когда показывают на человека и спрашивают, кто это, удобно начать с `c’est`. Внутри уже есть форма глагола. Не добавляй после этого ещё одно `est`.",
+"uk": "Коли вказують на людину і запитують, хто це, зручно почати з `c’est`. Усередині вже є форма дієслова. Чи не додай після цього ще одне `est`."
+}
+},
+{
+"exampleIds": [
+"fr:04:11",
+"fr:04:12",
+"fr:04:13"
+],
+"textByLocale": {
+"en": "You will often need `un` or `une` before the name of a single object: it's a single instance. The French gender must be remembered with the name: key - `une clé`, ticket - `un billet`.",
+"ru": "Перед названием одного предмета часто понадобится `un` или `une`: это один экземпляр. Французский род нужно запоминать с названием: ключ — `une clé`, билет — `un billet`.",
+"uk": "Перед назвою одного предмета часто знадобиться `un` або `une`: це один екземпляр. Французький рід потрібно запам'ятовувати під назвою: ключ - `une clé`, квиток - `un billet`."
+}
+},
+{
+"exampleIds": [
+"fr:04:21",
+"fr:04:22",
+"fr:04:24"
+],
+"textByLocale": {
+"en": "For multiple objects in a neutral written sample, use `ce sont`. This is no reason to remove `mes`, `nos`, or `des`: they indicate whose objects they are or what objects we are talking about.",
+"ru": "Для нескольких предметов в нейтральном письменном образце используем `ce sont`. Это не повод убирать `mes`, `nos` или `des`: они сообщают, чьи предметы или о каких предметах говорим.",
+"uk": "Для кількох предметів у нейтральному письмовому зразку використовуємо `ce sont`. Це не привід прибирати `mes`, `nos` або `des`: вони повідомляють, чиї предмети або про які предмети говоримо."
+}
+},
+{
+"exampleIds": [
+"fr:04:31",
+"fr:04:32",
+"fr:04:34"
+],
+"textByLocale": {
+"en": "After `c’est`, you can use a whole group: belonging, name, and clarification. First, create a short core, then add details, such as who the gift is for.",
+"ru": "После `c’est` можно поставить целую группу: принадлежность, название и уточнение. Сначала собери короткое ядро, потом добавь подробность, например для кого подарок.",
+"uk": "Після `c’est` можна поставити цілу групу: приналежність, назву та уточнення. Спочатку збери коротке ядро, потім додай подробиці, наприклад для когось подарунок."
+}
+},
+{
+"exampleIds": [
+"fr:04:35",
+"fr:04:36",
+"fr:04:37"
+],
+"textByLocale": {
+"en": "Don't translate each word in a set expression independently. `C’est votre tour` means that it's the person's turn to act, not that they own some tower.",
+"ru": "Не переводи каждое слово в устойчивом выражении независимо. `C’est votre tour` означает, что очередь действовать дошла до человека, а не что у него есть какая-то башня.",
+"uk": "Не переводь кожне слово у стійкому вираженні незалежно. `C’est votre tour` означає, що черга діяти дійшла до людини, а не що має якась вежа."
+}
+},
+{
+"exampleIds": [
+"fr:04:41",
+"fr:04:42",
+"fr:04:44"
+],
+"textByLocale": {
+"en": "The previously studied negation works here too. In `ce n’est pas`, don't abbreviate `ce` before the consonant `n`. In the plural, it becomes `ce ne sont pas`.",
+"ru": "Ранее изученное отрицание работает и здесь. В `ce n’est pas` не сокращай `ce` перед согласной `n`. При множественном числе получается `ce ne sont pas`.",
+"uk": "Раніше вивчене заперечення працює і тут. У `ce n’est pas` не скорочуй `ce` перед згодою `n`. При множині виходить `ce ne sont pas`."
+}
+},
+{
+"exampleIds": [
+"fr:04:45",
+"fr:04:46",
+"fr:04:47"
+],
+"textByLocale": {
+"en": "Distinguish between \"this is my brother\" and \"my brother is here.\" In the first answer, you identify the person; in the second, you state their location. A different construction is needed, even if you're talking about the same person.",
+"ru": "Различай «это мой брат» и «мой брат здесь». В первом ответе ты опознаёшь человека, во втором сообщаешь его место. Нужна другая конструкция, даже если говоришь об одном и том же человеке.",
+"uk": "Розрізняй «це мій брат» та «мій брат тут». У першій відповіді ти пізнаєш людину, у другій повідомляєш її місце. Потрібна інша конструкція, навіть якщо говориш про одну й ту саму людину."
+}
+}
+],
+"drills": [
+{
+"bad": "N’est",
+"chapter": 1,
+"id": "fr:04:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"C’est",
+"Est-ce",
+"N’est"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 1,
+"id": "fr:04:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 10,
+"options": [
+"Est-ce",
+"N’est",
+"C’est"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 1,
+"id": "fr:04:05:lab",
+"item": 5,
+"kind": "match",
+"near": 8,
+"options": [
+"N’est",
+"Est-ce",
+"C’est"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 2,
+"id": "fr:04:08:lab",
+"item": 8,
+"kind": "build",
+"near": 5,
+"options": [
+"N’est",
+"C’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 2,
+"id": "fr:04:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"C’est",
+"N’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 2,
+"id": "fr:04:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 48,
+"options": [
+"Est-ce",
+"C’est",
+"N’est"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 3,
+"id": "fr:04:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 16,
+"options": [
+"Est-ce",
+"C’est",
+"N’est"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 3,
+"id": "fr:04:17:lab",
+"item": 17,
+"kind": "match",
+"near": 38,
+"options": [
+"C’est",
+"N’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 3,
+"id": "fr:04:19:lab",
+"item": 19,
+"kind": "build",
+"near": 17,
+"options": [
+"C’est",
+"N’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Un",
+"chapter": 4,
+"id": "fr:04:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Ce",
+"Un",
+"Au"
+],
+"slot": 0
+},
+{
+"bad": "Un",
+"chapter": 4,
+"id": "fr:04:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"Du",
+"Ce",
+"Un"
+],
+"slot": 0
+},
+{
+"bad": "Du",
+"chapter": 4,
+"id": "fr:04:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Ce",
+"Du",
+"Les"
+],
+"slot": 0
+},
+{
+"bad": "Les",
+"chapter": 5,
+"id": "fr:04:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"Ce",
+"Les",
+"Une"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 5,
+"id": "fr:04:31:lab",
+"item": 31,
+"kind": "build",
+"near": 10,
+"options": [
+"N’est",
+"C’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Est-ce",
+"chapter": 5,
+"id": "fr:04:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 2,
+"options": [
+"N’est",
+"Est-ce",
+"C’est"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 6,
+"id": "fr:04:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"C’est",
+"Est-ce",
+"N’est"
+],
+"slot": 0
+},
+{
+"bad": "N’est",
+"chapter": 6,
+"id": "fr:04:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 16,
+"options": [
+"N’est",
+"C’est",
+"Est-ce"
+],
+"slot": 0
+},
+{
+"bad": "Aux",
+"chapter": 6,
+"id": "fr:04:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Ce",
+"Des",
+"Aux"
+],
+"slot": 0
+},
+{
+"bad": "n’est",
+"chapter": 7,
+"id": "fr:04:45:lab",
+"item": 45,
+"kind": "build",
+"near": 35,
+"options": [
+"c’est",
+"est-ce",
+"n’est"
+],
+"slot": 2
+},
+{
+"bad": "N’est",
+"chapter": 7,
+"id": "fr:04:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 12,
+"options": [
+"N’est",
+"C’est",
+"Est-ce"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"Paul",
+"C’est Paul."
+],
+[
+"un reçu",
+"C’est un reçu."
+],
+[
+"des reçus",
+"Ce sont des reçus."
+],
+[
+"mon sac",
+"Ce n’est pas mon sac."
+],
+[
+"mes lunettes",
+"Ce ne sont pas mes lunettes."
+]
+],
+"title": {
+"en": "Name a person or object: `c’est`",
+"ru": "Назвать человека или предмет: `c’est`",
+"uk": "Назвати людину або предмет: `c’est`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:04:01",
+"target": "C’est Paul.",
+"ru": "Это Поль.",
+"uk": "Це Пол."
+},
+{
+"id": "fr:04:03",
+"target": "C’est ma sœur.",
+"ru": "Это моя сестра.",
+"uk": "Це моя сестра."
+},
+{
+"id": "fr:04:05",
+"target": "C’est une amie.",
+"ru": "Это подруга.",
+"uk": "Це подруга."
+},
+{
+"id": "fr:04:11",
+"target": "C’est une clé.",
+"ru": "Это ключ.",
+"uk": "Це ключ."
+},
+{
+"id": "fr:04:12",
+"target": "C’est un billet.",
+"ru": "Это билет.",
+"uk": "Це квиток."
+},
+{
+"id": "fr:04:13",
+"target": "C’est un ticket de bus.",
+"ru": "Это автобусный билет.",
+"uk": "Це квиток на автобус."
+},
+{
+"id": "fr:04:21",
+"target": "Ce sont mes clés.",
+"ru": "Это мои ключи.",
+"uk": "Це мої ключі."
+},
+{
+"id": "fr:04:22",
+"target": "Ce sont mes amis.",
+"ru": "Это мои друзья.",
+"uk": "Це мої друзі."
+},
+{
+"id": "fr:04:24",
+"target": "Ce sont des voisins.",
+"ru": "Это соседи.",
+"uk": "Це сусіди."
+},
+{
+"id": "fr:04:31",
+"target": "C’est ma première visite.",
+"ru": "Это мой первый визит.",
+"uk": "Це мій перший візит."
+},
+{
+"id": "fr:04:32",
+"target": "C’est votre chambre.",
+"ru": "Это ваша комната.",
+"uk": "Це ваша кімната."
+},
+{
+"id": "fr:04:34",
+"target": "C’est son vélo.",
+"ru": "Это его велосипед.",
+"uk": "Це його велосипед."
+},
+{
+"id": "fr:04:35",
+"target": "C’est votre tour.",
+"ru": "Ваша очередь.",
+"uk": "Ваша черга."
+},
+{
+"id": "fr:04:36",
+"target": "C’est la bonne adresse.",
+"ru": "Это правильный адрес.",
+"uk": "Це правильна адреса."
+},
+{
+"id": "fr:04:37",
+"target": "C’est le dernier bus.",
+"ru": "Это последний автобус.",
+"uk": "Це останній автобус."
+},
+{
+"id": "fr:04:41",
+"target": "Ce n’est pas mon sac.",
+"ru": "Это не моя сумка.",
+"uk": "Це не моя сумка."
+},
+{
+"id": "fr:04:42",
+"target": "Ce n’est pas ta place.",
+"ru": "Это не твоё место.",
+"uk": "Це не твоє місце."
+},
+{
+"id": "fr:04:44",
+"target": "Ce ne sont pas mes lunettes.",
+"ru": "Это не мои очки.",
+"uk": "Це не мої окуляри."
+},
+{
+"id": "fr:04:45",
+"target": "Est-ce que c’est votre téléphone ?",
+"ru": "Это ваш телефон?",
+"uk": "Це ваш телефон?"
+},
+{
+"id": "fr:04:46",
+"target": "C’est ton frère ?",
+"ru": "Это твой брат?",
+"uk": "Це твій брат?"
+},
+{
+"id": "fr:04:47",
+"target": "Ce sont vos bagages ?",
+"ru": "Это ваш багаж?",
+"uk": "Це ваш багаж?"
+}
+]
+}
+]

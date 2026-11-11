@@ -1,96 +1,93 @@
 /**
- * «Дуэль на 5 фраз» (идея 3) — откуда берутся фразы: курс, вшитый в приложение, и локальный прогресс курса.
+ * «Дуэль на 5 фраз» (идея 3) — откуда берутся фразы: классический курс, вшитый в приложение, и локальный прогресс уроков.
  *
  * зачем (координатор 22.10: «фразы — из уже пройденного, без новых загрузок»; Firebase-экономия): ни одного чтения сети —
- * пройденные занятия лежат в локальном прогрессе курса, тексты — в сборке. Модули курса подключаем лениво (как
- * app/learning_v2_home_continue_route.ts): вкладка «Друзья» не платит за каталог курса, пока дуэль не открыта.
- * Курс factory_native — английский; у других изучаемых языков пройденного для дуэли пока нет (решение D188: дуэль — один язык).
+ * пройденные уроки лежат в локальном прогрессе (lesson<N>_progress), тексты — в сборке. Файл урока читается лениво,
+ * только когда дуэль открыта: вкладка «Друзья» не платит за курс заранее.
+ * зачем (владелец 11.11): прежний источник — курс занятий — удалён; дуэль переведена на уроки классического курса.
+ * Работает для всех пяти языков классического курса; у остальных изучаемых языков пройденного для дуэли нет.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { Lang } from '../../constants/i18n';
+import { classicCourseActiveFor, getClassicLessonPhrases } from '../classic_course_phrases';
+import { LESSON_PROGRESS_PASS_CORRECT, LESSON_PROGRESS_SCAN_COUNT } from '../lesson_progress_scan';
+import { lessonProgressKey, type RuntimeStudyTarget } from '../target_storage_keys';
 import {
   buildDuelPhraseSet,
-  duelPhrasesFromRow,
-  duelSessionKey,
+  duelLessonKey,
+  duelPhrasesFromLesson,
   resolveDuelPhrases,
-  type DuelAuthoredLocale,
+  type DuelLessonRef,
   type DuelPhrase,
-  type DuelSessionRef,
 } from './duel_phrases';
 
 const LOG = '[FRIENDS-DUEL]';
-/** Последние прочитанные занятия (память процесса): реванш и повторное открытие итога не разбирают курс заново. */
-const SESSION_CACHE_MAX = 16;
-const sessionCache = new Map<string, readonly DuelPhrase[]>();
+/** Последние прочитанные уроки (память процесса): реванш и повторное открытие итога не разбирают курс заново. */
+const LESSON_CACHE_MAX = 8;
+const lessonCache = new Map<string, readonly DuelPhrase[]>();
 
-/** Язык подачи курса: украинский — свой, остальные — русский (как FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1). */
-export function duelAuthoredLocale(lang: Lang): DuelAuthoredLocale {
-  return lang === 'uk' ? 'uk' : 'ru';
-}
-
-/** Задания «Собери фразу» одного занятия из курса в сборке. Нет занятия или битый файл — пустой список с причиной в журнале. */
-export function loadDuelSessionPhrases(ref: DuelSessionRef, lang: Lang): readonly DuelPhrase[] {
-  const locale = duelAuthoredLocale(lang);
-  const key = `${locale}:${duelSessionKey(ref)}`;
-  const hit = sessionCache.get(key);
+/** Фразы «Собери фразу» одного урока из курса в сборке. Нет урока/курса или битый файл — пустой список с причиной в журнале. */
+export function loadDuelLessonPhrases(ref: DuelLessonRef, lang: Lang): readonly DuelPhrase[] {
+  const key = `${lang}:${duelLessonKey(ref)}`;
+  const hit = lessonCache.get(key);
   if (hit) return hit;
   const startedAt = Date.now();
+  if (!classicCourseActiveFor(ref.lang)) {
+    console.warn(`${LOG} phrases: язык курса=${ref.lang} урок=${ref.lessonOrdinal} — классического курса для языка нет → пусто`); // guard-ok: ранний выход с причиной
+    return [];
+  }
   try {
-    /* eslint-disable @typescript-eslint/no-require-imports */
-    const { FACTORY_NATIVE_MANIFEST_V1 } = require('../../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated') as typeof import('../../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated');
-    /* eslint-enable @typescript-eslint/no-require-imports */
-    const row = FACTORY_NATIVE_MANIFEST_V1.find((r) => r.lessonOrdinal === ref.lessonOrdinal && r.sessionOrdinal === ref.sessionOrdinal);
-    if (!row) {
-      console.warn(`${LOG} phrases: занятия урок=${ref.lessonOrdinal} занятие=${ref.sessionOrdinal} нет в курсе сборки → пусто`);
+    const lessonPhrases = getClassicLessonPhrases(ref.lessonOrdinal, ref.lang);
+    if (lessonPhrases.length === 0) {
+      console.warn(`${LOG} phrases: язык курса=${ref.lang} урок=${ref.lessonOrdinal} — урока нет в курсе сборки → пусто`); // guard-ok: ранний выход с причиной
       return [];
     }
-    const { phrases, skipped } = duelPhrasesFromRow(row, locale);
-    sessionCache.set(key, phrases);
-    while (sessionCache.size > SESSION_CACHE_MAX) {
-      const oldest = sessionCache.keys().next().value;
+    const { phrases, skipped } = duelPhrasesFromLesson(lessonPhrases, ref, lang);
+    lessonCache.set(key, phrases);
+    while (lessonCache.size > LESSON_CACHE_MAX) {
+      const oldest = lessonCache.keys().next().value;
       if (oldest === undefined) break;
-      sessionCache.delete(oldest);
+      lessonCache.delete(oldest);
     }
-    console.log(`${LOG} phrases: урок=${ref.lessonOrdinal} занятие=${ref.sessionOrdinal} язык=${locale} фраз=${phrases.length} пропущено=${skipped} ms=${Date.now() - startedAt}`);
+    console.log(`${LOG} phrases: язык курса=${ref.lang} урок=${ref.lessonOrdinal} интерфейс=${lang} фраз=${phrases.length} пропущено=${skipped} источник=курс в сборке ms=${Date.now() - startedAt}`);
     return phrases;
   } catch (error) {
-    console.warn(`${LOG} phrases: урок=${ref.lessonOrdinal} занятие=${ref.sessionOrdinal} не прочитать (${error instanceof Error ? error.message : String(error)}) → пусто`);
+    console.warn(`${LOG} phrases: язык курса=${ref.lang} урок=${ref.lessonOrdinal} не прочитать (${error instanceof Error ? error.message : String(error)}) → пусто`); // guard-ok: catch с причиной
     return [];
   }
 }
 
-/** Пройденные занятия курса этого аккаунта (только выпущенные). Не английский курс или ошибка чтения — пусто, с причиной. */
-export async function loadMyDuelSessions(studyTarget: string): Promise<DuelSessionRef[]> {
-  if (studyTarget !== 'en') {
-    console.log(`${LOG} sessions: изучаемый язык=${studyTarget} — пройденного курса для дуэли нет (курс фраз только английский) → пусто`);
+/** Сколько верных ответов в сохранённом прогрессе урока; битая запись — 0 (урок просто не считается пройденным). */
+function correctAnswers(raw: string | null): number {
+  if (!raw) return 0;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((entry) => entry === 'correct' || entry === 'replay_correct').length : 0;
+  } catch (error) {
+    console.warn(`${LOG} lessons: прогресс урока не разобрался (${error instanceof Error ? error.message : String(error)}) → урок не считаем пройденным`); // guard-ok: catch с причиной
+    return 0;
+  }
+}
+
+/** Пройденные уроки классического курса на этом телефоне (то же правило, что на экране итога урока). Ошибка чтения — пусто, с причиной. */
+export async function loadMyDuelLessons(studyTarget: string): Promise<DuelLessonRef[]> {
+  if (!classicCourseActiveFor(studyTarget)) {
+    console.log(`${LOG} lessons: изучаемый язык=${studyTarget} — классического курса для дуэли нет → пусто`); // guard-ok: ранний выход с причиной
     return [];
   }
   const startedAt = Date.now();
   try {
-    /* eslint-disable @typescript-eslint/no-require-imports */
-    const { factoryNativeLearningV2AvailabilityV1 } = require('../../modules/learning-v2/content/factory_native/factory_native_catalog_v1') as typeof import('../../modules/learning-v2/content/factory_native/factory_native_catalog_v1');
-    const { isLearningV2SessionReleasedV1 } = require('../learning_v2_session_availability_v1') as typeof import('../learning_v2_session_availability_v1');
-    const { createLearningV2CourseLocalProgressStoreV1 } = require('../../modules/learning-v2/progress/course_local_progress_v1') as typeof import('../../modules/learning-v2/progress/course_local_progress_v1');
-    const { deriveLocalOfflineProgressAccountScopeHash } = require('../../modules/learning-v2/progress/progress_account_scope') as typeof import('../../modules/learning-v2/progress/progress_account_scope');
-    const { getStableId } = require('../stable_id') as typeof import('../stable_id');
-    const { withAccountTransitionLock } = require('../account_generation') as typeof import('../account_generation');
-    /* eslint-enable @typescript-eslint/no-require-imports */
-    const released = new Map(factoryNativeLearningV2AvailabilityV1().sessions
-      .filter((s) => isLearningV2SessionReleasedV1(s.lessonOrdinal, s.sessionOrdinal))
-      .map((s) => [s.courseSessionId, { lessonOrdinal: s.lessonOrdinal, sessionOrdinal: s.sessionOrdinal }] as const));
-    const state = await withAccountTransitionLock(async () => {
-      const scope = deriveLocalOfflineProgressAccountScopeHash(await getStableId());
-      return createLearningV2CourseLocalProgressStoreV1(AsyncStorage).load(scope);
-    });
-    const refs = state.completedSessionIds.flatMap((id) => {
-      const ref = released.get(id);
-      return ref ? [ref] : [];
-    });
-    console.log(`${LOG} sessions: пройдено=${state.completedSessionIds.length} из них выпущено=${refs.length} источник=локальный прогресс курса ms=${Date.now() - startedAt}`);
+    const lessonIds = Array.from({ length: LESSON_PROGRESS_SCAN_COUNT }, (_, index) => index + 1);
+    // зачем: один multiGet вместо 32 обращений к хранилищу (как lesson_progress_scan).
+    const rows = await AsyncStorage.multiGet(lessonIds.map((lessonId) => lessonProgressKey(lessonId, studyTarget as RuntimeStudyTarget)));
+    const refs = lessonIds
+      .filter((_, index) => correctAnswers(rows[index]?.[1] ?? null) >= LESSON_PROGRESS_PASS_CORRECT)
+      .map((lessonOrdinal) => ({ lang: studyTarget, lessonOrdinal }));
+    console.log(`${LOG} lessons: язык=${studyTarget} ключей=${rows.length} пройдено=${refs.length} порог=${LESSON_PROGRESS_PASS_CORRECT} источник=локальный прогресс уроков ms=${Date.now() - startedAt}`);
     return refs;
   } catch (error) {
-    console.warn(`${LOG} sessions: прогресс курса не прочитать (${error instanceof Error ? error.message : String(error)}) → пусто`);
+    console.warn(`${LOG} lessons: прогресс уроков не прочитать (${error instanceof Error ? error.message : String(error)}) → пусто`); // guard-ok: catch с причиной
     return [];
   }
 }
@@ -106,16 +103,16 @@ export function duelLessonsLabel(phrases: readonly DuelPhrase[]): string | null 
 
 /** Пять фраз нового вызова из своего пройденного. Меньше пяти разных — пусто (экран вызова: «Пока мало пройденных фраз»). */
 export async function pickMyDuelPhrases(input: Readonly<{ studyTarget: string; lang: Lang; seed: number }>): Promise<readonly DuelPhrase[]> {
-  const sessions = await loadMyDuelSessions(input.studyTarget);
+  const lessons = await loadMyDuelLessons(input.studyTarget);
   const startedAt = Date.now();
-  const { phrases, sessionsRead } = buildDuelPhraseSet(sessions, input.seed, (ref) => loadDuelSessionPhrases(ref, input.lang));
-  console.log(`${LOG} pick: занятий пройдено=${sessions.length} прочитано=${sessionsRead} фраз=${phrases.length} зерно=${input.seed} уроки=${duelLessonsLabel(phrases) ?? '—'} ms=${Date.now() - startedAt}`);
+  const { phrases, lessonsRead } = buildDuelPhraseSet(lessons, input.seed, (ref) => loadDuelLessonPhrases(ref, input.lang));
+  console.log(`${LOG} pick: уроков пройдено=${lessons.length} прочитано=${lessonsRead} фраз=${phrases.length} зерно=${input.seed} уроки=${duelLessonsLabel(phrases) ?? '—'} ms=${Date.now() - startedAt}`);
   return phrases;
 }
 
 /** Фразы дуэли по id с сервера — из курса на телефоне. Не нашлись все пять — null (в журнале — какие id пришли). */
 export function resolveDuelPhrasesOnPhone(ids: unknown, lang: Lang): DuelPhrase[] | null {
-  const phrases = resolveDuelPhrases(ids, (ref) => loadDuelSessionPhrases(ref, lang));
+  const phrases = resolveDuelPhrases(ids, (ref) => loadDuelLessonPhrases(ref, lang));
   if (phrases === null) console.warn(`${LOG} resolve: фразы дуэли не собрать из курса на телефоне ids=${JSON.stringify(ids)}`);
   return phrases;
 }

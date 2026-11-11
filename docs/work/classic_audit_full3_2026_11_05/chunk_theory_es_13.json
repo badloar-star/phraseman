@@ -1,0 +1,1713 @@
+[
+{
+"lesson": 27,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 27,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Книга, которую…: относительное que",
+"formula": "существительное + que + уточняющая часть",
+"story": "На столе две книги. El libro que compré — та, которую я купил. Часть que compré помогает выбрать нужную книгу; это не вопрос.",
+"use": "Свяжи название человека или вещи с уточнением. Выбери относительное que без знака ударения.",
+"choose": "В ¿Qué compras? слово спрашивает, что покупают. В el libro que compré мы уже знаем, что это книга; que связывает её с уточнением. Даже внутри общего вопроса это que без ударения.",
+"nuance": "Свяжи название человека или вещи с уточнением. Выбери относительное que без знака ударения. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"wrong": "El libro qué compré es corto.",
+"right": "El libro que compré es corto.",
+"chapters": [
+{
+"title": "Одно испанское que",
+"body": "Слово que связывает знакомый предмет с уточнением. Сравни el libro que compré и las cartas que escribí. И род, и число изменились, а que осталось тем же.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Не вопросительное qué",
+"body": "В ¿Qué compras? слово спрашивает, что покупают. В el libro que compré мы уже знаем, что это книга; que связывает её с уточнением. Даже внутри общего вопроса это que без ударения.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:29",
+"es:27:30"
+],
+"focusId": "es:27:29"
+},
+{
+"title": "Кто сделал действие",
+"body": "В el médico que trabaja врач сам работает. В el libro que compré книгу купил я; на это указывает -é. Не требуй, чтобы ближайшее существительное всегда управляло глаголом.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:11",
+"es:27:12"
+],
+"focusId": "es:27:11"
+},
+{
+"title": "Где кончается уточнение",
+"body": "Мысленно убери que compré из el libro que compré es corto. Останется el libro es corto — основа сообщения. Главному подлежащему по-прежнему нужен свой глагол.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Почему нет запятых",
+"body": "Слова que compré уточняют, какую именно книгу ты имеешь в виду: El libro que compré es corto. Не разделяй это уточнение запятыми: без него непонятно, какую книгу ты выбираешь.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:21",
+"es:27:22"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ключи, которые мне дал Луис, лежат на столе.» / «Я не могу найти сообщение, которое ты написал.». Que не меняется, а глагол уточняющей части имеет своего исполнителя. Две части: Las llaves  /  que me dio Luis están en la mesa.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:20",
+"es:27:21"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Поезд, который мы видели вчера, вон там.» / «Сумка, которую несёт твоя сестра, твоя?». Que не меняется, а глагол уточняющей части имеет своего исполнителя. Свяжи название человека или вещи с уточнением. Выбери относительное que без знака ударения.",
+"note": "Ключевая форма: que. Que не меняется, а глагол уточняющей части имеет своего исполнителя.",
+"samples": [
+"es:27:44",
+"es:27:50"
+],
+"focusId": "es:27:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ты",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "он/она/Вы",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+},
+{
+"es": "nosotros · somos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ser · Настоящее"
+},
+{
+"rows": [
+{
+"es": "que",
+"gloss": "определяет предыдущее существительное",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Книжка, яку…: відносне que",
+"formula": "іменник + que + уточнювальна частина",
+"story": "На столі дві книжки. El libro que compré — та, яку я купив. Частина que compré уточнює книжку, а не ставить запитання.",
+"use": "Поєднай назву людини чи речі з уточненням. Обери відносне que без знака наголосу.",
+"choose": "У ¿Qué compras? слово запитує, що купують. В el libro que compré уже відомо, що йдеться про книжку; que приєднує уточнення. Навіть усередині загального питання воно без наголосу.",
+"nuance": "Поєднай назву людини чи речі з уточненням. Обери відносне que без знака наголосу. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"wrong": "El libro qué compré es corto.",
+"right": "El libro que compré es corto.",
+"chapters": [
+{
+"title": "Одне іспанське que",
+"body": "Слово que пов’язує знайомий предмет з уточненням. Порівняй el libro que compré і las cartas que escribí. Рід і число змінилися, а que залишилося тим самим.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Не питальне qué",
+"body": "У ¿Qué compras? слово запитує, що купують. В el libro que compré уже відомо, що йдеться про книжку; que приєднує уточнення. Навіть усередині загального питання воно без наголосу.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:29",
+"es:27:30"
+],
+"focusId": "es:27:29"
+},
+{
+"title": "Хто виконав дію",
+"body": "В el médico que trabaja лікар сам працює. В el libro que compré книжку купив я; це показує -é. Найближчий іменник не завжди керує дієсловом.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:11",
+"es:27:12"
+],
+"focusId": "es:27:11"
+},
+{
+"title": "Де завершується уточнення",
+"body": "Подумки прибери que compré з el libro que compré es corto. Лишиться el libro es corto — основа повідомлення. Головний підмет усе ще потребує свого дієслова.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Чому немає ком",
+"body": "Слова que compré уточнюють, яку саме книжку ти маєш на увазі: El libro que compré es corto. Не відділяй це уточнення комами: без нього незрозуміло, яку книжку ти обираєш.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:21",
+"es:27:22"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ключі, які мені дав Луїс, лежать на столі.» / «Я не можу знайти повідомлення, яке ти написав.». Que незмінне, а дієслово підрядної частини має власного виконавця. Дві частини: Las llaves  /  que me dio Luis están en la mesa.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:20",
+"es:27:21"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Потяг, який ми бачили вчора, он там.» / «Сумка, яку несе твоя сестра, твоя?». Que незмінне, а дієслово підрядної частини має власного виконавця. Поєднай назву людини чи речі з уточненням. Обери відносне que без знака наголосу.",
+"note": "Ключова форма: que. Que незмінне, а дієслово підрядної частини має власного виконавця.",
+"samples": [
+"es:27:44",
+"es:27:50"
+],
+"focusId": "es:27:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "ти",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "він/вона/Ви",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+},
+{
+"es": "nosotros · somos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ser · Теперішній час"
+},
+{
+"rows": [
+{
+"es": "que",
+"gloss": "уточнює попередній іменник",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Linking two ideas with relative que",
+"formula": "noun + que + identifying detail",
+"story": "Two books are on the table. El libro que compré picks out the one I bought. Que introduces a detail; you are not asking a question.",
+"use": "Associate the name of a person or thing with a qualifying clause. Choose the relative que without the stress mark.",
+"choose": "In ¿Qué compras?, the word asks what is being bought. In el libro que compré, we already know it's a book; que connects it with clarification. Even within a general question, this que is unstressed.",
+"nuance": "Associate the name of a person or thing with a qualifying clause. Choose the relative que without the stress mark. Que does not change, and the qualifying verb has its own performer.",
+"wrong": "El libro qué compré es corto.",
+"right": "El libro que compré es corto.",
+"chapters": [
+{
+"title": "How does que connect a noun to a detail?",
+"body": "Que links a noun to the detail that identifies it. It stays the same with one item or several: el libro que…, las cartas que… .",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Why que here, but qué in a question?",
+"body": "In ¿Qué compras?, the word asks what is being bought. In el libro que compré, we already know it's a book; que connects it with clarification. Even within a general question, this que is unstressed.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:29",
+"es:27:30"
+],
+"focusId": "es:27:29"
+},
+{
+"title": "Who performs the action in the added clause?",
+"body": "In el médico que trabaja, the doctor works alone. In el libro que compré, I bought the book; this is indicated by - é. Don't require the nearest noun to always govern the verb.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:11",
+"es:27:12"
+],
+"focusId": "es:27:11"
+},
+{
+"title": "Where does the extra description end?",
+"body": "Mentally remove que compré from el libro que compré es corto. What remains is el libro es corto —the stem of the message. The main subject still needs its own verb.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:01",
+"es:27:02"
+],
+"focusId": "es:27:01"
+},
+{
+"title": "Why are there no commas in this example?",
+"body": "The clause after que identifies which thing you mean. In this construction, do not put a comma before que.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:21",
+"es:27:22"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "How do I put the parts together?",
+"body": "Compare two tasks: \"The keys Louis gave me are on the table.\" / \"I can't find the message you wrote.\" Que doesn't change, and the verb of the specifying part has its own performer. Two parts: Las llaves / que me dio Luis están en la mesa.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:20",
+"es:27:21"
+],
+"focusId": "es:27:21"
+},
+{
+"title": "Can I identify a different thing this way?",
+"body": "Compare the two tasks: \"The train we saw yesterday is over there.\" / \"Is the bag your sister is carrying yours?\" Que does not change, and the verb of the specifying part has its performer. Associate the name of a person or thing with the specifying part. Choose the relative que without a stress mark.",
+"note": "Key form: que. Que does not change, and the specifying verb has its own performer.",
+"samples": [
+"es:27:44",
+"es:27:50"
+],
+"focusId": "es:27:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · soy",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · eres",
+"gloss": "you",
+"id": null,
+"sample": ""
+},
+{
+"es": "él · es",
+"gloss": "he/she/you",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+},
+{
+"es": "nosotros · somos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · sois",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · son",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "ser Present"
+},
+{
+"rows": [
+{
+"es": "que",
+"gloss": "modifies the preceding noun",
+"id": "es:27:01",
+"sample": "El libro que compré es corto."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:27:01",
+"index": 2,
+"right": "que",
+"near": "qué",
+"seq": [
+"El",
+"libro",
+"que",
+"compré",
+"es",
+"corto"
+],
+"i": 0,
+"kind": "form",
+"key": "es27/lab/form1",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:13",
+"index": 2,
+"right": "que",
+"near": "qué",
+"seq": [
+"El",
+"médico",
+"que",
+"llamó",
+"anoche",
+"es",
+"mi",
+"hermano"
+],
+"i": 12,
+"kind": "form",
+"key": "es27/lab/form2",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:26",
+"index": 4,
+"right": "que",
+"near": "qué",
+"seq": [
+"Dónde",
+"está",
+"el",
+"paquete",
+"que",
+"recibiste"
+],
+"i": 25,
+"kind": "form",
+"key": "es27/lab/form3",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:38",
+"index": 4,
+"right": "que",
+"near": "qué",
+"seq": [
+"Me",
+"gustan",
+"las",
+"cartas",
+"que",
+"llegaron",
+"hoy"
+],
+"i": 37,
+"kind": "form",
+"key": "es27/lab/form4",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:07",
+"index": 2,
+"right": "que",
+"near": "qué",
+"seq": [
+"La",
+"mochila",
+"que",
+"buscas",
+"es",
+"roja"
+],
+"i": 6,
+"kind": "spot",
+"key": "es27/lab/spot1",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:20",
+"index": 2,
+"right": "que",
+"near": "qué",
+"seq": [
+"Las",
+"llaves",
+"que",
+"me",
+"dio",
+"Luis",
+"están",
+"en",
+"la",
+"mesa"
+],
+"i": 19,
+"kind": "spot",
+"key": "es27/lab/spot2",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:32",
+"index": 2,
+"right": "que",
+"near": "qué",
+"seq": [
+"La",
+"farmacia",
+"que",
+"buscas",
+"está",
+"en",
+"mi",
+"barrio"
+],
+"i": 31,
+"kind": "spot",
+"key": "es27/lab/spot3",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"id": "es:27:47",
+"index": 4,
+"right": "que",
+"near": "qué",
+"seq": [
+"Es",
+"tuyo",
+"el",
+"reloj",
+"que",
+"encontramos"
+],
+"i": 46,
+"kind": "spot",
+"key": "es27/lab/spot4",
+"feedback": {
+"ru": "Связующее слово: que — который, которая, которые.",
+"uk": "Сполучне слово: que — який, яка, які.",
+"en": "Linking word: que — which, which, which."
+}
+},
+{
+"kind": "match",
+"key": "es27/lab/match1",
+"id": "es:27:02",
+"other": "es:27:03"
+},
+{
+"kind": "match",
+"key": "es27/lab/match2",
+"id": "es:27:17",
+"other": "es:27:16"
+},
+{
+"kind": "match",
+"key": "es27/lab/match3",
+"id": "es:27:33",
+"other": "es:27:32"
+},
+{
+"kind": "match",
+"key": "es27/lab/match4",
+"id": "es:27:46",
+"other": "es:27:47"
+},
+{
+"kind": "build",
+"key": "es27/lab/build1",
+"id": "es:27:04"
+},
+{
+"kind": "build",
+"key": "es27/lab/build2",
+"id": "es:27:15"
+},
+{
+"kind": "build",
+"key": "es27/lab/build3",
+"id": "es:27:29"
+},
+{
+"kind": "build",
+"key": "es27/lab/build4",
+"id": "es:27:42"
+},
+{
+"kind": "transform",
+"id": "es:27:02",
+"base": "es:27:01",
+"diff": [
+{
+"before": [
+"compré"
+],
+"after": [
+"leí"
+]
+}
+],
+"key": "es27/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:27:18",
+"base": "es:27:16",
+"diff": [
+{
+"before": [
+"buscas"
+],
+"after": [
+"lleva",
+"Ana"
+]
+}
+],
+"key": "es27/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:27:30",
+"base": "es:27:27",
+"diff": [
+{
+"before": [
+"compraste"
+],
+"after": [
+"estaba",
+"aquí"
+]
+}
+],
+"key": "es27/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:27:48",
+"base": "es:27:47",
+"diff": [
+{
+"before": [
+"reloj"
+],
+"after": [
+"bolso"
+]
+}
+],
+"key": "es27/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+14,
+18
+],
+[
+1,
+13
+],
+[
+16,
+12
+],
+[
+5,
+17
+],
+[
+9,
+2
+],
+[
+11,
+15
+]
+],
+"worked": [
+"es:27:05",
+"es:27:18",
+"es:27:33",
+"es:27:48"
+],
+"reflection": [
+"es:27:01",
+"es:27:02"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 28,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 28,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Завтра позвоню: простое будущее",
+"formula": "инфинитив целиком + é / ás / á / emos / éis / án",
+"story": "Обещаешь позвонить завтра: llamaré. Сохрани целое llamar с последней r и прибавь é. Не путай с llamé — «я позвонил».",
+"use": "Вырази будущее одной глагольной формой, не добавляя voy a.",
+"choose": "Llamaré — обещание от первого лица. Llamará — речь об одном другом человеке или обращение на usted. Смотри на последнюю гласную и не путай llamaré с прошедшим llamé.",
+"nuance": "Вырази будущее одной глагольной формой, не добавляя voy a. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"wrong": "Llamé al hotel mañana.",
+"right": "Llamaré al hotel mañana.",
+"chapters": [
+{
+"title": "Не отрезай -ar",
+"body": "Для llamo отбрасывали -ar. В llamaré оно остаётся: llamar + é. У правильных глаголов всех трёх групп используется одна и та же серия окончаний.",
+"note": "Ключевая форма: llamaré. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:01",
+"es:28:02"
+],
+"focusId": "es:28:01"
+},
+{
+"title": "Я или он",
+"body": "Llamaré — обещание от первого лица. Llamará — речь об одном другом человеке или обращение на usted. Смотри на последнюю гласную и не путай llamaré с прошедшим llamé.",
+"note": "Ключевая форма: llamarás. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:02",
+"es:28:03"
+],
+"focusId": "es:28:02"
+},
+{
+"title": "Несколько людей",
+"body": "Для «мы» добавляется -emos: llamaremos. Для «они» — -án: llamarán. У nosotros в этой форме нет графического ударения, у ellos есть.",
+"note": "Ключевая форма: mandaréis. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:22",
+"es:28:23"
+],
+"focusId": "es:28:22"
+},
+{
+"title": "Короткое местоимение",
+"body": "Te llamaré состоит из двух слов: te показывает адресата звонка, llamaré — кто позвонит и когда. Для отрицания начало будет no te… .",
+"note": "Ключевая форма: volverá. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:05",
+"es:28:06"
+],
+"focusId": "es:28:05"
+},
+{
+"title": "А где voy a?",
+"body": "Voy a llamar и llamaré иногда описывают одно реальное действие. В этой серии выбирается однословная форма как учебная цель. Не считай перифраз грамматической ошибкой вне задания.",
+"note": "Ключевая форма: llamarás. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:41",
+"es:28:42"
+],
+"focusId": "es:28:41"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты позже заплатишь наличными.» / «Я продам машину после поездки.». Окончание будущего присоединяется к целому инфинитиву в регулярной модели. Смысловые опоры: «efectivo» — наличные.",
+"note": "Ключевая форма: Venderé. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:20",
+"es:28:21"
+],
+"focusId": "es:28:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Ты откроешь окно?» / «Вы прочитаете сообщение?». Окончание будущего присоединяется к целому инфинитиву в регулярной модели. Вырази будущее одной глагольной формой, не добавляя voy a.",
+"note": "Ключевая форма: leeréis. Окончание будущего присоединяется к целому инфинитиву в регулярной модели.",
+"samples": [
+"es:28:44",
+"es:28:50"
+],
+"focusId": "es:28:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaré",
+"gloss": "я",
+"id": "es:28:01",
+"sample": "Llamaré al hotel mañana."
+},
+{
+"es": "tú · llamarás",
+"gloss": "ты",
+"id": "es:28:02",
+"sample": "Llamarás al hotel mañana."
+},
+{
+"es": "él · llamará",
+"gloss": "он/она/Вы",
+"id": "es:28:33",
+"sample": "Ana llamará al taller mañana."
+},
+{
+"es": "nosotros · llamaremos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaréis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarán",
+"gloss": "они/вы (ustedes)",
+"id": "es:28:29",
+"sample": "Mis hermanos llamarán al hotel mañana."
+}
+],
+"title": "llamar · Простое будущее"
+},
+{
+"rows": [
+{
+"es": "yo · escribiré",
+"gloss": "я",
+"id": "es:28:11",
+"sample": "Escribiré una carta más tarde."
+},
+{
+"es": "tú · escribirás",
+"gloss": "ты",
+"id": "es:28:32",
+"sample": "No escribirás un mensaje esta noche."
+},
+{
+"es": "él · escribirá",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribiremos",
+"gloss": "мы",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribiréis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribirán",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простое будущее"
+},
+{
+"rows": [
+{
+"es": "yo · volveré",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverás",
+"gloss": "ты",
+"id": "es:28:38",
+"sample": "No volverás a la estación esta noche."
+},
+{
+"es": "él · volverá",
+"gloss": "он/она/Вы",
+"id": "es:28:05",
+"sample": "Ana volverá a casa mañana."
+},
+{
+"es": "nosotros · volveremos",
+"gloss": "мы",
+"id": "es:28:06",
+"sample": "Volveremos a casa mañana."
+},
+{
+"es": "vosotros · volveréis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverán",
+"gloss": "они/вы (ustedes)",
+"id": "es:28:18",
+"sample": "Mis hermanas volverán a la estación más tarde."
+}
+],
+"title": "volver · Простое будущее"
+}
+]
+},
+"uk": {
+"title": "Завтра зателефоную: простий майбутній",
+"formula": "інфінітив повністю + é / ás / á / emos / éis / án",
+"story": "Обіцяєш зателефонувати завтра: llamaré. Залиш ціле llamar з кінцевим r та додай é. Llamé — вже минуле.",
+"use": "Вислови майбутнє однією дієслівною формою, без voy a.",
+"choose": "Llamaré — обіцянка від першої особи. Llamará — про іншу людину або звернення на usted. Дивись на кінцеву голосну й не плутай llamaré з минулим llamé.",
+"nuance": "Вислови майбутнє однією дієслівною формою, без voy a. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"wrong": "Llamé al hotel mañana.",
+"right": "Llamaré al hotel mañana.",
+"chapters": [
+{
+"title": "Не відкидай -ar",
+"body": "Для llamo відкидали -ar. У llamaré воно лишається: llamar + é. Для правильних дієслів усіх трьох груп маємо однакову серію закінчень.",
+"note": "Ключова форма: llamaré. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:01",
+"es:28:02"
+],
+"focusId": "es:28:01"
+},
+{
+"title": "Я чи він",
+"body": "Llamaré — обіцянка від першої особи. Llamará — про іншу людину або звернення на usted. Дивись на кінцеву голосну й не плутай llamaré з минулим llamé.",
+"note": "Ключова форма: llamarás. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:02",
+"es:28:03"
+],
+"focusId": "es:28:02"
+},
+{
+"title": "Кілька людей",
+"body": "Для «ми» додаємо -emos: llamaremos. Для «вони» — -án: llamarán. У nosotros у цій формі немає графічного наголосу, у ellos є.",
+"note": "Ключова форма: mandaréis. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:22",
+"es:28:23"
+],
+"focusId": "es:28:22"
+},
+{
+"title": "Малий займенник",
+"body": "Te llamaré — два слова: te показує адресата дзвінка, llamaré — хто та коли зателефонує. У запереченні початок буде no te… .",
+"note": "Ключова форма: volverá. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:05",
+"es:28:06"
+],
+"focusId": "es:28:05"
+},
+{
+"title": "А де voy a?",
+"body": "Voy a llamar та llamaré іноді описують ту саму подію. Тут мета — однослівна форма. Поза завданням перифраз не є граматичною помилкою.",
+"note": "Ключова форма: llamarás. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:41",
+"es:28:42"
+],
+"focusId": "es:28:41"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти пізніше заплатиш готівкою.» / «Я продам машину після поїздки.». Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива. Смислові опори: «efectivo» — готівка.",
+"note": "Ключова форма: Venderé. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:20",
+"es:28:21"
+],
+"focusId": "es:28:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ти відчиниш вікно?» / «Ви прочитаєте повідомлення?». Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива. Вислови майбутнє однією дієслівною формою, без voy a.",
+"note": "Ключова форма: leeréis. Закінчення майбутнього в правильній моделі приєднується до цілого інфінітива.",
+"samples": [
+"es:28:44",
+"es:28:50"
+],
+"focusId": "es:28:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaré",
+"gloss": "я",
+"id": "es:28:01",
+"sample": "Llamaré al hotel mañana."
+},
+{
+"es": "tú · llamarás",
+"gloss": "ти",
+"id": "es:28:02",
+"sample": "Llamarás al hotel mañana."
+},
+{
+"es": "él · llamará",
+"gloss": "він/вона/Ви",
+"id": "es:28:33",
+"sample": "Ana llamará al taller mañana."
+},
+{
+"es": "nosotros · llamaremos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaréis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarán",
+"gloss": "вони/ви (ustedes)",
+"id": "es:28:29",
+"sample": "Mis hermanos llamarán al hotel mañana."
+}
+],
+"title": "llamar · Простий майбутній"
+},
+{
+"rows": [
+{
+"es": "yo · escribiré",
+"gloss": "я",
+"id": "es:28:11",
+"sample": "Escribiré una carta más tarde."
+},
+{
+"es": "tú · escribirás",
+"gloss": "ти",
+"id": "es:28:32",
+"sample": "No escribirás un mensaje esta noche."
+},
+{
+"es": "él · escribirá",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribiremos",
+"gloss": "ми",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribiréis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribirán",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простий майбутній"
+},
+{
+"rows": [
+{
+"es": "yo · volveré",
+"gloss": "я",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverás",
+"gloss": "ти",
+"id": "es:28:38",
+"sample": "No volverás a la estación esta noche."
+},
+{
+"es": "él · volverá",
+"gloss": "він/вона/Ви",
+"id": "es:28:05",
+"sample": "Ana volverá a casa mañana."
+},
+{
+"es": "nosotros · volveremos",
+"gloss": "ми",
+"id": "es:28:06",
+"sample": "Volveremos a casa mañana."
+},
+{
+"es": "vosotros · volveréis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverán",
+"gloss": "вони/ви (ustedes)",
+"id": "es:28:18",
+"sample": "Mis hermanas volverán a la estación más tarde."
+}
+],
+"title": "volver · Простий майбутній"
+}
+]
+},
+"en": {
+"title": "What will happen: the simple future",
+"formula": "infinitive + -é / -ás / -á / -emos / -éis / -án",
+"story": "Promise a call tomorrow: llamaré. Keep the whole llamar, including r, and add é. Llamé without the r is a past call.",
+"use": "Express the future with one verb form without adding voy a.",
+"choose": "Llamaré — a promise in the first person. Llamará — talking about one other person or addressing someone with usted. Look at the last vowel and don't confuse llamaré with the past tense llamé.",
+"nuance": "Express the future with one verb form without adding voy a. The future ending is attached to the whole infinitive in a regular pattern.",
+"wrong": "Llamé al hotel mañana.",
+"right": "Llamaré al hotel mañana.",
+"chapters": [
+{
+"title": "Why keep the whole infinitive?",
+"body": "For llamo, drop - ar. In llamaré it remains: llamar + é. Regular verbs of all three groups use the same series of endings.",
+"note": "Key form: llamaré. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:01",
+"es:28:02"
+],
+"focusId": "es:28:01"
+},
+{
+"title": "Who will do it: I or another person?",
+"body": "Llamaré — a promise in the first person. Llamará — talking about one other person or addressing someone with usted. Look at the last vowel and don't confuse llamaré with the past tense llamé.",
+"note": "Key form: llamarás. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:02",
+"es:28:03"
+],
+"focusId": "es:28:02"
+},
+{
+"title": "What changes when several people will act?",
+"body": "For \"we,\" add - emos: llamaremos. For \"they,\" add - án: llamarán. nosotros doesn't have a stress mark in this form, but ellos does.",
+"note": "Key form: mandaréis. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:22",
+"es:28:23"
+],
+"focusId": "es:28:22"
+},
+{
+"title": "Where does a short pronoun go?",
+"body": "Te llamaré consists of two words: te indicates the caller, llamaré indicates who will call and when. For negation, begin with no te ….",
+"note": "Key form: volverá. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:05",
+"es:28:06"
+],
+"focusId": "es:28:05"
+},
+{
+"title": "How does this compare with voy a…?",
+"body": "Voy a llamar and llamaré sometimes describe a single real action. In this series, the single-word form is chosen as the learning target. Don't consider paraphrasing a grammatical error outside the task.",
+"note": "Key form: llamarás. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:41",
+"es:28:42"
+],
+"focusId": "es:28:41"
+},
+{
+"title": "How do I build a short promise?",
+"body": "Compare the two tasks: \"You will pay cash later.\" / \"I will sell the car after the trip.\" The future ending is attached to the whole infinitive in a regular pattern. Semantic supports: \" efectivo \" - cash.",
+"note": "Key form: Venderé. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:20",
+"es:28:21"
+],
+"focusId": "es:28:21"
+},
+{
+"title": "Can I make a prediction instead?",
+"body": "Compare the two tasks: \"Will you open the window?\" / \"Will you read the message?\" The future ending is attached to the whole infinitive in a regular pattern. Express the future with one verb form without adding voy a.",
+"note": "Key form: leeréis. The future ending is attached to the whole infinitive in the regular pattern.",
+"samples": [
+"es:28:44",
+"es:28:50"
+],
+"focusId": "es:28:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · llamaré",
+"gloss": "I",
+"id": "es:28:01",
+"sample": "Llamaré al hotel mañana."
+},
+{
+"es": "tú · llamarás",
+"gloss": "you",
+"id": "es:28:02",
+"sample": "Llamarás al hotel mañana."
+},
+{
+"es": "él · llamará",
+"gloss": "he/she/you",
+"id": "es:28:33",
+"sample": "Ana llamará al taller mañana."
+},
+{
+"es": "nosotros · llamaremos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · llamaréis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · llamarán",
+"gloss": "they/you (ustedes)",
+"id": "es:28:29",
+"sample": "Mis hermanos llamarán al hotel mañana."
+}
+],
+"title": "llamar Simple Future"
+},
+{
+"rows": [
+{
+"es": "yo · escribiré",
+"gloss": "I",
+"id": "es:28:11",
+"sample": "Escribiré una carta más tarde."
+},
+{
+"es": "tú · escribirás",
+"gloss": "you",
+"id": "es:28:32",
+"sample": "No escribirás un mensaje esta noche."
+},
+{
+"es": "él · escribirá",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribiremos",
+"gloss": "we",
+"id": null,
+"sample": ""
+},
+{
+"es": "vosotros · escribiréis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribirán",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir Simple Future"
+},
+{
+"rows": [
+{
+"es": "yo · volveré",
+"gloss": "I",
+"id": null,
+"sample": ""
+},
+{
+"es": "tú · volverás",
+"gloss": "you",
+"id": "es:28:38",
+"sample": "No volverás a la estación esta noche."
+},
+{
+"es": "él · volverá",
+"gloss": "he/she/you",
+"id": "es:28:05",
+"sample": "Ana volverá a casa mañana."
+},
+{
+"es": "nosotros · volveremos",
+"gloss": "we",
+"id": "es:28:06",
+"sample": "Volveremos a casa mañana."
+},
+{
+"es": "vosotros · volveréis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · volverán",
+"gloss": "they/you (ustedes)",
+"id": "es:28:18",
+"sample": "Mis hermanas volverán a la estación más tarde."
+}
+],
+"title": "volver Simple Future"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:28:01",
+"index": 0,
+"right": "Llamaré",
+"near": "Llamarás",
+"seq": [
+"Llamaré",
+"al",
+"hotel",
+"mañana"
+],
+"i": 0,
+"kind": "form",
+"key": "es28/lab/form1",
+"feedback": {
+"ru": "Llamaré ← llamar (звонить); yo.",
+"uk": "Llamaré ← llamar (телефонувати); yo.",
+"en": "Llamaré ← llamar (call); yo."
+}
+},
+{
+"id": "es:28:14",
+"index": 0,
+"right": "Abrirás",
+"near": "Abriré",
+"seq": [
+"Abrirás",
+"la",
+"ventana",
+"más",
+"tarde"
+],
+"i": 13,
+"kind": "form",
+"key": "es28/lab/form2",
+"feedback": {
+"ru": "Abrirás ← abrir (открывать); tú.",
+"uk": "Abrirás ← abrir (відчиняти; відкривати); tú.",
+"en": "Abrirás ← abrir (to open); tú."
+}
+},
+{
+"id": "es:28:24",
+"index": 0,
+"right": "Volveremos",
+"near": "Volveréis",
+"seq": [
+"Volveremos",
+"a",
+"la",
+"estación",
+"mañana"
+],
+"i": 23,
+"kind": "form",
+"key": "es28/lab/form3",
+"feedback": {
+"ru": "Volveremos ← volver (возвращаться); nosotros.",
+"uk": "Volveremos ← volver (повертатися); nosotros.",
+"en": "Volveremos ← volver (to return); nosotros."
+}
+},
+{
+"id": "es:28:37",
+"index": 1,
+"right": "compraré",
+"near": "comprarás",
+"seq": [
+"No",
+"compraré",
+"otra",
+"rueda"
+],
+"i": 36,
+"kind": "form",
+"key": "es28/lab/form4",
+"feedback": {
+"ru": "compraré ← comprar (покупать); yo.",
+"uk": "compraré ← comprar (купувати); yo.",
+"en": "compraré ← comprar (to buy); yo."
+}
+},
+{
+"id": "es:28:08",
+"index": 0,
+"right": "Mandarás",
+"near": "Mandaré",
+"seq": [
+"Mandarás",
+"el",
+"mapa",
+"mañana"
+],
+"i": 7,
+"kind": "spot",
+"key": "es28/lab/spot1",
+"feedback": {
+"ru": "Mandarás ← mandar (отправлять); tú.",
+"uk": "Mandarás ← mandar (надсилати); tú.",
+"en": "Mandarás ← mandar (to send); tú."
+}
+},
+{
+"id": "es:28:05",
+"index": 1,
+"right": "volverá",
+"near": "volverán",
+"seq": [
+"Ana",
+"volverá",
+"a",
+"casa",
+"mañana"
+],
+"i": 4,
+"kind": "spot",
+"key": "es28/lab/spot2",
+"feedback": {
+"ru": "volverá ← volver (возвращаться); él.",
+"uk": "volverá ← volver (повертатися); él.",
+"en": "volverá ← volver (to return); él."
+}
+},
+{
+"id": "es:28:31",
+"index": 1,
+"right": "compraré",
+"near": "comprarás",
+"seq": [
+"No",
+"compraré",
+"un",
+"billete",
+"esta",
+"noche"
+],
+"i": 30,
+"kind": "spot",
+"key": "es28/lab/spot3",
+"feedback": {
+"ru": "compraré ← comprar (покупать); yo.",
+"uk": "compraré ← comprar (купувати); yo.",
+"en": "compraré ← comprar (to buy); yo."
+}
+},
+{
+"id": "es:28:41",
+"index": 0,
+"right": "Llamarás",
+"near": "Llamaré",
+"seq": [
+"Llamarás",
+"a",
+"Ana"
+],
+"i": 40,
+"kind": "spot",
+"key": "es28/lab/spot4",
+"feedback": {
+"ru": "Llamarás ← llamar (звонить); tú.",
+"uk": "Llamarás ← llamar (телефонувати); tú.",
+"en": "Llamarás ← llamar (call); tú."
+}
+},
+{
+"kind": "match",
+"key": "es28/lab/match1",
+"id": "es:28:02",
+"other": "es:28:03"
+},
+{
+"kind": "match",
+"key": "es28/lab/match2",
+"id": "es:28:17",
+"other": "es:28:16"
+},
+{
+"kind": "match",
+"key": "es28/lab/match3",
+"id": "es:28:33",
+"other": "es:28:34"
+},
+{
+"kind": "match",
+"key": "es28/lab/match4",
+"id": "es:28:46",
+"other": "es:28:44"
+},
+{
+"kind": "build",
+"key": "es28/lab/build1",
+"id": "es:28:04"
+},
+{
+"kind": "build",
+"key": "es28/lab/build2",
+"id": "es:28:15"
+},
+{
+"kind": "build",
+"key": "es28/lab/build3",
+"id": "es:28:29"
+},
+{
+"kind": "build",
+"key": "es28/lab/build4",
+"id": "es:28:42"
+},
+{
+"kind": "transform",
+"id": "es:28:04",
+"base": "es:28:03",
+"diff": [
+{
+"before": [
+"Llamaré"
+],
+"after": [
+"Llamarás"
+]
+}
+],
+"key": "es28/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:28:48",
+"base": "es:28:09",
+"diff": [
+{
+"before": [
+"mañana"
+],
+"after": []
+}
+],
+"key": "es28/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:28:44",
+"base": "es:28:14",
+"diff": [
+{
+"before": [
+"más",
+"tarde"
+],
+"after": []
+}
+],
+"key": "es28/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:28:02",
+"base": "es:28:01",
+"diff": [
+{
+"before": [
+"Llamaré"
+],
+"after": [
+"Llamarás"
+]
+}
+],
+"key": "es28/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+19,
+12
+],
+[
+2,
+9
+],
+[
+5,
+16
+],
+[
+7,
+15
+],
+[
+13,
+1
+],
+[
+18,
+11
+]
+],
+"worked": [
+"es:28:05",
+"es:28:18",
+"es:28:33",
+"es:28:48"
+],
+"reflection": [
+"es:28:01",
+"es:28:02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

@@ -6,7 +6,6 @@ import { join } from 'path';
 const FILES = [
   'components/dialogs/DialogHowToSaySheet.tsx',
   'components/dialogs/DialogHelperRow.tsx',
-  'components/ExplainButton.tsx',
   'components/ui/new/UndoSnackbar.tsx',
   'components/mistake-practice/MistakePracticeLoopNode.tsx',
   'components/SpeakingPanel.tsx',

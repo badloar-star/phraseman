@@ -15,7 +15,7 @@ import { Platform, StatusBar, StyleSheet, Text, useWindowDimensions, View } from
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { packCardsWord } from '../../components/packs/PackRow';
 import { PackCta, PackGhostCta, PackRoundButton, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';

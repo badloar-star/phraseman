@@ -351,19 +351,6 @@
    ]
   },
   {
-   "form": "anna",
-   "surface": "Anna",
-   "count": 1,
-   "examples": [
-    {
-     "id": "en-classic-r1:19.40",
-     "target": "Sit between me and Anna",
-     "ru": "Сядьте между мной и Анной.",
-     "en": "Sit between me and Anna."
-    }
-   ]
-  },
-  {
    "form": "stain",
    "surface": "stain",
    "count": 1,

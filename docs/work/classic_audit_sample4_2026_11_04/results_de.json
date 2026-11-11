@@ -1,0 +1,15 @@
+[
+{"id": "de:14:04", "type": "B2", "field": "ru", "problem": "потерян модальный 'kann' (умеет): 'Том хорошо плавает' = Tom schwimmt gut", "fix": "Том умеет хорошо плавать."},
+{"id": "de:14:04", "type": "B2", "field": "uk", "problem": "потерян модальный 'kann' (уміє)", "fix": "Том уміє добре плавати."},
+{"id": "de:25:01", "type": "B2", "field": "uk", "problem": "'личить' = идёт/к лицу (steht), а passt = подходит по размеру; расходится с ru 'подходит'", "fix": "Червоне пальто підходить."},
+{"id": "de:28:19", "type": "B2", "field": "uk", "problem": "неграмматично (Білизна стирають) и 'стирати' = стирать резинкой; бельё по-укр. 'прати'", "fix": "Білизну перуть у підвалі."},
+{"id": "de:28:42", "type": "B2", "field": "ru", "problem": "'Wo' = где, а 'Куда' = wohin; 'abgeben' = сдавать, а не относить", "fix": "Где сдают посылку?"},
+{"id": "de:28:42", "type": "B2", "field": "uk", "problem": "'Wo' = де, а 'Куди' = wohin; 'abgeben' = здавати", "fix": "Де здають посилку?"},
+{"id": "de:30:20", "type": "B2", "field": "uk", "problem": "другое лицо: target и ru на 'du/ты', uk на 'ви'", "fix": "Ти знаєш, скільки коштує доставка?"},
+{"id": "de:31:14", "type": "B1", "field": "tiles", "problem": "соблазн 'haben' даёт верную естественную фразу 'Wir haben vorher angerufen und mussten nicht warten.' (= ru), которой нет в alternatives", "fix": {"position": 1, "replace_distractor": "haben", "with": "habt"}},
+{"id": "de:31:39", "type": "B1", "field": "tiles", "problem": "соблазн 'habe' даёт верную разговорную фразу 'Die Unterlagen, die ich mitgebracht habe, reichten aus.' (= ru), которой нет в alternatives", "fix": {"position": 5, "replace_distractor": "habe", "with": "hattet"}},
+{"id": "de:32:18", "type": "B2", "field": "uk", "problem": "разный род говорящего: ru 'поспал' (м.), uk 'спала' (ж.)", "fix": "Якби температура спала, я б краще поспав."},
+{"id": "de:32:20", "type": "B2", "field": "uk", "problem": "потерян 'zu Fuß' (пішки)", "fix": "Якби стежка не була слизькою, я б пішов пішки."},
+{"id": "de:32:22", "type": "B2", "field": "ru", "problem": "добавлено 'тогда', которого нет в target", "fix": "Если бы ты позвонил, я бы подождал."},
+{"id": "de:32:22", "type": "B2", "field": "uk", "problem": "добавлено 'тоді', которого нет в target", "fix": "Якби ти зателефонував, я б зачекав."}
+]

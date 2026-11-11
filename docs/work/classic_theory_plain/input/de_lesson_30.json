@@ -1,0 +1,813 @@
+{
+ "lang": "de",
+ "lesson": 30,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:30:01",
+   "target": "Weißt du, wo Anna wohnt?",
+   "ru": "Ты знаешь, где живёт Анна?",
+   "uk": "Ти знаєш, де живе Анна?"
+  },
+  {
+   "id": "de:30:02",
+   "target": "Weißt du, wo Tom arbeitet?",
+   "ru": "Ты знаешь, где работает Том?",
+   "uk": "Ти знаєш, де Том працює?"
+  },
+  {
+   "id": "de:30:03",
+   "target": "Wissen Sie, wo der Bahnhof ist?",
+   "ru": "Вы знаете, где вокзал?",
+   "uk": "Ви знаєте, де вокзал?"
+  },
+  {
+   "id": "de:30:04",
+   "target": "Weißt du, wann der Bus kommt?",
+   "ru": "Ты знаешь, когда придёт автобус?",
+   "uk": "Ти знаєш, коли прийде автобус?"
+  },
+  {
+   "id": "de:30:05",
+   "target": "Wissen Sie, wann der Kurs beginnt?",
+   "ru": "Вы знаете, когда начинается курс?",
+   "uk": "Ви знаєте, коли починається курс?"
+  },
+  {
+   "id": "de:30:06",
+   "target": "Ich frage mich, wo mein Pass ist.",
+   "ru": "Интересно, где мой паспорт.",
+   "uk": "Цікаво, де мій паспорт."
+  },
+  {
+   "id": "de:30:07",
+   "target": "Ich frage mich, wer heute kocht.",
+   "ru": "Интересно, кто сегодня готовит.",
+   "uk": "Цікаво, хто сьогодні готує."
+  },
+  {
+   "id": "de:30:08",
+   "target": "Wir möchten wissen, was das Ticket kostet.",
+   "ru": "Мы хотели бы знать, сколько стоит билет.",
+   "uk": "Ми хотіли б знати, скільки коштує квиток."
+  },
+  {
+   "id": "de:30:09",
+   "target": "Er fragt, wie lange die Fahrt dauert.",
+   "ru": "Он спрашивает, сколько длится поездка.",
+   "uk": "Він запитує, скільки триває подорож."
+  },
+  {
+   "id": "de:30:10",
+   "target": "Anna fragt, wohin der Bus fährt.",
+   "ru": "Анна спрашивает, куда едет автобус.",
+   "uk": "Анна питає, куди їде автобус."
+  },
+  {
+   "id": "de:30:11",
+   "target": "Weißt du, ob der Laden offen ist?",
+   "ru": "Ты знаешь, открыт ли магазин?",
+   "uk": "Ти знаєш, чи відкритий магазин?"
+  },
+  {
+   "id": "de:30:12",
+   "target": "Weißt du, ob noch Salz im Schrank ist?",
+   "ru": "Ты знаешь, осталась ли в шкафу соль?",
+   "uk": "Ти знаєш, чи залишилася сіль у шафі?"
+  },
+  {
+   "id": "de:30:13",
+   "target": "Wissen Sie, ob der Zug hier hält?",
+   "ru": "Вы знаете, останавливается ли здесь поезд?",
+   "uk": "Ви знаєте, чи зупиняється тут поїзд?"
+  },
+  {
+   "id": "de:30:14",
+   "target": "Ich möchte wissen, ob die Miete steigt.",
+   "ru": "Я хочу узнать, повысится ли арендная плата.",
+   "uk": "Я хочу знати, чи зросте орендна плата."
+  },
+  {
+   "id": "de:30:15",
+   "target": "Wir möchten wissen, ob ein Zimmer frei ist.",
+   "ru": "Мы хотели бы знать, есть ли свободный номер.",
+   "uk": "Ми хотіли б знати, чи є вільний номер."
+  },
+  {
+   "id": "de:30:16",
+   "target": "Anna fragt, ob die Rechnung stimmt.",
+   "ru": "Анна спрашивает, правильный ли счёт.",
+   "uk": "Анна запитує, чи правильний рахунок."
+  },
+  {
+   "id": "de:30:17",
+   "target": "Er fragt, ob die Gäste schon da sind.",
+   "ru": "Он спрашивает, пришли ли уже гости.",
+   "uk": "Він запитує, чи вже прийшли гості."
+  },
+  {
+   "id": "de:30:18",
+   "target": "Sie möchte wissen, ob der Aufzug funktioniert.",
+   "ru": "Она хочет знать, работает ли лифт.",
+   "uk": "Вона хоче знати, чи працює ліфт."
+  },
+  {
+   "id": "de:30:19",
+   "target": "Ich weiß nicht, ob der Pass noch gültig ist.",
+   "ru": "Я не знаю, действителен ли ещё паспорт.",
+   "uk": "Я не знаю, чи ще дійсний паспорт."
+  },
+  {
+   "id": "de:30:20",
+   "target": "Weißt du, was der Versand kostet?",
+   "ru": "Ты знаешь, сколько стоит доставка?",
+   "uk": "Ти знаєш, скільки коштує доставка?"
+  },
+  {
+   "id": "de:30:21",
+   "target": "Können Sie mir sagen, wo ich aussteigen muss?",
+   "ru": "Не скажете, где мне выходить?",
+   "uk": "Не скажете, де мені виходити?"
+  },
+  {
+   "id": "de:30:22",
+   "target": "Kannst du mir sagen, ob ich den Beleg behalten soll?",
+   "ru": "Можешь сказать, нужно ли мне сохранить квитанцию?",
+   "uk": "Можеш сказати, чи потрібно мені зберегти чек?"
+  },
+  {
+   "id": "de:30:23",
+   "target": "Können Sie mir sagen, wie ich zur Post komme?",
+   "ru": "Вы можете сказать, как мне добраться до почты?",
+   "uk": "Ви можете сказати, як мені дістатися до пошти?"
+  },
+  {
+   "id": "de:30:24",
+   "target": "Sag mir bitte, wo du wartest.",
+   "ru": "Скажи мне, пожалуйста, где ты ждёшь.",
+   "uk": "Скажи мені, будь ласка, де ти чекаєш."
+  },
+  {
+   "id": "de:30:25",
+   "target": "Sagen Sie uns bitte, wo die Kasse ist.",
+   "ru": "Скажите нам, пожалуйста, где касса.",
+   "uk": "Скажіть нам, будь ласка, де каса."
+  },
+  {
+   "id": "de:30:26",
+   "target": "Zeig mir, wie das Gerät funktioniert.",
+   "ru": "Покажи мне, как работает прибор.",
+   "uk": "Покажи мені, як прилад працює."
+  },
+  {
+   "id": "de:30:27",
+   "target": "Erklär mir bitte, wie ich das Formular ausfülle.",
+   "ru": "Объясни мне, пожалуйста, как мне заполнить бланк.",
+   "uk": "Поясни мені, будь ласка, як мені заповнити бланк."
+  },
+  {
+   "id": "de:30:28",
+   "target": "Ich möchte wissen, welchen Bus ich nehmen soll.",
+   "ru": "Я хочу знать, на какой автобус мне сесть.",
+   "uk": "Я хочу знати, на який автобус мені сісти."
+  },
+  {
+   "id": "de:30:29",
+   "target": "Wir fragen, an welcher Haltestelle wir umsteigen müssen.",
+   "ru": "Мы спрашиваем, на какой остановке нам пересесть.",
+   "uk": "Ми питаємо, на якій зупинці нам пересісти."
+  },
+  {
+   "id": "de:30:30",
+   "target": "Weißt du, wie spät es ist?",
+   "ru": "Ты знаешь, который час?",
+   "uk": "Ти знаєш, котра година?"
+  },
+  {
+   "id": "de:30:31",
+   "target": "Ich weiß nicht, wer den Schlüssel hat.",
+   "ru": "Я не знаю, у кого ключ.",
+   "uk": "Я не знаю, хто має ключ."
+  },
+  {
+   "id": "de:30:32",
+   "target": "Tom weiß nicht, wo er geparkt hat.",
+   "ru": "Том не знает, где он припарковался.",
+   "uk": "Том не знає, де він припаркувався."
+  },
+  {
+   "id": "de:30:33",
+   "target": "Anna fragt, ob sie den Namen wiederholen soll.",
+   "ru": "Анна спрашивает, нужно ли ей повторить имя.",
+   "uk": "Анна запитує, чи слід їй повторити ім'я."
+  },
+  {
+   "id": "de:30:34",
+   "target": "Wir möchten wissen, wer das Fenster geöffnet hat.",
+   "ru": "Мы хотели бы знать, кто открыл окно.",
+   "uk": "Ми хотіли б знати, хто відчинив вікно."
+  },
+  {
+   "id": "de:30:35",
+   "target": "Sie fragt, warum der Zug ausgefallen ist.",
+   "ru": "Она спрашивает, почему поезд отменили.",
+   "uk": "Вона запитує, чому поїзд скасували."
+  },
+  {
+   "id": "de:30:36",
+   "target": "Ich frage mich, ob ich den Herd ausgeschaltet habe.",
+   "ru": "Интересно, выключил ли я плиту.",
+   "uk": "Цікаво, чи вимкнув я плиту."
+  },
+  {
+   "id": "de:30:37",
+   "target": "Weißt du, ob Tom schon angerufen hat?",
+   "ru": "Ты знаешь, звонил ли уже Том?",
+   "uk": "Ти знаєш, чи дзвонив уже Том?"
+  },
+  {
+   "id": "de:30:38",
+   "target": "Wissen Sie, ob das Paket abgeholt wurde?",
+   "ru": "Вы знаете, забрали ли посылку?",
+   "uk": "Ви знаєте, чи забрали посилку?"
+  },
+  {
+   "id": "de:30:39",
+   "target": "Er möchte wissen, wo der Unfall passiert ist.",
+   "ru": "Он хочет знать, где произошла авария.",
+   "uk": "Він хоче знати, де сталася аварія."
+  },
+  {
+   "id": "de:30:40",
+   "target": "Sie fragt, ob ihr Antrag bestätigt wurde.",
+   "ru": "Она спрашивает, подтвердили ли её заявку.",
+   "uk": "Вона запитує, чи її заявку підтвердили."
+  },
+  {
+   "id": "de:30:41",
+   "target": "Könnten Sie mir sagen, wie viel das kostet?",
+   "ru": "Не могли бы вы сказать, сколько это стоит?",
+   "uk": "Чи не могли б ви сказати, скільки це коштує?"
+  },
+  {
+   "id": "de:30:42",
+   "target": "Ich wollte fragen, ob Sie morgen Zeit hätten.",
+   "ru": "Я хотел спросить, найдётся ли у вас завтра время.",
+   "uk": "Я хотів спитати, чи знайдеться у вас завтра час."
+  },
+  {
+   "id": "de:30:43",
+   "target": "Können Sie mir sagen, ob ich hier parken darf?",
+   "ru": "Вы можете сказать, разрешено ли мне здесь парковаться?",
+   "uk": "Ви можете сказати, чи дозволено мені паркуватися тут?"
+  },
+  {
+   "id": "de:30:44",
+   "target": "Weißt du, wie man diesen Namen schreibt?",
+   "ru": "Ты знаешь, как пишется это имя?",
+   "uk": "Ти знаєш, як пишеться це ім'я?"
+  },
+  {
+   "id": "de:30:45",
+   "target": "Ich weiß nicht, welche Größe mir passt.",
+   "ru": "Я не знаю, какой размер мне подходит.",
+   "uk": "Я не знаю, який розмір мені підходить."
+  },
+  {
+   "id": "de:30:46",
+   "target": "Sie fragt, ob die Kosten erstattet werden.",
+   "ru": "Она спрашивает, возмещают ли расходы.",
+   "uk": "Вона запитує, чи відшкодовують витрати."
+  },
+  {
+   "id": "de:30:47",
+   "target": "Wir überlegen, wie wir die Kisten transportieren können.",
+   "ru": "Мы думаем, как нам перевезти ящики.",
+   "uk": "Ми думаємо, як нам перевезти ящики."
+  },
+  {
+   "id": "de:30:48",
+   "target": "Ich frage mich, wem dieser Schal gehört.",
+   "ru": "Интересно, кому принадлежит этот шарф.",
+   "uk": "Цікаво, кому належить цей шарф."
+  },
+  {
+   "id": "de:30:49",
+   "target": "Hast du gehört, wann die Straße gesperrt wird?",
+   "ru": "Ты слышал, когда перекроют дорогу?",
+   "uk": "Ти чув, коли дорогу перекриють?"
+  },
+  {
+   "id": "de:30:50",
+   "target": "Können Sie nachsehen, ob mein Termin im System steht?",
+   "ru": "Не проверите, есть ли моя запись в системе?",
+   "uk": "Чи не перевірите, чи є мій запис у системі?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Antrag",
+   "ru": "заявление, заявка",
+   "uk": "заява, заявка"
+  },
+  {
+   "lemma": "der Unfall",
+   "ru": "несчастный случай, авария",
+   "uk": "нещасний випадок, аварія"
+  },
+  {
+   "lemma": "die Größe",
+   "ru": "размер",
+   "uk": "розмір"
+  },
+  {
+   "lemma": "nachsehen",
+   "ru": "проверять, смотреть по записям",
+   "uk": "перевіряти, дивитися за записами"
+  },
+  {
+   "lemma": "gültig",
+   "ru": "действительный",
+   "uk": "дійсний"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden",
+  "der Kollege",
+  "die Leute",
+  "verbrauchen",
+  "zusammenklappen",
+  "sonntags",
+  "der Müll",
+  "der Hausmeister",
+  "die Firma",
+  "erstatten",
+  "liefern",
+  "der Versand",
+  "das Salz",
+  "wiederholen",
+  "behalten",
+  "dankbar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  },
+  {
+   "lesson": 27,
+   "title": "Какой человек или предмет: относительное предложение"
+  },
+  {
+   "lesson": 28,
+   "title": "Что делают с предметом: пассив с `werden`"
+  },
+  {
+   "lesson": 29,
+   "title": "Попросить мягче: `hätte`, `wäre`, `könnte`"
+  }
+ ],
+ "oldTopicTitle": "Спросить косвенно: `ob` или вопросительное слово",
+ "oldTheoryRu": "Прямой вопрос о месте можно вложить в другой вопрос. Слово `wo` остаётся, но `ist` или другой личный глагол отходит в конец вложенной части. Не копируй порядок короткого вопроса целиком. Если до преобразования ответом было бы «да» или «нет», во вложенной части ставь `ob`. Это не `wenn`: мы не объявляем условие, а выясняем, соответствует ли догадка действительности. Начало может быть просьбой или вежливым вопросом. Само содержание одинаково: место выхода, путь, положение кассы. Знак в конце зависит от сообщения целиком, а не от наличия слова `wo`. Вопросительная группа может включать существительное или предлог. В выражении `an welcher Haltestelle` держи всю группу в начале придаточного; не вставляй глагол посередине. Не каждое первое место после союза принадлежит предмету, о котором спрашивают. Сначала определи, кто совершил действие и о какой подробности идёт речь, затем расставь остальные части. Вопрос о прошлом сохраняет прошлое. В составном времени вынеси вспомогательный глагол вправо; не переставляй причастие так, будто это снова независимый прямой вопрос. Проверка на стойке регистрации: убери вежливую рамку и составь короткий прямой вопрос. Затем верни рамку и перестрой порядок. Если спрашиваешь, есть ли запись, не добавляй лишнее вопросительное слово."
+}

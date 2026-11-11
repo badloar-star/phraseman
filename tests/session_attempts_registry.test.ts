@@ -14,8 +14,6 @@ const EXPECTED_ROUTES = [
   '/flashcards_truefalse_session',
   '/flashcards_blitz_session',
   '/flashcards_speaking_session',
-  '/learning_v2_direct_session_player_v1',
-  '/learning-v2/session/[id]',
 ] as const;
 
 describe('session attempts route registry', () => {
@@ -41,8 +39,7 @@ describe('session attempts route registry', () => {
     expect(classifySessionAttemptRoute('/arena/match/abc')).toBe('denied');
   });
 
-  test('normalizes concrete Learning V2 session ids to the registered route', () => {
-    expect(classifySessionAttemptRoute('/learning-v2/session/episode-01-session-01')).toBe('enabled');
+  test('classifies live and unregistered routes', () => {
     expect(classifySessionAttemptRoute('/lesson_words')).toBe('enabled');
     expect(classifySessionAttemptRoute('/settings')).toBe('unclassified');
   });

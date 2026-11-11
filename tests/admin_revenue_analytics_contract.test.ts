@@ -429,16 +429,13 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('background: #16181f !important');
   });
 
-  it('unifies Premium, VIP, and cancel survey revenue sections', () => {
+  it('unifies Premium and VIP revenue sections', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-premium');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-vip');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-cancel-surveys');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #pr-list');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #vip-list');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #cs-list');
     expect(adminHtml).toContain('#tab-premium .report-card span[style*="background"]');
     expect(adminHtml).toContain('#tab-vip .report-card button');
-    expect(adminHtml).toContain('#tab-cancel-surveys .report-card button');
     expect(adminHtml).toContain('applyCleanPremiumChrome');
     expect(adminHtml).toContain('pr-pill');
     expect(adminHtml).toContain('function applyCleanPremiumChrome()');
@@ -450,15 +447,6 @@ describe('admin revenue analytics contract', () => {
     // зачем: живая админка 24.10 (70af8ef55) добавила loadPremiumData(force=false) — смысл тот же, один загрузчик
     expect(adminHtml).toContain('window.loadPremiumData = async function loadPremiumData(');
     expect(adminHtml).toContain('window.renderPremiumList?.()');
-    expect(adminHtml).toContain('applyCleanCancelSurveysChrome');
-    expect(adminHtml).toContain('cs-pill');
-    expect(adminHtml).toContain('Loading cancel surveys...');
-    expect(adminHtml).toContain('Cancel surveys loaded');
-    expect(adminHtml).toContain('Cancel survey load failed');
-    expect(adminHtml).toContain('Search UID, name, reason, comment...');
-    expect(adminHtml).toContain('Shows why users opened subscription management');
-    expect(countOccurrences(adminHtml, 'window.renderCancelSurveys = function renderCancelSurveys()')).toBe(1);
-    expect(adminHtml.lastIndexOf('Loading cancel surveys...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadCancelSurveys = async function loadCancelSurveys(force)'));
   });
 
   it('unifies App messages form, preview, KPI, and list cards', () => {
@@ -657,16 +645,14 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('color: var(--admin-muted) !important');
   });
 
-  it('unifies users, website support, ban list, VIP survey, and detail panel sections', () => {
+  it('unifies users, website support, ban list, and detail panel sections', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-users');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-website-inbox');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-ban-list');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-review-promo');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #bulk-toolbar');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #users-table');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #wi-list');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #bl-list');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #vs-list');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #detail-overlay');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] .detail');
     expect(adminHtml).toContain('applyCleanBanListChrome');
@@ -689,17 +675,6 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Messages from the public contact page.');
     expect(adminHtml.lastIndexOf('renderWebsiteInbox = function renderWebsiteInbox(rows)')).toBeGreaterThan(adminHtml.indexOf('function renderWebsiteInbox(rows)'));
     expect(adminHtml.lastIndexOf('Loading first site-support page…')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadWebsiteInbox = async function loadWebsiteInbox(force, append = false)'));
-    expect(adminHtml).toContain('#tab-review-promo .review-promo-lang');
-    expect(adminHtml).toContain('applyCleanVipSurveyChrome');
-    expect(adminHtml).toContain('vs-pill');
-    expect(adminHtml).toContain('Loading Plus survey responses...');
-    expect(adminHtml).toContain('Plus survey responses loaded');
-    expect(adminHtml).toContain('No Plus survey responses yet.');
-    expect(adminHtml).toContain('Grant Plus');
-    expect(adminHtml).toContain('Revoke Plus');
-    expect(adminHtml).toContain('Full free tier only');
-    expect(countOccurrences(adminHtml, 'window.renderVipSurveyResponses = function renderVipSurveyResponses()')).toBe(1);
-    expect(adminHtml.lastIndexOf('Loading Plus survey responses...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadVipSurveyResponses = async function loadVipSurveyResponses(force = false)'));
   });
 
   it('unifies modals, overlays, toasts, and pack preview surfaces', () => {

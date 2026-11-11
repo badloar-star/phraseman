@@ -1,0 +1,6554 @@
+[
+{
+"lesson": 19,
+"id": "es:19:01",
+"target": "Estoy leyendo el libro.",
+"ru": "Я сейчас читаю книгу.",
+"uk": "Я зараз читаю книжку.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Estáis",
+"Está",
+"Estamos",
+"Estás",
+"Están"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leído",
+"son",
+"es",
+"soy",
+"somos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"mochila",
+"factura",
+"bolso",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Yo estoy leyendo el libro."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:02",
+"target": "Estás leyendo el libro.",
+"ru": "Ты сейчас читаешь книгу.",
+"uk": "Ти зараз читаєш книжку.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estoy",
+"Están",
+"Estamos",
+"Está",
+"Estáis"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leer",
+"leído",
+"lee",
+"leo",
+"lees"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"los",
+"lo",
+"este"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"casa",
+"hotel",
+"mapa",
+"oficina",
+"hermano"
+]
+}
+],
+"alternatives": [
+"Tú estás leyendo el libro."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:03",
+"target": "Estoy leyendo el mensaje.",
+"ru": "Я сейчас читаю сообщение.",
+"uk": "Я зараз читаю повідомлення.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Está",
+"Están",
+"Estamos",
+"Estás",
+"Estáis"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leer",
+"lee",
+"trabajas",
+"leído",
+"leo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"mochilas",
+"hotel",
+"móviles",
+"cena",
+"mapas"
+]
+}
+],
+"alternatives": [
+"Yo estoy leyendo el mensaje."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:04",
+"target": "Estás leyendo el mensaje.",
+"ru": "Ты сейчас читаешь сообщение.",
+"uk": "Ти зараз читаєш повідомлення.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estoy",
+"Están",
+"Estamos",
+"Estáis"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leo",
+"puedo",
+"leer",
+"podemos",
+"puedes"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"lo",
+"la",
+"las"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"hermanos",
+"agua",
+"tiendas",
+"música",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tú estás leyendo el mensaje."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:05",
+"target": "Ana está escribiendo una carta.",
+"ru": "Ана сейчас пишет письмо.",
+"uk": "Ана зараз пише листа.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Lejos",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "escribiendo",
+"distractors": [
+"escribir",
+"escribes",
+"escribe",
+"escrito",
+"escribimos"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mis",
+"los",
+"mi",
+"el",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"zapatos",
+"maletas",
+"coche",
+"aeropuerto",
+"reloj"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:06",
+"target": "Estamos escribiendo una carta.",
+"ru": "Мы сейчас пишем письмо.",
+"uk": "Ми зараз пишемо листа.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Están",
+"Está",
+"Estoy",
+"Estás",
+"Estáis"
+]
+},
+{
+"correct": "escribiendo",
+"distractors": [
+"escribís",
+"escribo",
+"escribir",
+"escribe",
+"escribimos"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"las",
+"mis",
+"un",
+"mi",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"oficina",
+"libro",
+"idea",
+"canciones",
+"casa"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos escribiendo una carta.",
+"Nosotras estamos escribiendo una carta."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:07",
+"target": "Estoy cortando una cebolla.",
+"ru": "Я сейчас режу луковицу.",
+"uk": "Я зараз ріжу цибулину.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Estáis",
+"Estás",
+"Están",
+"Estamos",
+"Está"
+]
+},
+{
+"correct": "cortando",
+"distractors": [
+"escribir",
+"mandar",
+"escribimos",
+"escrito",
+"escribe"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"un",
+"tus",
+"mis",
+"con",
+"que"
+]
+},
+{
+"correct": "cebolla",
+"distractors": [
+"reserva",
+"billetes",
+"tren",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Yo estoy cortando una cebolla."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:08",
+"target": "Estás escribiendo un mensaje.",
+"ru": "Ты сейчас пишешь сообщение.",
+"uk": "Ти зараз пишеш повідомлення.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estamos",
+"Están",
+"Estáis",
+"Estoy"
+]
+},
+{
+"correct": "escribiendo",
+"distractors": [
+"escribo",
+"comprar",
+"escribir",
+"escribe",
+"comprado"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"los",
+"una",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"número",
+"verduras",
+"clase",
+"pasaportes",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tú estás escribiendo un mensaje."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:09",
+"target": "Luis está comiendo en casa.",
+"ru": "Луис сейчас ест дома.",
+"uk": "Луїс зараз їсть вдома.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Ayer",
+"Lejos",
+"Nunca"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "comiendo",
+"distractors": [
+"como",
+"come",
+"comer",
+"comes",
+"coméis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"gente",
+"cargador",
+"verduras",
+"mensaje",
+"mochila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:10",
+"target": "Estamos comiendo en casa.",
+"ru": "Мы сейчас едим дома.",
+"uk": "Ми зараз їмо вдома.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Está",
+"Están",
+"Estás",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "comiendo",
+"distractors": [
+"come",
+"comer",
+"habla",
+"como",
+"habláis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"de",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"platos",
+"maleta",
+"salidas",
+"efectivo",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos comiendo en casa.",
+"Nosotras estamos comiendo en casa."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:11",
+"target": "Estoy bebiendo agua.",
+"ru": "Я сейчас пью воду.",
+"uk": "Я зараз п’ю воду.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Está",
+"Están",
+"Estás",
+"Estáis",
+"Estamos"
+]
+},
+{
+"correct": "bebiendo",
+"distractors": [
+"bebes",
+"beber",
+"bebo",
+"beben",
+"bebemos"
+]
+},
+{
+"correct": "agua",
+"distractors": [
+"sopa",
+"estación",
+"trenes",
+"casa",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"Yo estoy bebiendo agua."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:12",
+"target": "Ana está bebiendo café.",
+"ru": "Ана сейчас пьёт кофе.",
+"uk": "Ана зараз п’є каву.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Quién",
+"Pronto",
+"Nunca"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "bebiendo",
+"distractors": [
+"beber",
+"bebo",
+"llamar",
+"bebes",
+"beben"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"sopa",
+"casa",
+"abrigos",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:13",
+"target": "Estás preparando la cena.",
+"ru": "Ты сейчас готовишь ужин.",
+"uk": "Ти зараз готуєш вечерю.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estamos",
+"Están",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "preparando",
+"distractors": [
+"preparado",
+"preparar",
+"prepara",
+"gusta",
+"vamos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"el",
+"un",
+"con"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"casa",
+"hotel",
+"mensaje",
+"mochila",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Tú estás preparando la cena."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:14",
+"target": "Luis está preparando una sopa.",
+"ru": "Луис сейчас варит суп.",
+"uk": "Луїс зараз варить суп.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Quién",
+"Lejos",
+"Nunca"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "preparando",
+"distractors": [
+"preparar",
+"prepara",
+"preparamos",
+"preparado",
+"preparas"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"el",
+"su",
+"mis",
+"mi",
+"los"
+]
+},
+{
+"correct": "sopa",
+"distractors": [
+"mochilas",
+"hermanos",
+"maletas",
+"clase",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:15",
+"target": "Estoy abriendo la puerta.",
+"ru": "Я сейчас открываю дверь.",
+"uk": "Я зараз відчиняю двері.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Está",
+"Están",
+"Estás",
+"Estamos",
+"Estáis"
+]
+},
+{
+"correct": "abriendo",
+"distractors": [
+"abres",
+"abrimos",
+"abrir",
+"abre",
+"abierto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"los",
+"estos",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"botellas",
+"bolso",
+"verduras",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Yo estoy abriendo la puerta."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:16",
+"target": "Estamos abriendo la ventana.",
+"ru": "Мы сейчас открываем окно.",
+"uk": "Ми зараз відчиняємо вікно.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Están",
+"Está",
+"Estás",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "abriendo",
+"distractors": [
+"abrirla",
+"abrir",
+"pasear",
+"abierto",
+"abre"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"un",
+"esta",
+"con"
+]
+},
+{
+"correct": "ventana",
+"distractors": [
+"móvil",
+"número",
+"pasaporte",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos abriendo la ventana.",
+"Nosotras estamos abriendo la ventana."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:17",
+"target": "Ana está llevando la maleta.",
+"ru": "Ана сейчас несёт чемодан.",
+"uk": "Ана зараз несе валізу.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "llevando",
+"distractors": [
+"llevas",
+"llevamos",
+"llevado",
+"estamos",
+"están"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"un",
+"unas",
+"con"
+]
+},
+{
+"correct": "maleta",
+"distractors": [
+"móvil",
+"madre",
+"mesa",
+"ascensor",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:18",
+"target": "Ana está secando los platos.",
+"ru": "Ана сейчас вытирает тарелки.",
+"uk": "Ана зараз витирає тарілки.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "secando",
+"distractors": [
+"escribiendo",
+"levanto",
+"esperar",
+"leer",
+"beber"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"sus",
+"mi",
+"mis",
+"las",
+"la"
+]
+},
+{
+"correct": "platos",
+"distractors": [
+"hotel",
+"foto",
+"café",
+"tren",
+"abrigos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:19",
+"target": "Mis hermanos están pagando en efectivo.",
+"ru": "Мои братья сейчас платят наличными.",
+"uk": "Мої брати зараз платять готівкою.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tus",
+"Tu",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"llaves",
+"farmacia",
+"mañana",
+"mochilas",
+"pregunta"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"gusta",
+"gustan",
+"entrado",
+"fregar"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"pagar",
+"llevando",
+"deja",
+"dejo",
+"llevas"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"desde",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "efectivo",
+"distractors": [
+"verduras",
+"billete",
+"mesa",
+"tienda",
+"madre"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:20",
+"target": "Estás pagando con tarjeta.",
+"ru": "Ты сейчас платишь картой.",
+"uk": "Ти зараз платиш карткою.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estáis",
+"Estamos",
+"Están",
+"Estoy"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"pagar",
+"llevando",
+"deja",
+"dejo",
+"llevas"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"a",
+"de",
+"por",
+"para",
+"en"
+]
+},
+{
+"correct": "tarjeta",
+"distractors": [
+"maleta",
+"café",
+"libro",
+"casa",
+"móvil"
+]
+}
+],
+"alternatives": [
+"Tú estás pagando con tarjeta."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:21",
+"target": "Estamos leyendo el libro ahora.",
+"ru": "Мы сейчас читаем книгу.",
+"uk": "Ми зараз читаємо книжку.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Está",
+"Estás",
+"Están",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leemos",
+"leen",
+"lee",
+"comprado",
+"leer"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"clase",
+"pregunta",
+"hoteles",
+"cita",
+"bufanda"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"temprano",
+"mañana",
+"más",
+"tarde",
+"después"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos leyendo el libro ahora.",
+"Nosotras estamos leyendo el libro ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:22",
+"target": "Estáis leyendo el mensaje ahora.",
+"ru": "Вы сейчас читаете сообщение.",
+"uk": "Ви зараз читаєте повідомлення.",
+"tiles": [
+{
+"correct": "Estáis",
+"distractors": [
+"Estamos",
+"Busca",
+"Buscamos",
+"Buscan",
+"Buscas"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leer",
+"leído",
+"lee",
+"leo",
+"lees"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"la",
+"unas",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"supermercado",
+"número",
+"billete",
+"cena",
+"casa"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"temprano",
+"más",
+"tarde",
+"mañana",
+"después"
+]
+}
+],
+"alternatives": [
+"Están leyendo el mensaje ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:23",
+"target": "Estamos fregando los platos.",
+"ru": "Мы сейчас моем посуду.",
+"uk": "Ми зараз миємо посуд.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Estoy",
+"Estáis",
+"Estás",
+"Está",
+"Están"
+]
+},
+{
+"correct": "fregando",
+"distractors": [
+"fregar",
+"guardo",
+"pueden",
+"podemos",
+"puedes"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"las",
+"mi",
+"la",
+"tu",
+"el"
+]
+},
+{
+"correct": "platos",
+"distractors": [
+"cocina",
+"coches",
+"maleta",
+"madre",
+"botellas"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos fregando los platos.",
+"Nosotras estamos fregando los platos."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:24",
+"target": "Estoy probando la sopa.",
+"ru": "Я сейчас пробую суп.",
+"uk": "Я зараз куштую суп.",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Están",
+"Está",
+"Estamos",
+"Estáis",
+"Estás"
+]
+},
+{
+"correct": "probando",
+"distractors": [
+"abrir",
+"sentáis",
+"comprar",
+"abierto",
+"sientas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"los",
+"un",
+"con"
+]
+},
+{
+"correct": "sopa",
+"distractors": [
+"cena",
+"puerta",
+"móvil",
+"clase",
+"casa"
+]
+}
+],
+"alternatives": [
+"Yo estoy probando la sopa."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:25",
+"target": "Mis hermanas están esperando aquí ahora.",
+"ru": "Мои сёстры сейчас ждут здесь.",
+"uk": "Мої сестри зараз чекають тут.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Sus",
+"Su",
+"Tus",
+"Mi"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"trenes",
+"fotos",
+"clase",
+"cartas",
+"casa"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"gusta",
+"gustan",
+"entrado",
+"entrar"
+]
+},
+{
+"correct": "esperando",
+"distractors": [
+"esperar",
+"gustan",
+"gusta",
+"han",
+"llamar"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"lejos",
+"cerca",
+"fuera",
+"dentro",
+"allí"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"mañana",
+"más",
+"tarde",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:26",
+"target": "Mis hermanos están esperando fuera ahora.",
+"ru": "Мои братья сейчас ждут снаружи.",
+"uk": "Мої брати зараз чекають надворі.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Sus",
+"Mi",
+"Tus",
+"Su",
+"Tu"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"viaje",
+"bolso",
+"madre",
+"billetes",
+"casa"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"gusta",
+"gustan",
+"entrado",
+"fregar"
+]
+},
+{
+"correct": "esperando",
+"distractors": [
+"esperar",
+"gustan",
+"gusta",
+"han",
+"llamar"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"aquí",
+"lejos",
+"allí",
+"cerca",
+"dentro"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"mañana",
+"después",
+"más",
+"tarde",
+"temprano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:27",
+"target": "Estás cortando las verduras.",
+"ru": "Ты сейчас режешь овощи.",
+"uk": "Ти зараз нарізаєш овочі.",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estáis",
+"Estamos",
+"Están",
+"Está",
+"Estoy"
+]
+},
+{
+"correct": "cortando",
+"distractors": [
+"estoy",
+"mandar",
+"escribir",
+"puede",
+"preparo"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"los",
+"una",
+"mi",
+"la",
+"con"
+]
+},
+{
+"correct": "verduras",
+"distractors": [
+"arroz",
+"mapa",
+"oficina",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Tú estás cortando las verduras."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:28",
+"target": "Estamos trabajando en el hotel ahora.",
+"ru": "Мы сейчас работаем в отеле.",
+"uk": "Ми зараз працюємо у готелі.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Está",
+"Estás",
+"Están",
+"Estáis",
+"Estoy"
+]
+},
+{
+"correct": "trabajando",
+"distractors": [
+"trabajáis",
+"trabaja",
+"trabajar",
+"trabajamos",
+"recogido"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"reserva",
+"cita",
+"verduras",
+"llaves",
+"casa"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"mañana",
+"tarde",
+"más",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos trabajando en el hotel ahora.",
+"Nosotras estamos trabajando en el hotel ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:29",
+"target": "Mis hermanos están comiendo en casa ahora.",
+"ru": "Мои братья сейчас едят дома.",
+"uk": "Мої брати зараз їдять вдома.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Su",
+"Sus",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"película",
+"mochila",
+"mochilas",
+"móvil",
+"mensaje"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"gusta",
+"gustan",
+"entrado",
+"entrar"
+]
+},
+{
+"correct": "comiendo",
+"distractors": [
+"como",
+"coméis",
+"come",
+"comes",
+"comer"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"para",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"tren",
+"estación",
+"hotel",
+"viaje",
+"cena"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"más",
+"mañana",
+"tarde",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:30",
+"target": "Estáis comiendo en la cocina ahora.",
+"ru": "Вы (мн.) сейчас едите на кухне.",
+"uk": "Ви (мн.) зараз їсте на кухні.",
+"tiles": [
+{
+"correct": "Estáis",
+"distractors": [
+"Estamos",
+"Busca",
+"Es",
+"Comprar",
+"Secando"
+]
+},
+{
+"correct": "comiendo",
+"distractors": [
+"comes",
+"come",
+"como",
+"comer",
+"coméis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"lo",
+"un",
+"esta",
+"con"
+]
+},
+{
+"correct": "cocina",
+"distractors": [
+"clase",
+"mapas",
+"recepción",
+"casa",
+"película"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"después",
+"mañana",
+"más",
+"tarde",
+"temprano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:31",
+"target": "Estamos envolviendo el regalo.",
+"ru": "Мы сейчас заворачиваем подарок.",
+"uk": "Ми зараз загортаємо подарунок.",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Estáis",
+"Están",
+"Está",
+"Estás",
+"Estoy"
+]
+},
+{
+"correct": "envolviendo",
+"distractors": [
+"envuelvo",
+"llevando",
+"estudiamos",
+"vivimos",
+"estudias"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"lo",
+"la",
+"las",
+"con"
+]
+},
+{
+"correct": "regalo",
+"distractors": [
+"película",
+"factura",
+"tren",
+"mesas",
+"botella"
+]
+}
+],
+"alternatives": [
+"Nosotros estamos envolviendo el regalo.",
+"Nosotras estamos envolviendo el regalo."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:32",
+"target": "No estás escribiendo una carta ahora.",
+"ru": "Ты сейчас не пишешь письмо.",
+"uk": "Ти зараз не пишеш листа.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "estás",
+"distractors": [
+"estoy",
+"están",
+"estamos",
+"está",
+"estáis"
+]
+},
+{
+"correct": "escribiendo",
+"distractors": [
+"secando",
+"escribir",
+"escribe",
+"escribís",
+"escrito"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"los",
+"el",
+"las",
+"esta",
+"con"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"mesa",
+"hotel",
+"fotos",
+"verduras",
+"bolsillo"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"tarde",
+"más",
+"mañana",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": [
+"Tú no estás escribiendo una carta ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:33",
+"target": "Ana no está mandando la foto ahora.",
+"ru": "Ана сейчас не отправляет фотографию.",
+"uk": "Ана зараз не надсилає фотографію.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"mañana",
+"más",
+"tarde",
+"aquí"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "mandando",
+"distractors": [
+"mandar",
+"estudias",
+"estudiamos",
+"estudia",
+"estudian"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"un",
+"esta",
+"con"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"agua",
+"mensaje",
+"correo",
+"periódico",
+"casa"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"más",
+"después",
+"mañana",
+"tarde",
+"temprano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:34",
+"target": "Me estoy lavando las manos.",
+"ru": "Я сейчас мою руки.",
+"uk": "Я зараз мию руки.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Una",
+"Mis",
+"Tu",
+"Te",
+"Mi"
+]
+},
+{
+"correct": "estoy",
+"distractors": [
+"está",
+"están",
+"estamos",
+"estás",
+"estáis"
+]
+},
+{
+"correct": "lavando",
+"distractors": [
+"lavo",
+"lavan",
+"lava",
+"laváis",
+"dejo"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"la",
+"tu",
+"un",
+"mi",
+"esta"
+]
+},
+{
+"correct": "manos",
+"distractors": [
+"viaje",
+"bufanda",
+"mensaje",
+"cargador",
+"casa"
+]
+}
+],
+"alternatives": [
+"Estoy lavándome las manos.",
+"Ahora me estoy lavando las manos.",
+"Ahora estoy lavándome las manos.",
+"Yo me estoy lavando las manos.",
+"Yo estoy lavándome las manos.",
+"Yo ahora me estoy lavando las manos.",
+"Yo ahora estoy lavándome las manos."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:35",
+"target": "Luis está buscando su reloj.",
+"ru": "Луис сейчас ищет свои часы.",
+"uk": "Луїс зараз шукає свій годинник.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Nunca",
+"Quién",
+"Cuándo"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "buscando",
+"distractors": [
+"busco",
+"busca",
+"buscan",
+"lleva",
+"buscas"
+]
+},
+{
+"correct": "su",
+"distractors": [
+"tus",
+"mi",
+"sus",
+"mis",
+"tu"
+]
+},
+{
+"correct": "reloj",
+"distractors": [
+"maleta",
+"bolso",
+"móvil",
+"casa",
+"hermanos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:36",
+"target": "No estamos bebiendo café ahora.",
+"ru": "Мы сейчас не пьём кофе.",
+"uk": "Ми зараз не п’ємо каву.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "estamos",
+"distractors": [
+"están",
+"está",
+"estás",
+"estáis",
+"estoy"
+]
+},
+{
+"correct": "bebiendo",
+"distractors": [
+"beber",
+"recibido",
+"bebo",
+"bebes",
+"beben"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"fotos",
+"móvil",
+"cena",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"tarde",
+"más",
+"mañana",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": [
+"Nosotros no estamos bebiendo café ahora.",
+"Nosotras no estamos bebiendo café ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:37",
+"target": "Mi hermana está lavando la camiseta.",
+"ru": "Моя сестра сейчас стирает футболку.",
+"uk": "Моя сестра зараз пере футболку.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"Mis",
+"Tus",
+"Su",
+"Tu",
+"Sus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"bolso",
+"casa",
+"mensaje",
+"coche",
+"hotel"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "lavando",
+"distractors": [
+"lavo",
+"llamar",
+"lava",
+"lavan",
+"laváis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"un",
+"esta"
+]
+},
+{
+"correct": "camiseta",
+"distractors": [
+"tarjeta",
+"bolso",
+"tren",
+"foto",
+"hermanos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:38",
+"target": "No estamos volviendo a casa ahora.",
+"ru": "Мы сейчас не возвращаемся домой.",
+"uk": "Ми зараз не повертаємося додому.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "estamos",
+"distractors": [
+"está",
+"estoy",
+"están",
+"estás",
+"estáis"
+]
+},
+{
+"correct": "volviendo",
+"distractors": [
+"volver",
+"leo",
+"vuelto",
+"leyendo",
+"leer"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"desde",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"factura",
+"madre",
+"mapa",
+"huevos",
+"hotel"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"más",
+"mañana",
+"tarde",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": [
+"Nosotros no estamos volviendo a casa ahora.",
+"Nosotras no estamos volviendo a casa ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:39",
+"target": "No estás leyendo el mensaje ahora.",
+"ru": "Ты сейчас не читаешь сообщение.",
+"uk": "Ти зараз не читаєш повідомлення.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Mañana",
+"Tarde"
+]
+},
+{
+"correct": "estás",
+"distractors": [
+"estáis",
+"están",
+"estoy",
+"está",
+"estamos"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"lee",
+"leer",
+"escrito",
+"leído",
+"leo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"la",
+"los",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"sopa",
+"tren",
+"gente",
+"casa",
+"mochila"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"tarde",
+"temprano",
+"mañana",
+"más",
+"después"
+]
+}
+],
+"alternatives": [
+"Tú no estás leyendo el mensaje ahora."
+]
+},
+{
+"lesson": 19,
+"id": "es:19:40",
+"target": "Luis no está abriendo la puerta ahora.",
+"ru": "Луис сейчас не открывает дверь.",
+"uk": "Луїс зараз не відчиняє двері.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Ayer",
+"Quién",
+"Cuándo"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"mañana",
+"más",
+"tarde",
+"aquí"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "abriendo",
+"distractors": [
+"abrir",
+"van",
+"vas",
+"vamos",
+"voy"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"los",
+"esta",
+"con"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"café",
+"hermana",
+"banco",
+"llaves",
+"madre"
+]
+},
+{
+"correct": "ahora",
+"distractors": [
+"mañana",
+"más",
+"tarde",
+"temprano",
+"después"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "es:19:41",
+"target": "¿Estás trabajando en casa?",
+"ru": "Ты сейчас работаешь дома?",
+"uk": "Ти зараз працюєш вдома?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estoy",
+"Está",
+"Están",
+"Estamos",
+"Estáis"
+]
+},
+{
+"correct": "trabajando",
+"distractors": [
+"trabajáis",
+"trabaja",
+"trabajar",
+"trabajan",
+"trabajas"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"número",
+"estación",
+"cargador",
+"salida",
+"favor"
+]
+}
+],
+"alternatives": [
+"¿Tú estás trabajando en casa?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:42",
+"target": "¿Estás secando el plato?",
+"ru": "Ты сейчас вытираешь тарелку?",
+"uk": "Ти зараз витираєш тарілку?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Está",
+"Estoy",
+"Estáis",
+"Estamos"
+]
+},
+{
+"correct": "secando",
+"distractors": [
+"levanto",
+"levanta",
+"levantan",
+"levantas",
+"levantamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"una",
+"esta",
+"con"
+]
+},
+{
+"correct": "plato",
+"distractors": [
+"efectivo",
+"ventana",
+"paquete",
+"mapa",
+"mesa"
+]
+}
+],
+"alternatives": [
+"¿Tú estás secando el plato?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:43",
+"target": "¿Estamos escribiendo un mensaje?",
+"ru": "Мы сейчас пишем сообщение?",
+"uk": "Ми зараз пишемо повідомлення?",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Estoy",
+"Están",
+"Estás",
+"Está",
+"Estáis"
+]
+},
+{
+"correct": "escribiendo",
+"distractors": [
+"escribe",
+"escribir",
+"puedes",
+"podemos",
+"escribimos"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"tienda",
+"coche",
+"foto",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Nosotros estamos escribiendo un mensaje?",
+"¿Nosotras estamos escribiendo un mensaje?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:44",
+"target": "¿Estás leyendo el libro?",
+"ru": "Ты сейчас читаешь книгу?",
+"uk": "Ти зараз читаєш книжку?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estamos",
+"Están",
+"Está",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "leyendo",
+"distractors": [
+"leemos",
+"leer",
+"pagar",
+"leído",
+"lee"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"los",
+"las",
+"una",
+"este"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"pedido",
+"mesas",
+"favor",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Tú estás leyendo el libro?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:45",
+"target": "¿Luis está llevando la bolsa?",
+"ru": "Луис сейчас несёт пакет?",
+"uk": "Луїс зараз несе пакет?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Quién",
+"Cuándo",
+"Lejos"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "llevando",
+"distractors": [
+"lleva",
+"llevar",
+"llevado",
+"llevamos",
+"llevas"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"este",
+"con"
+]
+},
+{
+"correct": "bolsa",
+"distractors": [
+"salidas",
+"coche",
+"llaves",
+"foto",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Está llevando Luis la bolsa?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:46",
+"target": "¿Ana está recogiendo la bicicleta?",
+"ru": "Ана сейчас забирает велосипед?",
+"uk": "Ана зараз забирає велосипед?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Nunca",
+"Cuándo",
+"Quién"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "recogiendo",
+"distractors": [
+"recogido",
+"recojo",
+"has",
+"llevar",
+"bebes"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"los",
+"estos"
+]
+},
+{
+"correct": "bicicleta",
+"distractors": [
+"platos",
+"coche",
+"libro",
+"casa",
+"foto"
+]
+}
+],
+"alternatives": [
+"¿Está recogiendo Ana la bicicleta?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:47",
+"target": "¿Estamos esperando aquí?",
+"ru": "Мы сейчас ждём здесь?",
+"uk": "Ми зараз чекаємо тут?",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Están",
+"Estás",
+"Estoy",
+"Está",
+"Estáis"
+]
+},
+{
+"correct": "esperando",
+"distractors": [
+"esperar",
+"gustan",
+"gusta",
+"han",
+"llamar"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"dentro",
+"lejos",
+"allí",
+"fuera"
+]
+}
+],
+"alternatives": [
+"¿Nosotros estamos esperando aquí?",
+"¿Nosotras estamos esperando aquí?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:48",
+"target": "¿Luis está volviendo a la estación?",
+"ru": "Луис сейчас возвращается на вокзал?",
+"uk": "Луїс зараз повертається на вокзал?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Ayer",
+"Quién",
+"Cuándo"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"hemos",
+"gustan",
+"gusta",
+"recibido"
+]
+},
+{
+"correct": "volviendo",
+"distractors": [
+"vuelto",
+"volver",
+"trabaja",
+"trabajar",
+"trabajan"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"bicicleta",
+"entradas",
+"hermano",
+"películas",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Está volviendo Luis a la estación?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:49",
+"target": "¿Mis hermanas están bebiendo café?",
+"ru": "Мои сёстры сейчас пьют кофе?",
+"uk": "Мої сестри зараз п’ють каву?",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Su",
+"Mi",
+"Tu",
+"Sus",
+"Tus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"clase",
+"idea",
+"puerta",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"gusta",
+"gustan",
+"entrado",
+"entrar"
+]
+},
+{
+"correct": "bebiendo",
+"distractors": [
+"bebo",
+"beben",
+"beber",
+"va",
+"vas"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"móvil",
+"bolso",
+"ventana",
+"coche",
+"cara"
+]
+}
+],
+"alternatives": [
+"¿Están bebiendo mis hermanas café?"
+]
+},
+{
+"lesson": 19,
+"id": "es:19:50",
+"target": "¿Estás buscando mis llaves?",
+"ru": "Ты сейчас ищешь мои ключи?",
+"uk": "Ти зараз шукаєш мої ключі?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Está",
+"Estamos",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "buscando",
+"distractors": [
+"buscamos",
+"buscan",
+"buscáis",
+"buscas",
+"busca"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"mi",
+"sus",
+"tus",
+"tu",
+"su"
+]
+},
+{
+"correct": "llaves",
+"distractors": [
+"estación",
+"tren",
+"casa",
+"mensaje",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿Tú estás buscando mis llaves?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:01",
+"target": "Ya he llamado al hotel.",
+"ru": "Я уже позвонил в отель.",
+"uk": "Я вже зателефонував до готелю.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Anoche",
+"Después",
+"Tarde",
+"Mañana",
+"No"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"hay",
+"ha",
+"hemos",
+"has",
+"han"
+]
+},
+{
+"correct": "llamado",
+"distractors": [
+"ducha",
+"llamar",
+"duchas",
+"ducho",
+"duché"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"casa",
+"correo",
+"botella",
+"ascensor",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Yo ya he llamado al hotel."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:02",
+"target": "Ya has llamado a Ana.",
+"ru": "Ты уже позвонил Ане.",
+"uk": "Ти вже зателефонував Ані.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Anoche",
+"Mañana",
+"Antes",
+"Tarde",
+"Más"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"han",
+"hay",
+"ha",
+"hemos",
+"he"
+]
+},
+{
+"correct": "llamado",
+"distractors": [
+"llamar",
+"llamaste",
+"hay",
+"ha",
+"hemos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"de",
+"por",
+"con",
+"desde"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Quién",
+"Cuándo",
+"Nunca"
+]
+}
+],
+"alternatives": [
+"Tú ya has llamado a Ana."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:03",
+"target": "Ya he abierto la puerta.",
+"ru": "Я уже открыл дверь.",
+"uk": "Я вже відчинив двері.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Más",
+"Antes",
+"Mañana",
+"Anoche",
+"No"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"hay",
+"ha",
+"has",
+"habéis",
+"hemos"
+]
+},
+{
+"correct": "abierto",
+"distractors": [
+"abrir",
+"abren",
+"abrió",
+"abre",
+"abrimos"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"lo",
+"un",
+"las",
+"esta"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"hotel",
+"correo",
+"ascensor",
+"carta",
+"banco"
+]
+}
+],
+"alternatives": [
+"Yo ya he abierto la puerta."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:04",
+"target": "Ya has abierto la ventana.",
+"ru": "Ты уже открыл окно.",
+"uk": "Ти вже відчинив вікно.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Más",
+"No",
+"Anoche",
+"Tarde",
+"Mañana"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"hemos",
+"he",
+"hay",
+"han",
+"habéis"
+]
+},
+{
+"correct": "abierto",
+"distractors": [
+"abrimos",
+"abrir",
+"eres",
+"son",
+"es"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"estos",
+"con"
+]
+},
+{
+"correct": "ventana",
+"distractors": [
+"casa",
+"tienda",
+"pasaporte",
+"azúcar",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Tú ya has abierto la ventana."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:05",
+"target": "Ana ya ha comprado un billete.",
+"ru": "Ана уже купила билет.",
+"uk": "Ана вже купила квиток.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "ya",
+"distractors": [
+"tarde",
+"mañana",
+"más",
+"ayer",
+"antes"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"he",
+"hemos",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "comprado",
+"distractors": [
+"compramos",
+"compraste",
+"compré",
+"escrito",
+"compró"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"unas",
+"una",
+"la",
+"los",
+"esta"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"número",
+"gente",
+"casa",
+"hermanas",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:06",
+"target": "Ya hemos comprado pan.",
+"ru": "Мы уже купили хлеб.",
+"uk": "Ми вже купили хліб.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Mañana",
+"Tarde",
+"Anoche",
+"No",
+"Más"
+]
+},
+{
+"correct": "hemos",
+"distractors": [
+"he",
+"has",
+"habéis",
+"ha",
+"han"
+]
+},
+{
+"correct": "comprado",
+"distractors": [
+"compré",
+"comprasteis",
+"sientas",
+"compraste",
+"compró"
+]
+},
+{
+"correct": "pan",
+"distractors": [
+"carta",
+"azúcar",
+"oficina",
+"minuto",
+"casa"
+]
+}
+],
+"alternatives": [
+"Nosotros ya hemos comprado pan.",
+"Nosotras ya hemos comprado pan."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:07",
+"target": "Ya he escrito una carta.",
+"ru": "Я уже написал письмо.",
+"uk": "Я вже написав листа.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Más",
+"Tarde",
+"Anoche",
+"No",
+"Mañana"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"han",
+"hemos",
+"hay",
+"habéis",
+"has"
+]
+},
+{
+"correct": "escrito",
+"distractors": [
+"escribimos",
+"escribe",
+"escribí",
+"entrar",
+"escribir"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"mis",
+"tus",
+"el",
+"mi",
+"las"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"libro",
+"cita",
+"kilo",
+"viaje",
+"ideas"
+]
+}
+],
+"alternatives": [
+"Yo ya he escrito una carta."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:08",
+"target": "Ya has escrito un mensaje.",
+"ru": "Ты уже написал сообщение.",
+"uk": "Ти вже написав повідомлення.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Anoche",
+"Más",
+"Tarde",
+"No",
+"Mañana"
+]
+},
+{
+"correct": "has",
+"distractors": [
+"hay",
+"hemos",
+"habéis",
+"he",
+"ha"
+]
+},
+{
+"correct": "escrito",
+"distractors": [
+"escribís",
+"escribí",
+"volver",
+"escribimos",
+"escribir"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"los",
+"una",
+"la",
+"esta",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"efectivo",
+"ventana",
+"tren",
+"oficina",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tú ya has escrito un mensaje."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:09",
+"target": "Luis ya ha leído el libro.",
+"ru": "Луис уже прочитал книгу.",
+"uk": "Луїс вже прочитав книжку.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Ayer",
+"Nunca",
+"Lejos"
+]
+},
+{
+"correct": "ya",
+"distractors": [
+"mañana",
+"más",
+"antes",
+"temprano",
+"ayer"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hemos",
+"hay",
+"he",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"leíste",
+"leyendo",
+"hay",
+"hemos",
+"he"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"la",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"tiempo",
+"favor",
+"mapa",
+"hermanas",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:10",
+"target": "Ya hemos leído el mensaje.",
+"ru": "Мы уже прочитали сообщение.",
+"uk": "Ми вже прочитали повідомлення.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Mañana",
+"Antes",
+"Anoche",
+"Temprano",
+"No"
+]
+},
+{
+"correct": "hemos",
+"distractors": [
+"habéis",
+"has",
+"hay",
+"ha",
+"he"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"leyendo",
+"leíste",
+"recojo",
+"leer",
+"lee"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"lo",
+"los",
+"la",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"hermanas",
+"madre",
+"foto",
+"bolsillo",
+"casa"
+]
+}
+],
+"alternatives": [
+"Nosotros ya hemos leído el mensaje.",
+"Nosotras ya hemos leído el mensaje."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:11",
+"target": "He mandado la foto hoy.",
+"ru": "Я сегодня отправил фотографию.",
+"uk": "Я сьогодні надіслав фотографію.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"Ha",
+"Hay",
+"Habéis",
+"Han",
+"Has"
+]
+},
+{
+"correct": "mandado",
+"distractors": [
+"mandar",
+"mandamos",
+"ha",
+"hay",
+"mandé"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"el",
+"con"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"ideas",
+"mano",
+"tienda",
+"manos",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"ayer",
+"mañana",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Yo he mandado la foto hoy.",
+"Hoy he mandado la foto.",
+"Yo hoy he mandado la foto.",
+"Hoy yo he mandado la foto."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:12",
+"target": "Ana ya ha confirmado la reserva.",
+"ru": "Ана уже подтвердила бронь.",
+"uk": "Ана вже підтвердила бронювання.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "ya",
+"distractors": [
+"mañana",
+"después",
+"ayer",
+"más",
+"antes"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "confirmado",
+"distractors": [
+"necesito",
+"lavé",
+"siento",
+"sientas",
+"sentáis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"el",
+"un",
+"con"
+]
+},
+{
+"correct": "reserva",
+"distractors": [
+"tren",
+"periódico",
+"bufanda",
+"hotel",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:13",
+"target": "Luis ha preparado la cena hoy.",
+"ru": "Луис сегодня приготовил ужин.",
+"uk": "Луїс сьогодні приготував вечерю.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Ayer",
+"Cuándo",
+"Nunca"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hemos",
+"hay",
+"he",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "preparado",
+"distractors": [
+"preparar",
+"preparó",
+"somos",
+"es",
+"son"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"tiempo",
+"mesa",
+"número",
+"mapa",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Hoy Luis ha preparado la cena."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:14",
+"target": "Has preparado la mochila hoy.",
+"ru": "Ты сегодня приготовил рюкзак.",
+"uk": "Ти сьогодні приготував рюкзак.",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"Habéis",
+"Hay",
+"He",
+"Han",
+"Ha"
+]
+},
+{
+"correct": "preparado",
+"distractors": [
+"prepararon",
+"preparó",
+"preparar",
+"prepara",
+"preparando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"un",
+"los",
+"con"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"tienda",
+"sopa",
+"mensaje",
+"agua",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Tú has preparado la mochila hoy.",
+"Hoy has preparado la mochila.",
+"Tú hoy has preparado la mochila.",
+"Hoy tú has preparado la mochila."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:15",
+"target": "He pagado en efectivo hoy.",
+"ru": "Я сегодня заплатил наличными.",
+"uk": "Я сьогодні заплатив готівкою.",
+"tiles": [
+{
+"correct": "He",
+"distractors": [
+"Ha",
+"Habéis",
+"Hay",
+"Has",
+"Hemos"
+]
+},
+{
+"correct": "pagado",
+"distractors": [
+"pagar",
+"pagasteis",
+"pagaste",
+"es",
+"estáis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"sin",
+"con",
+"para"
+]
+},
+{
+"correct": "efectivo",
+"distractors": [
+"libro",
+"carta",
+"recepción",
+"mano",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Yo he pagado en efectivo hoy.",
+"Hoy he pagado en efectivo.",
+"Yo hoy he pagado en efectivo.",
+"Hoy yo he pagado en efectivo."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:16",
+"target": "Hemos pagado con tarjeta hoy.",
+"ru": "Мы сегодня заплатили картой.",
+"uk": "Ми сьогодні заплатили карткою.",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"Hay",
+"He",
+"Habéis",
+"Han",
+"Ha"
+]
+},
+{
+"correct": "pagado",
+"distractors": [
+"pagaste",
+"tengo",
+"tiene",
+"tienes",
+"tenemos"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"por",
+"a",
+"para",
+"de",
+"en"
+]
+},
+{
+"correct": "tarjeta",
+"distractors": [
+"hermanas",
+"cocina",
+"casa",
+"libro",
+"mensaje"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"quién",
+"dentro",
+"allí",
+"cerca"
+]
+}
+],
+"alternatives": [
+"Nosotros hemos pagado con tarjeta hoy.",
+"Nosotras hemos pagado con tarjeta hoy.",
+"Hoy hemos pagado con tarjeta."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:17",
+"target": "Ana ha entrado en la tienda hoy.",
+"ru": "Ана сегодня вошла в магазин.",
+"uk": "Ана сьогодні зайшла до магазину.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"he",
+"hemos",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "entrado",
+"distractors": [
+"entrar",
+"abren",
+"entramos",
+"abrió",
+"abre"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"de",
+"desde",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"lo",
+"el",
+"este",
+"con"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"agua",
+"carta",
+"casa",
+"hermanos",
+"hotel"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"quién",
+"lejos",
+"no",
+"ya"
+]
+}
+],
+"alternatives": [
+"Hoy Ana ha entrado en la tienda."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:18",
+"target": "Hemos recibido el pedido hoy.",
+"ru": "Мы сегодня получили заказ.",
+"uk": "Ми сьогодні отримали замовлення.",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"Hay",
+"He",
+"Has",
+"Han",
+"Ha"
+]
+},
+{
+"correct": "recibido",
+"distractors": [
+"llamé",
+"llamar",
+"llamaste",
+"está",
+"llamado"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"las",
+"una",
+"la",
+"con"
+]
+},
+{
+"correct": "pedido",
+"distractors": [
+"tienda",
+"mesas",
+"reserva",
+"foto",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Nosotros hemos recibido el pedido hoy.",
+"Nosotras hemos recibido el pedido hoy.",
+"Hoy hemos recibido el pedido."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:19",
+"target": "Mis hermanos han vuelto a casa hoy.",
+"ru": "Мои братья сегодня вернулись домой.",
+"uk": "Мої брати сьогодні повернулися додому.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Mi",
+"Sus",
+"Su",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"recepción",
+"ventana",
+"pregunta",
+"foto",
+"reserva"
+]
+},
+{
+"correct": "han",
+"distractors": [
+"he",
+"hemos",
+"hay",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "vuelto",
+"distractors": [
+"levantáis",
+"volver",
+"levanta",
+"levanto",
+"volviendo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"camisetas",
+"libros",
+"fotos",
+"pasaporte",
+"mensaje"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"Hoy mis hermanos han vuelto a casa."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:20",
+"target": "Has vuelto a la estación hoy.",
+"ru": "Ты сегодня вернулся на вокзал.",
+"uk": "Ти сьогодні повернувся на вокзал.",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"Han",
+"Hay",
+"Habéis",
+"Hemos",
+"Ha"
+]
+},
+{
+"correct": "vuelto",
+"distractors": [
+"volver",
+"volviendo",
+"tengo",
+"tiene",
+"trabaja"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"los",
+"este",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"ascensor",
+"carta",
+"ventanas",
+"gente",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"lejos",
+"allí",
+"aquí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"Tú has vuelto a la estación hoy.",
+"Hoy has vuelto a la estación.",
+"Tú hoy has vuelto a la estación.",
+"Hoy tú has vuelto a la estación."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:21",
+"target": "Hemos leído el libro esta semana.",
+"ru": "Мы на этой неделе прочитали книгу.",
+"uk": "Ми цього тижня прочитали книжку.",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"He",
+"Hay",
+"Habéis",
+"Ha",
+"Has"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"lee",
+"leyendo",
+"leer",
+"es",
+"son"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"la",
+"las",
+"una",
+"con"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"bufanda",
+"casa",
+"hotel",
+"hermanas",
+"mochila"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"un",
+"la",
+"tus",
+"los",
+"una"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"mapas",
+"llaves",
+"billete",
+"ventana",
+"casa"
+]
+}
+],
+"alternatives": [
+"Nosotros hemos leído el libro esta semana.",
+"Nosotras hemos leído el libro esta semana."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:22",
+"target": "Habéis leído el mensaje esta semana.",
+"ru": "Вы на этой неделе прочитали сообщение.",
+"uk": "Ви цього тижня прочитали повідомлення.",
+"tiles": [
+{
+"correct": "Habéis",
+"distractors": [
+"Hemos",
+"Hay",
+"He",
+"Tengo",
+"Abrirla"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"leer",
+"lees",
+"leyendo",
+"lee",
+"leo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"hermanas",
+"libros",
+"madre",
+"entradas",
+"abrigos"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"la",
+"mi",
+"una",
+"unas",
+"los"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"estación",
+"llave",
+"tren",
+"libros",
+"puerta"
+]
+}
+],
+"alternatives": [
+"Han leído el mensaje esta semana.",
+"Habéis leído el mensaje estas semana."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:23",
+"target": "Ya he recogido el paquete.",
+"ru": "Я уже забрал посылку.",
+"uk": "Я вже забрав посилку.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Más",
+"Después",
+"Antes",
+"No",
+"Anoche"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"hay",
+"hemos",
+"han",
+"has",
+"ha"
+]
+},
+{
+"correct": "recogido",
+"distractors": [
+"recojo",
+"recogiendo",
+"llevar",
+"lleva",
+"llevamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"lo",
+"una",
+"con"
+]
+},
+{
+"correct": "paquete",
+"distractors": [
+"mensaje",
+"hermana",
+"madre",
+"billete",
+"casa"
+]
+}
+],
+"alternatives": [
+"Yo ya he recogido el paquete."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:24",
+"target": "Ya he pagado la factura.",
+"ru": "Я уже оплатил счёт.",
+"uk": "Я вже оплатив рахунок.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Tarde",
+"Anoche",
+"Mañana",
+"No",
+"Más"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"ha",
+"han",
+"has",
+"hay",
+"habéis"
+]
+},
+{
+"correct": "pagado",
+"distractors": [
+"pagasteis",
+"pagar",
+"estáis",
+"está",
+"están"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"las",
+"con"
+]
+},
+{
+"correct": "factura",
+"distractors": [
+"cita",
+"hermanos",
+"zapatos",
+"banco",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"Yo ya he pagado la factura."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:25",
+"target": "Mis hermanas han abierto la ventana esta semana.",
+"ru": "Мои сёстры на этой неделе открыли окно.",
+"uk": "Мої сестри цього тижня відчинили вікно.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Su",
+"Mi",
+"Tus",
+"Sus",
+"Tu"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"factura",
+"cena",
+"cocina",
+"regalo",
+"casa"
+]
+},
+{
+"correct": "han",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "abierto",
+"distractors": [
+"abro",
+"abrió",
+"abrimos",
+"gustan",
+"gusta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"lo",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "ventana",
+"distractors": [
+"verduras",
+"abrigo",
+"número",
+"casa",
+"mesa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"mi",
+"sus",
+"las",
+"el",
+"una"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"ventanas",
+"tiempo",
+"mercado",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:26",
+"target": "Mis hermanos han vuelto a casa esta semana.",
+"ru": "Мои братья на этой неделе вернулись домой.",
+"uk": "Мої брати цього тижня повернулися додому.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Tu",
+"Su",
+"Sus",
+"Tus"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"factura",
+"cartas",
+"libro",
+"carta",
+"mensaje"
+]
+},
+{
+"correct": "han",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "vuelto",
+"distractors": [
+"pasear",
+"volver",
+"volviendo",
+"abriendo",
+"están"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"por",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hotel",
+"coche",
+"mapa",
+"queso",
+"mensaje"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"los",
+"las",
+"mi",
+"la",
+"el"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"mañana",
+"pasaporte",
+"farmacia",
+"número",
+"ayer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:27",
+"target": "¿Has recibido mi correo?",
+"ru": "Ты получил моё электронное письмо?",
+"uk": "Ти отримав мого електронного листа?",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"Habéis",
+"He",
+"Hay",
+"Hemos",
+"Ha"
+]
+},
+{
+"correct": "recibido",
+"distractors": [
+"trabajando",
+"está",
+"están",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"su",
+"sus",
+"tus",
+"mis",
+"tu"
+]
+},
+{
+"correct": "correo",
+"distractors": [
+"mapa",
+"bolsos",
+"hotel",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"¿Tú has recibido mi correo?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:28",
+"target": "Hemos mandado la foto esta semana.",
+"ru": "Мы на этой неделе отправили фотографию.",
+"uk": "Ми цього тижня надіслали фотографію.",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"He",
+"Hay",
+"Has",
+"Habéis",
+"Ha"
+]
+},
+{
+"correct": "mandado",
+"distractors": [
+"mandar",
+"mandé",
+"mandamos",
+"mandando",
+"mandasteis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"trenes",
+"hermano",
+"tren",
+"mensaje",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"mi",
+"su",
+"las",
+"un",
+"el"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"número",
+"llaves",
+"bolsillo",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Nosotros hemos mandado la foto esta semana.",
+"Nosotras hemos mandado la foto esta semana."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:29",
+"target": "Ya he comprado los huevos en el supermercado.",
+"ru": "Я уже купил яйца в супермаркете.",
+"uk": "Я вже купив яйця в супермаркеті.",
+"tiles": [
+{
+"correct": "Ya",
+"distractors": [
+"Anoche",
+"Tarde",
+"Mañana",
+"No",
+"Más"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"hay",
+"has",
+"han",
+"hemos",
+"habéis"
+]
+},
+{
+"correct": "comprado",
+"distractors": [
+"compró",
+"compraste",
+"compré",
+"compramos",
+"comprar"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"sus",
+"mi",
+"mis",
+"una",
+"un"
+]
+},
+{
+"correct": "huevos",
+"distractors": [
+"bolsos",
+"casa",
+"oficina",
+"semana",
+"hotel"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "supermercado",
+"distractors": [
+"casa",
+"correo",
+"pan",
+"coche",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Yo ya he comprado los huevos en el supermercado."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:30",
+"target": "Habéis llevado la bolsa esta semana.",
+"ru": "Вы на этой неделе отнесли пакет.",
+"uk": "Ви цього тижня віднесли пакет.",
+"tiles": [
+{
+"correct": "Habéis",
+"distractors": [
+"Hay",
+"He",
+"Hemos",
+"Tengo",
+"Leído"
+]
+},
+{
+"correct": "llevado",
+"distractors": [
+"lleva",
+"llevaste",
+"están",
+"está",
+"estás"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"las",
+"este",
+"con"
+]
+},
+{
+"correct": "bolsa",
+"distractors": [
+"libro",
+"verduras",
+"ascensor",
+"mesa",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"un",
+"las",
+"el",
+"los",
+"una"
+]
+},
+{
+"correct": "semana",
+"distractors": [
+"supermercado",
+"libros",
+"zapatos",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:31",
+"target": "No he escrito un mensaje esta mañana.",
+"ru": "Я сегодня утром не написал сообщение.",
+"uk": "Я сьогодні вранці не написав повідомлення.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Tarde"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"has",
+"hay",
+"hemos",
+"habéis",
+"ha"
+]
+},
+{
+"correct": "escrito",
+"distractors": [
+"escribís",
+"abren",
+"escribimos",
+"escribir",
+"abrió"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"unas",
+"una",
+"la",
+"los",
+"con"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"cena",
+"periódico",
+"casa",
+"hotel",
+"mochila"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"mis",
+"las",
+"el",
+"la",
+"una"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"hermanas",
+"salida",
+"carta",
+"maleta",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Yo no he escrito un mensaje esta mañana.",
+"Esta mañana no he escrito un mensaje.",
+"Yo esta mañana no he escrito un mensaje.",
+"Esta mañana yo no he escrito un mensaje."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:32",
+"target": "No hemos recibido la factura.",
+"ru": "Мы не получили счёт.",
+"uk": "Ми не отримали рахунок.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Mañana"
+]
+},
+{
+"correct": "hemos",
+"distractors": [
+"has",
+"hay",
+"he",
+"han",
+"ha"
+]
+},
+{
+"correct": "recibido",
+"distractors": [
+"está",
+"llamar",
+"trabaja",
+"entrar",
+"trabajando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"lo",
+"los",
+"con"
+]
+},
+{
+"correct": "factura",
+"distractors": [
+"llave",
+"abrigos",
+"foto",
+"camisetas",
+"semana"
+]
+}
+],
+"alternatives": [
+"Nosotros no hemos recibido la factura.",
+"Nosotras no hemos recibido la factura."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:33",
+"target": "Ana no ha mandado el mapa esta mañana.",
+"ru": "Ана сегодня утром не отправила карту.",
+"uk": "Ана сьогодні вранці не надіслала мапу.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Lejos",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"lejos",
+"aquí",
+"dentro",
+"allí"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hemos",
+"he",
+"hay",
+"gusta",
+"mandar"
+]
+},
+{
+"correct": "mandado",
+"distractors": [
+"mandar",
+"escribí",
+"mandé",
+"mandamos",
+"escribir"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"fruta",
+"abrigos",
+"bolsillos",
+"pasaportes",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"mi",
+"una",
+"la",
+"las",
+"los"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"puerta",
+"bicicleta",
+"llaves",
+"tienda",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Esta mañana Ana no ha mandado el mapa."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:34",
+"target": "No hemos llamado al hotel esta mañana.",
+"ru": "Мы сегодня утром не позвонили в отель.",
+"uk": "Ми сьогодні вранці не зателефонували до готелю.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Ahora"
+]
+},
+{
+"correct": "hemos",
+"distractors": [
+"han",
+"has",
+"hay",
+"ha",
+"he"
+]
+},
+{
+"correct": "llamado",
+"distractors": [
+"llamaste",
+"llamar",
+"sentáis",
+"llamé",
+"sientas"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"del",
+"coche",
+"grandes",
+"libro",
+"número"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"pan",
+"pregunta",
+"mochila",
+"botella",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"un",
+"una",
+"mis",
+"el",
+"las"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"paquete",
+"casa",
+"llaves",
+"coche",
+"mochila"
+]
+}
+],
+"alternatives": [
+"Nosotros no hemos llamado al hotel esta mañana.",
+"Nosotras no hemos llamado al hotel esta mañana.",
+"Esta mañana no hemos llamado al hotel."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:35",
+"target": "Luis no ha comprado un billete esta mañana.",
+"ru": "Луис сегодня утром не купил билет.",
+"uk": "Луїс сьогодні вранці не купив квиток.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Lejos",
+"Quién",
+"Cuándo",
+"Nunca"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"ayer",
+"ahora",
+"más",
+"antes"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"he",
+"hay",
+"hemos",
+"gusta",
+"abrió"
+]
+},
+{
+"correct": "comprado",
+"distractors": [
+"comprasteis",
+"comprar",
+"estoy",
+"está",
+"están"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"una",
+"los",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"tren",
+"carta",
+"mensaje",
+"fruta",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"tu",
+"mi",
+"mis",
+"la",
+"una"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"minuto",
+"entradas",
+"mesa",
+"hermanas",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Esta mañana Luis no ha comprado un billete."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:36",
+"target": "Hoy no he recibido tu carta.",
+"ru": "Сегодня я не получил твоё письмо.",
+"uk": "Сьогодні я не отримав твого листа.",
+"tiles": [
+{
+"correct": "Hoy",
+"distractors": [
+"Ya",
+"Mañana",
+"Está",
+"Están",
+"Es"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"quién",
+"ayer",
+"mañana",
+"lejos"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"han",
+"hay",
+"ha",
+"habéis",
+"hemos"
+]
+},
+{
+"correct": "recibido",
+"distractors": [
+"como",
+"comiendo",
+"está",
+"come",
+"coméis"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"su",
+"mis",
+"mi",
+"tus",
+"sus"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"billete",
+"huevos",
+"hotel",
+"puerta",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "es:20:37",
+"target": "No hemos preparado la cena esta mañana.",
+"ru": "Мы сегодня утром не приготовили ужин.",
+"uk": "Ми сьогодні вранці не приготували вечерю.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Tarde"
+]
+},
+{
+"correct": "hemos",
+"distractors": [
+"ha",
+"he",
+"hay",
+"han",
+"habéis"
+]
+},
+{
+"correct": "preparado",
+"distractors": [
+"prepararon",
+"preparando",
+"preparar",
+"preparó",
+"prepara"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"billete",
+"madre",
+"banco",
+"música",
+"casa"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"los",
+"tus",
+"tu",
+"el",
+"este"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"bicicleta",
+"fotos",
+"azúcar",
+"ayer",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Nosotros no hemos preparado la cena esta mañana.",
+"Nosotras no hemos preparado la cena esta mañana.",
+"Esta mañana no hemos preparado la cena."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:38",
+"target": "Luis ha mandado el paquete hoy.",
+"ru": "Луис сегодня отправил посылку.",
+"uk": "Луїс сьогодні відправив посилку.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Nunca",
+"Ayer",
+"Cuándo"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"abrió",
+"mandar"
+]
+},
+{
+"correct": "mandado",
+"distractors": [
+"mandamos",
+"mandar",
+"levantáis",
+"mandé",
+"mandasteis"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"la",
+"este",
+"con"
+]
+},
+{
+"correct": "paquete",
+"distractors": [
+"agua",
+"bolso",
+"oficina",
+"carta",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"quién",
+"lejos",
+"no",
+"ya"
+]
+}
+],
+"alternatives": [
+"Hoy Luis ha mandado el paquete."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:39",
+"target": "No he terminado de fregar los platos.",
+"ru": "Я ещё не закончил мыть посуду.",
+"uk": "Я ще не закінчив мити посуд.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Ya",
+"Aquí",
+"Hoy",
+"Anoche",
+"Mañana"
+]
+},
+{
+"correct": "he",
+"distractors": [
+"has",
+"han",
+"hay",
+"hemos",
+"ha"
+]
+},
+{
+"correct": "terminado",
+"distractors": [
+"están",
+"comprar",
+"escribe",
+"lavé",
+"mandar"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"sin",
+"para",
+"en",
+"desde"
+]
+},
+{
+"correct": "fregar",
+"distractors": [
+"fregando",
+"dejamos",
+"preparado",
+"preparó",
+"gusta"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"mis",
+"el",
+"tu",
+"una",
+"con"
+]
+},
+{
+"correct": "platos",
+"distractors": [
+"número",
+"madre",
+"mapa",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Yo no he terminado de fregar los platos."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:40",
+"target": "Mis hermanos no han llevado la maleta esta mañana.",
+"ru": "Мои братья сегодня утром не отнесли чемодан.",
+"uk": "Мої брати сьогодні вранці не віднесли валізу.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Sus",
+"Tus",
+"Mi",
+"Su"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"foto",
+"libros",
+"periódico",
+"madre",
+"casa"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"ya",
+"ayer",
+"ahora",
+"más",
+"antes"
+]
+},
+{
+"correct": "han",
+"distractors": [
+"hemos",
+"hay",
+"he",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "llevado",
+"distractors": [
+"llevamos",
+"llevar",
+"lleva",
+"llevas",
+"llevando"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"lo",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "maleta",
+"distractors": [
+"casa",
+"libro",
+"mochila",
+"billetes",
+"manos"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"las",
+"mi",
+"un",
+"una",
+"el"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"billete",
+"foto",
+"supermercado",
+"cena",
+"ayer"
+]
+}
+],
+"alternatives": [
+"Esta mañana mis hermanos no han llevado la maleta."
+]
+},
+{
+"lesson": 20,
+"id": "es:20:41",
+"target": "¿Has llamado a Ana hoy?",
+"ru": "Ты сегодня позвонил Ане?",
+"uk": "Ти сьогодні зателефонував Ані?",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"Hay",
+"Han",
+"Hemos",
+"He",
+"Ha"
+]
+},
+{
+"correct": "llamado",
+"distractors": [
+"llamaste",
+"llamar",
+"llamé",
+"tiene",
+"hay"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"por",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Cuándo",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"mañana",
+"ahora",
+"ya",
+"más"
+]
+}
+],
+"alternatives": [
+"¿Tú has llamado a Ana hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:42",
+"target": "¿Has confirmado el pedido?",
+"ru": "Ты подтвердил заказ?",
+"uk": "Ти підтвердив замовлення?",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"He",
+"Hemos",
+"Hay",
+"Han",
+"Ha"
+]
+},
+{
+"correct": "confirmado",
+"distractors": [
+"gusta",
+"he",
+"gustan",
+"hay",
+"hemos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"lo",
+"las",
+"la",
+"una",
+"con"
+]
+},
+{
+"correct": "pedido",
+"distractors": [
+"madre",
+"puerta",
+"mañana",
+"ventana",
+"ayer"
+]
+}
+],
+"alternatives": [
+"¿Tú has confirmado el pedido?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:43",
+"target": "¿Hemos vuelto a casa hoy?",
+"ru": "Мы сегодня вернулись домой?",
+"uk": "Ми сьогодні повернулися додому?",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"Ha",
+"Hay",
+"Has",
+"Han",
+"Habéis"
+]
+},
+{
+"correct": "vuelto",
+"distractors": [
+"bebemos",
+"volver",
+"volviendo",
+"bebiendo",
+"beber"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"móvil",
+"ventana",
+"carta",
+"café",
+"hotel"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"ayer",
+"lejos",
+"no",
+"ya"
+]
+}
+],
+"alternatives": [
+"¿Nosotros hemos vuelto a casa hoy?",
+"¿Nosotras hemos vuelto a casa hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:44",
+"target": "¿Has leído el libro hoy?",
+"ru": "Ты сегодня прочитал книгу?",
+"uk": "Ти сьогодні прочитав книжку?",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"He",
+"Hemos",
+"Hay",
+"Ha",
+"Han"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"leen",
+"leer",
+"estoy",
+"están",
+"está"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"lo",
+"la",
+"esta",
+"con"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"platos",
+"agua",
+"clase",
+"móvil",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"quién",
+"dentro",
+"allí",
+"cerca"
+]
+}
+],
+"alternatives": [
+"¿Tú has leído el libro hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:45",
+"target": "¿Luis ha leído el mensaje hoy?",
+"ru": "Луис сегодня прочитал сообщение?",
+"uk": "Луїс сьогодні прочитав повідомлення?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Lejos",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"abrió",
+"mandar"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"lees",
+"está",
+"están",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"la",
+"una",
+"con",
+"que"
+]
+},
+{
+"correct": "mensaje",
+"distractors": [
+"coche",
+"correo",
+"supermercado",
+"estación",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"ayer",
+"mañana",
+"ya",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿Ha leído Luis el mensaje hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:46",
+"target": "¿Ana ha abierto la puerta hoy?",
+"ru": "Ана сегодня открыла дверь?",
+"uk": "Ана сьогодні відчинила двері?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Quién",
+"Nunca",
+"Cuándo"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"hay",
+"he",
+"hemos",
+"estáis",
+"abrió"
+]
+},
+{
+"correct": "abierto",
+"distractors": [
+"abrir",
+"abrió",
+"hemos",
+"hay",
+"he"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"mapa",
+"hermanas",
+"bolso",
+"zapatos",
+"pasaportes"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"lejos",
+"allí",
+"aquí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"¿Ha abierto Ana la puerta hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:47",
+"target": "¿Hemos mandado la foto hoy?",
+"ru": "Мы сегодня отправили фотографию?",
+"uk": "Ми сьогодні надіслали фотографію?",
+"tiles": [
+{
+"correct": "Hemos",
+"distractors": [
+"He",
+"Hay",
+"Habéis",
+"Ha",
+"Han"
+]
+},
+{
+"correct": "mandado",
+"distractors": [
+"mandé",
+"mandamos",
+"mandar",
+"mandando",
+"mandasteis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"esta",
+"con"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"bolsos",
+"tarjeta",
+"oficina",
+"salidas",
+"bicicleta"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"ayer",
+"quién",
+"lejos",
+"allí",
+"aquí"
+]
+}
+],
+"alternatives": [
+"¿Nosotros hemos mandado la foto hoy?",
+"¿Nosotras hemos mandado la foto hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:48",
+"target": "¿Has leído el correo del hotel?",
+"ru": "Ты прочитал электронное письмо из отеля?",
+"uk": "Ти прочитав електронного листа з готелю?",
+"tiles": [
+{
+"correct": "Has",
+"distractors": [
+"Habéis",
+"Ha",
+"Hay",
+"Han",
+"He"
+]
+},
+{
+"correct": "leído",
+"distractors": [
+"leíste",
+"leen",
+"leer",
+"llevaste",
+"leyendo"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"las",
+"este",
+"con"
+]
+},
+{
+"correct": "correo",
+"distractors": [
+"casa",
+"hermana",
+"cocina",
+"mensaje",
+"mochila"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"al",
+"las",
+"una",
+"los",
+"un"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mesa",
+"ventana",
+"lista",
+"casa",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"¿Tú has leído el correo del hotel?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:49",
+"target": "¿Mis hermanas han preparado la cena hoy?",
+"ru": "Мои сёстры сегодня приготовили ужин?",
+"uk": "Мої сестри сьогодні приготували вечерю?",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Sus",
+"Tu",
+"Su",
+"Mi",
+"Tus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"carta",
+"platos",
+"casa",
+"libro",
+"hotel"
+]
+},
+{
+"correct": "han",
+"distractors": [
+"hay",
+"hemos",
+"he",
+"gusta",
+"gustan"
+]
+},
+{
+"correct": "preparado",
+"distractors": [
+"preparó",
+"preparando",
+"pasar",
+"preparar",
+"prepararon"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"los",
+"lo",
+"esta"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"tienda",
+"puerta",
+"pregunta",
+"estación",
+"casa"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"aquí"
+]
+}
+],
+"alternatives": [
+"¿Han preparado mis hermanas la cena hoy?"
+]
+},
+{
+"lesson": 20,
+"id": "es:20:50",
+"target": "¿Habéis entrado en la oficina hoy?",
+"ru": "Вы сегодня вошли в офис?",
+"uk": "Ви сьогодні зайшли до офісу?",
+"tiles": [
+{
+"correct": "Habéis",
+"distractors": [
+"Hay",
+"Hemos",
+"He",
+"Tengo",
+"Abrirla"
+]
+},
+{
+"correct": "entrado",
+"distractors": [
+"entrar",
+"estamos",
+"están",
+"está",
+"estás"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"las",
+"un",
+"los",
+"con"
+]
+},
+{
+"correct": "oficina",
+"distractors": [
+"carta",
+"hermanos",
+"café",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"ayer",
+"lejos",
+"allí",
+"aquí"
+]
+}
+],
+"alternatives": []
+}
+]

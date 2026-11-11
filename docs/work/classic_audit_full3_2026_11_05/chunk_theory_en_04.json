@@ -1,0 +1,1132 @@
+[
+{
+"lesson": 9,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 9,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что здесь есть",
+"formula": "there + [is / are] + [предмет] + [место]",
+"story": "Ты впервые описываешь комнату. Один стул: There is a chair. Два стула: There are two chairs. Число смотри у предмета после глагола.",
+"use": "Используйте эту конструкцию, чтобы представить что-то, о чем слушатель еще не знает. Используйте обычное подлежащее в начале, когда вы указываете на уже идентифицированный объект.",
+"choose": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"nuance": "Чтобы сказать «нет ни одного», подходит `there is no…`. В нейтральном вопросе или отрицании часто встречается `any`. Сиденья можно пересчитать, а для воды обычно указывают меру: стакан, литр.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Используйте эту конструкцию, чтобы представить что-то, о чем слушатель еще не знает. Используйте обычное подлежащее в начале, когда вы указываете на уже идентифицированный объект.",
+"samples": [
+"09.01",
+"09.04"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"samples": [
+"09.04",
+"09.12"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Чтобы сказать «нет ни одного», подходит `there is no…`. В нейтральном вопросе или отрицании часто встречается `any`. Сиденья можно пересчитать, а для воды обычно указывают меру: стакан, литр.",
+"samples": [
+"09.12",
+"09.22"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Скажите, что чего-то нет",
+"samples": [
+"09.33",
+"09.35",
+"09.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Сравните вопрос о наличии шкафчиков с вопросом о том, где они находятся. Только первый вопрос проверяет наличие.",
+"samples": [
+"09.42",
+"09.45",
+"09.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Найдите и представьте в контексте",
+"samples": [
+"09.50"
+],
+"tokenWalk": "09.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що тут є",
+"formula": "there + [is / are] + [предмет] + [місце]",
+"story": "Уперше описуєш кімнату. Один стілець: There is a chair. Два: There are two chairs. Перевір число предметів після дієслова.",
+"use": "Використовуйте цю конструкцію, щоб представити щось, про що слухач ще не знає. Використовуйте звичайний підмет спочатку, коли шукаєте вже визначену річ.",
+"choose": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"nuance": "Щоб сказати «немає жодного», підходить `there is no…`. У нейтральному питанні чи запереченні часто вживають `any`. Сидіння можна порахувати, а для води зазвичай називають міру: склянка, літр.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Використовуйте цю конструкцію, щоб представити щось, про що слухач ще не знає. Використовуйте звичайний підмет спочатку, коли шукаєте вже визначену річ.",
+"samples": [
+"09.01",
+"09.04"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"samples": [
+"09.04",
+"09.12"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Щоб сказати «немає жодного», підходить `there is no…`. У нейтральному питанні чи запереченні часто вживають `any`. Сидіння можна порахувати, а для води зазвичай називають міру: склянка, літр.",
+"samples": [
+"09.12",
+"09.22"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Сказати, що чогось немає",
+"samples": [
+"09.33",
+"09.35",
+"09.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Порівняйте запитання «Чи є якісь шафки» з запитанням «Де ці шафки». Тільки перше запитання перевіряє наявність.",
+"samples": [
+"09.42",
+"09.45",
+"09.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Знайти та представити в контексті",
+"samples": [
+"09.50"
+],
+"tokenWalk": "09.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Say what is available",
+"formula": "there + [is / are] + [thing] + [place]",
+"story": "Describe a room for the first time. One chair: There is a chair. Two: There are two chairs. Look after the verb to count.",
+"use": "Use this construction to introduce something the listener does not yet know is there. Use a normal subject first when you are locating an already identified thing.",
+"choose": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front.",
+"nuance": "`There is no ...` can express absence. `Any` is useful in neutral questions and negative sentences. A seat is countable; water is not normally counted without a unit.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Use this construction to introduce something the listener does not yet know is there. Use a normal subject first when you are locating an already identified thing.",
+"samples": [
+"09.01",
+"09.04"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front.",
+"samples": [
+"09.04",
+"09.12"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`There is no ...` can express absence. `Any` is useful in neutral questions and negative sentences. A seat is countable; water is not normally counted without a unit.",
+"samples": [
+"09.12",
+"09.22"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front.",
+"wrong": "There is two queues.",
+"right": "There are two queues.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Say that something is absent",
+"samples": [
+"09.33",
+"09.35",
+"09.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Compare asking whether any lockers exist with asking where the lockers are. Only the first question checks availability.",
+"samples": [
+"09.42",
+"09.45",
+"09.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Locate and introduce in context",
+"samples": [
+"09.50"
+],
+"tokenWalk": "09.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "09.01",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"There",
+"is",
+"a",
+"lift"
+],
+"i": 0,
+"kind": "form",
+"key": "en09/lab/form1",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.14",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"There",
+"are",
+"eggs",
+"in",
+"the",
+"fridge"
+],
+"i": 13,
+"kind": "form",
+"key": "en09/lab/form2",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.26",
+"index": 0,
+"right": "Are",
+"near": "Is",
+"seq": [
+"Are",
+"there",
+"any",
+"blankets"
+],
+"i": 25,
+"kind": "form",
+"key": "en09/lab/form3",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.37",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"There",
+"is",
+"no",
+"signal",
+"here"
+],
+"i": 36,
+"kind": "form",
+"key": "en09/lab/form4",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.07",
+"index": 1,
+"right": "is",
+"near": "are",
+"seq": [
+"There",
+"is",
+"a",
+"toilet",
+"upstairs"
+],
+"i": 6,
+"kind": "spot",
+"key": "en09/lab/spot1",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.19",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"There",
+"are",
+"clean",
+"towels",
+"upstairs"
+],
+"i": 18,
+"kind": "spot",
+"key": "en09/lab/spot2",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.32",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"There",
+"are",
+"no",
+"buses",
+"tonight"
+],
+"i": 31,
+"kind": "spot",
+"key": "en09/lab/spot3",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"id": "09.47",
+"index": 0,
+"right": "Is",
+"near": "Are",
+"seq": [
+"Is",
+"there",
+"any",
+"room",
+"in",
+"your",
+"bag"
+],
+"i": 46,
+"kind": "spot",
+"key": "en09/lab/spot4",
+"feedback": {
+"ru": "Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`.",
+"uk": "Один предмет або речовина — `there is`: `There is a lift`, `There is water`. Кілька предметів — `there are`. У питанні постав `is` чи `are` перед `there`.",
+"en": "Use `there is` with a singular count noun or an uncountable noun, and `there are` with plural nouns. To ask about availability, move `is` or `are` to the front."
+}
+},
+{
+"kind": "match",
+"key": "en09/lab/match1",
+"id": "09.02",
+"other": "09.01"
+},
+{
+"kind": "match",
+"key": "en09/lab/match2",
+"id": "09.17",
+"other": "09.18"
+},
+{
+"kind": "match",
+"key": "en09/lab/match3",
+"id": "09.33",
+"other": "09.32"
+},
+{
+"kind": "match",
+"key": "en09/lab/match4",
+"id": "09.46",
+"other": "09.44"
+},
+{
+"kind": "build",
+"key": "en09/lab/build1",
+"id": "09.04"
+},
+{
+"kind": "build",
+"key": "en09/lab/build2",
+"id": "09.15"
+},
+{
+"kind": "build",
+"key": "en09/lab/build3",
+"id": "09.29"
+},
+{
+"kind": "build",
+"key": "en09/lab/build4",
+"id": "09.42"
+},
+{
+"kind": "transform",
+"id": "09.03",
+"base": "09.01",
+"diff": [
+{
+"before": [
+"lift"
+],
+"after": [
+"queue"
+]
+}
+],
+"key": "en09/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "09.14",
+"base": "09.11",
+"diff": [
+{
+"before": [
+"is",
+"milk"
+],
+"after": [
+"are",
+"eggs"
+]
+}
+],
+"key": "en09/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "09.26",
+"base": "09.22",
+"diff": [
+{
+"before": [
+"seats",
+"left"
+],
+"after": [
+"blankets"
+]
+}
+],
+"key": "en09/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "09.37",
+"base": "09.35",
+"diff": [
+{
+"before": [
+"hot",
+"water"
+],
+"after": [
+"signal",
+"here"
+]
+}
+],
+"key": "en09/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+12
+],
+[
+16,
+1
+],
+[
+18,
+5
+],
+[
+2,
+14
+],
+[
+3,
+10
+],
+[
+15,
+7
+],
+[
+11,
+19
+]
+],
+"worked": [
+"09.05",
+"09.18",
+"09.33",
+"09.48"
+],
+"reflection": [
+"09.03",
+"09.04"
+],
+"strategy": {
+"ru": "Найди главное существительное. Назван один предмет или несколько? Мысленно убери слова о владельце и месте. Затем верни их: число предметов от этого не меняется.",
+"uk": "Знайди головний іменник. Ідеться про один предмет чи кілька? На мить прибери слова про власника й місце, а потім поверни їх: кількість предметів не зміниться.",
+"en": "Find the noun you are counting. Is it one thing or several? Temporarily leave out the owner or the place. Put them back: the number of things has not changed."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 10,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 10,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как попросить, предложить и объяснить правило",
+"formula": "[подлежащее] + [can / should / must] + [глагол без to]",
+"story": "Can — могу, should — стоит, must — должен. Меняй смысл первым словом; wait после них не получает ни to, ни -s.",
+"use": "Выберите значение перед формой. `Can` может выражать способность, разрешение или просьбу. `Should` дает совет. `Must` выражает сильное требование.",
+"choose": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"nuance": "`Must not` означает, что это запрещено. `Do not have to` означает, что нет никаких обязательств. Это не альтернативные переводы одной и той же инструкции.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Выберите значение перед формой. `Can` может выражать способность, разрешение или просьбу. `Should` дает совет. `Must` выражает сильное требование.",
+"samples": [
+"10.06",
+"10.13"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"samples": [
+"10.13",
+"10.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`Must not` означает, что это запрещено. `Do not have to` означает, что нет никаких обязательств. Это не альтернативные переводы одной и той же инструкции.",
+"samples": [
+"10.21",
+"10.44"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Дайте совет",
+"samples": [
+"10.33",
+"10.35",
+"10.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Узнайте, является ли печать билета необязательной и запрещено ли прикасаться к кабелю. Два отрицания не должны звучать одинаково по смыслу.",
+"samples": [
+"10.42",
+"10.45",
+"10.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Разделите обязанность, запрет и выбор",
+"samples": [
+"10.50"
+],
+"tokenWalk": "10.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як попросити, запропонувати й пояснити правило",
+"formula": "[підмет] + [can / should / must] + [дієслово без to]",
+"story": "Can — можу, should — варто, must — мушу. Змінюй значення першим словом; після нього wait без to та -s.",
+"use": "Виберіть значення перед формою. `Can` може виражати здатність, дозвіл або прохання. `Should` дає пораду. `Must` виражає сильну вимогу.",
+"choose": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"nuance": "`Must not` означає, що заборонено. `Do not have to` означає, що немає жодних зобов'язань. Це не альтернативні переклади однієї й тієї ж інструкції.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Виберіть значення перед формою. `Can` може виражати здатність, дозвіл або прохання. `Should` дає пораду. `Must` виражає сильну вимогу.",
+"samples": [
+"10.06",
+"10.13"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"samples": [
+"10.13",
+"10.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`Must not` означає, що заборонено. `Do not have to` означає, що немає жодних зобов'язань. Це не альтернативні переклади однієї й тієї ж інструкції.",
+"samples": [
+"10.21",
+"10.44"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Дати пораду",
+"samples": [
+"10.33",
+"10.35",
+"10.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Дізнайтеся, чи є друкування квитка необов'язковим, а чи заборонено торкатися кабелю. Два заперечення не повинні звучати однаково за значенням.",
+"samples": [
+"10.42",
+"10.45",
+"10.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Розділити зобов'язання, заборону та вибір",
+"samples": [
+"10.50"
+],
+"tokenWalk": "10.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Ask, offer and explain the rules",
+"formula": "[subject] + [can / should / must] + [base verb]",
+"story": "Can, should and must distinguish ability, advice and obligation here. The following wait takes neither to nor -s.",
+"use": "Choose the meaning before the form. `Can` can express ability, permission or a request. `Should` gives advice. `Must` expresses a strong requirement.",
+"choose": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently.",
+"nuance": "`Must not` means it is forbidden. `Do not have to` means there is no obligation. These are not alternative translations of the same instruction.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "Choose the meaning before the form. `Can` can express ability, permission or a request. `Should` gives advice. `Must` expresses a strong requirement.",
+"samples": [
+"10.06",
+"10.13"
+]
+},
+{
+"title": "How to choose",
+"body": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently.",
+"samples": [
+"10.13",
+"10.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`Must not` means it is forbidden. `Do not have to` means there is no obligation. These are not alternative translations of the same instruction.",
+"samples": [
+"10.21",
+"10.44"
+]
+},
+{
+"title": "Common mistake",
+"body": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently.",
+"wrong": "Can you to help me?",
+"right": "Can you help me?",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Give advice",
+"samples": [
+"10.33",
+"10.35",
+"10.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Find out whether printing a ticket is optional and whether touching a cable is forbidden. The two negatives must not sound alike in meaning.",
+"samples": [
+"10.42",
+"10.45",
+"10.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Separate obligation, prohibition and choice",
+"samples": [
+"10.50"
+],
+"tokenWalk": "10.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "10.01",
+"index": 2,
+"right": "swim",
+"near": "swims",
+"seq": [
+"I",
+"can",
+"swim"
+],
+"i": 0,
+"kind": "form",
+"key": "en10/lab/form1",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.13",
+"index": 2,
+"right": "pay",
+"near": "pays",
+"seq": [
+"Can",
+"I",
+"pay",
+"by",
+"card"
+],
+"i": 12,
+"kind": "form",
+"key": "en10/lab/form2",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.30",
+"index": 2,
+"right": "help",
+"near": "helps",
+"seq": [
+"Can",
+"you",
+"help",
+"me",
+"with",
+"this",
+"form"
+],
+"i": 29,
+"kind": "form",
+"key": "en10/lab/form3",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.38",
+"index": 2,
+"right": "take",
+"near": "takes",
+"seq": [
+"They",
+"should",
+"take",
+"a",
+"map"
+],
+"i": 37,
+"kind": "form",
+"key": "en10/lab/form4",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.06",
+"index": 2,
+"right": "hear",
+"near": "hears",
+"seq": [
+"I",
+"cannot",
+"hear",
+"you"
+],
+"i": 5,
+"kind": "spot",
+"key": "en10/lab/spot1",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.20",
+"index": 2,
+"right": "bring",
+"near": "brings",
+"seq": [
+"Can",
+"I",
+"bring",
+"a",
+"friend"
+],
+"i": 19,
+"kind": "spot",
+"key": "en10/lab/spot2",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.43",
+"index": 3,
+"right": "bring",
+"near": "brings",
+"seq": [
+"He",
+"has",
+"to",
+"bring",
+"his",
+"passport"
+],
+"i": 42,
+"kind": "spot",
+"key": "en10/lab/spot3",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"id": "10.12",
+"index": 2,
+"right": "use",
+"near": "uses",
+"seq": [
+"Can",
+"I",
+"use",
+"your",
+"phone"
+],
+"i": 11,
+"kind": "spot",
+"key": "en10/lab/spot4",
+"feedback": {
+"ru": "Сначала выбери смысл: могу — `can`, стоит — `should`, необходимо — `must`. Сразу после модального глагола идёт обычная форма без `to`: `Can you help?` В вопросе `can` стоит перед `you`, а `do` не нужно.",
+"uk": "Спершу обери значення: можу — `can`, варто — `should`, необхідно — `must`. Одразу після модального дієслова йде початкова форма без `to`: `Can you help?` У питанні `can` стоїть перед `you`, а `do` не потрібне.",
+"en": "A modal is followed by the base verb without `to`. In questions the modal goes in front of the subject; it does not need `do`. The expression `have to` works differently."
+}
+},
+{
+"kind": "match",
+"key": "en10/lab/match1",
+"id": "10.02",
+"other": "10.03"
+},
+{
+"kind": "match",
+"key": "en10/lab/match2",
+"id": "10.17",
+"other": "10.18"
+},
+{
+"kind": "match",
+"key": "en10/lab/match3",
+"id": "10.33",
+"other": "10.34"
+},
+{
+"kind": "match",
+"key": "en10/lab/match4",
+"id": "10.46",
+"other": "10.47"
+},
+{
+"kind": "build",
+"key": "en10/lab/build1",
+"id": "10.04"
+},
+{
+"kind": "build",
+"key": "en10/lab/build2",
+"id": "10.15"
+},
+{
+"kind": "build",
+"key": "en10/lab/build3",
+"id": "10.29"
+},
+{
+"kind": "build",
+"key": "en10/lab/build4",
+"id": "10.42"
+},
+{
+"kind": "transform",
+"id": "10.20",
+"base": "10.17",
+"diff": [
+{
+"before": [
+"borrow"
+],
+"after": [
+"bring"
+]
+},
+{
+"before": [
+"pen"
+],
+"after": [
+"friend"
+]
+}
+],
+"key": "en10/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "10.19",
+"base": "10.16",
+"diff": [
+{
+"before": [
+"take"
+],
+"after": [
+"book"
+]
+},
+{
+"before": [
+"short",
+"break"
+],
+"after": [
+"table"
+]
+}
+],
+"key": "en10/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "10.29",
+"base": "10.27",
+"diff": [
+{
+"before": [
+"send"
+],
+"after": [
+"pass"
+]
+},
+{
+"before": [
+"link"
+],
+"after": [
+"salt"
+]
+}
+],
+"key": "en10/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "10.50",
+"base": "10.44",
+"diff": [
+{
+"before": [
+"touch"
+],
+"after": [
+"park",
+"by"
+]
+},
+{
+"before": [
+"cable"
+],
+"after": [
+"exit"
+]
+}
+],
+"key": "en10/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+1,
+4
+],
+[
+5,
+16
+],
+[
+19,
+6
+],
+[
+14,
+18
+],
+[
+10,
+3
+],
+[
+15,
+11
+],
+[
+2,
+17
+]
+],
+"worked": [
+"10.05",
+"10.18",
+"10.33",
+"10.48"
+],
+"reflection": [
+"10.01",
+"10.02"
+],
+"strategy": {
+"ru": "Раздели глагольную группу на две части: маленькое служебное слово и само действие. Что уже показывает время, лицо или вопрос? Теперь проверь, какая форма нужна второму слову; его нельзя выбирать изолированно.",
+"uk": "Поділи дієслівну групу на дві частини: службове слово й саму дію. Яка частина вже вказує на час, особу чи запитання? Тепер з’ясуй, якої форми потребує друге слово; не обирай його окремо.",
+"en": "Look at the two parts together: the helping word and the action. Which part already marks time, person or a question? Now check the form needed after it. The second word is not an independent choice."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

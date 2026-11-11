@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="ru" data-theme="graphite-dark" data-rm="0">
+<html lang="ru" data-pkt="graphite-dark" data-rm="0">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PhraseMan — приятности: как сейчас и как будет</title>
 <style>
 /* Токены — реальные значения тем graphite / ink × dark / light из constants/liquidGlassThemePalette (calm). ok/bad — токены correct/wrong. */
-:root, [data-theme="graphite-dark"]{--bg:#0C0D10;--bgTop:#181A1F;--text:#FFFFFF;--sec:#B8B9BD;--card:#151517;--ctrl:#222429;--sheet:#222429;--cta:#F2F1F6;--ctaInk:#0B0C0E;--scrim:rgba(0,0,0,.60);--btn:#4A4B50;--ok:#47C870;--bad:#F05454;--hair:rgba(255,255,255,.10);--skel:rgba(255,255,255,.08);color-scheme:dark}
-[data-theme="graphite-light"]{--bg:#EDF0F4;--bgTop:#F5F7FA;--text:#16191C;--sec:#575B60;--card:#FEFEFF;--ctrl:#DFE3E8;--sheet:#FBFCFD;--cta:#182029;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B3B7BB;--ok:#2E9E55;--bad:#D23C3C;--hair:rgba(0,0,0,.10);--skel:rgba(0,0,0,.07);color-scheme:light}
-[data-theme="ink-dark"]{--bg:#030408;--bgTop:#0A0C14;--text:#F9FAFE;--sec:#C1C4CF;--card:#090B13;--ctrl:#1C1F2A;--sheet:#0F111A;--cta:#DFE4F8;--ctaInk:#04050C;--scrim:rgba(0,0,0,.60);--btn:#3B3E48;--ok:#47C870;--bad:#F05454;--hair:rgba(255,255,255,.10);--skel:rgba(255,255,255,.08);color-scheme:dark}
-[data-theme="ink-light"]{--bg:#EFEFF6;--bgTop:#F6F6FB;--text:#17181E;--sec:#595A63;--card:#FEFEFF;--ctrl:#E1E2EA;--sheet:#FBFBFE;--cta:#1D1D2F;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B5B6BD;--ok:#2E9E55;--bad:#D23C3C;--hair:rgba(0,0,0,.10);--skel:rgba(0,0,0,.07);color-scheme:light}
+:root, [data-pkt="graphite-dark"]{--bg:#0C0D10;--bgTop:#181A1F;--text:#FFFFFF;--sec:#B8B9BD;--card:#151517;--ctrl:#222429;--sheet:#222429;--cta:#F2F1F6;--ctaInk:#0B0C0E;--scrim:rgba(0,0,0,.60);--btn:#4A4B50;--ok:#47C870;--bad:#F05454;--hair:rgba(255,255,255,.10);--skel:rgba(255,255,255,.08);color-scheme:dark}
+[data-pkt="graphite-light"]{--bg:#EDF0F4;--bgTop:#F5F7FA;--text:#16191C;--sec:#575B60;--card:#FEFEFF;--ctrl:#DFE3E8;--sheet:#FBFCFD;--cta:#182029;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B3B7BB;--ok:#2E9E55;--bad:#D23C3C;--hair:rgba(0,0,0,.10);--skel:rgba(0,0,0,.07);color-scheme:light}
+[data-pkt="ink-dark"]{--bg:#030408;--bgTop:#0A0C14;--text:#F9FAFE;--sec:#C1C4CF;--card:#090B13;--ctrl:#1C1F2A;--sheet:#0F111A;--cta:#DFE4F8;--ctaInk:#04050C;--scrim:rgba(0,0,0,.60);--btn:#3B3E48;--ok:#47C870;--bad:#F05454;--hair:rgba(255,255,255,.10);--skel:rgba(255,255,255,.08);color-scheme:dark}
+[data-pkt="ink-light"]{--bg:#EFEFF6;--bgTop:#F6F6FB;--text:#17181E;--sec:#595A63;--card:#FEFEFF;--ctrl:#E1E2EA;--sheet:#FBFBFE;--cta:#1D1D2F;--ctaInk:#FFFFFF;--scrim:rgba(20,22,28,.45);--btn:#B5B6BD;--ok:#2E9E55;--bad:#D23C3C;--hair:rgba(0,0,0,.10);--skel:rgba(0,0,0,.07);color-scheme:light}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.35 -apple-system,"Segoe UI",Roboto,Inter,system-ui,sans-serif}
@@ -193,7 +193,7 @@ function reduced(){return root.getAttribute('data-rm')==='1'}
 
 /* ───────── панель ───────── */
 $$('#themes .chip').forEach(function(b){b.addEventListener('click',function(){
-  root.setAttribute('data-theme',b.dataset.t);
+  root.setAttribute('data-pkt',b.dataset.t);
   $$('#themes .chip').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
 })});
 $('#rm').addEventListener('click',function(){

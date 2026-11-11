@@ -1,0 +1,845 @@
+{
+ "lang": "it",
+ "lesson": 27,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:27:01",
+   "target": "Partirò domani.",
+   "ru": "Я уеду завтра.",
+   "uk": "Я поїду завтра."
+  },
+  {
+   "id": "it:27:02",
+   "target": "Partirai domani.",
+   "ru": "Ты уедешь завтра.",
+   "uk": "Ти поїдеш завтра."
+  },
+  {
+   "id": "it:27:03",
+   "target": "Lei partirà domani.",
+   "ru": "Она уедет завтра.",
+   "uk": "Вона поїде завтра."
+  },
+  {
+   "id": "it:27:04",
+   "target": "Partiremo insieme.",
+   "ru": "Мы уедем вместе.",
+   "uk": "Ми поїдемо разом."
+  },
+  {
+   "id": "it:27:05",
+   "target": "Partirete insieme.",
+   "ru": "Вы уйдете вместе.",
+   "uk": "Ви підете разом."
+  },
+  {
+   "id": "it:27:06",
+   "target": "Partiranno a mezzogiorno.",
+   "ru": "Они уйдут в полдень.",
+   "uk": "Вони підуть опівдні."
+  },
+  {
+   "id": "it:27:07",
+   "target": "Collegherò la lampada alla presa quando tornerà la corrente.",
+   "ru": "Я включу лампу в розетку, когда снова дадут электричество.",
+   "uk": "Я ввімкну лампу в розетку, коли знову з’явиться електрика."
+  },
+  {
+   "id": "it:27:08",
+   "target": "Andrai in officina dopo la mostra.",
+   "ru": "Ты зайдёшь в мастерскую после выставки.",
+   "uk": "Ти зайдеш до майстерні після виставки."
+  },
+  {
+   "id": "it:27:09",
+   "target": "Paolo chiamerà la banca.",
+   "ru": "Паоло позвонит в банк.",
+   "uk": "Паоло зателефонує в банк."
+  },
+  {
+   "id": "it:27:10",
+   "target": "Lea preparerà il pranzo.",
+   "ru": "Леа приготовит обед.",
+   "uk": "Леа приготує обід."
+  },
+  {
+   "id": "it:27:11",
+   "target": "Sarò a casa alle sei.",
+   "ru": "Я буду дома в шесть часов.",
+   "uk": "Я буду вдома о шостій годині."
+  },
+  {
+   "id": "it:27:12",
+   "target": "Domani sarai in ufficio.",
+   "ru": "Завтра ты будешь в офисе.",
+   "uk": "Завтра ти будеш в офісі."
+  },
+  {
+   "id": "it:27:13",
+   "target": "Lunedì si saprà il risultato.",
+   "ru": "Результат будет известен в понедельник.",
+   "uk": "Результат буде відомий у понеділок."
+  },
+  {
+   "id": "it:27:14",
+   "target": "Avremo spazio a sufficienza.",
+   "ru": "У нас будет достаточно места.",
+   "uk": "У нас буде достатньо місця."
+  },
+  {
+   "id": "it:27:15",
+   "target": "Potrà pagare sul posto.",
+   "ru": "Вы сможете оплатить на месте.",
+   "uk": "Ви зможете заплатити на місці."
+  },
+  {
+   "id": "it:27:16",
+   "target": "Viaggeranno in autobus.",
+   "ru": "Они поедут на автобусе.",
+   "uk": "Вони поїдуть автобусом."
+  },
+  {
+   "id": "it:27:17",
+   "target": "Dopo la lezione preparerò un pasto caldo.",
+   "ru": "После урока я приготовлю горячую еду.",
+   "uk": "Після уроку я приготую гарячу їжу."
+  },
+  {
+   "id": "it:27:18",
+   "target": "Ti manderò un link per pagare con il tuo portafoglio elettronico.",
+   "ru": "Я пришлю тебе ссылку для оплаты с помощью твоего электронного кошелька.",
+   "uk": "Я надішлю тобі посилання для оплати за допомогою твого електронного гаманця."
+  },
+  {
+   "id": "it:27:19",
+   "target": "Ti invierò la ricevuta.",
+   "ru": "Я пришлю тебе чек.",
+   "uk": "Я надішлю тобі чек."
+  },
+  {
+   "id": "it:27:20",
+   "target": "Verrà con sua figlia.",
+   "ru": "Он приедет со своей дочерью.",
+   "uk": "Він приїде зі своєю дочкою."
+  },
+  {
+   "id": "it:27:21",
+   "target": "Il treno arriverà al binario 2.",
+   "ru": "Поезд прибудет на вторую платформу.",
+   "uk": "Поїзд прибуде на платформу два."
+  },
+  {
+   "id": "it:27:22",
+   "target": "Il negozio aprirà alle nove.",
+   "ru": "Магазин откроется в девять часов.",
+   "uk": "Магазин відкриється о дев’ятій годині."
+  },
+  {
+   "id": "it:27:23",
+   "target": "L’ascensore sarà in funzione domani.",
+   "ru": "Лифт будет работать завтра.",
+   "uk": "Ліфт працюватиме завтра."
+  },
+  {
+   "id": "it:27:24",
+   "target": "Il pacco arriverà prima di mezzogiorno.",
+   "ru": "Посылка прибудет до полудня.",
+   "uk": "Посилка прибуде до полудня."
+  },
+  {
+   "id": "it:27:25",
+   "target": "L’idraulico verrà domattina.",
+   "ru": "Сантехник придёт завтра утром.",
+   "uk": "Сантехнік прийде завтра вранці."
+  },
+  {
+   "id": "it:27:26",
+   "target": "Il suo ordine sarà pronto venerdì.",
+   "ru": "Ваш заказ будет готов в пятницу.",
+   "uk": "Ваше замовлення буде готове в п’ятницю."
+  },
+  {
+   "id": "it:27:27",
+   "target": "La banca chiuderà prima stasera.",
+   "ru": "Сегодня вечером банк закроется раньше.",
+   "uk": "Сьогодні ввечері банк закриється раніше."
+  },
+  {
+   "id": "it:27:28",
+   "target": "Riceverà la ricevuta del pagamento via email.",
+   "ru": "Вы получите квитанцию об оплате по электронной почте.",
+   "uk": "Ви отримаєте квитанцію про оплату електронною поштою."
+  },
+  {
+   "id": "it:27:29",
+   "target": "Stasera farà più fresco.",
+   "ru": "Сегодня вечером будет прохладнее.",
+   "uk": "Сьогодні ввечері буде прохолодніше."
+  },
+  {
+   "id": "it:27:30",
+   "target": "I lavori dureranno tre giorni.",
+   "ru": "Работа продлится три дня.",
+   "uk": "Робота триватиме три дні."
+  },
+  {
+   "id": "it:27:31",
+   "target": "Non mi fermerò a lungo.",
+   "ru": "Я не задержусь надолго.",
+   "uk": "Я не затримаюся надовго."
+  },
+  {
+   "id": "it:27:32",
+   "target": "Non prenderà la macchina.",
+   "ru": "Она не возьмет машину.",
+   "uk": "Вона не візьме машину."
+  },
+  {
+   "id": "it:27:33",
+   "target": "Non dimenticheremo i biglietti.",
+   "ru": "Мы не забудем билеты.",
+   "uk": "Ми не забудемо квитки."
+  },
+  {
+   "id": "it:27:34",
+   "target": "Non saranno qui domenica.",
+   "ru": "Их не будет здесь в воскресенье.",
+   "uk": "Їх тут не буде в неділю."
+  },
+  {
+   "id": "it:27:35",
+   "target": "Non perderai la tua prenotazione.",
+   "ru": "Ты не потеряешь свою бронь.",
+   "uk": "Ти не втратиш своє бронювання."
+  },
+  {
+   "id": "it:27:36",
+   "target": "Avrà bisogno di un documento d’identità.",
+   "ru": "Вам понадобится удостоверение личности.",
+   "uk": "Вам знадобиться посвідчення особи."
+  },
+  {
+   "id": "it:27:37",
+   "target": "Quando riceverò la fattura?",
+   "ru": "Когда я получу счет?",
+   "uk": "Коли я отримаю рахунок?"
+  },
+  {
+   "id": "it:27:38",
+   "target": "A che ora arriverà?",
+   "ru": "Во сколько вы приедете?",
+   "uk": "О котрій годині ви приїдете?"
+  },
+  {
+   "id": "it:27:39",
+   "target": "Mi aiuterai a portare gli scatoloni?",
+   "ru": "Поможешь мне донести коробки?",
+   "uk": "Чи допоможеш мені донести коробки?"
+  },
+  {
+   "id": "it:27:40",
+   "target": "Chi si prenderà cura dei bambini domani?",
+   "ru": "Кто присмотрит за детьми завтра?",
+   "uk": "Хто доглядатиме дітей завтра?"
+  },
+  {
+   "id": "it:27:41",
+   "target": "Terrò la tua valigia fino a stasera.",
+   "ru": "Я подержу твой чемодан у себя до вечера.",
+   "uk": "Я потримаю твою валізу у себе до вечора."
+  },
+  {
+   "id": "it:27:42",
+   "target": "Le mostrerà il nuovo appartamento.",
+   "ru": "Она покажет вам новую квартиру.",
+   "uk": "Вона покаже вам нову квартиру."
+  },
+  {
+   "id": "it:27:43",
+   "target": "Le chiederò consiglio sulla perdita sotto il rubinetto.",
+   "ru": "Я спрошу у вас совета насчёт протечки под краном.",
+   "uk": "Я попрошу у вас поради щодо протікання під краном."
+  },
+  {
+   "id": "it:27:44",
+   "target": "Tornerò a casa a piedi dopo il concerto.",
+   "ru": "После концерта я пойду домой пешком.",
+   "uk": "Я піду додому пішки після концерту."
+  },
+  {
+   "id": "it:27:45",
+   "target": "Il dossier sarà spedito per posta.",
+   "ru": "Досье будет отправлено по почте.",
+   "uk": "Досьє буде надіслано поштою."
+  },
+  {
+   "id": "it:27:46",
+   "target": "Domani comprerò una batteria per la bici.",
+   "ru": "Завтра я куплю аккумулятор для велосипеда.",
+   "uk": "Завтра я куплю акумулятор для велосипеда."
+  },
+  {
+   "id": "it:27:47",
+   "target": "Lascerò una coperta in camera.",
+   "ru": "Я оставлю одеяло в комнате.",
+   "uk": "Я залишу ковдру в кімнаті."
+  },
+  {
+   "id": "it:27:48",
+   "target": "Troverai la chiave sotto il vaso.",
+   "ru": "Ты найдёшь ключ под горшком.",
+   "uk": "Ти знайдеш ключ під горщиком."
+  },
+  {
+   "id": "it:27:49",
+   "target": "La consegna costerà meno questa volta.",
+   "ru": "Доставка на этот раз будет стоить дешевле.",
+   "uk": "Цього разу доставка коштуватиме менше."
+  },
+  {
+   "id": "it:27:50",
+   "target": "La aspetteremo davanti alla farmacia.",
+   "ru": "Мы будем ждать вас перед аптекой.",
+   "uk": "Ми чекатимемо на вас перед аптекою."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "l’idraulico",
+   "ru": "сантехник",
+   "uk": "сантехнік"
+  },
+  {
+   "lemma": "il risultato",
+   "ru": "результат",
+   "uk": "результат"
+  },
+  {
+   "lemma": "il pasto",
+   "ru": "приём пищи",
+   "uk": "прийом їжі"
+  },
+  {
+   "lemma": "il documento d’identità",
+   "ru": "удостоверение личности",
+   "uk": "посвідчення особи"
+  },
+  {
+   "lemma": "il vaso",
+   "ru": "горшок, ёмкость",
+   "uk": "горщик, ємність"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana",
+  "collegare",
+  "il cavo",
+  "il giornale",
+  "la batteria",
+  "il portafoglio elettronico",
+  "il consiglio",
+  "la perdita",
+  "il compleanno",
+  "la regola",
+  "il pagamento",
+  "la mostra",
+  "il palco",
+  "la terrazza",
+  "il laboratorio",
+  "il soggiorno",
+  "l’uovo",
+  "la ciotola",
+  "la vaschetta",
+  "la metà",
+  "lo scatolone",
+  "la poltrona",
+  "la scala a pioli",
+  "il ricordo più bello",
+  "la porzione",
+  "lo sforzo"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `lo`, `la`, `li`, `le`"
+  },
+  {
+   "lesson": 23,
+   "title": "Получатель действия: `gli` и `le`"
+  },
+  {
+   "lesson": 24,
+   "title": "Вернуться к месту: `ci`"
+  },
+  {
+   "lesson": 25,
+   "title": "Часть известного количества: `ne`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнивать: `più`, `meno`, `come`"
+  }
+ ],
+ "oldTopicTitle": "Будущее: `partirò`, `partirai`",
+ "oldTheoryRu": "В будущем итальянское окончание добавляется к особой основе. Для `partire` это `partir-`; не оставляй слово в форме словаря и не ставь перед ним `sono`. У многих глаголов на `-are` в будущем появляется `e`: `lavorare` → `lavorerò`. Учи первую форму вместе с глаголом, затем добавляй остальные окончания к той же основе. Частые глаголы меняют основу сильнее: `avere` → `avrò`, `essere` → `sarò`, `andare` → `andrò`. Внутри одного глагола сохраняется единая серия окончаний. Будущее может сообщать о расписании или прогнозируемом состоянии. Если придёт лифтёр и лифт заработает, значение действия подсказывает сам глагол, а не слово времени. Чтобы задать вопрос, сохраняй будущее время и выбери адресата. Вопросительный знак не делает `partirete` единственным подходящим переводом любого обращения «вы». Отрицание не меняет саму форму: `non partirò`. Для слов о результате или цене проверяй подлежащее. Стоимость одного билета и двух билетов требует разных окончаний. Разговорный план с ясным временем нередко выражается настоящим. В этом уроке тренируем явное будущее. Полезно узнать бытовую альтернативу, не забывая, какую форму разбираем сейчас."
+}

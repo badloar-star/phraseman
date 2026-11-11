@@ -1,0 +1,3 @@
+11-05 13:06:23.741 16610 16704 I ReactNativeJS: [ONBOARD-LANG] read raw=en known=1 result=en ui=en source=AsyncStorage:study_target_v1
+11-05 13:06:32.151 16610 16704 I ReactNativeJS: [ONB-FLAGS] apply: source=cache fetchedAt=— steps_in=["welcome","language","level","name","catalog_2026_08_17"] steps_taken=true skip_in=absent skip_taken=false
+11-05 13:06:34.944 16610 16704 I ReactNativeJS: [ONB-FLAGS] apply: source=cache fetchedAt=— steps_in=["welcome","language","level","name","catalog_2026_08_17"] steps_taken=true skip_in=absent skip_taken=false

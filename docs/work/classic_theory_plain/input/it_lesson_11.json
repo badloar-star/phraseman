@@ -1,0 +1,709 @@
+{
+ "lang": "it",
+ "lesson": 11,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:11:01",
+   "target": "Vado in stazione.",
+   "ru": "Я иду на вокзал.",
+   "uk": "Я йду на залізничний вокзал."
+  },
+  {
+   "id": "it:11:02",
+   "target": "Vai in stazione.",
+   "ru": "Ты идешь на вокзал.",
+   "uk": "Ти йдеш на залізничний вокзал."
+  },
+  {
+   "id": "it:11:03",
+   "target": "Lei va al mercato.",
+   "ru": "Она идет на рынок.",
+   "uk": "Вона йде на ринок."
+  },
+  {
+   "id": "it:11:04",
+   "target": "Lui va al mercato.",
+   "ru": "Он идет на рынок.",
+   "uk": "Він іде на ринок."
+  },
+  {
+   "id": "it:11:05",
+   "target": "Noi andiamo a scuola.",
+   "ru": "Мы идём в школу.",
+   "uk": "Ми йдемо до школи."
+  },
+  {
+   "id": "it:11:06",
+   "target": "Andate a scuola.",
+   "ru": "Вы идёте в школу.",
+   "uk": "Ви йдете до школи."
+  },
+  {
+   "id": "it:11:07",
+   "target": "Loro vanno in ufficio.",
+   "ru": "Они идут в офис.",
+   "uk": "Вони йдуть до офісу."
+  },
+  {
+   "id": "it:11:08",
+   "target": "Loro vanno in banca.",
+   "ru": "Они идут в банк.",
+   "uk": "Вони йдуть до банку."
+  },
+  {
+   "id": "it:11:09",
+   "target": "Io vado al cinema.",
+   "ru": "Я иду в кино.",
+   "uk": "Я йду в кіно."
+  },
+  {
+   "id": "it:11:10",
+   "target": "Tu vai in piscina.",
+   "ru": "Ты идёшь в бассейн.",
+   "uk": "Ти йдеш до басейну."
+  },
+  {
+   "id": "it:11:11",
+   "target": "Lea va dal medico.",
+   "ru": "Леа идёт к врачу.",
+   "uk": "Леа йде до лікаря."
+  },
+  {
+   "id": "it:11:12",
+   "target": "Paolo va dal dentista.",
+   "ru": "Паоло идёт к стоматологу.",
+   "uk": "Паоло йде до стоматолога."
+  },
+  {
+   "id": "it:11:13",
+   "target": "Vado a casa di mia sorella.",
+   "ru": "Я иду к сестре.",
+   "uk": "Я йду до сестри."
+  },
+  {
+   "id": "it:11:14",
+   "target": "Vai a casa di tuo fratello.",
+   "ru": "Ты идёшь к брату.",
+   "uk": "Ти йдеш до брата."
+  },
+  {
+   "id": "it:11:15",
+   "target": "Andiamo a casa di alcuni amici.",
+   "ru": "Мы идём к друзьям.",
+   "uk": "Ми йдемо до друзів."
+  },
+  {
+   "id": "it:11:16",
+   "target": "Vanno a casa dei loro genitori.",
+   "ru": "Они идут к родителям.",
+   "uk": "Вони йдуть до батьків."
+  },
+  {
+   "id": "it:11:17",
+   "target": "Torna a casa?",
+   "ru": "Вы (вежл.) возвращаетесь домой?",
+   "uk": "Ви (ввіч.) повертаєтеся додому?"
+  },
+  {
+   "id": "it:11:18",
+   "target": "Vado in farmacia.",
+   "ru": "Я иду в аптеку.",
+   "uk": "Я йду до аптеки."
+  },
+  {
+   "id": "it:11:19",
+   "target": "Lei va in ospedale.",
+   "ru": "Она идёт в больницу.",
+   "uk": "Вона йде до лікарні."
+  },
+  {
+   "id": "it:11:20",
+   "target": "Lui va in officina.",
+   "ru": "Он идёт в автомастерскую.",
+   "uk": "Він іде до автомайстерні."
+  },
+  {
+   "id": "it:11:21",
+   "target": "Io vado a Lione.",
+   "ru": "Я еду в Лион.",
+   "uk": "Я їду до Ліона."
+  },
+  {
+   "id": "it:11:22",
+   "target": "Lei va a Parigi.",
+   "ru": "Она едет в Париж.",
+   "uk": "Вона їде до Парижа."
+  },
+  {
+   "id": "it:11:23",
+   "target": "Noi andiamo in Francia.",
+   "ru": "Мы едем во Францию.",
+   "uk": "Ми їдемо до Франції."
+  },
+  {
+   "id": "it:11:24",
+   "target": "Loro vanno in Belgio.",
+   "ru": "Они едут в Бельгию.",
+   "uk": "Вони їдуть до Бельгії."
+  },
+  {
+   "id": "it:11:25",
+   "target": "Tu vai in Canada.",
+   "ru": "Ты едешь в Канаду.",
+   "uk": "Ти їдеш до Канади."
+  },
+  {
+   "id": "it:11:26",
+   "target": "Andate in Portogallo.",
+   "ru": "Вы едете в Португалию.",
+   "uk": "Ви їдете до Португалії."
+  },
+  {
+   "id": "it:11:27",
+   "target": "Paolo va in Italia.",
+   "ru": "Паоло едет в Италию.",
+   "uk": "Паоло їде до Італії."
+  },
+  {
+   "id": "it:11:28",
+   "target": "Mia sorella va nei Paesi Bassi.",
+   "ru": "Моя сестра едет в Нидерланды.",
+   "uk": "Моя сестра їде до Нідерландів."
+  },
+  {
+   "id": "it:11:29",
+   "target": "Andiamo negli Stati Uniti.",
+   "ru": "Мы едем в Соединенные Штаты.",
+   "uk": "Ми їдемо до Сполучених Штатів."
+  },
+  {
+   "id": "it:11:30",
+   "target": "Vado in Spagna.",
+   "ru": "Я еду в Испанию.",
+   "uk": "Я їду до Іспанії."
+  },
+  {
+   "id": "it:11:31",
+   "target": "Vado al lavoro a piedi.",
+   "ru": "Я иду на работу пешком.",
+   "uk": "Я йду на роботу пішки."
+  },
+  {
+   "id": "it:11:32",
+   "target": "Lei va al museo in autobus.",
+   "ru": "Она едет в музей на автобусе.",
+   "uk": "Вона їде до музею автобусом."
+  },
+  {
+   "id": "it:11:33",
+   "target": "Andiamo al parco in bicicletta.",
+   "ru": "Мы едем в парк на велосипедах.",
+   "uk": "Ми їдемо до парку на велосипеді."
+  },
+  {
+   "id": "it:11:34",
+   "target": "Vai in stazione in macchina.",
+   "ru": "Ты едешь на вокзал на машине.",
+   "uk": "Ти їдеш на вокзал машиною."
+  },
+  {
+   "id": "it:11:35",
+   "target": "Va in spiaggia in treno?",
+   "ru": "Вы едете на пляж на поезде?",
+   "uk": "Ви їдете на пляж поїздом?"
+  },
+  {
+   "id": "it:11:36",
+   "target": "Lui va allo stadio in metropolitana.",
+   "ru": "Он едет на стадион на метро.",
+   "uk": "Він їде на стадіон метро."
+  },
+  {
+   "id": "it:11:37",
+   "target": "I bambini vanno a scuola a piedi.",
+   "ru": "Дети идут в школу пешком.",
+   "uk": "Діти йдуть до школи пішки."
+  },
+  {
+   "id": "it:11:38",
+   "target": "Stasera vado a casa di Lea.",
+   "ru": "Я иду к Леа сегодня вечером.",
+   "uk": "Я йду до Леа сьогодні ввечері."
+  },
+  {
+   "id": "it:11:39",
+   "target": "Domani andiamo in municipio.",
+   "ru": "Завтра мы идём в мэрию.",
+   "uk": "Завтра ми йдемо до мерії."
+  },
+  {
+   "id": "it:11:40",
+   "target": "Vanno al concerto insieme.",
+   "ru": "Они идут на концерт вместе.",
+   "uk": "Вони йдуть разом на концерт."
+  },
+  {
+   "id": "it:11:41",
+   "target": "Dove va dopo la lezione?",
+   "ru": "Куда вы идёте после занятия?",
+   "uk": "Куди ви йдете після заняття?"
+  },
+  {
+   "id": "it:11:42",
+   "target": "Vai all’ufficio postale?",
+   "ru": "Ты идёшь на почту?",
+   "uk": "Ти йдеш на пошту?"
+  },
+  {
+   "id": "it:11:43",
+   "target": "Oggi non vado al negozio.",
+   "ru": "Я сегодня не иду в магазин.",
+   "uk": "Я не піду сьогодні до магазину."
+  },
+  {
+   "id": "it:11:44",
+   "target": "Paolo non va alla riunione.",
+   "ru": "Паоло не идёт на собрание.",
+   "uk": "Паоло не йде на зустріч."
+  },
+  {
+   "id": "it:11:45",
+   "target": "Non andiamo in centro.",
+   "ru": "Мы не едем в центр города.",
+   "uk": "Ми не їдемо в центр міста."
+  },
+  {
+   "id": "it:11:46",
+   "target": "Va alla reception o alla biglietteria?",
+   "ru": "Вы идёте к стойке информации или в кассу?",
+   "uk": "Ви йдете до стійки інформації чи до каси?"
+  },
+  {
+   "id": "it:11:47",
+   "target": "Vado al reparto calzature.",
+   "ru": "Я иду в обувной отдел.",
+   "uk": "Я йду до відділу взуття."
+  },
+  {
+   "id": "it:11:48",
+   "target": "Lei va alla fermata dell’autobus.",
+   "ru": "Она идёт на автобусную остановку.",
+   "uk": "Вона йде на автобусну зупинку."
+  },
+  {
+   "id": "it:11:49",
+   "target": "Andiamo in fondo alla strada.",
+   "ru": "Мы идём до конца улицы.",
+   "uk": "Ми йдемо до кінця вулиці."
+  },
+  {
+   "id": "it:11:50",
+   "target": "Dopo il lavoro, vado a casa dei miei genitori.",
+   "ru": "После работы я иду к родителям.",
+   "uk": "Після роботи я йду до батьків."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il medico",
+   "ru": "врач",
+   "uk": "лікар"
+  },
+  {
+   "lemma": "il lavoro",
+   "ru": "работа (как существительное)",
+   "uk": "робота (як іменник)"
+  },
+  {
+   "lemma": "la metropolitana",
+   "ru": "метро",
+   "uk": "метро"
+  },
+  {
+   "lemma": "la riunione",
+   "ru": "совещание, встреча",
+   "uk": "нарада, зустріч"
+  },
+  {
+   "lemma": "l’ufficio postale",
+   "ru": "почта",
+   "uk": "пошта"
+  },
+  {
+   "lemma": "io",
+   "ru": "я",
+   "uk": "я"
+  },
+  {
+   "lemma": "noi",
+   "ru": "мы",
+   "uk": "ми"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  }
+ ],
+ "oldTopicTitle": "Маршрут: `andare` + место",
+ "oldTheoryRu": "`Andare` не образует настоящее простой заменой окончания: `vado`, `vai`, `va`, но `andiamo`. Учить удобно парами с одной и той же точкой назначения. `A + il` даёт `al`, а `a + lo` — `allo`. В `al mercato` артикль уже спрятан. Не добавляй второе `il`. К врачу идут с `da`: `dal medico`, `dal dentista`. В гости к сестре в курсе говорят `a casa di mia sorella`. Не путай `da` в этом значении с обозначением исходной точки: понять роль помогает вся фраза. С городами обычно `a`, со многими названиями стран `in`: `a Roma`, `in Italia`. У множественных названий возможна форма с артиклем: `negli Stati Uniti`. Чем добираемся? `A piedi` — пешком, `in treno` — поездом, `in bici` — на велосипеде. Сохрани в ответе и место назначения, и способ передвижения, если оба даны в задании. Настоящее можно использовать с ясным временем договорённости: план на вечер не обязательно требует будущего окончания. Но если в условии «после урока», не превращай его в «до урока». При отрицании сохраняется весь маршрут: `non va alla riunione`. Проверь, не ответил ли ты на вопрос «где живёт?» вместо «куда идёт?»."
+}

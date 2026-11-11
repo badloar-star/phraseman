@@ -69,7 +69,12 @@ import {
 } from './target_storage_keys';
 import { vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
-import { classicLessonWordBank, classicWordsActiveFor } from './classic_lesson_words';
+import {
+  classicLessonWordBank,
+  classicLessonWordKeysForProgressCompatibility,
+  classicWordsActiveFor,
+} from './classic_lesson_words';
+import { parseLessonWordCountsForBank } from './lesson_word_progress_compat';
 import { ttsLocaleForStudyTarget } from './phrase_target_utils';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
@@ -93,26 +98,20 @@ const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 const progressReadFailedKeys = new Set<string>();
 
 function parseLessonWordCounts(raw: string | null, lessonId: number, studyTarget?: RuntimeStudyTarget): Record<string, number> {
+  if (!raw) return {};
   // зачем: миграция английских местоимений (I, you…) и английские формы мн. числа касаются ТОЛЬКО английского курса — в прогресс fr/es/de/it они не попадают
   const englishOnly = storageStudyTarget(studyTarget) === 'en';
-  if (!raw) return {};
-  try {
-    const data = JSON.parse(raw);
-    let counts: Record<string, number> = {};
-    if (Array.isArray(data)) {
-      data.forEach((w: string) => { counts[w] = REQUIRED; });
-    } else if (data && typeof data === 'object') {
-      counts = data;
-    }
-    if (englishOnly && lessonId === 1 && Object.values(counts).some(c => c >= REQUIRED)) {
-      for (const p of ['I', 'you', 'he', 'she', 'we', 'it']) {
-        if (!counts[p] || counts[p] < REQUIRED) counts[p] = REQUIRED;
-      }
-    }
-    return englishOnly ? mergeLegacyPluralLessonWordCounts(counts).counts : counts;
-  } catch {
-    return {};
-  }
+  const activeKeys = englishOnly
+    ? (classicWordsActiveFor('en')
+      ? classicLessonWordKeysForProgressCompatibility('en', lessonId)
+      : new Set(lessonWordBank(lessonId).map((word) => word.en)))
+    : new Set<string>();
+  return parseLessonWordCountsForBank(raw, {
+    lessonId,
+    required: REQUIRED,
+    englishCompatibility: englishOnly,
+    activeKeys,
+  });
 }
 
 export async function primeAllLessonWordsFromStorageOnAppLaunch(studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -2480,173 +2479,6 @@ function allWordsFlat(): Word[] {
   return result;
 }
 
-let lessonWordBankEnSetCache: Set<string> | null = null;
-function lessonWordBankEnSet(): Set<string> {
-  if (!lessonWordBankEnSetCache) lessonWordBankEnSetCache = new Set(allWordsFlat().map((w) => w.en));
-  return lessonWordBankEnSetCache;
-}
-
-/**
- * Старые ключи прогресса (мн. ч.) до singularize — см. scripts/singularize_lesson_vocab.py.
- * Плюс `jewels` → `jewel`, если осталось в сохранении после правок словаря.
- */
-const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
-  friends: 'friend',
-  enemies: 'enemy',
-  books: 'book',
-  things: 'thing',
-  dishes: 'dish',
-  keys: 'key',
-  letters: 'letter',
-  strangers: 'stranger',
-  ads: 'ad',
-  details: 'detail',
-  masks: 'mask',
-  messages: 'message',
-  rules: 'rule',
-  secrets: 'secret',
-  tickets: 'ticket',
-  vegetables: 'vegetable',
-  cards: 'card',
-  mistakes: 'mistake',
-  taxes: 'tax',
-  groceries: 'grocery bag',
-  guests: 'guest',
-  bookings: 'booking',
-  chargers: 'charger',
-  documents: 'document',
-  mondays: 'Monday',
-  monday: 'Monday',
-  tuesday: 'Tuesday',
-  thursday: 'Thursday',
-  friday: 'Friday',
-  saturday: 'Saturday',
-  sunday: 'Sunday',
-  saturdays: 'Saturday',
-  sundays: 'Sunday',
-  thursdays: 'Thursday',
-  tuesdays: 'Tuesday',
-  wednesdays: 'Wednesday',
-  weekends: 'weekend',
-  apples: 'apple',
-  cafes: 'cafe',
-  cars: 'car',
-  desserts: 'dessert',
-  magazines: 'magazine',
-  mountains: 'mountain',
-  pens: 'pen',
-  pharmacies: 'pharmacy',
-  photos: 'photo',
-  places: 'place',
-  printers: 'printer',
-  questions: 'question',
-  stars: 'star',
-  students: 'student',
-  tasks: 'task',
-  towels: 'towel',
-  trees: 'tree',
-  windows: 'window',
-  days: 'day',
-  hours: 'hour',
-  minutes: 'minute',
-  plants: 'plant',
-  shelves: 'shelf',
-  shoes: 'shoe',
-  suitcases: 'suitcase',
-  bags: 'bag',
-  fruits: 'fruit',
-  words: 'word',
-  armchairs: 'armchair',
-  boots: 'boot',
-  gloves: 'glove',
-  batteries: 'battery',
-  papers: 'paper',
-  facts: 'fact',
-  terms: 'term',
-  people: 'person',
-  children: 'child',
-  builders: 'builder',
-  conditions: 'condition',
-  farmers: 'farmer',
-  flowers: 'flower',
-  gardeners: 'gardener',
-  gifts: 'gift',
-  panels: 'panel',
-  gates: 'gate',
-  berries: 'berry',
-  watches: 'watch',
-  blueprints: 'blueprint',
-  lamps: 'lamp',
-  newspapers: 'newspaper',
-  stairs: 'stair step',
-  sneakers: 'sneaker',
-  boxes: 'box',
-  bushes: 'bush',
-  clouds: 'cloud',
-  forests: 'forest',
-  hills: 'hill',
-  parks: 'park',
-  tables: 'table',
-  employees: 'employee',
-  crumbs: 'crumb',
-  bananas: 'banana',
-  blankets: 'blanket',
-  buildings: 'building',
-  clocks: 'clock',
-  cookies: 'cookie',
-  curtains: 'curtain',
-  drones: 'drone',
-  knives: 'knife',
-  licenses: 'license',
-  maps: 'map',
-  mice: 'mouse',
-  nuts: 'nut',
-  ribbons: 'ribbon',
-  rings: 'ring',
-  scarves: 'scarf',
-  tomatoes: 'tomato',
-  tools: 'tool',
-  addresses: 'address',
-  bottles: 'bottle',
-  clients: 'client',
-  coins: 'coin',
-  colleagues: 'colleague',
-  deals: 'deal',
-  drops: 'drop',
-  folders: 'folder',
-  hands: 'hand',
-  jackets: 'jacket',
-  leaflets: 'leaflet',
-  parcels: 'parcel',
-  plates: 'plate',
-  problems: 'problem',
-  socks: 'sock',
-  snacks: 'snack',
-  grapes: 'grape',
-  pears: 'pear',
-  jewels: 'jewel',
-  materials: 'material',
-  eyes: 'eye',
-};
-
-function mergeLegacyPluralLessonWordCounts(counts: Record<string, number>): { counts: Record<string, number>; dirty: boolean } {
-  let dirty = false;
-  const out = { ...counts };
-  for (const [legacyPlural, canonical] of Object.entries(LEGACY_PLURAL_WORD_COUNT_MERGES)) {
-    if (legacyPlural === canonical) continue;
-    if (out[legacyPlural] == null) continue;
-    const bankEnSet = lessonWordBankEnSet();
-    if (bankEnSet.has(legacyPlural)) continue;
-    if (!bankEnSet.has(canonical)) continue;
-    const a = Number(out[canonical]) || 0;
-    const b = Number(out[legacyPlural]) || 0;
-    out[canonical] = Math.max(a, b);
-    delete out[legacyPlural];
-    dirty = true;
-  }
-  return { counts: dirty ? out : counts, dirty };
-}
-
 // 6 вариантов – правильный гарантирован, дистракторы того же POS
 // Всегда берём часть из cross-lesson для разнообразия (не всегда одни и те же слова урока)
 type RoundType = 'recognition' | 'context';
@@ -2716,6 +2548,7 @@ function makeTrainingQueueState(
   initialLearned: string[],
   initialCounts: Record<string, number>,
   lang: Lang,
+  repeatCompleted = false,
 ): { counts: Record<string, number>; queue: TrainingQueueItem[]; learnedCnt: number } {
   void initialLearned;
   const scopedCounts = Object.fromEntries(
@@ -2723,9 +2556,10 @@ function makeTrainingQueueState(
   ) as Record<string, number>;
   const dueWords = words.filter(w => scopedCounts[w.en] < REQUIRED);
   const cards = dueWords.map(w => buildQueueItem(w, scopedCounts[w.en] ?? 0));
+  const entryCards = repeatCompleted && cards.length === 0 ? words.map(w => buildQueueItem(w, 0)) : cards;
   return {
     counts: scopedCounts,
-    queue: shuffleNoConsecutive(cards),
+    queue: shuffleNoConsecutive(entryCards),
     learnedCnt: words.filter(w => scopedCounts[w.en] >= REQUIRED).length,
   };
 }
@@ -2829,13 +2663,13 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   // Состояние прогресса слов (сколько раундов пройдено). Окно рисуется сразу; с диска подмешиваем после (см. effect).
   const initialTrainingState = useMemo(
-    () => makeTrainingQueueState(words, initialLearned, initialCounts, lang),
-    [words, initialLearned, initialCounts, lang],
+    () => makeTrainingQueueState(words, initialLearned, initialCounts, lang, !devJumpToFinale),
+    [words, initialLearned, initialCounts, lang, devJumpToFinale],
   );
   const [counts, setCounts] = useState<Record<string, number>>(() => initialTrainingState.counts);
   const [queue, setQueue] = useState<TrainingQueueItem[]>(() => initialTrainingState.queue);
   const [qIdx,       setQIdx]       = useState(0);
-  // Пустая очередь (всё уже изучено) и ещё не загруженный заряд не являются
+  // Пустая очередь и ещё не загруженный заряд не являются
   // началом упражнения. Повторный реальный вход создаёт новый intent и стоит 1 ⚡.
   // зачем: D72/D87/PM-084 — списание через единый гейт первого вопроса: первая
   // карточка видна → −1 один раз на попытку; уход до показа → возврат.
@@ -2845,7 +2679,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     intent: wordsEnergyIntent,
     screen: 'lesson_words',
     finalizeOn: 'first_answer',
-    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: queue.length > 0 }),
+    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: !devJumpToFinale && queue.length > 0 }),
     onInsufficient: () => onNoEnergyRef.current(),
     onCancelled: () => onCancelStartRef.current(),
   });
@@ -2866,9 +2700,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     // приходит пропом: параметры маршрута читает родитель LessonWords.
     devFakeStartRunes,
   });
-  // зачем (владелец, 2026-08-27): «анимация полёта точно такая же, как в
-  // Learning V2» — тот же хук-обёртка вокруг механики measureInWindow +
-  // CoinRewardFlight, что и на уроке.
+  // Общий хук анимации награды измеряет положение вопроса и баланса.
   const runeFlight = useCoinRewardFlight();
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
@@ -3065,63 +2897,46 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         const prevCount = Math.min(Math.max(Number(prevCounts[wordEn] ?? 0), 0), REQUIRED);
         const newCount = REQUIRED;
         const newCounts = { ...prevCounts, [wordEn]: newCount };
-        applyTrainingCounts(newCounts);
-        onCountUpdate(wordEn, newCount);
-
-        // Сохраняем полный объект counts напрямую — без read-modify-write (нет race condition)
-        lessonWordsProgressCache.set(storageKey, newCounts);
-        // зачем (аудит R58 #29, 15.10): запись без catch терялась молча; если чтение при входе упало — перед записью подмешиваем сохранённое (максимум по слову), чтобы не затереть прогресс.
-        void (async () => {
-          try {
-            let toWrite = newCounts;
-            if (progressReadFailedKeys.has(storageKey)) {
-              const stored = parseLessonWordCounts(await AsyncStorage.getItem(storageKey), lessonId, studyTarget);
-              toWrite = { ...stored };
-              for (const [word, value] of Object.entries(newCounts)) toWrite[word] = Math.max(Number(toWrite[word] ?? 0), Number(value ?? 0));
-              progressReadFailedKeys.delete(storageKey);
-              console.log(`[LESSON-WORDS] write after failed read: merged stored=${Object.keys(stored).length} new=${Object.keys(newCounts).length} key=${storageKey}`); // guard-ok: слияние после сбоя чтения
-            }
-            await AsyncStorage.setItem(storageKey, JSON.stringify(toWrite));
-          } catch (error: unknown) {
-            console.warn(`[LESSON-WORDS] progress write FAILED key=${storageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
-          }
-        })();
-
-        // Удаляем текущую карточку из очереди
-        newQueue.splice(liveIndex, 1);
-
         const wordJustCompleted = prevCount < REQUIRED && newCount >= REQUIRED;
-        // зачем (владелец, 2026-08-27): руна засчитывается ЗА СЛОВО, не за
-        // каждую карточку — слово может встретиться в сессии несколько раз до
-        // REQUIRED повторений, а элемент копилки платит ровно один раз.
         if (wordJustCompleted) {
+          applyTrainingCounts(newCounts);
+          onCountUpdate(wordEn, newCount);
+          lessonWordsProgressCache.set(storageKey, newCounts);
           const awarded = practiceRunes.onCorrectAnswer(wordEn);
           if (awarded > 0) runeFlight.fly(awarded);
-        }
-        if (wordJustCompleted) {
           void bumpStatsDaily('words_learned', 1, studyTarget);
-          // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
-          const finalQ = newQueue.filter(c => isTrainingCard(c) && c.word.en !== current.word.en);
-          const newLearned = countLearnedWords(words, newCounts);
-          if (finalQ.length === 0) {
-            if (newLearned >= words.length) {
-              applyLearnedCount(newLearned); applyTrainingQueue(finalQ, 0); setAllDone(true);
-              setChosen(null); locked.current = false;
-              return;
+          // После сбоя чтения объединяем прогресс с сохранёнными значениями по максимуму.
+          void (async () => {
+            try {
+              let toWrite = newCounts;
+              if (progressReadFailedKeys.has(storageKey)) {
+                const stored = parseLessonWordCounts(await AsyncStorage.getItem(storageKey), lessonId, studyTarget);
+                toWrite = { ...stored };
+                for (const [word, value] of Object.entries(newCounts)) toWrite[word] = Math.max(Number(toWrite[word] ?? 0), Number(value ?? 0));
+                progressReadFailedKeys.delete(storageKey);
+                console.log(`[LESSON-WORDS] write after failed read: merged stored=${Object.keys(stored).length} new=${Object.keys(newCounts).length} key=${storageKey}`); // guard-ok: слияние после сбоя чтения
+              }
+              await AsyncStorage.setItem(storageKey, JSON.stringify(toWrite));
+            } catch (error: unknown) {
+              console.warn(`[LESSON-WORDS] progress write FAILED key=${storageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
             }
+          })();
+        }
+        // Верный ответ закрывает слово в текущем проходе, в том числе при повторе.
+        const finalQ = newQueue.filter(c => isTrainingCard(c) && c.word.en !== current.word.en);
+        const newLearned = countLearnedWords(words, newCounts);
+        if (finalQ.length === 0) {
+          if (newLearned >= words.length) {
+            applyLearnedCount(newLearned); applyTrainingQueue(finalQ, 0); setAllDone(true);
+          } else {
             const rebuilt = makeTrainingQueueState(words, [], newCounts, lang);
             applyLearnedCount(rebuilt.learnedCnt);
             applyTrainingCounts(rebuilt.counts);
             applyTrainingQueue(rebuilt.queue, 0);
-            setChosen(null); locked.current = false;
-            return;
           }
+        } else {
           applyLearnedCount(newLearned);
           applyTrainingQueue(finalQ, liveIndex);
-        } else {
-          const nextCard = buildQueueItem(current.word, newCount);
-          const inserted = insertTrainingCardLater(newQueue, liveIndex, nextCard);
-          applyTrainingQueue(inserted.queue, inserted.index);
         }
       } else {
         // Ошибка — логируем в аналитику и перемещаем карточку вперёд
@@ -3180,7 +2995,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     setPracticeRunPass((n) => n + 1);
   };
 
-  const trainingStepLabel = `${learnedCnt} / ${words.length}`;
+  const answeredWordCount = words.length - new Set(validQueue.map(card => card.word.en)).size;
+  const trainingStepLabel = `${answeredWordCount} / ${words.length}`;
   // зачем (redesign-round-1 «Словарь» вариант A, владелец 04.10): шапка — «назад», «1. Словарь» и под ним
   // «Узнавание · 0 / 37», справа сердца и монеты (`vhead` макета). Без hud — итог и скелет.
   const renderTrainingHeader = (subtitle?: string, hud?: React.ReactNode) => (
@@ -3269,7 +3085,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const round = ROUND_CONFIG[current.roundType];
 
   const isContext = current.roundType === 'context';
-  const trainingProgress = words.length > 0 ? learnedCnt / words.length : 0;
+  const trainingProgress = words.length > 0 ? answeredWordCount / words.length : 0;
   return (
     <View testID="lesson-words-training" style={{ flex:1 }}>
       {renderTrainingHeader(`${round.label} · ${trainingStepLabel}`, (
@@ -3292,8 +3108,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       ))}
       <View style={{ flex:1, paddingHorizontal:16, paddingTop:14 }}>
       <PracticeProgressRow glass={glass} progress={trainingProgress} flush />
-      {/* Вопрос — источник полёта рун (владелец, 2026-08-27: «анимация
-          полёта точно такая же, как в Learning V2»). */}
+      {/* Вопрос задаёт точку старта анимации награды. */}
       <View ref={runeFlight.originRef} collapsable={false} style={{ marginTop:22 }}>
         {isContext ? (
           <PracticeQuestionCard
@@ -3317,14 +3132,14 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             glass={glass}
             minHeight={150}
             kicker={pickTriLang(lang, {
-              ru: 'Выбери английский перевод:',
-              uk: 'Обери англійський переклад:',
-              es: 'Elige la traducción en inglés:', en: 'Choose the English translation:',
-              'pt-BR': 'Escolha a tradução em inglês:',
-              vi: 'Chọn bản dịch tiếng Anh:',
-              id: 'Pilih terjemahan bahasa Inggris:',
-              tr: 'İngilizce çeviriyi seç:',
-              pl: 'Wybierz angielskie tłumaczenie:',
+              ru: 'Выбери перевод:',
+              uk: 'Обери переклад:',
+              es: 'Elige la traducción:', en: 'Choose the translation:',
+              'pt-BR': 'Escolha a tradução:',
+              vi: 'Chọn bản dịch:',
+              id: 'Pilih terjemahan:',
+              tr: 'Çeviriyi seç:',
+              pl: 'Wybierz tłumaczenie:',
             })}
           >
             <Text
@@ -3425,11 +3240,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 }
 
 // ── СПИСОК ───────────────────────────────────────────────────────────────────
-/**
- * зачем (владелец 22.10 через координатора: «Слова» в Сезоне открывают слова ЭТОГО урока, вид 1:1 как в основном курсе): список слов основного курса переиспользуется экраном Learning V2
- * (app/learning_v2_lesson_words.tsx). `flat` — слова одним списком: без заголовков частей речи, без полосы «выучено» (у слов Learning V2 нет счётчика выученного) и без кнопки «сообщить об ошибке» (она про словарь основного курса).
- */
-export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining, flat = false }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; lessonId?: number; onStartTraining?: () => void; flat?: boolean; }) {
+function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; lessonId?: number; onStartTraining?: () => void; }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, ds, liquidGlassThemeId } = useTheme();
@@ -3437,7 +3248,7 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
   // полоса выученного, заголовки групп; озвучка по тапу и «в карточки» сохранены.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { hPad } = useScreen();
-  const sections = flat ? [{ title: '', data: words }] : groupByPOS(words, lang);
+  const sections = groupByPOS(words, lang);
   const learnedTotal = useMemo(() => words.filter(w => (learnedCounts[w.en] ?? 0) >= REQUIRED).length, [words, learnedCounts]);
 
   // Какое слово СЕЙЧАС звучит — для подсветки на время озвучки. Тап по слову
@@ -3489,7 +3300,7 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
                 />
               </View>
             ) : null}
-            {flat ? null : <ReportErrorButton
+            <ReportErrorButton
               variant="icon-flag"
               screen="lesson_words"
               dataId={`wordlist_lesson_${lessonId ?? 0}`}
@@ -3505,10 +3316,10 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
               })}
               style={{ alignSelf: 'flex-end', marginHorizontal: hPad, marginTop: ds.spacing.sm }}
               textColor={glass.secondary}
-            />}
+            />
           </View>
         }
-        ListHeaderComponent={flat ? <View style={{ height: 12 }} /> : (
+        ListHeaderComponent={(
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: hPad, marginTop: 22 }}>
             <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
               <KitProgressFill ratio={words.length > 0 ? learnedTotal / words.length : 0} style={{ backgroundColor: glass.accentGraphic }} />

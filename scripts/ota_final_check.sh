@@ -84,8 +84,8 @@ if find "$SNAP/dist-ota" -name '*.map' | grep -q .; then bad "в dist-ota ост
 # зачем (прогон 25.10 на репетиции): ota_from_head.sh ставит только корневые node_modules — у functions/ в снимке своих нет, и tsc
 # даёт сотни «Cannot find module firebase-functions». Сервер в OTA не едет: вердикт — по ошибкам кода приложения; functions — заметкой.
 # Связывать functions/node_modules в снимок НЕ будем: ota_from_head.sh делает rm -rf снимка, ссылка утащила бы настоящие модули.
-APP_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -vE '^(functions|functions-content|scripts)/' | tee "$LOGD/tsc_app.txt" | wc -l)
-SRV_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -cE '^(functions|functions-content|scripts)/')
+APP_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -vE '^(functions|scripts)/' | tee "$LOGD/tsc_app.txt" | wc -l)
+SRV_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -cE '^(functions|scripts)/')
 # зачем (вопрос координатора 26.10 «exit 2 при 0 ошибок?»): tsc --noEmit отдаёт 0 — ошибок нет, 2 — ошибки найдены (здесь — только
 # functions/scripts без своих node_modules). Любой другой код (134 — нехватка памяти, 127 — нет npx) значит, что проверка не дошла
 # до конца и ошибок в журнале нет вовсе — это НЕ «0 ошибок», а провал. И exit 2 без единой найденной ошибки — тоже провал: причину не видно.

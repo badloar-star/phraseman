@@ -1,0 +1,79 @@
+[
+ {
+  "id": "lesson-23/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«with the subject and the recipient» — subject = подлежащее; ru «предмет» = вещь/объект",
+  "fix": "With a thing and a recipient, separate the two roles. In \"I'm sending her a message,\" the message is what I send, and she is the one I send it to. Don't use the direct object form just because of the word \"she.\""
+ },
+ {
+  "id": "lesson-23/chapter-3",
+  "type": "T1",
+  "field": "chapters[2].exampleIds",
+  "problem": "глава про `Le` (вежливое «Вам» / «ей»), но it:23:17 и it:23:19 — с `gli` (ему); вежливого примера нет",
+  "fix": "Заменить it:23:17 и it:23:19 на фразы урока 23 с `Le` в значении «Вам» и «ей» (например, it:23:28 / it:23:29 и вежливую фразу с `Le`)."
+ },
+ {
+  "id": "lesson-23/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«`devo scriverla` означало б «має написати її»» — devo = 1-е лицо («маю»), а не 3-е",
+  "fix": "З інфінітивом короткий займенник можна приєднати в кінці. У `devo scriverle` йдеться все ще про те, кому пишуть; `devo scriverla` означало б «маю написати її», наприклад записку."
+ },
+ {
+  "id": "lesson-23/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«must write her» по-английски = «написать ей» — противоположно задуманному смыслу «написать её (записку)»",
+  "fix": "With an infinitive, a short pronoun can be attached at the end. In `devo scriverle`, it is still about who you are writing to; `devo scriverla` would mean \"I must write it\" (a feminine noun, for example a note)."
+ },
+ {
+  "id": "lesson-24/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«різними приводами» (= поводами) вместо «прийменниками»",
+  "fix": "Короткий `ci` може стосуватися місця, введеного різними прийменниками. Перевір, чи можеш замінити його повною групою з назвою місця і зберегти зміст."
+ },
+ {
+  "id": "lesson-24/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "«save the message» — неверно (смысл: сохранить значение)",
+  "fix": "The short `ci` can refer to a place introduced by different prepositions. Check whether you can replace it with a full phrase naming the place and keep the meaning."
+ },
+ {
+  "id": "lesson-24/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«короткий `ci torno` зрозуміло» — ошибка согласования; «особистим дієсловом» — неверный термин",
+  "fix": "Перед простою особовою формою дієслова `ci` зазвичай стоїть окремо. Без попередньої сцени коротке `ci torno` зрозуміле не повністю: «я туди повернуся», але куди саме?"
+ },
+ {
+  "id": "lesson-24/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "«before the assistant» — неверный термин",
+  "fix": "In the past, `ci` is placed before the auxiliary: `ci siamo rimasti`. The part `siamo rimasti` tells who stayed and when, while `ci` only points back to the place."
+ },
+ {
+  "id": "lesson-24/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«Заперечення початок `non ci` зберігається» — неграмматично; «чи … або» вместо «чи … чи»",
+  "fix": "У запереченні початок `non ci` зберігається. Не плутай із `non c’è` про наявність: уся фраза визначає, чи ми повертаємося до місця, чи кажемо, що чогось немає."
+ },
+ {
+  "id": "lesson-24/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«італійська пропозиція» (= предложение-оферта) вместо «речення»; ошибка согласования",
+  "fix": "Іноді звичайне італійське речення природніше сказати без повторення місця. У навчальному зразку зберігаємо `ci`, коли завдання саме в явному посиланні «там» чи «туди»."
+ },
+ {
+  "id": "lesson-24/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«refer \"there\" or \"there.\"» — повтор, потерян смысл (ru «там» / «туда»)",
+  "fix": "Sometimes a regular Italian sentence sounds more natural without repeating the place. In the training example, we keep `ci` when the task is precisely an explicit reference to \"there\" (where something is or where someone goes)."
+ }
+]

@@ -46,8 +46,6 @@ import {
 } from './devToolRegistry';
 import {
   CANCEL_FLOW_PREVIEW_ROUTE,
-  LEARNING_V2_AUTHORING_PREVIEW_ROUTE,
-  LEARNING_V2_MODES_SHOWCASE_ROUTE,
   MOTION_SHOWCASE_ROUTE,
   SHOP_ROUTE,
   SPIRE_PREVIEW_ROUTE,
@@ -416,14 +414,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // Витрина движения — обычный маршрут. Закрываем native Modal до
         // смены route, иначе iOS оставит DEV-sheet поверх сцены.
         requestClose(false, () => router.push(MOTION_SHOWCASE_ROUTE as never));
-        return;
-      case 'open-learning-v2-modes-showcase':
-        // ОТДЕЛЬНЫЙ от «Витрины движения» подраздел — 7 одобренных режимов
-        // Learning V2, каждый открывается полноэкранным пробным мини-уроком.
-        requestClose(false, () => router.push(LEARNING_V2_MODES_SHOWCASE_ROUTE as never));
-        return;
-      case 'open-learning-v2-authoring-preview':
-        requestClose(false, () => router.push(LEARNING_V2_AUTHORING_PREVIEW_ROUTE as never));
         return;
       case 'open-shop':
         // Магазин пока БЕЗ входа из приложения — эта кнопка единственная дверь.

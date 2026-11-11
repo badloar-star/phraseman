@@ -1,0 +1,1054 @@
+[
+{
+"lesson": 29,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:29:01",
+"it:29:02",
+"it:29:03"
+],
+"textByLocale": {
+"en": "Find the object before `che`. The next part describes it specifically. If you remove the clarification, the grammatical basis remains, but the listener may not understand which object is meant.",
+"ru": "Найди предмет до `che`. Следующая часть описывает именно его. Если убрать уточнение, останется грамматическая основа, но слушателю может стать непонятно, какой предмет имеется в виду.",
+"uk": "Знайди предмет до `che`. Наступна частина описує саме його. Якщо усунути уточнення, залишиться граматична основа, але слухачеві може стати незрозуміло, який предмет має на увазі."
+}
+},
+{
+"exampleIds": [
+"it:29:05",
+"it:29:06",
+"it:29:08"
+],
+"textByLocale": {
+"en": "When an object itself acts, the verb agrees with it. If I am the one doing the action, the ending agrees with me. `Che` itself does not determine the verb form.",
+"ru": "Когда предмет сам действует, глагол согласуется с ним. Если действие выполняю я, окончание соответствует мне. `Che` само не задаёт форму глагола.",
+"uk": "Коли предмет діє, дієслово узгоджується з ним. Якщо я виконую дію, закінчення відповідає мені. `Che` саме не ставить форму дієслова."
+}
+},
+{
+"exampleIds": [
+"it:29:11",
+"it:29:14",
+"it:29:17"
+],
+"textByLocale": {
+"en": "For people, `che` is also possible. Don't automatically translate as `chi`: `il vicino che lavora qui` names a specific neighbor, and `chi lavora qui?` asks a question.",
+"ru": "Для людей тоже возможно `che`. Не переводить автоматически как `chi`: `il vicino che lavora qui` называет конкретного соседа, а `chi lavora qui?` задаёт вопрос.",
+"uk": "Для людей також можливо `che`. Не перекладати автоматично як `chi`: `il vicino che lavora qui` називає конкретного сусіда, а `chi lavora qui?` ставить запитання."
+}
+},
+{
+"exampleIds": [
+"it:29:22",
+"it:29:24",
+"it:29:27"
+],
+"textByLocale": {
+"en": "If `che` already replaces the direct object, don't add an extra `lo` in a neutral written example. First, reconstruct the complete short phrase without the relative clause.",
+"ru": "Если `che` уже заменяет прямое дополнение, не добавляй лишнее `lo` в нейтральном письменном образце. Сначала восстанови полную короткую фразу без относительной части.",
+"uk": "Якщо `che` вже замінює пряме доповнення, не додай зайве `lo` у нейтральному письмовому зразку. Спершу віднови повну коротку фразу без відносної частини."
+}
+},
+{
+"exampleIds": [
+"it:29:31",
+"it:29:33",
+"it:29:35"
+],
+"textByLocale": {
+"en": "Don't lose information about the addressee and time in the clarification. \"Which you are looking for\" and \"which you were looking for yesterday\" do not refer to the same action.",
+"ru": "Не теряй информацию об адресате и времени в уточнении. «Который вы ищете» и «который искали вчера» указывают не на одно и то же действие.",
+"uk": "Не втрачай інформацію про адресат та час в уточненні. «Який ви шукаєте» і «який шукали вчора» вказують не на одну й ту саму дію."
+}
+},
+{
+"exampleIds": [
+"it:29:36",
+"it:29:37",
+"it:29:39"
+],
+"textByLocale": {
+"en": "My neighbor can help me, or I can help her. Look at the verb after `che`. The difference in person can sometimes change the meaning more than the substitution of a noun.",
+"ru": "Соседка может помогать мне, а могу помогать ей я. Смотри на глагол после `che`. Разница в его лице иногда меняет смысл сильнее, чем замена существительного.",
+"uk": "Сусідка може допомагати мені, а можу допомагати їй я. Дивись на дієслово після `che`. Різниця в його обличчі іноді змінює сенс сильніше, ніж заміна іменника."
+}
+},
+{
+"exampleIds": [
+"it:29:45",
+"it:29:48",
+"it:29:50"
+],
+"textByLocale": {
+"en": "If a preposition is needed for connection, forms `a cui` and `con cui` are used. This is a separate construction. The main test here is to identify the subject or direct object without a preposition.",
+"ru": "Если для связи нужен предлог, встречаются формы `a cui`, `con cui`. Это отдельная конструкция. Здесь главная проверка — узнать подлежащее или прямой объект без предлога.",
+"uk": "Якщо для зв'язку потрібен привід, трапляються форми `a cui`, `con cui`. Це окрема конструкція. Тут головна перевірка — дізнатися про об'єкт, що підлягає або прямий, без прийменника."
+}
+}
+],
+"drills": [
+{
+"bad": "se",
+"chapter": 1,
+"id": "it:29:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"prima",
+"se",
+"che"
+],
+"slot": 3
+},
+{
+"bad": "se",
+"chapter": 1,
+"id": "it:29:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"quando",
+"che",
+"se"
+],
+"slot": 3
+},
+{
+"bad": "se",
+"chapter": 1,
+"id": "it:29:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"prima",
+"se",
+"che"
+],
+"slot": 4
+},
+{
+"bad": "se",
+"chapter": 2,
+"id": "it:29:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"che",
+"se",
+"mentre"
+],
+"slot": 4
+},
+{
+"bad": "dopo",
+"chapter": 2,
+"id": "it:29:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"che",
+"prima",
+"dopo"
+],
+"slot": 4
+},
+{
+"bad": "se",
+"chapter": 2,
+"id": "it:29:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"quando",
+"se",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "quando",
+"chapter": 3,
+"id": "it:29:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 22,
+"options": [
+"quando",
+"prima",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 3,
+"id": "it:29:17:lab",
+"item": 17,
+"kind": "match",
+"near": 42,
+"options": [
+"che",
+"di",
+"se"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 3,
+"id": "it:29:19:lab",
+"item": 19,
+"kind": "build",
+"near": 16,
+"options": [
+"quando",
+"se",
+"che"
+],
+"slot": 4
+},
+{
+"bad": "quando",
+"chapter": 4,
+"id": "it:29:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 14,
+"options": [
+"mentre",
+"che",
+"quando"
+],
+"slot": 2
+},
+{
+"bad": "quando",
+"chapter": 4,
+"id": "it:29:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 27,
+"options": [
+"quando",
+"mentre",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 4,
+"id": "it:29:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"prima",
+"che",
+"se"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 5,
+"id": "it:29:29:lab",
+"item": 29,
+"kind": "match",
+"near": 34,
+"options": [
+"se",
+"che",
+"mentre"
+],
+"slot": 2
+},
+{
+"bad": "quando",
+"chapter": 5,
+"id": "it:29:31:lab",
+"item": 31,
+"kind": "build",
+"near": 4,
+"options": [
+"prima",
+"quando",
+"che"
+],
+"slot": 3
+},
+{
+"bad": "quando",
+"chapter": 5,
+"id": "it:29:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 18,
+"options": [
+"mentre",
+"quando",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 6,
+"id": "it:29:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 37,
+"options": [
+"se",
+"che",
+"mentre"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 6,
+"id": "it:29:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"se",
+"mentre",
+"che"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 6,
+"id": "it:29:42:lab",
+"item": 42,
+"kind": "match",
+"near": 49,
+"options": [
+"che",
+"prima",
+"se"
+],
+"slot": 2
+},
+{
+"bad": "qui",
+"chapter": 7,
+"id": "it:29:45:lab",
+"item": 45,
+"kind": "build",
+"near": 11,
+"options": [
+"qui",
+"vorrei",
+"cui"
+],
+"slot": 5
+},
+{
+"bad": "quando",
+"chapter": 7,
+"id": "it:29:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 25,
+"options": [
+"che",
+"mentre",
+"quando"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"l’autobus che va",
+"che = l’autobus"
+],
+[
+"l’autobus che prendo",
+"che = l’autobus"
+],
+[
+"la persona che mi aiuta",
+"lei aiuta me"
+],
+[
+"la persona che aiuto",
+"io aiuto lei"
+]
+],
+"title": {
+"en": "Which one: relative `che`",
+"ru": "Какой именно: относительное `che`",
+"uk": "Який саме: відносне `che`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:29:01",
+"target": "Questo è l’autobus che va alla stazione ferroviaria.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "it:29:02",
+"target": "Questo è l’autobus che prendo.",
+"ru": "Это автобус, на котором я еду.",
+"uk": "Це автобус, на якому я їду."
+},
+{
+"id": "it:29:03",
+"target": "Ecco la chiave che apre la cantina.",
+"ru": "Вот ключ, который открывает подвал.",
+"uk": "Ось ключ, що відчиняє льох."
+},
+{
+"id": "it:29:05",
+"target": "Questa è la giacca che mi piace.",
+"ru": "Это куртка, которая мне нравится.",
+"uk": "Це куртка, яка мені подобається."
+},
+{
+"id": "it:29:06",
+"target": "Questa è la giacca che indosso.",
+"ru": "Это куртка, которую я ношу.",
+"uk": "Це куртка, яку я ношу."
+},
+{
+"id": "it:29:08",
+"target": "Questo è il dottore che conosco.",
+"ru": "Это врач, которого я знаю.",
+"uk": "Це лікар, якого я знаю."
+},
+{
+"id": "it:29:11",
+"target": "Ho un vicino che parla italiano.",
+"ru": "У меня есть сосед, который говорит по-итальянски.",
+"uk": "У мене є сусід, який розмовляє італійською."
+},
+{
+"id": "it:29:14",
+"target": "Il postino che passa qui è in vacanza.",
+"ru": "Почтальон, который сюда приходит, в отпуске.",
+"uk": "Листоноша, який сюди приходить, у відпустці."
+},
+{
+"id": "it:29:17",
+"target": "La porta che dà sul cortile è chiusa.",
+"ru": "Дверь, ведущая во двор, закрыта.",
+"uk": "Двері, що ведуть у двір, зачинені."
+},
+{
+"id": "it:29:22",
+"target": "Il treno che stiamo aspettando è in ritardo.",
+"ru": "Поезд, которого мы ждем, задерживается.",
+"uk": "Поїзд, на який ми чекаємо, затримується."
+},
+{
+"id": "it:29:24",
+"target": "Il film che sto guardando sta iniziando bene.",
+"ru": "Фильм, который я смотрю, начинается хорошо.",
+"uk": "Фільм, який я дивлюся, починається добре."
+},
+{
+"id": "it:29:27",
+"target": "Il messaggio che sto scrivendo è breve.",
+"ru": "Сообщение, которое я пишу, короткое.",
+"uk": "Повідомлення, яке я пишу, коротке."
+},
+{
+"id": "it:29:31",
+"target": "Ecco la mappa che mi hanno dato.",
+"ru": "Вот карта, которую мне дали.",
+"uk": "Ось карта, яку мені дали."
+},
+{
+"id": "it:29:33",
+"target": "L’ufficio che sta cercando è al piano di sotto.",
+"ru": "Офис, который она ищет, находится внизу.",
+"uk": "Офіс, який вона шукає, знаходиться внизу."
+},
+{
+"id": "it:29:35",
+"target": "Il regalo che stanno preparando è per te.",
+"ru": "Подарок, который они готовят, для тебя.",
+"uk": "Подарунок, який вони готують, для тебе."
+},
+{
+"id": "it:29:36",
+"target": "La persona che mi aiuta è la mia vicina.",
+"ru": "Человек, который мне помогает, — моя соседка.",
+"uk": "Людина, яка мені допомагає, - моя сусідка."
+},
+{
+"id": "it:29:37",
+"target": "La persona che aiuto è il mio vicino.",
+"ru": "Человек, которому я помогаю, — мой сосед.",
+"uk": "Людина, якій я допомагаю, — мій сусід."
+},
+{
+"id": "it:29:39",
+"target": "Il bambino che sua madre sta chiamando è fuori.",
+"ru": "Мальчик, которого зовёт его мама, на улице.",
+"uk": "Хлопчик, якого кличе його мати, на вулиці."
+},
+{
+"id": "it:29:45",
+"target": "Ho perso il foglio su cui avevo scritto il codice.",
+"ru": "Я потерял листок, на котором записал код.",
+"uk": "Я загубив аркуш, на якому записав код."
+},
+{
+"id": "it:29:48",
+"target": "Le scarpe che sono della mia misura costano troppo.",
+"ru": "Обувь, которая мне подходит, слишком дорогая.",
+"uk": "Взуття, яке мені підходить, занадто дороге."
+},
+{
+"id": "it:29:50",
+"target": "La finestra che non si chiude bene si affaccia sulla strada.",
+"ru": "Окно, которое плохо закрывается, выходит на улицу.",
+"uk": "Вікно, яке погано зачиняється, виходить на вулицю."
+}
+]
+},
+{
+"lesson": 30,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"it:30:01",
+"it:30:02",
+"it:30:03"
+],
+"textByLocale": {
+"en": "The main clause already contains `bisogna`, which doesn't change depending on who needs to act. The person and number are selected in the clause after `che`.",
+"ru": "В главной части уже есть `bisogna`, которое не меняется в зависимости от того, кому нужно действовать. Лицо и число выбираются в части после `che`.",
+"uk": "У головній частині вже є `bisogna`, яка не змінюється в залежності від того, кому потрібно діяти. Особа та число вибираються у частині після `che`."
+}
+},
+{
+"exampleIds": [
+"it:30:04",
+"it:30:05",
+"it:30:06"
+],
+"textByLocale": {
+"en": "Compare `parta`, `partiamo`, `partiate`, `partano`. Some forms match the present indicative. Then the desired meaning is determined by the entire construction, not by the unusual letter.",
+"ru": "Сравни `parta`, `partiamo`, `partiate`, `partano`. Некоторые формы совпадают с настоящим изъявительным. Тогда нужное значение определяет вся конструкция, а не необычная буква.",
+"uk": "Порівняй `parta`, `partiamo`, `partiate`, `partano`. Деякі форми збігаються зі справжнім дійсним. Тоді потрібне значення визначає вся конструкція, а чи не незвичайна буква."
+}
+},
+{
+"exampleIds": [
+"it:30:07",
+"it:30:09",
+"it:30:13"
+],
+"textByLocale": {
+"en": "Frequent verbs have special forms: `essere` → `sia`, `avere` → `abbia`. They should be learned from useful remarks about documents or time, and not as empty endings.",
+"ru": "У частых глаголов особые формы: `essere` → `sia`, `avere` → `abbia`. Их стоит учить на полезной реплике про документы или время, а не как пустые окончания.",
+"uk": "Часті дієслова мають особливі форми: `essere` → `sia`, `avere` → `abbia`. Їх варто навчати на корисній репліці про документи або час, а не як порожні закінчення."
+}
+},
+{
+"exampleIds": [
+"it:30:16",
+"it:30:18",
+"it:30:22"
+],
+"textByLocale": {
+"en": "`Fare` yields `faccia`, `andare` yields `vada`. When it's important for the speaker to name the performer, a name or pronoun after `che` makes the requirement clear without guesswork.",
+"ru": "`Fare` даёт `faccia`, `andare` — `vada`. Когда говорящему важно назвать исполнителя, имя или местоимение после `che` делает требование понятным без догадок.",
+"uk": "`Fare` дає `faccia`, `andare` - `vada`. Коли говорить важливо назвати виконавця, ім'я або займенник після `che` робить вимогу зрозумілою без здогадів."
+}
+},
+{
+"exampleIds": [
+"it:30:31",
+"it:30:33",
+"it:30:35"
+],
+"textByLocale": {
+"en": "Necessity can concern the condition of an object: for the floor to be dry or for text to be legible. Choose not only `sia` but also a description of the same object.",
+"ru": "Необходимость может касаться состояния предмета: чтобы пол был сухим или текст был разборчивым. Подбери не только `sia`, но и описание того же предмета.",
+"uk": "Необхідність може стосуватися стану предмета: щоб підлога була сухою або текст був розбірливим. Підбери не тільки `sia`, а й опис того самого предмета."
+}
+},
+{
+"exampleIds": [
+"it:30:41",
+"it:30:42",
+"it:30:43"
+],
+"textByLocale": {
+"en": "Negation has a scope. `Bisogna che non …` conveys the necessity NOT to perform the action. Don't move `non` to the beginning of the entire sentence without checking the meaning.",
+"ru": "У отрицания есть область действия. `Bisogna che non …` передаёт необходимость НЕ совершать действие. Не переставляй `non` в начало всего предложения без проверки смысла.",
+"uk": "Заперечення має сферу дії. `Bisogna che non …` передає необхідність НЕ чинити дію. Не переставляй `non` на початок всієї пропозиції без перевірки змісту."
+}
+},
+{
+"exampleIds": [
+"it:30:46",
+"it:30:48",
+"it:30:50"
+],
+"textByLocale": {
+"en": "In conversation, it's often easier to say `devo partire`. This is a good translation of necessity, not an error. Here, a more expanded construction with `che` and a clear performer is specifically practiced.",
+"ru": "В разговоре часто проще сказать `devo partire`. Это хороший перевод необходимости, а не ошибка. Здесь специально тренируется более развёрнутая конструкция с `che` и явным исполнителем.",
+"uk": "У розмові часто простіше сказати `devo partire`. Це хороший переклад необхідності, а не помилка. Тут спеціально тренується більш розгорнута конструкція з `che` та явним виконавцем."
+}
+}
+],
+"drills": [
+{
+"bad": "partiamo",
+"chapter": 1,
+"id": "it:30:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"partiate",
+"partiamo",
+"parta"
+],
+"slot": 3
+},
+{
+"bad": "partano",
+"chapter": 1,
+"id": "it:30:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"partiate",
+"partano",
+"parta"
+],
+"slot": 3
+},
+{
+"bad": "parta",
+"chapter": 1,
+"id": "it:30:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"parta",
+"partano",
+"partiate"
+],
+"slot": 2
+},
+{
+"bad": "siamo",
+"chapter": 2,
+"id": "it:30:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"siano",
+"siamo",
+"sia"
+],
+"slot": 3
+},
+{
+"bad": "è",
+"chapter": 2,
+"id": "it:30:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"sia",
+"siamo",
+"è"
+],
+"slot": 3
+},
+{
+"bad": "abbiamo",
+"chapter": 2,
+"id": "it:30:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 14,
+"options": [
+"abbiano",
+"abbiamo",
+"abbia"
+],
+"slot": 3
+},
+{
+"bad": "abbiamo",
+"chapter": 3,
+"id": "it:30:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 43,
+"options": [
+"abbiamo",
+"abbia",
+"abbiano"
+],
+"slot": 3
+},
+{
+"bad": "facciate",
+"chapter": 3,
+"id": "it:30:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"faccia",
+"facciamo",
+"facciate"
+],
+"slot": 3
+},
+{
+"bad": "facciamo",
+"chapter": 3,
+"id": "it:30:19:lab",
+"item": 19,
+"kind": "build",
+"near": 18,
+"options": [
+"facciamo",
+"faccia",
+"facciate"
+],
+"slot": 2
+},
+{
+"bad": "andiamo",
+"chapter": 4,
+"id": "it:30:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 2,
+"options": [
+"vadano",
+"vada",
+"andiamo"
+],
+"slot": 3
+},
+{
+"bad": "vada",
+"chapter": 4,
+"id": "it:30:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 26,
+"options": [
+"andiamo",
+"va",
+"vada"
+],
+"slot": 2
+},
+{
+"bad": "andiamo",
+"chapter": 4,
+"id": "it:30:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 24,
+"options": [
+"andiamo",
+"vada",
+"vadano"
+],
+"slot": 2
+},
+{
+"bad": "il",
+"chapter": 5,
+"id": "it:30:29:lab",
+"item": 29,
+"kind": "match",
+"near": 13,
+"options": [
+"il",
+"un",
+"la"
+],
+"slot": 3
+},
+{
+"bad": "siamo",
+"chapter": 5,
+"id": "it:30:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"siano",
+"sia",
+"siamo"
+],
+"slot": 5
+},
+{
+"bad": "necessario",
+"chapter": 5,
+"id": "it:30:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 6,
+"options": [
+"restino",
+"necessario",
+"pavimento"
+],
+"slot": 4
+},
+{
+"bad": "trabocchi",
+"chapter": 6,
+"id": "it:30:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 2,
+"options": [
+"controlli",
+"puntuali",
+"trabocchi"
+],
+"slot": 3
+},
+{
+"bad": "il",
+"chapter": 6,
+"id": "it:30:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 20,
+"options": [
+"la",
+"le",
+"il"
+],
+"slot": 3
+},
+{
+"bad": "valigie",
+"chapter": 6,
+"id": "it:30:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"valigie",
+"classe",
+"latte"
+],
+"slot": 3
+},
+{
+"bad": "necessario",
+"chapter": 7,
+"id": "it:30:45:lab",
+"item": 45,
+"kind": "build",
+"near": 10,
+"options": [
+"restino",
+"pranzo",
+"necessario"
+],
+"slot": 5
+},
+{
+"bad": "sia",
+"chapter": 7,
+"id": "it:30:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 2,
+"options": [
+"sia",
+"ricevuta",
+"scelga"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"essere",
+"sia / siamo / siate / siano"
+],
+[
+"avere",
+"abbia / abbiamo / abbiate / abbiano"
+],
+[
+"fare",
+"faccia / facciamo / facciate / facciano"
+],
+[
+"andare",
+"vada / andiamo / andiate / vadano"
+],
+[
+"partire",
+"parta / partiamo / partiate / partano"
+]
+],
+"title": {
+"en": "Necessity: `bisogna che` + `congiuntivo`",
+"ru": "Необходимость: `bisogna che` + `congiuntivo`",
+"uk": "Необхідність: `bisogna che` + `congiuntivo`"
+}
+},
+"exampleResolved": [
+{
+"id": "it:30:01",
+"target": "Bisogna che io parta.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "it:30:02",
+"target": "Bisogna che tu parta.",
+"ru": "Тебе нужно уйти.",
+"uk": "Тобі треба піти."
+},
+{
+"id": "it:30:03",
+"target": "Bisogna che lei parta.",
+"ru": "Ей нужно уйти.",
+"uk": "Вона має піти."
+},
+{
+"id": "it:30:04",
+"target": "Bisogna che partiamo.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+},
+{
+"id": "it:30:05",
+"target": "Bisogna che partiate.",
+"ru": "Вам (мн.) нужно уехать.",
+"uk": "Вам (мн.) треба поїхати."
+},
+{
+"id": "it:30:06",
+"target": "Bisogna che partano.",
+"ru": "Им нужно уйти.",
+"uk": "Вони мають піти."
+},
+{
+"id": "it:30:07",
+"target": "È necessario che io sia lì.",
+"ru": "Мне нужно быть там.",
+"uk": "Мені потрібно бути там."
+},
+{
+"id": "it:30:09",
+"target": "Bisogna che lei sia pronta.",
+"ru": "Ей нужно быть готовой.",
+"uk": "Їй потрібно бути готовою."
+},
+{
+"id": "it:30:13",
+"target": "È necessario che lei abbia un biglietto.",
+"ru": "Ей нужен билет.",
+"uk": "Їй потрібно мати квиток."
+},
+{
+"id": "it:30:16",
+"target": "Bisogna che io faccia una copia.",
+"ru": "Мне нужно сделать копию.",
+"uk": "Мені потрібно зробити копію."
+},
+{
+"id": "it:30:18",
+"target": "Bisogna che facciamo una pausa.",
+"ru": "Нам нужно сделать перерыв.",
+"uk": "Нам потрібно зробити перерву."
+},
+{
+"id": "it:30:22",
+"target": "Bisogna che tu vada in banca.",
+"ru": "Тебе нужно сходить в банк.",
+"uk": "Тобі треба сходити до банку."
+},
+{
+"id": "it:30:31",
+"target": "È necessario che il pavimento sia asciutto.",
+"ru": "Нужно, чтобы пол был сухим.",
+"uk": "Потрібно, щоб підлога була сухою."
+},
+{
+"id": "it:30:33",
+"target": "Bisogna che il preventivo sia leggibile.",
+"ru": "Смета должна быть разборчивой.",
+"uk": "Кошторис має бути розбірливим."
+},
+{
+"id": "it:30:35",
+"target": "Bisogna che la stanza sia vuota.",
+"ru": "Комната должна быть пустой.",
+"uk": "Кімната має бути порожньою."
+},
+{
+"id": "it:30:41",
+"target": "È meglio che tu non parta da solo.",
+"ru": "Тебе лучше не уходить одному.",
+"uk": "Тобі краще не йти одному."
+},
+{
+"id": "it:30:42",
+"target": "Bisogna che il latte non trabocchi.",
+"ru": "Молоко не должно выкипеть.",
+"uk": "Молоко не повинно википіти."
+},
+{
+"id": "it:30:43",
+"target": "Bisogna che non perdiamo la ricevuta.",
+"ru": "Мы не должны потерять чек.",
+"uk": "Ми не повинні загубити чек."
+},
+{
+"id": "it:30:46",
+"target": "Bisogna che Lei venga domani mattina.",
+"ru": "Вам нужно прийти завтра утром.",
+"uk": "Вам потрібно прийти завтра вранці."
+},
+{
+"id": "it:30:48",
+"target": "Bisogna che tu scelga un posto lato corridoio.",
+"ru": "Тебе нужно выбрать место у прохода.",
+"uk": "Тобі потрібно вибрати місце біля проходу."
+},
+{
+"id": "it:30:50",
+"target": "Bisogna che io spenga la luce quando esco.",
+"ru": "Мне нужно выключить свет, когда я ухожу.",
+"uk": "Мені потрібно вимкнути світло, коли я піду."
+}
+]
+}
+]

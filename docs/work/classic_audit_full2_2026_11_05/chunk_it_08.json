@@ -1,0 +1,5642 @@
+[
+{
+"lesson": 17,
+"id": "it:17:01",
+"target": "Mi alzo.",
+"ru": "Я встаю.",
+"uk": "Я встаю.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Vi",
+"Le",
+"Lo",
+"Il"
+]
+},
+{
+"correct": "alzo",
+"distractors": [
+"alzano",
+"alzate",
+"alziamo",
+"alzi",
+"parco"
+]
+}
+],
+"alternatives": [
+"Io mi alzo."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:02",
+"target": "Ti alzi.",
+"ru": "Ты встаешь.",
+"uk": "Ти встаєш.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Si",
+"Ci",
+"Il",
+"Le"
+]
+},
+{
+"correct": "alzi",
+"distractors": [
+"alzo",
+"alzate",
+"alziamo",
+"alzano",
+"alza"
+]
+}
+],
+"alternatives": [
+"Tu ti alzi."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:03",
+"target": "Si alza.",
+"ru": "Она встает.",
+"uk": "Вона встає.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Mi",
+"Gli",
+"Ci",
+"Ti"
+]
+},
+{
+"correct": "alza",
+"distractors": [
+"alziamo",
+"alzano",
+"alzi",
+"alzate",
+"arrivare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:04",
+"target": "Ci alziamo.",
+"ru": "Мы встаем.",
+"uk": "Ми встаємо.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"La",
+"Si",
+"Mi",
+"Il",
+"Le"
+]
+},
+{
+"correct": "alziamo",
+"distractors": [
+"alzi",
+"alzo",
+"alzano",
+"alzate",
+"alza"
+]
+}
+],
+"alternatives": [
+"Noi ci alziamo."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:05",
+"target": "Vi alzate.",
+"ru": "Вы встаёте.",
+"uk": "Ви встаєте.",
+"tiles": [
+{
+"correct": "Vi",
+"distractors": [
+"La",
+"Mi",
+"Ci",
+"Ti",
+"Il"
+]
+},
+{
+"correct": "alzate",
+"distractors": [
+"alza",
+"alzano",
+"camera",
+"museo",
+"finestra"
+]
+}
+],
+"alternatives": [
+"Voi vi alzate."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:06",
+"target": "Si alzano.",
+"ru": "Они встают.",
+"uk": "Вони встають.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Ci",
+"Ti",
+"Gli",
+"Il"
+]
+},
+{
+"correct": "alzano",
+"distractors": [
+"alzo",
+"alzate",
+"alziamo",
+"alza",
+"alzi"
+]
+}
+],
+"alternatives": [
+"Loro si alzano."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:07",
+"target": "Mi preparo.",
+"ru": "Я готовлюсь.",
+"uk": "Я готуюся.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Ti",
+"Le",
+"Gli",
+"Il"
+]
+},
+{
+"correct": "preparo",
+"distractors": [
+"prepari",
+"prepariamo",
+"preparate",
+"stazione",
+"bambini"
+]
+}
+],
+"alternatives": [
+"Io mi preparo."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:08",
+"target": "Ti prepari.",
+"ru": "Ты готовишься.",
+"uk": "Ти готуєшся.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Si",
+"Mi",
+"Ci",
+"Il"
+]
+},
+{
+"correct": "prepari",
+"distractors": [
+"prepara",
+"preparo",
+"prepariamo",
+"preparate",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Tu ti prepari."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:09",
+"target": "Paolo si prepara.",
+"ru": "Паоло готовится.",
+"uk": "Паоло готується.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ci",
+"le",
+"gli",
+"il"
+]
+},
+{
+"correct": "prepara",
+"distractors": [
+"preparate",
+"borsa",
+"finestra",
+"camera",
+"mappa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:10",
+"target": "Lea si prepara per andare al lavoro.",
+"ru": "Леа готовится к работе.",
+"uk": "Леа готується до роботи.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ci",
+"mi",
+"ti",
+"il"
+]
+},
+{
+"correct": "prepara",
+"distractors": [
+"preparate",
+"borsa",
+"finestra",
+"camera",
+"mappa"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "andare",
+"distractors": [
+"essere",
+"rade",
+"deve",
+"uscire",
+"vestite"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"vicino",
+"treno",
+"museo",
+"parco",
+"meglio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:11",
+"target": "Mi sveglio presto.",
+"ru": "Я просыпаюсь рано.",
+"uk": "Я прокидаюся рано.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Si",
+"Ci",
+"Ti",
+"Vi"
+]
+},
+{
+"correct": "sveglio",
+"distractors": [
+"alzo",
+"parco",
+"specchio",
+"binario",
+"mattino"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"spesso",
+"stasera",
+"oggi",
+"ieri"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:12",
+"target": "Ti svegli alle sette.",
+"ru": "Ты просыпаешься в семь часов.",
+"uk": "Ти прокидаєшся о сьомій годині.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Ci",
+"Le",
+"Lo",
+"Il"
+]
+},
+{
+"correct": "svegli",
+"distractors": [
+"lei",
+"riposarmi",
+"davanti",
+"capelli",
+"bambini"
+]
+},
+{
+"correct": "alle",
+"distractors": [
+"al",
+"alla",
+"allo",
+"ai",
+"casa"
+]
+},
+{
+"correct": "sette",
+"distractors": [
+"due",
+"tre",
+"otto",
+"dieci",
+"quattro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:13",
+"target": "Lei si sveglia prima di me.",
+"ru": "Она просыпается раньше меня.",
+"uk": "Вона прокидається раніше за мене.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Noi",
+"Tu"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ci",
+"lo",
+"il",
+"le"
+]
+},
+{
+"correct": "sveglia",
+"distractors": [
+"prepara",
+"alla",
+"stessa",
+"corica",
+"finestra"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"deve",
+"notte",
+"rade",
+"sente",
+"alle"
+]
+}
+],
+"alternatives": [
+"Si sveglia prima di me."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:14",
+"target": "Ci svegliamo con la radio.",
+"ru": "Мы просыпаемся под радио.",
+"uk": "Ми прокидаємося від радіо.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"Si",
+"Ti",
+"Il",
+"Mi",
+"Le"
+]
+},
+{
+"correct": "svegliamo",
+"distractors": [
+"sbagliato",
+"corichiamo",
+"affrettiamo",
+"incontriamo",
+"sveglio"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"vi",
+"mi",
+"che",
+"e"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"lavoro",
+"vesto",
+"meglio",
+"parco",
+"sveglio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:15",
+"target": "Si sveglia spesso di notte?",
+"ru": "Вы (вежл.) часто просыпаетесь ночью?",
+"uk": "Ви (ввіч.) часто прокидаєтеся вночі?",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Ci",
+"Le",
+"Il",
+"Un"
+]
+},
+{
+"correct": "sveglia",
+"distractors": [
+"sera",
+"lava",
+"domenica",
+"finestra",
+"sola"
+]
+},
+{
+"correct": "spesso",
+"distractors": [
+"stasera",
+"presto",
+"domani",
+"oggi",
+"ieri"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "notte",
+"distractors": [
+"me",
+"rade",
+"alle",
+"accorge",
+"alla"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:16",
+"target": "I bambini si svegliano alla stessa ora.",
+"ru": "Дети просыпаются одновременно.",
+"uk": "Діти прокидаються одночасно.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Gli",
+"Un",
+"Una"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"davanti",
+"guardi",
+"mani",
+"svegli",
+"sedersi"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"le",
+"la",
+"lo",
+"ti",
+"il"
+]
+},
+{
+"correct": "svegliano",
+"distractors": [
+"lavano",
+"chiamo",
+"mattino",
+"divertono",
+"sbrigo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stessa",
+"distractors": [
+"riposa",
+"corica",
+"sera",
+"domenica",
+"finestra"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"mia",
+"lava",
+"riposa",
+"mio",
+"sua"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:17",
+"target": "Mi faccio la doccia al mattino.",
+"ru": "Я принимаю душ утром.",
+"uk": "Я приймаю душ вранці.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"Ci",
+"Le",
+"Si",
+"Ti",
+"Il"
+]
+},
+{
+"correct": "faccio",
+"distractors": [
+"facciamo",
+"fa",
+"fai",
+"biglietto",
+"del"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"ti",
+"che",
+"e"
+]
+},
+{
+"correct": "doccia",
+"distractors": [
+"chiama",
+"ora",
+"finestra",
+"domenica",
+"casa"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "mattino",
+"distractors": [
+"lavo",
+"preparo",
+"specchio",
+"radio",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io mi faccio la doccia al mattino."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:18",
+"target": "Si fa la doccia dopo lo sport.",
+"ru": "Он принимает душ после занятий спортом.",
+"uk": "Він приймає душ після спорту.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Ti",
+"Le",
+"Ci",
+"Il",
+"Mi"
+]
+},
+{
+"correct": "fa",
+"distractors": [
+"faccio",
+"fai",
+"facciamo",
+"faccia",
+"biglietto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"mi",
+"un",
+"che"
+]
+},
+{
+"correct": "doccia",
+"distractors": [
+"sola",
+"camera",
+"riposa",
+"domenica",
+"casa"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"il",
+"le",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "sport",
+"distractors": [
+"lava",
+"ora",
+"faccio",
+"tardi",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:19",
+"target": "Ti fai la doccia di sera?",
+"ru": "Ты принимаешь душ вечером?",
+"uk": "Ти приймаєш душ ввечері?",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"Ci",
+"Le",
+"Mi",
+"Il",
+"Si"
+]
+},
+{
+"correct": "fai",
+"distractors": [
+"fa",
+"faccio",
+"facciamo",
+"faccia",
+"biglietto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"lo",
+"mi",
+"che",
+"e"
+]
+},
+{
+"correct": "doccia",
+"distractors": [
+"domenica",
+"corica",
+"prepara",
+"sveglia",
+"alla"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "sera",
+"distractors": [
+"corica",
+"sveglia",
+"sola",
+"domenica",
+"alla"
+]
+}
+],
+"alternatives": [
+"Tu ti fai la doccia di sera?"
+]
+},
+{
+"lesson": 17,
+"id": "it:17:20",
+"target": "Ci corichiamo presto.",
+"ru": "Мы ложимся спать рано.",
+"uk": "Ми лягаємо спати рано.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"La",
+"Lo",
+"Vi",
+"Mi",
+"Il"
+]
+},
+{
+"correct": "corichiamo",
+"distractors": [
+"svegliano",
+"divertono",
+"sveglio",
+"affrettiamo",
+"svegliamo"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"spesso",
+"oggi",
+"stasera",
+"ieri"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:21",
+"target": "Mi vesto in camera mia.",
+"ru": "Я одеваюсь в своей комнате.",
+"uk": "Я одягаюся у своїй кімнаті.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Ci",
+"Ti",
+"Il",
+"Le"
+]
+},
+{
+"correct": "vesto",
+"distractors": [
+"cambio",
+"radio",
+"meglio",
+"mattino",
+"treno"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "camera",
+"distractors": [
+"stessa",
+"sveglia",
+"domenica",
+"finestra",
+"chiama"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"tuo",
+"mie",
+"nostro",
+"sua",
+"suo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:22",
+"target": "Si veste da sola.",
+"ru": "Она одевается сама.",
+"uk": "Вона одягається сама.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Mi",
+"Ci",
+"Le",
+"Il"
+]
+},
+{
+"correct": "veste",
+"distractors": [
+"arrivare",
+"essere",
+"accorge",
+"uscire",
+"vestite"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"a",
+"in",
+"di",
+"per",
+"con"
+]
+},
+{
+"correct": "sola",
+"distractors": [
+"sveglia",
+"faccia",
+"sera",
+"ora",
+"doccia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:23",
+"target": "Ti vesti velocemente.",
+"ru": "Ты быстро одеваешься.",
+"uk": "Ти одягаєшся швидко.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Mi",
+"Le",
+"Lo",
+"Il"
+]
+},
+{
+"correct": "vesti",
+"distractors": [
+"svegli",
+"sederci",
+"qui",
+"mani",
+"davanti"
+]
+},
+{
+"correct": "velocemente",
+"distractors": [
+"intenzione",
+"prepara",
+"alziamo",
+"arrivare",
+"maglione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:24",
+"target": "Vi vestite per uscire.",
+"ru": "Вы одеваетесь, чтобы выйти.",
+"uk": "Ви одягаєтеся, щоб вийти.",
+"tiles": [
+{
+"correct": "Vi",
+"distractors": [
+"La",
+"Ci",
+"Si",
+"Le",
+"Il"
+]
+},
+{
+"correct": "vestite",
+"distractors": [
+"sente",
+"rade",
+"intenzione",
+"accorge",
+"notte"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"da",
+"senza"
+]
+},
+{
+"correct": "uscire",
+"distractors": [
+"vuole",
+"veste",
+"rade",
+"arrivare",
+"notte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:25",
+"target": "Paolo si rade davanti allo specchio.",
+"ru": "Паоло бреется перед зеркалом.",
+"uk": "Паоло голиться перед дзеркалом.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"mi",
+"le",
+"ti",
+"il"
+]
+},
+{
+"correct": "rade",
+"distractors": [
+"andare",
+"notte",
+"uscire",
+"sente",
+"piace"
+]
+},
+{
+"correct": "davanti",
+"distractors": [
+"vesti",
+"riposarmi",
+"sederci",
+"alzarsi",
+"mani"
+]
+},
+{
+"correct": "allo",
+"distractors": [
+"al",
+"ai",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "specchio",
+"distractors": [
+"spesso",
+"museo",
+"lavoro",
+"parco",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:26",
+"target": "Mi lavo i denti.",
+"ru": "Я чищу зубы.",
+"uk": "Я чищу зуби.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Si",
+"Ci",
+"Il",
+"Le"
+]
+},
+{
+"correct": "lavo",
+"distractors": [
+"lavano",
+"mattino",
+"questo",
+"radio",
+"specchio"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"un",
+"gli",
+"una"
+]
+},
+{
+"correct": "denti",
+"distractors": [
+"prepari",
+"qui",
+"mani",
+"capelli",
+"sedersi"
+]
+}
+],
+"alternatives": [
+"Io mi lavo i denti."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:27",
+"target": "Lei si lava le mani.",
+"ru": "Она моет руки.",
+"uk": "Вона миє руки.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Lui",
+"Tu",
+"Io",
+"Voi"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ci",
+"mi",
+"il",
+"un"
+]
+},
+{
+"correct": "lava",
+"distractors": [
+"lavano",
+"ora",
+"mia",
+"alla",
+"finestra"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"ti",
+"ci",
+"una"
+]
+},
+{
+"correct": "mani",
+"distractors": [
+"capelli",
+"svegli",
+"ricordi",
+"alzarsi",
+"vesti"
+]
+}
+],
+"alternatives": [
+"Si lava le mani."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:28",
+"target": "I bambini si lavano la faccia.",
+"ru": "Дети умываются.",
+"uk": "Діти вмивають обличчя.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"Un",
+"Gli",
+"Le",
+"Che"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"prepari",
+"alzarsi",
+"sederci",
+"riposarmi",
+"sedersi"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"ci",
+"le",
+"ti",
+"il",
+"un"
+]
+},
+{
+"correct": "lavano",
+"distractors": [
+"lava",
+"ora",
+"mia",
+"alla",
+"finestra"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"le",
+"un",
+"che"
+]
+},
+{
+"correct": "faccia",
+"distractors": [
+"facciamo",
+"non",
+"denti",
+"più",
+"già"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:29",
+"target": "Ci asciughiamo i capelli.",
+"ru": "Мы сушим волосы.",
+"uk": "Ми сушимо волосся.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"La",
+"Le",
+"Mi",
+"Si",
+"Il"
+]
+},
+{
+"correct": "asciughiamo",
+"distractors": [
+"indirizzo",
+"specchio",
+"corichiamo",
+"svegliano",
+"affrettiamo"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"le",
+"un",
+"gli"
+]
+},
+{
+"correct": "capelli",
+"distractors": [
+"denti",
+"vesti",
+"riposarmi",
+"svegli",
+"bambini"
+]
+}
+],
+"alternatives": [
+"Noi ci asciughiamo i capelli."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:30",
+"target": "Ti guardi allo specchio.",
+"ru": "Ты смотришь на себя в зеркало.",
+"uk": "Ти дивишся на себе в дзеркало.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Si",
+"Mi",
+"Le",
+"Ci"
+]
+},
+{
+"correct": "guardi",
+"distractors": [
+"guarda",
+"guardiamo",
+"guardano",
+"guardo",
+"sedersi"
+]
+},
+{
+"correct": "allo",
+"distractors": [
+"al",
+"alle",
+"ai",
+"pane",
+"bene"
+]
+},
+{
+"correct": "specchio",
+"distractors": [
+"museo",
+"svegliamo",
+"affrettiamo",
+"radio",
+"indirizzo"
+]
+}
+],
+"alternatives": [
+"Tu ti guardi allo specchio."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:31",
+"target": "Non mi alzo prima delle sei.",
+"ru": "Я не встаю раньше шести часов.",
+"uk": "Я не встаю раніше шостої години.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"la",
+"si",
+"ci",
+"ti",
+"il"
+]
+},
+{
+"correct": "alzo",
+"distractors": [
+"alziamo",
+"alzi",
+"alzate",
+"alzano",
+"parco"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+},
+{
+"correct": "delle",
+"distractors": [
+"del",
+"della",
+"dei",
+"dello",
+"degli"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"una",
+"siamo",
+"siete"
+]
+}
+],
+"alternatives": [
+"Io non mi alzo prima delle sei."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:32",
+"target": "Lei non si corica tardi.",
+"ru": "Она не ложится спать поздно.",
+"uk": "Вона не лягає спати пізно.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Lui",
+"Io",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"mai",
+"po’"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ci",
+"mi",
+"il",
+"le"
+]
+},
+{
+"correct": "corica",
+"distractors": [
+"ora",
+"doccia",
+"sveglia",
+"domenica",
+"alla"
+]
+},
+{
+"correct": "tardi",
+"distractors": [
+"domani",
+"spesso",
+"stasera",
+"presto",
+"oggi"
+]
+}
+],
+"alternatives": [
+"Non si corica tardi."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:33",
+"target": "Non ci affrettiamo.",
+"ru": "Мы никуда не спешим.",
+"uk": "Ми нікуди не поспішаємо.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "ci",
+"distractors": [
+"la",
+"mi",
+"vi",
+"gli",
+"ti"
+]
+},
+{
+"correct": "affrettiamo",
+"distractors": [
+"asciughiamo",
+"corichiamo",
+"svegliano",
+"specchio",
+"indirizzo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:34",
+"target": "Non si riposa mai?",
+"ru": "Вы никогда не отдыхаете?",
+"uk": "Ви ніколи не відпочиваєте?",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"le",
+"la",
+"ci",
+"ti",
+"il"
+]
+},
+{
+"correct": "riposa",
+"distractors": [
+"mia",
+"stessa",
+"ora",
+"finestra",
+"faccia"
+]
+},
+{
+"correct": "mai",
+"distractors": [
+"già",
+"più",
+"ancora",
+"po’",
+"molto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:35",
+"target": "Non si rade la domenica.",
+"ru": "Он не бреется по воскресеньям.",
+"uk": "Він не голиться по неділях.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"ti",
+"gli",
+"ci",
+"il",
+"le"
+]
+},
+{
+"correct": "rade",
+"distractors": [
+"deve",
+"notte",
+"essere",
+"veste",
+"andare"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"mi",
+"un",
+"che"
+]
+},
+{
+"correct": "domenica",
+"distractors": [
+"chiama",
+"finestra",
+"sveglia",
+"sera",
+"corica"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:36",
+"target": "Ho intenzione di riposarmi.",
+"ru": "Я собираюсь отдохнуть.",
+"uk": "Я збираюся відпочити.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hanno",
+"Hai",
+"Avete"
+]
+},
+{
+"correct": "intenzione",
+"distractors": [
+"velocemente",
+"accorge",
+"sedersi",
+"vestite",
+"arrivare"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "riposarmi",
+"distractors": [
+"svegli",
+"capelli",
+"sedersi",
+"alzarsi",
+"guardi"
+]
+}
+],
+"alternatives": [
+"Io ho intenzione di riposarmi."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:37",
+"target": "Ti prepari qui.",
+"ru": "Ты собираешься здесь.",
+"uk": "Ти збираєшся тут.",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Si",
+"Vi",
+"Ci",
+"Il"
+]
+},
+{
+"correct": "prepari",
+"distractors": [
+"prepara",
+"preparo",
+"prepariamo",
+"preparate",
+"borsa"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu ti prepari qui.",
+"Ti prepari qua.",
+"Tu ti prepari qua."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:38",
+"target": "Deve alzarsi presto.",
+"ru": "Ей нужно рано вставать.",
+"uk": "Їй треба рано вставати.",
+"tiles": [
+{
+"correct": "Deve",
+"distractors": [
+"Devo",
+"Dobbiamo",
+"Devono",
+"Vuole",
+"Vorrei"
+]
+},
+{
+"correct": "alzarsi",
+"distractors": [
+"bambini",
+"denti",
+"svegli",
+"riposarmi",
+"mani"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"stasera",
+"spesso",
+"oggi",
+"ieri"
+]
+}
+],
+"alternatives": [
+"Si deve alzare presto."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:39",
+"target": "Possiamo sederci qui.",
+"ru": "Мы можем сесть здесь.",
+"uk": "Ми можемо посидіти тут.",
+"tiles": [
+{
+"correct": "Possiamo",
+"distractors": [
+"Può",
+"Posso",
+"Puoi",
+"Potete",
+"Possono"
+]
+},
+{
+"correct": "sederci",
+"distractors": [
+"davanti",
+"denti",
+"bambini",
+"alzarsi",
+"riposarmi"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Noi possiamo sederci qui.",
+"Possiamo sederci qua.",
+"Ci possiamo sedere qui.",
+"Noi possiamo sederci qua.",
+"Ci possiamo sedere qua."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:40",
+"target": "Vuole sedersi vicino alla finestra?",
+"ru": "Хотите сесть у окна?",
+"uk": "Хочете сісти біля вікна?",
+"tiles": [
+{
+"correct": "Vuole",
+"distractors": [
+"Voglio",
+"Vogliamo",
+"Deve",
+"Vorrei",
+"Maglione"
+]
+},
+{
+"correct": "sedersi",
+"distractors": [
+"guardi",
+"davanti",
+"vesti",
+"mani",
+"ricordi"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"prepara",
+"passeggiata",
+"domenica",
+"doccia",
+"riposa"
+]
+}
+],
+"alternatives": [
+"Si vuole sedere vicino alla finestra?"
+]
+},
+{
+"lesson": 17,
+"id": "it:17:41",
+"target": "Mi sbrigo per arrivare al lavoro.",
+"ru": "Я тороплюсь, чтобы успеть на работу.",
+"uk": "Я поспішаю, щоб встигнути на роботу.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Ci",
+"Si",
+"Le",
+"Ti"
+]
+},
+{
+"correct": "sbrigo",
+"distractors": [
+"vicino",
+"radio",
+"museo",
+"qui",
+"fuori"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"a",
+"in",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "arrivare",
+"distractors": [
+"vuole",
+"vestite",
+"intenzione",
+"notte",
+"andare"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"lavori",
+"lavoriamo",
+"lavorano",
+"lavorate",
+"posti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:42",
+"target": "Si fa una passeggiata nel parco.",
+"ru": "Она гуляет в парке.",
+"uk": "Вона гуляє парком.",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"La",
+"Mi",
+"Ci",
+"Le",
+"Vi"
+]
+},
+{
+"correct": "fa",
+"distractors": [
+"faccio",
+"facciamo",
+"fai",
+"faccia",
+"biglietto"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "passeggiata",
+"distractors": [
+"svegliano",
+"alza",
+"camera",
+"domenica",
+"finestra"
+]
+},
+{
+"correct": "nel",
+"distractors": [
+"nella",
+"nei",
+"negli",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "parco",
+"distractors": [
+"alzo",
+"vesto",
+"binario",
+"mattino",
+"specchio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:43",
+"target": "Ci incontriamo davanti al museo.",
+"ru": "Мы встречаемся перед музеем.",
+"uk": "Ми зустрічаємося перед музеєм.",
+"tiles": [
+{
+"correct": "Ci",
+"distractors": [
+"La",
+"Mi",
+"Ti",
+"Le",
+"Il"
+]
+},
+{
+"correct": "incontriamo",
+"distractors": [
+"sveglio",
+"corichiamo",
+"affrettiamo",
+"sbagliato",
+"svegliamo"
+]
+},
+{
+"correct": "davanti",
+"distractors": [
+"mani",
+"ricordi",
+"sederci",
+"riposarmi",
+"capelli"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"sbrigo",
+"alzano",
+"meglio",
+"possiamo",
+"radio"
+]
+}
+],
+"alternatives": [
+"Noi ci incontriamo davanti al museo."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:44",
+"target": "Ti ricordi questo indirizzo?",
+"ru": "Ты помнишь этот адрес?",
+"uk": "Ти пам’ятаєш цю адресу?",
+"tiles": [
+{
+"correct": "Ti",
+"distractors": [
+"La",
+"Mi",
+"Ci",
+"Si",
+"Il"
+]
+},
+{
+"correct": "ricordi",
+"distractors": [
+"mani",
+"davanti",
+"capelli",
+"vesti",
+"riposarmi"
+]
+},
+{
+"correct": "questo",
+"distractors": [
+"svegliano",
+"vesto",
+"svegliamo",
+"qui",
+"vicino"
+]
+},
+{
+"correct": "indirizzo",
+"distractors": [
+"affrettiamo",
+"sbagliato",
+"corichiamo",
+"sveglio",
+"binario"
+]
+}
+],
+"alternatives": [
+"Tu ti ricordi questo indirizzo?"
+]
+},
+{
+"lesson": 17,
+"id": "it:17:45",
+"target": "Come si chiama il tuo vicino?",
+"ru": "Как зовут твоего соседа?",
+"uk": "Як звати твого сусіда?",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Che",
+"Quando",
+"Se",
+"Mentre",
+"Perché"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"mi",
+"ci",
+"ti",
+"le"
+]
+},
+{
+"correct": "chiama",
+"distractors": [
+"finestra",
+"domenica",
+"borsa",
+"questa",
+"camera"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"lo",
+"che"
+]
+},
+{
+"correct": "tuo",
+"distractors": [
+"sua",
+"mia",
+"miei",
+"mio",
+"suo"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"lì",
+"qui",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:46",
+"target": "Mi chiamo Marie.",
+"ru": "Меня зовут Мари.",
+"uk": "Мене звати Марі.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Gli",
+"Le",
+"Ci",
+"Il"
+]
+},
+{
+"correct": "chiamo",
+"distractors": [
+"mattino",
+"sbrigo",
+"svegliano",
+"divertono",
+"lavano"
+]
+},
+{
+"correct": "Marie",
+"distractors": [
+"Paolo",
+"Lea",
+"Luis",
+"Ana",
+"Anna"
+]
+}
+],
+"alternatives": [
+"Io mi chiamo Marie."
+]
+},
+{
+"lesson": 17,
+"id": "it:17:47",
+"target": "I bambini si divertono in giardino.",
+"ru": "Дети веселятся в саду.",
+"uk": "Діти розважаються в саду.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Lo",
+"Gli"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"prepari",
+"vesti",
+"capelli",
+"sederci",
+"denti"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"mi",
+"gli",
+"il",
+"le"
+]
+},
+{
+"correct": "divertono",
+"distractors": [
+"corichiamo",
+"meglio",
+"sbagliato",
+"lavoro",
+"sveglio"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"su"
+]
+},
+{
+"correct": "giardino",
+"distractors": [
+"corichiamo",
+"parco",
+"specchio",
+"binario",
+"vesto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:48",
+"target": "Si sente meglio?",
+"ru": "Вам лучше?",
+"uk": "Вам краще?",
+"tiles": [
+{
+"correct": "Si",
+"distractors": [
+"Ci",
+"La",
+"Ti",
+"Mi",
+"Il"
+]
+},
+{
+"correct": "sente",
+"distractors": [
+"rade",
+"notte",
+"uscire",
+"alle",
+"andare"
+]
+},
+{
+"correct": "meglio",
+"distractors": [
+"sbagliato",
+"sbrigo",
+"mattino",
+"radio",
+"parco"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:49",
+"target": "Paolo si accorge di essere sul binario sbagliato.",
+"ru": "Паоло замечает, что стоит не на том пути.",
+"uk": "Паоло зауважує, що стоїть не на тому шляху.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"gli",
+"mi",
+"ti",
+"il"
+]
+},
+{
+"correct": "accorge",
+"distractors": [
+"notte",
+"arrivare",
+"uscire",
+"alzate",
+"andare"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "essere",
+"distractors": [
+"me",
+"vuole",
+"deve",
+"veste",
+"rade"
+]
+},
+{
+"correct": "sul",
+"distractors": [
+"sulla",
+"sullo",
+"borsa",
+"giacca",
+"mappa"
+]
+},
+{
+"correct": "binario",
+"distractors": [
+"divertono",
+"sbrigo",
+"specchio",
+"mattino",
+"indirizzo"
+]
+},
+{
+"correct": "sbagliato",
+"distractors": [
+"divertono",
+"svegliamo",
+"sveglio",
+"svegliano",
+"sbrigo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "it:17:50",
+"target": "Mi cambio dopo il lavoro.",
+"ru": "Я переодеваюсь после работы.",
+"uk": "Я переодягаюся після роботи.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Ti",
+"Ci",
+"Si",
+"Le"
+]
+},
+{
+"correct": "cambio",
+"distractors": [
+"meglio",
+"radio",
+"mattino",
+"cambiato",
+"vesto"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"lo",
+"le",
+"che"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"lavori",
+"lavoriamo",
+"lavorate",
+"lavorano",
+"posti"
+]
+}
+],
+"alternatives": [
+"Io mi cambio dopo il lavoro."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:01",
+"target": "Ho chiuso la porta.",
+"ru": "Я закрыл дверь.",
+"uk": "Я зачинив двері.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hanno",
+"Hai",
+"Avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"aperte",
+"chiusi",
+"chiuse"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"porti",
+"casa",
+"borsa",
+"strada",
+"cena"
+]
+}
+],
+"alternatives": [
+"Io ho chiuso la porta."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:02",
+"target": "Hai chiuso la porta.",
+"ru": "Ты закрыл дверь.",
+"uk": "Ти зачинив двері.",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperto",
+"aperta",
+"chiuse",
+"chiusi",
+"aperte"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"che",
+"e"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"porti",
+"casa",
+"borsa",
+"strada",
+"cena"
+]
+}
+],
+"alternatives": [
+"Tu hai chiuso la porta."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:03",
+"target": "Lei ha chiuso la finestra.",
+"ru": "Она закрыла окно.",
+"uk": "Вона зачинила вікно.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Lui",
+"Io",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperto",
+"chiusi",
+"chiuse",
+"aperti",
+"aperta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"gli",
+"mi"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"sciarpa",
+"busta",
+"bottiglia",
+"borsa",
+"partenza"
+]
+}
+],
+"alternatives": [
+"Ha chiuso la finestra."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:04",
+"target": "Abbiamo chiuso il negozio.",
+"ru": "Мы закрыли магазин.",
+"uk": "Ми зачинили магазин.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperto",
+"aperta",
+"chiusi",
+"aperti",
+"chiuse"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"uno",
+"le",
+"che"
+]
+},
+{
+"correct": "negozio",
+"distractors": [
+"firmato",
+"scelto",
+"lavato",
+"letto",
+"prenotato"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo chiuso il negozio."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:05",
+"target": "Avete chiuso il garage.",
+"ru": "Вы закрыли гараж.",
+"uk": "Ви закрили гараж.",
+"tiles": [
+{
+"correct": "Avete",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Sei",
+"Siamo",
+"Sono"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"aperti",
+"aperte",
+"sono"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"lo",
+"una",
+"gli",
+"i"
+]
+},
+{
+"correct": "garage",
+"distractors": [
+"lavorare",
+"sedie",
+"insieme",
+"chiedere",
+"stazione"
+]
+}
+],
+"alternatives": [
+"Voi avete chiuso il garage."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:06",
+"target": "Hanno chiuso la sala.",
+"ru": "Они закрыли зал.",
+"uk": "Вони закрили зал.",
+"tiles": [
+{
+"correct": "Hanno",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Abbiamo",
+"Avete"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperto",
+"aperta",
+"aperte",
+"chiusi",
+"chiuse"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"un",
+"che"
+]
+},
+{
+"correct": "sala",
+"distractors": [
+"tavola",
+"un’ora",
+"bottiglia",
+"zuppa",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Loro hanno chiuso la sala."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:07",
+"target": "Ho comprato del pane.",
+"ru": "Я купил хлеб.",
+"uk": "Я купив хліб.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "comprato",
+"distractors": [
+"dimenticato",
+"apparecchiato",
+"campanello",
+"messaggio",
+"visto"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"grazie",
+"sedie",
+"nome",
+"insieme",
+"badge"
+]
+}
+],
+"alternatives": [
+"Io ho comprato del pane."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:08",
+"target": "Paolo ha comprato del caffè.",
+"ru": "Паоло купил кофе.",
+"uk": "Паоло купив каву.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "comprato",
+"distractors": [
+"fatto",
+"annullato",
+"riparato",
+"succo",
+"sportello"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"dimenticato",
+"biglietti",
+"ricevuta",
+"tavola",
+"ieri"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:09",
+"target": "Abbiamo comprato due biglietti.",
+"ru": "Мы купили два билета.",
+"uk": "Ми купили два квитки.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "comprato",
+"distractors": [
+"visto",
+"finito",
+"regalo",
+"conservato",
+"scelto"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"tre",
+"otto",
+"dieci",
+"nove",
+"cinque"
+]
+},
+{
+"correct": "biglietti",
+"distractors": [
+"istruzioni",
+"mia",
+"chiavi",
+"mio",
+"sua"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo comprato due biglietti."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:10",
+"target": "Lei ha comprato una sciarpa.",
+"ru": "Она купила шарф.",
+"uk": "Вона купила шарф.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Loro",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "comprato",
+"distractors": [
+"conto",
+"cambiato",
+"sportello",
+"lasciato",
+"riparato"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "sciarpa",
+"distractors": [
+"mela",
+"pila",
+"bottiglia",
+"finestra",
+"tavola"
+]
+}
+],
+"alternatives": [
+"Ha comprato una sciarpa."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:11",
+"target": "Ho prenotato un tavolo.",
+"ru": "Я забронировал столик.",
+"uk": "Я забронював столик.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Hai",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "prenotato",
+"distractors": [
+"condiviso",
+"l’ombrello",
+"chiedere",
+"conservato",
+"pagato"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"i",
+"la",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "tavolo",
+"distractors": [
+"conto",
+"lasciato",
+"regalo",
+"riparato",
+"riempito"
+]
+}
+],
+"alternatives": [
+"Io ho prenotato un tavolo."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:12",
+"target": "Hai prenotato una stanza.",
+"ru": "Ты забронировал номер.",
+"uk": "Ти забронював номер.",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "prenotato",
+"distractors": [
+"conservato",
+"controllato",
+"lavato",
+"pagato",
+"campanello"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"cintura",
+"maglietta",
+"bottiglia",
+"sciarpa",
+"mela"
+]
+}
+],
+"alternatives": [
+"Tu hai prenotato una stanza."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:13",
+"target": "Lui ha pagato il conto.",
+"ru": "Он оплатил счет.",
+"uk": "Він оплатив рахунок.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Voi",
+"Noi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "pagato",
+"distractors": [
+"comprato",
+"dimenticato",
+"messaggio",
+"aspettato",
+"firmato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "conto",
+"distractors": [
+"letto",
+"lasciato",
+"riparato",
+"tavolo",
+"foto"
+]
+}
+],
+"alternatives": [
+"Ha pagato il conto."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:14",
+"target": "Abbiamo incartato il regalo insieme.",
+"ru": "Мы вместе завернули подарок.",
+"uk": "Ми разом загорнули подарунок.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "incartato",
+"distractors": [
+"non",
+"mezzogiorno",
+"l’indirizzo",
+"riempito",
+"sportello"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"lo",
+"che"
+]
+},
+{
+"correct": "regalo",
+"distractors": [
+"condiviso",
+"lasciato",
+"chiuso",
+"cambiato",
+"capito"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"pane",
+"garage",
+"lavorare",
+"nome",
+"badge"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo incartato il regalo insieme."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:15",
+"target": "Ha conservato la ricevuta.",
+"ru": "Вы сохранили чек.",
+"uk": "Ви зберегли чек.",
+"tiles": [
+{
+"correct": "Ha",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Il",
+"Un",
+"I"
+]
+},
+{
+"correct": "conservato",
+"distractors": [
+"preso",
+"pagato",
+"scelto",
+"letto",
+"lasciato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"le",
+"che"
+]
+},
+{
+"correct": "ricevuta",
+"distractors": [
+"porta",
+"garage",
+"porti",
+"casa",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Hai conservato la ricevuta."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:16",
+"target": "Hanno condiviso un taxi.",
+"ru": "Они ехали в одном такси.",
+"uk": "Вони їхали на спільному таксі.",
+"tiles": [
+{
+"correct": "Hanno",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Abbiamo",
+"Avete"
+]
+},
+{
+"correct": "condiviso",
+"distractors": [
+"comprato",
+"tavolo",
+"l’ombrello",
+"pagato",
+"l’indirizzo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "taxi",
+"distractors": [
+"lei",
+"chiavi",
+"qui",
+"chi",
+"ieri"
+]
+}
+],
+"alternatives": [
+"Loro hanno condiviso un taxi."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:17",
+"target": "Ho dimenticato l’ombrello.",
+"ru": "Я забыл зонт.",
+"uk": "Я забув парасольку.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"aspettato",
+"serratura",
+"della",
+"cambiato",
+"annullato"
+]
+},
+{
+"correct": "l’ombrello",
+"distractors": [
+"fascicolo",
+"assaggiato",
+"riposto",
+"incartato",
+"pagato"
+]
+}
+],
+"alternatives": [
+"Io ho dimenticato l’ombrello."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:18",
+"target": "Lei ha trovato le chiavi.",
+"ru": "Она нашла свои ключи.",
+"uk": "Вона знайшла свої ключі.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Io",
+"Tu",
+"Loro",
+"Voi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "trovato",
+"distractors": [
+"non",
+"sciarpa",
+"dimenticato",
+"inviato",
+"sportello"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"un",
+"la",
+"mi",
+"che"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"biglietti",
+"istruzioni",
+"qui",
+"taxi",
+"fuori"
+]
+}
+],
+"alternatives": [
+"Ha trovato le chiavi."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:19",
+"target": "Lui ha lasciato il cappotto qui.",
+"ru": "Он оставил здесь своё пальто.",
+"uk": "Він залишив тут своє пальто.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Io",
+"Loro",
+"Tu",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "lasciato",
+"distractors": [
+"rotto",
+"aspettato",
+"condiviso",
+"campanello",
+"riparato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"una",
+"che"
+]
+},
+{
+"correct": "cappotto",
+"distractors": [
+"bevuto",
+"campanello",
+"messaggio",
+"capito",
+"riparato"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Ha lasciato il cappotto qui.",
+"Lui ha lasciato il cappotto qua.",
+"Ha lasciato il cappotto qua."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:20",
+"target": "Abbiamo riposto le sedie.",
+"ru": "Мы убрали стулья.",
+"uk": "Ми прибрали стільці.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "riposto",
+"distractors": [
+"telefono",
+"campanello",
+"l’ombrello",
+"sentito",
+"treno"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"il",
+"mi",
+"i",
+"che"
+]
+},
+{
+"correct": "sedie",
+"distractors": [
+"insieme",
+"pane",
+"nome",
+"grazie",
+"badge"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo riposto le sedie."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:21",
+"target": "Ho preso il treno.",
+"ru": "Я поехал на поезде.",
+"uk": "Я поїхав поїздом.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Hai",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "preso",
+"distractors": [
+"riposto",
+"ricevuto",
+"dimenticato",
+"lasciato",
+"cambiato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"uno",
+"che"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"numero",
+"risposto",
+"comprato",
+"firmato",
+"scelto"
+]
+}
+],
+"alternatives": [
+"Io ho preso il treno."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:22",
+"target": "Hai preso la mia borsa?",
+"ru": "Ты взял мою сумку?",
+"uk": "Ти взяв мою сумку?",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "preso",
+"distractors": [
+"telefono",
+"tavolo",
+"detto",
+"riempito",
+"rotto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"si",
+"ci",
+"che"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"sua",
+"nostre",
+"suo",
+"nostra",
+"tua"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"mela",
+"sala",
+"della",
+"zuppa",
+"ricevuta"
+]
+}
+],
+"alternatives": [
+"Tu hai preso la mia borsa?"
+]
+},
+{
+"lesson": 18,
+"id": "it:18:23",
+"target": "Lea ha letto il messaggio.",
+"ru": "Леа прочитала сообщение.",
+"uk": "Леа прочитала повідомлення.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "letto",
+"distractors": [
+"fatto",
+"capito",
+"pagato",
+"risposto",
+"riempito"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"lasciato",
+"prenotato",
+"regalo",
+"l’indirizzo",
+"assaggiato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:24",
+"target": "Abbiamo visto il film.",
+"ru": "Мы посмотрели фильм.",
+"uk": "Ми подивилися фільм.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "visto",
+"distractors": [
+"conto",
+"inviato",
+"trovato",
+"sentito",
+"incartato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"finito",
+"regalo",
+"qui",
+"negozio",
+"ricevuta"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo visto il film."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:25",
+"target": "Hanno bevuto il succo di mela.",
+"ru": "Они выпили яблочный сок.",
+"uk": "Вони випили яблучний сік.",
+"tiles": [
+{
+"correct": "Hanno",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hai",
+"Avete"
+]
+},
+{
+"correct": "bevuto",
+"distractors": [
+"porta",
+"lavato",
+"condiviso",
+"riposto",
+"detto"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"gli",
+"le",
+"che"
+]
+},
+{
+"correct": "succo",
+"distractors": [
+"scritto",
+"messaggio",
+"campanello",
+"cambiato",
+"pacco"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "mela",
+"distractors": [
+"un’ora",
+"cintura",
+"zuppa",
+"della",
+"camera"
+]
+}
+],
+"alternatives": [
+"Loro hanno bevuto il succo di mela."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:26",
+"target": "Ha scritto il suo nome?",
+"ru": "Вы написали своё имя?",
+"uk": "Ви написали своє ім’я?",
+"tiles": [
+{
+"correct": "Ha",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Un",
+"I",
+"Le"
+]
+},
+{
+"correct": "scritto",
+"distractors": [
+"capito",
+"aspettato",
+"annullato",
+"succo",
+"regalo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"una",
+"la",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"mie",
+"tua",
+"tuo",
+"mio",
+"mia"
+]
+},
+{
+"correct": "nome",
+"distractors": [
+"pane",
+"sedie",
+"garage",
+"grazie",
+"insieme"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:27",
+"target": "Ho ricevuto il pacco.",
+"ru": "Я получил посылку.",
+"uk": "Я отримав посилку.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "ricevuto",
+"distractors": [
+"grazie",
+"dimenticato",
+"apparecchiato",
+"messaggio",
+"succo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "pacco",
+"distractors": [
+"chiuso",
+"campanello",
+"fatto",
+"comprato",
+"riparato"
+]
+}
+],
+"alternatives": [
+"Io ho ricevuto il pacco."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:28",
+"target": "Lei ha fatto una copia.",
+"ru": "Она сделала копию.",
+"uk": "Вона зробила копію.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "fatto",
+"distractors": [
+"lavato",
+"inviato",
+"comprato",
+"riposto",
+"succo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "copia",
+"distractors": [
+"mela",
+"camera",
+"partenza",
+"tavola",
+"pila"
+]
+}
+],
+"alternatives": [
+"Ha fatto una copia."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:29",
+"target": "Ha apparecchiato la tavola.",
+"ru": "Он накрыл стол.",
+"uk": "Він накрив на стіл.",
+"tiles": [
+{
+"correct": "Ha",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "apparecchiato",
+"distractors": [
+"controllato",
+"dimenticato",
+"trovato",
+"riempito",
+"inviato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"mi",
+"si",
+"che"
+]
+},
+{
+"correct": "tavola",
+"distractors": [
+"sala",
+"bottiglia",
+"consegna",
+"un’ora",
+"cintura"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:30",
+"target": "Abbiamo detto grazie.",
+"ru": "Мы сказали спасибо.",
+"uk": "Ми подякували.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "detto",
+"distractors": [
+"risposto",
+"dimenticato",
+"firmato",
+"ricevuto",
+"comprato"
+]
+},
+{
+"correct": "grazie",
+"distractors": [
+"garage",
+"pane",
+"bicchiere",
+"nome",
+"badge"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo detto grazie."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:31",
+"target": "Non ho sentito il campanello.",
+"ru": "Я не слышал звонка в дверь.",
+"uk": "Я не чув дзвінка у двері.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"hai",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "sentito",
+"distractors": [
+"dimenticato",
+"inviato",
+"stanza",
+"messaggio",
+"preso"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "campanello",
+"distractors": [
+"comprato",
+"annullato",
+"prenotato",
+"assaggiato",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Io non ho sentito il campanello."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:32",
+"target": "Non hai risposto al telefono.",
+"ru": "Ты не ответил на звонок.",
+"uk": "Ти не відповів на дзвінок.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "hai",
+"distractors": [
+"ha",
+"ho",
+"abbiamo",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "risposto",
+"distractors": [
+"letto",
+"preso",
+"firmato",
+"pagato",
+"lavato"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"letto",
+"firmato",
+"negozio",
+"sentito",
+"regalo"
+]
+}
+],
+"alternatives": [
+"Tu non hai risposto al telefono."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:33",
+"target": "Lei non ha trovato il suo badge.",
+"ru": "Она не нашла свой пропуск.",
+"uk": "Вона не знайшла своєї перепустки.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Io",
+"Loro",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"ancora",
+"mai",
+"po’"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "trovato",
+"distractors": [
+"rotto",
+"l’ombrello",
+"sportello",
+"aspettato",
+"controllato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"le",
+"uno",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"miei",
+"nostri",
+"nostre",
+"sue",
+"mia"
+]
+},
+{
+"correct": "badge",
+"distractors": [
+"pane",
+"sedie",
+"garage",
+"insieme",
+"chiedere"
+]
+}
+],
+"alternatives": [
+"Non ha trovato il suo badge."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:34",
+"target": "Non abbiamo dimenticato la cintura.",
+"ru": "Мы не забыли ремень.",
+"uk": "Ми не забули про ремінь.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "abbiamo",
+"distractors": [
+"ha",
+"ho",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"l’ombrello",
+"incartato",
+"conservato",
+"chiavi",
+"finito"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"si",
+"un",
+"che"
+]
+},
+{
+"correct": "cintura",
+"distractors": [
+"maglietta",
+"busta",
+"ricevuta",
+"pila",
+"zuppa"
+]
+}
+],
+"alternatives": [
+"Noi non abbiamo dimenticato la cintura."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:35",
+"target": "Non hanno capito le istruzioni.",
+"ru": "Они не поняли инструкции.",
+"uk": "Вони не зрозуміли інструкцій.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "hanno",
+"distractors": [
+"ha",
+"ho",
+"abbiamo",
+"hai",
+"avete"
+]
+},
+{
+"correct": "capito",
+"distractors": [
+"caffè",
+"ricevuto",
+"detto",
+"visto",
+"comprato"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"una",
+"ci",
+"si"
+]
+},
+{
+"correct": "istruzioni",
+"distractors": [
+"camera",
+"biglietti",
+"lasciato",
+"chiavi",
+"bambini"
+]
+}
+],
+"alternatives": [
+"Loro non hanno capito le istruzioni."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:36",
+"target": "Non ha ancora firmato.",
+"ru": "Вы еще не подписали.",
+"uk": "Ви ще не підписалися.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Mai",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"più",
+"mai",
+"po’",
+"molto"
+]
+},
+{
+"correct": "firmato",
+"distractors": [
+"film",
+"riposto",
+"rotto",
+"prenotato",
+"detto"
+]
+}
+],
+"alternatives": [
+"Non hai ancora firmato."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:37",
+"target": "Hai controllato l’indirizzo?",
+"ru": "Ты проверил адрес?",
+"uk": "Ти перевірив адресу?",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "controllato",
+"distractors": [
+"comprato",
+"risposto",
+"telefono",
+"preso",
+"messaggio"
+]
+},
+{
+"correct": "l’indirizzo",
+"distractors": [
+"riparato",
+"dimenticato",
+"mezzogiorno",
+"fascicolo",
+"biglietto"
+]
+}
+],
+"alternatives": [
+"Tu hai controllato l’indirizzo?"
+]
+},
+{
+"lesson": 18,
+"id": "it:18:38",
+"target": "Ha assaggiato la zuppa?",
+"ru": "Вы попробовали суп?",
+"uk": "Ви скуштували суп?",
+"tiles": [
+{
+"correct": "Ha",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Il",
+"Un",
+"I"
+]
+},
+{
+"correct": "assaggiato",
+"distractors": [
+"l’indirizzo",
+"risposto",
+"apparecchiato",
+"telefono",
+"comprato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"consegna",
+"busta",
+"borsa",
+"mela",
+"serratura"
+]
+}
+],
+"alternatives": [
+"Hai assaggiato la zuppa?"
+]
+},
+{
+"lesson": 18,
+"id": "it:18:39",
+"target": "Chi ha rotto il bicchiere?",
+"ru": "Кто разбил стакан?",
+"uk": "Хто розбив склянку?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quante",
+"Quale",
+"Quanto",
+"Quanti"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "rotto",
+"distractors": [
+"scelto",
+"finito",
+"preso",
+"pagato",
+"capito"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"una",
+"che"
+]
+},
+{
+"correct": "bicchiere",
+"distractors": [
+"insieme",
+"nome",
+"lavorare",
+"garage",
+"chiedere"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:40",
+"target": "Quando ha inviato il fascicolo?",
+"ru": "Когда вы отправили папку с документами?",
+"uk": "Коли ви надіслали папку з документами?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "inviato",
+"distractors": [
+"taxi",
+"tavolo",
+"assaggiato",
+"pagato",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "fascicolo",
+"distractors": [
+"chiuso",
+"sentito",
+"assaggiato",
+"riempito",
+"succo"
+]
+}
+],
+"alternatives": [
+"Quando hai inviato il fascicolo?"
+]
+},
+{
+"lesson": 18,
+"id": "it:18:41",
+"target": "Ieri ho lavato la maglietta.",
+"ru": "Вчера я постирал футболку.",
+"uk": "Вчора я виправ футболку.",
+"tiles": [
+{
+"correct": "Ieri",
+"distractors": [
+"Domani",
+"Spesso",
+"Stasera",
+"Presto",
+"Oggi"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "lavato",
+"distractors": [
+"dimenticato",
+"tavolo",
+"comprato",
+"succo",
+"ufficio"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"le",
+"si",
+"che"
+]
+},
+{
+"correct": "maglietta",
+"distractors": [
+"un’ora",
+"serratura",
+"cintura",
+"ricevuta",
+"pila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:42",
+"target": "Stamattina ha cambiato la pila.",
+"ru": "Сегодня утром она поменяла батарейку.",
+"uk": "Сьогодні вранці вона поміняла батарейку.",
+"tiles": [
+{
+"correct": "Stamattina",
+"distractors": [
+"Domani",
+"Stasera",
+"Spesso",
+"Presto",
+"Ieri"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "cambiato",
+"distractors": [
+"sportello",
+"apparecchiato",
+"qui",
+"fascicolo",
+"fuori"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"le",
+"i",
+"che"
+]
+},
+{
+"correct": "pila",
+"distractors": [
+"un’ora",
+"busta",
+"zuppa",
+"serratura",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:43",
+"target": "Paolo ha riparato la serratura.",
+"ru": "Паоло починил замок.",
+"uk": "Паоло полагодив замок.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "riparato",
+"distractors": [
+"pagato",
+"finito",
+"conservato",
+"incartato",
+"preso"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"che",
+"e"
+]
+},
+{
+"correct": "serratura",
+"distractors": [
+"tavola",
+"maglietta",
+"cintura",
+"bottiglia",
+"partenza"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:44",
+"target": "Abbiamo aspettato un’ora allo sportello.",
+"ru": "Мы прождали час у стойки.",
+"uk": "Ми чекали годину біля стійки.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "aspettato",
+"distractors": [
+"film",
+"capito",
+"dimenticato",
+"scelto",
+"mezzogiorno"
+]
+},
+{
+"correct": "un’ora",
+"distractors": [
+"mela",
+"bottiglia",
+"sala",
+"busta",
+"zuppa"
+]
+},
+{
+"correct": "allo",
+"distractors": [
+"al",
+"alle",
+"ai",
+"pane",
+"bene"
+]
+},
+{
+"correct": "sportello",
+"distractors": [
+"l’ombrello",
+"riempito",
+"scritto",
+"cappotto",
+"condiviso"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo aspettato un’ora allo sportello."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:45",
+"target": "Ho scritto il numero sulla busta.",
+"ru": "Я написала номер на конверте.",
+"uk": "Я написала номер на конверті.",
+"tiles": [
+{
+"correct": "Ho",
+"distractors": [
+"Ha",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "scritto",
+"distractors": [
+"fatto",
+"lasciato",
+"apparecchiato",
+"detto",
+"l’ombrello"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"i",
+"la",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "numero",
+"distractors": [
+"incartato",
+"negozio",
+"riposto",
+"bevuto",
+"posto"
+]
+},
+{
+"correct": "sulla",
+"distractors": [
+"sul",
+"borsa",
+"giacca",
+"mappa",
+"sorella"
+]
+},
+{
+"correct": "busta",
+"distractors": [
+"cintura",
+"camera",
+"tavola",
+"copia",
+"pila"
+]
+}
+],
+"alternatives": [
+"Io ho scritto il numero sulla busta."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:46",
+"target": "Hai dimenticato di chiedere il conto.",
+"ru": "Ты забыл попросить счёт.",
+"uk": "Ти забув попросити рахунок.",
+"tiles": [
+{
+"correct": "Hai",
+"distractors": [
+"Ha",
+"Ho",
+"Abbiamo",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "dimenticato",
+"distractors": [
+"sportello",
+"apparecchiato",
+"ricevuto",
+"mezzogiorno",
+"cappotto"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "chiedere",
+"distractors": [
+"grazie",
+"lavorare",
+"garage",
+"bicchiere",
+"sedie"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"uno",
+"che"
+]
+},
+{
+"correct": "conto",
+"distractors": [
+"letto",
+"lasciato",
+"riparato",
+"tavolo",
+"foto"
+]
+}
+],
+"alternatives": [
+"Tu hai dimenticato di chiedere il conto."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:47",
+"target": "Hanno annullato la consegna.",
+"ru": "Они отменили доставку.",
+"uk": "Вони скасували доставку.",
+"tiles": [
+{
+"correct": "Hanno",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Abbiamo",
+"Avete"
+]
+},
+{
+"correct": "annullato",
+"distractors": [
+"lasciato",
+"campanello",
+"dimenticato",
+"scelto",
+"inviato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"gli",
+"si",
+"ci",
+"che"
+]
+},
+{
+"correct": "consegna",
+"distractors": [
+"questa",
+"casa",
+"ferroviaria",
+"macchina",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Loro hanno annullato la consegna."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:48",
+"target": "Avete scelto la camera blu.",
+"ru": "Вы выбрали синюю комнату.",
+"uk": "Ви обрали синю кімнату.",
+"tiles": [
+{
+"correct": "Avete",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Sei",
+"Siamo",
+"Sono"
+]
+},
+{
+"correct": "scelto",
+"distractors": [
+"firmato",
+"chiuso",
+"visto",
+"rotto",
+"aspettato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"un",
+"ci",
+"che"
+]
+},
+{
+"correct": "camera",
+"distractors": [
+"sala",
+"partenza",
+"zuppa",
+"pila",
+"busta"
+]
+},
+{
+"correct": "blu",
+"distractors": [
+"sciarpa",
+"grazie",
+"stamattina",
+"domani",
+"stasera"
+]
+}
+],
+"alternatives": [
+"Voi avete scelto la camera blu."
+]
+},
+{
+"lesson": 18,
+"id": "it:18:49",
+"target": "Ha riempito la bottiglia prima della partenza.",
+"ru": "Она наполнила свою бутылку перед уходом.",
+"uk": "Вона наповнила свою пляшку перед тим, як піти.",
+"tiles": [
+{
+"correct": "Ha",
+"distractors": [
+"Ho",
+"Abbiamo",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "riempito",
+"distractors": [
+"ricevuta",
+"fascicolo",
+"pagato",
+"annullato",
+"assaggiato"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"che",
+"e"
+]
+},
+{
+"correct": "bottiglia",
+"distractors": [
+"maglietta",
+"stanza",
+"cintura",
+"sciarpa",
+"casa"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "partenza",
+"distractors": [
+"maglietta",
+"un’ora",
+"cintura",
+"zuppa",
+"tavola"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "it:18:50",
+"target": "Abbiamo finito di lavorare a mezzogiorno.",
+"ru": "Мы закончили работу в полдень.",
+"uk": "Ми закінчили роботу опівдні.",
+"tiles": [
+{
+"correct": "Abbiamo",
+"distractors": [
+"Ha",
+"Ho",
+"Hai",
+"Hanno",
+"Avete"
+]
+},
+{
+"correct": "finito",
+"distractors": [
+"firmato",
+"pacco",
+"incartato",
+"prenotato",
+"sportello"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "lavorare",
+"distractors": [
+"bicchiere",
+"pane",
+"sedie",
+"badge",
+"grazie"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"su",
+"da",
+"sotto"
+]
+},
+{
+"correct": "mezzogiorno",
+"distractors": [
+"controllato",
+"assaggiato",
+"fascicolo",
+"condiviso",
+"telefono"
+]
+}
+],
+"alternatives": [
+"Noi abbiamo finito di lavorare a mezzogiorno."
+]
+}
+]

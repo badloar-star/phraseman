@@ -201,10 +201,15 @@
       "es": "despejado"
     },
     "being": {
-      "ru": "слово-помощник: сейчас происходит; по-русски нет",
-      "uk": "слово-помічник: зараз відбувається; українською немає",
-      "en": "helper word for something happening now",
-      "es": "palabra auxiliar (siendo, estando)"
+      "ru": "Лифт ремонтируют на этой неделе (is ___ repaired this week)",
+      "uk": "Ліфт ремонтують цього тижня (is ___ repaired this week)",
+      "en": "The lift is under repair this week (is ___ repaired this week)",
+      "es": "Están reparando el ascensor esta semana (is ___ repaired this week)",
+      "pt-BR": "Estão consertando o elevador nesta semana (is ___ repaired this week)",
+      "vi": "Thang máy đang được sửa trong tuần này (is ___ repaired this week)",
+      "id": "Lift sedang diperbaiki minggu ini (is ___ repaired this week)",
+      "tr": "Asansör bu hafta tamir ediliyor (is ___ repaired this week)",
+      "pl": "W tym tygodniu trwa naprawa windy (is ___ repaired this week)"
     },
     "resurfaced": {
       "ru": "заново заасфальтированный",
@@ -213,10 +218,15 @@
       "es": "repavimentado"
     },
     "been": {
-      "ru": "слово-помощник; по-русски нет",
-      "uk": "слово-помічник; українською немає",
-      "en": "helper word for finished actions",
-      "es": "palabra auxiliar (sido, estado)"
+      "ru": "Сумки уже перенесли вниз (have ___ moved downstairs)",
+      "uk": "Сумки вже перенесли вниз (have ___ moved downstairs)",
+      "en": "The bags are already downstairs (have ___ moved downstairs)",
+      "es": "Ya han bajado las bolsas (have ___ moved downstairs)",
+      "pt-BR": "As bolsas já foram levadas para baixo (have ___ moved downstairs)",
+      "vi": "Túi đã được chuyển xuống tầng dưới (have ___ moved downstairs)",
+      "id": "Tasnya sudah dipindahkan ke bawah (have ___ moved downstairs)",
+      "tr": "Çantalar çoktan aşağıya taşındı (have ___ moved downstairs)",
+      "pl": "Torby są już na dole (have ___ moved downstairs)"
     },
     "moved": {
       "ru": "перенесённый, перемещённый",

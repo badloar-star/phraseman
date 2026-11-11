@@ -1,0 +1,93 @@
+[
+ {
+  "id": "lesson-29/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "«a different reservation» не соответствует ru «условие бронирования»; плюс лишние кавычки \" после `…`",
+  "fix": "With `wäre`, it's convenient to suggest a place, a different time or a booking condition. You're not stating that the room is available, but asking whether this option would be suitable."
+ },
+ {
+  "id": "lesson-29/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "The request `könnten Sie …?` retains the polite pronoun. To a friend, `könntest du`, to several friends, `könntet ihr`. Social distance and number remain part of the meaning."
+ },
+ {
+  "id": "lesson-29/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "With `würde`, the action comes at the end as an infinitive. Note the difference between the speaker's individual wish and a request for the interlocutor to perform an action."
+ },
+ {
+  "id": "lesson-29/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«спитати дозволи» — неверный падеж (нужно «дозволу»)",
+  "fix": "Щоб спитати дозволу в м'якій формі, стане в нагоді `dürfte`. Якщо важливо, чи дозволяють правила паркування, це точніше, ніж питання про вміння припаркуватися."
+ },
+ {
+  "id": "lesson-29/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«Рада ставить» — «рада» = совет-орган, нужно «Порада задає»",
+  "fix": "Порада задає іншу позицію: «на твоєму місці». Той, хто говорить, радить, але не наказує. `Lieber` показує перевагу між варіантами, а не ступінь граматичної ввічливості."
+ },
+ {
+  "id": "lesson-30/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "русизм «ставь»; обрыв «чи здогад реальності»",
+  "fix": "Якщо до перетворення відповіддю було б «так» чи «ні», у вкладеній частині став `ob`. Це не `wenn`: ми не оголошуємо умову, а з'ясовуємо, чи відповідає здогад дійсності."
+ },
+ {
+  "id": "lesson-30/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«становище каси» (положение=статус) вместо «розташування»",
+  "fix": "Початок може бути проханням або ввічливим питанням. Сам зміст однаковий: місце виходу, шлях, розташування каси. Знак у кінці залежить від повідомлення загалом, а не від наявності слова `wo`."
+ },
+ {
+  "id": "lesson-30/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "The beginning can be a request or a polite question. The content itself is the same: exit point, route, cash register location. The sign at the end depends on the entire message, not on the presence of the word `wo`."
+ },
+ {
+  "id": "lesson-30/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«привід» (повод) вместо «прийменник» — неверный термин",
+  "fix": "Запитальна група може містити іменник або прийменник. У виразі `an welcher Haltestelle` тримай усю групу на початку підрядного; не вставляй дієслово посередині."
+ },
+ {
+  "id": "lesson-30/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "The interrogative phrase can include a noun or a preposition. In the expression `an welcher Haltestelle`, keep the entire phrase at the beginning of the subordinate clause; don't insert the verb in the middle."
+ },
+ {
+  "id": "lesson-30/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«після спілки» (союз-организация) вместо «сполучника»; «про яку подробиці» — неверный падеж",
+  "fix": "Не кожне перше місце після сполучника належить предмету, про який запитують. Спочатку визнач, хто виконав дію і про яку подробицю йдеться, потім розстав інші частини."
+ },
+ {
+  "id": "lesson-30/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«не додай зайве запитання» — неверный императив и смысл (в ru «вопросительное слово»)",
+  "fix": "Перевірка на стійці реєстрації: прибери ввічливу рамку та склади коротке пряме питання. Потім поверни рамку та перебудуй порядок. Якщо запитуєш, чи є запис, не додавай зайве запитальне слово."
+ },
+ {
+  "id": "lesson-30/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "«Checking in at the front desk» не соответствует ru «Проверка (упражнение) на стойке регистрации»",
+  "fix": "A check at the reception desk: remove the polite frame and compose a short direct question. Then put the frame back and rearrange the order. If you're asking whether there's an appointment, don't add an extra question word."
+ }
+]

@@ -1,0 +1,4783 @@
+[
+{
+"lesson": 3,
+"id": "es:03:01",
+"target": "¿Estás en casa?",
+"ru": "Ты дома?",
+"uk": "Ти вдома?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Estoy",
+"Está",
+"Estamos",
+"Estáis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"desde",
+"para",
+"de",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermanos",
+"café",
+"hotel",
+"libro",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:02",
+"target": "¿Estás en clase?",
+"ru": "Ты на занятии?",
+"uk": "Ти на занятті?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Está",
+"Estamos",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"mesa",
+"libros",
+"bolso",
+"hermanas",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en clase?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:03",
+"target": "¿Estás cerca?",
+"ru": "Ты рядом?",
+"uk": "Ти поруч?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estamos",
+"Están",
+"Estáis",
+"Estoy"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"lejos",
+"aquí",
+"fuera",
+"dentro",
+"allí"
+]
+}
+],
+"alternatives": [
+"¿Tú estás cerca?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:04",
+"target": "¿Estás lejos?",
+"ru": "Ты далеко?",
+"uk": "Ти далеко?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Estoy",
+"Estamos",
+"Está",
+"Estáis"
+]
+},
+{
+"correct": "lejos",
+"distractors": [
+"fuera",
+"aquí",
+"cerca",
+"allí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"¿Tú estás lejos?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:05",
+"target": "¿Estás en la estación?",
+"ru": "Ты на станции?",
+"uk": "Ти на станції?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Está",
+"Estoy",
+"Están",
+"Estamos",
+"Estáis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"las",
+"el",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"pasaportes",
+"abrigos",
+"libro",
+"hermanas",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en la estación?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:06",
+"target": "¿Estamos cerca?",
+"ru": "Мы близко?",
+"uk": "Ми близько?",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Están",
+"Está",
+"Estáis",
+"Estoy",
+"Estás"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"fuera",
+"dentro",
+"allí",
+"aquí",
+"lejos"
+]
+}
+],
+"alternatives": [
+"¿Nosotras estamos cerca?",
+"¿Nosotros estamos cerca?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:07",
+"target": "¿Estoy cerca?",
+"ru": "Я близко?",
+"uk": "Я близько?",
+"tiles": [
+{
+"correct": "Estoy",
+"distractors": [
+"Estáis",
+"Está",
+"Están",
+"Estás",
+"Estamos"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"allí",
+"fuera",
+"aquí",
+"lejos",
+"dentro"
+]
+}
+],
+"alternatives": [
+"¿Yo estoy cerca?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:08",
+"target": "¿Estamos en la estación?",
+"ru": "Мы на станции?",
+"uk": "Ми на станції?",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Están",
+"Está",
+"Estoy",
+"Estáis",
+"Estás"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"hermanos",
+"café",
+"casa",
+"libro",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Nosotras estamos en la estación?",
+"¿Nosotros estamos en la estación?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:09",
+"target": "¿Estás en la tienda?",
+"ru": "Ты в магазине?",
+"uk": "Ти в магазині?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estamos",
+"Están",
+"Está",
+"Estoy",
+"Estáis"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"de",
+"para",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"los",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"casa",
+"hotel",
+"puerta",
+"coche",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en la tienda?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:10",
+"target": "¿Estás en la farmacia?",
+"ru": "Ты в аптеке?",
+"uk": "Ти в аптеці?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Estáis",
+"Están",
+"Está",
+"Estoy",
+"Estamos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"de",
+"con",
+"desde",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "farmacia",
+"distractors": [
+"puerta",
+"billetes",
+"aeropuerto",
+"coches",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en la farmacia?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:11",
+"target": "¿Está Ana en casa?",
+"ru": "Ана дома?",
+"uk": "Ана вдома?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Marta",
+"Pablo",
+"Elena",
+"Diego"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"por",
+"desde",
+"para",
+"de"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermana",
+"recepción",
+"hotel",
+"mochila",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"¿Ana está en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:12",
+"target": "¿Está Luis en casa?",
+"ru": "Луис дома?",
+"uk": "Луїс удома?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Diego",
+"Pablo",
+"Elena",
+"Marta"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"libros",
+"oficina",
+"agua",
+"mochila",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Luis está en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:13",
+"target": "¿Está Ana en clase?",
+"ru": "Ана на занятии?",
+"uk": "Ана на занятті?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Elena",
+"Marta",
+"Pablo",
+"Diego"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"desde",
+"de",
+"con",
+"para"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"móvil",
+"casa",
+"hermanos",
+"mochila",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Ana está en clase?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:14",
+"target": "¿Está Luis en la oficina?",
+"ru": "Луис в офисе?",
+"uk": "Луїс в офісі?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pablo",
+"Marta",
+"Diego",
+"Elena"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"desde",
+"para",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "oficina",
+"distractors": [
+"pasaporte",
+"clase",
+"hermanos",
+"casa",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"¿Luis está en la oficina?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:15",
+"target": "¿Está Ana aquí?",
+"ru": "Ана здесь?",
+"uk": "Ана тут?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Diego",
+"Elena",
+"Pablo",
+"Marta"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"fuera",
+"lejos",
+"allí",
+"dentro"
+]
+}
+],
+"alternatives": [
+"¿Ana está aquí?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:16",
+"target": "¿Está Luis dentro?",
+"ru": "Луис внутри?",
+"uk": "Луїс усередині?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Elena",
+"Diego",
+"Marta",
+"Pablo"
+]
+},
+{
+"correct": "dentro",
+"distractors": [
+"aquí",
+"cerca",
+"fuera",
+"allí",
+"lejos"
+]
+}
+],
+"alternatives": [
+"¿Luis está dentro?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:17",
+"target": "¿Está Ana fuera?",
+"ru": "Ана снаружи?",
+"uk": "Ана надворі?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pablo",
+"Elena",
+"Marta",
+"Diego"
+]
+},
+{
+"correct": "fuera",
+"distractors": [
+"dentro",
+"aquí",
+"lejos",
+"cerca",
+"allí"
+]
+}
+],
+"alternatives": [
+"¿Ana está fuera?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:18",
+"target": "¿Ana está en la cocina?",
+"ru": "Ана на кухне?",
+"uk": "Ана на кухні?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Marta",
+"Diego",
+"Elena",
+"Pablo"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"desde",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "cocina",
+"distractors": [
+"tienda",
+"casa",
+"hotel",
+"foto",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿Está Ana en la cocina?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:19",
+"target": "¿Luis está en el coche?",
+"ru": "Луис в машине?",
+"uk": "Луїс у машині?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Elena",
+"Diego",
+"Pablo",
+"Marta"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"foto",
+"casa",
+"llaves",
+"libro",
+"billete"
+]
+}
+],
+"alternatives": [
+"¿Está Luis en el coche?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:20",
+"target": "¿Están Ana y Luis en casa?",
+"ru": "Ана и Луис дома?",
+"uk": "Ана й Луїс удома?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"La",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Diego",
+"Elena",
+"Marta",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "y",
+"distractors": [
+"o",
+"ni",
+"pero",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Elena",
+"Pablo",
+"Marta",
+"Diego",
+"Quién"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"para",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"tren",
+"abrigos",
+"pasaporte",
+"mochila",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Ana y Luis están en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:21",
+"target": "¿Estáis en casa?",
+"ru": "Вы дома?",
+"uk": "Ви вдома?",
+"tiles": [
+{
+"correct": "Estáis",
+"distractors": [
+"Estamos",
+"Es",
+"Mi",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"por",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"gente",
+"maleta",
+"móvil",
+"mochila",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"¿Vosotras estáis en casa?",
+"¿Vosotros estáis en casa?",
+"¿Están en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:22",
+"target": "¿Están en casa?",
+"ru": "Вы дома?",
+"uk": "Ви вдома?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"La",
+"Los",
+"Una"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"bicicleta",
+"coche",
+"fotos",
+"hotel",
+"llaves"
+]
+}
+],
+"alternatives": [
+"¿Ustedes están en casa?",
+"¿Estáis en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:23",
+"target": "¿Está en casa?",
+"ru": "Вы дома?",
+"uk": "Ви вдома?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"de",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"foto",
+"bolso",
+"bicicleta",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿Usted está en casa?",
+"¿Estás en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:24",
+"target": "¿Estáis en la puerta?",
+"ru": "Вы у входа?",
+"uk": "Ви біля дверей?",
+"tiles": [
+{
+"correct": "Estáis",
+"distractors": [
+"Estamos",
+"Es",
+"Mi",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"para",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"coche",
+"recepción",
+"casa",
+"llaves",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Vosotras estáis en la puerta?",
+"¿Vosotros estáis en la puerta?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:25",
+"target": "¿Están en la puerta?",
+"ru": "Вы у входа?",
+"uk": "Ви біля входу?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Los",
+"Una",
+"El",
+"Eres"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"por",
+"con",
+"de",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "puerta",
+"distractors": [
+"hermanas",
+"fotos",
+"café",
+"llave",
+"llaves"
+]
+}
+],
+"alternatives": [
+"¿Ustedes están en la puerta?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:26",
+"target": "¿Estamos en la parada?",
+"ru": "Мы на остановке?",
+"uk": "Ми на зупинці?",
+"tiles": [
+{
+"correct": "Estamos",
+"distractors": [
+"Estás",
+"Están",
+"Estáis",
+"Estoy",
+"Está"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "parada",
+"distractors": [
+"maletas",
+"hotel",
+"agua",
+"mochila",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Nosotras estamos en la parada?",
+"¿Nosotros estamos en la parada?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:27",
+"target": "¿Estás en la parada?",
+"ru": "Ты на остановке?",
+"uk": "Ти на зупинці?",
+"tiles": [
+{
+"correct": "Estás",
+"distractors": [
+"Están",
+"Estáis",
+"Está",
+"Estamos",
+"Estoy"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"desde",
+"con",
+"de",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "parada",
+"distractors": [
+"mochila",
+"hermanas",
+"estación",
+"casa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Tú estás en la parada?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:28",
+"target": "¿La parada está cerca?",
+"ru": "Остановка рядом?",
+"uk": "Зупинка поруч?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Un",
+"Con",
+"Que",
+"Y"
+]
+},
+{
+"correct": "parada",
+"distractors": [
+"madre",
+"estación",
+"salida",
+"casa",
+"coche"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"dentro",
+"aquí",
+"allí",
+"fuera",
+"lejos"
+]
+}
+],
+"alternatives": [
+"¿Está la parada cerca?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:29",
+"target": "¿La estación está lejos?",
+"ru": "Станция далеко?",
+"uk": "Станція далеко?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Las",
+"Un",
+"Con",
+"Que",
+"Y"
+]
+},
+{
+"correct": "estación",
+"distractors": [
+"billete",
+"móvil",
+"casa",
+"hermanos",
+"coche"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "lejos",
+"distractors": [
+"aquí",
+"dentro",
+"fuera",
+"allí",
+"cerca"
+]
+}
+],
+"alternatives": [
+"¿Está la estación lejos?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:30",
+"target": "¿El hotel está cerca?",
+"ru": "Отель рядом?",
+"uk": "Готель поруч?",
+"tiles": [
+{
+"correct": "El",
+"distractors": [
+"Los",
+"Las",
+"Una",
+"La",
+"Con"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mochilas",
+"maletas",
+"casa",
+"mochila",
+"mesa"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"lejos",
+"fuera",
+"dentro",
+"aquí",
+"allí"
+]
+}
+],
+"alternatives": [
+"¿Está el hotel cerca?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:31",
+"target": "¿Está el móvil en casa?",
+"ru": "Телефон дома?",
+"uk": "Телефон удома?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"una",
+"los",
+"con"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"clase",
+"hermanos",
+"mochila",
+"hotel",
+"madre"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"por",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mochila",
+"libro",
+"hotel",
+"hermanas",
+"café"
+]
+}
+],
+"alternatives": [
+"¿El móvil está en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:32",
+"target": "¿Está la llave en casa?",
+"ru": "Ключ дома?",
+"uk": "Ключ удома?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"foto",
+"libro",
+"hotel",
+"hermanas",
+"hermanos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"desde",
+"de",
+"con",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"tienda",
+"mochila",
+"mochilas",
+"reloj",
+"leche"
+]
+}
+],
+"alternatives": [
+"¿La llave está en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:33",
+"target": "¿Están las llaves en casa?",
+"ru": "Ключи дома?",
+"uk": "Ключі вдома?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"La",
+"Los",
+"Una",
+"El"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"la",
+"tus",
+"mi",
+"un",
+"una"
+]
+},
+{
+"correct": "llaves",
+"distractors": [
+"móviles",
+"tren",
+"hermano",
+"mochila",
+"hotel"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermano",
+"puerta",
+"tienda",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿Las llaves están en casa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:34",
+"target": "¿Está el libro en la mesa?",
+"ru": "Книга на столе?",
+"uk": "Книжка на столі?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"pasaporte",
+"café",
+"casa",
+"hotel",
+"hermanos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "mesa",
+"distractors": [
+"fotos",
+"hotel",
+"casa",
+"hermanas",
+"puerta"
+]
+}
+],
+"alternatives": [
+"¿El libro está en la mesa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:35",
+"target": "¿Están los libros en la mesa?",
+"ru": "Книги на столе?",
+"uk": "Книжки на столі?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"Una",
+"El",
+"Eres"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"una",
+"tu",
+"las",
+"el",
+"con"
+]
+},
+{
+"correct": "libros",
+"distractors": [
+"hotel",
+"tienda",
+"estación",
+"casa",
+"hermanos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"desde",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "mesa",
+"distractors": [
+"mapa",
+"hotel",
+"foto",
+"abrigo",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Los libros están en la mesa?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:36",
+"target": "¿Están las llaves en la mochila?",
+"ru": "Ключи в рюкзаке?",
+"uk": "Ключі в рюкзаку?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"Los",
+"Una",
+"El"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"tus",
+"mi",
+"un",
+"con",
+"que"
+]
+},
+{
+"correct": "llaves",
+"distractors": [
+"madre",
+"hotel",
+"farmacia",
+"tienda",
+"casa"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"desde",
+"de",
+"para"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"café",
+"libros",
+"casa",
+"hotel",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Las llaves están en la mochila?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:37",
+"target": "¿Está el móvil en el bolso?",
+"ru": "Телефон в сумке?",
+"uk": "Телефон у сумці?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "móvil",
+"distractors": [
+"puerta",
+"hermanos",
+"casa",
+"hotel",
+"estación"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"por",
+"con",
+"de",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "bolso",
+"distractors": [
+"abrigo",
+"tienda",
+"clase",
+"parada",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿El móvil está en el bolso?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:38",
+"target": "¿El bolso está en el coche?",
+"ru": "Сумка в машине?",
+"uk": "Сумка в машині?",
+"tiles": [
+{
+"correct": "El",
+"distractors": [
+"Las",
+"Una",
+"La",
+"Con",
+"Que"
+]
+},
+{
+"correct": "bolso",
+"distractors": [
+"mapa",
+"cargador",
+"casa",
+"hermanos",
+"hotel"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"para",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"mesa",
+"foto",
+"estación",
+"hermana",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿Está el bolso en el coche?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:39",
+"target": "¿La mochila está en la oficina?",
+"ru": "Рюкзак в офисе?",
+"uk": "Рюкзак в офісі?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Las",
+"El",
+"Un",
+"Con"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"billetes",
+"leche",
+"casa",
+"hotel",
+"móvil"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"sin",
+"para",
+"de",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"las",
+"el",
+"los",
+"con"
+]
+},
+{
+"correct": "oficina",
+"distractors": [
+"hermanas",
+"hotel",
+"tren",
+"casa",
+"libro"
+]
+}
+],
+"alternatives": [
+"¿Está la mochila en la oficina?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:40",
+"target": "¿La llave está en el bolsillo?",
+"ru": "Ключ в кармане?",
+"uk": "Ключ у кишені?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Las",
+"Un",
+"Con",
+"Que"
+]
+},
+{
+"correct": "llave",
+"distractors": [
+"clase",
+"hermanos",
+"casa",
+"hermanas",
+"móvil"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"los",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "bolsillo",
+"distractors": [
+"abrigo",
+"agua",
+"abrigos",
+"casa",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿Está la llave en el bolsillo?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:41",
+"target": "¿Está el pasaporte en la mochila?",
+"ru": "Паспорт в рюкзаке?",
+"uk": "Паспорт у рюкзаку?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "pasaporte",
+"distractors": [
+"hotel",
+"bolsillo",
+"casa",
+"libro",
+"mesa"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"de",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"con",
+"que",
+"y",
+"por"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"clase",
+"oficina",
+"casa",
+"hotel",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿El pasaporte está en la mochila?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:42",
+"target": "¿Está el pasaporte en el bolso?",
+"ru": "Паспорт в сумке?",
+"uk": "Паспорт у сумці?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"la",
+"una",
+"con",
+"que"
+]
+},
+{
+"correct": "pasaporte",
+"distractors": [
+"salidas",
+"hermana",
+"farmacia",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"desde",
+"con",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"los",
+"una",
+"las",
+"la",
+"con"
+]
+},
+{
+"correct": "bolso",
+"distractors": [
+"oficina",
+"mesa",
+"casa",
+"hotel",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"¿El pasaporte está en el bolso?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:43",
+"target": "¿Está el billete en el bolsillo?",
+"ru": "Билет в кармане?",
+"uk": "Квиток у кишені?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "billete",
+"distractors": [
+"casa",
+"hotel",
+"coche",
+"clase",
+"madre"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "bolsillo",
+"distractors": [
+"salida",
+"casa",
+"coche",
+"hermanas",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿El billete está en el bolsillo?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:44",
+"target": "¿Están los billetes en el bolso?",
+"ru": "Билеты в сумке?",
+"uk": "Квитки в сумці?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"La",
+"Una",
+"Eres"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"tu",
+"una",
+"mi",
+"mis",
+"con"
+]
+},
+{
+"correct": "billetes",
+"distractors": [
+"libro",
+"llaves",
+"reloj",
+"casa",
+"coche"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"sin",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"una",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "bolso",
+"distractors": [
+"mochila",
+"tren",
+"casa",
+"hotel",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Los billetes están en el bolso?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:45",
+"target": "¿Están los pasaportes en el coche?",
+"ru": "Паспорта в машине?",
+"uk": "Паспорти в машині?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"Es",
+"La",
+"Una",
+"Eres"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"un",
+"su",
+"tus",
+"con",
+"que"
+]
+},
+{
+"correct": "pasaportes",
+"distractors": [
+"hermana",
+"azúcar",
+"casa",
+"estación",
+"hermanas"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"de",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "coche",
+"distractors": [
+"billete",
+"hotel",
+"hermanos",
+"casa",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Los pasaportes están en el coche?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:46",
+"target": "¿El hotel está aquí?",
+"ru": "Отель здесь?",
+"uk": "Готель тут?",
+"tiles": [
+{
+"correct": "El",
+"distractors": [
+"Una",
+"Las",
+"Los",
+"La",
+"Con"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"móvil",
+"billete",
+"cargador",
+"llave",
+"casa"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"dentro",
+"lejos",
+"cerca",
+"fuera"
+]
+}
+],
+"alternatives": [
+"¿Está el hotel aquí?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:47",
+"target": "¿La salida está allí?",
+"ru": "Выход вон там?",
+"uk": "Вихід он там?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Las",
+"El",
+"Con",
+"Que"
+]
+},
+{
+"correct": "salida",
+"distractors": [
+"hermana",
+"casa",
+"coche",
+"hotel",
+"billete"
+]
+},
+{
+"correct": "está",
+"distractors": [
+"estamos",
+"cuesta",
+"los",
+"una",
+"las"
+]
+},
+{
+"correct": "allí",
+"distractors": [
+"aquí",
+"dentro",
+"cerca",
+"lejos",
+"fuera"
+]
+}
+],
+"alternatives": [
+"¿Está la salida allí?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:48",
+"target": "¿Está Luis en la salida?",
+"ru": "Луис у выхода?",
+"uk": "Луїс біля виходу?",
+"tiles": [
+{
+"correct": "Está",
+"distractors": [
+"Estamos",
+"Es",
+"Cuesta",
+"Los",
+"Una"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pablo",
+"Diego",
+"Elena",
+"Marta"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"sin",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"con",
+"que"
+]
+},
+{
+"correct": "salida",
+"distractors": [
+"mochila",
+"hermanos",
+"casa",
+"móvil",
+"hotel"
+]
+}
+],
+"alternatives": [
+"¿Luis está en la salida?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:49",
+"target": "¿Están Ana y Luis en el hotel?",
+"ru": "Ана и Луис в отеле?",
+"uk": "Ана й Луїс у готелі?",
+"tiles": [
+{
+"correct": "Están",
+"distractors": [
+"Estamos",
+"La",
+"Los",
+"Una",
+"Eres"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Diego",
+"Marta",
+"Elena",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "y",
+"distractors": [
+"o",
+"ni",
+"pero",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Elena",
+"Diego",
+"Marta",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"por",
+"de",
+"para",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mochila",
+"oficina",
+"casa",
+"móvil",
+"hermanas"
+]
+}
+],
+"alternatives": [
+"¿Ana y Luis están en el hotel?"
+]
+},
+{
+"lesson": 3,
+"id": "es:03:50",
+"target": "¿Los pasaportes están en la mochila?",
+"ru": "Паспорта в рюкзаке?",
+"uk": "Паспорти в рюкзаку?",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Sus",
+"Un",
+"Tus",
+"El",
+"Con"
+]
+},
+{
+"correct": "pasaportes",
+"distractors": [
+"gente",
+"puerta",
+"farmacia",
+"casa",
+"tienda"
+]
+},
+{
+"correct": "están",
+"distractors": [
+"estamos",
+"somos",
+"es",
+"una",
+"el"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"por",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "mochila",
+"distractors": [
+"oficina",
+"hermano",
+"casa",
+"hotel",
+"móvil"
+]
+}
+],
+"alternatives": [
+"¿Están los pasaportes en la mochila?"
+]
+},
+{
+"lesson": 4,
+"id": "es:04:01",
+"target": "Soy Ana.",
+"ru": "Я Ана.",
+"uk": "Я Ана.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Somos",
+"Es",
+"Sois",
+"Son",
+"Eres"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pablo",
+"Elena",
+"Rosa",
+"Sara"
+]
+}
+],
+"alternatives": [
+"Yo soy Ana."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:02",
+"target": "Soy Luis.",
+"ru": "Я Луис.",
+"uk": "Я Луїс.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Sois",
+"Somos",
+"Son",
+"Eres"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Rosa",
+"Elena",
+"Pablo",
+"Sara"
+]
+}
+],
+"alternatives": [
+"Yo soy Luis."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:03",
+"target": "Soy médico.",
+"ru": "Я врач.",
+"uk": "Я лікар.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Somos",
+"Son",
+"Eres",
+"Sois"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"estudiantes",
+"profesores",
+"guía",
+"profesoras",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Yo soy médico."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:04",
+"target": "Soy médica.",
+"ru": "Я врач.",
+"uk": "Я лікарка.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Son",
+"Somos",
+"Sois",
+"Eres"
+]
+},
+{
+"correct": "médica",
+"distractors": [
+"estudiantes",
+"enfermera",
+"profesoras",
+"profesores",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Yo soy médica."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:05",
+"target": "Eres médico.",
+"ru": "Ты врач.",
+"uk": "Ти лікар.",
+"tiles": [
+{
+"correct": "Eres",
+"distractors": [
+"Soy",
+"Es",
+"Somos",
+"Son",
+"Sois"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"estudiantes",
+"profesora",
+"estudiante",
+"guías",
+"guía"
+]
+}
+],
+"alternatives": [
+"Tú eres médico."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:06",
+"target": "Eres médica.",
+"ru": "Ты врач (жен.).",
+"uk": "Ти лікарка.",
+"tiles": [
+{
+"correct": "Eres",
+"distractors": [
+"Soy",
+"Son",
+"Es",
+"Sois",
+"Somos"
+]
+},
+{
+"correct": "médica",
+"distractors": [
+"estudiantes",
+"médicas",
+"enfermera",
+"guías",
+"profesor"
+]
+}
+],
+"alternatives": [
+"Tú eres médica."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:07",
+"target": "Soy estudiante.",
+"ru": "Я студент.",
+"uk": "Я студент.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Son",
+"Sois",
+"Eres",
+"Somos"
+]
+},
+{
+"correct": "estudiante",
+"distractors": [
+"profesor",
+"médico",
+"enfermera",
+"médicos",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Yo soy estudiante."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:08",
+"target": "Eres estudiante.",
+"ru": "Ты студентка.",
+"uk": "Ти студентка.",
+"tiles": [
+{
+"correct": "Eres",
+"distractors": [
+"Son",
+"Somos",
+"Es",
+"Soy",
+"Sois"
+]
+},
+{
+"correct": "estudiante",
+"distractors": [
+"médico",
+"médica",
+"guía",
+"profesora",
+"profesores"
+]
+}
+],
+"alternatives": [
+"Tú eres estudiante."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:09",
+"target": "Soy profesor.",
+"ru": "Я преподаватель.",
+"uk": "Я викладач.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Eres",
+"Son",
+"Es",
+"Somos",
+"Sois"
+]
+},
+{
+"correct": "profesor",
+"distractors": [
+"médico",
+"enfermera",
+"estudiantes",
+"profesoras",
+"guías"
+]
+}
+],
+"alternatives": [
+"Yo soy profesor."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:10",
+"target": "Soy profesora.",
+"ru": "Я преподавательница.",
+"uk": "Я викладачка.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Son",
+"Somos",
+"Sois",
+"Eres"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"médico",
+"médica",
+"enfermero",
+"estudiantes",
+"enfermera"
+]
+}
+],
+"alternatives": [
+"Yo soy profesora."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:11",
+"target": "Ana es médica.",
+"ru": "Ана — врач.",
+"uk": "Ана — лікарка.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Elena",
+"Rosa",
+"Pablo",
+"Sara"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "médica",
+"distractors": [
+"guía",
+"guías",
+"enfermera",
+"enfermero",
+"profesora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:12",
+"target": "Luis es médico.",
+"ru": "Луис — врач.",
+"uk": "Луїс — лікар.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pablo",
+"Rosa",
+"Sara",
+"Elena"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"guía",
+"estudiante",
+"profesora",
+"guías",
+"profesoras"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:13",
+"target": "Ana es profesora.",
+"ru": "Ана — преподавательница.",
+"uk": "Ана — викладачка.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Rosa",
+"Sara",
+"Pablo",
+"Elena"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"enfermero",
+"médica",
+"estudiantes",
+"médico",
+"guía"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:14",
+"target": "Luis es profesor.",
+"ru": "Луис — преподаватель.",
+"uk": "Луїс — викладач.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Rosa",
+"Pablo",
+"Sara",
+"Elena"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "profesor",
+"distractors": [
+"guías",
+"guía",
+"médico",
+"estudiantes",
+"médica"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:15",
+"target": "Ella es estudiante.",
+"ru": "Она студентка.",
+"uk": "Вона студентка.",
+"tiles": [
+{
+"correct": "Ella",
+"distractors": [
+"Ellas",
+"Él",
+"Ellos",
+"Ustedes",
+"Usted"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"sois",
+"somos",
+"son",
+"eres",
+"soy"
+]
+},
+{
+"correct": "estudiante",
+"distractors": [
+"enfermera",
+"profesor",
+"médico",
+"profesora",
+"médica"
+]
+}
+],
+"alternatives": [
+"Es estudiante."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:16",
+"target": "Él es estudiante.",
+"ru": "Он студент.",
+"uk": "Він студент.",
+"tiles": [
+{
+"correct": "Él",
+"distractors": [
+"Ustedes",
+"Ellas",
+"Usted",
+"Ellos",
+"Ella"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"son",
+"eres",
+"sois",
+"soy",
+"somos"
+]
+},
+{
+"correct": "estudiante",
+"distractors": [
+"profesora",
+"estudiantes",
+"médico",
+"profesores",
+"médicos"
+]
+}
+],
+"alternatives": [
+"Es estudiante."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:17",
+"target": "Ella es Ana.",
+"ru": "Это Ана.",
+"uk": "Це Ана.",
+"tiles": [
+{
+"correct": "Ella",
+"distractors": [
+"Ustedes",
+"Café",
+"Cargador",
+"Móviles",
+"Puerta"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Rosa",
+"Pablo",
+"Sara",
+"Elena"
+]
+}
+],
+"alternatives": [
+"Es Ana."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:18",
+"target": "Él es Luis.",
+"ru": "Это Луис.",
+"uk": "Це Луїс.",
+"tiles": [
+{
+"correct": "Él",
+"distractors": [
+"Ellas",
+"Ustedes",
+"Ellos",
+"Las",
+"Una"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pablo",
+"Sara",
+"Elena",
+"Rosa"
+]
+}
+],
+"alternatives": [
+"Es Luis."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:19",
+"target": "Ana es guía.",
+"ru": "Ана — гид.",
+"uk": "Ана — гід.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Elena",
+"Rosa",
+"Pablo",
+"Sara"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"profesor",
+"médico",
+"profesores",
+"médica",
+"profesora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:20",
+"target": "Luis es guía.",
+"ru": "Луис — гид.",
+"uk": "Луїс — гід.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Sara",
+"Rosa",
+"Elena",
+"Pablo"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"médica",
+"profesores",
+"profesora",
+"médico",
+"profesor"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:21",
+"target": "Somos estudiantes.",
+"ru": "Мы студенты.",
+"uk": "Ми студенти.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Es",
+"Eres",
+"Soy",
+"Sois",
+"Son"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"médicas",
+"profesoras",
+"médico",
+"guía",
+"profesor"
+]
+}
+],
+"alternatives": [
+"Nosotros somos estudiantes.",
+"Nosotras somos estudiantes."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:22",
+"target": "Somos médicos.",
+"ru": "Мы врачи.",
+"uk": "Ми лікарі.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Son",
+"Soy",
+"Sois",
+"Eres",
+"Es"
+]
+},
+{
+"correct": "médicos",
+"distractors": [
+"profesores",
+"enfermera",
+"guías",
+"médica",
+"estudiantes"
+]
+}
+],
+"alternatives": [
+"Nosotros somos médicos."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:23",
+"target": "Somos médicas.",
+"ru": "Мы врачи.",
+"uk": "Ми лікарки.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Es",
+"Son",
+"Eres",
+"Soy",
+"Sois"
+]
+},
+{
+"correct": "médicas",
+"distractors": [
+"profesora",
+"guías",
+"médica",
+"profesor",
+"estudiante"
+]
+}
+],
+"alternatives": [
+"Nosotras somos médicas."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:24",
+"target": "Somos profesores.",
+"ru": "Мы преподаватели.",
+"uk": "Ми викладачі.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Sois",
+"Son",
+"Es",
+"Eres",
+"Soy"
+]
+},
+{
+"correct": "profesores",
+"distractors": [
+"enfermero",
+"guía",
+"médico",
+"médica",
+"enfermera"
+]
+}
+],
+"alternatives": [
+"Nosotros somos profesores."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:25",
+"target": "Somos profesoras.",
+"ru": "Мы преподавательницы.",
+"uk": "Ми викладачки.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Soy",
+"Es",
+"Son",
+"Eres",
+"Sois"
+]
+},
+{
+"correct": "profesoras",
+"distractors": [
+"guía",
+"estudiantes",
+"enfermero",
+"profesora",
+"profesores"
+]
+}
+],
+"alternatives": [
+"Nosotras somos profesoras."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:26",
+"target": "Son estudiantes.",
+"ru": "Вы студенты.",
+"uk": "Ви студенти.",
+"tiles": [
+{
+"correct": "Son",
+"distractors": [
+"Soy",
+"Somos",
+"Está",
+"Estás",
+"La"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"enfermera",
+"guía",
+"profesores",
+"médicas",
+"médico"
+]
+}
+],
+"alternatives": [
+"Ustedes son estudiantes.",
+"Sois estudiantes."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:27",
+"target": "Sois estudiantes.",
+"ru": "Вы студенты.",
+"uk": "Ви студенти.",
+"tiles": [
+{
+"correct": "Sois",
+"distractors": [
+"Somos",
+"Soy",
+"Mi",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"enfermero",
+"médica",
+"guías",
+"profesor",
+"médicos"
+]
+}
+],
+"alternatives": [
+"Vosotros sois estudiantes.",
+"Vosotras sois estudiantes.",
+"Son estudiantes."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:28",
+"target": "Ellos son profesores.",
+"ru": "Они преподаватели.",
+"uk": "Вони викладачі.",
+"tiles": [
+{
+"correct": "Ellos",
+"distractors": [
+"Usted",
+"Ella",
+"Él",
+"Ustedes",
+"La"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"soy",
+"es",
+"somos",
+"eres",
+"sois"
+]
+},
+{
+"correct": "profesores",
+"distractors": [
+"estudiantes",
+"guía",
+"estudiante",
+"guías",
+"médico"
+]
+}
+],
+"alternatives": [
+"Son profesores."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:29",
+"target": "Ellas son profesoras.",
+"ru": "Они преподавательницы.",
+"uk": "Вони викладачки.",
+"tiles": [
+{
+"correct": "Ellas",
+"distractors": [
+"Usted",
+"Ustedes",
+"Ella",
+"Él",
+"La"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"eres",
+"es",
+"somos",
+"soy",
+"sois"
+]
+},
+{
+"correct": "profesoras",
+"distractors": [
+"médico",
+"profesora",
+"estudiantes",
+"médica",
+"enfermero"
+]
+}
+],
+"alternatives": [
+"Son profesoras."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:30",
+"target": "Ana y Luis son guías.",
+"ru": "Ана и Луис — гиды.",
+"uk": "Ана та Луїс — гіди.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Rosa",
+"Sara",
+"Pablo",
+"Elena",
+"Quién"
+]
+},
+{
+"correct": "y",
+"distractors": [
+"o",
+"pero",
+"ni",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Rosa",
+"Sara",
+"Elena",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"soy",
+"somos",
+"está",
+"estás",
+"la"
+]
+},
+{
+"correct": "guías",
+"distractors": [
+"profesora",
+"estudiantes",
+"enfermera",
+"profesores",
+"médico"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:31",
+"target": "Soy el médico.",
+"ru": "Я тот самый врач.",
+"uk": "Я той самий лікар.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Son",
+"Eres",
+"Sois",
+"Somos"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"la",
+"con",
+"que",
+"y"
+]
+},
+{
+"correct": "médico",
+"distractors": [
+"estudiante",
+"profesor",
+"médicas",
+"profesora",
+"estudiantes"
+]
+}
+],
+"alternatives": [
+"Yo soy el médico."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:32",
+"target": "Soy la médica.",
+"ru": "Я та самая врач.",
+"uk": "Я та сама лікарка.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Son",
+"Es",
+"Somos",
+"Eres",
+"Sois"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"un",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "médica",
+"distractors": [
+"guías",
+"profesora",
+"médicos",
+"estudiante",
+"médicas"
+]
+}
+],
+"alternatives": [
+"Yo soy la médica."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:33",
+"target": "Ana es la profesora.",
+"ru": "Преподавательница — Ана.",
+"uk": "Викладачка — Ана.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Elena",
+"Rosa",
+"Sara",
+"Pablo"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"un",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "profesora",
+"distractors": [
+"médico",
+"enfermera",
+"médicos",
+"guía",
+"estudiantes"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:34",
+"target": "Luis es el profesor.",
+"ru": "Преподаватель — Луис.",
+"uk": "Викладач — Луїс.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Sara",
+"Elena",
+"Rosa",
+"Pablo"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "profesor",
+"distractors": [
+"médico",
+"enfermera",
+"guía",
+"estudiantes",
+"médica"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:35",
+"target": "Soy la guía.",
+"ru": "Я и есть гид.",
+"uk": "Я і є гідеса.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Sois",
+"Son",
+"Es",
+"Somos",
+"Eres"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"las",
+"mi",
+"con",
+"que"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"enfermera",
+"profesor",
+"médico",
+"profesora",
+"enfermero"
+]
+}
+],
+"alternatives": [
+"Yo soy la guía."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:36",
+"target": "Soy guía.",
+"ru": "Я гид.",
+"uk": "Я гід.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Es",
+"Son",
+"Eres",
+"Somos",
+"Sois"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"profesora",
+"médico",
+"enfermera",
+"médicas",
+"profesoras"
+]
+}
+],
+"alternatives": [
+"Yo soy el guía.",
+"Soy el guía."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:37",
+"target": "Ella es la guía.",
+"ru": "Она и есть гид.",
+"uk": "Вона і є гідом.",
+"tiles": [
+{
+"correct": "Ella",
+"distractors": [
+"Él",
+"Usted",
+"Ellos",
+"Ustedes",
+"Ellas"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"somos",
+"soy",
+"sois",
+"son",
+"eres"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"enfermera",
+"médica",
+"estudiantes",
+"profesora",
+"médico"
+]
+}
+],
+"alternatives": [
+"Es la guía."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:38",
+"target": "Él es el guía.",
+"ru": "Он и есть гид.",
+"uk": "Він і є гідом.",
+"tiles": [
+{
+"correct": "Él",
+"distractors": [
+"Ellos",
+"Ellas",
+"Usted",
+"Ella",
+"Ustedes"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"son",
+"sois",
+"somos",
+"eres"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"los",
+"las",
+"con"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"guías",
+"estudiantes",
+"enfermera",
+"médica",
+"profesor"
+]
+}
+],
+"alternatives": [
+"Es el guía."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:39",
+"target": "Somos los guías.",
+"ru": "Гиды — это мы.",
+"uk": "Гіди — це ми.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Es",
+"Soy",
+"Son",
+"Sois",
+"Eres"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"el",
+"un",
+"la",
+"una",
+"con"
+]
+},
+{
+"correct": "guías",
+"distractors": [
+"estudiantes",
+"enfermero",
+"médico",
+"enfermera",
+"profesoras"
+]
+}
+],
+"alternatives": [
+"Nosotros somos los guías."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:40",
+"target": "Somos las guías.",
+"ru": "Гиды — это мы.",
+"uk": "Гіди — це ми.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Son",
+"Soy",
+"Eres",
+"Es",
+"Sois"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"la",
+"mi",
+"mis",
+"una",
+"el"
+]
+},
+{
+"correct": "guías",
+"distractors": [
+"profesor",
+"guía",
+"médicos",
+"médica",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Nosotras somos las guías."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:41",
+"target": "Soy enfermero.",
+"ru": "Я медбрат.",
+"uk": "Я медбрат.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Sois",
+"Son",
+"Es",
+"Eres",
+"Somos"
+]
+},
+{
+"correct": "enfermero",
+"distractors": [
+"estudiantes",
+"guía",
+"profesoras",
+"profesor",
+"médico"
+]
+}
+],
+"alternatives": [
+"Yo soy enfermero."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:42",
+"target": "Soy enfermera.",
+"ru": "Я медсестра.",
+"uk": "Я медсестра.",
+"tiles": [
+{
+"correct": "Soy",
+"distractors": [
+"Somos",
+"Sois",
+"Es",
+"Eres",
+"Son"
+]
+},
+{
+"correct": "enfermera",
+"distractors": [
+"estudiantes",
+"profesora",
+"médicas",
+"médico",
+"profesores"
+]
+}
+],
+"alternatives": [
+"Yo soy enfermera."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:43",
+"target": "Luis es enfermero.",
+"ru": "Луис — медбрат.",
+"uk": "Луїс — медбрат.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pablo",
+"Elena",
+"Sara",
+"Rosa"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "enfermero",
+"distractors": [
+"médica",
+"profesores",
+"estudiantes",
+"estudiante",
+"profesora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:44",
+"target": "Ana es enfermera.",
+"ru": "Ана — медсестра.",
+"uk": "Ана — медсестра.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Elena",
+"Sara",
+"Pablo",
+"Rosa"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "enfermera",
+"distractors": [
+"profesores",
+"médico",
+"profesoras",
+"médica",
+"médicas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:45",
+"target": "Eres guía.",
+"ru": "Ты гид.",
+"uk": "Ти гід.",
+"tiles": [
+{
+"correct": "Eres",
+"distractors": [
+"Soy",
+"Es",
+"Son",
+"Sois",
+"Somos"
+]
+},
+{
+"correct": "guía",
+"distractors": [
+"médico",
+"profesora",
+"guías",
+"profesoras",
+"médica"
+]
+}
+],
+"alternatives": [
+"Tú eres guía."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:46",
+"target": "Usted es médica.",
+"ru": "Вы врач.",
+"uk": "Ви лікарка.",
+"tiles": [
+{
+"correct": "Usted",
+"distractors": [
+"Ellos",
+"Ellas",
+"Los",
+"Una",
+"Las"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"soy",
+"somos",
+"aquí",
+"lejos",
+"cerca"
+]
+},
+{
+"correct": "médica",
+"distractors": [
+"profesor",
+"estudiante",
+"estudiantes",
+"profesora",
+"guía"
+]
+}
+],
+"alternatives": [
+"Es médica."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:47",
+"target": "Sois guías.",
+"ru": "Вы гиды.",
+"uk": "Ви гіди.",
+"tiles": [
+{
+"correct": "Sois",
+"distractors": [
+"Somos",
+"Soy",
+"Mi",
+"Su",
+"Sus"
+]
+},
+{
+"correct": "guías",
+"distractors": [
+"estudiantes",
+"profesoras",
+"profesores",
+"enfermero",
+"profesora"
+]
+}
+],
+"alternatives": [
+"Vosotros sois guías.",
+"Vosotras sois guías.",
+"Son guías."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:48",
+"target": "Ellas son médicas.",
+"ru": "Они работают врачами.",
+"uk": "Вони працюють лікарками.",
+"tiles": [
+{
+"correct": "Ellas",
+"distractors": [
+"Ella",
+"Usted",
+"Él",
+"Ustedes",
+"La"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"soy",
+"somos",
+"eres",
+"es",
+"sois"
+]
+},
+{
+"correct": "médicas",
+"distractors": [
+"estudiante",
+"guía",
+"guías",
+"enfermera",
+"médica"
+]
+}
+],
+"alternatives": [
+"Son médicas."
+]
+},
+{
+"lesson": 4,
+"id": "es:04:49",
+"target": "Ana y Luis son estudiantes.",
+"ru": "Ана и Луис — студенты.",
+"uk": "Ана та Луїс — студенти.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Sara",
+"Rosa",
+"Elena",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "y",
+"distractors": [
+"pero",
+"ni",
+"o",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Rosa",
+"Pablo",
+"Sara",
+"Elena",
+"Quién"
+]
+},
+{
+"correct": "son",
+"distractors": [
+"soy",
+"somos",
+"están",
+"está",
+"estás"
+]
+},
+{
+"correct": "estudiantes",
+"distractors": [
+"guía",
+"médico",
+"médicos",
+"médica",
+"médicas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "es:04:50",
+"target": "Somos Ana y Luis.",
+"ru": "Мы Ана и Луис.",
+"uk": "Ми Ана та Луїс.",
+"tiles": [
+{
+"correct": "Somos",
+"distractors": [
+"Son",
+"Soy",
+"Es",
+"Eres",
+"Sois"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Rosa",
+"Sara",
+"Elena",
+"Pablo",
+"Quién"
+]
+},
+{
+"correct": "y",
+"distractors": [
+"pero",
+"o",
+"ni",
+"porque",
+"mientras"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Sara",
+"Elena",
+"Rosa",
+"Pablo",
+"Quién"
+]
+}
+],
+"alternatives": [
+"Nosotros somos Ana y Luis."
+]
+}
+]

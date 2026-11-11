@@ -37,10 +37,7 @@ export const THEMED_ART_NAMES = [
   'prize_1d', 'prize_7d', 'prize_1m', 'prize_3m', 'prize_6m', 'prize_1y',
   // Магазин (1)
   'shop',
-  // Вступления разделов (14): 13 из ТЗ + intro_profile_card (сцены окон первого входа, 06dd77148)
-  'intro_cards_hub', 'intro_legacy_lessons', 'intro_statistics', 'intro_daily_phrase', 'intro_videos',
-  'intro_friends', 'intro_arena', 'intro_cards_swipe', 'intro_training_listening', 'intro_training_speaking',
-  'intro_training_blitz', 'intro_ai_dialog', 'intro_mistake_practice', 'intro_profile_card',
+  'intro_videos', 'intro_arena', 'intro_ai_dialog', 'intro_friends', 'intro_cards_hub', 'intro_training_blitz',
   // Плитка «Шпиль» на Главной (1): арт заказан у Codex (ICONS_FOR_CODEX_2026-10-12.md, A1); пока файла нет — плитка берёт intro_arena
   'spire_tile',
   'ai_off',
@@ -59,7 +56,6 @@ export type ThemedArtName = typeof THEMED_ART_NAMES[number] | Exclude<LessonCove
 
 const LESSON_COVER_NAMES = Array.from({ length: 50 }, (_, i) => `lesson_${String(i + 1).padStart(2, '0')}` as ThemedArtName);
 
-/** Все 137 имён: 110 из ТЗ + intro_profile_card + spire_tile + ai_off + 18 сцен + шесть рангов Шпиля. */
 export const THEMED_ART_ALL_NAMES: readonly ThemedArtName[] = Object.freeze([...THEMED_ART_NAMES, ...LESSON_COVER_NAMES]);
 
 export type ThemedArtBrightness = 'dark' | 'light';

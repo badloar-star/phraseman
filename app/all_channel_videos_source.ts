@@ -11,12 +11,14 @@
  *    полное перечитывание — только при новой версии (сервер не меняет версию без изменения содержимого, пакет K);
  *  - ошибка сети при наличии кэша — показываем кэш, причина в журнале [ALL-VIDEOS].
  */
+import { getVideoSectionSignal } from './video_section_preference';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { YoutubeCatalogScreenSnapshot } from './youtube_catalog_cache';
 import type { YoutubePlaylistSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 import {
   fetchYoutubeCatalogManifestWithReader,
+  guardYoutubeCatalogReader,
   fetchYoutubeChannelCatalogWithReader,
   type YoutubeCatalogReader,
 } from './youtube_catalog_client';
@@ -113,7 +115,7 @@ function scopeOf(token: AccountGenerationToken): string {
 }
 
 const memory = new Map<string, AllVideosList>();
-const inFlight = new Map<string, Promise<AllVideosList | null>>();
+const inFlight = new Map<string, { signal?: AbortSignal; task: Promise<AllVideosList | null> }>();
 
 function key(scope: string, channelId: string): string {
   return `${STORAGE_PREFIX}:${scope}:${channelId}`;
@@ -171,6 +173,7 @@ export type LoadAllVideosOptions = Readonly<{
   force?: boolean;
   nowMs?: number;
   reader?: YoutubeCatalogReader;
+  signal?: AbortSignal;
 }>;
 
 /**
@@ -186,13 +189,16 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
   const token = options.token ?? captureAccountGeneration();
   const scope = scopeOf(token);
   const k = key(scope, options.channelId);
+  const { signal } = options;
+  if (signal?.aborted) return null;
   const pending = inFlight.get(k);
-  if (pending) return pending;
+  if (pending && pending.signal === signal) return pending.task;
   const task = (async () => {
     const nowMs = options.nowMs ?? Date.now();
     let cached = memory.get(k) ?? null;
     if (!cached) {
       cached = await readDisk(scope, options.channelId);
+      if (signal?.aborted) return null;
       if (cached) memory.set(k, cached); // guard-ok: Map в памяти процесса, не Firestore
     }
     if (cached && !options.force && nowMs - cached.fetchedAtMs < ALL_VIDEOS_REFRESH_MS) {
@@ -207,7 +213,8 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
         console.warn(LOG, 'DEV: искусственная задержка сети', JSON.stringify({ channelId: options.channelId, devDelayMs, hasCache: !!cached }));
         await new Promise<void>((resolve) => setTimeout(resolve, devDelayMs));
       }
-      const reader = options.reader ?? await defaultReader();
+      const rawReader = options.reader ?? await defaultReader();
+      const reader = signal ? guardYoutubeCatalogReader(rawReader, signal) : rawReader;
       if (cached) {
         const manifest = await fetchYoutubeCatalogManifestWithReader(reader);
         // зачем (аудит #24): кэш без списка плейлистов (записан до 15.10) шорткатом «версия та же» не освежаем — полный каталог читаем один раз, чтобы получить все плейлисты
@@ -244,11 +251,12 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
       }
       return list;
     } catch (error) {
+      if (signal?.aborted) return null;
       console.warn(LOG, 'сеть: не удалось — показываем кэш', JSON.stringify({ channelId: options.channelId, hasCache: !!cached, error: String((error as Error)?.message ?? error) }));
       return cached;
     }
-  })().finally(() => { inFlight.delete(k); });
-  inFlight.set(k, task);
+  })().finally(() => { if (inFlight.get(k)?.task === task) inFlight.delete(k); });
+  inFlight.set(k, { signal, task });
   return task;
 }
 
@@ -292,16 +300,18 @@ export function useAllChannelVideos(
       setRefreshing(false);
       return;
     }
+    const signal = getVideoSectionSignal();
+    if (!signal) return;
     setRefreshing(true);
-    void loadAllChannelVideos({ channelId, token, force }).then((next) => {
-      if (request !== requestRef.current) return;
+    void loadAllChannelVideos({ channelId, token, force, signal }).then((next) => {
+      if (signal.aborted || request !== requestRef.current) return;
       if (next) setList(next);
       setFailed(!next);
     }).catch((error: unknown) => {
       console.warn(LOG, 'хук: загрузка упала', JSON.stringify({ channelId, error: String((error as Error)?.message ?? error) }));
       if (request === requestRef.current) setFailed(true);
     }).finally(() => {
-      if (request === requestRef.current) setRefreshing(false);
+      if (!signal.aborted && request === requestRef.current) setRefreshing(false);
     });
   }, [channelId, token]);
 

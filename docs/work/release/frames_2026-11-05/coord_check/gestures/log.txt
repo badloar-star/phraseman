@@ -1,0 +1,3 @@
+11-06 01:47:38.456 I/(31048): '[SECTION-OPENING]', 'story_tap_next', '{"id":"plus","segmentIndex":0,"segments":1}'
+11-06 01:47:38.468 I/(31048): '[SECTION-OPENING]', 'dismissed', '{"event":"dismissed","section":"plus","source":"skip","skipped":true,"persisted":true,"closed":"plus","next":null}'
+11-06 01:47:38.545 I/(31048): '[SECTION-OPENING]', 'decision', '{"reason":"nothing_queued","shown":null,"queued":null,"open":"video,dialogues,peak,cards_hub","isNew":true,"plusActive":true,"statuses":"video:allowed,dialogues:allowed,peak:allowed,cards_hub:allowed"}'

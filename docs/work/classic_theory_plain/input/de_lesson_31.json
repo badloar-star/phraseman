@@ -1,0 +1,822 @@
+{
+ "lang": "de",
+ "lesson": 31,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:31:01",
+   "target": "Als ich ankam, war der Bus schon abgefahren.",
+   "ru": "Когда я приехал, автобус уже ушёл.",
+   "uk": "Коли я приїхав, автобус уже пішов."
+  },
+  {
+   "id": "de:31:02",
+   "target": "Als Tom ankam, hatte Anna schon gekocht.",
+   "ru": "Когда приехал Том, Анна уже приготовила еду.",
+   "uk": "Коли приїхав Том, Ганна вже приготувала їжу."
+  },
+  {
+   "id": "de:31:03",
+   "target": "Als wir anriefen, hatte das Büro schon geschlossen.",
+   "ru": "Когда мы позвонили, офис уже закрылся.",
+   "uk": "Коли ми зателефонували, офіс уже закрився."
+  },
+  {
+   "id": "de:31:04",
+   "target": "Als der Kurs begann, hatten wir die Bücher schon gekauft.",
+   "ru": "К началу курса мы уже купили книги.",
+   "uk": "На початок курсу ми вже купили книги."
+  },
+  {
+   "id": "de:31:05",
+   "target": "Als es klingelte, war ich gerade eingeschlafen.",
+   "ru": "Когда раздался звонок в дверь, я только что уснул.",
+   "uk": "Коли пролунав дзвінок у двері, я щойно заснув."
+  },
+  {
+   "id": "de:31:06",
+   "target": "Als die Gäste kamen, hatten wir den Tisch gedeckt.",
+   "ru": "К приходу гостей мы накрыли на стол.",
+   "uk": "До приходу гостей ми накрили стіл."
+  },
+  {
+   "id": "de:31:07",
+   "target": "Als Anna zurückkam, war das Eis geschmolzen.",
+   "ru": "Когда Анна вернулась, мороженое растаяло.",
+   "uk": "Коли Анна повернулася, морозиво розтануло."
+  },
+  {
+   "id": "de:31:08",
+   "target": "Als der Arzt kam, war das Fieber schon gesunken.",
+   "ru": "К приходу врача температура уже спала.",
+   "uk": "До приходу лікаря температура вже спала."
+  },
+  {
+   "id": "de:31:09",
+   "target": "Als wir losfuhren, hatte der Regen schon aufgehört.",
+   "ru": "Когда мы выехали, дождь уже закончился.",
+   "uk": "Коли ми виїхали, дощ уже закінчився."
+  },
+  {
+   "id": "de:31:10",
+   "target": "Als Tom aufstand, waren die Kinder schon gegangen.",
+   "ru": "Когда Том встал, дети уже ушли.",
+   "uk": "Коли Том підвівся, діти вже пішли."
+  },
+  {
+   "id": "de:31:11",
+   "target": "Ich hatte meinen Schlüssel vergessen und kam nicht ins Haus.",
+   "ru": "Я забыл ключ и не смог попасть в дом.",
+   "uk": "Я забув ключ і не зміг потрапити до будинку."
+  },
+  {
+   "id": "de:31:12",
+   "target": "Anna hatte den Antrag abgegeben, bevor ihr Ausweis ablief.",
+   "ru": "Анна подала заявление до того, как истёк срок действия её удостоверения.",
+   "uk": "Анна подала заявку до закінчення терміну дії її посвідчення особи."
+  },
+  {
+   "id": "de:31:13",
+   "target": "Tom hatte schlecht geschlafen und war müde.",
+   "ru": "Том плохо спал и был уставшим.",
+   "uk": "Том погано спав і був стомленим."
+  },
+  {
+   "id": "de:31:14",
+   "target": "Wir hatten vorher angerufen und mussten nicht warten.",
+   "ru": "Мы позвонили заранее, и ждать нам не пришлось.",
+   "uk": "Ми зателефонували заздалегідь, і чекати нам не довелося."
+  },
+  {
+   "id": "de:31:15",
+   "target": "Ihr hattet reserviert und bekamt einen Tisch am Fenster.",
+   "ru": "Вы заранее забронировали столик и получили место у окна.",
+   "uk": "Ви заздалегідь забронювали столик і отримали місце біля вікна."
+  },
+  {
+   "id": "de:31:16",
+   "target": "Die Gäste hatten bezahlt und gingen nach draußen.",
+   "ru": "Гости расплатились и вышли на улицу.",
+   "uk": "Гості розрахувалися та вийшли на вулицю."
+  },
+  {
+   "id": "de:31:17",
+   "target": "Wir waren früh aufgestanden und hatten viel Zeit.",
+   "ru": "Мы рано встали, поэтому у нас было много времени.",
+   "uk": "Ми рано встали, тому ми мали багато часу."
+  },
+  {
+   "id": "de:31:18",
+   "target": "Er war umgezogen und kannte die Gegend noch nicht.",
+   "ru": "Он переехал и ещё не знал района.",
+   "uk": "Він переїхав і ще не знав району."
+  },
+  {
+   "id": "de:31:19",
+   "target": "Das Wasser war gefroren und der Weg war glatt.",
+   "ru": "Вода замёрзла, и дорога была скользкой.",
+   "uk": "Вода змерзла, і дорога була слизькою."
+  },
+  {
+   "id": "de:31:20",
+   "target": "Sie war ausgerutscht und brauchte Hilfe.",
+   "ru": "Она поскользнулась, и ей нужна была помощь.",
+   "uk": "Вона послизнулась, і їй потрібна була допомога."
+  },
+  {
+   "id": "de:31:21",
+   "target": "Nachdem ich gegessen hatte, ging ich spazieren.",
+   "ru": "После того как я поел, я пошёл гулять.",
+   "uk": "Після того, як я поїв, я пішов гуляти."
+  },
+  {
+   "id": "de:31:22",
+   "target": "Nachdem du angerufen hattest, fuhr ich los.",
+   "ru": "После того как ты позвонил, я выехал.",
+   "uk": "Після того, як ти зателефонував, я виїхав."
+  },
+  {
+   "id": "de:31:23",
+   "target": "Nachdem Anna bezahlt hatte, nahm sie die Quittung.",
+   "ru": "После того как Анна заплатила, она взяла квитанцию.",
+   "uk": "Після того, як Ганна заплатила, вона взяла квитанцію."
+  },
+  {
+   "id": "de:31:24",
+   "target": "Nachdem wir gepackt hatten, bestellten wir ein Taxi.",
+   "ru": "После того как мы собрались, мы заказали такси.",
+   "uk": "Після того, як ми зібралися, ми замовили таксі."
+  },
+  {
+   "id": "de:31:25",
+   "target": "Nachdem der Zug angekommen war, stiegen wir ein.",
+   "ru": "После того как поезд прибыл, мы сели в него.",
+   "uk": "Після того, як поїзд прибув, ми сіли до нього."
+  },
+  {
+   "id": "de:31:26",
+   "target": "Nachdem die Gäste gegangen waren, räumten wir auf.",
+   "ru": "После того как гости ушли, мы прибрались.",
+   "uk": "Після того, як гості пішли, ми прибралися."
+  },
+  {
+   "id": "de:31:27",
+   "target": "Ich hatte im Kalender nachgesehen, bevor ich den Termin bestätigte.",
+   "ru": "Я сверился с календарём, прежде чем подтвердить встречу.",
+   "uk": "Я перевірив календар, перш ніж підтвердити зустріч."
+  },
+  {
+   "id": "de:31:28",
+   "target": "Nachdem sie das Formular ausgefüllt hatte, gab sie es ab.",
+   "ru": "Заполнив бланк, она его сдала.",
+   "uk": "Заповнивши бланк, вона його здала."
+  },
+  {
+   "id": "de:31:29",
+   "target": "Als es zum Unfall kam, hatte Tom schon angehalten.",
+   "ru": "Когда произошла авария, Том уже остановился.",
+   "uk": "Том уже зупинився, коли сталася аварія."
+  },
+  {
+   "id": "de:31:30",
+   "target": "Nachdem das Licht ausgegangen war, holten wir eine Kerze.",
+   "ru": "После того как свет погас, мы принесли свечу.",
+   "uk": "Після того, як світло згасло, ми принесли свічку."
+  },
+  {
+   "id": "de:31:31",
+   "target": "Ich fand die Karte, die ich verloren hatte.",
+   "ru": "Я нашёл карту, которую раньше потерял.",
+   "uk": "Я знайшов карту, яку раніше втратив."
+  },
+  {
+   "id": "de:31:32",
+   "target": "Sie zeigte mir das Foto, das sie gemacht hatte.",
+   "ru": "Она показала мне фотографию, которую сделала.",
+   "uk": "Вона показала мені фотографію, яку зробила."
+  },
+  {
+   "id": "de:31:33",
+   "target": "Er trug die Jacke, die er am Vortag gekauft hatte.",
+   "ru": "На нём была куртка, которую он купил накануне.",
+   "uk": "На ньому була куртка, яку він купив напередодні."
+  },
+  {
+   "id": "de:31:34",
+   "target": "Anna hatte die falsche Größe bestellt und brachte das Kleid zurück.",
+   "ru": "Анна заказала не тот размер и вернула платье.",
+   "uk": "Анна замовила не той розмір і повернула сукню."
+  },
+  {
+   "id": "de:31:35",
+   "target": "Ich erkannte die Straße, in der ich gewohnt hatte.",
+   "ru": "Я узнал улицу, на которой когда-то жил.",
+   "uk": "Я впізнав вулицю, на якій колись жив."
+  },
+  {
+   "id": "de:31:36",
+   "target": "Der Schlüssel lag dort, wo ich ihn hingelegt hatte.",
+   "ru": "Ключ лежал там, куда я его положил.",
+   "uk": "Ключ лежав там, куди я його поклав."
+  },
+  {
+   "id": "de:31:37",
+   "target": "Das Café, das wir gesucht hatten, war bereits zu.",
+   "ru": "Кафе, которое мы искали, было уже закрыто.",
+   "uk": "Кафе, яке ми шукали, було вже закрите."
+  },
+  {
+   "id": "de:31:38",
+   "target": "Mein Ausweis war beim Kauf noch gültig gewesen, aber bei der Abholung war er abgelaufen.",
+   "ru": "При покупке моё удостоверение ещё было действительно, но к моменту получения срок уже истёк.",
+   "uk": "Під час покупки моє посвідчення ще було дійсним, але на момент отримання його термін уже сплив."
+  },
+  {
+   "id": "de:31:39",
+   "target": "Die Unterlagen, die ich mitgebracht hatte, reichten aus.",
+   "ru": "Документов, которые я принёс, оказалось достаточно.",
+   "uk": "Документів, які я приніс, виявилося достатньо."
+  },
+  {
+   "id": "de:31:40",
+   "target": "Der Bus, den wir verpasst hatten, stand noch an der Ampel.",
+   "ru": "Автобус, на который мы опоздали, ещё стоял на светофоре.",
+   "uk": "Автобус, на який ми запізнилися, ще стояв на світлофорі."
+  },
+  {
+   "id": "de:31:41",
+   "target": "Ich wusste nicht, dass Anna schon abgereist war.",
+   "ru": "Я не знал, что Анна уже уехала.",
+   "uk": "Я не знав, що Анна вже поїхала."
+  },
+  {
+   "id": "de:31:42",
+   "target": "Tom merkte, dass er seinen Ausweis vergessen hatte.",
+   "ru": "Том понял, что забыл удостоверение.",
+   "uk": "Том зрозумів, що забув посвідчення."
+  },
+  {
+   "id": "de:31:43",
+   "target": "Wir sahen, dass jemand das Fenster geöffnet hatte.",
+   "ru": "Мы увидели, что кто-то открыл окно.",
+   "uk": "Ми побачили, що хтось відчинив вікно."
+  },
+  {
+   "id": "de:31:44",
+   "target": "Du erzähltest, dass du das Paket abgeholt hattest.",
+   "ru": "Ты рассказал, что забрал посылку.",
+   "uk": "Ти розповів, що забрав посилку."
+  },
+  {
+   "id": "de:31:45",
+   "target": "Sie erinnerte sich, dass sie die Tür abgeschlossen hatte.",
+   "ru": "Она вспомнила, что заперла дверь.",
+   "uk": "Вона згадала, що замкнула двері."
+  },
+  {
+   "id": "de:31:46",
+   "target": "Ich fragte mich, ob ich den Stecker gezogen hatte.",
+   "ru": "Я задумался, выдернул ли я вилку из розетки.",
+   "uk": "Я замислився, чи я висмикнув вилку з розетки."
+  },
+  {
+   "id": "de:31:47",
+   "target": "Als wir den Laden erreichten, hatte die letzte Schicht schon begonnen.",
+   "ru": "Когда мы добрались до магазина, последняя смена уже началась.",
+   "uk": "Коли ми дісталися магазину, остання зміна вже почалася."
+  },
+  {
+   "id": "de:31:48",
+   "target": "Ich war froh, weil ich die Adresse gespeichert hatte.",
+   "ru": "Я был рад, потому что сохранил адрес.",
+   "uk": "Я був радий, бо зберіг адресу."
+  },
+  {
+   "id": "de:31:49",
+   "target": "Ich war dankbar, weil Tom meine Tasche mitgebracht hatte.",
+   "ru": "Я был благодарен, потому что Том принёс мою сумку.",
+   "uk": "Я був вдячний, бо Том приніс мою сумку."
+  },
+  {
+   "id": "de:31:50",
+   "target": "Wir waren überrascht, weil der Fahrer auf uns gewartet hatte.",
+   "ru": "Мы удивились, потому что водитель нас дождался.",
+   "uk": "Ми здивувалися, бо водій дочекався нас."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "das Fieber",
+   "ru": "повышенная температура",
+   "uk": "підвищена температура"
+  },
+  {
+   "lemma": "der Stecker",
+   "ru": "штепсельная вилка",
+   "uk": "штепсельна вилка"
+  },
+  {
+   "lemma": "die Gegend",
+   "ru": "местность, район",
+   "uk": "місцевість, район"
+  },
+  {
+   "lemma": "glatt",
+   "ru": "скользкий",
+   "uk": "слизький"
+  },
+  {
+   "lemma": "speichern",
+   "ru": "сохранять данные",
+   "uk": "зберігати дані"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden",
+  "der Kollege",
+  "die Leute",
+  "verbrauchen",
+  "zusammenklappen",
+  "sonntags",
+  "der Müll",
+  "der Hausmeister",
+  "die Firma",
+  "erstatten",
+  "liefern",
+  "der Versand",
+  "das Salz",
+  "wiederholen",
+  "behalten",
+  "dankbar",
+  "der Antrag",
+  "der Unfall",
+  "die Größe",
+  "nachsehen",
+  "gültig"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  },
+  {
+   "lesson": 27,
+   "title": "Какой человек или предмет: относительное предложение"
+  },
+  {
+   "lesson": 28,
+   "title": "Что делают с предметом: пассив с `werden`"
+  },
+  {
+   "lesson": 29,
+   "title": "Попросить мягче: `hätte`, `wäre`, `könnte`"
+  },
+  {
+   "lesson": 30,
+   "title": "Спросить косвенно: `ob` или вопросительное слово"
+  }
+ ],
+ "oldTopicTitle": "Что случилось раньше другого прошлого события?",
+ "oldTheoryRu": "Когда я пришёл, автобус уже ушёл. Оба события в прошлом, но отправление раньше прихода. Слово «уже» помогает заметить связь, хотя само по себе не является обязательным сигналом Plusquamperfekt. Сначала найди правильную пару из Perfekt. Если там было `hat vergessen`, то для более раннего прошлого будет `hatte vergessen`. Не превращай причастие в ещё одну личную форму. Для действий с `sein` перенеси в прошлое именно его: `ist umgezogen` становится `war umgezogen`. Выбор между `war` и `hatte` зависит от глагола, как в Perfekt, а не от того, какое действие случилось первым. `Nachdem` помогает показать последовательность прямо. В придаточном после причастия идёт вспомогательная форма. Когда придаточное стоит первым, глагол главной части появляется сразу после запятой. Уточнение к предмету тоже может дать более раннее событие: я нашёл карту, которую потерял до этого. Определи, какое событие связано с предметом и какое задаёт точку отсчёта всего рассказа. В косвенном вопросе и в сообщении после `dass` вспомогательный глагол оказывается в конце соответствующей части. Не перепутай порядок с независимым `ich hatte …`. Не перегружай каждый рассказ этим временем. Если просто перечисляешь действия одно за другим, можно рассказать их и проще. Здесь упражнение требует явно показать взгляд назад от уже прошедшего момента."
+}

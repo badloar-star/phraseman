@@ -23,7 +23,7 @@ import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
 import { spireCoinsCount } from './spire_plurals';
 import { getSpireEnergyBonus } from '../../app/spire_energy_bonus_store';
-import { spireWeekEnergyLine } from './spire_week_energy';
+import { spireWeekEnergyLine, spireWeekRewardReasonLines } from './spire_week_energy';
 import { spireGameText } from './spire_game_strings';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 import { hapticSuccess } from '../../hooks/use-haptics';
@@ -38,11 +38,16 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView, energyB
     : r.demoted ? spireGameText(lang, 'weekDown', { stone }) : spireGameText(lang, 'weekStay', { stone }); // guard-ok: показ решения сервера
   // зачем (владелец 05.11: «упоминаний ступеней вообще не должно быть»): очки итога — только монеты недели; итог прошлой недели «по ступеням» (старый серверный режим) показывает одно место, без слова про ступени
   const parts = [
-    r.roomRank > 0 ? spireGameText(lang, 'placeN', { n: r.roomRank }) : '—',
+    Number.isSafeInteger(r.roomRank) && r.roomRank > 0 ? spireGameText(lang, 'placeN', { n: r.roomRank }) : '—',
     ...(r.rankBy === 'coins' ? [spireCoinsCount(lang, r.weekCoins ?? 0)] : []),
   ];
-  const coins = [r.placeCoins, r.promotionCoins].filter((c) => c > 0);
-  if (coins.length > 0) parts.push(`${coins.map((c) => `+${c}`).join(' · ')} ${spireGameText(lang, 'coins')}`);
+  const rewards = spireWeekRewardReasonLines(lang, {
+    roomRank: r.roomRank,
+    placeCoins: r.placeCoins,
+    promotionCoins: r.promotionCoins,
+    rewardStatus: r.rewardStatus,
+  });
+  if (rewards.length > 0) parts.push(...rewards);
   else parts.push(spireGameText(lang, 'newWeekFromOne'));
   const energy = spireWeekEnergyLine(lang, r, energyBonus); // зачем (энергия от Пика): одна строка рядом со строкой монет
   if (energy) parts.push(energy);

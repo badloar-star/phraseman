@@ -1,0 +1,960 @@
+[
+{
+"lesson": 3,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:03:01",
+"de:03:02"
+],
+"textByLocale": {
+"en": "When simply stating a fact, the German present tense is sufficient. Imagine you're explaining to your neighbor where you live. There's no second action here, and no additional verb is needed before `wohne`.\"",
+"ru": "Когда просто сообщают факт, немецкого настоящего времени достаточно. Представь, что ты объясняешь соседу, где живёшь. Здесь нет второго действия и не нужен дополнительный глагол перед `wohne`.",
+"uk": "Коли просто повідомляють факт, німецької зараз достатньо. Уяви, що ти пояснюєш сусідові, де живеш. Тут немає другої дії і не потрібне додаткове дієслово перед `wohne`."
+}
+},
+{
+"exampleIds": [
+"de:03:06",
+"de:03:07"
+],
+"textByLocale": {
+"en": "From vocabulary to speech. Remove the ending `-en` from `lernen`.\" To the remaining part, add `-e` for yourself, and `-st` for a familiar interlocutor. The action itself remains unchanged.",
+"ru": "От словаря к речи. Убери окончание `-en` у `lernen`. К оставшейся части добавь `-e` для себя, `-st` для одного знакомого собеседника. Само действие от этого не меняется.",
+"uk": "Від словника до мови. Забери закінчення `-en` у `lernen`. До частини додай `-e` для себе, `-st` для одного знайомого співрозмовника. Сама дія від цього не змінюється."
+}
+},
+{
+"exampleIds": [
+"de:03:08",
+"de:03:09"
+],
+"textByLocale": {
+"en": "Name and group. For one person, the `-t` variant is usually needed. For us and for them, the form of a regular verb is the same as the infinitive. The difference is audible in who is named before it.",
+"ru": "Имя и группа. Для одного человека обычно нужен вариант на `-t`. Для нас и для них форма обычного глагола совпадает с инфинитивом. Различие слышно в том, кто назван перед ним.",
+"uk": "Ім'я та група. Для однієї людини зазвичай потрібний варіант на `-t`. Для нас та для них форма звичайного дієслова збігається з інфінітивом. Відмінність чутна у тому, хто названий перед ним."
+}
+},
+{
+"exampleIds": [
+"de:03:11",
+"de:03:14"
+],
+"textByLocale": {
+"en": "What comes next? First, you state who does what, then you name the object or result. Don't break up the expression `eine Pause machen` by literally translating each word in your head.",
+"ru": "Что идёт дальше? Сначала сообщаешь, кто что делает, затем называешь предмет или результат. Не разбивай выражение `eine Pause machen` буквальным переводом каждого слова в своей голове.",
+"uk": "Що йде далі? Спочатку повідомляєш, хто що робить, потім називаєш предмет чи результат. Не розбивай вираз `eine Pause machen` буквальним перекладом кожного слова у своїй голові."
+}
+},
+{
+"exampleIds": [
+"de:03:21",
+"de:03:25"
+],
+"textByLocale": {
+"en": "How to read the ending? If the search objective has changed from a key to a cash register, the verb is still selected based on who is searching. The ending of the object does not control the form of the action.",
+"ru": "Как читать конец? Если цель поиска изменилась с ключа на кассу, глагол по-прежнему выбирается по тому, кто ищет. Окончание предмета не управляет формой действия.",
+"uk": "Як читати кінець? Якщо мета пошуку змінилася з ключа на касу, дієслово, як і раніше, вибирається по тому, хто шукає. Закінчення предмета не керує формою дії."
+}
+},
+{
+"exampleIds": [
+"de:03:31",
+"de:03:32"
+],
+"textByLocale": {
+"en": "Why is there an additional `e`? After a stem ending in `-t`,\" for example, `arbeit-`,\" the combination with the ending would be difficult to pronounce. Compare `du arbeitest` and `er arbeitet`.\" Don't make `du arbeitst`.\"",
+"ru": "Зачем появляется дополнительное `e`? После основы на `-t`, например `arbeit-`, сочетание с окончанием было бы трудно произнести. Сравни `du arbeitest` и `er arbeitet`. Не собирай `du arbeitst`.",
+"uk": "Навіщо з'являється додаткове `e`? Після основи на `-t`, наприклад `arbeit-`, поєднання із закінченням було б важко вимовити. Порівняй `du arbeitest` та `er arbeitet`. Не збирай `du arbeitst`."
+}
+},
+{
+"exampleIds": [
+"de:03:35",
+"de:03:40"
+],
+"textByLocale": {
+"en": "Check your address. In the friends group, `ihr arbeitet` has the same verb as `Anna arbeitet`,\" but the meaning is different. Before clicking the first tile, figure out whether you're talking about someone or addressing them.",
+"ru": "Проверь обращение. В группе друзей `ihr arbeitet` совпадает по глаголу с `Anna arbeitet`, но смысл другой. Прежде чем нажать первую плитку, выясни, говоришь ли ты о ком-то или обращаешься к нему.",
+"uk": "Перевір звернення. У групі друзів `ihr arbeitet` збігається за дієсловом із `Anna arbeitet`, але сенс інший. Перш ніж натиснути першу плитку, з'ясуй, говориш ти про когось або звертаєшся до нього."
+}
+}
+],
+"lab": [
+{
+"bad": "wohnen",
+"chapter": 1,
+"id": "de:03:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 36,
+"options": [
+"wohne",
+"gewohnt",
+"wohnen"
+],
+"slot": 1
+},
+{
+"bad": "wohnst",
+"chapter": 1,
+"id": "de:03:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 5,
+"options": [
+"gewohnt",
+"wohnt",
+"wohnst"
+],
+"slot": 1
+},
+{
+"bad": "wohnst",
+"chapter": 1,
+"id": "de:03:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"wohnt",
+"wohnst",
+"wohnte"
+],
+"slot": 1
+},
+{
+"bad": "lerne",
+"chapter": 2,
+"id": "de:03:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"lernt",
+"lerne",
+"lernte"
+],
+"slot": 1
+},
+{
+"bad": "Brot",
+"chapter": 2,
+"id": "de:03:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"Hotel",
+"Brot",
+"Kinder"
+],
+"slot": 1
+},
+{
+"bad": "macht",
+"chapter": 2,
+"id": "de:03:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 7,
+"options": [
+"machte",
+"macht",
+"machst"
+],
+"slot": 1
+},
+{
+"bad": "gemacht",
+"chapter": 3,
+"id": "de:03:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 9,
+"options": [
+"machte",
+"machen",
+"gemacht"
+],
+"slot": 1
+},
+{
+"bad": "kaufe",
+"chapter": 3,
+"id": "de:03:17:lab",
+"item": 17,
+"kind": "match",
+"near": 12,
+"options": [
+"kaufst",
+"kaufen",
+"kaufe"
+],
+"slot": 1
+},
+{
+"bad": "gekauft",
+"chapter": 3,
+"id": "de:03:19:lab",
+"item": 19,
+"kind": "build",
+"near": 9,
+"options": [
+"kauft",
+"gekauft",
+"kaufen"
+],
+"slot": 1
+},
+{
+"bad": "sucht",
+"chapter": 4,
+"id": "de:03:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 46,
+"options": [
+"suche",
+"sucht",
+"suchst"
+],
+"slot": 1
+},
+{
+"bad": "suchst",
+"chapter": 4,
+"id": "de:03:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 29,
+"options": [
+"suchen",
+"sucht",
+"suchst"
+],
+"slot": 1
+},
+{
+"bad": "warten",
+"chapter": 4,
+"id": "de:03:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 31,
+"options": [
+"hört",
+"höre",
+"warten"
+],
+"slot": 1
+},
+{
+"bad": "draußen",
+"chapter": 5,
+"id": "de:03:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"wohnen",
+"hören",
+"draußen"
+],
+"slot": 1
+},
+{
+"bad": "gearbeitet",
+"chapter": 5,
+"id": "de:03:31:lab",
+"item": 31,
+"kind": "build",
+"near": 45,
+"options": [
+"gearbeitet",
+"arbeitet",
+"arbeite"
+],
+"slot": 1
+},
+{
+"bad": "arbeitest",
+"chapter": 5,
+"id": "de:03:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 44,
+"options": [
+"arbeite",
+"arbeiten",
+"arbeitest"
+],
+"slot": 1
+},
+{
+"bad": "bezahle",
+"chapter": 6,
+"id": "de:03:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 1,
+"options": [
+"hörst",
+"warte",
+"bezahle"
+],
+"slot": 1
+},
+{
+"bad": "drinnen",
+"chapter": 6,
+"id": "de:03:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 34,
+"options": [
+"wohnen",
+"drinnen",
+"warten"
+],
+"slot": 1
+},
+{
+"bad": "warte",
+"chapter": 6,
+"id": "de:03:42:lab",
+"item": 42,
+"kind": "match",
+"near": 37,
+"options": [
+"bezahlst",
+"warte",
+"kocht"
+],
+"slot": 1
+},
+{
+"bad": "kochen",
+"chapter": 7,
+"id": "de:03:45:lab",
+"item": 45,
+"kind": "build",
+"near": 31,
+"options": [
+"koche",
+"warten",
+"kochen"
+],
+"slot": 1
+},
+{
+"bad": "lernen",
+"chapter": 7,
+"id": "de:03:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 44,
+"options": [
+"arbeiten",
+"kochen",
+"lernen"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"wohnen",
+"ich wohne"
+],
+[
+"wohnen",
+"du wohnst"
+],
+[
+"wohnen",
+"Anna wohnt"
+],
+[
+"wohnen",
+"wir wohnen"
+],
+[
+"arbeiten",
+"du arbeitest"
+],
+[
+"arbeiten",
+"ihr arbeitet"
+]
+],
+"title": {
+"en": "Everyday actions in the present tense",
+"ru": "Что я делаю: обычный глагол в настоящем",
+"uk": "Що я роблю: звичайне дієслово в теперішньому"
+}
+},
+"exampleResolved": [
+{
+"id": "de:03:01",
+"target": "Ich wohne hier.",
+"ru": "Я здесь живу.",
+"uk": "Я тут живу."
+},
+{
+"id": "de:03:02",
+"target": "Du wohnst hier.",
+"ru": "Ты здесь живёшь.",
+"uk": "Ти тут живеш."
+},
+{
+"id": "de:03:06",
+"target": "Ich lerne Deutsch.",
+"ru": "Я учу немецкий.",
+"uk": "Я вчу німецьку."
+},
+{
+"id": "de:03:07",
+"target": "Du lernst Deutsch.",
+"ru": "Ты учишь немецкий.",
+"uk": "Ти вчиш німецьку."
+},
+{
+"id": "de:03:08",
+"target": "Tom lernt Deutsch.",
+"ru": "Том учит немецкий.",
+"uk": "Том вчить німецьку."
+},
+{
+"id": "de:03:09",
+"target": "Wir lernen Deutsch.",
+"ru": "Мы учим немецкий.",
+"uk": "Ми вчимо німецьку."
+},
+{
+"id": "de:03:11",
+"target": "Ich mache Kaffee.",
+"ru": "Я готовлю кофе.",
+"uk": "Я готую каву."
+},
+{
+"id": "de:03:14",
+"target": "Wir machen eine Pause.",
+"ru": "Мы делаем перерыв.",
+"uk": "Ми робимо перерву."
+},
+{
+"id": "de:03:21",
+"target": "Ich suche den Schlüssel.",
+"ru": "Я ищу ключ.",
+"uk": "Я шукаю ключ."
+},
+{
+"id": "de:03:25",
+"target": "Ihr sucht die Kasse.",
+"ru": "Вы ищете кассу.",
+"uk": "Ви шукаєте касу."
+},
+{
+"id": "de:03:31",
+"target": "Ich arbeite heute.",
+"ru": "Я сегодня работаю.",
+"uk": "Я сьогодні працюю."
+},
+{
+"id": "de:03:32",
+"target": "Du arbeitest hier.",
+"ru": "Ты здесь работаешь.",
+"uk": "Ти тут працюєш."
+},
+{
+"id": "de:03:35",
+"target": "Ihr arbeitet draußen.",
+"ru": "Вы работаете на улице.",
+"uk": "Ви працюєте на вулиці."
+},
+{
+"id": "de:03:40",
+"target": "Die Gäste warten drinnen.",
+"ru": "Гости ждут внутри.",
+"uk": "Гості чекають усередині."
+}
+]
+},
+{
+"lesson": 4,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:04:01",
+"de:04:02"
+],
+"textByLocale": {
+"en": "In a regular message, you can start with today, not with yourself. Then the listener first learns when, and then what is happening. The meaning of the action remains the same, but the starting point of the story changes.",
+"ru": "В обычном сообщении можно начать с сегодняшнего дня, а не с себя. Тогда слушатель сначала узнаёт когда, а затем что происходит. Смысл действия остаётся тем же, меняется точка начала рассказа.",
+"uk": "У звичайному повідомленні можна розпочати з сьогоднішнього дня, а не з себе. Тоді слухач спочатку дізнається коли, а потім, що відбувається. Сенс дії залишається тим самим, змінюється точка початку оповідання."
+}
+},
+{
+"exampleIds": [
+"de:04:05",
+"de:04:06"
+],
+"textByLocale": {
+"en": "Second place is not the second word. `Am Montag` consists of two words, but together they answer one question. It occupies one position. Only place the personal verb after the entire group.",
+"ru": "Второе место — не второе слово. `Am Montag` состоит из двух слов, но вместе отвечает на один вопрос. Оно занимает одну позицию. Только после всей группы ставь личный глагол.",
+"uk": "Друге місце – не друге слово. `Am Montag` складається з двох слів, але разом відповідає на одне запитання. Воно посідає одну позицію. Тільки після всієї групи ставь особисте дієслово."
+}
+},
+{
+"exampleIds": [
+"de:04:11",
+"de:04:12"
+],
+"textByLocale": {
+"en": "Compare the two orders. The options `Heute kaufe ich Brot` and `Ich kaufe heute Brot` are natural. But `Heute ich kaufe Brot` disrupts the structure: there are two independent elements before the verb.",
+"ru": "Сравни два порядка. Варианты `Heute kaufe ich Brot` и `Ich kaufe heute Brot` естественны. А `Heute ich kaufe Brot` сбивает структуру: перед глаголом получаются два самостоятельных элемента.",
+"uk": "Порівняй два порядки. Варіанти `Heute kaufe ich Brot` та `Ich kaufe heute Brot` природні. А `Heute ich kaufe Brot` збиває структуру: перед дієсловом виходять два самостійні елементи."
+}
+},
+{
+"exampleIds": [
+"de:04:21",
+"de:04:22"
+],
+"textByLocale": {
+"en": "The clock occupies one position. In `um acht`,\" the preposition and number should not be separated. If you move the time to the beginning, the subject doesn't disappear: it follows the verb.",
+"ru": "Часы занимают одну позицию. В `um acht` предлог и число не надо разрывать. Если время перенести в начало, подлежащее не исчезает: оно идёт вслед за глаголом.",
+"uk": "Годинник займає одну позицію. У `um acht` прийменник і число не треба розривати. Якщо час перенести на початок, підлягає не зникає: воно йде слідом за дієсловом."
+}
+},
+{
+"exampleIds": [
+"de:04:31",
+"de:04:34"
+],
+"textByLocale": {
+"en": "Before or after? `Vor` and `nach` change the meaning of the entire time group. Before choosing a verb ending, determine which event serves as the starting point.",
+"ru": "До или после? `Vor` и `nach` меняют смысл всей группы времени. Прежде чем подбирать окончание глагола, определи, какое событие служит точкой отсчёта.",
+"uk": "До чи після? `Vor` та `nach` змінюють зміст усієї групи часу. Перш ніж підбирати закінчення дієслова, визнач, яка подія є точкою відліку."
+}
+},
+{
+"exampleIds": [
+"de:04:41",
+"de:04:44"
+],
+"textByLocale": {
+"en": "If there is no action, the rule remains. The conjunction `ist` or `sind` is also a finite verb. Choose the number based on the store or windows, not on the word \"today.\"",
+"ru": "Если нет действия, правило сохраняется. Связка `ist` или `sind` тоже является личным глаголом. Число выбирай по магазину или окнам, а не по слову «сегодня».",
+"uk": "Якщо дії немає, правило зберігається. Зв'язка `ist` або `sind` теж є особистим дієсловом. Число вибирай по магазині чи вікнах, а не за словом «сьогодні»."
+}
+},
+{
+"exampleIds": [
+"de:04:48",
+"de:04:50"
+],
+"textByLocale": {
+"en": "How to reassemble it yourself: Start with the person and say the entire phrase. Now move the time to the beginning, leave the verb in second place, and put the person after it. Check that there is no second subject.",
+"ru": "Как пересобрать самостоятельно. Начни с человека и произнеси фразу полностью. Теперь вынеси время в начало, оставь глагол на втором месте и поставь человека после него. Проверь, что не осталось второго подлежащего.",
+"uk": "Як перезбирати самостійно. Почни з людини і скажи фразу повністю. Тепер винеси час на початок, залиш дієслово на другому місці і постав людину після нього. Перевір, що не залишилося другого того, хто підлягає."
+}
+}
+],
+"lab": [
+{
+"bad": "arbeitest",
+"chapter": 1,
+"id": "de:04:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"arbeitest",
+"gearbeitet",
+"arbeite"
+],
+"slot": 1
+},
+{
+"bad": "lernte",
+"chapter": 1,
+"id": "de:04:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"lernen",
+"lernte",
+"lernt"
+],
+"slot": 1
+},
+{
+"bad": "arbeitet",
+"chapter": 1,
+"id": "de:04:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"arbeite",
+"gearbeitet",
+"arbeitet"
+],
+"slot": 2
+},
+{
+"bad": "gearbeitet",
+"chapter": 2,
+"id": "de:04:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"arbeitet",
+"arbeiten",
+"gearbeitet"
+],
+"slot": 2
+},
+{
+"bad": "offen",
+"chapter": 2,
+"id": "de:04:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"kochen",
+"lernen",
+"offen"
+],
+"slot": 1
+},
+{
+"bad": "kauft",
+"chapter": 2,
+"id": "de:04:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"kaufe",
+"kauft",
+"kaufen"
+],
+"slot": 1
+},
+{
+"bad": "zwölf",
+"chapter": 3,
+"id": "de:04:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"zwölf",
+"bezahlt",
+"öffnet"
+],
+"slot": 1
+},
+{
+"bad": "Musik",
+"chapter": 3,
+"id": "de:04:17:lab",
+"item": 17,
+"kind": "match",
+"near": 9,
+"options": [
+"Gemüse",
+"Musik",
+"Freitag"
+],
+"slot": 1
+},
+{
+"bad": "Musik",
+"chapter": 3,
+"id": "de:04:19:lab",
+"item": 19,
+"kind": "build",
+"near": 9,
+"options": [
+"Nachmittag",
+"Sonntag",
+"Musik"
+],
+"slot": 1
+},
+{
+"bad": "schließt",
+"chapter": 4,
+"id": "de:04:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"schließt",
+"zusammen",
+"neun"
+],
+"slot": 1
+},
+{
+"bad": "zehn",
+"chapter": 4,
+"id": "de:04:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 22,
+"options": [
+"sechs",
+"zehn",
+"wartet"
+],
+"slot": 1
+},
+{
+"bad": "acht",
+"chapter": 4,
+"id": "de:04:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 29,
+"options": [
+"zusammen",
+"acht",
+"zwölf"
+],
+"slot": 1
+},
+{
+"bad": "öffnet",
+"chapter": 5,
+"id": "de:04:29:lab",
+"item": 29,
+"kind": "match",
+"near": 10,
+"options": [
+"öffnet",
+"fünf",
+"schließt"
+],
+"slot": 1
+},
+{
+"bad": "die",
+"chapter": 5,
+"id": "de:04:31:lab",
+"item": 31,
+"kind": "build",
+"near": 30,
+"options": [
+"die",
+"das",
+"dem"
+],
+"slot": 1
+},
+{
+"bad": "den",
+"chapter": 5,
+"id": "de:04:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"dem",
+"der",
+"den"
+],
+"slot": 1
+},
+{
+"bad": "später",
+"chapter": 6,
+"id": "de:04:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 48,
+"options": [
+"später",
+"heute",
+"Morgen"
+],
+"slot": 1
+},
+{
+"bad": "trank",
+"chapter": 6,
+"id": "de:04:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 46,
+"options": [
+"trinken",
+"trinkt",
+"trank"
+],
+"slot": 3
+},
+{
+"bad": "war",
+"chapter": 6,
+"id": "de:04:42:lab",
+"item": 42,
+"kind": "match",
+"near": 43,
+"options": [
+"war",
+"ist",
+"sind"
+],
+"slot": 1
+},
+{
+"bad": "wäre",
+"chapter": 7,
+"id": "de:04:45:lab",
+"item": 45,
+"kind": "build",
+"near": 50,
+"options": [
+"wäre",
+"war",
+"ist"
+],
+"slot": 2
+},
+{
+"bad": "jetzt",
+"chapter": 7,
+"id": "de:04:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 36,
+"options": [
+"Morgen",
+"jetzt",
+"früher"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Ich arbeite heute.",
+"Heute arbeite ich."
+],
+[
+"Ich arbeite am Montag.",
+"Am Montag arbeite ich."
+],
+[
+"Anna kauft nach der Arbeit Brot.",
+"Nach der Arbeit kauft Anna Brot."
+],
+[
+"Wir trinken in der Pause Wasser.",
+"In der Pause trinken wir Wasser."
+]
+],
+"title": {
+"en": "Start with a time expression: the verb stays second",
+"ru": "Сначала время: глагол остаётся на втором месте",
+"uk": "Коли спочатку кажемо, коли відбувається дія"
+}
+},
+"exampleResolved": [
+{
+"id": "de:04:01",
+"target": "Heute arbeite ich.",
+"ru": "Сегодня я работаю.",
+"uk": "Сьогодні я працюю."
+},
+{
+"id": "de:04:02",
+"target": "Morgen arbeite ich.",
+"ru": "Завтра я работаю.",
+"uk": "Завтра я працюю."
+},
+{
+"id": "de:04:05",
+"target": "Am Montag arbeite ich.",
+"ru": "В понедельник я работаю.",
+"uk": "У понеділок я працюю."
+},
+{
+"id": "de:04:06",
+"target": "Am Dienstag arbeite ich.",
+"ru": "Во вторник я работаю.",
+"uk": "У вівторок я працюю."
+},
+{
+"id": "de:04:11",
+"target": "Heute kaufe ich Brot.",
+"ru": "Сегодня я покупаю хлеб.",
+"uk": "Сьогодні я купую хліб."
+},
+{
+"id": "de:04:12",
+"target": "Morgen kaufe ich Milch.",
+"ru": "Завтра я покупаю молоко.",
+"uk": "Завтра купую молоко."
+},
+{
+"id": "de:04:21",
+"target": "Um acht beginnt der Kurs.",
+"ru": "В восемь начинается занятие.",
+"uk": "О восьмій починається заняття."
+},
+{
+"id": "de:04:22",
+"target": "Um neun beginnt die Arbeit.",
+"ru": "В девять начинается работа.",
+"uk": "О дев'ятій починається робота."
+},
+{
+"id": "de:04:31",
+"target": "Nach dem Kurs lerne ich zu Hause.",
+"ru": "После занятия я учусь дома.",
+"uk": "Після заняття я навчаюсь вдома."
+},
+{
+"id": "de:04:34",
+"target": "Vor dem Kurs trinke ich Tee.",
+"ru": "Перед занятием я пью чай.",
+"uk": "Перед заняттям я п'ю чай."
+},
+{
+"id": "de:04:41",
+"target": "Heute ist der Laden offen.",
+"ru": "Сегодня магазин открыт.",
+"uk": "Сьогодні магазин відкритий."
+},
+{
+"id": "de:04:44",
+"target": "Heute sind die Fenster zu.",
+"ru": "Сегодня окна закрыты.",
+"uk": "Сьогодні вікна зачинені."
+},
+{
+"id": "de:04:48",
+"target": "Am Morgen bin ich wach.",
+"ru": "Утром я не сплю.",
+"uk": "Вранці я не сплю."
+},
+{
+"id": "de:04:50",
+"target": "Am Freitag ist der Kurs zu Ende.",
+"ru": "В пятницу курс заканчивается.",
+"uk": "У п'ятницю курс закінчується."
+}
+]
+}
+]

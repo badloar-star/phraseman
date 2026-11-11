@@ -70,3 +70,5 @@ Governance-ID: TG-5A1F8916E139 (писатели de/it 16–20: запись les
 Governance-ID: TG-80DEC3B3C3E7 (продолжение: писатели de/it 16–20)
 Governance-ID: TG-FBC7A9A91066
 Governance-ID: TG-270CC8668F3D
+Governance-ID: TG-0046FD8E6362
+Governance-ID: TG-5843151C742B

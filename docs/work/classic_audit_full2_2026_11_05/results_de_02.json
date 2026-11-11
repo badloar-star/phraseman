@@ -1,0 +1,632 @@
+[
+ {
+  "id": "de:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Anna",
+   "with": "Bist"
+  }
+ },
+ {
+  "id": "de:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Aufzug",
+   "with": "Sind"
+  }
+ },
+ {
+  "id": "de:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Bahn",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Laden",
+   "with": "Habt"
+  }
+ },
+ {
+  "id": "de:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Montag",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Anna",
+   "with": "Seid"
+  }
+ },
+ {
+  "id": "de:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Tom",
+   "with": "Bist"
+  }
+ },
+ {
+  "id": "de:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Uhr",
+   "with": "Haben"
+  }
+ },
+ {
+  "id": "de:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Kinder",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Montag",
+   "with": "Seid"
+  }
+ },
+ {
+  "id": "de:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Anna",
+   "with": "Bist"
+  }
+ },
+ {
+  "id": "de:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Tom",
+   "with": "Haben"
+  }
+ },
+ {
+  "id": "de:05:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Ein",
+   "with": "Lernt"
+  }
+ },
+ {
+  "id": "de:05:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Eine",
+   "with": "Lernst"
+  }
+ },
+ {
+  "id": "de:05:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Kein",
+   "with": "Lerne"
+  }
+ },
+ {
+  "id": "de:05:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Keine",
+   "with": "Lernte"
+  }
+ },
+ {
+  "id": "de:05:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mein",
+   "with": "Wohnen"
+  }
+ },
+ {
+  "id": "de:05:34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Ein",
+   "with": "Wohnt"
+  }
+ },
+ {
+  "id": "de:05:34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Eine",
+   "with": "Wohnst"
+  }
+ },
+ {
+  "id": "de:05:34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Kein",
+   "with": "Wohne"
+  }
+ },
+ {
+  "id": "de:05:34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Keine",
+   "with": "Wohnte"
+  }
+ },
+ {
+  "id": "de:05:34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все 5 соблазнов — артикли/местоимения, верная плитка угадывается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mein",
+   "with": "Lernen"
+  }
+ },
+ {
+  "id": "de:05:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — наречие/существительные, отсеиваются по части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Draußen",
+   "with": "Trinkt"
+  }
+ },
+ {
+  "id": "de:05:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — наречие/существительные, отсеиваются по части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Bahn",
+   "with": "Trinkst"
+  }
+ },
+ {
+  "id": "de:05:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — наречие/существительные, отсеиваются по части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Café",
+   "with": "Trinke"
+  }
+ },
+ {
+  "id": "de:05:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — наречие/существительные, отсеиваются по части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Fenster",
+   "with": "Kochen"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Kinder",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Montag",
+   "with": "Seid"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Anna",
+   "with": "Bist"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Tom",
+   "with": "Haben"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции фамилии соблазны — глаголы и мн. число существительного («Frau Hört»), нелепо и выдаёт верную плитку",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Hört",
+   "with": "Müller"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции фамилии соблазны — глаголы и мн. число существительного («Frau Hört»), нелепо и выдаёт верную плитку",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Brauchen",
+   "with": "Schmidt"
+  }
+ },
+ {
+  "id": "de:05:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции фамилии соблазны — глаголы и мн. число существительного («Frau Hört»), нелепо и выдаёт верную плитку",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Türen",
+   "with": "Fischer"
+  }
+ },
+ {
+  "id": "de:05:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Adresse",
+   "with": "Hast"
+  }
+ },
+ {
+  "id": "de:05:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Brot",
+   "with": "Habt"
+  }
+ },
+ {
+  "id": "de:05:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Büro",
+   "with": "Haben"
+  }
+ },
+ {
+  "id": "de:05:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Eingang",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Kinder",
+   "with": "Ist"
+  }
+ },
+ {
+  "id": "de:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Montag",
+   "with": "Seid"
+  }
+ },
+ {
+  "id": "de:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Anna",
+   "with": "Bist"
+  }
+ },
+ {
+  "id": "de:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/имена, ученик отсеивает их по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Tom",
+   "with": "Haben"
+  }
+ },
+ {
+  "id": "de:06:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции указательного местоимения все соблазны — глаголы/наречие, «diese» угадывается без знания",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "lange",
+   "with": "dieser"
+  }
+ },
+ {
+  "id": "de:06:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции указательного местоимения все соблазны — глаголы/наречие, «diese» угадывается без знания",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "heißen",
+   "with": "diesen"
+  }
+ },
+ {
+  "id": "de:06:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции указательного местоимения все соблазны — глаголы/наречие, «diese» угадывается без знания",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "beginnt",
+   "with": "dieses"
+  }
+ },
+ {
+  "id": "de:06:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции указательного местоимения все соблазны — глаголы/наречие, «diese» угадывается без знания",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "heißt",
+   "with": "diesem"
+  }
+ },
+ {
+  "id": "de:06:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции указательного местоимения все соблазны — глаголы/наречие, «diese» угадывается без знания",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "schließt",
+   "with": "den"
+  }
+ },
+ {
+  "id": "de:06:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции артикля все соблазны — союзы/предлоги, «ein» угадывается без знания артикля (das/der намеренно не предлагаю: «das Zimmer» дало бы верную фразу)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "und",
+   "with": "eine"
+  }
+ },
+ {
+  "id": "de:06:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции артикля все соблазны — союзы/предлоги, «ein» угадывается без знания артикля (das/der намеренно не предлагаю: «das Zimmer» дало бы верную фразу)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "mit",
+   "with": "einen"
+  }
+ },
+ {
+  "id": "de:06:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции артикля все соблазны — союзы/предлоги, «ein» угадывается без знания артикля (das/der намеренно не предлагаю: «das Zimmer» дало бы верную фразу)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "für",
+   "with": "einem"
+  }
+ },
+ {
+  "id": "de:06:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции артикля все соблазны — союзы/предлоги, «ein» угадывается без знания артикля (das/der намеренно не предлагаю: «das Zimmer» дало бы верную фразу)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "ohne",
+   "with": "kein"
+  }
+ },
+ {
+  "id": "de:06:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции артикля все соблазны — союзы/предлоги, «ein» угадывается без знания артикля (das/der намеренно не предлагаю: «das Zimmer» дало бы верную фразу)",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "aber",
+   "with": "einer"
+  }
+ },
+ {
+  "id": "de:06:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после «Wie» все соблазны — глаголы, «viele» угадывается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "beginnt",
+   "with": "lange"
+  }
+ },
+ {
+  "id": "de:06:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после «Wie» все соблазны — глаголы, «viele» угадывается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "spielt",
+   "with": "spät"
+  }
+ },
+ {
+  "id": "de:06:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после «Wie» все соблазны — глаголы, «viele» угадывается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "öffnet",
+   "with": "vielen"
+  }
+ },
+ {
+  "id": "de:06:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после «Wie» все соблазны — глаголы, «viele» угадывается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "heißt",
+   "with": "oft"
+  }
+ },
+ {
+  "id": "de:06:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после «Wie» все соблазны — глаголы, «viele» угадывается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "dauert",
+   "with": "vieler"
+  }
+ },
+ {
+  "id": "de:06:29",
+  "type": "M",
+  "field": "ru",
+  "problem": "«Надолго вы остаётесь?» — вопрос да/нет («надолго ли?»), а Wie lange = «как долго»",
+  "fix": "Как долго вы остаётесь?"
+ },
+ {
+  "id": "de:06:29",
+  "type": "M",
+  "field": "uk",
+  "problem": "«Надовго ви залишаєтеся?» — вопрос да/нет, а Wie lange = «як довго»",
+  "fix": "Як довго ви залишаєтеся?"
+ }
+]

@@ -7,8 +7,6 @@ import type { ShowcaseSection } from '../types';
 import UpdateModal from '../../../UpdateModal';
 import ReleaseNotesModal from '../../../ReleaseNotesModal';
 import PersonalAdminMessageModal from '../../../PersonalAdminMessageModal';
-import VipSurveyModal from '../../../VipSurveyModal';
-import VipSurveyReviewPromptModal from '../../../VipSurveyReviewPromptModal';
 import AppMessagesInbox from '../../../AppMessagesInbox';
 import type { AppMessageWithState } from '../../../../app/app_messages';
 import { cs } from '../showcase_copy';
@@ -118,45 +116,6 @@ export const SECTION: ShowcaseSection = {
           visible={visible}
           onAcknowledge={noopAcknowledge}
         />
-      ),
-    },
-    {
-      id: 'vip_survey_modal',
-      title: cs('vip_survey_modal_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <VipSurveyModal
-          visible={visible}
-          messageId="showcase-demo-vip-survey"
-          onClose={onClose}
-          onCompleted={onClose}
-        />
-      ),
-    },
-    {
-      id: 'vip_survey_modal_hybrid',
-      approval: 'pending',
-      title: cs('vip_survey_modal_hybrid_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <VipSurveyModal
-          visible={visible}
-          messageId="showcase-demo-vip-survey-hybrid"
-          onClose={onClose}
-          onCompleted={onClose}
-          motionVariant="hybrid"
-        />
-      ),
-    },
-    {
-      id: 'vip_survey_review_prompt_modal',
-      title: cs('vip_survey_review_prompt_modal_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <VipSurveyReviewPromptModal visible={visible} onClose={onClose} />
       ),
     },
     {

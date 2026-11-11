@@ -1,0 +1,768 @@
+{
+ "lang": "de",
+ "lesson": 25,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:25:01",
+   "target": "Der rote Mantel passt.",
+   "ru": "Красное пальто подходит.",
+   "uk": "Червоне пальто підходить."
+  },
+  {
+   "id": "de:25:02",
+   "target": "Die rote Jacke passt.",
+   "ru": "Красная куртка подходит.",
+   "uk": "Червона куртка підходить."
+  },
+  {
+   "id": "de:25:03",
+   "target": "Das rote Kleid passt.",
+   "ru": "Красное платье подходит.",
+   "uk": "Червона сукня підходить."
+  },
+  {
+   "id": "de:25:04",
+   "target": "Die roten Schuhe passen.",
+   "ru": "Красные туфли подходят.",
+   "uk": "Червоні туфлі підходять."
+  },
+  {
+   "id": "de:25:05",
+   "target": "Der kleine Koffer ist leicht.",
+   "ru": "Маленький чемодан лёгкий.",
+   "uk": "Маленька валіза легка."
+  },
+  {
+   "id": "de:25:06",
+   "target": "Die kleine Tasche ist leicht.",
+   "ru": "Маленькая сумка лёгкая.",
+   "uk": "Маленька сумка легка."
+  },
+  {
+   "id": "de:25:07",
+   "target": "Das kleine Paket ist leicht.",
+   "ru": "Маленькая посылка лёгкая.",
+   "uk": "Маленька посилка легка."
+  },
+  {
+   "id": "de:25:08",
+   "target": "Die kleinen Kisten sind leicht.",
+   "ru": "Маленькие ящики лёгкие.",
+   "uk": "Маленькі ящики легкі."
+  },
+  {
+   "id": "de:25:09",
+   "target": "Der neue Schlüssel passt.",
+   "ru": "Новый ключ подходит.",
+   "uk": "Новий ключ підходить."
+  },
+  {
+   "id": "de:25:10",
+   "target": "Die neue Karte funktioniert.",
+   "ru": "Новая карта работает.",
+   "uk": "Нова карта працює."
+  },
+  {
+   "id": "de:25:11",
+   "target": "Ich nehme den roten Mantel.",
+   "ru": "Я беру красное пальто.",
+   "uk": "Я беру червоне пальто."
+  },
+  {
+   "id": "de:25:12",
+   "target": "Ich nehme die rote Jacke.",
+   "ru": "Я беру красную куртку.",
+   "uk": "Я беру червону куртку."
+  },
+  {
+   "id": "de:25:13",
+   "target": "Anna kauft das rote Kleid.",
+   "ru": "Анна покупает красное платье.",
+   "uk": "Анна купує червону сукню."
+  },
+  {
+   "id": "de:25:14",
+   "target": "Vor der langen Nachtschicht schläft Tom tagsüber.",
+   "ru": "Перед долгой ночной сменой Том спит днём.",
+   "uk": "Перед довгою нічною зміною Том спить удень."
+  },
+  {
+   "id": "de:25:15",
+   "target": "Wir suchen den kleinen Koffer.",
+   "ru": "Мы ищем маленький чемодан.",
+   "uk": "Ми шукаємо маленьку валізу."
+  },
+  {
+   "id": "de:25:16",
+   "target": "Du öffnest die schwere Tür.",
+   "ru": "Ты открываешь тяжёлую дверь.",
+   "uk": "Ти відчиняєш важкі двері."
+  },
+  {
+   "id": "de:25:17",
+   "target": "Ich lese das neue Buch.",
+   "ru": "Я читаю новую книгу.",
+   "uk": "Я читаю нову книгу."
+  },
+  {
+   "id": "de:25:18",
+   "target": "Sie prüft die neue Rechnung.",
+   "ru": "Она проверяет новый счёт.",
+   "uk": "Вона перевіряє новий рахунок."
+  },
+  {
+   "id": "de:25:19",
+   "target": "Wir holen die leeren Kisten.",
+   "ru": "Мы забираем пустые ящики.",
+   "uk": "Ми забираємо порожні ящики."
+  },
+  {
+   "id": "de:25:20",
+   "target": "Der laute Alarm weckte uns um Mitternacht.",
+   "ru": "Громкий сигнал тревоги разбудил нас в полночь.",
+   "uk": "Гучна сигналізація розбудила нас опівночі."
+  },
+  {
+   "id": "de:25:21",
+   "target": "Ich fahre mit dem frühen Zug.",
+   "ru": "Я еду ранним поездом.",
+   "uk": "Я їду раннім поїздом."
+  },
+  {
+   "id": "de:25:22",
+   "target": "Anna kommt mit der letzten Bahn.",
+   "ru": "Анна приедет на последней электричке.",
+   "uk": "Анна приїде останньою електричкою."
+  },
+  {
+   "id": "de:25:23",
+   "target": "Tom spielt mit dem kleinen Kind.",
+   "ru": "Том играет с маленьким ребёнком.",
+   "uk": "Том грає з маленькою дитиною."
+  },
+  {
+   "id": "de:25:24",
+   "target": "Wir sprechen mit den neuen Nachbarn.",
+   "ru": "Мы разговариваем с новыми соседями.",
+   "uk": "Ми розмовляємо з новими сусідами."
+  },
+  {
+   "id": "de:25:25",
+   "target": "Neben dem großen Schrank steht ein Stuhl.",
+   "ru": "Рядом с большим шкафом стоит стул.",
+   "uk": "Поруч із великою шафою стоїть стілець."
+  },
+  {
+   "id": "de:25:26",
+   "target": "In der kleinen Küche ist es warm.",
+   "ru": "На маленькой кухне тепло.",
+   "uk": "На маленькій кухні тепло."
+  },
+  {
+   "id": "de:25:27",
+   "target": "Im neuen Hotel gibt es einen Aufzug.",
+   "ru": "В новой гостинице есть лифт.",
+   "uk": "У новому готелі є ліфт."
+  },
+  {
+   "id": "de:25:28",
+   "target": "Vor der alten Schule steht ein Baum.",
+   "ru": "Перед старой школой стоит дерево.",
+   "uk": "Перед старою школою стоїть дерево."
+  },
+  {
+   "id": "de:25:29",
+   "target": "Auf dem runden Tisch liegt die Brille.",
+   "ru": "Очки лежат на круглом столе.",
+   "uk": "Окуляри лежать на круглому столі."
+  },
+  {
+   "id": "de:25:30",
+   "target": "In den vollen Bussen ist es laut.",
+   "ru": "В переполненных автобусах шумно.",
+   "uk": "У переповнених автобусах шумно."
+  },
+  {
+   "id": "de:25:31",
+   "target": "Der direkte Zug ist teurer.",
+   "ru": "Прямой поезд дороже.",
+   "uk": "Прямий поїзд дорожчий."
+  },
+  {
+   "id": "de:25:32",
+   "target": "Ich nehme den direkten Zug.",
+   "ru": "Я поеду прямым поездом.",
+   "uk": "Я поїду прямим поїздом."
+  },
+  {
+   "id": "de:25:33",
+   "target": "Die offene Tür führt in den Flur.",
+   "ru": "Открытая дверь ведёт в коридор.",
+   "uk": "Відчинені двері ведуть у коридор."
+  },
+  {
+   "id": "de:25:34",
+   "target": "Anna schließt die offene Tür.",
+   "ru": "Анна закрывает открытую дверь.",
+   "uk": "Анна зачиняє відчинені двері."
+  },
+  {
+   "id": "de:25:35",
+   "target": "Das kalte Wasser tut gut.",
+   "ru": "Холодная вода приятно освежает.",
+   "uk": "Холодна вода приємно освіжає."
+  },
+  {
+   "id": "de:25:36",
+   "target": "Tom trinkt das kalte Wasser.",
+   "ru": "Том пьёт холодную воду.",
+   "uk": "Том п'є холодну воду."
+  },
+  {
+   "id": "de:25:37",
+   "target": "Die frischen Brötchen sind noch warm.",
+   "ru": "Свежие булочки ещё тёплые.",
+   "uk": "Свіжі булочки ще теплі."
+  },
+  {
+   "id": "de:25:38",
+   "target": "Wir teilen die frischen Brötchen.",
+   "ru": "Мы делим свежие булочки.",
+   "uk": "Ми ділимо свіжі булочки."
+  },
+  {
+   "id": "de:25:39",
+   "target": "Der feuchte Schnee schmilzt im warmen Flur.",
+   "ru": "Мокрый снег тает в тёплом коридоре.",
+   "uk": "Вологий сніг тане в теплому коридорі."
+  },
+  {
+   "id": "de:25:40",
+   "target": "Ich frage nach dem freien Platz.",
+   "ru": "Я спрашиваю о свободном месте.",
+   "uk": "Я питаю про вільне місце."
+  },
+  {
+   "id": "de:25:41",
+   "target": "Wo ist der gelbe Umschlag?",
+   "ru": "Где жёлтый конверт?",
+   "uk": "Де жовтий конверт?"
+  },
+  {
+   "id": "de:25:42",
+   "target": "Hast du den gelben Umschlag gesehen?",
+   "ru": "Ты видел жёлтый конверт?",
+   "uk": "Ти бачив жовтий конверт?"
+  },
+  {
+   "id": "de:25:43",
+   "target": "Wem gehört die nasse Jacke?",
+   "ru": "Чья это мокрая куртка?",
+   "uk": "Чия це мокра куртка?"
+  },
+  {
+   "id": "de:25:44",
+   "target": "Ich hänge die nasse Jacke an den Haken.",
+   "ru": "Я вешаю мокрую куртку на крючок.",
+   "uk": "Я вішаю мокру куртку на гачок."
+  },
+  {
+   "id": "de:25:45",
+   "target": "Das hintere Fenster klemmt.",
+   "ru": "Заднее окно заедает.",
+   "uk": "Заднє вікно заїдає."
+  },
+  {
+   "id": "de:25:46",
+   "target": "Wir reparieren das hintere Fenster.",
+   "ru": "Мы ремонтируем заднее окно.",
+   "uk": "Ми ремонтуємо заднє вікно."
+  },
+  {
+   "id": "de:25:47",
+   "target": "Die wichtigen Unterlagen liegen hier.",
+   "ru": "Важные документы лежат здесь.",
+   "uk": "Важливі документи лежать тут."
+  },
+  {
+   "id": "de:25:48",
+   "target": "Sie bringt die wichtigen Unterlagen zum Termin.",
+   "ru": "Она приносит важные документы на встречу.",
+   "uk": "Вона приносить важливі документи на зустріч."
+  },
+  {
+   "id": "de:25:49",
+   "target": "Ich wohne in der ruhigen Straße hinter dem Markt.",
+   "ru": "Я живу на тихой улице за рынком.",
+   "uk": "Я живу на тихій вулиці за ринком."
+  },
+  {
+   "id": "de:25:50",
+   "target": "Wir gehen durch den schmalen Gang zur Kasse.",
+   "ru": "Мы идём к кассе по узкому проходу.",
+   "uk": "Ми йдемо до каси вузьким проходом."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "das Kleid",
+   "ru": "платье",
+   "uk": "сукня"
+  },
+  {
+   "lemma": "der Baum",
+   "ru": "дерево",
+   "uk": "дерево"
+  },
+  {
+   "lemma": "das Brötchen",
+   "ru": "булочка",
+   "uk": "булочка"
+  },
+  {
+   "lemma": "die Unterlage",
+   "ru": "документ, материал",
+   "uk": "документ, матеріал"
+  },
+  {
+   "lemma": "der Gang",
+   "ru": "проход, коридор",
+   "uk": "прохід, коридор"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  }
+ ],
+ "oldTopicTitle": "Какой именно? Прилагательное после определённого артикля",
+ "oldTheoryRu": "Покупателю нужны не любые туфли, а красные. Описание теперь внутри именной группы. Отдельно можно сказать `Der Mantel ist rot`, но в сочетании с названием предмета появляется форма `rote`. Для единственного числа в именительном после определённого артикля в этом уроке обычно увидишь `-e`. Во множественном вместо него будет `-en`. Проверь, говорит ли человек об одной коробке или нескольких. Мужской предмет как прямой объект — важный переход: `der rote Mantel` превращается в `den roten Mantel`. На самом названии пальто изменения не видно; подсказку дают соседние слова. После `mit` нужен дательный падеж. Внутри именной группы с определённым артиклем у прилагательного будет `-en`. Это работает не только у людей: можно ехать поездом или последней электричкой. Сравни две реплики об одном предмете: он что-то делает сам или кто-то его выбирает? Такое сравнение помогает отличить подлежащее от объекта, не пытаясь определить падеж только по переводу. Окончание прилагательного не передаёт качество само по себе. Мокрая куртка не становится другой, когда меняется её роль в предложении. Изменяется только связь между словами. Сначала тренируем сочетания с определённым артиклем. Не переноси готовую таблицу без изменений на сочетания без артикля или с `ein`: распределение падежных сигналов там отличается."
+}

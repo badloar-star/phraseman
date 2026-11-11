@@ -1,0 +1,10 @@
+[
+{"id": "it:17:10", "type": "M", "field": "ru", "problem": "«готовится к работе» = готовится к задаче; в target — собирается, чтобы пойти на работу (per andare al lavoro)", "fix": "Леа собирается на работу."},
+{"id": "it:17:10", "type": "M", "field": "uk", "problem": "«готується до роботи» = готується до завдання; в target — збирається йти на роботу", "fix": "Леа збирається на роботу."},
+{"id": "it:17:39", "type": "M", "field": "uk", "problem": "«посидіти» (побути сидячи якийсь час) ≠ sederci / ru «сесть»; ru и uk расходятся", "fix": "Ми можемо сісти тут."},
+{"id": "it:17:41", "type": "B1", "field": "tiles", "problem": "соблазн «andare» даёт естественную верную фразу «Mi sbrigo per andare al lavoro.» (тороплюсь, чтобы пойти/успеть на работу) — засчитается ошибкой", "fix": {"position": 3, "replace_distractor": "andare", "with": "sente"}},
+{"id": "it:17:49", "type": "M", "field": "uk", "problem": "«зауважує» в украинском = «делает замечание/отмечает словами», нужно «помічає»; железнодорожный путь по-украински «колія», а не «шлях»", "fix": "Паоло помічає, що стоїть не на тій колії."},
+{"id": "it:18:14", "type": "B3", "field": "alternatives", "problem": "подсказка «вместе завернули подарок» подталкивает к естественному порядку «incartato insieme il regalo», которого нет в alternatives", "fix": {"add": ["Abbiamo incartato insieme il regalo.", "Noi abbiamo incartato insieme il regalo."], "remove": []}},
+{"id": "it:18:19", "type": "B3", "field": "alternatives", "problem": "подсказка «оставил здесь своё пальто» задаёт естественный порядок «lasciato qui il cappotto», его нет в alternatives", "fix": {"add": ["Lui ha lasciato qui il cappotto.", "Ha lasciato qui il cappotto.", "Lui ha lasciato qua il cappotto.", "Ha lasciato qua il cappotto."], "remove": []}},
+{"id": "it:18:34", "type": "M", "field": "uk", "problem": "«забули про ремінь» = забыли о ремне (не вспомнили), а target/ru — не забыли взять ремень", "fix": "Ми не забули ремінь."}
+]

@@ -76,13 +76,19 @@ jest.mock('../components/spire/useSpireScene', () => ({ useSpireScene: () => ({ 
 jest.mock('../components/spire/SpireTowerSvg', () => ({ __esModule: true, default: 'SpireTowerSvg' }));
 // зачем (29.10, c2bc33c7b): итог недели в старых слайдах ставит башню через SpireTowerDeferred (рамка, потом башня) — здесь та же заглушка, что у башни
 jest.mock('../components/spire/SpireTowerDeferred', () => ({ __esModule: true, default: 'SpireTowerDeferred' }));
-jest.mock('../components/streak/moments/StreakMomentFlame', () => ({ __esModule: true, default: 'StreakMomentFlame' }));
+jest.mock('../components/streak/moments/StreakMomentFlame', () => ({
+  __esModule: true, default: 'StreakMomentFlame', streakPlateFill: () => '#222',
+}));
 jest.mock('../components/AchievementArt', () => ({ __esModule: true, default: 'AchievementArt' }));
 jest.mock('../app/achievements', () => ({
-  ALL_ACHIEVEMENTS: [{ id: 'streak_7', nameRu: 'Неделя держит слово' }],
+  ALL_ACHIEVEMENTS: [
+    { id: 'streak_7', nameRu: 'Неделя держит слово', descRu: 'Серия из 7 дней', conditionRu: 'Получить прогресс 7 дней подряд' },
+    { id: 'streak_30', nameRu: 'Месяц подряд', descRu: 'Серия из 30 дней', conditionRu: 'Получить прогресс 30 дней подряд' },
+  ],
   achievementNameForLang: (a: { nameRu: string }) => a.nameRu,
+  achievementConditionForLang: (a: { conditionRu?: string }) => a.conditionRu,
+  achievementDescForLang: (a: { descRu: string }) => a.descRu,
 }));
-jest.mock('../app/coin_rank_table_v1', () => ({ isValidCoinRank: (r: unknown) => typeof r === 'number', coinRankRowForDisplay: (r: number) => ({ priceToReach: r * 1000 }) }));
 jest.mock('../components/spire/useSpirePalette', () => ({
   useSpirePalette: () => ({ bg: '#0E1214', bgTop: '#16241F', card: '#1B2123', control: '#2A3234', text: '#FFFFFF', textSecondary: '#B8C0C4', accentText: '#7EF0C8' }),
 }));
@@ -116,15 +122,17 @@ jest.mock('../modules/story_events/use_story_events', () => ({
 import StoryAvatarSlot from '../components/stories/StoryAvatarSlot';
 import StoryViewer from '../components/stories/StoryViewer';
 import StorySlide from '../components/stories/StorySlides';
+import { AchFrame } from '../components/stories/templates/frames_streak';
+import { PeakWeekFrame } from '../components/stories/templates/frames_progress';
 import { STORY_LANGS, STORY_STRING_KEYS, storyText, storyWhenLabel } from '../components/stories/story_strings';
 import { normalizeEol } from './helpers/read_source';
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const NOW = Date.UTC(2026, 9, 14, 12, 0, 0);
 const ev = (type: StoryEvent['type'], payload: StoryEvent['payload'], id: string, atMs = NOW): StoryEvent => ({ id, type, payload, atMs, seen: false });
-const WEEK = ev('spire_week', { weekId: 'w1', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30 }, 'spire_week:w1:en');
+const WEEK = ev('spire_week', { weekId: 'w1', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30 }, 'spire_week:w1:en', NOW - 1);
 const STREAK = ev('streak_milestone', { days: 30, dayKey: '2026-10-14' }, 'streak_milestone:30:2026-10-14');
-const RANK = ev('coin_rank_up', { toRank: 6 }, 'coin_rank_up:6');
+const RANK = ev('coin_rank_up', { toRank: 6, paidPrice: 1500 }, 'coin_rank_up:6');
 const ACH = ev('achievement', { achievementId: 'streak_7' }, 'achievement:streak_7');
 
 const slotProps = () => ({ lang: 'ru' as const, coinRank: 5, coinSource: 1 as never, placeholderColor: '#222', onOpenProfile: jest.fn(), profileLabel: 'Мой профиль' });
@@ -154,7 +162,7 @@ describe('аватар в шапке Главной (D192)', () => {
   });
 
   // Владелец 26.10: просмотренные истории доступны удержанием, обычный тап открывает визитку.
-  it('просмотренные истории: тап открывает профиль, удержание 2 секунды повторяет истории', async () => {
+  it('просмотренные истории: тап открывает профиль, удержание одну секунду повторяет истории', async () => {
     mockStories = { enabled: true, unseenCount: 0, playback: [], stories: [STREAK, WEEK] }; // новые первыми, как отдаёт Ядро
     const props = slotProps();
     await render(<StoryAvatarSlot {...props} />);
@@ -162,11 +170,41 @@ describe('аватар в шапке Главной (D192)', () => {
     await fireEvent.press(screen.getByTestId('home-hero-avatar-button'));
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
     expect(screen.queryByTestId('story-viewer')).toBeNull();
-    expect(screen.getByTestId('home-hero-avatar-button').props.delayLongPress).toBe(2000);
+    expect(screen.getByTestId('home-hero-avatar-button').props.delayLongPress).toBe(1000);
     await fireEvent(screen.getByTestId('home-hero-avatar-button'), 'longPress');
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
     expect(screen.getByTestId('story-viewer')).toBeTruthy();
     expect(mockMarkSeen).toHaveBeenCalledWith(WEEK.id); // WEEK старше STREAK → показывается первым
+  });
+
+  it('повтор с горящим кольцом включает просмотренные и локальные истории', async () => {
+    mockStories = { enabled: true, unseenCount: 1, playback: [STREAK], stories: [STREAK, WEEK] };
+    const homeStory: StoryEvent = {
+      id: 'home-activity:day_done:2026-11-11', type: 'home_activity', atMs: STREAK.atMs + 1,
+      seen: false, payload: { state: 'day_done', status: 'День засчитан' },
+    };
+    const props = slotProps();
+    await render(<StoryAvatarSlot {...props} homeStories={[homeStory]} />);
+    await fireEvent(screen.getByTestId('home-hero-avatar-button'), 'longPress');
+    expect(screen.getByTestId('story-viewer-bars').children).toHaveLength(3);
+    expect(mockMarkSeen).toHaveBeenCalledWith(WEEK.id);
+    expect(props.onOpenProfile).not.toHaveBeenCalled();
+  });
+
+  it('локальная история открывается с кольца, просмотр гасит кольцо без записи в журнал', async () => {
+    mockStories = { enabled: false, unseenCount: 0, playback: [] };
+    const homeStory: StoryEvent = {
+      id: 'home-activity:day_done:2026-11-11', type: 'home_activity', atMs: NOW,
+      seen: false, payload: { state: 'day_done', status: 'День засчитан' },
+    };
+    const props = slotProps();
+    await render(<StoryAvatarSlot {...props} homeStories={[homeStory]} />);
+    expect(screen.getByTestId('story-ring')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('home-hero-avatar-button'));
+    expect(screen.getByTestId('home-story-scene-status')).toBeTruthy();
+    expect(screen.queryByTestId('story-ring')).toBeNull();
+    expect(mockMarkSeen).not.toHaveBeenCalled();
+    expect(props.onOpenProfile).not.toHaveBeenCalled();
   });
 
   it('есть непросмотренные → кольцо у аватара; тап открывает просмотр, профиль не открывается', async () => {
@@ -232,15 +270,27 @@ describe('кадры четырёх видов событий', () => {
     expect(screen.getByTestId('story-week-tower')).toBeTruthy();
   });
 
-  it('итог недели с монетами недели и наградой сервера: «3 место из 30 · 470 монет за неделю · +100»; награда только из promotionCoins', async () => {
+  it('прежний итог недели объясняет известную награду за повышение; награда только из promotionCoins', async () => {
     await render(<StorySlide event={ev('spire_week', { weekId: 'w3', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30, weekCoins: 470, promotionCoins: 100 }, 'w3')} lang="ru" coinRank={5} />);
-    expect(screen.getByText(/3 место из 30 \u00B7 470 монет за неделю \u00B7 \+100/)).toBeTruthy();
+    expect(screen.getByText(/3 место из 30 \u00B7 470 монет за неделю \u00B7 \+100\s+монет за повышение/)).toBeTruthy();
   });
 
-  it('награды за повышение нет (promotionCoins 0) или итог не «вверх» → «+N» не показываем', async () => {
+  it('прежний итог: promotionCoins 0 или итог не «вверх» → причину выплаты не показываем', async () => {
     await render(<StorySlide event={ev('spire_week', { weekId: 'w4', lang: 'en', outcome: 'stay', prevTier: 1, floor: 1, place: 8, total: 30, weekCoins: 300, promotionCoins: 100 }, 'w4')} lang="ru" coinRank={5} />);
     expect(screen.queryByText(/\+100/)).toBeNull();
     expect(screen.getByText(/8 место из 30 \u00B7 300 монет за неделю/)).toBeTruthy();
+  });
+
+  it('новый шаблон итога объясняет promotionCoins для настоящего повышения', async () => {
+    const up = { id: 'peakweek', tier: 1, outcome: 'up', place: 3, total: 30, weekCoins: 470, promotionCoins: 100, podium: null } as const;
+    await render(<PeakWeekFrame tpl={up} lang="ru" myRank={5} />);
+    expect(screen.getByText(/\+100\s+монет за повышение/)).toBeTruthy();
+  });
+
+  it('новый шаблон не показывает promotionCoins для неправильного исхода', async () => {
+    const up = { id: 'peakweek', tier: 1, outcome: 'up', place: 3, total: 30, weekCoins: 470, promotionCoins: 100, podium: null } as const;
+    await render(<PeakWeekFrame tpl={{ ...up, outcome: 'down' }} lang="ru" myRank={5} />);
+    expect(screen.queryByText(/\+100/)).toBeNull();
   });
 
   it('итог недели без поля total: строки «место из» нет (ничего не выдумываем)', async () => {
@@ -255,10 +305,45 @@ describe('кадры четырёх видов событий', () => {
     expect(screen.getByText(/Ещё 70 дней — и сотня!/)).toBeTruthy(); // ЗАМОК ВЛАДЕЛЬЦА 25.10: без «стадии огня»
   });
 
-  it('ранг монеты: «Ранг 6», цена ранга из таблицы', async () => {
+  it('прежний кадр известной ачивки объясняет каноническое условие и сохраняет подсказку о следующей', async () => {
+    await render(<StorySlide event={ACH} lang="ru" coinRank={5} />);
+    expect(screen.getByText('Получить прогресс 7 дней подряд')).toBeTruthy();
+    expect(screen.getByText('Следующая — 30 дней')).toBeTruthy();
+  });
+
+  it('новый кадр известной ачивки объясняет каноническое условие и сохраняет подсказку о следующей', async () => {
+    await render(<AchFrame tpl={{ id: 'ach', achievementId: 'streak_7', opened: null, total: null, nextDays: 30 }} lang="ru" myRank={5} />);
+    expect(screen.getByText('Получить прогресс 7 дней подряд')).toBeTruthy();
+    expect(screen.getByText('Следующая — 30 дней')).toBeTruthy();
+  });
+
+  it('прежний кадр неизвестной ачивки не получает выдуманную причину', async () => {
+    const unknown = ev('achievement', { achievementId: 'unknown' }, 'achievement:unknown');
+    await render(<StorySlide event={unknown} lang="ru" coinRank={5} />);
+    expect(screen.queryByText('Получить прогресс 7 дней подряд')).toBeNull();
+  });
+
+  it('новый кадр неизвестной ачивки не получает выдуманную причину', async () => {
+    await render(<AchFrame tpl={{ id: 'ach', achievementId: 'unknown', opened: null, total: null, nextDays: null }} lang="ru" myRank={5} />);
+    expect(screen.queryByText('Получить прогресс 7 дней подряд')).toBeNull();
+  });
+
+  it('ранг монеты: «Ранг 6», запечатанная фактическая цена', async () => {
     await render(<StorySlide event={RANK} lang="ru" coinRank={6} />);
     expect(screen.getByText('Ранг 6')).toBeTruthy();
-    expect(screen.getByText(/Куплен за 6\s000 монет/)).toBeTruthy();
+    expect(screen.getByText(/Куплен за 1\s500 монет/)).toBeTruthy();
+  });
+
+  it.each([
+    ['missing', { paidPrice: 1000 }],
+    ['string', { toRank: '6', paidPrice: 1500 }],
+    ['fraction', { toRank: 6.9, paidPrice: 1500 }],
+    ['zero', { toRank: 0, paidPrice: 1000 }],
+    ['out-of-range', { toRank: 20, paidPrice: 1000 }],
+  ] as const)('сырой невалидный ранг %s не рисует кадр повышения', async (kind, payload) => {
+    await render(<StorySlide event={ev('coin_rank_up', payload, `coin_rank_up:invalid:${kind}`)} lang="ru" coinRank={0} />);
+    expect(screen.queryByText(/^Ранг /)).toBeNull();
+    expect(screen.queryByText(/Куплен за/)).toBeNull();
   });
 
   it('ачивка: название из каталога', async () => {

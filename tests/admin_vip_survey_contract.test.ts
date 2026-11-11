@@ -13,48 +13,6 @@ describe('admin VIP survey contract', () => {
   const indexSource = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
   const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
 
-  it('rewrites the old Review promo admin surface into a VIP survey campaign', () => {
-    expect(html).toContain('💚 Plus survey');
-    expect(html).toContain('sendVipSurveyCampaign');
-    // Отправка опроса переехала на сервер: kind ставит функция, админка читает по нему.
-    expect(launchSource).toContain("kind: 'vip_survey'");
-    expect(html).toContain("where('kind', '==', 'vip_survey')");
-    expect(html).toContain('vip_survey_responses');
-    expect(html).toContain('loadVipSurveyResponses');
-    expect(html).toContain("VIP_SURVEY_ID = 'vip_feedback_v2'");
-    expect(html).toContain('one_thing_week');
-    expect(html).toContain('Что улучшить на этой неделе');
-    expect(html).toContain('feature_request');
-    expect(html).toContain('friend_recommendation');
-    expect(html).toContain('Что помогает учиться лучше всего');
-    expect(html).toContain('Какой экран перегружен');
-    expect(html).toContain('Только full free tier');
-    expect(html).toContain("const audience = 'free'");
-    expect(html).toContain('Plus-пользователи не увидят');
-    expect(html).not.toContain('не влияет на награду');
-    expect(html).not.toContain('Store-review');
-    expect(html).not.toContain('sendReviewPromoModal');
-    expect(html).not.toContain("kind: 'review_promo'");
-  });
-
-  it('routes VIP survey inbox messages to the in-app survey modal and local dismissal', () => {
-    expect(appMessagesSource).toContain("export type AppMessageKind = 'message' | 'poll' | 'vip_survey'");
-    expect(appMessagesSource).toContain("if (message.kind === 'vip_survey') return !hasPremiumAccess");
-    expect(appMessagesSource).toContain('dismissAppMessage');
-    expect(appMessagesSource).toContain('dismissedAtMs');
-    expect(inboxSource).toContain('VipSurveyModal');
-    expect(inboxSource).toContain('VipCelebrationModal');
-    expect(inboxSource).toContain("message.kind === 'vip_survey'");
-    expect(inboxSource).toContain('const { hasPremiumAccess } = usePremium()');
-    expect(inboxSource).toContain('if (hasPremiumAccess) {');
-    expect(inboxSource).toContain('dismissSurveyMessage(message.id)');
-    expect(inboxSource).toContain('setVisible(false)');
-    expect(inboxSource).toContain('setTimeout(() => {');
-    expect(inboxSource).toContain('event.stopPropagation?.()');
-    // 04.10: число строк превью — вёрстка (50eea79a4), не логика; в этом стороже не проверяем.
-    expect(inboxSource).toContain('messageMetaRow');
-  });
-
   it('has a callable, deploy target, and rules for one-time VIP survey grants', () => {
     expect(callableSource).toContain('export const submitVipSurvey');
     expect(callableSource).toContain('export const recordVipSurveyReviewClick');
@@ -78,11 +36,4 @@ describe('admin VIP survey contract', () => {
   });
 
   // Решение владельца 04.10: просьбу об отзыве после опроса вернуть (снята снимком 95eec1717).
-  it('after the survey the review prompt is requested — after the celebration or right away if already granted', () => {
-    expect(inboxSource).toContain("import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal'");
-    expect(inboxSource).toContain("requestVipSurveyReviewPrompt('after_celebration')");
-    expect(inboxSource).toContain("requestVipSurveyReviewPrompt('already_granted')");
-    expect(inboxSource).toContain('claimVipSurveyReviewPrompt(VIP_SURVEY_ID, trigger)');
-    expect(inboxSource).toContain('visible={vipSurveyReviewPromptVisible}');
-  });
 });

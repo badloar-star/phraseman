@@ -58,14 +58,8 @@ describe('daily poll card source contract', () => {
   const client = read('app/daily_poll/daily_poll_client.ts');
   const friends = read('app/(tabs)/friends.tsx');
 
-  it('вкладка «Друзья» показывает карточку первым блоком списка', () => {
-    expect(friends).toContain("import DailyPollCard from '../../components/friends/DailyPollCard'");
-    // 25.10 (Ревизор, прогон 05:00): первым блоком теперь `firstCard` — за выключателем «Вместе» это «Фраза дня вдвоём» (ba45e9009, идея 8, 22.10), а «Опрос дня» —
-    // её fallback и единственная карточка без выключателя. Смысл прежний: опрос остаётся первым блоком, пока нет фразы вдвоём; проверка стала строже — связка обязательна.
-    expect(friends).toContain('const dailyPollCard = <DailyPollCard active={friendsRuntimeActive} />;');
-    expect(friends).toContain('fallback={dailyPollCard}');
-    expect(friends).toContain(') : dailyPollCard;');
-    expect(friends).toContain('ListHeaderComponent={<>{firstCard}');
+  it('вкладка «Друзья» не открывает опросы', () => {
+    expect(friends).not.toMatch(/DailyPollCard|dailyPollCard/);
   });
 
   it('нет опроса — нет карточки (без пустой рамки)', () => {

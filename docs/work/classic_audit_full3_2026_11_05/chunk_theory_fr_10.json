@@ -1,0 +1,1062 @@
+[
+{
+"lesson": 21,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:21:01",
+"fr:21:02",
+"fr:21:03"
+],
+"textByLocale": {
+"en": "First, describe what already happened. Then name the new event. French shows the difference with grammar, not with the obligatory words \"already\" and \"suddenly.\"",
+"ru": "Сначала расскажи, что уже происходило. Затем назови новое событие. Французский показывает разницу грамматикой, а не обязательными словами «уже» и «вдруг».",
+"uk": "Спочатку розкажи, що вже відбувалося. Потім назви нову подію. Французька показує різницю граматикою, а не обов'язковими словами «вже» та «раптом»."
+}
+},
+{
+"exampleIds": [
+"fr:21:04",
+"fr:21:05",
+"fr:21:07"
+],
+"textByLocale": {
+"en": "When changing participants, conjugate each part separately. The person who ate is not necessarily the same person who came. Don't substitute the same pronoun for both parts out of inertia.",
+"ru": "Меняя участников, спрягай каждую часть отдельно. Кто ел, не обязательно тот же человек, который пришёл. Не подставляй одно местоимение в обе части по инерции.",
+"uk": "Змінюючи учасників, відмінюй кожну частину окремо. Хто їв, не обов'язково та сама людина, яка прийшла. Не підставляй один займенник в обидві частини за інерцією."
+}
+},
+{
+"exampleIds": [
+"fr:21:11",
+"fr:21:13",
+"fr:21:16"
+],
+"textByLocale": {
+"en": "The background can be more than just an action. The weather, an empty street, or a full room are also settings. The new event stands out against this background.",
+"ru": "Фоном может быть не только действие. Погода, пустая улица или полная комната — тоже обстановка. Новое событие выделяется на её фоне.",
+"uk": "Фоном може бути не лише дія. Погода, порожня вулиця чи повна кімната теж обстановка. Нова подія виділяється на її тлі."
+}
+},
+{
+"exampleIds": [
+"fr:21:21",
+"fr:21:23",
+"fr:21:25"
+],
+"textByLocale": {
+"en": "In the `pendant que` construction, the connector is often followed by a continuous action. For `qu’il` and `qu’elle`, keep the apostrophe. The main clause can contain a single event.",
+"ru": "В конструкции `pendant que` после соединителя часто следует именно длительное действие. Для `qu’il` и `qu’elle` сохраняй апостроф. В главной части может стоять единичное событие.",
+"uk": "У конструкції `pendant que` після з'єднувача часто слідує саме тривала дія. Для `qu’il` та `qu’elle` зберігай апостроф. У головній частині може стояти поодинока подія."
+}
+},
+{
+"exampleIds": [
+"fr:21:31",
+"fr:21:33",
+"fr:21:35"
+],
+"textByLocale": {
+"en": "Start with the event—the tense will not change. When moving the background to the second part, don't change its tense to past perfect simply because it is now second.",
+"ru": "Начни с события — смысл времени не изменится. Перемещая фон во вторую часть, не меняй его время на прошедшее завершённое просто потому, что он теперь вторым.",
+"uk": "Почни з події - сенс часу не зміниться. Переміщаючи фон у другу частину, не змінюй його час на минуле завершене тому, що він тепер другим."
+}
+},
+{
+"exampleIds": [
+"fr:21:38",
+"fr:21:41",
+"fr:21:43"
+],
+"textByLocale": {
+"en": "Don't choose tense based on the length of the action in minutes. Even a long journey can be presented as a complete fact, and a short sound as background, if that's how the story is structured.",
+"ru": "Не стоит подбирать время по длине действия в минутах. Даже длинный путь можно представить как законченный факт, а короткий звук — как фон, если так построен рассказ.",
+"uk": "Не варто підбирати час за довжиною дії хвилин. Навіть довгий шлях можна уявити як закінчений факт, а короткий звук — як тло, якщо так побудовано оповідання."
+}
+},
+{
+"exampleIds": [
+"fr:21:46",
+"fr:21:48",
+"fr:21:50"
+],
+"textByLocale": {
+"en": "After assembling, retell the phrase with two questions: \"What happened in the process?\" and \"What happened?\" If the events are reversed in meaning, the conjunction alone won't correct the error.",
+"ru": "После сборки перескажи фразу двумя вопросами: «Что было в процессе?» и «Что произошло?» Если события перепутались местами по смыслу, союз сам по себе не исправит ошибку.",
+"uk": "Після складання перекажи фразу двома питаннями: \"Що було в процесі?\" і «Що сталося?» Якщо події переплуталися місцями за змістом, спілка сама не виправить помилку."
+}
+}
+],
+"drills": [
+{
+"bad": "marchais",
+"chapter": 1,
+"id": "fr:21:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"allait",
+"lisais",
+"marchais"
+],
+"slot": 1
+},
+{
+"bad": "que",
+"chapter": 1,
+"id": "fr:21:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 47,
+"options": [
+"quand",
+"comme",
+"que"
+],
+"slot": 2
+},
+{
+"bad": "et",
+"chapter": 1,
+"id": "fr:21:05:lab",
+"item": 5,
+"kind": "match",
+"near": 14,
+"options": [
+"quand",
+"qui",
+"et"
+],
+"slot": 2
+},
+{
+"bad": "si",
+"chapter": 2,
+"id": "fr:21:08:lab",
+"item": 8,
+"kind": "build",
+"near": 16,
+"options": [
+"comme",
+"quand",
+"si"
+],
+"slot": 2
+},
+{
+"bad": "mais",
+"chapter": 2,
+"id": "fr:21:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 7,
+"options": [
+"mais",
+"qui",
+"quand"
+],
+"slot": 2
+},
+{
+"bad": "comme",
+"chapter": 2,
+"id": "fr:21:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 9,
+"options": [
+"comme",
+"quand",
+"que"
+],
+"slot": 3
+},
+{
+"bad": "mais",
+"chapter": 3,
+"id": "fr:21:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 5,
+"options": [
+"mais",
+"parce",
+"quand"
+],
+"slot": 4
+},
+{
+"bad": "que",
+"chapter": 3,
+"id": "fr:21:17:lab",
+"item": 17,
+"kind": "match",
+"near": 2,
+"options": [
+"que",
+"quand",
+"qui"
+],
+"slot": 4
+},
+{
+"bad": "mais",
+"chapter": 3,
+"id": "fr:21:19:lab",
+"item": 19,
+"kind": "build",
+"near": 49,
+"options": [
+"mais",
+"quand",
+"que"
+],
+"slot": 3
+},
+{
+"bad": "Qui",
+"chapter": 4,
+"id": "fr:21:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 30,
+"options": [
+"Pendant",
+"Comme",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Parce",
+"chapter": 4,
+"id": "fr:21:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 11,
+"options": [
+"Pendant",
+"Car",
+"Parce"
+],
+"slot": 0
+},
+{
+"bad": "Car",
+"chapter": 4,
+"id": "fr:21:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 25,
+"options": [
+"Pendant",
+"Car",
+"Parce"
+],
+"slot": 0
+},
+{
+"bad": "Car",
+"chapter": 5,
+"id": "fr:21:29:lab",
+"item": 29,
+"kind": "match",
+"near": 27,
+"options": [
+"Car",
+"Parce",
+"Pendant"
+],
+"slot": 0
+},
+{
+"bad": "parce",
+"chapter": 5,
+"id": "fr:21:31:lab",
+"item": 31,
+"kind": "build",
+"near": 37,
+"options": [
+"qui",
+"pendant",
+"parce"
+],
+"slot": 4
+},
+{
+"bad": "arrivées",
+"chapter": 5,
+"id": "fr:21:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 32,
+"options": [
+"arrivé",
+"arrivées",
+"arrivée"
+],
+"slot": 3
+},
+{
+"bad": "si",
+"chapter": 6,
+"id": "fr:21:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 39,
+"options": [
+"pendant",
+"si",
+"et"
+],
+"slot": 4
+},
+{
+"bad": "comme",
+"chapter": 6,
+"id": "fr:21:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"pendant",
+"quand",
+"comme"
+],
+"slot": 4
+},
+{
+"bad": "et",
+"chapter": 6,
+"id": "fr:21:42:lab",
+"item": 42,
+"kind": "match",
+"near": 50,
+"options": [
+"quand",
+"mais",
+"et"
+],
+"slot": 4
+},
+{
+"bad": "comme",
+"chapter": 7,
+"id": "fr:21:45:lab",
+"item": 45,
+"kind": "build",
+"near": 16,
+"options": [
+"pendant",
+"comme",
+"quand"
+],
+"slot": 5
+},
+{
+"bad": "suis",
+"chapter": 7,
+"id": "fr:21:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"suis",
+"était",
+"étiez"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"fond",
+"je lisais"
+],
+[
+"événement",
+"tu as appelé"
+],
+[
+"pendant que",
+"pendant que je lisais"
+],
+[
+"quand",
+"quand le téléphone a sonné"
+],
+[
+"d’abord le fait",
+"J’ai entendu un bruit pendant que je lisais."
+]
+],
+"title": {
+"en": "Background and Event: Two Tenses in One Sentence",
+"ru": "Фон и событие: два времени в одной фразе",
+"uk": "Фон та подія: два часи в одній фразі"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:21:01",
+"target": "Je lisais quand tu as appelé.",
+"ru": "Я читал, когда ты позвонил.",
+"uk": "Я читав, коли ти зателефонував."
+},
+{
+"id": "fr:21:02",
+"target": "Je dormais quand tu as appelé.",
+"ru": "Я спала, когда ты позвонила.",
+"uk": "Я спала, коли ти подзвонила."
+},
+{
+"id": "fr:21:03",
+"target": "Elle cuisinait quand le téléphone a sonné.",
+"ru": "Она готовила, когда зазвонил телефон.",
+"uk": "Вона готувала, коли задзвонив телефон."
+},
+{
+"id": "fr:21:04",
+"target": "Nous mangions quand Paul est arrivé.",
+"ru": "Мы ели, когда приехал Поль.",
+"uk": "Ми їли, коли прийшов Пол."
+},
+{
+"id": "fr:21:05",
+"target": "Tu écrivais quand je suis entré.",
+"ru": "Ты писал, когда я вошёл.",
+"uk": "Ти писав, коли я увійшов."
+},
+{
+"id": "fr:21:07",
+"target": "Je travaillais quand elle est passée.",
+"ru": "Я работала, когда она зашла.",
+"uk": "Я працювала, коли вона зайшла."
+},
+{
+"id": "fr:21:11",
+"target": "Il pleuvait quand nous sommes partis.",
+"ru": "Когда мы уходили, шел дождь.",
+"uk": "Коли ми виходили, йшов дощ."
+},
+{
+"id": "fr:21:13",
+"target": "La rue était vide quand Paul est sorti.",
+"ru": "Улица была пуста, когда вышел Поль.",
+"uk": "Вулиця була порожня, коли вийшов Пол."
+},
+{
+"id": "fr:21:16",
+"target": "La salle était pleine quand le concert a commencé.",
+"ru": "Зал был полон, когда начался концерт.",
+"uk": "Зал був повний, коли почався концерт."
+},
+{
+"id": "fr:21:21",
+"target": "Pendant que je rangeais, Léa a trouvé le reçu.",
+"ru": "Пока я убирался, Леа нашла квитанцию.",
+"uk": "Поки я прибирав, Леа знайшла чек."
+},
+{
+"id": "fr:21:23",
+"target": "Pendant que tu conduisais, j’ai lu le message.",
+"ru": "Пока ты вёл машину, я прочитал сообщение.",
+"uk": "Поки ти був за кермом, я прочитав повідомлення."
+},
+{
+"id": "fr:21:25",
+"target": "Pendant que Paul parlait, j’ai noté son numéro.",
+"ru": "Пока Поль говорил, я записал его номер.",
+"uk": "Поки Пол розмовляв, я записав його номер."
+},
+{
+"id": "fr:21:31",
+"target": "J’ai entendu un bruit pendant que je lisais.",
+"ru": "Я услышал шум, когда читал.",
+"uk": "Я почув шум, коли читав."
+},
+{
+"id": "fr:21:33",
+"target": "Le réveil a sonné alors que je m’habillais.",
+"ru": "Будильник сработал, пока я одевалась.",
+"uk": "Будильник задзвонив, поки я одягалася."
+},
+{
+"id": "fr:21:35",
+"target": "Le chat est entré pendant que nous aérions.",
+"ru": "Кошка вошла, пока мы проветривали комнату.",
+"uk": "Кіт зайшов, поки ми провітрювали кімнату."
+},
+{
+"id": "fr:21:38",
+"target": "Un voisin a frappé pendant que nous dînions.",
+"ru": "Сосед постучал, пока мы ужинали.",
+"uk": "Сусід постукав, коли ми вечеряли."
+},
+{
+"id": "fr:21:41",
+"target": "Je cherchais un banc quand j’ai aperçu Léa.",
+"ru": "Я искал скамейку, когда увидел Леа.",
+"uk": "Я шукав лаву, коли побачив Леа."
+},
+{
+"id": "fr:21:43",
+"target": "Je pensais à toi quand ton message est arrivé.",
+"ru": "Я думал о тебе, когда пришло твое сообщение.",
+"uk": "Я думав про тебе, коли прийшло твоє повідомлення."
+},
+{
+"id": "fr:21:46",
+"target": "Il montait l’escalier quand il a lâché sa valise.",
+"ru": "Он поднимался по лестнице, когда уронил чемодан.",
+"uk": "Він піднімався сходами, коли впустив свою валізу."
+},
+{
+"id": "fr:21:48",
+"target": "Le pain était encore chaud quand je l’ai coupé.",
+"ru": "Хлеб был еще теплым, когда я его разрезал.",
+"uk": "Хліб був ще теплим, коли я його різав."
+},
+{
+"id": "fr:21:50",
+"target": "Je m’endormais quand quelqu’un a sonné.",
+"ru": "Я засыпал, когда кто-то позвонил в звонок.",
+"uk": "Я засинав, коли хтось подзвонив у дзвінок."
+}
+]
+},
+{
+"lesson": 22,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:22:01",
+"fr:22:02",
+"fr:22:03"
+],
+"textByLocale": {
+"en": "Instead of repeating an object or person, use the short form. Masculine singular — `le`, feminine — `la`, plural — `les`. The gender of the replaced French word determines.",
+"ru": "Вместо повторения предмета или человека возьми короткую форму. Мужской единственного — `le`, женский — `la`, множественное — `les`. Решает род заменённого французского слова.",
+"uk": "Замість повторення предмета або людини візьми коротку форму. Чоловічий єдиного – `le`, жіночий – `la`, множинний – `les`. Вирішує рід заміненого французького слова."
+}
+},
+{
+"exampleIds": [
+"fr:22:11",
+"fr:22:12",
+"fr:22:13"
+],
+"textByLocale": {
+"en": "The topic can be stated first: `La porte, je la ferme`. A comma separates the subject of the conversation. `La` before `porte` is an article, and `la` before `ferme` is a pronoun.",
+"ru": "Тема может быть названа сначала: `La porte, je la ferme`. Запятая отделяет предмет разговора. `La` перед `porte` — артикль, а `la` перед `ferme` — местоимение.",
+"uk": "Тема може бути названа спочатку: `La porte, je la ferme`. Кома відокремлює предмет розмови. `La` перед `porte` - артикль, а `la` перед `ferme` - займенник."
+}
+},
+{
+"exampleIds": [
+"fr:22:19",
+"fr:22:20",
+"fr:22:24"
+],
+"textByLocale": {
+"en": "Before a vowel or the silent `h`, the forms `le` and `la` become `l’`. The apostrophe itself does not indicate gender or animacy. The preceding phrase or explanation helps with translation.",
+"ru": "Перед гласной или немым `h` формы `le` и `la` становятся `l’`. Сам апостроф не показывает ни род, ни одушевлённость. При переводе помогает предыдущая фраза или пояснение.",
+"uk": "Перед голосною або німим `h` форми `le` і `la` стають `l’`. Сам апостроф не показує ні рід, ні одухотвореність. Під час перекладу допомагає попередня фраза чи пояснення."
+}
+},
+{
+"exampleIds": [
+"fr:22:21",
+"fr:22:22",
+"fr:22:23"
+],
+"textByLocale": {
+"en": "When negated, the pronoun remains before the finite verb. In `je ne le trouve pas`, the reference to the object is not moved beyond `pas`.",
+"ru": "При отрицании местоимение остаётся перед личным глаголом. В `je ne le trouve pas` указание на предмет не переносится за `pas`.",
+"uk": "Заперечення займенника залишається перед особистим дієсловом. У `je ne le trouve pas` вказівку на предмет не переносять за `pas`."
+}
+},
+{
+"exampleIds": [
+"fr:22:28",
+"fr:22:31",
+"fr:22:36"
+],
+"textByLocale": {
+"en": "When a semantic action is expressed by an infinitive, the pronoun is usually placed before it: \"I want to try it on\" — `je veux l’essayer`. It refers to trying it on, not to desire.",
+"ru": "Когда смысловое действие выражено инфинитивом, местоимение обычно ставится перед ним: «хочу примерить её» — `je veux l’essayer`. Оно относится к примерке, а не к желанию.",
+"uk": "Коли смислова дія виражена інфінітивом, займенник зазвичай ставиться перед ним: «хочу приміряти її» - `je veux l’essayer`. Воно відноситься до примірки, а не до бажання."
+}
+},
+{
+"exampleIds": [
+"fr:22:41",
+"fr:22:44",
+"fr:22:47"
+],
+"textByLocale": {
+"en": "Double-check who or what is being referred to by the pronoun. If the object is a charger, the form from `le chargeur` is needed, even if the translation of this word in another language has a different gender.",
+"ru": "Перепроверь, кого или что называют местоимением. Если предмет — зарядное устройство, нужна форма от `le chargeur`, даже когда перевод этого слова в другом языке имеет иной род.",
+"uk": "Перевірте ще раз, кого або що називають займенником. Якщо предмет зарядний пристрій, потрібна форма від `le chargeur`, навіть коли переклад цього слова іншою мовою має інший рід."
+}
+},
+{
+"exampleIds": [
+"fr:22:48",
+"fr:22:49",
+"fr:22:50"
+],
+"textByLocale": {
+"en": "You cannot automatically apply `le` to any person. The verb pattern is important: `voir quelqu’un` without a preposition. A different pronoun type will be needed for `parler à quelqu’un` in the next lesson.",
+"ru": "Нельзя автоматически применять `le` к любому человеку. Важна модель глагола: `voir quelqu’un` без предлога. С `parler à quelqu’un` понадобится другой тип местоимения в следующем уроке.",
+"uk": "Не можна автоматично застосовувати `le` до будь-якої людини. Важлива модель дієслова: `voir quelqu’un` без прийменника. З `parler à quelqu’un` знадобиться інший тип займенника у наступному уроці."
+}
+}
+],
+"drills": [
+{
+"bad": "jamais",
+"chapter": 1,
+"id": "fr:22:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"le",
+"jamais",
+"en"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 1,
+"id": "fr:22:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"en",
+"me",
+"les"
+],
+"slot": 1
+},
+{
+"bad": "plus",
+"chapter": 1,
+"id": "fr:22:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"me",
+"plus",
+"la"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 2,
+"id": "fr:22:08:lab",
+"item": 8,
+"kind": "build",
+"near": 9,
+"options": [
+"la",
+"pas",
+"en"
+],
+"slot": 1
+},
+{
+"bad": "me",
+"chapter": 2,
+"id": "fr:22:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 23,
+"options": [
+"les",
+"me",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "Les",
+"chapter": 2,
+"id": "fr:22:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"Plus",
+"Le",
+"Les"
+],
+"slot": 0
+},
+{
+"bad": "En",
+"chapter": 3,
+"id": "fr:22:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 11,
+"options": [
+"Me",
+"La",
+"En"
+],
+"slot": 0
+},
+{
+"bad": "Le",
+"chapter": 3,
+"id": "fr:22:17:lab",
+"item": 17,
+"kind": "match",
+"near": 16,
+"options": [
+"Le",
+"Les",
+"Y"
+],
+"slot": 0
+},
+{
+"bad": "Te",
+"chapter": 3,
+"id": "fr:22:19:lab",
+"item": 19,
+"kind": "build",
+"near": 15,
+"options": [
+"Te",
+"Le",
+"Se"
+],
+"slot": 0
+},
+{
+"bad": "les",
+"chapter": 4,
+"id": "fr:22:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 8,
+"options": [
+"la",
+"les",
+"leur"
+],
+"slot": 2
+},
+{
+"bad": "pas",
+"chapter": 4,
+"id": "fr:22:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"jamais",
+"pas",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 4,
+"id": "fr:22:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 6,
+"options": [
+"le",
+"les",
+"pas"
+],
+"slot": 1
+},
+{
+"bad": "ne",
+"chapter": 5,
+"id": "fr:22:29:lab",
+"item": 29,
+"kind": "match",
+"near": 26,
+"options": [
+"pas",
+"les",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "se",
+"chapter": 5,
+"id": "fr:22:31:lab",
+"item": 31,
+"kind": "build",
+"near": 2,
+"options": [
+"lui",
+"se",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "encore",
+"chapter": 5,
+"id": "fr:22:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 5,
+"options": [
+"la",
+"encore",
+"lui"
+],
+"slot": 2
+},
+{
+"bad": "en",
+"chapter": 6,
+"id": "fr:22:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 26,
+"options": [
+"en",
+"encore",
+"les"
+],
+"slot": 2
+},
+{
+"bad": "en",
+"chapter": 6,
+"id": "fr:22:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 44,
+"options": [
+"ne",
+"le",
+"en"
+],
+"slot": 4
+},
+{
+"bad": "me",
+"chapter": 6,
+"id": "fr:22:42:lab",
+"item": 42,
+"kind": "match",
+"near": 46,
+"options": [
+"encore",
+"me",
+"la"
+],
+"slot": 3
+},
+{
+"bad": "Leur",
+"chapter": 7,
+"id": "fr:22:45:lab",
+"item": 45,
+"kind": "build",
+"near": 17,
+"options": [
+"Les",
+"Leur",
+"Lui"
+],
+"slot": 0
+},
+{
+"bad": "Jamais",
+"chapter": 7,
+"id": "fr:22:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 15,
+"options": [
+"Le",
+"Jamais",
+"Y"
+],
+"slot": 0
+}
+],
+"table": [
+[
+"le livre",
+"je le lis"
+],
+[
+"la porte",
+"je la ferme"
+],
+[
+"les clés",
+"je les prends"
+],
+[
+"la chanson",
+"je l’écoute"
+],
+[
+"la veste",
+"je vais l’essayer"
+],
+[
+"le sac",
+"je ne le trouve pas"
+]
+],
+"title": {
+"en": "Don't repeat the subject: `le`, `la`, `les`",
+"ru": "Не повторять предмет: `le`, `la`, `les`",
+"uk": "Не повторювати об'єкт: `le`, `la`, `les`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:22:01",
+"target": "Je le vois.",
+"ru": "Я вижу его.",
+"uk": "Я бачу його."
+},
+{
+"id": "fr:22:02",
+"target": "Je la vois.",
+"ru": "Я вижу её.",
+"uk": "Я бачу її."
+},
+{
+"id": "fr:22:03",
+"target": "Je les vois.",
+"ru": "Я вижу их.",
+"uk": "Я бачу їх."
+},
+{
+"id": "fr:22:11",
+"target": "La porte, je la ferme.",
+"ru": "Дверь — я её закрываю.",
+"uk": "Двері - я її закриваю."
+},
+{
+"id": "fr:22:12",
+"target": "Le sac, je le garde.",
+"ru": "Сумку я оставляю у себя.",
+"uk": "Сумку я залишаю у себе."
+},
+{
+"id": "fr:22:13",
+"target": "Les clés, je les prends.",
+"ru": "Ключи я беру с собой.",
+"uk": "Ключі я беру із собою."
+},
+{
+"id": "fr:22:19",
+"target": "Le pull, je l’essaie.",
+"ru": "Свитер — я его примеряю.",
+"uk": "Светр - я його приміряю."
+},
+{
+"id": "fr:22:20",
+"target": "Cette chanson, je l’écoute.",
+"ru": "Я слушаю эту песню.",
+"uk": "Я слухаю цю пісню."
+},
+{
+"id": "fr:22:24",
+"target": "On ne l’entend pas.",
+"ru": "Мы его не слышим.",
+"uk": "Ми його не чуємо."
+},
+{
+"id": "fr:22:21",
+"target": "Je ne le trouve pas.",
+"ru": "Я его не нахожу.",
+"uk": "Я його не знаходжу."
+},
+{
+"id": "fr:22:22",
+"target": "Elle ne la reconnaît pas.",
+"ru": "Она её не узнаёт.",
+"uk": "Вона її не впізнає."
+},
+{
+"id": "fr:22:23",
+"target": "Nous ne les voyons pas.",
+"ru": "Мы их не видим.",
+"uk": "Ми їх не бачимо."
+},
+{
+"id": "fr:22:28",
+"target": "Est-ce que je peux le garder ?",
+"ru": "Можно я его оставлю себе?",
+"uk": "Можна я його залишу собі?"
+},
+{
+"id": "fr:22:31",
+"target": "Je vais la rappeler.",
+"ru": "Я ей перезвоню.",
+"uk": "Я передзвоню їй."
+},
+{
+"id": "fr:22:36",
+"target": "On peut les acheter en ligne.",
+"ru": "Мы можем купить их онлайн.",
+"uk": "Ми можемо купити їх онлайн."
+},
+{
+"id": "fr:22:41",
+"target": "Ces photos, je les montre à ma sœur.",
+"ru": "Я показываю эти фотографии своей сестре.",
+"uk": "Я показую ці фотографії своїй сестрі."
+},
+{
+"id": "fr:22:44",
+"target": "Ce chargeur, je le prête à Paul.",
+"ru": "Эту зарядку я одалживаю Полю.",
+"uk": "Цю зарядку я позичаю Полю."
+},
+{
+"id": "fr:22:47",
+"target": "Les légumes, je les coupe avant de manger.",
+"ru": "Я нарезаю овощи перед едой.",
+"uk": "Я нарізаю овочі перед їжею."
+},
+{
+"id": "fr:22:48",
+"target": "Le colis, nous le retirons au guichet.",
+"ru": "Посылку мы забираем в окошке выдачи.",
+"uk": "Посилку ми забираємо у віконці видачі."
+},
+{
+"id": "fr:22:49",
+"target": "Mon portefeuille électronique, je l’utilise en voyage.",
+"ru": "Я использую свой электронный кошелек, когда путешествую.",
+"uk": "Я використовую свій електронний гаманець, коли подорожую."
+},
+{
+"id": "fr:22:50",
+"target": "Les enfants, je les retrouve après le cours.",
+"ru": "Я встречаю детей после занятий.",
+"uk": "Я зустрічаюся з дітьми після уроків."
+}
+]
+}
+]

@@ -14,7 +14,6 @@ import { comboGateDecision, COMBO_GATE_CAP_MS } from './combo_gate_decision';
 import { parseCombinedLessonTopicsParam } from './combined_lesson_pool';
 import { safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
-import { isPhraseWorkshopParam } from './use_phrase_workshop_session';
 
 export { comboGateDecision, COMBO_GATE_CAP_MS, type ComboGateDecision } from './combo_gate_decision';
 
@@ -22,11 +21,9 @@ export function withComboPlusGate<P extends object>(Inner: React.ComponentType<P
   const MemoInner = React.memo(Inner) as unknown as React.ComponentType<P>;
   function ComboPlusGate(props: P) {
     const router = useRouter();
-    const params = useLocalSearchParams<{ combo?: string | string[]; from?: string | string[]; workshop?: string | string[] }>();
+    const params = useLocalSearchParams<{ combo?: string | string[]; from?: string | string[] }>();
     const { hasPremiumAccess, accessResolved } = usePremium();
-    // зачем (владелец 25.10, «Мастерская фраз» — только Plus): тот же fail-closed гейт, что у комбо-урока, и на прямую ссылку
-    // lesson1?workshop=1: Free не видит содержимое, получает пейвол, после закрытия — выход.
-    const comboActive = parseCombinedLessonTopicsParam(params.combo).length > 0 || isPhraseWorkshopParam(params.workshop);
+    const comboActive = parseCombinedLessonTopicsParam(params.combo).length > 0;
     const decision = comboGateDecision({ comboActive, hasPremiumAccess, accessResolved });
     const paywallShownRef = useRef(false);
     const loggedRef = useRef('');
@@ -72,8 +69,7 @@ export function withComboPlusGate<P extends object>(Inner: React.ComponentType<P
       if (decision !== 'deny') return;
       if (!paywallShownRef.current) {
         paywallShownRef.current = true;
-        // зачем (координатор 25.10): у мастерской свой контекст пейвола (пока с общим текстом Plus; Макеты рисуют контекстные пейволы)
-        openPremiumPaywall(router, { context: isPhraseWorkshopParam(params.workshop) ? 'phrase_workshop' : 'combined_lesson' });
+        openPremiumPaywall(router, { context: 'combined_lesson' });
         return;
       }
       if (afterPaywallTimerRef.current) return;

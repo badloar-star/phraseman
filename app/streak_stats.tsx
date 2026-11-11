@@ -1,4 +1,3 @@
-import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { KIT_MOTION } from '../constants/motionHybrid';
@@ -1819,7 +1818,7 @@ function RecentAchievementsCard({
           {(latest.length > 0 ? latest : [null, null, null, null]).map((achievement, index) => (
             <View key={achievement?.id ?? `empty-${index}`} accessibilityLabel={achievement ? achievementNameForLang(achievement, lang) : undefined} style={{ width: 58, height: 58, marginLeft: index === 0 ? 0 : -9, zIndex: 10 - index, backgroundColor: 'transparent', borderWidth: 0, alignItems: 'center', justifyContent: 'center' }}>
               {achievement
-                ? <AchievementArt achievementId={achievement.id} size={58} fallbackIconName={ACHIEVEMENT_ICON[achievement.id] ?? 'trophy'} tintColor={t.textGhost} iconColor={t.bgPrimary} />
+                ? <AchievementArt achievementId={achievement.id} size={58} fallbackIconName={ACHIEVEMENT_ICON[achievement.id] ?? 'trophy'} showFallbackShield={false} iconColor={t.textGhost} />
                 : <Ionicons name="trophy-outline" size={22} color={t.textGhost}/>}
             </View>
           ))}
@@ -2403,7 +2402,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     );
     return (
         <View style={{ flex: 1, backgroundColor: statsGlass.bg }}>
-            <FeatureIntroEntry id="statistics_first_visit" enabled={statsRuntimeActive} />
             <StatsArtBackdrop />
             <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
 

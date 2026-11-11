@@ -13,6 +13,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../../../../app/account_generation';
+import { onAccountOwnerChanged } from '../../../../app/account_owner_change';
+import { useActiveAccountOwner } from '../../../../hooks/use_active_account_owner';
+
 const LOG = '[HOME-SCENE]';
 const MILESTONE_KEY = 'home_scene_milestone_snapshot_v1';
 const PEAK_KEY = 'home_scene_peak_place_v1';
@@ -70,6 +74,20 @@ export function homeScenePeakStep(memo: HomeScenePeakMemo | null, place: number,
   return { memo: next, overtaken: basePlace !== null && place > basePlace ? { from: basePlace, to: place } : null };
 }
 
+/**
+ * Запись памяти вместе с владельцем. Чужая (или старая, без владельца) запись = «памяти нет»: сравнивать счётчики и место
+ * одного игрока с другим нельзя.
+ * зачем (F17, аудит, владелец 11.11): снимок A {уроков 4} против B {уроков 7} давал B ложный «рубеж 5 уроков», место A 2 против
+ * места B 10 — ложное «тебя обогнали». Стирание при выходе (ACCOUNT_SWITCH_LEAK_KEYS) может не успеть до чтения — владелец в
+ * самой записи закрывает и это окно.
+ */
+export type HomeSceneOwned<T> = T & Readonly<{ owner?: string | null }>;
+export function homeSceneOwnedBy<T>(stored: HomeSceneOwned<T> | null, ownerTag: string): T | null {
+  return stored !== null && typeof stored === 'object' && stored.owner === ownerTag ? stored : null;
+}
+/** Метка владельца для записи: без входа — своя отдельная метка, её память вошедшему игроку тоже не достаётся. */
+export const homeSceneOwnerTag = (owner: string | null): string => owner ?? '-';
+
 /** Своя отметка «фраза дня показана сегодня»: Главная зовёт, когда карточка фразы видна. Память сразу, диск фоном. */
 let phraseSeenDay: string | null = null;
 export function markHomeScenePhraseSeen(now: Date = new Date()): void {
@@ -81,6 +99,9 @@ export function markHomeScenePhraseSeen(now: Date = new Date()): void {
     console.warn(LOG, 'special:phrase_seen_save_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); // guard-ok: сбой с причиной
   });
 }
+
+// зачем (F17, аудит): отметка в памяти — прошлого игрока; новому фраза дня ещё не показана
+onAccountOwnerChanged('home_scene_phrase_seen', () => { phraseSeenDay = null; });
 
 export type HomeSceneMoreFacts = Readonly<{
   phrase: Readonly<{ text: string; tr: string | null }> | null;
@@ -126,38 +147,50 @@ function writeJson(key: string, value: unknown): void {
 }
 
 export function useHomeSceneMoreFacts(i: Input): HomeSceneMoreFacts {
-  const [facts, setFacts] = useState<HomeSceneMoreFacts>(EMPTY);
+  const [held, setFacts] = useState<Readonly<{ owner: string | null; facts: HomeSceneMoreFacts }>>({ owner: null, facts: EMPTY });
+  // зачем (F17, аудит): Главная не перемонтируется при смене аккаунта — факты прошлого игрока новому не отдаём ни на кадр
+  const owner = useActiveAccountOwner();
+  const facts = held.owner === owner ? held.facts : EMPTY;
   // зачем: один раз на вход (и при смене цели/языка) — снимок и сравнение; счётчики, пришедшие позже, догоняют вторым проходом
   const countersKey = `${i.lessons}|${String(i.phrasesLearned)}|${String(i.coinRank)}|${String(i.peakPlace)}|${i.streakDays}`;
   useEffect(() => {
     if (!i.enabled) return undefined;
     if (!i.ready) { console.log(LOG, 'special:more_skip', JSON.stringify({ reason: 'personal_progress_not_hydrated' })); return undefined; } // guard-ok: ранний выход с причиной
     let alive = true;
+    const token = captureAccountGeneration();
     const now = new Date();
     const today = homeSceneDayKeyOf(now);
     void (async () => {
-      const [stats, phraseMod, prevCounters, peakMemo, seenDay] = await Promise.all([
+      const [stats, phraseMod, storedCounters, storedPeak, seenDay] = await Promise.all([
         import('../../../../app/lifetime_profile_stats').then((m) => m.readLifetimeProfileStatsCache()).catch((error: unknown) => {
           console.warn(LOG, 'special:more_stats_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — без рекорда серии
         }),
         import('../../../../app/daily_phrase_system').catch((error: unknown) => {
           console.warn(LOG, 'special:more_phrase_module_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — без фразы дня
         }),
-        readJson<HomeSceneCounters>(MILESTONE_KEY),
-        readJson<HomeScenePeakMemo>(PEAK_KEY),
+        readJson<HomeSceneOwned<HomeSceneCounters>>(MILESTONE_KEY),
+        readJson<HomeSceneOwned<HomeScenePeakMemo>>(PEAK_KEY),
         AsyncStorage.getItem(PHRASE_SEEN_KEY).catch((error: unknown) => {
           console.warn(LOG, 'special:more_phrase_seen_read_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — считаем «не показана»
         }),
       ]);
       if (!alive) return;
+      if (!isCurrentAccountGeneration(token) && token.stableId !== null) {
+        console.log(LOG, 'special:more_skip', JSON.stringify({ reason: 'account_changed_while_reading', hadMilestoneMemo: storedCounters !== null, hadPeakMemo: storedPeak !== null })); // guard-ok: ранний выход с причиной — чужую память не сравниваем и не перезаписываем
+        return;
+      }
+      const ownerTag = homeSceneOwnerTag(owner);
+      const prevCounters = homeSceneOwnedBy(storedCounters, ownerTag);
+      const peakMemo = homeSceneOwnedBy(storedPeak, ownerTag);
+      if ((storedCounters && !prevCounters) || (storedPeak && !peakMemo)) console.log(LOG, 'special:more_foreign_memo', JSON.stringify({ milestone: Boolean(storedCounters && !prevCounters), peak: Boolean(storedPeak && !peakMemo), action: 'ignored' })); // guard-ok: память другого игрока — считаем, что её нет
       const counters: HomeSceneCounters = { lessons: i.lessons, phrases: i.phrasesLearned, rank: i.coinRank };
       const milestone = homeScenePickMilestone(prevCounters, counters);
-      writeJson(MILESTONE_KEY, homeSceneMergeCounters(prevCounters, counters));
+      writeJson(MILESTONE_KEY, { ...homeSceneMergeCounters(prevCounters, counters), owner: ownerTag });
       let peakOvertaken: HomeSceneMoreFacts['peakOvertaken'] = null;
       if (i.peakPlace !== null) {
         const step = homeScenePeakStep(peakMemo, i.peakPlace, now);
         peakOvertaken = step.overtaken;
-        writeJson(PEAK_KEY, step.memo);
+        writeJson(PEAK_KEY, { ...step.memo, owner: ownerTag });
       }
       // зачем: язык Главной и цель обучения — те же, что у карточки фразы; типы берём у самой функции (без приведения к «любому типу» — храповик)
       type PhraseArgs = Parameters<typeof import('../../../../app/daily_phrase_system').getTodayPhraseSyncForTarget>;
@@ -169,10 +202,10 @@ export function useHomeSceneMoreFacts(i: Input): HomeSceneMoreFacts {
       const streakBest = best !== null && best > 0 && i.streakDays > 0 ? { streak: i.streakDays, best } : null;
       const next: HomeSceneMoreFacts = Object.freeze({ phrase, phraseSeen: phrase ? phraseSeen : null, streakBest, milestone, peakOvertaken });
       console.log(LOG, 'special:more', JSON.stringify({ phrase: Boolean(phrase), phraseSeen: next.phraseSeen, streak: i.streakDays, best, milestone: milestone?.key ?? null, prevCounters, counters, peakOvertaken })); // guard-ok: одна строка на вход
-      setFacts(next);
+      setFacts({ owner, facts: next });
     })();
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: пересчёт по ключу счётчиков, цели и языку
-  }, [i.enabled, i.ready, i.studyTarget, i.lang, countersKey]);
+  }, [i.enabled, i.ready, i.studyTarget, i.lang, countersKey, owner]);
   return facts;
 }

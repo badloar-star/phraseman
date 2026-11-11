@@ -9,6 +9,11 @@ import {
   revenueCatCustomerInfoHasPremiumAccess,
   revenueCatPremiumMetadata,
 } from '../app/premium_revenuecat_state';
+import {
+  beginAccountGeneration,
+  captureAccountGeneration,
+  __resetAccountGenerationForTests,
+} from '../app/account_generation';
 
 jest.mock('../app/cloud_sync', () => ({
   syncToCloud: jest.fn(async () => undefined),
@@ -23,6 +28,8 @@ describe('premium RevenueCat state sync', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('premium-revenuecat-test');
   });
 
   it('infers subscription plan from RevenueCat product ids', () => {
@@ -162,12 +169,12 @@ describe('premium RevenueCat state sync', () => {
   });
 
   it('persists premium locally and immediately forces cloud sync', async () => {
-    await persistStorePremiumLocally('yearly', {
+    await persistStorePremiumLocally(captureAccountGeneration(), 'yearly', {
       productId: 'premium_yearly',
       periodType: 'TRIAL',
       store: 'APP_STORE',
       expiryMs: 1770000000000,
-    });
+    }, 'store_purchase');
 
     await expect(AsyncStorage.multiGet([
       'premium_plan',
@@ -191,28 +198,82 @@ describe('premium RevenueCat state sync', () => {
     expect(markPremiumStoreSeenNow).toHaveBeenCalledTimes(1);
     expect(invalidatePremiumCache).toHaveBeenCalledTimes(1);
     expect(syncToCloud).toHaveBeenCalledWith({ forceNow: true });
+    const scopedRaw = await AsyncStorage.getItem(
+      'premium_real_snapshot_v1:premium-revenuecat-test',
+    );
+    expect(JSON.parse(String(scopedRaw))).toEqual(expect.objectContaining({
+      version: 1,
+      ownerStableId: 'premium-revenuecat-test',
+      active: true,
+      plan: 'yearly',
+      evidenceSource: 'store_purchase',
+    }));
   });
 
   it('stops premium side effects when generation changes during local persistence', async () => {
     let release!: () => void;
-    let current = true;
-    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(() => (
-      new Promise<void>((resolve) => { release = resolve; })
-    ));
+    const originalSet = (AsyncStorage.setItem as jest.Mock).getMockImplementation();
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+      if (key === 'premium_real_snapshot_v1:premium-revenuecat-test' && !release) {
+        await new Promise<void>((resolve) => { release = resolve; });
+      }
+      return originalSet(key, value);
+    });
 
-    const pending = persistStorePremiumLocally('yearly', {}, () => current);
-    await Promise.resolve();
-    current = false;
+    const generation = require('../app/account_generation');
+    const token = captureAccountGeneration();
+    const pending = persistStorePremiumLocally(token, 'yearly', {}, 'store_purchase');
+    for (let spin = 0; !release && spin < 20; spin += 1) await Promise.resolve();
+    expect(release).toBeDefined();
+    generation.beginAccountGeneration('premium-revenuecat-other');
     release();
-    await pending;
+    await expect(pending).resolves.toBe(false);
 
     expect(markPremiumStoreSeenNow).not.toHaveBeenCalled();
     expect(invalidatePremiumCache).not.toHaveBeenCalled();
     expect(syncToCloud).not.toHaveBeenCalled();
   });
 
+  it('suppresses ownerless cache and sync tails when generation changes after commit permit', async () => {
+    const pendingKey = 'premium_real_snapshot_v1:premium-revenuecat-test:pending';
+    let releaseRemoval!: () => void;
+    const originalRemove = (AsyncStorage.removeItem as jest.Mock).getMockImplementation();
+    (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => {
+      if (key === pendingKey && !releaseRemoval) {
+        await new Promise<void>((resolve) => { releaseRemoval = resolve; });
+      }
+      return originalRemove(key);
+    });
+
+    const token = captureAccountGeneration();
+    const pending = persistStorePremiumLocally(token, 'yearly', {
+      productId: 'premium_yearly',
+    }, 'store_purchase');
+    for (let spin = 0; !releaseRemoval && spin < 30; spin += 1) await Promise.resolve();
+    expect(releaseRemoval).toBeDefined();
+
+    beginAccountGeneration('premium-revenuecat-other');
+    const returnedA = beginAccountGeneration('premium-revenuecat-test');
+    expect(returnedA.stableId).toBe('premium-revenuecat-test');
+    releaseRemoval();
+    await expect(pending).resolves.toBe(false);
+
+    expect(AsyncStorage.multiSet).not.toHaveBeenCalled();
+    expect(markPremiumStoreSeenNow).not.toHaveBeenCalled();
+    expect(invalidatePremiumCache).not.toHaveBeenCalled();
+    expect(syncToCloud).not.toHaveBeenCalled();
+    await expect(AsyncStorage.getItem('premium_real_snapshot_v1:premium-revenuecat-test'))
+      .resolves.not.toBeNull();
+  });
+
   it('can skip the unrelated full cloud sync on the immediate purchase path', async () => {
-    await persistStorePremiumLocally('yearly', {}, () => true, false);
+    await persistStorePremiumLocally(
+      captureAccountGeneration(),
+      'yearly',
+      {},
+      'store_purchase',
+      false,
+    );
 
     expect(syncToCloud).not.toHaveBeenCalled();
     expect(markPremiumStoreSeenNow).toHaveBeenCalledTimes(1);

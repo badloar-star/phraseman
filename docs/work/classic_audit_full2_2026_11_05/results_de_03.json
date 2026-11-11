@@ -1,0 +1,14 @@
+[
+{"id": "de:07:28", "type": "M", "field": "ru", "problem": "«заказывает порцию воды» — неестественно по-русски, так не говорят", "fix": "Том заказывает воду."},
+{"id": "de:07:28", "type": "M", "field": "uk", "problem": "«замовляє порцію води» — неприродно, так не кажуть", "fix": "Том замовляє воду."},
+{"id": "de:07:43", "type": "B1", "field": "tiles", "problem": "позиция 0 (глагол в начале вопроса): 3 соблазна из 5 — существительные (Anna, Adresse, Brot), выдают себя; выбор фактически из двух", "fix": {"position": 0, "replace_distractor": "Anna", "with": "Hast"}},
+{"id": "de:07:43", "type": "B1", "field": "tiles", "problem": "позиция 0: соблазн-существительное выдаёт себя", "fix": {"position": 0, "replace_distractor": "Adresse", "with": "Habt"}},
+{"id": "de:07:43", "type": "B1", "field": "tiles", "problem": "позиция 0: соблазн-существительное выдаёт себя", "fix": {"position": 0, "replace_distractor": "Brot", "with": "Haben"}},
+{"id": "de:07:47", "type": "B1", "field": "tiles", "problem": "позиция 1 (глагол finde): все 5 соблазнов — прилагательные (bereit, leise, allein, ruhig, krank), верная плитка угадывается без знания слова", "fix": {"position": 1, "replace_distractor": "bereit", "with": "findest"}},
+{"id": "de:07:47", "type": "B1", "field": "tiles", "problem": "позиция 1: соблазн-прилагательное выдаёт себя", "fix": {"position": 1, "replace_distractor": "leise", "with": "findet"}},
+{"id": "de:07:47", "type": "B1", "field": "tiles", "problem": "позиция 1: соблазн-прилагательное выдаёт себя", "fix": {"position": 1, "replace_distractor": "allein", "with": "finden"}},
+{"id": "de:08:29", "type": "M", "field": "uk", "problem": "порушено чергування у/в: на початку речення перед голосним має бути «В офісі»", "fix": "В офісі немає ліфта."},
+{"id": "de:08:47", "type": "B1", "field": "tiles", "problem": "позиция 1 (глагол finde): 4 соблазна из 5 — прилагательные (bereit, leise, allein, ruhig), выдают себя", "fix": {"position": 1, "replace_distractor": "bereit", "with": "findest"}},
+{"id": "de:08:47", "type": "B1", "field": "tiles", "problem": "позиция 1: соблазн-прилагательное выдаёт себя", "fix": {"position": 1, "replace_distractor": "leise", "with": "finden"}},
+{"id": "de:08:47", "type": "B1", "field": "tiles", "problem": "позиция 1: соблазн-прилагательное выдаёт себя", "fix": {"position": 1, "replace_distractor": "allein", "with": "suche"}}
+]

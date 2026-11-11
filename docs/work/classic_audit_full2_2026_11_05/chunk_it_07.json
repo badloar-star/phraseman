@@ -1,0 +1,5168 @@
+[
+{
+"lesson": 15,
+"id": "it:15:01",
+"target": "Sto leggendo il libro.",
+"ru": "Я сейчас читаю книгу.",
+"uk": "Я зараз читаю книжку.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stiamo",
+"Stai",
+"Stanno",
+"State",
+"Prepara"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"messaggio",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"lavando",
+"suo",
+"aprendo",
+"cercando",
+"orologio"
+]
+}
+],
+"alternatives": [
+"Io sto leggendo il libro."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:02",
+"target": "Stai leggendo il libro.",
+"ru": "Ты сейчас читаешь книгу.",
+"uk": "Ти зараз читаєш книжку.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Stiamo",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"messaggio",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"gli",
+"le"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"sacchetto",
+"lavando",
+"albergo",
+"piatto",
+"messaggio"
+]
+}
+],
+"alternatives": [
+"Tu stai leggendo il libro."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:03",
+"target": "Sto leggendo il messaggio.",
+"ru": "Я сейчас читаю сообщение.",
+"uk": "Я зараз читаю повідомлення.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stiamo",
+"Stai",
+"Stanno",
+"State",
+"Prepara"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"mercato",
+"treno"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"lo",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"portando",
+"ritirando",
+"tornando",
+"tagliando",
+"lavando"
+]
+}
+],
+"alternatives": [
+"Io sto leggendo il messaggio."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:04",
+"target": "Stai leggendo il messaggio.",
+"ru": "Ты сейчас читаешь сообщение.",
+"uk": "Ти зараз читаєш повідомлення.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Stiamo",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"mercato",
+"treno"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"gli",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"asciugando",
+"incartando",
+"lavorando",
+"mandando",
+"albergo"
+]
+}
+],
+"alternatives": [
+"Tu stai leggendo il messaggio."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:05",
+"target": "Ana sta scrivendo una lettera.",
+"ru": "Ана сейчас пишет письмо.",
+"uk": "Ана зараз пише листа.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"aspettando",
+"leggendo",
+"messaggio",
+"cercando",
+"mangiando"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "lettera",
+"distractors": [
+"maglietta",
+"sorella",
+"casa",
+"cucina",
+"zuppa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:06",
+"target": "Stiamo scrivendo una lettera.",
+"ru": "Мы сейчас пишем письмо.",
+"uk": "Ми зараз пишемо листа.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"State",
+"Stanno"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"aspettando",
+"leggendo",
+"messaggio",
+"cercando",
+"mangiando"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "lettera",
+"distractors": [
+"casa",
+"cucina",
+"cena",
+"valigia",
+"carta"
+]
+}
+],
+"alternatives": [
+"Noi stiamo scrivendo una lettera."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:07",
+"target": "Sto tagliando una cipolla.",
+"ru": "Я сейчас режу луковицу.",
+"uk": "Я зараз ріжу цибулину.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stiamo",
+"Stai",
+"Stanno",
+"State",
+"Prepara"
+]
+},
+{
+"correct": "tagliando",
+"distractors": [
+"tornando",
+"messaggio",
+"portando",
+"lavando",
+"asciugando"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "cipolla",
+"distractors": [
+"zuppa",
+"carta",
+"acqua",
+"sorella",
+"finestra"
+]
+}
+],
+"alternatives": [
+"Io sto tagliando una cipolla."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:08",
+"target": "Stai scrivendo un messaggio.",
+"ru": "Ты сейчас пишешь сообщение.",
+"uk": "Ти зараз пишеш повідомлення.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Sta",
+"Stiamo",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"aspettando",
+"leggendo",
+"cercando",
+"mangiando",
+"bevendo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"gli",
+"una",
+"uno",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"assaggiando",
+"portando",
+"aprendo",
+"asciugando",
+"preparando"
+]
+}
+],
+"alternatives": [
+"Tu stai scrivendo un messaggio."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:09",
+"target": "Luis sta mangiando a casa.",
+"ru": "Луис сейчас ест дома.",
+"uk": "Луїс зараз їсть вдома.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Paolo",
+"Lea",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"aspettando",
+"cercando",
+"mappa",
+"pagando"
+]
+},
+{
+"correct": "mangiando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"lettera",
+"carta",
+"cucina",
+"zuppa",
+"cipolla"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:10",
+"target": "Stiamo mangiando a casa.",
+"ru": "Мы сейчас едим дома.",
+"uk": "Ми зараз їмо вдома.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Stai",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "mangiando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"porta",
+"mia",
+"cena",
+"valigia",
+"acqua"
+]
+}
+],
+"alternatives": [
+"Noi stiamo mangiando a casa."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:11",
+"target": "Sto bevendo acqua.",
+"ru": "Я сейчас пью воду.",
+"uk": "Я зараз п’ю воду.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stiamo",
+"Stai",
+"State",
+"Stanno",
+"Prepara"
+]
+},
+{
+"correct": "bevendo",
+"distractors": [
+"bevo",
+"beve",
+"bere",
+"beviamo",
+"leggendo"
+]
+},
+{
+"correct": "acqua",
+"distractors": [
+"valigia",
+"carta",
+"sorella",
+"lettera",
+"cipolla"
+]
+}
+],
+"alternatives": [
+"Io sto bevendo acqua."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:12",
+"target": "Ana sta bevendo un caffè.",
+"ru": "Ана сейчас пьёт кофе.",
+"uk": "Ана зараз п’є каву.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "bevendo",
+"distractors": [
+"bere",
+"bevo",
+"beve",
+"beviamo",
+"leggendo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"uno",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"lettera",
+"cercando",
+"cucina",
+"cena",
+"mani"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:13",
+"target": "Stai preparando la cena.",
+"ru": "Ты сейчас готовишь ужин.",
+"uk": "Ти зараз готуєш вечерю.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Sta",
+"Stiamo",
+"Sto",
+"State",
+"Stanno"
+]
+},
+{
+"correct": "preparando",
+"distractors": [
+"sta",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"mi",
+"le"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"cucina",
+"cipolla",
+"mia",
+"zuppa",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tu stai preparando la cena."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:14",
+"target": "Luis sta preparando la zuppa.",
+"ru": "Луис сейчас варит суп.",
+"uk": "Луїс зараз варить суп.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Lea",
+"Paolo",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "preparando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"porta",
+"casa",
+"sorella",
+"cena",
+"lettera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:15",
+"target": "Sto aprendo la porta.",
+"ru": "Я сейчас открываю дверь.",
+"uk": "Я зараз відчиняю двері.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stai",
+"Stiamo",
+"Stanno",
+"State",
+"Prepara"
+]
+},
+{
+"correct": "aprendo",
+"distractors": [
+"sta",
+"stai",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"si",
+"che",
+"e"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"porti",
+"casa",
+"borsa",
+"strada",
+"cena"
+]
+}
+],
+"alternatives": [
+"Io sto aprendo la porta."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:16",
+"target": "Stiamo aprendo la finestra.",
+"ru": "Мы сейчас открываем окно.",
+"uk": "Ми зараз відчиняємо вікно.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Stai",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "aprendo",
+"distractors": [
+"sta",
+"sto",
+"stai",
+"stanno",
+"state"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"ti",
+"che",
+"e"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"porta",
+"carta",
+"acqua",
+"valigia",
+"cena"
+]
+}
+],
+"alternatives": [
+"Noi stiamo aprendo la finestra."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:17",
+"target": "Ana sta portando la valigia.",
+"ru": "Ана сейчас несёт чемодан.",
+"uk": "Ана зараз несе валізу.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "portando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"un",
+"si",
+"che"
+]
+},
+{
+"correct": "valigia",
+"distractors": [
+"sorella",
+"carta",
+"maglietta",
+"casa",
+"lettera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:18",
+"target": "Ana sta asciugando i piatti.",
+"ru": "Ана сейчас вытирает тарелки.",
+"uk": "Ана зараз витирає тарілки.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "asciugando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"una",
+"le",
+"gli"
+]
+},
+{
+"correct": "piatti",
+"distractors": [
+"fratelli",
+"contanti",
+"qui",
+"bici",
+"miei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:19",
+"target": "I miei fratelli stanno pagando in contanti.",
+"ru": "Мои братья сейчас платят наличными.",
+"uk": "Мої брати зараз платять готівкою.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"Un",
+"La",
+"Le",
+"Gli"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"vostri",
+"mia",
+"tua",
+"suo",
+"mio"
+]
+},
+{
+"correct": "fratelli",
+"distractors": [
+"piatti",
+"chiavi",
+"fuori",
+"qui",
+"vicino"
+]
+},
+{
+"correct": "stanno",
+"distractors": [
+"stiamo",
+"sto",
+"mangiando",
+"cercando",
+"aspettando"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "contanti",
+"distractors": [
+"piatti",
+"bici",
+"chiavi",
+"mie",
+"mia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:20",
+"target": "Stai pagando con la carta.",
+"ru": "Ты сейчас платишь картой.",
+"uk": "Ти зараз платиш карткою.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Sta",
+"Stiamo",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "pagando",
+"distractors": [
+"sta",
+"sto",
+"stanno",
+"stiamo",
+"state"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"i",
+"mi",
+"che"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"cena",
+"acqua",
+"zuppa",
+"cipolla",
+"casa"
+]
+}
+],
+"alternatives": [
+"Tu stai pagando con la carta."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:21",
+"target": "Stiamo leggendo il libro.",
+"ru": "Мы сейчас читаем книгу.",
+"uk": "Ми зараз читаємо книжку.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"State",
+"Stanno"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"leggere",
+"letto",
+"tavolo",
+"messaggio",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"sacchetto",
+"lavando",
+"aprendo",
+"albergo",
+"bevendo"
+]
+}
+],
+"alternatives": [
+"Noi stiamo leggendo il libro."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:22",
+"target": "State leggendo il messaggio.",
+"ru": "Вы сейчас читаете сообщение.",
+"uk": "Ви зараз читаєте повідомлення.",
+"tiles": [
+{
+"correct": "State",
+"distractors": [
+"Stiamo",
+"Sto",
+"Prepara",
+"Caffè",
+"Accanto"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"mercato",
+"treno"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"gli",
+"i",
+"le"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"lavando",
+"sacchetto",
+"incartando",
+"tornando",
+"ritirando"
+]
+}
+],
+"alternatives": [
+"Voi state leggendo il messaggio."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:23",
+"target": "Stiamo lavando i piatti.",
+"ru": "Мы сейчас моем посуду.",
+"uk": "Ми зараз миємо посуд.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "lavando",
+"distractors": [
+"sta",
+"stai",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"un",
+"una",
+"gli"
+]
+},
+{
+"correct": "piatti",
+"distractors": [
+"fratelli",
+"qui",
+"chiavi",
+"miei",
+"bici"
+]
+}
+],
+"alternatives": [
+"Noi stiamo lavando i piatti."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:24",
+"target": "Sto assaggiando la zuppa.",
+"ru": "Я сейчас пробую суп.",
+"uk": "Я зараз куштую суп.",
+"tiles": [
+{
+"correct": "Sto",
+"distractors": [
+"Stiamo",
+"Stai",
+"Stanno",
+"State",
+"Prepara"
+]
+},
+{
+"correct": "assaggiando",
+"distractors": [
+"sta",
+"stai",
+"stanno",
+"stiamo",
+"state"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"i",
+"si"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"casa",
+"sta",
+"maglietta",
+"valigia",
+"carta"
+]
+}
+],
+"alternatives": [
+"Io sto assaggiando la zuppa."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:25",
+"target": "Le mie sorelle stanno aspettando qui.",
+"ru": "Мои сёстры сейчас ждут здесь.",
+"uk": "Мої сестри зараз чекають тут.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"I",
+"Una",
+"Si"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"tua",
+"vostro",
+"suoi",
+"suo",
+"mia"
+]
+},
+{
+"correct": "sorelle",
+"distractors": [
+"aprendo",
+"bevendo",
+"verdure",
+"stazione",
+"state"
+]
+},
+{
+"correct": "stanno",
+"distractors": [
+"stiamo",
+"sto",
+"mangiando",
+"cercando",
+"aprendo"
+]
+},
+{
+"correct": "aspettando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Le mie sorelle stanno aspettando qua."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:26",
+"target": "I miei fratelli stanno aspettando fuori.",
+"ru": "Мои братья сейчас ждут снаружи.",
+"uk": "Мої брати зараз чекають надворі.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Le",
+"Lo"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"nostra",
+"nostri",
+"mia",
+"suo",
+"sua"
+]
+},
+{
+"correct": "fratelli",
+"distractors": [
+"piatti",
+"libro",
+"contanti",
+"chiavi",
+"bambini"
+]
+},
+{
+"correct": "stanno",
+"distractors": [
+"stiamo",
+"sto",
+"mangiando",
+"cercando",
+"aprendo"
+]
+},
+{
+"correct": "aspettando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"qui",
+"lì",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:27",
+"target": "Stai tagliando le verdure.",
+"ru": "Ты сейчас режешь овощи.",
+"uk": "Ти зараз нарізаєш овочі.",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Stiamo",
+"Sta",
+"Sto",
+"State",
+"Stanno"
+]
+},
+{
+"correct": "tagliando",
+"distractors": [
+"tornando",
+"messaggio",
+"portando",
+"lavando",
+"asciugando"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"i",
+"ci",
+"che"
+]
+},
+{
+"correct": "verdure",
+"distractors": [
+"sorelle",
+"cena",
+"stazione",
+"fuori",
+"state"
+]
+}
+],
+"alternatives": [
+"Tu stai tagliando le verdure."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:28",
+"target": "Stiamo lavorando in albergo.",
+"ru": "Мы сейчас работаем в отеле.",
+"uk": "Ми зараз працюємо у готелі.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "lavorando",
+"distractors": [
+"sta",
+"stai",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "albergo",
+"distractors": [
+"incartando",
+"asciugando",
+"tornando",
+"tagliando",
+"leggendo"
+]
+}
+],
+"alternatives": [
+"Noi stiamo lavorando in albergo."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:29",
+"target": "I miei fratelli stanno mangiando a casa.",
+"ru": "Мои братья сейчас едят дома.",
+"uk": "Мої брати зараз їдять вдома.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Lo",
+"Le"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"tuo",
+"vostro",
+"mio",
+"nostro",
+"tua"
+]
+},
+{
+"correct": "fratelli",
+"distractors": [
+"piatti",
+"contanti",
+"chiavi",
+"stai",
+"fuori"
+]
+},
+{
+"correct": "stanno",
+"distractors": [
+"stiamo",
+"sto",
+"cercando",
+"aspettando",
+"aprendo"
+]
+},
+{
+"correct": "mangiando",
+"distractors": [
+"sta",
+"stai",
+"sto",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cena",
+"porta",
+"valigia",
+"zuppa",
+"mia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:30",
+"target": "State mangiando in cucina.",
+"ru": "Вы сейчас едите на кухне.",
+"uk": "Ви зараз їсте на кухні.",
+"tiles": [
+{
+"correct": "State",
+"distractors": [
+"Stiamo",
+"Sto",
+"Prepara",
+"Caffè",
+"Accanto"
+]
+},
+{
+"correct": "mangiando",
+"distractors": [
+"sta",
+"stai",
+"sto",
+"stanno",
+"stiamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "cucina",
+"distractors": [
+"zuppa",
+"lettera",
+"casa",
+"questa",
+"valigia"
+]
+}
+],
+"alternatives": [
+"Voi state mangiando in cucina."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:31",
+"target": "Stiamo incartando un regalo.",
+"ru": "Мы сейчас заворачиваем подарок.",
+"uk": "Ми зараз загортаємо подарунок.",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "incartando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "regalo",
+"distractors": [
+"portando",
+"tornando",
+"tagliando",
+"pagando",
+"lavando"
+]
+}
+],
+"alternatives": [
+"Noi stiamo incartando un regalo."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:32",
+"target": "Non stai scrivendo una lettera.",
+"ru": "Ты сейчас не пишешь письмо.",
+"uk": "Ти зараз не пишеш листа.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "stai",
+"distractors": [
+"sta",
+"stiamo",
+"sto",
+"state",
+"stanno"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"aspettando",
+"leggendo",
+"messaggio",
+"cercando",
+"mangiando"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"le",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "lettera",
+"distractors": [
+"cucina",
+"maglietta",
+"zuppa",
+"cipolla",
+"porta"
+]
+}
+],
+"alternatives": [
+"Tu non stai scrivendo una lettera."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:33",
+"target": "Ana non sta mandando una foto.",
+"ru": "Ана сейчас не отправляет фотографию.",
+"uk": "Ана зараз не надсилає фотографію.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"più",
+"po’",
+"molto"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "mandando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"un",
+"che",
+"e"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"aprendo",
+"lavando",
+"albergo",
+"regalo",
+"bevendo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:34",
+"target": "Mi sto lavando le mani.",
+"ru": "Я сейчас мою руки.",
+"uk": "Я зараз мию руки.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Si",
+"Il",
+"Ci",
+"I"
+]
+},
+{
+"correct": "sto",
+"distractors": [
+"stai",
+"stiamo",
+"stanno",
+"state",
+"mangiando"
+]
+},
+{
+"correct": "lavando",
+"distractors": [
+"stai",
+"sta",
+"stanno",
+"stiamo",
+"state"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"i",
+"si",
+"che"
+]
+},
+{
+"correct": "mani",
+"distractors": [
+"bici",
+"piatti",
+"stai",
+"qui",
+"miei"
+]
+}
+],
+"alternatives": [
+"Io mi sto lavando le mani.",
+"Sto lavandomi le mani.",
+"Io sto lavandomi le mani."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:35",
+"target": "Luis sta cercando il suo orologio.",
+"ru": "Луис сейчас ищет свои часы.",
+"uk": "Луїс зараз шукає свій годинник.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Paolo",
+"Lea",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"mappa",
+"pagando"
+]
+},
+{
+"correct": "cercando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"stiamo",
+"state"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"lo",
+"una",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"miei",
+"mia",
+"tuo",
+"mio",
+"tua"
+]
+},
+{
+"correct": "orologio",
+"distractors": [
+"mangiando",
+"albergo",
+"aprendo",
+"scrivendo",
+"lavorando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:36",
+"target": "Non stiamo bevendo caffè.",
+"ru": "Мы сейчас не пьём кофе.",
+"uk": "Ми зараз не п’ємо каву.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "stiamo",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "bevendo",
+"distractors": [
+"beve",
+"bevo",
+"bere",
+"beviamo",
+"leggendo"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"assaggiando",
+"carta",
+"sta",
+"albergo",
+"stai"
+]
+}
+],
+"alternatives": [
+"Noi non stiamo bevendo caffè."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:37",
+"target": "Mia sorella sta lavando una maglietta.",
+"ru": "Моя сестра сейчас стирает футболку.",
+"uk": "Моя сестра зараз пере футболку.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Tua",
+"Loro",
+"Miei",
+"Io",
+"Tu"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"valigia",
+"cucina",
+"acqua",
+"zuppa",
+"casa"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "lavando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "maglietta",
+"distractors": [
+"lettera",
+"finestra",
+"valigia",
+"cucina",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:38",
+"target": "Non stiamo tornando a casa.",
+"ru": "Мы сейчас не возвращаемся домой.",
+"uk": "Ми зараз не повертаємося додому.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "stiamo",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "tornando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"porta",
+"acqua",
+"sorella",
+"lettera",
+"cena"
+]
+}
+],
+"alternatives": [
+"Noi non stiamo tornando a casa."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:39",
+"target": "Non stai leggendo il messaggio.",
+"ru": "Ты сейчас не читаешь сообщение.",
+"uk": "Ти зараз не читаєш повідомлення.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Ancora",
+"Già",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "stai",
+"distractors": [
+"stiamo",
+"sta",
+"sto",
+"state",
+"stanno"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"leggere",
+"letto",
+"tavolo",
+"mercato",
+"treno"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"gli",
+"i",
+"una",
+"lo"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"tagliando",
+"sacchetto",
+"ritirando",
+"aspettando",
+"asciugando"
+]
+}
+],
+"alternatives": [
+"Tu non stai leggendo il messaggio."
+]
+},
+{
+"lesson": 15,
+"id": "it:15:40",
+"target": "Luis non sta aprendo la porta.",
+"ru": "Луис сейчас не открывает дверь.",
+"uk": "Луїс зараз не відчиняє двері.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Lea",
+"Paolo",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"ancora",
+"già",
+"po’",
+"molto"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "aprendo",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"lo",
+"le"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:41",
+"target": "Stai lavorando a casa?",
+"ru": "Ты сейчас работаешь дома?",
+"uk": "Ти зараз працюєш вдома?",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Stiamo",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "lavorando",
+"distractors": [
+"sta",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"su",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cucina",
+"cena",
+"zuppa",
+"valigia",
+"mia"
+]
+}
+],
+"alternatives": [
+"Tu stai lavorando a casa?"
+]
+},
+{
+"lesson": 15,
+"id": "it:15:42",
+"target": "Stai asciugando il piatto?",
+"ru": "Ты сейчас вытираешь тарелку?",
+"uk": "Ти зараз витираєш тарілку?",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Stiamo",
+"Sta",
+"State",
+"Sto",
+"Stanno"
+]
+},
+{
+"correct": "asciugando",
+"distractors": [
+"sta",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"i",
+"le",
+"lo"
+]
+},
+{
+"correct": "piatto",
+"distractors": [
+"stiamo",
+"messaggio",
+"pagando",
+"leggendo",
+"cercando"
+]
+}
+],
+"alternatives": [
+"Tu stai asciugando il piatto?"
+]
+},
+{
+"lesson": 15,
+"id": "it:15:43",
+"target": "Stiamo scrivendo un messaggio?",
+"ru": "Мы сейчас пишем сообщение?",
+"uk": "Ми зараз пишемо повідомлення?",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Stai",
+"Sta",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "scrivendo",
+"distractors": [
+"aspettando",
+"leggendo",
+"cercando",
+"mangiando",
+"bevendo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"gli",
+"uno",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"assaggiando",
+"tagliando",
+"tornando",
+"portando",
+"mandando"
+]
+}
+],
+"alternatives": [
+"Noi stiamo scrivendo un messaggio?"
+]
+},
+{
+"lesson": 15,
+"id": "it:15:44",
+"target": "Stai leggendo il libro?",
+"ru": "Ты сейчас читаешь книгу?",
+"uk": "Ти зараз читаєш книжку?",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Sta",
+"Stiamo",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "leggendo",
+"distractors": [
+"letto",
+"leggere",
+"tavolo",
+"messaggio",
+"mercato"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"uno",
+"le",
+"una"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"aprendo",
+"piatto",
+"mandando",
+"tornando",
+"bevendo"
+]
+}
+],
+"alternatives": [
+"Tu stai leggendo il libro?"
+]
+},
+{
+"lesson": 15,
+"id": "it:15:45",
+"target": "Luis sta portando il sacchetto?",
+"ru": "Луис сейчас несёт пакет?",
+"uk": "Луїс зараз несе пакет?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Lea",
+"Paolo",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "portando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "sacchetto",
+"distractors": [
+"aprendo",
+"asciugando",
+"incartando",
+"ritirando",
+"messaggio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:46",
+"target": "Ana sta ritirando la bici?",
+"ru": "Ана сейчас забирает велосипед?",
+"uk": "Ана зараз забирає велосипед?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Lea",
+"Paolo",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "ritirando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "bici",
+"distractors": [
+"piatti",
+"mani",
+"qui",
+"chiavi",
+"miei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:47",
+"target": "Stiamo aspettando qui?",
+"ru": "Мы сейчас ждём здесь?",
+"uk": "Ми зараз чекаємо тут?",
+"tiles": [
+{
+"correct": "Stiamo",
+"distractors": [
+"Sta",
+"Stai",
+"Sto",
+"Stanno",
+"State"
+]
+},
+{
+"correct": "aspettando",
+"distractors": [
+"stai",
+"sta",
+"sto",
+"stanno",
+"state"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Noi stiamo aspettando qui?",
+"Stiamo aspettando qua?",
+"Noi stiamo aspettando qua?"
+]
+},
+{
+"lesson": 15,
+"id": "it:15:48",
+"target": "Luis sta tornando in stazione?",
+"ru": "Луис сейчас возвращается на вокзал?",
+"uk": "Луїс зараз повертається на вокзал?",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Paolo",
+"Lea",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"mangiando",
+"aspettando",
+"cercando",
+"mappa"
+]
+},
+{
+"correct": "tornando",
+"distractors": [
+"stai",
+"sto",
+"stanno",
+"state",
+"stiamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"sorelle",
+"verdure",
+"valigia",
+"sto",
+"state"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:49",
+"target": "Le mie sorelle stanno bevendo un caffè?",
+"ru": "Мои сёстры сейчас пьют кофе?",
+"uk": "Мої сестри зараз п’ють каву?",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"Ci",
+"I",
+"Che"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"mia",
+"sua",
+"suo",
+"mio",
+"nostri"
+]
+},
+{
+"correct": "sorelle",
+"distractors": [
+"verdure",
+"stazione",
+"foto",
+"albergo",
+"state"
+]
+},
+{
+"correct": "stanno",
+"distractors": [
+"stiamo",
+"sto",
+"mangiando",
+"cercando",
+"aspettando"
+]
+},
+{
+"correct": "bevendo",
+"distractors": [
+"beve",
+"bevo",
+"bere",
+"beviamo",
+"leggendo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"lavando",
+"fratelli",
+"libro",
+"carta",
+"orologio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "it:15:50",
+"target": "Stai cercando le mie chiavi?",
+"ru": "Ты сейчас ищешь мои ключи?",
+"uk": "Ти зараз шукаєш мої ключі?",
+"tiles": [
+{
+"correct": "Stai",
+"distractors": [
+"Sta",
+"Stiamo",
+"Sto",
+"State",
+"Stanno"
+]
+},
+{
+"correct": "cercando",
+"distractors": [
+"sta",
+"sto",
+"stanno",
+"stiamo",
+"state"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"un",
+"i",
+"una"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"tua",
+"suo",
+"nostre",
+"tuoi",
+"mio"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"piatti",
+"fratelli",
+"mani",
+"contanti",
+"miei"
+]
+}
+],
+"alternatives": [
+"Tu stai cercando le mie chiavi?"
+]
+},
+{
+"lesson": 16,
+"id": "it:16:01",
+"target": "Entra!",
+"ru": "Заходи!",
+"uk": "Заходь!",
+"tiles": [
+{
+"correct": "Entra",
+"distractors": [
+"Borsa",
+"Ferroviaria",
+"Porta",
+"Busta",
+"Carta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:02",
+"target": "Entri!",
+"ru": "Заходите!",
+"uk": "Заходьте!",
+"tiles": [
+{
+"correct": "Entri",
+"distractors": [
+"Mia",
+"Loro",
+"Mio",
+"Sua",
+"Suo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:03",
+"target": "Aspetta!",
+"ru": "Подожди!",
+"uk": "Почекай!",
+"tiles": [
+{
+"correct": "Aspetta",
+"distractors": [
+"Scatola",
+"Valigia",
+"Camera",
+"D’acqua",
+"Ferroviaria"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:04",
+"target": "Aspetti!",
+"ru": "Подождите!",
+"uk": "Зачекайте!",
+"tiles": [
+{
+"correct": "Aspetti",
+"distractors": [
+"Chiudi",
+"Accendi",
+"Mostri",
+"Controlli",
+"Segui"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:05",
+"target": "Resta qui!",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!",
+"tiles": [
+{
+"correct": "Resta",
+"distractors": [
+"Questo",
+"Queste",
+"Questi",
+"Stai",
+"Stanno"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Resta qua!"
+]
+},
+{
+"lesson": 16,
+"id": "it:16:06",
+"target": "Resti qui!",
+"ru": "Останьтесь здесь!",
+"uk": "Залишайтеся тут!",
+"tiles": [
+{
+"correct": "Resti",
+"distractors": [
+"Questa",
+"Questo",
+"Queste",
+"Quanto",
+"Bagni"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Resti qua!"
+]
+},
+{
+"lesson": 16,
+"id": "it:16:07",
+"target": "Ascolta bene!",
+"ru": "Слушай внимательно!",
+"uk": "Слухай уважно!",
+"tiles": [
+{
+"correct": "Ascolta",
+"distractors": [
+"Questa",
+"Finestra",
+"Giacca",
+"Allaccia",
+"Alla"
+]
+},
+{
+"correct": "bene",
+"distractors": [
+"insieme",
+"verde",
+"latte",
+"favore",
+"pane"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:08",
+"target": "Ascolti bene!",
+"ru": "Слушайте внимательно!",
+"uk": "Слухайте уважно!",
+"tiles": [
+{
+"correct": "Ascolti",
+"distractors": [
+"La",
+"Chiavi",
+"Ci",
+"Qui",
+"Questa"
+]
+},
+{
+"correct": "bene",
+"distractors": [
+"correre",
+"insieme",
+"favore",
+"scarpe",
+"verde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:09",
+"target": "Guarda davanti a te!",
+"ru": "Смотри перед собой!",
+"uk": "Дивись перед собою!",
+"tiles": [
+{
+"correct": "Guarda",
+"distractors": [
+"Guardano",
+"Allaccia",
+"Busta",
+"Gira",
+"Ricordi"
+]
+},
+{
+"correct": "davanti",
+"distractors": [
+"abbassi",
+"aspetti",
+"accendi",
+"resti",
+"controlli"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "te",
+"distractors": [
+"latte",
+"sale",
+"verde",
+"bene",
+"pane"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:10",
+"target": "Guardi davanti a sé!",
+"ru": "Смотрите перед собой!",
+"uk": "Дивіться перед собою!",
+"tiles": [
+{
+"correct": "Guardi",
+"distractors": [
+"Chiudi",
+"Mostri",
+"Accendi",
+"Apri",
+"Controlli"
+]
+},
+{
+"correct": "davanti",
+"distractors": [
+"firmi",
+"abbassi",
+"controlli",
+"tieni",
+"accendi"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "sé",
+"distractors": [
+"chiudi",
+"modulo",
+"lasciare",
+"via",
+"l’importo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:11",
+"target": "Chiudi la porta!",
+"ru": "Закрой дверь!",
+"uk": "Зачини двері!",
+"tiles": [
+{
+"correct": "Chiudi",
+"distractors": [
+"Mostri",
+"Guardi",
+"Accendi",
+"Controlli",
+"Aspetti"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"mi",
+"che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:12",
+"target": "Apri la finestra!",
+"ru": "Открой окно!",
+"uk": "Відкрий вікно!",
+"tiles": [
+{
+"correct": "Apri",
+"distractors": [
+"Guardi",
+"Chiudi",
+"Mostri",
+"Firmi",
+"Abbassi"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"carta",
+"borsa",
+"sorella",
+"cintura",
+"lampada"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:13",
+"target": "Metti la borsa qui!",
+"ru": "Поставь сумку сюда!",
+"uk": "Постав сумку сюди!",
+"tiles": [
+{
+"correct": "Metti",
+"distractors": [
+"Chiavi",
+"Occhiali",
+"Pronti",
+"Bagagli",
+"Posti"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"tenga",
+"chiama",
+"sulla",
+"metta",
+"tolga"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"fuori",
+"lì",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Metti la borsa qua!"
+]
+},
+{
+"lesson": 16,
+"id": "it:16:14",
+"target": "Tieni il biglietto!",
+"ru": "Сохрани билет!",
+"uk": "Збережи квиток!",
+"tiles": [
+{
+"correct": "Tieni",
+"distractors": [
+"Bagagli",
+"Contanti",
+"Davanti",
+"Libri",
+"Posti"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"lo",
+"le",
+"che"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"semaforo",
+"percorso",
+"facciamo",
+"mercato",
+"messaggio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:15",
+"target": "Prendi la giacca!",
+"ru": "Возьми свою куртку!",
+"uk": "Візьми свою куртку!",
+"tiles": [
+{
+"correct": "Prendi",
+"distractors": [
+"Compri",
+"Vorrei",
+"Mangi",
+"Aggiungi",
+"Più"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"le",
+"un",
+"che"
+]
+},
+{
+"correct": "giacca",
+"distractors": [
+"sull’erba",
+"sulla",
+"seconda",
+"destra",
+"perda"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:16",
+"target": "Metti via le scarpe!",
+"ru": "Убери свою обувь!",
+"uk": "Забери своє взуття!",
+"tiles": [
+{
+"correct": "Metti",
+"distractors": [
+"Chiavi",
+"Occhiali",
+"Pronti",
+"Bagagli",
+"Posti"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"chiama",
+"guarda",
+"giacca",
+"borsa",
+"piova"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"una",
+"i",
+"lo"
+]
+},
+{
+"correct": "scarpe",
+"distractors": [
+"verde",
+"bene",
+"sale",
+"favore",
+"chiudere"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:17",
+"target": "Gira a sinistra!",
+"ru": "Поверни налево!",
+"uk": "Поверни ліворуч!",
+"tiles": [
+{
+"correct": "Gira",
+"distractors": [
+"Già",
+"Non",
+"Più",
+"Mai",
+"Porta"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "sinistra",
+"distractors": [
+"all’uscita",
+"ascolta",
+"linea",
+"allaccia",
+"aggiunga"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:18",
+"target": "Attraversa al semaforo!",
+"ru": "Перейди дорогу у светофора!",
+"uk": "Перейди дорогу біля світлофора!",
+"tiles": [
+{
+"correct": "Attraversa",
+"distractors": [
+"Zuppa",
+"Alla",
+"Finestra",
+"Libera",
+"Mappa"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "semaforo",
+"distractors": [
+"tavolo",
+"pacco",
+"mercato",
+"modulo",
+"letto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:19",
+"target": "Segui il percorso!",
+"ru": "Иди по тропинке!",
+"uk": "Іди стежкою!",
+"tiles": [
+{
+"correct": "Segui",
+"distractors": [
+"Chiudi",
+"Accendi",
+"Aspetti",
+"Mostri",
+"Controlli"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "percorso",
+"distractors": [
+"semaforo",
+"mercato",
+"messaggio",
+"modulo",
+"letto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:20",
+"target": "Chiama tua sorella!",
+"ru": "Позвони своей сестре!",
+"uk": "Подзвони своїй сестрі!",
+"tiles": [
+{
+"correct": "Chiama",
+"distractors": [
+"Una",
+"Prima",
+"Ricevuta",
+"Presto",
+"Via"
+]
+},
+{
+"correct": "tua",
+"distractors": [
+"mio",
+"suo",
+"sua",
+"mia",
+"mie"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"tolga",
+"perda",
+"metta",
+"destra",
+"porta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:21",
+"target": "Firmi in fondo, per favore.",
+"ru": "Распишитесь внизу, пожалуйста.",
+"uk": "Розпишіться внизу, будь ласка.",
+"tiles": [
+{
+"correct": "Firmi",
+"distractors": [
+"Guardi",
+"Chiudi",
+"Mostri",
+"Apri",
+"Abbassi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "fondo",
+"distractors": [
+"dietro",
+"facciamo",
+"modulo",
+"pacco",
+"vicino"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"a",
+"di",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "favore",
+"distractors": [
+"sale",
+"latte",
+"bene",
+"te",
+"pane"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:22",
+"target": "Mostri il biglietto, per favore.",
+"ru": "Покажите свой билет, пожалуйста.",
+"uk": "Покажіть свій квиток, будь ласка.",
+"tiles": [
+{
+"correct": "Mostri",
+"distractors": [
+"Controlli",
+"Aspetti",
+"Accendi",
+"Segui",
+"Chiudi"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"mercato",
+"restiamo",
+"percorso",
+"troviamo",
+"passaporto"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"su"
+]
+},
+{
+"correct": "favore",
+"distractors": [
+"sale",
+"correre",
+"pulsante",
+"lasciare",
+"te"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:23",
+"target": "Passi dal cortile.",
+"ru": "Пройдите через двор.",
+"uk": "Пройдіть через двір.",
+"tiles": [
+{
+"correct": "Passi",
+"distractors": [
+"Apri",
+"Chiudi",
+"Firmi",
+"Guardi",
+"Mostri"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "cortile",
+"distractors": [
+"latte",
+"verde",
+"segnale",
+"pulsante",
+"buttare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:24",
+"target": "Prenda la seconda strada a destra.",
+"ru": "Сверните на вторую улицу направо.",
+"uk": "Поверніть на другу вулицю праворуч.",
+"tiles": [
+{
+"correct": "Prenda",
+"distractors": [
+"Andiamo",
+"Restiamo",
+"Va",
+"Vado",
+"Vai"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"gli",
+"i",
+"ci"
+]
+},
+{
+"correct": "seconda",
+"distractors": [
+"sull’erba",
+"sinistra",
+"all’uscita",
+"tolga",
+"allaccia"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"porta",
+"aggiunga",
+"tolga",
+"metta",
+"questa"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "destra",
+"distractors": [
+"entra",
+"borsa",
+"allaccia",
+"prema",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:25",
+"target": "Prema il pulsante verde.",
+"ru": "Нажмите зелёную кнопку.",
+"uk": "Натисніть зелену кнопку.",
+"tiles": [
+{
+"correct": "Prema",
+"distractors": [
+"Via",
+"Prima",
+"Ricevuta",
+"Chiama",
+"Una"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"gli",
+"lo",
+"che"
+]
+},
+{
+"correct": "pulsante",
+"distractors": [
+"favore",
+"chiudere",
+"volume",
+"lasciare",
+"latte"
+]
+},
+{
+"correct": "verde",
+"distractors": [
+"bene",
+"favore",
+"sale",
+"correre",
+"latte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:26",
+"target": "Resti dietro la linea.",
+"ru": "Оставайтесь за линией.",
+"uk": "Залишайтеся за лінією.",
+"tiles": [
+{
+"correct": "Resti",
+"distractors": [
+"Questa",
+"Questo",
+"Qui",
+"Queste",
+"Quanto"
+]
+},
+{
+"correct": "dietro",
+"distractors": [
+"tavolo",
+"semaforo",
+"biglietto",
+"accanto",
+"vicino"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"mi",
+"i",
+"le",
+"un"
+]
+},
+{
+"correct": "linea",
+"distractors": [
+"via",
+"perda",
+"seconda",
+"tolga",
+"tenga"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:27",
+"target": "Tenga il passaporto con sé.",
+"ru": "Держите паспорт при себе.",
+"uk": "Тримайте паспорт при собі.",
+"tiles": [
+{
+"correct": "Tenga",
+"distractors": [
+"Porta",
+"Busta",
+"Lampada",
+"Linea",
+"Aggiunga"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "passaporto",
+"distractors": [
+"l’importo",
+"mercato",
+"tavolo",
+"messaggio",
+"semaforo"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "sé",
+"distractors": [
+"prenda",
+"ascolta",
+"finestra",
+"percorso",
+"una"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:28",
+"target": "Metta il pacco sulla bilancia.",
+"ru": "Положите посылку на весы.",
+"uk": "Покладіть посилку на ваги.",
+"tiles": [
+{
+"correct": "Metta",
+"distractors": [
+"Destra",
+"Busta",
+"Seconda",
+"Giacca",
+"Via"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"uno",
+"le"
+]
+},
+{
+"correct": "pacco",
+"distractors": [
+"modulo",
+"rubinetto",
+"biglietto",
+"semaforo",
+"mercato"
+]
+},
+{
+"correct": "sulla",
+"distractors": [
+"sul",
+"borsa",
+"giacca",
+"mappa",
+"sorella"
+]
+},
+{
+"correct": "bilancia",
+"distractors": [
+"attraversa",
+"prema",
+"aspetta",
+"sull’erba",
+"all’uscita"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:29",
+"target": "Controlli l’importo.",
+"ru": "Проверьте сумму.",
+"uk": "Перевірте суму.",
+"tiles": [
+{
+"correct": "Controlli",
+"distractors": [
+"Guardi",
+"Mostri",
+"Accendi",
+"Davanti",
+"Chiudi"
+]
+},
+{
+"correct": "l’importo",
+"distractors": [
+"troviamo",
+"dietro",
+"mercato",
+"semaforo",
+"passaporto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:30",
+"target": "Tolga la carta.",
+"ru": "Заберите свою карту.",
+"uk": "Заберіть картку.",
+"tiles": [
+{
+"correct": "Tolga",
+"distractors": [
+"Piova",
+"Bilancia",
+"Metta",
+"Prenda",
+"Finestra"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"i",
+"lo"
+]
+},
+{
+"correct": "carta",
+"distractors": [
+"prema",
+"ascolta",
+"busta",
+"prenda",
+"via"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:31",
+"target": "Non correre!",
+"ru": "Не беги!",
+"uk": "Не біжи!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "correre",
+"distractors": [
+"volume",
+"scarpe",
+"latte",
+"dimenticare",
+"buttare"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:32",
+"target": "Mi porti il modulo firmato, per favore.",
+"ru": "Принесите (вежл.) мне подписанный бланк, пожалуйста.",
+"uk": "Принесіть (ввіч.) мені підписаний бланк, будь ласка.",
+"tiles": [
+{
+"correct": "Mi",
+"distractors": [
+"La",
+"Si",
+"Lo",
+"Gli",
+"Le"
+]
+},
+{
+"correct": "porti",
+"distractors": [
+"vorrei",
+"aperta",
+"aperto",
+"chiusa",
+"chiusi"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"gli",
+"che"
+]
+},
+{
+"correct": "modulo",
+"distractors": [
+"rubinetto",
+"accanto",
+"biglietto",
+"dietro",
+"l’importo"
+]
+},
+{
+"correct": "firmato",
+"distractors": [
+"all’uscita",
+"l’importo",
+"bene",
+"accanto",
+"dietro"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"a",
+"in",
+"di",
+"con",
+"su"
+]
+},
+{
+"correct": "favore",
+"distractors": [
+"lasciare",
+"te",
+"chiudere",
+"correre",
+"latte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:33",
+"target": "Non dimenticare l’ombrello!",
+"ru": "Не забудь свой зонт!",
+"uk": "Не забудь свою парасольку!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "dimenticare",
+"distractors": [
+"camminare",
+"lasciare",
+"sulla",
+"pulsante",
+"chiudere"
+]
+},
+{
+"correct": "l’ombrello",
+"distractors": [
+"accanto",
+"l’importo",
+"andiamo",
+"rubinetto",
+"passaporto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:34",
+"target": "Non chiudere la porta a chiave!",
+"ru": "Не запирай дверь на ключ!",
+"uk": "Не замикай двері на ключ!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "chiudere",
+"distractors": [
+"favore",
+"buttare",
+"scarpe",
+"correre",
+"camminare"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"lo",
+"che",
+"e"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"te",
+"camminare",
+"buttare",
+"sale",
+"cortile"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:35",
+"target": "Non perda la ricevuta!",
+"ru": "Не потеряйте чек!",
+"uk": "Не втратьте чек!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "perda",
+"distractors": [
+"gira",
+"tolga",
+"allaccia",
+"sinistra",
+"busta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"le",
+"ci",
+"si"
+]
+},
+{
+"correct": "ricevuta",
+"distractors": [
+"all’uscita",
+"prema",
+"metta",
+"sull’erba",
+"stanza"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:36",
+"target": "Non lasciare il latte fuori!",
+"ru": "Не оставляй молоко на улице!",
+"uk": "Не залишай молоко на вулиці!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Ancora",
+"Più",
+"Già",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "lasciare",
+"distractors": [
+"favore",
+"chiave",
+"segnale",
+"camminare",
+"scarpe"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"le",
+"lo"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"segnale",
+"pulsante",
+"cortile",
+"chiudere",
+"favore"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"vicino",
+"lì",
+"qui",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:37",
+"target": "Non aggiunga sale!",
+"ru": "Не добавляйте соль!",
+"uk": "Не додавайте сіль!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Ancora",
+"Già",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "aggiunga",
+"distractors": [
+"entra",
+"destra",
+"finestra",
+"allaccia",
+"prema"
+]
+},
+{
+"correct": "sale",
+"distractors": [
+"latte",
+"mele",
+"bene",
+"te",
+"favore"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:38",
+"target": "Non buttare via questa busta!",
+"ru": "Не выбрасывай этот конверт!",
+"uk": "Не викидай цей конверт!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "buttare",
+"distractors": [
+"latte",
+"segnale",
+"bene",
+"scarpe",
+"insieme"
+]
+},
+{
+"correct": "via",
+"distractors": [
+"porta",
+"linea",
+"resta",
+"casa",
+"porti"
+]
+},
+{
+"correct": "questa",
+"distractors": [
+"tenga",
+"sull’erba",
+"piova",
+"qui",
+"fuori"
+]
+},
+{
+"correct": "busta",
+"distractors": [
+"aggiunga",
+"tenga",
+"borsa",
+"carta",
+"linea"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:39",
+"target": "Non aspetti vicino all’uscita!",
+"ru": "Не ждите возле выхода!",
+"uk": "Не чекайте біля виходу!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "aspetti",
+"distractors": [
+"davanti",
+"controlli",
+"resti",
+"abbassi",
+"accendi"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"lì",
+"qui",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "all’uscita",
+"distractors": [
+"attraversa",
+"sull’erba",
+"restiamo",
+"aggiunga",
+"cintura"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:40",
+"target": "Non camminare sull’erba!",
+"ru": "Не ходи по газону!",
+"uk": "Не ходи газоном!",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Mai",
+"Quante"
+]
+},
+{
+"correct": "camminare",
+"distractors": [
+"scarpe",
+"chiudere",
+"chiave",
+"correre",
+"dimenticare"
+]
+},
+{
+"correct": "sull’erba",
+"distractors": [
+"ascolta",
+"cintura",
+"guarda",
+"prenda",
+"bilancia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:41",
+"target": "Andiamo al mercato!",
+"ru": "Пойдём на рынок!",
+"uk": "Підемо на ринок!",
+"tiles": [
+{
+"correct": "Andiamo",
+"distractors": [
+"Vado",
+"Va",
+"Vanno",
+"Vai",
+"Prenda"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"passaporto",
+"altro",
+"modulo",
+"tavolo",
+"percorso"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:42",
+"target": "Facciamo una pausa!",
+"ru": "Давайте сделаем перерыв!",
+"uk": "Давайте зробимо перерву!",
+"tiles": [
+{
+"correct": "Facciamo",
+"distractors": [
+"Fa",
+"Fai",
+"Faccia",
+"Prenda",
+"Ricetta"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"che",
+"e",
+"per",
+"con"
+]
+},
+{
+"correct": "pausa",
+"distractors": [
+"tenga",
+"piova",
+"borsa",
+"bilancia",
+"allaccia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:43",
+"target": "Restiamo insieme!",
+"ru": "Давайте держаться вместе!",
+"uk": "Давайте триматися разом!",
+"tiles": [
+{
+"correct": "Restiamo",
+"distractors": [
+"Andiamo",
+"Prenda",
+"Prendiamo",
+"Ha",
+"Hai"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"favore",
+"latte",
+"bene",
+"volume",
+"chiave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:44",
+"target": "Troviamo un altro tavolo!",
+"ru": "Давайте найдём другой столик!",
+"uk": "Знайдімо інший столик!",
+"tiles": [
+{
+"correct": "Troviamo",
+"distractors": [
+"Ha",
+"Hai",
+"Ho",
+"Hanno",
+"Sta"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"gli",
+"la",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "altro",
+"distractors": [
+"pacco",
+"fondo",
+"accanto",
+"vicino",
+"qui"
+]
+},
+{
+"correct": "tavolo",
+"distractors": [
+"modulo",
+"l’importo",
+"accanto",
+"messaggio",
+"firmato"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:45",
+"target": "Partiamo prima che piova!",
+"ru": "Пойдём до того, как начнётся дождь!",
+"uk": "Підемо до того, як почнеться дощ!",
+"tiles": [
+{
+"correct": "Partiamo",
+"distractors": [
+"Partite",
+"C’è",
+"Piano",
+"Dura",
+"Dov’è"
+]
+},
+{
+"correct": "prima",
+"distractors": [
+"più",
+"chi",
+"dove",
+"cosa",
+"siamo"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "piova",
+"distractors": [
+"via",
+"linea",
+"borsa",
+"sulla",
+"perda"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:46",
+"target": "Allaccia la cintura!",
+"ru": "Пристегни ремень!",
+"uk": "Пристебни ремінь!",
+"tiles": [
+{
+"correct": "Allaccia",
+"distractors": [
+"Ascolta",
+"Giacca",
+"Finestra",
+"Questa",
+"Questo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"mi",
+"un",
+"lo"
+]
+},
+{
+"correct": "cintura",
+"distractors": [
+"gira",
+"resta",
+"prema",
+"piova",
+"all’uscita"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:47",
+"target": "Abbassi il volume, per favore.",
+"ru": "Убавьте громкость, пожалуйста.",
+"uk": "Зменште гучність, будь ласка.",
+"tiles": [
+{
+"correct": "Abbassi",
+"distractors": [
+"Firmi",
+"Mostri",
+"Chiudi",
+"Guardi",
+"Apri"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"uno",
+"che"
+]
+},
+{
+"correct": "volume",
+"distractors": [
+"pulsante",
+"cortile",
+"bene",
+"chiave",
+"pane"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "favore",
+"distractors": [
+"te",
+"chiudere",
+"latte",
+"insieme",
+"stazione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:48",
+"target": "Chiudi il rubinetto!",
+"ru": "Закрой кран!",
+"uk": "Закрий кран!",
+"tiles": [
+{
+"correct": "Chiudi",
+"distractors": [
+"Mostri",
+"Guardi",
+"Accendi",
+"Controlli",
+"Aspetti"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "rubinetto",
+"distractors": [
+"l’importo",
+"dietro",
+"percorso",
+"biglietto",
+"l’ombrello"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:49",
+"target": "Lasci un messaggio dopo il segnale.",
+"ru": "Оставьте сообщение после сигнала.",
+"uk": "Залишіть повідомлення після сигналу.",
+"tiles": [
+{
+"correct": "Lasci",
+"distractors": [
+"Biglietti",
+"Chiavi",
+"Domani",
+"Guanti",
+"Vorrei"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"l’ombrello",
+"rubinetto",
+"accanto",
+"tavolo",
+"passaporto"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"uno",
+"che"
+]
+},
+{
+"correct": "segnale",
+"distractors": [
+"favore",
+"camminare",
+"latte",
+"buttare",
+"verde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "it:16:50",
+"target": "Accendi la lampada accanto al letto!",
+"ru": "Включи лампу у кровати!",
+"uk": "Увімкни лампу біля ліжка!",
+"tiles": [
+{
+"correct": "Accendi",
+"distractors": [
+"Chiudi",
+"Mostri",
+"Controlli",
+"Guardi",
+"Aspetti"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"uno",
+"che"
+]
+},
+{
+"correct": "lampada",
+"distractors": [
+"questa",
+"sorella",
+"finestra",
+"sulla",
+"strada"
+]
+},
+{
+"correct": "accanto",
+"distractors": [
+"altro",
+"restiamo",
+"l’ombrello",
+"biglietto",
+"tavolo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"alle",
+"ai",
+"casa"
+]
+},
+{
+"correct": "letto",
+"distractors": [
+"fondo",
+"tavolo",
+"mercato",
+"firmato",
+"dietro"
+]
+}
+],
+"alternatives": []
+}
+]

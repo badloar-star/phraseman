@@ -1,0 +1,841 @@
+{
+ "lang": "fr",
+ "lesson": 29,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:29:01",
+   "target": "C’est le bus qui va à la gare.",
+   "ru": "Это автобус, который едет до вокзала.",
+   "uk": "Це автобус, який їде до залізничного вокзалу."
+  },
+  {
+   "id": "fr:29:02",
+   "target": "C’est le bus que je prends.",
+   "ru": "Это автобус, на котором я еду.",
+   "uk": "Це автобус, на якому я їду."
+  },
+  {
+   "id": "fr:29:03",
+   "target": "Voici la clé qui ouvre la cave.",
+   "ru": "Вот ключ, который открывает подвал.",
+   "uk": "Ось ключ, що відчиняє льох."
+  },
+  {
+   "id": "fr:29:04",
+   "target": "Voici la clé que je cherche.",
+   "ru": "Вот ключ, который я ищу.",
+   "uk": "Ось ключ, який я шукаю."
+  },
+  {
+   "id": "fr:29:05",
+   "target": "C’est la veste qui me plaît.",
+   "ru": "Это куртка, которая мне нравится.",
+   "uk": "Це куртка, яка мені подобається."
+  },
+  {
+   "id": "fr:29:06",
+   "target": "C’est la veste que je porte.",
+   "ru": "Это куртка, которую я ношу.",
+   "uk": "Це куртка, яку я ношу."
+  },
+  {
+   "id": "fr:29:07",
+   "target": "Voilà le médecin qui travaille ici.",
+   "ru": "Вот врач, который здесь работает.",
+   "uk": "Ось лікар, який тут працює."
+  },
+  {
+   "id": "fr:29:08",
+   "target": "Voilà le médecin que je connais.",
+   "ru": "Вот врач, которого я знаю.",
+   "uk": "Ось лікар, якого я знаю."
+  },
+  {
+   "id": "fr:29:09",
+   "target": "C’est le livre qui est sur la table.",
+   "ru": "Это книга, которая лежит на столе.",
+   "uk": "Це книга, яка лежить на столі."
+  },
+  {
+   "id": "fr:29:10",
+   "target": "C’est le livre que tu veux.",
+   "ru": "Это книга, которую ты хочешь.",
+   "uk": "Це книга, яку ти хочеш."
+  },
+  {
+   "id": "fr:29:11",
+   "target": "J’ai un voisin qui parle italien.",
+   "ru": "У меня есть сосед, который говорит по-итальянски.",
+   "uk": "У мене є сусід, який розмовляє італійською."
+  },
+  {
+   "id": "fr:29:12",
+   "target": "Je cherche quelqu’un qui sait nager.",
+   "ru": "Я ищу человека, который умеет плавать.",
+   "uk": "Я шукаю когось, хто вміє плавати."
+  },
+  {
+   "id": "fr:29:13",
+   "target": "C’est Léa qui a réservé.",
+   "ru": "Именно Леа всё забронировала.",
+   "uk": "Саме Леа все забронювала."
+  },
+  {
+   "id": "fr:29:14",
+   "target": "Le facteur qui passe ici est en congé.",
+   "ru": "Почтальон, который сюда приходит, в отпуске.",
+   "uk": "Листоноша, який сюди приходить, у відпустці."
+  },
+  {
+   "id": "fr:29:15",
+   "target": "La pharmacie qui ouvre le dimanche est loin.",
+   "ru": "Аптека, которая открыта по воскресеньям, находится далеко.",
+   "uk": "Аптека, яка працює в неділю, знаходиться далеко."
+  },
+  {
+   "id": "fr:29:16",
+   "target": "Les clients qui attendent ont un ticket.",
+   "ru": "У клиентов, которые ждут, есть талон.",
+   "uk": "У клієнтів, які чекають, є талон."
+  },
+  {
+   "id": "fr:29:17",
+   "target": "La porte qui donne sur la cour est fermée.",
+   "ru": "Дверь, ведущая во двор, закрыта.",
+   "uk": "Двері, що ведуть у двір, зачинені."
+  },
+  {
+   "id": "fr:29:18",
+   "target": "Le vélo qui est dehors est à Paul.",
+   "ru": "Велосипед, который стоит на улице, принадлежит Полю.",
+   "uk": "Велосипед, що стоїть на вулиці, належить Полю."
+  },
+  {
+   "id": "fr:29:19",
+   "target": "J’aime les jeux qui ont une règle simple.",
+   "ru": "Мне нравятся игры с простыми правилами.",
+   "uk": "Мені подобаються ігри з простими правилами."
+  },
+  {
+   "id": "fr:29:20",
+   "target": "Les gens qui habitent ici se connaissent.",
+   "ru": "Люди, которые здесь живут, знают друг друга.",
+   "uk": "Люди, які тут живуть, знають одне одного."
+  },
+  {
+   "id": "fr:29:21",
+   "target": "Le pain que tu prépares sent bon.",
+   "ru": "Хлеб, который ты печёшь, вкусно пахнет.",
+   "uk": "Хліб, який ти печеш, смачно пахне."
+  },
+  {
+   "id": "fr:29:22",
+   "target": "Le train que nous attendons a du retard.",
+   "ru": "Поезд, которого мы ждем, задерживается.",
+   "uk": "Поїзд, на який ми чекаємо, затримується."
+  },
+  {
+   "id": "fr:29:23",
+   "target": "Le café que tu bois est très fort.",
+   "ru": "Кофе, который ты пьёшь, очень крепкий.",
+   "uk": "Кава, яку ти п'єш, дуже міцна."
+  },
+  {
+   "id": "fr:29:24",
+   "target": "Le film que je regarde commence bien.",
+   "ru": "Фильм, который я смотрю, начинается хорошо.",
+   "uk": "Фільм, який я дивлюся, починається добре."
+  },
+  {
+   "id": "fr:29:25",
+   "target": "Les gants que je porte sont chauds.",
+   "ru": "Перчатки, которые на мне, теплые.",
+   "uk": "Рукавички, які я ношу, теплі."
+  },
+  {
+   "id": "fr:29:26",
+   "target": "Les prix que vous voyez comprennent la livraison.",
+   "ru": "Цены, которые вы видите, включают доставку.",
+   "uk": "Ціни, які ви бачите, включають доставку."
+  },
+  {
+   "id": "fr:29:27",
+   "target": "Le message que j’écris est court.",
+   "ru": "Сообщение, которое я пишу, короткое.",
+   "uk": "Повідомлення, яке я пишу, коротке."
+  },
+  {
+   "id": "fr:29:28",
+   "target": "La lettre que tu lis vient de Léa.",
+   "ru": "Письмо, которое ты читаешь, от Леа.",
+   "uk": "Лист, який ти читаєш, від Леа."
+  },
+  {
+   "id": "fr:29:29",
+   "target": "Le sac que je garde appartient à ma sœur.",
+   "ru": "Сумка, которую я держу, принадлежит моей сестре.",
+   "uk": "Сумка, яку я тримаю, належить моїй сестрі."
+  },
+  {
+   "id": "fr:29:30",
+   "target": "Le plat que vous servez est délicieux.",
+   "ru": "Блюдо, которое вы подаете, очень вкусное.",
+   "uk": "Страва, яку ви подаєте, дуже смачна."
+  },
+  {
+   "id": "fr:29:31",
+   "target": "Voici le plan qu’on m’a donné.",
+   "ru": "Вот карта, которую мне дали.",
+   "uk": "Ось карта, яку мені дали."
+  },
+  {
+   "id": "fr:29:32",
+   "target": "Le ticket qu’il garde est valable demain.",
+   "ru": "Билет, который он оставляет себе, действителен завтра.",
+   "uk": "Квиток, який він зберігає, дійсний завтра."
+  },
+  {
+   "id": "fr:29:33",
+   "target": "Le bureau qu’elle cherche est en bas.",
+   "ru": "Офис, который она ищет, находится внизу.",
+   "uk": "Офіс, який вона шукає, знаходиться внизу."
+  },
+  {
+   "id": "fr:29:34",
+   "target": "Le vélo qu’on répare est ancien.",
+   "ru": "Велосипед, который мы ремонтируем, старый.",
+   "uk": "Велосипед, який ми ремонтуємо, старий."
+  },
+  {
+   "id": "fr:29:35",
+   "target": "Le cadeau qu’ils préparent est pour toi.",
+   "ru": "Подарок, который они готовят, для тебя.",
+   "uk": "Подарунок, який вони готують, для тебе."
+  },
+  {
+   "id": "fr:29:36",
+   "target": "La personne qui m’aide est ma voisine.",
+   "ru": "Человек, который мне помогает, — моя соседка.",
+   "uk": "Людина, яка мені допомагає, - моя сусідка."
+  },
+  {
+   "id": "fr:29:37",
+   "target": "La personne que j’aide est ma voisine.",
+   "ru": "Человек, которому я помогаю, — моя соседка.",
+   "uk": "Людина, якій я допомагаю, - моя сусідка."
+  },
+  {
+   "id": "fr:29:38",
+   "target": "L’enfant qui appelle sa mère est ici.",
+   "ru": "Ребенок, зовущий свою маму, здесь.",
+   "uk": "Дитина, яка кличе свою маму, тут."
+  },
+  {
+   "id": "fr:29:39",
+   "target": "L’enfant que sa mère appelle est dehors.",
+   "ru": "Ребенок, которого зовет его мама, находится на улице.",
+   "uk": "Дитина, яку кличе мама, надворі."
+  },
+  {
+   "id": "fr:29:40",
+   "target": "Le bus qui suit est presque vide.",
+   "ru": "Следующий автобус почти пустой.",
+   "uk": "Автобус, що їде слідом, майже порожній."
+  },
+  {
+   "id": "fr:29:41",
+   "target": "Je connais un café qui sert du thé à la menthe.",
+   "ru": "Я знаю кафе, где подают мятный чай.",
+   "uk": "Я знаю кафе, де подають м'ятний чай."
+  },
+  {
+   "id": "fr:29:42",
+   "target": "La couverture que tu cherches est dans le placard.",
+   "ru": "Одеяло, которое ты ищешь, в шкафу.",
+   "uk": "Ковдра, яку ти шукаєш, у шафі."
+  },
+  {
+   "id": "fr:29:43",
+   "target": "La dame qui a trouvé mes clés est à l’accueil.",
+   "ru": "Женщина, которая нашла мои ключи, у стойки регистрации.",
+   "uk": "Жінка, яка знайшла мої ключі, біля стійки реєстрації."
+  },
+  {
+   "id": "fr:29:44",
+   "target": "Le train que nous devons prendre part à midi.",
+   "ru": "Поезд, на котором мы должны ехать, отправляется в полдень.",
+   "uk": "Поїзд, яким ми маємо їхати, відправляється опівдні."
+  },
+  {
+   "id": "fr:29:45",
+   "target": "J’ai perdu le papier qui indique le code.",
+   "ru": "Я потерял клочок бумаги с кодом.",
+   "uk": "Я загубив клаптик паперу з кодом."
+  },
+  {
+   "id": "fr:29:46",
+   "target": "Le pot que tu cherches est derrière la menthe.",
+   "ru": "Горшок, который ты ищешь, стоит за мятой.",
+   "uk": "Горщик, який ти шукаєш, стоїть за м’ятою."
+  },
+  {
+   "id": "fr:29:47",
+   "target": "Le fauteuil que je voudrais vendre est en bon état.",
+   "ru": "Кресло, которое я хотел бы продать, в хорошем состоянии.",
+   "uk": "Крісло, яке я хотів би продати, у хорошому стані."
+  },
+  {
+   "id": "fr:29:48",
+   "target": "Les chaussures qui me vont sont trop chères.",
+   "ru": "Обувь, которая мне подходит, слишком дорогая.",
+   "uk": "Взуття, яке мені підходить, занадто дороге."
+  },
+  {
+   "id": "fr:29:49",
+   "target": "La salle que nous avons réservée est lumineuse.",
+   "ru": "Зал, который мы забронировали, светлый.",
+   "uk": "Зал, який ми забронювали, світлий."
+  },
+  {
+   "id": "fr:29:50",
+   "target": "La fenêtre qui ferme mal donne sur la rue.",
+   "ru": "Окно, которое плохо закрывается, выходит на улицу.",
+   "uk": "Вікно, яке погано зачиняється, виходить на вулицю."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la cave",
+   "ru": "подвал",
+   "uk": "підвал"
+  },
+  {
+   "lemma": "le code",
+   "ru": "код",
+   "uk": "код"
+  },
+  {
+   "lemma": "le papier",
+   "ru": "листок бумаги",
+   "uk": "аркуш паперу"
+  },
+  {
+   "lemma": "la menthe",
+   "ru": "мята",
+   "uk": "м'ята"
+  },
+  {
+   "lemma": "le plat",
+   "ru": "блюдо",
+   "uk": "страва"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon",
+  "l’œuf (m.)",
+  "le bol",
+  "la barquette",
+  "la moitié",
+  "le carton",
+  "le fauteuil",
+  "l’échelle (f.)",
+  "le meilleur souvenir",
+  "la portion",
+  "l’effort (m.)",
+  "le plombier",
+  "le résultat",
+  "le repas",
+  "la pièce d’identité",
+  "le pot",
+  "le séjour",
+  "la place côté allée",
+  "la disponibilité",
+  "la confirmation",
+  "le devis"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  },
+  {
+   "lesson": 25,
+   "title": "Сколько из них: местоимение `en`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнить: больше, меньше или так же"
+  },
+  {
+   "lesson": 27,
+   "title": "Сообщить о будущем: `futur simple`"
+  },
+  {
+   "lesson": 28,
+   "title": "Вежливая просьба: `je voudrais`, `pourriez-vous`"
+  }
+ ],
+ "oldTopicTitle": "Как уточнить предмет: `qui` или `que`",
+ "oldTheoryRu": "Относительное местоимение связывает название с уточнением. `Qui` здесь не задаёт вопрос «кто?». Оно может относиться и к предмету, если тот является подлежащим следующего действия. Мысленно верни название внутрь уточнения. «Ключ открывает» — `qui`; «я ищу ключ» — `que`. Такой тест надёжнее, чем выбирать `qui` исключительно для людей. После `qui` в обычных примерах сразу можно назвать глагол. В конструкции `c’est Léa qui …` именно Леа выполнила действие. Не вставляй второе подлежащее без необходимости. После `que` часто появляется исполнитель со своим глаголом. Основное сообщение о хлебе или поезде продолжается за вставкой: не забывай дочитать всю фразу. `Que` перед гласной даёт `qu’`. У `qui` в нейтральном письме `i` сохраняется. Это важно даже тогда, когда разговорное произношение очень быстрое. Сравни «человек, который мне помогает» и «человек, которому я помогаю». Глагол `aider` во французском связан с прямым объектом: `que j’aide`, хотя перевод может строиться иначе. Выбирая `qui` или `que`, смотри на роль слова в маленьком уточнении, а не в главной фразе. В сложном прошедшем стоящее впереди прямое дополнение иногда видно и по согласованию причастия."
+}

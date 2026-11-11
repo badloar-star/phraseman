@@ -1,0 +1,4553 @@
+[
+{
+"lesson": 7,
+"id": "it:07:01",
+"target": "Lavoro qui.",
+"ru": "Я здесь работаю.",
+"uk": "Я тут працюю.",
+"tiles": [
+{
+"correct": "Lavoro",
+"distractors": [
+"Lavori",
+"Lavoriamo",
+"Lavorano",
+"Lavorate",
+"Sono"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io lavoro qui.",
+"Lavoro qua.",
+"Io lavoro qua."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:02",
+"target": "Lavori qui.",
+"ru": "Ты работаешь здесь.",
+"uk": "Ти працюєш тут.",
+"tiles": [
+{
+"correct": "Lavori",
+"distractors": [
+"Lavora",
+"Lavoro",
+"Lavoriamo",
+"Lavorano",
+"Lavorate"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu lavori qui.",
+"Lavori qua.",
+"Tu lavori qua."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:03",
+"target": "Lea lavora qui.",
+"ru": "Леа здесь работает.",
+"uk": "Леа тут працює.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "lavora",
+"distractors": [
+"lavorate",
+"lavorano",
+"borsa",
+"questa",
+"zuppa"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Lea lavora qua."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:04",
+"target": "Lavoriamo insieme.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом.",
+"tiles": [
+{
+"correct": "Lavoriamo",
+"distractors": [
+"Lavora",
+"Lavoro",
+"Lavori",
+"Lavorano",
+"Lavorate"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"francese",
+"stazione",
+"lille",
+"valigie",
+"lione"
+]
+}
+],
+"alternatives": [
+"Noi lavoriamo insieme."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:05",
+"target": "Lavorate insieme.",
+"ru": "Вы работаете вместе.",
+"uk": "Ви працюєте разом.",
+"tiles": [
+{
+"correct": "Lavorate",
+"distractors": [
+"Lavora",
+"Lavorano",
+"Sta",
+"Stai",
+"Abita"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"francese",
+"preparate",
+"stazione",
+"pane",
+"inglese"
+]
+}
+],
+"alternatives": [
+"Voi lavorate insieme."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:06",
+"target": "Lavorano fuori.",
+"ru": "Они работают на улице.",
+"uk": "Вони працюють надворі.",
+"tiles": [
+{
+"correct": "Lavorano",
+"distractors": [
+"Lavoro",
+"Lavora",
+"Lavori",
+"Lavoriamo",
+"Lavorate"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"lì",
+"qui",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Loro lavorano fuori."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:07",
+"target": "Parlo francese.",
+"ru": "Я говорю по-французски.",
+"uk": "Я розмовляю французькою.",
+"tiles": [
+{
+"correct": "Parlo",
+"distractors": [
+"Parliamo",
+"Parli",
+"Questo",
+"Foto",
+"Museo"
+]
+},
+{
+"correct": "francese",
+"distractors": [
+"lille",
+"lione",
+"stazione",
+"inglese",
+"valigie"
+]
+}
+],
+"alternatives": [
+"Io parlo francese."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:08",
+"target": "Parli francese.",
+"ru": "Ты говоришь по-французски.",
+"uk": "Ти говориш по-французьки.",
+"tiles": [
+{
+"correct": "Parli",
+"distractors": [
+"Parlo",
+"Parla",
+"Parliamo",
+"Biglietti",
+"Bicchieri"
+]
+},
+{
+"correct": "francese",
+"distractors": [
+"stazione",
+"valigie",
+"lille",
+"inglese",
+"insieme"
+]
+}
+],
+"alternatives": [
+"Tu parli francese."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:09",
+"target": "Lei parla inglese.",
+"ru": "Она говорит по-английски.",
+"uk": "Вона розмовляє англійською.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Io",
+"Tu",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "parla",
+"distractors": [
+"parliamo",
+"parli",
+"casa",
+"finestra",
+"zuppa"
+]
+},
+{
+"correct": "inglese",
+"distractors": [
+"francese",
+"lille",
+"pane",
+"valigie",
+"lione"
+]
+}
+],
+"alternatives": [
+"Parla inglese."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:10",
+"target": "Parliamo spagnolo.",
+"ru": "Мы говорим по-испански.",
+"uk": "Ми розмовляємо іспанською.",
+"tiles": [
+{
+"correct": "Parliamo",
+"distractors": [
+"Parla",
+"Parlo",
+"Parli",
+"Ha",
+"Hai"
+]
+},
+{
+"correct": "spagnolo",
+"distractors": [
+"abitiamo",
+"piano",
+"mercato",
+"museo",
+"tavolo"
+]
+}
+],
+"alternatives": [
+"Noi parliamo spagnolo."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:11",
+"target": "Abito a Lione.",
+"ru": "Я живу в Лионе.",
+"uk": "Я живу в Ліоні.",
+"tiles": [
+{
+"correct": "Abito",
+"distractors": [
+"Abiti",
+"Abitiamo",
+"Abitate",
+"Abitano",
+"Sono"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "Lione",
+"distractors": [
+"Inglese",
+"Stazione",
+"Insieme",
+"Pane",
+"Lille"
+]
+}
+],
+"alternatives": [
+"Io abito a Lione."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:12",
+"target": "Abiti a Lille.",
+"ru": "Ты живёшь в Лилле.",
+"uk": "Ти живеш у Ліллі.",
+"tiles": [
+{
+"correct": "Abiti",
+"distractors": [
+"Abita",
+"Abito",
+"Abitano",
+"Abitiamo",
+"Abitate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"tra",
+"da"
+]
+},
+{
+"correct": "Lille",
+"distractors": [
+"Stazione",
+"Francese",
+"Mie",
+"Insieme",
+"Valigie"
+]
+}
+],
+"alternatives": [
+"Tu abiti a Lille."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:13",
+"target": "Paolo abita vicino al mercato.",
+"ru": "Паоло живёт рядом с рынком.",
+"uk": "Паоло живе поряд із ринком.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "abita",
+"distractors": [
+"abitate",
+"abitano",
+"resta",
+"borsa",
+"questa"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"qui",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"città",
+"posto",
+"foto",
+"messaggio",
+"museo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:14",
+"target": "Abitiamo in campagna.",
+"ru": "Мы живём в сельской местности.",
+"uk": "Ми живемо в сільській місцевості.",
+"tiles": [
+{
+"correct": "Abitiamo",
+"distractors": [
+"Abito",
+"Abita",
+"Abiti",
+"Abitate",
+"Abitano"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"per",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "campagna",
+"distractors": [
+"mappa",
+"camera",
+"l’uscita",
+"finestra",
+"zuppa"
+]
+}
+],
+"alternatives": [
+"Noi abitiamo in campagna."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:15",
+"target": "Abitate in città.",
+"ru": "Вы живёте в городе.",
+"uk": "Ви живете у місті.",
+"tiles": [
+{
+"correct": "Abitate",
+"distractors": [
+"Abitano",
+"Abita",
+"Sta",
+"Stai",
+"Cerca"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"tra"
+]
+},
+{
+"correct": "città",
+"distractors": [
+"caffè",
+"messaggio",
+"borsa",
+"giardino",
+"cerchi"
+]
+}
+],
+"alternatives": [
+"Voi abitate in città."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:16",
+"target": "Abitano qui.",
+"ru": "Они живут здесь.",
+"uk": "Вони живуть тут.",
+"tiles": [
+{
+"correct": "Abitano",
+"distractors": [
+"Abito",
+"Abita",
+"Abiti",
+"Abitiamo",
+"Abitate"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Loro abitano qui.",
+"Abitano qua.",
+"Loro abitano qua."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:17",
+"target": "Ascolto la radio.",
+"ru": "Я слушаю радио.",
+"uk": "Я слухаю радіо.",
+"tiles": [
+{
+"correct": "Ascolto",
+"distractors": [
+"Ascolti",
+"Ascoltiamo",
+"Lavoriamo",
+"Indirizzo",
+"Spagnolo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"i",
+"ci",
+"che"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"guardo",
+"foto",
+"fino",
+"abitiamo",
+"museo"
+]
+}
+],
+"alternatives": [
+"Io ascolto la radio."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:18",
+"target": "Tu ascolti la radio.",
+"ru": "Ты слушаешь радио.",
+"uk": "Ти слухаєш радіо.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Loro",
+"Lui",
+"Io",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "ascolti",
+"distractors": [
+"ascolta",
+"ascolto",
+"ascoltiamo",
+"fino",
+"foto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"si",
+"i"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"sabato",
+"piano",
+"spagnolo",
+"museo",
+"pranzo"
+]
+}
+],
+"alternatives": [
+"Ascolti la radio."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:19",
+"target": "Lui ascolta un messaggio.",
+"ru": "Он слушает сообщение.",
+"uk": "Він слухає повідомлення.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Voi",
+"Noi"
+]
+},
+{
+"correct": "ascolta",
+"distractors": [
+"ascolti",
+"ascoltiamo",
+"l’uscita",
+"appartamento",
+"una"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"che"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"lascio",
+"ordino",
+"giardino",
+"appartamento",
+"indirizzo"
+]
+}
+],
+"alternatives": [
+"Ascolta un messaggio."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:20",
+"target": "Ascoltiamo la musica.",
+"ru": "Мы слушаем музыку.",
+"uk": "Ми слухаємо музику.",
+"tiles": [
+{
+"correct": "Ascoltiamo",
+"distractors": [
+"Ascolta",
+"Ascolti",
+"Ascolto",
+"Questa",
+"Lavoriamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"un",
+"mi",
+"che"
+]
+},
+{
+"correct": "musica",
+"distractors": [
+"ascolta",
+"l’uscita",
+"mappa",
+"partita",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Noi ascoltiamo la musica."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:21",
+"target": "Cerco le mie chiavi.",
+"ru": "Я ищу свои ключи.",
+"uk": "Я шукаю свої ключі.",
+"tiles": [
+{
+"correct": "Cerco",
+"distractors": [
+"Cercano",
+"Cerchi",
+"Cerchiamo",
+"Binario",
+"Museo"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"gli",
+"ci",
+"si"
+]
+},
+{
+"correct": "mie",
+"distractors": [
+"sua",
+"nostri",
+"mio",
+"suoi",
+"mia"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"lei",
+"prepari",
+"cerchi",
+"prezzi",
+"vicini"
+]
+}
+],
+"alternatives": [
+"Io cerco le mie chiavi."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:22",
+"target": "Cerchi la tua borsa.",
+"ru": "Ты ищешь свою сумку.",
+"uk": "Ти шукаєш свою сумку.",
+"tiles": [
+{
+"correct": "Cerchi",
+"distractors": [
+"Cerca",
+"Cerchiamo",
+"Cerco",
+"Cercano",
+"Cosa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"si",
+"gli",
+"che"
+]
+},
+{
+"correct": "tua",
+"distractors": [
+"sua",
+"mia",
+"mio",
+"tue",
+"suo"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"zuppa",
+"lavora",
+"musica",
+"parla",
+"finestra"
+]
+}
+],
+"alternatives": [
+"Tu cerchi la tua borsa."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:23",
+"target": "Lei cerca l’uscita.",
+"ru": "Она ищет выход.",
+"uk": "Вона шукає вихід.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Loro",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"cerchi",
+"cercano",
+"cerchiamo",
+"casa",
+"camera"
+]
+},
+{
+"correct": "l’uscita",
+"distractors": [
+"campagna",
+"borsa",
+"tua",
+"zuppa",
+"mappa"
+]
+}
+],
+"alternatives": [
+"Cerca l’uscita."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:24",
+"target": "Cerchiamo un indirizzo.",
+"ru": "Мы ищем адрес.",
+"uk": "Ми шукаємо адресу.",
+"tiles": [
+{
+"correct": "Cerchiamo",
+"distractors": [
+"Cerca",
+"Cerchi",
+"Cercano",
+"Cerco",
+"Ha"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "indirizzo",
+"distractors": [
+"compro",
+"appartamento",
+"guardiamo",
+"visitano",
+"pranzo"
+]
+}
+],
+"alternatives": [
+"Noi cerchiamo un indirizzo."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:25",
+"target": "Cerca un albergo?",
+"ru": "Вы ищете отель?",
+"uk": "Ви шукаєте готель?",
+"tiles": [
+{
+"correct": "Cerca",
+"distractors": [
+"Cerchi",
+"Cercano",
+"Cerchiamo",
+"Camera",
+"Alla"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"una",
+"che",
+"e"
+]
+},
+{
+"correct": "albergo",
+"distractors": [
+"parlo",
+"mercato",
+"visitano",
+"foto",
+"spagnolo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:26",
+"target": "Cercano un posto.",
+"ru": "Они ищут место.",
+"uk": "Вони шукають місце.",
+"tiles": [
+{
+"correct": "Cercano",
+"distractors": [
+"Cerca",
+"Cerchiamo",
+"Cerco",
+"Cerchi",
+"Tavolo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "posto",
+"distractors": [
+"parlo",
+"fino",
+"giardino",
+"sabato",
+"pranzo"
+]
+}
+],
+"alternatives": [
+"Loro cercano un posto."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:27",
+"target": "Guardo la mappa.",
+"ru": "Я смотрю на карту.",
+"uk": "Я дивлюся на карту.",
+"tiles": [
+{
+"correct": "Guardo",
+"distractors": [
+"Guardano",
+"Guardiamo",
+"Biglietto",
+"Chiuso",
+"Fondo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"gli",
+"le",
+"che"
+]
+},
+{
+"correct": "mappa",
+"distractors": [
+"musica",
+"l’uscita",
+"parla",
+"borsa",
+"finestra"
+]
+}
+],
+"alternatives": [
+"Io guardo la mappa."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:28",
+"target": "Lea guarda i prezzi.",
+"ru": "Леа смотрит цены.",
+"uk": "Леа дивиться на ціни.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "guarda",
+"distractors": [
+"guardano",
+"casa",
+"borsa",
+"messaggio",
+"giacca"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"le",
+"la",
+"una",
+"un"
+]
+},
+{
+"correct": "prezzi",
+"distractors": [
+"qui",
+"chiavi",
+"chiudi",
+"lui",
+"torni"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:29",
+"target": "Guardiamo una foto.",
+"ru": "Мы рассматриваем фотографию.",
+"uk": "Ми дивимося на фотографію.",
+"tiles": [
+{
+"correct": "Guardiamo",
+"distractors": [
+"Guardano",
+"Guardo",
+"Guarda",
+"Ha",
+"Hai"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"fino",
+"museo",
+"pranzo",
+"radio",
+"treno"
+]
+}
+],
+"alternatives": [
+"Noi guardiamo una foto."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:30",
+"target": "Guardano la partita.",
+"ru": "Они смотрят матч.",
+"uk": "Вони дивляться матч.",
+"tiles": [
+{
+"correct": "Guardano",
+"distractors": [
+"Guarda",
+"Guardiamo",
+"Guardo",
+"Tavolo",
+"Lavoriamo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"mi",
+"che",
+"e"
+]
+},
+{
+"correct": "partita",
+"distractors": [
+"campagna",
+"casa",
+"musica",
+"cena",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Loro guardano la partita."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:31",
+"target": "Preparo la cena.",
+"ru": "Я готовлю ужин.",
+"uk": "Я готую вечерю.",
+"tiles": [
+{
+"correct": "Preparo",
+"distractors": [
+"Prepari",
+"Prepariamo",
+"Preparate",
+"Biglietto",
+"Sono"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"prepara",
+"cerca",
+"camera",
+"borsa",
+"lavora"
+]
+}
+],
+"alternatives": [
+"Io preparo la cena."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:32",
+"target": "Prepari la zuppa.",
+"ru": "Ты готовишь суп.",
+"uk": "Ти готуєш суп.",
+"tiles": [
+{
+"correct": "Prepari",
+"distractors": [
+"Prepara",
+"Preparo",
+"Prepariamo",
+"Preparate",
+"Caffè"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"mi",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"mattina",
+"partita",
+"prepara",
+"borsa",
+"campagna"
+]
+}
+],
+"alternatives": [
+"Tu prepari la zuppa."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:33",
+"target": "Paolo prepara il caffè.",
+"ru": "Паоло варит кофе.",
+"uk": "Паоло варить каву.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "prepara",
+"distractors": [
+"preparate",
+"borsa",
+"finestra",
+"camera",
+"mappa"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"i",
+"che"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"tè",
+"mattina",
+"parlo",
+"prenota",
+"c’è"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:34",
+"target": "Prepariamo le valigie.",
+"ru": "Мы собираем чемоданы.",
+"uk": "Ми пакуємо валізи.",
+"tiles": [
+{
+"correct": "Prepariamo",
+"distractors": [
+"Prepara",
+"Preparo",
+"Prepari",
+"Preparate",
+"Caffè"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"una",
+"la",
+"ci",
+"che"
+]
+},
+{
+"correct": "valigie",
+"distractors": [
+"lille",
+"francese",
+"stazione",
+"inglese",
+"pane"
+]
+}
+],
+"alternatives": [
+"Noi prepariamo le valigie."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:35",
+"target": "Preparate il pranzo.",
+"ru": "Вы готовите обед.",
+"uk": "Ви готуєте обід.",
+"tiles": [
+{
+"correct": "Preparate",
+"distractors": [
+"Prepara",
+"Caffè",
+"Chiavi",
+"Dov’è",
+"Sta"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"che",
+"e"
+]
+},
+{
+"correct": "pranzo",
+"distractors": [
+"foto",
+"giardino",
+"radio",
+"messaggio",
+"albergo"
+]
+}
+],
+"alternatives": [
+"Voi preparate il pranzo."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:36",
+"target": "Lei prenota una camera.",
+"ru": "Она бронирует номер.",
+"uk": "Вона бронює кімнату.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Tu",
+"Io",
+"Lui",
+"Voi"
+]
+},
+{
+"correct": "prenota",
+"distractors": [
+"casa",
+"zuppa",
+"finestra",
+"lavora",
+"cena"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"che",
+"e",
+"per"
+]
+},
+{
+"correct": "camera",
+"distractors": [
+"parla",
+"zuppa",
+"lavora",
+"l’uscita",
+"musica"
+]
+}
+],
+"alternatives": [
+"Prenota una camera."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:37",
+"target": "Ordino un tè.",
+"ru": "Я заказываю чай.",
+"uk": "Я замовляю чай.",
+"tiles": [
+{
+"correct": "Ordino",
+"distractors": [
+"Ordiniamo",
+"Fuori",
+"Lì",
+"Qui",
+"Lontano"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "tè",
+"distractors": [
+"caffè",
+"appartamento",
+"sabato",
+"pane",
+"lavoriamo"
+]
+}
+],
+"alternatives": [
+"Io ordino un tè."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:38",
+"target": "Ordiniamo due caffè.",
+"ru": "Мы заказываем два кофе.",
+"uk": "Ми замовляємо дві кави.",
+"tiles": [
+{
+"correct": "Ordiniamo",
+"distractors": [
+"Ordino",
+"Ha",
+"Hai",
+"Ho",
+"Hanno"
+]
+},
+{
+"correct": "due",
+"distractors": [
+"nove",
+"tre",
+"dieci",
+"cinque",
+"otto"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"parla",
+"ordino",
+"cerchiamo",
+"lavori",
+"lavorate"
+]
+}
+],
+"alternatives": [
+"Noi ordiniamo due caffè."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:39",
+"target": "Visitano il museo.",
+"ru": "Они посещают музей.",
+"uk": "Вони відвідують музей.",
+"tiles": [
+{
+"correct": "Visitano",
+"distractors": [
+"Spagnolo",
+"Indirizzo",
+"Ascoltiamo",
+"Lavoriamo",
+"Lavorano"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"che",
+"e"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"piano",
+"mercato",
+"giardino",
+"tavolo",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:40",
+"target": "Chiudi la finestra.",
+"ru": "Ты закрываешь окно.",
+"uk": "Ти закриваєш вікно.",
+"tiles": [
+{
+"correct": "Chiudi",
+"distractors": [
+"Quante",
+"Quanti",
+"Domani",
+"Quanto",
+"Oggi"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"i",
+"gli",
+"che"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"prenota",
+"casa",
+"parla",
+"zuppa",
+"campagna"
+]
+}
+],
+"alternatives": [
+"Tu chiudi la finestra."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:41",
+"target": "Lavoro il sabato.",
+"ru": "Я работаю по субботам.",
+"uk": "Я працюю по суботах.",
+"tiles": [
+{
+"correct": "Lavoro",
+"distractors": [
+"Lavori",
+"Lavoriamo",
+"Lavorano",
+"Lavorate",
+"Sono"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"gli",
+"una",
+"che"
+]
+},
+{
+"correct": "sabato",
+"distractors": [
+"albergo",
+"fino",
+"abito",
+"radio",
+"foto"
+]
+}
+],
+"alternatives": [
+"Io lavoro il sabato."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:42",
+"target": "La mattina ascolto la radio.",
+"ru": "Утром я слушаю радио.",
+"uk": "Вранці я слухаю радіо.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Un",
+"Ci",
+"Che"
+]
+},
+{
+"correct": "mattina",
+"distractors": [
+"guarda",
+"campagna",
+"mappa",
+"finestra",
+"casa"
+]
+},
+{
+"correct": "ascolto",
+"distractors": [
+"ascolti",
+"ascoltiamo",
+"fino",
+"foto",
+"posto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"gli",
+"che"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"visitano",
+"compro",
+"fino",
+"posto",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:43",
+"target": "Lei parla piano.",
+"ru": "Она говорит тихо.",
+"uk": "Вона тихо говорить.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Tu",
+"Io",
+"Noi"
+]
+},
+{
+"correct": "parla",
+"distractors": [
+"parliamo",
+"parli",
+"casa",
+"finestra",
+"zuppa"
+]
+},
+{
+"correct": "piano",
+"distractors": [
+"ordino",
+"foto",
+"abito",
+"spagnolo",
+"albergo"
+]
+}
+],
+"alternatives": [
+"Parla piano."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:44",
+"target": "Cerchiamo un appartamento.",
+"ru": "Мы ищем квартиру.",
+"uk": "Ми шукаємо квартиру.",
+"tiles": [
+{
+"correct": "Cerchiamo",
+"distractors": [
+"Cerca",
+"Cerco",
+"Cercano",
+"Cerchi",
+"Ha"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "appartamento",
+"distractors": [
+"chiacchierano",
+"indirizzo",
+"messaggio",
+"camminiamo",
+"posto"
+]
+}
+],
+"alternatives": [
+"Noi cerchiamo un appartamento."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:45",
+"target": "Prenota per stasera?",
+"ru": "Вы (вежл.) бронируете на сегодняшний вечер?",
+"uk": "Ви (ввіч.) бронюєте на сьогоднішній вечір?",
+"tiles": [
+{
+"correct": "Prenota",
+"distractors": [
+"Borsa",
+"Camera",
+"Carta",
+"Giacca",
+"Lontana"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"a",
+"di",
+"con",
+"da"
+]
+},
+{
+"correct": "stasera",
+"distractors": [
+"domani",
+"presto",
+"oggi",
+"bambini",
+"biglietti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:46",
+"target": "Compro il pane.",
+"ru": "Я покупаю хлеб.",
+"uk": "Я купую хліб.",
+"tiles": [
+{
+"correct": "Compro",
+"distractors": [
+"Mia",
+"Mio",
+"Sua",
+"Suo",
+"Lavora"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"lille",
+"inglese",
+"insieme",
+"francese",
+"lione"
+]
+}
+],
+"alternatives": [
+"Io compro il pane."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:47",
+"target": "Torni a casa.",
+"ru": "Ты возвращаешься домой.",
+"uk": "Ти повертаєшся додому.",
+"tiles": [
+{
+"correct": "Torni",
+"distractors": [
+"Chiavi",
+"Presto",
+"Stasera",
+"Biglietti",
+"Oggi"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cerca",
+"mattina",
+"parla",
+"cena",
+"partita"
+]
+}
+],
+"alternatives": [
+"Tu torni a casa."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:48",
+"target": "I vicini chiacchierano in giardino.",
+"ru": "Соседи болтают в саду.",
+"uk": "Сусіди базікають у саду.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Una",
+"Un",
+"Lo"
+]
+},
+{
+"correct": "vicini",
+"distractors": [
+"chiavi",
+"torni",
+"prepari",
+"cerchi",
+"abiti"
+]
+},
+{
+"correct": "chiacchierano",
+"distractors": [
+"prepariamo",
+"appartamento",
+"abiti",
+"ascoltiamo",
+"camminiamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"su"
+]
+},
+{
+"correct": "giardino",
+"distractors": [
+"piano",
+"ordino",
+"visitano",
+"guardano",
+"messaggio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "it:07:49",
+"target": "Camminiamo fino alla stazione.",
+"ru": "Мы идём к вокзалу.",
+"uk": "Ми йдемо до залізничного вокзалу.",
+"tiles": [
+{
+"correct": "Camminiamo",
+"distractors": [
+"Ha",
+"Hai",
+"Ho",
+"Hanno",
+"Sta"
+]
+},
+{
+"correct": "fino",
+"distractors": [
+"lascio",
+"piano",
+"cercano",
+"ascolto",
+"foto"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"lille",
+"valigie",
+"preparate",
+"lione",
+"francese"
+]
+}
+],
+"alternatives": [
+"Noi camminiamo fino alla stazione."
+]
+},
+{
+"lesson": 7,
+"id": "it:07:50",
+"target": "Lascio un messaggio per Lea.",
+"ru": "Я оставляю сообщение для Леа.",
+"uk": "Я залишаю повідомлення для Леа.",
+"tiles": [
+{
+"correct": "Lascio",
+"distractors": [
+"Fondo",
+"Biglietto",
+"L’ufficio",
+"Pronto",
+"Libero"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "messaggio",
+"distractors": [
+"appartamento",
+"giardino",
+"visitano",
+"sabato",
+"spagnolo"
+]
+},
+{
+"correct": "per",
+"distractors": [
+"in",
+"di",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+}
+],
+"alternatives": [
+"Io lascio un messaggio per Lea."
+]
+},
+{
+"lesson": 8,
+"id": "it:08:01",
+"target": "Dove sei?",
+"ru": "Где ты?",
+"uk": "Де ти?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Chi",
+"Quanti",
+"Quanto",
+"Cosa",
+"Qui"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"una",
+"siamo",
+"siete"
+]
+}
+],
+"alternatives": [
+"Dove sei tu?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:02",
+"target": "Dov’è Paolo?",
+"ru": "Где Паоло?",
+"uk": "Де Паоло?",
+"tiles": [
+{
+"correct": "Dov’è",
+"distractors": [
+"C’è",
+"Biglietteria",
+"Tragitto",
+"Parte",
+"Piano"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+}
+],
+"alternatives": [
+"Dove si trova Paolo?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:03",
+"target": "Dove sono le chiavi?",
+"ru": "Где ключи?",
+"uk": "Де ключі?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Cosa",
+"Quanto",
+"Chi",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"strada",
+"siamo",
+"c’è",
+"ci",
+"casa"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"il",
+"la",
+"gli",
+"lo",
+"che"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"posti",
+"bagni",
+"occhiali",
+"lavori",
+"notti"
+]
+}
+],
+"alternatives": [
+"Dove si trovano le chiavi?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:04",
+"target": "Dove abiti?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Chi",
+"Quale",
+"Cosa",
+"Quanto",
+"Quante"
+]
+},
+{
+"correct": "abiti",
+"distractors": [
+"abito",
+"abita",
+"abitiamo",
+"abitano",
+"abitate"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:05",
+"target": "Dove lavora?",
+"ru": "Где вы работаете?",
+"uk": "Де ви працюєте?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Cosa",
+"Chi",
+"Quante",
+"Quale",
+"Quanto"
+]
+},
+{
+"correct": "lavora",
+"distractors": [
+"lavorate",
+"lavorano",
+"borsa",
+"questa",
+"zuppa"
+]
+}
+],
+"alternatives": [
+"Dove lavori?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:06",
+"target": "Dov’è l’uscita?",
+"ru": "Где выход?",
+"uk": "Де вихід?",
+"tiles": [
+{
+"correct": "Dov’è",
+"distractors": [
+"C’è",
+"Piano",
+"Dura",
+"Partite",
+"Sei"
+]
+},
+{
+"correct": "l’uscita",
+"distractors": [
+"comincia",
+"questo",
+"camera",
+"questa",
+"strada"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:07",
+"target": "Dove sono i miei occhiali?",
+"ru": "Где мои очки?",
+"uk": "Де мої окуляри?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Quanti",
+"Cosa",
+"Chi",
+"Quale",
+"Quanto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"tragitto",
+"c’è",
+"ci",
+"loro"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"una",
+"un",
+"gli"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"suo",
+"sua",
+"vostri",
+"tua",
+"mia"
+]
+},
+{
+"correct": "occhiali",
+"distractors": [
+"notti",
+"arrivi",
+"bagni",
+"posti",
+"chiavi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:08",
+"target": "Dov’è la biglietteria?",
+"ru": "Где билетная касса?",
+"uk": "Де квиткова каса?",
+"tiles": [
+{
+"correct": "Dov’è",
+"distractors": [
+"C’è",
+"Comincia",
+"Prenderete",
+"Numero",
+"Stasera"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"mi",
+"che"
+]
+},
+{
+"correct": "biglietteria",
+"distractors": [
+"desidera",
+"alla",
+"casa",
+"numero",
+"persone"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:09",
+"target": "Dov’è il suo albergo?",
+"ru": "Где ваш отель?",
+"uk": "Де ваш готель?",
+"tiles": [
+{
+"correct": "Dov’è",
+"distractors": [
+"C’è",
+"Radio",
+"Costa",
+"Chiave",
+"Miei"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"tua",
+"mia",
+"mio",
+"vostre",
+"miei"
+]
+},
+{
+"correct": "albergo",
+"distractors": [
+"museo",
+"biglietto",
+"piano",
+"questo",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:10",
+"target": "Dove sono i bagni?",
+"ru": "Где туалеты?",
+"uk": "Де туалети?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Chi",
+"Quanto",
+"Cosa",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"biglietto",
+"siamo",
+"c’è",
+"ci",
+"questo"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"la",
+"il",
+"una",
+"gli",
+"un"
+]
+},
+{
+"correct": "bagni",
+"distractors": [
+"posti",
+"chiavi",
+"notti",
+"qui",
+"occhiali"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:11",
+"target": "Chi c’è?",
+"ru": "Кто здесь?",
+"uk": "Хто тут?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Quanto",
+"Qui",
+"Questo",
+"Queste",
+"Questa"
+]
+},
+{
+"correct": "c’è",
+"distractors": [
+"dov’è",
+"qual",
+"arrivi",
+"cerca",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:12",
+"target": "Chi è alla porta?",
+"ru": "Кто стоит у двери?",
+"uk": "Хто біля дверей?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quanti",
+"Quale",
+"Quanto",
+"Quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"suo",
+"siamo",
+"mia",
+"mio",
+"sua"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:13",
+"target": "Chi lavora qui?",
+"ru": "Кто здесь работает?",
+"uk": "Хто тут працює?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Quale",
+"Quante",
+"Cosa",
+"Quanto",
+"Quanti"
+]
+},
+{
+"correct": "lavora",
+"distractors": [
+"lavorate",
+"lavorano",
+"borsa",
+"questa",
+"zuppa"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Chi lavora qua?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:14",
+"target": "Chi parla francese?",
+"ru": "Кто говорит по-французски?",
+"uk": "Хто розмовляє французькою?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quanti",
+"Quale",
+"Quanto",
+"Quante"
+]
+},
+{
+"correct": "parla",
+"distractors": [
+"casa",
+"finestra",
+"zuppa",
+"musica",
+"borsa"
+]
+},
+{
+"correct": "francese",
+"distractors": [
+"disponibile",
+"chiave",
+"lezione",
+"chiude",
+"queste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:15",
+"target": "Chi ha la chiave?",
+"ru": "У кого ключ?",
+"uk": "У кого ключ?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quanti",
+"Quanto",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "ha",
+"distractors": [
+"ho",
+"abbiamo",
+"prima",
+"biglietto",
+"prendo"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"parte",
+"finisce",
+"persone",
+"chiude",
+"francese"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:16",
+"target": "Chi prepara la cena?",
+"ru": "Кто готовит ужин?",
+"uk": "Хто готує вечерю?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quale",
+"Quanto",
+"Quante",
+"Quanti"
+]
+},
+{
+"correct": "prepara",
+"distractors": [
+"preparate",
+"borsa",
+"finestra",
+"camera",
+"mappa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"ci",
+"i",
+"un",
+"che"
+]
+},
+{
+"correct": "cena",
+"distractors": [
+"prenota",
+"casa",
+"lavora",
+"dura",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:17",
+"target": "Chi ascolta la radio?",
+"ru": "Кто слушает радио?",
+"uk": "Хто слухає радіо?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Quante",
+"Cosa",
+"Quale",
+"Quanto",
+"Quanti"
+]
+},
+{
+"correct": "ascolta",
+"distractors": [
+"l’uscita",
+"una",
+"casa",
+"questo",
+"finestra"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"un",
+"ci",
+"i",
+"che"
+]
+},
+{
+"correct": "radio",
+"distractors": [
+"albergo",
+"questo",
+"facendo",
+"piano",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:18",
+"target": "Chi abita al piano di sopra?",
+"ru": "Кто живет наверху?",
+"uk": "Хто живе нагорі?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Quanti",
+"Quante",
+"Quanto",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "abita",
+"distractors": [
+"abitate",
+"abitano",
+"resta",
+"borsa",
+"questa"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "piano",
+"distractors": [
+"cercando",
+"concerto",
+"radio",
+"tragitto",
+"treno"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "sopra",
+"distractors": [
+"sotto",
+"per",
+"con",
+"a",
+"in"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:19",
+"target": "Chi prenota i posti?",
+"ru": "Кто бронирует места?",
+"uk": "Хто бронює місця?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Cosa",
+"Quante",
+"Quanto",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "prenota",
+"distractors": [
+"casa",
+"zuppa",
+"finestra",
+"lavora",
+"cena"
+]
+},
+{
+"correct": "i",
+"distractors": [
+"il",
+"la",
+"una",
+"le",
+"lo"
+]
+},
+{
+"correct": "posti",
+"distractors": [
+"notti",
+"chiavi",
+"occhiali",
+"qui",
+"bagni"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:20",
+"target": "Chi cerca un appartamento?",
+"ru": "Кто ищет квартиру?",
+"uk": "Хто шукає квартиру?",
+"tiles": [
+{
+"correct": "Chi",
+"distractors": [
+"Quale",
+"Quante",
+"Cosa",
+"Quanto",
+"Quanti"
+]
+},
+{
+"correct": "cerca",
+"distractors": [
+"cerchi",
+"cerchiamo",
+"cercano",
+"cercate",
+"casa"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"i",
+"una",
+"le",
+"che"
+]
+},
+{
+"correct": "appartamento",
+"distractors": [
+"l’appuntamento",
+"arriveranno",
+"questo",
+"biglietto",
+"regalo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:21",
+"target": "Quando arrivi?",
+"ru": "Когда ты приезжаешь?",
+"uk": "Коли ти приїжджаєш?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "arrivi",
+"distractors": [
+"posti",
+"occhiali",
+"notti",
+"bagni",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:22",
+"target": "Quando parte?",
+"ru": "Когда вы уезжаете?",
+"uk": "Коли ви від’їжджаєте?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Se",
+"Che",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "parte",
+"distractors": [
+"madre",
+"piace",
+"persone",
+"chiave",
+"partita"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:23",
+"target": "Quando è il concerto?",
+"ru": "Когда концерт?",
+"uk": "Коли концерт?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"banca",
+"siamo",
+"ci",
+"c’è",
+"casa"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "concerto",
+"distractors": [
+"radio",
+"treno",
+"presto",
+"regalo",
+"domani"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:24",
+"target": "Quando chiude la banca?",
+"ru": "Когда закрывается банк?",
+"uk": "Коли зачиняється банк?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "chiude",
+"distractors": [
+"piace",
+"chiave",
+"pane",
+"stazione",
+"mie"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"i",
+"si",
+"gli"
+]
+},
+{
+"correct": "banca",
+"distractors": [
+"cerca",
+"desidera",
+"chiama",
+"consegna",
+"questa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:25",
+"target": "Quando comincia la lezione?",
+"ru": "Когда начинается занятие?",
+"uk": "Коли починається заняття?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Che",
+"Se",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "comincia",
+"distractors": [
+"cerca",
+"porta",
+"costa",
+"camera",
+"strada"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"le",
+"un",
+"mi"
+]
+},
+{
+"correct": "lezione",
+"distractors": [
+"francese",
+"apre",
+"prenderete",
+"persone",
+"chiave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:26",
+"target": "Quando torna a casa Lea?",
+"ru": "Когда Леа возвращается домой?",
+"uk": "Коли Леа повертається додому?",
+"tiles": [
+{
+"correct": "Quando",
+"distractors": [
+"Se",
+"Che",
+"Come",
+"Perché",
+"E"
+]
+},
+{
+"correct": "torna",
+"distractors": [
+"banca",
+"sorella",
+"strada",
+"bicicletta",
+"cinema"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cerca",
+"costa",
+"ascolta",
+"resta",
+"ora"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+}
+],
+"alternatives": [
+"Quando Lea torna a casa?",
+"Quando torna Lea a casa?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:27",
+"target": "A che ora apre il museo?",
+"ru": "Во сколько открывается музей?",
+"uk": "О котрій годині відкривається музей?",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Su",
+"Da"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"casa",
+"cerca",
+"abita",
+"parla",
+"camera"
+]
+},
+{
+"correct": "apre",
+"distractors": [
+"piace",
+"madre",
+"persone",
+"parte",
+"chiave"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"gli",
+"una",
+"lo"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"ritardo",
+"cercando",
+"radio",
+"treno",
+"numero"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:28",
+"target": "A che ora finisce il film?",
+"ru": "Во сколько заканчивается фильм?",
+"uk": "О котрій годині закінчується фільм?",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Senza",
+"Da"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"come",
+"se",
+"quando",
+"mentre",
+"perché"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"porta",
+"dura",
+"casa",
+"strada",
+"borsa"
+]
+},
+{
+"correct": "finisce",
+"distractors": [
+"francese",
+"persone",
+"chiave",
+"partite",
+"parte"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"le",
+"una",
+"e"
+]
+},
+{
+"correct": "film",
+"distractors": [
+"partite",
+"consegna",
+"quante",
+"quale",
+"chi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:29",
+"target": "A che ora parte il treno?",
+"ru": "Во сколько отправляется поезд?",
+"uk": "О котрій годині відправляється поїзд?",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Da",
+"Sotto"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"mentre",
+"quando",
+"se",
+"come",
+"perché"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"resta",
+"cena",
+"dura",
+"abita",
+"camera"
+]
+},
+{
+"correct": "parte",
+"distractors": [
+"madre",
+"piace",
+"persone",
+"chiave",
+"partita"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"i",
+"gli",
+"e"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"facendo",
+"piano",
+"ritardo",
+"concerto",
+"radio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:30",
+"target": "A che ora è l’appuntamento?",
+"ru": "Во сколько назначена встреча?",
+"uk": "О котрій годині призначена зустріч?",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Senza",
+"Da"
+]
+},
+{
+"correct": "che",
+"distractors": [
+"se",
+"quando",
+"mentre",
+"come",
+"perché"
+]
+},
+{
+"correct": "ora",
+"distractors": [
+"costa",
+"parla",
+"cena",
+"questa",
+"banca"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"desidera",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "l’appuntamento",
+"distractors": [
+"ascolta",
+"appartamento",
+"l’uscita",
+"arriveranno",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:31",
+"target": "Quanto costa il biglietto?",
+"ru": "Сколько стоит билет?",
+"uk": "Скільки коштує квиток?",
+"tiles": [
+{
+"correct": "Quanto",
+"distractors": [
+"Cosa",
+"Quale",
+"Chi",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "costa",
+"distractors": [
+"costano",
+"strada",
+"questa",
+"alla",
+"casa"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"una",
+"la",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"cercando",
+"arriveranno",
+"tragitto",
+"concerto",
+"questo"
+]
+}
+],
+"alternatives": [
+"Il biglietto quanto costa?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:32",
+"target": "Quanto costano queste scarpe?",
+"ru": "Сколько стоят эти туфли?",
+"uk": "Скільки коштує це взуття?",
+"tiles": [
+{
+"correct": "Quanto",
+"distractors": [
+"Chi",
+"Qui",
+"Questo",
+"Questa",
+"Questi"
+]
+},
+{
+"correct": "costano",
+"distractors": [
+"costa",
+"strada",
+"questa",
+"alla",
+"casa"
+]
+},
+{
+"correct": "queste",
+"distractors": [
+"persone",
+"qui",
+"chiave",
+"fuori",
+"vicino"
+]
+},
+{
+"correct": "scarpe",
+"distractors": [
+"finisce",
+"persone",
+"parte",
+"chiave",
+"partite"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:33",
+"target": "Quanto costa la consegna?",
+"ru": "Сколько стоит доставка?",
+"uk": "Скільки коштує доставка?",
+"tiles": [
+{
+"correct": "Quanto",
+"distractors": [
+"Chi",
+"Cosa",
+"Quale",
+"Qui",
+"Questo"
+]
+},
+{
+"correct": "costa",
+"distractors": [
+"costano",
+"strada",
+"questa",
+"alla",
+"casa"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"le",
+"i",
+"mi",
+"che"
+]
+},
+{
+"correct": "consegna",
+"distractors": [
+"questa",
+"casa",
+"ferroviaria",
+"macchina",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:34",
+"target": "Quanti posti desidera?",
+"ru": "Сколько мест вы хотите?",
+"uk": "Скільки місць ви хочете?",
+"tiles": [
+{
+"correct": "Quanti",
+"distractors": [
+"Chi",
+"Cosa",
+"Quale",
+"Prima",
+"Pronta"
+]
+},
+{
+"correct": "posti",
+"distractors": [
+"notti",
+"bagni",
+"arrivi",
+"occhiali",
+"stai"
+]
+},
+{
+"correct": "desidera",
+"distractors": [
+"d’acqua",
+"questa",
+"siamo",
+"sei",
+"siete"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:35",
+"target": "Quante notti resta?",
+"ru": "Сколько ночей вы остаетесь?",
+"uk": "Скільки ночей ви зупиняєтесь?",
+"tiles": [
+{
+"correct": "Quante",
+"distractors": [
+"Chi",
+"Cosa",
+"Quale",
+"Prima",
+"Te"
+]
+},
+{
+"correct": "notti",
+"distractors": [
+"arrivi",
+"occhiali",
+"abiti",
+"posti",
+"qui"
+]
+},
+{
+"correct": "resta",
+"distractors": [
+"questa",
+"abita",
+"ora",
+"una",
+"prima"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:36",
+"target": "Quante persone arriveranno?",
+"ru": "Сколько человек приедет?",
+"uk": "Скільки людей приїде?",
+"tiles": [
+{
+"correct": "Quante",
+"distractors": [
+"Chi",
+"Cosa",
+"Quale",
+"Prima",
+"Te"
+]
+},
+{
+"correct": "persone",
+"distractors": [
+"finisce",
+"francese",
+"lezione",
+"partite",
+"queste"
+]
+},
+{
+"correct": "arriveranno",
+"distractors": [
+"questo",
+"biglietto",
+"appartamento",
+"l’appuntamento",
+"cercando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:37",
+"target": "Quanto dura il tragitto?",
+"ru": "Сколько времени занимает дорога?",
+"uk": "Скільки часу забирає дорога?",
+"tiles": [
+{
+"correct": "Quanto",
+"distractors": [
+"Chi",
+"Qui",
+"Questo",
+"Queste",
+"Questa"
+]
+},
+{
+"correct": "dura",
+"distractors": [
+"porta",
+"cena",
+"ora",
+"camera",
+"casa"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"una",
+"lo",
+"le",
+"che"
+]
+},
+{
+"correct": "tragitto",
+"distractors": [
+"albergo",
+"questo",
+"biglietto",
+"regalo",
+"concerto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:38",
+"target": "Quale autobus prenderete?",
+"ru": "На каком автобусе вы (мн.) поедете?",
+"uk": "Яким автобусом ви (мн.) поїдете?",
+"tiles": [
+{
+"correct": "Quale",
+"distractors": [
+"Chi",
+"Quanto",
+"Qui",
+"Questo",
+"Queste"
+]
+},
+{
+"correct": "autobus",
+"distractors": [
+"finisce",
+"chiama",
+"l’uscita",
+"francese",
+"arrivi"
+]
+},
+{
+"correct": "prenderete",
+"distractors": [
+"francese",
+"chiave",
+"lezione",
+"parla",
+"persone"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:39",
+"target": "Quale camera è disponibile?",
+"ru": "Какой номер свободен?",
+"uk": "Який номер вільний?",
+"tiles": [
+{
+"correct": "Quale",
+"distractors": [
+"Quante",
+"Chi",
+"Cosa",
+"Quanto",
+"Quanti"
+]
+},
+{
+"correct": "camera",
+"distractors": [
+"comincia",
+"ora",
+"strada",
+"casa",
+"lavora"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"partite",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "disponibile",
+"distractors": [
+"autobus",
+"parla",
+"francese",
+"prenderete",
+"chiave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:40",
+"target": "Qual è il suo numero?",
+"ru": "Какой у вас номер?",
+"uk": "Який ваш номер?",
+"tiles": [
+{
+"correct": "Qual",
+"distractors": [
+"Film",
+"Chiama",
+"L’uscita",
+"Porta",
+"Presto"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"lavori",
+"siamo",
+"ci",
+"c’è",
+"lavora"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"una",
+"la",
+"i",
+"gli",
+"che"
+]
+},
+{
+"correct": "suo",
+"distractors": [
+"nostre",
+"mia",
+"sue",
+"loro",
+"tua"
+]
+},
+{
+"correct": "numero",
+"distractors": [
+"facendo",
+"tragitto",
+"treno",
+"museo",
+"ritardo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:41",
+"target": "Perché partite così presto?",
+"ru": "Почему вы так рано уходите?",
+"uk": "Чому ви так рано йдете?",
+"tiles": [
+{
+"correct": "Perché",
+"distractors": [
+"Che",
+"Quando",
+"Se",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "partite",
+"distractors": [
+"chiave",
+"padre",
+"persone",
+"finisce",
+"siamo"
+]
+},
+{
+"correct": "così",
+"distractors": [
+"film",
+"dura",
+"albergo",
+"lavora",
+"lavori"
+]
+},
+{
+"correct": "presto",
+"distractors": [
+"domani",
+"stasera",
+"oggi",
+"bambini",
+"biglietti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:42",
+"target": "Perché è in ritardo?",
+"ru": "Почему вы опаздываете?",
+"uk": "Чому ви запізнюєтеся?",
+"tiles": [
+{
+"correct": "Perché",
+"distractors": [
+"Che",
+"Se",
+"Quando",
+"Mentre",
+"Come"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ci",
+"c’è",
+"stazione",
+"chiavi"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"per",
+"di",
+"con",
+"su"
+]
+},
+{
+"correct": "ritardo",
+"distractors": [
+"concerto",
+"regalo",
+"treno",
+"albergo",
+"biglietto"
+]
+}
+],
+"alternatives": [
+"Perché sei in ritardo?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:43",
+"target": "Come sta?",
+"ru": "Как у вас дела?",
+"uk": "Як у вас справи?",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Che",
+"Quando",
+"Perché",
+"Se",
+"Mentre"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"cercando",
+"mappa",
+"carta",
+"figlio"
+]
+}
+],
+"alternatives": [
+"Come stai?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:44",
+"target": "Come si chiama questa strada?",
+"ru": "Как называется эта улица?",
+"uk": "Як називається ця вулиця?",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Quando",
+"Che",
+"Se",
+"Mentre",
+"Perché"
+]
+},
+{
+"correct": "si",
+"distractors": [
+"la",
+"ti",
+"ci",
+"mi",
+"il"
+]
+},
+{
+"correct": "chiama",
+"distractors": [
+"finestra",
+"borsa",
+"camera",
+"l’uscita",
+"casa"
+]
+},
+{
+"correct": "questa",
+"distractors": [
+"comincia",
+"qui",
+"ora",
+"casa",
+"fuori"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"costa",
+"l’uscita",
+"casa",
+"borsa",
+"porta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:45",
+"target": "Come torna a casa stasera?",
+"ru": "Как вы доберетесь домой сегодня вечером?",
+"uk": "Як ви доберетеся додому сьогодні ввечері?",
+"tiles": [
+{
+"correct": "Come",
+"distractors": [
+"Quando",
+"Che",
+"Se",
+"Mentre",
+"Perché"
+]
+},
+{
+"correct": "torna",
+"distractors": [
+"banca",
+"sorella",
+"strada",
+"bicicletta",
+"cinema"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"banca",
+"camera",
+"ora",
+"borsa",
+"porta"
+]
+},
+{
+"correct": "stasera",
+"distractors": [
+"domani",
+"presto",
+"oggi",
+"bambini",
+"biglietti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:46",
+"target": "Cosa stai cercando?",
+"ru": "Что ты ищешь?",
+"uk": "Що ти шукаєш?",
+"tiles": [
+{
+"correct": "Cosa",
+"distractors": [
+"Chi",
+"Quale",
+"Quanti",
+"Quanto",
+"Quante"
+]
+},
+{
+"correct": "stai",
+"distractors": [
+"stiamo",
+"sta",
+"sto",
+"state",
+"stazione"
+]
+},
+{
+"correct": "cercando",
+"distractors": [
+"concerto",
+"tragitto",
+"albergo",
+"regalo",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:47",
+"target": "Che cosa prepara?",
+"ru": "Что вы готовите?",
+"uk": "Що ви готуєте?",
+"tiles": [
+{
+"correct": "Che",
+"distractors": [
+"Se",
+"Quando",
+"Mentre",
+"Come",
+"Perché"
+]
+},
+{
+"correct": "cosa",
+"distractors": [
+"chi",
+"quale",
+"dove",
+"quanto",
+"prima"
+]
+},
+{
+"correct": "prepara",
+"distractors": [
+"preparate",
+"borsa",
+"finestra",
+"camera",
+"mappa"
+]
+}
+],
+"alternatives": [
+"Che cosa prepari?"
+]
+},
+{
+"lesson": 8,
+"id": "it:08:48",
+"target": "Cosa sta facendo Paolo?",
+"ru": "Что делает Паоло?",
+"uk": "Що робить Паоло?",
+"tiles": [
+{
+"correct": "Cosa",
+"distractors": [
+"Chi",
+"Quale",
+"Quanto",
+"Quante",
+"Quanti"
+]
+},
+{
+"correct": "sta",
+"distractors": [
+"stiamo",
+"cercando",
+"mappa",
+"carta",
+"figlio"
+]
+},
+{
+"correct": "facendo",
+"distractors": [
+"cercando",
+"museo",
+"regalo",
+"treno",
+"questo"
+]
+},
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:49",
+"target": "Con chi lavori?",
+"ru": "С кем ты работаешь?",
+"uk": "З ким ти працюєш?",
+"tiles": [
+{
+"correct": "Con",
+"distractors": [
+"In",
+"Di",
+"Per",
+"Senza",
+"Da"
+]
+},
+{
+"correct": "chi",
+"distractors": [
+"quanto",
+"quale",
+"dove",
+"prima",
+"cosa"
+]
+},
+{
+"correct": "lavori",
+"distractors": [
+"lavora",
+"lavoro",
+"lavoriamo",
+"lavorate",
+"lavorano"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "it:08:50",
+"target": "Per chi è questo regalo?",
+"ru": "Для кого этот подарок?",
+"uk": "Для кого цей подарунок?",
+"tiles": [
+{
+"correct": "Per",
+"distractors": [
+"A",
+"In",
+"Di",
+"Con",
+"Da"
+]
+},
+{
+"correct": "chi",
+"distractors": [
+"quale",
+"dove",
+"quanto",
+"prima",
+"cosa"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"quanto",
+"ci",
+"c’è",
+"non"
+]
+},
+{
+"correct": "questo",
+"distractors": [
+"qui",
+"l’appuntamento",
+"ritardo",
+"facendo",
+"vicino"
+]
+},
+{
+"correct": "regalo",
+"distractors": [
+"museo",
+"biglietto",
+"suo",
+"presto",
+"mia"
+]
+}
+],
+"alternatives": []
+}
+]

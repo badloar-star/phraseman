@@ -1,0 +1,968 @@
+[
+{
+"lesson": 13,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:13:01",
+"de:13:02"
+],
+"textByLocale": {
+"en": "The alarm clock rang, and you're not just standing there, you're standing up. In the dictionary, it's a single verb, `aufstehen`,\" but in your self-description, it takes up two spaces. Don't consider `auf` a redundant tile.",
+"ru": "Будильник прозвенел, ты не просто стоишь, а встаёшь. В словаре это один глагол `aufstehen`, но в сообщении о себе он занимает два места. Не считай `auf` лишней плиткой.",
+"uk": "Будильник продзвенів, ти не просто стоїш, а встаєш. У словнику це одне дієслово `aufstehen`, але в повідомленні про себе він займає два місця. Не рахуй `auf` зайвою плиткою."
+}
+},
+{
+"exampleIds": [
+"de:13:06",
+"de:13:10"
+],
+"textByLocale": {
+"en": "To make a call, you need `anrufen`.\" Whoever you're calling, place `rufe … an` inside the frame. Without the prefix, you get a different action: calling someone, not making a phone call.",
+"ru": "Для звонка нужен `anrufen`. Кому звонишь, помести внутрь рамки `rufe … an`. Без приставки получается другое действие: звать кого-то, а не звонить по телефону.",
+"uk": "Для дзвінка потрібен `anrufen`. Кому дзвониш, помісти всередину рамки `rufe … an`. Без приставки виходить інша дія: звати когось, а не телефонувати."
+}
+},
+{
+"exampleIds": [
+"de:13:11",
+"de:13:17"
+],
+"textByLocale": {
+"en": "Change a small part—the result changes. A window can be opened or closed, a radio can be turned on or off. First, imagine the final state of the thing; it suggests the correct prefix.",
+"ru": "Меняй маленькую часть — меняется результат. Окно можно открыть или закрыть, радио включить или выключить. Сначала представь конечное состояние вещи; оно подсказывает нужную приставку.",
+"uk": "Міняй маленьку частину - змінюється результат. Вікно можна відкрити або закрити, радіо увімкнути або вимкнути. Спочатку уяви кінцевий стан речі; воно нагадує необхідну приставку."
+}
+},
+{
+"exampleIds": [
+"de:13:21",
+"de:13:26"
+],
+"textByLocale": {
+"en": "One stem can have different functions. `Kaufen` means to buy, and `einkaufen` often means to go shopping. Don't attach `ein` to an already conjugated form in a simple main clause.",
+"ru": "У одной основы бывают разные функции. `Kaufen` — купить, а `einkaufen` часто означает сходить за покупками. Не приклеивай `ein` к уже спрягаемой форме в простом главном предложении.",
+"uk": "Одна основа має різні функції. `Kaufen` - купити, а `einkaufen` часто означає сходити за покупками. Не приклеюй `ein` до форми, що вже відмінюється, в простій головній пропозиції."
+}
+},
+{
+"exampleIds": [
+"de:13:31",
+"de:13:36"
+],
+"textByLocale": {
+"en": "Departure and arrival have a similar frame, but different prefixes. Place the station name, time, and person between the two parts where the meaning requires it.",
+"ru": "У отправления и прибытия похожая рамка, но разные приставки. Название станции, время и человека ставь между двумя частями там, где это требуется смыслом.",
+"uk": "Відправлення та прибуття мають схожу рамку, але різні приставки. Назва станції, час і людину став між двома частинами там, де це потрібно змістом."
+}
+},
+{
+"exampleIds": [
+"de:13:41",
+"de:13:44"
+],
+"textByLocale": {
+"en": "The question doesn't merge the prefix back together. In a general question, the personal form goes first, and the prefix remains on the right edge. This way, you can ask about exiting, entering, or transferring.",
+"ru": "Вопрос не склеивает приставку обратно. В общем вопросе личная форма идёт в начало, а приставка остаётся на правом краю. Таким способом можно спросить о выходе, входе или пересадке.",
+"uk": "Питання не склеює приставку назад. У загальному питанні особиста форма йде на початок, а приставка залишається на правому краю. У такий спосіб можна запитати про вихід, вхід або пересадку."
+}
+},
+{
+"exampleIds": [
+"de:13:46",
+"de:13:50"
+],
+"textByLocale": {
+"en": "Find the meaning on both edges at once. If you only see `füllen`,\" it's easy to miss that it's about filling out a form. Read to `aus`,\" then translate the entire action, not both halves separately.",
+"ru": "Найди значение по двум краям сразу. Если видишь только `füllen`, легко пропустить, что речь о заполнении анкеты. Прочитай до `aus`, затем переведи всё действие, а не обе половины по отдельности.",
+"uk": "Знайди значення по двох краях одночасно. Якщо бачиш лише `füllen`, то легко пропустити, що йдеться про заповнення анкети. Прочитай до `aus`, потім переведи всю дію, а не обидві половини окремо."
+}
+}
+],
+"lab": [
+{
+"bad": "ein",
+"chapter": 1,
+"id": "de:13:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 11,
+"options": [
+"auf",
+"mit",
+"ein"
+],
+"slot": 3
+},
+{
+"bad": "aus",
+"chapter": 1,
+"id": "de:13:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 5,
+"options": [
+"aus",
+"an",
+"auf"
+],
+"slot": 4
+},
+{
+"bad": "ab",
+"chapter": 1,
+"id": "de:13:05:lab",
+"item": 5,
+"kind": "match",
+"near": 35,
+"options": [
+"auf",
+"ab",
+"an"
+],
+"slot": 3
+},
+{
+"bad": "auf",
+"chapter": 2,
+"id": "de:13:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"aus",
+"auf",
+"an"
+],
+"slot": 4
+},
+{
+"bad": "auf",
+"chapter": 2,
+"id": "de:13:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 9,
+"options": [
+"an",
+"vor",
+"auf"
+],
+"slot": 3
+},
+{
+"bad": "vor",
+"chapter": 2,
+"id": "de:13:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 15,
+"options": [
+"zu",
+"auf",
+"vor"
+],
+"slot": 4
+},
+{
+"bad": "mit",
+"chapter": 3,
+"id": "de:13:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 5,
+"options": [
+"zu",
+"auf",
+"mit"
+],
+"slot": 4
+},
+{
+"bad": "ab",
+"chapter": 3,
+"id": "de:13:17:lab",
+"item": 17,
+"kind": "match",
+"near": 41,
+"options": [
+"ein",
+"ab",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "mit",
+"chapter": 3,
+"id": "de:13:19:lab",
+"item": 19,
+"kind": "build",
+"near": 17,
+"options": [
+"mit",
+"ein",
+"zu"
+],
+"slot": 4
+},
+{
+"bad": "aus",
+"chapter": 4,
+"id": "de:13:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 12,
+"options": [
+"aus",
+"ein",
+"um"
+],
+"slot": 5
+},
+{
+"bad": "mit",
+"chapter": 4,
+"id": "de:13:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 19,
+"options": [
+"ab",
+"ein",
+"mit"
+],
+"slot": 4
+},
+{
+"bad": "um",
+"chapter": 4,
+"id": "de:13:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 41,
+"options": [
+"aus",
+"mit",
+"um"
+],
+"slot": 3
+},
+{
+"bad": "vor",
+"chapter": 5,
+"id": "de:13:29:lab",
+"item": 29,
+"kind": "match",
+"near": 26,
+"options": [
+"mit",
+"vor",
+"um"
+],
+"slot": 4
+},
+{
+"bad": "mit",
+"chapter": 5,
+"id": "de:13:31:lab",
+"item": 31,
+"kind": "build",
+"near": 34,
+"options": [
+"mit",
+"ab",
+"ein"
+],
+"slot": 5
+},
+{
+"bad": "um",
+"chapter": 5,
+"id": "de:13:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 31,
+"options": [
+"an",
+"um",
+"ein"
+],
+"slot": 5
+},
+{
+"bad": "um",
+"chapter": 6,
+"id": "de:13:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 6,
+"options": [
+"mit",
+"um",
+"ab"
+],
+"slot": 5
+},
+{
+"bad": "aus",
+"chapter": 6,
+"id": "de:13:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 33,
+"options": [
+"aus",
+"ab",
+"mit"
+],
+"slot": 4
+},
+{
+"bad": "um",
+"chapter": 6,
+"id": "de:13:42:lab",
+"item": 42,
+"kind": "match",
+"near": 23,
+"options": [
+"ein",
+"um",
+"ab"
+],
+"slot": 3
+},
+{
+"bad": "ab",
+"chapter": 7,
+"id": "de:13:45:lab",
+"item": 45,
+"kind": "build",
+"near": 42,
+"options": [
+"um",
+"vor",
+"ab"
+],
+"slot": 4
+},
+{
+"bad": "um",
+"chapter": 7,
+"id": "de:13:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 43,
+"options": [
+"um",
+"vor",
+"aus"
+],
+"slot": 4
+}
+],
+"table": [
+[
+"aufstehen",
+"ich stehe auf"
+],
+[
+"anrufen",
+"du rufst an"
+],
+[
+"abholen",
+"wir holen ab"
+],
+[
+"umsteigen",
+"ihr steigt um"
+],
+[
+"ausfüllen",
+"sie füllt aus"
+],
+[
+"anfangen",
+"der Kurs fängt an"
+]
+],
+"title": {
+"en": "One action, two parts: separable verbs",
+"ru": "Две части одного действия: отделяемые приставки",
+"uk": "Дві частини однієї дії: приставки, що відокремлюються."
+}
+},
+"exampleResolved": [
+{
+"id": "de:13:01",
+"target": "Ich stehe früh auf.",
+"ru": "Я рано встаю.",
+"uk": "Я рано встаю."
+},
+{
+"id": "de:13:02",
+"target": "Du stehst um sieben auf.",
+"ru": "Ты встаёшь в семь.",
+"uk": "Ти встаєш у сім."
+},
+{
+"id": "de:13:06",
+"target": "Ich rufe dich an.",
+"ru": "Я тебе звоню.",
+"uk": "Я тобі дзвоню."
+},
+{
+"id": "de:13:10",
+"target": "Wer ruft heute an?",
+"ru": "Кто сегодня звонит?",
+"uk": "Хто сьогодні дзвонить?"
+},
+{
+"id": "de:13:11",
+"target": "Ich mache die Tür auf.",
+"ru": "Я открываю дверь.",
+"uk": "Я відчиняю двері."
+},
+{
+"id": "de:13:17",
+"target": "Ich schalte das Radio ein.",
+"ru": "Я включаю радио.",
+"uk": "Я вмикаю радіо."
+},
+{
+"id": "de:13:21",
+"target": "Ich kaufe im Laden ein.",
+"ru": "Я делаю покупки в магазине.",
+"uk": "Я роблю покупки в магазині."
+},
+{
+"id": "de:13:26",
+"target": "Ich bringe Brot mit.",
+"ru": "Я принесу хлеб.",
+"uk": "Я принесу хліб."
+},
+{
+"id": "de:13:31",
+"target": "Der Zug fährt um elf ab.",
+"ru": "Поезд отправляется в одиннадцать.",
+"uk": "Потяг вирушає об одинадцятій."
+},
+{
+"id": "de:13:36",
+"target": "Ich hole dich am Bahnhof ab.",
+"ru": "Я встречу тебя на вокзале.",
+"uk": "Я зустріну тебе на вокзалі."
+},
+{
+"id": "de:13:41",
+"target": "Ich steige hier ein.",
+"ru": "Я сажусь здесь.",
+"uk": "Я сідаю тут."
+},
+{
+"id": "de:13:44",
+"target": "Steigt ihr am Bahnhof um?",
+"ru": "Вы пересаживаетесь на вокзале?",
+"uk": "Ви пересідаєте на вокзалі?"
+},
+{
+"id": "de:13:46",
+"target": "Ich räume den Tisch ab.",
+"ru": "Я убираю со стола.",
+"uk": "Я прибираю зі столу."
+},
+{
+"id": "de:13:50",
+"target": "Der Kurs fängt gleich an.",
+"ru": "Занятие вот-вот начнётся.",
+"uk": "Заняття ось-ось розпочнеться."
+}
+]
+},
+{
+"lesson": 14,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:14:01",
+"de:14:07"
+],
+"textByLocale": {
+"en": "A friend can swim or can simply come today. `können` allows both meanings: ability and opportunity in this situation. The words after it clarify what exactly the person can do.",
+"ru": "Друг умеет плавать или просто может прийти сегодня. Оба смысла допускает `können`: умение и возможность в данной ситуации. Слова после него уточняют, что именно человек может сделать.",
+"uk": "Друг вміє плавати чи просто може прийти сьогодні. Обидва сенси допускає `können`: вміння та можливість у цій ситуації. Слова після нього уточнюють, що саме людина може зробити."
+}
+},
+{
+"exampleIds": [
+"de:14:11",
+"de:14:16"
+],
+"textByLocale": {
+"en": "A duty has its own form: `ich muss`,\" but `wir müssen`.\" The first verb changes. Don't agree with the person on the second one: you're left with `gehen`, `nehmen`,\" or `zeigen`.\"",
+"ru": "У обязанности своя форма: `ich muss`, но `wir müssen`. Меняется первый глагол. Не согласовывай с человеком ещё и второй: остаётся `gehen`, `nehmen` или `zeigen`.",
+"uk": "Обов'язок має свою форму: `ich muss`, але `wir müssen`. Змінюється перше дієслово. Не погоджуй із людиною ще й другий: залишається `gehen`, `nehmen` чи `zeigen`."
+}
+},
+{
+"exampleIds": [
+"de:14:17",
+"de:14:20"
+],
+"textByLocale": {
+"en": "If a separable verb ends, its prefix in the infinitive remains with it. Now it's the modal verb that takes the place of the finite form. Compare with the previous lesson, where the prefix had to be separated.",
+"ru": "Если в конце отделяемый глагол, его приставка в инфинитиве остаётся с ним. Теперь именно модальный глагол занимает место личной формы. Сравни с предыдущим уроком, где приставку приходилось отделять.",
+"uk": "Якщо в кінці дієслово, його приставка в інфінітиві залишається з ним. Тепер саме модальне дієслово посідає місце особистої форми. Порівняй із попереднім уроком, де приставку доводилося відокремлювати."
+}
+},
+{
+"exampleIds": [
+"de:14:21",
+"de:14:28"
+],
+"textByLocale": {
+"en": "Asking for permission is not the same as asking about skill. In a museum, asking `dürfen` means: \"Do the rules allow this?\" The person isn't testing the other person's ability to lift a camera.",
+"ru": "Просьба о разрешении не равна вопросу об умении. В музее вопрос с `dürfen` означает: допускают ли это правила? Человек не экзаменует собеседника на способность поднять камеру.",
+"uk": "Прохання про дозвіл не дорівнює питанню про вміння. У музеї питання з `dürfen` означає: чи допускають це правила? Людина не екзаменує співрозмовника на здатність підняти камеру."
+}
+},
+{
+"exampleIds": [
+"de:14:31",
+"de:14:38"
+],
+"textByLocale": {
+"en": "What would you prefer in service? `Ich möchte` communicates a desire more gently than a direct `ich will`.\" You can politely inform the waiter or administrator that you'd like to order or reserve something.",
+"ru": "Что предпочесть в обслуживании? `Ich möchte` мягче сообщает о желании, чем прямое `ich will`. Официанту или администратору можно вежливо сообщить, что хотелось бы заказать или забронировать.",
+"uk": "Що віддати перевагу в обслуговуванні? `Ich möchte` м'якше повідомляє про бажання, ніж пряме `ich will`. Офіціанту чи адміністратору можна ввічливо повідомити, що хотілося б замовити чи забронювати."
+}
+},
+{
+"exampleIds": [
+"de:14:41",
+"de:14:45"
+],
+"textByLocale": {
+"en": "Directive from another. `Sollen` is useful when retelling a request or advice. The question `Soll ich …?` suggests doing something for another person, rather than simply asking if it's physically possible.",
+"ru": "Указание со стороны. `Sollen` удобно, когда пересказываешь просьбу или совет. Вопрос `Soll ich …?` предлагает сделать что-то для другого человека, а не просто спрашивает, физически ли это возможно.",
+"uk": "Вказівка збоку. `Sollen` зручно, коли переказуєш прохання чи пораду. Питання `Soll ich …?` пропонує зробити щось для іншої людини, а не просто запитує, чи це фізично можливо."
+}
+},
+{
+"exampleIds": [
+"de:14:46",
+"de:14:50"
+],
+"textByLocale": {
+"en": "An important boundary of negation: `nicht müssen` means there's no obligation; `nicht dürfen` means it's not allowed. Compare these two situations before selecting the modal verb form.",
+"ru": "Важная граница отрицания: `nicht müssen` значит, что обязанности нет; `nicht dürfen` — что это не разрешено. Сравни эти две ситуации прежде, чем нажать на форму модального глагола.",
+"uk": "Важлива межа заперечення: `nicht müssen` означає, що обов'язків немає; `nicht dürfen` - що це не дозволено. Порівняй ці дві ситуації, перш ніж натиснути на форму модального дієслова."
+}
+}
+],
+"lab": [
+{
+"bad": "kannst",
+"chapter": 1,
+"id": "de:14:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"könnt",
+"kannst",
+"kann"
+],
+"slot": 1
+},
+{
+"bad": "konnte",
+"chapter": 1,
+"id": "de:14:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 48,
+"options": [
+"könnte",
+"konnte",
+"kann"
+],
+"slot": 1
+},
+{
+"bad": "kann",
+"chapter": 1,
+"id": "de:14:05:lab",
+"item": 5,
+"kind": "match",
+"near": 8,
+"options": [
+"konnte",
+"können",
+"kann"
+],
+"slot": 1
+},
+{
+"bad": "Könnte",
+"chapter": 2,
+"id": "de:14:08:lab",
+"item": 8,
+"kind": "build",
+"near": 49,
+"options": [
+"Könnte",
+"Können",
+"Konnte"
+],
+"slot": 0
+},
+{
+"bad": "Kannst",
+"chapter": 2,
+"id": "de:14:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"Können",
+"Kannst",
+"Müssen"
+],
+"slot": 0
+},
+{
+"bad": "soll",
+"chapter": 2,
+"id": "de:14:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 46,
+"options": [
+"musst",
+"soll",
+"musste"
+],
+"slot": 1
+},
+{
+"bad": "musste",
+"chapter": 3,
+"id": "de:14:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"muss",
+"darf",
+"musste"
+],
+"slot": 1
+},
+{
+"bad": "Musste",
+"chapter": 3,
+"id": "de:14:17:lab",
+"item": 17,
+"kind": "match",
+"near": 24,
+"options": [
+"Muss",
+"Soll",
+"Musste"
+],
+"slot": 0
+},
+{
+"bad": "müssen",
+"chapter": 3,
+"id": "de:14:19:lab",
+"item": 19,
+"kind": "build",
+"near": 11,
+"options": [
+"muss",
+"müssen",
+"darf"
+],
+"slot": 1
+},
+{
+"bad": "dürfte",
+"chapter": 4,
+"id": "de:14:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 41,
+"options": [
+"dürfte",
+"dürfen",
+"darfst"
+],
+"slot": 1
+},
+{
+"bad": "Müssen",
+"chapter": 4,
+"id": "de:14:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 9,
+"options": [
+"Können",
+"Müssen",
+"Kann"
+],
+"slot": 0
+},
+{
+"bad": "könntet",
+"chapter": 4,
+"id": "de:14:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 30,
+"options": [
+"könntet",
+"könntest",
+"darf"
+],
+"slot": 1
+},
+{
+"bad": "Kannst",
+"chapter": 5,
+"id": "de:14:29:lab",
+"item": 29,
+"kind": "match",
+"near": 6,
+"options": [
+"Könnten",
+"Darf",
+"Kannst"
+],
+"slot": 0
+},
+{
+"bad": "wollt",
+"chapter": 5,
+"id": "de:14:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"will",
+"wollt",
+"wollen"
+],
+"slot": 1
+},
+{
+"bad": "wollt",
+"chapter": 5,
+"id": "de:14:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 5,
+"options": [
+"willst",
+"wollt",
+"wollen"
+],
+"slot": 1
+},
+{
+"bad": "wollt",
+"chapter": 6,
+"id": "de:14:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 39,
+"options": [
+"möchte",
+"wollt",
+"muss"
+],
+"slot": 1
+},
+{
+"bad": "will",
+"chapter": 6,
+"id": "de:14:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 36,
+"options": [
+"will",
+"willst",
+"möchte"
+],
+"slot": 1
+},
+{
+"bad": "musst",
+"chapter": 6,
+"id": "de:14:42:lab",
+"item": 42,
+"kind": "match",
+"near": 1,
+"options": [
+"muss",
+"soll",
+"musst"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 7,
+"id": "de:14:45:lab",
+"item": 45,
+"kind": "build",
+"near": 25,
+"options": [
+"es",
+"du",
+"wir"
+],
+"slot": 1
+},
+{
+"bad": "könnte",
+"chapter": 7,
+"id": "de:14:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 3,
+"options": [
+"kann",
+"konnte",
+"könnte"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"können",
+"ich kann / wir können"
+],
+[
+"müssen",
+"ich muss / wir müssen"
+],
+[
+"dürfen",
+"ich darf / wir dürfen"
+],
+[
+"wollen",
+"ich will / wir wollen"
+],
+[
+"sollen",
+"ich soll / wir sollen"
+],
+[
+"möchten",
+"ich möchte / wir möchten"
+]
+],
+"title": {
+"en": "Can, must, may: a modal verb and an infinitive",
+"ru": "Могу, должен, разрешено: модальная рамка",
+"uk": "Можу, маю, дозволено: модальна рамка"
+}
+},
+"exampleResolved": [
+{
+"id": "de:14:01",
+"target": "Ich kann hier warten.",
+"ru": "Я могу подождать здесь.",
+"uk": "Я можу зачекати тут."
+},
+{
+"id": "de:14:07",
+"target": "Kannst du mich hören?",
+"ru": "Ты меня слышишь?",
+"uk": "Ти мене чуєш?"
+},
+{
+"id": "de:14:11",
+"target": "Ich muss zur Arbeit gehen.",
+"ru": "Мне нужно идти на работу.",
+"uk": "Мені потрібно йти на роботу."
+},
+{
+"id": "de:14:16",
+"target": "Ihr müsst den Bus nehmen.",
+"ru": "Вам надо ехать автобусом.",
+"uk": "Вам треба їхати автобусом."
+},
+{
+"id": "de:14:17",
+"target": "Muss ich einen Termin buchen?",
+"ru": "Мне нужно записаться на приём?",
+"uk": "Мені потрібно записатися на прийом?"
+},
+{
+"id": "de:14:20",
+"target": "Der Arzt muss kurz telefonieren.",
+"ru": "Врачу нужно сделать короткий звонок.",
+"uk": "Лікарю потрібно зробити короткий дзвінок."
+},
+{
+"id": "de:14:21",
+"target": "Ich darf hier parken.",
+"ru": "Мне разрешено здесь парковаться.",
+"uk": "Мені дозволено паркуватися тут."
+},
+{
+"id": "de:14:28",
+"target": "Darf ich Ihnen eine Frage stellen?",
+"ru": "Можно задать вам вопрос?",
+"uk": "Можна запитати Вас?"
+},
+{
+"id": "de:14:31",
+"target": "Ich will Deutsch lernen.",
+"ru": "Я хочу учить немецкий.",
+"uk": "Я хочу вчити німецьку."
+},
+{
+"id": "de:14:38",
+"target": "Wir möchten die Rechnung bezahlen.",
+"ru": "Мы хотели бы оплатить счёт.",
+"uk": "Ми хотіли б сплатити рахунок."
+},
+{
+"id": "de:14:41",
+"target": "Du sollst den Arzt anrufen.",
+"ru": "Тебе велели позвонить врачу.",
+"uk": "Тобі наказали зателефонувати лікарю."
+},
+{
+"id": "de:14:45",
+"target": "Sollen wir einen Tisch reservieren?",
+"ru": "Может, забронируем столик?",
+"uk": "Може, забронюємо столик?"
+},
+{
+"id": "de:14:46",
+"target": "Du musst nicht alles kaufen.",
+"ru": "Тебе необязательно всё покупать.",
+"uk": "Тобі необов'язково купувати все."
+},
+{
+"id": "de:14:50",
+"target": "Wir müssen morgen nicht arbeiten.",
+"ru": "Завтра нам не надо работать.",
+"uk": "Завтра нам не треба працювати."
+}
+]
+}
+]

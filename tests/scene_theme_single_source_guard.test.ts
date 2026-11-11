@@ -1,15 +1,15 @@
 // зачем (баг владельца 28.10: «тема серая, а сцена в уроках будет фиолетовая, или в других местах будет отличаться — везде по цвету темы»; задача координатора):
 // все экраны со сценой берут цвета из ОДНОЙ функции от текущей темы и не держат своих палитр. Этот страж ловит три вида расхождения:
-//  1) насыщенность сцены уроков/приветствия выше насыщенности самой темы (серая тема → яркая сцена — исходный баг);
+//  1) насыщенность сцены приветствия выше насыщенности самой темы (серая тема → яркая сцена — исходный баг);
 //  2) цветной литерал (насыщенность > 0,05, например фиолетовый) прямо в файле экрана со сценой;
 //  3) палитра экрана «Приветствие нового языка» перестала читаться или стала цветнее темы.
-// Сработал — подключай экран к homeSceneTokensForTheme / seasonThemedArt(…, hexChroma(accent)), а не добавляй исключение.
+// Сработал — подключай экран к homeSceneTokensForTheme, а не добавляй исключение.
 import fs from 'node:fs';
 import path from 'node:path';
 
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { homeSceneOklchOf, homeSceneTokensForTheme, relativeLuminance, whiteContrastOn } from '../components/home/v2/scene/home_scene_tokens';
-import { SEASON_REF_CHROMA, SEASON_TINT_SCALE_MIN, hexChroma, hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
+import { homeSceneOklchOf, relativeLuminance, whiteContrastOn } from '../components/home/v2/scene/home_scene_tokens';
+import { hexChroma } from '../constants/oklch';
 import { languageWelcomePalette } from '../app/language_welcome_palette';
 import { sceneBottomHex, scenePaletteCached, sceneTopHex } from '../components/scene/scene_palette';
 
@@ -28,35 +28,7 @@ const contrast = (a: string, b: string): number => {
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 };
 
-describe('сцены уроков: насыщенность не выше насыщенности темы', () => {
-  it('обложка и карточки Сезона × все темы × оба оформления × главы и эпизоды', () => {
-    const bad: string[] = [];
-    let checked = 0;
-    for (const appearance of APPEARANCES) {
-      for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
-        const g = liquidGlassTokens(id, { level: 'max', appearance });
-        const themeChroma = hexChroma(g.accent);
-        const ref = SEASON_REF_CHROMA[appearance];
-        // допуск: нижняя граница доли (серая тема не мёртво-серая) и небольшая погрешность перевода в sRGB
-        const cap = Math.max(themeChroma, SEASON_TINT_SCALE_MIN * ref) + 0.012;
-        for (let chapter = 1; chapter <= 7; chapter += 1) {
-          for (let ordinal = 0; ordinal < 6; ordinal += 1) {
-            for (const exam of [false, true]) {
-              const art = seasonThemedArt(hexHue(g.accent), chapter, ordinal, appearance, exam, themeChroma);
-              for (const [name, color] of [['from', art.from], ['to', art.to], ['glow', art.glow]] as const) {
-                checked += 1;
-                const c = chromaOf(color);
-                if (c > cap) bad.push(`${id}/${appearance} гл.${chapter} эп.${ordinal}${exam ? ' экзамен' : ''} ${name} ${color}: насыщенность ${c.toFixed(3)} > ${cap.toFixed(3)} (тема ${themeChroma.toFixed(3)})`);
-              }
-            }
-          }
-        }
-      }
-    }
-    expect(checked).toBeGreaterThan(1000);
-    expect(bad.slice(0, 20)).toEqual([]);
-  });
-
+describe('токены сцены', () => {
   it('цвет акцента всех тем — шестизначный hex (запасной фиолетовый акцент сцены недостижим)', () => {
     const bad: string[] = [];
     for (const appearance of APPEARANCES) {
@@ -102,10 +74,10 @@ describe('экран «Приветствие нового языка»: пал�
 });
 
 describe('файлы экранов со сценой: без цветных литералов', () => {
-  const sceneDirs = ['components/home/v2/scene', 'components/dialogs/scene', 'components/spire/scene', 'components/learning-v2/season'];
-  const sceneFiles = ['components/learning-v2/LearningV2ChapterExamResult.tsx', 'app/language_welcome.tsx'];
+  const sceneDirs = ['components/home/v2/scene', 'components/dialogs/scene', 'components/spire/scene'];
+  const sceneFiles = ['app/language_welcome.tsx'];
   // файлы-источники и данные: сами считают палитру или держат обложки/картинки, а не рисуют экран
-  const SKIP = /home_scene_tokens\.ts$|\.generated\.ts$|_preview_fixtures\.ts$|season_art\.ts$|season_star_tones\.ts$|dialogs_hub_tokens\.ts$/;
+  const SKIP = /home_scene_tokens\.ts$|\.generated\.ts$|_preview_fixtures\.ts$|dialogs_hub_tokens\.ts$/;
 
   const files: string[] = [...sceneFiles];
   for (const dir of sceneDirs) {

@@ -1,0 +1,9 @@
+[
+{"id": "fr:05:15", "type": "B1", "field": "tiles", "problem": "Соблазны «On» (поз.0) + «a» (поз.1) дают верную естественную фразу «On a froid.» = «Нам холодно», её нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Elles"}},
+{"id": "fr:05:44", "type": "B1", "field": "tiles", "problem": "Соблазны «On» (поз.0) + «a» (поз.1) дают верную фразу «On a besoin d’eau.» = «Нам нужна вода», её нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Je"}},
+{"id": "fr:06:15", "type": "B1", "field": "tiles", "problem": "Соблазны «On» (поз.0) + «aime» (поз.1) дают верную фразу «On aime les livres.» = «Мы любим книги», её нет в alternatives", "fix": {"position": 0, "replace_distractor": "On", "with": "Tu"}},
+{"id": "fr:05:32", "type": "B1", "field": "tiles", "problem": "Соблазн «ticket» на месте «reçu»: «Est-ce que tu as le ticket ?» во французском (ticket de caisse) обычно и значит «чек» — верный ответ засчитают ошибкой", "fix": {"position": 5, "replace_distractor": "ticket", "with": "numéro"}},
+{"id": "fr:06:32", "type": "B1", "field": "tiles", "problem": "Соблазн «à» даёт «La veste est à l’entrée.» — естественно и подходит к «Куртка в прихожей / у входа»", "fix": {"position": 3, "replace_distractor": "à", "with": "derrière"}},
+{"id": "fr:06:27", "type": "M", "field": "ru", "problem": "Канцелярит и раздутость: «находится недалеко от железнодорожного вокзала» для простого «près de la gare»", "fix": "Отель рядом с вокзалом."},
+{"id": "fr:06:27", "type": "M", "field": "uk", "problem": "Канцелярит: «розташований біля залізничного вокзалу» для простого «près de la gare»", "fix": "Готель біля вокзалу."}
+]

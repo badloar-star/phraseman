@@ -6,7 +6,7 @@
  * лишь через ~3,8 с от входа в JS, а hideAsync зовётся ещё позже — т.е. чёрное не от раннего hideAsync. preventAutoHideAsync
  * стоял в app/_layout.tsx ПОСЛЕ всех статических импортов корня (~6 с в dev-бандле) — до него нативная заставка снималась
  * сама, и между ней и JS-заставкой виден фон окна (на старой нативной сборке — чёрный). Здесь запрет ставится до импортов;
- * повторный вызов в _layout безопасен. Снимает заставку по-прежнему только _layout (после первого кадра JS-заставки).
+ * Снимает заставку _layout, когда навигатор может показать первый экран.
  */
 import * as SplashScreen from 'expo-splash-screen';
 import { msSinceJsEntry } from './cold_start_entry_mark';
@@ -25,7 +25,7 @@ SplashScreen.preventAutoHideAsync()
 // нативная заставка (expo-splash-screen, app.json) выбирает фон ТОЛЬКО по системной схеме — сохранённую тему приложения она не знает.
 // Одна строка на старт: системная схема → цвет нативной заставки, сохранённое оформление приложения, есть ли расхождение.
 const NATIVE_SPLASH_BG = { light: '#EDF0F4', dark: '#101214' } as const; // theme-exempt: копия app.json (expo-splash-screen backgroundColor / dark.backgroundColor) для журнала
-void (async () => {
+if (__DEV__) void (async () => {
   try {
     const [{ Appearance }, { default: AsyncStorage }] = await Promise.all([import('react-native'), import('@react-native-async-storage/async-storage')]);
     const system = Appearance.getColorScheme?.() ?? null;

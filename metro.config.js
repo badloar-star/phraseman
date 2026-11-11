@@ -103,7 +103,7 @@ const ignoredRootFolders = [
   '.worktrees',
   'builds',
   // зачем (TG-CDE4B9A03EB6, 10.10): папки ниже приложение НЕ импортирует (git grep по app/components/constants/modules/hooks/lib/shared/services — 0 импортов),
-  // а Metro держал их в карте файлов: functions-admin / functions-content / functions-english-test — по ~6–7 тыс. файлов с собственным node_modules и
+  // а Metro держал их в карте файлов: functions-admin / functions-english-test — по ~6–7 тыс. файлов с собственным node_modules и
   // дубликатами package.json (конфликты haste-имён), android — нативная сборка (~8,8 тыс.), output и dist — выгрузки, остальное — архивы и черновики.
   // Исключение влияет только на локальный обход; EAS клонирует git и эти папки в сборку не попадают (рабочие копии вне git там отсутствуют).
   'android',
@@ -112,7 +112,6 @@ const ignoredRootFolders = [
   'backups',
   'dist',
   'functions-admin',
-  'functions-content',
   'functions-english-test',
   'hardware',
   'lingman-montazher',
@@ -133,9 +132,9 @@ const ignoredRootFolders = [
   '.motion-mockups',
   '.shots',
   // зачем (TG-441DCCC0ACA3, 10.10): корневая content/ — сценарии курса, пайплайны MASON/LINGMAN/VIRAL,
-  // аватар-студия (~2170+ файлов). Приложение её не импортирует (код курса живёт в modules/learning-v2/content/,
-  // эта папка сюда не попадает регэкспом по корню). Без исключения Metro держит её в карте файлов и растит память.
-  // 'content' — блокируется ниже регэкспом contentExceptV2Activation (оставлен проход для activation/).
+  // аватар-студия (~2170+ файлов). Приложение её не импортирует. Без исключения Metro держит её в карте файлов
+  // и растит память. Блокируется целиком: единственный потребитель (манифесты удалённого курса занятий) снят.
+  'content',
   'docs',
   'duel',
   'exports',
@@ -163,15 +162,6 @@ const ignoredRootFolders = [
 const adminRoot = escapePathForRegex(path.join(__dirname, 'admin'));
 const adminExceptRuntimeAvatars = new RegExp(
   `^${adminRoot}[/\\\\](?!v2(?:[/\\\\]avatars(?:[/\\\\]|$)|$)).*`,
-);
-
-// зачем (координатор 14.10 22:2x): app/learning_v2_factory_runtime_audio_omissions_v1.ts (курс V2) делает
-// require('../content/learning-v2-course/activation/en/*.json') — при полном блоке content/ бандл отдавал 500
-// UnableToResolveError, эмулятор стоял красным. Блокируем content/ целиком, КРОМЕ дерева
-// content/learning-v2-course/activation/ (мелкие манифесты рантайма) — по образцу исключения admin/v2/avatars выше.
-const contentRoot = escapePathForRegex(path.join(__dirname, 'content'));
-const contentExceptV2Activation = new RegExp(
-  `^${contentRoot}[/\\\\](?!learning-v2-course(?:[/\\\\]activation(?:[/\\\\]|$)|$)).*`,
 );
 
 // Metro's multipart bundle response makes the Android native downloader retain
@@ -248,8 +238,6 @@ const storeReleaseVipSurveyDevAuthStubPath = path.join(
   'vip_survey_dev_auth_stub.ts',
 );
 // зачем: D70/D78 — биржа жемчуга удалена, её стор-заглушка больше не нужна.
-// зачем (владелец 11.10, «LEARNING V2 ПОПАДАЕТ»): заглушка наград сессии V2 (бросала learning_v2_store_disabled) снята —
-// курс входит в стор-сборку, и награда за занятие обязана начисляться настоящим модулем.
 const storeReleaseDevModules = new Set([
   './_admin_settings_testers',
   './_admin_intro_preview',
@@ -357,6 +345,13 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
   }
 
   if (process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && moduleName.startsWith('.')) {
+    // The store runtime disables these effects and music, but Metro still collects literal requires.
+    const target = path.resolve(path.dirname(context.originModulePath), moduleName);
+    const assetPath = path.relative(__dirname, target).split(path.sep).join('/');
+    if (/^assets\/(?:sounds\/(?:fc|v2)|audio\/sfx\/v1)\/.+\.(?:mp3|m4a|wav|aac)$/i.test(assetPath)) {
+      return { type: 'empty' };
+    }
+
     const devStateStubPath = storeReleaseDevStateStubs.get(path.posix.basename(moduleName));
     if (devStateStubPath) {
       return {
@@ -422,7 +417,6 @@ config.resolver.blockList = [
   ...emulatorDevLoginBlockList,
   ...iosAccountProofBlockList,
   adminExceptRuntimeAvatars,
-  contentExceptV2Activation,
   gradleOutputInNodeModules,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),

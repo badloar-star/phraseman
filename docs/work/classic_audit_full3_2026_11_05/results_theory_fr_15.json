@@ -1,0 +1,121 @@
+[
+ {
+  "id": "lesson-31/chapter-1",
+  "type": "T3",
+  "field": "chapters[0].textByLocale.ru",
+  "problem": "«Сначала укажи более раннее действие» противоречит главе 7 и фразе курса 31:31 (Quand j’ai ouvert la porte, le chat était déjà sorti), где раннее действие стоит вторым",
+  "fix": "Здесь нужны два плана прошлого, а не обязательно два глагола в одной фразе: второй момент может быть известен из разговора. Сначала определи, какое действие было раньше."
+ },
+ {
+  "id": "lesson-31/chapter-1",
+  "type": "T3",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "То же противоречие",
+  "fix": "Тут потрібні два плани минулого, а не обов'язково два дієслова в одній фразі: другий момент може бути відомий з розмови. Спочатку визнач, яка дія була раніше."
+ },
+ {
+  "id": "lesson-31/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "«Two past tenses» ≠ ru «два прошлых плана»; плюс то же противоречие",
+  "fix": "Two past time frames are needed here, not necessarily two verbs in one sentence: the second moment may be known from the conversation. First determine which action happened earlier."
+ },
+ {
+  "id": "lesson-31/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«assistant» вместо термина «auxiliary»",
+  "fix": "Take the same auxiliary and participle as in `passé composé`, but put the auxiliary in `imparfait`. `J’ai mangé` becomes `j’avais mangé`. The participle itself doesn't change tense."
+ },
+ {
+  "id": "lesson-31/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.en",
+  "problem": "«assistant»; «Paul left in était parti» — неестественно",
+  "fix": "With `être`, the agreement rule stays: Paul left — `était parti`, Léa left — `était partie`. The tense of the auxiliary changes, not the gender of the person."
+ },
+ {
+  "id": "lesson-31/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«assistant» вместо «auxiliary»",
+  "fix": "Negation surrounds the auxiliary. `Jamais` and `encore` specify whether this had happened before that past moment. Don't change the order of all the words at once."
+ },
+ {
+  "id": "lesson-31/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "«тимчасову точку» (temporary), «колишня дія» (former) — ошибки перевода",
+  "fix": "Сполучник `quand` задає часову точку, а `parce que` може пояснювати причину. Не сам сполучник вимагає `plus-que-parfait`: потрібно, щоб одна минула дія справді передувала іншій."
+ },
+ {
+  "id": "lesson-32/title",
+  "type": "T2",
+  "field": "title.uk",
+  "problem": "«Представити умову» — в uk «представити» = представить/презентовать; нужно «Уявити»",
+  "fix": "Уявити умову: `si` + `imparfait`"
+ },
+ {
+  "id": "lesson-32/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Відокремте» (ви) вразнобой; «Тимчасова форма»; «а не обов'язкова подія» — неграмматично",
+  "fix": "Відокрем умову від результату. Часова форма `imparfait` тут допомагає уявити можливу чи нереальну ситуацію зараз чи в майбутньому, а не обов'язково подію в минулому."
+ },
+ {
+  "id": "lesson-32/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«умовну пропозицію» (offer) — нужно «умовне речення»",
+  "fix": "Не будуй умовне речення перестановкою випадкових закінчень. Приписуй кожну дію своєму виконавцю: автобус приходив би раніше — я на нього сідав би."
+ },
+ {
+  "id": "lesson-32/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.en",
+  "problem": "«If the bus had come earlier, I would have taken it» — прошедшее нереальное, не соответствует ru и уроку (si + imparfait)",
+  "fix": "Don't build a conditional sentence by rearranging random endings. Assign each action to its performer: if the bus came earlier, I would take it."
+ },
+ {
+  "id": "lesson-32/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Граматика елементів не змінюється за її перестановці» — неграмматично",
+  "fix": "Результат можна назвати першим: кімнату вибрав би я, якби ціна була нижчою. Граматика частин не змінюється від їх перестановки. На письмі кома зазвичай потрібна після початкової умови."
+ },
+ {
+  "id": "lesson-32/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "«The result can be called the first» — калька",
+  "fix": "The result can come first: I would choose the room if the price were lower. The grammar of the parts does not change when they are swapped. In writing, a comma is usually needed after an initial condition."
+ },
+ {
+  "id": "lesson-32/chapter-5",
+  "type": "T2",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "«якби сходи — полагодили б лампу» — неграмматично, и сходи ≠ драбина (в примере 32:33 драбина)",
+  "fix": "Короткі побутові завдання добре показують зв'язок: була б драбина — полагодили б лампу; працювала б духовка — можна було б спекти пиріг. Не підмінюй можливість твердженням про факт."
+ },
+ {
+  "id": "lesson-32/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.ru",
+  "problem": "Последнее предложение про «уровень владения языком» — посторонний текст, не относится к правилу",
+  "fix": "Сравни с реальным условием: `si tu viens, je préparerai …` и предположением `si tu venais, je préparerais …`. Этот урок тренирует вторую схему."
+ },
+ {
+  "id": "lesson-32/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "Посторонній текст в конце",
+  "fix": "Порівняй з реальною умовою: `si tu viens, je préparerai …` та припущенням `si tu venais, je préparerais …`. Цей урок тренує другу схему."
+ },
+ {
+  "id": "lesson-32/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "Off-topic last sentence; «actual condition» вместо «real condition»",
+  "fix": "Compare the real condition `si tu viens, je préparerai …` with the hypothesis `si tu venais, je préparerais …`. This lesson trains the second pattern."
+ }
+]

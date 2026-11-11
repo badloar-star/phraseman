@@ -1,0 +1,696 @@
+{
+ "lang": "es",
+ "lesson": 22,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:22:01",
+   "target": "Fui al médico ayer.",
+   "ru": "Я вчера сходил к врачу.",
+   "uk": "Я вчора сходив до лікаря."
+  },
+  {
+   "id": "es:22:02",
+   "target": "Fuiste al hotel anoche.",
+   "ru": "Ты вчера вечером сходил в отель.",
+   "uk": "Ти учора ввечері сходив до готелю."
+  },
+  {
+   "id": "es:22:03",
+   "target": "Ana fue a la estación.",
+   "ru": "Ана сходила на вокзал.",
+   "uk": "Ана сходила на вокзал."
+  },
+  {
+   "id": "es:22:04",
+   "target": "Fuimos al centro ayer.",
+   "ru": "Мы вчера сходили в центр.",
+   "uk": "Ми вчора сходили до центру."
+  },
+  {
+   "id": "es:22:05",
+   "target": "Luis fue a casa.",
+   "ru": "Луис пошёл домой.",
+   "uk": "Луїс пішов додому."
+  },
+  {
+   "id": "es:22:06",
+   "target": "Mis hermanos fueron al médico ayer.",
+   "ru": "Мои братья вчера сходили к врачу.",
+   "uk": "Мої брати вчора сходили до лікаря."
+  },
+  {
+   "id": "es:22:07",
+   "target": "Fui al supermercado con la lista.",
+   "ru": "Я пошёл в супермаркет со списком.",
+   "uk": "Я пішов до супермаркету зі списком."
+  },
+  {
+   "id": "es:22:08",
+   "target": "¿Fuiste a la estación ayer?",
+   "ru": "Ты вчера ходил на вокзал?",
+   "uk": "Ти вчора ходив на вокзал?"
+  },
+  {
+   "id": "es:22:09",
+   "target": "Ana no fue al centro ayer.",
+   "ru": "Ана вчера не сходила в центр.",
+   "uk": "Ана вчора не сходила до центру."
+  },
+  {
+   "id": "es:22:10",
+   "target": "¿Fuiste a casa ayer?",
+   "ru": "Ты вчера сходил домой?",
+   "uk": "Ти вчора сходив додому?"
+  },
+  {
+   "id": "es:22:11",
+   "target": "Tuve una reunión ayer.",
+   "ru": "У меня вчера было совещание.",
+   "uk": "У мене вчора була нарада."
+  },
+  {
+   "id": "es:22:12",
+   "target": "Tuviste tiempo para leer anoche.",
+   "ru": "У тебя вчера вечером было время почитать.",
+   "uk": "У тебе учора ввечері був час почитати."
+  },
+  {
+   "id": "es:22:13",
+   "target": "Ana tuvo una idea.",
+   "ru": "У Аны появилась идея.",
+   "uk": "У Ани виникла ідея."
+  },
+  {
+   "id": "es:22:14",
+   "target": "Tuvimos una cita ayer.",
+   "ru": "У нас вчера была назначена встреча.",
+   "uk": "У нас вчора була призначена зустріч."
+  },
+  {
+   "id": "es:22:15",
+   "target": "Volví en taxi porque no tuve tiempo.",
+   "ru": "Я вернулся на такси, потому что у меня не было времени.",
+   "uk": "Я повернувся на таксі, бо не мав часу."
+  },
+  {
+   "id": "es:22:16",
+   "target": "Mis hermanos tuvieron una reunión ayer.",
+   "ru": "У моих братьев вчера было совещание.",
+   "uk": "У моїх братів вчора була нарада."
+  },
+  {
+   "id": "es:22:17",
+   "target": "Tuvisteis tiempo para leer ayer.",
+   "ru": "У вас вчера было время почитать.",
+   "uk": "У вас вчора був час почитати."
+  },
+  {
+   "id": "es:22:18",
+   "target": "¿Tuviste otra idea?",
+   "ru": "У тебя появилась другая идея?",
+   "uk": "У тебе виникла інша ідея?"
+  },
+  {
+   "id": "es:22:19",
+   "target": "Ana no tuvo una cita ayer.",
+   "ru": "У Аны вчера не было назначенной встречи.",
+   "uk": "У Ани вчора не було призначеної зустрічі."
+  },
+  {
+   "id": "es:22:20",
+   "target": "¿Tuviste un problema ayer?",
+   "ru": "У тебя вчера возникла проблема?",
+   "uk": "У тебе вчора виникла проблема?"
+  },
+  {
+   "id": "es:22:21",
+   "target": "Hice la compra ayer.",
+   "ru": "Я вчера сделал покупки.",
+   "uk": "Я вчора зробив покупки."
+  },
+  {
+   "id": "es:22:22",
+   "target": "Hiciste una reserva anoche.",
+   "ru": "Ты оформил бронь вчера вечером.",
+   "uk": "Ти оформив бронювання вчора ввечері."
+  },
+  {
+   "id": "es:22:23",
+   "target": "Ana hizo una foto.",
+   "ru": "Ана сделала фотографию.",
+   "uk": "Ана зробила фотографію."
+  },
+  {
+   "id": "es:22:24",
+   "target": "Hicimos una pregunta ayer.",
+   "ru": "Мы вчера задали один вопрос.",
+   "uk": "Ми вчора поставили одне запитання."
+  },
+  {
+   "id": "es:22:25",
+   "target": "Hicimos la compra en el mercado.",
+   "ru": "Мы закупились на рынке.",
+   "uk": "Ми закупилися на ринку."
+  },
+  {
+   "id": "es:22:26",
+   "target": "Mis hermanos hicieron la compra ayer.",
+   "ru": "Мои братья вчера сделали покупки.",
+   "uk": "Мої брати вчора зробили покупки."
+  },
+  {
+   "id": "es:22:27",
+   "target": "Hicisteis una reserva ayer.",
+   "ru": "Вы вчера оформили бронь.",
+   "uk": "Ви вчора оформили бронювання."
+  },
+  {
+   "id": "es:22:28",
+   "target": "¿Hiciste una foto del mapa?",
+   "ru": "Ты сфотографировал карту?",
+   "uk": "Ти сфотографував мапу?"
+  },
+  {
+   "id": "es:22:29",
+   "target": "Ana no hizo la compra ayer.",
+   "ru": "Ана вчера не ходила за покупками.",
+   "uk": "Ана вчора не ходила по покупки."
+  },
+  {
+   "id": "es:22:30",
+   "target": "¿Hiciste la cena ayer?",
+   "ru": "Ты вчера приготовил ужин?",
+   "uk": "Ти вчора приготував вечерю?"
+  },
+  {
+   "id": "es:22:31",
+   "target": "Vine a casa ayer.",
+   "ru": "Я вчера пришёл домой.",
+   "uk": "Я вчора прийшов додому."
+  },
+  {
+   "id": "es:22:32",
+   "target": "Vine en taxi desde el aeropuerto.",
+   "ru": "Я приехал из аэропорта на такси.",
+   "uk": "Я приїхав з аеропорту на таксі."
+  },
+  {
+   "id": "es:22:33",
+   "target": "Ana vino en tren.",
+   "ru": "Ана приехала на поезде.",
+   "uk": "Ана приїхала потягом."
+  },
+  {
+   "id": "es:22:34",
+   "target": "Vinimos a la reunión ayer.",
+   "ru": "Мы вчера пришли на встречу.",
+   "uk": "Ми вчора прийшли на зустріч."
+  },
+  {
+   "id": "es:22:35",
+   "target": "Luis vino con Ana.",
+   "ru": "Луис пришёл с Аной.",
+   "uk": "Луїс прийшов з Аною."
+  },
+  {
+   "id": "es:22:36",
+   "target": "Mis hermanos vinieron a casa ayer.",
+   "ru": "Мои братья вчера пришли домой.",
+   "uk": "Мої брати вчора прийшли додому."
+  },
+  {
+   "id": "es:22:37",
+   "target": "Vinisteis al hotel ayer.",
+   "ru": "Вы вчера пришли в отель.",
+   "uk": "Ви вчора прийшли до готелю."
+  },
+  {
+   "id": "es:22:38",
+   "target": "¿Viniste en tren ayer?",
+   "ru": "Ты вчера приехал на поезде?",
+   "uk": "Ти вчора приїхав потягом?"
+  },
+  {
+   "id": "es:22:39",
+   "target": "¿Viniste en taxi desde el banco?",
+   "ru": "Ты приехал из банка на такси?",
+   "uk": "Ти приїхав з банку на таксі?"
+  },
+  {
+   "id": "es:22:40",
+   "target": "¿Viniste con Ana ayer?",
+   "ru": "Ты вчера пришёл с Аной?",
+   "uk": "Ти вчора прийшов з Аною?"
+  },
+  {
+   "id": "es:22:41",
+   "target": "Pude entrar ayer.",
+   "ru": "Я вчера смог войти.",
+   "uk": "Я вчора зміг зайти."
+  },
+  {
+   "id": "es:22:42",
+   "target": "Pudiste volver a casa anoche.",
+   "ru": "Ты вчера вечером смог вернуться домой.",
+   "uk": "Ти учора ввечері зміг повернутися додому."
+  },
+  {
+   "id": "es:22:43",
+   "target": "Ana pudo comprar el billete.",
+   "ru": "Ана смогла купить билет.",
+   "uk": "Ана змогла купити квиток."
+  },
+  {
+   "id": "es:22:44",
+   "target": "Pudimos llamar al hotel ayer.",
+   "ru": "Мы вчера смогли позвонить в отель.",
+   "uk": "Ми вчора змогли зателефонувати до готелю."
+  },
+  {
+   "id": "es:22:45",
+   "target": "No pude recoger el paquete.",
+   "ru": "Я не смог забрать посылку.",
+   "uk": "Я не зміг забрати посилку."
+  },
+  {
+   "id": "es:22:46",
+   "target": "No pude abrir el paraguas.",
+   "ru": "Я не смог раскрыть зонт.",
+   "uk": "Я не зміг розкрити парасольку."
+  },
+  {
+   "id": "es:22:47",
+   "target": "Pudisteis volver a casa ayer.",
+   "ru": "Вы (мн.) вчера смогли вернуться домой.",
+   "uk": "Ви (мн.) вчора змогли повернутися додому."
+  },
+  {
+   "id": "es:22:48",
+   "target": "¿Pude comprar el billete ayer?",
+   "ru": "Я вчера смог купить билет?",
+   "uk": "Я вчора зміг купити квиток?"
+  },
+  {
+   "id": "es:22:49",
+   "target": "Ana no pudo llamar al hotel ayer.",
+   "ru": "Ана вчера не смогла позвонить в отель.",
+   "uk": "Ана вчора не змогла зателефонувати до готелю."
+  },
+  {
+   "id": "es:22:50",
+   "target": "¿Pudiste abrir la puerta ayer?",
+   "ru": "Ты вчера смог открыть дверь?",
+   "uk": "Ти вчора зміг відчинити двері?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "hacer",
+   "ru": "делать",
+   "uk": "робити"
+  },
+  {
+   "lemma": "desde",
+   "ru": "из, от исходной точки",
+   "uk": "від, з початкової точки"
+  },
+  {
+   "lemma": "paraguas",
+   "ru": "зонт",
+   "uk": "парасолька"
+  },
+  {
+   "lemma": "taxi",
+   "ru": "такси",
+   "uk": "таксі"
+  },
+  {
+   "lemma": "centro",
+   "ru": "центр",
+   "uk": "центр"
+  },
+  {
+   "lemma": "compra",
+   "ru": "покупки",
+   "uk": "покупки"
+  },
+  {
+   "lemma": "problema",
+   "ru": "проблема",
+   "uk": "проблема"
+  },
+  {
+   "lemma": "reunión",
+   "ru": "совещание, встреча",
+   "uk": "нарада, зустріч"
+  },
+  {
+   "lemma": "venir",
+   "ru": "приходить, приезжать",
+   "uk": "приходити, приїжджати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  }
+ ],
+ "oldTopicTitle": "Ушёл, смог, пришёл: неправильное прошедшее",
+ "oldTheoryRu": "Вчера я пошёл к врачу — Fui al médico. Здесь fui означает «пошёл», потому что дальше указано, куда. Не добавляй к ir обычное окончание. Передай законченные события с пятью частотными глаголами, у которых меняется основа. Fui al médico — я сходил к врачу. Fui совпадает с прошедшим ser, но направление al médico и контекст выбирают ir. Будущее iré в рассказ о вчерашнем походе не подходит. Tuve и pude оканчиваются на -e без ударения на письме. Не добавляй обычное -í к инфинитиву: это особые основы, а не tenerí или poderí. Для «я сделал» — hice, для «он сделал» — hizo. В словосочетаниях hacer una pregunta и hacer una foto переводим смысл: задать вопрос, сделать снимок. Представь: ты уже в гостях. Vine en tren — я приехал сюда на поезде. Теперь рассказываешь о другой поездке: Fui al médico — я ходил к врачу. Vine — прошедшая форма venir, а fui — форма ir в этом примере. Смотри на направление движения, а не на транспорт. Pude entrar часто означает, что мне удалось войти в конкретном случае. После pude оставь entrar в начальной форме. Не путай это с общей способностью в прошлом, podía entrar. Сравни два задания: «У тебя вчера возникла проблема?» / «Я вчера сделал покупки.». Простое прошедшее здесь требует особой основы. Смысловые опоры: «problema» — проблема. Сравни два задания: «Мы вчера смогли позвонить в отель.» / «Ты вчера смог открыть дверь?». Простое прошедшее здесь требует особой основы. Передай законченные события с пятью частотными глаголами, у которых меняется основа."
+}

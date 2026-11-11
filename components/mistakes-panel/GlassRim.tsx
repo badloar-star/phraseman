@@ -9,7 +9,7 @@ import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 
 export const GlassRim = memo(function GlassRim({ radius = 21, plate = false }: Readonly<{ radius?: number; plate?: boolean }>) {
   const g = useLv2Glass();

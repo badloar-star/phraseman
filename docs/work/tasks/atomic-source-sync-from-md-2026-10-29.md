@@ -25,6 +25,8 @@ Governance-ID: TG-274CCCA09CB3
 Governance-ID: TG-0E3C4F34E645
 Governance-ID: TG-611433CBCC9E
 Governance-ID: TG-02E223623E99
+Governance-ID: TG-C80A064E52E3
+Governance-ID: TG-F7619B26E819
 Status: In progress
 Owner: Learning V2 session; координатор 29.10 (А — да; Б — делать мне, dry-run до записи)
 

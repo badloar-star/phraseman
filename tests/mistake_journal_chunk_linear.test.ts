@@ -13,7 +13,7 @@ jest.mock('../app/account_generation', () => ({
 }));
 
 /* eslint-disable import/first */
-import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
+import { canonicalJsonV1, sha256Utf8 } from '../modules/canonical_json';
 import {
   MISTAKE_EVENT_JOURNAL_CHUNK_MAX_EVENTS,
   MISTAKE_EVENT_JOURNAL_CHUNK_MAX_SERIALIZED_CHARS,

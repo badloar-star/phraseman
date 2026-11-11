@@ -48,7 +48,6 @@ const FIRST_ROW_RU: Readonly<Record<string, readonly [string, string]>> = {
   referral_ended: ['Всё, чем пользовался', 'Снова открыто'],
   combined_lesson: ['Темы на выбор', 'Урок соберётся под тебя'],
   home_discount_badge: ['Та же подписка', 'Цена ниже'],
-  phrase_workshop: ['Мастерская фраз', 'К каждому уроку'],
   plus_server_refused: ['Восстановить покупки', 'Если подписка уже оформлена — бесплатно'],
   generic: ['Говоришь вслух с первого дня', 'Весь курс, разговоры и тренировки'],
 };

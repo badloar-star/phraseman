@@ -13,7 +13,7 @@ import Reanimated, {
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import { useLang } from '../LangContext';
-import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../practice/PracticeGlass';
 import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { noteCoinDisplay, peekDisplayedRunes, subscribeDisplayedRunes } from '../../app/runes_system';

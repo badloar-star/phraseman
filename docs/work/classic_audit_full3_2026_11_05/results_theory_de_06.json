@@ -1,0 +1,100 @@
+[
+ {
+  "id": "lesson-13/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "The alarm clock rang, and you're not just standing there, you're standing up. In the dictionary, it's a single verb, `aufstehen`, but in your self-description, it takes up two spaces. Don't consider `auf` a redundant tile."
+ },
+ {
+  "id": "lesson-13/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "\"Whoever you're calling, place rufe … an inside the frame\" — reversed meaning",
+  "fix": "To make a call, you need `anrufen`. Put the person you're calling inside the frame `rufe … an`. Without the prefix, you get a different action: calling out to someone, not phoning them."
+ },
+ {
+  "id": "lesson-13/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«воно нагадує» (=напоминает) вместо «підказує»",
+  "fix": "Міняй маленьку частину — змінюється результат. Вікно можна відкрити або закрити, радіо увімкнути або вимкнути. Спочатку уяви кінцевий стан речі; він підказує потрібну приставку."
+ },
+ {
+  "id": "lesson-13/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«в простій головній пропозиції» (=предложение-оферта) вместо «реченні»; «відмінюється» вместо «дієвідмінюється»",
+  "fix": "Одна основа має різні функції. `Kaufen` — купити, а `einkaufen` часто означає сходити за покупками. Не приклеюй `ein` до форми, яка вже дієвідмінюється, у простому головному реченні."
+ },
+ {
+  "id": "lesson-13/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Назва станції, час і людину став» — несогласование; «потрібно змістом» — калька",
+  "fix": "Відправлення та прибуття мають схожу рамку, але різні приставки. Назву станції, час і людину став між двома частинами там, де цього вимагає зміст."
+ },
+ {
+  "id": "lesson-13/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«особиста форма» (=личная, приватная) вместо «особова»",
+  "fix": "Питання не склеює приставку назад. У загальному питанні особова форма йде на початок, а приставка залишається на правому краю. У такий спосіб можна запитати про вихід, вхід або пересадку."
+ },
+ {
+  "id": "lesson-13/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Find the meaning on both edges at once. If you only see `füllen`, it's easy to miss that it's about filling out a form. Read to `aus`, then translate the entire action, not both halves separately."
+ },
+ {
+  "id": "lesson-14/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«Не погоджуй із людиною ще й другий» — «погоджувати» = соглашаться; род «другий» неверен",
+  "fix": "Обов'язок має свою форму: `ich muss`, але `wir müssen`. Змінюється перше дієслово. Не узгоджуй з особою ще й друге: залишається `gehen`, `nehmen` чи `zeigen`."
+ },
+ {
+  "id": "lesson-14/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "\"Don't agree with the person on the second one\" — meaning lost; stray quotes",
+  "fix": "Obligation has its own forms: `ich muss`, but `wir müssen`. Only the first verb changes. Don't make the second verb agree with the person too: it stays `gehen`, `nehmen` or `zeigen`."
+ },
+ {
+  "id": "lesson-14/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "Правило про отделяемый глагол, а оба примера (buchen, telefonieren) не отделяемые",
+  "fix": "Второй глагол стоит в конце в начальной форме: `buchen`, `telefonieren`. Если он отделяемый, приставка в инфинитиве остаётся с ним: `anrufen`. Теперь именно модальный глагол занимает место личной формы. Сравни с предыдущим уроком, где приставку приходилось отделять."
+ },
+ {
+  "id": "lesson-14/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "Потеряно «відокремлюване» («Якщо в кінці дієслово…»); «особистої форми» вместо «особової»; примеры не отделяемые",
+  "fix": "Друге дієслово стоїть у кінці в початковій формі: `buchen`, `telefonieren`. Якщо воно відокремлюване, приставка в інфінітиві залишається з ним: `anrufen`. Тепер саме модальне дієслово посідає місце особової форми. Порівняй із попереднім уроком, де приставку доводилося відокремлювати."
+ },
+ {
+  "id": "lesson-14/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "\"If a separable verb ends\" — garbled; examples are not separable",
+  "fix": "The second verb stands at the end in its basic form: `buchen`, `telefonieren`. If it is separable, the prefix stays attached in the infinitive: `anrufen`. Now it's the modal verb that takes the place of the finite form. Compare with the previous lesson, where the prefix had to be separated."
+ },
+ {
+  "id": "lesson-14/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Що віддати перевагу» — неграмматично, нужно «Чому»",
+  "fix": "Чому віддати перевагу в обслуговуванні? `Ich möchte` м'якше повідомляє про бажання, ніж пряме `ich will`. Офіціанту чи адміністратору можна ввічливо повідомити, що хотілося б замовити чи забронювати."
+ },
+ {
+  "id": "lesson-14/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "What would you prefer in service? `Ich möchte` communicates a desire more gently than a direct `ich will`. You can politely inform the waiter or administrator that you'd like to order or reserve something."
+ }
+]

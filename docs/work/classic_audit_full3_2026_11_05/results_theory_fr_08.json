@@ -1,0 +1,72 @@
+[
+ {
+  "id": "lesson-17/chapter-4",
+  "type": "T1",
+  "field": "chapters[3].textByLocale.ru",
+  "problem": "Элизия перед гласной/немым h обязательна, а не «возможна»",
+  "fix": "Перед гласной или немым `h` вместо `me`, `te`, `se` пишут `m’`, `t’`, `s’`. В `elle s’habille` есть и человек, и возвратное местоимение. Апостроф присоединяет местоимение к следующему глаголу."
+ },
+ {
+  "id": "lesson-17/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«займенник назад» — машинная калька вместо «зворотний займенник»; «можливі» — элизия обязательна",
+  "fix": "Перед голосною або німим `h` замість `me`, `te`, `se` пишуть `m’`, `t’`, `s’`. У `elle s’habille` є і людина, і зворотний займенник. Апостроф приєднує займенник до наступного дієслова."
+ },
+ {
+  "id": "lesson-17/chapter-4",
+  "type": "T1",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "Elision is mandatory, not «possible»",
+  "fix": "Before a vowel or silent `h`, `me`, `te`, `se` become `m’`, `t’`, `s’`. `elle s’habille` contains both a person and a reflexive pronoun. The apostrophe joins the pronoun to the following verb."
+ },
+ {
+  "id": "lesson-18/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "Машинный перевод: «Те, що пройшло», «змінюється по обличчю», «несе сенс»",
+  "fix": "Минулий час у цій схемі складається з двох частин. Перша змінюється за особами, друга несе зміст. Не перекладаємо `ai` окремо як «маю»: тут воно допомагає сказати «зачинив»."
+ },
+ {
+  "id": "lesson-18/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«особиста форма» — неверный термин, нужно «особова форма»",
+  "fix": "Порівняй `j’ai fermé` і `nous avons fermé`. Поміняй допоміжне дієслово, але не став `fermons` після `avons`: це була б особова форма замість дієприкметника."
+ },
+ {
+  "id": "lesson-18/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.en",
+  "problem": "«Change the assistant», «personal form» — wrong terms (auxiliary, conjugated form)",
+  "fix": "Compare `j’ai fermé` and `nous avons fermé`. Change the auxiliary, but don't put `fermons` after `avons`: that would be a conjugated form instead of a participle."
+ },
+ {
+  "id": "lesson-18/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«У словнику коштує» — калька (коштує = стоит в цене)",
+  "fix": "У багатьох дієслів на `-er` дієприкметник закінчується на `-é`. У словнику стоїть `acheter`, а зроблена покупка — `acheté`. Знак над `é` у письмовій французькій важливий."
+ },
+ {
+  "id": "lesson-18/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.en",
+  "problem": "«emphasis» = выделение/ударение; речь о диакритике (accent)",
+  "fix": "Many verbs ending in `-er` have participles ending in `-é`. The dictionary says `acheter`, and the purchase made is `acheté`. The accent on `é` matters in written French."
+ },
+ {
+  "id": "lesson-18/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.uk",
+  "problem": "«Запам'ятовуйте» — на «ви», в остальном тексте на «ти»",
+  "fix": "Не всі форми утворюються за зразком `fermé`. Запам'ятовуй маленькими парами: `prendre → pris`, `lire → lu`, `recevoir → reçu`, `faire → fait`."
+ },
+ {
+  "id": "lesson-18/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "Неграмматично: «Не додай», «з avoir підлягає саме собою не запускає», «прямим доповненням»",
+  "fix": "Не додавай жіноче закінчення тільки тому, що діє жінка: з `avoir` підмет сам по собі не викликає узгодження. Окремий випадок із прямим додатком перед дієсловом розберемо пізніше."
+ }
+]

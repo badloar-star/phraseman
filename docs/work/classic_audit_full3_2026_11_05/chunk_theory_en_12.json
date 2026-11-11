@@ -1,0 +1,1179 @@
+[
+{
+"lesson": 25,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 25,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Что происходило, когда…",
+"formula": "[was / were] + [-ing] ... when + [событие в прошлом]",
+"story": "Ты уже читал. Затем зазвонил телефон. Соедини фон и событие: I was reading when the phone rang. Was здесь требует reading, а не read.",
+"use": "Одна часть предложения описывает происходящую сцену. Более короткое событие может прервать ее. Решите, какая часть создает фон, прежде чем выбирать тот или иной глагол.",
+"choose": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"nuance": "`While` часто вводит более длительное действие. `When` может вводить прерывание. Любое из предложений может стоять первым, если оно все еще говорит то же самое; второе предложение не обязательно описывает последующее событие.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Одна часть предложения описывает происходящую сцену. Более короткое событие может прервать ее. Решите, какая часть создает фон, прежде чем выбирать тот или иной глагол.",
+"samples": [
+"25.01",
+"25.03"
+]
+},
+{
+"title": "Как выбрать",
+"body": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"samples": [
+"25.03",
+"25.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`While` часто вводит более длительное действие. `When` может вводить прерывание. Любое из предложений может стоять первым, если оно все еще говорит то же самое; второе предложение не обязательно описывает последующее событие.",
+"samples": [
+"25.21",
+"25.26"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Спросите или отрицайте, что происходило",
+"samples": [
+"25.33",
+"25.35",
+"25.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Вы пропустили объявление. Расскажите, чем вы тогда занимались, и сравните это с коротким событием, произошедшим во время этой деятельности.",
+"samples": [
+"25.42",
+"25.45",
+"25.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Выберите фон и основное событие",
+"samples": [
+"25.50"
+],
+"tokenWalk": "25.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Що відбувалося, коли…",
+"formula": "[was / were] + [-ing] ... when + [подія в минулому]",
+"story": "Ти вже читав. Потім задзвонив телефон. Поєднай тло й подію: I was reading when the phone rang. Після was тут потрібне reading, не read.",
+"use": "Одна частина речення зображує сцену, що триває. Коротша подія може її перервати. Визначте, яка частина задає фон, перш ніж вибрати будь-яке з дієслів.",
+"choose": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"nuance": "`While` часто вводить довшу дію. `When` може вводити переривання. Будь-яке речення може бути першим, якщо воно все ще говорить те саме; друге речення не описує автоматично пізнішу подію.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Одна частина речення зображує сцену, що триває. Коротша подія може її перервати. Визначте, яка частина задає фон, перш ніж вибрати будь-яке з дієслів.",
+"samples": [
+"25.01",
+"25.03"
+]
+},
+{
+"title": "Як вибрати",
+"body": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"samples": [
+"25.03",
+"25.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`While` часто вводить довшу дію. `When` може вводити переривання. Будь-яке речення може бути першим, якщо воно все ще говорить те саме; друге речення не описує автоматично пізнішу подію.",
+"samples": [
+"25.21",
+"25.26"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитати або заперечити, що відбувалося",
+"samples": [
+"25.33",
+"25.35",
+"25.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Ви пропустили оголошення. Розкажіть, що ви робили тоді, і порівняйте це з короткою подією, яка сталася під час цієї дії.",
+"samples": [
+"25.42",
+"25.45",
+"25.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Вибрати фон та основну подію",
+"samples": [
+"25.50"
+],
+"tokenWalk": "25.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Set the scene for a past event",
+"formula": "[was / were] + [-ing] ... when + [past event]",
+"story": "You were already reading. Then the phone rang. Put background and event together: I was reading when the phone rang. Use reading after was here.",
+"use": "One part of the sentence paints a scene in progress. A shorter event can interrupt it. Decide which part gives the background before choosing either verb.",
+"choose": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward.",
+"nuance": "`While` often introduces a longer action. `When` can introduce the interruption. Either clause may come first when it still says the same thing; the second clause does not automatically describe the later event.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "One part of the sentence paints a scene in progress. A shorter event can interrupt it. Decide which part gives the background before choosing either verb.",
+"samples": [
+"25.01",
+"25.03"
+]
+},
+{
+"title": "How to choose",
+"body": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward.",
+"samples": [
+"25.03",
+"25.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`While` often introduces a longer action. `When` can introduce the interruption. Either clause may come first when it still says the same thing; the second clause does not automatically describe the later event.",
+"samples": [
+"25.21",
+"25.26"
+]
+},
+{
+"title": "Common mistake",
+"body": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward.",
+"wrong": "I was read when the phone rang.",
+"right": "I was reading when the phone rang.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask or deny what was in progress",
+"samples": [
+"25.33",
+"25.35",
+"25.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "You missed an announcement. Say what you were doing then, and contrast it with a short event that happened during that activity.",
+"samples": [
+"25.42",
+"25.45",
+"25.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Choose a background and a main event",
+"samples": [
+"25.50"
+],
+"tokenWalk": "25.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "25.01",
+"index": 1,
+"right": "was",
+"near": "were",
+"seq": [
+"I",
+"was",
+"reading"
+],
+"i": 0,
+"kind": "form",
+"key": "en25/lab/form1",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.13",
+"index": 1,
+"right": "were",
+"near": "was",
+"seq": [
+"We",
+"were",
+"having",
+"breakfast",
+"at",
+"seven"
+],
+"i": 12,
+"kind": "form",
+"key": "en25/lab/form2",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.26",
+"index": 6,
+"right": "was",
+"near": "were",
+"seq": [
+"I",
+"dropped",
+"my",
+"keys",
+"while",
+"I",
+"was",
+"running"
+],
+"i": 25,
+"kind": "form",
+"key": "en25/lab/form3",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.39",
+"index": 1,
+"right": "were",
+"near": "was",
+"seq": [
+"We",
+"were",
+"not",
+"blocking",
+"the",
+"entrance"
+],
+"i": 38,
+"kind": "form",
+"key": "en25/lab/form4",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.07",
+"index": 1,
+"right": "was",
+"near": "were",
+"seq": [
+"She",
+"was",
+"carrying",
+"two",
+"bags"
+],
+"i": 6,
+"kind": "spot",
+"key": "en25/lab/spot1",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.23",
+"index": 1,
+"right": "were",
+"near": "was",
+"seq": [
+"We",
+"were",
+"waiting",
+"when",
+"the",
+"taxi",
+"arrived"
+],
+"i": 22,
+"kind": "spot",
+"key": "en25/lab/spot2",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.32",
+"index": 0,
+"right": "Was",
+"near": "Were",
+"seq": [
+"Was",
+"she",
+"waiting",
+"for",
+"the",
+"driver"
+],
+"i": 31,
+"kind": "spot",
+"key": "en25/lab/spot3",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"id": "25.46",
+"index": 5,
+"right": "were",
+"near": "was",
+"seq": [
+"The",
+"driver",
+"waved",
+"while",
+"we",
+"were",
+"crossing"
+],
+"i": 45,
+"kind": "spot",
+"key": "en25/lab/spot4",
+"feedback": {
+"ru": "С `I/he/she/it` используй `was`, с `you/we/they` — `were`. Фон выражает форма на `-ing`. В `I was reading when the phone rang` чтение уже шло, а звонок стал событием на его фоне.",
+"uk": "З `I/he/she/it` уживай `was`, з `you/we/they` — `were`. Фонову дію передає форма на `-ing`. У `I was reading when the phone rang` читання вже тривало, а дзвінок став окремою подією.",
+"en": "Use `was` for a singular third person and for `I`; use `were` for `you`, `we`, `they` and plural subjects. Questions move `was` or `were` forward."
+}
+},
+{
+"kind": "match",
+"key": "en25/lab/match1",
+"id": "25.02",
+"other": "25.01"
+},
+{
+"kind": "match",
+"key": "en25/lab/match2",
+"id": "25.17",
+"other": "25.18"
+},
+{
+"kind": "match",
+"key": "en25/lab/match3",
+"id": "25.33",
+"other": "25.34"
+},
+{
+"kind": "match",
+"key": "en25/lab/match4",
+"id": "25.46",
+"other": "25.48"
+},
+{
+"kind": "build",
+"key": "en25/lab/build1",
+"id": "25.04"
+},
+{
+"kind": "build",
+"key": "en25/lab/build2",
+"id": "25.15"
+},
+{
+"kind": "build",
+"key": "en25/lab/build3",
+"id": "25.29"
+},
+{
+"kind": "build",
+"key": "en25/lab/build4",
+"id": "25.42"
+},
+{
+"kind": "transform",
+"id": "25.07",
+"base": "25.02",
+"diff": [
+{
+"before": [
+"driving"
+],
+"after": [
+"carrying",
+"two",
+"bags"
+]
+}
+],
+"key": "en25/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "25.23",
+"base": "25.03",
+"diff": [
+{
+"before": [],
+"after": [
+"when",
+"the",
+"taxi",
+"arrived"
+]
+}
+],
+"key": "en25/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "25.15",
+"base": "25.04",
+"diff": [
+{
+"before": [
+"packing"
+],
+"after": [
+"travelling",
+"all",
+"afternoon"
+]
+}
+],
+"key": "en25/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "25.49",
+"base": "25.21",
+"diff": [
+{
+"before": [
+"reading"
+],
+"after": [
+"washing",
+"my",
+"hands"
+]
+},
+{
+"before": [
+"phone",
+"rang"
+],
+"after": [
+"tap",
+"broke"
+]
+}
+],
+"key": "en25/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+17,
+12
+],
+[
+2,
+5
+],
+[
+14,
+6
+],
+[
+10,
+3
+],
+[
+15,
+11
+],
+[
+19,
+7
+]
+],
+"worked": [
+"25.05",
+"25.18",
+"25.33",
+"25.48"
+],
+"reflection": [
+"25.01",
+"25.02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 26,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 26,
+"target": "en",
+"localized": {
+"ru": {
+"title": "При каком условии это случится",
+"formula": "if + [настоящее], will + [глагол без to] · if + [прошедшее], would + [глагол без to]",
+"story": "План зависит от погоды. Сначала условие: If it rains. Затем решение: we’ll stay inside. В обычном прогнозе после if здесь rains, не will rain.",
+"use": "Реальная возможность и воображаемая альтернатива требуют разного языка. Сначала определите, действительно ли вы что-то планируете или воображаете обстоятельства, которые сейчас не соответствуют действительности.",
+"choose": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"nuance": "`If I were you` — совет: «На твоём месте я бы…». `Unless` обычно значит «если не». Для будущего события после `when` и `as soon as` часто нужна форма настоящего времени, даже если в переводе — будущее.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Реальная возможность и воображаемая альтернатива требуют разного языка. Сначала определите, действительно ли вы что-то планируете или воображаете обстоятельства, которые сейчас не соответствуют действительности.",
+"samples": [
+"26.01",
+"26.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"samples": [
+"26.11",
+"26.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "`If I were you` — совет: «На твоём месте я бы…». `Unless` обычно значит «если не». Для будущего события после `when` и `as soon as` часто нужна форма настоящего времени, даже если в переводе — будущее.",
+"samples": [
+"26.21",
+"26.41"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Спросите, что произойдет",
+"samples": [
+"26.33",
+"26.35",
+"26.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Запланируйте обратный путь на случай дождя. Затем представьте, что вы живете ближе к работе: реальный план и воображаемая ситуация требуют разных форм.",
+"samples": [
+"26.42",
+"26.45",
+"26.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Отличите воображаемую ситуацию от реального плана",
+"samples": [
+"26.50"
+],
+"tokenWalk": "26.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "За якої умови це станеться",
+"formula": "if + [теперішній час], will + [дієслово без to] · if + [минулий час], would + [дієслово без to]",
+"story": "План залежить від погоди. Спершу умова: If it rains. Потім рішення: we’ll stay inside. У такому прогнозі після if стоїть rains, не will rain.",
+"use": "Реальна можливість та уявна альтернатива потребують різної мови. Спочатку визначте, чи ви справді щось плануєте, чи уявляєте собі обставини, які зараз не є реальними.",
+"choose": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"nuance": "`If I were you` — порада: «На твоєму місці я б…». `Unless` зазвичай означає «якщо не». Для майбутньої події після `when` та `as soon as` часто потрібна форма теперішнього часу, хоча в перекладі — майбутній.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Реальна можливість та уявна альтернатива потребують різної мови. Спочатку визначте, чи ви справді щось плануєте, чи уявляєте собі обставини, які зараз не є реальними.",
+"samples": [
+"26.01",
+"26.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"samples": [
+"26.11",
+"26.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "`If I were you` — порада: «На твоєму місці я б…». `Unless` зазвичай означає «якщо не». Для майбутньої події після `when` та `as soon as` часто потрібна форма теперішнього часу, хоча в перекладі — майбутній.",
+"samples": [
+"26.21",
+"26.41"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитати, що станеться",
+"samples": [
+"26.33",
+"26.35",
+"26.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Плануйте зворотну подорож у разі дощу. Потім уявіть, що ви живете ближче до роботи: реальний план та уявна ситуація потребують різних форм.",
+"samples": [
+"26.42",
+"26.45",
+"26.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Відрізнити уявну ситуацію від реального плану",
+"samples": [
+"26.50"
+],
+"tokenWalk": "26.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Give a condition and its consequence",
+"formula": "if + [present], will + [base] · if + [past], would + [base]",
+"story": "Your plan depends on the weather. If it rains gives the condition; we’ll stay inside gives the plan. In this prediction use rains after if, not will rain.",
+"use": "A real possibility and an imagined alternative need different language. First decide whether you are genuinely planning for something or imagining circumstances that are not true now.",
+"choose": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time.",
+"nuance": "`If I were you` gives hypothetical advice. `Unless` means except if. Future time clauses with `when` or `as soon as` also normally take a present form when describing a future arrangement.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "A real possibility and an imagined alternative need different language. First decide whether you are genuinely planning for something or imagining circumstances that are not true now.",
+"samples": [
+"26.01",
+"26.11"
+]
+},
+{
+"title": "How to choose",
+"body": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time.",
+"samples": [
+"26.11",
+"26.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "`If I were you` gives hypothetical advice. `Unless` means except if. Future time clauses with `when` or `as soon as` also normally take a present form when describing a future arrangement.",
+"samples": [
+"26.21",
+"26.41"
+]
+},
+{
+"title": "Common mistake",
+"body": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time.",
+"wrong": "If it will rain, we will stay inside.",
+"right": "If it rains, we will stay inside.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask what will happen",
+"samples": [
+"26.33",
+"26.35",
+"26.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "Plan a return journey in case of rain. Then imagine living closer to work: the real plan and the imagined situation need different forms.",
+"samples": [
+"26.42",
+"26.45",
+"26.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Distinguish an imagined situation from a real plan",
+"samples": [
+"26.50"
+],
+"tokenWalk": "26.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "26.01",
+"index": 2,
+"right": "rains",
+"near": "raining",
+"seq": [
+"If",
+"it",
+"rains",
+"we",
+"will",
+"stay",
+"inside"
+],
+"i": 0,
+"kind": "form",
+"key": "en26/lab/form1",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.12",
+"index": 2,
+"right": "call",
+"near": "calls",
+"seq": [
+"She",
+"will",
+"call",
+"if",
+"the",
+"price",
+"changes"
+],
+"i": 11,
+"kind": "form",
+"key": "en26/lab/form2",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.25",
+"index": 2,
+"right": "feel",
+"near": "feels",
+"seq": [
+"If",
+"you",
+"feel",
+"cold",
+"take",
+"my",
+"coat"
+],
+"i": 24,
+"kind": "form",
+"key": "en26/lab/form3",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.38",
+"index": 6,
+"right": "leave",
+"near": "leaves",
+"seq": [
+"Who",
+"will",
+"lock",
+"up",
+"if",
+"you",
+"leave",
+"early"
+],
+"i": 37,
+"kind": "form",
+"key": "en26/lab/form4",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.06",
+"index": 2,
+"right": "comes",
+"near": "come",
+"seq": [
+"If",
+"he",
+"comes",
+"early",
+"we",
+"will",
+"have",
+"coffee"
+],
+"i": 5,
+"kind": "spot",
+"key": "en26/lab/spot1",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.24",
+"index": 3,
+"right": "sticks",
+"near": "sticking",
+"seq": [
+"If",
+"the",
+"door",
+"sticks",
+"pull",
+"the",
+"handle",
+"gently"
+],
+"i": 23,
+"kind": "spot",
+"key": "en26/lab/spot2",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.28",
+"index": 5,
+"right": "call",
+"near": "calls",
+"seq": [
+"If",
+"there",
+"is",
+"a",
+"leak",
+"call",
+"reception"
+],
+"i": 27,
+"kind": "spot",
+"key": "en26/lab/spot3",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"id": "26.45",
+"index": 7,
+"right": "were",
+"near": "be",
+"seq": [
+"I",
+"would",
+"ask",
+"the",
+"landlord",
+"if",
+"I",
+"were",
+"you"
+],
+"i": 44,
+"kind": "spot",
+"key": "en26/lab/spot4",
+"feedback": {
+"ru": "Реальное условие на будущее: `If it rains, we will stay inside`. В части с `if` достаточно настоящего времени. Для воображаемой ситуации сравни `If I had a ladder, I would check the roof`: лестницы сейчас нет.",
+"uk": "Реальна умова на майбутнє: `If it rains, we will stay inside`. У частині з `if` досить теперішнього часу. Для уявної ситуації порівняй `If I had a ladder, I would check the roof`: драбини зараз немає.",
+"en": "In these real future conditions use a present form after `if`. The result may be a prediction, an instruction or a question. In imagined situations a past form can signal distance from reality, not past time."
+}
+},
+{
+"kind": "match",
+"key": "en26/lab/match1",
+"id": "26.02",
+"other": "26.03"
+},
+{
+"kind": "match",
+"key": "en26/lab/match2",
+"id": "26.17",
+"other": "26.18"
+},
+{
+"kind": "match",
+"key": "en26/lab/match3",
+"id": "26.33",
+"other": "26.34"
+},
+{
+"kind": "match",
+"key": "en26/lab/match4",
+"id": "26.46",
+"other": "26.48"
+},
+{
+"kind": "build",
+"key": "en26/lab/build1",
+"id": "26.04"
+},
+{
+"kind": "build",
+"key": "en26/lab/build2",
+"id": "26.15"
+},
+{
+"kind": "build",
+"key": "en26/lab/build3",
+"id": "26.29"
+},
+{
+"kind": "build",
+"key": "en26/lab/build4",
+"id": "26.42"
+},
+{
+"kind": "transform",
+"id": "26.29",
+"base": "26.05",
+"diff": [
+{
+"before": [
+"latch",
+"sticks"
+],
+"after": [
+"printer",
+"jams"
+]
+},
+{
+"before": [
+"handle"
+],
+"after": [
+"lid"
+]
+}
+],
+"key": "en26/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "26.28",
+"base": "26.22",
+"diff": [
+{
+"before": [
+"the",
+"light",
+"flashes"
+],
+"after": [
+"there",
+"is",
+"a",
+"leak"
+]
+}
+],
+"key": "en26/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "26.46",
+"base": "26.12",
+"diff": [
+{
+"before": [
+"call",
+"if"
+],
+"after": [
+"not",
+"leave",
+"until"
+]
+},
+{
+"before": [
+"price",
+"changes"
+],
+"after": [
+"driver",
+"arrives"
+]
+}
+],
+"key": "en26/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "26.30",
+"base": "26.25",
+"diff": [
+{
+"before": [
+"feel",
+"cold",
+"take"
+],
+"after": [
+"see",
+"Anna",
+"give",
+"her"
+]
+},
+{
+"before": [
+"coat"
+],
+"after": [
+"number"
+]
+}
+],
+"key": "en26/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+1,
+5
+],
+[
+15,
+3
+],
+[
+2,
+6
+],
+[
+10,
+19
+],
+[
+7,
+11
+],
+[
+18,
+14
+]
+],
+"worked": [
+"26.05",
+"26.18",
+"26.33",
+"26.48"
+],
+"reflection": [
+"26.01",
+"26.02"
+],
+"strategy": {
+"ru": "Нарисуй мысленно линию времени. Это привычка, фон, законченное событие или то, чего ещё ждут? Сначала выбери смысл, затем форму: похожие по звучанию окончания могут рассказывать разные истории.",
+"uk": "Уяви лінію часу. Це звичка, тло, завершена подія чи те, чого ще чекають? Спершу обери зміст, потім форму: схожі на слух закінчення можуть описувати різні історії.",
+"en": "Imagine a timeline. Is this a habit, background, a finished event or something still to come? Decide what the speaker means before picking the form. Similar-looking forms can tell different stories."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

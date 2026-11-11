@@ -1,0 +1,47 @@
+[
+  {"id": "es:14:13", "type": "B1", "field": "tiles", "problem": "соблазн 'en' даёт 'Ana se ducha en la mañana' — норма Латинской Америки, верно по смыслу", "fix": {"position": 3, "replace_distractor": "en", "with": "sin"}},
+  {"id": "es:14:13", "type": "B1", "field": "tiles", "problem": "соблазн 'a' даёт 'Ana se ducha a la mañana' — норма Аргентины/Уругвая", "fix": {"position": 3, "replace_distractor": "a", "with": "tras"}},
+  {"id": "es:14:15", "type": "B1", "field": "tiles", "problem": "соблазн 'a' даёт 'Luis se ducha a la mañana' — норма Аргентины/Уругвая", "fix": {"position": 3, "replace_distractor": "a", "with": "sin"}},
+  {"id": "es:14:19", "type": "B1", "field": "tiles", "problem": "соблазн 'en' даёт 'No me ducho en la mañana' — норма Латинской Америки", "fix": {"position": 3, "replace_distractor": "en", "with": "sin"}},
+  {"id": "es:14:19", "type": "B1", "field": "tiles", "problem": "соблазн 'a' даёт 'No me ducho a la mañana' — норма Аргентины/Уругвая", "fix": {"position": 3, "replace_distractor": "a", "with": "tras"}},
+
+  {"id": "es:11:34", "type": "B3", "field": "alternatives", "problem": "естественный порядок 'No tengo aquí mi cargador' из тех же плиток не засчитывается", "fix": {"add": ["No tengo aquí mi cargador."], "remove": []}},
+  {"id": "es:11:36", "type": "B3", "field": "alternatives", "problem": "'¿Usted tiene una reserva?' — естественный порядок (особенно в Лат. Америке), не засчитывается", "fix": {"add": ["¿Usted tiene una reserva?"], "remove": []}},
+  {"id": "es:11:38", "type": "B3", "field": "alternatives", "problem": "'¿Ustedes tienen una reserva?' — естественный порядок, не засчитывается", "fix": {"add": ["¿Ustedes tienen una reserva?"], "remove": []}},
+  {"id": "es:11:40", "type": "B3", "field": "alternatives", "problem": "подсказка 'У Луиса есть бронь?' ведёт к '¿Luis tiene una reserva?' — естественно, но не засчитывается", "fix": {"add": ["¿Luis tiene una reserva?"], "remove": []}},
+
+  {"id": "es:12:36", "type": "B3", "field": "alternatives", "problem": "подсказка 'Окна большие?' ведёт к порядку подлежащее-сказуемое, он не засчитывается", "fix": {"add": ["¿Las ventanas son grandes?", "¿Son las ventanas grandes?"], "remove": []}},
+  {"id": "es:12:37", "type": "B3", "field": "alternatives", "problem": "порядок '¿Los bolsos son grandes?' естественен и не засчитывается", "fix": {"add": ["¿Los bolsos son grandes?", "¿Son los bolsos grandes?"], "remove": []}},
+  {"id": "es:12:38", "type": "B3", "field": "alternatives", "problem": "порядок '¿Las mochilas son grandes?' естественен и не засчитывается", "fix": {"add": ["¿Las mochilas son grandes?", "¿Son las mochilas grandes?"], "remove": []}},
+  {"id": "es:12:39", "type": "B3", "field": "alternatives", "problem": "порядок '¿Los libros son grandes?' естественен и не засчитывается", "fix": {"add": ["¿Los libros son grandes?", "¿Son los libros grandes?"], "remove": []}},
+  {"id": "es:12:40", "type": "B3", "field": "alternatives", "problem": "порядок '¿Las mesas son grandes?' естественен и не засчитывается", "fix": {"add": ["¿Las mesas son grandes?", "¿Son las mesas grandes?"], "remove": []}},
+  {"id": "es:12:46", "type": "B3", "field": "alternatives", "problem": "подсказка 'Здесь есть...' ведёт к самому естественному 'Aquí hay un coche blanco', не засчитывается", "fix": {"add": ["Aquí hay un coche blanco."], "remove": []}},
+  {"id": "es:12:49", "type": "B3", "field": "alternatives", "problem": "подсказка 'Здесь есть...' ведёт к 'Aquí hay dos libros nuevos', не засчитывается", "fix": {"add": ["Aquí hay dos libros nuevos."], "remove": []}},
+
+  {"id": "es:13:11", "type": "B3", "field": "alternatives", "problem": "'hoy' в конце ('Estoy ocupado hoy') равноправно и так подано в 13:41-45; не засчитывается", "fix": {"add": ["Estoy ocupado hoy."], "remove": []}},
+  {"id": "es:13:12", "type": "B3", "field": "alternatives", "problem": "'Estás ocupada hoy' равноправно, не засчитывается", "fix": {"add": ["Estás ocupada hoy."], "remove": []}},
+  {"id": "es:13:13", "type": "B3", "field": "alternatives", "problem": "'Luis está ocupado hoy' / 'Luis hoy está ocupado' естественны, не засчитываются", "fix": {"add": ["Luis está ocupado hoy.", "Luis hoy está ocupado."], "remove": []}},
+  {"id": "es:13:14", "type": "B3", "field": "alternatives", "problem": "'Estamos ocupados hoy' равноправно, не засчитывается", "fix": {"add": ["Estamos ocupados hoy."], "remove": []}},
+  {"id": "es:13:15", "type": "B3", "field": "alternatives", "problem": "'Mis hermanas están ocupadas hoy' равноправно, не засчитывается", "fix": {"add": ["Mis hermanas están ocupadas hoy.", "Mis hermanas hoy están ocupadas."], "remove": []}},
+
+  {"id": "es:13:17", "type": "B3", "field": "alternatives", "problem": "подсказка 'Ана готова?' ведёт к '¿Ana está lista?' — самый естественный вариант, не засчитывается", "fix": {"add": ["¿Ana está lista?", "¿Está lista Ana?"], "remove": []}},
+  {"id": "es:13:18", "type": "B3", "field": "alternatives", "problem": "'¿Luis está listo?' естественно, не засчитывается", "fix": {"add": ["¿Luis está listo?", "¿Está listo Luis?"], "remove": []}},
+  {"id": "es:13:20", "type": "B3", "field": "alternatives", "problem": "'¿Tus hermanas están listas?' естественно, не засчитывается", "fix": {"add": ["¿Tus hermanas están listas?", "¿Están listas tus hermanas?"], "remove": []}},
+
+  {"id": "es:13:26", "type": "B3", "field": "alternatives", "problem": "'Hoy la tienda está cerrada' равноправно, не засчитывается", "fix": {"add": ["Hoy la tienda está cerrada."], "remove": []}},
+  {"id": "es:13:28", "type": "B3", "field": "alternatives", "problem": "'Hoy la puerta está cerrada' равноправно, не засчитывается", "fix": {"add": ["Hoy la puerta está cerrada."], "remove": []}},
+  {"id": "es:13:30", "type": "B3", "field": "alternatives", "problem": "'Hoy los hoteles están cerrados' равноправно, не засчитывается", "fix": {"add": ["Hoy los hoteles están cerrados."], "remove": []}},
+
+  {"id": "es:13:35", "type": "B3", "field": "alternatives", "problem": "подсказка 'Туалет свободен?' ведёт к '¿El baño está libre?', не засчитывается", "fix": {"add": ["¿El baño está libre?"], "remove": []}},
+  {"id": "es:13:36", "type": "B3", "field": "alternatives", "problem": "'¿La mesa está libre?' естественно, не засчитывается", "fix": {"add": ["¿La mesa está libre?"], "remove": []}},
+  {"id": "es:13:37", "type": "B3", "field": "alternatives", "problem": "'¿El médico está libre?' естественно, не засчитывается", "fix": {"add": ["¿El médico está libre?"], "remove": []}},
+  {"id": "es:13:38", "type": "B3", "field": "alternatives", "problem": "'¿Las mesas están libres?' естественно, не засчитывается", "fix": {"add": ["¿Las mesas están libres?"], "remove": []}},
+  {"id": "es:13:39", "type": "B3", "field": "alternatives", "problem": "'¿La médica está libre?' естественно, не засчитывается", "fix": {"add": ["¿La médica está libre?"], "remove": []}},
+  {"id": "es:13:40", "type": "B3", "field": "alternatives", "problem": "'¿Los profesores están libres?' естественно, не засчитывается", "fix": {"add": ["¿Los profesores están libres?"], "remove": []}},
+
+  {"id": "es:13:41", "type": "B3", "field": "alternatives", "problem": "подсказка 'Сегодня мы рады' ведёт к 'Hoy estamos contentas', не засчитывается", "fix": {"add": ["Hoy estamos contentas."], "remove": []}},
+  {"id": "es:13:42", "type": "B3", "field": "alternatives", "problem": "'Hoy están contentos' по подсказке 'Сегодня они рады', не засчитывается", "fix": {"add": ["Hoy están contentos."], "remove": []}},
+  {"id": "es:13:43", "type": "B3", "field": "alternatives", "problem": "'Hoy estoy contento' по подсказке 'Сегодня я рад', не засчитывается", "fix": {"add": ["Hoy estoy contento."], "remove": []}},
+  {"id": "es:13:44", "type": "B3", "field": "alternatives", "problem": "'Hoy estáis contentas' по подсказке 'Сегодня вы рады', не засчитывается (и вариант ustedes)", "fix": {"add": ["Hoy estáis contentas.", "Hoy están contentas."], "remove": []}},
+  {"id": "es:13:45", "type": "B3", "field": "alternatives", "problem": "'Hoy estás contenta' по подсказке 'Сегодня ты рада', не засчитывается", "fix": {"add": ["Hoy estás contenta."], "remove": []}}
+]

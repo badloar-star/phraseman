@@ -1,0 +1,755 @@
+{
+ "lang": "it",
+ "lesson": 17,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:17:01",
+   "target": "Mi alzo.",
+   "ru": "Я встаю.",
+   "uk": "Я встаю."
+  },
+  {
+   "id": "it:17:02",
+   "target": "Ti alzi.",
+   "ru": "Ты встаешь.",
+   "uk": "Ти встаєш."
+  },
+  {
+   "id": "it:17:03",
+   "target": "Si alza.",
+   "ru": "Она встает.",
+   "uk": "Вона встає."
+  },
+  {
+   "id": "it:17:04",
+   "target": "Ci alziamo.",
+   "ru": "Мы встаем.",
+   "uk": "Ми встаємо."
+  },
+  {
+   "id": "it:17:05",
+   "target": "Vi alzate.",
+   "ru": "Вы встаёте.",
+   "uk": "Ви встаєте."
+  },
+  {
+   "id": "it:17:06",
+   "target": "Si alzano.",
+   "ru": "Они встают.",
+   "uk": "Вони встають."
+  },
+  {
+   "id": "it:17:07",
+   "target": "Mi preparo.",
+   "ru": "Я готовлюсь.",
+   "uk": "Я готуюся."
+  },
+  {
+   "id": "it:17:08",
+   "target": "Ti prepari.",
+   "ru": "Ты готовишься.",
+   "uk": "Ти готуєшся."
+  },
+  {
+   "id": "it:17:09",
+   "target": "Paolo si prepara.",
+   "ru": "Паоло готовится.",
+   "uk": "Паоло готується."
+  },
+  {
+   "id": "it:17:10",
+   "target": "Lea si prepara per andare al lavoro.",
+   "ru": "Леа собирается на работу.",
+   "uk": "Леа збирається на роботу."
+  },
+  {
+   "id": "it:17:11",
+   "target": "Mi sveglio presto.",
+   "ru": "Я просыпаюсь рано.",
+   "uk": "Я прокидаюся рано."
+  },
+  {
+   "id": "it:17:12",
+   "target": "Ti svegli alle sette.",
+   "ru": "Ты просыпаешься в семь часов.",
+   "uk": "Ти прокидаєшся о сьомій годині."
+  },
+  {
+   "id": "it:17:13",
+   "target": "Lei si sveglia prima di me.",
+   "ru": "Она просыпается раньше меня.",
+   "uk": "Вона прокидається раніше за мене."
+  },
+  {
+   "id": "it:17:14",
+   "target": "Ci svegliamo con la radio.",
+   "ru": "Мы просыпаемся под радио.",
+   "uk": "Ми прокидаємося від радіо."
+  },
+  {
+   "id": "it:17:15",
+   "target": "Si sveglia spesso di notte?",
+   "ru": "Вы (вежл.) часто просыпаетесь ночью?",
+   "uk": "Ви (ввіч.) часто прокидаєтеся вночі?"
+  },
+  {
+   "id": "it:17:16",
+   "target": "I bambini si svegliano alla stessa ora.",
+   "ru": "Дети просыпаются одновременно.",
+   "uk": "Діти прокидаються одночасно."
+  },
+  {
+   "id": "it:17:17",
+   "target": "Mi faccio la doccia al mattino.",
+   "ru": "Я принимаю душ утром.",
+   "uk": "Я приймаю душ вранці."
+  },
+  {
+   "id": "it:17:18",
+   "target": "Si fa la doccia dopo lo sport.",
+   "ru": "Он принимает душ после занятий спортом.",
+   "uk": "Він приймає душ після спорту."
+  },
+  {
+   "id": "it:17:19",
+   "target": "Ti fai la doccia di sera?",
+   "ru": "Ты принимаешь душ вечером?",
+   "uk": "Ти приймаєш душ ввечері?"
+  },
+  {
+   "id": "it:17:20",
+   "target": "Ci corichiamo presto.",
+   "ru": "Мы ложимся спать рано.",
+   "uk": "Ми лягаємо спати рано."
+  },
+  {
+   "id": "it:17:21",
+   "target": "Mi vesto in camera mia.",
+   "ru": "Я одеваюсь в своей комнате.",
+   "uk": "Я одягаюся у своїй кімнаті."
+  },
+  {
+   "id": "it:17:22",
+   "target": "Si veste da sola.",
+   "ru": "Она одевается сама.",
+   "uk": "Вона одягається сама."
+  },
+  {
+   "id": "it:17:23",
+   "target": "Ti vesti velocemente.",
+   "ru": "Ты быстро одеваешься.",
+   "uk": "Ти одягаєшся швидко."
+  },
+  {
+   "id": "it:17:24",
+   "target": "Vi vestite per uscire.",
+   "ru": "Вы одеваетесь, чтобы выйти.",
+   "uk": "Ви одягаєтеся, щоб вийти."
+  },
+  {
+   "id": "it:17:25",
+   "target": "Paolo si rade davanti allo specchio.",
+   "ru": "Паоло бреется перед зеркалом.",
+   "uk": "Паоло голиться перед дзеркалом."
+  },
+  {
+   "id": "it:17:26",
+   "target": "Mi lavo i denti.",
+   "ru": "Я чищу зубы.",
+   "uk": "Я чищу зуби."
+  },
+  {
+   "id": "it:17:27",
+   "target": "Lei si lava le mani.",
+   "ru": "Она моет руки.",
+   "uk": "Вона миє руки."
+  },
+  {
+   "id": "it:17:28",
+   "target": "I bambini si lavano la faccia.",
+   "ru": "Дети умываются.",
+   "uk": "Діти вмивають обличчя."
+  },
+  {
+   "id": "it:17:29",
+   "target": "Ci asciughiamo i capelli.",
+   "ru": "Мы сушим волосы.",
+   "uk": "Ми сушимо волосся."
+  },
+  {
+   "id": "it:17:30",
+   "target": "Ti guardi allo specchio.",
+   "ru": "Ты смотришь на себя в зеркало.",
+   "uk": "Ти дивишся на себе в дзеркало."
+  },
+  {
+   "id": "it:17:31",
+   "target": "Non mi alzo prima delle sei.",
+   "ru": "Я не встаю раньше шести часов.",
+   "uk": "Я не встаю раніше шостої години."
+  },
+  {
+   "id": "it:17:32",
+   "target": "Lei non si corica tardi.",
+   "ru": "Она не ложится спать поздно.",
+   "uk": "Вона не лягає спати пізно."
+  },
+  {
+   "id": "it:17:33",
+   "target": "Non ci affrettiamo.",
+   "ru": "Мы никуда не спешим.",
+   "uk": "Ми нікуди не поспішаємо."
+  },
+  {
+   "id": "it:17:34",
+   "target": "Non si riposa mai?",
+   "ru": "Вы никогда не отдыхаете?",
+   "uk": "Ви ніколи не відпочиваєте?"
+  },
+  {
+   "id": "it:17:35",
+   "target": "Non si rade la domenica.",
+   "ru": "Он не бреется по воскресеньям.",
+   "uk": "Він не голиться по неділях."
+  },
+  {
+   "id": "it:17:36",
+   "target": "Ho intenzione di riposarmi.",
+   "ru": "Я собираюсь отдохнуть.",
+   "uk": "Я збираюся відпочити."
+  },
+  {
+   "id": "it:17:37",
+   "target": "Ti prepari qui.",
+   "ru": "Ты собираешься здесь.",
+   "uk": "Ти збираєшся тут."
+  },
+  {
+   "id": "it:17:38",
+   "target": "Deve alzarsi presto.",
+   "ru": "Ей нужно рано вставать.",
+   "uk": "Їй треба рано вставати."
+  },
+  {
+   "id": "it:17:39",
+   "target": "Possiamo sederci qui.",
+   "ru": "Мы можем сесть здесь.",
+   "uk": "Ми можемо сісти тут."
+  },
+  {
+   "id": "it:17:40",
+   "target": "Vuole sedersi vicino alla finestra?",
+   "ru": "Хотите сесть у окна?",
+   "uk": "Хочете сісти біля вікна?"
+  },
+  {
+   "id": "it:17:41",
+   "target": "Mi sbrigo per arrivare al lavoro.",
+   "ru": "Я тороплюсь, чтобы успеть на работу.",
+   "uk": "Я поспішаю, щоб встигнути на роботу."
+  },
+  {
+   "id": "it:17:42",
+   "target": "Si fa una passeggiata nel parco.",
+   "ru": "Она гуляет в парке.",
+   "uk": "Вона гуляє парком."
+  },
+  {
+   "id": "it:17:43",
+   "target": "Ci incontriamo davanti al museo.",
+   "ru": "Мы встречаемся перед музеем.",
+   "uk": "Ми зустрічаємося перед музеєм."
+  },
+  {
+   "id": "it:17:44",
+   "target": "Ti ricordi questo indirizzo?",
+   "ru": "Ты помнишь этот адрес?",
+   "uk": "Ти пам’ятаєш цю адресу?"
+  },
+  {
+   "id": "it:17:45",
+   "target": "Come si chiama il tuo vicino?",
+   "ru": "Как зовут твоего соседа?",
+   "uk": "Як звати твого сусіда?"
+  },
+  {
+   "id": "it:17:46",
+   "target": "Mi chiamo Marie.",
+   "ru": "Меня зовут Мари.",
+   "uk": "Мене звати Марі."
+  },
+  {
+   "id": "it:17:47",
+   "target": "I bambini si divertono in giardino.",
+   "ru": "Дети веселятся в саду.",
+   "uk": "Діти розважаються в саду."
+  },
+  {
+   "id": "it:17:48",
+   "target": "Si sente meglio?",
+   "ru": "Вам лучше?",
+   "uk": "Вам краще?"
+  },
+  {
+   "id": "it:17:49",
+   "target": "Paolo si accorge di essere sul binario sbagliato.",
+   "ru": "Паоло замечает, что стоит не на том пути.",
+   "uk": "Паоло помічає, що стоїть не на тій колії."
+  },
+  {
+   "id": "it:17:50",
+   "target": "Mi cambio dopo il lavoro.",
+   "ru": "Я переодеваюсь после работы.",
+   "uk": "Я переодягаюся після роботи."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "lo specchio",
+   "ru": "зеркало",
+   "uk": "дзеркало"
+  },
+  {
+   "lemma": "alzarsi",
+   "ru": "вставать",
+   "uk": "вставати"
+  },
+  {
+   "lemma": "coricarsi",
+   "ru": "ложиться спать",
+   "uk": "лягати спати"
+  },
+  {
+   "lemma": "farsi la doccia",
+   "ru": "принимать душ",
+   "uk": "приймати душ"
+  },
+  {
+   "lemma": "radersi",
+   "ru": "бриться",
+   "uk": "голитися"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  }
+ ],
+ "oldTopicTitle": "Действие касается тебя: `mi alzo`",
+ "oldTheoryRu": "Разбей словарное `alzarsi` на действие и помету возвратности. В настоящем времени короткое местоимение ставится отдельно перед личной формой. В словаре это одна запись, а не шесть разных глаголов. Группа с говорящим использует `ci`: `ci alziamo`. Обращение к группе — `vi alzate`. У нескольких других людей `si` такое же, как у одного, а различие видно по глаголу. `Svegliarsi` — проснуться; `alzarsi` — встать. Человек может уже проснуться и ещё лежать. Для задания про будильник проверь, какое действие названо. Порядок в простой фразе: местоимение, действие, при необходимости предмет или место. `Mi lavo le mani` буквально называет руки с артиклем; дополнительное `mie` обычно не нужно. `Non` ставится перед местоимением и глаголом: `non mi alzo`. Не вставляй его между `mi` и `alzo`. Другие обстоятельства идут там, где им удобно по смыслу. Если впереди модальный глагол, возможны два естественных варианта: `posso sedermi` и `mi posso sedere`. Нужно ровно одно местоимение. В присоединённом варианте финальное `e` инфинитива отпадает. Не всякое `si` переводится отдельным словом «себя». `Chiamarsi` сообщает имя; `incontrarsi` о нескольких людях может означать встречу друг с другом. Учись узнавать целый глагол в контексте."
+}

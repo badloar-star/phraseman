@@ -1,0 +1,1775 @@
+[
+{
+"lesson": 25,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 25,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Попроси одного человека: утвердительное tú",
+"formula": "повелительная форма tú + дополнение",
+"story": "Друг у окна. Abres la ventana сообщает, что он делает; Abre la ventana просит его открыть окно. Одно s меняет назначение всей фразы.",
+"use": "Отличи сообщение «ты открываешь» от просьбы или указания «открой».",
+"choose": "У правильного -ar просьба к tú заканчивается на -a. В llamas описывают, что ты звонишь, а llama — «позвони». Конечное -s меняет функцию фразы.",
+"nuance": "Отличи сообщение «ты открываешь» от просьбы или указания «открой». Получатель просьбы — один человек на tú.",
+"wrong": "Abres la puerta.",
+"right": "Abre la puerta.",
+"chapters": [
+{
+"title": "К кому обращаемся",
+"body": "Здесь просят одного знакомого на «ты». Форма для usted была бы другой. Местоимение tú обычно не требуется, ведь сам жанр реплики уже указывает на адресата.",
+"note": "Ключевая форма: abre. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:01",
+"es:25:02"
+],
+"focusId": "es:25:01"
+},
+{
+"title": "-ar: llama, compra",
+"body": "У правильного -ar просьба к tú заканчивается на -a. В llamas описывают, что ты звонишь, а llama — «позвони». Конечное -s меняет функцию фразы.",
+"note": "Ключевая форма: llama. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:09",
+"es:25:10"
+],
+"focusId": "es:25:09"
+},
+{
+"title": "-er и -ir",
+"body": "Comer → come, abrir → abre. Оба окончания в этой форме выглядят как -e. Не используй испанский инфинитив как универсальное личное обращение.",
+"note": "Ключевая форма: lee. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:03",
+"es:25:04"
+],
+"focusId": "es:25:03"
+},
+{
+"title": "Предмет и уточнение",
+"body": "В «открой окно» объект остаётся обычной именной группой: abre la ventana. Ahora, mañana или más tarde только уточняют, когда выполнить просьбу.",
+"note": "Ключевая форма: escribe. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:06",
+"es:25:07"
+],
+"focusId": "es:25:06"
+},
+{
+"title": "Граница: отрицательный приказ",
+"body": "Для «не открывай» нельзя пристроить no к форме abre: нужна другая форма, no abras. В этих 50 заданиях тренируем только утвердительные просьбы.",
+"note": "Ключевая форма: llama. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:50",
+"es:25:01"
+],
+"focusId": "es:25:50"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Приготовь рюкзак.» / «Позвони в отель сейчас.». Получатель просьбы — один человек на tú. Смысловые опоры: «mochila» — рюкзак.",
+"note": "Ключевая форма: llama. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:20",
+"es:25:21"
+],
+"focusId": "es:25:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Прочитай сообщение завтра.» / «Позвони Ане завтра.». Получатель просьбы — один человек на tú. Отличи сообщение «ты открываешь» от просьбы или указания «открой».",
+"note": "Ключевая форма: llama. Получатель просьбы — один человек на tú.",
+"samples": [
+"es:25:44",
+"es:25:50"
+],
+"focusId": "es:25:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "tú · abre",
+"gloss": "ты",
+"id": "es:25:01",
+"sample": "Abre la puerta."
+}
+],
+"title": "abrir · Утвердительная просьба"
+},
+{
+"rows": [
+{
+"es": "tú · lee",
+"gloss": "ты",
+"id": "es:25:03",
+"sample": "Lee el libro."
+}
+],
+"title": "leer · Утвердительная просьба"
+},
+{
+"rows": [
+{
+"es": "tú · llama",
+"gloss": "ты",
+"id": "es:25:09",
+"sample": "Llama al hotel."
+}
+],
+"title": "llamar · Утвердительная просьба"
+},
+{
+"rows": [
+{
+"es": "tú · compra",
+"gloss": "ты",
+"id": "es:25:08",
+"sample": "Compra pan."
+}
+],
+"title": "comprar · Утвердительная просьба"
+},
+{
+"rows": [
+{
+"es": "tú · vuelve",
+"gloss": "ты",
+"id": "es:25:22",
+"sample": "Vuelve a casa ahora."
+}
+],
+"title": "volver · Утвердительная просьба"
+},
+{
+"rows": [
+{
+"es": "tú · manda",
+"gloss": "ты",
+"id": "es:25:15",
+"sample": "Manda la foto."
+}
+],
+"title": "mandar · Утвердительная просьба"
+}
+]
+},
+"uk": {
+"title": "Попроси одну людину: стверджувальне tú",
+"formula": "наказова форма tú + додаток",
+"story": "Друг біля вікна. Abres la ventana повідомляє, що він робить; Abre la ventana просить відчинити вікно. Зверни увагу на s.",
+"use": "Відрізни повідомлення «ти відчиняєш» від прохання чи вказівки «відчини».",
+"choose": "У правильного -ar прохання до tú закінчується на -a. Llamas описує, що ти телефонуєш, а llama — «зателефонуй». Кінцеве -s змінює функцію.",
+"nuance": "Відрізни повідомлення «ти відчиняєш» від прохання чи вказівки «відчини». Адресат прохання — одна людина на tú.",
+"wrong": "Abres la puerta.",
+"right": "Abre la puerta.",
+"chapters": [
+{
+"title": "До кого звертаємося",
+"body": "Тут просять одну знайому людину на «ти». Для usted форма була б іншою. Tú зазвичай не потрібне: сам характер репліки вже вказує на адресата.",
+"note": "Ключова форма: abre. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:01",
+"es:25:02"
+],
+"focusId": "es:25:01"
+},
+{
+"title": "-ar: llama, compra",
+"body": "У правильного -ar прохання до tú закінчується на -a. Llamas описує, що ти телефонуєш, а llama — «зателефонуй». Кінцеве -s змінює функцію.",
+"note": "Ключова форма: llama. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:09",
+"es:25:10"
+],
+"focusId": "es:25:09"
+},
+{
+"title": "-er та -ir",
+"body": "Comer → come, abrir → abre. Обидва закінчення тут мають вигляд -e. Не вживай інфінітив як універсальне звертання до однієї людини.",
+"note": "Ключова форма: lee. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:03",
+"es:25:04"
+],
+"focusId": "es:25:03"
+},
+{
+"title": "Предмет і уточнення",
+"body": "У «відчини вікно» додаток лишається звичайною іменною групою: abre la ventana. Ahora, mañana чи más tarde лише уточнюють час виконання.",
+"note": "Ключова форма: escribe. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:06",
+"es:25:07"
+],
+"focusId": "es:25:06"
+},
+{
+"title": "Межа: заперечний наказ",
+"body": "Для «не відчиняй» не можна просто додати no до abre: потрібне no abras. У цих 50 завданнях відпрацьовуємо лише стверджувальні прохання.",
+"note": "Ключова форма: llama. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:50",
+"es:25:01"
+],
+"focusId": "es:25:50"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Приготуй рюкзак.» / «Зателефонуй до готелю зараз.». Адресат прохання — одна людина на tú. Смислові опори: «mochila» — рюкзак.",
+"note": "Ключова форма: llama. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:20",
+"es:25:21"
+],
+"focusId": "es:25:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Прочитай повідомлення завтра.» / «Зателефонуй Ані завтра.». Адресат прохання — одна людина на tú. Відрізни повідомлення «ти відчиняєш» від прохання чи вказівки «відчини».",
+"note": "Ключова форма: llama. Адресат прохання — одна людина на tú.",
+"samples": [
+"es:25:44",
+"es:25:50"
+],
+"focusId": "es:25:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "tú · abre",
+"gloss": "ти",
+"id": "es:25:01",
+"sample": "Abre la puerta."
+}
+],
+"title": "abrir · Стверджувальне прохання"
+},
+{
+"rows": [
+{
+"es": "tú · lee",
+"gloss": "ти",
+"id": "es:25:03",
+"sample": "Lee el libro."
+}
+],
+"title": "leer · Стверджувальне прохання"
+},
+{
+"rows": [
+{
+"es": "tú · llama",
+"gloss": "ти",
+"id": "es:25:09",
+"sample": "Llama al hotel."
+}
+],
+"title": "llamar · Стверджувальне прохання"
+},
+{
+"rows": [
+{
+"es": "tú · compra",
+"gloss": "ти",
+"id": "es:25:08",
+"sample": "Compra pan."
+}
+],
+"title": "comprar · Стверджувальне прохання"
+},
+{
+"rows": [
+{
+"es": "tú · vuelve",
+"gloss": "ти",
+"id": "es:25:22",
+"sample": "Vuelve a casa ahora."
+}
+],
+"title": "volver · Стверджувальне прохання"
+},
+{
+"rows": [
+{
+"es": "tú · manda",
+"gloss": "ти",
+"id": "es:25:15",
+"sample": "Manda la foto."
+}
+],
+"title": "mandar · Стверджувальне прохання"
+}
+]
+},
+"en": {
+"title": "Giving instructions to one person: affirmative tú commands",
+"formula": "tú: llamar → llama · abrir → abre",
+"story": "Your friend is by the window. Abres la ventana describes what they do; Abre la ventana asks them to do it. Notice the final s.",
+"use": "Distinguish the message \"you open\" from the request or instruction \"open.\"",
+"choose": "The correct - ar request to tú ends in - a. llamas describes you calling, and llama means \"call.\" The final - s changes the function of the phrase.",
+"nuance": "Distinguish the message \"you open\" from the request or instruction \"open.\" The recipient of the request is one person on tú.",
+"wrong": "Abres la puerta.",
+"right": "Abre la puerta.",
+"chapters": [
+{
+"title": "Who is being asked to act?",
+"body": "Here, an acquaintance is being addressed on a first-name basis. The form for usted would be different. The pronoun tú is usually not required, since the very genre of the reply already indicates the addressee.",
+"note": "Key form: abre. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:01",
+"es:25:02"
+],
+"focusId": "es:25:01"
+},
+{
+"title": "How do llamar and comprar become commands?",
+"body": "The correct - ar request to tú ends in - a. llamas describes you calling, and llama means \"call.\" The final - s changes the function of the phrase.",
+"note": "Key form: llama. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:09",
+"es:25:10"
+],
+"focusId": "es:25:09"
+},
+{
+"title": "What changes with -er and -ir?",
+"body": "Comer → come, abrir → abre. Both endings in this form look like - e. Don't use the Spanish infinitive as a universal personal form of address.",
+"note": "Key form: lee. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:03",
+"es:25:04"
+],
+"focusId": "es:25:03"
+},
+{
+"title": "When do I need to mention the person?",
+"body": "In \"open the window,\" the object remains a regular noun phrase: abre la ventana. Ahora, mañana, or más tarde only specify when to fulfill the request.",
+"note": "Key form: escribe. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:06",
+"es:25:07"
+],
+"focusId": "es:25:06"
+},
+{
+"title": "What if I want to tell someone not to do it?",
+"body": "For \"don't open,\" no can't be attached to form abre: a different form, no abras, is needed. In these 50 tasks, we practice only affirmative requests.",
+"note": "Key form: llama. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:50",
+"es:25:01"
+],
+"focusId": "es:25:50"
+},
+{
+"title": "How do I build a short instruction?",
+"body": "Compare two tasks: \"Get your backpack ready\" / \"Call the hotel now.\" The recipient of the request is one person at tú. Semantic supports: \" mochila \" - backpack.",
+"note": "Key form: llama. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:20",
+"es:25:21"
+],
+"focusId": "es:25:21"
+},
+{
+"title": "Can I give another everyday instruction?",
+"body": "Compare two tasks: \"Read the message tomorrow\" / \"Call Anya tomorrow.\" The recipient of the request is one person at tú. Distinguish the message \"you open\" from the request or instruction \"open.\"",
+"note": "Key form: llama. The recipient of the request is one person on tú.",
+"samples": [
+"es:25:44",
+"es:25:50"
+],
+"focusId": "es:25:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "tú · abre",
+"gloss": "you",
+"id": "es:25:01",
+"sample": "Abre la puerta."
+}
+],
+"title": "abrir Affirmative Request"
+},
+{
+"rows": [
+{
+"es": "tú · lee",
+"gloss": "you",
+"id": "es:25:03",
+"sample": "Lee el libro."
+}
+],
+"title": "leer Affirmative Request"
+},
+{
+"rows": [
+{
+"es": "tú · llama",
+"gloss": "you",
+"id": "es:25:09",
+"sample": "Llama al hotel."
+}
+],
+"title": "llamar Affirmative Request"
+},
+{
+"rows": [
+{
+"es": "tú · compra",
+"gloss": "you",
+"id": "es:25:08",
+"sample": "Compra pan."
+}
+],
+"title": "comprar Affirmative Request"
+},
+{
+"rows": [
+{
+"es": "tú · vuelve",
+"gloss": "you",
+"id": "es:25:22",
+"sample": "Vuelve a casa ahora."
+}
+],
+"title": "volver Affirmative Request"
+},
+{
+"rows": [
+{
+"es": "tú · manda",
+"gloss": "you",
+"id": "es:25:15",
+"sample": "Manda la foto."
+}
+],
+"title": "mandar Affirmative Request"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:25:01",
+"index": 0,
+"right": "Abre",
+"near": "Abres",
+"seq": [
+"Abre",
+"la",
+"puerta"
+],
+"i": 0,
+"kind": "form",
+"key": "es25/lab/form1",
+"feedback": {
+"ru": "Abre ← abrir (открывать); просьба к tú.",
+"uk": "Abre ← abrir (відчиняти; відкривати); прохання до tú.",
+"en": "Abre ← abrir (to open); request to tú."
+}
+},
+{
+"id": "es:25:13",
+"index": 0,
+"right": "Prueba",
+"near": "Pruebas",
+"seq": [
+"Prueba",
+"la",
+"sopa"
+],
+"i": 12,
+"kind": "form",
+"key": "es25/lab/form2",
+"feedback": {
+"ru": "Глагол: probar — пробовать на вкус.",
+"uk": "Дієслово: probar — куштувати.",
+"en": "Verb: probar — to taste."
+}
+},
+{
+"id": "es:25:24",
+"index": 0,
+"right": "Baja",
+"near": "Bajas",
+"seq": [
+"Baja",
+"el",
+"volumen"
+],
+"i": 23,
+"kind": "form",
+"key": "es25/lab/form3",
+"feedback": {
+"ru": "Глагол: bajar — снижать; bajar el volumen — убавлять громкость.",
+"uk": "Дієслово: bajar — знижувати; bajar el volumen — зменшувати гучність.",
+"en": "Verb: bajar — to decrease; bajar el volumen — to turn down the volume."
+}
+},
+{
+"id": "es:25:33",
+"index": 0,
+"right": "Llama",
+"near": "Llamas",
+"seq": [
+"Llama",
+"a",
+"la",
+"puerta",
+"si",
+"no",
+"suena",
+"el",
+"timbre"
+],
+"i": 32,
+"kind": "form",
+"key": "es25/lab/form4",
+"feedback": {
+"ru": "Llama: звонить.",
+"uk": "Llama: телефонувати.",
+"en": "Llama: to ring."
+}
+},
+{
+"id": "es:25:07",
+"index": 0,
+"right": "Apaga",
+"near": "Apagas",
+"seq": [
+"Apaga",
+"la",
+"luz"
+],
+"i": 6,
+"kind": "spot",
+"key": "es25/lab/spot1",
+"feedback": {
+"ru": "Глагол: apagar — выключать.",
+"uk": "Дієслово: apagar — вимикати.",
+"en": "Verb: apagar — to turn off."
+}
+},
+{
+"id": "es:25:14",
+"index": 0,
+"right": "Enciende",
+"near": "Enciendes",
+"seq": [
+"Enciende",
+"el",
+"horno"
+],
+"i": 13,
+"kind": "spot",
+"key": "es25/lab/spot2",
+"feedback": {
+"ru": "Глагол: encender — включать, зажигать.",
+"uk": "Дієслово: encender — вмикати, запалювати.",
+"en": "Verb: encender — to turn on, to light."
+}
+},
+{
+"id": "es:25:31",
+"index": 0,
+"right": "Compra",
+"near": "Compras",
+"seq": [
+"Compra",
+"un",
+"kilo",
+"de",
+"fruta"
+],
+"i": 30,
+"kind": "spot",
+"key": "es25/lab/spot3",
+"feedback": {
+"ru": "Compra ← comprar (покупать); просьба к tú.",
+"uk": "Compra ← comprar (купувати); прохання до tú.",
+"en": "Compra ← comprar (buy); request to tú."
+}
+},
+{
+"id": "es:25:44",
+"index": 0,
+"right": "Lee",
+"near": "Lees",
+"seq": [
+"Lee",
+"el",
+"mensaje",
+"mañana"
+],
+"i": 43,
+"kind": "spot",
+"key": "es25/lab/spot4",
+"feedback": {
+"ru": "Lee ← leer (читать); просьба к tú.",
+"uk": "Lee ← leer (читати); прохання до tú.",
+"en": "Lee ← leer (read); request to tú."
+}
+},
+{
+"kind": "match",
+"key": "es25/lab/match1",
+"id": "es:25:02",
+"other": "es:25:07"
+},
+{
+"kind": "match",
+"key": "es25/lab/match2",
+"id": "es:25:17",
+"other": "es:25:15"
+},
+{
+"kind": "match",
+"key": "es25/lab/match3",
+"id": "es:25:33",
+"other": "es:25:37"
+},
+{
+"kind": "match",
+"key": "es25/lab/match4",
+"id": "es:25:46",
+"other": "es:25:47"
+},
+{
+"kind": "build",
+"key": "es25/lab/build1",
+"id": "es:25:04"
+},
+{
+"kind": "build",
+"key": "es25/lab/build2",
+"id": "es:25:15"
+},
+{
+"kind": "build",
+"key": "es25/lab/build3",
+"id": "es:25:29"
+},
+{
+"kind": "build",
+"key": "es25/lab/build4",
+"id": "es:25:42"
+},
+{
+"kind": "transform",
+"id": "es:25:26",
+"base": "es:25:01",
+"diff": [
+{
+"before": [],
+"after": [
+"ahora"
+]
+}
+],
+"key": "es25/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:25:21",
+"base": "es:25:09",
+"diff": [
+{
+"before": [],
+"after": [
+"ahora"
+]
+}
+],
+"key": "es25/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:25:44",
+"base": "es:25:04",
+"diff": [
+{
+"before": [],
+"after": [
+"mañana"
+]
+}
+],
+"key": "es25/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:25:40",
+"base": "es:25:39",
+"diff": [
+{
+"before": [
+"cena"
+],
+"after": [
+"mochila"
+]
+}
+],
+"key": "es25/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+17,
+4
+],
+[
+12,
+1
+],
+[
+5,
+13
+],
+[
+11,
+16
+],
+[
+2,
+9
+],
+[
+7,
+18
+]
+],
+"worked": [
+"es:25:05",
+"es:25:18",
+"es:25:33",
+"es:25:48"
+],
+"reflection": [
+"es:25:01",
+"es:25:02"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 26,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 26,
+"target": "es",
+"localized": {
+"ru": {
+"title": "Кому? Адресат с le и les",
+"formula": "le/les + личный глагол + передаваемая вещь",
+"story": "Письмо — что отправили. Луис — кому отправили. В Le escribí una carta слово le обозначает получателя, а не письмо.",
+"use": "Назови получателя письма, фотографии или вещи. Не перепутай получателя с тем, что передали.",
+"choose": "Один получатель даёт le независимо от того, мужчина это или женщина. Уточнение про Ану или Луиса помогает понимать перевод, но само местоимение не меняется.",
+"nuance": "Назови получателя письма, фотографии или вещи. Не перепутай получателя с тем, что передали. Le или les определяется получателем, а не тем, что передают.",
+"wrong": "Lo escribí una carta.",
+"right": "Le escribí una carta.",
+"chapters": [
+{
+"title": "Два участника",
+"body": "В «я дал ей ключ» ключ передали, а женщине его дали. Предмет — прямое дополнение; она — адресат. В испанском для «ей» здесь нужно le.",
+"note": "Адресат: Ане. Испанская форма — le. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:01",
+"es:26:02"
+],
+"focusId": "es:26:01"
+},
+{
+"title": "Род адресата не решает",
+"body": "Один получатель даёт le независимо от того, мужчина это или женщина. Уточнение про Ану или Луиса помогает понимать перевод, но само местоимение не меняется.",
+"note": "Адресат: Луису. Испанская форма — le. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:06",
+"es:26:07"
+],
+"focusId": "es:26:06"
+},
+{
+"title": "Число получателей",
+"body": "Le di los libros: много книг, один адресат. Les di la llave: один ключ, несколько получателей. Считай людей, а не переданные вещи.",
+"note": "Адресат: студентам. Испанская форма — les. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:17",
+"es:26:18"
+],
+"focusId": "es:26:17"
+},
+{
+"title": "Уточнение с a",
+"body": "Le mandé la foto a Ana: a Ana называет, кому именно. Здесь тренируется распространённый образец с коротким местоимением; не считай повтор le отдельным адресатом.",
+"note": "Адресат: Луису. Испанская форма — le. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:02",
+"es:26:03"
+],
+"focusId": "es:26:02"
+},
+{
+"title": "Отрицание и место",
+"body": "У личной формы местоимение стоит перед глаголом, а no ещё раньше: no le mandé… . Не заменяй le на lo только потому, что переданная вещь мужского рода.",
+"note": "Адресат: студентам. Испанская форма — les. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:13",
+"es:26:14"
+],
+"focusId": "es:26:13"
+},
+{
+"title": "Разбор по словам",
+"body": "Сравни два задания: «Ты купил ему билет?» / «Я показал им карту.». Le или les определяется получателем, а не тем, что передают. Смысловые опоры: «billete» — билет (на транспорт, Испания).",
+"note": "Адресат: студентам. Испанская форма — les. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:20",
+"es:26:21"
+],
+"focusId": "es:26:21"
+},
+{
+"title": "Перенос в новую фразу",
+"body": "Сравни два задания: «Мы написали Луису вчера.» / «Мы показали им фотографии?». Le или les определяется получателем, а не тем, что передают. Назови получателя письма, фотографии или вещи. Не перепутай получателя с тем, что передали.",
+"note": "Адресат: моим сёстрам. Испанская форма — les. Le или les определяется получателем, а не тем, что передают.",
+"samples": [
+"es:26:44",
+"es:26:50"
+],
+"focusId": "es:26:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · di",
+"gloss": "я",
+"id": "es:26:11",
+"sample": "Le di la llave."
+},
+{
+"es": "tú · diste",
+"gloss": "ты",
+"id": "es:26:15",
+"sample": "¿Le diste la llave?"
+},
+{
+"es": "él · dio",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · dimos",
+"gloss": "мы",
+"id": "es:26:31",
+"sample": "Le dimos los libros."
+},
+{
+"es": "vosotros · disteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · dieron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "dar · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "я",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "tú · escribiste",
+"gloss": "ты",
+"id": "es:26:05",
+"sample": "¿Les escribiste una carta?"
+},
+{
+"es": "él · escribió",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "мы",
+"id": "es:26:41",
+"sample": "Les escribimos ayer."
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribieron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "yo · mandé",
+"gloss": "я",
+"id": "es:26:06",
+"sample": "Le mandé la foto."
+},
+{
+"es": "tú · mandaste",
+"gloss": "ты",
+"id": "es:26:10",
+"sample": "¿Le mandaste la foto?"
+},
+{
+"es": "él · mandó",
+"gloss": "он/она/Вы",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · mandamos",
+"gloss": "мы",
+"id": "es:26:26",
+"sample": "Le mandamos un mensaje."
+},
+{
+"es": "vosotros · mandasteis",
+"gloss": "вы (друзья, Испания)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · mandaron",
+"gloss": "они/вы (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "mandar · Простое прошедшее"
+},
+{
+"rows": [
+{
+"es": "le",
+"gloss": "один адресат",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "les",
+"gloss": "несколько адресатов",
+"id": "es:26:04",
+"sample": "Les escribí una carta a mis hermanas."
+}
+],
+"title": "Формы этого урока"
+}
+]
+},
+"uk": {
+"title": "Кому? Адресат із le та les",
+"formula": "le/les + особове дієслово + те, що передають",
+"story": "Лист — що надіслали, Луїс — кому. У Le escribí una carta слово le вказує на адресата, а не на лист.",
+"use": "Назви одержувача листа, фотографії або речі. Не сплутай його з тим, що передали.",
+"choose": "Для одного одержувача беремо le незалежно від того, чоловік це чи жінка. Контекст про Ану чи Луїса допомагає перекладу, але займенник однаковий.",
+"nuance": "Назви одержувача листа, фотографії або речі. Не сплутай його з тим, що передали. Le чи les визначає одержувач, а не річ, яку передають.",
+"wrong": "Lo escribí una carta.",
+"right": "Le escribí una carta.",
+"chapters": [
+{
+"title": "Два учасники",
+"body": "У «я дав їй ключ» передали ключ, а жінці його дали. Річ — прямий додаток, вона — адресат. Іспанське «їй» тут le.",
+"note": "Адресат: Ані. Іспанська форма — le. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:01",
+"es:26:02"
+],
+"focusId": "es:26:01"
+},
+{
+"title": "Рід адресата не визначає форму",
+"body": "Для одного одержувача беремо le незалежно від того, чоловік це чи жінка. Контекст про Ану чи Луїса допомагає перекладу, але займенник однаковий.",
+"note": "Адресат: Луїсу. Іспанська форма — le. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:06",
+"es:26:07"
+],
+"focusId": "es:26:06"
+},
+{
+"title": "Кількість одержувачів",
+"body": "Le di los libros: багато книжок, один адресат. Les di la llave: один ключ, кілька одержувачів. Рахуй людей, а не речі.",
+"note": "Адресат: студентам. Іспанська форма — les. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:17",
+"es:26:18"
+],
+"focusId": "es:26:17"
+},
+{
+"title": "Уточнення з a",
+"body": "Le mandé la foto a Ana: a Ana уточнює, кому саме. Тут поширений зразок із малим займенником; повтор le не створює другого адресата.",
+"note": "Адресат: Луїсу. Іспанська форма — le. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:02",
+"es:26:03"
+],
+"focusId": "es:26:02"
+},
+{
+"title": "Заперечення й місце",
+"body": "Біля особової форми займенник стоїть перед дієсловом, а no ще раніше: no le mandé… . Не замінюй le на lo лише через чоловічий рід переданої речі.",
+"note": "Адресат: студентам. Іспанська форма — les. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:13",
+"es:26:14"
+],
+"focusId": "es:26:13"
+},
+{
+"title": "Розбір за словами",
+"body": "Порівняй два завдання: «Ти купив йому квиток?» / «Я показав їм мапу.». Le чи les визначає одержувач, а не річ, яку передають. Смислові опори: «billete» — квиток (на транспорт, Іспанія).",
+"note": "Адресат: студентам. Іспанська форма — les. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:20",
+"es:26:21"
+],
+"focusId": "es:26:21"
+},
+{
+"title": "Перенесення на нову фразу",
+"body": "Порівняй два завдання: «Ми написали Луїсу вчора.» / «Ми показали їм фотографії?». Le чи les визначає одержувач, а не річ, яку передають. Назви одержувача листа, фотографії або речі. Не сплутай його з тим, що передали.",
+"note": "Адресат: моїм сестрам. Іспанська форма — les. Le чи les визначає одержувач, а не річ, яку передають.",
+"samples": [
+"es:26:44",
+"es:26:50"
+],
+"focusId": "es:26:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · di",
+"gloss": "я",
+"id": "es:26:11",
+"sample": "Le di la llave."
+},
+{
+"es": "tú · diste",
+"gloss": "ти",
+"id": "es:26:15",
+"sample": "¿Le diste la llave?"
+},
+{
+"es": "él · dio",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · dimos",
+"gloss": "ми",
+"id": "es:26:31",
+"sample": "Le dimos los libros."
+},
+{
+"es": "vosotros · disteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · dieron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "dar · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "я",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "tú · escribiste",
+"gloss": "ти",
+"id": "es:26:05",
+"sample": "¿Les escribiste una carta?"
+},
+{
+"es": "él · escribió",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "ми",
+"id": "es:26:41",
+"sample": "Les escribimos ayer."
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribieron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "yo · mandé",
+"gloss": "я",
+"id": "es:26:06",
+"sample": "Le mandé la foto."
+},
+{
+"es": "tú · mandaste",
+"gloss": "ти",
+"id": "es:26:10",
+"sample": "¿Le mandaste la foto?"
+},
+{
+"es": "él · mandó",
+"gloss": "він/вона/Ви",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · mandamos",
+"gloss": "ми",
+"id": "es:26:26",
+"sample": "Le mandamos un mensaje."
+},
+{
+"es": "vosotros · mandasteis",
+"gloss": "ви (друзі, Іспанія)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · mandaron",
+"gloss": "вони/ви (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "mandar · Простий минулий"
+},
+{
+"rows": [
+{
+"es": "le",
+"gloss": "один адресат",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "les",
+"gloss": "кілька адресатів",
+"id": "es:26:04",
+"sample": "Les escribí una carta a mis hermanas."
+}
+],
+"title": "Форми цього уроку"
+}
+]
+},
+"en": {
+"title": "Who receives it? Indirect objects with le and les",
+"formula": "le / les + conjugated verb + object",
+"story": "The letter is what was written. Luis is the person it was written to. In Le escribí una carta, le stands for the recipient, not the letter.",
+"use": "Name the recipient of a letter, photograph, or item. Don't confuse the recipient with the thing that was given.",
+"choose": "One recipient gives le regardless of whether it's a man or a woman. Specifying Ana or Luis helps clarify the translation, but the pronoun itself doesn't change.",
+"nuance": "Name the recipient of a letter, photograph, or item. Don't confuse the recipient with the thing that was given. Le or les is determined by the recipient, not by what is being transmitted.",
+"wrong": "Lo escribí una carta.",
+"right": "Le escribí una carta.",
+"chapters": [
+{
+"title": "What is being given, and who receives it?",
+"body": "In \"I gave her the key,\" the key was handed over, and the woman was given it. The subject is the direct object; she is the addressee. In Spanish, \"she\" here requires le.",
+"note": "To: Ane. The Spanish form is le. Le or les is determined by the recipient, not by the item being sent.",
+"samples": [
+"es:26:01",
+"es:26:02"
+],
+"focusId": "es:26:01"
+},
+{
+"title": "Does le tell us the recipient’s gender?",
+"body": "One recipient gives le regardless of whether it's a man or a woman. Specifying Ana or Luis helps clarify the translation, but the pronoun itself doesn't change.",
+"note": "To: Luis. The Spanish form is le. Le or les is determined by the recipient, not by the item being sent.",
+"samples": [
+"es:26:06",
+"es:26:07"
+],
+"focusId": "es:26:06"
+},
+{
+"title": "One recipient or several?",
+"body": "Le di los libros: Many books, one addressee. Les di la llave: One key, several recipients. Count the people, not the things given.",
+"note": "To: students. The Spanish form is les. Le or les is determined by the recipient, not by what is being sent.",
+"samples": [
+"es:26:17",
+"es:26:18"
+],
+"focusId": "es:26:17"
+},
+{
+"title": "Why add a Ana if le is already there?",
+"body": "Le mandé la foto a Ana: a Ana names the recipient. This is a practice of the common pattern with a short pronoun; don't count the repetition of le as a separate addressee.",
+"note": "To: Luis. The Spanish form is le. Le or les is determined by the recipient, not by the item being sent.",
+"samples": [
+"es:26:02",
+"es:26:03"
+],
+"focusId": "es:26:02"
+},
+{
+"title": "Where does le go in a negative sentence?",
+"body": "In the personal form, the pronoun comes before the verb, and no comes even earlier: no le mandé …. Don't replace le with lo just because the thing given is masculine.",
+"note": "To: students. The Spanish form is les. Le or les is determined by the recipient, not by what is being sent.",
+"samples": [
+"es:26:13",
+"es:26:14"
+],
+"focusId": "es:26:13"
+},
+{
+"title": "How do I build the message in order?",
+"body": "Compare the two tasks: \"Did you buy him a ticket?\" / \"I showed them the map.\" Le or les is determined by the recipient, not by what is being given. Semantic supports: \" billete \" is a ticket (for transport, Spain).",
+"note": "To: students. The Spanish form is les. Le or les is determined by the recipient, not by what is being sent.",
+"samples": [
+"es:26:20",
+"es:26:21"
+],
+"focusId": "es:26:21"
+},
+{
+"title": "Can I change the recipient?",
+"body": "Compare the two tasks: \"We wrote to Louis yesterday.\" / \"Did we show them the photos?\" Le or les is determined by the recipient, not by the thing being sent. Name the recipient of the letter, photo, or item. Don't confuse the recipient with the thing being sent.",
+"note": "To: My Sisters. The Spanish form is les. Le or les is determined by the recipient, not by the item being sent.",
+"samples": [
+"es:26:44",
+"es:26:50"
+],
+"focusId": "es:26:50"
+}
+],
+"tables": [
+{
+"rows": [
+{
+"es": "yo · di",
+"gloss": "I",
+"id": "es:26:11",
+"sample": "Le di la llave."
+},
+{
+"es": "tú · diste",
+"gloss": "you",
+"id": "es:26:15",
+"sample": "¿Le diste la llave?"
+},
+{
+"es": "él · dio",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · dimos",
+"gloss": "we",
+"id": "es:26:31",
+"sample": "Le dimos los libros."
+},
+{
+"es": "vosotros · disteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · dieron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "dar Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · escribí",
+"gloss": "I",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "tú · escribiste",
+"gloss": "you",
+"id": "es:26:05",
+"sample": "¿Les escribiste una carta?"
+},
+{
+"es": "él · escribió",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · escribimos",
+"gloss": "we",
+"id": "es:26:41",
+"sample": "Les escribimos ayer."
+},
+{
+"es": "vosotros · escribisteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · escribieron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "escribir Simple Past"
+},
+{
+"rows": [
+{
+"es": "yo · mandé",
+"gloss": "I",
+"id": "es:26:06",
+"sample": "Le mandé la foto."
+},
+{
+"es": "tú · mandaste",
+"gloss": "you",
+"id": "es:26:10",
+"sample": "¿Le mandaste la foto?"
+},
+{
+"es": "él · mandó",
+"gloss": "he/she/you",
+"id": null,
+"sample": ""
+},
+{
+"es": "nosotros · mandamos",
+"gloss": "we",
+"id": "es:26:26",
+"sample": "Le mandamos un mensaje."
+},
+{
+"es": "vosotros · mandasteis",
+"gloss": "you (friends, Spain)",
+"id": null,
+"sample": ""
+},
+{
+"es": "ellos · mandaron",
+"gloss": "they/you (ustedes)",
+"id": null,
+"sample": ""
+}
+],
+"title": "mandar Simple Past"
+},
+{
+"rows": [
+{
+"es": "le",
+"gloss": "One addressee",
+"id": "es:26:01",
+"sample": "Le escribí una carta."
+},
+{
+"es": "les",
+"gloss": "several addressees",
+"id": "es:26:04",
+"sample": "Les escribí una carta a mis hermanas."
+}
+],
+"title": "Forms of this lesson"
+}
+]
+}
+},
+"sharedActivities": [
+{
+"id": "es:26:01",
+"index": 0,
+"right": "Le",
+"near": "Les",
+"seq": [
+"Le",
+"escribí",
+"una",
+"carta"
+],
+"i": 0,
+"kind": "form",
+"key": "es26/lab/form1",
+"feedback": {
+"ru": "Местоимение: le — ему, ей, Вам (адресат).",
+"uk": "Займенник: le — йому, їй, Вам (адресат).",
+"en": "Pronoun: le — him, her, you (the addressee)."
+}
+},
+{
+"id": "es:26:13",
+"index": 1,
+"right": "les",
+"near": "le",
+"seq": [
+"No",
+"les",
+"di",
+"la",
+"llave"
+],
+"i": 12,
+"kind": "form",
+"key": "es26/lab/form2",
+"feedback": {
+"ru": "Местоимение: les — им, вам (адресаты).",
+"uk": "Займенник: les — їм, вам (адресати).",
+"en": "Pronoun: les — them, you (the addressees)."
+}
+},
+{
+"id": "es:26:26",
+"index": 0,
+"right": "Le",
+"near": "Les",
+"seq": [
+"Le",
+"mandamos",
+"un",
+"mensaje"
+],
+"i": 25,
+"kind": "form",
+"key": "es26/lab/form3",
+"feedback": {
+"ru": "Местоимение: le — ему, ей, Вам (адресат).",
+"uk": "Займенник: le — йому, їй, Вам (адресат).",
+"en": "Pronoun: le — him, her, you (the addressee)."
+}
+},
+{
+"id": "es:26:41",
+"index": 0,
+"right": "Les",
+"near": "Le",
+"seq": [
+"Les",
+"escribimos",
+"ayer"
+],
+"i": 40,
+"kind": "form",
+"key": "es26/lab/form4",
+"feedback": {
+"ru": "Местоимение: les — им, вам (адресаты).",
+"uk": "Займенник: les — їм, вам (адресати).",
+"en": "Pronoun: les — them, you (the addressees)."
+}
+},
+{
+"id": "es:26:07",
+"index": 0,
+"right": "Le",
+"near": "Les",
+"seq": [
+"Le",
+"mandé",
+"la",
+"receta",
+"a",
+"mi",
+"madre"
+],
+"i": 6,
+"kind": "spot",
+"key": "es26/lab/spot1",
+"feedback": {
+"ru": "Местоимение: le — ему, ей, Вам (адресат).",
+"uk": "Займенник: le — йому, їй, Вам (адресат).",
+"en": "Pronoun: le — him, her, you (the addressee)."
+}
+},
+{
+"id": "es:26:21",
+"index": 0,
+"right": "Les",
+"near": "Le",
+"seq": [
+"Les",
+"mostré",
+"el",
+"mapa"
+],
+"i": 20,
+"kind": "spot",
+"key": "es26/lab/spot2",
+"feedback": {
+"ru": "Местоимение: les — им, вам (адресаты).",
+"uk": "Займенник: les — їм, вам (адресати).",
+"en": "Pronoun: les — them, you (the addressees)."
+}
+},
+{
+"id": "es:26:32",
+"index": 0,
+"right": "Le",
+"near": "Les",
+"seq": [
+"Le",
+"dimos",
+"los",
+"libros",
+"a",
+"mi",
+"madre"
+],
+"i": 31,
+"kind": "spot",
+"key": "es26/lab/spot3",
+"feedback": {
+"ru": "Местоимение: le — ему, ей, Вам (адресат).",
+"uk": "Займенник: le — йому, їй, Вам (адресат).",
+"en": "Pronoun: le — him, her, you (the addressee)."
+}
+},
+{
+"id": "es:26:46",
+"index": 0,
+"right": "Les",
+"near": "Le",
+"seq": [
+"Les",
+"enseñamos",
+"las",
+"fotos"
+],
+"i": 45,
+"kind": "spot",
+"key": "es26/lab/spot4",
+"feedback": {
+"ru": "Местоимение: les — им, вам (адресаты).",
+"uk": "Займенник: les — їм, вам (адресати).",
+"en": "Pronoun: les — them, you (the addressees)."
+}
+},
+{
+"kind": "match",
+"key": "es26/lab/match1",
+"id": "es:26:02",
+"other": "es:26:04"
+},
+{
+"kind": "match",
+"key": "es26/lab/match2",
+"id": "es:26:17",
+"other": "es:26:18"
+},
+{
+"kind": "match",
+"key": "es26/lab/match3",
+"id": "es:26:33",
+"other": "es:26:34"
+},
+{
+"kind": "match",
+"key": "es26/lab/match4",
+"id": "es:26:46",
+"other": "es:26:47"
+},
+{
+"kind": "build",
+"key": "es26/lab/build1",
+"id": "es:26:04"
+},
+{
+"kind": "build",
+"key": "es26/lab/build2",
+"id": "es:26:15"
+},
+{
+"kind": "build",
+"key": "es26/lab/build3",
+"id": "es:26:29"
+},
+{
+"kind": "build",
+"key": "es26/lab/build4",
+"id": "es:26:42"
+},
+{
+"kind": "transform",
+"id": "es:26:03",
+"base": "es:26:01",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es26/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "es:26:28",
+"base": "es:26:26",
+"diff": [
+{
+"before": [],
+"after": [
+"No"
+]
+}
+],
+"key": "es26/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "es:26:39",
+"base": "es:26:36",
+"diff": [
+{
+"before": [],
+"after": [
+"a",
+"Ana"
+]
+}
+],
+"key": "es26/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "es:26:49",
+"base": "es:26:47",
+"diff": [
+{
+"before": [
+"Ana"
+],
+"after": [
+"mi",
+"madre"
+]
+}
+],
+"key": "es26/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+4,
+12
+],
+[
+9,
+13
+],
+[
+16,
+1
+],
+[
+5,
+2
+],
+[
+17,
+14
+],
+[
+19,
+7
+]
+],
+"worked": [
+"es:26:05",
+"es:26:18",
+"es:26:33",
+"es:26:48"
+],
+"reflection": [
+"es:26:02",
+"es:26:04"
+],
+"strategy": {
+"ru": "Сначала верни на место полное имя или название предмета. Теперь видно, кого или что заменяет короткое слово. Восстанови исходную фразу и проверь: участники не поменялись ролями?",
+"uk": "Спершу поверни на місце повне ім’я або назву предмета. Тепер видно, кого чи що замінює коротке слово. Віднови фразу й перевір: учасники не помінялися ролями?",
+"en": "Put the full name or noun back in place for a moment. Now you can see who or what the short word refers to. Swap it back: are the people still in the same roles?"
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

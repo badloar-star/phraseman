@@ -80,7 +80,7 @@ describe("retired Daily Tasks full-removal boundary", () => {
     expect(admin).not.toMatch(/data-action\s*=\s*['"]daily-reset['"]/);
   });
 
-  test("Daily Phrase, surveys and boons stay independently reachable and rewarded", () => {
+  test("Daily Phrase stays reachable after retirement of surveys and boons", () => {
     const home = read("app/(tabs)/home.tsx");
     const layout = read("app/_layout.tsx");
     const functionsIndex = read("functions/src/index.ts");
@@ -89,9 +89,8 @@ describe("retired Daily Tasks full-removal boundary", () => {
     expect(home).toContain("DailyPhraseCard");
     expect(functionsIndex).toContain("dailyPhraseSetSaved");
 
-    expect(exists("app/survey_screen.tsx")).toBe(true);
-    expect(exists("hooks/use_home_survey_entry.ts")).toBe(true);
-    expect(layout).toContain('name="survey_screen"');
+    expect(exists("app/survey_screen.tsx")).toBe(false);
+    expect(layout).not.toContain('name="survey_screen"');
     expect(functionsIndex).toContain("submitShardSurvey");
     expect(functionsIndex).toContain("getActiveShardSurvey");
 

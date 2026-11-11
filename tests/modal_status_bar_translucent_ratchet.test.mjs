@@ -19,7 +19,6 @@ const ALLOWED = {
   'components/CertificateNameModal.tsx': 1,
   'components/CleanOnboarding.tsx': 2,
   'components/home/HomeMistakesLockedSheet.tsx': 1,
-  'components/learning-v2/horizons/LearningV2Horizons.tsx': 1,
   'components/ReportUserModal.tsx': 1,
   // ждёт проверки клавиатуры Сверкой (решение координатора 26.10): форма с полем + KeyboardAvoidingView — флаг сдвигает
   // систему координат окна на Android; вернуть флаг только после кадров «клавиатура открыта, видны поле и кнопка»

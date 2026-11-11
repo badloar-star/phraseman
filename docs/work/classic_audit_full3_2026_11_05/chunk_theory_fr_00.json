@@ -1,0 +1,1030 @@
+[
+{
+"lesson": 1,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:01:01",
+"fr:01:02"
+],
+"textByLocale": {
+"en": "If you're standing at the door, say `Je suis ici`. The word `ici`—\"here\"—doesn't indicate who exactly is here. `je` does. A verb is placed between the person and the place. Its dictionary name is `être`, and the form for oneself is `suis`.",
+"ru": "Если у двери стоишь ты, скажи `Je suis ici`. Слово `ici` — «здесь» — не сообщает, кто именно здесь. Это делает `je`. Между человеком и местом ставят глагол. Его имя в словаре — `être`, а форма для себя — `suis`.",
+"uk": "Якщо біля дверей стоїш ти, скажи `Je suis ici`. Слово `ici` - \"тут\" - не повідомляє, хто саме тут. Це робить `je`. Між людиною та місцем ставлять дієслово. Його ім'я у словнику – `être`, а форма для себе – `suis`."
+}
+},
+{
+"exampleIds": [
+"fr:01:01",
+"fr:01:02",
+"fr:01:03"
+],
+"textByLocale": {
+"en": "Now a friend stands in the same place. The place hasn't changed: leave `ici`. Change the entire pair: `je suis` → `tu es`. If you change only the first word, you get error `tu suis ici` for this meaning.",
+"ru": "Теперь на том же месте стоит друг. Место не изменилось: оставь `ici`. Измени пару целиком: `je suis` → `tu es`. Если поменять только первое слово, получится ошибка `tu suis ici` для этого смысла.",
+"uk": "Тепер на тому ж місці стоїть друг. Місце не змінилося: залиш `ici`. Зміни пару повністю: `je suis` → `tu es`. Якщо поміняти тільки перше слово, вийде помилка `tu suis ici` для цього сенсу."
+}
+},
+{
+"exampleIds": [
+"fr:01:05",
+"fr:01:06",
+"fr:01:07"
+],
+"textByLocale": {
+"en": "One person's name matches `est`: the name takes the place of `il` or `elle`. If you speak for a group of which you are a part, take `nous sommes`. A group of other people — `ils sont` or `elles sont`.",
+"ru": "Имя одного человека сочетается с `est`: имя занимает место `il` или `elle`. Если говоришь за группу, в которую входишь сам, бери `nous sommes`. Группа других людей — `ils sont` или `elles sont`.",
+"uk": "Ім'я однієї людини поєднується з `est`: ім'я займає місце `il` або `elle`. Якщо говориш за групу, до якої входиш сам, бери `nous sommes`. Група інших людей - `ils sont` або `elles sont`."
+}
+},
+{
+"exampleIds": [
+"fr:01:11",
+"fr:01:12",
+"fr:01:17"
+],
+"textByLocale": {
+"en": "Not every place has the same word before it. `Ici` already denotes the place itself. Memorize the expressions `à la maison` and `au bureau` in their entirety. Don't add `à` before `ici`.",
+"ru": "Не перед каждым местом ставится одинаковое слово. `Ici` уже обозначает место само. Выражения `à la maison` и `au bureau` запоминай целиком. Не добавляй `à` перед `ici`.",
+"uk": "Не перед кожним місцем ставиться однакове слово. `Ici` вже позначає місце саме. Вирази `à la maison` і `au bureau` запам'ятай цілком. Не додавати `à` перед `ici`."
+}
+},
+{
+"exampleIds": [
+"fr:01:21",
+"fr:01:23",
+"fr:01:25"
+],
+"textByLocale": {
+"en": "A state can be stated after a verb. An adjective can change its written form: `prêt` refers to a man, `prête` refers to a woman. This is a separate choice from `est`: Paul and Leah share the same verb.",
+"ru": "После глагола можно назвать состояние. Прилагательное может менять письменную форму: `prêt` — о мужчине, `prête` — о женщине. Это отдельный выбор от `est`: у Поля и у Леа один и тот же глагол.",
+"uk": "Після дієслова можна назвати стан. Прикметник може змінювати письмову форму: `prêt` – про чоловіка, `prête` – про жінку. Це окремий вибір від `est`: у Поля і у Леа один і той же дієслово."
+}
+},
+{
+"exampleIds": [
+"fr:01:31",
+"fr:01:35",
+"fr:01:38"
+],
+"textByLocale": {
+"en": "Find what the message is about. One door is `la porte est`. Several doors are `les portes sont`. Look at the number of doors, not whether the phrase is short or long.",
+"ru": "Найди, о чём сообщение. Одна дверь — `la porte est`. Несколько дверей — `les portes sont`. Смотри на количество дверей, а не на то, короткая фраза или длинная.",
+"uk": "Знайди, про що повідомлення. Одні двері – `la porte est`. Декілька дверей – `les portes sont`. Дивись на кількість дверей, а не на те, коротка фраза або довга."
+}
+},
+{
+"exampleIds": [
+"fr:01:45",
+"fr:01:46",
+"fr:01:47"
+],
+"textByLocale": {
+"en": "Test yourself without a list of forms. First, name one key, then several keys. The location can remain the same. If you changed both the noun and `est` to `sont`, you applied the rule rather than memorizing the button locations.",
+"ru": "Проверь себя без списка форм. Сначала назови один ключ, затем несколько ключей. Место можно оставить тем же. Если ты поменял и существительное, и `est` на `sont`, ты применил правило, а не запомнил расположение кнопок.",
+"uk": "Перевір себе без списку форм. Спочатку назви один ключ, потім кілька ключів. Місце можна залишити тим самим. Якщо ти змінив і іменник, і `est` на `sont`, ти застосував правило, а не запам'ятав розташування кнопок."
+}
+}
+],
+"drills": [
+{
+"bad": "sont",
+"chapter": 1,
+"id": "fr:01:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 21,
+"options": [
+"sont",
+"suis",
+"êtes"
+],
+"slot": 1
+},
+{
+"bad": "sommes",
+"chapter": 1,
+"id": "fr:01:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"es",
+"est",
+"sommes"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 1,
+"id": "fr:01:05:lab",
+"item": 5,
+"kind": "match",
+"near": 25,
+"options": [
+"suis",
+"es",
+"est"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 2,
+"id": "fr:01:08:lab",
+"item": 8,
+"kind": "build",
+"near": 27,
+"options": [
+"es",
+"sommes",
+"êtes"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 2,
+"id": "fr:01:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 29,
+"options": [
+"sont",
+"êtes",
+"suis"
+],
+"slot": 1
+},
+{
+"bad": "êtes",
+"chapter": 2,
+"id": "fr:01:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"sommes",
+"êtes",
+"es"
+],
+"slot": 1
+},
+{
+"bad": "êtes",
+"chapter": 3,
+"id": "fr:01:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"est",
+"êtes",
+"sont"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 3,
+"id": "fr:01:17:lab",
+"item": 17,
+"kind": "match",
+"near": 9,
+"options": [
+"sont",
+"es",
+"sommes"
+],
+"slot": 1
+},
+{
+"bad": "est",
+"chapter": 3,
+"id": "fr:01:19:lab",
+"item": 19,
+"kind": "build",
+"near": 42,
+"options": [
+"est",
+"suis",
+"sont"
+],
+"slot": 1
+},
+{
+"bad": "suis",
+"chapter": 4,
+"id": "fr:01:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 3,
+"options": [
+"êtes",
+"es",
+"suis"
+],
+"slot": 1
+},
+{
+"bad": "êtes",
+"chapter": 4,
+"id": "fr:01:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 6,
+"options": [
+"êtes",
+"suis",
+"est"
+],
+"slot": 1
+},
+{
+"bad": "est",
+"chapter": 4,
+"id": "fr:01:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 44,
+"options": [
+"es",
+"sommes",
+"est"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 5,
+"id": "fr:01:29:lab",
+"item": 29,
+"kind": "match",
+"near": 10,
+"options": [
+"es",
+"sommes",
+"sont"
+],
+"slot": 1
+},
+{
+"bad": "es",
+"chapter": 5,
+"id": "fr:01:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"es",
+"est",
+"êtes"
+],
+"slot": 2
+},
+{
+"bad": "sont",
+"chapter": 5,
+"id": "fr:01:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"sommes",
+"sont",
+"est"
+],
+"slot": 2
+},
+{
+"bad": "suis",
+"chapter": 6,
+"id": "fr:01:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 33,
+"options": [
+"sont",
+"est",
+"suis"
+],
+"slot": 2
+},
+{
+"bad": "êtes",
+"chapter": 6,
+"id": "fr:01:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 38,
+"options": [
+"sont",
+"est",
+"êtes"
+],
+"slot": 2
+},
+{
+"bad": "êtes",
+"chapter": 6,
+"id": "fr:01:42:lab",
+"item": 42,
+"kind": "match",
+"near": 19,
+"options": [
+"êtes",
+"es",
+"suis"
+],
+"slot": 1
+},
+{
+"bad": "sommes",
+"chapter": 7,
+"id": "fr:01:45:lab",
+"item": 45,
+"kind": "build",
+"near": 5,
+"options": [
+"est",
+"sommes",
+"suis"
+],
+"slot": 2
+},
+{
+"bad": "suis",
+"chapter": 7,
+"id": "fr:01:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 16,
+"options": [
+"sommes",
+"suis",
+"êtes"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"être",
+"je suis"
+],
+[
+"tu",
+"tu es"
+],
+[
+"il / elle / on",
+"est"
+],
+[
+"nous",
+"sommes"
+],
+[
+"vous",
+"êtes"
+],
+[
+"ils / elles",
+"sont"
+]
+],
+"title": {
+"en": "I'm here: `je suis`, `tu es`",
+"ru": "Я здесь: `je suis`, `tu es`",
+"uk": "Я тут: `je suis`, `tu es`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:01:01",
+"target": "Je suis ici.",
+"ru": "Я здесь.",
+"uk": "Я тут."
+},
+{
+"id": "fr:01:02",
+"target": "Tu es ici.",
+"ru": "Ты здесь.",
+"uk": "Ти тут."
+},
+{
+"id": "fr:01:03",
+"target": "Tu es là.",
+"ru": "Ты там.",
+"uk": "Ти там."
+},
+{
+"id": "fr:01:05",
+"target": "Léa est ici.",
+"ru": "Леа здесь.",
+"uk": "Леа тут."
+},
+{
+"id": "fr:01:06",
+"target": "Paul est là.",
+"ru": "Поль там.",
+"uk": "Поль там."
+},
+{
+"id": "fr:01:07",
+"target": "Nous sommes ici.",
+"ru": "Мы здесь.",
+"uk": "Ми тут."
+},
+{
+"id": "fr:01:11",
+"target": "Je suis à la maison.",
+"ru": "Я дома.",
+"uk": "Я вдома."
+},
+{
+"id": "fr:01:12",
+"target": "Tu es à la maison.",
+"ru": "Ты дома.",
+"uk": "Ти вдома."
+},
+{
+"id": "fr:01:17",
+"target": "Ils sont au bureau.",
+"ru": "Они в офисе.",
+"uk": "Вони в офісі."
+},
+{
+"id": "fr:01:21",
+"target": "Je suis prêt.",
+"ru": "Я готов.",
+"uk": "Я готовий."
+},
+{
+"id": "fr:01:23",
+"target": "Elle est prête.",
+"ru": "Она готова.",
+"uk": "Вона готова."
+},
+{
+"id": "fr:01:25",
+"target": "Léa est fatiguée.",
+"ru": "Леа устала.",
+"uk": "Леа втомилася."
+},
+{
+"id": "fr:01:31",
+"target": "La porte est ouverte.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені."
+},
+{
+"id": "fr:01:35",
+"target": "La maison est proche.",
+"ru": "Дом рядом.",
+"uk": "Будинок поряд."
+},
+{
+"id": "fr:01:38",
+"target": "Les portes sont ouvertes.",
+"ru": "Двери открыты.",
+"uk": "Двері відчинені."
+},
+{
+"id": "fr:01:45",
+"target": "La clé est ici.",
+"ru": "Ключ здесь.",
+"uk": "Ключ тут."
+},
+{
+"id": "fr:01:46",
+"target": "Les clés sont là.",
+"ru": "Ключи там.",
+"uk": "Ключі там."
+},
+{
+"id": "fr:01:47",
+"target": "Le sac est à la maison.",
+"ru": "Сумка дома.",
+"uk": "Сумка вдома."
+}
+]
+},
+{
+"lesson": 2,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:02:01",
+"fr:02:02"
+],
+"textByLocale": {
+"en": "The student already knows how to communicate that they are here. To refute this, don't change \"I\" and \"here.\" Enclose the finite verb in two negative parts. It's helpful to imagine two parentheses around the action.",
+"ru": "Ученик уже умеет сообщать, что он здесь. Чтобы опровергнуть это, не меняй «я» и «здесь». Заключи личную форму глагола в две части отрицания. Удобно представить две скобки вокруг действия.",
+"uk": "Учень уже вміє повідомляти, що він тут. Щоб спростувати це, не міняй «я» та «тут». Уклади особисту форму дієслова в дві частини заперечення. Зручно уявити дві дужки навколо дії."
+}
+},
+{
+"exampleIds": [
+"fr:02:01",
+"fr:02:03",
+"fr:02:04"
+],
+"textByLocale": {
+"en": "Compare `je ne suis pas` and `tu n’es pas`. Before a vowel, `ne` loses `e` and gains an apostrophe. Write `n’es` as one word, but `pas` remains a separate word after the verb.",
+"ru": "Сравни `je ne suis pas` и `tu n’es pas`. Перед гласной `ne` теряет `e` и получает апостроф. Пиши `n’es` слитно, но `pas` остаётся отдельным словом после глагола.",
+"uk": "Порівняй `je ne suis pas` і `tu n’es pas`. Перед голосною `ne` втрачає `e` і отримує апостроф. Пиши `n’es` разом, але `pas` залишається окремим словом після дієслова."
+}
+},
+{
+"exampleIds": [
+"fr:02:07",
+"fr:02:08",
+"fr:02:09"
+],
+"textByLocale": {
+"en": "In negation, the person does not disappear: for \"we\" you still need `sommes`. For polite address - `êtes`. Choose the form you would choose in the affirmative, and only then add the negation.",
+"ru": "В отрицании лицо не исчезает: для «мы» по-прежнему нужно `sommes`. Для вежливого обращения — `êtes`. Выбери форму, которую выбрал бы в утверждении, и только потом добавь отрицание.",
+"uk": "У запереченні обличчя не зникає: для «ми», як і раніше, потрібно `sommes`. Для ввічливого звернення — `êtes`. Вибери форму, яку вибрав би у твердженні, і тільки потім додай заперечення."
+}
+},
+{
+"exampleIds": [
+"fr:02:21",
+"fr:02:22",
+"fr:02:23"
+],
+"textByLocale": {
+"en": "An object also has a subject. `La porte` remains before the negation. First, determine whether it's one door or several, then choose `n’est` or `ne sont`.",
+"ru": "У предмета тоже есть подлежащее. `La porte` остаётся перед отрицанием. Сначала выясни, одна это дверь или несколько, затем выбирай `n’est` или `ne sont`.",
+"uk": "У предмета теж є підмет. `La porte` залишається перед запереченням. Спочатку з'ясуй, одні це двері або кілька, потім вибирай `n’est` або `ne sont`."
+}
+},
+{
+"exampleIds": [
+"fr:02:31",
+"fr:02:33",
+"fr:02:36"
+],
+"textByLocale": {
+"en": "`Pas` usually occurs not at the end of the sentence, but immediately after the simple personal form. In `n’est pas dans le sac`, the reference to the bag follows the negation.",
+"ru": "`Pas` обычно стоит не в конце всей фразы, а сразу после простой личной формы. В `n’est pas dans le sac` слова о сумке следуют уже после отрицания.",
+"uk": "`Pas` зазвичай стоїть не в кінці всієї фрази, а відразу після простої особистої форми. У `n’est pas dans le sac` слова про сумку йдуть вже після заперечення."
+}
+},
+{
+"exampleIds": [
+"fr:02:41",
+"fr:02:42",
+"fr:02:43"
+],
+"textByLocale": {
+"en": "The expected result has not yet occurred: `pas encore` — \"not yet.\" Don't confuse it with `encore` without the negation: the sentence changes its meaning, not just its length.",
+"ru": "Ожидаемый результат ещё не наступил: `pas encore` — «пока не». Не путай с `encore` без отрицания: у фразы меняется смысл, а не только длина.",
+"uk": "Очікуваний результат ще не настав: `pas encore` - \"поки що\". Не плутай з `encore` без заперечення: у фрази змінюється сенс, а не лише довжина."
+}
+},
+{
+"exampleIds": [
+"fr:02:47",
+"fr:02:49",
+"fr:02:50"
+],
+"textByLocale": {
+"en": "In conversation, you might hear a negation without the first part. Here, the full neutral spelling serves as a model. Check two points: where the verb form is and where `pas` appears.",
+"ru": "В разговоре можно услышать отрицание без первой части. Здесь образцом служит полное нейтральное написание. Проверяй две опоры: где форма глагола и где стоит `pas`.",
+"uk": "У розмові можна почути заперечення без першої частини. Тут зразком є ​​повне нейтральне написання. Перевіряй дві опори: де форма дієслова та де стоїть `pas`."
+}
+}
+],
+"drills": [
+{
+"bad": "pas",
+"chapter": 1,
+"id": "fr:02:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 11,
+"options": [
+"en",
+"pas",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "n’est",
+"chapter": 1,
+"id": "fr:02:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"n’es",
+"n’êtes",
+"n’est"
+],
+"slot": 1
+},
+{
+"bad": "n’es",
+"chapter": 1,
+"id": "fr:02:05:lab",
+"item": 5,
+"kind": "match",
+"near": 42,
+"options": [
+"n’êtes",
+"n’est",
+"n’es"
+],
+"slot": 1
+},
+{
+"bad": "n’es",
+"chapter": 2,
+"id": "fr:02:08:lab",
+"item": 8,
+"kind": "build",
+"near": 41,
+"options": [
+"n’est",
+"n’es",
+"n’êtes"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 2,
+"id": "fr:02:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 27,
+"options": [
+"jamais",
+"en",
+"ne"
+],
+"slot": 1
+},
+{
+"bad": "n’es",
+"chapter": 2,
+"id": "fr:02:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 4,
+"options": [
+"n’es",
+"n’est",
+"n’êtes"
+],
+"slot": 1
+},
+{
+"bad": "n’êtes",
+"chapter": 3,
+"id": "fr:02:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 3,
+"options": [
+"n’est",
+"n’es",
+"n’êtes"
+],
+"slot": 1
+},
+{
+"bad": "jamais",
+"chapter": 3,
+"id": "fr:02:17:lab",
+"item": 17,
+"kind": "match",
+"near": 11,
+"options": [
+"te",
+"ne",
+"jamais"
+],
+"slot": 1
+},
+{
+"bad": "n’es",
+"chapter": 3,
+"id": "fr:02:19:lab",
+"item": 19,
+"kind": "build",
+"near": 48,
+"options": [
+"n’es",
+"n’est",
+"n’êtes"
+],
+"slot": 1
+},
+{
+"bad": "n’êtes",
+"chapter": 4,
+"id": "fr:02:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 26,
+"options": [
+"n’est",
+"n’es",
+"n’êtes"
+],
+"slot": 2
+},
+{
+"bad": "n’êtes",
+"chapter": 4,
+"id": "fr:02:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 25,
+"options": [
+"n’es",
+"n’est",
+"n’êtes"
+],
+"slot": 2
+},
+{
+"bad": "n’êtes",
+"chapter": 4,
+"id": "fr:02:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 47,
+"options": [
+"n’est",
+"n’êtes",
+"n’es"
+],
+"slot": 2
+},
+{
+"bad": "n’es",
+"chapter": 5,
+"id": "fr:02:29:lab",
+"item": 29,
+"kind": "match",
+"near": 25,
+"options": [
+"n’êtes",
+"n’es",
+"n’est"
+],
+"slot": 2
+},
+{
+"bad": "n’es",
+"chapter": 5,
+"id": "fr:02:31:lab",
+"item": 31,
+"kind": "build",
+"near": 49,
+"options": [
+"n’es",
+"n’est",
+"n’êtes"
+],
+"slot": 2
+},
+{
+"bad": "lui",
+"chapter": 5,
+"id": "fr:02:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 39,
+"options": [
+"lui",
+"le",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "n’êtes",
+"chapter": 6,
+"id": "fr:02:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 18,
+"options": [
+"n’est",
+"n’êtes",
+"n’es"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 6,
+"id": "fr:02:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 34,
+"options": [
+"te",
+"la",
+"ne"
+],
+"slot": 2
+},
+{
+"bad": "n’es",
+"chapter": 6,
+"id": "fr:02:42:lab",
+"item": 42,
+"kind": "match",
+"near": 5,
+"options": [
+"n’es",
+"n’êtes",
+"n’est"
+],
+"slot": 1
+},
+{
+"bad": "n’es",
+"chapter": 7,
+"id": "fr:02:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"n’est",
+"n’êtes",
+"n’es"
+],
+"slot": 2
+},
+{
+"bad": "n’est",
+"chapter": 7,
+"id": "fr:02:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 19,
+"options": [
+"n’êtes",
+"n’es",
+"n’est"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"Je suis ici.",
+"Je ne suis pas ici."
+],
+[
+"Tu es là.",
+"Tu n’es pas là."
+],
+[
+"Elle est prête.",
+"Elle n’est pas prête."
+],
+[
+"Nous sommes prêts.",
+"Nous ne sommes pas prêts."
+],
+[
+"Ils sont dehors.",
+"Ils ne sont pas dehors."
+]
+],
+"title": {
+"en": "How to say \"not\": `ne … pas`",
+"ru": "Как сказать «не»: `ne … pas`",
+"uk": "Як сказати «ні»: `ne … pas`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:02:01",
+"target": "Je ne suis pas là.",
+"ru": "Меня здесь нет.",
+"uk": "Мене тут немає."
+},
+{
+"id": "fr:02:02",
+"target": "Tu n’es pas ici.",
+"ru": "Тебя здесь нет.",
+"uk": "Тебе тут немає."
+},
+{
+"id": "fr:02:03",
+"target": "Tu n’es pas là.",
+"ru": "Тебя там нет.",
+"uk": "Тебе там немає."
+},
+{
+"id": "fr:02:04",
+"target": "Elle n’est pas là.",
+"ru": "Её там нет.",
+"uk": "Її там немає."
+},
+{
+"id": "fr:02:07",
+"target": "Nous ne sommes pas à la gare.",
+"ru": "Нас нет на станции.",
+"uk": "Нас немає на станції."
+},
+{
+"id": "fr:02:08",
+"target": "Vous n’êtes pas à la maison.",
+"ru": "Вас нет дома.",
+"uk": "Вас немає вдома."
+},
+{
+"id": "fr:02:09",
+"target": "Ils ne sont pas dehors.",
+"ru": "Их нет на улице.",
+"uk": "Їх немає надворі."
+},
+{
+"id": "fr:02:21",
+"target": "La porte n’est pas ouverte.",
+"ru": "Дверь не открыта.",
+"uk": "Двері не відчинені."
+},
+{
+"id": "fr:02:22",
+"target": "Le café n’est pas fermé.",
+"ru": "Кафе не закрыто.",
+"uk": "Кафе не зачинене."
+},
+{
+"id": "fr:02:23",
+"target": "Les magasins ne sont pas ouverts.",
+"ru": "Магазины не открыты.",
+"uk": "Магазини не відкриті."
+},
+{
+"id": "fr:02:31",
+"target": "Le bus n’est pas loin.",
+"ru": "Автобус недалеко.",
+"uk": "Автобус недалеко."
+},
+{
+"id": "fr:02:33",
+"target": "Le ticket n’est pas dans le sac.",
+"ru": "Билета нет в сумке.",
+"uk": "Квитка немає в сумці."
+},
+{
+"id": "fr:02:36",
+"target": "Mon téléphone n’est pas ici.",
+"ru": "Моего телефона здесь нет.",
+"uk": "Мого телефону тут немає."
+},
+{
+"id": "fr:02:41",
+"target": "Je ne suis pas encore à la maison.",
+"ru": "Меня ещё нет дома.",
+"uk": "Я ще не вдома."
+},
+{
+"id": "fr:02:42",
+"target": "Elle n’est pas encore au bureau.",
+"ru": "Её ещё нет в офисе.",
+"uk": "Вона ще не в офісі."
+},
+{
+"id": "fr:02:43",
+"target": "Le déjeuner n’est pas prêt.",
+"ru": "Обед не готов.",
+"uk": "Обід не готовий."
+},
+{
+"id": "fr:02:47",
+"target": "Le couloir n’est pas très large.",
+"ru": "Коридор не очень широкий.",
+"uk": "Коридор не дуже широкий."
+},
+{
+"id": "fr:02:49",
+"target": "Le bus n’est pas encore là.",
+"ru": "Автобуса ещё нет.",
+"uk": "Автобус ще не прибув."
+},
+{
+"id": "fr:02:50",
+"target": "Nous ne sommes pas loin de la gare.",
+"ru": "Мы недалеко от вокзала.",
+"uk": "Ми недалеко від станції."
+}
+]
+}
+]

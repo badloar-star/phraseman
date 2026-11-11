@@ -8,7 +8,7 @@
 // Фотостудия (dev-маршрут, просмотр со studio): payload.studioTemplate = id шаблона → примерные данные макета.
 // ═══════════════════════════════════════════════════════════════════════════
 import { ALL_ACHIEVEMENTS } from '../../../app/achievements';
-import { coinRankRowForDisplay, isValidCoinRank } from '../../../app/coin_rank_table_v1';
+import { coinRankPaidPriceFromStoryPayload, coinRankRowForDisplay, isValidCoinRank } from '../../../app/coin_rank_table_v1';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { nextStreakMilestone } from '../../streak/moments/streak_milestones';
 import { DAY_MS, dayKeyToMs } from './story_template_dates';
@@ -95,9 +95,12 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
       return { id: 'peakweek', tier: int(p.floor), outcome, place: int(p.place), total: int(p.total), weekCoins: int(p.weekCoins), promotionCoins: int(p.promotionCoins), podium: podiumOf(p) };
     }
     case 'coin_rank_up': {
-      const toRank = int(p.toRank, -1);
-      if (toRank < 0) return null;
-      const price = isValidCoinRank(toRank) ? coinRankRowForDisplay(toRank).priceToReach : toRank * 1000;
+      // Денежная история принимает только настоящий сырой ранг: общий int()
+      // умеет превращать '6' и 6.9 в 6, что маскировало битый payload.
+      if (!isValidCoinRank(p.toRank) || p.toRank === 0) return null;
+      const toRank = p.toRank;
+      const price = coinRankPaidPriceFromStoryPayload(p, toRank);
+      if (price === null) return null;
       const nextPrice = isValidCoinRank(toRank + 1) ? coinRankRowForDisplay(toRank + 1).priceToReach : null;
       return { id: 'rank', toRank, price, nextPrice };
     }

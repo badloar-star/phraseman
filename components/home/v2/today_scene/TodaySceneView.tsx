@@ -49,8 +49,8 @@ const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionic
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
 
-/** Строка опроса дня в панели «Задания дня» (владелец 22.10: опрос живёт на экране «Сегодня», Главная — строго по макету). */
-export type TodayScenePollRow = Readonly<{ title: string; subtitle: string; onPress: () => void; /** ✕ (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; /** Плитка с бриллиантом Plus вместо значка опроса. */ plus?: boolean }>;
+/** Предложение пробного Plus в панели «Задания дня». */
+export type TodaySceneTrialRow = Readonly<{ title: string; subtitle: string; onPress: () => void; /** ✕ (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; }>;
 
 export type TodaySceneViewProps = Readonly<{
   /** Заголовок экрана справа от «назад» (28/34, белый) — на языке интерфейса. */
@@ -65,11 +65,11 @@ export type TodaySceneViewProps = Readonly<{
   onBack: () => void;
   backLabel: string;
   onOpenTask: (task: TodayTask) => void;
-  /** Строка опроса дня после заданий; null — опроса сейчас нет (набора нет или он пройден). */
-  pollRow?: TodayScenePollRow | null;
+  /** Пробный Plus, если он доступен пользователю. */
+  trialRow?: TodaySceneTrialRow | null;
 }>;
 
-const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, fromProgress, onBack, backLabel, onOpenTask, pollRow = null }: TodaySceneViewProps) {
+const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, fromProgress, onBack, backLabel, onOpenTask, trialRow = null }: TodaySceneViewProps) {
   // зачем (FONTSCALE2, 2 · ДИЗАЙН 22.10): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const s = useScaledTextStyles(baseStyles);
   const { fontScale, height: windowH } = useWindowDimensions();
@@ -203,29 +203,23 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             </V2Pressable>
           );
         })}
-        {/* зачем (владелец 22.10 кнопкой: опрос дня — строкой на «Сегодня»): та же строка, что была в карточке «Сегодня» на Главной */}
-        {pollRow ? (
+        {trialRow ? (
           <V2Pressable
-            testID="today-scene-row-poll"
+            testID="today-scene-row-trial"
             accessibilityRole="button"
-            accessibilityLabel={`${pollRow.title}. ${pollRow.subtitle}`}
-            onPress={pollRow.onPress}
+            accessibilityLabel={`${trialRow.title}. ${trialRow.subtitle}`}
+            onPress={trialRow.onPress}
             scaleTo={0.97}
             style={[s.row, { borderTopColor: separator, borderTopWidth: 1 }]} // shadow-ok: разделитель строк (верхняя линия 1, как у строк заданий; не обводка контейнера)
           >
-            {pollRow.plus ? (
-              // зачем (макет plus-task): плитка с бриллиантом Plus — цвета бейджа аватарки (фиолет → голубой), белый бриллиант; арт, не поверхность темы
-              <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.ic}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
-            ) : (
-              <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={card.text} /></View>
-            )}
+            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.ic}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
             <View style={s.tx}>
-              <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{pollRow.title}</Text>
-              <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{pollRow.subtitle}</Text>
+              <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{trialRow.title}</Text>
+              <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{trialRow.subtitle}</Text>
             </View>
-            {pollRow.onDismiss ? (
+            {trialRow.onDismiss ? (
               // зачем: ✕ — своя зона нажатия 44×44, тап не доходит до строки и не открывает окно подписки
-              <Pressable testID="today-scene-row-poll-dismiss" accessibilityRole="button" accessibilityLabel={pollRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={pollRow.onDismiss} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
+              <Pressable testID="today-scene-row-trial-dismiss" accessibilityRole="button" accessibilityLabel={trialRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={trialRow.onDismiss} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
                 <Ionicons name="close" size={18} color={card.secondary} />
               </Pressable>
             ) : null}

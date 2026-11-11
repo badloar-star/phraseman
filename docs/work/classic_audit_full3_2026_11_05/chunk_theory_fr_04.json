@@ -1,0 +1,1050 @@
+[
+{
+"lesson": 9,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:09:01",
+"fr:09:02",
+"fr:09:03"
+],
+"textByLocale": {
+"en": "First, determine who the item belongs to. `Mon` or `ma` - me, `ton` or `ta` - you. The final choice depends not on the owner's gender, but on the item itself.",
+"ru": "Сначала установи, кому принадлежит вещь. `Mon` или `ma` — мне, `ton` или `ta` — тебе. Окончательный выбор зависит не от пола владельца, а от самой вещи.",
+"uk": "Спочатку встанови, кому належить річ. `Mon` чи `ma` – мені, `ton` чи `ta` – тобі. Остаточний вибір залежить не від статі власника, а від самої речі."
+}
+},
+{
+"exampleIds": [
+"fr:09:03",
+"fr:09:05",
+"fr:09:06"
+],
+"textByLocale": {
+"en": "Compare one key `ma clé` and several keys `mes clés`. The owner remains the same. This number of keys has changed the word before them. Gender is no longer distinguished in the plural.",
+"ru": "Сравни один ключ `ma clé` и несколько `mes clés`. Владелец остался тем же. Это число ключей изменило слово перед ними. Род во множественном числе уже не различается.",
+"uk": "Порівняй один ключ `ma clé` і кілька `mes clés`. Власник залишився тим самим. Це число ключів змінило слово перед ними. Рід у множині вже не відрізняється."
+}
+},
+{
+"exampleIds": [
+"fr:09:07",
+"fr:09:08",
+"fr:09:09"
+],
+"textByLocale": {
+"en": "`Son sac` can refer to both his bag and her bag. The gender of the person cannot be determined from the form `son`. The owner can be determined by the context, not by another French tile.",
+"ru": "`Son sac` может означать и его сумку, и её сумку. Из формы `son` нельзя вычислить пол человека. Прояснить владельца может контекст, а не другая французская плитка.",
+"uk": "`Son sac` може означати його сумку, і її сумку. З форми `son` не можна обчислити стать людини. Прояснити власника може контекст, а чи не інша французька плитка."
+}
+},
+{
+"exampleIds": [
+"fr:09:11",
+"fr:09:13",
+"fr:09:15"
+],
+"textByLocale": {
+"en": "If there are multiple owners, first select the family `notre`, `votre`, or `leur`. One item is `leur chambre`, several are `leurs chambres`.",
+"ru": "Если владельцев несколько, сначала выбери семейство `notre`, `votre` или `leur`. Один предмет у них — `leur chambre`, несколько — `leurs chambres`.",
+"uk": "Якщо власників кілька, спочатку вибери сімейство `notre`, `votre` або `leur`. Один предмет у них – `leur chambre`, кілька – `leurs chambres`."
+}
+},
+{
+"exampleIds": [
+"fr:09:20",
+"fr:09:21",
+"fr:09:25"
+],
+"textByLocale": {
+"en": "Like the article, the possessive marker comes before the name. The combination `le mon sac` is not a neutral way of saying \"my bag.\" Keep only one determiner.",
+"ru": "Как и артикль, показатель принадлежности стоит перед названием. Сочетание `le mon sac` не является нейтральным способом сказать «моя сумка». Оставь только один определитель.",
+"uk": "Як і артикль, показник приналежності стоїть перед назвою. Поєднання `le mon sac` не є нейтральним способом сказати моя сумка. Залиш лише один визначник."
+}
+},
+{
+"exampleIds": [
+"fr:09:31",
+"fr:09:32",
+"fr:09:33"
+],
+"textByLocale": {
+"en": "Before a feminine word beginning with a vowel or mute `h`, `mon`, `ton`, and `son` are possible for the sake of convenient sound combinations. This is why `mon adresse`, even though `adresse` is feminine, is used.",
+"ru": "Перед словом женского рода, начинающимся с гласной или немого `h`, возможны `mon`, `ton`, `son` ради удобного соединения звуков. Именно поэтому `mon adresse`, хотя `adresse` женского рода.",
+"uk": "Перед іменником жіночого роду, що починається з голосного або німого `h`, для плавної вимови вживають `mon`, `ton`, `son`. Тому кажуть `mon adresse`, хоча `adresse` жіночого роду."
+}
+},
+{
+"exampleIds": [
+"fr:09:41",
+"fr:09:45",
+"fr:09:50"
+],
+"textByLocale": {
+"en": "Collect the entire group. Don't transfer the same form to different objects: in \"your glasses are in your case,\" the glasses and case have different quantities.",
+"ru": "Собери всю группу целиком. Не переноси одну и ту же форму на разные вещи: в «твои очки в твоём футляре» количество у очков и у футляра разное.",
+"uk": "Збери всю групу повністю. Не переноси ту саму форму на різні речі: у «твої окуляри у твоєму футлярі» кількість у очок і у футляра різна."
+}
+}
+],
+"drills": [
+{
+"bad": "Vos",
+"chapter": 1,
+"id": "fr:09:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"Mon",
+"Vos",
+"Mes"
+],
+"slot": 0
+},
+{
+"bad": "Mes",
+"chapter": 1,
+"id": "fr:09:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"Ma",
+"Votre",
+"Mes"
+],
+"slot": 0
+},
+{
+"bad": "Notre",
+"chapter": 1,
+"id": "fr:09:05:lab",
+"item": 5,
+"kind": "match",
+"near": 6,
+"options": [
+"Vos",
+"Notre",
+"Mes"
+],
+"slot": 0
+},
+{
+"bad": "Leur",
+"chapter": 2,
+"id": "fr:09:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"Tes",
+"Sa",
+"Leur"
+],
+"slot": 0
+},
+{
+"bad": "Notre",
+"chapter": 2,
+"id": "fr:09:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 1,
+"options": [
+"Notre",
+"Ta",
+"Mon"
+],
+"slot": 0
+},
+{
+"bad": "Ton",
+"chapter": 2,
+"id": "fr:09:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Ses",
+"Ton",
+"Votre"
+],
+"slot": 0
+},
+{
+"bad": "Sa",
+"chapter": 3,
+"id": "fr:09:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"Vos",
+"Ton",
+"Sa"
+],
+"slot": 0
+},
+{
+"bad": "Ta",
+"chapter": 3,
+"id": "fr:09:17:lab",
+"item": 17,
+"kind": "match",
+"near": 43,
+"options": [
+"Ta",
+"Mes",
+"Notre"
+],
+"slot": 0
+},
+{
+"bad": "Son",
+"chapter": 3,
+"id": "fr:09:19:lab",
+"item": 19,
+"kind": "build",
+"near": 5,
+"options": [
+"Son",
+"Mes",
+"Votre"
+],
+"slot": 0
+},
+{
+"bad": "notre",
+"chapter": 4,
+"id": "fr:09:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 29,
+"options": [
+"ses",
+"notre",
+"ta"
+],
+"slot": 2
+},
+{
+"bad": "ta",
+"chapter": 4,
+"id": "fr:09:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 23,
+"options": [
+"son",
+"ta",
+"sa"
+],
+"slot": 2
+},
+{
+"bad": "nos",
+"chapter": 4,
+"id": "fr:09:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 42,
+"options": [
+"vos",
+"nos",
+"sa"
+],
+"slot": 2
+},
+{
+"bad": "sa",
+"chapter": 5,
+"id": "fr:09:29:lab",
+"item": 29,
+"kind": "match",
+"near": 45,
+"options": [
+"son",
+"ton",
+"sa"
+],
+"slot": 2
+},
+{
+"bad": "Tes",
+"chapter": 5,
+"id": "fr:09:31:lab",
+"item": 31,
+"kind": "build",
+"near": 18,
+"options": [
+"Tes",
+"Vos",
+"Mon"
+],
+"slot": 0
+},
+{
+"bad": "Tes",
+"chapter": 5,
+"id": "fr:09:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 1,
+"options": [
+"Sa",
+"Mon",
+"Tes"
+],
+"slot": 0
+},
+{
+"bad": "Leurs",
+"chapter": 6,
+"id": "fr:09:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 11,
+"options": [
+"Votre",
+"Leurs",
+"Notre"
+],
+"slot": 0
+},
+{
+"bad": "Ton",
+"chapter": 6,
+"id": "fr:09:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 7,
+"options": [
+"Son",
+"Notre",
+"Ton"
+],
+"slot": 0
+},
+{
+"bad": "son",
+"chapter": 6,
+"id": "fr:09:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"son",
+"nos",
+"vos"
+],
+"slot": 2
+},
+{
+"bad": "leurs",
+"chapter": 7,
+"id": "fr:09:45:lab",
+"item": 45,
+"kind": "build",
+"near": 29,
+"options": [
+"leurs",
+"ma",
+"tes"
+],
+"slot": 2
+},
+{
+"bad": "vos",
+"chapter": 7,
+"id": "fr:09:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 27,
+"options": [
+"leurs",
+"ton",
+"vos"
+],
+"slot": 3
+}
+],
+"table": [
+[
+"je",
+"mon sac / ma clé / mes clés"
+],
+[
+"tu",
+"ton sac / ta clé / tes clés"
+],
+[
+"il / elle",
+"son sac / sa clé / ses clés"
+],
+[
+"nous",
+"notre sac / nos sacs"
+],
+[
+"vous",
+"votre sac / vos sacs"
+],
+[
+"ils / elles",
+"leur sac / leurs sacs"
+]
+],
+"title": {
+"en": "Whose item: `mon`, `ma`, `mes`",
+"ru": "Чья вещь: `mon`, `ma`, `mes`",
+"uk": "Чия річ: `mon`, `ma`, `mes`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:09:01",
+"target": "Mon sac est ici.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут."
+},
+{
+"id": "fr:09:02",
+"target": "Ton sac est ici.",
+"ru": "Твоя сумка здесь.",
+"uk": "Твоя сумка тут."
+},
+{
+"id": "fr:09:03",
+"target": "Ma clé est là.",
+"ru": "Мой ключ там.",
+"uk": "Мій ключ там."
+},
+{
+"id": "fr:09:05",
+"target": "Mes clés sont ici.",
+"ru": "Мои ключи здесь.",
+"uk": "Мої ключі тут."
+},
+{
+"id": "fr:09:06",
+"target": "Tes clés sont ici.",
+"ru": "Твои ключи здесь.",
+"uk": "Твої ключі тут."
+},
+{
+"id": "fr:09:07",
+"target": "Son sac est dehors.",
+"ru": "Его сумка снаружи.",
+"uk": "Його сумка зовні."
+},
+{
+"id": "fr:09:08",
+"target": "Sa veste est dehors.",
+"ru": "Его куртка снаружи.",
+"uk": "Його куртка зовні."
+},
+{
+"id": "fr:09:09",
+"target": "Ses lunettes sont là.",
+"ru": "Его очки здесь.",
+"uk": "Його окуляри тут."
+},
+{
+"id": "fr:09:11",
+"target": "Notre train est à quai.",
+"ru": "Наш поезд на платформе.",
+"uk": "Наш поїзд на платформі."
+},
+{
+"id": "fr:09:13",
+"target": "Nos billets sont prêts.",
+"ru": "Наши билеты готовы.",
+"uk": "Наші квитки готові."
+},
+{
+"id": "fr:09:15",
+"target": "Leur chambre est libre.",
+"ru": "Их комната свободна.",
+"uk": "Їхня кімната вільна."
+},
+{
+"id": "fr:09:20",
+"target": "Tes gants sont secs.",
+"ru": "Твои перчатки сухие.",
+"uk": "Твої рукавички сухі."
+},
+{
+"id": "fr:09:21",
+"target": "Je cherche mon manteau.",
+"ru": "Я ищу своё пальто.",
+"uk": "Я шукаю своє пальто."
+},
+{
+"id": "fr:09:25",
+"target": "Nous cherchons nos places.",
+"ru": "Мы ищем свои места.",
+"uk": "Ми шукаємо свої місця."
+},
+{
+"id": "fr:09:31",
+"target": "Mon adresse est sur la carte.",
+"ru": "Мой адрес указан на карте.",
+"uk": "Моя адреса на карті."
+},
+{
+"id": "fr:09:32",
+"target": "Ton amie est arrivée.",
+"ru": "Твоя подруга приехала.",
+"uk": "Твоя подруга приїхала."
+},
+{
+"id": "fr:09:33",
+"target": "Son école est près du parc.",
+"ru": "Его школа находится рядом с парком.",
+"uk": "Його школа знаходиться біля парку."
+},
+{
+"id": "fr:09:41",
+"target": "Où est ton portefeuille ?",
+"ru": "Где твой кошелёк?",
+"uk": "Де твій гаманець?"
+},
+{
+"id": "fr:09:45",
+"target": "Tu ranges tes lunettes dans ton étui.",
+"ru": "Ты убираешь свои очки в свой футляр.",
+"uk": "Ти кладеш свої окуляри у свій футляр."
+},
+{
+"id": "fr:09:50",
+"target": "Notre fille prépare son sac.",
+"ru": "Наша дочь собирает свою сумку.",
+"uk": "Наша донька пакує свою сумку."
+}
+]
+},
+{
+"lesson": 10,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:10:01",
+"fr:10:03",
+"fr:10:04"
+],
+"textByLocale": {
+"en": "Previously, you mentioned the location of a familiar object. Now introduce a new one: \"There is a bench here.\" The construction `il y a` communicates presence, but doesn't answer the question of where a specific bench is.",
+"ru": "До этого ты говорил, где находится знакомая вещь. Теперь вводишь новую: «здесь есть скамейка». Конструкция `il y a` сообщает о наличии, а не отвечает, где лежит конкретная скамейка.",
+"uk": "До цього ти казав, де знайома річ. Тепер вводиш нову: тут є лава. Конструкція `il y a` повідомляє про наявність, а не відповідає, де лежить конкретна лава."
+}
+},
+{
+"exampleIds": [
+"fr:10:02",
+"fr:10:03",
+"fr:10:09"
+],
+"textByLocale": {
+"en": "After the construction, there may be one object, several, or a substance. The beginning of `il y a` remains the same in all three cases. Don't replace `a` with the plural form.",
+"ru": "После конструкции может быть одна вещь, несколько или вещество. Начало `il y a` во всех трёх случаях неизменно. Не заменяй `a` формой множественного числа.",
+"uk": "Після конструкції може бути одна річ, кілька або речовина. Початок `il y a` у всіх трьох випадках незмінний. Не замінюй `a` формою множини."
+}
+},
+{
+"exampleIds": [
+"fr:10:11",
+"fr:10:12",
+"fr:10:16"
+],
+"textByLocale": {
+"en": "When location is important, bring it first: first name the drawer, then list its contents. The French `y` inside `il y a` doesn't need to be removed, even if the location is obvious.",
+"ru": "Когда важно место, вынеси его в начало: сначала назови ящик, затем перечисли его содержимое. Французское `y` внутри `il y a` не надо убирать даже при явном месте.",
+"uk": "Коли важливе місце, винеси його на початок: спочатку назви ящик, потім перерахуй його вміст. Французьке `y` всередині `il y a` не треба забирати навіть при явному місці."
+}
+},
+{
+"exampleIds": [
+"fr:10:21",
+"fr:10:22",
+"fr:10:25"
+],
+"textByLocale": {
+"en": "The question can be constructed with intonation or with `est-ce que`. The second pattern before `il` yields `est-ce qu’il y a`. Don't remove the short `y` from the finished formula.",
+"ru": "Вопрос можно построить интонацией либо с `est-ce que`. Вторая схема перед `il` даёт `est-ce qu’il y a`. Не вынимай из готовой формулы короткое `y`.",
+"uk": "Питання можна побудувати інтонацією або з `est-ce que`. Друга схема перед `il` дає `est-ce qu’il y a`. Не виймай із готової формули коротке `y`."
+}
+},
+{
+"exampleIds": [
+"fr:10:31",
+"fr:10:32",
+"fr:10:33"
+],
+"textByLocale": {
+"en": "With complete negation, we get `il n’y a pas de`. Before a vowel, `de` becomes `d’`. Compare the presence of hot water and its absence without exchanging the water for another object.",
+"ru": "При полном отрицании получаем `il n’y a pas de`. Перед гласной `de` становится `d’`. Сравни наличие горячей воды и её отсутствие, не меняя воду на другой предмет.",
+"uk": "При повному запереченні отримуємо `il n’y a pas de`. Перед голосною `de` стає `d’`. Порівняй наявність гарячої води та її відсутність, не змінюючи воду на інший предмет."
+}
+},
+{
+"exampleIds": [
+"fr:10:36",
+"fr:10:37",
+"fr:10:38"
+],
+"textByLocale": {
+"en": "`Il n’y a plus` means that something is no longer there, and `il y a encore` means that something remains. When buying the last tickets, these similarly long phrases convey opposite news.",
+"ru": "`Il n’y a plus` означает, что чего-то больше нет, а `il y a encore` — что осталось. При покупке последних билетов эти похожие по длине фразы передают противоположные новости.",
+"uk": "`Il n’y a plus` означає, що чогось більше немає, а `il y a encore` що залишилося. Купуючи останні квитки ці схожі за довжиною фрази передають протилежні новини."
+}
+},
+{
+"exampleIds": [
+"fr:10:41",
+"fr:10:43",
+"fr:10:50"
+],
+"textByLocale": {
+"en": "Compare in one place: `Il y a un colis à la réception` introduces a premise, `Le colis est à la réception` establishes the location of a known premise. Choose based on the purpose of the message.",
+"ru": "Сравни на одном месте: `Il y a un colis à la réception` вводит посылку, `Le colis est à la réception` устанавливает место известной посылки. Выбирай по цели сообщения.",
+"uk": "Порівняй на одному місці: `Il y a un colis à la réception` вводить посилку, `Le colis est à la réception` встановлює місце відомої посилки. Вибирай за метою повідомлення."
+}
+}
+],
+"drills": [
+{
+"bad": "lui",
+"chapter": 1,
+"id": "fr:10:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 17,
+"options": [
+"ne",
+"lui",
+"y"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 1,
+"id": "fr:10:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 37,
+"options": [
+"te",
+"leur",
+"y"
+],
+"slot": 1
+},
+{
+"bad": "en",
+"chapter": 1,
+"id": "fr:10:05:lab",
+"item": 5,
+"kind": "match",
+"near": 48,
+"options": [
+"me",
+"y",
+"en"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 2,
+"id": "fr:10:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"lui",
+"y",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 2,
+"id": "fr:10:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"pas",
+"y",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "le",
+"chapter": 2,
+"id": "fr:10:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"le",
+"se",
+"y"
+],
+"slot": 4
+},
+{
+"bad": "encore",
+"chapter": 3,
+"id": "fr:10:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 12,
+"options": [
+"y",
+"encore",
+"te"
+],
+"slot": 4
+},
+{
+"bad": "la",
+"chapter": 3,
+"id": "fr:10:17:lab",
+"item": 17,
+"kind": "match",
+"near": 1,
+"options": [
+"y",
+"la",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 3,
+"id": "fr:10:19:lab",
+"item": 19,
+"kind": "build",
+"near": 2,
+"options": [
+"lui",
+"leur",
+"y"
+],
+"slot": 1
+},
+{
+"bad": "te",
+"chapter": 4,
+"id": "fr:10:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 1,
+"options": [
+"y",
+"pas",
+"te"
+],
+"slot": 1
+},
+{
+"bad": "lui",
+"chapter": 4,
+"id": "fr:10:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 5,
+"options": [
+"te",
+"y",
+"lui"
+],
+"slot": 1
+},
+{
+"bad": "leur",
+"chapter": 4,
+"id": "fr:10:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 45,
+"options": [
+"me",
+"y",
+"leur"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 5,
+"id": "fr:10:29:lab",
+"item": 29,
+"kind": "match",
+"near": 23,
+"options": [
+"la",
+"y",
+"pas"
+],
+"slot": 2
+},
+{
+"bad": "chez",
+"chapter": 5,
+"id": "fr:10:31:lab",
+"item": 31,
+"kind": "build",
+"near": 32,
+"options": [
+"n’y",
+"près",
+"chez"
+],
+"slot": 1
+},
+{
+"bad": "train",
+"chapter": 5,
+"id": "fr:10:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"n’y",
+"tard",
+"train"
+],
+"slot": 1
+},
+{
+"bad": "tard",
+"chapter": 6,
+"id": "fr:10:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"ici",
+"n’y",
+"tard"
+],
+"slot": 1
+},
+{
+"bad": "me",
+"chapter": 6,
+"id": "fr:10:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 9,
+"options": [
+"y",
+"me",
+"se"
+],
+"slot": 1
+},
+{
+"bad": "pas",
+"chapter": 6,
+"id": "fr:10:42:lab",
+"item": 42,
+"kind": "match",
+"near": 16,
+"options": [
+"y",
+"pas",
+"les"
+],
+"slot": 4
+},
+{
+"bad": "lui",
+"chapter": 7,
+"id": "fr:10:45:lab",
+"item": 45,
+"kind": "build",
+"near": 49,
+"options": [
+"les",
+"y",
+"lui"
+],
+"slot": 1
+},
+{
+"bad": "la",
+"chapter": 7,
+"id": "fr:10:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 5,
+"options": [
+"la",
+"ne",
+"y"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"un banc",
+"Il y a un banc."
+],
+[
+"deux bancs",
+"Il y a deux bancs."
+],
+[
+"de l’eau",
+"Il y a de l’eau."
+],
+[
+"pas de banc",
+"Il n’y a pas de banc."
+],
+[
+"pas d’eau",
+"Il n’y a pas d’eau."
+]
+],
+"title": {
+"en": "What's here: `il y a`",
+"ru": "Что здесь есть: `il y a`",
+"uk": "Що тут є: `il y a`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:10:01",
+"target": "Il y a un banc.",
+"ru": "Есть скамейка.",
+"uk": "Є лава."
+},
+{
+"id": "fr:10:03",
+"target": "Il y a deux bancs.",
+"ru": "Есть две скамейки.",
+"uk": "Є дві лавки."
+},
+{
+"id": "fr:10:04",
+"target": "Il y a trois chaises.",
+"ru": "Есть три стула.",
+"uk": "Є три стільці."
+},
+{
+"id": "fr:10:02",
+"target": "Il y a une table.",
+"ru": "Есть стол.",
+"uk": "Є стіл."
+},
+{
+"id": "fr:10:09",
+"target": "Il y a de l’eau.",
+"ru": "Есть вода.",
+"uk": "Є вода."
+},
+{
+"id": "fr:10:11",
+"target": "Dans le sac, il y a une carte.",
+"ru": "В сумке карта.",
+"uk": "У сумці є карта."
+},
+{
+"id": "fr:10:12",
+"target": "Sur le lit, il y a une écharpe.",
+"ru": "На кровати шарф.",
+"uk": "На ліжку є шарф."
+},
+{
+"id": "fr:10:16",
+"target": "Dans le tiroir, il y a des piles.",
+"ru": "В ящике лежат батарейки.",
+"uk": "У шухляді є батарейки."
+},
+{
+"id": "fr:10:21",
+"target": "Est-ce qu’il y a un bus ce soir ?",
+"ru": "Есть ли сегодня вечером автобус?",
+"uk": "Чи є автобус сьогодні ввечері?"
+},
+{
+"id": "fr:10:22",
+"target": "Il y a un marché le dimanche ?",
+"ru": "Есть ли рынок по воскресеньям?",
+"uk": "Чи є ринок по неділях?"
+},
+{
+"id": "fr:10:25",
+"target": "Est-ce qu’il y a de la place ?",
+"ru": "Есть ли свободные места?",
+"uk": "Чи є вільні місця?"
+},
+{
+"id": "fr:10:31",
+"target": "Il n’y a pas de banc.",
+"ru": "Нет скамейки.",
+"uk": "Лавки немає."
+},
+{
+"id": "fr:10:32",
+"target": "Il n’y a pas de savon.",
+"ru": "Нет мыла.",
+"uk": "Мила немає."
+},
+{
+"id": "fr:10:33",
+"target": "Il n’y a pas d’eau chaude.",
+"ru": "Нет горячей воды.",
+"uk": "Гарячої води немає."
+},
+{
+"id": "fr:10:36",
+"target": "Il n’y a plus de billets.",
+"ru": "Билетов больше нет.",
+"uk": "Квитків більше немає."
+},
+{
+"id": "fr:10:37",
+"target": "Il y a encore deux places.",
+"ru": "Осталось два места.",
+"uk": "Ще є два вільних місця."
+},
+{
+"id": "fr:10:38",
+"target": "Il y a trop de bruit.",
+"ru": "Слишком шумно.",
+"uk": "Занадто шумно."
+},
+{
+"id": "fr:10:41",
+"target": "Il y a une boulangerie au coin de la rue.",
+"ru": "На углу есть пекарня.",
+"uk": "На розі є пекарня."
+},
+{
+"id": "fr:10:43",
+"target": "Il y a un colis à la réception.",
+"ru": "На ресепшене лежит посылка.",
+"uk": "На рецепції лежить посилка."
+},
+{
+"id": "fr:10:50",
+"target": "Il y a un arrêt juste en face.",
+"ru": "Прямо напротив есть остановка.",
+"uk": "Прямо навпроти є зупинка."
+}
+]
+}
+]

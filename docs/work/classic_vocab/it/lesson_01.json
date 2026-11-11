@@ -26,23 +26,11 @@
    "en": "there",
    "es": "allí"
   },
-  "lea": {
-   "ru": "Леа (имя)",
-   "uk": "Леа (ім’я)",
-   "en": "Lea (a name)",
-   "es": "Lea (nombre)"
-  },
   "è": {
    "ru": "(он, она) есть",
    "uk": "(він, вона) є",
    "en": "(he, she) is",
    "es": "(él, ella) está"
-  },
-  "paolo": {
-   "ru": "Паоло (имя)",
-   "uk": "Паоло (ім’я)",
-   "en": "Paolo (a name)",
-   "es": "Paolo (nombre)"
   },
   "siamo": {
    "ru": "(мы) есть",
@@ -153,10 +141,15 @@
    "es": "libre"
   },
   "la": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Та самая дверь (___ porta)",
+   "uk": "Ті самі двері (___ porta)",
+   "en": "The specific door (___ porta)",
+   "es": "La puerta de la que hablamos (___ porta)",
+   "pt-BR": "A porta de que estamos falando (___ porta)",
+   "vi": "Cánh cửa đang được nhắc đến (___ porta)",
+   "id": "Pintu yang sedang dibicarakan (___ porta)",
+   "tr": "Sözünü ettiğimiz kapı (___ porta)",
+   "pl": "Te konkretne drzwi (___ porta)"
   },
   "porta": {
    "ru": "дверь",
@@ -177,10 +170,15 @@
    "es": "ventana"
   },
   "il": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Тот самый магазин (___ negozio)",
+   "uk": "Той самий магазин (___ negozio)",
+   "en": "The specific shop (___ negozio)",
+   "es": "La tienda de la que hablamos (___ negozio)",
+   "pt-BR": "A loja de que estamos falando (___ negozio)",
+   "vi": "Cửa hàng đang được nhắc đến (___ negozio)",
+   "id": "Toko yang sedang dibicarakan (___ negozio)",
+   "tr": "Sözünü ettiğimiz dükkân (___ negozio)",
+   "pl": "Ten konkretny sklep (___ negozio)"
   },
   "negozio": {
    "ru": "магазин",
@@ -231,10 +229,15 @@
    "es": "cerrada"
   },
   "le": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Те самые ключи (___ chiavi)",
+   "uk": "Ті самі ключі (___ chiavi)",
+   "en": "The specific keys (___ chiavi)",
+   "es": "Las llaves de las que hablamos (___ chiavi)",
+   "pt-BR": "As chaves de que estamos falando (___ chiavi)",
+   "vi": "Những chiếc chìa khóa đang được nhắc đến (___ chiavi)",
+   "id": "Kunci-kunci yang sedang dibicarakan (___ chiavi)",
+   "tr": "Sözünü ettiğimiz anahtarlar (___ chiavi)",
+   "pl": "Te konkretne klucze (___ chiavi)"
   },
   "porte": {
    "ru": "двери",
@@ -249,10 +252,15 @@
    "es": "abiertas"
   },
   "i": {
-   "ru": "слово перед названием вещи; по-русски нет",
-   "uk": "слово перед назвою речі; українською немає",
-   "en": "word before a thing’s name",
-   "es": "palabra delante del nombre"
+   "ru": "Те самые магазины (___ negozi)",
+   "uk": "Ті самі магазини (___ negozi)",
+   "en": "The specific shops (___ negozi)",
+   "es": "Las tiendas de las que hablamos (___ negozi)",
+   "pt-BR": "As lojas de que estamos falando (___ negozi)",
+   "vi": "Những cửa hàng đang được nhắc đến (___ negozi)",
+   "id": "Toko-toko yang sedang dibicarakan (___ negozi)",
+   "tr": "Sözünü ettiğimiz dükkânlar (___ negozi)",
+   "pl": "Te konkretne sklepy (___ negozi)"
   },
   "negozi": {
    "ru": "магазины",

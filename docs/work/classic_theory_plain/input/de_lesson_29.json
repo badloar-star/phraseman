@@ -1,0 +1,804 @@
+{
+ "lang": "de",
+ "lesson": 29,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:29:01",
+   "target": "Ich hätte gern einen Tee.",
+   "ru": "Мне бы чаю.",
+   "uk": "Мені б чаю."
+  },
+  {
+   "id": "de:29:02",
+   "target": "Ich hätte gern ein Wasser.",
+   "ru": "Я хотел бы воды.",
+   "uk": "Я хотів би води."
+  },
+  {
+   "id": "de:29:03",
+   "target": "Anna hätte gern die Rechnung.",
+   "ru": "Анна хотела бы получить счёт.",
+   "uk": "Анна хотіла б отримати рахунок."
+  },
+  {
+   "id": "de:29:04",
+   "target": "Wir hätten gern ein Zimmer.",
+   "ru": "Мы хотели бы снять номер.",
+   "uk": "Ми хотіли б зняти номер."
+  },
+  {
+   "id": "de:29:05",
+   "target": "Hätten Sie einen Moment Zeit?",
+   "ru": "У вас найдётся минутка?",
+   "uk": "У вас знайдеться хвилинка?"
+  },
+  {
+   "id": "de:29:06",
+   "target": "Ich wäre gern am Fenster.",
+   "ru": "Я хотел бы расположиться у окна.",
+   "uk": "Я хотів би розташуватись біля вікна."
+  },
+  {
+   "id": "de:29:07",
+   "target": "Ein ruhiges Zimmer wäre schön.",
+   "ru": "Было бы здорово получить тихий номер.",
+   "uk": "Було б чудово отримати тихий номер."
+  },
+  {
+   "id": "de:29:08",
+   "target": "Ein kleinerer Tisch wäre besser.",
+   "ru": "Стол поменьше подошёл бы лучше.",
+   "uk": "Менший стіл підійшов би краще."
+  },
+  {
+   "id": "de:29:09",
+   "target": "Wäre morgen ein Termin frei?",
+   "ru": "На завтра есть свободное время для записи?",
+   "uk": "На завтра є вільний час для запису?"
+  },
+  {
+   "id": "de:29:10",
+   "target": "Wäre es auch am Freitag möglich?",
+   "ru": "А в пятницу это тоже было бы возможно?",
+   "uk": "А у п'ятницю це теж було б можливо?"
+  },
+  {
+   "id": "de:29:11",
+   "target": "Könnten Sie mir helfen?",
+   "ru": "Не могли бы вы мне помочь?",
+   "uk": "Чи не могли б ви допомогти мені?"
+  },
+  {
+   "id": "de:29:12",
+   "target": "Könntest du kurz warten?",
+   "ru": "Не мог бы ты немного подождать?",
+   "uk": "Не міг би ти трохи зачекати?"
+  },
+  {
+   "id": "de:29:13",
+   "target": "Könntet ihr etwas leiser sein?",
+   "ru": "Вы не могли бы вести себя немного тише?",
+   "uk": "Ви не могли б поводитися трохи тихіше?"
+  },
+  {
+   "id": "de:29:14",
+   "target": "Könnten wir hier sitzen?",
+   "ru": "Мы могли бы здесь сесть?",
+   "uk": "Ми могли б тут сісти?"
+  },
+  {
+   "id": "de:29:15",
+   "target": "Könnte ich den Mantel anprobieren?",
+   "ru": "Можно мне примерить пальто?",
+   "uk": "Чи можна мені приміряти пальто?"
+  },
+  {
+   "id": "de:29:16",
+   "target": "Könnten Sie die Adresse wiederholen?",
+   "ru": "Не могли бы вы повторить адрес?",
+   "uk": "Чи не могли б ви повторити адресу?"
+  },
+  {
+   "id": "de:29:17",
+   "target": "Könntest du mir das Salz geben?",
+   "ru": "Не передашь мне соль?",
+   "uk": "Чи не передаси мені сіль?"
+  },
+  {
+   "id": "de:29:18",
+   "target": "Könnten Sie dem Hausmeister sagen, wo der Müll steht?",
+   "ru": "Не могли бы вы сказать смотрителю здания, где стоит мусор?",
+   "uk": "Чи не могли б ви сказати доглядачеві, де стоїть сміття?"
+  },
+  {
+   "id": "de:29:19",
+   "target": "Könnte ich mit Karte bezahlen?",
+   "ru": "Можно было бы заплатить картой?",
+   "uk": "Чи можна було б заплатити карткою?"
+  },
+  {
+   "id": "de:29:20",
+   "target": "Könnten wir später auschecken?",
+   "ru": "Мы могли бы выехать из номера попозже?",
+   "uk": "Чи могли б ми виїхати з номера пізніше?"
+  },
+  {
+   "id": "de:29:21",
+   "target": "Würden Sie bitte das Fenster schließen?",
+   "ru": "Не могли бы вы закрыть окно?",
+   "uk": "Чи не могли б ви закрити вікно?"
+  },
+  {
+   "id": "de:29:22",
+   "target": "Könnte die Firma den Schrank morgen liefern?",
+   "ru": "Могла бы фирма доставить шкаф завтра?",
+   "uk": "Чи могла б фірма доставити шафу завтра?"
+  },
+  {
+   "id": "de:29:23",
+   "target": "Würdet ihr die Tür offen lassen?",
+   "ru": "Вы бы оставили дверь открытой?",
+   "uk": "Ви залишили б двері відчиненими?"
+  },
+  {
+   "id": "de:29:24",
+   "target": "Würden Sie mir eine Quittung geben?",
+   "ru": "Не дадите мне квитанцию?",
+   "uk": "Чи не дасте мені квитанцію?"
+  },
+  {
+   "id": "de:29:25",
+   "target": "Würdest du mir die Kiste tragen helfen?",
+   "ru": "Ты бы помог мне донести ящик?",
+   "uk": "Ти допоміг би мені донести ящик?"
+  },
+  {
+   "id": "de:29:26",
+   "target": "Ich würde gern einen Tisch reservieren.",
+   "ru": "Я хотел бы забронировать столик.",
+   "uk": "Я хотів би забронювати столик."
+  },
+  {
+   "id": "de:29:27",
+   "target": "Wir würden gern länger bleiben.",
+   "ru": "Мы хотели бы остаться подольше.",
+   "uk": "Ми хотіли б залишитися довше."
+  },
+  {
+   "id": "de:29:28",
+   "target": "Tom würde gern früher anfangen.",
+   "ru": "Том хотел бы начать пораньше.",
+   "uk": "Том хотів би почати раніше."
+  },
+  {
+   "id": "de:29:29",
+   "target": "Anna würde gern den Kurs wechseln.",
+   "ru": "Анна хотела бы перейти на другой курс.",
+   "uk": "Анна хотіла б перейти на інший курс."
+  },
+  {
+   "id": "de:29:30",
+   "target": "Ich würde lieber den Zug nehmen.",
+   "ru": "Я бы предпочёл поехать поездом.",
+   "uk": "Я б краще поїхав поїздом."
+  },
+  {
+   "id": "de:29:31",
+   "target": "Dürfte ich hier parken?",
+   "ru": "Можно было бы мне здесь припарковаться?",
+   "uk": "Чи можна було б мені тут припаркуватися?"
+  },
+  {
+   "id": "de:29:32",
+   "target": "Dürften wir kurz telefonieren?",
+   "ru": "Можно нам ненадолго позвонить?",
+   "uk": "Чи можна нам ненадовго зателефонувати?"
+  },
+  {
+   "id": "de:29:33",
+   "target": "Dürfte ich eine Frage stellen?",
+   "ru": "Позвольте задать вопрос?",
+   "uk": "Дозвольте запитати?"
+  },
+  {
+   "id": "de:29:34",
+   "target": "Dürfte ich mich hier hinsetzen?",
+   "ru": "Можно мне сюда присесть?",
+   "uk": "Чи можна мені сюди присісти?"
+  },
+  {
+   "id": "de:29:35",
+   "target": "Dürften die Kinder im Hof spielen?",
+   "ru": "Можно было бы детям поиграть во дворе?",
+   "uk": "Чи можна було б дітям пограти у дворі?"
+  },
+  {
+   "id": "de:29:36",
+   "target": "Es wäre nett, wenn Sie kurz warten könnten.",
+   "ru": "Было бы любезно с вашей стороны немного подождать.",
+   "uk": "Було б люб'язно з вашого боку трохи почекати."
+  },
+  {
+   "id": "de:29:37",
+   "target": "Es wäre schön, wenn du mitkommen könntest.",
+   "ru": "Было бы здорово, если бы ты мог пойти с нами.",
+   "uk": "Було б чудово, якби ти міг піти з нами."
+  },
+  {
+   "id": "de:29:38",
+   "target": "Ich wäre dankbar, wenn Sie mir schreiben könnten.",
+   "ru": "Я был бы благодарен, если бы вы мне написали.",
+   "uk": "Я був би вдячний, якби ви написали мені."
+  },
+  {
+   "id": "de:29:39",
+   "target": "Wären Sie so freundlich, hier zu unterschreiben?",
+   "ru": "Будьте добры, распишитесь здесь.",
+   "uk": "Будьте ласкаві, розпишіться тут."
+  },
+  {
+   "id": "de:29:40",
+   "target": "Wäre es Ihnen morgen lieber?",
+   "ru": "Вам было бы удобнее завтра?",
+   "uk": "Вам було б зручніше завтра?"
+  },
+  {
+   "id": "de:29:41",
+   "target": "An deiner Stelle würde ich anrufen.",
+   "ru": "На твоём месте я бы позвонил.",
+   "uk": "На твоєму місці я подзвонив би."
+  },
+  {
+   "id": "de:29:42",
+   "target": "An Ihrer Stelle würde ich den Beleg behalten.",
+   "ru": "На вашем месте я бы сохранил чек.",
+   "uk": "На вашому місці я зберіг би чек."
+  },
+  {
+   "id": "de:29:43",
+   "target": "Ich würde zuerst die Preise vergleichen.",
+   "ru": "Сначала я бы сравнил цены.",
+   "uk": "Спочатку я б порівняв ціни."
+  },
+  {
+   "id": "de:29:44",
+   "target": "Wir könnten einen anderen Bus nehmen.",
+   "ru": "Мы могли бы поехать другим автобусом.",
+   "uk": "Ми могли б поїхати іншим автобусом."
+  },
+  {
+   "id": "de:29:45",
+   "target": "Du könntest die Nachbarn fragen.",
+   "ru": "Ты мог бы спросить соседей.",
+   "uk": "Ти міг би спитати сусідів."
+  },
+  {
+   "id": "de:29:46",
+   "target": "Man könnte die Kisten hier abstellen.",
+   "ru": "Можно было бы поставить ящики здесь.",
+   "uk": "Можна було б поставити ящики тут."
+  },
+  {
+   "id": "de:29:47",
+   "target": "Ich hätte lieber einen Platz im Schatten.",
+   "ru": "Я бы предпочёл место в тени.",
+   "uk": "Я віддав би перевагу місцю в тіні."
+  },
+  {
+   "id": "de:29:48",
+   "target": "Mir wäre der frühe Zug lieber.",
+   "ru": "Мне больше подошёл бы ранний поезд.",
+   "uk": "Мені більше підійшов би ранній поїзд."
+  },
+  {
+   "id": "de:29:49",
+   "target": "Hätten Sie das auch eine Nummer größer?",
+   "ru": "У вас есть такой же на размер больше?",
+   "uk": "У вас є такий самий на розмір більше?"
+  },
+  {
+   "id": "de:29:50",
+   "target": "Könnten Sie mir sagen, was der Versand kostet?",
+   "ru": "Не могли бы вы сказать, сколько стоит доставка?",
+   "uk": "Не могли б ви сказати, скільки коштує доставка?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Versand",
+   "ru": "отправка, доставка",
+   "uk": "відправка, доставка"
+  },
+  {
+   "lemma": "das Salz",
+   "ru": "соль",
+   "uk": "сіль"
+  },
+  {
+   "lemma": "wiederholen",
+   "ru": "повторять",
+   "uk": "повторювати"
+  },
+  {
+   "lemma": "behalten",
+   "ru": "оставлять у себя",
+   "uk": "залишати у себе"
+  },
+  {
+   "lemma": "dankbar",
+   "ru": "благодарный",
+   "uk": "вдячний"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang",
+  "der Lärm",
+  "der Notausgang",
+  "der Stau",
+  "vergleichen",
+  "vermeiden",
+  "der Kollege",
+  "die Leute",
+  "verbrauchen",
+  "zusammenklappen",
+  "sonntags",
+  "der Müll",
+  "der Hausmeister",
+  "die Firma",
+  "erstatten",
+  "liefern"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  },
+  {
+   "lesson": 26,
+   "title": "Два действия: инфинитив с `zu`"
+  },
+  {
+   "lesson": 27,
+   "title": "Какой человек или предмет: относительное предложение"
+  },
+  {
+   "lesson": 28,
+   "title": "Что делают с предметом: пассив с `werden`"
+  }
+ ],
+ "oldTopicTitle": "Попросить мягче: `hätte`, `wäre`, `könnte`",
+ "oldTheoryRu": "За столом `ich hätte gern` — готовый способ попросить еду или напиток. Это не рассказ о том, что вещь у тебя когда-то была. Учись различать `hatte` в прошлом и `hätte` в вежливом желании. С `wäre` удобно предложить место, другое время или условие бронирования. Ты не утверждаешь, что комната свободна, а спрашиваешь, подошёл бы такой вариант. У просьбы `könnten Sie …?` сохраняется вежливое местоимение. К другу — `könntest du`, к нескольким друзьям — `könntet ihr`. Социальная дистанция и число остаются частью смысла. С `würde` действие приходит в конце как инфинитив. Обрати внимание на разницу между отдельным желанием говорящего и просьбой к собеседнику совершить действие. Чтобы спросить разрешения в мягкой форме, пригодится `dürfte`. Если важно, разрешают ли правила парковку, это точнее, чем вопрос об умении припарковаться. Иногда просьбу оформляют как условие: было бы хорошо, если бы собеседник немного подождал. Сначала составь простую короткую просьбу, потом сравни с более длинной вежливой версией. Совет задаёт другую позицию: «на твоём месте». Говорящий советует, но не отдаёт приказ. `Lieber` показывает предпочтение между вариантами, а не степень грамматической вежливости."
+}

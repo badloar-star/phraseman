@@ -14,7 +14,6 @@ const ALLOWED: Readonly<Record<string, number>> = {
   'app/navigation_back.ts': 1,
   'modules/today-tasks/today_tasks_view.ts': 1,
   // 05.11: заморозка Learning V2 — адрес подмены глубокой ссылки на V2, пока V2 скрыт (не push экрана; использует +native-intent и chapter-exam)
-  'app/learning_v2_visibility_switch.ts': 1,
 };
 
 const stripComments = (src: string): string =>

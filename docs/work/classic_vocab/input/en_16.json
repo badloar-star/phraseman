@@ -22,19 +22,6 @@
    ]
   },
   {
-   "form": "tom",
-   "surface": "Tom",
-   "count": 1,
-   "examples": [
-    {
-     "id": "en-classic-r1:16.01",
-     "target": "Wake up Tom",
-     "ru": "Проснись, Том.",
-     "en": "Wake up, Tom."
-    }
-   ]
-  },
-  {
    "form": "set",
    "surface": "set",
    "count": 1,
@@ -145,7 +132,7 @@
     {
      "id": "en-classic-r1:16.24",
      "target": "He looked it up",
-     "ru": "Он это посмотрел.",
+     "ru": "Он это нашёл.",
      "en": "He looked it up."
     }
    ]

@@ -1,0 +1,96 @@
+[
+ {
+  "id": "lesson-31/choose",
+  "type": "T2",
+  "field": "en.choose (и en.chapters[1].body)",
+  "problem": "«introduces the tense» вместо «time clause»; «without stress» вместо «without a written accent»",
+  "fix": "Cuando without a written accent introduces a time clause. A separate question, ¿Cuándo llegarás?, is written with an accent, and the future llegarás is fine in that question. This is a different construction."
+ },
+ {
+  "id": "lesson-31/chapters[0]",
+  "type": "T2",
+  "field": "ru.chapters[0].body / en.chapters[0].body",
+  "problem": "llegue = «приду/прибуду», а ru/en называют это «Возвращение / The return»; uk корректно «Прибуття» — ru≠uk",
+  "fix": {
+   "ru": "В Te llamaré cuando llegue обещание — llamaré. Приход домой задаёт момент звонка, на момент речи он ещё впереди. Для него выбираем llegue.",
+   "en": "In Te llamaré cuando llegue, the promise is llamaré. The arrival sets the moment of the call; at the time of speaking, it is still ahead. For this, we choose llegue."
+  }
+ },
+ {
+  "id": "lesson-31/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "en не соответствует ru: вместо сравнения двух заданий (es:31:44, es:31:50) повторён текст из use",
+  "fix": "Compare two tasks: \"When the train arrives, we'll get off.\" / \"I'll pay when we finish the meeting.\" After cuando, the expected event is in the subjunctive. Link the promise to an event that is still expected. After cuando, don't copy the future tense from the English translation."
+ },
+ {
+  "id": "lesson-32/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[1].feedback.en (и [5], es:32:20)",
+  "problem": "«there is, there is» — бессмысленный повтор",
+  "fix": "Verb: hay (haber) — there is, there are; used to say something exists."
+ },
+ {
+  "id": "lesson-32/choose",
+  "type": "T2",
+  "field": "en.choose (и en.chapters[1].body)",
+  "problem": "«leave it for the investigation» — «следствие» переведено как investigation (нужно result)",
+  "fix": "In this pattern, after si we use tuviera, pudiera, supiera, viviera — not si tendría. Keep the conditional for the result. Si without a written accent means \"if.\""
+ },
+ {
+  "id": "lesson-32/nuance",
+  "type": "T2",
+  "field": "en.nuance",
+  "problem": "Разорванный дефис «- ra»; «followed by condicional» не передаёт «в следствии — condicional»",
+  "fix": "Combine two different forms: suppose a circumstance, then say what would happen under it. After si comes a form ending in -ra; the result uses the conditional."
+ },
+ {
+  "id": "lesson-32/chapters[3]",
+  "type": "T2",
+  "field": "ru.chapters[3].body / en.chapters[3].body",
+  "problem": "Неестественно и неясно: «глаголы не меняются местами по форме» / «verbs do not change their order in form» (uk ясно: форми не міняються)",
+  "fix": {
+   "ru": "Если следствие стоит первым, формы глаголов не меняются: iría contigo si tuviera tiempo. Перед конечной частью с si в нейтральном порядке запятая не нужна.",
+   "en": "If the result comes first, the verb forms stay the same: iría contigo si tuviera tiempo. No comma is needed before a final si clause in neutral order."
+  }
+ },
+ {
+  "id": "lesson-32/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].title",
+  "problem": "«What can be left unsaid in conversation?» не соответствует ru «Что остаётся за пределами» (за рамками урока) и содержанию главы",
+  "fix": "What stays outside this lesson?"
+ },
+ {
+  "id": "lesson-32/chapters[4]",
+  "type": "T2",
+  "field": "en.chapters[4].body",
+  "problem": "Разорванные дефисы «- se», «- ra»; «actual condition» вместо «real condition»",
+  "fix": "Spanish also has the -se forms (tuviese); here we practise the -ra forms. A real condition, si tengo tiempo, and regret about the past, si hubiera tenido tiempo, are different tasks, not just a change of ending in this exercise."
+ },
+ {
+  "id": "lesson-32/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "«Louis» вместо Luis; «- ra, therefore condicional» искажает «в следствии — condicional»",
+  "fix": "Compare two tasks: \"We would go downtown if there was a direct train.\" / \"I would talk to Luis if I had his number.\" After si comes the -ra form; the result uses the conditional. Two parts: Iríamos al centro / si hubiera un tren directo."
+ },
+ {
+  "id": "lesson-32/chapters[6]",
+  "type": "T2",
+  "field": "en.chapters[6].body",
+  "problem": "«- ra, and consequently, condicional» искажает «в следствии — condicional»",
+  "fix": "Compare two tasks: \"If there was a signal, I would send you the file.\" / \"If I had this money, I would pay today.\" After si comes the -ra form; the result uses the conditional. Combine the two different forms: suppose a circumstance, then say what would happen under it."
+ },
+ {
+  "id": "lesson-32/tables[3]",
+  "type": "T1",
+  "field": "tables[3].rows[2].gloss (ru/uk/en)",
+  "problem": "hubiera в «si hubiera un tren directo» — безличное «если бы был/имелся»; en «if I existed» неверно, ru «если бы существовал» неточно",
+  "fix": {
+   "ru": "если бы был (имелся)",
+   "uk": "якби був (існував)",
+   "en": "if there were"
+  }
+ }
+]

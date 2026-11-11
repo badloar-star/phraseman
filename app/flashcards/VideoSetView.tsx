@@ -14,7 +14,7 @@ import React, { memo, useCallback, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../../components/practice/PracticeGlass';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { PackCta, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { SCREEN_BACK_GAP, ScreenBackSlot } from '../../components/v2/ScreenBackButton';

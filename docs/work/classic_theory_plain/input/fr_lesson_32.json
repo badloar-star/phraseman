@@ -1,0 +1,868 @@
+{
+ "lang": "fr",
+ "lesson": 32,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:32:01",
+   "target": "Si j’avais le temps, je viendrais.",
+   "ru": "Если бы у меня было время, я бы пришел.",
+   "uk": "Якби в мене був час, я б прийшов."
+  },
+  {
+   "id": "fr:32:02",
+   "target": "Si tu avais le temps, tu viendrais.",
+   "ru": "Если бы у тебя было время, ты бы пришел.",
+   "uk": "Якби в тебе був час, ти б прийшов."
+  },
+  {
+   "id": "fr:32:03",
+   "target": "Si j’avais le choix, je resterais.",
+   "ru": "Если бы у меня был выбор, я бы остался.",
+   "uk": "Якби в мене був вибір, я б залишився."
+  },
+  {
+   "id": "fr:32:04",
+   "target": "Si j’étais libre, je t’aiderais.",
+   "ru": "Если бы я был свободен, я бы помог тебе.",
+   "uk": "Якби я був вільний, я б допоміг тобі."
+  },
+  {
+   "id": "fr:32:05",
+   "target": "Si tu étais libre, tu pourrais venir.",
+   "ru": "Если бы ты был свободен, ты мог бы прийти.",
+   "uk": "Якби ти був вільний, ти міг би прийти."
+  },
+  {
+   "id": "fr:32:06",
+   "target": "Si nous étions prêts, nous partirions.",
+   "ru": "Если бы мы были готовы, мы бы ушли.",
+   "uk": "Якби ми були готові, ми б пішли."
+  },
+  {
+   "id": "fr:32:07",
+   "target": "Si elle était ici, elle comprendrait.",
+   "ru": "Если бы она была здесь, она бы поняла.",
+   "uk": "Якби вона була тут, вона б зрозуміла."
+  },
+  {
+   "id": "fr:32:08",
+   "target": "Si Paul avait une voiture, il viendrait.",
+   "ru": "Если бы у Поля была машина, он бы приехал.",
+   "uk": "Якби в Поля була машина, він би приїхав."
+  },
+  {
+   "id": "fr:32:09",
+   "target": "Si vous étiez d’accord, on commencerait.",
+   "ru": "Если бы вы согласились, мы бы начали.",
+   "uk": "Якби ви погодилися, ми почали б."
+  },
+  {
+   "id": "fr:32:10",
+   "target": "Si j’avais un billet, j’entrerais.",
+   "ru": "Если бы у меня был билет, я бы вошел.",
+   "uk": "Якби в мене був квиток, я б зайшов."
+  },
+  {
+   "id": "fr:32:11",
+   "target": "Si j’habitais près du parc, j’irais courir.",
+   "ru": "Если бы я жил рядом с парком, я бы пошел на пробежку.",
+   "uk": "Якби я жив біля парку, я б пішов на пробіжку."
+  },
+  {
+   "id": "fr:32:12",
+   "target": "Si je travaillais ici, je viendrais à pied.",
+   "ru": "Если бы я работал здесь, я бы ходил пешком.",
+   "uk": "Якби я працював тут, я б ходив пішки."
+  },
+  {
+   "id": "fr:32:13",
+   "target": "Si le bus passait plus tôt, je le prendrais.",
+   "ru": "Если бы автобус приходил раньше, я бы на нём ездил.",
+   "uk": "Якби автобус приходив раніше, я б ним їздив."
+  },
+  {
+   "id": "fr:32:14",
+   "target": "Si la gare était plus proche, nous marcherions.",
+   "ru": "Если бы железнодорожный вокзал был ближе, мы бы шли пешком.",
+   "uk": "Якби залізнична станція була ближче, ми б пішли пішки."
+  },
+  {
+   "id": "fr:32:15",
+   "target": "Si le train coûtait moins cher, on voyagerait davantage.",
+   "ru": "Если бы поезд был дешевле, мы бы больше путешествовали.",
+   "uk": "Якби поїзд був дешевшим, ми б подорожували більше."
+  },
+  {
+   "id": "fr:32:16",
+   "target": "Si la route était libre, nous arriverions avant midi.",
+   "ru": "Если бы дорога была свободна, мы бы приехали до полудня.",
+   "uk": "Якби дорога була вільна, ми б прибули до полудня."
+  },
+  {
+   "id": "fr:32:17",
+   "target": "Si tu connaissais l’adresse, tu pourrais nous guider.",
+   "ru": "Если бы ты знал адрес, ты мог бы показать нам дорогу.",
+   "uk": "Якби ти знав адресу, ти міг би показати нам дорогу."
+  },
+  {
+   "id": "fr:32:18",
+   "target": "Si j’avais mon vélo, je rentrerais plus vite.",
+   "ru": "Если бы у меня был велосипед, я бы добрался домой быстрее.",
+   "uk": "Якби в мене був велосипед, я б швидше дістався додому."
+  },
+  {
+   "id": "fr:32:19",
+   "target": "Si la pluie s’arrêtait, on sortirait.",
+   "ru": "Если бы дождь прекратился, мы бы вышли.",
+   "uk": "Якби дощ припинився, ми б вийшли."
+  },
+  {
+   "id": "fr:32:20",
+   "target": "Si le musée ouvrait le lundi, j’irais demain.",
+   "ru": "Если бы музей был открыт по понедельникам, я бы пошёл завтра.",
+   "uk": "Якби музей був відкритий по понеділках, я б пішов завтра."
+  },
+  {
+   "id": "fr:32:21",
+   "target": "Je choisirais cette chambre si elle était moins chère.",
+   "ru": "Я бы выбрал эту комнату, если бы она была дешевле.",
+   "uk": "Я б вибрав цю кімнату, якби вона була дешевшою."
+  },
+  {
+   "id": "fr:32:22",
+   "target": "Je prendrais la veste si elle était plus chaude.",
+   "ru": "Я бы взял куртку, если бы она была теплее.",
+   "uk": "Я б взяв куртку, якби вона була теплішою."
+  },
+  {
+   "id": "fr:32:23",
+   "target": "Nous garderions le billet si c’était notre meilleur souvenir du séjour.",
+   "ru": "Мы бы сохранили билет, если бы это было наше лучшее воспоминание о поездке.",
+   "uk": "Ми б зберегли квиток, якби це був наш найкращий спогад про поїздку."
+  },
+  {
+   "id": "fr:32:24",
+   "target": "Elle appellerait le médecin si elle avait son numéro.",
+   "ru": "Она бы позвонила врачу, если бы у неё был его номер.",
+   "uk": "Вона б зателефонувала лікарю, якби в неї був його номер."
+  },
+  {
+   "id": "fr:32:25",
+   "target": "Il lirait le message s’il avait ses lunettes.",
+   "ru": "Он бы прочитал сообщение, если бы у него были очки.",
+   "uk": "Він би прочитав повідомлення, якби в нього були окуляри."
+  },
+  {
+   "id": "fr:32:26",
+   "target": "Tu entendrais mieux si tu fermais la fenêtre.",
+   "ru": "Ты бы лучше слышал, если бы закрыл окно.",
+   "uk": "Ти б краще чув, якби зачинив вікно."
+  },
+  {
+   "id": "fr:32:27",
+   "target": "Nous ferions une pause si tout le monde était d’accord.",
+   "ru": "Мы бы сделали перерыв, если бы все согласились.",
+   "uk": "Ми б зробили перерву, якби всі погодилися."
+  },
+  {
+   "id": "fr:32:28",
+   "target": "Je porterais ce sac s’il était plus léger.",
+   "ru": "Я бы понёс эту сумку, если бы она была легче.",
+   "uk": "Я б ніс цю сумку, якби вона була легшою."
+  },
+  {
+   "id": "fr:32:29",
+   "target": "On prendrait un taxi si on avait des bagages.",
+   "ru": "Мы бы взяли такси, если бы у нас был багаж.",
+   "uk": "Ми б взяли таксі, якби у нас був багаж."
+  },
+  {
+   "id": "fr:32:30",
+   "target": "Je prêterais mon casque si tu en avais besoin.",
+   "ru": "Я бы одолжил тебе свой шлем, если бы он тебе понадобился.",
+   "uk": "Я б позичив тобі свій шолом, якби він тобі знадобився."
+  },
+  {
+   "id": "fr:32:31",
+   "target": "Si la clé tournait, la porte s’ouvrirait.",
+   "ru": "Если бы ключ повернулся, дверь бы открылась.",
+   "uk": "Якби ключ повернувся, двері відчинилися б."
+  },
+  {
+   "id": "fr:32:32",
+   "target": "Si le gardien était là, il ouvrirait le garage.",
+   "ru": "Если бы здесь был охранник, он бы открыл гараж.",
+   "uk": "Якби охоронець був тут, він би відчинив гараж."
+  },
+  {
+   "id": "fr:32:33",
+   "target": "Si nous avions une échelle, on réparerait la lampe.",
+   "ru": "Если бы у нас была лестница, мы бы починили лампу.",
+   "uk": "Якби у нас була драбина, ми б полагодили лампу."
+  },
+  {
+   "id": "fr:32:34",
+   "target": "Si tu gardais le reçu, tu pourrais échanger le pull.",
+   "ru": "Если бы ты сохранил квитанцию, ты мог бы обменять свитер.",
+   "uk": "Якби ти зберіг чек, ти міг би обміняти светр."
+  },
+  {
+   "id": "fr:32:35",
+   "target": "Si la boutique livrait, je commanderais en ligne.",
+   "ru": "Если бы магазин делал доставку, я бы заказал онлайн.",
+   "uk": "Якби магазин доставляв, я б замовив онлайн."
+  },
+  {
+   "id": "fr:32:36",
+   "target": "Si le four fonctionnait, elle ferait une tarte.",
+   "ru": "Если бы духовка работала, она бы испекла пирог.",
+   "uk": "Якби духовка працювала, вона б спекла пиріг."
+  },
+  {
+   "id": "fr:32:37",
+   "target": "Si le lait était encore bon, je ferais des crêpes.",
+   "ru": "Если бы молоко было еще годным, я бы испек блины.",
+   "uk": "Якби молоко було ще хорошим, я б спек млинці."
+  },
+  {
+   "id": "fr:32:38",
+   "target": "Si j’avais du miel, j’en mettrais dans le thé.",
+   "ru": "Если бы у меня был мед, я бы добавил его в чай.",
+   "uk": "Якби в мене був мед, я б поклав трохи в чай."
+  },
+  {
+   "id": "fr:32:39",
+   "target": "Si le panneau était lisible, on trouverait la sortie.",
+   "ru": "Если бы указатель был разборчивым, мы бы нашли выход.",
+   "uk": "Якби покажчик був розбірливим, ми б знайшли вихід."
+  },
+  {
+   "id": "fr:32:40",
+   "target": "Si le robinet fuyait, je couperais l’eau.",
+   "ru": "Если бы кран протекал, я бы выключил воду.",
+   "uk": "Якби протікав кран, я б вимкнув воду."
+  },
+  {
+   "id": "fr:32:41",
+   "target": "Si tu me prévenais la veille, je préparerais un lit.",
+   "ru": "Если бы ты предупредил меня накануне, я бы приготовил постель.",
+   "uk": "Якби ти попередив мене напередодні, я приготував би постіль."
+  },
+  {
+   "id": "fr:32:42",
+   "target": "Si j’étais à ta place, je lui écrirais.",
+   "ru": "На твоем месте я бы написал ей.",
+   "uk": "Якби я був на твоєму місці, я б написав їй."
+  },
+  {
+   "id": "fr:32:43",
+   "target": "Si les voisins partaient, nous garderions leur chat.",
+   "ru": "Если бы соседи съехали, мы бы оставили себе их кота.",
+   "uk": "Якби сусіди переїхали, ми б залишили собі їхнього кота."
+  },
+  {
+   "id": "fr:32:44",
+   "target": "Si tu proposais une solution, je l’écouterais.",
+   "ru": "Если бы ты предложил решение, я бы его выслушал.",
+   "uk": "Якби ти запропонував рішення, я б його вислухав."
+  },
+  {
+   "id": "fr:32:45",
+   "target": "Si la clé disparaissait, nous préviendrions le gardien.",
+   "ru": "Если бы ключ пропал, мы бы сообщили охраннику.",
+   "uk": "Якби ключ зник, ми б повідомили охоронця."
+  },
+  {
+   "id": "fr:32:46",
+   "target": "Si tu me promettais de revenir, je garderais ta place.",
+   "ru": "Если бы ты пообещал вернуться, я бы придержал твоё место.",
+   "uk": "Якби ти пообіцяв повернутись, я б притримав твоє місце."
+  },
+  {
+   "id": "fr:32:47",
+   "target": "Si tu savais nager, tu pourrais nous accompagner.",
+   "ru": "Если бы ты умел плавать, ты мог бы поехать с нами.",
+   "uk": "Якби ти вмів плавати, ти міг би піти з нами."
+  },
+  {
+   "id": "fr:32:48",
+   "target": "Si les frais de livraison étaient moins élevés, je commanderais cet arbre.",
+   "ru": "Если бы доставка стоила меньше, я бы заказал это дерево.",
+   "uk": "Якби витрати на доставку були меншими, я б замовив це дерево."
+  },
+  {
+   "id": "fr:32:49",
+   "target": "Si j’avais ton expérience, je tenterais ma chance.",
+   "ru": "Если бы у меня был твой опыт, я бы попытал счастья.",
+   "uk": "Якби в мене був твій досвід, я б спробував щастя."
+  },
+  {
+   "id": "fr:32:50",
+   "target": "Si les horaires changeaient, nous vous préviendrions.",
+   "ru": "Если бы расписание изменилось, мы бы вам сообщили.",
+   "uk": "Якби розклад змінився, ми б вам повідомили."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le four",
+   "ru": "духовка",
+   "uk": "духовка"
+  },
+  {
+   "lemma": "la chance",
+   "ru": "шанс, удача",
+   "uk": "шанс, удача"
+  },
+  {
+   "lemma": "l’arbre (m.)",
+   "ru": "дерево",
+   "uk": "дерево"
+  },
+  {
+   "lemma": "les frais",
+   "ru": "расходы",
+   "uk": "витрати"
+  },
+  {
+   "lemma": "l’expérience (f.)",
+   "ru": "опыт",
+   "uk": "досвід"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier",
+  "le volume",
+  "le robinet",
+  "la ceinture",
+  "la balance",
+  "le montant",
+  "le miroir",
+  "se lever",
+  "se coucher",
+  "se doucher",
+  "se raser",
+  "la sonnette",
+  "le dossier",
+  "l’addition (f.)",
+  "la copie",
+  "le départ",
+  "le courrier",
+  "le palier",
+  "la pièce de monnaie",
+  "l’élève",
+  "l’infirmière",
+  "le quartier",
+  "la tarte",
+  "le vent",
+  "la lumière",
+  "le canal",
+  "le réveil",
+  "le courant",
+  "le chat",
+  "l’escalier (m.)",
+  "le volet",
+  "brancher",
+  "le câble",
+  "le journal",
+  "la batterie",
+  "le portefeuille électronique",
+  "le conseil",
+  "la fuite",
+  "l’anniversaire (m.)",
+  "la règle",
+  "le paiement",
+  "l’exposition (f.)",
+  "la scène",
+  "la terrasse",
+  "l’atelier (m.)",
+  "le salon",
+  "l’œuf (m.)",
+  "le bol",
+  "la barquette",
+  "la moitié",
+  "le carton",
+  "le fauteuil",
+  "l’échelle (f.)",
+  "le meilleur souvenir",
+  "la portion",
+  "l’effort (m.)",
+  "le plombier",
+  "le résultat",
+  "le repas",
+  "la pièce d’identité",
+  "le pot",
+  "le séjour",
+  "la place côté allée",
+  "la disponibilité",
+  "la confirmation",
+  "le devis",
+  "la cave",
+  "le code",
+  "le papier",
+  "la menthe",
+  "le plat",
+  "le gardien",
+  "le sol",
+  "lisible",
+  "la réparation",
+  "déborder",
+  "la veille",
+  "le panneau",
+  "la solution",
+  "promettre",
+  "disparaître"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  },
+  {
+   "lesson": 16,
+   "title": "Короткие инструкции: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Утро и действия с собой: `je me lève`"
+  },
+  {
+   "lesson": 18,
+   "title": "Что уже произошло: прошедшее с `avoir`"
+  },
+  {
+   "lesson": 19,
+   "title": "«Уехал» и «уехала»: прошедшее с `être`"
+  },
+  {
+   "lesson": 20,
+   "title": "Как было раньше: `imparfait`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: два времени в одной фразе"
+  },
+  {
+   "lesson": 22,
+   "title": "Не повторять предмет: `le`, `la`, `les`"
+  },
+  {
+   "lesson": 23,
+   "title": "Кому: `lui` и `leur` перед глаголом"
+  },
+  {
+   "lesson": 24,
+   "title": "Не повторять место: короткое `y`"
+  },
+  {
+   "lesson": 25,
+   "title": "Сколько из них: местоимение `en`"
+  },
+  {
+   "lesson": 26,
+   "title": "Сравнить: больше, меньше или так же"
+  },
+  {
+   "lesson": 27,
+   "title": "Сообщить о будущем: `futur simple`"
+  },
+  {
+   "lesson": 28,
+   "title": "Вежливая просьба: `je voudrais`, `pourriez-vous`"
+  },
+  {
+   "lesson": 29,
+   "title": "Как уточнить предмет: `qui` или `que`"
+  },
+  {
+   "lesson": 30,
+   "title": "Что необходимо: `il faut que` + `subjonctif`"
+  },
+  {
+   "lesson": 31,
+   "title": "Что было ещё раньше: `plus-que-parfait`"
+  }
+ ],
+ "oldTopicTitle": "Представить условие: `si` + `imparfait`",
+ "oldTheoryRu": "Отдели условие от результата. Временная форма `imparfait` здесь помогает представить возможную или нереальную ситуацию сейчас или в будущем, а не обязательно событие в прошлом. После условного `si` в этой модели не ставь `je serais` или `j’aurais`. Условие строится с `étais` или `avais`. Форму с «бы» сохраняй для результата. Не делай условное предложение перестановкой случайных окончаний. Приписывай каждое действие своему исполнителю: автобус приходил бы раньше — я бы на него садился. Результат можно назвать первым: комнату выбрал бы я, если бы цена была ниже. Грамматика частей не меняется при их перестановке. В написании запятая обычно нужна после начального условия. Короткие бытовые задачи хорошо показывают связь: будь лестница — починили бы лампу; работала бы духовка — можно было бы испечь пирог. Не подменяй возможность утверждением о факте. `À ta place` уже создаёт воображаемую ситуацию: «на твоём месте». В полной модели снова проверяй две формы, а не пытайся ставить условное наклонение в обе части. Сравни с реальным условием: `si tu viens, je préparerai …` и предположением `si tu venais, je préparerais …`. Этот урок тренирует вторую схему."
+}

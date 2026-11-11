@@ -97,3 +97,12 @@ Governance-ID: TG-9A992F4F0D48
 - ⚠ Проверка «на тестовом аккаунте» в бою НЕ выполнялась: тестового боевого аккаунта с доступом из этой сессии нет, а удалять настоящий аккаунт нельзя. Заменой служат: тест-страж `account_delete_community_marks_2026_11_05`, READY индексов, отсутствие `FAILED_PRECONDITION` и успешные прогоны worker на живых запросах. Если нужен сквозной прогон — завести тестовый аккаунт и удалить его в приложении (проверить, что в `account_delete_jobs` запись дошла до `completed`).
 - Откат не понадобился. Если появятся ошибки: `git revert e4965b3de` → тот же `--only … --execute` (индексы откатывать не нужно). Предыдущие ревизии для ручного возврата трафика: accountdeletemine-00066-nat, accountdeleteworker-00039-faw, accountdeleteretrycron-00033-xuf.
 - Политика конфиденциальности: удаление теперь чистит лайки/добавления/комментарии/голоса под чужими наборами → редакция Б (по сообщению координатора; текст политики — Переводчик).
+
+### Выкладка Q26 (закрытие лишних записей входа при удалении аккаунта), 05.11 ~08:00
+Governance-ID: TG-0102CD22AB28
+- Снимок «до»: accountdeletemine-00067-fer, accountdeleteworker-00040-bor, accountdeleteretrycron-00034-nuf.
+- Выложено из чистого снимка HEAD 368ea91f0 (содержит Q26 из 90fbec0a3): `deploy_from_clean_head.sh --only "functions:default:accountDeleteMine,functions:default:accountDeleteWorker,functions:default:accountDeleteRetryCron" --execute`, код 0, Deploy complete.
+- Снимок «после»: accountdeletemine-00068-zek, accountdeleteworker-00041-lit, accountdeleteretrycron-00035-huw.
+- Ошибок уровня ERROR за 20 минут после выкладки нет.
+- Откат: `git revert 90fbec0a3` и та же команда выкладки с `--execute` (или вернуть трафик на прежние ревизии в Cloud Run).
+- Дальше: сквозной тест удаления на тестовом аккаунте №3, восстановление A10, A11 передать Входу.

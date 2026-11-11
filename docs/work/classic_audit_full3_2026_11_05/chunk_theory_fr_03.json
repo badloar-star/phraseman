@@ -1,0 +1,1048 @@
+[
+{
+"lesson": 7,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:07:01",
+"fr:07:02",
+"fr:07:03"
+],
+"textByLocale": {
+"en": "Previously, you reported who was where. Now name the action. In `je travaille`, no additional \"to be\" form is needed: the verb itself already indicates the present tense.",
+"ru": "Раньше ты сообщал, кто где находится. Теперь назови действие. В `je travaille` никакой дополнительной формы «быть» не нужно: сам глагол уже показывает настоящее время.",
+"uk": "Раніше ти повідомляв, хто де знаходиться. Тепер назви дію. У `je travaille` ніякої додаткової форми «бути» не потрібно: саме дієслово вже показує теперішній час."
+}
+},
+{
+"exampleIds": [
+"fr:07:01",
+"fr:07:02",
+"fr:07:04"
+],
+"textByLocale": {
+"en": "For regular verbs ending in `-er`, remove `-er` and add the ending for person. Forms `travaille` and `travailles` sound similar, but in writing, `s` indicates `tu`.",
+"ru": "У регулярных глаголов на `-er` убери `-er` и добавь окончание для человека. Формы `travaille` и `travailles` звучат сходно, но на письме `s` указывает на `tu`.",
+"uk": "У регулярних дієслів на `-er` прибери `-er` і додай закінчення для людини. Форми `travaille` та `travailles` звучать подібно, але на листі `s` вказує на `tu`."
+}
+},
+{
+"exampleIds": [
+"fr:07:04",
+"fr:07:05",
+"fr:07:06"
+],
+"textByLocale": {
+"en": "For `nous`, add `-ons`, for `vous`, add `-ez`, and for `ils` or `elles`, add `-ent`. Do not pronounce the final ending of regular personal forms as a separate syllable.",
+"ru": "К `nous` подбирай `-ons`, к `vous` — `-ez`, к `ils` или `elles` — `-ent`. Последнее окончание обычных личных форм не произноси как отдельный слог.",
+"uk": "До `nous` підбирай `-ons`, до `vous` - `-ez`, до `ils` або `elles` - `-ent`. Останнє закінчення звичайних особистих форм не вимовляй як окремий склад."
+}
+},
+{
+"exampleIds": [
+"fr:07:11",
+"fr:07:17",
+"fr:07:18"
+],
+"textByLocale": {
+"en": "Before a vowel and the silent `h`, write `j’` instead of `je`. Do not separate the apostrophe with a space: `j’habite`, `j’écoute`. When switching to `tu`, the pronoun again becomes a separate word.",
+"ru": "Перед гласной и немым `h` вместо `je` пишут `j’`. Не отделяй апостроф пробелом: `j’habite`, `j’écoute`. При переходе к `tu` местоимение вновь становится отдельным словом.",
+"uk": "Перед голосною і німим `h` замість `je` пишуть `j’`. Не відділяй апостроф пробілом: `j’habite`, `j’écoute`. При переході до `tu` займенник знову стає окремим словом."
+}
+},
+{
+"exampleIds": [
+"fr:07:21",
+"fr:07:23",
+"fr:07:27"
+],
+"textByLocale": {
+"en": "Shift your focus from the ending to the meaning: `chercher` means \"to search,\" while `regarder` means \"to look.\" A familiar ending doesn't make the verbs interchangeable.",
+"ru": "Переставь внимание с окончания на смысл: `chercher` означает «искать», а `regarder` — «смотреть». Знакомое окончание не делает глаголы взаимозаменяемыми.",
+"uk": "Перестав увагу з закінчення на зміст: `chercher` означає \"шукати\", а `regarder` - \"дивитися\". Знайоме закінчення робить дієслова взаємозамінними."
+}
+},
+{
+"exampleIds": [
+"fr:07:31",
+"fr:07:36",
+"fr:07:42"
+],
+"textByLocale": {
+"en": "The object sometimes consists of several words. In `j’écoute la radio`, you first decide on the person and verb, and then add the object with its article.",
+"ru": "Дополнение иногда состоит из нескольких слов. В `j’écoute la radio` сначала принимаешь решение о лице и глаголе, а затем добавляешь объект с его артиклем.",
+"uk": "Додаток іноді складається з кількох слів. У `j’écoute la radio` спочатку приймаєш рішення про особу та дієслово, а потім додаєш об'єкт з його артиклем."
+}
+},
+{
+"exampleIds": [
+"fr:07:46",
+"fr:07:48",
+"fr:07:50"
+],
+"textByLocale": {
+"en": "Some verbs also change the spelling of the stem: `acheter` becomes `j’achète`. The verb `aller` doesn't follow the usual pattern of `-er` at all. Look at the vocabulary pattern, not just the last two letters.",
+"ru": "У части глаголов меняется и написание основы: `acheter` даёт `j’achète`. Глагол `aller` вообще не следует обычной схеме на `-er`. Смотри на словарный образец, а не только на последние две буквы.",
+"uk": "У частині дієслів змінюється і написання основи: `acheter` дає `j’achète`. Дієслово `aller` взагалі не дотримується звичайної схеми на `-er`. Дивись на словниковий зразок, а не тільки на останні дві літери."
+}
+}
+],
+"drills": [
+{
+"bad": "travaillent",
+"chapter": 1,
+"id": "fr:07:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 3,
+"options": [
+"travaille",
+"travaillais",
+"travaillent"
+],
+"slot": 1
+},
+{
+"bad": "travailles",
+"chapter": 1,
+"id": "fr:07:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 1,
+"options": [
+"travailler",
+"travaille",
+"travailles"
+],
+"slot": 1
+},
+{
+"bad": "travailles",
+"chapter": 1,
+"id": "fr:07:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"travaillez",
+"travailles",
+"travaillent"
+],
+"slot": 1
+},
+{
+"bad": "parlait",
+"chapter": 2,
+"id": "fr:07:08:lab",
+"item": 8,
+"kind": "build",
+"near": 7,
+"options": [
+"parlaient",
+"parlait",
+"parles"
+],
+"slot": 1
+},
+{
+"bad": "parlez",
+"chapter": 2,
+"id": "fr:07:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"parlez",
+"parler",
+"parlons"
+],
+"slot": 1
+},
+{
+"bad": "habitons",
+"chapter": 2,
+"id": "fr:07:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 47,
+"options": [
+"habitons",
+"habites",
+"habite"
+],
+"slot": 1
+},
+{
+"bad": "habitez",
+"chapter": 3,
+"id": "fr:07:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 20,
+"options": [
+"habitez",
+"habitons",
+"habites"
+],
+"slot": 1
+},
+{
+"bad": "J’habite",
+"chapter": 3,
+"id": "fr:07:17:lab",
+"item": 17,
+"kind": "match",
+"near": 18,
+"options": [
+"J’achète",
+"J’habite",
+"J’écoute"
+],
+"slot": 0
+},
+{
+"bad": "écoutez",
+"chapter": 3,
+"id": "fr:07:19:lab",
+"item": 19,
+"kind": "build",
+"near": 50,
+"options": [
+"écoutent",
+"écoute",
+"écoutez"
+],
+"slot": 1
+},
+{
+"bad": "cherche",
+"chapter": 4,
+"id": "fr:07:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 8,
+"options": [
+"cherchais",
+"cherches",
+"cherche"
+],
+"slot": 1
+},
+{
+"bad": "cherchent",
+"chapter": 4,
+"id": "fr:07:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 29,
+"options": [
+"cherchons",
+"cherchais",
+"cherchent"
+],
+"slot": 1
+},
+{
+"bad": "chercher",
+"chapter": 4,
+"id": "fr:07:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 6,
+"options": [
+"chercher",
+"cherchent",
+"cherche"
+],
+"slot": 1
+},
+{
+"bad": "regardent",
+"chapter": 5,
+"id": "fr:07:29:lab",
+"item": 29,
+"kind": "match",
+"near": 24,
+"options": [
+"regardons",
+"regardes",
+"regardent"
+],
+"slot": 1
+},
+{
+"bad": "prépares",
+"chapter": 5,
+"id": "fr:07:31:lab",
+"item": 31,
+"kind": "build",
+"near": 27,
+"options": [
+"prépares",
+"prépare",
+"préparez"
+],
+"slot": 1
+},
+{
+"bad": "prépares",
+"chapter": 5,
+"id": "fr:07:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 10,
+"options": [
+"prépares",
+"prépare",
+"préparons"
+],
+"slot": 1
+},
+{
+"bad": "réservez",
+"chapter": 6,
+"id": "fr:07:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 43,
+"options": [
+"matin",
+"réservez",
+"réserve"
+],
+"slot": 1
+},
+{
+"bad": "photo",
+"chapter": 6,
+"id": "fr:07:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 30,
+"options": [
+"photo",
+"sortie",
+"visitent"
+],
+"slot": 1
+},
+{
+"bad": "j’achète",
+"chapter": 6,
+"id": "fr:07:42:lab",
+"item": 42,
+"kind": "match",
+"near": 17,
+"options": [
+"j’achète",
+"j’habite",
+"j’écoute"
+],
+"slot": 2
+},
+{
+"bad": "réserve",
+"chapter": 7,
+"id": "fr:07:45:lab",
+"item": 45,
+"kind": "build",
+"near": 5,
+"options": [
+"réserve",
+"deux",
+"réservez"
+],
+"slot": 1
+},
+{
+"bad": "prix",
+"chapter": 7,
+"id": "fr:07:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 41,
+"options": [
+"près",
+"discutent",
+"prix"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"travailler",
+"je travaille / tu travailles / elle travaille"
+],
+[
+"nous / vous",
+"travaillons / travaillez"
+],
+[
+"ils",
+"travaillent"
+],
+[
+"habiter",
+"j’habite / tu habites"
+],
+[
+"écouter",
+"j’écoute / nous écoutons"
+]
+],
+"title": {
+"en": "Everyday action: present tense with `-er`",
+"ru": "Повседневное действие: настоящее на `-er`",
+"uk": "Повсякденна дія: даний на `-er`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:07:01",
+"target": "Je travaille ici.",
+"ru": "Я здесь работаю.",
+"uk": "Я тут працюю."
+},
+{
+"id": "fr:07:02",
+"target": "Tu travailles ici.",
+"ru": "Ты работаешь здесь.",
+"uk": "Ти працюєш тут."
+},
+{
+"id": "fr:07:03",
+"target": "Léa travaille ici.",
+"ru": "Леа здесь работает.",
+"uk": "Леа тут працює."
+},
+{
+"id": "fr:07:04",
+"target": "Nous travaillons ensemble.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом."
+},
+{
+"id": "fr:07:05",
+"target": "Vous travaillez ensemble.",
+"ru": "Вы работаете вместе.",
+"uk": "Ви працюєте разом."
+},
+{
+"id": "fr:07:06",
+"target": "Ils travaillent dehors.",
+"ru": "Они работают на улице.",
+"uk": "Вони працюють надворі."
+},
+{
+"id": "fr:07:11",
+"target": "J’habite à Lyon.",
+"ru": "Я живу в Лионе.",
+"uk": "Я живу в Ліоні."
+},
+{
+"id": "fr:07:17",
+"target": "J’écoute la radio.",
+"ru": "Я слушаю радио.",
+"uk": "Я слухаю радіо."
+},
+{
+"id": "fr:07:18",
+"target": "Tu écoutes la radio.",
+"ru": "Ты слушаешь радио.",
+"uk": "Ти слухаєш радіо."
+},
+{
+"id": "fr:07:21",
+"target": "Je cherche mes clés.",
+"ru": "Я ищу свои ключи.",
+"uk": "Я шукаю свої ключі."
+},
+{
+"id": "fr:07:23",
+"target": "Elle cherche la sortie.",
+"ru": "Она ищет выход.",
+"uk": "Вона шукає вихід."
+},
+{
+"id": "fr:07:27",
+"target": "Je regarde le plan.",
+"ru": "Я смотрю на карту.",
+"uk": "Я дивлюся на карту."
+},
+{
+"id": "fr:07:31",
+"target": "Je prépare le dîner.",
+"ru": "Я готовлю ужин.",
+"uk": "Я готую вечерю."
+},
+{
+"id": "fr:07:36",
+"target": "Elle réserve une chambre.",
+"ru": "Она бронирует номер.",
+"uk": "Вона бронює номер."
+},
+{
+"id": "fr:07:42",
+"target": "Le matin, j’écoute la radio.",
+"ru": "Утром я слушаю радио.",
+"uk": "Вранці я слухаю радіо."
+},
+{
+"id": "fr:07:46",
+"target": "J’achète du pain.",
+"ru": "Я покупаю хлеб.",
+"uk": "Я купую хліб."
+},
+{
+"id": "fr:07:48",
+"target": "Les voisins discutent dans le jardin.",
+"ru": "Соседи болтают в саду.",
+"uk": "Сусіди базікають у саду."
+},
+{
+"id": "fr:07:50",
+"target": "Je laisse un message à Léa.",
+"ru": "Я оставляю сообщение для Леа.",
+"uk": "Я залишаю повідомлення для Леї."
+}
+]
+},
+{
+"lesson": 8,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:08:01",
+"fr:08:02",
+"fr:08:03"
+],
+"textByLocale": {
+"en": "Ask yourself: what part of the answer am I missing? `où` is missing the place. `qui` is missing the person. If the other person only answers \"yes,\" you still won't know the detail you need.",
+"ru": "Задай себе вопрос: какую часть ответа я не знаю? Не хватает места — `où`. Не хватает человека — `qui`. Если собеседник ответит только «да», нужной детали ты так и не узнаешь.",
+"uk": "Задай собі запитання: яку частину відповіді я не знаю? Не вистачає місця – `où`. Не вистачає людини – `qui`. Якщо співрозмовник відповість лише «так», потрібної деталі ти так і не впізнаєш."
+}
+},
+{
+"exampleIds": [
+"fr:08:11",
+"fr:08:12",
+"fr:08:13"
+],
+"textByLocale": {
+"en": "In `Qui travaille ici ?`, the word `qui` itself already denotes an unknown performer. There's no need to invent or add another subject before the verb.",
+"ru": "В `Qui travaille ici ?` само слово `qui` уже обозначает неизвестного исполнителя. Не нужно придумывать и добавлять перед глаголом ещё одно подлежащее.",
+"uk": "У `Qui travaille ici ?` саме слово `qui` вже означає невідомого виконавця. Не потрібно вигадувати і додавати перед дієсловом ще одне підлягає."
+}
+},
+{
+"exampleIds": [
+"fr:08:21",
+"fr:08:27",
+"fr:08:29"
+],
+"textByLocale": {
+"en": "`Quand` asks about time in general. `À quelle heure` asks to name the hour. The word `heure` is feminine, so in this set phrase, `quelle` is written.",
+"ru": "`Quand` спрашивает о времени вообще. `À quelle heure` просит назвать час. В слове `heure` род женский, поэтому в этой устойчивой группе пишется `quelle`.",
+"uk": "`Quand` запитує про час взагалі. `À quelle heure` просить назвати годину. У слові `heure` рід жіночий, тому у цій стійкій групі пишеться `quelle`."
+}
+},
+{
+"exampleIds": [
+"fr:08:31",
+"fr:08:32",
+"fr:08:34"
+],
+"textByLocale": {
+"en": "`Combien coûte … ?` is a question about price. If we're talking about several things, also change the verb: `combien coûtent … ?`. For quantity, use the phrase `combien de` before the name of the objects.",
+"ru": "`Combien coûte … ?` — вопрос о цене. Если речь о нескольких вещах, меняй и глагол: `combien coûtent … ?`. Для количества перед названием объектов нужна группа `combien de`.",
+"uk": "`Combien coûte … ?` - питання про ціну. Якщо мова про кілька речей, змінюй та дієслово: `combien coûtent … ?`. Для кількості перед назвою об'єктів потрібна група `combien de`."
+}
+},
+{
+"exampleIds": [
+"fr:08:38",
+"fr:08:39",
+"fr:08:40"
+],
+"textByLocale": {
+"en": "`Quel` and `quelle` accompany a noun: with `bus`, one form, with `chambre`, another. Don't mechanically replace them with `qu’est-ce que`, which performs a different function.",
+"ru": "`Quel` и `quelle` сопровождают существительное: с `bus` одна форма, с `chambre` другая. Не заменяй их механически на `qu’est-ce que`, которое выполняет иную работу.",
+"uk": "`Quel` та `quelle` супроводжують іменник: з `bus` одна форма, з `chambre` інша. Не замінюй їх механічно на `qu’est-ce que`, що виконує іншу роботу."
+}
+},
+{
+"exampleIds": [
+"fr:08:41",
+"fr:08:43",
+"fr:08:46"
+],
+"textByLocale": {
+"en": "`Pourquoi` expects a reason, `comment`, a method or state. `Qu’est-ce que` helps you ask about the subject of an action. Carefully distinguish between \"who is looking for?\" and \"what are you looking for?\"",
+"ru": "`Pourquoi` ожидает причину, `comment` — способ или состояние. `Qu’est-ce que` помогает спросить о предмете действия. Внимательно различай «кто ищет?» и «что ты ищешь?».",
+"uk": "`Pourquoi` очікує причину, `comment` - спосіб або стан. `Qu’est-ce que` допомагає спитати про предмет дії. Уважно розрізняй «хто шукає?» і «що ти шукаєш?»."
+}
+},
+{
+"exampleIds": [
+"fr:08:48",
+"fr:08:49",
+"fr:08:50"
+],
+"textByLocale": {
+"en": "Keep the preposition when it makes sense: `avec qui` — with whom, `pour qui` — for whom. The colloquial placement of the interrogative word may vary; the form of the question sets a neutral pattern.",
+"ru": "Сохраняй предлог, когда он несёт смысл: `avec qui` — с кем, `pour qui` — для кого. Разговорное расположение вопросительного слова может отличаться; форма задания задаёт нейтральный образец.",
+"uk": "Зберігай прийменник, коли він має сенс: `avec qui` — з ким, `pour qui` — для кого. Розмовне розташування запитального слова може відрізнятися; форма завдання ставить нейтральний зразок."
+}
+}
+],
+"drills": [
+{
+"bad": "Combien",
+"chapter": 1,
+"id": "fr:08:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 4,
+"options": [
+"Quoi",
+"Où",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "Qui",
+"chapter": 1,
+"id": "fr:08:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 10,
+"options": [
+"Quand",
+"Où",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Quelles",
+"chapter": 1,
+"id": "fr:08:05:lab",
+"item": 5,
+"kind": "match",
+"near": 4,
+"options": [
+"Quelles",
+"Où",
+"Pourquoi"
+],
+"slot": 0
+},
+{
+"bad": "Comment",
+"chapter": 2,
+"id": "fr:08:08:lab",
+"item": 8,
+"kind": "build",
+"near": 2,
+"options": [
+"Quel",
+"Où",
+"Comment"
+],
+"slot": 0
+},
+{
+"bad": "Quel",
+"chapter": 2,
+"id": "fr:08:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 3,
+"options": [
+"Quand",
+"Quel",
+"Où"
+],
+"slot": 0
+},
+{
+"bad": "Combien",
+"chapter": 2,
+"id": "fr:08:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"Quand",
+"Qui",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "Comment",
+"chapter": 3,
+"id": "fr:08:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 13,
+"options": [
+"Qui",
+"Où",
+"Comment"
+],
+"slot": 0
+},
+{
+"bad": "Combien",
+"chapter": 3,
+"id": "fr:08:17:lab",
+"item": 17,
+"kind": "match",
+"near": 15,
+"options": [
+"Qui",
+"Quelles",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "Quel",
+"chapter": 3,
+"id": "fr:08:19:lab",
+"item": 19,
+"kind": "build",
+"near": 18,
+"options": [
+"Quel",
+"Combien",
+"Qui"
+],
+"slot": 0
+},
+{
+"bad": "Que",
+"chapter": 4,
+"id": "fr:08:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"Que",
+"Pourquoi",
+"Quand"
+],
+"slot": 0
+},
+{
+"bad": "Quoi",
+"chapter": 4,
+"id": "fr:08:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 22,
+"options": [
+"Quoi",
+"Quand",
+"Quel"
+],
+"slot": 0
+},
+{
+"bad": "Combien",
+"chapter": 4,
+"id": "fr:08:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 22,
+"options": [
+"Combien",
+"Quand",
+"Quel"
+],
+"slot": 0
+},
+{
+"bad": "où",
+"chapter": 5,
+"id": "fr:08:29:lab",
+"item": 29,
+"kind": "match",
+"near": 28,
+"options": [
+"qui",
+"où",
+"quelle"
+],
+"slot": 1
+},
+{
+"bad": "Quelle",
+"chapter": 5,
+"id": "fr:08:31:lab",
+"item": 31,
+"kind": "build",
+"near": 33,
+"options": [
+"Combien",
+"Que",
+"Quelle"
+],
+"slot": 0
+},
+{
+"bad": "Quelles",
+"chapter": 5,
+"id": "fr:08:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 35,
+"options": [
+"Qui",
+"Quelles",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "Où",
+"chapter": 6,
+"id": "fr:08:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 35,
+"options": [
+"Que",
+"Où",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "Quel",
+"chapter": 6,
+"id": "fr:08:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 11,
+"options": [
+"Quelle",
+"Quel",
+"Comment"
+],
+"slot": 0
+},
+{
+"bad": "Où",
+"chapter": 6,
+"id": "fr:08:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"Quelles",
+"Où",
+"Pourquoi"
+],
+"slot": 0
+},
+{
+"bad": "Combien",
+"chapter": 7,
+"id": "fr:08:45:lab",
+"item": 45,
+"kind": "build",
+"near": 43,
+"options": [
+"Que",
+"Comment",
+"Combien"
+],
+"slot": 0
+},
+{
+"bad": "fassiez",
+"chapter": 7,
+"id": "fr:08:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 2,
+"options": [
+"fassiez",
+"fait",
+"ferai"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"lieu",
+"où ?"
+],
+[
+"personne",
+"qui ?"
+],
+[
+"moment",
+"quand ?"
+],
+[
+"heure",
+"à quelle heure ?"
+],
+[
+"prix",
+"combien ?"
+],
+[
+"raison",
+"pourquoi ?"
+],
+[
+"manière",
+"comment ?"
+]
+],
+"title": {
+"en": "How to ask: where, who, when, and how much",
+"ru": "Как спросить: где, кто, когда и сколько",
+"uk": "Як запитати: де, хто, коли і скільки"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:08:01",
+"target": "Où es-tu ?",
+"ru": "Где ты?",
+"uk": "Де ти?"
+},
+{
+"id": "fr:08:02",
+"target": "Où est Paul ?",
+"ru": "Где Поль?",
+"uk": "Де Пол?"
+},
+{
+"id": "fr:08:03",
+"target": "Où sont les clés ?",
+"ru": "Где ключи?",
+"uk": "Де ключі?"
+},
+{
+"id": "fr:08:11",
+"target": "Qui est là ?",
+"ru": "Кто здесь?",
+"uk": "Хто тут?"
+},
+{
+"id": "fr:08:12",
+"target": "Qui est à la porte ?",
+"ru": "Кто стоит у двери?",
+"uk": "Хто біля дверей?"
+},
+{
+"id": "fr:08:13",
+"target": "Qui travaille ici ?",
+"ru": "Кто здесь работает?",
+"uk": "Хто тут працює?"
+},
+{
+"id": "fr:08:21",
+"target": "Quand arrives-tu ?",
+"ru": "Когда ты приезжаешь?",
+"uk": "Коли ти приїжджаєш?"
+},
+{
+"id": "fr:08:27",
+"target": "À quelle heure ouvre le musée ?",
+"ru": "Во сколько открывается музей?",
+"uk": "О котрій годині відкривається музей?"
+},
+{
+"id": "fr:08:29",
+"target": "À quelle heure part le train ?",
+"ru": "Во сколько отправляется поезд?",
+"uk": "О котрій годині відправляється поїзд?"
+},
+{
+"id": "fr:08:31",
+"target": "Combien coûte le billet ?",
+"ru": "Сколько стоит билет?",
+"uk": "Скільки коштує квиток?"
+},
+{
+"id": "fr:08:32",
+"target": "Combien coûtent ces chaussures ?",
+"ru": "Сколько стоят эти туфли?",
+"uk": "Скільки коштують ці туфлі?"
+},
+{
+"id": "fr:08:34",
+"target": "Combien de places voulez-vous ?",
+"ru": "Сколько мест вы хотите?",
+"uk": "Скільки місць ви хочете?"
+},
+{
+"id": "fr:08:38",
+"target": "Quel bus prends-tu ?",
+"ru": "На каком автобусе ты едешь?",
+"uk": "Яким автобусом ти їдеш?"
+},
+{
+"id": "fr:08:39",
+"target": "Quelle chambre est libre ?",
+"ru": "Какой номер свободен?",
+"uk": "Який номер вільний?"
+},
+{
+"id": "fr:08:40",
+"target": "Quel est votre numéro ?",
+"ru": "Какой у вас номер?",
+"uk": "Який ваш номер?"
+},
+{
+"id": "fr:08:41",
+"target": "Pourquoi pars-tu si tôt ?",
+"ru": "Почему ты так рано уходишь?",
+"uk": "Чому ти так рано йдеш?"
+},
+{
+"id": "fr:08:43",
+"target": "Comment allez-vous ?",
+"ru": "Как у вас дела?",
+"uk": "Як у вас справи?"
+},
+{
+"id": "fr:08:46",
+"target": "Qu’est-ce que tu cherches ?",
+"ru": "Что ты ищешь?",
+"uk": "Що ти шукаєш?"
+},
+{
+"id": "fr:08:48",
+"target": "Que fait Paul ?",
+"ru": "Что делает Поль?",
+"uk": "Що робить Пол?"
+},
+{
+"id": "fr:08:49",
+"target": "Avec qui travailles-tu ?",
+"ru": "С кем ты работаешь?",
+"uk": "З ким ти працюєш?"
+},
+{
+"id": "fr:08:50",
+"target": "Pour qui est ce cadeau ?",
+"ru": "Для кого этот подарок?",
+"uk": "Для кого цей подарунок?"
+}
+]
+}
+]

@@ -140,6 +140,18 @@ export function isCurrentAccountGeneration(
   return true;
 }
 
+/**
+ * One synchronous authorization observation for an already active transition
+ * lease. It intentionally does not seal the lease or delay identity changes.
+ */
+export function acquireAccountTransitionCommitPermit(
+  lease: AccountTransitionLockLease,
+  token: AccountGenerationToken,
+): boolean {
+  return activeAccountTransitionLockLeases.has(lease)
+    && isCurrentAccountGeneration(token, token.stableId);
+}
+
 export async function resolvePhoneStateAccountContext(
   stableUid: string,
   runtimeToken: AccountGenerationToken,

@@ -12,8 +12,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import PressableHybrid from '../PressableHybrid';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { LinearGradient } from '../SafeLinearGradient';
 import type { Lang } from '../../constants/i18n';
 import {
+  CLASSIC_LESSONS_GUTTER,
   lessonsGlassAlpha,
   lessonsGlassCardStyle,
   lessonsListCopy,
@@ -24,7 +26,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import { lessonsListCardPropsEqual } from './lessonsListCardEquality';
 
 // зачем (владелец 2026-09-30): карточка урока `.lc` из learn.html — круг 44 с номером слева,
-// название 17/22, строка состояния (звёзды D36 / полоска прогресса / «Открыт» / замок), шеврон.
+// название 17/22, строка состояния (звёзды D36 / полоска прогресса / замок), шеврон.
 // Состояния макета: пройден, в процессе, открыт, проверка доступа, Plus, замок прогресса.
 // Цен и кнопок покупки в карточке нет (в 2.0 отметка покупки урока снята). Нажатие только
 // сообщает номер урока наверх: доступ решает прежний обработчик в app/(tabs)/lessons.tsx.
@@ -80,7 +82,7 @@ function CirclePop({ children }: { children: React.ReactNode }) {
   return <Animated.View style={style}>{children}</Animated.View>;
 }
 
-/** Строка состояния (звёзды/«Пройден»/«Открыт») мягко проявляется после смены круга. */
+/** Строка состояния мягко проявляется после смены круга. */
 function StatusFade({ children }: { children: React.ReactNode }) {
   const p = useSharedValue(0);
   useEffect(() => {
@@ -173,8 +175,12 @@ function NumberCircle({ glass, num, state, current }: {
   );
 }
 
-function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang; state: LessonsListCardState }) {
-  // зачем (learn.html `.pct` 600, `.lkt` обычный): «Пройден»/проценты — полужирные, «Открыт»/«Пройди урок…» — обычные.
+function StatusRow({ glass, lang, state }: {
+  glass: LessonsListGlass;
+  lang: Lang;
+  state: Exclude<LessonsListCardState, { kind: 'open' }>;
+}) {
+  // зачем (learn.html `.pct` 600, `.lkt` обычный): «Пройден»/проценты — полужирные, «Пройди урок…» — обычный.
   const muted = { color: glass.secondary, fontSize: 13, fontWeight: '600' as const };
   const lkt = { color: glass.secondary, fontSize: 13, fontWeight: '400' as const };
   if (state.kind === 'done') {
@@ -190,7 +196,10 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
     return (
       <>
         <View style={{ flex: 1, height: 6, borderRadius: 4, backgroundColor: glass.line, overflow: 'hidden' }}>
-          <View style={{ width: `${pct}%`, minWidth: 6, height: 6, borderRadius: 4, backgroundColor: glass.accentGraphic }} />
+          {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» полоса прогресса — градиент главной кнопки; у остальных тем — цвет графики темы */}
+          {glass.aurora
+            ? <LinearGradient colors={[glass.aurora.ctaFrom, glass.aurora.ctaTo]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={{ width: `${pct}%`, minWidth: 6, height: 6, borderRadius: 4 }} />
+            : <View style={{ width: `${pct}%`, minWidth: 6, height: 6, borderRadius: 4, backgroundColor: glass.accentGraphic }} />}
         </View>
         <Text style={[muted, { minWidth: 34, textAlign: 'right', fontVariant: ['tabular-nums'] }]}>{pct}%</Text>
       </>
@@ -207,8 +216,7 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
   if (state.kind === 'pending') {
     return <Text style={[lkt, { flexShrink: 1 }]}>{lessonsListCopy.checkingAccess(lang)}</Text>;
   }
-  const text = state.kind === 'open' ? lessonsListCopy.open(lang) : lessonsListCopy.lockPrev(lang, state.prevNum);
-  return <Text style={[lkt, { flexShrink: 1 }]}>{text}</Text>;
+  return <Text style={[lkt, { flexShrink: 1 }]}>{lessonsListCopy.lockPrev(lang, state.prevNum)}</Text>;
 }
 
 export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
@@ -238,7 +246,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
   }
   const clearFx = useCallback(() => setFx(null), []);
   const circle = <NumberCircle glass={glass} num={num} state={state} current={current} />;
-  const status = <StatusRow glass={glass} lang={lang} state={state} />;
+  const status = state.kind !== 'open' ? <StatusRow glass={glass} lang={lang} state={state} /> : null;
   return (
     <PressableHybrid
       testID={`lessons-row-${num}`}
@@ -251,7 +259,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       variant="card"
       pressScaleTo={0.975}
       // зачем («Тень» 12.10): тень плашки (по токенам темы) теперь на самой карточке — в lessonsGlassCardStyle; у обёртки только поля.
-      style={{ marginHorizontal: 20, marginTop: 10, borderRadius: 14 }}
+      style={{ marginHorizontal: CLASSIC_LESSONS_GUTTER, marginTop: 10, borderRadius: 14 }}
       contentStyle={[
         lessonsGlassCardStyle(glass, 14),
         { minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 14 },
@@ -267,9 +275,11 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.8 : 1 }}>
         {/* зачем (learn.html `.lc.locked .tt`): у закрытого урока название приглушённое (0xD0D0D2 ≈ текст темы с прозрачностью .82, + .8 у блока). */}
         <Text style={{ color: locked ? lessonsGlassAlpha(glass.text, 0.82) : glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}>{name}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
-          {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
-        </View>
+        {status ? (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
+            {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
+          </View>
+        ) : null}
       </View>
       {/* зачем (learn.html `.lc` → `.ch` без своего цвета): шеврон наследует цвет текста карточки и не приглушается у закрытых. */}
       <Ionicons name="chevron-forward" size={20} color={glass.text} />

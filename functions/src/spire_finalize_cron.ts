@@ -45,12 +45,16 @@ import {
   type SpireConfigDoc,
 } from './spire_config_contract';
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
-import { computeSpireRoomResults } from './spire_finalize_core';
 import { payoutSpireWeekReward } from './spire_week_payout';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
 import { isSpireResidentMember, spireWeekStartMs } from './spire_residents';
 import { runSpireWeekResultPush, type SpireWeekResultPushInput } from './spire_week_result_push';
 import { spireEnergyDeltaForWeek } from '../../shared/spire_energy_bonus';
+import {
+  completeFrozenSpireRoom,
+  freezeSpireRoom,
+  loadFrozenSpireRoomResults,
+} from './spire_finalization_freeze';
 
 const LOG = '[SPIRE-FINALIZE]';
 // зачем 200 комнат на страницу при выплатах: каждая комната теперь ещё и
@@ -119,6 +123,114 @@ function membersOf(data: Record<string, unknown>): Record<string, unknown> {
   return m && typeof m === 'object' && !Array.isArray(m) ? m as Record<string, unknown> : {};
 }
 
+export async function runSpireFinalizeCronHandler(
+  db: admin.firestore.Firestore,
+  startedAt = Date.now(),
+): Promise<Record<string, number>> {
+  const { weekId, weekStartMs } = spirePreviousWeek(startedAt);
+  const weekEndMs = spireWeekStartMs(startedAt);
+  let rooms = 0;
+  let skipped = 0;
+  let results = 0;
+  let tierWrites = 0;
+  let promoted = 0;
+  let demoted = 0;
+  let payoutsPaid = 0;
+  let payoutsFailed = 0;
+  let coinsPaid = 0;
+  let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+  const pushInputs: SpireWeekResultPushInput[] = [];
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    let query: FirebaseFirestore.Query = db.collection(SPIRE_GROUPS_COLLECTION)
+      .where('weekId', '==', weekId).orderBy('__name__').limit(PAGE_SIZE);
+    if (lastDoc) query = query.startAfter(lastDoc);
+    const snap = await query.get();
+    if (snap.empty) break;
+    lastDoc = snap.docs[snap.docs.length - 1];
+    for (const doc of snap.docs) {
+      const initial = doc.data() as Record<string, unknown>;
+      if (initial.finalizedAt) { skipped++; continue; }
+      const frozen = await freezeSpireRoom(db, doc.ref, weekStartMs);
+      if (frozen.status === 'hold' || frozen.status === 'integrity_room_hold') {
+        skipped++;
+        payoutsFailed++;
+        console.warn(LOG, JSON.stringify({
+          event: 'room_incomplete', groupId: doc.id, weekId, lang: initial.lang, reason: frozen.reason ?? frozen.status,
+        }));
+        continue;
+      }
+      const loaded = await loadFrozenSpireRoomResults(db, doc.ref);
+      if (loaded.status !== 'loaded') {
+        skipped++;
+        payoutsFailed++;
+        console.warn(LOG, JSON.stringify({
+          event: 'room_incomplete', groupId: doc.id, weekId, lang: initial.lang, reason: loaded.status,
+        }));
+        continue;
+      }
+      const lang = String(loaded.room.lang);
+      let roomFailed = 0;
+      const roomPushInputs: SpireWeekResultPushInput[] = [];
+      for (const [uid, result] of Object.entries(loaded.results)) {
+        results++;
+        if (result.promoted) promoted++;
+        if (result.demoted) demoted++;
+        if (result.newTier !== result.prevTier) tierWrites++;
+        try {
+          const outcome = await payoutSpireWeekReward(db, {
+            uid, groupId: doc.id, weekId, lang,
+            resultRef: db.collection('users').doc(uid).collection(SPIRE_WEEK_RESULTS_SUBCOLLECTION).doc(`${weekId}_${lang}`),
+            roomRef: doc.ref,
+            weekEndMs,
+          });
+          if (outcome.status === 'paid') { payoutsPaid++; coinsPaid += outcome.coins; }
+          if (outcome.status === 'rejected' || outcome.status.startsWith('skipped_') || outcome.status === 'integrity_room_hold') {
+            roomFailed++;
+            if (outcome.status === 'integrity_room_hold') break;
+          }
+        } catch (error) {
+          roomFailed++;
+          void error;
+          console.error(LOG, JSON.stringify({
+            event: 'payout_failed', groupId: doc.id, weekId, lang, reason: 'payout_exception',
+          }));
+        }
+        roomPushInputs.push({
+          uid, studyLang: lang, prevTier: result.prevTier, newTier: result.newTier,
+          promoted: result.promoted, demoted: result.demoted,
+        });
+      }
+      payoutsFailed += roomFailed;
+      if (roomFailed > 0) continue;
+      const completion = await completeFrozenSpireRoom(db, doc.ref);
+      if (completion.status !== 'finalized' && completion.status !== 'already_finalized') {
+        payoutsFailed++;
+        console.warn(LOG, JSON.stringify({
+          event: 'room_incomplete', groupId: doc.id, weekId, lang, reason: completion.status,
+        }));
+        continue;
+      }
+      pushInputs.push(...roomPushInputs);
+      rooms++;
+    }
+  }
+
+  let pushSent = 0;
+  if (pushInputs.length > 0) {
+    try { pushSent = (await runSpireWeekResultPush(db, pushInputs)).sent; }
+    catch (error) {
+      void error;
+      console.error(LOG, JSON.stringify({ event: 'week_result_push_failed', reason: 'push_exception' }));
+    }
+  }
+  const summary = { rooms, skipped, results, tierWrites, promoted, demoted, payoutsPaid, payoutsFailed, coinsPaid, pushSent };
+  console.log(LOG, JSON.stringify({ event: 'done', weekId, ...summary, tookMs: Date.now() - startedAt }));
+  if (payoutsFailed > 0) throw new Error(`spire_payouts_incomplete:${payoutsFailed}`);
+  return summary;
+}
+
 export const spireFinalizeCron = onSchedule(
   {
     // зачем 00:01: отчёты последних 10 минут недели засчитываются уже в НОВУЮ
@@ -134,206 +246,5 @@ export const spireFinalizeCron = onSchedule(
     // Повтор безопасен: подведённые комнаты пропускаются, выплаты — по ключу.
     retryCount: 3,
   },
-  withCronHeartbeat('spireFinalizeCron', async () => {
-    const db = admin.firestore();
-    const startedAt = Date.now();
-    const { weekId, weekStartMs } = spirePreviousWeek(startedAt);
-    const config = await loadSpireConfig(db);
-    // зачем (D162, координатор 13.10): один рубильник config/spire_v1.rankBy; 'coins' действует только с недели
-    // SPIRE_RANK_BY_COINS_FROM_WEEK — правило не меняется посреди начатой недели.
-    const rankBy = spireEffectiveRankBy(config, weekId);
-    console.log(LOG, JSON.stringify({ event: 'start', weekId, weekStartMs, rankByConfig: config.rankBy, rankBy, weekCoinsCap: config.weekCoinsCap }));
-    let capHitsTotal = 0;
-
-    let rooms = 0;
-    let skipped = 0;
-    let results = 0;
-    let tierWrites = 0;
-    let promoted = 0;
-    let demoted = 0;
-    let coinsPaid = 0;
-    let payoutsPaid = 0;
-    let payoutsFailed = 0;
-    const weekEndMs = spireWeekStartMs(startedAt);
-    let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
-    let batch = db.batch();
-    let batchCount = 0;
-    // зачем (PM-281, T30): понедельничный пуш «итог + новый шпиль» собирается
-    // ПОПУТНО тем же циклом — экономия чтений (см. шапку spire_week_result_push.ts).
-    // Уходит ТОЛЬКО после всех комнат: пуш обязан прийти после того, как
-    // итоги реально записаны, иначе текст соврёт про шпиль, который крон
-    // ещё не подвёл.
-    const pushInputs: SpireWeekResultPushInput[] = [];
-
-    const flush = async () => {
-      if (batchCount === 0) return;
-      await batch.commit();
-      batch = db.batch();
-      batchCount = 0;
-    };
-    const add = async (write: (b: FirebaseFirestore.WriteBatch) => void) => {
-      write(batch);
-      batchCount++;
-      if (batchCount >= BATCH_LIMIT) await flush();
-    };
-
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      let query: FirebaseFirestore.Query = db.collection(SPIRE_GROUPS_COLLECTION)
-        .where('weekId', '==', weekId)
-        .orderBy('__name__')
-        .limit(PAGE_SIZE);
-      if (lastDoc) query = query.startAfter(lastDoc);
-      const snap = await query.get();
-      if (snap.empty) break;
-      lastDoc = snap.docs[snap.docs.length - 1];
-
-      for (const doc of snap.docs) {
-        const data = doc.data() as Record<string, unknown>;
-        if (data.finalizedAt) {
-          skipped++;
-          console.log(LOG, JSON.stringify({ event: 'skip', reason: 'already_finalized', groupId: doc.id }));
-          continue;
-        }
-        const lang = typeof data.lang === 'string' ? data.lang : '';
-        if (!lang) {
-          skipped++;
-          console.warn(LOG, JSON.stringify({ event: 'skip', reason: 'no_lang', groupId: doc.id }));
-          continue;
-        }
-        const roomWeekStart = Number(data.weekStartMs);
-        const weekCoinsByUid = rankBy === 'coins' ? await spireReadWeekCoins(db, membersOf(data), weekId) : undefined;
-        const out = computeSpireRoomResults({
-          groupId: doc.id,
-          tier: Number(data.tier),
-          weekStartMs: Number.isFinite(roomWeekStart) && roomWeekStart > 0 ? roomWeekStart : weekStartMs,
-          cohortDay: Number(data.cohortDay) || 0,
-          members: membersOf(data),
-          coins: config.coins,
-          tuning: config.residents,
-          rankBy,
-          weekCoinsByUid,
-          weekCoinsCap: config.weekCoinsCap,
-        });
-        capHitsTotal += out.capHits;
-
-        let roomPromoted = 0;
-        let roomDemoted = 0;
-        const toPay: Array<{ uid: string; ref: FirebaseFirestore.DocumentReference }> = [];
-        for (const [uid, result] of Object.entries(out.results)) {
-          const resultRef = db.collection('users').doc(uid)
-            .collection(SPIRE_WEEK_RESULTS_SUBCOLLECTION).doc(`${weekId}_${lang}`);
-          await add((b) => b.set(resultRef, {
-            ...result,
-            weekId,
-            lang,
-            groupId: doc.id,
-            rewardStatus: result.rewardCoins.total > 0 ? 'pending_wallet' : 'none',
-            finalizedAt: admin.firestore.FieldValue.serverTimestamp(),
-          }));
-          results++;
-          if (result.rewardCoins.total > 0) toPay.push({ uid, ref: resultRef });
-          if (result.promoted) roomPromoted++;
-          if (result.demoted) roomDemoted++;
-          // зачем: кандидат понедельничного пуша (PM-281) — данные уже в памяти,
-          // отдельного чтения не требуется. Отправка — после ВСЕХ комнат ниже.
-          pushInputs.push({
-            uid, studyLang: lang, prevTier: result.prevTier, newTier: result.newTier,
-            promoted: result.promoted, demoted: result.demoted,
-          });
-          if (result.newTier !== result.prevTier) {
-            // merge: карта spireTiers сливается по ключам — другие языки не трогаем.
-            // зачем (энергия от Пика, владелец 04.11): дельта запаса лежит по КЛЮЧУ НЕДЕЛИ — повтор финализа перезаписывает ту же запись, не удваивая
-            await add((b) => b.set(db.collection('leaderboard').doc(uid), {
-              spireTiers: { [lang]: result.newTier },
-              spireEnergyDeltas: { [lang]: { [weekId]: spireEnergyDeltaForWeek(result.prevTier, result.newTier) } },
-            }, { merge: true }));
-            tierWrites++;
-          }
-        }
-        // ── Выплата монет (PM-280) ────────────────────────────────────────
-        // Итоги комнаты обязаны быть записаны ДО выплат: транзакция выплаты
-        // читает сумму из документа итога и ставит в нём 'paid' через merge.
-        // Если бы итог ещё лежал в батче, его set без merge затёр бы 'paid'.
-        let roomPayoutFailed = 0;
-        if (toPay.length > 0) {
-          await flush();
-          for (const row of toPay) {
-            try {
-              const paid = await payoutSpireWeekReward(db, {
-                uid: row.uid, weekId, lang, resultRef: row.ref, weekEndMs,
-              });
-              if (paid.status === 'paid') {
-                payoutsPaid++;
-                coinsPaid += paid.coins;
-              } else if (paid.status === 'rejected' || paid.status === 'skipped_identity_transition') {
-                // Отказ журнала или аккаунт в переезде — повторить стоит.
-                roomPayoutFailed++;
-              }
-            } catch (err) {
-              roomPayoutFailed++;
-              console.error(LOG, JSON.stringify({
-                event: 'payout_failed', groupId: doc.id, uid: row.uid, lang,
-                error: String((err as Error)?.message ?? err),
-              }));
-            }
-          }
-        }
-        payoutsFailed += roomPayoutFailed;
-        if (roomPayoutFailed > 0) {
-          // Комнату НЕ отмечаем: ретрай прогона перепишет итоги и доплатит
-          // только тех, у кого нет расписки (остальные — already_paid).
-          console.warn(LOG, JSON.stringify({ event: 'room_payout_incomplete', groupId: doc.id, lang, failed: roomPayoutFailed }));
-          promoted += roomPromoted;
-          demoted += roomDemoted;
-          rooms++;
-          continue;
-        }
-        // Отметка идёт ПОСЛЕ итогов и выплат: батчи коммитятся по порядку, значит
-        // отмеченная комната уже целиком записана и оплачена; упали раньше —
-        // ретрай перепишет те же документы теми же значениями.
-        await add((b) => b.update(doc.ref, {
-          finalizedAt: admin.firestore.FieldValue.serverTimestamp(),
-          open: false,
-        }));
-        promoted += roomPromoted;
-        demoted += roomDemoted;
-        rooms++;
-        console.log(LOG, JSON.stringify({
-          event: 'room', groupId: doc.id, lang, tier: data.tier ?? null,
-          live: out.liveTotal, roomTotal: out.roomTotal, zone: out.zoneSize,
-          hasAnyScorer: out.hasAnyScorer, promoted: roomPromoted, demoted: roomDemoted,
-          rankBy: out.rankBy, capHit: out.capHits,
-        }));
-      }
-    }
-
-    await flush();
-
-    // ── Пуш понедельника (PM-281, T30) ─────────────────────────────────────
-    // зачем: строго ПОСЛЕ flush() — итоги и переходы шпилей уже в Firestore,
-    // текст пуша не может соврать про шпиль, который ещё не записан. Провал
-    // отправки НЕ бросает исключение крона: пуш — не источник истины, итог
-    // уже сохранён и его всё равно увидит экран Шпиля фактом при заходе.
-    let pushSent = 0;
-    try {
-      const pushSummary = await runSpireWeekResultPush(db, pushInputs);
-      pushSent = pushSummary.sent;
-      console.log(LOG, JSON.stringify({ event: 'week_result_push', ...pushSummary }));
-    } catch (err) {
-      console.error(LOG, JSON.stringify({ event: 'week_result_push_failed', error: String((err as Error)?.message ?? err) }));
-    }
-
-    const summary = {
-      weekId, rooms, skipped, results, tierWrites, promoted, demoted,
-      payoutsPaid, payoutsFailed, coinsPaid, pushSent, rankBy, capHits: capHitsTotal, tookMs: Date.now() - startedAt,
-    };
-    console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
-    if (payoutsFailed > 0) {
-      // зачем: без броска Cloud Scheduler считает прогон успешным и не повторит —
-      // монеты тех, кому не заплатили, повисли бы до ручного вмешательства.
-      throw new Error(`spire_payouts_incomplete:${payoutsFailed}`);
-    }
-    return { rooms, skipped, results, tierWrites, promoted, demoted, payoutsPaid, coinsPaid, pushSent };
-  }),
+  withCronHeartbeat('spireFinalizeCron', async () => runSpireFinalizeCronHandler(admin.firestore())),
 );

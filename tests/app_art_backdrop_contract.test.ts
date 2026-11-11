@@ -90,8 +90,6 @@ describe('app art backdrop registry', () => {
       ['/lesson_menu', 'lessons'],
       ['/lesson1', 'lessonPractice'],
       ['/lesson_intro_screens', 'lessonIntro'],
-      ['/learning-v2/course', 'lessons'],
-      ['/learning-v2/session/lesson-01:session:01', 'lessonPractice'],
       ['/achievements_screen', 'achievements'],
       ['/diagnostic_test', 'diagnosticTest'],
       ['/exam', 'exam'],

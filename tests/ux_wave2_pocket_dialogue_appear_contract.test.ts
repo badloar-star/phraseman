@@ -1,19 +1,9 @@
-// Сторож (UX-волна 2, 04.11, владелец одобрил): «Карман слов» проявляется плавно; в диалоге плавно появляются только НОВЫЕ реплики
+// Сторож (UX-волна 2, 04.11, владелец одобрил): в диалоге плавно появляются только НОВЫЕ реплики
 // (история и восстановление — без анимации), Reduce Motion отключает движение. Без новых View в ленте (Animated.View заменяет View).
 import fs from 'node:fs';
 import path from 'node:path';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
-
-describe('Карман слов', () => {
-  const s = read('components/learning-v2/LearningV2WordPocketOverlayV1.tsx');
-  it('оверлей проявляется за 180 мс на нативном драйвере, при Reduce Motion — сразу', () => {
-    expect(s).toContain('const fade = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;');
-    expect(s).toContain('duration: 180, useNativeDriver: true');
-    expect(s).toContain('<Animated.View\n      testID="learning-v2-word-pocket-overlay"');
-    expect(s).toContain('opacity: fade');
-  });
-});
 
 describe('Реплики диалога', () => {
   const chat = read('components/dialogs/glass/DialogueGlassChat.tsx');

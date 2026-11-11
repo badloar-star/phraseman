@@ -31,8 +31,6 @@ const SESSION_ENTRY_ROUTES: readonly string[] = [
   'lesson_verbs',
   'lesson_irregular_verbs',
   'preposition_drill',
-  'learning_v2_session_intro',
-  'learning_v2_direct_session_player_v1',
   'exam',
   'level_exam',
   'mistake_practice_session',

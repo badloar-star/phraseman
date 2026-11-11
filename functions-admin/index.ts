@@ -16,11 +16,12 @@
 //
 // ВАЖНО: исходники НЕ дублируются. tsconfig с rootDir ".." компилирует те же
 // файлы functions/src/*, что и основная кодбаза, — правка делается в одном
-// месте и попадает в обе сборки (так же устроена functions-content).
+// месте и попадает в обе сборки.
 //
 // Деплой: firebase deploy --only functions:admin
 // ═══════════════════════════════════════════════════════════════════════════
 
+export { adminYoutubeComments } from '../functions/src/youtube_comments';
 export {
   adminGrantAccess,
   adminSetUserBan,
@@ -76,36 +77,17 @@ export {
   adminPublishAlertsConfig,
   adminTestAlerts,
 } from '../functions/src/admin_config_controls';
-export {
-  adminCreateContentGenerationJob,
-  adminListContentFactoryJobs,
-} from '../functions/src/admin_content_factory';
-export {
-  adminGetContentFactoryJobDetail,
-  adminGetContentFactoryUnitPreview,
-  adminGetContentFactoryWorkspace,
-  adminGetContentFactoryRolloutMetrics,
-} from '../functions/src/admin_content_factory_read';
-export {
-  adminReviewCourseGeneration,
-  adminSealCourseRelease,
-} from '../functions/src/admin_content_release';
 export { adminCreateContentStageBulkPlan } from '../functions/src/admin_content_stage_bulk';
 export { adminEditContentStageArtifact } from '../functions/src/admin_content_stage_edits';
 export {
   adminCreateContentStage,
   adminControlContentStage,
   adminListContentStages,
-  adminGetLearningV2CourseWorkspaceProjection,
   adminListContentStageDependencies,
   adminGetContentStageCapabilities,
   adminPreviewContentStage,
   adminReviewContentStage,
 } from '../functions/src/admin_content_stages';
-export {
-  adminSaveV2EpisodeDraft,
-  adminSaveV2SeasonDraft,
-} from '../functions/src/admin_content_studio_callables';
 export {
   adminGenerateDailyDigest,
   adminOpenDailyDigest,
@@ -195,27 +177,9 @@ export {
   adminSearchUsers,
   adminGetUserProfile,
 } from '../functions/src/admin_user_profile';
-export {
-  adminCreateV2GenerationPlan,
-  adminQueueV2GenerationPlan,
-} from '../functions/src/admin_v2_generation';
 // зачем: D70/D78 — биржа жемчуга (adminSetCoinExchangeRate/adminGetCoinExchangeCenter)
 // удалена вместе с жемчугом; снятие функций на сервере — деплой владельца.
 // зачем: D110 — adminRefundCommunityPackPurchase удалён (решение владельца).
-export { adminRunContentGenerationUnit } from '../functions/src/content_factory_worker';
-export {
-  adminPreviewLearningV2CourseWave,
-  adminApproveLearningV2CourseWave,
-  adminRejectLearningV2CourseWave,
-} from '../functions/src/content_factory/learning_v2_course_shard_background';
-export {
-  adminSeedV2E1DemoSource,
-  adminRunV2E1Compilation,
-} from '../functions/src/content_factory/v2_e1_compilation_worker';
-export {
-  adminGetV2OwnerGeneratorWorkspace,
-  adminPrepareV2OwnerEpisodeDraft,
-} from '../functions/src/content_factory/v2_owner_generator_workspace_v1';
 export { adminRunContentStage } from '../functions/src/content_stage_worker';
 // зачем: D108 — админ-архив косметики удалён вместе с аурами и кастомными аватарами.
 export {
@@ -235,10 +199,6 @@ export {
   jarvisProductKnowledgeReviewCron,
   jarvisTelegramApprovalWebhook,
 } from '../functions/src/jarvis';
-export {
-  adminActivateCourseRelease,
-  adminRollbackCourseRelease,
-} from '../functions/src/language_release';
 // 04.10 (владелец, «вычистить весь MAX»): админские функции отзывов и здоровья MAX
 // удалены вместе с исходниками; админка их больше не зовёт. Из облака их убирает координатор по имени.
 export { adminGetOnboardingFunnel } from '../functions/src/onboarding_funnel';
@@ -304,3 +264,4 @@ export {
   adminPublishYoutubeCatalogConfig,
   adminRefreshYoutubeCatalog,
 } from '../functions/src/youtube_catalog';
+export {youtubeOAuthCallback} from '../functions/src/youtube_oauth';

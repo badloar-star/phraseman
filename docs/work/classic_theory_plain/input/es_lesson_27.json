@@ -1,0 +1,774 @@
+{
+ "lang": "es",
+ "lesson": 27,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:27:01",
+   "target": "El libro que compré es corto.",
+   "ru": "Книга, которую я купил, короткая.",
+   "uk": "Книжка, яку я купив, коротка."
+  },
+  {
+   "id": "es:27:02",
+   "target": "El libro que leí es corto.",
+   "ru": "Книга, которую я прочитал, короткая.",
+   "uk": "Книжка, яку я прочитав, коротка."
+  },
+  {
+   "id": "es:27:03",
+   "target": "El libro que buscas es mío.",
+   "ru": "Книга, которую ты ищешь, моя.",
+   "uk": "Книжка, яку ти шукаєш, моя."
+  },
+  {
+   "id": "es:27:04",
+   "target": "El libro que tengo aquí es nuevo.",
+   "ru": "Книга, которая у меня здесь, новая.",
+   "uk": "Книжка, яка в мене тут, нова."
+  },
+  {
+   "id": "es:27:05",
+   "target": "El libro que me diste es corto.",
+   "ru": "Книга, которую ты мне дал, короткая.",
+   "uk": "Книжка, яку ти мені дав, коротка."
+  },
+  {
+   "id": "es:27:06",
+   "target": "La bufanda que buscas está en el coche.",
+   "ru": "Шарф, который ты ищешь, в машине.",
+   "uk": "Шарф, який ти шукаєш, у машині."
+  },
+  {
+   "id": "es:27:07",
+   "target": "La mochila que buscas es roja.",
+   "ru": "Рюкзак, который ты ищешь, красный.",
+   "uk": "Рюкзак, який ти шукаєш, червоний."
+  },
+  {
+   "id": "es:27:08",
+   "target": "La mochila que compró Ana es roja.",
+   "ru": "Рюкзак, который купила Ана, красный.",
+   "uk": "Рюкзак, який купила Ана, червоний."
+  },
+  {
+   "id": "es:27:09",
+   "target": "La mochila que está aquí es roja.",
+   "ru": "Рюкзак, который лежит здесь, красный.",
+   "uk": "Рюкзак, який лежить тут, червоний."
+  },
+  {
+   "id": "es:27:10",
+   "target": "La mochila que dejé en casa es roja.",
+   "ru": "Рюкзак, который я оставил дома, красный.",
+   "uk": "Рюкзак, який я залишив удома, червоний."
+  },
+  {
+   "id": "es:27:11",
+   "target": "El médico que trabaja aquí es mi hermano.",
+   "ru": "Врач, который здесь работает, — мой брат.",
+   "uk": "Лікар, який тут працює, — мій брат."
+  },
+  {
+   "id": "es:27:12",
+   "target": "El médico que vino ayer es mi hermano.",
+   "ru": "Врач, который пришёл вчера, — мой брат.",
+   "uk": "Лікар, який прийшов учора, — мій брат."
+  },
+  {
+   "id": "es:27:13",
+   "target": "El médico que llamó anoche es mi hermano.",
+   "ru": "Врач, который звонил вчера вечером, — мой брат.",
+   "uk": "Лікар, який телефонував учора ввечері, — мій брат."
+  },
+  {
+   "id": "es:27:14",
+   "target": "El vecino que vino ayer es médico.",
+   "ru": "Сосед, который приходил вчера, — врач.",
+   "uk": "Сусід, який приходив учора, — лікар."
+  },
+  {
+   "id": "es:27:15",
+   "target": "El camarero que nos dio la cuenta es mi vecino.",
+   "ru": "Официант, который принёс нам счёт, — мой сосед.",
+   "uk": "Офіціант, який приніс нам рахунок, — мій сусід."
+  },
+  {
+   "id": "es:27:16",
+   "target": "Las llaves que buscas están en la mesa.",
+   "ru": "Ключи, которые ты ищешь, лежат на столе.",
+   "uk": "Ключі, які ти шукаєш, лежать на столі."
+  },
+  {
+   "id": "es:27:17",
+   "target": "El regalo que compré está en casa.",
+   "ru": "Подарок, который я купил, дома.",
+   "uk": "Подарунок, який я купив, удома."
+  },
+  {
+   "id": "es:27:18",
+   "target": "Las llaves que lleva Ana están en la mesa.",
+   "ru": "Ключи, которые несёт Ана, лежат на столе.",
+   "uk": "Ключі, які несе Ана, лежать на столі."
+  },
+  {
+   "id": "es:27:19",
+   "target": "Las llaves que dejaste aquí están en la mesa.",
+   "ru": "Ключи, которые ты оставил здесь, лежат на столе.",
+   "uk": "Ключі, які ти залишив тут, лежать на столі."
+  },
+  {
+   "id": "es:27:20",
+   "target": "Las llaves que me dio Luis están en la mesa.",
+   "ru": "Ключи, которые мне дал Луис, лежат на столе.",
+   "uk": "Ключі, які мені дав Луїс, лежать на столі."
+  },
+  {
+   "id": "es:27:21",
+   "target": "No encuentro el mensaje que escribiste.",
+   "ru": "Я не могу найти сообщение, которое ты написал.",
+   "uk": "Я не можу знайти повідомлення, яке ти написав."
+  },
+  {
+   "id": "es:27:22",
+   "target": "No encuentro el mensaje que mandó Ana.",
+   "ru": "Я не могу найти сообщение, которое отправила Ана.",
+   "uk": "Я не можу знайти повідомлення, яке надіслала Ана."
+  },
+  {
+   "id": "es:27:23",
+   "target": "No encuentro el mensaje que leímos ayer.",
+   "ru": "Я не могу найти сообщение, которое мы прочитали вчера.",
+   "uk": "Я не можу знайти повідомлення, яке ми прочитали вчора."
+  },
+  {
+   "id": "es:27:24",
+   "target": "No encuentro el mensaje que recibí hoy.",
+   "ru": "Я не могу найти сообщение, которое я получил сегодня.",
+   "uk": "Я не можу знайти повідомлення, яке я отримав сьогодні."
+  },
+  {
+   "id": "es:27:25",
+   "target": "No encuentro el mensaje que busca Luis.",
+   "ru": "Я не могу найти сообщение, которое ищет Луис.",
+   "uk": "Я не можу знайти повідомлення, яке шукає Луїс."
+  },
+  {
+   "id": "es:27:26",
+   "target": "¿Dónde está el paquete que recibiste?",
+   "ru": "Где посылка, которую ты получил?",
+   "uk": "Де посилка, яку ти отримав?"
+  },
+  {
+   "id": "es:27:27",
+   "target": "¿Dónde está la foto que compraste?",
+   "ru": "Где фотография, которую ты купил?",
+   "uk": "Де фотографія, яку ти купив?"
+  },
+  {
+   "id": "es:27:28",
+   "target": "¿Dónde está la foto que te mandé?",
+   "ru": "Где фотография, которую я тебе отправил?",
+   "uk": "Де фотографія, яку я тобі надіслав?"
+  },
+  {
+   "id": "es:27:29",
+   "target": "¿Dónde está la foto que busca mi madre?",
+   "ru": "Где фотография, которую ищет моя мама?",
+   "uk": "Де фотографія, яку шукає моя мама?"
+  },
+  {
+   "id": "es:27:30",
+   "target": "¿Dónde está la foto que estaba aquí?",
+   "ru": "Где фотография, которая лежала здесь?",
+   "uk": "Де фотографія, яка лежала тут?"
+  },
+  {
+   "id": "es:27:31",
+   "target": "La tienda que está cerca es pequeña.",
+   "ru": "Магазин, который находится рядом, маленький.",
+   "uk": "Магазин, який розташований поруч, маленький."
+  },
+  {
+   "id": "es:27:32",
+   "target": "La farmacia que buscas está en mi barrio.",
+   "ru": "Аптека, которую ты ищешь, в моём районе.",
+   "uk": "Аптека, яку ти шукаєш, у моєму районі."
+  },
+  {
+   "id": "es:27:33",
+   "target": "La tienda que cierra tarde es pequeña.",
+   "ru": "Магазин, который поздно закрывается, маленький.",
+   "uk": "Магазин, який пізно зачиняється, маленький."
+  },
+  {
+   "id": "es:27:34",
+   "target": "La tienda que vende libros es pequeña.",
+   "ru": "Магазин, в котором продают книги, маленький.",
+   "uk": "Магазин, у якому продають книжки, маленький."
+  },
+  {
+   "id": "es:27:35",
+   "target": "La tienda que visitamos ayer es pequeña.",
+   "ru": "Магазин, в который мы вчера заходили, маленький.",
+   "uk": "Магазин, до якого ми вчора заходили, маленький."
+  },
+  {
+   "id": "es:27:36",
+   "target": "Me gustan las cartas que escribe Ana.",
+   "ru": "Мне нравятся письма, которые пишет Ана.",
+   "uk": "Мені подобаються листи, які пише Ана."
+  },
+  {
+   "id": "es:27:37",
+   "target": "Me gustan las cartas que escribiste ayer.",
+   "ru": "Мне нравятся письма, которые ты написал вчера.",
+   "uk": "Мені подобаються листи, які ти написав учора."
+  },
+  {
+   "id": "es:27:38",
+   "target": "Me gustan las cartas que llegaron hoy.",
+   "ru": "Мне нравятся письма, которые пришли сегодня.",
+   "uk": "Мені подобаються листи, які прийшли сьогодні."
+  },
+  {
+   "id": "es:27:39",
+   "target": "Me gusta la canción que canta Ana.",
+   "ru": "Мне нравится песня, которую поёт Ана.",
+   "uk": "Мені подобається пісня, яку співає Ана."
+  },
+  {
+   "id": "es:27:40",
+   "target": "Me gustan las cartas que tengo aquí.",
+   "ru": "Мне нравятся письма, которые лежат у меня здесь.",
+   "uk": "Мені подобаються листи, які лежать тут у мене."
+  },
+  {
+   "id": "es:27:41",
+   "target": "El tren que sale ahora está allí.",
+   "ru": "Поезд, который сейчас отправляется, вон там.",
+   "uk": "Потяг, який зараз відправляється, он там."
+  },
+  {
+   "id": "es:27:42",
+   "target": "El tren que llega a las siete está allí.",
+   "ru": "Поезд, который прибывает в семь, вон там.",
+   "uk": "Потяг, який прибуває о сьомій, он там."
+  },
+  {
+   "id": "es:27:43",
+   "target": "El cliente que llamó ayer está aquí.",
+   "ru": "Клиент, который вчера звонил, здесь.",
+   "uk": "Клієнт, який учора телефонував, тут."
+  },
+  {
+   "id": "es:27:44",
+   "target": "El tren que vimos ayer está allí.",
+   "ru": "Поезд, который мы видели вчера, вон там.",
+   "uk": "Потяг, який ми бачили вчора, он там."
+  },
+  {
+   "id": "es:27:45",
+   "target": "El tren que va al centro está allí.",
+   "ru": "Поезд, который идёт в центр, вон там.",
+   "uk": "Потяг, який їде до центру, он там."
+  },
+  {
+   "id": "es:27:46",
+   "target": "¿Es tuyo el bolso que está en la silla?",
+   "ru": "Сумка, которая лежит на стуле, твоя?",
+   "uk": "Сумка, яка лежить на стільці, твоя?"
+  },
+  {
+   "id": "es:27:47",
+   "target": "¿Es tuyo el reloj que encontramos?",
+   "ru": "Часы, которые мы нашли, твои?",
+   "uk": "Годинник, який ми знайшли, твій?"
+  },
+  {
+   "id": "es:27:48",
+   "target": "¿Es tuyo el bolso que encontramos?",
+   "ru": "Сумка, которую мы нашли, твоя?",
+   "uk": "Сумка, яку ми знайшли, твоя?"
+  },
+  {
+   "id": "es:27:49",
+   "target": "¿Es tuyo el bolso que compró Luis?",
+   "ru": "Сумка, которую купил Луис, твоя?",
+   "uk": "Сумка, яку купив Луїс, твоя?"
+  },
+  {
+   "id": "es:27:50",
+   "target": "¿Es tuyo el bolso que lleva tu hermana?",
+   "ru": "Сумка, которую несёт твоя сестра, твоя?",
+   "uk": "Сумка, яку несе твоя сестра, твоя?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "corto",
+   "ru": "короткий",
+   "uk": "короткий"
+  },
+  {
+   "lemma": "tuyo",
+   "ru": "твой (самостоятельная форма)",
+   "uk": "твій (самостійна форма)"
+  },
+  {
+   "lemma": "encontrar",
+   "ru": "находить",
+   "uk": "знаходити"
+  },
+  {
+   "lemma": "mío",
+   "ru": "мой (самостоятельно)",
+   "uk": "мій (самостійно)"
+  },
+  {
+   "lemma": "silla",
+   "ru": "стул",
+   "uk": "стілець"
+  },
+  {
+   "lemma": "que",
+   "ru": "который, которая, которые; что; чтобы (союз)",
+   "uk": "який, яка, які; що; щоб (сполучник)"
+  },
+  {
+   "lemma": "salir",
+   "ru": "выходить; отправляться",
+   "uk": "виходити; вирушати"
+  },
+  {
+   "lemma": "vender",
+   "ru": "продавать",
+   "uk": "продавати"
+  },
+  {
+   "lemma": "ver",
+   "ru": "видеть",
+   "uk": "бачити"
+  },
+  {
+   "lemma": "visitar",
+   "ru": "посещать",
+   "uk": "відвідувати"
+  }
+ ],
+ "knownWords": [
+  "estoy",
+  "aquí",
+  "estás",
+  "en",
+  "casa",
+  "clase",
+  "él",
+  "está",
+  "ana",
+  "ella",
+  "luis",
+  "estamos",
+  "allí",
+  "ellos",
+  "están",
+  "cerca",
+  "ellas",
+  "y",
+  "lejos",
+  "dentro",
+  "fuera",
+  "estáis",
+  "el",
+  "móvil",
+  "las",
+  "llaves",
+  "libro",
+  "los",
+  "libros",
+  "coche",
+  "coches",
+  "la",
+  "mochila",
+  "mesa",
+  "llave",
+  "cocina",
+  "puerta",
+  "estación",
+  "no",
+  "tienda",
+  "farmacia",
+  "oficina",
+  "bolso",
+  "bolsillo",
+  "parada",
+  "hotel",
+  "pasaporte",
+  "billete",
+  "billetes",
+  "pasaportes",
+  "salida",
+  "soy",
+  "médico",
+  "médica",
+  "eres",
+  "estudiante",
+  "profesor",
+  "profesora",
+  "es",
+  "guía",
+  "somos",
+  "estudiantes",
+  "médicos",
+  "médicas",
+  "profesores",
+  "profesoras",
+  "son",
+  "sois",
+  "guías",
+  "enfermero",
+  "enfermera",
+  "usted",
+  "dónde",
+  "aeropuerto",
+  "recepción",
+  "baño",
+  "quién",
+  "ascensor",
+  "quiénes",
+  "qué",
+  "esto",
+  "eso",
+  "cuánto",
+  "cuesta",
+  "banco",
+  "ustedes",
+  "maleta",
+  "maletas",
+  "abrigos",
+  "botella",
+  "botellas",
+  "tren",
+  "tiendas",
+  "móviles",
+  "mochilas",
+  "mapa",
+  "mapas",
+  "foto",
+  "fotos",
+  "abrigo",
+  "trenes",
+  "bolsos",
+  "bolsillos",
+  "agua",
+  "un / una",
+  "café",
+  "dos",
+  "gente",
+  "haber",
+  "hoy",
+  "azúcar",
+  "leche",
+  "hermano",
+  "bicicleta",
+  "cargador",
+  "reloj",
+  "madre",
+  "mi",
+  "su",
+  "tu",
+  "buscar",
+  "español",
+  "estudiar",
+  "hablar",
+  "inglés",
+  "trabajar",
+  "abrir",
+  "beber",
+  "comer",
+  "escribir",
+  "leer",
+  "periódico",
+  "carta",
+  "mensaje",
+  "ventana",
+  "con",
+  "de",
+  "vivir",
+  "otro",
+  "cambio",
+  "cita",
+  "entrada",
+  "idea",
+  "minuto",
+  "número",
+  "pregunta",
+  "reserva",
+  "tiempo",
+  "tener",
+  "blanco",
+  "grande",
+  "negro",
+  "nuevo",
+  "pequeño",
+  "rojo",
+  "bufanda",
+  "camiseta",
+  "abierto",
+  "cansado",
+  "cerrado",
+  "contento",
+  "frío",
+  "libre",
+  "limpio",
+  "listo",
+  "nervioso",
+  "ocupado",
+  "estar",
+  "temprano",
+  "siete",
+  "ducharse",
+  "lavarse",
+  "levantarse",
+  "cara",
+  "mano",
+  "mañana",
+  "viaje",
+  "prepararse",
+  "para",
+  "por",
+  "me",
+  "nos",
+  "os",
+  "se",
+  "te",
+  "a",
+  "sentarse",
+  "ahora",
+  "comprar",
+  "entrar",
+  "esperar",
+  "favor",
+  "pero",
+  "llamar",
+  "llevar",
+  "mandar",
+  "bolsa",
+  "efectivo",
+  "tarjeta",
+  "pagar",
+  "poder",
+  "volver",
+  "más",
+  "tarde",
+  "ir a",
+  "arroz",
+  "lista",
+  "pasar",
+  "porque",
+  "supermercado",
+  "verdura",
+  "cena",
+  "pan",
+  "preparar",
+  "este",
+  "gustar",
+  "ir",
+  "canción",
+  "pasear",
+  "película",
+  "playa",
+  "música",
+  "zapato",
+  "le",
+  "les",
+  "dejar",
+  "guardar",
+  "lavar",
+  "cambiar",
+  "después",
+  "devolver",
+  "envolver",
+  "escuchar",
+  "recoger",
+  "necesitar",
+  "lo/la",
+  "cebolla",
+  "cortar",
+  "fregar",
+  "plato",
+  "probar",
+  "regalo",
+  "secar",
+  "sopa",
+  "ya",
+  "confirmar",
+  "correo",
+  "factura",
+  "huevo",
+  "paquete",
+  "pedido",
+  "semana",
+  "recibir",
+  "terminar",
+  "anoche",
+  "antes",
+  "ayer",
+  "fruta",
+  "kilo",
+  "mercado",
+  "queso",
+  "hacer",
+  "desde",
+  "paraguas",
+  "taxi",
+  "centro",
+  "compra",
+  "problema",
+  "reunión",
+  "venir",
+  "junto",
+  "a menudo",
+  "cada",
+  "autobús",
+  "barrio",
+  "colegio",
+  "ese",
+  "niño",
+  "parque",
+  "también",
+  "tranquilo",
+  "vecino",
+  "día",
+  "cocinar",
+  "cuando",
+  "mientras",
+  "empezar",
+  "cantar",
+  "timbre",
+  "llegar",
+  "llover",
+  "sonar",
+  "yo",
+  "cerrar",
+  "si",
+  "apagar",
+  "bajar",
+  "encender",
+  "grifo",
+  "horno",
+  "luz",
+  "poco",
+  "sal",
+  "toalla",
+  "volumen",
+  "dar",
+  "enseñar",
+  "camarero",
+  "cliente",
+  "cuenta",
+  "gracias",
+  "pedir",
+  "receta",
+  "mostrar"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7
+  },
+  {
+   "lesson": 8
+  },
+  {
+   "lesson": 9
+  },
+  {
+   "lesson": 10,
+   "title": "Живу здесь, читаю дома: глаголы на -er и -ir"
+  },
+  {
+   "lesson": 11,
+   "title": "У меня есть: tener"
+  },
+  {
+   "lesson": 12,
+   "title": "Красная сумка, красные сумки: согласование"
+  },
+  {
+   "lesson": 13,
+   "title": "Как я себя чувствую: estar + состояние"
+  },
+  {
+   "lesson": 14,
+   "title": "Я встаю: me, te, se, nos, os"
+  },
+  {
+   "lesson": 15,
+   "title": "Я могу: poder + инфинитив"
+  },
+  {
+   "lesson": 16,
+   "title": "Собираюсь сделать: ir a + инфинитив"
+  },
+  {
+   "lesson": 17,
+   "title": "Что мне нравится: gusta или gustan"
+  },
+  {
+   "lesson": 18,
+   "title": "Заменяем предмет: lo, la, los, las"
+  },
+  {
+   "lesson": 19,
+   "title": "Действие прямо сейчас"
+  },
+  {
+   "lesson": 20,
+   "title": "Уже сделал сегодня: he + причастие"
+  },
+  {
+   "lesson": 21,
+   "title": "Вчера сделал: правильное простое прошедшее"
+  },
+  {
+   "lesson": 22,
+   "title": "Ушёл, смог, пришёл: неправильное прошедшее"
+  },
+  {
+   "lesson": 23,
+   "title": "Раньше обычно: imperfecto"
+  },
+  {
+   "lesson": 24,
+   "title": "Фон и событие в одной фразе"
+  },
+  {
+   "lesson": 25,
+   "title": "Попроси одного человека: утвердительное tú"
+  },
+  {
+   "lesson": 26,
+   "title": "Кому? Адресат с le и les"
+  }
+ ],
+ "oldTopicTitle": "Книга, которую…: относительное que",
+ "oldTheoryRu": "На столе две книги. El libro que compré — та, которую я купил. Часть que compré помогает выбрать нужную книгу; это не вопрос. Свяжи название человека или вещи с уточнением. Выбери относительное que без знака ударения. Слово que связывает знакомый предмет с уточнением. Сравни el libro que compré и las cartas que escribí. И род, и число изменились, а que осталось тем же. В ¿Qué compras? слово спрашивает, что покупают. В el libro que compré мы уже знаем, что это книга; que связывает её с уточнением. Даже внутри общего вопроса это que без ударения. В el médico que trabaja врач сам работает. В el libro que compré книгу купил я; на это указывает -é. Не требуй, чтобы ближайшее существительное всегда управляло глаголом. Мысленно убери que compré из el libro que compré es corto. Останется el libro es corto — основа сообщения. Главному подлежащему по-прежнему нужен свой глагол. Слова que compré уточняют, какую именно книгу ты имеешь в виду: El libro que compré es corto. Не разделяй это уточнение запятыми: без него непонятно, какую книгу ты выбираешь. Сравни два задания: «Ключи, которые мне дал Луис, лежат на столе.» / «Я не могу найти сообщение, которое ты написал.». Que не меняется, а глагол уточняющей части имеет своего исполнителя. Две части: Las llaves  /  que me dio Luis están en la mesa. Сравни два задания: «Поезд, который мы видели вчера, вон там.» / «Сумка, которую несёт твоя сестра, твоя?». Que не меняется, а глагол уточняющей части имеет своего исполнителя. Свяжи название человека или вещи с уточнением. Выбери относительное que без знака ударения."
+}

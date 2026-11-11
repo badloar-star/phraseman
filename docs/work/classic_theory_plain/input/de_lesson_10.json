@@ -1,0 +1,633 @@
+{
+ "lang": "de",
+ "lesson": 10,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:10:01",
+   "target": "Ich komme mit dem Bus.",
+   "ru": "Я приезжаю на автобусе.",
+   "uk": "Я приїжджаю автобусом."
+  },
+  {
+   "id": "de:10:02",
+   "target": "Anna kommt mit der Bahn.",
+   "ru": "Анна приезжает на электричке.",
+   "uk": "Анна приїжджає електричкою."
+  },
+  {
+   "id": "de:10:03",
+   "target": "Tom kommt mit dem Fahrrad.",
+   "ru": "Том приезжает на велосипеде.",
+   "uk": "Том приїжджає велосипедом."
+  },
+  {
+   "id": "de:10:04",
+   "target": "Wir kommen mit dem Taxi.",
+   "ru": "Мы приезжаем на такси.",
+   "uk": "Ми приїжджаємо на таксі."
+  },
+  {
+   "id": "de:10:05",
+   "target": "Ihr kommt mit dem Zug.",
+   "ru": "Вы приезжаете на поезде.",
+   "uk": "Ви приїжджаєте поїздом."
+  },
+  {
+   "id": "de:10:06",
+   "target": "Ich spreche mit dem Arzt.",
+   "ru": "Я разговариваю с врачом.",
+   "uk": "Я розмовляю з лікарем."
+  },
+  {
+   "id": "de:10:07",
+   "target": "Du sprichst mit der Ärztin.",
+   "ru": "Ты разговариваешь с врачом-женщиной.",
+   "uk": "Ти розмовляєш із лікаркою."
+  },
+  {
+   "id": "de:10:08",
+   "target": "Anna spricht mit dem Kind.",
+   "ru": "Анна разговаривает с ребёнком.",
+   "uk": "Анна розмовляє з дитиною."
+  },
+  {
+   "id": "de:10:09",
+   "target": "Wir sprechen mit den Gästen.",
+   "ru": "Мы разговариваем с гостями.",
+   "uk": "Ми розмовляємо із гостями."
+  },
+  {
+   "id": "de:10:10",
+   "target": "Er spricht mit mir.",
+   "ru": "Он разговаривает со мной.",
+   "uk": "Він розмовляє зі мною."
+  },
+  {
+   "id": "de:10:11",
+   "target": "Ich fahre zur Arbeit.",
+   "ru": "Я еду на работу.",
+   "uk": "Я їду на роботу."
+  },
+  {
+   "id": "de:10:12",
+   "target": "Du gehst zur Schule.",
+   "ru": "Ты идёшь в школу.",
+   "uk": "Ти йдеш до школи."
+  },
+  {
+   "id": "de:10:13",
+   "target": "Tom geht zum Arzt.",
+   "ru": "Том идёт к врачу.",
+   "uk": "Том іде до лікаря."
+  },
+  {
+   "id": "de:10:14",
+   "target": "Anna fährt zum Bahnhof.",
+   "ru": "Анна едет к вокзалу.",
+   "uk": "Анна їде до вокзалу."
+  },
+  {
+   "id": "de:10:15",
+   "target": "Wir gehen zur Kasse.",
+   "ru": "Мы идём к кассе.",
+   "uk": "Ми йдемо до каси."
+  },
+  {
+   "id": "de:10:16",
+   "target": "Sie geht zur Apotheke.",
+   "ru": "Она идёт в аптеку.",
+   "uk": "Вона йде до аптеки."
+  },
+  {
+   "id": "de:10:17",
+   "target": "Ich bringe das Paket zur Post.",
+   "ru": "Я несу посылку на почту.",
+   "uk": "Я несу посилку на пошту."
+  },
+  {
+   "id": "de:10:18",
+   "target": "Wir bringen den Koffer zum Taxi.",
+   "ru": "Мы несём чемодан к такси.",
+   "uk": "Ми несемо валізу до таксі."
+  },
+  {
+   "id": "de:10:19",
+   "target": "Kommst du zu mir?",
+   "ru": "Ты придёшь ко мне?",
+   "uk": "Ти прийдеш до мене?"
+  },
+  {
+   "id": "de:10:20",
+   "target": "Ich komme zu dir.",
+   "ru": "Я приду к тебе.",
+   "uk": "Я прийду до тебе."
+  },
+  {
+   "id": "de:10:21",
+   "target": "Anna wohnt bei ihrer Mutter.",
+   "ru": "Анна живёт у своей матери.",
+   "uk": "Анна живе у своєї матері."
+  },
+  {
+   "id": "de:10:22",
+   "target": "Tom wohnt bei seinem Vater.",
+   "ru": "Том живёт у своего отца.",
+   "uk": "Том живе у свого батька."
+  },
+  {
+   "id": "de:10:23",
+   "target": "Wir bleiben bei den Kindern.",
+   "ru": "Мы остаёмся с детьми.",
+   "uk": "Ми залишаємося з дітьми."
+  },
+  {
+   "id": "de:10:24",
+   "target": "Ich bin beim Arzt.",
+   "ru": "Я у врача.",
+   "uk": "Я у лікаря."
+  },
+  {
+   "id": "de:10:25",
+   "target": "Du bist bei der Ärztin.",
+   "ru": "Ты на приёме у врача (жен.).",
+   "uk": "Ти на прийомі у лікарки."
+  },
+  {
+   "id": "de:10:26",
+   "target": "Der Schlüssel ist bei mir.",
+   "ru": "Ключ у меня.",
+   "uk": "Ключ у мене."
+  },
+  {
+   "id": "de:10:27",
+   "target": "Der Ausweis ist bei dir.",
+   "ru": "Удостоверение у тебя.",
+   "uk": "Посвідчення у тебе."
+  },
+  {
+   "id": "de:10:28",
+   "target": "Das Paket ist beim Nachbarn.",
+   "ru": "Посылка у соседа.",
+   "uk": "Посилка у сусіда."
+  },
+  {
+   "id": "de:10:29",
+   "target": "Die Tasche ist bei Anna.",
+   "ru": "Сумка у Анны.",
+   "uk": "Сумка у Ганни."
+  },
+  {
+   "id": "de:10:30",
+   "target": "Wir essen bei meinen Eltern.",
+   "ru": "Мы едим у моих родителей.",
+   "uk": "Ми їмо у моїх батьків."
+  },
+  {
+   "id": "de:10:31",
+   "target": "Der Brief kommt von der Bank.",
+   "ru": "Письмо из банка.",
+   "uk": "Лист із банку."
+  },
+  {
+   "id": "de:10:32",
+   "target": "Die Nachricht kommt von meinem Bruder.",
+   "ru": "Сообщение от моего брата.",
+   "uk": "Повідомлення від мого брата."
+  },
+  {
+   "id": "de:10:33",
+   "target": "Das Geschenk kommt von den Kindern.",
+   "ru": "Подарок от детей.",
+   "uk": "Подарунок від дітей."
+  },
+  {
+   "id": "de:10:34",
+   "target": "Ich komme gerade vom Bahnhof.",
+   "ru": "Я только что с вокзала.",
+   "uk": "Я щойно з вокзалу."
+  },
+  {
+   "id": "de:10:35",
+   "target": "Anna kommt gerade von der Arbeit.",
+   "ru": "Анна только что с работы.",
+   "uk": "Анна щойно з роботи."
+  },
+  {
+   "id": "de:10:36",
+   "target": "Tom kommt vom Sport.",
+   "ru": "Том возвращается с тренировки.",
+   "uk": "Том повертається із тренування."
+  },
+  {
+   "id": "de:10:37",
+   "target": "Ich komme aus dem Büro.",
+   "ru": "Я выхожу из офиса.",
+   "uk": "Я виходжу з офісу."
+  },
+  {
+   "id": "de:10:38",
+   "target": "Sie kommt aus der Küche.",
+   "ru": "Она выходит из кухни.",
+   "uk": "Вона виходить із кухні."
+  },
+  {
+   "id": "de:10:39",
+   "target": "Wir kommen aus dem Garten.",
+   "ru": "Мы выходим из сада.",
+   "uk": "Ми виходимо із саду."
+  },
+  {
+   "id": "de:10:40",
+   "target": "Der Bus kommt aus Berlin.",
+   "ru": "Автобус едет из Берлина.",
+   "uk": "Автобус їде із Берліна."
+  },
+  {
+   "id": "de:10:41",
+   "target": "Nach dem Essen trinken wir Tee.",
+   "ru": "После еды мы пьём чай.",
+   "uk": "Після їди ми п'ємо чай."
+  },
+  {
+   "id": "de:10:42",
+   "target": "Nach der Pause beginnt der Kurs.",
+   "ru": "После перерыва начинается занятие.",
+   "uk": "Після перерви розпочинається заняття."
+  },
+  {
+   "id": "de:10:43",
+   "target": "Nach dem Kurs gehen wir zur Post.",
+   "ru": "После занятия мы идём на почту.",
+   "uk": "Після заняття ми йдемо на пошту."
+  },
+  {
+   "id": "de:10:44",
+   "target": "Nach der Fahrt bin ich müde.",
+   "ru": "После поездки я устал.",
+   "uk": "Після поїздки я втомився."
+  },
+  {
+   "id": "de:10:45",
+   "target": "Seit dem Umzug wohne ich hier.",
+   "ru": "Я живу здесь с момента переезда.",
+   "uk": "Я мешкаю тут з моменту переїзду."
+  },
+  {
+   "id": "de:10:46",
+   "target": "Seit einer Woche lerne ich Deutsch.",
+   "ru": "Я уже неделю учу немецкий.",
+   "uk": "Я вже тиждень вивчаю німецьку."
+  },
+  {
+   "id": "de:10:47",
+   "target": "Mit einem Freund gehe ich ins Kino.",
+   "ru": "Я иду в кино с другом.",
+   "uk": "Я йду в кіно з другом."
+  },
+  {
+   "id": "de:10:48",
+   "target": "Mit meiner Schwester kaufe ich ein.",
+   "ru": "Я хожу за покупками с сестрой.",
+   "uk": "Я ходжу за покупками із сестрою."
+  },
+  {
+   "id": "de:10:49",
+   "target": "Ich fahre mit meinen Eltern zur Feier.",
+   "ru": "Я еду на праздник с моими родителями.",
+   "uk": "Я їду на свято з моїми батьками."
+  },
+  {
+   "id": "de:10:50",
+   "target": "Bei diesem Wetter bleibe ich zu Hause.",
+   "ru": "В такую погоду я остаюсь дома.",
+   "uk": "За такої погоди я залишаюся вдома."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "die Post",
+   "ru": "почта, почтовое отделение",
+   "uk": "пошта, поштове відділення"
+  },
+  {
+   "lemma": "der Umzug",
+   "ru": "переезд",
+   "uk": "переїзд"
+  },
+  {
+   "lemma": "das Geschenk",
+   "ru": "подарок",
+   "uk": "подарунок"
+  },
+  {
+   "lemma": "die Nachricht",
+   "ru": "сообщение",
+   "uk": "повідомлення"
+  },
+  {
+   "lemma": "das Wetter",
+   "ru": "погода",
+   "uk": "погода"
+  },
+  {
+   "lemma": "gehen",
+   "ru": "идти",
+   "uk": "йти"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  }
+ ],
+ "oldTopicTitle": "С кем, откуда, к кому: предлоги с Dativ",
+ "oldTheoryRu": "Чтобы назвать транспорт, удобно использовать `mit`. В таком сочетании мужской или средний определённый артикль выглядит как `dem`, женский — как `der`. Сам транспорт от этого не становится «мужским» или «женским» по смыслу. С кем говоришь? Вопрос относится к партнёру, а не к теме разговора. С людьми работает тот же предлог `mit`. Короткое местоимение заменяет всю группу: `mit mir`, а не `mit ich`. К кому или к чему идёшь? После `zu` тоже нужен дательный. В обычной речи `zu dem` часто сливается в `zum`, а `zu der` — в `zur`. Не добавляй ещё один артикль после сокращения. У кого находишься? `Bei` обозначает пребывание у человека или у специалиста, а `zu` — путь к нему. Это различие смысла, хотя оба предлога требуют одного падежа. Источник бывает разным. `Von` удобно для отправителя и исходной точки. `Aus` подходит, когда выходят изнутри места: здания, сада, города. Оба не надо переводить одним заученным предлогом для всех ситуаций. После чего и с какого момента? `Nach` с событием указывает на более позднее время. `Seit` описывает период, который начался раньше и продолжается сейчас; поэтому в примере используется настоящее время. Дательный работает и с `einem`, `diesem`: `mit einem Freund`, `bei diesem Wetter`. Во множественном числе артикль — `den`, и у многих существительных появляется дополнительное `-n`, если такого окончания ещё нет: `mit meinen Eltern`, `bei den Kindern`."
+}

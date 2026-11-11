@@ -32,7 +32,7 @@ import {
   canonicalJsonV1,
   hashCanonicalBody,
   utf8ByteLengthV1,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 import { DebugLogger, reportSwallowed } from './debug-logger';
 import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
 import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';

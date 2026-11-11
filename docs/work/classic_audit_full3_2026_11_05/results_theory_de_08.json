@@ -1,0 +1,149 @@
+[
+  {
+    "id": "lesson-17/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.uk",
+    "problem": "пропущено «не» — смысл противоположен ru; «дію відбувається» неграмматично",
+    "fix": "Поїздка закінчилася, людина вже тут. У `ich bin angekommen` слово `bin` не означає, що дія відбувається зараз: воно допомагає побудувати минулий час. Порівняй із простим повідомленням про місцезнаходження."
+  },
+  {
+    "id": "lesson-17/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "The trip is over, the person is already here. In `ich bin angekommen`, the word `bin` doesn't mean the action is happening now: it helps construct the past tense. Compare this with a simple location statement."
+  },
+  {
+    "id": "lesson-17/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "Changes of state are also important: wake up, fall asleep, get up. There may not be any journey on the map, but these actions in our bank are constructed with `sein`."
+  },
+  {
+    "id": "lesson-17/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "пропущено «не»: «це правило всі дієслова руху» — противоположно ru; «потрібна sein» — род",
+    "fix": "Коли людина сама перемістилася в нове місце, часто потрібне `sein`. Але це не правило «всі дієслова руху без винятків». Запам'ятовуй вживання в конкретному значенні та з конкретними учасниками."
+  },
+  {
+    "id": "lesson-17/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.uk",
+    "problem": "мусор «у своїй залишається» вместо «при цьому»",
+    "fix": "Приставка визначає ділянку поїздки: вхід, вихід, пересадку, повернення. Порівняй форми як цілі слова з `ge` усередині; допоміжне дієслово при цьому залишається окремим."
+  },
+  {
+    "id": "lesson-17/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.uk",
+    "problem": "«причастя» — русизм (в укр. = таинство), рядом «дієприкметник» — разнобой",
+    "fix": "У питанні перевір не тільки дієприкметник, а й кількість людей. Питання до групи починається з `seid ihr`. До одного друга — з `bist du`; змінювати при цьому дієприкметник не треба."
+  },
+  {
+    "id": "lesson-17/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "In the question, check not only the participle but also the number of people. A question about a group begins with `seid ihr`. A question about one friend begins with `bist du`; however, the participle does not need to be changed."
+  },
+  {
+    "id": "lesson-17/chapter-6",
+    "type": "T1",
+    "field": "theory.chapters[5].textByLocale.ru",
+    "problem": "пример «напиток остыл» не из курса; фраза курса de:17:45 — «ребёнок вырос»",
+    "fix": "`Bleiben` — полезное исключение из картинки движения: человек как раз никуда не ушёл, но говорит `ich bin geblieben`. Изменение свойства передаёт `geworden`: например, ребёнок вырос."
+  },
+  {
+    "id": "lesson-17/chapter-6",
+    "type": "T1",
+    "field": "theory.chapters[5].textByLocale.uk",
+    "problem": "пример не из курса; «Зміна властивості передає» — перепутаны подлежащее/дополнение",
+    "fix": "`Bleiben` — корисний виняток із картинки руху: людина якраз нікуди не пішла, але каже `ich bin geblieben`. Зміну властивості передає `geworden`: наприклад, дитина виросла."
+  },
+  {
+    "id": "lesson-17/chapter-6",
+    "type": "T2",
+    "field": "theory.chapters[5].textByLocale.en",
+    "problem": "«motion picture» (=фильм) — ложный перевод «картинки движения»; лишняя кавычка; пример не из курса",
+    "fix": "`Bleiben` is a useful exception to the idea of motion: the person hasn't gone anywhere, yet says `ich bin geblieben`. A change of property is expressed with `geworden`: for example, the child has grown up."
+  },
+  {
+    "id": "lesson-17/chapter-7",
+    "type": "T1",
+    "field": "theory.chapters[6].textByLocale.ru",
+    "problem": "правило неверно: вспомогательный глагол выбирают не «по предмету»; примеры (стекло/велосипед) не из курса",
+    "fix": "Кто является подлежащим? В `Es ist dunkel geworden` и `niemand ist hingefallen` подлежащее само меняет состояние или положение, и никто не действует над другим предметом — поэтому `sein`. Не путай `geworden` в изменении состояния с формой `worden` в других конструкциях."
+  },
+  {
+    "id": "lesson-17/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.uk",
+    "problem": "«Хто підлягає?» — неверно (=кто подлежит); «вибирай із цього предмета»; то же неверное правило",
+    "fix": "Що є підметом? У `Es ist dunkel geworden` і `niemand ist hingefallen` підмет сам змінює стан або положення, і ніхто не діє над іншим предметом — тому `sein`. Не плутай `geworden` у зміні стану з формою `worden` в інших конструкціях."
+  },
+  {
+    "id": "lesson-17/chapter-7",
+    "type": "T1",
+    "field": "theory.chapters[6].textByLocale.en",
+    "problem": "то же неверное правило и примеры не из курса",
+    "fix": "What is the subject? In `Es ist dunkel geworden` and `niemand ist hingefallen`, the subject itself changes state or position, and no one acts on another object, so `sein` is used. Don't confuse `geworden` in a change of state with `worden` in other constructions."
+  },
+  {
+    "id": "lesson-18/chapter-1",
+    "type": "T2",
+    "field": "theory.chapters[0].textByLocale.uk",
+    "problem": "«Окреме причастя не потрібно» — русизм и согласование",
+    "fix": "Порівняй стан зараз і вчора. Там, де зараз стояло б `bin`, у минулому може стояти `war`. Окремий дієприкметник не потрібен: час показує сама форма."
+  },
+  {
+    "id": "lesson-18/chapter-2",
+    "type": "T2",
+    "field": "theory.chapters[1].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "When talking about having time, hunger, or luck, don't use `war` instead of `hatte`. Learn everyday collocations with their verb: German describes some sensations with \"to have.\""
+  },
+  {
+    "id": "lesson-18/chapter-3",
+    "type": "T1",
+    "field": "theory.chapters[2].textByLocale.ru",
+    "problem": "«состояние двери… открытость» — в примерах касса закрыта и душ сломан",
+    "fix": "Прилагательное после `war` остаётся таким же, как после `ist`. Значит, чтобы сказать о вчерашнем состоянии кассы или душа, достаточно поменять время связки; прилагательное и предмет прежние."
+  },
+  {
+    "id": "lesson-18/chapter-3",
+    "type": "T2",
+    "field": "theory.chapters[2].textByLocale.uk",
+    "problem": "«час зв'язування», «предмет колишні» — машинная бессмыслица",
+    "fix": "Прикметник після `war` залишається таким самим, як після `ist`. Отже, щоб сказати про вчорашній стан каси чи душу, достатньо змінити час зв'язки; прикметник і предмет ті самі."
+  },
+  {
+    "id": "lesson-18/chapter-3",
+    "type": "T1",
+    "field": "theory.chapters[2].textByLocale.en",
+    "problem": "door/openness не из примеров; лишняя кавычка",
+    "fix": "The adjective after `war` stays the same as after `ist`. So to describe yesterday's state of the ticket office or the shower, it's enough to change the tense of the linking verb; the adjective and the object stay the same."
+  },
+  {
+    "id": "lesson-18/chapter-4",
+    "type": "T2",
+    "field": "theory.chapters[3].textByLocale.uk",
+    "problem": "«а чи не причастя» — машинный мусор",
+    "fix": "Мати може не лише людина. Готель мав ліфт, автобус прибув із затримкою. У цих фразах `hatte` не початок складеного часу: після нього йде предмет чи стан, а не дієприкметник."
+  },
+  {
+    "id": "lesson-18/chapter-5",
+    "type": "T2",
+    "field": "theory.chapters[4].textByLocale.en",
+    "problem": "лишняя кавычка \" после фрагмента в обратных кавычках (мусор машинного перевода)",
+    "fix": "In questions, `warst`, `wart`, `hattest`, and `hattet` come first. Compare two addressees: one friend needs a different form than several friends."
+  },
+  {
+    "id": "lesson-18/chapter-7",
+    "type": "T2",
+    "field": "theory.chapters[6].textByLocale.uk",
+    "problem": "«пропозиціями» (=предложения-оферты) вместо «реченнями»",
+    "fix": "Перевір розповідь із двох кадрів: яка ситуація була і що в тебе опинилося під рукою. Можна повідомити обидві речі двома простими реченнями, не ускладнюючи їх ще одним минулим часом."
+  }
+]

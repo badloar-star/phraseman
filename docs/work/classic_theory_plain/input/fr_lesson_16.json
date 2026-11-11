@@ -1,0 +1,724 @@
+{
+ "lang": "fr",
+ "lesson": 16,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:16:01",
+   "target": "Entre !",
+   "ru": "Заходи!",
+   "uk": "Заходь!"
+  },
+  {
+   "id": "fr:16:02",
+   "target": "Entrez !",
+   "ru": "Заходите!",
+   "uk": "Заходьте!"
+  },
+  {
+   "id": "fr:16:03",
+   "target": "Attends !",
+   "ru": "Подожди!",
+   "uk": "Почекай!"
+  },
+  {
+   "id": "fr:16:04",
+   "target": "Attendez !",
+   "ru": "Подождите!",
+   "uk": "Зачекайте!"
+  },
+  {
+   "id": "fr:16:05",
+   "target": "Reste ici !",
+   "ru": "Останься здесь!",
+   "uk": "Залишайся тут!"
+  },
+  {
+   "id": "fr:16:06",
+   "target": "Restez ici !",
+   "ru": "Останьтесь здесь!",
+   "uk": "Залишайтеся тут!"
+  },
+  {
+   "id": "fr:16:07",
+   "target": "Écoute bien !",
+   "ru": "Слушай внимательно!",
+   "uk": "Слухай уважно!"
+  },
+  {
+   "id": "fr:16:08",
+   "target": "Écoutez bien !",
+   "ru": "Слушайте внимательно!",
+   "uk": "Слухайте уважно!"
+  },
+  {
+   "id": "fr:16:09",
+   "target": "Regarde devant toi !",
+   "ru": "Смотри перед собой!",
+   "uk": "Дивись перед собою!"
+  },
+  {
+   "id": "fr:16:10",
+   "target": "Regardez devant vous !",
+   "ru": "Смотрите перед собой!",
+   "uk": "Дивіться перед собою!"
+  },
+  {
+   "id": "fr:16:11",
+   "target": "Ferme la porte !",
+   "ru": "Закрой дверь!",
+   "uk": "Зачини двері!"
+  },
+  {
+   "id": "fr:16:12",
+   "target": "Ouvre la fenêtre !",
+   "ru": "Открой окно!",
+   "uk": "Відкрий вікно!"
+  },
+  {
+   "id": "fr:16:13",
+   "target": "Pose le sac ici !",
+   "ru": "Поставь сумку сюда!",
+   "uk": "Постав сумку сюди!"
+  },
+  {
+   "id": "fr:16:14",
+   "target": "Garde le ticket !",
+   "ru": "Сохрани билет!",
+   "uk": "Збережи квиток!"
+  },
+  {
+   "id": "fr:16:15",
+   "target": "Prends ta veste !",
+   "ru": "Возьми свою куртку!",
+   "uk": "Візьми свою куртку!"
+  },
+  {
+   "id": "fr:16:16",
+   "target": "Range tes chaussures !",
+   "ru": "Убери свою обувь!",
+   "uk": "Прибери своє взуття!"
+  },
+  {
+   "id": "fr:16:17",
+   "target": "Tourne à gauche !",
+   "ru": "Поверни налево!",
+   "uk": "Поверни ліворуч!"
+  },
+  {
+   "id": "fr:16:18",
+   "target": "Traverse au feu !",
+   "ru": "Перейди дорогу у светофора!",
+   "uk": "Перейди дорогу біля світлофора!"
+  },
+  {
+   "id": "fr:16:19",
+   "target": "Suis le chemin !",
+   "ru": "Иди по тропинке!",
+   "uk": "Іди стежкою!"
+  },
+  {
+   "id": "fr:16:20",
+   "target": "Appelle ta sœur !",
+   "ru": "Позвони своей сестре!",
+   "uk": "Подзвони своїй сестрі!"
+  },
+  {
+   "id": "fr:16:21",
+   "target": "Signez en bas, s’il vous plaît.",
+   "ru": "Распишитесь внизу, пожалуйста.",
+   "uk": "Розпишіться внизу, будь ласка."
+  },
+  {
+   "id": "fr:16:22",
+   "target": "Montrez votre billet, s’il vous plaît.",
+   "ru": "Покажите свой билет, пожалуйста.",
+   "uk": "Покажіть свій квиток, будь ласка."
+  },
+  {
+   "id": "fr:16:23",
+   "target": "Passez par la cour.",
+   "ru": "Пройдите через двор.",
+   "uk": "Пройдіть через двір."
+  },
+  {
+   "id": "fr:16:24",
+   "target": "Prenez la deuxième rue à droite.",
+   "ru": "Сверните на вторую улицу направо.",
+   "uk": "Поверніть на другу вулицю праворуч."
+  },
+  {
+   "id": "fr:16:25",
+   "target": "Appuyez sur le bouton vert.",
+   "ru": "Нажмите зелёную кнопку.",
+   "uk": "Натисніть зелену кнопку."
+  },
+  {
+   "id": "fr:16:26",
+   "target": "Restez derrière la ligne.",
+   "ru": "Оставайтесь за линией.",
+   "uk": "Залишайтеся за лінією."
+  },
+  {
+   "id": "fr:16:27",
+   "target": "Gardez votre passeport sur vous.",
+   "ru": "Держите паспорт при себе.",
+   "uk": "Тримайте паспорт при собі."
+  },
+  {
+   "id": "fr:16:28",
+   "target": "Posez le colis sur la balance.",
+   "ru": "Положите посылку на весы.",
+   "uk": "Покладіть посилку на ваги."
+  },
+  {
+   "id": "fr:16:29",
+   "target": "Vérifiez le montant.",
+   "ru": "Проверьте сумму.",
+   "uk": "Перевірте суму."
+  },
+  {
+   "id": "fr:16:30",
+   "target": "Retirez votre carte.",
+   "ru": "Заберите свою карту.",
+   "uk": "Заберіть картку."
+  },
+  {
+   "id": "fr:16:31",
+   "target": "Ne cours pas !",
+   "ru": "Не беги!",
+   "uk": "Не біжи!"
+  },
+  {
+   "id": "fr:16:32",
+   "target": "Ne touchez pas à la vitre !",
+   "ru": "Не прикасайтесь к стеклу!",
+   "uk": "Не торкайтеся скла!"
+  },
+  {
+   "id": "fr:16:33",
+   "target": "N’oublie pas ton parapluie !",
+   "ru": "Не забудь свой зонт!",
+   "uk": "Не забудь свою парасольку!"
+  },
+  {
+   "id": "fr:16:34",
+   "target": "Ne ferme pas à clé !",
+   "ru": "Не запирай на ключ!",
+   "uk": "Не замикай на ключ!"
+  },
+  {
+   "id": "fr:16:35",
+   "target": "Ne perdez pas le reçu !",
+   "ru": "Не потеряйте чек!",
+   "uk": "Не втратьте чек!"
+  },
+  {
+   "id": "fr:16:36",
+   "target": "Ne laisse pas le lait dehors !",
+   "ru": "Не оставляй молоко на улице!",
+   "uk": "Не залишай молоко на вулиці!"
+  },
+  {
+   "id": "fr:16:37",
+   "target": "N’ajoutez pas de sel !",
+   "ru": "Не добавляйте соль!",
+   "uk": "Не додавайте сіль!"
+  },
+  {
+   "id": "fr:16:38",
+   "target": "Ne jette pas cette enveloppe !",
+   "ru": "Не выбрасывай этот конверт!",
+   "uk": "Не викидай цей конверт!"
+  },
+  {
+   "id": "fr:16:39",
+   "target": "N’attendez pas devant la sortie !",
+   "ru": "Не ждите перед выходом!",
+   "uk": "Не чекайте перед виходом!"
+  },
+  {
+   "id": "fr:16:40",
+   "target": "Ne marche pas sur la pelouse !",
+   "ru": "Не ходи по газону!",
+   "uk": "Не ходи газоном!"
+  },
+  {
+   "id": "fr:16:41",
+   "target": "Allons au marché !",
+   "ru": "Пойдём на рынок!",
+   "uk": "Підемо на ринок!"
+  },
+  {
+   "id": "fr:16:42",
+   "target": "Faisons une pause !",
+   "ru": "Давайте сделаем перерыв!",
+   "uk": "Давайте зробимо перерву!"
+  },
+  {
+   "id": "fr:16:43",
+   "target": "Restons ensemble !",
+   "ru": "Давайте держаться вместе!",
+   "uk": "Давайте триматися разом!"
+  },
+  {
+   "id": "fr:16:44",
+   "target": "Cherchons une autre table !",
+   "ru": "Давайте поищем другой столик!",
+   "uk": "Пошукаймо інший столик!"
+  },
+  {
+   "id": "fr:16:45",
+   "target": "Partons avant la pluie !",
+   "ru": "Пойдём до того, как начнётся дождь!",
+   "uk": "Підемо до того, як почнеться дощ!"
+  },
+  {
+   "id": "fr:16:46",
+   "target": "Attache ta ceinture !",
+   "ru": "Пристегни ремень!",
+   "uk": "Пристебни ремінь!"
+  },
+  {
+   "id": "fr:16:47",
+   "target": "Baissez le volume, s’il vous plaît.",
+   "ru": "Убавьте громкость, пожалуйста.",
+   "uk": "Зменште гучність, будь ласка."
+  },
+  {
+   "id": "fr:16:48",
+   "target": "Ferme le robinet !",
+   "ru": "Закрой кран!",
+   "uk": "Закрий кран!"
+  },
+  {
+   "id": "fr:16:49",
+   "target": "Laissez un message après le signal.",
+   "ru": "Оставьте сообщение после сигнала.",
+   "uk": "Залишіть повідомлення після сигналу."
+  },
+  {
+   "id": "fr:16:50",
+   "target": "Allume la lampe près du lit !",
+   "ru": "Включи лампу у кровати!",
+   "uk": "Увімкни лампу біля ліжка!"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le volume",
+   "ru": "громкость",
+   "uk": "гучність"
+  },
+  {
+   "lemma": "le robinet",
+   "ru": "водопроводный кран",
+   "uk": "водопровідний кран"
+  },
+  {
+   "lemma": "la ceinture",
+   "ru": "ремень",
+   "uk": "ремінь"
+  },
+  {
+   "lemma": "la balance",
+   "ru": "весы",
+   "uk": "ваги"
+  },
+  {
+   "lemma": "le montant",
+   "ru": "сумма платежа",
+   "uk": "сума платежу"
+  }
+ ],
+ "knownWords": [
+  "je",
+  "suis",
+  "ici",
+  "tu",
+  "es",
+  "là",
+  "léa",
+  "est",
+  "paul",
+  "nous",
+  "sommes",
+  "vous",
+  "êtes",
+  "ils",
+  "sont",
+  "elles",
+  "à",
+  "la",
+  "maison",
+  "gare",
+  "au",
+  "bureau",
+  "elle",
+  "prêt",
+  "prête",
+  "fatigué",
+  "fatiguée",
+  "prêts",
+  "fatigués",
+  "prêtes",
+  "libre",
+  "porte",
+  "ouverte",
+  "fenêtre",
+  "le",
+  "magasin",
+  "ouvert",
+  "loin",
+  "proche",
+  "café",
+  "fermé",
+  "fermée",
+  "les",
+  "portes",
+  "ouvertes",
+  "magasins",
+  "fermés",
+  "calme",
+  "déjà",
+  "encore",
+  "seul",
+  "ensemble",
+  "clé",
+  "clés",
+  "sac",
+  "près",
+  "de",
+  "enfants",
+  "dehors",
+  "ne",
+  "pas",
+  "n’es",
+  "n’est",
+  "n’êtes",
+  "seule",
+  "en",
+  "retard",
+  "avance",
+  "ouverts",
+  "salle",
+  "vide",
+  "couloir",
+  "sombre",
+  "table",
+  "propre",
+  "verre",
+  "sale",
+  "bus",
+  "toilettes",
+  "fond",
+  "ticket",
+  "dans",
+  "vélo",
+  "mon",
+  "téléphone",
+  "musée",
+  "pharmacie",
+  "billets",
+  "sur",
+  "train",
+  "déjeuner",
+  "chambre",
+  "du",
+  "chaussures",
+  "propres",
+  "très",
+  "large",
+  "seuls",
+  "est-ce",
+  "que",
+  "l’heure",
+  "guichet",
+  "l’entrée",
+  "l’arrêt",
+  "quai",
+  "face",
+  "sortie",
+  "gauche",
+  "parking",
+  "droite",
+  "aujourd’hui",
+  "d’ici",
+  "ce",
+  "soir",
+  "avec",
+  "toi",
+  "ta",
+  "poche",
+  "prochain",
+  "deux",
+  "fermées",
+  "serrure",
+  "pour",
+  "concert",
+  "premier",
+  "étage",
+  "c’est",
+  "ma",
+  "sœur",
+  "frère",
+  "une",
+  "amie",
+  "un",
+  "ami",
+  "voisin",
+  "voisine",
+  "père",
+  "mère",
+  "billet",
+  "carte",
+  "plan",
+  "photo",
+  "cadeau",
+  "adresse",
+  "reçu",
+  "facture",
+  "mes",
+  "amis",
+  "nos",
+  "des",
+  "voisins",
+  "photos",
+  "tes",
+  "cadeaux",
+  "vos",
+  "reçus",
+  "leurs",
+  "places",
+  "première",
+  "visite",
+  "votre",
+  "notre",
+  "arrêt",
+  "son",
+  "tour",
+  "bonne",
+  "dernier",
+  "famille",
+  "numéro",
+  "place",
+  "bon",
+  "lunettes",
+  "ton",
+  "bagages",
+  "demain",
+  "j’ai",
+  "as",
+  "a",
+  "il",
+  "avons",
+  "avez",
+  "ont",
+  "faim",
+  "soif",
+  "froid",
+  "chaud",
+  "peur",
+  "sommeil",
+  "mal",
+  "dos",
+  "tête",
+  "vingt",
+  "ans",
+  "trente",
+  "dix",
+  "trois",
+  "cinq",
+  "minutes",
+  "rendez-vous",
+  "question",
+  "idée",
+  "temps",
+  "avez-vous",
+  "stylo",
+  "instant",
+  "qu’elle",
+  "ses",
+  "passeport",
+  "monnaie",
+  "retour",
+  "réservation",
+  "besoin",
+  "d’aide",
+  "d’une",
+  "pause",
+  "repos",
+  "d’eau",
+  "peu",
+  "choix",
+  "midi",
+  "gorge",
+  "ordonnance",
+  "sous",
+  "lit",
+  "l’adresse",
+  "pain",
+  "soupe",
+  "chaude",
+  "verres",
+  "l’eau",
+  "froide",
+  "j’aime",
+  "thé",
+  "aime",
+  "musique",
+  "cinéma",
+  "aimons",
+  "livres",
+  "aimes",
+  "fraises",
+  "fromage",
+  "aiment",
+  "chocolat",
+  "aimez",
+  "l’odeur",
+  "banque",
+  "marché",
+  "l’école",
+  "bibliothèque",
+  "jardin",
+  "petit",
+  "l’hôtel",
+  "chambres",
+  "l’étage",
+  "l’ascenseur",
+  "réception",
+  "bas",
+  "manteau",
+  "chaise",
+  "veste",
+  "gants",
+  "l’écharpe",
+  "portefeuille",
+  "tiroir",
+  "l’ordinateur",
+  "chargeur",
+  "lampe",
+  "l’amie",
+  "voiture",
+  "gratuite",
+  "prix",
+  "nom",
+  "l’enveloppe",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue",
+  "le garage",
+  "le badge",
+  "le parapluie",
+  "le casque",
+  "le ballon",
+  "le banc",
+  "le colis",
+  "la couverture",
+  "le placard",
+  "la pile",
+  "le lait",
+  "la cuisine",
+  "le médecin",
+  "le travail",
+  "le métro",
+  "la réunion",
+  "la poste",
+  "le beurre",
+  "la farine",
+  "le miel",
+  "le sel",
+  "la tasse",
+  "léger / légère",
+  "la boîte",
+  "le pull",
+  "la chemise",
+  "l’étagère (f.)",
+  "le formulaire",
+  "l’étiquette (f.)",
+  "le bouton",
+  "répondre",
+  "signer",
+  "le facteur / la factrice",
+  "le voyage",
+  "le dessert",
+  "réparer",
+  "vérifier"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Что мы делаем"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, его, наш"
+  },
+  {
+   "lesson": 10,
+   "title": "Что здесь есть: `il y a`"
+  },
+  {
+   "lesson": 11,
+   "title": "Куда иду: `aller` и место назначения"
+  },
+  {
+   "lesson": 12,
+   "title": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`"
+  },
+  {
+   "lesson": 13,
+   "title": "Описание вещи: род и число прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола вместе"
+  },
+  {
+   "lesson": 15,
+   "title": "План на ближайшее время: `aller` + действие"
+  }
+ ],
+ "oldTopicTitle": "Короткие инструкции: повелительная форма",
+ "oldTheoryRu": "В приказе, просьбе и приглашении собеседник обычно не называется отдельным местоимением. Поэтому первый глагол здесь — полноценная личная форма, а не инфинитив из словаря. Обращение влияет на написание. Для знакомого `reste`, для вежливого или множественного адресата `restez`. Не наказывай себя за отсутствие `vous` перед глаголом: в инструкции оно как раз не требуется. У многих глаголов на `-er` у формы для одного знакомого нет конечного `s`: `ferme`. Не переноси сюда окончание из утверждения `tu fermes`. Важные формы нужно запомнить целиком: `prends`, `prenez`. Слова вежливости смягчают просьбу, но не меняют число и лицо выбранного повелительного глагола. Для запрета поставь `ne` или `n’` перед приказом и `pas` после. Сравни простую просьбу закрыть и просьбу не закрывать. Положение слов после глагола остаётся узнаваемым. Когда зовём сделать вместе, начинаем с формы для `nous`, но без самого `nous`: `allons`, `faisons`, `restons`. Это предложение группе, а не сообщение о привычке. Читая инструкцию, первым делом найди действие, затем предмет. `Fermez` и `ferme` могут передавать один приказ, но одному близкому человеку и незнакомой группе они адресованы по-разному."
+}

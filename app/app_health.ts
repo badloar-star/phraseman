@@ -4,7 +4,6 @@ import { Platform } from 'react-native';
 import { recordError } from './firebase';
 import { submitClientReport } from './client_reports';
 import { DebugLogger } from './debug-logger';
-import { isLearningV2ReportSource } from './learning_v2_report_filter';
 import { resolveAppBuildNumberV1 } from './app_build_number';
 
 export type AppHealthSeverity = 'info' | 'warning' | 'critical';
@@ -159,11 +158,6 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
 
   const shouldWrite = meta.writeToFirestore ?? severity === 'critical';
   if (!shouldWrite) return;
-  // зачем (владелец 04.11, заморозка V2): ошибки Learning V2 не пишем в app_errors — из этой коллекции строятся Telegram-алерты. Crashlytics выше остаётся.
-  if (isLearningV2ReportSource({ context, feature })) {
-    console.warn(`[APP-HEALTH] learning_v2: запись в app_errors пропущена (заморозка V2) context=${context} severity=${severity}`); // guard-ok: ранний выход называет причину
-    return;
-  }
 
   // зачем (§126, разбор обращений: ReferenceError «Property 'X' doesn't exist» по одному разу у каждого имени, 29.09–01.10 — это наши
   // dev-клиенты с Fast Refresh на полу-отредактированных файлах, а не пользователи): dev-сборка не пишет в прод-журнал app_errors,

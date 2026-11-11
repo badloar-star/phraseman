@@ -22,7 +22,7 @@ import { peekTodayTasks, subscribeTodayTasks } from '../../modules/today-tasks/t
 import { todayTasksToView } from '../../modules/today-tasks/today_tasks_view';
 import type { TodayTasksDayState } from '../../modules/today-tasks/today_tasks_core';
 import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
-import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
+import type { Lv2Glass } from '../practice/PracticeGlass';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
 import { V2IconTile } from '../v2/V2Glass';
 import { plateBoxShadow } from '../v2/ShadowSurface';

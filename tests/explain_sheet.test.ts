@@ -212,109 +212,20 @@ describe('splitExplainParagraphs — красивые абзацы', () => {
   });
 });
 
-describe('ExplainButton: флаг-гейтинг и аналитика', () => {
-  const src = read(path.join(COMPONENTS_DIR, 'ExplainButton.tsx'));
-
-  it('рендерит null, когда isExplainEnabled() === false (фича скрыта)', () => {
-    expect(src).toContain('isExplainEnabled');
-    expect(src).toMatch(/if\s*\(\s*!enabled\s*\)\s*return null/);
-  });
-
-  it('проп называется phraseMeaning, НЕ phraseRu', () => {
-    expect(src).toContain('phraseMeaning');
-    // phraseRu не должно встречаться в КОДЕ (в комментариях допустимо как пояснение).
-    expect(stripComments(src)).not.toContain('phraseRu');
-  });
-
-  it('эмитит explain_button_shown при показе и explain_sheet_opened по тапу', () => {
-    expect(src).toContain("trackEvent('explain_button_shown'");
-    expect(src).toContain("trackEvent('explain_sheet_opened'");
-  });
-
-  it('открывает ExplainSheet для {phraseEn, phraseMeaning, lang}', () => {
-    expect(src).toContain('ExplainSheet');
-    expect(src).toMatch(/phraseEn=\{phraseEn\}/);
-    expect(src).toMatch(/phraseMeaning=\{phraseMeaning\}/);
-  });
-});
-
 describe('Lesson explain footer contract', () => {
   const src = stripComments(read(path.join(APP_DIR, 'lesson1.tsx')));
 
-  it('shows the footer explain button on the RESULT screen regardless of right/wrong answer', () => {
-    // Кнопка «Объяснить» живёт в ряду футера и видна на экране результата —
-    // НЕЗАВИСИМО от того, верно ответил юзер или нет (объясняет САМУ фразу).
-    expect(src).toContain('testID="lesson1-explain"');
-    // Гейт показа — статус результата + флаг фичи (kill-switch), НЕ wasWrong.
-    expect(src).toContain("status === 'result' && explainFeatureOn");
-    // владелец 17.10: плитка скрыта общим флагом ИИ-объяснений (MISTAKE_EXPLAIN_ENABLED=false), env-kill-switch остаётся вторым замком.
-    expect(src).toContain('const explainFeatureOn = MISTAKE_EXPLAIN_ENABLED && isExplainEnabled()');
-    // Тап открывает общую шторку ExplainSheet (кэш на сервере), без pre-answer-режима.
-    expect(src).toContain('setExplainOpen(true)');
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): плитки «Объяснить» в футере урока больше нет, шторка из урока не открывается.
+  it('has no footer explain tile on the result screen', () => {
+    expect(src).not.toContain('testID="lesson1-explain"');
+    expect(src).not.toContain('explainFeatureOn');
+    expect(src).not.toContain('setExplainOpen');
+    expect(src).not.toContain('onExplainResolved');
     expect(src).not.toContain('lesson1-explain-result');
   });
 
-  it('spends explain credit only for successful live generations', () => {
-    expect(src).toContain('if (info.error || info.fromCache) return;');
-    expect(src).toContain("if (info.status !== 'ok') return;");
+  it('keeps the daily credit spend for the 50/50 hint', () => {
     expect(src).toContain('onConsumeExplainCredit();');
-  });
-});
-
-describe('ExplainSheet: рендер тела и слайд-ап в доме', () => {
-  const src = read(path.join(COMPONENTS_DIR, 'ExplainSheet.tsx'));
-
-  it('рендерит тело объяснения из resolveExplainDisplay (display.text → абзацы)', () => {
-    expect(src).toContain('resolveExplainDisplay');
-    expect(src).toContain('splitExplainParagraphs(display.text)');
-  });
-
-  it('показывает скелетон-лоадер с дружелюбной строкой во время генерации', () => {
-    expect(src).toContain('display.showSkeleton');
-    expect(src).toContain('loadingLineForLang');
-  });
-
-  it('заголовок «Простыми словами» БЕЗ эмодзи (правило: никаких эмодзи)', () => {
-    expect(src).toContain('Простыми словами');
-    expect(src).not.toContain('👶');
-  });
-
-  it('интерактивная шторка: reanimated + drag-to-dismiss по паттерну RegistrationPromptModal', () => {
-    expect(src).toContain("from 'react-native'");
-    expect(src).toContain('react-native-reanimated');
-    expect(src).toContain('react-native-gesture-handler');
-    expect(src).toContain('GestureDetector');
-    expect(src).toContain('translateY');
-    // Liquid Glass (learn.html D10): непрозрачный лист на токенах темы вместо градиентного свечения.
-    expect(src).toContain('liquidGlassTokens(liquidGlassThemeId)');
-    // Тяга вниз 1:1, вверх резина ×0.12; закрытие по 88px / velocity 900.
-    expect(src).toContain('ty < 0 ? ty * 0.12 : ty');
-    expect(src).toContain('> 88');
-    expect(src).toContain('> 900');
-    expect(src).not.toContain('MOTION_SPRING_LEGACY');
-  });
-
-  it('содержит футер-репорт ExplainReportButton', () => {
-    expect(src).toContain('ExplainReportButton');
-  });
-
-  it('рендерит объяснение абзацами с подсветкой английского (splitExplain*)', () => {
-    expect(src).toContain('splitExplainParagraphs');
-    expect(src).toContain('splitExplainSegments');
-    // Английские сегменты красятся акцентом.
-    expect(src).toContain('bodyEn');
-  });
-
-  // D158 (владелец 03.10): вечный каркас запрещён — после автоповторов одна тихая «Обновить».
-  it('shows a calm refresh branch only when the auto-retries gave up (D158)', () => {
-    expect(src).toContain('display.degraded ?');
-    expect(src).toContain('onPress={state.retry}');
-    expect(src).toContain('explainLaterLineForLang');
-  });
-
-  it('does not turn backend exhaustion into visible explanation content', () => {
-    expect(src).not.toContain('explainFreeLimitReached');
-    expect(src).not.toContain('testID="explain-free-limit-card"');
   });
 });
 
@@ -368,21 +279,6 @@ describe('ExplainReportButton: контракт репорта', () => {
   });
 });
 
-describe('Кнопка называется «Объяснить просто» (переименование 2026-06-10)', () => {
-  it('ExplainButton (фраза дня и другие поверхности)', () => {
-    const src = read(path.join(COMPONENTS_DIR, 'ExplainButton.tsx'));
-    expect(src).toContain('Объяснить просто');
-    expect(src).not.toContain('Объясни проще');
-  });
-
-  it('lesson1 keeps explain in the footer and does not duplicate it on the result screen', () => {
-    const src = stripComments(read(path.join(APP_DIR, 'lesson1.tsx')));
-    expect(src).toContain('testID="lesson1-explain"');
-    expect(src).not.toContain('lesson1-explain-result');
-    expect(src).not.toContain('Объяснить просто');
-  });
-});
-
 describe('analytics.ts: новые события зарегистрированы в union', () => {
   const src = read(path.join(APP_DIR, 'analytics.ts'));
 
@@ -393,20 +289,12 @@ describe('analytics.ts: новые события зарегистрирован
   });
 });
 
-describe('ExplainSheet: продовая проводка (футер урока, app/lesson1.tsx)', () => {
-  // Раньше кнопка жила в DailyPhraseCard — вход переехал в футер урока: lesson1.tsx
-  // рендерит ExplainSheet напрямую (ExplainButton остался переиспользуемым триггером
-  // для других поверхностей). DailyPhraseCard проводки больше не содержит.
+describe('ExplainSheet: проводки в уроке нет (app/lesson1.tsx)', () => {
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): урок шторку не импортирует и не рендерит.
   const src = read(path.join(__dirname, '..', 'app', 'lesson1.tsx'));
 
-  it('импортирует и рендерит ExplainSheet', () => {
-    expect(src).toContain("import ExplainSheet from '../components/ExplainSheet'");
-    expect(src).toContain('<ExplainSheet');
-  });
-
-  it('передаёт phraseEn/phraseMeaning/lang с реальными значениями текущей фразы', () => {
-    expect(src).toMatch(/phraseEn=\{/);
-    expect(src).toMatch(/phraseMeaning=\{lessonPhraseMeaningForLang\(phrase, lang, studyTarget\)\}/);
-    expect(src).toMatch(/lang=\{lang\}/);
+  it('не импортирует и не рендерит ExplainSheet', () => {
+    expect(src).not.toContain("import ExplainSheet from '../components/ExplainSheet'");
+    expect(src).not.toContain('<ExplainSheet');
   });
 });

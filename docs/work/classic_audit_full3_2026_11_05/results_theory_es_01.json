@@ -1,0 +1,94 @@
+[
+ {
+  "id": "lesson-3/choose",
+  "type": "T2",
+  "field": "localized.en.choose",
+  "problem": "склеенные знаки «¿opens the question, and? closes it… after the final?.», фраза «the only mandatory melody… is not specified» искажает смысл ru",
+  "fix": "¿ opens the question and ? closes it. No full stop is needed after the final ?. In the full phrase ¿Estás cerca? you choose only two words; the app adds the marks. Read Estás cerca as a statement, then as a request for confirmation. In speech, question intonation matters; this lesson does not prescribe one single melody for all varieties of Spanish."
+ },
+ {
+  "id": "lesson-3/ch1",
+  "type": "T2",
+  "field": "localized.en.chapters[1].body",
+  "problem": "тот же ломаный текст, что в choose: склеенные ¿/? и искажённая фраза про мелодию",
+  "fix": "¿ opens the question and ? closes it. No full stop is needed after the final ?. In the full phrase ¿Estás cerca? you choose only two words; the app adds the marks. Read Estás cerca as a statement, then as a request for confirmation. In speech, question intonation matters; this lesson does not prescribe one single melody for all varieties of Spanish."
+ },
+ {
+  "id": "lesson-3/ch4",
+  "type": "T2",
+  "field": "localized.en.chapters[4].note",
+  "problem": "ломаный en «one interlocutor on usted » (калька + лишний пробел)",
+  "fix": "Está already indicates “you” to one person addressed as usted; a separate pronoun is optional."
+ },
+ {
+  "id": "lesson-3/ch6",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "ru «Тебя спрашивают…» переведено вопросом «Are you being asked…?» — en не соответствует ru",
+  "fix": "Someone asks you ¿Estás en casa? You answer about yourself: Sí, estoy en casa or No, no estoy en casa. In the last sentence, the first No is a standalone answer “no”, and the second no negates the verb. In this lesson’s tasks, you build the question itself, not the answer."
+ },
+ {
+  "id": "lesson-3/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[es03/lab/spot2].feedback",
+  "problem": "калька «друзья на vosotros»; в en ломаное «friends on vosotros » с лишним пробелом",
+  "fix": {
+   "ru": "Форма estáis уже указывает на «вы» — группу друзей (vosotros); отдельное местоимение не обязательно.",
+   "uk": "Форма estáis уже вказує на «ви» — групу друзів (vosotros); окремий займенник не обов’язковий.",
+   "en": "Estáis already indicates “you” to a group of friends (vosotros); a separate pronoun is optional."
+  }
+ },
+ {
+  "id": "lesson-4/ch4",
+  "type": "T2",
+  "field": "localized.ru.chapters[4].note; localized.ru.chapters[5].note",
+  "problem": "имя собственное со строчной: «ana»",
+  "fix": "es — форма для «один человек или предмет». Ориентир в этом образце: «Ana»."
+ },
+ {
+  "id": "lesson-4/ch4",
+  "type": "T2",
+  "field": "localized.uk.chapters[4].note; localized.uk.chapters[5].note",
+  "problem": "ім’я з малої літери: «ana»",
+  "fix": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «Ana»."
+ },
+ {
+  "id": "lesson-4/ch4",
+  "type": "T2",
+  "field": "localized.en.chapters[4].note; localized.en.chapters[5].note",
+  "problem": "«\" ana.\"» — строчная буква и лишний пробел",
+  "fix": "es is the form for “one person or thing”. The reference point in this pattern is “Ana”."
+ },
+ {
+  "id": "lesson-4/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[es04/lab/form2,es04/lab/spot2].feedback",
+  "problem": "имена «ana», «luis» со строчной; в en лишний пробел «\" ana.\"»",
+  "fix": {
+   "form2": {
+    "ru": "es — форма для «один человек или предмет». Ориентир в этом образце: «Ana».",
+    "uk": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «Ana».",
+    "en": "es is the form for “one person or thing”. The reference point in this pattern is “Ana”."
+   },
+   "spot2": {
+    "ru": "es — форма для «один человек или предмет». Ориентир в этом образце: «Luis».",
+    "uk": "es — форма для «одна людина або річ». Орієнтир у цьому зразку: «Luis».",
+    "en": "es is the form for “one person or thing”. The reference point in this pattern is “Luis”."
+   }
+  }
+ },
+ {
+  "id": "lesson-4/ch2",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "«in es, the pronoun itself does not indicate the gender» — неверно, в ru речь о форме es, а не о местоимении",
+  "fix": "Spanish Soy estudiante is natural without yo. Yo soy estudiante is also correct: it emphasises “I, not someone else”. In the pair Él es estudiante / Ella es estudiante, the pronoun, on the contrary, shows who is meant: the form es itself does not show the person's gender."
+ },
+ {
+  "id": "lesson-4/tables",
+  "type": "T2",
+  "field": "localized.en.tables[0].title",
+  "problem": "неграмматично «Forms ser»",
+  "fix": "Forms of ser"
+ }
+]

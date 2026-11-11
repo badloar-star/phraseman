@@ -1,0 +1,759 @@
+{
+ "lang": "de",
+ "lesson": 24,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:24:01",
+   "target": "Als ich ankam, war die Tür offen.",
+   "ru": "Когда я приехал, дверь была открыта.",
+   "uk": "Коли я приїхав, двері були відчинені."
+  },
+  {
+   "id": "de:24:02",
+   "target": "Als Anna ankam, war ich schon da.",
+   "ru": "Когда приехала Анна, я уже был на месте.",
+   "uk": "Коли приїхала Ганна, я вже був на місці."
+  },
+  {
+   "id": "de:24:03",
+   "target": "Als Tom anrief, war ich im Bus.",
+   "ru": "Когда позвонил Том, я был в автобусе.",
+   "uk": "Коли зателефонував Том, я був у автобусі."
+  },
+  {
+   "id": "de:24:04",
+   "target": "Als wir losfuhren, regnete es.",
+   "ru": "Когда мы выехали, шёл дождь.",
+   "uk": "Коли ми виїхали, йшов дощ."
+  },
+  {
+   "id": "de:24:05",
+   "target": "Als der Zug hielt, stand ich auf.",
+   "ru": "Когда поезд остановился, я встал.",
+   "uk": "Коли поїзд зупинився, я встав."
+  },
+  {
+   "id": "de:24:06",
+   "target": "Als die Gäste kamen, war das Essen fertig.",
+   "ru": "Когда пришли гости, еда была готова.",
+   "uk": "Коли прийшли гості, їжа була готова."
+  },
+  {
+   "id": "de:24:07",
+   "target": "Als ich aufwachte, war es noch dunkel.",
+   "ru": "Когда я проснулся, было ещё темно.",
+   "uk": "Коли я прокинувся, було ще темно."
+  },
+  {
+   "id": "de:24:08",
+   "target": "Als der Wecker klingelte, schlief Tom noch.",
+   "ru": "Когда зазвонил будильник, Том ещё спал.",
+   "uk": "Коли задзвонив будильник, Том ще спав."
+  },
+  {
+   "id": "de:24:09",
+   "target": "Als ich die Tür öffnete, sah ich das Paket.",
+   "ru": "Когда я открыл дверь, я увидел посылку.",
+   "uk": "Коли я відчинив двері, я побачив посилку."
+  },
+  {
+   "id": "de:24:10",
+   "target": "Als Anna das Fenster öffnete, hörte sie Musik.",
+   "ru": "Когда Анна открыла окно, она услышала музыку.",
+   "uk": "Коли Анна відчинила вікно, вона почула музику."
+  },
+  {
+   "id": "de:24:11",
+   "target": "Ich war zu Hause, als das Handy klingelte.",
+   "ru": "Я был дома, когда зазвонил телефон.",
+   "uk": "Я був удома, коли задзвонив телефон."
+  },
+  {
+   "id": "de:24:12",
+   "target": "Wir waren im Garten, als es anfing zu regnen.",
+   "ru": "Мы были в саду, когда пошёл дождь.",
+   "uk": "Ми були у саду, коли пішов дощ."
+  },
+  {
+   "id": "de:24:13",
+   "target": "Tom war am Eingang, als der Arzt kam.",
+   "ru": "Том был у входа, когда пришёл врач.",
+   "uk": "Том був біля входу, коли прийшов лікар."
+  },
+  {
+   "id": "de:24:14",
+   "target": "Anna war im Flur, als das Licht ausging.",
+   "ru": "Анна была в коридоре, когда погас свет.",
+   "uk": "Анна була в коридорі, коли згасло світло."
+  },
+  {
+   "id": "de:24:15",
+   "target": "Ich hatte gerade Pause, als du angerufen hast.",
+   "ru": "У меня как раз был перерыв, когда ты позвонил.",
+   "uk": "У мене якраз була перерва, коли ти зателефонував."
+  },
+  {
+   "id": "de:24:16",
+   "target": "Wir hatten viel Gepäck, als wir umzogen.",
+   "ru": "У нас было много багажа, когда мы переезжали.",
+   "uk": "Ми мали багато багажу, коли ми переїжджали."
+  },
+  {
+   "id": "de:24:17",
+   "target": "Das Baby schlief, als der Bus hielt.",
+   "ru": "Малыш спал, когда автобус остановился.",
+   "uk": "Малюк спав, коли автобус зупинився."
+  },
+  {
+   "id": "de:24:18",
+   "target": "Die Kasse war zu, als ich bezahlen wollte.",
+   "ru": "Касса была закрыта, когда я хотел заплатить.",
+   "uk": "Касу було закрито, коли я хотів заплатити."
+  },
+  {
+   "id": "de:24:19",
+   "target": "Der Platz war frei, als wir ankamen.",
+   "ru": "Место было свободно, когда мы приехали.",
+   "uk": "Місце було вільне, коли ми приїхали."
+  },
+  {
+   "id": "de:24:20",
+   "target": "Ich war nervös, als der Kurs begann.",
+   "ru": "Я нервничал, когда начался курс.",
+   "uk": "Я нервувався, коли почався курс."
+  },
+  {
+   "id": "de:24:21",
+   "target": "Als Anna noch ein Kind war, hatte sie ein rotes Fahrrad.",
+   "ru": "Когда Анна была ещё ребёнком, у неё был красный велосипед.",
+   "uk": "Коли Анна була ще дитиною, вона мала червоний велосипед."
+  },
+  {
+   "id": "de:24:22",
+   "target": "Als ich klein war, wohnte ich am See.",
+   "ru": "Когда я был маленьким, я жил у озера.",
+   "uk": "Коли я був маленьким, я жив біля озера."
+  },
+  {
+   "id": "de:24:23",
+   "target": "Als ich sechs war, bekam ich mein erstes Rad.",
+   "ru": "Когда мне было шесть, мне подарили мой первый велосипед.",
+   "uk": "Коли мені було шість, мені подарували перший велосипед."
+  },
+  {
+   "id": "de:24:24",
+   "target": "Als ich Schüler war, ging ich zu Fuß zur Schule.",
+   "ru": "Когда я был школьником, я ходил в школу пешком.",
+   "uk": "Коли я був школярем, я ходив до школи пішки."
+  },
+  {
+   "id": "de:24:25",
+   "target": "Als Anna studierte, lebte sie in Köln.",
+   "ru": "Когда Анна училась в университете, она жила в Кёльне.",
+   "uk": "Коли Анна навчалася в університеті, вона жила в Кельні."
+  },
+  {
+   "id": "de:24:26",
+   "target": "Als Tom neu in der Stadt war, kannte er niemanden.",
+   "ru": "Когда Том только приехал в город, он никого не знал.",
+   "uk": "Коли Том тільки-но приїхав до міста, він нікого не знав."
+  },
+  {
+   "id": "de:24:27",
+   "target": "Als wir Nachbarn waren, sahen wir uns oft.",
+   "ru": "Когда мы были соседями, мы часто виделись.",
+   "uk": "Коли ми були сусідами, ми часто бачилися."
+  },
+  {
+   "id": "de:24:28",
+   "target": "Als meine Tochter klein war, las ich ihr vor.",
+   "ru": "Когда моя дочь была маленькой, я читал ей вслух.",
+   "uk": "Коли моя дочка була маленькою, я читав їй уголос."
+  },
+  {
+   "id": "de:24:29",
+   "target": "Als ich im Hotel arbeitete, stand ich früh auf.",
+   "ru": "Когда я работал в гостинице, я рано вставал.",
+   "uk": "Коли я працював у готелі, я рано вставав."
+  },
+  {
+   "id": "de:24:30",
+   "target": "Als wir noch kein Auto hatten, nahmen wir die Bahn.",
+   "ru": "Пока у нас ещё не было машины, мы ездили на электричке.",
+   "uk": "Поки ми ще не мали машини, ми їздили електричкою."
+  },
+  {
+   "id": "de:24:31",
+   "target": "Als ich ausgestiegen bin, hat es geschneit.",
+   "ru": "Когда я вышел из транспорта, шёл снег.",
+   "uk": "Коли я вийшов із транспорту, йшов сніг."
+  },
+  {
+   "id": "de:24:32",
+   "target": "Als du geschrieben hast, war ich einkaufen.",
+   "ru": "Когда ты написал, я ходил за покупками.",
+   "uk": "Коли ти написав, я ходив по магазинах."
+  },
+  {
+   "id": "de:24:33",
+   "target": "Als Anna nach Hause kam, lag der Brief schon da.",
+   "ru": "Когда Анна пришла домой, письмо уже лежало там.",
+   "uk": "Коли Анна прийшла додому, лист уже лежав там."
+  },
+  {
+   "id": "de:24:34",
+   "target": "Als Tom bezahlen wollte, fehlte seine Karte.",
+   "ru": "Когда Том хотел заплатить, выяснилось, что у него нет карты.",
+   "uk": "Коли Том хотів заплатити, з'ясувалося, що він не має карти."
+  },
+  {
+   "id": "de:24:35",
+   "target": "Als wir ankamen, lief der Film schon.",
+   "ru": "Когда мы пришли, фильм уже шёл.",
+   "uk": "Коли ми прийшли, фільм уже йшов."
+  },
+  {
+   "id": "de:24:36",
+   "target": "Als der Alarm losging, verließen wir das Haus.",
+   "ru": "Когда сработала сигнализация, мы вышли из дома.",
+   "uk": "Коли спрацювала сигналізація, ми вийшли з дому."
+  },
+  {
+   "id": "de:24:37",
+   "target": "Als der Wind stärker wurde, verließen wir den Strand.",
+   "ru": "Когда ветер усилился, мы ушли с пляжа.",
+   "uk": "Коли вітер посилився, ми покинули пляж."
+  },
+  {
+   "id": "de:24:38",
+   "target": "Als ich den Schrank öffnete, fiel der Schal heraus.",
+   "ru": "Когда я открыл шкаф, из него выпал шарф.",
+   "uk": "Коли я відкрив шафу, з неї випав шарф."
+  },
+  {
+   "id": "de:24:39",
+   "target": "Als wir das Hotel fanden, war es fast Mitternacht.",
+   "ru": "Когда мы нашли гостиницу, была почти полночь.",
+   "uk": "Коли ми знайшли готель, була майже північ."
+  },
+  {
+   "id": "de:24:40",
+   "target": "Als der Strom ausfiel, holte ich eine Kerze.",
+   "ru": "Когда отключили электричество, я принёс свечу.",
+   "uk": "Коли відключили електрику, я приніс свічку."
+  },
+  {
+   "id": "de:24:41",
+   "target": "Ich freute mich, als das Paket ankam.",
+   "ru": "Я обрадовался, когда пришла посылка.",
+   "uk": "Я зрадів, коли надійшла посилка."
+  },
+  {
+   "id": "de:24:42",
+   "target": "Sie erschrak, als das Glas zerbrach.",
+   "ru": "Она испугалась, когда разбился стакан.",
+   "uk": "Вона злякалася, коли розбилася склянка."
+  },
+  {
+   "id": "de:24:43",
+   "target": "Wir hielten an, als die Ampel rot wurde.",
+   "ru": "Мы остановились, когда загорелся красный свет.",
+   "uk": "Ми зупинилися, коли спалахнуло червоне світло."
+  },
+  {
+   "id": "de:24:44",
+   "target": "Er lachte, als er das Foto sah.",
+   "ru": "Он рассмеялся, когда увидел фотографию.",
+   "uk": "Він засміявся, коли побачив фотографію."
+  },
+  {
+   "id": "de:24:45",
+   "target": "Ich habe viel gelernt, als ich dort gewohnt habe.",
+   "ru": "Я многому научился, когда там жил.",
+   "uk": "Я багато чого навчився, коли там жив."
+  },
+  {
+   "id": "de:24:46",
+   "target": "Als ich den Preis hörte, fragte ich noch einmal nach.",
+   "ru": "Когда я услышал цену, я переспросил.",
+   "uk": "Коли я почув ціну, я перепитав."
+  },
+  {
+   "id": "de:24:47",
+   "target": "Als wir den Keller öffneten, roch es feucht.",
+   "ru": "Когда мы открыли подвал, запахло сыростью.",
+   "uk": "Коли ми відкрили підвал, запахло вогкістю."
+  },
+  {
+   "id": "de:24:48",
+   "target": "Als Tom den Pass fand, war er erleichtert.",
+   "ru": "Когда Том нашёл паспорт, он почувствовал облегчение.",
+   "uk": "Коли Том знайшов паспорт, він відчув полегшення."
+  },
+  {
+   "id": "de:24:49",
+   "target": "Als ich gestern aus dem Haus ging, lag Schnee.",
+   "ru": "Когда я вчера вышел из дома, лежал снег.",
+   "uk": "Коли я вчора вийшов із дому, лежав сніг."
+  },
+  {
+   "id": "de:24:50",
+   "target": "Als die Sonne aufging, erreichten wir den Bahnhof.",
+   "ru": "Когда взошло солнце, мы добрались до вокзала.",
+   "uk": "Коли зійшло сонце, ми дісталися вокзалу."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Alarm",
+   "ru": "сигнал тревоги",
+   "uk": "сигнал тривоги"
+  },
+  {
+   "lemma": "die Kerze",
+   "ru": "свеча",
+   "uk": "свічка"
+  },
+  {
+   "lemma": "die Mitternacht",
+   "ru": "полночь",
+   "uk": "опівночі"
+  },
+  {
+   "lemma": "der Schnee",
+   "ru": "снег",
+   "uk": "сніг"
+  },
+  {
+   "lemma": "feucht",
+   "ru": "сырой, влажный",
+   "uk": "сирий, вологий"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  }
+ ],
+ "oldTopicTitle": "Один случай в прошлом: `als`",
+ "oldTheoryRu": "Представь кадр: ты приезжаешь, дверь уже открыта. `Als` сообщает, к какому моменту относится сцена. Оно не означает, что ты открыл дверь или стал причиной её открытия. Оба порядка возможны. Можно сначала назвать своё местонахождение, а потом звонок, которым отмечен момент. В придаточном порядок остаётся подчинённым, даже если оно завершает предложение. Однократность не означает «ровно одна секунда». Детство или период учёбы длились долго, но рассматриваются как один прошлый период жизни. Поэтому и там может появиться `als`. Внутри единственного периода события могли повторяться. Например, в годы работы в гостинице человек много раз рано вставал. Союз вводит именно период, а не считает число подъёмов. Временная часть не требует одного-единственного грамматического прошедшего. В разговорном рассказе возможен Perfekt, в письменном повествовании часто встречается Präteritum. Проверь порядок вспомогательного глагола, если он есть. Не путай временное `als` со сравнительным. В этом уроке за ним идёт целое предложение о моменте в прошлом, а не второй предмет сравнения по цене или размеру. Один вчерашний случай противопоставь привычке: один раз — временна́я рамка с `als`, всякий раз — обычно `wenn`. Решение принимается по истории, а не просто по наличию слова «когда» в переводе."
+}

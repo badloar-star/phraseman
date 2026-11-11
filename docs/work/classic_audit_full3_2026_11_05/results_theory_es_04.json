@@ -1,0 +1,310 @@
+[
+ {
+  "id": "lesson-9/chapters[4]",
+  "type": "T1",
+  "field": "localized.ru.chapters[4].body",
+  "problem": "Пример busco las llaves не из курса; в курсе es:09:33 — Busco mis llaves",
+  "fix": "Новый глагол buscar означает «искать». Для настоящего времени в этом уроке действуй так же: busc-o, busc-as, busc-a. Перед названием разыскиваемой вещи не нужен предлог. «Я ищу свои ключи» — Busco mis llaves, а не буквальная копия английского look for."
+ },
+ {
+  "id": "lesson-9/chapters[4]",
+  "type": "T1",
+  "field": "localized.uk.chapters[4].body",
+  "problem": "Пример busco las llaves не из курса; в курсе es:09:33 — Busco mis llaves",
+  "fix": "Нове дієслово buscar означає «шукати». Для теперішнього часу на цьому уроці дій так само: busc-o, busc-as, busc-a. Перед назвою речі, яку шукаєш, прийменник не потрібний. «Я шукаю свої ключі» — Busco mis llaves, а не буквальна копія англійського look for."
+ },
+ {
+  "id": "lesson-9/chapters[4]",
+  "type": "T1",
+  "field": "localized.en.chapters[4].body",
+  "problem": "Пример busco las llaves не из курса (es:09:33 Busco mis llaves); \"to search\" неточно для buscar = искать (look for)",
+  "fix": "The new verb buscar means \"to look for.\" For the present tense in this lesson, do the same: busc-o, busc-as, busc-a. No preposition is needed before the name of the thing being looked for. \"I'm looking for my keys\" is Busco mis llaves, not the literal copy of English look for."
+ },
+ {
+  "id": "lesson-9/use",
+  "type": "T2",
+  "field": "localized.en.use",
+  "problem": "en: разорванное \"- ar\", «correct verb» = калька «правильного глагола» (regular)",
+  "fix": "Choose the ending of a regular -ar verb according to who is doing the action."
+ },
+ {
+  "id": "lesson-9/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].body",
+  "problem": "en: разорванные окончания/основы (\"- ar\", \"trabaj -\", \"- o\")",
+  "fix": "In the dictionary, \"to work\" is trabajar. For the forms in this lesson, remove exactly the last two letters, -ar: you will be left with trabaj-. Then add the ending for the one doing the acting. When talking about yourself, choose -o: trabaj-o. In the constructor, this is one word, trabajo."
+ },
+ {
+  "id": "lesson-9/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "en: разорванные окончания/основы (\"- ar\", \"trabaj -\", \"- o\")",
+  "fix": "For a single person, use -a: Ana habla. The polite usted means \"you,\" but grammatically requires the same form: usted trabaja. Don't change the ending based on gender: él trabaja and ella trabaja are the same."
+ },
+ {
+  "id": "lesson-9/chapters[3]",
+  "type": "T2",
+  "field": "localized.en.chapters[3].body",
+  "problem": "en: разорванные окончания/основы (\"- ar\", \"trabaj -\", \"- o\")",
+  "fix": "Include yourself in a group → -amos. Address friends in Spain with vosotros → -áis. Talk about them or address them with ustedes → -an. Don't mix vosotros and ustedes; in Latin America, ustedes is commonly used to address a group."
+ },
+ {
+  "id": "lesson-9/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: разорванные окончания/основы (\"- ar\", \"trabaj -\", \"- o\")",
+  "fix": "The present tense form remains the same when we add no or ask. In \"I don't speak,\" we first put no, then hablo. In a question to a friend, there's no need to add a separate \"do you do?\": ¿Hablas inglés? The ending -as and interrogative intonation are sufficient."
+ },
+ {
+  "id": "lesson-9/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: «Find the character» — неверный перевод «действующее лицо»",
+  "fix": "Find who is doing the action, even if the subject comes after the verb. In \"Where does your mother work?\", there is one person working: trabaja. In \"Ana and Luis are looking for their suitcases,\" there are two people looking: buscan. Don't choose the ending based on the closest noun automatically."
+ },
+ {
+  "id": "lesson-9/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].note",
+  "problem": "en: разорванные основы/окончания (\"trabaj - + - as\")",
+  "fix": "trabajar → trabaj- + -as → trabajas. Subject: you (tú)."
+ },
+ {
+  "id": "lesson-9/chapters[1]",
+  "type": "T2",
+  "field": "localized.en.chapters[1].note",
+  "problem": "en: «Actor: Me» — должно быть I (я); разорванные окончания",
+  "fix": "hablar → habl- + -o → hablo. Subject: I."
+ },
+ {
+  "id": "lesson-9/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].note",
+  "problem": "en: «Character» — неверный перевод «действующее лицо»; разорванные окончания",
+  "fix": "trabajar → trabaj- + -a → trabaja. Subject: he, she, or one person addressed as usted."
+ },
+ {
+  "id": "lesson-9/chapters[3]",
+  "type": "T2",
+  "field": "localized.en.chapters[3].note",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька; разорванные окончания",
+  "fix": "estudiar → estudi- + -an → estudian. Subject: they, or several people addressed as ustedes."
+ },
+ {
+  "id": "lesson-9/chapters[4]",
+  "type": "T2",
+  "field": "localized.en.chapters[4].note",
+  "problem": "en: «Actor: Me» — должно быть I (я); разорванные окончания",
+  "fix": "buscar → busc- + -o → busco. Subject: I."
+ },
+ {
+  "id": "lesson-9/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].note",
+  "problem": "en: разорванные основы/окончания (\"trabaj - + - as\")",
+  "fix": "trabajar → trabaj- + -as → trabajas. Subject: you (tú)."
+ },
+ {
+  "id": "lesson-9/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].note",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька; разорванные окончания",
+  "fix": "buscar → busc- + -an → buscan. Subject: they, or several people addressed as ustedes."
+ },
+ {
+  "id": "lesson-9/tables[0]",
+  "type": "T2",
+  "field": "localized.en.tables[0].rows[5].gloss",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька",
+  "fix": "they, or several people addressed as ustedes"
+ },
+ {
+  "id": "lesson-9/tables[1]",
+  "type": "T2",
+  "field": "localized.en.tables[1].rows[5].gloss",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька",
+  "fix": "they, or several people addressed as ustedes"
+ },
+ {
+  "id": "lesson-9/tables[2]",
+  "type": "T2",
+  "field": "localized.en.tables[2].rows[5].gloss",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька",
+  "fix": "they, or several people addressed as ustedes"
+ },
+ {
+  "id": "lesson-9/tables[3]",
+  "type": "T2",
+  "field": "localized.en.tables[3].rows[5].gloss",
+  "problem": "en: «multiple recipients on ustedes» — бессмысленная калька",
+  "fix": "they, or several people addressed as ustedes"
+ },
+ {
+  "id": "lesson-9/sharedActivities[1]",
+  "type": "T2",
+  "field": "sharedActivities[1].feedback.en",
+  "problem": "en: транслит «\"vy\"» и «recipient on the formal» — калька с русского",
+  "fix": "trabajar → trabaja: the form for \"he, she, or one person addressed as usted.\""
+ },
+ {
+  "id": "lesson-9/sharedActivities[3]",
+  "type": "T2",
+  "field": "sharedActivities[3].feedback.en",
+  "problem": "en: битые кавычки и калька «recipients on the formal ustedes»",
+  "fix": "buscar → buscan: the form for \"they, or several people addressed as ustedes.\""
+ },
+ {
+  "id": "lesson-9/sharedActivities[5]",
+  "type": "T2",
+  "field": "sharedActivities[5].feedback.en",
+  "problem": "en: транслит «\"vy\"» и «recipient on the formal» — калька с русского",
+  "fix": "estudiar → estudia: the form for \"he, she, or one person addressed as usted.\""
+ },
+ {
+  "id": "lesson-10/chapters[4]",
+  "type": "T1",
+  "field": "localized.ru.chapters[4].body",
+  "problem": "Текст про lees и «-er», а примеры главы — Hoy no escribo cartas (escribir, -ir) и No bebo café con azúcar; ключевая форма escribo противоречит «принадлежности к -er»",
+  "fix": "Вопрос отличается от утверждения только интонацией и знаками ¿…?: ¿Lees el libro? Для отрицания поставь no прямо перед глаголом: Hoy no escribo cartas, No bebo café con azúcar. Ни вопрос, ни отрицание не меняют окончание глагола."
+ },
+ {
+  "id": "lesson-10/chapters[4]",
+  "type": "T1",
+  "field": "localized.uk.chapters[4].body",
+  "problem": "Текст про lees і «-er», а приклади розділу — Hoy no escribo cartas (-ir) і No bebo café con azúcar",
+  "fix": "Запитання відрізняється від твердження лише інтонацією та знаками ¿…?: ¿Lees el libro? Для заперечення постав no безпосередньо перед дієсловом: Hoy no escribo cartas, No bebo café con azúcar. Ні запитання, ні заперечення не змінюють закінчення дієслова."
+ },
+ {
+  "id": "lesson-10/chapters[4]",
+  "type": "T1",
+  "field": "localized.en.chapters[4].body",
+  "problem": "en: «\"Do you read?\" differs from \"Do you read\"» — бессмыслица (ru: вопрос vs утверждение); пример lees вне примеров главы",
+  "fix": "A question differs from a statement only in intonation and the ¿…? marks: ¿Lees el libro? To negate, put no right before the verb: Hoy no escribo cartas, No bebo café con azúcar. Neither a question nor a negation changes the verb ending."
+ },
+ {
+  "id": "lesson-10/nuance",
+  "type": "T2",
+  "field": "localized.en.nuance",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский (договориться с исполнителем); «common action» вместо «ordinary»",
+  "fix": "Use a personal form for an everyday action: \"I live\" is vivo, not the dictionary form vivir. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: vivo. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[1]",
+  "type": "T2",
+  "field": "localized.en.chapters[1].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: vives. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: coméis. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[3]",
+  "type": "T2",
+  "field": "localized.en.chapters[3].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: como. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[4]",
+  "type": "T2",
+  "field": "localized.en.chapters[4].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: escribo. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: vivimos. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].note",
+  "problem": "en: «Agree on the personal ending with the performer» — неверный английский",
+  "fix": "Key form: escribís. Make the ending match the subject."
+ },
+ {
+  "id": "lesson-10/chapters[0]",
+  "type": "T2",
+  "field": "localized.en.chapters[0].body",
+  "problem": "en: разорванные окончания/основы (\"- er\", \"com -\")",
+  "fix": "Remove -er from comer and -ir from vivir. This leaves com- and viv-. For \"I\", both stems get -o: como, vivo. The initial form itself doesn't indicate who is acting."
+ },
+ {
+  "id": "lesson-10/chapters[1]",
+  "type": "T2",
+  "field": "localized.en.chapters[1].body",
+  "problem": "en: разорванные окончания/основы (\"- er\", \"com -\")",
+  "fix": "comes and vives indicate addressing an acquaintance. In the third person, the final -s disappears: come, vive. The same third person form is suitable for both a name and usted."
+ },
+ {
+  "id": "lesson-10/chapters[2]",
+  "type": "T2",
+  "field": "localized.en.chapters[2].body",
+  "problem": "en: «restore the group» — калька; смысл: определи группу",
+  "fix": "\"We eat\" is comemos, but \"we live\" is vivimos. Don't guess one form from the other by ear: go back to comer or vivir and identify the group. For vosotros, you get coméis and vivís."
+ },
+ {
+  "id": "lesson-10/chapters[5]",
+  "type": "T2",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: «Agree the personal ending with the performer», «Semantic supports: \" mensaje \"» — неверный английский и битые кавычки",
+  "fix": "Compare the two tasks: \"We are writing a message.\" / \"We live here.\" Make the ending match the subject. Key word: mensaje — message."
+ },
+ {
+  "id": "lesson-10/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: «Agree the personal ending with the performer», «\"live\" — vivo» (должно быть \"I live\")",
+  "fix": "Compare the two tasks: \"Are you reading a book?\" / \"Are you writing a letter?\" Make the ending match the subject. Use a personal form for an everyday action: \"I live\" is vivo, not the dictionary form vivir."
+ },
+ {
+  "id": "lesson-10/chapters[5]",
+  "type": "T2",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Мы пишем сообщение.» / «Мы живём здесь». Согласуй личное окончание с исполнителем. Смысловые опоры: «mensaje» — сообщение."
+ },
+ {
+  "id": "lesson-10/chapters[5]",
+  "type": "T2",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Ми пишемо повідомлення.» / «Ми живемо тут». Узгодь особове закінчення з виконавцем. Смислові опори: «mensaje» — повідомлення."
+ },
+ {
+  "id": "lesson-10/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Ты читаешь книгу?» / «Вы пишете письмо?» Согласуй личное окончание с исполнителем. Выбери личную форму обычного действия: «живу» — vivo, а не словарное vivir."
+ },
+ {
+  "id": "lesson-10/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Ти читаєш книжку?» / «Ви пишете листа?» Узгодь особове закінчення з виконавцем. Обери особову форму звичної дії: «живу» — vivo, а не словникове vivir."
+ },
+ {
+  "id": "lesson-10/sharedActivities[4]",
+  "type": "T2",
+  "field": "sharedActivities[4].feedback.en",
+  "problem": "en: comer переведено как «available» вместо «to eat»",
+  "fix": "Como ← comer (to eat); yo."
+ }
+]

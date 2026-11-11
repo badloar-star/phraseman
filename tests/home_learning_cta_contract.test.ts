@@ -4,53 +4,11 @@ import path from 'path';
 describe('home learning CTA contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'home.tsx'), 'utf8');
 
-  // зачем 2026-08-02: владелец заменил плановую плашку на главной карточкой
-  // «последний открытый урок» (форма — как ряды «Сегодня»). Вход в план остался
-  // внутри раздела уроков («Уроки» → «Маршрут»), на главной плановых карточек нет.
-  it('renders the continue-lesson card instead of the plan cards', () => {
+  it('renders one direct lesson action instead of the old progress and plan cards', () => {
     expect(source).not.toContain('<PersonalPlanHomeRouteCard');
-    expect(source).not.toContain('testID="home-personal-plan-card"');
-    // зачем (01.10, удаление Главной V1): карточка «Продолжить» теперь HomeV2ContinueCard (testID внутри компонента).
-    expect(source).toContain('<HomeV2ContinueCard');
-    // зачем (координатор 12.10, аудит Optimistic UI): переход идёт через nav.push (useGuardedNav) — повторный тап в окне 600 мс не открывает меню урока дважды
-    expect(source).toContain("nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never)");
-    expect(source).toMatch(/perfNavStart\(screenName\);[\s\S]{0,260}nav\.push\(path as any\);/);
-  });
-
-  // зачем (координатор §46, 2026-10-01): дизайн 2.0 — один утверждённый арт
-  // «блокнот» для всех тем (тема тонирует стекло вокруг, предмет не меняется),
-  // карточка — HomeV2ContinueCard. Намерение прежнее: подготовленный арт, а не
-  // общий menuImages.lesson, и арт есть у КАЖДОЙ темы.
-  it('uses the approved continue-card art for every theme', () => {
-    const cardStart = source.indexOf('<HomeV2ContinueCard');
-    const cardEnd = source.indexOf(') : null}', cardStart);
-    const cardSource = source.slice(cardStart, cardEnd);
-    const assetPath = path.join(process.cwd(), 'app', 'home_last_lesson_assets.ts');
-
-    expect(cardStart).toBeGreaterThan(-1);
-    expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
-    expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    // 04.10 (владелец: «ТУТ ПОСЛЕДНИЙ УРОК, А НЕ ОШИБКИ»): у карточки только арт урока — новый предмет 2.0 из реестра,
-    // прежняя картинка запасная; арта «Мои ошибки» на карточке больше нет.
-    // 15.10: слой .accent — из того же resolve (priorityCardArt), основа та же.
-    expect(source).toContain("const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);");
-    expect(source).toContain('const priorityCardImage = priorityCardArt.base ?? lastLessonImage;');
-    expect(source).not.toContain("resolveThemedArt('mistakes_entry'");
-    expect(cardSource).toContain('art={priorityCardImage}');
-    expect(cardSource).not.toContain('menuImages.lesson');
-
-    const assetSource = fs.readFileSync(assetPath, 'utf8');
-    const artMatch = assetSource.match(/const HOME_LAST_LESSON_ART = require\("\.\.\/(assets\/images\/home_last_lesson\/[^"]+)"\);/);
-    expect(artMatch).not.toBeNull();
-    const artPath = path.join(process.cwd(), artMatch![1]!);
-    expect(fs.existsSync(artPath)).toBe(true);
-    for (const theme of ['dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo', 'sagePorcelain']) {
-      expect(assetSource).toMatch(new RegExp(`\\b${theme}: HOME_LAST_LESSON_ART,`));
-    }
-    // Бюджет веса сохранён НАМЕРЕННО: арт грузится на первом кадре Главной.
-    // 2026-10-01 блокнот — PNG 1 236 838 байт (прежний бюджет всех тем 150 000).
-    // Падение здесь — реальный долг скорости (пережать в webp), а не устаревший тест.
-    expect(fs.statSync(artPath).size).toBeLessThanOrEqual(150_000);
+    expect(source).not.toContain('<HomeV2ContinueCard');
+    expect(source).toContain('<HomeScene');
+    expect(source).toContain("nav.push({ pathname: '/lesson1', params: { id: String(lastLesson.id), from: 'home' } } as never)");
   });
 
   // зачем: плитка быстрого старта «Уроки» открывает полный список уроков —
@@ -80,19 +38,11 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain("go(isLearningV2Hidden() ? '/lessons_list'");
   });
 
-  // зачем (координатор 29.10): «Начать урок 1» без истории — самый важный тап нового человека; старый go('/learning-v2/course') на холодном старте давал ~8 с пустого экрана
-  it('starts lesson 1 from the continue card through the same fast tab path, not the course redirect route', () => {
-    expect(source).not.toContain("go('/learning-v2/course')");
-    expect(source).toContain("openLessonsTabFromHome('home_continue_first');");
-    const start = source.indexOf('const openHomeContinuePlace = () => {');
-    const body = source.slice(start, source.indexOf('const renderHomeV2Header', start));
-    // при рубильнике «V2 скрыт» по-прежнему меню урока 1, быстрый путь — только после этой проверки
-    expect(body).toContain("nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);");
-    expect(body.indexOf('isLearningV2Hidden()')).toBeLessThan(body.indexOf("openLessonsTabFromHome('home_continue_first')"));
-    // журнал различает вход: источник в press и switched, и в замере вкладки
-    expect(source).toMatch(/\[HOME-LESSONS-BTN\] press[\s\S]{0,300}source, studyTarget/);
-    expect(source).toContain("'[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms:");
-    expect(source).toContain('noteLessonsOpenStart(source);');
+  it('omits the continue action when there is no saved lesson', () => {
+    const scene = fs.readFileSync(path.join(process.cwd(), 'components', 'home', 'v2', 'scene', 'HomeScene.tsx'), 'utf8');
+    expect(scene).toContain("const canContinueLesson = p.place.ctaTarget === 'legacy' && p.place.lessonNo != null;");
+    expect(scene).toContain('cta: canContinueLesson ? triLang');
+    expect(source).not.toContain('openHomeContinuePlace');
   });
 
   // зачем: владелец убрал с главной плашку «Выбрать свой план обучения» —
@@ -121,7 +71,6 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('homePriorityCardFace');
     // зачем (Ревизор P23, 15.10): «последний урок» = старый урок ИЛИ занятие курса V2 — что свежее (home_continue_mark); ошибки по-прежнему не захватывают карточку
     // 15.10 поправка координатора: карточка V2 видна, когда прочитан её прогресс (до этого — та же заглушка загрузки)
-    expect(source).toContain('const priorityCardVisible = (continueV2 ? continueV2Progress !== null : lastLesson !== null) && homeLearnVisible;');
     expect(source).toContain('[HOME-CONTINUE] card');
     expect(source).not.toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
     expect(source).not.toContain('testID="home-mistakes-pulse-button"');

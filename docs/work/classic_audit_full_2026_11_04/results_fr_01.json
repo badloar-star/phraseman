@@ -1,0 +1,17 @@
+[
+  {"id": "fr:04:35", "type": "B2", "field": "uk", "problem": "ru «Ваша» (vous), uk «Твоя» (tu); target votre", "fix": "Ваша черга."},
+  {"id": "fr:04:40", "type": "B1", "field": "tiles", "problem": "соблазн «de» на позиции 3 даёт верное «C’est le numéro de bureau.» (номер офиса)", "fix": {"position": 3, "replace_distractor": "de", "with": "par"}},
+  {"id": "fr:04:45", "type": "B2", "field": "uk", "problem": "ru «ваш», uk «твій»; target votre", "fix": "Це ваш телефон?"},
+  {"id": "fr:04:47", "type": "B2", "field": "uk", "problem": "ru «ваш», uk «твій»; target vos", "fix": "Це ваш багаж?"},
+  {"id": "fr:04:50", "type": "B2", "field": "uk", "problem": "ru «выезд» (для машин), uk «вихід» (пешеходный) — разный смысл", "fix": "Це виїзд з парковки."},
+  {"id": "fr:05:22", "type": "B2", "field": "uk", "problem": "uk «Лії» (имя Лія) вместо Леа, как в остальных фразах", "fix": "Леа тридцять років."},
+  {"id": "fr:05:45", "type": "B2", "field": "ru", "problem": "потеряно «un peu» (немного); в uk есть «трохи»", "fix": "У меня ещё есть немного времени."},
+  {"id": "fr:05:50", "type": "B2", "field": "ru", "problem": "потеряно притяжательное «son» (её рецепт)", "fix": "Ей нужен её рецепт."},
+  {"id": "fr:05:50", "type": "B2", "field": "uk", "problem": "потеряно притяжательное «son» (її рецепт)", "fix": "Їй потрібен її рецепт."},
+  {"id": "fr:06:32", "type": "B2", "field": "uk", "problem": "ru «Куртка», uk «Піджак» — разный смысл", "fix": "Куртка в передпокої."},
+  {"id": "fr:06:36", "type": "B2", "field": "uk", "problem": "uk «дрібниця» = мелочь в смысле пустяк, не деньги", "fix": "У кишені дрібні гроші."},
+  {"id": "fr:07:18", "type": "B2", "field": "uk", "problem": "target tu / ru «Ты», uk «Ви слухаєте»", "fix": "Ти слухаєш радіо."},
+  {"id": "fr:07:25", "type": "B2", "field": "uk", "problem": "target vous / ru «Вы», uk «Ти шукаєш»", "fix": "Ви шукаєте готель?"},
+  {"id": "fr:07:35", "type": "B2", "field": "uk", "problem": "target vous / ru «Вы», uk «Ти готуєш»", "fix": "Ви готуєте обід."},
+  {"id": "fr:07:45", "type": "B2", "field": "uk", "problem": "uk будущее «забронюєте», target и ru — настоящее", "fix": "Ви бронюєте на сьогоднішній вечір?"}
+]

@@ -1,0 +1,5044 @@
+[
+{
+"lesson": 1,
+"id": "it:01:01",
+"target": "Sono qui.",
+"ru": "Я здесь.",
+"uk": "Я тут.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Borsa"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io sono qui.",
+"Sono qua.",
+"Io sono qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:02",
+"target": "Sei qui.",
+"ru": "Ты здесь.",
+"uk": "Ти тут.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Siamo",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu sei qui.",
+"Sei qua.",
+"Tu sei qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:03",
+"target": "Sei lì.",
+"ru": "Ты там.",
+"uk": "Ти там.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Siamo",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu sei lì.",
+"Sei là.",
+"Tu sei là."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:04",
+"target": "Sono lì.",
+"ru": "Я там.",
+"uk": "Я там.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io sono lì.",
+"Sono là.",
+"Io sono là."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:05",
+"target": "Lea è qui.",
+"ru": "Леа здесь.",
+"uk": "Леа тут.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"chiusa",
+"chiuso",
+"aperto",
+"aperta"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Lea è qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:06",
+"target": "Paolo è lì.",
+"ru": "Паоло там.",
+"uk": "Паоло там.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"chiave",
+"stazione",
+"scarpe",
+"ci"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Paolo è là."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:07",
+"target": "Siamo qui.",
+"ru": "Мы здесь.",
+"uk": "Ми тут.",
+"tiles": [
+{
+"correct": "Siamo",
+"distractors": [
+"È",
+"Sono",
+"Sei",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Noi siamo qui.",
+"Siamo qua.",
+"Noi siamo qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:08",
+"target": "Siete qui.",
+"ru": "Вы здесь.",
+"uk": "Ви тут.",
+"tiles": [
+{
+"correct": "Siete",
+"distractors": [
+"Siamo",
+"Stanco",
+"Ci",
+"C’è",
+"Loro"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Voi siete qui.",
+"Siete qua.",
+"Voi siete qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:09",
+"target": "Loro sono lì.",
+"ru": "Они там.",
+"uk": "Вони там.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Sua",
+"Tue",
+"Miei",
+"Io",
+"Tu"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siamo",
+"siete",
+"negozi"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"vicino",
+"qui",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Sono lì.",
+"Loro sono là.",
+"Sono là."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:10",
+"target": "Loro sono qui.",
+"ru": "Они здесь.",
+"uk": "Вони тут.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Sua",
+"Mia",
+"Suo",
+"Mio",
+"Io"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siete",
+"alla",
+"siamo"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Sono qui.",
+"Loro sono qua.",
+"Sono qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:11",
+"target": "Sono a casa.",
+"ru": "Я дома.",
+"uk": "Я вдома.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Chiuso"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"porta",
+"lontana",
+"vicina",
+"borsa",
+"stanca"
+]
+}
+],
+"alternatives": [
+"Io sono a casa."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:12",
+"target": "Sei a casa.",
+"ru": "Ты дома.",
+"uk": "Ти вдома.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Siamo",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"di",
+"per",
+"su",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"lontana",
+"aperta",
+"borsa",
+"vicina",
+"pronta"
+]
+}
+],
+"alternatives": [
+"Tu sei a casa."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:13",
+"target": "Paolo è a casa.",
+"ru": "Паоло дома.",
+"uk": "Паоло вдома.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"negozio",
+"ci",
+"c’è",
+"ufficio"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"di",
+"per",
+"da",
+"sotto",
+"dopo"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"porta",
+"aperta",
+"chiusa",
+"borsa",
+"chiuso"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:14",
+"target": "Lea è alla stazione.",
+"ru": "Леа на вокзале.",
+"uk": "Леа на вокзалі.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ci",
+"c’è",
+"chiavi",
+"nella"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"chiave",
+"porte",
+"insieme",
+"pronte",
+"aperte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:15",
+"target": "Siamo alla stazione.",
+"ru": "Мы на вокзале.",
+"uk": "Ми на вокзалі.",
+"tiles": [
+{
+"correct": "Siamo",
+"distractors": [
+"È",
+"Sono",
+"Sei",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"chiave",
+"insieme",
+"porte",
+"aperte",
+"siete"
+]
+}
+],
+"alternatives": [
+"Noi siamo alla stazione."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:16",
+"target": "Siete in stazione.",
+"ru": "Вы на вокзале.",
+"uk": "Ви на вокзалі.",
+"tiles": [
+{
+"correct": "Siete",
+"distractors": [
+"Siamo",
+"Stanca",
+"Ci",
+"C’è",
+"Loro"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"insieme",
+"chiave",
+"porte",
+"aperte",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Voi siete in stazione."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:17",
+"target": "Loro sono in ufficio.",
+"ru": "Они в офисе.",
+"uk": "Вони в офісі.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Mia",
+"Tuo",
+"Mio",
+"Sua",
+"Io"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siete",
+"siamo",
+"chiuso"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"pronto",
+"silenzioso",
+"negozio",
+"libero",
+"vicino"
+]
+}
+],
+"alternatives": [
+"Sono in ufficio."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:18",
+"target": "Lei è in ufficio.",
+"ru": "Она в офисе.",
+"uk": "Вона в офісі.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Tu",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"siete",
+"siamo",
+"pronti"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"su"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"sono",
+"aperto",
+"pronto",
+"loro",
+"l’ufficio"
+]
+}
+],
+"alternatives": [
+"È in ufficio."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:19",
+"target": "Sono in ufficio.",
+"ru": "Я в офисе.",
+"uk": "Я в офісі.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Siete",
+"Sei",
+"Siamo",
+"Loro"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"l’ufficio",
+"libero",
+"solo",
+"vicino",
+"negozio"
+]
+}
+],
+"alternatives": [
+"Io sono in ufficio."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:20",
+"target": "Sei in ufficio.",
+"ru": "Ты в офисе.",
+"uk": "Ти в офісі.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Una",
+"Siamo",
+"La"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"senza"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"chiuso",
+"silenzioso",
+"l’ufficio",
+"sono",
+"è"
+]
+}
+],
+"alternatives": [
+"Tu sei in ufficio."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:21",
+"target": "Sono pronto.",
+"ru": "Я готов.",
+"uk": "Я готовий.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Stanca"
+]
+},
+{
+"correct": "pronto",
+"distractors": [
+"stanco",
+"pronti",
+"stanchi",
+"stanca",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Io sono pronto."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:22",
+"target": "Sei pronto.",
+"ru": "Ты готов.",
+"uk": "Ти готовий.",
+"tiles": [
+{
+"correct": "Sei",
+"distractors": [
+"È",
+"Sono",
+"Una",
+"Siamo",
+"La"
+]
+},
+{
+"correct": "pronto",
+"distractors": [
+"pronti",
+"stanco",
+"stanca",
+"stanchi",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Tu sei pronto."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:23",
+"target": "Lei è pronta.",
+"ru": "Она готова.",
+"uk": "Вона готова.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Loro",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"siete",
+"sei",
+"siamo",
+"casa"
+]
+},
+{
+"correct": "pronta",
+"distractors": [
+"pronti",
+"stanco",
+"stanca",
+"pronte",
+"stanchi"
+]
+}
+],
+"alternatives": [
+"È pronta."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:24",
+"target": "Paolo è stanco.",
+"ru": "Паоло устал.",
+"uk": "Паоло втомився.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ufficio",
+"ci",
+"c’è",
+"fondo"
+]
+},
+{
+"correct": "stanco",
+"distractors": [
+"pronto",
+"pronti",
+"pronta",
+"stanchi",
+"pronte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:25",
+"target": "Lea è stanca.",
+"ru": "Леа устала.",
+"uk": "Леа втомилася.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"vicina",
+"ci",
+"c’è",
+"casa"
+]
+},
+{
+"correct": "stanca",
+"distractors": [
+"pronto",
+"pronti",
+"stanchi",
+"pronta",
+"pronte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:26",
+"target": "Siamo pronti.",
+"ru": "Мы готовы.",
+"uk": "Ми готові.",
+"tiles": [
+{
+"correct": "Siamo",
+"distractors": [
+"È",
+"Sono",
+"Sei",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "pronti",
+"distractors": [
+"pronto",
+"pronta",
+"stanco",
+"stanchi",
+"stanca"
+]
+}
+],
+"alternatives": [
+"Noi siamo pronti."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:27",
+"target": "Siete pronti.",
+"ru": "Вы готовы.",
+"uk": "Ви готові.",
+"tiles": [
+{
+"correct": "Siete",
+"distractors": [
+"L’ufficio",
+"Siamo",
+"Ci",
+"C’è",
+"Pronto"
+]
+},
+{
+"correct": "pronti",
+"distractors": [
+"stanco",
+"stanchi",
+"stanca",
+"bambini",
+"chiavi"
+]
+}
+],
+"alternatives": [
+"Voi siete pronti."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:28",
+"target": "Sono stanchi.",
+"ru": "Они устали.",
+"uk": "Вони втомилися.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Pronto"
+]
+},
+{
+"correct": "stanchi",
+"distractors": [
+"pronto",
+"pronti",
+"pronta",
+"stanco",
+"stanca"
+]
+}
+],
+"alternatives": [
+"Loro sono stanchi."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:29",
+"target": "Sono pronte.",
+"ru": "Они готовы.",
+"uk": "Вони готові.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Lontana"
+]
+},
+{
+"correct": "pronte",
+"distractors": [
+"pronto",
+"stanco",
+"pronta",
+"stanca",
+"stanchi"
+]
+}
+],
+"alternatives": [
+"Loro sono pronte."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:30",
+"target": "Sono libero.",
+"ru": "Я свободен.",
+"uk": "Я вільний.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Solo",
+"Siamo"
+]
+},
+{
+"correct": "libero",
+"distractors": [
+"ufficio",
+"negozio",
+"solo",
+"siamo",
+"sei"
+]
+}
+],
+"alternatives": [
+"Io sono libero."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:31",
+"target": "La porta è aperta.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Gli",
+"Le",
+"Un",
+"Ci"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stanchi",
+"ci",
+"c’è",
+"pronti"
+]
+},
+{
+"correct": "aperta",
+"distractors": [
+"chiuso",
+"chiusa",
+"chiuse",
+"chiusi",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:32",
+"target": "La finestra è aperta.",
+"ru": "Окно открыто.",
+"uk": "Вікно відчинене.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Ti",
+"Che",
+"E"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"lontana",
+"casa",
+"vicina",
+"ferroviaria",
+"borsa"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"aperte",
+"ci",
+"chiuso",
+"aperto"
+]
+},
+{
+"correct": "aperta",
+"distractors": [
+"chiuso",
+"chiusa",
+"chiusi",
+"chiuse",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:33",
+"target": "Il negozio è aperto.",
+"ru": "Магазин открыт.",
+"uk": "Магазин відкритий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"I",
+"Le",
+"Gli"
+]
+},
+{
+"correct": "negozio",
+"distractors": [
+"l’ufficio",
+"libero",
+"silenzioso",
+"ufficio",
+"vicino"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"libero",
+"ci",
+"c’è",
+"libera"
+]
+},
+{
+"correct": "aperto",
+"distractors": [
+"chiuso",
+"chiusa",
+"chiusi",
+"chiuse",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:34",
+"target": "La stazione ferroviaria è lontana.",
+"ru": "Вокзал далеко.",
+"uk": "Вокзал далеко.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Le",
+"Lo"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"chiave",
+"insieme",
+"porte",
+"aperte",
+"pronte"
+]
+},
+{
+"correct": "ferroviaria",
+"distractors": [
+"finestra",
+"borsa",
+"silenzioso",
+"vicino",
+"sei"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"già",
+"non",
+"ancora",
+"ci"
+]
+},
+{
+"correct": "lontana",
+"distractors": [
+"alla",
+"aperta",
+"finestra",
+"borsa",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:35",
+"target": "La casa è vicina.",
+"ru": "Дом рядом.",
+"uk": "Будинок поряд.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Mi",
+"Si",
+"Che",
+"E"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"chiusa",
+"borsa",
+"ancora",
+"non",
+"già"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"chiusa",
+"chiuso",
+"aperto",
+"aperta"
+]
+},
+{
+"correct": "vicina",
+"distractors": [
+"finestra",
+"lontana",
+"borsa",
+"stanca",
+"camera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:36",
+"target": "Il bar è chiuso.",
+"ru": "Кафе закрыто.",
+"uk": "Кафе зачинено.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "bar",
+"distractors": [
+"ufficio",
+"insieme",
+"borsa",
+"siamo",
+"sono"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"vicino",
+"fuori",
+"qui",
+"lì"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperte",
+"aperti",
+"aperto",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:37",
+"target": "La finestra è chiusa.",
+"ru": "Окно закрыто.",
+"uk": "Вікно закрите.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Ci",
+"Le",
+"Ti"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"ferroviaria",
+"porta",
+"aperta",
+"lontana",
+"casa"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stanca",
+"ci",
+"c’è",
+"pronti"
+]
+},
+{
+"correct": "chiusa",
+"distractors": [
+"aperto",
+"aperta",
+"aperti",
+"aperte",
+"casa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:38",
+"target": "Le porte sono aperte.",
+"ru": "Двери открыты.",
+"uk": "Двері відчинені.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"Ci",
+"Un",
+"Una"
+]
+},
+{
+"correct": "porte",
+"distractors": [
+"stazione",
+"chiave",
+"insieme",
+"pronte",
+"scarpe"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"c’è",
+"ci",
+"loro",
+"stazione"
+]
+},
+{
+"correct": "aperte",
+"distractors": [
+"chiuso",
+"chiuse",
+"chiusa",
+"chiusi",
+"stazione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:39",
+"target": "I negozi sono chiusi.",
+"ru": "Магазины закрыты.",
+"uk": "Магазини закриті.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"Un",
+"Le",
+"La",
+"Una"
+]
+},
+{
+"correct": "negozi",
+"distractors": [
+"lei",
+"qui",
+"chiavi",
+"bambini",
+"fuori"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"l’ufficio",
+"siamo",
+"c’è",
+"ci",
+"ufficio"
+]
+},
+{
+"correct": "chiusi",
+"distractors": [
+"aperta",
+"aperto",
+"aperte",
+"aperti",
+"chiave"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:40",
+"target": "L’ufficio è silenzioso.",
+"ru": "В офисе тихо.",
+"uk": "В офісі тихо.",
+"tiles": [
+{
+"correct": "L’ufficio",
+"distractors": [
+"Libero",
+"Pronto",
+"Chiuso",
+"Sei",
+"Sono"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ancora",
+"non",
+"già",
+"ci"
+]
+},
+{
+"correct": "silenzioso",
+"distractors": [
+"negozio",
+"ufficio",
+"ferroviaria",
+"solo",
+"museo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:41",
+"target": "Lea è già qui.",
+"ru": "Леа уже здесь.",
+"uk": "Леа вже тут.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"aperto",
+"chiuso",
+"chiusa",
+"aperta"
+]
+},
+{
+"correct": "già",
+"distractors": [
+"non",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Lea è già qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:42",
+"target": "Sono ancora in ufficio.",
+"ru": "Я всё ещё в офисе.",
+"uk": "Я все ще в офісі.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siamo",
+"Siete",
+"Loro"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"non",
+"già",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"pronto",
+"negozio",
+"l’ufficio",
+"silenzioso",
+"stanco"
+]
+}
+],
+"alternatives": [
+"Io sono ancora in ufficio."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:43",
+"target": "Paolo è solo.",
+"ru": "Паоло один.",
+"uk": "Паоло один.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"alla",
+"ai",
+"al",
+"ci"
+]
+},
+{
+"correct": "solo",
+"distractors": [
+"libero",
+"sono",
+"ufficio",
+"silenzioso",
+"sei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:44",
+"target": "Siamo insieme.",
+"ru": "Мы вместе.",
+"uk": "Ми разом.",
+"tiles": [
+{
+"correct": "Siamo",
+"distractors": [
+"È",
+"Sono",
+"Sei",
+"Siete",
+"Ci"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"chiave",
+"porte",
+"stazione",
+"aperte",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Noi siamo insieme."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:45",
+"target": "La chiave è qui.",
+"ru": "Ключ здесь.",
+"uk": "Ключ тут.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Un",
+"Le",
+"Mi"
+]
+},
+{
+"correct": "chiave",
+"distractors": [
+"stazione",
+"insieme",
+"porte",
+"aperte",
+"siete"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"stazione",
+"insieme",
+"ci",
+"c’è"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"La chiave è qua."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:46",
+"target": "Le chiavi sono lì.",
+"ru": "Ключи там.",
+"uk": "Ключі там.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"Ci",
+"Un",
+"Gli"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"lei",
+"pronti",
+"negozi",
+"bambini",
+"fuori"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"stanca",
+"c’è",
+"ci",
+"pronto"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Le chiavi sono là."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:47",
+"target": "La borsa è a casa.",
+"ru": "Сумка дома.",
+"uk": "Сумка вдома.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Ci",
+"Che",
+"E"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"chiusa",
+"finestra",
+"lontana",
+"vicina",
+"aperta"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"chiuso",
+"aperto",
+"chiusa",
+"aperta"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"alla",
+"vicina",
+"lontana",
+"chiusa",
+"ai"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:48",
+"target": "Siete vicino alla stazione.",
+"ru": "Вы рядом с вокзалом.",
+"uk": "Ви поряд із вокзалом.",
+"tiles": [
+{
+"correct": "Siete",
+"distractors": [
+"Siamo",
+"Negozi",
+"Ci",
+"C’è",
+"Loro"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"lì",
+"qui",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"chiave",
+"porte",
+"insieme",
+"pronte",
+"aperte"
+]
+}
+],
+"alternatives": [
+"Voi siete vicino alla stazione."
+]
+},
+{
+"lesson": 1,
+"id": "it:01:49",
+"target": "I bambini sono fuori.",
+"ru": "Дети на улице.",
+"uk": "Діти на вулиці.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Le",
+"Gli"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"pronti",
+"negozi",
+"chiavi",
+"stanchi",
+"biglietti"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"aperte",
+"chiuso",
+"aperto",
+"c’è"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"qui",
+"vicino",
+"lì",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "it:01:50",
+"target": "Sono vicino alla porta.",
+"ru": "Я возле двери.",
+"uk": "Я біля дверей.",
+"tiles": [
+{
+"correct": "Sono",
+"distractors": [
+"È",
+"Sei",
+"Siete",
+"Siamo",
+"Negozi"
+]
+},
+{
+"correct": "vicino",
+"distractors": [
+"lì",
+"qui",
+"fuori",
+"lontano",
+"questo"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+}
+],
+"alternatives": [
+"Io sono vicino alla porta."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:01",
+"target": "Non sono qui.",
+"ru": "Меня здесь нет.",
+"uk": "Мене тут немає.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"dalla",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Io non sono qui.",
+"Non sono qua.",
+"Io non sono qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:02",
+"target": "Non sei qui.",
+"ru": "Тебя здесь нет.",
+"uk": "Тебе тут немає.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"una",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu non sei qui.",
+"Non sei qua.",
+"Tu non sei qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:03",
+"target": "Non sei lì.",
+"ru": "Тебя там нет.",
+"uk": "Тебе там нема.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"siamo",
+"siete",
+"ci"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Tu non sei lì.",
+"Non sei là.",
+"Tu non sei là."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:04",
+"target": "Lei non è lì.",
+"ru": "Её там нет.",
+"uk": "Її там немає.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Loro",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"sei",
+"lontana",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Non è lì.",
+"Lei non è là.",
+"Non è là."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:05",
+"target": "Paolo non è in ufficio.",
+"ru": "Паоло нет в офисе.",
+"uk": "Паоло немає в офісі.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"bagni",
+"siamo",
+"ci",
+"chiavi",
+"c’è"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"su",
+"con"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"telefono",
+"solo",
+"largo",
+"buio",
+"fondo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:06",
+"target": "Non sono in ufficio.",
+"ru": "Меня нет в офисе.",
+"uk": "Мене немає в офісі.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"sala",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"libero",
+"pulito",
+"fondo",
+"corridoio",
+"solo"
+]
+}
+],
+"alternatives": [
+"Io non sono in ufficio."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:07",
+"target": "Non siamo alla stazione.",
+"ru": "Нас нет на станции.",
+"uk": "Нас немає на станції.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sono",
+"sei",
+"siete",
+"ci"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"bicchiere",
+"scarpe",
+"insieme",
+"pulite",
+"siete"
+]
+}
+],
+"alternatives": [
+"Noi non siamo alla stazione."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:08",
+"target": "Non siete a casa.",
+"ru": "Вас нет дома.",
+"uk": "Вас немає вдома.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siete",
+"distractors": [
+"fondo",
+"siamo",
+"stazione",
+"ufficio",
+"vicino"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"senza",
+"da"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"nella",
+"sola",
+"camera",
+"stanza",
+"borsa"
+]
+}
+],
+"alternatives": [
+"Voi non siete a casa."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:09",
+"target": "Loro non sono fuori.",
+"ru": "Их нет на улице.",
+"uk": "Їх немає надворі.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Mio",
+"Miei",
+"Sua",
+"Io",
+"Tu"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"aperta",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"qui",
+"lì",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Non sono fuori."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:10",
+"target": "Loro non sono qui.",
+"ru": "Их здесь нет.",
+"uk": "Їх немає тут.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Suo",
+"Mio",
+"Mia",
+"Io",
+"Tu"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"alla",
+"sei",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Non sono qui.",
+"Loro non sono qua.",
+"Non sono qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:11",
+"target": "Non sono pronto.",
+"ru": "Я не готов.",
+"uk": "Я не готовий.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siete",
+"siamo",
+"ci"
+]
+},
+{
+"correct": "pronto",
+"distractors": [
+"pronti",
+"stanco",
+"stanchi",
+"stanca",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Io non sono pronto."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:12",
+"target": "Lei non è pronta.",
+"ru": "Она не готова.",
+"uk": "Вона не готова.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Io",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"nella",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "pronta",
+"distractors": [
+"stanco",
+"pronti",
+"stanca",
+"stanchi",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Non è pronta."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:13",
+"target": "Non siamo pronti.",
+"ru": "Мы не готовы.",
+"uk": "Ми не готові.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sono",
+"sei",
+"siete",
+"ci"
+]
+},
+{
+"correct": "pronti",
+"distractors": [
+"pronto",
+"stanco",
+"pronta",
+"stanchi",
+"stanca"
+]
+}
+],
+"alternatives": [
+"Noi non siamo pronti."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:14",
+"target": "Non sei solo.",
+"ru": "Ты не один.",
+"uk": "Ти не один.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sei",
+"distractors": [
+"è",
+"sono",
+"una",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "solo",
+"distractors": [
+"buio",
+"treno",
+"museo",
+"ufficio",
+"tavolo"
+]
+}
+],
+"alternatives": [
+"Tu non sei solo."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:15",
+"target": "Lea non è sola.",
+"ru": "Леа не одна.",
+"uk": "Леа не сама.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"vuota",
+"siamo",
+"ci",
+"c’è",
+"nella"
+]
+},
+{
+"correct": "sola",
+"distractors": [
+"alla",
+"chiusa",
+"pronta",
+"vicina",
+"borsa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:16",
+"target": "Non sono insieme.",
+"ru": "Они не вместе.",
+"uk": "Вони не разом.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"chiavi",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"bicchiere",
+"stazione",
+"scarpe",
+"pulite",
+"siete"
+]
+}
+],
+"alternatives": [
+"Loro non sono insieme."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:17",
+"target": "Non sono stanco.",
+"ru": "Я не устал.",
+"uk": "Я не втомився.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Ancora",
+"Già",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"sei",
+"siamo",
+"siete",
+"lontano"
+]
+},
+{
+"correct": "stanco",
+"distractors": [
+"pronto",
+"pronta",
+"pronti",
+"stanchi",
+"pronte"
+]
+}
+],
+"alternatives": [
+"Io non sono stanco."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:18",
+"target": "Paolo non è libero.",
+"ru": "Паоло не свободен.",
+"uk": "Паоло не вільний.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"lontani",
+"siamo",
+"ci",
+"c’è",
+"chiavi"
+]
+},
+{
+"correct": "libero",
+"distractors": [
+"ufficio",
+"sono",
+"negozio",
+"solo",
+"siamo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:19",
+"target": "Non siete in ritardo.",
+"ru": "Вы не опоздали.",
+"uk": "Ви не запізнилися.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siete",
+"distractors": [
+"siamo",
+"fuori",
+"vicino",
+"qui",
+"lì"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ritardo",
+"distractors": [
+"chiuso",
+"fondo",
+"ufficio",
+"largo",
+"biglietto"
+]
+}
+],
+"alternatives": [
+"Voi non siete in ritardo."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:20",
+"target": "Non siamo in anticipo.",
+"ru": "Мы не пришли заранее.",
+"uk": "Ми не прийшли заздалегідь.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sono",
+"sei",
+"siete",
+"ci"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "anticipo",
+"distractors": [
+"telefono",
+"treno",
+"pranzo",
+"ufficio",
+"ritardo"
+]
+}
+],
+"alternatives": [
+"Noi non siamo in anticipo."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:21",
+"target": "La porta non è aperta.",
+"ru": "Дверь не открыта.",
+"uk": "Двері не відчинені.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"I",
+"Si",
+"Ci",
+"Che"
+]
+},
+{
+"correct": "porta",
+"distractors": [
+"casa",
+"borsa",
+"strada",
+"cena",
+"zuppa"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"camera",
+"siamo",
+"ci",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "aperta",
+"distractors": [
+"chiuso",
+"chiusa",
+"chiuse",
+"chiusi",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:22",
+"target": "Il bar non è chiuso.",
+"ru": "Кафе не закрыто.",
+"uk": "Кафе не зачинене.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"I",
+"Le",
+"Che"
+]
+},
+{
+"correct": "bar",
+"distractors": [
+"bambini",
+"vicina",
+"soli",
+"bagni",
+"chiavi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"pranzo",
+"siamo",
+"ci",
+"c’è",
+"ufficio"
+]
+},
+{
+"correct": "chiuso",
+"distractors": [
+"aperta",
+"aperto",
+"aperti",
+"aperte",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:23",
+"target": "I negozi non sono aperti.",
+"ru": "Магазины не открыты.",
+"uk": "Магазини не відкриті.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Un",
+"Una",
+"Le"
+]
+},
+{
+"correct": "negozi",
+"distractors": [
+"lei",
+"bambini",
+"biglietti",
+"lontani",
+"pronti"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"lontano",
+"fuori",
+"vicino",
+"qui"
+]
+},
+{
+"correct": "aperti",
+"distractors": [
+"chiuso",
+"chiusi",
+"chiusa",
+"chiuse",
+"siamo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:24",
+"target": "La finestra non è chiusa.",
+"ru": "Окно не закрыто.",
+"uk": "Вікно не зачинене.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Si",
+"Che"
+]
+},
+{
+"correct": "finestra",
+"distractors": [
+"lontana",
+"vuota",
+"bicicletta",
+"borsa",
+"pronta"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"l’autobus",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "chiusa",
+"distractors": [
+"aperta",
+"aperto",
+"aperte",
+"aperti",
+"siete"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:25",
+"target": "La stanza non è vuota.",
+"ru": "Комната не пуста.",
+"uk": "Кімната не порожня.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Le",
+"Gli",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "stanza",
+"distractors": [
+"nella",
+"bicicletta",
+"camera",
+"borsa",
+"casa"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"libero",
+"siamo",
+"ci",
+"c’è",
+"libera"
+]
+},
+{
+"correct": "vuota",
+"distractors": [
+"casa",
+"camera",
+"borsa",
+"sola",
+"farmacia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:26",
+"target": "Il corridoio non è buio.",
+"ru": "В коридоре не темно.",
+"uk": "Коридор не темний.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Che",
+"E"
+]
+},
+{
+"correct": "corridoio",
+"distractors": [
+"pronto",
+"tavolo",
+"ritardo",
+"pranzo",
+"sporco"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"stazione",
+"siamo",
+"insieme",
+"ci",
+"chiave"
+]
+},
+{
+"correct": "buio",
+"distractors": [
+"largo",
+"aperto",
+"pranzo",
+"treno",
+"museo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:27",
+"target": "Le chiavi non sono qui.",
+"ru": "Ключей здесь нет.",
+"uk": "Ключів тут немає.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"La",
+"Il",
+"Una",
+"Gli",
+"Lo"
+]
+},
+{
+"correct": "chiavi",
+"distractors": [
+"lei",
+"negozi",
+"biglietti",
+"soli",
+"pronti"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"largo",
+"siamo",
+"c’è",
+"ci",
+"ufficio"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"fuori",
+"vicino",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Le chiavi non sono qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:28",
+"target": "La borsa non è lì.",
+"ru": "Сумки там нет.",
+"uk": "Сумки там немає.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Gli",
+"Si",
+"Le",
+"I"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"dalla",
+"camera",
+"alla",
+"libera",
+"sola"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"lontani",
+"siamo",
+"ci",
+"c’è",
+"chiavi"
+]
+},
+{
+"correct": "lì",
+"distractors": [
+"qui",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"La borsa non è là."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:29",
+"target": "Il tavolo non è pulito.",
+"ru": "Стол не чистый.",
+"uk": "Стіл не чистий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Le",
+"I",
+"Che"
+]
+},
+{
+"correct": "tavolo",
+"distractors": [
+"telefono",
+"sporco",
+"biglietto",
+"museo",
+"ufficio"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"biglietti",
+"chiavi",
+"ci",
+"c’è"
+]
+},
+{
+"correct": "pulito",
+"distractors": [
+"bagni",
+"chiavi",
+"posti",
+"bambini",
+"biglietti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:30",
+"target": "Il bicchiere non è sporco.",
+"ru": "Стакан не грязный.",
+"uk": "Склянка не брудна.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Le",
+"Gli",
+"Una",
+"Che"
+]
+},
+{
+"correct": "bicchiere",
+"distractors": [
+"insieme",
+"ritardo",
+"pulite",
+"scarpe",
+"stazione"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"stazione",
+"siamo",
+"insieme",
+"ci",
+"chiave"
+]
+},
+{
+"correct": "sporco",
+"distractors": [
+"treno",
+"pulito",
+"pranzo",
+"ritardo",
+"molto"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:31",
+"target": "L’autobus non è lontano.",
+"ru": "Автобус недалеко.",
+"uk": "Автобус недалеко.",
+"tiles": [
+{
+"correct": "L’autobus",
+"distractors": [
+"Solo",
+"Camera",
+"Molto",
+"Sei",
+"Sono"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"bicicletta",
+"siamo",
+"ci",
+"c’è",
+"borsa"
+]
+},
+{
+"correct": "lontano",
+"distractors": [
+"qui",
+"lì",
+"vicino",
+"fuori",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:32",
+"target": "I bagni non sono in fondo.",
+"ru": "Туалеты не в глубине помещения.",
+"uk": "Туалети не в глибині приміщення.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Gli",
+"Una",
+"Un"
+]
+},
+{
+"correct": "bagni",
+"distractors": [
+"qui",
+"lei",
+"chiavi",
+"negozi",
+"biglietti"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"siamo",
+"loro",
+"lei",
+"lui",
+"io"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "fondo",
+"distractors": [
+"sporco",
+"largo",
+"anticipo",
+"ufficio",
+"tavolo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:33",
+"target": "Il biglietto non è nella borsa.",
+"ru": "Билета нет в сумке.",
+"uk": "Квитка немає в сумці.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Gli",
+"Le",
+"Che"
+]
+},
+{
+"correct": "biglietto",
+"distractors": [
+"ufficio",
+"tavolo",
+"corridoio",
+"treno",
+"pulito"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"chiavi",
+"siamo",
+"biglietti",
+"bambini",
+"ci"
+]
+},
+{
+"correct": "nella",
+"distractors": [
+"nel",
+"casa",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "borsa",
+"distractors": [
+"camera",
+"casa",
+"stanza",
+"finestra",
+"questa"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:34",
+"target": "I bambini non sono nella sala.",
+"ru": "Детей нет в комнате.",
+"uk": "Дітей немає в кімнаті.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"La",
+"Un",
+"Una",
+"Che"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"soli",
+"lontani",
+"negozi",
+"chiavi",
+"biglietti"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"libero",
+"siamo",
+"c’è",
+"ci",
+"ufficio"
+]
+},
+{
+"correct": "nella",
+"distractors": [
+"nel",
+"casa",
+"borsa",
+"siamo",
+"sei"
+]
+},
+{
+"correct": "sala",
+"distractors": [
+"dalla",
+"casa",
+"sola",
+"vicina",
+"camera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:35",
+"target": "La bicicletta non è fuori.",
+"ru": "Велосипед не на улице.",
+"uk": "Велосипед не на вулиці.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"I",
+"Ci",
+"Ti"
+]
+},
+{
+"correct": "bicicletta",
+"distractors": [
+"ferroviaria",
+"libera",
+"farmacia",
+"camera",
+"borsa"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"scarpe",
+"siamo",
+"chiave",
+"ci",
+"c’è"
+]
+},
+{
+"correct": "fuori",
+"distractors": [
+"qui",
+"vicino",
+"lì",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:36",
+"target": "Il mio telefono non è qui.",
+"ru": "Моего телефона здесь нет.",
+"uk": "Мого телефону тут немає.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Le",
+"I",
+"Che",
+"E"
+]
+},
+{
+"correct": "mio",
+"distractors": [
+"nostra",
+"miei",
+"mie",
+"tuo",
+"sua"
+]
+},
+{
+"correct": "telefono",
+"distractors": [
+"fondo",
+"biglietto",
+"museo",
+"pulito",
+"ufficio"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"ancora",
+"già",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ci",
+"c’è",
+"stazione",
+"chiavi"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Il mio telefono non è qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:37",
+"target": "Il museo non è aperto.",
+"ru": "Музей не открыт.",
+"uk": "Музей не відкритий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Le",
+"Lo",
+"I",
+"Una"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"buio",
+"libero",
+"ritardo",
+"telefono",
+"fondo"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"ancora",
+"già",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"solo",
+"siamo",
+"ci",
+"c’è",
+"ufficio"
+]
+},
+{
+"correct": "aperto",
+"distractors": [
+"chiusa",
+"chiuso",
+"chiusi",
+"chiuse",
+"sono"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:38",
+"target": "La farmacia non è lontana.",
+"ru": "Аптека недалеко.",
+"uk": "Аптека недалеко.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Si",
+"Mi",
+"Che",
+"E"
+]
+},
+{
+"correct": "farmacia",
+"distractors": [
+"vicina",
+"borsa",
+"ferroviaria",
+"vuota",
+"bicicletta"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"fondo",
+"siamo",
+"ci",
+"c’è",
+"ufficio"
+]
+},
+{
+"correct": "lontana",
+"distractors": [
+"libera",
+"camera",
+"finestra",
+"dalla",
+"vicina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:39",
+"target": "I biglietti non sono sul tavolo.",
+"ru": "Билетов нет на столе.",
+"uk": "Квитки не на столі.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"La",
+"Il",
+"Le",
+"Una",
+"Un"
+]
+},
+{
+"correct": "biglietti",
+"distractors": [
+"chiavi",
+"pronti",
+"bagni",
+"negozi",
+"bambini"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"vicina",
+"siamo",
+"c’è",
+"ci",
+"casa"
+]
+},
+{
+"correct": "sul",
+"distractors": [
+"sulla",
+"borsa",
+"giacca",
+"mappa",
+"sorella"
+]
+},
+{
+"correct": "tavolo",
+"distractors": [
+"pranzo",
+"telefono",
+"solo",
+"fondo",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:40",
+"target": "Il treno non è in ritardo.",
+"ru": "Поезд не опаздывает.",
+"uk": "Поїзд не запізнюється.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Le",
+"Che",
+"E"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"pronto",
+"chiuso",
+"museo",
+"buio",
+"aperto"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"dalla",
+"siamo",
+"ci",
+"c’è",
+"stazione"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "ritardo",
+"distractors": [
+"chiuso",
+"solo",
+"fondo",
+"corridoio",
+"sporco"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:41",
+"target": "Non sono ancora a casa.",
+"ru": "Меня ещё нет дома.",
+"uk": "Я ще не вдома.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Lavora",
+"Mia",
+"Posto",
+"Alla"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"è",
+"nella",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"siamo",
+"sei",
+"siete",
+"è"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"lontana",
+"vicina",
+"sala",
+"alla",
+"chiusa"
+]
+}
+],
+"alternatives": [
+"Io non sono ancora a casa."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:42",
+"target": "Non è ancora in ufficio.",
+"ru": "Её ещё нет в офисе.",
+"uk": "Вона ще не в офісі.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Lavora",
+"Mia",
+"Posto",
+"Alla"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"sono",
+"museo",
+"sei",
+"siamo",
+"siete"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"siamo",
+"sei",
+"siete",
+"sono"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"museo",
+"biglietto",
+"fondo",
+"telefono",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:43",
+"target": "Il pranzo non è pronto.",
+"ru": "Обед не готов.",
+"uk": "Обід не готовий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"Una",
+"Le",
+"I",
+"Che"
+]
+},
+{
+"correct": "pranzo",
+"distractors": [
+"largo",
+"buio",
+"ritardo",
+"libero",
+"pulito"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"sola",
+"ci",
+"c’è",
+"alla"
+]
+},
+{
+"correct": "pronto",
+"distractors": [
+"stanco",
+"stanca",
+"stanchi",
+"ufficio",
+"ritardo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:44",
+"target": "La camera non è libera.",
+"ru": "Номер не свободен.",
+"uk": "Номер не вільний.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Un",
+"Gli",
+"Ci",
+"Che"
+]
+},
+{
+"correct": "camera",
+"distractors": [
+"porta",
+"chiusa",
+"bicicletta",
+"farmacia",
+"casa"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"ufficio",
+"siamo",
+"ci",
+"c’è",
+"fondo"
+]
+},
+{
+"correct": "libera",
+"distractors": [
+"borsa",
+"mia",
+"alla",
+"sorella",
+"bicicletta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:45",
+"target": "La stazione ferroviaria non è vicina al museo.",
+"ru": "Железнодорожный вокзал находится не рядом с музеем.",
+"uk": "Залізнична станція не поруч з музеєм.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Il",
+"Le",
+"Un",
+"Si",
+"Che"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"insieme",
+"bicchiere",
+"pulite",
+"scarpe",
+"siete"
+]
+},
+{
+"correct": "ferroviaria",
+"distractors": [
+"pronti",
+"pranzo",
+"bicicletta",
+"finestra",
+"farmacia"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"largo",
+"siamo",
+"ci",
+"c’è",
+"chiavi"
+]
+},
+{
+"correct": "vicina",
+"distractors": [
+"finestra",
+"borsa",
+"casa",
+"lontana",
+"camera"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"chiuso",
+"anticipo",
+"telefono",
+"treno",
+"buio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:46",
+"target": "Le scarpe non sono pulite.",
+"ru": "Обувь не чистая.",
+"uk": "Взуття не чисте.",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Il",
+"La",
+"I",
+"Mi",
+"Che"
+]
+},
+{
+"correct": "scarpe",
+"distractors": [
+"stazione",
+"insieme",
+"bicchiere",
+"siete",
+"siamo"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"molto",
+"quante"
+]
+},
+{
+"correct": "sono",
+"distractors": [
+"nella",
+"siamo",
+"c’è",
+"ci",
+"casa"
+]
+},
+{
+"correct": "pulite",
+"distractors": [
+"stanza",
+"bagni",
+"stazione",
+"insieme",
+"siete"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:47",
+"target": "Il corridoio non è molto largo.",
+"ru": "Коридор не очень широкий.",
+"uk": "Коридор не дуже широкий.",
+"tiles": [
+{
+"correct": "Il",
+"distractors": [
+"La",
+"I",
+"Una",
+"Gli",
+"Che"
+]
+},
+{
+"correct": "corridoio",
+"distractors": [
+"libero",
+"ufficio",
+"tavolo",
+"telefono",
+"treno"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"ancora",
+"po’",
+"quante",
+"siamo"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"fuori",
+"vicino",
+"qui",
+"lì"
+]
+},
+{
+"correct": "molto",
+"distractors": [
+"po’",
+"quanto",
+"quante",
+"già",
+"treno"
+]
+},
+{
+"correct": "largo",
+"distractors": [
+"pronto",
+"tavolo",
+"museo",
+"treno",
+"ritardo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "it:02:48",
+"target": "Non siete soli qui.",
+"ru": "Вы здесь не одни.",
+"uk": "Ви тут не самі.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siete",
+"distractors": [
+"bagni",
+"siamo",
+"chiavi",
+"stazione",
+"biglietti"
+]
+},
+{
+"correct": "soli",
+"distractors": [
+"bagni",
+"chiavi",
+"pronti",
+"bambini",
+"lontani"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"vicino",
+"lì",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"Voi non siete soli qui.",
+"Non siete soli qua.",
+"Voi non siete soli qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:49",
+"target": "L’autobus non è ancora qui.",
+"ru": "Автобуса ещё нет.",
+"uk": "Автобус ще не прибув.",
+"tiles": [
+{
+"correct": "L’autobus",
+"distractors": [
+"Sporco",
+"Lontano",
+"Vicino",
+"Fuori",
+"Lì"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"po’",
+"molto",
+"quante",
+"siamo"
+]
+},
+{
+"correct": "è",
+"distractors": [
+"siamo",
+"ci",
+"c’è",
+"stazione",
+"chiavi"
+]
+},
+{
+"correct": "ancora",
+"distractors": [
+"già",
+"siamo",
+"sei",
+"siete",
+"sono"
+]
+},
+{
+"correct": "qui",
+"distractors": [
+"lì",
+"vicino",
+"fuori",
+"lontano",
+"questo"
+]
+}
+],
+"alternatives": [
+"L’autobus non è ancora qua."
+]
+},
+{
+"lesson": 2,
+"id": "it:02:50",
+"target": "Non siamo lontani dalla stazione.",
+"ru": "Мы недалеко от вокзала.",
+"uk": "Ми недалеко від станції.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "siamo",
+"distractors": [
+"è",
+"sono",
+"sei",
+"siete",
+"ci"
+]
+},
+{
+"correct": "lontani",
+"distractors": [
+"soli",
+"chiavi",
+"biglietti",
+"bagni",
+"pronti"
+]
+},
+{
+"correct": "dalla",
+"distractors": [
+"camera",
+"sei",
+"siete",
+"sono",
+"è"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"bicchiere",
+"insieme",
+"pulite",
+"scarpe",
+"siete"
+]
+}
+],
+"alternatives": [
+"Noi non siamo lontani dalla stazione."
+]
+}
+]

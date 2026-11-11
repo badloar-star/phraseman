@@ -10,6 +10,7 @@ import { StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import PressableHybrid from '../PressableHybrid';
+import { LinearGradient } from '../SafeLinearGradient';
 import { FlowText } from '../text-integrity';
 import { useLang } from '../LangContext';
 import type { FriendsGlass } from '../friends/FriendsGlassKit';
@@ -29,6 +30,8 @@ function pillLook(glass: FriendsGlass, lang: ReturnType<typeof useLang>['lang'],
   if (state === 'queued') return { fill: glass.goodSoft, ink: semanticInk(glass).goodText, icon: 'time-outline', label: pairCopy(lang, 'queued') };
   if (state === 'limit') return { fill: glass.opaqueControl, ink: glass.secondary, icon: 'checkmark', label: pairCopy(lang, 'alreadyCalled') };
   if (state === 'quiet') return { fill: glass.opaqueControl, ink: glass.secondary, icon: 'moon-outline', label: pairCopy(lang, 'quietHours') };
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): «Позвать» у «Авроры» — перелив главной кнопки с тёмной подписью (сам перелив кладётся слоем ниже, здесь — запасной тон и чернила)
+  if (glass.aurora) return { fill: glass.aurora.ctaTo, ink: glass.aurora.ctaInk, icon: null, label: pairCopy(lang, 'call') };
   return { fill: glass.text, ink: glass.opaqueCard, icon: null, label: pairCopy(lang, 'call') };
 }
 
@@ -56,6 +59,7 @@ function FriendCallPill({ glass, textScale, state, friendName, onCall, testID }:
       style={styles.pill}
       contentStyle={[styles.pillContent, { backgroundColor: look.fill }]}
     >
+      {idle && glass.aurora ? <LinearGradient pointerEvents="none" colors={[glass.aurora.ctaFrom, glass.aurora.ctaTo]} start={{ x: 0, y: 0.43 }} end={{ x: 1, y: 0.57 }} style={[StyleSheet.absoluteFill, { borderRadius: 18 }]} /> : null}
       {look.icon ? <Ionicons name={look.icon} size={16} color={look.ink} accessible={false} /> : null}
       <FlowText testID="friend-call-pill-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: look.ink, fontSize: 16 * textScale, lineHeight: 21 * textScale, fontWeight: '700' }}>
         {look.label}

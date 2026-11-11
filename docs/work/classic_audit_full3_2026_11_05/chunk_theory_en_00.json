@@ -1,0 +1,1080 @@
+[
+{
+"lesson": 1,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 1,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Где я и как я себя чувствую",
+"formula": "[кто] + [am / is / are] + [признак / место]",
+"story": "Друг уже надел куртку. Ты тоже готов: I am ready. Теперь говоришь о нём: He is ready. Слово ready то же; форму am или is выбираешь по человеку.",
+"use": "В полном предложении I am ready нужны три части: I — кто говорит, am — глагол для I, ready — в каком я состоянии. Глагол нельзя просто пропустить.",
+"choose": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"nuance": "Полная форма и сокращение выражают одно и то же обычное утверждение. С существительным во множественном числе, таким как `keys`, используйте `are`, даже если ключи принадлежат одному человеку.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "В полном предложении I am ready нужны три части: I — кто говорит, am — глагол для I, ready — в каком я состоянии. Глагол нельзя просто пропустить.",
+"samples": [
+"01.01",
+"01.02"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"samples": [
+"01.02",
+"01.23"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "Полная форма и сокращение выражают одно и то же обычное утверждение. С существительным во множественном числе, таким как `keys`, используйте `are`, даже если ключи принадлежат одному человеку.",
+"samples": [
+"01.23",
+"01.27"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Опишите время или температуру",
+"samples": [
+"01.33",
+"01.35",
+"01.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "Друг собирается уйти. Скажите ему, что вы готовы, затем измените только человека: вы говорите о своем друге.",
+"samples": [
+"01.42",
+"01.45",
+"01.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Используйте правило с незнакомыми подлежащими",
+"samples": [
+"01.50"
+],
+"tokenWalk": "01.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Де я і як почуваюся",
+"formula": "[хто] + [am / is / are] + [ознака / місце]",
+"story": "Друг уже в куртці. Ти теж готовий: I am ready. Тепер про нього: He is ready. Ready не змінилося; am чи is обираєш за тим, про кого говориш.",
+"use": "У повному реченні I am ready три частини: I — хто говорить, am — дієслово для I, ready — у якому я стані. Не пропускай am.",
+"choose": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"nuance": "Повна форма та скорочена форма виражають одне й те саме звичайне речення. З іменником у множині, таким як `keys`, використовуйте `are`, навіть якщо ключі належать одній особі.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "У повному реченні I am ready три частини: I — хто говорить, am — дієслово для I, ready — у якому я стані. Не пропускай am.",
+"samples": [
+"01.01",
+"01.02"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"samples": [
+"01.02",
+"01.23"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Повна форма та скорочена форма виражають одне й те саме звичайне речення. З іменником у множині, таким як `keys`, використовуйте `are`, навіть якщо ключі належать одній особі.",
+"samples": [
+"01.23",
+"01.27"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Опишіть час або температуру",
+"samples": [
+"01.33",
+"01.35",
+"01.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "Друг збирається піти. Скажіть йому, що ви готові, а потім змініть лише особу: ви говорите про свого друга.",
+"samples": [
+"01.42",
+"01.45",
+"01.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Використовуйте правило з незнайомими підметами",
+"samples": [
+"01.50"
+],
+"tokenWalk": "01.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Say where someone is or how they are",
+"formula": "[person] + [am / is / are] + [description or place]",
+"story": "Your friend has their coat on. You are ready too: I am ready. About another person: He is ready. Ready stays the same; the person determines am or is.",
+"use": "I am ready has three pieces: I names the speaker, am links the speaker to a description, and ready tells you how the speaker is. Keep am in a full statement.",
+"choose": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`.",
+"nuance": "A full form and a contraction express the same ordinary statement. With a plural noun such as `keys`, use `are` even when the keys belong to one person.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "I am ready has three pieces: I names the speaker, am links the speaker to a description, and ready tells you how the speaker is. Keep am in a full statement.",
+"samples": [
+"01.01",
+"01.02"
+]
+},
+{
+"title": "How to choose",
+"body": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`.",
+"samples": [
+"01.02",
+"01.23"
+]
+},
+{
+"title": "A useful contrast",
+"body": "A full form and a contraction express the same ordinary statement. With a plural noun such as `keys`, use `are` even when the keys belong to one person.",
+"samples": [
+"01.23",
+"01.27"
+]
+},
+{
+"title": "Common mistake",
+"body": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`.",
+"wrong": "I ready.",
+"right": "I am ready.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Describe time or temperature",
+"samples": [
+"01.33",
+"01.35",
+"01.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "A friend is about to leave. Tell them you are ready, then change only the person: you are talking about your friend instead.",
+"samples": [
+"01.42",
+"01.45",
+"01.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Use the rule with unfamiliar subjects",
+"samples": [
+"01.50"
+],
+"tokenWalk": "01.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "01.01",
+"index": 1,
+"right": "am",
+"near": "is",
+"seq": [
+"I",
+"am",
+"ready"
+],
+"i": 0,
+"kind": "form",
+"key": "en01/lab/form1",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.13",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"We",
+"are",
+"here"
+],
+"i": 12,
+"kind": "form",
+"key": "en01/lab/form2",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.26",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"shop",
+"is",
+"closed"
+],
+"i": 25,
+"kind": "form",
+"key": "en01/lab/form3",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.38",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"room",
+"is",
+"warm"
+],
+"i": 37,
+"kind": "form",
+"key": "en01/lab/form4",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.07",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"They",
+"are",
+"busy"
+],
+"i": 6,
+"kind": "spot",
+"key": "en01/lab/spot1",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.15",
+"index": 1,
+"right": "am",
+"near": "is",
+"seq": [
+"I",
+"am",
+"at",
+"home"
+],
+"i": 14,
+"kind": "spot",
+"key": "en01/lab/spot2",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.32",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"You",
+"are",
+"early"
+],
+"i": 31,
+"kind": "spot",
+"key": "en01/lab/spot3",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"id": "01.48",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"bus",
+"is",
+"here"
+],
+"i": 47,
+"kind": "spot",
+"key": "en01/lab/spot4",
+"feedback": {
+"ru": "Сначала определи, о ком речь. С `I` ставь `am`, с `he/she/it` — `is`, с `you/we/they` — `are`. В `My keys are here` форму выбирает слово `keys`, а не владелец ключей.",
+"uk": "Спершу визнач, про кого йдеться. З `I` став `am`, з `he/she/it` — `is`, з `you/we/they` — `are`. У `My keys are here` форму визначає слово `keys`, а не власник ключів.",
+"en": "Choose the form of the verb from the subject, not from the final word. One person talking about themself uses `am`; one other person uses `is`; `you`, `we` and `they` take `are`."
+}
+},
+{
+"kind": "match",
+"key": "en01/lab/match1",
+"id": "01.02",
+"other": "01.01"
+},
+{
+"kind": "match",
+"key": "en01/lab/match2",
+"id": "01.17",
+"other": "01.16"
+},
+{
+"kind": "match",
+"key": "en01/lab/match3",
+"id": "01.33",
+"other": "01.35"
+},
+{
+"kind": "match",
+"key": "en01/lab/match4",
+"id": "01.46",
+"other": "01.47"
+},
+{
+"kind": "build",
+"key": "en01/lab/build1",
+"id": "01.04"
+},
+{
+"kind": "build",
+"key": "en01/lab/build2",
+"id": "01.15"
+},
+{
+"kind": "build",
+"key": "en01/lab/build3",
+"id": "01.29"
+},
+{
+"kind": "build",
+"key": "en01/lab/build4",
+"id": "01.42"
+},
+{
+"kind": "transform",
+"id": "01.19",
+"base": "01.16",
+"diff": [
+{
+"before": [
+"You"
+],
+"after": [
+"We"
+]
+}
+],
+"key": "en01/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "01.24",
+"base": "01.23",
+"diff": [
+{
+"before": [
+"open"
+],
+"after": [
+"closed"
+]
+}
+],
+"key": "en01/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "01.30",
+"base": "01.29",
+"diff": [
+{
+"before": [
+"on"
+],
+"after": [
+"off"
+]
+}
+],
+"key": "en01/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "01.44",
+"base": "01.38",
+"diff": [
+{
+"before": [
+"room"
+],
+"after": [
+"kitchen"
+]
+}
+],
+"key": "en01/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+0,
+8
+],
+[
+17,
+12
+],
+[
+2,
+14
+],
+[
+18,
+6
+],
+[
+10,
+3
+],
+[
+7,
+15
+],
+[
+11,
+19
+]
+],
+"worked": [
+"01.05",
+"01.18",
+"01.33",
+"01.48"
+],
+"reflection": [
+"01.01",
+"01.02"
+],
+"strategy": {
+"ru": "Найди того, кто говорит или действует. Подставь сначала «я», потом «ты» или «они». Если человек изменился, проверь форму глагола; место или предмет в конце предложения его не выбирает.",
+"uk": "Знайди того, хто говорить або діє. Підстав спочатку «я», потім «ти» чи «вони». Якщо особа змінилася, перевір форму дієслова: місце або предмет у кінці речення її не визначає.",
+"en": "Start with the speaker or the person doing the action. Try “I”, then “you” or “they”. If the person changes, check the verb form. A place or object at the end does not choose it."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+},
+{
+"lesson": 2,
+"theory": {
+"schema": "phraseman.theory.studio/2",
+"number": 2,
+"target": "en",
+"localized": {
+"ru": {
+"title": "Как переспросить и ответить коротко",
+"formula": "[am / is / are] + [подлежащее] + [признак]?",
+"story": "Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть.",
+"use": "Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть.",
+"choose": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"nuance": "В кратких ответах сохраняются подлежащее и глагол. Утвердительный ответ не может заканчиваться на `I'm` или `she's`; отрицательный может заканчиваться на `isn't` или `aren't`. Именно поэтому не все сокращения взаимозаменяемы повсюду.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"chapters": [
+{
+"title": "Когда это правило применимо",
+"body": "Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть.",
+"samples": [
+"02.03",
+"02.11"
+]
+},
+{
+"title": "Как выбрать",
+"body": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"samples": [
+"02.11",
+"02.21"
+]
+},
+{
+"title": "Полезный контраст",
+"body": "В кратких ответах сохраняются подлежащее и глагол. Утвердительный ответ не может заканчиваться на `I'm` или `she's`; отрицательный может заканчиваться на `isn't` или `aren't`. Именно поэтому не все сокращения взаимозаменяемы повсюду.",
+"samples": [
+"02.21",
+"02.22"
+]
+},
+{
+"title": "Распространенная ошибка",
+"body": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"samples": []
+},
+{
+"title": "Примеры из этого урока",
+"body": "Вопрос о местах и ​​доступе",
+"samples": [
+"02.33",
+"02.35",
+"02.37"
+]
+},
+{
+"title": "Попробуйте в контексте",
+"body": "На остановке вам нужно знать, здесь ли автобус. Сравните вопрос с ответом, а не изучайте их как несвязанные фразы.",
+"samples": [
+"02.42",
+"02.45",
+"02.48"
+]
+},
+{
+"title": "Порядок слов в этом ответе",
+"body": "Проверка ситуации на станции",
+"samples": [
+"02.50"
+],
+"tokenWalk": "02.50"
+}
+],
+"tables": []
+},
+"uk": {
+"title": "Як перепитати й коротко відповісти",
+"formula": "[am / is / are] + [підмет] + [ознака]?",
+"story": "Магазин відчинений: The shop is open. Хочеш перепитати? Перенеси is наперед: Is the shop open? Do не потрібне.",
+"use": "Магазин відчинений: The shop is open. Хочеш перепитати? Перенеси is наперед: Is the shop open? Do не потрібне.",
+"choose": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"nuance": "Короткі відповіді зберігають підмет і дієслово. Ствердна відповідь не може закінчуватися на `I'm` або `she's`; Заперечний дієслово може закінчуватися на `isn't` або `aren't`. Ось чому не всі скорочення є взаємозамінними скрізь.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"chapters": [
+{
+"title": "Коли застосовується це правило",
+"body": "Магазин відчинений: The shop is open. Хочеш перепитати? Перенеси is наперед: Is the shop open? Do не потрібне.",
+"samples": [
+"02.03",
+"02.11"
+]
+},
+{
+"title": "Як вибрати",
+"body": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"samples": [
+"02.11",
+"02.21"
+]
+},
+{
+"title": "Корисний контраст",
+"body": "Короткі відповіді зберігають підмет і дієслово. Ствердна відповідь не може закінчуватися на `I'm` або `she's`; Заперечний дієслово може закінчуватися на `isn't` або `aren't`. Ось чому не всі скорочення є взаємозамінними скрізь.",
+"samples": [
+"02.21",
+"02.22"
+]
+},
+{
+"title": "Поширена помилка",
+"body": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"samples": []
+},
+{
+"title": "Приклади з цього уроку",
+"body": "Запитання про місця та доступ",
+"samples": [
+"02.33",
+"02.35",
+"02.37"
+]
+},
+{
+"title": "Спробуйте в контексті",
+"body": "На зупинці вам потрібно знати, чи автобус тут. Порівняйте питання з відповіддю, а не вивчайте їх як непов'язані фрази.",
+"samples": [
+"02.42",
+"02.45",
+"02.48"
+]
+},
+{
+"title": "Порядок слів у цій відповіді",
+"body": "Перевірка ситуації на станції",
+"samples": [
+"02.50"
+],
+"tokenWalk": "02.50"
+}
+],
+"tables": []
+},
+"en": {
+"title": "Ask whether something is true",
+"formula": "[am / is / are] + [subject] + [description]?",
+"story": "The shop is open gives information. Is the shop open? asks for it. Move the existing is; do not add do.",
+"use": "The shop is open gives information. Is the shop open? asks for it. Move the existing is; do not add do.",
+"choose": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`.",
+"nuance": "Short answers keep the subject and the verb. An affirmative answer cannot end in `I'm` or `she's`; a negative one can end in `isn't` or `aren't`. This is why not every contraction is interchangeable everywhere.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"chapters": [
+{
+"title": "When this rule applies",
+"body": "The shop is open gives information. Is the shop open? asks for it. Move the existing is; do not add do.",
+"samples": [
+"02.03",
+"02.11"
+]
+},
+{
+"title": "How to choose",
+"body": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`.",
+"samples": [
+"02.11",
+"02.21"
+]
+},
+{
+"title": "A useful contrast",
+"body": "Short answers keep the subject and the verb. An affirmative answer cannot end in `I'm` or `she's`; a negative one can end in `isn't` or `aren't`. This is why not every contraction is interchangeable everywhere.",
+"samples": [
+"02.21",
+"02.22"
+]
+},
+{
+"title": "Common mistake",
+"body": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`.",
+"wrong": "Yes, I'm.",
+"right": "Yes, I am.",
+"samples": []
+},
+{
+"title": "Examples from this lesson",
+"body": "Ask about seats and access",
+"samples": [
+"02.33",
+"02.35",
+"02.37"
+]
+},
+{
+"title": "Try it in context",
+"body": "At the stop you need to know whether the bus is here. Compare the question with the answer rather than learning the two as unrelated phrases.",
+"samples": [
+"02.42",
+"02.45",
+"02.48"
+]
+},
+{
+"title": "Order of words in this answer",
+"body": "Check the situation at a station",
+"samples": [
+"02.50"
+],
+"tokenWalk": "02.50"
+}
+],
+"tables": []
+}
+},
+"sharedActivities": [
+{
+"id": "02.01",
+"index": 1,
+"right": "am",
+"near": "is",
+"seq": [
+"I",
+"am",
+"not",
+"late"
+],
+"i": 0,
+"kind": "form",
+"key": "en02/lab/form1",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.13",
+"index": 0,
+"right": "Is",
+"near": "Are",
+"seq": [
+"Is",
+"he",
+"at",
+"work"
+],
+"i": 12,
+"kind": "form",
+"key": "en02/lab/form2",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.26",
+"index": 2,
+"right": "are",
+"near": "is",
+"seq": [
+"No",
+"they",
+"are",
+"not"
+],
+"i": 25,
+"kind": "form",
+"key": "en02/lab/form3",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.38",
+"index": 2,
+"right": "is",
+"near": "are",
+"seq": [
+"The",
+"platform",
+"is",
+"not",
+"empty"
+],
+"i": 37,
+"kind": "form",
+"key": "en02/lab/form4",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.07",
+"index": 1,
+"right": "are",
+"near": "is",
+"seq": [
+"They",
+"are",
+"not",
+"at",
+"work"
+],
+"i": 6,
+"kind": "spot",
+"key": "en02/lab/spot1",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.21",
+"index": 2,
+"right": "am",
+"near": "is",
+"seq": [
+"Yes",
+"I",
+"am"
+],
+"i": 20,
+"kind": "spot",
+"key": "en02/lab/spot2",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.32",
+"index": 0,
+"right": "Is",
+"near": "Are",
+"seq": [
+"Is",
+"the",
+"lift",
+"here"
+],
+"i": 31,
+"kind": "spot",
+"key": "en02/lab/spot3",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"id": "02.46",
+"index": 0,
+"right": "Are",
+"near": "Is",
+"seq": [
+"Are",
+"your",
+"hands",
+"cold"
+],
+"i": 45,
+"kind": "spot",
+"key": "en02/lab/spot4",
+"feedback": {
+"ru": "Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно.",
+"uk": "Щоб заперечити, додай `not` після форми `be`: `She is not ready`. Щоб запитати, постав дієслово перед підметом: `Is she ready?` Слово `do` тут не потрібне.",
+"en": "For a negative statement the verb stays after the subject; put `not` after it. Start a yes/no question with the matching form of `be`."
+}
+},
+{
+"kind": "match",
+"key": "en02/lab/match1",
+"id": "02.02",
+"other": "02.01"
+},
+{
+"kind": "match",
+"key": "en02/lab/match2",
+"id": "02.17",
+"other": "02.22"
+},
+{
+"kind": "match",
+"key": "en02/lab/match3",
+"id": "02.33",
+"other": "02.32"
+},
+{
+"kind": "match",
+"key": "en02/lab/match4",
+"id": "02.46",
+"other": "02.49"
+},
+{
+"kind": "build",
+"key": "en02/lab/build1",
+"id": "02.04"
+},
+{
+"kind": "build",
+"key": "en02/lab/build2",
+"id": "02.15"
+},
+{
+"kind": "build",
+"key": "en02/lab/build3",
+"id": "02.29"
+},
+{
+"kind": "build",
+"key": "en02/lab/build4",
+"id": "02.42"
+},
+{
+"kind": "transform",
+"id": "02.32",
+"base": "02.18",
+"diff": [
+{
+"before": [
+"bus"
+],
+"after": [
+"lift"
+]
+}
+],
+"key": "en02/lab/transform1"
+},
+{
+"kind": "transform",
+"id": "02.45",
+"base": "02.08",
+"diff": [
+{
+"before": [
+"door"
+],
+"after": [
+"ticket",
+"office"
+]
+}
+],
+"key": "en02/lab/transform2"
+},
+{
+"kind": "transform",
+"id": "02.49",
+"base": "02.06",
+"diff": [
+{
+"before": [
+"home"
+],
+"after": [
+"the",
+"station"
+]
+}
+],
+"key": "en02/lab/transform3"
+},
+{
+"kind": "transform",
+"id": "02.38",
+"base": "02.35",
+"diff": [
+{
+"before": [
+"Is"
+],
+"after": []
+},
+{
+"before": [],
+"after": [
+"is",
+"not"
+]
+}
+],
+"key": "en02/lab/transform4"
+}
+],
+"chapterActivities": [
+[
+8,
+12
+],
+[
+5,
+1
+],
+[
+9,
+2
+],
+[
+14,
+6
+],
+[
+10,
+19
+],
+[
+15,
+17
+],
+[
+18,
+7
+]
+],
+"worked": [
+"02.05",
+"02.18",
+"02.33",
+"02.48"
+],
+"reflection": [
+"02.08",
+"02.12"
+],
+"strategy": {
+"ru": "Прочитай не только пропуск, но и слова слева и справа. Одно соседнее слово может менять всю конструкцию. Вставь свой вариант, перечитай фразу целиком и сравни её с нужным сообщением.",
+"uk": "Прочитай не лише пропуск, а й слова ліворуч і праворуч. Сусіднє слово може змінити всю конструкцію. Встав свій варіант, перечитай речення й звір його зміст із підказкою.",
+"en": "Read the words on both sides of the gap. A single neighbouring word can change the construction. Put your choice in, read the whole sentence, and compare it with the intended message."
+},
+"exampleSource": "lesson-id-and-phrase-id"
+},
+"exampleResolved": []
+}
+]

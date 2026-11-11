@@ -1,3 +1,10 @@
+# Owner scope reset — 2026-11-10: Learning V2 permanently closed
+
+The latest direct owner instruction supersedes every older Learning V2 / ORBIT V2 course plan: Learning V2 is a dead product section and will not be developed further. Do not resume its authors, audits, lessons, Season/Horizon screens, or use those product routes as the basis of new mockups. Current active work is the ordinary app, Classic courses, cards, video, dialogue and Peak. The dictionary screenshot with `Слова пройдены` and `+0 монет` belongs to `app/lesson_words.tsx`, not LearningV2Dictionary.
+
+Preserve existing code/data and unrelated dirty work: this closure does not authorize deletion or breaking shared dependencies. Historical Learning V2 reports remain historical, without claims of repair. Do not automatically revive the old workflows from instructions further below. Only a new direct owner instruction can change this scope.
+
+---
 # Project Rules
 
 ## ⛔ LEARNING V2 — КУРС ПИШЕТСЯ ТОЛЬКО ПО ЗАДАНИЮ (владелец, 2026-10-15)

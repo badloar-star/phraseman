@@ -1,0 +1,170 @@
+[
+ {
+  "id": "lesson-15/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.ru",
+  "problem": "«обратное уже понятно» — бессмыслица, нужно «обращение»",
+  "fix": "На станции нужно быстро попросить друга подождать. В короткой команде не требуется местоимение `du`: обращение уже понятно из формы и ситуации. `Bitte` смягчает просьбу, но не заменяет окончание."
+ },
+ {
+  "id": "lesson-15/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«зворотне вже зрозуміло» — бессмыслица, нужно «звертання»",
+  "fix": "На станції потрібно швидко попросити друга почекати. У короткій команді не потрібен займенник `du`: звертання вже зрозуміле з форми та ситуації. `Bitte` пом'якшує прохання, але не замінює закінчення."
+ },
+ {
+  "id": "lesson-15/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "\"the opposite is already clear\", \"he doesn't need\" — wrong meaning",
+  "fix": "At the station, you need to quickly ask a friend to wait. A short command doesn't need the pronoun `du`: who is being addressed is clear from the form and the situation. `Bitte` softens the request but doesn't replace the ending."
+ },
+ {
+  "id": "lesson-15/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«На прохання зателефонувати» (=по просьбе) вместо «У проханні»; потеряно «і»",
+  "fix": "Дві частини дієслова працюють і в команді. У проханні зателефонувати `ruf` іде вперед, а `an` залишається наприкінці. Спочатку знайди все дієслово, інакше можна попросити не про ту дію."
+ },
+ {
+  "id": "lesson-15/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«Не утворюються…» — нет подлежащего",
+  "fix": "Часті форми варто почути цілком: `nimm`, `gib`, `lies`, `sprich`, `hilf`. Вони не утворюються простим видаленням літер у словникової форми. При зміні особи може змінитися і голосна."
+ },
+ {
+  "id": "lesson-15/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Frequent forms should be heard in full: `nimm`, `gib`, `lies`, `sprich`, `hilf`. They are not formed by simply deleting letters from the dictionary form. The vowel may also change when changing person."
+ },
+ {
+  "id": "lesson-15/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "For a group of friends, use the present tense form of `ihr`, then remove the pronoun: `ihr wartet` becomes `wartet`. Separate polite words for number are not needed here."
+ },
+ {
+  "id": "lesson-15/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«а чи не число знайомих» — машинная ошибка, нужно «а не»",
+  "fix": "Для незнайомого дорослого залиш займенник `Sie` і постав його після дієслова. Одна й та сама форма підходить для одного або кількох адресатів. На відміну від `ihr`, це ступінь ввічливості, а не число знайомих."
+ },
+ {
+  "id": "lesson-15/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "For an unfamiliar adult, leave the pronoun `Sie` and place it after the verb. The same form is suitable for one or more addressees. Unlike `ihr`, this is a degree of politeness, not the number of acquaintances."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "Пример с молоком и холодильником не из курса; примеры главы — bis zur Ampel и deinen Pass",
+  "fix": "Порядок важнее длины. В просьбе сначала называешь действие, потом предмет или место: `Gehen Sie bis zur Ampel!`, `Vergiss deinen Pass nicht!`. Не меняй артикль только из-за того, что это команда."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "Приклад з молоком не з курсу; приклади розділу — bis zur Ampel і deinen Pass",
+  "fix": "Порядок важливіший за довжину. У проханні спочатку називаєш дію, потім предмет або місце: `Gehen Sie bis zur Ampel!`, `Vergiss deinen Pass nicht!`. Не змінюй артикль лише через те, що це команда."
+ },
+ {
+  "id": "lesson-15/chapter-6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "Milk/fridge example not from the course",
+  "fix": "Order is more important than length. In a request, first state the action, then the object or place: `Gehen Sie bis zur Ampel!`, `Vergiss deinen Pass nicht!`. Don't change the article just because it's a command."
+ },
+ {
+  "id": "lesson-15/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "\"ask about behavior\" ≠ ru «просят о поведении» (ask for); stray quote",
+  "fix": "For the verb \"to be\", remember the set `sei`, `seid`, `seien Sie`. All three ask for a behavior or a state; the difference lies in who exactly is being addressed."
+ },
+ {
+  "id": "lesson-16/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«змінюється з осіб» — неграмматично, нужно «за особами»",
+  "fix": "Повідомити, що приготував або купив, можна двома частинами. Перша змінюється за особами; друга зберігає саму дію. Одного `habe` недостатньо, воно поки що не пояснює, що сталося."
+ },
+ {
+  "id": "lesson-16/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Many regular verbs have a participle that begins with `ge-` and ends with `-t`. After some stems, it's easier to pronounce `-et`, as in `gewartet`. Don't automatically transfer this pattern to every German verb."
+ },
+ {
+  "id": "lesson-16/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "Правило перевёрнуто (у сильных глаголов -en — признак, смена основы — нередко); пример de:16:11 gesucht — слабый глагол, de:16:16 gegessen без смены основы",
+  "fix": "У частых сильных глаголов причастие заканчивается на `-en`, а основа нередко меняется: `essen – gegessen`, `finden – gefunden`, `trinken – getrunken`. Не путай с правильными глаголами: `suchen – gesucht`."
+ },
+ {
+  "id": "lesson-16/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "Те саме: правило перевернуте, gesucht — слабке дієслово",
+  "fix": "У частих сильних дієслів дієприкметник закінчується на `-en`, а основа нерідко змінюється: `essen – gegessen`, `finden – gefunden`, `trinken – getrunken`. Не плутай із правильними дієсловами: `suchen – gesucht`."
+ },
+ {
+  "id": "lesson-16/chapter-3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "Rule inverted; gesucht is weak; stray quote",
+  "fix": "Common strong verbs form the participle with `-en`, and the stem often changes: `essen – gegessen`, `finden – gefunden`, `trinken – getrunken`. Don't confuse them with regular verbs: `suchen – gesucht`."
+ },
+ {
+  "id": "lesson-16/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.uk",
+  "problem": "«Дієслово ge, що відокремлюється» — бессмыслица (ge названо глаголом)",
+  "fix": "У дієслова, що відокремлюється, `ge` може опинитися між приставкою і основою. Дзвінок — `angerufen`, заповнили бланк — `ausgefüllt`. У результаті дієприкметник збирається однією плиткою."
+ },
+ {
+  "id": "lesson-16/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "\"The bell rings — angerufen\" — wrong meaning (a phone call); stray quotes",
+  "fix": "In a separable verb, `ge` can appear between the prefix and the stem. A phone call — `angerufen`, a filled-in form — `ausgefüllt`. As a result, the participle is assembled as a single tile."
+ },
+ {
+  "id": "lesson-16/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«Слова -ieren» — пропущено «на»",
+  "fix": "Слова на `-ieren` не мають додаткового `ge-`: `telefoniert`, `repariert`. Воно також не з'являється у багатьох дієслів з невідокремлюваною приставкою, наприклад у `bezahlt` і `besucht`."
+ },
+ {
+  "id": "lesson-16/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Words ending in `-ieren` do not have the additional `ge-`: `telefoniert`, `repariert`. It also does not appear in many verbs with an inseparable prefix, for example, `bezahlt` and `besucht`."
+ },
+ {
+  "id": "lesson-16/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "«Причастя» — русизм, по-украински «дієприкметник»",
+  "fix": "У загальному питанні `hast` або `hat` вийде вперед. Дієприкметник залишиться наприкінці. У питанні зі словом «що?» спочатку йде запитальне слово, а за ним допоміжне дієслово."
+ },
+ {
+  "id": "lesson-16/chapter-7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "Лишняя кавычка после кода (`…`,\" / `…`.\") — после удаления обратных кавычек в приложении видна мусорная «\"»",
+  "fix": "Not every past tense is constructed with `haben`; the next topic will also show `sein`. For now, rely on the pairs from the lesson, and not on the assumption that the Russian or English past tense always follows the same pattern."
+ }
+]

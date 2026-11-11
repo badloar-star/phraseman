@@ -17,7 +17,7 @@ import { DialogueChainBeat, DialogueChainHeader, DialogueChainMountAt, DialogueC
 import { dialogueChainText } from '../completion/dialogue_chain_strings';
 import ComboHeatSlot from '../feedback/ComboHeatSlot';
 import ComboMomentLayer from '../feedback/ComboMomentLayer';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 
 const noop = (): void => undefined;
 

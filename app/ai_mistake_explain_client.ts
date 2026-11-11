@@ -5,6 +5,12 @@ import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
 import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
 import { getNetStatus } from './net_status';
+import {
+  coerceMistakeBreakdown,
+  parseStoredMistakeBreakdown,
+  serializeMistakeBreakdown,
+  type MistakeBreakdown,
+} from './mistake_breakdown_model';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -56,6 +62,11 @@ export interface ExplainMistakeResponse {
   fullText?: string;
   /** Present on new full responses; cached under the existing ELI5 request identity. */
   eli5Text?: string;
+  /**
+   * зачем (владелец 11.11): разбор «по полям» — слово-промах, нужное слово, правило, пояснение.
+   * Есть только у новых ответов сервера; нет поля — экран показывает `text`, как раньше.
+   */
+  breakdown?: MistakeBreakdown;
   remainingQuota: number;
   model: string;
   fromCache?: boolean;
@@ -119,10 +130,16 @@ export async function callExplainMistake(
   const pairedEli5Key = variant === 'full'
     ? explainMistakeRequestKey({ ...normalizedReq, variant: 'eli5' })
     : null;
-  const [localCached, pairedEli5Cached] = await Promise.all([
+  // зачем: поля разбора лежат в том же локальном кэше отдельной записью — повторный показ той же
+  // ошибки (и офлайн) рисует новую карточку без сети, а не откатывается к сплошному тексту.
+  const breakdownKey = variant === 'full' ? `${key}#breakdown` : null;
+  const [localCached, pairedEli5Cached, breakdownCached] = await Promise.all([
     readExplainLocalCache({ kind: 'mistake', key }),
     pairedEli5Key
       ? readExplainLocalCache({ kind: 'mistake', key: pairedEli5Key })
+      : Promise.resolve(null),
+    breakdownKey
+      ? readExplainLocalCache({ kind: 'mistake', key: breakdownKey })
       : Promise.resolve(null),
   ]);
   if (localCached?.status === 'ok') {
@@ -134,6 +151,7 @@ export async function callExplainMistake(
       text: localCached.text,
       fullText: variant === 'full' ? localCached.text : undefined,
       eli5Text: pairedEli5Text,
+      breakdown: (breakdownCached?.status === 'ok' ? parseStoredMistakeBreakdown(breakdownCached.text) : null) ?? undefined,
       remainingQuota: 0,
       model: 'local-cache',
       fromCache: true,
@@ -166,6 +184,7 @@ export async function callExplainMistake(
       ),
       { label: 'explainMistake', onRetryStart: options?.onRetryStart },
     );
+    const breakdown = variant === 'full' ? coerceMistakeBreakdown(res.data.breakdown) : null;
     if (res.data.ok && res.data.text.trim()) {
       const cacheWrites: Promise<void>[] = [
         writeExplainLocalCache({ kind: 'mistake', key }, {
@@ -181,9 +200,16 @@ export async function callExplainMistake(
           status: 'ok',
         }));
       }
+      if (breakdownKey && breakdown) {
+        cacheWrites.push(writeExplainLocalCache({ kind: 'mistake', key: breakdownKey }, {
+          text: serializeMistakeBreakdown(breakdown),
+          status: 'ok',
+        }));
+      }
       await Promise.all(cacheWrites);
     }
-    return res.data;
+    // Ответ сервера — граница системы: наружу уходят только проверенные поля.
+    return { ...res.data, breakdown: breakdown ?? undefined };
   })().finally(() => {
     explainMistakeInFlight.delete(key);
   });

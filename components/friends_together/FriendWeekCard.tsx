@@ -16,7 +16,7 @@ import { pairCopy } from '../../app/friends_together/pair_copy';
 import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
 import { FriendsCoin, type FriendsGlass } from '../friends/FriendsGlassKit';
-import { plateBoxShadow } from '../v2/ShadowSurface';
+import { PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import type { FriendCallState } from './FriendCallPill';
 import { pairFlameColor } from './PairFlameInline';
@@ -111,6 +111,8 @@ function FriendWeekCard({ glass, textScale, lang, weekKey, card, highFived, call
       style={styles.cardOuter}
       contentStyle={[styles.card, { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass), opacity: rested ? 0.8 : 1 }]}
     >
+      {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): карточка недели у «Авроры» — наклонный перелив плашки; у остальных тем — прежний ровный тон */}
+      {glass.aurora ? <PlateFill g={glass} radius={22} /> : null}
       <View style={styles.head}>
         <FriendsCoin coinRank={card.coinRank} name={card.name} size={40} glass={glass} plus={card.isPlus} />
         <View style={styles.headText}>

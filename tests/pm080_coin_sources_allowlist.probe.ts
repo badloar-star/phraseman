@@ -102,9 +102,7 @@ const APPROVED_ENQUEUE_CALLERS = new Set([
   'modules/today-tasks/today_tasks_store.ts', // D49 «Сегодня»
   // зачем: владелец 22.10 «Начислять +40 монет» за первую сдачу экзамена главы Learning V2 — 20+20, потолок 120, ключ chapterexam_
   // (ECONOMY.md, координатор 0273fc93e)
-  'app/learning_v2_chapter_exam_reward_v1.ts',
   // зачем: «Урок вместе» +2 (кнопка владельца 22.10, А1) — клиент 8 · МОМЕНТЫ ставит начисление в очередь кошелька сам
-  'app/friends_together/lesson_together_claim.ts',
 ]);
 const walk = (dir: string, out: string[] = []): string[] => {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

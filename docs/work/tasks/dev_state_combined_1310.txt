@@ -1,0 +1,6 @@
+ativeJS: '[DEV-STATE] applied', '{"applied":{"newbie":"on"},"skipped":{},"next":null}'
+ativeJS: '[DEV-STATE] route: фикстуры применены', '1368мс', '{"applied":{"newbie":"on"},"skipped":{},"next":null}'
+ativeJS: '[DEV-STATE] route: перечитывание энергии →', 'ok', '1739мс'
+ativeJS: '[DEV-STATE] route: next не задан — остаёмся на экране', '1740мс'
+ativeJS: [DEV-STATE] after_route: выполняю 0 причина=no_next
+ativeJS: '[DEV-STATE] энергия в контексте =', 5, 'ready=true', { [Stack] name: 'Stack' }

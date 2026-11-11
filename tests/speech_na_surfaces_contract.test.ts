@@ -5,13 +5,6 @@
 import fs from 'fs';
 import path from 'path';
 
-import {
-  learningV2DeviceSkippedVoiceCompletionV1,
-  learningV2StarEligibleCompletionsV1,
-} from '../app/learning_v2_device_voice_skip_v1';
-import { learningV2SessionStars } from '../app/learning_v2_session_star_results_store';
-import { learningV2SessionUnlocksNextV1 } from '../app/learning_v2_session_unlock_policy_v1';
-
 const ROOT = path.resolve(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
 
@@ -20,42 +13,6 @@ function expectBefore(source: string, earlier: string, later: string) {
   expect(earlierIndex).toBeGreaterThanOrEqual(0);
   expect(source.indexOf(later, earlierIndex + earlier.length)).toBeGreaterThanOrEqual(0);
 }
-
-const clean = (interactionId: string) => ({ interactionId, disposition: 'completed' as const, learnerAttempts: 1, hintUsed: false });
-
-describe('Learning V2: занятие с голосовым шагом на устройстве без распознавателя', () => {
-  it('голосовой шаг закрывается как "skipped" без попыток', () => {
-    expect(learningV2DeviceSkippedVoiceCompletionV1('s1:q3')).toEqual({
-      interactionId: 's1:q3', disposition: 'skipped', learnerAttempts: 0, hintUsed: false,
-    });
-  });
-
-  it('пропуск устройством не снижает звёзды и занятие открывает следующее', () => {
-    const completions = [clean('q1'), clean('q2'), learningV2DeviceSkippedVoiceCompletionV1('q3'), clean('q4')];
-    // Без исключения «пропуска устройства» человек потерял бы звезду.
-    expect(learningV2SessionStars(completions)).toBe(1);
-    const eligible = learningV2StarEligibleCompletionsV1(completions, new Set(['q3']));
-    expect(eligible.map((entry) => entry.interactionId)).toEqual(['q1', 'q2', 'q4']);
-    const stars = learningV2SessionStars(eligible);
-    expect(stars).toBe(3);
-    expect(learningV2SessionUnlocksNextV1(stars)).toBe(true);
-  });
-
-  it('даже занятие из одних голосовых шагов засчитывается', () => {
-    const completions = [learningV2DeviceSkippedVoiceCompletionV1('q1'), learningV2DeviceSkippedVoiceCompletionV1('q2')];
-    const stars = learningV2SessionStars(learningV2StarEligibleCompletionsV1(completions, new Set(['q1', 'q2'])));
-    expect(learningV2SessionUnlocksNextV1(stars)).toBe(true);
-  });
-
-  it('плеер: «Дальше» пропускает голосовой шаг, панель распознавания не монтируется', () => {
-    const source = read('app', 'learning_v2_direct_session_player_v1.tsx');
-    expect(source).toContain('const speechNa = useSpeechUnavailableOnDevice();');
-    expect(source).toContain('onPress={voiceSkipOnDevice ? skipVoicePracticeOnDevice : advance}');
-    expect(source).toContain('{speechNa ? null : <SpeakingPanel');
-    expect(source).toContain('learningV2StarEligibleCompletionsV1(');
-    expect(source).toContain('learningV2DeviceSkippedVoiceCompletionV1(practice.interactionId)');
-  });
-});
 
 describe('отключённое состояние на всех голосовых местах', () => {
   it('урок: «Устно» перечёркнуто, тап не тратит попытку и не ведёт на пейвол', () => {
@@ -66,7 +23,7 @@ describe('отключённое состояние на всех голосов
     expectBefore(source, 'if (speechNa) {', 'setSpeakingOpen(true);');
   });
 
-  it('кнопка «Зажми и говори» (карточки, Learning V2) отключена и не трогает квоту', () => {
+  it('кнопка «Зажми и говори» (карточки) отключена и не трогает квоту', () => {
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
     expectBefore(source, 'if (speechNa) {', 'allowance.onSpentPress()');
     expect(source).toContain("speechNa ? 'mic-off-outline'");

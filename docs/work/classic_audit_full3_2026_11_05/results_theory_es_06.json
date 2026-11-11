@@ -1,0 +1,184 @@
+[
+ {
+  "id": "lesson-13/chapters[3]",
+  "type": "T1",
+  "field": "localized.ru.chapters[3].body",
+  "problem": "Примеры главы не из курса (La ventana está abierta) и не совпадают с samples: es:13:23 La tienda está abierta, es:13:24 Las ventanas están abiertas (мн. ч.)",
+  "fix": "Окончание abierto берётся у испанского существительного. La tienda — женский род, один магазин: La tienda está abierta. Las ventanas — женский род, несколько окон: Las ventanas están abiertas. Русский род «магазина» или «окна» здесь не важен."
+ },
+ {
+  "id": "lesson-13/chapters[3]",
+  "type": "T1",
+  "field": "localized.uk.chapters[3].body",
+  "problem": "Приклади розділу не з курсу (La ventana está abierta) і не збігаються з samples: La tienda está abierta, Las ventanas están abiertas",
+  "fix": "Закінчення abierto береться від іспанського іменника. La tienda — жіночий рід, один магазин: La tienda está abierta. Las ventanas — жіночий рід, кілька вікон: Las ventanas están abiertas. Рід українського слова тут не важливий."
+ },
+ {
+  "id": "lesson-13/chapters[3]",
+  "type": "T1",
+  "field": "localized.en.chapters[3].body",
+  "problem": "en: примеры не из курса и не совпадают с samples (es:13:23, es:13:24)",
+  "fix": "The ending of abierto comes from the Spanish noun. La tienda is feminine and singular: La tienda está abierta. Las ventanas is feminine and plural: Las ventanas están abiertas."
+ },
+ {
+  "id": "lesson-13/chapters[4]",
+  "type": "T2",
+  "field": "localized.en.chapters[4].body",
+  "problem": "en: «choose a conjunction by the stopwatch» — связка ≠ conjunction, калька",
+  "fix": "Don't choose between ser and estar by how long something lasts. In these phrases, it's important that we communicate a state. For the profession from Lesson 4, ser remains, even if the person changes jobs tomorrow."
+ },
+ {
+  "id": "lesson-13/nuance",
+  "type": "T2",
+  "field": "localized.en.nuance",
+  "problem": "en: «The person chooses form estar; the state is consistent with…» — неграмотно, «consistent» искажает «согласуется»",
+  "fix": "Describe how a person feels or the state of a familiar thing in this situation. The subject decides the form of estar; the adjective agrees with the person or thing."
+ },
+ {
+  "id": "lesson-13/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты; глоссы неверны: hermanas — «сёстры», а не «брат / сестра»; listas — «готовы»",
+  "fix": "Сравни два задания: «Твои сёстры готовы?» / «Дверь открыта». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Смысловые опоры: «hermanas» — сёстры; «listas» — готовы."
+ },
+ {
+  "id": "lesson-13/chapters[5]",
+  "type": "T1",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "Подвійна крапка після цитати; глоси неправильні: hermanas — «сестри», не «брат / сестра»",
+  "fix": "Порівняй два завдання: «Твої сестри готові?» / «Двері відчинені». Особа визначає форму estar, а ознака узгоджується з людиною чи річчю. Смислові опори: «hermanas» — сестри; «listas» — готові."
+ },
+ {
+  "id": "lesson-13/chapters[5]",
+  "type": "T1",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: hermanas глоссировано как «brother / sister»; «corresponds to» вместо agrees; битые кавычки",
+  "fix": "Compare two tasks: \"Are your sisters ready?\" / \"The door is open.\" The subject decides the form of estar; the adjective agrees with the person or thing. Key words: hermanas — sisters; listas — ready (feminine plural)."
+ },
+ {
+  "id": "lesson-13/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: «the state is consistent with» — искажение «согласуется»",
+  "fix": "Compare two tasks: \"You are happy today.\" / \"The tables are clean.\" The person chooses the form estar; the adjective agrees with the person or thing. Describe the person's well-being or the state of a familiar thing in this situation."
+ },
+ {
+  "id": "lesson-13/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Сегодня вы рады.» / «Столы чистые». Лицо выбирает форму estar; состояние согласуется с человеком или вещью. Опиши самочувствие человека или состояние знакомой вещи в данной ситуации."
+ },
+ {
+  "id": "lesson-13/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Сьогодні ви раді.» / «Столи чисті». Особа визначає форму estar, а ознака узгоджується з людиною чи річчю. Опиши самопочуття людини або стан знайомої речі в цій ситуації."
+ },
+ {
+  "id": "lesson-14/chapters[4]",
+  "type": "T2",
+  "field": "localized.ru.chapters[4].body",
+  "problem": "«Me siento aquí здесь означает» — двусмысленное дублирование aquí/здесь; «связка» — неверный термин для группы me + глагол",
+  "fix": "Me siento aquí означает «я сажусь здесь»: исходный глагол sentarse, а не отдельное действие над собой. В отрицании no стоит перед всей группой: no me siento."
+ },
+ {
+  "id": "lesson-14/chapters[4]",
+  "type": "T2",
+  "field": "localized.uk.chapters[4].body",
+  "problem": "«Me siento aquí тут означає» — двозначне дублювання aquí/тут",
+  "fix": "Me siento aquí означає «я сідаю тут»: вихідне дієслово sentarse. У запереченні no стоїть перед усією сполукою: no me siento."
+ },
+ {
+  "id": "lesson-14/chapters[4]",
+  "type": "T2",
+  "field": "localized.en.chapters[4].body",
+  "problem": "en: «aquí here means», «before the entire copula» — copula неверно, «I sit here» вместо «I sit down here»",
+  "fix": "Me siento aquí means \"I sit down here\": the base verb is sentarse, not a separate action done to oneself. In a negative sentence, no comes before the whole group: no me siento."
+ },
+ {
+  "id": "lesson-14/chapters[3]",
+  "type": "T2",
+  "field": "localized.en.chapters[3].body",
+  "problem": "en: «not the tracing from \"my hands\"» — калька слова «калька»",
+  "fix": "In me lavo las manos, the ownership of the hands is already clear from me. The neutral Spanish example uses the article las, not a word-for-word copy of \"my hands.\""
+ },
+ {
+  "id": "lesson-14/chapters[5]",
+  "type": "T1",
+  "field": "localized.ru.chapters[5].body",
+  "problem": "Двойная точка после цитаты; глосса hermanas — «сёстры», а не «брат / сестра»",
+  "fix": "Сравни два задания: «Мои сёстры принимают душ дома?» / «Я мою руки». Местоимение и окончание глагола указывают на одного исполнителя. Смысловые опоры: «hermanas» — сёстры; «casa» — дом; en casa — дома."
+ },
+ {
+  "id": "lesson-14/chapters[5]",
+  "type": "T1",
+  "field": "localized.uk.chapters[5].body",
+  "problem": "Подвійна крапка після цитати; глоса hermanas — «сестри», а не «брат / сестра»",
+  "fix": "Порівняй два завдання: «Мої сестри приймають душ вдома?» / «Я мию руки». Займенник та закінчення дієслова вказують на того самого виконавця. Смислові опори: «hermanas» — сестри; «casa» — дім; en casa — вдома."
+ },
+ {
+  "id": "lesson-14/chapters[5]",
+  "type": "T1",
+  "field": "localized.en.chapters[5].body",
+  "problem": "en: «en casa — houses» (должно быть at home), hermanas — «brother / sister», битые кавычки",
+  "fix": "Compare the two tasks: \"Do my sisters shower at home?\" / \"I wash my hands.\" The pronoun and the verb ending refer to the same person. Key words: hermanas — sisters; casa — house; en casa — at home."
+ },
+ {
+  "id": "lesson-14/chapters[6]",
+  "type": "T2",
+  "field": "localized.en.chapters[6].body",
+  "problem": "en: «My sister is getting ready for home» — искажение es:14:50 (gets ready at home)",
+  "fix": "Compare two tasks: \"We're getting ready for the trip.\" / \"My sister gets ready at home.\" The pronoun and verb ending indicate the same performer. Match a small pronoun and verb with the same person."
+ },
+ {
+  "id": "lesson-14/chapters[6]",
+  "type": "T2",
+  "field": "localized.ru.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Сравни два задания: «Мы готовимся к поездке.» / «Моя сестра собирается дома». Местоимение и окончание глагола указывают на одного исполнителя. Согласуй маленькое местоимение и глагол с одним и тем же человеком."
+ },
+ {
+  "id": "lesson-14/chapters[6]",
+  "type": "T2",
+  "field": "localized.uk.chapters[6].body",
+  "problem": "Двойная точка после цитаты («….».) — пунктуационная ошибка",
+  "fix": "Порівняй два завдання: «Ми готуємося до поїздки.» / «Моя сестра збирається вдома». Займенник та закінчення дієслова вказують на того самого виконавця. Узгодь малий займенник і дієслово з тією самою людиною."
+ },
+ {
+  "id": "lesson-14/sharedActivities[1]",
+  "type": "T1",
+  "field": "sharedActivities[1].feedback.en",
+  "problem": "en: se переведено как «myself» — это himself/herself/themselves",
+  "fix": "Pronoun: se — himself, herself, themselves, yourself (usted); marker of a reflexive verb."
+ },
+ {
+  "id": "lesson-14/sharedActivities[5]",
+  "type": "T1",
+  "field": "sharedActivities[5].feedback.en",
+  "problem": "en: se переведено как «myself» — это himself/herself/themselves",
+  "fix": "Pronoun: se — himself, herself, themselves, yourself (usted); marker of a reflexive verb."
+ },
+ {
+  "id": "lesson-14/strategy",
+  "type": "T1",
+  "field": "strategy.ru",
+  "problem": "Стратегия про короткое слово, заменяющее имя/предмет (объектные местоимения), не подходит к возвратным глаголам урока: me/te/se ничего не заменяют",
+  "fix": "Найди, кто выполняет действие, и подбери к нему пару: yo — me + -o, tú — te + -as, él, ella, usted — se + -a, nosotros — nos + -amos, vosotros — os + -áis, ellos, ustedes — se + -an. Местоимение и окончание глагола всегда указывают на одного и того же человека."
+ },
+ {
+  "id": "lesson-14/strategy",
+  "type": "T1",
+  "field": "strategy.uk",
+  "problem": "Стратегия про короткое слово, заменяющее имя/предмет (объектные местоимения), не подходит к возвратным глаголам урока: me/te/se ничего не заменяют",
+  "fix": "Знайди, хто виконує дію, і добери до нього пару: yo — me + -o, tú — te + -as, él, ella, usted — se + -a, nosotros — nos + -amos, vosotros — os + -áis, ellos, ustedes — se + -an. Займенник і закінчення дієслова завжди вказують на ту саму людину."
+ },
+ {
+  "id": "lesson-14/strategy",
+  "type": "T1",
+  "field": "strategy.en",
+  "problem": "Стратегия про короткое слово, заменяющее имя/предмет (объектные местоимения), не подходит к возвратным глаголам урока: me/te/se ничего не заменяют",
+  "fix": "Find who is doing the action and pick the matching pair: yo — me + -o, tú — te + -as, él, ella, usted — se + -a, nosotros — nos + -amos, vosotros — os + -áis, ellos, ustedes — se + -an. The pronoun and the verb ending always point to the same person."
+ }
+]

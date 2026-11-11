@@ -1,0 +1,17 @@
+[
+{"id": "de:27:07", "type": "M", "field": "uk", "problem": "«чекає зовні» — калька/неприродно; для draußen природно «надворі»/«на вулиці» (як у de:27:43)", "fix": "Ми шукаємо таксі, яке чекає на вулиці."},
+{"id": "de:27:13", "type": "B1", "field": "tiles", "problem": "на позиції «neu» всі соблазни — займенники (ich/er/es/wir/sie): інший клас слів, відповідь очевидна без знання слова", "fix": {"position": 6, "replace_distractor": "ich", "with": "alt"}},
+{"id": "de:27:13", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "er", "with": "teuer"}},
+{"id": "de:27:13", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "es", "with": "kurz"}},
+{"id": "de:27:13", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "wir", "with": "lang"}},
+{"id": "de:27:13", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "sie", "with": "schmutzig"}},
+{"id": "de:27:25", "type": "M", "field": "uk", "problem": "пропущено тире перед присудком: «знаєш, мій сусід» читається як звертання", "fix": "Чоловік, якого ти знаєш, — мій сусід."},
+{"id": "de:27:28", "type": "B1", "field": "tiles", "problem": "на позиції «neu» всі соблазни — займенники (ich/er/es/wir/sie): інший клас слів, відповідь очевидна", "fix": {"position": 6, "replace_distractor": "ich", "with": "alt"}},
+{"id": "de:27:28", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "er", "with": "teuer"}},
+{"id": "de:27:28", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "es", "with": "dick"}},
+{"id": "de:27:28", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "wir", "with": "schwer"}},
+{"id": "de:27:28", "type": "B1", "field": "tiles", "problem": "соблазн-займенник на місці прикметника выдает себя", "fix": {"position": 6, "replace_distractor": "sie", "with": "kurz"}},
+{"id": "de:27:47", "type": "M", "field": "uk", "problem": "пропущена кома перед тире після підрядного речення, дефіс замість тире", "fix": "Картина, що висить над диваном, — подарунок."},
+{"id": "de:28:12", "type": "B1", "field": "tiles", "problem": "соблазн «blockiert» дає правильну фразу «Die Straße wird morgen blockiert» = «Дорогу перекроют завтра», ученику зарахують помилку", "fix": {"position": 4, "replace_distractor": "blockiert", "with": "verkauft"}},
+{"id": "de:28:45", "type": "B1", "field": "tiles", "problem": "соблазн «gewaschen» дає правильну фразу «Wurden die Fenster schon gewaschen?» = «Окна уже помыли?» (дословно «помыли»)", "fix": {"position": 4, "replace_distractor": "gewaschen", "with": "gebacken"}}
+]

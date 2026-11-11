@@ -1,0 +1,1048 @@
+[
+{
+"lesson": 11,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:11:01",
+"fr:11:02",
+"fr:11:03"
+],
+"textByLocale": {
+"en": "`Aller` means to be heading somewhere. Compare `je suis à la gare`—already there—and `je vais à la gare`—the destination. You can't derive `vais` from the dictionary ending `aller`.",
+"ru": "`Aller` означает направляться куда-либо. Сравни `je suis à la gare` — уже там — и `je vais à la gare` — это пункт назначения. Нельзя вывести `vais` из окончания словарного `aller`.",
+"uk": "`Aller` означає прямувати будь-куди. Порівняй `je suis à la gare` – вже там – і `je vais à la gare` – це пункт призначення. Неможливо вивести `vais` із закінчення словникового `aller`."
+}
+},
+{
+"exampleIds": [
+"fr:11:03",
+"fr:11:05",
+"fr:11:07"
+],
+"textByLocale": {
+"en": "Remember the article of place. `À` with `le` merges into `au`, with `les` into `aux`. Before `la`, two words remain, and before `l’`, we get `à l’`. The neutral `à le marché` is incorrect.",
+"ru": "Вспомни артикль места. `À` с `le` сливается в `au`, с `les` — в `aux`. Перед `la` остаются два слова, а перед `l’` получаем `à l’`. Нейтральное `à le marché` неверно.",
+"uk": "Згадай артикль місця. `À` з `le` зливається в `au`, з `les` - в `aux`. Перед `la` залишаються два слова, а перед `l’` отримуємо `à l’`. Нейтральне `à le marché` неправильне."
+}
+},
+{
+"exampleIds": [
+"fr:11:11",
+"fr:11:13",
+"fr:11:16"
+],
+"textByLocale": {
+"en": "Are you going to a person's house, to a friend's house, or to see a specialist? Use `chez`. To a hospital, use `à l’hôpital`, to a doctor, use `chez le médecin`.",
+"ru": "Идёшь к человеку, домой к друзьям или на приём к специалисту? Используй `chez`. К зданию больницы идём `à l’hôpital`, к врачу — `chez le médecin`.",
+"uk": "Йдеш до людини, додому до друзів або на прийом до фахівця? Використовуй `chez`. До будівлі лікарні йдемо `à l’hôpital`, до лікаря – `chez le médecin`."
+}
+},
+{
+"exampleIds": [
+"fr:11:21",
+"fr:11:23",
+"fr:11:28"
+],
+"textByLocale": {
+"en": "With cities, use `à`. For countries, learn the complete combinations: `en France`, `au Canada`, `aux Pays-Bas`. Just knowing the country's name doesn't mean you can use `à` everywhere.",
+"ru": "С городами здесь употребляется `à`. Для стран учи сочетания целиком: `en France`, `au Canada`, `aux Pays-Bas`. На основании знания одного названия страны нельзя ставить `à` везде.",
+"uk": "З містами тут вживається `à`. Для країн учи поєднання цілком: `en France`, `au Canada`, `aux Pays-Bas`. На підставі знання однієї назви країни не можна ставити `à` скрізь."
+}
+},
+{
+"exampleIds": [
+"fr:11:31",
+"fr:11:32",
+"fr:11:33"
+],
+"textByLocale": {
+"en": "Where and how are two different parts. In `au travail à pied`, the first group indicates the destination, the second the mode of travel. Don't add an article before `pied` in this expression.",
+"ru": "Куда и каким способом — две разные части. В `au travail à pied` первая группа указывает цель, вторая — способ передвижения. Не добавляй артикль перед `pied` в этом выражении.",
+"uk": "Куди і яким способом – дві різні частини. У `au travail à pied` перша група вказує мету, друга - спосіб пересування. Не додай артикль перед `pied` у цьому виразі."
+}
+},
+{
+"exampleIds": [
+"fr:11:39",
+"fr:11:41",
+"fr:11:43"
+],
+"textByLocale": {
+"en": "In the negation, `ne … pas` surrounds the conjugated form. In question `Où allez-vous ?`, the addressee and action are named, but the interlocutor asks for the location.",
+"ru": "В отрицании `ne … pas` окружает спрягаемую форму. В вопросе `Où allez-vous ?` названы адресат и действие, но место как раз просит назвать собеседник.",
+"uk": "У запереченні `ne … pas` оточує форму, що відмінюється. У питанні `Où allez-vous ?` названо адресат і дію, але місце просить назвати співрозмовник."
+}
+},
+{
+"exampleIds": [
+"fr:11:46",
+"fr:11:49",
+"fr:11:50"
+],
+"textByLocale": {
+"en": "Check each short word separately. In `au bout de la rue`, the first preposition leads to the destination, the second helps clarify what it is.",
+"ru": "Проверь каждое короткое слово по отдельности. В `au bout de la rue` первый предлог ведёт к точке назначения, второй помогает уточнить, концом чего она является.",
+"uk": "Перевірте кожне коротке слово окремо. У `au bout de la rue` перший привід веде до точки призначення, другий допомагає уточнити, кінцем чого вона є."
+}
+}
+],
+"drills": [
+{
+"bad": "des",
+"chapter": 1,
+"id": "fr:11:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 18,
+"options": [
+"au",
+"à",
+"des"
+],
+"slot": 2
+},
+{
+"bad": "de",
+"chapter": 1,
+"id": "fr:11:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 32,
+"options": [
+"au",
+"la",
+"de"
+],
+"slot": 2
+},
+{
+"bad": "une",
+"chapter": 1,
+"id": "fr:11:05:lab",
+"item": 5,
+"kind": "match",
+"near": 33,
+"options": [
+"une",
+"à",
+"cette"
+],
+"slot": 2
+},
+{
+"bad": "ces",
+"chapter": 2,
+"id": "fr:11:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"ces",
+"à",
+"le"
+],
+"slot": 2
+},
+{
+"bad": "une",
+"chapter": 2,
+"id": "fr:11:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 2,
+"options": [
+"au",
+"une",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "avec",
+"chapter": 2,
+"id": "fr:11:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 11,
+"options": [
+"avec",
+"chez",
+"vers"
+],
+"slot": 2
+},
+{
+"bad": "à",
+"chapter": 3,
+"id": "fr:11:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 25,
+"options": [
+"dans",
+"à",
+"chez"
+],
+"slot": 2
+},
+{
+"bad": "vers",
+"chapter": 3,
+"id": "fr:11:17:lab",
+"item": 17,
+"kind": "match",
+"near": 26,
+"options": [
+"de",
+"chez",
+"vers"
+],
+"slot": 2
+},
+{
+"bad": "au",
+"chapter": 3,
+"id": "fr:11:19:lab",
+"item": 19,
+"kind": "build",
+"near": 22,
+"options": [
+"au",
+"les",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "une",
+"chapter": 4,
+"id": "fr:11:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 19,
+"options": [
+"à",
+"une",
+"cet"
+],
+"slot": 2
+},
+{
+"bad": "sur",
+"chapter": 4,
+"id": "fr:11:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 7,
+"options": [
+"vers",
+"en",
+"sur"
+],
+"slot": 2
+},
+{
+"bad": "ce",
+"chapter": 4,
+"id": "fr:11:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 46,
+"options": [
+"ce",
+"au",
+"ces"
+],
+"slot": 2
+},
+{
+"bad": "les",
+"chapter": 5,
+"id": "fr:11:29:lab",
+"item": 29,
+"kind": "match",
+"near": 23,
+"options": [
+"la",
+"aux",
+"les"
+],
+"slot": 2
+},
+{
+"bad": "ce",
+"chapter": 5,
+"id": "fr:11:31:lab",
+"item": 31,
+"kind": "build",
+"near": 21,
+"options": [
+"ce",
+"cet",
+"au"
+],
+"slot": 2
+},
+{
+"bad": "du",
+"chapter": 5,
+"id": "fr:11:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 2,
+"options": [
+"ce",
+"du",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "le",
+"chapter": 6,
+"id": "fr:11:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 20,
+"options": [
+"les",
+"au",
+"le"
+],
+"slot": 2
+},
+{
+"bad": "des",
+"chapter": 6,
+"id": "fr:11:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 5,
+"options": [
+"des",
+"du",
+"à"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 6,
+"id": "fr:11:42:lab",
+"item": 42,
+"kind": "match",
+"near": 10,
+"options": [
+"aux",
+"la",
+"à"
+],
+"slot": 4
+},
+{
+"bad": "des",
+"chapter": 7,
+"id": "fr:11:45:lab",
+"item": 45,
+"kind": "build",
+"near": 33,
+"options": [
+"au",
+"des",
+"à"
+],
+"slot": 3
+},
+{
+"bad": "la",
+"chapter": 7,
+"id": "fr:11:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 22,
+"options": [
+"ce",
+"à",
+"la"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"aller",
+"je vais / tu vas / il va"
+],
+[
+"nous / vous / ils",
+"allons / allez / vont"
+],
+[
+"à + le",
+"au marché"
+],
+[
+"à + la",
+"à la gare"
+],
+[
+"à + les",
+"aux Pays-Bas"
+],
+[
+"chez",
+"chez Léa"
+]
+],
+"title": {
+"en": "Where I'm going: `aller` and destination",
+"ru": "Куда иду: `aller` и место назначения",
+"uk": "Куди йду: `aller` та місце призначення"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:11:01",
+"target": "Je vais à la gare.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал."
+},
+{
+"id": "fr:11:02",
+"target": "Tu vas à la gare.",
+"ru": "Ты идешь на вокзал.",
+"uk": "Ти йдеш на вокзал."
+},
+{
+"id": "fr:11:03",
+"target": "Elle va au marché.",
+"ru": "Она идет на рынок.",
+"uk": "Вона йде на ринок."
+},
+{
+"id": "fr:11:05",
+"target": "Nous allons à l’école.",
+"ru": "Мы идём в школу.",
+"uk": "Ми йдемо до школи."
+},
+{
+"id": "fr:11:07",
+"target": "Ils vont au bureau.",
+"ru": "Они идут в офис.",
+"uk": "Вони йдуть до офісу."
+},
+{
+"id": "fr:11:11",
+"target": "Léa va chez le médecin.",
+"ru": "Леа идёт к врачу.",
+"uk": "Леа йде до лікаря."
+},
+{
+"id": "fr:11:13",
+"target": "Je vais chez ma sœur.",
+"ru": "Я иду к сестре.",
+"uk": "Я йду до сестри."
+},
+{
+"id": "fr:11:16",
+"target": "Ils vont chez leurs parents.",
+"ru": "Они идут к родителям.",
+"uk": "Вони йдуть до батьків."
+},
+{
+"id": "fr:11:21",
+"target": "Je vais à Lyon.",
+"ru": "Я еду в Лион.",
+"uk": "Я їду до Ліона."
+},
+{
+"id": "fr:11:23",
+"target": "Nous allons en France.",
+"ru": "Мы едем во Францию.",
+"uk": "Ми їдемо до Франції."
+},
+{
+"id": "fr:11:28",
+"target": "Ma sœur va aux Pays-Bas.",
+"ru": "Моя сестра едет в Нидерланды.",
+"uk": "Моя сестра їде до Нідерландів."
+},
+{
+"id": "fr:11:31",
+"target": "Je vais au travail à pied.",
+"ru": "Я иду на работу пешком.",
+"uk": "Я йду на роботу пішки."
+},
+{
+"id": "fr:11:32",
+"target": "Elle va au musée en bus.",
+"ru": "Она едет в музей на автобусе.",
+"uk": "Вона їде до музею автобусом."
+},
+{
+"id": "fr:11:33",
+"target": "Nous allons au parc à vélo.",
+"ru": "Мы едем в парк на велосипедах.",
+"uk": "Ми їдемо до парку на велосипеді."
+},
+{
+"id": "fr:11:39",
+"target": "Nous allons à la mairie demain.",
+"ru": "Завтра мы идём в мэрию.",
+"uk": "Завтра ми йдемо до мерії."
+},
+{
+"id": "fr:11:41",
+"target": "Où allez-vous après le cours ?",
+"ru": "Куда вы идёте после занятия?",
+"uk": "Куди ви йдете після заняття?"
+},
+{
+"id": "fr:11:43",
+"target": "Je ne vais pas au magasin aujourd’hui.",
+"ru": "Я сегодня не иду в магазин.",
+"uk": "Я не піду сьогодні до магазину."
+},
+{
+"id": "fr:11:46",
+"target": "Vous allez à l’accueil ou au guichet ?",
+"ru": "Вы идёте к стойке информации или в кассу?",
+"uk": "Ви йдете до стійки інформації або до каси?"
+},
+{
+"id": "fr:11:49",
+"target": "Nous allons au bout de la rue.",
+"ru": "Мы идём до конца улицы.",
+"uk": "Ми йдемо до кінця вулиці."
+},
+{
+"id": "fr:11:50",
+"target": "Après le travail, je vais chez mes parents.",
+"ru": "После работы я иду к родителям.",
+"uk": "Після роботи я йду до батьків."
+}
+]
+},
+{
+"lesson": 12,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"fr:12:01",
+"fr:12:03",
+"fr:12:05"
+],
+"textByLocale": {
+"en": "Imagine there's water, soup, and bread on the table. You take part, not all of it. In French, small words are used before the food item's name for an indefinite quantity.",
+"ru": "Представь, что на столе вода, суп и хлеб. Ты берёшь часть, а не весь запас. Для неопределённого количества во французском нужны небольшие слова перед названием продукта.",
+"uk": "Уяви, що на столі вода, суп та хліб. Ти береш частину, а чи не весь запас. Для невизначеної кількості французькою потрібні невеликі слова перед назвою продукту."
+}
+},
+{
+"exampleIds": [
+"fr:12:03",
+"fr:12:05",
+"fr:12:07"
+],
+"textByLocale": {
+"en": "`soupe` is feminine—`de la soupe`. `pain` is masculine—`du pain`. Before a vowel, it becomes `de l’eau`. The apostrophe doesn't tell you the gender of the word; it only changes the spelling.",
+"ru": "У `soupe` женский род — `de la soupe`. У `pain` мужской — `du pain`. Перед гласной выходит `de l’eau`. Апостроф не говорит тебе, какого рода слово: он меняет только написание.",
+"uk": "У `soupe` жіночий рід - `de la soupe`. У `pain` чоловічий - `du pain`. Перед голосною виходить `de l’eau`. Апостроф не говорить тобі, якого роду слово: він змінює тільки написання."
+}
+},
+{
+"exampleIds": [
+"fr:12:11",
+"fr:12:13",
+"fr:12:18"
+],
+"textByLocale": {
+"en": "The same food can be counted in different ways. `Du poisson` on the menu is fish as a meal, `un poisson` is just one fish. First, decide if a portion is measured here at all.",
+"ru": "Одна и та же еда допускает разные способы счёта. `Du poisson` в меню — рыба как еда, `un poisson` — одна рыба. Сначала реши, измеряется ли здесь порция вообще.",
+"uk": "Одна і та ж їжа допускає різні способи рахунку. `Du poisson` у меню - риба як їжа, `un poisson` - одна риба. Спочатку виріши, чи тут вимірюється порція взагалі."
+}
+},
+{
+"exampleIds": [
+"fr:12:21",
+"fr:12:23",
+"fr:12:27"
+],
+"textByLocale": {
+"en": "Remember the combination with action: to drink something, to add something. Salt and sugar in these examples are not counted by the grains. For general love of a product, the same scheme with the definite article applies.",
+"ru": "Запоминай сочетание с действием: пить что-то, добавлять что-то. Соль и сахар в этих примерах не считаются по крупинкам. Для общей любви к продукту действует прежняя схема с определённым артиклем.",
+"uk": "Запам'ятай поєднання з дією: пити щось, додавати щось. Сіль і цукор у цих прикладах не зважають на крупинки. Для загальної любові до продукту діє колишня схема із певним артиклем."
+}
+},
+{
+"exampleIds": [
+"fr:12:31",
+"fr:12:33",
+"fr:12:36"
+],
+"textByLocale": {
+"en": "In the neutral complete negation of a direct object, `pas de` or `plus de` are usually used: I don't take any milk, there's no flour left. Don't extend this to any `de` in French.",
+"ru": "В нейтральном полном отрицании прямого дополнения обычно используют `pas de` или `plus de`: не беру молока, не осталось муки. Не распространяй это на любое `de` во французском.",
+"uk": "У нейтральному повному запереченні прямого доповнення зазвичай використовують `pas de` або `plus de`: не беру молока, не залишилося борошна. Не поширюй це на будь-яке `de` у французькій."
+}
+},
+{
+"exampleIds": [
+"fr:12:39",
+"fr:12:41",
+"fr:12:44"
+],
+"textByLocale": {
+"en": "When the quantity is already specified by a measure, `de` usually follows the measure: a glass of water, a kilogram of apples. Don't add `un verre de` to `de l’eau`: you need `un verre d’eau`.",
+"ru": "Когда количество уже задано мерой, после меры обычно идёт `de`: стакан воды, килограмм яблок. Не складывай `un verre de` с `de l’eau`: нужно `un verre d’eau`.",
+"uk": "Коли кількість вже задана мірою, після заходу зазвичай йде `de`: склянка води, кілограм яблук. Чи не складай `un verre de` з `de l’eau`: потрібно `un verre d’eau`."
+}
+},
+{
+"exampleIds": [
+"fr:12:45",
+"fr:12:46",
+"fr:12:50"
+],
+"textByLocale": {
+"en": "In a long phrase, products can play different roles. After `une cuillère`, the measure is specified, and in `du miel` without a measure, it is not indicated. Start with the buyer's intent, only then choose the article.",
+"ru": "В длинной фразе продукты могут играть разные роли. После `une cuillère` задаётся мера, а в `du miel` без меры она не указана. Начни с намерения покупателя, только потом выбирай артикль.",
+"uk": "У довгій фразі продукти можуть відігравати різні ролі. Після `une cuillère` задається міра, а `du miel` без міри вона не вказана. Почни з наміру покупця, тільки потім вибирай артикль."
+}
+}
+],
+"drills": [
+{
+"bad": "au",
+"chapter": 1,
+"id": "fr:12:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"le",
+"au",
+"du"
+],
+"slot": 2
+},
+{
+"bad": "au",
+"chapter": 1,
+"id": "fr:12:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 4,
+"options": [
+"les",
+"au",
+"de"
+],
+"slot": 2
+},
+{
+"bad": "ce",
+"chapter": 1,
+"id": "fr:12:05:lab",
+"item": 5,
+"kind": "match",
+"near": 43,
+"options": [
+"ce",
+"de",
+"cette"
+],
+"slot": 2
+},
+{
+"bad": "un",
+"chapter": 2,
+"id": "fr:12:08:lab",
+"item": 8,
+"kind": "build",
+"near": 12,
+"options": [
+"de",
+"un",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "du",
+"chapter": 2,
+"id": "fr:12:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 39,
+"options": [
+"le",
+"de",
+"du"
+],
+"slot": 2
+},
+{
+"bad": "le",
+"chapter": 2,
+"id": "fr:12:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 14,
+"options": [
+"la",
+"de",
+"le"
+],
+"slot": 1
+},
+{
+"bad": "cet",
+"chapter": 3,
+"id": "fr:12:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 18,
+"options": [
+"de",
+"aux",
+"cet"
+],
+"slot": 2
+},
+{
+"bad": "à",
+"chapter": 3,
+"id": "fr:12:17:lab",
+"item": 17,
+"kind": "match",
+"near": 21,
+"options": [
+"à",
+"du",
+"cette"
+],
+"slot": 2
+},
+{
+"bad": "du",
+"chapter": 3,
+"id": "fr:12:19:lab",
+"item": 19,
+"kind": "build",
+"near": 32,
+"options": [
+"des",
+"cette",
+"du"
+],
+"slot": 2
+},
+{
+"bad": "le",
+"chapter": 4,
+"id": "fr:12:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 5,
+"options": [
+"le",
+"de",
+"une"
+],
+"slot": 2
+},
+{
+"bad": "un",
+"chapter": 4,
+"id": "fr:12:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 6,
+"options": [
+"un",
+"du",
+"les"
+],
+"slot": 2
+},
+{
+"bad": "la",
+"chapter": 4,
+"id": "fr:12:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"du",
+"ce",
+"la"
+],
+"slot": 2
+},
+{
+"bad": "cet",
+"chapter": 5,
+"id": "fr:12:29:lab",
+"item": 29,
+"kind": "match",
+"near": 30,
+"options": [
+"de",
+"cet",
+"des"
+],
+"slot": 2
+},
+{
+"bad": "au",
+"chapter": 5,
+"id": "fr:12:31:lab",
+"item": 31,
+"kind": "build",
+"near": 3,
+"options": [
+"cet",
+"de",
+"au"
+],
+"slot": 4
+},
+{
+"bad": "ce",
+"chapter": 5,
+"id": "fr:12:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 22,
+"options": [
+"ce",
+"du",
+"de"
+],
+"slot": 3
+},
+{
+"bad": "le",
+"chapter": 6,
+"id": "fr:12:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 12,
+"options": [
+"de",
+"cet",
+"le"
+],
+"slot": 3
+},
+{
+"bad": "à",
+"chapter": 6,
+"id": "fr:12:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 10,
+"options": [
+"de",
+"à",
+"une"
+],
+"slot": 4
+},
+{
+"bad": "la",
+"chapter": 6,
+"id": "fr:12:42:lab",
+"item": 42,
+"kind": "match",
+"near": 15,
+"options": [
+"du",
+"la",
+"de"
+],
+"slot": 4
+},
+{
+"bad": "un",
+"chapter": 7,
+"id": "fr:12:45:lab",
+"item": 45,
+"kind": "build",
+"near": 26,
+"options": [
+"de",
+"cet",
+"un"
+],
+"slot": 4
+},
+{
+"bad": "de",
+"chapter": 7,
+"id": "fr:12:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 9,
+"options": [
+"du",
+"un",
+"de"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"pain",
+"du pain"
+],
+[
+"soupe",
+"de la soupe"
+],
+[
+"eau",
+"de l’eau"
+],
+[
+"pommes",
+"des pommes"
+],
+[
+"une bouteille",
+"une bouteille d’eau"
+],
+[
+"pas",
+"pas de beurre / pas d’huile"
+]
+],
+"title": {
+"en": "Not the whole loaf, but a little bread: `du`, `de la`, `de l’`",
+"ru": "Не вся булка, а немного хлеба: `du`, `de la`, `de l’`",
+"uk": "Не вся булка, а трохи хліба: `du`, `de la`, `de l’`"
+}
+},
+"exampleResolved": [
+{
+"id": "fr:12:01",
+"target": "Je prends du pain.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб."
+},
+{
+"id": "fr:12:03",
+"target": "Je prends de la soupe.",
+"ru": "Я беру суп.",
+"uk": "Я беру суп."
+},
+{
+"id": "fr:12:05",
+"target": "Nous prenons de l’eau.",
+"ru": "Мы берём воду.",
+"uk": "Ми беремо воду."
+},
+{
+"id": "fr:12:07",
+"target": "Il prend du fromage.",
+"ru": "Он берёт сыр.",
+"uk": "Він бере сир."
+},
+{
+"id": "fr:12:11",
+"target": "J’achète du beurre.",
+"ru": "Я покупаю сливочное масло.",
+"uk": "Я купую вершкове масло."
+},
+{
+"id": "fr:12:13",
+"target": "Nous achetons du poisson.",
+"ru": "Мы покупаем рыбу.",
+"uk": "Ми купуємо рибу."
+},
+{
+"id": "fr:12:18",
+"target": "Tu manges de la compote.",
+"ru": "Ты ешь фруктовое пюре.",
+"uk": "Ти їси фруктове пюре."
+},
+{
+"id": "fr:12:21",
+"target": "Je bois du thé.",
+"ru": "Я пью чай.",
+"uk": "Я п'ю чай."
+},
+{
+"id": "fr:12:23",
+"target": "Nous buvons du jus de pomme.",
+"ru": "Мы пьем яблочный сок.",
+"uk": "Ми п'ємо яблучний сік."
+},
+{
+"id": "fr:12:27",
+"target": "Tu ajoutes de la moutarde.",
+"ru": "Ты добавляешь горчицу.",
+"uk": "Ти додаєш гірчицю."
+},
+{
+"id": "fr:12:31",
+"target": "Je ne prends pas de lait.",
+"ru": "Я не беру молоко.",
+"uk": "Я не беру молоко."
+},
+{
+"id": "fr:12:33",
+"target": "Il ne boit pas de café.",
+"ru": "Он не пьет кофе.",
+"uk": "Він не п'є каву."
+},
+{
+"id": "fr:12:36",
+"target": "Je n’ai plus de farine.",
+"ru": "У меня закончилась мука.",
+"uk": "У мене закінчилося борошно."
+},
+{
+"id": "fr:12:39",
+"target": "Je voudrais un peu de soupe.",
+"ru": "Я бы хотел немного супа.",
+"uk": "Я б хотів трохи супу."
+},
+{
+"id": "fr:12:41",
+"target": "Je voudrais un verre d’eau.",
+"ru": "Я бы хотел стакан воды.",
+"uk": "Я б хотів склянку води."
+},
+{
+"id": "fr:12:44",
+"target": "Tu veux une tasse de thé ?",
+"ru": "Хочешь чашку чая?",
+"uk": "Хочеш чашку чаю?"
+},
+{
+"id": "fr:12:45",
+"target": "Elle ajoute une cuillère de miel.",
+"ru": "Она добавляет ложку меда.",
+"uk": "Вона додає ложку меду."
+},
+{
+"id": "fr:12:46",
+"target": "Je voudrais du pain et du beurre.",
+"ru": "Я бы хотел хлеб с маслом.",
+"uk": "Я б хотів хліба з маслом."
+},
+{
+"id": "fr:12:50",
+"target": "Dans mon café, je mets un peu de lait.",
+"ru": "В свой кофе я добавляю немного молока.",
+"uk": "У свою каву я додаю трохи молока."
+}
+]
+}
+]

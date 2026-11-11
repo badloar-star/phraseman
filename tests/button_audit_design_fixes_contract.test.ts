@@ -110,22 +110,6 @@ describe('аудит кнопок: Видео, добавки Макетов R57
 });
 
 describe('аудит кнопок: добавки Ревизора по 9fa4a4835 (15.10)', () => {
-  it('R43: индикатор ожидания доступа — на уровне общего gate (подсказка для всех микрофонов), запись стартует сама после Plus', () => {
-    const gate = read('hooks/use_voice_attempt_gate.ts');
-    expect(gate).toContain('canStartAttempt: (onProceed?: () => void) => boolean;');
-    expect(gate).toContain("emitAppEvent('action_toast', actionToastTri('info', {");
-    expect(gate).toContain('if (proceed) setTimeout(proceed, 0);');
-    expect(gate).toContain('pendingProceedRef.current = onProceed ?? null;');
-    // хосты передают старт записи
-    expect(read('app/flashcards/SpeakMicButton.tsx')).toContain('voiceGate.canStartAttempt(onStart)');
-    expect(read('app/dialogue_v2_freeform.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
-    expect(read('app/dialogue_v2_session.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
-    expect(read('app/ai_dialog_session.tsx')).toContain('voiceInputGate.canStartAttempt(() => { void startVoiceInputRef.current?.(); })');
-    // удержание (lesson1, старый курс при hold) — без автостарта: палец уже отпущен
-    expect(read('app/lesson1.tsx')).toContain('speakingGate.canStartAttempt()) return;');
-    expect(read('app/lesson1.tsx')).not.toContain('startSpeakingHoldRef');
-    expect(read('app/learning-v2/session/[id].tsx')).toContain('legacyVoiceGate.canStartAttempt(interaction === "tap" ? () => { void controlReleasedVoiceRef.current?.("start", interaction); } : undefined)');
-  });
 
   it('#26/R59: пилюля канала скрыта, пока канал языка неизвестен или его нет', () => {
     expect(read('components/youtube/YoutubeChannelHeader.tsx')).toContain('{hideChannel ? null : (() => {');

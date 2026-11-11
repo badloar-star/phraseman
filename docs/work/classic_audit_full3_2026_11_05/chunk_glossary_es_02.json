@@ -1,0 +1,3576 @@
+[
+{
+"lemma": "poco",
+"meaning": {
+"ru": "мало; un poco — немного",
+"uk": "мало; un poco — трохи",
+"en": "few; un poco — a little",
+"es": "pocos; un poco — un poco",
+"pt-BR": "poucos; un poco — um pouco",
+"vi": "một vài; un poco — một chút",
+"id": "sedikit; un poco — sedikit",
+"tr": "az; un poco — biraz",
+"pl": "kilka; un poco — trochę"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:25:34",
+"target": "Baja un poco el volumen.",
+"ru": "Убавь немного громкость.",
+"uk": "Зменш трохи гучність."
+},
+{
+"id": "es:25:38",
+"target": "Abre el grifo un poco.",
+"ru": "Немного открой кран.",
+"uk": "Трохи відкрий кран."
+}
+],
+"other": {}
+},
+{
+"lemma": "poner",
+"meaning": {
+"ru": "ставить, класть",
+"uk": "ставити, класти",
+"en": "to put; to place",
+"es": "poner",
+"pt-BR": "pôr; colocar",
+"vi": "đặt; để",
+"id": "meletakkan",
+"tr": "koymak",
+"pl": "stawiać; kłaść"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:29:29",
+"target": "En el balcón pondría una mesa.",
+"ru": "На балконе я бы поставил стол.",
+"uk": "На балконі я б поставив стіл."
+},
+{
+"id": "es:32:10",
+"target": "Si tuviera un balcón, pondría la mesa fuera.",
+"ru": "Будь у меня балкон, я бы поставил стол снаружи.",
+"uk": "Якби в мене був балкон, я б поставив стіл надворі."
+}
+],
+"other": {}
+},
+{
+"lemma": "porque",
+"meaning": {
+"ru": "потому что",
+"uk": "тому що",
+"en": "because",
+"es": "porque",
+"pt-BR": "porque",
+"vi": "bởi vì",
+"id": "karena",
+"tr": "çünkü",
+"pl": "ponieważ"
+},
+"firstLesson": 16,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:16:32",
+"target": "Voy a esperar porque estás ocupado.",
+"ru": "Я подожду, потому что ты занят.",
+"uk": "Я почекаю, бо ти зайнятий."
+},
+{
+"id": "es:22:15",
+"target": "Volví en taxi porque no tuve tiempo.",
+"ru": "Я вернулся на такси, потому что у меня не было времени.",
+"uk": "Я повернувся на таксі, бо не мав часу."
+}
+],
+"other": {}
+},
+{
+"lemma": "probar",
+"meaning": {
+"ru": "пробовать на вкус",
+"uk": "куштувати",
+"en": "to taste; to try",
+"es": "probar comida",
+"pt-BR": "provar um alimento",
+"vi": "nếm thử",
+"id": "mencicipi",
+"tr": "tadına bakmak",
+"pl": "próbować jedzenia"
+},
+"firstLesson": 19,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:19:24",
+"target": "Estoy probando la sopa.",
+"ru": "Я сейчас пробую суп.",
+"uk": "Я зараз куштую суп."
+},
+{
+"id": "es:25:13",
+"target": "Prueba la sopa.",
+"ru": "Попробуй суп.",
+"uk": "Скуштуй суп."
+}
+],
+"other": {}
+},
+{
+"lemma": "pueblo",
+"meaning": {
+"ru": "посёлок, деревня",
+"uk": "селище, село",
+"en": "settlement, village",
+"es": "asentamiento, pueblo",
+"pt-BR": "assentamento",
+"vi": "khu định cư, làng mạc",
+"id": "pemukiman, desa",
+"tr": "yerleşim yeri, köy",
+"pl": "osada, wieś"
+},
+"firstLesson": 32,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:32:39",
+"target": "Si el túnel estuviera cerrado, volvería al pueblo.",
+"ru": "Если бы тоннель был закрыт, я бы вернулся в посёлок.",
+"uk": "Якби тунель був закритий, я б повернувся до селища."
+},
+{
+"id": "es:32:46",
+"target": "Si viviera en el pueblo, necesitaría un coche.",
+"ru": "Если бы я жил в посёлке, мне бы понадобилась машина.",
+"uk": "Якби я жив у селищі, мені б знадобилася машина."
+}
+],
+"other": {}
+},
+{
+"lemma": "queso",
+"meaning": {
+"ru": "сыр",
+"uk": "сир",
+"en": "cheese",
+"es": "queso",
+"pt-BR": "queijo",
+"vi": "pho mát",
+"id": "keju",
+"tr": "peynir",
+"pl": "ser"
+},
+"firstLesson": 21,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:21:07",
+"target": "Compré queso en el mercado.",
+"ru": "Я купил сыр на рынке.",
+"uk": "Я купив сир на ринку."
+},
+{
+"id": "es:21:38",
+"target": "No compré un kilo de queso.",
+"ru": "Я не покупал килограмм сыра.",
+"uk": "Я не купував кілограма сиру."
+},
+{
+"id": "es:21:42",
+"target": "¿Compraste queso ayer?",
+"ru": "Ты вчера купил сыр?",
+"uk": "Ти вчора купив сир?"
+}
+],
+"other": {}
+},
+{
+"lemma": "recepción",
+"meaning": {
+"ru": "стойка регистрации",
+"uk": "стійка реєстрації",
+"en": "reception desk",
+"es": "mostrador de recepción",
+"pt-BR": "recepção",
+"vi": "quầy lễ tân",
+"id": "meja resepsionis",
+"tr": "resepsiyon masası",
+"pl": "recepcja"
+},
+"firstLesson": 5,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:05:09",
+"target": "¿Dónde está la recepción?",
+"ru": "Где стойка регистрации?",
+"uk": "Де стійка реєстрації?"
+},
+{
+"id": "es:05:20",
+"target": "¿Quién está en la recepción?",
+"ru": "Кто на ресепшене?",
+"uk": "Хто на рецепції?"
+},
+{
+"id": "es:09:22",
+"target": "Trabajamos en la recepción.",
+"ru": "Мы работаем на стойке регистрации.",
+"uk": "Ми працюємо на стійці реєстрації."
+}
+],
+"other": {}
+},
+{
+"lemma": "receta",
+"meaning": {
+"ru": "рецепт блюда",
+"uk": "рецепт страви",
+"en": "recipe",
+"es": "receta",
+"pt-BR": "receita",
+"vi": "công thức",
+"id": "resep",
+"tr": "tarif",
+"pl": "przepis"
+},
+"firstLesson": 26,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:26:07",
+"target": "Le mandé la receta a mi madre.",
+"ru": "Я отправил маме рецепт.",
+"uk": "Я надіслав мамі рецепт."
+},
+{
+"id": "es:26:29",
+"target": "Les mandamos la receta a los vecinos.",
+"ru": "Мы отправили соседям рецепт.",
+"uk": "Ми надіслали сусідам рецепт."
+},
+{
+"id": "es:32:23",
+"target": "Si tuviera tu número, te enviaría la receta.",
+"ru": "Если бы у меня был твой номер, я бы отправил тебе рецепт.",
+"uk": "Якби я мав твій номер, я б надіслав тобі рецепт."
+}
+],
+"other": {}
+},
+{
+"lemma": "recoger",
+"meaning": {
+"ru": "забирать, забирать заказ",
+"uk": "забирати, отримувати",
+"en": "to pick up; to collect",
+"es": "recoger",
+"pt-BR": "buscar; retirar",
+"vi": "đến lấy",
+"id": "mengambil",
+"tr": "gidip almak",
+"pl": "odbierać"
+},
+"firstLesson": 18,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "es:18:22",
+"target": "La recojo en recepción.",
+"ru": "Я забираю её со стойки регистрации.",
+"uk": "Я забираю її зі стійки реєстрації."
+},
+{
+"id": "es:18:44",
+"target": "Los recojo después de clase.",
+"ru": "Я заберу их после занятия.",
+"uk": "Я заберу їх після заняття."
+},
+{
+"id": "es:19:46",
+"target": "¿Ana está recogiendo la bicicleta?",
+"ru": "Ана сейчас забирает велосипед?",
+"uk": "Ана зараз забирає велосипед?"
+}
+],
+"other": {}
+},
+{
+"lemma": "regalo",
+"meaning": {
+"ru": "подарок",
+"uk": "подарунок",
+"en": "Gift",
+"es": "Regalo",
+"pt-BR": "Presente",
+"vi": "Quà tặng",
+"id": "Hadiah",
+"tr": "Hediye",
+"pl": "Prezent"
+},
+"firstLesson": 19,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:19:31",
+"target": "Estamos envolviendo el regalo.",
+"ru": "Мы сейчас заворачиваем подарок.",
+"uk": "Ми зараз загортаємо подарунок."
+},
+{
+"id": "es:21:18",
+"target": "Compré un regalo para mi madre.",
+"ru": "Я купил подарок для мамы.",
+"uk": "Я купив подарунок для мами."
+},
+{
+"id": "es:27:17",
+"target": "El regalo que compré está en casa.",
+"ru": "Подарок, который я купил, дома.",
+"uk": "Подарунок, який я купив, удома."
+}
+],
+"other": {}
+},
+{
+"lemma": "reloj",
+"meaning": {
+"ru": "часы (наручные или настенные)",
+"uk": "годинник",
+"en": "watch (wristwatch or wall clock)",
+"es": "reloj (de pulsera o de pared)",
+"pt-BR": "relógio (de pulso ou de parede)",
+"vi": "đồng hồ (đồng hồ đeo tay hoặc đồng hồ treo tường)",
+"id": "jam tangan (jam tangan atau jam dinding)",
+"tr": "saat (kol saati veya duvar saati)",
+"pl": "zegarek (naręczny lub ścienny)"
+},
+"firstLesson": 8,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:08:09",
+"target": "Mi reloj está en el bolsillo.",
+"ru": "Мои часы в кармане.",
+"uk": "Мій годинник у кишені."
+},
+{
+"id": "es:08:18",
+"target": "Tu reloj está en el bolso.",
+"ru": "Твои часы в сумке.",
+"uk": "Твій годинник у сумці."
+},
+{
+"id": "es:19:35",
+"target": "Luis está buscando su reloj.",
+"ru": "Луис сейчас ищет свои часы.",
+"uk": "Луїс зараз шукає свій годинник."
+}
+],
+"other": {}
+},
+{
+"lemma": "reparar",
+"meaning": {
+"ru": "чинить",
+"uk": "лагодити",
+"en": "to repair",
+"es": "reparar",
+"pt-BR": "consertar",
+"vi": "sửa chữa",
+"id": "memperbaiki",
+"tr": "onarmak",
+"pl": "naprawiać"
+},
+"firstLesson": 28,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:28:19",
+"target": "Repararán mi bicicleta en el taller.",
+"ru": "В мастерской починят мой велосипед.",
+"uk": "У майстерні полагодять мій велосипед."
+},
+{
+"id": "es:28:47",
+"target": "¿Repararán el ascensor mañana?",
+"ru": "Лифт завтра починят?",
+"uk": "Ліфт завтра полагодять?"
+},
+{
+"id": "es:30:21",
+"target": "Ana quiere que el mecánico repare la rueda.",
+"ru": "Ана хочет, чтобы механик починил колесо.",
+"uk": "Ана хоче, щоб механік полагодив колесо."
+}
+],
+"other": {}
+},
+{
+"lemma": "revisar",
+"meaning": {
+"ru": "проверять, осматривать",
+"uk": "перевіряти, оглядати",
+"en": "to check; inspect",
+"es": "revisar",
+"pt-BR": "verificar; inspecionar",
+"vi": "kiểm tra",
+"id": "memeriksa",
+"tr": "kontrol etmek",
+"pl": "sprawdzać; przeglądać"
+},
+"firstLesson": 28,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:28:12",
+"target": "El mecánico revisará los frenos.",
+"ru": "Механик проверит тормоза.",
+"uk": "Механік перевірить гальма."
+},
+{
+"id": "es:28:30",
+"target": "El mecánico revisará la rueda.",
+"ru": "Механик проверит колесо.",
+"uk": "Механік перевірить колесо."
+},
+{
+"id": "es:28:39",
+"target": "Revisaremos los frenos antes del viaje.",
+"ru": "Мы проверим тормоза перед поездкой.",
+"uk": "Ми перевіримо гальма перед поїздкою."
+}
+],
+"other": {}
+},
+{
+"lemma": "rueda",
+"meaning": {
+"ru": "колесо",
+"uk": "колесо",
+"en": "wheel",
+"es": "rueda",
+"pt-BR": "roda",
+"vi": "bánh xe",
+"id": "roda",
+"tr": "tekerlek",
+"pl": "koło"
+},
+"firstLesson": 28,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:28:16",
+"target": "Cambiaremos la rueda mañana.",
+"ru": "Мы завтра поменяем колесо.",
+"uk": "Ми завтра замінимо колесо."
+},
+{
+"id": "es:28:30",
+"target": "El mecánico revisará la rueda.",
+"ru": "Механик проверит колесо.",
+"uk": "Механік перевірить колесо."
+},
+{
+"id": "es:28:37",
+"target": "No compraré otra rueda.",
+"ru": "Я не буду покупать ещё одно колесо.",
+"uk": "Я не купуватиму ще одного колеса."
+}
+],
+"other": {}
+},
+{
+"lemma": "ruidoso",
+"meaning": {
+"ru": "шумный",
+"uk": "шумний",
+"en": "noisy",
+"es": "ruidoso",
+"pt-BR": "barulhento",
+"vi": "ồn ào",
+"id": "berisik",
+"tr": "gürültülü",
+"pl": "hałaśliwy"
+},
+"firstLesson": 29,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:29:33",
+"target": "No alquilaría un piso tan ruidoso.",
+"ru": "Я бы не снял такую шумную квартиру.",
+"uk": "Я б не винайняв таку шумну квартиру."
+},
+{
+"id": "es:29:37",
+"target": "No pagaría tanto por una habitación ruidosa.",
+"ru": "Я бы столько не заплатил за шумную комнату.",
+"uk": "Я б стільки не заплатив за шумну кімнату."
+},
+{
+"id": "es:32:33",
+"target": "No alquilaría ese piso si fuera tan ruidoso.",
+"ru": "Я бы не снял ту квартиру, если бы она была такой шумной.",
+"uk": "Я б не винайняв ту квартиру, якби вона була такою шумною."
+}
+],
+"other": {}
+},
+{
+"lemma": "sal",
+"meaning": {
+"ru": "соль",
+"uk": "сіль",
+"en": "salt",
+"es": "sal",
+"pt-BR": "sal",
+"vi": "muối",
+"id": "garam",
+"tr": "tuz",
+"pl": "sól"
+},
+"firstLesson": 25,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:25:17",
+"target": "Pasa la sal.",
+"ru": "Передай соль.",
+"uk": "Передай сіль."
+},
+{
+"id": "es:25:46",
+"target": "Guarda la sal en la cocina.",
+"ru": "Убери соль на кухню.",
+"uk": "Прибери сіль на кухню."
+},
+{
+"id": "es:26:25",
+"target": "Le pasé la sal a Luis.",
+"ru": "Я передал Луису соль.",
+"uk": "Я передав Луїсу сіль."
+}
+],
+"other": {}
+},
+{
+"lemma": "secar",
+"meaning": {
+"ru": "вытирать насухо, сушить",
+"uk": "витирати насухо, сушити",
+"en": "to dry",
+"es": "secar",
+"pt-BR": "secar",
+"vi": "lau khô; làm khô",
+"id": "mengeringkan",
+"tr": "kurutmak",
+"pl": "suszyć; wycierać do sucha"
+},
+"firstLesson": 19,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:19:18",
+"target": "Ana está secando los platos.",
+"ru": "Ана сейчас вытирает тарелки.",
+"uk": "Ана зараз витирає тарілки."
+},
+{
+"id": "es:19:42",
+"target": "¿Estás secando el plato?",
+"ru": "Ты сейчас вытираешь тарелку?",
+"uk": "Ти зараз витираєш тарілку?"
+},
+{
+"id": "es:25:18",
+"target": "Seca los platos.",
+"ru": "Вытри тарелки.",
+"uk": "Витри тарілки."
+}
+],
+"other": {}
+},
+{
+"lemma": "señal",
+"meaning": {
+"ru": "сигнал",
+"uk": "сигнал",
+"en": "signal",
+"es": "señal",
+"pt-BR": "sinal",
+"vi": "tín hiệu",
+"id": "sinyal",
+"tr": "sinyal",
+"pl": "sygnał"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:31:28",
+"target": "Hablaremos cuando vuelva la señal.",
+"ru": "Мы поговорим, когда снова появится сигнал.",
+"uk": "Ми поговоримо, коли знову з’явиться сигнал."
+},
+{
+"id": "es:32:44",
+"target": "Si tuviera señal, te enviaría el archivo.",
+"ru": "Если бы был сигнал, я бы отправил тебе файл.",
+"uk": "Якби був сигнал, я б надіслав тобі файл."
+}
+],
+"other": {}
+},
+{
+"lemma": "sopa",
+"meaning": {
+"ru": "суп",
+"uk": "суп",
+"en": "soup",
+"es": "sopa",
+"pt-BR": "sopa",
+"vi": "súp",
+"id": "sup",
+"tr": "çorba",
+"pl": "zupa"
+},
+"firstLesson": 19,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:19:14",
+"target": "Luis está preparando una sopa.",
+"ru": "Луис сейчас варит суп.",
+"uk": "Луїс зараз варить суп."
+},
+{
+"id": "es:19:24",
+"target": "Estoy probando la sopa.",
+"ru": "Я сейчас пробую суп.",
+"uk": "Я зараз куштую суп."
+},
+{
+"id": "es:21:37",
+"target": "Luis preparó la sopa anoche.",
+"ru": "Луис вчера вечером приготовил суп.",
+"uk": "Луїс учора ввечері приготував суп."
+}
+],
+"other": {}
+},
+{
+"lemma": "supermercado",
+"meaning": {
+"ru": "супермаркет",
+"uk": "супермаркет",
+"en": "supermarket",
+"es": "supermercado",
+"pt-BR": "supermercado",
+"vi": "siêu thị",
+"id": "supermarket",
+"tr": "süpermarket",
+"pl": "supermarket"
+},
+"firstLesson": 16,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:16:23",
+"target": "Ana va a pasar por el supermercado.",
+"ru": "Ана собирается зайти в супермаркет.",
+"uk": "Ана збирається зайти до супермаркету."
+},
+{
+"id": "es:16:25",
+"target": "¿Vais a comprar arroz en el supermercado?",
+"ru": "Вы (мн.) собираетесь купить рис в супермаркете?",
+"uk": "Ви (мн.) збираєтеся купити рис у супермаркеті?"
+},
+{
+"id": "es:20:29",
+"target": "Ya he comprado los huevos en el supermercado.",
+"ru": "Я уже купил яйца в супермаркете.",
+"uk": "Я вже купив яйця в супермаркеті."
+}
+],
+"other": {}
+},
+{
+"lemma": "taller",
+"meaning": {
+"ru": "мастерская",
+"uk": "майстерня",
+"en": "workshop",
+"es": "taller",
+"pt-BR": "oficina",
+"vi": "xưởng",
+"id": "bengkel",
+"tr": "atölye",
+"pl": "warsztat"
+},
+"firstLesson": 28,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:28:07",
+"target": "Llevaré la bicicleta al taller.",
+"ru": "Я отвезу велосипед в мастерскую.",
+"uk": "Я відвезу велосипед до майстерні."
+},
+{
+"id": "es:28:19",
+"target": "Repararán mi bicicleta en el taller.",
+"ru": "В мастерской починят мой велосипед.",
+"uk": "У майстерні полагодять мій велосипед."
+},
+{
+"id": "es:28:25",
+"target": "Recogeré el coche en el taller.",
+"ru": "Я заберу машину из мастерской.",
+"uk": "Я заберу машину з майстерні."
+}
+],
+"other": {}
+},
+{
+"lemma": "también",
+"meaning": {
+"ru": "тоже",
+"uk": "також",
+"en": "also",
+"es": "también",
+"pt-BR": "também",
+"vi": "cũng",
+"id": "juga",
+"tr": "ayrıca",
+"pl": "również"
+},
+"firstLesson": 23,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:23:48",
+"target": "¿Tus vecinos también trabajaban aquí?",
+"ru": "Твои соседи тоже раньше работали здесь?",
+"uk": "Твої сусіди теж раніше працювали тут?"
+},
+{
+"id": "es:32:43",
+"target": "Si tuviera tu dirección, también te mandaría una carta.",
+"ru": "Если бы я знал твой адрес, я бы ещё и отправил тебе письмо.",
+"uk": "Якби я знав твою адресу, я б ще й надіслав тобі листа."
+}
+],
+"other": {}
+},
+{
+"lemma": "tan",
+"meaning": {
+"ru": "так, настолько",
+"uk": "так, настільки",
+"en": "so, so much",
+"es": "tanto, tanto",
+"pt-BR": "muito, muito",
+"vi": "nhiều lắm, nhiều lắm",
+"id": "begitu, begitu banyak",
+"tr": "çok, çok",
+"pl": "tyle, tyle"
+},
+"firstLesson": 29,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:29:33",
+"target": "No alquilaría un piso tan ruidoso.",
+"ru": "Я бы не снял такую шумную квартиру.",
+"uk": "Я б не винайняв таку шумну квартиру."
+},
+{
+"id": "es:29:36",
+"target": "Mis hermanas no comprarían un coche tan barato.",
+"ru": "Мои сёстры не купили бы такую дешёвую машину.",
+"uk": "Мої сестри не купили б таку дешеву машину."
+},
+{
+"id": "es:32:33",
+"target": "No alquilaría ese piso si fuera tan ruidoso.",
+"ru": "Я бы не снял ту квартиру, если бы она была такой шумной.",
+"uk": "Я б не винайняв ту квартиру, якби вона була такою шумною."
+}
+],
+"other": {}
+},
+{
+"lemma": "tanto",
+"meaning": {
+"ru": "так много, столько",
+"uk": "так багато, стільки",
+"en": "so much, so much",
+"es": "tanto, tanto",
+"pt-BR": "muito, muito",
+"vi": "nhiều lắm, nhiều lắm",
+"id": "begitu banyak, begitu banyak",
+"tr": "çok, çok",
+"pl": "tyle, tyle"
+},
+"firstLesson": 29,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:29:37",
+"target": "No pagaría tanto por una habitación ruidosa.",
+"ru": "Я бы столько не заплатил за шумную комнату.",
+"uk": "Я б стільки не заплатив за шумну кімнату."
+},
+{
+"id": "es:29:38",
+"target": "No pagaría tanto por ese hotel.",
+"ru": "Я бы столько не заплатил за тот отель.",
+"uk": "Я б стільки не заплатив за той готель."
+}
+],
+"other": {}
+},
+{
+"lemma": "taxi",
+"meaning": {
+"ru": "такси",
+"uk": "таксі",
+"en": "taxi",
+"es": "taxi",
+"pt-BR": "táxi",
+"vi": "taxi",
+"id": "taksi",
+"tr": "taksi",
+"pl": "taksówka"
+},
+"firstLesson": 22,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:22:15",
+"target": "Volví en taxi porque no tuve tiempo.",
+"ru": "Я вернулся на такси, потому что у меня не было времени.",
+"uk": "Я повернувся на таксі, бо не мав часу."
+},
+{
+"id": "es:22:32",
+"target": "Vine en taxi desde el aeropuerto.",
+"ru": "Я приехал из аэропорта на такси.",
+"uk": "Я приїхав з аеропорту на таксі."
+},
+{
+"id": "es:22:39",
+"target": "¿Viniste en taxi desde el banco?",
+"ru": "Ты приехал из банка на такси?",
+"uk": "Ти приїхав з банку на таксі?"
+}
+],
+"other": {}
+},
+{
+"lemma": "texto",
+"meaning": {
+"ru": "текст",
+"uk": "текст",
+"en": "text",
+"es": "mensaje de texto",
+"pt-BR": "mensagem de texto",
+"vi": "tin nhắn",
+"id": "teks",
+"tr": "mesaj",
+"pl": "SMS"
+},
+"firstLesson": 30,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:30:23",
+"target": "Ana quiere que leas el texto de la pantalla.",
+"ru": "Ана хочет, чтобы ты прочитал текст на экране.",
+"uk": "Ана хоче, щоб ти прочитав текст на екрані."
+},
+{
+"id": "es:30:32",
+"target": "Mi madre quiere que copies el texto.",
+"ru": "Мама хочет, чтобы ты скопировал текст.",
+"uk": "Мама хоче, щоб ти скопіював текст."
+}
+],
+"other": {}
+},
+{
+"lemma": "timbre",
+"meaning": {
+"ru": "звонок (у двери)",
+"uk": "дзвінок (у дверях)",
+"en": "bell (at the door)",
+"es": "campana (en la puerta)",
+"pt-BR": "campainha (na porta)",
+"vi": "chuông (ở cửa)",
+"id": "bel (di pintu)",
+"tr": "kapı zili",
+"pl": "dzwonek (do drzwi)"
+},
+"firstLesson": 24,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:24:14",
+"target": "Preparaba la sopa cuando sonó el timbre.",
+"ru": "Я готовил суп, когда раздался звонок в дверь.",
+"uk": "Я готував суп, коли пролунав дзвінок у двері."
+},
+{
+"id": "es:24:40",
+"target": "Mientras cortaba el queso, sonó el timbre.",
+"ru": "Пока я нарезал сыр, раздался звонок в дверь.",
+"uk": "Поки я нарізав сир, пролунав дзвінок у двері."
+},
+{
+"id": "es:24:42",
+"target": "Mientras Ana preparaba la cena, sonó el timbre.",
+"ru": "Пока Ана готовила ужин, позвонили в дверь.",
+"uk": "Поки Ана готувала вечерю, подзвонили у двері."
+}
+],
+"other": {}
+},
+{
+"lemma": "toalla",
+"meaning": {
+"ru": "полотенце",
+"uk": "рушник",
+"en": "towel",
+"es": "toalla",
+"pt-BR": "toalha",
+"vi": "khăn tắm",
+"id": "handuk",
+"tr": "havlu",
+"pl": "ręcznik"
+},
+"firstLesson": 25,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:25:37",
+"target": "Lleva una toalla a la playa.",
+"ru": "Возьми на пляж полотенце.",
+"uk": "Візьми на пляж рушник."
+},
+{
+"id": "es:26:14",
+"target": "Le di una toalla a mi hermana.",
+"ru": "Я дал сестре полотенце.",
+"uk": "Я дав сестрі рушник."
+}
+],
+"other": {}
+},
+{
+"lemma": "tranquilo",
+"meaning": {
+"ru": "тихий, спокойный",
+"uk": "тихий, спокійний",
+"en": "quiet, calm",
+"es": "tranquilo, calmado",
+"pt-BR": "quieto, calmo",
+"vi": "yên tĩnh, bình lặng",
+"id": "tenang, damai",
+"tr": "sessiz, sakin",
+"pl": "cicho, spokojnie"
+},
+"firstLesson": 23,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:23:07",
+"target": "Vivía en un barrio tranquilo.",
+"ru": "Я жил в тихом районе.",
+"uk": "Я жив у тихому районі."
+},
+{
+"id": "es:29:24",
+"target": "Elegiríamos el barrio más tranquilo.",
+"ru": "Мы бы выбрали район потише.",
+"uk": "Ми б обрали тихіший район."
+},
+{
+"id": "es:32:15",
+"target": "Compraría el piso si el barrio fuera tranquilo.",
+"ru": "Я бы купил квартиру, если бы район был тихим.",
+"uk": "Я б купив квартиру, якби район був тихим."
+}
+],
+"other": {}
+},
+{
+"lemma": "túnel",
+"meaning": {
+"ru": "тоннель",
+"uk": "тунель",
+"en": "tunnel",
+"es": "túnel",
+"pt-BR": "túnel",
+"vi": "đường hầm",
+"id": "terowongan",
+"tr": "tünel",
+"pl": "tunel"
+},
+"firstLesson": 31,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:31:17",
+"target": "Cuando salga del túnel, te llamaré.",
+"ru": "Когда я выеду из тоннеля, я тебе позвоню.",
+"uk": "Коли я виїду з тунелю, я тобі зателефоную."
+},
+{
+"id": "es:31:48",
+"target": "Cuando salga del túnel, te mandaré la ubicación.",
+"ru": "Когда я выеду из тоннеля, я отправлю тебе геолокацию.",
+"uk": "Коли я виїду з тунелю, я надішлю тобі геолокацію."
+},
+{
+"id": "es:32:39",
+"target": "Si el túnel estuviera cerrado, volvería al pueblo.",
+"ru": "Если бы тоннель был закрыт, я бы вернулся в посёлок.",
+"uk": "Якби тунель був закритий, я б повернувся до селища."
+}
+],
+"other": {}
+},
+{
+"lemma": "ubicación",
+"meaning": {
+"ru": "местоположение, геолокация",
+"uk": "місцеперебування, геолокація",
+"en": "Location, Geolocation",
+"es": "Ubicación, Geolocalización",
+"pt-BR": "Localização, Geolocalização",
+"vi": "Vị trí, Định vị địa lý",
+"id": "Lokasi, Geolokasi",
+"tr": "Konum, Coğrafi Konum",
+"pl": "Lokalizacja, Geolokalizacja"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:31:48",
+"target": "Cuando salga del túnel, te mandaré la ubicación.",
+"ru": "Когда я выеду из тоннеля, я отправлю тебе геолокацию.",
+"uk": "Коли я виїду з тунелю, я надішлю тобі геолокацію."
+},
+{
+"id": "es:32:22",
+"target": "Si tuviera cobertura, mandaría la ubicación.",
+"ru": "Если бы была связь, я бы отправил геолокацию.",
+"uk": "Якби був зв’язок, я б надіслав геолокацію."
+}
+],
+"other": {}
+},
+{
+"lemma": "usar",
+"meaning": {
+"ru": "использовать",
+"uk": "використовувати",
+"en": "to use",
+"es": "usar",
+"pt-BR": "usar",
+"vi": "sử dụng",
+"id": "menggunakan",
+"tr": "kullanmak",
+"pl": "używać"
+},
+"firstLesson": 28,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:28:34",
+"target": "No usaré la bicicleta mañana.",
+"ru": "Я завтра не буду пользоваться велосипедом.",
+"uk": "Я завтра не користуватимуся велосипедом."
+},
+{
+"id": "es:32:30",
+"target": "Si la batería estuviera cargada, usaría el mapa.",
+"ru": "Если бы аккумулятор был заряжен, я бы воспользовался картой.",
+"uk": "Якби акумулятор був заряджений, я б скористався мапою."
+},
+{
+"id": "es:32:37",
+"target": "Si hubiera una avería, usaríamos la bicicleta.",
+"ru": "Если бы произошла поломка, мы бы поехали на велосипеде.",
+"uk": "Якби сталася поломка, ми б поїхали велосипедом."
+}
+],
+"other": {}
+},
+{
+"lemma": "vecino",
+"meaning": {
+"ru": "сосед",
+"uk": "сусід",
+"en": "neighbor",
+"es": "vecino",
+"pt-BR": "vizinho",
+"vi": "hàng xóm",
+"id": "tetangga",
+"tr": "komşu",
+"pl": "sąsiad"
+},
+"firstLesson": 23,
+"phrasesCount": 10,
+"examples": [
+{
+"id": "es:23:24",
+"target": "Mis vecinos paseaban por el parque.",
+"ru": "Мои соседи гуляли по парку.",
+"uk": "Мої сусіди гуляли парком."
+},
+{
+"id": "es:23:48",
+"target": "¿Tus vecinos también trabajaban aquí?",
+"ru": "Твои соседи тоже раньше работали здесь?",
+"uk": "Твої сусіди теж раніше працювали тут?"
+},
+{
+"id": "es:26:29",
+"target": "Les mandamos la receta a los vecinos.",
+"ru": "Мы отправили соседям рецепт.",
+"uk": "Ми надіслали сусідам рецепт."
+}
+],
+"other": {}
+},
+{
+"lemma": "verdura",
+"meaning": {
+"ru": "овощ; овощи как категория",
+"uk": "городина; овочі",
+"en": "vegetable; Vegetables as a category",
+"es": "vegetal; Verduras como categoría",
+"pt-BR": "vegetal; Vegetais como categoria",
+"vi": "rau; Rau củ quả như một danh mục",
+"id": "sayuran; Sayuran sebagai sebuah kategori",
+"tr": "sebze; Sebzeler bir kategori olarak",
+"pl": "warzywo; Warzywa jako kategoria"
+},
+"firstLesson": 16,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:16:16",
+"target": "Vamos a comprar verduras.",
+"ru": "Мы собираемся купить овощи.",
+"uk": "Ми збираємося купити овочі."
+},
+{
+"id": "es:17:24",
+"target": "A mi hermana le gustan las verduras.",
+"ru": "Моей сестре нравятся овощи.",
+"uk": "Моїй сестрі подобаються овочі."
+},
+{
+"id": "es:19:27",
+"target": "Estás cortando las verduras.",
+"ru": "Ты сейчас режешь овощи.",
+"uk": "Ти зараз нарізаєш овочі."
+}
+],
+"other": {}
+},
+{
+"lemma": "volumen",
+"meaning": {
+"ru": "громкость",
+"uk": "гучність",
+"en": "volume",
+"es": "volumen",
+"pt-BR": "volume",
+"vi": "âm lượng",
+"id": "volume",
+"tr": "hacim",
+"pl": "głośność"
+},
+"firstLesson": 25,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:25:24",
+"target": "Baja el volumen.",
+"ru": "Сделай потише.",
+"uk": "Зроби тихіше."
+},
+{
+"id": "es:25:34",
+"target": "Baja un poco el volumen.",
+"ru": "Убавь немного громкость.",
+"uk": "Зменш трохи гучність."
+},
+{
+"id": "es:30:48",
+"target": "¿Quieres que baje el volumen?",
+"ru": "Хочешь, чтобы я сделал потише?",
+"uk": "Хочеш, щоб я зробив тихіше?"
+}
+],
+"other": {}
+},
+{
+"lemma": "libro",
+"meaning": {
+"ru": "книга",
+"uk": "книжка",
+"en": "book",
+"es": "libro",
+"pt-BR": "livro",
+"vi": "sách",
+"id": "buku",
+"tr": "kitap",
+"pl": "książka"
+},
+"firstLesson": 1,
+"phrasesCount": 63,
+"examples": [
+{
+"id": "es:01:39",
+"target": "El libro está aquí.",
+"ru": "Книга здесь.",
+"uk": "Книжка тут."
+},
+{
+"id": "es:01:35",
+"target": "Los libros están allí.",
+"ru": "Книги вон там.",
+"uk": "Книжки он там."
+},
+{
+"id": "es:01:46",
+"target": "Los libros están en casa.",
+"ru": "Книги дома.",
+"uk": "Книжки вдома."
+}
+],
+"other": {}
+},
+{
+"lemma": "llamar",
+"meaning": {
+"ru": "звонить",
+"uk": "телефонувати",
+"en": "to call someone",
+"es": "llamar por teléfono",
+"pt-BR": "telefonar",
+"vi": "gọi điện",
+"id": "menelepon",
+"tr": "telefon etmek",
+"pl": "dzwonić do kogoś"
+},
+"firstLesson": 15,
+"phrasesCount": 58,
+"examples": [
+{
+"id": "es:15:23",
+"target": "Podemos llamar al hotel hoy.",
+"ru": "Мы сегодня можем позвонить в отель.",
+"uk": "Ми сьогодні можемо зателефонувати до готелю."
+},
+{
+"id": "es:15:24",
+"target": "Ana puede llamar a Luis hoy.",
+"ru": "Ана сегодня может позвонить Луису.",
+"uk": "Ана сьогодні може зателефонувати Луїсу."
+},
+{
+"id": "es:15:36",
+"target": "Mis hermanas no pueden llamar al hotel.",
+"ru": "Мои сёстры не могут позвонить в отель.",
+"uk": "Мої сестри не можуть зателефонувати до готелю."
+}
+],
+"other": {}
+},
+{
+"lemma": "llave",
+"meaning": {
+"ru": "ключ",
+"uk": "ключ",
+"en": "key",
+"es": "llave",
+"pt-BR": "chave",
+"vi": "chìa khóa",
+"id": "kunci",
+"tr": "anahtar",
+"pl": "klucz"
+},
+"firstLesson": 1,
+"phrasesCount": 66,
+"examples": [
+{
+"id": "es:01:32",
+"target": "Las llaves están aquí.",
+"ru": "Ключи здесь.",
+"uk": "Ключі тут."
+},
+{
+"id": "es:01:40",
+"target": "La llave está dentro.",
+"ru": "Ключ внутри.",
+"uk": "Ключ усередині."
+},
+{
+"id": "es:01:42",
+"target": "Las llaves están en la mesa.",
+"ru": "Ключи на столе.",
+"uk": "Ключі на столі."
+}
+],
+"other": {}
+},
+{
+"lemma": "llegar",
+"meaning": {
+"ru": "прибывать, приходить",
+"uk": "прибувати, приходити",
+"en": "to arrive",
+"es": "llegar",
+"pt-BR": "chegar",
+"vi": "đến nơi",
+"id": "tiba",
+"tr": "varmak",
+"pl": "przybywać; docierać"
+},
+"firstLesson": 24,
+"phrasesCount": 23,
+"examples": [
+{
+"id": "es:24:03",
+"target": "Esperábamos el tren cuando llegó mi hermana.",
+"ru": "Мы ждали поезд, когда пришла моя сестра.",
+"uk": "Ми чекали на потяг, коли прийшла моя сестра."
+},
+{
+"id": "es:24:06",
+"target": "Bebía café cuando llegó el tren.",
+"ru": "Я пил кофе, когда прибыл поезд.",
+"uk": "Я пив каву, коли прибув потяг."
+},
+{
+"id": "es:24:07",
+"target": "Buscabas la llave cuando llegó Ana.",
+"ru": "Ты искала ключ, когда пришла Ана.",
+"uk": "Ти шукала ключ, коли прийшла Ана."
+}
+],
+"other": {}
+},
+{
+"lemma": "llevar",
+"meaning": {
+"ru": "нести",
+"uk": "нести",
+"en": "to carry; to take with you",
+"es": "llevar",
+"pt-BR": "levar",
+"vi": "mang theo",
+"id": "membawa",
+"tr": "taşımak; götürmek",
+"pl": "nieść; zabierać ze sobą"
+},
+"firstLesson": 15,
+"phrasesCount": 36,
+"examples": [
+{
+"id": "es:15:14",
+"target": "¿Puedo llevar la bicicleta en el tren?",
+"ru": "Можно провезти велосипед в поезде?",
+"uk": "Чи можна провезти велосипед у потязі?"
+},
+{
+"id": "es:15:19",
+"target": "Mis hermanos pueden llevar la maleta.",
+"ru": "Мои братья могут отнести чемодан.",
+"uk": "Мої брати можуть віднести валізу."
+},
+{
+"id": "es:15:20",
+"target": "Mis hermanas pueden llevar la bolsa.",
+"ru": "Мои сёстры могут отнести пакет.",
+"uk": "Мої сестри можуть віднести пакет."
+}
+],
+"other": {}
+},
+{
+"lemma": "llover",
+"meaning": {
+"ru": "идти (о дожде)",
+"uk": "іти (про дощ)",
+"en": "to rain",
+"es": "llover",
+"pt-BR": "chover",
+"vi": "mưa",
+"id": "turun hujan",
+"tr": "yağmur yağmak",
+"pl": "padać (o deszczu)"
+},
+"firstLesson": 24,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:24:19",
+"target": "Esperábamos el autobús cuando empezó a llover.",
+"ru": "Мы ждали автобус, когда пошёл дождь.",
+"uk": "Ми чекали на автобус, коли пішов дощ."
+},
+{
+"id": "es:24:23",
+"target": "Esperábamos el tren cuando empezó a llover.",
+"ru": "Мы ждали поезд, когда пошёл дождь.",
+"uk": "Ми чекали на потяг, коли почався дощ."
+},
+{
+"id": "es:24:34",
+"target": "Mientras cantaba Ana, empezó a llover.",
+"ru": "Пока Ана пела, пошёл дождь.",
+"uk": "Поки Ана співала, пішов дощ."
+}
+],
+"other": {}
+},
+{
+"lemma": "Luis",
+"meaning": {
+"ru": "Луис (имя)",
+"uk": "Луїс (ім’я)",
+"en": "Louis (name)",
+"es": "Louis (nombre)",
+"pt-BR": "Louis (nome)",
+"vi": "Louis (tên)",
+"id": "Louis (nama)",
+"tr": "Louis (isim)",
+"pl": "Louis (imię)"
+},
+"firstLesson": 1,
+"phrasesCount": 115,
+"examples": [
+{
+"id": "es:01:14",
+"target": "Luis está en clase.",
+"ru": "Луис на занятии.",
+"uk": "Луїс на занятті."
+},
+{
+"id": "es:01:29",
+"target": "Ana y Luis están aquí.",
+"ru": "Ана и Луис здесь.",
+"uk": "Ана й Луїс тут."
+},
+{
+"id": "es:01:18",
+"target": "Luis está lejos.",
+"ru": "Луис далеко.",
+"uk": "Луїс далеко."
+}
+],
+"other": {}
+},
+{
+"lemma": "madre",
+"meaning": {
+"ru": "мама, мать",
+"uk": "мама, мати",
+"en": "mother",
+"es": "madre",
+"pt-BR": "mãe",
+"vi": "mẹ",
+"id": "ibu",
+"tr": "anne",
+"pl": "matka"
+},
+"firstLesson": 8,
+"phrasesCount": 28,
+"examples": [
+{
+"id": "es:08:36",
+"target": "Mi madre es profesora.",
+"ru": "Моя мама — учительница.",
+"uk": "Моя мама — вчителька."
+},
+{
+"id": "es:08:37",
+"target": "Tu madre está en la farmacia.",
+"ru": "Твоя мама в аптеке.",
+"uk": "Твоя мама в аптеці."
+},
+{
+"id": "es:08:38",
+"target": "Su madre está en la tienda.",
+"ru": "Его мама в магазине.",
+"uk": "Його мама в крамниці."
+}
+],
+"other": {}
+},
+{
+"lemma": "maleta",
+"meaning": {
+"ru": "чемодан",
+"uk": "валіза",
+"en": "suitcase",
+"es": "maleta",
+"pt-BR": "mala",
+"vi": "vali",
+"id": "koper",
+"tr": "bavul",
+"pl": "walizka"
+},
+"firstLesson": 6,
+"phrasesCount": 28,
+"examples": [
+{
+"id": "es:06:03",
+"target": "La maleta está aquí.",
+"ru": "Чемодан здесь.",
+"uk": "Валіза тут."
+},
+{
+"id": "es:06:04",
+"target": "Las maletas están aquí.",
+"ru": "Чемоданы здесь.",
+"uk": "Валізи тут."
+},
+{
+"id": "es:06:17",
+"target": "La maleta está fuera.",
+"ru": "Чемодан снаружи.",
+"uk": "Валіза надворі."
+}
+],
+"other": {}
+},
+{
+"lemma": "mandar",
+"meaning": {
+"ru": "отправлять",
+"uk": "надсилати",
+"en": "to send",
+"es": "enviar",
+"pt-BR": "enviar",
+"vi": "gửi",
+"id": "mengirim",
+"tr": "göndermek",
+"pl": "wysyłać"
+},
+"firstLesson": 15,
+"phrasesCount": 47,
+"examples": [
+{
+"id": "es:15:17",
+"target": "Puedes mandar la foto.",
+"ru": "Ты можешь отправить фотографию.",
+"uk": "Ти можеш надіслати фотографію."
+},
+{
+"id": "es:15:18",
+"target": "Podemos mandar el mapa.",
+"ru": "Мы можем отправить карту.",
+"uk": "Ми можемо надіслати мапу."
+},
+{
+"id": "es:15:31",
+"target": "Ana no puede mandar la foto.",
+"ru": "Ана не может отправить фотографию.",
+"uk": "Ана не може надіслати фотографію."
+}
+],
+"other": {}
+},
+{
+"lemma": "mapa",
+"meaning": {
+"ru": "карта местности",
+"uk": "мапа місцевості",
+"en": "area map",
+"es": "mapa de área",
+"pt-BR": "mapa da área",
+"vi": "bản đồ khu vực",
+"id": "peta wilayah",
+"tr": "alan haritası",
+"pl": "mapa okolicy"
+},
+"firstLesson": 6,
+"phrasesCount": 31,
+"examples": [
+{
+"id": "es:06:21",
+"target": "El mapa está en la mesa.",
+"ru": "Карта на столе.",
+"uk": "Мапа на столі."
+},
+{
+"id": "es:06:22",
+"target": "Los mapas están en la mesa.",
+"ru": "Карты на столе.",
+"uk": "Мапи на столі."
+},
+{
+"id": "es:06:25",
+"target": "El mapa está en la mochila.",
+"ru": "Карта в рюкзаке.",
+"uk": "Мапа у рюкзаку."
+}
+],
+"other": {}
+},
+{
+"lemma": "médico",
+"meaning": {
+"ru": "врач",
+"uk": "лікар / лікарка",
+"en": "doctor",
+"es": "doctor",
+"pt-BR": "médico",
+"vi": "bác sĩ",
+"id": "dokter",
+"tr": "doktor",
+"pl": "lekarz"
+},
+"firstLesson": 4,
+"phrasesCount": 37,
+"examples": [
+{
+"id": "es:04:03",
+"target": "Soy médico.",
+"ru": "Я врач.",
+"uk": "Я лікар."
+},
+{
+"id": "es:04:04",
+"target": "Soy médica.",
+"ru": "Я врач.",
+"uk": "Я лікарка."
+},
+{
+"id": "es:04:05",
+"target": "Eres médico.",
+"ru": "Ты врач.",
+"uk": "Ти лікар."
+}
+],
+"other": {}
+},
+{
+"lemma": "mesa",
+"meaning": {
+"ru": "стол",
+"uk": "стіл",
+"en": "table",
+"es": "mesa",
+"pt-BR": "mesa",
+"vi": "bàn",
+"id": "meja",
+"tr": "masa",
+"pl": "stół"
+},
+"firstLesson": 1,
+"phrasesCount": 35,
+"examples": [
+{
+"id": "es:01:33",
+"target": "La mesa está allí.",
+"ru": "Стол вон там.",
+"uk": "Стіл он там."
+},
+{
+"id": "es:01:42",
+"target": "Las llaves están en la mesa.",
+"ru": "Ключи на столе.",
+"uk": "Ключі на столі."
+},
+{
+"id": "es:02:35",
+"target": "El libro no está en la mesa.",
+"ru": "Книга не на столе.",
+"uk": "Книжка не на столі."
+}
+],
+"other": {}
+},
+{
+"lemma": "mi",
+"meaning": {
+"ru": "мой, моя, мои",
+"uk": "мій, моя, мої",
+"en": "My, My, My",
+"es": "Mi, mi, mi",
+"pt-BR": "Meu, Meu, Meu",
+"vi": "Của tôi, của tôi, của tôi",
+"id": "Saya, Saya, Saya",
+"tr": "Benim, Benim, Benim",
+"pl": "Mój, mój, mój"
+},
+"firstLesson": 8,
+"phrasesCount": 174,
+"examples": [
+{
+"id": "es:08:01",
+"target": "Mi libro está aquí.",
+"ru": "Моя книга здесь.",
+"uk": "Моя книжка тут."
+},
+{
+"id": "es:08:02",
+"target": "Mis libros están aquí.",
+"ru": "Мои книги здесь.",
+"uk": "Мої книжки тут."
+},
+{
+"id": "es:08:03",
+"target": "Mi llave está aquí.",
+"ru": "Мой ключ здесь.",
+"uk": "Мій ключ тут."
+}
+],
+"other": {}
+},
+{
+"lemma": "mío",
+"meaning": {
+"ru": "мой (самостоятельно)",
+"uk": "мій (самостійно)",
+"en": "My (Independently)",
+"es": "Mi (Independientemente)",
+"pt-BR": "Meu (Independentemente)",
+"vi": "Của tôi (Độc lập)",
+"id": "Saya (Secara Mandiri)",
+"tr": "Benim (Bağımsız Olarak)",
+"pl": "Mój (niezależny)"
+},
+"firstLesson": 27,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "es:27:03",
+"target": "El libro que buscas es mío.",
+"ru": "Книга, которую ты ищешь, моя.",
+"uk": "Книжка, яку ти шукаєш, моя."
+}
+],
+"other": {}
+},
+{
+"lemma": "mochila",
+"meaning": {
+"ru": "рюкзак",
+"uk": "рюкзак",
+"en": "backpack",
+"es": "mochila",
+"pt-BR": "mochila",
+"vi": "ba lô",
+"id": "ransel",
+"tr": "sırt çantası",
+"pl": "plecak"
+},
+"firstLesson": 1,
+"phrasesCount": 47,
+"examples": [
+{
+"id": "es:01:36",
+"target": "La mochila está en casa.",
+"ru": "Рюкзак дома.",
+"uk": "Рюкзак удома."
+},
+{
+"id": "es:01:50",
+"target": "Las llaves están en la mochila.",
+"ru": "Ключи в рюкзаке.",
+"uk": "Ключі в рюкзаку."
+},
+{
+"id": "es:02:34",
+"target": "La mochila no está aquí.",
+"ru": "Рюкзака здесь нет.",
+"uk": "Рюкзака тут немає."
+}
+],
+"other": {}
+},
+{
+"lemma": "mostrar",
+"meaning": {
+"ru": "показывать",
+"uk": "показувати",
+"en": "to show",
+"es": "mostrar",
+"pt-BR": "mostrar",
+"vi": "cho xem",
+"id": "menunjukkan",
+"tr": "göstermek",
+"pl": "pokazywać"
+},
+"firstLesson": 26,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:26:21",
+"target": "Les mostré el mapa.",
+"ru": "Я показал им карту.",
+"uk": "Я показав їм мапу."
+},
+{
+"id": "es:26:22",
+"target": "Le mostré el mapa a Ana.",
+"ru": "Я показал Ане карту.",
+"uk": "Я показав Ані мапу."
+},
+{
+"id": "es:26:23",
+"target": "No le mostré el mapa.",
+"ru": "Я не показал ему карту.",
+"uk": "Я не показав йому мапу."
+}
+],
+"other": {}
+},
+{
+"lemma": "móvil",
+"meaning": {
+"ru": "мобильный телефон",
+"uk": "мобільний телефон",
+"en": "Mobile Phone",
+"es": "Teléfono móvil",
+"pt-BR": "celular",
+"vi": "Điện thoại di động",
+"id": "Ponsel",
+"tr": "Cep Telefonu",
+"pl": "Telefon komórkowy"
+},
+"firstLesson": 1,
+"phrasesCount": 32,
+"examples": [
+{
+"id": "es:01:31",
+"target": "El móvil está aquí.",
+"ru": "Телефон здесь.",
+"uk": "Телефон тут."
+},
+{
+"id": "es:01:37",
+"target": "El móvil está en casa.",
+"ru": "Телефон дома.",
+"uk": "Телефон удома."
+},
+{
+"id": "es:01:48",
+"target": "El móvil está en el coche.",
+"ru": "Телефон в машине.",
+"uk": "Телефон у машині."
+}
+],
+"other": {}
+},
+{
+"lemma": "necesitar",
+"meaning": {
+"ru": "нуждаться",
+"uk": "потребувати",
+"en": "to need",
+"es": "necesitar",
+"pt-BR": "precisar de",
+"vi": "cần",
+"id": "membutuhkan",
+"tr": "ihtiyaç duymak",
+"pl": "potrzebować"
+},
+"firstLesson": 18,
+"phrasesCount": 9,
+"examples": [
+{
+"id": "es:18:31",
+"target": "Lo necesitamos hoy.",
+"ru": "Он нам сегодня нужен.",
+"uk": "Він нам сьогодні потрібен."
+},
+{
+"id": "es:18:32",
+"target": "Luis la necesita hoy.",
+"ru": "Она Луису сегодня нужна.",
+"uk": "Вона Луїсу сьогодні потрібна."
+},
+{
+"id": "es:18:33",
+"target": "Los necesito hoy.",
+"ru": "Они мне сегодня нужны.",
+"uk": "Вони мені сьогодні потрібні."
+}
+],
+"other": {}
+},
+{
+"lemma": "no",
+"meaning": {
+"ru": "не (отрицание)",
+"uk": "не (заперечення)",
+"en": "not (negation)",
+"es": "no (negación)",
+"pt-BR": "não (negação)",
+"vi": "không (phủ định)",
+"id": "tidak (negasi)",
+"tr": "değil (olumsuzlama)",
+"pl": "nie (negacja)"
+},
+"firstLesson": 2,
+"phrasesCount": 201,
+"examples": [
+{
+"id": "es:02:01",
+"target": "No estoy en casa.",
+"ru": "Я не дома.",
+"uk": "Я не вдома."
+},
+{
+"id": "es:02:02",
+"target": "No estás en casa.",
+"ru": "Ты не дома.",
+"uk": "Ти не вдома."
+},
+{
+"id": "es:02:03",
+"target": "No estoy en clase.",
+"ru": "Я не на занятии.",
+"uk": "Я не на занятті."
+}
+],
+"other": {}
+},
+{
+"lemma": "bolsa",
+"meaning": {
+"ru": "пакет, сумка",
+"uk": "пакет, сумка",
+"en": "package, bag",
+"es": "paquete, bolsa",
+"pt-BR": "pacote, bolsa",
+"vi": "gói hàng, túi xách",
+"id": "paket, tas",
+"tr": "paket, çanta",
+"pl": "paczka, torba"
+},
+"firstLesson": 15,
+"phrasesCount": 10,
+"examples": [
+{
+"id": "es:15:20",
+"target": "Mis hermanas pueden llevar la bolsa.",
+"ru": "Мои сёстры могут отнести пакет.",
+"uk": "Мої сестри можуть віднести пакет."
+},
+{
+"id": "es:15:50",
+"target": "¿Puedes llevar la bolsa?",
+"ru": "Ты можешь отнести пакет?",
+"uk": "Ти можеш віднести пакет?"
+},
+{
+"id": "es:16:30",
+"target": "Luis va a llevar la bolsa mañana.",
+"ru": "Луис завтра собирается отнести пакет.",
+"uk": "Луїс завтра збирається віднести пакет."
+}
+],
+"other": {}
+},
+{
+"lemma": "cambio",
+"meaning": {
+"ru": "мелочь, размен",
+"uk": "дрібні гроші, решта",
+"en": "small change",
+"es": "dinero suelto; cambio",
+"pt-BR": "troco; dinheiro trocado",
+"vi": "tiền lẻ",
+"id": "uang kecil; uang receh",
+"tr": "bozuk para",
+"pl": "drobne pieniądze"
+},
+"firstLesson": 11,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:11:21",
+"target": "No tengo cambio.",
+"ru": "У меня нет мелочи.",
+"uk": "У мене немає дрібних грошей."
+},
+{
+"id": "es:11:22",
+"target": "No tienes cambio.",
+"ru": "У тебя нет мелочи.",
+"uk": "У тебе немає дрібних грошей."
+},
+{
+"id": "es:11:23",
+"target": "Ana no tiene cambio.",
+"ru": "У Аны нет мелочи.",
+"uk": "В Ани немає дрібних грошей."
+}
+],
+"other": {}
+},
+{
+"lemma": "cara",
+"meaning": {
+"ru": "лицо",
+"uk": "обличчя",
+"en": "person",
+"es": "persona",
+"pt-BR": "pessoa",
+"vi": "người",
+"id": "orang",
+"tr": "kişi",
+"pl": "osoba"
+},
+"firstLesson": 14,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:14:22",
+"target": "Te lavas la cara.",
+"ru": "Ты моешь лицо.",
+"uk": "Ти миєш обличчя."
+},
+{
+"id": "es:14:26",
+"target": "Mis hermanos se lavan la cara.",
+"ru": "Мои братья моют лицо.",
+"uk": "Мої брати миють обличчя."
+},
+{
+"id": "es:14:28",
+"target": "¿Te lavas la cara?",
+"ru": "Ты моешь лицо?",
+"uk": "Ти миєш обличчя?"
+}
+],
+"other": {}
+},
+{
+"lemma": "carta",
+"meaning": {
+"ru": "письмо",
+"uk": "лист",
+"en": "letter",
+"es": "carta",
+"pt-BR": "carta",
+"vi": "thư",
+"id": "surat",
+"tr": "mektup",
+"pl": "list"
+},
+"firstLesson": 10,
+"phrasesCount": 36,
+"examples": [
+{
+"id": "es:10:17",
+"target": "Escribes una carta.",
+"ru": "Ты пишешь письмо.",
+"uk": "Ти пишеш листа."
+},
+{
+"id": "es:10:18",
+"target": "Luis escribe una carta.",
+"ru": "Луис пишет письмо.",
+"uk": "Луїс пише листа."
+},
+{
+"id": "es:10:27",
+"target": "Escribís una carta.",
+"ru": "Вы пишете письмо.",
+"uk": "Ви пишете листа."
+}
+],
+"other": {}
+},
+{
+"lemma": "cena",
+"meaning": {
+"ru": "ужин",
+"uk": "вечеря",
+"en": "dinner",
+"es": "cena",
+"pt-BR": "jantar",
+"vi": "bữa tối",
+"id": "makan malam",
+"tr": "akşam yemeği",
+"pl": "kolacja"
+},
+"firstLesson": 16,
+"phrasesCount": 22,
+"examples": [
+{
+"id": "es:16:19",
+"target": "Mis hermanos van a preparar la cena más tarde.",
+"ru": "Мои братья позже собираются приготовить ужин.",
+"uk": "Мої брати пізніше збираються приготувати вечерю."
+},
+{
+"id": "es:16:37",
+"target": "Mis hermanas no van a preparar la cena hoy.",
+"ru": "Мои сёстры сегодня не собираются готовить ужин.",
+"uk": "Мої сестри сьогодні не збираються готувати вечерю."
+},
+{
+"id": "es:19:13",
+"target": "Estás preparando la cena.",
+"ru": "Ты сейчас готовишь ужин.",
+"uk": "Ти зараз готуєш вечерю."
+}
+],
+"other": {}
+},
+{
+"lemma": "centro",
+"meaning": {
+"ru": "центр",
+"uk": "центр",
+"en": "center",
+"es": "centro",
+"pt-BR": "centro",
+"vi": "trung tâm",
+"id": "pusat",
+"tr": "merkez",
+"pl": "centrum"
+},
+"firstLesson": 22,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "es:22:04",
+"target": "Fuimos al centro ayer.",
+"ru": "Мы вчера сходили в центр.",
+"uk": "Ми вчора сходили до центру."
+},
+{
+"id": "es:22:09",
+"target": "Ana no fue al centro ayer.",
+"ru": "Ана вчера не сходила в центр.",
+"uk": "Ана вчора не сходила до центру."
+},
+{
+"id": "es:27:45",
+"target": "El tren que va al centro está allí.",
+"ru": "Поезд, который идёт в центр, вон там.",
+"uk": "Потяг, який їде до центру, он там."
+}
+],
+"other": {}
+},
+{
+"lemma": "cita",
+"meaning": {
+"ru": "назначенная встреча",
+"uk": "призначена зустріч",
+"en": "an appointment",
+"es": "una cita concertada",
+"pt-BR": "um compromisso marcado",
+"vi": "cuộc hẹn",
+"id": "janji temu",
+"tr": "randevu",
+"pl": "umówione spotkanie"
+},
+"firstLesson": 11,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "es:11:11",
+"target": "Ana tiene una cita.",
+"ru": "У Аны назначена встреча.",
+"uk": "В Ани призначена зустріч."
+},
+{
+"id": "es:11:12",
+"target": "Luis tiene una cita.",
+"ru": "У Луиса назначена встреча.",
+"uk": "У Луїса призначена зустріч."
+},
+{
+"id": "es:11:13",
+"target": "Mi hermana tiene una cita.",
+"ru": "У моей сестры назначена встреча.",
+"uk": "У моєї сестри призначена зустріч."
+}
+],
+"other": {}
+},
+{
+"lemma": "compra",
+"meaning": {
+"ru": "покупки",
+"uk": "покупки",
+"en": "purchases",
+"es": "compras",
+"pt-BR": "compras",
+"vi": "mua hàng",
+"id": "pembelian",
+"tr": "satın alımlar",
+"pl": "zakupy"
+},
+"firstLesson": 22,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:22:21",
+"target": "Hice la compra ayer.",
+"ru": "Я вчера сделал покупки.",
+"uk": "Я вчора зробив покупки."
+},
+{
+"id": "es:22:25",
+"target": "Hicimos la compra en el mercado.",
+"ru": "Мы закупились на рынке.",
+"uk": "Ми закупилися на ринку."
+},
+{
+"id": "es:22:26",
+"target": "Mis hermanos hicieron la compra ayer.",
+"ru": "Мои братья вчера сделали покупки.",
+"uk": "Мої брати вчора зробили покупки."
+}
+],
+"other": {}
+},
+{
+"lemma": "dinero",
+"meaning": {
+"ru": "деньги",
+"uk": "гроші",
+"en": "money",
+"es": "dinero",
+"pt-BR": "dinheiro",
+"vi": "tiền",
+"id": "uang",
+"tr": "para",
+"pl": "pieniądze"
+},
+"firstLesson": 31,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "es:31:11",
+"target": "Cuando tenga el dinero, compraremos los billetes.",
+"ru": "Когда у меня будут деньги, мы купим билеты.",
+"uk": "Коли у мене будуть гроші, ми купимо квитки."
+},
+{
+"id": "es:31:46",
+"target": "Pagaré cuando tenga el dinero.",
+"ru": "Я заплачу, когда у меня будут деньги.",
+"uk": "Я заплачу, коли у мене будуть гроші."
+},
+{
+"id": "es:31:49",
+"target": "Pagaré cuando reciba el dinero.",
+"ru": "Я заплачу, когда получу деньги.",
+"uk": "Я заплачу, коли отримаю гроші."
+}
+],
+"other": {}
+},
+{
+"lemma": "dirección",
+"meaning": {
+"ru": "адрес",
+"uk": "адреса",
+"en": "address",
+"es": "dirección",
+"pt-BR": "endereço",
+"vi": "địa chỉ",
+"id": "alamat",
+"tr": "adres",
+"pl": "adres"
+},
+"firstLesson": 30,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:30:42",
+"target": "¿Quieres que copie la dirección?",
+"ru": "Хочешь, чтобы я скопировал адрес?",
+"uk": "Хочеш, щоб я скопіював адресу?"
+},
+{
+"id": "es:31:33",
+"target": "Te llamaré cuando apunte la dirección.",
+"ru": "Я тебе позвоню, когда запишу адрес.",
+"uk": "Я тобі зателефоную, коли запишу адресу."
+},
+{
+"id": "es:32:09",
+"target": "Te visitaría si supiera la dirección.",
+"ru": "Я бы тебя навестил, если бы я знал адрес.",
+"uk": "Я б тебе відвідав, якби я знав адресу."
+}
+],
+"other": {}
+},
+{
+"lemma": "día",
+"meaning": {
+"ru": "день",
+"uk": "день",
+"en": "day",
+"es": "día",
+"pt-BR": "dia",
+"vi": "ngày",
+"id": "hari",
+"tr": "gün",
+"pl": "dzień"
+},
+"firstLesson": 23,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "es:23:11",
+"target": "Bebía agua cada día.",
+"ru": "Я каждый день пил воду.",
+"uk": "Я щодня пив воду."
+},
+{
+"id": "es:23:12",
+"target": "Ana bebía café cada día.",
+"ru": "Ана каждый день пила кофе.",
+"uk": "Ана щодня пила каву."
+},
+{
+"id": "es:23:14",
+"target": "Leías el mensaje cada día.",
+"ru": "Ты каждый день читал сообщение.",
+"uk": "Ти щодня читав повідомлення."
+}
+],
+"other": {}
+},
+{
+"lemma": "efectivo",
+"meaning": {
+"ru": "наличные",
+"uk": "готівка",
+"en": "cash",
+"es": "efectivo",
+"pt-BR": "dinheiro",
+"vi": "tiền mặt",
+"id": "uang tunai",
+"tr": "nakit",
+"pl": "gotówka"
+},
+"firstLesson": 15,
+"phrasesCount": 14,
+"examples": [
+{
+"id": "es:15:09",
+"target": "Luis puede pagar en efectivo.",
+"ru": "Луис может заплатить наличными.",
+"uk": "Луїс може заплатити готівкою."
+},
+{
+"id": "es:15:10",
+"target": "Podemos pagar en efectivo.",
+"ru": "Мы можем заплатить наличными.",
+"uk": "Ми можемо заплатити готівкою."
+},
+{
+"id": "es:15:21",
+"target": "Puedo pagar en efectivo hoy.",
+"ru": "Я сегодня могу заплатить наличными.",
+"uk": "Я сьогодні можу заплатити готівкою."
+}
+],
+"other": {}
+},
+{
+"lemma": "entrada",
+"meaning": {
+"ru": "входной билет",
+"uk": "вхідний квиток",
+"en": "entrance ticket",
+"es": "entrada",
+"pt-BR": "ingresso",
+"vi": "vé vào cửa",
+"id": "tiket masuk",
+"tr": "giriş bileti",
+"pl": "bilet wstępu"
+},
+"firstLesson": 11,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "es:11:10",
+"target": "Tengo las entradas.",
+"ru": "У меня билеты.",
+"uk": "У мене квитки."
+}
+],
+"other": {}
+},
+{
+"lemma": "hora",
+"meaning": {
+"ru": "время, час",
+"uk": "час, година",
+"en": "time, hour",
+"es": "hora",
+"pt-BR": "hora",
+"vi": "thời gian, giờ",
+"id": "waktu, jam",
+"tr": "zaman, saat",
+"pl": "czas, godzina"
+},
+"firstLesson": 31,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:31:05",
+"target": "Te llamaré cuando sepa la hora.",
+"ru": "Я тебе позвоню, когда я узнаю время.",
+"uk": "Я тобі зателефоную, коли я дізнаюся час."
+},
+{
+"id": "es:31:12",
+"target": "Compraremos los billetes cuando sepa la hora.",
+"ru": "Мы купим билеты, когда я узнаю время.",
+"uk": "Ми купимо квитки, коли я дізнаюся час."
+}
+],
+"other": {}
+},
+{
+"lemma": "idea",
+"meaning": {
+"ru": "идея",
+"uk": "ідея",
+"en": "idea",
+"es": "idea",
+"pt-BR": "ideia",
+"vi": "ý tưởng",
+"id": "ide",
+"tr": "fikir",
+"pl": "pomysł"
+},
+"firstLesson": 11,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:11:20",
+"target": "Tenemos una idea.",
+"ru": "У нас есть идея.",
+"uk": "У нас є ідея."
+},
+{
+"id": "es:17:08",
+"target": "Me gustan tus ideas.",
+"ru": "Мне нравятся твои идеи.",
+"uk": "Мені подобаються твої ідеї."
+},
+{
+"id": "es:22:13",
+"target": "Ana tuvo una idea.",
+"ru": "У Аны появилась идея.",
+"uk": "У Ани виникла ідея."
+}
+],
+"other": {}
+},
+{
+"lemma": "mano",
+"meaning": {
+"ru": "кисть руки",
+"uk": "кисть руки",
+"en": "hand",
+"es": "mano",
+"pt-BR": "mão",
+"vi": "bàn tay",
+"id": "tangan",
+"tr": "el",
+"pl": "ręka"
+},
+"firstLesson": 14,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "es:14:21",
+"target": "Me lavo las manos.",
+"ru": "Я мою руки.",
+"uk": "Я мию руки."
+},
+{
+"id": "es:14:23",
+"target": "Ana se lava las manos.",
+"ru": "Ана моет руки.",
+"uk": "Ана миє руки."
+},
+{
+"id": "es:14:24",
+"target": "Me lavo las manos en el baño.",
+"ru": "Я мою руки в ванной.",
+"uk": "Я мию руки у ванній."
+}
+],
+"other": {}
+},
+{
+"lemma": "mañana",
+"meaning": {
+"ru": "утро",
+"uk": "ранок",
+"en": "morning",
+"es": "mañana",
+"pt-BR": "manhã",
+"vi": "buổi sáng",
+"id": "pagi",
+"tr": "sabah",
+"pl": "rano"
+},
+"firstLesson": 14,
+"phrasesCount": 10,
+"examples": [
+{
+"id": "es:14:11",
+"target": "Me ducho por la mañana.",
+"ru": "Я принимаю душ по утрам.",
+"uk": "Я приймаю душ вранці."
+},
+{
+"id": "es:14:13",
+"target": "Ana se ducha por la mañana.",
+"ru": "Ана принимает душ по утрам.",
+"uk": "Ана приймає душ вранці."
+},
+{
+"id": "es:14:15",
+"target": "Luis se ducha por la mañana.",
+"ru": "Луис принимает душ по утрам.",
+"uk": "Луїс приймає душ вранці."
+}
+],
+"other": {}
+},
+{
+"lemma": "mensaje",
+"meaning": {
+"ru": "сообщение",
+"uk": "повідомлення",
+"en": "message",
+"es": "mensaje",
+"pt-BR": "mensagem",
+"vi": "tin nhắn",
+"id": "pesan",
+"tr": "mesaj",
+"pl": "wiadomość"
+},
+"firstLesson": 10,
+"phrasesCount": 61,
+"examples": [
+{
+"id": "es:10:15",
+"target": "Leo el mensaje.",
+"ru": "Я читаю сообщение.",
+"uk": "Я читаю повідомлення."
+},
+{
+"id": "es:10:16",
+"target": "Leemos el mensaje.",
+"ru": "Мы читаем сообщение.",
+"uk": "Ми читаємо повідомлення."
+},
+{
+"id": "es:10:19",
+"target": "Ana escribe un mensaje.",
+"ru": "Ана пишет сообщение.",
+"uk": "Ана пише повідомлення."
+}
+],
+"other": {}
+},
+{
+"lemma": "minuto",
+"meaning": {
+"ru": "минута",
+"uk": "хвилина",
+"en": "Minute",
+"es": "Minuto",
+"pt-BR": "Minuto",
+"vi": "Phút",
+"id": "Menit",
+"tr": "Dakika",
+"pl": "Minuta"
+},
+"firstLesson": 11,
+"phrasesCount": 2,
+"examples": [
+{
+"id": "es:11:31",
+"target": "¿Tienes un minuto?",
+"ru": "У тебя есть минутка?",
+"uk": "У тебе є хвилинка?"
+},
+{
+"id": "es:29:48",
+"target": "¿Esperarías aquí un minuto?",
+"ru": "Ты бы подождал здесь минутку?",
+"uk": "Ти б почекав тут хвилинку?"
+}
+],
+"other": {}
+},
+{
+"lemma": "música",
+"meaning": {
+"ru": "музыка",
+"uk": "музика",
+"en": "music",
+"es": "música",
+"pt-BR": "música",
+"vi": "âm nhạc",
+"id": "musik",
+"tr": "müzik",
+"pl": "muzyka"
+},
+"firstLesson": 17,
+"phrasesCount": 3,
+"examples": [
+{
+"id": "es:17:03",
+"target": "Me gusta la música.",
+"ru": "Мне нравится музыка.",
+"uk": "Мені подобається музика."
+},
+{
+"id": "es:17:20",
+"target": "No me gusta esta música.",
+"ru": "Мне не нравится эта музыка.",
+"uk": "Мені не подобається ця музика."
+},
+{
+"id": "es:18:43",
+"target": "La música la escucho en casa.",
+"ru": "Музыку я слушаю дома.",
+"uk": "Музику я слухаю вдома."
+}
+],
+"other": {}
+},
+{
+"lemma": "noche",
+"meaning": {
+"ru": "ночь; вечер",
+"uk": "ніч; вечір",
+"en": "night; evening",
+"es": "noche; tarde",
+"pt-BR": "noite",
+"vi": "đêm; buổi tối",
+"id": "malam; sore",
+"tr": "gece; akşam",
+"pl": "noc; wieczór"
+},
+"firstLesson": 28,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "es:28:31",
+"target": "No compraré un billete esta noche.",
+"ru": "Я сегодня вечером не куплю билет.",
+"uk": "Я сьогодні ввечері не куплю квиток."
+},
+{
+"id": "es:28:32",
+"target": "No escribirás un mensaje esta noche.",
+"ru": "Ты сегодня вечером не напишешь сообщение.",
+"uk": "Ти сьогодні ввечері не напишеш повідомлення."
+},
+{
+"id": "es:28:35",
+"target": "Luis no mandará el mapa esta noche.",
+"ru": "Луис сегодня вечером не отправит карту.",
+"uk": "Луїс сьогодні ввечері не надішле мапу."
+}
+],
+"other": {}
+},
+{
+"lemma": "número",
+"meaning": {
+"ru": "номер",
+"uk": "номер",
+"en": "number",
+"es": "número",
+"pt-BR": "número",
+"vi": "số",
+"id": "nomor",
+"tr": "sayı",
+"pl": "liczba"
+},
+"firstLesson": 11,
+"phrasesCount": 9,
+"examples": [
+{
+"id": "es:11:29",
+"target": "No tengo tu número.",
+"ru": "У меня нет твоего номера.",
+"uk": "У мене немає твого номера."
+},
+{
+"id": "es:11:41",
+"target": "Mi madre tiene mi número.",
+"ru": "У моей мамы есть мой номер.",
+"uk": "У моєї мами є мій номер."
+},
+{
+"id": "es:11:43",
+"target": "Ana tiene mi número.",
+"ru": "У Аны есть мой номер.",
+"uk": "В Ани є мій номер."
+}
+],
+"other": {}
+},
+{
+"lemma": "pan",
+"meaning": {
+"ru": "хлеб",
+"uk": "хліб",
+"en": "bread",
+"es": "pan",
+"pt-BR": "pão",
+"vi": "bánh mì",
+"id": "roti",
+"tr": "ekmek",
+"pl": "chleb"
+},
+"firstLesson": 16,
+"phrasesCount": 8,
+"examples": [
+{
+"id": "es:16:10",
+"target": "Luis va a comprar pan.",
+"ru": "Луис собирается купить хлеб.",
+"uk": "Луїс збирається купити хліб."
+},
+{
+"id": "es:17:02",
+"target": "Me gusta el pan.",
+"ru": "Мне нравится хлеб.",
+"uk": "Мені подобається хліб."
+},
+{
+"id": "es:20:06",
+"target": "Ya hemos comprado pan.",
+"ru": "Мы уже купили хлеб.",
+"uk": "Ми вже купили хліб."
+}
+],
+"other": {}
+},
+{
+"lemma": "pregunta",
+"meaning": {
+"ru": "вопрос",
+"uk": "запитання",
+"en": "question",
+"es": "pregunta",
+"pt-BR": "pergunta",
+"vi": "câu hỏi",
+"id": "pertanyaan",
+"tr": "soru",
+"pl": "pytanie"
+},
+"firstLesson": 11,
+"phrasesCount": 7,
+"examples": [
+{
+"id": "es:11:01",
+"target": "Tengo una pregunta.",
+"ru": "У меня есть вопрос.",
+"uk": "У мене є запитання."
+},
+{
+"id": "es:11:02",
+"target": "Tienes una pregunta.",
+"ru": "У тебя есть вопрос.",
+"uk": "У тебе є запитання."
+},
+{
+"id": "es:11:03",
+"target": "Ana tiene una pregunta.",
+"ru": "У Аны есть вопрос.",
+"uk": "В Ани є запитання."
+}
+],
+"other": {}
+},
+{
+"lemma": "problema",
+"meaning": {
+"ru": "проблема",
+"uk": "проблема",
+"en": "problem",
+"es": "problema",
+"pt-BR": "problema",
+"vi": "vấn đề",
+"id": "masalah",
+"tr": "sorun",
+"pl": "problem"
+},
+"firstLesson": 22,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "es:22:20",
+"target": "¿Tuviste un problema ayer?",
+"ru": "У тебя вчера возникла проблема?",
+"uk": "У тебе вчора виникла проблема?"
+}
+],
+"other": {}
+},
+{
+"lemma": "reserva",
+"meaning": {
+"ru": "бронь",
+"uk": "бронювання",
+"en": "a reservation",
+"es": "una reserva",
+"pt-BR": "uma reserva",
+"vi": "đặt chỗ; chỗ đã đặt",
+"id": "reservasi",
+"tr": "rezervasyon",
+"pl": "rezerwacja"
+},
+"firstLesson": 11,
+"phrasesCount": 11,
+"examples": [
+{
+"id": "es:11:17",
+"target": "Tenemos una reserva.",
+"ru": "У нас есть бронь.",
+"uk": "У нас є бронювання."
+},
+{
+"id": "es:11:27",
+"target": "No tengo reserva.",
+"ru": "У меня нет брони.",
+"uk": "У мене немає бронювання."
+},
+{
+"id": "es:11:36",
+"target": "¿Tiene usted una reserva?",
+"ru": "У вас есть бронь?",
+"uk": "У вас є бронювання?"
+}
+],
+"other": {}
+},
+{
+"lemma": "reunión",
+"meaning": {
+"ru": "совещание, встреча",
+"uk": "нарада, зустріч",
+"en": "meeting",
+"es": "reunión",
+"pt-BR": "reunião",
+"vi": "cuộc họp",
+"id": "pertemuan",
+"tr": "toplantı",
+"pl": "spotkanie"
+},
+"firstLesson": 22,
+"phrasesCount": 12,
+"examples": [
+{
+"id": "es:22:11",
+"target": "Tuve una reunión ayer.",
+"ru": "У меня вчера было совещание.",
+"uk": "У мене вчора була нарада."
+},
+{
+"id": "es:22:16",
+"target": "Mis hermanos tuvieron una reunión ayer.",
+"ru": "У моих братьев вчера было совещание.",
+"uk": "У моїх братів вчора була нарада."
+},
+{
+"id": "es:22:34",
+"target": "Vinimos a la reunión ayer.",
+"ru": "Мы вчера пришли на встречу.",
+"uk": "Ми вчора прийшли на зустріч."
+}
+],
+"other": {}
+},
+{
+"lemma": "semana",
+"meaning": {
+"ru": "неделя",
+"uk": "тиждень",
+"en": "week",
+"es": "semana",
+"pt-BR": "semana",
+"vi": "tuần",
+"id": "minggu",
+"tr": "hafta",
+"pl": "tydzień"
+},
+"firstLesson": 20,
+"phrasesCount": 6,
+"examples": [
+{
+"id": "es:20:21",
+"target": "Hemos leído el libro esta semana.",
+"ru": "Мы на этой неделе прочитали книгу.",
+"uk": "Ми цього тижня прочитали книжку."
+},
+{
+"id": "es:20:22",
+"target": "Habéis leído el mensaje esta semana.",
+"ru": "Вы на этой неделе прочитали сообщение.",
+"uk": "Ви цього тижня прочитали повідомлення."
+},
+{
+"id": "es:20:25",
+"target": "Mis hermanas han abierto la ventana esta semana.",
+"ru": "Мои сёстры на этой неделе открыли окно.",
+"uk": "Мої сестри цього тижня відчинили вікно."
+}
+],
+"other": {}
+},
+{
+"lemma": "silla",
+"meaning": {
+"ru": "стул",
+"uk": "стілець",
+"en": "chair",
+"es": "silla",
+"pt-BR": "cadeira",
+"vi": "ghế",
+"id": "kursi",
+"tr": "sandalye",
+"pl": "krzesło"
+},
+"firstLesson": 27,
+"phrasesCount": 1,
+"examples": [
+{
+"id": "es:27:46",
+"target": "¿Es tuyo el bolso que está en la silla?",
+"ru": "Сумка, которая лежит на стуле, твоя?",
+"uk": "Сумка, яка лежить на стільці, твоя?"
+}
+],
+"other": {}
+},
+{
+"lemma": "tarjeta",
+"meaning": {
+"ru": "карта для оплаты",
+"uk": "платіжна картка",
+"en": "card for payment",
+"es": "tarjeta de pago",
+"pt-BR": "cartão para pagamento",
+"vi": "thẻ thanh toán",
+"id": "kartu untuk pembayaran",
+"tr": "ödeme kartı",
+"pl": "karta płatnicza"
+},
+"firstLesson": 15,
+"phrasesCount": 12,
+"examples": [
+{
+"id": "es:15:22",
+"target": "Puedes pagar con tarjeta hoy.",
+"ru": "Ты сегодня можешь заплатить картой.",
+"uk": "Ти сьогодні можеш заплатити карткою."
+},
+{
+"id": "es:15:45",
+"target": "¿Puedes pagar con tarjeta?",
+"ru": "Ты можешь заплатить картой?",
+"uk": "Ти можеш заплатити карткою?"
+},
+{
+"id": "es:16:22",
+"target": "Vais a pagar con tarjeta mañana.",
+"ru": "Вы завтра собираетесь заплатить картой.",
+"uk": "Ви завтра збираєтеся заплатити карткою."
+}
+],
+"other": {}
+},
+{
+"lemma": "tiempo",
+"meaning": {
+"ru": "время",
+"uk": "час",
+"en": "time",
+"es": "tiempo",
+"pt-BR": "tempo",
+"vi": "thời gian",
+"id": "waktu",
+"tr": "zaman",
+"pl": "czas"
+},
+"firstLesson": 11,
+"phrasesCount": 12,
+"examples": [
+{
+"id": "es:11:16",
+"target": "Tenemos tiempo.",
+"ru": "У нас есть время.",
+"uk": "У нас є час."
+},
+{
+"id": "es:11:28",
+"target": "No tengo tiempo.",
+"ru": "У меня нет времени.",
+"uk": "У мене немає часу."
+},
+{
+"id": "es:22:12",
+"target": "Tuviste tiempo para leer anoche.",
+"ru": "У тебя вчера вечером было время почитать.",
+"uk": "У тебе учора ввечері був час почитати."
+}
+],
+"other": {}
+},
+{
+"lemma": "ventana",
+"meaning": {
+"ru": "окно",
+"uk": "вікно",
+"en": "Window",
+"es": "Ventana",
+"pt-BR": "Janela",
+"vi": "Cửa sổ",
+"id": "Jendela",
+"tr": "Pencere",
+"pl": "Okno"
+},
+"firstLesson": 10,
+"phrasesCount": 32,
+"examples": [
+{
+"id": "es:10:29",
+"target": "Mis hermanos abren la ventana.",
+"ru": "Мои братья открывают окно.",
+"uk": "Мої брати відчиняють вікно."
+},
+{
+"id": "es:10:33",
+"target": "Ana no abre la ventana hoy.",
+"ru": "Ана сегодня не открывает окно.",
+"uk": "Ана сьогодні не відчиняє вікно."
+},
+{
+"id": "es:10:34",
+"target": "Luis no abre la ventana hoy.",
+"ru": "Луис сегодня не открывает окно.",
+"uk": "Луїс сьогодні не відчиняє вікно."
+}
+],
+"other": {}
+},
+{
+"lemma": "viaje",
+"meaning": {
+"ru": "поездка",
+"uk": "поїздка",
+"en": "trip",
+"es": "viaje",
+"pt-BR": "viagem",
+"vi": "chuyến đi",
+"id": "perjalanan",
+"tr": "yolculuk",
+"pl": "podróż"
+},
+"firstLesson": 14,
+"phrasesCount": 10,
+"examples": [
+{
+"id": "es:14:42",
+"target": "Te preparas para el viaje.",
+"ru": "Ты готовишься к поездке.",
+"uk": "Ти готуєшся до поїздки."
+},
+{
+"id": "es:14:44",
+"target": "Nos preparamos para el viaje.",
+"ru": "Мы готовимся к поездке.",
+"uk": "Ми готуємося до поїздки."
+},
+{
+"id": "es:14:46",
+"target": "Mis hermanos se preparan para el viaje.",
+"ru": "Мои братья готовятся к поездке.",
+"uk": "Мої брати готуються до поїздки."
+}
+],
+"other": {}
+},
+{
+"lemma": "zapato",
+"meaning": {
+"ru": "туфля, ботинок",
+"uk": "туфля, черевик",
+"en": "shoe, boot",
+"es": "zapato, bota",
+"pt-BR": "sapato, bota",
+"vi": "giày, ủng",
+"id": "sepatu, sepatu bot",
+"tr": "ayakkabı, bot",
+"pl": "but, trzewik"
+},
+"firstLesson": 17,
+"phrasesCount": 5,
+"examples": [
+{
+"id": "es:17:17",
+"target": "No me gustan estos zapatos.",
+"ru": "Мне не нравятся эти туфли.",
+"uk": "Мені не подобаються ці туфлі."
+},
+{
+"id": "es:17:41",
+"target": "A Ana no le gustan estos zapatos.",
+"ru": "Ане не нравятся эти туфли.",
+"uk": "Ані не подобаються ці туфлі."
+},
+{
+"id": "es:17:43",
+"target": "A mi madre no le gustan estos zapatos.",
+"ru": "Моей маме не нравятся эти туфли.",
+"uk": "Моїй мамі не подобаються ці туфлі."
+}
+],
+"other": {}
+},
+{
+"lemma": "oficina",
+"meaning": {
+"ru": "офис",
+"uk": "офіс",
+"en": "office",
+"es": "oficina",
+"pt-BR": "escritório",
+"vi": "văn phòng",
+"id": "kantor",
+"tr": "ofis",
+"pl": "biuro"
+},
+"firstLesson": 2,
+"phrasesCount": 20,
+"examples": [
+{
+"id": "es:02:18",
+"target": "Él no está en la oficina.",
+"ru": "Он не в офисе.",
+"uk": "Він не в офісі."
+},
+{
+"id": "es:02:19",
+"target": "No estoy en la oficina.",
+"ru": "Я не в офисе.",
+"uk": "Я не в офісі."
+},
+{
+"id": "es:02:20",
+"target": "No estamos en la oficina.",
+"ru": "Мы не в офисе.",
+"uk": "Ми не в офісі."
+}
+],
+"other": {}
+},
+{
+"lemma": "pagar",
+"meaning": {
+"ru": "платить",
+"uk": "платити",
+"en": "to pay",
+"es": "pagar",
+"pt-BR": "pagar",
+"vi": "trả tiền",
+"id": "membayar",
+"tr": "ödemek",
+"pl": "płacić"
+},
+"firstLesson": 15,
+"phrasesCount": 37,
+"examples": [
+{
+"id": "es:15:09",
+"target": "Luis puede pagar en efectivo.",
+"ru": "Луис может заплатить наличными.",
+"uk": "Луїс може заплатити готівкою."
+},
+{
+"id": "es:15:10",
+"target": "Podemos pagar en efectivo.",
+"ru": "Мы можем заплатить наличными.",
+"uk": "Ми можемо заплатити готівкою."
+},
+{
+"id": "es:15:21",
+"target": "Puedo pagar en efectivo hoy.",
+"ru": "Я сегодня могу заплатить наличными.",
+"uk": "Я сьогодні можу заплатити готівкою."
+}
+],
+"other": {}
+},
+{
+"lemma": "parada",
+"meaning": {
+"ru": "остановка (транспорта)",
+"uk": "зупинка (транспорту)",
+"en": "stop (transport)",
+"es": "parada (transporte)",
+"pt-BR": "parar (transporte)",
+"vi": "dừng (phương tiện giao thông)",
+"id": "berhenti (transportasi)",
+"tr": "durmak (ulaşım)",
+"pl": "zatrzymaj się (transport)"
+},
+"firstLesson": 3,
+"phrasesCount": 4,
+"examples": [
+{
+"id": "es:03:26",
+"target": "¿Estamos en la parada?",
+"ru": "Мы на остановке?",
+"uk": "Ми на зупинці?"
+},
+{
+"id": "es:03:27",
+"target": "¿Estás en la parada?",
+"ru": "Ты на остановке?",
+"uk": "Ти на зупинці?"
+},
+{
+"id": "es:03:28",
+"target": "¿La parada está cerca?",
+"ru": "Остановка рядом?",
+"uk": "Зупинка поруч?"
+}
+],
+"other": {}
+},
+{
+"lemma": "pasaporte",
+"meaning": {
+"ru": "паспорт",
+"uk": "паспорт",
+"en": "passport",
+"es": "pasaporte",
+"pt-BR": "passaporte",
+"vi": "hộ chiếu",
+"id": "paspor",
+"tr": "pasaport",
+"pl": "paszport"
+},
+"firstLesson": 3,
+"phrasesCount": 20,
+"examples": [
+{
+"id": "es:03:41",
+"target": "¿Está el pasaporte en la mochila?",
+"ru": "Паспорт в рюкзаке?",
+"uk": "Паспорт у рюкзаку?"
+},
+{
+"id": "es:03:42",
+"target": "¿Está el pasaporte en el bolso?",
+"ru": "Паспорт в сумке?",
+"uk": "Паспорт у сумці?"
+},
+{
+"id": "es:03:45",
+"target": "¿Están los pasaportes en el coche?",
+"ru": "Паспорта в машине?",
+"uk": "Паспорти в машині?"
+}
+],
+"other": {}
+},
+{
+"lemma": "poder",
+"meaning": {
+"ru": "мочь",
+"uk": "могти",
+"en": "to be able to",
+"es": "poder hacer algo",
+"pt-BR": "poder; conseguir",
+"vi": "có thể",
+"id": "dapat; bisa",
+"tr": "yapabilmek",
+"pl": "móc; być w stanie"
+},
+"firstLesson": 15,
+"phrasesCount": 63,
+"examples": [
+{
+"id": "es:15:01",
+"target": "Puedo entrar en la tienda.",
+"ru": "Я могу войти в магазин.",
+"uk": "Я можу зайти до магазину."
+},
+{
+"id": "es:15:02",
+"target": "Puedes entrar en la tienda.",
+"ru": "Ты можешь войти в магазин.",
+"uk": "Ти можеш зайти до магазину."
+},
+{
+"id": "es:15:03",
+"target": "¿Puedo entrar ahora?",
+"ru": "Можно мне сейчас войти?",
+"uk": "Можна мені зараз зайти?"
+}
+],
+"other": {}
+},
+{
+"lemma": "preparar",
+"meaning": {
+"ru": "готовить",
+"uk": "готувати",
+"en": "to prepare",
+"es": "preparar",
+"pt-BR": "preparar",
+"vi": "chuẩn bị",
+"id": "menyiapkan",
+"tr": "hazırlamak",
+"pl": "przygotowywać"
+},
+"firstLesson": 16,
+"phrasesCount": 32,
+"examples": [
+{
+"id": "es:16:19",
+"target": "Mis hermanos van a preparar la cena más tarde.",
+"ru": "Мои братья позже собираются приготовить ужин.",
+"uk": "Мої брати пізніше збираються приготувати вечерю."
+},
+{
+"id": "es:16:20",
+"target": "Vamos a preparar la mochila más tarde.",
+"ru": "Мы позже собираемся собрать рюкзак.",
+"uk": "Ми пізніше збираємося зібрати рюкзак."
+},
+{
+"id": "es:16:33",
+"target": "No vamos a preparar arroz hoy.",
+"ru": "Мы не собираемся сегодня готовить рис.",
+"uk": "Ми не збираємося сьогодні готувати рис."
+}
+],
+"other": {}
+},
+{
+"lemma": "prepararse",
+"meaning": {
+"ru": "готовиться",
+"uk": "готуватися",
+"en": "to get ready",
+"es": "prepararse",
+"pt-BR": "preparar-se",
+"vi": "chuẩn bị cho mình",
+"id": "bersiap",
+"tr": "hazırlanmak",
+"pl": "przygotowywać się"
+},
+"firstLesson": 14,
+"phrasesCount": 10,
+"examples": [
+{
+"id": "es:14:41",
+"target": "Me preparo para la clase.",
+"ru": "Я готовлюсь к занятию.",
+"uk": "Я готуюся до заняття."
+},
+{
+"id": "es:14:42",
+"target": "Te preparas para el viaje.",
+"ru": "Ты готовишься к поездке.",
+"uk": "Ти готуєшся до поїздки."
+},
+{
+"id": "es:14:43",
+"target": "Ana se prepara para la clase.",
+"ru": "Ана готовится к занятию.",
+"uk": "Ана готується до заняття."
+}
+],
+"other": {}
+},
+{
+"lemma": "a",
+"meaning": {
+"ru": "к; показатель адресата или направления",
+"uk": "до; показник адресата або напрямку",
+"en": "to; indicator of addressee or direction",
+"es": "a; indicador de destinatario o dirección",
+"pt-BR": "para; indicador de destinatário ou direção",
+"vi": "đến; chỉ người nhận hoặc hướng",
+"id": "kepada; indikator penerima atau arah",
+"tr": "-e; alıcı veya yön göstergesi",
+"pl": "do; wskaźnik adresata lub kierunku"
+},
+"firstLesson": 15,
+"phrasesCount": 108,
+"examples": [
+{
+"id": "es:15:24",
+"target": "Ana puede llamar a Luis hoy.",
+"ru": "Ана сегодня может позвонить Луису.",
+"uk": "Ана сьогодні може зателефонувати Луїсу."
+},
+{
+"id": "es:15:25",
+"target": "Luis puede volver a casa hoy.",
+"ru": "Луис сегодня может вернуться домой.",
+"uk": "Луїс сьогодні може повернутися додому."
+},
+{
+"id": "es:15:26",
+"target": "Mis hermanas pueden volver a la estación hoy.",
+"ru": "Мои сёстры сегодня могут вернуться на вокзал.",
+"uk": "Мої сестри сьогодні можуть повернутися на вокзал."
+}
+],
+"other": {}
+},
+{
+"lemma": "al",
+"meaning": {
+"ru": "a + el",
+"uk": "a + el",
+"en": "a + el",
+"es": "a + el",
+"pt-BR": "a + el",
+"vi": "a + el",
+"id": "a + el",
+"tr": "a + el",
+"pl": "a + el"
+},
+"firstLesson": 15,
+"phrasesCount": 46,
+"examples": [
+{
+"id": "es:15:23",
+"target": "Podemos llamar al hotel hoy.",
+"ru": "Мы сегодня можем позвонить в отель.",
+"uk": "Ми сьогодні можемо зателефонувати до готелю."
+},
+{
+"id": "es:15:36",
+"target": "Mis hermanas no pueden llamar al hotel.",
+"ru": "Мои сёстры не могут позвонить в отель.",
+"uk": "Мої сестри не можуть зателефонувати до готелю."
+},
+{
+"id": "es:15:46",
+"target": "¿Puedes llamar al hotel?",
+"ru": "Ты можешь позвонить в отель?",
+"uk": "Ти можеш зателефонувати до готелю?"
+}
+],
+"other": {}
+},
+{
+"lemma": "con",
+"meaning": {
+"ru": "с",
+"uk": "з",
+"en": "with",
+"es": "con",
+"pt-BR": "com",
+"vi": "với",
+"id": "dengan",
+"tr": "ile",
+"pl": "z"
+},
+"firstLesson": 10,
+"phrasesCount": 22,
+"examples": [
+{
+"id": "es:10:13",
+"target": "Bebo café con leche.",
+"ru": "Я пью кофе с молоком.",
+"uk": "Я п’ю каву з молоком."
+},
+{
+"id": "es:10:36",
+"target": "No bebo café con azúcar.",
+"ru": "Я не пью кофе с сахаром.",
+"uk": "Я не п’ю каву з цукром."
+},
+{
+"id": "es:15:22",
+"target": "Puedes pagar con tarjeta hoy.",
+"ru": "Ты сегодня можешь заплатить картой.",
+"uk": "Ти сьогодні можеш заплатити карткою."
+}
+],
+"other": {}
+},
+{
+"lemma": "de",
+"meaning": {
+"ru": "из, от; принадлежность",
+"uk": "із, від; належність",
+"en": "from, from; belonging",
+"es": "desde, desde; pertenecientes a ellos, ustedes (destinatarios)",
+"pt-BR": "de, de; pertencentes a eles, vocês (destinatários)",
+"vi": "từ, từ; thuộc về",
+"id": "dari, dari; milik",
+"tr": "-den, -den; ait olmak",
+"pl": "z, od; należący"
+},
+"firstLesson": 10,
+"phrasesCount": 35,
+"examples": [
+{
+"id": "es:10:03",
+"target": "Vivo cerca de la estación.",
+"ru": "Я живу рядом с вокзалом.",
+"uk": "Я живу поруч із вокзалом."
+},
+{
+"id": "es:10:04",
+"target": "Vives cerca de la estación.",
+"ru": "Ты живёшь рядом с вокзалом.",
+"uk": "Ти живеш поруч із вокзалом."
+},
+{
+"id": "es:10:30",
+"target": "Vivís cerca de la estación.",
+"ru": "Вы живёте рядом с вокзалом.",
+"uk": "Ви живете поруч із вокзалом."
+}
+],
+"other": {}
+}
+]

@@ -1,0 +1,777 @@
+{
+ "lang": "de",
+ "lesson": 26,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:26:01",
+   "target": "Ich versuche, langsam zu sprechen.",
+   "ru": "Я стараюсь говорить медленно.",
+   "uk": "Я намагаюся говорити повільно."
+  },
+  {
+   "id": "de:26:02",
+   "target": "Du versuchst, leise zu sein.",
+   "ru": "Ты стараешься вести себя тихо.",
+   "uk": "Ти намагаєшся поводитися тихо."
+  },
+  {
+   "id": "de:26:03",
+   "target": "Anna versucht, die Tür zu öffnen.",
+   "ru": "Анна пытается открыть дверь.",
+   "uk": "Анна намагається відчинити двері."
+  },
+  {
+   "id": "de:26:04",
+   "target": "Tom versucht, den Schlüssel zu finden.",
+   "ru": "Том пытается найти ключ.",
+   "uk": "Том намагається знайти ключ."
+  },
+  {
+   "id": "de:26:05",
+   "target": "Wir versuchen, früher zu kommen.",
+   "ru": "Мы стараемся прийти пораньше.",
+   "uk": "Ми намагаємося прийти раніше."
+  },
+  {
+   "id": "de:26:06",
+   "target": "Ich hoffe, bald zu Hause zu sein.",
+   "ru": "Я надеюсь скоро оказаться дома.",
+   "uk": "Я сподіваюся скоро опинитися вдома."
+  },
+  {
+   "id": "de:26:07",
+   "target": "Sie hofft, den Bus zu erreichen.",
+   "ru": "Она надеется успеть на автобус.",
+   "uk": "Вона сподівається встигнути на автобус."
+  },
+  {
+   "id": "de:26:08",
+   "target": "Wir hoffen, ein Zimmer zu finden.",
+   "ru": "Мы надеемся найти комнату.",
+   "uk": "Ми сподіваємося знайти кімнату."
+  },
+  {
+   "id": "de:26:09",
+   "target": "Er plant, im Herbst umzuziehen.",
+   "ru": "Он планирует переехать осенью.",
+   "uk": "Він планує переїхати восени."
+  },
+  {
+   "id": "de:26:10",
+   "target": "Ihr plant, am Freitag zu fahren.",
+   "ru": "Вы планируете уехать в пятницу.",
+   "uk": "Ви плануєте поїхати у п'ятницю."
+  },
+  {
+   "id": "de:26:11",
+   "target": "Ich habe vergessen, Brot zu kaufen.",
+   "ru": "Я забыл купить хлеб.",
+   "uk": "Я забув купити хліб."
+  },
+  {
+   "id": "de:26:12",
+   "target": "Du hast vergessen, die Tür abzuschließen.",
+   "ru": "Ты забыл запереть дверь.",
+   "uk": "Ти забув замкнути двері."
+  },
+  {
+   "id": "de:26:13",
+   "target": "Sie hat vergessen, mich anzurufen.",
+   "ru": "Она забыла мне позвонить.",
+   "uk": "Вона забула мені зателефонувати."
+  },
+  {
+   "id": "de:26:14",
+   "target": "Wir haben vergessen, den Herd auszuschalten.",
+   "ru": "Мы забыли выключить плиту.",
+   "uk": "Ми забули вимкнути плиту."
+  },
+  {
+   "id": "de:26:15",
+   "target": "Er hat vergessen, die Karte mitzunehmen.",
+   "ru": "Он забыл взять с собой карту.",
+   "uk": "Він забув взяти з собою карту."
+  },
+  {
+   "id": "de:26:16",
+   "target": "Ich fange an, Deutsch zu lernen.",
+   "ru": "Я начинаю учить немецкий.",
+   "uk": "Я починаю вчити німецьку."
+  },
+  {
+   "id": "de:26:17",
+   "target": "Anna beginnt, den Tisch zu decken.",
+   "ru": "Анна начинает накрывать на стол.",
+   "uk": "Анна починає накривати на стіл."
+  },
+  {
+   "id": "de:26:18",
+   "target": "Tom hört auf, im Flur zu rauchen.",
+   "ru": "Том перестаёт курить в коридоре.",
+   "uk": "Том перестає курити у коридорі."
+  },
+  {
+   "id": "de:26:19",
+   "target": "Wir fangen an, die Kisten zu packen.",
+   "ru": "Мы начинаем упаковывать ящики.",
+   "uk": "Ми починаємо упаковувати ящики."
+  },
+  {
+   "id": "de:26:20",
+   "target": "Ich versuche, morgens und abends zu lüften.",
+   "ru": "Я стараюсь проветривать утром и вечером.",
+   "uk": "Я намагаюся провітрювати вранці та ввечері."
+  },
+  {
+   "id": "de:26:21",
+   "target": "Es ist leicht, den Bahnhof zu finden.",
+   "ru": "Найти вокзал легко.",
+   "uk": "Знайти вокзал легко."
+  },
+  {
+   "id": "de:26:22",
+   "target": "Es ist schwer, im Lärm zu lernen.",
+   "ru": "Учиться в шуме трудно.",
+   "uk": "Вчитися в шумі важко."
+  },
+  {
+   "id": "de:26:23",
+   "target": "Es ist wichtig, genug zu trinken.",
+   "ru": "Важно достаточно пить.",
+   "uk": "Важливо достатньо пити."
+  },
+  {
+   "id": "de:26:24",
+   "target": "Es ist schön, dich zu sehen.",
+   "ru": "Приятно тебя видеть.",
+   "uk": "Приємно тебе бачити."
+  },
+  {
+   "id": "de:26:25",
+   "target": "Es ist besser, vorher anzurufen.",
+   "ru": "Лучше позвонить заранее.",
+   "uk": "Краще зателефонувати заздалегідь."
+  },
+  {
+   "id": "de:26:26",
+   "target": "Es macht Spaß, zusammen zu kochen.",
+   "ru": "Вместе готовить весело.",
+   "uk": "Разом готувати весело."
+  },
+  {
+   "id": "de:26:27",
+   "target": "Es lohnt sich, die Preise zu vergleichen.",
+   "ru": "Стоит сравнить цены.",
+   "uk": "Варто порівняти ціни."
+  },
+  {
+   "id": "de:26:28",
+   "target": "Es ist möglich, online zu bezahlen.",
+   "ru": "Можно заплатить онлайн.",
+   "uk": "Можна заплатити онлайн."
+  },
+  {
+   "id": "de:26:29",
+   "target": "Es ist erlaubt, hier zu parken.",
+   "ru": "Здесь разрешено парковаться.",
+   "uk": "Тут дозволено паркуватися."
+  },
+  {
+   "id": "de:26:30",
+   "target": "Es ist verboten, den Notausgang zu blockieren.",
+   "ru": "Загораживать аварийный выход запрещено.",
+   "uk": "Загороджувати аварійний вихід заборонено."
+  },
+  {
+   "id": "de:26:31",
+   "target": "Ich habe Zeit, dir zu helfen.",
+   "ru": "У меня есть время тебе помочь.",
+   "uk": "У мене є час тобі допомогти."
+  },
+  {
+   "id": "de:26:32",
+   "target": "Wir haben Lust, draußen zu essen.",
+   "ru": "Нам хочется поесть на свежем воздухе.",
+   "uk": "Нам хочеться поїсти на свіжому повітрі."
+  },
+  {
+   "id": "de:26:33",
+   "target": "Sie hat Angst, den Zug zu verpassen.",
+   "ru": "Она боится опоздать на поезд.",
+   "uk": "Вона боїться запізнитися на поїзд."
+  },
+  {
+   "id": "de:26:34",
+   "target": "Tom hat vor, das Fahrrad zu reparieren.",
+   "ru": "Том намерен починить велосипед.",
+   "uk": "Том має намір полагодити велосипед."
+  },
+  {
+   "id": "de:26:35",
+   "target": "Ich denke daran, Milch zu kaufen.",
+   "ru": "Я помню о том, что нужно купить молоко.",
+   "uk": "Я пам'ятаю, що потрібно купити молоко."
+  },
+  {
+   "id": "de:26:36",
+   "target": "Anna freut sich darauf, ihre Schwester zu sehen.",
+   "ru": "Анна с нетерпением ждёт встречи с сестрой.",
+   "uk": "Анна з нетерпінням чекає на зустріч із сестрою."
+  },
+  {
+   "id": "de:26:37",
+   "target": "Er bittet mich, kurz zu warten.",
+   "ru": "Он просит меня немного подождать.",
+   "uk": "Він просить мене трохи почекати."
+  },
+  {
+   "id": "de:26:38",
+   "target": "Wir bitten Sie, das Formular zu unterschreiben.",
+   "ru": "Мы просим вас подписать бланк.",
+   "uk": "Ми просимо вас підписати бланк."
+  },
+  {
+   "id": "de:26:39",
+   "target": "Sie empfiehlt mir, einen Termin zu buchen.",
+   "ru": "Она советует мне записаться на приём.",
+   "uk": "Вона радить мені записатися на прийом."
+  },
+  {
+   "id": "de:26:40",
+   "target": "Ich verspreche dir, pünktlich zu sein.",
+   "ru": "Обещаю тебе прийти вовремя.",
+   "uk": "Обіцяю тобі прийти вчасно."
+  },
+  {
+   "id": "de:26:41",
+   "target": "Ich gehe zur Post, um das Paket abzuholen.",
+   "ru": "Я иду на почту, чтобы забрать посылку.",
+   "uk": "Я йду на пошту, щоб забрати посилку."
+  },
+  {
+   "id": "de:26:42",
+   "target": "Anna lernt Deutsch, um mit den Nachbarn zu sprechen.",
+   "ru": "Анна учит немецкий, чтобы говорить с соседями.",
+   "uk": "Анна вчить німецьку, щоб говорити із сусідами."
+  },
+  {
+   "id": "de:26:43",
+   "target": "Wir fahren früh los, um den Stau zu vermeiden.",
+   "ru": "Мы выезжаем рано, чтобы избежать пробки.",
+   "uk": "Ми виїжджаємо рано, щоб уникнути пробки."
+  },
+  {
+   "id": "de:26:44",
+   "target": "Tom spart Geld, um ein Fahrrad zu kaufen.",
+   "ru": "Том копит деньги, чтобы купить велосипед.",
+   "uk": "Том збирає гроші, щоб купити велосипед."
+  },
+  {
+   "id": "de:26:45",
+   "target": "Ich öffne das Fenster, um frische Luft zu bekommen.",
+   "ru": "Я открываю окно, чтобы впустить свежий воздух.",
+   "uk": "Я відкриваю вікно, щоб впустити свіже повітря."
+  },
+  {
+   "id": "de:26:46",
+   "target": "Sie ruft an, um den Termin zu bestätigen.",
+   "ru": "Она звонит, чтобы подтвердить запись.",
+   "uk": "Вона дзвонить, щоб підтвердити запис."
+  },
+  {
+   "id": "de:26:47",
+   "target": "Wir bleiben zu Hause, um uns auszuruhen.",
+   "ru": "Мы остаёмся дома, чтобы отдохнуть.",
+   "uk": "Ми залишаємося вдома, щоб відпочити."
+  },
+  {
+   "id": "de:26:48",
+   "target": "Er macht das Licht an, um besser zu sehen.",
+   "ru": "Он включает свет, чтобы лучше видеть.",
+   "uk": "Він вмикає світло, щоб краще бачити."
+  },
+  {
+   "id": "de:26:49",
+   "target": "Ich schreibe die Nummer auf, um sie nicht zu vergessen.",
+   "ru": "Я записываю номер, чтобы его не забыть.",
+   "uk": "Я записую номер, щоб його не забути."
+  },
+  {
+   "id": "de:26:50",
+   "target": "Wir nehmen die Treppe, um nicht auf den Aufzug zu warten.",
+   "ru": "Мы идём по лестнице, чтобы не ждать лифт.",
+   "uk": "Ми йдемо сходами, щоб не чекати ліфт."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Lärm",
+   "ru": "шум",
+   "uk": "шум"
+  },
+  {
+   "lemma": "der Notausgang",
+   "ru": "аварийный выход",
+   "uk": "аварійний вихід"
+  },
+  {
+   "lemma": "der Stau",
+   "ru": "дорожная пробка",
+   "uk": "дорожній затор"
+  },
+  {
+   "lemma": "vergleichen",
+   "ru": "сравнивать",
+   "uk": "порівнювати"
+  },
+  {
+   "lemma": "vermeiden",
+   "ru": "избегать",
+   "uk": "уникати"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber",
+  "der Schatten",
+  "die Zahlung",
+  "der Ersatzschlüssel",
+  "der Akku",
+  "streiken",
+  "das Rad",
+  "hoffen",
+  "bestätigen",
+  "versprechen",
+  "merken",
+  "die Miete",
+  "die Nachtschicht",
+  "der Anschluss",
+  "lüften",
+  "absagen",
+  "tagsüber",
+  "der Alarm",
+  "die Kerze",
+  "die Mitternacht",
+  "der Schnee",
+  "feucht",
+  "das Kleid",
+  "der Baum",
+  "das Brötchen",
+  "die Unterlage",
+  "der Gang"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  },
+  {
+   "lesson": 21,
+   "title": "Причина после `weil`: глагол уходит в конец"
+  },
+  {
+   "lesson": 22,
+   "title": "Передаю содержание сообщения: `dass`"
+  },
+  {
+   "lesson": 23,
+   "title": "Условие и повторяющийся случай: `wenn`"
+  },
+  {
+   "lesson": 24,
+   "title": "Один случай в прошлом: `als`"
+  },
+  {
+   "lesson": 25,
+   "title": "Какой именно? Прилагательное после определённого артикля"
+  }
+ ],
+ "oldTopicTitle": "Два действия: инфинитив с `zu`",
+ "oldTheoryRu": "Есть попытка и есть её цель. Лицо показывает глагол «пытаюсь», а второе действие не спрягается отдельно. Проверь, что ты не назвал исполнителя второй раз как в полном придаточном. Надежда или план могут относиться и к состоянию, например быть дома. Форма `zu sein` ведёт себя как любой другой инфинитив с `zu`, хотя обычная форма для говорящего была бы `bin`. Если приставка отделяемая, `zu` ставится внутрь и всё пишется слитно: `anzurufen`, `abzuschließen`. Не выбирай три плитки вместо одного написанного слова. Конструкция с `es ist` сначала оценивает действие: легко, трудно, важно. Что именно легко или важно, называют дальше. Исполнитель может быть общим, поэтому местоимение не всегда требуется. Просьба показывает, что исполнитель не обязательно тот же человек, что у первого глагола. В `Er bittet mich, …` просят именно меня совершить следующее действие. Для цели задай вопрос «зачем?». Человек идёт на почту, чтобы забрать посылку. `Um` открывает группу цели, а `zu` относится к инфинитиву. Это не тот же смысл, что «потому что». Граница с модальными глаголами важна: после `muss` основное действие обычно идёт без `zu`. Не добавляй частицу просто оттого, что в предложении два глагола. Выбор зависит от конструкции."
+}

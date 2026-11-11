@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 17,
+"blocks": [
+{
+"textES": "El despertador suena por la mañana. «Me levanto» — Mi alzo. Busca alzarsi en el diccionario. El último si sugiere que aparecerá una palabra corta junto a la forma personal. Para nosotros mismos, usamos mi.\nDivide el diccionario alzarsi en una acción y un marcador de reflexividad. En presente, el pronombre breve se coloca por separado antes de la forma personal. En el diccionario, esta es una sola entrada, no seis verbos diferentes.",
+"textEn": "The alarm clock rings in the morning. \"I get up\" — Mi alzo. Look up alzarsi in the dictionary. The last si suggests that a short word will appear next to the personal form. For ourselves, we take mi.\nBreak the dictionary alzarsi into an action and a reflexivity marker. In the present tense, the short pronoun is placed separately before the personal form. In the dictionary, this is one entry, not six different verbs.",
+"textId": "Jam alarm berdering di pagi hari. \"Saya bangun\" — Mi alzo. Cari alzarsi di kamus. si terakhir menunjukkan bahwa kata pendek akan muncul di sebelah bentuk pribadi. Untuk diri kita sendiri, kita menggunakan mi.\nUraikan alzarsi dalam kamus menjadi sebuah tindakan dan penanda refleksivitas. Dalam bentuk present tense, kata ganti pendek ditempatkan secara terpisah sebelum bentuk personal. Dalam kamus, ini adalah satu entri, bukan enam kata kerja yang berbeda.",
+"textPl": "Budzik dzwoni rano. „Wstaję” — Mi alzo. Wyszukaj alzarsi w słowniku. Ostatnie si sugeruje, że obok formy osobowej pojawi się krótkie słowo. Dla siebie bierzemy mi.\nPodziel słownikowy alzarsi na czynność i znacznik zwrotności. W czasie teraźniejszym krótki zaimek jest umieszczany oddzielnie przed formą osobową. W słowniku jest to jedno hasło, a nie sześć różnych czasowników.",
+"textPtBr": "O despertador toca de manhã. \"Eu me levanto\" — Mi alzo. Consulte alzarsi no dicionário. O último si sugere que uma palavra curta aparecerá ao lado da forma pessoal. Para nós mesmos, usamos mi.\nDivida o alzarsi do dicionário em um marcador de ação e um marcador de reflexividade. No presente do indicativo, o pronome curto é colocado separadamente antes da forma pessoal. No dicionário, trata-se de uma única entrada, não de seis verbos diferentes.",
+"textRU": "Утром звонит будильник. «Я встаю» — Mi alzo. В словаре ищи alzarsi. Последнее si подсказывает, что рядом с личной формой появится короткое слово. Для себя берём mi.\nРазбей словарное alzarsi на действие и помету возвратности. В настоящем времени короткое местоимение ставится отдельно перед личной формой. В словаре это одна запись, а не шесть разных глаголов.",
+"textTr": "Alarm saati sabah çalıyor. \"Kalkıyorum\" — Mi alzo. Sözlükte alzarsi'ye bakın. Sondaki si, şahıs halinin yanında kısa bir kelimenin görüneceğini gösteriyor. Kendimiz için mi'ü alıyoruz.\nSözlükteki alzarsi'i bir eylem ve bir yansıma belirteci olarak ayırın. Şimdiki zamanda, kısa zamir şahıs biçiminden önce ayrı olarak yerleştirilir. Sözlükte bu, altı farklı fiil değil, tek bir giriştir.",
+"textUK": "Вранці дзвонить будильник. \"Я встаю\" - Mi alzo. У словнику шукай alzarsi. Останнє si підказує, що поряд з особистою формою з'явиться коротке слово. Для себе беремо mi.\nРозбий словникове alzarsi на дію та послід повернення. Нині короткий займенник ставиться окремо перед особистої формою. У словнику це один запис, а не шість різних дієслів.",
+"textVi": "Chuông báo thức reo vào buổi sáng. \"Tôi thức dậy\" — Mi alzo. Tra cứu alzarsi trong từ điển. si cuối cùng cho thấy một từ ngắn sẽ xuất hiện bên cạnh dạng cá nhân. Đối với bản thân chúng ta, chúng ta lấy mi.\nTách từ điển alzarsi thành một hành động và một dấu hiệu phản thân. Ở thì hiện tại, đại từ ngắn được đặt riêng trước dạng ngôi thứ nhất. Trong từ điển, đây là một mục từ, không phải sáu động từ khác nhau.",
+"titleES": "La acción te concierne: mi alzo",
+"titleEn": "The action concerns you: mi alzo",
+"titleId": "Tindakan ini menyangkut Anda: mi alzo",
+"titlePl": "Akcja dotyczy Ciebie: mi alzo",
+"titlePtBr": "A ação diz respeito a você: mi alzo",
+"titleRU": "Действие касается тебя: mi alzo",
+"titleTr": "Eylem sizi ilgilendiriyor: mi alzo",
+"titleUK": "Дія стосується тебе: mi alzo",
+"titleVi": "Hành động liên quan đến bạn: mi alzo",
+"titleByLocale": {
+"en": "The action concerns you: mi alzo",
+"es": "La acción te concierne: mi alzo",
+"id": "Tindakan ini menyangkut Anda: mi alzo",
+"pl": "Akcja dotyczy Ciebie: mi alzo",
+"pt-BR": "A ação diz respeito a você: mi alzo",
+"ru": "Действие касается тебя: mi alzo",
+"tr": "Eylem sizi ilgilendiriyor: mi alzo",
+"uk": "Дія стосується тебе: mi alzo",
+"vi": "Hành động liên quan đến bạn: mi alzo"
+},
+"textByLocale": {
+"en": [
+"The alarm clock rings in the morning. \"I get up\" — «Mi alzo». Look up «alzarsi» in the dictionary. The last «si» suggests that a short word will appear next to the personal form. For ourselves, we take «mi».",
+"Break the dictionary «alzarsi» into an action and a reflexivity marker. In the present tense, the short pronoun is placed separately before the personal form. In the dictionary, this is one entry, not six different verbs."
+],
+"es": [
+"El despertador suena por la mañana. «Me levanto» — «Mi alzo». Busca «alzarsi» en el diccionario. El último «si» sugiere que aparecerá una palabra corta junto a la forma personal. Para nosotros mismos, usamos «mi».",
+"Divide el diccionario «alzarsi» en una acción y un marcador de reflexividad. En presente, el pronombre breve se coloca por separado antes de la forma personal. En el diccionario, esta es una sola entrada, no seis verbos diferentes."
+],
+"id": [
+"Jam alarm berdering di pagi hari. \"Saya bangun\" — «Mi alzo». Cari «alzarsi» di kamus. «si» terakhir menunjukkan bahwa kata pendek akan muncul di sebelah bentuk pribadi. Untuk diri kita sendiri, kita menggunakan «mi».",
+"Uraikan «alzarsi» dalam kamus menjadi sebuah tindakan dan penanda refleksivitas. Dalam bentuk present tense, kata ganti pendek ditempatkan secara terpisah sebelum bentuk personal. Dalam kamus, ini adalah satu entri, bukan enam kata kerja yang berbeda."
+],
+"pl": [
+"Budzik dzwoni rano. „Wstaję” — «Mi alzo». Wyszukaj «alzarsi» w słowniku. Ostatnie «si» sugeruje, że obok formy osobowej pojawi się krótkie słowo. Dla siebie bierzemy «mi».",
+"Podziel słownikowy «alzarsi» na czynność i znacznik zwrotności. W czasie teraźniejszym krótki zaimek jest umieszczany oddzielnie przed formą osobową. W słowniku jest to jedno hasło, a nie sześć różnych czasowników."
+],
+"pt-BR": [
+"O despertador toca de manhã. \"Eu me levanto\" — «Mi alzo». Consulte «alzarsi» no dicionário. O último «si» sugere que uma palavra curta aparecerá ao lado da forma pessoal. Para nós mesmos, usamos «mi».",
+"Divida o «alzarsi» do dicionário em um marcador de ação e um marcador de reflexividade. No presente do indicativo, o pronome curto é colocado separadamente antes da forma pessoal. No dicionário, trata-se de uma única entrada, não de seis verbos diferentes."
+],
+"ru": [
+"Утром звонит будильник. «Я встаю» — «Mi alzo». В словаре ищи «alzarsi». Последнее «si» подсказывает, что рядом с личной формой появится короткое слово. Для себя берём «mi».",
+"Разбей словарное «alzarsi» на действие и помету возвратности. В настоящем времени короткое местоимение ставится отдельно перед личной формой. В словаре это одна запись, а не шесть разных глаголов."
+],
+"tr": [
+"Alarm saati sabah çalıyor. \"Kalkıyorum\" — «Mi alzo». Sözlükte «alzarsi»'ye bakın. Sondaki «si», şahıs halinin yanında kısa bir kelimenin görüneceğini gösteriyor. Kendimiz için «mi»'ü alıyoruz.",
+"Sözlükteki «alzarsi»'i bir eylem ve bir yansıma belirteci olarak ayırın. Şimdiki zamanda, kısa zamir şahıs biçiminden önce ayrı olarak yerleştirilir. Sözlükte bu, altı farklı fiil değil, tek bir giriştir."
+],
+"uk": [
+"Вранці дзвонить будильник. \"Я встаю\" - «Mi alzo». У словнику шукай «alzarsi». Останнє «si» підказує, що поряд з особистою формою з'явиться коротке слово. Для себе беремо «mi».",
+"Розбий словникове «alzarsi» на дію та послід повернення. Нині короткий займенник ставиться окремо перед особистої формою. У словнику це один запис, а не шість різних дієслів."
+],
+"vi": [
+"Chuông báo thức reo vào buổi sáng. \"Tôi thức dậy\" — «Mi alzo». Tra cứu «alzarsi» trong từ điển. «si» cuối cùng cho thấy một từ ngắn sẽ xuất hiện bên cạnh dạng cá nhân. Đối với bản thân chúng ta, chúng ta lấy «mi».",
+"Tách từ điển «alzarsi» thành một hành động và một dấu hiệu phản thân. Ở thì hiện tại, đại từ ngắn được đặt riêng trước dạng ngôi thứ nhất. Trong từ điển, đây là một mục từ, không phải sáu động từ khác nhau."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:17:01"
+]
+},
+{
+"textES": "mi / ti / si / ci / vi / si + forma personal\nCuando te levantas tú, no yo, las dos partes se intercambian: mi alzo → ti alzi. Se refieren a la misma persona. No puedes usar ti para un amigo y conservar la terminación para ti mismo.\nUn grupo con un hablante usa ci: ci alziamo. El grupo es interpelado por vi alzate. Varias personas tienen el mismo si que una persona, y la diferencia es visible en el verbo.",
+"textEn": "mi / ti / si / ci / vi / si + personal form\nWhen you get up, not I, the two parts swap: mi alzo → ti alzi. They refer to the same person. You can't take ti for a friend and keep the ending for yourself.\nA group with a speaker uses ci: ci alziamo. The group is addressed by vi alzate. Several other people have the same si as one person, and the difference is visible in the verb.",
+"textId": "mi / ti / si / ci / vi / si + bentuk pribadi\nKetika Anda bangun, bukan saya, kedua bagian tersebut bertukar: mi alzo → ti alzi. Keduanya merujuk pada orang yang sama. Anda tidak dapat menggunakan ti untuk teman dan mempertahankan akhiran untuk diri sendiri.\nSebuah kelompok dengan seorang pembicara menggunakan ci: ci alziamo. Kelompok tersebut disapa oleh vi alzate. Beberapa orang lain memiliki si yang sama dengan satu orang, dan perbedaannya terlihat pada kata kerja.",
+"textPl": "mi / ti / si / ci / vi / si + forma osobowa\nKiedy Ty wstajesz, a nie ja, dwie części zamieniają się: mi alzo → ti alzi. Odnoszą się do tej samej osoby. Nie możesz uważać ti za przyjaciela i zachować końcówki dla siebie.\nGrupa z jednym mówcą używa ci: ci alziamo. Do grupy zwraca się vi alzate. Kilka innych osób używa tego samego si jako jednej osoby, a różnica jest widoczna w czasowniku.",
+"textPtBr": "mi / ti / si / ci / vi / si + forma pessoal\nQuando você se levanta, e não eu, as duas partes se invertem: mi alzo → ti alzi. Elas se referem à mesma pessoa. Você não pode usar ti para um amigo e manter a terminação para si mesmo.\nUm grupo com um falante usa ci: ci alziamo. O grupo é interpelado por vi alzate. Várias outras pessoas têm o mesmo si que uma pessoa, e a diferença é visível no verbo.",
+"textRU": "mi / ti / si / ci / vi / si + личная форма\nКогда встаёшь ты, а не я, меняются две части: mi alzo → ti alzi. Они относятся к одному человеку. Нельзя взять ti для друга, а окончание оставить для себя.\nГруппа с говорящим использует ci: ci alziamo. Обращение к группе — vi alzate. У нескольких других людей si такое же, как у одного, а различие видно по глаголу.",
+"textTr": "mi / ti / si / ci / vi / si + şahıs hali\nSiz kalktığınızda, ben değil, iki kısım yer değiştiriyor: mi alzo → ti alzi. Aynı kişiye atıfta bulunuyorlar. ti'ü bir arkadaşınız için alıp sonunu kendiniz için saklayamazsınız.\nKonuşmacısı olan bir grup ci: ci alziamo kullanır. Gruba vi alzate ile hitap edilir. Birkaç başka kişi de aynı si'ü bir kişiyle paylaşır ve fark fiilde görünür.",
+"textUK": "mi / ti / si / ci / vi / si + особиста форма\nКоли встаєш ти, а не я, змінюються дві частини: mi alzo → ti alzi. Вони належать до однієї людини. Не можна взяти ti для друга, а закінчення залишити собі.\nГрупа з говорящим використовує ci: ci alziamo. Звернення до групи - vi alzate. У кількох інших людей si таке ж, як у одного, а різниця видно по дієслову.",
+"textVi": "mi / ti / si / ci / vi / si + dạng cá nhân\nKhi bạn thức dậy, chứ không phải tôi, hai phần sẽ hoán đổi vị trí: mi alzo → ti alzi. Chúng đề cập đến cùng một người. Bạn không thể lấy ti cho một người bạn và giữ nguyên phần cuối cho chính mình.\nMột nhóm có người nói sử dụng ci: ci alziamo. Nhóm được xưng hô bằng vi alzate. Một số người khác có cùng si với một người, và sự khác biệt thể hiện rõ ở động từ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«mi / ti / si / ci / vi / si» + personal form",
+"When you get up, not I, the two parts swap: «mi alzo» → «ti alzi». They refer to the same person. You can't take «ti» for a friend and keep the ending for yourself.",
+"A group with a speaker uses «ci»: «ci alziamo». The group is addressed by «vi alzate». Several other people have the same «si» as one person, and the difference is visible in the verb."
+],
+"es": [
+"«mi / ti / si / ci / vi / si» + forma personal",
+"Cuando te levantas tú, no yo, las dos partes se intercambian: «mi alzo» → «ti alzi». Se refieren a la misma persona. No puedes usar «ti» para un amigo y conservar la terminación para ti mismo.",
+"Un grupo con un hablante usa «ci»: «ci alziamo». El grupo es interpelado por «vi alzate». Varias personas tienen el mismo «si» que una persona, y la diferencia es visible en el verbo."
+],
+"id": [
+"«mi / ti / si / ci / vi / si» + bentuk pribadi",
+"Ketika Anda bangun, bukan saya, kedua bagian tersebut bertukar: «mi alzo» → «ti alzi». Keduanya merujuk pada orang yang sama. Anda tidak dapat menggunakan «ti» untuk teman dan mempertahankan akhiran untuk diri sendiri.",
+"Sebuah kelompok dengan seorang pembicara menggunakan «ci»: «ci alziamo». Kelompok tersebut disapa oleh «vi alzate». Beberapa orang lain memiliki «si» yang sama dengan satu orang, dan perbedaannya terlihat pada kata kerja."
+],
+"pl": [
+"«mi / ti / si / ci / vi / si» + forma osobowa",
+"Kiedy Ty wstajesz, a nie ja, dwie części zamieniają się: «mi alzo» → «ti alzi». Odnoszą się do tej samej osoby. Nie możesz uważać «ti» za przyjaciela i zachować końcówki dla siebie.",
+"Grupa z jednym mówcą używa «ci»: «ci alziamo». Do grupy zwraca się «vi alzate». Kilka innych osób używa tego samego «si» jako jednej osoby, a różnica jest widoczna w czasowniku."
+],
+"pt-BR": [
+"«mi / ti / si / ci / vi / si» + forma pessoal",
+"Quando você se levanta, e não eu, as duas partes se invertem: «mi alzo» → «ti alzi». Elas se referem à mesma pessoa. Você não pode usar «ti» para um amigo e manter a terminação para si mesmo.",
+"Um grupo com um falante usa «ci»: «ci alziamo». O grupo é interpelado por «vi alzate». Várias outras pessoas têm o mesmo «si» que uma pessoa, e a diferença é visível no verbo."
+],
+"ru": [
+"«mi / ti / si / ci / vi / si» + личная форма",
+"Когда встаёшь ты, а не я, меняются две части: «mi alzo» → «ti alzi». Они относятся к одному человеку. Нельзя взять «ti» для друга, а окончание оставить для себя.",
+"Группа с говорящим использует «ci»: «ci alziamo». Обращение к группе — «vi alzate». У нескольких других людей «si» такое же, как у одного, а различие видно по глаголу."
+],
+"tr": [
+"«mi / ti / si / ci / vi / si» + şahıs hali",
+"Siz kalktığınızda, ben değil, iki kısım yer değiştiriyor: «mi alzo» → «ti alzi». Aynı kişiye atıfta bulunuyorlar. «ti»'ü bir arkadaşınız için alıp sonunu kendiniz için saklayamazsınız.",
+"Konuşmacısı olan bir grup «ci»: «ci alziamo» kullanır. Gruba «vi alzate» ile hitap edilir. Birkaç başka kişi de aynı «si»'ü bir kişiyle paylaşır ve fark fiilde görünür."
+],
+"uk": [
+"«mi / ti / si / ci / vi / si» + особиста форма",
+"Коли встаєш ти, а не я, змінюються дві частини: «mi alzo» → «ti alzi». Вони належать до однієї людини. Не можна взяти «ti» для друга, а закінчення залишити собі.",
+"Група з говорящим використовує «ci»: «ci alziamo». Звернення до групи - «vi alzate». У кількох інших людей «si» таке ж, як у одного, а різниця видно по дієслову."
+],
+"vi": [
+"«mi / ti / si / ci / vi / si» + dạng cá nhân",
+"Khi bạn thức dậy, chứ không phải tôi, hai phần sẽ hoán đổi vị trí: «mi alzo» → «ti alzi». Chúng đề cập đến cùng một người. Bạn không thể lấy «ti» cho một người bạn và giữ nguyên phần cuối cho chính mình.",
+"Một nhóm có người nói sử dụng «ci»: «ci alziamo». Nhóm được xưng hô bằng «vi alzate». Một số người khác có cùng «si» với một người, và sự khác biệt thể hiện rõ ở động từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:17:04",
+"it:17:05"
+]
+},
+{
+"textES": "Primero elige Mi, luego alzo. Para hablar de otra persona, compara si alza. Sin contexto, alza puede significar que una persona está recogiendo algo: el pequeño mi cambia el significado.",
+"textEn": "First choose Mi, then alzo. To talk about someone else, compare si alza. Without context, alza can mean that a person is picking something up: the small mi changes the meaning.",
+"textId": "Pertama pilih Mi, lalu alzo. Untuk membicarakan orang lain, bandingkan si alza. Tanpa konteks, alza dapat berarti seseorang sedang mengambil sesuatu: mi yang kecil mengubah maknanya.",
+"textPl": "Najpierw wybierz Mi, a następnie alzo. Aby mówić o kimś innym, porównaj si alza. Bez kontekstu alza może oznaczać, że dana osoba coś podnosi: małe mi zmienia znaczenie.",
+"textPtBr": "Primeiro escolha Mi, depois alzo. Para falar sobre outra pessoa, compare com si alza. Sem contexto, alza pode significar que uma pessoa está pegando algo: o pequeno mi muda o significado.",
+"textRU": "Сначала выбери Mi, затем alzo. Для рассказа о ком-то другом сравни si alza. Без контекста alza может обозначать, что человек что-то поднимает: маленькое mi меняет смысл.",
+"textTr": "Önce Mi'i, sonra alzo'yi seçin. Başka birinden bahsetmek için si alza ile karşılaştırın. Bağlam olmadan, alza bir kişinin bir şey aldığını ifade edebilir: küçük mi anlamı değiştirir.",
+"textUK": "Спочатку вибери Mi, потім alzo. Для розповіді про когось порівняй si alza. Без контексту alza може позначати, що людина щось піднімає: маленьке mi змінює сенс.",
+"textVi": "Trước tiên hãy chọn Mi, sau đó là alzo. Để nói về người khác, hãy so sánh với si alza. Nếu không có ngữ cảnh, alza có thể có nghĩa là một người đang nhặt thứ gì đó lên: từ viết tắt mi làm thay đổi ý nghĩa.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"First choose «Mi», then «alzo». To talk about someone else, compare «si alza». Without context, «alza» can mean that a person is picking something up: the small «mi» changes the meaning."
+],
+"es": [
+"Primero elige «Mi», luego «alzo». Para hablar de otra persona, compara «si alza». Sin contexto, «alza» puede significar que una persona está recogiendo algo: el pequeño «mi» cambia el significado."
+],
+"id": [
+"Pertama pilih «Mi», lalu «alzo». Untuk membicarakan orang lain, bandingkan «si alza». Tanpa konteks, «alza» dapat berarti seseorang sedang mengambil sesuatu: «mi» yang kecil mengubah maknanya."
+],
+"pl": [
+"Najpierw wybierz «Mi», a następnie «alzo». Aby mówić o kimś innym, porównaj «si alza». Bez kontekstu «alza» może oznaczać, że dana osoba coś podnosi: małe «mi» zmienia znaczenie."
+],
+"pt-BR": [
+"Primeiro escolha «Mi», depois «alzo». Para falar sobre outra pessoa, compare com «si alza». Sem contexto, «alza» pode significar que uma pessoa está pegando algo: o pequeno «mi» muda o significado."
+],
+"ru": [
+"Сначала выбери «Mi», затем «alzo». Для рассказа о ком-то другом сравни «si alza». Без контекста «alza» может обозначать, что человек что-то поднимает: маленькое «mi» меняет смысл."
+],
+"tr": [
+"Önce «Mi»'i, sonra «alzo»'yi seçin. Başka birinden bahsetmek için «si alza» ile karşılaştırın. Bağlam olmadan, «alza» bir kişinin bir şey aldığını ifade edebilir: küçük «mi» anlamı değiştirir."
+],
+"uk": [
+"Спочатку вибери «Mi», потім «alzo». Для розповіді про когось порівняй «si alza». Без контексту «alza» може позначати, що людина щось піднімає: маленьке «mi» змінює сенс."
+],
+"vi": [
+"Trước tiên hãy chọn «Mi», sau đó là «alzo». Để nói về người khác, hãy so sánh với «si alza». Nếu không có ngữ cảnh, «alza» có thể có nghĩa là một người đang nhặt thứ gì đó lên: từ viết tắt «mi» làm thay đổi ý nghĩa."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:17:01",
+"it:17:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:17:01",
+"target": "Mi alzo.",
+"ru": "Я встаю.",
+"uk": "Я встаю."
+},
+{
+"id": "it:17:04",
+"target": "Ci alziamo.",
+"ru": "Мы встаем.",
+"uk": "Ми встаємо."
+},
+{
+"id": "it:17:05",
+"target": "Vi alzate.",
+"ru": "Вы встаёте.",
+"uk": "Ви встаєте."
+},
+{
+"id": "it:17:01",
+"target": "Mi alzo.",
+"ru": "Я встаю.",
+"uk": "Я встаю."
+},
+{
+"id": "it:17:04",
+"target": "Ci alziamo.",
+"ru": "Мы встаем.",
+"uk": "Ми встаємо."
+}
+]
+},
+{
+"lesson": 18,
+"blocks": [
+{
+"textES": "Ya has cerrado la puerta y estás informando del resultado. Chiudo — Estoy cerrando; ho chiuso — He cerrado. La primera parte es similar a «He», pero aquí ayuda a construir el pretérito.\nEn una frase de dos palabras, la primera indica la persona y la segunda la acción. Si dejas solo ho, obtienes «Yo he». Si dejas solo chiuso, no obtendrás una oración completa sobre quién cerró la puerta.",
+"textEn": "You have already closed the door and are reporting the result. Chiudo — I am closing; ho chiuso — I have closed. The first part is similar to \"I have,\" but here it helps construct the past tense.\nIn a two-word phrase, the first part indicates the person, the second the action. If you leave only ho, you get \"I have.\" If you leave only chiuso, you won't get a complete statement about who closed the door.",
+"textId": "Anda telah menutup pintu dan melaporkan hasilnya. Chiudo — Saya sedang menutup; ho chiuso — Saya telah menutup. Bagian pertama mirip dengan \"Saya telah,\" tetapi di sini membantu membentuk bentuk lampau.\nDalam frasa dua kata, bagian pertama menunjukkan orangnya, bagian kedua menunjukkan tindakannya. Jika Anda hanya meninggalkan ho, Anda akan mendapatkan \"Saya telah.\" Jika Anda hanya meninggalkan chiuso, Anda tidak akan mendapatkan pernyataan lengkap tentang siapa yang menutup pintu.",
+"textPl": "Zamknąłeś już drzwi i raportujesz wynik. Chiudo — Zamykam; ho chiuso — Zamknąłem. Pierwsza część jest podobna do „I have”, ale tutaj pomaga w konstrukcji czasu przeszłego.\nW dwuwyrazowej frazie pierwsza część wskazuje osobę, druga czynność. Jeśli zostawisz tylko ho, otrzymasz „Mam”. Jeśli zostawisz tylko chiuso, nie otrzymasz pełnej informacji o tym, kto zamknął drzwi.",
+"textPtBr": "Você já fechou a porta e está relatando o resultado. Chiudo — Estou fechando; ho chiuso — Eu fechei. A primeira parte é semelhante a \"Eu fechei\", mas aqui ajuda a construir o pretérito.\nEm uma frase de duas palavras, a primeira parte indica a pessoa e a segunda, a ação. Se você deixar apenas ho, obterá \"Eu tenho\". Se deixar apenas chiuso, não obterá uma declaração completa sobre quem fechou a porta.",
+"textRU": "Ты уже закрыл дверь и сообщаешь результат. Chiudo — закрываю; ho chiuso — закрыл. Первая часть похожа на «у меня есть», но здесь она помогает построить прошедшее время.\nВ двухсловной группе первая часть показывает человека, вторая — действие. Если оставить только ho, выйдет «у меня есть». Если оставить только chiuso, полноценного сообщения о том, кто закрыл, не получится.",
+"textTr": "Kapıyı zaten kapattınız ve sonucu bildiriyorsunuz. Chiudo — Kapatıyorum; ho chiuso — Kapattım. İlk kısım \"Kapattım\"a benzer, ancak burada geçmiş zamanı oluşturmaya yardımcı olur.\nİki kelimelik bir ifadede, ilk kısım kişiyi, ikinci kısım ise eylemi gösterir. Sadece ho'i bırakırsanız, \"Sahibim\" elde edersiniz. Sadece chiuso'yi bırakırsanız, kapıyı kimin kapattığına dair eksiksiz bir ifade elde edemezsiniz.",
+"textUK": "Ти вже зачинив двері та повідомляєш результат. Chiudo - закриваю; ho chiuso - закрив. Перша частина схожа на «я маю», але тут вона допомагає побудувати минулий час.\nУ двослівній групі перша частина показує людину, друга - дію. Якщо залишити лише ho, вийде \"у мене є\". Якщо залишити лише chiuso, повноцінного повідомлення про те, хто закрив, не вийде.",
+"textVi": "Bạn đã đóng cửa và đang báo cáo kết quả. Chiudo — Tôi đang đóng; ho chiuso — Tôi đã đóng. Phần đầu tương tự như \"Tôi đã\", nhưng ở đây nó giúp cấu thành thì quá khứ.\nTrong một cụm từ hai từ, phần đầu chỉ người, phần thứ hai chỉ hành động. Nếu bạn chỉ giữ lại ho, bạn sẽ có \"Tôi có.\" Nếu bạn chỉ giữ lại chiuso, bạn sẽ không có được một câu hoàn chỉnh về người đã đóng cửa.",
+"titleES": "Acción completada: ho chiuso",
+"titleEn": "Completed action: ho chiuso",
+"titleId": "Tindakan selesai: ho chiuso",
+"titlePl": "Wykonana czynność: ho chiuso",
+"titlePtBr": "Ação concluída: ho chiuso",
+"titleRU": "Завершённое действие: ho chiuso",
+"titleTr": "Tamamlanmış eylem: ho chiuso",
+"titleUK": "Завершена дія: ho chiuso",
+"titleVi": "Hành động đã hoàn thành: ho chiuso",
+"titleByLocale": {
+"en": "Completed action: ho chiuso",
+"es": "Acción completada: ho chiuso",
+"id": "Tindakan selesai: ho chiuso",
+"pl": "Wykonana czynność: ho chiuso",
+"pt-BR": "Ação concluída: ho chiuso",
+"ru": "Завершённое действие: ho chiuso",
+"tr": "Tamamlanmış eylem: ho chiuso",
+"uk": "Завершена дія: ho chiuso",
+"vi": "Hành động đã hoàn thành: ho chiuso"
+},
+"textByLocale": {
+"en": [
+"You have already closed the door and are reporting the result. «Chiudo» — I am closing; «ho chiuso» — I have closed. The first part is similar to \"I have,\" but here it helps construct the past tense.",
+"In a two-word phrase, the first part indicates the person, the second the action. If you leave only «ho», you get \"I have.\" If you leave only «chiuso», you won't get a complete statement about who closed the door."
+],
+"es": [
+"Ya has cerrado la puerta y estás informando del resultado. «Chiudo» — Estoy cerrando; «ho chiuso» — He cerrado. La primera parte es similar a «He», pero aquí ayuda a construir el pretérito.",
+"En una frase de dos palabras, la primera indica la persona y la segunda la acción. Si dejas solo «ho», obtienes «Yo he». Si dejas solo «chiuso», no obtendrás una oración completa sobre quién cerró la puerta."
+],
+"id": [
+"Anda telah menutup pintu dan melaporkan hasilnya. «Chiudo» — Saya sedang menutup; «ho chiuso» — Saya telah menutup. Bagian pertama mirip dengan \"Saya telah,\" tetapi di sini membantu membentuk bentuk lampau.",
+"Dalam frasa dua kata, bagian pertama menunjukkan orangnya, bagian kedua menunjukkan tindakannya. Jika Anda hanya meninggalkan «ho», Anda akan mendapatkan \"Saya telah.\" Jika Anda hanya meninggalkan «chiuso», Anda tidak akan mendapatkan pernyataan lengkap tentang siapa yang menutup pintu."
+],
+"pl": [
+"Zamknąłeś już drzwi i raportujesz wynik. «Chiudo» — Zamykam; «ho chiuso» — Zamknąłem. Pierwsza część jest podobna do „I have”, ale tutaj pomaga w konstrukcji czasu przeszłego.",
+"W dwuwyrazowej frazie pierwsza część wskazuje osobę, druga czynność. Jeśli zostawisz tylko «ho», otrzymasz „Mam”. Jeśli zostawisz tylko «chiuso», nie otrzymasz pełnej informacji o tym, kto zamknął drzwi."
+],
+"pt-BR": [
+"Você já fechou a porta e está relatando o resultado. «Chiudo» — Estou fechando; «ho chiuso» — Eu fechei. A primeira parte é semelhante a \"Eu fechei\", mas aqui ajuda a construir o pretérito.",
+"Em uma frase de duas palavras, a primeira parte indica a pessoa e a segunda, a ação. Se você deixar apenas «ho», obterá \"Eu tenho\". Se deixar apenas «chiuso», não obterá uma declaração completa sobre quem fechou a porta."
+],
+"ru": [
+"Ты уже закрыл дверь и сообщаешь результат. «Chiudo» — закрываю; «ho chiuso» — закрыл. Первая часть похожа на «у меня есть», но здесь она помогает построить прошедшее время.",
+"В двухсловной группе первая часть показывает человека, вторая — действие. Если оставить только «ho», выйдет «у меня есть». Если оставить только «chiuso», полноценного сообщения о том, кто закрыл, не получится."
+],
+"tr": [
+"Kapıyı zaten kapattınız ve sonucu bildiriyorsunuz. «Chiudo» — Kapatıyorum; «ho chiuso» — Kapattım. İlk kısım \"Kapattım\"a benzer, ancak burada geçmiş zamanı oluşturmaya yardımcı olur.",
+"İki kelimelik bir ifadede, ilk kısım kişiyi, ikinci kısım ise eylemi gösterir. Sadece «ho»'i bırakırsanız, \"Sahibim\" elde edersiniz. Sadece «chiuso»'yi bırakırsanız, kapıyı kimin kapattığına dair eksiksiz bir ifade elde edemezsiniz."
+],
+"uk": [
+"Ти вже зачинив двері та повідомляєш результат. «Chiudo» - закриваю; «ho chiuso» - закрив. Перша частина схожа на «я маю», але тут вона допомагає побудувати минулий час.",
+"У двослівній групі перша частина показує людину, друга - дію. Якщо залишити лише «ho», вийде \"у мене є\". Якщо залишити лише «chiuso», повноцінного повідомлення про те, хто закрив, не вийде."
+],
+"vi": [
+"Bạn đã đóng cửa và đang báo cáo kết quả. «Chiudo» — Tôi đang đóng; «ho chiuso» — Tôi đã đóng. Phần đầu tương tự như \"Tôi đã\", nhưng ở đây nó giúp cấu thành thì quá khứ.",
+"Trong một cụm từ hai từ, phần đầu chỉ người, phần thứ hai chỉ hành động. Nếu bạn chỉ giữ lại «ho», bạn sẽ có \"Tôi có.\" Nếu bạn chỉ giữ lại «chiuso», bạn sẽ không có được một câu hoàn chỉnh về người đã đóng cửa."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:18:01"
+]
+},
+{
+"textES": "Presente avere + participio\nQuién cerró: ho, hai, ha, abbiamo, avete, hanno. Qué se hizo: chiuso. Compara Ho chiuso la porta y Hai chiuso la porta: cuando cambia la persona, cambia el asistente, pero la puerta y la acción permanecen.\nMuchos verbos que comienzan con -are terminan en -ato: comprare → comprato, pagare → pagato. Una vez que reconozcas el patrón, aplícalo a otro verbo, pero no a todos.",
+"textEn": "Present avere + participle\nWho closed: ho, hai, ha, abbiamo, avete, hanno. What was done: chiuso. Compare Ho chiuso la porta and Hai chiuso la porta: when the person changes, the assistant changes, the door and the action remain.\nMany verbs that start with -are end in -ato: comprare → comprato, pagare → pagato. Once you recognize the pattern, apply it to another verb, but not to all of them.",
+"textId": "Bentuk sekarang avere + partisip\nSiapa yang menutup: ho, hai, ha, abbiamo, avete, hanno. Apa yang dilakukan: chiuso. Bandingkan Ho chiuso la porta dan Hai chiuso la porta: ketika orangnya berubah, asistennya berubah, pintu dan tindakannya tetap sama.\nBanyak kata kerja yang dimulai dengan -are berakhiran -ato: comprare → comprato, pagare → pagato. Setelah Anda mengenali polanya, terapkan pada kata kerja lain, tetapi jangan pada semuanya.",
+"textPl": "Czas teraźniejszy avere + imiesłów\nKto zamknął: ho, hai, ha, abbiamo, avete, hanno. Co zostało zrobione: chiuso. Porównaj Ho chiuso la porta i Hai chiuso la porta: gdy zmienia się osoba, zmienia się asystent, drzwi i czynność pozostają.\nWiele czasowników zaczynających się na -are kończy się na -ato: comprare → comprato, pagare → pagato. Gdy rozpoznasz ten wzór, zastosuj go do innego czasownika, ale nie do wszystkich.",
+"textPtBr": "Presente avere + particípio\nQuem fechou: ho, hai, ha, abbiamo, avete, hanno. O que foi feito: chiuso. Compare Ho chiuso la porta e Hai chiuso la porta: quando a pessoa muda, o assistente muda, a porta e a ação permanecem.\nMuitos verbos que começam com -are terminam em -ato: comprare → comprato, pagare → pagato. Depois de reconhecer o padrão, aplique-o a outro verbo, mas não a todos.",
+"textRU": "настоящее avere + причастие\nКто закрыл: ho, hai, ha, abbiamo, avete, hanno. Что сделал: chiuso. Сравни Ho chiuso la porta и Hai chiuso la porta: при смене человека меняется помощник, дверь и действие остаются.\nУ многих глаголов на -are форма заканчивается на -ato: comprare → comprato, pagare → pagato. Узнав модель, примени её к другому глаголу, но не ко всем без исключения.",
+"textTr": "Şimdiki zaman avere + fiilimsiz\nKim kapattı: ho, hai, ha, abbiamo, avete, hanno. Ne yapıldı: chiuso. Ho chiuso la porta ve Hai chiuso la porta'u karşılaştırın: kişi değiştiğinde, yardımcı değişir, kapı ve eylem aynı kalır.\n-are ile başlayan birçok fiil -ato ile biter: comprare → comprato, pagare → pagato. Kalıbı tanıdıktan sonra, bunu başka bir fiile uygulayın, ancak hepsine değil.",
+"textUK": "справжнє avere + причастя\nХто закрив: ho, hai, ha, abbiamo, avete, hanno. Що зробив: chiuso. Порівняй Ho chiuso la porta і Hai chiuso la porta: при зміні людини змінюються помічник, двері та.\nБагато дієслів на -are форма закінчується на -ato: comprare → comprato, pagare → pagato. Дізнавшись модель, застосуй її до іншого дієслова, але не до всіх без винятку.",
+"textVi": "Hiện tại avere + phân từ\nAi đã đóng: ho, hai, ha, abbiamo, avete, hanno. Việc gì đã được thực hiện: chiuso. So sánh Ho chiuso la porta và Hai chiuso la porta: khi người đóng thay đổi, người trợ giúp cũng thay đổi, cánh cửa và hành động vẫn giữ nguyên.\nNhiều động từ bắt đầu bằng -are kết thúc bằng -ato: comprare → comprato, pagare → pagato. Khi bạn nhận ra quy luật này, hãy áp dụng nó cho một động từ khác, nhưng không phải cho tất cả.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Present «avere» + participle",
+"Who closed: «ho», «hai», «ha», «abbiamo», «avete», «hanno». What was done: «chiuso». Compare «Ho chiuso la porta» and «Hai chiuso la porta»: when the person changes, the assistant changes, the door and the action remain.",
+"Many verbs that start with «-are» end in «-ato»: «comprare» → «comprato», «pagare» → «pagato». Once you recognize the pattern, apply it to another verb, but not to all of them."
+],
+"es": [
+"Presente «avere» + participio",
+"Quién cerró: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Qué se hizo: «chiuso». Compara «Ho chiuso la porta» y «Hai chiuso la porta»: cuando cambia la persona, cambia el asistente, pero la puerta y la acción permanecen.",
+"Muchos verbos que comienzan con «-are» terminan en «-ato»: «comprare» → «comprato», «pagare» → «pagato». Una vez que reconozcas el patrón, aplícalo a otro verbo, pero no a todos."
+],
+"id": [
+"Bentuk sekarang «avere» + partisip",
+"Siapa yang menutup: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Apa yang dilakukan: «chiuso». Bandingkan «Ho chiuso la porta» dan «Hai chiuso la porta»: ketika orangnya berubah, asistennya berubah, pintu dan tindakannya tetap sama.",
+"Banyak kata kerja yang dimulai dengan «-are» berakhiran «-ato»: «comprare» → «comprato», «pagare» → «pagato». Setelah Anda mengenali polanya, terapkan pada kata kerja lain, tetapi jangan pada semuanya."
+],
+"pl": [
+"Czas teraźniejszy «avere» + imiesłów",
+"Kto zamknął: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Co zostało zrobione: «chiuso». Porównaj «Ho chiuso la porta» i «Hai chiuso la porta»: gdy zmienia się osoba, zmienia się asystent, drzwi i czynność pozostają.",
+"Wiele czasowników zaczynających się na «-are» kończy się na «-ato»: «comprare» → «comprato», «pagare» → «pagato». Gdy rozpoznasz ten wzór, zastosuj go do innego czasownika, ale nie do wszystkich."
+],
+"pt-BR": [
+"Presente «avere» + particípio",
+"Quem fechou: «ho», «hai», «ha», «abbiamo», «avete», «hanno». O que foi feito: «chiuso». Compare «Ho chiuso la porta» e «Hai chiuso la porta»: quando a pessoa muda, o assistente muda, a porta e a ação permanecem.",
+"Muitos verbos que começam com «-are» terminam em «-ato»: «comprare» → «comprato», «pagare» → «pagato». Depois de reconhecer o padrão, aplique-o a outro verbo, mas não a todos."
+],
+"ru": [
+"настоящее «avere» + причастие",
+"Кто закрыл: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Что сделал: «chiuso». Сравни «Ho chiuso la porta» и «Hai chiuso la porta»: при смене человека меняется помощник, дверь и действие остаются.",
+"У многих глаголов на «-are» форма заканчивается на «-ato»: «comprare» → «comprato», «pagare» → «pagato». Узнав модель, примени её к другому глаголу, но не ко всем без исключения."
+],
+"tr": [
+"Şimdiki zaman «avere» + fiilimsiz",
+"Kim kapattı: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Ne yapıldı: «chiuso». «Ho chiuso la porta» ve «Hai chiuso la porta»'u karşılaştırın: kişi değiştiğinde, yardımcı değişir, kapı ve eylem aynı kalır.",
+"«-are» ile başlayan birçok fiil «-ato» ile biter: «comprare» → «comprato», «pagare» → «pagato». Kalıbı tanıdıktan sonra, bunu başka bir fiile uygulayın, ancak hepsine değil."
+],
+"uk": [
+"справжнє «avere» + причастя",
+"Хто закрив: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Що зробив: «chiuso». Порівняй «Ho chiuso la porta» і «Hai chiuso la porta»: при зміні людини змінюються помічник, двері та.",
+"Багато дієслів на «-are» форма закінчується на «-ato»: «comprare» → «comprato», «pagare» → «pagato». Дізнавшись модель, застосуй її до іншого дієслова, але не до всіх без винятку."
+],
+"vi": [
+"Hiện tại «avere» + phân từ",
+"Ai đã đóng: «ho», «hai», «ha», «abbiamo», «avete», «hanno». Việc gì đã được thực hiện: «chiuso». So sánh «Ho chiuso la porta» và «Hai chiuso la porta»: khi người đóng thay đổi, người trợ giúp cũng thay đổi, cánh cửa và hành động vẫn giữ nguyên.",
+"Nhiều động từ bắt đầu bằng «-are» kết thúc bằng «-ato»: «comprare» → «comprato», «pagare» → «pagato». Khi bạn nhận ra quy luật này, hãy áp dụng nó cho một động từ khác, nhưng không phải cho tất cả."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:18:07",
+"it:18:11"
+]
+},
+{
+"textES": "En «Cerré la puerta», toma Ho, luego chiuso y después la porta. No uses ho chiudere: después del verbo auxiliar, necesitas la forma resultante del verbo, no su nombre en el diccionario.",
+"textEn": "In \"I closed the door,\" take Ho, then chiuso, then la porta. Don't use ho chiudere: after the assistant, you need the result form of the verb, not its dictionary name.",
+"textId": "Dalam \"Saya menutup pintu,\" gunakan Ho, lalu chiuso, lalu la porta. Jangan gunakan ho chiudere: setelah kata bantu, Anda membutuhkan bentuk hasil dari kata kerja, bukan nama kamusnya.",
+"textPl": "W zdaniu „Zamknąłem drzwi” użyj Ho, następnie chiuso, a następnie la porta. Nie używaj ho chiudere: po czasowniku pomocniczym potrzebujesz formy wynikowej czasownika, a nie jego nazwy słownikowej.",
+"textPtBr": "Em \"Eu fechei a porta\", pegue Ho, depois chiuso e, por fim, la porta. Não use ho chiudere: após o auxiliar, você precisa da forma resultante do verbo, não do seu nome no dicionário.",
+"textRU": "В «Я закрыл дверь» возьми Ho, затем chiuso, потом la porta. Не собирай ho chiudere: после помощника нужен результативный облик глагола, а не его словарное имя.",
+"textTr": "\"Kapıyı kapattım\" cümlesinde, önce Ho, sonra chiuso, sonra da la porta kullanın. ho chiudere'ü kullanmayın: yardımcıdan sonra fiilin sözlük adını değil, sonuç halini kullanmanız gerekir.",
+"textUK": "У «Я зачинив двері» візьми Ho, потім chiuso, потім la porta. Не збирай ho chiudere: після помічника потрібен результативний вигляд дієслова, а не його словникове ім'я.",
+"textVi": "Trong câu \"Tôi đã đóng cửa,\" hãy lấy Ho, sau đó là chiuso, rồi đến la porta. Không dùng ho chiudere: sau trợ động từ, bạn cần dạng kết quả của động từ, chứ không phải tên trong từ điển của nó.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In \"I closed the door,\" take «Ho», then «chiuso», then «la porta». Don't use «ho chiudere»: after the assistant, you need the result form of the verb, not its dictionary name."
+],
+"es": [
+"En «Cerré la puerta», toma «Ho», luego «chiuso» y después «la porta». No uses «ho chiudere»: después del verbo auxiliar, necesitas la forma resultante del verbo, no su nombre en el diccionario."
+],
+"id": [
+"Dalam \"Saya menutup pintu,\" gunakan «Ho», lalu «chiuso», lalu «la porta». Jangan gunakan «ho chiudere»: setelah kata bantu, Anda membutuhkan bentuk hasil dari kata kerja, bukan nama kamusnya."
+],
+"pl": [
+"W zdaniu „Zamknąłem drzwi” użyj «Ho», następnie «chiuso», a następnie «la porta». Nie używaj «ho chiudere»: po czasowniku pomocniczym potrzebujesz formy wynikowej czasownika, a nie jego nazwy słownikowej."
+],
+"pt-BR": [
+"Em \"Eu fechei a porta\", pegue «Ho», depois «chiuso» e, por fim, «la porta». Não use «ho chiudere»: após o auxiliar, você precisa da forma resultante do verbo, não do seu nome no dicionário."
+],
+"ru": [
+"В «Я закрыл дверь» возьми «Ho», затем «chiuso», потом «la porta». Не собирай «ho chiudere»: после помощника нужен результативный облик глагола, а не его словарное имя."
+],
+"tr": [
+"\"Kapıyı kapattım\" cümlesinde, önce «Ho», sonra «chiuso», sonra da «la porta» kullanın. «ho chiudere»'ü kullanmayın: yardımcıdan sonra fiilin sözlük adını değil, sonuç halini kullanmanız gerekir."
+],
+"uk": [
+"У «Я зачинив двері» візьми «Ho», потім «chiuso», потім «la porta». Не збирай «ho chiudere»: після помічника потрібен результативний вигляд дієслова, а не його словникове ім'я."
+],
+"vi": [
+"Trong câu \"Tôi đã đóng cửa,\" hãy lấy «Ho», sau đó là «chiuso», rồi đến «la porta». Không dùng «ho chiudere»: sau trợ động từ, bạn cần dạng kết quả của động từ, chứ không phải tên trong từ điển của nó."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:18:01",
+"it:18:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:18:01",
+"target": "Ho chiuso la porta.",
+"ru": "Я закрыл дверь.",
+"uk": "Я зачинив двері."
+},
+{
+"id": "it:18:07",
+"target": "Ho comprato del pane.",
+"ru": "Я купил хлеб.",
+"uk": "Я купив хліб."
+},
+{
+"id": "it:18:11",
+"target": "Ho prenotato un tavolo.",
+"ru": "Я забронировал столик.",
+"uk": "Я забронював столик."
+},
+{
+"id": "it:18:01",
+"target": "Ho chiuso la porta.",
+"ru": "Я закрыл дверь.",
+"uk": "Я зачинив двері."
+},
+{
+"id": "it:18:04",
+"target": "Abbiamo chiuso il negozio.",
+"ru": "Мы закрыли магазин.",
+"uk": "Ми зачинили магазин."
+}
+]
+},
+{
+"lesson": 19,
+"blocks": [
+{
+"textES": "Están esperando a Paolo en el andén. Lo ves y dices: Paolo è arrivato. Ahora ha llegado Lea: Lea è arrivata. En ambas oraciones, es è, pero el final de la última palabra ha cambiado.\narrivare y partire usan essere como auxiliar. No lo elijas solo por la palabra \"movimiento\": por ejemplo, ho camminato también indica movimiento, pero usa avere.",
+"textEn": "They're waiting for Paolo on the platform. You see him and say: Paolo è arrivato. Now Lea has arrived: Lea è arrivata. In both sentences, it's è, but the end of the last word has changed.\narrivare and partire use essere as a helper. Don't choose it just because of the word \"motion\": for example, ho camminato also reports motion, but uses avere.",
+"textId": "Mereka menunggu Paolo di peron. Anda melihatnya dan berkata: Paolo è arrivato. Sekarang Lea telah tiba: Lea è arrivata. Dalam kedua kalimat, itu adalah è, tetapi akhir kata terakhir telah berubah.\narrivare dan partire menggunakan essere sebagai penolong. Jangan memilihnya hanya karena kata \"gerakan\": misalnya, ho camminato juga melaporkan gerakan, tetapi menggunakan avere.",
+"textPl": "Czekają na Paolo na peronie. Widzisz go i mówisz: Paolo è arrivato. Teraz przybyła Lea: Lea è arrivata. W obu zdaniach jest to è, ale końcówka ostatniego słowa uległa zmianie.\narrivare i partire używają essere jako pomocnika. Nie wybieraj go tylko ze względu na słowo „ruch”: na przykład ho camminato również wskazuje na ruch, ale używa avere.",
+"textPtBr": "Eles estão esperando por Paolo na plataforma. Você o vê e diz: Paolo è arrivato. Agora Lea chegou: Lea è arrivata. Em ambas as frases, é è, mas o final da última palavra mudou.\narrivare e partire usam essere como auxiliar. Não o escolha apenas por causa da palavra \"movimento\": por exemplo, ho camminato também indica movimento, mas usa avere.",
+"textRU": "На перроне ждут Паоло. Ты его видишь и сообщаешь: Paolo è arrivato. Теперь приехала Леа: Lea è arrivata. В обеих фразах è, но конец последнего слова изменился.\nУ arrivare и partire помощник — essere. Не выбирай его только из-за слова «движение»: например, ho camminato тоже сообщает о движении, но употребляет avere.",
+"textTr": "Platformda Paolo'yu bekliyorlar. Onu görüyorsunuz ve diyorsunuz ki: Paolo è arrivato. Şimdi Lea geldi: Lea è arrivata. Her iki cümlede de è, ancak son kelimenin sonu değişti.\narrivare ve partire, essere'ü yardımcı olarak kullanır. Sadece \"hareket\" kelimesi yüzünden seçmeyin: örneğin, ho camminato de hareketi bildirir, ancak avere'i kullanır.",
+"textUK": "На пероні чекають на Паоло. Ти його бачиш і повідомляєш: Paolo è arrivato. Тепер приїхала Леа: Lea è arrivata. В обох фразах è, але кінець останнього слова змінився.\nУ arrivare і partire помічник - essere. Не вибирай його тільки через слово \"рух\": наприклад, ho camminato теж повідомляє про рух, але вживає avere.",
+"textVi": "Họ đang đợi Paolo trên sân ga. Bạn nhìn thấy anh ấy và nói: Paolo è arrivato. Bây giờ Lea đã đến: Lea è arrivata. Trong cả hai câu, đều là è, nhưng phần cuối của từ cuối cùng đã thay đổi.\narrivare và partire sử dụng essere làm trợ giúp. Đừng chọn nó chỉ vì từ \"chuyển động\": ví dụ, ho camminato cũng diễn tả chuyển động, nhưng sử dụng avere.",
+"titleES": "¿Quién llegó?: pretérito con essere",
+"titleEn": "Who arrived: past tense with essere",
+"titleId": "Siapa yang tiba: bentuk lampau dengan essere",
+"titlePl": "Kto przybył: czas przeszły z essere",
+"titlePtBr": "Quem chegou: pretérito perfeito com essere",
+"titleRU": "Кто приехал: прошедшее с essere",
+"titleTr": "Kim geldi: essere ile geçmiş zaman",
+"titleUK": "Хто приїхав: минуле з essere",
+"titleVi": "Ai đã đến: thì quá khứ với essere",
+"titleByLocale": {
+"en": "Who arrived: past tense with essere",
+"es": "¿Quién llegó?: pretérito con essere",
+"id": "Siapa yang tiba: bentuk lampau dengan essere",
+"pl": "Kto przybył: czas przeszły z essere",
+"pt-BR": "Quem chegou: pretérito perfeito com essere",
+"ru": "Кто приехал: прошедшее с essere",
+"tr": "Kim geldi: essere ile geçmiş zaman",
+"uk": "Хто приїхав: минуле з essere",
+"vi": "Ai đã đến: thì quá khứ với essere"
+},
+"textByLocale": {
+"en": [
+"They're waiting for Paolo on the platform. You see him and say: «Paolo è arrivato». Now Lea has arrived: «Lea è arrivata». In both sentences, it's «è», but the end of the last word has changed.",
+"«arrivare» and «partire» use «essere» as a helper. Don't choose it just because of the word \"motion\": for example, «ho camminato» also reports motion, but uses «avere»."
+],
+"es": [
+"Están esperando a Paolo en el andén. Lo ves y dices: «Paolo è arrivato». Ahora ha llegado Lea: «Lea è arrivata». En ambas oraciones, es «è», pero el final de la última palabra ha cambiado.",
+"«arrivare» y «partire» usan «essere» como auxiliar. No lo elijas solo por la palabra \"movimiento\": por ejemplo, «ho camminato» también indica movimiento, pero usa «avere»."
+],
+"id": [
+"Mereka menunggu Paolo di peron. Anda melihatnya dan berkata: «Paolo è arrivato». Sekarang Lea telah tiba: «Lea è arrivata». Dalam kedua kalimat, itu adalah «è», tetapi akhir kata terakhir telah berubah.",
+"«arrivare» dan «partire» menggunakan «essere» sebagai penolong. Jangan memilihnya hanya karena kata \"gerakan\": misalnya, «ho camminato» juga melaporkan gerakan, tetapi menggunakan «avere»."
+],
+"pl": [
+"Czekają na Paolo na peronie. Widzisz go i mówisz: «Paolo è arrivato». Teraz przybyła Lea: «Lea è arrivata». W obu zdaniach jest to «è», ale końcówka ostatniego słowa uległa zmianie.",
+"«arrivare» i «partire» używają «essere» jako pomocnika. Nie wybieraj go tylko ze względu na słowo „ruch”: na przykład «ho camminato» również wskazuje na ruch, ale używa «avere»."
+],
+"pt-BR": [
+"Eles estão esperando por Paolo na plataforma. Você o vê e diz: «Paolo è arrivato». Agora Lea chegou: «Lea è arrivata». Em ambas as frases, é «è», mas o final da última palavra mudou.",
+"«arrivare» e «partire» usam «essere» como auxiliar. Não o escolha apenas por causa da palavra \"movimento\": por exemplo, «ho camminato» também indica movimento, mas usa «avere»."
+],
+"ru": [
+"На перроне ждут Паоло. Ты его видишь и сообщаешь: «Paolo è arrivato». Теперь приехала Леа: «Lea è arrivata». В обеих фразах «è», но конец последнего слова изменился.",
+"У «arrivare» и «partire» помощник — «essere». Не выбирай его только из-за слова «движение»: например, «ho camminato» тоже сообщает о движении, но употребляет «avere»."
+],
+"tr": [
+"Platformda Paolo'yu bekliyorlar. Onu görüyorsunuz ve diyorsunuz ki: «Paolo è arrivato». Şimdi Lea geldi: «Lea è arrivata». Her iki cümlede de «è», ancak son kelimenin sonu değişti.",
+"«arrivare» ve «partire», «essere»'ü yardımcı olarak kullanır. Sadece \"hareket\" kelimesi yüzünden seçmeyin: örneğin, «ho camminato» de hareketi bildirir, ancak «avere»'i kullanır."
+],
+"uk": [
+"На пероні чекають на Паоло. Ти його бачиш і повідомляєш: «Paolo è arrivato». Тепер приїхала Леа: «Lea è arrivata». В обох фразах «è», але кінець останнього слова змінився.",
+"У «arrivare» і «partire» помічник - «essere». Не вибирай його тільки через слово \"рух\": наприклад, «ho camminato» теж повідомляє про рух, але вживає «avere»."
+],
+"vi": [
+"Họ đang đợi Paolo trên sân ga. Bạn nhìn thấy anh ấy và nói: «Paolo è arrivato». Bây giờ Lea đã đến: «Lea è arrivata». Trong cả hai câu, đều là «è», nhưng phần cuối của từ cuối cùng đã thay đổi.",
+"«arrivare» và «partire» sử dụng «essere» làm trợ giúp. Đừng chọn nó chỉ vì từ \"chuyển động\": ví dụ, «ho camminato» cũng diễn tả chuyển động, nhưng sử dụng «avere»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:19:01"
+]
+},
+{
+"textES": "forma essere + participio concordante\nCon arrivare, el pretérito requiere essere. Después, el participio indica el género y el número del participante: arrivato, arrivata, arrivati, arrivate. Empieza con las dos personas de las primeras oraciones, no con toda la mesa a la vez.\nUn grupo de mujeres es sono arrivate, un grupo de hombres o personas mixtas es sono arrivati. Esto queda claro en las pistas de las tareas. sono por sí solo no determina el género.",
+"textEn": "form essere + agreed participle\nWith arrivare, the past tense requires essere. After it, the participle indicates the gender and number of the participant: arrivato, arrivata, arrivati, arrivate. Start with the two people in the first sentences, not the entire table at once.\nA group of women is sono arrivate, a group of men or mixed people is sono arrivati. This is clear from the clues in the tasks. sono alone doesn't determine gender.",
+"textId": "bentuk essere + partisip yang disepakati\nDengan arrivare, bentuk lampau membutuhkan essere. Setelah itu, partisip menunjukkan jenis kelamin dan jumlah partisipan: arrivato, arrivata, arrivati, arrivate. Mulailah dengan dua orang dalam kalimat pertama, bukan seluruh tabel sekaligus.\nSekelompok wanita adalah sono arrivate, sekelompok pria atau orang campuran adalah sono arrivati. Ini jelas dari petunjuk dalam tugas. sono saja tidak menentukan jenis kelamin.",
+"textPl": "forma essere + imiesłów przysłówka\nW przypadku arrivare czas przeszły wymaga essere. Po nim imiesłów przysłówka wskazuje rodzaj i liczbę uczestników: arrivato, arrivata, arrivati, arrivate. Zacznij od dwóch osób w pierwszych zdaniach, a nie od całej tabeli naraz.\nGrupa kobiet to sono arrivate, grupa mężczyzn lub osób mieszanych to sono arrivati. Wynika to jasno ze wskazówek w zadaniach. Samo sono nie określa płci.",
+"textPtBr": "forma essere + particípio concordante\nCom arrivare, o pretérito perfeito exige essere. Depois dele, o particípio indica o gênero e o número do participante: arrivato, arrivata, arrivati, arrivate. Comece com as duas pessoas nas primeiras frases, não com a mesa inteira de uma vez.\nUm grupo de mulheres é sono arrivate, um grupo de homens ou pessoas mistas é sono arrivati. Isso fica claro pelas dicas nas tarefas. sono sozinho não determina o gênero.",
+"textRU": "форма essere + согласованное причастие\nС arrivare в прошедшем нужен essere. После него причастие показывает род и число участника: arrivato, arrivata, arrivati, arrivate. Начни с двух людей в первых фразах, не со всей таблицы сразу.\nГруппа женщин — sono arrivate, мужская или смешанная группа — sono arrivati. В заданиях это видно из подсказки. Одна форма sono не определяет род.",
+"textTr": "essere + uyumlu fiilimsiz\narrivare ile geçmiş zaman essere gerektirir. Ondan sonra, fiilimsiz katılımcının cinsiyetini ve sayısını gösterir: arrivato, arrivata, arrivati, arrivate. İlk cümlelerdeki iki kişiden başlayın, tüm masayı birden değil.\nBir grup kadın sono arrivate, bir grup erkek veya karışık insan sono arrivati'dir. Bu, görevlerdeki ipuçlarından açıkça anlaşılıyor. sono tek başına cinsiyeti belirlemez.",
+"textUK": "форма essere + узгоджене причастя\nЗ arrivare у минулому потрібен essere. Після нього дієприкметник показує рід і число учасника: arrivato, arrivata, arrivati, arrivate. Почни з двох людей у ​​перших фразах, не з усієї таблиці одночасно.\nГрупа жінок - sono arrivate, чоловіча або змішана група - sono arrivati. У завданнях це видно з підказки. Одна форма sono не визначає рід.",
+"textVi": "hình thức essere + phân từ đồng ý\nVới arrivare, thì quá khứ yêu cầu essere. Sau đó, phân từ chỉ giới tính và số lượng người tham gia: arrivato, arrivata, arrivati, arrivate. Bắt đầu với hai người trong câu đầu tiên, không phải cả bàn cùng một lúc.\nMột nhóm phụ nữ là sono arrivate, một nhóm nam giới hoặc người hỗn hợp là sono arrivati. Điều này rõ ràng từ các manh mối trong nhiệm vụ. Chỉ riêng sono không xác định giới tính.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"form «essere» + agreed participle",
+"With «arrivare», the past tense requires «essere». After it, the participle indicates the gender and number of the participant: «arrivato», «arrivata», «arrivati», «arrivate». Start with the two people in the first sentences, not the entire table at once.",
+"A group of women is «sono arrivate», a group of men or mixed people is «sono arrivati». This is clear from the clues in the tasks. «sono» alone doesn't determine gender."
+],
+"es": [
+"forma «essere» + participio concordante",
+"Con «arrivare», el pretérito requiere «essere». Después, el participio indica el género y el número del participante: «arrivato», «arrivata», «arrivati», «arrivate». Empieza con las dos personas de las primeras oraciones, no con toda la mesa a la vez.",
+"Un grupo de mujeres es «sono arrivate», un grupo de hombres o personas mixtas es «sono arrivati». Esto queda claro en las pistas de las tareas. «sono» por sí solo no determina el género."
+],
+"id": [
+"bentuk «essere» + partisip yang disepakati",
+"Dengan «arrivare», bentuk lampau membutuhkan «essere». Setelah itu, partisip menunjukkan jenis kelamin dan jumlah partisipan: «arrivato», «arrivata», «arrivati», «arrivate». Mulailah dengan dua orang dalam kalimat pertama, bukan seluruh tabel sekaligus.",
+"Sekelompok wanita adalah «sono arrivate», sekelompok pria atau orang campuran adalah «sono arrivati». Ini jelas dari petunjuk dalam tugas. «sono» saja tidak menentukan jenis kelamin."
+],
+"pl": [
+"forma «essere» + imiesłów przysłówka",
+"W przypadku «arrivare» czas przeszły wymaga «essere». Po nim imiesłów przysłówka wskazuje rodzaj i liczbę uczestników: «arrivato», «arrivata», «arrivati», «arrivate». Zacznij od dwóch osób w pierwszych zdaniach, a nie od całej tabeli naraz.",
+"Grupa kobiet to «sono arrivate», grupa mężczyzn lub osób mieszanych to «sono arrivati». Wynika to jasno ze wskazówek w zadaniach. Samo «sono» nie określa płci."
+],
+"pt-BR": [
+"forma «essere» + particípio concordante",
+"Com «arrivare», o pretérito perfeito exige «essere». Depois dele, o particípio indica o gênero e o número do participante: «arrivato», «arrivata», «arrivati», «arrivate». Comece com as duas pessoas nas primeiras frases, não com a mesa inteira de uma vez.",
+"Um grupo de mulheres é «sono arrivate», um grupo de homens ou pessoas mistas é «sono arrivati». Isso fica claro pelas dicas nas tarefas. «sono» sozinho não determina o gênero."
+],
+"ru": [
+"форма «essere» + согласованное причастие",
+"С «arrivare» в прошедшем нужен «essere». После него причастие показывает род и число участника: «arrivato», «arrivata», «arrivati», «arrivate». Начни с двух людей в первых фразах, не со всей таблицы сразу.",
+"Группа женщин — «sono arrivate», мужская или смешанная группа — «sono arrivati». В заданиях это видно из подсказки. Одна форма «sono» не определяет род."
+],
+"tr": [
+"«essere» + uyumlu fiilimsiz",
+"«arrivare» ile geçmiş zaman «essere» gerektirir. Ondan sonra, fiilimsiz katılımcının cinsiyetini ve sayısını gösterir: «arrivato», «arrivata», «arrivati», «arrivate». İlk cümlelerdeki iki kişiden başlayın, tüm masayı birden değil.",
+"Bir grup kadın «sono arrivate», bir grup erkek veya karışık insan «sono arrivati»'dir. Bu, görevlerdeki ipuçlarından açıkça anlaşılıyor. «sono» tek başına cinsiyeti belirlemez."
+],
+"uk": [
+"форма «essere» + узгоджене причастя",
+"З «arrivare» у минулому потрібен «essere». Після нього дієприкметник показує рід і число учасника: «arrivato», «arrivata», «arrivati», «arrivate». Почни з двох людей у ​​перших фразах, не з усієї таблиці одночасно.",
+"Група жінок - «sono arrivate», чоловіча або змішана група - «sono arrivati». У завданнях це видно з підказки. Одна форма «sono» не визначає рід."
+],
+"vi": [
+"hình thức «essere» + phân từ đồng ý",
+"Với «arrivare», thì quá khứ yêu cầu «essere». Sau đó, phân từ chỉ giới tính và số lượng người tham gia: «arrivato», «arrivata», «arrivati», «arrivate». Bắt đầu với hai người trong câu đầu tiên, không phải cả bàn cùng một lúc.",
+"Một nhóm phụ nữ là «sono arrivate», một nhóm nam giới hoặc người hỗn hợp là «sono arrivati». Điều này rõ ràng từ các manh mối trong nhiệm vụ. Chỉ riêng «sono» không xác định giới tính."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:19:05",
+"it:19:06"
+]
+},
+{
+"textES": "Escribe el nombre, luego è y después arrivato. Para Leah, cambia el nombre y la última letra del participio. El acento permanece en è: es un verbo, no la conjunción e.",
+"textEn": "Put the name, then è, then arrivato. For Leah, change the name and the last letter of the participle. The stress remains in è: it's a verb, not the conjunction e.",
+"textId": "Masukkan nama, lalu è, lalu arrivato. Untuk Leah, ubah nama dan huruf terakhir dari partisip. Tekanan tetap ada di è: itu adalah kata kerja, bukan konjungsi e.",
+"textPl": "Wpisz imię, następnie è, a następnie arrivato. W przypadku Leah zmień imię i ostatnią literę imiesłowu. Akcent pozostaje w è: to czasownik, a nie spójnik e.",
+"textPtBr": "Coloque o nome, depois è e, em seguida, arrivato. Para Leah, altere o nome e a última letra do particípio. A ênfase permanece em è: é um verbo, não a conjunção e.",
+"textRU": "Положи имя, затем è, затем arrivato. Для Леа поменяй имя и последнюю букву причастия. В è ударение остаётся: это глагол, а не союз e.",
+"textTr": "Önce ismi, sonra è'i, sonra da arrivato'yi yazın. Leah için ismi ve fiilimsilerin son harfini değiştirin. Vurgu è'te kalır: bu bir fiildir, e bağlacı değildir.",
+"textUK": "Поклади ім'я, потім è, потім arrivato. Для Леа поміняй ім'я та останню букву причастя. У è наголос залишається: це дієслово, а чи не союз e.",
+"textVi": "Đặt tên, sau đó là è, rồi arrivato. Đối với Leah, hãy đổi tên và chữ cái cuối cùng của phân từ. Trọng âm vẫn nằm ở è: đó là một động từ, không phải là liên từ e.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Put the name, then «è», then «arrivato». For Leah, change the name and the last letter of the participle. The stress remains in «è»: it's a verb, not the conjunction «e»."
+],
+"es": [
+"Escribe el nombre, luego «è» y después «arrivato». Para Leah, cambia el nombre y la última letra del participio. El acento permanece en «è»: es un verbo, no la conjunción «e»."
+],
+"id": [
+"Masukkan nama, lalu «è», lalu «arrivato». Untuk Leah, ubah nama dan huruf terakhir dari partisip. Tekanan tetap ada di «è»: itu adalah kata kerja, bukan konjungsi «e»."
+],
+"pl": [
+"Wpisz imię, następnie «è», a następnie «arrivato». W przypadku Leah zmień imię i ostatnią literę imiesłowu. Akcent pozostaje w «è»: to czasownik, a nie spójnik «e»."
+],
+"pt-BR": [
+"Coloque o nome, depois «è» e, em seguida, «arrivato». Para Leah, altere o nome e a última letra do particípio. A ênfase permanece em «è»: é um verbo, não a conjunção «e»."
+],
+"ru": [
+"Положи имя, затем «è», затем «arrivato». Для Леа поменяй имя и последнюю букву причастия. В «è» ударение остаётся: это глагол, а не союз «e»."
+],
+"tr": [
+"Önce ismi, sonra «è»'i, sonra da «arrivato»'yi yazın. Leah için ismi ve fiilimsilerin son harfini değiştirin. Vurgu «è»'te kalır: bu bir fiildir, «e» bağlacı değildir."
+],
+"uk": [
+"Поклади ім'я, потім «è», потім «arrivato». Для Леа поміняй ім'я та останню букву причастя. У «è» наголос залишається: це дієслово, а чи не союз «e»."
+],
+"vi": [
+"Đặt tên, sau đó là «è», rồi «arrivato». Đối với Leah, hãy đổi tên và chữ cái cuối cùng của phân từ. Trọng âm vẫn nằm ở «è»: đó là một động từ, không phải là liên từ «e»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:19:01",
+"it:19:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:19:01",
+"target": "Paolo è arrivato.",
+"ru": "Паоло приехал.",
+"uk": "Паоло приїхав."
+},
+{
+"id": "it:19:05",
+"target": "Sono arrivati.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули."
+},
+{
+"id": "it:19:06",
+"target": "Sono arrivate.",
+"ru": "Они прибыли.",
+"uk": "Вони прибули."
+},
+{
+"id": "it:19:01",
+"target": "Paolo è arrivato.",
+"ru": "Паоло приехал.",
+"uk": "Паоло приїхав."
+},
+{
+"id": "it:19:04",
+"target": "Lea è partita.",
+"ru": "Леа уехала.",
+"uk": "Леа поїхала."
+}
+]
+},
+{
+"lesson": 20,
+"blocks": [
+{
+"textES": "Estás mostrando una casa antigua. No quieres decir \"Me mudé aquí\", sino \"Solía ​​vivir aquí\". Abitavo qui se usa para este contexto. Nos interesa cómo era, no la terminación.\nUsa el pretérito para describir un estado, una acción habitual o un escenario. La forma verbal en sí no indica que el evento se haya repetido un número estrictamente definido de veces.",
+"textEn": "You're showing an old house. You don't want to say \"I moved here,\" but \"I used to live here.\" Abitavo qui is used for this background. We're interested in how it was, not the ending.\nUse the past tense to describe a state, habitual action, or setting. The form itself does not indicate that the event was repeated a strictly defined number of times.",
+"textId": "Anda sedang menunjukkan rumah tua. Anda tidak ingin mengatakan \"Saya pindah ke sini,\" tetapi \"Saya dulu tinggal di sini.\" Abitavo qui digunakan untuk latar belakang ini. Kita tertarik pada bagaimana keadaannya dulu, bukan akhir ceritanya.\nGunakan bentuk lampau untuk menggambarkan suatu keadaan, tindakan kebiasaan, atau latar. Bentuk itu sendiri tidak menunjukkan bahwa peristiwa tersebut diulang dalam jumlah yang ditentukan secara ketat.",
+"textPl": "Pokazujesz stary dom. Nie chcesz powiedzieć „Przeprowadziłem się tutaj”, ale „Kiedyś tu mieszkałem”. Abitavo qui jest używane do tego tła. Interesuje nas, jak było, a nie zakończenie.\nUżyj czasu przeszłego, aby opisać stan, czynność lub otoczenie. Sama forma nie wskazuje, że wydarzenie powtórzyło się ściśle określoną liczbę razy.",
+"textPtBr": "Você está mostrando uma casa antiga. Você não quer dizer \"Eu me mudei para cá\", mas sim \"Eu morava aqui\". Abitavo qui é usado para este contexto. Estamos interessados ​​em como era, não na terminação.\nUse o pretérito perfeito para descrever um estado, uma ação habitual ou um cenário. A forma em si não indica que o evento foi repetido um número estritamente definido de vezes.",
+"textRU": "Ты показываешь старый дом. Хочешь сказать не «я переехал», а «раньше я здесь жил». Для такого фона используется Abitavo qui. Нас интересует, как было, а не момент окончания.\nИспользуй прошедшее описание для состояния, привычного действия или обстановки. Сама форма не сообщает, что событие повторялось строго определённое число раз.",
+"textTr": "Eski bir ev gösteriyorsunuz. \"Buraya taşındım\" demek istemezsiniz, \"Eskiden burada yaşıyordum\" demek istersiniz. Abitavo qui bu arka plan için kullanılır. Bizim ilgilendiğimiz şey, evin nasıl olduğu, sonu değil.\nBir durumu, alışkanlık haline gelmiş bir eylemi veya ortamı tanımlamak için geçmiş zamanı kullanın. Biçimin kendisi, olayın kesin olarak tanımlanmış bir sayıda tekrarlandığını göstermez.",
+"textUK": "Ти показуєш старий будинок. Хочеш сказати не \"я переїхав\", а \"раніше я тут жив\". Для такого фону використовується Abitavo qui. Нас цікавить як було, а не момент закінчення.\nВикористовуй опис для стану, звичної дії або ситуації. Сама форма не повідомляє, що подія повторювалася строго певну кількість разів.",
+"textVi": "Bạn đang thể hiện một ngôi nhà cũ. Bạn không muốn nói \"Tôi chuyển đến đây,\" mà là \"Tôi từng sống ở đây.\" Abitavo qui được sử dụng cho bối cảnh này. Chúng ta quan tâm đến tình trạng trước đây, chứ không phải kết thúc.\nSử dụng thì quá khứ để mô tả một trạng thái, hành động thường xuyên hoặc bối cảnh. Bản thân hình thức này không chỉ ra rằng sự kiện đã được lặp lại một số lần được xác định nghiêm ngặt.",
+"titleES": "Generalmente se usa: imperfetto",
+"titleEn": "Usually used to be: imperfetto",
+"titleId": "Biasanya digunakan sebagai: imperfetto",
+"titlePl": "Zwykle używane: imperfetto",
+"titlePtBr": "Geralmente usado como: imperfetto",
+"titleRU": "Раньше обычно: imperfetto",
+"titleTr": "Genellikle şu şekilde kullanılırdı: imperfetto",
+"titleUK": "Раніше зазвичай: imperfetto",
+"titleVi": "Thường được dùng là: imperfetto",
+"titleByLocale": {
+"en": "Usually used to be: imperfetto",
+"es": "Generalmente se usa: imperfetto",
+"id": "Biasanya digunakan sebagai: imperfetto",
+"pl": "Zwykle używane: imperfetto",
+"pt-BR": "Geralmente usado como: imperfetto",
+"ru": "Раньше обычно: imperfetto",
+"tr": "Genellikle şu şekilde kullanılırdı: imperfetto",
+"uk": "Раніше зазвичай: imperfetto",
+"vi": "Thường được dùng là: imperfetto"
+},
+"textByLocale": {
+"en": [
+"You're showing an old house. You don't want to say \"I moved here,\" but \"I used to live here.\" «Abitavo qui» is used for this background. We're interested in how it was, not the ending.",
+"Use the past tense to describe a state, habitual action, or setting. The form itself does not indicate that the event was repeated a strictly defined number of times."
+],
+"es": [
+"Estás mostrando una casa antigua. No quieres decir \"Me mudé aquí\", sino \"Solía ​​vivir aquí\". «Abitavo qui» se usa para este contexto. Nos interesa cómo era, no la terminación.",
+"Usa el pretérito para describir un estado, una acción habitual o un escenario. La forma verbal en sí no indica que el evento se haya repetido un número estrictamente definido de veces."
+],
+"id": [
+"Anda sedang menunjukkan rumah tua. Anda tidak ingin mengatakan \"Saya pindah ke sini,\" tetapi \"Saya dulu tinggal di sini.\" «Abitavo qui» digunakan untuk latar belakang ini. Kita tertarik pada bagaimana keadaannya dulu, bukan akhir ceritanya.",
+"Gunakan bentuk lampau untuk menggambarkan suatu keadaan, tindakan kebiasaan, atau latar. Bentuk itu sendiri tidak menunjukkan bahwa peristiwa tersebut diulang dalam jumlah yang ditentukan secara ketat."
+],
+"pl": [
+"Pokazujesz stary dom. Nie chcesz powiedzieć „Przeprowadziłem się tutaj”, ale „Kiedyś tu mieszkałem”. «Abitavo qui» jest używane do tego tła. Interesuje nas, jak było, a nie zakończenie.",
+"Użyj czasu przeszłego, aby opisać stan, czynność lub otoczenie. Sama forma nie wskazuje, że wydarzenie powtórzyło się ściśle określoną liczbę razy."
+],
+"pt-BR": [
+"Você está mostrando uma casa antiga. Você não quer dizer \"Eu me mudei para cá\", mas sim \"Eu morava aqui\". «Abitavo qui» é usado para este contexto. Estamos interessados ​​em como era, não na terminação.",
+"Use o pretérito perfeito para descrever um estado, uma ação habitual ou um cenário. A forma em si não indica que o evento foi repetido um número estritamente definido de vezes."
+],
+"ru": [
+"Ты показываешь старый дом. Хочешь сказать не «я переехал», а «раньше я здесь жил». Для такого фона используется «Abitavo qui». Нас интересует, как было, а не момент окончания.",
+"Используй прошедшее описание для состояния, привычного действия или обстановки. Сама форма не сообщает, что событие повторялось строго определённое число раз."
+],
+"tr": [
+"Eski bir ev gösteriyorsunuz. \"Buraya taşındım\" demek istemezsiniz, \"Eskiden burada yaşıyordum\" demek istersiniz. «Abitavo qui» bu arka plan için kullanılır. Bizim ilgilendiğimiz şey, evin nasıl olduğu, sonu değil.",
+"Bir durumu, alışkanlık haline gelmiş bir eylemi veya ortamı tanımlamak için geçmiş zamanı kullanın. Biçimin kendisi, olayın kesin olarak tanımlanmış bir sayıda tekrarlandığını göstermez."
+],
+"uk": [
+"Ти показуєш старий будинок. Хочеш сказати не \"я переїхав\", а \"раніше я тут жив\". Для такого фону використовується «Abitavo qui». Нас цікавить як було, а не момент закінчення.",
+"Використовуй опис для стану, звичної дії або ситуації. Сама форма не повідомляє, що подія повторювалася строго певну кількість разів."
+],
+"vi": [
+"Bạn đang thể hiện một ngôi nhà cũ. Bạn không muốn nói \"Tôi chuyển đến đây,\" mà là \"Tôi từng sống ở đây.\" «Abitavo qui» được sử dụng cho bối cảnh này. Chúng ta quan tâm đến tình trạng trước đây, chứ không phải kết thúc.",
+"Sử dụng thì quá khứ để mô tả một trạng thái, hành động thường xuyên hoặc bối cảnh. Bản thân hình thức này không chỉ ra rằng sự kiện đã được lặp lại một số lần được xác định nghiêm ngặt."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:20:01"
+]
+},
+{
+"textES": "base + -vo / -vi / -va / -vamo / -vate / -vano\nAbito describe el presente, abitavo describe el pasado. Al cambiar la persona, obtenemos abitavi. La vocal y la terminación son importantes: no añadas un ho aparte a esta forma.\nEssere tiene una raíz especial: ero, eri, era, eravamo, eravate, erano. No intentes combinar el presente sono con una terminación regular.",
+"textEn": "base + -vo / -vi / -va / -vamo / -vate / -vano\nAbito describes the present, abitavo depicts the past. By changing the person, we get abitavi. The vowel and ending are important: don't add a separate ho to this form.\nEssere has a special stem: ero, eri, era, eravamo, eravate, erano. Don't try to combine the present sono with a regular ending.",
+"textId": "basis + -vo / -vi / -va / -vamo / -vate / -vano\nAbito menggambarkan masa kini, abitavo menggambarkan masa lalu. Dengan mengubah orangnya, kita mendapatkan abitavi. Vokal dan akhiran itu penting: jangan menambahkan ho terpisah ke bentuk ini.\nEssere memiliki batang khusus: ero, eri, era, eravamo, eravate, erano. Jangan mencoba menggabungkan bentuk sekarang sono dengan akhiran biasa.",
+"textPl": "podstawa + -vo / -vi / -va / -vamo / -vate / -vano\nAbito opisuje teraźniejszość, abitavo przedstawia przeszłość. Zmieniając osobę, otrzymujemy abitavi. Samogłoska i końcówka są ważne: nie dodawaj oddzielnego ho do tej formy.\nEssere ma specjalny rdzeń: ero, eri, era, eravamo, eravate, erano. Nie próbuj łączyć czasu teraźniejszego sono z regularną końcówką.",
+"textPtBr": "base + -vo / -vi / -va / -vamo / -vate / -vano\nAbito descreve o presente, abitavo descreve o passado. Ao mudar a pessoa, obtemos abitavi. A vogal e a terminação são importantes: não adicione um ho separado a esta forma.\nEssere tem um radical especial: ero, eri, era, eravamo, eravate, erano. Não tente combinar o presente sono com uma terminação regular.",
+"textRU": "основа + -vo / -vi / -va / -vamo / -vate / -vano\nAbito описывает настоящее, abitavo рисует прошлое. Сменив человека, получим abitavi. Гласная и окончание важны: не добавляй к этой форме отдельное ho.\nEssere имеет особую основу: ero, eri, era, eravamo, eravate, erano. Не пытайся склеить настоящее sono с обычным окончанием.",
+"textTr": "temel + -vo / -vi / -va / -vamo / -vate / -vano\nAbito şimdiki zamanı, abitavo geçmişi anlatır. Kişiyi değiştirerek abitavi elde ederiz. Sesli harf ve son ek önemlidir: bu forma ayrı bir ho eklemeyin.\nEssere'in özel bir kökü vardır: ero, eri, era, eravamo, eravate, erano. Şimdiki zaman sono'i normal bir son ekle birleştirmeye çalışmayın.",
+"textUK": "основа + -vo / -vi / -va / -vamo / -vate / -vano\nAbito описує сьогодення, abitavo малює минуле. Змінивши людину, отримаємо abitavi. Голосна та закінчення важливі: не додай до цієї форми окреме ho.\nEssere має особливу основу: ero, eri, era, eravamo, eravate, erano. Не намагайся склеїти справжнє sono із звичайним закінченням.",
+"textVi": "cơ sở + -vo / -vi / -va / -vamo / -vate / -vano\nAbito mô tả hiện tại, abitavo mô tả quá khứ. Bằng cách thay đổi ngôi, ta được abitavi. Nguyên âm và hậu tố rất quan trọng: đừng thêm ho riêng biệt vào dạng này.\nEssere có gốc từ đặc biệt: ero, eri, era, eravamo, eravate, erano. Đừng cố gắng kết hợp thì hiện tại sono với một đuôi từ thông thường.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"base + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» describes the present, «abitavo» depicts the past. By changing the person, we get «abitavi». The vowel and ending are important: don't add a separate «ho» to this form.",
+"«Essere» has a special stem: «ero», «eri», «era», «eravamo», «eravate», «erano». Don't try to combine the present «sono» with a regular ending."
+],
+"es": [
+"base + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» describe el presente, «abitavo» describe el pasado. Al cambiar la persona, obtenemos «abitavi». La vocal y la terminación son importantes: no añadas un «ho» aparte a esta forma.",
+"«Essere» tiene una raíz especial: «ero», «eri», «era», «eravamo», «eravate», «erano». No intentes combinar el presente «sono» con una terminación regular."
+],
+"id": [
+"basis + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» menggambarkan masa kini, «abitavo» menggambarkan masa lalu. Dengan mengubah orangnya, kita mendapatkan «abitavi». Vokal dan akhiran itu penting: jangan menambahkan «ho» terpisah ke bentuk ini.",
+"«Essere» memiliki batang khusus: «ero», «eri», «era», «eravamo», «eravate», «erano». Jangan mencoba menggabungkan bentuk sekarang «sono» dengan akhiran biasa."
+],
+"pl": [
+"podstawa + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» opisuje teraźniejszość, «abitavo» przedstawia przeszłość. Zmieniając osobę, otrzymujemy «abitavi». Samogłoska i końcówka są ważne: nie dodawaj oddzielnego «ho» do tej formy.",
+"«Essere» ma specjalny rdzeń: «ero», «eri», «era», «eravamo», «eravate», «erano». Nie próbuj łączyć czasu teraźniejszego «sono» z regularną końcówką."
+],
+"pt-BR": [
+"base + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» descreve o presente, «abitavo» descreve o passado. Ao mudar a pessoa, obtemos «abitavi». A vogal e a terminação são importantes: não adicione um «ho» separado a esta forma.",
+"«Essere» tem um radical especial: «ero», «eri», «era», «eravamo», «eravate», «erano». Não tente combinar o presente «sono» com uma terminação regular."
+],
+"ru": [
+"основа + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» описывает настоящее, «abitavo» рисует прошлое. Сменив человека, получим «abitavi». Гласная и окончание важны: не добавляй к этой форме отдельное «ho».",
+"«Essere» имеет особую основу: «ero», «eri», «era», «eravamo», «eravate», «erano». Не пытайся склеить настоящее «sono» с обычным окончанием."
+],
+"tr": [
+"temel + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» şimdiki zamanı, «abitavo» geçmişi anlatır. Kişiyi değiştirerek «abitavi» elde ederiz. Sesli harf ve son ek önemlidir: bu forma ayrı bir «ho» eklemeyin.",
+"«Essere»'in özel bir kökü vardır: «ero», «eri», «era», «eravamo», «eravate», «erano». Şimdiki zaman «sono»'i normal bir son ekle birleştirmeye çalışmayın."
+],
+"uk": [
+"основа + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» описує сьогодення, «abitavo» малює минуле. Змінивши людину, отримаємо «abitavi». Голосна та закінчення важливі: не додай до цієї форми окреме «ho».",
+"«Essere» має особливу основу: «ero», «eri», «era», «eravamo», «eravate», «erano». Не намагайся склеїти справжнє «sono» із звичайним закінченням."
+],
+"vi": [
+"cơ sở + «-vo / -vi / -va / -vamo / -vate / -vano»",
+"«Abito» mô tả hiện tại, «abitavo» mô tả quá khứ. Bằng cách thay đổi ngôi, ta được «abitavi». Nguyên âm và hậu tố rất quan trọng: đừng thêm «ho» riêng biệt vào dạng này.",
+"«Essere» có gốc từ đặc biệt: «ero», «eri», «era», «eravamo», «eravate», «erano». Đừng cố gắng kết hợp thì hiện tại «sono» với một đuôi từ thông thường."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:20:07",
+"it:20:08"
+]
+},
+{
+"textES": "En la primera respuesta, elige Abitavo y luego qui. Ahora relaciona la frase con la segunda: la misma casa y el mismo período pasado, pero el interlocutor es abitavi.",
+"textEn": "In the first answer, choose Abitavo, then qui. Now match the phrase with the second: the same house and the same past period, but the conversation partner is abitavi.",
+"textId": "Pada jawaban pertama, pilih Abitavo, lalu qui. Sekarang cocokkan frasa tersebut dengan yang kedua: rumah yang sama dan periode lampau yang sama, tetapi pasangan percakapannya adalah abitavi.",
+"textPl": "W pierwszej odpowiedzi wybierz Abitavo, a następnie qui. Teraz dopasuj frazę do drugiej: ten sam dom i ten sam okres przeszły, ale partnerem w rozmowie jest abitavi.",
+"textPtBr": "Na primeira resposta, escolha Abitavo e depois qui. Agora, combine a frase com a segunda: a mesma casa e o mesmo período passado, mas o interlocutor é abitavi.",
+"textRU": "В первом ответе выбери Abitavo, затем qui. Теперь соотнеси фразу со второй: тот же дом и тот же прошлый период, но речь о собеседнике — abitavi.",
+"textTr": "İlk cevapta Abitavo'i, sonra qui'yi seçin. Şimdi ifadeyi ikinciyle eşleştirin: aynı ev ve aynı geçmiş dönem, ancak konuşma ortağı abitavi.",
+"textUK": "У першій відповіді вибери Abitavo, потім qui. Тепер співвіднеси фразу з другою: той самий будинок і той самий минулий період, але про співрозмовника — abitavi.",
+"textVi": "Trong câu trả lời đầu tiên, hãy chọn Abitavo, sau đó là qui. Bây giờ hãy ghép cụm từ với cụm từ thứ hai: cùng một ngôi nhà và cùng một khoảng thời gian trong quá khứ, nhưng người đối thoại là abitavi.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the first answer, choose «Abitavo», then «qui». Now match the phrase with the second: the same house and the same past period, but the conversation partner is «abitavi»."
+],
+"es": [
+"En la primera respuesta, elige «Abitavo» y luego «qui». Ahora relaciona la frase con la segunda: la misma casa y el mismo período pasado, pero el interlocutor es «abitavi»."
+],
+"id": [
+"Pada jawaban pertama, pilih «Abitavo», lalu «qui». Sekarang cocokkan frasa tersebut dengan yang kedua: rumah yang sama dan periode lampau yang sama, tetapi pasangan percakapannya adalah «abitavi»."
+],
+"pl": [
+"W pierwszej odpowiedzi wybierz «Abitavo», a następnie «qui». Teraz dopasuj frazę do drugiej: ten sam dom i ten sam okres przeszły, ale partnerem w rozmowie jest «abitavi»."
+],
+"pt-BR": [
+"Na primeira resposta, escolha «Abitavo» e depois «qui». Agora, combine a frase com a segunda: a mesma casa e o mesmo período passado, mas o interlocutor é «abitavi»."
+],
+"ru": [
+"В первом ответе выбери «Abitavo», затем «qui». Теперь соотнеси фразу со второй: тот же дом и тот же прошлый период, но речь о собеседнике — «abitavi»."
+],
+"tr": [
+"İlk cevapta «Abitavo»'i, sonra «qui»'yi seçin. Şimdi ifadeyi ikinciyle eşleştirin: aynı ev ve aynı geçmiş dönem, ancak konuşma ortağı «abitavi»."
+],
+"uk": [
+"У першій відповіді вибери «Abitavo», потім «qui». Тепер співвіднеси фразу з другою: той самий будинок і той самий минулий період, але про співрозмовника — «abitavi»."
+],
+"vi": [
+"Trong câu trả lời đầu tiên, hãy chọn «Abitavo», sau đó là «qui». Bây giờ hãy ghép cụm từ với cụm từ thứ hai: cùng một ngôi nhà và cùng một khoảng thời gian trong quá khứ, nhưng người đối thoại là «abitavi»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:20:01",
+"it:20:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:20:01",
+"target": "Abitavo qui.",
+"ru": "Я раньше здесь жил.",
+"uk": "Я раніше тут жив."
+},
+{
+"id": "it:20:07",
+"target": "Ero spesso solo.",
+"ru": "Я часто был один.",
+"uk": "Я часто був сам."
+},
+{
+"id": "it:20:08",
+"target": "Lei era spesso sola.",
+"ru": "Она часто была одна.",
+"uk": "Вона часто була сама."
+},
+{
+"id": "it:20:01",
+"target": "Abitavo qui.",
+"ru": "Я раньше здесь жил.",
+"uk": "Я раніше тут жив."
+},
+{
+"id": "it:20:04",
+"target": "Noi vivevamo in campagna.",
+"ru": "Мы жили в сельской местности.",
+"uk": "Ми жили в сільській місцевості."
+}
+]
+}
+]

@@ -6,6 +6,7 @@ import { isSurfaceLocked, useRankAccess } from '../hooks/use_rank_access';
 import { isLearnTabVisibleForTarget } from './learning_language_surface_readiness';
 import { decidePlusTab, logPlusTabDecision, type PlusTabDecision } from './plus_tab_visibility';
 import { tabPageLayoutFor, type TabPageLayout } from './tab_page_model';
+import { useVideoSectionPreference } from './video_section_preference';
 
 /**
  * ОДНА раскладка нижней панели для оболочки вкладок и её копии на экранах поверх вкладок (CommunityRootTabs).
@@ -14,10 +15,12 @@ import { tabPageLayoutFor, type TabPageLayout } from './tab_page_model';
  * открылась пятая вкладка по рангу или куплен Plus/Ultra — она исчезает сразу, без перезапуска. «Обучение» зависит от готового курса языка,
  * «Видео» — от ранга (use_rank_access); подписка — useSubscriptionTier (тот же источник, что кольцо и метки Plus).
  */
-export function useTabPageLayout(): Readonly<{ layout: TabPageLayout; plus: PlusTabDecision }> {
+export function useTabPageLayout(): Readonly<{ layout: TabPageLayout; plus: PlusTabDecision; videoSectionEnabled: boolean | null }> {
   const { studyTarget } = useStudyTarget();
   const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
-  const videoTabVisible = !isSurfaceLocked(useRankAccess('video'));
+  const videoSectionEnabled = useVideoSectionPreference();
+  const videoAccess = useRankAccess('video');
+  const videoTabVisible = videoSectionEnabled === true && !isSurfaceLocked(videoAccess);
   const tier = useSubscriptionTier();
   // зачем: сколько иконок в панели БЕЗ Plus — Главная, Сообщество и Настройки всегда, «Обучение» и «Видео» по условиям
   const baseTabs = 3 + (learnTabVisible ? 1 : 0) + (videoTabVisible ? 1 : 0);
@@ -27,5 +30,5 @@ export function useTabPageLayout(): Readonly<{ layout: TabPageLayout; plus: Plus
     () => tabPageLayoutFor({ learnTabVisible, videoTabVisible, plusTabVisible: plus.visible }),
     [learnTabVisible, plus.visible, videoTabVisible],
   );
-  return { layout, plus };
+  return { layout, plus, videoSectionEnabled };
 }

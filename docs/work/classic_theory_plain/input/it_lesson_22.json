@@ -1,0 +1,800 @@
+{
+ "lang": "it",
+ "lesson": 22,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:22:01",
+   "target": "Lo vedo.",
+   "ru": "Я вижу его.",
+   "uk": "Я бачу його."
+  },
+  {
+   "id": "it:22:02",
+   "target": "La vedo.",
+   "ru": "Я вижу её.",
+   "uk": "Я бачу її."
+  },
+  {
+   "id": "it:22:03",
+   "target": "Li vedo.",
+   "ru": "Я вижу их.",
+   "uk": "Я бачу їх."
+  },
+  {
+   "id": "it:22:04",
+   "target": "Lo conosci.",
+   "ru": "Ты его знаешь.",
+   "uk": "Ти знаєш його."
+  },
+  {
+   "id": "it:22:05",
+   "target": "La conosci.",
+   "ru": "Ты её знаешь.",
+   "uk": "Ти її знаєш."
+  },
+  {
+   "id": "it:22:06",
+   "target": "Li conosci.",
+   "ru": "Ты их знаешь.",
+   "uk": "Ти знаєш їх."
+  },
+  {
+   "id": "it:22:07",
+   "target": "Lei lo cerca.",
+   "ru": "Она ищет его.",
+   "uk": "Вона шукає його."
+  },
+  {
+   "id": "it:22:08",
+   "target": "Lei la cerca.",
+   "ru": "Она ищет её.",
+   "uk": "Вона шукає її."
+  },
+  {
+   "id": "it:22:09",
+   "target": "Lei li cerca.",
+   "ru": "Она ищет их.",
+   "uk": "Вона шукає їх."
+  },
+  {
+   "id": "it:22:10",
+   "target": "Li aspettiamo.",
+   "ru": "Мы ждём их.",
+   "uk": "Ми чекаємо на них."
+  },
+  {
+   "id": "it:22:11",
+   "target": "La porta, la chiudo io.",
+   "ru": "Дверь — я её закрываю.",
+   "uk": "Двері - я її закриваю."
+  },
+  {
+   "id": "it:22:12",
+   "target": "La borsa, la tengo io.",
+   "ru": "Сумку я оставляю у себя.",
+   "uk": "Сумку я залишаю у себе."
+  },
+  {
+   "id": "it:22:13",
+   "target": "Le chiavi, le porto con me.",
+   "ru": "Ключи я беру с собой.",
+   "uk": "Ключі я беру із собою."
+  },
+  {
+   "id": "it:22:14",
+   "target": "La giacca, la metto via.",
+   "ru": "Куртку я убираю на место.",
+   "uk": "Куртку я прибираю на місце."
+  },
+  {
+   "id": "it:22:15",
+   "target": "Il pane, lo taglio io.",
+   "ru": "Я режу хлеб.",
+   "uk": "Я ріжу хліб."
+  },
+  {
+   "id": "it:22:16",
+   "target": "I bicchieri, li lavo io.",
+   "ru": "Я мою стаканы.",
+   "uk": "Я мию склянки."
+  },
+  {
+   "id": "it:22:17",
+   "target": "I biglietti, li stampo io.",
+   "ru": "Я распечатываю билеты.",
+   "uk": "Я друкую квитки."
+  },
+  {
+   "id": "it:22:18",
+   "target": "La zuppa, l’assaggio io.",
+   "ru": "Суп — я его пробую.",
+   "uk": "Суп - я його пробую."
+  },
+  {
+   "id": "it:22:19",
+   "target": "Il maglione, lo provo io.",
+   "ru": "Свитер — я его примеряю.",
+   "uk": "Светр - я його приміряю."
+  },
+  {
+   "id": "it:22:20",
+   "target": "Questa canzone, l’ascolto io.",
+   "ru": "Я слушаю эту песню.",
+   "uk": "Я слухаю цю пісню."
+  },
+  {
+   "id": "it:22:21",
+   "target": "Non lo trovo.",
+   "ru": "Я его не нахожу.",
+   "uk": "Я його не знаходжу."
+  },
+  {
+   "id": "it:22:22",
+   "target": "Lei non la riconosce.",
+   "ru": "Она её не узнаёт.",
+   "uk": "Вона її не впізнає."
+  },
+  {
+   "id": "it:22:23",
+   "target": "Non li vediamo.",
+   "ru": "Мы их не видим.",
+   "uk": "Ми їх не бачимо."
+  },
+  {
+   "id": "it:22:24",
+   "target": "Non lo sentiamo.",
+   "ru": "Мы его не слышим.",
+   "uk": "Ми його не чуємо."
+  },
+  {
+   "id": "it:22:25",
+   "target": "Loro non lo prendono.",
+   "ru": "Они его не берут.",
+   "uk": "Вони його не беруть."
+  },
+  {
+   "id": "it:22:26",
+   "target": "Ce li hai?",
+   "ru": "Они у тебя есть?",
+   "uk": "Вони у тебе є?"
+  },
+  {
+   "id": "it:22:27",
+   "target": "La vuole?",
+   "ru": "Вы её хотите?",
+   "uk": "Ви її хочете?"
+  },
+  {
+   "id": "it:22:28",
+   "target": "Posso tenerlo?",
+   "ru": "Можно я его оставлю себе?",
+   "uk": "Можна, я його залишу собі?"
+  },
+  {
+   "id": "it:22:29",
+   "target": "Il fascicolo, lo porto io in ufficio.",
+   "ru": "Папку с документами я сам отнесу в офис.",
+   "uk": "Папку з документами я сам віднесу до офісу."
+  },
+  {
+   "id": "it:22:30",
+   "target": "Vorrei provarlo.",
+   "ru": "Я хотел бы его примерить.",
+   "uk": "Я хотів би його приміряти."
+  },
+  {
+   "id": "it:22:31",
+   "target": "La richiamerò.",
+   "ru": "Я ей перезвоню.",
+   "uk": "Я передзвоню їй."
+  },
+  {
+   "id": "it:22:32",
+   "target": "Abbiamo intenzione di ripararlo.",
+   "ru": "Мы собираемся его починить.",
+   "uk": "Ми збираємося його відремонтувати."
+  },
+  {
+   "id": "it:22:33",
+   "target": "Lei deve restituirli.",
+   "ru": "Она должна их вернуть.",
+   "uk": "Вона має їх повернути."
+  },
+  {
+   "id": "it:22:34",
+   "target": "Puoi lasciarla qui.",
+   "ru": "Ты можешь оставить её здесь.",
+   "uk": "Ти можеш залишити її тут."
+  },
+  {
+   "id": "it:22:35",
+   "target": "Il giornale, preferisco leggerlo domani.",
+   "ru": "Я предпочитаю завтра почитать газету.",
+   "uk": "Я волію почитати газету завтра."
+  },
+  {
+   "id": "it:22:36",
+   "target": "Possiamo comprarli online.",
+   "ru": "Мы можем купить их онлайн.",
+   "uk": "Ми можемо купити їх онлайн."
+  },
+  {
+   "id": "it:22:37",
+   "target": "La moneta, puoi lasciarla sul pianerottolo.",
+   "ru": "Монету ты можешь оставить на лестничной площадке.",
+   "uk": "Монету ти можеш залишити на сходовому майданчику."
+  },
+  {
+   "id": "it:22:38",
+   "target": "Può metterli lì.",
+   "ru": "Можете положить их туда.",
+   "uk": "Можете покласти їх туди."
+  },
+  {
+   "id": "it:22:39",
+   "target": "Questo cavo, ho intenzione di collegarlo.",
+   "ru": "Я собираюсь подключить этот кабель.",
+   "uk": "Я збираюся підключити цей кабель."
+  },
+  {
+   "id": "it:22:40",
+   "target": "Vuole tenerla al fresco.",
+   "ru": "Она хочет хранить её в прохладе.",
+   "uk": "Вона хоче зберігати її в прохолоді."
+  },
+  {
+   "id": "it:22:41",
+   "target": "Queste foto, le mostro a mia sorella.",
+   "ru": "Я показываю эти фотографии своей сестре.",
+   "uk": "Я показую ці фотографії своїй сестрі."
+  },
+  {
+   "id": "it:22:42",
+   "target": "Questo indirizzo, lo scrivo sulla ricevuta.",
+   "ru": "Я пишу этот адрес на чеке.",
+   "uk": "Я пишу цю адресу на чеку."
+  },
+  {
+   "id": "it:22:43",
+   "target": "Il tuo messaggio, lo leggo sull’autobus.",
+   "ru": "Твоё сообщение я читаю в автобусе.",
+   "uk": "Твоє повідомлення я читаю в автобусі."
+  },
+  {
+   "id": "it:22:44",
+   "target": "Questo caricabatterie, lo presto a Paolo.",
+   "ru": "Эту зарядку я одалживаю Паоло.",
+   "uk": "Цю зарядку я позичаю Паоло."
+  },
+  {
+   "id": "it:22:45",
+   "target": "I guanti, li metto in tasca.",
+   "ru": "Я кладу перчатки в карман.",
+   "uk": "Я кладу рукавички в кишеню."
+  },
+  {
+   "id": "it:22:46",
+   "target": "La batteria, la ricarico al mattino.",
+   "ru": "Я заряжаю батарею утром.",
+   "uk": "Я заряджаю акумулятор вранці."
+  },
+  {
+   "id": "it:22:47",
+   "target": "La crostata, la dividiamo dopo cena.",
+   "ru": "Пирог мы разделим после ужина.",
+   "uk": "Пиріг ми розділимо після вечері."
+  },
+  {
+   "id": "it:22:48",
+   "target": "Il pacco, lo ritiriamo allo sportello.",
+   "ru": "Посылку мы забираем в окошке выдачи.",
+   "uk": "Посилку ми забираємо у віконці видачі."
+  },
+  {
+   "id": "it:22:49",
+   "target": "Il mio portafoglio elettronico, lo uso quando viaggio.",
+   "ru": "Я использую свой электронный кошелек, когда путешествую.",
+   "uk": "Я використовую свій електронний гаманець, коли подорожую."
+  },
+  {
+   "id": "it:22:50",
+   "target": "I bambini, li incontro dopo le lezioni.",
+   "ru": "Я встречаю детей после занятий.",
+   "uk": "Я зустрічаюся з дітьми після уроків."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "collegare",
+   "ru": "подключить к розетке",
+   "uk": "підключити до розетки"
+  },
+  {
+   "lemma": "il cavo",
+   "ru": "кабель",
+   "uk": "кабель"
+  },
+  {
+   "lemma": "il giornale",
+   "ru": "газета",
+   "uk": "газета"
+  },
+  {
+   "lemma": "la batteria",
+   "ru": "аккумулятор",
+   "uk": "акумулятор"
+  },
+  {
+   "lemma": "il portafoglio elettronico",
+   "ru": "электронный кошелёк",
+   "uk": "електронний гаманець"
+  }
+ ],
+ "knownWords": [
+  "sono",
+  "qui",
+  "sei",
+  "lì",
+  "lea",
+  "è",
+  "paolo",
+  "siamo",
+  "siete",
+  "loro",
+  "a",
+  "casa",
+  "alla",
+  "stazione",
+  "in",
+  "ufficio",
+  "lei",
+  "pronto",
+  "pronta",
+  "stanco",
+  "stanca",
+  "pronti",
+  "stanchi",
+  "pronte",
+  "libero",
+  "la",
+  "porta",
+  "aperta",
+  "finestra",
+  "il",
+  "negozio",
+  "aperto",
+  "ferroviaria",
+  "lontana",
+  "vicina",
+  "bar",
+  "chiuso",
+  "chiusa",
+  "le",
+  "porte",
+  "aperte",
+  "i",
+  "negozi",
+  "chiusi",
+  "l’ufficio",
+  "silenzioso",
+  "già",
+  "ancora",
+  "solo",
+  "insieme",
+  "chiave",
+  "chiavi",
+  "borsa",
+  "vicino",
+  "bambini",
+  "fuori",
+  "non",
+  "sola",
+  "ritardo",
+  "anticipo",
+  "aperti",
+  "stanza",
+  "vuota",
+  "corridoio",
+  "buio",
+  "tavolo",
+  "pulito",
+  "bicchiere",
+  "sporco",
+  "l’autobus",
+  "lontano",
+  "bagni",
+  "fondo",
+  "biglietto",
+  "nella",
+  "sala",
+  "bicicletta",
+  "mio",
+  "telefono",
+  "museo",
+  "farmacia",
+  "biglietti",
+  "sul",
+  "treno",
+  "pranzo",
+  "camera",
+  "libera",
+  "al",
+  "scarpe",
+  "pulite",
+  "molto",
+  "largo",
+  "soli",
+  "lontani",
+  "dalla",
+  "orario",
+  "pulita",
+  "biglietteria",
+  "l’ingresso",
+  "fermata",
+  "dell’autobus",
+  "banchina",
+  "di",
+  "fronte",
+  "l’uscita",
+  "sinistra",
+  "parcheggio",
+  "destra",
+  "oggi",
+  "stasera",
+  "con",
+  "te",
+  "sull’autobus",
+  "tua",
+  "tasca",
+  "all’ingresso",
+  "prossimo",
+  "autobus",
+  "entrambe",
+  "chiuse",
+  "serratura",
+  "su",
+  "questo",
+  "binario",
+  "per",
+  "concerto",
+  "primo",
+  "piano",
+  "voi",
+  "questa",
+  "mia",
+  "sorella",
+  "fratello",
+  "un’amica",
+  "un",
+  "amico",
+  "una",
+  "padre",
+  "madre",
+  "tessera",
+  "piantina",
+  "foto",
+  "regalo",
+  "indirizzo",
+  "ricevuta",
+  "fattura",
+  "queste",
+  "mie",
+  "questi",
+  "miei",
+  "amici",
+  "nostri",
+  "dei",
+  "vicini",
+  "delle",
+  "tue",
+  "regali",
+  "vostre",
+  "ricevute",
+  "figli",
+  "posti",
+  "prima",
+  "visita",
+  "sua",
+  "nostra",
+  "suo",
+  "turno",
+  "l’indirizzo",
+  "giusto",
+  "l’ultimo",
+  "famiglia",
+  "numero",
+  "dell’ufficio",
+  "tuo",
+  "posto",
+  "occhiali",
+  "vostri",
+  "bagagli",
+  "domani",
+  "del",
+  "ho",
+  "hai",
+  "ha",
+  "lui",
+  "abbiamo",
+  "avete",
+  "hanno",
+  "ragazze",
+  "carta",
+  "me",
+  "fame",
+  "sete",
+  "freddo",
+  "caldo",
+  "paura",
+  "sonno",
+  "mal",
+  "schiena",
+  "testa",
+  "vent’anni",
+  "trent’anni",
+  "dieci",
+  "anni",
+  "due",
+  "tre",
+  "cinque",
+  "minuti",
+  "appuntamento",
+  "domanda",
+  "un’idea",
+  "tempo",
+  "penna",
+  "momento",
+  "sé",
+  "suoi",
+  "passaporto",
+  "degli",
+  "spiccioli",
+  "ritorno",
+  "prenotazione",
+  "bisogno",
+  "aiuto",
+  "pausa",
+  "riposo",
+  "d’acqua",
+  "po’",
+  "possibilità",
+  "scegliere",
+  "mezzogiorno",
+  "gola",
+  "della",
+  "ricetta",
+  "sotto",
+  "gli",
+  "letto",
+  "sulla",
+  "mappa",
+  "pane",
+  "zuppa",
+  "calda",
+  "bicchieri",
+  "puliti",
+  "l’acqua",
+  "fredda",
+  "mi",
+  "piace",
+  "caffè",
+  "tè",
+  "musica",
+  "cinema",
+  "ci",
+  "piacciono",
+  "libri",
+  "ti",
+  "fragole",
+  "formaggio",
+  "ai",
+  "cioccolato",
+  "l’odore",
+  "banca",
+  "mercato",
+  "scuola",
+  "biblioteca",
+  "silenziosa",
+  "giardino",
+  "piccolo",
+  "lo",
+  "zaino",
+  "sedia",
+  "camere",
+  "superiore",
+  "l’ascensore",
+  "reception",
+  "cappotto",
+  "giacca",
+  "nell’ingresso",
+  "guanti",
+  "sciarpa",
+  "portafoglio",
+  "nel",
+  "cassetto",
+  "computer",
+  "caricabatterie",
+  "da",
+  "lampada",
+  "l’amica",
+  "macchina",
+  "gratuito",
+  "prezzi",
+  "menù",
+  "nome",
+  "busta",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada",
+  "il garage",
+  "il badge",
+  "l’ombrello",
+  "il casco",
+  "il pallone",
+  "la panchina",
+  "il pacco",
+  "la coperta",
+  "l’armadio",
+  "la pila",
+  "il latte",
+  "la cucina",
+  "il medico",
+  "il lavoro",
+  "la metropolitana",
+  "la riunione",
+  "l’ufficio postale",
+  "io",
+  "noi",
+  "il burro",
+  "la farina",
+  "il miele",
+  "il sale",
+  "la tazza",
+  "leggero",
+  "la scatola",
+  "il maglione",
+  "la camicia",
+  "lo scaffale",
+  "il modulo",
+  "l’etichetta",
+  "il pulsante",
+  "rispondere",
+  "firmare",
+  "la cipolla",
+  "asciugare",
+  "assaggiare",
+  "incartare",
+  "la maglietta",
+  "il volume",
+  "il rubinetto",
+  "la cintura",
+  "la bilancia",
+  "l’importo",
+  "lo specchio",
+  "alzarsi",
+  "coricarsi",
+  "farsi la doccia",
+  "radersi",
+  "il campanello",
+  "il fascicolo",
+  "il conto",
+  "la copia",
+  "la partenza",
+  "la posta",
+  "il pianerottolo",
+  "la moneta",
+  "l’alunno",
+  "l’infermiera",
+  "il quartiere",
+  "la crostata",
+  "il vento",
+  "la luce",
+  "il canale",
+  "la sveglia",
+  "la corrente",
+  "il gatto",
+  "la scala",
+  "la persiana"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы"
+  },
+  {
+   "lesson": 9,
+   "title": "Моё, твоё, наше"
+  },
+  {
+   "lesson": 10,
+   "title": "Что есть в этом месте: `c’è` и `ci sono`"
+  },
+  {
+   "lesson": 11,
+   "title": "Маршрут: `andare` + место"
+  },
+  {
+   "lesson": 12,
+   "title": "Неопределённое количество: `del pane`, `dell’acqua`"
+  },
+  {
+   "lesson": 13,
+   "title": "Какой предмет: согласование прилагательного"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, хочу: два глагола"
+  },
+  {
+   "lesson": 15,
+   "title": "Прямо сейчас: `stare` + герундий"
+  },
+  {
+   "lesson": 16,
+   "title": "Дай инструкцию: повелительная форма"
+  },
+  {
+   "lesson": 17,
+   "title": "Действие касается тебя: `mi alzo`"
+  },
+  {
+   "lesson": 18,
+   "title": "Завершённое действие: `ho chiuso`"
+  },
+  {
+   "lesson": 19,
+   "title": "Кто приехал: прошедшее с `essere`"
+  },
+  {
+   "lesson": 20,
+   "title": "Раньше обычно: `imperfetto`"
+  },
+  {
+   "lesson": 21,
+   "title": "Фон и событие: `mentre` и `quando`"
+  }
+ ],
+ "oldTopicTitle": "Не повторять предмет: `lo`, `la`, `li`, `le`",
+ "oldTheoryRu": "На вопрос «вижу кого или что?» отвечает прямой объект. Для знакомого предмета или человека вместо существительного можно поставить короткое местоимение. Оно оказывается перед личным глаголом. `Lo conosco` и `la conosco` различаются тем, кого я знаю. Не прикрепляй местоимение после простой личной формы, как если бы это был инфинитив. В разговоре предмет могут вынести в начало: `Le chiavi, le prendo io`. Местоимение внутри сообщения отсылает к названной теме. Запятая не является отдельной плиткой. С отрицанием порядок такой: `non` + местоимение + личная форма. В `non lo trovo` никакого слова между `lo` и `trovo` добавлять не нужно. С модальным глаголом доступны две позиции: `li possiamo comprare` и `possiamo comprarli`. В каждой версии местоимение стоит ровно один раз — либо перед модальным глаголом, либо в конце инфинитива. У составной формы `l’ho vista` перед гласной видна короткая запись, а окончание причастия иногда помогает восстановить род. Не переноси это сокращение туда, где после местоимения стоит согласная. Форма выбирается по итальянскому названию вещи, не по переводу. `Il cavo` — `lo`, `la presa` — `la`. Сначала восстанови полное существительное, потом решай, какой чип его заменит."
+}

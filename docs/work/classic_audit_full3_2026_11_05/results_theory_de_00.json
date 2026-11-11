@@ -1,0 +1,128 @@
+[
+ {
+  "id": "lesson-1/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«потрібен дієслово» — неверный род (дієслово ср. р.)",
+  "fix": "Навіщо потрібне дієслово? Перше повідомлення другові може складатися лише з трьох слів. Одне вказує на того, хто говорить, інше пов'язує його з місцем, третє повідомляє саме місце. У повному німецькому твердженні не викидай середнього слова."
+ },
+ {
+  "id": "lesson-1/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "en «short phrase» не соответствует ru «короткая связка» (глагол-связка)",
+  "fix": "Who is speaking? When the person changes, the short linking verb changes. The words about the place and how you feel can stay the same. First, say the pair `ich bin` and `du bist` as a single unit."
+ },
+ {
+  "id": "lesson-1/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "One or more? The name of one person behaves like `er` or `sie`: you need the form `ist`. Two people together are already plural. Don't look at the last word of the phrase to choose the verb."
+ },
+ {
+  "id": "lesson-1/chapter-3",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "en «A friend is called `du bist`» — искажён смысл («другу говорят»), лишние кавычки",
+  "fix": "Who are you addressing? To one friend you say `du bist`, to several friends `ihr seid`. The form `wir sind` includes the speaker. If the translation of the word \"you\" does not distinguish between these cases, look at the note about who is being addressed."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "uk «Не вставляйте» — переход на «ви», в остальном тексте «ти»",
+  "fix": "Місце одним шматочком. `Zu Hause` означає «вдома», а не «додому». Це готове позначення місця. Не вставляй додатковий артикль перед словом `Hause`."
+ },
+ {
+  "id": "lesson-1/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "A place in one piece. `Zu Hause` means \"at home,\" not \"home.\" It's a ready-made place designation. Don't insert an additional article before `Hause`."
+ },
+ {
+  "id": "lesson-1/chapter-5",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "«Одно окно — ist», но пример главы de:01:31 — Die Tür ist offen (дверь)",
+  "fix": "Что изменилось? Когда рассказываешь о предмете, он тоже может быть подлежащим. Одна дверь — `ist`, несколько окон — `sind`. Описание `offen` после связки не нужно согласовывать по числу."
+ },
+ {
+  "id": "lesson-1/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «може бути таким, що підлягає» — машинная калька «подлежащим» (нужно «підметом»); «за кількістю» вместо «за числом»; окно вместо двери из примера",
+  "fix": "Що змінилося? Коли розповідаєш про предмет, він теж може бути підметом. Одна `Tür` — `ist`, кілька вікон — `sind`. Опис `offen` після зв'язки не потрібно узгоджувати за числом."
+ },
+ {
+  "id": "lesson-1/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en: окно вместо двери из примера, «consistent in number» неточно, лишние кавычки",
+  "fix": "What has changed? When talking about an object, it can also be the subject. One door: `ist`, several windows: `sind`. The description `offen` after the linking verb does not change for number."
+ },
+ {
+  "id": "lesson-1/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Transfer to a new phrase. Cover the German answer and find the person being talked about. If there are several objects, belonging to the same person doesn't change anything: there are many keys, hence `sind`."
+ },
+ {
+  "id": "lesson-2/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "uk «дізнаєшся» (=выясняешь) вместо «впізнаєш»; «Розучивай» — русизм",
+  "fix": "Уяви стіл із забутими речами. Ти показуєш не будь-який предмет, а впізнаєш потрібний ключ чи сумку. Розучуй `der Schlüssel` та `die Tasche` як маленькі підписи на самих речах."
+ },
+ {
+  "id": "lesson-2/chapter-0",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "en «small signatures» — неверное слово (labels); «You do not show any object» искажает смысл",
+  "fix": "Imagine a table with forgotten things. You are not pointing at just any object; you recognize the right key or bag. Learn `der Schlüssel` and `die Tasche` as small labels on the items themselves."
+ },
+ {
+  "id": "lesson-2/chapter-1",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "uk «навіть якщо вона теж das» — «вона» относится к назві, а должно к артиклю (ru: «даже если он тоже das»)",
+  "fix": "Два різні `das`. На початку `Das ist` ти показуєш: ось це. Далі назва має власний артикль, навіть якщо він теж `das`. Тому два однакові слова в одній фразі не помилка."
+ },
+ {
+  "id": "lesson-2/chapter-2",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "uk «таким, що автоматично підлягає» — машинная калька «подлежащим»",
+  "fix": "Що змінюється після `hier`? Спочатку можна зазначити місце: ось тут потрібна річ. Дієслово залишається перед назвою. Не вважай перше слово автоматично підметом."
+ },
+ {
+  "id": "lesson-2/chapter-4",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "uk «в єдиному» вместо «в однині»",
+  "fix": "Множина. У називному відмінку для групи беремо `die` незалежно від роду в однині. Саме слово теж може змінитися: порівняй `Bank` та `Bänke`, мова тут про лави."
+ },
+ {
+  "id": "lesson-2/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "uk «За одного стільця … за кількох» — калька, неграмматично",
+  "fix": "Як описати несправність? Вибери предмет та зв'яжи його з `kaputt`. Для одного стільця потрібна форма `ist`, для кількох — `sind`. Закінчення опису при цьому залишається незмінним."
+ },
+ {
+  "id": "lesson-2/chapter-5",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "How to describe a malfunction? Choose an object and associate it with `kaputt`. For one chair, use `ist`, for several, `sind`. The ending of the description remains the same."
+ },
+ {
+  "id": "lesson-2/chapter-6",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "en: лишние кавычки-обрывки после кода (артефакт перевода)",
+  "fix": "Don't confuse number with the feminine gender. `Die` before one word doesn't necessarily indicate there are multiple objects. Look at the noun and verb together: `die Kiste ist`, but `die Kisten sind`."
+ }
+]

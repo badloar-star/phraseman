@@ -1,0 +1,24 @@
+# зачем (план 150, путь 2): с Главной (состояние после 01) открыть урок 1: меню урока, словарь, неправильные глаголы, теория.
+appId: app.phraseman
+name: 02 Главная → меню урока 1 (en)
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: "Start lesson 1|Continue lesson 1"
+    timeout: 300000
+- tapOn:
+    text: "Skip"
+    optional: true
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn: "Start"
+      - extendedWaitUntil:
+          visible: "Start from the beginning"
+          timeout: 25000
+- assertVisible: "Vocabulary"
+- assertVisible: "Irregular verb forms"
+- assertVisible: "Theory"
+- assertVisible: "A quick tip"

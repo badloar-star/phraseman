@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 5,
+"blocks": [
+{
+"textES": "Revisa tu bolsillo antes de salir. La llave está ahí. En italiano, Ho una chiave significa \"Tengo una llave\". La palabra ho ya se refiere al hablante. En el diccionario, este verbo aparece como avere - tener.\nBusque al propietario, no la cantidad de cosas: una persona puede tener varios objetos, y la forma verbal seguirá siendo singular. Una bolsa compartida por varias personas, en cambio, requiere la forma plural.",
+"textEn": "You check your pocket before leaving. The key is there. In Italian, Ho una chiave means \"I have a key.\" The word ho already refers to the speaker. In the dictionary, this verb is listed as avere - to have.\nLook for the owner, not the number of things: one person can have several items, and the verb form will remain singular. One bag shared by several people, on the other hand, requires the plural form.",
+"textId": "Anda memeriksa saku Anda sebelum pergi. Kuncinya ada di sana. Dalam bahasa Italia, Ho una chiave berarti \"Saya memiliki kunci.\" Kata ho sudah merujuk pada pembicara. Dalam kamus, kata kerja ini tercantum sebagai avere - memiliki.\nCari pemiliknya, bukan jumlah barang: satu orang dapat memiliki beberapa barang, dan bentuk kata kerjanya akan tetap tunggal. Satu tas yang digunakan bersama oleh beberapa orang, di sisi lain, membutuhkan bentuk jamak.",
+"textPl": "Sprawdzasz kieszeń przed wyjściem. Klucz jest tam. W języku włoskim Ho una chiave oznacza „mam klucz”. Słowo ho już odnosi się do osoby mówiącej. W słowniku ten czasownik jest zapisany jako avere – mieć.\nZwróć uwagę na właściciela, a nie na liczbę rzeczy: jedna osoba może mieć kilka przedmiotów, a forma czasownika pozostanie pojedyncza. Z kolei jedna torba dzielona przez kilka osób wymaga formy mnogiej.",
+"textPtBr": "Você verifica seu bolso antes de sair. A chave está lá. Em italiano, Ho una chiave significa \"Eu tenho uma chave\". A palavra ho já se refere a quem fala. No dicionário, este verbo está listado como avere - ter.\nProcure o proprietário, não o número de coisas: uma pessoa pode ter vários itens e a forma verbal permanecerá singular. Uma sacola compartilhada por várias pessoas, por outro lado, requer a forma plural.",
+"textRU": "Ты проверяешь карман перед выходом. Там ключ. По-итальянски Ho una chiave — «У меня есть ключ». Слово ho уже относится к говорящему. В словаре этот глагол записан как avere — иметь.\nИщи владельца, а не количество вещей: один человек может иметь несколько предметов, и форма глагола останется единственной. Одна сумка у нескольких людей, наоборот, потребует формы множественного числа.",
+"textTr": "Çıkmadan önce cebinizi kontrol edin. Anahtar orada. İtalyancada Ho una chiave \"Anahtarım var\" anlamına gelir. ho kelimesi zaten konuşmacıyı ifade eder. Sözlükte bu fiil avere - sahip olmak olarak listelenmiştir.\nEşyaların sayısına değil, sahibine bakın: bir kişi birkaç eşyaya sahip olabilir ve fiil formu tekil kalır. Öte yandan, birkaç kişi tarafından paylaşılan bir çanta çoğul formu gerektirir.",
+"textUK": "Ти перевіряєш кишеню перед виходом. Там є ключ. Італійською Ho una chiave - «У мене є ключ». Слово ho вже відноситься до того, хто говорить. У словнику це дієслово записано як avere - мати.\nШукай власника, а не кількість речей: одна людина може мати кілька предметів і форма дієслова залишиться єдиною. Одна сумка у кількох людей, навпаки, вимагатиме форми множини.",
+"textVi": "Bạn kiểm tra túi trước khi rời đi. Chìa khóa ở đó. Trong tiếng Ý, Ho una chiave có nghĩa là \"Tôi có một chiếc chìa khóa.\" Từ ho đã chỉ người nói. Trong từ điển, động từ này được liệt kê là avere - có.\nHãy tìm chủ sở hữu, chứ không phải số lượng đồ vật: một người có thể có nhiều đồ vật, và dạng động từ vẫn giữ nguyên ở dạng số ít. Mặt khác, một chiếc túi được nhiều người dùng chung thì cần dạng số nhiều.",
+"titleES": "Tengo: presente avere",
+"titleEn": "I have: present avere",
+"titleId": "Saya memiliki: hadir avere",
+"titlePl": "Mam: teraźniejszość avere",
+"titlePtBr": "Eu tenho: presente avere",
+"titleRU": "У меня есть: настоящее avere",
+"titleTr": "Bende var: mevcut avere",
+"titleUK": "У мене є: справжнє avere",
+"titleVi": "Tôi có: hiện tại avere",
+"titleByLocale": {
+"en": "I have: present avere",
+"es": "Tengo: presente avere",
+"id": "Saya memiliki: hadir avere",
+"pl": "Mam: teraźniejszość avere",
+"pt-BR": "Eu tenho: presente avere",
+"ru": "У меня есть: настоящее avere",
+"tr": "Bende var: mevcut avere",
+"uk": "У мене є: справжнє avere",
+"vi": "Tôi có: hiện tại avere"
+},
+"textByLocale": {
+"en": [
+"You check your pocket before leaving. The key is there. In Italian, «Ho una chiave» means \"I have a key.\" The word «ho» already refers to the speaker. In the dictionary, this verb is listed as «avere» - to have.",
+"Look for the owner, not the number of things: one person can have several items, and the verb form will remain singular. One bag shared by several people, on the other hand, requires the plural form."
+],
+"es": [
+"Revisa tu bolsillo antes de salir. La llave está ahí. En italiano, «Ho una chiave» significa \"Tengo una llave\". La palabra «ho» ya se refiere al hablante. En el diccionario, este verbo aparece como «avere» - tener.",
+"Busque al propietario, no la cantidad de cosas: una persona puede tener varios objetos, y la forma verbal seguirá siendo singular. Una bolsa compartida por varias personas, en cambio, requiere la forma plural."
+],
+"id": [
+"Anda memeriksa saku Anda sebelum pergi. Kuncinya ada di sana. Dalam bahasa Italia, «Ho una chiave» berarti \"Saya memiliki kunci.\" Kata «ho» sudah merujuk pada pembicara. Dalam kamus, kata kerja ini tercantum sebagai «avere» - memiliki.",
+"Cari pemiliknya, bukan jumlah barang: satu orang dapat memiliki beberapa barang, dan bentuk kata kerjanya akan tetap tunggal. Satu tas yang digunakan bersama oleh beberapa orang, di sisi lain, membutuhkan bentuk jamak."
+],
+"pl": [
+"Sprawdzasz kieszeń przed wyjściem. Klucz jest tam. W języku włoskim «Ho una chiave» oznacza „mam klucz”. Słowo «ho» już odnosi się do osoby mówiącej. W słowniku ten czasownik jest zapisany jako «avere» – mieć.",
+"Zwróć uwagę na właściciela, a nie na liczbę rzeczy: jedna osoba może mieć kilka przedmiotów, a forma czasownika pozostanie pojedyncza. Z kolei jedna torba dzielona przez kilka osób wymaga formy mnogiej."
+],
+"pt-BR": [
+"Você verifica seu bolso antes de sair. A chave está lá. Em italiano, «Ho una chiave» significa \"Eu tenho uma chave\". A palavra «ho» já se refere a quem fala. No dicionário, este verbo está listado como «avere» - ter.",
+"Procure o proprietário, não o número de coisas: uma pessoa pode ter vários itens e a forma verbal permanecerá singular. Uma sacola compartilhada por várias pessoas, por outro lado, requer a forma plural."
+],
+"ru": [
+"Ты проверяешь карман перед выходом. Там ключ. По-итальянски «Ho una chiave» — «У меня есть ключ». Слово «ho» уже относится к говорящему. В словаре этот глагол записан как «avere» — иметь.",
+"Ищи владельца, а не количество вещей: один человек может иметь несколько предметов, и форма глагола останется единственной. Одна сумка у нескольких людей, наоборот, потребует формы множественного числа."
+],
+"tr": [
+"Çıkmadan önce cebinizi kontrol edin. Anahtar orada. İtalyancada «Ho una chiave» \"Anahtarım var\" anlamına gelir. «ho» kelimesi zaten konuşmacıyı ifade eder. Sözlükte bu fiil «avere» - sahip olmak olarak listelenmiştir.",
+"Eşyaların sayısına değil, sahibine bakın: bir kişi birkaç eşyaya sahip olabilir ve fiil formu tekil kalır. Öte yandan, birkaç kişi tarafından paylaşılan bir çanta çoğul formu gerektirir."
+],
+"uk": [
+"Ти перевіряєш кишеню перед виходом. Там є ключ. Італійською «Ho una chiave» - «У мене є ключ». Слово «ho» вже відноситься до того, хто говорить. У словнику це дієслово записано як «avere» - мати.",
+"Шукай власника, а не кількість речей: одна людина може мати кілька предметів і форма дієслова залишиться єдиною. Одна сумка у кількох людей, навпаки, вимагатиме форми множини."
+],
+"vi": [
+"Bạn kiểm tra túi trước khi rời đi. Chìa khóa ở đó. Trong tiếng Ý, «Ho una chiave» có nghĩa là \"Tôi có một chiếc chìa khóa.\" Từ «ho» đã chỉ người nói. Trong từ điển, động từ này được liệt kê là «avere» - có.",
+"Hãy tìm chủ sở hữu, chứ không phải số lượng đồ vật: một người có thể có nhiều đồ vật, và dạng động từ vẫn giữ nguyên ở dạng số ít. Mặt khác, một chiếc túi được nhiều người dùng chung thì cần dạng số nhiều."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:05:01"
+]
+},
+{
+"textES": "ho / hai / ha / abbiamo / avete / hanno + qué es\nCompara ho y hai. El significado puede ser el mismo: Ho una chiave - Tengo la llave; Hai una chiave - La tienes. La letra h no se pronuncia en estas formas, pero al escribirlas las distingue de otras palabras.\nAbbiamo se refiere a nosotros, avete al grupo de interlocutores, hanno a otras personas. Si el verbo se refiere claramente a una persona, se puede omitir el pronombre.",
+"textEn": "ho / hai / ha / abbiamo / avete / hanno + what is\nCompare ho and hai. The thing can remain the same: Ho una chiave - I have the key; Hai una chiave - you have it. The letter h is not pronounced in these forms, but in writing it distinguishes them from other words.\nAbbiamo refers to us, avete to the group of interlocutors, hanno to other people. If the verb clearly refers to a person, the pronoun can be omitted.",
+"textId": "ho / hai / ha / abbiamo / avete / hanno + apa itu\nBandingkan ho dan hai. Hal itu dapat tetap sama: Ho una chiave - Saya memiliki kunci; Hai una chiave - Anda memilikinya. Huruf h tidak diucapkan dalam bentuk ini, tetapi dalam penulisan membedakannya dari kata-kata lain.\nAbbiamo merujuk kepada kita, avete kepada kelompok lawan bicara, hanno kepada orang lain. Jika kata kerja jelas merujuk kepada seseorang, kata ganti dapat dihilangkan.",
+"textPl": "ho / hai / ha / abbiamo / avete / hanno + co to jest\nPorównaj ho i hai. Rzecz może pozostać taka sama: Ho una chiave – mam klucz; Hai una chiave – masz go. Litera h nie jest wymawiana w tych formach, ale w piśmie odróżnia je od innych słów.\nAbbiamo odnosi się do nas, avete do grupy rozmówców, hanno do innych osób. Jeśli czasownik wyraźnie odnosi się do osoby, zaimek można pominąć.",
+"textPtBr": "ho / hai / ha / abbiamo / avete / hanno + o que é\nCompare ho e hai. A essência pode permanecer a mesma: Ho una chiave - Eu tenho a chave; Hai una chiave - você a tem. A letra h não é pronunciada nessas formas, mas na escrita as distingue de outras palavras.\nAbbiamo refere-se a nós, avete ao grupo de interlocutores, hanno a outras pessoas. Se o verbo se referir claramente a uma pessoa, o pronome pode ser omitido.",
+"textRU": "ho / hai / ha / abbiamo / avete / hanno + что есть\nСравни ho и hai. Вещь можно оставить той же: Ho una chiave — ключ у меня; Hai una chiave — у тебя. Буква h в этих формах не произносится, но в письме отличает их от других слов.\nAbbiamo относится к нам, avete к группе собеседников, hanno к другим людям. Если глагол достаточно явно обозначает человека, местоимение можно не произносить.",
+"textTr": "ho / hai / ha / abbiamo / avete / hanno + nedir\nho ve hai'yi karşılaştırın. Şey aynı kalabilir: Ho una chiave - Anahtar bende; Hai una chiave - sende. h harfi bu biçimlerde telaffuz edilmez, ancak yazılışta onları diğer kelimelerden ayırır.\nAbbiamo bize, avete muhataplar grubuna, hanno ise diğer insanlara atıfta bulunur. Fiil açıkça bir kişiye atıfta bulunuyorsa, zamir atlanabilir.",
+"textUK": "ho / hai / ha / abbiamo / avete / hanno + що є\nПорівняй ho і hai. Реч можна залишити такою ж: Ho una chiave - ключ у мене; Hai una chiave - у тебе. Літера h у цих формах не вимовляється, але у листі відрізняє їх від інших слів.\nAbbiamo відноситься до нас, avete до групи співрозмовників, hanno до інших людей. Якщо дієслово досить явно позначає людину, займенник не можна вимовляти.",
+"textVi": "ho / hai / ha / abbiamo / avete / hanno + cái gì\nSo sánh ho và hai. Vật đó có thể vẫn giữ nguyên: Ho una chiave - Tôi có chìa khóa; Hai una chiave - bạn có nó. Chữ cái h không được phát âm trong các dạng này, nhưng khi viết nó phân biệt chúng với các từ khác.\nAbbiamo đề cập đến chúng ta, avete đến nhóm người đối thoại, hanno đến những người khác. Nếu động từ rõ ràng đề cập đến một người, thì có thể bỏ qua đại từ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«ho / hai / ha / abbiamo / avete / hanno» + what is",
+"Compare «ho» and «hai». The thing can remain the same: «Ho una chiave» - I have the key; «Hai una chiave» - you have it. The letter «h» is not pronounced in these forms, but in writing it distinguishes them from other words.",
+"«Abbiamo» refers to us, «avete» to the group of interlocutors, «hanno» to other people. If the verb clearly refers to a person, the pronoun can be omitted."
+],
+"es": [
+"«ho / hai / ha / abbiamo / avete / hanno» + qué es",
+"Compara «ho» y «hai». El significado puede ser el mismo: «Ho una chiave» - Tengo la llave; «Hai una chiave» - La tienes. La letra «h» no se pronuncia en estas formas, pero al escribirlas las distingue de otras palabras.",
+"«Abbiamo» se refiere a nosotros, «avete» al grupo de interlocutores, «hanno» a otras personas. Si el verbo se refiere claramente a una persona, se puede omitir el pronombre."
+],
+"id": [
+"«ho / hai / ha / abbiamo / avete / hanno» + apa itu",
+"Bandingkan «ho» dan «hai». Hal itu dapat tetap sama: «Ho una chiave» - Saya memiliki kunci; «Hai una chiave» - Anda memilikinya. Huruf «h» tidak diucapkan dalam bentuk ini, tetapi dalam penulisan membedakannya dari kata-kata lain.",
+"«Abbiamo» merujuk kepada kita, «avete» kepada kelompok lawan bicara, «hanno» kepada orang lain. Jika kata kerja jelas merujuk kepada seseorang, kata ganti dapat dihilangkan."
+],
+"pl": [
+"«ho / hai / ha / abbiamo / avete / hanno» + co to jest",
+"Porównaj «ho» i «hai». Rzecz może pozostać taka sama: «Ho una chiave» – mam klucz; «Hai una chiave» – masz go. Litera «h» nie jest wymawiana w tych formach, ale w piśmie odróżnia je od innych słów.",
+"«Abbiamo» odnosi się do nas, «avete» do grupy rozmówców, «hanno» do innych osób. Jeśli czasownik wyraźnie odnosi się do osoby, zaimek można pominąć."
+],
+"pt-BR": [
+"«ho / hai / ha / abbiamo / avete / hanno» + o que é",
+"Compare «ho» e «hai». A essência pode permanecer a mesma: «Ho una chiave» - Eu tenho a chave; «Hai una chiave» - você a tem. A letra «h» não é pronunciada nessas formas, mas na escrita as distingue de outras palavras.",
+"«Abbiamo» refere-se a nós, «avete» ao grupo de interlocutores, «hanno» a outras pessoas. Se o verbo se referir claramente a uma pessoa, o pronome pode ser omitido."
+],
+"ru": [
+"«ho / hai / ha / abbiamo / avete / hanno» + что есть",
+"Сравни «ho» и «hai». Вещь можно оставить той же: «Ho una chiave» — ключ у меня; «Hai una chiave» — у тебя. Буква «h» в этих формах не произносится, но в письме отличает их от других слов.",
+"«Abbiamo» относится к нам, «avete» к группе собеседников, «hanno» к другим людям. Если глагол достаточно явно обозначает человека, местоимение можно не произносить."
+],
+"tr": [
+"«ho / hai / ha / abbiamo / avete / hanno» + nedir",
+"«ho» ve «hai»'yi karşılaştırın. Şey aynı kalabilir: «Ho una chiave» - Anahtar bende; «Hai una chiave» - sende. «h» harfi bu biçimlerde telaffuz edilmez, ancak yazılışta onları diğer kelimelerden ayırır.",
+"«Abbiamo» bize, «avete» muhataplar grubuna, «hanno» ise diğer insanlara atıfta bulunur. Fiil açıkça bir kişiye atıfta bulunuyorsa, zamir atlanabilir."
+],
+"uk": [
+"«ho / hai / ha / abbiamo / avete / hanno» + що є",
+"Порівняй «ho» і «hai». Реч можна залишити такою ж: «Ho una chiave» - ключ у мене; «Hai una chiave» - у тебе. Літера «h» у цих формах не вимовляється, але у листі відрізняє їх від інших слів.",
+"«Abbiamo» відноситься до нас, «avete» до групи співрозмовників, «hanno» до інших людей. Якщо дієслово досить явно позначає людину, займенник не можна вимовляти."
+],
+"vi": [
+"«ho / hai / ha / abbiamo / avete / hanno» + cái gì",
+"So sánh «ho» và «hai». Vật đó có thể vẫn giữ nguyên: «Ho una chiave» - Tôi có chìa khóa; «Hai una chiave» - bạn có nó. Chữ cái «h» không được phát âm trong các dạng này, nhưng khi viết nó phân biệt chúng với các từ khác.",
+"«Abbiamo» đề cập đến chúng ta, «avete» đến nhóm người đối thoại, «hanno» đến những người khác. Nếu động từ rõ ràng đề cập đến một người, thì có thể bỏ qua đại từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:05:05",
+"it:05:06"
+]
+},
+{
+"textES": "Primero, identifiquemos al propietario: yo, por lo tanto, Ho. Elija una, ya que el verbo italiano chiave es femenino, y luego chiave. La palabra \"tener\" en esta traducción no requiere otra ficha después de ho.",
+"textEn": "First, mark the owner—me, so Ho. Choose una, because the Italian chiave is feminine, then chiave itself. The word \"have\" in this translation doesn't require another tile after ho.",
+"textId": "Pertama, tandai pemiliknya—saya, jadi Ho. Pilih una, karena chiave dalam bahasa Italia adalah feminin, lalu chiave itu sendiri. Kata \"memiliki\" dalam terjemahan ini tidak memerlukan ubin lain setelah ho.",
+"textPl": "Najpierw zaznacz właściciela — mnie, czyli Ho. Wybierz una, ponieważ włoskie chiave jest rodzaju żeńskiego, a następnie samo chiave. Słowo „mieć” w tym tłumaczeniu nie wymaga kolejnego kafelka po ho.",
+"textPtBr": "Primeiro, marque o proprietário — eu, então Ho. Escolha una, porque o italiano chiave é feminino, depois o próprio chiave. A palavra \"ter\" nesta tradução não requer outra peça depois de ho.",
+"textRU": "Сначала отметь владельца — я, поэтому Ho. Выбери una, потому что итальянское chiave женского рода, затем само chiave. Слово «есть» в таком переводе не требует ещё одной плитки после ho.",
+"textTr": "Öncelikle sahibini işaretleyin—ben, yani Ho. İtalyanca chiave dişil olduğu için una'yi seçin, sonra da chiave'ün kendisini. Bu çevirideki \"sahip olmak\" kelimesi ho'ten sonra başka bir karo gerektirmez.",
+"textUK": "Спочатку відзнач власника — я, тому Ho. Вибери una, тому що італійське chiave жіночого роду, потім саме chiave. Слово «є» в такому перекладі не вимагає ще однієї плитки після ho.",
+"textVi": "Đầu tiên, hãy đánh dấu chủ sở hữu—là tôi, vậy nên là Ho. Chọn una, vì từ chiave trong tiếng Ý là giống cái, sau đó là chính chiave. Từ \"có\" trong bản dịch này không cần thêm ô nào sau ho.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"First, mark the owner—me, so «Ho». Choose «una», because the Italian «chiave» is feminine, then «chiave» itself. The word \"have\" in this translation doesn't require another tile after «ho»."
+],
+"es": [
+"Primero, identifiquemos al propietario: yo, por lo tanto, «Ho». Elija «una», ya que el verbo italiano «chiave» es femenino, y luego «chiave». La palabra \"tener\" en esta traducción no requiere otra ficha después de «ho»."
+],
+"id": [
+"Pertama, tandai pemiliknya—saya, jadi «Ho». Pilih «una», karena «chiave» dalam bahasa Italia adalah feminin, lalu «chiave» itu sendiri. Kata \"memiliki\" dalam terjemahan ini tidak memerlukan ubin lain setelah «ho»."
+],
+"pl": [
+"Najpierw zaznacz właściciela — mnie, czyli «Ho». Wybierz «una», ponieważ włoskie «chiave» jest rodzaju żeńskiego, a następnie samo «chiave». Słowo „mieć” w tym tłumaczeniu nie wymaga kolejnego kafelka po «ho»."
+],
+"pt-BR": [
+"Primeiro, marque o proprietário — eu, então «Ho». Escolha «una», porque o italiano «chiave» é feminino, depois o próprio «chiave». A palavra \"ter\" nesta tradução não requer outra peça depois de «ho»."
+],
+"ru": [
+"Сначала отметь владельца — я, поэтому «Ho». Выбери «una», потому что итальянское «chiave» женского рода, затем само «chiave». Слово «есть» в таком переводе не требует ещё одной плитки после «ho»."
+],
+"tr": [
+"Öncelikle sahibini işaretleyin—ben, yani «Ho». İtalyanca «chiave» dişil olduğu için «una»'yi seçin, sonra da «chiave»'ün kendisini. Bu çevirideki \"sahip olmak\" kelimesi «ho»'ten sonra başka bir karo gerektirmez."
+],
+"uk": [
+"Спочатку відзнач власника — я, тому «Ho». Вибери «una», тому що італійське «chiave» жіночого роду, потім саме «chiave». Слово «є» в такому перекладі не вимагає ще однієї плитки після «ho»."
+],
+"vi": [
+"Đầu tiên, hãy đánh dấu chủ sở hữu—là tôi, vậy nên là «Ho». Chọn «una», vì từ «chiave» trong tiếng Ý là giống cái, sau đó là chính «chiave». Từ \"có\" trong bản dịch này không cần thêm ô nào sau «ho»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:05:01",
+"it:05:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:05:01",
+"target": "Ho una chiave.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "it:05:05",
+"target": "Abbiamo una piantina.",
+"ru": "У нас есть схема.",
+"uk": "У нас є схема."
+},
+{
+"id": "it:05:06",
+"target": "Avete una piantina.",
+"ru": "У вас есть схема.",
+"uk": "У вас є схема."
+},
+{
+"id": "it:05:01",
+"target": "Ho una chiave.",
+"ru": "У меня есть ключ.",
+"uk": "У мене є ключ."
+},
+{
+"id": "it:05:04",
+"target": "Lui ha una borsa.",
+"ru": "У него есть сумка.",
+"uk": "У нього є сумка."
+}
+]
+},
+{
+"lesson": 6,
+"blocks": [
+{
+"textES": "Dejaste una llave específica sobre la mesa. No digas cualquier llave, sino la que buscan: la chiave. La palabra que precede al nombre es el artículo. Es mejor aprender el sustantivo de inmediato.\nEl artículo ayuda a nombrar un objeto conocido. En italiano, se elige según el sustantivo: il pane, la borsa. El género de la palabra original puede ser completamente diferente.",
+"textEn": "You left a specific key on the table. Don't just name any key, but the one they're looking for: la chiave. The little word before the name is the article. It's better to learn the noun right away.\nThe article helps name a known object. In Italian, it is chosen based on the noun itself: il pane, la borsa. The gender of the original word can be completely different.",
+"textId": "Anda meninggalkan kunci tertentu di atas meja. Jangan hanya menyebutkan kunci apa pun, tetapi kunci yang mereka cari: la chiave. Kata kecil sebelum nama itu adalah artikel. Lebih baik mempelajari kata benda tersebut segera.\nArtikel membantu menyebutkan objek yang dikenal. Dalam bahasa Italia, artikel dipilih berdasarkan kata benda itu sendiri: il pane, la borsa. Jenis kelamin kata aslinya bisa sangat berbeda.",
+"textPl": "Zostawiłeś na stole konkretny klucz. Nie podawaj nazwy dowolnego klucza, ale ten, którego szukają: la chiave. Słowo przed nazwą to rodzajnik. Lepiej od razu nauczyć się rzeczownika.\nRodzajnik pomaga nazwać znany obiekt. W języku włoskim wybiera się go na podstawie samego rzeczownika: il pane, la borsa. Rodzaj oryginalnego słowa może być zupełnie inny.",
+"textPtBr": "Você deixou uma chave específica sobre a mesa. Não diga qualquer chave, mas sim aquela que eles estão procurando: la chiave. A pequena palavra antes do nome é o artigo. É melhor aprender o substantivo imediatamente.\nO artigo ajuda a nomear um objeto conhecido. Em italiano, ele é escolhido com base no próprio substantivo: il pane, la borsa. O gênero da palavra original pode ser completamente diferente.",
+"textRU": "Ты оставил на столе конкретный ключ. Называешь не любой ключ, а тот, который ищут: la chiave. Маленькое слово перед названием — артикль. Существительное лучше учить сразу вместе с ним.\nАртикль помогает назвать известный предмет. В итальянском его выбирают по самому существительному: il pane, la borsa. Род исходного слова может быть совершенно другим.",
+"textTr": "Masada belirli bir anahtar bıraktınız. Herhangi bir anahtarın adını söylemeyin, aradıkları anahtarın adını söyleyin: la chiave. Adın önündeki küçük kelime artikelidir. İsmi hemen öğrenmek daha iyidir.\nMakale, bilinen bir nesneyi adlandırmaya yardımcı olur. İtalyancada, isme göre seçilir: il pane, la borsa. Orijinal kelimenin cinsiyeti tamamen farklı olabilir.",
+"textUK": "Ти залишив на столі ключ. Називаєш не будь-який ключ, а той, що шукають: la chiave. Маленьке слово перед назвою — артикль. Іменник краще вчити відразу разом з ним.\nАртікль допомагає назвати відомий предмет. В італійському його обирають за іменником: il pane, la borsa. Рід вихідного слова може бути зовсім іншим.",
+"textVi": "Bạn để quên một chiếc chìa khóa cụ thể trên bàn. Đừng chỉ nêu tên bất kỳ chiếc chìa khóa nào, mà hãy nêu tên chiếc chìa khóa họ đang tìm: la chiave. Từ nhỏ đứng trước tên là mạo từ. Tốt hơn hết là học danh từ ngay lập tức.\nMạo từ giúp đặt tên cho một vật thể đã biết. Trong tiếng Ý, nó được chọn dựa trên chính danh từ đó: il pane, la borsa. Giống của từ gốc có thể hoàn toàn khác.",
+"titleES": "Artículos antes de un objeto familiar",
+"titleEn": "Articles before a familiar object",
+"titleId": "Artikel sebelum objek yang sudah dikenal",
+"titlePl": "Rodzajniki przed znanym obiektem",
+"titlePtBr": "Artigos antes de um objeto familiar",
+"titleRU": "Артикли перед знакомым предметом",
+"titleTr": "Tanıdık bir nesnenin önündeki artikeller",
+"titleUK": "Артиклі перед знайомим предметом",
+"titleVi": "Mạo từ trước một vật quen thuộc",
+"titleByLocale": {
+"en": "Articles before a familiar object",
+"es": "Artículos antes de un objeto familiar",
+"id": "Artikel sebelum objek yang sudah dikenal",
+"pl": "Rodzajniki przed znanym obiektem",
+"pt-BR": "Artigos antes de um objeto familiar",
+"ru": "Артикли перед знакомым предметом",
+"tr": "Tanıdık bir nesnenin önündeki artikeller",
+"uk": "Артиклі перед знайомим предметом",
+"vi": "Mạo từ trước một vật quen thuộc"
+},
+"textByLocale": {
+"en": [
+"You left a specific key on the table. Don't just name any key, but the one they're looking for: «la chiave». The little word before the name is the article. It's better to learn the noun right away.",
+"The article helps name a known object. In Italian, it is chosen based on the noun itself: «il pane», «la borsa». The gender of the original word can be completely different."
+],
+"es": [
+"Dejaste una llave específica sobre la mesa. No digas cualquier llave, sino la que buscan: «la chiave». La palabra que precede al nombre es el artículo. Es mejor aprender el sustantivo de inmediato.",
+"El artículo ayuda a nombrar un objeto conocido. En italiano, se elige según el sustantivo: «il pane», «la borsa». El género de la palabra original puede ser completamente diferente."
+],
+"id": [
+"Anda meninggalkan kunci tertentu di atas meja. Jangan hanya menyebutkan kunci apa pun, tetapi kunci yang mereka cari: «la chiave». Kata kecil sebelum nama itu adalah artikel. Lebih baik mempelajari kata benda tersebut segera.",
+"Artikel membantu menyebutkan objek yang dikenal. Dalam bahasa Italia, artikel dipilih berdasarkan kata benda itu sendiri: «il pane», «la borsa». Jenis kelamin kata aslinya bisa sangat berbeda."
+],
+"pl": [
+"Zostawiłeś na stole konkretny klucz. Nie podawaj nazwy dowolnego klucza, ale ten, którego szukają: «la chiave». Słowo przed nazwą to rodzajnik. Lepiej od razu nauczyć się rzeczownika.",
+"Rodzajnik pomaga nazwać znany obiekt. W języku włoskim wybiera się go na podstawie samego rzeczownika: «il pane», «la borsa». Rodzaj oryginalnego słowa może być zupełnie inny."
+],
+"pt-BR": [
+"Você deixou uma chave específica sobre a mesa. Não diga qualquer chave, mas sim aquela que eles estão procurando: «la chiave». A pequena palavra antes do nome é o artigo. É melhor aprender o substantivo imediatamente.",
+"O artigo ajuda a nomear um objeto conhecido. Em italiano, ele é escolhido com base no próprio substantivo: «il pane», «la borsa». O gênero da palavra original pode ser completamente diferente."
+],
+"ru": [
+"Ты оставил на столе конкретный ключ. Называешь не любой ключ, а тот, который ищут: «la chiave». Маленькое слово перед названием — артикль. Существительное лучше учить сразу вместе с ним.",
+"Артикль помогает назвать известный предмет. В итальянском его выбирают по самому существительному: «il pane», «la borsa». Род исходного слова может быть совершенно другим."
+],
+"tr": [
+"Masada belirli bir anahtar bıraktınız. Herhangi bir anahtarın adını söylemeyin, aradıkları anahtarın adını söyleyin: «la chiave». Adın önündeki küçük kelime artikelidir. İsmi hemen öğrenmek daha iyidir.",
+"Makale, bilinen bir nesneyi adlandırmaya yardımcı olur. İtalyancada, isme göre seçilir: «il pane», «la borsa». Orijinal kelimenin cinsiyeti tamamen farklı olabilir."
+],
+"uk": [
+"Ти залишив на столі ключ. Називаєш не будь-який ключ, а той, що шукають: «la chiave». Маленьке слово перед назвою — артикль. Іменник краще вчити відразу разом з ним.",
+"Артікль допомагає назвати відомий предмет. В італійському його обирають за іменником: «il pane», «la borsa». Рід вихідного слова може бути зовсім іншим."
+],
+"vi": [
+"Bạn để quên một chiếc chìa khóa cụ thể trên bàn. Đừng chỉ nêu tên bất kỳ chiếc chìa khóa nào, mà hãy nêu tên chiếc chìa khóa họ đang tìm: «la chiave». Từ nhỏ đứng trước tên là mạo từ. Tốt hơn hết là học danh từ ngay lập tức.",
+"Mạo từ giúp đặt tên cho một vật thể đã biết. Trong tiếng Ý, nó được chọn dựa trên chính danh từ đó: «il pane», «la borsa». Giống của từ gốc có thể hoàn toàn khác."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:06:01"
+]
+},
+{
+"textES": "il / lo / la / l’ → i / gli / le\nFíjate primero en el número y el género, y luego en el comienzo de la palabra. El plural masculino de il libro es i libri, pero lo zaino es gli zaini. El plural femenino es la chiave, que es le chiavi. Estas no son tres traducciones diferentes de la palabra \"libro\", sino formas que preceden a distintos sustantivos.\nAntes del plural masculino, aparecen i y gli. Cuando oigas gli occhiali, memoriza todo el grupo. No elijas le solo porque termine en vocal.",
+"textEn": "il / lo / la / l’ → i / gli / le\nLook first at the number and gender, then at the beginning of the word. The masculine plural of il libro is i libri, but lo zaino is gli zaini. The feminine plural is la chiave is le chiavi. These aren't three different translations of the word \"book,\" but rather forms before different nouns.\nBefore the masculine plural, i and gli appear. When you hear gli occhiali, memorize the entire group. Don't choose le just because it ends in a vowel.",
+"textId": "il / lo / la / l’ → i / gli / le\nLihat dulu angka dan jenis kelaminnya, lalu awal kata. Bentuk jamak maskulin dari il libro adalah i libri, tetapi lo zaino adalah gli zaini. Bentuk jamak femininnya adalah la chiave adalah le chiavi. Ini bukanlah tiga terjemahan berbeda dari kata \"buku,\" melainkan bentuk sebelum kata benda yang berbeda.\nSebelum bentuk jamak maskulin, muncul i dan gli. Ketika Anda mendengar gli occhiali, hafalkan seluruh kelompok. Jangan memilih le hanya karena berakhiran vokal.",
+"textPl": "il / lo / la / l’ → i / gli / le\nNajpierw spójrz na liczbę i rodzaj, a następnie na początek słowa. Męska liczba mnoga liczby il libro to i libri, ale lo zaino to gli zaini. Żeńska liczba mnoga liczby la chiave to le chiavi. Nie są to trzy różne tłumaczenia słowa „książka”, ale raczej formy przed różnymi rzeczownikami.\nPrzed mnogą formą mnogą rodzaju męskiego pojawiają się i i gli. Kiedy usłyszysz gli occhiali, zapamiętaj całą grupę. Nie wybieraj le tylko dlatego, że kończy się samogłoską.",
+"textPtBr": "il / lo / la / l’ → i / gli / le\nObserve primeiro o número e o gênero, depois o início da palavra. O plural masculino de il libro é i libri, mas lo zaino é gli zaini. O plural feminino é la chiave e le chiavi. Estas não são três traduções diferentes da palavra \"livro\", mas sim formas antes de substantivos diferentes.\nAntes do plural masculino, aparecem i e gli. Quando você ouvir gli occhiali, memorize todo o grupo. Não escolha le apenas porque termina em vogal.",
+"textRU": "il / lo / la / l’ → i / gli / le\nПосмотри сначала на число и род, затем на начало слова. Мужское il libro во множественном числе даст i libri, но lo zaino — gli zaini. Женское la chiave — le chiavi. Это не три разных перевода слова «книга», а формы перед разными существительными.\nПеред мужским множественным числом встречаются i и gli. Услышав gli occhiali, запомни всю группу. Не выбирай le только потому, что форма заканчивается на гласную.",
+"textTr": "il / lo / la / l’ → i / gli / le\nÖnce sayıya ve cinsiyete, sonra kelimenin başına bakın. il libro'in eril çoğulu i libri'dir, ancak lo zaino'ün dişil çoğulu gli zaini'tür. la chiave'in dişil çoğulu le chiavi'dır. Bunlar \"kitap\" kelimesinin üç farklı çevirisi değil, farklı isimlerin önündeki biçimlerdir.\nEril çoğuldan önce i ve gli görünür. gli occhiali'ü duyduğunuzda, tüm grubu ezberleyin. Sadece sesli harfle bittiği için le'ü seçmeyin.",
+"textUK": "il / lo / la / l’ → i / gli / le\nПоглянь спочатку на число та рід, а потім на початок слова. Чоловіче il libro у множині дасть i libri, але lo zaino - gli zaini. Жіноче la chiave - le chiavi. Це не три різні переклади слова \"книга\", а форми перед різними іменниками.\nПеред чоловічим множиною зустрічаються i і gli. Почувши gli occhiali, запам'ятай усю групу. Не вибирай le лише тому, що форма закінчується на голосну.",
+"textVi": "il / lo / la / l’ → i / gli / le\nTrước tiên hãy nhìn vào số và giống, sau đó nhìn vào phần đầu của từ. Số nhiều giống đực của il libro là i libri, nhưng lo zaino là gli zaini. Số nhiều giống cái của la chiave là le chiavi. Đây không phải là ba bản dịch khác nhau của từ \"sách\", mà là các dạng trước các danh từ khác nhau.\nTrước dạng số nhiều giống đực, i và gli xuất hiện. Khi bạn nghe gli occhiali, hãy ghi nhớ toàn bộ nhóm. Đừng chọn le chỉ vì nó kết thúc bằng một nguyên âm.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Look first at the number and gender, then at the beginning of the word. The masculine plural of «il libro» is «i libri», but «lo zaino» is «gli zaini». The feminine plural is «la chiave» is «le chiavi». These aren't three different translations of the word \"book,\" but rather forms before different nouns.",
+"Before the masculine plural, «i» and «gli» appear. When you hear «gli occhiali», memorize the entire group. Don't choose «le» just because it ends in a vowel."
+],
+"es": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Fíjate primero en el número y el género, y luego en el comienzo de la palabra. El plural masculino de «il libro» es «i libri», pero «lo zaino» es «gli zaini». El plural femenino es «la chiave», que es «le chiavi». Estas no son tres traducciones diferentes de la palabra \"libro\", sino formas que preceden a distintos sustantivos.",
+"Antes del plural masculino, aparecen «i» y «gli». Cuando oigas «gli occhiali», memoriza todo el grupo. No elijas «le» solo porque termine en vocal."
+],
+"id": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Lihat dulu angka dan jenis kelaminnya, lalu awal kata. Bentuk jamak maskulin dari «il libro» adalah «i libri», tetapi «lo zaino» adalah «gli zaini». Bentuk jamak femininnya adalah «la chiave» adalah «le chiavi». Ini bukanlah tiga terjemahan berbeda dari kata \"buku,\" melainkan bentuk sebelum kata benda yang berbeda.",
+"Sebelum bentuk jamak maskulin, muncul «i» dan «gli». Ketika Anda mendengar «gli occhiali», hafalkan seluruh kelompok. Jangan memilih «le» hanya karena berakhiran vokal."
+],
+"pl": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Najpierw spójrz na liczbę i rodzaj, a następnie na początek słowa. Męska liczba mnoga liczby «il libro» to «i libri», ale «lo zaino» to «gli zaini». Żeńska liczba mnoga liczby «la chiave» to «le chiavi». Nie są to trzy różne tłumaczenia słowa „książka”, ale raczej formy przed różnymi rzeczownikami.",
+"Przed mnogą formą mnogą rodzaju męskiego pojawiają się «i» i «gli». Kiedy usłyszysz «gli occhiali», zapamiętaj całą grupę. Nie wybieraj «le» tylko dlatego, że kończy się samogłoską."
+],
+"pt-BR": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Observe primeiro o número e o gênero, depois o início da palavra. O plural masculino de «il libro» é «i libri», mas «lo zaino» é «gli zaini». O plural feminino é «la chiave» e «le chiavi». Estas não são três traduções diferentes da palavra \"livro\", mas sim formas antes de substantivos diferentes.",
+"Antes do plural masculino, aparecem «i» e «gli». Quando você ouvir «gli occhiali», memorize todo o grupo. Não escolha «le» apenas porque termina em vogal."
+],
+"ru": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Посмотри сначала на число и род, затем на начало слова. Мужское «il libro» во множественном числе даст «i libri», но «lo zaino» — «gli zaini». Женское «la chiave» — «le chiavi». Это не три разных перевода слова «книга», а формы перед разными существительными.",
+"Перед мужским множественным числом встречаются «i» и «gli». Услышав «gli occhiali», запомни всю группу. Не выбирай «le» только потому, что форма заканчивается на гласную."
+],
+"tr": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Önce sayıya ve cinsiyete, sonra kelimenin başına bakın. «il libro»'in eril çoğulu «i libri»'dir, ancak «lo zaino»'ün dişil çoğulu «gli zaini»'tür. «la chiave»'in dişil çoğulu «le chiavi»'dır. Bunlar \"kitap\" kelimesinin üç farklı çevirisi değil, farklı isimlerin önündeki biçimlerdir.",
+"Eril çoğuldan önce «i» ve «gli» görünür. «gli occhiali»'ü duyduğunuzda, tüm grubu ezberleyin. Sadece sesli harfle bittiği için «le»'ü seçmeyin."
+],
+"uk": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Поглянь спочатку на число та рід, а потім на початок слова. Чоловіче «il libro» у множині дасть «i libri», але «lo zaino» - «gli zaini». Жіноче «la chiave» - «le chiavi». Це не три різні переклади слова \"книга\", а форми перед різними іменниками.",
+"Перед чоловічим множиною зустрічаються «i» і «gli». Почувши «gli occhiali», запам'ятай усю групу. Не вибирай «le» лише тому, що форма закінчується на голосну."
+],
+"vi": [
+"«il / lo / la / l’» → «i / gli / le»",
+"Trước tiên hãy nhìn vào số và giống, sau đó nhìn vào phần đầu của từ. Số nhiều giống đực của «il libro» là «i libri», nhưng «lo zaino» là «gli zaini». Số nhiều giống cái của «la chiave» là «le chiavi». Đây không phải là ba bản dịch khác nhau của từ \"sách\", mà là các dạng trước các danh từ khác nhau.",
+"Trước dạng số nhiều giống đực, «i» và «gli» xuất hiện. Khi bạn nghe «gli occhiali», hãy ghi nhớ toàn bộ nhóm. Đừng chọn «le» chỉ vì nó kết thúc bằng một nguyên âm."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:06:04",
+"it:06:09"
+]
+},
+{
+"textES": "Para «La llave está sobre la mesa», primero se toma el artículo La chiave. Luego, el verbo è. «Sobre la mesa» es sul tavolo: aquí se combinan su y il. Ahora tienes la frase corta La chiave è sul tavolo.",
+"textEn": "For \"The key is on the table,\" first collect La chiave. Then the verb è. \"On the table\" is sul tavolo: su and il are combined here. You now have the short phrase La chiave è sul tavolo.",
+"textId": "Untuk \"Kuncinya ada di atas meja,\" pertama-tama kumpulkan La chiave. Kemudian kata kerja è. \"Di atas meja\" adalah sul tavolo: su dan il digabungkan di sini. Sekarang Anda memiliki frasa pendek La chiave è sul tavolo.",
+"textPl": "Aby uzyskać frazę „Klucz jest na stole”, najpierw zbierz La chiave. Następnie czasownik è. „Na stole” to sul tavolo: su i il są tutaj połączone. Teraz masz krótką frazę La chiave è sul tavolo.",
+"textPtBr": "Para \"A chave está sobre a mesa\", primeiro colete La chiave. Em seguida, o verbo è. \"Sobre a mesa\" é sul tavolo: su e il são combinados aqui. Agora você tem a frase curta La chiave è sul tavolo.",
+"textRU": "Для «Ключ на столе» сначала собери La chiave. Потом глагол è. «На столе» — sul tavolo: su и il здесь соединяются. У тебя получилась короткая фраза La chiave è sul tavolo.",
+"textTr": "\"Anahtar masanın üzerinde\" için önce La chiave'i toplayın. Sonra è fiilini. \"Masanın üzerinde\" sul tavolo'tür: su ve il burada birleştirilir. Şimdi La chiave è sul tavolo kısa ifadesine sahipsiniz.",
+"textUK": "Для \"Ключ на столі\" спочатку збери La chiave. Потім дієслово è. \"На столі\" - sul tavolo: su і il тут з'єднуються. У тебе вийшла коротка фраза La chiave è sul tavolo.",
+"textVi": "Đối với \"Chìa khóa ở trên bàn,\" trước tiên hãy thu thập La chiave. Sau đó là động từ è. \"Trên bàn\" là sul tavolo: su và il được kết hợp ở đây. Bây giờ bạn có cụm từ ngắn La chiave è sul tavolo.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For \"The key is on the table,\" first collect «La chiave». Then the verb «è». \"On the table\" is «sul tavolo»: «su» and «il» are combined here. You now have the short phrase «La chiave è sul tavolo»."
+],
+"es": [
+"Para «La llave está sobre la mesa», primero se toma el artículo «La chiave». Luego, el verbo «è». «Sobre la mesa» es «sul tavolo»: aquí se combinan «su» y «il». Ahora tienes la frase corta «La chiave è sul tavolo»."
+],
+"id": [
+"Untuk \"Kuncinya ada di atas meja,\" pertama-tama kumpulkan «La chiave». Kemudian kata kerja «è». \"Di atas meja\" adalah «sul tavolo»: «su» dan «il» digabungkan di sini. Sekarang Anda memiliki frasa pendek «La chiave è sul tavolo»."
+],
+"pl": [
+"Aby uzyskać frazę „Klucz jest na stole”, najpierw zbierz «La chiave». Następnie czasownik «è». „Na stole” to «sul tavolo»: «su» i «il» są tutaj połączone. Teraz masz krótką frazę «La chiave è sul tavolo»."
+],
+"pt-BR": [
+"Para \"A chave está sobre a mesa\", primeiro colete «La chiave». Em seguida, o verbo «è». \"Sobre a mesa\" é «sul tavolo»: «su» e «il» são combinados aqui. Agora você tem a frase curta «La chiave è sul tavolo»."
+],
+"ru": [
+"Для «Ключ на столе» сначала собери «La chiave». Потом глагол «è». «На столе» — «sul tavolo»: «su» и «il» здесь соединяются. У тебя получилась короткая фраза «La chiave è sul tavolo»."
+],
+"tr": [
+"\"Anahtar masanın üzerinde\" için önce «La chiave»'i toplayın. Sonra «è» fiilini. \"Masanın üzerinde\" «sul tavolo»'tür: «su» ve «il» burada birleştirilir. Şimdi «La chiave è sul tavolo» kısa ifadesine sahipsiniz."
+],
+"uk": [
+"Для \"Ключ на столі\" спочатку збери «La chiave». Потім дієслово «è». \"На столі\" - «sul tavolo»: «su» і «il» тут з'єднуються. У тебе вийшла коротка фраза «La chiave è sul tavolo»."
+],
+"vi": [
+"Đối với \"Chìa khóa ở trên bàn,\" trước tiên hãy thu thập «La chiave». Sau đó là động từ «è». \"Trên bàn\" là «sul tavolo»: «su» và «il» được kết hợp ở đây. Bây giờ bạn có cụm từ ngắn «La chiave è sul tavolo»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:06:01",
+"it:06:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:06:01",
+"target": "La chiave è sul tavolo.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ на столі."
+},
+{
+"id": "it:06:04",
+"target": "Gli occhiali sono sul letto.",
+"ru": "Очки лежат на кровати.",
+"uk": "Окуляри на ліжку."
+},
+{
+"id": "it:06:09",
+"target": "I bicchieri sono puliti.",
+"ru": "Стаканы чистые.",
+"uk": "Склянки чисті."
+},
+{
+"id": "it:06:01",
+"target": "La chiave è sul tavolo.",
+"ru": "Ключ лежит на столе.",
+"uk": "Ключ на столі."
+},
+{
+"id": "it:06:04",
+"target": "Gli occhiali sono sul letto.",
+"ru": "Очки лежат на кровати.",
+"uk": "Окуляри на ліжку."
+}
+]
+},
+{
+"lesson": 7,
+"blocks": [
+{
+"textES": "Alguien te pregunta dónde trabajas. En el diccionario, Lavorare significa \"trabajo\". Eliminamos -are y añadimos -o: obtenemos lavoro, \"Trabajo\". Añadimos qui, \"aquí\". No se añade el verbo \"ser\" junto a él.\nPrimero, averigua quién realiza la acción. Con un nombre propio, normalmente necesitas la tercera persona: Lea lavora. Para ti mismo, usa lavoro; Para dirigirse a alguien por su nombre de pila, use lavori.",
+"textEn": "Someone asks where you work. Lavorare in the dictionary is \"work.\" Drop -are and add -o: you get lavoro, \"I work.\" Add qui, \"here.\" Don't put another verb \"to be\" next to it.\nFirst, find who's doing the action. With a personal name, you usually need the third person form: Lea lavora. For yourself, use lavoro; for someone on a first-name basis, use lavori.",
+"textId": "Seseorang bertanya di mana Anda bekerja. Lavorare dalam kamus adalah \"kerja.\" Hilangkan -are dan tambahkan -o: Anda mendapatkan lavoro, \"Saya bekerja.\" Tambahkan qui, \"di sini.\" Jangan menambahkan kata kerja \"to be\" lain di sebelahnya.\nPertama, cari tahu siapa yang melakukan tindakan tersebut. Dengan nama pribadi, Anda biasanya memerlukan bentuk orang ketiga: Lea lavora. Untuk diri Anda sendiri, gunakan lavoro; Untuk seseorang yang akrab dengan nama depan, gunakan lavori.",
+"textPl": "Ktoś pyta, gdzie pracujesz. Lavorare w słowniku to „praca”. Usuń -are i dodaj -o: otrzymasz lavoro, „pracuję”. Dodaj qui, „tutaj”. Nie dodawaj obok kolejnego czasownika „być”.\nNajpierw znajdź osobę, która ją wykonuje. W przypadku imienia i nazwiska zazwyczaj potrzebujesz formy trzeciej osoby: Lea lavora. Dla siebie użyj lavoro; Zwracając się do kogoś po imieniu, użyj kodu lavori.",
+"textPtBr": "Alguém pergunta onde você trabalha. Lavorare no dicionário significa \"trabalho\". Retire -are e adicione -o: você obtém lavoro, \"Eu trabalho\". Adicione qui, \"aqui\". Não coloque outro verbo \"ser\" ao lado.\nPrimeiro, descubra quem está realizando a ação. Com um nome próprio, geralmente é necessário usar a terceira pessoa: Lea lavora. Para você mesmo, use lavoro; Para alguém com quem você se trata pelo primeiro nome, use lavori.",
+"textRU": "Кто-то спрашивает, где ты работаешь. Lavorare в словаре — «работать». Отбрось -are и присоедини -o: получится lavoro, «я работаю». Добавь qui, «здесь». Не ставь рядом ещё один глагол «быть».\nСначала найди, кто выполняет действие. С личным именем обычно нужна форма третьего лица: Lea lavora. Для себя — lavoro, для собеседника на «ты» — lavori.",
+"textTr": "Birisi nerede çalıştığınızı soruyor. Sözlükte Lavorare \"iş\" anlamına geliyor. -are'yi çıkarın ve -o'ü ekleyin: lavoro, \"çalışıyorum\" elde edersiniz. qui, \"burada\"yı ekleyin. Yanına başka bir \"olmak\" fiili koymayın.\nÖncelikle, eylemi kimin yaptığını bulun. Kişisel bir isim söz konusu olduğunda, genellikle üçüncü şahıs biçimini kullanmanız gerekir: Lea lavora. Kendiniz için lavoro'yi kullanın; Birine adıyla hitap ediyorsanız lavori kullanın.",
+"textUK": "Хтось питає, де ти працюєш. Lavorare у словнику - \"працювати\". Відкинь -are та приєднай -o: вийде lavoro, «я працюю». Додай qui, «тут». Не став поруч ще одне дієслово «бути».\nСпершу знайди, хто виконує дію. З особистим ім'ям зазвичай потрібна форма третьої особи: Lea lavora. Для себе – lavoro, для співрозмовника на «ти» – lavori.",
+"textVi": "Ai đó hỏi bạn làm việc ở đâu. Lavorare trong từ điển là \"làm việc\". Bỏ -are và thêm -o: bạn được lavoro, \"Tôi làm việc\". Thêm qui, \"ở đây\". Đừng thêm một động từ \"to be\" khác bên cạnh.\nTrước tiên, hãy tìm người đang thực hiện hành động. Với tên riêng, bạn thường cần dạng ngôi thứ ba: Lea lavora. Đối với chính bạn, hãy sử dụng lavoro; đối với người nào đó mà bạn gọi bằng tên riêng, hãy sử dụng lavori.",
+"titleES": "Acciones ordinarias: presente",
+"titleEn": "Ordinary actions: present tense",
+"titleId": "Tindakan biasa: bentuk present tense",
+"titlePl": "Zwykłe czynności: czas teraźniejszy",
+"titlePtBr": "Ações comuns: presente do indicativo",
+"titleRU": "Обычные действия: настоящее время",
+"titleTr": "Sıradan eylemler: şimdiki zaman",
+"titleUK": "Звичайні дії: теперішній час",
+"titleVi": "Hành động thông thường: thì hiện tại",
+"titleByLocale": {
+"en": "Ordinary actions: present tense",
+"es": "Acciones ordinarias: presente",
+"id": "Tindakan biasa: bentuk present tense",
+"pl": "Zwykłe czynności: czas teraźniejszy",
+"pt-BR": "Ações comuns: presente do indicativo",
+"ru": "Обычные действия: настоящее время",
+"tr": "Sıradan eylemler: şimdiki zaman",
+"uk": "Звичайні дії: теперішній час",
+"vi": "Hành động thông thường: thì hiện tại"
+},
+"textByLocale": {
+"en": [
+"Someone asks where you work. «Lavorare» in the dictionary is \"work.\" Drop «-are» and add «-o»: you get «lavoro», \"I work.\" Add «qui», \"here.\" Don't put another verb \"to be\" next to it.",
+"First, find who's doing the action. With a personal name, you usually need the third person form: «Lea lavora». For yourself, use «lavoro»; for someone on a first-name basis, use «lavori»."
+],
+"es": [
+"Alguien te pregunta dónde trabajas. En el diccionario, «Lavorare» significa \"trabajo\". Eliminamos «-are» y añadimos «-o»: obtenemos «lavoro», \"Trabajo\". Añadimos «qui», \"aquí\". No se añade el verbo \"ser\" junto a él.",
+"Primero, averigua quién realiza la acción. Con un nombre propio, normalmente necesitas la tercera persona: «Lea lavora». Para ti mismo, usa «lavoro»; Para dirigirse a alguien por su nombre de pila, use «lavori»."
+],
+"id": [
+"Seseorang bertanya di mana Anda bekerja. «Lavorare» dalam kamus adalah \"kerja.\" Hilangkan «-are» dan tambahkan «-o»: Anda mendapatkan «lavoro», \"Saya bekerja.\" Tambahkan «qui», \"di sini.\" Jangan menambahkan kata kerja \"to be\" lain di sebelahnya.",
+"Pertama, cari tahu siapa yang melakukan tindakan tersebut. Dengan nama pribadi, Anda biasanya memerlukan bentuk orang ketiga: «Lea lavora». Untuk diri Anda sendiri, gunakan «lavoro»; Untuk seseorang yang akrab dengan nama depan, gunakan «lavori»."
+],
+"pl": [
+"Ktoś pyta, gdzie pracujesz. «Lavorare» w słowniku to „praca”. Usuń «-are» i dodaj «-o»: otrzymasz «lavoro», „pracuję”. Dodaj «qui», „tutaj”. Nie dodawaj obok kolejnego czasownika „być”.",
+"Najpierw znajdź osobę, która ją wykonuje. W przypadku imienia i nazwiska zazwyczaj potrzebujesz formy trzeciej osoby: «Lea lavora». Dla siebie użyj «lavoro»; Zwracając się do kogoś po imieniu, użyj kodu «lavori»."
+],
+"pt-BR": [
+"Alguém pergunta onde você trabalha. «Lavorare» no dicionário significa \"trabalho\". Retire «-are» e adicione «-o»: você obtém «lavoro», \"Eu trabalho\". Adicione «qui», \"aqui\". Não coloque outro verbo \"ser\" ao lado.",
+"Primeiro, descubra quem está realizando a ação. Com um nome próprio, geralmente é necessário usar a terceira pessoa: «Lea lavora». Para você mesmo, use «lavoro»; Para alguém com quem você se trata pelo primeiro nome, use «lavori»."
+],
+"ru": [
+"Кто-то спрашивает, где ты работаешь. «Lavorare» в словаре — «работать». Отбрось «-are» и присоедини «-o»: получится «lavoro», «я работаю». Добавь «qui», «здесь». Не ставь рядом ещё один глагол «быть».",
+"Сначала найди, кто выполняет действие. С личным именем обычно нужна форма третьего лица: «Lea lavora». Для себя — «lavoro», для собеседника на «ты» — «lavori»."
+],
+"tr": [
+"Birisi nerede çalıştığınızı soruyor. Sözlükte «Lavorare» \"iş\" anlamına geliyor. «-are»'yi çıkarın ve «-o»'ü ekleyin: «lavoro», \"çalışıyorum\" elde edersiniz. «qui», \"burada\"yı ekleyin. Yanına başka bir \"olmak\" fiili koymayın.",
+"Öncelikle, eylemi kimin yaptığını bulun. Kişisel bir isim söz konusu olduğunda, genellikle üçüncü şahıs biçimini kullanmanız gerekir: «Lea lavora». Kendiniz için «lavoro»'yi kullanın; Birine adıyla hitap ediyorsanız «lavori» kullanın."
+],
+"uk": [
+"Хтось питає, де ти працюєш. «Lavorare» у словнику - \"працювати\". Відкинь «-are» та приєднай «-o»: вийде «lavoro», «я працюю». Додай «qui», «тут». Не став поруч ще одне дієслово «бути».",
+"Спершу знайди, хто виконує дію. З особистим ім'ям зазвичай потрібна форма третьої особи: «Lea lavora». Для себе – «lavoro», для співрозмовника на «ти» – «lavori»."
+],
+"vi": [
+"Ai đó hỏi bạn làm việc ở đâu. «Lavorare» trong từ điển là \"làm việc\". Bỏ «-are» và thêm «-o»: bạn được «lavoro», \"Tôi làm việc\". Thêm «qui», \"ở đây\". Đừng thêm một động từ \"to be\" khác bên cạnh.",
+"Trước tiên, hãy tìm người đang thực hiện hành động. Với tên riêng, bạn thường cần dạng ngôi thứ ba: «Lea lavora». Đối với chính bạn, hãy sử dụng «lavoro»; đối với người nào đó mà bạn gọi bằng tên riêng, hãy sử dụng «lavori»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:07:01"
+]
+},
+{
+"textES": "Verbo en persona + qué o dónde\nTú y un amigo trabajáis en el mismo sitio. Tú dices Lavoro qui para ti mismo, pero Lavori qui para él. La diferencia se nota en la terminación: -o y -i. Cambiar la persona no cambia el lugar.\nPara un grupo con un solo hablante, use -iamo. Si se dirige a varias personas, los verbos que terminan en -are terminarán en -ate. Al hablar de otras personas, este grupo de verbos suele usar -ano.",
+"textEn": "person-form verb + what or where\nYou and a friend work in the same place. You say Lavoro qui to yourself, but Lavori qui to them. The difference is audible in the ending: -o and -i. Changing the person doesn't change the place.\nFor a group with a speaker, use -iamo. If you're addressing several people, verbs ending in -are will end in -ate. When talking about other people, this group of verbs usually uses -ano.",
+"textId": "kata kerja bentuk orang + apa atau di mana\nAnda dan seorang teman bekerja di tempat yang sama. Anda mengatakan Lavoro qui kepada diri sendiri, tetapi Lavori qui kepada mereka. Perbedaannya terdengar di akhir kalimat: -o dan -i. Mengubah orang tidak mengubah tempatnya.\nUntuk kelompok dengan seorang pembicara, gunakan -iamo. Jika Anda berbicara kepada beberapa orang, kata kerja yang berakhiran -are akan berakhiran -ate. Saat berbicara tentang orang lain, kelompok kata kerja ini biasanya menggunakan -ano.",
+"textPl": "forma osoby czasownika + co lub gdzie\nTy i twój przyjaciel pracujecie w tym samym miejscu. Mówisz do siebie Lavoro qui, ale do nich Lavori qui. Różnica jest słyszalna w końcówce: -o i -i. Zmiana osoby nie zmienia miejsca.\nW przypadku grupy z mówcą użyj kodu -iamo. Jeśli zwracasz się do kilku osób, czasowniki zakończone na -are będą kończyć się na -ate. Mówiąc o innych osobach, ta grupa czasowników zazwyczaj używa kodu -ano.",
+"textPtBr": "verbo na forma pessoal + o que ou onde\nVocê e um amigo trabalham no mesmo lugar. Você diz Lavoro qui para si mesmo, mas Lavori qui para ele. A diferença é audível na terminação: -o e -i. Mudar a pessoa não muda o lugar.\nPara um grupo com um orador, use -iamo. Se você estiver se dirigindo a várias pessoas, os verbos terminados em -are terminarão em -ate. Ao falar sobre outras pessoas, esse grupo de verbos geralmente usa -ano.",
+"textRU": "глагол в форме человека + что или где\nТы и друг работаете в одном месте. Для себя говоришь Lavoro qui, обращаясь к нему — Lavori qui. Разница слышна в окончании: -o и -i. Смена человека не меняет место.\nДля группы с говорящим окончание -iamo. Если ты обращаешься к нескольким людям, у глаголов на -are будет -ate. Когда говоришь о других людях, у этой группы глаголов обычно -ano.",
+"textTr": "şahıs biçimli fiil + ne veya nerede\nSiz ve bir arkadaşınız aynı yerde çalışıyorsunuz. Kendinize Lavoro qui diyorsunuz, ama onlara Lavori qui diyorsunuz. Fark sondaki seste duyuluyor: -o ve -i. Kişiyi değiştirmek yeri değiştirmez.\nKonuşmacısı olan bir grup için -iamo kullanın. Birden fazla kişiye hitap ediyorsanız, -are ile biten fiiller -ate ile bitecektir. Diğer kişilerden bahsederken, bu fiil grubu genellikle -ano kullanır.",
+"textUK": "дієслово у формі людини + що або де\nТи та друг працюєте в одному місці. Для себе кажеш Lavoro qui, звертаючись до нього - Lavori qui. Різниця чутна в кінці: -o і -i. Зміна людини не змінює місце.\nДля групи з розмовляючим закінчення -iamo. Якщо ти звертаєшся до кількох людей, у дієслів на -are буде -ate. Коли говориш про інших людей, у цієї групи дієслів зазвичай -ano.",
+"textVi": "Động từ ở ngôi + cái gì hoặc ở đâu\nBạn và một người bạn làm việc cùng một nơi. Bạn nói Lavoro qui với chính mình, nhưng nói Lavori qui với họ. Sự khác biệt có thể nghe thấy ở phần kết thúc: -o và -i. Thay đổi ngôi không làm thay đổi địa điểm.\nĐối với một nhóm có người nói, hãy sử dụng -iamo. Nếu bạn đang nói chuyện với nhiều người, các động từ kết thúc bằng -are sẽ kết thúc bằng -ate. Khi nói về người khác, nhóm động từ này thường sử dụng -ano.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"person-form verb + what or where",
+"You and a friend work in the same place. You say «Lavoro qui» to yourself, but «Lavori qui» to them. The difference is audible in the ending: «-o» and «-i». Changing the person doesn't change the place.",
+"For a group with a speaker, use «-iamo». If you're addressing several people, verbs ending in «-are» will end in «-ate». When talking about other people, this group of verbs usually uses «-ano»."
+],
+"es": [
+"Verbo en persona + qué o dónde",
+"Tú y un amigo trabajáis en el mismo sitio. Tú dices «Lavoro qui» para ti mismo, pero «Lavori qui» para él. La diferencia se nota en la terminación: «-o» y «-i». Cambiar la persona no cambia el lugar.",
+"Para un grupo con un solo hablante, use «-iamo». Si se dirige a varias personas, los verbos que terminan en «-are» terminarán en «-ate». Al hablar de otras personas, este grupo de verbos suele usar «-ano»."
+],
+"id": [
+"kata kerja bentuk orang + apa atau di mana",
+"Anda dan seorang teman bekerja di tempat yang sama. Anda mengatakan «Lavoro qui» kepada diri sendiri, tetapi «Lavori qui» kepada mereka. Perbedaannya terdengar di akhir kalimat: «-o» dan «-i». Mengubah orang tidak mengubah tempatnya.",
+"Untuk kelompok dengan seorang pembicara, gunakan «-iamo». Jika Anda berbicara kepada beberapa orang, kata kerja yang berakhiran «-are» akan berakhiran «-ate». Saat berbicara tentang orang lain, kelompok kata kerja ini biasanya menggunakan «-ano»."
+],
+"pl": [
+"forma osoby czasownika + co lub gdzie",
+"Ty i twój przyjaciel pracujecie w tym samym miejscu. Mówisz do siebie «Lavoro qui», ale do nich «Lavori qui». Różnica jest słyszalna w końcówce: «-o» i «-i». Zmiana osoby nie zmienia miejsca.",
+"W przypadku grupy z mówcą użyj kodu «-iamo». Jeśli zwracasz się do kilku osób, czasowniki zakończone na «-are» będą kończyć się na «-ate». Mówiąc o innych osobach, ta grupa czasowników zazwyczaj używa kodu «-ano»."
+],
+"pt-BR": [
+"verbo na forma pessoal + o que ou onde",
+"Você e um amigo trabalham no mesmo lugar. Você diz «Lavoro qui» para si mesmo, mas «Lavori qui» para ele. A diferença é audível na terminação: «-o» e «-i». Mudar a pessoa não muda o lugar.",
+"Para um grupo com um orador, use «-iamo». Se você estiver se dirigindo a várias pessoas, os verbos terminados em «-are» terminarão em «-ate». Ao falar sobre outras pessoas, esse grupo de verbos geralmente usa «-ano»."
+],
+"ru": [
+"глагол в форме человека + что или где",
+"Ты и друг работаете в одном месте. Для себя говоришь «Lavoro qui», обращаясь к нему — «Lavori qui». Разница слышна в окончании: «-o» и «-i». Смена человека не меняет место.",
+"Для группы с говорящим окончание «-iamo». Если ты обращаешься к нескольким людям, у глаголов на «-are» будет «-ate». Когда говоришь о других людях, у этой группы глаголов обычно «-ano»."
+],
+"tr": [
+"şahıs biçimli fiil + ne veya nerede",
+"Siz ve bir arkadaşınız aynı yerde çalışıyorsunuz. Kendinize «Lavoro qui» diyorsunuz, ama onlara «Lavori qui» diyorsunuz. Fark sondaki seste duyuluyor: «-o» ve «-i». Kişiyi değiştirmek yeri değiştirmez.",
+"Konuşmacısı olan bir grup için «-iamo» kullanın. Birden fazla kişiye hitap ediyorsanız, «-are» ile biten fiiller «-ate» ile bitecektir. Diğer kişilerden bahsederken, bu fiil grubu genellikle «-ano» kullanır."
+],
+"uk": [
+"дієслово у формі людини + що або де",
+"Ти та друг працюєте в одному місці. Для себе кажеш «Lavoro qui», звертаючись до нього - «Lavori qui». Різниця чутна в кінці: «-o» і «-i». Зміна людини не змінює місце.",
+"Для групи з розмовляючим закінчення «-iamo». Якщо ти звертаєшся до кількох людей, у дієслів на «-are» буде «-ate». Коли говориш про інших людей, у цієї групи дієслів зазвичай «-ano»."
+],
+"vi": [
+"Động từ ở ngôi + cái gì hoặc ở đâu",
+"Bạn và một người bạn làm việc cùng một nơi. Bạn nói «Lavoro qui» với chính mình, nhưng nói «Lavori qui» với họ. Sự khác biệt có thể nghe thấy ở phần kết thúc: «-o» và «-i». Thay đổi ngôi không làm thay đổi địa điểm.",
+"Đối với một nhóm có người nói, hãy sử dụng «-iamo». Nếu bạn đang nói chuyện với nhiều người, các động từ kết thúc bằng «-are» sẽ kết thúc bằng «-ate». Khi nói về người khác, nhóm động từ này thường sử dụng «-ano»."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:07:04",
+"it:07:05"
+]
+},
+{
+"textES": "Crea la primera frase usando dos fichas: Lavoro y qui. No elijas lavorare: el nombre de la acción en el diccionario no indica quién la realiza.",
+"textEn": "Create the first phrase using two tiles: Lavoro and qui. Don't choose lavorare: the dictionary name of the action doesn't tell you who's doing it.",
+"textId": "Buat frasa pertama menggunakan dua ubin: Lavoro dan qui. Jangan pilih lavorare: nama tindakan dalam kamus tidak memberi tahu Anda siapa yang melakukannya.",
+"textPl": "Utwórz pierwszą frazę, używając dwóch kafelków: Lavoro i qui. Nie wybieraj lavorare: nazwa słownikowa czynności nie mówi, kto ją wykonuje.",
+"textPtBr": "Crie a primeira frase usando duas peças: Lavoro e qui. Não escolha lavorare: o nome da ação no dicionário não indica quem a está realizando.",
+"textRU": "Собери первую фразу из двух плиток: Lavoro и qui. Не выбирай lavorare: словарное название действия ещё ничего не говорит о том, кто его выполняет.",
+"textTr": "İlk ifadeyi Lavoro ve qui numaralı iki karo kullanarak oluşturun. lavorare'ü seçmeyin: eylemin sözlükteki adı, eylemi kimin yaptığını size söylemiyor.",
+"textUK": "Збери першу фразу з двох плиток: Lavoro та qui. Не вибирай lavorare: словникова назва дії ще нічого не говорить про те, хто її виконує.",
+"textVi": "Tạo cụm từ đầu tiên bằng cách sử dụng hai ô: Lavoro và qui. Không chọn lavorare: tên từ điển của hành động không cho bạn biết ai đang thực hiện hành động đó.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Create the first phrase using two tiles: «Lavoro» and «qui». Don't choose «lavorare»: the dictionary name of the action doesn't tell you who's doing it."
+],
+"es": [
+"Crea la primera frase usando dos fichas: «Lavoro» y «qui». No elijas «lavorare»: el nombre de la acción en el diccionario no indica quién la realiza."
+],
+"id": [
+"Buat frasa pertama menggunakan dua ubin: «Lavoro» dan «qui». Jangan pilih «lavorare»: nama tindakan dalam kamus tidak memberi tahu Anda siapa yang melakukannya."
+],
+"pl": [
+"Utwórz pierwszą frazę, używając dwóch kafelków: «Lavoro» i «qui». Nie wybieraj «lavorare»: nazwa słownikowa czynności nie mówi, kto ją wykonuje."
+],
+"pt-BR": [
+"Crie a primeira frase usando duas peças: «Lavoro» e «qui». Não escolha «lavorare»: o nome da ação no dicionário não indica quem a está realizando."
+],
+"ru": [
+"Собери первую фразу из двух плиток: «Lavoro» и «qui». Не выбирай «lavorare»: словарное название действия ещё ничего не говорит о том, кто его выполняет."
+],
+"tr": [
+"İlk ifadeyi «Lavoro» ve «qui» numaralı iki karo kullanarak oluşturun. «lavorare»'ü seçmeyin: eylemin sözlükteki adı, eylemi kimin yaptığını size söylemiyor."
+],
+"uk": [
+"Збери першу фразу з двох плиток: «Lavoro» та «qui». Не вибирай «lavorare»: словникова назва дії ще нічого не говорить про те, хто її виконує."
+],
+"vi": [
+"Tạo cụm từ đầu tiên bằng cách sử dụng hai ô: «Lavoro» và «qui». Không chọn «lavorare»: tên từ điển của hành động không cho bạn biết ai đang thực hiện hành động đó."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:07:01",
+"it:07:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:07:01",
+"target": "Lavoro qui.",
+"ru": "Я здесь работаю.",
+"uk": "Я тут працюю."
+},
+{
+"id": "it:07:04",
+"target": "Lavoriamo insieme.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом."
+},
+{
+"id": "it:07:05",
+"target": "Lavorate insieme.",
+"ru": "Вы работаете вместе.",
+"uk": "Ви працюєте разом."
+},
+{
+"id": "it:07:01",
+"target": "Lavoro qui.",
+"ru": "Я здесь работаю.",
+"uk": "Я тут працюю."
+},
+{
+"id": "it:07:04",
+"target": "Lavoriamo insieme.",
+"ru": "Мы работаем вместе.",
+"uk": "Ми працюємо разом."
+}
+]
+},
+{
+"lesson": 8,
+"blocks": [
+{
+"textES": "Encontraste la estación de tren, pero no la taquilla. Para que alguien te diga adónde ir, preguntar \"¿Estás aquí?\" no es suficiente. Empieza con dove, \"dónde\". Para averiguar el precio, elige otro comienzo: quanto costa, \"¿cuánto?\"\nDove pregunta sobre un lugar. Es común escribir dov’è antes de è. Para varios objetos, el verbo es diferente: Dove sono le chiavi?.",
+"textEn": "You found the train station, but not the ticket office. To get someone to tell you where to go, asking \"Are you here?\" isn't enough. Start with dove, \"where.\" To find out the price, choose a different beginning: quanto costa, \"how much?\"\nDove asks about a place. It is common to write dov’è before è. For several objects, the verb is different: Dove sono le chiavi?.",
+"textId": "Anda menemukan stasiun kereta, tetapi tidak menemukan loket tiket. Untuk meminta seseorang memberi tahu Anda ke mana harus pergi, bertanya \"Apakah Anda di sini?\" tidak cukup. Mulailah dengan dove, \"di mana.\" Untuk mengetahui harganya, pilih awalan yang berbeda: quanto costa, \"berapa banyak?\"\nDove menanyakan tentang suatu tempat. Biasanya ditulis dov’è sebelum è. Untuk beberapa objek, kata kerjanya berbeda: Dove sono le chiavi?.",
+"textPl": "Znalazłeś dworzec kolejowy, ale nie kasę biletową. Aby ktoś powiedział Ci, dokąd jechać, pytanie „Jesteś tutaj?” nie wystarczy. Zacznij od dove, „gdzie”. Aby dowiedzieć się, jaka jest cena, wybierz inny początek: quanto costa, „ile?”\nDove pyta o miejsce. Często przed è pisze się dov’è. W przypadku kilku obiektów czasownik jest inny: Dove sono le chiavi?.",
+"textPtBr": "Você encontrou a estação de trem, mas não a bilheteria. Para que alguém lhe diga para onde ir, perguntar \"Você está aqui?\" não é suficiente. Comece com dove, \"onde\". Para descobrir o preço, escolha um início diferente: quanto costa, \"quanto custa?\"\nDove pergunta sobre um lugar. É comum escrever dov’è antes de è. Para vários objetos, o verbo é diferente: Dove sono le chiavi?.",
+"textRU": "Ты нашёл вокзал, но не кассу. Чтобы человек указал место, мало спросить «ты здесь?». Начни с dove, «где». Чтобы узнать цену, выбери другое начало: quanto costa, «сколько стоит».\nDove спрашивает о месте. Перед è распространено написание dov’è. Для нескольких предметов глагол другой: Dove sono le chiavi?.",
+"textTr": "Tren istasyonunu buldunuz, ancak bilet gişesini bulamadınız. Birinin size nereye gideceğinizi söylemesini sağlamak için \"Burada mısınız?\" diye sormak yeterli değil. dove, \"nerede\" ile başlayın. Fiyatı öğrenmek için farklı bir başlangıç ​​seçin: quanto costa, \"ne kadar?\"\nDove bir yer hakkında soru sorar. è'den önce dov’è yazmak yaygındır. Birden fazla nesne için fiil farklıdır: Dove sono le chiavi?.",
+"textUK": "Ти знайшов вокзал, але не касу. Щоб людина вказала місце, мало спитати «ти тут?». Почни з dove, \"де\". Щоб дізнатися ціну, вибери інший початок: quanto costa, скільки коштує.\nDove запитує про місце. Перед è поширене написання dov’è. Для кількох предметів дієслово інше: Dove sono le chiavi?.",
+"textVi": "Bạn đã tìm thấy nhà ga, nhưng chưa tìm thấy phòng vé. Để nhờ ai đó chỉ đường, chỉ hỏi \"Bạn có ở đây không?\" là chưa đủ. Hãy bắt đầu với dove, \"ở đâu\". Để tìm hiểu giá vé, hãy chọn cách bắt đầu khác: quanto costa, \"bao nhiêu?\"\nDove hỏi về một địa điểm. Thông thường người ta viết dov’è trước è. Đối với nhiều đối tượng, động từ sẽ khác: Dove sono le chiavi?.",
+"titleES": "Preguntas: dónde, quién, cuándo, cuánto",
+"titleEn": "Questions: where, who, when, how much",
+"titleId": "Pertanyaan: di mana, siapa, kapan, berapa banyak",
+"titlePl": "Pytania: gdzie, kto, kiedy, ile",
+"titlePtBr": "Perguntas: onde, quem, quando, quanto",
+"titleRU": "Вопросы: где, кто, когда, сколько",
+"titleTr": "Sorular: nerede, kim, ne zaman, ne kadar",
+"titleUK": "Запитання: де, хто, коли, скільки",
+"titleVi": "Câu hỏi: ở đâu, ai, khi nào, bao nhiêu",
+"titleByLocale": {
+"en": "Questions: where, who, when, how much",
+"es": "Preguntas: dónde, quién, cuándo, cuánto",
+"id": "Pertanyaan: di mana, siapa, kapan, berapa banyak",
+"pl": "Pytania: gdzie, kto, kiedy, ile",
+"pt-BR": "Perguntas: onde, quem, quando, quanto",
+"ru": "Вопросы: где, кто, когда, сколько",
+"tr": "Sorular: nerede, kim, ne zaman, ne kadar",
+"uk": "Запитання: де, хто, коли, скільки",
+"vi": "Câu hỏi: ở đâu, ai, khi nào, bao nhiêu"
+},
+"textByLocale": {
+"en": [
+"You found the train station, but not the ticket office. To get someone to tell you where to go, asking \"Are you here?\" isn't enough. Start with «dove», \"where.\" To find out the price, choose a different beginning: «quanto costa», \"how much?\"",
+"«Dove» asks about a place. It is common to write «dov’è» before «è». For several objects, the verb is different: «Dove sono le chiavi?»."
+],
+"es": [
+"Encontraste la estación de tren, pero no la taquilla. Para que alguien te diga adónde ir, preguntar \"¿Estás aquí?\" no es suficiente. Empieza con «dove», \"dónde\". Para averiguar el precio, elige otro comienzo: «quanto costa», \"¿cuánto?\"",
+"«Dove» pregunta sobre un lugar. Es común escribir «dov’è» antes de «è». Para varios objetos, el verbo es diferente: «Dove sono le chiavi?»."
+],
+"id": [
+"Anda menemukan stasiun kereta, tetapi tidak menemukan loket tiket. Untuk meminta seseorang memberi tahu Anda ke mana harus pergi, bertanya \"Apakah Anda di sini?\" tidak cukup. Mulailah dengan «dove», \"di mana.\" Untuk mengetahui harganya, pilih awalan yang berbeda: «quanto costa», \"berapa banyak?\"",
+"«Dove» menanyakan tentang suatu tempat. Biasanya ditulis «dov’è» sebelum «è». Untuk beberapa objek, kata kerjanya berbeda: «Dove sono le chiavi?»."
+],
+"pl": [
+"Znalazłeś dworzec kolejowy, ale nie kasę biletową. Aby ktoś powiedział Ci, dokąd jechać, pytanie „Jesteś tutaj?” nie wystarczy. Zacznij od «dove», „gdzie”. Aby dowiedzieć się, jaka jest cena, wybierz inny początek: «quanto costa», „ile?”",
+"«Dove» pyta o miejsce. Często przed «è» pisze się «dov’è». W przypadku kilku obiektów czasownik jest inny: «Dove sono le chiavi?»."
+],
+"pt-BR": [
+"Você encontrou a estação de trem, mas não a bilheteria. Para que alguém lhe diga para onde ir, perguntar \"Você está aqui?\" não é suficiente. Comece com «dove», \"onde\". Para descobrir o preço, escolha um início diferente: «quanto costa», \"quanto custa?\"",
+"«Dove» pergunta sobre um lugar. É comum escrever «dov’è» antes de «è». Para vários objetos, o verbo é diferente: «Dove sono le chiavi?»."
+],
+"ru": [
+"Ты нашёл вокзал, но не кассу. Чтобы человек указал место, мало спросить «ты здесь?». Начни с «dove», «где». Чтобы узнать цену, выбери другое начало: «quanto costa», «сколько стоит».",
+"«Dove» спрашивает о месте. Перед «è» распространено написание «dov’è». Для нескольких предметов глагол другой: «Dove sono le chiavi?»."
+],
+"tr": [
+"Tren istasyonunu buldunuz, ancak bilet gişesini bulamadınız. Birinin size nereye gideceğinizi söylemesini sağlamak için \"Burada mısınız?\" diye sormak yeterli değil. «dove», \"nerede\" ile başlayın. Fiyatı öğrenmek için farklı bir başlangıç ​​seçin: «quanto costa», \"ne kadar?\"",
+"«Dove» bir yer hakkında soru sorar. «è»'den önce «dov’è» yazmak yaygındır. Birden fazla nesne için fiil farklıdır: «Dove sono le chiavi?»."
+],
+"uk": [
+"Ти знайшов вокзал, але не касу. Щоб людина вказала місце, мало спитати «ти тут?». Почни з «dove», \"де\". Щоб дізнатися ціну, вибери інший початок: «quanto costa», скільки коштує.",
+"«Dove» запитує про місце. Перед «è» поширене написання «dov’è». Для кількох предметів дієслово інше: «Dove sono le chiavi?»."
+],
+"vi": [
+"Bạn đã tìm thấy nhà ga, nhưng chưa tìm thấy phòng vé. Để nhờ ai đó chỉ đường, chỉ hỏi \"Bạn có ở đây không?\" là chưa đủ. Hãy bắt đầu với «dove», \"ở đâu\". Để tìm hiểu giá vé, hãy chọn cách bắt đầu khác: «quanto costa», \"bao nhiêu?\"",
+"«Dove» hỏi về một địa điểm. Thông thường người ta viết «dov’è» trước «è». Đối với nhiều đối tượng, động từ sẽ khác: «Dove sono le chiavi?»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:08:01"
+]
+},
+{
+"textES": "Palabra interrogativa + resto de la frase\nImagina la respuesta: una dirección, un nombre o una fecha. dove es la dirección, chi es el nombre y quando es la hora. Luego completa la frase. Una palabra especial por sí sola no anula la conjugación del verbo.\nNo confundas una pregunta sobre un lugar de trabajo con una pregunta sobre la ocupación en sí. Dove lavori? sugiere la respuesta \"en la oficina\" o el nombre de la ciudad; el nombre de la profesión respondería a una pregunta diferente.",
+"textEn": "Question word + rest of phrase\nImagine the answer: an address, a name, or a date. dove is the address, chi is the name, and quando is the time. Then complete the familiar phrase. A special word alone doesn't cancel the verb conjugation.\nDon't confuse a question about a place of work with a question about the occupation itself. Dove lavori? suggests the answer \"in the office\" or the name of the city; the name of the profession would answer a different question.",
+"textId": "Kata tanya + sisa frasa\nBayangkan jawabannya: alamat, nama, atau tanggal. dove adalah alamat, chi adalah nama, dan quando adalah waktu. Kemudian lengkapi frasa yang sudah dikenal. Kata khusus saja tidak membatalkan konjugasi kata kerja.\nJangan bingung antara pertanyaan tentang tempat kerja dengan pertanyaan tentang pekerjaan itu sendiri. Dove lavori? menyarankan jawaban \"di kantor\" atau nama kota; nama profesi akan menjawab pertanyaan yang berbeda.",
+"textPl": "Słowo pytające + reszta frazy\nWyobraź sobie odpowiedź: adres, imię i nazwisko lub datę. dove to adres, chi to imię i nazwisko, a quando to godzina. Następnie uzupełnij znaną frazę. Samo słowo nie anuluje koniugacji czasownika.\nNie należy mylić pytania o miejsce pracy z pytaniem o sam zawód. Dove lavori? sugeruje odpowiedź „w biurze” lub nazwę miasta; nazwa zawodu odpowiadałaby na inne pytanie.",
+"textPtBr": "Palavra interrogativa + restante da frase\nImagine a resposta: um endereço, um nome ou uma data. dove é o endereço, chi é o nome e quando é a hora. Em seguida, complete a frase familiar. Uma palavra especial sozinha não cancela a conjugação do verbo.\nNão confunda uma pergunta sobre um local de trabalho com uma pergunta sobre a própria profissão. Dove lavori? sugere a resposta \"no escritório\" ou o nome da cidade; o nome da profissão responderia a uma pergunta diferente.",
+"textRU": "вопросительное слово + остальная фраза\nПредставь ответ: адрес, имя или число. Адресу подходит dove, имени — chi, времени — quando. Затем дострой знакомую фразу. Специальное слово само по себе не отменяет спряжение глагола.\nНе путай вопрос о месте работы с вопросом о самом занятии. Dove lavori? предполагает ответ «в офисе» или название города; название профессии ответило бы на другой вопрос.",
+"textTr": "Soru kelimesi + cümlenin geri kalanı\nCevabı hayal edin: bir adres, bir isim veya bir tarih. dove adres, chi isim ve quando zamandır. Ardından tanıdık cümleyi tamamlayın. Özel bir kelime tek başına fiil çekimini ortadan kaldırmaz.\nBir iş yeri hakkındaki soruyu, mesleğin kendisi hakkındaki bir soruyla karıştırmayın. Dove lavori? \"ofiste\" veya şehrin adını önerir; mesleğin adı farklı bir soruyu yanıtlar.",
+"textUK": "запитальне слово + решта фрази\nПодайте відповідь: адресу, ім'я або число. Адреса підходить dove, імені — chi, часу — quando. Потім добудуй знайому фразу. Спеціальне слово саме по собі не скасовує відмінювання дієслова.\nНе плутай питання про місце роботи з питанням про заняття. Dove lavori? передбачає відповідь «в офісі» або назву міста; назва професії відповіла б на інше питання.",
+"textVi": "Từ hỏi + phần còn lại của cụm từ\nHãy tưởng tượng câu trả lời: một địa chỉ, một cái tên hoặc một ngày tháng. dove là địa chỉ, chi là tên và quando là thời gian. Sau đó, hoàn thành cụm từ quen thuộc. Một từ đặc biệt đứng một mình không làm mất đi sự chia động từ.\nĐừng nhầm lẫn câu hỏi về nơi làm việc với câu hỏi về chính nghề nghiệp. Dove lavori? gợi ý câu trả lời \"trong văn phòng\" hoặc tên thành phố; tên nghề nghiệp sẽ trả lời một câu hỏi khác.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"Question word + rest of phrase",
+"Imagine the answer: an address, a name, or a date. «dove» is the address, «chi» is the name, and «quando» is the time. Then complete the familiar phrase. A special word alone doesn't cancel the verb conjugation.",
+"Don't confuse a question about a place of work with a question about the occupation itself. «Dove lavori?» suggests the answer \"in the office\" or the name of the city; the name of the profession would answer a different question."
+],
+"es": [
+"Palabra interrogativa + resto de la frase",
+"Imagina la respuesta: una dirección, un nombre o una fecha. «dove» es la dirección, «chi» es el nombre y «quando» es la hora. Luego completa la frase. Una palabra especial por sí sola no anula la conjugación del verbo.",
+"No confundas una pregunta sobre un lugar de trabajo con una pregunta sobre la ocupación en sí. «Dove lavori?» sugiere la respuesta \"en la oficina\" o el nombre de la ciudad; el nombre de la profesión respondería a una pregunta diferente."
+],
+"id": [
+"Kata tanya + sisa frasa",
+"Bayangkan jawabannya: alamat, nama, atau tanggal. «dove» adalah alamat, «chi» adalah nama, dan «quando» adalah waktu. Kemudian lengkapi frasa yang sudah dikenal. Kata khusus saja tidak membatalkan konjugasi kata kerja.",
+"Jangan bingung antara pertanyaan tentang tempat kerja dengan pertanyaan tentang pekerjaan itu sendiri. «Dove lavori?» menyarankan jawaban \"di kantor\" atau nama kota; nama profesi akan menjawab pertanyaan yang berbeda."
+],
+"pl": [
+"Słowo pytające + reszta frazy",
+"Wyobraź sobie odpowiedź: adres, imię i nazwisko lub datę. «dove» to adres, «chi» to imię i nazwisko, a «quando» to godzina. Następnie uzupełnij znaną frazę. Samo słowo nie anuluje koniugacji czasownika.",
+"Nie należy mylić pytania o miejsce pracy z pytaniem o sam zawód. «Dove lavori?» sugeruje odpowiedź „w biurze” lub nazwę miasta; nazwa zawodu odpowiadałaby na inne pytanie."
+],
+"pt-BR": [
+"Palavra interrogativa + restante da frase",
+"Imagine a resposta: um endereço, um nome ou uma data. «dove» é o endereço, «chi» é o nome e «quando» é a hora. Em seguida, complete a frase familiar. Uma palavra especial sozinha não cancela a conjugação do verbo.",
+"Não confunda uma pergunta sobre um local de trabalho com uma pergunta sobre a própria profissão. «Dove lavori?» sugere a resposta \"no escritório\" ou o nome da cidade; o nome da profissão responderia a uma pergunta diferente."
+],
+"ru": [
+"вопросительное слово + остальная фраза",
+"Представь ответ: адрес, имя или число. Адресу подходит «dove», имени — «chi», времени — «quando». Затем дострой знакомую фразу. Специальное слово само по себе не отменяет спряжение глагола.",
+"Не путай вопрос о месте работы с вопросом о самом занятии. «Dove lavori?» предполагает ответ «в офисе» или название города; название профессии ответило бы на другой вопрос."
+],
+"tr": [
+"Soru kelimesi + cümlenin geri kalanı",
+"Cevabı hayal edin: bir adres, bir isim veya bir tarih. «dove» adres, «chi» isim ve «quando» zamandır. Ardından tanıdık cümleyi tamamlayın. Özel bir kelime tek başına fiil çekimini ortadan kaldırmaz.",
+"Bir iş yeri hakkındaki soruyu, mesleğin kendisi hakkındaki bir soruyla karıştırmayın. «Dove lavori?» \"ofiste\" veya şehrin adını önerir; mesleğin adı farklı bir soruyu yanıtlar."
+],
+"uk": [
+"запитальне слово + решта фрази",
+"Подайте відповідь: адресу, ім'я або число. Адреса підходить «dove», імені — «chi», часу — «quando». Потім добудуй знайому фразу. Спеціальне слово саме по собі не скасовує відмінювання дієслова.",
+"Не плутай питання про місце роботи з питанням про заняття. «Dove lavori?» передбачає відповідь «в офісі» або назву міста; назва професії відповіла б на інше питання."
+],
+"vi": [
+"Từ hỏi + phần còn lại của cụm từ",
+"Hãy tưởng tượng câu trả lời: một địa chỉ, một cái tên hoặc một ngày tháng. «dove» là địa chỉ, «chi» là tên và «quando» là thời gian. Sau đó, hoàn thành cụm từ quen thuộc. Một từ đặc biệt đứng một mình không làm mất đi sự chia động từ.",
+"Đừng nhầm lẫn câu hỏi về nơi làm việc với câu hỏi về chính nghề nghiệp. «Dove lavori?» gợi ý câu trả lời \"trong văn phòng\" hoặc tên thành phố; tên nghề nghiệp sẽ trả lời một câu hỏi khác."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:08:04",
+"it:08:05"
+]
+},
+{
+"textES": "Para \"¿Dónde estás?\", elige Dove y luego sei. Esta segunda ficha ya significa \"tú estás\". Para una pregunta sobre otra persona, usa Dov’è Paolo?, no Dove sei Paolo?, que significa \"¿Dónde está Paolo?\".",
+"textEn": "For \"Where are you?\" choose Dove, then sei. This second tile already means \"you are.\" For a question about another person, use Dov’è Paolo?, not Dove sei Paolo?, meaning \"Where is Paolo?\"",
+"textId": "Untuk \"Di mana kamu?\" pilih Dove, lalu sei. Ubin kedua ini sudah berarti \"kamu berada.\" Untuk pertanyaan tentang orang lain, gunakan Dov’è Paolo?, bukan Dove sei Paolo?, yang berarti \"Di mana Paolo?\"",
+"textPl": "W pytaniu „Gdzie jesteś?” wybierz Dove, a następnie sei. Ten drugi kafelek oznacza już „jesteś”. W pytaniu o inną osobę użyj Dov’è Paolo?, a nie Dove sei Paolo?, co oznacza „Gdzie jest Paolo?”.",
+"textPtBr": "Para \"Onde você está?\", escolha Dove e depois sei. Esta segunda peça já significa \"você está\". Para uma pergunta sobre outra pessoa, use Dov’è Paolo?, não Dove sei Paolo?, que significa \"Onde está Paolo?\".",
+"textRU": "Для «Где ты?» выбери Dove, затем sei. Эта вторая плитка уже означает «ты находишься». Для вопроса о другом человеке будет Dov’è Paolo?, а не Dove sei Paolo? в значении «где Паоло?».",
+"textTr": "\"Neredesin?\" sorusu için Dove'i, ardından sei'yi seçin. Bu ikinci seçenek zaten \"sen\" anlamına gelir. Başka bir kişi hakkında soru için Dove sei Paolo? değil, Dov’è Paolo? kullanın; bu \"Paolo nerede?\" anlamına gelir.",
+"textUK": "Для \"Де ти?\" оберіть Dove, потім sei. Ця друга плитка вже означає «ти знаходишся». Для питання про іншу людину буде Dov’è Paolo?, а не Dove sei Paolo? у значенні «де Паоло?».",
+"textVi": "Đối với câu hỏi \"Bạn đang ở đâu?\", hãy chọn Dove, sau đó là sei. Ô thứ hai này đã có nghĩa là \"bạn đang ở đâu\". Đối với câu hỏi về người khác, hãy sử dụng Dov’è Paolo?, không phải Dove sei Paolo?, có nghĩa là \"Paolo đang ở đâu?\".",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For \"Where are you?\" choose «Dove», then «sei». This second tile already means \"you are.\" For a question about another person, use «Dov’è Paolo?», not «Dove sei Paolo?», meaning \"Where is Paolo?\""
+],
+"es": [
+"Para \"¿Dónde estás?\", elige «Dove» y luego «sei». Esta segunda ficha ya significa \"tú estás\". Para una pregunta sobre otra persona, usa «Dov’è Paolo?», no «Dove sei Paolo?», que significa \"¿Dónde está Paolo?\"."
+],
+"id": [
+"Untuk \"Di mana kamu?\" pilih «Dove», lalu «sei». Ubin kedua ini sudah berarti \"kamu berada.\" Untuk pertanyaan tentang orang lain, gunakan «Dov’è Paolo?», bukan «Dove sei Paolo?», yang berarti \"Di mana Paolo?\""
+],
+"pl": [
+"W pytaniu „Gdzie jesteś?” wybierz «Dove», a następnie «sei». Ten drugi kafelek oznacza już „jesteś”. W pytaniu o inną osobę użyj «Dov’è Paolo?», a nie «Dove sei Paolo?», co oznacza „Gdzie jest Paolo?”."
+],
+"pt-BR": [
+"Para \"Onde você está?\", escolha «Dove» e depois «sei». Esta segunda peça já significa \"você está\". Para uma pergunta sobre outra pessoa, use «Dov’è Paolo?», não «Dove sei Paolo?», que significa \"Onde está Paolo?\"."
+],
+"ru": [
+"Для «Где ты?» выбери «Dove», затем «sei». Эта вторая плитка уже означает «ты находишься». Для вопроса о другом человеке будет «Dov’è Paolo?», а не «Dove sei Paolo?» в значении «где Паоло?»."
+],
+"tr": [
+"\"Neredesin?\" sorusu için «Dove»'i, ardından «sei»'yi seçin. Bu ikinci seçenek zaten \"sen\" anlamına gelir. Başka bir kişi hakkında soru için «Dove sei Paolo?» değil, «Dov’è Paolo?» kullanın; bu \"Paolo nerede?\" anlamına gelir."
+],
+"uk": [
+"Для \"Де ти?\" оберіть «Dove», потім «sei». Ця друга плитка вже означає «ти знаходишся». Для питання про іншу людину буде «Dov’è Paolo?», а не «Dove sei Paolo?» у значенні «де Паоло?»."
+],
+"vi": [
+"Đối với câu hỏi \"Bạn đang ở đâu?\", hãy chọn «Dove», sau đó là «sei». Ô thứ hai này đã có nghĩa là \"bạn đang ở đâu\". Đối với câu hỏi về người khác, hãy sử dụng «Dov’è Paolo?», không phải «Dove sei Paolo?», có nghĩa là \"Paolo đang ở đâu?\"."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:08:01",
+"it:08:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:08:01",
+"target": "Dove sei?",
+"ru": "Где ты?",
+"uk": "Де ти?"
+},
+{
+"id": "it:08:04",
+"target": "Dove abiti?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+},
+{
+"id": "it:08:05",
+"target": "Dove lavora?",
+"ru": "Где вы работаете?",
+"uk": "Де ви працюєте?"
+},
+{
+"id": "it:08:01",
+"target": "Dove sei?",
+"ru": "Где ты?",
+"uk": "Де ти?"
+},
+{
+"id": "it:08:04",
+"target": "Dove abiti?",
+"ru": "Где ты живёшь?",
+"uk": "Де ти живеш?"
+}
+]
+}
+]

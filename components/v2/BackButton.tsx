@@ -3,7 +3,7 @@ import { backOnSceneTokens } from './back_on_scene';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
-import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../practice/PracticeGlass';
 import { noteBackTap } from '../../app/back_tap_probe';
 import { nestedBoxShadow } from './ShadowSurface';
 import BackGlyph, { CloseGlyph } from './BackGlyph';

@@ -14,16 +14,18 @@ import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette'
 type Glass = ReturnType<typeof liquidGlassTokens>;
 
 const COPY = {
-  ru: { title: 'Ранги монеты', rank: 'Ранг' },
-  uk: { title: 'Ранги монети', rank: 'Ранг' },
-  en: { title: 'Coin ranks', rank: 'Rank' },
-  es: { title: 'Rangos de moneda', rank: 'Rango' },
-  'pt-BR': { title: 'Ranks da moeda', rank: 'Rank' },
-  vi: { title: 'Hạng đồng xu', rank: 'Hạng' },
-  id: { title: 'Peringkat koin', rank: 'Peringkat' },
-  tr: { title: 'Jeton sıraları', rank: 'Sıra' },
-  pl: { title: 'Rangi monety', rank: 'Ranga' },
+  ru: { title: 'Ранги монеты', rank: 'Ранг', free: 'Бесплатно' },
+  uk: { title: 'Ранги монети', rank: 'Ранг', free: 'Безкоштовно' },
+  en: { title: 'Coin ranks', rank: 'Rank', free: 'Free' },
+  es: { title: 'Rangos de moneda', rank: 'Rango', free: 'Gratis' },
+  'pt-BR': { title: 'Ranks da moeda', rank: 'Rank', free: 'Grátis' },
+  vi: { title: 'Hạng đồng xu', rank: 'Hạng', free: 'Miễn phí' },
+  id: { title: 'Peringkat koin', rank: 'Peringkat', free: 'Gratis' },
+  tr: { title: 'Jeton sıraları', rank: 'Sıra', free: 'Ücretsiz' },
+  pl: { title: 'Rangi monety', rank: 'Ranga', free: 'Bezpłatnie' },
 } as const;
+
+const compactPrice = (price: number): string => String(price).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
 
 type Props = Readonly<{
   glass: Glass;
@@ -47,12 +49,13 @@ function CoinRankCatalog({ glass, lang, currentRank, showTitle = true }: Props) 
       <View style={styles.grid}>
         {COIN_RANK_TABLE.map((row) => {
           const on = currentRank === row.rank;
+          const price = row.rank === 0 ? copy.free : compactPrice(row.priceToReach);
           return (
             <View
               key={row.rank}
               testID={`coin-rank-catalog-cell-${row.rank}`}
               accessible
-              accessibilityLabel={`${copy.rank} ${row.rank}, ${coinRankTitle(row.rank, lang)}`}
+              accessibilityLabel={`${copy.rank} ${row.rank}, ${coinRankTitle(row.rank, lang)}, ${price}`}
               accessibilityState={{ selected: on }}
               style={[
                 styles.cell,
@@ -64,6 +67,9 @@ function CoinRankCatalog({ glass, lang, currentRank, showTitle = true }: Props) 
               <Image source={row.source} contentFit="contain" style={styles.coin} accessible={false} />
               <Text maxFontSizeMultiplier={1.2} style={[styles.label, { color: on ? glass.text : glass.secondary }]}>
                 {`${copy.rank} ${row.rank}`}
+              </Text>
+              <Text numberOfLines={1} maxFontSizeMultiplier={1.15} style={[styles.price, { color: on ? glass.text : glass.secondary }]}>
+                {price}
               </Text>
             </View>
           );
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   cell: {
     width: '22.5%',
     flexGrow: 1,
-    minHeight: 88,
+    minHeight: 108,
     borderRadius: 15,
     paddingVertical: 9,
     paddingHorizontal: 5,
@@ -88,6 +94,7 @@ const styles = StyleSheet.create({
   },
   coin: { width: 50, height: 50 },
   label: { fontSize: 13, lineHeight: 18, marginTop: 4, textAlign: 'center' },
+  price: { fontSize: 12, lineHeight: 16, marginTop: 2, textAlign: 'center', fontVariant: ['tabular-nums'] },
 });
 
 export default memo(CoinRankCatalog);

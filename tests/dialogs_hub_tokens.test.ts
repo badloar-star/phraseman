@@ -4,7 +4,7 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 import { homeSceneOklchOf } from '../components/home/v2/scene/home_scene_tokens';
-import { hexHue } from '../components/learning-v2/season/season_art';
+import { hexHue } from '../constants/oklch';
 import { DIALOGS_WORLD_TONES, dialogsHubTokens, dialogsWorldArt } from '../components/dialogs/scene/dialogs_hub_tokens';
 
 const rgbOf = (hex: string): [number, number, number] => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number];

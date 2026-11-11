@@ -1,0 +1,121 @@
+[
+ {
+  "id": "lesson-25/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "The buyer doesn't want just any shoes, but red ones. The description is now within a noun phrase. You can say `Der Mantel ist rot` on its own, but when combined with the name of the item, it becomes `rote`."
+ },
+ {
+  "id": "lesson-25/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "For the singular nominative after the definite article in this lesson, you'll usually see `-e`. In the plural, it will be `-en`. Check whether the person is talking about one box or several."
+ },
+ {
+  "id": "lesson-25/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "A masculine object as a direct object is an important transition: `der rote Mantel` becomes `den roten Mantel`. The change isn't visible in the name of the coat itself; the surrounding words provide a clue."
+ },
+ {
+  "id": "lesson-25/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "After `mit`, the dative case is required. Within a noun phrase with a definite article, the adjective will become `-en`. This doesn't only apply to people: you can take the train or the last train."
+ },
+ {
+  "id": "lesson-25/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "обрыв грамматики: «відрізнити підлягає об'єкту» (вместо «підмет від об'єкта»)",
+  "fix": "Порівняй дві репліки про один предмет: він щось робить сам чи хтось його вибирає? Таке порівняння допомагає відрізнити підмет від об'єкта, не намагаючись визначити відмінок лише з перекладу."
+ },
+ {
+  "id": "lesson-25/ch6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.ru",
+  "problem": "текст про «жёлтый конверт», а примеры главы (de:25:38 frischen Brötchen, de:25:44 nasse Jacke) без конверта; пример не из курса",
+  "fix": "Окончание прилагательного не передаёт качество само по себе. Мокрая куртка не становится другой, когда меняется её роль в предложении. Изменяется только связь между словами."
+ },
+ {
+  "id": "lesson-25/ch6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "текст про «жёлтый конверт», а примеры главы (de:25:38 frischen Brötchen, de:25:44 nasse Jacke) без конверта; пример не из курса",
+  "fix": "Закінчення прикметника не передає якість саме по собі. Мокра куртка не стає іншою, коли змінюється її роль у реченні. Змінюється лише зв'язок між словами."
+ },
+ {
+  "id": "lesson-25/ch6",
+  "type": "T1",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "текст про «жёлтый конверт», а примеры главы (de:25:38 frischen Brötchen, de:25:44 nasse Jacke) без конверта; пример не из курса",
+  "fix": "The ending of an adjective doesn't convey quality by itself. The wet jacket doesn't become different when its role in the sentence changes. Only the relationship between the words changes."
+ },
+ {
+  "id": "lesson-26/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "«Обличчя показує» (лицо=face) вместо «Особу»; «не відмінюється» о глаголе вместо «не дієвідмінюється»",
+  "fix": "Є спроба і є її мета. Особу показує дієслово «намагаюся», а друга дія окремо не дієвідмінюється. Перевір, що ти не назвав виконавця вдруге, як у повному підрядному."
+ },
+ {
+  "id": "lesson-26/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "A hope or plan can also refer to a state, such as being at home. The form `zu sein` behaves like any other infinitive with `zu`, although the speaker's usual form would be `bin`."
+ },
+ {
+  "id": "lesson-26/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "неграмматично: «Якщо приставка, що відокремлюється, zu ставиться…»",
+  "fix": "Якщо приставка відокремлювана, `zu` ставиться всередину і все пишеться разом: `anzurufen`, `abzuschließen`. Не вибирай три плитки замість одного написаного слова."
+ },
+ {
+  "id": "lesson-26/ch3",
+  "type": "T2",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "If the prefix is separable, `zu` is placed inside and the whole thing is written together: `anzurufen`, `abzuschließen`. Don't choose three tiles instead of one written word."
+ },
+ {
+  "id": "lesson-26/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«вчинити таку дію» (=такое действие) расходится с ru «следующее действие»",
+  "fix": "Прохання показує, що виконавець не обов'язково та сама людина, що в першого дієслова. У `Er bittet mich, …` просять саме мене виконати наступну дію."
+ },
+ {
+  "id": "lesson-26/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "A request indicates that the performer is not necessarily the same person as the first verb. In `Er bittet mich, …`, I am specifically being asked to perform the next action."
+ },
+ {
+  "id": "lesson-26/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.uk",
+  "problem": "«Не додай» — неверный императив (нужно «не додавай»); «Кордон» (госграница) вместо «Межа»; «частинку» вместо «частку»",
+  "fix": "Межа з модальними дієсловами важлива: після `muss` основна дія зазвичай іде без `zu`. Не додавай частку просто тому, що в реченні два дієслова. Вибір залежить від конструкції."
+ },
+ {
+  "id": "lesson-26/ch7",
+  "type": "T2",
+  "field": "theory.chapters[6].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "The boundary with modal verbs is important: after `muss`, the main action usually occurs without `zu`. Don't add a particle just because there are two verbs in the sentence. The choice depends on the construction."
+ },
+ {
+  "id": "lesson-26/ch7",
+  "type": "T1",
+  "field": "theory.chapters[6].exampleIds",
+  "problem": "глава про границу с модальными глаголами (`muss` без `zu`), а оба примера de:26:47 и de:26:50 — конструкции `um … zu`, модального глагола нет; примеры не иллюстрируют правило",
+  "fix": "заменить de:26:50 на фразу курса с модальным глаголом без `zu` (типа «Ich muss heute arbeiten.»), de:26:47 оставить как контраст с `zu`"
+ }
+]

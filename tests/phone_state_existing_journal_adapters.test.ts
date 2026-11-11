@@ -6,12 +6,7 @@ import {
   starCreditStateFromEconomyProjection,
   starCreditsFromEconomyProjection,
 } from '../modules/phone-state/domains/economy';
-import {
-  createLearningV2CompletionAdapter,
-  createLearningV2Reducer,
-  learningV2ProjectionFromReducerState,
-  replayLearningV2Completions,
-} from '../modules/phone-state/domains/learning_v2';
+import { createRetiredCourseCompletionReducer } from '../modules/phone-state/domains/retired_course_completions';
 import type { PersonalOperation } from '../modules/phone-state/contracts';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -161,19 +156,6 @@ test('unknown zero-delta economy grant remains fail-closed', () => {
   }], 17)).toThrow('phone_state_economy_composite_invalid');
 });
 
-test('Learning V2 mutation has one completion receipt and one journal commit', async () => {
-  const commits: string[] = [];
-  const adapter = createLearningV2CompletionAdapter({
-    commit: async (value) => { commits.push(value.mutationId); return { duplicate: false }; },
-  });
-  const completion = {
-    mutationId: 'mutation-1', requiredSessionId: 'session-1', courseId: 'course-1', exactResult: { done: true },
-  };
-  await adapter.commit(completion);
-  expect(replayLearningV2Completions([completion, completion]).completedSessionIds).toEqual(['session-1']);
-  expect(commits).toEqual(['mutation-1']);
-});
-
 const personalOperation = (domain: string, kind: string, entityId: string, payload: unknown): PersonalOperation => ({
   schemaVersion: 1, operationId: `device-a:${entityId}`, stableUid: 'account-a', accountGeneration: 2,
   deviceId: 'device-a', deviceSequence: 1, hybridClock: { deviceId: 'device-a', counter: 1 },
@@ -188,14 +170,21 @@ test('economy runtime reducer keeps one immutable composite receipt', () => {
   expect(state.appliedOperationIds).toEqual([op.operationId]);
 });
 
-test('Learning V2 runtime reducer keeps one completion by mutation id', () => {
-  const reducer = createLearningV2Reducer();
+// зачем: курс занятий удалён, но его операции уже лежат в журнале телефона — редьюсер обязан воспроизводить их как прежде.
+test('retired course completion reducer still replays stored operations by mutation id', () => {
+  const reducer = createRetiredCourseCompletionReducer();
   const completion = {
     mutationId: 'mutation-1', requiredSessionId: 'session-1', courseId: 'course-1', exactResult: { done: true },
   };
   const op = personalOperation('learning_v2', 'required_session_completion', completion.mutationId, completion);
+  expect(reducer.domain).toBe('learning_v2');
   const state = reducer.apply(reducer.apply(reducer.initial(), op), op);
-  expect(learningV2ProjectionFromReducerState(state).completedSessionIds).toEqual(['session-1']);
+  expect(Object.keys(state.receipts)).toEqual(['mutation-1']);
+  expect(state.appliedOperationIds).toEqual([op.operationId]);
+  expect(reducer.validate(state)).toBe(true);
+  expect(() => reducer.apply(reducer.initial(), { ...op, kind: 'other' })).toThrow('phone_state_learning_v2_completion_invalid');
+  const reused = { ...op, operationId: 'device-a:second', payload: { ...completion, courseId: 'course-2' } };
+  expect(() => reducer.apply(state, reused)).toThrow('phone_state_learning_v2_mutation_reused');
 });
 
 test('legacy economy sync delegates to PhoneState and contains no full storage or Firestore scan', () => {
@@ -207,13 +196,3 @@ test('legacy economy sync delegates to PhoneState and contains no full storage o
   expect(source).not.toContain("collection('client_economy_operations')");
 });
 
-test('required-session commit short-circuits the legacy outbox after shared PhoneState commit', () => {
-  const source = fs.readFileSync(
-    path.resolve(__dirname, '../modules/learning-v2/progress/required_session_local_commit.ts'), 'utf8',
-  );
-  const shared = source.indexOf('commitPhoneStateLearningV2Completion');
-  const legacyPrepare = source.indexOf('writeExactly(scope, prepareKey(scope), encoded)', shared);
-  expect(shared).toBeGreaterThan(0);
-  expect(source.slice(shared, legacyPrepare)).toContain('if (sharedCommitted)');
-  expect(source.slice(shared, legacyPrepare)).toContain('return Object.freeze');
-});

@@ -1,7 +1,7 @@
 // ═══ Таблица рангов монеты · ЕДИНСТВЕННЫЙ источник чисел (PM-071-A2, PM-073) ═══
 // зачем (владелец 2026-09-24, D34/D60/D62/D63): 20 рангов = 20 готовых картинок монет,
-// металлы Медь → Серебро → Золото → Платина по 5 чеканок. Цена перехода НА ранг N
-// (из N-1) = N × 1000; ранг 0 — бесплатный старт. Все числа, названия и картинки рангов
+// металлы Медь → Серебро → Золото → Платина по 5 чеканок. Цена перехода НА ранг 1
+// = 1000, каждый следующий ранг +100; ранг 0 — бесплатный старт. Все числа, названия и картинки рангов
 // живут ТОЛЬКО здесь: кнопка «Повысить уровень», аватар-монета, церемония чеканки и
 // любая будущая подпись берут их отсюда, а не держат свои копии (иначе цена на кнопке
 // однажды разойдётся с ценой списания).
@@ -41,8 +41,9 @@ export type CoinRankRow = Readonly<{
 
 export const COIN_RANK_MIN = 0;
 export const COIN_RANK_MAX = 19;
-/** Шаг цены: переход на ранг N стоит N × COIN_RANK_PRICE_STEP. */
-export const COIN_RANK_PRICE_STEP = 1000;
+/** Ранг 1 стоит 1 000, каждый следующий переход дорожает на 100. */
+export const COIN_RANK_FIRST_PRICE = 1000;
+export const COIN_RANK_PRICE_STEP = 100;
 
 const METALS: readonly (readonly [CoinMetalId, string])[] = [
   ['copper', 'Медь'],
@@ -193,7 +194,7 @@ function buildTable(): readonly CoinRankRow[] {
   const rows: CoinRankRow[] = [];
   let total = 0;
   for (let rank = COIN_RANK_MIN; rank <= COIN_RANK_MAX; rank += 1) {
-    const price = rank * COIN_RANK_PRICE_STEP;
+    const price = rank === COIN_RANK_MIN ? 0 : COIN_RANK_FIRST_PRICE + (rank - 1) * COIN_RANK_PRICE_STEP;
     total += price;
     const [metalId, metalName] = METALS[Math.floor(rank / 5)];
     rows.push(Object.freeze({
@@ -233,4 +234,24 @@ export function coinRankRowForDisplay(rank: number): CoinRankRow {
 export function nextCoinRankRow(rank: number): CoinRankRow | null {
   if (!isValidCoinRank(rank) || rank >= COIN_RANK_MAX) return null;
   return COIN_RANK_TABLE[rank + 1];
+}
+
+/**
+ * Цена в истории — квитанция о реально состоявшейся покупке, а не текущий прайс.
+ * Старые события до поля paidPrice платили N×1000; если новое поле присутствует,
+ * битое значение нельзя маскировать legacy-формулой.
+ */
+export function coinRankPaidPriceFromStoryPayload(
+  payload: Readonly<Record<string, unknown>>,
+  toRank: number,
+): number | null {
+  if (!isValidCoinRank(toRank) || toRank === COIN_RANK_MIN) return null;
+  if (!Object.prototype.hasOwnProperty.call(payload, 'paidPrice')) {
+    return toRank * 1000;
+  }
+  return typeof payload.paidPrice === 'number'
+    && Number.isSafeInteger(payload.paidPrice)
+    && payload.paidPrice > 0
+    ? payload.paidPrice
+    : null;
 }

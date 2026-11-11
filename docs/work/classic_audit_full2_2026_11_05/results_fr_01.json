@@ -1,0 +1,21 @@
+[
+{"id": "fr:03:17", "type": "M", "field": "ru", "problem": "«Вы пришли раньше?» двусмысленно (раньше кого/чего?), не передаёт «en avance» = раньше назначенного времени", "fix": "Вы пришли раньше времени?"},
+{"id": "fr:03:17", "type": "M", "field": "uk", "problem": "«Ви прийшли раніше?» двусмысленно, не передаёт «en avance» = завчасно", "fix": "Ви прийшли завчасно?"},
+{"id": "fr:03:23", "type": "M", "field": "ru", "problem": "добавлено «автобусная» — в target просто «l’arrêt» (остановка)", "fix": "Остановка далеко?"},
+{"id": "fr:03:23", "type": "M", "field": "uk", "problem": "добавлено «автобусна» — в target просто «l’arrêt» (зупинка)", "fix": "Зупинка далеко?"},
+{"id": "fr:03:28", "type": "M", "field": "ru", "problem": "«Туалеты в глубине помещения?» — калька и канцелярит (мн. число toilettes по-русски = один туалет, «помещения» неестественно)", "fix": "Туалет в глубине зала?"},
+{"id": "fr:03:28", "type": "M", "field": "uk", "problem": "«Туалети у глибині приміщення?» — калька и канцелярит", "fix": "Туалет у глибині зали?"},
+{"id": "fr:03:33", "type": "B1", "field": "tiles", "problem": "на позиции «fermée» все 5 соблазнов — существительные (quai, maison, porte, gare, salle): выбор делается по части речи без знания слова", "fix": {"position": 5, "replace_distractor": "quai", "with": "ouverte"}},
+{"id": "fr:03:33", "type": "B1", "field": "tiles", "problem": "то же: соблазны позиции 5 выдают себя частью речи", "fix": {"position": 5, "replace_distractor": "maison", "with": "fermées"}},
+{"id": "fr:03:36", "type": "B1", "field": "tiles", "problem": "на позиции «sombre» все 5 соблазнов — существительные (soir, déjeuner, retard, table, matin): прилагательное угадывается без знания слова", "fix": {"position": 5, "replace_distractor": "soir", "with": "clair"}},
+{"id": "fr:03:36", "type": "B1", "field": "tiles", "problem": "то же: соблазны позиции 5 выдают себя частью речи", "fix": {"position": 5, "replace_distractor": "table", "with": "sombres"}},
+{"id": "fr:03:42", "type": "B1", "field": "tiles", "problem": "на позиции «fermées» ни одного прилагательного/причастия среди соблазнов (concert, gauche, soir, chambre, porte) — угадывается по части речи", "fix": {"position": 4, "replace_distractor": "concert", "with": "ouvertes"}},
+{"id": "fr:03:42", "type": "B1", "field": "tiles", "problem": "то же: соблазны позиции 4 выдают себя частью речи", "fix": {"position": 4, "replace_distractor": "soir", "with": "fermés"}},
+{"id": "fr:03:45", "type": "M", "field": "ru", "problem": "«находится рядом с билетной кассой» — канцелярит и лишнее «билетной»; uk при этом коротко «біля каси» — ru и uk расходятся", "fix": "Выход рядом с кассой?"},
+{"id": "fr:03:46", "type": "B1", "field": "tiles", "problem": "на позиции «seul» ни одного прилагательного среди соблазнов (vélo, portes, déjeuner, déjà, train) — угадывается по части речи", "fix": {"position": 2, "replace_distractor": "vélo", "with": "seule"}},
+{"id": "fr:03:46", "type": "B1", "field": "tiles", "problem": "то же: соблазны позиции 2 выдают себя частью речи", "fix": {"position": 2, "replace_distractor": "train", "with": "seuls"}},
+{"id": "fr:03:48", "type": "B2", "field": "ru", "problem": "ложный друг: французский «premier étage» — это второй этаж по русскому счёту (первый = rez-de-chaussée)", "fix": "Комната на втором этаже?"},
+{"id": "fr:03:48", "type": "B2", "field": "uk", "problem": "ложный друг: «premier étage» — это другий поверх по українському рахунку (перший = rez-de-chaussée)", "fix": "Кімната на другому поверсі?"},
+{"id": "fr:04:06", "type": "B1", "field": "tiles", "problem": "на позиции «ami» ни одного существительного среди соблазнов (mes, ta, pas, ne, le) — слот решается без знания слова", "fix": {"position": 2, "replace_distractor": "pas", "with": "amie"}},
+{"id": "fr:04:06", "type": "B1", "field": "tiles", "problem": "то же: соблазны позиции 2 выдают себя частью речи", "fix": {"position": 2, "replace_distractor": "le", "with": "voisin"}}
+]

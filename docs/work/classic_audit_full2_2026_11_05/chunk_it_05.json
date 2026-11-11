@@ -1,0 +1,5306 @@
+[
+{
+"lesson": 11,
+"id": "it:11:01",
+"target": "Vado in stazione.",
+"ru": "Я иду на вокзал.",
+"uk": "Я йду на залізничний вокзал.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vanno",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"insieme",
+"lezione",
+"postale",
+"ospedale",
+"calzature"
+]
+}
+],
+"alternatives": [
+"Io vado in stazione.",
+"Vado alla stazione."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:02",
+"target": "Vai in stazione.",
+"ru": "Ты идешь на вокзал.",
+"uk": "Ти їдеш на залізничний вокзал.",
+"tiles": [
+{
+"correct": "Vai",
+"distractors": [
+"Va",
+"Vado",
+"Andiamo",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"ospedale",
+"lezione",
+"riunione",
+"insieme",
+"calzature"
+]
+}
+],
+"alternatives": [
+"Tu vai in stazione.",
+"Vai alla stazione."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:03",
+"target": "Lei va al mercato.",
+"ru": "Она идет на рынок.",
+"uk": "Вона йде на ринок.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Loro",
+"Lui",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"andiamo",
+"vado",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"piedi",
+"ufficio",
+"portogallo",
+"museo",
+"negozio"
+]
+}
+],
+"alternatives": [
+"Va al mercato."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:04",
+"target": "Lui va al mercato.",
+"ru": "Он идет на рынок.",
+"uk": "Він йде на ринок.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Io",
+"Loro",
+"Noi",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "mercato",
+"distractors": [
+"vado",
+"canada",
+"stadio",
+"reparto",
+"museo"
+]
+}
+],
+"alternatives": [
+"Va al mercato."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:05",
+"target": "Noi andiamo a scuola.",
+"ru": "Мы идём в школу.",
+"uk": "Ми йдемо до школи.",
+"tiles": [
+{
+"correct": "Noi",
+"distractors": [
+"Io",
+"Lui",
+"Tu",
+"Loro",
+"Voi"
+]
+},
+{
+"correct": "andiamo",
+"distractors": [
+"va",
+"vado",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"su",
+"da"
+]
+},
+{
+"correct": "scuola",
+"distractors": [
+"spiaggia",
+"piscina",
+"alla",
+"casa",
+"fermata"
+]
+}
+],
+"alternatives": [
+"Andiamo a scuola."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:06",
+"target": "Andate a scuola.",
+"ru": "Вы идёте в школу.",
+"uk": "Ви йдете до школи.",
+"tiles": [
+{
+"correct": "Andate",
+"distractors": [
+"Vado",
+"Sta",
+"Stai",
+"Stiamo",
+"Sto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "scuola",
+"distractors": [
+"macchina",
+"spiaggia",
+"francia",
+"dentista",
+"spagna"
+]
+}
+],
+"alternatives": [
+"Voi andate a scuola."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:07",
+"target": "Loro vanno in ufficio.",
+"ru": "Они идут в офис.",
+"uk": "Вони йдуть до офісу.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Suo",
+"Tua",
+"Nostri",
+"Io",
+"Tu"
+]
+},
+{
+"correct": "vanno",
+"distractors": [
+"va",
+"vado",
+"andiamo",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "ufficio",
+"distractors": [
+"centro",
+"portogallo",
+"fondo",
+"fratello",
+"belgio"
+]
+}
+],
+"alternatives": [
+"Vanno in ufficio."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:08",
+"target": "Loro vanno in banca.",
+"ru": "Они идут в банк.",
+"uk": "Вони йдуть до банку.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Suo",
+"Sua",
+"Mio",
+"Tuo",
+"Io"
+]
+},
+{
+"correct": "vanno",
+"distractors": [
+"va",
+"vado",
+"andiamo",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"senza",
+"con"
+]
+},
+{
+"correct": "banca",
+"distractors": [
+"scuola",
+"strada",
+"casa",
+"spiaggia",
+"alla"
+]
+}
+],
+"alternatives": [
+"Vanno in banca."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:09",
+"target": "Io vado al cinema.",
+"ru": "Я иду в кино.",
+"uk": "Я йду в кіно.",
+"tiles": [
+{
+"correct": "Io",
+"distractors": [
+"Loro",
+"Lui",
+"Tu",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "vado",
+"distractors": [
+"va",
+"vanno",
+"vai",
+"andiamo",
+"andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "cinema",
+"distractors": [
+"dentista",
+"canada",
+"stasera",
+"scuola",
+"farmacia"
+]
+}
+],
+"alternatives": [
+"Vado al cinema."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:10",
+"target": "Tu vai in piscina.",
+"ru": "Ты идёшь в бассейн.",
+"uk": "Ти йдеш до басейну.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Loro",
+"Lui",
+"Io",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "vai",
+"distractors": [
+"va",
+"vado",
+"andiamo",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "piscina",
+"distractors": [
+"torna",
+"casa",
+"cinema",
+"dentista",
+"bicicletta"
+]
+}
+],
+"alternatives": [
+"Vai in piscina."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:11",
+"target": "Lea va dal medico.",
+"ru": "Леа идёт к врачу.",
+"uk": "Леа йде до лікаря.",
+"tiles": [
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "medico",
+"distractors": [
+"lavoro",
+"municipio",
+"stadio",
+"andiamo",
+"treno"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:12",
+"target": "Paolo va dal dentista.",
+"ru": "Паоло идёт к стоматологу.",
+"uk": "Паоло йде до стоматолога.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Luis",
+"Ana",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "dal",
+"distractors": [
+"dalla",
+"camera",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "dentista",
+"distractors": [
+"scuola",
+"bicicletta",
+"officina",
+"fermata",
+"macchina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:13",
+"target": "Vado a casa di mia sorella.",
+"ru": "Я иду к сестре.",
+"uk": "Я йду до сестри.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vanno",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"da",
+"sotto",
+"dopo"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"alla",
+"spagna",
+"strada",
+"scuola",
+"ai"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "mia",
+"distractors": [
+"sua",
+"suo",
+"nostri",
+"miei",
+"tuoi"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"fermata",
+"macchina",
+"cinema",
+"farmacia",
+"bicicletta"
+]
+}
+],
+"alternatives": [
+"Io vado a casa di mia sorella."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:14",
+"target": "Vai a casa di tuo fratello.",
+"ru": "Ты идёшь к брату.",
+"uk": "Ти йдеш до брата.",
+"tiles": [
+{
+"correct": "Vai",
+"distractors": [
+"Va",
+"Andiamo",
+"Vado",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"da",
+"sotto",
+"dopo"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"sorella",
+"fermata",
+"strada",
+"mia",
+"sua"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "tuo",
+"distractors": [
+"vostre",
+"tuoi",
+"mia",
+"vostro",
+"mio"
+]
+},
+{
+"correct": "fratello",
+"distractors": [
+"treno",
+"medico",
+"parco",
+"ufficio",
+"museo"
+]
+}
+],
+"alternatives": [
+"Tu vai a casa di tuo fratello."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:15",
+"target": "Andiamo a casa di alcuni amici.",
+"ru": "Мы идём к друзьям.",
+"uk": "Ми йдемо до друзів.",
+"tiles": [
+{
+"correct": "Andiamo",
+"distractors": [
+"Vado",
+"Va",
+"Vanno",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"su",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"fermata",
+"canada",
+"italia",
+"stasera",
+"spagna"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "alcuni",
+"distractors": [
+"paesi",
+"uniti",
+"genitori",
+"bambini",
+"piedi"
+]
+},
+{
+"correct": "amici",
+"distractors": [
+"paesi",
+"uniti",
+"domani",
+"genitori",
+"presto"
+]
+}
+],
+"alternatives": [
+"Noi andiamo a casa di alcuni amici."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:16",
+"target": "Vanno a casa dei loro genitori.",
+"ru": "Они идут к родителям.",
+"uk": "Вони йдуть до батьків.",
+"tiles": [
+{
+"correct": "Vanno",
+"distractors": [
+"Va",
+"Vado",
+"Andiamo",
+"Andate",
+"Vai"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"strada",
+"scuola",
+"mia",
+"sorella",
+"piscina"
+]
+},
+{
+"correct": "dei",
+"distractors": [
+"del",
+"della",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "loro",
+"distractors": [
+"lei",
+"mio",
+"sua",
+"mia",
+"tuoi"
+]
+},
+{
+"correct": "genitori",
+"distractors": [
+"parigi",
+"piedi",
+"domani",
+"paesi",
+"amici"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:17",
+"target": "Torna a casa?",
+"ru": "Вы (вежл.) возвращаетесь домой?",
+"uk": "Ви (ввіч.) повертаєтеся додому?",
+"tiles": [
+{
+"correct": "Torna",
+"distractors": [
+"Il",
+"La",
+"Un",
+"I",
+"Le"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"di",
+"per",
+"senza",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"italia",
+"cinema",
+"banca",
+"piscina",
+"francia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:18",
+"target": "Vado in farmacia.",
+"ru": "Я иду в аптеку.",
+"uk": "Я йду до аптеки.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vanno",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "farmacia",
+"distractors": [
+"francia",
+"bicicletta",
+"canada",
+"strada",
+"fermata"
+]
+}
+],
+"alternatives": [
+"Io vado in farmacia."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:19",
+"target": "Lei va in ospedale.",
+"ru": "Она идёт в больницу.",
+"uk": "Вона їде до лікарні.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Tu",
+"Io",
+"Noi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "ospedale",
+"distractors": [
+"stazione",
+"lione",
+"postale",
+"calzature",
+"insieme"
+]
+}
+],
+"alternatives": [
+"Va in ospedale."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:20",
+"target": "Lui va in officina.",
+"ru": "Он идёт в гараж.",
+"uk": "Він іде до гаража.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Io",
+"Loro",
+"Noi",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"andiamo",
+"vado",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "officina",
+"distractors": [
+"torna",
+"strada",
+"bicicletta",
+"metropolitana",
+"scuola"
+]
+}
+],
+"alternatives": [
+"Va in officina."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:21",
+"target": "Io vado a Lione.",
+"ru": "Я еду в Лион.",
+"uk": "Я їду до Ліона.",
+"tiles": [
+{
+"correct": "Io",
+"distractors": [
+"Loro",
+"Lui",
+"Tu",
+"Voi",
+"Noi"
+]
+},
+{
+"correct": "vado",
+"distractors": [
+"va",
+"vai",
+"andiamo",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"da",
+"per",
+"sotto"
+]
+},
+{
+"correct": "Lione",
+"distractors": [
+"Ospedale",
+"Postale",
+"Riunione",
+"Stazione",
+"Lezione"
+]
+}
+],
+"alternatives": [
+"Vado a Lione."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:22",
+"target": "Lei va a Parigi.",
+"ru": "Она едет в Париж.",
+"uk": "Вона їде до Парижа.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "Parigi",
+"distractors": [
+"Bambini",
+"Alcuni",
+"Bassi",
+"Piedi",
+"Uniti"
+]
+}
+],
+"alternatives": [
+"Va a Parigi."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:23",
+"target": "Noi andiamo in Francia.",
+"ru": "Мы едем во Францию.",
+"uk": "Ми їдемо до Франції.",
+"tiles": [
+{
+"correct": "Noi",
+"distractors": [
+"Loro",
+"Tu",
+"Io",
+"Lui",
+"Voi"
+]
+},
+{
+"correct": "andiamo",
+"distractors": [
+"va",
+"vado",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "Francia",
+"distractors": [
+"Casa",
+"Cinema",
+"Officina",
+"Italia",
+"Farmacia"
+]
+}
+],
+"alternatives": [
+"Andiamo in Francia."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:24",
+"target": "Loro vanno in Belgio.",
+"ru": "Они едут в Бельгию.",
+"uk": "Вони їдуть до Бельгії.",
+"tiles": [
+{
+"correct": "Loro",
+"distractors": [
+"Mia",
+"Suo",
+"Io",
+"Nostra",
+"Tu"
+]
+},
+{
+"correct": "vanno",
+"distractors": [
+"va",
+"vado",
+"andiamo",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "Belgio",
+"distractors": [
+"Ufficio",
+"Municipio",
+"Mercato",
+"Parco",
+"Treno"
+]
+}
+],
+"alternatives": [
+"Vanno in Belgio."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:25",
+"target": "Tu vai in Canada.",
+"ru": "Ты едешь в Канаду.",
+"uk": "Ти їдеш до Канади.",
+"tiles": [
+{
+"correct": "Tu",
+"distractors": [
+"Io",
+"Loro",
+"Lui",
+"Voi",
+"Noi"
+]
+},
+{
+"correct": "vai",
+"distractors": [
+"va",
+"vado",
+"andiamo",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"senza",
+"su"
+]
+},
+{
+"correct": "Canada",
+"distractors": [
+"Dentista",
+"Casa",
+"Bicicletta",
+"Francia",
+"Banca"
+]
+}
+],
+"alternatives": [
+"Vai in Canada."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:26",
+"target": "Andate in Portogallo.",
+"ru": "Вы едете в Португалию.",
+"uk": "Ви їдете до Португалії.",
+"tiles": [
+{
+"correct": "Andate",
+"distractors": [
+"Vado",
+"Sta",
+"Stai",
+"Stiamo",
+"Sto"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "Portogallo",
+"distractors": [
+"Municipio",
+"Ufficio",
+"Fratello",
+"Concerto",
+"Negozio"
+]
+}
+],
+"alternatives": [
+"Voi andate in Portogallo."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:27",
+"target": "Paolo va in Italia.",
+"ru": "Паоло едет в Италию.",
+"uk": "Паоло їде до Італії.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Marco"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"senza"
+]
+},
+{
+"correct": "Italia",
+"distractors": [
+"Lea",
+"Casa",
+"Piscina",
+"Bicicletta",
+"Macchina"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:28",
+"target": "Mia sorella va nei Paesi Bassi.",
+"ru": "Моя сестра едет в Нидерланды.",
+"uk": "Моя сестра їде до Нідерландів.",
+"tiles": [
+{
+"correct": "Mia",
+"distractors": [
+"Suo",
+"Sua",
+"Miei",
+"Nostri",
+"Loro"
+]
+},
+{
+"correct": "sorella",
+"distractors": [
+"torna",
+"banca",
+"spagna",
+"officina",
+"strada"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "nei",
+"distractors": [
+"nel",
+"nella",
+"negli",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "Paesi",
+"distractors": [
+"Lei",
+"Parigi",
+"Genitori",
+"Paolo",
+"Lea"
+]
+},
+{
+"correct": "Bassi",
+"distractors": [
+"Stati",
+"Chiudi",
+"Mostri",
+"Ancora",
+"La"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:29",
+"target": "Andiamo negli Stati Uniti.",
+"ru": "Мы едем в Соединенные Штаты.",
+"uk": "Ми їдемо до Сполучених Штатів.",
+"tiles": [
+{
+"correct": "Andiamo",
+"distractors": [
+"Va",
+"Vado",
+"Vai",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "negli",
+"distractors": [
+"nel",
+"nella",
+"nei",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "Stati",
+"distractors": [
+"Museo",
+"Amici",
+"Arrivato",
+"L’autobus",
+"Figlia"
+]
+},
+{
+"correct": "Uniti",
+"distractors": [
+"Torna",
+"Concerto",
+"Parigi",
+"Genitori",
+"Bassi"
+]
+}
+],
+"alternatives": [
+"Noi andiamo negli Stati Uniti."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:30",
+"target": "Vado in Spagna.",
+"ru": "Я еду в Испанию.",
+"uk": "Я їду до Іспанії.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vai",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "Spagna",
+"distractors": [
+"Farmacia",
+"Spiaggia",
+"Strada",
+"Casa",
+"Italia"
+]
+}
+],
+"alternatives": [
+"Io vado in Spagna."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:31",
+"target": "Vado al lavoro a piedi.",
+"ru": "Я иду на работу пешком.",
+"uk": "Я йду на роботу пішки.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vai",
+"Andate",
+"Vanno"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"lavori",
+"lavoriamo",
+"lavorate",
+"lavorano",
+"posti"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"uniti",
+"alcuni",
+"paesi",
+"stati",
+"bambini"
+]
+}
+],
+"alternatives": [
+"Io vado al lavoro a piedi."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:32",
+"target": "Lei va al museo in autobus.",
+"ru": "Она едет в музей на автобусе.",
+"uk": "Вона їде до музею автобусом.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Tu",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"andiamo",
+"vado",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "museo",
+"distractors": [
+"vado",
+"fondo",
+"medico",
+"ufficio",
+"concerto"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "autobus",
+"distractors": [
+"torna",
+"calzature",
+"treno",
+"lezione",
+"banca"
+]
+}
+],
+"alternatives": [
+"Va al museo in autobus."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:33",
+"target": "Andiamo al parco in bicicletta.",
+"ru": "Мы едем в парк на велосипедах.",
+"uk": "Ми їдемо до парку на велосипеді.",
+"tiles": [
+{
+"correct": "Andiamo",
+"distractors": [
+"Va",
+"Vado",
+"Vanno",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "parco",
+"distractors": [
+"negozio",
+"fratello",
+"museo",
+"treno",
+"mercato"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "bicicletta",
+"distractors": [
+"spiaggia",
+"francia",
+"biglietteria",
+"fermata",
+"dentista"
+]
+}
+],
+"alternatives": [
+"Noi andiamo al parco in bicicletta."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:34",
+"target": "Vai in stazione in macchina.",
+"ru": "Ты едешь на вокзал на машине.",
+"uk": "Ти їдеш на вокзал машиною.",
+"tiles": [
+{
+"correct": "Vai",
+"distractors": [
+"Va",
+"Andiamo",
+"Vado",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"su"
+]
+},
+{
+"correct": "stazione",
+"distractors": [
+"calzature",
+"insieme",
+"lezione",
+"riunione",
+"postale"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"su"
+]
+},
+{
+"correct": "macchina",
+"distractors": [
+"italia",
+"dentista",
+"canada",
+"spiaggia",
+"strada"
+]
+}
+],
+"alternatives": [
+"Tu vai in stazione in macchina."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:35",
+"target": "Va in spiaggia in treno?",
+"ru": "Вы едете на пляж на поезде?",
+"uk": "Ви їдете на пляж поїздом?",
+"tiles": [
+{
+"correct": "Va",
+"distractors": [
+"Vado",
+"Andiamo",
+"Prendiamo",
+"Zuppa",
+"Giacca"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"da"
+]
+},
+{
+"correct": "spiaggia",
+"distractors": [
+"bicicletta",
+"sorella",
+"scuola",
+"fermata",
+"officina"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"con"
+]
+},
+{
+"correct": "treno",
+"distractors": [
+"fratello",
+"portogallo",
+"reparto",
+"belgio",
+"medico"
+]
+}
+],
+"alternatives": [
+"Vai in spiaggia in treno?"
+]
+},
+{
+"lesson": 11,
+"id": "it:11:36",
+"target": "Lui va allo stadio in metropolitana.",
+"ru": "Он едет на стадион на метро.",
+"uk": "Він їде на стадіон метро.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "allo",
+"distractors": [
+"al",
+"ai",
+"siamo",
+"sei",
+"siete"
+]
+},
+{
+"correct": "stadio",
+"distractors": [
+"centro",
+"vado",
+"ufficio",
+"fondo",
+"andiamo"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "metropolitana",
+"distractors": [
+"reception",
+"biglietteria",
+"all’ufficio",
+"bicicletta",
+"officina"
+]
+}
+],
+"alternatives": [
+"Va allo stadio in metropolitana."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:37",
+"target": "I bambini vanno a scuola a piedi.",
+"ru": "Дети идут в школу пешком.",
+"uk": "Діти йдуть до школи пішки.",
+"tiles": [
+{
+"correct": "I",
+"distractors": [
+"Il",
+"Un",
+"La",
+"Le",
+"Uno"
+]
+},
+{
+"correct": "bambini",
+"distractors": [
+"parigi",
+"domani",
+"stati",
+"paesi",
+"amici"
+]
+},
+{
+"correct": "vanno",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "scuola",
+"distractors": [
+"farmacia",
+"macchina",
+"casa",
+"piscina",
+"alla"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "piedi",
+"distractors": [
+"genitori",
+"bassi",
+"negli",
+"dei",
+"della"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:38",
+"target": "Stasera vado a casa di Lea.",
+"ru": "Я иду к Леа сегодня вечером.",
+"uk": "Я йду до Леа сьогодні ввечері.",
+"tiles": [
+{
+"correct": "Stasera",
+"distractors": [
+"Domani",
+"Presto",
+"Oggi",
+"Sei",
+"Sono"
+]
+},
+{
+"correct": "vado",
+"distractors": [
+"va",
+"andiamo",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"per",
+"su",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cinema",
+"strada",
+"banca",
+"sorella",
+"porta"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"per",
+"con",
+"da",
+"sotto"
+]
+},
+{
+"correct": "Lea",
+"distractors": [
+"Paolo",
+"Luis",
+"Ana",
+"Marie",
+"Lucia"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:39",
+"target": "Domani andiamo in municipio.",
+"ru": "Мы идём в ратушу завтра.",
+"uk": "Ми йдемо до ратуші завтра.",
+"tiles": [
+{
+"correct": "Domani",
+"distractors": [
+"Stasera",
+"Presto",
+"Oggi",
+"Sei",
+"Sono"
+]
+},
+{
+"correct": "andiamo",
+"distractors": [
+"va",
+"vado",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"senza",
+"su"
+]
+},
+{
+"correct": "municipio",
+"distractors": [
+"portogallo",
+"lavoro",
+"reparto",
+"all’ufficio",
+"negozio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:40",
+"target": "Vanno al concerto insieme.",
+"ru": "Они идут на концерт вместе.",
+"uk": "Вони йдуть разом на концерт.",
+"tiles": [
+{
+"correct": "Vanno",
+"distractors": [
+"Va",
+"Vado",
+"Andiamo",
+"Vai",
+"Andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "concerto",
+"distractors": [
+"treno",
+"ufficio",
+"reparto",
+"all’ufficio",
+"mercato"
+]
+},
+{
+"correct": "insieme",
+"distractors": [
+"ospedale",
+"calzature",
+"lione",
+"lezione",
+"postale"
+]
+}
+],
+"alternatives": [
+"Loro vanno al concerto insieme."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:41",
+"target": "Dove va dopo la lezione?",
+"ru": "Куда вы идёте после занятия?",
+"uk": "Куди ви йдете після заняття?",
+"tiles": [
+{
+"correct": "Dove",
+"distractors": [
+"Chi",
+"Cosa",
+"Quanti",
+"Quale",
+"Quanto"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "dopo",
+"distractors": [
+"di",
+"per",
+"con",
+"a",
+"in"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"il",
+"i",
+"un",
+"ti",
+"che"
+]
+},
+{
+"correct": "lezione",
+"distractors": [
+"andate",
+"stazione",
+"riunione",
+"insieme",
+"andiamo"
+]
+}
+],
+"alternatives": [
+"Dove vai dopo la lezione?"
+]
+},
+{
+"lesson": 11,
+"id": "it:11:42",
+"target": "Vai all’ufficio postale?",
+"ru": "Ты идёшь на почту?",
+"uk": "Ти йдеш на пошту?",
+"tiles": [
+{
+"correct": "Vai",
+"distractors": [
+"Andiamo",
+"Va",
+"Vado",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "all’ufficio",
+"distractors": [
+"portogallo",
+"concerto",
+"fratello",
+"stazione",
+"municipio"
+]
+},
+{
+"correct": "postale",
+"distractors": [
+"stazione",
+"riunione",
+"lione",
+"lezione",
+"insieme"
+]
+}
+],
+"alternatives": [
+"Tu vai all’ufficio postale?"
+]
+},
+{
+"lesson": 11,
+"id": "it:11:43",
+"target": "Oggi non vado al negozio.",
+"ru": "Я сегодня не иду в магазин.",
+"uk": "Я не піду сьогодні до магазину.",
+"tiles": [
+{
+"correct": "Oggi",
+"distractors": [
+"Domani",
+"Stasera",
+"Presto",
+"Sei",
+"Sono"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"po’",
+"molto"
+]
+},
+{
+"correct": "vado",
+"distractors": [
+"va",
+"andiamo",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "negozio",
+"distractors": [
+"fondo",
+"medico",
+"museo",
+"mercato",
+"municipio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:44",
+"target": "Paolo non va alla riunione.",
+"ru": "Паоло не идёт на собрание.",
+"uk": "Паоло не йде на зустріч.",
+"tiles": [
+{
+"correct": "Paolo",
+"distractors": [
+"Lea",
+"Ana",
+"Luis",
+"Marie",
+"Anna"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"ancora",
+"più",
+"già",
+"po’",
+"molto"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"vado",
+"andiamo",
+"ufficio",
+"fondo",
+"reparto"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "riunione",
+"distractors": [
+"lezione",
+"calzature",
+"postale",
+"lione",
+"stazione"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "it:11:45",
+"target": "Non andiamo in centro.",
+"ru": "Мы не едем в центр города.",
+"uk": "Ми не їдемо в центр міста.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Più",
+"Già",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "andiamo",
+"distractors": [
+"va",
+"vado",
+"vanno",
+"vai",
+"andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"con",
+"per",
+"senza"
+]
+},
+{
+"correct": "centro",
+"distractors": [
+"stadio",
+"lavoro",
+"treno",
+"medico",
+"fratello"
+]
+}
+],
+"alternatives": [
+"Noi non andiamo in centro."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:46",
+"target": "Va alla reception o alla biglietteria?",
+"ru": "Вы идёте к стойке информации или в кассу?",
+"uk": "Ви йдете до стійки інформації або до каси?",
+"tiles": [
+{
+"correct": "Va",
+"distractors": [
+"Vado",
+"Andiamo",
+"Prendiamo",
+"Zuppa",
+"Giacca"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "reception",
+"distractors": [
+"stadio",
+"centro",
+"belgio",
+"mia",
+"mio"
+]
+},
+{
+"correct": "o",
+"distractors": [
+"che",
+"se",
+"quando",
+"mentre",
+"come"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "biglietteria",
+"distractors": [
+"ufficio",
+"metropolitana",
+"lione",
+"bicicletta",
+"italia"
+]
+}
+],
+"alternatives": [
+"Vai alla reception o alla biglietteria?"
+]
+},
+{
+"lesson": 11,
+"id": "it:11:47",
+"target": "Vado al reparto calzature.",
+"ru": "Я иду в обувной отдел.",
+"uk": "Я йду до відділу взуття.",
+"tiles": [
+{
+"correct": "Vado",
+"distractors": [
+"Va",
+"Andiamo",
+"Vai",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "al",
+"distractors": [
+"alla",
+"allo",
+"ai",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "reparto",
+"distractors": [
+"medico",
+"mercato",
+"ufficio",
+"belgio",
+"treno"
+]
+},
+{
+"correct": "calzature",
+"distractors": [
+"ospedale",
+"postale",
+"riunione",
+"stazione",
+"insieme"
+]
+}
+],
+"alternatives": [
+"Io vado al reparto calzature."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:48",
+"target": "Lei va alla fermata dell’autobus.",
+"ru": "Она идёт на автобусную остановку.",
+"uk": "Вона йде на автобусну зупинку.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Io",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "va",
+"distractors": [
+"andiamo",
+"vado",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "fermata",
+"distractors": [
+"non",
+"biglietteria",
+"cinema",
+"officina",
+"spagna"
+]
+},
+{
+"correct": "dell’autobus",
+"distractors": [
+"reparto",
+"lione",
+"scuola",
+"lui",
+"loro"
+]
+}
+],
+"alternatives": [
+"Va alla fermata dell’autobus."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:49",
+"target": "Andiamo in fondo alla strada.",
+"ru": "Мы идём до конца улицы.",
+"uk": "Ми йдемо до кінця вулиці.",
+"tiles": [
+{
+"correct": "Andiamo",
+"distractors": [
+"Va",
+"Vado",
+"Vai",
+"Vanno",
+"Andate"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"a",
+"di",
+"per",
+"da",
+"senza"
+]
+},
+{
+"correct": "fondo",
+"distractors": [
+"reparto",
+"vado",
+"centro",
+"belgio",
+"vanno"
+]
+},
+{
+"correct": "alla",
+"distractors": [
+"al",
+"ai",
+"casa",
+"borsa",
+"stanza"
+]
+},
+{
+"correct": "strada",
+"distractors": [
+"francia",
+"casa",
+"piscina",
+"biglietteria",
+"officina"
+]
+}
+],
+"alternatives": [
+"Noi andiamo in fondo alla strada."
+]
+},
+{
+"lesson": 11,
+"id": "it:11:50",
+"target": "Dopo il lavoro, vado a casa dei miei genitori.",
+"ru": "После работы я иду к родителям.",
+"uk": "Після роботи я йду до батьків.",
+"tiles": [
+{
+"correct": "Dopo",
+"distractors": [
+"Di",
+"Per",
+"Con",
+"In",
+"Da"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"i",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "lavoro",
+"distractors": [
+"lavori",
+"lavoriamo",
+"lavorano",
+"lavorate",
+"posti"
+]
+},
+{
+"correct": "vado",
+"distractors": [
+"va",
+"andiamo",
+"vai",
+"vanno",
+"andate"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"in",
+"di",
+"per",
+"da",
+"sotto"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"torna",
+"cinema",
+"sorella",
+"banca",
+"borsa"
+]
+},
+{
+"correct": "dei",
+"distractors": [
+"del",
+"della",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "miei",
+"distractors": [
+"mia",
+"mie",
+"nostri",
+"nostre",
+"suo"
+]
+},
+{
+"correct": "genitori",
+"distractors": [
+"domani",
+"alcuni",
+"parigi",
+"piedi",
+"uniti"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:01",
+"target": "Prendo del pane.",
+"ru": "Я беру хлеб.",
+"uk": "Я беру хліб.",
+"tiles": [
+{
+"correct": "Prendo",
+"distractors": [
+"Prendi",
+"Prendiamo",
+"Prende",
+"Prendono",
+"Prendete"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"pepe",
+"molte",
+"mele",
+"pesce",
+"miele"
+]
+}
+],
+"alternatives": [
+"Io prendo del pane."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:02",
+"target": "Prendi del pane.",
+"ru": "Ты берёшь хлеб.",
+"uk": "Ти береш хліб.",
+"tiles": [
+{
+"correct": "Prendi",
+"distractors": [
+"Prendo",
+"Prendono",
+"Prendiamo",
+"Prendete",
+"Andiamo"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"beve",
+"sale",
+"carne",
+"latte",
+"mele"
+]
+}
+],
+"alternatives": [
+"Tu prendi del pane."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:03",
+"target": "Prendo della zuppa.",
+"ru": "Я беру суп.",
+"uk": "Я беру суп.",
+"tiles": [
+{
+"correct": "Prendo",
+"distractors": [
+"Prendi",
+"Prende",
+"Prendiamo",
+"Prendono",
+"Prendete"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"compra",
+"salsa",
+"mela",
+"panna",
+"farina"
+]
+}
+],
+"alternatives": [
+"Io prendo della zuppa."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:04",
+"target": "Lei prende della zuppa.",
+"ru": "Она берёт суп.",
+"uk": "Вона бере суп.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Io",
+"Lui",
+"Tu",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "prende",
+"distractors": [
+"prendo",
+"prendono",
+"prendiamo",
+"prendete",
+"burro"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"marmellata",
+"mangia",
+"d’acqua",
+"tazza",
+"composta"
+]
+}
+],
+"alternatives": [
+"Prende della zuppa."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:05",
+"target": "Prendiamo dell’acqua.",
+"ru": "Мы берём воду.",
+"uk": "Ми беремо воду.",
+"tiles": [
+{
+"correct": "Prendiamo",
+"distractors": [
+"Prendi",
+"Prendo",
+"Prendono",
+"Prendete",
+"Prende"
+]
+},
+{
+"correct": "dell’acqua",
+"distractors": [
+"dell’insalata",
+"d’acqua",
+"composta",
+"rimasta",
+"marmellata"
+]
+}
+],
+"alternatives": [
+"Noi prendiamo dell’acqua."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:06",
+"target": "Prendete del latte.",
+"ru": "Вы берёте молоко.",
+"uk": "Ви берете молоко.",
+"tiles": [
+{
+"correct": "Prendete",
+"distractors": [
+"Prende",
+"Compri",
+"Vorrei",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"aggiunge",
+"pepe",
+"carne",
+"sale",
+"molte"
+]
+}
+],
+"alternatives": [
+"Voi prendete del latte."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:07",
+"target": "Lui prende del formaggio.",
+"ru": "Он берёт сыр.",
+"uk": "Він бере сир.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Io",
+"Loro",
+"Tu",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "prende",
+"distractors": [
+"prendo",
+"prendiamo",
+"prendono",
+"prendete",
+"burro"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "formaggio",
+"distractors": [
+"cucchiaio",
+"piatto",
+"dell’olio",
+"dividiamo",
+"burro"
+]
+}
+],
+"alternatives": [
+"Prende del formaggio."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:08",
+"target": "Prendono dell’insalata.",
+"ru": "Они берут салат.",
+"uk": "Вони беруть салат.",
+"tiles": [
+{
+"correct": "Prendono",
+"distractors": [
+"Prendi",
+"Prendo",
+"Prende",
+"Prendiamo",
+"Prendete"
+]
+},
+{
+"correct": "dell’insalata",
+"distractors": [
+"prendo",
+"bevo",
+"beve",
+"prendiamo",
+"prende"
+]
+}
+],
+"alternatives": [
+"Loro prendono dell’insalata."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:09",
+"target": "Vorrei del riso.",
+"ru": "Я бы хотел риса.",
+"uk": "Я хотів би трохи рису.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Prende",
+"Prendi",
+"Compri",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "riso",
+"distractors": [
+"metto",
+"chilo",
+"olio",
+"prosciutto",
+"burro"
+]
+}
+],
+"alternatives": [
+"Io vorrei del riso."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:10",
+"target": "Vorrei dell’olio.",
+"ru": "Я бы хотел растительного масла.",
+"uk": "Я б хотів рослинної олії.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Prende",
+"Prendi",
+"Compri",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "dell’olio",
+"distractors": [
+"beviamo",
+"prendo",
+"compro",
+"mangiano",
+"prendono"
+]
+}
+],
+"alternatives": [
+"Io vorrei dell’olio."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:11",
+"target": "Compro del burro.",
+"ru": "Я покупаю сливочное масло.",
+"uk": "Я купую вершкове масло.",
+"tiles": [
+{
+"correct": "Compro",
+"distractors": [
+"Compriamo",
+"Compri",
+"Prende",
+"Prendi",
+"Vorrei"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "burro",
+"distractors": [
+"rimasto",
+"riso",
+"pollo",
+"chilo",
+"mangiano"
+]
+}
+],
+"alternatives": [
+"Io compro del burro."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:12",
+"target": "Compro della farina.",
+"ru": "Я покупаю муку.",
+"uk": "Я купую борошно.",
+"tiles": [
+{
+"correct": "Compro",
+"distractors": [
+"Compriamo",
+"Compri",
+"Prende",
+"Prendi",
+"Vorrei"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "farina",
+"distractors": [
+"compra",
+"pasta",
+"mangia",
+"fresca",
+"nella"
+]
+}
+],
+"alternatives": [
+"Io compro della farina."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:13",
+"target": "Compriamo del pesce.",
+"ru": "Мы покупаем рыбу.",
+"uk": "Ми купуємо рибу.",
+"tiles": [
+{
+"correct": "Compriamo",
+"distractors": [
+"Compro",
+"Compra",
+"Compri",
+"Prende",
+"Prendi"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pesce",
+"distractors": [
+"miele",
+"mele",
+"senape",
+"verdure",
+"pane"
+]
+}
+],
+"alternatives": [
+"Noi compriamo del pesce."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:14",
+"target": "Compri della panna.",
+"ru": "Ты покупаешь сливки.",
+"uk": "Ти купуєш вершки.",
+"tiles": [
+{
+"correct": "Compri",
+"distractors": [
+"Compra",
+"Compriamo",
+"Compro",
+"Prende",
+"Prendi"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "panna",
+"distractors": [
+"rimasta",
+"compra",
+"d’acqua",
+"farina",
+"zuppa"
+]
+}
+],
+"alternatives": [
+"Tu compri della panna."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:15",
+"target": "Lui compra dell’aglio.",
+"ru": "Он покупает чеснок.",
+"uk": "Він купує часник.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Voi",
+"Noi"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"compriamo",
+"compri",
+"farina",
+"zuppa",
+"rimasta"
+]
+},
+{
+"correct": "dell’aglio",
+"distractors": [
+"formaggio",
+"prosciutto",
+"burro",
+"prendiamo",
+"prendono"
+]
+}
+],
+"alternatives": [
+"Compra dell’aglio."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:16",
+"target": "Lei compra del prosciutto.",
+"ru": "Она покупает ветчину.",
+"uk": "Вона купує шинку.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Lui",
+"Loro",
+"Io",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"compriamo",
+"compri",
+"farina",
+"zuppa",
+"rimasta"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"della",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "prosciutto",
+"distractors": [
+"dell’olio",
+"dell’aglio",
+"pollo",
+"dividiamo",
+"burro"
+]
+}
+],
+"alternatives": [
+"Compra del prosciutto."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:17",
+"target": "Mangio del pollo.",
+"ru": "Я ем курицу.",
+"uk": "Я їм курку.",
+"tiles": [
+{
+"correct": "Mangio",
+"distractors": [
+"Mangiamo",
+"Mangiano",
+"Mangi",
+"Prende",
+"Prendi"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"della",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pollo",
+"distractors": [
+"metto",
+"mangiamo",
+"rimasto",
+"succo",
+"beviamo"
+]
+}
+],
+"alternatives": [
+"Io mangio del pollo."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:18",
+"target": "Mangi della composta di mele.",
+"ru": "Ты ешь яблочное пюре.",
+"uk": "Ти їси яблучне пюре.",
+"tiles": [
+{
+"correct": "Mangi",
+"distractors": [
+"Mangiamo",
+"Mangia",
+"Mangio",
+"Mangiano",
+"Prende"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "composta",
+"distractors": [
+"rimasta",
+"farina",
+"bottiglia",
+"tazza",
+"zuppa"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "mele",
+"distractors": [
+"fragole",
+"senape",
+"patatine",
+"latte",
+"verdure"
+]
+}
+],
+"alternatives": [
+"Tu mangi della composta di mele."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:19",
+"target": "Mangiamo della pasta.",
+"ru": "Мы едим макароны.",
+"uk": "Ми їмо макарони.",
+"tiles": [
+{
+"correct": "Mangiamo",
+"distractors": [
+"Mangio",
+"Mangi",
+"Mangiano",
+"Mangia",
+"Prende"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "pasta",
+"distractors": [
+"panna",
+"salsa",
+"mela",
+"composta",
+"rimasta"
+]
+}
+],
+"alternatives": [
+"Noi mangiamo della pasta."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:20",
+"target": "Mangiano delle fragole.",
+"ru": "Они едят клубнику.",
+"uk": "Вони їдять полуницю.",
+"tiles": [
+{
+"correct": "Mangiano",
+"distractors": [
+"Mangiamo",
+"Mangia",
+"Mangio",
+"Mangi",
+"Prende"
+]
+},
+{
+"correct": "delle",
+"distractors": [
+"del",
+"della",
+"dei",
+"dello",
+"degli"
+]
+},
+{
+"correct": "fragole",
+"distractors": [
+"sale",
+"pepe",
+"patatine",
+"pesce",
+"latte"
+]
+}
+],
+"alternatives": [
+"Loro mangiano delle fragole."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:21",
+"target": "Bevo del tè.",
+"ru": "Я пью чай.",
+"uk": "Я п’ю чай.",
+"tiles": [
+{
+"correct": "Bevo",
+"distractors": [
+"Beve",
+"Beviamo",
+"C’è",
+"Dell’aglio",
+"Caffè"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "tè",
+"distractors": [
+"c’è",
+"caffè",
+"nella",
+"compra",
+"della"
+]
+}
+],
+"alternatives": [
+"Io bevo del tè."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:22",
+"target": "Lei beve dell’acqua.",
+"ru": "Она пьет воду.",
+"uk": "Вона п’є воду.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Tu",
+"Voi"
+]
+},
+{
+"correct": "beve",
+"distractors": [
+"bevo",
+"beviamo",
+"latte",
+"mele",
+"compro"
+]
+},
+{
+"correct": "dell’acqua",
+"distractors": [
+"dell’insalata",
+"rimasta",
+"d’acqua",
+"composta",
+"marmellata"
+]
+}
+],
+"alternatives": [
+"Beve dell’acqua."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:23",
+"target": "Beviamo del succo di mela.",
+"ru": "Мы пьем яблочный сок.",
+"uk": "Ми п’ємо яблучний сік.",
+"tiles": [
+{
+"correct": "Beviamo",
+"distractors": [
+"Beve",
+"Bevo",
+"C’è",
+"Dell’aglio",
+"Caffè"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "succo",
+"distractors": [
+"compro",
+"chilo",
+"prosciutto",
+"olio",
+"pollo"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "mela",
+"distractors": [
+"zuppa",
+"salsa",
+"nella",
+"rimasta",
+"farina"
+]
+}
+],
+"alternatives": [
+"Noi beviamo del succo di mela."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:24",
+"target": "Beve del caffè?",
+"ru": "Вы пьёте кофе?",
+"uk": "Ви п’єте каву?",
+"tiles": [
+{
+"correct": "Beve",
+"distractors": [
+"Maglione",
+"Persone",
+"Chi",
+"Cosa",
+"Quanti"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"dei",
+"della",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"c’è",
+"tè",
+"farina",
+"metto",
+"aggiunge"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:25",
+"target": "Aggiungo del sale.",
+"ru": "Я добавляю соль.",
+"uk": "Я додаю сіль.",
+"tiles": [
+{
+"correct": "Aggiungo",
+"distractors": [
+"Chilo",
+"Cucchiaio",
+"Burro",
+"Formaggio",
+"Dell’aglio"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "sale",
+"distractors": [
+"latte",
+"mele",
+"te",
+"pane",
+"beve"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:26",
+"target": "Lei aggiunge del pepe.",
+"ru": "Она добавляет перец.",
+"uk": "Вона додає перець.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Tu",
+"Io",
+"Lui",
+"Loro",
+"Noi"
+]
+},
+{
+"correct": "aggiunge",
+"distractors": [
+"miele",
+"verdure",
+"molte",
+"pesce",
+"bicchiere"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pepe",
+"distractors": [
+"carne",
+"pesce",
+"fragole",
+"verdure",
+"senape"
+]
+}
+],
+"alternatives": [
+"Aggiunge del pepe."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:27",
+"target": "Aggiungi della senape.",
+"ru": "Ты добавляешь горчицу.",
+"uk": "Ти додаєш гірчицю.",
+"tiles": [
+{
+"correct": "Aggiungi",
+"distractors": [
+"Vorrei",
+"Prendi",
+"Mangi",
+"Prende",
+"Compri"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"delle",
+"degli",
+"siamo"
+]
+},
+{
+"correct": "senape",
+"distractors": [
+"beve",
+"pepe",
+"carne",
+"pesce",
+"verdure"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:28",
+"target": "È rimasto dello zucchero.",
+"ru": "Осталось немного сахара.",
+"uk": "Залишилося трохи цукру.",
+"tiles": [
+{
+"correct": "È",
+"distractors": [
+"Siamo",
+"Succo",
+"Ci",
+"C’è",
+"La"
+]
+},
+{
+"correct": "rimasto",
+"distractors": [
+"cucchiaio",
+"aggiungo",
+"burro",
+"pollo",
+"prendiamo"
+]
+},
+{
+"correct": "dello",
+"distractors": [
+"del",
+"dei",
+"degli",
+"siamo",
+"sei"
+]
+},
+{
+"correct": "zucchero",
+"distractors": [
+"dell’olio",
+"dell’aglio",
+"cucchiaio",
+"beviamo",
+"burro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:29",
+"target": "È rimasta della marmellata.",
+"ru": "Осталось немного джема.",
+"uk": "Залишилося трохи варення.",
+"tiles": [
+{
+"correct": "È",
+"distractors": [
+"Siamo",
+"Ci",
+"La",
+"Una",
+"Si"
+]
+},
+{
+"correct": "rimasta",
+"distractors": [
+"tazza",
+"bottiglia",
+"farina",
+"salsa",
+"zuppa"
+]
+},
+{
+"correct": "della",
+"distractors": [
+"del",
+"dei",
+"degli",
+"zuppa",
+"giacca"
+]
+},
+{
+"correct": "marmellata",
+"distractors": [
+"dell’acqua",
+"dell’insalata",
+"zuppa",
+"panna",
+"d’acqua"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:30",
+"target": "È rimasta dell’acqua fresca.",
+"ru": "Осталось немного свежей воды.",
+"uk": "Залишилося трохи свіжої води.",
+"tiles": [
+{
+"correct": "È",
+"distractors": [
+"Siamo",
+"Salsa",
+"Ci",
+"C’è",
+"La"
+]
+},
+{
+"correct": "rimasta",
+"distractors": [
+"salsa",
+"farina",
+"bottiglia",
+"mela",
+"zuppa"
+]
+},
+{
+"correct": "dell’acqua",
+"distractors": [
+"dell’insalata",
+"marmellata",
+"composta",
+"d’acqua",
+"zuppa"
+]
+},
+{
+"correct": "fresca",
+"distractors": [
+"composta",
+"mela",
+"nella",
+"farina",
+"tazza"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:31",
+"target": "Non bevo latte.",
+"ru": "Я не пью молоко.",
+"uk": "Я не п’ю молока.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "bevo",
+"distractors": [
+"beve",
+"beviamo",
+"mele",
+"compro",
+"riso"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"aggiunge",
+"beve",
+"sale",
+"patatine",
+"mele"
+]
+}
+],
+"alternatives": [
+"Io non bevo latte."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:32",
+"target": "Non mangiamo carne.",
+"ru": "Мы не едим мясо.",
+"uk": "Ми не їмо м’яса.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "mangiamo",
+"distractors": [
+"mangia",
+"mangio",
+"mangiano",
+"mangi",
+"zuppa"
+]
+},
+{
+"correct": "carne",
+"distractors": [
+"sale",
+"molte",
+"mele",
+"patatine",
+"pane"
+]
+}
+],
+"alternatives": [
+"Noi non mangiamo carne."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:33",
+"target": "Lui non beve caffè.",
+"ru": "Он не пьет кофе.",
+"uk": "Він не п’є каву.",
+"tiles": [
+{
+"correct": "Lui",
+"distractors": [
+"Loro",
+"Io",
+"Tu",
+"Noi",
+"Voi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"più",
+"già",
+"ancora",
+"po’",
+"molto"
+]
+},
+{
+"correct": "beve",
+"distractors": [
+"bevo",
+"beviamo",
+"latte",
+"mele",
+"compro"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"c’è",
+"compro",
+"dell’aglio",
+"mangiamo",
+"nella"
+]
+}
+],
+"alternatives": [
+"Non beve caffè."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:34",
+"target": "Lei non compra burro.",
+"ru": "Она не покупает сливочное масло.",
+"uk": "Вона не купує вершкове масло.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Tu",
+"Io",
+"Lui",
+"Noi"
+]
+},
+{
+"correct": "non",
+"distractors": [
+"già",
+"più",
+"ancora",
+"po’",
+"molto"
+]
+},
+{
+"correct": "compra",
+"distractors": [
+"compriamo",
+"compri",
+"farina",
+"zuppa",
+"rimasta"
+]
+},
+{
+"correct": "burro",
+"distractors": [
+"bevo",
+"dell’aglio",
+"riso",
+"zucchero",
+"compro"
+]
+}
+],
+"alternatives": [
+"Non compra burro."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:35",
+"target": "Non aggiungi sale?",
+"ru": "Ты не добавляешь соль?",
+"uk": "Ти не додаєш сіль?",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Più",
+"Ancora",
+"Quante",
+"Chi"
+]
+},
+{
+"correct": "aggiungi",
+"distractors": [
+"vorrei",
+"prendi",
+"mangi",
+"compri",
+"prendo"
+]
+},
+{
+"correct": "sale",
+"distractors": [
+"latte",
+"mele",
+"te",
+"pane",
+"beve"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:36",
+"target": "Non ho più farina.",
+"ru": "У меня закончилась мука.",
+"uk": "У мене закінчилося борошно.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "ho",
+"distractors": [
+"ha",
+"abbiamo",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"troppo",
+"molto",
+"già",
+"ancora",
+"po’"
+]
+},
+{
+"correct": "farina",
+"distractors": [
+"panna",
+"salsa",
+"rimasta",
+"tazza",
+"composta"
+]
+}
+],
+"alternatives": [
+"Io non ho più farina."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:37",
+"target": "Non abbiamo più olio.",
+"ru": "У нас закончилось растительное масло.",
+"uk": "У нас закінчилося рослинне масло.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "abbiamo",
+"distractors": [
+"ha",
+"ho",
+"hai",
+"hanno",
+"avete"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"po’",
+"già",
+"ancora",
+"molto",
+"troppo"
+]
+},
+{
+"correct": "olio",
+"distractors": [
+"metto",
+"pollo",
+"riso",
+"burro",
+"chilo"
+]
+}
+],
+"alternatives": [
+"Noi non abbiamo più olio."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:38",
+"target": "Non c’è più riso.",
+"ru": "Риса не осталось.",
+"uk": "Рису не залишилося.",
+"tiles": [
+{
+"correct": "Non",
+"distractors": [
+"Già",
+"Ancora",
+"Lavora",
+"Mia",
+"Posto"
+]
+},
+{
+"correct": "c’è",
+"distractors": [
+"caffè",
+"zuppa",
+"latte",
+"della",
+"una"
+]
+},
+{
+"correct": "più",
+"distractors": [
+"po’",
+"troppo",
+"già",
+"ancora",
+"molto"
+]
+},
+{
+"correct": "riso",
+"distractors": [
+"prendo",
+"compro",
+"burro",
+"piatto",
+"succo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:39",
+"target": "Vorrei un po’ di zuppa.",
+"ru": "Я бы хотел немного супа.",
+"uk": "Я б хотів трохи супу.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Prende",
+"Prendi",
+"Compri",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"lo",
+"i",
+"le",
+"che"
+]
+},
+{
+"correct": "po’",
+"distractors": [
+"più",
+"troppo",
+"molto",
+"poco",
+"non"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "zuppa",
+"distractors": [
+"mela",
+"rimasta",
+"d’acqua",
+"farina",
+"compra"
+]
+}
+],
+"alternatives": [
+"Io vorrei un po’ di zuppa."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:40",
+"target": "Lei mangia molte verdure.",
+"ru": "Она ест много овощей.",
+"uk": "Вона їсть багато овочів.",
+"tiles": [
+{
+"correct": "Lei",
+"distractors": [
+"Loro",
+"Io",
+"Lui",
+"Tu",
+"Noi"
+]
+},
+{
+"correct": "mangia",
+"distractors": [
+"mangi",
+"mangiamo",
+"mangiano",
+"zuppa",
+"rimasta"
+]
+},
+{
+"correct": "molte",
+"distractors": [
+"miele",
+"carne",
+"aggiunge",
+"pepe",
+"pesce"
+]
+},
+{
+"correct": "verdure",
+"distractors": [
+"beve",
+"aggiunge",
+"carne",
+"latte",
+"miele"
+]
+}
+],
+"alternatives": [
+"Mangia molte verdure."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:41",
+"target": "Vorrei un bicchiere d’acqua.",
+"ru": "Я бы хотел стакан воды.",
+"uk": "Я б хотів склянку води.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Prende",
+"Prendi",
+"Compri",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"lo",
+"i",
+"che"
+]
+},
+{
+"correct": "bicchiere",
+"distractors": [
+"senape",
+"patatine",
+"fragole",
+"verdure",
+"aggiunge"
+]
+},
+{
+"correct": "d’acqua",
+"distractors": [
+"dell’acqua",
+"mangia",
+"pasta",
+"marmellata",
+"mela"
+]
+}
+],
+"alternatives": [
+"Io vorrei un bicchiere d’acqua."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:42",
+"target": "Compra un chilo di mele.",
+"ru": "Он покупает килограмм яблок.",
+"uk": "Він купує кілограм яблук.",
+"tiles": [
+{
+"correct": "Compra",
+"distractors": [
+"Compriamo",
+"Compri",
+"Prende",
+"Prendi",
+"Vorrei"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"una",
+"le",
+"gli",
+"che"
+]
+},
+{
+"correct": "chilo",
+"distractors": [
+"riso",
+"rimasto",
+"zucchero",
+"mangiamo",
+"prendono"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "mele",
+"distractors": [
+"senape",
+"beve",
+"latte",
+"patatine",
+"pesce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:43",
+"target": "Prendiamo una bottiglia di latte.",
+"ru": "Мы берём бутылку молока.",
+"uk": "Ми беремо пляшку молока.",
+"tiles": [
+{
+"correct": "Prendiamo",
+"distractors": [
+"Prendo",
+"Prendi",
+"Prende",
+"Prendono",
+"Prendete"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"un",
+"i",
+"che",
+"e"
+]
+},
+{
+"correct": "bottiglia",
+"distractors": [
+"dell’acqua",
+"farina",
+"fresca",
+"composta",
+"rimasta"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"molte",
+"prende",
+"mele",
+"sale",
+"miele"
+]
+}
+],
+"alternatives": [
+"Noi prendiamo una bottiglia di latte."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:44",
+"target": "Vuoi una tazza di tè?",
+"ru": "Хочешь чашку чая?",
+"uk": "Хочеш чашку чаю?",
+"tiles": [
+{
+"correct": "Vuoi",
+"distractors": [
+"Suo",
+"Mio",
+"Sua",
+"Sue",
+"Tuo"
+]
+},
+{
+"correct": "una",
+"distractors": [
+"il",
+"i",
+"le",
+"lo",
+"che"
+]
+},
+{
+"correct": "tazza",
+"distractors": [
+"fresca",
+"d’acqua",
+"pasta",
+"panna",
+"compra"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"in",
+"a",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "tè",
+"distractors": [
+"c’è",
+"caffè",
+"panna",
+"mele",
+"pane"
+]
+}
+],
+"alternatives": [
+"Tu vuoi una tazza di tè?"
+]
+},
+{
+"lesson": 12,
+"id": "it:12:45",
+"target": "Aggiunge un cucchiaio di miele.",
+"ru": "Она добавляет ложку меда.",
+"uk": "Вона додає ложку меду.",
+"tiles": [
+{
+"correct": "Aggiunge",
+"distractors": [
+"Pesce",
+"Latte",
+"Bicchiere",
+"Patatine",
+"Molte"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"le",
+"la",
+"gli",
+"i",
+"che"
+]
+},
+{
+"correct": "cucchiaio",
+"distractors": [
+"chilo",
+"compriamo",
+"compro",
+"formaggio",
+"aggiungo"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "miele",
+"distractors": [
+"beve",
+"fragole",
+"carne",
+"pesce",
+"verdure"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:46",
+"target": "Vorrei del pane e del burro.",
+"ru": "Я бы хотел хлеб с маслом.",
+"uk": "Я б хотів хліба з маслом.",
+"tiles": [
+{
+"correct": "Vorrei",
+"distractors": [
+"Prende",
+"Prendi",
+"Compri",
+"Mangi",
+"Aggiungi"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pane",
+"distractors": [
+"miele",
+"pepe",
+"fragole",
+"latte",
+"senape"
+]
+},
+{
+"correct": "e",
+"distractors": [
+"che",
+"se",
+"quando",
+"mentre",
+"come"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"dello",
+"degli"
+]
+},
+{
+"correct": "burro",
+"distractors": [
+"bevo",
+"zucchero",
+"olio",
+"compro",
+"riso"
+]
+}
+],
+"alternatives": [
+"Io vorrei del pane e del burro."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:47",
+"target": "C’è dell’aglio nella salsa.",
+"ru": "В соусе есть чеснок.",
+"uk": "У соусі є часник.",
+"tiles": [
+{
+"correct": "C’è",
+"distractors": [
+"Caffè",
+"Beviamo",
+"Fresca",
+"Pasta",
+"Ci"
+]
+},
+{
+"correct": "dell’aglio",
+"distractors": [
+"formaggio",
+"prendiamo",
+"dividiamo",
+"prosciutto",
+"beviamo"
+]
+},
+{
+"correct": "nella",
+"distractors": [
+"nel",
+"negli",
+"nei",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "salsa",
+"distractors": [
+"tazza",
+"zuppa",
+"rimasta",
+"compra",
+"pasta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:48",
+"target": "Prendo del pesce con il riso.",
+"ru": "Я закажу рыбу с рисом.",
+"uk": "Я візьму рибу з рисом.",
+"tiles": [
+{
+"correct": "Prendo",
+"distractors": [
+"Prendi",
+"Prende",
+"Prendono",
+"Prendiamo",
+"Prendete"
+]
+},
+{
+"correct": "del",
+"distractors": [
+"della",
+"dei",
+"delle",
+"degli",
+"dello"
+]
+},
+{
+"correct": "pesce",
+"distractors": [
+"latte",
+"pane",
+"miele",
+"aggiunge",
+"molte"
+]
+},
+{
+"correct": "con",
+"distractors": [
+"in",
+"di",
+"per",
+"fra",
+"da"
+]
+},
+{
+"correct": "il",
+"distractors": [
+"la",
+"le",
+"una",
+"lo",
+"che"
+]
+},
+{
+"correct": "riso",
+"distractors": [
+"pollo",
+"succo",
+"olio",
+"compro",
+"beviamo"
+]
+}
+],
+"alternatives": [
+"Io prendo del pesce con il riso."
+]
+},
+{
+"lesson": 12,
+"id": "it:12:49",
+"target": "Dividiamo un piatto di patatine.",
+"ru": "Мы берём одну тарелку картошки фри на всех.",
+"uk": "Ми беремо одну тарілку картоплі фрі на всіх.",
+"tiles": [
+{
+"correct": "Dividiamo",
+"distractors": [
+"Prosciutto",
+"Dell’aglio",
+"Aggiungo",
+"Rimasto",
+"Questo"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"i",
+"gli",
+"che"
+]
+},
+{
+"correct": "piatto",
+"distractors": [
+"dell’olio",
+"burro",
+"prendo",
+"formaggio",
+"olio"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "patatine",
+"distractors": [
+"molte",
+"bicchiere",
+"verdure",
+"fragole",
+"pesce"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "it:12:50",
+"target": "Metto un po’ di latte nel caffè.",
+"ru": "Я добавляю немного молока в кофе.",
+"uk": "Я додаю трохи молока до кави.",
+"tiles": [
+{
+"correct": "Metto",
+"distractors": [
+"Metti",
+"Vicino",
+"Fuori",
+"Lì",
+"Qui"
+]
+},
+{
+"correct": "un",
+"distractors": [
+"la",
+"le",
+"una",
+"gli",
+"che"
+]
+},
+{
+"correct": "po’",
+"distractors": [
+"molto",
+"troppo",
+"più",
+"non",
+"quanto"
+]
+},
+{
+"correct": "di",
+"distractors": [
+"a",
+"in",
+"per",
+"con",
+"da"
+]
+},
+{
+"correct": "latte",
+"distractors": [
+"beve",
+"miele",
+"pesce",
+"verdure",
+"aggiunge"
+]
+},
+{
+"correct": "nel",
+"distractors": [
+"nella",
+"nei",
+"negli",
+"casa",
+"borsa"
+]
+},
+{
+"correct": "caffè",
+"distractors": [
+"c’è",
+"non",
+"riso",
+"tè",
+"prende"
+]
+}
+],
+"alternatives": [
+"Io metto un po’ di latte nel caffè."
+]
+}
+]

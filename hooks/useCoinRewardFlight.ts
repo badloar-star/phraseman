@@ -1,6 +1,6 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
-import { useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import { useReduceMotionPreference } from './use_reduce_motion';
 
 import type { CoinRewardFlightPoint } from '../components/rewards/CoinRewardFlight';
 
@@ -27,24 +27,19 @@ import type { CoinRewardFlightPoint } from '../components/rewards/CoinRewardFlig
  * блокировать переход к следующему вопросу, ровно как в оригинале.
  */
 export function useCoinRewardFlight() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReduceMotionPreference();
+  const reducedMotionRef = useRef(reducedMotion);
   const originRef = useRef<View>(null);
   const counterRef = useRef<View>(null);
-  const bump = useSharedValue(1);
+  const mountedRef = useRef(false);
+  const lifetimeRef = useRef(0);
+  const requestRef = useRef(0);
   const [flight, setFlight] = useState<Readonly<{
     key: number;
     count: 1 | 2 | 3;
     from: CoinRewardFlightPoint;
     to: CoinRewardFlightPoint;
   }> | null>(null);
-
-  const bumpCounter = useCallback(() => {
-    if (reducedMotion) return;
-    bump.value = withSequence(
-      withTiming(1.28, { duration: 140 }),
-      withTiming(1, { duration: 220 }),
-    );
-  }, [bump, reducedMotion]);
 
   /*
    * Монотонный ключ полёта.
@@ -56,15 +51,37 @@ export function useCoinRewardFlight() {
    */
   const flightKeyRef = useRef(0);
 
+  useEffect(() => {
+    mountedRef.current = true;
+    lifetimeRef.current += 1;
+    return () => {
+      mountedRef.current = false;
+      lifetimeRef.current += 1;
+      requestRef.current += 1;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (reducedMotionRef.current === reducedMotion) return;
+    reducedMotionRef.current = reducedMotion;
+    // A committed accessibility-mode transition supersedes native work started
+    // under the previous committed mode.
+    requestRef.current += 1;
+  }, [reducedMotion]);
+
   const fly = useCallback((rawCount: number) => {
     const count = Math.max(1, Math.min(3, Math.round(rawCount))) as 1 | 2 | 3;
-    bumpCounter();
-    if (reducedMotion) return;
+    const request = requestRef.current + 1;
+    requestRef.current = request;
+    const lifetime = lifetimeRef.current;
+    if (reducedMotionRef.current !== false) return;
     const origin = originRef.current;
     const counter = counterRef.current;
     if (!origin || !counter) return;
     origin.measureInWindow((fromX, fromY, fromWidth, fromHeight) => {
+      if (!mountedRef.current || reducedMotionRef.current !== false || lifetimeRef.current !== lifetime || requestRef.current !== request) return;
       counter.measureInWindow((toX, toY, toWidth, toHeight) => {
+        if (!mountedRef.current || reducedMotionRef.current !== false || lifetimeRef.current !== lifetime || requestRef.current !== request) return;
         flightKeyRef.current += 1;
         setFlight({
           key: flightKeyRef.current,
@@ -74,11 +91,19 @@ export function useCoinRewardFlight() {
         });
       });
     });
-  }, [bumpCounter, reducedMotion]);
+  }, []);
 
-  const clearFlight = useCallback(() => setFlight(null), []);
+  const displayedKey = flight?.key ?? null;
+  const clearFlight = useCallback(() => {
+    if (displayedKey === null) {
+      requestRef.current += 1;
+      setFlight(null);
+      return;
+    }
+    setFlight((current) => current?.key === displayedKey ? null : current);
+  }, [displayedKey]);
 
-  return { originRef, counterRef, bump, fly, flight, clearFlight };
+  return { originRef, counterRef, fly, flight, clearFlight };
 }
 
 export type UseCoinRewardFlightResult = ReturnType<typeof useCoinRewardFlight>;

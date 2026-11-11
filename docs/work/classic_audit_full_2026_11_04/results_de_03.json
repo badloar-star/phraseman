@@ -1,0 +1,9 @@
+[
+  {"id": "de:12:04", "type": "B1", "field": "tiles", "problem": "Соблазн «aufs» даёт верную фразу «Tom legt das Buch aufs Regal.» = «кладёт книгу на полку», её нет в alternatives", "fix": {"position": 4, "replace_distractor": "aufs", "with": "zur"}},
+  {"id": "de:13:17", "type": "B1", "field": "tiles", "problem": "Соблазн «an» даёт синоним «Ich schalte das Radio an.» = «включаю радио», его нет в alternatives", "fix": {"position": 4, "replace_distractor": "an", "with": "mit"}},
+  {"id": "de:13:25", "type": "B2", "field": "uk", "problem": "uk «цими вихідними» = в эти конкретные выходные (и разговорное «шопінг»), а ru «по выходным» = обычно; ru и uk расходятся по смыслу", "fix": "На вихідних я ходжу за покупками."},
+  {"id": "de:14:14", "type": "B2", "field": "ru", "problem": "Потерян притяжательный «sein» (свой билет)", "fix": "Том должен показать свой билет."},
+  {"id": "de:14:14", "type": "B2", "field": "uk", "problem": "Потерян притяжательный «sein» (свій квиток)", "fix": "Том має показати свій квиток."},
+  {"id": "de:14:17", "type": "B1", "field": "tiles", "problem": "Соблазн «reservieren» даёт допустимую фразу «Muss ich einen Termin reservieren?» = «записаться на приём», её нет в alternatives", "fix": {"position": 4, "replace_distractor": "reservieren", "with": "schwimmen"}},
+  {"id": "de:14:27", "type": "B1", "field": "tiles", "problem": "Соблазн «mitbringen» даёт почти синонимичную фразу «Ihr dürft das Fahrrad mitbringen.» = «взять/привезти с собой велосипед», её нет в alternatives", "fix": {"position": 4, "replace_distractor": "mitbringen", "with": "aufstehen"}}
+]

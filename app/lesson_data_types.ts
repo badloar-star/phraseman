@@ -6,6 +6,21 @@ export type LessonPhraseSourceLocales = Partial<
   Record<HeisenbergSourceLocale, string>
 >;
 
+export type ClassicLessonSourceLocale =
+  | "ru"
+  | "uk"
+  | "en"
+  | "es"
+  | "pt-BR"
+  | "vi"
+  | "id"
+  | "tr"
+  | "pl";
+
+export type ClassicLessonSourceLocales = Readonly<
+  Record<ClassicLessonSourceLocale, string>
+>;
+
 export interface LessonWord {
   text: string; // The word
   correct: string; // Same as text (for validation)
@@ -75,6 +90,8 @@ export interface LessonPhrase {
   classic?: {
     lang: 'en' | 'es' | 'fr' | 'de' | 'it';
     rev: string;
+    /** Complete source prompts from the classic record; isolated from the Heisenberg locale contract. */
+    sourceLocales?: ClassicLessonSourceLocales;
     /** Допустимые последовательности плиток (если в данных курса есть). */
     accepted?: string[][];
     clarifierKeys?: string[];
@@ -199,34 +216,11 @@ export interface LessonIntroScreen {
    * рендерятся статично. Раскрывается опт-ин, без legacy reward, tap-only.
    */
   interaction?: IntroInteraction;
-  /** Learning V2 only: canonical task slot 1–3 embedded in this exact page. */
-  learningV2EmbeddedQuestion?: LearningV2EmbeddedIntroQuestion;
   /**
    * Уникальный цвет темы для этого экрана/урока. Если не задан — рендерер
    * берёт topicAccent из реестра по lessonId, иначе fallback на t.accent темы.
    */
   topicAccent?: TopicAccent;
-}
-
-export interface LearningV2EmbeddedIntroQuestion {
-  kind: "embedded_intro_question";
-  taskSlot: 1 | 2 | 3;
-  questionId: string;
-  promptByLocale: Record<
-    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
-    string
-  >;
-  choicesByLocale: Record<
-    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
-    readonly string[]
-  >;
-  /** Stable evaluator/feedback response ids in the same displayed order. */
-  responseIdsInVisibleOrder?: readonly string[];
-  correctChoiceIndex: number;
-  explanationByLocale: Record<
-    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
-    string
-  >;
 }
 
 // V2 Intro Screen types — rich inline markup with tones and line types

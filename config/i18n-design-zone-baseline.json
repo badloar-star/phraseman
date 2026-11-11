@@ -1,6 +1,6 @@
 {
   "totals": {
-    "literals": 1291,
+    "literals": 1274,
     "incomplete": 0
   },
   "files": {
@@ -404,10 +404,6 @@
       "literals": 9,
       "incomplete": 0
     },
-    "components/LearningV2SessionOutcomeSheet.tsx": {
-      "literals": 16,
-      "incomplete": 0
-    },
     "components/MedalToast.tsx": {
       "literals": 24,
       "incomplete": 0
@@ -445,10 +441,6 @@
       "incomplete": 0
     },
     "components/friends_together/DevBotsSheet.tsx": {
-      "literals": 1,
-      "incomplete": 0
-    },
-    "components/learning-v2/LearningV2ChaptersCourse.tsx": {
       "literals": 1,
       "incomplete": 0
     },

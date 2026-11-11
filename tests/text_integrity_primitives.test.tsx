@@ -281,7 +281,6 @@ test('dedicated RNTL config discovers TSX without replacing React Native', () =>
   const repoRoot = pathNode.resolve(__dirname, '..');
   expect(config.testMatch).toEqual(expect.arrayContaining([
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
-    '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
     '<rootDir>/tests/nickname_edit_modal_availability.test.tsx',
   ]));
   for (const entry of config.testMatch) {

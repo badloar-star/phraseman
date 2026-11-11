@@ -21,8 +21,13 @@ describe('manage subscription: included benefits use the mockup outline icons', 
     }
   });
 
-  it('draws the benefit icon at 22 px in the theme tint, like the mockup', () => {
-    expect(src).toContain('<Ionicons name={benefit.icon} size={22} color={glass.lightTint} />');
-    expect(src).toContain('<Ionicons name="checkmark" size={20} color={glass.lightTint} />');
+  // зачем (владелец 11.11, макет plus-screens-duo-2026-11-11, раздел B): строки «Что включено» рисует ManageSubscriptionDuoView —
+  // значок по-прежнему контурный 22 px, но цвет теперь от уровня подписки (Ultra — коралловый, Plus — фиолетовый; в светлой теме — цвет текста).
+  it('draws the benefit icon at 22 px in the tier accent, like the mockup', () => {
+    const view = fs.readFileSync(path.join(__dirname, '..', 'components', 'manage-subscription', 'ManageSubscriptionDuoView.tsx'), 'utf8');
+    expect(src).toContain('icon: benefit.icon');
+    expect(view).toContain('<Ionicons name={benefit.icon} size={22} color={accent} />');
+    expect(view).toContain('<Ionicons name="checkmark" size={18} color={accent} />');
+    expect(view).toContain('const accent = g.isLight ? g.text : colors[0];');
   });
 });

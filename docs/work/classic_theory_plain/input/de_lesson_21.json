@@ -1,0 +1,736 @@
+{
+ "lang": "de",
+ "lesson": 21,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:21:01",
+   "target": "Ich bleibe hier, weil ich müde bin.",
+   "ru": "Я останусь здесь, потому что устал.",
+   "uk": "Я залишусь тут, бо втомився."
+  },
+  {
+   "id": "de:21:02",
+   "target": "Anna bleibt hier, weil sie krank ist.",
+   "ru": "Анна остаётся здесь, потому что болеет.",
+   "uk": "Анна залишається тут, тому що хворіє."
+  },
+  {
+   "id": "de:21:03",
+   "target": "Tom geht nach Hause, weil er friert.",
+   "ru": "Том идёт домой, потому что мёрзнет.",
+   "uk": "Том іде додому, бо мерзне."
+  },
+  {
+   "id": "de:21:04",
+   "target": "Wir warten, weil der Zug spät kommt.",
+   "ru": "Мы ждём, потому что поезд опаздывает.",
+   "uk": "Ми чекаємо, тому що потяг спізнюється."
+  },
+  {
+   "id": "de:21:05",
+   "target": "Du brauchst eine Jacke, weil es kalt ist.",
+   "ru": "Тебе нужна куртка, потому что холодно.",
+   "uk": "Тобі потрібна куртка, бо холодно."
+  },
+  {
+   "id": "de:21:06",
+   "target": "Ich nehme den Bus, weil es regnet.",
+   "ru": "Я еду на автобусе, потому что идёт дождь.",
+   "uk": "Я їду автобусом, тому що йде дощ."
+  },
+  {
+   "id": "de:21:07",
+   "target": "Anna trinkt Wasser, weil sie Durst hat.",
+   "ru": "Анна пьёт воду, потому что хочет пить.",
+   "uk": "Анна п'є воду, бо хоче пити."
+  },
+  {
+   "id": "de:21:08",
+   "target": "Tom isst jetzt, weil er Hunger hat.",
+   "ru": "Том ест сейчас, потому что проголодался.",
+   "uk": "Том їсть зараз, бо зголоднів."
+  },
+  {
+   "id": "de:21:09",
+   "target": "Wir gehen zu Fuß, weil die Bahn streikt.",
+   "ru": "Мы идём пешком, потому что на железной дороге забастовка.",
+   "uk": "Ми йдемо пішки, тому що на залізниці страйк."
+  },
+  {
+   "id": "de:21:10",
+   "target": "Die Kinder lachen, weil der Hund schnarcht.",
+   "ru": "Дети смеются, потому что собака храпит.",
+   "uk": "Діти сміються, бо собака хропе."
+  },
+  {
+   "id": "de:21:11",
+   "target": "Ich rufe an, weil ich eine Frage habe.",
+   "ru": "Я звоню, потому что у меня есть вопрос.",
+   "uk": "Я дзвоню, тому що маю питання."
+  },
+  {
+   "id": "de:21:12",
+   "target": "Anna schreibt, weil ihr Handy kaputt ist.",
+   "ru": "Анна пишет, потому что у неё сломался телефон.",
+   "uk": "Анна пише, бо в неї зламався телефон."
+  },
+  {
+   "id": "de:21:13",
+   "target": "Wir verschieben den Termin, weil der Arzt krank ist.",
+   "ru": "Мы переносим приём, потому что врач болеет.",
+   "uk": "Ми переносимо прийом, бо лікар хворий."
+  },
+  {
+   "id": "de:21:14",
+   "target": "Tom sucht Schatten, weil die Sonne scheint.",
+   "ru": "Том ищет тень, потому что светит солнце.",
+   "uk": "Том шукає тінь, бо сонце світить."
+  },
+  {
+   "id": "de:21:15",
+   "target": "Ich schließe das Fenster, weil es zieht.",
+   "ru": "Я закрываю окно, потому что дует.",
+   "uk": "Я зачиняю вікно, бо дме."
+  },
+  {
+   "id": "de:21:16",
+   "target": "Sie öffnet die Tür, weil es klingelt.",
+   "ru": "Она открывает дверь, потому что звонят.",
+   "uk": "Вона відчиняє двері, тому що дзвонять."
+  },
+  {
+   "id": "de:21:17",
+   "target": "Wir fahren vorsichtig, weil die Straße nass ist.",
+   "ru": "Мы едем осторожно, потому что дорога мокрая.",
+   "uk": "Ми їдемо обережно, бо дорога мокра."
+  },
+  {
+   "id": "de:21:18",
+   "target": "Ich frage nach, weil die Adresse fehlt.",
+   "ru": "Я переспрашиваю, потому что не хватает адреса.",
+   "uk": "Я перепитую, тому що не вистачає адреси."
+  },
+  {
+   "id": "de:21:19",
+   "target": "Er nimmt das Taxi, weil er spät dran ist.",
+   "ru": "Он берёт такси, потому что опаздывает.",
+   "uk": "Він бере таксі, тому що спізнюється."
+  },
+  {
+   "id": "de:21:20",
+   "target": "Die Gäste warten, weil das Zimmer noch nicht fertig ist.",
+   "ru": "Гости ждут, потому что номер ещё не готов.",
+   "uk": "Гості чекають, бо номер ще не готовий."
+  },
+  {
+   "id": "de:21:21",
+   "target": "Ich fahre früher, weil ich umsteigen muss.",
+   "ru": "Я выезжаю раньше, потому что мне предстоит пересадка.",
+   "uk": "Я виїжджаю раніше, тому що мені треба робити пересадку."
+  },
+  {
+   "id": "de:21:22",
+   "target": "Wir gehen, weil wir arbeiten müssen.",
+   "ru": "Мы уходим, потому что нам надо работать.",
+   "uk": "Ми йдемо, тому що нам треба працювати."
+  },
+  {
+   "id": "de:21:23",
+   "target": "Anna ruft an, weil sie den Termin ändern möchte.",
+   "ru": "Анна звонит, потому что хочет перенести запись.",
+   "uk": "Анна дзвонить, тому що хоче перенести запис."
+  },
+  {
+   "id": "de:21:24",
+   "target": "Tom übt, weil er besser sprechen will.",
+   "ru": "Том занимается, потому что хочет лучше говорить.",
+   "uk": "Том займається, тому що хоче краще говорити."
+  },
+  {
+   "id": "de:21:25",
+   "target": "Ich nehme eine Flasche mit, weil ich viel trinken muss.",
+   "ru": "Я беру бутылку с собой, потому что мне нужно много пить.",
+   "uk": "Я беру пляшку із собою, тому що мені потрібно багато пити."
+  },
+  {
+   "id": "de:21:26",
+   "target": "Ihr bleibt hier, weil ihr helfen könnt.",
+   "ru": "Вы остаётесь здесь, потому что можете помочь.",
+   "uk": "Ви залишаєтеся тут, тому що можете допомогти."
+  },
+  {
+   "id": "de:21:27",
+   "target": "Er kauft Brot, weil er Frühstück machen will.",
+   "ru": "Он покупает хлеб, потому что хочет приготовить завтрак.",
+   "uk": "Він купує хліб, тому що хоче приготувати сніданок."
+  },
+  {
+   "id": "de:21:28",
+   "target": "Ich beeile mich, weil ich den Bus erreichen möchte.",
+   "ru": "Я тороплюсь, потому что хочу успеть на автобус.",
+   "uk": "Я поспішаю, бо хочу встигнути на автобус."
+  },
+  {
+   "id": "de:21:29",
+   "target": "Sie spart, weil sie umziehen will.",
+   "ru": "Она копит деньги, потому что хочет переехать.",
+   "uk": "Вона накопичує гроші, бо хоче переїхати."
+  },
+  {
+   "id": "de:21:30",
+   "target": "Wir teilen die Rechnung, weil wir getrennt zahlen möchten.",
+   "ru": "Мы делим счёт, потому что хотим заплатить отдельно.",
+   "uk": "Ми ділимо рахунок, тому що хочемо заплатити окремо."
+  },
+  {
+   "id": "de:21:31",
+   "target": "Anna ist müde, weil sie früh aufgestanden ist.",
+   "ru": "Анна устала, потому что рано встала.",
+   "uk": "Анна втомилася, бо рано встала."
+  },
+  {
+   "id": "de:21:32",
+   "target": "Tom ist nass, weil er im Regen gewartet hat.",
+   "ru": "Том промок, потому что ждал под дождём.",
+   "uk": "Том промок, бо чекав під дощем."
+  },
+  {
+   "id": "de:21:33",
+   "target": "Ich bin froh, weil ich den Pass gefunden habe.",
+   "ru": "Я рад, потому что нашёл паспорт.",
+   "uk": "Я радий, бо знайшов паспорт."
+  },
+  {
+   "id": "de:21:34",
+   "target": "Wir sind spät dran, weil wir den Zug verpasst haben.",
+   "ru": "Мы опаздываем, потому что пропустили поезд.",
+   "uk": "Ми запізнюємося, тому що пропустили поїзд."
+  },
+  {
+   "id": "de:21:35",
+   "target": "Sie ist nervös, weil der Arzt angerufen hat.",
+   "ru": "Она нервничает, потому что звонил врач.",
+   "uk": "Вона нервується, бо дзвонив лікар."
+  },
+  {
+   "id": "de:21:36",
+   "target": "Ich zahle noch einmal, weil die erste Zahlung nicht geklappt hat.",
+   "ru": "Я плачу ещё раз, потому что первый платёж не прошёл.",
+   "uk": "Я плачу ще раз, бо перший платіж не пройшов."
+  },
+  {
+   "id": "de:21:37",
+   "target": "Er bleibt zu Hause, weil er sich verletzt hat.",
+   "ru": "Он остаётся дома, потому что получил травму.",
+   "uk": "Він залишається вдома, бо отримав травму."
+  },
+  {
+   "id": "de:21:38",
+   "target": "Wir gehen zur Post, weil ein Paket angekommen ist.",
+   "ru": "Мы идём на почту, потому что пришла посылка.",
+   "uk": "Ми йдемо на пошту, тому що надійшла посилка."
+  },
+  {
+   "id": "de:21:39",
+   "target": "Anna trägt eine Brille, weil sie ihre Linsen vergessen hat.",
+   "ru": "Анна носит очки, потому что забыла линзы.",
+   "uk": "Анна носить окуляри, бо забула лінзи."
+  },
+  {
+   "id": "de:21:40",
+   "target": "Ich nehme den Ersatzschlüssel, weil ich meinen verloren habe.",
+   "ru": "Я беру запасной ключ, потому что потерял свой.",
+   "uk": "Я беру запасний ключ, тому що втратив свій."
+  },
+  {
+   "id": "de:21:41",
+   "target": "Weil es regnet, bleiben wir im Café.",
+   "ru": "Из-за дождя мы остаёмся в кафе.",
+   "uk": "Через дощ ми залишаємось у кафе."
+  },
+  {
+   "id": "de:21:42",
+   "target": "Weil der Bus ausfällt, fahre ich mit dem Rad.",
+   "ru": "Поскольку автобус отменили, я поеду на велосипеде.",
+   "uk": "Оскільки автобус скасували, я поїду велосипедом."
+  },
+  {
+   "id": "de:21:43",
+   "target": "Weil heute Sonntag ist, bleibt die Bank zu.",
+   "ru": "Поскольку сегодня воскресенье, банк закрыт.",
+   "uk": "Оскільки сьогодні неділя, банк закритий."
+  },
+  {
+   "id": "de:21:44",
+   "target": "Weil das Kind schläft, sprechen wir leise.",
+   "ru": "Поскольку ребёнок спит, мы говорим тихо.",
+   "uk": "Оскільки дитина спить, ми говоримо тихо."
+  },
+  {
+   "id": "de:21:45",
+   "target": "Weil wir Zeit haben, gehen wir zu Fuß.",
+   "ru": "Раз у нас есть время, пойдём пешком.",
+   "uk": "Раз у нас є час, підемо пішки."
+  },
+  {
+   "id": "de:21:46",
+   "target": "Weil der Aufzug kaputt ist, nehmen wir die Treppe.",
+   "ru": "Поскольку лифт сломан, мы идём по лестнице.",
+   "uk": "Оскільки ліфт зламаний, ми йдемо сходами."
+  },
+  {
+   "id": "de:21:47",
+   "target": "Weil die Straße gesperrt ist, drehen wir um.",
+   "ru": "Поскольку дорога перекрыта, мы разворачиваемся.",
+   "uk": "Оскільки дорога перекрита, ми розвертаємось."
+  },
+  {
+   "id": "de:21:48",
+   "target": "Weil ich den Weg kenne, gehe ich vor.",
+   "ru": "Поскольку я знаю дорогу, я пойду первым.",
+   "uk": "Оскільки я знаю дорогу, я піду першим."
+  },
+  {
+   "id": "de:21:49",
+   "target": "Weil der Akku leer ist, lade ich das Handy.",
+   "ru": "Поскольку аккумулятор разряжен, я заряжаю телефон.",
+   "uk": "Оскільки акумулятор розряджений, я заряджаю телефон."
+  },
+  {
+   "id": "de:21:50",
+   "target": "Weil die Ampel rot ist, warten wir hier.",
+   "ru": "Поскольку горит красный, мы ждём здесь.",
+   "uk": "Оскільки горить червоний, ми чекаємо тут."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Schatten",
+   "ru": "тень",
+   "uk": "тінь"
+  },
+  {
+   "lemma": "die Zahlung",
+   "ru": "платёж",
+   "uk": "платіж"
+  },
+  {
+   "lemma": "der Ersatzschlüssel",
+   "ru": "запасной ключ",
+   "uk": "запасний ключ"
+  },
+  {
+   "lemma": "der Akku",
+   "ru": "аккумулятор",
+   "uk": "акумулятор"
+  },
+  {
+   "lemma": "streiken",
+   "ru": "бастовать",
+   "uk": "страйкувати"
+  },
+  {
+   "lemma": "das Rad",
+   "ru": "велосипед (в этих примерах)",
+   "uk": "велосипед (у цих прикладах)"
+  }
+ ],
+ "knownWords": [
+  "ich",
+  "bin",
+  "hier",
+  "du",
+  "bist",
+  "müde",
+  "anna",
+  "ist",
+  "wir",
+  "sind",
+  "wach",
+  "ihr",
+  "seid",
+  "tom",
+  "zu",
+  "hause",
+  "bereit",
+  "die",
+  "kinder",
+  "allein",
+  "draußen",
+  "drinnen",
+  "krank",
+  "tür",
+  "offen",
+  "das",
+  "fenster",
+  "der",
+  "tee",
+  "heiß",
+  "wasser",
+  "kalt",
+  "suppe",
+  "warm",
+  "kaffee",
+  "essen",
+  "fertig",
+  "und",
+  "leise",
+  "zimmer",
+  "ruhig",
+  "platz",
+  "frei",
+  "plätze",
+  "bad",
+  "meine",
+  "tasche",
+  "deine",
+  "schlüssel",
+  "handy",
+  "neu",
+  "bus",
+  "da",
+  "bahn",
+  "taxi",
+  "gäste",
+  "bahnhof",
+  "haltestelle",
+  "dort",
+  "hotel",
+  "eingang",
+  "kasse",
+  "büro",
+  "tisch",
+  "bank",
+  "tische",
+  "bänke",
+  "stuhl",
+  "kaputt",
+  "lampe",
+  "radio",
+  "stühle",
+  "plan",
+  "karte",
+  "ticket",
+  "karten",
+  "brief",
+  "rechnung",
+  "paket",
+  "briefe",
+  "aufzug",
+  "treppe",
+  "laden",
+  "küche",
+  "café",
+  "läden",
+  "mantel",
+  "schwer",
+  "kiste",
+  "buch",
+  "kisten",
+  "taxis",
+  "wohne",
+  "wohnst",
+  "wohnt",
+  "wohnen",
+  "lerne",
+  "deutsch",
+  "lernst",
+  "lernt",
+  "lernen",
+  "mache",
+  "machst",
+  "macht",
+  "frühstück",
+  "machen",
+  "eine",
+  "pause",
+  "kaufe",
+  "brot",
+  "kaufst",
+  "milch",
+  "kauft",
+  "kaufen",
+  "gemüse",
+  "tickets",
+  "suche",
+  "den",
+  "suchst",
+  "sucht",
+  "suchen",
+  "höre",
+  "musik",
+  "hörst",
+  "hört",
+  "hören",
+  "ein",
+  "lied",
+  "arbeite",
+  "heute",
+  "arbeitest",
+  "arbeitet",
+  "im",
+  "arbeiten",
+  "zusammen",
+  "warte",
+  "wartest",
+  "wartet",
+  "am",
+  "warten",
+  "bezahle",
+  "bezahlst",
+  "bezahlt",
+  "bezahlen",
+  "koche",
+  "kochst",
+  "kocht",
+  "kochen",
+  "spielen",
+  "morgen",
+  "montag",
+  "dienstag",
+  "freitag",
+  "samstag",
+  "sonntag",
+  "um",
+  "acht",
+  "beginnt",
+  "kurs",
+  "neun",
+  "arbeit",
+  "zehn",
+  "öffnet",
+  "sechs",
+  "schließt",
+  "sieben",
+  "kommt",
+  "zwölf",
+  "drei",
+  "vier",
+  "fünf",
+  "nach",
+  "dem",
+  "vor",
+  "trinke",
+  "abend",
+  "lesen",
+  "nachmittag",
+  "in",
+  "trinken",
+  "wochenende",
+  "ende",
+  "türen",
+  "berlin",
+  "bald",
+  "kommen",
+  "früher",
+  "brauchen",
+  "sie",
+  "hilfe",
+  "mit",
+  "bleiben",
+  "haben",
+  "zeit",
+  "möchten",
+  "frau",
+  "weber",
+  "hast",
+  "hat",
+  "habt",
+  "durst",
+  "spielt",
+  "auch",
+  "dein",
+  "wo",
+  "wann",
+  "kommst",
+  "wie",
+  "heißt",
+  "heißen",
+  "straße",
+  "geht",
+  "es",
+  "dir",
+  "ihnen",
+  "komme",
+  "zum",
+  "lange",
+  "dauert",
+  "fahrt",
+  "bleibt",
+  "spät",
+  "was",
+  "kostet",
+  "wer",
+  "woher",
+  "diese",
+  "wohin",
+  "viel",
+  "viele",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren",
+  "der Pass",
+  "die Brille",
+  "der Schal",
+  "der Ausweis",
+  "der Rucksack",
+  "schreiben",
+  "die Post",
+  "der Umzug",
+  "das Geschenk",
+  "die Nachricht",
+  "das Wetter",
+  "gehen",
+  "der Flur",
+  "der Spiegel",
+  "das Handtuch",
+  "die Schublade",
+  "das Regal",
+  "das Bett",
+  "der Umschlag",
+  "der Briefkasten",
+  "der Keller",
+  "die Decke",
+  "der Eimer",
+  "anrufen",
+  "umsteigen",
+  "abholen",
+  "das Formular",
+  "der Herd",
+  "die Nummer",
+  "dürfen",
+  "müssen",
+  "parken",
+  "verschieben",
+  "reservieren",
+  "helfen",
+  "vorsichtig",
+  "unterschreiben",
+  "die Ampel",
+  "der Kühlschrank",
+  "pünktlich",
+  "verpassen",
+  "der Wecker",
+  "reparieren",
+  "verlieren",
+  "gestern",
+  "aufwachen",
+  "einschlafen",
+  "abreisen",
+  "die Wohnung",
+  "dunkel",
+  "der Empfang",
+  "die Verspätung",
+  "die Schicht",
+  "der Schaden",
+  "die Dusche",
+  "sich beeilen",
+  "sich erholen",
+  "sich bedanken",
+  "sich erinnern",
+  "die Ferien",
+  "der Wind",
+  "der Strand",
+  "der Strom",
+  "weniger",
+  "lieber"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у вас есть и что вам нужно"
+  },
+  {
+   "lesson": 8,
+   "title": "Как сказать «не» и «нет»"
+  },
+  {
+   "lesson": 9,
+   "title": "Мой, твой, её, наш, ваш"
+  },
+  {
+   "lesson": 10,
+   "title": "С кем, откуда, к кому: предлоги с Dativ"
+  },
+  {
+   "lesson": 11,
+   "title": "Где: предмет уже находится на месте"
+  },
+  {
+   "lesson": 12,
+   "title": "Куда: переместить или положить"
+  },
+  {
+   "lesson": 13,
+   "title": "Две части одного действия: отделяемые приставки"
+  },
+  {
+   "lesson": 14,
+   "title": "Могу, должен, разрешено: модальная рамка"
+  },
+  {
+   "lesson": 15,
+   "title": "Попросить о действии: друг, группа, незнакомый"
+  },
+  {
+   "lesson": 16,
+   "title": "Что уже сделано: Perfekt с `haben`"
+  },
+  {
+   "lesson": 17,
+   "title": "Пришёл, уехал, остался: Perfekt с `sein`"
+  },
+  {
+   "lesson": 18,
+   "title": "Каким было и что было у меня: `war` и `hatte`"
+  },
+  {
+   "lesson": 19,
+   "title": "Делаю сам и для себя: возвратные местоимения"
+  },
+  {
+   "lesson": 20,
+   "title": "Сравниваю билеты, вещи и варианты"
+  }
+ ],
+ "oldTopicTitle": "Причина после `weil`: глагол уходит в конец",
+ "oldTheoryRu": "Ты объясняешь, почему остаёшься дома или меняешь транспорт. Если убрать причину, главное сообщение останется целым. Именно причину, а не главное действие, открывает слово `weil`. У простого глагола меняется позиция, а не лицо. Было `er hat Hunger`; становится `weil er Hunger hat`. Не возвращай `hat` к подлежащему по привычке из короткого утверждения. Если причина состоит почти из одного действия, конец придаточного заметить труднее. Посмотри на более длинный соседний пример и проверь ту же схему. В письменном образце части отделяются запятой. В модальной конструкции справа находятся два глагола. В изучаемом типе сначала инфинитив действия, затем личная форма: `umsteigen muss`. В главной части эта же пара была бы разделена. В Perfekt порядок также отличается от простого утверждения. Причастие идёт перед вспомогательным глаголом: `gewartet hat`, `aufgestanden ist`. Форма, связанная с лицом, на правом краю. Причину можно вынести вперёд. Всё придаточное занимает первую позицию главного предложения. После запятой идёт личный глагол главной части, а не ещё одно подлежащее перед ним. Выбирая порядок, прочитай отдельно причину и результат. Не путай `weil` с `denn`: у них похожая задача, но одного слова нельзя просто подставить вместо другого, сохранив любой порядок."
+}

@@ -1,0 +1,8 @@
+11-06 01:06:18.884 I/(28288): '[SECTION-OPENING]', 'decision', '{"reason":"host_inactive","shown":null,"queued":null,"open":null,"isNew":true,"plusActive":false,"statuses":"video:locked,dialogues:locked,peak:locked,cards_hub:locked"}'
+11-06 01:06:19.462 I/(28288): '[SECTION-OPENING]', 'mount', '{"id":"rank","lang":"ru","freezeAt":1,"reduced":false,"forceReduced":false,"segments":1,"segmentIndex":0,"isDark":true}'
+11-06 01:06:20.293 I/(28288): '[SECTION-OPENING]', 'image_loaded', '{"id":"rank","what":"hero","detail":null,"hero_wait_ms":1135}'
+11-06 01:06:20.298 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.15,"ctaReady":false}'
+11-06 01:06:20.302 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.43,"ctaReady":false}'
+11-06 01:06:20.305 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.6,"ctaReady":false}'
+11-06 01:06:20.306 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.82,"ctaReady":true}'
+11-06 01:06:20.307 I/(28288): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":1,"ctaReady":true}'

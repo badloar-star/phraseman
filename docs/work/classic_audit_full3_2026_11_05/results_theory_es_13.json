@@ -1,0 +1,55 @@
+[
+ {
+  "id": "lesson-27/sharedActivities",
+  "type": "T2",
+  "field": "sharedActivities[0..7].feedback.en",
+  "problem": "«que — which, which, which» — бессмысленный повтор (ru перечисляет род/число)",
+  "fix": "Linking word: que — which, that, who."
+ },
+ {
+  "id": "lesson-27/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "«the doctor works alone» искажает ru «врач сам работает» (врач — исполнитель); разорванный дефис «- é»",
+  "fix": "In el médico que trabaja, the doctor is the one who works. In el libro que compré, I bought the book; the ending -é shows this. The nearest noun does not always control the verb."
+ },
+ {
+  "id": "lesson-27/chapters[5]",
+  "type": "T1",
+  "field": "ru/uk/en.chapters[5].body",
+  "problem": "Неверное деление на части: «Las llaves / que me dio Luis están en la mesa» — están en la mesa относится к главной части, а не к уточнению; в en ещё «Louis» вместо Luis",
+  "fix": {
+   "ru": "Сравни два задания: «Ключи, которые мне дал Луис, лежат на столе.» / «Я не могу найти сообщение, которое ты написал.». Que не меняется, а глагол уточняющей части имеет своего исполнителя. Две части: Las llaves … están en la mesa  /  que me dio Luis.",
+   "uk": "Порівняй два завдання: «Ключі, які мені дав Луїс, лежать на столі.» / «Я не можу знайти повідомлення, яке ти написав.». Que незмінне, а дієслово підрядної частини має власного виконавця. Дві частини: Las llaves … están en la mesa  /  que me dio Luis.",
+   "en": "Compare two tasks: \"The keys Luis gave me are on the table.\" / \"I can't find the message you wrote.\" Que doesn't change, and the verb of the specifying part has its own performer. Two parts: Las llaves … están en la mesa / que me dio Luis."
+  }
+ },
+ {
+  "id": "lesson-28/chapters[0]",
+  "type": "T2",
+  "field": "en.chapters[0].body",
+  "problem": "Разорванный дефис «- ar»; «For llamo, drop - ar» звучит как указание (ru: для llamo -ar отбрасывали)",
+  "fix": "For llamo, the -ar is dropped. In llamaré it stays: llamar + é. Regular verbs of all three groups use the same set of endings."
+ },
+ {
+  "id": "lesson-28/chapters[2]",
+  "type": "T2",
+  "field": "en.chapters[2].body",
+  "problem": "Разорванные дефисы «- emos», «- án»",
+  "fix": "For \"we,\" add -emos: llamaremos. For \"they,\" add -án: llamarán. The nosotros form has no written accent, but the ellos form does."
+ },
+ {
+  "id": "lesson-28/chapters[3]",
+  "type": "T2",
+  "field": "en.chapters[3].body",
+  "problem": "«te indicates the caller» — наоборот: te — адресат звонка (ru «адресата звонка»)",
+  "fix": "Te llamaré is two words: te shows who will receive the call, llamaré shows who will call and when. In the negative, it starts with no te…."
+ },
+ {
+  "id": "lesson-28/chapters[5]",
+  "type": "T2",
+  "field": "en.chapters[5].body",
+  "problem": "Пробелы внутри кавычек «\" efectivo \"», калька «Semantic supports»",
+  "fix": "Compare the two tasks: \"You will pay cash later.\" / \"I will sell the car after the trip.\" The future ending is attached to the whole infinitive in a regular pattern. Key word: \"efectivo\" — cash."
+ }
+]

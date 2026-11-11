@@ -99,7 +99,8 @@ const fullResponse = (text: string, variant: 'full' | 'eli5' = 'full') => ({
   variant,
 });
 
-describe('useMistakeExplain bundled ELI5 state', () => {
+// зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны… обе удалить», плюс лампочку «Объяснить»): проверки упрощённого разбора убраны вместе с ним.
+describe('useMistakeExplain request state', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     callExplainMistakeMock.mockReset();
@@ -116,49 +117,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
 
   afterEach(async () => {
     await cleanup();
-  });
-
-  it('opens the bundled simple explanation without a second request', async () => {
-    callExplainMistakeMock.mockResolvedValue({
-      ok: true,
-      text: 'Full explanation',
-      fullText: 'Full explanation',
-      eli5Text: 'Simple explanation',
-      remainingQuota: 2,
-      model: 'test-model',
-      variant: 'full',
-    });
-
-    const hook = await renderHook(() => useMistakeExplain({
-      active: true,
-      autoStart: true,
-      phraseKey: 'phrase-1:wrong-answer',
-      lessonId: 7,
-      phraseId: 'phrase-1',
-      studyTarget: 'en',
-      interfaceLang: 'ru',
-      prompt: 'Greeting',
-      userAnswer: 'Hello wrong',
-      targetAnswer: 'Hello',
-    }));
-
-    await waitFor(() => {
-      expect(hook.result.current.aiMistakeState).toBe('ready');
-      expect(hook.result.current.eli5.state).toBe('ready');
-    });
-
-    expect(hook.result.current.eli5.text).toBe('Simple explanation');
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
-    expect(callExplainMistakeMock.mock.calls[0]?.[0].variant).toBe('full');
-
-    await act(async () => {
-      hook.result.current.eli5.onOpen();
-    });
-
-    expect(hook.result.current.eli5.open).toBe(true);
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.text).toBe('Simple explanation');
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
   });
 
   it('does not warm, request, or retry an explanation while offline', async () => {
@@ -347,54 +305,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.aiMistakeText).toBe('AI after refresh');
   });
 
-  it('D158: ELI5 with the sheet open - three calls, template, then one refresh call', async () => {
-    jest.useFakeTimers();
-    callExplainMistakeMock.mockResolvedValueOnce(fullResponse('Full explanation'));
-    callExplainMistakeMock.mockRejectedValue({ code: 'functions/internal', message: 'unexpected ELI5 failure' });
-
-    const hook = await renderHook(() => useMistakeExplain(baseInput()));
-    await act(async () => { await Promise.resolve(); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
-
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4); // 1 разбор + 3 ELI5 (1 + 2 повтора)
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.fallback).toBe(true);
-    expect(hook.result.current.eli5.text).toBeTruthy();
-
-    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
-
-    await act(async () => { hook.result.current.eli5.onRefresh(); });
-    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(5);
-    expect(hook.result.current.eli5.fallback).toBe(true);
-  });
-
-  it('D158: a closed ELI5 sheet makes no retries and does not reopen', async () => {
-    jest.useFakeTimers();
-    callExplainMistakeMock
-      .mockResolvedValueOnce(fullResponse('Full explanation'))
-      .mockRejectedValueOnce({ code: 'functions/internal', message: 'unexpected ELI5 failure' })
-      .mockResolvedValueOnce(fullResponse('Must never be requested', 'eli5'));
-
-    const hook = await renderHook(() => useMistakeExplain(baseInput()));
-    await act(async () => { await Promise.resolve(); });
-    expect(hook.result.current.aiMistakeState).toBe('ready');
-
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    await act(async () => { hook.result.current.eli5.onClose(); });
-    expect(hook.result.current.eli5.open).toBe(false);
-
-    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
-
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
-    expect(hook.result.current.eli5.open).toBe(false);
-    expect(hook.result.current.eli5.fallback).toBe(false);
-    expect(hook.result.current.eli5.state).not.toBe('loading');
-  });
-
   it('cancels an old retry when the phrase key changes', async () => {
     jest.useFakeTimers();
     callExplainMistakeMock
@@ -429,7 +339,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
 
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
     expect(hook.result.current.aiMistakeState).toBe('hidden');
-    expect(hook.result.current.eli5.open).toBe(false);
   });
 
   it('discards an old account success and does not resend its payload under the new account', async () => {
@@ -444,30 +353,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
     expect(hook.result.current.aiMistakeState).toBe('hidden');
     expect(hook.result.current.aiMistakeText).toBeNull();
-  });
-
-  it('cancels and closes a pending ELI5 request when consent is revoked', async () => {
-    const pendingEli5 = deferred<ReturnType<typeof fullResponse>>();
-    callExplainMistakeMock
-      .mockResolvedValueOnce(fullResponse('Full explanation'))
-      .mockImplementationOnce(() => pendingEli5.promise);
-    const hook = await renderHook(() => useMistakeExplain(baseInput()));
-    await waitFor(() => expect(hook.result.current.aiMistakeState).toBe('ready'));
-
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    expect(hook.result.current.eli5.open).toBe(true);
-
-    await act(async () => {
-      consentGranted = false;
-      consentDecision = true;
-      consentSubscriber?.();
-    });
-    await act(async () => { pendingEli5.resolve(fullResponse('Late simple explanation', 'eli5')); });
-
-    expect(hook.result.current.eli5.open).toBe(false);
-    expect(hook.result.current.eli5.state).toBe('idle');
-    expect(hook.result.current.eli5.text).toBeNull();
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
   });
 
   it('stops on the permanent free cap instead of scheduling endless retries', async () => {
@@ -486,32 +371,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
 
     await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
-  });
-
-  it('stops an unbundled ELI5 request on the permanent free cap without retrying', async () => {
-    jest.useFakeTimers();
-    callExplainMistakeMock
-      .mockResolvedValueOnce(fullResponse('Full explanation without a bundle'))
-      .mockRejectedValueOnce({
-        code: 'functions/resource-exhausted',
-        message: 'explain_free_daily_limit',
-      });
-
-    const hook = await renderHook(() => useMistakeExplain(baseInput()));
-    await act(async () => { await Promise.resolve(); });
-    expect(hook.result.current.aiMistakeState).toBe('ready');
-
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    await act(async () => { await Promise.resolve(); });
-
-    expect(hook.result.current.aiMistakeState).toBe('limit');
-    expect(hook.result.current.eli5.open).toBe(false);
-    expect(hook.result.current.eli5.state).toBe('idle');
-    expect(hook.result.current.eli5.text).toBeNull();
-    expect(markLimitShown).toHaveBeenCalledTimes(1);
-
-    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
   });
 
   it('never adopts account B for account A payload when generation switches before effects flush', async () => {
@@ -627,65 +486,6 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.aiMistakeText).toBe('New explanation');
   });
 
-  it('old ELI5 rejection cannot schedule or unlock a newer same-phrase request', async () => {
-    jest.useFakeTimers();
-    const oldEli5 = deferred<ReturnType<typeof fullResponse>>();
-    const newEli5 = deferred<ReturnType<typeof fullResponse>>();
-    callExplainMistakeMock
-      .mockResolvedValueOnce(fullResponse('First full'))
-      .mockImplementationOnce(() => oldEli5.promise)
-      .mockResolvedValueOnce(fullResponse('Second full'))
-      .mockImplementationOnce(() => newEli5.promise);
-    const hook = await renderHook(
-      ({ active }: { active: boolean }) => useMistakeExplain(baseInput(active)),
-      { initialProps: { active: true } },
-    );
-    await act(async () => { await Promise.resolve(); });
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
-
-    await hook.rerender({ active: false });
-    await hook.rerender({ active: true });
-    await act(async () => { await Promise.resolve(); });
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
-
-    await act(async () => { oldEli5.reject({ code: 'functions/unavailable' }); });
-    await act(async () => { await jest.advanceTimersByTimeAsync(2_000); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
-    expect(hook.result.current.eli5.state).toBe('loading');
-
-    await act(async () => { newEli5.resolve(fullResponse('New simple', 'eli5')); });
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.text).toBe('New simple');
-  });
-
-  it('bundled ELI5 invalidates a separately pending ELI5 request', async () => {
-    jest.useFakeTimers();
-    const full = deferred<Awaited<ReturnType<typeof callExplainMistake>>>();
-    const separateEli5 = deferred<ReturnType<typeof fullResponse>>();
-    callExplainMistakeMock
-      .mockImplementationOnce(() => full.promise)
-      .mockImplementationOnce(() => separateEli5.promise)
-      .mockResolvedValue(fullResponse('Unexpected retry', 'eli5'));
-    const hook = await renderHook(() => useMistakeExplain(baseInput()));
-    await act(async () => { await Promise.resolve(); });
-    await act(async () => { hook.result.current.eli5.onOpen(); });
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
-
-    await act(async () => {
-      full.resolve({ ...fullResponse('Full explanation'), eli5Text: 'Bundled simple' });
-    });
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.text).toBe('Bundled simple');
-
-    await act(async () => { separateEli5.reject({ code: 'functions/unavailable' }); });
-    await act(async () => { await jest.advanceTimersByTimeAsync(2_000); });
-
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.text).toBe('Bundled simple');
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
-  });
 });
 
 describe('useMistakeExplain: ручной запуск по умолчанию (журнал 15)', () => {

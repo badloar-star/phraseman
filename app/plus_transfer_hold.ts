@@ -5,19 +5,18 @@
  * он висит на appUserID ПРЕЖНЕГО аккаунта. После любой смены аккаунта RevenueCat
  * переносит покупку только по «Восстановить покупки» — до этого человек видел
  * «оплата на одном аккаунте, а на другом нет», а экран Plus мигал «нет / есть».
- * Решение (вариант B, Fable): после смены — тихое восстановление покупок
- * (plus_transfer.ts) с повтором на старте/возврате из фона, а ПОКА ответа нет,
- * прежний Plus держится локально. Откат — только при ПОДТВЕРЖДЁННОМ отсутствии.
+ * Владелец 2026-11-09 отменил перенос между аккаунтами: store-доступ принадлежит
+ * canonical аккаунту, а не телефону. Запись hold оставлена только как совместимый
+ * маркер для безопасной очистки старых установок и НИКОГДА не даёт доступ.
  *
- * Модуль намеренно лёгкий (только AsyncStorage + трассировка): его читает
- * premium_guard на каждом решении доступа, поэтому здесь нет RevenueCat и сети.
+ * Модуль намеренно лёгкий (только AsyncStorage + трассировка):
+ * RevenueCat и сеть для очистки legacy hold-записей не нужны.
  *
  * Удержание — НЕ запись премиума в хранилище аккаунта: ключи premium_* нового
  * аккаунта не трогаются. Откат = удалить удержание (ничего «чужого» не остаётся).
  * Ключ лежит вне инвентаря аккаунта (его не стирает wipe) и пишется ПОСЛЕ смены.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isDevPlusTransferNotice } from './dev_account_state';
 import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
 
 export const PLUS_TRANSFER_HOLD_KEY = 'plus_transfer_hold_v1';
@@ -148,15 +147,13 @@ export function beginPlusTransferHold(
   // зачем (AA S2d раунд 2, M-S2d-1): держим Plus только при свапе на КОНКРЕТНЫЙ
   // аккаунт. «Сменить аккаунт» (clear) ведёт в свежий профиль, куда потом может
   // войти кто угодно — Plus туда не переносим без ответа RevenueCat.
-  const heldPlus = reason === 'stable_id_set'
-    && nextStableId !== null
-    && hasFreshStorePlusEvidenceFor(previousStableId);
+  const heldPlus = false;
   const hold: PlusTransferHold = {
     v: 1,
     target: nextStableId,
     reason,
     heldPlus,
-    plan: heldPlus ? lastStorePlusEvidence?.plan ?? null : null,
+    plan: null,
     createdAt: now,
     until: now + PLUS_TRANSFER_HOLD_TTL_MS,
     attempts: 0,
@@ -179,12 +176,10 @@ export function beginPlusTransferHold(
  * Только при heldPlus, своём аккаунте и не истёкшем окне.
  */
 export async function plusTransferHoldGrantsAccess(stableId: string | null): Promise<boolean> {
-  if (!stableId) return false;
-  const hold = await readPlusTransferHold();
-  if (!hold || !hold.heldPlus) return false;
-  // M-S2d-1: удержание без конкретного target (выход в свежий профиль) Plus не даёт.
-  if (hold.target === null || hold.target !== stableId) return false;
-  return Date.now() < hold.until;
+  // Account-only contract: neither a current marker nor a legacy heldPlus=true
+  // record may project one account's store access into another account.
+  void stableId;
+  return false;
 }
 
 // ── Мягкое предупреждение перед ручной сменой аккаунта ───────────────────────
@@ -209,7 +204,7 @@ export type PlusTransferSwitchWarning = Readonly<{
 /** Точка вызова перед ручной сменой аккаунта: синхронно, без сети (по решению premium_guard). */
 export function getPlusTransferSwitchWarning(currentStableId: string | null): PlusTransferSwitchWarning {
   // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `plustransfer=on` — строка про перенос Plus в окне смены аккаунта без свежего store-Plus; в стор-сборке геттер выключен. Только предупреждение, перенос не затрагивается.
-  const show = hasFreshStorePlusEvidenceFor(currentStableId) || isDevPlusTransferNotice();
+  const show = false;
   identityTrace('[PLUS-TRANSFER]', 'manual_switch warning_point', {
     account: identityTag(currentStableId),
     show,

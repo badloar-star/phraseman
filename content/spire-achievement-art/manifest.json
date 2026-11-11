@@ -1,0 +1,98 @@
+[
+  {
+    "id": "spire_summit_granite",
+    "source": "01-granite-ibex.png",
+    "file": "assets/images/spire-achievements/spire_summit_granite.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 54754
+  },
+  {
+    "id": "spire_summit_basalt",
+    "source": "02-basalt-fox.png",
+    "file": "assets/images/spire-achievements/spire_summit_basalt.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 47916
+  },
+  {
+    "id": "spire_summit_marble",
+    "source": "03-marble-lynx.png",
+    "file": "assets/images/spire-achievements/spire_summit_marble.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 65996
+  },
+  {
+    "id": "spire_summit_jade",
+    "source": "04-jade-stag.png",
+    "file": "assets/images/spire-achievements/spire_summit_jade.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 71264
+  },
+  {
+    "id": "spire_summit_quartz",
+    "source": "05-quartz-eagle.png",
+    "file": "assets/images/spire-achievements/spire_summit_quartz.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 74988
+  },
+  {
+    "id": "spire_summit_agate",
+    "source": "06-agate-lion.png",
+    "file": "assets/images/spire-achievements/spire_summit_agate.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 96384
+  },
+  {
+    "id": "spire_summit_onyx",
+    "source": "07-onyx-griffin.png",
+    "file": "assets/images/spire-achievements/spire_summit_onyx.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 119688
+  },
+  {
+    "id": "spire_summit_amethyst",
+    "source": "08-amethyst-unicorn.png",
+    "file": "assets/images/spire-achievements/spire_summit_amethyst.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 104528
+  },
+  {
+    "id": "spire_summit_opal",
+    "source": "09-opal-pegasus.png",
+    "file": "assets/images/spire-achievements/spire_summit_opal.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 136170
+  },
+  {
+    "id": "spire_summit_topaz",
+    "source": "10-topaz-phoenix.png",
+    "file": "assets/images/spire-achievements/spire_summit_topaz.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 62810
+  },
+  {
+    "id": "spire_summit_obsidian",
+    "source": "11-obsidian-dragon.png",
+    "file": "assets/images/spire-achievements/spire_summit_obsidian.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 122756
+  },
+  {
+    "id": "spire_summit_diamond",
+    "source": "12-diamond-dragon.png",
+    "file": "assets/images/spire-achievements/spire_summit_diamond.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 150166
+  }
+]

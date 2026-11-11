@@ -33,9 +33,13 @@ import { scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_
 import {
   CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
   type LevelExamBlueprint,
+  type LevelExamExpandedTask,
   type LevelExamLevel,
   type LevelExamTask,
 } from '../../app/level_exam_types';
+import { emptyExpandedResponse, isExpandedResponseComplete } from '../../modules/expanded-formats/grade';
+import { isExpandedFormat } from '../../modules/expanded-formats/types';
+import ExpandedExamQuestion from './ExpandedExamQuestion';
 import { levelExamKey, storedProgressFlagIsTrue } from '../../app/target_storage_keys';
 import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
@@ -85,6 +89,10 @@ function isSpeedMatchTask(task: LevelExamTask): task is Extract<LevelExamTask, {
   return task.format === 'speed_match';
 }
 
+function isExpandedExamTask(task: LevelExamTask): task is LevelExamExpandedTask {
+  return isExpandedFormat(task.format);
+}
+
 function scoreRange(blueprint: LevelExamBlueprint, taskIndex: number): { start: number; end: number } {
   let before = 0;
   for (let index = 0; index < taskIndex; index += 1) {
@@ -104,7 +112,9 @@ function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
     translate_build: { ru: 'Собери фразу', uk: 'Збери вислів', en: 'Build the phrase', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
     speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', en: 'Quick pairs', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
   } as const;
-  return triLang(lang, labels[task.format]);
+  // зачем: у заданий новых механик подпись «что сделать» приходит с заданием — на языке ученика
+  if (isExpandedExamTask(task)) return task.instruction;
+  return triLang(lang, labels[task.format as keyof typeof labels]);
 }
 
 function taskPrompt(task: LevelExamTask, lang: Lang): string {
@@ -590,6 +600,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
     }));
     canContinue = Object.keys(matches).length === task.pairs.length;
     content = <SpeedMatchQuestion attemptId={attempt.attemptId} task={task} matches={matches} onChange={(next) => updateSpeedMatches(task, next)} />;
+  } else if (isExpandedExamTask(task)) {
+    // зачем (владелец 11.11.2026): двенадцать новых механик. В экзамене ответ можно менять до «Продолжить», вердикта на экране нет
+    const answer = attempt.answers[task.scoreUnitId];
+    const response = answer?.kind === 'expanded' && answer.response.format === task.exercise.format ? answer.response : emptyExpandedResponse(task.exercise);
+    canContinue = isExpandedResponseComplete(task.exercise, response);
+    content = <ExpandedExamQuestion lang={lang} task={task} response={response} onChange={(next) => updateAnswer(task.scoreUnitId, { kind: 'expanded', response: next })} />;
   } else {
     content = null;
   }

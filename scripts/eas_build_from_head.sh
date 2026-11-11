@@ -25,15 +25,16 @@ SNAP=/c/Temp/claude/eas_head_$SHORT
 LOG=/c/Temp/claude/eas_head_$SHORT.log
 say() { echo "$*" | tee -a "$LOG"; }
 say "[EAS-HEAD] ревизия $SHORT, платформа $PLATFORM, submit-ios=$SUBMIT_IOS, снимок $SNAP"
-rm -rf "$SNAP" && mkdir -p "$SNAP" || { say "[EAS-HEAD] ✖ папка снимка"; exit 1; }
-git -C "$REPO" -c core.autocrlf=false archive "$FULL" | tar -x -C "$SNAP" || { say "[EAS-HEAD] ✖ git archive"; exit 1; }
+rm -rf "$SNAP" 2>/dev/null
+# самодостаточный клон ровно этой ревизии (eas-cli сам делает git clone проекта — alternates на чужие объекты ему не подходят)
+git -c core.autocrlf=false clone -q --no-hardlinks --depth 1 --no-checkout "file://$(cygpath -m "$REPO")" "$SNAP" || { say "[EAS-HEAD] ✖ git clone"; exit 1; }
+cd "$SNAP" || exit 1
+git config core.autocrlf false
+git fetch -q --depth 1 origin "$FULL" || { say "[EAS-HEAD] ✖ git fetch ревизии"; exit 1; }
+git checkout -q "$FULL" || { say "[EAS-HEAD] ✖ git checkout"; exit 1; }
 SNAPW=$(cygpath -m "$SNAP")
 cmd //c "mklink /J $(cygpath -w "$SNAP/node_modules") $(cygpath -w "$REPO/node_modules")" >/dev/null || { say "[EAS-HEAD] ✖ junction node_modules"; exit 1; }
-cd "$SNAP" || exit 1
 node -e "const a=require('$SNAPW/app.json').expo;console.log('[EAS-HEAD] app.json version='+a.version+' versionCode='+a.android.versionCode+' buildNumber='+a.ios.buildNumber)" | tee -a "$LOG"
-# временный .git с одним коммитом этой ревизии (объекты — из основного репозитория по alternates), индекс чистый
-git init -q && printf '%s\n' "$(cygpath -m "$REPO/.git/objects")" > .git/objects/info/alternates && git config core.autocrlf false \
-  && git update-ref --no-deref HEAD "$FULL" && git reset -q "$FULL" || { say "[EAS-HEAD] ✖ временный .git"; exit 1; }
 DIRTY=$(git status --porcelain | wc -l)
 say "[EAS-HEAD] грязных путей во временном дереве: $DIRTY (должно быть 0 или только игнорируемое)"
 RC=0

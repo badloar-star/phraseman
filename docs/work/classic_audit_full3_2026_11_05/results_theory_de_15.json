@@ -1,0 +1,121 @@
+[
+ {
+  "id": "lesson-31/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "пропущено «вже» в «автобус пішов», хотя дальше текст объясняет роль слова «вже»; расходится с ru",
+  "fix": "Коли я прийшов, автобус уже пішов. Обидві події в минулому, але відправлення відбулося раніше за прихід. Слово «вже» допомагає помітити зв'язок, хоча саме по собі не є обов'язковим сигналом Plusquamperfekt."
+ },
+ {
+  "id": "lesson-31/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "First, find the correct pair from the Perfect. If it was `hat vergessen`, then the earlier past would be `hatte vergessen`. Don't turn the participle into another personal form."
+ },
+ {
+  "id": "lesson-31/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "«не зависит только от того, какое действие первым» подразумевает частичную зависимость от порядка; выбор war/hatte определяется только глаголом (как в Perfekt)",
+  "fix": "Для действий с `sein` перенеси в прошлое именно его: `ist umgezogen` становится `war umgezogen`. Выбор между `war` и `hatte` зависит от глагола, как в Perfekt, а не от того, какое действие случилось первым."
+ },
+ {
+  "id": "lesson-31/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "«не зависит только от того, какое действие первым» подразумевает частичную зависимость от порядка; выбор war/hatte определяется только глаголом (как в Perfekt)",
+  "fix": "Для дій з `sein` перенеси в минуле саме його: `ist umgezogen` стає `war umgezogen`. Вибір між `war` та `hatte` залежить від дієслова, як у Perfekt, а не від того, яка дія сталася першою."
+ },
+ {
+  "id": "lesson-31/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "«не зависит только от того, какое действие первым» подразумевает частичную зависимость от порядка; выбор war/hatte определяется только глаголом (как в Perfekt); плюс лишние кавычки \" после `…`",
+  "fix": "For actions with `sein`, move it into the past: `ist umgezogen` becomes `war umgezogen`. The choice between `war` and `hatte` depends on the verb, just as in the Perfekt, not on which action happened first."
+ },
+ {
+  "id": "lesson-31/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«може дати раніше подію» — неграмматично; «оповідання» (жанр) вместо «розповіді»",
+  "fix": "Уточнення до предмета також може містити більш ранню подію: я знайшов карту, яку втратив до цього. Визнач, яка подія пов'язана з предметом і яка задає точку відліку всієї розповіді."
+ },
+ {
+  "id": "lesson-31/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.en",
+  "problem": "«clarification of the subject» — в ru «к предмету» (вещь), не «подлежащее»; en вводит в заблуждение",
+  "fix": "A clause describing a thing can also give an earlier event: I found the card I had lost earlier. Determine which event is linked to the thing and which sets the reference point for the whole story."
+ },
+ {
+  "id": "lesson-31/ch6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "In an indirect question and in a message after `dass`, the auxiliary verb appears at the end of the corresponding clause. Don't confuse the order with the independent `ich hatte …`."
+ },
+ {
+  "id": "lesson-32/ch1",
+  "type": "T2",
+  "field": "theory.chapters[0].textByLocale.uk",
+  "problem": "пропущено «не»: «і означає автоматично» — смысл противоположен ru",
+  "fix": "Уявляємо інший світ просто зараз. Якби часу було більше, результат міг би змінитися. `Hätte` виражає умовність і не означає автоматично, що з'явилася друга позначка в минулому."
+ },
+ {
+  "id": "lesson-32/ch2",
+  "type": "T2",
+  "field": "theory.chapters[1].textByLocale.uk",
+  "problem": "«за якоїсь умови» (=при какой-то) вместо «за якої умови»; «індивідуального дієслова» вместо «особового»",
+  "fix": "Результат легко винести вперед: спочатку скажи, що зробив би, потім — за якої умови. Порядок особового дієслова в підрядному після `wenn` від перестановки частин не змінюється."
+ },
+ {
+  "id": "lesson-32/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.ru",
+  "problem": "текст разбирает `angerufen hättest` / `hätte gewartet` (звонок/ожидание), а примеры главы de:32:21 (losgefahren wäre … hätte erreicht) и de:32:24 о другом; пример не из курса",
+  "fix": "Упущенное в прошлом обозначай иначе. Раньше не выехали — и на поезд не успели. `Losgefahren wäre` в условии и `hätte erreicht` в результате относятся к воображаемому прошлому."
+ },
+ {
+  "id": "lesson-32/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.uk",
+  "problem": "текст разбирает `angerufen hättest` / `hätte gewartet` (звонок/ожидание), а примеры главы de:32:21 (losgefahren wäre … hätte erreicht) и de:32:24 о другом; пример не из курса; uk также неграмматично «Втрачена дія означає інакше»",
+  "fix": "Упущену в минулому дію позначай інакше. Раніше не виїхали — і на поїзд не встигли. `Losgefahren wäre` в умові та `hätte erreicht` у результаті стосуються уявного минулого."
+ },
+ {
+  "id": "lesson-32/ch3",
+  "type": "T1",
+  "field": "theory.chapters[2].textByLocale.en",
+  "problem": "текст разбирает `angerufen hättest` / `hätte gewartet` (звонок/ожидание), а примеры главы de:32:21 (losgefahren wäre … hätte erreicht) и de:32:24 о другом; пример не из курса",
+  "fix": "Mark a missed past action differently. Nobody left earlier, so the train was missed. `Losgefahren wäre` in the condition and `hätte erreicht` in the outcome refer to the imaginary past."
+ },
+ {
+  "id": "lesson-32/ch4",
+  "type": "T2",
+  "field": "theory.chapters[3].textByLocale.en",
+  "problem": "служебный мусор: лишние кавычки \" после `…` (артефакт, видны пользователю)",
+  "fix": "With movement or a change of state in this tense, `wäre` is often needed, where the Perfect would require `sein`. Don't add `hätte` to all verbs simply because the translation contains \"would.\""
+ },
+ {
+  "id": "lesson-32/ch5",
+  "type": "T2",
+  "field": "theory.chapters[4].textByLocale.uk",
+  "problem": "«а потім відсутня умова» — неверный падеж; «людина … не забрав» — несогласование рода",
+  "fix": "Спочатку назви те, що не сталося, а потім відсутню умову. Подумай про повідомлення на телефоні: людина не побачила його вчасно, тож не забрала співрозмовника. Це вже не можна виправити заднім числом."
+ },
+ {
+  "id": "lesson-32/ch6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.uk",
+  "problem": "калька «цілої пропозиції» (пропозиція = оферта) вместо «цілого речення»; «Особисте» вместо «Особове»",
+  "fix": "Умову можна висловити групою з `ohne` або `mit` без цілого речення з `wenn`. Особове дієслово головної частини все одно потрібне. Порівняй результат із реальною перешкодою: пробкою, відсутністю ключа чи квитанції."
+ },
+ {
+  "id": "lesson-32/ch6",
+  "type": "T2",
+  "field": "theory.chapters[5].textByLocale.en",
+  "problem": "«missing a key, or a receipt» искажает ru «отсутствием ключа или квитанции»; плюс лишние кавычки \" после `…`",
+  "fix": "The condition can be expressed with a phrase using `ohne` or `mit`, without a whole clause with `wenn`. The finite verb of the main clause is still needed. Compare the result with a real obstacle: a traffic jam, a missing key or a missing receipt."
+ }
+]

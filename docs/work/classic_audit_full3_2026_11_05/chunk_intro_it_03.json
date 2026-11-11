@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 13,
+"blocks": [
+{
+"textES": "Levantas la maleta: pesa. En italiano, la valigia es femenino. Pero pesante no cambia para un objeto al cambiar de género. Otras palabras sí cambian: leggero, leggera.\nLos adjetivos tienen diferentes patrones. pesante tiene una forma para ambos géneros en singular. leggero tiene dos: leggero y leggera.",
+"textEn": "You lift the suitcase: it's heavy. In Italian, la valigia is feminine. But pesante doesn't change for one object when changing gender. Other words change: leggero, leggera.\nAdjectives have different patterns. pesante has one form for both genders in the singular. leggero has two: leggero and leggera.",
+"textId": "Anda mengangkat koper: koper itu berat. Dalam bahasa Italia, la valigia adalah feminin. Tetapi pesante tidak berubah untuk satu objek ketika mengubah jenis kelamin. Kata-kata lain berubah: leggero, leggera.\nAdjektiva memiliki pola yang berbeda. pesante memiliki satu bentuk untuk kedua jenis kelamin dalam bentuk tunggal. leggero memiliki dua: leggero dan leggera.",
+"textPl": "Podnosisz walizkę: jest ciężka. W języku włoskim la valigia jest rodzaju żeńskiego. Ale pesante nie zmienia się dla jednego obiektu podczas zmiany rodzaju. Inne słowa zmieniają się: leggero, leggera.\nPrzymiotniki mają różne formy. pesante ma jedną formę dla obu płci w liczbie pojedynczej. leggero ma dwie: leggero i leggera.",
+"textPtBr": "Você levanta a mala: ela é pesada. Em italiano, la valigia é feminino. Mas pesante não muda para um objeto quando se muda o gênero. Outras palavras mudam: leggero, leggera.\nOs adjetivos têm padrões diferentes. pesante tem uma forma para ambos os gêneros no singular. leggero tem duas: leggero e leggera.",
+"textRU": "Ты поднимаешь чемодан: он тяжёлый. В итальянском la valigia — слово женского рода. Но pesante не меняется для одного предмета при смене рода. Другие слова меняются: leggero, leggera.\nУ прилагательных есть разные модели. У pesante одна форма для обоих родов в единственном числе. У leggero две: leggero и leggera.",
+"textTr": "Bavulu kaldırıyorsunuz: ağır. İtalyancada la valigia dişil. Ancak pesante, cinsiyet değiştirildiğinde tek bir nesne için değişmez. Diğer kelimeler değişir: leggero, leggera.\nSıfatların farklı kalıpları vardır. pesante, tekil halde her iki cinsiyet için de bir biçime sahiptir. leggero'nin iki biçimi vardır: leggero ve leggera.",
+"textUK": "Ти піднімаєш валізу: вона важка. В італійському la valigia - слово жіночого роду. Але pesante не змінюється одного предмета при зміні роду. Інші слова змінюються: leggero, leggera.\nПрикметники мають різні моделі. У pesante одна форма для обох пологів в однині. У leggero дві: leggero та leggera.",
+"textVi": "Bạn nhấc vali lên: nó nặng. Trong tiếng Ý, la valigia là giống cái. Nhưng pesante không thay đổi đối với một đối tượng khi thay đổi giống. Các từ khác thay đổi: leggero, leggera.\nTính từ có các mẫu khác nhau. pesante có một dạng cho cả hai giống ở số ít. leggero có hai dạng: leggero và leggera.",
+"titleES": "¿Qué objeto?: concordancia adjetival",
+"titleEn": "What object: adjective agreement",
+"titleId": "Objek apa: kesesuaian kata sifat",
+"titlePl": "Jaki obiekt: zgodność przymiotnika",
+"titlePtBr": "Que objeto: concordância adjetiva",
+"titleRU": "Какой предмет: согласование прилагательного",
+"titleTr": "Hangi nesne: sıfat uyumu",
+"titleUK": "Який предмет: узгодження прикметника",
+"titleVi": "Đối tượng nào: sự hòa hợp tính từ",
+"titleByLocale": {
+"en": "What object: adjective agreement",
+"es": "¿Qué objeto?: concordancia adjetival",
+"id": "Objek apa: kesesuaian kata sifat",
+"pl": "Jaki obiekt: zgodność przymiotnika",
+"pt-BR": "Que objeto: concordância adjetiva",
+"ru": "Какой предмет: согласование прилагательного",
+"tr": "Hangi nesne: sıfat uyumu",
+"uk": "Який предмет: узгодження прикметника",
+"vi": "Đối tượng nào: sự hòa hợp tính từ"
+},
+"textByLocale": {
+"en": [
+"You lift the suitcase: it's heavy. In Italian, «la valigia» is feminine. But «pesante» doesn't change for one object when changing gender. Other words change: «leggero», «leggera».",
+"Adjectives have different patterns. «pesante» has one form for both genders in the singular. «leggero» has two: «leggero» and «leggera»."
+],
+"es": [
+"Levantas la maleta: pesa. En italiano, «la valigia» es femenino. Pero «pesante» no cambia para un objeto al cambiar de género. Otras palabras sí cambian: «leggero», «leggera».",
+"Los adjetivos tienen diferentes patrones. «pesante» tiene una forma para ambos géneros en singular. «leggero» tiene dos: «leggero» y «leggera»."
+],
+"id": [
+"Anda mengangkat koper: koper itu berat. Dalam bahasa Italia, «la valigia» adalah feminin. Tetapi «pesante» tidak berubah untuk satu objek ketika mengubah jenis kelamin. Kata-kata lain berubah: «leggero», «leggera».",
+"Adjektiva memiliki pola yang berbeda. «pesante» memiliki satu bentuk untuk kedua jenis kelamin dalam bentuk tunggal. «leggero» memiliki dua: «leggero» dan «leggera»."
+],
+"pl": [
+"Podnosisz walizkę: jest ciężka. W języku włoskim «la valigia» jest rodzaju żeńskiego. Ale «pesante» nie zmienia się dla jednego obiektu podczas zmiany rodzaju. Inne słowa zmieniają się: «leggero», «leggera».",
+"Przymiotniki mają różne formy. «pesante» ma jedną formę dla obu płci w liczbie pojedynczej. «leggero» ma dwie: «leggero» i «leggera»."
+],
+"pt-BR": [
+"Você levanta a mala: ela é pesada. Em italiano, «la valigia» é feminino. Mas «pesante» não muda para um objeto quando se muda o gênero. Outras palavras mudam: «leggero», «leggera».",
+"Os adjetivos têm padrões diferentes. «pesante» tem uma forma para ambos os gêneros no singular. «leggero» tem duas: «leggero» e «leggera»."
+],
+"ru": [
+"Ты поднимаешь чемодан: он тяжёлый. В итальянском «la valigia» — слово женского рода. Но «pesante» не меняется для одного предмета при смене рода. Другие слова меняются: «leggero», «leggera».",
+"У прилагательных есть разные модели. У «pesante» одна форма для обоих родов в единственном числе. У «leggero» две: «leggero» и «leggera»."
+],
+"tr": [
+"Bavulu kaldırıyorsunuz: ağır. İtalyancada «la valigia» dişil. Ancak «pesante», cinsiyet değiştirildiğinde tek bir nesne için değişmez. Diğer kelimeler değişir: «leggero», «leggera».",
+"Sıfatların farklı kalıpları vardır. «pesante», tekil halde her iki cinsiyet için de bir biçime sahiptir. «leggero»'nin iki biçimi vardır: «leggero» ve «leggera»."
+],
+"uk": [
+"Ти піднімаєш валізу: вона важка. В італійському «la valigia» - слово жіночого роду. Але «pesante» не змінюється одного предмета при зміні роду. Інші слова змінюються: «leggero», «leggera».",
+"Прикметники мають різні моделі. У «pesante» одна форма для обох пологів в однині. У «leggero» дві: «leggero» та «leggera»."
+],
+"vi": [
+"Bạn nhấc vali lên: nó nặng. Trong tiếng Ý, «la valigia» là giống cái. Nhưng «pesante» không thay đổi đối với một đối tượng khi thay đổi giống. Các từ khác thay đổi: «leggero», «leggera».",
+"Tính từ có các mẫu khác nhau. «pesante» có một dạng cho cả hai giống ở số ít. «leggero» có hai dạng: «leggero» và «leggera»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:13:01"
+]
+},
+{
+"textES": "sustantivo + è / sono + atributo\nObserva el nombre en italiano. Il sacco è leggero y la borsa è leggera se diferencian en la última letra del adjetivo. Para varias cosas, diremos leggeri o leggere.\nLas flores también tienen diferentes terminaciones: bianco, bianca y verde en singular no distinguen género. Es mejor estudiar con un objeto de ejemplo.",
+"textEn": "noun + è / sono + attribute\nLook at the Italian name itself. Il sacco è leggero and la borsa è leggera differ in the last letter of the adjective. For several things, we'll say leggeri or leggere.\nFlowers also have different endings: bianco, bianca, and verde in the singular doesn't distinguish gender. It's best to study with an example object.",
+"textId": "kata benda + è / sono + atribut\nLihatlah nama Italia itu sendiri. Il sacco è leggero dan la borsa è leggera berbeda pada huruf terakhir kata sifat. Untuk beberapa hal, kita akan mengatakan leggeri atau leggere.\nBunga juga memiliki akhiran yang berbeda: bianco, bianca, dan verde dalam bentuk tunggal tidak membedakan jenis kelamin. Sebaiknya pelajari dengan contoh objek.",
+"textPl": "rzeczownik + è / sono + atrybut\nSpójrz na samą włoską nazwę. Il sacco è leggero i la borsa è leggera różnią się ostatnią literą przymiotnika. W kilku przypadkach powiemy leggeri lub leggere.\nKwiaty również mają różne końcówki: bianco, bianca, a verde w liczbie pojedynczej nie rozróżnia płci. Najlepiej uczyć się na przykładzie obiektu.",
+"textPtBr": "substantivo + è / sono + atributo\nObserve o próprio nome em italiano. Il sacco è leggero e la borsa è leggera diferem na última letra do adjetivo. Para várias coisas, diremos leggeri ou leggere.\nAs flores também têm terminações diferentes: bianco, bianca e verde no singular não distinguem o gênero. É melhor estudar com um objeto de exemplo.",
+"textRU": "существительное + è / sono + признак\nСмотри на само итальянское название. Il sacco è leggero и la borsa è leggera отличаются последней буквой прилагательного. О нескольких вещах скажем leggeri или leggere.\nВ цветах тоже бывают разные окончания: bianco, bianca, а verde в единственном числе не различает род. Учить лучше вместе с примером предмета.",
+"textTr": "isim + è / sono + özellik\nİtalyanca isme bakın. Il sacco è leggero ve la borsa è leggera, sıfatın son harfinde farklılık gösterir. Birçok şey için leggeri veya leggere diyeceğiz.\nÇiçeklerin de farklı son ekleri vardır: bianco, bianca ve verde tekil halde cinsiyet ayrımı yapmaz. Örnek bir nesneyle çalışmak en iyisidir.",
+"textUK": "іменник + è / sono + ознака\nДивись на саму італійську назву. Il sacco è leggero та la borsa è leggera відрізняються останньою буквою прикметника. Про кілька речей скажемо leggeri чи leggere.\nУ кольорах теж бувають різні закінчення: bianco, bianca, а verde в однині не розрізняє рід. Вчити краще разом із прикладом предмета.",
+"textVi": "danh từ + è / sono + thuộc tính\nHãy nhìn vào chính tên tiếng Ý. Il sacco è leggero và la borsa è leggera khác nhau ở chữ cái cuối cùng của tính từ. Đối với một số thứ, chúng ta sẽ nói leggeri hoặc leggere.\nHoa cũng có các đuôi khác nhau: bianco, bianca và verde ở số ít không phân biệt giống. Tốt nhất nên học với một ví dụ cụ thể.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"noun + «è / sono» + attribute",
+"Look at the Italian name itself. «Il sacco è leggero» and «la borsa è leggera» differ in the last letter of the adjective. For several things, we'll say «leggeri» or «leggere».",
+"Flowers also have different endings: «bianco», «bianca», and «verde» in the singular doesn't distinguish gender. It's best to study with an example object."
+],
+"es": [
+"sustantivo + «è / sono» + atributo",
+"Observa el nombre en italiano. «Il sacco è leggero» y «la borsa è leggera» se diferencian en la última letra del adjetivo. Para varias cosas, diremos «leggeri» o «leggere».",
+"Las flores también tienen diferentes terminaciones: «bianco», «bianca» y «verde» en singular no distinguen género. Es mejor estudiar con un objeto de ejemplo."
+],
+"id": [
+"kata benda + «è / sono» + atribut",
+"Lihatlah nama Italia itu sendiri. «Il sacco è leggero» dan «la borsa è leggera» berbeda pada huruf terakhir kata sifat. Untuk beberapa hal, kita akan mengatakan «leggeri» atau «leggere».",
+"Bunga juga memiliki akhiran yang berbeda: «bianco», «bianca», dan «verde» dalam bentuk tunggal tidak membedakan jenis kelamin. Sebaiknya pelajari dengan contoh objek."
+],
+"pl": [
+"rzeczownik + «è / sono» + atrybut",
+"Spójrz na samą włoską nazwę. «Il sacco è leggero» i «la borsa è leggera» różnią się ostatnią literą przymiotnika. W kilku przypadkach powiemy «leggeri» lub «leggere».",
+"Kwiaty również mają różne końcówki: «bianco», «bianca», a «verde» w liczbie pojedynczej nie rozróżnia płci. Najlepiej uczyć się na przykładzie obiektu."
+],
+"pt-BR": [
+"substantivo + «è / sono» + atributo",
+"Observe o próprio nome em italiano. «Il sacco è leggero» e «la borsa è leggera» diferem na última letra do adjetivo. Para várias coisas, diremos «leggeri» ou «leggere».",
+"As flores também têm terminações diferentes: «bianco», «bianca» e «verde» no singular não distinguem o gênero. É melhor estudar com um objeto de exemplo."
+],
+"ru": [
+"существительное + «è / sono» + признак",
+"Смотри на само итальянское название. «Il sacco è leggero» и «la borsa è leggera» отличаются последней буквой прилагательного. О нескольких вещах скажем «leggeri» или «leggere».",
+"В цветах тоже бывают разные окончания: «bianco», «bianca», а «verde» в единственном числе не различает род. Учить лучше вместе с примером предмета."
+],
+"tr": [
+"isim + «è / sono» + özellik",
+"İtalyanca isme bakın. «Il sacco è leggero» ve «la borsa è leggera», sıfatın son harfinde farklılık gösterir. Birçok şey için «leggeri» veya «leggere» diyeceğiz.",
+"Çiçeklerin de farklı son ekleri vardır: «bianco», «bianca» ve «verde» tekil halde cinsiyet ayrımı yapmaz. Örnek bir nesneyle çalışmak en iyisidir."
+],
+"uk": [
+"іменник + «è / sono» + ознака",
+"Дивись на саму італійську назву. «Il sacco è leggero» та «la borsa è leggera» відрізняються останньою буквою прикметника. Про кілька речей скажемо «leggeri» чи «leggere».",
+"У кольорах теж бувають різні закінчення: «bianco», «bianca», а «verde» в однині не розрізняє рід. Вчити краще разом із прикладом предмета."
+],
+"vi": [
+"danh từ + «è / sono» + thuộc tính",
+"Hãy nhìn vào chính tên tiếng Ý. «Il sacco è leggero» và «la borsa è leggera» khác nhau ở chữ cái cuối cùng của tính từ. Đối với một số thứ, chúng ta sẽ nói «leggeri» hoặc «leggere».",
+"Hoa cũng có các đuôi khác nhau: «bianco», «bianca» và «verde» ở số ít không phân biệt giống. Tốt nhất nên học với một ví dụ cụ thể."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:13:05",
+"it:13:06"
+]
+},
+{
+"textES": "Lea «La bolsa es pesada» como dos partes. Primero, el objeto específico La borsa, luego su atributo è pesante. No elija la terminación en -a simplemente porque la palabra anterior sea femenina: la frase adjetiva también es importante.",
+"textEn": "Read \"The bag is heavy\" as two parts. First, the specific thing La borsa, then its attribute è pesante. Don't choose the ending in -a simply because the word before it is feminine: the adjective phrase is also important.",
+"textId": "Bacalah \"Tas itu berat\" sebagai dua bagian. Pertama, benda spesifiknya La borsa, kemudian atributnya è pesante. Jangan memilih akhiran di -a hanya karena kata sebelumnya berjenis kelamin perempuan: frasa adjektiva juga penting.",
+"textPl": "Przeczytaj zdanie „Torba jest ciężka” w dwóch częściach. Najpierw konkretny przedmiot La borsa, a następnie jego atrybut è pesante. Nie wybieraj końcówki w zdaniu -a tylko dlatego, że poprzednie słowo jest rodzaju żeńskiego: fraza przymiotnikowa również ma znaczenie.",
+"textPtBr": "Leia \"A bolsa é pesada\" como duas partes. Primeiro, a coisa específica La borsa, depois seu atributo è pesante. Não escolha a terminação em -a simplesmente porque a palavra anterior é feminina: a expressão adjetiva também é importante.",
+"textRU": "Прочти «Сумка тяжёлая» как две части. Сначала конкретная вещь La borsa, затем её признак è pesante. Не выбирай окончание на -a просто потому, что слово перед ним женского рода: важна и группа прилагательного.",
+"textTr": "\"Çanta ağırdır\" cümlesini iki bölüm olarak okuyun. Önce belirli nesne La borsa, sonra niteliği è pesante. -a ekini sadece önceki kelimenin dişil olması nedeniyle seçmeyin: sıfat tamlaması da önemlidir.",
+"textUK": "Прочитай «Сумка важка» як дві частини. Спочатку конкретна річ La borsa, потім її ознака è pesante. Не вибирай закінчення на -a просто тому, що слово перед ним жіночого роду: важлива група прикметника.",
+"textVi": "Đọc câu \"Chiếc túi nặng\" thành hai phần. Đầu tiên là vật cụ thể La borsa, sau đó là thuộc tính è pesante của nó. Đừng chỉ chọn đuôi ở -a chỉ vì từ đứng trước nó là giống cái: cụm tính từ cũng rất quan trọng.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Read \"The bag is heavy\" as two parts. First, the specific thing «La borsa», then its attribute «è pesante». Don't choose the ending in «-a» simply because the word before it is feminine: the adjective phrase is also important."
+],
+"es": [
+"Lea «La bolsa es pesada» como dos partes. Primero, el objeto específico «La borsa», luego su atributo «è pesante». No elija la terminación en «-a» simplemente porque la palabra anterior sea femenina: la frase adjetiva también es importante."
+],
+"id": [
+"Bacalah \"Tas itu berat\" sebagai dua bagian. Pertama, benda spesifiknya «La borsa», kemudian atributnya «è pesante». Jangan memilih akhiran di «-a» hanya karena kata sebelumnya berjenis kelamin perempuan: frasa adjektiva juga penting."
+],
+"pl": [
+"Przeczytaj zdanie „Torba jest ciężka” w dwóch częściach. Najpierw konkretny przedmiot «La borsa», a następnie jego atrybut «è pesante». Nie wybieraj końcówki w zdaniu «-a» tylko dlatego, że poprzednie słowo jest rodzaju żeńskiego: fraza przymiotnikowa również ma znaczenie."
+],
+"pt-BR": [
+"Leia \"A bolsa é pesada\" como duas partes. Primeiro, a coisa específica «La borsa», depois seu atributo «è pesante». Não escolha a terminação em «-a» simplesmente porque a palavra anterior é feminina: a expressão adjetiva também é importante."
+],
+"ru": [
+"Прочти «Сумка тяжёлая» как две части. Сначала конкретная вещь «La borsa», затем её признак «è pesante». Не выбирай окончание на «-a» просто потому, что слово перед ним женского рода: важна и группа прилагательного."
+],
+"tr": [
+"\"Çanta ağırdır\" cümlesini iki bölüm olarak okuyun. Önce belirli nesne «La borsa», sonra niteliği «è pesante». «-a» ekini sadece önceki kelimenin dişil olması nedeniyle seçmeyin: sıfat tamlaması da önemlidir."
+],
+"uk": [
+"Прочитай «Сумка важка» як дві частини. Спочатку конкретна річ «La borsa», потім її ознака «è pesante». Не вибирай закінчення на «-a» просто тому, що слово перед ним жіночого роду: важлива група прикметника."
+],
+"vi": [
+"Đọc câu \"Chiếc túi nặng\" thành hai phần. Đầu tiên là vật cụ thể «La borsa», sau đó là thuộc tính «è pesante» của nó. Đừng chỉ chọn đuôi ở «-a» chỉ vì từ đứng trước nó là giống cái: cụm tính từ cũng rất quan trọng."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:13:01",
+"it:13:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:13:01",
+"target": "La borsa è pesante.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "it:13:05",
+"target": "Il lenzuolo è bianco.",
+"ru": "Простыня белая.",
+"uk": "Простирадло біле."
+},
+{
+"id": "it:13:06",
+"target": "La camicia è bianca.",
+"ru": "Рубашка белая.",
+"uk": "Сорочка біла."
+},
+{
+"id": "it:13:01",
+"target": "La borsa è pesante.",
+"ru": "Сумка тяжелая.",
+"uk": "Сумка важка."
+},
+{
+"id": "it:13:04",
+"target": "La giacca è leggera.",
+"ru": "Куртка легкая.",
+"uk": "Куртка легка."
+}
+]
+},
+{
+"lesson": 14,
+"blocks": [
+{
+"textES": "Frente a una puerta cerrada, quieres pedir permiso para entrar. Esta breve frase tiene dos significados diferentes: «can» y «enter». En italiano, es posso entrare. No conviertas ambos verbos a la forma de «I».\nPotere comunica posibilidad o permiso. En una frase, una pregunta y una afirmación solo pueden diferir en la entonación. Considera si te están preguntando o diciendo un hecho.",
+"textEn": "In front of a closed door, you want to ask permission to enter. This short phrase has two different meanings: \"can\" and \"enter.\" In Italian, it's posso entrare. Don't make both verbs into \"I\" forms.\nPotere communicates possibility or permission. In a phrase, a question and a statement can differ only in intonation. Consider whether you are being asked or told a fact.",
+"textId": "Di depan pintu yang tertutup, Anda ingin meminta izin untuk masuk. Frasa pendek ini memiliki dua arti berbeda: \"bisa\" dan \"masuk.\" Dalam bahasa Italia, itu adalah posso entrare. Jangan mengubah kedua kata kerja menjadi bentuk \"saya\".\nPotere mengkomunikasikan kemungkinan atau izin. Dalam sebuah frasa, pertanyaan dan pernyataan hanya dapat berbeda dalam intonasi. Pertimbangkan apakah Anda ditanya atau diberitahu sebuah fakta.",
+"textPl": "Stojąc przed zamkniętymi drzwiami, chcesz poprosić o pozwolenie na wejście. To krótkie wyrażenie ma dwa różne znaczenia: „can” i „enter”. W języku włoskim to posso entrare. Nie zamieniaj obu czasowników na formy „ja”.\nPotere komunikuje możliwość lub pozwolenie. W zdaniu pytanie i stwierdzenie mogą różnić się jedynie intonacją. Zastanów się, czy jesteś proszony, czy informowany o fakcie.",
+"textPtBr": "Diante de uma porta fechada, você quer pedir permissão para entrar. Esta pequena frase tem dois significados diferentes: \"poder\" e \"entrar\". Em italiano, é posso entrare. Não transforme ambos os verbos em formas de \"eu\".\nPotere comunica possibilidade ou permissão. Em uma frase, uma pergunta e uma afirmação podem diferir apenas na entonação. Considere se você está sendo questionado ou informado sobre um fato.",
+"textRU": "Перед закрытой дверью ты хочешь спросить разрешение войти. В короткой фразе два разных смысла: «могу» и «войти». По-итальянски это posso entrare. Не надо делать оба глагола формами для «я».\nPotere сообщает возможность или разрешение. Во фразе вопрос и утверждение могут отличаться только интонацией. Учитывай, спрашивают ли тебя или сообщают факт.",
+"textTr": "Kapalı bir kapının önünde, içeri girmek için izin istemek istiyorsunuz. Bu kısa ifade iki farklı anlama gelir: \"can\" ve \"enter\". İtalyancada posso entrare'dir. Her iki fiili de \"I\" biçimine dönüştürmeyin.\nPotere olasılık veya izin ifade eder. Bir ifadede, soru ve ifade yalnızca tonlama bakımından farklılık gösterebilir. Size bir şey soruluyor mu yoksa bir gerçek mi söyleniyor, bunu göz önünde bulundurun.",
+"textUK": "Перед зачиненими дверима хочеш запитати про дозвіл увійти. У короткій фразі два різні сенси: «можу» та «увійти». Італійською це posso entrare. Не треба робити обидва дієслова формами для «я».\nPotere повідомляє можливість чи дозвіл. У фразі питання та твердження можуть відрізнятися лише інтонацією. Зважай, чи питають тебе чи повідомляють факт.",
+"textVi": "Trước một cánh cửa đóng kín, bạn muốn xin phép vào. Cụm từ ngắn này có hai nghĩa khác nhau: \"có thể\" và \"vào\". Trong tiếng Ý, đó là posso entrare. Không được chuyển cả hai động từ sang dạng \"tôi\".\nPotere diễn đạt khả năng hoặc sự cho phép. Trong một cụm từ, câu hỏi và câu khẳng định chỉ khác nhau về ngữ điệu. Hãy xem xét xem bạn đang được hỏi hay được cho biết một sự thật.",
+"titleES": "Can, must, want: dos verbos",
+"titleEn": "Can, must, want: two verbs",
+"titleId": "Bisa, harus, ingin: dua kata kerja",
+"titlePl": "Can, must, want: dwa czasowniki",
+"titlePtBr": "Poder, dever, querer: dois verbos",
+"titleRU": "Могу, должен, хочу: два глагола",
+"titleTr": "Can, must, want: iki fiil",
+"titleUK": "Можу, маю, хочу: два дієслова",
+"titleVi": "Có thể, phải, muốn: hai động từ",
+"titleByLocale": {
+"en": "Can, must, want: two verbs",
+"es": "Can, must, want: dos verbos",
+"id": "Bisa, harus, ingin: dua kata kerja",
+"pl": "Can, must, want: dwa czasowniki",
+"pt-BR": "Poder, dever, querer: dois verbos",
+"ru": "Могу, должен, хочу: два глагола",
+"tr": "Can, must, want: iki fiil",
+"uk": "Можу, маю, хочу: два дієслова",
+"vi": "Có thể, phải, muốn: hai động từ"
+},
+"textByLocale": {
+"en": [
+"In front of a closed door, you want to ask permission to enter. This short phrase has two different meanings: \"can\" and \"enter.\" In Italian, it's «posso entrare». Don't make both verbs into \"I\" forms.",
+"«Potere» communicates possibility or permission. In a phrase, a question and a statement can differ only in intonation. Consider whether you are being asked or told a fact."
+],
+"es": [
+"Frente a una puerta cerrada, quieres pedir permiso para entrar. Esta breve frase tiene dos significados diferentes: «can» y «enter». En italiano, es «posso entrare». No conviertas ambos verbos a la forma de «I».",
+"«Potere» comunica posibilidad o permiso. En una frase, una pregunta y una afirmación solo pueden diferir en la entonación. Considera si te están preguntando o diciendo un hecho."
+],
+"id": [
+"Di depan pintu yang tertutup, Anda ingin meminta izin untuk masuk. Frasa pendek ini memiliki dua arti berbeda: \"bisa\" dan \"masuk.\" Dalam bahasa Italia, itu adalah «posso entrare». Jangan mengubah kedua kata kerja menjadi bentuk \"saya\".",
+"«Potere» mengkomunikasikan kemungkinan atau izin. Dalam sebuah frasa, pertanyaan dan pernyataan hanya dapat berbeda dalam intonasi. Pertimbangkan apakah Anda ditanya atau diberitahu sebuah fakta."
+],
+"pl": [
+"Stojąc przed zamkniętymi drzwiami, chcesz poprosić o pozwolenie na wejście. To krótkie wyrażenie ma dwa różne znaczenia: „can” i „enter”. W języku włoskim to «posso entrare». Nie zamieniaj obu czasowników na formy „ja”.",
+"«Potere» komunikuje możliwość lub pozwolenie. W zdaniu pytanie i stwierdzenie mogą różnić się jedynie intonacją. Zastanów się, czy jesteś proszony, czy informowany o fakcie."
+],
+"pt-BR": [
+"Diante de uma porta fechada, você quer pedir permissão para entrar. Esta pequena frase tem dois significados diferentes: \"poder\" e \"entrar\". Em italiano, é «posso entrare». Não transforme ambos os verbos em formas de \"eu\".",
+"«Potere» comunica possibilidade ou permissão. Em uma frase, uma pergunta e uma afirmação podem diferir apenas na entonação. Considere se você está sendo questionado ou informado sobre um fato."
+],
+"ru": [
+"Перед закрытой дверью ты хочешь спросить разрешение войти. В короткой фразе два разных смысла: «могу» и «войти». По-итальянски это «posso entrare». Не надо делать оба глагола формами для «я».",
+"«Potere» сообщает возможность или разрешение. Во фразе вопрос и утверждение могут отличаться только интонацией. Учитывай, спрашивают ли тебя или сообщают факт."
+],
+"tr": [
+"Kapalı bir kapının önünde, içeri girmek için izin istemek istiyorsunuz. Bu kısa ifade iki farklı anlama gelir: \"can\" ve \"enter\". İtalyancada «posso entrare»'dir. Her iki fiili de \"I\" biçimine dönüştürmeyin.",
+"«Potere» olasılık veya izin ifade eder. Bir ifadede, soru ve ifade yalnızca tonlama bakımından farklılık gösterebilir. Size bir şey soruluyor mu yoksa bir gerçek mi söyleniyor, bunu göz önünde bulundurun."
+],
+"uk": [
+"Перед зачиненими дверима хочеш запитати про дозвіл увійти. У короткій фразі два різні сенси: «можу» та «увійти». Італійською це «posso entrare». Не треба робити обидва дієслова формами для «я».",
+"«Potere» повідомляє можливість чи дозвіл. У фразі питання та твердження можуть відрізнятися лише інтонацією. Зважай, чи питають тебе чи повідомляють факт."
+],
+"vi": [
+"Trước một cánh cửa đóng kín, bạn muốn xin phép vào. Cụm từ ngắn này có hai nghĩa khác nhau: \"có thể\" và \"vào\". Trong tiếng Ý, đó là «posso entrare». Không được chuyển cả hai động từ sang dạng \"tôi\".",
+"«Potere» diễn đạt khả năng hoặc sự cho phép. Trong một cụm từ, câu hỏi và câu khẳng định chỉ khác nhau về ngữ điệu. Hãy xem xét xem bạn đang được hỏi hay được cho biết một sự thật."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:14:01"
+]
+},
+{
+"textES": "posso / devo / voglio + infinitivo\nLa primera palabra muestra a la persona y su actitud hacia la acción. Reemplaza posso por devo: la acción es la misma, pero ahora es una obligación. La segunda palabra, entrare, se mantiene en su forma de diccionario.\nDovere comunica necesidad. Dobbiamo pagare es \"Debemos pagar\", no \"Ya nos han pagado\". No cambies la forma del segundo verbo por el pronombre.",
+"textEn": "posso / devo / voglio + infinitive\nThe first word shows the person and their attitude toward the action. Replace posso with devo: the action is the same, but now it's an obligation. The second word, entrare, remains in its dictionary form.\nDovere communicates necessity. Dobbiamo pagare is \"we must pay,\" not \"we have already been paid.\" Don't change the form of the second verb because of the pronoun.",
+"textId": "posso / devo / voglio + infinitif\nKata pertama menunjukkan orang dan sikap mereka terhadap tindakan tersebut. Ganti posso dengan devo: tindakannya sama, tetapi sekarang itu adalah kewajiban. Kata kedua, entrare, tetap dalam bentuk kamusnya.\nDovere mengkomunikasikan kebutuhan. Dobbiamo pagare adalah \"kita harus membayar,\" bukan \"kita sudah dibayar.\" Jangan mengubah bentuk kata kerja kedua karena kata ganti.",
+"textPl": "posso / devo / voglio + bezokolicznik\nPierwsze słowo wskazuje na osobę i jej stosunek do czynności. Zastąp posso devo: czynność jest taka sama, ale teraz jest obowiązkiem. Drugie słowo, entrare, pozostaje w swojej formie słownikowej.\nDovere komunikuje konieczność. Dobbiamo pagare to „musimy zapłacić”, a nie „już nam zapłacono”. Nie zmieniaj formy drugiego czasownika ze względu na zaimek.",
+"textPtBr": "posso / devo / voglio + infinitivo\nA primeira palavra mostra a pessoa e sua atitude em relação à ação. Substitua posso por devo: a ação é a mesma, mas agora é uma obrigação. A segunda palavra, entrare, permanece em sua forma de dicionário.\nDovere comunica necessidade. Dobbiamo pagare é \"nós devemos pagar\", não \"nós já fomos pagos\". Não altere a forma do segundo verbo por causa do pronome.",
+"textRU": "posso / devo / voglio + инфинитив\nПервое слово показывает человека и отношение к действию. Замени posso на devo: действие то же, но теперь это обязанность. Второе слово entrare остаётся в словарной форме.\nDovere сообщает необходимость. Dobbiamo pagare — это «мы должны заплатить», а не «нам уже заплатили». Не меняй форму второго глагола из-за местоимения.",
+"textTr": "posso / devo / voglio + mastar\nİlk kelime, kişiyi ve eyleme karşı tutumunu gösterir. posso'i devo ile değiştirin: eylem aynıdır, ancak şimdi bir yükümlülüktür. İkinci kelime, entrare, sözlük biçiminde kalır.\nDovere gereklilik ifade eder. Dobbiamo pagare \"ödememiz gerekiyor\" anlamına gelir, \"zaten ödeme yapıldı\" anlamına gelmez. Zamir nedeniyle ikinci fiilin biçimini değiştirmeyin.",
+"textUK": "posso / devo / voglio + інфінітив\nПерше слово показує людину та ставлення до дії. Заміни posso на devo: дія те саме, але тепер це обов'язок. Друге слово entrare залишається у словниковій формі.\nDovere повідомляє необхідність. Dobbiamo pagare це «ми повинні заплатити», а не «нам уже заплатили». Не змінюй форму другого дієслова через займенник.",
+"textVi": "posso / devo / voglio + động từ nguyên mẫu\nTừ đầu tiên thể hiện người và thái độ của họ đối với hành động. Thay posso bằng devo: hành động vẫn như cũ, nhưng giờ đây nó là một nghĩa vụ. Từ thứ hai, entrare, vẫn giữ nguyên dạng trong từ điển.\nDovere diễn đạt sự cần thiết. Dobbiamo pagare là \"chúng ta phải trả tiền\", chứ không phải \"chúng ta đã được trả tiền rồi\". Đừng thay đổi hình thức của động từ thứ hai vì đại từ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«posso / devo / voglio» + infinitive",
+"The first word shows the person and their attitude toward the action. Replace «posso» with «devo»: the action is the same, but now it's an obligation. The second word, «entrare», remains in its dictionary form.",
+"«Dovere» communicates necessity. «Dobbiamo pagare» is \"we must pay,\" not \"we have already been paid.\" Don't change the form of the second verb because of the pronoun."
+],
+"es": [
+"«posso / devo / voglio» + infinitivo",
+"La primera palabra muestra a la persona y su actitud hacia la acción. Reemplaza «posso» por «devo»: la acción es la misma, pero ahora es una obligación. La segunda palabra, «entrare», se mantiene en su forma de diccionario.",
+"«Dovere» comunica necesidad. «Dobbiamo pagare» es \"Debemos pagar\", no \"Ya nos han pagado\". No cambies la forma del segundo verbo por el pronombre."
+],
+"id": [
+"«posso / devo / voglio» + infinitif",
+"Kata pertama menunjukkan orang dan sikap mereka terhadap tindakan tersebut. Ganti «posso» dengan «devo»: tindakannya sama, tetapi sekarang itu adalah kewajiban. Kata kedua, «entrare», tetap dalam bentuk kamusnya.",
+"«Dovere» mengkomunikasikan kebutuhan. «Dobbiamo pagare» adalah \"kita harus membayar,\" bukan \"kita sudah dibayar.\" Jangan mengubah bentuk kata kerja kedua karena kata ganti."
+],
+"pl": [
+"«posso / devo / voglio» + bezokolicznik",
+"Pierwsze słowo wskazuje na osobę i jej stosunek do czynności. Zastąp «posso» «devo»: czynność jest taka sama, ale teraz jest obowiązkiem. Drugie słowo, «entrare», pozostaje w swojej formie słownikowej.",
+"«Dovere» komunikuje konieczność. «Dobbiamo pagare» to „musimy zapłacić”, a nie „już nam zapłacono”. Nie zmieniaj formy drugiego czasownika ze względu na zaimek."
+],
+"pt-BR": [
+"«posso / devo / voglio» + infinitivo",
+"A primeira palavra mostra a pessoa e sua atitude em relação à ação. Substitua «posso» por «devo»: a ação é a mesma, mas agora é uma obrigação. A segunda palavra, «entrare», permanece em sua forma de dicionário.",
+"«Dovere» comunica necessidade. «Dobbiamo pagare» é \"nós devemos pagar\", não \"nós já fomos pagos\". Não altere a forma do segundo verbo por causa do pronome."
+],
+"ru": [
+"«posso / devo / voglio» + инфинитив",
+"Первое слово показывает человека и отношение к действию. Замени «posso» на «devo»: действие то же, но теперь это обязанность. Второе слово «entrare» остаётся в словарной форме.",
+"«Dovere» сообщает необходимость. «Dobbiamo pagare» — это «мы должны заплатить», а не «нам уже заплатили». Не меняй форму второго глагола из-за местоимения."
+],
+"tr": [
+"«posso / devo / voglio» + mastar",
+"İlk kelime, kişiyi ve eyleme karşı tutumunu gösterir. «posso»'i «devo» ile değiştirin: eylem aynıdır, ancak şimdi bir yükümlülüktür. İkinci kelime, «entrare», sözlük biçiminde kalır.",
+"«Dovere» gereklilik ifade eder. «Dobbiamo pagare» \"ödememiz gerekiyor\" anlamına gelir, \"zaten ödeme yapıldı\" anlamına gelmez. Zamir nedeniyle ikinci fiilin biçimini değiştirmeyin."
+],
+"uk": [
+"«posso / devo / voglio» + інфінітив",
+"Перше слово показує людину та ставлення до дії. Заміни «posso» на «devo»: дія те саме, але тепер це обов'язок. Друге слово «entrare» залишається у словниковій формі.",
+"«Dovere» повідомляє необхідність. «Dobbiamo pagare» це «ми повинні заплатити», а не «нам уже заплатили». Не змінюй форму другого дієслова через займенник."
+],
+"vi": [
+"«posso / devo / voglio» + động từ nguyên mẫu",
+"Từ đầu tiên thể hiện người và thái độ của họ đối với hành động. Thay «posso» bằng «devo»: hành động vẫn như cũ, nhưng giờ đây nó là một nghĩa vụ. Từ thứ hai, «entrare», vẫn giữ nguyên dạng trong từ điển.",
+"«Dovere» diễn đạt sự cần thiết. «Dobbiamo pagare» là \"chúng ta phải trả tiền\", chứ không phải \"chúng ta đã được trả tiền rồi\". Đừng thay đổi hình thức của động từ thứ hai vì đại từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:14:07",
+"it:14:08"
+]
+},
+{
+"textES": "\"Puedo entrar\" se forma así: Posso → entrare. Para \"Puedes entrar\", cambia la primera ficha a Puoi. No se necesita preposición entre ellas.",
+"textEn": "\"I can come in\" is formed like this: Posso → entrare. For \"you can come in,\" change the first tile to Puoi. No preposition is needed between them.",
+"textId": "\"Saya bisa masuk\" dibentuk seperti ini: Posso → entrare. Untuk \"Anda bisa masuk,\" ubah ubin pertama menjadi Puoi. Tidak diperlukan preposisi di antara keduanya.",
+"textPl": "„Mogę wejść” tworzy się w następujący sposób: Posso → entrare. Aby „możesz wejść”, zmień pierwszy kafelek na Puoi. Nie jest potrzebny przyimek między nimi.",
+"textPtBr": "\"Eu posso entrar\" é formado assim: Posso → entrare. Para \"você pode entrar\", troque a primeira peça para Puoi. Não é necessária nenhuma preposição entre elas.",
+"textRU": "«Я могу войти» собирается так: Posso → entrare. Для «ты можешь войти» поменяй первую плитку на Puoi. Между ними не требуется предлог.",
+"textTr": "\"İçeri girebilirim\" şu şekilde oluşturulur: Posso → entrare. \"İçeri girebilirsin\" için ilk fiili Puoi olarak değiştirin. Aralarında edat gerekmez.",
+"textUK": "«Я можу увійти» збирається так: Posso → entrare. Для «ти можеш увійти» поміняй першу плитку на Puoi. Між ними не потрібно прийменник.",
+"textVi": "\"Tôi có thể vào\" được hình thành như sau: Posso → entrare. Đối với \"bạn có thể vào\", hãy đổi ô đầu tiên thành Puoi. Không cần giới từ ở giữa.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"\"I can come in\" is formed like this: «Posso» → «entrare». For \"you can come in,\" change the first tile to «Puoi». No preposition is needed between them."
+],
+"es": [
+"\"Puedo entrar\" se forma así: «Posso» → «entrare». Para \"Puedes entrar\", cambia la primera ficha a «Puoi». No se necesita preposición entre ellas."
+],
+"id": [
+"\"Saya bisa masuk\" dibentuk seperti ini: «Posso» → «entrare». Untuk \"Anda bisa masuk,\" ubah ubin pertama menjadi «Puoi». Tidak diperlukan preposisi di antara keduanya."
+],
+"pl": [
+"„Mogę wejść” tworzy się w następujący sposób: «Posso» → «entrare». Aby „możesz wejść”, zmień pierwszy kafelek na «Puoi». Nie jest potrzebny przyimek między nimi."
+],
+"pt-BR": [
+"\"Eu posso entrar\" é formado assim: «Posso» → «entrare». Para \"você pode entrar\", troque a primeira peça para «Puoi». Não é necessária nenhuma preposição entre elas."
+],
+"ru": [
+"«Я могу войти» собирается так: «Posso» → «entrare». Для «ты можешь войти» поменяй первую плитку на «Puoi». Между ними не требуется предлог."
+],
+"tr": [
+"\"İçeri girebilirim\" şu şekilde oluşturulur: «Posso» → «entrare». \"İçeri girebilirsin\" için ilk fiili «Puoi» olarak değiştirin. Aralarında edat gerekmez."
+],
+"uk": [
+"«Я можу увійти» збирається так: «Posso» → «entrare». Для «ти можеш увійти» поміняй першу плитку на «Puoi». Між ними не потрібно прийменник."
+],
+"vi": [
+"\"Tôi có thể vào\" được hình thành như sau: «Posso» → «entrare». Đối với \"bạn có thể vào\", hãy đổi ô đầu tiên thành «Puoi». Không cần giới từ ở giữa."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:14:01",
+"it:14:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:14:01",
+"target": "Posso entrare.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "it:14:07",
+"target": "Devo partire.",
+"ru": "Мне нужно уйти.",
+"uk": "Мені треба йти."
+},
+{
+"id": "it:14:08",
+"target": "Devi aspettare.",
+"ru": "Тебе нужно подождать.",
+"uk": "Тобі треба почекати."
+},
+{
+"id": "it:14:01",
+"target": "Posso entrare.",
+"ru": "Я могу войти.",
+"uk": "Я можу зайти."
+},
+{
+"id": "it:14:04",
+"target": "Possiamo aspettare.",
+"ru": "Мы можем подождать.",
+"uk": "Ми можемо почекати."
+}
+]
+},
+{
+"lesson": 15,
+"blocks": [
+{
+"textES": "Un amigo te llama mientras lees un libro. No hablas de tu afición, sino de lo que estás haciendo en ese momento: Sto leggendo il libro. Sto se refiere a ti, leggendo indica el proceso de lectura.\nUsa esta forma cuando observes la acción desde dentro: ya ha comenzado y aún continúa. Esta no es una traducción necesaria de ningún tiempo presente. Para una actividad habitual, el presente simple suele ser suficiente.",
+"textEn": "A friend calls while you're reading a book. You don't talk about your hobby, but rather what you're doing at that moment: Sto leggendo il libro. Sto refers to you, leggendo shows the process of reading.\nUse this form when you look at the action from the inside: it has already begun and is still ongoing. This is not a necessary translation of any present tense. For a habitual activity, the simple present is often sufficient.",
+"textId": "Seorang teman menelepon saat Anda sedang membaca buku. Anda tidak membicarakan hobi Anda, melainkan apa yang Anda lakukan saat itu: Sto leggendo il libro. Sto merujuk pada Anda, leggendo menunjukkan proses membaca.\nGunakan bentuk ini ketika Anda melihat tindakan dari dalam: tindakan tersebut telah dimulai dan masih berlangsung. Ini bukan terjemahan yang diperlukan untuk setiap bentuk kata kerja present tense. Untuk aktivitas kebiasaan, present tense sederhana seringkali sudah cukup.",
+"textPl": "Przyjaciel dzwoni, gdy czytasz książkę. Nie mówisz o swoim hobby, ale o tym, co robisz w danej chwili: Sto leggendo il libro. Sto odnosi się do ciebie, leggendo pokazuje proces czytania.\nUżyj tej formy, gdy patrzysz na czynność od środka: już się rozpoczęła i nadal trwa. Nie jest to konieczne tłumaczenie żadnego czasu teraźniejszego. W przypadku czynności o charakterze zwyczajowym, czas teraźniejszy prosty często wystarcza.",
+"textPtBr": "Um amigo liga enquanto você está lendo um livro. Você não fala sobre seu hobby, mas sim sobre o que está fazendo naquele momento: Sto leggendo il libro. Sto se refere a você, leggendo mostra o processo de leitura.\nUse esta forma quando você observar a ação de dentro: ela já começou e ainda está em andamento. Esta não é uma tradução necessária de nenhum tempo presente. Para uma atividade habitual, o presente simples geralmente é suficiente.",
+"textRU": "Друг звонит, когда ты читаешь книгу. Ты не рассказываешь о хобби, а говоришь, чем занят в эту минуту: Sto leggendo il libro. Sto относится к тебе, leggendo показывает процесс чтения.\nИспользуй эту форму, когда смотришь на действие изнутри: оно уже началось и ещё идёт. Это не обязательный перевод любого настоящего времени. Для привычного занятия часто достаточно простого настоящего.",
+"textTr": "Kitap okurken bir arkadaşınız arıyor. Hobinizden değil, o anda ne yaptığınızdan bahsediyorsunuz: Sto leggendo il libro. Sto sizi ifade eder, leggendo okuma sürecini gösterir.\nEyleme içeriden baktığınızda bu formu kullanın: zaten başlamış ve hala devam ediyor. Bu, herhangi bir şimdiki zamanın gerekli bir çevirisi değildir. Alışkanlık haline gelmiş bir aktivite için, basit şimdiki zaman genellikle yeterlidir.",
+"textUK": "Друг дзвонить, коли читаєш книгу. Ти не розповідаєш про хобі, а кажеш, чим зайнятий цієї хвилини: Sto leggendo il libro. Sto відноситься до тебе, leggendo показує процес читання.\nВикористовуй цю форму, коли дивишся на дію зсередини: вона вже почалася і ще йде. Це не обов'язковий переклад будь-якого теперішнього часу. Для звичного заняття часто досить простого сьогодення.",
+"textVi": "Một người bạn gọi điện trong khi bạn đang đọc sách. Bạn không nói về sở thích của mình, mà là về những gì bạn đang làm vào lúc đó: Sto leggendo il libro. Sto đề cập đến bạn, leggendo thể hiện quá trình đọc.\nSử dụng dạng này khi bạn nhìn vào hành động từ bên trong: nó đã bắt đầu và vẫn đang tiếp diễn. Đây không phải là bản dịch cần thiết của bất kỳ thì hiện tại nào. Đối với một hoạt động thường xuyên, thì hiện tại đơn thường là đủ.",
+"titleES": "Ahora mismo: stare + gerundio",
+"titleEn": "Right now: stare + gerund",
+"titleId": "Saat ini: stare + gerund",
+"titlePl": "W tej chwili: stare + gerundium",
+"titlePtBr": "Agora: stare + gerúndio",
+"titleRU": "Прямо сейчас: stare + герундий",
+"titleTr": "Şu anda: stare + gerund",
+"titleUK": "Зараз: stare + герундій",
+"titleVi": "Ngay bây giờ: stare + danh động từ",
+"titleByLocale": {
+"en": "Right now: stare + gerund",
+"es": "Ahora mismo: stare + gerundio",
+"id": "Saat ini: stare + gerund",
+"pl": "W tej chwili: stare + gerundium",
+"pt-BR": "Agora: stare + gerúndio",
+"ru": "Прямо сейчас: stare + герундий",
+"tr": "Şu anda: stare + gerund",
+"uk": "Зараз: stare + герундій",
+"vi": "Ngay bây giờ: stare + danh động từ"
+},
+"textByLocale": {
+"en": [
+"A friend calls while you're reading a book. You don't talk about your hobby, but rather what you're doing at that moment: «Sto leggendo il libro». «Sto» refers to you, «leggendo» shows the process of reading.",
+"Use this form when you look at the action from the inside: it has already begun and is still ongoing. This is not a necessary translation of any present tense. For a habitual activity, the simple present is often sufficient."
+],
+"es": [
+"Un amigo te llama mientras lees un libro. No hablas de tu afición, sino de lo que estás haciendo en ese momento: «Sto leggendo il libro». «Sto» se refiere a ti, «leggendo» indica el proceso de lectura.",
+"Usa esta forma cuando observes la acción desde dentro: ya ha comenzado y aún continúa. Esta no es una traducción necesaria de ningún tiempo presente. Para una actividad habitual, el presente simple suele ser suficiente."
+],
+"id": [
+"Seorang teman menelepon saat Anda sedang membaca buku. Anda tidak membicarakan hobi Anda, melainkan apa yang Anda lakukan saat itu: «Sto leggendo il libro». «Sto» merujuk pada Anda, «leggendo» menunjukkan proses membaca.",
+"Gunakan bentuk ini ketika Anda melihat tindakan dari dalam: tindakan tersebut telah dimulai dan masih berlangsung. Ini bukan terjemahan yang diperlukan untuk setiap bentuk kata kerja present tense. Untuk aktivitas kebiasaan, present tense sederhana seringkali sudah cukup."
+],
+"pl": [
+"Przyjaciel dzwoni, gdy czytasz książkę. Nie mówisz o swoim hobby, ale o tym, co robisz w danej chwili: «Sto leggendo il libro». «Sto» odnosi się do ciebie, «leggendo» pokazuje proces czytania.",
+"Użyj tej formy, gdy patrzysz na czynność od środka: już się rozpoczęła i nadal trwa. Nie jest to konieczne tłumaczenie żadnego czasu teraźniejszego. W przypadku czynności o charakterze zwyczajowym, czas teraźniejszy prosty często wystarcza."
+],
+"pt-BR": [
+"Um amigo liga enquanto você está lendo um livro. Você não fala sobre seu hobby, mas sim sobre o que está fazendo naquele momento: «Sto leggendo il libro». «Sto» se refere a você, «leggendo» mostra o processo de leitura.",
+"Use esta forma quando você observar a ação de dentro: ela já começou e ainda está em andamento. Esta não é uma tradução necessária de nenhum tempo presente. Para uma atividade habitual, o presente simples geralmente é suficiente."
+],
+"ru": [
+"Друг звонит, когда ты читаешь книгу. Ты не рассказываешь о хобби, а говоришь, чем занят в эту минуту: «Sto leggendo il libro». «Sto» относится к тебе, «leggendo» показывает процесс чтения.",
+"Используй эту форму, когда смотришь на действие изнутри: оно уже началось и ещё идёт. Это не обязательный перевод любого настоящего времени. Для привычного занятия часто достаточно простого настоящего."
+],
+"tr": [
+"Kitap okurken bir arkadaşınız arıyor. Hobinizden değil, o anda ne yaptığınızdan bahsediyorsunuz: «Sto leggendo il libro». «Sto» sizi ifade eder, «leggendo» okuma sürecini gösterir.",
+"Eyleme içeriden baktığınızda bu formu kullanın: zaten başlamış ve hala devam ediyor. Bu, herhangi bir şimdiki zamanın gerekli bir çevirisi değildir. Alışkanlık haline gelmiş bir aktivite için, basit şimdiki zaman genellikle yeterlidir."
+],
+"uk": [
+"Друг дзвонить, коли читаєш книгу. Ти не розповідаєш про хобі, а кажеш, чим зайнятий цієї хвилини: «Sto leggendo il libro». «Sto» відноситься до тебе, «leggendo» показує процес читання.",
+"Використовуй цю форму, коли дивишся на дію зсередини: вона вже почалася і ще йде. Це не обов'язковий переклад будь-якого теперішнього часу. Для звичного заняття часто досить простого сьогодення."
+],
+"vi": [
+"Một người bạn gọi điện trong khi bạn đang đọc sách. Bạn không nói về sở thích của mình, mà là về những gì bạn đang làm vào lúc đó: «Sto leggendo il libro». «Sto» đề cập đến bạn, «leggendo» thể hiện quá trình đọc.",
+"Sử dụng dạng này khi bạn nhìn vào hành động từ bên trong: nó đã bắt đầu và vẫn đang tiếp diễn. Đây không phải là bản dịch cần thiết của bất kỳ thì hiện tại nào. Đối với một hoạt động thường xuyên, thì hiện tại đơn thường là đủ."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:15:01"
+]
+},
+{
+"textES": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nSustituye al lector: Sto leggendo → Stai leggendo. El primer verbo cambia. Si la acción cambia, deja sto y sustituye la segunda parte: sto scrivendo - Estoy escribiendo ahora.\nLos verbos que terminan en -are suelen tener un gerundio que termina en -ando: tagliare → tagliando. Para leggere y scrivere, aquí leggendo, scrivendo. No coloques un infinitivo después de sto en este patrón.",
+"textEn": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nReplace the reader: Sto leggendo → Stai leggendo. The first verb changes. If the action itself changes, leave sto and replace the second part: sto scrivendo - I'm writing now.\nVerbs ending in -are usually have a gerund ending in -ando: tagliare → tagliando. For leggere and scrivere, here leggendo, scrivendo. Don't put an infinitive after sto in this pattern.",
+"textId": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nGanti pembaca: Sto leggendo → Stai leggendo. Kata kerja pertama berubah. Jika tindakan itu sendiri berubah, biarkan sto dan ganti bagian kedua: sto scrivendo - Saya sedang menulis sekarang.\nKata kerja yang berakhiran -are biasanya memiliki gerund yang berakhiran -ando: tagliare → tagliando. Untuk leggere dan scrivere, di sini leggendo, scrivendo. Jangan menambahkan infinitif setelah sto dalam pola ini.",
+"textPl": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nZastąp czytelnika: Sto leggendo → Stai leggendo. Pierwszy czasownik ulega zmianie. Jeśli zmienia się sama czynność, zostaw sto i zastąp drugą część: sto scrivendo - Piszę teraz.\nCzasowniki zakończone na -are zazwyczaj mają gerundium zakończone na -ando: tagliare → tagliando. W przypadku leggere i scrivere, tutaj leggendo, scrivendo. Nie dodawaj bezokolicznika po sto w tym schemacie.",
+"textPtBr": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nSubstitua o leitor: Sto leggendo → Stai leggendo. O primeiro verbo muda. Se a própria ação mudar, mantenha sto e substitua a segunda parte: sto scrivendo - Estou escrevendo agora.\nVerbos terminados em -are geralmente têm um gerúndio terminado em -ando: tagliare → tagliando. Para leggere e scrivere, aqui leggendo, scrivendo. Não coloque um infinitivo depois de sto neste padrão.",
+"textRU": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nЗамени читателя: Sto leggendo → Stai leggendo. Меняется первый глагол. Если же меняется само действие, оставь sto и замени вторую часть: sto scrivendo — сейчас пишу.\nУ глаголов на -are герундий обычно на -ando: tagliare → tagliando. У leggere и scrivere здесь leggendo, scrivendo. Не ставь инфинитив после sto в этой модели.",
+"textTr": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nOkuyucuyu değiştirin: Sto leggendo → Stai leggendo. İlk fiil değişir. Eylemin kendisi değişirse, sto'ü bırakın ve ikinci kısmı değiştirin: sto scrivendo - Şu anda yazıyorum.\n-are ile biten fiillerin genellikle -ando ile biten bir gerund'u vardır: tagliare → tagliando. leggere ve scrivere için burada leggendo, scrivendo. Bu kalıpta sto'dan sonra mastar koymayın.",
+"textUK": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nЗаміни читача: Sto leggendo → Stai leggendo. Змінюється перший дієслово. Якщо ж змінюється сама дія, залиш sto і заміни другу частину: sto scrivendo зараз пишу.\nУ дієслів на -are герундій зазвичай на -ando: tagliare → tagliando. У leggere і scrivere тут leggendo, scrivendo. Не став інфінітив після sto в цій моделі.",
+"textVi": "sto / stai / sta / stiamo / state / stanno + -ando / -endo\nThay thế người đọc: Sto leggendo → Stai leggendo. Động từ đầu tiên thay đổi. Nếu hành động tự thay đổi, hãy giữ nguyên sto và thay thế phần thứ hai: sto scrivendo - Tôi đang viết bây giờ.\nCác động từ kết thúc bằng -are thường có dạng gerund kết thúc bằng -ando: tagliare → tagliando. Đối với leggere và scrivere, ở đây là leggendo, scrivendo. Không đặt động từ nguyên mẫu sau sto trong mẫu này.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Replace the reader: «Sto leggendo» → «Stai leggendo». The first verb changes. If the action itself changes, leave «sto» and replace the second part: «sto scrivendo» - I'm writing now.",
+"Verbs ending in «-are» usually have a gerund ending in «-ando»: «tagliare» → «tagliando». For «leggere» and «scrivere», here «leggendo», «scrivendo». Don't put an infinitive after «sto» in this pattern."
+],
+"es": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Sustituye al lector: «Sto leggendo» → «Stai leggendo». El primer verbo cambia. Si la acción cambia, deja «sto» y sustituye la segunda parte: «sto scrivendo» - Estoy escribiendo ahora.",
+"Los verbos que terminan en «-are» suelen tener un gerundio que termina en «-ando»: «tagliare» → «tagliando». Para «leggere» y «scrivere», aquí «leggendo», «scrivendo». No coloques un infinitivo después de «sto» en este patrón."
+],
+"id": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Ganti pembaca: «Sto leggendo» → «Stai leggendo». Kata kerja pertama berubah. Jika tindakan itu sendiri berubah, biarkan «sto» dan ganti bagian kedua: «sto scrivendo» - Saya sedang menulis sekarang.",
+"Kata kerja yang berakhiran «-are» biasanya memiliki gerund yang berakhiran «-ando»: «tagliare» → «tagliando». Untuk «leggere» dan «scrivere», di sini «leggendo», «scrivendo». Jangan menambahkan infinitif setelah «sto» dalam pola ini."
+],
+"pl": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Zastąp czytelnika: «Sto leggendo» → «Stai leggendo». Pierwszy czasownik ulega zmianie. Jeśli zmienia się sama czynność, zostaw «sto» i zastąp drugą część: «sto scrivendo» - Piszę teraz.",
+"Czasowniki zakończone na «-are» zazwyczaj mają gerundium zakończone na «-ando»: «tagliare» → «tagliando». W przypadku «leggere» i «scrivere», tutaj «leggendo», «scrivendo». Nie dodawaj bezokolicznika po «sto» w tym schemacie."
+],
+"pt-BR": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Substitua o leitor: «Sto leggendo» → «Stai leggendo». O primeiro verbo muda. Se a própria ação mudar, mantenha «sto» e substitua a segunda parte: «sto scrivendo» - Estou escrevendo agora.",
+"Verbos terminados em «-are» geralmente têm um gerúndio terminado em «-ando»: «tagliare» → «tagliando». Para «leggere» e «scrivere», aqui «leggendo», «scrivendo». Não coloque um infinitivo depois de «sto» neste padrão."
+],
+"ru": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Замени читателя: «Sto leggendo» → «Stai leggendo». Меняется первый глагол. Если же меняется само действие, оставь «sto» и замени вторую часть: «sto scrivendo» — сейчас пишу.",
+"У глаголов на «-are» герундий обычно на «-ando»: «tagliare» → «tagliando». У «leggere» и «scrivere» здесь «leggendo», «scrivendo». Не ставь инфинитив после «sto» в этой модели."
+],
+"tr": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Okuyucuyu değiştirin: «Sto leggendo» → «Stai leggendo». İlk fiil değişir. Eylemin kendisi değişirse, «sto»'ü bırakın ve ikinci kısmı değiştirin: «sto scrivendo» - Şu anda yazıyorum.",
+"«-are» ile biten fiillerin genellikle «-ando» ile biten bir gerund'u vardır: «tagliare» → «tagliando». «leggere» ve «scrivere» için burada «leggendo», «scrivendo». Bu kalıpta «sto»'dan sonra mastar koymayın."
+],
+"uk": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Заміни читача: «Sto leggendo» → «Stai leggendo». Змінюється перший дієслово. Якщо ж змінюється сама дія, залиш «sto» і заміни другу частину: «sto scrivendo» зараз пишу.",
+"У дієслів на «-are» герундій зазвичай на «-ando»: «tagliare» → «tagliando». У «leggere» і «scrivere» тут «leggendo», «scrivendo». Не став інфінітив після «sto» в цій моделі."
+],
+"vi": [
+"«sto / stai / sta / stiamo / state / stanno» + «-ando / -endo»",
+"Thay thế người đọc: «Sto leggendo» → «Stai leggendo». Động từ đầu tiên thay đổi. Nếu hành động tự thay đổi, hãy giữ nguyên «sto» và thay thế phần thứ hai: «sto scrivendo» - Tôi đang viết bây giờ.",
+"Các động từ kết thúc bằng «-are» thường có dạng gerund kết thúc bằng «-ando»: «tagliare» → «tagliando». Đối với «leggere» và «scrivere», ở đây là «leggendo», «scrivendo». Không đặt động từ nguyên mẫu sau «sto» trong mẫu này."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:15:05",
+"it:15:06"
+]
+},
+{
+"textES": "Primero, Sto: estoy haciendo esto ahora mismo. Luego, leggendo: estoy leyendo. Finalmente, il libro: qué estoy leyendo exactamente. No añadas un segundo sto antes del nombre del objeto.",
+"textEn": "First, Sto—I'm doing this right now. Then leggendo—in the process of reading. Finally, il libro—what exactly I'm reading. Don't add a second sto before the name of the object.",
+"textId": "Pertama, Sto—Saya sedang melakukan ini sekarang. Kemudian leggendo—dalam proses membaca. Terakhir, il libro—apa tepatnya yang saya baca. Jangan menambahkan sto kedua sebelum nama objek.",
+"textPl": "Po pierwsze, Sto — robię to właśnie teraz. Następnie leggendo — w trakcie czytania. Wreszcie il libro — co dokładnie czytam. Nie dodawaj drugiego sto przed nazwą obiektu.",
+"textPtBr": "Primeiro, Sto—Estou fazendo isso agora. Depois, leggendo—no processo de leitura. Finalmente, il libro—o que exatamente estou lendo. Não adicione um segundo sto antes do nome do objeto.",
+"textRU": "Сначала Sto — делаю сейчас именно я. Затем leggendo — в процессе чтения. Наконец il libro — что именно читаю. Не добавляй второе sto перед названием предмета.",
+"textTr": "İlk olarak, Sto—Bunu şu anda yapıyorum. Sonra leggendo—okuma sürecindeyim. Son olarak, il libro—tam olarak ne okuyorum. Nesnenin adından önce ikinci bir sto eklemeyin.",
+"textUK": "Спочатку Sto - роблю зараз саме я. Потім leggendo - у процесі читання. Нарешті il libro – що саме читаю. Не додай друге sto перед назвою предмета.",
+"textVi": "Đầu tiên, Sto—Tôi đang làm việc này ngay bây giờ. Sau đó leggendo—đang trong quá trình đọc. Cuối cùng, il libro—chính xác là tôi đang đọc gì. Không thêm sto thứ hai trước tên của đối tượng.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"First, «Sto»—I'm doing this right now. Then «leggendo»—in the process of reading. Finally, «il libro»—what exactly I'm reading. Don't add a second «sto» before the name of the object."
+],
+"es": [
+"Primero, «Sto»: estoy haciendo esto ahora mismo. Luego, «leggendo»: estoy leyendo. Finalmente, «il libro»: qué estoy leyendo exactamente. No añadas un segundo «sto» antes del nombre del objeto."
+],
+"id": [
+"Pertama, «Sto»—Saya sedang melakukan ini sekarang. Kemudian «leggendo»—dalam proses membaca. Terakhir, «il libro»—apa tepatnya yang saya baca. Jangan menambahkan «sto» kedua sebelum nama objek."
+],
+"pl": [
+"Po pierwsze, «Sto» — robię to właśnie teraz. Następnie «leggendo» — w trakcie czytania. Wreszcie «il libro» — co dokładnie czytam. Nie dodawaj drugiego «sto» przed nazwą obiektu."
+],
+"pt-BR": [
+"Primeiro, «Sto»—Estou fazendo isso agora. Depois, «leggendo»—no processo de leitura. Finalmente, «il libro»—o que exatamente estou lendo. Não adicione um segundo «sto» antes do nome do objeto."
+],
+"ru": [
+"Сначала «Sto» — делаю сейчас именно я. Затем «leggendo» — в процессе чтения. Наконец «il libro» — что именно читаю. Не добавляй второе «sto» перед названием предмета."
+],
+"tr": [
+"İlk olarak, «Sto»—Bunu şu anda yapıyorum. Sonra «leggendo»—okuma sürecindeyim. Son olarak, «il libro»—tam olarak ne okuyorum. Nesnenin adından önce ikinci bir «sto» eklemeyin."
+],
+"uk": [
+"Спочатку «Sto» - роблю зараз саме я. Потім «leggendo» - у процесі читання. Нарешті «il libro» – що саме читаю. Не додай друге «sto» перед назвою предмета."
+],
+"vi": [
+"Đầu tiên, «Sto»—Tôi đang làm việc này ngay bây giờ. Sau đó «leggendo»—đang trong quá trình đọc. Cuối cùng, «il libro»—chính xác là tôi đang đọc gì. Không thêm «sto» thứ hai trước tên của đối tượng."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:15:01",
+"it:15:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:15:01",
+"target": "Sto leggendo il libro.",
+"ru": "Я сейчас читаю книгу.",
+"uk": "Я зараз читаю книжку."
+},
+{
+"id": "it:15:05",
+"target": "Ana sta scrivendo una lettera.",
+"ru": "Ана сейчас пишет письмо.",
+"uk": "Ана зараз пише листа."
+},
+{
+"id": "it:15:06",
+"target": "Stiamo scrivendo una lettera.",
+"ru": "Мы сейчас пишем письмо.",
+"uk": "Ми зараз пишемо листа."
+},
+{
+"id": "it:15:01",
+"target": "Sto leggendo il libro.",
+"ru": "Я сейчас читаю книгу.",
+"uk": "Я зараз читаю книжку."
+},
+{
+"id": "it:15:04",
+"target": "Stai leggendo il messaggio.",
+"ru": "Ты сейчас читаешь сообщение.",
+"uk": "Ти зараз читаєш повідомлення."
+}
+]
+},
+{
+"lesson": 16,
+"blocks": [
+{
+"textES": "Hay un amigo a tu lado; dile \"entra\". En lugar de decirle \"está entrando\", dirígete a él directamente: Entra! Dile cortésmente a un desconocido: Entri! La diferencia no está en la acción, sino en a quién te diriges y cómo te diriges.\nUna orden y una invitación tienen la misma forma gramatical, pero diferente tono. La Entra! puede ser una invitación amistosa para entrar. No añadas «inmediatamente» a menos que esté en la pista.",
+"textEn": "There's a friend next to you; tell him \"come in.\" Instead of telling him \"he's coming in,\" you address him directly: Entra! Politely tell a stranger: Entri! The difference isn't in the action, but in who you're speaking to and how you're speaking.\nA command and an invitation have the same grammatical form, but different tone. Entra! can be a friendly invitation to enter. Don't add \"immediately\" unless it's in the clue.",
+"textId": "Ada seorang teman di sebelahmu; katakan padanya \"masuklah.\" Alih-alih mengatakan \"dia akan masuk,\" Anda berbicara langsung kepadanya: Entra! Katakan dengan sopan kepada orang asing: Entri! Perbedaannya bukan pada tindakannya, tetapi pada kepada siapa Anda berbicara dan bagaimana Anda berbicara.\nPerintah dan undangan memiliki bentuk tata bahasa yang sama, tetapi nada yang berbeda. Entra! dapat berupa undangan ramah untuk masuk. Jangan tambahkan \"segera\" kecuali ada dalam petunjuk.",
+"textPl": "Obok ciebie siedzi przyjaciel; powiedz mu „proszę wejść”. Zamiast mówić „proszę wejść”, zwracasz się do niego bezpośrednio: Entra! Uprzejmie powiedz o tym nieznajomemu: Entri! Różnica nie tkwi w czynności, ale w tym, do kogo mówisz i jak mówisz.\nPolecenie i zaproszenie mają tę samą formę gramatyczną, ale inny ton. Entra! może być przyjaznym zaproszeniem do wejścia. Nie dodawaj „natychmiast”, chyba że jest to zawarte w podpowiedzi.",
+"textPtBr": "Há um amigo ao seu lado; diga a ele \"entre\". Em vez de dizer \"ele está entrando\", dirija-se a ele diretamente: Entra! Diga educadamente a um estranho: Entri! A diferença não está na ação, mas em com quem você está falando e como está falando.\nUma ordem e um convite têm a mesma forma gramatical, mas tom diferente. Entra! pode ser um convite amigável para entrar. Não adicione \"imediatamente\" a menos que esteja na dica.",
+"textRU": "Рядом с тобой друг; скажи ему «заходи». Вместо рассказа «он входит» ты обращаешься прямо: Entra! Незнакомому посетителю вежливо скажешь Entri! Отличается не действие, а то, к кому и как говоришь.\nУ приказа и приглашения одна грамматическая форма, но разный тон. Entra! может быть дружелюбным приглашением войти. Не добавляй «немедленно», если этого нет в подсказке.",
+"textTr": "Yanınızda bir arkadaşınız var; ona \"içeri gel\" deyin. Ona \"içeri geliyor\" demek yerine, doğrudan ona hitap edersiniz: Entra! Bir yabancıya kibarca şöyle söyleyin: Entri! Fark eylemde değil, kime konuştuğunuzda ve nasıl konuştuğunuzdadır.\nBir emir ve bir davet aynı gramer biçimine sahip, ancak farklı bir tona sahiptir. Entra!, içeri girmek için dostane bir davet olabilir. İpucunda belirtilmedikçe \"hemen\" eklemeyin.",
+"textUK": "Поряд з тобою друг; скажи йому \"заходь\". Замість оповідання «він входить» ти звертаєшся прямо: Entra! Незнайомому відвідувачеві чемно скажеш Entri! Відрізняється не дія, а те, до кого і як кажеш.\nУ наказу та запрошення одна граматична форма, але різний тон. Entra! може бути дружнім запрошенням увійти. Не додай «негайно», якщо цього немає у підказці.",
+"textVi": "Có một người bạn bên cạnh bạn; hãy bảo anh ấy \"vào đi.\" Thay vì bảo anh ấy \"anh ấy đang vào,\" bạn hãy nói chuyện trực tiếp với anh ấy: Entra! Nói chuyện lịch sự với người lạ: Entri! Sự khác biệt không nằm ở hành động, mà ở người bạn đang nói chuyện cùng và cách bạn nói chuyện.\nMột mệnh lệnh và một lời mời có cùng hình thức ngữ pháp, nhưng khác nhau về giọng điệu. Entra! có thể là một lời mời thân thiện để vào. Không thêm \"ngay lập tức\" trừ khi nó có trong gợi ý.",
+"titleES": "Dar instrucciones: imperativo",
+"titleEn": "Give instructions: imperative form",
+"titleId": "Berikan instruksi: bentuk imperatif",
+"titlePl": "Udzielanie poleceń: tryb rozkazujący",
+"titlePtBr": "Dar instruções: forma imperativa",
+"titleRU": "Дай инструкцию: повелительная форма",
+"titleTr": "Talimat verin: emir kipi",
+"titleUK": "Дай інструкцію: наказова форма",
+"titleVi": "Đưa ra chỉ dẫn: dạng mệnh lệnh",
+"titleByLocale": {
+"en": "Give instructions: imperative form",
+"es": "Dar instrucciones: imperativo",
+"id": "Berikan instruksi: bentuk imperatif",
+"pl": "Udzielanie poleceń: tryb rozkazujący",
+"pt-BR": "Dar instruções: forma imperativa",
+"ru": "Дай инструкцию: повелительная форма",
+"tr": "Talimat verin: emir kipi",
+"uk": "Дай інструкцію: наказова форма",
+"vi": "Đưa ra chỉ dẫn: dạng mệnh lệnh"
+},
+"textByLocale": {
+"en": [
+"There's a friend next to you; tell him \"come in.\" Instead of telling him \"he's coming in,\" you address him directly: «Entra!» Politely tell a stranger: «Entri!» The difference isn't in the action, but in who you're speaking to and how you're speaking.",
+"A command and an invitation have the same grammatical form, but different tone. «Entra!» can be a friendly invitation to enter. Don't add \"immediately\" unless it's in the clue."
+],
+"es": [
+"Hay un amigo a tu lado; dile \"entra\". En lugar de decirle \"está entrando\", dirígete a él directamente: «Entra!» Dile cortésmente a un desconocido: «Entri!» La diferencia no está en la acción, sino en a quién te diriges y cómo te diriges.",
+"Una orden y una invitación tienen la misma forma gramatical, pero diferente tono. La «Entra!» puede ser una invitación amistosa para entrar. No añadas «inmediatamente» a menos que esté en la pista."
+],
+"id": [
+"Ada seorang teman di sebelahmu; katakan padanya \"masuklah.\" Alih-alih mengatakan \"dia akan masuk,\" Anda berbicara langsung kepadanya: «Entra!» Katakan dengan sopan kepada orang asing: «Entri!» Perbedaannya bukan pada tindakannya, tetapi pada kepada siapa Anda berbicara dan bagaimana Anda berbicara.",
+"Perintah dan undangan memiliki bentuk tata bahasa yang sama, tetapi nada yang berbeda. «Entra!» dapat berupa undangan ramah untuk masuk. Jangan tambahkan \"segera\" kecuali ada dalam petunjuk."
+],
+"pl": [
+"Obok ciebie siedzi przyjaciel; powiedz mu „proszę wejść”. Zamiast mówić „proszę wejść”, zwracasz się do niego bezpośrednio: «Entra!» Uprzejmie powiedz o tym nieznajomemu: «Entri!» Różnica nie tkwi w czynności, ale w tym, do kogo mówisz i jak mówisz.",
+"Polecenie i zaproszenie mają tę samą formę gramatyczną, ale inny ton. «Entra!» może być przyjaznym zaproszeniem do wejścia. Nie dodawaj „natychmiast”, chyba że jest to zawarte w podpowiedzi."
+],
+"pt-BR": [
+"Há um amigo ao seu lado; diga a ele \"entre\". Em vez de dizer \"ele está entrando\", dirija-se a ele diretamente: «Entra!» Diga educadamente a um estranho: «Entri!» A diferença não está na ação, mas em com quem você está falando e como está falando.",
+"Uma ordem e um convite têm a mesma forma gramatical, mas tom diferente. «Entra!» pode ser um convite amigável para entrar. Não adicione \"imediatamente\" a menos que esteja na dica."
+],
+"ru": [
+"Рядом с тобой друг; скажи ему «заходи». Вместо рассказа «он входит» ты обращаешься прямо: «Entra!» Незнакомому посетителю вежливо скажешь «Entri!» Отличается не действие, а то, к кому и как говоришь.",
+"У приказа и приглашения одна грамматическая форма, но разный тон. «Entra!» может быть дружелюбным приглашением войти. Не добавляй «немедленно», если этого нет в подсказке."
+],
+"tr": [
+"Yanınızda bir arkadaşınız var; ona \"içeri gel\" deyin. Ona \"içeri geliyor\" demek yerine, doğrudan ona hitap edersiniz: «Entra!» Bir yabancıya kibarca şöyle söyleyin: «Entri!» Fark eylemde değil, kime konuştuğunuzda ve nasıl konuştuğunuzdadır.",
+"Bir emir ve bir davet aynı gramer biçimine sahip, ancak farklı bir tona sahiptir. «Entra!», içeri girmek için dostane bir davet olabilir. İpucunda belirtilmedikçe \"hemen\" eklemeyin."
+],
+"uk": [
+"Поряд з тобою друг; скажи йому \"заходь\". Замість оповідання «він входить» ти звертаєшся прямо: «Entra!» Незнайомому відвідувачеві чемно скажеш «Entri!» Відрізняється не дія, а те, до кого і як кажеш.",
+"У наказу та запрошення одна граматична форма, але різний тон. «Entra!» може бути дружнім запрошенням увійти. Не додай «негайно», якщо цього немає у підказці."
+],
+"vi": [
+"Có một người bạn bên cạnh bạn; hãy bảo anh ấy \"vào đi.\" Thay vì bảo anh ấy \"anh ấy đang vào,\" bạn hãy nói chuyện trực tiếp với anh ấy: «Entra!» Nói chuyện lịch sự với người lạ: «Entri!» Sự khác biệt không nằm ở hành động, mà ở người bạn đang nói chuyện cùng và cách bạn nói chuyện.",
+"Một mệnh lệnh và một lời mời có cùng hình thức ngữ pháp, nhưng khác nhau về giọng điệu. «Entra!» có thể là một lời mời thân thiện để vào. Không thêm \"ngay lập tức\" trừ khi nó có trong gợi ý."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:16:01"
+]
+},
+{
+"textES": "apri / apra / aprite + qué hacer\nLas palabras que empiezan con -are suelen terminar en -a: aspetta. Para aprire, es apri. No deduzcas la forma de ninguna orden a partir de un solo ejemplo: fíjate en el verbo específico necesario.\nLa dirección tu y la cortés Lei tienen terminaciones diferentes. La forma cortés no tiene por qué empezar con la Lei: el destinatario queda claro por la situación.",
+"textEn": "apri / apra / aprite + what to do\nWords that start with -are often end in -a: aspetta. For aprire, it's apri. Don't infer the form of any command from a single example: look at the specific verb needed.\nThe address tu and the polite Lei have different endings. The polite form doesn't have to begin with Lei itself: the recipient is clear from the situation.",
+"textId": "apri / apra / aprite + apa yang harus dilakukan\nKata-kata yang dimulai dengan -are sering diakhiri dengan -a: aspetta. Untuk aprire, itu adalah apri. Jangan menyimpulkan bentuk perintah apa pun dari satu contoh: lihat kata kerja spesifik yang dibutuhkan.\nAlamat tu dan bentuk sopan Lei memiliki akhiran yang berbeda. Bentuk sopan tidak harus dimulai dengan Lei itu sendiri: penerima sudah jelas dari situasinya.",
+"textPl": "apri / apra / aprite + co robić\nSłowa zaczynające się na -are często kończą się na -a: aspetta. W przypadku aprire jest to apri. Nie wnioskuj o formie żadnego polecenia na podstawie pojedynczego przykładu: spójrz na konkretny potrzebny czasownik.\nAdres tu i forma grzecznościowa Lei mają różne końcówki. Forma grzecznościowa nie musi zaczynać się od Lei: odbiorca jest świadomy sytuacji.",
+"textPtBr": "apri / apra / aprite + o que fazer\nPalavras que começam com -are geralmente terminam em -a: aspetta. Para aprire, é apri. Não infira a forma de nenhum comando a partir de um único exemplo: observe o verbo específico necessário.\nO endereço tu e o formal Lei têm terminações diferentes. A forma formal não precisa começar com Lei: o destinatário fica claro pela situação.",
+"textRU": "apri / apra / aprite + что сделать\nУ слов на -are дружеское указание часто заканчивается на -a: aspetta. У aprire — apri. Не выводи форму любой команды из одного примера: смотри, какой именно глагол нужен.\nОбращение на tu и вежливое Lei дают разные окончания. Вежливая форма не обязана начинаться с самого слова Lei: адресат понятен из ситуации.",
+"textTr": "apri / apra / aprite + ne yapılması gerektiği\n-are ile başlayan kelimeler genellikle -a ile biter: aspetta. aprire için apri'tir. Herhangi bir emrin biçimini tek bir örnekten çıkarmayın: gerekli olan belirli fiile bakın.\ntu numaralı adres ve kibar Lei'nin farklı sonları vardır. Kibar formun kendisi Lei ile başlamak zorunda değildir: alıcı durumdan açıkça anlaşılıyor.",
+"textUK": "apri / apra / aprite + що зробити\nУ слів на -are дружня вказівка ​​часто закінчується на -a: aspetta. У aprire — apri. Не виводь форму будь-якої команди з одного прикладу: дивись, яке саме дієслово потрібне.\nЗвернення на tu та ввічливе Lei дають різні закінчення. Ввічлива форма має починатися із самого слова Lei: адресат зрозумілий із ситуації.",
+"textVi": "apri / apra / aprite + việc cần làm\nNhững từ bắt đầu bằng -are thường kết thúc bằng -a: aspetta. Đối với aprire, đó là apri. Đừng suy luận hình thức của bất kỳ mệnh lệnh nào từ một ví dụ duy nhất: hãy xem xét động từ cụ thể cần thiết.\nĐịa chỉ tu và hình thức lịch sự Lei có các đuôi khác nhau. Hình thức lịch sự không nhất thiết phải bắt đầu bằng chính Lei: người nhận đã rõ ràng từ tình huống.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«apri» / «apra» / «aprite» + what to do",
+"Words that start with «-are» often end in «-a»: «aspetta». For «aprire», it's «apri». Don't infer the form of any command from a single example: look at the specific verb needed.",
+"The address «tu» and the polite «Lei» have different endings. The polite form doesn't have to begin with «Lei» itself: the recipient is clear from the situation."
+],
+"es": [
+"«apri» / «apra» / «aprite» + qué hacer",
+"Las palabras que empiezan con «-are» suelen terminar en «-a»: «aspetta». Para «aprire», es «apri». No deduzcas la forma de ninguna orden a partir de un solo ejemplo: fíjate en el verbo específico necesario.",
+"La dirección «tu» y la cortés «Lei» tienen terminaciones diferentes. La forma cortés no tiene por qué empezar con la «Lei»: el destinatario queda claro por la situación."
+],
+"id": [
+"«apri» / «apra» / «aprite» + apa yang harus dilakukan",
+"Kata-kata yang dimulai dengan «-are» sering diakhiri dengan «-a»: «aspetta». Untuk «aprire», itu adalah «apri». Jangan menyimpulkan bentuk perintah apa pun dari satu contoh: lihat kata kerja spesifik yang dibutuhkan.",
+"Alamat «tu» dan bentuk sopan «Lei» memiliki akhiran yang berbeda. Bentuk sopan tidak harus dimulai dengan «Lei» itu sendiri: penerima sudah jelas dari situasinya."
+],
+"pl": [
+"«apri» / «apra» / «aprite» + co robić",
+"Słowa zaczynające się na «-are» często kończą się na «-a»: «aspetta». W przypadku «aprire» jest to «apri». Nie wnioskuj o formie żadnego polecenia na podstawie pojedynczego przykładu: spójrz na konkretny potrzebny czasownik.",
+"Adres «tu» i forma grzecznościowa «Lei» mają różne końcówki. Forma grzecznościowa nie musi zaczynać się od «Lei»: odbiorca jest świadomy sytuacji."
+],
+"pt-BR": [
+"«apri» / «apra» / «aprite» + o que fazer",
+"Palavras que começam com «-are» geralmente terminam em «-a»: «aspetta». Para «aprire», é «apri». Não infira a forma de nenhum comando a partir de um único exemplo: observe o verbo específico necessário.",
+"O endereço «tu» e o formal «Lei» têm terminações diferentes. A forma formal não precisa começar com «Lei»: o destinatário fica claro pela situação."
+],
+"ru": [
+"«apri» / «apra» / «aprite» + что сделать",
+"У слов на «-are» дружеское указание часто заканчивается на «-a»: «aspetta». У «aprire» — «apri». Не выводи форму любой команды из одного примера: смотри, какой именно глагол нужен.",
+"Обращение на «tu» и вежливое «Lei» дают разные окончания. Вежливая форма не обязана начинаться с самого слова «Lei»: адресат понятен из ситуации."
+],
+"tr": [
+"«apri» / «apra» / «aprite» + ne yapılması gerektiği",
+"«-are» ile başlayan kelimeler genellikle «-a» ile biter: «aspetta». «aprire» için «apri»'tir. Herhangi bir emrin biçimini tek bir örnekten çıkarmayın: gerekli olan belirli fiile bakın.",
+"«tu» numaralı adres ve kibar «Lei»'nin farklı sonları vardır. Kibar formun kendisi «Lei» ile başlamak zorunda değildir: alıcı durumdan açıkça anlaşılıyor."
+],
+"uk": [
+"«apri» / «apra» / «aprite» + що зробити",
+"У слів на «-are» дружня вказівка ​​часто закінчується на «-a»: «aspetta». У «aprire» — «apri». Не виводь форму будь-якої команди з одного прикладу: дивись, яке саме дієслово потрібне.",
+"Звернення на «tu» та ввічливе «Lei» дають різні закінчення. Ввічлива форма має починатися із самого слова «Lei»: адресат зрозумілий із ситуації."
+],
+"vi": [
+"«apri» / «apra» / «aprite» + việc cần làm",
+"Những từ bắt đầu bằng «-are» thường kết thúc bằng «-a»: «aspetta». Đối với «aprire», đó là «apri». Đừng suy luận hình thức của bất kỳ mệnh lệnh nào từ một ví dụ duy nhất: hãy xem xét động từ cụ thể cần thiết.",
+"Địa chỉ «tu» và hình thức lịch sự «Lei» có các đuôi khác nhau. Hình thức lịch sự không nhất thiết phải bắt đầu bằng chính «Lei»: người nhận đã rõ ràng từ tình huống."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:16:05",
+"it:16:07"
+]
+},
+{
+"textES": "En la primera tarea, toda la solicitud cabe en una sola ficha, la Entra. No añadas la tu a menos que haya un contraste. La segunda línea tiene un interlocutor diferente; lee la etiqueta de la dirección antes de elegir.",
+"textEn": "In the first task, the entire request fits on one tile Entra. Don't add tu unless there's a contrast. The second line has a different interlocutor—read the address label before choosing.",
+"textId": "Pada tugas pertama, seluruh permintaan muat dalam satu ubin Entra. Jangan tambahkan tu kecuali ada kontras. Baris kedua memiliki lawan bicara yang berbeda—baca label alamat sebelum memilih.",
+"textPl": "W pierwszym zadaniu całe zapytanie mieści się na jednym kafelku Entra. Nie dodawaj tu, chyba że występuje kontrast. Drugi wiersz dotyczy innego rozmówcy — przed wyborem przeczytaj etykietę adresową.",
+"textPtBr": "Na primeira tarefa, toda a solicitação cabe em um único bloco Entra. Não adicione tu a menos que haja um contraste. A segunda linha tem um interlocutor diferente — leia o rótulo do endereço antes de escolher.",
+"textRU": "В первом задании вся просьба умещается в одну плитку Entra. Не добавляй tu, если нет противопоставления. Во второй строке собеседник другой — прочитай пометку обращения прежде, чем выбирать.",
+"textTr": "İlk görevde, tüm istek Entra numaralı tek bir kutucuğa sığar. Bir zıtlık yoksa tu'yi eklemeyin. İkinci satırda farklı bir muhatap var; seçim yapmadan önce adres etiketini okuyun.",
+"textUK": "У першому завданні все прохання вміщається в одну плитку Entra. Не додай tu, якщо немає протиставлення. У другому рядку співрозмовник інший — прочитай позначку звернення, перш ніж обирати.",
+"textVi": "Trong nhiệm vụ đầu tiên, toàn bộ yêu cầu vừa vặn trên một ô Entra. Không thêm tu trừ khi có sự tương phản. Dòng thứ hai có người đối thoại khác—hãy đọc nhãn địa chỉ trước khi chọn.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the first task, the entire request fits on one tile «Entra». Don't add «tu» unless there's a contrast. The second line has a different interlocutor—read the address label before choosing."
+],
+"es": [
+"En la primera tarea, toda la solicitud cabe en una sola ficha, la «Entra». No añadas la «tu» a menos que haya un contraste. La segunda línea tiene un interlocutor diferente; lee la etiqueta de la dirección antes de elegir."
+],
+"id": [
+"Pada tugas pertama, seluruh permintaan muat dalam satu ubin «Entra». Jangan tambahkan «tu» kecuali ada kontras. Baris kedua memiliki lawan bicara yang berbeda—baca label alamat sebelum memilih."
+],
+"pl": [
+"W pierwszym zadaniu całe zapytanie mieści się na jednym kafelku «Entra». Nie dodawaj «tu», chyba że występuje kontrast. Drugi wiersz dotyczy innego rozmówcy — przed wyborem przeczytaj etykietę adresową."
+],
+"pt-BR": [
+"Na primeira tarefa, toda a solicitação cabe em um único bloco «Entra». Não adicione «tu» a menos que haja um contraste. A segunda linha tem um interlocutor diferente — leia o rótulo do endereço antes de escolher."
+],
+"ru": [
+"В первом задании вся просьба умещается в одну плитку «Entra». Не добавляй «tu», если нет противопоставления. Во второй строке собеседник другой — прочитай пометку обращения прежде, чем выбирать."
+],
+"tr": [
+"İlk görevde, tüm istek «Entra» numaralı tek bir kutucuğa sığar. Bir zıtlık yoksa «tu»'yi eklemeyin. İkinci satırda farklı bir muhatap var; seçim yapmadan önce adres etiketini okuyun."
+],
+"uk": [
+"У першому завданні все прохання вміщається в одну плитку «Entra». Не додай «tu», якщо немає протиставлення. У другому рядку співрозмовник інший — прочитай позначку звернення, перш ніж обирати."
+],
+"vi": [
+"Trong nhiệm vụ đầu tiên, toàn bộ yêu cầu vừa vặn trên một ô «Entra». Không thêm «tu» trừ khi có sự tương phản. Dòng thứ hai có người đối thoại khác—hãy đọc nhãn địa chỉ trước khi chọn."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:16:01",
+"it:16:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:16:01",
+"target": "Entra!",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "it:16:05",
+"target": "Resta qui!",
+"ru": "Останься здесь!",
+"uk": "Залишайся тут!"
+},
+{
+"id": "it:16:07",
+"target": "Ascolta bene!",
+"ru": "Слушай внимательно!",
+"uk": "Слухай уважно!"
+},
+{
+"id": "it:16:01",
+"target": "Entra!",
+"ru": "Заходи!",
+"uk": "Заходь!"
+},
+{
+"id": "it:16:04",
+"target": "Aspetti!",
+"ru": "Подождите!",
+"uk": "Зачекайте!"
+}
+]
+}
+]

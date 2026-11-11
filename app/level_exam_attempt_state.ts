@@ -1,3 +1,5 @@
+import { isPersistedExpandedResponse } from '../modules/expanded-formats/response_shape';
+import type { ExpandedResponse } from '../modules/expanded-formats/types';
 import {
   SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS,
   type LevelExamBlueprint,
@@ -10,6 +12,8 @@ export type PersistedLevelExamAnswer =
   | { kind: 'choice'; optionId: string }
   | { kind: 'translate_build'; tokenIds: string[] }
   | { kind: 'speed_match'; targetScoreUnitId: string }
+  /** Ответ на задание новой механики: черновик в форме modules/expanded-formats (сверяется с заданием при подсчёте). */
+  | { kind: 'expanded'; response: ExpandedResponse }
   | { kind: 'skipped' };
 
 export type LevelExamFinishReason = 'submitted' | 'timeout';
@@ -84,6 +88,7 @@ function isPersistedAnswer(value: unknown): value is PersistedLevelExamAnswer {
   if (!value || typeof value !== 'object') return false;
   const answer = value as Partial<PersistedLevelExamAnswer> & Record<string, unknown>;
   if (answer.kind === 'skipped') return true;
+  if (answer.kind === 'expanded') return isPersistedExpandedResponse(answer.response);
   if (answer.kind === 'choice') return typeof answer.optionId === 'string' && answer.optionId.trim() !== '';
   if (answer.kind === 'translate_build') return Array.isArray(answer.tokenIds)
     && answer.tokenIds.every((tokenId) => typeof tokenId === 'string' && tokenId.trim() !== '');
@@ -145,7 +150,10 @@ export function levelExamAttemptMatchesBlueprintIdentity(
 }
 
 function cloneAnswer(answer: PersistedLevelExamAnswer): PersistedLevelExamAnswer {
-  return answer.kind === 'translate_build' ? { ...answer, tokenIds: [...answer.tokenIds] } : { ...answer };
+  if (answer.kind === 'translate_build') return { ...answer, tokenIds: [...answer.tokenIds] };
+  // зачем: ответ новой механики несёт вложенные списки — снимок попытки не должен делить их с экраном
+  if (answer.kind === 'expanded') return { kind: 'expanded', response: JSON.parse(JSON.stringify(answer.response)) as ExpandedResponse };
+  return { ...answer };
 }
 
 export function createLevelExamAttempt(input: CreateLevelExamAttemptInput): LevelExamAttemptSnapshot {

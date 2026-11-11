@@ -322,19 +322,6 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       tr: t('Plus’ını göremiyoruz', 'Aboneliğin zaten varsa satın alımını geri yükle. Ücretsiz.', 'Tek dokunuşla satın alımları geri yükle'),
       pl: t('Nie widzimy twojego Plus', 'Jeśli masz już subskrypcję, przywróć zakup. To nic nie kosztuje.', 'Przywróć zakupy jednym dotknięciem'),
     },
-    // зачем (координатор 25.10): «Мастерская фраз» — Plus. Черновик Ядра по утверждённому названию (phrase_workshop_copy.ts);
-    // ⚠ ЖДЁТ УТВЕРЖДЕНИЯ ПЕРЕВОДЧИКА (10) — все 9 языков.
-    phrase_workshop: {
-      ru: t('Мастерская фраз в Plus', 'Собирай фразы из пройденных уроков и закрепляй их, сколько хочешь.', 'Мастерская фраз к каждому уроку'),
-      uk: t('Майстерня висловів у Plus', 'Складай вислови з пройдених уроків і закріплюй їх, скільки хочеш.', 'Майстерня висловів до кожного уроку'),
-      en: t('Phrase workshop with Plus', 'Build phrases from the lessons you’ve done and practise them as much as you like.', 'A phrase workshop for every lesson'),
-      es: t('Taller de frases con Plus', 'Arma frases de las lecciones que hiciste y practícalas cuanto quieras.', 'Un taller de frases para cada lección'),
-      'pt-BR': t('Oficina de frases no Plus', 'Monte frases das lições que você fez e pratique quanto quiser.', 'Uma oficina de frases para cada lição'),
-      vi: t('Xưởng ghép câu trong Plus', 'Ghép câu từ các bài đã học và luyện bao nhiêu tùy thích.', 'Xưởng ghép câu cho mọi bài học'),
-      id: t('Bengkel frasa di Plus', 'Susun frasa dari pelajaran yang sudah kamu lewati dan latih sesukamu.', 'Bengkel frasa untuk setiap pelajaran'),
-      tr: t('Plus ile ifade atölyesi', 'Bitirdiğin derslerden ifadeler kur ve istediğin kadar pekiştir.', 'Her ders için ifade atölyesi'),
-      pl: t('Warsztat fraz w Plus', 'Składaj zwroty z przerobionych lekcji i utrwalaj je, ile chcesz.', 'Warsztat fraz do każdej lekcji'),
-    },
     combined_lesson: {
       ru: t('Несколько тем в одном уроке', 'Выбирай темы сам — урок соберётся под тебя.', 'Темы на выбор'),
       uk: t('Кілька тем в одному уроці', 'Обирай теми сам — урок збереться під тебе.', 'Теми на вибір'),

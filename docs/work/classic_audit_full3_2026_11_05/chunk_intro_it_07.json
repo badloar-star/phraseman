@@ -1,0 +1,1034 @@
+[
+{
+"lesson": 29,
+"blocks": [
+{
+"textES": "Hay dos autobuses en la parada. En lugar de un número, se indica cuál se necesita: «el autobús que va a la estación». En italiano, esta aclaración se asocia convenientemente con la palabra che.\nEncuentra el objeto antes de che. La siguiente parte lo describe específicamente. Si eliminas la aclaración, la base gramatical se mantiene, pero el oyente podría no entender a qué objeto se refiere.",
+"textEn": "There are two buses at the stop. Instead of a number, you explain which one you need: \"the bus that goes to the station.\" In Italian, this clarification is conveniently attached with the word che.\nFind the object before che. The next part describes it specifically. If you remove the clarification, the grammatical basis remains, but the listener may not understand which object is meant.",
+"textId": "Ada dua bus di halte. Alih-alih nomor, Anda menjelaskan bus mana yang Anda butuhkan: \"bus yang menuju stasiun.\" Dalam bahasa Italia, klarifikasi ini dengan mudah dilampirkan dengan kata che.\nTemukan objek sebelum che. Bagian selanjutnya menjelaskannya secara spesifik. Jika Anda menghapus klarifikasi tersebut, dasar tata bahasanya tetap ada, tetapi pendengar mungkin tidak mengerti objek mana yang dimaksud.",
+"textPl": "Na przystanku stoją dwa autobusy. Zamiast numeru, wyjaśniasz, który autobus jedzie na dworzec. W języku włoskim to wyjaśnienie jest wygodnie połączone ze słowem che.\nZnajdź obiekt przed che. Następna część opisuje go szczegółowo. Jeśli usuniesz wyjaśnienie, podstawa gramatyczna pozostaje, ale słuchacz może nie zrozumieć, o który obiekt chodzi.",
+"textPtBr": "Há dois ônibus no ponto. Em vez de um número, você explica qual precisa: \"o ônibus que vai para a estação\". Em italiano, esse esclarecimento é convenientemente anexado à palavra che.\nEncontre o objeto antes de che. A próxima parte o descreve especificamente. Se você remover o esclarecimento, a base gramatical permanece, mas o ouvinte pode não entender qual objeto está sendo mencionado.",
+"textRU": "У остановки два автобуса. Вместо номера ты объясняешь, какой нужен: «автобус, который едет на вокзал». В итальянском это уточнение удобно присоединить словом che.\nНайди предмет до che. Следующая часть описывает именно его. Если убрать уточнение, останется грамматическая основа, но слушателю может стать непонятно, какой предмет имеется в виду.",
+"textTr": "Durakta iki otobüs var. Numara yerine, hangisine ihtiyacınız olduğunu açıklıyorsunuz: \"istasyona giden otobüs.\" İtalyancada bu açıklama, che kelimesine uygun bir şekilde eklenir.\nche'den önceki nesneyi bulun. Sonraki kısım onu ​​özel olarak tanımlar. Açıklamayı kaldırırsanız, dilbilgisel temel kalır, ancak dinleyici hangi nesnenin kastedildiğini anlamayabilir.",
+"textUK": "Біля зупинки два автобуси. Замість номера ти пояснюєш, який потрібний: \"автобус, який їде на вокзал\". В італійській це уточнення зручно приєднати словом che.\nЗнайди предмет до che. Наступна частина описує саме його. Якщо усунути уточнення, залишиться граматична основа, але слухачеві може стати незрозуміло, який предмет має на увазі.",
+"textVi": "Có hai xe buýt ở trạm dừng. Thay vì số, bạn giải thích bạn cần xe nào: \"xe buýt đi đến trạm\". Trong tiếng Ý, lời giải thích này được gắn kèm với từ che một cách thuận tiện.\nTìm đối tượng trước che. Phần tiếp theo mô tả cụ thể đối tượng đó. Nếu bạn bỏ phần giải thích, cơ sở ngữ pháp vẫn giữ nguyên, nhưng người nghe có thể không hiểu đối tượng nào được nhắc đến.",
+"titleES": "¿Cuál?: relativo che",
+"titleEn": "Which one: relative che",
+"titleId": "Yang mana: relatif che",
+"titlePl": "Który: względny che",
+"titlePtBr": "Qual deles: relativo che",
+"titleRU": "Какой именно: относительное che",
+"titleTr": "Hangisi: göreceli che",
+"titleUK": "Який саме: відносне che",
+"titleVi": "Cái nào: quan hệ che",
+"titleByLocale": {
+"en": "Which one: relative che",
+"es": "¿Cuál?: relativo che",
+"id": "Yang mana: relatif che",
+"pl": "Który: względny che",
+"pt-BR": "Qual deles: relativo che",
+"ru": "Какой именно: относительное che",
+"tr": "Hangisi: göreceli che",
+"uk": "Який саме: відносне che",
+"vi": "Cái nào: quan hệ che"
+},
+"textByLocale": {
+"en": [
+"There are two buses at the stop. Instead of a number, you explain which one you need: \"the bus that goes to the station.\" In Italian, this clarification is conveniently attached with the word «che».",
+"Find the object before «che». The next part describes it specifically. If you remove the clarification, the grammatical basis remains, but the listener may not understand which object is meant."
+],
+"es": [
+"Hay dos autobuses en la parada. En lugar de un número, se indica cuál se necesita: «el autobús que va a la estación». En italiano, esta aclaración se asocia convenientemente con la palabra «che».",
+"Encuentra el objeto antes de «che». La siguiente parte lo describe específicamente. Si eliminas la aclaración, la base gramatical se mantiene, pero el oyente podría no entender a qué objeto se refiere."
+],
+"id": [
+"Ada dua bus di halte. Alih-alih nomor, Anda menjelaskan bus mana yang Anda butuhkan: \"bus yang menuju stasiun.\" Dalam bahasa Italia, klarifikasi ini dengan mudah dilampirkan dengan kata «che».",
+"Temukan objek sebelum «che». Bagian selanjutnya menjelaskannya secara spesifik. Jika Anda menghapus klarifikasi tersebut, dasar tata bahasanya tetap ada, tetapi pendengar mungkin tidak mengerti objek mana yang dimaksud."
+],
+"pl": [
+"Na przystanku stoją dwa autobusy. Zamiast numeru, wyjaśniasz, który autobus jedzie na dworzec. W języku włoskim to wyjaśnienie jest wygodnie połączone ze słowem «che».",
+"Znajdź obiekt przed «che». Następna część opisuje go szczegółowo. Jeśli usuniesz wyjaśnienie, podstawa gramatyczna pozostaje, ale słuchacz może nie zrozumieć, o który obiekt chodzi."
+],
+"pt-BR": [
+"Há dois ônibus no ponto. Em vez de um número, você explica qual precisa: \"o ônibus que vai para a estação\". Em italiano, esse esclarecimento é convenientemente anexado à palavra «che».",
+"Encontre o objeto antes de «che». A próxima parte o descreve especificamente. Se você remover o esclarecimento, a base gramatical permanece, mas o ouvinte pode não entender qual objeto está sendo mencionado."
+],
+"ru": [
+"У остановки два автобуса. Вместо номера ты объясняешь, какой нужен: «автобус, который едет на вокзал». В итальянском это уточнение удобно присоединить словом «che».",
+"Найди предмет до «che». Следующая часть описывает именно его. Если убрать уточнение, останется грамматическая основа, но слушателю может стать непонятно, какой предмет имеется в виду."
+],
+"tr": [
+"Durakta iki otobüs var. Numara yerine, hangisine ihtiyacınız olduğunu açıklıyorsunuz: \"istasyona giden otobüs.\" İtalyancada bu açıklama, «che» kelimesine uygun bir şekilde eklenir.",
+"«che»'den önceki nesneyi bulun. Sonraki kısım onu ​​özel olarak tanımlar. Açıklamayı kaldırırsanız, dilbilgisel temel kalır, ancak dinleyici hangi nesnenin kastedildiğini anlamayabilir."
+],
+"uk": [
+"Біля зупинки два автобуси. Замість номера ти пояснюєш, який потрібний: \"автобус, який їде на вокзал\". В італійській це уточнення зручно приєднати словом «che».",
+"Знайди предмет до «che». Наступна частина описує саме його. Якщо усунути уточнення, залишиться граматична основа, але слухачеві може стати незрозуміло, який предмет має на увазі."
+],
+"vi": [
+"Có hai xe buýt ở trạm dừng. Thay vì số, bạn giải thích bạn cần xe nào: \"xe buýt đi đến trạm\". Trong tiếng Ý, lời giải thích này được gắn kèm với từ «che» một cách thuận tiện.",
+"Tìm đối tượng trước «che». Phần tiếp theo mô tả cụ thể đối tượng đó. Nếu bạn bỏ phần giải thích, cơ sở ngữ pháp vẫn giữ nguyên, nhưng người nghe có thể không hiểu đối tượng nào được nhắc đến."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:29:01"
+]
+},
+{
+"textES": "sustantivo + che + aclaración\nEn l’autobus che va in stazione, el autobús va solo. En l’autobus che prendo, lo elijo. El pequeño che es igual, pero la función de la palabra que falta es diferente.\nCuando un objeto realiza la acción, el verbo concuerda con él. Si soy yo quien realiza la acción, la terminación concuerda conmigo. Che por sí solo no determina la forma verbal.",
+"textEn": "noun + che + clarification\nIn l’autobus che va in stazione, the bus goes by itself. In l’autobus che prendo, I choose it. The small che is the same, but the role of the missing word is different.\nWhen an object itself acts, the verb agrees with it. If I am the one doing the action, the ending agrees with me. Che itself does not determine the verb form.",
+"textId": "kata benda + che + klarifikasi\nDalam l’autobus che va in stazione, bus berjalan sendiri. Dalam l’autobus che prendo, saya memilihnya. che yang kecil sama, tetapi peran kata yang hilang berbeda.\nKetika suatu objek itu sendiri bertindak, kata kerja harus sesuai dengannya. Jika saya yang melakukan tindakan tersebut, akhiran kata kerja harus sesuai dengan saya. Che sendiri tidak menentukan bentuk kata kerja.",
+"textPl": "rzeczownik + che + wyjaśnienie\nW l’autobus che va in stazione autobus jedzie sam. W l’autobus che prendo wybieram go. Mały che jest taki sam, ale rola brakującego słowa jest inna.\nKiedy obiekt sam wykonuje czynność, czasownik zgadza się z nim. Jeśli to ja wykonuję czynność, końcówka zgadza się ze mną. Samo Che nie determinuje formy czasownika.",
+"textPtBr": "substantivo + che + esclarecimento\nEm l’autobus che va in stazione, o ônibus vai sozinho. Em l’autobus che prendo, eu o escolho. O pequeno che é o mesmo, mas o papel da palavra que falta é diferente.\nQuando um objeto age por si só, o verbo concorda com ele. Se eu sou quem realiza a ação, a terminação concorda comigo. Che em si não determina a forma verbal.",
+"textRU": "существительное + che + уточнение\nВ l’autobus che va in stazione автобус сам едет. В l’autobus che prendo его выбираю я. Маленькое che одинаковое, но роль пропущенного слова разная.\nКогда предмет сам действует, глагол согласуется с ним. Если действие выполняю я, окончание соответствует мне. Che само не задаёт форму глагола.",
+"textTr": "isim + che + açıklama\nl’autobus che va in stazione'de otobüs kendi başına gider. l’autobus che prendo'de ben onu seçiyorum. Küçük che de aynı, ancak eksik kelimenin rolü farklı.\nBir nesne kendisi eylemde bulunduğunda, fiil onunla uyumludur. Eylemi yapan ben isem, son ek benimle uyumludur. Che'in kendisi fiil biçimini belirlemez.",
+"textUK": "іменник + che + уточнення\nl’autobus che va in stazione автобус сам їде. У l’autobus che prendo його вибираю я. Маленьке che однакове, але роль пропущеного слова різна.\nКоли предмет діє, дієслово узгоджується з ним. Якщо я виконую дію, закінчення відповідає мені. Che саме не ставить форму дієслова.",
+"textVi": "danh từ + che + làm rõ\nTrong l’autobus che va in stazione, xe buýt tự đi. Trong l’autobus che prendo, tôi chọn nó. che nhỏ cũng tương tự, nhưng vai trò của từ bị thiếu là khác nhau.\nKhi chính đối tượng thực hiện hành động, động từ phải hòa hợp với nó. Nếu tôi là người thực hiện hành động, đuôi động từ phải hòa hợp với tôi. Bản thân Che không quyết định dạng động từ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"noun + «che» + clarification",
+"In «l’autobus che va in stazione», the bus goes by itself. In «l’autobus che prendo», I choose it. The small «che» is the same, but the role of the missing word is different.",
+"When an object itself acts, the verb agrees with it. If I am the one doing the action, the ending agrees with me. «Che» itself does not determine the verb form."
+],
+"es": [
+"sustantivo + «che» + aclaración",
+"En «l’autobus che va in stazione», el autobús va solo. En «l’autobus che prendo», lo elijo. El pequeño «che» es igual, pero la función de la palabra que falta es diferente.",
+"Cuando un objeto realiza la acción, el verbo concuerda con él. Si soy yo quien realiza la acción, la terminación concuerda conmigo. «Che» por sí solo no determina la forma verbal."
+],
+"id": [
+"kata benda + «che» + klarifikasi",
+"Dalam «l’autobus che va in stazione», bus berjalan sendiri. Dalam «l’autobus che prendo», saya memilihnya. «che» yang kecil sama, tetapi peran kata yang hilang berbeda.",
+"Ketika suatu objek itu sendiri bertindak, kata kerja harus sesuai dengannya. Jika saya yang melakukan tindakan tersebut, akhiran kata kerja harus sesuai dengan saya. «Che» sendiri tidak menentukan bentuk kata kerja."
+],
+"pl": [
+"rzeczownik + «che» + wyjaśnienie",
+"W «l’autobus che va in stazione» autobus jedzie sam. W «l’autobus che prendo» wybieram go. Mały «che» jest taki sam, ale rola brakującego słowa jest inna.",
+"Kiedy obiekt sam wykonuje czynność, czasownik zgadza się z nim. Jeśli to ja wykonuję czynność, końcówka zgadza się ze mną. Samo «Che» nie determinuje formy czasownika."
+],
+"pt-BR": [
+"substantivo + «che» + esclarecimento",
+"Em «l’autobus che va in stazione», o ônibus vai sozinho. Em «l’autobus che prendo», eu o escolho. O pequeno «che» é o mesmo, mas o papel da palavra que falta é diferente.",
+"Quando um objeto age por si só, o verbo concorda com ele. Se eu sou quem realiza a ação, a terminação concorda comigo. «Che» em si não determina a forma verbal."
+],
+"ru": [
+"существительное + «che» + уточнение",
+"В «l’autobus che va in stazione» автобус сам едет. В «l’autobus che prendo» его выбираю я. Маленькое «che» одинаковое, но роль пропущенного слова разная.",
+"Когда предмет сам действует, глагол согласуется с ним. Если действие выполняю я, окончание соответствует мне. «Che» само не задаёт форму глагола."
+],
+"tr": [
+"isim + «che» + açıklama",
+"«l’autobus che va in stazione»'de otobüs kendi başına gider. «l’autobus che prendo»'de ben onu seçiyorum. Küçük «che» de aynı, ancak eksik kelimenin rolü farklı.",
+"Bir nesne kendisi eylemde bulunduğunda, fiil onunla uyumludur. Eylemi yapan ben isem, son ek benimle uyumludur. «Che»'in kendisi fiil biçimini belirlemez."
+],
+"uk": [
+"іменник + «che» + уточнення",
+"«l’autobus che va in stazione» автобус сам їде. У «l’autobus che prendo» його вибираю я. Маленьке «che» однакове, але роль пропущеного слова різна.",
+"Коли предмет діє, дієслово узгоджується з ним. Якщо я виконую дію, закінчення відповідає мені. «Che» саме не ставить форму дієслова."
+],
+"vi": [
+"danh từ + «che» + làm rõ",
+"Trong «l’autobus che va in stazione», xe buýt tự đi. Trong «l’autobus che prendo», tôi chọn nó. «che» nhỏ cũng tương tự, nhưng vai trò của từ bị thiếu là khác nhau.",
+"Khi chính đối tượng thực hiện hành động, động từ phải hòa hợp với nó. Nếu tôi là người thực hiện hành động, đuôi động từ phải hòa hợp với tôi. Bản thân «Che» không quyết định dạng động từ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:29:05",
+"it:29:06"
+]
+},
+{
+"textES": "En la primera oración, primero nombra el autobús, luego agrega che y explica su ruta. No insertes otro pronombre para el mismo autobús antes de va.",
+"textEn": "For the first sentence, first name the bus, then add che and explain its route. Don't insert another pronoun for the same bus before va.",
+"textId": "Untuk kalimat pertama, sebutkan nama bus terlebih dahulu, lalu tambahkan che dan jelaskan rutenya. Jangan memasukkan kata ganti lain untuk bus yang sama sebelum va.",
+"textPl": "W pierwszym zdaniu najpierw nazwij autobus, a następnie dodaj che i wyjaśnij jego trasę. Nie wstawiaj innego zaimka dla tego samego autobusu przed va.",
+"textPtBr": "Para a primeira frase, primeiro nomeie o ônibus, depois adicione che e explique sua rota. Não insira outro pronome para o mesmo ônibus antes de va.",
+"textRU": "Для первой фразы сначала назови автобус, затем добавь che и объясни его маршрут. Не вставляй ещё одно местоимение для того же автобуса перед va.",
+"textTr": "İlk cümle için önce otobüsün adını verin, sonra che ekleyin ve güzergahını açıklayın. va'den önce aynı otobüs için başka bir zamir eklemeyin.",
+"textUK": "Для першої фрази спочатку назви автобус, потім додай che та поясни його маршрут. Чи не вставляй ще один займенник для того ж автобуса перед va.",
+"textVi": "Đối với câu đầu tiên, trước tiên hãy nêu tên xe buýt, sau đó thêm che và giải thích tuyến đường của nó. Không chèn thêm đại từ khác cho cùng một xe buýt trước va.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For the first sentence, first name the bus, then add «che» and explain its route. Don't insert another pronoun for the same bus before «va»."
+],
+"es": [
+"En la primera oración, primero nombra el autobús, luego agrega «che» y explica su ruta. No insertes otro pronombre para el mismo autobús antes de «va»."
+],
+"id": [
+"Untuk kalimat pertama, sebutkan nama bus terlebih dahulu, lalu tambahkan «che» dan jelaskan rutenya. Jangan memasukkan kata ganti lain untuk bus yang sama sebelum «va»."
+],
+"pl": [
+"W pierwszym zdaniu najpierw nazwij autobus, a następnie dodaj «che» i wyjaśnij jego trasę. Nie wstawiaj innego zaimka dla tego samego autobusu przed «va»."
+],
+"pt-BR": [
+"Para a primeira frase, primeiro nomeie o ônibus, depois adicione «che» e explique sua rota. Não insira outro pronome para o mesmo ônibus antes de «va»."
+],
+"ru": [
+"Для первой фразы сначала назови автобус, затем добавь «che» и объясни его маршрут. Не вставляй ещё одно местоимение для того же автобуса перед «va»."
+],
+"tr": [
+"İlk cümle için önce otobüsün adını verin, sonra «che» ekleyin ve güzergahını açıklayın. «va»'den önce aynı otobüs için başka bir zamir eklemeyin."
+],
+"uk": [
+"Для першої фрази спочатку назви автобус, потім додай «che» та поясни його маршрут. Чи не вставляй ще один займенник для того ж автобуса перед «va»."
+],
+"vi": [
+"Đối với câu đầu tiên, trước tiên hãy nêu tên xe buýt, sau đó thêm «che» và giải thích tuyến đường của nó. Không chèn thêm đại từ khác cho cùng một xe buýt trước «va»."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:29:01",
+"it:29:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:29:01",
+"target": "Questo è l’autobus che va alla stazione ferroviaria.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "it:29:05",
+"target": "Questa è la giacca che mi piace.",
+"ru": "Это куртка, которая мне нравится.",
+"uk": "Це куртка, яка мені подобається."
+},
+{
+"id": "it:29:06",
+"target": "Questa è la giacca che indosso.",
+"ru": "Это куртка, которую я ношу.",
+"uk": "Це куртка, яку я ношу."
+},
+{
+"id": "it:29:01",
+"target": "Questo è l’autobus che va alla stazione ferroviaria.",
+"ru": "Это автобус, который едет до вокзала.",
+"uk": "Це автобус, який їде до залізничного вокзалу."
+},
+{
+"id": "it:29:04",
+"target": "Ecco la chiave che sto cercando.",
+"ru": "Вот ключ, который я ищу.",
+"uk": "Ось ключ, який я шукаю."
+}
+]
+},
+{
+"lesson": 30,
+"blocks": [
+{
+"textES": "No se dice que la persona ya se haya ido. Se dice que necesita irse. Esto se puede expresar mediante Bisogna che …: después de che en este ejemplo, elegimos una forma especial, por ejemplo, parta.\nLa oración principal ya contiene bisogna, que no cambia según quién deba actuar. La persona y el número se seleccionan en la oración después de che.",
+"textEn": "You don't say that the person has already left. You say that he needs to leave. This can be expressed through Bisogna che …: after che in this example, we choose a special form, for example parta.\nThe main clause already contains bisogna, which doesn't change depending on who needs to act. The person and number are selected in the clause after che.",
+"textId": "Anda tidak mengatakan bahwa orang tersebut telah pergi. Anda mengatakan bahwa dia perlu pergi. Ini dapat diungkapkan melalui Bisogna che …: setelah che dalam contoh ini, kita memilih bentuk khusus, misalnya parta.\nKlausa utama sudah berisi bisogna, yang tidak berubah tergantung pada siapa yang perlu bertindak. Orang dan jumlah dipilih dalam klausa setelah che.",
+"textPl": "Nie mówisz, że dana osoba już odeszła. Mówisz, że musi odejść. Można to wyrazić za pomocą Bisogna che …: po che w tym przykładzie wybieramy formę specjalną, na przykład parta.\nZdanie główne zawiera już bisogna, które nie zmienia się w zależności od tego, kto musi działać. Osoba i liczba są wybierane w zdaniu po che.",
+"textPtBr": "Você não diz que a pessoa já saiu. Você diz que ela precisa sair. Isso pode ser expresso por meio de Bisogna che …: após che neste exemplo, escolhemos uma forma especial, por exemplo, parta.\nA oração principal já contém bisogna, que não muda dependendo de quem precisa agir. A pessoa e o número são selecionados na oração após che.",
+"textRU": "Ты не сообщаешь, что человек уже уехал. Говоришь, что ему надо уехать. Это можно выразить через Bisogna che …: после che в таком образце выбираем особую форму, например parta.\nВ главной части уже есть bisogna, которое не меняется в зависимости от того, кому нужно действовать. Лицо и число выбираются в части после che.",
+"textTr": "Kişinin zaten ayrıldığını söylemiyorsunuz. Ayrılması gerektiğini söylüyorsunuz. Bu, Bisogna che … aracılığıyla ifade edilebilir: bu örnekte che'den sonra, örneğin parta gibi özel bir biçim seçiyoruz.\nAna cümle zaten bisogna'i içeriyor ve bu, kimin hareket etmesi gerektiğine bağlı olarak değişmiyor. Kişi ve sayı, che'den sonraki cümlede seçilir.",
+"textUK": "Ти не повідомляєш, що людина вже поїхала. Кажеш, що йому треба виїхати. Це можна виразити через Bisogna che …: після che у такому зразку вибираємо особливу форму, наприклад parta.\nУ головній частині вже є bisogna, яка не змінюється в залежності від того, кому потрібно діяти. Особа та число вибираються у частині після che.",
+"textVi": "Bạn không nói rằng người đó đã rời đi. Bạn nói rằng người đó cần phải rời đi. Điều này có thể được diễn đạt thông qua Bisogna che …: sau che trong ví dụ này, chúng ta chọn một hình thức đặc biệt, ví dụ parta.\nMệnh đề chính đã chứa bisogna, không thay đổi tùy thuộc vào người cần hành động. Ngôi và số được chọn trong mệnh đề sau che.",
+"titleES": "Necesidad: bisogna che + congiuntivo",
+"titleEn": "Necessity: bisogna che + congiuntivo",
+"titleId": "Kebutuhan: bisogna che + congiuntivo",
+"titlePl": "Konieczność: bisogna che + congiuntivo",
+"titlePtBr": "Necessidade: bisogna che + congiuntivo",
+"titleRU": "Необходимость: bisogna che + congiuntivo",
+"titleTr": "Gereklilik: bisogna che + congiuntivo",
+"titleUK": "Необхідність: bisogna che + congiuntivo",
+"titleVi": "Sự cần thiết: bisogna che + congiuntivo",
+"titleByLocale": {
+"en": "Necessity: bisogna che + congiuntivo",
+"es": "Necesidad: bisogna che + congiuntivo",
+"id": "Kebutuhan: bisogna che + congiuntivo",
+"pl": "Konieczność: bisogna che + congiuntivo",
+"pt-BR": "Necessidade: bisogna che + congiuntivo",
+"ru": "Необходимость: bisogna che + congiuntivo",
+"tr": "Gereklilik: bisogna che + congiuntivo",
+"uk": "Необхідність: bisogna che + congiuntivo",
+"vi": "Sự cần thiết: bisogna che + congiuntivo"
+},
+"textByLocale": {
+"en": [
+"You don't say that the person has already left. You say that he needs to leave. This can be expressed through «Bisogna che …»: after «che» in this example, we choose a special form, for example «parta».",
+"The main clause already contains «bisogna», which doesn't change depending on who needs to act. The person and number are selected in the clause after «che»."
+],
+"es": [
+"No se dice que la persona ya se haya ido. Se dice que necesita irse. Esto se puede expresar mediante «Bisogna che …»: después de «che» en este ejemplo, elegimos una forma especial, por ejemplo, «parta».",
+"La oración principal ya contiene «bisogna», que no cambia según quién deba actuar. La persona y el número se seleccionan en la oración después de «che»."
+],
+"id": [
+"Anda tidak mengatakan bahwa orang tersebut telah pergi. Anda mengatakan bahwa dia perlu pergi. Ini dapat diungkapkan melalui «Bisogna che …»: setelah «che» dalam contoh ini, kita memilih bentuk khusus, misalnya «parta».",
+"Klausa utama sudah berisi «bisogna», yang tidak berubah tergantung pada siapa yang perlu bertindak. Orang dan jumlah dipilih dalam klausa setelah «che»."
+],
+"pl": [
+"Nie mówisz, że dana osoba już odeszła. Mówisz, że musi odejść. Można to wyrazić za pomocą «Bisogna che …»: po «che» w tym przykładzie wybieramy formę specjalną, na przykład «parta».",
+"Zdanie główne zawiera już «bisogna», które nie zmienia się w zależności od tego, kto musi działać. Osoba i liczba są wybierane w zdaniu po «che»."
+],
+"pt-BR": [
+"Você não diz que a pessoa já saiu. Você diz que ela precisa sair. Isso pode ser expresso por meio de «Bisogna che …»: após «che» neste exemplo, escolhemos uma forma especial, por exemplo, «parta».",
+"A oração principal já contém «bisogna», que não muda dependendo de quem precisa agir. A pessoa e o número são selecionados na oração após «che»."
+],
+"ru": [
+"Ты не сообщаешь, что человек уже уехал. Говоришь, что ему надо уехать. Это можно выразить через «Bisogna che …»: после «che» в таком образце выбираем особую форму, например «parta».",
+"В главной части уже есть «bisogna», которое не меняется в зависимости от того, кому нужно действовать. Лицо и число выбираются в части после «che»."
+],
+"tr": [
+"Kişinin zaten ayrıldığını söylemiyorsunuz. Ayrılması gerektiğini söylüyorsunuz. Bu, «Bisogna che …» aracılığıyla ifade edilebilir: bu örnekte «che»'den sonra, örneğin «parta» gibi özel bir biçim seçiyoruz.",
+"Ana cümle zaten «bisogna»'i içeriyor ve bu, kimin hareket etmesi gerektiğine bağlı olarak değişmiyor. Kişi ve sayı, «che»'den sonraki cümlede seçilir."
+],
+"uk": [
+"Ти не повідомляєш, що людина вже поїхала. Кажеш, що йому треба виїхати. Це можна виразити через «Bisogna che …»: після «che» у такому зразку вибираємо особливу форму, наприклад «parta».",
+"У головній частині вже є «bisogna», яка не змінюється в залежності від того, кому потрібно діяти. Особа та число вибираються у частині після «che»."
+],
+"vi": [
+"Bạn không nói rằng người đó đã rời đi. Bạn nói rằng người đó cần phải rời đi. Điều này có thể được diễn đạt thông qua «Bisogna che …»: sau «che» trong ví dụ này, chúng ta chọn một hình thức đặc biệt, ví dụ «parta».",
+"Mệnh đề chính đã chứa «bisogna», không thay đổi tùy thuộc vào người cần hành động. Ngôi và số được chọn trong mệnh đề sau «che»."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:30:01"
+]
+},
+{
+"textES": "bisogna che + quién + forma de la acción requerida\nCompare el hecho Paolo parte y el requerimiento Bisogna che Paolo parta. No es necesario amenazar ni ordenar: podría ser una simple necesidad organizativa. La palabra che por sí sola no requiere esta forma con ningún verbo.\nCompárese parta, partiamo, partiate, partano. Algunas formas coinciden con el presente de indicativo. Por lo tanto, el significado deseado viene determinado por la construcción completa, no por la letra inusual.",
+"textEn": "bisogna che + who + form of the required action\nCompare fact Paolo parte and requirement Bisogna che Paolo parta. Threatening or ordering is not necessary: ​​it could be a simple organizational necessity. The word che alone does not require this form with any verb.\nCompare parta, partiamo, partiate, partano. Some forms match the present indicative. Then the desired meaning is determined by the entire construction, not by the unusual letter.",
+"textId": "bisogna che + siapa + bentuk tindakan yang dibutuhkan\nBandingkan fakta Paolo parte dan kebutuhan Bisogna che Paolo parta. Mengancam atau memerintah tidak diperlukan: itu bisa berupa kebutuhan organisasi sederhana. Kata che saja tidak memerlukan bentuk ini dengan kata kerja apa pun.\nBandingkan parta, partiamo, partiate, partano. Beberapa bentuk sesuai dengan indikatif present. Kemudian makna yang diinginkan ditentukan oleh seluruh konstruksi, bukan oleh huruf yang tidak biasa.",
+"textPl": "bisogna che + kto + forma wymaganego działania\nPorównaj fakt Paolo parte i wymóg Bisogna che Paolo parta. Grożenie lub rozkazywanie nie jest konieczne: może to być prosta konieczność organizacyjna. Samo słowo che nie wymaga tej formy z żadnym czasownikiem.\nPorównaj parta, partiamo, partiate, partano. Niektóre formy pasują do trybu oznajmującego czasu teraźniejszego. Wtedy pożądane znaczenie jest określane przez całą konstrukcję, a nie przez nietypową literę.",
+"textPtBr": "bisogna che + quem + forma da ação requerida\nCompare o fato Paolo parte e a exigência Bisogna che Paolo parta. Ameaçar ou ordenar não é necessário: pode ser uma simples necessidade organizacional. A palavra che sozinha não requer esta forma com nenhum verbo.\nCompare parta, partiamo, partiate, partano. Algumas formas correspondem ao presente do indicativo. Então, o significado desejado é determinado por toda a construção, não pela letra incomum.",
+"textRU": "bisogna che + кто + форма требуемого действия\nСравни факт Paolo parte и требование Bisogna che Paolo parta. Угрожать или приказывать необязательно: это может быть простая организационная необходимость. Слово che в одиночку не требует этой формы при любом глаголе.\nСравни parta, partiamo, partiate, partano. Некоторые формы совпадают с настоящим изъявительным. Тогда нужное значение определяет вся конструкция, а не необычная буква.",
+"textTr": "bisogna che + kim + gerekli eylemin biçimi\nPaolo parte olgusu ile Bisogna che Paolo parta gerekliliğini karşılaştırın. Tehdit etmek veya emretmek gerekli değildir: basit bir organizasyonel gereklilik olabilir. che kelimesi tek başına herhangi bir fiille bu biçimi gerektirmez.\nparta, partiamo, partiate, partano'ü karşılaştırın. Bazı biçimler şimdiki zaman kipiyle eşleşiyor. O zaman istenen anlam, alışılmadık harfle değil, tüm yapıyla belirlenir.",
+"textUK": "bisogna che + хто + форма необхідної дії\nПорівняй факт Paolo parte та вимогу Bisogna che Paolo parta. Погрожувати чи наказувати необов'язково: це може бути проста організаційна необхідність. Слово che самотужки не вимагає цієї форми при будь-якому дієслові.\nПорівняй parta, partiamo, partiate, partano. Деякі форми збігаються зі справжнім дійсним. Тоді потрібне значення визначає вся конструкція, а чи не незвичайна буква.",
+"textVi": "bisogna che + ai + hình thức của hành động cần thiết\nSo sánh sự kiện Paolo parte và yêu cầu Bisogna che Paolo parta. Đe dọa hoặc ra lệnh là không cần thiết: đó có thể chỉ là một sự cần thiết về mặt tổ chức đơn giản. Từ che đứng một mình không yêu cầu hình thức này với bất kỳ động từ nào.\nSo sánh parta, partiamo, partiate, partano. Một số dạng phù hợp với thì hiện tại chỉ định. Khi đó, ý nghĩa mong muốn được xác định bởi toàn bộ cấu trúc, chứ không phải bởi chữ cái bất thường.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«bisogna che» + who + form of the required action",
+"Compare fact «Paolo parte» and requirement «Bisogna che Paolo parta». Threatening or ordering is not necessary: ​​it could be a simple organizational necessity. The word «che» alone does not require this form with any verb.",
+"Compare «parta», «partiamo», «partiate», «partano». Some forms match the present indicative. Then the desired meaning is determined by the entire construction, not by the unusual letter."
+],
+"es": [
+"«bisogna che» + quién + forma de la acción requerida",
+"Compare el hecho «Paolo parte» y el requerimiento «Bisogna che Paolo parta». No es necesario amenazar ni ordenar: podría ser una simple necesidad organizativa. La palabra «che» por sí sola no requiere esta forma con ningún verbo.",
+"Compárese «parta», «partiamo», «partiate», «partano». Algunas formas coinciden con el presente de indicativo. Por lo tanto, el significado deseado viene determinado por la construcción completa, no por la letra inusual."
+],
+"id": [
+"«bisogna che» + siapa + bentuk tindakan yang dibutuhkan",
+"Bandingkan fakta «Paolo parte» dan kebutuhan «Bisogna che Paolo parta». Mengancam atau memerintah tidak diperlukan: itu bisa berupa kebutuhan organisasi sederhana. Kata «che» saja tidak memerlukan bentuk ini dengan kata kerja apa pun.",
+"Bandingkan «parta», «partiamo», «partiate», «partano». Beberapa bentuk sesuai dengan indikatif present. Kemudian makna yang diinginkan ditentukan oleh seluruh konstruksi, bukan oleh huruf yang tidak biasa."
+],
+"pl": [
+"«bisogna che» + kto + forma wymaganego działania",
+"Porównaj fakt «Paolo parte» i wymóg «Bisogna che Paolo parta». Grożenie lub rozkazywanie nie jest konieczne: może to być prosta konieczność organizacyjna. Samo słowo «che» nie wymaga tej formy z żadnym czasownikiem.",
+"Porównaj «parta», «partiamo», «partiate», «partano». Niektóre formy pasują do trybu oznajmującego czasu teraźniejszego. Wtedy pożądane znaczenie jest określane przez całą konstrukcję, a nie przez nietypową literę."
+],
+"pt-BR": [
+"«bisogna che» + quem + forma da ação requerida",
+"Compare o fato «Paolo parte» e a exigência «Bisogna che Paolo parta». Ameaçar ou ordenar não é necessário: pode ser uma simples necessidade organizacional. A palavra «che» sozinha não requer esta forma com nenhum verbo.",
+"Compare «parta», «partiamo», «partiate», «partano». Algumas formas correspondem ao presente do indicativo. Então, o significado desejado é determinado por toda a construção, não pela letra incomum."
+],
+"ru": [
+"«bisogna che» + кто + форма требуемого действия",
+"Сравни факт «Paolo parte» и требование «Bisogna che Paolo parta». Угрожать или приказывать необязательно: это может быть простая организационная необходимость. Слово «che» в одиночку не требует этой формы при любом глаголе.",
+"Сравни «parta», «partiamo», «partiate», «partano». Некоторые формы совпадают с настоящим изъявительным. Тогда нужное значение определяет вся конструкция, а не необычная буква."
+],
+"tr": [
+"«bisogna che» + kim + gerekli eylemin biçimi",
+"«Paolo parte» olgusu ile «Bisogna che Paolo parta» gerekliliğini karşılaştırın. Tehdit etmek veya emretmek gerekli değildir: basit bir organizasyonel gereklilik olabilir. «che» kelimesi tek başına herhangi bir fiille bu biçimi gerektirmez.",
+"«parta», «partiamo», «partiate», «partano»'ü karşılaştırın. Bazı biçimler şimdiki zaman kipiyle eşleşiyor. O zaman istenen anlam, alışılmadık harfle değil, tüm yapıyla belirlenir."
+],
+"uk": [
+"«bisogna che» + хто + форма необхідної дії",
+"Порівняй факт «Paolo parte» та вимогу «Bisogna che Paolo parta». Погрожувати чи наказувати необов'язково: це може бути проста організаційна необхідність. Слово «che» самотужки не вимагає цієї форми при будь-якому дієслові.",
+"Порівняй «parta», «partiamo», «partiate», «partano». Деякі форми збігаються зі справжнім дійсним. Тоді потрібне значення визначає вся конструкція, а чи не незвичайна буква."
+],
+"vi": [
+"«bisogna che» + ai + hình thức của hành động cần thiết",
+"So sánh sự kiện «Paolo parte» và yêu cầu «Bisogna che Paolo parta». Đe dọa hoặc ra lệnh là không cần thiết: đó có thể chỉ là một sự cần thiết về mặt tổ chức đơn giản. Từ «che» đứng một mình không yêu cầu hình thức này với bất kỳ động từ nào.",
+"So sánh «parta», «partiamo», «partiate», «partano». Một số dạng phù hợp với thì hiện tại chỉ định. Khi đó, ý nghĩa mong muốn được xác định bởi toàn bộ cấu trúc, chứ không phải bởi chữ cái bất thường."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:30:04",
+"it:30:05"
+]
+},
+{
+"textES": "En el primer ejemplo, indicamos que necesito irme específicamente: Bisogna → che → io → parta. io es útil aquí: este verbo tiene las mismas formas para \"yo\", \"tú\" y \"él\".",
+"textEn": "In the first example, indicate that I specifically need to leave: Bisogna → che → io → parta. io is useful here: this verb has the same forms for \"I,\" \"you,\" and \"he.\"",
+"textId": "Pada contoh pertama, tunjukkan bahwa saya secara khusus perlu pergi: Bisogna → che → io → parta. io berguna di sini: kata kerja ini memiliki bentuk yang sama untuk \"saya,\" \"kamu,\" dan \"dia.\"",
+"textPl": "W pierwszym przykładzie wskaż, że konkretnie muszę odejść: Bisogna → che → io → parta. io jest tu przydatne: ten czasownik ma te same formy dla „ja”, „ty” i „on”.",
+"textPtBr": "No primeiro exemplo, indique que eu preciso sair especificamente: Bisogna → che → io → parta. io é útil aqui: este verbo tem as mesmas formas para \"eu\", \"você\" e \"ele\".",
+"textRU": "В первом примере укажи, что именно мне надо уйти: Bisogna → che → io → parta. Здесь io полезно: для «я», «ты» и «он» у этого глагола формы совпадают.",
+"textTr": "İlk örnekte, özellikle benim ayrılmam gerektiğini belirtmek için: Bisogna → che → io → parta. io burada kullanışlıdır: bu fiilin \"ben\", \"sen\" ve \"o\" için aynı biçimleri vardır.",
+"textUK": "У першому прикладі вкажи, що саме мені треба піти: Bisogna → che → io → parta. Тут io корисно: для «я», «ти» та «він» у цього дієслова форми збігаються.",
+"textVi": "Trong ví dụ đầu tiên, hãy chỉ rõ rằng tôi cần phải rời đi: Bisogna → che → io → parta. io rất hữu ích ở đây: động từ này có cùng dạng cho \"tôi\", \"bạn\" và \"anh ấy\".",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"In the first example, indicate that I specifically need to leave: «Bisogna» → «che» → «io» → «parta». «io» is useful here: this verb has the same forms for \"I,\" \"you,\" and \"he.\""
+],
+"es": [
+"En el primer ejemplo, indicamos que necesito irme específicamente: «Bisogna» → «che» → «io» → «parta». «io» es útil aquí: este verbo tiene las mismas formas para \"yo\", \"tú\" y \"él\"."
+],
+"id": [
+"Pada contoh pertama, tunjukkan bahwa saya secara khusus perlu pergi: «Bisogna» → «che» → «io» → «parta». «io» berguna di sini: kata kerja ini memiliki bentuk yang sama untuk \"saya,\" \"kamu,\" dan \"dia.\""
+],
+"pl": [
+"W pierwszym przykładzie wskaż, że konkretnie muszę odejść: «Bisogna» → «che» → «io» → «parta». «io» jest tu przydatne: ten czasownik ma te same formy dla „ja”, „ty” i „on”."
+],
+"pt-BR": [
+"No primeiro exemplo, indique que eu preciso sair especificamente: «Bisogna» → «che» → «io» → «parta». «io» é útil aqui: este verbo tem as mesmas formas para \"eu\", \"você\" e \"ele\"."
+],
+"ru": [
+"В первом примере укажи, что именно мне надо уйти: «Bisogna» → «che» → «io» → «parta». Здесь «io» полезно: для «я», «ты» и «он» у этого глагола формы совпадают."
+],
+"tr": [
+"İlk örnekte, özellikle benim ayrılmam gerektiğini belirtmek için: «Bisogna» → «che» → «io» → «parta». «io» burada kullanışlıdır: bu fiilin \"ben\", \"sen\" ve \"o\" için aynı biçimleri vardır."
+],
+"uk": [
+"У першому прикладі вкажи, що саме мені треба піти: «Bisogna» → «che» → «io» → «parta». Тут «io» корисно: для «я», «ти» та «він» у цього дієслова форми збігаються."
+],
+"vi": [
+"Trong ví dụ đầu tiên, hãy chỉ rõ rằng tôi cần phải rời đi: «Bisogna» → «che» → «io» → «parta». «io» rất hữu ích ở đây: động từ này có cùng dạng cho \"tôi\", \"bạn\" và \"anh ấy\"."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:30:01",
+"it:30:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:30:01",
+"target": "Bisogna che io parta.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "it:30:04",
+"target": "Bisogna che partiamo.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+},
+{
+"id": "it:30:05",
+"target": "Bisogna che partiate.",
+"ru": "Вам (мн.) нужно уехать.",
+"uk": "Вам (мн.) треба поїхати."
+},
+{
+"id": "it:30:01",
+"target": "Bisogna che io parta.",
+"ru": "Мне нужно уйти.",
+"uk": "Я маю піти."
+},
+{
+"id": "it:30:04",
+"target": "Bisogna che partiamo.",
+"ru": "Нам нужно уйти.",
+"uk": "Ми маємо піти."
+}
+]
+},
+{
+"lesson": 31,
+"blocks": [
+{
+"textES": "Un amigo llamó, pero para entonces ya habías comido. Hay dos momentos en el pasado. La llamada es el punto de partida; la comida ocurrió antes. Para la acción anterior, usamos avevo mangiato.\nMarque dos puntos en una línea mental. ¿Qué fue primero? ¿El pago o la llamada? La acción anterior se representa con avevo con un participio; el orden de las partes en el texto puede ser cualquiera.",
+"textEn": "A friend called, but you had already eaten by that time. There are two moments in the past. The call is the starting point; the meal happened earlier. For the earlier action, we take avevo mangiato.\nMark two dots on a mental line. Which came first? The payment or the call? The earlier action gets avevo with a participle; the order of the parts themselves in the text can be any.",
+"textId": "Seorang teman menelepon, tetapi Anda sudah makan pada saat itu. Ada dua momen di masa lalu. Panggilan telepon adalah titik awal; makan terjadi lebih awal. Untuk tindakan yang lebih awal, kita menggunakan avevo mangiato.\nTandai dua titik pada garis mental. Mana yang lebih dulu? Pembayaran atau panggilan? Tindakan yang lebih awal mendapatkan avevo dengan partisip; urutan bagian-bagian itu sendiri dalam teks bisa apa saja.",
+"textPl": "Zadzwonił przyjaciel, ale ty już jadłeś. Istnieją dwa momenty w przeszłości. Zadzwonienie jest punktem wyjścia; posiłek miał miejsce wcześniej. Dla wcześniejszej czynności bierzemy avevo mangiato.\nZaznacz dwie kropki na linii w myślach. Co było pierwsze? Zapłata czy wezwanie? Wcześniejsza czynność otrzymuje avevo z imiesłowem; kolejność samych części w tekście może być dowolna.",
+"textPtBr": "Um amigo ligou, mas você já havia comido naquele momento. Há dois momentos no passado. A ligação é o ponto de partida; a refeição aconteceu antes. Para a ação anterior, usamos avevo mangiato.\nMarque dois pontos em uma linha mental. O que veio primeiro? O pagamento ou a ligação? A ação anterior recebe avevo com um particípio; a ordem das partes no texto pode ser qualquer uma.",
+"textRU": "Друг позвонил, но ты к этому моменту уже поел. Есть два момента в прошлом. Звонок — точка отсчёта; еда произошла раньше. Для более раннего действия берём avevo mangiato.\nОтметь две точки на мысленной линии. Что было раньше? Сначала оплата или звонок? Более раннее действие получает avevo с причастием; порядок самих частей в тексте может быть любым.",
+"textTr": "Bir arkadaş aradı, ama o zamana kadar zaten yemek yemiştiniz. Geçmişte iki an var. Arama başlangıç ​​noktası; yemek daha önce gerçekleşti. Daha önceki eylem için avevo mangiato'i kullanırız.\nZihinsel bir çizgi üzerinde iki nokta işaretleyin. Hangisi önce geldi? Ödeme mi yoksa arama mı? Daha önceki eylem, bir fiilimsiz ile avevo alır; metindeki parçaların sırası herhangi bir şekilde olabilir.",
+"textUK": "Друг зателефонував, але ти на цей момент вже поїв. Є два моменти у минулому. Дзвінок - точка відліку; їжа сталася раніше. Для ранньої дії беремо avevo mangiato.\nПознач дві точки на думці. Що було раніше? Спочатку оплата чи дзвінок? Раніше дію отримує avevo з дієприкметником; порядок самих елементів у тексті може бути будь-яким.",
+"textVi": "Một người bạn gọi điện, nhưng bạn đã ăn xong vào lúc đó. Có hai thời điểm trong quá khứ. Cuộc gọi là điểm bắt đầu; bữa ăn đã xảy ra trước đó. Đối với hành động trước đó, chúng ta dùng avevo mangiato.\nĐánh dấu hai dấu chấm trên một đường thẳng trong đầu. Cái nào xảy ra trước? Việc thanh toán hay cuộc gọi? Hành động xảy ra trước sẽ có avevo với một phân từ; thứ tự của các phần trong văn bản có thể là bất kỳ.",
+"titleES": "Antes de otro evento: trapassato prossimo",
+"titleEn": "Before another event: trapassato prossimo",
+"titleId": "Sebelum kejadian lain: trapassato prossimo",
+"titlePl": "Przed innym zdarzeniem: trapassato prossimo",
+"titlePtBr": "Antes de outro evento: trapassato prossimo",
+"titleRU": "До другого события: trapassato prossimo",
+"titleTr": "Başka bir olaydan önce: trapassato prossimo",
+"titleUK": "До іншої події: trapassato prossimo",
+"titleVi": "Trước một sự kiện khác: trapassato prossimo",
+"titleByLocale": {
+"en": "Before another event: trapassato prossimo",
+"es": "Antes de otro evento: trapassato prossimo",
+"id": "Sebelum kejadian lain: trapassato prossimo",
+"pl": "Przed innym zdarzeniem: trapassato prossimo",
+"pt-BR": "Antes de outro evento: trapassato prossimo",
+"ru": "До другого события: trapassato prossimo",
+"tr": "Başka bir olaydan önce: trapassato prossimo",
+"uk": "До іншої події: trapassato prossimo",
+"vi": "Trước một sự kiện khác: trapassato prossimo"
+},
+"textByLocale": {
+"en": [
+"A friend called, but you had already eaten by that time. There are two moments in the past. The call is the starting point; the meal happened earlier. For the earlier action, we take «avevo mangiato».",
+"Mark two dots on a mental line. Which came first? The payment or the call? The earlier action gets «avevo» with a participle; the order of the parts themselves in the text can be any."
+],
+"es": [
+"Un amigo llamó, pero para entonces ya habías comido. Hay dos momentos en el pasado. La llamada es el punto de partida; la comida ocurrió antes. Para la acción anterior, usamos «avevo mangiato».",
+"Marque dos puntos en una línea mental. ¿Qué fue primero? ¿El pago o la llamada? La acción anterior se representa con «avevo» con un participio; el orden de las partes en el texto puede ser cualquiera."
+],
+"id": [
+"Seorang teman menelepon, tetapi Anda sudah makan pada saat itu. Ada dua momen di masa lalu. Panggilan telepon adalah titik awal; makan terjadi lebih awal. Untuk tindakan yang lebih awal, kita menggunakan «avevo mangiato».",
+"Tandai dua titik pada garis mental. Mana yang lebih dulu? Pembayaran atau panggilan? Tindakan yang lebih awal mendapatkan «avevo» dengan partisip; urutan bagian-bagian itu sendiri dalam teks bisa apa saja."
+],
+"pl": [
+"Zadzwonił przyjaciel, ale ty już jadłeś. Istnieją dwa momenty w przeszłości. Zadzwonienie jest punktem wyjścia; posiłek miał miejsce wcześniej. Dla wcześniejszej czynności bierzemy «avevo mangiato».",
+"Zaznacz dwie kropki na linii w myślach. Co było pierwsze? Zapłata czy wezwanie? Wcześniejsza czynność otrzymuje «avevo» z imiesłowem; kolejność samych części w tekście może być dowolna."
+],
+"pt-BR": [
+"Um amigo ligou, mas você já havia comido naquele momento. Há dois momentos no passado. A ligação é o ponto de partida; a refeição aconteceu antes. Para a ação anterior, usamos «avevo mangiato».",
+"Marque dois pontos em uma linha mental. O que veio primeiro? O pagamento ou a ligação? A ação anterior recebe «avevo» com um particípio; a ordem das partes no texto pode ser qualquer uma."
+],
+"ru": [
+"Друг позвонил, но ты к этому моменту уже поел. Есть два момента в прошлом. Звонок — точка отсчёта; еда произошла раньше. Для более раннего действия берём «avevo mangiato».",
+"Отметь две точки на мысленной линии. Что было раньше? Сначала оплата или звонок? Более раннее действие получает «avevo» с причастием; порядок самих частей в тексте может быть любым."
+],
+"tr": [
+"Bir arkadaş aradı, ama o zamana kadar zaten yemek yemiştiniz. Geçmişte iki an var. Arama başlangıç ​​noktası; yemek daha önce gerçekleşti. Daha önceki eylem için «avevo mangiato»'i kullanırız.",
+"Zihinsel bir çizgi üzerinde iki nokta işaretleyin. Hangisi önce geldi? Ödeme mi yoksa arama mı? Daha önceki eylem, bir fiilimsiz ile «avevo» alır; metindeki parçaların sırası herhangi bir şekilde olabilir."
+],
+"uk": [
+"Друг зателефонував, але ти на цей момент вже поїв. Є два моменти у минулому. Дзвінок - точка відліку; їжа сталася раніше. Для ранньої дії беремо «avevo mangiato».",
+"Познач дві точки на думці. Що було раніше? Спочатку оплата чи дзвінок? Раніше дію отримує «avevo» з дієприкметником; порядок самих елементів у тексті може бути будь-яким."
+],
+"vi": [
+"Một người bạn gọi điện, nhưng bạn đã ăn xong vào lúc đó. Có hai thời điểm trong quá khứ. Cuộc gọi là điểm bắt đầu; bữa ăn đã xảy ra trước đó. Đối với hành động trước đó, chúng ta dùng «avevo mangiato».",
+"Đánh dấu hai dấu chấm trên một đường thẳng trong đầu. Cái nào xảy ra trước? Việc thanh toán hay cuộc gọi? Hành động xảy ra trước sẽ có «avevo» với một phân từ; thứ tự của các phần trong văn bản có thể là bất kỳ."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:31:01"
+]
+},
+{
+"textES": "avevo / ero en la persona correcta + participio\nHo mangiato — comió; avevo mangiato — ya había comido antes de otro momento del pasado. El participio es el mismo. El auxiliar cambia. Para los verbos con essere, este auxiliar se convierte en ero, era u otra forma.\nLa elección del asistente se hereda del verbo: è uscita se convierte en era uscita. Con essere, se conserva la concordancia de participio, incluso cuando trasladamos la acción más al pasado.",
+"textEn": "avevo / ero in the correct person + participle\nHo mangiato — ate; avevo mangiato — had already eaten before another past moment. The participle is the same. The assistant changes. For verbs with essere, this assistant becomes ero, era, or another form.\nThe choice of assistant is inherited from the verb: è uscita becomes era uscita. With essere, participle agreement is preserved, even when we move the action further into the past.",
+"textId": "avevo / ero dalam orang yang tepat + partisip\nHo mangiato — makan; avevo mangiato — sudah makan sebelum momen masa lalu lainnya. Partisipnya sama. Kata bantu berubah. Untuk kata kerja dengan essere, kata bantu ini menjadi ero, era, atau bentuk lain.\nPilihan kata bantu diwarisi dari kata kerja: è uscita menjadi era uscita. Dengan essere, kesesuaian partisip dipertahankan, bahkan ketika kita memindahkan tindakan lebih jauh ke masa lalu.",
+"textPl": "avevo / ero w odpowiedniej osobie + imiesłów\nHo mangiato — jadłeś; avevo mangiato — jadłeś już przed innym momentem w przeszłości. Imiesłów jest taki sam. Zmienia się pomocnik. W przypadku czasowników z essere, ten pomocnik staje się ero, era lub inną formą.\nWybór osoby towarzyszącej jest dziedziczony po czasowniku: è uscita staje się era uscita. W przypadku essere zgodność imiesłowowa jest zachowana, nawet gdy czynność przesuniemy dalej w przeszłość.",
+"textPtBr": "avevo / ero na pessoa correta + particípio\nHo mangiato — comeu; avevo mangiato — já havia comido antes de outro momento passado. O particípio é o mesmo. O auxiliar muda. Para verbos com essere, esse auxiliar se torna ero, era ou outra forma.\nA escolha do assistente é herdada do verbo: è uscita torna-se era uscita. Com essere, a concordância do particípio é preservada, mesmo quando movemos a ação para um passado mais distante.",
+"textRU": "avevo / ero в нужном лице + причастие\nHo mangiato — поел; avevo mangiato — уже поел до другого прошлого момента. Причастие то же. Меняется помощник. Для глаголов с essere таким помощником станет ero, era или другая форма.\nВыбор помощника наследуется от глагола: è uscita превращается в era uscita. С essere согласование причастия сохраняется, даже когда мы отодвигаем действие ещё дальше в прошлое.",
+"textTr": "avevo / ero doğru şahıs + fiilimsiz\nHo mangiato — yedi; avevo mangiato — başka bir geçmiş anından önce zaten yemişti. Fiilimsiz aynı. Yardımcı fiil değişiyor. essere ile kullanılan fiiller için bu yardımcı fiil ero, era veya başka bir biçime dönüşür.\nYardımcı fiil seçimi fiilden miras alınır: è uscita, era uscita olur. essere ile, eylemi daha geçmişe taşıdığımızda bile fiilimsiz uyumu korunur.",
+"textUK": "avevo / ero у потрібній особі + причастя\nHo mangiato - поїв; avevo mangiato - вже поїв до іншого минулого моменту. Причастя те саме. Змінюється помічник. Для дієслів з essere таким помічником стане ero, era чи інша форма.\nВибір помічника успадковується від дієслова: è uscita перетворюється на era uscita. З essere узгодження причастя зберігається, навіть коли ми відсуваємо дію ще далі у минуле.",
+"textVi": "avevo / ero ở ngôi đúng + phân từ\nHo mangiato — đã ăn; avevo mangiato — đã ăn trước một thời điểm khác trong quá khứ. Phân từ vẫn giữ nguyên. Trợ động từ thay đổi. Đối với các động từ có essere, trợ động từ này trở thành ero, era hoặc một dạng khác.\nViệc lựa chọn trợ lý được kế thừa từ động từ: è uscita trở thành era uscita. Với essere, sự hòa hợp của phân từ được bảo toàn, ngay cả khi chúng ta chuyển hành động xa hơn về quá khứ.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«avevo / ero» in the correct person + participle",
+"«Ho mangiato» — ate; «avevo mangiato» — had already eaten before another past moment. The participle is the same. The assistant changes. For verbs with «essere», this assistant becomes «ero», «era», or another form.",
+"The choice of assistant is inherited from the verb: «è uscita» becomes «era uscita». With «essere», participle agreement is preserved, even when we move the action further into the past."
+],
+"es": [
+"«avevo / ero» en la persona correcta + participio",
+"«Ho mangiato» — comió; «avevo mangiato» — ya había comido antes de otro momento del pasado. El participio es el mismo. El auxiliar cambia. Para los verbos con «essere», este auxiliar se convierte en «ero», «era» u otra forma.",
+"La elección del asistente se hereda del verbo: «è uscita» se convierte en «era uscita». Con «essere», se conserva la concordancia de participio, incluso cuando trasladamos la acción más al pasado."
+],
+"id": [
+"«avevo / ero» dalam orang yang tepat + partisip",
+"«Ho mangiato» — makan; «avevo mangiato» — sudah makan sebelum momen masa lalu lainnya. Partisipnya sama. Kata bantu berubah. Untuk kata kerja dengan «essere», kata bantu ini menjadi «ero», «era», atau bentuk lain.",
+"Pilihan kata bantu diwarisi dari kata kerja: «è uscita» menjadi «era uscita». Dengan «essere», kesesuaian partisip dipertahankan, bahkan ketika kita memindahkan tindakan lebih jauh ke masa lalu."
+],
+"pl": [
+"«avevo / ero» w odpowiedniej osobie + imiesłów",
+"«Ho mangiato» — jadłeś; «avevo mangiato» — jadłeś już przed innym momentem w przeszłości. Imiesłów jest taki sam. Zmienia się pomocnik. W przypadku czasowników z «essere», ten pomocnik staje się «ero», «era» lub inną formą.",
+"Wybór osoby towarzyszącej jest dziedziczony po czasowniku: «è uscita» staje się «era uscita». W przypadku «essere» zgodność imiesłowowa jest zachowana, nawet gdy czynność przesuniemy dalej w przeszłość."
+],
+"pt-BR": [
+"«avevo / ero» na pessoa correta + particípio",
+"«Ho mangiato» — comeu; «avevo mangiato» — já havia comido antes de outro momento passado. O particípio é o mesmo. O auxiliar muda. Para verbos com «essere», esse auxiliar se torna «ero», «era» ou outra forma.",
+"A escolha do assistente é herdada do verbo: «è uscita» torna-se «era uscita». Com «essere», a concordância do particípio é preservada, mesmo quando movemos a ação para um passado mais distante."
+],
+"ru": [
+"«avevo / ero» в нужном лице + причастие",
+"«Ho mangiato» — поел; «avevo mangiato» — уже поел до другого прошлого момента. Причастие то же. Меняется помощник. Для глаголов с «essere» таким помощником станет «ero», «era» или другая форма.",
+"Выбор помощника наследуется от глагола: «è uscita» превращается в «era uscita». С «essere» согласование причастия сохраняется, даже когда мы отодвигаем действие ещё дальше в прошлое."
+],
+"tr": [
+"«avevo / ero» doğru şahıs + fiilimsiz",
+"«Ho mangiato» — yedi; «avevo mangiato» — başka bir geçmiş anından önce zaten yemişti. Fiilimsiz aynı. Yardımcı fiil değişiyor. «essere» ile kullanılan fiiller için bu yardımcı fiil «ero», «era» veya başka bir biçime dönüşür.",
+"Yardımcı fiil seçimi fiilden miras alınır: «è uscita», «era uscita» olur. «essere» ile, eylemi daha geçmişe taşıdığımızda bile fiilimsiz uyumu korunur."
+],
+"uk": [
+"«avevo / ero» у потрібній особі + причастя",
+"«Ho mangiato» - поїв; «avevo mangiato» - вже поїв до іншого минулого моменту. Причастя те саме. Змінюється помічник. Для дієслів з «essere» таким помічником стане «ero», «era» чи інша форма.",
+"Вибір помічника успадковується від дієслова: «è uscita» перетворюється на «era uscita». З «essere» узгодження причастя зберігається, навіть коли ми відсуваємо дію ще далі у минуле."
+],
+"vi": [
+"«avevo / ero» ở ngôi đúng + phân từ",
+"«Ho mangiato» — đã ăn; «avevo mangiato» — đã ăn trước một thời điểm khác trong quá khứ. Phân từ vẫn giữ nguyên. Trợ động từ thay đổi. Đối với các động từ có «essere», trợ động từ này trở thành «ero», «era» hoặc một dạng khác.",
+"Việc lựa chọn trợ lý được kế thừa từ động từ: «è uscita» trở thành «era uscita». Với «essere», sự hòa hợp của phân từ được bảo toàn, ngay cả khi chúng ta chuyển hành động xa hơn về quá khứ."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:31:07",
+"it:31:08"
+]
+},
+{
+"textES": "Empiece con Avevo già mangiato y luego conéctelo con la llamada: quando hai chiamato. No coloque automáticamente ambos verbos en el tiempo verbal más antiguo: cada uno necesita su propio momento.",
+"textEn": "Start with Avevo già mangiato, then connect it with the call: quando hai chiamato. Don't automatically put both verbs in the \"oldest\" tense: each needs its own moment.",
+"textId": "Mulailah dengan Avevo già mangiato, lalu hubungkan dengan panggilan: quando hai chiamato. Jangan secara otomatis menempatkan kedua kata kerja dalam bentuk waktu \"terlama\": masing-masing membutuhkan momennya sendiri.",
+"textPl": "Zacznij od Avevo già mangiato, a następnie połącz go z wezwaniem: quando hai chiamato. Nie umieszczaj automatycznie obu czasowników w czasie „najstarszym”: każdy potrzebuje własnego momentu.",
+"textPtBr": "Comece com Avevo già mangiato e, em seguida, conecte-o à ligação: quando hai chiamato. Não coloque automaticamente ambos os verbos no tempo verbal mais antigo: cada um precisa do seu próprio momento.",
+"textRU": "Начни с Avevo già mangiato, затем свяжи со звонком: quando hai chiamato. Не ставь оба глагола автоматически в самое «старое» время: каждому нужен его собственный момент.",
+"textTr": "Avevo già mangiato ile başlayın, ardından aramayla birleştirin: quando hai chiamato. Her iki fiili de otomatik olarak \"en eski\" zamana koymayın: her birinin kendi anı olmalı.",
+"textUK": "Почни з Avevo già mangiato, потім зв'яжі з дзвінком: quando hai chiamato. Не став обидва дієслова автоматично в найстаріший час: кожному потрібен його власний момент.",
+"textVi": "Bắt đầu với Avevo già mangiato, sau đó kết nối nó với cuộc gọi: quando hai chiamato. Đừng tự động đặt cả hai động từ ở thì \"cũ nhất\": mỗi động từ cần có thời điểm riêng của nó.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"Start with «Avevo già mangiato», then connect it with the call: «quando hai chiamato». Don't automatically put both verbs in the \"oldest\" tense: each needs its own moment."
+],
+"es": [
+"Empiece con «Avevo già mangiato» y luego conéctelo con la llamada: «quando hai chiamato». No coloque automáticamente ambos verbos en el tiempo verbal más antiguo: cada uno necesita su propio momento."
+],
+"id": [
+"Mulailah dengan «Avevo già mangiato», lalu hubungkan dengan panggilan: «quando hai chiamato». Jangan secara otomatis menempatkan kedua kata kerja dalam bentuk waktu \"terlama\": masing-masing membutuhkan momennya sendiri."
+],
+"pl": [
+"Zacznij od «Avevo già mangiato», a następnie połącz go z wezwaniem: «quando hai chiamato». Nie umieszczaj automatycznie obu czasowników w czasie „najstarszym”: każdy potrzebuje własnego momentu."
+],
+"pt-BR": [
+"Comece com «Avevo già mangiato» e, em seguida, conecte-o à ligação: «quando hai chiamato». Não coloque automaticamente ambos os verbos no tempo verbal mais antigo: cada um precisa do seu próprio momento."
+],
+"ru": [
+"Начни с «Avevo già mangiato», затем свяжи со звонком: «quando hai chiamato». Не ставь оба глагола автоматически в самое «старое» время: каждому нужен его собственный момент."
+],
+"tr": [
+"«Avevo già mangiato» ile başlayın, ardından aramayla birleştirin: «quando hai chiamato». Her iki fiili de otomatik olarak \"en eski\" zamana koymayın: her birinin kendi anı olmalı."
+],
+"uk": [
+"Почни з «Avevo già mangiato», потім зв'яжі з дзвінком: «quando hai chiamato». Не став обидва дієслова автоматично в найстаріший час: кожному потрібен його власний момент."
+],
+"vi": [
+"Bắt đầu với «Avevo già mangiato», sau đó kết nối nó với cuộc gọi: «quando hai chiamato». Đừng tự động đặt cả hai động từ ở thì \"cũ nhất\": mỗi động từ cần có thời điểm riêng của nó."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:31:01",
+"it:31:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:31:01",
+"target": "Avevo già mangiato quando hai chiamato.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "it:31:07",
+"target": "Paolo era già uscito quando sono entrato.",
+"ru": "Когда я вошёл, Паоло уже ушёл.",
+"uk": "Коли я увійшов, Паоло уже пішов."
+},
+{
+"id": "it:31:08",
+"target": "Lea era già uscita quando ho chiamato.",
+"ru": "Леа уже ушла, когда я позвонил.",
+"uk": "Леа вже пішла, коли я подзвонив."
+},
+{
+"id": "it:31:01",
+"target": "Avevo già mangiato quando hai chiamato.",
+"ru": "Когда ты позвонил, я уже поел.",
+"uk": "Коли ти подзвонив, я вже поїв."
+},
+{
+"id": "it:31:04",
+"target": "Avevamo già prenotato i nostri posti.",
+"ru": "Мы уже забронировали свои места.",
+"uk": "Ми вже забронювали наші місця."
+}
+]
+},
+{
+"lesson": 32,
+"blocks": [
+{
+"textES": "Imagina: no hay tiempo, pero si lo tuvieras, vendrías. Se avessi tempo establece una condición imaginaria. Verrei nombra su posible resultado. Son dos funciones distintas, no la misma forma a ambos lados de la coma.\nDespués de se en estas hipótesis viene el subjuntivo pasado, pero podría referirse al presente. La forma avessi aquí no significa por sí sola que la persona alguna vez tuvo tiempo.",
+"textEn": "Imagine: there's no time, but if you had it, you'd come. Se avessi tempo sets an imaginary condition. Verrei names its possible outcome. These are two roles, not the same form on both sides of the comma.\nAfter se in these hypotheses comes the past subjunctive, but it could be talking about the present. Form avessi here doesn't by itself mean that the person once had time.",
+"textId": "Bayangkan: tidak ada waktu, tetapi jika Anda punya waktu, Anda akan datang. Se avessi tempo menetapkan kondisi imajiner. Verrei menyebutkan kemungkinan hasilnya. Ini adalah dua peran, bukan bentuk yang sama di kedua sisi koma.\nSetelah se dalam hipotesis ini muncul subjungtif lampau, tetapi bisa juga berbicara tentang masa kini. Bentuk avessi di sini sendiri tidak berarti bahwa orang tersebut pernah punya waktu.",
+"textPl": "Wyobraź sobie: nie ma czasu, ale gdybyś go miał, przyszedłbyś. Se avessi tempo określa wyimaginowany warunek. Verrei określa jego możliwy wynik. To dwie role, a nie ta sama forma po obu stronach przecinka.\nPo se w tych hipotezach następuje czas przeszły łączący, ale może on odnosić się do teraźniejszości. Forma avessi sama w sobie nie oznacza, że ​​dana osoba miała kiedyś czas.",
+"textPtBr": "Imagine: não há tempo, mas se você o tivesse, você viria. Se avessi tempo estabelece uma condição imaginária. Verrei nomeia seu possível resultado. São dois papéis, não a mesma forma em ambos os lados da vírgula.\nDepois de se nessas hipóteses vem o subjuntivo passado, mas poderia estar falando sobre o presente. A forma avessi aqui não significa por si só que a pessoa já teve tempo.",
+"textRU": "Представь: времени нет, но, будь оно у тебя, ты бы пришёл. Se avessi tempo задаёт воображаемое условие. Verrei называет его возможный результат. Это две роли, а не одинаковая форма по обе стороны запятой.\nПосле se в этих гипотезах стоит прошедшая форма сослагательного, но речь может идти о настоящем. Форма avessi здесь не означает сама по себе, что у человека когда-то было время.",
+"textTr": "Hayal edin: zaman yok, ama zamanınız olsaydı gelirdiniz. Se avessi tempo hayali bir koşul belirler. Verrei olası sonucunu adlandırır. Bunlar iki roldür, virgülün her iki tarafında aynı biçim değildir.\nBu hipotezlerde se'den sonra geçmiş zaman dilek kipi gelir, ancak şimdiki zamandan bahsediyor olabilir. Buradaki avessi formu tek başına kişinin bir zamanlar zamanı olduğu anlamına gelmez.",
+"textUK": "Уяви: часу немає, але, якби воно було в тебе, ти б прийшов. Se avessi tempo задає уявну умову. Verrei називає його можливим результатом. Це дві ролі, а чи не однакова форма з обох боків коми.\nПісля se у цих гіпотезах стоїть минула форма умовного, але може йтися про сьогодення. Форма avessi тут не означає сама по собі, що людина колись мала час.",
+"textVi": "Hãy tưởng tượng: không có thời gian, nhưng nếu bạn có, bạn sẽ đến. Se avessi tempo đặt ra một điều kiện tưởng tượng. Verrei nêu tên kết quả có thể xảy ra. Đây là hai vai trò khác nhau, không phải cùng một dạng ở cả hai phía của dấu phẩy.\nSau se trong các giả thuyết này là thể giả định quá khứ, nhưng nó cũng có thể nói về hiện tại. Dạng avessi ở đây tự nó không có nghĩa là người đó đã từng có thời gian.",
+"titleES": "Si tan solo fuera diferente: se y el modo condicional",
+"titleEn": "If only it were different: se and the conditional mood",
+"titleId": "Seandainya saja berbeda: se dan modus kondisional",
+"titlePl": "Gdyby tylko było inaczej: se i tryb warunkowy",
+"titlePtBr": "Se ao menos fosse diferente: se e o modo condicional",
+"titleRU": "Если бы было иначе: se и условное наклонение",
+"titleTr": "Keşke farklı olsaydı: se ve şart kipi",
+"titleUK": "Якби було інакше: se та умовний спосіб",
+"titleVi": "Giá như mọi chuyện khác đi: se và thể điều kiện",
+"titleByLocale": {
+"en": "If only it were different: se and the conditional mood",
+"es": "Si tan solo fuera diferente: se y el modo condicional",
+"id": "Seandainya saja berbeda: se dan modus kondisional",
+"pl": "Gdyby tylko było inaczej: se i tryb warunkowy",
+"pt-BR": "Se ao menos fosse diferente: se e o modo condicional",
+"ru": "Если бы было иначе: se и условное наклонение",
+"tr": "Keşke farklı olsaydı: se ve şart kipi",
+"uk": "Якби було інакше: se та умовний спосіб",
+"vi": "Giá như mọi chuyện khác đi: se và thể điều kiện"
+},
+"textByLocale": {
+"en": [
+"Imagine: there's no time, but if you had it, you'd come. «Se avessi tempo» sets an imaginary condition. «Verrei» names its possible outcome. These are two roles, not the same form on both sides of the comma.",
+"After «se» in these hypotheses comes the past subjunctive, but it could be talking about the present. Form «avessi» here doesn't by itself mean that the person once had time."
+],
+"es": [
+"Imagina: no hay tiempo, pero si lo tuvieras, vendrías. «Se avessi tempo» establece una condición imaginaria. «Verrei» nombra su posible resultado. Son dos funciones distintas, no la misma forma a ambos lados de la coma.",
+"Después de «se» en estas hipótesis viene el subjuntivo pasado, pero podría referirse al presente. La forma «avessi» aquí no significa por sí sola que la persona alguna vez tuvo tiempo."
+],
+"id": [
+"Bayangkan: tidak ada waktu, tetapi jika Anda punya waktu, Anda akan datang. «Se avessi tempo» menetapkan kondisi imajiner. «Verrei» menyebutkan kemungkinan hasilnya. Ini adalah dua peran, bukan bentuk yang sama di kedua sisi koma.",
+"Setelah «se» dalam hipotesis ini muncul subjungtif lampau, tetapi bisa juga berbicara tentang masa kini. Bentuk «avessi» di sini sendiri tidak berarti bahwa orang tersebut pernah punya waktu."
+],
+"pl": [
+"Wyobraź sobie: nie ma czasu, ale gdybyś go miał, przyszedłbyś. «Se avessi tempo» określa wyimaginowany warunek. «Verrei» określa jego możliwy wynik. To dwie role, a nie ta sama forma po obu stronach przecinka.",
+"Po «se» w tych hipotezach następuje czas przeszły łączący, ale może on odnosić się do teraźniejszości. Forma «avessi» sama w sobie nie oznacza, że ​​dana osoba miała kiedyś czas."
+],
+"pt-BR": [
+"Imagine: não há tempo, mas se você o tivesse, você viria. «Se avessi tempo» estabelece uma condição imaginária. «Verrei» nomeia seu possível resultado. São dois papéis, não a mesma forma em ambos os lados da vírgula.",
+"Depois de «se» nessas hipóteses vem o subjuntivo passado, mas poderia estar falando sobre o presente. A forma «avessi» aqui não significa por si só que a pessoa já teve tempo."
+],
+"ru": [
+"Представь: времени нет, но, будь оно у тебя, ты бы пришёл. «Se avessi tempo» задаёт воображаемое условие. «Verrei» называет его возможный результат. Это две роли, а не одинаковая форма по обе стороны запятой.",
+"После «se» в этих гипотезах стоит прошедшая форма сослагательного, но речь может идти о настоящем. Форма «avessi» здесь не означает сама по себе, что у человека когда-то было время."
+],
+"tr": [
+"Hayal edin: zaman yok, ama zamanınız olsaydı gelirdiniz. «Se avessi tempo» hayali bir koşul belirler. «Verrei» olası sonucunu adlandırır. Bunlar iki roldür, virgülün her iki tarafında aynı biçim değildir.",
+"Bu hipotezlerde «se»'den sonra geçmiş zaman dilek kipi gelir, ancak şimdiki zamandan bahsediyor olabilir. Buradaki «avessi» formu tek başına kişinin bir zamanlar zamanı olduğu anlamına gelmez."
+],
+"uk": [
+"Уяви: часу немає, але, якби воно було в тебе, ти б прийшов. «Se avessi tempo» задає уявну умову. «Verrei» називає його можливим результатом. Це дві ролі, а чи не однакова форма з обох боків коми.",
+"Після «se» у цих гіпотезах стоїть минула форма умовного, але може йтися про сьогодення. Форма «avessi» тут не означає сама по собі, що людина колись мала час."
+],
+"vi": [
+"Hãy tưởng tượng: không có thời gian, nhưng nếu bạn có, bạn sẽ đến. «Se avessi tempo» đặt ra một điều kiện tưởng tượng. «Verrei» nêu tên kết quả có thể xảy ra. Đây là hai vai trò khác nhau, không phải cùng một dạng ở cả hai phía của dấu phẩy.",
+"Sau «se» trong các giả thuyết này là thể giả định quá khứ, nhưng nó cũng có thể nói về hiện tại. Dạng «avessi» ở đây tự nó không có nghĩa là người đó đã từng có thời gian."
+]
+},
+"kind": "concept",
+"exampleIds": [
+"it:32:01"
+]
+},
+{
+"textES": "se + avessi / fossi … → verrei / farei …\nCompara Se ho tempo, vengo —una posibilidad real— con Se avessi tempo, verrei —imaginar la situación—. se por sí solo no hace que ninguna hipótesis sea irreal: considera tanto la condición como el resultado.\nEncuentre al intérprete en cada parte. Usted puede tener el tiempo, pero podemos hacer la acción juntos. Por lo tanto, las terminaciones a ambos lados de la coma no siempre coinciden en persona.",
+"textEn": "se + avessi / fossi … → verrei / farei …\nCompare Se ho tempo, vengo—a real possibility—and Se avessi tempo, verrei—imagining the situation. se alone doesn't make any hypothesis unrealistic: consider both the condition and the outcome.\nFind the performer in each part. You can have the time, but we can do the action together. Therefore, the endings on both sides of the comma don't always match in person.",
+"textId": "se + avessi / fossi … → verrei / farei …\nBandingkan Se ho tempo, vengo—kemungkinan nyata—dan Se avessi tempo, verrei—membayangkan situasinya. se saja tidak membuat hipotesis apa pun menjadi tidak realistis: pertimbangkan baik kondisi maupun hasilnya.\nTemukan pelaku di setiap bagian. Anda bisa punya waktu, tetapi kita bisa melakukan tindakan bersama. Oleh karena itu, akhiran di kedua sisi koma tidak selalu cocok dalam hal orang.",
+"textPl": "se + avessi / fossi … → verrei / farei …\nPorównaj Se ho tempo, vengo – realną możliwość – i Se avessi tempo, verrei – wyobrażenie sobie sytuacji. Samo se nie czyni żadnej hipotezy nierealistyczną: rozważ zarówno warunek, jak i wynik.\nZnajdź wykonawcę w każdej części. Możesz mieć czas, ale możemy wykonać czynność razem. Dlatego końcówki po obu stronach przecinka nie zawsze są takie same w przypadku osoby.",
+"textPtBr": "se + avessi / fossi … → verrei / farei …\nCompare Se ho tempo, vengo — uma possibilidade real — e Se avessi tempo, verrei — imaginar a situação. se sozinho não torna nenhuma hipótese irrealista: considere tanto a condição quanto o resultado.\nEncontre o executor em cada parte. Você pode ter o tempo, mas podemos realizar a ação juntos. Portanto, as terminações em ambos os lados da vírgula nem sempre correspondem em pessoa.",
+"textRU": "se + avessi / fossi … → verrei / farei …\nСравни Se ho tempo, vengo — реальная возможность — и Se avessi tempo, verrei — представляем ситуацию. Одно se не делает любую гипотезу нереальной: посмотри и на условие, и на последствие.\nНайди исполнителя в каждой части. Время может быть у тебя, а действие мы можем сделать вместе. Поэтому окончания по обе стороны запятой не всегда совпадают по лицу.",
+"textTr": "se + avessi / fossi … → verrei / farei …\nSe ho tempo, vengo'i (gerçek bir olasılık) ve Se avessi tempo, verrei'yi (durumu hayal etme) karşılaştırın. se tek başına herhangi bir hipotezi gerçekçi olmaktan çıkarmaz: hem koşulu hem de sonucu göz önünde bulundurun.\nHer bölümde eylemi gerçekleştireni bulun. Zamanınız olabilir, ancak eylemi birlikte yapabiliriz. Bu nedenle, virgülün her iki tarafındaki ekler her zaman şahıs bakımından eşleşmez.",
+"textUK": "se + avessi / fossi … → verrei / farei …\nПорівняй Se ho tempo, vengo - реальна можливість - і Se avessi tempo, verrei - представляємо ситуацію. Одне se не робить будь-яку гіпотезу нереальною: глянь і на умову, і на наслідок.\nЗнайди виконавця у кожній частині. Час може бути в тебе, а дію ми можемо зробити разом. Тому закінчення з обох боків коми не завжди збігаються по обличчю.",
+"textVi": "se + avessi / fossi … → verrei / farei …\nSo sánh Se ho tempo, vengo—một khả năng thực tế—và Se avessi tempo, verrei—tưởng tượng ra tình huống. Chỉ riêng se không làm cho bất kỳ giả thuyết nào trở nên phi thực tế: hãy xem xét cả điều kiện và kết quả.\nTìm người thực hiện trong mỗi phần. Bạn có thể có thời gian, nhưng chúng ta có thể cùng nhau thực hiện hành động. Do đó, các đuôi ở cả hai phía của dấu phẩy không phải lúc nào cũng khớp nhau về ngôi.",
+"titleES": "Estructura de la frase",
+"titleEn": "Sentence pattern",
+"titleId": "Pola kalimat",
+"titlePl": "Schemat zdania",
+"titlePtBr": "Estrutura da frase",
+"titleRU": "Формула",
+"titleTr": "Cümle kalıbı",
+"titleUK": "Формула",
+"titleVi": "Mẫu câu",
+"titleByLocale": {
+"en": "Sentence pattern",
+"es": "Estructura de la frase",
+"id": "Pola kalimat",
+"pl": "Schemat zdania",
+"pt-BR": "Estrutura da frase",
+"ru": "Формула",
+"tr": "Cümle kalıbı",
+"uk": "Формула",
+"vi": "Mẫu câu"
+},
+"textByLocale": {
+"en": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Compare «Se ho tempo, vengo»—a real possibility—and «Se avessi tempo, verrei»—imagining the situation. «se» alone doesn't make any hypothesis unrealistic: consider both the condition and the outcome.",
+"Find the performer in each part. You can have the time, but we can do the action together. Therefore, the endings on both sides of the comma don't always match in person."
+],
+"es": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Compara «Se ho tempo, vengo» —una posibilidad real— con «Se avessi tempo, verrei» —imaginar la situación—. «se» por sí solo no hace que ninguna hipótesis sea irreal: considera tanto la condición como el resultado.",
+"Encuentre al intérprete en cada parte. Usted puede tener el tiempo, pero podemos hacer la acción juntos. Por lo tanto, las terminaciones a ambos lados de la coma no siempre coinciden en persona."
+],
+"id": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Bandingkan «Se ho tempo, vengo»—kemungkinan nyata—dan «Se avessi tempo, verrei»—membayangkan situasinya. «se» saja tidak membuat hipotesis apa pun menjadi tidak realistis: pertimbangkan baik kondisi maupun hasilnya.",
+"Temukan pelaku di setiap bagian. Anda bisa punya waktu, tetapi kita bisa melakukan tindakan bersama. Oleh karena itu, akhiran di kedua sisi koma tidak selalu cocok dalam hal orang."
+],
+"pl": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Porównaj «Se ho tempo, vengo» – realną możliwość – i «Se avessi tempo, verrei» – wyobrażenie sobie sytuacji. Samo «se» nie czyni żadnej hipotezy nierealistyczną: rozważ zarówno warunek, jak i wynik.",
+"Znajdź wykonawcę w każdej części. Możesz mieć czas, ale możemy wykonać czynność razem. Dlatego końcówki po obu stronach przecinka nie zawsze są takie same w przypadku osoby."
+],
+"pt-BR": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Compare «Se ho tempo, vengo» — uma possibilidade real — e «Se avessi tempo, verrei» — imaginar a situação. «se» sozinho não torna nenhuma hipótese irrealista: considere tanto a condição quanto o resultado.",
+"Encontre o executor em cada parte. Você pode ter o tempo, mas podemos realizar a ação juntos. Portanto, as terminações em ambos os lados da vírgula nem sempre correspondem em pessoa."
+],
+"ru": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Сравни «Se ho tempo, vengo» — реальная возможность — и «Se avessi tempo, verrei» — представляем ситуацию. Одно «se» не делает любую гипотезу нереальной: посмотри и на условие, и на последствие.",
+"Найди исполнителя в каждой части. Время может быть у тебя, а действие мы можем сделать вместе. Поэтому окончания по обе стороны запятой не всегда совпадают по лицу."
+],
+"tr": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"«Se ho tempo, vengo»'i (gerçek bir olasılık) ve «Se avessi tempo, verrei»'yi (durumu hayal etme) karşılaştırın. «se» tek başına herhangi bir hipotezi gerçekçi olmaktan çıkarmaz: hem koşulu hem de sonucu göz önünde bulundurun.",
+"Her bölümde eylemi gerçekleştireni bulun. Zamanınız olabilir, ancak eylemi birlikte yapabiliriz. Bu nedenle, virgülün her iki tarafındaki ekler her zaman şahıs bakımından eşleşmez."
+],
+"uk": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"Порівняй «Se ho tempo, vengo» - реальна можливість - і «Se avessi tempo, verrei» - представляємо ситуацію. Одне «se» не робить будь-яку гіпотезу нереальною: глянь і на умову, і на наслідок.",
+"Знайди виконавця у кожній частині. Час може бути в тебе, а дію ми можемо зробити разом. Тому закінчення з обох боків коми не завжди збігаються по обличчю."
+],
+"vi": [
+"«se» + «avessi / fossi …» → «verrei / farei …»",
+"So sánh «Se ho tempo, vengo»—một khả năng thực tế—và «Se avessi tempo, verrei»—tưởng tượng ra tình huống. Chỉ riêng «se» không làm cho bất kỳ giả thuyết nào trở nên phi thực tế: hãy xem xét cả điều kiện và kết quả.",
+"Tìm người thực hiện trong mỗi phần. Bạn có thể có thời gian, nhưng chúng ta có thể cùng nhau thực hiện hành động. Do đó, các đuôi ở cả hai phía của dấu phẩy không phải lúc nào cũng khớp nhau về ngôi."
+]
+},
+"kind": "formula",
+"exampleIds": [
+"it:32:06",
+"it:32:07"
+]
+},
+{
+"textES": "Para «Si tuviera tiempo, vendría», combine Se avessi tempo y luego verrei. Puede comenzar con el resultado: Verrei se avessi tempo. No combine las dos formas de resultado en la combinación errónea se avrei … para este ejemplo.",
+"textEn": "For \"If I had time, I would come,\" combine Se avessi tempo, then verrei. You can start with the result: Verrei se avessi tempo. Don't combine the two result forms into the erroneous combination se avrei … for this example.",
+"textId": "Untuk \"Jika saya punya waktu, saya akan datang,\" gabungkan Se avessi tempo, lalu verrei. Anda dapat memulai dengan hasilnya: Verrei se avessi tempo. Jangan gabungkan kedua bentuk hasil tersebut menjadi kombinasi yang salah se avrei … untuk contoh ini.",
+"textPl": "Aby uzyskać wynik „Gdybym miał czas, przyszedłbym”, połącz Se avessi tempo, a następnie verrei. Możesz zacząć od wyniku: Verrei se avessi tempo. Nie łącz obu form wynikowych w błędną kombinację se avrei … w tym przykładzie.",
+"textPtBr": "Para \"Se eu tivesse tempo, eu viria\", combine Se avessi tempo e depois verrei. Você pode começar com o resultado: Verrei se avessi tempo. Não combine as duas formas resultantes na combinação errônea se avrei … para este exemplo.",
+"textRU": "Для «Если бы у меня было время, я бы пришёл» собери Se avessi tempo, затем verrei. Можно начать с результата: Verrei se avessi tempo. Не соединяй две формы результата в ошибочную комбинацию se avrei … для этого образца.",
+"textTr": "\"Zamanım olsaydı gelirdim\" için Se avessi tempo'i, ardından verrei'yi birleştirin. Sonuç olan Verrei se avessi tempo ile başlayabilirsiniz. Bu örnekte iki sonuç formunu hatalı se avrei … kombinasyonuna birleştirmeyin.",
+"textUK": "Для «Якби у мене був час, я б прийшов» збери Se avessi tempo, потім verrei. Можна почати з результату: Verrei se avessi tempo. Не поєднуй дві форми результату в помилкову комбінацію se avrei … для цього зразка.",
+"textVi": "Đối với \"Nếu tôi có thời gian, tôi sẽ đến,\" hãy kết hợp Se avessi tempo, sau đó là verrei. Bạn có thể bắt đầu với kết quả: Verrei se avessi tempo. Đừng kết hợp hai dạng kết quả thành tổ hợp sai se avrei … trong ví dụ này.",
+"titleES": "Construye la frase paso a paso",
+"titleEn": "Build it step by step",
+"titleId": "Susun kalimat langkah demi langkah",
+"titlePl": "Ułóż zdanie krok po kroku",
+"titlePtBr": "Monte a frase passo a passo",
+"titleRU": "Собери со мной",
+"titleTr": "Cümleyi adım adım kur",
+"titleUK": "Складімо разом",
+"titleVi": "Ghép câu từng bước",
+"titleByLocale": {
+"en": "Build it step by step",
+"es": "Construye la frase paso a paso",
+"id": "Susun kalimat langkah demi langkah",
+"pl": "Ułóż zdanie krok po kroku",
+"pt-BR": "Monte a frase passo a passo",
+"ru": "Собери со мной",
+"tr": "Cümleyi adım adım kur",
+"uk": "Складімо разом",
+"vi": "Ghép câu từng bước"
+},
+"textByLocale": {
+"en": [
+"For \"If I had time, I would come,\" combine «Se avessi tempo», then «verrei». You can start with the result: «Verrei se avessi tempo». Don't combine the two result forms into the erroneous combination «se avrei …» for this example."
+],
+"es": [
+"Para «Si tuviera tiempo, vendría», combine «Se avessi tempo» y luego «verrei». Puede comenzar con el resultado: «Verrei se avessi tempo». No combine las dos formas de resultado en la combinación errónea «se avrei …» para este ejemplo."
+],
+"id": [
+"Untuk \"Jika saya punya waktu, saya akan datang,\" gabungkan «Se avessi tempo», lalu «verrei». Anda dapat memulai dengan hasilnya: «Verrei se avessi tempo». Jangan gabungkan kedua bentuk hasil tersebut menjadi kombinasi yang salah «se avrei …» untuk contoh ini."
+],
+"pl": [
+"Aby uzyskać wynik „Gdybym miał czas, przyszedłbym”, połącz «Se avessi tempo», a następnie «verrei». Możesz zacząć od wyniku: «Verrei se avessi tempo». Nie łącz obu form wynikowych w błędną kombinację «se avrei …» w tym przykładzie."
+],
+"pt-BR": [
+"Para \"Se eu tivesse tempo, eu viria\", combine «Se avessi tempo» e depois «verrei». Você pode começar com o resultado: «Verrei se avessi tempo». Não combine as duas formas resultantes na combinação errônea «se avrei …» para este exemplo."
+],
+"ru": [
+"Для «Если бы у меня было время, я бы пришёл» собери «Se avessi tempo», затем «verrei». Можно начать с результата: «Verrei se avessi tempo». Не соединяй две формы результата в ошибочную комбинацию «se avrei …» для этого образца."
+],
+"tr": [
+"\"Zamanım olsaydı gelirdim\" için «Se avessi tempo»'i, ardından «verrei»'yi birleştirin. Sonuç olan «Verrei se avessi tempo» ile başlayabilirsiniz. Bu örnekte iki sonuç formunu hatalı «se avrei …» kombinasyonuna birleştirmeyin."
+],
+"uk": [
+"Для «Якби у мене був час, я б прийшов» збери «Se avessi tempo», потім «verrei». Можна почати з результату: «Verrei se avessi tempo». Не поєднуй дві форми результату в помилкову комбінацію «se avrei …» для цього зразка."
+],
+"vi": [
+"Đối với \"Nếu tôi có thời gian, tôi sẽ đến,\" hãy kết hợp «Se avessi tempo», sau đó là «verrei». Bạn có thể bắt đầu với kết quả: «Verrei se avessi tempo». Đừng kết hợp hai dạng kết quả thành tổ hợp sai «se avrei …» trong ví dụ này."
+]
+},
+"kind": "practice",
+"exampleIds": [
+"it:32:01",
+"it:32:04"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "it:32:01",
+"target": "Se avessi tempo, verrei.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "it:32:06",
+"target": "Se fossimo pronti, partiremmo.",
+"ru": "Если бы мы были готовы, мы бы ушли.",
+"uk": "Якби ми були готові, ми б пішли."
+},
+{
+"id": "it:32:07",
+"target": "Se lei fosse qui, capirebbe.",
+"ru": "Если бы она была здесь, она бы поняла.",
+"uk": "Якби вона була тут, вона б зрозуміла."
+},
+{
+"id": "it:32:01",
+"target": "Se avessi tempo, verrei.",
+"ru": "Если бы у меня было время, я бы пришел.",
+"uk": "Якби в мене був час, я б прийшов."
+},
+{
+"id": "it:32:04",
+"target": "Se fossi libero, ti aiuterei.",
+"ru": "Если бы я был свободен, я бы помог тебе.",
+"uk": "Якби я був вільний, я б допоміг тобі."
+}
+]
+}
+]

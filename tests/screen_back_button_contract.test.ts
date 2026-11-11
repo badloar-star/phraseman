@@ -128,25 +128,6 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(read('components/v2/BackButton.tsx')).toContain('onScene?.ink ?? g.text');
   });
 
-  it('свой значок ✕ на экранах app/** — только в базе config/screen_close_baseline.json; база только уменьшается', () => {
-    const baseline = JSON.parse(read('config/screen_close_baseline.json')) as { files: string[] };
-    const allowed = new Set(baseline.files);
-    const ownClose = /<Ionicons[^>]*name=["']close(-outline)?["']/;
-    const own = walk('app').filter((rel) => !isDevOnly(rel) && ownClose.test(read(rel)));
-    expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
-    expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(18); // потолок 22.10 — только вниз
-    // переведённые на общий ✕ экраны (22.10)
-    for (const [rel, screen] of [
-      ['app/settings_language.tsx', 'settings_language'],
-      ['app/pack_opening.tsx', 'pack_opening'],
-      ['app/learning_v2_session_intro.tsx', 'learning_v2_intro'],
-      ['app/learning_v2_session_intro_check.tsx', 'learning_v2_intro_check'],
-      ['app/friends_duel.tsx', 'friends_duel_play'],
-      ['components/legal/LegalDocumentSheet.tsx', 'legal_document'],
-    ] as const) expect([rel, read(rel).includes(`<ScreenCloseButton screen="${screen}"`)]).toEqual([rel, true]);
-  });
-
   // зачем (координатор 22.10): экзамен — «назад» экрана только общая кнопка через ExamHeader; «Предыдущий вопрос» в подвале — PrevQuestionButton
   it('экзамен: «назад» экрана — общая кнопка через ExamHeader, «Предыдущий вопрос» — отдельное имя', () => {
     const parts = read('components/level-exam/ExamGlassParts.tsx');

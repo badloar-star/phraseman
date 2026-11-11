@@ -59,3 +59,10 @@ git revert соответствующих коммитов; рабочие ко�
 - refillToMax (координатор 29.10): проба energy_p1_safety_probe устарела — запись пополнения вынесена в app/energy_premium_refill.ts
   (persistPremiumEnergyRefill), там readBonusEnergyForMutation ВНУТРИ withStorageLock и под withAccountTransitionLock. Бага нет; проба
   перенацелена на настоящий модуль. Логи входа/выхода [ACCOUNT-LOCK] refillToMax уже есть.
+- Воронка v2, полный список файлов (Сайт 29.10 передал серверную часть): app/paywall_funnel.ts, app/paywall_purchase.ts,
+  components/paywall/PaywallPlusScreen.tsx, components/CleanOnboarding.tsx (trackShown), firestore.rules (схема paywall_funnel v2 —
+  в общем файле с чужими правками), functions/src/paywall_receipt_attribution.ts (+test), functions/src/admin_paywall_variant_stats.ts
+  (+13/-4: вариант PLUS, reconciliation, purchase_completed v2 только при совпадении с боевым чеком; +test 3/3),
+  functions/src/jarvis/jarvis_data_contract_guard.test.ts (ссылка на paywall_receipt_attribution — сторож данных Джарвиса),
+  tests/paywall_funnel_behavior, tests/paywall_purchase_behavior, functions/src/paywall_funnel_rules.emulator.test.ts,
+  tests/paywall_receipt_attribution.test.mjs. adminGetPaywallVariantStats на бою с 04.09 — правки Codex там не было.

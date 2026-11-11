@@ -10,7 +10,7 @@ import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass } from '../components/practice/PracticeGlass';
 import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';

@@ -27,8 +27,6 @@ const DIRECT_HYBRID_DRIVERS = [
   'components/celebration/RewardImpactRings.tsx',
   'components/AiConsentSheetModalHybrid.tsx',
   'components/NotificationPermissionModalHybrid.tsx',
-  'components/ExplainSheetHybrid.tsx',
-  'components/MistakeEli5ModalHybrid.tsx',
 ] as const;
 
 const HYBRID_TIMING_EASING_DRIVERS = [

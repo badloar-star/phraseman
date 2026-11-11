@@ -1,0 +1,100 @@
+[
+ {
+  "id": "lesson-19/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.en",
+  "problem": "Ungrammatical «and not just describes»",
+  "fix": "Some frequent verbs form the past tense with `être`. The phrase `est parti` reports a completed departure rather than just describing where the person is."
+ },
+ {
+  "id": "lesson-19/chapter-4",
+  "type": "T2",
+  "field": "chapters[3].textByLocale.en",
+  "problem": "Невидимые символы U+200B в «idea of movement»; «assistant/sample» вместо auxiliary/example",
+  "fix": "Don't infer the choice of auxiliary solely from the idea of movement: `marcher` is used with `avoir`. Learn each verb with an example. For some verbs, the auxiliary depends on what exactly is being done: `elle est montée`, but `elle a monté la valise`."
+ },
+ {
+  "id": "lesson-19/chapter-6",
+  "type": "T2",
+  "field": "chapters[5].textByLocale.uk",
+  "problem": "Пропущено «не» — смысл противоположен ru; невидимые U+200B",
+  "fix": "При інверсії `est-elle` та `sont-ils` з'являються між питальним словом і дієприкметником. У перекладі може не бути окремих видимих слів для цього помічника, але у повному французькому реченні вони потрібні."
+ },
+ {
+  "id": "lesson-19/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Коли підлягає предмет» — неграмматично (нужно «підмет»)",
+  "fix": "Коли підмет — предмет, принцип той самий. Один ключ — `la clé est tombée`, кілька речей — дієприкметник у множині. Перевіряй рід назви, а не одухотвореність."
+ },
+ {
+  "id": "lesson-19/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.en",
+  "problem": "«One clue» — ошибка перевода «один ключ» (key)",
+  "fix": "When the subject is a thing, the principle is the same. One key: `la clé est tombée`; several things: a plural participle. Check the gender of the noun, not whether it is animate."
+ },
+ {
+  "id": "lesson-19/chapter-7",
+  "type": "T1",
+  "field": "chapters[6].exampleIds",
+  "problem": "Раздел о неодушевлённом подлежащем, но все три примера про людей (grand-mère, amies, voyageuses); единственный пример с предметом fr:19:28 стоит в разделе 4 про выбор помощника",
+  "fix": "[\"fr:19:28\", \"fr:19:43\", \"fr:19:50\"]"
+ },
+ {
+  "id": "lesson-20/title",
+  "type": "T2",
+  "field": "title.en",
+  "problem": "«As before» = «так же, как раньше»; смысл ru «Как было раньше»",
+  "fix": "How things used to be: `imparfait`"
+ },
+ {
+  "id": "lesson-20/chapter-1",
+  "type": "T2",
+  "field": "chapters[0].textByLocale.uk",
+  "problem": "«Не питаємо, яку секунду» — неграмматично",
+  "fix": "Тут потрібен погляд зсередини минулого: обстановка, звичка, що повторювалася, тривалий стан. Не питаємо, в яку секунду воно закінчилося."
+ },
+ {
+  "id": "lesson-20/chapter-2",
+  "type": "T2",
+  "field": "chapters[1].textByLocale.uk",
+  "problem": "«форму nous цього» — ошибка перевода «настоящего (времени)»",
+  "fix": "Для більшості дієслів бери форму `nous` теперішнього часу, прибирай `-ons` і додавай закінчення. У `habiter` виходить `habit-`. Особлива основа в `être`: `ét-`."
+ },
+ {
+  "id": "lesson-20/chapter-3",
+  "type": "T2",
+  "field": "chapters[2].textByLocale.uk",
+  "problem": "«пропозиції» вместо «речення»",
+  "fix": "`Chaque matin`, `le dimanche` допомагають побачити повторюваність в описаному минулому. Це підказки змісту, а не автоматичне правило: значення всього речення важливіше за один маркер."
+ },
+ {
+  "id": "lesson-20/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.ru",
+  "problem": "imparfait назван «простым прошедшим» — путает с passé simple; «личного глагола» → спрягаемого",
+  "fix": "Отрицание в `imparfait` строится вокруг одного спрягаемого глагола. `Il n’y avait pas` — раньше чего-то не было; помощник `a` после `avait` не нужен."
+ },
+ {
+  "id": "lesson-20/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.uk",
+  "problem": "То же: «простого минулого»; «особистого» → «особового»",
+  "fix": "Заперечення в `imparfait` будується навколо одного особового дієслова. `Il n’y avait pas` — раніше чогось не було; допоміжне `a` після `avait` не потрібне."
+ },
+ {
+  "id": "lesson-20/chapter-5",
+  "type": "T1",
+  "field": "chapters[4].textByLocale.en",
+  "problem": "«simple past» = passé simple, не imparfait; «assistant»",
+  "fix": "In the `imparfait`, negation is built around a single conjugated verb. `Il n’y avait pas` means something was not there before; no auxiliary `a` is needed after `avait`."
+ },
+ {
+  "id": "lesson-20/chapter-7",
+  "type": "T2",
+  "field": "chapters[6].textByLocale.uk",
+  "problem": "«Дієслово … сам по собі» — несогласование рода; заглавная после «;»",
+  "fix": "Уяви дві картинки: щонеділі тітка пекла пиріг; якось вона спекла пиріг. Тут тренуємо першу. Дієслово «пекти» саме по собі не вибирає час."
+ }
+]

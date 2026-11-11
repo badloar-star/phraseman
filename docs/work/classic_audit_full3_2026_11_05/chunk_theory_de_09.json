@@ -1,0 +1,968 @@
+[
+{
+"lesson": 19,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:19:01",
+"de:19:04"
+],
+"textByLocale": {
+"en": "The same person washes and is washed. For yourself, use `mich`,\" for your interlocutor, `dich`,\" and for Anna, `sich`.\" Unlike a noun, such a short word is sufficient without an article.",
+"ru": "Один и тот же человек моет и является тем, кого моют. Для себя употреби `mich`, для собеседника — `dich`, для Анны — `sich`. В отличие от существительного, такого короткого слова достаточно без артикля.",
+"uk": "Одна і та сама людина миє і є тим, кого миють. Для себе вживай `mich`, для співрозмовника - `dich`, для Анни - `sich`. На відміну від іменника, такого короткого слова достатньо без артикля."
+}
+},
+{
+"exampleIds": [
+"de:19:06",
+"de:19:10"
+],
+"textByLocale": {
+"en": "You put on clothes in the morning and change them in the evening. A reflexive pronoun and a prefix perform different functions. Don't discard one of them just because the meaning of the action seems clear.",
+"ru": "Утром надеваешь одежду, вечером переодеваешься. Возвратное местоимение и приставка выполняют разные задачи. Не отбрасывай одно из них только потому, что смысл действия кажется уже понятным.",
+"uk": "Вранці одягаєш одяг, увечері переодягаєшся. Зворотний займенник та приставка виконують різні завдання. Чи не відкидай одне з них тільки тому, що сенс дії здається вже зрозумілим."
+}
+},
+{
+"exampleIds": [
+"de:19:11",
+"de:19:18"
+],
+"textByLocale": {
+"en": "Where did the man sit? The pronoun shows that he is changing position, and the place phrase indicates where exactly. In `sich hinlegen` and `sich ausruhen`,\" the pronoun is linked to the entire verb.",
+"ru": "Куда сел человек? Местоимение показывает, что он сам меняет положение, а группа места — куда именно. В `sich hinlegen` и `sich ausruhen` местоимение связано с целым глаголом.",
+"uk": "Куди сів чоловік? Займенник показує, що він змінює становище, а група місця — куди саме. У `sich hinlegen` і `sich ausruhen` займенник пов'язані з цілим дієсловом."
+}
+},
+{
+"exampleIds": [
+"de:19:21",
+"de:19:26"
+],
+"textByLocale": {
+"en": "You can't always translate a pronoun as a separate \"himself.\" `Sich beeilen` means to hurry. If you only say `beeilen`,\" part of the usual construction disappears.",
+"ru": "Нельзя всегда переводить местоимение как отдельное «себя». `Sich beeilen` значит торопиться. Если назвать только `beeilen`, исчезнет часть обычной конструкции.",
+"uk": "Не можна завжди перекладати займенник як окремий «себе». `Sich beeilen` означає поспішати. Якщо назвати лише `beeilen`, зникне частина звичайної конструкції."
+}
+},
+{
+"exampleIds": [
+"de:19:27",
+"de:19:37"
+],
+"textByLocale": {
+"en": "A preposition is sometimes also part of the meaning. With `sich freuen auf`,\" they expect a pleasant event; with `sich freuen über`,\" they rejoice at something. First, choose the situation, not the literal correspondence to the preposition in your language.",
+"ru": "Предлог иногда тоже часть значения. С `sich freuen auf` ожидают приятного события; с `sich freuen über` радуются чему-то. Сначала выбери ситуацию, а не буквальное соответствие предлогу своего языка.",
+"uk": "Привід іноді теж частина значення. З `sich freuen auf` очікують приємної події; з `sich freuen über` радіють чомусь. Спочатку вибери ситуацію, а не буквальну відповідність прийменнику своєї мови."
+}
+},
+{
+"exampleIds": [
+"de:19:41",
+"de:19:44"
+],
+"textByLocale": {
+"en": "If they wash their hands or brush their teeth, the object itself is already named. The possessor pronoun becomes dative: `mir`, `dir`.\" Compare with the phrase without a second object, which uses `mich`.\"",
+"ru": "Если моют руки или чистят зубы, сам предмет уже назван. Местоимение владельца становится дательным: `mir`, `dir`. Сравни с фразой без второго объекта, где используется `mich`.",
+"uk": "Якщо миють руки або чистять зуби, предмет вже названий. Займенник власника стає давальним: `mir`, `dir`. Порівняй із фразою без другого об'єкта, де використовується `mich`."
+}
+},
+{
+"exampleIds": [
+"de:19:47",
+"de:19:50"
+],
+"textByLocale": {
+"en": "The reflexive construction is retained in the past. Even when the participle has moved to the right, the short `sich` or `uns` must remain. A meeting of two people is a good example of mutual action.",
+"ru": "Возвратная конструкция сохраняется и в прошлом. Даже когда причастие ушло вправо, короткое `sich` или `uns` должно остаться. Встреча двух людей — хороший пример взаимного действия.",
+"uk": "Поворотна конструкція зберігається і в минулому. Навіть коли причастя пішло праворуч, коротке `sich` чи `uns` має залишитися. Зустріч двох людей — добрий приклад взаємної дії."
+}
+}
+],
+"lab": [
+{
+"bad": "euch",
+"chapter": 1,
+"id": "de:19:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 21,
+"options": [
+"dich",
+"mich",
+"euch"
+],
+"slot": 2
+},
+{
+"bad": "uns",
+"chapter": 1,
+"id": "de:19:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 24,
+"options": [
+"dich",
+"uns",
+"sich"
+],
+"slot": 2
+},
+{
+"bad": "uns",
+"chapter": 1,
+"id": "de:19:05:lab",
+"item": 5,
+"kind": "match",
+"near": 25,
+"options": [
+"dich",
+"uns",
+"euch"
+],
+"slot": 2
+},
+{
+"bad": "dir",
+"chapter": 2,
+"id": "de:19:08:lab",
+"item": 8,
+"kind": "build",
+"near": 17,
+"options": [
+"uns",
+"dir",
+"sich"
+],
+"slot": 2
+},
+{
+"bad": "mir",
+"chapter": 2,
+"id": "de:19:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 4,
+"options": [
+"euch",
+"mir",
+"uns"
+],
+"slot": 2
+},
+{
+"bad": "mir",
+"chapter": 2,
+"id": "de:19:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 2,
+"options": [
+"mich",
+"mir",
+"dich"
+],
+"slot": 2
+},
+{
+"bad": "dir",
+"chapter": 3,
+"id": "de:19:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 4,
+"options": [
+"dir",
+"uns",
+"dich"
+],
+"slot": 2
+},
+{
+"bad": "uns",
+"chapter": 3,
+"id": "de:19:17:lab",
+"item": 17,
+"kind": "match",
+"near": 8,
+"options": [
+"uns",
+"dir",
+"sich"
+],
+"slot": 2
+},
+{
+"bad": "sich",
+"chapter": 3,
+"id": "de:19:19:lab",
+"item": 19,
+"kind": "build",
+"near": 22,
+"options": [
+"sich",
+"dich",
+"mir"
+],
+"slot": 2
+},
+{
+"bad": "mich",
+"chapter": 4,
+"id": "de:19:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 19,
+"options": [
+"dich",
+"dir",
+"mich"
+],
+"slot": 2
+},
+{
+"bad": "mir",
+"chapter": 4,
+"id": "de:19:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 3,
+"options": [
+"mir",
+"euch",
+"sich"
+],
+"slot": 2
+},
+{
+"bad": "mir",
+"chapter": 4,
+"id": "de:19:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 31,
+"options": [
+"mich",
+"dich",
+"mir"
+],
+"slot": 2
+},
+{
+"bad": "mich",
+"chapter": 5,
+"id": "de:19:29:lab",
+"item": 29,
+"kind": "match",
+"near": 35,
+"options": [
+"dich",
+"euch",
+"mich"
+],
+"slot": 2
+},
+{
+"bad": "dich",
+"chapter": 5,
+"id": "de:19:31:lab",
+"item": 31,
+"kind": "build",
+"near": 26,
+"options": [
+"euch",
+"mich",
+"dich"
+],
+"slot": 2
+},
+{
+"bad": "dich",
+"chapter": 5,
+"id": "de:19:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 4,
+"options": [
+"dich",
+"sich",
+"uns"
+],
+"slot": 2
+},
+{
+"bad": "mir",
+"chapter": 6,
+"id": "de:19:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 24,
+"options": [
+"mich",
+"mir",
+"sich"
+],
+"slot": 4
+},
+{
+"bad": "mir",
+"chapter": 6,
+"id": "de:19:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 43,
+"options": [
+"mir",
+"sich",
+"mich"
+],
+"slot": 2
+},
+{
+"bad": "mich",
+"chapter": 6,
+"id": "de:19:42:lab",
+"item": 42,
+"kind": "match",
+"near": 46,
+"options": [
+"sich",
+"mich",
+"dir"
+],
+"slot": 2
+},
+{
+"bad": "dich",
+"chapter": 7,
+"id": "de:19:45:lab",
+"item": 45,
+"kind": "build",
+"near": 38,
+"options": [
+"mich",
+"uns",
+"dich"
+],
+"slot": 2
+},
+{
+"bad": "dich",
+"chapter": 7,
+"id": "de:19:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 24,
+"options": [
+"mir",
+"dich",
+"sich"
+],
+"slot": 2
+}
+],
+"table": [
+[
+"ich",
+"mich / mir"
+],
+[
+"du",
+"dich / dir"
+],
+[
+"er / sie / es",
+"sich"
+],
+[
+"wir",
+"uns"
+],
+[
+"ihr",
+"euch"
+],
+[
+"sie / Sie",
+"sich"
+]
+],
+"title": {
+"en": "I do it myself and for myself: reflexive pronouns",
+"ru": "Делаю сам и для себя: возвратные местоимения",
+"uk": "Роблю сам і для себе: зворотні займенники"
+}
+},
+"exampleResolved": [
+{
+"id": "de:19:01",
+"target": "Ich wasche mich.",
+"ru": "Я умываюсь.",
+"uk": "Я вмиваюся."
+},
+{
+"id": "de:19:04",
+"target": "Wir waschen uns.",
+"ru": "Мы умываемся.",
+"uk": "Ми вмиваємося."
+},
+{
+"id": "de:19:06",
+"target": "Ich ziehe mich an.",
+"ru": "Я одеваюсь.",
+"uk": "Я одягаюсь."
+},
+{
+"id": "de:19:10",
+"target": "Wir ziehen uns warm an.",
+"ru": "Мы тепло одеваемся.",
+"uk": "Ми тепло одягаємось."
+},
+{
+"id": "de:19:11",
+"target": "Ich setze mich hin.",
+"ru": "Я сажусь.",
+"uk": "Я сідаю."
+},
+{
+"id": "de:19:18",
+"target": "Wir ruhen uns aus.",
+"ru": "Мы отдыхаем.",
+"uk": "Ми відпочиваємо."
+},
+{
+"id": "de:19:21",
+"target": "Ich beeile mich.",
+"ru": "Я тороплюсь.",
+"uk": "Я поспішаю."
+},
+{
+"id": "de:19:26",
+"target": "Ich freue mich auf morgen.",
+"ru": "Я с нетерпением жду завтрашнего дня.",
+"uk": "Я з нетерпінням чекаю завтрашнього дня."
+},
+{
+"id": "de:19:27",
+"target": "Tom freut sich auf die Fahrt.",
+"ru": "Том предвкушает поездку.",
+"uk": "Том з нетерпінням чекає на поїздку."
+},
+{
+"id": "de:19:37",
+"target": "Ich bedanke mich für die Hilfe.",
+"ru": "Я благодарю за помощь.",
+"uk": "Я дякую за допомогу."
+},
+{
+"id": "de:19:41",
+"target": "Ich wasche mir die Hände.",
+"ru": "Я мою руки.",
+"uk": "Я мою руки."
+},
+{
+"id": "de:19:44",
+"target": "Ich ziehe mir die Schuhe an.",
+"ru": "Я надеваю обувь.",
+"uk": "Я одягаю взуття."
+},
+{
+"id": "de:19:47",
+"target": "Ich schaue mir die Wohnung an.",
+"ru": "Я осматриваю квартиру.",
+"uk": "Я оглядаю квартиру."
+},
+{
+"id": "de:19:50",
+"target": "Ihr habt euch für morgen verabredet.",
+"ru": "Вы договорились встретиться завтра.",
+"uk": "Ви домовилися зустрітися завтра."
+}
+]
+},
+{
+"lesson": 20,
+"theory": {
+"chapters": [
+{
+"exampleIds": [
+"de:20:01",
+"de:20:05"
+],
+"textByLocale": {
+"en": "Two modes of travel have different prices and speeds. To differentiate, add a comparative form, followed by `als` if a second participant is named. A single description should apply to both things being compared.",
+"ru": "У двух способов поездки разные цены и скорость. Для различия добавляется форма сравнения и затем `als`, если назван второй участник. Одно описание должно относиться к обеим сопоставляемым вещам.",
+"uk": "У двох способів поїздки різні ціни та швидкість. Для відмінності додається форма порівняння, а потім `als`, якщо названий другий учасник. Один опис має відноситися до обох речей, що зіставляються."
+}
+},
+{
+"exampleIds": [
+"de:20:06",
+"de:20:10"
+],
+"textByLocale": {
+"en": "The second participant is sometimes clear: in a store, it's enough to say that this room is larger. There's no need to artificially end each sentence with \"than that one.\" But keep the comparative form.",
+"ru": "Второй участник иногда понятен: в магазине достаточно сказать, что эта комната больше. Не требуется искусственно заканчивать каждую фразу словами «чем та». Но сравнительную форму при этом оставь.",
+"uk": "Другий учасник іноді зрозумілий: у магазині достатньо сказати, що ця кімната більша. Не потрібно штучно закінчувати кожну фразу словами «чим та». Але порівняльну форму при цьому залиши."
+}
+},
+{
+"exampleIds": [
+"de:20:11",
+"de:20:17"
+],
+"textByLocale": {
+"en": "Some short adjectives change vowels: `warm – wärmer`, `kalt – kälter`.\" Don't insert an umlaut into every word. Learn the pair in two similar everyday examples.",
+"ru": "Некоторые короткие прилагательные меняют гласную: `warm – wärmer`, `kalt – kälter`. Не вставляй умлаут во все слова подряд. Выучи пару в двух близких бытовых примерах.",
+"uk": "Деякі короткі прикметники змінюють голосну: `warm – wärmer`, `kalt – kälter`. Не вставляй умлаут у всі слова поспіль. Вивчи пару в двох близьких побутових прикладах."
+}
+},
+{
+"exampleIds": [
+"de:20:21",
+"de:20:26"
+],
+"textByLocale": {
+"en": "Preference and quality are not the same thing. `Lieber` communicates what the person prefers to do. `Besser` communicates what works better or turns out better. Compare the taste of a drink with the desire to drink it.",
+"ru": "Предпочтение и качество не одно и то же. `Lieber` сообщает, что сам человек предпочитает сделать. `Besser` говорит, что лучше получается или работает. Сравни вкус напитка с желанием его выпить.",
+"uk": "Перевага та якість не одне й те саме. `Lieber` повідомляє, що сама людина вважає за краще зробити. `Besser` каже, що краще виходить чи працює. Зістав смак напою з бажанням його випити."
+}
+},
+{
+"exampleIds": [
+"de:20:31",
+"de:20:37"
+],
+"textByLocale": {
+"en": "Quantity isn't necessarily compared with an adjective. If there's more or less money or time, `mehr` and `weniger` are appropriate. Make sure it's the quantity being compared.",
+"ru": "Количество не обязательно сравнивают прилагательным. Если стало больше или меньше денег или времени, годятся `mehr` и `weniger`. Проверь, что сравнивается именно количество.",
+"uk": "Кількість не обов'язково порівнює прикметником. Якщо стало більше або менше грошей або часу, годяться `mehr` та `weniger`. Перевір, що порівнюється саме кількість."
+}
+},
+{
+"exampleIds": [
+"de:20:41",
+"de:20:45"
+],
+"textByLocale": {
+"en": "When there's no difference, put `wie` after `so` or `genauso`: this indicates equality based on the chosen attribute. The construction with `nicht so` expresses the opposite, but still uses `wie`.\"",
+"ru": "Когда различия нет, ставь `wie` после `so` или `genauso`: речь о равенстве по выбранному признаку. Конструкция с `nicht so` выражает обратное, но всё равно использует `wie`.",
+"uk": "Якщо різниці немає, став `wie` після `so` або `genauso`: мова про рівність за обраною ознакою. Конструкція з `nicht so` виражає зворотне, але все одно використовує `wie`."
+}
+},
+{
+"exampleIds": [
+"de:20:46",
+"de:20:50"
+],
+"textByLocale": {
+"en": "Choice from a whole group is expressed with the form with `am`: the fastest of several trains, the best seat of several options. To evaluate the quality, remember `gut – besser – am besten`.",
+"ru": "Выбор из целой группы выражают формой с `am`: самый быстрый из нескольких поездов, лучшее место из нескольких вариантов. Для оценки качества запомни `gut – besser – am besten`.",
+"uk": "Вибір із цілої групи виражають формою з `am`: найшвидший з кількох поїздів, найкраще місце з кількох варіантів. Для оцінки якості запам'ятай `gut – besser – am besten`."
+}
+}
+],
+"lab": [
+{
+"bad": "braucht",
+"chapter": 1,
+"id": "de:20:01:lab",
+"item": 1,
+"kind": "choice",
+"near": 2,
+"options": [
+"braucht",
+"schwerer",
+"schneller"
+],
+"slot": 3
+},
+{
+"bad": "laut",
+"chapter": 1,
+"id": "de:20:03:lab",
+"item": 3,
+"kind": "spot",
+"near": 2,
+"options": [
+"langsamer",
+"sauberer",
+"laut"
+],
+"slot": 3
+},
+{
+"bad": "länger",
+"chapter": 1,
+"id": "de:20:05:lab",
+"item": 5,
+"kind": "match",
+"near": 3,
+"options": [
+"teurer",
+"länger",
+"weniger"
+],
+"slot": 3
+},
+{
+"bad": "Flure",
+"chapter": 2,
+"id": "de:20:08:lab",
+"item": 8,
+"kind": "build",
+"near": 10,
+"options": [
+"Flur",
+"hier",
+"Flure"
+],
+"slot": 1
+},
+{
+"bad": "Gärten",
+"chapter": 2,
+"id": "de:20:10:lab",
+"item": 10,
+"kind": "transfer",
+"near": 8,
+"options": [
+"hier",
+"Garten",
+"Gärten"
+],
+"slot": 1
+},
+{
+"bad": "damit",
+"chapter": 2,
+"id": "de:20:12:lab",
+"item": 12,
+"kind": "choice",
+"near": 38,
+"options": [
+"wenn",
+"damit",
+"als"
+],
+"slot": 4
+},
+{
+"bad": "weniger",
+"chapter": 3,
+"id": "de:20:14:lab",
+"item": 14,
+"kind": "spot",
+"near": 7,
+"options": [
+"lieber",
+"weniger",
+"zweite"
+],
+"slot": 1
+},
+{
+"bad": "Ofen",
+"chapter": 3,
+"id": "de:20:17:lab",
+"item": 17,
+"kind": "match",
+"near": 13,
+"options": [
+"Ofen",
+"Taxi",
+"Süden"
+],
+"slot": 1
+},
+{
+"bad": "—",
+"chapter": 3,
+"id": "de:20:19:lab",
+"item": 19,
+"kind": "build",
+"near": 7,
+"options": [
+"hier",
+"—",
+"Wasser"
+],
+"slot": 1
+},
+{
+"bad": "funktioniert",
+"chapter": 4,
+"id": "de:20:22:lab",
+"item": 22,
+"kind": "transfer",
+"near": 21,
+"options": [
+"lieber",
+"leichter",
+"funktioniert"
+],
+"slot": 2
+},
+{
+"bad": "laut",
+"chapter": 4,
+"id": "de:20:24:lab",
+"item": 24,
+"kind": "choice",
+"near": 21,
+"options": [
+"lieber",
+"laut",
+"breiter"
+],
+"slot": 2
+},
+{
+"bad": "ruhigsten",
+"chapter": 4,
+"id": "de:20:26:lab",
+"item": 26,
+"kind": "spot",
+"near": 16,
+"options": [
+"besser",
+"ruhigsten",
+"schnellsten"
+],
+"slot": 4
+},
+{
+"bad": "andere",
+"chapter": 5,
+"id": "de:20:29:lab",
+"item": 29,
+"kind": "match",
+"near": 35,
+"options": [
+"besser",
+"andere",
+"näher"
+],
+"slot": 3
+},
+{
+"bad": "Bus",
+"chapter": 5,
+"id": "de:20:31:lab",
+"item": 31,
+"kind": "build",
+"near": 9,
+"options": [
+"Mantel",
+"Tickets",
+"Bus"
+],
+"slot": 1
+},
+{
+"bad": "Fahrten",
+"chapter": 5,
+"id": "de:20:34:lab",
+"item": 34,
+"kind": "transfer",
+"near": 9,
+"options": [
+"hier",
+"Fahrt",
+"Fahrten"
+],
+"slot": 1
+},
+{
+"bad": "mehr",
+"chapter": 6,
+"id": "de:20:36:lab",
+"item": 36,
+"kind": "choice",
+"near": 1,
+"options": [
+"wärmer",
+"erste",
+"mehr"
+],
+"slot": 1
+},
+{
+"bad": "wenn",
+"chapter": 6,
+"id": "de:20:39:lab",
+"item": 39,
+"kind": "spot",
+"near": 16,
+"options": [
+"wenn",
+"als",
+"nachdem"
+],
+"slot": 3
+},
+{
+"bad": "wem",
+"chapter": 6,
+"id": "de:20:42:lab",
+"item": 42,
+"kind": "match",
+"near": 41,
+"options": [
+"woher",
+"wie",
+"wem"
+],
+"slot": 5
+},
+{
+"bad": "woher",
+"chapter": 7,
+"id": "de:20:45:lab",
+"item": 45,
+"kind": "build",
+"near": 44,
+"options": [
+"woher",
+"wohin",
+"wie"
+],
+"slot": 6
+},
+{
+"bad": "Zeit",
+"chapter": 7,
+"id": "de:20:48:lab",
+"item": 48,
+"kind": "transfer",
+"near": 46,
+"options": [
+"Tom",
+"Platz",
+"Zeit"
+],
+"slot": 1
+}
+],
+"table": [
+[
+"schnell",
+"schneller / am schnellsten"
+],
+[
+"groß",
+"größer / am größten"
+],
+[
+"gut",
+"besser / am besten"
+],
+[
+"gern",
+"lieber / am liebsten"
+],
+[
+"viel",
+"mehr / am meisten"
+],
+[
+"gleich",
+"so … wie"
+]
+],
+"title": {
+"en": "Comparing tickets, things, and options",
+"ru": "Сравниваю билеты, вещи и варианты",
+"uk": "Порівнюю квитки, речі та варіанти"
+}
+},
+"exampleResolved": [
+{
+"id": "de:20:01",
+"target": "Der Bus ist schneller als ich.",
+"ru": "Автобус быстрее меня.",
+"uk": "Автобус швидший за мене."
+},
+{
+"id": "de:20:05",
+"target": "Das Taxi ist teurer als die Bahn.",
+"ru": "Такси дороже электрички.",
+"uk": "Таксі дорожче за електричку."
+},
+{
+"id": "de:20:06",
+"target": "Dieses Zimmer ist größer.",
+"ru": "Эта комната больше.",
+"uk": "Ця кімната більша."
+},
+{
+"id": "de:20:10",
+"target": "Der Garten ist ruhiger.",
+"ru": "В саду тише.",
+"uk": "У саду тихіше."
+},
+{
+"id": "de:20:11",
+"target": "Mein Koffer ist leichter als deiner.",
+"ru": "Мой чемодан легче твоего.",
+"uk": "Моя валіза легша за твою."
+},
+{
+"id": "de:20:17",
+"target": "Im Süden ist es wärmer.",
+"ru": "На юге теплее.",
+"uk": "На півдні тепліше."
+},
+{
+"id": "de:20:21",
+"target": "Ich trinke lieber Tee.",
+"ru": "Я предпочитаю чай.",
+"uk": "Я віддаю перевагу чаю."
+},
+{
+"id": "de:20:26",
+"target": "Heute geht es mir besser.",
+"ru": "Сегодня мне лучше.",
+"uk": "Сьогодні мені краще."
+},
+{
+"id": "de:20:31",
+"target": "Die Tickets kosten jetzt mehr.",
+"ru": "Билеты теперь стоят дороже.",
+"uk": "Квитки тепер коштують дорожче."
+},
+{
+"id": "de:20:37",
+"target": "Die letzte Bahn fährt später.",
+"ru": "Последняя электричка отправляется позже.",
+"uk": "Остання електричка відправляється пізніше."
+},
+{
+"id": "de:20:41",
+"target": "Der Bus ist so voll wie gestern.",
+"ru": "Автобус так же полон, как вчера.",
+"uk": "Автобус такий самий повний, як учора."
+},
+{
+"id": "de:20:45",
+"target": "Das Zimmer ist nicht so laut wie der Flur.",
+"ru": "В комнате не так шумно, как в коридоре.",
+"uk": "У кімнаті не так галасливо, як у коридорі."
+},
+{
+"id": "de:20:46",
+"target": "Welcher Zug ist am schnellsten?",
+"ru": "Какой поезд самый быстрый?",
+"uk": "Який поїзд найшвидший?"
+},
+{
+"id": "de:20:50",
+"target": "Morgens ist der Laden am ruhigsten.",
+"ru": "Утром в магазине тише всего.",
+"uk": "Вранці в магазині найтише."
+}
+]
+}
+]

@@ -1,0 +1,12 @@
+[
+{"id": "es:18:41", "type": "B2", "field": "ru", "problem": "«её» (жен.) не соответствует «lo» (муж./он, его)", "fix": "Луис оставляет его дома."},
+{"id": "es:18:41", "type": "B2", "field": "uk", "problem": "«її» (жін.) не відповідає «lo» (чол./його)", "fix": "Луїс залишає його вдома."},
+{"id": "es:26:48", "type": "B2", "field": "ru", "problem": "потеряно притяжательное «mis» (моим); без него соблазны «sus/tus» на позиции 5 тоже подходят", "fix": "Я вернул зонт моим соседям."},
+{"id": "es:26:48", "type": "B2", "field": "uk", "problem": "втрачено присвійне «mis» (моїм); без нього соблазни «sus/tus» теж підходять", "fix": "Я повернув парасольку моїм сусідам."},
+{"id": "es:12:50", "type": "B3", "field": "alternatives", "problem": "подсказка «Здесь есть большое окно» прямо ведёт к естественному порядку «Aquí hay…», которого нет в alternatives", "fix": {"add": ["Aquí hay una ventana grande."], "remove": []}},
+{"id": "es:16:14", "type": "B3", "field": "alternatives", "problem": "«Я позже собираюсь…» допускает естественный вынос «Más tarde» вперёд, в alternatives нет", "fix": {"add": ["Más tarde voy a leer el mensaje."], "remove": []}},
+{"id": "es:21:48", "type": "B3", "field": "alternatives", "problem": "вопрос с инверсией «¿Abrió Luis…?» одинаково естественен, alternatives пусты (в соседних вопросах инверсия засчитывается)", "fix": {"add": ["¿Abrió Luis la ventana ayer?", "¿Ayer Luis abrió la ventana?"], "remove": []}},
+{"id": "es:27:49", "type": "B3", "field": "alternatives", "problem": "подсказка «Сумка, которую купил Луис, твоя?» дословно ведёт к порядку «¿El bolso que compró Luis es tuyo?», которого нет в alternatives", "fix": {"add": ["¿El bolso que compró Luis es tuyo?", "¿Es tuyo el bolso que Luis compró?"], "remove": []}},
+{"id": "es:23:02", "type": "B3", "field": "alternatives", "problem": "«Ты раньше жил здесь» допускает естественное «Antes vivías aquí.», в alternatives нет", "fix": {"add": ["Antes vivías aquí.", "Tú antes vivías aquí."], "remove": []}},
+{"id": "es:23:30", "type": "B3", "field": "alternatives", "problem": "«Вы часто ели дома» допускает естественное «A menudo comíais en casa.», в alternatives нет", "fix": {"add": ["A menudo comíais en casa.", "A menudo comían en casa."], "remove": []}}
+]

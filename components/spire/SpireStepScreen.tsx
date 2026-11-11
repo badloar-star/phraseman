@@ -22,7 +22,7 @@ import SpireTaskReportButton from '../../modules/spire/SpireTaskReportButton';
 import { spireTierName } from '../../modules/spire/tier_names';
 import EnergyBar from '../EnergyBar';
 import V2Pressable from '../v2/V2Pressable';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { lv2Alpha } from '../practice/PracticeGlass';
 import SpireCountdownOverlay from './SpireCountdownOverlay';
 import SpireExitSheet from './SpireExitSheet';
 import SpireTaskView from './SpireTaskView';

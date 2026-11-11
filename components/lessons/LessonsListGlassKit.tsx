@@ -12,6 +12,8 @@ import { useLineScale } from '../../hooks/useLineScale';
 // (liquidGlassTokens), плашки без обводок (стиль «Тень» 12.10), тексты на девяти языках.
 // Логика доступа, прогресса, энергии и экзаменов остаётся в app/(tabs)/lessons.tsx.
 
+export const CLASSIC_LESSONS_GUTTER = 12;
+
 export type LessonsListGlass = ReturnType<typeof liquidGlassTokens>;
 
 /** Прозрачность поверх hex-токена (#RRGGBB). Иной формат возвращаем как есть — без выдуманного цвета. */
@@ -150,7 +152,7 @@ export const LessonsListLevelHeader = React.memo(function LessonsListLevelHeader
         gap: 8,
         marginTop: first ? 26 : 28, // первый: +2 отступа списка = 28, как .lvh
         marginBottom: 5, // + 9 зазора карточки = 14, как .lvh в макете
-        marginHorizontal: 22,
+        marginHorizontal: CLASSIC_LESSONS_GUTTER + 2,
       }}
     >
       <Text style={{ color: glass.text, fontSize: 22, lineHeight: lh(28), fontWeight: '700', letterSpacing: -0.2 }}>

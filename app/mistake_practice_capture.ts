@@ -1,7 +1,7 @@
 import {
   canonicalJsonV1,
   sha256Utf8,
-} from '../modules/learning-v2/policies/decision_registry';
+} from '../modules/canonical_json';
 import type {
   MistakeContentRef,
   MistakeFacetRef,

@@ -1,0 +1,4828 @@
+[
+{
+"lesson": 1,
+"id": "de:01:01",
+"target": "Ich bin hier.",
+"ru": "Я здесь.",
+"uk": "Я тут.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Du",
+"Ihr",
+"Sie",
+"Es",
+"Wir"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"seid",
+"ist",
+"sind",
+"bist",
+"eine"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"draußen",
+"drinnen",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:02",
+"target": "Du bist hier.",
+"ru": "Ты здесь.",
+"uk": "Ти тут.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ich",
+"Wir",
+"Es",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"seid",
+"ist",
+"bin",
+"sind",
+"viel"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"drinnen",
+"dort",
+"heute",
+"morgen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:03",
+"target": "Du bist müde.",
+"ru": "Ты устал.",
+"uk": "Ти втомився.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ihr",
+"Es",
+"Sie",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"sind",
+"bin",
+"ist",
+"seid",
+"viel"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"allein",
+"leise",
+"ruhig",
+"bereit",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:04",
+"target": "Ich bin müde.",
+"ru": "Я устал.",
+"uk": "Я втомився.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Es",
+"Du",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"bist",
+"sind",
+"ist",
+"seid",
+"eine"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"leise",
+"wach",
+"allein",
+"krank",
+"bereit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:05",
+"target": "Anna ist hier.",
+"ru": "Анна здесь.",
+"uk": "Анна тут.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"heute",
+"morgen",
+"draußen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:06",
+"target": "Anna ist müde.",
+"ru": "Анна устала.",
+"uk": "Анна втомилася.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"bereit",
+"leise",
+"ruhig",
+"allein",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:07",
+"target": "Wir sind hier.",
+"ru": "Мы здесь.",
+"uk": "Ми тут.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Du",
+"Sie",
+"Es",
+"Ich"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"ist",
+"seid",
+"bist",
+"fertig"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"dort",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:08",
+"target": "Wir sind wach.",
+"ru": "Мы не спим.",
+"uk": "Ми не спимо.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Sie",
+"Du",
+"Ich",
+"Ihr"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bist",
+"bin",
+"seid",
+"ist",
+"fertig"
+]
+},
+{
+"correct": "wach",
+"distractors": [
+"allein",
+"müde",
+"krank",
+"ruhig",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:09",
+"target": "Ihr seid wach.",
+"ru": "Вы не спите.",
+"uk": "Ви не спите.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Ich",
+"Wir",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"offen",
+"fertig",
+"früher",
+"finde"
+]
+},
+{
+"correct": "wach",
+"distractors": [
+"krank",
+"allein",
+"ruhig",
+"bereit",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:10",
+"target": "Tom ist wach.",
+"ru": "Том не спит.",
+"uk": "Том не спить.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "wach",
+"distractors": [
+"frei",
+"allein",
+"krank",
+"leise",
+"müde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:11",
+"target": "Ich bin zu Hause.",
+"ru": "Я дома.",
+"uk": "Я вдома.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Sie",
+"Wir",
+"Du",
+"Es"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"seid",
+"bist",
+"ist",
+"sind",
+"eine"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"nach",
+"aus",
+"für",
+"mit",
+"von"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Kaffee",
+"Wasser",
+"Platz",
+"Suppe",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Ich bin zuhause."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:12",
+"target": "Du bist zu Hause.",
+"ru": "Ты дома.",
+"uk": "Ти вдома.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ihr",
+"Es",
+"Sie",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"bin",
+"ist",
+"seid",
+"sind",
+"viel"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"von",
+"bei",
+"mit",
+"seit",
+"für"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tasche",
+"Anna",
+"Tür"
+]
+}
+],
+"alternatives": [
+"Du bist zuhause."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:13",
+"target": "Tom ist zu Hause.",
+"ru": "Том дома.",
+"uk": "Том вдома.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Gäste",
+"Schlüssel",
+"Zug"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"von",
+"bei",
+"nach",
+"aus",
+"mit"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Tür",
+"Kinder",
+"Tasche",
+"Schlüssel",
+"Zimmer"
+]
+}
+],
+"alternatives": [
+"Tom ist zuhause."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:14",
+"target": "Wir sind zu Hause.",
+"ru": "Мы дома.",
+"uk": "Ми вдома.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ihr",
+"Du",
+"Ich",
+"Es",
+"Sie"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"seid",
+"bist",
+"ist",
+"bin",
+"fertig"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"für",
+"seit",
+"von",
+"aus",
+"mit"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Kaffee",
+"Anna",
+"Fenster",
+"Schlüssel",
+"Bad"
+]
+}
+],
+"alternatives": [
+"Wir sind zuhause."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:15",
+"target": "Ich bin bereit.",
+"ru": "Я готов.",
+"uk": "Я готовий.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Es",
+"Du",
+"Wir",
+"Ihr"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"bist",
+"seid",
+"ist",
+"sind",
+"eine"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"müde",
+"frei",
+"krank",
+"allein",
+"wach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:16",
+"target": "Du bist bereit.",
+"ru": "Ты готов.",
+"uk": "Ти готовий.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ihr",
+"Ich",
+"Es",
+"Sie",
+"Wir"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"seid",
+"sind",
+"ist",
+"bin",
+"viel"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"ruhig",
+"wach",
+"krank",
+"allein",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:17",
+"target": "Anna ist bereit.",
+"ru": "Анна готова.",
+"uk": "Анна готова.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"ruhig",
+"allein",
+"frei",
+"müde",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:18",
+"target": "Wir sind bereit.",
+"ru": "Мы готовы.",
+"uk": "Ми готові.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Sie",
+"Es",
+"Ich",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"ist",
+"bist",
+"bin",
+"seid",
+"fertig"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"wach",
+"krank",
+"ruhig",
+"allein",
+"frei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:19",
+"target": "Ihr seid bereit.",
+"ru": "Вы готовы.",
+"uk": "Ви готові.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"offen",
+"fertig",
+"früher",
+"finde"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"ruhig",
+"allein",
+"frei",
+"müde",
+"wach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:20",
+"target": "Die Kinder sind bereit.",
+"ru": "Дети готовы.",
+"uk": "Діти готові.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Bad",
+"Tom",
+"Zimmer",
+"Wasser",
+"Anna"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"müde",
+"frei",
+"krank",
+"leise",
+"allein"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:21",
+"target": "Ich bin allein.",
+"ru": "Я один.",
+"uk": "Я один.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Du",
+"Es",
+"Sie",
+"Wir"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"ist",
+"seid",
+"bist",
+"sind",
+"eine"
+]
+},
+{
+"correct": "allein",
+"distractors": [
+"leise",
+"bereit",
+"müde",
+"frei",
+"ruhig"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:22",
+"target": "Du bist allein.",
+"ru": "Ты один.",
+"uk": "Ти один.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Sie",
+"Ich",
+"Ihr",
+"Es"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"ist",
+"bin",
+"seid",
+"sind",
+"viel"
+]
+},
+{
+"correct": "allein",
+"distractors": [
+"ruhig",
+"krank",
+"wach",
+"frei",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:23",
+"target": "Tom ist allein.",
+"ru": "Том один.",
+"uk": "Том один.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "allein",
+"distractors": [
+"bereit",
+"ruhig",
+"leise",
+"frei",
+"müde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:24",
+"target": "Wir sind draußen.",
+"ru": "Мы на улице.",
+"uk": "Ми на вулиці.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Ich",
+"Du",
+"Ihr",
+"Sie"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bist",
+"seid",
+"ist",
+"bin",
+"fertig"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": [
+"Wir sind im Freien."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:25",
+"target": "Ihr seid draußen.",
+"ru": "Вы на улице.",
+"uk": "Ви на вулиці.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Ich",
+"Wir",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"offen",
+"fertig",
+"früher",
+"finde"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"spielen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:26",
+"target": "Die Kinder sind draußen.",
+"ru": "Дети на улице.",
+"uk": "Діти на вулиці.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Das",
+"Den",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Tür",
+"Wasser",
+"Hause",
+"Platz",
+"Tom"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:27",
+"target": "Anna ist drinnen.",
+"ru": "Анна внутри.",
+"uk": "Анна всередині.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "drinnen",
+"distractors": [
+"draußen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:28",
+"target": "Wir sind drinnen.",
+"ru": "Мы внутри.",
+"uk": "Ми всередині.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Es",
+"Ihr",
+"Sie",
+"Du",
+"Ich"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"seid",
+"ist",
+"bin",
+"bist",
+"fertig"
+]
+},
+{
+"correct": "drinnen",
+"distractors": [
+"draußen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:29",
+"target": "Ich bin krank.",
+"ru": "Я болею.",
+"uk": "Я хворію.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Du",
+"Ihr",
+"Wir",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "bin",
+"distractors": [
+"ist",
+"seid",
+"bist",
+"sind",
+"eine"
+]
+},
+{
+"correct": "krank",
+"distractors": [
+"wach",
+"ruhig",
+"frei",
+"allein",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:30",
+"target": "Die Kinder sind krank.",
+"ru": "Дети болеют.",
+"uk": "Діти хворіють.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Fenster",
+"Tom",
+"Schlüssel",
+"Tee",
+"Zimmer"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "krank",
+"distractors": [
+"leise",
+"wach",
+"frei",
+"allein",
+"bereit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:31",
+"target": "Die Tür ist offen.",
+"ru": "Дверь открыта.",
+"uk": "Двері відчинені.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Das",
+"Den",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"draußen",
+"drinnen",
+"kaputt",
+"spielen",
+"zusammen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:32",
+"target": "Das Fenster ist offen.",
+"ru": "Окно открыто.",
+"uk": "Вікно відчинене.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Der",
+"Die",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"draußen",
+"drinnen",
+"kaputt",
+"spielen",
+"zusammen"
+]
+}
+],
+"alternatives": [
+"Das Fenster ist auf."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:33",
+"target": "Die Fenster sind offen.",
+"ru": "Окна открыты.",
+"uk": "Вікна відчинені.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Das",
+"Dem",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"finde",
+"warten",
+"spielen"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"draußen",
+"drinnen",
+"kaputt",
+"spielen",
+"zusammen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:34",
+"target": "Die Tür ist zu.",
+"ru": "Дверь закрыта.",
+"uk": "Двері зачинені.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Dem",
+"Der",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer",
+"Taxi"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"ohne",
+"bei",
+"aus",
+"mit",
+"von"
+]
+}
+],
+"alternatives": [
+"Die Tür ist geschlossen."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:35",
+"target": "Das Fenster ist zu.",
+"ru": "Окно закрыто.",
+"uk": "Вікно закрите.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Die",
+"Dem",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"mit",
+"nach",
+"bei",
+"für",
+"aus"
+]
+}
+],
+"alternatives": [
+"Das Fenster ist geschlossen."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:36",
+"target": "Der Tee ist heiß.",
+"ru": "Чай горячий.",
+"uk": "Чай гарячий.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Die",
+"Dem",
+"Das",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Fenster",
+"Plätze",
+"Bad",
+"Platz",
+"Hause"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "heiß",
+"distractors": [
+"kalt",
+"warm",
+"beginnt",
+"kaputt",
+"kocht"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:37",
+"target": "Das Wasser ist kalt.",
+"ru": "Вода холодная.",
+"uk": "Вода холодна.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Wasser",
+"distractors": [
+"Hause",
+"Bus",
+"Tasche",
+"Platz",
+"Dienstag"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kalt",
+"distractors": [
+"heiß",
+"warm",
+"bezahlen",
+"bezahlt",
+"brauchen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:38",
+"target": "Die Suppe ist warm.",
+"ru": "Суп тёплый.",
+"uk": "Суп теплий.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Suppe",
+"distractors": [
+"Essen",
+"Hause",
+"Wasser",
+"Tee",
+"Bus"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "warm",
+"distractors": [
+"kalt",
+"heiß",
+"zum",
+"das",
+"den"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:39",
+"target": "Der Kaffee ist kalt.",
+"ru": "Кофе холодный.",
+"uk": "Кава холодна.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Dem",
+"Den",
+"Das",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Kaffee",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Anna",
+"Kinder",
+"Tasche"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kalt",
+"distractors": [
+"warm",
+"heiß",
+"bezahlen",
+"bezahlt",
+"brauchen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:40",
+"target": "Das Essen ist fertig.",
+"ru": "Еда готова.",
+"uk": "Їжа готова.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Der",
+"Den",
+"Dem",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Essen",
+"distractors": [
+"Kinder",
+"Zimmer",
+"Fenster",
+"Tee",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "fertig",
+"distractors": [
+"offen",
+"kaputt",
+"schwer",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:41",
+"target": "Anna und Tom sind hier.",
+"ru": "Анна и Том здесь.",
+"uk": "Анна та Том тут.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Hause",
+"Schlüssel",
+"Bus",
+"Kinder",
+"Gäste"
+]
+},
+{
+"correct": "und",
+"distractors": [
+"nachdem",
+"obwohl",
+"damit",
+"ob",
+"wenn"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Kinder",
+"Hause",
+"Gäste",
+"Zug",
+"Fenster"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"dort",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": [
+"Tom und Anna sind hier."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:42",
+"target": "Tom und ich sind draußen.",
+"ru": "Мы с Томом на улице.",
+"uk": "Ми з Томом на вулиці.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Kinder",
+"Hause",
+"Gäste",
+"Zug"
+]
+},
+{
+"correct": "und",
+"distractors": [
+"nachdem",
+"obwohl",
+"damit",
+"ob",
+"wenn"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"wir",
+"du",
+"es",
+"sie",
+"ihr"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bist",
+"ist",
+"bin",
+"seid",
+"fertig"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"spielen"
+]
+}
+],
+"alternatives": [
+"Ich bin mit Tom draußen."
+]
+},
+{
+"lesson": 1,
+"id": "de:01:43",
+"target": "Anna und ich sind müde.",
+"ru": "Мы с Анной устали.",
+"uk": "Ми з Анною втомилися.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "und",
+"distractors": [
+"nachdem",
+"obwohl",
+"damit",
+"ob",
+"wenn"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"wir",
+"sie",
+"es",
+"du"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"seid",
+"ist",
+"bist",
+"fertig"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"ruhig",
+"wach",
+"bereit",
+"allein",
+"frei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:44",
+"target": "Die Kinder sind leise.",
+"ru": "Дети ведут себя тихо.",
+"uk": "Діти поводяться тихо.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Das",
+"Der",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Tür",
+"Essen",
+"Bad",
+"Wasser",
+"Tasche"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "leise",
+"distractors": [
+"bereit",
+"krank",
+"frei",
+"allein",
+"wach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:45",
+"target": "Das Zimmer ist ruhig.",
+"ru": "В комнате тихо.",
+"uk": "У кімнаті тихо.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Die",
+"Den",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "ruhig",
+"distractors": [
+"müde",
+"allein",
+"leise",
+"wach",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:46",
+"target": "Der Platz ist frei.",
+"ru": "Место свободно.",
+"uk": "Місце вільне.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Dem",
+"Die",
+"Das",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Platz",
+"distractors": [
+"Essen",
+"Tasche",
+"Zimmer",
+"Wasser",
+"Bad"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"müde",
+"leise",
+"krank",
+"bereit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:47",
+"target": "Die Plätze sind frei.",
+"ru": "Места свободны.",
+"uk": "Місця вільні.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Den",
+"Das",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Plätze",
+"distractors": [
+"Anna",
+"Zimmer",
+"Tür",
+"Tasche",
+"Kaffee"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"leise",
+"bereit",
+"krank",
+"ruhig"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:48",
+"target": "Das Bad ist frei.",
+"ru": "Ванная свободна.",
+"uk": "Ванна кімната вільна.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Den",
+"Dem",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Bad",
+"distractors": [
+"Schlüssel",
+"Hause",
+"Tasche",
+"Wasser",
+"Kaffee"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"leise",
+"allein",
+"müde",
+"ruhig"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:49",
+"target": "Meine Tasche ist hier.",
+"ru": "Моя сумка здесь.",
+"uk": "Моя сумка тут.",
+"tiles": [
+{
+"correct": "Meine",
+"distractors": [
+"Ein",
+"Einen",
+"Dein",
+"Kein",
+"Keinen"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"draußen",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:50",
+"target": "Deine Schlüssel sind hier.",
+"ru": "Твои ключи здесь.",
+"uk": "Твої ключі тут.",
+"tiles": [
+{
+"correct": "Deine",
+"distractors": [
+"Ein",
+"Einen",
+"Kein",
+"Keinen",
+"Mein"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"drinnen",
+"dort",
+"heute",
+"morgen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:01",
+"target": "Das ist der Schlüssel.",
+"ru": "Это ключ.",
+"uk": "Це ключ.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Dem",
+"Den",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"den",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:02",
+"target": "Das ist die Tasche.",
+"ru": "Это сумка.",
+"uk": "Це сумка.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Dem",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"dem",
+"und",
+"mit"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:03",
+"target": "Das ist das Handy.",
+"ru": "Это телефон.",
+"uk": "Це телефон.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Der",
+"Den",
+"Die",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"den",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:04",
+"target": "Hier ist der Schlüssel.",
+"ru": "Вот ключ.",
+"uk": "Ось ключ.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Dort",
+"Draußen",
+"Drinnen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"das",
+"den",
+"und"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Der Schlüssel ist hier."
+]
+},
+{
+"lesson": 2,
+"id": "de:02:05",
+"target": "Hier ist die Tasche.",
+"ru": "Вот сумка.",
+"uk": "Ось сумка.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Dort",
+"Drinnen",
+"Draußen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"das",
+"dem",
+"der",
+"und"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": [
+"Die Tasche ist hier."
+]
+},
+{
+"lesson": 2,
+"id": "de:02:06",
+"target": "Hier ist das Handy.",
+"ru": "Вот телефон.",
+"uk": "Ось телефон.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Drinnen",
+"Dort",
+"Draußen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"dem",
+"die",
+"der",
+"und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+}
+],
+"alternatives": [
+"Das Handy ist hier."
+]
+},
+{
+"lesson": 2,
+"id": "de:02:07",
+"target": "Der Schlüssel ist neu.",
+"ru": "Ключ новый.",
+"uk": "Ключ новий.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "neu",
+"distractors": [
+"ich",
+"es",
+"wir",
+"sie",
+"ihr"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:08",
+"target": "Die Tasche ist neu.",
+"ru": "Сумка новая.",
+"uk": "Сумка нова.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Der",
+"Das",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "neu",
+"distractors": [
+"ich",
+"es",
+"wir",
+"sie",
+"ihr"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:09",
+"target": "Das Handy ist neu.",
+"ru": "Телефон новый.",
+"uk": "Телефон новий.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "neu",
+"distractors": [
+"ich",
+"es",
+"wir",
+"sie",
+"ihr"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:10",
+"target": "Das sind die Schlüssel.",
+"ru": "Это ключи.",
+"uk": "Це ключі.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"dem",
+"der",
+"und",
+"mit"
+]
+},
+{
+"correct": "Schlüssel",
+"distractors": [
+"Hause",
+"Gäste",
+"Anna",
+"Zimmer",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:11",
+"target": "Der Bus ist da.",
+"ru": "Автобус уже здесь.",
+"uk": "Автобус вже тут.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Dem",
+"Das",
+"Den",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"kaputt",
+"offen",
+"schwer",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:12",
+"target": "Die Bahn ist da.",
+"ru": "Поезд здесь.",
+"uk": "Поїзд тут.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Der",
+"Den",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Bahn",
+"distractors": [
+"Stühle",
+"Tisch",
+"Kiste",
+"Bänke",
+"Café"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"offen",
+"schwer",
+"kaputt",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:13",
+"target": "Das Taxi ist da.",
+"ru": "Такси уже здесь.",
+"uk": "Таксі вже тут.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Dem",
+"Der",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Taxi",
+"distractors": [
+"Karte",
+"Bus",
+"Stühle",
+"Paket",
+"Zimmer"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"kaputt",
+"schwer",
+"offen",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:14",
+"target": "Die Gäste sind da.",
+"ru": "Гости уже здесь.",
+"uk": "Гості вже тут.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Tisch",
+"Stuhl",
+"Bank",
+"Schlüssel",
+"Aufzug"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"kaputt",
+"schwer",
+"offen",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:15",
+"target": "Der Bahnhof ist hier.",
+"ru": "Вокзал здесь.",
+"uk": "Вокзал тут.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Die",
+"Den",
+"Das",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Bahnhof",
+"distractors": [
+"Zug",
+"Bus",
+"Gäste",
+"Paket",
+"Kinder"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"drinnen",
+"draußen",
+"dort",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:16",
+"target": "Die Haltestelle ist dort.",
+"ru": "Остановка там.",
+"uk": "Зупинка там.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Das",
+"Der",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Haltestelle",
+"distractors": [
+"Schlüssel",
+"Tische",
+"Kisten",
+"Café",
+"Stühle"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "dort",
+"distractors": [
+"draußen",
+"hier",
+"heute",
+"morgen",
+"drinnen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:17",
+"target": "Das Hotel ist dort.",
+"ru": "Гостиница там.",
+"uk": "Готель там.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Der",
+"Den",
+"Die",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "dort",
+"distractors": [
+"draußen",
+"hier",
+"drinnen",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:18",
+"target": "Der Eingang ist dort.",
+"ru": "Вход там.",
+"uk": "Вхід там.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Die",
+"Den",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Eingang",
+"distractors": [
+"Lampe",
+"Tasche",
+"Schlüssel",
+"Aufzug",
+"Paket"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "dort",
+"distractors": [
+"draußen",
+"drinnen",
+"hier",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:19",
+"target": "Die Kasse ist hier.",
+"ru": "Касса здесь.",
+"uk": "Каса тут.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Dem",
+"Den",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Kasse",
+"distractors": [
+"Paket",
+"Karte",
+"Kiste",
+"Stuhl",
+"Brief"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"draußen",
+"drinnen",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:20",
+"target": "Das Büro ist hier.",
+"ru": "Офис здесь.",
+"uk": "Офіс тут.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Dem",
+"Den",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Büro",
+"distractors": [
+"Anna",
+"Zimmer",
+"Hotel",
+"Küche",
+"Fenster"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"drinnen",
+"dort",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:21",
+"target": "Der Tisch ist frei.",
+"ru": "Стол свободен.",
+"uk": "Стіл вільний.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Das",
+"Dem",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"ruhig",
+"müde",
+"wach",
+"leise",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:22",
+"target": "Die Bank ist frei.",
+"ru": "Скамейка свободна.",
+"uk": "Лава вільна.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Den",
+"Der",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Bank",
+"distractors": [
+"Mantel",
+"Bahnhof",
+"Kasse",
+"Taxis",
+"Paket"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"ruhig",
+"wach",
+"bereit",
+"leise",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:23",
+"target": "Das Zimmer ist frei.",
+"ru": "Комната свободна.",
+"uk": "Кімната вільна.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Die",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"krank",
+"bereit",
+"allein",
+"leise",
+"ruhig"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:24",
+"target": "Die Tische sind frei.",
+"ru": "Столы свободны.",
+"uk": "Столи вільні.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Der",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Tische",
+"distractors": [
+"Schlüssel",
+"Bus",
+"Läden",
+"Kisten",
+"Mantel"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"müde",
+"krank",
+"leise",
+"wach",
+"allein"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:25",
+"target": "Die Bänke sind frei.",
+"ru": "Скамейки свободны.",
+"uk": "Лавки вільні.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Bänke",
+"distractors": [
+"Stuhl",
+"Gäste",
+"Zimmer",
+"Buch",
+"Plan"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"wach",
+"ruhig",
+"leise",
+"allein",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:26",
+"target": "Die Zimmer sind frei.",
+"ru": "Комнаты свободны.",
+"uk": "Кімнати вільні.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Das",
+"Der",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "frei",
+"distractors": [
+"leise",
+"wach",
+"ruhig",
+"bereit",
+"müde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:27",
+"target": "Der Stuhl ist kaputt.",
+"ru": "Стул сломан.",
+"uk": "Стілець зламаний.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Dem",
+"Das",
+"Den",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Stuhl",
+"distractors": [
+"Kisten",
+"Bank",
+"Buch",
+"Gäste",
+"Tisch"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kaputt",
+"distractors": [
+"offen",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:28",
+"target": "Die Lampe ist kaputt.",
+"ru": "Лампа сломана.",
+"uk": "Лампа зламана.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Der",
+"Den",
+"Das",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Lampe",
+"distractors": [
+"Café",
+"Paket",
+"Haltestelle",
+"Bahnhof",
+"Bus"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kaputt",
+"distractors": [
+"offen",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:29",
+"target": "Das Radio ist kaputt.",
+"ru": "Радио сломано.",
+"uk": "Радіо зламано.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Der",
+"Die",
+"Dem",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Radio",
+"distractors": [
+"Haltestelle",
+"Mantel",
+"Schlüssel",
+"Café",
+"Rechnung"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "kaputt",
+"distractors": [
+"offen",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:30",
+"target": "Die Stühle sind kaputt.",
+"ru": "Стулья сломаны.",
+"uk": "Стільці зламані.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Der",
+"Dem",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Stühle",
+"distractors": [
+"Bänke",
+"Haltestelle",
+"Tische",
+"Kisten",
+"Schlüssel"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "kaputt",
+"distractors": [
+"offen",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:31",
+"target": "Das ist der Plan.",
+"ru": "Это план.",
+"uk": "Це план.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Die",
+"Dem",
+"Den",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"die",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Plan",
+"distractors": [
+"Ticket",
+"Treppe",
+"Karte",
+"Briefe",
+"Bänke"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:32",
+"target": "Das ist die Karte.",
+"ru": "Это карта.",
+"uk": "Це мапа.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Karte",
+"distractors": [
+"Tür",
+"Bus",
+"Jacke",
+"Paket",
+"Tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:33",
+"target": "Das ist das Ticket.",
+"ru": "Это билет.",
+"uk": "Це квиток.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Die",
+"Und"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"den",
+"der",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Ticket",
+"distractors": [
+"Gäste",
+"Bus",
+"Kinder",
+"Tom",
+"Anna"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:34",
+"target": "Das sind die Karten.",
+"ru": "Это карты.",
+"uk": "Це карти.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Der",
+"Und",
+"Mit"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"dem",
+"den",
+"und",
+"mit"
+]
+},
+{
+"correct": "Karten",
+"distractors": [
+"Stuhl",
+"Hotel",
+"Küche",
+"Buch",
+"Radio"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:35",
+"target": "Hier ist der Brief.",
+"ru": "Вот письмо.",
+"uk": "Ось лист.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Drinnen",
+"Draußen",
+"Dort",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"den",
+"die",
+"dem",
+"und"
+]
+},
+{
+"correct": "Brief",
+"distractors": [
+"Essen",
+"Hause",
+"Bahn",
+"Adresse",
+"Arzt"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:36",
+"target": "Hier ist die Rechnung.",
+"ru": "Вот счёт.",
+"uk": "Ось рахунок.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Drinnen",
+"Dort",
+"Draußen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"den",
+"dem",
+"der",
+"und"
+]
+},
+{
+"correct": "Rechnung",
+"distractors": [
+"Schlüssel",
+"Tom",
+"Kinder",
+"Deutsch",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:37",
+"target": "Hier ist das Paket.",
+"ru": "Вот посылка.",
+"uk": "Ось посилка.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Draußen",
+"Drinnen",
+"Dort",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"dem",
+"den",
+"der",
+"die",
+"und"
+]
+},
+{
+"correct": "Paket",
+"distractors": [
+"Anna",
+"Bus",
+"Zimmer",
+"Tom",
+"Karte"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:38",
+"target": "Hier sind die Briefe.",
+"ru": "Вот письма.",
+"uk": "Ось листи.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Dort",
+"Draußen",
+"Drinnen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"der",
+"den",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Briefe",
+"distractors": [
+"Plan",
+"Läden",
+"Rechnung",
+"Hotel",
+"Lampe"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:39",
+"target": "Dort ist der Aufzug.",
+"ru": "Вон там лифт.",
+"uk": "Он там ліфт.",
+"tiles": [
+{
+"correct": "Dort",
+"distractors": [
+"Draußen",
+"Hier",
+"Drinnen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"das",
+"dem",
+"den",
+"die",
+"und"
+]
+},
+{
+"correct": "Aufzug",
+"distractors": [
+"Schlüssel",
+"Gäste",
+"Tisch",
+"Kisten",
+"Tasche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:40",
+"target": "Dort ist die Treppe.",
+"ru": "Вон там лестница.",
+"uk": "Он там сходи.",
+"tiles": [
+{
+"correct": "Dort",
+"distractors": [
+"Draußen",
+"Hier",
+"Drinnen",
+"Hause",
+"Koffer"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"das",
+"dem",
+"der",
+"den",
+"und"
+]
+},
+{
+"correct": "Treppe",
+"distractors": [
+"Bank",
+"Taxi",
+"Tom",
+"Anna",
+"Schlüssel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:41",
+"target": "Der Laden ist offen.",
+"ru": "Магазин открыт.",
+"uk": "Магазин відкрито.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Den",
+"Dem",
+"Die",
+"Das",
+"Und"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Karten",
+"Tasche",
+"Handy",
+"Tische",
+"Taxis"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"schwer",
+"kaputt",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:42",
+"target": "Die Küche ist offen.",
+"ru": "Кухня открыта.",
+"uk": "Кухня відкрита.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Den",
+"Dem",
+"Das",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"kaputt",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:43",
+"target": "Das Café ist offen.",
+"ru": "Кафе открыто.",
+"uk": "Кафе відчинено.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Dem",
+"Den",
+"Die",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Karten",
+"Kisten",
+"Handy",
+"Stühle",
+"Plan"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"kaputt",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:44",
+"target": "Die Läden sind offen.",
+"ru": "Магазины открыты.",
+"uk": "Магазини відкриті.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Das",
+"Der",
+"Dem",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Läden",
+"distractors": [
+"Karten",
+"Schlüssel",
+"Taxi",
+"Küche",
+"Lampe"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"finde",
+"warten",
+"spielen"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"kaputt",
+"schwer",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:45",
+"target": "Der Mantel ist schwer.",
+"ru": "Пальто тяжёлое.",
+"uk": "Пальто важке.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Das",
+"Die",
+"Den",
+"Dem",
+"Und"
+]
+},
+{
+"correct": "Mantel",
+"distractors": [
+"Taxi",
+"Kisten",
+"Treppe",
+"Bahnhof",
+"Stuhl"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "schwer",
+"distractors": [
+"kaputt",
+"offen",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:46",
+"target": "Die Kiste ist schwer.",
+"ru": "Ящик тяжёлый.",
+"uk": "Ящик важкий.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Das",
+"Der",
+"Den",
+"Und"
+]
+},
+{
+"correct": "Kiste",
+"distractors": [
+"Kasse",
+"Bänke",
+"Küche",
+"Büro",
+"Laden"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "schwer",
+"distractors": [
+"kaputt",
+"offen",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:47",
+"target": "Das Buch ist schwer.",
+"ru": "Книга тяжёлая.",
+"uk": "Книга важка.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Den",
+"Der",
+"Dem",
+"Die",
+"Und"
+]
+},
+{
+"correct": "Buch",
+"distractors": [
+"Café",
+"Stuhl",
+"Kisten",
+"Rechnung",
+"Stühle"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "schwer",
+"distractors": [
+"kaputt",
+"offen",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:48",
+"target": "Die Kisten sind schwer.",
+"ru": "Ящики тяжёлые.",
+"uk": "Ящики важкі.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Dem",
+"Das",
+"Den",
+"Der",
+"Und"
+]
+},
+{
+"correct": "Kisten",
+"distractors": [
+"Mantel",
+"Briefe",
+"Schlüssel",
+"Zimmer",
+"Buch"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "schwer",
+"distractors": [
+"kaputt",
+"offen",
+"draußen",
+"da",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:49",
+"target": "Hier sind die Gäste.",
+"ru": "Вот гости.",
+"uk": "Ось гості.",
+"tiles": [
+{
+"correct": "Hier",
+"distractors": [
+"Dort",
+"Drinnen",
+"Draußen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"dem",
+"den",
+"der",
+"das",
+"und"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Tisch",
+"Treppe",
+"Bus",
+"Hotel",
+"Bänke"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:50",
+"target": "Dort sind die Taxis.",
+"ru": "Вон там машины такси.",
+"uk": "Он там машини таксі.",
+"tiles": [
+{
+"correct": "Dort",
+"distractors": [
+"Drinnen",
+"Hier",
+"Draußen",
+"Zusammen",
+"Offen"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"den",
+"der",
+"dem",
+"das",
+"und"
+]
+},
+{
+"correct": "Taxis",
+"distractors": [
+"Tische",
+"Haltestelle",
+"Kisten",
+"Aufzug",
+"Stühle"
+]
+}
+],
+"alternatives": []
+}
+]

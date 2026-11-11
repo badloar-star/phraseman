@@ -9,7 +9,7 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
+import { achievementConditionForLang, achievementDescForLang, achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import AchievementArt from '../../AchievementArt';
 import { streakPlateFill } from '../../streak/moments/StreakMomentFlame';
 import { isStreakMilestone } from '../../streak/moments/streak_milestones';
@@ -92,9 +92,12 @@ export const Streak100Frame = memo(function Streak100Frame({ tpl, lang }: StoryF
 
 export const AchFrame = memo(function AchFrame({ tpl, lang }: StoryFrameProps<'ach'>) {
   const pal = useStoryTemplatePalette();
-  const name = useMemo(() => {
-    const def = ALL_ACHIEVEMENTS.find((a) => a.id === tpl.achievementId);
-    return def ? achievementNameForLang(def, lang) : '';
+  const copy = useMemo(() => {
+    const achievement = ALL_ACHIEVEMENTS.find((a) => a.id === tpl.achievementId);
+    return achievement ? {
+      name: achievementNameForLang(achievement, lang),
+      reason: achievementConditionForLang(achievement, lang) ?? achievementDescForLang(achievement, lang),
+    } : { name: '', reason: '' };
   }, [lang, tpl.achievementId]);
   const overline = tpl.opened !== null && tpl.total !== null ? tplText(lang, 'achCount', { opened: tpl.opened, total: tpl.total }) : storyText(lang, 'achOverline');
   return (
@@ -103,14 +106,15 @@ export const AchFrame = memo(function AchFrame({ tpl, lang }: StoryFrameProps<'a
         <Enter kind="pop" d={100}>
           <View style={[f.ach, { boxShadow: `0 18px 40px -16px ${mix(pal.shTint, 0.7)}` }]}>
             <View style={f.achClip}>
-              <AchievementArt achievementId={tpl.achievementId} iconColor={pal.acc} size={132} borderRadius={30} accessibilityLabel={name || undefined} />
+              <AchievementArt achievementId={tpl.achievementId} iconColor={pal.acc} size={132} borderRadius={30} accessibilityLabel={copy.name || undefined} />
               <Sheen size={132} />
             </View>
           </View>
         </Enter>
       </Art>
       <Ov text={overline} d={360} />
-      {name ? <H1 text={name} d0={440} /> : null}
+      {copy.name ? <H1 text={copy.name} d0={440} /> : null}
+      {copy.reason ? <P text={copy.reason} d={560} /> : null}
       {tpl.nextDays !== null ? <P text={storyText(lang, 'achNext', { n: tpl.nextDays, dn: streakDayWord(lang, tpl.nextDays) })} d={620} /> : null}
     </FrameRoot>
   );

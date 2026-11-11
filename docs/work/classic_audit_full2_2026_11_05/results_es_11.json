@@ -1,0 +1,8 @@
+[
+{"id": "es:23:10", "type": "B1", "field": "tiles", "problem": "Соблазн «Trabajamos» (претерит, мы) даёт верную фразу «Trabajamos en el hotel antes.» = «Мы раньше работали в отеле», а её нет в alternatives", "fix": {"position": 0, "replace_distractor": "Trabajamos", "with": "Trabajas"}},
+{"id": "es:23:21", "type": "B1", "field": "tiles", "problem": "Соблазн «Vivimos» (претерит «мы жили») даёт верную фразу «Vivimos cerca de la tienda.» = «Мы жили рядом с магазином» (в подсказке нет «раньше»), засчитают ошибкой", "fix": {"position": 0, "replace_distractor": "Vivimos", "with": "Viven"}},
+{"id": "es:23:13", "type": "B1", "field": "tiles", "problem": "На позиции «al» 4 из 5 соблазнов — существительные/прилагательные (coche, grandes, libro, número): выдают себя, выбор сводится к al/del", "fix": {"position": 3, "replace_distractor": "coche", "with": "a"}},
+{"id": "es:23:13", "type": "B1", "field": "tiles", "problem": "Продолжение: соблазн-прилагательное «grandes» в позиции предлога очевидно лишний", "fix": {"position": 3, "replace_distractor": "grandes", "with": "en"}},
+{"id": "es:23:38", "type": "B1", "field": "tiles", "problem": "На позиции «al» 4 из 5 соблазнов — существительные/прилагательные (coche, grandes, libro, número): выдают себя, выбор сводится к al/del", "fix": {"position": 1, "replace_distractor": "coche", "with": "a"}},
+{"id": "es:23:38", "type": "B1", "field": "tiles", "problem": "Продолжение: соблазн-прилагательное «grandes» в позиции предлога очевидно лишний", "fix": {"position": 1, "replace_distractor": "grandes", "with": "en"}}
+]

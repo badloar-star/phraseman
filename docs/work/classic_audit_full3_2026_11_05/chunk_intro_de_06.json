@@ -1,0 +1,682 @@
+[
+{
+"lesson": 25,
+"blocks": [
+{
+"textEN": "You’re trying on a coat. Describe its colour separately: «Der Mantel ist rot» (the coat is red). To say “the red coat”, move the colour in front of the noun: «der rote Mantel». Here «rot» takes an «-e»; the colour itself hasn’t changed.\n\nDer rote Mantel passt.\n\nThe red coat fits.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"textES": "Te pruebas un abrigo. Por separado dices «Der Mantel ist rot» (el abrigo es rojo). Para «el abrigo rojo» el color va delante del nombre: «der rote Mantel». Aquí se añade «-e» a «rot»; el color no ha cambiado.\n\nDer rote Mantel passt.\n\nEl abrigo rojo queda bien.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"textId": "Kamu mencoba mantel. Sebutkan warnanya secara terpisah: «Der Mantel ist rot» (mantelnya merah). Untuk “mantel merah itu”, warna mendahului nama benda: «der rote Mantel». Di sini «rot» mendapat «-e»; warnanya tetap sama.\n\nDer rote Mantel passt.\n\nMantel merahnya pas.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"textPl": "Przymierzasz płaszcz. Kolor możesz podać osobno: «Der Mantel ist rot» (płaszcz jest czerwony). Aby powiedzieć „czerwony płaszcz”, postaw kolor przed nazwą: «der rote Mantel». Tutaj «rot» dostaje «-e»; kolor pozostaje ten sam.\n\nDer rote Mantel passt.\n\nCzerwony płaszcz pasuje.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"textPtBr": "Você experimenta um casaco. Descreva a cor separadamente: «Der Mantel ist rot» (o casaco é vermelho). Em “o casaco vermelho”, a cor vem antes do nome em alemão: «der rote Mantel». Aqui «rot» recebe «-e»; a cor continua a mesma.\n\nDer rote Mantel passt.\n\nO casaco vermelho serve.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"textRU": "Ты примеряешь пальто. Цвет можно назвать отдельно: «Der Mantel ist rot» — пальто красное. Но если скажешь «красное пальто», цвет окажется перед названием: «der rote Mantel». В этой группе к «rot» добавляется «-e». Причина — место и форма слова, а не другой оттенок.\n\nDer rote Mantel passt.\n\nКрасное пальто подходит.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"textTr": "Paltoyu deniyorsun. Rengi ayrı söyle: «Der Mantel ist rot» (palto kırmızı). “Kırmızı palto” derken renk isimden önce gelir: «der rote Mantel». Bu grupta «rot» sonuna «-e» alır; renk değişmez.\n\nDer rote Mantel passt.\n\nKırmızı palto uyuyor.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"textUK": "Ти приміряєш пальто. Колір можна назвати окремо: «Der Mantel ist rot» — пальто червоне. Але в словах «червоне пальто» колір стоїть перед назвою речі: «der rote Mantel». У цій групі до «rot» додаємо «-e». Відтінок не змінився.\n\nDer rote Mantel passt.\n\nЧервоне пальто личить.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"textVi": "Bạn thử áo khoác. Nói riêng màu sắc: «Der Mantel ist rot» (chiếc áo màu đỏ). Để nói “chiếc áo khoác đỏ”, đặt màu trước danh từ: «der rote Mantel». Ở cụm này «rot» có thêm đuôi «-e», màu sắc vẫn vậy.\n\nDer rote Mantel passt.\n\nÁo khoác đỏ vừa vặn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’re trying on a coat. Describe its colour separately: «Der Mantel ist rot» (the coat is red). To say “the red coat”, move the colour in front of the noun: «der rote Mantel». Here «rot» takes an «-e»; the colour itself hasn’t changed.\n\nDer rote Mantel passt.\n\nThe red coat fits.\n\nAn article is a small word before a noun: «der» in «der Tisch». Gender belongs to the German noun. Case is the form needed for its job in a phrase. It’s still the same table in «der Tisch» and «auf dem Tisch».",
+"es": "Te pruebas un abrigo. Por separado dices «Der Mantel ist rot» (el abrigo es rojo). Para «el abrigo rojo» el color va delante del nombre: «der rote Mantel». Aquí se añade «-e» a «rot»; el color no ha cambiado.\n\nDer rote Mantel passt.\n\nEl abrigo rojo queda bien.\n\nEl artículo es la palabra breve delante del nombre: «der» en «der Tisch». El género pertenece al sustantivo alemán. El caso es la forma que exige su función. La mesa sigue siendo la misma en «der Tisch» y «auf dem Tisch».",
+"id": "Kamu mencoba mantel. Sebutkan warnanya secara terpisah: «Der Mantel ist rot» (mantelnya merah). Untuk “mantel merah itu”, warna mendahului nama benda: «der rote Mantel». Di sini «rot» mendapat «-e»; warnanya tetap sama.\n\nDer rote Mantel passt.\n\nMantel merahnya pas.\n\nArtikel adalah kata pendek sebelum nomina: «der» dalam «der Tisch». Gender melekat pada kata Jermannya. Kasus adalah bentuk sesuai peran di kalimat. Meja tetap sama dalam «der Tisch» dan «auf dem Tisch».",
+"pl": "Przymierzasz płaszcz. Kolor możesz podać osobno: «Der Mantel ist rot» (płaszcz jest czerwony). Aby powiedzieć „czerwony płaszcz”, postaw kolor przed nazwą: «der rote Mantel». Tutaj «rot» dostaje «-e»; kolor pozostaje ten sam.\n\nDer rote Mantel passt.\n\nCzerwony płaszcz pasuje.\n\nRodzajnik to krótkie słowo przed rzeczownikiem: «der» w «der Tisch». Rodzaj jest cechą niemieckiego rzeczownika, a przypadek zależy od jego roli w zdaniu. W «der Tisch» i «auf dem Tisch» nadal chodzi o ten sam stół.",
+"pt-BR": "Você experimenta um casaco. Descreva a cor separadamente: «Der Mantel ist rot» (o casaco é vermelho). Em “o casaco vermelho”, a cor vem antes do nome em alemão: «der rote Mantel». Aqui «rot» recebe «-e»; a cor continua a mesma.\n\nDer rote Mantel passt.\n\nO casaco vermelho serve.\n\nArtigo é a palavra curta antes do nome: «der» em «der Tisch». O gênero pertence ao nome alemão. Caso é a forma exigida pela função dele na frase. A mesa não muda entre «der Tisch» e «auf dem Tisch».",
+"ru": "Ты примеряешь пальто. Цвет можно назвать отдельно: «Der Mantel ist rot» — пальто красное. Но если скажешь «красное пальто», цвет окажется перед названием: «der rote Mantel». В этой группе к «rot» добавляется «-e». Причина — место и форма слова, а не другой оттенок.\n\nDer rote Mantel passt.\n\nКрасное пальто подходит.\n\nАртикль — маленькое слово перед названием: в «der Tisch» это «der». Род — свойство немецкого названия. Падеж — форма, которую требует его роль в конкретной фразе. Стол остаётся столом и в «der Tisch», и в «auf dem Tisch».",
+"tr": "Paltoyu deniyorsun. Rengi ayrı söyle: «Der Mantel ist rot» (palto kırmızı). “Kırmızı palto” derken renk isimden önce gelir: «der rote Mantel». Bu grupta «rot» sonuna «-e» alır; renk değişmez.\n\nDer rote Mantel passt.\n\nKırmızı palto uyuyor.\n\nArtikel, ismin önündeki kısa kelimedir: «der Tisch» içinde «der». Dilbilgisel cinsiyet Almanca ismin özelliğidir. Hâl ise cümledeki göreve göre değişir. «der Tisch» ve «auf dem Tisch» aynı masayı anlatır.",
+"uk": "Ти приміряєш пальто. Колір можна назвати окремо: «Der Mantel ist rot» — пальто червоне. Але в словах «червоне пальто» колір стоїть перед назвою речі: «der rote Mantel». У цій групі до «rot» додаємо «-e». Відтінок не змінився.\n\nDer rote Mantel passt.\n\nЧервоне пальто личить.\n\nАртикль — коротке слово перед назвою: у «der Tisch» це «der». Рід — властивість німецького іменника. Відмінок — форма, якої потребує його роль у фразі. Стіл лишається столом і в «der Tisch», і в «auf dem Tisch».",
+"vi": "Bạn thử áo khoác. Nói riêng màu sắc: «Der Mantel ist rot» (chiếc áo màu đỏ). Để nói “chiếc áo khoác đỏ”, đặt màu trước danh từ: «der rote Mantel». Ở cụm này «rot» có thêm đuôi «-e», màu sắc vẫn vậy.\n\nDer rote Mantel passt.\n\nÁo khoác đỏ vừa vặn.\n\nMạo từ là từ ngắn trước danh từ: «der» trong «der Tisch». Giống là đặc điểm của danh từ Đức. Cách là dạng do vai trò trong câu quyết định. Cả «der Tisch» và «auf dem Tisch» vẫn nói đến cùng một cái bàn."
+},
+"kind": "concept",
+"exampleIds": [
+"de:25:01"
+]
+},
+{
+"textEN": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nThe red coat fits.\n\nIch nehme den roten Mantel.\n\nI'll take the red coat.\n\nFirst the coat is the subject: «der rote Mantel». Then it’s what you take: «den roten Mantel». Watch both changes in this masculine pair: «der → den» and «rote → roten».",
+"textES": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nEl abrigo rojo queda bien.\n\nIch nehme den roten Mantel.\n\nMe quedo con el abrigo rojo.\n\nPrimero el abrigo es el sujeto: «der rote Mantel». Luego es lo que coges: «den roten Mantel». Fíjate en dos cambios: «der → den» y «rote → roten».",
+"textId": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nMantel merahnya pas.\n\nIch nehme den roten Mantel.\n\nSaya akan mengambil mantel merah.\n\nPertama mantel menjadi subjek: «der rote Mantel». Lalu mantel menjadi benda yang diambil: «den roten Mantel». Ada dua perubahan: «der → den» dan «rote → roten».",
+"textPl": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nCzerwony płaszcz pasuje.\n\nIch nehme den roten Mantel.\n\nWezmę czerwony płaszcz.\n\nNajpierw płaszcz jest podmiotem: «der rote Mantel». Potem jest tym, co bierzesz: «den roten Mantel». Widać dwie zmiany: «der → den» i «rote → roten».",
+"textPtBr": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nO casaco vermelho serve.\n\nIch nehme den roten Mantel.\n\nEu pego o casaco vermelho.\n\nPrimeiro o casaco é o sujeito: «der rote Mantel». Depois é o que você pega: «den roten Mantel». Observe as duas mudanças: «der → den» e «rote → roten».",
+"textRU": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nКрасное пальто подходит.\n\nIch nehme den roten Mantel.\n\nЯ беру красное пальто.\n\nСначала пальто само является темой сообщения: «der rote Mantel». Потом его берут: «den roten Mantel». В этой мужской паре меняются сразу два окончания: «der → den» и «rote → roten».",
+"textTr": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nKırmızı palto uyuyor.\n\nIch nehme den roten Mantel.\n\nKırmızı paltoyu alacağım.\n\nÖnce palto öznedir: «der rote Mantel». Sonra aldığın şeydir: «den roten Mantel». İki değişikliği de gör: «der → den» ve «rote → roten».",
+"textUK": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nЧервоне пальто личить.\n\nIch nehme den roten Mantel.\n\nЯ беру червоне пальто.\n\nСпершу говоримо про саме пальто: «der rote Mantel». Потім його беруть: «den roten Mantel». У цій чоловічій парі дві зміни: «der → den» і «rote → roten».",
+"textVi": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nÁo khoác đỏ vừa vặn.\n\nIch nehme den roten Mantel.\n\nTôi sẽ lấy chiếc áo khoác đỏ.\n\nĐầu tiên chiếc áo là chủ thể: «der rote Mantel». Sau nó là vật bạn lấy: «den roten Mantel». Chú ý hai thay đổi: «der → den» và «rote → roten».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nThe red coat fits.\n\nIch nehme den roten Mantel.\n\nI'll take the red coat.\n\nFirst the coat is the subject: «der rote Mantel». Then it’s what you take: «den roten Mantel». Watch both changes in this masculine pair: «der → den» and «rote → roten».",
+"es": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nEl abrigo rojo queda bien.\n\nIch nehme den roten Mantel.\n\nMe quedo con el abrigo rojo.\n\nPrimero el abrigo es el sujeto: «der rote Mantel». Luego es lo que coges: «den roten Mantel». Fíjate en dos cambios: «der → den» y «rote → roten».",
+"id": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nMantel merahnya pas.\n\nIch nehme den roten Mantel.\n\nSaya akan mengambil mantel merah.\n\nPertama mantel menjadi subjek: «der rote Mantel». Lalu mantel menjadi benda yang diambil: «den roten Mantel». Ada dua perubahan: «der → den» dan «rote → roten».",
+"pl": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nCzerwony płaszcz pasuje.\n\nIch nehme den roten Mantel.\n\nWezmę czerwony płaszcz.\n\nNajpierw płaszcz jest podmiotem: «der rote Mantel». Potem jest tym, co bierzesz: «den roten Mantel». Widać dwie zmiany: «der → den» i «rote → roten».",
+"pt-BR": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nO casaco vermelho serve.\n\nIch nehme den roten Mantel.\n\nEu pego o casaco vermelho.\n\nPrimeiro o casaco é o sujeito: «der rote Mantel». Depois é o que você pega: «den roten Mantel». Observe as duas mudanças: «der → den» e «rote → roten».",
+"ru": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nКрасное пальто подходит.\n\nIch nehme den roten Mantel.\n\nЯ беру красное пальто.\n\nСначала пальто само является темой сообщения: «der rote Mantel». Потом его берут: «den roten Mantel». В этой мужской паре меняются сразу два окончания: «der → den» и «rote → roten».",
+"tr": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nKırmızı palto uyuyor.\n\nIch nehme den roten Mantel.\n\nKırmızı paltoyu alacağım.\n\nÖnce palto öznedir: «der rote Mantel». Sonra aldığın şeydir: «den roten Mantel». İki değişikliği de gör: «der → den» ve «rote → roten».",
+"uk": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nЧервоне пальто личить.\n\nIch nehme den roten Mantel.\n\nЯ беру червоне пальто.\n\nСпершу говоримо про саме пальто: «der rote Mantel». Потім його беруть: «den roten Mantel». У цій чоловічій парі дві зміни: «der → den» і «rote → roten».",
+"vi": "«der rote Mantel» / «den roten Mantel»\n\nDer rote Mantel passt.\n\nÁo khoác đỏ vừa vặn.\n\nIch nehme den roten Mantel.\n\nTôi sẽ lấy chiếc áo khoác đỏ.\n\nĐầu tiên chiếc áo là chủ thể: «der rote Mantel». Sau nó là vật bạn lấy: «den roten Mantel». Chú ý hai thay đổi: «der → den» và «rote → roten»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:25:01",
+"de:25:11"
+]
+},
+{
+"textEN": "The red coat fits.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der» — The article for Mantel: one particular coat.\n\n2. «rote» — Red: before Mantel in this phrase rot takes -e.\n\n3. «Mantel» — Coat: one item of clothing.\n\n4. «passt» — Fits: what you’re saying about the coat.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textES": "El abrigo rojo queda bien.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der» — Artículo de Mantel: un abrigo concreto.\n\n2. «rote» — Rojo: delante de Mantel en este grupo rot lleva -e.\n\n3. «Mantel» — Abrigo: una prenda.\n\n4. «passt» — Me queda bien: lo que afirmas del abrigo.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textId": "Mantel merahnya pas.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der» — Artikel untuk Mantel: mantel tertentu.\n\n2. «rote» — Merah: sebelum Mantel dalam frasa ini rot mendapat -e.\n\n3. «Mantel» — Mantel: satu pakaian.\n\n4. «passt» — Ukurannya pas: itulah yang dikatakan tentang mantel.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textPl": "Czerwony płaszcz pasuje.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der» — Rodzajnik do Mantel: mowa o konkretnym płaszczu.\n\n2. «rote» — Czerwony: w tej grupie przed Mantel słowo rot dostaje -e.\n\n3. «Mantel» — Płaszcz: jedna sztuka odzieży.\n\n4. «passt» — Pasuje rozmiarem: to mówisz o płaszczu.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textPtBr": "O casaco vermelho serve.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der» — Artigo de Mantel: um casaco específico.\n\n2. «rote» — Vermelho: antes de Mantel neste grupo, rot recebe -e.\n\n3. «Mantel» — Casaco: uma peça de roupa.\n\n4. «passt» — Serve: o que você diz sobre o tamanho do casaco.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textRU": "Красное пальто подходит.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der» — Артикль для Mantel: речь о конкретном пальто.\n\n2. «rote» — Красное. Перед Mantel в этой группе rot получает -e.\n\n3. «Mantel» — Пальто. Речь об одном предмете одежды.\n\n4. «passt» — Подходит по размеру. Это то, что сообщаем о пальто.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textTr": "Kırmızı palto uyuyor.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der» — Mantel isminin artikeli: belirli bir palto.\n\n2. «rote» — Kırmızı: bu grupta Mantel önünde rot, -e alır.\n\n3. «Mantel» — Palto: tek giysi.\n\n4. «passt» — Bedeni uyuyor: palto hakkında söylediğin şey.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textUK": "Червоне пальто личить.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der» — Артикль до Mantel: ідеться про конкретне пальто.\n\n2. «rote» — Червоне. Перед Mantel у цій групі rot отримує -e.\n\n3. «Mantel» — Пальто. Йдеться про один предмет одягу.\n\n4. «passt» — Підходить за розміром. Це те, що повідомляємо про пальто.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"textVi": "Áo khoác đỏ vừa vặn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der» — Mạo từ đi với Mantel: một chiếc áo khoác cụ thể.\n\n2. «rote» — Đỏ: trước Mantel trong cụm này, rot thêm -e.\n\n3. «Mantel» — Áo khoác dài: một món đồ mặc.\n\n4. «passt» — Vừa người: điều bạn nói về chiếc áo.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "The red coat fits.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Der» — The article for Mantel: one particular coat.\n\n2. «rote» — Red: before Mantel in this phrase rot takes -e.\n\n3. «Mantel» — Coat: one item of clothing.\n\n4. «passt» — Fits: what you’re saying about the coat.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"es": "El abrigo rojo queda bien.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Der» — Artículo de Mantel: un abrigo concreto.\n\n2. «rote» — Rojo: delante de Mantel en este grupo rot lleva -e.\n\n3. «Mantel» — Abrigo: una prenda.\n\n4. «passt» — Me queda bien: lo que afirmas del abrigo.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"id": "Mantel merahnya pas.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Der» — Artikel untuk Mantel: mantel tertentu.\n\n2. «rote» — Merah: sebelum Mantel dalam frasa ini rot mendapat -e.\n\n3. «Mantel» — Mantel: satu pakaian.\n\n4. «passt» — Ukurannya pas: itulah yang dikatakan tentang mantel.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"pl": "Czerwony płaszcz pasuje.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Der» — Rodzajnik do Mantel: mowa o konkretnym płaszczu.\n\n2. «rote» — Czerwony: w tej grupie przed Mantel słowo rot dostaje -e.\n\n3. «Mantel» — Płaszcz: jedna sztuka odzieży.\n\n4. «passt» — Pasuje rozmiarem: to mówisz o płaszczu.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"pt-BR": "O casaco vermelho serve.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Der» — Artigo de Mantel: um casaco específico.\n\n2. «rote» — Vermelho: antes de Mantel neste grupo, rot recebe -e.\n\n3. «Mantel» — Casaco: uma peça de roupa.\n\n4. «passt» — Serve: o que você diz sobre o tamanho do casaco.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"ru": "Красное пальто подходит.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Der» — Артикль для Mantel: речь о конкретном пальто.\n\n2. «rote» — Красное. Перед Mantel в этой группе rot получает -e.\n\n3. «Mantel» — Пальто. Речь об одном предмете одежды.\n\n4. «passt» — Подходит по размеру. Это то, что сообщаем о пальто.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"tr": "Kırmızı palto uyuyor.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Der» — Mantel isminin artikeli: belirli bir palto.\n\n2. «rote» — Kırmızı: bu grupta Mantel önünde rot, -e alır.\n\n3. «Mantel» — Palto: tek giysi.\n\n4. «passt» — Bedeni uyuyor: palto hakkında söylediğin şey.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"uk": "Червоне пальто личить.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Der» — Артикль до Mantel: ідеться про конкретне пальто.\n\n2. «rote» — Червоне. Перед Mantel у цій групі rot отримує -e.\n\n3. «Mantel» — Пальто. Йдеться про один предмет одягу.\n\n4. «passt» — Підходить за розміром. Це те, що повідомляємо про пальто.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt.",
+"vi": "Áo khoác đỏ vừa vặn.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Der» — Mạo từ đi với Mantel: một chiếc áo khoác cụ thể.\n\n2. «rote» — Đỏ: trước Mantel trong cụm này, rot thêm -e.\n\n3. «Mantel» — Áo khoác dài: một món đồ mặc.\n\n4. «passt» — Vừa người: điều bạn nói về chiếc áo.\n\nDer → rote → Mantel → passt\n\nDer rote Mantel passt."
+},
+"kind": "practice",
+"exampleIds": [
+"de:25:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:25:01",
+"target": "Der rote Mantel passt.",
+"ru": "Красное пальто подходит.",
+"uk": "Червоне пальто підходить."
+},
+{
+"id": "de:25:01",
+"target": "Der rote Mantel passt.",
+"ru": "Красное пальто подходит.",
+"uk": "Червоне пальто підходить."
+},
+{
+"id": "de:25:11",
+"target": "Ich nehme den roten Mantel.",
+"ru": "Я беру красное пальто.",
+"uk": "Я беру червоне пальто."
+},
+{
+"id": "de:25:01",
+"target": "Der rote Mantel passt.",
+"ru": "Красное пальто подходит.",
+"uk": "Червоне пальто підходить."
+}
+]
+},
+{
+"lesson": 26,
+"blocks": [
+{
+"textEN": "You’re trying to speak slowly. Who’s trying? I am: «ich versuche». Trying to do what? «langsam zu sprechen» (to speak slowly). Keep the second verb in its dictionary form «sprechen», with «zu» directly before it here.\n\nIch versuche, langsam zu sprechen.\n\nI am trying to speak slowly.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"textES": "Intentas hablar despacio. ¿Quién lo intenta? Yo: «ich versuche». ¿Hacer qué? «langsam zu sprechen» (hablar despacio). El segundo verbo conserva la forma de diccionario «sprechen», aquí con «zu» justo delante.\n\nIch versuche, langsam zu sprechen.\n\nEstoy intentando hablar despacio.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"textId": "Kamu berusaha berbicara pelan-pelan. Siapa yang berusaha? Aku: «ich versuche». Berusaha melakukan apa? «langsam zu sprechen» (berbicara pelan-pelan). Kata kerja kedua tetap berbentuk kamus «sprechen», didahului «zu» di sini.\n\nIch versuche, langsam zu sprechen.\n\nSaya mencoba berbicara perlahan.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"textPl": "Starasz się mówić powoli. Kto próbuje? Ja: «ich versuche». Co próbuję robić? «langsam zu sprechen» (mówić powoli). Drugi czasownik zachowuje formę słownikową «sprechen», a tuż przed nim stoi tu «zu».\n\nIch versuche, langsam zu sprechen.\n\nPróbuję mówić powoli.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"textPtBr": "Você tenta falar devagar. Quem tenta? Eu: «ich versuche». Tenta fazer o quê? «langsam zu sprechen» (falar devagar). O segundo verbo mantém a forma de dicionário «sprechen»; aqui «zu» vem logo antes.\n\nIch versuche, langsam zu sprechen.\n\nEstou tentando falar devagar.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"textRU": "Ты хочешь говорить медленнее и стараешься это делать. Кто старается? Я: «ich versuche». Что именно стараюсь делать? «langsam zu sprechen» — говорить медленно. Второе действие остаётся в словарной форме «sprechen», а «zu» ставится прямо перед ним.\n\nIch versuche, langsam zu sprechen.\n\nЯ стараюсь говорить медленно.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"textTr": "Yavaş konuşmayı deniyorsun. Kim deniyor? Ben: «ich versuche». Neyi? «langsam zu sprechen» (yavaş konuşmayı). İkinci fiil sözlük biçimi «sprechen» olarak kalır; bu örnekte «zu» hemen önüne gelir.\n\nIch versuche, langsam zu sprechen.\n\nYavaş konuşmaya çalışıyorum.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"textUK": "Ти намагаєшся говорити повільно. Хто намагається? Я: «ich versuche». Що саме робити? «langsam zu sprechen» — говорити повільно. Друга дія лишається у словниковій формі «sprechen», а «zu» стає просто перед нею.\n\nIch versuche, langsam zu sprechen.\n\nЯ намагаюся говорити повільно.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"textVi": "Bạn cố nói chậm. Ai đang cố? Tôi: «ich versuche». Cố làm gì? «langsam zu sprechen» (nói chậm). Động từ thứ hai giữ dạng từ điển «sprechen», với «zu» ngay trước nó trong ví dụ này.\n\nIch versuche, langsam zu sprechen.\n\nTôi đang cố gắng nói chậm lại.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "You’re trying to speak slowly. Who’s trying? I am: «ich versuche». Trying to do what? «langsam zu sprechen» (to speak slowly). Keep the second verb in its dictionary form «sprechen», with «zu» directly before it here.\n\nIch versuche, langsam zu sprechen.\n\nI am trying to speak slowly.\n\nThe infinitive is the verb as listed in a dictionary, without “I”, “you” or “she”: «warten» (wait), «aufstehen» (get up). It’s a starting form, not the right form for every slot.",
+"es": "Intentas hablar despacio. ¿Quién lo intenta? Yo: «ich versuche». ¿Hacer qué? «langsam zu sprechen» (hablar despacio). El segundo verbo conserva la forma de diccionario «sprechen», aquí con «zu» justo delante.\n\nIch versuche, langsam zu sprechen.\n\nEstoy intentando hablar despacio.\n\nEl infinitivo es la forma de diccionario, sin persona: «warten» (esperar), «aufstehen» (levantarse). Es el punto de partida, no una forma que sirva en cualquier posición.",
+"id": "Kamu berusaha berbicara pelan-pelan. Siapa yang berusaha? Aku: «ich versuche». Berusaha melakukan apa? «langsam zu sprechen» (berbicara pelan-pelan). Kata kerja kedua tetap berbentuk kamus «sprechen», didahului «zu» di sini.\n\nIch versuche, langsam zu sprechen.\n\nSaya mencoba berbicara perlahan.\n\nInfinitif adalah bentuk kamus tanpa pelaku tertentu: «warten» (menunggu), «aufstehen» (bangun). Ini bentuk dasar, bukan bentuk yang tepat untuk setiap posisi.",
+"pl": "Starasz się mówić powoli. Kto próbuje? Ja: «ich versuche». Co próbuję robić? «langsam zu sprechen» (mówić powoli). Drugi czasownik zachowuje formę słownikową «sprechen», a tuż przed nim stoi tu «zu».\n\nIch versuche, langsam zu sprechen.\n\nPróbuję mówić powoli.\n\nBezokolicznik to forma słownikowa, bez osoby: «warten» (czekać), «aufstehen» (wstawać). To punkt wyjścia, nie forma pasująca do każdego miejsca.",
+"pt-BR": "Você tenta falar devagar. Quem tenta? Eu: «ich versuche». Tenta fazer o quê? «langsam zu sprechen» (falar devagar). O segundo verbo mantém a forma de dicionário «sprechen»; aqui «zu» vem logo antes.\n\nIch versuche, langsam zu sprechen.\n\nEstou tentando falar devagar.\n\nO infinitivo é a forma de dicionário, sem pessoa: «warten» (esperar), «aufstehen» (levantar-se). É o ponto de partida, não a forma certa para qualquer posição.",
+"ru": "Ты хочешь говорить медленнее и стараешься это делать. Кто старается? Я: «ich versuche». Что именно стараюсь делать? «langsam zu sprechen» — говорить медленно. Второе действие остаётся в словарной форме «sprechen», а «zu» ставится прямо перед ним.\n\nIch versuche, langsam zu sprechen.\n\nЯ стараюсь говорить медленно.\n\nИнфинитив — название действия в словаре, без «я», «ты» или «она»: «warten» — ждать, «aufstehen» — вставать. Это начальная точка, а не форма, которую надо ставить в любое место предложения.",
+"tr": "Yavaş konuşmayı deniyorsun. Kim deniyor? Ben: «ich versuche». Neyi? «langsam zu sprechen» (yavaş konuşmayı). İkinci fiil sözlük biçimi «sprechen» olarak kalır; bu örnekte «zu» hemen önüne gelir.\n\nIch versuche, langsam zu sprechen.\n\nYavaş konuşmaya çalışıyorum.\n\nMastar, fiilin kişisiz sözlük biçimidir: «warten» (beklemek), «aufstehen» (kalkmak). Başlangıç biçimidir, her boşluğa gelmez.",
+"uk": "Ти намагаєшся говорити повільно. Хто намагається? Я: «ich versuche». Що саме робити? «langsam zu sprechen» — говорити повільно. Друга дія лишається у словниковій формі «sprechen», а «zu» стає просто перед нею.\n\nIch versuche, langsam zu sprechen.\n\nЯ намагаюся говорити повільно.\n\nІнфінітив — назва дії у словнику без «я», «ти» чи «вона»: «warten» — чекати, «aufstehen» — вставати. Це початкова форма, але не для будь-якого місця у реченні.",
+"vi": "Bạn cố nói chậm. Ai đang cố? Tôi: «ich versuche». Cố làm gì? «langsam zu sprechen» (nói chậm). Động từ thứ hai giữ dạng từ điển «sprechen», với «zu» ngay trước nó trong ví dụ này.\n\nIch versuche, langsam zu sprechen.\n\nTôi đang cố gắng nói chậm lại.\n\nĐộng từ nguyên mẫu là dạng trong từ điển, chưa gắn với người thực hiện: «warten» (chờ), «aufstehen» (thức dậy). Không phải vị trí nào trong câu cũng dùng dạng này."
+},
+"kind": "concept",
+"exampleIds": [
+"de:26:01"
+]
+},
+{
+"textEN": "«Ich versuche,» … «zu» + infinitive\n\nIch versuche, langsam zu sprechen.\n\nI am trying to speak slowly.\n\nDu versuchst, leise zu sein.\n\nYou are trying to be quiet.\n\nOnly the first verb changes to fit the person: «ich versuche», «du versuchst». After «zu» these examples keep the dictionary form of the activity or state: «sprechen», «sein».",
+"textES": "«Ich versuche,» … «zu» + infinitivo\n\nIch versuche, langsam zu sprechen.\n\nEstoy intentando hablar despacio.\n\nDu versuchst, leise zu sein.\n\nEstás intentando guardar silencio.\n\nSolo cambia el primer verbo con la persona: «ich versuche», «du versuchst». Tras «zu» aquí va el infinitivo de la acción o el estado: «sprechen», «sein».",
+"textId": "«Ich versuche,» … «zu» + infinitif\n\nIch versuche, langsam zu sprechen.\n\nSaya mencoba berbicara perlahan.\n\nDu versuchst, leise zu sein.\n\nAnda mencoba untuk diam.\n\nHanya kata kerja pertama berubah menurut pelaku: «ich versuche», «du versuchst». Setelah «zu» tetap bentuk kamus kegiatan atau keadaan: «sprechen», «sein».",
+"textPl": "«Ich versuche,» … «zu» + bezokolicznik\n\nIch versuche, langsam zu sprechen.\n\nPróbuję mówić powoli.\n\nDu versuchst, leise zu sein.\n\nPróbujesz być cicho.\n\nTylko pierwszy czasownik zmienia się z osobą: «ich versuche», «du versuchst». Po «zu» w tych przykładach zachowaj bezokolicznik czynności lub stanu: «sprechen», «sein».",
+"textPtBr": "«Ich versuche,» … «zu» + infinitivo\n\nIch versuche, langsam zu sprechen.\n\nEstou tentando falar devagar.\n\nDu versuchst, leise zu sein.\n\nVocê está tentando fazer silêncio.\n\nSó o primeiro verbo muda com a pessoa: «ich versuche», «du versuchst». Após «zu» fica a forma de dicionário da ação ou estado: «sprechen», «sein».",
+"textRU": "«Ich versuche,» … «zu» + инфинитив\n\nIch versuche, langsam zu sprechen.\n\nЯ стараюсь говорить медленно.\n\nDu versuchst, leise zu sein.\n\nТы стараешься вести себя тихо.\n\nВ обоих сообщениях только первый глагол подстраивается под человека: «ich versuche», «du versuchst». После «zu» в этих примерах остаётся полное название действия или состояния: «sprechen», «sein».",
+"textTr": "«Ich versuche,» … «zu» + mastar\n\nIch versuche, langsam zu sprechen.\n\nYavaş konuşmaya çalışıyorum.\n\nDu versuchst, leise zu sein.\n\nSessiz olmaya çalışıyorsunuz.\n\nYalnızca ilk fiil kişiye göre değişir: «ich versuche», «du versuchst». Burada «zu» sonrasında eylem ya da durumun mastarı kalır: «sprechen», «sein».",
+"textUK": "«Ich versuche,» … «zu» + інфінітив\n\nIch versuche, langsam zu sprechen.\n\nЯ намагаюся говорити повільно.\n\nDu versuchst, leise zu sein.\n\nТи намагаєшся поводитися тихо.\n\nВ обох повідомленнях лише перше дієслово змінюється за особою: «ich versuche», «du versuchst». Після «zu» тут лишається повна словникова форма: «sprechen», «sein».",
+"textVi": "«Ich versuche,» … «zu» + động từ nguyên mẫu\n\nIch versuche, langsam zu sprechen.\n\nTôi đang cố gắng nói chậm lại.\n\nDu versuchst, leise zu sein.\n\nBạn đang cố gắng giữ im lặng.\n\nChỉ động từ đầu đổi theo người: «ich versuche», «du versuchst». Sau «zu» ở đây giữ dạng từ điển của hành động hoặc trạng thái: «sprechen», «sein».",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Ich versuche,» … «zu» + infinitive\n\nIch versuche, langsam zu sprechen.\n\nI am trying to speak slowly.\n\nDu versuchst, leise zu sein.\n\nYou are trying to be quiet.\n\nOnly the first verb changes to fit the person: «ich versuche», «du versuchst». After «zu» these examples keep the dictionary form of the activity or state: «sprechen», «sein».",
+"es": "«Ich versuche,» … «zu» + infinitivo\n\nIch versuche, langsam zu sprechen.\n\nEstoy intentando hablar despacio.\n\nDu versuchst, leise zu sein.\n\nEstás intentando guardar silencio.\n\nSolo cambia el primer verbo con la persona: «ich versuche», «du versuchst». Tras «zu» aquí va el infinitivo de la acción o el estado: «sprechen», «sein».",
+"id": "«Ich versuche,» … «zu» + infinitif\n\nIch versuche, langsam zu sprechen.\n\nSaya mencoba berbicara perlahan.\n\nDu versuchst, leise zu sein.\n\nAnda mencoba untuk diam.\n\nHanya kata kerja pertama berubah menurut pelaku: «ich versuche», «du versuchst». Setelah «zu» tetap bentuk kamus kegiatan atau keadaan: «sprechen», «sein».",
+"pl": "«Ich versuche,» … «zu» + bezokolicznik\n\nIch versuche, langsam zu sprechen.\n\nPróbuję mówić powoli.\n\nDu versuchst, leise zu sein.\n\nPróbujesz być cicho.\n\nTylko pierwszy czasownik zmienia się z osobą: «ich versuche», «du versuchst». Po «zu» w tych przykładach zachowaj bezokolicznik czynności lub stanu: «sprechen», «sein».",
+"pt-BR": "«Ich versuche,» … «zu» + infinitivo\n\nIch versuche, langsam zu sprechen.\n\nEstou tentando falar devagar.\n\nDu versuchst, leise zu sein.\n\nVocê está tentando fazer silêncio.\n\nSó o primeiro verbo muda com a pessoa: «ich versuche», «du versuchst». Após «zu» fica a forma de dicionário da ação ou estado: «sprechen», «sein».",
+"ru": "«Ich versuche,» … «zu» + инфинитив\n\nIch versuche, langsam zu sprechen.\n\nЯ стараюсь говорить медленно.\n\nDu versuchst, leise zu sein.\n\nТы стараешься вести себя тихо.\n\nВ обоих сообщениях только первый глагол подстраивается под человека: «ich versuche», «du versuchst». После «zu» в этих примерах остаётся полное название действия или состояния: «sprechen», «sein».",
+"tr": "«Ich versuche,» … «zu» + mastar\n\nIch versuche, langsam zu sprechen.\n\nYavaş konuşmaya çalışıyorum.\n\nDu versuchst, leise zu sein.\n\nSessiz olmaya çalışıyorsunuz.\n\nYalnızca ilk fiil kişiye göre değişir: «ich versuche», «du versuchst». Burada «zu» sonrasında eylem ya da durumun mastarı kalır: «sprechen», «sein».",
+"uk": "«Ich versuche,» … «zu» + інфінітив\n\nIch versuche, langsam zu sprechen.\n\nЯ намагаюся говорити повільно.\n\nDu versuchst, leise zu sein.\n\nТи намагаєшся поводитися тихо.\n\nВ обох повідомленнях лише перше дієслово змінюється за особою: «ich versuche», «du versuchst». Після «zu» тут лишається повна словникова форма: «sprechen», «sein».",
+"vi": "«Ich versuche,» … «zu» + động từ nguyên mẫu\n\nIch versuche, langsam zu sprechen.\n\nTôi đang cố gắng nói chậm lại.\n\nDu versuchst, leise zu sein.\n\nBạn đang cố gắng giữ im lặng.\n\nChỉ động từ đầu đổi theo người: «ich versuche», «du versuchst». Sau «zu» ở đây giữ dạng từ điển của hành động hoặc trạng thái: «sprechen», «sein»."
+},
+"kind": "formula",
+"exampleIds": [
+"de:26:01",
+"de:26:02"
+]
+},
+{
+"textEN": "I am trying to speak slowly.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich versuche» — I try: this first part already names the person.\n\n2. «langsam» — Slowly: how I’m trying to speak.\n\n3. «zu sprechen» — To speak. Put zu before the dictionary form sprechen; don’t add another ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textES": "Estoy intentando hablar despacio.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich versuche» — Intento: esta parte ya dice quién lo intenta.\n\n2. «langsam» — Despacio: cómo intento hablar.\n\n3. «zu sprechen» — Hablar. Pon zu ante la forma de diccionario sprechen; no repitas ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textId": "Saya mencoba berbicara perlahan.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich versuche» — Aku berusaha: bagian pertama sudah menyebut pelaku.\n\n2. «langsam» — Pelan-pelan: bagaimana aku mencoba berbicara.\n\n3. «zu sprechen» — Berbicara. Taruh zu sebelum bentuk kamus sprechen; jangan ulangi ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textPl": "Próbuję mówić powoli.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich versuche» — Próbuję: ta część już wskazuje osobę.\n\n2. «langsam» — Powoli: jak staram się mówić.\n\n3. «zu sprechen» — Mówić. Przed bezokolicznikiem sprechen postaw zu; nie powtarzaj ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textPtBr": "Estou tentando falar devagar.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich versuche» — Eu tento: esta parte já indica a pessoa.\n\n2. «langsam» — Devagar: como tento falar.\n\n3. «zu sprechen» — Falar. Coloque zu antes de sprechen na forma de dicionário; não repita ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textRU": "Я стараюсь говорить медленно.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich versuche» — Я пытаюсь: первая часть уже называет исполнителя.\n\n2. «langsam» — Медленно: как я хочу говорить.\n\n3. «zu sprechen» — Говорить. zu ставится перед словарной формой sprechen; второго ich не нужно.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textTr": "Yavaş konuşmaya çalışıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich versuche» — Deniyorum: ilk bölüm kişiyi zaten belirtir.\n\n2. «langsam» — Yavaş: nasıl konuşmayı denediğim.\n\n3. «zu sprechen» — Konuşmak. zu sözlük biçimi sprechen önüne gelir; tekrar ich gerekmez.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textUK": "Я намагаюся говорити повільно.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich versuche» — Я намагаюся: перша частина вже називає виконавця.\n\n2. «langsam» — Повільно: як саме хочу говорити.\n\n3. «zu sprechen» — Говорити. zu стоїть перед словниковою формою sprechen; друге ich не потрібне.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"textVi": "Tôi đang cố gắng nói chậm lại.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich versuche» — Tôi cố: phần đầu đã nêu người thực hiện.\n\n2. «langsam» — Chậm: cách tôi cố nói.\n\n3. «zu sprechen» — Nói. Đặt zu trước dạng từ điển sprechen, không thêm ich lần nữa.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "I am trying to speak slowly.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Ich versuche» — I try: this first part already names the person.\n\n2. «langsam» — Slowly: how I’m trying to speak.\n\n3. «zu sprechen» — To speak. Put zu before the dictionary form sprechen; don’t add another ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"es": "Estoy intentando hablar despacio.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Ich versuche» — Intento: esta parte ya dice quién lo intenta.\n\n2. «langsam» — Despacio: cómo intento hablar.\n\n3. «zu sprechen» — Hablar. Pon zu ante la forma de diccionario sprechen; no repitas ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"id": "Saya mencoba berbicara perlahan.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Ich versuche» — Aku berusaha: bagian pertama sudah menyebut pelaku.\n\n2. «langsam» — Pelan-pelan: bagaimana aku mencoba berbicara.\n\n3. «zu sprechen» — Berbicara. Taruh zu sebelum bentuk kamus sprechen; jangan ulangi ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"pl": "Próbuję mówić powoli.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Ich versuche» — Próbuję: ta część już wskazuje osobę.\n\n2. «langsam» — Powoli: jak staram się mówić.\n\n3. «zu sprechen» — Mówić. Przed bezokolicznikiem sprechen postaw zu; nie powtarzaj ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"pt-BR": "Estou tentando falar devagar.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Ich versuche» — Eu tento: esta parte já indica a pessoa.\n\n2. «langsam» — Devagar: como tento falar.\n\n3. «zu sprechen» — Falar. Coloque zu antes de sprechen na forma de dicionário; não repita ich.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"ru": "Я стараюсь говорить медленно.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Ich versuche» — Я пытаюсь: первая часть уже называет исполнителя.\n\n2. «langsam» — Медленно: как я хочу говорить.\n\n3. «zu sprechen» — Говорить. zu ставится перед словарной формой sprechen; второго ich не нужно.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"tr": "Yavaş konuşmaya çalışıyorum.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Ich versuche» — Deniyorum: ilk bölüm kişiyi zaten belirtir.\n\n2. «langsam» — Yavaş: nasıl konuşmayı denediğim.\n\n3. «zu sprechen» — Konuşmak. zu sözlük biçimi sprechen önüne gelir; tekrar ich gerekmez.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"uk": "Я намагаюся говорити повільно.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Ich versuche» — Я намагаюся: перша частина вже називає виконавця.\n\n2. «langsam» — Повільно: як саме хочу говорити.\n\n3. «zu sprechen» — Говорити. zu стоїть перед словниковою формою sprechen; друге ich не потрібне.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen.",
+"vi": "Tôi đang cố gắng nói chậm lại.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Ich versuche» — Tôi cố: phần đầu đã nêu người thực hiện.\n\n2. «langsam» — Chậm: cách tôi cố nói.\n\n3. «zu sprechen» — Nói. Đặt zu trước dạng từ điển sprechen, không thêm ich lần nữa.\n\nIch → versuche → langsam → zu → sprechen\n\nIch versuche, langsam zu sprechen."
+},
+"kind": "practice",
+"exampleIds": [
+"de:26:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:26:01",
+"target": "Ich versuche, langsam zu sprechen.",
+"ru": "Я стараюсь говорить медленно.",
+"uk": "Я намагаюся говорити повільно."
+},
+{
+"id": "de:26:01",
+"target": "Ich versuche, langsam zu sprechen.",
+"ru": "Я стараюсь говорить медленно.",
+"uk": "Я намагаюся говорити повільно."
+},
+{
+"id": "de:26:02",
+"target": "Du versuchst, leise zu sein.",
+"ru": "Ты стараешься вести себя тихо.",
+"uk": "Ти намагаєшся поводитися тихо."
+},
+{
+"id": "de:26:01",
+"target": "Ich versuche, langsam zu sprechen.",
+"ru": "Я стараюсь говорить медленно.",
+"uk": "Я намагаюся говорити повільно."
+}
+]
+},
+{
+"lesson": 27,
+"blocks": [
+{
+"textEN": "There are several men in a photo. You point out “the man who lives here”. Before the comma, «der» belongs with «Mann». After the comma a second «der» stands for that man: it means “who”. Don’t add «er» (“he”) as well.\n\nDas ist der Mann, der hier wohnt.\n\nThis is the man who lives here.\n\nA pronoun stands in for a name or noun. Ask what job it has: who is acting, or who receives the action? Don’t add another “he” if another word is already doing that job.",
+"textES": "Hay varios hombres en una foto y señalas al que vive aquí. Antes de la coma, «der» es el artículo de «Mann». Después, otro «der» representa a ese hombre: significa «que». No añadas además «er» («él»).\n\nDas ist der Mann, der hier wohnt.\n\nEste es el hombre que vive aquí.\n\nUn pronombre sustituye a un nombre. ¿Quién actúa o quién recibe la acción? No añadas otro «él» si una palabra anterior ya cumple esa función.",
+"textId": "Ada beberapa pria di foto. Kamu menunjuk “pria yang tinggal di sini”. Sebelum koma, «der» adalah artikel untuk «Mann». Sesudah koma, «der» kedua mewakili pria itu dan berarti “yang”. Jangan tambahkan lagi «er» (dia).\n\nDas ist der Mann, der hier wohnt.\n\nIni adalah pria yang tinggal di sini.\n\nPronomina menggantikan nama atau nomina. Apa perannya: pelaku atau penerima tindakan? Jangan menambah “dia” jika kata lain sudah menjalankan peran itu.",
+"textPl": "Na zdjęciu jest kilku mężczyzn. Wskazujesz tego, który tu mieszka. Przed przecinkiem «der» jest rodzajnikiem przy «Mann». Po przecinku drugie «der» zastępuje tego mężczyznę i znaczy „który”. Nie dodawaj już «er» („on”).\n\nDas ist der Mann, der hier wohnt.\n\nTo jest mężczyzna, który tu mieszka.\n\nZaimek zastępuje imię lub rzeczownik. Sprawdź jego rolę: kto działa, a kogo czynność dotyczy? Nie dodawaj drugiego „on”, jeśli tę rolę pełni już inne słowo.",
+"textPtBr": "Há vários homens na foto e você indica o que mora aqui. Antes da vírgula, «der» é o artigo de «Mann». Depois, outro «der» representa o homem: equivale a “que”. Não acrescente «er» (“ele”).\n\nDas ist der Mann, der hier wohnt.\n\nEste é o homem que mora aqui.\n\nUm pronome substitui um nome. Qual é o papel dele: quem age ou quem recebe a ação? Não acrescente outro “ele” se outra palavra já cumpre essa função.",
+"textRU": "На фото несколько мужчин. Ты уточняешь: «Это мужчина, который здесь живёт». До запятой «der» — артикль при «Mann». После запятой другое «der» заменяет целое «этот мужчина»: здесь оно значит «который». Не добавляй после него ещё «er» («он»).\n\nDas ist der Mann, der hier wohnt.\n\nЭто мужчина, который здесь живёт.\n\nМестоимение заменяет имя или название. Важно спросить, какую работу оно делает: кто действует или на кого направлено действие? Не вставляй второе слово «он», если эту работу уже выполняет другое слово.",
+"textTr": "Fotoğrafta birkaç adam var; burada oturanı gösteriyorsun. Virgülden önce «der», «Mann» isminin artikelidir. Virgülden sonraki «der» o adamın yerine geçer ve “burada oturan” bölümünde işi yapanı belirtir. Bir de «er» (o) ekleme.\n\nDas ist der Mann, der hier wohnt.\n\nBu, burada yaşayan adam.\n\nZamir bir ismin yerini tutar. İşi yapanı mı, işten etkileneni mi gösteriyor? Bu görevi başka bir kelime zaten üstleniyorsa bir de “o” ekleme.",
+"textUK": "На фото кілька чоловіків. Ти уточнюєш: «Це чоловік, який тут живе». До коми «der» — артикль при «Mann». Після коми інше «der» замінює слова «цей чоловік»: тут воно означає «який». Не додавай ще «er» («він»).\n\nDas ist der Mann, der hier wohnt.\n\nЦе чоловік, який тут мешкає.\n\nЗайменник замінює ім’я чи назву. З’ясуй його роль: хто виконує дію чи на кого вона спрямована? Не додавай друге «він», якщо цю роль уже виконує інше слово.",
+"textVi": "Trong ảnh có mấy người đàn ông. Bạn chỉ “người đàn ông sống ở đây”. Trước dấu phẩy, «der» là mạo từ của «Mann». Sau dấu phẩy, «der» thứ hai thay cho người đàn ông ấy và làm chủ thể của “sống”. Không thêm «er» (anh ấy).\n\nDas ist der Mann, der hier wohnt.\n\nĐây là người đàn ông sống ở đây.\n\nĐại từ thay cho tên người hoặc sự vật. Xem vai trò của nó: ai thực hiện hay ai nhận tác động? Đừng thêm một từ “anh ấy” nếu đã có từ đảm nhiệm vai trò đó.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "There are several men in a photo. You point out “the man who lives here”. Before the comma, «der» belongs with «Mann». After the comma a second «der» stands for that man: it means “who”. Don’t add «er» (“he”) as well.\n\nDas ist der Mann, der hier wohnt.\n\nThis is the man who lives here.\n\nA pronoun stands in for a name or noun. Ask what job it has: who is acting, or who receives the action? Don’t add another “he” if another word is already doing that job.",
+"es": "Hay varios hombres en una foto y señalas al que vive aquí. Antes de la coma, «der» es el artículo de «Mann». Después, otro «der» representa a ese hombre: significa «que». No añadas además «er» («él»).\n\nDas ist der Mann, der hier wohnt.\n\nEste es el hombre que vive aquí.\n\nUn pronombre sustituye a un nombre. ¿Quién actúa o quién recibe la acción? No añadas otro «él» si una palabra anterior ya cumple esa función.",
+"id": "Ada beberapa pria di foto. Kamu menunjuk “pria yang tinggal di sini”. Sebelum koma, «der» adalah artikel untuk «Mann». Sesudah koma, «der» kedua mewakili pria itu dan berarti “yang”. Jangan tambahkan lagi «er» (dia).\n\nDas ist der Mann, der hier wohnt.\n\nIni adalah pria yang tinggal di sini.\n\nPronomina menggantikan nama atau nomina. Apa perannya: pelaku atau penerima tindakan? Jangan menambah “dia” jika kata lain sudah menjalankan peran itu.",
+"pl": "Na zdjęciu jest kilku mężczyzn. Wskazujesz tego, który tu mieszka. Przed przecinkiem «der» jest rodzajnikiem przy «Mann». Po przecinku drugie «der» zastępuje tego mężczyznę i znaczy „który”. Nie dodawaj już «er» („on”).\n\nDas ist der Mann, der hier wohnt.\n\nTo jest mężczyzna, który tu mieszka.\n\nZaimek zastępuje imię lub rzeczownik. Sprawdź jego rolę: kto działa, a kogo czynność dotyczy? Nie dodawaj drugiego „on”, jeśli tę rolę pełni już inne słowo.",
+"pt-BR": "Há vários homens na foto e você indica o que mora aqui. Antes da vírgula, «der» é o artigo de «Mann». Depois, outro «der» representa o homem: equivale a “que”. Não acrescente «er» (“ele”).\n\nDas ist der Mann, der hier wohnt.\n\nEste é o homem que mora aqui.\n\nUm pronome substitui um nome. Qual é o papel dele: quem age ou quem recebe a ação? Não acrescente outro “ele” se outra palavra já cumpre essa função.",
+"ru": "На фото несколько мужчин. Ты уточняешь: «Это мужчина, который здесь живёт». До запятой «der» — артикль при «Mann». После запятой другое «der» заменяет целое «этот мужчина»: здесь оно значит «который». Не добавляй после него ещё «er» («он»).\n\nDas ist der Mann, der hier wohnt.\n\nЭто мужчина, который здесь живёт.\n\nМестоимение заменяет имя или название. Важно спросить, какую работу оно делает: кто действует или на кого направлено действие? Не вставляй второе слово «он», если эту работу уже выполняет другое слово.",
+"tr": "Fotoğrafta birkaç adam var; burada oturanı gösteriyorsun. Virgülden önce «der», «Mann» isminin artikelidir. Virgülden sonraki «der» o adamın yerine geçer ve “burada oturan” bölümünde işi yapanı belirtir. Bir de «er» (o) ekleme.\n\nDas ist der Mann, der hier wohnt.\n\nBu, burada yaşayan adam.\n\nZamir bir ismin yerini tutar. İşi yapanı mı, işten etkileneni mi gösteriyor? Bu görevi başka bir kelime zaten üstleniyorsa bir de “o” ekleme.",
+"uk": "На фото кілька чоловіків. Ти уточнюєш: «Це чоловік, який тут живе». До коми «der» — артикль при «Mann». Після коми інше «der» замінює слова «цей чоловік»: тут воно означає «який». Не додавай ще «er» («він»).\n\nDas ist der Mann, der hier wohnt.\n\nЦе чоловік, який тут мешкає.\n\nЗайменник замінює ім’я чи назву. З’ясуй його роль: хто виконує дію чи на кого вона спрямована? Не додавай друге «він», якщо цю роль уже виконує інше слово.",
+"vi": "Trong ảnh có mấy người đàn ông. Bạn chỉ “người đàn ông sống ở đây”. Trước dấu phẩy, «der» là mạo từ của «Mann». Sau dấu phẩy, «der» thứ hai thay cho người đàn ông ấy và làm chủ thể của “sống”. Không thêm «er» (anh ấy).\n\nDas ist der Mann, der hier wohnt.\n\nĐây là người đàn ông sống ở đây.\n\nĐại từ thay cho tên người hoặc sự vật. Xem vai trò của nó: ai thực hiện hay ai nhận tác động? Đừng thêm một từ “anh ấy” nếu đã có từ đảm nhiệm vai trò đó."
+},
+"kind": "concept",
+"exampleIds": [
+"de:27:01"
+]
+},
+{
+"textEN": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nThis is the man who lives here.\n\nDas ist die Frau, die hier wohnt.\n\nThis is the woman who lives here.\n\nIn both cases the person being identified is the one who lives here. In the added description use «der» for the man and «die» for the woman. Each word already answers “who lives here?”.",
+"textES": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nEste es el hombre que vive aquí.\n\nDas ist die Frau, die hier wohnt.\n\nEsta es la mujer que vive aquí.\n\nEn ambos casos la persona identificada es quien vive aquí. En la aclaración usa «der» para el hombre y «die» para la mujer. Cada palabra ya indica quién vive aquí.",
+"textId": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nIni adalah pria yang tinggal di sini.\n\nDas ist die Frau, die hier wohnt.\n\nIni adalah wanita yang tinggal di sini.\n\nDalam kedua contoh, orang yang ditunjuk itulah yang tinggal di sini. Dalam penjelasan gunakan «der» untuk pria dan «die» untuk wanita. Keduanya sudah menjawab “siapa yang tinggal?”.",
+"textPl": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nTo jest mężczyzna, który tu mieszka.\n\nDas ist die Frau, die hier wohnt.\n\nTo jest kobieta, która tu mieszka.\n\nW obu przykładach to wskazana osoba tu mieszka. W dopowiedzeniu przy mężczyźnie użyj «der», przy kobiecie «die». Te słowa już odpowiadają na „kto mieszka?”.",
+"textPtBr": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nEste é o homem que mora aqui.\n\nDas ist die Frau, die hier wohnt.\n\nEsta é a mulher que mora aqui.\n\nEm ambos, a pessoa identificada é quem mora aqui. Na explicação, use «der» para o homem e «die» para a mulher. Cada palavra já indica quem mora aqui.",
+"textRU": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nЭто мужчина, который здесь живёт.\n\nDas ist die Frau, die hier wohnt.\n\nЭто женщина, которая здесь живёт.\n\nВ обоих случаях именно названный человек живёт здесь. Поэтому во второй половине после «мужчина» будет «der», после «женщина» — «die». Оба слова сами отвечают на «кто живёт?».",
+"textTr": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nBu, burada yaşayan adam.\n\nDas ist die Frau, die hier wohnt.\n\nBu, burada yaşayan kadın.\n\nİki örnekte de adı geçen kişi burada oturur. Ek açıklamada adam için «der», kadın için «die» gelir. Bu kelimelerin her biri “kim oturuyor?” sorusunu zaten yanıtlar.",
+"textUK": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nЦе чоловік, який тут мешкає.\n\nDas ist die Frau, die hier wohnt.\n\nЦе жінка, яка тут мешкає.\n\nВ обох прикладах саме названа людина тут живе. Тому в другій частині після «чоловік» потрібно «der», після «жінка» — «die». Обидва слова вже відповідають на «хто живе?».",
+"textVi": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nĐây là người đàn ông sống ở đây.\n\nDas ist die Frau, die hier wohnt.\n\nĐây là người phụ nữ sống ở đây.\n\nTrong cả hai câu, chính người được nhắc đến sống ở đây. Trong phần mô tả, dùng «der» cho người đàn ông, «die» cho người phụ nữ. Mỗi từ đã trả lời “ai sống ở đây?”.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nThis is the man who lives here.\n\nDas ist die Frau, die hier wohnt.\n\nThis is the woman who lives here.\n\nIn both cases the person being identified is the one who lives here. In the added description use «der» for the man and «die» for the woman. Each word already answers “who lives here?”.",
+"es": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nEste es el hombre que vive aquí.\n\nDas ist die Frau, die hier wohnt.\n\nEsta es la mujer que vive aquí.\n\nEn ambos casos la persona identificada es quien vive aquí. En la aclaración usa «der» para el hombre y «die» para la mujer. Cada palabra ya indica quién vive aquí.",
+"id": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nIni adalah pria yang tinggal di sini.\n\nDas ist die Frau, die hier wohnt.\n\nIni adalah wanita yang tinggal di sini.\n\nDalam kedua contoh, orang yang ditunjuk itulah yang tinggal di sini. Dalam penjelasan gunakan «der» untuk pria dan «die» untuk wanita. Keduanya sudah menjawab “siapa yang tinggal?”.",
+"pl": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nTo jest mężczyzna, który tu mieszka.\n\nDas ist die Frau, die hier wohnt.\n\nTo jest kobieta, która tu mieszka.\n\nW obu przykładach to wskazana osoba tu mieszka. W dopowiedzeniu przy mężczyźnie użyj «der», przy kobiecie «die». Te słowa już odpowiadają na „kto mieszka?”.",
+"pt-BR": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nEste é o homem que mora aqui.\n\nDas ist die Frau, die hier wohnt.\n\nEsta é a mulher que mora aqui.\n\nEm ambos, a pessoa identificada é quem mora aqui. Na explicação, use «der» para o homem e «die» para a mulher. Cada palavra já indica quem mora aqui.",
+"ru": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nЭто мужчина, который здесь живёт.\n\nDas ist die Frau, die hier wohnt.\n\nЭто женщина, которая здесь живёт.\n\nВ обоих случаях именно названный человек живёт здесь. Поэтому во второй половине после «мужчина» будет «der», после «женщина» — «die». Оба слова сами отвечают на «кто живёт?».",
+"tr": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nBu, burada yaşayan adam.\n\nDas ist die Frau, die hier wohnt.\n\nBu, burada yaşayan kadın.\n\nİki örnekte de adı geçen kişi burada oturur. Ek açıklamada adam için «der», kadın için «die» gelir. Bu kelimelerin her biri “kim oturuyor?” sorusunu zaten yanıtlar.",
+"uk": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nЦе чоловік, який тут мешкає.\n\nDas ist die Frau, die hier wohnt.\n\nЦе жінка, яка тут мешкає.\n\nВ обох прикладах саме названа людина тут живе. Тому в другій частині після «чоловік» потрібно «der», після «жінка» — «die». Обидва слова вже відповідають на «хто живе?».",
+"vi": "«der Mann, der …» / «der Mann, den …»\n\nDas ist der Mann, der hier wohnt.\n\nĐây là người đàn ông sống ở đây.\n\nDas ist die Frau, die hier wohnt.\n\nĐây là người phụ nữ sống ở đây.\n\nTrong cả hai câu, chính người được nhắc đến sống ở đây. Trong phần mô tả, dùng «der» cho người đàn ông, «die» cho người phụ nữ. Mỗi từ đã trả lời “ai sống ở đây?”."
+},
+"kind": "formula",
+"exampleIds": [
+"de:27:01",
+"de:27:02"
+]
+},
+{
+"textEN": "This is the man who lives here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das ist» — This is…: point out the person.\n\n2. «der Mann» — The man: this der belongs with the noun Mann.\n\n3. «der» — Who: stands for the man in the description after the comma.\n\n4. «hier wohnt» — Lives here. In the added description wohnt comes last.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textES": "Este es el hombre que vive aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das ist» — Este es…: señala a la persona.\n\n2. «der Mann» — El hombre: este der es el artículo de Mann.\n\n3. «der» — Que: representa al hombre en la aclaración tras la coma.\n\n4. «hier wohnt» — Vive aquí. La aclaración termina en wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textId": "Ini adalah pria yang tinggal di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das ist» — Ini…: tunjukkan orang yang dimaksud.\n\n2. «der Mann» — Pria itu: der yang ini adalah artikel untuk Mann.\n\n3. «der» — Yang: mewakili pria itu dalam penjelasan setelah koma.\n\n4. «hier wohnt» — Tinggal di sini. Bagian penjelas berakhir dengan wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textPl": "To jest mężczyzna, który tu mieszka.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das ist» — To jest…: wskazujesz osobę.\n\n2. «der Mann» — Ten mężczyzna: to der jest rodzajnikiem przy Mann.\n\n3. «der» — Który: zastępuje mężczyznę w części po przecinku.\n\n4. «hier wohnt» — Tu mieszka. Dopowiedzenie kończy się czasownikiem wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textPtBr": "Este é o homem que mora aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das ist» — Este é…: indica a pessoa.\n\n2. «der Mann» — O homem: este der é o artigo de Mann.\n\n3. «der» — Que: representa o homem na explicação depois da vírgula.\n\n4. «hier wohnt» — Mora aqui. A explicação termina com wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textRU": "Это мужчина, который здесь живёт.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das ist» — Это…: показываешь, кого имеешь в виду.\n\n2. «der Mann» — Тот мужчина: der здесь относится к существительному Mann.\n\n3. «der» — Который: заменяет мужчину в уточнении после запятой.\n\n4. «hier wohnt» — Здесь живёт. Уточнение заканчивается глаголом wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textTr": "Bu, burada yaşayan adam.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das ist» — Bu…: kişiyi gösteriyorsun.\n\n2. «der Mann» — O adam: buradaki der, Mann isminin artikelidir.\n\n3. «der» — Virgülden sonraki açıklamada adamın yerine geçer.\n\n4. «hier wohnt» — Burada oturuyor. Açıklamada wohnt sona gelir.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textUK": "Це чоловік, який тут мешкає.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das ist» — Це…: показуєш, кого маєш на увазі.\n\n2. «der Mann» — Той чоловік: der тут належить до іменника Mann.\n\n3. «der» — Який: замінює чоловіка в уточненні після коми.\n\n4. «hier wohnt» — Тут живе. Уточнення закінчується дієсловом wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"textVi": "Đây là người đàn ông sống ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das ist» — Đây là…: chỉ người đang nói đến.\n\n2. «der Mann» — Người đàn ông ấy: der này là mạo từ của Mann.\n\n3. «der» — Chỉ chính người đàn ông đó trong phần mô tả sau dấu phẩy.\n\n4. «hier wohnt» — Sống ở đây. Phần mô tả kết thúc bằng wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "This is the man who lives here.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Das ist» — This is…: point out the person.\n\n2. «der Mann» — The man: this der belongs with the noun Mann.\n\n3. «der» — Who: stands for the man in the description after the comma.\n\n4. «hier wohnt» — Lives here. In the added description wohnt comes last.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"es": "Este es el hombre que vive aquí.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Das ist» — Este es…: señala a la persona.\n\n2. «der Mann» — El hombre: este der es el artículo de Mann.\n\n3. «der» — Que: representa al hombre en la aclaración tras la coma.\n\n4. «hier wohnt» — Vive aquí. La aclaración termina en wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"id": "Ini adalah pria yang tinggal di sini.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Das ist» — Ini…: tunjukkan orang yang dimaksud.\n\n2. «der Mann» — Pria itu: der yang ini adalah artikel untuk Mann.\n\n3. «der» — Yang: mewakili pria itu dalam penjelasan setelah koma.\n\n4. «hier wohnt» — Tinggal di sini. Bagian penjelas berakhir dengan wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"pl": "To jest mężczyzna, który tu mieszka.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Das ist» — To jest…: wskazujesz osobę.\n\n2. «der Mann» — Ten mężczyzna: to der jest rodzajnikiem przy Mann.\n\n3. «der» — Który: zastępuje mężczyznę w części po przecinku.\n\n4. «hier wohnt» — Tu mieszka. Dopowiedzenie kończy się czasownikiem wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"pt-BR": "Este é o homem que mora aqui.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Das ist» — Este é…: indica a pessoa.\n\n2. «der Mann» — O homem: este der é o artigo de Mann.\n\n3. «der» — Que: representa o homem na explicação depois da vírgula.\n\n4. «hier wohnt» — Mora aqui. A explicação termina com wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"ru": "Это мужчина, который здесь живёт.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Das ist» — Это…: показываешь, кого имеешь в виду.\n\n2. «der Mann» — Тот мужчина: der здесь относится к существительному Mann.\n\n3. «der» — Который: заменяет мужчину в уточнении после запятой.\n\n4. «hier wohnt» — Здесь живёт. Уточнение заканчивается глаголом wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"tr": "Bu, burada yaşayan adam.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Das ist» — Bu…: kişiyi gösteriyorsun.\n\n2. «der Mann» — O adam: buradaki der, Mann isminin artikelidir.\n\n3. «der» — Virgülden sonraki açıklamada adamın yerine geçer.\n\n4. «hier wohnt» — Burada oturuyor. Açıklamada wohnt sona gelir.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"uk": "Це чоловік, який тут мешкає.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Das ist» — Це…: показуєш, кого маєш на увазі.\n\n2. «der Mann» — Той чоловік: der тут належить до іменника Mann.\n\n3. «der» — Який: замінює чоловіка в уточненні після коми.\n\n4. «hier wohnt» — Тут живе. Уточнення закінчується дієсловом wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt.",
+"vi": "Đây là người đàn ông sống ở đây.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Das ist» — Đây là…: chỉ người đang nói đến.\n\n2. «der Mann» — Người đàn ông ấy: der này là mạo từ của Mann.\n\n3. «der» — Chỉ chính người đàn ông đó trong phần mô tả sau dấu phẩy.\n\n4. «hier wohnt» — Sống ở đây. Phần mô tả kết thúc bằng wohnt.\n\nDas → ist → der → Mann → der → hier → wohnt\n\nDas ist der Mann, der hier wohnt."
+},
+"kind": "practice",
+"exampleIds": [
+"de:27:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:27:01",
+"target": "Das ist der Mann, der hier wohnt.",
+"ru": "Это мужчина, который здесь живёт.",
+"uk": "Це чоловік, який тут мешкає."
+},
+{
+"id": "de:27:01",
+"target": "Das ist der Mann, der hier wohnt.",
+"ru": "Это мужчина, который здесь живёт.",
+"uk": "Це чоловік, який тут мешкає."
+},
+{
+"id": "de:27:02",
+"target": "Das ist die Frau, die hier wohnt.",
+"ru": "Это женщина, которая здесь живёт.",
+"uk": "Це жінка, яка тут мешкає."
+},
+{
+"id": "de:27:01",
+"target": "Das ist der Mann, der hier wohnt.",
+"ru": "Это мужчина, который здесь живёт.",
+"uk": "Це чоловік, який тут мешкає."
+}
+]
+},
+{
+"lesson": 28,
+"blocks": [
+{
+"textEN": "Picture a closed door and someone turning the handle. «Die Tür wird geöffnet» tells you what is being done to the door: it is being opened. «Die Tür ist offen» describes a different picture: the door is already open. Action versus state.\n\nDie Tür wird geöffnet.\n\nThe door is being opened.\n\nA participle here is the form naming the event alongside a helper. For instance «kochen» is “to cook”; «gekocht» is the form in «ich habe gekocht». The helper carries tense and person; this part doesn’t change to match the person.",
+"textES": "Imagina una puerta cerrada y alguien que gira el picaporte. «Die Tür wird geöffnet» cuenta lo que hacen con ella: la están abriendo. «Die Tür ist offen» describe otra imagen: la puerta ya está abierta. Acción frente a estado.\n\nDie Tür wird geöffnet.\n\nSe abre la puerta.\n\nAquí el participio nombra la acción junto a un auxiliar. «kochen» es «cocinar»; «gekocht» es la forma de «ich habe gekocht». El auxiliar marca tiempo y persona; el participio de esta construcción no cambia con la persona.",
+"textId": "Bayangkan pintu tertutup dan seseorang memutar gagangnya. «Die Tür wird geöffnet» menyatakan apa yang sedang dilakukan: pintu sedang dibuka. «Die Tür ist offen» menggambarkan keadaan: pintunya sudah terbuka. Bedakan tindakan dan keadaan.\n\nDie Tür wird geöffnet.\n\nPintu dibuka.\n\nPartisip di sini adalah bentuk yang menyebut peristiwa bersama kata kerja bantu. «kochen» berarti memasak; «gekocht» dipakai dalam «ich habe gekocht». Kata bantu menandai waktu dan orang; partisip tidak ikut berubah menurut pelaku.",
+"textPl": "Wyobraź sobie zamknięte drzwi i kogoś naciskającego klamkę. «Die Tür wird geöffnet» mówi, co się z nimi robi: ktoś je otwiera. «Die Tür ist offen» opisuje inny obraz: drzwi są już otwarte. Czynność to nie to samo co stan.\n\nDie Tür wird geöffnet.\n\nDrzwi są otwarte.\n\nImiesłów nazywa tu czynność razem z czasownikiem pomocniczym. «kochen» to „gotować”, a «gekocht» występuje w «ich habe gekocht». Osobę i czas wskazuje pomocnik; imiesłów w tej konstrukcji nie odmienia się przez osoby.",
+"textPtBr": "Imagine uma porta fechada e alguém girando a maçaneta. «Die Tür wird geöffnet» diz o que estão fazendo: estão abrindo a porta. «Die Tür ist offen» descreve outra cena: a porta já está aberta. Ação e estado não são iguais.\n\nDie Tür wird geöffnet.\n\nA porta é aberta.\n\nAqui o particípio nomeia a ação com a ajuda de outro verbo. «kochen» é “cozinhar”; «gekocht» é a forma em «ich habe gekocht». O auxiliar indica tempo e pessoa; o particípio nessa construção não muda com a pessoa.",
+"textRU": "Представь закрытую дверь. Кто-то берётся за ручку. «Die Tür wird geöffnet» описывает, что с дверью делают: её открывают. «Die Tür ist offen» — другая картинка: дверь уже открыта. В первом случае важно действие, во втором — состояние.\n\nDie Tür wird geöffnet.\n\nДверь открывают.\n\nПричастие здесь — форма, которая в паре с помощником называет само событие. Например, «kochen» — готовить, «gekocht» — форма для «ich habe gekocht». Помощник несёт время и меняется, эта часть в такой паре не меняется по лицам.",
+"textTr": "Kapı kapalı, biri kolu çeviriyor. «Die Tür wird geöffnet» kapıya yapılan işi anlatır: kapı açılıyor. «Die Tür ist offen» başka bir görüntüdür: kapı zaten açık. Biri eylem, diğeri durum.\n\nDie Tür wird geöffnet.\n\nKapı açıldı.\n\nBurada ortaç, yardımcı fiille birlikte asıl eylemi adlandıran biçimdir. «kochen» yemek yapmak, «gekocht» ise «ich habe gekocht» içindeki biçimdir. Zaman ve kişiyi yardımcı fiil gösterir; ortaç kişiye göre değişmez.",
+"textUK": "Уяви зачинені двері. Хтось береться за ручку. «Die Tür wird geöffnet» описує, що роблять із дверима: їх відчиняють. «Die Tür ist offen» — інша картина: двері вже відчинені. Перше — дія, друге — стан.\n\nDie Tür wird geöffnet.\n\nДвері відчиняють.\n\nДієприкметник тут — форма, що разом із допоміжним дієсловом називає саму подію. Наприклад, «kochen» — готувати, «gekocht» — форма в «ich habe gekocht». Час і особу показує допоміжне слово.",
+"textVi": "Hình dung cánh cửa đóng và có người xoay tay nắm. «Die Tür wird geöffnet» cho biết việc đang được làm: người ta mở cửa. «Die Tür ist offen» tả cảnh khác: cửa đã mở sẵn. Một bên là hành động, bên kia là trạng thái.\n\nDie Tür wird geöffnet.\n\nCửa được mở.\n\nPhân từ ở đây là dạng nêu sự việc khi đi với trợ động từ. «kochen» là nấu; «gekocht» là dạng trong «ich habe gekocht». Trợ động từ cho biết thì và ngôi; phân từ trong cấu trúc này không đổi theo người.",
+"titleEN": "What you want to say",
+"titleES": "Lo que quieres decir",
+"titleId": "Yang ingin kamu katakan",
+"titlePl": "Co chcesz powiedzieć",
+"titlePtBr": "O que você quer dizer",
+"titleRU": "Что ты хочешь сказать",
+"titleTr": "Ne söylemek istiyorsun?",
+"titleUK": "Що ти хочеш сказати",
+"titleVi": "Điều bạn muốn nói",
+"titleByLocale": {
+"en": "What you want to say",
+"es": "Lo que quieres decir",
+"id": "Yang ingin kamu katakan",
+"pl": "Co chcesz powiedzieć",
+"pt-BR": "O que você quer dizer",
+"ru": "Что ты хочешь сказать",
+"tr": "Ne söylemek istiyorsun?",
+"uk": "Що ти хочеш сказати",
+"vi": "Điều bạn muốn nói"
+},
+"textByLocale": {
+"en": "Picture a closed door and someone turning the handle. «Die Tür wird geöffnet» tells you what is being done to the door: it is being opened. «Die Tür ist offen» describes a different picture: the door is already open. Action versus state.\n\nDie Tür wird geöffnet.\n\nThe door is being opened.\n\nA participle here is the form naming the event alongside a helper. For instance «kochen» is “to cook”; «gekocht» is the form in «ich habe gekocht». The helper carries tense and person; this part doesn’t change to match the person.",
+"es": "Imagina una puerta cerrada y alguien que gira el picaporte. «Die Tür wird geöffnet» cuenta lo que hacen con ella: la están abriendo. «Die Tür ist offen» describe otra imagen: la puerta ya está abierta. Acción frente a estado.\n\nDie Tür wird geöffnet.\n\nSe abre la puerta.\n\nAquí el participio nombra la acción junto a un auxiliar. «kochen» es «cocinar»; «gekocht» es la forma de «ich habe gekocht». El auxiliar marca tiempo y persona; el participio de esta construcción no cambia con la persona.",
+"id": "Bayangkan pintu tertutup dan seseorang memutar gagangnya. «Die Tür wird geöffnet» menyatakan apa yang sedang dilakukan: pintu sedang dibuka. «Die Tür ist offen» menggambarkan keadaan: pintunya sudah terbuka. Bedakan tindakan dan keadaan.\n\nDie Tür wird geöffnet.\n\nPintu dibuka.\n\nPartisip di sini adalah bentuk yang menyebut peristiwa bersama kata kerja bantu. «kochen» berarti memasak; «gekocht» dipakai dalam «ich habe gekocht». Kata bantu menandai waktu dan orang; partisip tidak ikut berubah menurut pelaku.",
+"pl": "Wyobraź sobie zamknięte drzwi i kogoś naciskającego klamkę. «Die Tür wird geöffnet» mówi, co się z nimi robi: ktoś je otwiera. «Die Tür ist offen» opisuje inny obraz: drzwi są już otwarte. Czynność to nie to samo co stan.\n\nDie Tür wird geöffnet.\n\nDrzwi są otwarte.\n\nImiesłów nazywa tu czynność razem z czasownikiem pomocniczym. «kochen» to „gotować”, a «gekocht» występuje w «ich habe gekocht». Osobę i czas wskazuje pomocnik; imiesłów w tej konstrukcji nie odmienia się przez osoby.",
+"pt-BR": "Imagine uma porta fechada e alguém girando a maçaneta. «Die Tür wird geöffnet» diz o que estão fazendo: estão abrindo a porta. «Die Tür ist offen» descreve outra cena: a porta já está aberta. Ação e estado não são iguais.\n\nDie Tür wird geöffnet.\n\nA porta é aberta.\n\nAqui o particípio nomeia a ação com a ajuda de outro verbo. «kochen» é “cozinhar”; «gekocht» é a forma em «ich habe gekocht». O auxiliar indica tempo e pessoa; o particípio nessa construção não muda com a pessoa.",
+"ru": "Представь закрытую дверь. Кто-то берётся за ручку. «Die Tür wird geöffnet» описывает, что с дверью делают: её открывают. «Die Tür ist offen» — другая картинка: дверь уже открыта. В первом случае важно действие, во втором — состояние.\n\nDie Tür wird geöffnet.\n\nДверь открывают.\n\nПричастие здесь — форма, которая в паре с помощником называет само событие. Например, «kochen» — готовить, «gekocht» — форма для «ich habe gekocht». Помощник несёт время и меняется, эта часть в такой паре не меняется по лицам.",
+"tr": "Kapı kapalı, biri kolu çeviriyor. «Die Tür wird geöffnet» kapıya yapılan işi anlatır: kapı açılıyor. «Die Tür ist offen» başka bir görüntüdür: kapı zaten açık. Biri eylem, diğeri durum.\n\nDie Tür wird geöffnet.\n\nKapı açıldı.\n\nBurada ortaç, yardımcı fiille birlikte asıl eylemi adlandıran biçimdir. «kochen» yemek yapmak, «gekocht» ise «ich habe gekocht» içindeki biçimdir. Zaman ve kişiyi yardımcı fiil gösterir; ortaç kişiye göre değişmez.",
+"uk": "Уяви зачинені двері. Хтось береться за ручку. «Die Tür wird geöffnet» описує, що роблять із дверима: їх відчиняють. «Die Tür ist offen» — інша картина: двері вже відчинені. Перше — дія, друге — стан.\n\nDie Tür wird geöffnet.\n\nДвері відчиняють.\n\nДієприкметник тут — форма, що разом із допоміжним дієсловом називає саму подію. Наприклад, «kochen» — готувати, «gekocht» — форма в «ich habe gekocht». Час і особу показує допоміжне слово.",
+"vi": "Hình dung cánh cửa đóng và có người xoay tay nắm. «Die Tür wird geöffnet» cho biết việc đang được làm: người ta mở cửa. «Die Tür ist offen» tả cảnh khác: cửa đã mở sẵn. Một bên là hành động, bên kia là trạng thái.\n\nDie Tür wird geöffnet.\n\nCửa được mở.\n\nPhân từ ở đây là dạng nêu sự việc khi đi với trợ động từ. «kochen» là nấu; «gekocht» là dạng trong «ich habe gekocht». Trợ động từ cho biết thì và ngôi; phân từ trong cấu trúc này không đổi theo người."
+},
+"kind": "concept",
+"exampleIds": [
+"de:28:01"
+]
+},
+{
+"textEN": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nThe window is being opened.\n\nDie Fenster werden geöffnet.\n\nThe windows are being opened.\n\n«Das Fenster» means one window and «die Fenster» several windows. This changes the helper, «wird → werden», not the action at the end: both use «geöffnet».",
+"textES": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nSe abre la ventana.\n\nDie Fenster werden geöffnet.\n\nSe abren las ventanas.\n\n«Das Fenster» es una ventana; «die Fenster», varias. Cambia el auxiliar «wird → werden», no la acción al final: ambas llevan «geöffnet».",
+"textId": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nJendela dibuka.\n\nDie Fenster werden geöffnet.\n\nJendela-jendela dibuka.\n\n«Das Fenster» satu jendela, «die Fenster» beberapa jendela. Maka pembantunya berubah «wird → werden», tetapi tindakan di akhir tetap «geöffnet».",
+"textPl": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nOkno jest otwarte.\n\nDie Fenster werden geöffnet.\n\nOkna są otwarte.\n\n«Das Fenster» to jedno okno, «die Fenster» — kilka. Dlatego pomocnik zmienia się «wird → werden», ale końcowa forma «geöffnet» pozostaje taka sama.",
+"textPtBr": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nA janela é aberta.\n\nDie Fenster werden geöffnet.\n\nAs janelas são abertas.\n\n«Das Fenster» é uma janela; «die Fenster», várias. Muda o auxiliar «wird → werden», não a ação final: ambos usam «geöffnet».",
+"textRU": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nОкно открывают.\n\nDie Fenster werden geöffnet.\n\nОкна открывают.\n\n«Das Fenster» — одно окно, «die Fenster» — несколько. Поэтому меняется помощник «wird → werden». Само действие в конце не меняется: и одно окно, и несколько окон открывают — «geöffnet».",
+"textTr": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nPencere açıldı.\n\nDie Fenster werden geöffnet.\n\nPencereler açıldı.\n\n«Das Fenster» tek pencere, «die Fenster» birkaç penceredir. Bu yüzden yardımcı «wird → werden» değişir, sondaki eylem yine «geöffnet» olur.",
+"textUK": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nВікно відчиняють.\n\nDie Fenster werden geöffnet.\n\nВікна відчиняють.\n\n«Das Fenster» — одне вікно, «die Fenster» — кілька. Тому змінюється допоміжне «wird → werden». Сама дія в кінці незмінна: «geöffnet».",
+"textVi": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nCửa sổ được mở.\n\nDie Fenster werden geöffnet.\n\nCác cửa sổ được mở.\n\n«Das Fenster» là một cửa sổ, «die Fenster» là nhiều cửa sổ. Do đó trợ động từ đổi «wird → werden»; hành động cuối «geöffnet» vẫn vậy.",
+"titleEN": "Compare two examples",
+"titleES": "Compara dos ejemplos",
+"titleId": "Bandingkan dua contoh",
+"titlePl": "Porównaj dwa przykłady",
+"titlePtBr": "Compare dois exemplos",
+"titleRU": "Сравни два примера",
+"titleTr": "İki örneği karşılaştır",
+"titleUK": "Порівняй два приклади",
+"titleVi": "So sánh hai ví dụ",
+"titleByLocale": {
+"en": "Compare two examples",
+"es": "Compara dos ejemplos",
+"id": "Bandingkan dua contoh",
+"pl": "Porównaj dwa przykłady",
+"pt-BR": "Compare dois exemplos",
+"ru": "Сравни два примера",
+"tr": "İki örneği karşılaştır",
+"uk": "Порівняй два приклади",
+"vi": "So sánh hai ví dụ"
+},
+"textByLocale": {
+"en": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nThe window is being opened.\n\nDie Fenster werden geöffnet.\n\nThe windows are being opened.\n\n«Das Fenster» means one window and «die Fenster» several windows. This changes the helper, «wird → werden», not the action at the end: both use «geöffnet».",
+"es": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nSe abre la ventana.\n\nDie Fenster werden geöffnet.\n\nSe abren las ventanas.\n\n«Das Fenster» es una ventana; «die Fenster», varias. Cambia el auxiliar «wird → werden», no la acción al final: ambas llevan «geöffnet».",
+"id": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nJendela dibuka.\n\nDie Fenster werden geöffnet.\n\nJendela-jendela dibuka.\n\n«Das Fenster» satu jendela, «die Fenster» beberapa jendela. Maka pembantunya berubah «wird → werden», tetapi tindakan di akhir tetap «geöffnet».",
+"pl": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nOkno jest otwarte.\n\nDie Fenster werden geöffnet.\n\nOkna są otwarte.\n\n«Das Fenster» to jedno okno, «die Fenster» — kilka. Dlatego pomocnik zmienia się «wird → werden», ale końcowa forma «geöffnet» pozostaje taka sama.",
+"pt-BR": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nA janela é aberta.\n\nDie Fenster werden geöffnet.\n\nAs janelas são abertas.\n\n«Das Fenster» é uma janela; «die Fenster», várias. Muda o auxiliar «wird → werden», não a ação final: ambos usam «geöffnet».",
+"ru": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nОкно открывают.\n\nDie Fenster werden geöffnet.\n\nОкна открывают.\n\n«Das Fenster» — одно окно, «die Fenster» — несколько. Поэтому меняется помощник «wird → werden». Само действие в конце не меняется: и одно окно, и несколько окон открывают — «geöffnet».",
+"tr": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nPencere açıldı.\n\nDie Fenster werden geöffnet.\n\nPencereler açıldı.\n\n«Das Fenster» tek pencere, «die Fenster» birkaç penceredir. Bu yüzden yardımcı «wird → werden» değişir, sondaki eylem yine «geöffnet» olur.",
+"uk": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nВікно відчиняють.\n\nDie Fenster werden geöffnet.\n\nВікна відчиняють.\n\n«Das Fenster» — одне вікно, «die Fenster» — кілька. Тому змінюється допоміжне «wird → werden». Сама дія в кінці незмінна: «geöffnet».",
+"vi": "«Das Paket wird» + … + «geliefert»\n\nDas Fenster wird geöffnet.\n\nCửa sổ được mở.\n\nDie Fenster werden geöffnet.\n\nCác cửa sổ được mở.\n\n«Das Fenster» là một cửa sổ, «die Fenster» là nhiều cửa sổ. Do đó trợ động từ đổi «wird → werden»; hành động cuối «geöffnet» vẫn vậy."
+},
+"kind": "formula",
+"exampleIds": [
+"de:28:02",
+"de:28:03"
+]
+},
+{
+"textEN": "The door is being opened.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Die Tür» — The door: something is being done to it; it isn’t doing the work.\n\n2. «wird» — Helper which, with geöffnet, says the door is being opened.\n\n3. «geöffnet» — Opened: action from öffnen. Read wird geöffnet together.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textES": "Se abre la puerta.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Die Tür» — La puerta: alguien actúa sobre ella, no es ella quien actúa.\n\n2. «wird» — Auxiliar que con geöffnet indica que la están abriendo.\n\n3. «geöffnet» — Abierta: acción de öffnen. Interpreta juntos wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textId": "Pintu dibuka.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Die Tür» — Pintu itu: sesuatu dilakukan padanya, ia bukan pelaku.\n\n2. «wird» — Pembantu yang bersama geöffnet menunjukkan pintu sedang dibuka.\n\n3. «geöffnet» — Dibuka: tindakan dari öffnen. Pahami wird geöffnet bersama-sama.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textPl": "Drzwi są otwarte.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Die Tür» — Drzwi: ktoś coś z nimi robi; same nie wykonują czynności.\n\n2. «wird» — Część, która z geöffnet oznacza, że drzwi są otwierane.\n\n3. «geöffnet» — Czynność otwierania od öffnen. Czytaj razem wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textPtBr": "A porta é aberta.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Die Tür» — A porta: fazem algo com ela; não é ela que age.\n\n2. «wird» — Auxiliar que, com geöffnet, indica que a porta está sendo aberta.\n\n3. «geöffnet» — Aberta: ação de öffnen. Leia o par wird geöffnet junto.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textRU": "Дверь открывают.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Die Tür» — Дверь. С ней что-то делают — не дверь действует сама.\n\n2. «wird» — Служебная часть: с geöffnet показывает, что дверь открывают.\n\n3. «geöffnet» — Открывают: само действие от öffnen; смысл здесь даёт пара wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textTr": "Kapı açıldı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Die Tür» — Kapı: işi yapan değil, işin uygulandığı şey.\n\n2. «wird» — geöffnet ile birlikte kapının açılmakta olduğunu gösterir.\n\n3. «geöffnet» — Açmak eylemi, öffnen fiilinden. wird geöffnet birlikte okunur.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textUK": "Двері відчиняють.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Die Tür» — Двері. Із ними щось роблять — не вони діють самі.\n\n2. «wird» — Допоміжна частина: з geöffnet показує, що двері відчиняють.\n\n3. «geöffnet» — Відчиняють: дія від öffnen; значення тут дає пара wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"textVi": "Cửa được mở.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Die Tür» — Cánh cửa: có người tác động lên nó, cửa không tự làm gì.\n\n2. «wird» — Trợ động từ, kết hợp geöffnet để chỉ việc cửa đang được mở.\n\n3. «geöffnet» — Mở: hành động từ öffnen. Hiểu cả cụm wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"titleEN": "Your first sentence, step by step",
+"titleES": "Tu primera frase, paso a paso",
+"titleId": "Kalimat pertama, langkah demi langkah",
+"titlePl": "Pierwsze zdanie krok po kroku",
+"titlePtBr": "Sua primeira frase, passo a passo",
+"titleRU": "Первая фраза, шаг за шагом",
+"titleTr": "İlk cümle, adım adım",
+"titleUK": "Перша фраза крок за кроком",
+"titleVi": "Câu đầu tiên, từng bước một",
+"titleByLocale": {
+"en": "Your first sentence, step by step",
+"es": "Tu primera frase, paso a paso",
+"id": "Kalimat pertama, langkah demi langkah",
+"pl": "Pierwsze zdanie krok po kroku",
+"pt-BR": "Sua primeira frase, passo a passo",
+"ru": "Первая фраза, шаг за шагом",
+"tr": "İlk cümle, adım adım",
+"uk": "Перша фраза крок за кроком",
+"vi": "Câu đầu tiên, từng bước một"
+},
+"textByLocale": {
+"en": "The door is being opened.\n\nBelow, words that belong together are grouped by meaning. In practice, each tile is one word.\n\n1. «Die Tür» — The door: something is being done to it; it isn’t doing the work.\n\n2. «wird» — Helper which, with geöffnet, says the door is being opened.\n\n3. «geöffnet» — Opened: action from öffnen. Read wird geöffnet together.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"es": "Se abre la puerta.\n\nAquí verás grupos de sentido. En la práctica, cada ficha contiene una sola palabra.\n\n1. «Die Tür» — La puerta: alguien actúa sobre ella, no es ella quien actúa.\n\n2. «wird» — Auxiliar que con geöffnet indica que la están abriendo.\n\n3. «geöffnet» — Abierta: acción de öffnen. Interpreta juntos wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"id": "Pintu dibuka.\n\nDi bawah ini kata-kata dikelompokkan menurut makna. Dalam latihan, satu tombol berisi satu kata.\n\n1. «Die Tür» — Pintu itu: sesuatu dilakukan padanya, ia bukan pelaku.\n\n2. «wird» — Pembantu yang bersama geöffnet menunjukkan pintu sedang dibuka.\n\n3. «geöffnet» — Dibuka: tindakan dari öffnen. Pahami wird geöffnet bersama-sama.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"pl": "Drzwi są otwarte.\n\nPoniżej słowa są pogrupowane według znaczenia. W ćwiczeniu jeden kafelek to jedno słowo.\n\n1. «Die Tür» — Drzwi: ktoś coś z nimi robi; same nie wykonują czynności.\n\n2. «wird» — Część, która z geöffnet oznacza, że drzwi są otwierane.\n\n3. «geöffnet» — Czynność otwierania od öffnen. Czytaj razem wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"pt-BR": "A porta é aberta.\n\nAbaixo as palavras estão agrupadas pelo sentido. Na prática, cada peça é uma palavra.\n\n1. «Die Tür» — A porta: fazem algo com ela; não é ela que age.\n\n2. «wird» — Auxiliar que, com geöffnet, indica que a porta está sendo aberta.\n\n3. «geöffnet» — Aberta: ação de öffnen. Leia o par wird geöffnet junto.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"ru": "Дверь открывают.\n\nНиже слова объединены по смыслу. В тренировке каждая плитка — одно слово.\n\n1. «Die Tür» — Дверь. С ней что-то делают — не дверь действует сама.\n\n2. «wird» — Служебная часть: с geöffnet показывает, что дверь открывают.\n\n3. «geöffnet» — Открывают: само действие от öffnen; смысл здесь даёт пара wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"tr": "Kapı açıldı.\n\nAşağıda kelimeler anlamlarına göre gruplandı. Alıştırmada her kutu tek kelimedir.\n\n1. «Die Tür» — Kapı: işi yapan değil, işin uygulandığı şey.\n\n2. «wird» — geöffnet ile birlikte kapının açılmakta olduğunu gösterir.\n\n3. «geöffnet» — Açmak eylemi, öffnen fiilinden. wird geöffnet birlikte okunur.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"uk": "Двері відчиняють.\n\nНижче слова згруповано за змістом. У тренуванні кожна плитка — одне слово.\n\n1. «Die Tür» — Двері. Із ними щось роблять — не вони діють самі.\n\n2. «wird» — Допоміжна частина: з geöffnet показує, що двері відчиняють.\n\n3. «geöffnet» — Відчиняють: дія від öffnen; значення тут дає пара wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet.",
+"vi": "Cửa được mở.\n\nBên dưới, các từ đi cùng nhau được nhóm theo nghĩa. Khi luyện, mỗi ô là một từ.\n\n1. «Die Tür» — Cánh cửa: có người tác động lên nó, cửa không tự làm gì.\n\n2. «wird» — Trợ động từ, kết hợp geöffnet để chỉ việc cửa đang được mở.\n\n3. «geöffnet» — Mở: hành động từ öffnen. Hiểu cả cụm wird geöffnet.\n\nDie → Tür → wird → geöffnet\n\nDie Tür wird geöffnet."
+},
+"kind": "practice",
+"exampleIds": [
+"de:28:01"
+]
+}
+],
+"exampleResolved": [
+{
+"id": "de:28:01",
+"target": "Die Tür wird geöffnet.",
+"ru": "Дверь открывают.",
+"uk": "Двері відчиняють."
+},
+{
+"id": "de:28:02",
+"target": "Das Fenster wird geöffnet.",
+"ru": "Окно открывают.",
+"uk": "Вікно відчиняють."
+},
+{
+"id": "de:28:03",
+"target": "Die Fenster werden geöffnet.",
+"ru": "Окна открывают.",
+"uk": "Вікна відчиняють."
+},
+{
+"id": "de:28:01",
+"target": "Die Tür wird geöffnet.",
+"ru": "Дверь открывают.",
+"uk": "Двері відчиняють."
+}
+]
+}
+]

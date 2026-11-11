@@ -1,0 +1,13 @@
+[
+ {
+  "id": "es:30:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн «en» на позиции 6 даёт верную естественную фразу «Ana quiere que leas el texto en la pantalla.» (дословно «текст на экране»), её нет в alternatives",
+  "fix": {
+   "position": 6,
+   "replace_distractor": "en",
+   "with": "hacia"
+  }
+ }
+]

@@ -1,0 +1,5638 @@
+[
+{
+"lesson": 17,
+"id": "es:17:01",
+"target": "Me gusta el café.",
+"ru": "Мне нравится кофе.",
+"uk": "Мені подобається кава.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Un",
+"Mi",
+"Su",
+"Mis",
+"La"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"laváis",
+"habla",
+"lavo",
+"lava"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"los",
+"las",
+"la",
+"con"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"tren",
+"mochilas",
+"pregunta",
+"agua",
+"casa"
+]
+}
+],
+"alternatives": [
+"A mí me gusta el café."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:02",
+"target": "Me gusta el pan.",
+"ru": "Мне нравится хлеб.",
+"uk": "Мені подобається хліб.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Un",
+"Mis",
+"Las",
+"Te",
+"La"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"puedo",
+"podemos",
+"puedes",
+"puede"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"una",
+"lo",
+"las",
+"con"
+]
+},
+{
+"correct": "pan",
+"distractors": [
+"mapa",
+"llave",
+"casa",
+"hotel",
+"carta"
+]
+}
+],
+"alternatives": [
+"A mí me gusta el pan."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:03",
+"target": "Me gusta la música.",
+"ru": "Мне нравится музыка.",
+"uk": "Мені подобається музика.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Un",
+"Una",
+"Tu",
+"Le",
+"Las"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"lavas",
+"lavo",
+"están",
+"laváis"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"los",
+"con"
+]
+},
+{
+"correct": "música",
+"distractors": [
+"foto",
+"tren",
+"tienda",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"A mí me gusta la música."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:04",
+"target": "Me gusta este libro.",
+"ru": "Мне нравится эта книга.",
+"uk": "Мені подобається ця книжка.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"La",
+"Los",
+"Una",
+"El",
+"Te"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"entrar",
+"prepara",
+"preparamos",
+"preparas"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"su",
+"los",
+"mis",
+"las",
+"el"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"lista",
+"efectivo",
+"cartas",
+"foto",
+"mochila"
+]
+}
+],
+"alternatives": [
+"A mí me gusta este libro."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:05",
+"target": "Me gusta tu casa.",
+"ru": "Мне нравится твой дом.",
+"uk": "Мені подобається твій дім.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Mi",
+"Un",
+"Tus",
+"Los",
+"Te"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"pagar",
+"lleva",
+"necesitamos",
+"llevar"
+]
+},
+{
+"correct": "tu",
+"distractors": [
+"mi",
+"mis",
+"tus",
+"sus",
+"su"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"fotos",
+"hermanas",
+"café",
+"mapa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"A mí me gusta tu casa."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:06",
+"target": "Me gustan estos libros.",
+"ru": "Мне нравятся эти книги.",
+"uk": "Мені подобаються ці книжки.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"La",
+"Una",
+"Tus",
+"Mis",
+"Mi"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"leen",
+"están",
+"puedo",
+"trabaja"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"la",
+"tus",
+"el",
+"un",
+"esta"
+]
+},
+{
+"correct": "libros",
+"distractors": [
+"manos",
+"hermano",
+"hermanas",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"A mí me gustan estos libros."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:07",
+"target": "Me gustan las fotos.",
+"ru": "Мне нравятся фотографии.",
+"uk": "Мені подобаються фотографії.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Una",
+"Los",
+"Tus",
+"Mis",
+"Les"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"lee",
+"están",
+"leer",
+"es"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"su",
+"los",
+"mi",
+"el",
+"con"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"puerta",
+"libro",
+"leche",
+"tienda",
+"casa"
+]
+}
+],
+"alternatives": [
+"A mí me gustan las fotos."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:08",
+"target": "Me gustan tus ideas.",
+"ru": "Мне нравятся твои идеи.",
+"uk": "Мені подобаються твої ідеї.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"El",
+"Mi",
+"Las",
+"Le",
+"La"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"hablar",
+"prepara",
+"preparamos",
+"preparas"
+]
+},
+{
+"correct": "tus",
+"distractors": [
+"tu",
+"mis",
+"su",
+"mi",
+"sus"
+]
+},
+{
+"correct": "ideas",
+"distractors": [
+"fotos",
+"hermanas",
+"música",
+"banco",
+"casa"
+]
+}
+],
+"alternatives": [
+"A mí me gustan tus ideas."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:09",
+"target": "Me gustan las ventanas grandes.",
+"ru": "Мне нравятся большие окна.",
+"uk": "Мені подобаються великі вікна.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"La",
+"El",
+"Su",
+"Le",
+"Los"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"los",
+"tus",
+"mis",
+"mi",
+"la"
+]
+},
+{
+"correct": "ventanas",
+"distractors": [
+"estación",
+"hoteles",
+"café",
+"coche",
+"casa"
+]
+},
+{
+"correct": "grandes",
+"distractors": [
+"pequeños",
+"abiertos",
+"blancas",
+"roja",
+"nerviosa"
+]
+}
+],
+"alternatives": [
+"A mí me gustan las ventanas grandes."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:10",
+"target": "Me gustan estas canciones.",
+"ru": "Мне нравятся эти песни.",
+"uk": "Мені подобаються ці пісні.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Mi",
+"Tu",
+"Una",
+"Las",
+"Le"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"trabaja",
+"va",
+"voy",
+"vas"
+]
+},
+{
+"correct": "estas",
+"distractors": [
+"sus",
+"el",
+"los",
+"la",
+"una"
+]
+},
+{
+"correct": "canciones",
+"distractors": [
+"mensaje",
+"clase",
+"hermanos",
+"casa",
+"móvil"
+]
+}
+],
+"alternatives": [
+"A mí me gustan estas canciones."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:11",
+"target": "¿Te gusta el hotel?",
+"ru": "Тебе нравится отель?",
+"uk": "Тобі подобається готель?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Un",
+"Las",
+"Su",
+"La"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"la",
+"las",
+"lo",
+"con",
+"que"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"salidas",
+"pasaportes",
+"móvil",
+"coche",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿A ti te gusta el hotel?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:12",
+"target": "¿Te gustan mis fotos?",
+"ru": "Тебе нравятся мои фотографии?",
+"uk": "Тобі подобаються мої фотографії?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"La",
+"Tus",
+"Les",
+"Tu"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"eres",
+"son",
+"es",
+"soy"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"tus",
+"sus",
+"tu",
+"mi",
+"su"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"hermanas",
+"llave",
+"estación",
+"casa",
+"libro"
+]
+}
+],
+"alternatives": [
+"¿A ti te gustan mis fotos?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:13",
+"target": "¿Te gusta la playa?",
+"ru": "Тебе нравится пляж?",
+"uk": "Тобі подобається пляж?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"Los",
+"El",
+"Me",
+"Las"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"hablas",
+"beber",
+"puedes",
+"trabaja"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"el",
+"las",
+"con"
+]
+},
+{
+"correct": "playa",
+"distractors": [
+"hotel",
+"pregunta",
+"casa",
+"mensaje",
+"mochila"
+]
+}
+],
+"alternatives": [
+"¿A ti te gusta la playa?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:14",
+"target": "¿Te gustan los coches pequeños?",
+"ru": "Тебе нравятся маленькие машины?",
+"uk": "Тобі подобаються малі машини?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mi",
+"El",
+"Una",
+"Mis",
+"Les"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"esperar",
+"están",
+"puedo",
+"trabaja"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"unas",
+"mis",
+"una",
+"mi",
+"la"
+]
+},
+{
+"correct": "coches",
+"distractors": [
+"playa",
+"hotel",
+"hermanos",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "pequeños",
+"distractors": [
+"roja",
+"pequeña",
+"fría",
+"nerviosa",
+"ocupada"
+]
+}
+],
+"alternatives": [
+"¿A ti te gustan los coches pequeños?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:15",
+"target": "¿Te gusta este café?",
+"ru": "Тебе нравится этот кофе?",
+"uk": "Тобі подобається ця кава?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Los",
+"Las",
+"Una",
+"La",
+"Lo"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"es",
+"son",
+"somos",
+"soy"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"sus",
+"un",
+"el",
+"tu",
+"los"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"viaje",
+"hermanos",
+"móvil",
+"bolso",
+"casa"
+]
+}
+],
+"alternatives": [
+"¿A ti te gusta este café?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:16",
+"target": "No me gusta este mapa.",
+"ru": "Мне не нравится эта карта.",
+"uk": "Мені не подобається ця мапа.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"sus",
+"mis",
+"los",
+"el",
+"se"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"puedo",
+"abrimos",
+"podemos",
+"puedes"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"la",
+"sus",
+"mis",
+"un",
+"estas"
+]
+},
+{
+"correct": "mapa",
+"distractors": [
+"banco",
+"casa",
+"hermano",
+"billete",
+"maleta"
+]
+}
+],
+"alternatives": [
+"A mí no me gusta este mapa."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:17",
+"target": "No me gustan estos zapatos.",
+"ru": "Мне не нравятся эти туфли.",
+"uk": "Мені не подобаються ці туфлі.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"mis",
+"sus",
+"tu",
+"el",
+"te"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"necesitamos",
+"tienes",
+"tiene",
+"tengo"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"la",
+"los",
+"mi",
+"mis",
+"unas"
+]
+},
+{
+"correct": "zapatos",
+"distractors": [
+"llave",
+"mochila",
+"mapas",
+"billete",
+"casa"
+]
+}
+],
+"alternatives": [
+"A mí no me gustan estos zapatos."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:18",
+"target": "No me gusta el café frío.",
+"ru": "Мне не нравится холодный кофе.",
+"uk": "Мені не подобається холодна кава.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"tus",
+"tu",
+"las",
+"les",
+"la"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"somos",
+"trabajáis",
+"es",
+"son"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"la",
+"los",
+"con"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"casa",
+"mensaje",
+"cita",
+"billete",
+"hotel"
+]
+},
+{
+"correct": "frío",
+"distractors": [
+"lista",
+"nervioso",
+"pequeños",
+"nerviosa",
+"grandes"
+]
+}
+],
+"alternatives": [
+"A mí no me gusta el café frío."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:19",
+"target": "No me gustan las maletas grandes.",
+"ru": "Мне не нравятся большие чемоданы.",
+"uk": "Мені не подобаються великі валізи.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"los",
+"tu",
+"el",
+"tus",
+"te"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"hay",
+"están",
+"puedo",
+"trabaja"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"el",
+"un",
+"sus",
+"mi",
+"estas"
+]
+},
+{
+"correct": "maletas",
+"distractors": [
+"coche",
+"recepción",
+"salidas",
+"viaje",
+"casa"
+]
+},
+{
+"correct": "grandes",
+"distractors": [
+"ocupadas",
+"lista",
+"blanco",
+"nuevo",
+"listo"
+]
+}
+],
+"alternatives": [
+"A mí no me gustan las maletas grandes."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:20",
+"target": "No me gusta esta música.",
+"ru": "Мне не нравится эта музыка.",
+"uk": "Мені не подобається ця музика.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "me",
+"distractors": [
+"mi",
+"una",
+"los",
+"las",
+"te"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"duchas",
+"estamos",
+"están",
+"está"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"mi",
+"un",
+"las",
+"la",
+"el"
+]
+},
+{
+"correct": "música",
+"distractors": [
+"billetes",
+"bolso",
+"mensaje",
+"mapas",
+"estación"
+]
+}
+],
+"alternatives": [
+"A mí no me gusta esta música."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:21",
+"target": "A Ana le gusta este hotel.",
+"ru": "Ане нравится этот отель.",
+"uk": "Ані подобається цей готель.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Por",
+"De",
+"Desde",
+"Con",
+"Para"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Nunca",
+"Ayer",
+"Lejos",
+"Quién"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"sus",
+"la",
+"los",
+"una",
+"te"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"voy",
+"va",
+"vas",
+"vamos",
+"vais"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"el",
+"la",
+"mi",
+"una",
+"los"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"móvil",
+"botella",
+"libro",
+"casa",
+"mochila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:22",
+"target": "A Luis le gusta esta película.",
+"ru": "Луису нравится этот фильм.",
+"uk": "Луїсу подобається цей фільм.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Por",
+"Con",
+"Sin",
+"Para",
+"De"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Lejos",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"la",
+"tus",
+"las",
+"mis",
+"el"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"bebe",
+"están",
+"es",
+"llamar",
+"puedo"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"la",
+"las",
+"el",
+"los",
+"una"
+]
+},
+{
+"correct": "película",
+"distractors": [
+"supermercado",
+"clase",
+"casa",
+"mensaje",
+"hermanos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:23",
+"target": "A mi madre le gusta este hotel.",
+"ru": "Моей маме нравится этот отель.",
+"uk": "Моїй мамі подобається цей готель.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"De",
+"Por",
+"Para",
+"Con",
+"Desde"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"tu",
+"mis",
+"su",
+"tus",
+"sus"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"mapa",
+"playa",
+"pan",
+"casa",
+"hermanos"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"una",
+"tus",
+"las",
+"me",
+"la"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"están",
+"es",
+"puedo",
+"trabaja",
+"prepara"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"un",
+"su",
+"la",
+"una",
+"los"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"mochilas",
+"libros",
+"mapa",
+"bicicleta",
+"hermanos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:24",
+"target": "A mi hermana le gustan las verduras.",
+"ru": "Моей сестре нравятся овощи.",
+"uk": "Моїй сестрі подобаються овочі.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Por",
+"Con",
+"De",
+"Para",
+"Desde"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"mis",
+"tus",
+"tu",
+"su",
+"sus"
+]
+},
+{
+"correct": "hermana",
+"distractors": [
+"llave",
+"entradas",
+"carta",
+"tarjeta",
+"casa"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"tu",
+"una",
+"un",
+"te",
+"la"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"vais",
+"levanta",
+"voy",
+"va",
+"vas"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"tu",
+"los",
+"una",
+"un",
+"con"
+]
+},
+{
+"correct": "verduras",
+"distractors": [
+"foto",
+"casa",
+"mensaje",
+"arroz",
+"gente"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:25",
+"target": "A mis hermanos les gusta este hotel.",
+"ru": "Моим братьям нравится этот отель.",
+"uk": "Моїм братам подобається цей готель.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"De",
+"Desde",
+"Para",
+"Por",
+"Con"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"su",
+"sus",
+"mi",
+"tus",
+"tu"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"trenes",
+"clase",
+"arroz",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"una",
+"mi",
+"un",
+"nos",
+"la"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"trabajáis",
+"podemos",
+"puedo",
+"puedes",
+"puede"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"tu",
+"unas",
+"un",
+"tus",
+"la"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"casa",
+"viaje",
+"pasaportes",
+"mochila",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:26",
+"target": "Nos gustan las fotos de Ana.",
+"ru": "Нам нравятся фотографии Аны.",
+"uk": "Нам подобаються фотографії Ани.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"Los",
+"Mis",
+"Sus",
+"Me",
+"Mi"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"están",
+"trabaja",
+"está",
+"estás"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"la",
+"una",
+"su",
+"este",
+"con"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"supermercado",
+"madre",
+"casa",
+"hotel",
+"mensaje"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"en",
+"para",
+"sin",
+"a",
+"con"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Quién",
+"Nunca",
+"Ayer"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gustan las fotos de Ana.",
+"A nosotras nos gustan las fotos de Ana."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:27",
+"target": "Les gustan las fotos de Ana.",
+"ru": "Им нравятся фотографии Аны.",
+"uk": "Їм подобаються фотографії Ани.",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"Un",
+"Sus",
+"La",
+"Una",
+"Se"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"necesito",
+"abrirla",
+"necesitamos",
+"están"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"la",
+"tu",
+"mi",
+"el",
+"los"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"coches",
+"cita",
+"mensaje",
+"hotel",
+"casa"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"desde",
+"en",
+"a",
+"para",
+"con"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Nunca",
+"Cuándo",
+"Pronto",
+"Quién"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:28",
+"target": "Te gustan las fotos de Ana.",
+"ru": "Тебе нравятся фотографии Аны.",
+"uk": "Тобі подобаються фотографії Ани.",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Una",
+"Mi",
+"La",
+"Nos",
+"Los"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"están",
+"puedo",
+"está",
+"estás"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"su",
+"el",
+"un",
+"una",
+"la"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"llaves",
+"billete",
+"clase",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"en",
+"con",
+"por",
+"para"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+}
+],
+"alternatives": [
+"A ti te gustan las fotos de Ana."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:29",
+"target": "¿Os gusta esta canción?",
+"ru": "Вам нравится эта песня?",
+"uk": "Вам подобається ця пісня?",
+"tiles": [
+{
+"correct": "Os",
+"distractors": [
+"La",
+"Tu",
+"Los",
+"Mis",
+"Me"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"están",
+"es",
+"puedo",
+"trabaja",
+"prepara"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"sus",
+"tus",
+"tu",
+"una",
+"la"
+]
+},
+{
+"correct": "canción",
+"distractors": [
+"mañana",
+"cocina",
+"arroz",
+"bolsa",
+"ahora"
+]
+}
+],
+"alternatives": [
+"¿A vosotros os gusta esta canción?",
+"¿A vosotras os gusta esta canción?",
+"¿Les gusta esta canción?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:30",
+"target": "Me gustan las fotos de Ana.",
+"ru": "Мне нравятся фотографии Аны.",
+"uk": "Мені подобаються фотографії Ани.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"La",
+"Los",
+"El",
+"Una",
+"Lo"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"estáis",
+"tiene",
+"están",
+"está"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"mis",
+"el",
+"un",
+"tu",
+"con"
+]
+},
+{
+"correct": "fotos",
+"distractors": [
+"carta",
+"favor",
+"libro",
+"zapatos",
+"casa"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"a",
+"para",
+"en",
+"con",
+"por"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+}
+],
+"alternatives": [
+"A mí me gustan las fotos de Ana."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:31",
+"target": "Me gusta leer en casa.",
+"ru": "Мне нравится читать дома.",
+"uk": "Мені подобається читати вдома.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Mi",
+"La",
+"Una",
+"Las",
+"Se"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"duchamos",
+"ducha",
+"duchas",
+"ducho"
+]
+},
+{
+"correct": "leer",
+"distractors": [
+"leo",
+"lee",
+"lees",
+"leen",
+"volver"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mesas",
+"minuto",
+"efectivo",
+"mesa",
+"hotel"
+]
+}
+],
+"alternatives": [
+"A mí me gusta leer en casa."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:32",
+"target": "Me gusta pasear por la playa.",
+"ru": "Мне нравится гулять по пляжу.",
+"uk": "Мені подобається гуляти пляжем.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Un",
+"Mi",
+"Las",
+"Tu",
+"Los"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"buscas",
+"vamos",
+"va",
+"voy"
+]
+},
+{
+"correct": "pasear",
+"distractors": [
+"levantamos",
+"tienen",
+"tengo",
+"tiene",
+"tienes"
+]
+},
+{
+"correct": "por",
+"distractors": [
+"sin",
+"de",
+"a",
+"para",
+"con"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"el",
+"los",
+"las",
+"lo",
+"un"
+]
+},
+{
+"correct": "playa",
+"distractors": [
+"farmacias",
+"maletas",
+"móvil",
+"casa",
+"mochila"
+]
+}
+],
+"alternatives": [
+"A mí me gusta pasear por la playa."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:33",
+"target": "Me gusta hablar español.",
+"ru": "Мне нравится говорить по-испански.",
+"uk": "Мені подобається говорити іспанською.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Mi",
+"Las",
+"Tu",
+"Su",
+"La"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "hablar",
+"distractors": [
+"hablamos",
+"hablas",
+"habláis",
+"hablo",
+"habla"
+]
+},
+{
+"correct": "español",
+"distractors": [
+"inglés",
+"lejos",
+"dentro",
+"allí",
+"cerca"
+]
+}
+],
+"alternatives": [
+"A mí me gusta hablar español."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:34",
+"target": "Me gusta preparar café.",
+"ru": "Мне нравится готовить кофе.",
+"uk": "Мені подобається готувати каву.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"Tu",
+"Mis",
+"Los",
+"Mi",
+"Les"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"voy",
+"va",
+"vas",
+"vamos"
+]
+},
+{
+"correct": "preparar",
+"distractors": [
+"prepara",
+"preparamos",
+"estamos",
+"somos",
+"es"
+]
+},
+{
+"correct": "café",
+"distractors": [
+"hermana",
+"idea",
+"billete",
+"hotel",
+"casa"
+]
+}
+],
+"alternatives": [
+"A mí me gusta preparar café."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:35",
+"target": "Me gusta escribir cartas.",
+"ru": "Мне нравится писать письма.",
+"uk": "Мені подобається писати листи.",
+"tiles": [
+{
+"correct": "Me",
+"distractors": [
+"El",
+"Su",
+"Las",
+"Mis",
+"Se"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"es",
+"está",
+"estás"
+]
+},
+{
+"correct": "escribir",
+"distractors": [
+"escribís",
+"escribo",
+"escribimos",
+"escribe",
+"escribes"
+]
+},
+{
+"correct": "cartas",
+"distractors": [
+"mensaje",
+"móvil",
+"coche",
+"hermana",
+"reserva"
+]
+}
+],
+"alternatives": [
+"A mí me gusta escribir cartas."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:36",
+"target": "¿Te gusta estudiar aquí?",
+"ru": "Тебе нравится здесь учиться?",
+"uk": "Тобі подобається тут навчатися?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mis",
+"Las",
+"Mi",
+"El",
+"Los"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "estudiar",
+"distractors": [
+"estudian",
+"estudias",
+"estudia",
+"estudiamos",
+"estudio"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"dentro",
+"fuera",
+"cerca",
+"allí",
+"lejos"
+]
+}
+],
+"alternatives": [
+"¿A ti te gusta estudiar aquí?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:37",
+"target": "¿Te gustan las películas en español?",
+"ru": "Тебе нравятся фильмы на испанском?",
+"uk": "Тобі подобаються фільми іспанською?",
+"tiles": [
+{
+"correct": "Te",
+"distractors": [
+"Mis",
+"Tus",
+"Mi",
+"El",
+"Nos"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"gusta",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"el",
+"la",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "películas",
+"distractors": [
+"cambio",
+"casa",
+"tienda",
+"reserva",
+"mensaje"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "español",
+"distractors": [
+"inglés",
+"lejos",
+"una",
+"los",
+"un"
+]
+}
+],
+"alternatives": [
+"¿A ti te gustan las películas en español?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:38",
+"target": "¿Os gusta estudiar aquí?",
+"ru": "Вам нравится здесь учиться?",
+"uk": "Вам подобається тут навчатися?",
+"tiles": [
+{
+"correct": "Os",
+"distractors": [
+"La",
+"Su",
+"Los",
+"Tu",
+"Mis"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"tengo",
+"dejamos",
+"tiene",
+"tienes",
+"tenemos"
+]
+},
+{
+"correct": "estudiar",
+"distractors": [
+"estudiáis",
+"estudio",
+"estudias",
+"estudiamos",
+"leer"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"dentro",
+"cerca",
+"allí",
+"fuera",
+"lejos"
+]
+}
+],
+"alternatives": [
+"¿A vosotros os gusta estudiar aquí?",
+"¿A vosotras os gusta estudiar aquí?",
+"¿Les gusta estudiar aquí?",
+"¿Le gusta estudiar aquí?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:39",
+"target": "¿Les gusta estudiar aquí?",
+"ru": "Им нравится здесь учиться?",
+"uk": "Їм подобається тут навчатися?",
+"tiles": [
+{
+"correct": "Les",
+"distractors": [
+"La",
+"Mis",
+"Tu",
+"Las",
+"Te"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"sientas",
+"escribo",
+"sentáis",
+"están"
+]
+},
+{
+"correct": "estudiar",
+"distractors": [
+"estudio",
+"estudias",
+"estudia",
+"estudiamos",
+"estudian"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"fuera",
+"allí",
+"dentro",
+"lejos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:40",
+"target": "¿Le gusta estudiar aquí?",
+"ru": "Вам нравится здесь учиться?",
+"uk": "Вам подобається тут навчатися?",
+"tiles": [
+{
+"correct": "Le",
+"distractors": [
+"Mi",
+"Una",
+"Un",
+"El",
+"Nos"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"pagar",
+"volver",
+"están",
+"puedo",
+"trabaja"
+]
+},
+{
+"correct": "estudiar",
+"distractors": [
+"estudia",
+"estudian",
+"estudias",
+"estudiamos",
+"están"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"lejos",
+"fuera",
+"dentro",
+"cerca",
+"allí"
+]
+}
+],
+"alternatives": [
+"¿Os gusta estudiar aquí?",
+"¿Les gusta estudiar aquí?"
+]
+},
+{
+"lesson": 17,
+"id": "es:17:41",
+"target": "A Ana no le gustan estos zapatos.",
+"ru": "Ане не нравятся эти туфли.",
+"uk": "Ані не подобаються ці туфлі.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Con",
+"De",
+"Para",
+"Por",
+"Desde"
+]
+},
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Lejos",
+"Quién",
+"Nunca",
+"Ayer"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"aquí",
+"hoy",
+"quién",
+"lejos",
+"mañana"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"las",
+"tu",
+"el",
+"mis",
+"me"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"buscas",
+"hablan",
+"busca",
+"buscan",
+"busco"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"los",
+"el",
+"mi",
+"una",
+"un"
+]
+},
+{
+"correct": "zapatos",
+"distractors": [
+"casa",
+"mesa",
+"viaje",
+"llaves",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:42",
+"target": "A Luis no le gusta el arroz frío.",
+"ru": "Луису не нравится холодный рис.",
+"uk": "Луїсу не подобається холодний рис.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Por",
+"Sin",
+"Con",
+"De",
+"Para"
+]
+},
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Ayer",
+"Nunca",
+"Lejos",
+"Cuándo"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"aquí",
+"hoy",
+"quién",
+"lejos",
+"mañana"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"las",
+"una",
+"los",
+"unas",
+"la"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"ducha",
+"duchas",
+"ducho",
+"duchamos",
+"duchan"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"las",
+"la",
+"los",
+"una",
+"con"
+]
+},
+{
+"correct": "arroz",
+"distractors": [
+"supermercado",
+"efectivo",
+"bolsillo",
+"mesa",
+"bolso"
+]
+},
+{
+"correct": "frío",
+"distractors": [
+"cerrada",
+"cerrados",
+"lista",
+"grandes",
+"pequeña"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:43",
+"target": "A mi madre no le gustan estos zapatos.",
+"ru": "Моей маме не нравятся эти туфли.",
+"uk": "Моїй мамі не подобаються ці туфлі.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Para",
+"Por",
+"Con",
+"De",
+"Desde"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"tu",
+"sus",
+"mis",
+"tus",
+"su"
+]
+},
+{
+"correct": "madre",
+"distractors": [
+"billetes",
+"casa",
+"mañana",
+"mesas",
+"ahora"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"aquí",
+"hoy",
+"quién",
+"lejos",
+"mañana"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"las",
+"los",
+"tus",
+"me",
+"la"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"vas",
+"va",
+"voy",
+"vamos",
+"vais"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"el",
+"una",
+"la",
+"las",
+"los"
+]
+},
+{
+"correct": "zapatos",
+"distractors": [
+"foto",
+"pregunta",
+"casa",
+"mensaje",
+"llaves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:44",
+"target": "A mis hermanas no les gustan estos zapatos.",
+"ru": "Моим сёстрам не нравятся эти туфли.",
+"uk": "Моїм сестрам не подобаються ці туфлі.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Desde",
+"Para",
+"De",
+"Con",
+"Por"
+]
+},
+{
+"correct": "mis",
+"distractors": [
+"su",
+"sus",
+"mi",
+"tu",
+"tus"
+]
+},
+{
+"correct": "hermanas",
+"distractors": [
+"baño",
+"oficina",
+"película",
+"pasaportes",
+"casa"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"aquí",
+"hoy",
+"quién",
+"lejos",
+"mañana"
+]
+},
+{
+"correct": "les",
+"distractors": [
+"un",
+"mi",
+"el",
+"la",
+"os"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"cuesta",
+"están",
+"puedo",
+"trabaja",
+"prepara"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"tu",
+"la",
+"mi",
+"las",
+"el"
+]
+},
+{
+"correct": "zapatos",
+"distractors": [
+"mañana",
+"hermanos",
+"minuto",
+"ahora",
+"más"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:45",
+"target": "A mi hermano no le gustan estos zapatos.",
+"ru": "Моему брату не нравятся эти туфли.",
+"uk": "Моєму братові не подобаються ці туфлі.",
+"tiles": [
+{
+"correct": "A",
+"distractors": [
+"Para",
+"Por",
+"De",
+"Con",
+"Desde"
+]
+},
+{
+"correct": "mi",
+"distractors": [
+"su",
+"tus",
+"mis",
+"sus",
+"tu"
+]
+},
+{
+"correct": "hermano",
+"distractors": [
+"hoteles",
+"cocina",
+"puerta",
+"casa",
+"hotel"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"lejos",
+"aquí",
+"dentro",
+"allí",
+"cerca"
+]
+},
+{
+"correct": "le",
+"distractors": [
+"un",
+"el",
+"tus",
+"tu",
+"me"
+]
+},
+{
+"correct": "gustan",
+"distractors": [
+"puede",
+"ducha",
+"podemos",
+"puedo",
+"puedes"
+]
+},
+{
+"correct": "estos",
+"distractors": [
+"el",
+"su",
+"los",
+"la",
+"una"
+]
+},
+{
+"correct": "zapatos",
+"distractors": [
+"reloj",
+"bolsa",
+"casa",
+"mensaje",
+"hermanos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "es:17:46",
+"target": "Nos gusta esta mesa.",
+"ru": "Нам нравится этот стол.",
+"uk": "Нам подобається цей стіл.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"Tu",
+"Un",
+"Mis",
+"Una",
+"Le"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"una",
+"mi",
+"las",
+"un",
+"el"
+]
+},
+{
+"correct": "mesa",
+"distractors": [
+"café",
+"hotel",
+"ventanas",
+"mesas",
+"manos"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gusta esta mesa.",
+"A nosotras nos gusta esta mesa."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:47",
+"target": "Nos gusta este hotel.",
+"ru": "Нам нравится этот отель.",
+"uk": "Нам подобається цей готель.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"Una",
+"Su",
+"Sus",
+"La",
+"Le"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"llamar",
+"están",
+"puedo",
+"trabaja"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"el",
+"las",
+"una",
+"mis",
+"un"
+]
+},
+{
+"correct": "hotel",
+"distractors": [
+"bolsa",
+"oficina",
+"tren",
+"bufanda",
+"casa"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gusta este hotel.",
+"A nosotras nos gusta este hotel."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:48",
+"target": "Nos gusta ir en bicicleta.",
+"ru": "Нам нравится ездить на велосипеде.",
+"uk": "Нам подобається їздити на велосипеді.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"Tus",
+"Mi",
+"Mis",
+"La",
+"Las"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"están",
+"puedo",
+"trabaja",
+"es"
+]
+},
+{
+"correct": "ir",
+"distractors": [
+"volver",
+"va",
+"gustan",
+"vas",
+"trabaja"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "bicicleta",
+"distractors": [
+"hoteles",
+"llaves",
+"maletas",
+"abrigo",
+"carta"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gusta ir en bicicleta.",
+"A nosotras nos gusta ir en bicicleta."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:49",
+"target": "Nos gusta este libro.",
+"ru": "Нам нравится эта книга.",
+"uk": "Нам подобається ця книжка.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"La",
+"Las",
+"El",
+"Mi",
+"Yo"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"ducho",
+"llevas",
+"bebe",
+"ducha"
+]
+},
+{
+"correct": "este",
+"distractors": [
+"una",
+"mis",
+"tu",
+"el",
+"la"
+]
+},
+{
+"correct": "libro",
+"distractors": [
+"ventana",
+"zapatos",
+"hermanas",
+"casa",
+"hermanos"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gusta este libro.",
+"A nosotras nos gusta este libro."
+]
+},
+{
+"lesson": 17,
+"id": "es:17:50",
+"target": "Nos gusta esta foto.",
+"ru": "Нам нравится эта фотография.",
+"uk": "Нам подобається ця фотографія.",
+"tiles": [
+{
+"correct": "Nos",
+"distractors": [
+"La",
+"Mi",
+"Mis",
+"Los",
+"Le"
+]
+},
+{
+"correct": "gusta",
+"distractors": [
+"gustan",
+"estás",
+"escribir",
+"están",
+"está"
+]
+},
+{
+"correct": "esta",
+"distractors": [
+"tus",
+"su",
+"mi",
+"un",
+"unas"
+]
+},
+{
+"correct": "foto",
+"distractors": [
+"mensaje",
+"verduras",
+"libro",
+"pasaporte",
+"casa"
+]
+}
+],
+"alternatives": [
+"A nosotros nos gusta esta foto.",
+"A nosotras nos gusta esta foto."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:01",
+"target": "Lo tengo aquí.",
+"ru": "Она у меня здесь.",
+"uk": "Вона в мене тут.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Su",
+"Tu",
+"Mi",
+"Te",
+"Con"
+]
+},
+{
+"correct": "tengo",
+"distractors": [
+"tenéis",
+"tiene",
+"tenemos",
+"tienes",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"fuera",
+"dentro",
+"lejos",
+"allí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:02",
+"target": "La tienes aquí.",
+"ru": "Он у тебя здесь.",
+"uk": "Він у тебе тут.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Un",
+"Las",
+"Los",
+"Os",
+"Con"
+]
+},
+{
+"correct": "tienes",
+"distractors": [
+"tiene",
+"tienen",
+"tenemos",
+"tengo",
+"tenéis"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"lejos",
+"cerca",
+"allí",
+"dentro",
+"fuera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:03",
+"target": "Ana los tiene en el bolso.",
+"ru": "Они у Аны в сумке.",
+"uk": "Вони в Ани в сумці.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Lejos",
+"Ayer",
+"Nunca"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"su",
+"la",
+"mi",
+"mis",
+"me"
+]
+},
+{
+"correct": "tiene",
+"distractors": [
+"tienes",
+"tenemos",
+"tengo",
+"tenéis",
+"tienen"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"desde",
+"de",
+"para"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"las",
+"la",
+"con",
+"que"
+]
+},
+{
+"correct": "bolso",
+"distractors": [
+"libro",
+"coches",
+"hermanos",
+"casa",
+"hermanas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:04",
+"target": "Las tenemos aquí.",
+"ru": "Они у нас здесь.",
+"uk": "Вони у нас тут.",
+"tiles": [
+{
+"correct": "Las",
+"distractors": [
+"La",
+"Sus",
+"Un",
+"Mis",
+"Se"
+]
+},
+{
+"correct": "tenemos",
+"distractors": [
+"tienes",
+"tiene",
+"tengo",
+"tenéis",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"dentro",
+"lejos",
+"fuera",
+"allí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:05",
+"target": "Luis no lo tiene aquí.",
+"ru": "У Луиса его нет здесь.",
+"uk": "У Луїса його немає тут.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Lejos",
+"Nunca",
+"Quién",
+"Ayer"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"hoy"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"mi",
+"las",
+"una",
+"los",
+"me"
+]
+},
+{
+"correct": "tiene",
+"distractors": [
+"tenéis",
+"tienes",
+"tengo",
+"tienen",
+"tenemos"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"cerca",
+"allí",
+"lejos",
+"dentro",
+"fuera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:06",
+"target": "La tengo aquí.",
+"ru": "Он у меня здесь.",
+"uk": "Він у мене тут.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"El",
+"Un",
+"Los",
+"Te",
+"Con"
+]
+},
+{
+"correct": "tengo",
+"distractors": [
+"tenemos",
+"tenéis",
+"tiene",
+"tienes",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"fuera",
+"dentro",
+"allí",
+"cerca",
+"lejos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:07",
+"target": "¿Los tienes aquí?",
+"ru": "Они у тебя здесь?",
+"uk": "Вони у тебе тут?",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Su",
+"La",
+"El",
+"Mis",
+"Se"
+]
+},
+{
+"correct": "tienes",
+"distractors": [
+"tengo",
+"tiene",
+"tenéis",
+"tenemos",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"cerca",
+"fuera",
+"lejos",
+"dentro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:08",
+"target": "Mis hermanos las tienen aquí.",
+"ru": "Они у моих братьев здесь.",
+"uk": "Вони у моїх братів тут.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Mi",
+"Sus",
+"Tus",
+"Su",
+"Tu"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"efectivo",
+"billete",
+"gente",
+"mapas",
+"casa"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"un",
+"los",
+"les",
+"con",
+"que"
+]
+},
+{
+"correct": "tienen",
+"distractors": [
+"tiene",
+"tienes",
+"tengo",
+"tenemos",
+"tenéis"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"dentro",
+"allí",
+"lejos",
+"cerca",
+"fuera"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:09",
+"target": "No la tenemos aquí.",
+"ru": "У нас её нет здесь.",
+"uk": "У нас її немає тут.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto",
+"Carta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"las",
+"el",
+"le"
+]
+},
+{
+"correct": "tenemos",
+"distractors": [
+"tenéis",
+"tiene",
+"tengo",
+"tienes",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"lejos",
+"cerca",
+"dentro",
+"fuera",
+"allí"
+]
+}
+],
+"alternatives": [
+"Nosotros no la tenemos aquí.",
+"Nosotras no la tenemos aquí."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:10",
+"target": "¿Ana lo tiene aquí?",
+"ru": "Он у Аны здесь?",
+"uk": "Він в Ани тут?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Cuándo",
+"Ayer",
+"Quién"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"mi",
+"los",
+"un",
+"una",
+"me"
+]
+},
+{
+"correct": "tiene",
+"distractors": [
+"tenemos",
+"tengo",
+"tienes",
+"tenéis",
+"tienen"
+]
+},
+{
+"correct": "aquí",
+"distractors": [
+"allí",
+"fuera",
+"cerca",
+"lejos",
+"dentro"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:11",
+"target": "Lo buscas.",
+"ru": "Ты её ищешь.",
+"uk": "Ти її шукаєш.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Un",
+"El",
+"Mi",
+"Los",
+"Yo"
+]
+},
+{
+"correct": "buscas",
+"distractors": [
+"busco",
+"buscan",
+"buscamos",
+"buscáis",
+"busca"
+]
+}
+],
+"alternatives": [
+"Tú lo buscas."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:12",
+"target": "Ana la busca.",
+"ru": "Ана его ищет.",
+"uk": "Ана його шукає.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Cuándo",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"las",
+"el",
+"su",
+"un",
+"los"
+]
+},
+{
+"correct": "busca",
+"distractors": [
+"buscan",
+"buscamos",
+"buscas",
+"buscáis",
+"buscando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:13",
+"target": "Los devuelvo hoy.",
+"ru": "Я верну их сегодня.",
+"uk": "Я поверну їх сьогодні.",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Una",
+"La",
+"Un",
+"El",
+"Me"
+]
+},
+{
+"correct": "devuelvo",
+"distractors": [
+"devuelves",
+"escribir",
+"escribimos",
+"escribe",
+"escribiendo"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"lejos",
+"no",
+"mañana",
+"estamos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:14",
+"target": "Luis las busca.",
+"ru": "Луис их ищет.",
+"uk": "Луїс їх шукає.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Pronto",
+"Nunca",
+"Quién",
+"Ayer"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"el",
+"sus",
+"su",
+"un",
+"le"
+]
+},
+{
+"correct": "busca",
+"distractors": [
+"buscáis",
+"buscas",
+"buscamos",
+"buscan",
+"buscando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:15",
+"target": "No lo busco.",
+"ru": "Я его не ищу.",
+"uk": "Я його не шукаю.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"el",
+"tu",
+"mi",
+"mis",
+"te"
+]
+},
+{
+"correct": "busco",
+"distractors": [
+"buscas",
+"buscáis",
+"buscan",
+"buscamos",
+"buscando"
+]
+}
+],
+"alternatives": [
+"Yo no lo busco."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:16",
+"target": "La buscas.",
+"ru": "Ты его ищешь.",
+"uk": "Ти його шукаєш.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Un",
+"Los",
+"El",
+"Se",
+"Con"
+]
+},
+{
+"correct": "buscas",
+"distractors": [
+"buscan",
+"busco",
+"busca",
+"buscáis",
+"buscamos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:17",
+"target": "¿La cambias en la tienda?",
+"ru": "Ты меняешь её в магазине?",
+"uk": "Ти обмінюєш її в магазині?",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Un",
+"Su",
+"Las",
+"Con"
+]
+},
+{
+"correct": "cambias",
+"distractors": [
+"levantamos",
+"levanta",
+"levantan",
+"levantas",
+"levanto"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"sin",
+"desde",
+"con",
+"de",
+"por"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"un",
+"lo",
+"las",
+"con"
+]
+},
+{
+"correct": "tienda",
+"distractors": [
+"mensaje",
+"café",
+"canción",
+"playa",
+"regalo"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:18",
+"target": "Las buscamos.",
+"ru": "Мы их ищем.",
+"uk": "Ми їх шукаємо.",
+"tiles": [
+{
+"correct": "Las",
+"distractors": [
+"Mis",
+"Su",
+"La",
+"Se",
+"Con"
+]
+},
+{
+"correct": "buscamos",
+"distractors": [
+"buscas",
+"busco",
+"buscan",
+"busca",
+"buscáis"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:19",
+"target": "Ana no la busca.",
+"ru": "Ана её не ищет.",
+"uk": "Ана її не шукає.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Nunca",
+"Cuándo",
+"Quién",
+"Ayer"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"lejos",
+"aquí",
+"dentro",
+"allí",
+"cerca"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"los",
+"se",
+"con",
+"que"
+]
+},
+{
+"correct": "busca",
+"distractors": [
+"buscamos",
+"buscas",
+"buscan",
+"buscáis",
+"buscando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:20",
+"target": "¿Lo busco?",
+"ru": "Я его ищу?",
+"uk": "Я його шукаю?",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Tu",
+"Sus",
+"Una",
+"Las",
+"Te"
+]
+},
+{
+"correct": "busco",
+"distractors": [
+"buscan",
+"buscamos",
+"buscáis",
+"buscas",
+"buscando"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:21",
+"target": "Ana lo lleva a casa.",
+"ru": "Ана её несёт домой.",
+"uk": "Ана її несе додому.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Cuándo",
+"Pronto"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"los",
+"el",
+"tu",
+"mi",
+"con"
+]
+},
+{
+"correct": "lleva",
+"distractors": [
+"llevando",
+"llevar",
+"llevamos",
+"llevas",
+"busca"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"desde",
+"para",
+"de",
+"con",
+"por"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"hermanos",
+"mañana",
+"carta",
+"mensaje",
+"ahora"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:22",
+"target": "La recojo en recepción.",
+"ru": "Я забираю её со стойки регистрации.",
+"uk": "Я забираю її зі стійки реєстрації.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"El",
+"Las",
+"Un",
+"Mi",
+"Los"
+]
+},
+{
+"correct": "recojo",
+"distractors": [
+"recogiendo",
+"bebes",
+"bebiendo",
+"bebo",
+"beber"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "recepción",
+"distractors": [
+"pregunta",
+"agua",
+"estación",
+"casa",
+"coche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:23",
+"target": "Luis los lleva a casa.",
+"ru": "Луис их несёт домой.",
+"uk": "Луїс їх несе додому.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Quién",
+"Lejos",
+"Ayer"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"mis",
+"la",
+"sus",
+"el",
+"se"
+]
+},
+{
+"correct": "lleva",
+"distractors": [
+"llevar",
+"llevamos",
+"llevando",
+"llevas",
+"busca"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"de",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"canciones",
+"arroz",
+"mensaje",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:24",
+"target": "Las llevo a casa.",
+"ru": "Я их несу домой.",
+"uk": "Я їх несу додому.",
+"tiles": [
+{
+"correct": "Las",
+"distractors": [
+"El",
+"Un",
+"La",
+"Mi",
+"Te"
+]
+},
+{
+"correct": "llevo",
+"distractors": [
+"llevas",
+"llevamos",
+"llevar",
+"llevando",
+"estamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"móvil",
+"bolso",
+"café",
+"mochila",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:25",
+"target": "No lo llevas a casa.",
+"ru": "Ты его не несёшь домой.",
+"uk": "Ти його не несеш додому.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"un",
+"las",
+"el",
+"con",
+"que"
+]
+},
+{
+"correct": "llevas",
+"distractors": [
+"lleva",
+"llevamos",
+"llevar",
+"llevando",
+"llevo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"de",
+"con",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mochila",
+"móvil",
+"canción",
+"leche",
+"mensaje"
+]
+}
+],
+"alternatives": [
+"Tú no lo llevas a casa."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:26",
+"target": "Lo envuelvo en casa.",
+"ru": "Я заворачиваю его дома.",
+"uk": "Я загортаю його вдома.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Un",
+"Los",
+"Mis",
+"Mi",
+"Te"
+]
+},
+{
+"correct": "envuelvo",
+"distractors": [
+"envolviendo",
+"come",
+"es",
+"son",
+"soy"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"de",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mapa",
+"aeropuerto",
+"cita",
+"pasaporte",
+"hotel"
+]
+}
+],
+"alternatives": [
+"Yo lo envuelvo en casa."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:27",
+"target": "¿Los llevamos a casa?",
+"ru": "Мы их несём домой?",
+"uk": "Ми їх несемо додому?",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Un",
+"El",
+"Mis",
+"Tu",
+"Lo"
+]
+},
+{
+"correct": "llevamos",
+"distractors": [
+"lleva",
+"llevar",
+"llevas",
+"llevo",
+"llevando"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cena",
+"mesas",
+"arroz",
+"número",
+"camisetas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:28",
+"target": "Ana las lleva a casa.",
+"ru": "Ана их несёт домой.",
+"uk": "Ана їх несе додому.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Pronto",
+"Nunca",
+"Cuándo",
+"Quién"
+]
+},
+{
+"correct": "las",
+"distractors": [
+"un",
+"la",
+"mis",
+"mi",
+"se"
+]
+},
+{
+"correct": "lleva",
+"distractors": [
+"llevar",
+"llevamos",
+"llevando",
+"llevas",
+"gusta"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"carta",
+"billete",
+"hermanos",
+"mensaje",
+"llaves"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:29",
+"target": "No la llevo a casa.",
+"ru": "Я её не несу домой.",
+"uk": "Я її не несу додому.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"te",
+"con"
+]
+},
+{
+"correct": "llevo",
+"distractors": [
+"llevando",
+"llevar",
+"llevamos",
+"llevas",
+"estamos"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"de",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"libro",
+"reserva",
+"bolsa",
+"favor",
+"minuto"
+]
+}
+],
+"alternatives": [
+"Yo no la llevo a casa."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:30",
+"target": "¿Lo llevas a casa?",
+"ru": "Ты его несёшь домой?",
+"uk": "Ти його несеш додому?",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Un",
+"Las",
+"El",
+"Mis",
+"Con"
+]
+},
+{
+"correct": "llevas",
+"distractors": [
+"llevando",
+"llevar",
+"lleva",
+"llevamos",
+"llevo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"por",
+"de",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"carta",
+"libro",
+"móviles",
+"hotel",
+"hermanas"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:31",
+"target": "Lo necesitamos hoy.",
+"ru": "Она нам сегодня нужна.",
+"uk": "Вона нам сьогодні потрібна.",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Mis",
+"Tu",
+"Un",
+"Mi",
+"Yo"
+]
+},
+{
+"correct": "necesitamos",
+"distractors": [
+"necesitas",
+"necesito",
+"necesita",
+"tienes",
+"tiene"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"aquí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:32",
+"target": "Luis la necesita hoy.",
+"ru": "Он Луису сегодня нужен.",
+"uk": "Він Луїсу сьогодні потрібен.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Nunca",
+"Cuándo",
+"Quién",
+"Ayer"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"los",
+"el",
+"las",
+"les",
+"con"
+]
+},
+{
+"correct": "necesita",
+"distractors": [
+"necesitamos",
+"necesitas",
+"necesitan",
+"tienes",
+"leer"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"lejos",
+"no",
+"mañana",
+"estamos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:33",
+"target": "Los necesito hoy.",
+"ru": "Они мне сегодня нужны.",
+"uk": "Вони мені сьогодні потрібні.",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Mi",
+"Tu",
+"Una",
+"Un",
+"La"
+]
+},
+{
+"correct": "necesito",
+"distractors": [
+"necesitan",
+"necesitas",
+"necesitamos",
+"tienes",
+"leer"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"lejos",
+"no",
+"mañana",
+"estamos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:34",
+"target": "La lavo a mano.",
+"ru": "Я стираю её вручную.",
+"uk": "Я перу її вручну.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"El",
+"Un",
+"Los",
+"Las",
+"Le"
+]
+},
+{
+"correct": "lavo",
+"distractors": [
+"lavando",
+"laváis",
+"lavan",
+"lavas",
+"dejo"
+]
+},
+{
+"correct": "a",
+"distractors": [
+"para",
+"con",
+"por",
+"de",
+"desde"
+]
+},
+{
+"correct": "mano",
+"distractors": [
+"reserva",
+"gente",
+"hermanos",
+"abrigo",
+"puerta"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:35",
+"target": "Mis hermanos no lo necesitan hoy.",
+"ru": "Он моим братьям сегодня не нужен.",
+"uk": "Він моїм братам сьогодні не потрібен.",
+"tiles": [
+{
+"correct": "Mis",
+"distractors": [
+"Tu",
+"Tus",
+"Sus",
+"Su",
+"Mi"
+]
+},
+{
+"correct": "hermanos",
+"distractors": [
+"foto",
+"arroz",
+"hermanas",
+"casa",
+"mensaje"
+]
+},
+{
+"correct": "no",
+"distractors": [
+"quién",
+"lejos",
+"aquí",
+"mañana",
+"ahora"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"los",
+"su",
+"las",
+"una",
+"os"
+]
+},
+{
+"correct": "necesitan",
+"distractors": [
+"necesito",
+"necesita",
+"necesitamos",
+"necesitas",
+"tienes"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"aquí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:36",
+"target": "La necesitamos hoy.",
+"ru": "Он нам сегодня нужен.",
+"uk": "Він нам сьогодні потрібен.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"El",
+"Mi",
+"Los",
+"Me",
+"Con"
+]
+},
+{
+"correct": "necesitamos",
+"distractors": [
+"necesito",
+"necesita",
+"necesitas",
+"necesitan",
+"tienes"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"lejos",
+"no",
+"mañana",
+"estamos"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:37",
+"target": "¿Ana los necesita hoy?",
+"ru": "Они Ане сегодня нужны?",
+"uk": "Вони Ані сьогодні потрібні?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Quién",
+"Nunca"
+]
+},
+{
+"correct": "los",
+"distractors": [
+"un",
+"tu",
+"su",
+"la",
+"lo"
+]
+},
+{
+"correct": "necesita",
+"distractors": [
+"necesitas",
+"necesitamos",
+"leer",
+"leyendo",
+"necesitan"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"quién",
+"lejos",
+"dentro",
+"allí",
+"cerca"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:38",
+"target": "Las guardo en el bolsillo.",
+"ru": "Я кладу их в карман.",
+"uk": "Я кладу їх у кишеню.",
+"tiles": [
+{
+"correct": "Las",
+"distractors": [
+"Sus",
+"Mis",
+"Tus",
+"La",
+"Te"
+]
+},
+{
+"correct": "guardo",
+"distractors": [
+"están",
+"sientas",
+"está",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"con",
+"de",
+"por",
+"para",
+"desde"
+]
+},
+{
+"correct": "el",
+"distractors": [
+"una",
+"lo",
+"los",
+"con",
+"que"
+]
+},
+{
+"correct": "bolsillo",
+"distractors": [
+"bolso",
+"maleta",
+"sopa",
+"carta",
+"tienda"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:39",
+"target": "No la necesitas hoy.",
+"ru": "Она тебе сегодня не нужна.",
+"uk": "Вона тобі сьогодні не потрібна.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Mañana",
+"Ahora",
+"Foto",
+"Carta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"los",
+"mi",
+"nos"
+]
+},
+{
+"correct": "necesitas",
+"distractors": [
+"necesito",
+"necesitan",
+"necesita",
+"necesitamos",
+"tienes"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"aquí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:40",
+"target": "¿Ana lo necesita hoy?",
+"ru": "Он Ане сегодня нужен?",
+"uk": "Він Ані сьогодні потрібен?",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Quién",
+"Nunca",
+"Ayer",
+"Cuándo"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"los",
+"una",
+"tus",
+"las",
+"les"
+]
+},
+{
+"correct": "necesita",
+"distractors": [
+"necesitan",
+"necesitas",
+"necesitamos",
+"tienes",
+"leer"
+]
+},
+{
+"correct": "hoy",
+"distractors": [
+"lejos",
+"dentro",
+"allí",
+"cerca",
+"aquí"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:41",
+"target": "Luis lo deja en casa.",
+"ru": "Луис оставляет его дома.",
+"uk": "Луїс залишає його вдома.",
+"tiles": [
+{
+"correct": "Luis",
+"distractors": [
+"Ana",
+"Quién",
+"Cuándo",
+"Lejos",
+"Nunca"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"las",
+"mis",
+"el",
+"tu",
+"les"
+]
+},
+{
+"correct": "deja",
+"distractors": [
+"dejamos",
+"pagando",
+"dejas",
+"pagar",
+"somos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"viaje",
+"tren",
+"agua",
+"reloj",
+"mochila"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:42",
+"target": "La dejo en casa.",
+"ru": "Я его оставляю дома.",
+"uk": "Я його залишаю вдома.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"Los",
+"Un",
+"El",
+"Las",
+"Con"
+]
+},
+{
+"correct": "dejo",
+"distractors": [
+"dejas",
+"dejamos",
+"somos",
+"pagar",
+"abrimos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"para",
+"de",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"periódico",
+"pan",
+"favor",
+"farmacias",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:43",
+"target": "La música la escucho en casa.",
+"ru": "Музыку я слушаю дома.",
+"uk": "Музику я слухаю вдома.",
+"tiles": [
+{
+"correct": "La",
+"distractors": [
+"El",
+"Un",
+"Los",
+"Las",
+"Este"
+]
+},
+{
+"correct": "música",
+"distractors": [
+"llave",
+"mensaje",
+"recepción",
+"hotel",
+"puerta"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"me",
+"con"
+]
+},
+{
+"correct": "escucho",
+"distractors": [
+"es",
+"gusta",
+"coméis",
+"son",
+"soy"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"para",
+"con",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"mañana",
+"libros",
+"viaje",
+"camiseta",
+"ahora"
+]
+}
+],
+"alternatives": [
+"Escucho la música en casa."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:44",
+"target": "Los recojo después de clase.",
+"ru": "Я заберу их после занятия.",
+"uk": "Я заберу їх після заняття.",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Unas",
+"Sus",
+"Mis",
+"El",
+"Se"
+]
+},
+{
+"correct": "recojo",
+"distractors": [
+"recogiendo",
+"llevar",
+"bebes",
+"gustan",
+"gusta"
+]
+},
+{
+"correct": "después",
+"distractors": [
+"ahora",
+"mañana",
+"más",
+"tarde",
+"temprano"
+]
+},
+{
+"correct": "de",
+"distractors": [
+"en",
+"por",
+"a",
+"con",
+"para"
+]
+},
+{
+"correct": "clase",
+"distractors": [
+"cita",
+"mochila",
+"hotel",
+"casa",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:45",
+"target": "No lo dejamos en casa.",
+"ru": "Мы его не оставляем дома.",
+"uk": "Ми його не залишаємо вдома.",
+"tiles": [
+{
+"correct": "No",
+"distractors": [
+"Aquí",
+"Hoy",
+"Mañana",
+"Ahora",
+"Foto"
+]
+},
+{
+"correct": "lo",
+"distractors": [
+"mis",
+"mi",
+"los",
+"sus",
+"tu"
+]
+},
+{
+"correct": "dejamos",
+"distractors": [
+"deja",
+"dejo",
+"dejas",
+"somos",
+"tengo"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"con",
+"desde",
+"de",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"pan",
+"mochilas",
+"pregunta",
+"hotel",
+"mochila"
+]
+}
+],
+"alternatives": [
+"Nosotros no lo dejamos en casa.",
+"Nosotras no lo dejamos en casa."
+]
+},
+{
+"lesson": 18,
+"id": "es:18:46",
+"target": "Ana la deja en casa.",
+"ru": "Ана её оставляет дома.",
+"uk": "Ана її залишає вдома.",
+"tiles": [
+{
+"correct": "Ana",
+"distractors": [
+"Luis",
+"Ayer",
+"Lejos",
+"Nunca",
+"Quién"
+]
+},
+{
+"correct": "la",
+"distractors": [
+"un",
+"el",
+"las",
+"se",
+"con"
+]
+},
+{
+"correct": "deja",
+"distractors": [
+"dejas",
+"pagar",
+"dejamos",
+"pagando",
+"somos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"de",
+"por",
+"con",
+"para",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"aeropuerto",
+"cena",
+"hermana",
+"bolso",
+"mensaje"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:47",
+"target": "¿Los dejo en casa?",
+"ru": "Я их оставляю дома?",
+"uk": "Я їх залишаю вдома?",
+"tiles": [
+{
+"correct": "Los",
+"distractors": [
+"Sus",
+"La",
+"Mis",
+"Tus",
+"Os"
+]
+},
+{
+"correct": "dejo",
+"distractors": [
+"dejas",
+"dejamos",
+"somos",
+"pagar",
+"abrimos"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"por",
+"de",
+"para",
+"con",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"leche",
+"mesa",
+"mesas",
+"bolso",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:48",
+"target": "Las dejas en casa.",
+"ru": "Ты их оставляешь дома.",
+"uk": "Ти їх залишаєш вдома.",
+"tiles": [
+{
+"correct": "Las",
+"distractors": [
+"Tus",
+"Mis",
+"La",
+"Un",
+"Os"
+]
+},
+{
+"correct": "dejas",
+"distractors": [
+"dejo",
+"deja",
+"dejamos",
+"somos",
+"pagar"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"desde",
+"con",
+"de",
+"por",
+"para"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"cena",
+"verduras",
+"abrigos",
+"mensaje",
+"hotel"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:49",
+"target": "¿Lo devuelves mañana?",
+"ru": "Ты вернёшь его завтра?",
+"uk": "Ти повернеш його завтра?",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Mi",
+"Las",
+"Una",
+"Los",
+"Con"
+]
+},
+{
+"correct": "devuelves",
+"distractors": [
+"devuelvo",
+"están",
+"está",
+"estás",
+"estamos"
+]
+},
+{
+"correct": "mañana",
+"distractors": [
+"temprano",
+"tarde",
+"ahora",
+"más",
+"después"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "es:18:50",
+"target": "¿Lo dejamos en casa?",
+"ru": "Мы его оставляем дома?",
+"uk": "Ми його залишаємо вдома?",
+"tiles": [
+{
+"correct": "Lo",
+"distractors": [
+"Una",
+"Tu",
+"Mis",
+"Las",
+"Con"
+]
+},
+{
+"correct": "dejamos",
+"distractors": [
+"dejo",
+"deja",
+"dejas",
+"somos",
+"pagando"
+]
+},
+{
+"correct": "en",
+"distractors": [
+"para",
+"con",
+"de",
+"por",
+"desde"
+]
+},
+{
+"correct": "casa",
+"distractors": [
+"bolso",
+"hotel",
+"móvil",
+"hermanos",
+"mochila"
+]
+}
+],
+"alternatives": []
+}
+]
